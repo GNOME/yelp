@@ -506,6 +506,8 @@ process_omf_pending (YelpTocPager *pager)
 	xmlXPathEvalExpression ("string(/omf/resource/relation/@seriesid)", omf_xpath);
 
     doc_info = yelp_doc_info_get (omf_url->stringval);
+    if (!doc_info)
+	goto done;
     yelp_doc_info_set_title (doc_info, omf_title->stringval);
     yelp_doc_info_set_language (doc_info, omf_language->stringval);
     yelp_doc_info_set_category (doc_info, omf_category->stringval);

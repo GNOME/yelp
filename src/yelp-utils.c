@@ -82,7 +82,8 @@ YelpDocInfo *
 yelp_doc_info_new (gchar *uri)
 {
     YelpDocInfo *doc;
-    gchar       *doc_uri = NULL;
+    gchar       *doc_uri  = NULL;
+    gchar       *full_uri = NULL;
     YelpDocType  doc_type;
     YelpURIType  uri_type;
     gchar *cur;
@@ -90,51 +91,56 @@ yelp_doc_info_new (gchar *uri)
     g_return_val_if_fail (uri != NULL, NULL);
 
     d (g_print ("yelp_doc_info_new\n"));
-    d (g_print ("  uri     = \"%s\"\n", uri));
+    d (g_print ("  uri      = \"%s\"\n", uri));
 
-    if (g_str_has_prefix (uri, "file:")) {
-	if ((cur = strchr (uri, '#')))
-	    doc_uri = g_strndup (uri, cur - uri);
+    full_uri =
+	gnome_vfs_make_uri_from_input_with_dirs	(uri,
+						 GNOME_VFS_MAKE_URI_DIR_CURRENT);
+
+    if (g_str_has_prefix (full_uri, "file:")) {
+	if ((cur = strchr (full_uri, '#')))
+	    doc_uri = g_strndup (full_uri, cur - full_uri);
 	else
-	    doc_uri = g_strdup (uri);
+	    doc_uri = g_strdup (full_uri);
 	doc_type = get_doc_type (doc_uri);
 	uri_type = YELP_URI_TYPE_FILE;
     }
-    if (g_str_has_prefix (uri, "ghelp:") ||
-	g_str_has_prefix (uri, "gnome-help:")) {
-	doc_uri  = convert_ghelp_uri (uri);
+    else if (g_str_has_prefix (full_uri, "ghelp:") ||
+	g_str_has_prefix (full_uri, "gnome-help:")) {
+	doc_uri  = convert_ghelp_uri (full_uri);
 	if (doc_uri)
 	    doc_type = get_doc_type (doc_uri);
 	uri_type = YELP_URI_TYPE_GHELP;
     }
 #ifdef ENABLE_MAN
-    else if (g_str_has_prefix (uri, "man:")) {
-	doc_uri  = convert_man_uri (uri);
+    else if (g_str_has_prefix (full_uri, "man:")) {
+	doc_uri  = convert_man_uri (full_uri);
 	doc_type = YELP_DOC_TYPE_MAN;
 	uri_type = YELP_URI_TYPE_MAN;
     }
 #endif
 #ifdef ENABLE_INFO
-    else if (g_str_has_prefix (uri, "info:")) {
-	doc_uri  = convert_info_uri (uri);
+    else if (g_str_has_prefix (full_uri, "info:")) {
+	doc_uri  = convert_info_uri (full_uri);
 	doc_type = YELP_DOC_TYPE_INFO;
 	uri_type = YELP_URI_TYPE_INFO;
     }
 #endif
-    else if (g_str_has_prefix (uri, "x-yelp-toc:")) {
+    else if (g_str_has_prefix (full_uri, "x-yelp-toc:")) {
 	doc_uri = g_strdup ("file://" DATADIR "/yelp/toc.xml");
 	doc_type = YELP_DOC_TYPE_TOC;
 	uri_type = YELP_URI_TYPE_TOC;
     }
-    else if (g_str_has_prefix (uri, "http:") ||
-	     g_str_has_prefix (uri, "mailto:")){
+    else {
 	doc_uri = g_strdup (uri);
 	doc_type = YELP_DOC_TYPE_EXTERNAL;
 	uri_type = YELP_URI_TYPE_EXTERNAL;
     }
 
+    d (g_print ("  full_uri = \"%s\"\n", full_uri));
+    d (g_print ("  doc_uri  = \"%s\"\n", doc_uri));
 
-    d (g_print ("  doc_uri = \"%s\"\n", doc_uri));
+    g_free (full_uri);
 
     if (doc_uri) {
 	doc = g_new0 (YelpDocInfo, 1);

@@ -186,7 +186,6 @@ GtkWidget *
 yelp_base_new_window (YelpBase *base, const gchar *uri)
 {
 	YelpBasePriv *priv;
-	gchar        *str;
 	GtkWidget    *window;
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
@@ -207,18 +206,10 @@ yelp_base_new_window (YelpBase *base, const gchar *uri)
 
 	gtk_widget_show (window);
 
-	if (uri && strcmp (uri, "")) {
-		gchar *dir = g_get_current_dir ();
-		gchar *dirs = g_strconcat ("file://", dir, "/", NULL);
-		str = gnome_vfs_uri_make_full_from_relative (dirs, uri);
-		g_free (dirs);
-		g_free (dir);
-	} else {
-		str = g_strdup ("x-yelp-toc:");
-	}
-
-	yelp_window_load (YELP_WINDOW (window), str);
-	g_free (str);
+	if (uri && uri[0] != '\0')
+		yelp_window_load (YELP_WINDOW (window), uri);
+	else
+		yelp_window_load (YELP_WINDOW (window), "x-yelp-toc:");
 
 	return window;
 }
