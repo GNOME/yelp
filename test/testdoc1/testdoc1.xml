@@ -211,11 +211,55 @@
 	</classsynopsis>
 </sect1>
 
+<sect1 id="td-cmdsynopsis">
+	<title>Command Synopses</title>
+	<para>
+		This section tests the <sgmltag>cmdsynopsis</sgmltag> and related
+		elements.
+	</para>
+	<cmdsynopsis>
+		<command>frobnicate</command>
+		<arg choice="opt">--opt-arg</arg>
+		<arg choice="plain">--plain-arg</arg>
+		<arg choice="req">--req-arg</arg>
+		<arg>-o <replaceable>outfile</replaceable></arg>
+		<arg rep="repeat"><replaceable>infiles</replaceable></arg>
+	</cmdsynopsis>
+	<cmdsynopsis>
+		<command>opt-group</command>
+		<group choice="opt">
+			<arg>--yes</arg>
+			<arg>--no</arg>
+		</group>
+	</cmdsynopsis>
+	<cmdsynopsis>
+		<command>plain-group</command>
+		<group choice="plain">
+			<arg>--yes</arg>
+			<arg>--no</arg>
+		</group>
+	</cmdsynopsis>
+	<cmdsynopsis>
+		<command>req-group</command>
+		<group choice="req">
+			<arg>--yes</arg>
+			<arg>--no</arg>
+		</group>
+	</cmdsynopsis>
+	<cmdsynopsis>
+		<command>repeat-group</command>
+		<group choice="plain" rep="repeat">
+			<arg>--yes</arg>
+			<arg>--no</arg>
+		</group>
+	</cmdsynopsis>
+</sect1>
+
 <sect1 id="td-inline">
 	<title>Inline Elements</title>
 
 	<para>
-		This sections tests various inline DocBook elements that don't fit into
+		This section tests various inline DocBook elements that don't fit into
 		any other sections.
 	</para>
 

@@ -85,27 +85,41 @@
 <!-- == cmdsynopsis ======================================================== -->
 
 <xsl:template match="cmdsynopsis">
-	<div class="{name(.)}">
-		<xsl:call-template name="anchor"/>
-		<xsl:apply-templates mode="cmdsynopsis.mode"/>
-	</div>
-</xsl:template>
-
-<xsl:template match="arg | group">
-	<xsl:variable name="sepchar">
+	<xsl:param name="sepchar">
 		<xsl:choose>
-			<xsl:when test="ancestor-or-self::*[@sepchar]">
-				<xsl:value-of select="ancestor-or-self::*[@sepchar][1]/@sepchar"/>
+			<xsl:when test="@sepchar">
+				<xsl:value-of select="@sepchar"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:text> </xsl:text>
 			</xsl:otherwise>
 		</xsl:choose>
-	</xsl:variable>
-	<xsl:value-of select="$sepchar"/>
+	</xsl:param>
+	<div class="{name(.)}">
+		<xsl:call-template name="anchor"/>
+		<xsl:apply-templates mode="cmdsynopsis.mode">
+			<xsl:with-param name="sepchar" select="$sepchar"/>
+		</xsl:apply-templates>
+	</div>
+</xsl:template>
+
+<xsl:template match="arg | group">
+	<xsl:param name="sepchar">
+		<xsl:choose>
+			<xsl:when test="ancestor::cmdsynopsis[1][@sepchar]">
+				<xsl:value-of select="ancestor::cmdsynopsis[1]/@sepchar"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text> </xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:param>
+
 	<xsl:choose>
 		<xsl:when test="@choice = 'plain'">
-			<xsl:text> </xsl:text>
+			<xsl:if test="name(.) = 'group'">
+				<xsl:text>(</xsl:text>
+			</xsl:if>
 		</xsl:when>
 		<xsl:when test="@choice = 'req'">
 			<xsl:text>{</xsl:text>
@@ -118,22 +132,27 @@
 		<xsl:when test="name(.) = 'group'">
 			<xsl:for-each select="*">
 				<xsl:if test="name(.) = 'arg' and position() != 1">
-					<xsl:text> |</xsl:text>
+					<xsl:value-of select="concat($sepchar, '|', $sepchar)"/>
 				</xsl:if>
-				<xsl:apply-templates select="."/>
+				<xsl:apply-templates select=".">
+					<xsl:with-param name="sepchar" select="$sepchar"/>
+				</xsl:apply-templates>
 			</xsl:for-each>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:apply-templates/>
+			<xsl:apply-templates>
+				<xsl:with-param name="sepchar" select="$sepchar"/>
+			</xsl:apply-templates>
 		</xsl:otherwise>
 	</xsl:choose>
+	<xsl:if test="name(.) = 'group' and @choice = 'plain'">
+		<xsl:text>)</xsl:text>
+	</xsl:if>
 	<xsl:if test="@rep = 'repeat'">
 		<xsl:text>...</xsl:text>
 	</xsl:if>
 	<xsl:choose>
-		<xsl:when test="@choice = 'plain'">
-			<xsl:text> </xsl:text>
-		</xsl:when>
+		<xsl:when test="@choice = 'plain'"/>
 		<xsl:when test="@choice = 'req'">
 			<xsl:text>}</xsl:text>
 		</xsl:when>
@@ -144,7 +163,20 @@
 </xsl:template>
 
 <xsl:template mode="cmdsynopsis.mode" match="arg | group">
-	<xsl:apply-templates select="."/>
+	<xsl:param name="sepchar">
+		<xsl:choose>
+			<xsl:when test="ancestor::cmdsynopsis[1][@sepchar]">
+				<xsl:value-of select="ancestor::cmdsynopsis[1]/@sepchar"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text> </xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:param>
+	<xsl:value-of select="$sepchar"/>
+	<xsl:apply-templates select=".">
+		<xsl:with-param name="sepchar" select="$sepchar"/>
+	</xsl:apply-templates>
 </xsl:template>
 
 <xsl:template mode="cmdsynopsis.mode" match="command">
@@ -162,15 +194,39 @@
 </xsl:template>
 
 <xsl:template match="synopfragment">
+	<xsl:param name="sepchar">
+		<xsl:choose>
+			<xsl:when test="ancestor::cmdsynopsis[1][@sepchar]">
+				<xsl:value-of select="ancestor::cmdsynopsis[1]/@sepchar"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text> </xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:param>
 	<div class="{name(.)}">
 		<xsl:call-template name="anchor"/>
 		<i><xsl:call-template name="header"/></i>
-		<xsl:apply-templates/>
+		<xsl:apply-templates>
+			<xsl:with-param name="sepchar" select="$sepchar"/>
+		</xsl:apply-templates>
 	</div>
 </xsl:template>
 
 <xsl:template mode="cmdsynopsis.mode" match="synopfragment">
-	<xsl:apply-templates select="."/>
+	<xsl:param name="sepchar">
+		<xsl:choose>
+			<xsl:when test="ancestor::cmdsynopsis[1][@sepchar]">
+				<xsl:value-of select="ancestor::cmdsynopsis[1]/@sepchar"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text> </xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:param>
+	<xsl:apply-templates select=".">
+		<xsl:with-param name="sepchar" select="$sepchar"/>
+	</xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="synopfragmentref">
