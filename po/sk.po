@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-03-04 16:37+0100\n"
-"PO-Revision-Date: 2002-03-04 16:39+0100\n"
+"POT-Creation-Date: 2002-04-10 16:54+0200\n"
+"PO-Revision-Date: 2002-04-10 16:54+0200\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +22,20 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Vytváracie rozhranie Yelp"
 
-#: src/yelp-info.c:126
+#: src/yelp-html.c:137
+msgid "Loading..."
+msgstr "Načítavam..."
+
+#: src/yelp-info.c:141
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:91
+#: src/yelp-main.c:109
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Nepodarilo sa aktivovať Yelp: '%s'"
 
-#: src/yelp-main.c:110
+#: src/yelp-main.c:128
 msgid "Could not open new window."
 msgstr "Nepodarilo sa otvoriť nové okno."
 
@@ -108,11 +112,11 @@ msgstr "Systémová administrácia"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:359
 msgid "Section"
 msgstr "Kapitola"
 
-#: src/yelp-view-index.c:325
+#: src/yelp-view-index.c:327
 msgid "Search for:"
 msgstr "Hľadať:"
 
@@ -144,93 +148,90 @@ msgstr "Manuálové stránky"
 msgid "Scrollkeeper docs for category"
 msgstr "Dokumenty Scrollkeeper pre kategóriu"
 
-#: src/yelp-window.c:138
+#: src/yelp-window.c:150
 msgid "/_File"
 msgstr "/_Súbor"
 
-#: src/yelp-window.c:139
+#: src/yelp-window.c:151
 msgid "/File/_New window"
 msgstr "/Súbor/_Nové okno"
 
-#: src/yelp-window.c:140
+#: src/yelp-window.c:152
 msgid "/File/_Close window"
 msgstr "/Súbor/_Zavrieť okno"
 
-#: src/yelp-window.c:141
-msgid "/File/_Quit"
-msgstr "/Súbor/_Koniec"
-
-#: src/yelp-window.c:142
+#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:154
 msgid "/_Go"
 msgstr "/_Prejsť"
 
-#: src/yelp-window.c:143
+#: src/yelp-window.c:155
 msgid "/Go/_Back"
 msgstr "/Prejsť/Do_zadu"
 
-#: src/yelp-window.c:144
+#: src/yelp-window.c:156
 msgid "/Go/_Forward"
 msgstr "/Prejsť/Do_predu"
 
-#: src/yelp-window.c:145
+#: src/yelp-window.c:157
 msgid "/Go/_Home"
 msgstr "/Prejsť/_Domov"
 
-#: src/yelp-window.c:146
+#: src/yelp-window.c:158
 msgid "/Go/_Index"
 msgstr "/Prejsť/_Index"
 
-#: src/yelp-window.c:147
+#: src/yelp-window.c:159
 msgid "/_Help"
 msgstr "/_Pomocník"
 
-#: src/yelp-window.c:148
+#: src/yelp-window.c:160
 msgid "/Help/_About"
 msgstr "/Pomocník/_O aplikácii"
 
-#: src/yelp-window.c:207
+#: src/yelp-window.c:219
 msgid "Help Browser"
 msgstr "Pomocník"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:539
+#: src/yelp-window.c:545
 msgid "translator_credits"
 msgstr "Stanislav Višňovský (visnovsky@nenya.ms.mff.cuni.cz)"
 
-#: src/yelp-window.c:543
+#: src/yelp-window.c:549
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pomocník pre GNOME 2.0"
 
-#: src/yelp-window.c:570
+#: src/yelp-window.c:604
 msgid "Back"
 msgstr "Dozadu"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:605
 msgid "Show previous page in history"
 msgstr "Zobraziť predchádzajúcu stránku histórie"
 
-#: src/yelp-window.c:582
+#: src/yelp-window.c:616
 msgid "Forward"
 msgstr "Dopredu"
 
-#: src/yelp-window.c:583
+#: src/yelp-window.c:617
 msgid "Show next page in history"
 msgstr "Zobraziť nasledujúcu stránku histórie"
 
-#: src/yelp-window.c:596
+#: src/yelp-window.c:630
 msgid "Home"
 msgstr "Domov"
 
-#: src/yelp-window.c:597
+#: src/yelp-window.c:631
 msgid "Go to home view"
 msgstr "Prejsť na domovský pohľad"
 
-#: src/yelp-window.c:607
+#: src/yelp-window.c:641
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:608
+#: src/yelp-window.c:642
 msgid "Search in the index"
 msgstr "Nájsť v indexe"
 
@@ -241,6 +242,9 @@ msgstr "Zobraziť Pomocníka pre GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Pomocník"
+
+#~ msgid "/File/_Quit"
+#~ msgstr "/Súbor/_Koniec"
 
 #~ msgid "Manual page sections"
 #~ msgstr "Sekcie manuálových stránok"
