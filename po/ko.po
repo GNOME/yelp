@@ -1,0 +1,274 @@
+# yelp ko.po
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Young-Ho, Cha <ganadist@chollian.net>, 2002
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp 0.6\n"
+"POT-Creation-Date: 2002-04-15 22:21+0200\n"
+"PO-Revision-Date: 2002-04-18 05:08+0900\n"
+"Last-Translator: Young-Ho Cha <ganadist@chollian.net>\n"
+"Language-Team: korean <gnome-kr-translation@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp Factory"
+
+#: src/yelp-db2html.c:105
+msgid ""
+"Error while parsing the stylesheet, make sure you have your docbook "
+"environment setup correctly."
+msgstr ""
+"스타일시트를 분석하는 도중 오류가 발생했습니다, 여러분의 docbook 환경 "
+"설정이 올바른지 확인하십시오."
+
+#: src/yelp-db2html.c:121
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "문서 '%s'가 없습니다"
+
+#: src/yelp-db2html.c:136
+#, c-format
+msgid "Couldn't parse the document '%s'."
+msgstr "문서 '%s'를 분석할 수 없습니다."
+
+#: src/yelp-db2html.c:175
+msgid "Error while applying the stylesheet."
+msgstr "스타일 시트를 적용하는 도중 오류가 났습니다."
+
+#: src/yelp-html.c:130
+msgid "Loading..."
+msgstr "읽고 있습니다..."
+
+#: src/yelp-html.c:308
+#, c-format
+msgid "Failed to open document '%s'"
+msgstr "문서 '%s'를 열기 실패하였습니다"
+
+#: src/yelp-info.c:141
+msgid "info"
+msgstr "정보"
+
+#: src/yelp-main.c:109
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Yelp를 활성화 할 수 없음: '%s'"
+
+#: src/yelp-main.c:128
+msgid "Could not open new window."
+msgstr "새 창에서 열 수 없음"
+
+#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
+#: src/yelp-man.c:406 src/yelp-man.c:417
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:311
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:327
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:332
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:342
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:347
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:369
+msgid "System Calls"
+msgstr "시스템 호출"
+
+#: src/yelp-man.c:374
+msgid "Library Functions"
+msgstr "라이브러리 함수"
+
+#: src/yelp-man.c:379
+msgid "Kernel Routines"
+msgstr "커널 루틴"
+
+#: src/yelp-man.c:434
+msgid "Applications"
+msgstr "응용프로그램"
+
+#: src/yelp-man.c:439
+msgid "Development"
+msgstr "개발"
+
+#: src/yelp-man.c:444
+msgid "Hardware Devices"
+msgstr "하드웨어 장치"
+
+#: src/yelp-man.c:449
+msgid "Configuration Files"
+msgstr "설정 파일"
+
+#: src/yelp-man.c:454
+msgid "Games"
+msgstr "게임"
+
+#: src/yelp-man.c:459
+msgid "Overviews"
+msgstr "전체"
+
+#: src/yelp-man.c:464
+msgid "System Administration"
+msgstr "시스템 관리"
+
+#: src/yelp-man.c:475
+msgid "man"
+msgstr "설명서"
+
+#: src/yelp-view-content.c:200 src/yelp-view-index.c:374
+msgid "Section"
+msgstr "단락"
+
+#: src/yelp-view-index.c:337
+msgid "Search for:"
+msgstr "찾기:"
+
+#: src/yelp-view-toc.c:323
+msgid "Help Contents"
+msgstr "도움말 목록"
+
+#: src/yelp-view-toc.c:324
+msgid "GNOME - Desktop"
+msgstr "그놈 - 바탕화면"
+
+#: src/yelp-view-toc.c:325
+msgid "Additional documents"
+msgstr "추가 문서"
+
+#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
+msgid "Manual pages"
+msgstr "설명서 페이지"
+
+#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
+msgid "Info pages"
+msgstr "정보 페이지"
+
+#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
+msgid "Documents"
+msgstr "문서"
+
+#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
+msgid "Categories"
+msgstr "분류"
+
+#: src/yelp-view-toc.c:666
+msgid "Manual Pages"
+msgstr "설명서 페이지"
+
+#: src/yelp-window.c:152
+msgid "/_File"
+msgstr "/파일(_F)"
+
+#: src/yelp-window.c:153
+msgid "/File/_New window"
+msgstr "/파일/새 창(_N)"
+
+#: src/yelp-window.c:154
+msgid "/File/_Close window"
+msgstr "/파일/창 닫기(_C)"
+
+#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:156
+msgid "/_Go"
+msgstr "/가기(_G)"
+
+#: src/yelp-window.c:157
+msgid "/Go/_Back"
+msgstr "/가기/뒤로(_B)"
+
+#: src/yelp-window.c:158
+msgid "/Go/_Forward"
+msgstr "/가기/앞으로(_F)"
+
+#: src/yelp-window.c:159
+msgid "/Go/_Home"
+msgstr "/가기/홈(_H)"
+
+#: src/yelp-window.c:160
+msgid "/Go/_Index"
+msgstr "/가기/색인(_I)"
+
+#: src/yelp-window.c:161
+msgid "/_Help"
+msgstr "/도움말(_H)"
+
+#: src/yelp-window.c:162
+msgid "/Help/_About"
+msgstr "/도움말/이 프로그램은(_A)"
+
+#: src/yelp-window.c:221
+msgid "Help Browser"
+msgstr "도움말 브라우저"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:565
+msgid "translator_credits"
+msgstr "번역하신 분들"
+
+#: src/yelp-window.c:569
+msgid "Help Browser for GNOME 2.0"
+msgstr "그놈 2.0용 도움말 브라우저"
+
+#: src/yelp-window.c:623
+msgid "Back"
+msgstr "뒤로"
+
+#: src/yelp-window.c:624
+msgid "Show previous page in history"
+msgstr "방문 기록의 이전 페이지를 봅니다"
+
+#: src/yelp-window.c:635
+msgid "Forward"
+msgstr "앞으로"
+
+#: src/yelp-window.c:636
+msgid "Show next page in history"
+msgstr "방문 기록의 다음 페이지를 봅니다"
+
+#: src/yelp-window.c:649
+msgid "Home"
+msgstr "홈"
+
+#: src/yelp-window.c:650
+msgid "Go to home view"
+msgstr "홈 보기로 가기"
+
+#: src/yelp-window.c:660
+msgid "Index"
+msgstr "색인"
+
+#: src/yelp-window.c:661
+msgid "Search in the index"
+msgstr "색인에서 찾습니다"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "그놈에서 도움말을 봅니다"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "도움말"
