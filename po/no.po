@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2005-01-11 02:42+0100\n"
+"POT-Creation-Date: 2005-01-19 12:49+0100\n"
+"PO-Revision-Date: 2005-01-19 12:56+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Utdanningsprogrammer"
 msgid "Graphics"
 msgstr "Grafikk"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
 msgid "Help Topics"
 msgstr "Hjelpemner"
 
@@ -147,28 +147,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Kontor"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Annet"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Annen dokumentasjon"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Programmering"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Vitenskapelig"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Lyd &amp; bilde"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
@@ -187,9 +187,8 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Skrifter</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "_Bokmerker"
+msgstr "<b>_Bokmerker:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
@@ -221,7 +220,7 @@ msgstr "Brukervalg"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "E_ndre navn"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
@@ -299,26 +298,37 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp factory"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:141
+msgid "Open Bookmark in New Window"
+msgstr "Åpne bokmerke i nytt vindu"
+
+#: src/yelp-bookmarks.c:145
+msgid "Rename Bookmark"
+msgstr "Endre navn på bokmerke"
+
+#: src/yelp-bookmarks.c:149
+msgid "Remove Bookmark"
+msgstr "Fjern bokmerke"
+
+#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Et bokmerke med navn <b>%s</b> eksisterer allerede for denne siden."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: src/yelp-bookmarks.c:377
 msgid "Document Sections"
-msgstr "Dokumentinformasjon"
+msgstr "Dokumentdeler"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:241
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr ""
+msgstr "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den ikke velformet XML."
 
 #: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Ukjent"
+msgid "Unknown Section"
+msgstr "Ukjent del"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -357,7 +367,7 @@ msgstr "Ingen informasjon er tilgjengelig for denne feilen."
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr ""
+msgstr "Filen «%s» kunne ikke leses og dekodes. Filen kan være komprimert i et format som ikke støttes."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -381,7 +391,7 @@ msgstr "Hjelp"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
+msgstr "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filene eller så er den ikke riktig formatert."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -435,14 +445,14 @@ msgstr "Les manualside for %s"
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
+msgstr "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den ikke velutformet XML."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den ikke et gyldig XSLT-stilark."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -585,7 +595,7 @@ msgstr "Ugyldig URI for denne filen."
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "URIen «%s» er ugyldig eller så peker den ikke til en fil."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
@@ -620,7 +630,7 @@ msgstr "_Finn forrige"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr ""
+msgstr "Kunne ikke opprette en transformeringskontekst for filen «%s». Formatet er kanskje ikke støttet."
 
 #: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
@@ -628,14 +638,14 @@ msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr ""
+msgstr "Delen «%s» eksisterer ikke i dette dokumentet. Hvis du ble sendt hit fra en Hjelp-knapp i et program bør du rapportere dette til utviklerene av dette programmet."
 
 #: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr ""
+msgstr "Filen «%s» kunne ikke leses. Filen kan mangle eller kanskje du ikke har rettigheter til å lese den."
 
 #: src/yelp-window.c:1336
 msgid "Loading..."
@@ -656,25 +666,28 @@ msgstr "Program for å finne og lese dokumentasjon for GNOME skrivebordet."
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr ""
+msgstr "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den ikke riktig formatert."
 
 #: src/yelp-xslt-pager.c:215
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Dokumentet «%s» kunne ikke prosesseres. Filen «%s» mangler eller så er den ikke et gyldig XSLT-stilark."
 
 #: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Dokumentet «%s» kunne ikke prosesseres. Filen «%s» mangler eller så er den ikke et gyldig XSLT-stilark."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjelp med GNOME"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Lyd &amp; bilde"
 
 #~ msgid "_Home"
 #~ msgstr "_Hjem"
@@ -753,9 +766,6 @@ msgstr "Få hjelp med GNOME"
 
 #~ msgid "Kernels"
 #~ msgstr "Kjerner"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "Multimedieprogrammer"
 
 #~ msgid "Office and Productivity Applications"
 #~ msgstr "Kontorstøtteprogrammer"
