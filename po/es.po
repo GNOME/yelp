@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.0\n"
-"POT-Creation-Date: 2002-05-27 14:18+0200\n"
-"PO-Revision-Date: 2002-05-27 18:19+0100\n"
+"POT-Creation-Date: 2002-06-02 13:26+0200\n"
+"PO-Revision-Date: 2002-06-02 18:24+0100\n"
 "Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +20,14 @@ msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Fábrica yelp"
+msgstr "Fábrica Yelp"
 
-#: src/yelp-main.c:109
+#: src/yelp-main.c:111
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "No se pudo activar Yelp: '%s'"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:130
 msgid "Could not open new window."
 msgstr "No se pudo abrir una ventana nueva."
 
@@ -104,11 +104,11 @@ msgstr "Administración del sistema"
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: src/yelp-view-content.c:338 src/yelp-view-index.c:375
+#: src/yelp-view-content.c:338 src/yelp-view-index.c:377
 msgid "Section"
 msgstr "Sección"
 
-#: src/yelp-view-index.c:338
+#: src/yelp-view-index.c:340
 msgid "Search for:"
 msgstr "Buscar:"
 
@@ -133,11 +133,11 @@ msgstr "Páginas del manual"
 msgid "Info Pages"
 msgstr "Páginas info"
 
-#: src/yelp-view-toc.c:364 src/yelp-view-toc.c:544 src/yelp-view-toc.c:759
+#: src/yelp-view-toc.c:364 src/yelp-view-toc.c:544 src/yelp-view-toc.c:751
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/yelp-view-toc.c:365 src/yelp-view-toc.c:488 src/yelp-view-toc.c:760
+#: src/yelp-view-toc.c:365 src/yelp-view-toc.c:488 src/yelp-view-toc.c:752
 msgid "Categories"
 msgstr "Categorías"
 
@@ -145,90 +145,95 @@ msgstr "Categorías"
 msgid "Manual pages"
 msgstr "Páginas del manual"
 
-#: src/yelp-window.c:152
+#: src/yelp-window.c:153
 msgid "/_File"
 msgstr "/_Archivo"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:154
 msgid "/File/_New window"
 msgstr "/Archivo/_Nueva ventana"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:155
 msgid "/File/_Close window"
 msgstr "/Archivo/_Cerrar ventana"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#: src/yelp-window.c:157
 msgid "/_Go"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:158
 msgid "/Go/_Back"
 msgstr "/Ir/_Atrás"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:159
 msgid "/Go/_Forward"
 msgstr "/Ir/A_delante"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:160
 msgid "/Go/_Home"
 msgstr "/Ir/_Inicio"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:161
 msgid "/Go/_Index"
 msgstr "/Ir/Índi_ce"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:162
 msgid "/_Help"
 msgstr "/_Ayuda"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:163
 msgid "/Help/_About"
 msgstr "/Ayuda/_Acerca de ..."
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:225
 msgid "Help Browser"
 msgstr "Navegador de ayuda"
 
+#: src/yelp-window.c:337
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "El documento «%s» no existe"
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:567
+#: src/yelp-window.c:577
 msgid "translator_credits"
 msgstr "Juan Manuel García Molina <juanma_gm@wanadoo.es>"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:581
 msgid "Help Browser for GNOME 2.0"
 msgstr "Navegador de ayuda para GNOME 2.0"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:636
 msgid "Back"
 msgstr "Atrás"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:637
 msgid "Show previous page in history"
 msgstr "Muestra la página anterior de la historia"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:648
 msgid "Forward"
-msgstr "adelante"
+msgstr "Adelante"
 
-#: src/yelp-window.c:638
+#: src/yelp-window.c:649
 msgid "Show next page in history"
 msgstr "Muestra la página anterior de la historia"
 
-#: src/yelp-window.c:651
+#: src/yelp-window.c:662
 msgid "Home"
 msgstr "Inicio"
 
-#: src/yelp-window.c:652
+#: src/yelp-window.c:663
 msgid "Go to home view"
-msgstr "Va a la vista de inicio"
+msgstr "Ir a la vista de inicio"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:673
 msgid "Index"
 msgstr "Índice"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:674
 msgid "Search in the index"
 msgstr "Busca en el índice"
 
@@ -239,16 +244,4 @@ msgstr "Obtenga ayuda con GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ayuda"
-
-#~ msgid "info"
-#~ msgstr "info"
-
-#~ msgid "man"
-#~ msgstr "man"
-
-#~ msgid "Installed documents"
-#~ msgstr "Documentos instalados"
-
-#~ msgid "Start page"
-#~ msgstr "Página de inicio"
 
