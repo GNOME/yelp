@@ -61,12 +61,15 @@ struct poptOption options[] = {
 	NULL
 };
 
-static BonoboObject * yelp_base_factory       (BonoboGenericFactory *factory,
+static BonoboObject * main_base_factory       (BonoboGenericFactory *factory,
 					       const gchar          *iid,
 					       gpointer              closure);
-static CORBA_Object   yelp_main_activate_base (void);
-static gboolean       yelp_main_idle_start    (gchar                *url);
-static int            yelp_save_session       (GnomeClient          *client,
+static CORBA_Object   main_activate_base      (void);
+static void           main_open_new_window    (CORBA_Object          yelp_base,
+					       const gchar          *url);
+static void           main_start              (gchar                *url);
+static gboolean       main_idle_start         (gchar                *url);
+static int            main_save_session       (GnomeClient          *client,
 					       gint                  phase,
 					       GnomeRestartStyle     rstyle,
 					       gint                  shutdown,
@@ -74,14 +77,14 @@ static int            yelp_save_session       (GnomeClient          *client,
 					       gint                  fast,
 					       gpointer              cdata);
 
-static gint           yelp_client_die         (GnomeClient          *client, 
+static void           main_client_die         (GnomeClient          *client, 
 					       gpointer              cdata);
 
-static gboolean	      yelp_restore_session    (void);
+static gboolean	      main_restore_session    (void);
 
 
 static BonoboObject *
-yelp_base_factory (BonoboGenericFactory *factory,
+main_base_factory (BonoboGenericFactory *factory,
 		   const gchar          *iid,
 		   gpointer              closure)
 {
@@ -97,7 +100,7 @@ yelp_base_factory (BonoboGenericFactory *factory,
 }
 
 static CORBA_Object
-yelp_main_activate_base ()
+main_activate_base ()
 {
 	CORBA_Environment ev;
 	CORBA_Object      yelp_base;
@@ -118,7 +121,7 @@ yelp_main_activate_base ()
 }
 
 static void
-yelp_main_open_new_window (CORBA_Object yelp_base, const gchar *url)
+main_open_new_window (CORBA_Object yelp_base, const gchar *url)
 {
 	CORBA_Environment ev;
 	
@@ -134,17 +137,17 @@ yelp_main_open_new_window (CORBA_Object yelp_base, const gchar *url)
 }
 	
 static void
-yelp_main_start (gchar *url) 
+main_start (gchar *url) 
 {
 	CORBA_Object yelp_base;
 	
-	yelp_base = yelp_main_activate_base ();
+	yelp_base = main_activate_base ();
 
 	if (!yelp_base) {
 		g_error ("Couldn't activate YelpBase");
 	}
 	
-	yelp_main_open_new_window (yelp_base, url);
+	main_open_new_window (yelp_base, url);
 	
 	bonobo_object_release_unref (yelp_base, NULL);
 
@@ -154,17 +157,17 @@ yelp_main_start (gchar *url)
 }
 
 static gboolean
-yelp_main_idle_start (gchar *url)
+main_idle_start (gchar *url)
 {
 	CORBA_Object yelp_base;
 	
-	yelp_base = yelp_main_activate_base ();
+	yelp_base = main_activate_base ();
 
 	if (!yelp_base) {
 		g_error ("Couldn't activate YelpBase");
 	}
 
-	yelp_main_open_new_window (yelp_base, url);
+	main_open_new_window (yelp_base, url);
 
 	if (url) {
 		g_free (url);
@@ -175,7 +178,7 @@ yelp_main_idle_start (gchar *url)
 
 
 static gint 
-yelp_save_session (GnomeClient        *client,
+main_save_session (GnomeClient        *client,
                    gint                phase,
                    GnomeRestartStyle   rstyle,
                    gint                shutdown,
@@ -193,7 +196,7 @@ yelp_save_session (GnomeClient        *client,
 
 	CORBA_exception_init (&ev);
 
-	yelp_base = yelp_main_activate_base ();
+	yelp_base = main_activate_base ();
 
 	list = GNOME_Yelp_getWindows (yelp_base, &ev);
 
@@ -221,19 +224,19 @@ yelp_save_session (GnomeClient        *client,
 	return TRUE;
 }
 
-static gint 
-yelp_client_die (GnomeClient *client, 
+static void
+main_client_die (GnomeClient *client, 
 		 gpointer     cdata)
 {
 	bonobo_main_quit ();
 }
 
 static gboolean
-yelp_restore_session (void)
+main_restore_session (void)
 {
 	CORBA_Object yelp_base;
 
-	yelp_base = yelp_main_activate_base ();
+	yelp_base = main_activate_base ();
 
         if (!yelp_base) {
                 g_error ("Couldn't activate YelpBase");
@@ -244,7 +247,7 @@ yelp_restore_session (void)
 	while( (next_opt = poptGetNextOpt (poptCon)) > 0) {
         	if ( next_opt == 1) {
                 	gchar *url = (gchar *) poptGetOptArg (poptCon);
-                	yelp_main_open_new_window (yelp_base, url);
+                	main_open_new_window (yelp_base, url);
                 	if (url) {
                         	g_free (url);
                         }
@@ -288,9 +291,9 @@ main (int argc, char **argv)
 
 	client = gnome_master_client ();
         g_signal_connect (client, "save_yourself",
-                          G_CALLBACK (yelp_save_session), (gpointer) argv[0]);
+                          G_CALLBACK (main_save_session), (gpointer) argv[0]);
         g_signal_connect (client, "die",
-                          G_CALLBACK (yelp_client_die), NULL);
+                          G_CALLBACK (main_client_die), NULL);
 
 	factory = bonobo_activation_activate_from_id (YELP_FACTORY_OAFIID,
 						      Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, 
@@ -307,7 +310,7 @@ main (int argc, char **argv)
 		/* Not started, start now */
 
 		factory = bonobo_generic_factory_new (YELP_FACTORY_OAFIID,
-						      yelp_base_factory,
+						      main_base_factory,
 						      NULL);
 
 		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
@@ -315,14 +318,14 @@ main (int argc, char **argv)
 	        /*Depending on the flag, restore the session*/
 
 		if (flag) {
-			g_idle_add ((GSourceFunc) yelp_restore_session, NULL);
+			g_idle_add ((GSourceFunc) main_restore_session, NULL);
 		} else {
-			g_idle_add ((GSourceFunc) yelp_main_idle_start, url);
+			g_idle_add ((GSourceFunc) main_idle_start, url);
 		}
 
 		bonobo_main ();
 	} else {
-		yelp_main_start (url);
+		main_start (url);
 	}
 
         return 0;

@@ -33,6 +33,7 @@
 #include <libgnomeui/gnome-stock-icons.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-url.h>
+#include <libgnome/gnome-program.h>
 #include <string.h>
 #include "yelp-error.h"
 #include "yelp-html.h"
@@ -109,15 +110,16 @@ static void        window_about_cb                (gpointer           data,
 						   GtkWidget         *widget);
 static GtkWidget * window_create_toolbar          (YelpWindow        *window);
 
-static void        window_toolbar_style_changed_cb (GConfClient      *client,
-						    guint             cnxn_id,
-						    GConfEntry       *entry,
-						    gpointer          data);
+static GdkPixbuf * window_load_icon               (void);
 
-#if 0
-static void        window_remove_notify_cb        (GtkObject         *obj, 
-						   gpointer           data);
-#endif
+static void        
+window_toolbar_style_changed_cb                   (GConfClient      *client,
+						   guint             cnxn_id,
+						   GConfEntry       *entry,
+						   gpointer          data);
+
+
+
 
 enum {
 	PAGE_TOC_VIEW,
@@ -604,7 +606,7 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 				 authors,
 				 NULL,
 				 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-				 NULL);
+				 window_load_icon ());
 
 	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
 	gtk_widget_show (about);
@@ -703,6 +705,30 @@ window_create_toolbar (YelpWindow *window)
 	return toolbar;
 }
 
+static GdkPixbuf *
+window_load_icon (void)
+{
+	static GdkPixbuf *pixbuf = NULL;
+	
+	if (!pixbuf) {
+		gchar *file;
+		
+		file = gnome_program_locate_file (NULL,
+						  GNOME_FILE_DOMAIN_PIXMAP,
+						  "gnome-help.png",
+						  TRUE,
+						  NULL);
+
+		if (file) {
+			pixbuf = gdk_pixbuf_new_from_file (file,
+							   NULL);
+			g_free (file);
+		}
+	}
+
+	return pixbuf;
+}
+
 static void
 window_toolbar_style_changed_cb (GConfClient *client,
 				 guint        cnxn_id,
@@ -726,20 +752,6 @@ window_toolbar_style_changed_cb (GConfClient *client,
 
         gtk_toolbar_set_style(toolbar, style);
 }
-
-#if 0
-static void
-window_remove_notify_cb (GtkObject *obj, gpointer data)
-{
-        GConfClient *conf_client;
-        guint        notify_id;
-
-        conf_client = gconf_client_get_default ();
-        notify_id   = GPOINTER_TO_INT(data);
-
-        gconf_client_notify_remove(conf_client, notify_id);
-}
-#endif 
 
 GtkWidget *
 yelp_window_new (GNode *doc_tree, GList *index)
@@ -783,6 +795,8 @@ yelp_window_new (GNode *doc_tree, GList *index)
 	window_populate (window);
 
 	yelp_window_open_uri (window, "toc:");
+
+	gtk_window_set_icon (GTK_WINDOW (window), window_load_icon ());
 
         return GTK_WIDGET (window);
 }

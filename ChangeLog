@@ -1,3 +1,15 @@
+2002-06-26  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c:
+	- Fixes #84713
+	(yelp_window_new): set icon on window.
+	(window_load_icon): added, loads the gnome-help.png icon.
+	(window_about_cb): set the icon in the about box.
+
+	* README: removed old information
+
+	* src/yelp-main.c: follow yelp style.
+
 2002-06-19  Mikael Hallendal  <micke@codefactory.se>
 
 	* Release 1.0.1
