@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-08-07 00:05+0800\n"
-"PO-Revision-Date: 2003-08-03 23:25+0800\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-27 04:51+0200\n"
+"PO-Revision-Date: 2003-08-27 16:39+0800\n"
 "Last-Translator: Funda Wang <fundawang@en2china.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -40,11 +41,11 @@ msgstr "区分大小写(_M)"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr "下一个(_N)"
+msgstr "下一页(_N)"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr "上一个(_P)"
+msgstr "上一页(_P)"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -61,7 +62,7 @@ msgstr "定义要使用哪个缓存目录"
 #: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "不能激活 Yelp：“%s”"
+msgstr "无法激活 Yelp：“%s”"
 
 #: src/yelp-main.c:147
 msgid "Could not open new window."
@@ -136,11 +137,27 @@ msgstr "简介"
 msgid "System Administration"
 msgstr "系统管理"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+#: src/yelp-scrollkeeper.c:627
+msgid "About This Document"
+msgstr "关于此文档"
+
+#: src/yelp-scrollkeeper.c:631
+msgid "Contents"
+msgstr "目录"
+
+#: src/yelp-view-content.c:489
+msgid "Previous"
+msgstr "上一页"
+
+#: src/yelp-view-content.c:500
+msgid "Next"
+msgstr "下一页"
+
+#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "正在载入..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "章节"
 
@@ -161,140 +178,140 @@ msgstr "GNOME - 桌面"
 msgid "Additional documents"
 msgstr "附加文档"
 
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "手册页"
 
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "信息页"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "文档"
 
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "类别"
 
-#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "手册页"
 
-#: src/yelp-view-toc.c:712
+#: src/yelp-view-toc.c:707
 msgid "GNOME is"
 msgstr "GNOME 是"
 
-#: src/yelp-view-toc.c:713
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr "自由软件"
 
-#: src/yelp-view-toc.c:714
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr "(C)"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:171
 msgid "/_File"
 msgstr "/文件(_F)"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:172
 msgid "/File/_New window"
 msgstr "/文件(F)/新建窗口(_N)"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:173
 msgid "/File/_Close window"
 msgstr "/文件(F)/关闭窗口(_C)"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:175
 msgid "/_Edit"
 msgstr "/编辑(_E)"
 
-#: src/yelp-window.c:168
+#: src/yelp-window.c:176
 msgid "/Edit/_Find in page..."
 msgstr "/编辑(E)/在页面中查找(_F)..."
 
-#: src/yelp-window.c:169
+#: src/yelp-window.c:177
 msgid "/Edit/_Find again"
 msgstr "/编辑(E)/再次查找(_F)"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:179
 msgid "/_Go"
 msgstr "/转到(_G)"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:180
 msgid "/Go/_Back"
 msgstr "/转到(G)/后退(_B)"
 
-#: src/yelp-window.c:173
+#: src/yelp-window.c:181
 msgid "/Go/_Forward"
 msgstr "/转到(G)/前进(_F)"
 
-#: src/yelp-window.c:174
+#: src/yelp-window.c:182
 msgid "/Go/_Home"
 msgstr "/转到(G)/首页(_H)"
 
-#: src/yelp-window.c:175
+#: src/yelp-window.c:183
 msgid "/Go/_Index"
 msgstr "/转到(G)/索引(_I)"
 
-#: src/yelp-window.c:177
+#: src/yelp-window.c:185
 msgid "/_Help"
 msgstr "/帮助(_H)"
 
-#: src/yelp-window.c:178
+#: src/yelp-window.c:186
 msgid "/Help/_About"
 msgstr "/帮助(H)/关于(_A)"
 
-#: src/yelp-window.c:238 src/yelp-window.c:438
+#: src/yelp-window.c:255 src/yelp-window.c:455
 msgid "Help Browser"
 msgstr "帮助浏览器"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:368
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "文档“%s”不存在"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:677
+#: src/yelp-window.c:694
 msgid "translator_credits"
 msgstr ""
 "Zipeco <Zipeco@btamail.net.cn>, 2002\n"
 "Funda Wang <fundawang@en2china.com>, 2003"
 
-#: src/yelp-window.c:681
+#: src/yelp-window.c:698
 msgid "A Help Browser for GNOME"
 msgstr "GNOME 的帮助浏览器"
 
-#: src/yelp-window.c:795
+#: src/yelp-window.c:812
 msgid "Back"
 msgstr "后退"
 
-#: src/yelp-window.c:796
+#: src/yelp-window.c:813
 msgid "Show previous page in history"
 msgstr "显示历史中的上一页"
 
-#: src/yelp-window.c:807
+#: src/yelp-window.c:824
 msgid "Forward"
 msgstr "前进"
 
-#: src/yelp-window.c:808
+#: src/yelp-window.c:825
 msgid "Show next page in history"
 msgstr "显示历史中的下一页"
 
-#: src/yelp-window.c:821
+#: src/yelp-window.c:838
 msgid "Home"
 msgstr "首页"
 
-#: src/yelp-window.c:822
+#: src/yelp-window.c:839
 msgid "Go to home view"
 msgstr "转到首页"
 
-#: src/yelp-window.c:832
+#: src/yelp-window.c:849
 msgid "Index"
 msgstr "索引"
 
-#: src/yelp-window.c:833
+#: src/yelp-window.c:850
 msgid "Search in the index"
 msgstr "在索引中搜索"
 
