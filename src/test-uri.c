@@ -26,67 +26,55 @@
 #include <libgnome/gnome-program.h>
 #include <libgnomevfs/gnome-vfs.h>
 
+#include "yelp-utils.h"
 #include "yelp-uri.h"
 
-static void
-print_uri (YelpURI *uri)
+static void 
+print_document_info (YelpDocumentInfo *doc)
 {
     gchar *type;
-    gchar *str_uri;
-	
-    switch (yelp_uri_get_resource_type (uri)) {
-    case YELP_URI_TYPE_DOCBOOK_XML:
-	type = "YELP_URI_TYPE_DOCBOOK_XML";
+
+    switch (doc->type) {
+    case YELP_TYPE_ERROR:
+	type = "YELP_TYPE_ERROR";
 	break;
-    case YELP_URI_TYPE_DOCBOOK_SGML:
-	type = "YELP_URI_TYPE_DOCBOOK_SGML";
+    case YELP_TYPE_DOCBOOK_XML:
+	type = "YELP_TYPE_DOCBOOK_XML";
 	break;
-    case YELP_URI_TYPE_ERROR:
-	type = "YELP_URI_TYPE_ERROR";
+    case YELP_TYPE_DOCBOOK_SGML:
+	type = "YELP_TYPE_DOCBOOK_SGML";
 	break;
-    case YELP_URI_TYPE_GHELP:
-	type = "YELP_URI_TYPE_GHELP";
+    case YELP_TYPE_HTML:
+	type = "YELP_TYPE_HTML";
 	break;
-    case YELP_URI_TYPE_HTML:
-	type = "YELP_URI_TYPE_HTML";
+    case YELP_TYPE_MAN:
+	type = "YELP_TYPE_MAN";
 	break;
-    case YELP_URI_TYPE_MAN:
-	type = "YELP_URI_TYPE_MAN";
+    case YELP_TYPE_INFO:
+	type = "YELP_TYPE_INFO";
 	break;
-    case YELP_URI_TYPE_INFO:
-	type = "YELP_URI_TYPE_INFO";
+    case YELP_TYPE_TOC:
+	type = "YELP_TYPE_DOC";
 	break;
-    case YELP_URI_TYPE_TOC:
-	type = "YELP_URI_TYPE_TOC";
-	break;
-    case YELP_URI_TYPE_PATH:
-	type = "YELP_URI_TYPE_PATH";
-	break;
-    case YELP_URI_TYPE_FILE:
-	type = "YELP_URI_TYPE_FILE";
-	break;
-    default:
-	type = NULL;
+    case YELP_TYPE_EXTERNAL:
+	type = "YELP_TYPE_EXTERNAL";
 	break;
     }
-    g_print ("TYPE     : %s\n", type);
-    g_print ("PATH     : %s\n", yelp_uri_get_path (uri));
-    if (yelp_uri_get_fragment (uri))
-	g_print ("FRAGMENT : %s\n", yelp_uri_get_fragment (uri));
-    g_print ("\n");
 
-    /*
-    str_uri = yelp_uri_to_string (uri);
-    g_print ("URI_TO_STRING: %s\n", str_uri);
-    g_free (str_uri);
-    */
+    printf ("Address: %i\n"
+	    "URI:     %s\n"
+	    "Type:    %s\n",
+	    (gint) doc,
+	    doc->uri,
+	    type);
 }
 
 int
 main (int argc, char **argv)
 {
     GnomeProgram *program;
-    GnomeVFSURI  *uri;
+    YelpDocumentInfo *doc;
+    gint i;
 	
     if (argc < 2) {
 	g_print ("Usage: test-uri uri\n");
@@ -94,20 +82,23 @@ main (int argc, char **argv)
     }
 
     program = gnome_program_init (PACKAGE, VERSION,
-				  LIBGNOME_MODULE,
-				  argc, argv,
+				  LIBGNOME_MODULE, argc, argv,
 				  GNOME_PROGRAM_STANDARD_PROPERTIES,
 				  NULL);
 
     gnome_vfs_init ();
 
-    uri = yelp_uri_new (argv[1]);
+    yelp_utils_init ();
 
-    g_print ("STRING   : %s\n", argv[1]);
-
-    print_uri (uri);
-	
-    gnome_vfs_uri_unref (uri);
+    for (i = 1; i < argc; i++) {
+	if (i != 1)
+	    printf ("\n");
+	doc = yelp_document_info_get (argv[i]);
+	if (doc)
+	    print_document_info (doc);
+	else
+	    printf ("Failed to load URI: %s\n", argv[i]);
+    }
 
     gnome_vfs_shutdown ();
 

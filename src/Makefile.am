@@ -20,7 +20,7 @@ INCLUDES =								\
 	-DBINDIR=\""$(bindir)"\"
 
 bin_PROGRAMS = yelp
-noinst_PROGRAMS = test-man-parser test-pager
+check_PROGRAMS = test-man-parser test-pager test-uri
 
 yelp_LDFLAGS = -R$(MOZILLA_HOME)
 
@@ -63,6 +63,13 @@ test_pager_SOURCES =							\
 	yelp-marshal-main.c	test-pager.c
 
 test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
+
+test_uri_SOURCES =					\
+	yelp-uri.c	yelp-uri.h			\
+	yelp-utils.c	yelp-utils.h			\
+	test-uri.c
+
+test_uri_LDADD = @YELP_LIBS@
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
