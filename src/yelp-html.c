@@ -204,6 +204,7 @@ yelp_html_do_close (void *context)
 	html_document_close_stream (priv->doc);
 	gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
 				  0);
+
 	return 0;
 }
 
@@ -239,8 +240,6 @@ yelp_html_idle_read (gpointer data)
 				 &read_len);
 
 	if (result == GNOME_VFS_OK) {
-		g_print ("-> ");
-		
 		yelp_html_do_write (read_data->html, 
 				    read_data->buffer, 
 				    read_len);
@@ -262,7 +261,6 @@ yelp_html_idle_read_end (gpointer data)
 	priv = html->priv;
 	
 	gnome_vfs_close (read_data->handle);
- 	gnome_vfs_handle_destroy (read_data->handle);
 	
 	html_stream_close (read_data->stream);
 
@@ -273,6 +271,8 @@ yelp_html_idle_read_end (gpointer data)
 			gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
 			0);
 	}
+
+	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, NULL);
 
 	g_free (read_data);
 }
@@ -420,6 +420,7 @@ yelp_html_open_uri (YelpHtml     *html,
 		    GError      **error)
 {
         YelpHtmlPriv *priv;
+	GdkCursor    *cursor;
 	
 	d(g_print ("Open URI: %s\n", str_uri));
 
@@ -440,6 +441,11 @@ yelp_html_open_uri (YelpHtml     *html,
 		gtk_layout_get_hadjustment (
 			GTK_LAYOUT (priv->view)), 0);
 
+	cursor = gdk_cursor_new (GDK_WATCH);
+	
+	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, cursor);
+	gdk_cursor_unref (cursor);
+	
 	if (!strncmp (str_uri, "ghelp:", 6)) {
 		yelp_html_do_docbook (html, str_uri + 6, error);
 		/* Docbook or HTML */

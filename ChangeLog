@@ -1,5 +1,10 @@
 2002-04-14  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-html.c:
+	(yelp_html_idle_read_end): don't free the handle twice.
+	(yelp_html_idle_read_end): reset pointer to normal.
+	(yelp_html_open_uri): set cursor to watch.
+
 	* src/yelp-window.c (yw_handle_url): If error is set during
 	  set_uri, popup an error-dialog describing the error.
 
