@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-01-06 07:52-0500\n"
+"POT-Creation-Date: 2002-02-13 15:34+0100\n"
 "PO-Revision-Date: 2002-01-06 07:52-0500\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -13,95 +13,200 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-9\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/yelp-html.c:367
-msgid ""
-"<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help "
-"browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the "
-"README and TODO<br></body></html>"
-msgstr ""
-"<html><head><title>GNOME yardým tarayýcýsý Yelp'e hoþgeldiniz</title>"
-"</head><body bgcolor=\"white\"><h3>Yelp'e Hoþgeldiniz!</h3>Bu program "
-"Mikael Hallendal tarafýndan yazýlan GNOME yardým tarayýcýsýdýr. <br><br> "
-"Lütfen README ve TODO belgelerine göz atýn.</br></body></html> "
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
 
-#: src/yelp-main.c:77
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp Mimarisi"
+
+#: src/yelp-info.c:99
+msgid "info"
+msgstr "bilgi"
+
+#: src/yelp-main.c:78
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Yelp baþlatýlamadý: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:98
 msgid "Could not open new window."
 msgstr "Yeni pencere açýlamadý."
 
-#: src/yelp-view-content.c:159 src/yelp-view-index.c:172
+#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
+#: src/yelp-man.c:376 src/yelp-man.c:387
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:276 src/yelp-man.c:307 src/yelp-man.c:365 src/yelp-man.c:392
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:281
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:297
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:302
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:312
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:317
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:339
+msgid "System Calls"
+msgstr "Sistem Çaðrýlarý"
+
+#: src/yelp-man.c:344
+msgid "Library Functions"
+msgstr "Kütüphane Fonksiyonlarý"
+
+#: src/yelp-man.c:349
+msgid "Kernel Routines"
+msgstr "Çekirdek Yordamlarý"
+
+#: src/yelp-man.c:404
+msgid "Applications"
+msgstr "Uygulamalar"
+
+#: src/yelp-man.c:409
+msgid "Development"
+msgstr "Geliþtirme"
+
+#: src/yelp-man.c:414
+msgid "Hardware Devices"
+msgstr "Donaným Aygýtlarý"
+
+#: src/yelp-man.c:419
+msgid "Configuration Files"
+msgstr "Yapýlandýrma Dosyalarý"
+
+#: src/yelp-man.c:424
+msgid "Games"
+msgstr "Oyunlar"
+
+#: src/yelp-man.c:429
+msgid "Overviews"
+msgstr "Ýzlenimler"
+
+#: src/yelp-man.c:434
+msgid "System Administration"
+msgstr "Sistem Yönetimi"
+
+#: src/yelp-man.c:445
+msgid "man"
+msgstr "kýlavuz"
+
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:176
 msgid "Section"
 msgstr "Bölüm"
 
-#: src/yelp-window.c:109
+#: src/yelp-view-toc.c:245
+msgid "Other document systems"
+msgstr "Diðer belge sistemleri"
+
+#: src/yelp-view-toc.c:246
+msgid "Manual pages"
+msgstr "Kýlavuz sayfalarý"
+
+#: src/yelp-view-toc.c:247 src/yelp-view-toc.c:511 src/yelp-view-toc.c:530
+msgid "Info pages"
+msgstr "Bilgi sayfalarý"
+
+#: src/yelp-view-toc.c:248
+msgid "Installed documents"
+msgstr "Kurulu belgeler"
+
+#: src/yelp-view-toc.c:259
+msgid "Start page"
+msgstr "Baþlangýç sayfasý"
+
+#: src/yelp-view-toc.c:434
+msgid "<a href=\"toc:man\">Manual pages</a>: "
+msgstr "<a href=\"toc:man\">Kýlavuz sayfalarý</a>: "
+
+#: src/yelp-view-toc.c:464 src/yelp-view-toc.c:483
+msgid "Manual page sections"
+msgstr "Kýlavuz sayfa bölümleri"
+
+#: src/yelp-view-toc.c:633
+msgid "Scrollkeeper docs for category"
+msgstr "Kategorilerine göre Scrollkeeper belgeleri"
+
+#: src/yelp-window.c:111
 msgid "/_File"
 msgstr "/_Dosya"
 
-#: src/yelp-window.c:110
+#: src/yelp-window.c:112
 msgid "/File/_New window"
 msgstr "/Dosya/_Yeni pencere"
 
-#: src/yelp-window.c:111
+#: src/yelp-window.c:113
 msgid "/File/_Close window"
 msgstr "/Dosya/_Pencereyi kapat"
 
-#: src/yelp-window.c:112
-msgid "/File/E_xit"
+#: src/yelp-window.c:114
+msgid "/File/_Quit"
 msgstr "/Dosya/Çý_k"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:115
 msgid "/_Help"
 msgstr "/_Yardým"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:116
 msgid "/Help/_About"
 msgstr "/Yardým/_Hakkýnda"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:164
 msgid "Help Browser"
 msgstr "Yardým Tarayýcýsý"
 
-#: src/yelp-window.c:376
+#: src/yelp-window.c:409
 msgid "Help Browser for GNOME 2.0"
 msgstr "GNOME 2.0 için yardým tarayýcýsý"
 
-#: src/yelp-window.c:400
+#: src/yelp-window.c:433
 msgid "Go back in the history list"
 msgstr "Geçmiþ listesinde geri git"
 
-#: src/yelp-window.c:415
+#: src/yelp-window.c:448
 msgid "Go forth in the history list"
 msgstr "Geçmiþ listesinde ileri git"
 
-#: src/yelp-window.c:430
+#: src/yelp-window.c:463
 msgid "Overview of contents"
 msgstr "Ýçindekiler"
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:474
 msgid "Search in the index"
 msgstr "Ýndiste tara"
 
-#: src/yelp-window.c:452
+#: src/yelp-window.c:486
 msgid "Search for a phrase in the document"
 msgstr "Belgede arama yap"
 
-#: src/yelp-window.c:458
+#: src/yelp-window.c:492
 msgid "Help on "
 msgstr "Yardým: "
 
-#: src/yelp-window.c:463
+#: src/yelp-window.c:497
 msgid "Enter phrase to search for in all documents"
 msgstr "Tüm belgelerde arama yapmak için bir sözcük girin"
 
 #: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "GNOME yardým tarayýcýsý"
+msgid "Get help with GNOME"
+msgstr "GNOME hakkýnda yardým"
 
 #: yelp.desktop.in.h:2
-msgid "Yelp"
-msgstr "Yelp"
+msgid "Help"
+msgstr "Yardým"
