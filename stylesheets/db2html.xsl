@@ -11,7 +11,7 @@
 <xsl:param name="db.chunk.cover_basename" select="'__yelp_cover'"/>
 <xsl:param name="db.chunk.info_basename"  select="'__yelp_info'"/>
 <xsl:param name="db.chunk.index_basename" select="'__yelp_index'"/>
-<xsl:param name="db.chunk.toc_basename"   select="'__yelp_toc"/>
+<xsl:param name="db.chunk.toc_basename"   select="'__yelp_toc'"/>
 
 <xsl:template name="db.chunk">
   <xsl:param name="node" select="."/>
