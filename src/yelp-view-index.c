@@ -326,7 +326,7 @@ yelp_view_index_new (GList *index)
 	
 	label = gtk_label_new (_("Search for:"));
 
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 4);
 
 	priv->entry = gtk_entry_new ();
 
@@ -349,11 +349,16 @@ yelp_view_index_new (GList *index)
 	gtk_box_pack_start (GTK_BOX (box), hbox, 
 			    FALSE, FALSE, 0);
 
+	frame = gtk_frame_new (NULL);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
+	
         list_sw = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (list_sw),
                                         GTK_POLICY_AUTOMATIC, 
                                         GTK_POLICY_AUTOMATIC);
 
+	gtk_container_add (GTK_CONTAINER (frame), list_sw);
+	
 	gtk_tree_view_insert_column_with_attributes (
 		GTK_TREE_VIEW (priv->index_view), -1,
 		_("Section"), gtk_cell_renderer_text_new (),
@@ -372,7 +377,7 @@ yelp_view_index_new (GList *index)
 	
 	gtk_container_add (GTK_CONTAINER (list_sw), priv->index_view);
 
-	gtk_box_pack_end_defaults (GTK_BOX (box), list_sw);
+	gtk_box_pack_end_defaults (GTK_BOX (box), frame);
 
         /* Setup the Html view */
  	html_sw = gtk_scrolled_window_new (NULL, NULL);
