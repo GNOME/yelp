@@ -24,7 +24,8 @@
 #define __YELP_HISTORY_H__
 
 #include <glib-object.h>
-#include "yelp-section.h"
+
+#include "yelp-uri.h"
 
 #define YELP_TYPE_HISTORY         (yelp_history_get_type ())
 #define YELP_HISTORY(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_HISTORY, YelpHistory))

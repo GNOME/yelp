@@ -1,5 +1,15 @@
 2003-12-16  Shaun McCance  <shaunm@gnome.org>
 
+	* src/Makefile.am:
+	* src/yelp-base.c:
+	* src/yelp-history.h:
+	* src/yelp-html.h:
+	* src/yelp-util.c:
+	* src/yelp-window.c:
+	- Removing yelp-scrollkeeper and yelp-sections.
+
+2003-12-16  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-window.c:
 	- Made sidebar selection follow the page loeded.
 

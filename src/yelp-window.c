@@ -43,9 +43,7 @@
 #include "yelp-history.h"
 #include "yelp-html.h"
 #include "yelp-pager.h"
-#include "yelp-section.h"
 #include "yelp-toc-pager.h"
-#include "yelp-util.h"
 #include "yelp-window.h"
 
 #define d(x)

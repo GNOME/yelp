@@ -28,8 +28,6 @@
 
 #include "yelp-cache.h"
 #include "yelp-window.h"
-#include "yelp-section.h"
-#include "yelp-scrollkeeper.h"
 #include "yelp-man.h"
 #include "yelp-info.h"
 #include "yelp-toc-pager.h"

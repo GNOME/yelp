@@ -75,11 +75,7 @@ yelp_SOURCES =								\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html-gtkhtml2.c	yelp-html.h				\
-	yelp-info.c		yelp-info.h				\
-	yelp-man.c		yelp-man.h				\
 	yelp-pager.c		yelp-pager.h				\
-	yelp-section.c		yelp-section.h				\
-	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h			\
 	yelp-util.c		yelp-util.h				\
 	yelp-window.c 		yelp-window.h				\
