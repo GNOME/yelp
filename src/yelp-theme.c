@@ -45,10 +45,10 @@ yelp_theme_init (void)
 				       "GtkWidget", "GtkWidget",
 				       GTK_TYPE_WIDGET);
 
-    if (!style)
+    if (style)
+	g_object_ref (G_OBJECT (style));
+    else
 	style = gtk_style_new ();
-
-    g_object_ref (G_OBJECT (style));
 
     g_snprintf (gray_background, 10,
 		"\"#%02X%02X%02X\"",

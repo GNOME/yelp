@@ -1,5 +1,10 @@
 2004-04-19  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-theme.c:
+	- Don't g_object_ref after gtk_style_new, #140525  (Morten Welinder)
+
+2004-04-19  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-toc-pager.c:
 	- s/g_free/g_strfreev/ on **paths, fixes #140524 (Morten Welinder)
 
