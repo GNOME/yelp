@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-02 20:22+0200\n"
-"PO-Revision-Date: 2004-10-03 02:43+0200\n"
+"POT-Creation-Date: 2004-10-08 12:12+0200\n"
+"PO-Revision-Date: 2004-10-08 18:19+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,25 +137,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
-#: src/yelp-db-pager.c:455 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:465 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "V yelp:document nenalezen atribut href"
 
-#: src/yelp-db-pager.c:470 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:480 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Nedostatek paměti"
 
-#: src/yelp-db-pager.c:658 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:668 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Titulní strana"
 
-#: src/yelp-db-pager.c:660 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:670 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/yelp-db-pager.c:678 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:688 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -257,144 +257,124 @@ msgstr "Přehledy"
 msgid "System Administration"
 msgstr "Správa systému"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "URI dokumentu"
+#: src/yelp-pager.c:120
+msgid "Document Information"
+msgstr "Informace o dokumentu"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "URI dokumentu, který zpracovat"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr "Struktura YelpDocInfo dokumentu"
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Počet stran je záporný."
 
-#: src/yelp-toc-pager.c:490
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nemohu načíst soubor OMF '%s'."
 
-#: src/yelp-toc-pager.c:887
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Kategorie"
 
-#: src/yelp-toc-pager.c:901
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Dokumenty"
 
+#: src/yelp-window.c:241
+msgid "_File"
+msgstr "_Soubor"
+
 #: src/yelp-window.c:242
-msgid "/_File"
-msgstr "/_Soubor"
+msgid "_Edit"
+msgstr "_Upravit"
 
 #: src/yelp-window.c:243
-msgid "/File/_New window"
-msgstr "/Soubor/_Nové okno"
+msgid "_Go"
+msgstr "Pře_jít"
 
-#: src/yelp-window.c:246
-msgid "/File/_Close window"
-msgstr "/Soubor/_Zavřít okno"
+#: src/yelp-window.c:244
+msgid "_Help"
+msgstr "_Nápověda"
 
-#: src/yelp-window.c:250
-msgid "/_Edit"
-msgstr "/Ú_pravy"
+#: src/yelp-window.c:247
+msgid "_New window"
+msgstr "_Nové okno"
 
-#: src/yelp-window.c:251
-msgid "/Edit/_Find..."
-msgstr "/Úpravy/_Hledat..."
-
-#: src/yelp-window.c:254
-msgid "/Edit/Find Ne_xt"
-msgstr "/Úpravy/Hledat _následující"
+#: src/yelp-window.c:252
+msgid "Open _Location"
+msgstr "Otevřít _umístění"
 
 #: src/yelp-window.c:257
-msgid "/Edit/Find Pre_vious"
-msgstr "/Úpravy/Hledat _předchozí"
+msgid "_Close window"
+msgstr "_Zavřít okno"
 
-#: src/yelp-window.c:261
-msgid "/_Go"
-msgstr "/Pře_jít"
+#: src/yelp-window.c:263
+msgid "_Find..."
+msgstr "_Hledat..."
 
-#: src/yelp-window.c:262
-msgid "/Go/_Back"
-msgstr "/Přejít/_Zpět"
-
-#: src/yelp-window.c:265
-msgid "/Go/_Forward"
-msgstr "/Přejít/_Vpřed"
-
-#: src/yelp-window.c:268
-msgid "/Go/_Home"
-msgstr "/Přejít/_Domů"
+#: src/yelp-window.c:269
+msgid "_Back"
+msgstr "_Zpět"
 
 #: src/yelp-window.c:271
-msgid "/Go/"
-msgstr "/Pře_jít/"
-
-#: src/yelp-window.c:272
-msgid "/Go/_Previous Page"
-msgstr "/Přejít/_Předchozí strana"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Next Page"
-msgstr "/Přejít/_Následující strana"
-
-#: src/yelp-window.c:278
-msgid "/Go/_Contents"
-msgstr "/Přejít/_Obsah"
-
-#: src/yelp-window.c:282
-msgid "/_Help"
-msgstr "/_Nápověda"
-
-#: src/yelp-window.c:283
-msgid "/Help/_About"
-msgstr "/Nápověda/O _aplikaci"
-
-#: src/yelp-window.c:345
-msgid "Help Browser"
-msgstr "Prohlížeč nápovědy"
-
-#: src/yelp-window.c:630
-msgid "Fin_d"
-msgstr "_Hledat"
-
-#: src/yelp-window.c:687
-msgid "Back"
-msgstr "Zpět"
-
-#: src/yelp-window.c:688
 msgid "Show previous page in history"
 msgstr "Zobrazí předchozí stránku v historii"
 
-#: src/yelp-window.c:698
-msgid "Forward"
-msgstr "Vpřed"
+#: src/yelp-window.c:274
+msgid "_Forward"
+msgstr "_Vpřed"
 
-#: src/yelp-window.c:699
+#: src/yelp-window.c:276
 msgid "Show next page in history"
 msgstr "Zobrazí následující stránku v historii"
 
-#: src/yelp-window.c:711
-msgid "Home"
-msgstr "Domů"
+#: src/yelp-window.c:279
+msgid "_Home"
+msgstr "_Domů"
 
-#: src/yelp-window.c:712
+#: src/yelp-window.c:281
 msgid "Go to home view"
 msgstr "Přejde na domovskou stránku"
 
-#: src/yelp-window.c:885
+#: src/yelp-window.c:284
+msgid "_Previous Page"
+msgstr "_Předchozí strana"
+
+#: src/yelp-window.c:289
+msgid "_Next Page"
+msgstr "_Následující strana"
+
+#: src/yelp-window.c:294
+msgid "_Contents"
+msgstr "_Obsah"
+
+#: src/yelp-window.c:300
+msgid "_About"
+msgstr "O _aplikaci"
+
+#: src/yelp-window.c:363
+msgid "Help Browser"
+msgstr "Prohlížeč nápovědy"
+
+#: src/yelp-window.c:672
+msgid "Fin_d"
+msgstr "_Hledat"
+
+#: src/yelp-window.c:970
 msgid "Loading..."
 msgstr "Načítám..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1336
+#: src/yelp-window.c:1455
 msgid "translator_credits"
 msgstr ""
 "Michal Bukovjan\n"
 "Miloslav Trmač <mitr@volny.cz>"
 
-#: src/yelp-window.c:1342
+#: src/yelp-window.c:1461
 msgid "A Help Browser for GNOME"
 msgstr "Prohlížeč nápovědy pro GNOME"
 
@@ -673,6 +653,12 @@ msgstr "Získat nápovědu o GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Nápověda"
+
+#~ msgid "Document URI"
+#~ msgstr "URI dokumentu"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "URI dokumentu, který zpracovat"
 
 #~ msgid "The document '%s' does not exist"
 #~ msgstr "Dokument '%s' neexistuje"
