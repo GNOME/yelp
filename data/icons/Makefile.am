@@ -9,6 +9,7 @@ icon_DATA = 						\
 	yelp-watermark-blockquote-00AB.png		\
 	yelp-watermark-blockquote-00BB.png		\
 	yelp-watermark-blockquote-201C.png		\
+	yelp-watermark-blockquote-201D.png		\
 	yelp-watermark-blockquote-201E.png
 
 EXTRA_DIST = 								\
