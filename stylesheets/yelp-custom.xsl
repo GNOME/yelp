@@ -91,41 +91,44 @@
 </xsl:template>
 
 <xsl:template match="authorgroup" mode="titlepage.mode">
+	<!-- Count the number of authors -->
+	<xsl:variable name="numaut" select="count(author)"/>
+	<xsl:choose>	
+		<xsl:when test="$numaut > 1">
+			<h2>    
+				<xsl:call-template name="gentext" mode="titlepage.mode">
+					<xsl:with-param name="key" select="'Authors'"/>
+				</xsl:call-template>
+			</h2>
+		</xsl:when>
+		<xsl:when test="$numaut = 1">
+			<h2>    
+				<xsl:call-template name="gentext" mode="titlepage.mode">
+					<xsl:with-param name="key" select="'Author'"/>
+				</xsl:call-template>
+			</h2>
+		</xsl:when>
+	</xsl:choose>
+	<xsl:if test="$numaut > 0">
+		<p><xsl:apply-templates select="author" mode="titlepage.mode"/></p>
+	</xsl:if>
 
-      <!-- count the number of authors -->
-       <xsl:variable name="numaut" select="count(author)"/>
-         <xsl:choose>	
-          <xsl:when test="$numaut > 1">
-           <h2>    
-	    <xsl:call-template name="gentext" mode="titlepage.mode">
-	     <xsl:with-param name="key" select="'Authors'"/>
-	    </xsl:call-template>
-	    </h2>
-	   </xsl:when>
-	   <xsl:when test="$numaut = 1">
-            <h2>    
-	     <xsl:call-template name="gentext" mode="titlepage.mode">
-	      <xsl:with-param name="key" select="'Author'"/>
-	     </xsl:call-template>
-	    </h2>
-	   </xsl:when>
-	   <xsl:otherwise>
-           </xsl:otherwise>
-	   </xsl:choose>
-	 <xsl:apply-templates select="author" mode="titlepage.mode"/>
-        <!-- Now let us deal with editors -->
-        <xsl:variable name="editors" select="editor"/>
+	<!-- Now let us deal with editors -->
+	<xsl:variable name="editors" select="editor"/>
 	<xsl:if test="$editors">
-	  <h2> 
-             <xsl:call-template name="gentext" mode="titlepage.mode">
-	      <xsl:with-param name="key" select="'Editedby'"/>
-	     </xsl:call-template>
-	  </h2>
-          <xsl:apply-templates select="editor" mode="titlepage.mode"/>
-        </xsl:if>
-        <!-- finally, everyone else --> 
-        <xsl:apply-templates select="othercredit" mode="titlepage.mode"/>
- </xsl:template>
+		<h2> 
+			<xsl:call-template name="gentext" mode="titlepage.mode">
+				<xsl:with-param name="key" select="'Editedby'"/>
+			</xsl:call-template>
+		</h2>
+		<p><xsl:apply-templates select="editor" mode="titlepage.mode"/></p>
+	</xsl:if>
+
+	<!-- Finally, everyone else --> 
+	<xsl:if test="othercredit">
+		<p><xsl:apply-templates select="othercredit" mode="titlepage.mode"/></p>
+	</xsl:if>
+</xsl:template>
 
 <!-- **************************Copyright*************************-->
 
@@ -565,17 +568,15 @@ heading. Borrowed from Walsh's modular stylesheets -->
 <!-- ****************************Publisher********************-->
 
 <xsl:template match="publisher[1]" mode="titlepage.mode">
-
-  <div class="{name(.)}">
-    <h2>
-	  <xsl:call-template name="gentext">
-	    <xsl:with-param name="key" select="'Publisher'"/>
-	  </xsl:call-template>
-	</h2>
-	
-	<xsl:apply-templates mode="titlepage.mode"/>
-  </div>
-  
+	<!-- This template is not good with multiple publishers. -->
+	<div class="{name(.)}">
+		<h2>
+			<xsl:call-template name="gentext">
+				<xsl:with-param name="key" select="'Publisher'"/>
+			</xsl:call-template>
+		</h2>
+		<p><xsl:apply-templates mode="titlepage.mode"/></p>
+	</div>
 </xsl:template>
 
 <!-- ***************************Releaseinfo*********************-->
@@ -605,6 +606,7 @@ heading. Borrowed from Walsh's modular stylesheets -->
               <xsl:with-param name="key" select="'History'"/>
             </xsl:call-template>
     </h2>
+	<p>
     <table border="1" width="100%" summary="Revision history">
       <tr>
         <th align="left" valign="top" colspan="1">
@@ -640,6 +642,7 @@ heading. Borrowed from Walsh's modular stylesheets -->
         <xsl:with-param name="numcols" select="$numcols"/>
       </xsl:apply-templates>
     </table>
+	</p>
   </div>
 </xsl:template>
 
