@@ -537,6 +537,8 @@ process_omf_pending (YelpTocPager *pager)
 	xmlXPathFreeObject (omf_description);
     if (omf_category)
 	xmlXPathFreeObject (omf_category);
+    if (omf_language)
+	xmlXPathFreeObject (omf_language);
     if (omf_seriesid)
 	xmlXPathFreeObject (omf_seriesid);
 
@@ -775,9 +777,9 @@ process_read_menu (YelpTocPager *pager)
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	xmlChar *icon = NULL;
-	xmlChar *id = NULL;
 
 #ifdef ENABLE_MAN
+	xmlChar *id = NULL;
 	id = xmlGetProp (node, "id");
 	if (!xmlStrcmp (id, "index")) {
 	    xmlNodePtr new = xmlNewChild (node, NULL, "toc", NULL);
@@ -800,6 +802,7 @@ process_read_menu (YelpTocPager *pager)
 		gtk_icon_info_free (info);
 	    }
 	}
+	xmlFree (icon);
 
     }
     xmlXPathFreeObject (obj);
@@ -823,6 +826,8 @@ process_read_menu (YelpTocPager *pager)
 
 	    xpath_s = g_strdup_printf ("//toc[@id = '%s']", id);
 	    obj = xmlXPathEvalExpression (xpath_s, xpath);
+	    g_free (xpath_s);
+
 	    node = obj->nodesetval->nodeTab[0];
 	    xmlXPathFreeObject (obj);
 

@@ -97,6 +97,7 @@ yelp_doc_info_new (const gchar *uri)
 	else
 	    doc_uri = g_strdup (full_uri);
 	doc_type = get_doc_type (doc_uri);
+	g_free (doc_uri);
 	uri_type = YELP_URI_TYPE_FILE;
     }
     else if (g_str_has_prefix (full_uri, "ghelp:") ||

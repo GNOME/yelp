@@ -968,8 +968,10 @@ bookmarks_read (void)
 			   XML_PARSE_NONET    );
 
     if (doc == NULL) {
+	g_free (filename);
+	if (parser)
+		xmlFreeParserCtx (parser);
 	return FALSE;
-	goto done;
     }
 
     xpath = xmlXPathNewContext (doc);
@@ -992,7 +994,6 @@ bookmarks_read (void)
 	}
     }
     
- done:
     g_free (filename);
     if (obj)
 	xmlXPathFreeObject (obj);

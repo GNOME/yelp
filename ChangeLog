@@ -1,3 +1,11 @@
+2005-02-04  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/yelp-bookmarks.c: (bookmarks_read): Fix leak and remove
+	confusing goto:
+	* src/yelp-toc-pager.c: (process_omf_pending), (process_read_menu):
+	Fix leaks.
+	* src/yelp-utils.c: (yelp_doc_info_new): Fix leak
+
 2005-02-03  Shaun McCance  <shaunm@gnome.org>
 
 	* data/scrollkeeper.xml:
