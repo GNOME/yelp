@@ -77,6 +77,7 @@ yelp_SOURCES =								\
 	yelp-html-gtkhtml2.c	yelp-html.h				\
 	yelp-pager.c		yelp-pager.h				\
 	yelp-toc-pager.c	yelp-toc-pager.h			\
+	yelp-theme.c		yelp-theme.h				\
 	yelp-util.c		yelp-util.h				\
 	yelp-window.c 		yelp-window.h				\
 	yelp-uri.c	        yelp-uri.h				\

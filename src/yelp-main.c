@@ -316,8 +316,7 @@ main (int argc, char **argv)
 	textdomain(GETTEXT_PACKAGE);
 
 	program = gnome_program_init (PACKAGE, VERSION,
-				      LIBGNOMEUI_MODULE,
-				      argc, argv,
+				      LIBGNOMEUI_MODULE, argc, argv,
 				      GNOME_PARAM_POPT_TABLE, options,
 				      GNOME_PROGRAM_STANDARD_PROPERTIES,
 				      NULL);

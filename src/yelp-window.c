@@ -44,6 +44,7 @@
 #include "yelp-html.h"
 #include "yelp-pager.h"
 #include "yelp-toc-pager.h"
+#include "yelp-theme.h"
 #include "yelp-window.h"
 
 #define d(x)
@@ -589,18 +590,16 @@ window_load_icon (void)
     static GdkPixbuf *pixbuf = NULL;
 
     if (!pixbuf) {
-	gchar *file;
+	GError *error = NULL;
+	GtkIconTheme *icon_theme = (GtkIconTheme *) yelp_theme_get_icon_theme ();
 
-	file = gnome_program_locate_file (NULL,
-					  GNOME_FILE_DOMAIN_PIXMAP,
-					  "gnome-help.png",
-					  TRUE,
-					  NULL);
-
-	if (file) {
-	    pixbuf = gdk_pixbuf_new_from_file (file,
-					       NULL);
-	    g_free (file);
+	pixbuf = gtk_icon_theme_load_icon (icon_theme,
+					   "gnome-help",
+					   36, 0,
+					   &error);
+	if (!pixbuf) {
+	    g_warning ("Couldn't load icon: %s", error->message);
+	    g_error_free (error);
 	}
     }
 
@@ -886,25 +885,27 @@ window_handle_page (YelpWindow   *window,
     priv = window->priv;
 
     model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
-    valid = gtk_tree_model_get_iter_first (model, &iter);
 
-    while (valid) {
-	gtk_tree_model_get (model, &iter,
-			    0, &id,
-			    -1);
-	if (yelp_pager_uri_is_page (priv->pager, id, uri)) {
-	    GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
+    if (model) {
+	valid = gtk_tree_model_get_iter_first (model, &iter);
+	while (valid) {
+	    gtk_tree_model_get (model, &iter,
+				0, &id,
+				-1);
+	    if (yelp_pager_uri_is_page (priv->pager, id, uri)) {
+		GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
 
-	    gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
-					  path);
-	    gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->side_sects),
-				      path, NULL, FALSE);
+		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
+					      path);
+		gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->side_sects),
+					  path, NULL, FALSE);
 
-	    gtk_tree_path_free (path);
-	    break;
+		gtk_tree_path_free (path);
+		break;
+	    }
+
+	    valid = tree_model_iter_following (model, &iter);
 	}
-
-	valid = tree_model_iter_following (model, &iter);
     }
 
     if (page->prev) {

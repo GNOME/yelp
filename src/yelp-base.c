@@ -30,6 +30,7 @@
 #include "yelp-window.h"
 #include "yelp-man.h"
 #include "yelp-info.h"
+#include "yelp-theme.h"
 #include "yelp-toc-pager.h"
 #include "yelp-base.h"
 
@@ -110,6 +111,7 @@ yelp_base_init (YelpBase *base)
         base->priv     = priv;
 
 	yelp_cache_init ();
+	yelp_theme_init ();
 }
 
 static void

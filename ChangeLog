@@ -1,3 +1,14 @@
+2003-12-17  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-base.c:
+	* src/yelp-main.c:
+	* src/yelp-window.c:
+	- Attempts at working with GtkIconTheme.
+
+	* src/yelp-window.c:
+	- Check for model != NULL, to avoid ugly warnings.
+
 2003-12-16  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:
