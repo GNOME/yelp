@@ -54,8 +54,8 @@ static void yelp_window_exit                     (gpointer             data,
 static void yelp_window_new_window               (gpointer             data,
 						  guint                section,
 						  GtkWidget           *widget);
-static void yelp_window_uri_selected_cb          (YelpWindow          *window,
-						  GnomeVFSURI         *uri);
+static void yelp_window_section_selected_cb      (YelpWindow          *window,
+						  YelpSection         *section);
 static void yelp_window_about                    (gpointer             data,
 						  guint                section,
 						  GtkWidget           *widget);
@@ -119,8 +119,8 @@ yelp_window_init (YelpWindow *window)
         
         priv->index = yelp_index_new ();
 
-	g_signal_connect_swapped (priv->index, "uri_selected",
-				  G_CALLBACK (yelp_window_uri_selected_cb),
+	g_signal_connect_swapped (priv->index, "section_selected",
+				  G_CALLBACK (yelp_window_section_selected_cb),
 				  G_OBJECT (window));
 
         gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
@@ -199,8 +199,8 @@ yelp_window_populate (YelpWindow *window)
         /* Html View */
         priv->yelp_view = yelp_view_new ();
 
-	g_signal_connect_swapped (priv->yelp_view, "uri_selected",
-				  G_CALLBACK (yelp_window_uri_selected_cb),
+	g_signal_connect_swapped (priv->yelp_view, "section_selected",
+				  G_CALLBACK (yelp_window_section_selected_cb),
 				  G_OBJECT (window));
 	
         gtk_container_add (GTK_CONTAINER (html_sw), priv->yelp_view);
@@ -227,8 +227,9 @@ yelp_window_populate (YelpWindow *window)
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), 
                                   tree_sw, gtk_label_new ("Contents"));
 
-	g_signal_connect_swapped (G_OBJECT (priv->yelp_toc), "uri_selected",
-				  G_CALLBACK (yelp_window_uri_selected_cb),
+	g_signal_connect_swapped (G_OBJECT (priv->yelp_toc), 
+				  "section_selected",
+				  G_CALLBACK (yelp_window_section_selected_cb),
 				  G_OBJECT (window));
 
         /* Search */
@@ -299,23 +300,23 @@ yelp_window_new_window (gpointer data, guint section, GtkWidget *widget)
 }
 
 static void
-yelp_window_uri_selected_cb (YelpWindow        *window,
-			     GnomeVFSURI       *uri)
+yelp_window_section_selected_cb (YelpWindow  *window,
+				 YelpSection *section)
 {
 	YelpWindowPriv *priv;
-	gchar          *str_uri;
 	
 	priv = window->priv;
 
-	if (!uri) {
+	if (!section) {
 		return;
 	}
 
-	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+/* 	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE); */
 /* 	gtk_entry_set_text (GTK_ENTRY (priv->uri_entry), str_uri); */
-	g_free (str_uri);
+/* 	g_free (str_uri); */
 
-	yelp_view_open_uri (YELP_VIEW (window->priv->yelp_view), uri);
+	yelp_view_open_uri (YELP_VIEW (window->priv->yelp_view), 
+			    section->uri, section->reference);
 }
 
 static void
@@ -358,7 +359,7 @@ yelp_window_open_uri (YelpWindow  *window,
 		      const gchar *str_uri)
 {
 	YelpWindowPriv *priv;
-	GnomeVFSURI    *uri;
+/* 	GnomeVFSURI    *uri; */
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	
@@ -366,8 +367,8 @@ yelp_window_open_uri (YelpWindow  *window,
 	
 /* 	gtk_entry_set_text (GTK_ENTRY (priv->uri_entry), str_uri); */
 
-	uri = gnome_vfs_uri_new (str_uri);
-	yelp_view_open_uri (YELP_VIEW (priv->yelp_view), uri);
-	gnome_vfs_uri_unref (uri);
+/* 	uri = gnome_vfs_uri_new (str_uri); */
+	yelp_view_open_uri (YELP_VIEW (priv->yelp_view), str_uri, NULL);
+/* 	gnome_vfs_uri_unref (uri); */
 }
 

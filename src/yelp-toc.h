@@ -49,8 +49,8 @@ struct _YelpTocClass
         GtkTreeViewClass   parent_class;
 
         /* Signals */
-	void   (*uri_selected)     (YelpToc             *toc,
-				    GnomeVFSURI         *uri);
+	void   (*section_selected)     (YelpToc             *toc,
+					YelpSection         *section);
 };
 
 GType          yelp_toc_get_type        (void);

@@ -55,17 +55,17 @@ struct _YelpBookClass {
 
 struct _YelpSection {
 	gchar       *name;
-	GnomeVFSURI *uri;
+	const gchar *uri;
 	gchar       *reference;
 };
 
 GType        yelp_book_get_type      (void);
 YelpBook *   yelp_book_new           (const gchar        *name, 
-				      GnomeVFSURI        *index_uri);
+				      const gchar        *index_uri);
 
 GNode *      yelp_book_add_section   (GNode              *parent,
 				      const gchar        *name,
-				      GnomeVFSURI        *uri,
+				      const gchar        *uri,
 				      const gchar        *reference);
 
 #endif /* __YELP_BOOK_H__ */

@@ -49,17 +49,21 @@ struct _YelpViewClass {
 
 	/* Signals */
 	void (*uri_selected) (YelpView    *view,
-			      GnomeVFSURI *uri);
+			      const gchar *uri,
+			      const gchar *anchor);
 };
 
-GType           yelp_view_get_type      (void);
-GtkWidget      *yelp_view_new           (void);
+GType           yelp_view_get_type       (void);
+GtkWidget      *yelp_view_new            (void);
  
-void            yelp_view_open_uri      (YelpView      *view, 
- 					 GnomeVFSURI   *uri); 
 #if 0
-void            yelp_view_open_uri      (YelpView      *view,
- 					 const gchar   *uri);
+void            yelp_view_open_uri       (YelpView      *view, 
+					  GnomeVFSURI   *uri); 
 #endif
+
+void            yelp_view_open_uri       (YelpView      *view,
+					  const gchar   *uri,
+					  const gchar   *anchor);
+
 #endif /* __YELP_VIEW_H__ */
 

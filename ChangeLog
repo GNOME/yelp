@@ -1,5 +1,22 @@
 2001-12-01  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/scrollkeeper-parser.c: path uri's as strings instead of
+	  GnomeVFSURI's
+
+	* src/yelp-window.c: likewise
+
+	* src/yelp-view.c: likewise
+
+	* src/yelp-toc.c: likewise
+
+	* src/yelp-index.c: likewise
+
+	* src/yelp-book.c: likewise
+
+	* src/yelp-base.c: likewise
+
+	* TODO: updated.
+
 	* src/yelp-window.c (yelp_window_populate): 
 	- removed the uri-entry
 	- added a toolbar

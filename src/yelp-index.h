@@ -26,6 +26,7 @@
 
 #include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include "yelp-book.h"
 
 #define YELP_TYPE_INDEX		 (yelp_index_get_type ())
 #define YELP_INDEX(obj)		 (GTK_CHECK_CAST ((obj), YELP_TYPE_INDEX, YelpIndex))
@@ -49,8 +50,8 @@ struct _YelpIndexClass
         GObjectClass     parent_class;
 
         /* Signals */
-	void  (*uri_selected)             (YelpIndex            *index,
-					   GnomeVFSURI          *uri);
+	void  (*section_selected)         (YelpIndex            *index,
+					   YelpSection          *section);
 };
 
 GType          yelp_index_get_type        (void);

@@ -37,7 +37,7 @@ struct _YelpTocPriv {
 };
 
 enum {
-        URI_SELECTED,
+        SECTION_SELECTED,
         LAST_SIGNAL
 };
 
@@ -84,11 +84,11 @@ yelp_toc_init (YelpToc *toc)
 static void
 yelp_toc_class_init (YelpTocClass *klass)
 {
-        signals[URI_SELECTED] = 
-                g_signal_new ("uri_selected",
+        signals[SECTION_SELECTED] = 
+                g_signal_new ("section_selected",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (YelpTocClass, uri_selected),
+                              G_STRUCT_OFFSET (YelpTocClass, section_selected),
                               NULL, NULL,
                               g_cclosure_marshal_VOID__POINTER,
                               G_TYPE_NONE,
@@ -100,7 +100,9 @@ yelp_toc_selected_cb (GtkTreeSelection *selection, YelpToc *toc)
 {
 	YelpTocPriv *priv;
  	GtkTreeIter  iter;
-	GnomeVFSURI *uri;
+	YelpSection *section;
+	
+/* 	GnomeVFSURI *uri; */
 	
 	g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
 	g_return_if_fail (YELP_IS_TOC (toc));
@@ -110,10 +112,11 @@ yelp_toc_selected_cb (GtkTreeSelection *selection, YelpToc *toc)
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
 
 		gtk_tree_model_get (GTK_TREE_MODEL (priv->model), &iter,
-				    1, &uri,
+				    1, &section,
 				    -1);
 
-                g_signal_emit (G_OBJECT (toc), signals[URI_SELECTED], 0, uri);
+                g_signal_emit (G_OBJECT (toc), signals[SECTION_SELECTED], 
+			       0, section);
 	}
 }
 

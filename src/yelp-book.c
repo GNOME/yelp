@@ -69,7 +69,7 @@ yelp_book_class_init (YelpBookClass *klass)
 }
 
 YelpBook *
-yelp_book_new (const gchar *name, GnomeVFSURI *index_uri)
+yelp_book_new (const gchar *name, const gchar *index_uri)
 {
 	YelpBook *book;
 	
@@ -81,7 +81,7 @@ yelp_book_new (const gchar *name, GnomeVFSURI *index_uri)
 
 static YelpSection *
 yelp_book_section_new (const gchar *name,
-		       GnomeVFSURI *uri,
+		       const gchar *uri,
 		       const gchar *reference)
 {
 	YelpSection *section;
@@ -91,11 +91,7 @@ yelp_book_section_new (const gchar *name,
 	section = g_new0 (YelpSection, 1);
 	
 	section->name      = g_strdup (name);
-
-	if (uri) {
-		section->uri       = gnome_vfs_uri_ref (uri);
-	}
-
+	section->uri       = g_strdup (uri);
 	section->reference = g_strdup (reference);
 	
 	return section;
@@ -104,7 +100,7 @@ yelp_book_section_new (const gchar *name,
 GNode *
 yelp_book_add_section (GNode       *parent,
 		       const gchar *name,
-		       GnomeVFSURI *uri, 
+		       const gchar *uri,
 		       const gchar *reference)
 {
 	GNode *node;

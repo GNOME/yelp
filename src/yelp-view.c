@@ -71,13 +71,14 @@ static gint signals[LAST_SIGNAL] = { 0 };
 struct _YelpViewPriv {
         HtmlDocument *doc;
         GSList       *connections;
-        GnomeVFSURI  *base_uri;
+	gchar        *base_uri;
 };
 
 struct _StreamData {
 	YelpView            *view;
 	HtmlStream          *stream;
 	GnomeVFSAsyncHandle *handle;
+	gchar               *anchor;
 };
 
 GType
@@ -150,8 +151,19 @@ yelp_view_async_close_cb (GnomeVFSAsyncHandle *handle,
                           GnomeVFSResult       result,
                           gpointer             callback_data)
 {
-        d(puts(__FUNCTION__));
+	StreamData *sdata;
+	gchar *test;
+	
+	d(puts(__FUNCTION__));
 
+	sdata = (StreamData *) callback_data;
+	
+	if (sdata->anchor) {
+		html_view_jump_to_anchor (HTML_VIEW (sdata->view),
+ 					  sdata->anchor);
+	}
+
+	yelp_view_free_stream_data (sdata, TRUE);
 }
 
 static void
@@ -173,7 +185,7 @@ yelp_view_async_read_cb (GnomeVFSAsyncHandle *handle,
                                        yelp_view_async_close_cb, 
                                        sdata);
 
-		yelp_view_free_stream_data (sdata, TRUE);
+/* 		yelp_view_free_stream_data (sdata, TRUE); */
 		g_free (buffer);
 	} else {
                 g_print ("Writing to html stream... ");
@@ -228,11 +240,11 @@ yelp_view_url_requested_cb (HtmlDocument *doc,
         view = YELP_VIEW (data);
         priv = view->priv;
 
-	if (priv->base_uri) {
-		vfs_uri = gnome_vfs_uri_resolve_relative (priv->base_uri, uri);
-        } else {
-		vfs_uri = gnome_vfs_uri_new (uri);
-        }
+/* 	if (priv->base_uri) { */
+/* 		vfs_uri = gnome_vfs_uri_resolve_relative (priv->base_uri, uri); */
+/*         } else { */
+/* 		vfs_uri = gnome_vfs_uri_new (uri); */
+/*         } */
 
 	g_assert (HTML_IS_DOCUMENT(doc));
 	g_assert (stream != NULL);
@@ -240,8 +252,10 @@ yelp_view_url_requested_cb (HtmlDocument *doc,
         sdata         = g_new0 (StreamData, 1);
 	sdata->view   = view;
 	sdata->stream = stream;
-
+	
         priv->connections = g_slist_prepend (priv->connections, sdata);
+
+	vfs_uri = gnome_vfs_uri_new (uri);
 
 	gnome_vfs_async_open_uri (&sdata->handle, 
                                   vfs_uri, 
@@ -301,9 +315,16 @@ yelp_view_free_stream_data (StreamData *sdata, gboolean remove)
 		priv->connections = g_slist_remove (priv->connections, sdata);
 	}
 
+	g_print ("Out of stream_data\n");
+
+	if (sdata->anchor) {
+		g_free (sdata->anchor);
+	}
+
 	html_stream_close(sdata->stream);
 	
 	g_free (sdata);
+
 }
 
 static void
@@ -311,20 +332,18 @@ yelp_view_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
 {
 	YelpView     *view;
         YelpViewPriv *priv;
-	GnomeVFSURI  *uri;
 	
         view = YELP_VIEW (data);
         priv = view->priv;
 
 	if (priv->base_uri) {
-		uri = gnome_vfs_uri_resolve_relative (priv->base_uri, url);
+		g_print ("Link '%s' pressed relative to: %s\n", 
+			 url,
+			 priv->base_uri);
         } else {
-		uri = gnome_vfs_uri_new (url);
         }
 
-	g_signal_emit (view, signals[URI_SELECTED], 0, uri);
-	
-	gnome_vfs_uri_unref (uri);
+	g_signal_emit (view, signals[URI_SELECTED], 0, url);
 }
 
 GtkWidget *
@@ -345,7 +364,7 @@ yelp_view_new (void)
 		len = strlen (text);
                 
 		html_document_write_stream (priv->doc, text, len);
-         }
+	}
         
 	html_document_close_stream (priv->doc);
 
@@ -353,15 +372,16 @@ yelp_view_new (void)
 }
 
 void
-yelp_view_open_uri (YelpView *view, GnomeVFSURI *uri)
+yelp_view_open_uri (YelpView *view, const gchar *str_uri, const gchar *anchor)
 {
         YelpViewPriv *priv;
         StreamData   *sdata;
+	GnomeVFSURI  *uri;
 	
         d(puts(__FUNCTION__));
 	
 	g_return_if_fail (YELP_IS_VIEW (view));
-	g_return_if_fail (uri != NULL);
+	g_return_if_fail (str_uri != NULL);
 
         priv = view->priv;
 
@@ -372,16 +392,25 @@ yelp_view_open_uri (YelpView *view, GnomeVFSURI *uri)
 		gtk_layout_get_vadjustment (GTK_LAYOUT (view)), 0);
 
 	if (priv->base_uri) {
-		gnome_vfs_uri_unref (priv->base_uri);
+		g_free (priv->base_uri);
 	}
 	
-        priv->base_uri = gnome_vfs_uri_ref (uri);
+        priv->base_uri = g_strdup (str_uri);
 
 	sdata         = g_new0 (StreamData, 1);
 	sdata->view   = view;
 	sdata->stream = priv->doc->current_stream;
+	sdata->anchor = NULL;
+	
+	if (anchor) {
+		sdata->anchor = g_strdup (anchor);
+	}
 	
 	priv->connections = g_slist_prepend (priv->connections, sdata);
+
+	uri = gnome_vfs_uri_new (str_uri);
+
+	g_print ("Trying to open URI: %s\n", str_uri);
 
 	gnome_vfs_async_open_uri (&sdata->handle,
 				  uri,
@@ -389,6 +418,8 @@ yelp_view_open_uri (YelpView *view, GnomeVFSURI *uri)
 				  GNOME_VFS_PRIORITY_DEFAULT,
 				  yelp_view_async_open_cb,
 				  sdata);
+
+	gnome_vfs_uri_unref (uri);
 
 	html_stream_set_cancel_func (sdata->stream, 
 				     yelp_view_stream_cancel, 

@@ -136,7 +136,7 @@ yelp_base_insert_node (YelpBase    *base,
         
 	gtk_tree_store_set (priv->bookshelf, iter,
 			    0, section->name,
-			    1, section->uri,
+			    1, section,
 			    -1);
 
 	return iter;

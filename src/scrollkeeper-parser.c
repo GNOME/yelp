@@ -51,7 +51,7 @@ static void       sp_parse_toc              (GNode                   *parent,
 					     const gchar             *docsource);
 static void       sp_parse_toc_section      (GNode                   *parent,
 					     xmlNode                 *xml_node,
-					     GnomeVFSURI             *base_uri);
+					     const gchar             *base_uri);
 static gchar *    sp_get_xml_docpath        (const gchar             *command,
 					     const gchar             *argument);
 /* MetaDataParser */
@@ -290,7 +290,6 @@ sp_parse_book (ScrollKeeperParser *parser,
 	YelpBook    *book;
 	xmlChar     *xml_str;
 	gchar       *name = NULL;
-/* 	GnomeVFSURI *index_uri; */
 	
 	/* Find the title */
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
@@ -371,7 +370,6 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	gchar       *omf;
 	gchar       *link;
 	gchar       *format;
-	GnomeVFSURI *uri;
 	GNode       *node;
 	gchar       *docsource;
 	gchar       *index_location;
@@ -400,11 +398,7 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 		}
 	}
 
-	uri = gnome_vfs_uri_new (link);
-
-	node = yelp_book_add_section (parent, title, uri, NULL);
-	
-	gnome_vfs_uri_unref (uri);
+	node = yelp_book_add_section (parent, title, link, NULL);
 	
 	sp_parse_toc (node, docsource);
 
@@ -428,7 +422,6 @@ sp_parse_toc (GNode *parent, const gchar *docsource)
 	gchar       *toc_file;
 	xmlDoc      *doc = NULL;
 	xmlNode     *xml_node;
-	GnomeVFSURI *base_uri;
 	
 	toc_file = sp_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
 				       docsource);
@@ -442,9 +435,7 @@ sp_parse_toc (GNode *parent, const gchar *docsource)
 		g_warning ("Tried to parse a non-valid TOC file");
 		return;
 	}
-
-	base_uri = gnome_vfs_uri_ref (((YelpSection *) parent->data)->uri);
-
+	
 	if (g_strcasecmp (doc->xmlRootNode->name, "toc")) {
 		g_warning ("Document with wrong root node, got: '%s'",
 			   doc->xmlRootNode->name);
@@ -453,18 +444,18 @@ sp_parse_toc (GNode *parent, const gchar *docsource)
 	xml_node = doc->xmlRootNode->xmlChildrenNode;
 
 	for (; xml_node != NULL; xml_node = xml_node->next) {
-		sp_parse_toc_section (parent, xml_node, base_uri);
+		sp_parse_toc_section (parent, xml_node, 
+				      ((YelpSection *) parent->data)->uri);
 	}
 }
 
 static void
-sp_parse_toc_section (GNode *parent, xmlNode *xml_node, GnomeVFSURI *base_uri)
+sp_parse_toc_section (GNode *parent, xmlNode *xml_node, const gchar *base_uri)
 {
 	gchar       *name;
 	gchar       *link;
 	xmlNode     *next_child;
 	xmlChar     *xml_str;
-	GnomeVFSURI *uri;
 	GNode       *node;
 
 	next_child = xml_node->xmlChildrenNode;
@@ -487,18 +478,15 @@ sp_parse_toc_section (GNode *parent, xmlNode *xml_node, GnomeVFSURI *base_uri)
 /* 	if (link) { */
 /* 		uri = gnome_vfs_uri_resolve_relative (base_uri, link); */
 /* 	} else { */
-	uri = gnome_vfs_uri_ref (base_uri);
 /* 	} */
 
-	node = yelp_book_add_section (parent, name, uri, link);
+	node = yelp_book_add_section (parent, name, base_uri, link);
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_strncasecmp (next_child->name, "tocsect", 7)) {
 			sp_parse_toc_section (node, next_child, base_uri);
 		}
 	}
-
-	gnome_vfs_uri_unref (uri);
 }
 
 static gchar *

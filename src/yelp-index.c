@@ -42,7 +42,7 @@ struct _YelpIndexPriv {
 };
 
 enum {
-	URI_SELECTED,
+	SECTION_SELECTED,
 	LAST_SIGNAL
 };
 
@@ -92,11 +92,12 @@ yelp_index_init (YelpIndex *index)
 static void
 yelp_index_class_init (YelpIndexClass *klass)
 {
-	signals[URI_SELECTED] = 
-		g_signal_new ("uri_selected",
+	signals[SECTION_SELECTED] = 
+		g_signal_new ("section_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (YelpIndexClass, uri_selected),
+			      G_STRUCT_OFFSET (YelpIndexClass, 
+					       section_selected),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
