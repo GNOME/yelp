@@ -323,8 +323,8 @@ yelp_view_toc_start (YelpViewTOC *view)
 	gchar           *page_title = _("Help Contents");
 	gchar           *section_gnome = _("GNOME - Desktop");
 	gchar           *section_additional = _("Additional documents");
-	gchar           *man_string = _("Manual pages");
-	gchar           *info_string = _("Info pages");
+	gchar           *man_string = _("Manual Pages");
+	gchar           *info_string = _("Info Pages");
 	YelpImportantDocsSection *important_section;
 	gboolean         important_doc_installed = FALSE;
 	gboolean         left_column_started = FALSE;
@@ -725,7 +725,7 @@ yelp_view_toc_info (YelpViewTOC *view)
 	GNode           *root, *node;
 	YelpSection     *section;
 	char            *url;
-	gchar           *string = _("Info pages");
+	gchar           *string = _("Info Pages");
 	gchar           *str_docs = _("Documents");
 
 	priv = view->priv;
