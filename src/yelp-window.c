@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@codefactory.se>
+ * Author: Mikael Hallendal <micke@imendio.com>
  */
 
 #ifdef HAVE_CONFIG_H
@@ -668,7 +668,7 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 
 	if (about == NULL) {
 		const gchar *authors[] = { 
-			"Mikael Hallendal <micke@codefactory.se>",
+			"Mikael Hallendal <micke@imendio.com>",
 			"Alexander Larsson <alexl@redhat.com>",
 			NULL
 		};
@@ -677,7 +677,7 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 		gchar       *translator_credits = _("translator_credits");
 	
 		about = gnome_about_new (PACKAGE, VERSION,
-					 "Copyright 2001-2002 Mikael Hallendal <micke@codefactory.se>",
+					 "Copyright 2001-2003 Mikael Hallendal <micke@imendio.com>",
 					 _("A Help Browser for GNOME"),
 					 authors,
 					 NULL,
