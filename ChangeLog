@@ -1,5 +1,8 @@
 2001-10-28  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (yelp_window_uri_selected_cb): don't segfault
+	if uri == NULL.
+	
 	* src/yelp-base.c (yelp_base_new): use the scrollkeeper parser
 	instead of devhelp.
 

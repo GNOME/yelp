@@ -292,7 +292,11 @@ yelp_window_uri_selected_cb (YelpWindow        *window,
 	gchar          *str_uri;
 	
 	priv = window->priv;
-	
+
+	if (!uri) {
+		return;
+	}
+
 	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	gtk_entry_set_text (GTK_ENTRY (priv->uri_entry), str_uri);
 	g_free (str_uri);
