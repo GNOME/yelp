@@ -27,6 +27,7 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
+#include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-i18n.h>
@@ -48,58 +49,69 @@ typedef enum {
 	YELP_WINDOW_ACTION_FORWARD,
 } YelpHistoryAction;
 
-static void        yw_init		     (YelpWindow          *window);
-static void        yw_class_init	     (YelpWindowClass     *klass);
+static GConfEnumStringPair toolbar_styles[] = {
+        { GTK_TOOLBAR_TEXT, "text" },
+        { GTK_TOOLBAR_ICONS, "icons" },
+        { GTK_TOOLBAR_BOTH, "both" }
+};
 
-static void        yw_populate               (YelpWindow          *window);
+static void        yw_init		       (YelpWindow          *window);
+static void        yw_class_init	       (YelpWindowClass     *klass);
 
-static gboolean    yw_handle_url             (YelpWindow          *window,
-					      const gchar         *url);
-static void        yw_url_selected_cb        (gpointer             view,
-					      char                *url,
-					      char                *base_url,
-					      gboolean             handled,
-					      YelpWindow          *window);
-static void        yw_toggle_history_back    (YelpHistory         *history,
-					      gboolean             sensitive,
-					      YelpWindow          *window);
+static void        yw_populate                 (YelpWindow          *window);
 
-static void        yw_toggle_history_forward (YelpHistory         *history,
-					      gboolean             sensitive,
-					      YelpWindow          *window);
+static gboolean    yw_handle_url               (YelpWindow          *window,
+						const gchar         *url);
+static void        yw_url_selected_cb          (gpointer             view,
+						char                *url,
+						char                *base_url,
+						gboolean             handled,
+						YelpWindow          *window);
+static void        yw_toggle_history_back      (YelpHistory         *history,
+						gboolean             sensitive,
+						YelpWindow          *window);
 
-static void        yw_history_action         (YelpWindow          *window,
-					      YelpHistoryAction    action);
-static void        yw_back_button_clicked    (GtkWidget           *button,
-					      YelpWindow          *window);
-static void        yw_forward_button_clicked (GtkWidget           *button,
-					      YelpWindow          *window);
-static void        yw_home_button_clicked    (GtkWidget           *button,
-					      YelpWindow          *window);
-static void        yw_index_button_clicked   (GtkWidget           *button,
-					      YelpWindow          *window);
-static void        yw_new_window_cb          (gpointer             data,
-					      guint                section,
-					      GtkWidget           *widget);
-static void        yw_close_window_cb        (gpointer             data,
-					      guint                section,
-					      GtkWidget           *widget);
-static void        yw_exit_cb                (gpointer             data,
-					      guint                section,
-					      GtkWidget           *widget);
-static void        yw_history_go_cb          (gpointer             data,
-					      guint                section,
-					      GtkWidget           *widget);
-static void        yw_go_home_cb             (gpointer             data,
-					      guint                section,
-					      GtkWidget           *widget);
-static void        yw_go_index_cb            (gpointer             data,
-					      guint                section,
-					      GtkWidget           *widget);
-static void        yw_about_cb               (gpointer             data,
-					      guint                section,
-					      GtkWidget           *widget);
-static GtkWidget * yw_create_toolbar         (YelpWindow          *window);
+static void        yw_toggle_history_forward   (YelpHistory         *history,
+						gboolean             sensitive,
+						YelpWindow          *window);
+
+static void        yw_history_action           (YelpWindow          *window,
+						YelpHistoryAction    action);
+static void        yw_back_button_clicked      (GtkWidget           *button,
+						YelpWindow          *window);
+static void        yw_forward_button_clicked   (GtkWidget           *button,
+						YelpWindow          *window);
+static void        yw_home_button_clicked      (GtkWidget           *button,
+						YelpWindow          *window);
+static void        yw_index_button_clicked     (GtkWidget           *button,
+						YelpWindow          *window);
+static void        yw_new_window_cb            (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void        yw_close_window_cb          (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void        yw_history_go_cb            (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void        yw_go_home_cb               (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void        yw_go_index_cb              (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void        yw_about_cb                 (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static GtkWidget * yw_create_toolbar           (YelpWindow          *window);
+
+static void        yw_toolbar_style_changed_cb (GConfClient         *client,
+						guint                cnxn_id,
+						GConfEntry          *entry,
+						gpointer             data);
+
+static void        yw_remove_notify_cb          (GtkObject          *obj, 
+						 gpointer            data);
 
 enum {
 	PAGE_TOC_VIEW,
@@ -502,12 +514,6 @@ yw_close_window_cb (gpointer   data,
 }
 
 static void
-yw_exit_cb (gpointer data, guint section, GtkWidget *widget)
-{
-	bonobo_main_quit ();
-}
-
-static void
 yw_history_go_cb (gpointer data, guint section, GtkWidget *widget)
 {
 	yw_history_action (data, section);
@@ -552,16 +558,44 @@ yw_about_cb (gpointer data, guint section, GtkWidget *widget)
 static GtkWidget *
 yw_create_toolbar (YelpWindow *window)
 {
-	YelpWindowPriv *priv;
-	GtkWidget      *toolbar;
-	GtkWidget      *button;
-	GtkWidget      *icon;
-
+	YelpWindowPriv  *priv;
+	GtkWidget       *toolbar;
+	GtkWidget       *button;
+	GtkWidget       *icon;
+	GConfClient     *conf_client;
+	gchar           *str;
+	GtkToolbarStyle  style = GTK_TOOLBAR_BOTH;
+	guint            notify_id;
+	
 	g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
 
 	priv = window->priv;
 
 	toolbar = gtk_toolbar_new ();
+
+	conf_client = gconf_client_get_default ();
+	
+	str = gconf_client_get_string (conf_client, 
+				       "/desktop/gnome/interface/toolbar_style",
+				       NULL);
+
+	if (str) {
+		gconf_string_to_enum (toolbar_styles,
+				      str,
+				      (gint*)&style);
+		g_free (str);
+	}
+
+	gconf_client_notify_add (conf_client, 
+				 "/desktop/gnome/interface/toolbar_style",
+				 yw_toolbar_style_changed_cb,
+				 toolbar, NULL, NULL);
+	
+/* 	g_signal_connect(toolbar, "destroy", */
+/* 			 G_CALLBACK(yw_remove_notify_cb), */
+/* 			 GINT_TO_POINTER(notify_id)); */
+
+	gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), style);
 
 	icon = gtk_image_new_from_stock ("gtk-go-back", 
 					 GTK_ICON_SIZE_LARGE_TOOLBAR);
@@ -613,6 +647,42 @@ yw_create_toolbar (YelpWindow *window)
 	}
 	
 	return toolbar;
+}
+
+static void
+yw_toolbar_style_changed_cb (GConfClient *client,
+			     guint        cnxn_id,
+			     GConfEntry  *entry,
+			     gpointer     data)
+{
+        GtkToolbarStyle  style   = GTK_TOOLBAR_BOTH;
+        GtkToolbar      *toolbar = GTK_TOOLBAR(data);
+	GConfValue      *value;
+
+	value = gconf_entry_get_value (entry);
+
+        /* If no per-app setting use this new global setting */
+        if (value && 
+	    value->type == GCONF_VALUE_STRING &&
+            gconf_value_get_string (value) != NULL) {
+                gconf_string_to_enum(toolbar_styles,
+                                     gconf_value_get_string(value),
+                                     (gint*)&style);
+        }
+
+        gtk_toolbar_set_style(toolbar, style);
+}
+
+static void
+yw_remove_notify_cb (GtkObject *obj, gpointer data)
+{
+        GConfClient *conf_client;
+        guint        notify_id;
+
+        conf_client = gconf_client_get_default ();
+        notify_id   = GPOINTER_TO_INT(data);
+
+        gconf_client_notify_remove(conf_client, notify_id);
 }
 
 GtkWidget *
@@ -670,3 +740,4 @@ yelp_window_get_current_uri (YelpWindow *window)
 	
 	return yelp_history_get_current (window->priv->history);
 }
+

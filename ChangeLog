@@ -1,3 +1,14 @@
+2002-04-04  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c: use GConf for the toolbar style.
+
+	* src/yelp-html.c: added a "Loading..." while loading the
+	  document. New string, sorry about that. This also needs a new
+	  change in gtkhtml2 so I'll update the reqs after the next
+	  release of gtkhtml2.
+
+	* configure.in (GNOMELOCALEDIR): added gconf-2.0
+
 2002-04-03  Gustavo Maciel Dias Vieira  <gdvieira@zaz.com.br>
 
 	* configure.in (ALL_LINGUAS): Added pt_BR.

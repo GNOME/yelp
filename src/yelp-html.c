@@ -77,6 +77,7 @@ static GHashTable *cache_table = NULL;
 
 struct _YelpHtmlPriv {
         HtmlDocument *doc;
+	HtmlDocument *load_doc;
         GSList       *connections;
 	gchar        *base_uri;
 };
@@ -120,12 +121,28 @@ static void
 yh_init (YelpHtml *view)
 {
         YelpHtmlPriv *priv;
-        
+
         priv = g_new0 (YelpHtmlPriv, 1);
 
         priv->doc         = html_document_new ();
         priv->connections = NULL;
         priv->base_uri    = g_strdup ("");
+
+	priv->load_doc    = html_document_new ();
+	
+	html_document_open_stream (priv->load_doc, "text/html");
+	
+	{
+		gint len;
+		gchar *str = _("Loading...");
+		gchar *text = g_strdup_printf ("<html><body bgcolor=\"white\"><center>%s</center></body></html>", str);
+		len = strlen (text);
+
+		html_document_write_stream (priv->load_doc, text, len);
+		g_free (text);
+	}
+	
+	html_document_close_stream (priv->load_doc);
 
         html_view_set_document (HTML_VIEW (view), priv->doc);
         
@@ -186,11 +203,13 @@ yh_async_read_cb (GnomeVFSAsyncHandle *handle,
 		  gpointer             callback_data)
 {
 	StreamData *sdata;
-
+	YelpHtml   *view;
+	
         d(puts(G_GNUC_FUNCTION));
 
         sdata = (StreamData *) callback_data;
-
+	view  = sdata->view;
+	
 	if (result != GNOME_VFS_OK) {
 		gnome_vfs_async_close (handle, 
                                        yh_async_close_cb, 
@@ -199,6 +218,11 @@ yh_async_read_cb (GnomeVFSAsyncHandle *handle,
 		g_free (buffer);
 	} else {
 		html_stream_write (sdata->stream, buffer, bytes_read);
+
+		if (HTML_VIEW(view)->document == view->priv->load_doc) {
+			html_view_set_document (HTML_VIEW (view),
+						view->priv->doc);
+		}
 		
 		gnome_vfs_async_read (handle, buffer, bytes_requested, 
 				      yh_async_read_cb, sdata);
@@ -318,7 +342,7 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 	g_return_if_fail (YELP_IS_HTML (html));
 
 	handled = FALSE;
-	
+
 	/* If this is a relative reference. Shortcut reload. */
 	if (url && (url[0] == '#' || url[0] == '?')) {
 		html_view_jump_to_anchor (HTML_VIEW (html),
@@ -401,6 +425,8 @@ yelp_html_open_uri (YelpHtml    *view,
 		return;
 	} 
 
+  	html_view_set_document (HTML_VIEW (view), priv->load_doc);
+
 	/* New document needs to be read. */
 	g_free (priv->base_uri);
 	priv->base_uri = g_strdup (docpath);
@@ -411,11 +437,11 @@ yelp_html_open_uri (YelpHtml    *view,
  	gtk_adjustment_set_value ( 
 		gtk_layout_get_vadjustment (GTK_LAYOUT (view)), 0);
 
-	sdata          = g_new0 (StreamData, 1);
-	sdata->view    = view;
-	sdata->stream  = priv->doc->current_stream;
-	sdata->anchor  = NULL;
-	
+	sdata         = g_new0 (StreamData, 1);
+	sdata->view   = view;
+	sdata->stream = priv->doc->current_stream;
+	sdata->anchor = NULL;
+
 	priv->connections = g_slist_prepend (priv->connections, sdata);
 
 	uri = gnome_vfs_uri_new (docpath);
