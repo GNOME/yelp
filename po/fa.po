@@ -1,0 +1,301 @@
+# translation of yelp to to Persian
+# Copyright (C) 2002 The FarsiWeb Project Group
+# Roozbeh Pournader <roozbeh@sharif.edu>, 2002
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp\n"
+"POT-Creation-Date: 2003-02-17 05:05+0100\n"
+"PO-Revision-Date: 2002-08-24 03:53+0430\n"
+"Last-Translator: Roozbeh Pournader <roozbeh@sharif.edu>\n"
+"Language-Team: Persian <farsi@lists.sharif.edu>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr ""
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr ""
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr ""
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr ""
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr ""
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr ""
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "کارخانه‌ی Yelp"
+
+#: src/yelp-main.c:117
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "نمی‌توان Yelp را فعال کرد: '%s'"
+
+#: src/yelp-main.c:136
+msgid "Could not open new window."
+msgstr "نمی‌توان پنجره‌ی جدید باز کرد."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "پرل"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "فراخوانی‌های سیستمی"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "توابع کتاب‌خانه‌ای"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "روال‌های هسته"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "برنامه‌ها"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr ""
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "دستگاه‌های سخت‌افزاری"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "پرونده‌های تنظیمات"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "بازی‌ها"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr ""
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "مدیریت سیستم"
+
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "در حال بار کردن..."
+
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "قسمت"
+
+#: src/yelp-view-index.c:480
+#, fuzzy
+msgid "_Search for:"
+msgstr "جستجو برای:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "محتویات راهنما"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "گنوم - رومیزی"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "نوشتارهای اضافی"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+msgid "Manual Pages"
+msgstr "صفحات راهنما"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+msgid "Info Pages"
+msgstr "صفحات اطلاعاتی"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+msgid "Documents"
+msgstr "نوشتارها"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+msgid "Categories"
+msgstr ""
+
+#: src/yelp-view-toc.c:448
+msgid "Manual pages"
+msgstr "صفحات راهنما"
+
+#: src/yelp-view-toc.c:712
+msgid "GNOME is"
+msgstr "گنوم"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr "نرم‌افزار آزاد"
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:163
+msgid "/_File"
+msgstr "/پرونده"
+
+#: src/yelp-window.c:164
+msgid "/File/_New window"
+msgstr "/پرونده/پنجره‌ی جدید"
+
+#: src/yelp-window.c:165
+msgid "/File/_Close window"
+msgstr "/پرونده/بستن پنجره"
+
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr ""
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr ""
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr ""
+
+#: src/yelp-window.c:171
+msgid "/_Go"
+msgstr "/رفتن"
+
+#: src/yelp-window.c:172
+msgid "/Go/_Back"
+msgstr "/رفتن/به عقب"
+
+#: src/yelp-window.c:173
+msgid "/Go/_Forward"
+msgstr "/رفتن/به جلو"
+
+#: src/yelp-window.c:174
+msgid "/Go/_Home"
+msgstr "رفتن/به آغازه"
+
+#: src/yelp-window.c:175
+msgid "/Go/_Index"
+msgstr "/رفتن/به نمایه"
+
+#: src/yelp-window.c:177
+msgid "/_Help"
+msgstr "/راهنما"
+
+#: src/yelp-window.c:178
+msgid "/Help/_About"
+msgstr "/راهنما/درباره"
+
+#: src/yelp-window.c:238 src/yelp-window.c:438
+msgid "Help Browser"
+msgstr "مرورگر راهنماها"
+
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "نوشتار '%s' وجود ندارد"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:675
+msgid "translator_credits"
+msgstr "روزبه پورنادر ‎<roozbeh@sharif.edu>‎"
+
+#: src/yelp-window.c:679
+msgid "Help Browser for GNOME 2.0"
+msgstr "مرورگر راهنماها برای گنوم ۲.۰"
+
+#: src/yelp-window.c:788
+msgid "Back"
+msgstr "عقب"
+
+#: src/yelp-window.c:789
+msgid "Show previous page in history"
+msgstr "نمایش صفحه‌ی قبلی در تاریخچه"
+
+#: src/yelp-window.c:800
+msgid "Forward"
+msgstr "جلو"
+
+#: src/yelp-window.c:801
+msgid "Show next page in history"
+msgstr "نمایش صفحه‌ی بعدی در تاریخچه"
+
+#: src/yelp-window.c:814
+msgid "Home"
+msgstr "آغازه"
+
+#: src/yelp-window.c:815
+msgid "Go to home view"
+msgstr "رفتن به نمای آغازه"
+
+#: src/yelp-window.c:825
+msgid "Index"
+msgstr "نمایه"
+
+#: src/yelp-window.c:826
+msgid "Search in the index"
+msgstr "جستجو در نمایه"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "راهنمایی گرفتن در مورد گنوم"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "راهنما"
