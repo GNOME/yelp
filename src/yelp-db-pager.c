@@ -47,8 +47,9 @@
 #define d(x)
 #endif
 
-#define DB_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/"
-#define DB_STYLESHEET      DB_STYLESHEET_PATH"db2html.xsl"
+#define STYLESHEET_PATH DATADIR"/yelp/xslt/"
+#define DB_STYLESHEET   STYLESHEET_PATH"db2html.xsl"
+#define DB_TITLE        STYLESHEET_PATH"db-title.xsl"
 
 #define BOOK_CHUNK_DEPTH 2
 #define ARTICLE_CHUNK_DEPTH 1
@@ -77,6 +78,8 @@ struct _DBWalker {
 
     gint depth;
     gint max_depth;
+
+    xsltStylesheetPtr       titleStylesheet;
 };
 
 static void           db_pager_class_init   (YelpDBPagerClass *klass);
@@ -92,10 +95,10 @@ static const gchar *  db_pager_resolve_frag (YelpPager        *pager,
 static GtkTreeModel * db_pager_get_sections (YelpPager        *pager);
 
 static void            walker_walk_xml      (DBWalker         *walker);
-static gboolean        walker_is_chunk      (DBWalker         *walker);
 
-static gboolean        xml_is_division      (xmlNodePtr        node);
-static gchar *         xml_get_title        (xmlNodePtr        node);
+static gboolean        node_is_chunk        (DBWalker         *walker);
+static gboolean        node_is_division     (DBWalker         *walker);
+static gchar *         node_get_title       (DBWalker         *walker);
 
 static YelpPagerClass *parent_class;
 
@@ -251,6 +254,8 @@ db_pager_parse (YelpPager *pager)
     walker->doc       = doc;
     walker->cur       = xmlDocGetRootElement (walker->doc);
 
+    walker->titleStylesheet = xsltParseStylesheetFile (DB_TITLE);
+
     if (!xmlStrcmp (xmlDocGetRootElement (doc)->name, BAD_CAST "book"))
 	walker->max_depth = BOOK_CHUNK_DEPTH;
     else
@@ -268,6 +273,8 @@ db_pager_parse (YelpPager *pager)
     walker_walk_xml (walker);
 
  done:
+    xsltFreeStylesheet (walker->titleStylesheet);
+
     g_free (filename);
     g_free (walker);
 
@@ -399,8 +406,8 @@ walker_walk_xml (DBWalker *walker)
 	id = xmlStrdup ("__yelp_toc");
     }
 
-    if (walker_is_chunk (walker)) {
-	title = xml_get_title (walker->cur);
+    if (node_is_chunk (walker)) {
+	title = node_get_title (walker);
 
 	if (id) {
 	    gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
@@ -447,7 +454,7 @@ walker_walk_xml (DBWalker *walker)
     walker->depth--;
     walker->cur = old_cur;
 
-    if (walker_is_chunk (walker) && id) {
+    if (node_is_chunk (walker) && id) {
 	walker->iter     = old_iter;
 
 	walker->page_id = old_id;
@@ -459,52 +466,49 @@ walker_walk_xml (DBWalker *walker)
 	xmlFree (title);
 }
 
-gchar *
-xml_get_title (xmlNodePtr node)
+static gchar *
+node_get_title (DBWalker *walker)
 {
-    gchar *title = NULL;
-    gchar *ret   = NULL;
-    xmlNodePtr cur;
+    gchar *title;
+    xmlDocPtr doc;
+    xmlChar *params[3];
+    xmlChar *outstr;
+    int outlen;
 
-    /* FIXME: this needs so much work */
+    params[0] = "node";
+    params[1] = xmlGetNodePath (walker->cur);
+    params[2] = NULL;
 
-    for (cur = node->children; cur; cur = cur->next) {
-	if (!xmlStrcmp (cur->name, (xmlChar *) "title")) {
-	    if (title)
-		g_free (title);
-	    title = xmlNodeGetContent (cur);
-	}
-	else if (!xmlStrcmp (cur->name, (xmlChar *) "titleabbrev")) {
-	    if (title)
-		g_free (title);
-	    title = xmlNodeGetContent (cur);
-	    break;
-	}
+    doc = xsltApplyStylesheet (walker->titleStylesheet,
+			       walker->doc,
+			       params);
+    if (xsltSaveResultToString (&outstr, &outlen, doc, walker->titleStylesheet) < 0)
+	title = _("Unknown Section");
+    else {
+	title = g_strdup (outstr);
+	xmlFree (outstr);
     }
 
-    if (!title)
-	title = g_strdup (_("Unknown"));
+    xmlFreeDoc (doc);
+    xmlFree (params[1]);
 
-    // This really isn't adequate for what we want.
-    ret = g_strdup (g_strstrip (title));
-    g_free (title);
-
-    return ret;
+    return title;
 }
 
-gboolean
-walker_is_chunk (DBWalker *walker)
+static gboolean
+node_is_chunk (DBWalker *walker)
 {
     if (walker->depth <= walker->max_depth) {
-	if (xml_is_division (walker->cur))
+	if (node_is_division (walker))
 	    return TRUE;
     }
     return FALSE;
 }
 
-gboolean
-xml_is_division (xmlNodePtr node)
+static gboolean
+node_is_division (DBWalker *walker)
 {
+    xmlNodePtr node = walker->cur;
     return (!xmlStrcmp (node->name, (const xmlChar *) "appendix")     ||
 	    !xmlStrcmp (node->name, (const xmlChar *) "article")      ||
 	    !xmlStrcmp (node->name, (const xmlChar *) "book")         ||

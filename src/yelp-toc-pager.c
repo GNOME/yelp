@@ -54,8 +54,8 @@
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
-#define TOC_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/"
-#define TOC_STYLESHEET      TOC_STYLESHEET_PATH"toc2html.xsl"
+#define STYLESHEET_PATH DATADIR"/yelp/xslt/"
+#define TOC_STYLESHEET  STYLESHEET_PATH"toc2html.xsl"
 
 typedef gboolean      (*ProcessFunction)        (YelpTocPager      *pager);
 

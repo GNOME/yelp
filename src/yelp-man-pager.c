@@ -40,8 +40,8 @@
 #include "yelp-man-parser.h"
 #include "yelp-settings.h"
 
-#define MAN_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/"
-#define MAN_STYLESHEET      MAN_STYLESHEET_PATH"man2html.xsl"
+#define STYLESHEET_PATH DATADIR"/yelp/xslt/"
+#define MAN_STYLESHEET  STYLESHEET_PATH"man2html.xsl"
 
 struct _YelpManPagerPriv {
     gpointer unused;

@@ -62,6 +62,10 @@ AC_PATH_PROGS(SED, gsed sed)
 YELP_IDL_INCLUDES="`echo ${idl_dirs} | ${SED} -e 's/^/ /' -e 's/  *$//' -e 's/  */ -I /g' -e 's/^  *//'`"
 AC_SUBST(YELP_IDL_INCLUDES)
 
+XSLT_PATH="`$PKG_CONFIG --variable=xsltdir gnome-doc-utils`"
+DB_TITLE="$XSLT_PATH""/docbook/common/db-title.xsl"
+AC_SUBST(DB_TITLE)
+
 DB2HTML="`$PKG_CONFIG --variable=db2html gnome-doc-utils`"
 AC_SUBST(DB2HTML)
 
@@ -179,6 +183,7 @@ Makefile
 src/Makefile
 stylesheets/Makefile
 stylesheets/db2html.xsl
+stylesheets/db-title.xsl
 data/Makefile
 data/icons/Makefile
 data/ui/Makefile

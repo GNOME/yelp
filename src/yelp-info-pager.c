@@ -41,8 +41,8 @@
 #include "yelp-info-parser.h"
 #include "yelp-settings.h"
 
-#define INFO_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/"
-#define INFO_STYLESHEET      INFO_STYLESHEET_PATH"info2html.xsl"
+#define STYLESHEET_PATH DATADIR"/yelp/xslt/"
+#define INFO_STYLESHEET STYLESHEET_PATH"info2html.xsl"
 
 struct _YelpInfoPagerPriv {
     GtkTreeStore  *tree;

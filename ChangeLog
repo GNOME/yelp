@@ -1,3 +1,19 @@
+2005-01-17  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* src/yelp-db-pager.c:
+	* stylesheets/Makefile.am:
+	* stylesheets/db-title.xsl.in:
+	- Get titles from the db.titleabbrev XSLT template
+
+	* data/toc.xml.in:
+	- Changed 'Sound & Video' to be 'Multimedia', for upstream compliance
+
+	* src/yelp-info-pager.c:
+	* src/yelp-man-pager.c:
+	* src/yelp-toc-pager.c:
+	- Some #define naming changes
+
 2005-01-13  Shaun McCance  <shaunm@gnome.org>
 
 	* NEWS:
