@@ -138,6 +138,8 @@ yelp_info_init (GNode *tree, GList **index)
 				   yelp_section_new (YELP_SECTION_CATEGORY,
 						     "info", NULL));
 
+	info_list = g_slist_sort (info_list, yelp_section_compare);
+
 	for (node = info_list; node; node = node->next) {
 		g_node_append_data (root, node->data);
 
