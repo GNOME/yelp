@@ -160,6 +160,8 @@ html_init (YelpHtml *html)
     g_signal_connect (G_OBJECT (priv->doc), "title_changed",
 		      G_CALLBACK (html_title_changed_cb), html);
 
+    gtk_widget_set_size_request (GTK_WIDGET (priv->view), 300, 200);
+
     html->priv = priv;
 }
 

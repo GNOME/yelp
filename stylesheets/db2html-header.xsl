@@ -64,8 +64,11 @@
 
 <!-- header.named -->
 <xsl:template name="header.named" mode="header.mode" match="
-		appendix	| chapter	| part	| sect1		| sect2		|
-		sect3		| sect4		| sect5	| section	| simplesect">
+		appendix		| article	| book		| bibliography	| chapter		|
+		colophon		| glossary	| index		| part			| preface		|
+		reference	| refsect1	| refsect2	| refsect3		| refsection	|
+		refentry		| sect1		| sect2		| sect3			| sect4			|
+		sect5			| section	| set			| setindex		| simplesect	">
 	<xsl:call-template name="format.header">
 		<xsl:with-param name="header">
 			<xsl:call-template name="header.name"/>
@@ -74,16 +77,6 @@
 			<xsl:call-template name="header.number"/>
 		</xsl:with-param>
 	</xsl:call-template>
-</xsl:template>
-
-<xsl:template mode="header.mode" match="article | reference">
-	<xsl:if test="
-			(preceding-sibling::*[name(.) = name(current())])							or
-			(following-sibling::*[name(.) = name(current())])							or
-			(parent::part/preceding-sibling::part/*[name(.) = name(current())])	or
-			(parent::part/following-sibling::part/*[name(.) = name(current())])	">
-		<xsl:call-template name="header.named"/>
-	</xsl:if>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="example | figure | table">

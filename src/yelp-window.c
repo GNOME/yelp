@@ -420,6 +420,11 @@ window_handle_uri (YelpWindow  *window,
     case YELP_URI_TYPE_HTML:
 	handled = window_handle_html_uri (window, uri);
 	break;
+    case YELP_URI_TYPE_EXTERNAL:
+	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+	gnome_url_show (str_uri, &error);
+	g_free (str_uri);
+	break;
     case YELP_URI_TYPE_ERROR:
     default:
 	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);

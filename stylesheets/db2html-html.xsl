@@ -143,8 +143,7 @@ dl { margin: 0em; }
 ol { margin: 0em; }
 ul { margin: 0em; }
 ul li { padding-left: 0.4em; }
-
-dd + dt { margin-top: 0.8em; }
+dd + dt { margin-top: 1.6em; }
 
 div[class="navbar-top"],
 div[class="navbar-bottom"],
@@ -162,9 +161,15 @@ div[class="informalexample"],
 div[class="informalfigure"],
 div[class="informaltable"],
 div[class="msgset"],
-div[class="table"],
-div[class="variablelist"] {
+div[class="table"] {
 	margin-top: 1.6em;
+	margin-left: 1.6em;
+	margin-right: 1.6em;
+	margin-bottom: 0.8em;
+}
+
+div[class="variablelist"] {
+	margin-top: 0.8em;
 	margin-left: 1.6em;
 	margin-right: 1.6em;
 	margin-bottom: 0.8em;
@@ -190,8 +195,10 @@ div[class="admonition"] {
 div[class="admonition"] td[class="image"] { margin-right: 1.6em; }
 
 div[class="classsynopsis"],
+div[class="literallayout"],
 div[class="programlisting"],
-div[class="screen"] {
+div[class="screen"],
+div[class="synopsis"] {
 	margin-top: 1.6em;
 	margin-left: 1.6em;
 	margin-right: 1.6em;

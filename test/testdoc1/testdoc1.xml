@@ -152,6 +152,216 @@
 	</classsynopsis>
 </sect1>
 
+<sect1 id="td-inline">
+	<title>Inline Elements</title>
+
+	<para>
+		This sections tests various inline DocBook elements that don't fit into
+		any other sections.
+	</para>
+
+	<variablelist>
+		<varlistentry><term><sgmltag>abbrev</sgmltag></term>
+			<listitem>
+				<para>
+					The <sgmltag>abbrev</sgmltag> is used to indicate an abbreviation,
+					such as <abbrev>st.</abbrev> or even <abbrev>i18n</abbrev>.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry><term><sgmltag>acronym</sgmltag></term>
+			<listitem>
+				<para>
+					The <sgmltag>acronym</sgmltag> element marks up a word made from
+					selected letters of a name or phrase, often pronounceable.  Examples
+					include <acronym>GNOME</acronym> and <acronym>GNU</acronym>.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry><term><sgmltag>emphasis</sgmltag></term>
+			<listitem>
+				<para>
+					Here is an <emphasis>emphasis</emphasis>.  <sgmltag>emphasis</sgmltag>
+					is used to indicate the certain text is stressed.  It should generally
+					only be used to stress a word or phrase in prose, and not as a general
+					means of italicizing or bolding text for other purposes.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry><term><sgmltag>link</sgmltag></term>
+			<listitem>
+				<para>
+					The <sgmltag>link</sgmltag> element is used as a general-purpose
+					hypertext link.  Here is a link to the
+					<link linkend="http://www.gnome.org/" id="GO">GNOME Website</link>.
+					And here's the same link, using the
+					<sgmltag class="attribute">endterm</sgmltag> attribute:
+					<link linkend="http://www.gnome.org/" endterm="GO"/>.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry><term><sgmltag>sgmltag</sgmltag></term>
+			<listitem>
+				<para>
+					The <sgmltag>sgmltag</sgmltag> indicates that the text is a
+					token in SGML or XML.  The formatting is controlled by the
+					<sgmltag class="attribute">class</sgmltag> attribute, which
+					specifies what role this token plays in SGML or XML.  The
+					possible values are listed below.
+				</para>
+				<itemizedlist>
+					<listitem><para>
+						<sgmltag class="attribute">attribute</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="attvalue">attvalue</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="element">element</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="emptytag">emptytag</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="endtag">endtag</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="genentity">genentity</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="numcharref">numcharref</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="paramentity">paramentity</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="pi">pi</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="sgmlcomment">sgmlcomment</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="starttag">starttag</sgmltag>
+					</para></listitem>
+					<listitem><para>
+						<sgmltag class="xmlpi">xmlpi</sgmltag>
+					</para></listitem>
+				</itemizedlist>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term><sgmltag>subscript</sgmltag></term>
+			<term><sgmltag>superscript</sgmltag></term>
+			<listitem>
+				<para>
+					The <sgmltag>subscript</sgmltag> and <sgmltag>superscript</sgmltag>
+					elements are used for general-purpose subscripts and superscripts,
+					respectively.  Future versions of &yelp; may support MathML, which
+					will totally rock.  Here is a subscript: A<subscript>12</subscript>.
+					And a superscript: 2<superscript>64</superscript>.
+				</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+<!--
+action
+anchor
+application
+author
+authorinitials
+beginpage
+citation
+citerefentry
+citetitle
+classname
+classsynopsis
+cmdsynopsis
+command
+computeroutput
+constant
+constructorsynopsis
+corpauthor
+database
+destructorsynopsis
+email
+envar
+errorcode
+errorname
+errortext
+errortype
+exceptionname
+fieldsynopsis
+filename
+firstterm
+footnote
+footnoteref
+foreignphrase
+funcsynopsis
+function
+glossterm
+guibutton
+guiicon
+guilabel
+guimenu
+guimenuitem
+guisubmenu
+hardware
+indexterm
+inlineequation
+inlinegraphic
+inlinemediaobject
+interface
+interfacename
+keycap
+keycode
+keycombo
+keysym
+literal
+markup
+medialabel
+menuchoice
+methodname
+methodsynopsis
+modespec
+mousebutton
+nonterminal
+olink
+ooclass
+ooexception
+oointerface
+option
+optional
+othercredit
+parameter
+personname
+phrase
+productname
+productnumber
+prompt
+property
+quote
+remark
+replaceable
+returnvalue
+revhistory
+sgmltag
+structfield
+structname
+symbol
+synopsis
+systemitem
+token
+trademark
+type
+ulink
+userinput
+varname
+wordasword
+xref
+-->
+
+</sect1>
+
 <sect1 id="td-lists">
 	<title>Lists</title>
 	<para>

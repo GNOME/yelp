@@ -627,6 +627,7 @@ xml_get_title (xmlNodePtr node)
     if (!title)
 	title = g_strdup (_("Unknown"));
 
+    // This really isn't adequate for what we want.
     ret = g_strdup (g_strstrip (title));
     g_free (title);
 

@@ -1,3 +1,17 @@
+2004-01-01  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-header.xsl:
+	- Actually implement 'header' for all relevant elements.
+
+	* db2html-html.xsl:
+	- Some formattings changes.
+
+	* db2html-toc.xsl:
+	- Don't replicate the 'xref' template.  That's silly.
+
+	* db2html-xref.xsl:
+	- Do links properly.  Duh.
+
 2003-12-30  Shaun McCance  <shaunm@gnome.org>
 
 	* db2html-html.xsl:

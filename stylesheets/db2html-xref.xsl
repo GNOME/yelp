@@ -17,9 +17,7 @@
 <xsl:template match="link">
 	<a>
 		<xsl:attribute name="href">
-			<xsl:call-template name="xref.target">
-				<xsl:with-param name="linkend" select="@linkend"/>
-			</xsl:call-template>
+			<xsl:value-of select="@linkend"/>
 		</xsl:attribute>
 		<xsl:choose>
 			<xsl:when test="@endterm">

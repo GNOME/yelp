@@ -1,3 +1,17 @@
+2004-01-01  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- A quick comment, to remind me.
+
+	* src/yelp-html-gtkhtml2.c:
+	- Don't let the html view shrink to nothing.
+
+	* src/yelp-window.c:
+	- Handle external URIs, like web sites and stuff.
+
+	* test/testdoc1/testdoc1.xml:
+	- Put in tests for some inline elements.
+
 2003-12-31  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:

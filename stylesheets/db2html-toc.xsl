@@ -86,14 +86,9 @@
 
 <xsl:template match="*" mode="toc.verbose.mode">
 	<li>
-		<a>
-			<xsl:attribute name="href">
-				<xsl:call-template name="xref.target">
-					<xsl:with-param name="linkend" select="@id"/>
-				</xsl:call-template>
-			</xsl:attribute>
-			<xsl:call-template name="header"/>
-		</a>
+		<xsl:call-template name="xref">
+			<xsl:with-param name="linkend" select="@id"/>
+		</xsl:call-template>
 		<xsl:choose>
 			<xsl:when test="title">
 				<xsl:text>&#160;&#160;</xsl:text>
