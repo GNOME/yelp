@@ -32,7 +32,7 @@
 #include <libxml/parserInternals.h>
 
 #include "yelp-error.h"
-#include "yelp-theme.h"
+#include "yelp-settings.h"
 #include "yelp-toc-pager.h"
 #include "yelp-utils.h"
 
@@ -268,8 +268,8 @@ yelp_toc_pager_pause (YelpTocPager *pager)
 {
     g_return_if_fail (pager != NULL);
 
-    d (printf ("yelp_toc_pager_pause\n"));
-    d (printf ("  pause_caunt = %i\n", pager->priv->pause_count + 1));
+    d (g_print ("yelp_toc_pager_pause\n"));
+    d (g_print ("  pause_caunt = %i\n", pager->priv->pause_count + 1));
 
     pager->priv->pause_count = pager->priv->pause_count + 1;
 }
@@ -279,8 +279,8 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 {
     g_return_if_fail (pager != NULL);
 
-    d (printf ("yelp_toc_pager_unpause\n"));
-    d (printf ("  pause_caunt = %i\n", pager->priv->pause_count - 1));
+    d (g_print ("yelp_toc_pager_unpause\n"));
+    d (g_print ("  pause_caunt = %i\n", pager->priv->pause_count - 1));
 
     pager->priv->pause_count = pager->priv->pause_count - 1;
     if (pager->priv->pause_count < 0) {
@@ -300,7 +300,7 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 static void
 toc_pager_error (YelpPager *pager)
 {
-    d (printf ("toc_pager_error\n"));
+    d (g_print ("toc_pager_error\n"));
     yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
 }
 
@@ -309,7 +309,7 @@ toc_pager_cancel (YelpPager *pager)
 {
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
-    d (printf ("toc_pager_cancel\n"));
+    d (g_print ("toc_pager_cancel\n"));
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 
     priv->cancel = TRUE;
@@ -318,7 +318,7 @@ toc_pager_cancel (YelpPager *pager)
 static void
 toc_pager_finish (YelpPager   *pager)
 {
-    d (printf ("toc_pager_finish\n"));
+    d (g_print ("toc_pager_finish\n"));
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
 }
 
@@ -328,7 +328,7 @@ toc_pager_process (YelpPager *pager)
     gchar  *manpath;
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
-    d (printf ("toc_pager_process\n"));
+    d (g_print ("toc_pager_process\n"));
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
     g_signal_emit_by_name (pager, "parse");
@@ -787,7 +787,7 @@ process_menu_pending (YelpTocPager *pager)
 
     YelpTocPagerPriv *priv = pager->priv;
 
-    d (printf ("process_menu_pending\n"));
+    d (g_print ("process_menu_pending\n"));
 
     first = priv->menu_pending;
     priv->menu_pending = g_slist_remove_link (priv->menu_pending, first);
@@ -914,7 +914,7 @@ menu_write_page (YelpMenu  *menu)
 	 "<head><meta http-equiv='Content-Type'"
 	 " content='text/html=; charset=utf-8'>"
 	 "<link rel='stylesheet' type='text/css' href='%s'></head>\n",
-	 yelp_theme_get_css_file ());
+	 yelp_settings_get_css_file ());
 
     g_string_append_printf (gstr, "<body><h1>%s</h1>\n", menu->title);
 

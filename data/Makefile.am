@@ -1,14 +1,27 @@
 SUBDIRS = icons ui
 
 @INTLTOOL_XML_RULE@
+@INTLTOOL_SCHEMAS_RULE@
 
-cssdir = $(datadir)/yelp
-tocdir = $(datadir)/yelp
+schemasdir   = $(GCONF_SCHEMA_FILE_DIR)
+schemas_DATA = yelp.schemas
 
-css_DATA = default.css
+tocdir   = $(datadir)/yelp
 toc_DATA = toc.xml
 
-EXTRA_DIST =						\
-	default.css					\
-	toc.xml.in					\
-	toc.xml
+cssdir   = $(datadir)/yelp
+css_DATA = default.css
+
+EXTRA_DIST =				\
+	yelp.schemas	yelp.schemas.in	\
+	toc.xml		toc.xml.in	\
+	default.css
+
+if GCONF_SCHEMAS_INSTALL
+install-data-local:
+	if test -z "$(DESTDIR)"; then \
+	  GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/yelp.schemas ; \
+	fi
+else
+install-data-local:
+endif

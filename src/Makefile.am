@@ -9,6 +9,7 @@ INCLUDES =								\
 	-I$(MOZILLA_INCLUDE_ROOT)					\
 	-I$(MOZILLA_INCLUDE_ROOT)/dom					\
 	-I$(MOZILLA_INCLUDE_ROOT)/find					\
+	-I$(MOZILLA_INCLUDE_ROOT)/pref					\
 	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr				\
 	-I$(MOZILLA_INCLUDE_ROOT)/string				\
 	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h		\
@@ -63,7 +64,6 @@ test_pager_SOURCES =						\
 	yelp-man-pager.c	yelp-man-pager.h		\
 	yelp-man-parser.c	yelp-man-parser.h		\
 	yelp-pager.c		yelp-pager.h			\
-	yelp-theme.c		yelp-theme.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h		\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-marshal-main.c	test-pager.c
@@ -88,8 +88,8 @@ yelp_SOURCES =							\
 	yelp-man-pager.c	yelp-man-pager.h		\
 	yelp-man-parser.c	yelp-man-parser.h		\
 	yelp-pager.c		yelp-pager.h			\
+	yelp-settings.c		yelp-settings.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h		\
-	yelp-theme.c		yelp-theme.h			\
 	yelp-window.c 		yelp-window.h			\
 	yelp-uri.c	        yelp-uri.h			\
 	yelp-utils.c		yelp-utils.h			\

@@ -37,6 +37,7 @@
 #include <libgnome/gnome-program.h>
 #include <libgnome/gnome-config.h>
 #include <glade/glade.h>
+#include <gconf/gconf-client.h>
 #include <string.h>
 #include "yelp-cache.h"
 #include "yelp-db-pager.h"
@@ -44,8 +45,8 @@
 #include "yelp-html.h"
 #include "yelp-man-pager.h"
 #include "yelp-pager.h"
+#include "yelp-settings.h"
 #include "yelp-toc-pager.h"
-#include "yelp-theme.h"
 #include "yelp-window.h"
 
 #ifdef YELP_DEBUG
@@ -54,8 +55,8 @@
 #define d(x)
 #endif
 
-#define YELP_CONFIG_WIDTH  "/yelp/Geometry/width"
-#define YELP_CONFIG_HEIGHT "/yelp/Geometry/height"
+#define YELP_CONFIG_WIDTH          "/yelp/Geometry/width"
+#define YELP_CONFIG_HEIGHT         "/yelp/Geometry/height"
 #define YELP_CONFIG_WIDTH_DEFAULT  "600"
 #define YELP_CONFIG_HEIGHT_DEFAULT "420"
 
@@ -147,6 +148,7 @@ static void    window_open_location_cb  (GtkAction *action, YelpWindow *window);
 static void    window_close_window_cb   (GtkAction *action, YelpWindow *window);
 static void    window_copy_cb           (GtkAction *action, YelpWindow *window);
 static void    window_find_cb           (GtkAction *action, YelpWindow *window);
+static void    window_preferences_cb    (GtkAction *action, YelpWindow *window);
 static void    window_go_back_cb        (GtkAction *action, YelpWindow *window);
 static void    window_go_forward_cb     (GtkAction *action, YelpWindow *window);
 static void    window_go_home_cb        (GtkAction *action, YelpWindow *window);
@@ -163,9 +165,9 @@ static YelpHistoryEntry * history_pop_back       (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_forward    (YelpWindow       *window);
 static void               history_entry_free     (YelpHistoryEntry *entry);
 
-static void               location_response_cb   (GtkDialog        *dialog,
-						  gint              id,
-						  YelpWindow       *window);
+static void               location_response_cb    (GtkDialog       *dialog,
+						   gint             id,
+						   YelpWindow      *window);
 
 static void        window_find_again_cb           (gpointer           data,
 						   guint              action,
@@ -186,11 +188,12 @@ static void        window_find_clicked_cb         (GtkWidget         *button,
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
 
+static GConfClient *gconf_client = NULL;
+
 enum {
     NEW_WINDOW_REQUESTED,
     LAST_SIGNAL
 };
-
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpWindowPriv {
@@ -293,6 +296,10 @@ static GtkActionEntry entries[] = {
       "<Control>F",
       NULL,
       G_CALLBACK (window_find_cb) },
+    { "Preferences", GTK_STOCK_PREFERENCES,
+      N_("_Preferences"),
+      NULL, NULL,
+      G_CALLBACK (window_preferences_cb) },
 
     { "GoBack", GTK_STOCK_GO_BACK,
       N_("_Back"),
@@ -383,6 +390,9 @@ window_init (YelpWindow *window)
 static void
 window_class_init (YelpWindowClass *klass)
 {
+    if (!gconf_client)
+	gconf_client = gconf_client_get_default ();
+
     signals[NEW_WINDOW_REQUESTED] =
 	g_signal_new ("new_window_requested",
 		      G_TYPE_FROM_CLASS (klass),
@@ -540,12 +550,12 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
     priv   = window->priv;
 
-    d (printf ("yelp_window_new\n"));
+    d (g_print ("yelp_window_new\n"));
 
     window_set_icon (window);
-    priv->icons_hook = yelp_theme_notify_add (YELP_THEME_INFO_ICONS,
-					      (GHookFunc) window_set_icon,
-					      window);
+    priv->icons_hook = yelp_settings_notify_add (YELP_SETTINGS_INFO_ICONS,
+						 (GHookFunc) window_set_icon,
+						 window);
 
     window_populate (window);
 
@@ -565,8 +575,8 @@ yelp_window_load (YelpWindow *window, gchar *uri)
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    d (printf ("yelp_window_load\n"));
-    d (printf ("  uri = \"%s\"\n", uri));
+    d (g_print ("yelp_window_load\n"));
+    d (g_print ("  uri = \"%s\"\n", uri));
 
     if (!uri) {
 	GError *error = NULL;
@@ -882,7 +892,7 @@ window_set_icon (YelpWindow *window)
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    icon_theme = (GtkIconTheme *) yelp_theme_get_icon_theme ();
+    icon_theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
 
     pixbuf = gtk_icon_theme_load_icon (icon_theme,
 				       "gnome-help",
@@ -1182,10 +1192,10 @@ window_handle_page (YelpWindow   *window,
     priv = window->priv;
     window_disconnect (window);
 
-    d (printf ("window_handle_page\n"));
-    d (printf ("  page->page_id  = \"%s\"\n", page->page_id));
-    d (printf ("  page->title    = \"%s\"\n", page->title));
-    d (printf ("  page->contents = %i bytes\n", strlen (page->contents)));
+    d (g_print ("window_handle_page\n"));
+    d (g_print ("  page->page_id  = \"%s\"\n", page->page_id));
+    d (g_print ("  page->title    = \"%s\"\n", page->title));
+    d (g_print ("  page->contents = %i bytes\n", strlen (page->contents)));
 
     model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
     pager = yelp_doc_info_get_pager (priv->current_doc);
@@ -1261,7 +1271,7 @@ window_handle_page (YelpWindow   *window,
 				 page->page_id,
 				 YELP_URI_TYPE_FILE);
 
-    d (printf ("  uri            = %s\n", uri));
+    d (g_print ("  uri            = %s\n", uri));
 
     yelp_html_set_base_uri (priv->html_view, uri);
     yelp_html_clear (priv->html_view);
@@ -1333,8 +1343,8 @@ yelp_window_destroyed (GtkWidget *window,
 
     priv = YELP_WINDOW(window)->priv;
 
-    yelp_theme_notify_remove (YELP_THEME_INFO_ICONS,
-			      priv->icons_hook);
+    yelp_settings_notify_remove (YELP_SETTINGS_INFO_ICONS,
+				 priv->icons_hook);
 
     window_disconnect (YELP_WINDOW (window));
 
@@ -1375,8 +1385,8 @@ pager_start_cb (YelpPager   *pager,
     page_id = yelp_pager_resolve_frag (pager,
 				       window->priv->current_frag);
 
-    d (printf ("pager_start_cb\n"));
-    d (printf ("  page_id=\"%s\"\n", page_id));
+    d (g_print ("pager_start_cb\n"));
+    d (g_print ("  page_id=\"%s\"\n", page_id));
 
     if (!page_id && (window->priv->current_frag && strcmp (window->priv->current_frag, ""))) {
 	window_disconnect (window);
@@ -1395,8 +1405,8 @@ pager_page_cb (YelpPager *pager,
     YelpWindow  *window = YELP_WINDOW (user_data);
     YelpPage    *page;
 
-    d (printf ("pager_page_cb\n"));
-    d (printf ("  page_id=\"%s\"\n", page_id));
+    d (g_print ("pager_page_cb\n"));
+    d (g_print ("  page_id=\"%s\"\n", page_id));
 
     if (yelp_pager_page_contains_frag (pager,
 				       page_id,
@@ -1415,7 +1425,7 @@ pager_error_cb (YelpPager   *pager,
     YelpWindow *window = YELP_WINDOW (user_data);
     GError *error = yelp_pager_get_error (pager);
 
-    d (printf ("pager_error_cb\n"));
+    d (g_print ("pager_error_cb\n"));
 
     window_disconnect (window);
     window_error (window, error);
@@ -1432,7 +1442,7 @@ pager_finish_cb (YelpPager   *pager,
     GError *error = NULL;
     YelpWindow  *window = YELP_WINDOW (user_data);
 
-    d (printf ("pager_finish_cb\n"));
+    d (g_print ("pager_finish_cb\n"));
 
     window_disconnect (window);
 
@@ -1454,8 +1464,8 @@ html_uri_selected_cb (YelpHtml  *html,
 {
     YelpWindow *window = YELP_WINDOW (user_data);
 
-    d (printf ("html_uri_selected_cb\n"));
-    d (printf ("  uri = \"%s\"\n", uri));
+    d (g_print ("html_uri_selected_cb\n"));
+    d (g_print ("  uri = \"%s\"\n", uri));
 
     if (!handled) {
 	yelp_window_load (window, uri);
@@ -1512,7 +1522,7 @@ tree_drag_data_get_cb (GtkWidget         *widget,
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    d (printf ("tree_drag_data_get_cb\n"));
+    d (g_print ("tree_drag_data_get_cb\n"));
 
     priv = window->priv;
 
@@ -1591,7 +1601,6 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
 
     gtk_window_set_transient_for (GTK_WINDOW (dialog),
 				  GTK_WINDOW (window));
-    gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
     g_signal_connect (G_OBJECT (dialog),
 		      "response",
 		      G_CALLBACK (location_response_cb),
@@ -1622,10 +1631,18 @@ window_find_cb (GtkAction *action, YelpWindow *window)
 
     priv = window->priv;
 
-    d (printf ("window_find_cb\n"));
+    d (g_print ("window_find_cb\n"));
 
     gtk_widget_show_all (priv->find_bar);
     gtk_widget_grab_focus (priv->find_entry);
+}
+
+static void
+window_preferences_cb (GtkAction *action, YelpWindow *window)
+{
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    yelp_settings_open_preferences ();
 }
 
 static void
@@ -1687,7 +1704,7 @@ window_go_forward_cb (GtkAction *action, YelpWindow *window)
 static void
 window_go_home_cb (GtkAction *action, YelpWindow *window)
 {
-    d (printf ("window_go_home_cb\n"));
+    d (g_print ("window_go_home_cb\n"));
     g_return_if_fail (YELP_IS_WINDOW (window));
     yelp_window_load (window, "x-yelp-toc:");
 }
@@ -1698,7 +1715,7 @@ window_go_previous_cb (GtkAction *action, YelpWindow *window)
     YelpWindowPriv *priv;
     gchar *base, *uri;
 
-    d (printf ("window_go_previous_cb\n"));
+    d (g_print ("window_go_previous_cb\n"));
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
@@ -1718,7 +1735,7 @@ window_go_next_cb (GtkAction *action, YelpWindow *window)
     YelpWindowPriv *priv;
     gchar *base, *uri;
 
-    d (printf ("window_go_next_cb\n"));
+    d (g_print ("window_go_next_cb\n"));
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
@@ -1738,7 +1755,7 @@ window_go_toc_cb (GtkAction *action, YelpWindow *window)
     YelpWindowPriv *priv;
     gchar *base, *uri;
 
-    d (printf ("window_go_toc_cb\n"));
+    d (g_print ("window_go_toc_cb\n"));
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
@@ -1757,7 +1774,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 {
     static GtkWidget *about = NULL;
 
-    d (printf ("window_go_about_cb\n"));
+    d (g_print ("window_go_about_cb\n"));
 
     if (about == NULL) {
 	const gchar *authors[] = { 
@@ -1796,8 +1813,8 @@ location_response_cb (GtkDialog *dialog, gint id, YelpWindow *window)
 {
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    d (printf ("location_response_cb\n"));
-    d (printf ("  id = %i\n", id));
+    d (g_print ("location_response_cb\n"));
+    d (g_print ("  id = %i\n", id));
 
     if (id == GTK_RESPONSE_OK) {
 	const gchar *uri =
@@ -2007,15 +2024,15 @@ idle_write (IdleWriterContext *context)
     g_return_val_if_fail (context != NULL, FALSE);
     g_return_val_if_fail (context->window != NULL, FALSE);
 
-    d (printf ("idle_write\n"));
+    d (g_print ("idle_write\n"));
 
     priv = context->window->priv;
 
     switch (context->type) {
     case IDLE_WRITER_MEMORY:
-	d (printf ("  context->buffer = %i bytes\n", strlen (context->buffer)));
-	d (printf ("  context->cur    = %i\n", context->cur));
-	d (printf ("  context->length = %i\n", context->length));
+	d (g_print ("  context->buffer = %i bytes\n", strlen (context->buffer)));
+	d (g_print ("  context->cur    = %i\n", context->cur));
+	d (g_print ("  context->length = %i\n", context->length));
 
 	if (context->cur + BUFFER_SIZE < context->length) {
 	    yelp_html_write (priv->html_view,

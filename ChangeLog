@@ -1,3 +1,34 @@
+2004-10-18  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	- Minor changes
+
+	* data/default.css:
+	- Some CSS changes
+
+	* data/Makefile.am:
+	* data/ui/yelp-ui.xml:
+	* data/ui/yelp.glade:
+	* src/Makefile.am:
+	* src/yelp-base.c:
+	* src/yelp-gecko-utils.cpp:
+	* src/yelp-gecko-utils.h:
+	* src/yelp-html-gecko.c:
+	* src/yelp-html.h:
+	* src/yelp-window.c:
+	- Added font preference and all the Gecko wonder that goes with
+	- Moved theme stuff to settings
+
+	* src/yelp-man-pager.c:
+	* src/yelp-toc-pager.c:
+	* src/yelp-window.c:
+	- Moved theme stuff to settings
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-utils.c:
+	- Changed debug statements to use g_print
+
 2004-10-12  Shaun McCance  <shaunm@gnome.org>
 
 	* data/ui/yelp-ui.xml:

@@ -29,7 +29,7 @@
 
 #include "yelp-cache.h"
 #include "yelp-window.h"
-#include "yelp-theme.h"
+#include "yelp-settings.h"
 #include "yelp-pager.h"
 #include "yelp-toc-pager.h"
 #include "yelp-base.h"
@@ -110,7 +110,7 @@ yelp_base_init (YelpBase *base)
         base->priv     = priv;
 
 	yelp_cache_init ();
-	yelp_theme_init ();
+	yelp_settings_init ();
 }
 
 static void

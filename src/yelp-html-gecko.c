@@ -30,6 +30,7 @@
 #include "yelp-html.h"
 #include "yelp-marshal.h"
 #include "yelp-gecko-utils.h"
+#include "yelp-settings.h"
 
 #ifdef YELP_DEBUG
 #define d(x) x
@@ -45,6 +46,7 @@ struct _YelpHtmlPriv {
 
 static void      html_init               (YelpHtml           *html);
 static void      html_class_init         (YelpHtmlClass      *klass);
+static void      html_set_fonts          (void);
 
 enum {
     URI_SELECTED,
@@ -100,8 +102,8 @@ embed_open_uri_cb (GtkMozEmbed *embed, const gchar *uri, YelpHtml *html)
     g_return_val_if_fail (uri != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_HTML (html), FALSE);
 
-    d (printf ("embed_open_uri_cb\n"));
-    d (printf ("  uri = \"%s\"\n", uri));
+    d (g_print ("embed_open_uri_cb\n"));
+    d (g_print ("  uri = \"%s\"\n", uri));
 
     g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
 
@@ -111,13 +113,23 @@ embed_open_uri_cb (GtkMozEmbed *embed, const gchar *uri, YelpHtml *html)
 static void
 html_init (YelpHtml *html)
 {
-    YelpHtmlPriv *priv;
+    YelpHtmlPriv  *priv;
+    YelpHtmlClass *klass;
 
     priv = g_new0 (YelpHtmlPriv, 1);
     html->priv = priv;
 
     html->priv->base_uri = NULL;
     html->priv->embed = gtk_moz_embed_new ();
+
+    klass = YELP_HTML_GET_CLASS (html);
+    if (!klass->font_handler) {
+	klass->font_handler =
+	    yelp_settings_notify_add (YELP_SETTINGS_INFO_FONTS,
+				      (GHookFunc) html_set_fonts,
+				      NULL);
+	html_set_fonts ();
+    }
 
     g_signal_connect (html->priv->embed, "title",
 		      G_CALLBACK (embed_title_cb),
@@ -130,6 +142,8 @@ html_init (YelpHtml *html)
 static void
 html_class_init (YelpHtmlClass *klass)
 {
+    klass->font_handler = 0;
+
     signals[URI_SELECTED] = 
 	g_signal_new ("uri_selected",
 		      G_TYPE_FROM_CLASS (klass),
@@ -170,8 +184,8 @@ yelp_html_set_base_uri (YelpHtml *html, const gchar *uri)
 
     g_return_if_fail (YELP_IS_HTML (html));
 
-    d (printf ("yelp_html_set_base_uri\n"));
-    d (printf ("  uri = \"%s\"\n", uri));
+    d (g_print ("yelp_html_set_base_uri\n"));
+    d (g_print ("  uri = \"%s\"\n", uri));
 
     priv = html->priv;
 
@@ -184,7 +198,7 @@ yelp_html_set_base_uri (YelpHtml *html, const gchar *uri)
 void
 yelp_html_clear (YelpHtml *html)
 {
-    d (printf ("yelp_html_clear\n"));
+    d (g_print ("yelp_html_clear\n"));
     gtk_moz_embed_open_stream (GTK_MOZ_EMBED (html->priv->embed),
 			       html->priv->base_uri,
 			       "text/html");
@@ -195,9 +209,9 @@ yelp_html_write (YelpHtml *html, const gchar *data, gint len)
 {
      if (len == -1) len = strlen (data);
 
-    d (printf ("yelp_html_write\n"));
-    d (printf ("  data = %i bytes\n", strlen (data)));
-    d (printf ("  len  = %i\n", len));
+    d (g_print ("yelp_html_write\n"));
+    d (g_print ("  data = %i bytes\n", strlen (data)));
+    d (g_print ("  len  = %i\n", len));
 
     gtk_moz_embed_append_data (GTK_MOZ_EMBED (html->priv->embed),
 			       data, len);
@@ -223,7 +237,7 @@ yelp_html_printf (YelpHtml *html, char *format, ...)
 void
 yelp_html_close (YelpHtml *html)
 {
-    d (printf ("yelp_html_close\n"));
+    d (g_print ("yelp_html_close\n"));
     gtk_moz_embed_close_stream (GTK_MOZ_EMBED (html->priv->embed));
 }
 
@@ -260,4 +274,18 @@ yelp_html_jump_to_anchor (YelpHtml    *html,
 	g_free (priv->anchor);
 
     priv->anchor = g_strdup (anchor);
+}
+
+static void
+html_set_fonts (void)
+{
+    gchar *font;
+
+    font = yelp_settings_get_font (YELP_FONT_VARIABLE);
+    yelp_gecko_set_font (YELP_FONT_VARIABLE, font);
+    g_free (font);
+
+    font = yelp_settings_get_font (YELP_FONT_FIXED);
+    yelp_gecko_set_font (YELP_FONT_FIXED, font);
+    g_free (font);
 }

@@ -38,8 +38,8 @@
 #include "yelp-error.h"
 #include "yelp-man-pager.h"
 #include "yelp-man-parser.h"
+#include "yelp-settings.h"
 #include "yelp-toc-pager.h"
-#include "yelp-theme.h"
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
@@ -196,9 +196,9 @@ man_pager_process (YelpPager *pager)
     params[i++] = "stylesheet_path";
     params[i++] = "\"file://" MAN_STYLESHEET_PATH "/\"";
     params[i++] = "color_gray_background";
-    params[i++] = yelp_theme_get_gray_background ();
+    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BACKGROUND);
     params[i++] = "color_gray_border";
-    params[i++] = yelp_theme_get_gray_border ();
+    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BORDER);
     params[i++] = NULL;
 
     stylesheet = xsltParseStylesheetFile (MAN_STYLESHEET);

@@ -23,15 +23,20 @@
 #ifndef __YELP_GECKO_UTILS_H__
 #define __YELP_GECKO_UTILS_H__
 
+#include <gtkmozembed.h>
+#include "yelp-settings.h"
+
 G_BEGIN_DECLS
 
-gboolean        yelp_gecko_find           (GtkMozEmbed  *html,
-					   const gchar  *str,
-					   gboolean      match_case,
-					   gboolean      wrap,
-					   gboolean      forward);
+void            yelp_gecko_set_font    (YelpFontType  font_type,
+				        const gchar  *fontname);
+gboolean        yelp_gecko_find        (GtkMozEmbed  *html,
+					const gchar  *str,
+					gboolean      match_case,
+					gboolean      wrap,
+					gboolean      forward);
 
 G_END_DECLS
 
-#endif /* __YELP_HTML_H__ */
+#endif /* __YELP_GECKO_UTILS_H__ */
 

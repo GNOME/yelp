@@ -78,8 +78,8 @@ yelp_doc_info_new (gchar *uri)
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    d (printf ("yelp_doc_info_new\n"));
-    d (printf ("  uri     = \"%s\"\n", uri));
+    d (g_print ("yelp_doc_info_new\n"));
+    d (g_print ("  uri     = \"%s\"\n", uri));
 
     if (g_str_has_prefix (uri, "file:")) {
 	if ((cur = strchr (uri, '#')))
@@ -111,7 +111,7 @@ yelp_doc_info_new (gchar *uri)
 	uri_type = YELP_URI_TYPE_TOC;
     }
 
-    d (printf ("  doc_uri = \"%s\"\n", uri));
+    d (g_print ("  doc_uri = \"%s\"\n", doc_uri));
 
     if (doc_uri) {
 	doc = g_new0 (YelpDocInfo, 1);
@@ -139,8 +139,8 @@ yelp_doc_info_get (gchar *uri)
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    d (printf ("yelp_doc_info_get\n"));
-    d (printf ("  uri     = \"%s\"\n", uri));
+    d (g_print ("yelp_doc_info_get\n"));
+    d (g_print ("  uri     = \"%s\"\n", uri));
 
     if (!doc_info_table)
 	doc_info_table =
@@ -198,8 +198,8 @@ yelp_doc_info_free (YelpDocInfo *doc)
 {
     gint i;
 
-    d (printf ("yelp_doc_info_free\n"));
-    d (printf ("  uri = \"%s\"\n", doc->uris->uri));
+    d (g_print ("yelp_doc_info_free\n"));
+    d (g_print ("  uri = \"%s\"\n", doc->uris->uri));
 
     if (!doc)
 	return;
@@ -395,7 +395,7 @@ doc_info_add_uri (YelpDocInfo *doc_info,
 {
     DocInfoURI *info_uri;
 
-    d (printf ("yelp_doc_add_uri\n"));
+    d (g_print ("yelp_doc_add_uri\n"));
 
     g_assert (doc_info->num_uris <= doc_info->max_uris);
 
@@ -413,9 +413,9 @@ doc_info_add_uri (YelpDocInfo *doc_info,
 
     doc_info->num_uris++;
 
-    d (printf ("  uri      = \"%s\"\n", uri));
-    d (printf ("  num_uris = %i\n", doc_info->num_uris));
-    d (printf ("  max_uris = %i\n", doc_info->max_uris));
+    d (g_print ("  uri      = \"%s\"\n", uri));
+    d (g_print ("  num_uris = %i\n", doc_info->num_uris));
+    d (g_print ("  max_uris = %i\n", doc_info->max_uris));
 }
 
 /******************************************************************************/

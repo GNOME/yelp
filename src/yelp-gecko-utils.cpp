@@ -28,6 +28,94 @@
 #include <nsIInterfaceRequestorUtils.h>
 #include <nsReadableUtils.h>
 #include <nsString.h>
+#include <nsIPrefService.h>
+#include <nsIServiceManager.h>
+#include <stdlib.h>
+
+#include "yelp-gecko-utils.h"
+
+static gboolean
+yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
+{
+	gchar *tmp_name, *ch;
+	
+	tmp_name = g_strdup (font_name);
+
+	ch = g_utf8_strrchr (tmp_name, -1, ' ');
+	if (!ch || ch == tmp_name) {
+		return FALSE;
+	}
+
+	*ch = '\0';
+
+	*name = g_strdup (tmp_name);
+	*size = strtol (ch + 1, (char **) NULL, 10);
+	
+	return TRUE;
+}
+
+static gboolean
+gecko_prefs_set_string (const gchar *key, const gchar *value)
+{
+	nsCOMPtr<nsIPrefService> prefService =
+		do_GetService (NS_PREFSERVICE_CONTRACTID);
+	nsCOMPtr<nsIPrefBranch> pref;
+	prefService->GetBranch ("", getter_AddRefs (pref));
+
+	if (pref) {
+		nsresult rv = pref->SetCharPref (key, value);
+		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
+	}
+	
+	return FALSE;
+
+}
+
+static gboolean
+gecko_prefs_set_int (const gchar *key, gint value)
+{
+	nsCOMPtr<nsIPrefService> prefService =
+		do_GetService (NS_PREFSERVICE_CONTRACTID);
+	nsCOMPtr<nsIPrefBranch> pref;
+	prefService->GetBranch ("", getter_AddRefs (pref));
+
+	if (pref) {
+		nsresult rv = pref->SetIntPref (key, value);
+		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
+	}
+	
+	return FALSE;
+}
+
+extern "C" void
+yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
+{
+	gchar *name;
+	gint   size;
+
+	name = NULL;
+	if (!yelp_util_split_font_string (fontname, &name, &size)) {
+		g_free (name);
+		return;
+	}
+	
+	switch (font_type) {
+	case YELP_FONT_VARIABLE:
+		gecko_prefs_set_string ("font.name.variable.x-western", 
+					name);
+		gecko_prefs_set_int ("font.size.variable.x-western", 
+				     size);
+		break;
+	case YELP_FONT_FIXED:
+		gecko_prefs_set_string ("font.name.fixed.x-western", 
+					name);
+		gecko_prefs_set_int ("font.size.fixed.x-western", 
+				     size);
+		break;
+	}
+
+	g_free (name);
+}		   
 
 extern "C" gboolean
 yelp_gecko_find (GtkMozEmbed  *embed,

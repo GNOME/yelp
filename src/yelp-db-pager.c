@@ -39,7 +39,7 @@
 #include "yelp-error.h"
 #include "yelp-db-pager.h"
 #include "yelp-toc-pager.h"
-#include "yelp-theme.h"
+#include "yelp-settings.h"
 
 #ifdef YELP_DEBUG
 #define d(x) x
@@ -54,8 +54,6 @@
 
 #define BOOK_CHUNK_DEPTH 2
 #define ARTICLE_CHUNK_DEPTH 1
-
-#define d(x)
 
 struct _YelpDBPagerPriv {
     GtkTreeModel   *sects;
@@ -221,7 +219,7 @@ db_pager_process (YelpPager *pager)
     gchar *db_chunk_basename, *db_chunk_basename_q;
     const gchar  *params[40];
 
-    d (printf ("db_pager_process\n"));
+    d (g_print ("db_pager_process\n"));
 
     doc_info = yelp_pager_get_doc_info (pager);
 
@@ -309,9 +307,9 @@ db_pager_process (YelpPager *pager)
     params[i++] = p_doc_path;
     */
     params[i++] = "color_gray_background";
-    params[i++] = yelp_theme_get_gray_background ();
+    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BACKGROUND);
     params[i++] = "color_gray_border";
-    params[i++] = yelp_theme_get_gray_border ();
+    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BORDER);
     params[i++] = "admon_graphics_path";
     params[i++] = "\"file://" DATADIR "/yelp/icons/\"";
     params[i++] = NULL;
@@ -379,7 +377,7 @@ db_pager_process (YelpPager *pager)
 static void
 db_pager_error (YelpPager   *pager)
 {
-    d (printf ("db_pager_error\n"));
+    d (g_print ("db_pager_error\n"));
     yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
     yelp_toc_pager_unpause (yelp_toc_pager_get ());
 }
@@ -387,7 +385,7 @@ db_pager_error (YelpPager   *pager)
 static void
 db_pager_cancel (YelpPager *pager)
 {
-    d (printf ("db_pager_cancel\n"));
+    d (g_print ("db_pager_cancel\n"));
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
     yelp_toc_pager_unpause (yelp_toc_pager_get ());
     // FIXME: actually cancel
@@ -396,7 +394,7 @@ db_pager_cancel (YelpPager *pager)
 static void
 db_pager_finish (YelpPager   *pager)
 {
-    d (printf ("db_pager_finish\n"));
+    d (g_print ("db_pager_finish\n"));
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
     yelp_toc_pager_unpause (yelp_toc_pager_get ());
 }
