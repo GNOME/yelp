@@ -99,34 +99,22 @@
 	</xsl:variable>
 
 	<div>
-		<table width="100%" cellpadding="0" cellspacing="0">
-			<tr width="100%">
-				<td width="50%" style="text-align: left;">
-					<xsl:copy-of select="$prevlink"/>
-				</td>
-				<td width="50%" style="text-align: right;">
-					<xsl:copy-of select="$nextlink"/>
-				</td>
-			</tr>
-		</table>
-		<hr/>
+		<xsl:call-template name="html.navbar.top">
+			<xsl:with-param name="node" select="$node"/>
+			<xsl:with-param name="prevlink" select="$prevlink"/>
+			<xsl:with-param name="nextlink" select="$nextlink"/>
+		</xsl:call-template>
 
 		<xsl:apply-templates select="$node">
 			<xsl:with-param name="depth" select="0"/>
 			<xsl:with-param name="leaf" select="$leaf"/>
 		</xsl:apply-templates>
 
-		<hr/>
-		<table width="100%" cellpadding="0" cellspacing="0">
-			<tr width="100%">
-				<td width="50%" style="text-align: left;">
-					<xsl:copy-of select="$prevlink"/>
-				</td>
-				<td width="50%" style="text-align: right;">
-					<xsl:copy-of select="$nextlink"/>
-				</td>
-			</tr>
-		</table>
+		<xsl:call-template name="html.navbar.bottom">
+			<xsl:with-param name="node" select="$node"/>
+			<xsl:with-param name="prevlink" select="$prevlink"/>
+			<xsl:with-param name="nextlink" select="$nextlink"/>
+		</xsl:call-template>
 	</div>
 </xsl:template>
 

@@ -1,3 +1,12 @@
+2003-10-16  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-html.xsl:
+	* yelp-customization.xsl:
+	- Actually use html.navbar.*, passing in links as params
+
+	* db2html-inline.xsl:
+	- Handle interface, because Gnumeric hates me
+
 2003-10-12  Shaun McCance  <shaunm@gnome.org>
 
 	* db2html*.xsl:

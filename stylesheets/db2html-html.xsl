@@ -5,6 +5,12 @@
 <xsl:template name="html">
 	<xsl:param name="node" select="."/>
 	<xsl:param name="leaf" select="true()"/>
+	<xsl:variable name="prevlink">
+		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
+	</xsl:variable>
+	<xsl:variable name="nextlink">
+		<xsl:apply-templates select="$node" mode="navbar.next.link.mode"/>
+	</xsl:variable>
 
 	<html>
 		<head>
@@ -29,6 +35,8 @@
 			</xsl:call-template>
 			<xsl:call-template name="html.navbar.top">
 				<xsl:with-param name="node" select="$node"/>
+				<xsl:with-param name="prevlink" select="$prevlink"/>
+				<xsl:with-param name="nextlink" select="$nextlink"/>
 			</xsl:call-template>
 
 			<xsl:apply-templates select="$node">
@@ -38,6 +46,8 @@
 
 			<xsl:call-template name="html.navbar.bottom">
 				<xsl:with-param name="node" select="$node"/>
+				<xsl:with-param name="prevlink" select="$prevlink"/>
+				<xsl:with-param name="nextlink" select="$nextlink"/>
 			</xsl:call-template>
 			<xsl:call-template name="html.body.bottom">
 				<xsl:with-param name="node" select="$node"/>
@@ -192,12 +202,44 @@ div[class="attribution"] {
 
 <xsl:template name="html.navbar.top">
 	<xsl:param name="node" select="."/>
-<p><i><xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/></i></p>
-<p><i><xsl:apply-templates select="$node" mode="navbar.next.link.mode"/></i></p>
+	<xsl:param name="prevlink">
+		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
+	</xsl:param>
+	<xsl:param name="nextlink">
+		<xsl:apply-templates select="$node" mode="navbar.next.link.mode"/>
+	</xsl:param>
+	<table width="100%" cellpadding="0" cellspacing="0">
+		<tr width="100%">
+			<td width="50%" style="text-align: left;">
+				<xsl:copy-of select="$prevlink"/>
+			</td>
+			<td width="50%" style="text-align: right;">
+				<xsl:copy-of select="$nextlink"/>
+			</td>
+		</tr>
+	</table>
+	<hr/>
 </xsl:template>
 
 <xsl:template name="html.navbar.bottom">
 	<xsl:param name="node" select="."/>
+	<xsl:param name="prevlink">
+		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
+	</xsl:param>
+	<xsl:param name="nextlink">
+		<xsl:apply-templates select="$node" mode="navbar.next.link.mode"/>
+	</xsl:param>
+	<hr/>
+	<table width="100%" cellpadding="0" cellspacing="0">
+		<tr width="100%">
+			<td width="50%" style="text-align: left;">
+				<xsl:copy-of select="$prevlink"/>
+			</td>
+			<td width="50%" style="text-align: right;">
+				<xsl:copy-of select="$nextlink"/>
+			</td>
+		</tr>
+	</table>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -289,6 +289,10 @@
 	<xsl:call-template name="inline"/>
 </xsl:template>
 
+<xsl:template match="interface">
+	<xsl:call-template name="inline"/>
+</xsl:template>
+
 <xsl:template match="interfacename">
 	<xsl:call-template name="inline.mono"/>
 </xsl:template>
@@ -347,7 +351,7 @@
 	<span class="{name(.)}">
 		<xsl:for-each select="*[name(.) != 'shortcut']">
 			<xsl:if test="position() &gt; 1">
-				<xsl:text>&#10132;</xsl:text>
+				<xsl:text>&#8201;&#8594;&#8201;</xsl:text>
 			</xsl:if>
 			<xsl:apply-templates select="."/>
 		</xsl:for-each>
