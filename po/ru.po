@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 3.0\n"
-"POT-Creation-Date: 2003-01-12 15:34+0300\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-01-12 16:03+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team:  Russian <gnome-cyr@gnome.org>\n"
@@ -54,12 +54,16 @@ msgstr "Йелп"
 msgid "Yelp Factory"
 msgstr "Фабрика программы \"Йелп\""
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не удалось активировать \"Йелп\": \"%s\""
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Не удалось открыть новое окно."
 

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 1.0.3\n"
-"POT-Creation-Date: 2003-01-05 11:49+0200\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-01-05 11:48+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -58,12 +58,16 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Εργοστάσιο Yelp"
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Αδύνατη η ενεργοποίηση του Yelp: '%s'"
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Αδύνατο το άνοιγμα νέου παραθύρου."
 

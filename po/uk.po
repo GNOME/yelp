@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-01-23 14:27+0200\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-01-23 03:34--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -53,28 +53,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрика Yelp"
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не вдалося активувати Yelp: \"%s\""
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Не вдалося відкрити нове вікно."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -138,13 +135,11 @@ msgstr "Огляди"
 msgid "System Administration"
 msgstr "Системне адміністрування"
 
-#: src/yelp-view-content.c:502
-#: src/yelp-view-index.c:423
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Завантаження..."
 
-#: src/yelp-view-content.c:543
-#: src/yelp-view-index.c:517
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Розділ"
 
@@ -165,25 +160,19 @@ msgstr "GNOME - Стільниця"
 msgid "Additional documents"
 msgstr "Додаткові документи"
 
-#: src/yelp-view-toc.c:168
-#: src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
 msgstr "Сторінки посібника"
 
-#: src/yelp-view-toc.c:169
-#: src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
 msgstr "Інформаційні сторінки"
 
-#: src/yelp-view-toc.c:366
-#: src/yelp-view-toc.c:550
-#: src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "Документи"
 
-#: src/yelp-view-toc.c:367
-#: src/yelp-view-toc.c:494
-#: src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
 msgstr "Категорії"
 
@@ -255,8 +244,7 @@ msgstr "/_Довідка"
 msgid "/Help/_About"
 msgstr "/Довідка/_Про"
 
-#: src/yelp-window.c:238
-#: src/yelp-window.c:438
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "Перегляд довідки"
 
@@ -314,4 +302,3 @@ msgstr "Отримати довідку про GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Довідка"
-

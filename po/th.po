@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-02-21 20:23+0100\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-02-21 16:47-0700\n"
 "Last-Translator: Paisa Seeluangsawat <paisa@colorado.edu>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
@@ -54,12 +54,16 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "โรงงาน Yelp"
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "เรียกใช้ Yelp ไม่สำเร็จ: '%s'"
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "เปิดหน้าต่างใหม่ไม่สำเร็จ"
 

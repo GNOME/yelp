@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.1\n"
-"POT-Creation-Date: 2003-01-20 12:26+0100\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-01-20 23:09+0200\n"
 "Last-Translator: Mugurel Tudor <mugurelu@go.ro>\n"
 "Language-Team: română <ro@li.org>\n"
@@ -54,12 +54,16 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Factory Yelp"
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Nu am putut activa Yelp: '%s'"
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Nu am putut deschide o nouă fereastră."
 
@@ -299,4 +303,3 @@ msgstr "Primeşte ajutor despre GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ajutor"
-

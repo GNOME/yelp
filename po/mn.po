@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
-"POT-Creation-Date: 2003-01-08 06:08+0100\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-01-16 21:13+0100\n"
 "Last-Translator: Sanlig Badral <badral@chinggis.com>\n"
 "Language-Team: mongolian <mn@li.org>\n"
@@ -55,12 +55,16 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp үйлдвэр"
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Yelp »%s« идэвхижсэнгүй."
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Шинэ цонх нээгдэх боломжгүй."
 
@@ -304,4 +308,3 @@ msgstr "GNOME -н тусламж авах"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Тусламж"
-

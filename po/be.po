@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.be\n"
-"POT-Creation-Date: 2003-02-07 20:07+0100\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-02-07 01:54GMT+2\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: belarusian <i18n@mova.org>\n"
@@ -55,12 +55,16 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрыка Yelp"
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Ня атрымалася актывізаваць Yelp: \"%s\""
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Ня атрымалася адчыніць новае акно"
 
@@ -300,4 +304,3 @@ msgstr "Атрымаць дапамогу ў асяродьдзі GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Дапамога"
-

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil Version of Yelp 2.1.0\n"
-"POT-Creation-Date: 2003-01-08 06:08+0100\n"
+"POT-Creation-Date: 2003-04-07 19:16+0200\n"
 "PO-Revision-Date: 2003-01-09 22:50+0600\n"
 "Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
 "Language-Team: Tamil <tamilinix@yahoogroups.com>\n"
@@ -54,28 +54,25 @@ msgstr "¦Âøô"
 msgid "Yelp Factory"
 msgstr "¦Âøô ¦¾¡Æ¢üº¡¨Ä"
 
-#: src/yelp-main.c:117
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "¦Âøô ¦ºÂüÀÎò¾ ÓÊÂÅ¢ø¨Ä: '%s'"
 
-#: src/yelp-main.c:136
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Ò¾¢Â º¡ÇÃò¨¾ ¾¢Èì¸ÓÊÂÅ¢ø¨Ä."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -139,13 +136,11 @@ msgstr "¦À¡Ð¨ÁÂ¡É¨Å"
 msgid "System Administration"
 msgstr "«¨ÁôÒ ¿¢÷Å¡¸õ"
 
-#: src/yelp-view-content.c:502
-#: src/yelp-view-index.c:423
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "²üÈôÀÎ¸¢ýÈÐ..."
 
-#: src/yelp-view-content.c:543
-#: src/yelp-view-index.c:517
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "À¢Ã¢×"
 
@@ -166,25 +161,19 @@ msgstr "¸§É¡õ - ¸½¢§Á¨º"
 msgid "Additional documents"
 msgstr "ÁüÈ/§ÅÚ ¬Å½í¸û"
 
-#: src/yelp-view-toc.c:168
-#: src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
 msgstr "¯¾Å¢ô Àì¸¹¸û"
 
-#: src/yelp-view-toc.c:169
-#: src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
 msgstr "¾¸Åø Àì¸¹¸û"
 
-#: src/yelp-view-toc.c:366
-#: src/yelp-view-toc.c:550
-#: src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "¬Å½í¸û"
 
-#: src/yelp-view-toc.c:367
-#: src/yelp-view-toc.c:494
-#: src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
 msgstr "Å¨¸Â¢Éí¸û"
 
@@ -256,8 +245,7 @@ msgstr "/_¯¾Å¢"
 msgid "/Help/_About"
 msgstr "/¯¾Å¢/_ÀüÈ¢"
 
-#: src/yelp-window.c:238
-#: src/yelp-window.c:438
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "¯¾Å¢ §Á§Ä¡Ê"
 
@@ -315,4 +303,3 @@ msgstr "¸§É¡¨Áô ÀüÈ¢ ¯¾Å¢ ¦ÀÚ"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "¯¾Å¢"
-
