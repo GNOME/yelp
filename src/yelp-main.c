@@ -34,6 +34,8 @@
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include <libgnomeui/gnome-client.h>
+#include <stdlib.h>
 
 #include "GNOME_Yelp.h"
 #include "yelp-window.h"
@@ -46,6 +48,17 @@ static BonoboObject * yelp_base_factory       (BonoboGenericFactory *factory,
 					       gpointer              closure);
 static CORBA_Object   yelp_main_activate_base (void);
 static gboolean       yelp_main_idle_start    (gchar                *url);
+static int            yelp_save_session       (GnomeClient          *client,
+					       gint                  phase,
+					       GnomeRestartStyle     rstyle,
+					       gint                  shutdown,
+					       GnomeInteractStyle    istyle,
+					       gint                  fast,
+					       gpointer              cdata);
+
+static gint           yelp_client_die         (GnomeClient          *client, 
+					       gpointer              cdata);
+
 
 static BonoboObject *
 yelp_base_factory (BonoboGenericFactory *factory,
@@ -140,12 +153,39 @@ yelp_main_idle_start (gchar *url)
 	return FALSE;
 }
 
+
+static gint 
+yelp_save_session (GnomeClient        *client,
+                   gint                phase,
+                   GnomeRestartStyle   rstyle,
+                   gint                shutdown,
+                   GnomeInteractStyle  istyle,
+                   gint                fast,
+                   gpointer            cdata) 
+{
+
+        gchar *argv[]= { NULL };
+
+        argv[0] = (gchar*) cdata;
+        gnome_client_set_clone_command (client, 1, argv);
+        gnome_client_set_restart_command (client, 1, argv);
+        return TRUE;
+}
+
+static gint 
+yelp_client_die (GnomeClient *client, 
+		 gpointer     cdata)
+{
+        exit (0);
+}
+
 int
 main (int argc, char **argv) 
 {
 	GnomeProgram *program;
 	CORBA_Object  factory;
 	gchar        *url = NULL;
+	GnomeClient  *client;
 	
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -165,6 +205,12 @@ main (int argc, char **argv)
 				      NULL);
 
 	gnome_vfs_init ();
+
+	client = gnome_master_client ();
+        g_signal_connect (client, "save_yourself",
+                          G_CALLBACK (yelp_save_session), (gpointer) argv[0]);
+        g_signal_connect (client, "die",
+                          G_CALLBACK (yelp_client_die), NULL);
 
 	factory = bonobo_activation_activate_from_id (YELP_FACTORY_OAFIID,
 						      Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, 
