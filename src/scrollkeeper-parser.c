@@ -425,8 +425,6 @@ sp_parse_toc (GNode *parent, const gchar *docsource)
 	toc_file = sp_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
 				       docsource);
 
-	g_print ("Trying to parse: %s\n", toc_file);
-
 	if (toc_file) {
 		doc = xmlParseFile (toc_file);
 		g_free (toc_file);
