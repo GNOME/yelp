@@ -1,33 +1,31 @@
 About:
 ------
 
-Yelp is supposed to become a help browser for GNOME 2.0. The name Yelp
-was suggested by Daniel Lundin. Yelp is pronounced the same as the
-swedish word for 'help'.
-
+Yelp is the default help browser for the GNOME desktop.  Yelp provides
+a simple graphical interface for viewing DocBook, HTML, man, and info
+formatted documentation.  The name Yelp was suggested by Daniel Lundin.
+Yelp is pronounced the same as the swedish word for 'help'.
 
 
 Requirments:
 ------------
 
-* GNOME 2.0 (beta4)
+* GNOME 2.0 ( >= 2.0.2 )
 * A working ScrollKeeper installation ( > 0.3.6 ).
-* Docbook DTD's/stylesheets 1.48
 
-If the docbook -> html converting is really slow (like 30 seconds to 1
-minute per document it means that your xml catalog is not correctly
-set up). Please look in libgnome/help-converters/README to see how to
-set it up.
-
+Note that Yelp does not currently require a separate installation of
+Norm Walsh's DocBook stylesheets, or an installation of XML catalogs.
+Though Yelp's XSLT stylesheets import Norm Walsh's, Yelp ships its
+own copy of the 1.48 version of those stylesheets, as well as a copy
+of the DocBook 4.1.2 DTD.
 
 
 Reporting bugs:
 ---------------
 
 Bugs should be reported to the GNOME bug tracking system
-(http://bugzilla.gnome.org, product yelp.) You will need to create an
+(http://bugzilla.gnome.org, product Yelp.) You will need to create an
 account for yourself.
-
 
 
 Sending patches:
@@ -45,7 +43,6 @@ keyword fields. If the patch adds to or changes the GTK programming
 interface, the API keyword should also be included.
   
 Patches should be in unified diff form. (The -u option to GNU diff.)
-
 
 
 Help on setting your system up:
