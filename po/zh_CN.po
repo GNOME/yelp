@@ -1,15 +1,15 @@
 # Translation of yelp.po to Simplified Chinese.
 # This file is distributed under the same license as the yelp package.
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
-# Funda Wang <fundawang@en2china.com>, 2003.
+# Funda Wang <fundawang@linux.net.cn>, 2003 ,2004.
 # Jan2xue <75jan@163.com>, 2003-2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.6\n"
+"Project-Id-Version: yelp 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-03-21 21:08+0800\n"
+"POT-Creation-Date: 2004-11-09 12:16+0100\n"
+"PO-Revision-Date: 2004-11-09 23:08+0800\n"
 "Last-Translator: jan2xue <75jan@163.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "帮助目录"
 
 #: data/toc.xml.in.h:12
 msgid "Internet Applications"
-msgstr "互联网应用程序"
+msgstr "Internet 应用程序"
 
 #: data/toc.xml.in.h:13
 msgid "KDE"
@@ -102,35 +102,35 @@ msgstr "X 应用程序"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "等宽文本字体"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "文本字体"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "等宽文本字体。"
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "变宽文本字体。"
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "查看页面时使用键盘控制的光标。"
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "使用光标"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "使用系统字体"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "使用系统默认字体。"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -138,11 +138,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>辅助功能</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>字体</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -153,18 +153,16 @@ msgid "Find"
 msgstr "查找"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "献辞"
+msgstr "打开位置"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "参考"
+msgstr "首选项"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "带光标浏览(_B)"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -172,12 +170,11 @@ msgstr "查找(_F)："
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "等宽(_F)："
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "献辞"
+msgstr "位置(_L)："
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -189,11 +186,11 @@ msgstr "上一页(_P)"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "使用系统字体(_U)"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "变宽字体(_V)："
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -250,24 +247,23 @@ msgid "The selected file could not be read."
 msgstr "选中的文件无法读取。"
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "选中的文件无法读取。"
+msgstr "选中的文件无法处理。"
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "定义要使用哪个缓存目录"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "无法激活 Yelp：“%s”"
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "无法打开新窗口。"
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.h:2
 msgid "Help"
 msgstr "帮助"
 
@@ -333,13 +329,12 @@ msgid "System Administration"
 msgstr "系统管理"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "版本信息"
+msgstr "文档信息"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "文档的 YelpDocInfo 结构"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -359,124 +354,108 @@ msgid "Documents"
 msgstr "文档"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "_File"
-msgstr "/文件(_F)"
+msgstr "文件(_F)"
 
 #: src/yelp-window.c:283
-#, fuzzy
 msgid "_Edit"
-msgstr "/编辑(_E)"
+msgstr "编辑(_E)"
 
 #: src/yelp-window.c:284
-#, fuzzy
 msgid "_Go"
-msgstr "/转到(_G)"
+msgstr "转到(_G)"
 
 #: src/yelp-window.c:285
-#, fuzzy
 msgid "_Help"
-msgstr "/帮助(_H)"
+msgstr "帮助(_H)"
 
 #: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/文件(F)/新建窗口(_N)"
+msgstr "新建窗口(_N)"
 
 #: src/yelp-window.c:293
 msgid "Open _Location"
-msgstr ""
+msgstr "打开位置(_L)"
 
 #: src/yelp-window.c:298
-#, fuzzy
 msgid "_Close window"
-msgstr "/文件(F)/关闭窗口(_C)"
+msgstr "关闭窗口(_C)"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "剪切(_C)"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_Find..."
-msgstr "/编辑(E)/查找(_F)..."
+msgstr "查找(_F)..."
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "_Preferences"
-msgstr "参考"
+msgstr "首选项(_P)"
 
 #: src/yelp-window.c:319
 msgid "_Reload"
-msgstr ""
+msgstr "重新装入(_R)"
 
 #: src/yelp-window.c:325
-#, fuzzy
 msgid "_Back"
-msgstr "后退"
+msgstr "后退(_B)"
 
 #: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "显示历史中的上一页"
 
 #: src/yelp-window.c:330
-#, fuzzy
 msgid "_Forward"
-msgstr "前进"
+msgstr "前进(_F)"
 
 #: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "显示历史中的下一页"
 
 #: src/yelp-window.c:335
-#, fuzzy
 msgid "_Home"
-msgstr "首页"
+msgstr "首页(_H)"
 
 #: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "转到首页视图"
 
 #: src/yelp-window.c:340
-#, fuzzy
 msgid "_Previous Page"
-msgstr "/转到(G)/上一页(_P)"
+msgstr "上一页(_P)"
 
 #: src/yelp-window.c:345
-#, fuzzy
 msgid "_Next Page"
-msgstr "/转到(G)/下一页(_N)"
+msgstr "下一页(_N)"
 
 #: src/yelp-window.c:350
-#, fuzzy
 msgid "_Contents"
-msgstr "目录"
+msgstr "目录(_C)"
 
 #: src/yelp-window.c:355
 msgid "_Open Link"
-msgstr ""
+msgstr "打开链接(_O)"
 
 #: src/yelp-window.c:360
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "在新窗口打开链接(_N)"
 
 #: src/yelp-window.c:365
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "复制链接地址(_C)"
 
 #: src/yelp-window.c:371
-#, fuzzy
 msgid "_About"
-msgstr "/帮助(H)/关于(_A)"
+msgstr "关于(_A)"
 
 #: src/yelp-window.c:422
 msgid "Help Browser"
 msgstr "帮助浏览器"
 
 #: src/yelp-window.c:915
-#, fuzzy
 msgid "Fin_d"
-msgstr "查找"
+msgstr "查找(_D)"
 
 #: src/yelp-window.c:1186
 msgid "Loading..."
@@ -788,34 +767,4 @@ msgstr "获得 GNOME 的帮助"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
-
-#~ msgid "Document URI"
-#~ msgstr "文档 URI"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "要处理文档的 URI"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/编辑(E)/查找下一个(_X)"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/编辑(E)/查找上一个(_V)"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/转到(G)/后退(_B)"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/转到(G)/前进(_F)"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/转到(G)/首页(_H)"
-
-#~ msgid "/Go/"
-#~ msgstr "/转到(G)/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/转到(G)/目录(_C)"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "GNOME 的帮助浏览器"
+msgstr "yelp-watermark-blockquote-201C"
