@@ -2581,7 +2581,7 @@ static char
 					out_html("<HTML><HEAD><TITLE>"
 						 "Manpage of ");
 					out_html(wordlist[0]);
-					out_html("</TITLE>\n</HEAD><BODY BGCOLOR=\"#ffffff\">"
+					out_html("</TITLE>\n</HEAD><BODY>"
 						 "\n<H1>");
 					out_html(wordlist[0]);
 					out_html("</H1>\nSection: ");

@@ -150,7 +150,7 @@ main(int argc, const char **argv)
                 }
                 if(i >= ndirs) {
                         printf ("<HTML><HEAD><TITLE>Document not found</TITLE>\n"
-                                "</HEAD><BODY BGCOLOR=\"#FFFFFF\">The info document \"%s\" could not be found. It may have been removed from your system.\n"
+                                "</HEAD><BODY>The info document \"%s\" could not be found. It may have been removed from your system.\n"
                                 "</BODY></HTML>\n", args[0]);
                         return 2;
                 }
@@ -216,7 +216,7 @@ main(int argc, const char **argv)
 	work_line_number = 0;
 
 	/* hack, just send to stdout for now */
-	fprintf(stdout, "<HTML><BODY BGCOLOR=\"#ffffff\">\n");
+	fprintf(stdout, "<HTML><BODY>\n");
 	
 	/* big loop to identify sections of info files */
 	/* NEW PLAN - format on the fly */
