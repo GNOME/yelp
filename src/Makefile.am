@@ -2,6 +2,7 @@ INCLUDES =								\
 	-I$(top_srcdir)							\
 	@YELP_CFLAGS@							\
 	$(MOZILLA_COMPONENT_CFLAGS)					\
+	-I$(MOZILLA_INCLUDE_ROOT)					\
 	-I$(MOZILLA_INCLUDE_ROOT)/dom					\
 	-I$(MOZILLA_INCLUDE_ROOT)/find					\
 	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr				\
