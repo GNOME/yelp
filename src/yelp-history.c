@@ -27,12 +27,12 @@
 #include <string.h>
 #include "yelp-history.h"
 
-static void    yelp_history_init              (YelpHistory      *history);
-static void    yelp_history_class_init        (YelpHistoryClass *klass);
-static void    yelp_history_finalize          (GObject          *object);
-static void    yelp_history_free_history_list (GList            *history_list);
+static void    history_init              (YelpHistory      *history);
+static void    history_class_init        (YelpHistoryClass *klass);
+static void    history_finalize          (GObject          *object);
+static void    history_free_history_list (GList            *history_list);
 
-static void    yelp_history_maybe_emit        (YelpHistory      *history);
+static void    history_maybe_emit        (YelpHistory      *history);
 					
 enum { 
 	FORWARD_EXISTS_CHANGED,
@@ -43,7 +43,7 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpHistoryPriv {
-	GList    *yelp_history_list;
+	GList    *history_list;
 	GList    *current;
 
 	gboolean  last_emit_forward;
@@ -60,12 +60,12 @@ yelp_history_get_type (void)
                         sizeof (YelpHistoryClass),
                         NULL,
                         NULL,
-                        (GClassInitFunc) yelp_history_class_init,
+                        (GClassInitFunc) history_class_init,
                         NULL,
                         NULL,
                         sizeof (YelpHistory),
                         0,
-                        (GInstanceInitFunc) yelp_history_init,
+                        (GInstanceInitFunc) history_init,
                 };
                 
                 history_type = g_type_register_static (G_TYPE_OBJECT,
@@ -77,13 +77,13 @@ yelp_history_get_type (void)
 }
 
 static void
-yelp_history_init (YelpHistory *history)
+history_init (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
 
 	priv = g_new0 (YelpHistoryPriv, 1);
         
-	priv->yelp_history_list = NULL;
+	priv->history_list      = NULL;
 	priv->current           = NULL;
 	priv->last_emit_forward = FALSE;
 	priv->last_emit_back    = FALSE;
@@ -91,13 +91,13 @@ yelp_history_init (YelpHistory *history)
 }
 
 static void
-yelp_history_class_init (YelpHistoryClass *klass)
+history_class_init (YelpHistoryClass *klass)
 {
         GObjectClass *object_class;
         
         object_class = (GObjectClass *) klass;
 
-        object_class->finalize = yelp_history_finalize;
+        object_class->finalize = history_finalize;
 
 	signals[FORWARD_EXISTS_CHANGED] =
                 g_signal_new ("forward_exists_changed",
@@ -123,7 +123,7 @@ yelp_history_class_init (YelpHistoryClass *klass)
 }
 
 static void
-yelp_history_finalize (GObject *object)
+history_finalize (GObject *object)
 {
 	YelpHistory     *history;
 	YelpHistoryPriv *priv;
@@ -135,11 +135,11 @@ yelp_history_finalize (GObject *object)
 	history = YELP_HISTORY (object);
 	priv    = history->priv;
         
-	for (node = priv->yelp_history_list; node; node = node->next) {
+	for (node = priv->history_list; node; node = node->next) {
 		yelp_uri_unref (YELP_URI (node->data));
 	}
 
-	g_list_free (priv->yelp_history_list);
+	g_list_free (priv->history_list);
 
 	g_free (priv);
 
@@ -147,19 +147,19 @@ yelp_history_finalize (GObject *object)
 }
 
 static void
-yelp_history_free_history_list (GList *yelp_history_list)
+history_free_history_list (GList *history_list)
 {
 	GList *node;
         
-	for (node = yelp_history_list; node; node = node->next) {
+	for (node = history_list; node; node = node->next) {
 		yelp_uri_unref (YELP_URI (node->data));
 	}
 
-	g_list_free (yelp_history_list);
+	g_list_free (history_list);
 }
 
 static void
-yelp_history_maybe_emit (YelpHistory *history)
+history_maybe_emit (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
 		
@@ -205,15 +205,15 @@ yelp_history_goto (YelpHistory *history, YelpURI *uri)
 		forward_list = priv->current->next;
 		priv->current->next = NULL;
 			
-		yelp_history_free_history_list (forward_list);
+		history_free_history_list (forward_list);
 	}
 
- 	priv->yelp_history_list = g_list_append (priv->yelp_history_list, 
-						 yelp_uri_ref (uri));
+ 	priv->history_list = g_list_append (priv->history_list, 
+					    yelp_uri_ref (uri));
 	
-	priv->current = g_list_last (priv->yelp_history_list);
+	priv->current = g_list_last (priv->history_list);
 	
-	yelp_history_maybe_emit (history);
+	history_maybe_emit (history);
 }
 
 YelpURI *
@@ -229,7 +229,7 @@ yelp_history_go_forward (YelpHistory *history)
 	if (priv->current->next) {
 		priv->current = priv->current->next;
 
-		yelp_history_maybe_emit (history);
+		history_maybe_emit (history);
 		
 		return YELP_URI (priv->current->data);
 	}
@@ -250,7 +250,7 @@ yelp_history_go_back (YelpHistory *history)
 	if (priv->current->prev) {
 		priv->current = priv->current->prev;
 
-		yelp_history_maybe_emit (history);
+		history_maybe_emit (history);
 
 		return YELP_URI (priv->current->data);
 	}

@@ -35,39 +35,38 @@
 
 #define d(x)
 
-static gboolean   ys_trim_empty_branches  (xmlNode              *cl_node);
-static gboolean   ys_tree_empty           (xmlNode              *cl_node);
+static gboolean   scrollkeeper_trim_empty_branches (xmlNode      *cl_node);
+static gboolean   scrollkeeper_tree_empty          (xmlNode      *cl_node);
 
-static gboolean   ys_parse_books          (GNode                *tree,
-					   xmlDoc               *doc);
-static gboolean   ys_parse_section        (GNode                *parent,
-					   xmlNode              *xml_node);
-static void       ys_parse_doc            (GNode                *parent,
-					   xmlNode              *xml_node,
-					   gchar                *docid);
-static void       ys_parse_toc_section    (GNode                *parent,
-					   xmlNode              *xml_node,
-					   const gchar          *base_uri);
-static gchar *    ys_get_xml_docpath      (const gchar          *command,
-					   const gchar          *argument);
+static gboolean   scrollkeeper_parse_books         (GNode        *tree,
+						    xmlDoc       *doc);
+static gboolean   scrollkeeper_parse_section       (GNode        *parent,
+						    xmlNode      *xml_node);
+static void       scrollkeeper_parse_doc           (GNode        *parent,
+						    xmlNode      *xml_node,
+						    gchar        *docid);
+static void       scrollkeeper_parse_toc_section   (GNode        *parent,
+						    xmlNode      *xml_node,
+						    const gchar  *base_uri);
+static gchar *    scrollkeeper_get_xml_docpath     (const gchar  *command,
+						    const gchar  *argument);
+static gchar *    scrollkeeper_strip_scheme        (gchar        *original_uri,
+						    gchar       **scheme);
 
-static gchar *    ys_strip_scheme         (gchar                *original_uri,
-					   gchar               **scheme);
-
-static gboolean   ys_parse_index          (GList               **index);
-static void       ys_parse_index_file     (GList               **index,
-                                           const gchar          *index_path,
-					   YelpSection          *section);
-static void       ys_parse_index_item     (GList               **index,
-                                           YelpSection          *section,
-					   xmlNode              *node);
+static gboolean   scrollkeeper_parse_index         (GList       **index);
+static void       scrollkeeper_parse_index_file    (GList       **index,
+						    const gchar  *index_path,
+						    YelpSection  *section);
+static void       scrollkeeper_parse_index_item    (GList       **index,
+						    YelpSection  *section,
+						    xmlNode      *node);
 
 
 static GHashTable *seriesid_hash = NULL;
 static GHashTable *docid_hash    = NULL;
 
 static gboolean
-ys_trim_empty_branches (xmlNode *node)
+scrollkeeper_trim_empty_branches (xmlNode *node)
 {
 	xmlNode  *child;
 	xmlNode  *next;
@@ -81,7 +80,7 @@ ys_trim_empty_branches (xmlNode *node)
 		next = child->next;
 		
 		if (!g_ascii_strcasecmp (child->name, "sect")) {
-			empty = ys_trim_empty_branches (child);
+			empty = scrollkeeper_trim_empty_branches (child);
 			if (empty) {
 				xmlUnlinkNode (child);
 				xmlFreeNode (child);
@@ -100,7 +99,7 @@ ys_trim_empty_branches (xmlNode *node)
 }
 
 static gboolean
-ys_tree_empty (xmlNode *cl_node)
+scrollkeeper_tree_empty (xmlNode *cl_node)
 {
 	xmlNode  *node, *next;
 	gboolean  ret_val;
@@ -113,7 +112,7 @@ ys_tree_empty (xmlNode *cl_node)
 
 		if (!g_ascii_strcasecmp (node->name, "sect") &&
 		    node->xmlChildrenNode->next != NULL) {
-			ret_val = ys_tree_empty (
+			ret_val = scrollkeeper_tree_empty (
 				node->xmlChildrenNode->next);
 
 			if (!ret_val) {
@@ -130,7 +129,7 @@ ys_tree_empty (xmlNode *cl_node)
 }
 
 static gboolean
-ys_parse_books (GNode *tree, xmlDoc *doc)
+scrollkeeper_parse_books (GNode *tree, xmlDoc *doc)
 {
 	xmlNode  *node;
 	gboolean  success;
@@ -153,7 +152,7 @@ ys_parse_books (GNode *tree, xmlDoc *doc)
 
 	for (node = node->xmlChildrenNode; node; node = node->next) {
 		if (!g_ascii_strcasecmp (node->name, "sect")) {
-			success = ys_parse_section (book_node, node);
+			success = scrollkeeper_parse_section (book_node, node);
 		}
 	}
 
@@ -161,7 +160,7 @@ ys_parse_books (GNode *tree, xmlDoc *doc)
 }
 
 static gboolean
-ys_parse_section (GNode *parent, xmlNode *xml_node)
+scrollkeeper_parse_section (GNode *parent, xmlNode *xml_node)
 {
 	xmlNode *cur;
 	xmlChar *xml_str;
@@ -192,7 +191,7 @@ ys_parse_section (GNode *parent, xmlNode *xml_node)
 
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_ascii_strcasecmp (cur->name, "sect")) {
-			ys_parse_section (node, cur);
+			scrollkeeper_parse_section (node, cur);
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "doc")) {
 
@@ -202,7 +201,7 @@ ys_parse_section (GNode *parent, xmlNode *xml_node)
 				xmlFree (xml_str);
 			}
 			
-			ys_parse_doc (node, cur, docid);
+			scrollkeeper_parse_doc (node, cur, docid);
 		}
 	}
 	
@@ -210,7 +209,7 @@ ys_parse_section (GNode *parent, xmlNode *xml_node)
 }
 
 static void
-ys_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
+scrollkeeper_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 {
 	xmlNode *cur;
 	xmlChar *xml_str;
@@ -237,7 +236,7 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "docsource")) {
 			xml_str = xmlNodeGetContent (cur);
-			docsource = ys_strip_scheme (xml_str, NULL);
+			docsource = scrollkeeper_strip_scheme (xml_str, NULL);
 			link    = g_strconcat ("ghelp:", docsource, NULL);
 			xmlFree (xml_str);
 		}
@@ -274,9 +273,9 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 }
 
 static void
-ys_parse_toc_section (GNode       *parent,
-		      xmlNode     *xml_node, 
-		      const gchar *base_uri)
+scrollkeeper_parse_toc_section (GNode       *parent,
+				xmlNode     *xml_node, 
+				const gchar *base_uri)
 {
 	gchar   *name;
 	gchar   *link;
@@ -315,13 +314,13 @@ ys_parse_toc_section (GNode       *parent,
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_ascii_strncasecmp (next_child->name, "tocsect", 7)) {
-			ys_parse_toc_section (node, next_child, base_uri);
+			scrollkeeper_parse_toc_section (node, next_child, base_uri);
 		}
 	}
 }
 
 static gchar *
-ys_get_xml_docpath (const gchar *command, const gchar *argument)
+scrollkeeper_get_xml_docpath (const gchar *command, const gchar *argument)
 {
 	gboolean  success;
 	gchar    *full_command;
@@ -353,7 +352,7 @@ ys_get_xml_docpath (const gchar *command, const gchar *argument)
 }
 
 static gchar *
-ys_strip_scheme(gchar *original_uri, gchar **scheme)
+scrollkeeper_strip_scheme(gchar *original_uri, gchar **scheme)
 {
 	gchar *new_uri;
 	gchar *point;
@@ -378,7 +377,7 @@ ys_strip_scheme(gchar *original_uri, gchar **scheme)
 }
 
 static gboolean
-ys_parse_index (GList **index)
+scrollkeeper_parse_index (GList **index)
 {
 	gchar                   *sk_data_dir = NULL;
 	gchar                   *index_dir;
@@ -388,8 +387,8 @@ ys_parse_index (GList **index)
 	GNode                   *node;
 	YelpSection             *section;
 	
-	sk_data_dir = ys_get_xml_docpath ("scrollkeeper-config",
-					  "--pkglocalstatedir");
+	sk_data_dir = scrollkeeper_get_xml_docpath ("scrollkeeper-config",
+						    "--pkglocalstatedir");
 
 	index_dir = g_strdup_printf ("%s/index", sk_data_dir);
 
@@ -414,7 +413,7 @@ ys_parse_index (GList **index)
 			
 			section = YELP_SECTION (node->data);
 			
-			ys_parse_index_file (index, index_path, section);
+			scrollkeeper_parse_index_file (index, index_path, section);
 
 			g_free (index_path);
 		}
@@ -428,9 +427,9 @@ ys_parse_index (GList **index)
 }
 
 static void
-ys_parse_index_file (GList       **index, 
-		     const gchar  *index_path,
-		     YelpSection  *section)
+scrollkeeper_parse_index_file (GList       **index, 
+			       const gchar  *index_path,
+			       YelpSection  *section)
 {
 	xmlDoc  *doc;
 	xmlNode *node;
@@ -449,14 +448,14 @@ ys_parse_index_file (GList       **index,
 		for (node = node->xmlChildrenNode; node; node = node->next) {
 			if (!g_ascii_strcasecmp (node->name, "indexitem")) {
 				
-				ys_parse_index_item (index, section, node);
+				scrollkeeper_parse_index_item (index, section, node);
 			}
 		}
 	}
 }
 
 static void
-ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
+scrollkeeper_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 {
 	xmlNode     *cur;
 	xmlChar     *title = NULL;
@@ -482,7 +481,7 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 			xmlFree (xml_str);
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "indexitem")) {
-			ys_parse_index_item (index, section, cur);
+			scrollkeeper_parse_index_item (index, section, cur);
 		}
 	}
 
@@ -511,24 +510,24 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 gboolean
 yelp_scrollkeeper_init (GNode *tree, GList **index)
 {
-       gchar       *docpath;
-       xmlDoc      *doc;
-       const GList *node;
+	gchar       *docpath;
+	xmlDoc      *doc;
+	const GList *node;
         
-       g_return_val_if_fail (tree != NULL, FALSE);
+	g_return_val_if_fail (tree != NULL, FALSE);
 
-       seriesid_hash = g_hash_table_new_full (g_str_hash,
-					      g_str_equal,
-					      g_free, NULL);
+	seriesid_hash = g_hash_table_new_full (g_str_hash,
+					       g_str_equal,
+					       g_free, NULL);
 
-       docid_hash = g_hash_table_new_full (g_str_hash, g_str_equal, 
-					   g_free, NULL);
+	docid_hash = g_hash_table_new_full (g_str_hash, g_str_equal, 
+					    g_free, NULL);
        
-       doc = NULL;
+	doc = NULL;
 
-       for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
-	       docpath = ys_get_xml_docpath ("scrollkeeper-get-content-list",
-					     node->data);
+	for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
+		docpath = scrollkeeper_get_xml_docpath ("scrollkeeper-get-content-list",
+							node->data);
 
 		if (docpath) {
 			doc = xmlParseFile (docpath);
@@ -536,7 +535,7 @@ yelp_scrollkeeper_init (GNode *tree, GList **index)
 		}
 
 		if (doc) {
-			if (doc->xmlRootNode && !ys_tree_empty(doc->xmlRootNode->xmlChildrenNode)) {
+			if (doc->xmlRootNode && !scrollkeeper_tree_empty(doc->xmlRootNode->xmlChildrenNode)) {
 				break;
 			} else {
 				xmlFreeDoc (doc);
@@ -546,14 +545,14 @@ yelp_scrollkeeper_init (GNode *tree, GList **index)
 	}
 		
 	if (doc) {
-		ys_trim_empty_branches (doc->xmlRootNode);
+		scrollkeeper_trim_empty_branches (doc->xmlRootNode);
 
-		ys_parse_books (tree, doc);
+		scrollkeeper_parse_books (tree, doc);
 		
 		xmlFreeDoc (doc);
 	}        
 
-	ys_parse_index (index);
+	scrollkeeper_parse_index (index);
 
         return TRUE;
 }
@@ -577,8 +576,8 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 
         tree = g_node_new (NULL);
 	
- 	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
- 				       docpath);
+ 	toc_file = scrollkeeper_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
+						 docpath);
 
 	if (toc_file) {
 		doc = xmlParseFile (toc_file);
@@ -600,7 +599,7 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 	full_path = g_strconcat ("ghelp:", docpath, NULL);
 
 	for (; xml_node != NULL; xml_node = xml_node->next) {
-		ys_parse_toc_section (tree, xml_node, full_path);
+		scrollkeeper_parse_toc_section (tree, xml_node, full_path);
 	}
 
 	g_free (full_path);
