@@ -296,7 +296,7 @@
    </td>
   </xsl:when>
   <xsl:otherwise>
-    <td></td>
+    <td><xsl:text>&amp;nbsp;</xsl:text></td>
   </xsl:otherwise>
 </xsl:choose>
 </xsl:template>
