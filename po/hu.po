@@ -1,21 +1,21 @@
-# Yelp Hungarian po.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Hungarian translation of yelp.
+# Copyright (C) 2002-2004 Free Software Foundation, Inc.
 # Szabolcs Ban <shooby@gnome.hu>, 2002.
 # Emese Kovacs <emese@gnome.hu>, 2002.
-# Andras Timar <timar@gnome.hu>, 2002.
+# Andras Timar <timar@gnome.hu>, 2002-2004.
+# Laszlo Dvornik <dvornikl@mailbox.hu>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp VERSION\n"
+"Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-16 23:31-0600\n"
-"PO-Revision-Date: 2004-01-22 13:07+0100\n"
-"Last-Translator: Andras Timar <timar@fsf.hu>\n"
-"Language-Team: Hungarian <hu@gnome.hu>\n"
+"POT-Creation-Date: 2004-03-19 04:27+0100\n"
+"PO-Revision-Date: 2004-03-19 19:54+0100\n"
+"Last-Translator: Laszlo Dvornik <dvornikl@mailbox.hu>\n"
+"Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.2\n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -284,7 +284,7 @@ msgstr "/_Fájl"
 
 #: src/yelp-window.c:250
 msgid "/File/_New window"
-msgstr "/Fájl/Új _ablak"
+msgstr "/Fájl/Ú_j ablak"
 
 #: src/yelp-window.c:253
 msgid "/File/_Close window"
@@ -300,11 +300,11 @@ msgstr "/Szerkesztés/_Keresés..."
 
 #: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
-msgstr "/Szerkesztés/_Következő találat"
+msgstr "/Szerkesztés/Kö_vetkező találat"
 
 #: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
-msgstr "/Szerkesztés/_Következő találat"
+msgstr "/Szerkesztés/Elő_ző találat"
 
 #: src/yelp-window.c:268
 msgid "/_Go"
@@ -376,7 +376,7 @@ msgstr "Kezdőlap"
 
 #: src/yelp-window.c:650
 msgid "Go to home view"
-msgstr "A kezdőlap mutatása"
+msgstr "Ugrás a kezdőlapra"
 
 #: src/yelp-window.c:860
 msgid "Loading..."
@@ -635,9 +635,8 @@ msgid "See Also"
 msgstr "Lásd még"
 
 #: stylesheets/l10n.xml.in.h:64
-#, fuzzy
 msgid "Set Index"
-msgstr "Index"
+msgstr "Tárgymutató beállítása"
 
 #: stylesheets/l10n.xml.in.h:65
 msgid "Table"
@@ -666,55 +665,3 @@ msgstr "A GNOME súgója"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Súgó"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "A '%s' nevű dokumentum nem létezik"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Szöveg keresése a dokumentumban:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Keresés _folytatása a dokumentum elejétől"
-
-#~ msgid "Find text..."
-#~ msgstr "Szöveg keresése..."
-
-#~ msgid "Match _entire word"
-#~ msgstr "Teljes _szó"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "_Kis- és nagybetűk figyelembe vétele"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Keresés:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME Munkaasztal"
-
-#~ msgid "Additional documents"
-#~ msgstr "Egyéb dokumentumok"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Súgóoldalak"
-
-#~ msgid "Info Pages"
-#~ msgstr "Info-oldalak"
-
-#~ msgid "Manual pages"
-#~ msgstr "Súgóoldalak"
-
-#~ msgid "GNOME is"
-#~ msgstr "A GNOME"
-
-#~ msgid "Free Software"
-#~ msgstr "Szabad szoftver"
-
-#~ msgid "(C)"
-#~ msgstr "©"
-
-#, fuzzy
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Betöltés..."
-
-#~ msgid "Search in the index"
-#~ msgstr "Keresés a tárgymutatóban"
