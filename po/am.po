@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 1.0\n"
-"POT-Creation-Date: 2002-12-13 06:00+0100\n"
-"PO-Revision-Date: 2002-12-20 14:50+EDT\n"
+"POT-Creation-Date: 2003-01-06 06:07+0100\n"
+"PO-Revision-Date: 2003-01-07 10:33+EDT\n"
 "Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>ሰነድ ውስጥ ጽሁፍ ፈልግ፦</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
@@ -33,11 +33,11 @@ msgstr "ጽሑፉን ፈልግ..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "ሁሉንም ቃላት አመሳስል (_E)"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "ትልቅ/ትንሽ የጽሑፍ መጠን አመሳስል (_M)"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
@@ -55,12 +55,12 @@ msgstr "የልፕ"
 msgid "Yelp Factory"
 msgstr "የልፕ ፋብሪካ"
 
-#: src/yelp-main.c:115
+#: src/yelp-main.c:117
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "የልፕን ማስጀመር አልቻለም፦ '%s'"
 
-#: src/yelp-main.c:134
+#: src/yelp-main.c:136
 msgid "Could not open new window."
 msgstr "አዲስ መስኮት መክፈት አልቻለም።"
 
@@ -131,7 +131,7 @@ msgstr "ማጠቃለያ"
 
 #: src/yelp-man.c:459
 msgid "System Administration"
-msgstr "የአሰራሩ አስተዳደር"
+msgstr "የአሰራሩ መቆጣጠሪያ"
 
 #: src/yelp-view-content.c:502 src/yelp-view-index.c:423
 msgid "Loading..."
@@ -142,9 +142,8 @@ msgid "Section"
 msgstr "ክፍል"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "ፈልግ፦"
+msgstr "ፈልግ፦ (_S)"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -173,7 +172,7 @@ msgstr "ሰነዶች"
 
 #: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
-msgstr "ምድብ"
+msgstr "ምድቦች"
 
 #: src/yelp-view-toc.c:448
 msgid "Manual pages"
