@@ -1,6 +1,14 @@
 2003-11-18  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:
+	- Add yelp-toc-pager.[ch] to test-pager build.
+
+	* src/yelp-toc-pager.c:
+	- Make the hashing of OMF files work completely.
+
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
 	* src/yelp-reader.c:
 	* src/yelp-reader.h:
 	- Removing YelpReader
