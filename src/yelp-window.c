@@ -63,6 +63,9 @@ static void yw_index_button_clicked   (GtkWidget           *button,
 static void yw_new_window_cb          (gpointer             data,
 				       guint                section,
 				       GtkWidget           *widget);
+static void yw_close_window_cb        (gpointer             data,
+				       guint                section,
+				       GtkWidget           *widget);
 static void yw_exit_cb                (gpointer             data,
 				       guint                section,
 				       GtkWidget           *widget);
@@ -104,8 +107,9 @@ struct _YelpWindowPriv {
 static GtkItemFactoryEntry menu_items[] = {
 	{N_("/_File"),          NULL,        0,                0, "<Branch>"},
 	{N_("/File/_New window"), "<Control>N", yw_new_window_cb, 0, NULL},
+	{N_("/File/_Close window"), "<Control>W", yw_close_window_cb, 0, NULL},
 	{N_("/File/E_xit"),       "<Control>Q", yw_exit_cb,       0, NULL    },
-	{N_("/_Help"),          NULL,        0,                0, "<Branch>"},
+	{N_("/_Help"),          NULL,        0,                0, "<LastBranch>"},
 	{N_("/Help/_About"),    NULL,        yw_about_cb,      0, NULL       },
 };
 
@@ -340,6 +344,14 @@ yw_new_window_cb (gpointer data, guint section, GtkWidget *widget)
 	g_return_if_fail (YELP_IS_WINDOW (data));
 
 	g_signal_emit (data, signals[NEW_WINDOW_REQUESTED], 0);
+}
+
+static void
+yw_close_window_cb (gpointer   data,
+		    guint      section,
+		    GtkWidget *widget)
+{
+	gtk_widget_destroy (GTK_WIDGET (data));
 }
 
 static void
