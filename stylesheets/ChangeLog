@@ -1,9 +1,13 @@
+2003-12-02  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-chunk.xsl:
+	- Don't require top element id to be index.
+
 2003-11-30  Shaun McCance  <shaunm@gnome.org>
 
-	* stylesheets/ChangeLog:
-	* stylesheets/Makefile.am:
-	* stylesheets/yelp-customization.xsl:
-	* stylesheets/docbook/Makefile.am:
+	* Makefile.am:
+	* *.xsl:
+	* docbook/Makefile.am:
 	- Merging transformation-playground
 
 2003-11-15  Shaun McCance  <shaunm@gnome.org>

@@ -10,7 +10,16 @@
 
 <xsl:template name="chunk">
 	<xsl:param name="node" select="."/>
-	<xsl:param name="id" select="$node/@id"/>
+	<xsl:param name="id">
+		<xsl:choose>
+			<xsl:when test="$node/@id">
+				<xsl:value-of select="$node/@id"/>
+			</xsl:when>
+			<xsl:when test="$node = /*">
+				<xsl:value-of select="'index'"/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:param>
 	<xsl:param name="depth_chunk">
 		<xsl:call-template name="depth.chunk">
 			<xsl:with-param name="node" select="$node"/>

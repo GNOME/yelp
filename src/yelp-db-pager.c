@@ -52,6 +52,8 @@ struct _YelpDBPagerPriv {
     GtkTreeModel   *sects;
 
     GHashTable     *frags_hash;
+
+    gchar          *root_id;
 };
 
 typedef struct _DBWalker DBWalker;
@@ -153,6 +155,8 @@ db_pager_init (YelpDBPager *pager)
 
     pager->priv->frags_hash =
 	g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+
+    pager->priv->root_id = NULL;
 }
 
 static void
@@ -161,9 +165,9 @@ db_pager_dispose (GObject *object)
     YelpDBPager *pager = YELP_DB_PAGER (object);
 
     g_object_unref (pager->priv->sects);
-
     g_hash_table_destroy (pager->priv->frags_hash);
 
+    g_free (pager->priv->root_id);
     g_free (pager->priv);
 
     G_OBJECT_CLASS (parent_class)->dispose (object);
@@ -194,12 +198,15 @@ db_pager_process (YelpPager *pager)
     YelpURI *uri           = yelp_pager_get_uri (pager);
     gchar         *uri_str = yelp_uri_get_path ((YelpURI *) uri);
     DBWalker      *walker;
+    xmlChar       *id;
     GError        *error = NULL;
 
     xmlDocPtr               doc;
     xmlParserCtxtPtr        ctxt;
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr tctxt;
+
+    YelpDBPagerPriv *priv = YELP_DB_PAGER (pager)->priv;
 
     gchar        *uri_slash;
     gchar        *doc_name;
@@ -239,6 +246,12 @@ db_pager_process (YelpPager *pager)
     walker->pager = YELP_DB_PAGER (pager);
     walker->doc   = doc;
     walker->cur   = xmlDocGetRootElement (walker->doc);
+
+    id = xmlGetProp (walker->cur, "id");
+    if (id)
+	priv->root_id = (gchar *) id;
+    else
+	priv->root_id = g_strdup ("index");
 
     while (gtk_events_pending ())
 	gtk_main_iteration ();
@@ -329,7 +342,7 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 {
     YelpDBPager *db_pager;
     gchar       *frag_id;
-    gchar       *page_id;
+    gchar       *page_id = NULL;
 
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), NULL);
@@ -341,11 +354,13 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
     if (frag_id)
 	page_id = g_hash_table_lookup (db_pager->priv->frags_hash,
 				       frag_id);
+    else if (db_pager->priv->root_id)
+	page_id = db_pager->priv->root_id;
     else
-	page_id = g_strdup ("index");
+	page_id = "index";
 
     g_free (frag_id);
-    return page_id;
+    return g_strdup (page_id);
 }
 
 const GtkTreeModel *
@@ -454,6 +469,9 @@ walker_walk_xml (DBWalker *walker)
     YelpDBPagerPriv *priv = walker->pager->priv;
 
     id = xmlGetProp (walker->cur, "id");
+    if (!id && walker->cur->parent->type == XML_DOCUMENT_NODE) {
+	id = g_strdup ("index");
+    }
 
     if (walker_is_chunk (walker)) {
 	if (xml_is_info (walker->cur)) {
