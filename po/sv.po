@@ -1,13 +1,16 @@
-# Yelp, GNOME Helo Browser
+# Swedish messages for Yelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Richard Hult <rhult@codefactory.se>, 2001.
+# Christian Rose <menthos@menthos.com>, 2001.
+#
+# $Id$
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Yelp 0.01\n"
-"POT-Creation-Date: 2001-12-01 12:40+0100\n"
-"PO-Revision-Date: 2001-12-01 12:40+0100\n"
-"Last-Translator: Richard Hult <rhult@codefactory.se>\n"
+"Project-Id-Version: yelp\n"
+"POT-Creation-Date: 2001-12-01 18:33+0100\n"
+"PO-Revision-Date: 2001-12-01 18:33+0100\n"
+"Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -16,7 +19,7 @@ msgstr ""
 #: src/ghelp-main.c:35
 #, c-format
 msgid "Usage '%s uri'\n"
-msgstr ""
+msgstr "Användning \"%s uri\"\n"
 
 #: src/ghelp-main.c:43
 #, c-format
@@ -26,7 +29,7 @@ msgstr "Transformerad URI: %s\n"
 #: src/ghelp-main.c:52
 #, c-format
 msgid "File not found: %s\n"
-msgstr ""
+msgstr "Filen kunde inte hittas: %s\n"
 
 #: src/ghelp-main.c:56
 #, c-format
@@ -45,43 +48,43 @@ msgid ""
 "README and TODO<br></body></html>"
 msgstr ""
 "<html><head><title>Detta är Yelp, en hjälpvisare för GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Välkommen till Yelp!</h3>Detta är en hjälpvisare "
-"under utveckling, för GNOME 2.0, skriven av Mikael Hallendal.<br><br>Läs gärna filerna "
-"README och TODO<br></body></html>"
+"head><body bgcolor=\"white\"><h3>Välkommen till Yelp!</h3>Detta är en "
+"hjälpvisare under utveckling, för GNOME 2.0, skriven av Mikael Hallendal."
+"<br><br>Läs gärna filerna README och TODO<br></body></html>"
 
-#: src/yelp-window.c:79
+#: src/yelp-window.c:76
 msgid "/_File"
 msgstr "/_Arkiv"
 
-#: src/yelp-window.c:80
+#: src/yelp-window.c:77
 msgid "/File/_New window"
 msgstr "/Arkiv/_Nytt fönster"
 
-#: src/yelp-window.c:81
+#: src/yelp-window.c:78
 msgid "/File/E_xit"
 msgstr "/Arkiv/_Avsluta"
 
-#: src/yelp-window.c:82
+#: src/yelp-window.c:79
 msgid "/_Help"
 msgstr "/_Hjälp"
 
-#: src/yelp-window.c:83
+#: src/yelp-window.c:80
 msgid "/Help/_About"
 msgstr "/Hjälp/_Om"
 
-#: src/yelp-window.c:129
+#: src/yelp-window.c:126
 msgid "Yelp: GNOME Help Browser"
 msgstr "Yelp: Hjälpvisare för GNOME"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:216
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/yelp-window.c:245
+#: src/yelp-window.c:232
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:334
+#: src/yelp-window.c:298
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
 
