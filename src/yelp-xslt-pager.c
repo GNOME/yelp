@@ -212,8 +212,8 @@ xslt_pager_process (YelpPager *pager)
     priv->stylesheet = xsltParseStylesheetFile (klass->stylesheet);
     if (!priv->stylesheet) {
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
-		     _("The document ‘%s’could not be processed. The file "
-		       "‘%s’ is either missing or is not a valid XSLT "
+		     _("The document ‘%s’ could not be processed. The file "
+		       "‘%s’ is either missing, or it is not a valid XSLT "
 		       "stylesheet."),
 		     filename,
 		     klass->stylesheet);
