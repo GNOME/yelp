@@ -10,7 +10,7 @@ INCLUDES =								\
 
 bin_PROGRAMS = yelp
 
-noinst_PROGRAMS = test-uri
+noinst_PROGRAMS = test-uri test-reader
 
 test_uri_SOURCES = 							\
 	test-uri.c							\
@@ -19,6 +19,16 @@ test_uri_SOURCES = 							\
 	yelp-util.c		yelp-util.h
 
 test_uri_LDADD = 							\
+	$(YELP_LIBS)
+
+test_reader_SOURCES = 							\
+	test-uri.c							\
+	yelp-uri.c		yelp-uri.h				\
+	yelp-reader.c		yelp-reader.h				\
+	yelp-error.c		yelp-error.h				\
+	yelp-util.c		yelp-util.h
+
+test_reader_LDADD = 							\
 	$(YELP_LIBS)
 
 install-exec-local:

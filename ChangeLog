@@ -1,6 +1,9 @@
 2002-05-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/test-reader.c: added, test file for the YelpReader.
+
 	* src/Makefile.am (yelp_SOURCES): 
+	(test_reader_SOURCES): added test-reader
 	- added yelp-reader.[ch]
 
 	* src/yelp-uri.[ch]: 
