@@ -214,13 +214,14 @@
 			<xsl:if test="position() &gt; 1">
 				<xsl:text>, </xsl:text>
 			</xsl:if>
-			<xsl:apply-templates select="."/>
+			<xsl:apply-templates select="." mode="titlepage.mode"/>
 		</xsl:for-each>
+		<xsl:text>&#8195;</xsl:text>
 		<xsl:for-each select="holder">
 			<xsl:if test="position() &gt; 1">
 				<xsl:text>, </xsl:text>
 			</xsl:if>
-			<xsl:apply-templates select="."/>
+			<xsl:apply-templates select="." mode="titlepage.mode"/>
 		</xsl:for-each>
 	</dt>
 </xsl:template>
