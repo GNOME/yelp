@@ -5,15 +5,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-01-21 13:12+0200\n"
-"PO-Revision-Date: 2002-01-21 12:12+0200\n"
+"POT-Creation-Date: 2002-02-05 11:37+0200\n"
+"PO-Revision-Date: 2002-02-05 10:40+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/yelp-info.c:98
+#: src/yelp-info.c:96
 msgid "info"
 msgstr "info"
 
@@ -106,76 +106,115 @@ msgstr "Системне адміністрування"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:159
-#: src/yelp-view-index.c:172
+#: src/yelp-view-content.c:207
+#: src/yelp-view-index.c:175
 msgid "Section"
 msgstr "Розділ"
 
-#: src/yelp-window.c:108
+#: src/yelp-view-toc.c:239
+msgid "Important documents"
+msgstr "Важливі документи"
+
+#: src/yelp-view-toc.c:240
+msgid "Other document systems"
+msgstr "Інші системи документації"
+
+#: src/yelp-view-toc.c:241
+msgid "Manual pages"
+msgstr "Сторінки посібника"
+
+#: src/yelp-view-toc.c:242
+#: src/yelp-view-toc.c:495
+#: src/yelp-view-toc.c:514
+msgid "Info pages"
+msgstr "Інформаційні сторінки"
+
+#: src/yelp-view-toc.c:243
+msgid "Installed documents"
+msgstr "Встановлені документи"
+
+#: src/yelp-view-toc.c:253
+msgid "Start page"
+msgstr "Початкова сторінка"
+
+#: src/yelp-view-toc.c:418
+msgid "Manual pages for section"
+msgstr "Сторінки посібника секції"
+
+#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:467
+msgid "Man page sections"
+msgstr "Налаштування сторінки посібника"
+
+#: src/yelp-view-toc.c:597
+msgid "Scrollkeeper docs for category"
+msgstr ""
+
+#: src/yelp-window.c:111
 msgid "/_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:109
+#: src/yelp-window.c:112
 msgid "/File/_New window"
 msgstr "/Файл/_Нове вікно"
 
-#: src/yelp-window.c:110
+#: src/yelp-window.c:113
 msgid "/File/_Close window"
 msgstr "/Файл/_Закрити вікно"
 
-#: src/yelp-window.c:111
-msgid "/File/E_xit"
+#: src/yelp-window.c:114
+msgid "/File/_Quit"
 msgstr "/Файл/Ви_йти"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:115
 msgid "/_Help"
 msgstr "/_Довідка"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:116
 msgid "/Help/_About"
 msgstr "/Довідка/_Про"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:164
 msgid "Help Browser"
 msgstr "Перегляд довідки"
 
-#: src/yelp-window.c:376
+#: src/yelp-window.c:409
 msgid "Help Browser for GNOME 2.0"
 msgstr "Перегляд довідки для GNOME 2.0"
 
-#: src/yelp-window.c:400
+#: src/yelp-window.c:433
 msgid "Go back in the history list"
 msgstr "Перейти назад у списку історії"
 
-#: src/yelp-window.c:415
+#: src/yelp-window.c:448
 msgid "Go forth in the history list"
 msgstr "Перейти вперед у списку історії"
 
-#: src/yelp-window.c:430
+#: src/yelp-window.c:463
 msgid "Overview of contents"
 msgstr "Огляд вмісту"
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:474
 msgid "Search in the index"
 msgstr "Пошук в показнику"
 
-#: src/yelp-window.c:453
+#: src/yelp-window.c:486
 msgid "Search for a phrase in the document"
 msgstr "Введіть фразу для пошуку в документі"
 
-#: src/yelp-window.c:459
+#: src/yelp-window.c:492
 msgid "Help on "
 msgstr "Довідка про "
 
-#: src/yelp-window.c:464
+#: src/yelp-window.c:497
 msgid "Enter phrase to search for in all documents"
 msgstr "Введіть фразу для пошуку в усіх документах"
 
-#: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "Перегляд довідки GNOME"
+#: gnome-help.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr ""
 
-#: yelp.desktop.in.h:2
+#: gnome-help.desktop.in.h:2
 msgid "Help"
 msgstr "Довідка"
 
