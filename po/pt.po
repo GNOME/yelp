@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-26 22:22+0000\n"
-"PO-Revision-Date: 2005-01-26 22:55+0000\n"
+"POT-Creation-Date: 2005-02-17 22:30+0000\n"
+"PO-Revision-Date: 2005-02-17 22:35+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Rotinas de Kernel"
 msgid "Library Functions"
 msgstr "Bibliotecas de Funções"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
 msgstr "Páginas de Manual"
 
@@ -120,8 +120,8 @@ msgid "Accessories"
 msgstr "Acessórios"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Applets"
+msgid "Administration"
+msgstr "Administração"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -135,7 +135,7 @@ msgstr "Aplicações Educativas"
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:386
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
 msgstr "Tópicos de Ajuda"
 
@@ -164,18 +164,26 @@ msgid "Other Documentation"
 msgstr "Outra Documentação"
 
 #: data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "Applets de Painel"
+
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Preferências"
+
+#: data/toc.xml.in.h:18
 msgid "Programming"
 msgstr "Programação"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:19
 msgid "Scientific"
 msgstr "Científicas"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:20
 msgid "System Tools"
 msgstr "Ferramentas de Sistema"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "Aplicações X"
 
@@ -214,10 +222,6 @@ msgstr "Procurar"
 #: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Abrir Localização"
-
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "Preferências"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
@@ -299,24 +303,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-bookmarks.c:150
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
 msgstr "Abrir Marcador numa Nova Janela"
 
-#: src/yelp-bookmarks.c:154
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
 msgstr "Renomear Marcador"
 
-#: src/yelp-bookmarks.c:158
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
 msgstr "Remover Marcador"
 
-#: src/yelp-bookmarks.c:301 src/yelp-bookmarks.c:373
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Um marcador denominado <b>%s</b> já existe para esta página."
 
-#: src/yelp-bookmarks.c:401
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Secções do Documento"
 
@@ -329,7 +333,7 @@ msgstr ""
 "Incapaz de parsear o ficheiro ‘%s’. Ou o ficheiro não existe ou não é XML "
 "correctamente formado."
 
-#: src/yelp-db-pager.c:489
+#: src/yelp-db-pager.c:486
 msgid "Unknown Section"
 msgstr "Secção Desconhecida"
 
@@ -397,8 +401,8 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
-"Incapaz de parsear o ficheiro ‘%s’.  Ou o ficheiro não existe ou está formatado "
-"incorrectamente."
+"Incapaz de parsear o ficheiro ‘%s’.  Ou o ficheiro não existe ou está "
+"formatado incorrectamente."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -429,7 +433,7 @@ msgstr "A estrutura YelpDocInfo do documento"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -442,38 +446,38 @@ msgstr "YelpTocPager: Contagem de pausa é negativa."
 msgid "Could not load the OMF file '%s'."
 msgstr "Incapaz de ler o ficheiro OMF: '%s'."
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "Ler a página de manual de %s"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
-"Incapaz de ler a tabela de conteúdos. Ou o ficheiro ‘%s’ não existe ou é "
-"XML incorrectamente formado."
+"Incapaz de ler a tabela de conteúdos. Ou o ficheiro ‘%s’ não existe ou é XML "
+"incorrectamente formado."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
-"Incapaz de processar a tabela de conteúdos. Ou o ficheiro ‘%s’ não existe "
-"ou não é uma folha de estilos XSLT válida."
+"Incapaz de processar a tabela de conteúdos. Ou o ficheiro ‘%s’ não existe ou "
+"não é uma folha de estilos XSLT válida."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Nenhum atributo href encontrado em yelp:document"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Sem memória livre"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Conteúdo da Ajuda"
 
@@ -607,8 +611,8 @@ msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr ""
-"O Identificador Uniforme de Recurso (URI) ‘%s’ é inválido ou não aponta "
-"para um ficheiro existente."
+"O Identificador Uniforme de Recurso (URI) ‘%s’ é inválido ou não aponta para "
+"um ficheiro existente."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
@@ -623,8 +627,8 @@ msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
-"Documentos SGML já não são suportados. Peça ao autor do documento para "
-"o converter para XML."
+"Documentos SGML já não são suportados. Peça ao autor do documento para o "
+"converter para XML."
 
 #: src/yelp-window.c:1024
 msgid "Find:"
@@ -644,8 +648,8 @@ msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
-"Incapaz de criar um contexto de transformação para o ficheiro ‘%s’. O formato "
-"poderá não ser suportado."
+"Incapaz de criar um contexto de transformação para o ficheiro ‘%s’. O "
+"formato poderá não ser suportado."
 
 #: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
