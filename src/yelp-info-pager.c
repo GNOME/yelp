@@ -44,7 +44,7 @@
 #define INFO_STYLESHEET      INFO_STYLESHEET_PATH"info2html.xsl"
 
 struct _YelpInfoPagerPriv {
-    gpointer unused;
+    GtkTreeStore  *tree;
 };
 
 static void           info_pager_class_init   (YelpInfoPagerClass *klass);
@@ -147,9 +147,10 @@ info_pager_parse (YelpPager *pager)
     xmlDocPtr      doc;
     xmlNodePtr     node;
     GError        *error;
-    GtkTreeStore  *tree;
+    YelpInfoPagerPriv *priv;
 
     g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), FALSE);
+    priv = YELP_INFO_PAGER (pager)->priv;
 
     doc_info = yelp_pager_get_doc_info (pager);
     filename = yelp_doc_info_get_filename (doc_info);
@@ -158,10 +159,10 @@ info_pager_parse (YelpPager *pager)
 
     /* DO STUFF HERE */
     /* parse into a GtkTreeStore */
-    tree = yelp_info_parser_parse_file (filename);
+    priv->tree = yelp_info_parser_parse_file (filename);
 
     /* create the XML file */
-    doc = yelp_info_parser_parse_tree (tree);
+    doc = yelp_info_parser_parse_tree (priv->tree);
     
     g_object_unref (pager);
 
@@ -188,13 +189,14 @@ info_pager_params (YelpPager *pager)
 static const gchar *
 info_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
-    /* DO SOMETHING ELSE HERE */
-    return NULL;
+    /* MUST DO THIS RIGHTLY */
+    return "Top";
 }
 
 static GtkTreeModel *
 info_pager_get_sections (YelpPager *pager)
 {
-    /* RETURN THE TREE STORE HERE */
-    return NULL;
+    g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), NULL);
+
+    return YELP_INFO_PAGER (pager)->priv->tree;
 }

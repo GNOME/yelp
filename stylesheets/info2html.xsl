@@ -45,9 +45,9 @@
         </style>
       </head>
       <body>
-        <xsl:if test="Documnet">
+        <xsl:if test="Section">
           <ul>
-            <xsl:for-each select="Document">
+            <xsl:for-each select="Section">
               <li>
                 <xsl:value-of select="@name"/>
               </li>
@@ -55,7 +55,7 @@
           </ul>
         </xsl:if>
         <pre class="body">
-          <xsl:value-of select="node()[not(self::Document)]"/>
+          <xsl:value-of select="node()[not(self::Section)]"/>
         </pre>
       </body>
     </html>

@@ -1,3 +1,15 @@
+2004-12-31  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-info-pager.c:
+	- Put the GtkTreeStore in the YelpInfoPagerPriv
+	- Return "Top" in resolve_frag, just so something will show up
+
+	* src/yelp-window.c:
+	- Set sections in the "start" callback
+
+	* stylesheets/info2html.xsl:
+	- s/Document/Section/
+
 2004-12-31  Davyd Madeley  <davyd@madeley.id.au>
 
 	* src/yelp-info-pager.c:

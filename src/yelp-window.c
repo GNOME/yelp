@@ -1513,6 +1513,9 @@ pager_start_cb (YelpPager   *pager,
     d (g_print ("pager_start_cb\n"));
     d (g_print ("  page_id=\"%s\"\n", page_id));
 
+    window_set_sections (window,
+			 yelp_pager_get_sections (pager));
+
     if (!page_id && (window->priv->current_frag && strcmp (window->priv->current_frag, ""))) {
 	window_disconnect (window);
 
