@@ -797,3 +797,10 @@ yelp_html_find (YelpHtml    *html,
 
     return html_find_text (html, find_string, match_case, wrap, forward);
 }
+
+void
+yelp_html_jump_to_anchor (YelpHtml    *html,
+			  gchar       *anchor)
+{
+    html_view_jump_to_anchor (HTML_VIEW (html->priv->view), anchor);
+}

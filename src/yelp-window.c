@@ -107,6 +107,9 @@ static void        html_uri_selected_cb           (YelpHtml          *html,
 						   GnomeVFSURI       *uri,
 						   gboolean           handled,
 						   gpointer           user_data);
+static void        html_title_changed_cb          (YelpHtml          *html,
+						   gchar             *title,
+						   gpointer           user_data);
 static void        tree_selection_changed_cb      (GtkTreeSelection  *selection,
 						   YelpWindow        *window);
 
@@ -564,6 +567,10 @@ window_populate (YelpWindow *window)
 		      "uri_selected",
 		      G_CALLBACK (html_uri_selected_cb),
 		      window);
+    g_signal_connect (priv->html_view,
+		      "title_changed",
+		      G_CALLBACK (html_title_changed_cb),
+		      window);
 
     gtk_container_add (GTK_CONTAINER (priv->html_sw),
 		       yelp_html_get_widget (priv->html_view));
@@ -946,7 +953,7 @@ window_handle_html_uri (YelpWindow    *window,
 
     if (result != GNOME_VFS_OK) {
 	// FIXME: Give an error
-	return;
+	return FALSE;
     }
 
     while ((result = gnome_vfs_read
@@ -956,9 +963,7 @@ window_handle_html_uri (YelpWindow    *window,
 
     gnome_vfs_close (handle);
 
-    // FIXME: Set the title.
-
-    return FALSE;
+    return TRUE;
 }
 
 static void
@@ -1034,6 +1039,12 @@ window_handle_page (YelpWindow   *window,
     yelp_html_write (priv->html_view,
 		     page->chunk,
 		     strlen (page->chunk));
+
+    if (gnome_vfs_uri_get_fragment_identifier (uri)) {
+	yelp_html_jump_to_anchor
+	    (priv->html_view,
+	     (gchar *) gnome_vfs_uri_get_fragment_identifier (uri));
+    }
 }
 
 static void
@@ -1168,6 +1179,14 @@ html_uri_selected_cb (YelpHtml    *html,
 	yelp_window_open_uri (window, uri);
 	gnome_vfs_uri_unref (uri);
     }
+}
+
+static void
+html_title_changed_cb (YelpHtml  *html,
+		       gchar     *title,
+		       gpointer   user_data)
+{
+    gtk_window_set_title (GTK_WINDOW (user_data), title);
 }
 
 static void

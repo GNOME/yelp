@@ -75,6 +75,8 @@ gboolean        yelp_html_find           (YelpHtml    *html,
 					  gboolean     match_case,
 					  gboolean     wrap,
 					  gboolean     forward);
+void            yelp_html_jump_to_anchor (YelpHtml    *html,
+					  gchar       *anchor);
 
 #endif /* __YELP_HTML_H__ */
 
