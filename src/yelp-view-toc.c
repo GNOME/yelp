@@ -43,8 +43,8 @@ static void yvh_link_clicked_cb    (HtmlDocument          *doc,
 				    const gchar           *url, 
 				    YelpViewTOC          *view);
 static void yelp_view_toc_man_1    (YelpViewTOC          *view);
-/* static void yelp_view_toc_man_2    (YelpViewTOC          *view,  */
-/*  				    GtkTreeIter          *root); */
+static void yelp_view_toc_man_2    (YelpViewTOC          *view,
+				    GNode                *root);
 
 enum {
 	URL_SELECTED,
@@ -309,25 +309,23 @@ yelp_view_toc_full_path_name (YelpViewTOC *view, GNode *node)
 {
 	char *str, *t;		
 	YelpSection *section;
-	char *node_name;
 
 	section = node->data;
-	node_name = section->name;
 
-	str = node_name;
+	str = g_strdup (section->name);
 
 	while (node->parent) {
 		node = node->parent;
 		
-		if (node->parent == NULL) {
+		if (node->parent == NULL ||
+		    node->parent->data == NULL) {
 			/* Skip top node */
 			break;
 		}
 		
 		section = node->data;
-		node_name = section->name;
 		
-		t = g_strconcat (node_name, "/", str, NULL);
+		t = g_strconcat (section->name, "/", str, NULL);
 		g_free (str);
 		str = t;
 	}
@@ -340,7 +338,6 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 	YelpViewTOCPriv *priv;
 	GNode *node, *child;
 	YelpSection *section;
-	char *name;
 	gboolean got_a_leaf;
 	char *path;
 	int i;
@@ -354,10 +351,9 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 			child = node->children;
 			
 			section = node->data;
-			name = section->name;
 
 			path = yelp_util_node_to_string_path (node);
-			yelp_view_toc_printf (view, "<h2><a href=\"toc:man/%s\">%s</a></h2>\n", path, name);
+			yelp_view_toc_printf (view, "<h2><a href=\"toc:man/%s\">%s</a></h2>\n", path, section->name);
 			g_free (path);
 		} else {
 			got_a_leaf = TRUE;
@@ -385,8 +381,7 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 				}
 			
 				section = node->data;
-				name = section->name;
-				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", section->uri, name);
+				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", section->uri, section->name);
 				i++;
 			}
 		} while ((node = node->next) != NULL);
@@ -416,7 +411,7 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 	name = yelp_view_toc_full_path_name (view, root);
 	yelp_view_toc_printf (view, "<h1>Manual pages for section '%s'</h1>\n", name);
 	g_free (name);
-	
+
 	yelp_view_toc_man_emit (view, first);
 		
 	yelp_view_toc_write_footer (view);
@@ -501,13 +496,10 @@ yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 
 	toc_type = url + 4;
 
-	g_print ("toc_type: %s\n", toc_type);
-	
 	if (*toc_type == 0) {
 		yelp_view_toc_start (view);
 	} else if (strncmp (toc_type, "man", 3) == 0) {
 		path_string = toc_type + 3;
-		g_print ("path_string: %s\n", path_string);
 
 		if (path_string[0] == 0) {
  			yelp_view_toc_man_1 (view);
@@ -515,7 +507,6 @@ yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 			/* Calculate where it should go */
 			path_string++;
 
-			g_print ("path_string: %s\n", path_string);
 			node = yelp_util_string_path_to_node  (path_string,
 							       view->priv->doc_tree);
 			if (node) {

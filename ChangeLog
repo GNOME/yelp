@@ -1,3 +1,11 @@
+2002-01-23  Alex Larsson  <alexl@redhat.com>
+
+	* src/yelp-util.c:
+	Clean up section->name usage
+	
+	* src/yelp-view-toc.c:
+	Clean up and fix double free in yelp_view_toc_full_path_name()
+
 2002-01-22  Alex Larsson  <alexl@redhat.com>
 
 	* src/yelp-man.c (yelp_man_push_initial_tree):

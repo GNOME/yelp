@@ -326,7 +326,6 @@ static GNode *
 yelp_util_string_path_to_node_helper (char  **path,
 				      GNode  *node)
 {
-	char *node_name;
 	char *unescaped_pathname;
 	YelpSection *section;
 		
@@ -334,13 +333,16 @@ yelp_util_string_path_to_node_helper (char  **path,
 		return NULL;
 	}
 
+	if (node == NULL) {
+		return NULL;
+	}
+	
 	unescaped_pathname = gnome_vfs_unescape_string (*path, NULL);
 	
 	do {
 		section = node->data;
-		node_name = section->name;
 
-		if (strcmp (node_name, unescaped_pathname) == 0) {
+		if (strcmp (section->name, unescaped_pathname) == 0) {
 			g_free (unescaped_pathname);
 			path += 1;
 			
