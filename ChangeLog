@@ -1,6 +1,24 @@
 2002-03-02  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-index.c:
+	- removed lots of debug output.
+	(yvi_entry_changed_cb): implemented. call filter from idle.
+	(yvi_filter_idle): added/impl.
+	(yvi_search): removed.
+
+	* src/yelp-section.c:
+	(yelp_section_compare): take the arguments as gconstpointer so the
+	  function doesn't have to be cast everytime used.
+
+	* src/yelp-scrollkeeper.c:
+	(ys_parse_index_item): 
+	- don't add title if it's not valid utf8. Is this check needed?
+	- call strdown on all title's in the index-terms.
+
+	* src/yelp-index-model.c:
+	(yelp_index_model_filter): added/impl.
+
+	* src/yelp-view-index.c:
 	(yvi_index_selection_changed_cb): use the column-enum to specify
 	  columns.
 

@@ -52,8 +52,8 @@ YelpSection * yelp_section_copy       (const YelpSection  *section);
 
 void          yelp_section_free       (YelpSection        *section);
 
-gint          yelp_section_compare    (const YelpSection  *a,
-				       const YelpSection  *b);
+gint          yelp_section_compare    (gconstpointer       a,
+				       gconstpointer       b);
 
 #endif /* __YELP_SECTION_H__ */
 

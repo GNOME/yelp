@@ -60,8 +60,11 @@ enum {
 
 GtkType          yelp_index_model_get_type     (void);
 
-YelpIndexModel  *yelp_index_model_new          (void);
+YelpIndexModel * yelp_index_model_new          (void);
 void             yelp_index_model_set_words    (YelpIndexModel   *model,
 						GList            *index_words);
+
+void             yelp_index_model_filter       (YelpIndexModel   *model,
+						const gchar      *string);
 
 #endif /* __YELP_INDEX_MODEL_H__ */

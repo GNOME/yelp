@@ -74,8 +74,9 @@ yelp_section_free (YelpSection *section)
 }
 
 gint
-yelp_section_compare  (const YelpSection  *a,
-		       const YelpSection  *b)
+yelp_section_compare  (gconstpointer a,
+		       gconstpointer b)
 {
-	return strcmp (a->name, b->name);
+	return strcmp (((YelpSection *)a)->name, 
+		       ((YelpSection *)b)->name);
 }

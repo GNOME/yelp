@@ -22,13 +22,17 @@
 
 #include <gtk/gtktreemodel.h>
 #include <libgnome/gnome-i18n.h>
+#include <string.h>
+
 #include "yelp-section.h"
 #include "yelp-index-model.h"
 
 struct _YelpIndexModelPriv {
-        GList      *index_words;
+	GList *original_list;
 
-        gint        stamp;
+        GList *index_words;
+
+        gint   stamp;
 };
 
 #define G_LIST(x) ((GList *) x)
@@ -149,6 +153,7 @@ yim_init (YelpIndexModel *model)
 		priv->stamp = g_random_int ();
 	} while (priv->stamp == 0);
 
+	priv->original_list = NULL;
 	priv->index_words = NULL;
 
         model->priv = priv;
@@ -337,7 +342,7 @@ yim_iter_n_children (GtkTreeModel *tree_model,
                      GtkTreeIter  *iter)
 {
         YelpIndexModelPriv *priv;
-        
+
         g_return_val_if_fail (YELP_IS_INDEX_MODEL (tree_model), -1);
 
         priv = YELP_INDEX_MODEL(tree_model)->priv;
@@ -410,7 +415,9 @@ yelp_index_model_set_words (YelpIndexModel *model, GList *index_words)
 
 	priv = model->priv;
 		
-        priv->index_words = index_words;
+	priv->original_list = g_list_sort (index_words, yelp_section_compare);
+
+	priv->index_words = priv->original_list;
 
 	for (node = priv->index_words; node; node = node->next) {
 		path = gtk_tree_path_new ();
@@ -425,3 +432,93 @@ yelp_index_model_set_words (YelpIndexModel *model, GList *index_words)
 		gtk_tree_path_free (path);
 	}
 }
+
+void
+yelp_index_model_filter (YelpIndexModel *model, const gchar *string)
+{
+	YelpIndexModelPriv *priv;
+	YelpSection        *section;
+	GList              *node;
+	GList              *new_list = NULL;
+	gint                new_length, old_length;
+	gint                i;
+	GtkTreePath        *path;
+ 	GtkTreeIter         iter;
+      
+	g_return_if_fail (YELP_IS_INDEX_MODEL (model));
+	g_return_if_fail (string != NULL);
+
+	priv = model->priv;
+
+	/* here we want to change the contents of index_words,
+	   call update on all rows that is included in the new 
+	   list and remove on all outside it */
+	
+	old_length = g_list_length (priv->index_words);
+
+	if (!strcmp ("", string)) {
+		new_list = priv->original_list;
+	} else {
+		for (node = priv->original_list; node; node = node->next) {
+			section = (YelpSection *) node->data;
+			
+			if (!strncmp (section->name, string, strlen (string))) {
+				/* Include in the new list */
+				new_list = g_list_prepend (new_list, section);
+			}
+		}
+		
+		new_list = g_list_sort (new_list, yelp_section_compare);
+	}
+
+	new_length = g_list_length (new_list);
+	
+	if (priv->index_words != priv->original_list) {
+		/* Only remove the old list if it's not pointing at the 
+		   original list */
+ 		g_list_free (priv->index_words);
+	}
+
+	priv->index_words = new_list;
+
+	/* Update rows 0 - new_length */
+	for (i = 0; i < new_length; ++i) {
+		path = gtk_tree_path_new ();
+		gtk_tree_path_append_index (path, i);
+		
+		yim_get_iter (GTK_TREE_MODEL (model), &iter, path);
+		
+		gtk_tree_model_row_changed (GTK_TREE_MODEL (model),
+					    path, &iter);
+		gtk_tree_path_free (path);
+	}
+
+	if (old_length > new_length) {
+		/* Remove rows new_length - old_length */
+		for (i = old_length - 1; i >= new_length; --i) {
+			path = gtk_tree_path_new ();
+			gtk_tree_path_append_index (path, i);
+			
+			gtk_tree_model_row_deleted (GTK_TREE_MODEL (model),
+						    path);
+			gtk_tree_path_free (path);
+		}
+	}
+	else if (old_length < new_length) {
+		/* Add rows old_length - new_length */
+		for (i = old_length; i < new_length; ++i) {
+			path = gtk_tree_path_new ();
+
+			gtk_tree_path_append_index (path, i);
+			
+			yim_get_iter (GTK_TREE_MODEL (model), &iter, path);
+
+			gtk_tree_model_row_inserted (GTK_TREE_MODEL (model),
+						     path, &iter);
+			
+			gtk_tree_path_free (path);
+		}
+		
+	}
+}
+

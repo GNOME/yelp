@@ -456,10 +456,20 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 	xmlChar     *title = NULL;
 	xmlChar     *link  = NULL;
 	YelpSection *index_section;
+	xmlChar     *xml_str;
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_ascii_strcasecmp (cur->name, "title")) {
-			title = xmlNodeGetContent (cur);
+			xml_str = xmlNodeGetContent (cur);
+			
+			if (!g_utf8_validate (xml_str, -1, NULL)) {
+				g_warning ("Index title is not valid utf8");
+				xmlFree (xml_str);
+				return;
+			}
+			
+			title = g_utf8_strdown (xml_str, -1);
+			xmlFree (xml_str);
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "link")) {
 			link = xmlGetProp (cur, "linkid");

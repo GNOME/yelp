@@ -49,9 +49,8 @@ static void     yvi_entry_text_inserted_cb     (GtkEntry            *entry,
 						gint                 length,
 						gint                *position,
 						YelpViewIndex       *view);
-static void     yvi_search                     (YelpViewIndex       *view,
-						const gchar         *string);
 static gboolean yvi_complete_idle              (YelpViewIndex       *view);
+static gboolean yvi_filter_idle                (YelpViewIndex       *view);
 static gchar *  yvi_complete_func              (YelpSection         *section);
 
 struct _YelpViewIndexPriv {
@@ -67,7 +66,8 @@ struct _YelpViewIndexPriv {
 
 	GCompletion    *completion;
 
-	guint           complete;
+	guint           idle_complete;
+	guint           idle_filter;
 };
 
 GType
@@ -106,11 +106,12 @@ yvi_init (YelpViewIndex *view)
 	priv = g_new0 (YelpViewIndexPriv, 1);
 	view->priv = priv;
 	
-	priv->complete   = 0;
+	priv->idle_complete = 0;
+	priv->idle_filter   = 0;
+
 	priv->completion = 
-		g_completion_new ((GCompletionFunc)yvi_complete_func);
-	g_completion_set_compare (priv->completion, g_ascii_strncasecmp);
-	
+		g_completion_new ((GCompletionFunc) yvi_complete_func);
+
 	priv->index_view = gtk_tree_view_new ();
 	priv->model      = yelp_index_model_new ();
 
@@ -175,7 +176,17 @@ yvi_html_url_selected_cb (YelpViewIndex *content,
 static void
 yvi_entry_changed_cb (GtkEntry *entry, YelpViewIndex *view)
 {
-	g_print ("Entry changed\n");
+	YelpViewIndexPriv *priv;
+	
+	g_return_if_fail (GTK_IS_ENTRY (entry));
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+	
+	priv = view->priv;
+	
+	if (!priv->idle_filter) {
+		priv->idle_filter =
+			g_idle_add ((GSourceFunc) yvi_filter_idle, view);
+	}
 }
 
 static void
@@ -184,9 +195,8 @@ yvi_entry_activated_cb (GtkEntry *entry, YelpViewIndex *view)
 	g_return_if_fail (GTK_IS_ENTRY (entry));
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
 	
-	yvi_search (view, gtk_entry_get_text (entry));
-
-	g_print ("Entry activated\n");
+	yelp_index_model_filter (view->priv->model, 
+				 gtk_entry_get_text (view->priv->entry));
 }
 
 static void
@@ -202,18 +212,10 @@ yvi_entry_text_inserted_cb (GtkEntry      *entry,
 	
 	priv = view->priv;
 	
-	if (!priv->complete) {
-		priv->complete = g_idle_add ((GSourceFunc)yvi_complete_idle,
-					     view);
+	if (!priv->idle_complete) {
+		priv->idle_complete = 
+			g_idle_add ((GSourceFunc) yvi_complete_idle, view);
 	}
-	
-	g_print ("Entry text insterted\n");
-}
-
-static void
-yvi_search (YelpViewIndex *view, const gchar *string)
-{
-	g_print ("Doing a search on %s...\n", string);
 }
 
 static gboolean
@@ -228,8 +230,6 @@ yvi_complete_idle (YelpViewIndex *view)
 	g_return_val_if_fail (YELP_IS_VIEW_INDEX (view), FALSE);
 	
 	priv = view->priv;
-	
-	g_print ("Completing ... \n");
 	
 	text = gtk_entry_get_text (GTK_ENTRY (priv->entry));
 
@@ -247,7 +247,24 @@ yvi_complete_idle (YelpViewIndex *view)
 					    text_length, -1);
 	}
 	
-	priv->complete = 0;
+	priv->idle_complete = 0;
+
+	return FALSE;
+}
+
+static gboolean
+yvi_filter_idle (YelpViewIndex *view)
+{
+	YelpViewIndexPriv *priv;
+	
+	g_return_val_if_fail (YELP_IS_VIEW_INDEX (view), FALSE);
+
+	priv = view->priv;
+	
+	yelp_index_model_filter (view->priv->model, 
+				 gtk_entry_get_text (priv->entry));
+
+	priv->idle_filter = 0;
 
 	return FALSE;
 }
