@@ -49,9 +49,10 @@ struct _YelpHtmlClass {
         HtmlViewClass    parent_class;
 
 	/* Signals */
-	void (*section_selected) (YelpHtml    *view,
-				  const gchar *uri,
-				  const gchar *anchor);
+	void (*url_selected)   (YelpHtml  *view,
+				char      *url,
+				char      *base_url,
+				gboolean   handled);
 };
 
 GType           yelp_html_get_type       (void);

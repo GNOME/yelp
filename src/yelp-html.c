@@ -25,6 +25,7 @@
 #endif
 
 #include "yelp-util.h"
+#include "yelp-marshal.h"
 
 #include <string.h>
 
@@ -67,7 +68,7 @@ static void yh_url_requested_cb      (HtmlDocument          *doc,
 #define BUFFER_SIZE 8192
 
 enum {
-	SECTION_SELECTED,
+	URL_SELECTED,
 	LAST_SIGNAL
 };
 
@@ -139,16 +140,16 @@ yh_init (YelpHtml *view)
 static void
 yh_class_init (YelpHtmlClass *klass)
 {
-	signals[SECTION_SELECTED] = 
-		g_signal_new ("section_selected",
+	signals[URL_SELECTED] = 
+		g_signal_new ("url_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (YelpHtmlClass, 
-					       section_selected),
+			      G_STRUCT_OFFSET (YelpHtmlClass,
+					       url_selected),
 			      NULL, NULL,
-			      g_cclosure_marshal_VOID__POINTER,
+			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
 			      G_TYPE_NONE,
-			      1, G_TYPE_POINTER);
+			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
 }
 
 
@@ -332,38 +333,23 @@ yh_free_stream_data (StreamData *sdata, gboolean remove)
 static void
 yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 {
-        YelpHtmlPriv *priv;
-	YelpSection  *section;
-	gchar *abs_uri;
+	gboolean handled;
 
 	g_return_if_fail (HTML_IS_DOCUMENT (doc));
 	g_return_if_fail (url != NULL);
 	g_return_if_fail (YELP_IS_HTML (html));
 
-        priv = html->priv;
-
+	handled = FALSE;
+	
 	/* If this is a relative reference. Shortcut reload. */
 	if (url && url[0] == '#') {
 		html_view_jump_to_anchor (HTML_VIEW (html),
  					  &url[1]);
-		return;
+		handled = TRUE;
 	}
 	
-	if (priv->base_uri) {
-		abs_uri = yelp_util_resolve_relative_uri (priv->base_uri, url);
-		g_print ("Link '%s' pressed relative to: %s -> %s\n", 
-			 url,
-			 priv->base_uri,
-			 abs_uri);
-        } else {
-		abs_uri = g_strdup (url);
-        }
-
-	section = yelp_section_new (YELP_SECTION_DOCUMENT,
-				    NULL, abs_uri, NULL, NULL);
-
-	g_signal_emit (html, signals[SECTION_SELECTED], 0, section);
-	g_free (abs_uri);
+	g_signal_emit (html, signals[URL_SELECTED], 0,
+		       url, html->priv->base_uri, handled);
 }
 
 GtkWidget *

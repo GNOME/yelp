@@ -1,3 +1,31 @@
+2002-01-21  Alex Larsson  <alexl@redhat.com>
+
+        * src/yelp-marshal.list:
+	Add a boolean the the marshaller needed for url_selected
+
+	* src/yelp-section.h:
+	Fix typo in #endif
+	
+        * src/yelp-html.[ch]:
+	Change section_selected to url_selected
+	
+	* src/yelp-view-content.[ch]:
+	Add url_selected signal that proxies YelpHtml::url_selected
+	Implement yelp_view_content_show_uri.
+
+	* src/yelp-view-index.c:
+	Change section_selected to url_selected
+
+	* src/yelp-view-toc.[ch]:
+	Change path_selected to url_selected
+	More man index work.
+	Moved startpage to it's own function.
+	Exported yelp_view_toc_open_url().
+
+	* src/yelp-window.c:
+	Common way to follow link is now the url_selected signal
+	on views.
+
 2002-01-21  jacob berkman  <jacob@ximian.com>
 
 	* src/Makefile.am (EXTRA_DIST): the .list file has a -

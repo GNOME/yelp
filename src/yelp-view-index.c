@@ -33,8 +33,10 @@ static void yvi_init                      (YelpViewIndex         *view);
 static void yvi_class_init                (YelpViewIndexClass    *klass);
 static void yvi_tree_selection_changed_cb (GtkTreeSelection      *selection,
 					   YelpViewIndex         *content);
-static void yvi_section_selected_cb       (YelpViewIndex         *content,
-					   YelpSection             *section);
+static void yvi_url_selected_cb           (YelpViewIndex         *content,
+					   char                  *url,
+					   char                  *base_url,
+					   gboolean               handled);
 
 struct _YelpViewIndexPriv {
 	/* Content tree */
@@ -121,14 +123,15 @@ yvi_tree_selection_changed_cb (GtkTreeSelection *selection,
 }
 
 static void
-yvi_section_selected_cb (YelpViewIndex *content, YelpSection *section)
+yvi_url_selected_cb (YelpViewIndex *content,
+		     char          *url,
+		     char          *base_url,
+		     gboolean       handled)
 {
 	g_return_if_fail (YELP_IS_VIEW_INDEX (content));
-	g_return_if_fail (section != NULL);
-	
-	yelp_html_open_section (YELP_HTML (content->priv->html_view),
-				section);
 
+	/* TODO: What to do here? */
+	
 	/* FIXME: Emit section_selected?? */
 }
 
@@ -196,8 +199,8 @@ yelp_view_index_new (GtkTreeModel *tree_model)
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	
- 	g_signal_connect_swapped (priv->html_view, "section_selected",
- 				  G_CALLBACK (yvi_section_selected_cb),
+ 	g_signal_connect_swapped (priv->html_view, "url_selected",
+ 				  G_CALLBACK (yvi_url_selected_cb),
  				  G_OBJECT (view));
 
         gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view);

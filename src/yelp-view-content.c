@@ -28,14 +28,21 @@
 #include <gtk/gtktreeview.h>
 #include "gtktreemodelfilter.h"
 #include "yelp-html.h"
+#include "yelp-marshal.h"
 #include "yelp-view-content.h"
 
 static void yvc_init                      (YelpViewContent         *html);
 static void yvc_class_init                (YelpViewContentClass    *klass);
 static void yvc_tree_selection_changed_cb (GtkTreeSelection        *selection,
 					   YelpViewContent         *content);
-static void yvc_section_selected_cb       (YelpViewContent         *content,
-					   YelpSection             *section);
+
+
+enum {
+	URL_SELECTED,
+	LAST_SIGNAL
+};
+
+static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpViewContentPriv {
 	/* Content tree */
@@ -74,6 +81,20 @@ yelp_view_content_get_type (void)
         return view_type;
 }
 
+
+static void
+yvc_html_url_selected_cb (YelpHtml        *html,
+			  char            *url,
+			  char            *base_url,
+			  gboolean         handled,
+			  YelpViewContent *view)
+{
+	/* Just propagate the signal to the view */
+	g_signal_emit (view, signals[URL_SELECTED], 0,
+		       url, base_url, handled);
+}
+
+
 static void
 yvc_init (YelpViewContent *view)
 {
@@ -85,12 +106,25 @@ yvc_init (YelpViewContent *view)
 	priv->content_tree = gtk_tree_view_new ();
 	priv->tree_model   = NULL;
 	priv->html_view    = yelp_html_new ();
+
+	g_signal_connect (priv->html_view, "url_selected",
+			  G_CALLBACK (yvc_html_url_selected_cb), 
+			  view);
 }
 
 static void
 yvc_class_init (YelpViewContentClass *klass)
 {
-	
+	signals[URL_SELECTED] = 
+		g_signal_new ("url_selected",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpViewContentClass,
+					       url_selected),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
+			      G_TYPE_NONE,
+			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
 }
 
 static void
@@ -108,7 +142,7 @@ yvc_tree_selection_changed_cb (GtkTreeSelection *selection,
 	priv = content->priv;
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
-		model = gtk_tree_view_get_model (priv->content_tree);
+		model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content_tree));
 		
 		gtk_tree_model_get (model, &iter, 
 				    1, &section,
@@ -119,18 +153,6 @@ yvc_tree_selection_changed_cb (GtkTreeSelection *selection,
 	
 	/* FIXME: Emit section_selected?? */
 /* 	yelp_history_goto (priv->history, section); */
-}
-
-static void
-yvc_section_selected_cb (YelpViewContent *content, YelpSection *section)
-{
-	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
-	g_return_if_fail (section != NULL);
-	
-	yelp_html_open_section (YELP_HTML (content->priv->html_view),
-				section);
-
-	/* FIXME: Emit section_selected?? */
 }
 
 GtkWidget *
@@ -178,10 +200,6 @@ yelp_view_content_new (GtkTreeModel *tree_model)
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	
- 	g_signal_connect_swapped (priv->html_view, "section_selected",
- 				  G_CALLBACK (yvc_section_selected_cb),
- 				  G_OBJECT (view));
-
         gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view);
 
 	/* Add the tree and html view to the paned */
@@ -213,6 +231,13 @@ yelp_view_content_show_path (YelpViewContent *content_view,
 void
 yelp_view_content_show_uri (YelpViewContent *content, const gchar *uri)
 {
-	/* FIX: Find the path in the tree */
+	YelpSection *section;
+	/* FIXME: Find the path in the tree */
+
+	/* FIXME: This is a quite dubious way to load the url... */
+	section = yelp_section_new (YELP_SECTION_DOCUMENT,
+				    NULL, uri, NULL, NULL);
+	yelp_html_open_section (YELP_HTML (content->priv->html_view), section);
+	yelp_section_free (section);
 }
 

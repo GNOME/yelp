@@ -51,13 +51,13 @@ struct _YelpViewTOCClass {
 
 	void (*url_selected)   (YelpViewTOC   *view,
 				char          *url,
-				char          *base_url);
-	
-	void (*path_selected)   (YelpViewTOC   *view,
-				 GtkTreePath    *path);
+				char          *base_url,
+				gboolean       handled);
 };
 
 GType           yelp_view_toc_get_type       (void);
 GtkWidget      *yelp_view_toc_new            (GtkTreeModel *tree_model);
+void            yelp_view_toc_open_url       (YelpViewTOC  *view,
+					      const char   *url);
 
 #endif /* __YELP_VIEW_TOC__ */

@@ -32,6 +32,7 @@
 #include <libgnome/gnome-i18n.h>
 #include <string.h>
 #include "yelp-html.h"
+#include "yelp-util.h"
 #include "yelp-section.h"
 #include "yelp-history.h"
 #include "yelp-view-content.h"
@@ -48,8 +49,10 @@ static void yw_populate               (YelpWindow          *window);
 static void yw_section_selected_cb    (YelpWindow          *window,
 				       YelpSection         *section);
 #endif
-static void yw_toc_path_selected_cb   (YelpViewTOC         *view,
-				       GtkTreePath         *path,
+static void yw_url_selected_cb        (gpointer             view,
+				       char                *url,
+				       char                *base_url,
+				       gboolean             handled,
 				       YelpWindow          *window);
 static void yw_toggle_history_buttons (GtkWidget           *button,
 				       gboolean             sensitive,
@@ -258,24 +261,61 @@ yw_section_selected_cb (YelpWindow  *window,
 #endif
 
 static void
-yw_toc_path_selected_cb (YelpViewTOC *view,
-			 GtkTreePath  *path,
-			 YelpWindow   *window)
+yw_url_selected_cb (gpointer    view,
+		    char       *url,
+		    char       *base_url,
+		    gboolean    handled,
+		    YelpWindow *window)
 {
 	YelpWindowPriv *priv;
-	
-	g_return_if_fail (YELP_IS_VIEW_TOC (view));
-	g_return_if_fail (YELP_IS_WINDOW (window));
-	
+	gchar *abs_url;
+
+	g_print ("url_selected: %s base: %s, handled: %d\n", url, base_url, handled);
+
 	priv = window->priv;
-
-	g_print ("PATH SELECTED\n");
 	
-	yelp_view_content_show_path (YELP_VIEW_CONTENT (priv->content_view),
-				     path);
+	if (base_url) {
+		abs_url = yelp_util_resolve_relative_uri (base_url, url);
+		g_print ("Link '%s' pressed relative to: %s -> %s\n", 
+			 url,
+			 base_url,
+			 abs_url);
+        } else {
+		abs_url = g_strdup (url);
+        }
 
-	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
-				       PAGE_CONTENT_VIEW);
+	if (!handled) {
+		if (strncmp (abs_url, "toc:", 4) == 0) {
+			yelp_view_toc_open_url (YELP_VIEW_TOC (priv->toc_view),
+						abs_url);
+			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
+						       PAGE_TOC_VIEW);
+		} else if (strncmp (abs_url, "path:", 5) == 0) {
+			GtkTreePath *path;
+			
+			path = gtk_tree_path_new_from_string  (abs_url + 5);
+			yelp_view_content_show_path (YELP_VIEW_CONTENT (priv->content_view),
+						     path);
+			gtk_tree_path_free (path);
+			
+			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
+						       PAGE_CONTENT_VIEW);
+		} else if (strncmp (abs_url, "man:", 4) == 0 ||
+			   strncmp (abs_url, "info:", 5) == 0 ||
+			   strncmp (abs_url, "ghelp:", 6) == 0) {
+			yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
+						    abs_url);
+			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
+						       PAGE_CONTENT_VIEW);
+		} else {
+			g_warning ("Unhandled URL: %s\n", abs_url);
+			/* TODO: Open external url in mozilla/evoltion etc */
+		}
+	}
+
+	/* TODO: Add abs_uri to the history */
+	
+	g_free (abs_url);
 }
 
 static void
@@ -322,6 +362,8 @@ yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
 
 	g_print ("Home button clicked\n");
 
+	yelp_view_toc_open_url (YELP_VIEW_TOC (window->priv->toc_view),
+				"toc:");
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
 				       PAGE_TOC_VIEW);
 }
@@ -479,15 +521,17 @@ yelp_window_new (GtkTreeModel *tree_model)
 	priv->tree_model = tree_model;
 
 	priv->toc_view    = yelp_view_toc_new (tree_model);
-
-	g_signal_connect (priv->toc_view, "path_selected",
-			  G_CALLBACK (yw_toc_path_selected_cb),
-			  window);
-
 	priv->content_view = yelp_view_content_new (tree_model);
 	priv->index_view   = yelp_view_index_new (NULL);
 
-        yw_populate (window);
+	g_signal_connect (priv->toc_view, "url_selected",
+			  G_CALLBACK (yw_url_selected_cb),
+			  window);
+	g_signal_connect (priv->content_view, "url_selected",
+			  G_CALLBACK (yw_url_selected_cb),
+			  window);
+
+	yw_populate (window);
 
         return GTK_WIDGET (window);
 }

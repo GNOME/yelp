@@ -47,6 +47,10 @@ struct _YelpViewContentClass {
         GtkHPanedClass    parent_class;
 
 	/* Signals */
+	void (*url_selected)   (YelpViewContent *view,
+				char            *url,
+				char            *base_url,
+				gboolean         handled);
 
         /* Signal when icon is clicked. */
 };

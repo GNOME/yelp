@@ -54,6 +54,6 @@ void          yelp_section_free       (YelpSection        *section);
 gint          yelp_section_compare    (const YelpSection  *a,
 				       const YelpSection  *b);
 
-#endif /* __YELP_BOOK_H__ */
+#endif /* __YELP_SECTION_H__ */
 
 
