@@ -1,3 +1,12 @@
+2002-05-20  Sander Vesik <sander.vesik@sun.com>
+
+	* stylesheets/yelp-customization.xsl:
+	- render formal tables just like informal tables
+	- always leave some space between the bottom navbar and the text
+	- make notes and other admonitions to be unindented
+	- add whitespace for tables appearing within lists
+	- improve looks of complex tables
+
 2002-05-20  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-reader.c: be ASYNC! :) and handle cancels. Starting to

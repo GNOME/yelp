@@ -17,6 +17,9 @@
 
 <xsl:output encoding="ISO-8859-1" />
 
+<!-- direct parametrisation -->
+<xsl:param name="admon.style"><xsl:text>margin-left: 0</xsl:text></xsl:param>
+
 <!--
 <xsl:template match="graphic">
   <p>
@@ -149,12 +152,22 @@
        DD {margin-left: 2em}
        DL {margin-top: 0}
        DL {margin-bottom: 0}
+       HR.bottom {margin-top: 2ex; margin-bottom: 0}
+       TABLE P {margin-bottom: 0; margin-top: 0}
        DIV.toc {margin-bottom: 3ex}
-       DIV TD {padding-right: 1em; padding-left: 1em}
-       DIV TH {padding-right: 1em; padding-left: 1em}
-       DIV.informaltable table {border-width: 0; border-bottom-width: 3}
-       DIV.informaltable THEAD TR {border-bottom: solid; border-top: solid; border-left:none; border-right: none}
+       DIV TD {padding-right: 1em; padding-left: 1em; padding-top: 0.5ex; padding-bottom: 0.5ex}
+       DIV TH {padding-right: 1em; padding-left: 1em; padding-top: 0.5ex; padding-bottom: 0.5ex}
+       DIV.note TD {padding-left: 0; padding-top: 0}
+       DIV.note TH {padding-left: 0; padding-top: 0}
+       DIV.informaltable table {border-width: 0; border-bottom-width: 3; border-top-width: 3}
+       DIV.informaltable THEAD TR {border-bottom: solid; border-left:none; border-right: none; border-top: none}
        DIV.informaltable TH {border-width: 0}
+       DIV.table table {border-width: 0; border-bottom-width: 3; border-top-width: 3}
+       DIV.table THEAD TR {border-bottom: solid; border-left:none; border-right: none; border-top: none}
+       DIV.table TH {border-width: 0}
+       LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
+       TD[colspan] {border-width: 0}
+       TD[rowspan] {border-width: 0}
        DIV.revhistory TABLE {border-spacing: 0}
      </xsl:text>
    </style>
@@ -334,7 +347,9 @@
   </table>
   <xsl:element name="hr" />
   <xsl:apply-templates select="$node"/>
-  <xsl:element name="hr" />
+  <xsl:element name="hr">
+    <xsl:attribute name="class"><xsl:text>bottom</xsl:text></xsl:attribute>
+  </xsl:element>
   <table width="100%" align="justify">
     <xsl:call-template name="article.chunk.navigate">
       <xsl:with-param name="node" select="$node"/>
