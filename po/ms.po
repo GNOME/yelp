@@ -6,14 +6,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2002-01-23 06:10+0800\n"
-"PO-Revision-Date: 2002-01-10 11:52+0800\n"
-"Last-Translator: Mohamad Afifi Omar (App) <mr_mohd_afifi@yahoo.com>\n"
+"POT-Creation-Date: 2002-02-04 03:00+0800\n"
+"PO-Revision-Date: 2002-02-04 03:03+0800\n"
+"Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.8\n"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -36,12 +35,19 @@ msgstr "Tak dapat mengaktifkan Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Tak dapat membuka tetingkap baru."
 
-#: src/yelp-man.c:269 src/yelp-man.c:290 src/yelp-man.c:326 src/yelp-man.c:358
-#: src/yelp-man.c:374 src/yelp-man.c:385
+#: src/yelp-man.c:269
+#: src/yelp-man.c:290
+#: src/yelp-man.c:326
+#: src/yelp-man.c:358
+#: src/yelp-man.c:374
+#: src/yelp-man.c:385
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:274 src/yelp-man.c:305 src/yelp-man.c:363 src/yelp-man.c:390
+#: src/yelp-man.c:274
+#: src/yelp-man.c:305
+#: src/yelp-man.c:363
+#: src/yelp-man.c:390
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -109,9 +115,49 @@ msgstr "Pentadbir Sistem"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:181 src/yelp-view-index.c:175
+#: src/yelp-view-content.c:207
+#: src/yelp-view-index.c:175
 msgid "Section"
 msgstr "Seksyen"
+
+#: src/yelp-view-toc.c:239
+msgid "Important documents"
+msgstr "Dokumen penting"
+
+#: src/yelp-view-toc.c:240
+msgid "Other document systems"
+msgstr "Sistem dokumen lain"
+
+#: src/yelp-view-toc.c:241
+msgid "Manual pages"
+msgstr "Halaman Manual"
+
+#: src/yelp-view-toc.c:242
+#: src/yelp-view-toc.c:495
+#: src/yelp-view-toc.c:514
+msgid "Info pages"
+msgstr "Halaman Maklumat"
+
+#: src/yelp-view-toc.c:243
+msgid "Installed documents"
+msgstr "Dokumen dipasang"
+
+#: src/yelp-view-toc.c:253
+msgid "Start page"
+msgstr "Laman Mula"
+
+#: src/yelp-view-toc.c:418
+msgid "Manual pages for section"
+msgstr "Halaman Manual bagi seksyen"
+
+#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:467
+msgid "Man page sections"
+msgstr "Seksyen Halaman Man"
+
+#: src/yelp-view-toc.c:597
+msgid "Scrollkeeper docs for category"
+msgstr "Scrollkeeper dokumen untuk kategori"
 
 #: src/yelp-window.c:111
 msgid "/_File"
@@ -139,46 +185,47 @@ msgstr "/Bantuan/Perih_al"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
-#: src/yelp-window.c:163
+#: src/yelp-window.c:164
 msgid "Help Browser"
 msgstr "Pelungsur Fail Bantuan"
 
-#: src/yelp-window.c:418
+#: src/yelp-window.c:409
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pelungsur Fail Bantuan GNOME 2.0"
 
-#: src/yelp-window.c:442
+#: src/yelp-window.c:433
 msgid "Go back in the history list"
 msgstr "Undur pada senarai sejarah"
 
-#: src/yelp-window.c:457
+#: src/yelp-window.c:448
 msgid "Go forth in the history list"
 msgstr "Maju pada senarai sejarah"
 
-#: src/yelp-window.c:472
+#: src/yelp-window.c:463
 msgid "Overview of contents"
 msgstr "Sekilas pandang Kandungan"
 
-#: src/yelp-window.c:483
+#: src/yelp-window.c:474
 msgid "Search in the index"
 msgstr "Cari di dalam indeks"
 
-#: src/yelp-window.c:495
+#: src/yelp-window.c:486
 msgid "Search for a phrase in the document"
 msgstr "Cari frasa di dalam dokument"
 
-#: src/yelp-window.c:501
+#: src/yelp-window.c:492
 msgid "Help on "
 msgstr "Bantuan mengenai "
 
-#: src/yelp-window.c:506
+#: src/yelp-window.c:497
 msgid "Enter phrase to search for in all documents"
 msgstr "Sila memasukkan frasa untuk dicari di dalam semua dokumen"
 
-#: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "Pelungsur Fail Bantuan GNOME 2.0"
+#: gnome-help.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Mendapatkan bantuan bersama GNOME"
 
-#: yelp.desktop.in.h:2
+#: gnome-help.desktop.in.h:2
 msgid "Help"
 msgstr "Bantuan"
+
