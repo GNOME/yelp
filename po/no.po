@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2002-01-27 12:29+0100\n"
-"PO-Revision-Date: 2002-01-27 12:29+0100\n"
+"POT-Creation-Date: 2002-01-30 23:42+0100\n"
+"PO-Revision-Date: 2002-01-30 23:43+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokml) <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -107,73 +107,109 @@ msgstr "Systemadministrasjon"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:189 src/yelp-view-index.c:175
+#: src/yelp-view-content.c:207 src/yelp-view-index.c:175
 msgid "Section"
 msgstr "Del"
 
-#: src/yelp-window.c:109
+#: src/yelp-view-toc.c:239
+msgid "Important documents"
+msgstr "Viktige dokumenter"
+
+#: src/yelp-view-toc.c:240
+msgid "Other document systems"
+msgstr "Andre dokumentsystemer"
+
+#: src/yelp-view-toc.c:241
+msgid "Manual pages"
+msgstr "Manualsider"
+
+#: src/yelp-view-toc.c:242 src/yelp-view-toc.c:495 src/yelp-view-toc.c:514
+msgid "Info pages"
+msgstr "Infosider"
+
+#: src/yelp-view-toc.c:243
+msgid "Installed documents"
+msgstr "Installerte dokumenter"
+
+#: src/yelp-view-toc.c:253
+msgid "Start page"
+msgstr "Startside"
+
+#: src/yelp-view-toc.c:418
+msgid "Manual pages for section"
+msgstr "Manualsider for seksjon"
+
+#: src/yelp-view-toc.c:448 src/yelp-view-toc.c:467
+msgid "Man page sections"
+msgstr "Manualsideseksjoner"
+
+#: src/yelp-view-toc.c:597
+msgid "Scrollkeeper docs for category"
+msgstr "Scrollkeeper-dokumenter for kategori"
+
+#: src/yelp-window.c:111
 msgid "/_File"
 msgstr "/_Fil"
 
-#: src/yelp-window.c:110
+#: src/yelp-window.c:112
 msgid "/File/_New window"
 msgstr "/Fil/_Nytt vindu"
 
-#: src/yelp-window.c:111
+#: src/yelp-window.c:113
 msgid "/File/_Close window"
 msgstr "/Fil/_Lukk vindu"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:114
 msgid "/File/_Quit"
 msgstr "/Fil/A_vslutt"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:115
 msgid "/_Help"
 msgstr "/_Hjelp"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:116
 msgid "/Help/_About"
 msgstr "/Hjelp/_Om"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:164
 msgid "Help Browser"
 msgstr "Hjelp leser"
 
-#: src/yelp-window.c:402
+#: src/yelp-window.c:409
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjelp leser for GNOME 2.0"
 
-#: src/yelp-window.c:426
+#: src/yelp-window.c:433
 msgid "Go back in the history list"
 msgstr "Gå tilbake i historikken"
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:448
 msgid "Go forth in the history list"
 msgstr "Gå fremover i historikken"
 
-#: src/yelp-window.c:456
+#: src/yelp-window.c:463
 msgid "Overview of contents"
 msgstr "Innholdsoversikt"
 
-#: src/yelp-window.c:467
+#: src/yelp-window.c:474
 msgid "Search in the index"
 msgstr "Søk i indeksen"
 
-#: src/yelp-window.c:479
+#: src/yelp-window.c:486
 msgid "Search for a phrase in the document"
 msgstr "Søk etter en frase i dokumentet"
 
-#: src/yelp-window.c:485
+#: src/yelp-window.c:492
 msgid "Help on "
 msgstr "Hjelp om"
 
-#: src/yelp-window.c:490
+#: src/yelp-window.c:497
 msgid "Enter phrase to search for in all documents"
 msgstr "Skriv inn frasen du vil søke etter i alle dokumenter"
 
 #: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "GNOME hjelp leser"
+msgid "Get help with GNOME"
+msgstr "Få hjelp med GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
