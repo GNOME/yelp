@@ -57,7 +57,7 @@ static void       ys_parse_toc_section    (ParseData            *data,
 					   const gchar          *base_uri);
 static gchar *    ys_get_xml_docpath      (const gchar          *command,
 					   const gchar          *argument);
-static void       ys_strip_scheme         (gchar               **original_uri,
+static gchar *    ys_strip_scheme         (gchar                *original_uri,
 					   gchar               **scheme);
 
 static gboolean
@@ -207,33 +207,28 @@ ys_parse_doc (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 	gchar       *format;
 	GtkTreeIter *iter;
 	gchar       *docsource;
-	gchar       *scheme;
-/* 	gchar       *index_location; */
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "doctitle")) {
 			xml_str = xmlNodeGetContent (cur);
 			title   = g_strdup (xml_str);
-			g_free (xml_str);
+			xmlFree (xml_str);
 		}
 		else if (!g_strcasecmp (cur->name, "docomf")) {
 			xml_str = xmlNodeGetContent (cur);
 			omf     = g_strdup (xml_str);
-			g_free (xml_str);
+			xmlFree (xml_str);
 		}
 		else if (!g_strcasecmp (cur->name, "docsource")) {
 			xml_str = xmlNodeGetContent (cur);
-			docsource = g_strdup (xml_str);
-			ys_strip_scheme(&docsource, &scheme);
+			docsource = ys_strip_scheme (xml_str, NULL);
 			link    = g_strconcat ("ghelp:", docsource, NULL);
-			g_free (scheme);
-			g_free (docsource);
-			g_free (xml_str);
+			xmlFree (xml_str);
 		}
 		else if (!g_strcasecmp (cur->name, "docformat")) {
 			xml_str = xmlNodeGetContent (cur);
 			format  = g_strdup (xml_str);
-			g_free (xml_str);
+			xmlFree (xml_str);
 		}
 	}
 
@@ -255,7 +250,7 @@ ys_parse_doc (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 	g_free (omf);
 	g_free (link);
 	g_free (format);
-	g_free (docsource);
+ 	g_free (docsource);
 }
 
 static void
@@ -375,22 +370,29 @@ ys_get_xml_docpath (const gchar *command, const gchar *argument)
 	return xml_location;
 }
 
-static void
-ys_strip_scheme(gchar **original_uri, gchar **scheme)
+static gchar *
+ys_strip_scheme(gchar *original_uri, gchar **scheme)
 {
 	gchar *new_uri;
 	gchar *point;
 
-	point = g_strstr_len(*original_uri, strlen(*original_uri), ":");
-	if (!point)
-	{
-		*scheme = NULL;
-		return;
+	point = strstr (original_uri, ":");
+
+	if (!point) {
+		if (scheme) {
+			*scheme = NULL;
+		}
+
+		return g_strdup (original_uri);
 	}
-	*scheme = g_strndup(*original_uri, point - *original_uri);
-	new_uri = g_strdup(point + 1);
-	g_free(*original_uri);
-	*original_uri = new_uri;
+
+	if (scheme) {
+		*scheme = g_strndup(original_uri, point - original_uri);
+	}
+	
+	new_uri = g_strdup (point + 1);
+
+	return new_uri;
 }
 
 gboolean

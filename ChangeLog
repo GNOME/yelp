@@ -1,3 +1,18 @@
+2002-01-19  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-scrollkeeper.c:
+	(ys_strip_scheme): rewrote to
+	- accept NULL instead of scheme
+	- return the new string instead of breaking down the one passed
+	  in.
+	- use strstr instead of g_strstr_len with the entire string as
+	  len.
+	(ys_parse_doc): 
+	- send NULL to ys_strip_scheme since we are not interested in the
+	  scheme for now. Also clean up that stuff a bit. 
+	- call xmlFree on the xml-strings instead of g_free.
+	- don't free docsource before it's last use :)
+
 2002-01-19  Alexander Larsson  <alla@lysator.liu.se>
 
 	* src/yelp-scrollkeeper.c (ys_strip_scheme):
