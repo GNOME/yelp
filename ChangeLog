@@ -1,3 +1,18 @@
+2005-03-10  Christian Persch  <chpe@cvs.gnome.org>
+
+	* .cvsignore:
+	R INSTALL:
+	* autogen.sh:
+	* configure.in:
+	* data/.cvsignore:
+	* po/POTFILES.in:
+	* src/.cvsignore:
+	* src/Makefile.am:
+	* stylesheets/.cvsignore:
+
+	Update the build system, and add missing files to .cvsignore:s.
+	Remove not distributed file from POTFILES.in. From bug #169316.
+
 2005-04-06  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:

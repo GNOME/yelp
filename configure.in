@@ -1,5 +1,8 @@
 AC_INIT([yelp], [2.9.3],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=yelp])
+
+GNOME_COMMON_INIT
+
 AC_CONFIG_SRCDIR(src/yelp-main.c)
 AC_CONFIG_HEADERS(config.h)
 
@@ -22,12 +25,19 @@ AM_PROG_LIBTOOL
 AM_PATH_ORBIT2
 AM_PATH_GLIB_2_0
 
-AC_SUBST([AM_CXXFLAGS])
- 
+GNOME_DEBUG_CHECK
+GNOME_COMPILE_WARNINGS([maximum])
+GNOME_CXX_WARNINGS
+
+if test "x$enable_debug" = "xyes"; then
+	AC_DEFINE([YELP_DEBUG],[1],[Enable Yelp debugging])
+	AM_CFLAGS="$AM_CFLAGS -pedantic -ansi"
+fi
+
 dnl NOTE : it appears that some systems do not like it when you use line
 dnl        continuation charactes to split CFLAGS into readable chunks
 if test "x$GCC" = "xyes"; then
-   CFLAGS="$CFLAGS -Wall -Wno-uninitialized -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Wno-sign-compare"
+   AM_CFLAGS="$AM_CFLAGS -Wall -Wno-uninitialized -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Wno-sign-compare"
 fi
 
 GETTEXT_PACKAGE=yelp
@@ -54,6 +64,8 @@ PKG_CHECK_MODULES(YELP,
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
 ])
+AC_SUBST([YELP_CFLAGS])
+AC_SUBST([YELP_LIBS])
 
 YELP_MODULES="gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"
 
@@ -177,6 +189,15 @@ dnl <= Check for bzip2 > 1.0.0
 	   ])
     dnl =>
 AC_SUBST(BZ_LIBS)
+
+dnl Set flags
+
+AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS"
+AM_CXXFLAGS="$AM_CXXFLAGS $WARN_CXXFLAGS -Wall -Wconversion -Wpointer-arith -Wcast-align -Woverloaded-virtual -Wsynth -Wno-ctor-dtor-privacy -Wno-non-virtual-dtor"
+
+AC_SUBST([AM_CPPFLAGS])
+AC_SUBST([AM_CFLAGS])
+AC_SUBST([AM_CXXFLAGS])
 
 AC_CONFIG_FILES([
 Makefile

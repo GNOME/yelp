@@ -1,83 +1,7 @@
-# for debugging
-# YELP_CFLAGS += -DYELP_DEBUG -pedantic -ansi -Werror
-
-if ENABLE_MAN
-man_sources = yelp-man-parser.c yelp-man-parser.h yelp-man-pager.c yelp-man-pager.h
-else
-man_sources =
-endif
-
-if ENABLE_INFO
-info_sources = yelp-info-pager.c yelp-info-pager.h yelp-info-parser.c yelp-info-parser.h
-else
-info_sources =
-endif
-
-INCLUDES =								\
-	-I$(top_srcdir)							\
-	$(YELP_CFLAGS)							\
-	$(MOZILLA_COMPONENT_CFLAGS)					\
-	-I$(MOZILLA_INCLUDE_ROOT)					\
-	-I$(MOZILLA_INCLUDE_ROOT)/dom					\
-	-I$(MOZILLA_INCLUDE_ROOT)/find					\
-	-I$(MOZILLA_INCLUDE_ROOT)/pref					\
-	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr				\
-	-I$(MOZILLA_INCLUDE_ROOT)/string				\
-	-I$(MOZILLA_INCLUDE_ROOT)/webshell				\
-	-I$(MOZILLA_INCLUDE_ROOT)/commandhandler			\
-	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h		\
-	-DG_LOG_DOMAIN=\"Yelp\"						\
-	-DPREFIX=\""$(prefix)"\"					\
-	-DSYSCONFDIR=\""$(sysconfdir)"\"				\
-	-DDATADIR=\""$(datadir)"\"					\
-	-DLIBDIR=\""$(libdir)"\"					\
-	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
-	-DSERVERDIR=\"$(libexecdir)\"					\
-	-DBINDIR=\""$(bindir)"\"					\
-	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""
-
 bin_PROGRAMS = yelp
-check_PROGRAMS = test-man-parser test-pager test-uri
-
-yelp_LDFLAGS = -R$(MOZILLA_HOME)
-
-install-exec-local:
-	rm -f $(DESTDIR)$(bindir)/gnome-help
-	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
-
-test_man_parser_SOURCES =					\
-	yelp-error.c		yelp-error.h			\
-	yelp-io-channel.c	yelp-io-channel.h		\
-	yelp-man-parser.c	yelp-man-parser.h		\
-	yelp-utils.c		yelp-utils.h			\
-	test-man-parser.c
-
-test_man_parser_LDADD = @YELP_LIBS@ $(Z_LIBS) $(BZ_LIBS)
-
-test_pager_SOURCES =						\
-	yelp-db-pager.c		yelp-db-pager.h			\
-	yelp-error.c		yelp-error.h			\
-	yelp-io-channel.c	yelp-io-channel.h		\
-	yelp-man-pager.c	yelp-man-pager.h		\
-	yelp-man-parser.c	yelp-man-parser.h		\
-	yelp-pager.c		yelp-pager.h			\
-	yelp-toc-pager.c	yelp-toc-pager.h		\
-	yelp-utils.c		yelp-utils.h			\
-	yelp-xslt-pager.c	yelp-xslt-pager.h		\
-	yelp-marshal-main.c	test-pager.c
-
-test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
-
-test_uri_SOURCES =					\
-	yelp-utils.c	yelp-utils.h			\
-	test-uri.c
-
-test_uri_LDADD = @YELP_LIBS@
 
 yelp_SOURCES =							\
 	$(gnome_yelp_idl_sources)				\
-	$(info_sources)						\
-	$(man_sources)						\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
 	yelp-cache.c		yelp-cache.h			\
@@ -94,7 +18,119 @@ yelp_SOURCES =							\
 	yelp-xslt-pager.c	yelp-xslt-pager.h		\
 	yelp-marshal-main.c	yelp-main.c
 
-yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS) $(MOZILLA_COMPONENT_LIBS)
+if ENABLE_MAN
+yelp_SOURCES +=					\
+	yelp-man-parser.c yelp-man-parser.h	\
+	yelp-man-pager.c yelp-man-pager.h
+endif
+
+if ENABLE_INFO
+yelp_SOURCES +=					\
+	yelp-info-pager.c yelp-info-pager.h	\
+	yelp-info-parser.c yelp-info-parser.h
+endif
+
+YELP_DEFINES =								\
+	-DG_LOG_DOMAIN=\"Yelp\"						\
+	-DPREFIX=\""$(prefix)"\"					\
+	-DSYSCONFDIR=\""$(sysconfdir)"\"				\
+	-DDATADIR=\""$(datadir)"\"					\
+	-DLIBDIR=\""$(libdir)"\"					\
+	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
+	-DSERVERDIR=\"$(libexecdir)\"					\
+	-DBINDIR=\""$(bindir)"\"					\
+	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""
+
+mozilla_include_subdirs =	\
+	.		\
+	dom		\
+	find		\
+	gtkembedmoz	\
+	pref		\
+	webbrwsr	\
+	string		\
+	webshell	\
+	commandhandler
+
+yelp_CPPFLAGS =									\
+	-I$(top_srcdir)								\
+	$(addprefix -I$(MOZILLA_INCLUDE_ROOT)/,$(mozilla_include_subdirs))      \
+	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h			\
+	$(YELP_DEFINES)								\
+	$(AM_CPPFLAGS)
+
+yelp_CFLAGS =				\
+	$(YELP_CFLAGS)			\
+	$(AM_CFLAGS)
+
+yelp_CXXFLAGS =				\
+	$(YELP_CFLAGS)			\
+	$(MOZILLA_COMPONENT_CFLAGS)	\
+	$(AM_CXXFLAGS)
+
+yelp_LDADD =				\
+	$(YELP_LIBS)			\
+	$(POPT_LIBS)			\
+	$(Z_LIBS)			\
+	$(BZ_LIBS)			\
+	$(MOZILLA_COMPONENT_LIBS)
+
+yelp_LDFLAGS = -R$(MOZILLA_HOME)
+
+check_PROGRAMS = test-man-parser test-pager test-uri
+
+test_man_parser_SOURCES =					\
+	yelp-error.c		yelp-error.h			\
+	yelp-io-channel.c	yelp-io-channel.h		\
+	yelp-man-parser.c	yelp-man-parser.h		\
+	yelp-utils.c		yelp-utils.h			\
+	test-man-parser.c
+
+test_man_parser_CPPFLAGS =	\
+	$(YELP_DEFINES)		\
+	$(AM_CPPFLAGS)
+
+test_man_parser_CFLAGS =	\
+	$(YELP_CFLAGS)		\
+	$(AM_CFLAGS)
+
+test_man_parser_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS)
+
+test_pager_SOURCES =						\
+	yelp-db-pager.c		yelp-db-pager.h			\
+	yelp-error.c		yelp-error.h			\
+	yelp-io-channel.c	yelp-io-channel.h		\
+	yelp-man-pager.c	yelp-man-pager.h		\
+	yelp-man-parser.c	yelp-man-parser.h		\
+	yelp-pager.c		yelp-pager.h			\
+	yelp-toc-pager.c	yelp-toc-pager.h		\
+	yelp-utils.c		yelp-utils.h			\
+	yelp-xslt-pager.c	yelp-xslt-pager.h		\
+	yelp-marshal-main.c	test-pager.c
+
+test_pager_CPPFLAGS =		\
+	$(YELP_DEFINES)		\
+	$(AM_CPPFLAGS)
+
+test_pager_CFLAGS =		\
+	$(YELP_CFLAGS)		\
+	$(AM_CFLAGS)
+
+test_pager_LDADD = $(YELP_LIBS) $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
+
+test_uri_SOURCES =					\
+	yelp-utils.c	yelp-utils.h			\
+	test-uri.c
+
+test_uri_CPPFLAGS =		\
+	$(YELP_DEFINES)		\
+	$(AM_CPPFLAGS)
+
+test_uri_CFLAGS =		\
+	$(YELP_CFLAGS)		\
+	$(AM_CFLAGS)
+
+test_uri_LDADD = $(YELP_LIBS)
 
 serverdir = $(libdir)/bonobo/servers
 server_in_files = GNOME_Yelp.server.in
@@ -136,12 +172,16 @@ CLEANFILES =								\
 
 MAINTAINERCLEANFILES = stamp-yelp-marshal.h $(BUILT_SOURCES)
 
-distclean-local:
-	if test $(srcdir) != .; then \
-	  rm -f $(MAINTAINERCLEANFILES); \
-	fi
-
 EXTRA_DIST =								\
 	yelp-marshal.list						\
 	$(server_in_files)						\
 	$(server_DATA)
+
+install-exec-local:
+	rm -f $(DESTDIR)$(bindir)/gnome-help
+	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
+
+distclean-local:
+	if test $(srcdir) != .; then \
+	  rm -f $(MAINTAINERCLEANFILES); \
+	fi

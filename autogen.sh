@@ -6,7 +6,7 @@ test -z "$srcdir" && srcdir=.
 
 PKG_NAME=Yelp
 
-REQUIRED_AUTOMAKE_VERSION=1.7
+REQUIRED_AUTOMAKE_VERSION=1.8
 export REQUIRED_AUTOMAKE_VERSION
 
 if ! test -f $srcdir/src/yelp-main.c; then
@@ -19,4 +19,4 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-. gnome-autogen.sh
+USE_GNOME2_MACROS=1 . gnome-autogen.sh
