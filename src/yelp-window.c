@@ -202,9 +202,6 @@ static void        window_find_again_cb           (gpointer           data,
 						   GtkWidget         *widget);
 static gboolean    window_find_action             (YelpWindow        *window, 
 						   YelpFindAction     action);
-static gboolean    window_find_delete_event_cb    (GtkWidget         *widget,
-						   GdkEvent          *event,
- 			                           gpointer           data);
 static void        window_find_entry_changed_cb   (GtkEditable       *editable,
 						   gpointer           data);
 static void        window_find_save_settings      (YelpWindow        *window);
@@ -1023,12 +1020,12 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
 
     box = gtk_hbox_new (FALSE, 0);
     label = gtk_label_new_with_mnemonic (_("Find:"));
-    gtk_box_pack_start (box, label, FALSE, FALSE, 6);
+    gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 6);
 
     priv->find_entry = gtk_entry_new ();
     g_signal_connect (G_OBJECT (priv->find_entry), "changed",
 		      G_CALLBACK (window_find_entry_changed_cb), window);
-    gtk_box_pack_start (box, priv->find_entry, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
 
     item = gtk_tool_item_new ();
     gtk_container_add (GTK_CONTAINER (item), box);
@@ -1299,7 +1296,7 @@ window_do_load_html (YelpWindow    *window,
 
     if (result != GNOME_VFS_OK) {
 	GError *error = NULL;
-	g_set_error (error, YELP_ERROR, YELP_ERROR_IO,
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
 		     _("The file ‘%s’ could not be read.  This file might "
 		       "be missing, or you might not have permissions to "
 		       "read it."),
@@ -1940,7 +1937,7 @@ window_find_cb (GtkAction *action, YelpWindow *window)
 
     gtk_widget_show_all (priv->find_bar);
     gtk_widget_grab_focus (priv->find_entry);
-    window_find_entry_changed_cb (priv->find_entry, window);
+    window_find_entry_changed_cb (GTK_EDITABLE (priv->find_entry), window);
 }
 
 static void
