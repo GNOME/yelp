@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-23 04:21+0100\n"
-"PO-Revision-Date: 2004-03-27 11:03+0200\n"
-"Last-Translator: Alexander Shopov <al_shopov@yahoo.com>\n"
+"POT-Creation-Date: 2004-07-05 05:37+0200\n"
+"PO-Revision-Date: 2004-07-05 19:27+0300\n"
+"Last-Translator: Vladimir \"Kaladan\" Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr "Програми"
 
 #: data/toc.xml.in.h:3
 msgid "Desktop"
-msgstr "Десктоп"
+msgstr "Работно място"
 
 #: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
@@ -34,7 +34,7 @@ msgstr "Разработка"
 
 #: data/toc.xml.in.h:5
 msgid "Development Environments"
-msgstr "Обкръжения за Разработка"
+msgstr "Среди за Разработка"
 
 #: data/toc.xml.in.h:6
 msgid "Development Tools"
@@ -126,34 +126,34 @@ msgstr "_Предишна"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Wrap around"
-msgstr ""
+msgstr "_Заграждане"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
-msgstr "Йелп"
+msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Фабрика на Йелп"
+msgstr "Фабрика на Yelp"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
-msgstr "Не е намерен href атрибут в този документ на Йелп"
+msgstr "Не е намерен href атрибутът в този документ на Yelp"
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:454 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Няма достатъчно памет"
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:642 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Заглавна страница"
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:644 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Съдържание"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:662 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Неизвестен"
@@ -180,16 +180,16 @@ msgstr "Избраният файл не може да бъде прочетен
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
-msgstr "Определя коя кеш директория да е в употреба"
+msgstr "Определяне коя кеш директория да е в употреба"
 
 #: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Не можах да активирам Йелп: '%s'"
+msgstr "Yelp не може да бъде активиран: \"%s\""
 
 #: src/yelp-main.c:147
 msgid "Could not open new window."
-msgstr "Не можах да отворя нов прозорец."
+msgstr "Прозорецът не може да бъде отворен."
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -258,22 +258,22 @@ msgstr "Документ URI"
 
 #: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
-msgstr ""
+msgstr "Адресът на документа за обработка"
 
-#: src/yelp-toc-pager.c:266
+#: src/yelp-toc-pager.c:267
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: Броенето на паузата е отрицателно."
 
-#: src/yelp-toc-pager.c:486
+#: src/yelp-toc-pager.c:490
 #, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "OMF·файлът·'%s' не може да бъде зареден."
+msgstr "OMF файлът \"%s\" не може да бъде зареден."
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:887
 msgid "Categories"
 msgstr "Категории"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:901
 msgid "Documents"
 msgstr "Документи"
 
@@ -287,55 +287,55 @@ msgstr "/Файл/_Нов прозорец"
 
 #: src/yelp-window.c:253
 msgid "/File/_Close window"
-msgstr "/Файл/Затворя прозоре_ц"
+msgstr "/Файл/Затворяне на прозоре_ц"
 
 #: src/yelp-window.c:257
 msgid "/_Edit"
-msgstr "/_Редактира"
+msgstr "/_Редактиране"
 
 #: src/yelp-window.c:258
 msgid "/Edit/_Find..."
-msgstr "/Редактира/_Намира в страницата..."
+msgstr "/Редактиране/_Търсене..."
 
 #: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
-msgstr "/Редактира/Намира _отново"
+msgstr "/Редактиране/_Повторно търсене"
 
 #: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
-msgstr "/Редактира/Намера _отново"
+msgstr "/Редактиране/Предишно Тъ_рсене"
 
 #: src/yelp-window.c:268
 msgid "/_Go"
-msgstr "/_Отива"
+msgstr "/_Отиване"
 
 #: src/yelp-window.c:269
 msgid "/Go/_Back"
-msgstr "/Отива/_Назад"
+msgstr "/Отиване/_Назад"
 
 #: src/yelp-window.c:272
 msgid "/Go/_Forward"
-msgstr "/Отива/Н_апред"
+msgstr "/Отиване/Н_апред"
 
 #: src/yelp-window.c:275
 msgid "/Go/_Home"
-msgstr "/Отива/_В началото"
+msgstr "/Отиване/_В началото"
 
 #: src/yelp-window.c:278
 msgid "/Go/"
-msgstr "/_Отива"
+msgstr "/_Отиване"
 
 #: src/yelp-window.c:279
 msgid "/Go/_Previous Page"
-msgstr "/Отива/_Предишна Страница"
+msgstr "/Отиване/_Предишна Страница"
 
 #: src/yelp-window.c:282
 msgid "/Go/_Next Page"
-msgstr "/Отива/_Следваща Страница"
+msgstr "/Отиване/_Следваща Страница"
 
 #: src/yelp-window.c:285
 msgid "/Go/_Contents"
-msgstr "/Отива/_Съдържание"
+msgstr "/Отиване/_Съдържание"
 
 #: src/yelp-window.c:289
 msgid "/_Help"
@@ -343,7 +343,7 @@ msgstr "/_Помощ"
 
 #: src/yelp-window.c:290
 msgid "/Help/_About"
-msgstr "/Помощ/_Относно програмата"
+msgstr "/Помощ/_Относно"
 
 #: src/yelp-window.c:352
 msgid "Help Browser"
@@ -351,7 +351,7 @@ msgstr "Навигатор на помощта"
 
 #: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
-msgstr "Секция"
+msgstr "Раздел"
 
 #: src/yelp-window.c:625
 msgid "Back"
@@ -359,7 +359,7 @@ msgstr "Назад"
 
 #: src/yelp-window.c:626
 msgid "Show previous page in history"
-msgstr "Показва предипната страница в историята"
+msgstr "Показване на предишната страница в историята"
 
 #: src/yelp-window.c:636
 msgid "Forward"
@@ -367,29 +367,28 @@ msgstr "Напред"
 
 #: src/yelp-window.c:637
 msgid "Show next page in history"
-msgstr "Показва следващата страница в историята"
+msgstr "Показване на следващата страница в историята"
 
 #: src/yelp-window.c:649
 msgid "Home"
-msgstr "Домашна"
+msgstr "У Дома"
 
 #: src/yelp-window.c:650
 msgid "Go to home view"
-msgstr "Отива в началото"
+msgstr "Отиване в началото"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:858
 msgid "Loading..."
 msgstr "Зареждане..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1300
+#: src/yelp-window.c:1306
 msgid "translator_credits"
 msgstr "Александър Шопов/n"
-"Владимир Петков/n"
-"<vpetkov@i-space.org>"
+"Vladimir \"Kaladan\" Petkov <vpetkov@i-space.org>"
 
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1312
 msgid "A Help Browser for GNOME"
 msgstr "Навигатор на помощта за GNOME"
 
@@ -507,7 +506,7 @@ msgstr "Сътрудници"
 
 #: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
-msgstr "винетка/емблема"
+msgstr "Библиографско каре"
 
 #: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
@@ -563,15 +562,15 @@ msgstr "Ниво"
 
 #: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
-msgstr ""
+msgstr "Читатели на Съобщението"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
-msgstr ""
+msgstr "Ниво на Съобщението"
 
 #: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
-msgstr ""
+msgstr "Източник на Съобщението"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
@@ -659,7 +658,7 @@ msgstr "Предупреждение"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr "Помощ с GNOME"
+msgstr "Помощ за GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
