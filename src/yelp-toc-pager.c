@@ -274,11 +274,35 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 gboolean
 toc_pager_process (YelpPager *pager)
 {
+    gchar  *manpath;
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
+    /* Set the OMF directories to be read */
     priv->omf_dir_pending = g_slist_prepend (priv->omf_dir_pending,
 					     g_strdup (DATADIR "/omf"));
 
+    /* Set the man directories to be read */
+    if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
+	manpath = g_strdup (g_getenv ("MANPATH"));
+
+    if (manpath) {
+	gint    i;
+	gchar **paths;
+
+	g_strstrip (manpath);
+	paths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
+                
+	for (i = 0; paths[i]; ++i)
+	    priv->man_dir_pending = g_slist_prepend (priv->man_dir_pending,
+						     g_strdup (paths[i]));
+
+	g_free (paths);
+	g_free (manpath);
+    }
+
+    /* Set the info directories to be read */
+
+    /* Set it running */
     priv->pending_func = (ProcessFunction) process_omf_dir_pending;
 
     gtk_idle_add_priority (G_PRIORITY_LOW,

@@ -138,13 +138,25 @@ uri_parse_ghelp_uri (const gchar *uri_str)
     else
 	goto done;
 
+    if (path[0] && path[0] == '/') {
+	gchar *str = g_strconcat ("file:", path, NULL);
+
+	if ((c = strchr (str, '?')))
+	    *c = '#';
+
+	uri = gnome_vfs_uri_new (str);
+
+	g_free (str);
+	return uri;
+    }
+
     if ((c = strchr (path, '/'))) {
-	doc_id = g_strndup (path, c - uri_str);
+	doc_id = g_strndup (path, c - path);
 	path   = c + 1;
     }
 
     if ((c = strchr (path, '?')) || (c = strchr (path, '#'))) {
-	file_name = g_strndup (path, c - uri_str);
+	file_name = g_strndup (path, c - path);
 	link_id   = g_strdup (c + 1);
     } else {
 	file_name = g_strdup (path);
@@ -189,6 +201,9 @@ uri_parse_ghelp_uri (const gchar *uri_str)
     g_free (doc_id);
     g_free (file_name);
     g_free (link_id);
+
+    if (!uri)
+	g_warning ("Couldn't resolve ghelp URI: %s", uri_str);
 
     return uri;
 }

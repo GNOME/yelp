@@ -68,6 +68,7 @@ struct _DBWalker {
     GtkTreeIter *iter;
 
     gint depth;
+    gint max_depth;
 };
 
 static void          db_pager_class_init   (YelpDBPagerClass *klass);
@@ -253,9 +254,10 @@ db_pager_process (YelpPager *pager)
     }
 
     walker = g_new0 (DBWalker, 1);
-    walker->pager = YELP_DB_PAGER (pager);
-    walker->doc   = doc;
-    walker->cur   = xmlDocGetRootElement (walker->doc);
+    walker->pager     = YELP_DB_PAGER (pager);
+    walker->doc       = doc;
+    walker->cur       = xmlDocGetRootElement (walker->doc);
+    walker->max_depth = MAX_CHUNK_DEPTH;
 
     id = xmlGetProp (walker->cur, "id");
     if (id)
@@ -285,21 +287,19 @@ db_pager_process (YelpPager *pager)
     params[3]  = p_doc_path;
     params[4]  = "stylesheet_path";
     params[5]  = "\"file://" DB_STYLESHEET_PATH "/\"";
-    params[6]  = "chunk_depth";
-    params[7]  = "2";
-    params[8]  = "html_extension";
-    params[9]  = "\"\"";
-    params[10] = "resolve_xref_chunk";
-    params[11] = "0";
-    params[12] = "mediaobject_path";
-    params[13] = p_doc_path;
-    params[14] = "color_gray_background";
-    params[15] = yelp_theme_get_gray_background ();
-    params[16] = "color_gray_border";
-    params[17] = yelp_theme_get_gray_border ();
-    params[18] = "admon_graphics_path";
-    params[19] = "\"file://" DATADIR "/yelp/icons/\"";
-    params[20] = NULL;
+    params[6]  = "html_extension";
+    params[7]  = "\"\"";
+    params[8] = "resolve_xref_chunk";
+    params[9] = "0";
+    params[10] = "mediaobject_path";
+    params[11] = p_doc_path;
+    params[12] = "color_gray_background";
+    params[13] = yelp_theme_get_gray_background ();
+    params[14] = "color_gray_border";
+    params[15] = yelp_theme_get_gray_border ();
+    params[16] = "admon_graphics_path";
+    params[17] = "\"file://" DATADIR "/yelp/icons/\"";
+    params[18] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     tctxt      = xsltNewTransformContext (stylesheet,
@@ -524,6 +524,19 @@ walker_walk_xml (DBWalker *walker)
     GtkTreeIter *old_iter;
     YelpDBPagerPriv *priv = walker->pager->priv;
 
+    if (walker->depth == 0) {
+	cur = walker->cur;
+	for ( ; cur; cur = cur->prev)
+	    if (cur->type == XML_PI_NODE)
+		if (!xmlStrcmp (cur->name,
+				(const xmlChar *) "yelp:chunk-depth")) {
+		    gint max = atoi (cur->content);
+		    if (max)
+			walker->max_depth = max;
+		    break;
+		}
+    }
+
     id = xmlGetProp (walker->cur, "id");
     if (!id && walker->cur->parent->type == XML_DOCUMENT_NODE) {
 	id = g_strdup ("index");
@@ -637,7 +650,7 @@ xml_get_title (xmlNodePtr node)
 gboolean
 walker_is_chunk (DBWalker *walker)
 {
-    if (walker->depth <= MAX_CHUNK_DEPTH) {
+    if (walker->depth <= walker->max_depth) {
 	if (xml_is_division (walker->cur))
 	    return TRUE;
 	else if (walker->depth == 1 && xml_is_info (walker->cur))

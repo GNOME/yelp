@@ -54,6 +54,8 @@
 #define YELP_CONFIG_WIDTH_DEFAULT  "600"
 #define YELP_CONFIG_HEIGHT_DEFAULT "420"
 
+#define BUFFER_SIZE 16384
+
 typedef enum {
     YELP_WINDOW_FIND_PREV = 1,
     YELP_WINDOW_FIND_NEXT
@@ -905,8 +907,13 @@ static gboolean
 window_handle_html_uri (YelpWindow    *window,
 			GnomeVFSURI   *uri)
 {
-    GtkWidget      *menu_item;
-    YelpWindowPriv *priv;
+    GnomeVFSHandle  *handle;
+    GnomeVFSResult   result;
+    GnomeVFSFileSize n;
+    gchar            buffer[BUFFER_SIZE];
+    GtkWidget       *menu_item;
+
+    YelpWindowPriv *priv = window->priv;
 
     g_return_val_if_fail (YELP_IS_WINDOW (window), FALSE);
     g_return_val_if_fail (uri != NULL, FALSE);
@@ -929,16 +936,28 @@ window_handle_html_uri (YelpWindow    *window,
     if (menu_item)
 	gtk_widget_set_sensitive (menu_item, FALSE);
 
-    /*
-    gtk_window_set_title (GTK_WINDOW (window),
-			  (const gchar *) page->title);
 
     yelp_html_clear (priv->html_view);
     yelp_html_set_base_uri (priv->html_view, uri);
-    yelp_html_write (priv->html_view,
-		     page->chunk,
-		     strlen (page->chunk));
-    */
+
+    result = gnome_vfs_open (&handle,
+			     gnome_vfs_uri_get_path (uri),
+			     GNOME_VFS_OPEN_READ);
+
+    if (result != GNOME_VFS_OK) {
+	// FIXME: Give an error
+	return;
+    }
+
+    while ((result = gnome_vfs_read
+	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
+	yelp_html_write (priv->html_view, buffer, n);
+    }
+
+    gnome_vfs_close (handle);
+
+    // FIXME: Set the title.
+
     return FALSE;
 }
 

@@ -17,7 +17,18 @@
 	</xsl:choose>
 </xsl:param>
 
-<xsl:param name="chunk_depth" select="2"/>
+<xsl:param name="chunk_depth">
+	<xsl:choose>
+		<xsl:when test="
+				number(/processing-instruction()[name()='yelp:chunk-depth'])">
+			<xsl:value-of select="
+				number(/processing-instruction()[name()='yelp:chunk-depth'][1])"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="2"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:param>
 
 <xsl:param name="classsynopsis_default_langauge" select="'idl'"/>
 

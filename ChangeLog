@@ -1,3 +1,17 @@
+2003-01-02  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Implement yelp:chunk-depth PI.
+
+	* src/yelp-toc-pager.c:
+	- Started preparing to read man dirs.
+
+	* src/yelp-uri.c:
+	- Handle absolute ghelp: URIs.
+
+	* src/yelp-window.c:
+	- Handle HTML pages.  Not done yet.
+
 2004-01-01  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-db-pager.c:
