@@ -1,0 +1,212 @@
+# Yelp eesti tõlge.
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Tõivo Leedjärv <leedjarv@interest.ee>, 2002.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp\n"
+"POT-Creation-Date: 2002-02-17 00:09+0200\n"
+"PO-Revision-Date: 2002-02-17 00:10+0200\n"
+"Last-Translator: Tõivo Leedjärv <leedjarv@interest.ee>\n"
+"Language-Team: Estonian <gnome-et@linux.ee>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr ""
+
+#: src/yelp-info.c:99
+msgid "info"
+msgstr "info"
+
+#: src/yelp-main.c:78
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Ei saa Yelpi aktiveerida: '%s'"
+
+#: src/yelp-main.c:98
+msgid "Could not open new window."
+msgstr "Ei saa uut akent avada."
+
+#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
+#: src/yelp-man.c:376 src/yelp-man.c:387
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:276 src/yelp-man.c:307 src/yelp-man.c:365 src/yelp-man.c:392
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:281
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:297
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:302
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:312
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:317
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:339
+msgid "System Calls"
+msgstr ""
+
+#: src/yelp-man.c:344
+msgid "Library Functions"
+msgstr ""
+
+#: src/yelp-man.c:349
+msgid "Kernel Routines"
+msgstr ""
+
+#: src/yelp-man.c:404
+msgid "Applications"
+msgstr "Rakendused"
+
+#: src/yelp-man.c:409
+msgid "Development"
+msgstr "Arendus"
+
+#: src/yelp-man.c:414
+msgid "Hardware Devices"
+msgstr "Riistvaraseadmed"
+
+#: src/yelp-man.c:419
+msgid "Configuration Files"
+msgstr "Konfiguratsioonifailid"
+
+#: src/yelp-man.c:424
+msgid "Games"
+msgstr "Mängud"
+
+#: src/yelp-man.c:429
+msgid "Overviews"
+msgstr "Ülevaated"
+
+#: src/yelp-man.c:434
+msgid "System Administration"
+msgstr "Süsteemi administreerimine"
+
+#: src/yelp-man.c:445
+msgid "man"
+msgstr "man"
+
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:176
+msgid "Section"
+msgstr "Peatükk"
+
+#: src/yelp-view-toc.c:271
+msgid "Other document systems"
+msgstr ""
+
+#: src/yelp-view-toc.c:272
+msgid "Manual pages"
+msgstr "Manuaalilehed"
+
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:537 src/yelp-view-toc.c:556
+msgid "Info pages"
+msgstr "Infolehed"
+
+#: src/yelp-view-toc.c:274
+msgid "Installed documents"
+msgstr "Installitud dokumendid"
+
+#: src/yelp-view-toc.c:285
+msgid "Start page"
+msgstr "Algusleht"
+
+#: src/yelp-view-toc.c:460
+msgid "<a href=\"toc:man\">Manual pages</a>: "
+msgstr "<a href=\"toc:man\">Manuaalilehed</a>: "
+
+#: src/yelp-view-toc.c:490 src/yelp-view-toc.c:509
+msgid "Manual page sections"
+msgstr "Manuaalilehtede peatükid"
+
+#: src/yelp-view-toc.c:659
+msgid "Scrollkeeper docs for category"
+msgstr ""
+
+#: src/yelp-window.c:111
+msgid "/_File"
+msgstr "/_Fail"
+
+#: src/yelp-window.c:112
+msgid "/File/_New window"
+msgstr "/Fail/_Uus aken"
+
+#: src/yelp-window.c:113
+msgid "/File/_Close window"
+msgstr "/Fail/_Sulge aken"
+
+#: src/yelp-window.c:114
+msgid "/File/_Quit"
+msgstr "/Fail/_Lõpeta"
+
+#: src/yelp-window.c:115
+msgid "/_Help"
+msgstr "/_Abi"
+
+#: src/yelp-window.c:116
+msgid "/Help/_About"
+msgstr "/Abi/_Info"
+
+#: src/yelp-window.c:164
+msgid "Help Browser"
+msgstr "Abilehitseja"
+
+#: src/yelp-window.c:409
+msgid "Help Browser for GNOME 2.0"
+msgstr "GNOME 2.0 abilehitseja"
+
+#: src/yelp-window.c:433
+msgid "Go back in the history list"
+msgstr ""
+
+#: src/yelp-window.c:448
+msgid "Go forth in the history list"
+msgstr ""
+
+#: src/yelp-window.c:463
+msgid "Overview of contents"
+msgstr ""
+
+#: src/yelp-window.c:474
+msgid "Search in the index"
+msgstr ""
+
+#: src/yelp-window.c:486
+msgid "Search for a phrase in the document"
+msgstr ""
+
+#: src/yelp-window.c:492
+msgid "Help on "
+msgstr ""
+
+#: src/yelp-window.c:497
+msgid "Enter phrase to search for in all documents"
+msgstr ""
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr ""
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Abi"
