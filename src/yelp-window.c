@@ -81,6 +81,8 @@ static gboolean    window_handle_html_uri         (YelpWindow        *window,
 						   YelpURI           *uri);
 static void        window_disconnect              (YelpWindow        *window);
 
+static gboolean    window_loading                 (YelpWindow        *window);
+
 static void        pager_page_cb                  (YelpPager         *pager,
 						   gchar             *page_id,
 						   gpointer           user_data);
@@ -190,6 +192,8 @@ struct _YelpWindowPriv {
 
     GtkWidget      *forward_button;
     GtkWidget      *back_button;
+
+    gint            loading;
 };
 
 static GtkItemFactoryEntry menu_items[] = {
@@ -748,7 +752,7 @@ window_handle_pager_uri (YelpWindow *window,
     }
 
     if (!loadnow) {
-	gchar *loading = _("Loading...");
+	gchar *loading = _("Loading&nbsp;&nbsp;&nbsp;");
 	yelp_html_clear (priv->html_view);
 
 	gtk_window_set_title (GTK_WINDOW (window),
@@ -766,6 +770,9 @@ window_handle_pager_uri (YelpWindow *window,
 	     "</html>",
 	     loading, loading);
 	yelp_html_close (priv->html_view);
+
+	priv->loading = 1;
+	gtk_timeout_add (200, (GtkFunction) window_loading, window);
 
 	yelp_toc_pager_pause (yelp_toc_pager_get ());
 	while (gtk_events_pending ())
@@ -815,6 +822,7 @@ window_handle_pager_uri (YelpWindow *window,
 	gtk_window_set_title (GTK_WINDOW (window),
 			      (const gchar *) page->title);
 
+	priv->loading = 0;
 	yelp_html_write (priv->html_view,
 			 page->chunk,
 			 strlen (page->chunk));
@@ -836,6 +844,7 @@ window_disconnect (YelpWindow *window)
     g_return_if_fail (YELP_IS_WINDOW (window));
     YelpWindowPriv *priv = window->priv;
 
+    priv->loading = 0;
     if (priv->page_handler) {
 	g_signal_handler_disconnect (priv->pager,
 				     priv->page_handler);
@@ -851,6 +860,47 @@ window_disconnect (YelpWindow *window)
 				     priv->finish_handler);
 	priv->finish_handler = 0;
     }
+}
+
+static gboolean
+window_loading (YelpWindow *window)
+{
+    gchar *loading;
+    YelpWindowPriv *priv = window->priv;
+
+    switch (priv->loading) {
+    case 0:
+	return FALSE;
+    case 1:
+	priv->loading = 2;
+	loading = _("Loading&nbsp;&nbsp;&nbsp;");
+	break;
+    case 2:
+	priv->loading = 3;
+	loading = _("Loading.&nbsp;&nbsp;");
+	break;
+    case 3:
+	priv->loading = 4;
+	loading = _("Loading..&nbsp;");
+	break;
+    default:
+	priv->loading = 1;
+	loading = _("Loading...");
+	break;
+    }
+
+    yelp_html_clear (priv->html_view);
+    yelp_html_printf
+	(priv->html_view,
+	 "<html><head><meta http-equiv='Content-Type'"
+	 " content='text/html=; charset=utf-8'>"
+	 "<title>%s</title></head>"
+	 "<body><center>%s</center></body>"
+	 "</html>",
+	 loading, loading);
+    yelp_html_close (priv->html_view);
+
+    return TRUE;
 }
 
 static void
@@ -891,6 +941,8 @@ pager_error_cb (YelpPager   *pager,
     window_error (window, error);
 
     g_error_free (error);
+
+    // FIXME: Remove the URI from the history and go back
 }
 
 static void
@@ -916,6 +968,8 @@ pager_finish_cb (YelpPager   *pager,
 
     g_free (str_uri);
     g_error_free (error);
+
+    // FIXME: Remove the URI from the history and go back
 }
 
 static void
