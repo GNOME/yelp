@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-04-26 21:24+0300\n"
-"PO-Revision-Date: 2002-04-26 21:27+0300\n"
+"POT-Creation-Date: 2002-06-05 20:59+0300\n"
+"PO-Revision-Date: 2002-06-05 21:00+0300\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -21,244 +21,220 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db2html.c:105
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr ""
-"Viga stiililehe töötlemisel. Palun kontrolli, kas sul on docbook keskkond "
-"korrektselt seadistatud."
-
-#: src/yelp-db2html.c:121
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "Dokumenti '%s' ei ole olemas"
-
-#: src/yelp-db2html.c:136
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "Ei suuda dokumenti '%s' töödelda."
-
-#: src/yelp-db2html.c:175
-msgid "Error while applying the stylesheet."
-msgstr "Viga stiililehe rakendamisel."
-
-#: src/yelp-html.c:155
-msgid "Loading..."
-msgstr "Laadimine..."
-
-#: src/yelp-info.c:138
-msgid "info"
-msgstr "info"
-
-#: src/yelp-main.c:109
+#: src/yelp-main.c:111
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Ei saa Yelpi aktiveerida: '%s'"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:130
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
-#: src/yelp-man.c:302 src/yelp-man.c:323 src/yelp-man.c:359 src/yelp-man.c:391
-#: src/yelp-man.c:407 src/yelp-man.c:418
+#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
+#: src/yelp-man.c:399 src/yelp-man.c:410
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:307 src/yelp-man.c:338 src/yelp-man.c:396 src/yelp-man.c:423
+#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:312
+#: src/yelp-man.c:304
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:328
+#: src/yelp-man.c:320
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:333
+#: src/yelp-man.c:325
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:343
+#: src/yelp-man.c:335
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:348
+#: src/yelp-man.c:340
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:370
+#: src/yelp-man.c:362
 msgid "System Calls"
 msgstr "Süsteemipöördused"
 
-#: src/yelp-man.c:375
+#: src/yelp-man.c:367
 msgid "Library Functions"
 msgstr "Teegifunktsioonid"
 
-#: src/yelp-man.c:380
+#: src/yelp-man.c:372
 msgid "Kernel Routines"
 msgstr "Kernelitoimingud"
 
-#: src/yelp-man.c:435
+#: src/yelp-man.c:427
 msgid "Applications"
 msgstr "Rakendused"
 
-#: src/yelp-man.c:440
+#: src/yelp-man.c:432
 msgid "Development"
 msgstr "Arendus"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:437
 msgid "Hardware Devices"
 msgstr "Riistvaraseadmed"
 
-#: src/yelp-man.c:450
+#: src/yelp-man.c:442
 msgid "Configuration Files"
 msgstr "Konfiguratsioonifailid"
 
-#: src/yelp-man.c:455
+#: src/yelp-man.c:447
 msgid "Games"
 msgstr "Mängud"
 
-#: src/yelp-man.c:460
+#: src/yelp-man.c:452
 msgid "Overviews"
 msgstr "Ülevaated"
 
-#: src/yelp-man.c:465
+#: src/yelp-man.c:457
 msgid "System Administration"
 msgstr "Süsteemi administreerimine"
 
-#: src/yelp-man.c:476
-msgid "man"
-msgstr "man"
-
-#: src/yelp-view-content.c:200 src/yelp-view-index.c:374
+#: src/yelp-view-content.c:420 src/yelp-view-index.c:498
 msgid "Section"
 msgstr "Peatükk"
 
-#: src/yelp-view-index.c:337
+#: src/yelp-view-content.c:555 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "Laadimine..."
+
+#: src/yelp-view-index.c:461
 msgid "Search for:"
 msgstr "Otsi:"
 
-#: src/yelp-view-toc.c:323
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:183
 msgid "Help Contents"
 msgstr "Abiinfo sisukord"
 
-#: src/yelp-view-toc.c:324
+#: src/yelp-view-toc.c:184
 msgid "GNOME - Desktop"
 msgstr "GNOME - Töölaud"
 
-#: src/yelp-view-toc.c:325
+#: src/yelp-view-toc.c:185
 msgid "Additional documents"
 msgstr "Muud dokumendid"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
-msgid "Manual pages"
-msgstr "Manuaalilehed"
-
-#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
-msgid "Info pages"
-msgstr "Infolehed"
-
-#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
-msgid "Documents"
-msgstr "Dokumendid"
-
-#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
-msgid "Categories"
-msgstr "Kategooriad"
-
-#: src/yelp-view-toc.c:666
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
 msgid "Manual Pages"
 msgstr "Manuaalilehed"
 
-#: src/yelp-window.c:152
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+msgid "Info Pages"
+msgstr "Infolehed"
+
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+msgid "Documents"
+msgstr "Dokumendid"
+
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+msgid "Categories"
+msgstr "Kategooriad"
+
+#: src/yelp-view-toc.c:466
+msgid "Manual pages"
+msgstr "Manuaalilehed"
+
+#: src/yelp-window.c:156
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:157
 msgid "/File/_New window"
 msgstr "/Fail/_Uus aken"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:158
 msgid "/File/_Close window"
 msgstr "/Fail/_Sulge aken"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:160
 msgid "/_Go"
 msgstr "/_Liigu"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:161
 msgid "/Go/_Back"
 msgstr "/Liigu/_Tagasi"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:162
 msgid "/Go/_Forward"
 msgstr "/Liigu/_Edasi"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:163
 msgid "/Go/_Home"
 msgstr "/Liigu/_Kodu"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:164
 msgid "/Go/_Index"
 msgstr "/Liigu/_Indeks"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:165
 msgid "/_Help"
 msgstr "/_Abi"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:166
 msgid "/Help/_About"
 msgstr "/Abi/_Info"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:228 src/yelp-window.c:430
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
+#: src/yelp-window.c:340
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Dokumenti '%s' ei ole olemas"
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:567
+#: src/yelp-window.c:599
 msgid "translator_credits"
 msgstr ""
 "Tõlge eesti keelde:\n"
 "       Tõivo Leedjärv <toivo@linux.ee>, 2002."
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:603
 msgid "Help Browser for GNOME 2.0"
 msgstr "GNOME 2.0 abiinfo brauser"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:658
 msgid "Back"
 msgstr "Tagasi"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:659
 msgid "Show previous page in history"
 msgstr "Näita eelmist lehekülge ajaloos"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:670
 msgid "Forward"
 msgstr "Edasi"
 
-#: src/yelp-window.c:638
+#: src/yelp-window.c:671
 msgid "Show next page in history"
 msgstr "Näita järgmist lehekülge ajaloos"
 
-#: src/yelp-window.c:651
+#: src/yelp-window.c:684
 msgid "Home"
 msgstr "Kodu"
 
-#: src/yelp-window.c:652
+#: src/yelp-window.c:685
 msgid "Go to home view"
 msgstr "Liigu koduvaatele"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:695
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:696
 msgid "Search in the index"
 msgstr "Otsi indeksist"
 
@@ -269,6 +245,25 @@ msgstr "Abistab GNOMEi kasutamisel"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Abi"
+
+#~ msgid ""
+#~ "Error while parsing the stylesheet, make sure you have your docbook "
+#~ "environment setup correctly."
+#~ msgstr ""
+#~ "Viga stiililehe töötlemisel. Palun kontrolli, kas sul on docbook keskkond "
+#~ "korrektselt seadistatud."
+
+#~ msgid "Couldn't parse the document '%s'."
+#~ msgstr "Ei suuda dokumenti '%s' töödelda."
+
+#~ msgid "Error while applying the stylesheet."
+#~ msgstr "Viga stiililehe rakendamisel."
+
+#~ msgid "info"
+#~ msgstr "info"
+
+#~ msgid "man"
+#~ msgstr "man"
 
 #~ msgid "Get help on..."
 #~ msgstr "Otsi abi teemal..."
