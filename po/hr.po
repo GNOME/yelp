@@ -4,7 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0\n"
-"POT-Creation-Date: 2004-02-01 17:16+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-10 03:17-0600\n"
 "PO-Revision-Date: 2004-02-05 23:53+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -141,17 +142,17 @@ msgstr "Nije nađen href atribut na yelp:dokumentu"
 msgid "Out of memory"
 msgstr "Nemam više memorije"
 
-#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:631 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Naslovna stranica"
 
-#: src/yelp-db-pager.c:629 src/yelp-man-pager.c:372
-#: stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:633 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/yelp-db-pager.c:647 src/yelp-man-pager.c:390
-#: stylesheets/l10n.xml.in.h:68
+#: src/yelp-db-pager.c:651 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Napoznato"
 
@@ -274,117 +275,117 @@ msgstr "Kategorije"
 msgid "Documents"
 msgstr "Dokumenti"
 
-#: src/yelp-window.c:231
+#: src/yelp-window.c:248
 msgid "/_File"
 msgstr "/_Datoteka"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:249
 msgid "/File/_New window"
 msgstr "/File/_Novi prozor"
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:252
 msgid "/File/_Close window"
 msgstr "/File/_Zatvori prozor"
 
-#: src/yelp-window.c:239
+#: src/yelp-window.c:256
 msgid "/_Edit"
 msgstr "/_Uredi"
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:257
 msgid "/Edit/_Find..."
 msgstr "/Uređivanje/_Traži..."
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:260
 msgid "/Edit/Find Ne_xt"
 msgstr "/Uređivanje/Traži _sljedeće"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:263
 msgid "/Edit/Find Pre_vious"
 msgstr "/Uređivanje/Traži _prethodno"
 
-#: src/yelp-window.c:250
+#: src/yelp-window.c:267
 msgid "/_Go"
 msgstr "/_Go"
 
-#: src/yelp-window.c:251
+#: src/yelp-window.c:268
 msgid "/Go/_Back"
 msgstr "/Go/_Back"
 
-#: src/yelp-window.c:254
+#: src/yelp-window.c:271
 msgid "/Go/_Forward"
 msgstr "/Go/_Forward"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:274
 msgid "/Go/_Home"
 msgstr "/Go/_Home"
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:277
 msgid "/Go/"
 msgstr "/Idi/"
 
-#: src/yelp-window.c:261
+#: src/yelp-window.c:278
 msgid "/Go/_Previous Page"
 msgstr "/Idi/_Prethodna Stranica"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:281
 msgid "/Go/_Next Page"
 msgstr "/Idi/_Sljedeća Stra_nica"
 
-#: src/yelp-window.c:267
+#: src/yelp-window.c:284
 msgid "/Go/_Contents"
 msgstr "/Idi/_Sadržaj"
 
-#: src/yelp-window.c:271
+#: src/yelp-window.c:288
 msgid "/_Help"
 msgstr "/_Pomoć"
 
-#: src/yelp-window.c:272
+#: src/yelp-window.c:289
 msgid "/Help/_About"
 msgstr "/Pomoć/_O"
 
-#: src/yelp-window.c:334
+#: src/yelp-window.c:351
 msgid "Help Browser"
 msgstr "Preglednik pomoći"
 
-#: src/yelp-window.c:552 stylesheets/l10n.xml.in.h:60
+#: src/yelp-window.c:569 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Odsječak"
 
-#: src/yelp-window.c:609
+#: src/yelp-window.c:624
 msgid "Back"
 msgstr "Nazad"
 
-#: src/yelp-window.c:610
+#: src/yelp-window.c:625
 msgid "Show previous page in history"
 msgstr "Pokaži prethodnu stranicu u povijesti"
 
-#: src/yelp-window.c:620
+#: src/yelp-window.c:635
 msgid "Forward"
 msgstr "Naprijed"
 
-#: src/yelp-window.c:621
+#: src/yelp-window.c:636
 msgid "Show next page in history"
 msgstr "Pokaži sljedeću stranicu u povijesti"
 
-#: src/yelp-window.c:633
+#: src/yelp-window.c:648
 msgid "Home"
 msgstr "Polazno"
 
-#: src/yelp-window.c:634
+#: src/yelp-window.c:649
 msgid "Go to home view"
 msgstr "Idi na početni pogled"
 
-#: src/yelp-window.c:844
+#: src/yelp-window.c:859
 msgid "Loading..."
 msgstr "Učitavam..."
 
 #. Note to translators: put here your name (and address) so it
-#.  * will shop up in the "about" box
-#: src/yelp-window.c:1267
+#. * will shop up in the "about" box
+#: src/yelp-window.c:1290
 msgid "translator_credits"
 msgstr "lokalizacija@linux.hr"
 
-#: src/yelp-window.c:1272
+#: src/yelp-window.c:1295
 msgid "A Help Browser for GNOME"
 msgstr "Preglednik pomoći za GNOME"
 
@@ -614,38 +615,42 @@ msgid "Reference Section"
 msgstr "Odjeljak reference"
 
 #: stylesheets/l10n.xml.in.h:59
+msgid "Release Information"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:60
 msgid "Revision History"
 msgstr "Povijest revizije"
 
-#: stylesheets/l10n.xml.in.h:61
+#: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr "Vidi"
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:63
 msgid "See Also"
 msgstr "Pogledajte također"
 
-#: stylesheets/l10n.xml.in.h:63
+#: stylesheets/l10n.xml.in.h:64
 msgid "Set Index"
 msgstr "Postavi indeks"
 
-#: stylesheets/l10n.xml.in.h:64
+#: stylesheets/l10n.xml.in.h:65
 msgid "Table"
 msgstr "Tablica"
 
-#: stylesheets/l10n.xml.in.h:65
+#: stylesheets/l10n.xml.in.h:66
 msgid "Table of Contents"
 msgstr "Tablica sadržaja"
 
-#: stylesheets/l10n.xml.in.h:66
+#: stylesheets/l10n.xml.in.h:67
 msgid "Tip"
 msgstr "Savjet"
 
-#: stylesheets/l10n.xml.in.h:67
+#: stylesheets/l10n.xml.in.h:68
 msgid "Title"
 msgstr "Naslov"
 
-#: stylesheets/l10n.xml.in.h:69
+#: stylesheets/l10n.xml.in.h:70
 msgid "Warning"
 msgstr "Upozorenje"
 
@@ -656,4 +661,3 @@ msgstr "Zatražite pomoć za GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Pomoć"
-

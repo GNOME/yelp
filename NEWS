@@ -1,3 +1,27 @@
+Changes in 2.5.5:
+-----------------
+* Fixed orphaned Contents header                       (Shaun McCance)
+* Implemented releaseinfo element                      (Shaun McCance)
+* Various stylesheet improvements and speed-ups        (Shaun McCance)
+* Stop grabbing focus on the HTML widget all the time  (Shaun McCance)
+* Leak less memory in the DocBook converter            (Shaun McCance)
+* Made the interface more responsive while transforming
+  really large documents                               (Shaun McCance)
+* Fixed stupidly wrong chunking for refentry           (Shaun McCance)
+* Fixed stupidly wrong ulink handling                  (Shaun McCance)
+* Translation updates:
+  ca      (Jordi Mallach)
+  es      (Francisco Javier F. Serrador)
+  hr      (Robert Sedak)
+  ja      (Takeshi AIHANA)
+  ko      (Changwoo Ryu)
+  mn      (Sanlig Badral)
+  nl      (Tino Meinen)
+  pl      (GNOME PL Team)
+  sq      (Laurent Dhima)
+  sv      (Christian Rose)
+  zh_CN   (Funda Wang)
+
 Changes in 2.5.4:
 -----------------
 * Massive amount of mind-numbing work in fixing various scrolling
