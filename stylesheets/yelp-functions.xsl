@@ -9,6 +9,11 @@
 	<xsl:param name="node" select="."/>
 	<xsl:choose>
 		<xsl:when test="
+				($node/preceding-sibling::*) and
+				(yelp:get-depth(.) = $gdb_max_chunk_depth)">
+			<func:result select="$node/preceding-sibling::*[1]"/>
+		</xsl:when>
+		<xsl:when test="
 				($node/preceding-sibling::*/descendant-or-self::*)
 				[@id]
 				[yelp:is-division(.)]
@@ -192,9 +197,10 @@
 	<xsl:choose>
 		<!-- The id-less part hackery -->
 		<xsl:when test="$node/self::part and not($node/@id)">
-			<func:result select="yelp:get-divisions($node/appendix | $node/chapter | $node/index
-						| $node/glossary | $node/bibliography | $node/article
-						| $node/preface | $node/refentry | $node/reference)"/>
+			<func:result select="yelp:get-divisions(
+					$node/appendix | $node/chapter      | $node/index    |
+					$node/glossary | $node/bibliography | $node/article  |
+					$node/preface  | $node/refentry     | $node/reference)"/>
 		</xsl:when>
 		<xsl:when test="$node/self::appendix | $node/self::chapter
 				| $node/self::preface">
