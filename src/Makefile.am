@@ -67,7 +67,7 @@ yelp_db2html_SOURCES =							\
 	yelp-db2html.c
 
 yelp_db2html_LDADD =							\
-	@YELP_LIBS@
+	@DB2HTML_LIBS@
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\

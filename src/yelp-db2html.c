@@ -27,7 +27,6 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <libgnome/gnome-i18n.h>
 #include <libxml/xmlversion.h>
 #include <libxml/xmlmemory.h>
 #include <libxml/debugXML.h>
@@ -42,7 +41,6 @@
 #include <libxslt/xsltInternals.h>
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
-#include <libgnomevfs/gnome-vfs-init.h>
 
 #include "yelp-error.h"
 
