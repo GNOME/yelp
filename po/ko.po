@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.5.3\n"
+"Project-Id-Version: yelp 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-10 03:17-0600\n"
-"PO-Revision-Date: 2004-02-08 02:16+0900\n"
+"POT-Creation-Date: 2004-02-25 01:10+0900\n"
+"PO-Revision-Date: 2004-02-25 01:10+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -143,16 +143,16 @@ msgstr "yelp:document에 href 속성이 없습니다"
 msgid "Out of memory"
 msgstr "메모리가 부족합니다"
 
-#: src/yelp-db-pager.c:631 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "제목 페이지"
 
-#: src/yelp-db-pager.c:633 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "차례"
 
-#: src/yelp-db-pager.c:651 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "알 수 없음"
@@ -276,117 +276,117 @@ msgstr "분류"
 msgid "Documents"
 msgstr "문서"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/_File"
 msgstr "/파일(_F)"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:250
 msgid "/File/_New window"
 msgstr "/파일(F)/새 창(_N)"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:253
 msgid "/File/_Close window"
 msgstr "/파일(F)/창 닫기(_C)"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:257
 msgid "/_Edit"
 msgstr "/편집(_E)"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 msgid "/Edit/_Find..."
 msgstr "/편집(E)/찾기(_F)..."
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
 msgstr "/편집(E)/다음 찾기(_X)"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
 msgstr "/편집(E)/이전 찾기(_V)"
 
-#: src/yelp-window.c:267
+#: src/yelp-window.c:268
 msgid "/_Go"
 msgstr "/이동(_G)"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/Go/_Back"
 msgstr "/이동(G)/뒤로(_B)"
 
-#: src/yelp-window.c:271
+#: src/yelp-window.c:272
 msgid "/Go/_Forward"
 msgstr "/이동(G)/앞으로(_F)"
 
-#: src/yelp-window.c:274
+#: src/yelp-window.c:275
 msgid "/Go/_Home"
 msgstr "/이동(G)/홈(_H)"
 
-#: src/yelp-window.c:277
+#: src/yelp-window.c:278
 msgid "/Go/"
 msgstr "/이동(G)/"
 
-#: src/yelp-window.c:278
+#: src/yelp-window.c:279
 msgid "/Go/_Previous Page"
 msgstr "/이동(G)/이전 페이지(_P)"
 
-#: src/yelp-window.c:281
+#: src/yelp-window.c:282
 msgid "/Go/_Next Page"
 msgstr "/이동(G)/다음 페이지(_N)"
 
-#: src/yelp-window.c:284
+#: src/yelp-window.c:285
 msgid "/Go/_Contents"
 msgstr "/이동(G)/차례(_C)"
 
-#: src/yelp-window.c:288
+#: src/yelp-window.c:289
 msgid "/_Help"
 msgstr "/도움말(_H)"
 
-#: src/yelp-window.c:289
+#: src/yelp-window.c:290
 msgid "/Help/_About"
 msgstr "/도움말(H)/정보(_A)"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:352
 msgid "Help Browser"
 msgstr "도움말 브라우저"
 
-#: src/yelp-window.c:569 stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "절"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:625
 msgid "Back"
 msgstr "뒤로"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:626
 msgid "Show previous page in history"
 msgstr "방문 기록의 이전 페이지를 봅니다"
 
-#: src/yelp-window.c:635
+#: src/yelp-window.c:636
 msgid "Forward"
 msgstr "앞으로"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:637
 msgid "Show next page in history"
 msgstr "방문 기록의 다음 페이지를 봅니다"
 
-#: src/yelp-window.c:648
+#: src/yelp-window.c:649
 msgid "Home"
 msgstr "홈"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:650
 msgid "Go to home view"
 msgstr "홈 보기로 가기"
 
-#: src/yelp-window.c:859
+#: src/yelp-window.c:860
 msgid "Loading..."
 msgstr "읽고 있습니다..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1290
+#: src/yelp-window.c:1300
 msgid "translator_credits"
 msgstr "차영호 <ganadist@mizi.com>"
 
-#: src/yelp-window.c:1295
+#: src/yelp-window.c:1305
 msgid "A Help Browser for GNOME"
 msgstr "그놈용 도움말 브라우저"
 
@@ -620,7 +620,7 @@ msgstr "참고문헌 절"
 
 #: stylesheets/l10n.xml.in.h:59
 msgid "Release Information"
-msgstr ""
+msgstr "릴리즈 정보"
 
 #: stylesheets/l10n.xml.in.h:60
 msgid "Revision History"
