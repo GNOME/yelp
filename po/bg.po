@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10 gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-18 17:01+0200\n"
-"PO-Revision-Date: 2004-12-18 17:00+0200\n"
+"POT-Creation-Date: 2004-12-22 11:47+0200\n"
+"PO-Revision-Date: 2004-12-22 11:49+0200\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: data/man.xml.in.h:1 data/toc.xml.in.h:4 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Програми"
 
-#: data/man.xml.in.h:2
+#: data/man.xml.in.h:2 src/yelp-man.c:444
 msgid "Configuration Files"
 msgstr "Конфигурационни файлове"
 
-#: data/man.xml.in.h:3
+#: data/man.xml.in.h:3 src/yelp-man.c:434
 msgid "Development"
 msgstr "Разработка"
 
@@ -34,23 +34,23 @@ msgstr "Разработка"
 msgid "FORTRAN Functions"
 msgstr "Функции на езика FORTRAN"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: data/man.xml.in.h:5 data/toc.xml.in.h:7 src/yelp-man.c:449
 msgid "Games"
 msgstr "Игри"
 
-#: data/man.xml.in.h:6
+#: data/man.xml.in.h:6 src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "Хардуерни устройства"
 
-#: data/man.xml.in.h:7
+#: data/man.xml.in.h:7 src/yelp-man.c:374
 msgid "Kernel Routines"
 msgstr "Функции на ядрото"
 
-#: data/man.xml.in.h:8
+#: data/man.xml.in.h:8 src/yelp-man.c:369
 msgid "Library Functions"
 msgstr "Библиотечни функции"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:779
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:780
 msgid "Man Pages"
 msgstr "Страници на ръководствата"
 
@@ -66,7 +66,7 @@ msgstr "Настройка на OpenSSL"
 msgid "OpenSSL Overviews"
 msgstr "Преглед на OpenSSL"
 
-#: data/man.xml.in.h:13
+#: data/man.xml.in.h:13 src/yelp-man.c:454
 msgid "Overviews"
 msgstr "Прегледи"
 
@@ -78,11 +78,11 @@ msgstr "Функции на езика Perl"
 msgid "Qt Functions"
 msgstr "Функции на библиотеката Qt"
 
-#: data/man.xml.in.h:16
+#: data/man.xml.in.h:16 src/yelp-man.c:459
 msgid "System Administration"
 msgstr "Системна администрация"
 
-#: data/man.xml.in.h:17
+#: data/man.xml.in.h:17 src/yelp-man.c:364
 msgid "System Calls"
 msgstr "Системни извиквания"
 
@@ -138,7 +138,7 @@ msgstr "Образователни програми"
 msgid "Graphics"
 msgstr "Графика"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1058
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1060
 msgid "Help Contents"
 msgstr "Съдържание"
 
@@ -181,38 +181,6 @@ msgstr "Системни инструменти"
 #: data/toc.xml.in.h:19
 msgid "X Applications"
 msgstr "Графични програми"
-
-#: data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Шрифт за фиксиран текст"
-
-#: data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Шрифт на текст"
-
-#: data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Шрифт за текст с фиксирана ширина."
-
-#: data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Шрифт за текст с променлива ширина."
-
-#: data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Употреба на каретка управлявана с клавиатура при преглед на страници."
-
-#: data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr "Използване на каретка"
-
-#: data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr "Използване на системните шрифтове"
-
-#: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
-msgstr "Използване на стандартните шрифтове на системата."
 
 #: data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -278,7 +246,39 @@ msgstr "_Променлива ширина:"
 msgid "_Wrap around"
 msgstr "_Пренасяне"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2043
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Шрифт за фиксиран текст"
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Шрифт на текст"
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Шрифт за текст с фиксирана ширина."
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Шрифт за текст с променлива ширина."
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr "Употреба на каретка управлявана с клавиатура при преглед на страници."
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr "Използване на каретка"
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr "Използване на системните шрифтове"
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr "Използване на стандартните шрифтове на системата."
+
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2044
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -339,6 +339,35 @@ msgstr "Прозорецът не може да бъде отворен."
 msgid "Help"
 msgstr "Потребителско ръководство"
 
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
 #: src/yelp-pager.c:120
 msgid "Document Information"
 msgstr "Информация относно документа"
@@ -347,25 +376,51 @@ msgstr "Информация относно документа"
 msgid "The YelpDocInfo struct of the document"
 msgstr "Структурата YelpDocInfo на документа"
 
-#: src/yelp-toc-pager.c:267
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr "yelp-watermark-blockquote-201E"
+
+#: src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Броенето на паузата е отрицателно."
 
-#: src/yelp-toc-pager.c:490
+#: src/yelp-toc-pager.c:491
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Файлът OMF \"%s\" не може да бъде зареден."
 
-#: src/yelp-toc-pager.c:681
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "Прочитане на иструкциите за %s"
 
-#: src/yelp-toc-pager.c:1003
+#: src/yelp-toc-pager.c:1005 src/yelp-xslt-pager.c:352
 msgid "No href attribute found on yelp:document"
 msgstr "Не е намерен атрибутът href в този документ на Yelp"
 
-#: src/yelp-toc-pager.c:1017
+#: src/yelp-toc-pager.c:1019 src/yelp-xslt-pager.c:367
 msgid "Out of memory"
 msgstr "Няма достатъчно памет"
 
@@ -495,13 +550,13 @@ msgstr "Зареждане..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2040
+#: src/yelp-window.c:2041
 msgid "translator-credits"
 msgstr ""
 "Александър Шопов <ash@contact.bg>\n"
 "Владимир \"Kaladan\" Петков <vpetkov@i-space.org>"
 
-#: src/yelp-window.c:2045
+#: src/yelp-window.c:2046
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 "Програма за преглед на потребителските ръководства за работната среда GNOME."
@@ -509,29 +564,3 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Помощ за GNOME"
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use either 201C or 201E, depending on whether
-#. the opening quote is raised or at the baseline.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: src/yelp-settings.c:125
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201E"
