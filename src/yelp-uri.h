@@ -25,6 +25,7 @@
 #define __YELP_URI_H__
 
 #include <glib.h>
+#include <glib-object.h>
 
 #define YELP_TYPE_URI         (yelp_uri_get_type ())
 #define YELP_URI(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_URI, YelpURI))
