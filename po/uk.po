@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-06-03 10:30+0300\n"
-"PO-Revision-Date: 2002-06-03 09:37+0200\n"
+"POT-Creation-Date: 2002-07-02 12:00+0300\n"
+"PO-Revision-Date: 2002-07-02 11:15+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрика Yelp"
 
-#: src/yelp-main.c:111
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не вдалося активувати Yelp: \"%s\""
 
-#: src/yelp-main.c:130
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Не вдалося відкрити нове вікно."
 
@@ -145,13 +145,13 @@ msgstr "Інформаційні сторінки"
 
 #: src/yelp-view-toc.c:384
 #: src/yelp-view-toc.c:568
-#: src/yelp-view-toc.c:786
+#: src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Документи"
 
 #: src/yelp-view-toc.c:385
 #: src/yelp-view-toc.c:512
-#: src/yelp-view-toc.c:787
+#: src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Категорії"
 
@@ -159,96 +159,108 @@ msgstr "Категорії"
 msgid "Manual pages"
 msgstr "Сторінки посібника"
 
-#: src/yelp-window.c:156
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME - це"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Вільне програмне забезпечення"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Файл/_Нове вікно"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Файл/_Закрити вікно"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:160
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/_Перейти"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Перейти/_Вперед"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Перейти/_Назад"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Перейти/_Домівка"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Перейти/_Покажчик"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Довідка"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Довідка/_Про"
 
-#: src/yelp-window.c:228
-#: src/yelp-window.c:430
+#: src/yelp-window.c:231
+#: src/yelp-window.c:433
 msgid "Help Browser"
 msgstr "Перегляд довідки"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:343
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Документ \"%s\" не існує"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:599
+#: src/yelp-window.c:602
 msgid "translator_credits"
 msgstr "Юрій Сирота"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:606
 msgid "Help Browser for GNOME 2.0"
 msgstr "Перегляд довідки для GNOME 2.0"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:661
 msgid "Back"
 msgstr "Назад"
 
-#: src/yelp-window.c:659
+#: src/yelp-window.c:662
 msgid "Show previous page in history"
 msgstr "Показати попередню сторінку в історії"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:673
 msgid "Forward"
 msgstr "Вперед"
 
-#: src/yelp-window.c:671
+#: src/yelp-window.c:674
 msgid "Show next page in history"
 msgstr "Показати наступну сторінку в історії"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:687
 msgid "Home"
 msgstr "Домівка"
 
-#: src/yelp-window.c:685
+#: src/yelp-window.c:688
 msgid "Go to home view"
 msgstr "Показати домівку"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:698
 msgid "Index"
 msgstr "Покажчик"
 
-#: src/yelp-window.c:696
+#: src/yelp-window.c:699
 msgid "Search in the index"
 msgstr "Пошук в показнику"
 
