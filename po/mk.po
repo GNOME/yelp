@@ -1,20 +1,24 @@
+# translation of yelp.HEAD.mk.po to 
+# translation of yelp.HEAD.mk.po to Macedonian
 # translation of yelp.HEAD.po to Macedonian
 # Yelp translated on Macedonian
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002,2003 Free Software Foundation, Inc.
 # Stojcev Darko <atom1c@linux.net.mk
 # http://www.linux.net.mk
 # Ivan Stojmirov <stojmir@linux.net.mk>, 2002
+# Igor Popovski <igor@popovski.com.mk>, 2003
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
-"POT-Creation-Date: 2003-06-04 11:54+0200\n"
-"PO-Revision-Date: 2002-12-15 22:48+0100\n"
-"Last-Translator: Ivan Stojmirov <stojmir@linux.net.mk>\n"
-"Language-Team: Macedonian <mk@li.org>\n"
+"Project-Id-Version: yelp.HEAD.mk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-13 21:05+0200\n"
+"PO-Revision-Date: 2003-06-15 09:41+0200\n"
+"Last-Translator: \n"
+"Language-Team:  <mk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0beta2\n"
+"X-Generator: KBabel 1.0\n"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -22,7 +26,7 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr "<b>Најди текст во документот:</b>"
+msgstr "<b>Најди текст во документот:  </b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
@@ -58,12 +62,12 @@ msgstr "Yelp фабрика"
 
 #: src/yelp-main.c:94
 msgid "Define which cache dir to use"
-msgstr ""
+msgstr "Дефинирај кој кеш директориум да се користи"
 
 #: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Неможам да го активирам Yelp: '%s'"
+msgstr "Неможам да го активирам Yelp:  '%s'"
 
 #: src/yelp-main.c:147
 msgid "Could not open new window."
@@ -148,7 +152,7 @@ msgstr "Оддел"
 
 #: src/yelp-view-index.c:480
 msgid "_Search for:"
-msgstr "_Пребарај:"
+msgstr "_Пребарај: "
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -263,7 +267,6 @@ msgid "translator_credits"
 msgstr "заслуги_на преведувачите"
 
 #: src/yelp-window.c:681
-#, fuzzy
 msgid "A Help Browser for GNOME"
 msgstr "Прелистувач на документи за помош за GNOME 2.0"
 
@@ -317,3 +320,4 @@ msgstr "Помош "
 
 #~ msgid "Error while applying the stylesheet."
 #~ msgstr "Се јави грешка при применување на stylesheet-от"
+
