@@ -430,6 +430,7 @@
 <xsl:template name="yelp.multichunk">
 <xsl:param name="type"/>
 <xsl:param name="container"/>
+<xsl:param name="root" select="."/>
 
 <xsl:comment> End of header </xsl:comment>
 <xsl:comment> Start of chunk: [title-page] </xsl:comment>
@@ -447,7 +448,7 @@
 
 <xsl:comment> End of chunk </xsl:comment>
 
-<xsl:for-each select="sect1">
+<xsl:for-each select="$root/sect1">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="article.render.chunk">
    <xsl:with-param name="title" select="$container/title"/> 
@@ -455,7 +456,7 @@
   <xsl:comment> End of chunk </xsl:comment>
 </xsl:for-each>
 
-<xsl:for-each select="sect1/sect2">
+<xsl:for-each select="$root/sect1/sect2">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="article.render.chunk"> 
     <xsl:with-param name="title" select="$container/title"/>
@@ -463,7 +464,7 @@
   <xsl:comment> End of chunk </xsl:comment>
 </xsl:for-each>
 
-<xsl:for-each select="sect1/sect2/sect3">
+<xsl:for-each select="$root/sect1/sect2/sect3">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="article.render.chunk">
     <xsl:with-param name="title" select="$container/title"/>
@@ -485,17 +486,20 @@
 <xsl:call-template name="yelp.generic.root">
   <xsl:with-param name="container" select="/part/partinfo"/>
   <xsl:with-param name="type" select="'part'"/>
+  <xsl:with-param name="root" select="chapter"/>
 </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="yelp.generic.root">
 <xsl:param name="type"/>
 <xsl:param name="container"/>
+<xsl:param name="root" select="."/>
   <xsl:choose>
     <xsl:when test="$gdb_multichunk=1">
       <xsl:call-template name="yelp.multichunk">
         <xsl:with-param name="type" select="$type"/>
         <xsl:with-param name="container" select="$container"/>
+        <xsl:with-param name="root" select="$root"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:when test="$gdb_rootid = ''">
