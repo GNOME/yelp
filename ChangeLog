@@ -1,5 +1,10 @@
 2003-12-06  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-pager.c:
+	- Checking for NULL in pager_set_property before g_object_ref'ing.
+
+2003-12-06  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-toc-pager.c:
 	- Patch from Diego González to fix crashing bug in g_object_new.
 

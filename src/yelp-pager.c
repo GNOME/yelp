@@ -195,8 +195,12 @@ pager_set_property (GObject      *object,
     case PROP_URI:
 	if (pager->priv->uri)
 	    g_object_unref (pager->priv->uri);
+
 	pager->priv->uri = (YelpURI *) g_value_get_object (value);
-	g_object_ref (pager->priv->uri);
+
+	if (pager->priv->uri)
+	    g_object_ref (pager->priv->uri);
+
 	break;
     default:
 	break;
