@@ -37,7 +37,8 @@
 			<div>
 				<h2 class="author">
 					<xsl:call-template name="ngettext">
-						<xsl:with-param name="key" select="'Author'"/>
+						<xsl:with-param name="msgid" select="'Author'"/>
+						<xsl:with-param name="msgid_plural" select="'Authors'"/>
 						<xsl:with-param name="num" select="count($authors)"/>
 					</xsl:call-template>
 				</h2>
@@ -50,7 +51,8 @@
 			<div>
 				<h2 class="editor">
 					<xsl:call-template name="ngettext">
-						<xsl:with-param name="key" select="'Editor'"/>
+						<xsl:with-param name="msgid" select="'Editor'"/>
+						<xsl:with-param name="msgid_plural" select="'Editors'"/>
 						<xsl:with-param name="num" select="count($editors)"/>
 					</xsl:call-template>
 				</h2>
@@ -63,7 +65,8 @@
 			<div>
 				<h2 class="collab">
 					<xsl:call-template name="ngettext">
-						<xsl:with-param name="key" select="'Collaborator'"/>
+						<xsl:with-param name="msgid" select="'Collaborator'"/>
+						<xsl:with-param name="msgid_plural" select="'Collaborators'"/>
 						<xsl:with-param name="num" select="count($collabs)"/>
 					</xsl:call-template>
 				</h2>
@@ -76,7 +79,8 @@
 			<div>
 				<h2 class="othercredit">
 					<xsl:call-template name="ngettext">
-						<xsl:with-param name="key" select="'Other Contributor'"/>
+						<xsl:with-param name="msgid" select="'Other Contributor'"/>
+						<xsl:with-param name="msgid_plural" select="'Other Contributors'"/>
 						<xsl:with-param name="num" select="count($credits)"/>
 					</xsl:call-template>
 				</h2>
@@ -89,7 +93,8 @@
 			<div>
 				<h2 class="publisher">
 					<xsl:call-template name="ngettext">
-						<xsl:with-param name="key" select="'Publisher'"/>
+						<xsl:with-param name="msgid" select="'Publishers'"/>
+						<xsl:with-param name="msgid_plural" select="'Publishers'"/>
 						<xsl:with-param name="num" select="count(publisher)"/>
 					</xsl:call-template>
 				</h2>
@@ -102,7 +107,8 @@
 			<div>
 				<h2 class="copyright">
 					<xsl:call-template name="ngettext">
-						<xsl:with-param name="key" select="'Copyright'"/>
+						<xsl:with-param name="msgid" select="'Copyright'"/>
+						<xsl:with-param name="msgid_plural" select="'Copyrights'"/>
 						<xsl:with-param name="num" select="count(copyright)"/>
 					</xsl:call-template>
 				</h2>
@@ -148,7 +154,7 @@
 		<dd>
 			<i>
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'Affiliation'"/>
+					<xsl:with-param name="msgid" select="'Affiliation'"/>
 				</xsl:call-template>
 				<xsl:text>: </xsl:text>
 			</i>
@@ -159,7 +165,7 @@
 		<dd>
 			<strong>
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'Email'"/>
+					<xsl:with-param name="msgid" select="'Email'"/>
 				</xsl:call-template>
 				<xsl:text>: </xsl:text>
 			</strong>
@@ -181,7 +187,7 @@
 		<dd>
 			<strong>
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'Affiliation'"/>
+					<xsl:with-param name="msgid" select="'Affiliation'"/>
 				</xsl:call-template>
 				<xsl:text>: </xsl:text>
 			</strong>
@@ -203,7 +209,7 @@
 <xsl:template match="copyright" mode="titlepage.mode">
 	<dt>
 		<xsl:call-template name="gettext">
-			<xsl:with-param name="key" select="'Copyright'"/>
+			<xsl:with-param name="msgid" select="'Copyright'"/>
 		</xsl:call-template>
 		<xsl:text>&#x00A0;&#x00A9;&#x00A0;</xsl:text>
 		<xsl:for-each select="year">
@@ -232,7 +238,7 @@
 		<dd>
 			<strong>
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'Email'"/>
+					<xsl:with-param name="msgid" select="'Email'"/>
 				</xsl:call-template>
 				<xsl:text>: </xsl:text>
 			</strong>
@@ -256,7 +262,7 @@
 			<xsl:otherwise>
 				<h2 class="{name(.)}">
 					<xsl:call-template name="gettext">
-						<xsl:with-param name="key" select="'Legal Notice'"/>
+						<xsl:with-param name="msgid" select="'Legal Notice'"/>
 					</xsl:call-template>
 				</h2>
 			</xsl:otherwise>
@@ -284,7 +290,7 @@
 		<dd>
 			<strong>
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'Email'"/>
+					<xsl:with-param name="msgid" select="'Email'"/>
 				</xsl:call-template>
 				<xsl:text>: </xsl:text>
 			</strong>
@@ -312,34 +318,34 @@
 	<div class="{name(.)}">
 		<h2 class="{name(.)}">
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'Revision History'"/>
+				<xsl:with-param name="msgid" select="'Revision History'"/>
 			</xsl:call-template>
 		</h2>
 		<table class="{name(.)}">
 			<xsl:attribute name="summary">
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'Revision History'"/>
+					<xsl:with-param name="msgid" select="'Revision History'"/>
 				</xsl:call-template>
 			</xsl:attribute>
 			<thead><tr>
 				<th>
 					<xsl:call-template name="gettext">
-						<xsl:with-param name="key" select="'Title'"/>
+						<xsl:with-param name="msgid" select="'Title'"/>
 					</xsl:call-template>
 				</th>
 				<th>
 					<xsl:call-template name="gettext">
-						<xsl:with-param name="key" select="'Date'"/>
+						<xsl:with-param name="msgid" select="'Date'"/>
 					</xsl:call-template>
 				</th>
 				<th>
 					<xsl:call-template name="gettext">
-						<xsl:with-param name="key" select="'Author'"/>
+						<xsl:with-param name="msgid" select="'Author'"/>
 					</xsl:call-template>
 				</th>
 				<th>
 					<xsl:call-template name="gettext">
-						<xsl:with-param name="key" select="'Publisher'"/>
+						<xsl:with-param name="msgid" select="'Publisher'"/>
 					</xsl:call-template>
 				</th>
 			</tr></thead>

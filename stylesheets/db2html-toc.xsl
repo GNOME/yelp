@@ -57,7 +57,7 @@
 		<xsl:call-template name="node.heading">
 			<xsl:with-param name="content">
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'Table of Contents'"/>
+					<xsl:with-param name="msgid" select="'Table of Contents'"/>
 				</xsl:call-template>
 			</xsl:with-param>
 		</xsl:call-template>

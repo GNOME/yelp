@@ -1,4 +1,20 @@
-2003-01-02  Shaun McCance  <shaunm@gnome.org>
+2004-01-08  Shaun McCance  <shaunm@gnome.org>
+
+	* stylesheets/Makefile.am:
+	* stylesheets/db2html-block.xsl:
+	* stylesheets/db2html-glossary.xsl:
+	* stylesheets/db2html-header.xsl:
+	* stylesheets/db2html-html.xsl:
+	* stylesheets/db2html-inline.xsl:
+	* stylesheets/db2html-titlepage.xsl:
+	* stylesheets/db2html-toc.xsl:
+	* stylesheets/db2html-xref.xsl:
+	* stylesheets/gettext.xsl:
+	* stylesheets/l10n.xml:
+	* stylesheets/l10n.xml.in:
+	- Made translations work in XSLT, still need to do plurals.
+
+2004-01-02  Shaun McCance  <shaunm@gnome.org>
 
 	* stylesheets/db2html-param.xsl
 	- Implement yelp:chunk-depth PI.

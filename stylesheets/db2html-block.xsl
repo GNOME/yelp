@@ -41,7 +41,7 @@
 		<xsl:call-template name="anchor"/>
 		<b>
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key">
+				<xsl:with-param name="msgid">
 					<xsl:choose>
 						<xsl:when test="name(.) = 'msgaud'">
 							<xsl:value-of select="'Audience'"/>

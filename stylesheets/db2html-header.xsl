@@ -98,67 +98,67 @@
 
 <xsl:template mode="header.mode" match="appendixinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Appendix'"/>
+		<xsl:with-param name="msgid" select="'About This Appendix'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="articleinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Article'"/>
+		<xsl:with-param name="msgid" select="'About This Article'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="bibliographyinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Bibliography'"/>
+		<xsl:with-param name="msgid" select="'About This Bibliography'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="bookinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Book'"/>
+		<xsl:with-param name="msgid" select="'About This Book'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="chapterinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Chapter'"/>
+		<xsl:with-param name="msgid" select="'About This Chapter'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="glossaryinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Glossary'"/>
+		<xsl:with-param name="msgid" select="'About This Glossary'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="indexinfo | setindexinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Index'"/>
+		<xsl:with-param name="msgid" select="'About This Index'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="partinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Part'"/>
+		<xsl:with-param name="msgid" select="'About This Part'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="prefaceinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Preface'"/>
+		<xsl:with-param name="msgid" select="'About This Preface'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="refentryinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Entry'"/>
+		<xsl:with-param name="msgid" select="'About This Entry'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="referenceinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Reference'"/>
+		<xsl:with-param name="msgid" select="'About This Reference'"/>
 	</xsl:call-template>
 </xsl:template>
 
@@ -167,13 +167,13 @@
 		sect1info		| sect2info		| sect3info		| sect4info			|
 		sect5info		| sectioninfo	">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Section'"/>
+		<xsl:with-param name="msgid" select="'About This Section'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="setinfo">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'About This Set'"/>
+		<xsl:with-param name="msgid" select="'About This Set'"/>
 	</xsl:call-template>
 </xsl:template>
 
@@ -188,165 +188,165 @@
 
 <xsl:template mode="header.name.mode" match="appendix">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Appendix'"/>
+		<xsl:with-param name="msgid" select="'Appendix'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="article">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Article'"/>
+		<xsl:with-param name="msgid" select="'Article'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="book">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Book'"/>
+		<xsl:with-param name="msgid" select="'Book'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="bibliography">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Bigliography'"/>
+		<xsl:with-param name="msgid" select="'Bigliography'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="caution">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Caution'"/>
+		<xsl:with-param name="msgid" select="'Caution'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="chapter">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Chapter'"/>
+		<xsl:with-param name="msgid" select="'Chapter'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="colophon">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Colophon'"/>
+		<xsl:with-param name="msgid" select="'Colophon'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="dedication">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Dedication'"/>
+		<xsl:with-param name="msgid" select="'Dedication'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="example">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Example'"/>
+		<xsl:with-param name="msgid" select="'Example'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="figure">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Figure'"/>
+		<xsl:with-param name="msgid" select="'Figure'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="glossary">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Glossary'"/>
+		<xsl:with-param name="msgid" select="'Glossary'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="important">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Important'"/>
+		<xsl:with-param name="msgid" select="'Important'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="index">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Index'"/>
+		<xsl:with-param name="msgid" select="'Index'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="msgaud">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Message Audience'"/>
+		<xsl:with-param name="msgid" select="'Message Audience'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="msglevel">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Message Level'"/>
+		<xsl:with-param name="msgid" select="'Message Level'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="msgorig">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Message Origin'"/>
+		<xsl:with-param name="msgid" select="'Message Origin'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="note">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Note'"/>
+		<xsl:with-param name="msgid" select="'Note'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="part">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Part'"/>
+		<xsl:with-param name="msgid" select="'Part'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="preface">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Preface'"/>
+		<xsl:with-param name="msgid" select="'Preface'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="reference">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Reference'"/>
+		<xsl:with-param name="msgid" select="'Reference'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="refentry">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Reference Entry'"/>
+		<xsl:with-param name="msgid" select="'Reference Entry'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="
 		refsect1 | refsect2 | refsect3 | refsection">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Reference Section'"/>
+		<xsl:with-param name="msgid" select="'Reference Section'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="
 		sect1 | sect2 | sect3 | sect4 | section | simplesect">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Section'"/>
+		<xsl:with-param name="msgid" select="'Section'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="setindex">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Set Index'"/>
+		<xsl:with-param name="msgid" select="'Set Index'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="table">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Table'"/>
+		<xsl:with-param name="msgid" select="'Table'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="tip">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Tip'"/>
+		<xsl:with-param name="msgid" select="'Tip'"/>
 	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.name.mode" match="warning">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Warning'"/>
+		<xsl:with-param name="msgid" select="'Warning'"/>
 	</xsl:call-template>
 </xsl:template>
 
@@ -361,7 +361,7 @@
 
 <xsl:template mode="header.name.mode" match="*">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Unknown'"/>
+		<xsl:with-param name="msgid" select="'Unknown'"/>
 	</xsl:call-template>
 </xsl:template>
 

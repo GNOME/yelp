@@ -1,3 +1,5 @@
+@INTLTOOL_XML_RULE@
+
 yelpcustomizationdir=$(datadir)/sgml/docbook/yelp
 
 yelpcustomization_DATA = 	\
@@ -30,6 +32,7 @@ yelpcustomization_DATA = 	\
 	db2html-toc.xsl		\
 	db2html-xref.xsl	\
 	db2html.xsl		\
-	gettext.xsl
+	gettext.xsl		\
+	l10n.xml
 
 EXTRA_DIST=$(yelpcustomization_DATA)

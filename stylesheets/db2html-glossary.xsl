@@ -8,7 +8,7 @@
 		<xsl:if test="glossseealso">
 			<p>
 				<xsl:call-template name="gettext">
-					<xsl:with-param name="key" select="'See Also'"/>
+					<xsl:with-param name="msgid" select="'See Also'"/>
 				</xsl:call-template>
 				<xsl:text> </xsl:text>
 				<xsl:for-each select="glossseealso">
@@ -53,7 +53,7 @@
 	<dd>
 		<p>
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'See'"/>
+				<xsl:with-param name="msgid" select="'See'"/>
 			</xsl:call-template>
 			<xsl:choose>
 				<xsl:when test="@otherterm">

@@ -118,11 +118,11 @@
 	<xsl:choose>
 		<xsl:when test="@pubwork = 'article'">
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'&#8220;'"/>
+				<xsl:with-param name="msgid" select="'&#8220;'"/>
 			</xsl:call-template>
 			<xsl:call-template name="inline"/>
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'&#8221;'"/>
+				<xsl:with-param name="msgid" select="'&#8221;'"/>
 			</xsl:call-template>
 		</xsl:when>
 		<xsl:otherwise>
@@ -474,20 +474,20 @@
 	<xsl:choose>
 		<xsl:when test="(count(ancestor::quote) mod 2) = 0">
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'&#8220;'"/>
+				<xsl:with-param name="msgid" select="'&#8220;'"/>
 			</xsl:call-template>
 			<xsl:apply-templates/>
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'&#8221;'"/>
+				<xsl:with-param name="msgid" select="'&#8221;'"/>
 			</xsl:call-template>
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'&#8216;'"/>
+				<xsl:with-param name="msgid" select="'&#8216;'"/>
 			</xsl:call-template>
 			<xsl:apply-templates/>
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'&#8217;'"/>
+				<xsl:with-param name="msgid" select="'&#8217;'"/>
 			</xsl:call-template>
 		</xsl:otherwise>
 	</xsl:choose>

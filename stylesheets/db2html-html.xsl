@@ -350,7 +350,7 @@ div[class="attribution"] {
 								</xsl:call-template>
 							</xsl:attribute>
 							<xsl:call-template name="gettext">
-								<xsl:with-param name="key" select="'Contents'"/>
+								<xsl:with-param name="msgid" select="'Contents'"/>
 							</xsl:call-template>
 						</a>
 					</xsl:if>

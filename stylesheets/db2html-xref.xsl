@@ -126,7 +126,7 @@
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:call-template name="gettext">
-				<xsl:with-param name="key" select="'Table of Contents'"/>
+				<xsl:with-param name="msgid" select="'Table of Contents'"/>
 			</xsl:call-template>
 		</xsl:otherwise>
 	</xsl:choose>
@@ -134,7 +134,7 @@
 
 <xsl:template mode="xref.content.mode" match="book">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="key" select="'Table of Contents'"/>
+		<xsl:with-param name="msgid" select="'Table of Contents'"/>
 	</xsl:call-template>
 </xsl:template>
 
