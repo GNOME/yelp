@@ -375,7 +375,7 @@ db_pager_cancel (YelpPager *pager)
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 
     gtk_tree_store_clear (GTK_TREE_STORE (priv->sects));
-    g_hash_table_foreach_remove (priv->frags_hash, gtk_true, NULL);
+    g_hash_table_foreach_remove (priv->frags_hash, (GHRFunc) gtk_true, NULL);
 
     g_free (priv->root_id);
     priv->root_id = NULL;

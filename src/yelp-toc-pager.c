@@ -33,6 +33,7 @@
 #include <libxml/xmlreader.h>
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
+#include <libxml/HTMLtree.h>
 #include <libxslt/xslt.h>
 #include <libxslt/templates.h>
 #include <libxslt/transform.h>
@@ -621,7 +622,7 @@ process_mandir_pending (YelpTocPager *pager)
 				    NULL);
     dir = g_dir_open (dirname, 0, NULL);
     if (dir) {
-	while (filename = g_dir_read_name (dir)) {
+	while ((filename = (gchar *) g_dir_read_name (dir))) {
 	    gchar *c1 = NULL, *c2 = NULL, *manname, *mansect, *manman;
 
 	    c1 = g_strrstr (filename, ".bz2");
@@ -785,7 +786,8 @@ process_read_menu (YelpTocPager *pager)
 	icon = xmlGetProp (node, "icon");
 	if (icon) {
 	    GtkIconInfo *info;
-	    const GtkIconTheme *theme = yelp_settings_get_icon_theme ();
+	    GtkIconTheme *theme = 
+		(GtkIconTheme *) yelp_settings_get_icon_theme ();
 	    info = gtk_icon_theme_lookup_icon (theme, icon, 48, 0);
 	    if (info) {
 		xmlNodePtr new = xmlNewChild (node, NULL, "icon", NULL);
@@ -852,17 +854,17 @@ static gboolean
 process_xslt (YelpTocPager *pager)
 {
     GError *error = NULL;
-    xmlDocPtr *outdoc;
+    xmlDocPtr outdoc;
     YelpTocPagerPriv *priv = pager->priv;
     const gchar *params[10];
     gint  params_i = 0;
     GtkIconInfo *info;
-    const GtkIconTheme *theme = yelp_settings_get_icon_theme ();
+    GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
 
     priv->stylesheet = xsltParseStylesheetFile (TOC_STYLESHEET);
     if (!priv->stylesheet) {
 	yelp_set_error (&error, YELP_ERROR_PROC);
-	yelp_pager_error (pager, error);
+	yelp_pager_error (YELP_PAGER (pager), error);
 	goto done;
     }
 
@@ -895,7 +897,7 @@ process_xslt (YelpTocPager *pager)
  done:
     for (params_i = 0; params[params_i] != NULL; params_i++)
 	if (params_i % 2 == 1)
-	    g_free (params[params_i]);
+	    g_free ((gchar *) params[params_i]);
     if (outdoc)
 	xmlFreeDoc (outdoc);
     if (priv->toc_doc) {
@@ -935,11 +937,11 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
     xmlNewNsProp (new, NULL, "href", text);
     g_free (text);
 
-    text = yelp_doc_info_get_title (doc_info);
+    text = (gchar *) yelp_doc_info_get_title (doc_info);
     xmlNewTextChild (new, NULL, "title", text);
     g_free (text);
 
-    text = yelp_doc_info_get_description (doc_info);
+    text = (gchar *) yelp_doc_info_get_description (doc_info);
     xmlNewTextChild (new, NULL, "description", text);
     g_free (text);
 }
@@ -1032,7 +1034,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
 
-    htmlDocDumpMemory (new_doc, &page_buf, &buf_size, 0);
+    htmlDocDumpMemory (new_doc, &page_buf, &buf_size);
 
     ctxt->outputFile = old_outfile;
     ctxt->output     = old_doc;

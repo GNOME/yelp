@@ -33,6 +33,7 @@
 #include "yelp-pager.h"
 #include "yelp-toc-pager.h"
 #include "yelp-base.h"
+#include "yelp-bookmarks.h"
 
 gboolean main_running;
 

@@ -93,10 +93,10 @@ struct _YelpDocPage {
     gchar *toc_id;
 };
 
-YelpDocInfo *       yelp_doc_info_new           (gchar         *uri);
-YelpDocInfo *       yelp_doc_info_get           (gchar         *uri);
+YelpDocInfo *       yelp_doc_info_new           (const gchar   *uri);
+YelpDocInfo *       yelp_doc_info_get           (const gchar   *uri);
 void                yelp_doc_info_add_uri       (YelpDocInfo   *doc_info,
-						 gchar         *uri,
+						 const gchar   *uri,
 						 YelpURIType    type);
 YelpDocInfo *       yelp_doc_info_ref           (YelpDocInfo   *doc);
 void                yelp_doc_info_unref         (YelpDocInfo   *doc);
@@ -134,7 +134,7 @@ gboolean            yelp_doc_info_equal         (YelpDocInfo   *doc1,
 
 void                yelp_doc_page_free          (YelpDocPage   *page);
 
-gchar *             yelp_uri_get_fragment       (gchar         *uri);
+gchar *             yelp_uri_get_fragment       (const gchar   *uri);
 gchar *             yelp_uri_get_relative       (gchar         *base,
 						 gchar         *ref);
 

@@ -60,7 +60,7 @@ GType            yelp_window_get_type        (void);
 GtkWidget *      yelp_window_new             (GNode         *doc_tree,
 					      GList         *index);
 void             yelp_window_load            (YelpWindow    *window,
-					      gchar         *uri);
+					      const gchar   *uri);
 YelpDocInfo *    yelp_window_get_doc_info    (YelpWindow    *window);
 GtkUIManager *   yelp_window_get_ui_manager  (YelpWindow    *window);
 

@@ -79,7 +79,7 @@ static gchar *      convert_info_uri   (gchar   *uri);
 
 
 YelpDocInfo *
-yelp_doc_info_new (gchar *uri)
+yelp_doc_info_new (const gchar *uri)
 {
     YelpDocInfo *doc;
     gchar       *doc_uri  = NULL;
@@ -161,7 +161,7 @@ yelp_doc_info_new (gchar *uri)
 }
 
 YelpDocInfo *
-yelp_doc_info_get (gchar *uri)
+yelp_doc_info_get (const gchar *uri)
 {
     YelpDocInfo *doc;
     gint i;
@@ -454,7 +454,7 @@ yelp_doc_page_free (YelpDocPage *page)
 }
 
 gchar *
-yelp_uri_get_fragment (gchar *uri)
+yelp_uri_get_fragment (const gchar *uri)
 {
     gchar *cur;
     gchar *frag_id = NULL;
@@ -528,7 +528,7 @@ get_doc_type (gchar *uri)
 
 void
 yelp_doc_info_add_uri (YelpDocInfo *doc_info,
-		       gchar       *uri,
+		       const gchar *uri,
 		       YelpURIType  type)
 {
     DocInfoURI *info_uri;

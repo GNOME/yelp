@@ -671,7 +671,7 @@ yelp_window_new (GNode *doc_tree, GList *index)
 }
 
 void
-yelp_window_load (YelpWindow *window, gchar *uri)
+yelp_window_load (YelpWindow *window, const gchar *uri)
 {
     YelpWindowPriv *priv;
     YelpDocInfo    *doc_info;
@@ -1620,7 +1620,7 @@ html_popupmenu_requested_cb (YelpHtml *html,
     YelpWindow *window = YELP_WINDOW (user_data);
 
     window->priv->uri = g_strdup (uri);
-    gtk_menu_popup (window->priv->popup,
+    gtk_menu_popup (GTK_MENU (window->priv->popup),
 		    NULL, NULL, NULL, NULL, 3, gtk_get_current_event_time());
 }
 
