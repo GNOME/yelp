@@ -1,6 +1,6 @@
 # Bulgarian translation of Yelp po file
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# Alexander Shopov <al_shopov@web.bg>, 2002.
+# Alexander Shopov <ash@contact.bg>, 2002.
 # small update for completeness, Yanko Kaneti <yaneti@declera.com>, 2002.
 # small update, Vladimir Petkov <vpetkov@i-space.org>, 2004
 # 
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10 gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2004-12-22 11:49+0200\n"
+"POT-Creation-Date: 2005-01-08 22:58+0200\n"
+"PO-Revision-Date: 2005-01-08 22:59+0200\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -191,14 +191,12 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Шрифтове</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Шрифтове</b>"
+msgstr "<b>_Заглавие:</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "Add Bookmark"
-msgstr "_Добавяне на отметка"
+msgstr "Добавяне на отметка"
 
 #: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
@@ -296,12 +294,19 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрика на Yelp"
 
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Отметка с име <b>%s</b>, вече съществува за тази страница."
+
 #: src/yelp-db-pager.c:238
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
+"Файлът \"%s\" не може да бъде прегледан. Или той не съществува, или е "
+"изграден чрез не добре написан XML."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
@@ -309,37 +314,44 @@ msgstr "Неизвестен"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Получи се неизвестна грешка"
 
 #: src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "Документът не може да бъде зареден"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Прозорецът не може да бъде отворен."
+msgstr "Разделът не може да бъде зареден"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Файлът OMF \"%s\" не може да бъде зареден."
+msgstr "Таблицата със съдържанието не може да бъде прочетена"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Този формат не се поддържа"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Документът не може да бъде прочетен"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Документът не може да бъде обработен"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr "За тази грешка няма налична информация."
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
+"Файлът \"%s\" не може да бъде прочитан и декодиран. Възможно е файлът да е "
+"компресиран в неподдържан формат."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -364,6 +376,8 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
+"Файлът \"%s\" не може да бъде прегледан. Или той не съществува, или е "
+"форматиран некоректно."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -418,6 +432,8 @@ msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
+"Таблицата със съдържанието не може да бъде заредена. Или липсва файлът \"%s"
+"\", или таблицата е изградена чрез не добре написан XML."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
@@ -425,6 +441,8 @@ msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
+"Таблицата със съдържанието не може да бъде обработена. Или липсва файлът \"%s"
+"\", или таблицата е изградена чрез невалиден XSLT."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -455,22 +473,20 @@ msgid "_Help"
 msgstr "_Помощ"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "_Нов прозорец"
 
 #: src/yelp-window.c:314
 msgid "About This Document"
-msgstr ""
+msgstr "Относно този документ"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Отваряне на _местоположение"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
-msgstr "_Затваряне на прозоре_ца"
+msgstr "_Затваряне на прозореца"
 
 #: src/yelp-window.c:330
 msgid "_Copy"
@@ -517,14 +533,12 @@ msgid "Go to home view"
 msgstr "Отиване в началото"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "_Предишна страница"
+msgstr "_Предишен раздел"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "_Следваща страница"
+msgstr "_Следващ раздел"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -561,6 +575,8 @@ msgstr "Навигатор на помощта"
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr ""
+"Официалният идентификатор за ресурси(Uniform Resource Identifier) за файла е "
+"невалиден."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
@@ -568,20 +584,24 @@ msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr ""
+"Официалният идентификатор за ресурси \"%s\" е невалиден или не сочи към "
+"съществуващ файл."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1124
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Страници с помощ не се поддържат в тази версия."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1115
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Страниците с информация за GNU не се поддържат в тази версия."
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
+"Документи в SGML формат вече не се поддържат. Моля, поискайте от автора на "
+"документа да го конвертира в XML формат."
 
 #: src/yelp-window.c:1021
 msgid "Fin_d"
@@ -592,7 +612,7 @@ msgstr "_Търсене"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr ""
+msgstr "Не може да се изгради контекст за трансформация на файла \"%s\". Може би форматът не се поддържа."
 
 #: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
 #, c-format
@@ -601,6 +621,9 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
+"Разделът \"%s\" не съществува в този документ. Ако сте се насочили към него, "
+"чрез натискането на бутон \"Помощ\" в някоя програма, то докладвайте за този "
+"проблем на нейните създатели."
 
 #: src/yelp-window.c:1286
 #, c-format
@@ -608,6 +631,8 @@ msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
+"Файлът \"%s\" не може да бъде прочетен. Възможно е той да липсва или пък вие "
+"да нямате права да го четете."
 
 #: src/yelp-window.c:1320
 msgid "Loading..."
@@ -632,6 +657,8 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
+"Файлът \"%s\" не може да бъде прегледан. Или файлът липсва, или не е "
+"форматиран правилно."
 
 #: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
@@ -639,6 +666,8 @@ msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
 msgstr ""
+"Документът \"%s\" не може да бъде обработен. Или файлът \"%s\" липсва, или е "
+"невалиден шаблон на XSLT."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
