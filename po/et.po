@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-02-28 18:10+0200\n"
-"PO-Revision-Date: 2002-02-28 18:10+0200\n"
+"POT-Creation-Date: 2002-03-01 00:47+0200\n"
+"PO-Revision-Date: 2002-03-01 00:50+0200\n"
 "Last-Translator: Tõivo Leedjärv <leedjarv@interest.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +25,12 @@ msgstr ""
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:78
+#: src/yelp-main.c:91
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Ei saa Yelpi aktiveerida: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:110
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
@@ -143,63 +143,105 @@ msgstr "Manuaalilehed"
 msgid "Scrollkeeper docs for category"
 msgstr "Scrollkeeperi dokumendid kategoorias"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:138
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:139
 msgid "/File/_New window"
 msgstr "/Fail/_Uus aken"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:140
 msgid "/File/_Close window"
 msgstr "/Fail/_Sulge aken"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:141
 msgid "/File/_Quit"
 msgstr "/Fail/_Lõpeta"
 
-#: src/yelp-window.c:117
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_Liigu"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Liigu/_Tagasi"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Liigu/_Edasi"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Liigu/_Kodu"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Liigu/_Indeks"
+
+#: src/yelp-window.c:147
 msgid "/_Help"
 msgstr "/_Abi"
 
-#: src/yelp-window.c:118
+#: src/yelp-window.c:148
 msgid "/Help/_About"
 msgstr "/Abi/_Info"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:207
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:414
+#: src/yelp-window.c:529
+msgid "translator_credits"
+msgstr ""
+"Tõlge eesti keelde:\n"
+"       Tõivo Leedjärv <leedjarv@interest.ee>, 2002."
+
+#: src/yelp-window.c:533
 msgid "Help Browser for GNOME 2.0"
 msgstr "GNOME 2.0 abiinfo brauser"
 
-#: src/yelp-window.c:438
+#: src/yelp-window.c:560
+msgid "Back"
+msgstr "Tagasi"
+
+#: src/yelp-window.c:561
 msgid "Show previous page in history"
-msgstr ""
+msgstr "Näita eelmist lehekülge ajaloos"
 
-#: src/yelp-window.c:453
+#: src/yelp-window.c:572
+msgid "Forward"
+msgstr "Edasi"
+
+#: src/yelp-window.c:573
 msgid "Show next page in history"
-msgstr ""
+msgstr "Näita järgmist lehekülge ajaloos"
 
-#: src/yelp-window.c:468
+#: src/yelp-window.c:586
+msgid "Home"
+msgstr "Kodu"
+
+#: src/yelp-window.c:587
 msgid "Go to home view"
-msgstr ""
+msgstr "Liigu koduvaatele"
 
-#: src/yelp-window.c:479
+#: src/yelp-window.c:597
+msgid "Index"
+msgstr "Indeks"
+
+#: src/yelp-window.c:598
 msgid "Search in the index"
-msgstr ""
+msgstr "Otsi indeksist"
 
-#: src/yelp-window.c:491
+#: src/yelp-window.c:608
 msgid "Search for a phrase in the document"
 msgstr "Otsi dokumendist fraasi"
 
-#: src/yelp-window.c:497
+#: src/yelp-window.c:614
 msgid "Help on "
 msgstr ""
 
-#: src/yelp-window.c:502
+#: src/yelp-window.c:619
 msgid "Enter phrase to search for in all documents"
 msgstr "Sisesta fraas, mida kõigist dokumentidest otsida"
 
