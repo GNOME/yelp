@@ -17,33 +17,35 @@
 		</xsl:call-template>
 	</xsl:param>
 
-	<xsl:choose>
-		<xsl:when test="element-available('yelp:document')">
-			<yelp:document href="{$id}">
-				<xsl:call-template name="html">
-					<xsl:with-param name="node" select="$node"/>
-					<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
-				</xsl:call-template>
-			</yelp:document>
-		</xsl:when>
-		<xsl:when test="element-available('exsl:document')">
-			<exsl:document href="{concat($id, $html_extension)}">
-				<xsl:call-template name="html">
-					<xsl:with-param name="node" select="$node"/>
-					<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
-				</xsl:call-template>
-			</exsl:document>
-		</xsl:when>
-	</xsl:choose>
+	<xsl:if test="$id">
+		<xsl:choose>
+			<xsl:when test="element-available('yelp:document')">
+				<yelp:document href="{$id}">
+					<xsl:call-template name="html">
+						<xsl:with-param name="node" select="$node"/>
+						<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+					</xsl:call-template>
+				</yelp:document>
+			</xsl:when>
+			<xsl:when test="element-available('exsl:document')">
+				<exsl:document href="{concat($id, $html_extension)}">
+					<xsl:call-template name="html">
+						<xsl:with-param name="node" select="$node"/>
+						<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+					</xsl:call-template>
+				</exsl:document>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:if>
 
 	<xsl:if test="$generate_titlepage and ($node = /*)">
-		<xsl:apply-templates mode="chunk.info.mode" select=".">
+		<xsl:apply-templates mode="chunk.info.mode" select="$node">
 			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 		</xsl:apply-templates>
 	</xsl:if>
 
 	<xsl:if test="$depth_chunk &lt; $chunk_depth">
-		<xsl:apply-templates mode="chunk.divisions.mode" select=".">
+		<xsl:apply-templates mode="chunk.divisions.mode" select="$node">
 			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 		</xsl:apply-templates>
 	</xsl:if>
