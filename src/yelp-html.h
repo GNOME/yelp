@@ -60,8 +60,11 @@ void            yelp_html_set_base_uri   (YelpHtml    *html,
 					  YelpURI     *uri);
 void            yelp_html_clear          (YelpHtml    *html);
 void            yelp_html_write          (YelpHtml    *html,
-					  gint         len,
-					  const gchar *data);
+					  const gchar *data,
+					  gint         len);
+void            yelp_html_printf         (YelpHtml *html, 
+					  char        *format, 
+					  ...);
 void            yelp_html_close          (YelpHtml    *html);
 
 GtkWidget *     yelp_html_get_widget     (YelpHtml      *html);

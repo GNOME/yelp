@@ -40,16 +40,15 @@ typedef struct _YelpViewTOCClass   YelpViewTOCClass;
 typedef struct _YelpViewTOCPriv    YelpViewTOCPriv;
 
 struct _YelpViewTOC {
-	HtmlView          parent;
+	GObject          parent;
 
 	YelpViewTOCPriv *priv;
 };
 
 struct _YelpViewTOCClass {
-	HtmlViewClass parent_class;
+	GObjectClass     parent_class;
 
 	/* Signals */
-
 
 	void (*uri_selected)   (YelpViewTOC   *view,
 				YelpURI       *uri,
@@ -57,8 +56,9 @@ struct _YelpViewTOCClass {
 };
 
 GType           yelp_view_toc_get_type       (void);
-GtkWidget      *yelp_view_toc_new            (GNode        *doc_tree);
+YelpViewTOC    *yelp_view_toc_new            (GNode        *doc_tree);
 void            yelp_view_toc_open_uri       (YelpViewTOC  *view,
 					      YelpURI      *uri);
+GtkWidget      *yelp_view_toc_get_widget     (YelpViewTOC  *view);
 
 #endif /* __YELP_VIEW_TOC__ */

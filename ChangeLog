@@ -4,6 +4,32 @@
 
 2002-05-18  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c: 
+	- don't handle YelpViewTOC as a html view any more. 
+	- use yelp_view_toc_get_widget when you need the widget.
+
+	* src/yelp-view-toc.c: 
+	- don't inherit HtmlView, instead be a GObject (make all the views
+	  a common base class).
+	- Removed html view stuff and use YelpHtml instead.
+	(toc_link_clicked_cb): removed
+	(toc_open): removed, use yelp_html_clear
+	(toc_close): removed, use yelp_html_close
+	(toc_write): removed, use yelp_html_write
+	(toc_printf): removed, use yelp_html_printf
+	(yelp_view_toc_open_uri): don't try to set adjustment, not a html
+	  view any more
+	(toc_uri_selected_cb): added, signal from YelpHtml, just proxy.
+
+	* src/yelp-html.c 
+	(yelp_html_new): 
+	- Just set the view to be white
+	- Use the yelp_html_* functions instead of html_* directly.
+	(yelp_html_write): 
+	- Swapped len and data arguments.
+	- If len = -1, assume NULL terminated string and use strlen.
+	(yelp_html_printf): added from yelp-view-toc.
+
 	* src/yelp-view-toc.c: conform with style.
 	* src/yelp-window.c: same.
 	* src/yelp-history.c: same.

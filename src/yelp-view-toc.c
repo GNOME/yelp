@@ -26,7 +26,6 @@
 
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
-#include <libgtkhtml/gtkhtml.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -35,19 +34,21 @@
 #include "yelp-view-toc.h"
 #include "yelp-marshal.h"
 #include "yelp-util.h"
+#include "yelp-html.h"
 #include "yelp-scrollkeeper.h"
 
 #define d(x)
 
 static void   toc_init                      (YelpViewTOC      *html);
 static void   toc_class_init                (YelpViewTOCClass *klass);
-static void   toc_link_clicked_cb           (HtmlDocument     *doc,
-					     const gchar      *url,
-					     YelpViewTOC      *view);
 static void   toc_man_1                     (YelpViewTOC      *view);
 static void   toc_man_2                     (YelpViewTOC      *view,
 					     GNode            *root);
 static void   toc_read_important_docs       (YelpViewTOC      *view);
+static void   toc_uri_selected_cb           (YelpHtml         *html,
+					     YelpURI          *uri,
+					     gboolean          handled,
+					     YelpViewTOC      *view);
 
 enum {
 	URI_SELECTED,
@@ -64,12 +65,11 @@ typedef struct {
 #define BUFFER_SIZE 4096
 
 struct _YelpViewTOCPriv {
-	GtkWidget    *html_view;
-	HtmlDocument *doc;
-	GNode        *doc_tree;
-	GList        *important_sections;
-	char          buffer[BUFFER_SIZE];
-	int           buffer_pos;
+	YelpHtml  *html_view;
+	GtkWidget *html_widget;
+	
+	GNode     *doc_tree;
+	GList     *important_sections;
 };
 
 /* HTML generation stuff */
@@ -181,7 +181,7 @@ yelp_view_toc_get_type (void)
                                 (GInstanceInitFunc) toc_init,
                         };
                 
-                view_type = g_type_register_static (HTML_TYPE_VIEW,
+                view_type = g_type_register_static (G_TYPE_OBJECT,
                                                     "YelpViewTOC", 
                                                     &view_info, 0);
         }
@@ -199,12 +199,12 @@ toc_init (YelpViewTOC *view)
 	
 	toc_read_important_docs (view);
 
-	priv->doc = html_document_new ();
+	priv->html_view   = yelp_html_new ();
+	priv->html_widget = yelp_html_get_widget (priv->html_view);
 
-	html_view_set_document (HTML_VIEW (view), priv->doc);
-
-	g_signal_connect (G_OBJECT (priv->doc), "link_clicked",
-			  G_CALLBACK (toc_link_clicked_cb), view);
+	g_signal_connect (G_OBJECT (priv->html_view), "uri_selected",
+			  G_CALLBACK (toc_uri_selected_cb), 
+			  view);
 }
 
 static void
@@ -223,96 +223,13 @@ toc_class_init (YelpViewTOCClass *klass)
 }
 
 static void
-toc_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpViewTOC *view)
-{
-	YelpURI *uri;
-	
-	g_return_if_fail (HTML_IS_DOCUMENT (doc));
-	g_return_if_fail (url != NULL);
-	g_return_if_fail (YELP_IS_VIEW_TOC (view));
-
-	d(g_print ("Link clicked: %s\n", url));
-
-	uri = yelp_uri_new (url);
-	g_signal_emit (view, signals[URI_SELECTED], 0, uri, FALSE);
-	yelp_uri_unref (uri);
-}
-
-static void
-toc_open (YelpViewTOC *view)
-{
-	html_document_open_stream (view->priv->doc, "text/html");
-	view->priv->buffer_pos = 0;
-}
-
-static void
-toc_close (YelpViewTOC *view)
-{
-	YelpViewTOCPriv *priv = view->priv;
-	
-	if (priv->buffer_pos > 0) {
-		html_document_write_stream (priv->doc, priv->buffer, priv->buffer_pos);
-		priv->buffer_pos = 0;
-	}
-
-		
-	html_document_close_stream (view->priv->doc);
-}
-
-static void
-toc_write (YelpViewTOC *view, char *data, int len)
-{
-	YelpViewTOCPriv *priv = view->priv;
-	int chunk_size;
-	
-	if (len < 0) {
-		len = strlen (data);
-	}
-
-	d(g_print ("%.*s", len,data));
-
-	while (len > 0) {
-		chunk_size = MIN (BUFFER_SIZE - priv->buffer_pos, len);
-		
-		memcpy (priv->buffer + priv->buffer_pos, data, chunk_size);
-		priv->buffer_pos += chunk_size;
-		len -= chunk_size;
-		data += chunk_size;
-
-		if (priv->buffer_pos == BUFFER_SIZE) {
-			html_document_write_stream (priv->doc, 
-						    priv->buffer, 
-						    BUFFER_SIZE);
-			priv->buffer_pos = 0;
-		}
-	}
-}
-
-static void
-toc_printf (YelpViewTOC *view, char *format, ...)
-{
-	va_list  args;
-	gchar   *string;
-	
-	g_return_if_fail (format != NULL);
-	
-	va_start (args, format);
-	string = g_strdup_vprintf (format, args);
-	va_end (args);
-	
-	toc_write (view, string, -1);
-	
-	g_free (string);
-}
-
-static void
 toc_write_footer (YelpViewTOC *view)
 {
 	char *footer="\n"
 		"  </body>\n"
 		"</html>\n";
-	toc_write (view, footer, -1);
-	
+
+	yelp_html_write (view->priv->html_view, footer, -1);
 }
 
 static void 
@@ -340,13 +257,13 @@ toc_start (YelpViewTOC *view)
 		g_warning ("No nodes in tree");
 	}
 	
-	toc_open (view);
+ 	yelp_html_clear (priv->html_view);
 	
-	toc_printf (view, PAGE_HEADER, page_title);
+	yelp_html_printf (priv->html_view, PAGE_HEADER, page_title);
 	
-	toc_printf (view, 
-		    PAGE_START,
-		    page_title);
+	yelp_html_printf (priv->html_view, 
+			  PAGE_START,
+			  page_title);
 	
 	sections = priv->important_sections;
 	
@@ -370,12 +287,12 @@ toc_start (YelpViewTOC *view)
 		
  		if (important_doc_installed) {
 			if (!left_column_started) {
-				toc_printf (view, 
+				yelp_html_printf (priv->html_view, 
 					    COLUMN_LEFT_START);
 				left_column_started = TRUE;
 			}
 			
-			toc_printf (view, 
+			yelp_html_printf (priv->html_view, 
 				    TOC_BLOCK_SEPARATOR
 				    TOC_BLOCK_START 
 				    "<h2>%s</h2>",
@@ -391,7 +308,7 @@ toc_start (YelpViewTOC *view)
 
 			if (node) {
 				section = node->data;
-				toc_printf (view, 
+				yelp_html_printf (priv->html_view, 
 					    "<a href=\"%s\">%s</a>\n",
 					    yelp_uri_to_string (section->uri), section->name);
 			}
@@ -400,10 +317,10 @@ toc_start (YelpViewTOC *view)
 		}
 
 		if (important_doc_installed) {
-			toc_printf (view, 
+			yelp_html_printf (priv->html_view, 
 				    TOC_BLOCK_END);
 			if (sections->next) {
-				toc_printf (view, 
+				yelp_html_printf (priv->html_view, 
 					    TOC_BLOCK_SEPARATOR);
 			}
 		}
@@ -413,16 +330,16 @@ toc_start (YelpViewTOC *view)
 	}
 
 	if (left_column_started) {
-		toc_printf (view, COLUMN_END);
+		yelp_html_printf (priv->html_view, COLUMN_END);
 	}
 	
-	toc_printf (view, 
+	yelp_html_printf (priv->html_view, 
 		    COLUMN_RIGHT_START);
 
 	root = yelp_util_find_toplevel (priv->doc_tree, "scrollkeeper");
 	node = g_node_first_child (root);
 
-	toc_printf (view,
+	yelp_html_printf (priv->html_view,
 		    TOC_BLOCK_SEPARATOR
 		    TOC_BLOCK_START
 		    "<h2>%s</h2>\n",
@@ -434,7 +351,7 @@ toc_start (YelpViewTOC *view)
 	while (node) {
 		section = YELP_SECTION (node->data);
 		path = yelp_util_node_to_string_path (node);
-		toc_printf (view, 
+		yelp_html_printf (priv->html_view, 
 			    "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
 			    path, section->name);
 		g_free (path);
@@ -442,10 +359,10 @@ toc_start (YelpViewTOC *view)
 		node = g_node_next_sibling (node);
 	}
 
-	toc_printf (view,
+	yelp_html_printf (priv->html_view,
 		    TOC_BLOCK_END);
 
-	toc_printf (view,
+	yelp_html_printf (priv->html_view,
 		    TOC_BLOCK_SEPARATOR
 		    TOC_BLOCK_START
 		    "<h2>%s</h2>\n",
@@ -458,7 +375,7 @@ toc_start (YelpViewTOC *view)
 		section = YELP_SECTION (node->data);
 		if (strcmp (section->name, "GNOME")) {
 			path = yelp_util_node_to_string_path (node);
-			toc_printf (view, 
+			yelp_html_printf (priv->html_view, 
 				    "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
 				    path, section->name);
 			g_free (path);
@@ -468,25 +385,25 @@ toc_start (YelpViewTOC *view)
 	}
 
 	if (yelp_util_find_toplevel (priv->doc_tree, "man")) {
-		toc_printf (view,
+		yelp_html_printf (priv->html_view,
 			    "<a href=\"toc:man\">%s</a><br>\n",
 			    man_string);
 	}
 		
 	if (yelp_util_find_toplevel (priv->doc_tree, "info")) {
-		toc_printf (view,
+		yelp_html_printf (priv->html_view,
 			    "<a href=\"toc:info\">%s</a><br>\n",
 			    info_string);
 	}
 
-	toc_printf (view,
+	yelp_html_printf (priv->html_view,
 		    TOC_BLOCK_END
 		    COLUMN_END 
 		    PAGE_END);
 	
 	toc_write_footer (view);
 
-	toc_close (view);
+	yelp_html_close (priv->html_view);
 }
 
 static char *
@@ -537,8 +454,8 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 	do {
 		if (node->children != NULL) {
 			if (!sub_started) {
-				toc_printf (view, TOC_BLOCK_START);
-				toc_printf (view, "<h3>%s</h3>", 
+				yelp_html_printf (priv->html_view, TOC_BLOCK_START);
+				yelp_html_printf (priv->html_view, "<h3>%s</h3>", 
 					    str_subcats);
 				
 				sub_started = TRUE;
@@ -549,7 +466,7 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 			section = node->data;
 
 			path = yelp_util_node_to_string_path (node);
-			toc_printf (view, "<a href=\"toc:man/%s\">%s</a><br>\n", path, section->name);
+			yelp_html_printf (priv->html_view, "<a href=\"toc:man/%s\">%s</a><br>\n", path, section->name);
 			g_free (path);
 		} else {
 			got_a_leaf = TRUE;
@@ -557,18 +474,18 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 	} while ((node = node->next) != NULL);
 
 	if (sub_started) {
-		toc_printf (view, TOC_BLOCK_END);
-		toc_printf (view, TOC_BLOCK_SEPARATOR);
+		yelp_html_printf (priv->html_view, TOC_BLOCK_END);
+		yelp_html_printf (priv->html_view, TOC_BLOCK_SEPARATOR);
 	}
 
 	if (got_a_leaf) {
-		toc_printf (view,  TOC_BLOCK_START);
-		toc_printf (view, "<h3>%s</h3>",
+		yelp_html_printf (priv->html_view,  TOC_BLOCK_START);
+		yelp_html_printf (priv->html_view, "<h3>%s</h3>",
 			    str_docs);
 
-		toc_write (view, "</td></tr><tr><td>", -1);
+		yelp_html_write (priv->html_view, "</td></tr><tr><td>", -1);
 		
-		toc_write (view,
+		yelp_html_write (priv->html_view,
 			   "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" width=\"100%%\">\n",
 			   -1);
 
@@ -580,11 +497,11 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 				
 				if (i % 3 == 0) {
 					if (i == 0) {
-						toc_write (view, 
+						yelp_html_write (priv->html_view, 
 							   "<tr>\n",
 							   -1);
 					} else {
-						toc_write (view,
+						yelp_html_write (priv->html_view,
 							   "</tr>\n<tr>\n", 
 							   -1);
 					}
@@ -592,18 +509,18 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 			
 				section = node->data;
 				url = yelp_util_compose_path_url (node->parent, yelp_uri_get_path (section->uri));
-				toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", yelp_uri_to_string (section->uri), 
+				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", yelp_uri_to_string (section->uri), 
 					    section->name);
-/* 				toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", url, section->name); */
+/* 				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", url, section->name); */
 				g_free (url);
 				i++;
 			}
 		} while ((node = node->next) != NULL);
 		
-		toc_write (view, "</tr>\n", -1);
-		toc_write (view, "</table>\n", -1);
+		yelp_html_write (priv->html_view, "</tr>\n", -1);
+		yelp_html_write (priv->html_view, "</table>\n", -1);
 
-		toc_printf (view, TOC_BLOCK_END);
+		yelp_html_printf (priv->html_view, TOC_BLOCK_END);
 	}
 }
 
@@ -611,9 +528,14 @@ static void
 toc_man_2 (YelpViewTOC *view,
 	   GNode       *root)
 {
-	GNode *first;
-	gchar *name;
-	gchar *string = _("Manual pages");
+	YelpViewTOCPriv *priv;
+	GNode           *first;
+	gchar           *name;
+	gchar           *string = _("Manual pages");
+
+	g_return_if_fail (YELP_IS_VIEW_TOC (view));
+	
+	priv = view->priv;
 
 	if (root->children == NULL) {
 		return;
@@ -621,13 +543,13 @@ toc_man_2 (YelpViewTOC *view,
 	
 	first = root->children;
 
-	toc_open (view);
+	yelp_html_clear (priv->html_view);
 	
-	toc_printf (view, PAGE_HEADER, string);
+	yelp_html_printf (priv->html_view, PAGE_HEADER, string);
 		
 	name = toc_full_path_name (view, root);
 
-	toc_printf (view, 
+	yelp_html_printf (priv->html_view, 
 		    "<table cellpadding=\"0\"\n"
 		    "border=\"0\"\n"
 		    "align=\"center\"\n"
@@ -651,16 +573,16 @@ toc_man_2 (YelpViewTOC *view,
 
 	g_free (name);
 
-	toc_printf (view, COLUMN_RIGHT_START);
+	yelp_html_printf (priv->html_view, COLUMN_RIGHT_START);
 
 	toc_man_emit (view, first);
 		
-	toc_printf (view, 
+	yelp_html_printf (priv->html_view, 
 		    COLUMN_END
 		    PAGE_END);
 
 	toc_write_footer (view);
-	toc_close (view);
+	yelp_html_close (priv->html_view);
 }
 
 static void 
@@ -688,15 +610,15 @@ toc_man_1 (YelpViewTOC *view)
 		return;
 	}
 
-	toc_open (view);
+	yelp_html_clear (priv->html_view);
 	
-	toc_printf (view, PAGE_HEADER, string);
+	yelp_html_printf (priv->html_view, PAGE_HEADER, string);
 
-	toc_printf (view, 
+	yelp_html_printf (priv->html_view, 
 		    PAGE_START, 
 		    string);
 
-	toc_printf (view,
+	yelp_html_printf (priv->html_view,
 		    COLUMN_RIGHT_START
 		    TOC_BLOCK_START 
 		    "<h2>%s</h2>", 
@@ -709,20 +631,20 @@ toc_man_1 (YelpViewTOC *view)
 			section = YELP_SECTION (node->data);
 			path = yelp_util_node_to_string_path (node);
 
- 			toc_printf (view,
+ 			yelp_html_printf (priv->html_view,
 				    "<a href=\"toc:man/%s\">%s</a><br>\n",
 				    path, section->name);
 			g_free (path);
 		}
 	} while ((node = g_node_next_sibling (node)));
 
-	toc_printf (view, 
+	yelp_html_printf (priv->html_view, 
 		    TOC_BLOCK_END
 		    COLUMN_END
 		    PAGE_END);
 
 	toc_write_footer (view);
-	toc_close (view);
+	yelp_html_close (priv->html_view);
 }
 
 static void 
@@ -751,38 +673,38 @@ toc_info (YelpViewTOC *view)
 		return;
 	}
 
-	toc_open (view);
+	yelp_html_clear (priv->html_view);
 	
-	toc_printf (view, PAGE_HEADER, string);
+	yelp_html_printf (priv->html_view, PAGE_HEADER, string);
 
-	toc_printf (view, PAGE_START, string);
-	toc_printf (view, COLUMN_RIGHT_START);
-	toc_printf (view, TOC_BLOCK_START);
+	yelp_html_printf (priv->html_view, PAGE_START, string);
+	yelp_html_printf (priv->html_view, COLUMN_RIGHT_START);
+	yelp_html_printf (priv->html_view, TOC_BLOCK_START);
 
-	toc_printf (view, "<h2>%s</h2>", str_docs);
+	yelp_html_printf (priv->html_view, "<h2>%s</h2>", str_docs);
 
 	do {
 		section = YELP_SECTION (node->data);
 		url = yelp_util_compose_path_url (root,
 						  yelp_uri_get_path (section->uri));
 		
-		toc_printf (view, 
+		yelp_html_printf (priv->html_view, 
 			    "<a href=\"%s\">%s</a><br>\n", 
 			    yelp_uri_to_string (section->uri),
 			    section->name);
-/* 		toc_printf (view,  */
+/* 		yelp_html_printf (priv->html_view,  */
 /* 				      "<a href=\"%s\">%s</a><br>\n",  */
 /* 				      url, section->name); */
 		g_free  (url);
 	} while ((node = g_node_next_sibling (node)));
 		
-	toc_printf (view, 
+	yelp_html_printf (priv->html_view, 
 		    TOC_BLOCK_END
 		    COLUMN_END
 		    PAGE_END);
 
 	toc_write_footer (view);
-	toc_close (view);
+	yelp_html_close (priv->html_view);
 }
 
 static void
@@ -843,12 +765,20 @@ toc_read_important_docs (YelpViewTOC *view)
 	xmlFreeDoc(doc);
 }
 
-GtkWidget *
+static void
+toc_uri_selected_cb (YelpHtml    *html,
+		     YelpURI     *uri,
+		     gboolean     handled,
+		     YelpViewTOC *view)
+{
+	g_signal_emit (view, signals[URI_SELECTED], 0, uri, FALSE);
+}
+
+YelpViewTOC *
 yelp_view_toc_new (GNode *doc_tree)
 {
 	YelpViewTOC     *view;
 	YelpViewTOCPriv *priv;
-	YelpURI         *uri;
 
 	view = g_object_new (YELP_TYPE_VIEW_TOC, NULL);
 
@@ -856,17 +786,11 @@ yelp_view_toc_new (GNode *doc_tree)
 
 	priv->doc_tree = doc_tree;
 
-	uri = yelp_uri_new ("toc:");
-	
-	yelp_view_toc_open_uri (view, uri);
-	yelp_uri_unref (uri);
-	
-	return GTK_WIDGET (view);
+	return view;
 }
 
 static void 
-toc_scrollkeeper (YelpViewTOC *view,
-		  GNode *root)
+toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 {
 	YelpViewTOCPriv *priv;
 	GNode           *node, *child;
@@ -884,29 +808,29 @@ toc_scrollkeeper (YelpViewTOC *view,
 		return;
 	}
 	
-	toc_open (view);
+	yelp_html_clear (priv->html_view);
 	
 	name = toc_full_path_name (view, root);
 
-	toc_printf (view, PAGE_HEADER, name);
+	yelp_html_printf (priv->html_view, PAGE_HEADER, name);
 
-	toc_printf (view, PAGE_START, name);
+	yelp_html_printf (priv->html_view, PAGE_START, name);
 	
 	g_free (name);
 
-	toc_printf (view, COLUMN_RIGHT_START);
+	yelp_html_printf (priv->html_view, COLUMN_RIGHT_START);
 
 	got_a_leaf = FALSE;
 	node = root->children;
 
-/* 	toc_printf (view, TOC_BLOCK_START); */
+/* 	yelp_html_printf (priv->html_view, TOC_BLOCK_START); */
 
 	for (node = root->children; node; node = node->next) {
 		
 		if (node->children != NULL) {
 			if (!sub_started) {
-				toc_printf (view, TOC_BLOCK_START);
-				toc_printf (view, "<h2>%s</h2>", 
+				yelp_html_printf (priv->html_view, TOC_BLOCK_START);
+				yelp_html_printf (priv->html_view, "<h2>%s</h2>", 
 					    str_subcats);
 						      
 				sub_started = TRUE;
@@ -917,7 +841,7 @@ toc_scrollkeeper (YelpViewTOC *view,
 			section = node->data;
 
 			path = yelp_util_node_to_string_path (node);
-			toc_printf (view, "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", path, section->name);
+			yelp_html_printf (priv->html_view, "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", path, section->name);
 			g_free (path);
 		} else {
 			got_a_leaf = TRUE;
@@ -925,43 +849,49 @@ toc_scrollkeeper (YelpViewTOC *view,
 	}
 
 	if (sub_started) {
-		toc_printf (view, TOC_BLOCK_END);
+		yelp_html_printf (priv->html_view, TOC_BLOCK_END);
 	}
 
-/* 	toc_printf (view, TOC_BLOCK_END); */
+/* 	yelp_html_printf (priv->html_view, TOC_BLOCK_END); */
 
 	if (got_a_leaf) {
-		toc_printf (view, TOC_BLOCK_START);
-		toc_printf (view, "<h2>%s</h2>", str_docs);
+		yelp_html_printf (priv->html_view, TOC_BLOCK_START);
+		yelp_html_printf (priv->html_view, "<h2>%s</h2>", str_docs);
 		
-/* 		toc_write (view, "<ul>\n", -1); */
+/* 		yelp_html_write (priv->html_view, "<ul>\n", -1); */
 
 		for (node = root->children; node; node = node->next) {
 			if (node->children == NULL) {
 				YelpSection *section;
 			
 				section = node->data;
-				toc_printf (view, "<a href=\"%s\">%s</a><br>\n", yelp_uri_to_string (section->uri), section->name);
+				yelp_html_printf (priv->html_view, "<a href=\"%s\">%s</a><br>\n", yelp_uri_to_string (section->uri), section->name);
 			}
 		}
 
-		toc_printf (view, TOC_BLOCK_END);
+		yelp_html_printf (priv->html_view, TOC_BLOCK_END);
 	}
 
-	toc_printf (view, 
+	yelp_html_printf (priv->html_view, 
 		    COLUMN_END
 		    PAGE_END);
 	toc_write_footer (view);
-	toc_close (view);
+
+	yelp_html_close (priv->html_view);
 }
 
 void
 yelp_view_toc_open_uri (YelpViewTOC *view, YelpURI *uri)
 {
-	GNode       *node;
-	const gchar *path;
+	YelpViewTOCPriv *priv;
+	GNode           *node;
+	const gchar     *path;
 	
 	g_assert (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC);
+
+	priv = view->priv;
+
+	yelp_html_set_base_uri (priv->html_view, uri);
 
 	path = yelp_uri_get_path (uri);
 
@@ -1008,7 +938,12 @@ yelp_view_toc_open_uri (YelpViewTOC *view, YelpURI *uri)
 		g_warning ("Unknown toc type %s\n", 
 			   yelp_uri_to_string (uri));
 	}
+}
 
- 	gtk_adjustment_set_value (
- 		gtk_layout_get_vadjustment (GTK_LAYOUT (view)), 0);
+GtkWidget *
+yelp_view_toc_get_widget (YelpViewTOC  *view)
+{
+	g_return_val_if_fail (YELP_IS_VIEW_TOC (view), NULL);
+	
+	return view->priv->html_widget;
 }

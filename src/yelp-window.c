@@ -134,7 +134,7 @@ struct _YelpWindowPriv {
 
 	GtkWidget      *notebook;
 
-	GtkWidget      *toc_view;
+	YelpViewTOC    *toc_view;
 	GtkWidget      *content_view;
 	GtkWidget      *index_view;
 	
@@ -198,7 +198,7 @@ window_init (YelpWindow *window)
         priv = g_new0 (YelpWindowPriv, 1);
         window->priv = priv;
         
-	priv->toc_view    = NULL;
+	priv->toc_view     = NULL;
 	priv->content_view = NULL;
 	priv->index_view   = NULL;
 	priv->view_current = NULL;
@@ -295,7 +295,8 @@ window_populate (YelpWindow *window)
 					GTK_POLICY_AUTOMATIC,
 					GTK_POLICY_AUTOMATIC);
 
-	gtk_container_add (GTK_CONTAINER (sw), priv->toc_view);
+	gtk_container_add (GTK_CONTAINER (sw), 
+			   yelp_view_toc_get_widget (priv->toc_view));
 
 	gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
 				  sw, NULL, PAGE_TOC_VIEW);
@@ -495,7 +496,7 @@ window_home_button_clicked (GtkWidget *button, YelpWindow *window)
 	uri = yelp_uri_new ("toc:");
 
 	yelp_history_goto (window->priv->history, uri);
-	yelp_view_toc_open_uri (YELP_VIEW_TOC (window->priv->toc_view), uri);
+	yelp_view_toc_open_uri (window->priv->toc_view, uri);
 
 	yelp_uri_unref (uri);
 
@@ -733,11 +734,14 @@ yelp_window_new (GNode *doc_tree, GList *index)
 	g_signal_connect (priv->toc_view, "uri_selected",
 			  G_CALLBACK (window_uri_selected_cb),
 			  window);
+
 	g_signal_connect (priv->content_view, "uri_selected",
 			  G_CALLBACK (window_uri_selected_cb),
 			  window);
 
 	window_populate (window);
+
+	yelp_window_open_uri (window, "toc:");
 
         return GTK_WIDGET (window);
 }

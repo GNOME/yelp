@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -237,22 +237,20 @@ YelpHtml *
 yelp_html_new (void)
 {
         YelpHtml *html;
-
+	
         d(puts(G_GNUC_FUNCTION));
 
         html = g_object_new (YELP_TYPE_HTML, NULL);
-
-	html_document_open_stream (html->priv->doc, "text/html");
 	
-	{
-		gint len;
-		gchar *text = "<html><body bgcolor=\"white\"><h1>Yelp</h1></body></html>";
-		len = strlen (text);
-
-		html_document_write_stream (html->priv->doc, text, len);
-	}
+ 	yelp_html_clear (html);
 	
-	html_document_close_stream (html->priv->doc);
+ 	{
+ 		gchar *text = "<html><body bgcolor=\"white\"></body></html>";
+
+ 		yelp_html_write (html, text, -1);
+ 	}
+	
+ 	yelp_html_close (html);
 
         return html;
 }
@@ -290,7 +288,7 @@ yelp_html_clear (YelpHtml *html)
 }
 
 void
-yelp_html_write (YelpHtml *html, gint len, const gchar *data)
+yelp_html_write (YelpHtml *html, const gchar *data, gint len)
 {
 	YelpHtmlPriv *priv;
 	
@@ -298,11 +296,32 @@ yelp_html_write (YelpHtml *html, gint len, const gchar *data)
 	
 	priv = html->priv;
 	
+	if (len == -1) {
+		len = strlen (data);
+	}
+	
 	if (len <= 0) {
 		return;
 	}
 	
 	html_document_write_stream (priv->doc, data, len);
+}
+
+void
+yelp_html_printf (YelpHtml *html, char *format, ...)
+{
+	va_list  args;
+	gchar   *string;
+	
+	g_return_if_fail (format != NULL);
+	
+	va_start (args, format);
+	string = g_strdup_vprintf (format, args);
+	va_end (args);
+	
+	yelp_html_write (html, string, -1);
+	
+	g_free (string);
 }
 
 void
@@ -314,7 +333,7 @@ yelp_html_close (YelpHtml *html)
 	
 	priv = html->priv;
 	
-	html_document_close_stream (html->priv->doc);
+	html_document_close_stream (priv->doc);
 
 	gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
 				  0);

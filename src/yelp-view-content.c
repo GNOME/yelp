@@ -247,7 +247,7 @@ content_reader_data_cb (YelpReader      *reader,
 		return;
 	}
 
-	yelp_html_write (priv->html_view, len, data);
+	yelp_html_write (priv->html_view, data, len);
 }
 
 static void
