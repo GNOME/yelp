@@ -322,6 +322,8 @@ main (int argc, char **argv)
 				      GNOME_PARAM_POPT_TABLE, options,
 				      GNOME_PROGRAM_STANDARD_PROPERTIES,
 				      NULL);
+	g_set_application_name (_("Help"));
+	gtk_window_set_default_icon_name ("gnome-help");
 
 	/* Need to set this to the canonical DISPLAY value, since
 	   that's where we're registering per-display components */

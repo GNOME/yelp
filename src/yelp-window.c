@@ -85,7 +85,6 @@ static void        window_error                   (YelpWindow        *window,
 static void        window_populate                (YelpWindow        *window);
 static void        window_populate_find           (YelpWindow        *window,
 						   GtkWidget         *find_bar);
-static void        window_set_icon                (YelpWindow        *window);
 static void        window_set_sections            (YelpWindow        *window,
 						   GtkTreeModel      *sections);
 static void        window_do_load                 (YelpWindow        *window,
@@ -552,11 +551,6 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
     d (g_print ("yelp_window_new\n"));
 
-    window_set_icon (window);
-    priv->icons_hook = yelp_settings_notify_add (YELP_SETTINGS_INFO_ICONS,
-						 (GHookFunc) window_set_icon,
-						 window);
-
     window_populate (window);
 
     g_signal_connect (G_OBJECT (window), "destroy",
@@ -881,30 +875,6 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
 			      G_CALLBACK (gtk_widget_hide),
 			      priv->find_bar);
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
-}
-
-static void
-window_set_icon (YelpWindow *window)
-{
-    GtkIconTheme *icon_theme;
-    GdkPixbuf *pixbuf = NULL;
-    GError    *error  = NULL;
-
-    g_return_if_fail (YELP_IS_WINDOW (window));
-
-    icon_theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
-
-    pixbuf = gtk_icon_theme_load_icon (icon_theme,
-				       "gnome-help",
-				       36, 0,
-				       &error);
-    if (!pixbuf) {
-	g_warning ("Couldn't load icon: %s", error->message);
-	g_error_free (error);
-	return;
-    }
-
-    gtk_window_set_icon (GTK_WINDOW (window), pixbuf);
 }
 
 static void
@@ -1775,38 +1745,25 @@ window_go_toc_cb (GtkAction *action, YelpWindow *window)
 static void
 window_about_cb (GtkAction *action, YelpWindow *window)
 {
-    static GtkWidget *about = NULL;
+    const gchar *copyright =
+	"Copyright © 2001-2003 Mikael Hallendal\n"
+	"Copyright © 2003-2004 Shaun McCance";
+    const gchar *authors[] = { 
+	"Mikael Hallendal <micke@imendio.com>",
+	"Alexander Larsson <alexl@redhat.com>",
+	"Shaun McCance <shaunm@gnome.org>",
+	NULL
+    };
+    /* Note to translators: put here your name (and address) so it
+     * will shop up in the "about" box */
+    gchar *translator_credits = _("translator_credits");
 
-    d (g_print ("window_go_about_cb\n"));
-
-    if (about == NULL) {
-	const gchar *authors[] = { 
-	    "Mikael Hallendal <micke@imendio.com>",
-	    "Alexander Larsson <alexl@redhat.com>",
-	    "Shaun McCance <shaunm@gnome.org>",
-	    NULL
-	};
-	/* Note to translators: put here your name (and address) so it
-	 * will shop up in the "about" box */
-	gchar       *translator_credits = _("translator_credits");
-
-	about = gnome_about_new
-	    (PACKAGE, VERSION,
-	     "Copyright 2001-2003 Mikael Hallendal <micke@imendio.com>\n"
-	     "Copyright 2003,2004 Shaun McCance <shaunm@gnome.org>",
-	     _("A Help Browser for GNOME"),
-	     authors,
-	     NULL,
-	     strcmp (translator_credits, "translator_credits") != 0
-	     ? translator_credits : NULL, NULL);
-	//	     window_load_icon ());
-
-	g_signal_connect (G_OBJECT (about), "destroy",
-			  G_CALLBACK (gtk_widget_destroyed),
-			  &about);
-	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
-    }
-    gtk_window_present (GTK_WINDOW (about));
+    gtk_show_about_dialog (window,
+			   "version", VERSION,
+			   "copyright", copyright,
+			   "authors", authors,
+			   "translator_credits", translator_credits,
+			   NULL);
 }
 
 /******************************************************************************/
