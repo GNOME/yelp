@@ -1,3 +1,11 @@
+2001-12-01  Mikael Hallendal  <micke@codefactory.se>
+
+	* TODO: updated.
+
+	* src/scrollkeeper-parser.c:
+	(sp_parse_toc_section): chomp the name (otherwise it contains a
+	newline).
+
 2001-11-30  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/scrollkeeper-parser.c:

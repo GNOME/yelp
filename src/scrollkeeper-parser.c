@@ -466,7 +466,8 @@ sp_parse_toc_section (GNode *parent, xmlNode *xml_node, GnomeVFSURI *base_uri)
 	if (!name) {
 		return;
 	}
-	
+
+	g_strchomp (name);
 
 	xml_str = xmlGetProp (xml_node, "linkid");
 	

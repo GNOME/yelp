@@ -1,16 +1,22 @@
-* Don't hardcode data-dir in help-module from Nautilus.
+* Index-search (keyword search). I've been told that ScrollKeeper CVS
+  has support for this, it should be used in Yelp.
 
-* Fix index-searching
+* Support man/info (currently being implemented, or already done just 
+  not commited by Patanjali).
 
-* Create the tree out of information from the system
+* Support for external links (if a link points outside the documents the
+  prefered web browser should be started to handle this).
 
-* Read/Parse TOC from Scrollkeeper
- 
-* Support links, start webrowser for out-of-help-links...
+* Generate HTML-indexes for sections without a document (when opening a 
+  node in the tree, if that node doesn't have a document connected to it
+  a HTML page should be generated, to allow the user to browse only in 
+  the HTML widget).
 
-* Nice start page.
+* Create the tree out of information from the system 
+  (somewhat fixed, SK support works).
 
-* Generate index-pages
+* Nice start page. (TOC?)
 
-* Much much more...
+* more?...
+
 
