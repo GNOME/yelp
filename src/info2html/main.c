@@ -165,7 +165,7 @@ main(int argc, const char **argv)
 	work_line_number = 0;
 
 	/* hack, just send to stdout for now */
-	fprintf(stdout, "<HTML><BODY>\n");
+	fprintf(stdout, "<HTML><BODY BGCOLOR=\"#ffffff\">\n");
 	
 	/* big loop to identify sections of info files */
 	/* NEW PLAN - format on the fly */
