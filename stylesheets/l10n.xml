@@ -110,13 +110,18 @@
   <l:gentext key="Title" text="Titolo"/>
   <l:gentext key="Author" text="Autore"/>
   <l:gentext key="Authors" text="Autori"/>
-  <l:gentext key="Affiliation" text="Organizzazione"/>  
+  <l:gentext key="Affiliation" text="Organizzazione"/>
+  <l:gentext key="History" text="Versioni"/>
   <l:gentext key="Email" text="Email"/>  
   <l:gentext key="Publisher" text="Editore"/>
   <l:gentext key="Date" text="Data"/>
+  <l:gentext key="Next" text="Successivo"/>
+  <l:gentext key="Previous" text="Precedente"/>
+  <l:gentext key="Contents" text="Sommario"/>
+
   <l:context name="title">
-   <l:template name="bookinfo" text="Informazioni su questo documento"/>
-   <l:template name="articleinfo" text="Informazioni su questo documento"/>
+   <l:template name="bookinfo" text="Informazioni sul documento"/>
+   <l:template name="articleinfo" text="Informazioni sul documento"/>
   </l:context>
  </l:l10n>
 
