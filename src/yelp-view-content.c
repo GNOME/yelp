@@ -345,3 +345,12 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		g_free (content_url);
 	}
 }
+
+void
+yelp_view_content_stop (YelpViewContent *content)
+{
+	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
+	
+	yelp_html_cancel_loading (YELP_HTML (content->priv->html_view));
+}
+

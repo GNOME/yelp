@@ -416,8 +416,7 @@ yelp_util_compose_path_url (GNode      *node,
  
 
 GNode *
-yelp_util_find_toplevel (GNode *doc_tree,
-			 gchar *name)
+yelp_util_find_toplevel (GNode *doc_tree, const gchar *name)
 {
 	GNode           *node;
 	YelpSection     *section;
@@ -439,7 +438,40 @@ yelp_util_find_toplevel (GNode *doc_tree,
 static GNode *found_node;
 
 static gboolean
-tree_find_node (GNode *node, const gchar *uri)
+tree_find_node_name (GNode *node, const gchar *name)
+{
+	YelpSection *section;
+	
+	section = YELP_SECTION (node->data);
+
+	if (!section || !section->name) {
+		return FALSE;
+	}
+	
+	if (!g_ascii_strcasecmp (name, section->name)) {
+		found_node = node;
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+GNode * 
+yelp_util_find_node_from_name (GNode *doc_tree, const gchar *name)
+{
+	found_node = NULL;
+	
+	g_node_traverse (doc_tree, G_IN_ORDER,
+			 G_TRAVERSE_ALL,
+			 -1,
+			 (GNodeTraverseFunc) tree_find_node_name,
+			 (gchar *) name);
+	    
+	return found_node;
+}
+
+static gboolean
+tree_find_node_uri (GNode *node, const gchar *uri)
 {
 	YelpSection *section;
 	
@@ -465,7 +497,7 @@ yelp_util_find_node_from_uri (GNode *doc_tree, const gchar *uri)
 	g_node_traverse (doc_tree, G_IN_ORDER,
 			 G_TRAVERSE_ALL,
 			 -1,
-			 (GNodeTraverseFunc) tree_find_node,
+			 (GNodeTraverseFunc) tree_find_node_uri,
 			 (gchar *) uri);
 	    
 	return found_node;

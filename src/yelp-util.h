@@ -39,7 +39,10 @@ gchar *  yelp_util_compose_path_url         (GNode         *node,
 					     const gchar   *embedded_url);
 
 GNode *  yelp_util_find_toplevel            (GNode         *doc_tree,
-					     gchar         *name);
+					     const gchar   *name);
+
+GNode *  yelp_util_find_node_from_name      (GNode         *doc_tree,
+					     const gchar   *name);
 
 GNode *  yelp_util_find_node_from_uri       (GNode         *doc_tree,
 					     const gchar   *uri);

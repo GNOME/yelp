@@ -127,7 +127,6 @@ yh_init (YelpHtml *view)
         priv->doc         = html_document_new ();
         priv->connections = NULL;
         priv->base_uri    = g_strdup ("");
-
 	priv->load_doc    = html_document_new ();
 	
 	html_document_open_stream (priv->load_doc, "text/html");
@@ -135,7 +134,7 @@ yh_init (YelpHtml *view)
 	{
 		gint len;
 		gchar *str = _("Loading...");
-		gchar *text = g_strdup_printf ("<html><body bgcolor=\"white\"><center>%s</center></body></html>", str);
+		gchar *text = g_strdup_printf ("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body bgcolor=\"white\"><center>%s</center></body></html>", str);
 		len = strlen (text);
 
 		html_document_write_stream (priv->load_doc, text, len);
@@ -180,12 +179,14 @@ yh_async_close_cb (GnomeVFSAsyncHandle *handle,
 		   GnomeVFSResult       result,
 		   gpointer             callback_data)
 {
-	StreamData *sdata;
-
+	StreamData   *sdata;
+	YelpHtmlPriv *priv;
+	
 	d(puts(G_GNUC_FUNCTION));
 
 	sdata = (StreamData *) callback_data;
-
+	priv  = sdata->view->priv;
+	
 	if (sdata->anchor) {
 		html_view_jump_to_anchor (HTML_VIEW (sdata->view),
  					  sdata->anchor);
@@ -202,14 +203,16 @@ yh_async_read_cb (GnomeVFSAsyncHandle *handle,
 		  GnomeVFSFileSize     bytes_read, 
 		  gpointer             callback_data)
 {
-	StreamData *sdata;
-	YelpHtml   *view;
+	StreamData  *sdata;
+	YelpHtml    *view;
+	YelpHtmlPriv *priv;
 	
         d(puts(G_GNUC_FUNCTION));
 
         sdata = (StreamData *) callback_data;
 	view  = sdata->view;
-	
+	priv  = view->priv;
+
 	if (result != GNOME_VFS_OK) {
 		gnome_vfs_async_close (handle, 
                                        yh_async_close_cb, 
@@ -234,11 +237,13 @@ yh_async_open_cb  (GnomeVFSAsyncHandle *handle,
 		   GnomeVFSResult       result, 
 		   gpointer             callback_data)
 {
-	StreamData *sdata;
+	StreamData   *sdata;
+        YelpHtmlPriv *priv;
         
         d(puts(G_GNUC_FUNCTION));
 
         sdata = (StreamData *) callback_data;
+	priv  = sdata->view->priv;
 
 	if (result != GNOME_VFS_OK) {
 		g_warning ("Open failed: %s.\n", 
@@ -428,6 +433,7 @@ yelp_html_open_uri (YelpHtml    *view,
   	html_view_set_document (HTML_VIEW (view), priv->load_doc);
 
 	/* New document needs to be read. */
+
 	g_free (priv->base_uri);
 	priv->base_uri = g_strdup (docpath);
 
@@ -441,7 +447,7 @@ yelp_html_open_uri (YelpHtml    *view,
 	sdata->view   = view;
 	sdata->stream = priv->doc->current_stream;
 	sdata->anchor = NULL;
-
+	
 	priv->connections = g_slist_prepend (priv->connections, sdata);
 
 	uri = gnome_vfs_uri_new (docpath);
@@ -466,4 +472,9 @@ yelp_html_open_uri (YelpHtml    *view,
 	html_stream_set_cancel_func (sdata->stream, 
 				     yh_stream_cancel, 
 				     sdata);
+}
+
+void
+yelp_html_cancel_loading (YelpHtml *view)
+{
 }

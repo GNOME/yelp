@@ -1,3 +1,21 @@
+2002-04-11  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-toc.c:
+	- did some cleanups
+	- make output in first page look nicer.
+	- Changed a few strings, SORRY!! Fixes: #73439
+
+	* src/yelp-view-content.c (yelp_view_content_stop): added/impl.
+
+	* src/yelp-util.c:
+	(tree_find_node_uri): renamed from tree_find_node.
+	(yelp_util_find_node_from_name): added/impl.
+	(tree_find_node_name): added/impl.
+
+	* src/yelp-html.c:
+	(yh_init): set content-type to utf8 on the loading document.
+	(yelp_html_cancel_loading): added, doesn't do anything yet.
+
 2002-04-10  Richard Hult  <rhult@codefactory.se>
 
 	* src/yelp-view-index.c (yelp_view_index_new): Add a bit of

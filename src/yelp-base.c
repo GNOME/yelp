@@ -34,7 +34,7 @@
 #include "yelp-base.h"
 
 typedef struct {
-	YelpBase     *base;
+	YelpBase    *base;
 	GtkTreeIter *parent;
 } ForeachData;
 

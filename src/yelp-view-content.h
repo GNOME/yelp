@@ -58,5 +58,6 @@ GtkWidget      *yelp_view_content_new          (GNode             *doc_tree);
 
 void            yelp_view_content_show_uri     (YelpViewContent   *content,
 						const gchar       *uri);
+void            yelp_view_content_stop         (YelpViewContent   *content);
 
 #endif /* __YELP_VIEW_CONTENT__ */

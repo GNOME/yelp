@@ -40,7 +40,7 @@ typedef struct _YelpHtmlClass   YelpHtmlClass;
 typedef struct _YelpHtmlPriv    YelpHtmlPriv;
 
 struct _YelpHtml {
-	HtmlView          parent;
+	HtmlView       parent;
 	
 	YelpHtmlPriv  *priv;
 };
@@ -61,6 +61,7 @@ GtkWidget      *yelp_html_new            (void);
 void            yelp_html_open_uri       (YelpHtml      *view,
 					  const gchar   *uri,
 					  const gchar   *reference);
+void            yelp_html_cancel_loading (YelpHtml      *view);
 
 #endif /* __YELP_HTML_H__ */
 

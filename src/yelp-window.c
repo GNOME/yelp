@@ -317,6 +317,8 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 	
 	priv = window->priv;
 
+ 	yelp_view_content_stop (YELP_VIEW_CONTENT (priv->content_view));
+
 	if (strncmp (url, "toc:", 4) == 0) {
 		yelp_view_toc_open_url (YELP_VIEW_TOC (priv->toc_view),
 					url);
@@ -565,7 +567,6 @@ yw_create_toolbar (YelpWindow *window)
 	GConfClient     *conf_client;
 	gchar           *str;
 	GtkToolbarStyle  style = GTK_TOOLBAR_BOTH;
-	guint            notify_id;
 	
 	g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
 
@@ -701,7 +702,7 @@ yelp_window_new (GNode *doc_tree, GList *index)
  	priv->content_view = yelp_view_content_new (doc_tree);
 
 	if (priv->index) {
-		priv->index_view   = yelp_view_index_new (index);
+		priv->index_view = yelp_view_index_new (index);
 
 		g_signal_connect (priv->index_view, "url_selected",
 				  G_CALLBACK (yw_url_selected_cb),
