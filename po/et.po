@@ -1,13 +1,13 @@
 # Yelp eesti tõlge.
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# Tõivo Leedjärv <leedjarv@interest.ee>, 2002.
+# Tõivo Leedjärv <toivo@linux.ee>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-03-01 00:47+0200\n"
-"PO-Revision-Date: 2002-03-01 00:50+0200\n"
-"Last-Translator: Tõivo Leedjärv <leedjarv@interest.ee>\n"
+"POT-Creation-Date: 2002-03-17 02:13+0200\n"
+"PO-Revision-Date: 2002-03-17 02:19+0200\n"
+"Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,9 +19,9 @@ msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr ""
+msgstr "Yelp Factory"
 
-#: src/yelp-info.c:99
+#: src/yelp-info.c:126
 msgid "info"
 msgstr "info"
 
@@ -34,84 +34,84 @@ msgstr "Ei saa Yelpi aktiveerida: '%s'"
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
-#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
-#: src/yelp-man.c:376 src/yelp-man.c:387
+#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
+#: src/yelp-man.c:406 src/yelp-man.c:417
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:276 src/yelp-man.c:307 src/yelp-man.c:365 src/yelp-man.c:392
+#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:281
+#: src/yelp-man.c:311
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:297
+#: src/yelp-man.c:327
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:302
+#: src/yelp-man.c:332
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:312
+#: src/yelp-man.c:342
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:317
+#: src/yelp-man.c:347
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:339
+#: src/yelp-man.c:369
 msgid "System Calls"
 msgstr "Süsteemipöördused"
 
-#: src/yelp-man.c:344
+#: src/yelp-man.c:374
 msgid "Library Functions"
 msgstr "Teegifunktsioonid"
 
-#: src/yelp-man.c:349
+#: src/yelp-man.c:379
 msgid "Kernel Routines"
 msgstr "Kernelitoimingud"
 
-#: src/yelp-man.c:404
+#: src/yelp-man.c:434
 msgid "Applications"
 msgstr "Rakendused"
 
-#: src/yelp-man.c:409
+#: src/yelp-man.c:439
 msgid "Development"
 msgstr "Arendus"
 
-#: src/yelp-man.c:414
+#: src/yelp-man.c:444
 msgid "Hardware Devices"
 msgstr "Riistvaraseadmed"
 
-#: src/yelp-man.c:419
+#: src/yelp-man.c:449
 msgid "Configuration Files"
 msgstr "Konfiguratsioonifailid"
 
-#: src/yelp-man.c:424
+#: src/yelp-man.c:454
 msgid "Games"
 msgstr "Mängud"
 
-#: src/yelp-man.c:429
+#: src/yelp-man.c:459
 msgid "Overviews"
 msgstr "Ülevaated"
 
-#: src/yelp-man.c:434
+#: src/yelp-man.c:464
 msgid "System Administration"
 msgstr "Süsteemi administreerimine"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:475
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:209 src/yelp-view-index.c:229
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
 msgid "Section"
 msgstr "Peatükk"
 
-#: src/yelp-view-index.c:211
+#: src/yelp-view-index.c:325
 msgid "Search for:"
 msgstr "Otsi:"
 
@@ -119,11 +119,11 @@ msgstr "Otsi:"
 msgid "Other Documents"
 msgstr "Muud dokumendid"
 
-#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
+#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:502
 msgid "Manual pages"
 msgstr "Manuaalilehed"
 
-#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:558 src/yelp-view-toc.c:577
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:579 src/yelp-view-toc.c:598
 msgid "Info pages"
 msgstr "Infolehed"
 
@@ -131,15 +131,15 @@ msgstr "Infolehed"
 msgid "Installed documents"
 msgstr "Installitud dokumendid"
 
-#: src/yelp-view-toc.c:286
+#: src/yelp-view-toc.c:288
 msgid "Start page"
 msgstr "Algusleht"
 
-#: src/yelp-view-toc.c:511
+#: src/yelp-view-toc.c:532
 msgid "Manual Pages"
 msgstr "Manuaalilehed"
 
-#: src/yelp-view-toc.c:679
+#: src/yelp-view-toc.c:700
 msgid "Scrollkeeper docs for category"
 msgstr "Scrollkeeperi dokumendid kategoorias"
 
@@ -191,59 +191,49 @@ msgstr "/Abi/_Info"
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:529
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:539
 msgid "translator_credits"
 msgstr ""
 "Tõlge eesti keelde:\n"
-"       Tõivo Leedjärv <leedjarv@interest.ee>, 2002."
+"       Tõivo Leedjärv <toivo@linux.ee>, 2002."
 
-#: src/yelp-window.c:533
+#: src/yelp-window.c:543
 msgid "Help Browser for GNOME 2.0"
 msgstr "GNOME 2.0 abiinfo brauser"
 
-#: src/yelp-window.c:560
+#: src/yelp-window.c:570
 msgid "Back"
 msgstr "Tagasi"
 
-#: src/yelp-window.c:561
+#: src/yelp-window.c:571
 msgid "Show previous page in history"
 msgstr "Näita eelmist lehekülge ajaloos"
 
-#: src/yelp-window.c:572
+#: src/yelp-window.c:582
 msgid "Forward"
 msgstr "Edasi"
 
-#: src/yelp-window.c:573
+#: src/yelp-window.c:583
 msgid "Show next page in history"
 msgstr "Näita järgmist lehekülge ajaloos"
 
-#: src/yelp-window.c:586
+#: src/yelp-window.c:596
 msgid "Home"
 msgstr "Kodu"
 
-#: src/yelp-window.c:587
+#: src/yelp-window.c:597
 msgid "Go to home view"
 msgstr "Liigu koduvaatele"
 
-#: src/yelp-window.c:597
+#: src/yelp-window.c:607
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:598
+#: src/yelp-window.c:608
 msgid "Search in the index"
 msgstr "Otsi indeksist"
-
-#: src/yelp-window.c:608
-msgid "Search for a phrase in the document"
-msgstr "Otsi dokumendist fraasi"
-
-#: src/yelp-window.c:614
-msgid "Help on "
-msgstr ""
-
-#: src/yelp-window.c:619
-msgid "Enter phrase to search for in all documents"
-msgstr "Sisesta fraas, mida kõigist dokumentidest otsida"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -252,3 +242,9 @@ msgstr "Abistab GNOMEi kasutamisel"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Abi"
+
+#~ msgid "Search for a phrase in the document"
+#~ msgstr "Otsi dokumendist fraasi"
+
+#~ msgid "Enter phrase to search for in all documents"
+#~ msgstr "Sisesta fraas, mida kõigist dokumentidest otsida"
