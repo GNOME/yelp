@@ -13,7 +13,7 @@
 
 <xsl:param name="gdb_multichunk" select="0" />
 
-<xsl:param name="gdb_stylesheet_path" select="'/opt/gnome-2.0/share/xml/docbook/docbook-xsl-1.48'" />
+<xsl:param name="gdb_stylesheet_path" select="'No Stylesheet'" />
 
 <xsl:output encoding="ISO-8859-1" />
 
