@@ -1,0 +1,301 @@
+# Irish translation of yelp.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# Paul Duffy <dubhthach@frink.nuigalway.ie>, 2003.
+#
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Yelp gnome-2-2\n"
+"POT-Creation-Date: 2003-05-06 08:48+0100\n"
+"PO-Revision-Date: 2003-05-06 08:52+0100\n"
+"Last-Translator: Paul Duffy <dubhthach@frink.nuigalway.ie>\n"
+"Language-Team: Irish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>Cuardaigh téasc seo doiciméad:</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "Cuardaigh téasc..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr ""
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr ""
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "A_n chead rud eile"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "_Roimh Ré"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr ""
+
+#: src/yelp-main.c:117
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr ""
+
+#: src/yelp-main.c:136
+msgid "Could not open new window."
+msgstr "Theip ar oscailte de fhuinneog nua"
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr ""
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "SnáthannaPosix"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr ""
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr ""
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr ""
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr ""
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "Forbairt"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr ""
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr ""
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Cluichí"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr ""
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr ""
+
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "ag Lódáil..."
+
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Earnáil"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "C_uardaigh le haighaidh:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "ábhar Cabhair"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "GNOME - Deasc"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "Doiciméadí eil"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+msgid "Manual Pages"
+msgstr "Leathanach as an Lámhleabhar"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+msgid "Info Pages"
+msgstr "Leathanach Eolas"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+msgid "Documents"
+msgstr "Doiciméadí"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+msgid "Categories"
+msgstr ""
+
+#: src/yelp-view-toc.c:448
+msgid "Manual pages"
+msgstr "leathanach as an Lámhleabhar"
+
+#: src/yelp-view-toc.c:712
+msgid "GNOME is"
+msgstr "Tá GNOME"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr "Clár Saoirse"
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:163
+msgid "/_File"
+msgstr "/_Comhad"
+
+#: src/yelp-window.c:164
+msgid "/File/_New window"
+msgstr "/Comhad/Fuinneog _nua"
+
+#: src/yelp-window.c:165
+msgid "/File/_Close window"
+msgstr "/Comhad/_Dún an Fhuinneog"
+
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr "/_Eagar"
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr "/Eagar/_Cuardaing i leathanach..."
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "/Eagar/_Cuardaigh arí"
+
+#: src/yelp-window.c:171
+msgid "/_Go"
+msgstr "/_Téigh"
+
+#: src/yelp-window.c:172
+msgid "/Go/_Back"
+msgstr "/Téigh/ar _Ais"
+
+#: src/yelp-window.c:173
+msgid "/Go/_Forward"
+msgstr "/Téigh/chun Tosaigh"
+
+#: src/yelp-window.c:174
+msgid "/Go/_Home"
+msgstr "/Téigh/_Abhaile"
+
+#: src/yelp-window.c:175
+msgid "/Go/_Index"
+msgstr "/Téigh/Innéacs"
+
+#: src/yelp-window.c:177
+msgid "/_Help"
+msgstr "/Cab_hair"
+
+#: src/yelp-window.c:178
+msgid "/Help/_About"
+msgstr "/Cabhair/_Faoi"
+
+#: src/yelp-window.c:238 src/yelp-window.c:438
+msgid "Help Browser"
+msgstr "Líonléitheoir Cabhai"
+
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr ""
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:675
+msgid "translator_credits"
+msgstr ""
+
+#: src/yelp-window.c:679
+msgid "Help Browser for GNOME 2.0"
+msgstr "Líonléitheoir Cabhair le haighaidh GNOME 2.2"
+
+#: src/yelp-window.c:788
+msgid "Back"
+msgstr "ar Ais"
+
+#: src/yelp-window.c:789
+msgid "Show previous page in history"
+msgstr ""
+
+#: src/yelp-window.c:800
+msgid "Forward"
+msgstr "chun Tosaigh"
+
+#: src/yelp-window.c:801
+msgid "Show next page in history"
+msgstr "Téigh go dtí an chead leathanach eile sa stai"
+
+#: src/yelp-window.c:814
+msgid "Home"
+msgstr "Baile"
+
+#: src/yelp-window.c:815
+msgid "Go to home view"
+msgstr "Téigh go dtí radharc bail"
+
+#: src/yelp-window.c:825
+msgid "Index"
+msgstr "Innéacs"
+
+#: src/yelp-window.c:826
+msgid "Search in the index"
+msgstr "Cuardaigh sa Innéacs"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Faigh cabhair le haighaidh GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Cabhair"
