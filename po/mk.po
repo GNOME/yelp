@@ -1,20 +1,21 @@
+# translation of yelp.gnome-2-2.mk.po to Macedonian
 # translation of yelp.HEAD.po to Macedonian
 # Yelp translated on Macedonian
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002,2003 Free Software Foundation, Inc.
 # Stojcev Darko <atom1c@linux.net.mk
 # http://www.linux.net.mk
-# Ivan Stojmirov <stojmir@linux.net.mk>, 2002
+# Ivan Stojmirov <stojmir@linux.net.mk>, 2002,2003
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
-"POT-Creation-Date: 2002-12-13 06:00+0100\n"
-"PO-Revision-Date: 2002-12-15 22:48+0100\n"
+"Project-Id-Version: yelp.gnome-2-2.mk\n"
+"POT-Creation-Date: 2003-04-10 04:23+0200\n"
+"PO-Revision-Date: 2003-04-14 17:10+0200\n"
 "Last-Translator: Ivan Stojmirov <stojmir@linux.net.mk>\n"
-"Language-Team: Macedonian <mk@li.org>\n"
+"Language-Team: Macedonian <gnomk-main@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0beta2\n"
+"X-Generator: KBabel 1.0.1\n"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -56,12 +57,12 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp фабрика"
 
-#: src/yelp-main.c:115
+#: src/yelp-main.c:117
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Неможам да го активирам Yelp: '%s'"
 
-#: src/yelp-main.c:134
+#: src/yelp-main.c:136
 msgid "Could not open new window."
 msgstr "Неможам да отворам нов прозорец."
 
@@ -256,7 +257,11 @@ msgstr "Документот  '%s' не постои"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:675
 msgid "translator_credits"
-msgstr "заслуги_на преведувачите"
+msgstr ""
+"Дарко Стојчев (atom1c@linux.net.mk)\n"
+"\n"
+"Слободен Софтвер Македонија\n"
+"http://www.slobodensoftver.org.mk"
 
 #: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
