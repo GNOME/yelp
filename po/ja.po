@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
-"POT-Creation-Date: 2004-02-04 17:19-0600\n"
-"PO-Revision-Date: 2004-01-14 17:24+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-07 00:58+0900\n"
+"PO-Revision-Date: 2004-02-07 00:58+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -265,9 +265,9 @@ msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: 一時停止のカウントが負です。"
 
 #: src/yelp-toc-pager.c:486
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "Yelp を活性化できませんでした: '%s'"
+msgstr "OMF ファイル '%s' を読み込めませんでした。"
 
 #: src/yelp-toc-pager.c:892
 msgid "Categories"
@@ -410,9 +410,8 @@ msgid "&#8221;"
 msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
-#, fuzzy
 msgid "About This Article"
-msgstr "このパートについて"
+msgstr "この記事について"
 
 #: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
@@ -479,7 +478,6 @@ msgid "Author"
 msgstr "作者"
 
 #: stylesheets/l10n.xml.in.h:22
-#, fuzzy
 msgid "Authors"
 msgstr "作者"
 
@@ -504,7 +502,6 @@ msgid "Collaborator"
 msgstr "共著者"
 
 #: stylesheets/l10n.xml.in.h:28
-#, fuzzy
 msgid "Collaborators"
 msgstr "共著者"
 
@@ -517,7 +514,6 @@ msgid "Copyright"
 msgstr "著作権"
 
 #: stylesheets/l10n.xml.in.h:32
-#, fuzzy
 msgid "Copyrights"
 msgstr "著作権"
 
@@ -590,7 +586,6 @@ msgid "Other Contributor"
 msgstr "その他の貢献者"
 
 #: stylesheets/l10n.xml.in.h:51
-#, fuzzy
 msgid "Other Contributors"
 msgstr "その他の貢献者"
 
@@ -607,7 +602,6 @@ msgid "Publisher"
 msgstr "発行者"
 
 #: stylesheets/l10n.xml.in.h:55
-#, fuzzy
 msgid "Publishers"
 msgstr "発行者"
 
