@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-01-13 07:00+0100\n"
-"PO-Revision-Date: 2004-01-13 07:00+0100\n"
+"POT-Creation-Date: 2004-01-17 13:44+0100\n"
+"PO-Revision-Date: 2004-01-17 13:44+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,23 +137,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:430 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Inget href-attribut hittat på yelp:document"
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:445 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: src/yelp-db-pager.c:616
+#: src/yelp-db-pager.c:622 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Titelsida"
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:624 stylesheets/l10n.xml.in.h:27
+#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:642 stylesheets/l10n.xml.in.h:61
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -263,11 +265,16 @@ msgstr "URI:n för dokumentet som ska behandlas"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausräknaren är negativ."
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Kunde inte läsa in OMF-filen \"%s\"."
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "Dokument"
 
