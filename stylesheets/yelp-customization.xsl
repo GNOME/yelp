@@ -438,14 +438,14 @@
   <xsl:with-param name="container" select="$container"/>
 </xsl:call-template>
 
-<xsl:comment> End of chunk: [title-page] </xsl:comment>
+<xsl:comment> End of chunk </xsl:comment>
 <xsl:comment> Start of chunk: [toc] </xsl:comment>
 
 <xsl:call-template name="yelp.render.toc">
   <xsl:with-param name="title" select="$container/title"/>
 </xsl:call-template>
 
-<xsl:comment> End of chunk: [toc] </xsl:comment>
+<xsl:comment> End of chunk </xsl:comment>
 
 <xsl:for-each select="sect1">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>

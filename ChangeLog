@@ -1,5 +1,8 @@
 2002-05-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* stylesheets/yelp-customization.xsl: don't include section names
+	  on toc and title-page.
+
 	* src/yelp-view-content.c (yelp_view_content_show_uri): 
 	- don't set "Loading..." if the doc is cached. It will only result
 	  in flicker.
