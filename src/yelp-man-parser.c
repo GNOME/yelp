@@ -151,12 +151,12 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->cur++;
     parser->anc = parser->cur;
 
-    if (!strcmp (str, "\\\"")) {
+    if (g_str_equal (str, "\\\"")) {
 	while (PARSER_CUR)
 	    parser->anc = ++parser->cur;
     }
-    else if (!strcmp (str, "B") || !strcmp (str, "I") ||
-	     !strcmp (str, "SM")) {
+    else if (g_str_equal (str, "B") || g_str_equal (str, "I") ||
+	     g_str_equal (str, "SM")) {
 	parser_ensure_P (parser);
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
@@ -164,9 +164,9 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser_append_token (parser);
 	parser->ins = parser->ins->parent;
     }
-    else if (!strcmp (str, "IR") || !strcmp (str, "RI") ||
-	     !strcmp (str, "IB") || !strcmp (str, "BI") ||
-	     !strcmp (str, "RB") || !strcmp (str, "BR") ) {
+    else if (g_str_equal (str, "IR") || g_str_equal (str, "RI") ||
+	     g_str_equal (str, "IB") || g_str_equal (str, "BI") ||
+	     g_str_equal (str, "RB") || g_str_equal (str, "BR") ) {
 
 	gint  i;
 	gchar a[2], b[2];
@@ -187,11 +187,11 @@ parser_handle_linetag (YelpManParser *parser) {
 	    } else break;
 	}
     }
-    else if (!strcmp (str, "P") || !strcmp (str, "PP")) {
+    else if (g_str_equal (str, "P") || g_str_equal (str, "PP")) {
 	parser->ins = xmlDocGetRootElement (parser->doc);
 	parser_ensure_P (parser);
     }
-    else if (!strcmp (str, "SH") || !strcmp (str, "SS")) {
+    else if (g_str_equal (str, "SH") || g_str_equal (str, "SS")) {
 	gint i;
 	for (i = 0; i < 6; i++) {
 	    if (PARSER_CUR && *(parser->cur) != '\n') {
@@ -202,7 +202,7 @@ parser_handle_linetag (YelpManParser *parser) {
 	    } else break;
 	}
     }
-    else if (!strcmp (str, "TH")) {
+    else if (g_str_equal (str, "TH")) {
 	parser->ins = xmlDocGetRootElement (parser->doc);
 	parser->ins = parser_append_node (parser, str);
 
@@ -234,7 +234,7 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser->ins = parser->ins->parent;
     }
-    else if (!strcmp (str, "TP")) {
+    else if (g_str_equal (str, "TP")) {
 	parser->ins = xmlDocGetRootElement (parser->doc);
 	g_free (parser->buffer);
 	if (g_io_channel_read_line (parser->channel,
@@ -369,9 +369,9 @@ parser_handle_inline (YelpManParser *parser)
 	parser_escape_tags (parser, escape, 2);
 	g_free (escape);
 
-	if (!strcmp (str, "fI") || !strcmp (str, "fB"))
+	if (g_str_equal (str, "fI") || g_str_equal (str, "fB"))
 	    parser->ins = parser_append_node (parser, str);
-	else if (strcmp (str, "fR"))
+	else if (!g_str_equal (str, "fR"))
 	    g_warning ("No rule matching the tag '%s'\n", str);
 
 	g_free (str);
