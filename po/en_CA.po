@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 15:43-0400\n"
-"PO-Revision-Date: 2004-10-08 22:18-0400\n"
+"POT-Creation-Date: 2004-10-28 15:44-0400\n"
+"PO-Revision-Date: 2004-10-28 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -106,11 +106,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Accessibility</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Fonts</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -121,18 +121,16 @@ msgid "Find"
 msgstr "Find"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Open _Location"
+msgstr "Open Location"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Reference"
+msgstr "Preferences"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Browse with caret"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -140,12 +138,11 @@ msgstr "_Find: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Fixed width:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Open _Location"
+msgstr "_Location:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -157,11 +154,11 @@ msgstr "_Previous"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Use system fonts"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Variable width:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -354,16 +351,15 @@ msgstr "_Close window"
 
 #: src/yelp-window.c:301
 msgid "_Copy"
-msgstr ""
+msgstr "_Copy"
 
 #: src/yelp-window.c:306
 msgid "_Find..."
 msgstr "_Find..."
 
 #: src/yelp-window.c:311
-#, fuzzy
 msgid "_Preferences"
-msgstr "Reference"
+msgstr "_Preferences"
 
 #: src/yelp-window.c:316
 msgid "_Back"
@@ -402,17 +398,16 @@ msgid "_Contents"
 msgstr "_Contents"
 
 #: src/yelp-window.c:346
-#, fuzzy
 msgid "_Open Link"
-msgstr "Open _Location"
+msgstr "_Open Link"
 
 #: src/yelp-window.c:351
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Open Link in _New Window"
 
 #: src/yelp-window.c:356
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Copy Link Address"
 
 #: src/yelp-window.c:362
 msgid "_About"
@@ -709,6 +704,3 @@ msgstr "Warning"
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
 msgstr "Get help with GNOME"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "A Help Browser for GNOME"
