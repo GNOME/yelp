@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2001-12-10 06:32+0100\n"
-"PO-Revision-Date: 2001-12-10 06:32+0100\n"
+"POT-Creation-Date: 2001-12-13 13:12+0100\n"
+"PO-Revision-Date: 2001-12-13 13:15+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,13 +56,37 @@ msgstr "/Hjälp/_Om"
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:362
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
 
-#: src/yelp-window.c:443
+#: src/yelp-window.c:386
+msgid "Go back in the history list"
+msgstr "Gå bakåt i historiklistan"
+
+#: src/yelp-window.c:401
+msgid "Go forth in the history list"
+msgstr "Gå framåt i historiklistan"
+
+#: src/yelp-window.c:416
+msgid "Overview of contents"
+msgstr "Innehållsöversikt"
+
+#: src/yelp-window.c:427
+msgid "Search in the index"
+msgstr "Sök i indexet"
+
+#: src/yelp-window.c:438
+msgid "Search for a phrase in the document"
+msgstr "Sök efter en text i dokumentet"
+
+#: src/yelp-window.c:444
 msgid "Help on "
-msgstr "Hjälp om "
+msgstr "Hjälp med "
+
+#: src/yelp-window.c:449
+msgid "Enter phrase to search for in all documents"
+msgstr "Ange texten att söka efter i alla dokument"
 
 #: yelp.desktop.in.h:1
 msgid "GNOME Helpbrowser"
