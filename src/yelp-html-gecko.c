@@ -48,6 +48,7 @@ static void      html_init               (YelpHtml           *html);
 static void      html_class_init         (YelpHtmlClass      *klass);
 static void      html_set_fonts          (void);
 static void      html_set_colors         (void);
+static void      html_set_a11y           (void);
 
 enum {
     URI_SELECTED,
@@ -137,6 +138,13 @@ html_init (YelpHtml *html)
 				      (GHookFunc) html_set_colors,
 				      NULL);
 	html_set_colors ();
+    }
+    if (!klass->a11y_handler) {
+	klass->a11y_handler =
+	    yelp_settings_notify_add (YELP_SETTINGS_INFO_A11Y,
+				      (GHookFunc) html_set_a11y,
+				      NULL);
+	html_set_a11y ();
     }
 
     g_signal_connect (html->priv->embed, "title",
@@ -311,6 +319,15 @@ html_set_colors (void)
 
     color = (gchar *) yelp_settings_get_color (YELP_COLOR_BACKGROUND);
     yelp_gecko_set_color (YELP_COLOR_BACKGROUND, color);
+}
+
+static void
+html_set_a11y (void)
+{
+    gboolean caret;
+
+    caret = yelp_settings_get_caret ();
+    yelp_gecko_set_caret (caret);
 }
 
 void

@@ -30,13 +30,15 @@ typedef enum {
     YELP_SETTINGS_INFO_COLOR = 1 << 0,
     YELP_SETTINGS_INFO_FONTS = 1 << 1,
     YELP_SETTINGS_INFO_ICONS = 1 << 2,
-    YELP_SETTINGS_INFO_CSS   = 1 << 3,
-    YELP_SETTINGS_NUM_TYPES  = 4,
+    YELP_SETTINGS_INFO_A11Y  = 1 << 3,
+    YELP_SETTINGS_INFO_CSS   = 1 << 4,
+    YELP_SETTINGS_NUM_TYPES  = 5,
 
     YELP_SETTINGS_INFO_ALL =
       YELP_SETTINGS_INFO_COLOR |
       YELP_SETTINGS_INFO_FONTS |
       YELP_SETTINGS_INFO_ICONS |
+      YELP_SETTINGS_INFO_A11Y  |
       YELP_SETTINGS_INFO_CSS
 } YelpSettingsType;
 
@@ -80,5 +82,6 @@ GtkIconInfo *         yelp_settings_get_icon             (YelpIconType     icon)
 gchar *               yelp_settings_get_font             (YelpFontType     font);
 const gchar *         yelp_settings_get_color            (YelpColorType    color);
 const gchar *         yelp_settings_get_css_file         (void);
+gboolean              yelp_settings_get_caret            (void);
 
 #endif /* __YELP_SETTINGS_H__ */

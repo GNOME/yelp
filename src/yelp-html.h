@@ -49,6 +49,7 @@ struct _YelpHtmlClass {
 
 	guint font_handler;
 	guint color_handler;
+	guint a11y_handler;
 
 	/* Signals */
 	void (*uri_selected)   (YelpHtml    *view,

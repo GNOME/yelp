@@ -161,6 +161,7 @@ static void    window_about_cb          (GtkAction *action, YelpWindow *window);
 static void               history_push_back      (YelpWindow       *window);
 static void               history_push_forward   (YelpWindow       *window);
 static void               history_clear_forward  (YelpWindow       *window);
+static void               history_step_back      (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_back       (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_forward    (YelpWindow       *window);
 static void               history_entry_free     (YelpHistoryEntry *entry);
@@ -461,7 +462,6 @@ history_clear_forward (YelpWindow *window)
     GtkAction      *action;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
-    g_return_if_fail (window->priv->current_doc != NULL);
 
     priv = window->priv;
 
@@ -475,6 +475,35 @@ history_clear_forward (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+}
+
+static void
+history_step_back (YelpWindow *window)
+{
+    YelpWindowPriv   *priv;
+    YelpHistoryEntry *entry;
+
+    /** FIXME: would be nice to re-select the correct entry on the left **/
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = window->priv;
+    entry = history_pop_back (window);
+
+    if (priv->current_doc) {
+	yelp_doc_info_unref (priv->current_doc);
+	priv->current_doc = NULL;
+    }
+    if (priv->current_frag) {
+	g_free (priv->current_frag);
+	priv->current_frag = NULL;
+    }
+
+    if (entry) {
+	priv->current_doc  = yelp_doc_info_ref (entry->doc_info);
+	priv->current_frag = g_strdup (entry->frag_id);
+	history_entry_free (entry);
+    }
 }
 
 static YelpHistoryEntry *
@@ -658,6 +687,7 @@ window_do_load (YelpWindow  *window,
 	handled = window_do_load_html (window, doc_info, frag_id);
 	break;
     case YELP_DOC_TYPE_EXTERNAL:
+	history_step_back (window);
 	uri = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_ANY);
 	gnome_url_show (uri, &error);
 	g_free (uri);
@@ -687,18 +717,8 @@ window_error (YelpWindow *window, GError *error, gboolean pop)
 
     priv = window->priv;
 
-    if (pop) {
-	YelpHistoryEntry *entry = history_pop_back (window);
-
-	if (priv->current_doc)
-	    yelp_doc_info_unref (priv->current_doc);
-	if (priv->current_frag)
-	    g_free (priv->current_frag);
-	priv->current_doc  = yelp_doc_info_ref (entry->doc_info);
-	priv->current_frag = g_strdup (entry->frag_id);
-
-	history_entry_free (entry);
-    }
+    if (pop)
+	history_step_back (window);
 
     action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
     if (action)

@@ -56,6 +56,22 @@ yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 }
 
 static gboolean
+gecko_prefs_set_bool (const gchar *key, gboolean value)
+{
+	nsCOMPtr<nsIPrefService> prefService =
+		do_GetService (NS_PREFSERVICE_CONTRACTID);
+	nsCOMPtr<nsIPrefBranch> pref;
+	prefService->GetBranch ("", getter_AddRefs (pref));
+
+	if (pref) {
+		nsresult rv = pref->SetBoolPref (key, value);
+		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
+	}
+	
+	return FALSE;
+}
+
+static gboolean
 gecko_prefs_set_string (const gchar *key, const gchar *value)
 {
 	nsCOMPtr<nsIPrefService> prefService =
@@ -69,7 +85,6 @@ gecko_prefs_set_string (const gchar *key, const gchar *value)
 	}
 	
 	return FALSE;
-
 }
 
 static gboolean
@@ -86,6 +101,12 @@ gecko_prefs_set_int (const gchar *key, gint value)
 	}
 	
 	return FALSE;
+}
+
+extern "C" void
+yelp_gecko_set_caret (gboolean value)
+{
+	gecko_prefs_set_bool ("accessibility.browsewithcaret", value);
 }
 
 extern "C" void
@@ -118,6 +139,8 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 		g_free (name);
 		return;
 	}
+
+	gecko_prefs_set_string ("font.size.unit", "pt");
 
 	switch (font_type) {
 	case YELP_FONT_VARIABLE:

@@ -37,7 +37,9 @@
 #define KEY_GNOME_VARIABLE_FONT KEY_GNOME_DIR "/font_name"
 #define KEY_GNOME_FIXED_FONT    KEY_GNOME_DIR "/monospace_font_name"
 #define KEY_GNOME_GTK_THEME     KEY_GNOME_DIR "/gtk_theme"
+
 #define KEY_YELP_DIR            "/apps/yelp"
+#define KEY_YELP_USE_CARET      KEY_YELP_DIR "/use_caret"
 #define KEY_YELP_SYSTEM_FONTS   KEY_YELP_DIR "/use_system_fonts"
 #define KEY_YELP_VARIABLE_FONT  KEY_YELP_DIR "/variable_font"
 #define KEY_YELP_FIXED_FONT     KEY_YELP_DIR "/fixed_font"
@@ -51,12 +53,17 @@
 static void           settings_update         (YelpSettingsType  type);
 static void           prefs_system_fonts_cb   (GtkWidget        *widget);
 static void           prefs_font_cb           (GtkWidget        *widget);
+static void           prefs_use_caret_cb      (GtkWidget        *widget);
 static void           toggle_font_table       (GtkWidget        *widget);
 static void           gconf_system_fonts_cb   (GConfClient      *client,
 					       guint             cnxn_id,
 					       GConfEntry       *entry,
 					       gpointer          data);
 static void           gconf_font_cb           (GConfClient      *client,
+					       guint             cnxn_id,
+					       GConfEntry       *entry,
+					       gpointer          data);
+static void           gconf_use_caret_cb      (GConfClient      *client,
 					       guint             cnxn_id,
 					       GConfEntry       *entry,
 					       gpointer          data);
@@ -79,9 +86,11 @@ static GtkWidget    *system_fonts_widget  = NULL;
 static GtkWidget    *font_table_widget    = NULL;
 static GtkWidget    *variable_font_widget = NULL;
 static GtkWidget    *fixed_font_widget    = NULL;
+static GtkWidget    *use_caret_widget     = NULL;
 gulong system_fonts_handler  = 0;
 gulong variable_font_handler = 0;
 gulong fixed_font_handler    = 0;
+gulong use_caret_handler     = 0;
 
 void
 yelp_settings_init (void)
@@ -163,6 +172,10 @@ yelp_settings_init (void)
 			     KEY_YELP_FIXED_FONT,
 			     gconf_font_cb,
 			     NULL, NULL, NULL);
+    gconf_client_notify_add (gconf_client,
+			     KEY_YELP_USE_CARET,
+			     gconf_use_caret_cb,
+			     NULL, NULL, NULL);
 
     for (i = 0; i < YELP_SETTINGS_NUM_TYPES; i++) {
 	hook_lists[i] = g_new0 (GHookList, 1);
@@ -204,6 +217,7 @@ yelp_settings_open_preferences (void)
 	}
 
 	prefs_dialog  = glade_xml_get_widget (glade, "prefs_dialog");
+	use_caret_widget     = glade_xml_get_widget (glade, "use_caret");
 	system_fonts_widget  = glade_xml_get_widget (glade, "use_system_fonts");
 	font_table_widget    = glade_xml_get_widget (glade, "font_table");
 	variable_font_widget = glade_xml_get_widget (glade, "variable_font");
@@ -221,6 +235,9 @@ yelp_settings_open_preferences (void)
 	gtk_font_button_set_font_name (GTK_FONT_BUTTON (fixed_font_widget), font);
 	g_free (font);
 
+	use_caret_handler =
+	    g_signal_connect (G_OBJECT (use_caret_widget), "toggled",
+			      G_CALLBACK (prefs_use_caret_cb), NULL);
 	system_fonts_handler =
 	    g_signal_connect (G_OBJECT (system_fonts_widget), "toggled",
 			      G_CALLBACK (prefs_system_fonts_cb), NULL);
@@ -333,6 +350,16 @@ yelp_settings_get_css_file (void)
     return "file://" DATADIR "/yelp/default.css";
 }
 
+gboolean
+yelp_settings_get_caret (void)
+{
+    gboolean caret;
+    caret = gconf_client_get_bool (gconf_client,
+				   KEY_YELP_USE_CARET,
+				   NULL);
+    return caret;
+}
+
 /** Widget Callbacks **********************************************************/
 
 static void
@@ -369,6 +396,20 @@ prefs_font_cb (GtkWidget *widget)
     gconf_client_set_string (gconf_client,
 			     key, font,
 			     NULL);
+}
+
+static void
+prefs_use_caret_cb (GtkWidget *widget)
+{
+    gboolean caret;
+
+    g_return_if_fail (GTK_IS_TOGGLE_BUTTON (widget));
+
+    caret = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
+
+    gconf_client_set_bool (gconf_client,
+			   KEY_YELP_USE_CARET,
+			   caret, NULL);
 }
 
 static void
@@ -441,6 +482,25 @@ gconf_font_cb (GConfClient   *client,
     settings_update (YELP_SETTINGS_INFO_FONTS);
 }
 
+static void
+gconf_use_caret_cb (GConfClient  *client,
+		    guint         cnxn_id,
+		    GConfEntry   *entry,
+		    gpointer      data)
+{
+    gboolean caret;
+
+    caret = gconf_value_get_bool (gconf_entry_get_value (entry));
+
+    if (prefs_dialog) {
+	g_signal_handler_block (use_caret_widget, use_caret_handler);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (use_caret_widget), caret);
+	g_signal_handler_unblock (use_caret_widget, use_caret_handler);
+    }
+
+    settings_update (YELP_SETTINGS_INFO_A11Y);
+}
+
 /******************************************************************************/
 
 static void
@@ -460,15 +520,18 @@ icon_theme_changed (GtkIconTheme *theme, gpointer user_data)
 static void
 settings_update (YelpSettingsType type)
 {
+    GtkWidget *widget;
+    GtkStyle  *style;
+    GdkColor  *color;
+    GdkColor   blue = { 0, 0x0000, 0x0000, 0xffff };
     gint i;
-    GtkStyle *style;
 
     d (g_print ("settings_update\n"));
 
     if (type & YELP_SETTINGS_INFO_COLOR) {
 	style = gtk_rc_get_style_by_paths (gtk_settings,
-					   "GtkWidget", "GtkWidget",
-					   GTK_TYPE_WIDGET);
+					   "GtkTextView", "GtkTextView",
+					   GTK_TYPE_TEXT_VIEW);
 	if (style)
 	    g_object_ref (G_OBJECT (style));
 	else
@@ -476,19 +539,14 @@ settings_update (YelpSettingsType type)
 
 	g_snprintf (colors[YELP_COLOR_TEXT], 8,
 		    "#%02X%02X%02X",
-		    style->fg[GTK_STATE_NORMAL].red >> 8,
-		    style->fg[GTK_STATE_NORMAL].green >> 8,
-		    style->fg[GTK_STATE_NORMAL].blue >> 8);
-	g_snprintf (colors[YELP_COLOR_ANCHOR], 8,
-		    "#%02X%02X%02X",
-		    style->fg[GTK_STATE_NORMAL].red >> 8,
-		    style->fg[GTK_STATE_NORMAL].green >> 8,
-		    style->fg[GTK_STATE_NORMAL].blue >> 8);
+		    style->text[GTK_STATE_NORMAL].red >> 8,
+		    style->text[GTK_STATE_NORMAL].green >> 8,
+		    style->text[GTK_STATE_NORMAL].blue >> 8);
 	g_snprintf (colors[YELP_COLOR_BACKGROUND], 8,
 		    "#%02X%02X%02X",
-		    style->white.red >> 8,
-		    style->white.green >> 8,
-		    style->white.blue >> 8);
+		    style->base[GTK_STATE_NORMAL].red >> 8,
+		    style->base[GTK_STATE_NORMAL].green >> 8,
+		    style->base[GTK_STATE_NORMAL].blue >> 8);
 	g_snprintf (colors[YELP_COLOR_GRAY_BACKGROUND], 8,
 		    "#%02X%02X%02X",
 		    style->bg[GTK_STATE_NORMAL].red >> 8,
@@ -499,8 +557,20 @@ settings_update (YelpSettingsType type)
 		    style->dark[GTK_STATE_NORMAL].red >> 8,
 		    style->dark[GTK_STATE_NORMAL].green >> 8,
 		    style->dark[GTK_STATE_NORMAL].blue >> 8);
-
 	g_object_unref (G_OBJECT (style));
+
+	widget = gnome_href_new ("http://www.gnome.org/", "GNOME");
+	gtk_widget_style_get (widget, "link_color", &color, NULL);
+	if (!color)
+	    color = &blue;
+	g_snprintf (colors[YELP_COLOR_ANCHOR], 8,
+		    "#%02X%02X%02X",
+		    color->red >> 8,
+		    color->green >> 8,
+		    color->blue >> 8);
+	if (color != &blue)
+	    gdk_color_free (color);
+	gtk_object_sink (GTK_OBJECT (widget));
     }
 
     for (i = 0; i < YELP_SETTINGS_NUM_TYPES; i++)

@@ -2,6 +2,19 @@
 <gconfschemafile>
   <schemalist>
     <schema>
+      <key>/schemas/apps/yelp/use_caret</key>
+      <applyto>/apps/yelp/use_system_fonts</applyto>
+      <owner>yelp</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Use caret</short>
+        <long>
+          Use a keyboard-controllable caret when viewing pages.
+        </long>
+      </locale>
+    </schema>
+    <schema>
       <key>/schemas/apps/yelp/use_system_fonts</key>
       <applyto>/apps/yelp/use_system_fonts</applyto>
       <owner>yelp</owner>

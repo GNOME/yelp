@@ -28,6 +28,7 @@
 
 G_BEGIN_DECLS
 
+void            yelp_gecko_set_caret   (gboolean       value);
 void            yelp_gecko_set_color   (YelpColorType  type,
 					const gchar   *color);
 void            yelp_gecko_set_font    (YelpFontType   font_type,
