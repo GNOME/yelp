@@ -3671,7 +3671,7 @@ int
 main(int argc, char **argv)
 {
 	char *t=NULL;
-	int i;
+	int i,len;
 	char *buf;
 	char *h = '\0';
 	STRDEF *stdf;
@@ -3763,10 +3763,35 @@ main(int argc, char **argv)
 		fh = popen(cmdline, "r");
 		fgets(output, sizeof(output), fh);
 		pclose(fh);
-
+		
+		/* 
+		 * If man page has been cached 'man -w cmdname' will
+		 * return both the location of the manpage and the
+		 * location of the cached cat version separated by one
+		 * or more spaces.  Need to trim second entry and/or
+		 * any trailing spaces after first entry.
+		 *
+		 * However man pages can theoretically have spaces in
+		 * them.  we would use man -W, but that seems to not
+		 * be portable.
+		 *
+		 * So, look for ' /' which is probably going to work
+		 * right.
+		 */
+		
+		len = strlen(output);
+		for(i = 0; i < len; i++)
+		{
+			if (isspace((unsigned char)output[i] && output[i+1] == '/'))
+				output[i] = '\0';
+		}
+		
+		/*
 		i = strlen(output) - 1;
 		while(isspace((unsigned char)output[i])) output[i--] = '\0';
-
+		*/
+		
+		
 		if (output[0]) {
 #ifdef HAVE_LIBBZ2
 		  if(strstr(output,".bz2"))
