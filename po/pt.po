@@ -5,13 +5,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2001-12-27 04:11+0000\n"
-"PO-Revision-Date: 2001-12-27 04:11+0000\n"
+"POT-Creation-Date: 2002-01-08 23:23+0000\n"
+"PO-Revision-Date: 2002-01-08 23:24+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <none@none.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: src/GNOME_Yelp.server.in.h:1 yelp.desktop.in.h:2
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Fábrica Yelp"
 
 #: src/yelp-html.c:367
 msgid ""
@@ -25,74 +33,79 @@ msgstr ""
 "um navegador de ajuda para o GNOME 2.0 escrito pelo Mikael Hallendal."
 "<br><br>Por favor leia o LEIA-ME (README) e A-FAZER (TODO)<br></body></html>"
 
+#: src/yelp-main.c:77
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Incapaz de activar o Yelp: '%s'"
+
+#: src/yelp-main.c:97
+msgid "Could not open new window."
+msgstr "Incapaz de abrir janela."
+
 #: src/yelp-view-content.c:159 src/yelp-view-index.c:172
 msgid "Section"
 msgstr "Secção"
 
-#: src/yelp-window.c:108
+#: src/yelp-window.c:109
 msgid "/_File"
 msgstr "/_Ficheiro"
 
-#: src/yelp-window.c:109
+#: src/yelp-window.c:110
 msgid "/File/_New window"
 msgstr "/Ficheiro/_Nova janela"
 
-#: src/yelp-window.c:110
+#: src/yelp-window.c:111
 msgid "/File/_Close window"
 msgstr "/Ficheiro/_Fechar janela"
 
-#: src/yelp-window.c:111
+#: src/yelp-window.c:112
 msgid "/File/E_xit"
 msgstr "/Ficheiro/Sa_ir"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:113
 msgid "/_Help"
 msgstr "/_Ajuda"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:114
 msgid "/Help/_About"
 msgstr "/Ajuda/_Sobre"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:161
 msgid "Help Browser"
 msgstr "Navegador de Ajuda"
 
-#: src/yelp-window.c:374
+#: src/yelp-window.c:376
 msgid "Help Browser for GNOME 2.0"
 msgstr "Navegador de Ajuda para o GNOME 2.0"
 
-#: src/yelp-window.c:398
+#: src/yelp-window.c:400
 msgid "Go back in the history list"
 msgstr "Ir atrás na lista de histórico"
 
-#: src/yelp-window.c:413
+#: src/yelp-window.c:415
 msgid "Go forth in the history list"
 msgstr "Ir para a frente na lista de histórico"
 
-#: src/yelp-window.c:428
+#: src/yelp-window.c:430
 msgid "Overview of contents"
 msgstr "Resumo dos conteudos"
 
-#: src/yelp-window.c:439
+#: src/yelp-window.c:441
 msgid "Search in the index"
 msgstr "Procurar no índice"
 
-#: src/yelp-window.c:450
+#: src/yelp-window.c:452
 msgid "Search for a phrase in the document"
 msgstr "Procurar uma frase no documento"
 
-#: src/yelp-window.c:456
+#: src/yelp-window.c:458
 msgid "Help on "
 msgstr "Ajuda sobre "
 
-#: src/yelp-window.c:461
+#: src/yelp-window.c:463
 msgid "Enter phrase to search for in all documents"
 msgstr "Introduza uma frase a procurar em todos os documentos"
 
 #: yelp.desktop.in.h:1
 msgid "GNOME Helpbrowser"
 msgstr "Navegador de Ajuda GNOME"
-
-#: yelp.desktop.in.h:2
-msgid "Yelp"
-msgstr "Yelp"
