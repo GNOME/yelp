@@ -406,18 +406,20 @@ void
 yelp_index_model_set_words (YelpIndexModel *model, GList *index_words)
 {
 	YelpIndexModelPriv *priv;
+#if 0
 	GList              *node;
 	gint                i = 0;
 	GtkTreePath        *path;
 	GtkTreeIter         iter;
-	
+#endif	
 	g_return_if_fail (YELP_IS_INDEX_MODEL (model));
 
 	priv = model->priv;
 		
 	priv->original_list = g_list_sort (index_words, yelp_section_compare);
 
-	priv->index_words = priv->original_list;
+#if 0
+ 	priv->index_words = priv->original_list;
 
 	for (node = priv->index_words; node; node = node->next) {
 		path = gtk_tree_path_new ();
@@ -431,6 +433,7 @@ yelp_index_model_set_words (YelpIndexModel *model, GList *index_words)
 		
 		gtk_tree_path_free (path);
 	}
+#endif
 }
 
 void
@@ -457,7 +460,10 @@ yelp_index_model_filter (YelpIndexModel *model, const gchar *string)
 	old_length = g_list_length (priv->index_words);
 
 	if (!strcmp ("", string)) {
-		new_list = priv->original_list;
+#if 0
+ 		new_list = priv->original_list;
+#endif
+		new_list = NULL;
 	} else {
 		for (node = priv->original_list; node; node = node->next) {
 			section = YELP_SECTION (node->data);

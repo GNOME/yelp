@@ -55,7 +55,8 @@ struct TreeData {
 	char            *section;
 };
 
-static gboolean any_man_pages = FALSE;
+static gboolean  any_man_pages = FALSE;
+static GList    *man_index = NULL;
 
 /* Caller must free this */
 static char *
@@ -125,7 +126,10 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 	char             uribuf[128], titlebuf[128];
 	struct TreeNode *node;
 	YelpSection     *yelp_section;
-
+	YelpSection     *index_section;
+	gchar           *index_name;
+	gchar           *index_uri;
+	
 	dirh = opendir (basedir);
 	if (!dirh) {
 		return;
@@ -179,6 +183,18 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 						 NULL, NULL);
 
 		node->pages = g_list_prepend (node->pages, yelp_section);
+
+		index_name = g_ascii_strdown (titlebuf, -1);
+		index_uri = g_strconcat ("index:", uribuf, NULL);
+
+		index_section = yelp_section_new (YELP_SECTION_INDEX,
+						  index_name, index_uri,
+						  yelp_section->reference,
+						  yelp_section->scheme);
+		g_free (index_name);
+		g_free (index_uri);
+
+		man_index = g_list_prepend (man_index, index_section);
 					
 		g_free (manname);
 		g_free (section);
@@ -557,7 +573,7 @@ yelp_man_push_initial_tree (struct TreeNode *node, GNode *parent)
 }
 
 gboolean
-yelp_man_init (GNode *tree)
+yelp_man_init (GNode *tree, GList **index)
 {
 	gchar            *manpath = NULL;
  	char            **manpathes = NULL;
@@ -614,6 +630,8 @@ yelp_man_init (GNode *tree)
 	
 	yelp_man_free_initial_tree (root);
 	g_hash_table_destroy (section_hash);
+
+	*index = g_list_concat (*index, man_index);
 	
 	return TRUE;
 }

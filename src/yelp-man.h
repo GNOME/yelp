@@ -25,6 +25,6 @@
 
 #include <glib.h>
 
-gboolean yelp_man_init (GNode *tree);
+gboolean yelp_man_init (GNode *tree, GList **index);
 
 #endif /* __YELP_MAN_H__ */

@@ -1,5 +1,20 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-man.c:
+	- Fixes #73292
+	(yelp_man_populate_tree_for_subdir): add to section index list.
+	(yelp_man_init): concat the man index list with the global.
+
+	* src/yelp-info.c (yelp_info_init): call strdown on the names
+	  before adding to index.
+
+	* src/yelp-index-model.c (yelp_index_model_filter): don't show all
+	  index-words by default. Only show the words matching the
+	  query. Not sure what is the best way to do this, but with all
+	  man and info pages in the index it got pretty crowded.
+
+	* src/yelp-base.c (yelp_base_new): pass index to man_init.
+
 	* src/yelp-window.c (yelp_window_new): fixed an error if you don't
 	  have an index installed (thanks rhult).
 

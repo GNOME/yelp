@@ -105,6 +105,7 @@ yelp_info_init (GNode *tree, GList **index)
 	GSList      *node;
 	YelpSection *section;
 	YelpSection *index_section;
+	gchar       *index_name;
 	gchar       *index_uri;
 	
 	stat ("/usr/info", &stat_dir1);
@@ -120,7 +121,7 @@ yelp_info_init (GNode *tree, GList **index)
 		return FALSE;
 	}
 
-	root = g_node_append_data (tree, 
+	root = g_node_append_data (tree,
 				   yelp_section_new (YELP_SECTION_CATEGORY,
 						     _("info"), NULL, 
 						     NULL, NULL));
@@ -131,12 +132,14 @@ yelp_info_init (GNode *tree, GList **index)
 		g_node_append_data (root, node->data);
 		section = YELP_SECTION (node->data);
 		
+		index_name = g_ascii_strdown (section->name, -1);
 		index_uri = g_strconcat ("index:", section->uri, NULL);
 
 		index_section = yelp_section_new (YELP_SECTION_INDEX,
-						  section->name, index_uri,
+						  index_name, index_uri,
 						  section->reference, 
 						  section->scheme);
+		g_free (index_name);
 		g_free (index_uri);
 
 		*index = g_list_prepend (*index, index_section);
