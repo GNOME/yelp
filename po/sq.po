@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-09 12:14+0200\n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-10-09 16:55+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -98,31 +98,102 @@ msgstr "Vegla"
 msgid "X Applications"
 msgstr "Programe X"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
 msgstr "Gërma të mëdh_a/të vogla"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:5
 msgid "Find"
 msgstr "Gjej"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "Hap _Pozicionin"
+
+#: data/ui/yelp.glade.h:7
+#, fuzzy
+msgid "Preferences"
+msgstr "Referime"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
 msgid "_Find: "
 msgstr "_Gjej: "
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+#, fuzzy
+msgid "_Location:"
+msgstr "Hap _Pozicionin"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Next"
 msgstr "_Pasardhëse"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:13
 msgid "_Previous"
 msgstr "_Paraardhësja"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "_Rifillo nga fillimi"
 
@@ -134,24 +205,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fabrika e Yelp"
 
-#: src/yelp-db-pager.c:465 src/yelp-man-pager.c:297
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "Asnjë karakteristikë href u gjet në yelp:dokumenti"
 
-#: src/yelp-db-pager.c:480 src/yelp-man-pager.c:312
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Jashtë memorjes"
 
-#: src/yelp-db-pager.c:668 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Titulli i faqes"
 
-#: src/yelp-db-pager.c:670 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Përmbajtja"
 
-#: src/yelp-db-pager.c:688 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Nuk njihet"
@@ -192,6 +263,10 @@ msgstr "Nuk arrij të aktivoj Yelp: '%s'"
 #: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Nuk arrij të hap një dritare të re."
+
+#: src/yelp-main.c:325 yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Ndihmë"
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -279,99 +354,121 @@ msgstr "Kategoritë"
 msgid "Documents"
 msgstr "Dokumente"
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:282
 msgid "_File"
 msgstr "_File"
 
-#: src/yelp-window.c:242
+#: src/yelp-window.c:283
 msgid "_Edit"
 msgstr "_Ndrysho"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:284
 msgid "_Go"
 msgstr "_Shko"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:285
 msgid "_Help"
 msgstr "_Ndihmë"
 
-#: src/yelp-window.c:247
+#: src/yelp-window.c:288
 msgid "_New window"
 msgstr "_Dritare e re"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:293
 msgid "Open _Location"
 msgstr "Hap _Pozicionin"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:298
 msgid "_Close window"
 msgstr "_Mbyll dritaren"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:309
 msgid "_Find..."
 msgstr "_Kërko..."
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "_Preferences"
+msgstr "Referime"
+
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
 msgid "_Back"
 msgstr "_Mbrapa"
 
-#: src/yelp-window.c:271
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Shfaq faqen e kaluar në kronollogji"
 
-#: src/yelp-window.c:274
+#: src/yelp-window.c:330
 msgid "_Forward"
 msgstr "_Para"
 
-#: src/yelp-window.c:276
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Shfaq faqen në vazhdim në kronollogji"
 
-#: src/yelp-window.c:279
+#: src/yelp-window.c:335
 msgid "_Home"
 msgstr "_Shtëpia"
 
-#: src/yelp-window.c:281
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Shko tek paraqitja \"shtëpi\""
 
-#: src/yelp-window.c:284
+#: src/yelp-window.c:340
 msgid "_Previous Page"
 msgstr "Faqja _Paraardhëse"
 
-#: src/yelp-window.c:289
+#: src/yelp-window.c:345
 msgid "_Next Page"
 msgstr "Faqja në _Vazhdim"
 
-#: src/yelp-window.c:294
+#: src/yelp-window.c:350
 msgid "_Contents"
 msgstr "_Përmbajtja"
 
-#: src/yelp-window.c:300
+#: src/yelp-window.c:355
+#, fuzzy
+msgid "_Open Link"
+msgstr "Hap _Pozicionin"
+
+#: src/yelp-window.c:360
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:365
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:371
 msgid "_About"
 msgstr "_Informacione"
 
-#: src/yelp-window.c:363
+#: src/yelp-window.c:422
 msgid "Help Browser"
 msgstr "Shfletuesi i ndihmës"
 
-#: src/yelp-window.c:686
+#: src/yelp-window.c:915
 msgid "Fin_d"
 msgstr "Gje_j"
 
-#: src/yelp-window.c:984
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "Duke ngarkuar..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1474
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr "Laurent Dhima <laurenti@alblinux.net>"
-
-#: src/yelp-window.c:1480
-msgid "A Help Browser for GNOME"
-msgstr "Një Udhëzues i Shfletueshëm për GNOME "
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -645,7 +742,31 @@ msgstr "Kujdes"
 msgid "Get help with GNOME"
 msgstr "Merr ndihmë me GNOME"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "Ndihmë"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
 
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "Një Udhëzues i Shfletueshëm për GNOME "

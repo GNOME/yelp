@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-29 04:12+0200\n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-10-29 10:49+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -101,6 +101,40 @@ msgstr "Nástroje"
 msgid "X Applications"
 msgstr "Aplikace pro X"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+#, fuzzy
+msgid "Use system fonts"
+msgstr "_Používat písma systému"
+
+#: data/yelp.schemas.in.h:8
+#, fuzzy
+msgid "Use the systems default fonts."
+msgstr "_Používat písma systému"
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
@@ -173,24 +207,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
-#: src/yelp-db-pager.c:506 src/yelp-man-pager.c:297
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "V yelp:document nenalezen atribut href"
 
-#: src/yelp-db-pager.c:521 src/yelp-man-pager.c:312
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Nedostatek paměti"
 
-#: src/yelp-db-pager.c:709 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Titulní strana"
 
-#: src/yelp-db-pager.c:711 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/yelp-db-pager.c:729 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Neznámý"
@@ -322,113 +356,117 @@ msgstr "Kategorie"
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: src/yelp-window.c:279
+#: src/yelp-window.c:282
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/yelp-window.c:280
+#: src/yelp-window.c:283
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: src/yelp-window.c:281
+#: src/yelp-window.c:284
 msgid "_Go"
 msgstr "Pře_jít"
 
-#: src/yelp-window.c:282
+#: src/yelp-window.c:285
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/yelp-window.c:285
+#: src/yelp-window.c:288
 msgid "_New window"
 msgstr "_Nové okno"
 
-#: src/yelp-window.c:290
+#: src/yelp-window.c:293
 msgid "Open _Location"
 msgstr "Otevřít _umístění"
 
-#: src/yelp-window.c:295
+#: src/yelp-window.c:298
 msgid "_Close window"
 msgstr "_Zavřít okno"
 
-#: src/yelp-window.c:301
+#: src/yelp-window.c:304
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: src/yelp-window.c:306
+#: src/yelp-window.c:309
 msgid "_Find..."
 msgstr "_Hledat..."
 
-#: src/yelp-window.c:311
+#: src/yelp-window.c:314
 msgid "_Preferences"
 msgstr "_Nastavení"
 
-#: src/yelp-window.c:316
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
 msgid "_Back"
 msgstr "_Zpět"
 
-#: src/yelp-window.c:318
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Zobrazí předchozí stránku v historii"
 
-#: src/yelp-window.c:321
+#: src/yelp-window.c:330
 msgid "_Forward"
 msgstr "_Vpřed"
 
-#: src/yelp-window.c:323
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Zobrazí následující stránku v historii"
 
-#: src/yelp-window.c:326
+#: src/yelp-window.c:335
 msgid "_Home"
 msgstr "_Domů"
 
-#: src/yelp-window.c:328
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Přejde na domovskou stránku"
 
-#: src/yelp-window.c:331
+#: src/yelp-window.c:340
 msgid "_Previous Page"
 msgstr "_Předchozí strana"
 
-#: src/yelp-window.c:336
+#: src/yelp-window.c:345
 msgid "_Next Page"
 msgstr "_Následující strana"
 
-#: src/yelp-window.c:341
+#: src/yelp-window.c:350
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: src/yelp-window.c:346
+#: src/yelp-window.c:355
 msgid "_Open Link"
 msgstr "_Otevřít odkaz"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:360
 msgid "Open Link in _New Window"
 msgstr "Otevřít odkaz v _novém okně"
 
-#: src/yelp-window.c:356
+#: src/yelp-window.c:365
 msgid "_Copy Link Address"
 msgstr "_Kopírovat adresu odkazu"
 
-#: src/yelp-window.c:362
+#: src/yelp-window.c:371
 msgid "_About"
 msgstr "O _aplikaci"
 
-#: src/yelp-window.c:413
+#: src/yelp-window.c:422
 msgid "Help Browser"
 msgstr "Prohlížeč nápovědy"
 
-#: src/yelp-window.c:906
+#: src/yelp-window.c:915
 msgid "Fin_d"
 msgstr "_Hledat"
 
-#: src/yelp-window.c:1172
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "Načítám..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1860
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr ""
 "Michal Bukovjan\n"
@@ -705,6 +743,32 @@ msgstr "Varování"
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
 msgstr "Získat nápovědu o GNOME"
+
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
 
 #~ msgid "A Help Browser for GNOME"
 #~ msgstr "Prohlížeč nápovědy pro GNOME"

@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ml\n"
-"POT-Creation-Date: 2004-03-22 17:51-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2003-06-12 17:52-0600\n"
 "Last-Translator: Suresh VP <mvpsuresh@yahoo.com>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0\n"
 
 #: data/toc.xml.in.h:1
@@ -113,31 +113,101 @@ msgstr ""
 msgid "X Applications"
 msgstr "പ്രയോഗങ്ങള്‌"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "C_ase sensitive"
+msgid "<b>Accessibility</b>"
 msgstr ""
 
 #: data/ui/yelp.glade.h:3
-msgid "Find"
+msgid "<b>Fonts</b>"
 msgstr ""
 
 #: data/ui/yelp.glade.h:4
-msgid "_Find: "
+msgid "C_ase sensitive"
 msgstr ""
 
 #: data/ui/yelp.glade.h:5
+msgid "Find"
+msgstr ""
+
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "വിഭാഗം"
+
+#: data/ui/yelp.glade.h:7
+msgid "Preferences"
+msgstr ""
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
+msgid "_Find: "
+msgstr ""
+
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+#, fuzzy
+msgid "_Location:"
+msgstr "വിഭാഗം"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Next"
 msgstr "അടുത്ത"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:13
 msgid "_Previous"
 msgstr "മുന്പത്തേത്"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr ""
 
@@ -149,26 +219,26 @@ msgstr "സഹായം"
 msgid "Yelp Factory"
 msgstr "സഹായ ശാല"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr ""
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 #, fuzzy
 msgid "Contents"
 msgstr "സഹായ ഉള്ളടക്കം"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr ""
 
@@ -196,6 +266,11 @@ msgstr ""
 msgid "The selected file could not be read."
 msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"
 
+#: src/yelp-error.c:76
+#, fuzzy
+msgid "The file could not be processed."
+msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"
+
 #: src/yelp-main.c:94
 #, fuzzy
 msgid "Define which cache directory to use"
@@ -209,6 +284,10 @@ msgstr "%s-ന്റെ സഹായഗ്രന്ഥം തുറക്കാ�
 #: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "പുതിയ ജാലകം തുറക്കാനാവുന്നില്ല"
+
+#: src/yelp-main.c:325 yelp.desktop.in.h:2
+msgid "Help"
+msgstr "സഹായം"
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -271,153 +350,159 @@ msgstr "അവലോകനങ്ങള്"
 msgid "System Administration"
 msgstr "വ്യൂഹ കൃത്യനി‌‌ര്‌വഹണം"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:120
 #, fuzzy
-msgid "Document URI"
+msgid "Document Information"
 msgstr "ഗ്രന്ഥങ്ങള്"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
 msgstr ""
 
-#: src/yelp-toc-pager.c:266
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
-#: src/yelp-toc-pager.c:486
+#: src/yelp-toc-pager.c:538
 #, fuzzy, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "%s-ന്റെ സഹായഗ്രന്ഥം തുറക്കാനാവുന്നില്ല"
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "വ‍ര്ഗ്ഗങ്ങള്"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "ഗ്രന്ഥങ്ങള്"
 
-#: src/yelp-window.c:249
-msgid "/_File"
-msgstr "ശേഖരം"
-
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "പുതിയ ജാലകം"
-
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "ജാലകം അടയ്‍ക്കുക"
-
-#: src/yelp-window.c:257
-msgid "/_Edit"
-msgstr "ചിട്ട"
-
-#: src/yelp-window.c:258
-#, fuzzy
-msgid "/Edit/_Find..."
-msgstr "താളില് കണ്ടെത്തുക..."
-
-#: src/yelp-window.c:261
-#, fuzzy
-msgid "/Edit/Find Ne_xt"
-msgstr "വീണ്ടും കണ്ടെത്തുക"
-
-#: src/yelp-window.c:264
-#, fuzzy
-msgid "/Edit/Find Pre_vious"
-msgstr "വീണ്ടും കണ്ടെത്തുക"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
-msgstr "പോകുക"
-
-#: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "പിന്നോട്ട്"
-
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "മുന്നോട്ട്"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "ആസ്ഥാനം"
-
-#: src/yelp-window.c:278
-#, fuzzy
-msgid "/Go/"
-msgstr "പോകുക"
-
-#: src/yelp-window.c:279
-#, fuzzy
-msgid "/Go/_Previous Page"
-msgstr "മുന്പത്തേത്"
-
 #: src/yelp-window.c:282
 #, fuzzy
-msgid "/Go/_Next Page"
-msgstr "സൂചിക"
+msgid "_File"
+msgstr "ശേഖരം"
+
+#: src/yelp-window.c:283
+#, fuzzy
+msgid "_Edit"
+msgstr "ചിട്ട"
+
+#: src/yelp-window.c:284
+#, fuzzy
+msgid "_Go"
+msgstr "പോകുക"
 
 #: src/yelp-window.c:285
 #, fuzzy
-msgid "/Go/_Contents"
-msgstr "സഹായ ഉള്ളടക്കം"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
+msgid "_Help"
 msgstr "സഹായം"
 
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "കുറിപ്പ്"
+#: src/yelp-window.c:288
+#, fuzzy
+msgid "_New window"
+msgstr "പുതിയ ജാലകം"
 
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "സഹായ ബ്രൌസ‍ര്"
+#: src/yelp-window.c:293
+msgid "Open _Location"
+msgstr ""
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "വിഭാഗം"
+#: src/yelp-window.c:298
+#, fuzzy
+msgid "_Close window"
+msgstr "ജാലകം അടയ്‍ക്കുക"
 
-#: src/yelp-window.c:625
-msgid "Back"
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_Find..."
+msgstr "താളില് കണ്ടെത്തുക..."
+
+#: src/yelp-window.c:314
+msgid "_Preferences"
+msgstr ""
+
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
+#, fuzzy
+msgid "_Back"
 msgstr "പിന്നോട്ട്"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "മുന്പ് സന്ദ‍ര്ശിച്ച സ്ഥാനത്തേക്ക് പോകുക"
 
-#: src/yelp-window.c:636
-msgid "Forward"
+#: src/yelp-window.c:330
+#, fuzzy
+msgid "_Forward"
 msgstr "മുന്നോട്ട്"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "സന്ദ‍ര്ശിച്ചവയില് അടുത്ത സ്ഥാനത്തേക്ക് പോകുക"
 
-#: src/yelp-window.c:649
-msgid "Home"
+#: src/yelp-window.c:335
+#, fuzzy
+msgid "_Home"
 msgstr "ആസ്ഥാനം"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "ആസ്ഥാനത്തേക്ക് പോകുക"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:340
+#, fuzzy
+msgid "_Previous Page"
+msgstr "മുന്പത്തേത്"
+
+#: src/yelp-window.c:345
+#, fuzzy
+msgid "_Next Page"
+msgstr "സൂചിക"
+
+#: src/yelp-window.c:350
+#, fuzzy
+msgid "_Contents"
+msgstr "സഹായ ഉള്ളടക്കം"
+
+#: src/yelp-window.c:355
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:360
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:365
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:371
+#, fuzzy
+msgid "_About"
+msgstr "കുറിപ്പ്"
+
+#: src/yelp-window.c:422
+msgid "Help Browser"
+msgstr "സഹായ ബ്രൌസ‍ര്"
+
+#: src/yelp-window.c:915
+msgid "Fin_d"
+msgstr ""
+
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "കാത്തിരിക്കൂ..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1300
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr "എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>"
-
-#: src/yelp-window.c:1306
-#, fuzzy
-msgid "A Help Browser for GNOME"
-msgstr "ഒരു GNOME സഹായന്വേഷണ ഉപകരണം്"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -654,6 +739,10 @@ msgstr ""
 msgid "Revision History"
 msgstr ""
 
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "വിഭാഗം"
+
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr ""
@@ -692,9 +781,60 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "ഗ്നോം സഹായം ലഭിക്കുക"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "സഹായം"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
+
+#, fuzzy
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "വീണ്ടും കണ്ടെത്തുക"
+
+#, fuzzy
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "വീണ്ടും കണ്ടെത്തുക"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "പിന്നോട്ട്"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "മുന്നോട്ട്"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "ആസ്ഥാനം"
+
+#, fuzzy
+#~ msgid "/Go/"
+#~ msgstr "പോകുക"
+
+#, fuzzy
+#~ msgid "/Go/_Contents"
+#~ msgstr "സഹായ ഉള്ളടക്കം"
+
+#, fuzzy
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "ഒരു GNOME സഹായന്വേഷണ ഉപകരണം്"
 
 #~ msgid "The document '%s' does not exist"
 #~ msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"

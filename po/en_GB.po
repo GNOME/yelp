@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-03 23:30+0100\n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-03-20 09:42-0500\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: \n"
@@ -99,31 +99,102 @@ msgstr "Utilities"
 msgid "X Applications"
 msgstr "X Applications"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
 msgstr "C_ase sensitive"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:5
 msgid "Find"
 msgstr "Find"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "Dedication"
+
+#: data/ui/yelp.glade.h:7
+#, fuzzy
+msgid "Preferences"
+msgstr "Reference"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
 msgid "_Find: "
 msgstr "_Find: "
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+#, fuzzy
+msgid "_Location:"
+msgstr "Dedication"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Next"
 msgstr "_Next"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:13
 msgid "_Previous"
 msgstr "_Previous"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "_Wrap around"
 
@@ -135,25 +206,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:455 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "No href attribute found on yelp:document"
 
-#: src/yelp-db-pager.c:470 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Out of memory"
 
-#: src/yelp-db-pager.c:658 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Titlepage"
 
-#: src/yelp-db-pager.c:660 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Contents"
 
-#: src/yelp-db-pager.c:678 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -177,8 +248,8 @@ msgstr "DocBook SGML documents are no longer supported."
 msgid "The selected file could not be read."
 msgstr "The selected file could not be read."
 
-#: src/yelp-error.c:76
 #
+#: src/yelp-error.c:76
 msgid "The file could not be processed."
 msgstr "The file could not be processed."
 
@@ -194,6 +265,10 @@ msgstr "Could not activate Yelp: '%s'"
 #: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Could not open new window."
+
+#: src/yelp-main.c:325 yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Help"
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -256,148 +331,164 @@ msgstr "Overviews"
 msgid "System Administration"
 msgstr "System Administration"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "Document URI"
+#: src/yelp-pager.c:120
+#, fuzzy
+msgid "Document Information"
+msgstr "Release Information"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "The URI of the document to be processed"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr ""
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pause count is negative."
 
-#: src/yelp-toc-pager.c:490
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Could not load the OMF file '%s'."
 
-#: src/yelp-toc-pager.c:887
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Categories"
 
-#: src/yelp-toc-pager.c:901
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Documents"
 
-#: src/yelp-window.c:242
-msgid "/_File"
+#: src/yelp-window.c:282
+#, fuzzy
+msgid "_File"
 msgstr "/_File"
 
-#: src/yelp-window.c:243
-msgid "/File/_New window"
-msgstr "/File/_New window"
-
-#: src/yelp-window.c:246
-msgid "/File/_Close window"
-msgstr "/File/_Close window"
-
-#: src/yelp-window.c:250
-msgid "/_Edit"
+#: src/yelp-window.c:283
+#, fuzzy
+msgid "_Edit"
 msgstr "/_Edit"
 
-#: src/yelp-window.c:251
-msgid "/Edit/_Find..."
-msgstr "/Edit/_Find..."
-
-#: src/yelp-window.c:254
-msgid "/Edit/Find Ne_xt"
-msgstr "/Edit/Find Ne_xt"
-
-#: src/yelp-window.c:257
-msgid "/Edit/Find Pre_vious"
-msgstr "/Edit/Find Pre_vious"
-
-#: src/yelp-window.c:261
-msgid "/_Go"
+#: src/yelp-window.c:284
+#, fuzzy
+msgid "_Go"
 msgstr "/_Go"
 
-#: src/yelp-window.c:262
-msgid "/Go/_Back"
-msgstr "/Go/_Back"
-
-#: src/yelp-window.c:265
-msgid "/Go/_Forward"
-msgstr "/Go/_Forward"
-
-#: src/yelp-window.c:268
-msgid "/Go/_Home"
-msgstr "/Go/_Home"
-
-#: src/yelp-window.c:271
-msgid "/Go/"
-msgstr "/Go/"
-
-#: src/yelp-window.c:272
-msgid "/Go/_Previous Page"
-msgstr "/Go/_Previous Page"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Next Page"
-msgstr "/Go/_Next Page"
-
-#: src/yelp-window.c:278
-msgid "/Go/_Contents"
-msgstr "/Go/_Contents"
-
-#: src/yelp-window.c:282
-msgid "/_Help"
+#: src/yelp-window.c:285
+#, fuzzy
+msgid "_Help"
 msgstr "/_Help"
 
-#: src/yelp-window.c:283
-msgid "/Help/_About"
-msgstr "/Help/_About"
+#: src/yelp-window.c:288
+#, fuzzy
+msgid "_New window"
+msgstr "/File/_New window"
 
-#: src/yelp-window.c:345
-msgid "Help Browser"
-msgstr "Help Browser"
+#: src/yelp-window.c:293
+msgid "Open _Location"
+msgstr ""
 
-#: src/yelp-window.c:630
-#
-msgid "Fin_d"
-msgstr "Fin_d"
+#: src/yelp-window.c:298
+#, fuzzy
+msgid "_Close window"
+msgstr "/File/_Close window"
 
-#: src/yelp-window.c:687
-msgid "Back"
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_Find..."
+msgstr "/Edit/_Find..."
+
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "_Preferences"
+msgstr "Reference"
+
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
+#, fuzzy
+msgid "_Back"
 msgstr "Back"
 
-#: src/yelp-window.c:688
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Show previous page in history"
 
-#: src/yelp-window.c:698
-msgid "Forward"
+#: src/yelp-window.c:330
+#, fuzzy
+msgid "_Forward"
 msgstr "Forward"
 
-#: src/yelp-window.c:699
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Show next page in history"
 
-#: src/yelp-window.c:711
-msgid "Home"
+#: src/yelp-window.c:335
+#, fuzzy
+msgid "_Home"
 msgstr "Home"
 
-#: src/yelp-window.c:712
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Go to home view"
 
-#: src/yelp-window.c:885
+#: src/yelp-window.c:340
+#, fuzzy
+msgid "_Previous Page"
+msgstr "/Go/_Previous Page"
+
+#: src/yelp-window.c:345
+#, fuzzy
+msgid "_Next Page"
+msgstr "/Go/_Next Page"
+
+#: src/yelp-window.c:350
+#, fuzzy
+msgid "_Contents"
+msgstr "Contents"
+
+#: src/yelp-window.c:355
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:360
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:365
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:371
+#, fuzzy
+msgid "_About"
+msgstr "/Help/_About"
+
+#: src/yelp-window.c:422
+msgid "Help Browser"
+msgstr "Help Browser"
+
+#
+#: src/yelp-window.c:915
+msgid "Fin_d"
+msgstr "Fin_d"
+
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1336
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr ""
 "Abigail Brady <morwen@evilmagi_c.org>\n"
 "Bastien Nocera <hadess@hadess.net>\n"
 "Gareth Owen <gowen72@yahoo.com>"
-
-#: src/yelp-window.c:1342
-msgid "A Help Browser for GNOME"
-msgstr "A Help Browser for GNOME"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -671,6 +762,58 @@ msgstr "Warning"
 msgid "Get help with GNOME"
 msgstr "Get help with GNOME"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "Help"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
+
+#~ msgid "Document URI"
+#~ msgstr "Document URI"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "The URI of the document to be processed"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Edit/Find Ne_xt"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Edit/Find Pre_vious"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Go/_Back"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Go/_Forward"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Go/_Home"
+
+#~ msgid "/Go/"
+#~ msgstr "/Go/"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/Go/_Contents"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "A Help Browser for GNOME"

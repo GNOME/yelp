@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-03-22 17:51-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-03-15 18:34+0200\n"
 "Last-Translator: Maxim Dzumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -99,31 +99,102 @@ msgstr "Утиліти"
 msgid "X Applications"
 msgstr "Програми для системи X Window"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
 msgstr "Враховувати _регістр"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:5
 msgid "Find"
 msgstr "Знайти"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "Присвята"
+
+#: data/ui/yelp.glade.h:7
+#, fuzzy
+msgid "Preferences"
+msgstr "Посилання"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
 msgid "_Find: "
 msgstr "З_найти:"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+#, fuzzy
+msgid "_Location:"
+msgstr "Присвята"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Next"
 msgstr "_Наступне"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:13
 msgid "_Previous"
 msgstr "_Попереднє"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "_Досягнувши кінця, починати спочатку"
 
@@ -135,25 +206,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрика Yelp"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "Немає ознаки href у yelp:document"
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Недостатньо пам'яті"
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Титульна сторінка"
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Коментарі"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Невідомий"
 
@@ -177,6 +248,11 @@ msgstr "Документи формату DocBook SGML більше не під�
 msgid "The selected file could not be read."
 msgstr "Неможливо зчитати вибраний файл"
 
+#: src/yelp-error.c:76
+#, fuzzy
+msgid "The file could not be processed."
+msgstr "Неможливо зчитати вибраний файл"
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr "Встановити каталог для кешу"
@@ -189,6 +265,10 @@ msgstr "Не вдається активувати Yelp: \"%s\""
 #: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Не вдається відкрити нове вікно."
+
+#: src/yelp-main.c:325 yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Довідка"
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -251,144 +331,161 @@ msgstr "Огляди"
 msgid "System Administration"
 msgstr "Системне адміністрування"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "URI документа"
+#: src/yelp-pager.c:120
+#, fuzzy
+msgid "Document Information"
+msgstr "Інформація щодо випуску"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "URI документа, що обробляється"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr ""
 
-#: src/yelp-toc-pager.c:266
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: від'ємна величина паузи."
 
-#: src/yelp-toc-pager.c:486
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Не вдається завантажити файл у форматі OMF: \"%s\""
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Категорії"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Документи"
 
-#: src/yelp-window.c:249
-msgid "/_File"
+#: src/yelp-window.c:282
+#, fuzzy
+msgid "_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "/Файл/_Створити вікно"
-
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "/Файл/_Закрити вікно"
-
-#: src/yelp-window.c:257
-msgid "/_Edit"
+#: src/yelp-window.c:283
+#, fuzzy
+msgid "_Edit"
 msgstr "_Правка"
 
-#: src/yelp-window.c:258
-msgid "/Edit/_Find..."
-msgstr "/Правка/З_найти..."
-
-#: src/yelp-window.c:261
-msgid "/Edit/Find Ne_xt"
-msgstr "/Правка/Зна_йти далі"
-
-#: src/yelp-window.c:264
-msgid "/Edit/Find Pre_vious"
-msgstr "/Правка/Знайти _попереднє"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
+#: src/yelp-window.c:284
+#, fuzzy
+msgid "_Go"
 msgstr "/_Перейти"
 
-#: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "/Перейти/_Вперед"
-
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "/Перейти/_Назад"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "/Перейти/_Початкова сторінка"
-
-#: src/yelp-window.c:278
-msgid "/Go/"
-msgstr "/Перейти"
-
-#: src/yelp-window.c:279
-msgid "/Go/_Previous Page"
-msgstr "Перейти/_Попередня сторінка"
-
-#: src/yelp-window.c:282
-msgid "/Go/_Next Page"
-msgstr "/Перейти/_Наступна сторінка"
-
 #: src/yelp-window.c:285
-msgid "/Go/_Contents"
-msgstr "Перейти/_Зміст"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
+#, fuzzy
+msgid "_Help"
 msgstr "/_Довідка"
 
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "/Довідка/_Про програму"
+#: src/yelp-window.c:288
+#, fuzzy
+msgid "_New window"
+msgstr "/Файл/_Створити вікно"
 
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "Перегляд довідки"
+#: src/yelp-window.c:293
+msgid "Open _Location"
+msgstr ""
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Розділ"
+#: src/yelp-window.c:298
+#, fuzzy
+msgid "_Close window"
+msgstr "/Файл/_Закрити вікно"
 
-#: src/yelp-window.c:625
-msgid "Back"
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_Find..."
+msgstr "/Правка/З_найти..."
+
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "_Preferences"
+msgstr "Посилання"
+
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
+#, fuzzy
+msgid "_Back"
 msgstr "Назад"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Показати попередню сторінку в історії"
 
-#: src/yelp-window.c:636
-msgid "Forward"
+#: src/yelp-window.c:330
+#, fuzzy
+msgid "_Forward"
 msgstr "Вперед"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Показати наступну сторінку в історії"
 
-#: src/yelp-window.c:649
-msgid "Home"
+#: src/yelp-window.c:335
+#, fuzzy
+msgid "_Home"
 msgstr "Початкова сторінка"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Показати початкову сторінку"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:340
+#, fuzzy
+msgid "_Previous Page"
+msgstr "Перейти/_Попередня сторінка"
+
+#: src/yelp-window.c:345
+#, fuzzy
+msgid "_Next Page"
+msgstr "/Перейти/_Наступна сторінка"
+
+#: src/yelp-window.c:350
+#, fuzzy
+msgid "_Contents"
+msgstr "Коментарі"
+
+#: src/yelp-window.c:355
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:360
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:365
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:371
+#, fuzzy
+msgid "_About"
+msgstr "/Довідка/_Про програму"
+
+#: src/yelp-window.c:422
+msgid "Help Browser"
+msgstr "Перегляд довідки"
+
+#: src/yelp-window.c:915
+#, fuzzy
+msgid "Fin_d"
+msgstr "Знайти"
+
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "Завантаження..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1300
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr "Юрій Сирота <yuriy@beer.com>"
-
-#: src/yelp-window.c:1306
-msgid "A Help Browser for GNOME"
-msgstr "Перегляд довідки для GNOME"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -622,6 +719,10 @@ msgstr "Інформація щодо випуску"
 msgid "Revision History"
 msgstr "Історія виправлень"
 
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Розділ"
+
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr "Див."
@@ -658,6 +759,58 @@ msgstr "Увага"
 msgid "Get help with GNOME"
 msgstr "Отримати довідку про GNOME"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "Довідка"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
+
+#~ msgid "Document URI"
+#~ msgstr "URI документа"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "URI документа, що обробляється"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Правка/Зна_йти далі"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Правка/Знайти _попереднє"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Перейти/_Вперед"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Перейти/_Назад"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Перейти/_Початкова сторінка"
+
+#~ msgid "/Go/"
+#~ msgstr "/Перейти"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "Перейти/_Зміст"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "Перегляд довідки для GNOME"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-02 15:32+0200\n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-09-02 15:33+0200\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -20,7 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -106,31 +107,102 @@ msgstr "Pomôcky"
 msgid "X Applications"
 msgstr "Aplikácie X-Window"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
 msgstr "Rozlišovať veľké _a malé písmená"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:5
 msgid "Find"
 msgstr "Nájsť"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "Venovanie"
+
+#: data/ui/yelp.glade.h:7
+#, fuzzy
+msgid "Preferences"
+msgstr "Odkaz"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
 msgid "_Find: "
 msgstr "_Nájsť:"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+#, fuzzy
+msgid "_Location:"
+msgstr "Venovanie"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Next"
 msgstr "_Nasledujúci"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:13
 msgid "_Previous"
 msgstr "_Predchádzajúci"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "_Preskočiť na začiatok"
 
@@ -142,25 +214,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Vytváracie rozhranie Yelp"
 
-#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "Nebol nájdený atribút href v help:document"
 
-#: src/yelp-db-pager.c:454 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Nedostatok pamäti"
 
-#: src/yelp-db-pager.c:642 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Úvodná strana"
 
-#: src/yelp-db-pager.c:644 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/yelp-db-pager.c:662 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Neznámy"
 
@@ -184,6 +256,11 @@ msgstr "Dokumenty SGML Docbook už nie sú podporované."
 msgid "The selected file could not be read."
 msgstr "Vybraný súbor sa nepodarilo prečítať."
 
+#: src/yelp-error.c:76
+#, fuzzy
+msgid "The file could not be processed."
+msgstr "Vybraný súbor sa nepodarilo prečítať."
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr "Definujte, ktorý priečinok vyrovnávacej pamäti sa má použiť"
@@ -196,6 +273,10 @@ msgstr "Nepodarilo sa aktivovať Yelp: '%s'"
 #: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Nepodarilo sa otvoriť nové okno."
+
+#: src/yelp-main.c:325 yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Pomocník"
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -258,144 +339,161 @@ msgstr "Prehľady"
 msgid "System Administration"
 msgstr "Systémová administrácia"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "URI dokumentu"
+#: src/yelp-pager.c:120
+#, fuzzy
+msgid "Document Information"
+msgstr "Informácie o vydaní"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "URI spracovaného dokumentu"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr ""
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Počet páuz je záporné číslo."
 
-#: src/yelp-toc-pager.c:490
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nepodarilo sa načítať OMF súbor '%s'."
 
-#: src/yelp-toc-pager.c:887
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Kategórie"
 
-#: src/yelp-toc-pager.c:901
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: src/yelp-window.c:249
-msgid "/_File"
+#: src/yelp-window.c:282
+#, fuzzy
+msgid "_File"
 msgstr "/_Súbor"
 
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "/Súbor/_Nové okno"
-
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "/Súbor/_Zavrieť okno"
-
-#: src/yelp-window.c:257
-msgid "/_Edit"
+#: src/yelp-window.c:283
+#, fuzzy
+msgid "_Edit"
 msgstr "/_Upraviť"
 
-#: src/yelp-window.c:258
-msgid "/Edit/_Find..."
-msgstr "/Upraviť/_Nájsť..."
-
-#: src/yelp-window.c:261
-msgid "/Edit/Find Ne_xt"
-msgstr "/Upraviť/Nájsť ďa_lší"
-
-#: src/yelp-window.c:264
-msgid "/Edit/Find Pre_vious"
-msgstr "/Upraviť/Nájsť _predchádzajúci"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
+#: src/yelp-window.c:284
+#, fuzzy
+msgid "_Go"
 msgstr "/_Prejsť"
 
-#: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "/Prejsť/Do_zadu"
-
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "/Prejsť/Do_predu"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "/Prejsť/_Domov"
-
-#: src/yelp-window.c:278
-msgid "/Go/"
-msgstr "/Prejsť"
-
-#: src/yelp-window.c:279
-msgid "/Go/_Previous Page"
-msgstr "/Prejsť/_Predchádzajúca stránka"
-
-#: src/yelp-window.c:282
-msgid "/Go/_Next Page"
-msgstr "/Prejsť/_Nasledujúca stránka"
-
 #: src/yelp-window.c:285
-msgid "/Go/_Contents"
-msgstr "/Prejsť/_Obsah"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
+#, fuzzy
+msgid "_Help"
 msgstr "/_Pomocník"
 
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "/Pomocník/_O aplikácii"
+#: src/yelp-window.c:288
+#, fuzzy
+msgid "_New window"
+msgstr "/Súbor/_Nové okno"
 
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "Pomocník"
+#: src/yelp-window.c:293
+msgid "Open _Location"
+msgstr ""
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Kapitola"
+#: src/yelp-window.c:298
+#, fuzzy
+msgid "_Close window"
+msgstr "/Súbor/_Zavrieť okno"
 
-#: src/yelp-window.c:625
-msgid "Back"
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_Find..."
+msgstr "/Upraviť/_Nájsť..."
+
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "_Preferences"
+msgstr "Odkaz"
+
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
+#, fuzzy
+msgid "_Back"
 msgstr "Dozadu"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Zobraziť predchádzajúcu stránku histórie"
 
-#: src/yelp-window.c:636
-msgid "Forward"
+#: src/yelp-window.c:330
+#, fuzzy
+msgid "_Forward"
 msgstr "Dopredu"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Zobraziť nasledujúcu stránku histórie"
 
-#: src/yelp-window.c:649
-msgid "Home"
+#: src/yelp-window.c:335
+#, fuzzy
+msgid "_Home"
 msgstr "Domov"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Prejsť na domovský pohľad"
 
-#: src/yelp-window.c:858
+#: src/yelp-window.c:340
+#, fuzzy
+msgid "_Previous Page"
+msgstr "/Prejsť/_Predchádzajúca stránka"
+
+#: src/yelp-window.c:345
+#, fuzzy
+msgid "_Next Page"
+msgstr "/Prejsť/_Nasledujúca stránka"
+
+#: src/yelp-window.c:350
+#, fuzzy
+msgid "_Contents"
+msgstr "Obsah"
+
+#: src/yelp-window.c:355
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:360
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:365
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:371
+#, fuzzy
+msgid "_About"
+msgstr "/Pomocník/_O aplikácii"
+
+#: src/yelp-window.c:422
+msgid "Help Browser"
+msgstr "Pomocník"
+
+#: src/yelp-window.c:915
+#, fuzzy
+msgid "Fin_d"
+msgstr "Nájsť"
+
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "Načítavam..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr "Stanislav Višňovský (visnovsky@nenya.ms.mff.cuni.cz)"
-
-#: src/yelp-window.c:1312
-msgid "A Help Browser for GNOME"
-msgstr "Pomocník pre GNOME"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -629,6 +727,10 @@ msgstr "Informácie o vydaní"
 msgid "Revision History"
 msgstr "História revízií"
 
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Kapitola"
+
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr "Pozri"
@@ -665,7 +767,58 @@ msgstr "Varovanie"
 msgid "Get help with GNOME"
 msgstr "Zobraziť Pomocníka pre GNOME"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "Pomocník"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
 
+#~ msgid "Document URI"
+#~ msgstr "URI dokumentu"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "URI spracovaného dokumentu"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Upraviť/Nájsť ďa_lší"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Upraviť/Nájsť _predchádzajúci"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Prejsť/Do_zadu"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Prejsť/Do_predu"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Prejsť/_Domov"
+
+#~ msgid "/Go/"
+#~ msgstr "/Prejsť"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/Prejsť/_Obsah"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "Pomocník pre GNOME"

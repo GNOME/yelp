@@ -1,6 +1,5 @@
 # for debugging
-YELP_CFLAGS += -DYELP_DEBUG
-# -pedantic -ansi -Werror
+#YELP_CFLAGS += -DYELP_DEBUG -pedantic -ansi -Werror
 
 INCLUDES =								\
 	-I$(top_srcdir)							\

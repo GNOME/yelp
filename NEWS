@@ -1,3 +1,22 @@
+Changes in 2.9.1:
+-----------------
+* Switch to Gecko for HTML rendering, thanks to Marco Pesenti Gritti
+* Popup menus on links, thanks to Don Scorgie
+* Working Copy menu item, thanks to Don Scorgie
+* Firefox-style Find toolbar
+* Hidden 'Open Location' dialog
+* Drag and drop from the contents sidebar
+* Nearly everything responds to theme and font changes
+* Preferences for fonts
+* Using XSLT from gnome-doc-utils
+* Icon-themeable admonition graphics
+* Icon-themeable watermarks for blockquote and programlisting
+* Hooked up pager cancellation and stubs for reload
+* Lots of man page work by James Bowes
+* Better history handling when pages error out
+* Switch to GtkUIManager
+* Switch to GtkAboutDialog
+
 Changes in 2.6.0:
 -----------------
 * Fix for for #134534, portable sed usage.          (Laszlo Peter)

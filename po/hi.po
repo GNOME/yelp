@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-21 18:52+0530\n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-07-10 14:21+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -98,31 +98,102 @@ msgstr "यूटिलिटीज़"
 msgid "X Applications"
 msgstr "एक्स अनुप्रयोग"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
 msgstr "छोटे-बड़े अक्षर के प्रति संवेदनशील (_a)"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:5
 msgid "Find"
 msgstr "ढूंढें"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "समर्पण"
+
+#: data/ui/yelp.glade.h:7
+#, fuzzy
+msgid "Preferences"
+msgstr "सन्दर्भ"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
 msgid "_Find: "
 msgstr "ढूंढें: (_F)"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+#, fuzzy
+msgid "_Location:"
+msgstr "समर्पण"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Next"
 msgstr "अगला (_N)"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:13
 msgid "_Previous"
 msgstr "पिछला (_P)"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "व्रेप अराउंड (_W)"
 
@@ -134,25 +205,25 @@ msgstr "येल्प"
 msgid "Yelp Factory"
 msgstr "येल्प फ़ैक्ट्री"
 
-#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "येल्प:दस्तावेज़ में कोई href गुण नहीं मिला"
 
-#: src/yelp-db-pager.c:454 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "मेमोरी कम पड़ गई"
 
-#: src/yelp-db-pager.c:642 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "शीर्षक-पृष्ठ"
 
-#: src/yelp-db-pager.c:644 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "विषय सूची"
 
-#: src/yelp-db-pager.c:662 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "अज्ञात"
 
@@ -176,6 +247,11 @@ msgstr "डॉक-बुक एसजीएमएल दस्तावेज़
 msgid "The selected file could not be read."
 msgstr "चयनित फ़ाइल पढ़ा नहीं जा सका."
 
+#: src/yelp-error.c:76
+#, fuzzy
+msgid "The file could not be processed."
+msgstr "चयनित फ़ाइल पढ़ा नहीं जा सका."
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr "पारिभाषित करें कि कौन सी कैश डिरेक्ट्री उपयोग करना है"
@@ -188,6 +264,10 @@ msgstr "येल्प प्रारंभ नही कर सका: '%s'"
 #: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "नई विंडो खोल नहीं सका."
+
+#: src/yelp-main.c:325 yelp.desktop.in.h:2
+msgid "Help"
+msgstr "मदद"
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -250,132 +330,153 @@ msgstr "संक्षेप"
 msgid "System Administration"
 msgstr "तंत्र प्रशासन"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "दस्तावेज यूआरआई"
+#: src/yelp-pager.c:120
+#, fuzzy
+msgid "Document Information"
+msgstr "ज़ारी जानकारी"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "दस्तावेज़ का यूआरआई जिसे प्रॉसेस की जानी है"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr ""
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "येल्प-टीओसी-पेज़र: पॉज़ गणन ऋणात्मक है."
 
-#: src/yelp-toc-pager.c:490
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "ओएमएफ़ फ़ाइल '%s' लोड नहीं कर सका."
 
-#: src/yelp-toc-pager.c:887
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "वर्ग"
 
-#: src/yelp-toc-pager.c:901
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "दस्तावेज़"
 
-#: src/yelp-window.c:249
-msgid "/_File"
+#: src/yelp-window.c:282
+#, fuzzy
+msgid "_File"
 msgstr "/फ़ाइल (_F)"
 
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "/फ़ाइल/नई विंडो (_N)"
-
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "/फ़ाइल/विंडो बंद करें (_C)"
-
-#: src/yelp-window.c:257
-msgid "/_Edit"
+#: src/yelp-window.c:283
+#, fuzzy
+msgid "_Edit"
 msgstr "/संपादन (_E)"
 
-#: src/yelp-window.c:258
-msgid "/Edit/_Find..."
-msgstr "/संपादन/ढूंढें... (_F)"
-
-#: src/yelp-window.c:261
-msgid "/Edit/Find Ne_xt"
-msgstr "/संपादन/अगला ढूंढें (_x)"
-
-#: src/yelp-window.c:264
-msgid "/Edit/Find Pre_vious"
-msgstr "/संपादन/पिछला ढूंढें (_v)"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
+#: src/yelp-window.c:284
+#, fuzzy
+msgid "_Go"
 msgstr "/जाएँ (_G)"
 
-#: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "/जाएँ/पीछे (_B)"
-
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "/जाएँ/आगे (_F)"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "/जाएँ/घर (_H)"
-
-#: src/yelp-window.c:278
-msgid "/Go/"
-msgstr "/जाएँ/"
-
-#: src/yelp-window.c:279
-msgid "/Go/_Previous Page"
-msgstr "/जाएँ/पिछला पृष्ठ (_P)"
-
-#: src/yelp-window.c:282
-msgid "/Go/_Next Page"
-msgstr "/जाएँ/अगला पृष्ठ (_N)"
-
 #: src/yelp-window.c:285
-msgid "/Go/_Contents"
-msgstr "/जाएँ/विषय-सूची (_C)"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
+#, fuzzy
+msgid "_Help"
 msgstr "/मदद  (_H)"
 
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "/मदद/के बारे में (_A)"
+#: src/yelp-window.c:288
+#, fuzzy
+msgid "_New window"
+msgstr "/फ़ाइल/नई विंडो (_N)"
 
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "मदद ब्राउज़र"
+#: src/yelp-window.c:293
+msgid "Open _Location"
+msgstr ""
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "खण्ड"
+#: src/yelp-window.c:298
+#, fuzzy
+msgid "_Close window"
+msgstr "/फ़ाइल/विंडो बंद करें (_C)"
 
-#: src/yelp-window.c:625
-msgid "Back"
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_Find..."
+msgstr "/संपादन/ढूंढें... (_F)"
+
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "_Preferences"
+msgstr "सन्दर्भ"
+
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
+#, fuzzy
+msgid "_Back"
 msgstr "पीछे"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "इतिहास में पिछला पृष्ठ दिखाएँ"
 
-#: src/yelp-window.c:636
-msgid "Forward"
+#: src/yelp-window.c:330
+#, fuzzy
+msgid "_Forward"
 msgstr "आगे"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "इतिहास में अगला पृष्ठ दिखाएँ"
 
-#: src/yelp-window.c:649
-msgid "Home"
+#: src/yelp-window.c:335
+#, fuzzy
+msgid "_Home"
 msgstr "घर"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "घर दृश्य पर जाएँ"
 
-#: src/yelp-window.c:858
+#: src/yelp-window.c:340
+#, fuzzy
+msgid "_Previous Page"
+msgstr "/जाएँ/पिछला पृष्ठ (_P)"
+
+#: src/yelp-window.c:345
+#, fuzzy
+msgid "_Next Page"
+msgstr "/जाएँ/अगला पृष्ठ (_N)"
+
+#: src/yelp-window.c:350
+#, fuzzy
+msgid "_Contents"
+msgstr "विषय सूची"
+
+#: src/yelp-window.c:355
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:360
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:365
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:371
+#, fuzzy
+msgid "_About"
+msgstr "/मदद/के बारे में (_A)"
+
+#: src/yelp-window.c:422
+msgid "Help Browser"
+msgstr "मदद ब्राउज़र"
+
+#: src/yelp-window.c:915
+#, fuzzy
+msgid "Fin_d"
+msgstr "ढूंढें"
+
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "लोड कर रहे..."
 
@@ -383,14 +484,10 @@ msgstr "लोड कर रहे..."
 #  * will shop up in the "about" box
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr ""
 "जी करुणाकर (karunakar@freedomink.org), रविशंकर श्रीवास्तव (raviratlami@yahoo.com)"
-
-#: src/yelp-window.c:1312
-msgid "A Help Browser for GNOME"
-msgstr "गनोम हेतु मदद ब्राउज़र"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -624,6 +721,10 @@ msgstr "ज़ारी जानकारी"
 msgid "Revision History"
 msgstr "संशोधन इतिहास"
 
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "खण्ड"
+
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr "देखें"
@@ -660,6 +761,58 @@ msgstr "चेतावनी"
 msgid "Get help with GNOME"
 msgstr "गनोम से मदद लें"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "मदद"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
+
+#~ msgid "Document URI"
+#~ msgstr "दस्तावेज यूआरआई"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "दस्तावेज़ का यूआरआई जिसे प्रॉसेस की जानी है"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/संपादन/अगला ढूंढें (_x)"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/संपादन/पिछला ढूंढें (_v)"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/जाएँ/पीछे (_B)"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/जाएँ/आगे (_F)"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/जाएँ/घर (_H)"
+
+#~ msgid "/Go/"
+#~ msgstr "/जाएँ/"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/जाएँ/विषय-सूची (_C)"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "गनोम हेतु मदद ब्राउज़र"

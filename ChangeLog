@@ -1,5 +1,15 @@
 2004-11-01  Shaun McCance  <shaunm@gnome.org>
 
+	* NEWS:
+	* configure.in:
+	* po/*.po:
+	- Version 2.9.1
+
+	* src/Makefile.am:
+	- Remove debug for release
+
+2004-11-01  Shaun McCance  <shaunm@gnome.org>
+
 	* configure.in:
 	* src/Makefile.am:
 	- Do the -fno-rtti thing the way epiphany does it

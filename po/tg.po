@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp[1].gnome-2-6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-11 03:02+0200\n"
+"POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-05-18 14:36+0000\n"
 "Last-Translator: Tolib Marupov <tolibm@yahoo.com> \n"
 "Language-Team:  Tajik\n"
@@ -104,31 +104,102 @@ msgstr "Барномаҳои пуштибонӣ"
 msgid "X Applications"
 msgstr "X Замимаҳо"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
 msgstr "Ҳассосияти ҳ_олат"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:5
 msgid "Find"
 msgstr "Бозёбӣ"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "Таъинот"
+
+#: data/ui/yelp.glade.h:7
+#, fuzzy
+msgid "Preferences"
+msgstr "Нишон"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
 msgid "_Find: "
 msgstr "_Бозёбӣ: "
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+#, fuzzy
+msgid "_Location:"
+msgstr "Таъинот"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Next"
 msgstr "_Оянда"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:13
 msgid "_Previous"
 msgstr "_Гузашта"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "_Баргашти даврӣ"
 
@@ -140,25 +211,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Истеҳсолгар"
 
-#: src/yelp-db-pager.c:438 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "Ягон href нишона дар yelp пайдо нагардид:санад"
 
-#: src/yelp-db-pager.c:453 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Берун аз хотира"
 
-#: src/yelp-db-pager.c:641 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Саҳифаи унвон"
 
-#: src/yelp-db-pager.c:643 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Таркибҳо"
 
-#: src/yelp-db-pager.c:661 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Номаълум"
 
@@ -182,6 +253,11 @@ msgstr "DocBook SGML санадҳо дигар пуштибонӣ намегар
 msgid "The selected file could not be read."
 msgstr "Файли интихобшуда хонда намешавад."
 
+#: src/yelp-error.c:76
+#, fuzzy
+msgid "The file could not be processed."
+msgstr "Файли интихобшуда хонда намешавад."
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr "Истифодаи кадом феҳристи ниҳониро муайян кунед"
@@ -194,6 +270,10 @@ msgstr "Yelp-ро фаъол сохта нашуд: '%s'"
 #: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "Тирезаи навро кушода намешавад."
+
+#: src/yelp-main.c:325 yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Ёрӣ"
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -256,144 +336,161 @@ msgstr "Азназаргузаронӣ"
 msgid "System Administration"
 msgstr "Мудирияти Системавӣ"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "Санади URI"
+#: src/yelp-pager.c:120
+#, fuzzy
+msgid "Document Information"
+msgstr "Ахбороти Барориш"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "URI-и санад давом дода мешавад"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr ""
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Ҳисоби таваққуф бад аст."
 
-#: src/yelp-toc-pager.c:487
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Файли OMF '%s' бор карда намешавад."
 
-#: src/yelp-toc-pager.c:884
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Категорияҳо"
 
-#: src/yelp-toc-pager.c:898
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Санадҳо"
 
-#: src/yelp-window.c:249
-msgid "/_File"
+#: src/yelp-window.c:282
+#, fuzzy
+msgid "_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "/Файл/_Тирезаи нав"
-
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "/Файл/_Пӯшидани тиреза"
-
-#: src/yelp-window.c:257
-msgid "/_Edit"
+#: src/yelp-window.c:283
+#, fuzzy
+msgid "_Edit"
 msgstr "/_Таҳрир"
 
-#: src/yelp-window.c:258
-msgid "/Edit/_Find..."
-msgstr "/Таҳрир/_Бозёбӣ..."
-
-#: src/yelp-window.c:261
-msgid "/Edit/Find Ne_xt"
-msgstr "/Таҳрир/Бозёбии О_янда"
-
-#: src/yelp-window.c:264
-msgid "/Edit/Find Pre_vious"
-msgstr "/Таҳрир/Бозёбии Гу_зашта"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
+#: src/yelp-window.c:284
+#, fuzzy
+msgid "_Go"
 msgstr "/_Гузариш"
 
-#: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "/Гузариш/_Ақиб"
-
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "/Гузариш/_Пеш"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "/Гузариш/_Хона"
-
-#: src/yelp-window.c:278
-msgid "/Go/"
-msgstr "/Гузариш/"
-
-#: src/yelp-window.c:279
-msgid "/Go/_Previous Page"
-msgstr "/Гузариш/_Саҳифаи Гузашта"
-
-#: src/yelp-window.c:282
-msgid "/Go/_Next Page"
-msgstr "/Гузариш/_Саҳифаи Оянда"
-
 #: src/yelp-window.c:285
-msgid "/Go/_Contents"
-msgstr "/Гузариш/_Таркибҳо"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
+#, fuzzy
+msgid "_Help"
 msgstr "/_Ёрӣ"
 
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "/Ёрӣ/_Оиди"
+#: src/yelp-window.c:288
+#, fuzzy
+msgid "_New window"
+msgstr "/Файл/_Тирезаи нав"
 
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "Барраси Ёрӣ"
+#: src/yelp-window.c:293
+msgid "Open _Location"
+msgstr ""
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Бахш"
+#: src/yelp-window.c:298
+#, fuzzy
+msgid "_Close window"
+msgstr "/Файл/_Пӯшидани тиреза"
 
-#: src/yelp-window.c:625
-msgid "Back"
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_Find..."
+msgstr "/Таҳрир/_Бозёбӣ..."
+
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "_Preferences"
+msgstr "Нишон"
+
+#: src/yelp-window.c:319
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:325
+#, fuzzy
+msgid "_Back"
 msgstr "Ақиб"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Дар таърих саҳифаи гузаштаро нишон диҳед"
 
-#: src/yelp-window.c:636
-msgid "Forward"
+#: src/yelp-window.c:330
+#, fuzzy
+msgid "_Forward"
 msgstr "Ба Пеш"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Дар таърих саҳифаи ояндаро нишон диҳед"
 
-#: src/yelp-window.c:649
-msgid "Home"
+#: src/yelp-window.c:335
+#, fuzzy
+msgid "_Home"
 msgstr "Хона"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Ба назари хона баргардед"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:340
+#, fuzzy
+msgid "_Previous Page"
+msgstr "/Гузариш/_Саҳифаи Гузашта"
+
+#: src/yelp-window.c:345
+#, fuzzy
+msgid "_Next Page"
+msgstr "/Гузариш/_Саҳифаи Оянда"
+
+#: src/yelp-window.c:350
+#, fuzzy
+msgid "_Contents"
+msgstr "Таркибҳо"
+
+#: src/yelp-window.c:355
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:360
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:365
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:371
+#, fuzzy
+msgid "_About"
+msgstr "/Ёрӣ/_Оиди"
+
+#: src/yelp-window.c:422
+msgid "Help Browser"
+msgstr "Барраси Ёрӣ"
+
+#: src/yelp-window.c:915
+#, fuzzy
+msgid "Fin_d"
+msgstr "Бозёбӣ"
+
+#: src/yelp-window.c:1186
 msgid "Loading..."
 msgstr "Боркунӣ..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1304
+#: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr "translator_credits"
-
-#: src/yelp-window.c:1310
-msgid "A Help Browser for GNOME"
-msgstr "Барраси Ёрӣ барои GNOME"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -627,6 +724,10 @@ msgstr "Ахбороти Барориш"
 msgid "Revision History"
 msgstr "Таърихи Гузашта"
 
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Бахш"
+
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr "Нигаред"
@@ -663,7 +764,58 @@ msgstr "Огоҳӣ"
 msgid "Get help with GNOME"
 msgstr "Гирофтани мадад бо GNOME"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "Ёрӣ"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
 
+#~ msgid "Document URI"
+#~ msgstr "Санади URI"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "URI-и санад давом дода мешавад"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Таҳрир/Бозёбии О_янда"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Таҳрир/Бозёбии Гу_зашта"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Гузариш/_Ақиб"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Гузариш/_Пеш"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Гузариш/_Хона"
+
+#~ msgid "/Go/"
+#~ msgstr "/Гузариш/"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/Гузариш/_Таркибҳо"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "Барраси Ёрӣ барои GNOME"
