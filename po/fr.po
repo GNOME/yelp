@@ -1,21 +1,22 @@
 # French translation of Yelp.
 # Copyright (C) 2002-2005 Free Software Foundation, Inc.
 # This file is under the same license as the yelp package.
+#
 # maintainer: Jean-Michel Ardantz <jmardantz@ifrance.com>, 2002-2004.
 # Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002-2005.
 # Christophe Fergeau <teuf@users.sourceforge.net>, 2002.
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 # Sébastien Bacher <seb128@debian.org>, 2004.
-# 
+# Baptiste Mille-Mathias <bmm80@free.fr>, 2005.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.10.0\n"
+"Project-Id-Version: yelp 2.9.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-24 22:06+0100\n"
-"PO-Revision-Date: 2005-01-21 23:32+0100\n"
+"POT-Creation-Date: 2005-02-14 01:16+0100\n"
+"PO-Revision-Date: 2005-02-14 00:22+0100\n"
 "Last-Translator: Baptiste Mille-Mathias <bmm80@free.fr>\n"
-"Language-Team: French <gnomefr@traduc.org>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,7 +53,7 @@ msgstr "Routines du noyau"
 msgid "Library Functions"
 msgstr "Fonctions de bibliothèques"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
 msgstr "Pages de manuel"
 
@@ -125,8 +126,8 @@ msgid "Accessories"
 msgstr "Accessoires"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Applets"
+msgid "Administration"
+msgstr "Administration"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -140,7 +141,7 @@ msgstr "Applications éducatives"
 msgid "Graphics"
 msgstr "Graphisme"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:386
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
 msgstr "Sommaire de l'aide"
 
@@ -169,18 +170,26 @@ msgid "Other Documentation"
 msgstr "Autre documentation"
 
 #: data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "Applets de tableaux de bord"
+
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Préférences"
+
+#: data/toc.xml.in.h:18
 msgid "Programming"
 msgstr "Programmation"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:19
 msgid "Scientific"
 msgstr "Applications scientifiques"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:20
 msgid "System Tools"
 msgstr "Outils système"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "Applications X"
 
@@ -220,10 +229,6 @@ msgstr "Rechercher"
 msgid "Open Location"
 msgstr "Ouvrir l'emplacement"
 
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "Préférences"
-
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
 msgstr "Re_nommer"
@@ -242,7 +247,7 @@ msgstr "Chasse _fixe :"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Location:"
-msgstr "Emplacement :"
+msgstr "_Emplacement :"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Next"
@@ -283,8 +288,8 @@ msgstr "Police pour le texte à chasse variable."
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
 msgstr ""
-"Utiliser un caret controllable par le clavier lorsque de la visualisation "
-"des pages."
+"Utiliser un caret contrôlable par le clavier lorsque de la visualisation des "
+"pages."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -306,24 +311,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fabrique Yelp"
 
-#: src/yelp-bookmarks.c:150
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
 msgstr "Ouvrir le signet dans une nouvelle fenêtre"
 
-#: src/yelp-bookmarks.c:154
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
 msgstr "Renommer le signet"
 
-#: src/yelp-bookmarks.c:158
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
 msgstr "Supprimer le signet"
 
-#: src/yelp-bookmarks.c:301 src/yelp-bookmarks.c:373
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Un signet intitulé <b>%s</b> existe déjà pour cette page."
 
-#: src/yelp-bookmarks.c:401
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Sections du document"
 
@@ -336,7 +341,7 @@ msgstr ""
 "Le fichier « %s » ne peut être analysé. Soit il n'existe pas, soit ce n'est "
 "pas un fichier XML bien formé."
 
-#: src/yelp-db-pager.c:489
+#: src/yelp-db-pager.c:486
 msgid "Unknown Section"
 msgstr "Section inconnue"
 
@@ -404,8 +409,8 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
-"Le fichier « % » ne peut être analysé. Soit le fichier n'existe pas, ou il "
-"est incorrectement formatté."
+"Le fichier « %s » ne peut être analysé. Soit le fichier n'existe pas, ou il "
+"est incorrectement formaté."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -436,7 +441,7 @@ msgstr "La structure YelpDocInfo du document"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-00AB"
 
@@ -449,21 +454,21 @@ msgstr "YelpTocPager : le compteur de pause est négatif."
 msgid "Could not load the OMF file '%s'."
 msgstr "Impossible de charger le fichier OMF « %s »"
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "Lire la page man pour %s"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
 "La table des matières ne peut être chargée. Le fichier « %s » est soit "
-"manquant ou mal-formé."
+"manquant ou malformé."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -472,15 +477,15 @@ msgstr ""
 "La table des matières ne peut être traitée. Le fichier « %s » est soit "
 "manquant ou n'est pas une feuille de style XSLT."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Aucun attribut href trouvé dans yelp:document"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "À cours de mémoire"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Contenu de l'aide"
 
@@ -606,7 +611,8 @@ msgstr "Navigateur d'aide"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "L'identifieur uniforme de ressource « %s » est invalide."
+msgstr ""
+"L'identificateur uniforme de ressource pour le fichier n'est pas valide."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
@@ -614,8 +620,8 @@ msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr ""
-"L'identifieur uniforme de ressource « %s » est invalide ou ne pointe pas sur "
-"le fichier actuel."
+"L'identificateur uniforme de ressource « %s » n'est pas valide ou ne pointe "
+"pas sur le fichier actuel."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
@@ -639,11 +645,11 @@ msgstr "Rechercher :"
 
 #: src/yelp-window.c:1040
 msgid "Find _Next"
-msgstr "Rechercher le suiva_nt"
+msgstr "Rechercher le _suivant"
 
 #: src/yelp-window.c:1052
 msgid "Find _Previous"
-msgstr "Rechercher _précédent"
+msgstr "Rechercher le _précédent"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -651,7 +657,7 @@ msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
-"Un contexte de transformation ne peut être créé pour le fichier « s ». Le "
+"Un contexte de transformation ne peut être créé pour le fichier « %s ». Le "
 "format n'est peut être pas supporté."
 
 #: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
@@ -671,15 +677,15 @@ msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"Le fichier « % » ne peut être lu. Ce fichier pourrait être manquant, ou vous "
-"n'avez peut être pas les permissions de le lire."
+"Le fichier « %s » ne peut être lu. Ce fichier pourrait être manquant, ou "
+"vous n'avez peut être pas les permissions de le lire."
 
 #: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Chargement..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
@@ -703,7 +709,7 @@ msgid ""
 "improperly formatted."
 msgstr ""
 "Le fichier « %s » ne peut être analysé. Soit il n'existe pas, soit il est "
-"mal formatté."
+"mal formaté."
 
 #: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
@@ -717,329 +723,3 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtenir de l'aide sur GNOME"
-
-#~ msgid ""
-#~ "The document ‘%s’could not be processed. The file ‘%s’ is either missing "
-#~ "or is not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Le document « %s » ne peut être traité. Le fichier « %s » est soit "
-#~ "manquant ou ce n'est pas une feuille de style XSLT valide."
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Son et Vidéo"
-
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Accueil"
-
-#~ msgid "Go to home view"
-#~ msgstr "Affiche la page d'accueil"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "Rechercher"
-
-#~ msgid "Development Environments"
-#~ msgstr "Environnements de développement"
-
-#~ msgid "Development Tools"
-#~ msgstr "Outils de développement"
-
-#~ msgid "Editors"
-#~ msgstr "Éditeurs"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "Jeux et divertissements"
-
-#~ msgid "General"
-#~ msgstr "Général"
-
-#~ msgid "Internet Applications"
-#~ msgstr "Applications internet"
-
-#~ msgid "Kernels"
-#~ msgstr "Noyaux"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "Applications de bureautique"
-
-#~ msgid "Securities"
-#~ msgstr "Securitées"
-
-#~ msgid "System"
-#~ msgstr "Système"
-
-#~ msgid "Utilities"
-#~ msgstr "utilitaires"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Titlepage"
-#~ msgstr "Page de garde"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Le document sélectionné ne peut pas être ouvert"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "La page sélectionnée ne peut être trouvée dans ce document."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Le sommaire ne peut pas être lu."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "Les documents DocBook SGML ne sont plus supportés."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "Le fichier sélectionné ne peut pas être lu."
-
-#, fuzzy
-#~ msgid "The file could not be processed."
-#~ msgstr "Le fichier sélectionné ne peut pas être lu."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Catégories"
-
-#~ msgid "Documents"
-#~ msgstr "Documents"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "/Aller/Page _suivante"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
-
-#~ msgid "About This Article"
-#~ msgstr "À propos de cet article"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "À propos de cette bibliographie"
-
-#~ msgid "About This Book"
-#~ msgstr "À propos de ce livre"
-
-#~ msgid "About This Chapter"
-#~ msgstr "À propos de ce chapitre"
-
-#~ msgid "About This Entry"
-#~ msgstr "À propos de cette entrée"
-
-#~ msgid "About This Glossary"
-#~ msgstr "À propos de ce glossaire"
-
-#~ msgid "About This Index"
-#~ msgstr "À propos de cet index"
-
-#~ msgid "About This Part"
-#~ msgstr "À propos de cette partie"
-
-#~ msgid "About This Preface"
-#~ msgstr "À propos de cette préface"
-
-#~ msgid "About This Reference"
-#~ msgstr "À propos de cette référence"
-
-#~ msgid "About This Section"
-#~ msgstr "À propos de cette section"
-
-#~ msgid "Affiliation"
-#~ msgstr "Affiliation"
-
-#~ msgid "Appendix"
-#~ msgstr "Annexe"
-
-#~ msgid "Article"
-#~ msgstr "Article"
-
-#~ msgid "Audience"
-#~ msgstr "Destinataires"
-
-#~ msgid "Author"
-#~ msgstr "Auteur"
-
-#~ msgid "Authors"
-#~ msgstr "Auteurs"
-
-#~ msgid "Bibliography"
-#~ msgstr "Bibliographie"
-
-#~ msgid "Caution"
-#~ msgstr "Attention"
-
-#~ msgid "Chapter"
-#~ msgstr "Chapitre"
-
-#~ msgid "Collaborator"
-#~ msgstr "Collaborateur"
-
-#~ msgid "Collaborators"
-#~ msgstr "Collaborateurs"
-
-#~ msgid "Colophon"
-#~ msgstr "Colophon"
-
-#~ msgid "Copyright"
-#~ msgstr "Copyright"
-
-#~ msgid "Copyrights"
-#~ msgstr "Copyright"
-
-#~ msgid "Date"
-#~ msgstr "Date"
-
-#~ msgid "Dedication"
-#~ msgstr "Dedicace"
-
-#~ msgid "Editor"
-#~ msgstr "Éditeur"
-
-#~ msgid "Email"
-#~ msgstr "Courrier électronique"
-
-#~ msgid "Example"
-#~ msgstr "Exemple"
-
-#~ msgid "Figure"
-#~ msgstr "Figure"
-
-#~ msgid "Glossary"
-#~ msgstr "Glossaire"
-
-#~ msgid "Important"
-#~ msgstr "Important"
-
-#~ msgid "Index"
-#~ msgstr "Index"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Notification légale"
-
-#~ msgid "Level"
-#~ msgstr "Niveau"
-
-#~ msgid "Message Audience"
-#~ msgstr "Destinataire du message"
-
-#~ msgid "Message Level"
-#~ msgstr "Niveau du message"
-
-#~ msgid "Message Origin"
-#~ msgstr "Origine du message"
-
-#~ msgid "Note"
-#~ msgstr "Note"
-
-#~ msgid "Origin"
-#~ msgstr "Origine"
-
-#~ msgid "Other Contributor"
-#~ msgstr "Autres contributeurs"
-
-#~ msgid "Other Contributors"
-#~ msgstr "Autres contributeurs"
-
-#~ msgid "Part"
-#~ msgstr "Partie"
-
-#~ msgid "Preface"
-#~ msgstr "Préface"
-
-#~ msgid "Publisher"
-#~ msgstr "Éditeur"
-
-#~ msgid "Publishers"
-#~ msgstr "Éditeurs"
-
-#~ msgid "Reference"
-#~ msgstr "Référence"
-
-#~ msgid "Reference Entry"
-#~ msgstr "Entrée de référence"
-
-#~ msgid "Reference Section"
-#~ msgstr "Section de référence"
-
-#~ msgid "Release Information"
-#~ msgstr "Information sur la version"
-
-#~ msgid "Revision History"
-#~ msgstr "Historique des révisions"
-
-#~ msgid "See"
-#~ msgstr "Voir"
-
-#~ msgid "Set Index"
-#~ msgstr "Postionner l'index"
-
-#~ msgid "Table"
-#~ msgstr "Table"
-
-#~ msgid "Table of Contents"
-#~ msgstr "Table des matières"
-
-#~ msgid "Tip"
-#~ msgstr "Indice"
-
-#~ msgid "Title"
-#~ msgstr "Titre"
-
-#~ msgid "Warning"
-#~ msgstr "Avertissement"
-
-#~ msgid "Document URI"
-#~ msgstr "URI du document"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "L'URI du document à traiter"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Édition/Rechercher le _précédant"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Aller/_Précédent"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Aller/_Suivant"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Aller/_Accueil"
-
-#~ msgid "/Go/"
-#~ msgstr "/Aller/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Aller/S_ommaire"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Un navigateur d'aide pour GNOME"
