@@ -425,8 +425,8 @@
 		</xsl:when>
 		<xsl:when test="yelp:get-title-text(.)">
 			<h2 class="title">
-				<a><xsl:attribute name="href">
-					<xsl:call-template name="yelp.titlepage.ref"/>
+				<a><xsl:attribute name="name">
+					<xsl:call-template name="href.target"/>
 				</xsl:attribute></a>
 				<xsl:value-of select="yelp:get-title-text(.)"/>
 			</h2>
