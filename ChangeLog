@@ -501,6 +501,14 @@
 	- don't set "Loading..." if the doc is cached. It will only result
 	  in flicker.
 
+	* src/yelp-uri.c (yelp_uri_no_path): added, support to easy check
+	  if URI is of type 'index:' without any path.
+
+	* src/yelp-view-index.c (index_show_uri): Don't try loading if URI
+	  is just 'index:'. Fixes #95877
+
+2002-10-19  Mikael Hallendal  <micke@codefactory.se>
+
 	* src/yelp-reader.c:
 	(reader_man_info_start):
 	- make sure that section is not an empty string.

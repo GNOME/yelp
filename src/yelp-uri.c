@@ -654,3 +654,16 @@ yelp_uri_from_index (YelpURI *uri)
 
 	return yelp_uri_new (uri->path);
 }
+
+gboolean
+yelp_uri_no_path (YelpURI *uri)
+{
+	g_return_val_if_fail (uri != NULL, TRUE);
+	
+	if (!uri->path || strcmp (uri->path, "") == 0) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
