@@ -267,7 +267,7 @@ toc_process_pending (YelpPager *pager)
 {
     GSList    *first;
     gchar     *file;
-    xmlDocPtr  omf_doc;
+    xmlDocPtr  omf_doc = NULL;
     xmlNodePtr omf_cur;
     gint       lang_priority;
     OMF       *omf     = NULL;
@@ -280,6 +280,9 @@ toc_process_pending (YelpPager *pager)
     priv->omf_pending = g_slist_remove_link (priv->omf_pending, first);
 
     file = (gchar *) first->data;
+
+    if (!g_str_has_suffix (file, ".omf"))
+	goto done;
 
     omf_doc = xmlCtxtReadFile (priv->parser,
 			       (const char *) file,
