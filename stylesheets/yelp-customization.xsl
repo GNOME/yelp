@@ -19,6 +19,8 @@
 <!-- either 'yelp' or 'exslt' -->
 <xsl:param name="yelp_chunk_method" select="'exslt'"/>
 
+<xsl:param name="html.longdesc" select="false()"/>
+
 <xsl:output encoding="ISO-8859-1" />
 
 <!-- Specifies the default path for admonition graphics -->
