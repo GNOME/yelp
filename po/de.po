@@ -5,15 +5,15 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Yelp 2.5.2.1\n"
-"POT-Creation-Date: 2004-01-12 18:01-0600\n"
-"PO-Revision-Date: 2004-01-10 14:59+0100\n"
+"Project-Id-Version: Yelp 2.5.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-18 17:57+0100\n"
+"PO-Revision-Date: 2004-01-18 17:57+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -135,23 +135,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-Fabrik"
 
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:430 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Kein href-Attribut im yelp:-Dokument gefunden"
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:445 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Speichermangel"
 
-#: src/yelp-db-pager.c:616
+#: src/yelp-db-pager.c:622 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Titelseite"
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:624 stylesheets/l10n.xml.in.h:27
+#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Inhalt"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:642 stylesheets/l10n.xml.in.h:61
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -172,9 +174,8 @@ msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook-SGML-Dokumente werden nicht mehr unterstützt"
 
 #: src/yelp-error.c:70
-#, fuzzy
 msgid "The selected file could not be read."
-msgstr "Das gewählte Dokument konnte nicht geöffnet werden"
+msgstr "Die gewählte Datei konnte nicht gelesen werden."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -263,11 +264,16 @@ msgstr "Die Adresse des zu verarbeitenden Dokuments"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausen-Zähler ist negativ"
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Die OMF-Datei »%s« konnte nicht geladen werden."
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "Kategorien"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "Dokumente"
 
@@ -320,14 +326,12 @@ msgid "/Go/"
 msgstr "/Gehe zu/"
 
 #: src/yelp-window.c:259
-#, fuzzy
 msgid "/Go/_Previous Page"
-msgstr "/Gehe zu/_Zurück"
+msgstr "/Gehe zu/V_orherige Seite"
 
 #: src/yelp-window.c:262
-#, fuzzy
 msgid "/Go/_Next Page"
-msgstr "/Gehe zu/_Vor"
+msgstr "/Gehe zu/_Nächste Seite"
 
 #: src/yelp-window.c:265
 msgid "/Go/_Contents"
@@ -475,7 +479,6 @@ msgid "Author"
 msgstr "Autor"
 
 #: stylesheets/l10n.xml.in.h:21
-#, fuzzy
 msgid "Bibliography"
 msgstr "Bibliographie"
 
@@ -615,7 +618,7 @@ msgstr "Siehe auch"
 
 #: stylesheets/l10n.xml.in.h:56
 msgid "Set Index"
-msgstr "Siehe Index"
+msgstr "Satzindex"
 
 #: stylesheets/l10n.xml.in.h:57
 msgid "Table"
