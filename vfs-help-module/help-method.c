@@ -382,7 +382,7 @@ static char *
 help_name_to_local_path (const char *old_uri)
 {
         char *base_name, *new_uri, *buf;
-	GList *language_list;
+	const GList *language_list;
 	char *new_uri_with_extension;
 	char *old_help;
         gboolean is_toc;

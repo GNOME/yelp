@@ -1,3 +1,9 @@
+2001-10-28  Mikael Hallendal  <micke@codefactory.se>
+
+	* vfs-help-module/help-method.c 
+	(help_name_to_local_path): gnome_i18n_get_language_list returns
+	const GList.
+
 2001-10-27  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view.c (yelp_view_open_uri): set the document to show
