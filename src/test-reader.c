@@ -39,8 +39,8 @@ start_cb (YelpReader *reader)
 
 static void
 data_cb (YelpReader       *reader, 
-	 gint              len,
-	 const gchar      *buffer)
+	 const gchar      *buffer,
+	 gint              len)
 {
 	g_print ("data_cb [%d <-> %d]\n", len, strlen (buffer));
  	g_print (buffer);
@@ -64,6 +64,8 @@ main (int argc, char **argv)
                 return 1;
         }
 
+	g_thread_init (NULL);
+
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOME_MODULE,
 				      argc, argv,
@@ -80,7 +82,7 @@ main (int argc, char **argv)
                 return 1;
         }
 
-	reader = yelp_reader_new (FALSE);
+	reader = yelp_reader_new (TRUE);
 
 	g_signal_connect (reader, "start", 
 			  G_CALLBACK (start_cb),
