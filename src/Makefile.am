@@ -16,7 +16,7 @@ INCLUDES =								\
 	-DBINDIR=\""$(bindir)"\"
 
 bin_PROGRAMS = yelp
-noinst_PROGRAMS = test-pager
+noinst_PROGRAMS = test-man-parser test-pager
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -36,6 +36,12 @@ yelp-marshal.c: yelp-marshal.h
 
 yelp-marshal-main.c: yelp-marshal.c
 
+test_man_parser_SOURCES =						\
+	yelp-man-parser.c	yelp-man-parser.h			\
+	test-man-parser.c
+
+test_man_parser_LDADD = @YELP_LIBS@
+
 test_pager_SOURCES =							\
 	yelp-db-pager.c		yelp-db-pager.h				\
 	yelp-error.c		yelp-error.h				\
@@ -45,9 +51,7 @@ test_pager_SOURCES =							\
 	yelp-uri.c		yelp-uri.h				\
 	yelp-marshal-main.c	test-pager.c
 
-test_pager_LDADD =							\
-	@YELP_LIBS@							\
-	$(POPT_LIBS)
+test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS)
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
@@ -64,9 +68,7 @@ yelp_SOURCES =								\
 	yelp-uri.c	        yelp-uri.h				\
 	yelp-marshal-main.c	yelp-main.c
 
-yelp_LDADD =								\
-	@YELP_LIBS@							\
-	$(POPT_LIBS)
+yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS)
 
 gnome_yelp_idl_sources =						\
 	GNOME_Yelp-stubs.c						\
