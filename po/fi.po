@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-06-04 11:54+0200\n"
-"PO-Revision-Date: 2003-01-21 00:00+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-12 13:04+0200\n"
+"PO-Revision-Date: 2003-08-12 21:23+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
 "sourceforge.net>\n"
@@ -57,8 +58,8 @@ msgid "Yelp Factory"
 msgstr "Yelp-tehdas"
 
 #: src/yelp-main.c:94
-msgid "Define which cache dir to use"
-msgstr ""
+msgid "Define which cache directory to use"
+msgstr "Määrittele käytettävä välihakemisto"
 
 #: src/yelp-main.c:128
 #, c-format
@@ -144,7 +145,7 @@ msgstr "Ladataan..."
 
 #: src/yelp-view-content.c:528 src/yelp-view-index.c:517
 msgid "Section"
-msgstr "Sektio"
+msgstr "Sisällys"
 
 #: src/yelp-view-index.c:480
 msgid "_Search for:"
@@ -153,7 +154,7 @@ msgstr "_Etsi:"
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
 msgid "Help Contents"
-msgstr "Sisältö"
+msgstr "Ohjeen sisältö"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
@@ -161,37 +162,37 @@ msgstr "Gnome - Työpöytä"
 
 #: src/yelp-view-toc.c:167
 msgid "Additional documents"
-msgstr "Ylimääräiset dokumentit"
+msgstr "Lisädokumentit"
 
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "Manuaalisivut"
 
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "Infosivut"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "Dokumentit"
 
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "Kategoriat"
 
-#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "Manuaalisivut"
 
-#: src/yelp-view-toc.c:712
+#: src/yelp-view-toc.c:707
 msgid "GNOME is"
 msgstr "Gnome on"
 
-#: src/yelp-view-toc.c:713
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr "vapaa ohjelmisto"
 
-#: src/yelp-view-toc.c:714
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr "©"
 
@@ -260,12 +261,15 @@ msgstr "Dokumentti \"%s\" ei ole olemassa"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:677
 msgid "translator_credits"
-msgstr "Lauri Nurmi, 2003\nHenri Mannerberg, 2002-2003\n\nhttp://gnome-fi.org/"
+msgstr ""
+"Lauri Nurmi, 2003\n"
+"Henri Mannerberg, 2002-2003\n"
+"\n"
+"http://gnome-fi.org/"
 
 #: src/yelp-window.c:681
-#, fuzzy
 msgid "A Help Browser for GNOME"
-msgstr "Ohje-selain Gnome 2.0:lle"
+msgstr "Gnomen ohje-selain"
 
 #: src/yelp-window.c:795
 msgid "Back"
