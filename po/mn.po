@@ -1,0 +1,307 @@
+# translation of yelp.HEAD.po to mongolian
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Sanlig Badral <badral@chinggis.com>, 2003
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp.HEAD\n"
+"POT-Creation-Date: 2003-01-08 06:08+0100\n"
+"PO-Revision-Date: 2003-01-16 21:13+0100\n"
+"Last-Translator: Sanlig Badral <badral@chinggis.com>\n"
+"Language-Team: mongolian <mn@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.1\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>Баримт дотроос текст хайх:</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "Автоматаар _мөр таслах"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "Текст хайх..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "Зөвхөн _бүтэн үгийг авах"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "Том/жижиг бичлэг _ялгахаар"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "_Цааш хайх"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "_Гэдрэг хайх"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp үйлдвэр"
+
+#: src/yelp-main.c:117
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Yelp »%s« идэвхижсэнгүй."
+
+#: src/yelp-main.c:136
+msgid "Could not open new window."
+msgstr "Шинэ цонх нээгдэх боломжгүй."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Системийн дуудалт"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Сангийн функцүүд"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Kernel Routines"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "Х.программ"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "Хөгжил"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Hardware төхөөрөмж"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Тохируулгын файлууд"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Тоглоом"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Тойм"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Системийн зохион байгуулагч"
+
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "Ачаалж байна..."
+
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Хэсэг"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "_Хайх:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Тусламж агуулга"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "GNOME - Desktop"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "Нэмэлт баримтууд"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+msgid "Manual Pages"
+msgstr "Гарын авлага хуудсууд"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+msgid "Info Pages"
+msgstr "Мэд-Хуудсууд"
+
+# CHECK
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+msgid "Documents"
+msgstr "Баримтууд"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+msgid "Categories"
+msgstr "Категорууд"
+
+#: src/yelp-view-toc.c:448
+msgid "Manual pages"
+msgstr "Гарын авлага хуудсууд"
+
+#: src/yelp-view-toc.c:712
+msgid "GNOME is"
+msgstr "GNOME бол"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr "чөлөөт программ хангамж"
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:163
+msgid "/_File"
+msgstr "/_Файл"
+
+#: src/yelp-window.c:164
+msgid "/File/_New window"
+msgstr "/Файл/_Шинэ цонх"
+
+#: src/yelp-window.c:165
+msgid "/File/_Close window"
+msgstr "/Файл/Цонх _хаах"
+
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr "/_Боловсруулах"
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr "/Боловсруулах/Хуудсан дотор х_айх..."
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "/Боловсруулах/_Цааш хайх"
+
+#: src/yelp-window.c:171
+msgid "/_Go"
+msgstr "/_Оч"
+
+#: src/yelp-window.c:172
+msgid "/Go/_Back"
+msgstr "/Оч/_Хойш"
+
+#: src/yelp-window.c:173
+msgid "/Go/_Forward"
+msgstr "/Оч/_Урагш"
+
+#: src/yelp-window.c:174
+msgid "/Go/_Home"
+msgstr "/Оч/_Эхлэл"
+
+#: src/yelp-window.c:175
+msgid "/Go/_Index"
+msgstr "/Оч/_Жигсаалт"
+
+#: src/yelp-window.c:177
+msgid "/_Help"
+msgstr "/_Тусламж"
+
+#: src/yelp-window.c:178
+msgid "/Help/_About"
+msgstr "/Тусламж/_Тухай"
+
+#: src/yelp-window.c:238 src/yelp-window.c:438
+msgid "Help Browser"
+msgstr "Тусламж хөтөч"
+
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "»%s« баримт алга байна"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:675
+msgid "translator_credits"
+msgstr ""
+"Санлиг Бадрал <badral@chinggis.com>\n"
+"Очирбат Батзаяа <buuvei@yahoo.com>"
+
+#: src/yelp-window.c:679
+msgid "Help Browser for GNOME 2.0"
+msgstr "Тусламж хөтөч GNOME 2.0 -н хувьд"
+
+#: src/yelp-window.c:788
+msgid "Back"
+msgstr "Буцах"
+
+#: src/yelp-window.c:789
+msgid "Show previous page in history"
+msgstr "Түүх доторхи өмнөх хуудсыг харуулах"
+
+#: src/yelp-window.c:800
+msgid "Forward"
+msgstr "Урагш"
+
+#: src/yelp-window.c:801
+msgid "Show next page in history"
+msgstr "Түүх доторхи дараах хуудсыг харуулах"
+
+#: src/yelp-window.c:814
+msgid "Home"
+msgstr "Эхлэл"
+
+# CHECK
+#: src/yelp-window.c:815
+msgid "Go to home view"
+msgstr "Эхлэл рүү очих"
+
+#: src/yelp-window.c:825
+msgid "Index"
+msgstr "Жигсаалт"
+
+#: src/yelp-window.c:826
+msgid "Search in the index"
+msgstr "Жигсаалтад хайх"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "GNOME -н тусламж авах"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Тусламж"
+
