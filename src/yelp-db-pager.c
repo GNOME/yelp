@@ -268,8 +268,8 @@ db_pager_process (YelpPager *pager)
 	gtk_main_iteration ();
 
     uri_slash = g_strrstr (uri_str, "/");
-    doc_name  = g_strndup (uri_str, uri_slash - uri_str + 1);
-    doc_path  = g_strdup  (uri_slash + 1);
+    doc_name  = g_strdup  (uri_slash + 1);
+    doc_path  = g_strndup (uri_str, uri_slash - uri_str + 1);
 
     p_doc_name = g_strconcat("\"", doc_name, "\"", NULL);
     p_doc_path = g_strconcat("\"file://", doc_path, "/\"", NULL);
