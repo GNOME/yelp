@@ -47,51 +47,16 @@ yelp_theme_init (void)
     if (!style) {
 	g_warning (_("Could not obtain a GtkStyle."));
     } else {
-	int state = GTK_STATE_NORMAL;
-	gushort rgb[3];
-	int i;
-
-	rgb[0] = style->bg[state].red >> 8;
-	rgb[1] = style->bg[state].green >> 8;
-	rgb[2] = style->bg[state].blue >> 8;
-
-	gray_background[0] = '"';
-	gray_background[1] = '#';
-	for (i = 0; i < 3; i++) {
-	    int j = rgb[i] / 16;
-	    if (j < 10)
-		gray_background[2*i+2] = '0' + j;
-	    else
-		gray_background[2*i+2] = 'A' + (j - 10);
-	    j = rgb[i] % 16;
-	    if (j < 10)
-		gray_background[2*i+3] = '0' + j;
-	    else
-		gray_background[2*i+3] = 'A' + (j - 10);
-	}
-	gray_background[8] = '"';
-	gray_background[9] = '\0';
-
-	rgb[0] = style->dark[state].red >> 8;
-	rgb[1] = style->dark[state].green >> 8;
-	rgb[2] = style->dark[state].blue >> 8;
-
-	gray_border[0] = '"';
-	gray_border[1] = '#';
-	for (i = 0; i < 3; i++) {
-	    int j = rgb[i] / 16;
-	    if (j < 10)
-		gray_border[2*i+2] = '0' + j;
-	    else
-		gray_border[2*i+2] = 'A' + (j - 10);
-	    j = rgb[i] % 16;
-	    if (j < 10)
-		gray_border[2*i+3] = '0' + j;
-	    else
-		gray_border[2*i+3] = 'A' + (j - 10);
-	}
-	gray_border[8] = '"';
-	gray_border[9] = '\0';
+	g_snprintf (gray_background, 10,
+		    "\"#%02X%02X%02X\"",
+		    style->bg[GTK_STATE_NORMAL].red >> 8,
+		    style->bg[GTK_STATE_NORMAL].green >> 8,
+		    style->bg[GTK_STATE_NORMAL].blue >> 8);
+	g_snprintf (gray_border, 10,
+		    "\"#%02X%02X%02X\"",
+		    style->dark[GTK_STATE_NORMAL].red >> 8,
+		    style->dark[GTK_STATE_NORMAL].green >> 8,
+		    style->dark[GTK_STATE_NORMAL].blue >> 8);
     }
 }
 

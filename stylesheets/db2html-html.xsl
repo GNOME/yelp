@@ -166,8 +166,10 @@ div[class="admonition"] {
 	margin-right: 1.6em;
 	margin-bottom: 0.8em;
 	padding: 0.8em;
-	background-color: #CCCCCC;
-	border: solid 2px #C0C0C0;
+	background-color: </xsl:text>
+<xsl:value-of select="$color_gray_background"/><xsl:text>;
+	border: solid 1px </xsl:text>
+<xsl:value-of select="$color_gray_border"/><xsl:text>;
 }
 div[class="admonition"] td[class="image"] { margin-right: 1.6em; }
 

@@ -243,7 +243,7 @@
 </xsl:template>
 
 <xsl:template match="term">
-	<xsl:call-template name="inline.bold"/>
+	<xsl:call-template name="inline"/>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -1,5 +1,17 @@
 2003-12-29  Shaun McCance  <shaunm@gnome.org>
 
+	* data/toc.xml.in:
+	- Move Applets into Applications.
+	- Accomodote non-standard GNOME|Applications|Accessories.
+
+	* src/yelp-theme.c:
+	- Don't be an idiot.  Use snprintf.
+
+	* src/yelp-window.c:
+	- Make the busy cursor go away when erroring out.
+
+2003-12-29  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-uri.c:
 	- Consider #index to be equal to no fragment.
 

@@ -998,6 +998,8 @@ window_disconnect (YelpWindow *window)
     YelpWindowPriv *priv = window->priv;
     g_return_if_fail (YELP_IS_WINDOW (window));
 
+    gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+
     if (priv->contents_handler) {
 	g_signal_handler_disconnect (priv->pager,
 				     priv->contents_handler);
@@ -1061,8 +1063,6 @@ pager_page_cb (YelpPager *pager,
     uri  = yelp_window_get_current_uri (window);
 
     if (yelp_pager_uri_is_page (pager, page_id, uri)) {
-	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
-
 	window_disconnect (window);
 
 	page = (YelpPage *) yelp_pager_get_page (pager, page_id);
@@ -1076,8 +1076,6 @@ pager_error_cb (YelpPager   *pager,
 {
     YelpWindow *window = YELP_WINDOW (user_data);
     GError *error = yelp_pager_get_error (pager);
-
-    gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
     window_disconnect (window);
     window_error (window, error);
