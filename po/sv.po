@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-01-06 21:34+0100\n"
-"PO-Revision-Date: 2002-01-06 21:34+0100\n"
+"POT-Creation-Date: 2002-01-10 02:04+0100\n"
+"PO-Revision-Date: 2002-01-10 02:04+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,10 @@ msgstr ""
 "hjälpvisare under utveckling, för GNOME 2.0, skriven av Mikael Hallendal."
 "<br><br>Läs gärna filerna README och TODO<br></body></html>"
 
+#: src/yelp-info.c:92
+msgid "Info Pages"
+msgstr "Infosidor"
+
 #: src/yelp-main.c:77
 #, c-format
 msgid "Could not activate Yelp: '%s'"
@@ -44,6 +48,79 @@ msgstr "Kunde inte aktivera Yelp: \"%s\""
 #: src/yelp-main.c:97
 msgid "Could not open new window."
 msgstr "Kunde inte öppna nytt fönster."
+
+#: src/yelp-man.c:266 src/yelp-man.c:287 src/yelp-man.c:323 src/yelp-man.c:355
+#: src/yelp-man.c:371 src/yelp-man.c:382
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:271 src/yelp-man.c:302 src/yelp-man.c:360 src/yelp-man.c:387
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:276
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:292
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:297
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:307
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:312
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:334
+msgid "System Calls"
+msgstr "Systemanrop"
+
+#: src/yelp-man.c:339
+msgid "Library Functions"
+msgstr "Biblioteksfunktioner"
+
+#: src/yelp-man.c:344
+msgid "Kernel Routines"
+msgstr "Kärnrutiner"
+
+#: src/yelp-man.c:399
+msgid "Applications"
+msgstr "Program"
+
+#: src/yelp-man.c:404
+msgid "Development"
+msgstr "Utveckling"
+
+#: src/yelp-man.c:409
+msgid "Hardware Devices"
+msgstr "Hårdvaruenheter"
+
+#: src/yelp-man.c:414
+msgid "Configuration Files"
+msgstr "Konfigurationsfiler"
+
+#: src/yelp-man.c:419
+msgid "Games"
+msgstr "Spel"
+
+#: src/yelp-man.c:424
+msgid "Overviews"
+msgstr "Översikter"
+
+#: src/yelp-man.c:429
+msgid "System Administration"
+msgstr "Systemadministration"
+
+#: src/yelp-man.c:440
+msgid "Manual Pages"
+msgstr "Manualsidor"
 
 #: src/yelp-view-content.c:159 src/yelp-view-index.c:172
 msgid "Section"
