@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yelp 0.6.99\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-06-26 00:11+0700\n"
+"PO-Revision-Date: 2004-12-20 21:16+0700\n"
 "Last-Translator: pclouds <pclouds@vnlinux.org>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -100,11 +100,11 @@ msgstr "Ứng dụng X"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Phông chữ cho fixed text"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Phông chữ văn bản"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
@@ -120,15 +120,15 @@ msgstr ""
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Dùng caret"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Dùng phông hệ thống"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Dùng phông mặc định của hệ thống."
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Phông chữ</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -151,18 +151,16 @@ msgid "Find"
 msgstr "Tìm"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Đề tặng"
+msgstr "Mở vị trí"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Tham khảo"
+msgstr "Tùy thích"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Duyệt với caret"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -173,9 +171,8 @@ msgid "_Fixed width:"
 msgstr ""
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Đề tặng"
+msgstr "_Vị trí:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -187,7 +184,7 @@ msgstr "T_rước"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Dùng phông hệ thống"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
@@ -248,9 +245,8 @@ msgid "The selected file could not be read."
 msgstr "Không thể đọc tập tin được chọn."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Không thể đọc tập tin được chọn."
+msgstr "Không thể xử lý tập tin."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -331,9 +327,8 @@ msgid "System Administration"
 msgstr "Quản trị hệ thống"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "URI Tài liệu"
+msgstr "Thông tin Tài liệu"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
@@ -357,124 +352,108 @@ msgid "Documents"
 msgstr "Tài liệu"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "_File"
-msgstr "/_Tập tin"
+msgstr "_Tập tin"
 
 #: src/yelp-window.c:283
-#, fuzzy
 msgid "_Edit"
-msgstr "/_Sửa"
+msgstr "_Hiệu chỉnh"
 
 #: src/yelp-window.c:284
-#, fuzzy
 msgid "_Go"
-msgstr "/Đ_i"
+msgstr "Đ_i"
 
 #: src/yelp-window.c:285
-#, fuzzy
 msgid "_Help"
-msgstr "/Trợ _giúp"
+msgstr "Trợ _giúp"
 
 #: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/Tập tin/_Cửa sổ mới"
+msgstr "_Cửa sổ mới"
 
 #: src/yelp-window.c:293
 msgid "Open _Location"
-msgstr ""
+msgstr "Mở _vị trí"
 
 #: src/yelp-window.c:298
-#, fuzzy
 msgid "_Close window"
-msgstr "/Tập tin/Đón_g cửa sổ"
+msgstr "Đón_g cửa sổ"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "_Chép"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_Find..."
-msgstr "/Sửa/_Tìm..."
+msgstr "_Tìm..."
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "_Preferences"
-msgstr "Tham khảo"
+msgstr "_Tùy thích"
 
 #: src/yelp-window.c:319
 msgid "_Reload"
-msgstr ""
+msgstr "_Nạp lại"
 
 #: src/yelp-window.c:325
-#, fuzzy
 msgid "_Back"
-msgstr "Lùi"
+msgstr "_Lùi"
 
 #: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Xem trang trước đó"
 
 #: src/yelp-window.c:330
-#, fuzzy
 msgid "_Forward"
-msgstr "Tới"
+msgstr "_Tới"
 
 #: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Xem trang kế"
 
 #: src/yelp-window.c:335
-#, fuzzy
 msgid "_Home"
-msgstr "Home"
+msgstr "_Gốc"
 
 #: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Về nhà"
 
 #: src/yelp-window.c:340
-#, fuzzy
 msgid "_Previous Page"
-msgstr "/Đi/Trang T_rước"
+msgstr "Trang T_rước"
 
 #: src/yelp-window.c:345
-#, fuzzy
 msgid "_Next Page"
-msgstr "/Đi/Trang _kế"
+msgstr "Trang _kế"
 
 #: src/yelp-window.c:350
-#, fuzzy
 msgid "_Contents"
-msgstr "Nội dung"
+msgstr "_Nội dung"
 
 #: src/yelp-window.c:355
 msgid "_Open Link"
-msgstr ""
+msgstr "Mở _liên kết"
 
 #: src/yelp-window.c:360
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Mở liên kết trong _cửa sổ mới"
 
 #: src/yelp-window.c:365
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Chép liên kết"
 
 #: src/yelp-window.c:371
-#, fuzzy
 msgid "_About"
-msgstr "/Trợ giúp/_Giới thiệu"
+msgstr "_Giới thiệu"
 
 #: src/yelp-window.c:422
 msgid "Help Browser"
 msgstr "Trình trợ giúp"
 
 #: src/yelp-window.c:915
-#, fuzzy
 msgid "Fin_d"
-msgstr "Tìm"
+msgstr "_Tìm"
 
 #: src/yelp-window.c:1186
 msgid "Loading..."
