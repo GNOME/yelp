@@ -306,6 +306,9 @@
 					</xsl:choose>
 				</a></td>
 			</xsl:when>
+			<xsl:otherwise>
+				<td align="left" width="33%"></td>
+			</xsl:otherwise>
 		</xsl:choose>
 		<xsl:if test="$up">
 			<td align="center" width="33%"><a accesskey="u">
@@ -349,6 +352,9 @@
 					<xsl:text> &gt;&gt;&gt;</xsl:text>
 				</a></td>
 			</xsl:when>
+			<xsl:otherwise>
+				<td align="left" width="33%"></td>
+			</xsl:otherwise>
 		</xsl:choose>
 	</tr></table>
 	</xsl:if>
@@ -601,6 +607,7 @@
 		<xsl:with-param name="node" select="."/>
 		<xsl:with-param name="prev" select="'title-page'"/>
 		<xsl:with-param name="next" select="$next"/>
+		<xsl:with-param name="up" select="false()"/>
 	</xsl:call-template>
 	<xsl:comment> End of chunk </xsl:comment>
 
