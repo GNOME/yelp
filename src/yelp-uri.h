@@ -37,7 +37,8 @@ typedef enum {
         YELP_URI_TYPE_INFO,
 	YELP_URI_TYPE_TOC,
 	YELP_URI_TYPE_INDEX,
-	YELP_URI_TYPE_PATH
+	YELP_URI_TYPE_PATH,
+	YELP_URI_TYPE_FILE
 } YelpURIType;
 
 typedef struct _YelpURI YelpURI;

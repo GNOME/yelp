@@ -1,3 +1,20 @@
+2002-05-21  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-toc.c: implemented jimmac's mockups.
+
+	* src/yelp-uri.c: added support for file:
+
+	* src/Makefile.am (INCLUDES): added IMAGEDIR
+
+	* data/images/*: new files
+
+	* data/Makefile.am: new file
+
+	* configure.in: 
+	- added data/Makefile, data/images/Makefile to AC_OUTPUT.
+
+	* Makefile.am (SUBDIRS): added data
+
 2002-05-20  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-content.c: 

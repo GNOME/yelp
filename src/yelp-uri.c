@@ -65,7 +65,10 @@ uri_get_doc_path (const gchar *str_uri)
 		no_anchor_uri = g_strdup (str_uri);
 	}
 
-	if (!g_ascii_strncasecmp (no_anchor_uri, "man:", 4)) {
+	if (no_anchor_uri[0] == '/') {
+		ret_val = g_strdup (no_anchor_uri);
+	}
+	else if (!g_ascii_strncasecmp (no_anchor_uri, "man:", 4)) {
 		ret_val = g_strdup (no_anchor_uri + 4);
 	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "info:", 5)) {
@@ -82,7 +85,10 @@ uri_get_doc_path (const gchar *str_uri)
 	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "ghelp:", 6)) {
 		ret_val = uri_get_path_from_ghelp_uri (no_anchor_uri + 6);
-	} 
+	}
+	else if (!g_ascii_strncasecmp (no_anchor_uri, "file:", 5)) {
+		ret_val = g_strdup (no_anchor_uri + 5);
+	}
 	
 	g_free (no_anchor_uri);
 
@@ -108,6 +114,10 @@ uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
 	}
 	else if (!g_ascii_strncasecmp (str_uri, "path:", 5)) {
 		ret_val = YELP_URI_TYPE_PATH;
+	}
+	else if (!g_ascii_strncasecmp (str_uri, "file:", 5) ||
+		 str_uri[0] == '/') {
+		ret_val = YELP_URI_TYPE_FILE;
 	}
         else if (!g_ascii_strncasecmp (str_uri, "ghelp:", 6)) {
 		gchar *mime_type = NULL;
@@ -553,8 +563,12 @@ yelp_uri_to_string (YelpURI *uri)
 	case YELP_URI_TYPE_PATH:
 		type = g_strdup ("path:");
 		break;
+	case YELP_URI_TYPE_FILE:
+		type = g_strdup ("file:");
+		break;
 	default:
 		g_assert_not_reached ();
+		break;
 	}
 
 	if (uri->section) {

@@ -6,6 +6,7 @@ INCLUDES =								\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"				\
 	-DDATADIR=\""$(datadir)"\"					\
 	-DLIBDIR=\""$(libdir)"\"					\
+	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
 if HTML_WIDGET_GTKHTML1
