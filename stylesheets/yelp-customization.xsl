@@ -137,7 +137,7 @@
 <xsl:template name="user.head.content">
    <style>
      <xsl:text>
-       LI {margin-left: 3em}
+       LI {margin-left: 1em}
        LI P {margin-bottom: 0}
        LI P {margin-top: 0}
        P.header-title {text-align: center; margin-top: 0; margin-bottom: 0}
@@ -145,10 +145,10 @@
        P.about {margin-bottom: 0}
        DD P {margin-top: 0}
        DD P {margin-bottom: 0}
-       OL {margin-top: 0}
-       OL {margin-bottom: 0}
-       UL {margin-top: 0}
-       UL {margin-bottom: 0}
+       OL {margin-top: 0; margin-bottom: 0}
+       LI OL {margin-left: 2em}
+       UL {margin-top: 0; margin-bottom: 0}
+       LI UL {margin-left: 2em}
        DD {margin-left: 2em}
        DL {margin-top: 0}
        DL {margin-bottom: 0}
@@ -169,8 +169,10 @@
        DIV.table TH {border-width: 0}
        LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
        DIV.revhistory TABLE {border-spacing: 0}
-       H2 {margin-bottom: 0}
-       H3 {margin-bottom: 0}
+       H1 {font-size: 140%}
+       H2 {font-size: 130%; margin-bottom: 0}
+       H3 {font-size: 120%; margin-bottom: 0}
+       H4 {font-size: 110%}
      </xsl:text>
    </style>
 </xsl:template>
@@ -405,7 +407,7 @@
 <xsl:param name="title" select="''" />
   <xsl:call-template name="make.toc.navbar"/>
   <xsl:element name="hr"/>
-  <H1 align="center"><xsl:value-of select="$title"/></H1>
+  <H1 class="title"><xsl:value-of select="$title"/></H1>
   <p class="about"><a>
     <xsl:attribute name="href">
       <xsl:call-template name="titlepage.ref"/>
