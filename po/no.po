@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2002-04-23 22:28+0200\n"
-"PO-Revision-Date: 2002-04-23 22:30+0200\n"
+"POT-Creation-Date: 2002-05-08 08:59+0200\n"
+"PO-Revision-Date: 2002-05-08 08:59+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokml) <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,33 +21,31 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp factory"
 
-#: src/yelp-db2html.c:105
+#: src/yelp-db2html.c:106
 msgid ""
 "Error while parsing the stylesheet, make sure you have your docbook "
 "environment setup correctly."
-msgstr "Feil under lesing av stilark. Sjekk at du har satt opp ditt docbook-miljø korrekt."
+msgstr ""
+"Feil under lesing av stilark. Sjekk at du har satt opp ditt docbook-miljø "
+"korrekt."
 
-#: src/yelp-db2html.c:121
+#: src/yelp-db2html.c:122
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet «%s» eksisterer ikke"
 
-#: src/yelp-db2html.c:136
+#: src/yelp-db2html.c:137
 #, c-format
 msgid "Couldn't parse the document '%s'."
 msgstr "Kunne ikke lese dokumentet «%s»."
 
-#: src/yelp-db2html.c:175
+#: src/yelp-db2html.c:176
 msgid "Error while applying the stylesheet."
 msgstr "Feil under påføring av stilark."
 
-#: src/yelp-html.c:155
+#: src/yelp-html.c:149
 msgid "Loading..."
 msgstr "Laster..."
-
-#: src/yelp-info.c:141
-msgid "info"
-msgstr "info"
 
 #: src/yelp-main.c:109
 #, c-format
@@ -58,161 +56,157 @@ msgstr "Kunne ikke aktivere Yelp: «%s»"
 msgid "Could not open new window."
 msgstr "Kunne ikke åpne nytt vindu."
 
-#: src/yelp-man.c:302 src/yelp-man.c:323 src/yelp-man.c:359 src/yelp-man.c:391
-#: src/yelp-man.c:407 src/yelp-man.c:418
+#: src/yelp-man.c:292 src/yelp-man.c:313 src/yelp-man.c:349 src/yelp-man.c:381
+#: src/yelp-man.c:397 src/yelp-man.c:408
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:307 src/yelp-man.c:338 src/yelp-man.c:396 src/yelp-man.c:423
+#: src/yelp-man.c:297 src/yelp-man.c:328 src/yelp-man.c:386 src/yelp-man.c:413
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:312
+#: src/yelp-man.c:302
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:328
+#: src/yelp-man.c:318
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:333
+#: src/yelp-man.c:323
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:343
+#: src/yelp-man.c:333
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:348
+#: src/yelp-man.c:338
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:370
+#: src/yelp-man.c:360
 msgid "System Calls"
 msgstr "Systemkall"
 
-#: src/yelp-man.c:375
+#: src/yelp-man.c:365
 msgid "Library Functions"
 msgstr "Bibliotekfunksjoner"
 
-#: src/yelp-man.c:380
+#: src/yelp-man.c:370
 msgid "Kernel Routines"
 msgstr "Kjernerutiner"
 
-#: src/yelp-man.c:435
+#: src/yelp-man.c:425
 msgid "Applications"
 msgstr "Applikasjoner"
 
-#: src/yelp-man.c:440
+#: src/yelp-man.c:430
 msgid "Development"
 msgstr "Utvikling"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:435
 msgid "Hardware Devices"
 msgstr "Maskinvareenheter"
 
-#: src/yelp-man.c:450
+#: src/yelp-man.c:440
 msgid "Configuration Files"
 msgstr "Konfigurasjonsfiler"
 
-#: src/yelp-man.c:455
+#: src/yelp-man.c:445
 msgid "Games"
 msgstr "Spill"
 
-#: src/yelp-man.c:460
+#: src/yelp-man.c:450
 msgid "Overviews"
 msgstr "Oversikter"
 
-#: src/yelp-man.c:465
+#: src/yelp-man.c:455
 msgid "System Administration"
 msgstr "Systemadministrasjon"
 
-#: src/yelp-man.c:476
-msgid "man"
-msgstr "man"
-
-#: src/yelp-view-content.c:200 src/yelp-view-index.c:374
+#: src/yelp-view-content.c:204 src/yelp-view-index.c:373
 msgid "Section"
 msgstr "Del"
 
-#: src/yelp-view-index.c:337
+#: src/yelp-view-index.c:336
 msgid "Search for:"
 msgstr "Søk etter:"
 
-#: src/yelp-view-toc.c:323
+#: src/yelp-view-toc.c:328
 msgid "Help Contents"
 msgstr "Hjelpinnhold"
 
-#: src/yelp-view-toc.c:324
+#: src/yelp-view-toc.c:329
 msgid "GNOME - Desktop"
 msgstr "GNOME - Skrivebord"
 
-#: src/yelp-view-toc.c:325
+#: src/yelp-view-toc.c:330
 msgid "Additional documents"
 msgstr "Tilleggsdokumenter"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
-msgid "Manual pages"
-msgstr "Manualsider"
-
-#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
-msgid "Info pages"
-msgstr "Infosider"
-
-#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
-msgid "Documents"
-msgstr "Dokumenter"
-
-#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
-msgid "Categories"
-msgstr "Kategorier"
-
-#: src/yelp-view-toc.c:666
+#: src/yelp-view-toc.c:331 src/yelp-view-toc.c:673
 msgid "Manual Pages"
 msgstr "Manualsider"
 
-#: src/yelp-window.c:152
+#: src/yelp-view-toc.c:332 src/yelp-view-toc.c:735
+msgid "Info Pages"
+msgstr "Infosider"
+
+#: src/yelp-view-toc.c:530 src/yelp-view-toc.c:736 src/yelp-view-toc.c:878
+msgid "Documents"
+msgstr "Dokumenter"
+
+#: src/yelp-view-toc.c:531 src/yelp-view-toc.c:674 src/yelp-view-toc.c:879
+msgid "Categories"
+msgstr "Kategorier"
+
+#: src/yelp-view-toc.c:616
+msgid "Manual pages"
+msgstr "Manualsider"
+
+#: src/yelp-window.c:151
 msgid "/_File"
 msgstr "/_Fil"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:152
 msgid "/File/_New window"
 msgstr "/Fil/_Nytt vindu"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:153
 msgid "/File/_Close window"
 msgstr "/Fil/_Lukk vindu"
 
 #. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#: src/yelp-window.c:155
 msgid "/_Go"
 msgstr "/_Gå"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:156
 msgid "/Go/_Back"
 msgstr "/Gå/Til_bake"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:157
 msgid "/Go/_Forward"
 msgstr "/Gå/_Fremover"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:158
 msgid "/Go/_Home"
 msgstr "/Gå/_Hjem"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:159
 msgid "/Go/_Index"
 msgstr "/Gå/_Indeks"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:160
 msgid "/_Help"
 msgstr "/_Hjelp"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:161
 msgid "/Help/_About"
 msgstr "/Hjelp/_Om"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:223
 msgid "Help Browser"
 msgstr "Hjelp leser"
 
