@@ -1,0 +1,216 @@
+# Norwegian/Nynorsk translation of yelp.
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Roy-Magne Mo <rmo@sunnmore.net>, 2002.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp 1.0\n"
+"POT-Creation-Date: 2002-01-31 18:35+0100\n"
+"PO-Revision-Date: 2002-01-31 18:35+0100\n"
+"Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
+"Language-Team: Norwegian/Nynorsk <nn@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp fabrikk"
+
+#: src/yelp-info.c:96
+msgid "info"
+msgstr "info"
+
+#: src/yelp-main.c:77
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Klarte ikkje å aktivere Yelp: «%s»"
+
+#: src/yelp-main.c:97
+msgid "Could not open new window."
+msgstr "Klarte ikkje å opne nytt vindauge."
+
+#: src/yelp-man.c:269 src/yelp-man.c:290 src/yelp-man.c:326 src/yelp-man.c:358
+#: src/yelp-man.c:374 src/yelp-man.c:385
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:274 src/yelp-man.c:305 src/yelp-man.c:363 src/yelp-man.c:390
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:279
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:295
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:300
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:310
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:315
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:337
+msgid "System Calls"
+msgstr "Systemkall"
+
+#: src/yelp-man.c:342
+msgid "Library Functions"
+msgstr "Bibliotekfunksjonar"
+
+#: src/yelp-man.c:347
+msgid "Kernel Routines"
+msgstr "Kjernerutiner"
+
+#: src/yelp-man.c:402
+msgid "Applications"
+msgstr "Program"
+
+#: src/yelp-man.c:407
+msgid "Development"
+msgstr "Utvikling"
+
+#: src/yelp-man.c:412
+msgid "Hardware Devices"
+msgstr "Maskinvareeiningar"
+
+#: src/yelp-man.c:417
+msgid "Configuration Files"
+msgstr "Oppsettfiler"
+
+#: src/yelp-man.c:422
+msgid "Games"
+msgstr "Spel"
+
+#: src/yelp-man.c:427
+msgid "Overviews"
+msgstr "Oversikter"
+
+#: src/yelp-man.c:432
+msgid "System Administration"
+msgstr "Systemadministrasjon"
+
+#: src/yelp-man.c:443
+msgid "man"
+msgstr "man"
+
+#: src/yelp-view-content.c:207 src/yelp-view-index.c:175
+msgid "Section"
+msgstr "Avsnitt"
+
+#: src/yelp-view-toc.c:239
+msgid "Important documents"
+msgstr "Viktige dokument"
+
+#: src/yelp-view-toc.c:240
+msgid "Other document systems"
+msgstr "Andre systemdokument"
+
+#: src/yelp-view-toc.c:241
+msgid "Manual pages"
+msgstr "Manualsider"
+
+#: src/yelp-view-toc.c:242 src/yelp-view-toc.c:495 src/yelp-view-toc.c:514
+msgid "Info pages"
+msgstr "Info-sider"
+
+#: src/yelp-view-toc.c:243
+msgid "Installed documents"
+msgstr "Installerte dokument"
+
+#: src/yelp-view-toc.c:253
+msgid "Start page"
+msgstr "Startside"
+
+#: src/yelp-view-toc.c:418
+msgid "Manual pages for section"
+msgstr "Manualsider for avsnitt"
+
+#: src/yelp-view-toc.c:448 src/yelp-view-toc.c:467
+msgid "Man page sections"
+msgstr "Man-sider avsnitt"
+
+#: src/yelp-view-toc.c:597
+msgid "Scrollkeeper docs for category"
+msgstr "Scrollkeeper-dokument for kategori"
+
+#: src/yelp-window.c:111
+msgid "/_File"
+msgstr "/_Fil"
+
+#: src/yelp-window.c:112
+msgid "/File/_New window"
+msgstr "/Fil/_Nytt vindauge"
+
+#: src/yelp-window.c:113
+msgid "/File/_Close window"
+msgstr "/Fil/_Lukk vindauge"
+
+#: src/yelp-window.c:114
+msgid "/File/_Quit"
+msgstr "/File/_Avslutt"
+
+#: src/yelp-window.c:115
+msgid "/_Help"
+msgstr "/_Hjelp"
+
+#: src/yelp-window.c:116
+msgid "/Help/_About"
+msgstr "/Hjelp/_Om"
+
+#: src/yelp-window.c:164
+msgid "Help Browser"
+msgstr "Hjelplesar"
+
+#: src/yelp-window.c:409
+msgid "Help Browser for GNOME 2.0"
+msgstr "Hjelplesar for GNOME 2.0"
+
+#: src/yelp-window.c:433
+msgid "Go back in the history list"
+msgstr "Gå tilbake i historikklista"
+
+#: src/yelp-window.c:448
+msgid "Go forth in the history list"
+msgstr "Gå framover i historikklista"
+
+#: src/yelp-window.c:463
+msgid "Overview of contents"
+msgstr "Oversyn og innhald"
+
+#: src/yelp-window.c:474
+msgid "Search in the index"
+msgstr "Søk i indeksen"
+
+#: src/yelp-window.c:486
+msgid "Search for a phrase in the document"
+msgstr "Søk etter frase i dokumentet"
+
+#: src/yelp-window.c:492
+msgid "Help on "
+msgstr "Hjelp om"
+
+#: src/yelp-window.c:497
+msgid "Enter phrase to search for in all documents"
+msgstr "Tast in frase som det skal leitast etter i alle dokument"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Få hjelp om GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Hjelp"
