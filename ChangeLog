@@ -1,3 +1,12 @@
+2002-10-19  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-reader.c:
+	(reader_start): no need to check for YELP_URI_TYPE_GHELP_OTHER
+ 	  since it will never get here with that URI type.
+	(yelp_reader_start): Check for file, unknown and ghelp_other and
+	  display it with gnome_uri_show, fixes #95181, thanks Paolo for
+	  investigating this.
+
 2002-10-14  Sander Vesik <sander.vesik@sun.com>
 
 	* stylesheets/yelp-customization.xsl,

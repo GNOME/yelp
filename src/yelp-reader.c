@@ -484,14 +484,10 @@ reader_start (ReaderThreadData *th_data)
 	case YELP_URI_TYPE_PATH:
 		/* Hmm .. is this wrong or what?? */
 		break;
-	case YELP_URI_TYPE_UNKNOWN:
-		str_uri = yelp_uri_to_string (uri);
-		gnome_url_show (str_uri, NULL);
-		g_free (str_uri);
-		
-		break;
 	default:
 		g_assert_not_reached ();
+		
+		break;
 	}
 
 	return NULL;
@@ -750,6 +746,18 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	th_data->reader = g_object_ref (reader);
 	th_data->uri    = yelp_uri_ref (uri);
 	th_data->stamp  = stamp;
+
+	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_FILE ||
+	    yelp_uri_get_type (uri) == YELP_URI_TYPE_UNKNOWN ||
+	    yelp_uri_get_type (uri) == YELP_URI_TYPE_GHELP_OTHER) {
+		gboolean ret_val;
+		
+		str_uri = yelp_uri_to_string (uri);
+		ret_val = gnome_url_show (str_uri, NULL);
+		g_free (str_uri);
+
+		return ret_val;
+	}
 
 	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML || 
 	    yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
