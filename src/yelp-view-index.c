@@ -199,6 +199,8 @@ yvi_html_uri_selected_cb (YelpHtml      *html,
 	d(g_print ("Index View: uri selected: %s\n", 
 		   yelp_uri_to_string (uri)));
 
+	g_print ("INDEX: uri_selected_cb\n");
+	
 	g_signal_emit (view, signals[URI_SELECTED], 0, uri, handled);
 }
 

@@ -92,7 +92,7 @@ main (int argc, char **argv)
 			  G_CALLBACK (finished_cb),
 			  NULL);
 
-	yelp_reader_read (reader, uri);
+	yelp_reader_start (reader, uri);
 	
 	yelp_uri_unref (uri);
 

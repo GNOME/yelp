@@ -50,9 +50,10 @@ struct _YelpReaderClass {
         /* Signals */
         void (*start)     (YelpReader         *reader);
         void (*data)      (YelpReader         *reader,
-			   gint                len,
-			   const gchar        *buffer);
+			   const gchar        *buffer,
+			   gint                len);
         void (*finished)  (YelpReader         *reader);
+	void (*cancelled) (YelpReader         *reader);
         void (*error)     (YelpReader         *reader,
 			   GError             *error);
 };
@@ -60,7 +61,8 @@ struct _YelpReaderClass {
 GType            yelp_reader_get_type     (void);
 YelpReader *     yelp_reader_new          (gboolean    async);
 
-void             yelp_reader_read         (YelpReader *reader,
+void             yelp_reader_start        (YelpReader *reader,
 					   YelpURI    *uri);
+void             yelp_reader_cancel       (YelpReader *reader);
 
 #endif /* __YELP_READER_H__ */

@@ -21,43 +21,84 @@
  */
 
 #include <libgnome/gnome-url.h>
+#include <libgnomevfs/gnome-vfs.h>
 #include <libxml/xmlIO.h>
+
+#include <string.h>
 
 #include "yelp-db2html.h"
 #include "yelp-marshal.h"
 #include "yelp-reader.h"
 
-#define d(x)
+#define d(x) 
 #define BUFFER_SIZE 16384
 
+#define STAMP_MUTEX_LOCK    if(priv->async)g_mutex_lock(priv->stamp_mutex);
+#define STAMP_MUTEX_UNLOCK  if(priv->async)g_mutex_unlock(priv->stamp_mutex);
+
 struct _YelpReaderPriv {
-        YelpURI *current_uri;
-        
+	gboolean     async;
+
+	gint         stamp;
+
+        gboolean     active;
+
+	/* Locks */
+	GMutex      *stamp_mutex;
+	GAsyncQueue *thread_queue;
 };
+
+typedef struct {
+	YelpReader *reader;
+	gint        stamp;
+	YelpURI    *uri;
+} ReaderThreadData;
+
+typedef enum {
+	READER_QUEUE_TYPE_START,
+	READER_QUEUE_TYPE_DATA,
+	READER_QUEUE_TYPE_CANCELLED,
+	READER_QUEUE_TYPE_FINISHED
+} ReaderQueueType;
+
+typedef struct {
+	YelpReader      *reader;
+	gint             stamp;
+	gchar           *data;
+	ReaderQueueType  type;
+} ReaderQueueData;
 
 
 static void      reader_class_init        (YelpReaderClass     *klass);
 static void      reader_init              (YelpReader          *reader);
 
-static void      reader_db_start          (YelpReader          *reader,
-					   YelpURI             *uri);
-static gint      reader_db_write          (YelpReader          *reader,
+static void      reader_db_start          (ReaderThreadData    *th_data);
+static gint      reader_db_write          (ReaderThreadData    *th_data,
 					   const gchar         *buffer,
 					   gint                 len);
-static gint      reader_db_close          (YelpReader          *reader);
-static void      reader_man_info_start    (YelpReader          *reader,
-					   YelpURI             *uri);
-static gboolean  reader_io_watch_cb       (GIOChannel          *io_channel,
-					   GIOCondition         condition,
-					   YelpReader          *reader);
-static void      reader_file_start        (YelpReader          *reader,
-					   YelpURI             *uri);
+static gint      reader_db_close          (ReaderThreadData    *th_data);
+static void      reader_man_info_start    (ReaderThreadData    *th_data);
 
+static void      reader_file_start        (ReaderThreadData    *th_data);
+
+static gboolean  reader_check_cancelled   (YelpReader          *reader,
+					   gint                 stamp);
+static gpointer  reader_start             (ReaderThreadData    *th_data);
+static void      reader_change_stamp      (YelpReader          *reader);
+static gboolean  reader_idle_check_queue  (ReaderThreadData    *th_data);
+
+static ReaderQueueData * 
+reader_q_data_new                         (YelpReader          *reader,
+					   gint                 stamp,
+					   ReaderQueueType      type);
+static void      reader_q_data_free       (ReaderQueueData     *q_data);
+static void      reader_th_data_free      (ReaderThreadData    *th_data);
 
 enum {
 	START,
 	DATA,
 	FINISHED,
+	CANCELLED,
 	ERROR,
 	LAST_SIGNAL
 };
@@ -112,9 +153,9 @@ reader_class_init (YelpReaderClass *klass)
 			      G_STRUCT_OFFSET (YelpReaderClass,
 					       data),
 			      NULL, NULL,
-			      yelp_marshal_VOID__INT_STRING,
+			      yelp_marshal_VOID__STRING_INT,
 			      G_TYPE_NONE,
-			      2, G_TYPE_INT, G_TYPE_STRING);
+			      2, G_TYPE_STRING, G_TYPE_INT);
 
 	signals[FINISHED] =
 		g_signal_new ("finished",
@@ -122,6 +163,16 @@ reader_class_init (YelpReaderClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (YelpReaderClass,
 					       finished),
+			      NULL, NULL,
+			      yelp_marshal_VOID__VOID,
+			      G_TYPE_NONE,
+			      0);
+	signals[CANCELLED] =
+		g_signal_new ("cancelled",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpReaderClass,
+					       cancelled),
 			      NULL, NULL,
 			      yelp_marshal_VOID__VOID,
 			      G_TYPE_NONE,
@@ -141,30 +192,59 @@ reader_class_init (YelpReaderClass *klass)
 static void
 reader_init (YelpReader *reader)
 {
+	YelpReaderPriv *priv;
+	
+	priv = g_new0 (YelpReaderPriv, 1);
+	reader->priv = priv;
+	
+	priv->active       = FALSE;
+	priv->stamp        = 0;
+	priv->stamp_mutex  = g_mutex_new ();
+	priv->thread_queue = g_async_queue_new ();
 }
 
 static void
-reader_db_start (YelpReader *reader, YelpURI *uri)
+reader_db_start (ReaderThreadData *th_data)
 {
+	YelpReader         *reader;
+	YelpReaderPriv     *priv;
 	xmlOutputBufferPtr  buf;
 	GError             *error = NULL;
+	ReaderQueueData    *q_data;
 
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (uri != NULL);
+	g_return_if_fail (th_data != NULL);
+
+	reader = th_data->reader;
+	priv   = reader->priv;
 	
+	STAMP_MUTEX_LOCK;
+	
+	if (reader_check_cancelled (reader, th_data->stamp)) {
+		
+		STAMP_MUTEX_UNLOCK;
+		
+		return;
+	}
+
+	STAMP_MUTEX_UNLOCK;
+
 	buf = xmlAllocOutputBuffer (NULL);
 	
 	buf->writecallback = (xmlOutputWriteCallback) reader_db_write;
 	buf->closecallback = (xmlOutputCloseCallback) reader_db_close;
-	buf->context       = reader;
-	
-	g_signal_emit (reader, signals[START], 0);
+	buf->context       = th_data;
 
-	yelp_db2html_convert (uri, buf, &error);
+	q_data = reader_q_data_new (reader, th_data->stamp, 
+				    READER_QUEUE_TYPE_START);
+
+	g_async_queue_push (priv->thread_queue, q_data);
+	
+	yelp_db2html_convert (th_data->uri, buf, &error);
 	
 	if (error) {
 		g_warning ("Have an error here: %s\n", error->message);
-		g_signal_emit (reader, signals[ERROR], 0, error);
+		/* FIXME: Fix error */
+/* 		g_signal_emit (reader, signals[ERROR], 0, error); */
 		g_error_free (error);
 	}
 
@@ -172,42 +252,106 @@ reader_db_start (YelpReader *reader, YelpURI *uri)
 }
 
 static int
-reader_db_write (YelpReader *reader, const gchar *buffer, gint len)
+reader_db_write (ReaderThreadData *th_data, const gchar *buffer, gint len)
 {
-	g_return_val_if_fail (YELP_IS_READER (reader), -1);
+	YelpReader         *reader;
+	YelpReaderPriv     *priv;
+	ReaderQueueData    *q_data;
+
+	g_return_val_if_fail (th_data != NULL, -1);
 	
+	reader = th_data->reader;
+	priv   = reader->priv;
+
 	d(g_print ("reader_db_write: %d\n", len));
 	
+	STAMP_MUTEX_LOCK;
+	
+	if (reader_check_cancelled (reader, th_data->stamp)) {
+		
+		STAMP_MUTEX_UNLOCK;
+		
+		return -1;
+	}
+
+	STAMP_MUTEX_UNLOCK;
+
 	if (len <= 0) {
 		return 0;
 	}
 
-	g_signal_emit (reader, signals[DATA], 0, len, buffer);
+	q_data = reader_q_data_new (reader, th_data->stamp,
+				    READER_QUEUE_TYPE_DATA);
+
+	q_data->data = g_strndup (buffer, len);
+	
+	g_async_queue_push (priv->thread_queue, q_data);
 
 	return len;
 }
 
 static int
-reader_db_close (YelpReader *reader)
+reader_db_close (ReaderThreadData *th_data)
 {
-	g_return_val_if_fail (YELP_IS_READER (reader), -1);
+	YelpReader         *reader;
+	YelpReaderPriv     *priv;
+	ReaderQueueData    *q_data;
+
+	g_return_val_if_fail (th_data != NULL, -1);
 	
-	g_signal_emit (reader, signals[FINISHED], 0);
+	reader = th_data->reader;
+	priv   = reader->priv;
+
+	STAMP_MUTEX_LOCK;
+	
+	if (reader_check_cancelled (reader, th_data->stamp)) {
+		
+		STAMP_MUTEX_UNLOCK;
+		
+		return -1;
+	}
+
+	STAMP_MUTEX_UNLOCK;
+
+	q_data = reader_q_data_new (reader, th_data->stamp, 
+				    READER_QUEUE_TYPE_FINISHED);
+
+	g_async_queue_push (priv->thread_queue, q_data);
 
 	return 0;
 }
 
 static void
-reader_man_info_start (YelpReader *reader, YelpURI *uri)
+reader_man_info_start (ReaderThreadData *th_data)
 {
-	gchar       *command_line = NULL;
-	gchar      **argv = 0;
-	gint         output_fd;
-	GIOChannel  *io_channel;
-	GError      *error = NULL;
+	YelpReader      *reader;
+	YelpReaderPriv  *priv;
+	YelpURI         *uri;
+	gchar           *command_line = NULL;
+	GError          *error = NULL;
+	gint             exit_status;
+	ReaderQueueData *q_data;
+	gint             stamp;
 	
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (uri != NULL);
+	g_return_if_fail (th_data != NULL);
+
+	reader = th_data->reader;
+	priv   = reader->priv;
+	uri    = th_data->uri;
+	stamp  = th_data->stamp;
+	
+	d(g_print ("man_info_start\n"));
+
+	STAMP_MUTEX_LOCK;
+	
+	if (reader_check_cancelled (reader, th_data->stamp)) {
+		
+		STAMP_MUTEX_UNLOCK;
+		
+		return;
+	}
+
+	STAMP_MUTEX_UNLOCK;
 
 	switch (yelp_uri_get_type (uri)) {
 	case YELP_URI_TYPE_MAN:
@@ -223,150 +367,185 @@ reader_man_info_start (YelpReader *reader, YelpURI *uri)
 		break;
 	}
 
-	g_shell_parse_argv (command_line, NULL, &argv, &error);
-	g_free (command_line);
+	q_data = reader_q_data_new (reader, priv->stamp,
+				    READER_QUEUE_TYPE_START);
 	
-	g_signal_emit (reader, signals[START], 0);
-	
-	g_spawn_async_with_pipes (NULL, argv, NULL,
-				  G_SPAWN_STDERR_TO_DEV_NULL | G_SPAWN_SEARCH_PATH,
-				  NULL, NULL, NULL, NULL,
-				  &output_fd, NULL, &error);
-	g_strfreev (argv);
+	g_async_queue_push (priv->thread_queue, q_data);
 
-	io_channel = g_io_channel_unix_new (output_fd);
+	q_data = reader_q_data_new (reader, priv->stamp, 
+				    READER_QUEUE_TYPE_DATA);
 	
-	g_io_add_watch (io_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) reader_io_watch_cb,
-			reader);
+	g_spawn_command_line_sync (command_line,
+				   &q_data->data,
+				   NULL,
+				   &exit_status,
+				   &error /* FIXME */);
+
+	g_free (command_line);
+
+	STAMP_MUTEX_LOCK;
+
+	if (reader_check_cancelled (reader, stamp)) {
+		
+		STAMP_MUTEX_UNLOCK;
+
+		reader_q_data_free (q_data);
+		
+		return;
+	}
 	
+	STAMP_MUTEX_UNLOCK;
+
 	if (error) {
+		/* FIXME: Don't do this */
 		g_signal_emit (reader, signals[ERROR], 0, error);
 		g_error_free (error);
-	}
-}
-
-static gboolean
-reader_io_watch_cb (GIOChannel   *io_channel, 
-		    GIOCondition  condition, 
-		    YelpReader   *reader)
-{
-	static gchar  buffer[BUFFER_SIZE];
-	guint         n = 0;
-	gboolean      finished = FALSE;
-	GIOStatus     io_status;
-	GError       *error = NULL;
-	
-	g_return_val_if_fail (YELP_IS_READER (reader), FALSE);
-
-	if (condition & G_IO_IN) {
- 		d(g_print ("Read available\n"));
+	} else {
+		g_async_queue_push (priv->thread_queue, q_data);
 		
-		do {
-			io_status = g_io_channel_read_chars (io_channel,
-							     buffer,
-							     BUFFER_SIZE,
-							     &n,
-							     &error);
-			
-			if (error) {
-				g_signal_emit (reader, signals[ERROR], 0, 
-					       error);
-				g_error_free (error);
-				finished = TRUE;
-			} else {
-				switch (io_status) {
-				case G_IO_STATUS_NORMAL:
-					g_signal_emit (reader, signals[DATA], 
-						       0, 
-						       n, buffer);
-				
-					break;
-				case G_IO_STATUS_EOF:
-				case G_IO_STATUS_ERROR:
-					d(g_print ("Finished!\n"));
-					if (n > 0) {
-						g_signal_emit (reader,
-							       signals[DATA], 
-							       0,
-							       n, buffer);
-					}
-				
-					/* Signal error */
-					
-					finished = TRUE;
-					break;
-				default:
-					break;
-				}
-			}
-		} while (io_status == G_IO_STATUS_NORMAL);
+		q_data = reader_q_data_new (reader, priv->stamp, 
+					    READER_QUEUE_TYPE_FINISHED);
+
+		g_async_queue_push (priv->thread_queue, q_data);
 	}
-
-	if (condition & G_IO_HUP || finished) {
-		d(g_print ("Close\n"));
-
-		g_io_channel_unref (io_channel);
-		
-		g_signal_emit (reader, signals[FINISHED], 0);
-		
-		return FALSE;
-	}
-
-	return TRUE;
 }
 
 static void
-reader_file_start (YelpReader *reader, YelpURI *uri)
+reader_file_start (ReaderThreadData *th_data)
 {
-	GIOChannel *io_channel = NULL;
-	GError     *error = NULL;
-     
+	YelpReader       *reader;
+	YelpReaderPriv   *priv;
+	YelpURI          *uri;
+	gint              stamp;
+	GnomeVFSHandle   *handle;
+	GnomeVFSResult    result;
+	ReaderQueueData  *q_data;
+	gchar             buffer[BUFFER_SIZE];
+	GnomeVFSFileSize  n;
+	
 	g_return_if_fail (YELP_IS_READER (reader));
 	g_return_if_fail (uri != NULL);
+
+	reader = th_data->reader;
+	priv   = reader->priv;
+	uri    = th_data->uri;
+	stamp  = th_data->stamp;
 	
-	io_channel = g_io_channel_new_file (yelp_uri_get_path (uri), 
-					    "r", 
-					    &error);
+	d(g_print ("file_start\n"));
+
+	STAMP_MUTEX_LOCK;
 	
-	if (error) {
-		g_signal_emit (reader, signals[ERROR], 0, error);
-		g_error_free (error);
+	if (reader_check_cancelled (reader, stamp)) {
+		
+		STAMP_MUTEX_UNLOCK;
+
+		return;
 	}
 
-	g_io_add_watch (io_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) reader_io_watch_cb,
-			reader);
-}
+	STAMP_MUTEX_UNLOCK;
 
-YelpReader *
-yelp_reader_new (gboolean async)
-{
-        YelpReader *reader;
-        
-        reader = g_object_new (YELP_TYPE_READER, NULL);
-        
-        return reader;
-}
+	result = gnome_vfs_open (&handle, 
+				 yelp_uri_get_path (uri),
+				 GNOME_VFS_OPEN_READ);
+	
+	if (result != GNOME_VFS_OK) {
+		/* FIXME: Signal error */
+		return;
+	}
 
-void
-yelp_reader_read (YelpReader *reader, YelpURI *uri)
-{
-	gchar *str_uri;
+	while (TRUE) {
+		result = gnome_vfs_read (handle, buffer, BUFFER_SIZE, &n);
 		
-	g_return_if_fail (uri != NULL);
+		/* FIXME: Do some error checking */
+		if (result != GNOME_VFS_OK) {
+			break;
+		}
+		
+		q_data = reader_q_data_new (reader, stamp, 
+					    READER_QUEUE_TYPE_DATA);
+		q_data->data = g_strdup (buffer);
+		
+		g_async_queue_push (priv->thread_queue, q_data);
+
+		STAMP_MUTEX_LOCK;
+		
+		if (reader_check_cancelled (reader, stamp)) {
+		
+			STAMP_MUTEX_UNLOCK;
+
+			return;
+		}
+		
+		STAMP_MUTEX_UNLOCK;
+	}
+	
+	q_data = reader_q_data_new (reader, stamp, READER_QUEUE_TYPE_FINISHED);
+	
+	g_async_queue_push (priv->thread_queue, q_data);
+}
+
+static gboolean
+reader_check_cancelled (YelpReader *reader, gint stamp)
+{
+	YelpReaderPriv *priv;
+	
+	g_return_val_if_fail (YELP_IS_READER (reader), TRUE);
+	
+	priv = reader->priv;
+
+	d(g_print ("check_cancelled\n"));
+	
+	if (priv->stamp != stamp) {
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+static gpointer 
+reader_start (ReaderThreadData *th_data)
+{
+	YelpReader         *reader;
+	YelpReaderPriv     *priv;
+	YelpURI            *uri;
+	gchar              *str_uri;
+	
+	g_return_val_if_fail (th_data != NULL, NULL);
+
+	reader = th_data->reader;
+	priv   = reader->priv;
+	uri    = th_data->uri;
+	
+	d(g_print ("reader_start\n"));
+
+	STAMP_MUTEX_LOCK;
+	
+	if (reader_check_cancelled (reader, th_data->stamp)) {
+		STAMP_MUTEX_UNLOCK;
+
+		/* FIXME: refs??? */
+/* 		reader_th_data_free (th_data); */
+
+		return NULL;
+	}
+
+	if (priv->active) {
+		reader_change_stamp (reader);
+	}
+
+	STAMP_MUTEX_UNLOCK;
 	
 	switch (yelp_uri_get_type (uri)) {
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
-		reader_db_start (reader, uri);
+		reader_db_start (th_data);
 		break;
 	case YELP_URI_TYPE_MAN:
 	case YELP_URI_TYPE_INFO:
-		reader_man_info_start (reader, uri);
+		reader_man_info_start (th_data);
 		break;
 	case YELP_URI_TYPE_HTML:
-		reader_file_start (reader, uri);
+		reader_file_start (th_data);
 		break;
 	case YELP_URI_TYPE_TOC:
 		/* Should this be handled here?? */
@@ -387,4 +566,219 @@ yelp_reader_read (YelpReader *reader, YelpURI *uri)
 	default:
 		g_assert_not_reached ();
 	}
+
+	return NULL;
+}
+
+static void 
+reader_change_stamp (YelpReader *reader)
+{
+	YelpReaderPriv *priv;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	
+	priv = reader->priv;
+
+	if ((priv->stamp++) >= G_MAXINT) {
+		priv->stamp = 1;
+	}
+}
+
+static gboolean
+reader_idle_check_queue (ReaderThreadData *th_data)
+{
+	YelpReader      *reader;
+	YelpReaderPriv  *priv;
+	ReaderQueueData *q_data;
+	gboolean         ret_val = TRUE;
+	
+	g_return_val_if_fail (th_data != NULL, FALSE);
+
+	reader = th_data->reader;
+	priv   = reader->priv;
+	
+	if (!g_mutex_trylock (priv->stamp_mutex)) {
+		return TRUE;
+	}
+
+	if (th_data->stamp != priv->stamp) {
+		STAMP_MUTEX_UNLOCK;
+	
+/* 		reader_th_data_free (th_data); */
+
+		return FALSE;
+	}
+
+	d(g_print ("Poping from queue... "));
+	q_data = (ReaderQueueData *)
+		g_async_queue_try_pop (priv->thread_queue);
+	d(g_print ("done\n"));
+	
+	if (q_data) {
+		if (priv->stamp != q_data->stamp) {
+			/* Some old data */
+			reader_q_data_free (q_data);
+			ret_val = TRUE;
+
+			q_data = NULL;
+		}
+	}
+	
+	if (q_data) {
+		switch (q_data->type) {
+		case READER_QUEUE_TYPE_START:
+			g_signal_emit (reader, signals[START], 0);
+			ret_val = TRUE;
+			break;
+		case READER_QUEUE_TYPE_DATA:
+			d(g_print ("queue_type_data\n"));
+			
+			if (q_data->data != NULL) {
+				g_signal_emit (reader, signals[DATA], 0, 
+					       q_data->data, -1);
+			}
+			ret_val = TRUE;
+			break;
+		case READER_QUEUE_TYPE_CANCELLED:
+			priv->active = FALSE;
+
+			if ((priv->stamp++) >= G_MAXINT) {
+				priv->stamp = 1;
+			}
+
+			g_signal_emit (reader, signals[CANCELLED], 0);
+
+			ret_val = FALSE;
+			break;
+		case READER_QUEUE_TYPE_FINISHED:
+			priv->active = FALSE;
+
+			d(g_print ("queue_type_finished\n"));
+			
+			if ((priv->stamp++) >= G_MAXINT) {
+				priv->stamp = 1;
+			}
+
+			g_signal_emit (reader, signals[FINISHED], 0);
+
+			ret_val = FALSE;
+			break;
+		default:
+			g_assert_not_reached ();
+		}
+
+		reader_q_data_free (q_data);
+	}
+
+	STAMP_MUTEX_UNLOCK;
+			
+	return ret_val;
+}
+
+static ReaderQueueData * 
+reader_q_data_new (YelpReader *reader, gint stamp, ReaderQueueType type)
+{
+	ReaderQueueData *q_data;
+	
+	q_data = g_new0 (ReaderQueueData, 1);
+	q_data->reader = g_object_ref (reader);
+	q_data->stamp  = stamp;
+	q_data->type   = type;
+	q_data->data   = NULL;
+
+	return q_data;
+}
+
+static void
+reader_q_data_free (ReaderQueueData *q_data)
+{
+	g_return_if_fail (q_data != NULL);
+	
+	g_object_unref (q_data->reader);
+	g_free (q_data->data);
+	g_free (q_data);
+}
+
+static void
+reader_th_data_free (ReaderThreadData *th_data)
+{
+	g_return_if_fail (th_data != NULL);
+	
+	g_object_unref (th_data->reader);
+	yelp_uri_unref (th_data->uri);
+	
+	g_free (th_data);
+}
+
+
+
+YelpReader *
+yelp_reader_new (gboolean async)
+{
+        YelpReader     *reader;
+        YelpReaderPriv *priv;
+	
+        reader = g_object_new (YELP_TYPE_READER, NULL);
+        
+	priv = reader->priv;
+	
+	priv->async = async;
+
+        return reader;
+}
+
+void
+yelp_reader_start (YelpReader *reader, YelpURI *uri)
+{
+        YelpReaderPriv   *priv;
+	ReaderThreadData *th_data;
+	gint              stamp;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	g_return_if_fail (uri != NULL);
+
+	priv = reader->priv;
+
+	d(g_print ("yelp_reader_start\n"));
+
+	STAMP_MUTEX_LOCK;
+	
+	if (priv->active) {
+		reader_change_stamp (reader);
+	}
+	
+	stamp = priv->stamp;
+
+	th_data = g_new0 (ReaderThreadData, 1);
+	th_data->reader = g_object_ref (reader);
+	th_data->uri    = yelp_uri_ref (uri);
+	th_data->stamp  = stamp;
+
+	STAMP_MUTEX_UNLOCK;
+
+	if (priv->async) {
+		g_idle_add ((GSourceFunc) reader_idle_check_queue, th_data);
+
+		g_thread_create ((GThreadFunc) reader_start, th_data,
+				 TRUE, 
+				 NULL /* FIXME: check for errors */);
+	} else {
+		reader_start (th_data);
+	}
+}
+
+void
+yelp_reader_cancel (YelpReader *reader)
+{
+	YelpReaderPriv *priv;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	
+	priv = reader->priv;
+
+	STAMP_MUTEX_LOCK;
+	
+	reader_change_stamp (reader);
+
+	STAMP_MUTEX_UNLOCK;
 }

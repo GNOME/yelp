@@ -53,8 +53,8 @@ static void content_html_uri_selected_cb      (YelpHtml             *html,
 static void content_reader_start_cb           (YelpReader           *reader,
 					       YelpViewContent      *view);
 static void content_reader_data_cb            (YelpReader           *reader,
-					       gint                  len,
 					       const gchar          *data,
+					       gint                  len,
 					       YelpViewContent      *view);
 static void content_reader_finished_cb        (YelpReader           *reader,
 					       YelpViewContent      *view);
@@ -140,7 +140,7 @@ content_init (YelpViewContent *view)
 			  G_CALLBACK (content_html_uri_selected_cb), 
 			  view);
 
-	priv->reader      = yelp_reader_new (FALSE);
+	priv->reader      = yelp_reader_new (TRUE);
 	
 	g_signal_connect (G_OBJECT (priv->reader), "start",
 			  G_CALLBACK (content_reader_start_cb),
@@ -222,6 +222,8 @@ content_reader_start_cb (YelpReader *reader, YelpViewContent *view)
 
 	priv = view->priv;
 
+	d(g_print ("Start_cb\n"));
+	
 	cursor = gdk_cursor_new (GDK_WATCH);
 	
 	gdk_window_set_cursor (priv->html_widget->window, cursor);
@@ -232,8 +234,8 @@ content_reader_start_cb (YelpReader *reader, YelpViewContent *view)
 
 static void
 content_reader_data_cb (YelpReader      *reader,
-			gint             len,
 			const gchar     *data,
+			gint             len,
 			YelpViewContent *view)
 {
 	YelpViewContentPriv *priv;
@@ -242,6 +244,10 @@ content_reader_data_cb (YelpReader      *reader,
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
 	
 	priv = view->priv;
+
+	if (len == -1) {
+		len = strlen (data);
+	}
 
 	if (len <= 0) {
 		return;
@@ -425,7 +431,7 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 
 	yelp_html_set_base_uri (priv->html_view, uri);
 	
-	yelp_reader_read (priv->reader, uri);
+	yelp_reader_start (priv->reader, uri);
 
 /* 	yelp_html_open_uri (priv->html_view, uri, error); */
 }
