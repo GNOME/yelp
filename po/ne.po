@@ -1,3 +1,4 @@
+# translation of ne.po to Nepali
 # translation of yelp.HEAD.ne.po to Nepali
 # Nepali Translation of yelp
 # This file is distributed under the same license as the yelp package.
@@ -7,16 +8,82 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD.ne\n"
+"Project-Id-Version: ne\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-04-03 06:19+0200\n"
-"PO-Revision-Date: 2005-04-03 06:33-0400\n"
+"PO-Revision-Date: 2005-04-04 15:32+0545\n"
 "Last-Translator: Kapil Timilsina <lipak21@gmail.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
+
+msgid "&#8216;"
+msgstr "&#8216;"
+
+msgid "&#8217;"
+msgstr "&#8217;"
+
+msgid "&#8220;"
+msgstr "&#8220;"
+
+msgid "&#8221;"
+msgstr "&#8221;"
+
+msgid "*"
+msgstr "*"
+
+msgid "/Edit/Find Ne_xt"
+msgstr "/संपादन/पछिल्लो खोज्नुस"
+
+msgid "/Edit/Find Pre_vious"
+msgstr "/संपादन/अघिल्लो खोज्नुस"
+
+msgid "/Edit/_Find..."
+msgstr "/संपादन/खोज्नुस..."
+
+msgid "/File/_Close window"
+msgstr "/फाइल/विन्डो बन्द गर्नुस"
+
+msgid "/File/_New window"
+msgstr "/फाइल/नयाँ विन्डो"
+
+msgid "/Go/"
+msgstr "/जानुस/"
+
+msgid "/Go/_Back"
+msgstr "/जानुस/_पछाडि"
+
+msgid "/Go/_Contents"
+msgstr "/जानुस/_विषय-सूची"
+
+msgid "/Go/_Forward"
+msgstr "/जानुस/_अगाडि"
+
+msgid "/Go/_Home"
+msgstr "/जानुस/_घर"
+
+msgid "/Go/_Next Page"
+msgstr "/जानुस/_पछिल्लो पृष्ठ"
+
+msgid "/Go/_Previous Page"
+msgstr "/जानुस/_अघिल्लो पृष्ठ"
+
+msgid "/Help/_About"
+msgstr "/मद्दत/_बारेमा"
+
+msgid "/_Edit"
+msgstr "/_संपादन"
+
+msgid "/_File"
+msgstr "/_फाइल"
+
+msgid "/_Go"
+msgstr "/_जानुस"
+
+msgid "/_Help"
+msgstr "/_मद्दत"
 
 #: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
@@ -264,7 +331,7 @@ msgstr "अनिश्चित चौडाइ"
 
 #: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
-msgstr "बेर"
+msgstr "बेर्नुस वरिपरि"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -379,7 +446,7 @@ msgstr "फाइल ‘%s’ पढ्न र गुप्त राख्न �
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
-msgstr "कुन क्याश डाइरेक्ट्रि प्रयोग गर्ने उल्लेख गर्नुहोस"
+msgstr "कुन क्याचे डाइरेक्ट्रि प्रयोग गर्ने उल्लेख गर्नुहोस"
 
 #: src/yelp-main.c:129
 #, c-format
@@ -403,11 +470,11 @@ msgstr "फाइल ‘%s’ पार्सेड हुँदैन.  कि 
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
-msgstr "मिसिलको जानकारी"
+msgstr "कागजातको जानकारी"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr "जब YelpDocInfo ले मिसिल संरचना गर्छ ।"
+msgstr "जब येल्प डक इन्फोले मिसिल संरचना गर्छ ।"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -432,7 +499,7 @@ msgstr "जब YelpDocInfo ले मिसिल संरचना गर्�
 #.
 #: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
-msgstr "येल्प-तैल उद्धरण खण्ड-२०१सी"
+msgstr "येल्प-वाटरमार्क-ब्लक्वोट-२०१सि"
 
 #: src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
@@ -484,7 +551,7 @@ msgstr "सम्पादन गर्नु"
 
 #: src/yelp-window.c:294
 msgid "_Go"
-msgstr "_जाऊ"
+msgstr "_जानुस"
 
 #: src/yelp-window.c:295
 msgid "_Bookmarks"
@@ -524,7 +591,7 @@ msgstr "_खोज्नुस"
 
 #: src/yelp-window.c:336
 msgid "_Preferences"
-msgstr "प्राथमिकता"
+msgstr "प्राथमिकताहरु"
 
 #: src/yelp-window.c:341
 msgid "_Reload"
@@ -536,7 +603,7 @@ msgstr "_पछाडि"
 
 #: src/yelp-window.c:349
 msgid "Show previous page in history"
-msgstr "इतिहासको अघिल्लो पृष्ठ देखाउ"
+msgstr "इतिहासको अघिल्लो पृष्ठ देखाउनुस"
 
 #: src/yelp-window.c:352
 msgid "_Forward"
@@ -544,7 +611,7 @@ msgstr "_अगाडि"
 
 #: src/yelp-window.c:354
 msgid "Show next page in history"
-msgstr "इतिहासको अर्को पृष्ठ देखाउ"
+msgstr "इतिहासको अर्को पृष्ठ देखाउनुस"
 
 #: src/yelp-window.c:357
 msgid "_Help Topics"
