@@ -30,6 +30,57 @@
 			</affiliation> 
 		</author> 
 	</authorgroup>
+
+	<revhistory>
+	  <revision>
+	    <revnumber>
+	      Test Document 0.1
+	    </revnumber>
+	    <date>
+	      December 2003
+	    </date>
+	    <revdescription>
+	      <para role="author">Shaun McCance
+	      <email>patanjali@codito.com</email>
+	      </para>
+	      <para>
+		This is the first test document Shaun made to test
+		Yelp with.
+	      </para>
+	    </revdescription>
+	  </revision>
+	  <revision>
+	    <revnumber>
+	      Test Document 0.2
+	    </revnumber>
+	    <date>
+	      January 2004
+	    </date>
+	    <revdescription>
+	      <para role="author">Eric Baudais
+	      <email>drake@gnome.org</email>
+	      </para>
+	      <para>
+		This is an improved test document for Yelp.
+	      </para>
+	    </revdescription>
+	  </revision>
+	</revhistory>
+
+	<releaseinfo>
+	  This is the second draft of the test document for Yelp.
+	</releaseinfo>
+
+	<legalnotice> 
+	  <title>Feedback</title> 
+	  <para>To report a bug or make a suggestion regarding the GNOME Handbook 
+	  of Writing Software Documentation follow the directions in the 
+	  <ulink url="ghelp:gnome-feedback"
+		 type="help">GNOME Feedback Page</ulink>. 
+	  </para>
+	  <!-- Translators may also add here feedback address for translations -->
+	</legalnotice>     
+	
 </articleinfo>
 
 <sect1 id="td-introduction">
@@ -41,7 +92,7 @@
 </sect1>
 
 <sect1 id="td-admonitions">
-	<title>Admonitions</title>
+	<title id="admonition.title">Admonitions</title>
 	<para>
 		This sections tests the admonition elements in DocBook.
 		Here is a <sgmltag>caution</sgmltag>:
@@ -193,10 +244,10 @@
 				<para>
 					The <sgmltag>link</sgmltag> element is used as a general-purpose
 					hypertext link.  Here is a link to the
-					<link linkend="http://www.gnome.org/" id="GO">GNOME Website</link>.
+					<link linkend="td-admonitions" id="beware">admonitions</link>.
 					And here's the same link, using the
 					<sgmltag class="attribute">endterm</sgmltag> attribute:
-					<link linkend="http://www.gnome.org/" endterm="GO"/>.
+					<link linkend="td-admonitions" endterm="admonition.title"/>.
 				</para>
 			</listitem>
 		</varlistentry>
@@ -370,22 +421,37 @@ xref
 
 <sect2 id="td-itemizedlist">
 	<title>Itemized Lists</title>
+	<para>
+	  This section tests the itemized list elements in DocBook.
+	</para>
 </sect2>
 
 <sect2 id="td-orderedlist">
 	<title>Ordered Lists</title>
+	<para>
+	  This section tests the ordered list elements in DocBook.
+	</para>
 </sect2>
 
 <sect2 id="td-segmentedlist">
 	<title>Segmented Lists</title>
+	<para>
+	  This section tests the segmented list elements in DocBook.
+	</para>
 </sect2>
 
 <sect2 id="td-simplelist">
 	<title>Simple Lists</title>
+	<para>
+	  This section tests the simple list elements in DocBook.
+	</para>
 </sect2>
 
 <sect2 id="td-variablelist">
 	<title>Variable Lists</title>
+	<para>
+	  This section tests the variable list elements in DocBook.
+	</para>
 </sect2>
 </sect1>
 
@@ -395,13 +461,15 @@ xref
 		This is a test of <sgmltag>glossary</sgmltag> and friends.
 	</para>
 	<glossdiv id="td-glossary-1">
-		<title>First Glossary Division</title>
-		<para>
-			Here is a <sgmltag>glossdiv</sgmltag>.
-		</para>
-	</glossdiv>
-	<glossdiv id="td-glossary-2">
-		<title>Second Glossary Definition</title>
+		<title>F</title>
+		<glossentry id="fuckup">
+		  <glossterm>Fuckup</glossterm>
+		  <glossdef>
+		    <para>
+		      A mistake which causes a catastrophe.
+		    </para>
+		  </glossdef>
+		</glossentry>
 	</glossdiv>
 </glossary>
 
