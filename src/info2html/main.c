@@ -44,11 +44,11 @@ static struct poptOption options[] = {
 static int
 file_exists(const char *fn)
 {
+        struct stat sbuf;
+
 	if (g_file_test(fn, G_FILE_TEST_IS_DIR)) {
 		return FALSE;
 	}
-
-        struct stat sbuf;
 
         return (stat(fn, &sbuf) == 0);
 }
