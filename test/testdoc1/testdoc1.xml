@@ -35,8 +35,93 @@
 <sect1 id="td-introduction">
 	<title>Introduction</title>
 	<para>
-		This document tests the DocBook transformations in &yelp;.
+		This document tests the DocBook transformations in &yelp;.  Each section in
+		this document tests a particular element or group of elements from DocBook.
 	</para>
+</sect1>
+
+<sect1 id="td-admonitions">
+	<title>Admonitions</title>
+	<para>
+		This sections tests the admonition elements in DocBook.
+		Here is a <sgmltag>caution</sgmltag>:
+	</para>
+
+	<caution>
+		<title>Look Out!</title>
+		<para>
+			If you don't understand the difference between <sgmltag>caution</sgmltag>
+			and <sgmltag>warning</sgmltag>, you will die.  Since no mortal understands
+			the difference, it stands to reason that all mortals will die.  QED.
+		</para>
+	</caution>
+
+	<para>
+		Here we have an <sgmltag>important</sgmltag> and a <sgmltag>important</sgmltag>
+		right next to each other.  This is a nice thing to test, but it should generally
+		be considered bad style.
+	</para>
+
+	<important>
+		<title>This Is Important.</title>
+		<para>
+			Here is a really important piece of information.  Do not forget this
+			information, or you'll be in really bad shape.
+		</para>
+	</important>
+
+	<note>
+		<title>That Was Important.</title>
+		<para>
+			Please note that the previous piece of self-referential information,
+			though seemingly meaningless, was extremely important, just as it
+			claimed to be.
+		</para>
+	</note>
+
+	<para>
+		And finally, we'll have a <sgmltag>warning</sgmltag>.  Just to mix things
+		up a bit, we'll put this one <emph>inside</emph> the paragraph.
+
+		<warning>
+			<title>DocBook Is a Beast</title>
+			<para>
+				Before you start doing stuff like this, you should be warned that
+				DocBook is a beast.  It's very difficult to wrap your head around
+				all of the elements.
+			</para>
+		</warning>
+
+		Note that we are still inside of the same paragraph as above.  After this
+		sentence, however, we will not be.
+	</para>
+</sect1>
+
+<sect1 id="td-lists">
+	<title>Lists</title>
+	<para>
+		This sections tests the list elements in DocBook.
+	</para>
+
+	<sect2 id="td-itemizedlist">
+		<title>Itemized Lists</title>
+	</sect2>
+
+	<sect2 id="td-orderedlist">
+		<title>Ordered Lists</title>
+	</sect2>
+
+	<sect2 id="td-segmentedlist">
+		<title>Segmented Lists</title>
+	</sect2>
+
+	<sect2 id="td-simplelist">
+		<title>Simple Lists</title>
+	</sect2>
+
+	<sect2 id="td-variablelist">
+		<title>Variable Lists</title>
+	</sect2>
 </sect1>
 
 </article>

@@ -1,5 +1,21 @@
 2003-12-26  Shaun McCance  <shaunm@gnome.org>
 
+	* AUTHORS:
+	- Added myself to AUTHORS.
+
+	* src/yelp-db-pager.c:
+	- Fixed memory leak in params.
+
+	* src/yelp-uri.c:
+	* src/yelp-uri.h:
+	* src/yelp-window.c:
+	- Re-added Hallski's copyright statements.
+
+	* test/testdoc1/testdoc1.xml:
+	- Put actual content in, including admonition section.
+
+2003-12-26  Shaun McCance  <shaunm@gnome.org>
+
 	* configure.in:
 	* test/testdoc1/Makefile.am:
 	* test/testdoc1/legal.xml:

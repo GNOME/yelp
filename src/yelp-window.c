@@ -1,5 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2003 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -17,8 +18,8 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
+ * Author: Mikael Hallendal <micke@imendio.com>
  * Author: Shaun McCance <shaunm@gnome.org>
- *   Based on implementation by Mikael Hallendal <micke@imendio.com>
  */
 
 #ifdef HAVE_CONFIG_H
