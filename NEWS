@@ -1,3 +1,30 @@
+Changes in 2.3.90:
+------------------
+* Updated README				(Shaun McCance)
+* Removed C99-dependant code, fixes #120135	(Shaun McCance)
+* Gnomeified admonition graphics		(Jakub Steiner)
+* Removed yelp-base from OAF server file,	(Mikael Hallendal)
+  should fix #11974
+* Save window size, fixes #90451		(Shaun McCance)
+* Fixed CFLAGS, fixes #118984			(Steve Chaplin)
+* Don't forkbomb when restoring session		(Mikael Hallendal)
+* Fix layout problem introduced by a11y fixes   (Shaun McCance)
+* Fix bad XSLT syntax in getting admonitions    (Shaun McCance)
+* Updated translations:
+  az (Metin Amiroff)
+  be (Ales Nyakhaychyk)
+  ca (Jordi Mallach)
+  cy (Dafydd Harries)
+  fi (Lauri Nurmi)
+  it (Allessio Frusciante)
+  ko (Changwoo Ryu)
+  mn (Sanlig Badral)
+  ne (Pewan Chitrakar)
+  no (Kjartan Marass)
+  sk (Stanislav Visnovsky)
+  sr, sr@Latn (Danilo Segan)
+  zh_TW (Abel Cheung)
+
 Changes in 2.3.6:
 -----------------
 * A11y fixes to the contents view, #89838       (Shaun McCance)

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-06-21 15:34+0200\n"
+"POT-Creation-Date: 2003-09-01 16:45-0500\n"
 "PO-Revision-Date: 2003-06-21 15:34--100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
@@ -67,19 +67,12 @@ msgstr "Ekki tókst að virkja Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Ekki tókst að opna nýja glugga."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -143,13 +136,11 @@ msgstr "Yfirlit"
 msgid "System Administration"
 msgstr "Kerfisstjórnun"
 
-#: src/yelp-view-content.c:487
-#: src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Hleð..."
 
-#: src/yelp-view-content.c:528
-#: src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Deildir"
 
@@ -170,102 +161,95 @@ msgstr "GNOME - Skjáborðið"
 msgid "Additional documents"
 msgstr "Frekari hjálpargögn"
 
-#: src/yelp-view-toc.c:168
-#: src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "Manual Síður"
 
-#: src/yelp-view-toc.c:169
-#: src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "Info Síður"
 
-#: src/yelp-view-toc.c:366
-#: src/yelp-view-toc.c:550
-#: src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "Gögn"
 
-#: src/yelp-view-toc.c:367
-#: src/yelp-view-toc.c:494
-#: src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "Flokkar"
 
-#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "Manual síður"
 
-#: src/yelp-view-toc.c:712
+#: src/yelp-view-toc.c:707
 msgid "GNOME is"
 msgstr "GNOME er"
 
-#: src/yelp-view-toc.c:713
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr "Frjáls Hugbúnaður"
 
-#: src/yelp-view-toc.c:714
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr "(C)"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:171
 msgid "/_File"
 msgstr "/_Skrá"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:172
 msgid "/File/_New window"
 msgstr "/Skrá/_Nýr gluggi"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:173
 msgid "/File/_Close window"
 msgstr "/Skrá/_Loka glugga"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:175
 msgid "/_Edit"
 msgstr "/Sýs_l"
 
-#: src/yelp-window.c:168
+#: src/yelp-window.c:176
 msgid "/Edit/_Find in page..."
 msgstr "/Sýsl/_Finna á síðu..."
 
-#: src/yelp-window.c:169
+#: src/yelp-window.c:177
 msgid "/Edit/_Find again"
 msgstr "/Sýsl/_Finna á ný"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:179
 msgid "/_Go"
 msgstr "/Fa_ra"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:180
 msgid "/Go/_Back"
 msgstr "/Fara/Til_baka"
 
-#: src/yelp-window.c:173
+#: src/yelp-window.c:181
 msgid "/Go/_Forward"
 msgstr "/Fara/Á_fram"
 
-#: src/yelp-window.c:174
+#: src/yelp-window.c:182
 msgid "/Go/_Home"
 msgstr "/Fara/_Heim"
 
-#: src/yelp-window.c:175
+#: src/yelp-window.c:183
 msgid "/Go/_Index"
 msgstr "/Fara/Í _Spjaldskrá"
 
-#: src/yelp-window.c:177
+#: src/yelp-window.c:185
 msgid "/_Help"
 msgstr "/_Hjálp"
 
-#: src/yelp-window.c:178
+#: src/yelp-window.c:186
 msgid "/Help/_About"
 msgstr "/Hjálp/_Um"
 
-#: src/yelp-window.c:238
-#: src/yelp-window.c:438
+#: src/yelp-window.c:255 src/yelp-window.c:455
 msgid "Help Browser"
 msgstr "Hjálparvafri"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:368
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "þetta gagn '%s' fannst ekki"
@@ -274,43 +258,43 @@ msgstr "þetta gagn '%s' fannst ekki"
 #  * will shop up in the "about" box
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:677
+#: src/yelp-window.c:694
 msgid "translator_credits"
 msgstr "Samúel Jón Gunnarsson <sammi@techattack.nu>"
 
-#: src/yelp-window.c:681
+#: src/yelp-window.c:698
 msgid "A Help Browser for GNOME"
 msgstr "Hjálparvafri fyrir GNOME"
 
-#: src/yelp-window.c:795
+#: src/yelp-window.c:812
 msgid "Back"
 msgstr "Tilbaka"
 
-#: src/yelp-window.c:796
+#: src/yelp-window.c:813
 msgid "Show previous page in history"
 msgstr "Sýna fyrri síðu í ferilskrá"
 
-#: src/yelp-window.c:807
+#: src/yelp-window.c:824
 msgid "Forward"
 msgstr "Áfram"
 
-#: src/yelp-window.c:808
+#: src/yelp-window.c:825
 msgid "Show next page in history"
 msgstr "Sýna næstu síðu í ferilskrá"
 
-#: src/yelp-window.c:821
+#: src/yelp-window.c:838
 msgid "Home"
 msgstr "Heim"
 
-#: src/yelp-window.c:822
+#: src/yelp-window.c:839
 msgid "Go to home view"
 msgstr "Fara yfir í heima-sýn"
 
-#: src/yelp-window.c:832
+#: src/yelp-window.c:849
 msgid "Index"
 msgstr "Spjaldskrá"
 
-#: src/yelp-window.c:833
+#: src/yelp-window.c:850
 msgid "Search in the index"
 msgstr "Leita í spjaldskrá"
 
@@ -321,4 +305,3 @@ msgstr "Fá hjálp með GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjálp"
-
