@@ -52,6 +52,8 @@ struct _YelpWindowClass
 
     /* Signals */
     void (*new_window_requested) (YelpWindow *window);
+    void (*new_window_requested_uri) (YelpWindow *window,
+				      const gchar *uri);
 };
 
 GType            yelp_window_get_type        (void);

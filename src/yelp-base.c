@@ -44,6 +44,7 @@ struct _YelpBasePriv {
 static void           yelp_base_init                (YelpBase       *base);
 static void           yelp_base_class_init          (YelpBaseClass  *klass);
 static void           yelp_base_new_window_cb       (YelpWindow     *window,
+						     const gchar    *uri,
 						     YelpBase       *base);
 static void           yelp_base_window_finalized_cb (YelpBase       *base,
 						     YelpWindow     *window);
@@ -125,14 +126,15 @@ yelp_base_class_init (YelpBaseClass *klass)
 }
 
 static void
-yelp_base_new_window_cb (YelpWindow *window, YelpBase *base)
+yelp_base_new_window_cb (YelpWindow *window, const gchar *uri,
+			 YelpBase *base)
 {
 	GtkWidget *new_window;
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	g_return_if_fail (YELP_IS_BASE (base));
 	
-	new_window = yelp_base_new_window (base, NULL);
+	new_window = yelp_base_new_window (base, uri);
 	
 	gtk_widget_show (new_window);
 }
@@ -197,7 +199,6 @@ yelp_base_new_window (YelpBase *base, const gchar *uri)
 	g_signal_connect (window, "new_window_requested",
 			  G_CALLBACK (yelp_base_new_window_cb),
 			  base);
-
 
 	gtk_widget_show (window);
 

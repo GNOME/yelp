@@ -31,5 +31,11 @@
     <separator/>
     <toolitem action="GoHome"/>
   </toolbar>
+  <popup>
+    <menuitem action="OpenLink"/>
+    <menuitem action="OpenLinkNewWindow"/>
+    <separator/>
+    <menuitem action="CopyLocation"/>
+  </popup>
   <accelerator action="OpenLocation"/>
 </ui>

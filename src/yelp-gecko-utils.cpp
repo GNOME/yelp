@@ -31,6 +31,11 @@
 #include <nsString.h>
 #include <nsIPrefService.h>
 #include <nsIServiceManager.h>
+#include <nsIDOMMouseEvent.h>
+#include <nsIDOMNSEvent.h>
+#include <nsIDOMEventTarget.h>
+#include <nsIDOMNode.h>
+#include <nsIDOMHTMLAnchorElement.h>
 #include <stdlib.h>
 
 #include "yelp-gecko-utils.h"
@@ -202,4 +207,61 @@ yelp_gecko_copy_selection (GtkMozEmbed *embed)
 	NS_ENSURE_TRUE (clip, NS_ERROR_FAILURE);
 	
 	clip->CopySelection();
+}
+
+extern "C" gchar*
+yelp_gecko_mouse_event (GtkMozEmbed  *html, gpointer dom_event)
+{
+	PRUint16 buttonCode;
+
+	g_return_val_if_fail (dom_event != NULL, FALSE);
+
+	nsCOMPtr<nsIDOMMouseEvent> event (do_QueryInterface 
+					  ((nsIDOMEvent*) dom_event)); 
+
+	if (!event) {
+		return NULL;
+	}
+
+	event->GetButton (&buttonCode);
+
+	if(buttonCode == 2){ 
+		/*Mozilla uses 2 as its right mouse button code*/
+		nsresult result;
+		nsAutoString nodename;
+		gchar *uri;
+
+		nsCOMPtr<nsIDOMNSEvent> nsEvent = 
+			do_QueryInterface(event, &result);
+
+		if (NS_FAILED(result) || !nsEvent) 
+			return NULL;
+		
+		nsCOMPtr<nsIDOMEventTarget> OriginalTarget;
+		result = nsEvent->GetOriginalTarget(getter_AddRefs(OriginalTarget));
+		if (NS_FAILED(result) || !OriginalTarget) 
+			return NULL;
+		
+		nsCOMPtr<nsIDOMNode> OriginalNode = 
+			do_QueryInterface(OriginalTarget);
+
+		if (!OriginalNode) return NULL;
+		
+		OriginalNode->GetNodeName(nodename);
+		uri = g_new(char, 150);
+
+		if (nodename.EqualsIgnoreCase("a")){
+			
+			nsCOMPtr<nsIDOMNode> node = 
+				do_QueryInterface(OriginalTarget, &result);
+			if (NS_FAILED(result) || !node) return NULL;
+			
+			nsCOMPtr <nsIDOMHTMLAnchorElement> anchor =
+				do_QueryInterface(node);
+			anchor->GetHref (nodename);
+			uri = nodename.ToCString( uri, 150);
+			return uri;
+		}
+	}
+	return NULL;
 }

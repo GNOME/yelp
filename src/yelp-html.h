@@ -57,6 +57,9 @@ struct _YelpHtmlClass {
 				gboolean     handled);
 	void (*title_changed)  (YelpHtml    *view,
 				const gchar *new_title);
+	void (*popupmenu_requested) (YelpHtml *view,
+				     const gchar *link);
+
 };
 
 GType           yelp_html_get_type       (void);

@@ -128,6 +128,9 @@ static void        html_uri_selected_cb           (YelpHtml          *html,
 static void        html_title_changed_cb          (YelpHtml          *html,
 						   gchar             *title,
 						   gpointer           user_data);
+static void        html_popupmenu_requested_cb    (YelpHtml *html,
+						   gchar *uri,
+						   gpointer user_data);
 
 /** GtkTreeView Callbacks **/
 static void        tree_selection_changed_cb      (GtkTreeSelection  *selection,
@@ -156,6 +159,9 @@ static void    window_go_previous_cb    (GtkAction *action, YelpWindow *window);
 static void    window_go_next_cb        (GtkAction *action, YelpWindow *window);
 static void    window_go_toc_cb         (GtkAction *action, YelpWindow *window);
 static void    window_about_cb          (GtkAction *action, YelpWindow *window);
+static void    window_copy_link_cb      (GtkAction *action, YelpWindow *window);
+static void    window_open_link_cb      (GtkAction *action, YelpWindow *window);
+static void    window_open_link_new_cb  (GtkAction *action, YelpWindow *window);
 
 /** History Functions **/
 static void               history_push_back      (YelpWindow       *window);
@@ -216,6 +222,10 @@ struct _YelpWindowPriv {
     /* Open Location */
     GtkWidget      *location_dialog;
     GtkWidget      *location_entry;
+
+    /* Popup menu*/
+    GtkWidget      *popup;
+    gchar          *uri;
 
     /* Location Information */
     YelpDocInfo    *current_doc;
@@ -332,6 +342,21 @@ static GtkActionEntry entries[] = {
       NULL,
       NULL,
       G_CALLBACK (window_go_toc_cb) },
+    { "OpenLink", NULL,
+      N_("_Open Link"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_open_link_cb) },
+    { "OpenLinkNewWindow", NULL,
+      N_("Open Link in _New Window"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_open_link_new_cb) },
+    { "CopyLocation", NULL,
+      N_("_Copy Link Address"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_copy_link_cb) },
 
     { "About", GNOME_STOCK_ABOUT,
       N_("_About"),
@@ -401,8 +426,8 @@ window_class_init (YelpWindowClass *klass)
 		      G_STRUCT_OFFSET (YelpWindowClass,
 				       new_window_requested),
 		      NULL, NULL,
-		      g_cclosure_marshal_VOID__VOID,
-		      G_TYPE_NONE, 0);
+		      g_cclosure_marshal_VOID__POINTER,
+		      G_TYPE_NONE, 1, G_TYPE_STRING);
 }
 
 /** History Functions *********************************************************/
@@ -788,6 +813,7 @@ window_populate (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    priv->popup = gtk_ui_manager_get_widget(priv->ui_manager, "ui/popup");
 
     priv->pane = gtk_hpaned_new ();
     gtk_widget_ref (priv->pane);
@@ -847,6 +873,10 @@ window_populate (YelpWindow *window)
     g_signal_connect (priv->html_view,
 		      "title_changed",
 		      G_CALLBACK (html_title_changed_cb),
+		      window);
+    g_signal_connect (priv->html_view,
+		      "popupmenu_requested",
+		      G_CALLBACK (html_popupmenu_requested_cb),
 		      window);
     gtk_box_pack_end (GTK_BOX (priv->html_pane),
 		      yelp_html_get_widget (priv->html_view),
@@ -1485,6 +1515,18 @@ html_title_changed_cb (YelpHtml  *html,
     gtk_window_set_title (GTK_WINDOW (user_data), title);
 }
 
+static void
+html_popupmenu_requested_cb (YelpHtml *html,
+			     gchar *uri,
+			     gpointer user_data)
+{
+    YelpWindow *window = YELP_WINDOW (user_data);
+
+    window->priv->uri = g_strdup (uri);
+    gtk_menu_popup (window->priv->popup,
+		    NULL, NULL, NULL, NULL, 3, gtk_get_current_event_time());
+}
+
 /** GtkTreeView Callbacks *****************************************************/
 
 static void
@@ -1574,7 +1616,7 @@ window_new_window_cb (GtkAction *action, YelpWindow *window)
 {
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0);
+    g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0, NULL);
 }
 
 static void
@@ -1776,6 +1818,30 @@ window_go_toc_cb (GtkAction *action, YelpWindow *window)
     g_free (uri);
     g_free (base);
 }
+
+static void window_copy_link_cb (GtkAction *action, YelpWindow *window) 
+{
+    gtk_clipboard_set_text (gtk_clipboard_get (gdk_atom_intern ("CLIPBOARD", 
+								TRUE)),
+			    window->priv->uri,
+			    -1);
+    g_free (window->priv->uri);
+};
+
+static void
+window_open_link_cb (GtkAction *action, YelpWindow *window)
+{
+    yelp_window_load (window, window->priv->uri);
+    g_free (window->priv->uri);
+};
+
+static void
+window_open_link_new_cb (GtkAction *action, YelpWindow *window)
+{
+    g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0,
+		   window->priv->uri);
+    g_free (window->priv->uri);
+};
 
 static void
 window_about_cb (GtkAction *action, YelpWindow *window)
@@ -2053,3 +2119,4 @@ idle_write (IdleWriterContext *context)
 
     return FALSE;
 }
+

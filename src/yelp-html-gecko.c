@@ -53,6 +53,7 @@ static void      html_set_a11y           (void);
 enum {
     URI_SELECTED,
     TITLE_CHANGED,
+    POPUPMENU_REQUESTED,
     LAST_SIGNAL
 };
 
@@ -96,6 +97,18 @@ embed_title_cb (GtkMozEmbed *embed, YelpHtml *html)
         g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
         g_free (new_title);
     }
+}
+
+static gint
+embed_menu_cb (GtkMozEmbed *embed, gpointer dom_event, YelpHtml *html)
+{
+    gchar *uri = yelp_gecko_mouse_event (embed, dom_event);
+
+    if (uri) {
+	g_signal_emit (html, signals[POPUPMENU_REQUESTED], 0, uri);
+    }
+
+    return FALSE;
 }
 
 static gint
@@ -153,6 +166,9 @@ html_init (YelpHtml *html)
     g_signal_connect (html->priv->embed, "open_uri",
 		      G_CALLBACK (embed_open_uri_cb),
 		      html);
+    g_signal_connect (html->priv->embed, "dom_mouse_down",
+		      G_CALLBACK (embed_menu_cb),
+		      html);
 }
 
 static void
@@ -177,6 +193,17 @@ html_class_init (YelpHtmlClass *klass)
 		      G_SIGNAL_RUN_LAST,
 		      G_STRUCT_OFFSET (YelpHtmlClass,
 				       title_changed),
+		      NULL, NULL,
+		      yelp_marshal_VOID__STRING,
+		      G_TYPE_NONE,
+		      1, G_TYPE_STRING);
+
+    signals[POPUPMENU_REQUESTED] = 
+	g_signal_new ("popupmenu_requested",
+		      G_TYPE_FROM_CLASS (klass),
+		      G_SIGNAL_RUN_LAST,
+		      G_STRUCT_OFFSET (YelpHtmlClass,
+				       popupmenu_requested),
 		      NULL, NULL,
 		      yelp_marshal_VOID__STRING,
 		      G_TYPE_NONE,
