@@ -26,19 +26,33 @@
 
 #include <libgnome/gnome-i18n.h>
 #include <gtk/gtktreeview.h>
+#include <string.h>
 
 #include "yelp-html.h"
 #include "yelp-view-index.h"
 
-static void yvi_init                       (YelpViewIndex         *view);
-static void yvi_class_init                 (YelpViewIndexClass    *klass);
-static void yvi_index_selection_changed_cb (GtkTreeSelection      *selection,
-					    YelpViewIndex         *content);
-static void yvi_html_url_selected_cb       (YelpViewIndex         *content,
-					    char                  *url,
-					    char                  *base_url,
-					    gboolean               handled);
-static void yvi_setup_index_view           (YelpViewIndex         *view);
+static void     yvi_init                       (YelpViewIndex       *view);
+static void     yvi_class_init                 (YelpViewIndexClass  *klass);
+static void     yvi_index_selection_changed_cb (GtkTreeSelection    *selection,
+						YelpViewIndex       *content);
+static void     yvi_html_url_selected_cb       (YelpViewIndex       *content,
+						char                *url,
+						char                *base_url,
+						gboolean             handled);
+static void     yvi_setup_index_view           (YelpViewIndex       *view);
+static void     yvi_entry_changed_cb           (GtkEntry            *entry,
+						YelpViewIndex       *view);
+static void     yvi_entry_activated_cb         (GtkEntry            *entry,
+						YelpViewIndex       *view);
+static void     yvi_entry_text_inserted_cb     (GtkEntry            *entry,
+						const gchar         *text,
+						gint                 length,
+						gint                *position,
+						YelpViewIndex       *view);
+static void     yvi_search                     (YelpViewIndex       *view,
+						const gchar         *string);
+static gboolean yvi_complete_idle              (YelpViewIndex       *view);
+static gchar *  yvi_complete_func              (YelpSection         *section);
 
 struct _YelpViewIndexPriv {
 	GList        *index;
@@ -52,6 +66,10 @@ struct _YelpViewIndexPriv {
 	
 	/* Html view */
 	GtkWidget    *html_view;
+
+	GCompletion  *completion;
+
+	guint         complete;
 };
 
 GType
@@ -89,7 +107,12 @@ yvi_init (YelpViewIndex *view)
 	
 	priv = g_new0 (YelpViewIndexPriv, 1);
 	view->priv = priv;
-
+	
+	priv->complete   = 0;
+	priv->completion = 
+		g_completion_new ((GCompletionFunc)yvi_complete_func);
+	g_completion_set_compare (priv->completion, g_ascii_strncasecmp);
+	
 	priv->index_view = gtk_tree_view_new ();
 	priv->list_store = gtk_list_store_new (2, 
 					       G_TYPE_STRING, G_TYPE_POINTER);
@@ -180,9 +203,97 @@ yvi_setup_index_view (YelpViewIndex *view)
 	
 	priv = view->priv;
 
+	g_completion_add_items (priv->completion, priv->index);
+
 	g_list_foreach (priv->index,
 			(GFunc )yvi_index_term_add, 
 			view);
+}
+
+static void
+yvi_entry_changed_cb (GtkEntry *entry, YelpViewIndex *view)
+{
+	g_print ("Entry changed\n");
+}
+
+static void
+yvi_entry_activated_cb (GtkEntry *entry, YelpViewIndex *view)
+{
+	g_return_if_fail (GTK_IS_ENTRY (entry));
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+	
+	yvi_search (view, gtk_entry_get_text (entry));
+
+	g_print ("Entry activated\n");
+}
+
+static void
+yvi_entry_text_inserted_cb (GtkEntry      *entry,
+			    const gchar   *text,
+			    gint           length,
+			    gint          *position,
+			    YelpViewIndex *view)
+{
+	YelpViewIndexPriv *priv;
+	
+ 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+	
+	priv = view->priv;
+	
+	if (!priv->complete) {
+		priv->complete = g_idle_add ((GSourceFunc)yvi_complete_idle,
+					     view);
+	}
+	
+	g_print ("Entry text insterted\n");
+}
+
+static void
+yvi_search (YelpViewIndex *view, const gchar *string)
+{
+	g_print ("Doing a search on %s...\n", string);
+}
+
+static gboolean
+yvi_complete_idle (YelpViewIndex *view)
+{
+	YelpViewIndexPriv *priv;
+	const gchar       *text;
+	gchar             *completed = NULL;
+	GList             *list;
+	gint               text_length;
+	
+	g_return_val_if_fail (YELP_IS_VIEW_INDEX (view), FALSE);
+	
+	priv = view->priv;
+	
+	g_print ("Completing ... \n");
+	
+	text = gtk_entry_get_text (GTK_ENTRY (priv->entry));
+
+	list = g_completion_complete (priv->completion, 
+				      (gchar *)text,
+				      &completed);
+
+	if (completed) {
+		text_length = strlen (text);
+		
+		gtk_entry_set_text (GTK_ENTRY (priv->entry), completed);
+ 		gtk_editable_set_position (GTK_EDITABLE (priv->entry),
+ 					   text_length);
+		gtk_editable_select_region (GTK_EDITABLE (priv->entry),
+					    text_length, -1);
+	}
+	
+	priv->complete = 0;
+
+	return FALSE;
+}
+
+static gchar *
+yvi_complete_func (YelpSection *section)
+{
+	return section->name;
 }
 
 GtkWidget *
@@ -214,8 +325,20 @@ yelp_view_index_new (GList *index)
 
 	priv->entry = gtk_entry_new ();
 
+	g_signal_connect (priv->entry, "changed", 
+			  G_CALLBACK (yvi_entry_changed_cb),
+			  view);
+
 	gtk_box_pack_end (GTK_BOX (hbox), priv->entry, FALSE, FALSE, 0);
 	
+	g_signal_connect (priv->entry, "activate",
+			  G_CALLBACK (yvi_entry_activated_cb),
+			  view);
+	
+	g_signal_connect (priv->entry, "insert-text",
+			  G_CALLBACK (yvi_entry_text_inserted_cb),
+			  view);
+
 	gtk_box_pack_start (GTK_BOX (box), hbox, 
 			    FALSE, FALSE, 0);
 

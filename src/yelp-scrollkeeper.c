@@ -61,8 +61,6 @@ static void       ys_parse_index_item     (GList               **index,
 					   xmlNode              *node);
 
 
-static gint calls = 0;
-
 static GHashTable *seriesid_hash = NULL;
 static GHashTable *docid_hash    = NULL;
 
@@ -330,8 +328,6 @@ ys_get_xml_docpath (const gchar *command, const gchar *argument)
 	success = g_spawn_command_line_sync (full_command, &xml_location,
 					     NULL, NULL, NULL);
 
-	calls++;
-	
 	g_free (full_command);
 	
 	if (!success) {

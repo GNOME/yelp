@@ -1,3 +1,21 @@
+2002-03-02  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-index.c: 
+	- in-the-middle-commit on index search stuff.
+	(yvi_entry_changed_cb): added
+	(yvi_entry_activated_cb): added
+	(yvi_entry_text_inserted_cb): added
+	(yvi_search): added
+	(yvi_complete_idle): added
+	(yvi_complete_func): added
+	(yelp_view_index_new): connect to signals in the entry.
+
+	* src/yelp-scrollkeeper.c: removed debug variable.
+
+	* src/yelp-index-model.[ch]: added model for the index.
+
+	* configure.in: added compile warnings.
+
 2002-02-28  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-window.c:
