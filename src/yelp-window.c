@@ -196,6 +196,10 @@ yw_populate (YelpWindow *window)
 	item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
 					     "<main>", accel_group);
 
+	gtk_item_factory_set_translate_func (item_factory, 
+					     (GtkTranslateFunc) gettext,
+					     NULL, NULL);
+
 	gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
 	gtk_item_factory_create_items (item_factory,
