@@ -1,61 +1,57 @@
+# Беларускі пераклад yelp.HEAD.
 # translation of yelp.HEAD.be.po to Belarusian
 # Copyright (C) 2002,2003 Free Software Foundation, Inc.
-# Ales Nyakhaychyk <nab@mail.by>, 2003
-# Vital Khilko <dojlid@mova.org>, 2003
+# Ales Nyakhaychyk <nab@mail.by>, 2003.
+# Vital Khilko <dojlid@mova.org>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD.be\n"
+"Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
-"PO-Revision-Date: 2003-08-12 09:32+0300\n"
+"POT-Creation-Date: 2003-12-12 05:00+0100\n"
+"PO-Revision-Date: 2003-12-13 10:27+0200\n"
 "Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.0.2\n"
 
 #: data/toc.xml.in.h:1 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Дастасаваньні"
 
 #: data/toc.xml.in.h:2
-#, fuzzy
 msgid "Desktop"
-msgstr "Асяродзьдзе GNOME - Сталец"
+msgstr "Сталец"
 
 #: data/toc.xml.in.h:3 src/yelp-man.c:434
 msgid "Development"
 msgstr "Распрацоўка"
 
 #: data/toc.xml.in.h:4
-#, fuzzy
 msgid "Development Environments"
-msgstr "Распрацоўка"
+msgstr "Асяродзьдзі распрацоўкі"
 
 #: data/toc.xml.in.h:5
-#, fuzzy
 msgid "Development Tools"
-msgstr "Распрацоўка"
+msgstr "Сродкі распрацоўкі"
 
 #: data/toc.xml.in.h:6
-#, fuzzy
 msgid "Editors"
-msgstr "/_Рэдагаваць"
+msgstr "Рэдагавальнікі"
 
 #: data/toc.xml.in.h:7
-#, fuzzy
 msgid "Education Applications"
-msgstr "Дастасаваньні"
+msgstr "Адукацыйныя дастасаваньні"
 
 #: data/toc.xml.in.h:8
 msgid "Games and Entertainment"
-msgstr ""
+msgstr "Гульні й забавы"
 
 #: data/toc.xml.in.h:9
 msgid "General"
-msgstr ""
+msgstr "Агульныя"
 
 #. GList           *seriesids;
 #: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
@@ -63,45 +59,40 @@ msgid "Help Contents"
 msgstr "Зьмест даведкі"
 
 #: data/toc.xml.in.h:11
-#, fuzzy
 msgid "Internet Applications"
-msgstr "Дастасаваньні"
+msgstr "Дастасаваньні для Інтарнэта"
 
 #: data/toc.xml.in.h:12
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #: data/toc.xml.in.h:13
-#, fuzzy
 msgid "Kernels"
-msgstr "Функцыі ядра"
+msgstr "Ядры"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
 msgid "Multimedia Applications"
-msgstr "Дастасаваньні"
+msgstr "Мультымэдыйныя дастасаваньні"
 
 #: data/toc.xml.in.h:15
 msgid "Office and Productivity Applications"
-msgstr ""
+msgstr "Дастасаваньні для канцылярыі й вытворчасьці"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
 msgid "Scientific Applications"
-msgstr "Дастасаваньні"
+msgstr "Навуковыя дастасаваньні"
 
 #: data/toc.xml.in.h:17
 msgid "Securities"
-msgstr ""
+msgstr "Бясьпека"
 
 #: data/toc.xml.in.h:18
 msgid "Utilities"
-msgstr ""
+msgstr "Карыснасьці"
 
 #: data/toc.xml.in.h:19
-#, fuzzy
 msgid "X Applications"
-msgstr "Дастасаваньні"
+msgstr "Дастасаваньні для X"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -145,30 +136,29 @@ msgstr "Вытворчасьць Yelp"
 
 #: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
 #: src/yelp-window.c:976
-#, fuzzy, c-format
+#, c-format
 msgid "The document '%s' could not be opened"
-msgstr "Дакумэнт \"%s\" ня існуе"
+msgstr "Дакумэнт \"%s\" ня можа быць адчынены"
 
 #: src/yelp-db-pager.c:404
 msgid "No href attribute found on yelp:document"
-msgstr ""
+msgstr "Рыса href ня знойдзена ў yelp:document"
 
 #: src/yelp-db-pager.c:419
 msgid "Out of memory"
-msgstr ""
+msgstr "Бракуе памяці"
 
 #: src/yelp-db-pager.c:547
 msgid "Titlepage"
-msgstr ""
+msgstr "Тытульная старонка"
 
 #: src/yelp-db-pager.c:549
-#, fuzzy
 msgid "Contents"
-msgstr "Зьмест даведкі"
+msgstr "Зьмест"
 
 #: src/yelp-db-pager.c:567
 msgid "Unknown"
-msgstr ""
+msgstr "Невядома"
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -245,22 +235,20 @@ msgid "System Administration"
 msgstr "Сыстэмнае адміністраваньне"
 
 #: src/yelp-pager.c:117
-#, fuzzy
 msgid "Document URI"
-msgstr "Дакумэнты"
+msgstr "URI думэнта"
 
 #: src/yelp-pager.c:118
 msgid "The URI of the document to be processed"
-msgstr ""
+msgstr "URI дакумэнта для апрацоўкі"
 
 #: src/yelp-toc-pager.c:229
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: колькасьць прыпыненьняў - адмоўная."
 
 #: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
-#, fuzzy
 msgid "The table of contents could not be read."
-msgstr "Дакумэнт \"%s\" ня існуе"
+msgstr "Немагчыма прачытаць табліцу зьместу."
 
 #: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
 #: src/yelp-view-toc.c:741
@@ -405,28 +393,27 @@ msgstr "Дакумэнт \"%s\" ня існуе"
 
 #: src/yelp-window.c:655
 msgid "DocBook SGML documents are no longer supported."
-msgstr ""
+msgstr "Дакумэнты DocBook SGML больш не падтрымліваюцца."
 
 #: src/yelp-window.c:887
 msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr ""
+msgstr "Загрузка&nbsp;&nbsp;&nbsp;"
 
 #: src/yelp-window.c:891
 msgid "Loading.&nbsp;&nbsp;"
-msgstr ""
+msgstr "Загрузка.&nbsp;&nbsp;"
 
 #: src/yelp-window.c:895
-#, fuzzy
 msgid "Loading..&nbsp;"
-msgstr "Загрузка..."
+msgstr "Загрузка..&nbsp;"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
 #: src/yelp-window.c:1057
 msgid "translator_credits"
 msgstr ""
-"Алесь НЯХАЙЧЫК <nab@mail.by>\n"
-"Віталь ХІЛЬКО <dojlid@mova.org>, 2003"
+"Алесь Няхайчык <nab@mail.by>\n"
+"Віталь Хілько <dojlid@mova.org>"
 
 #: src/yelp-window.c:1062
 msgid "A Help Browser for GNOME"
@@ -440,11 +427,3 @@ msgstr "Атрымаць даведку ў асяродьдзі GNOME"
 msgid "Help"
 msgstr "Даведка"
 
-#~ msgid "/Go/_Index"
-#~ msgstr "/Пераход/Да _зьместа"
-
-#~ msgid "Index"
-#~ msgstr "Зьмест"
-
-#~ msgid "Search in the index"
-#~ msgstr "Адшукаць у зьмесьце"
