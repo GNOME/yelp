@@ -86,7 +86,7 @@ struct _TOC {
     GSList      *subtocs;
     GSList      *subomfs;
 
-    gboolean     pruned;
+    gboolean     has_subtocs;
 };
 
 static void          toc_pager_class_init      (YelpTocPagerClass *klass);
@@ -659,30 +659,22 @@ process_toc_pending (YelpTocPager *pager)
 
 		// FIXME: insert_sorted
 		for ( ; omf; omf = omf->next)
-		    omfs = g_slist_prepend (omfs, omf->data);
+		    toc->subomfs = g_slist_prepend (toc->subomfs, omf->data);
 
 		xmlFree (cat);
 	    }
     }
 
-    // Determine whether to prune this TOC page.
-    toc->pruned = TRUE;
-    if (omfs) {
-	toc->pruned  = FALSE;
-	toc->subomfs = omfs;
-    } else {
-	for (c = toc->subtocs; c; c = c->next) {
-	    cur     = (xmlNodePtr) c->data;
-	    cur_toc = (TOC *) cur->_private;
+    toc->has_subtocs = FALSE;
+    for (c = toc->subtocs; c; c = c->next) {
+	cur     = (xmlNodePtr) c->data;
+	cur_toc = (TOC *) cur->_private;
 
-	    if (cur_toc && !cur_toc->pruned) {
-		toc->pruned = FALSE;
-		break;
-	    }
-	}
+	if (cur_toc && (cur_toc->has_subtocs || cur_toc->subomfs))
+	    toc->has_subtocs = TRUE;
     }
 
-    if (!toc->pruned) {
+    if (toc->has_subtocs || toc->subomfs) {
 	gchar *page = toc_write_page (toc);
 	yelp_pager_add_page (YELP_PAGER (pager),
 			     toc->id,
@@ -774,7 +766,7 @@ toc_write_page (TOC    *toc)
     strs[i] = g_strconcat ("<html><body><h1>", toc->title, "</h1>\n", NULL);
     page_len += strlen (strs[i]);
 
-    if (toc->subtocs) {
+    if (toc->has_subtocs) {
 	strs[++i] = g_strconcat ("<h2>", _("Categories"), "</h2><ul>\n", NULL);
 	page_len += strlen (strs[i]);
 
@@ -782,7 +774,7 @@ toc_write_page (TOC    *toc)
 	    xmlNodePtr  cur     = (xmlNodePtr) c->data;
 	    TOC        *cur_toc = (TOC *) cur->_private;
 
-	    if (cur_toc && !cur_toc->pruned) {
+	    if (cur_toc && (cur_toc->has_subtocs || cur_toc->subomfs)) {
 		strs[++i] = g_strconcat
 		    ("<li><a href='toc:", cur_toc->id, "'>",
 		     cur_toc->title,

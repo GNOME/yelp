@@ -1,5 +1,11 @@
 2003-12-02  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-toc-pager.c:
+	- Change to the way toc pages are pruned so that we don't get orphaned
+	  Categories headers.
+
+2003-12-02  Shaun McCance  <shaunm@gnome.org>
+
 	* configure.in: Version 2.5.0.
 
 2003-12-02  Shaun McCance  <shaunm@gnome.org>
