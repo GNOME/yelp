@@ -182,10 +182,10 @@
        DIV TH {padding-right: 1em; padding-left: 1em; padding-top: 0.5ex; padding-bottom: 0.5ex}
        DIV.note TD {padding-left: 0; padding-top: 0}
        DIV.note TH {padding-left: 0; padding-top: 0}
-       DIV.informaltable TABLE {border-bottom: solid 3px black}
-       DIV.informaltable TR:FIRST-CHILD {border-top: solid 3px black}
-       DIV.table TR:FIRST-CHILD {border-top: solid 3px black}
-       DIV.table TABLE {border-bottom: solid 3px black}
+       DIV.informaltable TABLE {border-bottom: solid 1px black}
+       DIV.informaltable TR:FIRST-CHILD {border-top: solid 1px black}
+       DIV.table TR:FIRST-CHILD {border-top: solid 1px black}
+       DIV.table TABLE {border-bottom: solid 1px black}
        DIV.revhistory TABLE {border-spacing: 0}
        LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
        LI DIV.figure P {margin-top: 1em; margin-bottom: 1em}

@@ -94,9 +94,7 @@ struct poptOption options[] = {
 		N_("Define which cache dir to use"),
 		NULL,
 	},
-	{
-		NULL
-	}
+	POPT_TABLEEND
 };
 
 static BonoboObject *
