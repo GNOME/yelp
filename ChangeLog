@@ -1,5 +1,11 @@
 2003-08-15  Mikael Hallendal  <micke@imendio.com>
 
+	* configure.in: 
+        - Applied patch from Steve Chaplin that fixes the CFLAGS.
+        - Fixes bug #118984
+
+2003-08-15  Mikael Hallendal  <micke@imendio.com>
+
 	* src/yelp-main.c: 
         (main_restore_session): Return FALSE, otherwise we'll try to start Yelp
           from the session over and over again. Reported by Jody earlier.
