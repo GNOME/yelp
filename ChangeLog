@@ -1,3 +1,9 @@
+2002-07-15  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-toc.c (toc_start): Print with %% instead of % to
+	  printf, I'm stupid :) Fixes 87972, thanks
+	  mathew@fugue.jpl.nasa.gov for finding this.
+
 2002-07-11  Brian Cameron  <Brian.Cameron@sun.com>
 
 	* yelp/configure.in
