@@ -404,7 +404,7 @@
 			</a></td>
 			<xsl:choose>
 				<!-- Hackery for the User's Guide, which I don't like -->
-				<xsl:when test="(local-name(.) = 'part') and (count(chapter) = 1)">
+				<xsl:when test="(local-name(.) = 'part') and not(@id)">
 					<xsl:call-template name="yelp.next.link.cell">
 						<xsl:with-param name="object"
 							select="yelp:get-divisions(yelp:get-divisions(.)[1])[1]"/>
@@ -793,7 +793,7 @@
 		</b></p>
 		<xsl:choose>
 			<!-- Hackery for the User's Guide, which I don't like -->
-			<xsl:when test="(local-name(.) = 'part') and (count(chapter) = 1)">
+			<xsl:when test="(local-name(.) = 'part') and not(@id)">
 				<xsl:for-each select="yelp:get-divisions(.)">
 					<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
 				</xsl:for-each>
@@ -813,7 +813,7 @@
 
 	<xsl:choose>
 		<!-- Hackery for the User's Guide, which I don't like -->
-		<xsl:when test="(local-name(.) = 'part') and (count(chapter) = 1)">
+		<xsl:when test="(local-name(.) = 'part') and not(@id)">
 			<xsl:for-each select="yelp:get-divisions(yelp:get-divisions(.))">
 				<xsl:call-template name="yelp.component.chunk">
 					<xsl:with-param name="depth" select="1"/>

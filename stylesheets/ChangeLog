@@ -1,3 +1,9 @@
+2003-06-29  Shaun Mccance  <shaunm@wolfram.com>
+
+	* yelp-customization.xsl: Transparently thread parts when there is
+	  no id attribute, rather than when there's only one chapter, for
+	  consistancy with ScrollKeeper.
+
 2003-06-16  Eric Baudais  <drake@gnome.org>
 
 	* yelp-custom.xsl: Applied Alexander's patch for bug #100476.
