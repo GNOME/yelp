@@ -218,7 +218,10 @@
          <xsl:with-param name="object" select="$object"/>
       </xsl:call-template>
    </xsl:attribute>
-   <xsl:text>Next &gt;&gt;&gt;</xsl:text>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'Next'"/>
+    </xsl:call-template>
+   <xsl:text> &gt;&gt;&gt;</xsl:text>
    </a></td>
 </xsl:template>
 
@@ -230,7 +233,11 @@
          <xsl:with-param name="object" select="$object"/>
       </xsl:call-template>
    </xsl:attribute>
-   <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
+   <xsl:text>&lt;&lt;&lt; </xsl:text>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'Previous'"/>
+    </xsl:call-template>
+
    </a></td>
 </xsl:template>
 
@@ -298,7 +305,10 @@
           <xsl:attribute name="href">
             <xsl:call-template name="article.toc.ref"/>
           </xsl:attribute>
-          <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
+          <xsl:text>&lt;&lt;&lt; </xsl:text>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Previous'"/>
+          </xsl:call-template>
         </a></td>
       </xsl:when>
 
@@ -308,7 +318,10 @@
           <xsl:attribute name="href">
             <xsl:call-template name="article.toc.ref"/>
           </xsl:attribute>
-          <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
+          <xsl:text>&lt;&lt;&lt; </xsl:text>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Previous'"/>
+          </xsl:call-template>
 	</a></td>
       </xsl:when>
 
@@ -325,7 +338,9 @@
            <xsl:attribute name="href">
              <xsl:call-template name="article.toc.ref"/>
            </xsl:attribute>
-             <xsl:text>Contents</xsl:text>
+           <xsl:call-template name="gentext">
+             <xsl:with-param name="key" select="'Contents'"/>
+           </xsl:call-template>
          </a>
    </td>
   </xsl:when>
@@ -405,7 +420,10 @@
         <xsl:attribute name="href">
           <xsl:call-template name="titlepage.ref"/>
         </xsl:attribute>
-        <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
+        <xsl:text>&lt;&lt;&lt; </xsl:text>
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key" select="'Previous'"/>
+        </xsl:call-template>
       </a></td>
       <td></td>
       <xsl:call-template name="next.link.cell">
@@ -422,7 +440,10 @@
         <xsl:attribute name="href">
           <xsl:call-template name="article.toc.ref"/>
         </xsl:attribute>
-          <xsl:text>Next &gt;&gt;&gt;</xsl:text>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Next'"/>
+          </xsl:call-template>
+          <xsl:text> &gt;&gt;&gt;</xsl:text>
       </a></td>
     </tr>
   </table>
@@ -445,7 +466,10 @@
     <xsl:attribute name="href">
       <xsl:call-template name="titlepage.ref"/>
     </xsl:attribute>
-    <xsl:text>About This Document</xsl:text>
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'title'"/>
+      <xsl:with-param name="name" select="'bookinfo'"/>
+    </xsl:call-template>
   </a></p>
   <xsl:choose>
   <xsl:when test="local-name(.)='part'">
