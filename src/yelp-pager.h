@@ -50,6 +50,12 @@ typedef enum {
     YELP_PAGER_NUM_STATES
 } YelpPagerState;
 
+enum {
+    YELP_PAGER_COLUMN_ID = 0,
+    YELP_PAGER_COLUMN_TITLE,
+    YELP_PAGER_NUM_COLUMNS
+};
+
 #include "yelp-utils.h"
 
 struct _YelpPager {

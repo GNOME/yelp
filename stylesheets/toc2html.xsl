@@ -29,25 +29,13 @@
         </title>
         <style><xsl:text>
         body {
-          padding-top: 0px;
-          padding-left: 0px;
-          padding-right: 12px;
+          padding-top: 0em;
+          padding-left: 0em;
+          padding-right: 2em;
         }
-        h1 { font-size: 2em; margin-bottom: 0.4em; }
+        h1 { font-size: 1.6em; margin-bottom: 0.4em; }
         h1 img { float: right; }
         h1 { color: </xsl:text>
-        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-        h2 { color: </xsl:text>
-        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-        h3 { color: </xsl:text>
-        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-        h4 { color: </xsl:text>
-        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-        h5 { color: </xsl:text>
-        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-        h6 { color: </xsl:text>
-        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-        h7 { color: </xsl:text>
         <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
         div[class~="leftbar"] {
           width: 200px;

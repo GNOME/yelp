@@ -906,7 +906,7 @@ window_populate (YelpWindow *window)
     gtk_tree_view_insert_column_with_attributes
 	(GTK_TREE_VIEW (priv->side_sects), -1,
 	 NULL, gtk_cell_renderer_text_new (),
-	 "text", 1,
+	 "text", YELP_PAGER_COLUMN_TITLE,
 	 NULL);
 
     gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (priv->side_sects),
@@ -1324,7 +1324,7 @@ window_handle_page (YelpWindow   *window,
 	valid = gtk_tree_model_get_iter_first (model, &iter);
 	while (valid) {
 	    gtk_tree_model_get (model, &iter,
-				0, &id,
+				YELP_PAGER_COLUMN_ID, &id,
 				-1);
 	    if (yelp_pager_page_contains_frag (pager,
 					       id,
@@ -1645,7 +1645,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
     if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
 	model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
 	gtk_tree_model_get (model, &iter,
-			    0, &id,
+			    YELP_PAGER_COLUMN_ID, &id,
 			    -1);
 	uri = yelp_doc_info_get_uri (priv->current_doc, id, YELP_URI_TYPE_ANY);
 	yelp_window_load (window, uri);
@@ -1679,7 +1679,7 @@ tree_drag_data_get_cb (GtkWidget         *widget,
     if (gtk_tree_selection_get_selected (tree_selection, NULL, &iter)) {
 	model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
 	gtk_tree_model_get (model, &iter,
-			    0, &id,
+			    YELP_PAGER_COLUMN_ID, &id,
 			    -1);
 	uri = yelp_doc_info_get_uri (priv->current_doc, id,
 				     YELP_URI_TYPE_NO_FILE);
