@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2004-12-19 13:05+0100\n"
+"POT-Creation-Date: 2005-01-06 20:44+0100\n"
+"PO-Revision-Date: 2005-01-06 21:05+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -190,14 +190,12 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Písma</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Písma</b>"
+msgstr "<b>_Název</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "Add Bookmark"
-msgstr "_Přidat záložku"
+msgstr "Přidat záložku"
 
 #: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
@@ -295,12 +293,17 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Na tuto stránku již existuje záložka nazvaná <b>%s</b>."
+
 #: src/yelp-db-pager.c:238
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr ""
+msgstr "Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje nebo to není správně utvořené XML."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
@@ -308,37 +311,42 @@ msgstr "Neznámý"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Došlo k neznámé chybě"
 
 #: src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "Nemohu načíst dokument"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Nemohu otevřít nové okno."
+msgstr "Nemohu načíst oddíl"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Nemohu načíst soubor OMF '%s'."
+msgstr "Nemohu načíst obsah"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Nepodporovaný formát"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Nemohu číst dokument"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Nemohu zpracovat dokument"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "O chybě nejsou k dispozici žádné informace."
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
+msgstr "Soubor ‘%s’ nelze prečíst a dekódovat. Soubor je možná komprimován v nepodporovaném formátu."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -362,7 +370,7 @@ msgstr "Nápověda"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
+msgstr "Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje, nebo nemá správný formát."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -416,14 +424,14 @@ msgstr "Číst stránku man pro %s"
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
+msgstr "Obsah nelze načíst. Soubor ‘%s’ buď chybí, nebo to není správně utvořené XML."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Obsah nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný stylesheet XSLT."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -454,20 +462,18 @@ msgid "_Help"
 msgstr "_Nápověda"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "_Nové okno"
 
 #: src/yelp-window.c:314
 msgid "About This Document"
-msgstr ""
+msgstr "O tomto dokumentu"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Otevřít _umístění"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
 msgstr "_Zavřít okno"
 
@@ -516,14 +522,12 @@ msgid "Go to home view"
 msgstr "Přejde na domovskou stránku"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "_Předchozí strana"
+msgstr "_Předchozí oddíl"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "_Následující strana"
+msgstr "_Následující oddíl"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -559,28 +563,28 @@ msgstr "Prohlížeč nápovědy"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "Uniform Resource Identifier souboru není platný."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "Uniform Resource Identifier ‘%s’ není platný nebo neukazuje na skutečný soubor."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1124
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Stránky man nejsou v této verzi podporovány."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1115
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Stránky GNU info nejsou v této verzi podporovány."
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "Dokumenty SGML už nejsou podporovány. Požádejte prosím autora dokumentu, aby jej převedl do XML."
 
 #: src/yelp-window.c:1021
 msgid "Fin_d"
@@ -591,7 +595,7 @@ msgstr "_Hledat"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr ""
+msgstr "Pro soubor ‘%s’ nelze vytvořit kontext transformace. Formát možná není podporován."
 
 #: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
 #, c-format
@@ -599,14 +603,14 @@ msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr ""
+msgstr "Oddíl ‘%s’ v tomto dokumentu neexistuje. Pokud vás k tomuto oddílu dovedlo tlačíko Nápověda v aplikaci, ohlaste to prosím správcům této aplikace."
 
 #: src/yelp-window.c:1286
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr ""
+msgstr "Soubor ‘%s’ nelze číst. Tento soubor možná chybí, nebo nemáte oprávnění jej číst."
 
 #: src/yelp-window.c:1320
 msgid "Loading..."
@@ -629,14 +633,14 @@ msgstr "Prohlížeč dokumentace pro prostředí pracovní plochy Gnome."
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr ""
+msgstr "Soubor ‘%s’ nelze zpracovat. Tento soubor buď neexistuje, nebo nemá správný formát."
 
 #: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Dokument ‘%s’ nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný stylesheet XSLT."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
