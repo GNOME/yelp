@@ -3,25 +3,28 @@
 # Tõivo Leedjärv <toivo@linux.ee>, 2002-2004.
 # Allan Sims <allsi@eau.ee>, 2003
 # Priit Laes <amd store20 com>, 2005
+# Ivar Smolin <okul@linux.ee>, 2005
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2005-01-06 12:38+0300\n"
-"Last-Translator: Priit Laes <amd@tt.ee>\n"
+"POT-Creation-Date: 2005-01-06 04:32+0100\n"
+"PO-Revision-Date: 2005-01-30 20:14+0200\n"
+"Last-Translator: Ivar SMolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: data/man.xml.in.h:1
+#: data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "Rakendused"
 
 #: data/man.xml.in.h:2
 msgid "Configuration Files"
-msgstr "Konfiguratsioonifailid"
+msgstr "Seadistusfailid"
 
 #: data/man.xml.in.h:3
 msgid "Development"
@@ -31,7 +34,8 @@ msgstr "Arendus"
 msgid "FORTRAN Functions"
 msgstr "FORTRANi funktsioonid"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: data/man.xml.in.h:5
+#: data/toc.xml.in.h:7
 msgid "Games"
 msgstr "Mängud"
 
@@ -47,9 +51,10 @@ msgstr "Kernelitoimingud"
 msgid "Library Functions"
 msgstr "Teegifunktsioonid"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9
+#: src/yelp-toc-pager.c:785
 msgid "Man Pages"
-msgstr ""
+msgstr "Maanualilehed"
 
 #: data/man.xml.in.h:10
 msgid "OpenSSL Applications"
@@ -73,11 +78,11 @@ msgstr "Perli funktsioonid"
 
 #: data/man.xml.in.h:15
 msgid "Qt Functions"
-msgstr "QT funktsioonid"
+msgstr "Qt funktsioonid"
 
 #: data/man.xml.in.h:16
 msgid "System Administration"
-msgstr "Süsteemi administreerimine"
+msgstr "Süsteemihaldus"
 
 #: data/man.xml.in.h:17
 msgid "System Calls"
@@ -108,13 +113,12 @@ msgid "X11 Games"
 msgstr "X11 mängud"
 
 #: data/man.xml.in.h:24
-#, fuzzy
 msgid "X11 Overviews"
-msgstr "Ülevaated"
+msgstr "X11 ülevaated"
 
 #: data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "Hõlbustused"
 
 #: data/toc.xml.in.h:2
 msgid "Accessories"
@@ -136,10 +140,10 @@ msgstr "Õpperakendused"
 msgid "Graphics"
 msgstr "Graafika"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
-msgid "Help Topics"
-msgstr "Abiinfo brauser"
+#: data/toc.xml.in.h:9
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "Abiteabe sisukord"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -167,7 +171,7 @@ msgstr "Programmeerimine"
 
 #: data/toc.xml.in.h:16
 msgid "Scientific"
-msgstr ""
+msgstr "Teadus"
 
 #: data/toc.xml.in.h:17
 msgid "Sound &amp; Video"
@@ -175,7 +179,7 @@ msgstr "Audio ja Video"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
-msgstr "Süsteemi tööriistad"
+msgstr "Süsteemsed tööriistad"
 
 #: data/toc.xml.in.h:19
 msgid "X Applications"
@@ -183,100 +187,91 @@ msgstr "X'i rakendused"
 
 #: data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Hõlbustused</b>"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Kirjatüübid</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
-msgid "<b>_Bookmarks:</b>"
-msgstr "_Järjehoidjad"
-
-#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Pealkiri:</b>"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:4
 msgid "Add Bookmark"
 msgstr "Lisa järjehoidja"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
 msgstr "Järjehoidjad"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:6
 msgid "C_ase sensitive"
 msgstr "_Tõstutundlik"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:7
 msgid "Find"
-msgstr "Otsi"
+msgstr "Otsimine"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:8
 msgid "Open Location"
 msgstr "Asukoha avamine"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:9
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: data/ui/yelp.glade.h:11
-msgid "Re_name"
-msgstr ""
-
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:10
 msgid "_Browse with caret"
 msgstr ""
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:11
 msgid "_Find: "
 msgstr "_Otsi: "
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:12
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Fikseeritud laius:"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:13
 msgid "_Location:"
 msgstr "_Asukoht:"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:14
 msgid "_Next"
 msgstr "_Järgmine"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:15
 msgid "_Previous"
 msgstr "_Eelmine"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:16
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Kasuta süsteemseid kirjatüüpe"
 
-#: data/ui/yelp.glade.h:19
+#: data/ui/yelp.glade.h:17
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Muutuv laius:"
 
-#: data/ui/yelp.glade.h:20
+#: data/ui/yelp.glade.h:18
 msgid "_Wrap around"
-msgstr "_Lõpust mine algusesse"
+msgstr "_Lõpust minnakse algusesse"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Kirjatüüp fikseeritud laiusega teksti jaoks"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Kirjatüüp teksti jaoks"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Kirjatüüp fikseeritud laiusega teksti jaoks."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Kirjatüüp muutuva laiusega teksti jaoks."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
@@ -291,10 +286,11 @@ msgid "Use system fonts"
 msgstr "Süsteemi kirjatüüpide kasutamine"
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the default fonts set for the system."
-msgstr ""
+msgid "Use the systems default fonts."
+msgstr "Süsteemsete vaikekirjatüüpide kasutamine."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
+#: src/GNOME_Yelp.server.in.h:1
+#: src/yelp-window.c:2134
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -302,29 +298,23 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:248
+#: src/yelp-bookmarks.c:319
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
-"Järjehoidja pealkirjaga <b>%s</b> juba eksisteerib selle lehekülje jaoks."
-
-#: src/yelp-bookmarks.c:341
-#, fuzzy
-msgid "Document Sections"
-msgstr "Dokumendi info"
+msgstr "Järjehoidja pealkirjaga <b>%s</b> on selle lehe jaoks juba olemas."
 
 #: src/yelp-db-pager.c:238
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
 msgstr ""
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
 msgstr "Tundmatu"
 
-#: src/yelp-error.c:42 src/yelp-error.c:58
+#: src/yelp-error.c:42
+#: src/yelp-error.c:58
 msgid "An unknown error occured"
 msgstr ""
 
@@ -358,9 +348,7 @@ msgstr ""
 
 #: src/yelp-io-channel.c:98
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
+msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
 msgstr ""
 
 #: src/yelp-main.c:95
@@ -376,15 +364,14 @@ msgstr "Ei saa Yelpi aktiveerida: '%s'"
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: src/yelp-main.c:326
+#: yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Abi"
 
 #: src/yelp-man-pager.c:164
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
 msgstr ""
 
 #: src/yelp-pager.c:120
@@ -396,27 +383,16 @@ msgid "The YelpDocInfo struct of the document"
 msgstr ""
 
 #. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
 #. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
 #. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
 #. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
 #. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
 #. If you need an image created, contact the maintainers.
-#.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
 #. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
 #. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:149
 msgid "yelp-watermark-blockquote-201C"
 msgstr ""
 
@@ -436,29 +412,23 @@ msgstr ""
 
 #: src/yelp-toc-pager.c:765
 #, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
+msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
 msgstr ""
 
 #: src/yelp-toc-pager.c:873
 #, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
 msgstr ""
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1024
+#: src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Ei leia href-atribuuti yelp:document pealt"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1038
+#: src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Mälu otsas"
-
-#: src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Abiinfo sisukord"
 
 #: src/yelp-window.c:302
 msgid "_File"
@@ -522,7 +492,7 @@ msgstr "_Tagasi"
 
 #: src/yelp-window.c:359
 msgid "Show previous page in history"
-msgstr "Näita eelmist lehekülge ajaloos"
+msgstr "Näitab eelmist lehekülge ajaloos"
 
 #: src/yelp-window.c:362
 msgid "_Forward"
@@ -530,15 +500,15 @@ msgstr "_Edasi"
 
 #: src/yelp-window.c:364
 msgid "Show next page in history"
-msgstr "Näita järgmist lehekülge ajaloos"
+msgstr "Näitab järgmist lehekülge ajaloos"
 
 #: src/yelp-window.c:367
-msgid "_Help Topics"
-msgstr ""
+msgid "_Home"
+msgstr "_Kodu"
 
 #: src/yelp-window.c:369
-msgid "Go to the listing of help topics"
-msgstr ""
+msgid "Go to home view"
+msgstr "Liigub koduvaatele"
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -574,126 +544,92 @@ msgstr "_Kopeeri viida aadress"
 
 #: src/yelp-window.c:415
 msgid "_About"
-msgstr "_Info"
+msgstr "_Programmist lähemalt"
 
 #: src/yelp-window.c:466
 msgid "Help Browser"
-msgstr "Abiinfo brauser"
+msgstr "Abiteabe sirvija"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
+#: src/yelp-window.c:697
+#: src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr ""
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: src/yelp-window.c:709
+#: src/yelp-window.c:825
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
+msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
+#: src/yelp-window.c:786
+#: src/yelp-window.c:1124
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Käesolev versioon ei toeta manuaalilehti."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
+#: src/yelp-window.c:796
+#: src/yelp-window.c:1115
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Käesolev versioon ei toeta GNU infolehti"
 
 #: src/yelp-window.c:806
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
+msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
 msgstr ""
 
-#: src/yelp-window.c:1024
-#, fuzzy
-msgid "Find:"
-msgstr "Otsi"
+#: src/yelp-window.c:1021
+msgid "Fin_d"
+msgstr "_Otsing"
 
-#: src/yelp-window.c:1040
-#, fuzzy
-msgid "Find _Next"
-msgstr "_Järgmine"
-
-#: src/yelp-window.c:1052
-#, fuzzy
-msgid "Find _Previous"
-msgstr "_Eelmine"
-
-#: src/yelp-window.c:1157
+#: src/yelp-window.c:1141
 #, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
+msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
 msgstr ""
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
+#: src/yelp-window.c:1171
+#: src/yelp-window.c:1585
+#: src/yelp-window.c:1652
 #, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
+msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1302
+#: src/yelp-window.c:1286
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
+msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
 msgstr ""
 
-#: src/yelp-window.c:1336
+#: src/yelp-window.c:1320
 msgid "Loading..."
 msgstr "Laadimine..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:2166
+#: src/yelp-window.c:2131
 msgid "translator-credits"
 msgstr ""
 "Tõlge eesti keelde:\n"
-"       Tõivo Leedjärv <toivo@linux.ee>, 2002-2004.\n"
-"       Allan Sims <allsi@eau.ee>. 2003.\n"
-"       Priit Laes <amd@store20.com>, 2005\n"
+"\tTõivo Leedjärv <toivo@linux.ee>, 2002-2004.\n"
+"\tAllan Sims <allsi@eau.ee>, 2003.\n"
+"\tPriit Laes <amd@store20.com>, 2005.\n"
+"\tIvar Smolin <okul@linux.ee>, 2005.\n"
 "\n"
 "GNOME Translation Project Eesti meeskond.\n"
 "http://et-gnome.sourceforge.net\n"
 "Veateated, parandused: <gnome-et@linux.ee>"
 
-#: src/yelp-window.c:2171
+#: src/yelp-window.c:2136
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "Dokumentatsioonisirvija Gnome töölaua jaoks."
 
 #: src/yelp-xslt-pager.c:194
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
 msgstr ""
 
 #: src/yelp-xslt-pager.c:215
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-
 #: src/yelp-xslt-pager.c:228
 #, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
+msgid "The document ‘%s’could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
 msgstr ""
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Abistab GNOMEi kasutamisel"
 
-#~ msgid "_Home"
-#~ msgstr "_Kodu"
-
-#~ msgid "Go to home view"
-#~ msgstr "Liigu koduvaatele"
-
-#~ msgid "Fin_d"
-#~ msgstr "_Otsing"
