@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-05-20 18:21+0200\n"
+"PO-Revision-Date: 2003-01-21 15:03+0100\n"
 "Last-Translator: Psyk[o] <shaihulud@supereva.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -15,35 +15,35 @@ msgstr ""
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>Trova testo nel documento:</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "Trova dall'_inizio del documento"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "Trova testo..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "Par_ola intera"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "Distingui _maiuscole e minuscole"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "S_uccessivo"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "Preced_ente"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -140,9 +140,8 @@ msgid "Section"
 msgstr "Sezione"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "Cerca:"
+msgstr "Ce_rca:"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -162,7 +161,6 @@ msgid "Manual Pages"
 msgstr "Pagine del manuale"
 
 #: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
-#, fuzzy
 msgid "Info Pages"
 msgstr "Pagine info"
 
@@ -179,17 +177,16 @@ msgid "Manual pages"
 msgstr "Pagine del manuale"
 
 #: src/yelp-view-toc.c:712
-#, fuzzy
 msgid "GNOME is"
-msgstr "GNOME - Desktop"
+msgstr "GNOME e'"
 
 #: src/yelp-view-toc.c:713
 msgid "Free Software"
-msgstr ""
+msgstr "Software libero"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
-msgstr ""
+msgstr "(C)"
 
 #: src/yelp-window.c:163
 msgid "/_File"
@@ -205,19 +202,19 @@ msgstr "/File/_Chiudi finestra"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/_Modifica"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/Modifica/Tr_ova.."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/Modifica/Tro_va successivo"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
-msgstr "/_Vai"
+msgstr "/V_ai"
 
 #: src/yelp-window.c:172
 msgid "/Go/_Back"
@@ -225,7 +222,7 @@ msgstr "/Vai/_Indietro"
 
 #: src/yelp-window.c:173
 msgid "/Go/_Forward"
-msgstr "/Vai/Avan_ti"
+msgstr "/Vai/_Avanti"
 
 #: src/yelp-window.c:174
 msgid "/Go/_Home"
@@ -237,7 +234,7 @@ msgstr "/Vai/In_dice"
 
 #: src/yelp-window.c:177
 msgid "/_Help"
-msgstr "/_Aiuto"
+msgstr "/A_iuto"
 
 #: src/yelp-window.c:178
 msgid "/Help/_About"
@@ -276,7 +273,7 @@ msgstr "Avanti"
 
 #: src/yelp-window.c:801
 msgid "Show next page in history"
-msgstr "Mostra la prossima pagina nella cronologia"
+msgstr "Mostra la pagina successiva nella cronologia"
 
 #: src/yelp-window.c:814
 msgid "Home"
@@ -284,7 +281,7 @@ msgstr "Home"
 
 #: src/yelp-window.c:815
 msgid "Go to home view"
-msgstr "Vai alla vista Home"
+msgstr "Pagina iniziale"
 
 #: src/yelp-window.c:825
 msgid "Index"
