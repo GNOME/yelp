@@ -1,5 +1,10 @@
 2004-04-19  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-db-pager.c:
+	- Fix leak with gtk_tree_store_set, #140546  (Morten Welinder)
+
+2004-04-19  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-theme.c:
 	- Don't g_object_ref after gtk_style_new, #140525  (Morten Welinder)
 
