@@ -385,6 +385,8 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
 
         priv = view->priv;
 
+	d(g_print ("Trying to open: %s\n", section->uri));
+	
         html_document_clear (priv->doc);
         html_document_open_stream (priv->doc, "text/html");
 
@@ -406,7 +408,8 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
 
 	if (section->reference) {
  		gchar *tmp_uri = g_strconcat (section->uri, 
-					      section->reference);
+					      section->reference,
+					      NULL);
 		uri = gnome_vfs_uri_new (tmp_uri);
 		g_free (tmp_uri);
 	} else {

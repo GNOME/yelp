@@ -73,7 +73,7 @@ yelp_base_init (YelpBase *base)
 
         priv = g_new0 (YelpBasePriv, 1);
         
-	priv->toc_tree = g_node_new(NULL);
+	priv->toc_tree = g_node_new (NULL);
 
 	priv->windows = NULL;
         base->priv    = priv;

@@ -298,13 +298,22 @@ yelp_view_content_show_uri (YelpViewContent *content,
 						     url,
 						     &content_url);
 		yelp_view_content_set_tree (content, node);
-	} else {
+	} else if (strncmp (url, "ghelp:", 6) == 0) {
+		gchar *docpath;
+		
+		docpath = url + 6;
+		
+		node = yelp_scrollkeeper_get_toc_tree_model (docpath);
+		
+		if (node) {
+			yelp_view_content_set_tree (content, node);
+		}
+		
 		content_url = (char *)url;
-
-		/* TODO: Fill in the tree somehow. Depending on url-scheme */
+	} else {
 	}
-
-
+	
+	
 	/* FIXME: This is a quite dubious way to load the url... */
 	section = yelp_section_new (YELP_SECTION_DOCUMENT,
 				    NULL, content_url, NULL, NULL);

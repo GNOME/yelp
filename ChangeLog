@@ -1,5 +1,18 @@
 2002-01-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-content.c (yelp_view_content_show_uri): 
+	- if uri starts with ghelp:, try to find the TOC for that document
+	  in scrollkeeper. If it's found, display it in the tree widget.
+
+	* src/yelp-scrollkeeper.c: 
+	- Removed old stuff outcommented and unused code.
+	(ys_parse_toc_section): fill a GNode tree instead of GtkTreeStore.
+	(yelp_scrollkeeper_get_toc_tree_model): use GNode instead of
+	  GtkTreeStore.
+
+	* src/yelp-html.c (yelp_html_open_section): NULL-terminate list of
+	  strings to g_strconcat.
+
 	* src/yelp-scrollkeeper.c:
 	(yelp_parse_toc): removed, code moved to
 	  yelp_scrollkeeper_get_toc_tree_model 

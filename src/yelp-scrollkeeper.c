@@ -25,17 +25,12 @@
 #endif
 
 #include <string.h>
-#include <gtk/gtktreemodel.h>
 #include <libxml/parser.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "yelp-section.h"
 #include "yelp-util.h"
 #include "yelp-scrollkeeper.h"
-
-typedef struct {
-	GtkTreeStore *store;
-} ParseData;
 
 static gboolean   ys_trim_empty_branches  (xmlNode              *cl_node);
 static gboolean   ys_tree_empty           (xmlNode              *cl_node);
@@ -46,8 +41,7 @@ static gboolean   ys_parse_section        (GNode                *parent,
 					   xmlNode              *xml_node);
 static void       ys_parse_doc            (GNode                *parent,
 					   xmlNode              *xml_node);
-static void       ys_parse_toc_section    (GtkTreeStore         *store,
-					   GtkTreeIter          *parent,
+static void       ys_parse_toc_section    (GNode                *parent,
 					   xmlNode              *xml_node,
 					   const gchar          *base_uri);
 static gchar *    ys_get_xml_docpath      (const gchar          *command,
@@ -140,9 +134,10 @@ ys_parse_books (GNode *tree, xmlDoc *doc)
 		return FALSE;
 	}
 	
-	book_node = g_node_append_data (tree, yelp_section_new (YELP_SECTION_CATEGORY,
-								"scrollkeeper", NULL,
-								NULL, NULL));
+	book_node = g_node_append_data (tree, 
+					yelp_section_new (YELP_SECTION_CATEGORY,
+							  "scrollkeeper", NULL,
+							  NULL, NULL));
        
 	for (node = node->xmlChildrenNode; node; node = node->next) {
 		if (!g_strcasecmp (node->name, "sect")) {
@@ -178,9 +173,10 @@ ys_parse_section (GNode *parent, xmlNode *xml_node)
 		return FALSE;
 	}
 	
-	node = g_node_append_data (parent, yelp_section_new (YELP_SECTION_CATEGORY, 
-							     name, NULL,
-							     NULL, NULL));
+	node = g_node_append_data (parent, 
+				   yelp_section_new (YELP_SECTION_CATEGORY, 
+						     name, NULL,
+						     NULL, NULL));
 
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
@@ -237,9 +233,10 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node)
 		}
 	}
 
-	node = g_node_append_data (parent, yelp_section_new (YELP_SECTION_DOCUMENT,
-							     title, link,
-							     NULL, NULL));
+	node = g_node_append_data (parent, 
+                                   yelp_section_new (YELP_SECTION_DOCUMENT,
+                                                     title, link,
+                                                     NULL, NULL));
 
 	if (docseriesid) {
 		g_hash_table_insert (seriesid_hash, docseriesid, node);
@@ -264,16 +261,15 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node)
 }
 
 static void
-ys_parse_toc_section (GtkTreeStore *store,
-		      GtkTreeIter  *parent,
-		      xmlNode      *xml_node, 
-		      const gchar  *base_uri)
+ys_parse_toc_section (GNode       *parent,
+		      xmlNode     *xml_node, 
+		      const gchar *base_uri)
 {
 	gchar       *name;
 	gchar       *link;
 	xmlNode     *next_child;
 	xmlChar     *xml_str;
-	GtkTreeIter *iter;
+        GNode       *node;
 
 	next_child = xml_node->xmlChildrenNode;
 	
@@ -298,16 +294,15 @@ ys_parse_toc_section (GtkTreeStore *store,
 /* 	} else { */
 /* 	} */
 
-	iter = yelp_util_contents_add_section (store, parent, 
-					       yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
-								 name, 
-								 base_uri,
-								 link, NULL));
+        node = g_node_append_data (parent, 
+                                   yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
+                                                     name, 
+                                                     base_uri,
+                                                     link, NULL));
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_strncasecmp (next_child->name, "tocsect", 7)) {
-			ys_parse_toc_section (store, iter, 
-					      next_child, base_uri);
+			ys_parse_toc_section (node, next_child, base_uri);
 		}
 	}
 }
@@ -369,56 +364,6 @@ ys_strip_scheme(gchar *original_uri, gchar **scheme)
 	return new_uri;
 }
 
-#if 0
-gboolean
-yelp_scrollkeeper_init (GtkTreeStore *store)
-{
-	gchar       *docpath;
-	xmlDoc      *doc;
-	const GList *node;
-	ParseData   *data;
-	
-	g_return_val_if_fail (GTK_IS_TREE_STORE (store), FALSE);
-
-	data = g_new0 (ParseData, 1);
-	data->store = store;
-
-	doc = NULL;
-
-	for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
-		docpath = ys_get_xml_docpath ("scrollkeeper-get-content-list",
-					      node->data);
-
-		if (docpath) {
-			doc = xmlParseFile (docpath);
-			g_free (docpath);
-		}
-
-		if (doc) { {
-
-			if (doc->xmlRootNode && !ys_tree_empty(doc->xmlRootNode->xmlChildrenNode)) {
-				break;
-			} else {
-				xmlFreeDoc (doc);
-				doc = NULL;
-			}
-		}
-	}
-		
-	if (doc) {
-		ys_trim_empty_branches (doc->xmlRootNode);
-
-		ys_parse_books (data, doc);
-		
-		xmlFreeDoc (doc);
-	}        
-
-	g_print ("Number of script calls: %d\n", calls);
-        
-        return TRUE;
-}
-#endif
-
 gboolean
 yelp_scrollkeeper_init (GNode *tree)
 {
@@ -471,14 +416,21 @@ yelp_scrollkeeper_lookup_seriesid (const gchar *seriesid)
 	return g_hash_table_lookup (seriesid_hash, seriesid);
 }
 
-void
-yelp_scrollkeeper_get_toc_tree_model (GtkTreeStore *store, 
-				      const gchar  *docpath)
+GNode *
+yelp_scrollkeeper_get_toc_tree_model (const gchar *docpath)
 {
-	gchar       *toc_file;
-	xmlDoc      *doc = NULL;
-	xmlNode     *xml_node;
-	
+	gchar   *toc_file;
+	xmlDoc  *doc = NULL;
+	xmlNode *xml_node;
+	GNode   *tree;
+	gchar   *full_path;
+        
+        g_return_val_if_fail (docpath != NULL, NULL);
+
+        g_print ("Trying to get tree for: %s\n", docpath);
+
+        tree = g_node_new (NULL);
+
  	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
  				       docpath);
 
@@ -489,7 +441,7 @@ yelp_scrollkeeper_get_toc_tree_model (GtkTreeStore *store,
 
 	if (!doc) {
 /* 		g_warning ("Tried to parse a non-valid TOC file"); */
-		return;
+		return NULL;
 	}
 	
 	if (g_strcasecmp (doc->xmlRootNode->name, "toc")) {
@@ -499,9 +451,15 @@ yelp_scrollkeeper_get_toc_tree_model (GtkTreeStore *store,
 
 	xml_node = doc->xmlRootNode->xmlChildrenNode;
 
+	full_path = g_strconcat ("ghelp:", docpath, NULL);
+
 	for (; xml_node != NULL; xml_node = xml_node->next) {
-		ys_parse_toc_section (store, NULL, xml_node, docpath);
+		ys_parse_toc_section (tree, xml_node, full_path);
 	}
+
+	g_free (full_path);
+	
+	return tree;
 }
 
 
