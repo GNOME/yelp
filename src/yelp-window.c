@@ -368,6 +368,7 @@ yw_about_cb (gpointer data, guint section, GtkWidget *widget)
 	GtkWidget *about;
 	const gchar *authors[] = { 
 		"Mikael Hallendal <micke@codefactory.se>",
+		"Alexander Larsson <alexl@redhat.com>",
 		NULL
 	};
 	
