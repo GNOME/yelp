@@ -148,7 +148,9 @@ yim_init (YelpIndexModel *model)
 	do {
 		priv->stamp = g_random_int ();
 	} while (priv->stamp == 0);
-        
+
+	priv->index_words = NULL;
+
         model->priv = priv;
 }
 
@@ -172,14 +174,23 @@ yim_finalize (GObject *object)
 static gint
 yim_get_n_columns (GtkTreeModel *tree_model)
 {
-        return 1;
+	return YELP_INDEX_MODEL_NR_OF_COLS;
 }
 
 static GType
 yim_get_column_type (GtkTreeModel *tree_model,
                      gint          column)
 {
-	return G_TYPE_STRING;
+	switch (column) {
+	case YELP_INDEX_MODEL_COL_NAME:
+		return G_TYPE_STRING;
+		break;
+	case YELP_INDEX_MODEL_COL_SECTION:
+		return G_TYPE_POINTER;
+		break;
+	default:
+		return G_TYPE_INVALID;
+	}
 }
 
 static gboolean
@@ -258,8 +269,13 @@ yim_get_value (GtkTreeModel *tree_model,
 	section = (YelpSection *) (G_LIST(iter->user_data)->data);
 	
         switch (column) {
-        case 0:
+	case YELP_INDEX_MODEL_COL_NAME:
+		g_value_init (value, G_TYPE_STRING);
 		g_value_set_string (value, section->name);
+		break;
+	case YELP_INDEX_MODEL_COL_SECTION:
+		g_value_init (value, G_TYPE_POINTER);
+		g_value_set_pointer (value, section);
 		break;
         default:
                 g_warning ("Bad column %d requested", column);
@@ -375,20 +391,37 @@ YelpIndexModel *
 yelp_index_model_new (void)
 {
         YelpIndexModel     *model;
-        YelpIndexModelPriv *priv;
         
         model = g_object_new (YELP_TYPE_INDEX_MODEL, NULL);
         
-        priv = model->priv;
-        
-
         return model;
 }
 
 void
 yelp_index_model_set_words (YelpIndexModel *model, GList *index_words)
 {
-	g_return_if_fail (YELP_IS_INDEX_MODEL (model));
+	YelpIndexModelPriv *priv;
+	GList              *node;
+	gint                i = 0;
+	GtkTreePath        *path;
+	GtkTreeIter         iter;
 	
-        model->priv->index_words = index_words;
+	g_return_if_fail (YELP_IS_INDEX_MODEL (model));
+
+	priv = model->priv;
+		
+        priv->index_words = index_words;
+
+	for (node = priv->index_words; node; node = node->next) {
+		path = gtk_tree_path_new ();
+		
+		gtk_tree_path_append_index (path, i);
+		
+		yim_get_iter (GTK_TREE_MODEL (model), &iter, path);
+		
+		gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), 
+					     path, &iter);
+		
+		gtk_tree_path_free (path);
+	}
 }

@@ -145,7 +145,7 @@ yvi_index_selection_changed_cb (GtkTreeSelection *selection,
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
 		gtk_tree_model_get (GTK_TREE_MODEL (priv->model), &iter,
-				    1, &section,
+				    YELP_INDEX_MODEL_COL_SECTION, &section,
 				    -1);
 
 		/* FIXME: Emit index:string */

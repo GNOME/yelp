@@ -51,6 +51,13 @@ struct _YelpIndexModelClass
   GObjectClass parent_class;
 };
 
+enum {
+	YELP_INDEX_MODEL_COL_NAME,
+	YELP_INDEX_MODEL_COL_SECTION,
+	YELP_INDEX_MODEL_NR_OF_COLS
+};
+
+
 GtkType          yelp_index_model_get_type     (void);
 
 YelpIndexModel  *yelp_index_model_new          (void);

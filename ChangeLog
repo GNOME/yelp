@@ -1,5 +1,23 @@
 2002-03-02  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-index.c:
+	(yvi_index_selection_changed_cb): use the column-enum to specify
+	  columns.
+
+	* src/yelp-index-model.c:
+	(yim_init): initially set index_words to NULL.
+	(yim_get_column_type): return the correct type.
+	(yim_get_value): add support for the extra hidden section column.
+	(yelp_index_model_set_words): inform that new lines have been
+	  added to the model.
+
+	* src/yelp-index-model.h: added a column-enum
+
+	* src/Makefile.am: removed gtktreemodelfilter
+
+	* src/gtktreemodelfilter.[ch]: removed, not used and _kris_ is
+	  doing the development in libegg now.
+
 	* src/yelp-view-index.c: 
 	- replaced the old ListStore with the new YelpIndexModel.
 	(yvi_index_term_add): removed, not needed when using own model.
