@@ -23,7 +23,7 @@ GETTEXT_PACKAGE=yelp
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
-ALL_LINGUAS="af am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et fa fi fr ga gl gu he hi hr hu id is it ja kn ko li lt lv mk ml mn mr ms ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tr uk vi wa zh_CN zh_TW"
+ALL_LINGUAS="af am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et fa fi fr ga gl gu he hi hr hu id is it ja ka kn ko li lt lv mk ml mn mr ms ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
 # AM_GLIB_GNU_GETTEXT above substs $DATADIRNAME
