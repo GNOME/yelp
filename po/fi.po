@@ -1,0 +1,253 @@
+# Finnish translation of Yelp
+# Copyright (C) 2001, 2002 Free Software Foundation, Inc.
+# Henri Mannerberg <henkka@ur-quan.org>, 2002.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp\n"
+"POT-Creation-Date: 2002-03-01 17:11-0500\n"
+"PO-Revision-Date: 2002-03-27 16:02+0200\n"
+"Last-Translator: Henri Mannerberg <henkka@ur-quan.org>\n"
+"Language-Team: Finnish <fi@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp tehdas"
+
+#: src/yelp-info.c:99
+msgid "info"
+msgstr "info"
+
+#: src/yelp-main.c:91
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Yelpin aktivointi epäonnistui: '%s'"
+
+#: src/yelp-main.c:110
+msgid "Could not open new window."
+msgstr "Uuden ikkunan avaaminen epäonnistui."
+
+#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
+#: src/yelp-man.c:376 src/yelp-man.c:387
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:276 src/yelp-man.c:307 src/yelp-man.c:365 src/yelp-man.c:392
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:281
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:297
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:302
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:312
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:317
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:339
+msgid "System Calls"
+msgstr "Järjestelmäkutsut"
+
+#: src/yelp-man.c:344
+msgid "Library Functions"
+msgstr "Kirjastofunktiot"
+
+#: src/yelp-man.c:349
+msgid "Kernel Routines"
+msgstr "Kernelrutiinit"
+
+#: src/yelp-man.c:404
+msgid "Applications"
+msgstr "Sovellukset"
+
+#: src/yelp-man.c:409
+msgid "Development"
+msgstr "Ohjelmakehitys"
+
+#: src/yelp-man.c:414
+msgid "Hardware Devices"
+msgstr "Laitteisto"
+
+#: src/yelp-man.c:419
+msgid "Configuration Files"
+msgstr "Asetustiedostot"
+
+#: src/yelp-man.c:424
+msgid "Games"
+msgstr "Pelit"
+
+#: src/yelp-man.c:429
+msgid "Overviews"
+msgstr "Yleiskatsaukset"
+
+#: src/yelp-man.c:434
+msgid "System Administration"
+msgstr "Järjestelmänvalvonta"
+
+#: src/yelp-man.c:445
+msgid "man"
+msgstr "man"
+
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:229
+msgid "Section"
+msgstr "Sektio"
+
+#: src/yelp-view-index.c:211
+msgid "Search for:"
+msgstr "Etsi:"
+
+#: src/yelp-view-toc.c:271
+msgid "Other Documents"
+msgstr "Muut dokumentit"
+
+#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
+msgid "Manual pages"
+msgstr "Man-sivut"
+
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:558 src/yelp-view-toc.c:577
+msgid "Info pages"
+msgstr "Info-sivut"
+
+#: src/yelp-view-toc.c:274
+msgid "Installed documents"
+msgstr "Asennetut dokumentit"
+
+#: src/yelp-view-toc.c:286
+msgid "Start page"
+msgstr "Aloitussivu"
+
+#: src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "Man-sivut"
+
+#: src/yelp-view-toc.c:679
+msgid "Scrollkeeper docs for category"
+msgstr "Scrollkeeper-dokumentit kategorialle"
+
+#: src/yelp-window.c:138
+msgid "/_File"
+msgstr "/_Tiedosto"
+
+#: src/yelp-window.c:139
+msgid "/File/_New window"
+msgstr "/Tiedosto/_Uusi ikkuna"
+
+#: src/yelp-window.c:140
+msgid "/File/_Close window"
+msgstr "/Tiedosto/_Sulje ikkuna"
+
+#: src/yelp-window.c:141
+msgid "/File/_Quit"
+msgstr "/Tiedosto/_Lopeta"
+
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_Siirry"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Siirry/_Takaisin"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Siirry/_Eteenpäin"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Siirry/_Koti"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Siirry/_Hakemisto"
+
+#: src/yelp-window.c:147
+msgid "/_Help"
+msgstr "/_Ohje"
+
+#: src/yelp-window.c:148
+msgid "/Help/_About"
+msgstr "/Ohje/_Tietoja"
+
+#: src/yelp-window.c:207
+msgid "Help Browser"
+msgstr "Ohjeselain"
+
+#: src/yelp-window.c:529
+msgid "translator_credits"
+msgstr "Henri Mannerberg <henkka@ur-quan.org>"
+
+#: src/yelp-window.c:533
+msgid "Help Browser for GNOME 2.0"
+msgstr "Ohjeselain GNOME 2.0:lle"
+
+#: src/yelp-window.c:560
+msgid "Back"
+msgstr "Takaisin"
+
+#: src/yelp-window.c:561
+msgid "Show previous page in history"
+msgstr "Näytä edellinen sivu"
+
+#: src/yelp-window.c:572
+msgid "Forward"
+msgstr "Eteenpäin"
+
+#: src/yelp-window.c:573
+msgid "Show next page in history"
+msgstr "Näytä seuraava sivu"
+
+#: src/yelp-window.c:586
+msgid "Home"
+msgstr "Koti"
+
+#: src/yelp-window.c:587
+msgid "Go to home view"
+msgstr "Siirry kotiin"
+
+#: src/yelp-window.c:597
+msgid "Index"
+msgstr "Hakemisto"
+
+#: src/yelp-window.c:598
+msgid "Search in the index"
+msgstr "Etsi hakemistosta"
+
+#: src/yelp-window.c:608
+msgid "Search for a phrase in the document"
+msgstr "Etsi dokumentista"
+
+#: src/yelp-window.c:614
+msgid "Help on "
+msgstr "Apua "
+
+#: src/yelp-window.c:619
+msgid "Enter phrase to search for in all documents"
+msgstr "Syötä lauseke jolla etsitään kaikista dokumenteista"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Hae apua Gnomen käytössä"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Ohje"
+
