@@ -127,6 +127,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <ctype.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <sys/types.h>
@@ -3607,12 +3608,22 @@ static char
 				} else if (*h>31 && *h<127)
 					intbuff[ibp++]=*h;
 				else if (((unsigned char)(*h))>127) {
+#if 0
 					intbuff[ibp++]='&';
 					intbuff[ibp++]='#';
 					intbuff[ibp++]='0'+((unsigned char)(*h))/100;
 					intbuff[ibp++]='0'+(((unsigned char)(*h))%100)/10;
 					intbuff[ibp++]='0'+((unsigned char)(*h))%10;
 					intbuff[ibp++]=';';
+#endif
+					/* Do not convert this, as it may be
+					 * part of a multibyte sequence.  The
+					 * HTML viewer should hopefully know
+					 * what to do with the encoding.  Hmm,
+					 * we could probably merge this case
+					 * with the one above.
+					 */
+					intbuff[ibp++] = (guchar) *h;
 				}
 				curpos++;
 				break;
