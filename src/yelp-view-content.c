@@ -557,7 +557,7 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 		yelp_html_clear (priv->html_view);
 
 		yelp_html_printf (priv->html_view, 
-				  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body bgcolor=\"white\"><center>%s</center></body></html>", 
+				  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body><center>%s</center></body></html>", 
 				  loading);
 		yelp_html_close (priv->html_view);
 	}

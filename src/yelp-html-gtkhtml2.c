@@ -36,7 +36,6 @@
 #include "yelp-marshal.h"
 #include "yelp-error.h"
 #include "yelp-uri.h"
-#include "yelp-reader.h"
 #include "yelp-html.h"
 
 #define d(x)
@@ -46,7 +45,6 @@ struct _YelpHtmlPriv {
 
         HtmlDocument *doc;
 	YelpURI      *base_uri;
-	YelpReader   *reader;
 };
 
 
@@ -273,7 +271,7 @@ yelp_html_new (void)
  	yelp_html_clear (html);
 	
  	{
- 		gchar *text = "<html><body bgcolor=\"white\"></body></html>";
+ 		gchar *text = "<html><body></body></html>";
 
  		yelp_html_write (html, text, -1);
  	}
