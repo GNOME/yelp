@@ -609,7 +609,7 @@
 					<xsl:apply-templates select="yelp:get-content(.)"/>
 					<xsl:choose>
 						<xsl:when test="($depth &lt; $yelp_max_chunk_depth)
-								and (count(yelp:get-divisions(.)) &gt; 1)">
+								and (count(yelp:get-divisions(.)) &gt; 0)">
 							<div class="toc">
 								<p><b>
 									<xsl:call-template name="gentext">
@@ -619,9 +619,9 @@
 								<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
 							</div>
 						</xsl:when>
-						<xsl:when test="count(yelp:get-divisions(.)) &gt; 1">
+						<xsl:otherwise>
 							<xsl:apply-templates select="yelp:get-divisions(.)"/>
-						</xsl:when>
+						</xsl:otherwise>
 					</xsl:choose>
 				</div>
 				<xsl:call-template name="yelp.navbar.bottom">
@@ -634,7 +634,7 @@
 	</xsl:if>
 
 	<xsl:if test="($depth &lt; $yelp_max_chunk_depth)
-			and (count(yelp:get-divisions(.)) &gt; 1)">
+			and (count(yelp:get-divisions(.)) &gt; 0)">
 		<xsl:for-each select="yelp:get-divisions(.)">
 			<xsl:call-template name="yelp.component.chunk">
 				<xsl:with-param name="depth" select="$depth + 1"/>

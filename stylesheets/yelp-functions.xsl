@@ -39,7 +39,7 @@
 	<xsl:choose>
 		<xsl:when test="
 				(yelp:get-depth($node) &lt; $yelp_max_chunk_depth) and
-				(count(yelp:get-divisions($node)[@id]) &gt; 1)">
+				(count(yelp:get-divisions($node)[@id]) &gt; 0)">
 			<func:result select="yelp:get-divisions($node)[@id][1]"/>
 		</xsl:when>
 		<xsl:when test="$node/following-sibling::*[@id][yelp:is-division(.)]">
