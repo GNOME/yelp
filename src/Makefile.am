@@ -13,13 +13,6 @@ INCLUDES =								\
 	-DSERVERDIR=\"$(libexecdir)\"					\
 	-DBINDIR=\""$(bindir)"\"
 
-
-if HTML_WIDGET_GTKHTML1
-html_widget_impl=yelp-html-gtkhtml1.c
-else
-html_widget_impl=yelp-html-gtkhtml2.c
-endif
-
 libexec_PROGRAMS = yelp-db2html
 bin_PROGRAMS = yelp yelp-pregenerate
 
@@ -49,7 +42,6 @@ test_reader_LDADD = 							\
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
 	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
-	ln -sf yelp $(DESTDIR)$(bindir)/gman
 
 yelp-marshal.h: yelp-marshal.list
 	cd $(srcdir) && \
@@ -83,7 +75,7 @@ yelp_SOURCES =								\
 	yelp-cache.c		yelp-cache.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
-	$(html_widget_impl) 	yelp-html.h				\
+	yelp-html-gtkhtml2.c	yelp-html.h				\
 	yelp-index-model.c	yelp-index-model.h			\
 	yelp-info.c		yelp-info.h				\
 	yelp-main.c							\
@@ -102,7 +94,6 @@ yelp_SOURCES =								\
 
 yelp_LDADD =								\
 	@YELP_LIBS@							\
-	@HTML_WIDGET_LIBS@						\
 	$(POPT_LIBS)
 
 gnome_yelp_idl_sources =						\

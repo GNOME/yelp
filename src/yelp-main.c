@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2003 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -46,22 +46,13 @@
 
 poptContext  poptCon;
 gint         next_opt;
+gchar       *cache_dir;
+gchar       *open_urls;
 
 /*structure defining command line option.*/
-
-struct poptOption options[] = {
-	{
-		"url",
-		'u',
-		POPT_ARG_STRING,
-		NULL,
-		1,
-		NULL,
-		NULL,
-	},
-	{
-		NULL
-	}
+enum {
+	OPTION_OPEN_URLS = 1,
+	OPTION_CACHE_DIR
 };
 
 static BonoboObject * main_base_factory       (BonoboGenericFactory *factory,
@@ -85,6 +76,28 @@ static void           main_client_die         (GnomeClient          *client,
 
 static gboolean	      main_restore_session    (void);
 
+struct poptOption options[] = {
+	{
+		"open-urls",
+		'\0',
+		POPT_ARG_STRING | POPT_ARGFLAG_DOC_HIDDEN,
+		&open_urls,
+		OPTION_OPEN_URLS,
+		NULL, NULL,
+	},
+	{
+		"with-cache-dir",
+		'\0',
+		POPT_ARG_STRING,
+		&cache_dir,
+		OPTION_CACHE_DIR,
+		N_("Define which cache dir to use"),
+		NULL,
+	},
+	{
+		NULL
+	}
+};
 
 static BonoboObject *
 main_base_factory (BonoboGenericFactory *factory,
@@ -195,7 +208,8 @@ main_save_session (GnomeClient        *client,
 	CORBA_Object            yelp_base;
 	gchar                 **argv;
 	gint                    i=1;
-	gint                    temp;
+	gint                    arg_len = 1;
+	gboolean                store_open_urls = FALSE;
 
 	CORBA_exception_init (&ev);
 
@@ -205,23 +219,50 @@ main_save_session (GnomeClient        *client,
 
 	bonobo_object_release_unref (yelp_base, NULL);
 
-	temp = list->_length;
+	if (cache_dir) {
+		arg_len++;
+	}
+
+	if (list->_length > 0) {
+		store_open_urls = TRUE;
+		arg_len++;
+	}
 	
-	temp = temp + 1;
+	argv = g_malloc0 (sizeof (gchar *) * arg_len);
 
-	argv = g_malloc0 (sizeof (gchar *) * temp);
+	/* Program name */
+	argv[0] = g_strdup ((gchar *) cdata);
+	
+	if (cache_dir) {
+		argv[1] = g_strdup_printf ("--with-cache-dir=\"%s\"", 
+					   cache_dir);
+	}
 
-	argv[0] = (gchar*) cdata;
-       
-	/* Get the URI of each window */
+	if (store_open_urls) {
+		gchar *urls;
+		
+		/* Get the URI of each window */
+		urls = g_strdup_printf ("--open-urls=\"%s", list->_buffer[0]);
+		
+		for (i=1; i < list->_length; i++) {
+			gchar *tmp;
+			
+			tmp = g_strconcat (urls, ";", list->_buffer[i], NULL);
+			g_free (urls);
+			urls = tmp;
+		}
 
-	for (i=0 ;i < list->_length; i++) {
-                argv[i+1] = g_strconcat ("--url=", list->_buffer[i], NULL);
-        }
+		argv[2] = g_strconcat (urls, "\"", NULL);
+		g_free (urls);
+	}
 
-	gnome_client_set_clone_command (client, temp, argv);
-	gnome_client_set_restart_command (client, temp, argv);
+	gnome_client_set_clone_command (client, arg_len, argv);
+	gnome_client_set_restart_command (client, arg_len, argv);
 
+	for (i = 0; i < arg_len; ++i) {
+		g_free (argv[i]);
+	}
+	
 	g_free (argv);
 
 	return TRUE;
@@ -245,17 +286,18 @@ main_restore_session (void)
                 g_error ("Couldn't activate YelpBase");
         }
 
-	/*Get the argument of commandline option*/
-
-	while( (next_opt = poptGetNextOpt (poptCon)) > 0) {
-        	if ( next_opt == 1) {
-                	gchar *url = (gchar *) poptGetOptArg (poptCon);
-                	main_open_new_window (yelp_base, url);
-                	if (url) {
-                        	g_free (url);
-                        }
-                }
-        }
+	if (open_urls) {
+		gchar **urls = g_strsplit (open_urls, ";", -1);
+		gchar *url;
+		gint   i = 0;
+		
+		while ((url = urls[i]) != NULL) {
+			main_open_new_window (yelp_base, url);
+			++i;
+		}
+		
+		g_strfreev (urls);
+	}
 
 	return TRUE;
 }
@@ -263,37 +305,40 @@ main_restore_session (void)
 int
 main (int argc, char **argv) 
 {
-	GnomeProgram *program;
-	CORBA_Object  factory;
-	gchar        *url = NULL;
-	GnomeClient  *client;
-	gboolean      flag = FALSE;
+	GnomeProgram  *program;
+	CORBA_Object   factory;
+	gchar         *url = NULL;
+	GnomeClient   *client;
+	gboolean       session_started = FALSE;
+	const gchar  **args;
+	
 	
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 	g_thread_init (NULL);
 
-	if (strcmp (argv[0], "gman") == 0) {
-		url = g_strdup ("toc:man");
-	}
-	else if (argc >= 2) {
-		url = g_strdup (argv[1]);
-	} else {
-		url = g_strdup ("");
-	}
 
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE,
-				      argc, argv, 
+				      argc, argv,
+				      GNOME_PARAM_POPT_TABLE, options,
 				      GNOME_PROGRAM_STANDARD_PROPERTIES,
 				      NULL);
 
 	gnome_vfs_init ();
 	
-	/*Commandline parsing is done here*/
+	/* Commandline parsing is done here */
+	g_object_get (G_OBJECT (program),
+		      GNOME_PARAM_POPT_CONTEXT, &poptCon,
+		      NULL);
 
-	poptCon = poptGetContext (PACKAGE, argc, (const gchar **) argv, options, 0);
+	args = poptGetArgs (poptCon);
+	if (args) {
+		url = g_strdup (*args);
+	} else {
+		url = g_strdup ("");
+	}
 
 	client = gnome_master_client ();
         g_signal_connect (client, "save_yourself",
@@ -305,10 +350,9 @@ main (int argc, char **argv)
 						      Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, 
 						      NULL, NULL);
 	
-	/*Check for previous session to restore.*/
-
-	if(gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
-		flag = TRUE;
+	/* Check for previous session to restore. */
+	if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
+		session_started = TRUE;
         }
 
 	if (!factory) { /* Not started, start now */ 
@@ -325,9 +369,8 @@ main (int argc, char **argv)
 
 		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
         
-	        /*Depending on the flag, restore the session*/
-
-		if (flag) {
+	        /* If started by session, restore from last session */
+		if (session_started) {
 			g_idle_add ((GSourceFunc) main_restore_session, NULL);
 		} else {
 			g_idle_add ((GSourceFunc) main_idle_start, url);

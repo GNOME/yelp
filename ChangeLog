@@ -1,3 +1,25 @@
+2003-03-31  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-main.c: 
+	- Added --with-cache-dir (not used yet).
+	- Cleaned up popt mess
+	- Changed the session stuff a bit (it now uses --open-urls instead
+	  of multiple --url)
+	- Removed support for 'gman', fixes #103750
+	
+	* src/Makefile.am:
+	- removed Gtkhtml1 support.
+	- Removed support for 'gman', fixes #103750
+
+	* configure.in: 
+	- bumped version.
+	- removed gtkhtml1 support.
+
+	* src/yelp-scrollkeeper.c (scrollkeeper_get_xml_docpath): 
+	- fixed #109599
+
+	* src/yelp-info.c (yelp_info_init): some cleanups.
+
 2003-03-13  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "ml" to ALL_LINGUAS.

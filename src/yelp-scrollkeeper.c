@@ -326,11 +326,12 @@ scrollkeeper_get_xml_docpath (const gchar *command, const gchar *argument)
 	gchar    *full_command;
 	gchar    *xml_location = NULL;
 	gchar    *std_err;
+	gint     exit_status;
 	
 	full_command = g_strconcat (command, " ", argument, NULL);
 
 	success = g_spawn_command_line_sync (full_command, &xml_location,
-					     &std_err, NULL, NULL);
+					     &std_err, &exit_status, NULL);
 
 	g_free (full_command);
 	g_free (std_err);
@@ -346,6 +347,14 @@ scrollkeeper_get_xml_docpath (const gchar *command, const gchar *argument)
 		return NULL;
 	}
 	
+
+	if (exit_status) {
+		if (xml_location) {
+			g_free (xml_location);
+		}
+		return NULL;
+	}
+
 	g_strchomp (xml_location);
 	
 	return xml_location;

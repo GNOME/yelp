@@ -117,18 +117,16 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 gboolean
 yelp_info_init (GNode *tree, GList **index)
 {
-	GNode        *root;
-	struct stat   stat_dir1;
-	struct stat   stat_dir2;
-	GSList       *info_list = NULL;
-	GSList       *node;
-	gchar       **infopathes;
-	gchar        *infopath;
-	gint          i;
+	GNode  *root;
+	GSList *info_list = NULL;
+	GSList *node;
 	
-	infopath = g_strdup (g_getenv ("INFOPATH"));
-	
-	if (infopath) {
+	if (g_getenv ("INFOPATH")) {
+		gchar **infopathes;
+		gchar  *infopath;
+		gint    i;
+
+		infopath = g_strdup (g_getenv ("INFOPATH"));
 		g_strstrip (infopath);
 		infopathes = g_strsplit (infopath, ":", -1);
 		g_free (infopath);
@@ -137,13 +135,17 @@ yelp_info_init (GNode *tree, GList **index)
 			yelp_info_read_info_dir (infopathes[i], &info_list);
 		}
 	} else {
+		struct stat stat_dir1;
+		struct stat stat_dir2;
+
 		stat ("/usr/info", &stat_dir1);
 		stat ("/usr/share/info", &stat_dir2);
 	
 		yelp_info_read_info_dir ("/usr/info", &info_list);
 	
 		if (stat_dir1.st_ino != stat_dir2.st_ino) {
-			yelp_info_read_info_dir  ("/usr/share/info", &info_list);
+			yelp_info_read_info_dir  ("/usr/share/info",
+						  &info_list);
 		}
 	}
 	
