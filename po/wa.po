@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 0.2.99\n"
-"POT-Creation-Date: 2002-03-04 02:05+0100\n"
+"Project-Id-Version: yelp 0.5.99\n"
+"POT-Creation-Date: 2002-04-11 12:47+0200\n"
 "PO-Revision-Date: 2001-12-03 13:31+0200\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: walon <linux-wa@chanae.alphanet.ch>\n"
@@ -20,16 +20,20 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Oujhene Yelp"
 
-#: src/yelp-info.c:126
+#: src/yelp-html.c:136
+msgid "Loading..."
+msgstr "Dji tchedje..."
+
+#: src/yelp-info.c:141
 msgid "info"
 msgstr "informåcion"
 
-#: src/yelp-main.c:91
+#: src/yelp-main.c:109
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Dji n' a savou activer Yelp: «%s»"
 
-#: src/yelp-main.c:110
+#: src/yelp-main.c:128
 msgid "Could not open new window."
 msgstr "Dji n' a savou drovi on novea purnea."
 
@@ -106,129 +110,135 @@ msgstr "Administråcion do sistinme"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:364
 msgid "Section"
 msgstr "Seccion"
 
-#: src/yelp-view-index.c:325
+#: src/yelp-view-index.c:327
 msgid "Search for:"
 msgstr "Cwerî on:"
 
-#: src/yelp-view-toc.c:271
-msgid "Other Documents"
+#: src/yelp-view-toc.c:315
+msgid "Get help on..."
+msgstr "Vey l' aidance so..."
+
+#: src/yelp-view-toc.c:316
+msgid "GNOME - Desktop"
+msgstr "GNOME - Sicribanne"
+
+#: src/yelp-view-toc.c:317
+msgid "Additional documents"
 msgstr "Ôtes documints"
 
-#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:502
+#: src/yelp-view-toc.c:318 src/yelp-view-toc.c:517 src/yelp-view-toc.c:749
 msgid "Manual pages"
 msgstr "Pådjes di manuel"
 
-#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:579 src/yelp-view-toc.c:598
+#: src/yelp-view-toc.c:319 src/yelp-view-toc.c:518 src/yelp-view-toc.c:826
+#: src/yelp-view-toc.c:845
 msgid "Info pages"
 msgstr "Pådjes d' info"
 
-#: src/yelp-view-toc.c:274
+#: src/yelp-view-toc.c:516
+msgid "Other Documents"
+msgstr "Ôtes documints"
+
+#: src/yelp-view-toc.c:519
 msgid "Installed documents"
 msgstr "Documints k' i gn a"
 
-#: src/yelp-view-toc.c:288
+#: src/yelp-view-toc.c:533
 msgid "Start page"
 msgstr "Pådje d' enondaedje"
 
-#: src/yelp-view-toc.c:532
+#: src/yelp-view-toc.c:779
 msgid "Manual Pages"
 msgstr "Pådjes di Manuel"
 
-#: src/yelp-view-toc.c:700
-msgid "Scrollkeeper docs for category"
-msgstr "Documints scrollkeeper pol categoreye"
-
-#: src/yelp-window.c:138
+#: src/yelp-window.c:150
 msgid "/_File"
 msgstr "/_Fitchî"
 
-#: src/yelp-window.c:139
+#: src/yelp-window.c:151
 msgid "/File/_New window"
 msgstr "/Fitchî/_Novea purnea"
 
-#: src/yelp-window.c:140
+#: src/yelp-window.c:152
 msgid "/File/_Close window"
 msgstr "/Fitchî/_Clôre li purnea"
 
-#: src/yelp-window.c:141
-msgid "/File/_Quit"
-msgstr "/Fitchî/Moussî _foû"
-
-#: src/yelp-window.c:142
+#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:154
 msgid "/_Go"
 msgstr "/Po_tchî"
 
-#: src/yelp-window.c:143
+#: src/yelp-window.c:155
 msgid "/Go/_Back"
 msgstr "/Potchî/En _erî"
 
-#: src/yelp-window.c:144
+#: src/yelp-window.c:156
 msgid "/Go/_Forward"
 msgstr "/Potchî/En _avant"
 
-#: src/yelp-window.c:145
+#: src/yelp-window.c:157
 msgid "/Go/_Home"
 msgstr "/Potchî/_Måjhon"
 
-#: src/yelp-window.c:146
+#: src/yelp-window.c:158
 msgid "/Go/_Index"
 msgstr "/Potchî/_Indecse"
 
-#: src/yelp-window.c:147
+#: src/yelp-window.c:159
 msgid "/_Help"
 msgstr "/_Aidance"
 
-#: src/yelp-window.c:148
+#: src/yelp-window.c:160
 msgid "/Help/_About"
 msgstr "/Aidance/Å _dfait"
 
-#: src/yelp-window.c:207
+#: src/yelp-window.c:219
 msgid "Help Browser"
 msgstr "Foyteuse di l' aidance"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:539
+#: src/yelp-window.c:547
 msgid "translator_credits"
 msgstr "Pablo Saratxaga <pablo@mandrakesoft.com>"
 
-#: src/yelp-window.c:543
+#: src/yelp-window.c:551
 msgid "Help Browser for GNOME 2.0"
 msgstr "Foyteuse di l' aidance po Gnome 2.0"
 
-#: src/yelp-window.c:570
+#: src/yelp-window.c:605
 msgid "Back"
 msgstr "En erî"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:606
 msgid "Show previous page in history"
 msgstr "Mostrer li pådje di dvant el istwere des movmints"
 
-#: src/yelp-window.c:582
+#: src/yelp-window.c:617
 msgid "Forward"
 msgstr "En avant"
 
-#: src/yelp-window.c:583
+#: src/yelp-window.c:618
 msgid "Show next page in history"
 msgstr "Mostrer li pådje shûvante el istwere des movmints"
 
-#: src/yelp-window.c:596
+#: src/yelp-window.c:631
 msgid "Home"
 msgstr "Måjhon"
 
-#: src/yelp-window.c:597
+#: src/yelp-window.c:632
 msgid "Go to home view"
 msgstr "Potchî al pådje måjhon"
 
-#: src/yelp-window.c:607
+#: src/yelp-window.c:642
 msgid "Index"
 msgstr "Indecse"
 
-#: src/yelp-window.c:608
+#: src/yelp-window.c:643
 msgid "Search in the index"
 msgstr "Cweri el indecse"
 
@@ -239,3 +249,9 @@ msgstr "Houkî l' aidance di GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Aidance"
+
+#~ msgid "Scrollkeeper docs for category"
+#~ msgstr "Documints scrollkeeper pol categoreye"
+
+#~ msgid "/File/_Quit"
+#~ msgstr "/Fitchî/Moussî _foû"
