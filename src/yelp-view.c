@@ -366,8 +366,10 @@ yelp_view_open_uri (YelpView *view, GnomeVFSURI *uri)
         priv = view->priv;
 
         html_document_clear (priv->doc);
- 
         html_document_open_stream (priv->doc, "text/html");
+
+	gtk_adjustment_set_value (
+		gtk_layout_get_vadjustment (GTK_LAYOUT (view)), 0);
 
 	if (priv->base_uri) {
 		gnome_vfs_uri_unref (priv->base_uri);

@@ -1,5 +1,8 @@
 2001-10-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view.c (yelp_view_open_uri): set the document to show
+	  the beginning.
+
 	* src/Makefile.am: 
 	- Don't build ghelp-test.
 	(yelp_SOURCES): don't include ghelp-uri.[ch].
