@@ -55,7 +55,7 @@ struct _YelpDBPagerPriv {
 typedef struct _DBWalker DBWalker;
 struct _DBWalker {
     YelpDBPager *pager;
-    gchar       *chunk_id;
+    gchar       *page_id;
 
     xmlDocPtr  doc;
     xmlNodePtr cur;
@@ -294,7 +294,7 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 {
     YelpDBPager *db_pager;
     gchar       *frag_id;
-    const gchar *chunk_id;
+    const gchar *page_id;
 
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), NULL);
@@ -303,12 +303,12 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 
     frag_id = yelp_uri_get_fragment (uri);
 
-    chunk_id =
+    page_id =
 	(const gchar *) g_hash_table_lookup (db_pager->priv->frags_hash,
 					     frag_id);
 
     g_free (frag_id);
-    return chunk_id;
+    return page_id;
 }
 
 const GtkTreeModel *
@@ -327,8 +327,8 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 		    xsltStylePreCompPtr     comp)
 {
     GError  *error;
-    xmlChar *chunk_id = NULL;
-    xmlChar *chunk_buf;
+    xmlChar *page_id = NULL;
+    xmlChar *page_buf;
     gint     buf_size;
     YelpPager *pager;
     xsltStylesheetPtr style = NULL;
@@ -344,10 +344,10 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     pager = (YelpPager *) ctxt->_private;
 
-    chunk_id = xsltEvalAttrValueTemplate (ctxt, inst,
+    page_id = xsltEvalAttrValueTemplate (ctxt, inst,
 					  (const xmlChar *) "href",
 					  NULL);
-    if (chunk_id == NULL) {
+    if (page_id == NULL) {
 	xsltTransformError (ctxt, NULL, inst,
 			    _("No href attribute found on yelp:document"));
 	error = NULL;
@@ -359,7 +359,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     old_outfile = ctxt->outputFile;
     old_doc     = ctxt->output;
     old_insert  = ctxt->insert;
-    ctxt->outputFile = (const char *) chunk_id;
+    ctxt->outputFile = (const char *) page_id;
 
     style = xsltNewStylesheet ();
     if (style == NULL) {
@@ -380,14 +380,15 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
 
-    xmlDocDumpFormatMemory (new_doc, &chunk_buf, &buf_size, 0);
+    xmlDocDumpFormatMemory (new_doc, &page_buf, &buf_size, 0);
 
     ctxt->outputFile = old_outfile;
     ctxt->output     = old_doc;
     ctxt->insert     = old_insert;
 
-    yelp_pager_add_chunk (pager, chunk_id, chunk_buf);
-    g_signal_emit_by_name (pager, "chunk", chunk_id);
+    // FIXME
+    yelp_pager_add_page (pager, page_id, g_strdup ("FIXME"), page_buf);
+    g_signal_emit_by_name (pager, "page", page_id);
 
     while (gtk_events_pending ())
 	gtk_main_iteration ();
@@ -435,8 +436,8 @@ walker_walk_xml (DBWalker *walker)
 				1, g_strdup (title),
 				-1);
 
-	    old_id           = walker->chunk_id;
-	    walker->chunk_id = id;
+	    old_id          = walker->page_id;
+	    walker->page_id = id;
 
 	    old_iter     = walker->iter;
 	    walker->iter = &iter;
@@ -449,7 +450,7 @@ walker_walk_xml (DBWalker *walker)
     if (id) {
 	g_hash_table_insert (priv->frags_hash,
 			     g_strdup (id),
-			     g_strdup (walker->chunk_id));
+			     g_strdup (walker->page_id));
     }
 
     cur = walker->cur->children;
@@ -466,7 +467,7 @@ walker_walk_xml (DBWalker *walker)
 
     if (walker_is_chunk (walker) && id) {
 	walker->iter     = old_iter;
-	walker->chunk_id = old_id;
+	walker->page_id = old_id;
     }
 
     xmlFree (id);

@@ -40,7 +40,7 @@ struct _YelpPagerPriv {
 
     GError         *error;
 
-    GHashTable     *chunk_hash;
+    GHashTable     *page_hash;
 };
 
 enum {
@@ -51,7 +51,7 @@ enum {
 enum {
     START,
     SECTIONS,
-    CHUNK,
+    PAGE,
     FINISH,
     CANCEL,
     ERROR,
@@ -134,8 +134,8 @@ pager_class_init (YelpPagerClass *klass)
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
 
-    signals[CHUNK] = g_signal_new
-	("chunk",
+    signals[PAGE] = g_signal_new
+	("page",
 	 G_TYPE_FROM_CLASS (klass),
 	 G_SIGNAL_RUN_FIRST, 0,
 	 NULL, NULL,
@@ -180,8 +180,11 @@ pager_init (YelpPager *pager)
     pager->priv->state = YELP_PAGER_STATE_NEW;
 
     pager->priv->error = NULL;
-    pager->priv->chunk_hash =
-	g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+    pager->priv->page_hash =
+	g_hash_table_new_full (g_str_hash,
+			       g_str_equal,
+			       g_free,
+			       (GDestroyNotify) yelp_page_free);
 }
 
 static void
@@ -231,7 +234,7 @@ pager_dispose (GObject *object)
     if (pager->priv->error)
 	g_error_free (pager->priv->error);
 
-    g_hash_table_destroy (pager->priv->chunk_hash);
+    g_hash_table_destroy (pager->priv->page_hash);
 
     g_free (pager->priv);
 
@@ -243,8 +246,6 @@ pager_dispose (GObject *object)
 gboolean
 yelp_pager_start (YelpPager *pager)
 {
-    GError   *error   = NULL;
-
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_PAGER (pager), FALSE);
 
@@ -341,47 +342,68 @@ yelp_pager_get_sections (YelpPager *pager)
     return YELP_PAGER_GET_CLASS (pager)->get_sections (pager);
 }
 
-const gchar *
-yelp_pager_lookup_chunk (YelpPager *pager, YelpURI *uri)
+const YelpPage *
+yelp_pager_lookup_page (YelpPager *pager, YelpURI *uri)
 {
-    gchar *chunk_id = NULL;
-    gchar *chunk;
+    gchar *page_id = NULL;
+    YelpPage *page;
 
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
-    chunk_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
+    page_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
 
-    if (chunk_id)
-	chunk_id = g_strdup (chunk_id);
+    if (page_id)
+	page_id = g_strdup (page_id);
     else
-	chunk_id = yelp_uri_get_fragment (uri);
+	page_id = yelp_uri_get_fragment (uri);
 
-    chunk = (gchar *) yelp_pager_get_chunk (pager, chunk_id);
+    page = (YelpPage *) yelp_pager_get_page (pager, page_id);
 
-    g_free (chunk_id);
+    g_free (page_id);
 
-    return (const gchar *) chunk;
+    return (const YelpPage *) page;
 }
 
-const gchar *
-yelp_pager_get_chunk (YelpPager *pager, gchar *id)
+const YelpPage *
+yelp_pager_get_page (YelpPager *pager, gchar *id)
 {
-    gchar *chunk;
+    YelpPage *page;
 
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
-    chunk = (gchar *) g_hash_table_lookup (pager->priv->chunk_hash, id);
+    page = (YelpPage *) g_hash_table_lookup (pager->priv->page_hash, id);
 
-    return (const gchar *) chunk;
+    return (const YelpPage *) page;
 }
 
 void 
-yelp_pager_add_chunk (YelpPager *pager, gchar *id, gchar *chunk)
+yelp_pager_add_page (YelpPager *pager,
+		     gchar     *id,
+		     gchar     *title,
+		     gchar     *chunk)
 {
+    YelpPage *page;
+
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    g_hash_table_insert (pager->priv->chunk_hash, id, chunk);
+    page = g_new0 (YelpPage, 1);
+
+    page->id    = id;
+    page->title = title;
+    page->chunk = chunk;
+
+    g_hash_table_insert (pager->priv->page_hash, id, page);
+}
+
+void
+yelp_page_free (YelpPage *page)
+{
+    g_free (page->id);
+    g_free (page->title);
+    g_free (page->chunk);
+
+    g_free (page);
 }

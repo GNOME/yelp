@@ -37,6 +37,7 @@
 typedef struct _YelpPager      YelpPager;
 typedef struct _YelpPagerClass YelpPagerClass;
 typedef struct _YelpPagerPriv  YelpPagerPriv;
+typedef struct _YelpPage       YelpPage;
 
 typedef enum {
     YELP_PAGER_STATE_NEW,
@@ -61,7 +62,12 @@ struct _YelpPagerClass {
     const gchar *        (*resolve_uri)  (YelpPager    *pager,
 					  YelpURI      *uri);
     const GtkTreeModel * (*get_sections) (YelpPager *pager);
-    
+};
+
+struct _YelpPage {
+    gchar *id;
+    gchar *title;
+    gchar *chunk;
 };
 
 GType                yelp_pager_get_type     (void);
@@ -81,12 +87,15 @@ void                 yelp_pager_error        (YelpPager      *pager,
 
 const GtkTreeModel * yelp_pager_get_sections (YelpPager      *pager);
 
-const gchar *        yelp_pager_lookup_chunk (YelpPager      *pager,
+const YelpPage *     yelp_pager_lookup_page  (YelpPager      *pager,
 					      YelpURI        *uri);
-const gchar *        yelp_pager_get_chunk    (YelpPager      *pager,
+const YelpPage *     yelp_pager_get_page     (YelpPager      *pager,
 					      gchar          *id);
-void                 yelp_pager_add_chunk    (YelpPager      *pager,
+void                 yelp_pager_add_page     (YelpPager      *pager,
 					      gchar          *id,
+					      gchar          *title,
 					      gchar          *chunk);
+
+void                 yelp_page_free          (YelpPage       *page);
 
 #endif /* __YELP_PAGER_H__ */

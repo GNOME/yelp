@@ -1,5 +1,23 @@
 2003-11-15  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Use a YelpPage struct rather than just a gchar, so a page can
+	  hold the id and title and well as the contents.
+
+	* src/yelp-error.h:
+	- Add an error code for no-longer-supported SGML.
+
+	* src/yelp-window.c:
+	- Prepare to work TOC back in.
+	- Use YelpPage.
+	- Some more error-handling.
+	- Make "Loading..." actually work.
+	- Set window title.
+
+2003-11-15  Shaun McCance  <shaunm@gnome.org>
+
 	* src/Makefile.am:
 	* src/yelp-cache.c:
 	* src/yelp-cache.h:
