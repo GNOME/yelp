@@ -52,6 +52,11 @@ static xmlNodePtr  parser_append_given_text (YelpManParser *parser,
 					     gchar         *text);
 static xmlNodePtr  parser_append_node       (YelpManParser *parser,
 					     gchar         *name);
+static void        parser_stack_push_node   (YelpManParser *parser,
+					     xmlNodePtr     node);
+static xmlNodePtr  parser_stack_pop_node    (YelpManParser *parser,
+					     gchar         *name);
+static void        parser_parse_table       (YelpManParser *parser);
 
 typedef struct _StackElem StackElem;
 struct _YelpManParser {
@@ -163,6 +168,7 @@ yelp_man_parser_free (YelpManParser *parser)
 static void
 parser_handle_linetag (YelpManParser *parser) {
     gchar c, *str;
+    xmlNodePtr tmpNode;
 
     while (PARSER_CUR
 	   && *(parser->cur) != ' '
@@ -218,20 +224,26 @@ parser_handle_linetag (YelpManParser *parser) {
     }
     else if (g_str_equal (str, "P") || g_str_equal (str, "PP") ||
 	     g_str_equal (str, "LP")) {
-	parser->ins = xmlDocGetRootElement (parser->doc);
 	parser_ensure_P (parser);
     }
     else if (g_str_equal (str, "br")) {
 	parser_append_node (parser, str);
     }
     else if (g_str_equal (str, "sp")) {
-	
+	parser->ins = parser_append_node (parser, str);
+
+	if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Count");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
+
+	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "SH") || g_str_equal (str, "SS")) {
 	gint i;
 	for (i = 0; i < 6; i++) {
 	    if (PARSER_CUR && *(parser->cur) != '\n') {
-		parser->ins = xmlDocGetRootElement (parser->doc);
 		parser->ins = parser_append_node (parser, str);
 		parser_append_token (parser);
 		parser->ins = parser->ins->parent;
@@ -239,7 +251,6 @@ parser_handle_linetag (YelpManParser *parser) {
 	}
     }
     else if (g_str_equal (str, "TH")) {
-	parser->ins = xmlDocGetRootElement (parser->doc);
 	parser->ins = parser_append_node (parser, str);
 
 	if (PARSER_CUR && *(parser->cur) != '\n') {
@@ -271,7 +282,6 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "TP")) {
-	parser->ins = xmlDocGetRootElement (parser->doc);
 	g_free (parser->buffer);
 	if (g_io_channel_read_line (parser->channel,
 				&(parser->buffer),
@@ -284,39 +294,96 @@ parser_handle_linetag (YelpManParser *parser) {
 	}
     }
     else if (g_str_equal (str, "IP")) {
+        parser->ins = parser_append_node (parser, str);
+        g_free (str);
 
+        if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Tag");
+	    parser_read_until (parser, ' ');
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
+	if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Indent");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
     }
     else if (g_str_equal (str, "HP")) {
+	parser->ins = parser_append_node (parser, str);
+        g_free (str);
 
+        if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Indent");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
     }
     else if (g_str_equal (str, "RS")) {
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
 
-	parser_read_until (parser, '\n');
+	parser_stack_push_node (parser, parser->ins);
 
-	parser->nodeStack = g_slist_prepend (parser->nodeStack, parser->ins);
+	if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Indent");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
     }
     else if (g_str_equal (str, "RE")) {
-	parser_read_until (parser, '\n');
+	tmpNode = parser_stack_pop_node (parser, "RS");
 
-	if (parser->nodeStack == NULL)
+	if (tmpNode == NULL)
 	    g_warning ("Found unexpected tag: '%s'\n", str);
-	else {
-	    parser->ins = (xmlNodePtr) parser->nodeStack->data;
-	    parser->nodeStack = g_slist_remove (parser->nodeStack, parser->ins);
-	}
+	else
+	    parser->ins = tmpNode;
 
 	g_free (str);
     }
     else if (g_str_equal (str, "UR")) {
+	parser->ins = parser_append_node (parser, str);
+        g_free (str);
 
+	parser_stack_push_node (parser, parser->ins);
+
+        if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "URI");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
     }
     else if (g_str_equal (str, "UE")) {
+        tmpNode = parser_stack_pop_node (parser, "RS");
 
+        if (tmpNode == NULL)
+            g_warning ("Found unexpected tag: '%s'\n", str);
+        else
+            parser->ins = tmpNode;
+
+        g_free (str);
     }
     else if (g_str_equal (str, "UN")) {
+	parser->ins = parser_append_node (parser, str);
+        g_free (str);
 
+	parser_append_token (parser);
+	parser->ins = parser->ins->parent;
+    }
+
+    /* Table (tbl) macros */
+    else if (g_str_equal (str, "TS")) {
+	parser->ins = parser_append_node (parser, "TABLE");
+        g_free (str);
+
+	parser_stack_push_node (parser, parser->ins);
+	g_free (parser->buffer);
+	parser_parse_table (parser);
+    }
+    else if (g_str_equal (str, "TE")) {
+	/* We should only see this from within parser_parse_table */
+	g_warning ("Found unexpected tag: '%s'\n", str);
+        g_free (str);
     }
     else {
 	g_warning ("No rule matching the tag '%s'\n", str);
@@ -463,6 +530,10 @@ parser_handle_inline (YelpManParser *parser)
 
 	if (g_str_equal (str, "(co"))
 	    parser_append_given_text (parser, "©");
+	else if (g_str_equal (str, "(bu"))
+	    parser_append_given_text (parser, "•");
+	else if (g_str_equal (str, "(em"))
+	    parser_append_given_text (parser, "—");
 
 	g_free (str);
 	parser->anc = parser->cur;
@@ -533,10 +604,11 @@ parser_append_text (YelpManParser *parser)
     if (parser->anc == parser->cur)
 	return NULL;
 
-    parser_ensure_P (parser);
-
     c = *(parser->cur);
     *(parser->cur) = '\0';
+
+    if (*(parser->anc) != '\n')
+	parser_ensure_P (parser);
 
     node = xmlNewText (BAD_CAST parser->anc);
     xmlAddChild (parser->ins, node);
@@ -571,4 +643,152 @@ parser_append_node (YelpManParser *parser,
     node = xmlNewChild (parser->ins, NULL, name, NULL);
 
     return node;
+}
+
+static void        
+parser_stack_push_node (YelpManParser *parser,
+			xmlNodePtr     node)
+{
+    parser->nodeStack = g_slist_prepend (parser->nodeStack, node);
+}
+
+static xmlNodePtr  
+parser_stack_pop_node (YelpManParser *parser,
+		       gchar         *name)
+{
+    xmlNodePtr popped;
+
+    if (parser->nodeStack == NULL)
+	return NULL;
+   
+    popped = (xmlNodePtr) parser->nodeStack->data;
+    
+    if (!g_str_equal (name, popped->name))
+	return NULL;
+	
+    parser->nodeStack = g_slist_remove (parser->nodeStack, popped);
+    return popped;
+}
+
+/*
+ *  Table (tbl) macro package parsing
+ */
+
+static void
+parser_handle_table_options (YelpManParser *parser)
+{
+    /* FIXME: do something with the options */
+    g_free (parser->buffer);
+
+    return;
+}
+
+static void
+parser_handle_row_options (YelpManParser *parser)
+{
+    /* FIXME: do something with these options */
+
+    do {
+	parser->anc = parser->buffer;
+	parser->cur = parser->buffer;
+	
+	parser_read_until (parser, '.');
+	
+	
+	if (*(parser->cur) == '.') {
+	    g_free (parser->buffer);
+	    break;
+	}
+	
+	g_free (parser->buffer);
+
+    } while (g_io_channel_read_line (parser->channel,
+				     &(parser->buffer),
+				     &(parser->length),
+				     NULL, NULL)
+	     == G_IO_STATUS_NORMAL);
+}
+
+static void
+parser_parse_table (YelpManParser *parser)
+{
+    xmlNodePtr table_start;
+
+    table_start = parser->ins;
+
+    if (g_io_channel_read_line (parser->channel,
+				&(parser->buffer),
+				&(parser->length),
+				NULL, NULL)
+	== G_IO_STATUS_NORMAL) {
+	parser->anc = parser->buffer;
+	parser->cur = parser->buffer;
+	
+	parser_read_until (parser, ';');
+
+	if (*(parser->cur) == ';') {
+	    parser_handle_table_options (parser);
+
+	    if (g_io_channel_read_line (parser->channel,
+					&(parser->buffer),
+					&(parser->length),
+					NULL, NULL)
+		== G_IO_STATUS_NORMAL) {
+		parser->anc = parser->buffer;
+		parser->cur = parser->buffer;
+	    
+		parser_read_until (parser, '\n');
+	    } else
+		return;
+	}
+
+	parser_handle_row_options (parser);
+
+	/* Now this is where we go through all the rows */
+	while (g_io_channel_read_line (parser->channel,
+				       &(parser->buffer),
+				       &(parser->length),
+				       NULL, NULL)
+	       == G_IO_STATUS_NORMAL) {
+	    
+	    parser->anc = parser->buffer;
+	    parser->cur = parser->buffer;
+	    
+	    switch (*(parser->buffer)) {
+	    case '.':
+		if (*(parser->buffer + 1) == 'T'
+		    && *(parser->buffer + 2) == 'E') {
+		    if (parser_stack_pop_node (parser, "TABLE") == NULL)
+			g_warning ("Found unexpected tag: 'TE'\n");
+		    else {
+			parser->ins = table_start;
+		    
+			parser->anc = parser->buffer + 3;
+			parser->cur = parser->buffer + 3;
+			return;
+		    }
+		} else {
+		    parser_handle_linetag (parser);
+		    break;
+		}
+	    case '\n':
+		break;
+	    default:
+		break;
+	    }
+	    
+	    parser->ins = parser_append_node (parser, "ROW");
+	    while (PARSER_CUR && *(parser->cur) != '\n') {
+		parser_read_until (parser, '\t');
+		parser->ins = parser_append_node (parser, "CELL");
+		parser_append_text (parser);
+		parser->ins = parser->ins->parent;
+		parser->anc++;
+		parser->cur++;
+	    }
+	    g_free (parser->buffer);
+
+	    parser->ins = table_start;
+	}
+    }
 }

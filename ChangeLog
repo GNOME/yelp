@@ -1,3 +1,14 @@
+2004-09-30  James Bowes  <bowes@cs.dal.ca>
+
+	* src/yelp-man-parser.c: (parser_handle_linetag),
+	(parser_handle_inline), (parser_append_text), (parser_append_node),
+	(parser_stack_push_node), (parser_stack_pop_node),
+	(parser_handle_table_options), (parser_handle_row_options),
+	(parser_parse_table): Added more tags (from the gnu man macro 
+	package) to the parser. Added basic parsing for the table (tbl) 
+	macro package. Stopped parser from adding <P>'s holding only 
+	newlines.
+
 2004-09-30  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-theme.c:
