@@ -3737,7 +3737,7 @@ main(int argc, char **argv)
 
 		/* Try searching for this as a man page name, instead */
 		ctmp = strrchr(infile, '.');
-		if(ctmp && (isdigit((unsigned char)*(ctmp+1)) || *(ctmp+1) == 'n'))
+		if(ctmp && (isdigit((unsigned char)*(ctmp+1)) || (*(ctmp+1) == 'n')) && *(ctmp+2) == '\0')
 		  {
 		    char section = *(ctmp+1);
 
@@ -3793,7 +3793,7 @@ main(int argc, char **argv)
 		len = strlen(output);
 		for(i = 0; i < len; i++)
 		{
-			if (isspace((unsigned char)output[i]) && output[i+1] == '/')
+			if (isspace((unsigned char)output[i] && (output[i+1] == '/')))
 				output[i] = '\0';
 		}
 			
