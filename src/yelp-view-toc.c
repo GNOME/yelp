@@ -294,6 +294,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 		yelp_view_toc_printf (view, 
 				      "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
 				      path, section->name);
+		g_free (path);
 		
 		node = g_node_next_sibling (node);
 	}
@@ -562,6 +563,73 @@ yelp_view_toc_new (GNode *doc_tree)
 	return GTK_WIDGET (view);
 }
 
+static void 
+yelp_view_toc_scrollkeeper (YelpViewTOC *view,
+			    GNode *root)
+{
+	YelpViewTOCPriv *priv;
+	GNode *node, *child;
+	YelpSection *section;
+	gboolean got_a_leaf;
+	char *path, *url;
+	gchar *name;
+
+	priv = view->priv;
+	
+	g_print ("FFFFFFFFFFFFFOOOOOOOOOOOOOOOOOOOOO\n");
+	
+	if (root->children == NULL) {
+		return;
+	}
+	
+	yelp_view_toc_open (view);
+	
+	yelp_view_toc_write_header (view, "Scrollkeeper");
+		
+	name = yelp_view_toc_full_path_name (view, root);
+	yelp_view_toc_printf (view, "<h1>Scrollkeeper docs for category '%s'</h1>\n", name);
+	g_free (name);
+
+	got_a_leaf = FALSE;
+	node = root->children;
+	while (node != NULL) {
+		if (node->children != NULL) {
+			child = node->children;
+			
+			section = node->data;
+
+			path = yelp_util_node_to_string_path (node);
+			yelp_view_toc_printf (view, "<h2><a href=\"toc:scrollkeeper/%s\">%s</a></h2>\n", path, section->name);
+			g_free (path);
+		} else {
+			got_a_leaf = TRUE;
+		}
+		node = node->next;
+	}
+
+
+	if (got_a_leaf) {
+		yelp_view_toc_write (view, "<ul>\n", -1);
+
+		node = root->children;
+		while (node != NULL) {
+			if (node->children == NULL) {
+				YelpSection *section;
+			
+				section = node->data;
+				yelp_view_toc_printf (view, "<li><a href=\"%s\">%s</a>\n", section->uri, section->name);
+			}
+			node = node->next;
+		}
+		
+		yelp_view_toc_write (view, "</ul>\n", -1);
+	}
+		
+	yelp_view_toc_write_footer (view);
+	yelp_view_toc_close (view);
+}
+
+
 void
 yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 {
@@ -598,6 +666,20 @@ yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 		}
 	} else if (strcmp (toc_type, "info") == 0) {
 		yelp_view_toc_info (view);
+	} else if (strncmp (toc_type, "scrollkeeper", strlen ("scrollkeeper")) == 0) {
+		path_string = toc_type + strlen ("scrollkeeper");
+		if (path_string[0] == '/') {
+			/* Calculate where it should go */
+			path_string++;
+
+			node = yelp_util_string_path_to_node  (path_string,
+							       view->priv->doc_tree);
+			if (node) {
+				yelp_view_toc_scrollkeeper (view, node);
+			} else {
+				g_warning ("Bad path in toc url %s\n", url);
+			}
+		}
 	} else {
 		g_warning ("Unknown toc type %s\n", url);
 	}
