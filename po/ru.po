@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 3.0\n"
-"POT-Creation-Date: 2002-06-08 08:53+0400\n"
-"PO-Revision-Date: 2002-06-08 08:57+0400\n"
+"POT-Creation-Date: 2002-06-29 17:55+0400\n"
+"PO-Revision-Date: 2002-06-29 17:57+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team:  Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +22,12 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрика Yelp"
 
-#: src/yelp-main.c:111
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не удалось активировать Yelp: \"%s\""
 
-#: src/yelp-main.c:130
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Не удалось открыть новое окно"
 
@@ -133,11 +133,11 @@ msgstr "Страницы руководства"
 msgid "Info Pages"
 msgstr "Страницы info"
 
-#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Документы"
 
-#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Категории"
 
@@ -145,97 +145,109 @@ msgstr "Категории"
 msgid "Manual pages"
 msgstr "Страницы руководства"
 
-#: src/yelp-window.c:156
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "Среда GNOME является"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Свободное программное обеспечение"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Файл/_Создать окно"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Файл/_Закрыть окно"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:160
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/Пере_ход"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Переход/На_зад"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Переход/В_перед"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Переход/В _начало"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Переход/К _содержанию"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Справка"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Справка/_О программе"
 
-#: src/yelp-window.c:228 src/yelp-window.c:430
+#: src/yelp-window.c:231 src/yelp-window.c:433
 msgid "Help Browser"
 msgstr "Справочник"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:343
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Документ \"%s\" не существует"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:599
+#: src/yelp-window.c:602
 msgid "translator_credits"
 msgstr ""
 "Игорь Андросов <blace@mail.ru>\n"
 "Дмитрий Мастрюков <dmitry@taurussoft.org>"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:606
 msgid "Help Browser for GNOME 2.0"
 msgstr "Программа просмотра справки для среды GNOME 2.0"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:661
 msgid "Back"
 msgstr "Назад"
 
-#: src/yelp-window.c:659
+#: src/yelp-window.c:662
 msgid "Show previous page in history"
 msgstr "Показать предыдущую страницу"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:673
 msgid "Forward"
 msgstr "Вперед"
 
-#: src/yelp-window.c:671
+#: src/yelp-window.c:674
 msgid "Show next page in history"
 msgstr "Показать следующую страницу"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:687
 msgid "Home"
 msgstr "В начало"
 
-#: src/yelp-window.c:685
+#: src/yelp-window.c:688
 msgid "Go to home view"
 msgstr "Перейти в начало просмотра"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:698
 msgid "Index"
 msgstr "Содержание"
 
-#: src/yelp-window.c:696
+#: src/yelp-window.c:699
 msgid "Search in the index"
 msgstr "Найти в содержании"
 
