@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2002-04-13 00:44+0800\n"
+"POT-Creation-Date: 2002-04-16 03:15+0800\n"
 "PO-Revision-Date: 2002-02-04 03:03+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -22,7 +22,29 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Kilang Yelp"
 
-#: src/yelp-html.c:136
+#: src/yelp-db2html.c:105
+msgid ""
+"Error while parsing the stylesheet, make sure you have your docbook "
+"environment setup correctly."
+msgstr ""
+"Ralat bila menghantar stylesheet, pastikan anda menetapkan persekitaran "
+"docbook dengan betul."
+
+#: src/yelp-db2html.c:121
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Dokumen '%s' tidak wujud"
+
+#: src/yelp-db2html.c:136
+#, c-format
+msgid "Couldn't parse the document '%s'."
+msgstr "Tak dapat menghantar documen '%s'."
+
+#: src/yelp-db2html.c:178
+msgid "Error while applying the stylesheet."
+msgstr "Ralat bila menerapkan stylesheet."
+
+#: src/yelp-html.c:129
 msgid "Loading..."
 msgstr "Memuat..."
 
@@ -112,48 +134,43 @@ msgstr "Pentadbir Sistem"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:197 src/yelp-view-index.c:364
+#: src/yelp-view-content.c:201 src/yelp-view-index.c:374
 msgid "Section"
 msgstr "Seksyen"
 
-#: src/yelp-view-index.c:327
+#: src/yelp-view-index.c:337
 msgid "Search for:"
 msgstr "Cari untuk:"
 
-#: src/yelp-view-toc.c:315
+#: src/yelp-view-toc.c:323
 msgid "Help Contents"
 msgstr "Kandungan Bantuan"
 
-#: src/yelp-view-toc.c:316
+#: src/yelp-view-toc.c:324
 msgid "GNOME - Desktop"
 msgstr "GNOME - Desktop"
 
-#: src/yelp-view-toc.c:317
+#: src/yelp-view-toc.c:325
 msgid "Additional documents"
 msgstr "Dokumen tambahan"
 
-#: src/yelp-view-toc.c:318 src/yelp-view-toc.c:517 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
 msgid "Manual pages"
 msgstr "Halaman Manual"
 
-#: src/yelp-view-toc.c:319 src/yelp-view-toc.c:518 src/yelp-view-toc.c:826
-#: src/yelp-view-toc.c:845
+#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
 msgid "Info pages"
 msgstr "Halaman Maklumat"
 
-#: src/yelp-view-toc.c:516
-msgid "Other Documents"
-msgstr "Dokumen Lain"
+#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
+msgid "Documents"
+msgstr "Dokumen"
 
-#: src/yelp-view-toc.c:519
-msgid "Installed documents"
-msgstr "Dokumen dipasang"
+#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
+msgid "Categories"
+msgstr "Kategori"
 
-#: src/yelp-view-toc.c:533
-msgid "Start page"
-msgstr "Laman Mula"
-
-#: src/yelp-view-toc.c:779
+#: src/yelp-view-toc.c:666
 msgid "Manual Pages"
 msgstr "Halaman Manual"
 
@@ -206,45 +223,45 @@ msgstr "Pelungsur Bantuan"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:547
+#: src/yelp-window.c:563
 msgid "translator_credits"
 msgstr ""
 "Mohamad Afifi Omar <mr_mohd_afifi@yahoo.com>\n"
 "Hasbullah Bin Pit <sebol@ikhlas.com>, Merlimau."
 
-#: src/yelp-window.c:551
+#: src/yelp-window.c:567
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pelungsur Fail Bantuan GNOME 2.0"
 
-#: src/yelp-window.c:605
+#: src/yelp-window.c:621
 msgid "Back"
 msgstr "Undur"
 
-#: src/yelp-window.c:606
+#: src/yelp-window.c:622
 msgid "Show previous page in history"
 msgstr "Papar halaman terdahulu dalam sejarah"
 
-#: src/yelp-window.c:617
+#: src/yelp-window.c:633
 msgid "Forward"
 msgstr "Maju"
 
-#: src/yelp-window.c:618
+#: src/yelp-window.c:634
 msgid "Show next page in history"
 msgstr "Papar halaman seterusnya dalam sejaraj"
 
-#: src/yelp-window.c:631
+#: src/yelp-window.c:647
 msgid "Home"
 msgstr "Rumah"
 
-#: src/yelp-window.c:632
+#: src/yelp-window.c:648
 msgid "Go to home view"
 msgstr "Pergi ke paparan rumah"
 
-#: src/yelp-window.c:642
+#: src/yelp-window.c:658
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:643
+#: src/yelp-window.c:659
 msgid "Search in the index"
 msgstr "Cari di dalam indeks"
 
