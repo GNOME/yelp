@@ -258,7 +258,7 @@
 			<xsl:value-of select="$yelp_docname"/>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:text>toc.html</xsl:text>
+			<xsl:text>index.html</xsl:text>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
@@ -271,7 +271,7 @@
 			<xsl:text>?title-page</xsl:text>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:text>title-page.html</xsl:text>
+			<xsl:text>titlepage.html</xsl:text>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
@@ -288,6 +288,7 @@
 		<xsl:attribute name="align">
 			<xsl:value-of select="$position"/>
 		</xsl:attribute>
+		<xsl:if test="$target">
 		<a>
 			<xsl:attribute name="accesskey">
 				<xsl:choose>
@@ -342,6 +343,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:if>
+		</xsl:if>
 	</td>
 </xsl:template>
 
@@ -354,13 +356,11 @@
 
 	<xsl:if test="$yelp_generate_navbar">
 	<table width="100%"><tr>
-		<xsl:if test="$prev">
-			<xsl:call-template name="yelp.navbar.cell">
-				<xsl:with-param name="target" select="$prev"/>
-				<xsl:with-param name="use.title" select="$use.title"/>
-				<xsl:with-param name="position" select="'left'"/>
-			</xsl:call-template>
-		</xsl:if>
+		<xsl:call-template name="yelp.navbar.cell">
+			<xsl:with-param name="target" select="$prev"/>
+			<xsl:with-param name="use.title" select="$use.title"/>
+			<xsl:with-param name="position" select="'left'"/>
+		</xsl:call-template>
 		<xsl:if test="$up">
 			<td align="center" width="20%"><a accesskey="u">
 				<xsl:attribute name="href">
@@ -371,13 +371,11 @@
 				</xsl:call-template>
 			</a></td>
 		</xsl:if>
-		<xsl:if test="$next">
-			<xsl:call-template name="yelp.navbar.cell">
-				<xsl:with-param name="target" select="$next"/>
-				<xsl:with-param name="use.title" select="$use.title"/>
-				<xsl:with-param name="position" select="'right'"/>
-			</xsl:call-template>
-		</xsl:if>
+		<xsl:call-template name="yelp.navbar.cell">
+			<xsl:with-param name="target" select="$next"/>
+			<xsl:with-param name="use.title" select="$use.title"/>
+			<xsl:with-param name="position" select="'right'"/>
+		</xsl:call-template>
 	</tr></table>
 	</xsl:if>
 </xsl:template>
@@ -453,10 +451,10 @@
 			<xsl:variable name="filename">
 				<xsl:choose>
 					<xsl:when test="$id = 'title-page'">
-						<xsl:text>titlepage.html</xsl:text>
+						<xsl:call-template name="yelp.titlepage.ref"/>
 					</xsl:when>
 					<xsl:when test="$id = 'toc'">
-						<xsl:text>index.html</xsl:text>
+						<xsl:call-template name="yelp.toc.ref"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="$id"/>
