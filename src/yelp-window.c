@@ -167,6 +167,9 @@ struct _YelpWindowPriv {
     GtkWidget      *side_sects;
     YelpHtml       *html_view;
 
+    GtkWidget      *side_sw;
+    GtkWidget      *html_sw;
+
     YelpHistory    *history;
 
     YelpPager      *pager;
@@ -359,7 +362,6 @@ window_populate (YelpWindow *window)
     YelpWindowPriv *priv;
     GtkWidget      *main_box;
     GtkWidget      *toolbar;
-    GtkWidget      *sw;
     GtkAccelGroup  *accel_group;
     GtkWidget      *menu_item;
 
@@ -408,9 +410,13 @@ window_populate (YelpWindow *window)
 			FALSE, FALSE, 0);
 			
     priv->pane = gtk_hpaned_new ();
+    gtk_widget_ref (priv->pane);
+    // We should probably remember the last position and set to that.
+    gtk_paned_set_position (GTK_PANED (priv->pane), 180);
 
-    sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+    priv->side_sw = gtk_scrolled_window_new (NULL, NULL);
+    gtk_widget_ref (priv->side_sw);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->side_sw),
 				    GTK_POLICY_AUTOMATIC,
 				    GTK_POLICY_AUTOMATIC);
 
@@ -418,15 +424,15 @@ window_populate (YelpWindow *window)
     gtk_tree_view_insert_column_with_attributes
 	(GTK_TREE_VIEW (priv->side_sects), -1,
 	 _("Section"), gtk_cell_renderer_text_new (),
-	 "text", 0,
+	 "text", 1,
 	 NULL);
-    gtk_container_add (GTK_CONTAINER (sw),
-		       priv->side_sects);
 
-    gtk_paned_add1 (GTK_PANED (priv->pane), sw);
+    gtk_container_add (GTK_CONTAINER (priv->side_sw),     priv->side_sects);
+    gtk_paned_add1    (GTK_PANED (priv->pane), priv->side_sw);
 
-    sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+    priv->html_sw = gtk_scrolled_window_new (NULL, NULL);
+    gtk_widget_ref (priv->html_sw);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->html_sw),
 				    GTK_POLICY_AUTOMATIC,
 				    GTK_POLICY_AUTOMATIC);
 
@@ -436,10 +442,10 @@ window_populate (YelpWindow *window)
 		      G_CALLBACK (html_uri_selected_cb),
 		      window);
 
-    gtk_container_add (GTK_CONTAINER (sw),
+    gtk_container_add (GTK_CONTAINER (priv->html_sw),
 		       yelp_html_get_widget (priv->html_view));
 
-    gtk_paned_add2 (GTK_PANED (priv->pane), sw);
+    gtk_paned_add2    (GTK_PANED (priv->pane), priv->html_sw);
 
     gtk_box_pack_start (GTK_BOX (main_box),
 			priv->pane,
@@ -533,7 +539,12 @@ window_set_sections (YelpWindow   *window,
 
     priv = window->priv;
 
-    gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
+    if (sections == NULL) {
+	// FIXME: remove the sidebar.
+    } else {
+	// FIXME: add the sidebar.
+	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
+    }
 }
 
 static gboolean

@@ -1,5 +1,14 @@
 2003-11-16  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-db-pager.c:
+	- Make the titles for sidebars actually work.  That was stupid.
+
+	* src/yelp-window.c:
+	- Make the titles for sidebars actually work.
+	- Keep a reference to the scrolling areas, so I can reparent.
+
+2003-11-16  Shaun McCance  <shaunm@gnome.org>
+
 	* src/Makefile.am:
 	* src/yelp-base.c:
 	* src/yelp-toc-pager.c:

@@ -491,23 +491,23 @@ xml_get_title (xmlNodePtr node)
     else if (node->parent->type == XML_DOCUMENT_NODE)
 	title = _("Contents");
     else {
-	cur = node->children;
-	while (cur != NULL) {
-	    if (cur->name == (xmlChar *) "title") {
+	for (cur = node->children; cur; cur = cur->next) {
+	    if (!xmlStrcmp (cur->name, (xmlChar *) "title")) {
 		if (title)
 		    g_free (title);
 		title = xmlNodeGetContent (cur);
 	    }
-	    else if (cur->name == (xmlChar *) "titleabbrev") {
+	    else if (!xmlStrcmp (cur->name, (xmlChar *) "titleabbrev")) {
 		if (title)
 		    g_free (title);
 		title = xmlNodeGetContent (cur);
 		break;
 	    }
-
-	    cur = cur->next;
 	}
     }
+
+    if (!title)
+	title = _("Unknown");
 
     return title;
 }
