@@ -5,46 +5,45 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.5.99\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-07-03 21:31GMT+0200\n"
-"Last-Translator: Peteris Krisjanis <pecisk@inbox.lv>\n"
+"POT-Creation-Date: 2002-12-20 05:59+0100\n"
+"PO-Revision-Date: 2002-12-20 22:39+0200\n"
+"Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <ll10nt@inbox.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>Atrast tekstu dokumentā:</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "Automātiski _riņķo apkārt"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "Atrast tekstu..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "Atbilst _viss vārds"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "_Atbilst lielie/mazie burti"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "_Nākošais"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "_Iepriekšējais"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -63,12 +62,19 @@ msgstr "Nevar aktivizēt Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Nevar atvērt jaunu logu."
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
+#: src/yelp-man.c:296
+#: src/yelp-man.c:317
+#: src/yelp-man.c:353
+#: src/yelp-man.c:385
+#: src/yelp-man.c:401
+#: src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+#: src/yelp-man.c:301
+#: src/yelp-man.c:332
+#: src/yelp-man.c:390
+#: src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -106,11 +112,11 @@ msgstr "Kodola Rutīnas"
 
 #: src/yelp-man.c:429
 msgid "Applications"
-msgstr "Aplikācija"
+msgstr "Aplikācijas"
 
 #: src/yelp-man.c:434
 msgid "Development"
-msgstr "Veidošana"
+msgstr "Izstrāde"
 
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
@@ -118,7 +124,7 @@ msgstr "Aparatūras Iekārtas"
 
 #: src/yelp-man.c:444
 msgid "Configuration Files"
-msgstr "Kofigurācijas Faili"
+msgstr "Konfigurācijas Faili"
 
 #: src/yelp-man.c:449
 msgid "Games"
@@ -132,18 +138,19 @@ msgstr "Apskati"
 msgid "System Administration"
 msgstr "Sistēmas Administrēšana"
 
-#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:502
+#: src/yelp-view-index.c:423
 msgid "Loading..."
-msgstr "Ielādējam..."
+msgstr "Ielādēju..."
 
-#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:543
+#: src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Sekcija"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "Meklēt pēc:"
+msgstr "_Meklēt pēc:"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -158,19 +165,25 @@ msgstr "GNOME - Darbavirsma"
 msgid "Additional documents"
 msgstr "Papildus dokumenti"
 
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168
+#: src/yelp-view-toc.c:493
 msgid "Manual Pages"
 msgstr "Rokasgrāmatu Lapas"
 
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169
+#: src/yelp-view-toc.c:549
 msgid "Info Pages"
 msgstr "Info Lapas"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366
+#: src/yelp-view-toc.c:550
+#: src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "Dokumenti"
 
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367
+#: src/yelp-view-toc.c:494
+#: src/yelp-view-toc.c:750
 msgid "Categories"
 msgstr "Kategorijas"
 
@@ -188,7 +201,7 @@ msgstr "Brīvā Programmatūra"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
-msgstr "(C)"
+msgstr "©"
 
 #: src/yelp-window.c:163
 msgid "/_File"
@@ -204,15 +217,15 @@ msgstr "/Fails/_Aizvērt logu"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/_Rediģēt"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/Rediģēt/_Atrast lapā..."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/Rediģēt/_Atrast vēlreiz"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
@@ -242,7 +255,8 @@ msgstr "/_Palīdzēt"
 msgid "/Help/_About"
 msgstr "/Palīdzēt/_Par"
 
-#: src/yelp-window.c:238 src/yelp-window.c:438
+#: src/yelp-window.c:238
+#: src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "Palīdzības Pārlūks"
 
@@ -256,8 +270,8 @@ msgstr "Dokuments '%s' neeksistē"
 #: src/yelp-window.c:675
 msgid "translator_credits"
 msgstr ""
-"Artis Trops <hornet@navigators.lv>\n"
-"Peteris Krisjanis <hornet@navigators.lv>"
+"Artis Trops <hornet@navigator.lv>\n"
+"Peteris Krisjanis <peteris.krisjanis@os.lv>"
 
 #: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
@@ -297,8 +311,9 @@ msgstr "Meklēt indeksā"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr "Dabūŧ palīdzību ar GNOME"
+msgstr "Saņemt palīdzību ar GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Palīdzība"
+
