@@ -1,3 +1,11 @@
+2002-03-04  Mikael Hallendal  <micke@codefactory.se>
+
+	* configure.in: 
+	- updated version to 0.3
+	- updated deps of libgnome and gtkhtml2
+
+	* NEWS: updated for 0.3
+
 2002-03-05  Wang Jian  <lark@linux.net.cn>
 
 	* configure.in: Added "zh_CN" to ALL_LINGUAS.
@@ -295,7 +303,7 @@
 	(yelp_view_toc_start): only write section topic for important
 	  documents if there is any documents installed in that section.
 
-	* src/yelp-util.c: (yelp_util_extract_docpath_from_uri): 
+	* src/yelp-util.c (yelp_util_extract_docpath_from_uri): 
 	- Also work for sgml documents.
 
 2002-02-18  Gediminas Paulauskas <menesis@delfi.lt>
