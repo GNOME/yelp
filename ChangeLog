@@ -1,5 +1,16 @@
 2001-12-10  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c: Some fixes after discussion with seth.
+	(yw_init): Yelp: GNOME Help Browser -> Help Browser.
+	(yw_populate): readded the menu
+	(yw_close_cb): removed
+	(yw_new_window_cb): readded
+	(yw_exit_cb): readded
+	(yw_about_cb): readded
+	(yw_create_toolbar): removed the Close-button
+
+	* configure.in: changed Yelp->yelp in AM_INIT_AUTOMAKE.
+
 	* src/yelp-view-home.c (yelp_view_home_new): 
 	- updated color to white background, less difference between the
 	  views now.

@@ -28,7 +28,7 @@
 #include <gtk/gtk.h>
 #include <libgtkhtml/gtkhtml.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnomeui/gnome-app.h>
+#include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-i18n.h>
 #include <string.h>
 #include "yelp-html.h"
@@ -44,10 +44,6 @@ static void yw_class_init	      (YelpWindowClass     *klass);
 
 static void yw_populate               (YelpWindow          *window);
 	
-static void yw_close_cb               (gpointer             data,
-				       guint                section,
-				       GtkWidget           *widget);
-
 #if 0
 static void yw_section_selected_cb    (YelpWindow          *window,
 				       YelpSection         *section);
@@ -64,6 +60,15 @@ static void yw_home_button_clicked    (GtkWidget           *button,
 				       YelpWindow          *window);
 static void yw_index_button_clicked   (GtkWidget           *button,
 				       YelpWindow          *window);
+static void yw_new_window_cb          (gpointer             data,
+				       guint                section,
+				       GtkWidget           *widget);
+static void yw_exit_cb                (gpointer             data,
+				       guint                section,
+				       GtkWidget           *widget);
+static void yw_about_cb               (gpointer             data,
+				       guint                section,
+				       GtkWidget           *widget);
 static GtkWidget * yw_create_toolbar  (YelpWindow          *window);
 
 enum {
@@ -87,6 +92,14 @@ struct _YelpWindowPriv {
 
 	GtkWidget      *forward_button;
 	GtkWidget      *back_button;
+};
+
+static GtkItemFactoryEntry menu_items[] = {
+	{N_("/_File"),          NULL,        0,                0, "<Branch>"},
+	{N_("/File/_New window"), "<Control>N", yw_new_window_cb, 0, NULL},
+	{N_("/File/E_xit"),       "<Control>Q", yw_exit_cb,       0, NULL    },
+	{N_("/_Help"),          NULL,        0,                0, "<Branch>"},
+	{N_("/Help/_About"),    NULL,        yw_about_cb,      0, NULL       },
 };
 
 GType
@@ -133,7 +146,7 @@ yw_init (YelpWindow *window)
 	
         gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
 
-	gtk_window_set_title (GTK_WINDOW (window), _("Yelp: GNOME Help Browser"));
+	gtk_window_set_title (GTK_WINDOW (window), _("Help Browser"));
 }
 
 static void
@@ -151,12 +164,26 @@ yw_populate (YelpWindow *window)
 	GtkWidget      *toolbar;
 	GtkWidget      *main_box;
 	GtkWidget      *sw;
-	
+	GtkItemFactory *item_factory;
+
         priv = window->priv;
 
 	main_box        = gtk_vbox_new (FALSE, 0);
 	
 	gtk_container_add (GTK_CONTAINER (window), main_box);
+
+	item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
+					     "<main>", NULL);
+
+	gtk_item_factory_create_items (item_factory,
+				       G_N_ELEMENTS (menu_items),
+				       menu_items,
+				       window);
+
+	gtk_box_pack_start (GTK_BOX (main_box),
+			    gtk_item_factory_get_widget (item_factory,
+							 "<main>"),
+			    FALSE, FALSE, 0);
 
 	toolbar         = yw_create_toolbar (window);
 
@@ -190,12 +217,6 @@ yw_populate (YelpWindow *window)
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
 	gtk_box_pack_end (GTK_BOX (main_box), priv->notebook,
 			  TRUE, TRUE, 0);
-}
-
-static void
-yw_close_cb (gpointer data, guint section, GtkWidget *widget)
-{
-	gtk_main_quit ();
 }
 
 #if 0
@@ -299,6 +320,49 @@ yw_index_button_clicked (GtkWidget *button, YelpWindow *window)
 				       PAGE_INDEX_VIEW);
 }
 
+static void
+yw_new_window_cb (gpointer data, guint section, GtkWidget *widget)
+{
+/* 	YelpWindow *window; */
+	
+	g_return_if_fail (YELP_IS_WINDOW (data));
+	
+/* 	window = YELP_WINDOW (data); */
+
+	g_print ("FIXME: NEW WINDOW\n");
+	
+	/* Emit new_window signal */
+/* 	new_window = yelp_base_new_window (window->priv->base); */
+	
+/* 	gtk_widget_show_all (new_window); */
+}
+
+static void
+yw_exit_cb (gpointer data, guint section, GtkWidget *widget)
+{
+	gtk_main_quit ();
+}
+
+static void
+yw_about_cb (gpointer data, guint section, GtkWidget *widget)
+{
+	GtkWidget *about;
+	const gchar *authors[] = { 
+		"Mikael Hallendal <micke@codefactory.se>",
+		NULL
+	};
+	
+	about = gnome_about_new (PACKAGE, VERSION,
+				 "(C) 2001 Mikael Hallendal <micke@codefactory.se>",
+				 _("Help Browser for GNOME 2.0"),
+				 authors,
+				 NULL,
+				 NULL,
+				 NULL);
+
+	gtk_widget_show (about);
+}
+
 static GtkWidget *
 yw_create_toolbar (YelpWindow *window)
 {
@@ -378,15 +442,6 @@ yw_create_toolbar (YelpWindow *window)
 	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
 				   gtk_entry_new (),
 				   "", "");
-
-	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-					   "gtk-close",
-					   "", "",
-					   NULL, NULL, -1);
-	
-	g_signal_connect (button, "clicked",
-			  G_CALLBACK (yw_close_cb),
-			  G_OBJECT (window));
 
 	return toolbar;
 }
