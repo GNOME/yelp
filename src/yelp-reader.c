@@ -276,7 +276,7 @@ reader_db_write (ReaderThreadData *th_data, const gchar *buffer, gint len)
 		
 		STAMP_MUTEX_UNLOCK;
 		
-		return -1;
+		return 0;
 	}
 
 	STAMP_MUTEX_UNLOCK;
@@ -313,7 +313,7 @@ reader_db_close (ReaderThreadData *th_data)
 		
 		STAMP_MUTEX_UNLOCK;
 		
-		return -1;
+		return 0;
 	}
 
 	STAMP_MUTEX_UNLOCK;
