@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-31 19:45+0200\n"
+"POT-Creation-Date: 2005-01-02 23:42-0600\n"
 "PO-Revision-Date: 2004-12-31 19:51+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -48,7 +48,7 @@ msgstr "Branduolio funkcijos"
 msgid "Library Functions"
 msgstr "Bibliotekų funkcijos"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:782
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
 msgid "Man Pages"
 msgstr "Žinynų puslapiai"
 
@@ -136,7 +136,7 @@ msgstr "Mokomosios programos"
 msgid "Graphics"
 msgstr "Grafika"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1072
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
 msgid "Help Contents"
 msgstr "Pagalbos žinyno turinys"
 
@@ -189,58 +189,68 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Šriftai</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Title:</b>"
+msgstr "<b>Šriftai</b>"
+
+#: data/ui/yelp.glade.h:4
+#, fuzzy
+msgid "Add Bookmark"
+msgstr "_Pridėti žymelę"
+
+#: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
 msgstr "Žymelės"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
 msgid "C_ase sensitive"
 msgstr "Skirti r_aidžių dydį"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:7
 msgid "Find"
 msgstr "Ieškoti"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:8
 msgid "Open Location"
 msgstr "Atidaryti vietą"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:9
 msgid "Preferences"
 msgstr "Nustatymai"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:10
 msgid "_Browse with caret"
 msgstr "_Naršyti su žymekliu"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:11
 msgid "_Find: "
 msgstr "_Ieškoti: "
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:12
 msgid "_Fixed width:"
 msgstr "_Fiksuotas plotis:"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Location:"
 msgstr "_Vieta:"
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Next"
 msgstr "_Kitas"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Previous"
 msgstr "_Ankstesnis"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Use system fonts"
 msgstr "_Naudoti sistemos šriftus"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Variable width:"
 msgstr "_Kintantis plotis:"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Wrap around"
 msgstr "_Priėjus pabaigą, ieškoti nuo pradžios"
 
@@ -276,7 +286,7 @@ msgstr "Naudoti sistemos šriftus"
 msgid "Use the systems default fonts."
 msgstr "Naudoti įprastus sistemos šriftus."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2050
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -284,41 +294,50 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp gamykla"
 
-#: src/yelp-db-pager.c:480
-msgid "Titlepage"
-msgstr "Antraštinis puslapis"
+#: src/yelp-db-pager.c:238
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not well-formed XML."
+msgstr ""
 
-#: src/yelp-db-pager.c:482
-msgid "Contents"
-msgstr "Turinys"
-
-#: src/yelp-db-pager.c:500
+#: src/yelp-db-pager.c:486
 msgid "Unknown"
 msgstr "Nežinoma"
 
+#: src/yelp-error.c:42 src/yelp-error.c:58
+msgid "An unknown error occured"
+msgstr ""
+
 #: src/yelp-error.c:46
-msgid "The selected document could not be opened"
-msgstr "Pasirinktas dokumentas negali būti atidarytas"
+msgid "Could not load document"
+msgstr ""
+
+#: src/yelp-error.c:48
+#, fuzzy
+msgid "Could not load section"
+msgstr "Nepavyko atidaryti naujo lango."
+
+#: src/yelp-error.c:50
+#, fuzzy
+msgid "Could not read the table of contents"
+msgstr "Nepavyko įkelti OMF bylos: '%s'"
 
 #: src/yelp-error.c:52
-msgid "The selected page could not be found in this document."
-msgstr "Pasirinktas puslapis šiame dokumente nėrastas."
+msgid "Unsupported Format"
+msgstr ""
 
-#: src/yelp-error.c:58
-msgid "The table of contents could not be read."
-msgstr "Turinio perskaityti nepavyko."
+#: src/yelp-error.c:54
+msgid "Could not read document"
+msgstr ""
 
-#: src/yelp-error.c:64
-msgid "DocBook SGML documents are no longer supported."
-msgstr "DocBook SGML dokumentai daugiau nepalaikomi."
+#: src/yelp-error.c:56
+msgid "Could not process document"
+msgstr ""
 
-#: src/yelp-error.c:70
-msgid "The selected file could not be read."
-msgstr "Pasirinktos bylos perskaityti nepavyko."
-
-#: src/yelp-error.c:76
-msgid "The file could not be processed."
-msgstr "Bylos nepavyko perskaityti."
+#: src/yelp-error.c:66
+msgid "No information is available about the error."
+msgstr ""
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -336,6 +355,13 @@ msgstr "Nepavyko atidaryti naujo lango."
 #: src/yelp-main.c:326 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pagalba"
+
+#: src/yelp-man-pager.c:164
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
+"formatted incorrectly."
+msgstr ""
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -384,141 +410,210 @@ msgstr "Nepavyko įkelti OMF bylos: '%s'"
 msgid "Read man page for %s"
 msgstr "Skaityti %s žinyną"
 
-#: src/yelp-toc-pager.c:1017 src/yelp-xslt-pager.c:352
+#: src/yelp-toc-pager.c:765
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
+
+#: src/yelp-toc-pager.c:873
+#, c-format
+msgid ""
+"The table of contents could not be processed. The file ‘%s’ is either "
+"missing or is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Href atributų yelp:document nerasta"
 
-#: src/yelp-toc-pager.c:1031 src/yelp-xslt-pager.c:367
+#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Nėra atminties"
 
-#: src/yelp-window.c:301
+#: src/yelp-window.c:302
 msgid "_File"
 msgstr "_Byla"
 
-#: src/yelp-window.c:302
+#: src/yelp-window.c:303
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: src/yelp-window.c:303
+#: src/yelp-window.c:304
 msgid "_Go"
 msgstr "_Eiti"
 
-#: src/yelp-window.c:304
+#: src/yelp-window.c:305
 msgid "_Bookmarks"
 msgstr "Ž_ymelės"
 
-#: src/yelp-window.c:305
+#: src/yelp-window.c:306
 msgid "_Help"
 msgstr "_Pagalba"
 
-#: src/yelp-window.c:308
-msgid "_New window"
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: src/yelp-window.c:313
+#: src/yelp-window.c:314
+msgid "About This Document"
+msgstr ""
+
+#: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Atidaryti _vietą"
 
-#: src/yelp-window.c:318
-msgid "_Close window"
+#: src/yelp-window.c:324
+#, fuzzy
+msgid "_Close Window"
 msgstr "_Uždaryti langą"
 
-#: src/yelp-window.c:324
+#: src/yelp-window.c:330
 msgid "_Copy"
 msgstr "_Kopijuoti"
 
-#: src/yelp-window.c:330
+#: src/yelp-window.c:336
 msgid "_Select All"
 msgstr "_Pažymėti viską"
 
-#: src/yelp-window.c:335
+#: src/yelp-window.c:341
 msgid "_Find..."
 msgstr "_Rasti..."
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:346
 msgid "_Preferences"
 msgstr "_Nustatymai"
 
-#: src/yelp-window.c:345
+#: src/yelp-window.c:351
 msgid "_Reload"
 msgstr "_Perkrauti"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:357
 msgid "_Back"
 msgstr "_Atgal"
 
-#: src/yelp-window.c:353
+#: src/yelp-window.c:359
 msgid "Show previous page in history"
 msgstr "Rodyti anksčiau rodytą puslapį"
 
-#: src/yelp-window.c:356
+#: src/yelp-window.c:362
 msgid "_Forward"
 msgstr "_Pirmyn"
 
-#: src/yelp-window.c:358
+#: src/yelp-window.c:364
 msgid "Show next page in history"
 msgstr "Rodyti kitą puslapį esantį atmintyje"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:367
 msgid "_Home"
 msgstr "_Pradžia"
 
-#: src/yelp-window.c:363
+#: src/yelp-window.c:369
 msgid "Go to home view"
 msgstr "Grįžti į pradinį puslapį"
 
-#: src/yelp-window.c:366
-msgid "_Previous Page"
+#: src/yelp-window.c:372
+#, fuzzy
+msgid "_Previous Section"
 msgstr "_Ankstesnis puslapis"
 
-#: src/yelp-window.c:371
-msgid "_Next Page"
+#: src/yelp-window.c:377
+#, fuzzy
+msgid "_Next Section"
 msgstr "_Sekantis puslapis"
 
-#: src/yelp-window.c:376
+#: src/yelp-window.c:382
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: src/yelp-window.c:382
+#: src/yelp-window.c:388
 msgid "_Add Bookmark"
 msgstr "_Pridėti žymelę"
 
-#: src/yelp-window.c:387
+#: src/yelp-window.c:393
 msgid "_Edit Bookmarks..."
 msgstr "_Keisti žymeles..."
 
-#: src/yelp-window.c:393
+#: src/yelp-window.c:399
 msgid "_Open Link"
 msgstr "_Atidaryti nuorodą"
 
-#: src/yelp-window.c:398
+#: src/yelp-window.c:404
 msgid "Open Link in _New Window"
 msgstr "Atidaryti nuorodą _naujame lange"
 
-#: src/yelp-window.c:403
+#: src/yelp-window.c:409
 msgid "_Copy Link Address"
 msgstr "_Kopijuoti nuorodos adresą"
 
-#: src/yelp-window.c:409
+#: src/yelp-window.c:415
 msgid "_About"
 msgstr "_Apie"
 
-#: src/yelp-window.c:460
+#: src/yelp-window.c:466
 msgid "Help Browser"
 msgstr "Pagalbos naršyklė"
 
-#: src/yelp-window.c:977
+#: src/yelp-window.c:697 src/yelp-window.c:830
+msgid "The Uniform Resource Identifier for the file is invalid."
+msgstr ""
+
+#: src/yelp-window.c:709 src/yelp-window.c:825
+#, c-format
+msgid ""
+"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+"actual file."
+msgstr ""
+
+#: src/yelp-window.c:786 src/yelp-window.c:1124
+msgid "Man pages are not supported in this version."
+msgstr ""
+
+#: src/yelp-window.c:796 src/yelp-window.c:1115
+msgid "GNU info pages are not supported in this version"
+msgstr ""
+
+#: src/yelp-window.c:806
+msgid ""
+"SGML documents are no longer supported. Please ask the author of the "
+"document to convert to XML."
+msgstr ""
+
+#: src/yelp-window.c:1021
 msgid "Fin_d"
 msgstr "Ras_ti"
 
-#: src/yelp-window.c:1257
+#: src/yelp-window.c:1141
+#, c-format
+msgid ""
+"A transformation context could not be created for the file ‘%s’. The format "
+"may not be supported."
+msgstr ""
+
+#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#, c-format
+msgid ""
+"The section ‘%s’ does not exist in this document. If you were directed to "
+"this section from a Help button in an application, please report this to the "
+"maintainers of that application."
+msgstr ""
+
+#: src/yelp-window.c:1286
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+
+#: src/yelp-window.c:1320
 msgid "Loading..."
 msgstr "Įkeliama..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2047
+#: src/yelp-window.c:2131
 msgid "translator-credits"
 msgstr ""
 "Paskutinis vertėjas:\n"
@@ -527,10 +622,48 @@ msgstr ""
 "Ankstesnis vertėjas:\n"
 "Tomas Kuliavas <tokul@users.sourceforge.net>"
 
-#: src/yelp-window.c:2052
+#: src/yelp-window.c:2136
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentacijos naršymo ir peržiūros programa GNOME aplinkai."
+
+#: src/yelp-xslt-pager.c:194
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"improperly formatted."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#, c-format
+msgid ""
+"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
+"is not a valid XSLT stylesheet."
+msgstr ""
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Gauti pagalbą dirbant su GNOME"
+
+#~ msgid "Titlepage"
+#~ msgstr "Antraštinis puslapis"
+
+#~ msgid "Contents"
+#~ msgstr "Turinys"
+
+#~ msgid "The selected document could not be opened"
+#~ msgstr "Pasirinktas dokumentas negali būti atidarytas"
+
+#~ msgid "The selected page could not be found in this document."
+#~ msgstr "Pasirinktas puslapis šiame dokumente nėrastas."
+
+#~ msgid "The table of contents could not be read."
+#~ msgstr "Turinio perskaityti nepavyko."
+
+#~ msgid "DocBook SGML documents are no longer supported."
+#~ msgstr "DocBook SGML dokumentai daugiau nepalaikomi."
+
+#~ msgid "The selected file could not be read."
+#~ msgstr "Pasirinktos bylos perskaityti nepavyko."
+
+#~ msgid "The file could not be processed."
+#~ msgstr "Bylos nepavyko perskaityti."

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
+"POT-Creation-Date: 2005-01-02 23:42-0600\n"
 "PO-Revision-Date: 2004-08-06 00:16+0300\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -22,89 +22,261 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1
-msgid "Applets"
-msgstr "Sovelmat"
-
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "Sovellukset"
 
-#: data/toc.xml.in.h:3
-msgid "Desktop"
-msgstr "Työpöytä"
+#: data/man.xml.in.h:2
+msgid "Configuration Files"
+msgstr "Asetustiedostot"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/man.xml.in.h:3
 msgid "Development"
 msgstr "Ohjelmakehitys"
 
+#: data/man.xml.in.h:4
+msgid "FORTRAN Functions"
+msgstr ""
+
+#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+msgid "Games"
+msgstr "Pelit"
+
+#: data/man.xml.in.h:6
+msgid "Hardware Devices"
+msgstr "Laitteisto"
+
+#: data/man.xml.in.h:7
+msgid "Kernel Routines"
+msgstr "Kernelrutiinit"
+
+#: data/man.xml.in.h:8
+msgid "Library Functions"
+msgstr "Kirjastofunktiot"
+
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#, fuzzy
+msgid "Man Pages"
+msgstr "Manuaalisivut"
+
+#: data/man.xml.in.h:10
+#, fuzzy
+msgid "OpenSSL Applications"
+msgstr "X-sovellukset"
+
+#: data/man.xml.in.h:11
+#, fuzzy
+msgid "OpenSSL Configuration"
+msgstr "Asetustiedostot"
+
+#: data/man.xml.in.h:12
+#, fuzzy
+msgid "OpenSSL Overviews"
+msgstr "Yleiskatsaukset"
+
+#: data/man.xml.in.h:13
+msgid "Overviews"
+msgstr "Yleiskatsaukset"
+
+#: data/man.xml.in.h:14
+#, fuzzy
+msgid "Perl Functions"
+msgstr "Kirjastofunktiot"
+
+#: data/man.xml.in.h:15
+#, fuzzy
+msgid "Qt Functions"
+msgstr "Kirjastofunktiot"
+
+#: data/man.xml.in.h:16
+msgid "System Administration"
+msgstr "Järjestelmänvalvonta"
+
+#: data/man.xml.in.h:17
+msgid "System Calls"
+msgstr "Järjestelmäkutsut"
+
+#: data/man.xml.in.h:18
+#, fuzzy
+msgid "Termcap Applications"
+msgstr "X-sovellukset"
+
+#: data/man.xml.in.h:19
+#, fuzzy
+msgid "X11 Applications"
+msgstr "X-sovellukset"
+
+#: data/man.xml.in.h:20
+#, fuzzy
+msgid "X11 Configuration"
+msgstr "Asetustiedostot"
+
+#: data/man.xml.in.h:21
+msgid "X11 Devices"
+msgstr ""
+
+#: data/man.xml.in.h:22
+#, fuzzy
+msgid "X11 Functions"
+msgstr "Kirjastofunktiot"
+
+#: data/man.xml.in.h:23
+#, fuzzy
+msgid "X11 Games"
+msgstr "Pelit"
+
+#: data/man.xml.in.h:24
+#, fuzzy
+msgid "X11 Overviews"
+msgstr "Yleiskatsaukset"
+
+#: data/toc.xml.in.h:1
+msgid "Accessibility"
+msgstr ""
+
+#: data/toc.xml.in.h:2
+msgid "Accessories"
+msgstr ""
+
+#: data/toc.xml.in.h:3
+msgid "Applets"
+msgstr "Sovelmat"
+
 #: data/toc.xml.in.h:5
-msgid "Development Environments"
-msgstr "Ohjelmistokehitysympäristöt"
+msgid "Desktop"
+msgstr "Työpöytä"
 
 #: data/toc.xml.in.h:6
-msgid "Development Tools"
-msgstr "Ohjelmistokehitystyökalut"
-
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
-msgid "Editors"
-msgstr "Muokkaimet"
-
-#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Opetussovellukset"
 
-#: data/toc.xml.in.h:9
-msgid "Games and Entertainment"
-msgstr "Pelit ja viihde"
+#: data/toc.xml.in.h:8
+msgid "Graphics"
+msgstr ""
 
-#: data/toc.xml.in.h:10
-msgid "General"
-msgstr "Yleiset"
-
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
 msgid "Help Contents"
 msgstr "Ohjeen sisältö"
 
-#: data/toc.xml.in.h:12
-msgid "Internet Applications"
-msgstr "Internet-sovellukset"
+#: data/toc.xml.in.h:10
+#, fuzzy
+msgid "Internet"
+msgstr "Sisältö"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
+#: data/toc.xml.in.h:12
+msgid "Office"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+msgid "Other"
+msgstr ""
+
 #: data/toc.xml.in.h:14
-msgid "Kernels"
-msgstr "Ytimet"
+#, fuzzy
+msgid "Other Documentation"
+msgstr "Julkaisutiedot"
 
 #: data/toc.xml.in.h:15
-msgid "Multimedia Applications"
-msgstr "Multimediasovellukset"
+msgid "Programming"
+msgstr ""
 
 #: data/toc.xml.in.h:16
-msgid "Office and Productivity Applications"
-msgstr "Toimistosovellukset"
-
-#: data/toc.xml.in.h:17
-msgid "Scientific Applications"
+#, fuzzy
+msgid "Scientific"
 msgstr "Tieteelliset sovellukset"
 
+#: data/toc.xml.in.h:17
+msgid "Sound &amp; Video"
+msgstr ""
+
 #: data/toc.xml.in.h:18
-msgid "Securities"
-msgstr "Turvallisuus"
+#, fuzzy
+msgid "System Tools"
+msgstr "Järjestelmäkutsut"
 
 #: data/toc.xml.in.h:19
-msgid "System"
-msgstr "Järjestelmä"
-
-#: data/toc.xml.in.h:20
-msgid "Utilities"
-msgstr "Apuohjelmat"
-
-#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X-sovellukset"
+
+#: data/ui/yelp.glade.h:1
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>_Title:</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
+msgid "Add Bookmark"
+msgstr ""
+
+#: data/ui/yelp.glade.h:5
+#, fuzzy
+msgid "Bookmarks"
+msgstr "Kirja"
+
+#: data/ui/yelp.glade.h:6
+msgid "C_ase sensitive"
+msgstr "_Huomioi kirjainkoko"
+
+#: data/ui/yelp.glade.h:7
+msgid "Find"
+msgstr "Etsi"
+
+#: data/ui/yelp.glade.h:8
+#, fuzzy
+msgid "Open Location"
+msgstr "Omistuskirjoitus"
+
+#: data/ui/yelp.glade.h:9
+#, fuzzy
+msgid "Preferences"
+msgstr "Viite"
+
+#: data/ui/yelp.glade.h:10
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+msgid "_Find: "
+msgstr "_Etsi: "
+
+#: data/ui/yelp.glade.h:12
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:13
+#, fuzzy
+msgid "_Location:"
+msgstr "Omistuskirjoitus"
+
+#: data/ui/yelp.glade.h:14
+msgid "_Next"
+msgstr "_Seuraava"
+
+#: data/ui/yelp.glade.h:15
+msgid "_Previous"
+msgstr "_Edellinen"
+
+#: data/ui/yelp.glade.h:16
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:17
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:18
+msgid "_Wrap around"
+msgstr "_Jatka etsintää alusta"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -138,74 +310,7 @@ msgstr ""
 msgid "Use the systems default fonts."
 msgstr ""
 
-#: data/ui/yelp.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: data/ui/yelp.glade.h:2
-msgid "<b>Accessibility</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:3
-msgid "<b>Fonts</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:4
-msgid "C_ase sensitive"
-msgstr "_Huomioi kirjainkoko"
-
-#: data/ui/yelp.glade.h:5
-msgid "Find"
-msgstr "Etsi"
-
-#: data/ui/yelp.glade.h:6
-#, fuzzy
-msgid "Open Location"
-msgstr "Omistuskirjoitus"
-
-#: data/ui/yelp.glade.h:7
-#, fuzzy
-msgid "Preferences"
-msgstr "Viite"
-
-#: data/ui/yelp.glade.h:8
-msgid "_Browse with caret"
-msgstr ""
-
-#: data/ui/yelp.glade.h:9
-msgid "_Find: "
-msgstr "_Etsi: "
-
-#: data/ui/yelp.glade.h:10
-msgid "_Fixed width:"
-msgstr ""
-
-#: data/ui/yelp.glade.h:11
-#, fuzzy
-msgid "_Location:"
-msgstr "Omistuskirjoitus"
-
-#: data/ui/yelp.glade.h:12
-msgid "_Next"
-msgstr "_Seuraava"
-
-#: data/ui/yelp.glade.h:13
-msgid "_Previous"
-msgstr "_Edellinen"
-
-#: data/ui/yelp.glade.h:14
-msgid "_Use system fonts"
-msgstr ""
-
-#: data/ui/yelp.glade.h:15
-msgid "_Variable width:"
-msgstr ""
-
-#: data/ui/yelp.glade.h:16
-msgid "_Wrap around"
-msgstr "_Jatka etsintää alusta"
-
-#: src/GNOME_Yelp.server.in.h:1
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -213,130 +318,75 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-tehdas"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
-msgid "No href attribute found on yelp:document"
-msgstr "href-määrettä ei löytynyt kohteesta yelp:document"
+#: src/yelp-db-pager.c:238
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not well-formed XML."
+msgstr ""
 
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
-msgid "Out of memory"
-msgstr "Muisti lopussa"
-
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
-msgid "Titlepage"
-msgstr "Nimiösivu"
-
-#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:368
-msgid "Contents"
-msgstr "Sisältö"
-
-#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:386
+#: src/yelp-db-pager.c:486
 msgid "Unknown"
 msgstr "Tuntematon"
 
+#: src/yelp-error.c:42 src/yelp-error.c:58
+msgid "An unknown error occured"
+msgstr ""
+
 #: src/yelp-error.c:46
-msgid "The selected document could not be opened"
-msgstr "Valittua dokumenttia ei voitu avata"
+#, fuzzy
+msgid "Could not load document"
+msgstr "Lisädokumentit"
+
+#: src/yelp-error.c:48
+#, fuzzy
+msgid "Could not load section"
+msgstr "Uuden ikkunan avaaminen epäonnistui."
+
+#: src/yelp-error.c:50
+#, fuzzy
+msgid "Could not read the table of contents"
+msgstr "OMF-tiedostoa \"%s\" ei voitu ladata."
 
 #: src/yelp-error.c:52
-msgid "The selected page could not be found in this document."
-msgstr "Valittua sivua ei löytyyt tästä dokumentista."
+msgid "Unsupported Format"
+msgstr ""
 
-#: src/yelp-error.c:58
-msgid "The table of contents could not be read."
-msgstr "Sisällysluetteloa ei voitu lukea."
+#: src/yelp-error.c:54
+msgid "Could not read document"
+msgstr ""
 
-#: src/yelp-error.c:64
-msgid "DocBook SGML documents are no longer supported."
-msgstr "DocBook SGML-dokumentit eivät ole enää tuettuja."
+#: src/yelp-error.c:56
+msgid "Could not process document"
+msgstr ""
 
-#: src/yelp-error.c:70
-msgid "The selected file could not be read."
-msgstr "Valittua tiedostoa ei voitu lukea."
+#: src/yelp-error.c:66
+msgid "No information is available about the error."
+msgstr ""
 
-#: src/yelp-error.c:76
-#, fuzzy
-msgid "The file could not be processed."
-msgstr "Valittua tiedostoa ei voitu lukea."
-
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "Määrittele käytettävä välihakemisto"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Yelpin aktivointi epäonnistui: \"%s\""
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Uuden ikkunan avaaminen epäonnistui."
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ohje"
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
-msgid "X11"
-msgstr "X11"
-
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
-msgid "OpenSSL"
-msgstr "OpenSSL"
-
-#: src/yelp-man.c:306
-msgid "Termcap"
-msgstr "Termcap"
-
-#: src/yelp-man.c:322
-msgid "Perl"
-msgstr "Perl"
-
-#: src/yelp-man.c:327
-msgid "Qt"
-msgstr "Qt"
-
-#: src/yelp-man.c:337
-msgid "TIFF"
-msgstr "TIFF"
-
-#: src/yelp-man.c:342
-msgid "PThreads"
-msgstr "PThreads"
-
-#: src/yelp-man.c:364
-msgid "System Calls"
-msgstr "Järjestelmäkutsut"
-
-#: src/yelp-man.c:369
-msgid "Library Functions"
-msgstr "Kirjastofunktiot"
-
-#: src/yelp-man.c:374
-msgid "Kernel Routines"
-msgstr "Kernelrutiinit"
-
-#: src/yelp-man.c:439
-msgid "Hardware Devices"
-msgstr "Laitteisto"
-
-#: src/yelp-man.c:444
-msgid "Configuration Files"
-msgstr "Asetustiedostot"
-
-#: src/yelp-man.c:449
-msgid "Games"
-msgstr "Pelit"
-
-#: src/yelp-man.c:454
-msgid "Overviews"
-msgstr "Yleiskatsaukset"
-
-#: src/yelp-man.c:459
-msgid "System Administration"
-msgstr "Järjestelmänvalvonta"
+#: src/yelp-man-pager.c:164
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
+"formatted incorrectly."
+msgstr ""
 
 #: src/yelp-pager.c:120
 #, fuzzy
@@ -346,433 +396,6 @@ msgstr "Julkaisutiedot"
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
 msgstr ""
-
-#: src/yelp-toc-pager.c:287
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: Taukomäärä on negatiivinen."
-
-#: src/yelp-toc-pager.c:538
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "OMF-tiedostoa \"%s\" ei voitu ladata."
-
-#: src/yelp-toc-pager.c:937
-msgid "Categories"
-msgstr "Kategoriat"
-
-#: src/yelp-toc-pager.c:951
-msgid "Documents"
-msgstr "Dokumentit"
-
-#: src/yelp-window.c:282
-#, fuzzy
-msgid "_File"
-msgstr "/_Tiedosto"
-
-#: src/yelp-window.c:283
-#, fuzzy
-msgid "_Edit"
-msgstr "/_Muokkaa"
-
-#: src/yelp-window.c:284
-#, fuzzy
-msgid "_Go"
-msgstr "/_Siirry"
-
-#: src/yelp-window.c:285
-#, fuzzy
-msgid "_Help"
-msgstr "/_Ohje"
-
-#: src/yelp-window.c:288
-#, fuzzy
-msgid "_New window"
-msgstr "/Tiedosto/_Uusi ikkuna"
-
-#: src/yelp-window.c:293
-msgid "Open _Location"
-msgstr ""
-
-#: src/yelp-window.c:298
-#, fuzzy
-msgid "_Close window"
-msgstr "/Tiedosto/_Sulje ikkuna"
-
-#: src/yelp-window.c:304
-msgid "_Copy"
-msgstr ""
-
-#: src/yelp-window.c:309
-#, fuzzy
-msgid "_Find..."
-msgstr "/Muokkaa/_Etsi..."
-
-#: src/yelp-window.c:314
-#, fuzzy
-msgid "_Preferences"
-msgstr "Viite"
-
-#: src/yelp-window.c:319
-msgid "_Reload"
-msgstr ""
-
-#: src/yelp-window.c:325
-#, fuzzy
-msgid "_Back"
-msgstr "Takaisin"
-
-#: src/yelp-window.c:327
-msgid "Show previous page in history"
-msgstr "Näytä edellinen sivu"
-
-#: src/yelp-window.c:330
-#, fuzzy
-msgid "_Forward"
-msgstr "Eteenpäin"
-
-#: src/yelp-window.c:332
-msgid "Show next page in history"
-msgstr "Näytä seuraava sivu"
-
-#: src/yelp-window.c:335
-#, fuzzy
-msgid "_Home"
-msgstr "Koti"
-
-#: src/yelp-window.c:337
-msgid "Go to home view"
-msgstr "Siirry kotinäkymään"
-
-#: src/yelp-window.c:340
-#, fuzzy
-msgid "_Previous Page"
-msgstr "/Siirry"
-
-#: src/yelp-window.c:345
-#, fuzzy
-msgid "_Next Page"
-msgstr "/Siirry/_Seuraava sivu"
-
-#: src/yelp-window.c:350
-#, fuzzy
-msgid "_Contents"
-msgstr "Sisältö"
-
-#: src/yelp-window.c:355
-msgid "_Open Link"
-msgstr ""
-
-#: src/yelp-window.c:360
-msgid "Open Link in _New Window"
-msgstr ""
-
-#: src/yelp-window.c:365
-msgid "_Copy Link Address"
-msgstr ""
-
-#: src/yelp-window.c:371
-#, fuzzy
-msgid "_About"
-msgstr "/Ohje/_Tietoja"
-
-#: src/yelp-window.c:422
-msgid "Help Browser"
-msgstr "Ohjeselain"
-
-#: src/yelp-window.c:915
-#, fuzzy
-msgid "Fin_d"
-msgstr "Etsi"
-
-#: src/yelp-window.c:1186
-msgid "Loading..."
-msgstr "Ladataan..."
-
-#. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:1903
-msgid "translator_credits"
-msgstr ""
-"Lauri Nurmi, 2003\n"
-"Henri Mannerberg, 2002-2003\n"
-"\n"
-"http://gnome-fi.org/"
-
-# From l10n.xml: LEFT SINGLE QUOTATION MARK
-#: stylesheets/l10n.xml.in.h:1
-msgid "&#8216;"
-msgstr "’"
-
-# From l10n.xml: RIGHT SINGLE QUOTATION MARK
-#: stylesheets/l10n.xml.in.h:2
-msgid "&#8217;"
-msgstr "’"
-
-# From l10n.xml: LEFT DOUBLE QUOTATION MARK
-#: stylesheets/l10n.xml.in.h:3
-msgid "&#8220;"
-msgstr "”"
-
-# From l10n.xml: RIGHT DOUBLE QUOTATION MARK
-#: stylesheets/l10n.xml.in.h:4
-msgid "&#8221;"
-msgstr "”"
-
-#: stylesheets/l10n.xml.in.h:5
-msgid "About This Article"
-msgstr "Tietoja tästä artikkelista"
-
-#: stylesheets/l10n.xml.in.h:6
-msgid "About This Bibliography"
-msgstr "Tietoja tästä lähdeluettelosta"
-
-#: stylesheets/l10n.xml.in.h:7
-msgid "About This Book"
-msgstr "Tietoja tästä kirjasta"
-
-#: stylesheets/l10n.xml.in.h:8
-msgid "About This Chapter"
-msgstr "Tietoja tästä luvusta"
-
-#: stylesheets/l10n.xml.in.h:9
-msgid "About This Entry"
-msgstr "Tietoja tästä merkinnästä"
-
-#: stylesheets/l10n.xml.in.h:10
-msgid "About This Glossary"
-msgstr "Tietoja tästä sanastosta"
-
-#: stylesheets/l10n.xml.in.h:11
-msgid "About This Index"
-msgstr "Tietoja tästä hakemistosta"
-
-#: stylesheets/l10n.xml.in.h:12
-msgid "About This Part"
-msgstr "Tietoja tästä osasta"
-
-#: stylesheets/l10n.xml.in.h:13
-msgid "About This Preface"
-msgstr "Tietoja tästä johdannosta"
-
-#: stylesheets/l10n.xml.in.h:14
-msgid "About This Reference"
-msgstr "Tietoja tästä viitteestä"
-
-#: stylesheets/l10n.xml.in.h:15
-msgid "About This Section"
-msgstr "Tietoja tästä luvusta"
-
-#: stylesheets/l10n.xml.in.h:16
-msgid "About This Set"
-msgstr "Tietoja tästä sarjasta"
-
-#: stylesheets/l10n.xml.in.h:17
-msgid "Affiliation"
-msgstr "Yhteys"
-
-#: stylesheets/l10n.xml.in.h:18
-msgid "Appendix"
-msgstr "Liite"
-
-#: stylesheets/l10n.xml.in.h:19
-msgid "Article"
-msgstr "Artikkeli"
-
-#: stylesheets/l10n.xml.in.h:20
-msgid "Audience"
-msgstr "Lukijakunta"
-
-#: stylesheets/l10n.xml.in.h:21
-msgid "Author"
-msgstr "Tekijä"
-
-#: stylesheets/l10n.xml.in.h:22
-msgid "Authors"
-msgstr "Tekijät"
-
-#: stylesheets/l10n.xml.in.h:23
-msgid "Bibliography"
-msgstr "Lähdeluettelo"
-
-#: stylesheets/l10n.xml.in.h:24
-msgid "Book"
-msgstr "Kirja"
-
-#: stylesheets/l10n.xml.in.h:25
-msgid "Caution"
-msgstr "Varoitus"
-
-#: stylesheets/l10n.xml.in.h:26
-msgid "Chapter"
-msgstr "Luku"
-
-#: stylesheets/l10n.xml.in.h:27
-msgid "Collaborator"
-msgstr "Avustaja"
-
-#: stylesheets/l10n.xml.in.h:28
-msgid "Collaborators"
-msgstr "Avustajat"
-
-#: stylesheets/l10n.xml.in.h:29
-msgid "Colophon"
-msgstr "Loppukirjoitus"
-
-#: stylesheets/l10n.xml.in.h:31
-msgid "Copyright"
-msgstr "Tekijänoikeus"
-
-#: stylesheets/l10n.xml.in.h:32
-msgid "Copyrights"
-msgstr "Tekijänoikeudet"
-
-#: stylesheets/l10n.xml.in.h:33
-msgid "Date"
-msgstr "Päiväys"
-
-#: stylesheets/l10n.xml.in.h:34
-msgid "Dedication"
-msgstr "Omistuskirjoitus"
-
-#: stylesheets/l10n.xml.in.h:35
-msgid "Editor"
-msgstr "Toimittaja"
-
-#: stylesheets/l10n.xml.in.h:37
-msgid "Email"
-msgstr "Sähköposti"
-
-#: stylesheets/l10n.xml.in.h:38
-msgid "Example"
-msgstr "Esimerkki"
-
-#: stylesheets/l10n.xml.in.h:39
-msgid "Figure"
-msgstr "Kuva"
-
-#: stylesheets/l10n.xml.in.h:40
-msgid "Glossary"
-msgstr "Sanasto"
-
-#: stylesheets/l10n.xml.in.h:41
-msgid "Important"
-msgstr "Tärkeä"
-
-#: stylesheets/l10n.xml.in.h:42
-msgid "Index"
-msgstr "Hakemisto"
-
-#: stylesheets/l10n.xml.in.h:43
-msgid "Legal Notice"
-msgstr "Ehtoilmoitus"
-
-#: stylesheets/l10n.xml.in.h:44
-msgid "Level"
-msgstr "Taso"
-
-#: stylesheets/l10n.xml.in.h:45
-msgid "Message Audience"
-msgstr "Viestin lukijakunta"
-
-#: stylesheets/l10n.xml.in.h:46
-msgid "Message Level"
-msgstr "Viestin taso"
-
-#: stylesheets/l10n.xml.in.h:47
-msgid "Message Origin"
-msgstr "Viestin alkuperä"
-
-#: stylesheets/l10n.xml.in.h:48
-msgid "Note"
-msgstr "Huomautus"
-
-#: stylesheets/l10n.xml.in.h:49
-msgid "Origin"
-msgstr "Alkuperä"
-
-#: stylesheets/l10n.xml.in.h:50
-msgid "Other Contributor"
-msgstr "Muu myötävaikuttaja"
-
-#: stylesheets/l10n.xml.in.h:51
-msgid "Other Contributors"
-msgstr "Muut myötävaikuttaja"
-
-#: stylesheets/l10n.xml.in.h:52
-msgid "Part"
-msgstr "Osa"
-
-#: stylesheets/l10n.xml.in.h:53
-msgid "Preface"
-msgstr "Johdanto"
-
-#: stylesheets/l10n.xml.in.h:54
-msgid "Publisher"
-msgstr "Kustantaja"
-
-#: stylesheets/l10n.xml.in.h:55
-msgid "Publishers"
-msgstr "Kustantajat"
-
-#: stylesheets/l10n.xml.in.h:56
-msgid "Reference"
-msgstr "Viite"
-
-#: stylesheets/l10n.xml.in.h:57
-msgid "Reference Entry"
-msgstr "Viitemerkintä"
-
-#: stylesheets/l10n.xml.in.h:58
-msgid "Reference Section"
-msgstr "Viiteluku"
-
-#: stylesheets/l10n.xml.in.h:59
-msgid "Release Information"
-msgstr "Julkaisutiedot"
-
-#: stylesheets/l10n.xml.in.h:60
-msgid "Revision History"
-msgstr "Muutoshistoria"
-
-#: stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Luku"
-
-#: stylesheets/l10n.xml.in.h:62
-msgid "See"
-msgstr "Katso"
-
-#: stylesheets/l10n.xml.in.h:63
-msgid "See Also"
-msgstr "Katso myös"
-
-#: stylesheets/l10n.xml.in.h:64
-msgid "Set Index"
-msgstr "Aseta hakemisto"
-
-#: stylesheets/l10n.xml.in.h:65
-msgid "Table"
-msgstr "Taulukko"
-
-#: stylesheets/l10n.xml.in.h:66
-msgid "Table of Contents"
-msgstr "Sisällysluettelo"
-
-#: stylesheets/l10n.xml.in.h:67
-msgid "Tip"
-msgstr "Vihje"
-
-#: stylesheets/l10n.xml.in.h:68
-msgid "Title"
-msgstr "Nimiö"
-
-#: stylesheets/l10n.xml.in.h:70
-msgid "Warning"
-msgstr "Varoitus"
-
-#: yelp.desktop.in.h:1
-msgid "Get help with GNOME"
-msgstr "Hae apua Gnomen käytössä"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -790,15 +413,561 @@ msgstr "Hae apua Gnomen käytössä"
 #. use guillemets (angle quotations) should use either 00AB or AABB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use either 201C or 201E, depending on whether
-#. the opening quote is raised or at the baseline.  Note that single
+#. quotations should use 201C, 201D, or 201E.  Note that single
 #. quotation marks don't make very nice watermarks.  So if you use
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:125
+#: src/yelp-settings.c:149
 msgid "yelp-watermark-blockquote-201C"
 msgstr ""
+
+#: src/yelp-toc-pager.c:268
+msgid "YelpTocPager: Pause count is negative."
+msgstr "YelpTocPager: Taukomäärä on negatiivinen."
+
+#: src/yelp-toc-pager.c:491
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "OMF-tiedostoa \"%s\" ei voitu ladata."
+
+#: src/yelp-toc-pager.c:680
+#, c-format
+msgid "Read man page for %s"
+msgstr ""
+
+#: src/yelp-toc-pager.c:765
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
+
+#: src/yelp-toc-pager.c:873
+#, c-format
+msgid ""
+"The table of contents could not be processed. The file ‘%s’ is either "
+"missing or is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+msgid "No href attribute found on yelp:document"
+msgstr "href-määrettä ei löytynyt kohteesta yelp:document"
+
+#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+msgid "Out of memory"
+msgstr "Muisti lopussa"
+
+#: src/yelp-window.c:302
+#, fuzzy
+msgid "_File"
+msgstr "/_Tiedosto"
+
+#: src/yelp-window.c:303
+#, fuzzy
+msgid "_Edit"
+msgstr "/_Muokkaa"
+
+#: src/yelp-window.c:304
+#, fuzzy
+msgid "_Go"
+msgstr "/_Siirry"
+
+#: src/yelp-window.c:305
+msgid "_Bookmarks"
+msgstr ""
+
+#: src/yelp-window.c:306
+#, fuzzy
+msgid "_Help"
+msgstr "/_Ohje"
+
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_New Window"
+msgstr "/Tiedosto/_Uusi ikkuna"
+
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "About This Document"
+msgstr "Tietoja tästä sarjasta"
+
+#: src/yelp-window.c:319
+msgid "Open _Location"
+msgstr ""
+
+#: src/yelp-window.c:324
+#, fuzzy
+msgid "_Close Window"
+msgstr "/Tiedosto/_Sulje ikkuna"
+
+#: src/yelp-window.c:330
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:336
+#, fuzzy
+msgid "_Select All"
+msgstr "Katso myös"
+
+#: src/yelp-window.c:341
+#, fuzzy
+msgid "_Find..."
+msgstr "/Muokkaa/_Etsi..."
+
+#: src/yelp-window.c:346
+#, fuzzy
+msgid "_Preferences"
+msgstr "Viite"
+
+#: src/yelp-window.c:351
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:357
+#, fuzzy
+msgid "_Back"
+msgstr "Takaisin"
+
+#: src/yelp-window.c:359
+msgid "Show previous page in history"
+msgstr "Näytä edellinen sivu"
+
+#: src/yelp-window.c:362
+#, fuzzy
+msgid "_Forward"
+msgstr "Eteenpäin"
+
+#: src/yelp-window.c:364
+msgid "Show next page in history"
+msgstr "Näytä seuraava sivu"
+
+#: src/yelp-window.c:367
+#, fuzzy
+msgid "_Home"
+msgstr "Koti"
+
+#: src/yelp-window.c:369
+msgid "Go to home view"
+msgstr "Siirry kotinäkymään"
+
+#: src/yelp-window.c:372
+#, fuzzy
+msgid "_Previous Section"
+msgstr "/Siirry"
+
+#: src/yelp-window.c:377
+#, fuzzy
+msgid "_Next Section"
+msgstr "Luku"
+
+#: src/yelp-window.c:382
+#, fuzzy
+msgid "_Contents"
+msgstr "Sisältö"
+
+#: src/yelp-window.c:388
+msgid "_Add Bookmark"
+msgstr ""
+
+#: src/yelp-window.c:393
+msgid "_Edit Bookmarks..."
+msgstr ""
+
+#: src/yelp-window.c:399
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:404
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:409
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:415
+#, fuzzy
+msgid "_About"
+msgstr "/Ohje/_Tietoja"
+
+#: src/yelp-window.c:466
+msgid "Help Browser"
+msgstr "Ohjeselain"
+
+#: src/yelp-window.c:697 src/yelp-window.c:830
+msgid "The Uniform Resource Identifier for the file is invalid."
+msgstr ""
+
+#: src/yelp-window.c:709 src/yelp-window.c:825
+#, c-format
+msgid ""
+"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+"actual file."
+msgstr ""
+
+#: src/yelp-window.c:786 src/yelp-window.c:1124
+msgid "Man pages are not supported in this version."
+msgstr ""
+
+#: src/yelp-window.c:796 src/yelp-window.c:1115
+msgid "GNU info pages are not supported in this version"
+msgstr ""
+
+#: src/yelp-window.c:806
+msgid ""
+"SGML documents are no longer supported. Please ask the author of the "
+"document to convert to XML."
+msgstr ""
+
+#: src/yelp-window.c:1021
+#, fuzzy
+msgid "Fin_d"
+msgstr "Etsi"
+
+#: src/yelp-window.c:1141
+#, c-format
+msgid ""
+"A transformation context could not be created for the file ‘%s’. The format "
+"may not be supported."
+msgstr ""
+
+#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#, c-format
+msgid ""
+"The section ‘%s’ does not exist in this document. If you were directed to "
+"this section from a Help button in an application, please report this to the "
+"maintainers of that application."
+msgstr ""
+
+#: src/yelp-window.c:1286
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+
+#: src/yelp-window.c:1320
+msgid "Loading..."
+msgstr "Ladataan..."
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:2131
+#, fuzzy
+msgid "translator-credits"
+msgstr ""
+"Lauri Nurmi, 2003\n"
+"Henri Mannerberg, 2002-2003\n"
+"\n"
+"http://gnome-fi.org/"
+
+#: src/yelp-window.c:2136
+msgid "A documentation browser and viewer for the Gnome Desktop."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:194
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"improperly formatted."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#, c-format
+msgid ""
+"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
+"is not a valid XSLT stylesheet."
+msgstr ""
+
+#: yelp.desktop.in.in.h:1
+msgid "Get help with GNOME"
+msgstr "Hae apua Gnomen käytössä"
+
+#~ msgid "Development Environments"
+#~ msgstr "Ohjelmistokehitysympäristöt"
+
+#~ msgid "Development Tools"
+#~ msgstr "Ohjelmistokehitystyökalut"
+
+#~ msgid "Editors"
+#~ msgstr "Muokkaimet"
+
+#~ msgid "Games and Entertainment"
+#~ msgstr "Pelit ja viihde"
+
+#~ msgid "General"
+#~ msgstr "Yleiset"
+
+#~ msgid "Internet Applications"
+#~ msgstr "Internet-sovellukset"
+
+#~ msgid "Kernels"
+#~ msgstr "Ytimet"
+
+#~ msgid "Multimedia Applications"
+#~ msgstr "Multimediasovellukset"
+
+#~ msgid "Office and Productivity Applications"
+#~ msgstr "Toimistosovellukset"
+
+#~ msgid "Securities"
+#~ msgstr "Turvallisuus"
+
+#~ msgid "System"
+#~ msgstr "Järjestelmä"
+
+#~ msgid "Utilities"
+#~ msgstr "Apuohjelmat"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "Titlepage"
+#~ msgstr "Nimiösivu"
+
+#~ msgid "The selected document could not be opened"
+#~ msgstr "Valittua dokumenttia ei voitu avata"
+
+#~ msgid "The selected page could not be found in this document."
+#~ msgstr "Valittua sivua ei löytyyt tästä dokumentista."
+
+#~ msgid "The table of contents could not be read."
+#~ msgstr "Sisällysluetteloa ei voitu lukea."
+
+#~ msgid "DocBook SGML documents are no longer supported."
+#~ msgstr "DocBook SGML-dokumentit eivät ole enää tuettuja."
+
+#~ msgid "The selected file could not be read."
+#~ msgstr "Valittua tiedostoa ei voitu lukea."
+
+#, fuzzy
+#~ msgid "The file could not be processed."
+#~ msgstr "Valittua tiedostoa ei voitu lukea."
+
+#~ msgid "X11"
+#~ msgstr "X11"
+
+#~ msgid "OpenSSL"
+#~ msgstr "OpenSSL"
+
+#~ msgid "Termcap"
+#~ msgstr "Termcap"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+
+#~ msgid "PThreads"
+#~ msgstr "PThreads"
+
+#~ msgid "Categories"
+#~ msgstr "Kategoriat"
+
+#~ msgid "Documents"
+#~ msgstr "Dokumentit"
+
+#, fuzzy
+#~ msgid "_Next Page"
+#~ msgstr "/Siirry/_Seuraava sivu"
+
+# From l10n.xml: LEFT SINGLE QUOTATION MARK
+#~ msgid "&#8216;"
+#~ msgstr "’"
+
+# From l10n.xml: RIGHT SINGLE QUOTATION MARK
+#~ msgid "&#8217;"
+#~ msgstr "’"
+
+# From l10n.xml: LEFT DOUBLE QUOTATION MARK
+#~ msgid "&#8220;"
+#~ msgstr "”"
+
+# From l10n.xml: RIGHT DOUBLE QUOTATION MARK
+#~ msgid "&#8221;"
+#~ msgstr "”"
+
+#~ msgid "About This Article"
+#~ msgstr "Tietoja tästä artikkelista"
+
+#~ msgid "About This Bibliography"
+#~ msgstr "Tietoja tästä lähdeluettelosta"
+
+#~ msgid "About This Book"
+#~ msgstr "Tietoja tästä kirjasta"
+
+#~ msgid "About This Chapter"
+#~ msgstr "Tietoja tästä luvusta"
+
+#~ msgid "About This Entry"
+#~ msgstr "Tietoja tästä merkinnästä"
+
+#~ msgid "About This Glossary"
+#~ msgstr "Tietoja tästä sanastosta"
+
+#~ msgid "About This Index"
+#~ msgstr "Tietoja tästä hakemistosta"
+
+#~ msgid "About This Part"
+#~ msgstr "Tietoja tästä osasta"
+
+#~ msgid "About This Preface"
+#~ msgstr "Tietoja tästä johdannosta"
+
+#~ msgid "About This Reference"
+#~ msgstr "Tietoja tästä viitteestä"
+
+#~ msgid "About This Section"
+#~ msgstr "Tietoja tästä luvusta"
+
+#~ msgid "Affiliation"
+#~ msgstr "Yhteys"
+
+#~ msgid "Appendix"
+#~ msgstr "Liite"
+
+#~ msgid "Article"
+#~ msgstr "Artikkeli"
+
+#~ msgid "Audience"
+#~ msgstr "Lukijakunta"
+
+#~ msgid "Author"
+#~ msgstr "Tekijä"
+
+#~ msgid "Authors"
+#~ msgstr "Tekijät"
+
+#~ msgid "Bibliography"
+#~ msgstr "Lähdeluettelo"
+
+#~ msgid "Caution"
+#~ msgstr "Varoitus"
+
+#~ msgid "Chapter"
+#~ msgstr "Luku"
+
+#~ msgid "Collaborator"
+#~ msgstr "Avustaja"
+
+#~ msgid "Collaborators"
+#~ msgstr "Avustajat"
+
+#~ msgid "Colophon"
+#~ msgstr "Loppukirjoitus"
+
+#~ msgid "Copyright"
+#~ msgstr "Tekijänoikeus"
+
+#~ msgid "Copyrights"
+#~ msgstr "Tekijänoikeudet"
+
+#~ msgid "Date"
+#~ msgstr "Päiväys"
+
+#~ msgid "Dedication"
+#~ msgstr "Omistuskirjoitus"
+
+#~ msgid "Editor"
+#~ msgstr "Toimittaja"
+
+#~ msgid "Email"
+#~ msgstr "Sähköposti"
+
+#~ msgid "Example"
+#~ msgstr "Esimerkki"
+
+#~ msgid "Figure"
+#~ msgstr "Kuva"
+
+#~ msgid "Glossary"
+#~ msgstr "Sanasto"
+
+#~ msgid "Important"
+#~ msgstr "Tärkeä"
+
+#~ msgid "Index"
+#~ msgstr "Hakemisto"
+
+#~ msgid "Legal Notice"
+#~ msgstr "Ehtoilmoitus"
+
+#~ msgid "Level"
+#~ msgstr "Taso"
+
+#~ msgid "Message Audience"
+#~ msgstr "Viestin lukijakunta"
+
+#~ msgid "Message Level"
+#~ msgstr "Viestin taso"
+
+#~ msgid "Message Origin"
+#~ msgstr "Viestin alkuperä"
+
+#~ msgid "Note"
+#~ msgstr "Huomautus"
+
+#~ msgid "Origin"
+#~ msgstr "Alkuperä"
+
+#~ msgid "Other Contributor"
+#~ msgstr "Muu myötävaikuttaja"
+
+#~ msgid "Other Contributors"
+#~ msgstr "Muut myötävaikuttaja"
+
+#~ msgid "Part"
+#~ msgstr "Osa"
+
+#~ msgid "Preface"
+#~ msgstr "Johdanto"
+
+#~ msgid "Publisher"
+#~ msgstr "Kustantaja"
+
+#~ msgid "Publishers"
+#~ msgstr "Kustantajat"
+
+#~ msgid "Reference"
+#~ msgstr "Viite"
+
+#~ msgid "Reference Entry"
+#~ msgstr "Viitemerkintä"
+
+#~ msgid "Reference Section"
+#~ msgstr "Viiteluku"
+
+#~ msgid "Release Information"
+#~ msgstr "Julkaisutiedot"
+
+#~ msgid "Revision History"
+#~ msgstr "Muutoshistoria"
+
+#~ msgid "See"
+#~ msgstr "Katso"
+
+#~ msgid "Set Index"
+#~ msgstr "Aseta hakemisto"
+
+#~ msgid "Table"
+#~ msgstr "Taulukko"
+
+#~ msgid "Table of Contents"
+#~ msgstr "Sisällysluettelo"
+
+#~ msgid "Tip"
+#~ msgstr "Vihje"
+
+#~ msgid "Title"
+#~ msgstr "Nimiö"
+
+#~ msgid "Warning"
+#~ msgstr "Varoitus"
 
 #~ msgid "Document URI"
 #~ msgstr "Dokumentti-URI"
@@ -853,12 +1022,6 @@ msgstr ""
 
 #~ msgid "GNOME - Desktop"
 #~ msgstr "Gnome - Työpöytä"
-
-#~ msgid "Additional documents"
-#~ msgstr "Lisädokumentit"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Manuaalisivut"
 
 #~ msgid "Info Pages"
 #~ msgstr "Infosivut"

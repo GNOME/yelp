@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-16 15:17+0200\n"
+"POT-Creation-Date: 2005-01-02 23:42-0600\n"
 "PO-Revision-Date: 2004-11-27 19:32+0200\n"
 "Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
 "Language-Team: Zulu <translate-discuss-zu@lists.sourceforge.net>\n"
@@ -16,119 +16,294 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1
-msgid "Applets"
-msgstr "Izithotyana"
-
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "Izithobo"
 
-#: data/toc.xml.in.h:3
-msgid "Desktop"
-msgstr "Isiga-nyezi"
+#: data/man.xml.in.h:2
+msgid "Configuration Files"
+msgstr "Ukumiswa kohele"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/man.xml.in.h:3
 msgid "Development"
 msgstr "Intuthuko"
 
+#: data/man.xml.in.h:4
+msgid "FORTRAN Functions"
+msgstr ""
+
+#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+msgid "Games"
+msgstr "Imidlalo"
+
+#: data/man.xml.in.h:6
+msgid "Hardware Devices"
+msgstr "Uzitho zokwakha isiga-nyezi"
+
+#: data/man.xml.in.h:7
+msgid "Kernel Routines"
+msgstr "Izindlela zomnyobo"
+
+#: data/man.xml.in.h:8
+msgid "Library Functions"
+msgstr "Umtapo womtholalwazi"
+
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+msgid "Man Pages"
+msgstr ""
+
+#: data/man.xml.in.h:10
+#, fuzzy
+msgid "OpenSSL Applications"
+msgstr "X Izithoba"
+
+#: data/man.xml.in.h:11
+#, fuzzy
+msgid "OpenSSL Configuration"
+msgstr "Ukumiswa kohele"
+
+#: data/man.xml.in.h:12
+#, fuzzy
+msgid "OpenSSL Overviews"
+msgstr "Ukubuka udlulisa"
+
+#: data/man.xml.in.h:13
+msgid "Overviews"
+msgstr "Ukubuka udlulisa"
+
+#: data/man.xml.in.h:14
+#, fuzzy
+msgid "Perl Functions"
+msgstr "Umtapo womtholalwazi"
+
+#: data/man.xml.in.h:15
+#, fuzzy
+msgid "Qt Functions"
+msgstr "Umtapo womtholalwazi"
+
+#: data/man.xml.in.h:16
+msgid "System Administration"
+msgstr "Ukubusa isiga-nyezi"
+
+#: data/man.xml.in.h:17
+msgid "System Calls"
+msgstr "Ukushaya kohlelo"
+
+#: data/man.xml.in.h:18
+#, fuzzy
+msgid "Termcap Applications"
+msgstr "X Izithoba"
+
+#: data/man.xml.in.h:19
+#, fuzzy
+msgid "X11 Applications"
+msgstr "X Izithoba"
+
+#: data/man.xml.in.h:20
+#, fuzzy
+msgid "X11 Configuration"
+msgstr "Ukumiswa kohele"
+
+#: data/man.xml.in.h:21
+msgid "X11 Devices"
+msgstr ""
+
+#: data/man.xml.in.h:22
+#, fuzzy
+msgid "X11 Functions"
+msgstr "Umtapo womtholalwazi"
+
+#: data/man.xml.in.h:23
+#, fuzzy
+msgid "X11 Games"
+msgstr "Imidlalo"
+
+#: data/man.xml.in.h:24
+#, fuzzy
+msgid "X11 Overviews"
+msgstr "Ukubuka udlulisa"
+
+#: data/toc.xml.in.h:1
+msgid "Accessibility"
+msgstr ""
+
+#: data/toc.xml.in.h:2
+msgid "Accessories"
+msgstr ""
+
+#: data/toc.xml.in.h:3
+msgid "Applets"
+msgstr "Izithotyana"
+
 #: data/toc.xml.in.h:5
-msgid "Development Environments"
-msgstr "Indawo zentuthuko"
+msgid "Desktop"
+msgstr "Isiga-nyezi"
 
 #: data/toc.xml.in.h:6
-msgid "Development Tools"
-msgstr "Amathulusi entuthuko"
-
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
-msgid "Editors"
-msgstr "Abahleli"
-
-#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Amahlelo emfundo"
 
-#: data/toc.xml.in.h:9
-msgid "Games and Entertainment"
-msgstr "Imidlalo nokuzijabulisa"
+#: data/toc.xml.in.h:8
+msgid "Graphics"
+msgstr ""
 
-#: data/toc.xml.in.h:10
-msgid "General"
-msgstr "Jikelele"
-
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
 msgid "Help Contents"
 msgstr "Iingqikithi zosizo"
 
-#: data/toc.xml.in.h:12
-msgid "Internet Applications"
-msgstr "Izithobo zolwembu"
+#: data/toc.xml.in.h:10
+#, fuzzy
+msgid "Internet"
+msgstr "Okuqukethwe"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
+#: data/toc.xml.in.h:12
+msgid "Office"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+msgid "Other"
+msgstr ""
+
 #: data/toc.xml.in.h:14
-msgid "Kernels"
-msgstr "Iingqikithi zokusebenza kohlelo"
+#, fuzzy
+msgid "Other Documentation"
+msgstr "Omunye umnikeli"
 
 #: data/toc.xml.in.h:15
-msgid "Multimedia Applications"
-msgstr "Izithobo zomxhumanisi ngobuningi"
+msgid "Programming"
+msgstr ""
 
 #: data/toc.xml.in.h:16
-msgid "Office and Productivity Applications"
-msgstr "Isikhungathi kanye nezithobo zokukhiqiza"
-
-#: data/toc.xml.in.h:17
-msgid "Scientific Applications"
+#, fuzzy
+msgid "Scientific"
 msgstr "Izithobo zesayensi"
 
+#: data/toc.xml.in.h:17
+msgid "Sound &amp; Video"
+msgstr ""
+
 #: data/toc.xml.in.h:18
-msgid "Securities"
-msgstr "Abavikeli"
+#, fuzzy
+msgid "System Tools"
+msgstr "Ukushaya kohlelo"
 
 #: data/toc.xml.in.h:19
-msgid "System"
-msgstr "Uhlelo"
-
-#: data/toc.xml.in.h:20
-msgid "Utilities"
-msgstr "Izinto ezisizayo"
-
-#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X Izithoba"
 
 #: data/ui/yelp.glade.h:1
-msgid "*"
-msgstr "*"
+msgid "<b>Accessibility</b>"
+msgstr ""
 
 #: data/ui/yelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>_Title:</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
+msgid "Add Bookmark"
+msgstr ""
+
+#: data/ui/yelp.glade.h:5
+#, fuzzy
+msgid "Bookmarks"
+msgstr "Incwadi"
+
+#: data/ui/yelp.glade.h:6
 msgid "C_ase sensitive"
 msgstr "Iz_wela umbhalo"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:7
 msgid "Find"
 msgstr "Thola"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:8
+#, fuzzy
+msgid "Open Location"
+msgstr "Ukunikela"
+
+#: data/ui/yelp.glade.h:9
+#, fuzzy
+msgid "Preferences"
+msgstr "Amaphatho"
+
+#: data/ui/yelp.glade.h:10
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
 msgid "_Find: "
 msgstr "_Thola: "
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:12
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:13
+#, fuzzy
+msgid "_Location:"
+msgstr "Ukunikela"
+
+#: data/ui/yelp.glade.h:14
 msgid "_Next"
 msgstr "_Okulandelayo"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:15
 msgid "_Previous"
 msgstr "_Okudlulile"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:16
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:17
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:18
 msgid "_Wrap around"
 msgstr "_Zongoloza"
 
-#: src/GNOME_Yelp.server.in.h:1
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -136,532 +311,662 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Ifektri ye-Yelp"
 
-#: src/yelp-db-pager.c:438 src/yelp-man-pager.c:301
-msgid "No href attribute found on yelp:document"
-msgstr "Asitholakalanga isifanekiso href phezu ko yelp:document"
+#: src/yelp-db-pager.c:238
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not well-formed XML."
+msgstr ""
 
-#: src/yelp-db-pager.c:453 src/yelp-man-pager.c:316
-msgid "Out of memory"
-msgstr "Umqondo ugcwele"
-
-#: src/yelp-db-pager.c:641 src/yelp-man-pager.c:370
-msgid "Titlepage"
-msgstr "Isihlokokhasi"
-
-#: src/yelp-db-pager.c:643 src/yelp-man-pager.c:372
-#: stylesheets/l10n.xml.in.h:30
-msgid "Contents"
-msgstr "Okuqukethwe"
-
-#: src/yelp-db-pager.c:661 src/yelp-man-pager.c:390
-#: stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:486
 msgid "Unknown"
 msgstr "Akwaziwa"
 
+#: src/yelp-error.c:42 src/yelp-error.c:58
+msgid "An unknown error occured"
+msgstr ""
+
 #: src/yelp-error.c:46
-msgid "The selected document could not be opened"
-msgstr "Umbhalo okhethiwe awuvulekile"
+msgid "Could not load document"
+msgstr ""
+
+#: src/yelp-error.c:48
+#, fuzzy
+msgid "Could not load section"
+msgstr "Ihlulekile ukuvula ifasitela elisha."
+
+#: src/yelp-error.c:50
+#, fuzzy
+msgid "Could not read the table of contents"
+msgstr "Ihlulekile ukufaka ihele OMF '%s'."
 
 #: src/yelp-error.c:52
-msgid "The selected page could not be found in this document."
-msgstr "Ikhasi elikhethiwe alitholakalanga kulombhalo."
+msgid "Unsupported Format"
+msgstr ""
 
-#: src/yelp-error.c:58
-msgid "The table of contents could not be read."
-msgstr "Uhlu lokuqukethwe alifundiwe."
+#: src/yelp-error.c:54
+msgid "Could not read document"
+msgstr ""
 
-#: src/yelp-error.c:64
-msgid "DocBook SGML documents are no longer supported."
-msgstr "Imibhalo DocBook SGML ayisaxhaswa."
+#: src/yelp-error.c:56
+msgid "Could not process document"
+msgstr ""
 
-#: src/yelp-error.c:70
-msgid "The selected file could not be read."
-msgstr "Ihele elikhethiwe alifundiwe."
+#: src/yelp-error.c:66
+msgid "No information is available about the error."
+msgstr ""
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "Cacisa umkhondo wokufihla ofanele ukuwusebenzisa"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Ihlulekile ukusebenzisa Iklewuza: '%s'"
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Ihlulekile ukuvula ifasitela elisha."
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
-msgid "X11"
-msgstr "X11"
+#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+msgid "Help"
+msgstr "Usizo"
 
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
-msgid "OpenSSL"
-msgstr "OpenSSL"
+#: src/yelp-man-pager.c:164
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
+"formatted incorrectly."
+msgstr ""
 
-#: src/yelp-man.c:306
-msgid "Termcap"
-msgstr "Termcap"
+#: src/yelp-pager.c:120
+#, fuzzy
+msgid "Document Information"
+msgstr "Khulula ulwazi"
 
-#: src/yelp-man.c:322
-msgid "Perl"
-msgstr "Perl"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr ""
 
-#: src/yelp-man.c:327
-msgid "Qt"
-msgstr "Qt"
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use 201C, 201D, or 201E.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:149
+msgid "yelp-watermark-blockquote-201C"
+msgstr ""
 
-#: src/yelp-man.c:337
-msgid "TIFF"
-msgstr "TIFF"
-
-#: src/yelp-man.c:342
-msgid "PThreads"
-msgstr "PThreads"
-
-#: src/yelp-man.c:364
-msgid "System Calls"
-msgstr "Ukushaya kohlelo"
-
-#: src/yelp-man.c:369
-msgid "Library Functions"
-msgstr "Umtapo womtholalwazi"
-
-#: src/yelp-man.c:374
-msgid "Kernel Routines"
-msgstr "Izindlela zomnyobo"
-
-#: src/yelp-man.c:439
-msgid "Hardware Devices"
-msgstr "Uzitho zokwakha isiga-nyezi"
-
-#: src/yelp-man.c:444
-msgid "Configuration Files"
-msgstr "Ukumiswa kohele"
-
-#: src/yelp-man.c:449
-msgid "Games"
-msgstr "Imidlalo"
-
-#: src/yelp-man.c:454
-msgid "Overviews"
-msgstr "Ukubuka udlulisa"
-
-#: src/yelp-man.c:459
-msgid "System Administration"
-msgstr "Ukubusa isiga-nyezi"
-
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "Umbhalo URI"
-
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "URI yombhalo kumelwe yenziwe"
-
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Ukumisa ukubala isikhashana akuvumelani."
 
-#: src/yelp-toc-pager.c:487
+#: src/yelp-toc-pager.c:491
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Ihlulekile ukufaka ihele OMF '%s'."
 
-#: src/yelp-toc-pager.c:884
-msgid "Categories"
-msgstr "Uhlobo"
+#: src/yelp-toc-pager.c:680
+#, c-format
+msgid "Read man page for %s"
+msgstr ""
 
-#: src/yelp-toc-pager.c:898
-msgid "Documents"
-msgstr "Imibhalo"
+#: src/yelp-toc-pager.c:765
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
 
-#: src/yelp-window.c:249
-msgid "/_File"
+#: src/yelp-toc-pager.c:873
+#, c-format
+msgid ""
+"The table of contents could not be processed. The file ‘%s’ is either "
+"missing or is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+msgid "No href attribute found on yelp:document"
+msgstr "Asitholakalanga isifanekiso href phezu ko yelp:document"
+
+#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+msgid "Out of memory"
+msgstr "Umqondo ugcwele"
+
+#: src/yelp-window.c:302
+#, fuzzy
+msgid "_File"
 msgstr "/_Ihele"
 
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "/Ihele/_Ifasitela elisha"
-
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "/Ihele/_Vala ifasitela"
-
-#: src/yelp-window.c:257
-msgid "/_Edit"
+#: src/yelp-window.c:303
+#, fuzzy
+msgid "_Edit"
 msgstr "/_Hlela"
 
-#: src/yelp-window.c:258
-msgid "/Edit/_Find..."
-msgstr "/Hlela/_Thola..."
-
-#: src/yelp-window.c:261
-msgid "/Edit/Find Ne_xt"
-msgstr "/Hlela/Thola Okula_ndelayo"
-
-#: src/yelp-window.c:264
-msgid "/Edit/Find Pre_vious"
-msgstr "/Hlela/Thola Okudlu_lileyo"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
+#: src/yelp-window.c:304
+#, fuzzy
+msgid "_Go"
 msgstr "/_Hamba"
 
-#: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "/Hamba/_Emuva"
+#: src/yelp-window.c:305
+msgid "_Bookmarks"
+msgstr ""
 
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "/Hamba/_Phambili"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "/Hamba/_Ekhaya"
-
-#: src/yelp-window.c:278
-msgid "/Go/"
-msgstr "/Hamba/"
-
-#: src/yelp-window.c:279
-msgid "/Go/_Previous Page"
-msgstr "/Hamba/_Ikhasi elidlulile"
-
-#: src/yelp-window.c:282
-msgid "/Go/_Next Page"
-msgstr "/Hamba/_Ikhasi elilandelayo"
-
-#: src/yelp-window.c:285
-msgid "/Go/_Contents"
-msgstr "/Hamba/_Okuqukethwe"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
+#: src/yelp-window.c:306
+#, fuzzy
+msgid "_Help"
 msgstr "/_Usizo"
 
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "/Usizo/_Nge"
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_New Window"
+msgstr "/Ihele/_Ifasitela elisha"
 
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "Isiyaluzi sosizo"
+#: src/yelp-window.c:314
+#, fuzzy
+msgid "About This Document"
+msgstr "Ngalo luhlelo"
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Isiqephu"
+#: src/yelp-window.c:319
+msgid "Open _Location"
+msgstr ""
 
-#: src/yelp-window.c:625
-msgid "Back"
+#: src/yelp-window.c:324
+#, fuzzy
+msgid "_Close Window"
+msgstr "/Ihele/_Vala ifasitela"
+
+#: src/yelp-window.c:330
+msgid "_Copy"
+msgstr ""
+
+#: src/yelp-window.c:336
+#, fuzzy
+msgid "_Select All"
+msgstr "Phinda ubheke"
+
+#: src/yelp-window.c:341
+#, fuzzy
+msgid "_Find..."
+msgstr "/Hlela/_Thola..."
+
+#: src/yelp-window.c:346
+#, fuzzy
+msgid "_Preferences"
+msgstr "Amaphatho"
+
+#: src/yelp-window.c:351
+msgid "_Reload"
+msgstr ""
+
+#: src/yelp-window.c:357
+#, fuzzy
+msgid "_Back"
 msgstr "Emuva"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:359
 msgid "Show previous page in history"
 msgstr "Khombisa ikhasi elidlulile emlandweni"
 
-#: src/yelp-window.c:636
-msgid "Forward"
+#: src/yelp-window.c:362
+#, fuzzy
+msgid "_Forward"
 msgstr "Phambili"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:364
 msgid "Show next page in history"
 msgstr "Khombisa ikhasi elilandelayo elandweni"
 
-#: src/yelp-window.c:649
-msgid "Home"
+#: src/yelp-window.c:367
+#, fuzzy
+msgid "_Home"
 msgstr "Ekhaya"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:369
 msgid "Go to home view"
 msgstr "Hamaba uyobheka ekhaya"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:372
+#, fuzzy
+msgid "_Previous Section"
+msgstr "_Okudlulile"
+
+#: src/yelp-window.c:377
+#, fuzzy
+msgid "_Next Section"
+msgstr "Isiqephu"
+
+#: src/yelp-window.c:382
+#, fuzzy
+msgid "_Contents"
+msgstr "Okuqukethwe"
+
+#: src/yelp-window.c:388
+msgid "_Add Bookmark"
+msgstr ""
+
+#: src/yelp-window.c:393
+msgid "_Edit Bookmarks..."
+msgstr ""
+
+#: src/yelp-window.c:399
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:404
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:409
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:415
+#, fuzzy
+msgid "_About"
+msgstr "/Usizo/_Nge"
+
+#: src/yelp-window.c:466
+msgid "Help Browser"
+msgstr "Isiyaluzi sosizo"
+
+#: src/yelp-window.c:697 src/yelp-window.c:830
+msgid "The Uniform Resource Identifier for the file is invalid."
+msgstr ""
+
+#: src/yelp-window.c:709 src/yelp-window.c:825
+#, c-format
+msgid ""
+"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+"actual file."
+msgstr ""
+
+#: src/yelp-window.c:786 src/yelp-window.c:1124
+msgid "Man pages are not supported in this version."
+msgstr ""
+
+#: src/yelp-window.c:796 src/yelp-window.c:1115
+msgid "GNU info pages are not supported in this version"
+msgstr ""
+
+#: src/yelp-window.c:806
+msgid ""
+"SGML documents are no longer supported. Please ask the author of the "
+"document to convert to XML."
+msgstr ""
+
+#: src/yelp-window.c:1021
+#, fuzzy
+msgid "Fin_d"
+msgstr "Thola"
+
+#: src/yelp-window.c:1141
+#, c-format
+msgid ""
+"A transformation context could not be created for the file ‘%s’. The format "
+"may not be supported."
+msgstr ""
+
+#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#, c-format
+msgid ""
+"The section ‘%s’ does not exist in this document. If you were directed to "
+"this section from a Help button in an application, please report this to the "
+"maintainers of that application."
+msgstr ""
+
+#: src/yelp-window.c:1286
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+
+#: src/yelp-window.c:1320
 msgid "Loading..."
 msgstr "Isafaka..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1304
-msgid "translator_credits"
+#: src/yelp-window.c:2131
+#, fuzzy
+msgid "translator-credits"
 msgstr ""
-"Translate.org.za <info@translate.org.za>"
-"Kemi Translations <mondeh@webmail.co.za>"
-
-#: src/yelp-window.c:1310
-msgid "A Help Browser for GNOME"
-msgstr "Isiyaluzi sosizo se GNOME"
-
-#: stylesheets/l10n.xml.in.h:1
-msgid "&#8216;"
-msgstr "&#8216;"
-
-#: stylesheets/l10n.xml.in.h:2
-msgid "&#8217;"
-msgstr "&#8217;"
-
-#: stylesheets/l10n.xml.in.h:3
-msgid "&#8220;"
-msgstr "&#8220;"
-
-#: stylesheets/l10n.xml.in.h:4
-msgid "&#8221;"
-msgstr "&#8221;"
-
-#: stylesheets/l10n.xml.in.h:5
-msgid "About This Article"
-msgstr "Ngalo munci"
-
-#: stylesheets/l10n.xml.in.h:6
-msgid "About This Bibliography"
-msgstr "Ngalo luhlelo oluphathelene nezincwadi"
-
-#: stylesheets/l10n.xml.in.h:7
-msgid "About This Book"
-msgstr "Ngale ncwadi"
-
-#: stylesheets/l10n.xml.in.h:8
-msgid "About This Chapter"
-msgstr "Ngale sahluko"
-
-#: stylesheets/l10n.xml.in.h:9
-msgid "About This Entry"
-msgstr "Ngalo kungena"
-
-#: stylesheets/l10n.xml.in.h:10
-msgid "About This Glossary"
-msgstr "Ngalo luhlu lwezincasiselo zamazwi alukhuni"
-
-#: stylesheets/l10n.xml.in.h:11
-msgid "About This Index"
-msgstr "Ngale sicubunguli"
-
-#: stylesheets/l10n.xml.in.h:12
-msgid "About This Part"
-msgstr "Ngale ngxenye"
-
-#: stylesheets/l10n.xml.in.h:13
-msgid "About This Preface"
-msgstr "Ngale sanduleliso"
-
-#: stylesheets/l10n.xml.in.h:14
-msgid "About This Reference"
-msgstr "Ngala maphatho"
-
-#: stylesheets/l10n.xml.in.h:15
-msgid "About This Section"
-msgstr "Ngale siqephu"
-
-#: stylesheets/l10n.xml.in.h:16
-msgid "About This Set"
-msgstr "Ngalo luhlelo"
-
-#: stylesheets/l10n.xml.in.h:17
-msgid "Affiliation"
-msgstr "Isingeno"
-
-#: stylesheets/l10n.xml.in.h:18
-msgid "Appendix"
-msgstr "Isingezo"
-
-#: stylesheets/l10n.xml.in.h:19
-msgid "Article"
-msgstr "Umunci"
-
-#: stylesheets/l10n.xml.in.h:20
-msgid "Audience"
-msgstr "Izilaleli"
-
-#: stylesheets/l10n.xml.in.h:21
-msgid "Author"
-msgstr "Umqambi"
-
-#: stylesheets/l10n.xml.in.h:22
-msgid "Authors"
-msgstr "Abaqambi"
-
-#: stylesheets/l10n.xml.in.h:23
-msgid "Bibliography"
-msgstr "Uhlelo oluphathelene nezincwadi"
-
-#: stylesheets/l10n.xml.in.h:24
-msgid "Book"
-msgstr "Incwadi"
-
-#: stylesheets/l10n.xml.in.h:25
-msgid "Caution"
-msgstr "Isixwayiso"
-
-#: stylesheets/l10n.xml.in.h:26
-msgid "Chapter"
-msgstr "Isahluko"
-
-#: stylesheets/l10n.xml.in.h:27
-msgid "Collaborator"
-msgstr "Umbambisani"
-
-#: stylesheets/l10n.xml.in.h:28
-msgid "Collaborators"
-msgstr "Ababambisani"
-
-#: stylesheets/l10n.xml.in.h:29
-msgid "Colophon"
-msgstr "Colophon"
-
-#: stylesheets/l10n.xml.in.h:31
-msgid "Copyright"
-msgstr "Ilungelo lombhali"
-
-#: stylesheets/l10n.xml.in.h:32
-msgid "Copyrights"
-msgstr "Amalungelo wababhali"
-
-#: stylesheets/l10n.xml.in.h:33
-msgid "Date"
-msgstr "Usuku lwenyanga"
-
-#: stylesheets/l10n.xml.in.h:34
-msgid "Dedication"
-msgstr "Ukunikela"
-
-#: stylesheets/l10n.xml.in.h:35
-msgid "Editor"
-msgstr "Umhleli"
-
-#: stylesheets/l10n.xml.in.h:37
-msgid "Email"
-msgstr "Umyalezonyezi"
-
-#: stylesheets/l10n.xml.in.h:38
-msgid "Example"
-msgstr "Isibonelo"
-
-#: stylesheets/l10n.xml.in.h:39
-msgid "Figure"
-msgstr "Isibalo"
-
-#: stylesheets/l10n.xml.in.h:40
-msgid "Glossary"
-msgstr "Uhlu lwezincasiselo zamazwi alukhuni"
-
-#: stylesheets/l10n.xml.in.h:41
-msgid "Important"
-msgstr "Okubalulekile"
-
-#: stylesheets/l10n.xml.in.h:42
-msgid "Index"
-msgstr "Sicubunguli"
-
-#: stylesheets/l10n.xml.in.h:43
-msgid "Legal Notice"
-msgstr "Isaziso esisemthethweni"
-
-#: stylesheets/l10n.xml.in.h:44
-msgid "Level"
-msgstr "Izinga"
-
-#: stylesheets/l10n.xml.in.h:45
-msgid "Message Audience"
-msgstr "Umyalezo wezilaleli"
-
-#: stylesheets/l10n.xml.in.h:46
-msgid "Message Level"
-msgstr "Izinga lomyalezo"
-
-#: stylesheets/l10n.xml.in.h:47
-msgid "Message Origin"
-msgstr "Umyalezo womdabu"
-
-#: stylesheets/l10n.xml.in.h:48
-msgid "Note"
-msgstr "Phawula"
-
-#: stylesheets/l10n.xml.in.h:49
-msgid "Origin"
-msgstr "Umdabu"
-
-#: stylesheets/l10n.xml.in.h:50
-msgid "Other Contributor"
-msgstr "Omunye umnikeli"
-
-#: stylesheets/l10n.xml.in.h:51
-msgid "Other Contributors"
-msgstr "Abanye abanikeli"
-
-#: stylesheets/l10n.xml.in.h:52
-msgid "Part"
-msgstr "Ingxenye"
-
-#: stylesheets/l10n.xml.in.h:53
-msgid "Preface"
-msgstr "Isanduleliso"
-
-#: stylesheets/l10n.xml.in.h:54
-msgid "Publisher"
-msgstr "Umazisi"
-
-#: stylesheets/l10n.xml.in.h:55
-msgid "Publishers"
-msgstr "Abazisi"
-
-#: stylesheets/l10n.xml.in.h:56
-msgid "Reference"
-msgstr "Amaphatho"
-
-#: stylesheets/l10n.xml.in.h:57
-msgid "Reference Entry"
-msgstr "Amaphatho okungena"
-
-#: stylesheets/l10n.xml.in.h:58
-msgid "Reference Section"
-msgstr "Isiqephu samaphatho"
-
-#: stylesheets/l10n.xml.in.h:59
-msgid "Release Information"
-msgstr "Khulula ulwazi"
-
-#: stylesheets/l10n.xml.in.h:60
-msgid "Revision History"
-msgstr "Umlando ophindiwe"
-
-#: stylesheets/l10n.xml.in.h:62
-msgid "See"
-msgstr "Bheka"
-
-#: stylesheets/l10n.xml.in.h:63
-msgid "See Also"
-msgstr "Phinda ubheke"
-
-#: stylesheets/l10n.xml.in.h:64
-msgid "Set Index"
-msgstr "Bheka isicubunguli"
-
-#: stylesheets/l10n.xml.in.h:65
-msgid "Table"
-msgstr "Uhlu"
-
-#: stylesheets/l10n.xml.in.h:66
-msgid "Table of Contents"
-msgstr "Uhlu lweziqikithi"
-
-#: stylesheets/l10n.xml.in.h:67
-msgid "Tip"
-msgstr "Icebo"
-
-#: stylesheets/l10n.xml.in.h:68
-msgid "Title"
-msgstr "Isihloko"
-
-#: stylesheets/l10n.xml.in.h:70
-msgid "Warning"
-msgstr "Isixwayiso"
-
-#: yelp.desktop.in.h:1
+"Translate.org.za <info@translate.org.za>Kemi Translations <mondeh@webmail.co."
+"za>"
+
+#: src/yelp-window.c:2136
+msgid "A documentation browser and viewer for the Gnome Desktop."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:194
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"improperly formatted."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#, c-format
+msgid ""
+"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
+"is not a valid XSLT stylesheet."
+msgstr ""
+
+#: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Thola usizo nge GNOME"
 
-#: yelp.desktop.in.h:2
-msgid "Help"
-msgstr "Usizo"
+#~ msgid "Development Environments"
+#~ msgstr "Indawo zentuthuko"
 
+#~ msgid "Development Tools"
+#~ msgstr "Amathulusi entuthuko"
+
+#~ msgid "Editors"
+#~ msgstr "Abahleli"
+
+#~ msgid "Games and Entertainment"
+#~ msgstr "Imidlalo nokuzijabulisa"
+
+#~ msgid "General"
+#~ msgstr "Jikelele"
+
+#~ msgid "Internet Applications"
+#~ msgstr "Izithobo zolwembu"
+
+#~ msgid "Kernels"
+#~ msgstr "Iingqikithi zokusebenza kohlelo"
+
+#~ msgid "Multimedia Applications"
+#~ msgstr "Izithobo zomxhumanisi ngobuningi"
+
+#~ msgid "Office and Productivity Applications"
+#~ msgstr "Isikhungathi kanye nezithobo zokukhiqiza"
+
+#~ msgid "Securities"
+#~ msgstr "Abavikeli"
+
+#~ msgid "System"
+#~ msgstr "Uhlelo"
+
+#~ msgid "Utilities"
+#~ msgstr "Izinto ezisizayo"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "Titlepage"
+#~ msgstr "Isihlokokhasi"
+
+#~ msgid "The selected document could not be opened"
+#~ msgstr "Umbhalo okhethiwe awuvulekile"
+
+#~ msgid "The selected page could not be found in this document."
+#~ msgstr "Ikhasi elikhethiwe alitholakalanga kulombhalo."
+
+#~ msgid "The table of contents could not be read."
+#~ msgstr "Uhlu lokuqukethwe alifundiwe."
+
+#~ msgid "DocBook SGML documents are no longer supported."
+#~ msgstr "Imibhalo DocBook SGML ayisaxhaswa."
+
+#~ msgid "The selected file could not be read."
+#~ msgstr "Ihele elikhethiwe alifundiwe."
+
+#~ msgid "X11"
+#~ msgstr "X11"
+
+#~ msgid "OpenSSL"
+#~ msgstr "OpenSSL"
+
+#~ msgid "Termcap"
+#~ msgstr "Termcap"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+
+#~ msgid "PThreads"
+#~ msgstr "PThreads"
+
+#~ msgid "Document URI"
+#~ msgstr "Umbhalo URI"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "URI yombhalo kumelwe yenziwe"
+
+#~ msgid "Categories"
+#~ msgstr "Uhlobo"
+
+#~ msgid "Documents"
+#~ msgstr "Imibhalo"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Hlela/Thola Okula_ndelayo"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Hlela/Thola Okudlu_lileyo"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Hamba/_Emuva"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Hamba/_Phambili"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Hamba/_Ekhaya"
+
+#~ msgid "/Go/"
+#~ msgstr "/Hamba/"
+
+#~ msgid "/Go/_Previous Page"
+#~ msgstr "/Hamba/_Ikhasi elidlulile"
+
+#~ msgid "/Go/_Next Page"
+#~ msgstr "/Hamba/_Ikhasi elilandelayo"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/Hamba/_Okuqukethwe"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "Isiyaluzi sosizo se GNOME"
+
+#~ msgid "&#8216;"
+#~ msgstr "&#8216;"
+
+#~ msgid "&#8217;"
+#~ msgstr "&#8217;"
+
+#~ msgid "&#8220;"
+#~ msgstr "&#8220;"
+
+#~ msgid "&#8221;"
+#~ msgstr "&#8221;"
+
+#~ msgid "About This Article"
+#~ msgstr "Ngalo munci"
+
+#~ msgid "About This Bibliography"
+#~ msgstr "Ngalo luhlelo oluphathelene nezincwadi"
+
+#~ msgid "About This Book"
+#~ msgstr "Ngale ncwadi"
+
+#~ msgid "About This Chapter"
+#~ msgstr "Ngale sahluko"
+
+#~ msgid "About This Entry"
+#~ msgstr "Ngalo kungena"
+
+#~ msgid "About This Glossary"
+#~ msgstr "Ngalo luhlu lwezincasiselo zamazwi alukhuni"
+
+#~ msgid "About This Index"
+#~ msgstr "Ngale sicubunguli"
+
+#~ msgid "About This Part"
+#~ msgstr "Ngale ngxenye"
+
+#~ msgid "About This Preface"
+#~ msgstr "Ngale sanduleliso"
+
+#~ msgid "About This Reference"
+#~ msgstr "Ngala maphatho"
+
+#~ msgid "About This Section"
+#~ msgstr "Ngale siqephu"
+
+#~ msgid "Affiliation"
+#~ msgstr "Isingeno"
+
+#~ msgid "Appendix"
+#~ msgstr "Isingezo"
+
+#~ msgid "Article"
+#~ msgstr "Umunci"
+
+#~ msgid "Audience"
+#~ msgstr "Izilaleli"
+
+#~ msgid "Author"
+#~ msgstr "Umqambi"
+
+#~ msgid "Authors"
+#~ msgstr "Abaqambi"
+
+#~ msgid "Bibliography"
+#~ msgstr "Uhlelo oluphathelene nezincwadi"
+
+#~ msgid "Caution"
+#~ msgstr "Isixwayiso"
+
+#~ msgid "Chapter"
+#~ msgstr "Isahluko"
+
+#~ msgid "Collaborator"
+#~ msgstr "Umbambisani"
+
+#~ msgid "Collaborators"
+#~ msgstr "Ababambisani"
+
+#~ msgid "Colophon"
+#~ msgstr "Colophon"
+
+#~ msgid "Copyright"
+#~ msgstr "Ilungelo lombhali"
+
+#~ msgid "Copyrights"
+#~ msgstr "Amalungelo wababhali"
+
+#~ msgid "Date"
+#~ msgstr "Usuku lwenyanga"
+
+#~ msgid "Editor"
+#~ msgstr "Umhleli"
+
+#~ msgid "Email"
+#~ msgstr "Umyalezonyezi"
+
+#~ msgid "Example"
+#~ msgstr "Isibonelo"
+
+#~ msgid "Figure"
+#~ msgstr "Isibalo"
+
+#~ msgid "Glossary"
+#~ msgstr "Uhlu lwezincasiselo zamazwi alukhuni"
+
+#~ msgid "Important"
+#~ msgstr "Okubalulekile"
+
+#~ msgid "Index"
+#~ msgstr "Sicubunguli"
+
+#~ msgid "Legal Notice"
+#~ msgstr "Isaziso esisemthethweni"
+
+#~ msgid "Level"
+#~ msgstr "Izinga"
+
+#~ msgid "Message Audience"
+#~ msgstr "Umyalezo wezilaleli"
+
+#~ msgid "Message Level"
+#~ msgstr "Izinga lomyalezo"
+
+#~ msgid "Message Origin"
+#~ msgstr "Umyalezo womdabu"
+
+#~ msgid "Note"
+#~ msgstr "Phawula"
+
+#~ msgid "Origin"
+#~ msgstr "Umdabu"
+
+#~ msgid "Other Contributors"
+#~ msgstr "Abanye abanikeli"
+
+#~ msgid "Part"
+#~ msgstr "Ingxenye"
+
+#~ msgid "Preface"
+#~ msgstr "Isanduleliso"
+
+#~ msgid "Publisher"
+#~ msgstr "Umazisi"
+
+#~ msgid "Publishers"
+#~ msgstr "Abazisi"
+
+#~ msgid "Reference Entry"
+#~ msgstr "Amaphatho okungena"
+
+#~ msgid "Reference Section"
+#~ msgstr "Isiqephu samaphatho"
+
+#~ msgid "Revision History"
+#~ msgstr "Umlando ophindiwe"
+
+#~ msgid "See"
+#~ msgstr "Bheka"
+
+#~ msgid "Set Index"
+#~ msgstr "Bheka isicubunguli"
+
+#~ msgid "Table"
+#~ msgstr "Uhlu"
+
+#~ msgid "Table of Contents"
+#~ msgstr "Uhlu lweziqikithi"
+
+#~ msgid "Tip"
+#~ msgstr "Icebo"
+
+#~ msgid "Title"
+#~ msgstr "Isihloko"
+
+#~ msgid "Warning"
+#~ msgstr "Isixwayiso"

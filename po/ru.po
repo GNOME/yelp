@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelpn"
+"Project-Id-Version: yelpnReport-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-23 12:46+0100\n"
+"POT-Creation-Date: 2005-01-02 23:42-0600\n"
 "PO-Revision-Date: 2004-12-23 15:37+0200\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team:  <gnome-cyr@gnome.org>\n"
@@ -49,7 +49,7 @@ msgstr "Функции ядра"
 msgid "Library Functions"
 msgstr "Библиотечные функции"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:780
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
 msgid "Man Pages"
 msgstr "Страницы руководства"
 
@@ -137,7 +137,7 @@ msgstr "Обучающие приложения"
 msgid "Graphics"
 msgstr "Графика"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1060
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
 msgid "Help Contents"
 msgstr "Содержание Справки"
 
@@ -190,58 +190,68 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Шрифты</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Title:</b>"
+msgstr "<b>Шрифты</b>"
+
+#: data/ui/yelp.glade.h:4
+#, fuzzy
+msgid "Add Bookmark"
+msgstr "_Добавить закладку"
+
+#: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:6
 msgid "C_ase sensitive"
 msgstr "_Учитывать регистр"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:7
 msgid "Find"
 msgstr "Найти"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:8
 msgid "Open Location"
 msgstr "Открыть адрес"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:9
 msgid "Preferences"
 msgstr "Параметры"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:10
 msgid "_Browse with caret"
 msgstr "_Отображать курсор"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:11
 msgid "_Find: "
 msgstr "На_йти: "
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:12
 msgid "_Fixed width:"
 msgstr "_Фиксированная ширина:"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Location:"
 msgstr "_Адрес:"
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Next"
 msgstr "_Следующее"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Previous"
 msgstr "_Предыдущее"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Use system fonts"
 msgstr "_Использовать системные шрифты"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Variable width:"
 msgstr "_Переменная ширина:"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Wrap around"
 msgstr "Пере_ходить к началу"
 
@@ -277,7 +287,7 @@ msgstr "Использовать системные шрифты"
 msgid "Use the systems default fonts."
 msgstr "Использовать системные шрифты по умолчанию."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2044
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
 msgid "Yelp"
 msgstr "Справка"
 
@@ -285,41 +295,50 @@ msgstr "Справка"
 msgid "Yelp Factory"
 msgstr "Фабрика программы справки"
 
-#: src/yelp-db-pager.c:527
-msgid "Titlepage"
-msgstr "Титульная страница"
+#: src/yelp-db-pager.c:238
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not well-formed XML."
+msgstr ""
 
-#: src/yelp-db-pager.c:529
-msgid "Contents"
-msgstr "Содержание"
-
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:486
 msgid "Unknown"
 msgstr "Неизв."
 
+#: src/yelp-error.c:42 src/yelp-error.c:58
+msgid "An unknown error occured"
+msgstr ""
+
 #: src/yelp-error.c:46
-msgid "The selected document could not be opened"
-msgstr "Не удалось открыть выбранный документ"
+msgid "Could not load document"
+msgstr ""
+
+#: src/yelp-error.c:48
+#, fuzzy
+msgid "Could not load section"
+msgstr "Не удалось открыть новое окно."
+
+#: src/yelp-error.c:50
+#, fuzzy
+msgid "Could not read the table of contents"
+msgstr "Не удалось загрузить файл формата OMF: \"%s\""
 
 #: src/yelp-error.c:52
-msgid "The selected page could not be found in this document."
-msgstr "Не удалось открыть выбранную страницу в этом документе."
+msgid "Unsupported Format"
+msgstr ""
 
-#: src/yelp-error.c:58
-msgid "The table of contents could not be read."
-msgstr "Не удалось прочитать содержание."
+#: src/yelp-error.c:54
+msgid "Could not read document"
+msgstr ""
 
-#: src/yelp-error.c:64
-msgid "DocBook SGML documents are no longer supported."
-msgstr "Документы в формате Docbook SGML больше не поддерживаются"
+#: src/yelp-error.c:56
+msgid "Could not process document"
+msgstr ""
 
-#: src/yelp-error.c:70
-msgid "The selected file could not be read."
-msgstr "Не удается прочитать выбранный файл"
-
-#: src/yelp-error.c:76
-msgid "The file could not be processed."
-msgstr "Не удается обработать выбранный файл."
+#: src/yelp-error.c:66
+msgid "No information is available about the error."
+msgstr ""
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -337,6 +356,13 @@ msgstr "Не удалось открыть новое окно."
 #: src/yelp-main.c:326 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Справка"
+
+#: src/yelp-man-pager.c:164
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
+"formatted incorrectly."
+msgstr ""
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -362,13 +388,12 @@ msgstr "Структура YelpDocInfo документа"
 #. use guillemets (angle quotations) should use either 00AB or AABB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use either 201C or 201E, depending on whether
-#. the opening quote is raised or at the baseline.  Note that single
+#. quotations should use 201C, 201D, or 201E.  Note that single
 #. quotation marks don't make very nice watermarks.  So if you use
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:125
+#: src/yelp-settings.c:149
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-00AB"
 
@@ -381,157 +406,263 @@ msgstr "YelpTocPager: Число остановок отрицательно."
 msgid "Could not load the OMF file '%s'."
 msgstr "Не удалось загрузить файл формата OMF: \"%s\""
 
-#: src/yelp-toc-pager.c:682
+#: src/yelp-toc-pager.c:680
 #, c-format
 msgid "Read man page for %s"
 msgstr "Просмотреть страницу руководства для %s"
 
-#: src/yelp-toc-pager.c:1005 src/yelp-xslt-pager.c:352
+#: src/yelp-toc-pager.c:765
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
+
+#: src/yelp-toc-pager.c:873
+#, c-format
+msgid ""
+"The table of contents could not be processed. The file ‘%s’ is either "
+"missing or is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Отсутстсвует атрибут ссылки"
 
-#: src/yelp-toc-pager.c:1019 src/yelp-xslt-pager.c:367
+#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Недостаточно памяти"
 
-#: src/yelp-window.c:298
+#: src/yelp-window.c:302
 msgid "_File"
 msgstr "_Файл"
 
-#: src/yelp-window.c:299
+#: src/yelp-window.c:303
 msgid "_Edit"
 msgstr "_Правка"
 
-#: src/yelp-window.c:300
+#: src/yelp-window.c:304
 msgid "_Go"
 msgstr "Пере_ход"
 
-#: src/yelp-window.c:301
+#: src/yelp-window.c:305
 msgid "_Bookmarks"
 msgstr "_Закладки"
 
-#: src/yelp-window.c:302
+#: src/yelp-window.c:306
 msgid "_Help"
 msgstr "_Справка"
 
-#: src/yelp-window.c:305
-msgid "_New window"
+#: src/yelp-window.c:309
+#, fuzzy
+msgid "_New Window"
 msgstr "_Создать окно"
 
-#: src/yelp-window.c:310
+#: src/yelp-window.c:314
+msgid "About This Document"
+msgstr ""
+
+#: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Открыть _адрес"
 
-#: src/yelp-window.c:315
-msgid "_Close window"
+#: src/yelp-window.c:324
+#, fuzzy
+msgid "_Close Window"
 msgstr "_Закрыть окно"
 
-#: src/yelp-window.c:321
+#: src/yelp-window.c:330
 msgid "_Copy"
 msgstr "_Копировать"
 
-#: src/yelp-window.c:327
+#: src/yelp-window.c:336
 msgid "_Select All"
 msgstr "Вы_делить все"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:341
 msgid "_Find..."
 msgstr "_Найти..."
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:346
 msgid "_Preferences"
 msgstr "_Параметры"
 
-#: src/yelp-window.c:342
+#: src/yelp-window.c:351
 msgid "_Reload"
 msgstr "_Перечитать"
 
-#: src/yelp-window.c:348
+#: src/yelp-window.c:357
 msgid "_Back"
 msgstr "_Назад"
 
-#: src/yelp-window.c:350
+#: src/yelp-window.c:359
 msgid "Show previous page in history"
 msgstr "Показать предыдущую страницу"
 
-#: src/yelp-window.c:353
+#: src/yelp-window.c:362
 msgid "_Forward"
 msgstr "_Вперед"
 
-#: src/yelp-window.c:355
+#: src/yelp-window.c:364
 msgid "Show next page in history"
 msgstr "Показать следующую страницу"
 
-#: src/yelp-window.c:358
+#: src/yelp-window.c:367
 msgid "_Home"
 msgstr "_В начало"
 
-#: src/yelp-window.c:360
+#: src/yelp-window.c:369
 msgid "Go to home view"
 msgstr "Перейти в начало просмотра"
 
-#: src/yelp-window.c:363
-msgid "_Previous Page"
+#: src/yelp-window.c:372
+#, fuzzy
+msgid "_Previous Section"
 msgstr "К пред_ыдущей странице"
 
-#: src/yelp-window.c:368
-msgid "_Next Page"
+#: src/yelp-window.c:377
+#, fuzzy
+msgid "_Next Section"
 msgstr "К след_ующей странице"
 
-#: src/yelp-window.c:373
+#: src/yelp-window.c:382
 msgid "_Contents"
 msgstr "_Содержание"
 
-#: src/yelp-window.c:379
+#: src/yelp-window.c:388
 msgid "_Add Bookmark"
 msgstr "_Добавить закладку"
 
-#: src/yelp-window.c:384
+#: src/yelp-window.c:393
 msgid "_Edit Bookmarks..."
 msgstr "_Изменить закладки"
 
-#: src/yelp-window.c:390
+#: src/yelp-window.c:399
 msgid "_Open Link"
 msgstr "_Открыть ссылку"
 
-#: src/yelp-window.c:395
+#: src/yelp-window.c:404
 msgid "Open Link in _New Window"
 msgstr "Открыть ссылку в _новом окне"
 
-#: src/yelp-window.c:400
+#: src/yelp-window.c:409
 msgid "_Copy Link Address"
 msgstr "_Копировать адрес ссылки"
 
-#: src/yelp-window.c:406
+#: src/yelp-window.c:415
 msgid "_About"
 msgstr "_О программе"
 
-#: src/yelp-window.c:457
+#: src/yelp-window.c:466
 msgid "Help Browser"
 msgstr "Программа просмотра справки"
 
-#: src/yelp-window.c:974
+#: src/yelp-window.c:697 src/yelp-window.c:830
+msgid "The Uniform Resource Identifier for the file is invalid."
+msgstr ""
+
+#: src/yelp-window.c:709 src/yelp-window.c:825
+#, c-format
+msgid ""
+"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+"actual file."
+msgstr ""
+
+#: src/yelp-window.c:786 src/yelp-window.c:1124
+msgid "Man pages are not supported in this version."
+msgstr ""
+
+#: src/yelp-window.c:796 src/yelp-window.c:1115
+msgid "GNU info pages are not supported in this version"
+msgstr ""
+
+#: src/yelp-window.c:806
+msgid ""
+"SGML documents are no longer supported. Please ask the author of the "
+"document to convert to XML."
+msgstr ""
+
+#: src/yelp-window.c:1021
 msgid "Fin_d"
 msgstr "_Найти"
 
-#: src/yelp-window.c:1254
+#: src/yelp-window.c:1141
+#, c-format
+msgid ""
+"A transformation context could not be created for the file ‘%s’. The format "
+"may not be supported."
+msgstr ""
+
+#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#, c-format
+msgid ""
+"The section ‘%s’ does not exist in this document. If you were directed to "
+"this section from a Help button in an application, please report this to the "
+"maintainers of that application."
+msgstr ""
+
+#: src/yelp-window.c:1286
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+
+#: src/yelp-window.c:1320
 msgid "Loading..."
 msgstr "Загружается..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2041
+#: src/yelp-window.c:2131
 msgid "translator-credits"
 msgstr ""
 "Игорь Андросов <blace@mail.ru>\n"
 "Дмитрий Мастрюков <dmitry@taurussoft.org>\n"
 "Леонид Кантер <leon@asplinux.ru>"
 
-#: src/yelp-window.c:2046
+#: src/yelp-window.c:2136
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Программа просмотра документации для среды GNOME."
+
+#: src/yelp-xslt-pager.c:194
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"improperly formatted."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#, c-format
+msgid ""
+"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
+"is not a valid XSLT stylesheet."
+msgstr ""
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Получение справки в среде GNOME"
 
+#~ msgid "Titlepage"
+#~ msgstr "Титульная страница"
+
+#~ msgid "Contents"
+#~ msgstr "Содержание"
+
+#~ msgid "The selected document could not be opened"
+#~ msgstr "Не удалось открыть выбранный документ"
+
+#~ msgid "The selected page could not be found in this document."
+#~ msgstr "Не удалось открыть выбранную страницу в этом документе."
+
+#~ msgid "The table of contents could not be read."
+#~ msgstr "Не удалось прочитать содержание."
+
+#~ msgid "DocBook SGML documents are no longer supported."
+#~ msgstr "Документы в формате Docbook SGML больше не поддерживаются"
+
+#~ msgid "The selected file could not be read."
+#~ msgstr "Не удается прочитать выбранный файл"
+
+#~ msgid "The file could not be processed."
+#~ msgstr "Не удается обработать выбранный файл."

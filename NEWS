@@ -1,3 +1,40 @@
+Changes in 2.9.2:
+-----------------
+* Added bookmarks, with much work frm Don Scorgie
+* Lots of theme-aware prettification
+* Added compile-time options for man and info, both off by default
+* Massively awesome work on info from Davyd Madeley
+* More work on man pages from James Bowes
+* Fix forkbomb on man: and info: URIs
+* Moved Titlepage to File->About This Document
+* Made reloading documents work
+* Make external links actually wore, from Don Scorgie
+* Fix 'Open Link in New Window', from Don Scorgie
+* Copy and Select All work from James Bowes
+* Enable compilation against firefox, from Christian Persch
+* Updated translations:
+  bg      (Vladimir Petkov)
+  cs      (Miloslav Trmac)
+  da      (Martin Willemoes Hansen)
+  de      (Hendrik Brandt)
+  el      (Simos Xenitellis)
+  en_CA   (Adam Weinberger)
+  en_GB   (David Lodge)
+  es      (Francisco Javier F. Serrador)
+  hu      (Laszlo Dvornik)
+  ja      (Takeshi AIHANA)
+  lt      (Žygimantas Beručka)
+  ms      (Hasbullah Bin Pit)
+  nb      (Kjartan Maraas)
+  ne      (Pawan Chitrakar)
+  nl      (Tino Meinen)
+  nso     (Zuza Software Foundation)
+  ru      (Leonid Kanter)
+  sq      (Laurent Dhima)
+  sv      (Christian Rose)
+  zh_CN   (Funda Wang)
+  zu      (Dwayne Bailey)
+
 Changes in 2.9.1:
 -----------------
 * Switch to Gecko for HTML rendering, thanks to Marco Pesenti Gritti
