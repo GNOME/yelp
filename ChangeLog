@@ -1,5 +1,9 @@
 2002-08-04  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-info.c (yelp_info_read_info_dir): 
+	- support info files that is named name.gz. Fixes #85324.
+	- Remove duplicates.
+
 	* src/yelp-window.c:
 	(window_init): don't automatically go to uri "toc:" in history. 
 	(yelp_window_new): don't open "toc:", this is now done from

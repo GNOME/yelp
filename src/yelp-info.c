@@ -33,6 +33,7 @@
 
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <ctype.h>
 #include <string.h>
 #include <stdio.h>
 #include <dirent.h>
@@ -50,39 +51,54 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 	struct dirent *dent;
 	YelpSection   *section;
 	YelpURI       *uri;
+	GHashTable    *dup_hash;
 
 	dirh = opendir (basedir);
 	if (!dirh) {
 		return;
 	}
 
+	dup_hash = g_hash_table_new_full (g_str_hash, 
+					  g_str_equal,
+					  g_free,
+					  NULL);
+
 	while ((dent = readdir (dirh))) {
-		char *ctmp = NULL;
+		char *ch = NULL;
+		char *name = NULL;
 		char *str_uri, *title;
 
 		if (dent->d_name[0] == '.') {
 			continue;
 		}
-
-		do {
-			if (ctmp) {
-				*ctmp = '\0';
-			}
-			
-			ctmp = strrchr (dent->d_name, '.');
-		} while (ctmp && strcmp (ctmp, ".info"));
-
-		if (!ctmp) {
+		
+		if ((ch = strrchr (dent->d_name, '-')) &&
+		    ch[1] &&
+		    isdigit (ch[1])) {
 			continue;
 		}
+		    
+		if ((ch = strstr (dent->d_name, ".info"))) {
+			name = g_strndup (dent->d_name, ch - dent->d_name);
+		} else {
+			while ((ch = strrchr (dent->d_name, '.'))) {
+				*ch = '\0';
+			}
+			name = g_strdup (dent->d_name);
+		}
 
-		*ctmp = '\0';
+		if (g_hash_table_lookup_extended (dup_hash, name, NULL, NULL)) {
+			g_free (name);
+			continue;
+		}
+	       
+		title = g_strdup_printf ("%s (info)", name);
 
-		title = g_strdup_printf ("%s (info)", dent->d_name);
-
-		str_uri = g_strdup_printf ("info:%s", dent->d_name);
+		str_uri = g_strdup_printf ("info:%s", name);
 		uri = yelp_uri_new (str_uri);
 		g_free (str_uri);
+		
+		g_hash_table_insert (dup_hash, name, NULL);
 
 		section = yelp_section_new (YELP_SECTION_DOCUMENT,
 					    title, uri);
@@ -91,8 +107,9 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 		yelp_uri_unref (uri);
 		
 		*info_list = g_slist_prepend (*info_list, section);
-						      
 	}
+
+	g_hash_table_destroy (dup_hash);
 
 	closedir (dirh);
 }
