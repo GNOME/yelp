@@ -1,6 +1,7 @@
 # Yelp ja.po.
 # Copyright (C) 2002-2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the Yelp package.
+# Satoru SATOH <ss@gnome.gr.jp>, 2005.
 # Takeshi AIHANA <aihana@gnome.gr.jp>, 2002-2005.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 #
@@ -8,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2005-01-03 12:38+0900\n"
-"Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
+"POT-Creation-Date: 2005-01-13 01:09+0900\n"
+"PO-Revision-Date: 2005-01-13 01:18+0900\n"
+"Last-Translator: Satoru SATOH <ss@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,9 +137,9 @@ msgstr "教育向けのアプリケーション"
 msgid "Graphics"
 msgstr "グラフィックス"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "ヘルプの目次"
+#: data/toc.xml.in.h:9
+msgid "Help Topics"
+msgstr "ヘルプトピック"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -281,16 +282,21 @@ msgid "Use system fonts"
 msgstr "システム・フォントを使用する"
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
+msgid "Use the default fonts set for the system."
 msgstr "システムのデフォルト・フォントを使用します。"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
 msgstr "Yelp ファクトリ"
+
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "<b>%s</b> というこのページのブックマークは既にあります"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -336,6 +342,15 @@ msgstr "ドキュメントを処理できませんでした"
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
 msgstr "このエラーについての情報はありません。"
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
+msgstr ""
+"ファイル '%s' を読み込み、解析できませんでした。おそらくファイルが存在しないか、または"
+"フォーマットが妥当ではないようです。"
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -392,7 +407,7 @@ msgstr "ドキュメントの YelpDocInfo 構造体"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -435,6 +450,10 @@ msgstr "yelp:document に HREF 属性がありませんでした"
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "メモリが足りません"
+
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "ヘルプの目次"
 
 #: src/yelp-window.c:302
 msgid "_File"
@@ -509,12 +528,12 @@ msgid "Show next page in history"
 msgstr "履歴の中の次のページを表示します"
 
 #: src/yelp-window.c:367
-msgid "_Home"
-msgstr "ホーム(_H)"
+msgid "_Help Topics"
+msgstr "ヘルプトピック(_H)"
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "ホームビューにジャンプします"
+msgid "Go to the listing of help topics"
+msgstr "ヘルプトピックのリストを表示"
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -567,11 +586,11 @@ msgid ""
 "actual file."
 msgstr "URI '%s' が正しくないか、または実際のファイルを指していないようです。"
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr "このバージョンでは man ページの閲覧をサポートしていません。"
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr "このバージョンでは GNU info ページの閲覧をサポートしていません。"
 
@@ -583,11 +602,19 @@ msgstr ""
 "SGML ドキュメントはサポートしなくなりました。ドキュメントの作者に XML へ変換"
 "するよう問い合わせて下さい。"
 
-#: src/yelp-window.c:1021
-msgid "Fin_d"
-msgstr "検索(_D)"
+#: src/yelp-window.c:1024
+msgid "Find:"
+msgstr "検索:"
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+msgid "Find _Next"
+msgstr "次の検索結果へ(_N)"
+
+#: src/yelp-window.c:1052
+msgid "Find _Previous"
+msgstr "前の検索結果へ(_P)"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -596,7 +623,7 @@ msgstr ""
 "ファイル '%s' 向けの変換コンテキストを生成できませんでした。おそらくサポート"
 "していないフォーマットのようです。"
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -607,7 +634,7 @@ msgstr ""
 "ケーションのメニュー [ヘルプ] が直接指しているのであれば、そのアプリケーショ"
 "ンのメンテナにバグとして報告して下さい。"
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -616,20 +643,21 @@ msgstr ""
 "ファイル '%s' を読めませんでした。おそらくファイルが存在しないか、または読み"
 "込み権限をお持ちでないようです。"
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "読み込み中..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
+"Satoru SATOH <ss@gnome.gr.jp>\n"
 "相花 毅 <aihana@gnome.gr.jp>\n"
 "KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "GNOME デスクトップ向けのドキュメント閲覧ブラウザです。"
 
@@ -642,7 +670,16 @@ msgstr ""
 "ファイル '%s' を解析できませんでした。おそらくファイルが存在しないか、または"
 "フォーマットが妥当ではないようです。"
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+"ドキュメント '%s' を処理できませんでした。おそらくファイル '%s' が存在しない"
+"か、または妥当な XSLT スタイルシートではないようです。"
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
@@ -654,3 +691,12 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "GNOME のヘルプを手にいれます"
+
+#~ msgid "_Home"
+#~ msgstr "ホーム(_H)"
+
+#~ msgid "Go to home view"
+#~ msgstr "ホームビューにジャンプします"
+
+#~ msgid "Fin_d"
+#~ msgstr "検索(_D)"
