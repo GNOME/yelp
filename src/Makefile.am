@@ -22,8 +22,8 @@ test_uri_LDADD = 							\
 	$(YELP_LIBS)
 
 install-exec-local:
-	rm -f $(bindir)/gnome-help
-	ln -s yelp $(bindir)/gnome-help
+	rm -f $(DESTDIR)$(bindir)/gnome-help
+	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
 
 yelp-marshal.h: yelp-marshal.list
 	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --header > yelp-marshal1.tmp \
