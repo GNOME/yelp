@@ -46,7 +46,7 @@ typedef struct _YelpMetafile YelpMetafile;
 typedef struct _YelpMenu     YelpMenu;
 
 struct _YelpTocPagerPriv {
-    GSList       *omf_dir_pending;
+    gboolean      omf_cl_docomf;
     GSList       *omf_pending;
 
     GSList       *man_dir_pending;
@@ -129,7 +129,7 @@ const GtkTreeModel * toc_pager_get_sections    (YelpPager         *pager);
 
 static gboolean      toc_process_pending       (YelpTocPager      *pager);
 
-static gboolean      process_omf_dir_pending   (YelpTocPager      *pager);
+static gboolean      process_omf_cl            (YelpTocPager      *pager);
 static gboolean      process_omf_pending       (YelpTocPager      *pager);
 static gboolean      process_man_dir_pending   (YelpTocPager      *pager);
 static gboolean      process_man_pending       (YelpTocPager      *pager);
@@ -283,10 +283,6 @@ toc_pager_process (YelpPager *pager)
     gchar  *manpath;
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
-    /* Set the OMF directories to be read */
-    priv->omf_dir_pending = g_slist_prepend (priv->omf_dir_pending,
-					     g_strdup (DATADIR "/omf"));
-
     /* Set the man directories to be read */
     if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
 	manpath = g_strdup (g_getenv ("MANPATH"));
@@ -309,7 +305,7 @@ toc_pager_process (YelpPager *pager)
     /* Set the info directories to be read */
 
     /* Set it running */
-    priv->pending_func = (ProcessFunction) process_omf_dir_pending;
+    priv->pending_func = (ProcessFunction) process_omf_cl;
 
     gtk_idle_add_priority (G_PRIORITY_LOW,
 			   (GtkFunction) toc_process_pending,
@@ -356,7 +352,7 @@ toc_process_pending (YelpTocPager *pager)
     readd = priv->pending_func(pager);
 
     if (!readd) {
-	if (priv->pending_func == process_omf_dir_pending)
+	if (priv->pending_func == process_omf_cl)
 	    priv->pending_func = process_omf_pending;
 	else if (priv->pending_func == process_omf_pending)
 	    priv->pending_func = process_man_dir_pending;
@@ -388,65 +384,74 @@ toc_process_pending (YelpTocPager *pager)
 	return FALSE;
 }
 
-static gboolean
-process_omf_dir_pending (YelpTocPager *pager)
+/** process_omf_cl ************************************************************/
+
+static void
+omf_cl_startElement (void           *pager,
+		     const xmlChar  *name,
+		     const xmlChar **attrs)
 {
-    GSList  *first  = NULL;
-    gchar   *dirstr = NULL;
-    GnomeVFSResult           result;
-    GnomeVFSDirectoryHandle *dir       = NULL;
-    GnomeVFSFileInfo        *file_info = NULL;
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+    if (xmlStrEqual((const xmlChar*) name, "docomf"))
+	priv->omf_cl_docomf = TRUE;
+}
 
-    YelpTocPagerPriv *priv = pager->priv;
+static void
+omf_cl_endElement (void          *pager,
+		   const xmlChar *name)
+{
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+    if (xmlStrEqual((const xmlChar*) name, "docomf"))
+	priv->omf_cl_docomf = FALSE;
+}
 
-    first = priv->omf_dir_pending;
-    priv->omf_dir_pending = g_slist_remove_link (priv->omf_dir_pending, first);
-    if (!first)
-	goto done;
+static void
+omf_cl_characters (void          *pager,
+		   const xmlChar *ch,
+		   int            len)
+{
+    gchar *omf;
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
-    dirstr = (gchar *) first->data;
-    if (!dirstr)
-	goto done;
+    if (priv->omf_cl_docomf) {
+	omf = g_strndup (ch, len);
+	priv->omf_pending = g_slist_prepend (priv->omf_pending, omf);
+    }
+}
 
-    result = gnome_vfs_directory_open (&dir, dirstr,
-				       GNOME_VFS_FILE_INFO_DEFAULT);
-    if (result != GNOME_VFS_OK)
-	goto done;
+static gboolean
+process_omf_cl (YelpTocPager *pager)
+{
+    gchar  *content_list;
+    GList  *langs;
+    gchar  *lang;
+    gchar  *command;
+    static xmlSAXHandler omf_cl_sax_handler = { 0, };
 
-    file_info = gnome_vfs_file_info_new ();
+    langs = (GList *) gnome_i18n_get_language_list (NULL);
+    if (langs && langs->data)
+	lang = (gchar *) langs->data;
+    else
+	lang = "C";
 
-    while (gnome_vfs_directory_read_next (dir, file_info) == GNOME_VFS_OK) {
-	switch (file_info->type) {
-	case GNOME_VFS_FILE_TYPE_DIRECTORY:
-	    if (strcmp (file_info->name, ".") && strcmp (file_info->name, "..")) {
-		gchar *newdir = g_strconcat (dirstr, "/", file_info->name, NULL);
-		priv->omf_dir_pending = g_slist_prepend (priv->omf_dir_pending, newdir);
-	    }
-	    break;
-	case GNOME_VFS_FILE_TYPE_REGULAR:
-	case GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
-	    priv->omf_pending =
-		g_slist_prepend (priv->omf_pending,
-				 g_strconcat (dirstr, "/", file_info->name, NULL));
-	    break;
-	default:
-	    break;
+    command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
+
+    if (g_spawn_command_line_sync (command, &content_list, NULL, NULL, NULL)) {
+	if (!omf_cl_sax_handler.startElement) {
+	    omf_cl_sax_handler.startElement = omf_cl_startElement;
+	    omf_cl_sax_handler.endElement   = omf_cl_endElement;
+	    omf_cl_sax_handler.characters   = omf_cl_characters;
+	    omf_cl_sax_handler.initialized  = TRUE;
 	}
+	content_list = g_strstrip (content_list);
+	xmlSAXUserParseFile (&omf_cl_sax_handler, pager, content_list);
     }
 
- done:
-    if (file_info)
-    	gnome_vfs_file_info_unref (file_info);
-    if (dir && !result)
-	gnome_vfs_directory_close (dir);
-    g_slist_free_1 (first);
-    g_free (dirstr);
-
-    if (priv->omf_dir_pending)
-	return TRUE;
-    else
-	return FALSE;
+    g_free (command);
+    return FALSE;
 }
+
+/** process_omf_pending *******************************************************/
 
 static gboolean
 process_omf_pending (YelpTocPager *pager)
@@ -544,7 +549,7 @@ process_omf_pending (YelpTocPager *pager)
 	     * list of preferred languages for the user.  Low numbers are best.
 	     */
 	    lang_priority = 0;
-	    langs = (GList *) gnome_i18n_get_language_list ("LC_MESSAGES");
+	    langs = (GList *) gnome_i18n_get_language_list (NULL);
 	    for ( ; langs != NULL; langs = langs->next) {
 		gchar *lang = langs->data;
 		lang_priority++;
@@ -917,7 +922,7 @@ node_get_title (xmlNodePtr node)
 	if (!xmlStrcmp (cur->name, (const xmlChar *) "title")) {
 	    gint pri = 0;
 	    xmlChar *tlang = xmlNodeGetLang (cur);
-	    GList *langs = (GList *) gnome_i18n_get_language_list ("LC_MESSAGES");
+	    GList *langs = (GList *) gnome_i18n_get_language_list (NULL);
 
 	    for ( ; langs != NULL; langs = langs->next) {
 		gchar *lang = langs->data;
