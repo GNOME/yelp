@@ -170,15 +170,12 @@
        DIV TH {padding-right: 1em; padding-left: 1em; padding-top: 0.5ex; padding-bottom: 0.5ex}
        DIV.note TD {padding-left: 0; padding-top: 0}
        DIV.note TH {padding-left: 0; padding-top: 0}
-       DIV.informaltable table {border-width: 0; border-bottom-width: 3; border-top-width: 3}
-       DIV.informaltable THEAD TR {border-bottom: solid; border-left:none; border-right: none; border-top: none}
-       DIV.informaltable TH {border-width: 0}
-       DIV.infromaltable TD[colspan] {border-width: 0}
-       DIV.informaltable TD[rowspan] {border-width: 0}
-       DIV.table table {border-width: 0; border-bottom-width: 3; border-top-width: 3}
-       DIV.table THEAD TR {border-bottom: solid; border-left:none; border-right: none; border-top: none}
-       DIV.table TH {border-width: 0}
        LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
+       DIV.informaltable TABLE {border-bottom: solid; border-bottom-width: 3; border-top: solid; border-top-width: 3}
+       DIV.informaltable TABLE THEAD TR {border-bottom: 3px solid black !IMPORTANT; border-top: 3px solid black !IMPORTANT;}
+       DIV.informaltable TH {border-bottom: 3px solid black !IMPORTANT;}
+       DIV.table TABLE {border-bottom: 3px solid black !IMPORTANT; border-top: 3px solid black !IMPORTANT;}
+       DIV.table TABLE THEAD TR {border-bottom: 3px solid black !IMPORTANT; border-top: 3px solid black !IMPORTANT;}
        DIV.revhistory TABLE {border-spacing: 0}
        H1 {font-size: 1.4em}
        H2 {font-size: 1.3em; margin-bottom: 0}
