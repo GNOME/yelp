@@ -970,7 +970,7 @@ bookmarks_read (void)
     if (doc == NULL) {
 	g_free (filename);
 	if (parser)
-		xmlFreeParserCtx (parser);
+		xmlFreeParserCtxt (parser);
 	return FALSE;
     }
 
