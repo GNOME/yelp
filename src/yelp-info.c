@@ -58,7 +58,7 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 
 	while ((dent = readdir (dirh))) {
 		char *ctmp = NULL;
-		char uribuf[128], titlebuf[128];
+		char *str_uri, *title;
 
 		if (dent->d_name[0] == '.') {
 			continue;
@@ -78,16 +78,16 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 
 		*ctmp = '\0';
 
-		strcpy (titlebuf, dent->d_name);
-		strcat (titlebuf, " (info)");
+		title = g_strdup_printf ("%s (info)", dent->d_name);
 
-		g_snprintf (uribuf, sizeof (uribuf), "info:%s", dent->d_name);
-
-		uri = yelp_uri_new (uribuf);
+		str_uri = g_strdup_printf ("info:%s", dent->d_name);
+		uri = yelp_uri_new (str_uri);
+		g_free (str_uri);
 
 		section = yelp_section_new (YELP_SECTION_DOCUMENT,
-					    titlebuf, uri);
-
+					    title, uri);
+		g_free (title);
+		
 		yelp_uri_unref (uri);
 		
 		*info_list = g_slist_prepend (*info_list, section);

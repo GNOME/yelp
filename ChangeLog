@@ -1,3 +1,10 @@
+2002-07-08  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-info.c:
+	(yelp_info_read_info_dir): Removed possibility of buffer overflow
+	  by using g_strdup_printf instead of strcpy. Fixes #87127. Thanks
+	  to Laavanya K R for finding and proposing a solution.
+
 2002-07-07  Glynn Foster  <glynn.foster@sun.com>
 
 	* yelp.desktop.in (X-GNOME-DocPath): 
