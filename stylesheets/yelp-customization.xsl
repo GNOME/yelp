@@ -11,6 +11,8 @@
 
 <xsl:param name="gdb_rootid" select="''" />
 
+<xsl:param name="gdb_multichunk" select="0" />
+
 <xsl:output encoding="ISO-8859-1" />
 
 <!--
@@ -311,7 +313,8 @@
 
 <xsl:template name="article.render.chunk">
 <xsl:param name="node" select="."/>
-  <p align="center"><xsl:value-of select="/article/articleinfo/title"/></p>
+<xsl:param name="title" select="/article/articleinfo/title"/>
+  <p align="center"><xsl:value-of select="$title"/></p>
   <table width="100%">
     <xsl:call-template name="article.chunk.navigate">
       <xsl:with-param name="node" select="$node"/>
@@ -358,31 +361,113 @@
 
 
 <xsl:template name="article.render.titlepage">
+<xsl:param name="container" select="."/>
   <xsl:call-template name="make.titlep.navbar"/>
-  <xsl:apply-templates select="/descendant::articleinfo/*" mode="titlepage.mode"/>
+  <xsl:apply-templates select="$container/*" mode="titlepage.mode"/>
   <xsl:call-template name="make.titlep.navbar"/>
 </xsl:template>
 
+<xsl:template name="yelp.render.toc">
+<xsl:param name="title" select="''" />
+  <p align="center"><xsl:value-of select="$title"/></p>
+  <xsl:call-template name="make.toc.navbar"/>
+  <xsl:element name="hr"/>
+  <p><a>
+    <xsl:attribute name="href">
+      <xsl:call-template name="titlepage.ref"/>
+    </xsl:attribute>
+    <xsl:text>About This Document</xsl:text>
+  </a></p>
+  <xsl:call-template name="component.toc"/>
+  <xsl:element name="hr"/>
+  <xsl:call-template name="make.toc.navbar"/>
+</xsl:template>
+
+<xsl:template name="yelp.multichunk">
+<xsl:param name="type"/>
+<xsl:param name="container"/>
+
+<xsl:comment> End of header </xsl:comment>
+<xsl:comment> Start of chunk: title-page </xsl:comment>
+
+<xsl:call-template name="article.render.titlepage">
+  <xsl:with-param name="container" select="$container"/>
+</xsl:call-template>
+
+<xsl:comment> End of chunk: title-page </xsl:comment>
+<xsl:comment> Start of chunk: toc </xsl:comment>
+
+<xsl:call-template name="yelp.render.toc">
+  <xsl:with-param name="title" select="$container/title"/>
+</xsl:call-template>
+
+<xsl:comment> End of chunk: toc </xsl:comment>
+
+<xsl:for-each select="sect1">
+  <xsl:comment> Start of chunk: <xsl:value-of select="@id"/> </xsl:comment>
+  <xsl:call-template name="article.render.chunk">
+   <xsl:with-param name="title" select="$container/title"/> 
+  </xsl:call-template>
+  <xsl:comment> End of chunk: <xsl:value-of select="@id"/> </xsl:comment>
+</xsl:for-each>
+
+<xsl:for-each select="sect1/sect2">
+  <xsl:comment> Start of chunk: <xsl:value-of select="@id"/> </xsl:comment>
+  <xsl:call-template name="article.render.chunk"> 
+    <xsl:with-param name="title" select="$container/title"/>
+  </xsl:call-template> 
+  <xsl:comment> End of chunk: <xsl:value-of select="@id"/> </xsl:comment>
+</xsl:for-each>
+
+<xsl:comment> Start of footer </xsl:comment>
+</xsl:template>
+
 <xsl:template match="/article">
+<xsl:call-template name="yelp.generic.root">
+  <xsl:with-param name="container" select="/article/articleinfo"/>
+  <xsl:with-param name="type" select="'article'"/>
+</xsl:call-template>
+</xsl:template>
+
+<xsl:template match="/chapter">
+<xsl:call-template name="yelp.generic.root">
+  <xsl:with-param name="container" select="/chapter/chapterinfo"/>
+  <xsl:with-param name="type" select="'chapter'"/>
+</xsl:call-template>
+</xsl:template>
+
+<xsl:template name="yelp.generic.root">
+<xsl:param name="type"/>
+<xsl:param name="container"/>
   <xsl:choose>
-    <xsl:when test="string-length($gdb_rootid) = 0">
-      <p align="center"><xsl:value-of select="/article/articleinfo/title"/></p>
-      <xsl:call-template name="make.toc.navbar"/>
-      <xsl:element name="hr"/>
-      <p><a>
-        <xsl:attribute name="href">
-          <xsl:call-template name="titlepage.ref"/>
-        </xsl:attribute>
-	<xsl:text>About This Document</xsl:text>
-      </a></p>
-      <xsl:call-template name="component.toc"/>
-      <xsl:element name="hr"/>
-      <xsl:call-template name="make.toc.navbar"/>
+    <xsl:when test="$gdb_multichunk=1">
+      <xsl:call-template name="yelp.multichunk">
+        <xsl:with-param name="type" select="$type"/>
+        <xsl:with-param name="container" select="$container"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$gdb_rootid = ''">
+      <xsl:call-template name="yelp.render.toc">
+        <xsl:with-param name="title">
+          <xsl:value-of select="$container/title"/>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
+      <xsl:call-template name="yelp.render.chunk">
+        <xsl:with-param name="container" select="$container"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="yelp.render.chunk">
+<xsl:param name="container" select="."/>
       <xsl:choose>
         <xsl:when test="$gdb_rootid='title-page'">
-          <xsl:call-template name="article.render.titlepage"/>
+          <xsl:call-template name="article.render.titlepage">
+            <xsl:with-param name="container" select="$container"/>
+          </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
          <xsl:call-template name="article.render.chunk">
@@ -390,8 +475,6 @@
          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:otherwise>
-  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
