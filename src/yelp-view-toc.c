@@ -57,11 +57,16 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
+struct YelpImportantDocsSection {
+	char *title;
+	GList *seriesids;
+};
+
 struct _YelpViewTOCPriv {
 	GtkWidget    *html_view;
 	HtmlDocument *doc;
 	GNode        *doc_tree;
-	GList        *important_docs;
+	GList        *important_sections;
 };
 
 GType
@@ -236,12 +241,12 @@ yelp_view_toc_start (YelpViewTOC *view)
 	char            *seriesid;
 	GNode           *root;
 	char            *path;
-	GList           *list;
-	gchar           *important_docs_string = _("Important documents");
+	GList           *sections, *seriesids;
 	gchar           *other_docs_string = _("Other document systems");
 	gchar           *man_string = _("Manual pages");
 	gchar           *info_string = _("Info pages");
 	gchar           *installed_string = _("Installed documents");
+	struct YelpImportantDocsSection *important_section;
 	
 	priv = view->priv;
 
@@ -256,23 +261,33 @@ yelp_view_toc_start (YelpViewTOC *view)
 	yelp_view_toc_write (view, table_start, -1);
 
 	yelp_view_toc_printf (view, 
-			      "<td valign=\"top\">\n"
-			      "<h2>%s</h2>\n"
-			      "<ul>\n", important_docs_string);
+			      "<td valign=\"top\">\n");
 
-	list = priv->important_docs;
-	while (list != NULL) {
-		seriesid = list->data;
+	sections = priv->important_sections;
+	while (sections != NULL) {
+		important_section = sections->data;
+		
+		yelp_view_toc_printf (view, 
+				      "<h2>%s</h2>\n"
+				      "<ul>\n", important_section->title);
 
-		node = yelp_scrollkeeper_lookup_seriesid (seriesid);
-		if (node) {
-			section = node->data;
-			yelp_view_toc_printf (view, 
-					      "<li><a href=\"%s\">%s</a>\n",
-					      section->uri, section->name);
+		seriesids = important_section->seriesids;
+		while (seriesids != NULL) {
+			seriesid = seriesids->data;
+
+			node = yelp_scrollkeeper_lookup_seriesid (seriesid);
+			if (node) {
+				section = node->data;
+				yelp_view_toc_printf (view, 
+						      "<li><a href=\"%s\">%s</a>\n",
+						      section->uri, section->name);
+			}
+			seriesids = seriesids->next;
 		}
 
-		list = list->next;
+		yelp_view_toc_printf (view, "</ul>\n");
+		
+		sections = sections->next;
 	}
 	
 			      
@@ -416,7 +431,7 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 {
 	GNode *first;
 	gchar *name;
-	gchar *string = _("Manual pages for section");
+	gchar *string = _("<a href=\"toc:man\">Manual pages</a>: ");
 	
 	if (root->children == NULL) {
 		return;
@@ -446,7 +461,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 	GNode           *root, *node, *child;
 	YelpSection     *section;
 	char            *path;
-	gchar           *string = _("Man page sections");
+	gchar           *string = _("Manual page sections");
 	
 	priv = view->priv;
 
@@ -465,7 +480,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, _("Man page sections"));
+	yelp_view_toc_write_header (view, _("Manual page sections"));
 	
 	yelp_view_toc_printf (view, "<h1>%s</h1>\n", string);
 	
@@ -535,7 +550,10 @@ yelp_view_read_important_docs (YelpViewTOC *view)
 	xmlDocPtr doc;
 	xmlNodePtr node;
 	xmlNodePtr child;
+	xmlNodePtr section;
+	xmlNodePtr title;
 	xmlChar *prop;
+	struct YelpImportantDocsSection *important_section;
 	
 	doc = xmlParseFile (DATADIR "/yelp/important_docs.xml");
 	if (doc == NULL)
@@ -552,17 +570,34 @@ yelp_view_read_important_docs (YelpViewTOC *view)
 		return;
 	}
 
-	child = node->children;
-	while (child) {
-		if (strcmp (child->name, "document") == 0) {
-  
-			prop = xmlGetProp (child, "seriesid");
-			if (prop) {
-				view->priv->important_docs = g_list_append (view->priv->important_docs, g_strdup (prop));
-				xmlFree (prop);
+	section = node->children;
+	while (section) {
+		if (strcmp (section->name, "section") == 0) {
+			important_section = g_new0 (struct YelpImportantDocsSection, 1);
+			
+			child = section->children;
+			while (child) {
+				if (strcmp (child->name, "title") == 0) {
+					title = child->children;
+					if (title && title->type == XML_TEXT_NODE)
+						important_section->title = g_strdup (title->content);
+				} else if (strcmp (child->name, "document") == 0) {
+					prop = xmlGetProp (child, "seriesid");
+					if (prop) {
+						important_section->seriesids =
+							g_list_append (important_section->seriesids, g_strdup (prop));
+						xmlFree (prop);
+					}
+					
+				}
+				child = child->next;
+
 			}
+			view->priv->important_sections =
+				g_list_append (view->priv->important_sections,
+					       important_section);
 		}
-		child = child->next;
+		section = section->next;
 	}
 	
 	xmlFreeDoc(doc);
