@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-03 15:26+0200\n"
-"PO-Revision-Date: 2004-04-19 21:38+0200\n"
+"POT-Creation-Date: 2004-10-10 04:14+0200\n"
+"PO-Revision-Date: 2004-10-10 13:28+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -139,25 +139,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
-#: src/yelp-db-pager.c:438 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:465 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "Geen href attribuut gevonden op yelp:document"
 
-#: src/yelp-db-pager.c:453 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:480 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: src/yelp-db-pager.c:641 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:668 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Titelpagina"
 
-#: src/yelp-db-pager.c:643 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:670 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Inhoudsopgave"
 
-#: src/yelp-db-pager.c:661 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:688 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -182,6 +182,10 @@ msgstr "DocBook SGML documenten worden niet meer ondersteund."
 #: src/yelp-error.c:70
 msgid "The selected file could not be read."
 msgstr "Het geselecteerde bestand kon niet worden gelezen."
+
+#: src/yelp-error.c:76
+msgid "The file could not be processed."
+msgstr "Het bestand kon niet worden verwerkt."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -257,145 +261,128 @@ msgstr "Overzichten"
 msgid "System Administration"
 msgstr "Systeemadministratie"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "Document URI"
+# specifieke informatie?
+#: src/yelp-pager.c:120
+msgid "Document Information"
+msgstr "Documentinformatie"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "De URI van het te verwerken document"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr "De YelpDocInfo struct van het document"
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauzerentelling is negatief."
 
-#: src/yelp-toc-pager.c:487
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Kon het OMF bestand niet laden: '%s'."
 
-#: src/yelp-toc-pager.c:884
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Categorieën"
 
-#: src/yelp-toc-pager.c:898
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Documenten"
 
-#: src/yelp-window.c:249
-msgid "/_File"
-msgstr "/_Bestand"
+#: src/yelp-window.c:241
+msgid "_File"
+msgstr "_Bestand"
 
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "/Bestand/_Nieuw venster"
+#: src/yelp-window.c:242
+msgid "_Edit"
+msgstr "Be_werken"
 
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "/Bestand/Venster _sluiten"
+#: src/yelp-window.c:243
+msgid "_Go"
+msgstr "_Ga naar"
+
+#: src/yelp-window.c:244
+msgid "_Help"
+msgstr "_Hulp"
+
+#: src/yelp-window.c:247
+msgid "_New window"
+msgstr "_Nieuw venster"
+
+#: src/yelp-window.c:252
+msgid "Open _Location"
+msgstr "_Lokatie openen"
 
 #: src/yelp-window.c:257
-msgid "/_Edit"
-msgstr "/Be_werken"
+msgid "_Close window"
+msgstr "Venster sl_uiten"
 
-#: src/yelp-window.c:258
-msgid "/Edit/_Find..."
-msgstr "/Bewerken/_Zoeken..."
-
-#: src/yelp-window.c:261
-msgid "/Edit/Find Ne_xt"
-msgstr "/Bewerken/_Volgende zoeken"
-
-#: src/yelp-window.c:264
-msgid "/Edit/Find Pre_vious"
-msgstr "/Bewerken/V_orige zoeken"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
-msgstr "/_Ga naar"
+#: src/yelp-window.c:263
+msgid "_Find..."
+msgstr "_Zoeken..."
 
 #: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "/Ga naar/V_orige"
+msgid "_Back"
+msgstr "_Terug"
 
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "/Ga naar/_Volgende"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "/Ga naar/_Startpagina"
-
-#: src/yelp-window.c:278
-msgid "/Go/"
-msgstr "/_Ga naar/"
-
-#: src/yelp-window.c:279
-msgid "/Go/_Previous Page"
-msgstr "/Ga naar/V_orige pagina"
-
-#: src/yelp-window.c:282
-msgid "/Go/_Next Page"
-msgstr "/Ga naar/_Volgende pagina"
-
-#: src/yelp-window.c:285
-msgid "/Go/_Contents"
-msgstr "/Ga naar/_Inhoudsopgave"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
-msgstr "/_Hulp"
-
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "/Hulp/_Info"
-
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "Hulp-browser"
-
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Sectie"
-
-#: src/yelp-window.c:625
-msgid "Back"
-msgstr "Terug"
-
-#: src/yelp-window.c:626
+#: src/yelp-window.c:271
 msgid "Show previous page in history"
 msgstr "De vorige pagina tonen"
 
-#: src/yelp-window.c:636
-msgid "Forward"
-msgstr "Volgende"
+#: src/yelp-window.c:274
+msgid "_Forward"
+msgstr "_Volgende"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:276
 msgid "Show next page in history"
 msgstr "De volgende pagina tonen"
 
-#: src/yelp-window.c:649
-msgid "Home"
-msgstr "Startpagina"
+#: src/yelp-window.c:279
+msgid "_Home"
+msgstr "_Startpagina"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:281
 msgid "Go to home view"
 msgstr "De startpagina tonen"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:284
+msgid "_Previous Page"
+msgstr "V_orige pagina"
+
+#: src/yelp-window.c:289
+msgid "_Next Page"
+msgstr "_Volgende pagina"
+
+#: src/yelp-window.c:294
+msgid "_Contents"
+msgstr "_Inhoudsopgave"
+
+#: src/yelp-window.c:300
+msgid "_About"
+msgstr "In_fo"
+
+#: src/yelp-window.c:363
+msgid "Help Browser"
+msgstr "Hulp-browser"
+
+#: src/yelp-window.c:686
+msgid "Fin_d"
+msgstr "_Zoeken"
+
+#: src/yelp-window.c:984
 msgid "Loading..."
 msgstr "Bezig met laden..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1304
+#: src/yelp-window.c:1474
 msgid "translator_credits"
 msgstr ""
 "Tino Meinen <a.t.meinen@chello.nl>\n"
-"Ronald Hummelink <ronald@hummelink.xs4all.nl>"
+"Ronald Hummelink <ronald@hummelink.xs4all.nl>\n"
+"\n"
+"Voor meer informatie: http://nl.gnome.org"
 
 # Een Hulp voor GNOME, een Hulp-programma voor GNOME
-#: src/yelp-window.c:1310
+#: src/yelp-window.c:1480
 msgid "A Help Browser for GNOME"
 msgstr "Een Hulp-browser voor GNOME"
 
@@ -642,6 +629,10 @@ msgstr "Versie-informatie"
 msgid "Revision History"
 msgstr "Revisiegeschiedenis"
 
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Sectie"
+
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr "Zie"
@@ -682,6 +673,33 @@ msgstr "Hulp bij GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hulp"
+
+#~ msgid "Document URI"
+#~ msgstr "Document URI"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "De URI van het te verwerken document"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Bewerken/_Volgende zoeken"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Bewerken/V_orige zoeken"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Ga naar/V_orige"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Ga naar/_Volgende"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Ga naar/_Startpagina"
+
+#~ msgid "/Go/"
+#~ msgstr "/_Ga naar/"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/Ga naar/_Inhoudsopgave"
 
 #~ msgid "The document '%s' does not exist"
 #~ msgstr "Het document '%s' bestaat niet"
