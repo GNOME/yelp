@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-13 05:33+0100\n"
-"PO-Revision-Date: 2004-01-05 16:55+0100\n"
+"POT-Creation-Date: 2004-01-15 05:10+0100\n"
+"PO-Revision-Date: 2004-01-16 01:30+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -138,37 +138,37 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:424 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Geen href attribuut gevonden op yelp:document"
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: src/yelp-db-pager.c:616
+#: src/yelp-db-pager.c:616 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Titelpagina"
 
 #: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Inhoudsopgave"
 
 #: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Onbekend"
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "The selected document could not be opened"
-msgstr "Het document '%s' kon niet worden geopend"
+msgstr "Het geselecteerde document kon niet worden geopend"
 
 # werd niet gevonden?
 # aangetroffen?
 #: src/yelp-error.c:52
-#, fuzzy
 msgid "The selected page could not be found in this document."
-msgstr "Pagina '%s' kon niet worden gevonden in dit document."
+msgstr "De geselecteerde pagina kon niet worden gevonden in dit document."
 
 #: src/yelp-error.c:58
 msgid "The table of contents could not be read."
@@ -179,9 +179,8 @@ msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML documenten worden niet meer ondersteund."
 
 #: src/yelp-error.c:70
-#, fuzzy
 msgid "The selected file could not be read."
-msgstr "De inhoudsopgave kon niet worden gelezen."
+msgstr "Het geselecteerde bestand kon niet worden gelezen."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -326,14 +325,12 @@ msgid "/Go/"
 msgstr "/_Ga naar/"
 
 #: src/yelp-window.c:259
-#, fuzzy
 msgid "/Go/_Previous Page"
-msgstr "/Ga naar/V_orige"
+msgstr "/Ga naar/V_orige pagina"
 
 #: src/yelp-window.c:262
-#, fuzzy
 msgid "/Go/_Next Page"
-msgstr "/Ga naar/_Volgende"
+msgstr "/Ga naar/_Volgende pagina"
 
 #: src/yelp-window.c:265
 msgid "/Go/_Contents"
@@ -398,82 +395,71 @@ msgstr "Een Hulp-browser voor GNOME"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
-msgstr ""
+msgstr "&#8216;"
 
 #: stylesheets/l10n.xml.in.h:2
 msgid "&#8217;"
-msgstr ""
+msgstr "&#8217;"
 
 #: stylesheets/l10n.xml.in.h:3
 msgid "&#8220;"
-msgstr ""
+msgstr "&#8220;"
 
 #: stylesheets/l10n.xml.in.h:4
 msgid "&#8221;"
-msgstr ""
+msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
 msgid "About This Bibliography"
-msgstr ""
+msgstr "Over deze bibliografie"
 
 #: stylesheets/l10n.xml.in.h:6
-#, fuzzy
 msgid "About This Book"
-msgstr "Over dit document"
+msgstr "Over dit boek"
 
 #: stylesheets/l10n.xml.in.h:7
-#, fuzzy
 msgid "About This Chapter"
-msgstr "Over dit document"
+msgstr "Over dit hoofdstuk"
 
 #: stylesheets/l10n.xml.in.h:8
-#, fuzzy
 msgid "About This Entry"
-msgstr "Over dit document"
+msgstr "Over dit onderwerp"
 
 #: stylesheets/l10n.xml.in.h:9
-#, fuzzy
 msgid "About This Glossary"
-msgstr "Over dit document"
+msgstr "Over deze woordenlijst"
 
 #: stylesheets/l10n.xml.in.h:10
-#, fuzzy
 msgid "About This Index"
-msgstr "Over dit document"
+msgstr "Over deze index"
 
 #: stylesheets/l10n.xml.in.h:11
-#, fuzzy
 msgid "About This Part"
-msgstr "Over dit document"
+msgstr "Over dit onderdeel"
 
 #: stylesheets/l10n.xml.in.h:12
-#, fuzzy
 msgid "About This Preface"
-msgstr "Over dit document"
+msgstr "Over dit inleiding"
 
 #: stylesheets/l10n.xml.in.h:13
-#, fuzzy
 msgid "About This Reference"
-msgstr "Over dit document"
+msgstr "Over deze referentie"
 
 #: stylesheets/l10n.xml.in.h:14
-#, fuzzy
 msgid "About This Section"
-msgstr "Over dit document"
+msgstr "Over deze sectie"
 
 #: stylesheets/l10n.xml.in.h:15
-#, fuzzy
 msgid "About This Set"
-msgstr "Over dit document"
+msgstr "Over deze verzameling"
 
 #: stylesheets/l10n.xml.in.h:16
-#, fuzzy
 msgid "Affiliation"
-msgstr "Toepassingen"
+msgstr "Verwantschap"
 
 #: stylesheets/l10n.xml.in.h:17
 msgid "Appendix"
-msgstr ""
+msgstr "Appendix"
 
 #: stylesheets/l10n.xml.in.h:18
 msgid "Article"
@@ -497,19 +483,20 @@ msgstr "Boek"
 
 #: stylesheets/l10n.xml.in.h:23
 msgid "Caution"
-msgstr ""
+msgstr "Waarschuwing"
 
 #: stylesheets/l10n.xml.in.h:24
 msgid "Chapter"
-msgstr ""
+msgstr "Hoofdstuk"
 
+# Medeschrijver?
 #: stylesheets/l10n.xml.in.h:25
 msgid "Collaborator"
-msgstr ""
+msgstr "Medewerker"
 
 #: stylesheets/l10n.xml.in.h:26
 msgid "Colophon"
-msgstr ""
+msgstr "Colofon"
 
 #: stylesheets/l10n.xml.in.h:28
 msgid "Copyright"
@@ -520,14 +507,12 @@ msgid "Date"
 msgstr "Datum"
 
 #: stylesheets/l10n.xml.in.h:30
-#, fuzzy
 msgid "Dedication"
-msgstr "Sectie"
+msgstr "Toewijding"
 
 #: stylesheets/l10n.xml.in.h:31
-#, fuzzy
 msgid "Editor"
-msgstr "Editors"
+msgstr "Editor"
 
 #: stylesheets/l10n.xml.in.h:32
 msgid "Email"
@@ -539,11 +524,11 @@ msgstr "Voorbeeld"
 
 #: stylesheets/l10n.xml.in.h:34
 msgid "Figure"
-msgstr ""
+msgstr "Figuur"
 
 #: stylesheets/l10n.xml.in.h:35
 msgid "Glossary"
-msgstr ""
+msgstr "Woordenlijst"
 
 #: stylesheets/l10n.xml.in.h:36
 msgid "Important"
@@ -553,9 +538,11 @@ msgstr "Belangrijk"
 msgid "Index"
 msgstr "Index"
 
+# Kort:
+# Rechtspraak
 #: stylesheets/l10n.xml.in.h:38
 msgid "Legal Notice"
-msgstr ""
+msgstr "Juridische opmerking"
 
 #: stylesheets/l10n.xml.in.h:39
 msgid "Level"
@@ -563,15 +550,15 @@ msgstr "Niveau"
 
 #: stylesheets/l10n.xml.in.h:40
 msgid "Message Audience"
-msgstr ""
+msgstr "Bericht publiek"
 
 #: stylesheets/l10n.xml.in.h:41
 msgid "Message Level"
-msgstr ""
+msgstr "Bericht niveau"
 
 #: stylesheets/l10n.xml.in.h:42
 msgid "Message Origin"
-msgstr ""
+msgstr "Bericht bron"
 
 #: stylesheets/l10n.xml.in.h:43
 msgid "Note"
@@ -581,21 +568,23 @@ msgstr "Opmerking"
 msgid "Origin"
 msgstr "Afkomst"
 
+# bijdrager
 #: stylesheets/l10n.xml.in.h:45
 msgid "Other Contributor"
-msgstr ""
+msgstr "Andere medewerker"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Part"
-msgstr ""
+msgstr "Deel"
 
+# inleiding
 #: stylesheets/l10n.xml.in.h:47
 msgid "Preface"
-msgstr ""
+msgstr "Voorwoord"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Publisher"
-msgstr ""
+msgstr "Uitgever"
 
 #: stylesheets/l10n.xml.in.h:49
 msgid "Reference"
@@ -603,46 +592,45 @@ msgstr "Verwijzing"
 
 #: stylesheets/l10n.xml.in.h:50
 msgid "Reference Entry"
-msgstr ""
+msgstr "Referentie onderwerp"
 
 #: stylesheets/l10n.xml.in.h:51
 msgid "Reference Section"
-msgstr ""
+msgstr "Referentie sectie"
 
+# herziening
 #: stylesheets/l10n.xml.in.h:52
 msgid "Revision History"
-msgstr ""
+msgstr "Revisiegeschiedenis"
 
 #: stylesheets/l10n.xml.in.h:54
 msgid "See"
-msgstr ""
+msgstr "Zie"
 
 #: stylesheets/l10n.xml.in.h:55
 msgid "See Also"
-msgstr ""
+msgstr "Zie ook"
 
+# is dit de goede context?
 #: stylesheets/l10n.xml.in.h:56
-#, fuzzy
 msgid "Set Index"
-msgstr "Index"
+msgstr "Index instellen"
 
 #: stylesheets/l10n.xml.in.h:57
 msgid "Table"
 msgstr "Tabel"
 
 #: stylesheets/l10n.xml.in.h:58
-#, fuzzy
 msgid "Table of Contents"
-msgstr "Hulp Inhoudsopgave"
+msgstr "Inhoudsopgave"
 
 #: stylesheets/l10n.xml.in.h:59
 msgid "Tip"
-msgstr ""
+msgstr "Tip"
 
 #: stylesheets/l10n.xml.in.h:60
-#, fuzzy
 msgid "Title"
-msgstr "Titelpagina"
+msgstr "Titel"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "Warning"
