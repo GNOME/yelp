@@ -76,6 +76,36 @@ impl_Yelp_newWindow (PortableServer_Servant  servant,
 	}
 }
 
+static GNOME_Yelp_WindowList *
+impl_Yelp_getWindows (PortableServer_Servant  servant,
+		      CORBA_Environment      *ev)
+{
+	YelpBase              *base;
+	YelpBasePriv          *priv;
+	GNOME_Yelp_WindowList *list;
+	gint                   len, i;
+	GSList                *node;
+	const gchar           *url;
+	
+	base = YELP_BASE (bonobo_object (servant));
+	priv = base->priv;
+
+	len  = g_slist_length (priv->windows);
+	
+	list = GNOME_Yelp_WindowList__alloc ();
+	list->_buffer = CORBA_sequence_CORBA_string_allocbuf (len);
+	list->_length = len;
+	list->_maximum = len;
+	CORBA_sequence_set_release (list, CORBA_TRUE);
+	
+	for (node = priv->windows, i = 0; node; node = node->next, i++) {
+		url = yelp_window_get_current_uri (YELP_WINDOW (node->data));
+		list->_buffer[i] = CORBA_string_dup (url);
+	}
+	
+	return list;
+}
+
 static void
 yelp_base_init (YelpBase *base)
 {
@@ -98,7 +128,8 @@ yelp_base_class_init (YelpBaseClass *klass)
 	
 	parent_class = gtk_type_class (PARENT_TYPE);
 
-	epv->newWindow = impl_Yelp_newWindow;
+	epv->newWindow  = impl_Yelp_newWindow;
+	epv->getWindows = impl_Yelp_getWindows;
 }
 
 static void

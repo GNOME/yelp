@@ -8,7 +8,10 @@
 
 module GNOME {
         interface Yelp : Bonobo::Unknown {
-                void   newWindow (in string url);
+		typedef sequence<string>  WindowList;
+
+                void       newWindow  (in string url);
+		WindowList getWindows ();
         };
 };
 

@@ -105,7 +105,7 @@ yelp_main_open_new_window (CORBA_Object yelp_base, const gchar *url)
 	CORBA_exception_init (&ev);
 
 	GNOME_Yelp_newWindow (yelp_base, url, &ev);
-	
+
 	if (BONOBO_EX (&ev)) {
 		g_error (_("Could not open new window."));
 	}

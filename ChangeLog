@@ -1,5 +1,14 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-base.c:
+	(impl_Yelp_getWindows): added/impl.
+	(yelp_base_class_init): use getWindows.
+
+	* idl/GNOME_Yelp.idl (GNOME): 
+	- Added getWindows which returns a sequence of strings with the
+	  URL's of all open windows. This is needed to save the
+	  session-state. (Fixes #73184).
+
 	* src/yelp-window.c:
 	(yelp_window_get_current_uri): added, needed for session
 	  management.
