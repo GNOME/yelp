@@ -342,12 +342,14 @@ adjustment_timeout_cb (gpointer data)
 
     if (priv->view->relayout_timeout_id != 0)
 	return TRUE;
-
+    
     adjustment = gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view));
-    gtk_adjustment_set_value (adjustment, adjustment->lower);
+    if (adjustment)
+    	gtk_adjustment_set_value (adjustment, adjustment->lower);
 
     adjustment = gtk_layout_get_hadjustment (GTK_LAYOUT (priv->view));
-    gtk_adjustment_set_value (adjustment, adjustment->lower);
+    if (adjustment)
+    	gtk_adjustment_set_value (adjustment, adjustment->lower);
 
     if (priv->anchor)
 	html_view_jump_to_anchor (HTML_VIEW (priv->view), priv->anchor);
