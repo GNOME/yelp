@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-28 04:23+0200\n"
+"POT-Creation-Date: 2004-08-18 04:21+0200\n"
 "PO-Revision-Date: 2004-02-23 10:12+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -38,7 +38,6 @@ msgstr "Ambiente zhvillimi"
 msgid "Development Tools"
 msgstr "Instrumentë për zhvillim"
 
-#. GRUT modified this item
 #: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Editorë"
@@ -67,9 +66,10 @@ msgstr "Programe në lidhje me internetin"
 msgid "KDE"
 msgstr "KDE"
 
+#. GRUT modified this item
 #: data/toc.xml.in.h:14
 msgid "Kernels"
-msgstr "Kernel"
+msgstr "Kernels"
 
 #: data/toc.xml.in.h:15
 msgid "Multimedia Applications"
@@ -147,13 +147,13 @@ msgstr "Jashtë memorjes"
 msgid "Titlepage"
 msgstr "Titulli i faqes"
 
-#: src/yelp-db-pager.c:643 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:643 src/yelp-man-pager.c:372
+#: stylesheets/l10n.xml.in.h:30
 msgid "Contents"
 msgstr "Përmbajtja"
 
-#: src/yelp-db-pager.c:661 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:661 src/yelp-man-pager.c:390
+#: stylesheets/l10n.xml.in.h:69
 msgid "Unknown"
 msgstr "Nuk njihet"
 
@@ -239,7 +239,6 @@ msgstr "Dispozitivët hardware"
 msgid "Configuration Files"
 msgstr "Files e konfigurimit"
 
-#. GRUT modified this item
 #: src/yelp-man.c:449
 msgid "Games"
 msgstr "Lojra"
@@ -273,7 +272,6 @@ msgstr "Nuk arrij të ngarkoj file OMF '%s'."
 msgid "Categories"
 msgstr "Kategoritë"
 
-#. GRUT modified this item
 #: src/yelp-toc-pager.c:898
 msgid "Documents"
 msgstr "Dokumente"
@@ -294,7 +292,6 @@ msgstr "/File/_Mbyll dritaren"
 msgid "/_Edit"
 msgstr "/_Ndrysho"
 
-#. GRUT modified this item
 #: src/yelp-window.c:258
 msgid "/Edit/_Find..."
 msgstr "/Ndrysho/_Gjej..."
@@ -347,7 +344,6 @@ msgstr "/_Ndihmë"
 msgid "/Help/_About"
 msgstr "/Ndihmë/_Informacione"
 
-#. GRUT modified this item
 #: src/yelp-window.c:352
 msgid "Help Browser"
 msgstr "Shfletuesi i ndihmës"
@@ -506,7 +502,6 @@ msgstr "Bashkpunëtori"
 msgid "Collaborators"
 msgstr "Bashkpunues"
 
-#. GRUT modified this item
 #: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
 msgstr "Colophon"
@@ -543,12 +538,10 @@ msgstr "Shembull"
 msgid "Figure"
 msgstr "Figura"
 
-#. GRUT modified this item
 #: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
 msgstr "Termet"
 
-#. GRUT modified this item
 #: stylesheets/l10n.xml.in.h:41
 msgid "Important"
 msgstr "I rëndësishëm"
@@ -569,7 +562,6 @@ msgstr "Etiketa"
 msgid "Message Audience"
 msgstr "Dëgjim mesazhi"
 
-#. GRUT modified this item
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
 msgstr "Etiketa e mesazhit"
@@ -638,7 +630,6 @@ msgstr "Shiko"
 msgid "See Also"
 msgstr "Shiko gjithashtu"
 
-#. GRUT modified this item
 #: stylesheets/l10n.xml.in.h:64
 msgid "Set Index"
 msgstr "Përcakto treguesin"
