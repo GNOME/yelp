@@ -1,5 +1,13 @@
 2002-01-30  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-toc.c 
+	(yelp_view_toc_start): marked strings for translation.
+	(yelp_view_toc_start): same.
+	(yelp_view_toc_man_2): same.
+	(yelp_view_toc_man_1): same.
+	(yelp_view_toc_info): same.
+	(yelp_view_toc_scrollkeeper): same.
+
 	* src/yelp-window.c:
 	(yw_url_selected_cb): 
 	- if both base_url and url is set call resolve_relative_url to get

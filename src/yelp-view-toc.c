@@ -223,18 +223,23 @@ yelp_view_toc_start (YelpViewTOC *view)
 	YelpViewTOCPriv *priv;
 	GNode           *node;
 	YelpSection     *section;
-	gchar *table_start = "\n"
+	gchar           *table_start = "\n"
 "    <center>\n"
 "      <table cellspacing=\"20\" width=\"100%\">\n"
 "        <tr>\n";
-	gchar *table_end = "\n"
+	gchar           *table_end = "\n"
 "      </tr>\n"
 "    </table>\n"
 "   </center>\n";
-	char *seriesid;
-	GNode *root;
-	char *path;
-	GList *list;
+	char            *seriesid;
+	GNode           *root;
+	char            *path;
+	GList           *list;
+	gchar           *important_docs_string = _("Important documents");
+	gchar           *other_docs_string = _("Other document systems");
+	gchar           *man_string = _("Manual pages");
+	gchar           *info_string = _("Info pages");
+	gchar           *installed_string = _("Installed documents");
 	
 	priv = view->priv;
 
@@ -244,14 +249,14 @@ yelp_view_toc_start (YelpViewTOC *view)
 	
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, "Start page");
+	yelp_view_toc_write_header (view, _("Start page"));
 	
 	yelp_view_toc_write (view, table_start, -1);
 
-	yelp_view_toc_write (view, 
+	yelp_view_toc_printf (view, 
 			      "<td valign=\"top\">\n"
-			      "<h2>Important documents</h2>\n"
-			      "<ul>\n", -1);
+			      "<h2>%s</h2>\n"
+			      "<ul>\n", important_docs_string);
 
 	list = priv->important_docs;
 	while (list != NULL) {
@@ -275,9 +280,9 @@ yelp_view_toc_start (YelpViewTOC *view)
 
 
 
-	yelp_view_toc_write (view, 
+	yelp_view_toc_printf (view, 
 			     "<td valign=\"top\">\n"
-			     "<h2>Installed documents</h2>\n", -1);
+			     "<h2>%s</h2>\n", installed_string);
 
 	root = yelp_util_find_toplevel (priv->doc_tree, "scrollkeeper");
 	node = g_node_first_child (root);
@@ -294,10 +299,11 @@ yelp_view_toc_start (YelpViewTOC *view)
 	}
 
 	
-	yelp_view_toc_write (view, 
-			     "<h2>Other document systems</h2>\n"
-			     "<a href=\"toc:man\">Manual pages</a><br>\n"
-			     "<a href=\"toc:info\">Info pages</a><br>\n", -1);
+	yelp_view_toc_printf (view, 
+			     "<h2>%s</h2>\n"
+			     "<a href=\"toc:man\">%s</a><br>\n"
+			     "<a href=\"toc:info\">%s</a><br>\n",
+			      other_docs_string, man_string, info_string);
 			      
 	yelp_view_toc_write (view, 
 			     "</td>\n", -1);
@@ -378,9 +384,13 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 				
 				if (i % 3 == 0) {
 					if (i == 0) {
-						yelp_view_toc_write (view, "<tr>\n", -1);
+						yelp_view_toc_write (view, 
+								     "<tr>\n",
+								     -1);
 					} else {
-						yelp_view_toc_write (view, "</tr>\n<tr>\n", -1);
+						yelp_view_toc_write (view,
+								     "</tr>\n<tr>\n", 
+								     -1);
 					}
 				}
 			
@@ -403,7 +413,8 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 {
 	GNode *first;
 	gchar *name;
-
+	gchar *string = _("Manual pages for section");
+	
 	if (root->children == NULL) {
 		return;
 	}
@@ -415,7 +426,8 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 	yelp_view_toc_write_header (view, "Manual pages");
 		
 	name = yelp_view_toc_full_path_name (view, root);
-	yelp_view_toc_printf (view, "<h1>Manual pages for section '%s'</h1>\n", name);
+	
+	yelp_view_toc_printf (view, "<h1>%s '%s'</h1>\n", string, name);
 	g_free (name);
 
 	yelp_view_toc_man_emit (view, first);
@@ -431,6 +443,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 	GNode           *root, *node, *child;
 	YelpSection     *section;
 	char            *path;
+	gchar           *string = _("Man page sections");
 	
 	priv = view->priv;
 
@@ -449,9 +462,9 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, "Man page sections");
+	yelp_view_toc_write_header (view, _("Man page sections"));
 	
-	yelp_view_toc_write (view, "<h1>Man page sections</h1>\n", -1);
+	yelp_view_toc_printf (view, "<h1>%s</h1>\n", string);
 	
 	do {
 		child = g_node_first_child (node);
@@ -477,6 +490,7 @@ yelp_view_toc_info (YelpViewTOC *view)
 	GNode           *root, *node;
 	YelpSection     *section;
 	char            *url;
+	gchar           *string = _("Info pages");
 	
 	priv = view->priv;
 
@@ -495,9 +509,9 @@ yelp_view_toc_info (YelpViewTOC *view)
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, "Info pages");
+	yelp_view_toc_write_header (view, _("Info pages"));
 	
-	yelp_view_toc_write (view, "<h1>Info pages</h1>\n", -1);
+	yelp_view_toc_printf (view, "<h1>%s</h1>\n", string);
 	
 	do {
 		section = (YelpSection *) node->data;
@@ -573,11 +587,12 @@ yelp_view_toc_scrollkeeper (YelpViewTOC *view,
 			    GNode *root)
 {
 	YelpViewTOCPriv *priv;
-	GNode *node, *child;
-	YelpSection *section;
-	gboolean got_a_leaf;
-	char *path;
-	gchar *name;
+	GNode           *node, *child;
+	YelpSection     *section;
+	gboolean         got_a_leaf;
+	char            *path;
+	gchar           *name;
+	gchar           *string = _("Scrollkeeper docs for category");
 
 	priv = view->priv;
 	
@@ -590,7 +605,7 @@ yelp_view_toc_scrollkeeper (YelpViewTOC *view,
 	yelp_view_toc_write_header (view, "Scrollkeeper");
 		
 	name = yelp_view_toc_full_path_name (view, root);
-	yelp_view_toc_printf (view, "<h1>Scrollkeeper docs for category '%s'</h1>\n", name);
+	yelp_view_toc_printf (view, "<h1>%s '%s'</h1>\n", string, name);
 	g_free (name);
 
 	got_a_leaf = FALSE;
