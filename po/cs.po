@@ -6,55 +6,50 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
-"POT-Creation-Date: 2003-12-02 03:43-0600\n"
-"PO-Revision-Date: 2003-06-17 19:53+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-03 04:31+0100\n"
+"PO-Revision-Date: 2003-12-03 13:48+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Aplikace"
 
 #: data/toc.xml.in.h:2
-#, fuzzy
 msgid "Desktop"
-msgstr "GNOME - Prostředí"
+msgstr "Prostředí pracovní plochy"
 
 #: data/toc.xml.in.h:3 src/yelp-man.c:434
 msgid "Development"
 msgstr "Vývoj"
 
 #: data/toc.xml.in.h:4
-#, fuzzy
 msgid "Development Environments"
-msgstr "Vývoj"
+msgstr "Vývojová prostředí"
 
 #: data/toc.xml.in.h:5
-#, fuzzy
 msgid "Development Tools"
-msgstr "Vývoj"
+msgstr "Vývojové nástroje"
 
 #: data/toc.xml.in.h:6
-#, fuzzy
 msgid "Editors"
-msgstr "/Ú_pravy"
+msgstr "Editory"
 
 #: data/toc.xml.in.h:7
-#, fuzzy
 msgid "Education Applications"
-msgstr "Aplikace"
+msgstr "Vzdělávací aplikace"
 
 #: data/toc.xml.in.h:8
 msgid "Games and Entertainment"
-msgstr ""
+msgstr "Hry a zábava"
 
 #: data/toc.xml.in.h:9
 msgid "General"
-msgstr ""
+msgstr "Obecné"
 
 #. GList           *seriesids;
 #: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
@@ -62,45 +57,40 @@ msgid "Help Contents"
 msgstr "Obsah nápovědy"
 
 #: data/toc.xml.in.h:11
-#, fuzzy
 msgid "Internet Applications"
-msgstr "Aplikace"
+msgstr "Internetové aplikace"
 
 #: data/toc.xml.in.h:12
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #: data/toc.xml.in.h:13
-#, fuzzy
 msgid "Kernels"
-msgstr "Rutiny jádra"
+msgstr "Jádra"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
 msgid "Multimedia Applications"
-msgstr "Aplikace"
+msgstr "Multimediální aplikace"
 
 #: data/toc.xml.in.h:15
 msgid "Office and Productivity Applications"
-msgstr ""
+msgstr "Kancelářské aplikace"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
 msgid "Scientific Applications"
-msgstr "Aplikace"
+msgstr "Vědecké aplikace"
 
 #: data/toc.xml.in.h:17
 msgid "Securities"
-msgstr ""
+msgstr "Zabezpečení"
 
 #: data/toc.xml.in.h:18
 msgid "Utilities"
-msgstr ""
+msgstr "Nástroje"
 
 #: data/toc.xml.in.h:19
-#, fuzzy
 msgid "X Applications"
-msgstr "Aplikace"
+msgstr "Aplikace pro X"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -354,31 +344,32 @@ msgstr "Dokument '%s' neexistuje"
 
 #: src/yelp-window.c:644
 msgid "DocBook SGML documents are no longer supported."
-msgstr ""
+msgstr "Dokumenty DocBook SGML už nejsou podporovány."
 
 #: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
-#, fuzzy, c-format
+#, c-format
 msgid "The document '%s' could not be opened"
-msgstr "Dokument '%s' neexistuje"
+msgstr "Dokument '%s' nelze otevřít"
 
 #: src/yelp-window.c:876
 msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr ""
+msgstr "Načítám&nbsp;&nbsp;&nbsp;"
 
 #: src/yelp-window.c:880
 msgid "Loading.&nbsp;&nbsp;"
-msgstr ""
+msgstr "Načítám.&nbsp;&nbsp;"
 
 #: src/yelp-window.c:884
-#, fuzzy
 msgid "Loading..&nbsp;"
-msgstr "Načítám..."
+msgstr "Načítám..&nbsp;"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
 #: src/yelp-window.c:1046
 msgid "translator_credits"
-msgstr "Michal Bukovjan"
+msgstr ""
+"Michal Bukovjan\n"
+"Miloslav Trmač <mitr@volny.cz>"
 
 #: src/yelp-window.c:1051
 msgid "A Help Browser for GNOME"
@@ -412,6 +403,3 @@ msgstr "Nápověda"
 
 #~ msgid "Index"
 #~ msgstr "Index"
-
-#~ msgid "Search in the index"
-#~ msgstr "Prohledávání v indexu"
