@@ -31,14 +31,19 @@
 	<xsl:param name="num" select="1"/>
 	<xsl:param name="lang" select="$lang"/>
 
-	<xsl:variable name="plural">
-		<xsl:call-template name="plural">
-			<xsl:with-param name="num" select="$num"/>
-			<xsl:with-param name="lang" select="$lang"/>
-		</xsl:call-template>
-	</xsl:variable>
-
-	<xsl:value-of select="$msgid"/>
+	<xsl:call-template name="gettext">
+		<xsl:with-param name="msgid">
+			<xsl:choose>
+				<xsl:when test="$num = 1">
+					<xsl:value-of select="$msgid"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$msgid_plural"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:with-param>
+		<xsl:with-param name="lang" select="$lang"/>
+	</xsl:call-template>
 </xsl:template>
 
 <!-- ======================================================================= -->

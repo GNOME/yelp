@@ -93,7 +93,7 @@
 			<div>
 				<h2 class="publisher">
 					<xsl:call-template name="ngettext">
-						<xsl:with-param name="msgid" select="'Publishers'"/>
+						<xsl:with-param name="msgid" select="'Publisher'"/>
 						<xsl:with-param name="msgid_plural" select="'Publishers'"/>
 						<xsl:with-param name="num" select="count(publisher)"/>
 					</xsl:call-template>
