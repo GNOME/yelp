@@ -8,12 +8,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-01-22 22:12+0100\n"
-"PO-Revision-Date: 2002-01-22 22:12+0100\n"
+"POT-Creation-Date: 2002-01-27 01:11+0100\n"
+"PO-Revision-Date: 2002-01-27 01:11+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/GNOME_Yelp.server.in.h:1
@@ -35,7 +35,7 @@ msgstr "Kunde inte aktivera Yelp: \"%s\""
 
 #: src/yelp-main.c:97
 msgid "Could not open new window."
-msgstr "Kunde inte öppna nytt fönster."
+msgstr "Kunde inte Ã¶ppna nytt fÃ¶nster."
 
 #: src/yelp-man.c:269 src/yelp-man.c:290 src/yelp-man.c:326 src/yelp-man.c:358
 #: src/yelp-man.c:374 src/yelp-man.c:385
@@ -76,7 +76,7 @@ msgstr "Biblioteksfunktioner"
 
 #: src/yelp-man.c:347
 msgid "Kernel Routines"
-msgstr "Kärnrutiner"
+msgstr "KÃ¤rnrutiner"
 
 #: src/yelp-man.c:402
 msgid "Applications"
@@ -88,7 +88,7 @@ msgstr "Utveckling"
 
 #: src/yelp-man.c:412
 msgid "Hardware Devices"
-msgstr "Hårdvaruenheter"
+msgstr "HÃ¥rdvaruenheter"
 
 #: src/yelp-man.c:417
 msgid "Configuration Files"
@@ -100,7 +100,7 @@ msgstr "Spel"
 
 #: src/yelp-man.c:427
 msgid "Overviews"
-msgstr "Översikter"
+msgstr "Ã–versikter"
 
 #: src/yelp-man.c:432
 msgid "System Administration"
@@ -110,83 +110,83 @@ msgstr "Systemadministration"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:181 src/yelp-view-index.c:175
+#: src/yelp-view-content.c:189 src/yelp-view-index.c:175
 msgid "Section"
 msgstr "Avdelning"
 
-#: src/yelp-window.c:111
+#: src/yelp-window.c:109
 msgid "/_File"
 msgstr "/_Arkiv"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:110
 msgid "/File/_New window"
-msgstr "/Arkiv/_Nytt fönster"
+msgstr "/Arkiv/_Nytt fÃ¶nster"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:111
 msgid "/File/_Close window"
-msgstr "/Arkiv/_Stäng fönster"
+msgstr "/Arkiv/_StÃ¤ng fÃ¶nster"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:112
 msgid "/File/_Quit"
 msgstr "/Arkiv/_Avsluta"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:113
 msgid "/_Help"
-msgstr "/_Hjälp"
+msgstr "/_HjÃ¤lp"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:114
 msgid "/Help/_About"
-msgstr "/Hjälp/_Om"
+msgstr "/HjÃ¤lp/_Om"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:162
 msgid "Help Browser"
-msgstr "Hjälpvisare"
+msgstr "HjÃ¤lpvisare"
 
-#: src/yelp-window.c:418
+#: src/yelp-window.c:405
 msgid "Help Browser for GNOME 2.0"
-msgstr "Hjälpvisare för GNOME 2.0"
+msgstr "HjÃ¤lpvisare fÃ¶r GNOME 2.0"
 
-#: src/yelp-window.c:442
+#: src/yelp-window.c:429
 msgid "Go back in the history list"
-msgstr "Gå bakåt i historiklistan"
+msgstr "GÃ¥ bakÃ¥t i historiklistan"
 
-#: src/yelp-window.c:457
+#: src/yelp-window.c:444
 msgid "Go forth in the history list"
-msgstr "Gå framåt i historiklistan"
+msgstr "GÃ¥ framÃ¥t i historiklistan"
 
-#: src/yelp-window.c:472
+#: src/yelp-window.c:459
 msgid "Overview of contents"
-msgstr "Innehållsöversikt"
+msgstr "InnehÃ¥llsÃ¶versikt"
 
-#: src/yelp-window.c:483
+#: src/yelp-window.c:470
 msgid "Search in the index"
-msgstr "Sök i indexet"
+msgstr "SÃ¶k i indexet"
 
-#: src/yelp-window.c:495
+#: src/yelp-window.c:482
 msgid "Search for a phrase in the document"
-msgstr "Sök efter en text i dokumentet"
+msgstr "SÃ¶k efter en text i dokumentet"
 
-#: src/yelp-window.c:501
+#: src/yelp-window.c:488
 msgid "Help on "
-msgstr "Hjälp med "
+msgstr "HjÃ¤lp med "
 
-#: src/yelp-window.c:506
+#: src/yelp-window.c:493
 msgid "Enter phrase to search for in all documents"
-msgstr "Ange texten att söka efter i alla dokument"
+msgstr "Ange texten att sÃ¶ka efter i alla dokument"
 
 #: yelp.desktop.in.h:1
 msgid "GNOME Helpbrowser"
-msgstr "Hjälpvisare för GNOME"
+msgstr "HjÃ¤lpvisare fÃ¶r GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
-msgstr "Hjälp"
+msgstr "HjÃ¤lp"
 
 #~ msgid "TreeModelFilter model"
 #~ msgstr "TreeModelFilter-modell"
 
 #~ msgid "The model for the TreeModelFilter to filter"
-#~ msgstr "Modellen för TreeModelFilter att filtrera"
+#~ msgstr "Modellen fÃ¶r TreeModelFilter att filtrera"
 
 #~ msgid "Info Pages"
 #~ msgstr "Infosidor"
@@ -195,10 +195,10 @@ msgstr "Hjälp"
 #~ msgstr "Manualsidor"
 
 #~ msgid "Yelp: GNOME Help Browser"
-#~ msgstr "Yelp: Hjälpvisare för GNOME"
+#~ msgstr "Yelp: HjÃ¤lpvisare fÃ¶r GNOME"
 
 #~ msgid "Usage '%s uri'\n"
-#~ msgstr "Användning \"%s uri\"\n"
+#~ msgstr "AnvÃ¤ndning \"%s uri\"\n"
 
 #~ msgid "Transformed URI: %s\n"
 #~ msgstr "Transformerad URI: %s\n"
@@ -210,7 +210,7 @@ msgstr "Hjälp"
 #~ msgstr "Ogiltig URI: %s\n"
 
 #~ msgid "Contents"
-#~ msgstr "Innehåll"
+#~ msgstr "InnehÃ¥ll"
 
 #~ msgid "Index"
 #~ msgstr "Index"
