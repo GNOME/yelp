@@ -32,10 +32,12 @@
 #include <yelp-util.h>
 #include <libgnome/gnome-i18n.h>
 
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <string.h>
 #include <stdio.h>
 #include <dirent.h>
+#include <unistd.h>
 
 static void
 yelp_info_populate_tree_for_subdir (GtkTreeStore *store,
@@ -88,15 +90,23 @@ gboolean
 yelp_info_init (GtkTreeStore *store)
 {
 	GtkTreeIter *root;
-
+	struct stat  stat_dir1;
+	struct stat  stat_dir2;
+	
 	root = yelp_util_contents_add_section (store, NULL, 
 					       yelp_section_new (YELP_SECTION_CATEGORY,
 								 _("info"), NULL, 
 								  NULL, NULL));
 
+	stat ("/usr/info", &stat_dir1);
+	stat ("/usr/share/info", &stat_dir2);
 	
 	yelp_info_populate_tree_for_subdir (store, "/usr/info", root);
-	yelp_info_populate_tree_for_subdir (store, "/usr/share/info", root);
+	
+	if (stat_dir1.st_ino != stat_dir2.st_ino) {
+		yelp_info_populate_tree_for_subdir (store, "/usr/share/info", 
+						    root);
+	}
 
 	return TRUE;
 }
