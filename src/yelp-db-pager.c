@@ -46,7 +46,8 @@
 #define DB_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/"
 #define DB_STYLESHEET      DB_STYLESHEET_PATH"db2html.xsl"
 
-#define MAX_CHUNK_DEPTH 2
+#define BOOK_CHUNK_DEPTH 2
+#define ARTICLE_CHUNK_DEPTH 1
 
 #define d(x)
 
@@ -258,7 +259,11 @@ db_pager_process (YelpPager *pager)
     walker->pager     = YELP_DB_PAGER (pager);
     walker->doc       = doc;
     walker->cur       = xmlDocGetRootElement (walker->doc);
-    walker->max_depth = MAX_CHUNK_DEPTH;
+
+    if (!xmlStrcmp (xmlDocGetRootElement (doc)->name, BAD_CAST "book"))
+	walker->max_depth = BOOK_CHUNK_DEPTH;
+    else
+	walker->max_depth = ARTICLE_CHUNK_DEPTH;
 
     id = xmlGetProp (walker->cur, "id");
     if (id)

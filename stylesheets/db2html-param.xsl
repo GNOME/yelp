@@ -24,8 +24,11 @@
 			<xsl:value-of select="
 				number(/processing-instruction()[name()='yelp:chunk-depth'][1])"/>
 		</xsl:when>
-		<xsl:otherwise>
+		<xsl:when test="/book">
 			<xsl:value-of select="2"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="1"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:param>
