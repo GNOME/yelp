@@ -131,10 +131,20 @@
 
 <xsl:template name="href.target">
    <xsl:param name="object" select="."/>
+   <xsl:param name="ancestor" select="$object/ancestor-or-self::*[
+      local-name()='sect1' or local-name()='sect2' or local-name()='sect3' or
+      local-name()='book' or local-name()='part' or local-name()='chapter' or
+      local-name()='article' or local-name()='appendix' or local-name()='section'][1]"/>
    <xsl:text>ghelp:</xsl:text>
    <xsl:value-of select="$gdb_docname"/>
    <xsl:text>?</xsl:text>
-   <xsl:value-of select="$object/@id"/>
+   <xsl:value-of select="$ancestor/@id"/>
+<!-- Uncomment if we support fragment identification
+   <xsl:if test="$object!=$ancestor">
+      <xsl:text>#</xsl:text>
+      <xsl:value-of select="$object/@id"/>
+   </xsl:if>
+-->
 </xsl:template>
 
 <!-- make a small custom css stylesheet reside in <head>...</head> -->
@@ -321,8 +331,30 @@
 <xsl:template name="article.chunk.prev">
 <xsl:param name="node" select="."/>
    <xsl:choose>
-      <!-- the first sect(x) goes back to TOC -->
-      <xsl:when test="count($node/preceding::*[local-name()=local-name($node)])=0">
+      <xsl:when test="local-name($node)='section'">
+         <xsl:choose>
+            <xsl:when
+                  test="count($node/preceding::section[count(ancestor::section)=count($node/ancestor::section)])=0">
+               <td><a accesskey="p">
+                  <xsl:attribute name="href">
+                     <xsl:call-template name="article.toc.ref"/>
+                  </xsl:attribute>
+                  <xsl:text>&lt;&lt;&lt; </xsl:text>
+                  <xsl:call-template name="gentext">
+                     <xsl:with-param name="key" select="'Contents'"/>
+                  </xsl:call-template>
+               </a></td>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:call-template name="prev.link.cell">
+                  <xsl:with-param name="object"
+                     select="$node/preceding::section[count(ancestor::section)=count($node/ancestor::section)][1]"/>
+               </xsl:call-template>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:when>
+      <xsl:when
+            test="count($node/preceding::*[local-name()=local-name($node)])=0">
          <td><a accesskey="p">
             <xsl:attribute name="href">
                <xsl:call-template name="article.toc.ref"/>
@@ -364,7 +396,14 @@
 <xsl:template name="article.chunk.next">
 <xsl:param name="node" select="."/>
    <xsl:choose>
-      <xsl:when test="count($node/following::*[local-name()=local-name($node)])>0">
+      <xsl:when test="local-name($node)='section' and
+            count($node/following::section[count(ancestor::section)=count($node/ancestor::section)]) &gt; 0">
+         <xsl:call-template name="next.link.cell">
+            <xsl:with-param name="object"
+               select="$node/following::section[count(ancestor::section)=count($node/ancestor::section)][1]"/>
+         </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="count($node/following::*[local-name()=local-name($node)]) &gt; 0">
          <xsl:call-template name="next.link.cell">
             <xsl:with-param name="object"
                select="$node/following::*[local-name()=local-name($node)][1]"/>
@@ -544,83 +583,97 @@
 </xsl:template>
 
 <xsl:template name="yelp.multichunk">
-<xsl:param name="type"/>
-<xsl:param name="container"/>
-<xsl:param name="root" select="."/>
+   <xsl:param name="type"/>
+   <xsl:param name="container"/>
+   <xsl:param name="root" select="."/>
 
-<xsl:comment> End of header </xsl:comment>
-<xsl:comment> Start of chunk: [title-page] </xsl:comment>
+   <xsl:comment> End of header </xsl:comment>
 
-<xsl:choose>
-<xsl:when test="$type = 'book'">
-  <xsl:call-template name="book.titlepage"/>
-</xsl:when>
-<xsl:otherwise>
-<xsl:call-template name="article.render.titlepage">
-  <xsl:with-param name="container" select="$container"/>
-</xsl:call-template>
-</xsl:otherwise>
-</xsl:choose>
+   <xsl:comment> Start of chunk: [title-page] </xsl:comment>
+   <xsl:choose>
+      <xsl:when test="$type = 'book'">
+         <xsl:call-template name="book.titlepage"/>
+      </xsl:when>
+      <xsl:otherwise>
+         <xsl:call-template name="article.render.titlepage">
+            <xsl:with-param name="container" select="$container"/>
+         </xsl:call-template>
+      </xsl:otherwise>
+   </xsl:choose>
+   <xsl:comment> End of chunk </xsl:comment>
 
-<xsl:comment> End of chunk </xsl:comment>
-<xsl:comment> Start of chunk: [toc] </xsl:comment>
+   <xsl:comment> Start of chunk: [toc] </xsl:comment>
+   <xsl:call-template name="yelp.render.toc">
+      <xsl:with-param name="title" select="$container/title"/>
+   </xsl:call-template>
+   <xsl:comment> End of chunk </xsl:comment>
 
-<xsl:call-template name="yelp.render.toc">
-  <xsl:with-param name="title" select="$container/title"/>
-</xsl:call-template>
+   <xsl:if test="$type = 'book'">
+      <xsl:call-template name="yelp.book.multichunk"/>
+   </xsl:if>
 
-<xsl:comment> End of chunk </xsl:comment>
+   <xsl:for-each select="//sect1">
+      <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+      <xsl:call-template name="article.render.chunk">
+         <xsl:with-param name="title" select="$container/title"/> 
+      </xsl:call-template>
+      <xsl:comment> End of chunk </xsl:comment>
+   </xsl:for-each>
 
-<xsl:if test="$type = 'book'">
-  <xsl:call-template name="yelp.book.multichunk"/>
-</xsl:if>
+   <xsl:for-each select="//sect2">
+      <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+      <xsl:call-template name="article.render.chunk"> 
+         <xsl:with-param name="title" select="$container/title"/>
+      </xsl:call-template> 
+      <xsl:comment> End of chunk </xsl:comment>
+   </xsl:for-each>
 
-<xsl:for-each select="//sect1">
-  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
-  <xsl:call-template name="article.render.chunk">
-   <xsl:with-param name="title" select="$container/title"/> 
-  </xsl:call-template>
-  <xsl:comment> End of chunk </xsl:comment>
-</xsl:for-each>
+   <xsl:for-each select="//sect3">
+      <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+      <xsl:call-template name="article.render.chunk">
+         <xsl:with-param name="title" select="$container/title"/>
+      </xsl:call-template>
+      <xsl:comment> End of chunk </xsl:comment>
+   </xsl:for-each>
 
-<xsl:for-each select="//sect2">
-  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
-  <xsl:call-template name="article.render.chunk"> 
-    <xsl:with-param name="title" select="$container/title"/>
-  </xsl:call-template> 
-  <xsl:comment> End of chunk </xsl:comment>
-</xsl:for-each>
+   <xsl:for-each select="//section[count(ancestor::section) &lt; 3]">
+      <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+      <xsl:call-template name="article.render.chunk">
+         <xsl:with-param name="title" select="$container/title"/>
+      </xsl:call-template>
+      <xsl:comment> End of chunk </xsl:comment>
+   </xsl:for-each>
 
-<xsl:for-each select="//sect3">
-  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
-  <xsl:call-template name="article.render.chunk">
-    <xsl:with-param name="title" select="$container/title"/>
-  </xsl:call-template>
-  <xsl:comment> End of chunk </xsl:comment>
-</xsl:for-each>
+   <xsl:for-each select="//appendix">
+      <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+      <xsl:call-template name="article.render.chunk">
+         <xsl:with-param name="title" select="$container/title"/>
+      </xsl:call-template>
+      <xsl:comment> End of chunk </xsl:comment>
+   </xsl:for-each>
 
-<xsl:comment> Start of footer </xsl:comment>
-</xsl:template>
+   <xsl:comment> Start of footer </xsl:comment>
+</xsl:template>  <!-- yelp.multichunk -->
 
 <xsl:template match="/article">
 <xsl:call-template name="yelp.generic.root">
-  <xsl:with-param name="container" select="/article/articleinfo"/>
-  <xsl:with-param name="type" select="'article'"/>
+<xsl:with-param name="container" select="/article/articleinfo"/>
+<xsl:with-param name="type" select="'article'"/>
 </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="/part">
 <xsl:call-template name="yelp.generic.root">
-  <xsl:with-param name="container" select="/part/partinfo"/>
-  <xsl:with-param name="type" select="'part'"/>
-  <xsl:with-param name="root" select="chapter"/>
+<xsl:with-param name="container" select="/part/partinfo"/>
+<xsl:with-param name="type" select="'part'"/>
+<xsl:with-param name="root" select="chapter"/>
 </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="/book">
 <xsl:call-template name="yelp.generic.root">
-  <xsl:with-param name="container" select="."/>
-  <xsl:with-param name="type" select="'book'"/>
+<xsl:with-param name="container" select="."/>
+<xsl:with-param name="type" select="'book'"/>
 </xsl:call-template>
 </xsl:template>
 
