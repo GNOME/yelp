@@ -1,0 +1,664 @@
+# Turkmen translation of yelp
+# Copyright (C) 2004 Free Software Foundation
+# Copyright (C) 2004 Kakilik Project <kakilik.sourceforge.net>
+# This file is distributed under the terms of GNU General Public License (GPL)
+# Gurban Mühemmet Tewekgeli <gmtavakkoli@yahoo.com>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-14 23:21+0430\n"
+"PO-Revision-Date: 2004-08-14 24:25+0330\n"
+"Last-Translator: Gurban Mühemmet Tewekgeli <gmtavakkoli@yahoo.com>\n"
+"Language-Team: Turkmen <kakilikgroup@yahoo.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/toc.xml.in.h:1
+msgid "Applets"
+msgstr "Apletler"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
+msgid "Applications"
+msgstr "Programler"
+
+#: data/toc.xml.in.h:3
+msgid "Desktop"
+msgstr "Dasktap"
+
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
+msgid "Development"
+msgstr "Programlemek"
+
+#: data/toc.xml.in.h:5
+msgid "Development Environments"
+msgstr "Programlemek Tewerekleri"
+
+#: data/toc.xml.in.h:6
+msgid "Development Tools"
+msgstr "Programlemek Esbaplary"
+
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
+msgid "Editors"
+msgstr "Editçiler"
+
+#: data/toc.xml.in.h:8
+msgid "Education Applications"
+msgstr "Mektep Programler"
+
+#: data/toc.xml.in.h:9
+msgid "Games and Entertainment"
+msgstr "Oýynlar we Güýmençler"
+
+#: data/toc.xml.in.h:10
+msgid "General"
+msgstr "Umumy"
+
+#: data/toc.xml.in.h:11
+msgid "Help Contents"
+msgstr "Ýardam Mazmunlary"
+
+#: data/toc.xml.in.h:12
+msgid "Internet Applications"
+msgstr "Internet Programler"
+
+#: data/toc.xml.in.h:13
+msgid "KDE"
+msgstr "KDE"
+
+#: data/toc.xml.in.h:14
+msgid "Kernels"
+msgstr "Hessler"
+
+#: data/toc.xml.in.h:15
+msgid "Multimedia Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:16
+msgid "Office and Productivity Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:17
+msgid "Scientific Applications"
+msgstr "Ilmi Programler"
+
+#: data/toc.xml.in.h:18
+msgid "Securities"
+msgstr "Emnyýe"
+
+#: data/toc.xml.in.h:19
+msgid "System"
+msgstr "Sistem"
+
+#: data/toc.xml.in.h:20
+msgid "Utilities"
+msgstr ""
+
+#: data/toc.xml.in.h:21
+msgid "X Applications"
+msgstr "Iks Programler"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "C_ase sensitive"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "Find"
+msgstr "Tap"
+
+#: data/ui/yelp.glade.h:4
+msgid "_Find: "
+msgstr "_Tap:"
+
+#: data/ui/yelp.glade.h:5
+msgid "_Next"
+msgstr "_Indiki"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Previous"
+msgstr "_Öňki"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr "_Aýlan"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Ýelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr ""
+
+#: src/yelp-db-pager.c:438 src/yelp-man-pager.c:301
+msgid "No href attribute found on yelp:document"
+msgstr ""
+
+#: src/yelp-db-pager.c:453 src/yelp-man-pager.c:316
+msgid "Out of memory"
+msgstr ""
+
+#: src/yelp-db-pager.c:641 src/yelp-man-pager.c:370
+msgid "Titlepage"
+msgstr "Sözbaş sahypa"
+
+#: src/yelp-db-pager.c:643 src/yelp-man-pager.c:372
+#: stylesheets/l10n.xml.in.h:30
+msgid "Contents"
+msgstr "Mazmunlar"
+
+#: src/yelp-db-pager.c:661 src/yelp-man-pager.c:390
+#: stylesheets/l10n.xml.in.h:69
+msgid "Unknown"
+msgstr "Natanyş"
+
+#: src/yelp-error.c:46
+msgid "The selected document could not be opened"
+msgstr "Saýlanan sened açilip bilmedi"
+
+#: src/yelp-error.c:52
+msgid "The selected page could not be found in this document."
+msgstr "Saýlanan sahypa bu sened içre tapylmady"
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Mazmunlar jedwely okab bolmady"
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "DocBook SGML senedler indi arkalanmaýa."
+
+#: src/yelp-error.c:70
+msgid "The selected file could not be read."
+msgstr "Saýlanan faýly okab bolmaýa"
+
+#: src/yelp-main.c:94
+msgid "Define which cache directory to use"
+msgstr ""
+
+#: src/yelp-main.c:128
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr ""
+
+#: src/yelp-main.c:147
+msgid "Could not open new window."
+msgstr "Täze äpişge açylyp bilmedi."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "Iks11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termkap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Kyýu-Ti"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThridler"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr ""
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr ""
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Hesse rutinler"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr ""
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr ""
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Oýynlar"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr ""
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr ""
+
+#: src/yelp-pager.c:118
+msgid "Document URI"
+msgstr "Sened URI"
+
+#: src/yelp-pager.c:119
+msgid "The URI of the document to be processed"
+msgstr ""
+
+#: src/yelp-toc-pager.c:267
+msgid "YelpTocPager: Pause count is negative."
+msgstr ""
+
+#: src/yelp-toc-pager.c:487
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr ""
+
+#: src/yelp-toc-pager.c:884
+msgid "Categories"
+msgstr ""
+
+#: src/yelp-toc-pager.c:898
+msgid "Documents"
+msgstr "Senedler"
+
+#: src/yelp-window.c:249
+msgid "/_File"
+msgstr "/_Faýl"
+
+#: src/yelp-window.c:250
+msgid "/File/_New window"
+msgstr "/_Faýl/_Täze äpişge"
+
+#: src/yelp-window.c:253
+msgid "/File/_Close window"
+msgstr "/_Faýl/Äpişgeni _bagla"
+
+#: src/yelp-window.c:257
+msgid "/_Edit"
+msgstr "/_Edit"
+
+#: src/yelp-window.c:258
+msgid "/Edit/_Find..."
+msgstr "/Edit/_Tap..."
+
+#: src/yelp-window.c:261
+msgid "/Edit/Find Ne_xt"
+msgstr "/Edit/_Indikini Tap"
+
+#: src/yelp-window.c:264
+msgid "/Edit/Find Pre_vious"
+msgstr "/Edit/_Öňkini Tap"
+
+#: src/yelp-window.c:268
+msgid "/_Go"
+msgstr "/_Git"
+
+#: src/yelp-window.c:269
+msgid "/Go/_Back"
+msgstr "/Git/_Yza"
+
+#: src/yelp-window.c:272
+msgid "/Go/_Forward"
+msgstr "/Git/_Ewe"
+
+#: src/yelp-window.c:275
+msgid "/Go/_Home"
+msgstr "/Git/_Öýe"
+
+#: src/yelp-window.c:278
+msgid "/Go/"
+msgstr "/Git/"
+
+#: src/yelp-window.c:279
+msgid "/Go/_Previous Page"
+msgstr "/Git/_Öňki Sahypa"
+
+#: src/yelp-window.c:282
+msgid "/Go/_Next Page"
+msgstr "/Git/_Indiki Sahypa"
+
+#: src/yelp-window.c:285
+msgid "/Go/_Contents"
+msgstr "/Git/_Mazmunlar"
+
+#: src/yelp-window.c:289
+msgid "/_Help"
+msgstr "/_Ýardam"
+
+#: src/yelp-window.c:290
+msgid "/Help/_About"
+msgstr "/Ýardam/_Barada"
+
+#: src/yelp-window.c:352
+msgid "Help Browser"
+msgstr "Ýardam Ahtarçysy"
+
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr ""
+
+#: src/yelp-window.c:625
+msgid "Back"
+msgstr "Yza"
+
+#: src/yelp-window.c:626
+msgid "Show previous page in history"
+msgstr "Taryhçada öňki sahypany görkez"
+
+#: src/yelp-window.c:636
+msgid "Forward"
+msgstr "Ewe"
+
+#: src/yelp-window.c:637
+msgid "Show next page in history"
+msgstr "Taryhýada indiki sahypany görkez"
+
+#: src/yelp-window.c:649
+msgid "Home"
+msgstr "Öý"
+
+#: src/yelp-window.c:650
+msgid "Go to home view"
+msgstr "Öý görnişe git"
+
+#: src/yelp-window.c:860
+msgid "Loading..."
+msgstr "Ýüklenýä..."
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:1304
+msgid "translator_credits"
+msgstr "Gurban Mühemmet Tewekgeli <gmtavakkoli@yahoo.com>"
+
+#: src/yelp-window.c:1310
+msgid "A Help Browser for GNOME"
+msgstr "GNOME üçin Ýardam Ahtarçysy"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr "&#8220;"
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr "&#8221;"
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Article"
+msgstr "Bu Makala Barada"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Bibliography"
+msgstr "Bu Biblograf Barada"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Book"
+msgstr "Bu Kitap Barada"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Entry"
+msgstr "Bu Giriş Barada"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Glossary"
+msgstr "Bu Sözlük Barada"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Index"
+msgstr "Bu Indeks Barada"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "About This Set"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Affiliation"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Appendix"
+msgstr "Apendiks"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Article"
+msgstr "Makala"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Author"
+msgstr "Ýazujy"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Authors"
+msgstr "Ýazujylar"
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Bibliography"
+msgstr "Biblogarf"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Book"
+msgstr "Kitap"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Caution"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborator"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Collaborators"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Colophon"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Copyright"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Copyrights"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Date"
+msgstr "Taryh"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Dedication"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Editor"
+msgstr "Editçi"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Email"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Example"
+msgstr "Mysal"
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Figure"
+msgstr "Şekil"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Glossary"
+msgstr "Sözlük"
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Important"
+msgstr "Möhüm"
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Index"
+msgstr "Indeks"
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Legal Notice"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Level"
+msgstr "Dereje"
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Message Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Message Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Message Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Note"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Other Contributor"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Other Contributors"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Part"
+msgstr "Gysmat"
+
+#: stylesheets/l10n.xml.in.h:53
+msgid "Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "Publisher"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "Publishers"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Release Information"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "See"
+msgstr "Gör"
+
+#: stylesheets/l10n.xml.in.h:63
+msgid "See Also"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:64
+msgid "Set Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:65
+msgid "Table"
+msgstr "Jedwel"
+
+#: stylesheets/l10n.xml.in.h:66
+msgid "Table of Contents"
+msgstr "Mazmular Jedweli"
+
+#: stylesheets/l10n.xml.in.h:67
+msgid "Tip"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:68
+msgid "Title"
+msgstr "Sözbaşy"
+
+#: stylesheets/l10n.xml.in.h:70
+msgid "Warning"
+msgstr "Hatar"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "GNOME bilen ýardam tap"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Ýardam"
