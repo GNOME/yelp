@@ -118,7 +118,41 @@
 	<term><property>Language</property></term>
 	<listitem><para>
 	The <property>Language</property> key provides the written language of
-	the document.
+	the document.  The value of this field must be a valid language code as
+	specified by ISO-639.  The value may be <literal>C</literal> for the
+	POSIX locale.  This key is mandatory.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><property>ContentType</property></term>
+	<listitem><para>
+	The <property>ContentType</property> key provides the MIME type of the
+	document.  This key is mandatory.  If the document is in an SGML or XML
+	vocabulary, the properties <property>ContentTypeSystem</property> and
+	<property>ContentTypeNamespace</property> may also be used to provide
+	additional information about the file format.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><property>ContentTypeSystem</property></term>
+	<listitem><para>
+	The <property>ContentTypeSystem</property> key provides the system
+	identifier of an XML or SGML document.  This may be used to specify
+	the particular SGML or XML vocabulary used by the document when the
+	MIME type is not sufficient.  The value of this field should be a URL,
+	typically pointing to the DTD.  This key is optional.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><property>ContentTypeNamespace</property></term>
+	<listitem><para>
+	The <property>ContentTypeNamespace</property> key provides the namespace
+	of the top-level element of an XML document.  This may be used to specify
+	the particular XML vocabulary used by the document when the MIME type is
+	not sufficient.  This key is optional.
 	</para></listitem>
       </varlistentry>
     </variablelist>
