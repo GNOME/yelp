@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 21:53+0100\n"
-"PO-Revision-Date: 2003-12-09 22:01+0100\n"
+"POT-Creation-Date: 2003-12-27 19:39+0100\n"
+"PO-Revision-Date: 2003-12-27 19:39+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -50,8 +50,7 @@ msgstr "Spil og underholdning"
 msgid "General"
 msgstr "Generelt"
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:10
 msgid "Help Contents"
 msgstr "Indhold i hjælp"
 
@@ -84,10 +83,14 @@ msgid "Securities"
 msgstr "Sikkerhed"
 
 #: data/toc.xml.in.h:18
+msgid "System"
+msgstr "System"
+
+#: data/toc.xml.in.h:19
 msgid "Utilities"
 msgstr "Værktøjer"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:20
 msgid "X Applications"
 msgstr "X-programmer"
 
@@ -96,32 +99,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Find tekst i dokumentet:</b>"
-
-#: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "Søg automatisk _forfra"
-
-#: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Find tekst..."
-
-#: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "Find _hele ord"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
+msgid "C_ase sensitive"
 msgstr "_Skeln mellem store/små bogstaver"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:3
+msgid "Find"
+msgstr "Find"
+
+#: data/ui/yelp.glade.h:4
+msgid "_Find: "
+msgstr "_Find: "
+
+#: data/ui/yelp.glade.h:5
 msgid "_Next"
 msgstr "_Næste"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "_Forrige"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr "_Start automatisk forfra"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -131,29 +130,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:241 src/yelp-window.c:736
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "Kunne ikke åbne dokumentet '%s'"
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "Ingen 'href'-egenskab fundet i 'yelp:document'"
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "Løbet tør for hukommelse"
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:598
 msgid "Titlepage"
 msgstr "Titelside"
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:600
 msgid "Contents"
 msgstr "Indhold"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:618
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -231,186 +229,156 @@ msgstr "Oversigter"
 msgid "System Administration"
 msgstr "Systemadministration"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:118
 msgid "Document URI"
 msgstr "Dokument-URI"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
 msgstr "URI'en for det dokument der skal behandles"
 
-#: src/yelp-toc-pager.c:229
+#: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausetal er negativt."
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
 msgid "The table of contents could not be read."
 msgstr "Kunne ikke læse indholdsfortegnelsen."
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:841
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:862
 msgid "Documents"
 msgstr "Dokumenter"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "Indlæser..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "Sektion"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Søg efter:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "Gnome - skrivebordsmiljøet"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Yderligere dokumenter"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Manualsider"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Infosider"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Manualsider"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "Gnome er"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "frit programmel"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "©"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:221
 msgid "/_File"
 msgstr "/_Fil"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:222
 msgid "/File/_New window"
 msgstr "/Fil/_Nyt vindue"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:225
 msgid "/File/_Close window"
 msgstr "/Fil/_Luk vindue"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:229
 msgid "/_Edit"
 msgstr "/_Redigér"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
-msgstr "/Redigér/_Find på side..."
+#: src/yelp-window.c:230
+msgid "/Edit/_Find..."
+msgstr "/Redigér/_Find..."
 
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
-msgstr "/Redigér/_Find næste"
+#: src/yelp-window.c:233
+msgid "/Edit/Find Ne_xt"
+msgstr "/Redigér/Find _næste"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:236
+msgid "/Edit/Find Pre_vious"
+msgstr "/Redigér/Find _forrige"
+
+#: src/yelp-window.c:240
 msgid "/_Go"
 msgstr "/_Navigering"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:241
 msgid "/Go/_Back"
 msgstr "/Navigering/_Tilbage"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:244
 msgid "/Go/_Forward"
 msgstr "/Navigering/_Fremad"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:247
 msgid "/Go/_Home"
 msgstr "/Navigering/_Startside"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:250
+msgid "/Go/"
+msgstr "/_Navigering"
+
+#: src/yelp-window.c:251
+msgid "/Go/_Previous"
+msgstr "/Navigering/_Forrige"
+
+#: src/yelp-window.c:254
+msgid "/Go/_Next"
+msgstr "/Navigering/_Næste"
+
+#: src/yelp-window.c:257
+msgid "/Go/_Contents"
+msgstr "/Navigering/_Indhold"
+
+#: src/yelp-window.c:261
 msgid "/_Help"
 msgstr "/_Hjælp"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:262
 msgid "/Help/_About"
 msgstr "/Hjælp/_Om"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:324
 msgid "Help Browser"
 msgstr "Hjælpelæser"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "Tilbage"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "Vis foregående side i historikken"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "Fremad"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "Vis næste side i historikken"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "Start"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "Gå til startvisning"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:384
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet '%s' eksisterer ikke"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:404
 msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML-dokumenter understøttes ikke længere."
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr "Indlæser&nbsp;&nbsp;&nbsp;"
+#: src/yelp-window.c:523
+msgid "Section"
+msgstr "Sektion"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr "Indlæser.&nbsp;&nbsp;"
+#: src/yelp-window.c:576
+msgid "Back"
+msgstr "Tilbage"
 
-#: src/yelp-window.c:895
-msgid "Loading..&nbsp;"
-msgstr "Indlæser..&nbsp;"
+#: src/yelp-window.c:577
+msgid "Show previous page in history"
+msgstr "Vis foregående side i historikken"
+
+#: src/yelp-window.c:587
+msgid "Forward"
+msgstr "Fremad"
+
+#: src/yelp-window.c:588
+msgid "Show next page in history"
+msgstr "Vis næste side i historikken"
+
+#: src/yelp-window.c:600
+msgid "Home"
+msgstr "Start"
+
+#: src/yelp-window.c:601
+msgid "Go to home view"
+msgstr "Gå til startvisning"
+
+#: src/yelp-window.c:769 src/yelp-window.c:800 src/yelp-window.c:1014
+#: src/yelp-window.c:1076
+#, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "Siden '%s' blev ikke fundet i dette dokument."
+
+#: src/yelp-window.c:825
+msgid "Loading..."
+msgstr "Indlæser..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1157
 msgid "translator_credits"
 msgstr "Ole Laursen <olau@hardworking.dk>"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1162
 msgid "A Help Browser for GNOME"
 msgstr "En hjælpelæser til Gnome"
 
@@ -422,6 +390,57 @@ msgstr "Få hjælp til Gnome"
 msgid "Help"
 msgstr "Hjælp"
 
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Find tekst i dokumentet:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "Søg automatisk _forfra"
+
+#~ msgid "Find text..."
+#~ msgstr "Find tekst..."
+
+#~ msgid "Match _entire word"
+#~ msgstr "Find _hele ord"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "_Skeln mellem store/små bogstaver"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Søg efter:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "Gnome - skrivebordsmiljøet"
+
+#~ msgid "Additional documents"
+#~ msgstr "Yderligere dokumenter"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Manualsider"
+
+#~ msgid "Info Pages"
+#~ msgstr "Infosider"
+
+#~ msgid "Manual pages"
+#~ msgstr "Manualsider"
+
+#~ msgid "GNOME is"
+#~ msgstr "Gnome er"
+
+#~ msgid "Free Software"
+#~ msgstr "frit programmel"
+
+#~ msgid "(C)"
+#~ msgstr "©"
+
+#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
+#~ msgstr "Indlæser&nbsp;&nbsp;&nbsp;"
+
+#~ msgid "Loading.&nbsp;&nbsp;"
+#~ msgstr "Indlæser.&nbsp;&nbsp;"
+
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "Indlæser..&nbsp;"
+
 #~ msgid "About This Document"
 #~ msgstr "Om dette dokument"
 
@@ -430,9 +449,6 @@ msgstr "Hjælp"
 
 #~ msgid "Next"
 #~ msgstr "Næste"
-
-#~ msgid "/Go/_Index"
-#~ msgstr "/Navigering/_Indeks"
 
 #~ msgid "Index"
 #~ msgstr "Indeks"
