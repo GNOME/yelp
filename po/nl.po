@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
-"POT-Creation-Date: 2004-03-22 17:51-0600\n"
-"PO-Revision-Date: 2004-02-09 17:14+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-19 20:25+0200\n"
+"PO-Revision-Date: 2004-04-19 21:38+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -126,9 +126,10 @@ msgstr "V_orige"
 
 # hele discussie hierover op http://home.o2w.net/~ivo/wiki.pl?WrapAround
 # Betere vertaling hier in yelp?
+# was Terugloop, maar consensus schijnt te zijn: Doorgaan na documenteinde
 #: data/ui/yelp.glade.h:7
 msgid "_Wrap around"
-msgstr "_Terugloop"
+msgstr "_Doorgaan na documenteinde"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -264,20 +265,20 @@ msgstr "Document URI"
 msgid "The URI of the document to be processed"
 msgstr "De URI van het te verwerken document"
 
-#: src/yelp-toc-pager.c:266
+#: src/yelp-toc-pager.c:267
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauzerentelling is negatief."
 
-#: src/yelp-toc-pager.c:486
+#: src/yelp-toc-pager.c:487
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Kon het OMF bestand niet laden: '%s'."
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:884
 msgid "Categories"
 msgstr "Categorieën"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:898
 msgid "Documents"
 msgstr "Documenten"
 
@@ -387,14 +388,14 @@ msgstr "Bezig met laden..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1300
+#: src/yelp-window.c:1301
 msgid "translator_credits"
 msgstr ""
 "Tino Meinen <a.t.meinen@chello.nl>\n"
 "Ronald Hummelink <ronald@hummelink.xs4all.nl>"
 
 # Een Hulp voor GNOME, een Hulp-programma voor GNOME
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1307
 msgid "A Help Browser for GNOME"
 msgstr "Een Hulp-browser voor GNOME"
 
