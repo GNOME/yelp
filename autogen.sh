@@ -36,6 +36,12 @@ ACLOCAL=aclocal-1.4
 	DIE=1
 }
 
+# if GNOME2_DIR set, modify ACLOCAL_FLAGS ...
+if [ -n "$GNOME2_DIR" ]; then
+    ACLOCAL_FLAGS="-I $GNOME2_DIR/share/aclocal $ACLOCAL_FLAGS"
+fi
+
+
 (grep "^AM_PROG_LIBTOOL" configure.in >/dev/null) && {
   (libtool --version) < /dev/null > /dev/null 2>&1 || {
     echo

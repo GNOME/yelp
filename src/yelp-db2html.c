@@ -99,11 +99,14 @@ main (gint argc, gchar **argv)
 
 	if (strstr (docpath, ".sgml")) {
                 db_doc = docbParseFile (docpath, "UTF-8");
-	} else {
+	} else if (strstr (docpath, ".xml")) {
 		db_doc = xmlParseFile (docpath);
 #ifdef LIBXML_XINCLUDE_ENABLED
 		xmlXIncludeProcess (db_doc);
 #endif
+	} else {
+		g_warning ("Unknown Docbook format for '%s'.", docpath);
+		exit (1);
 	}
 
 	if (db_doc == NULL) {

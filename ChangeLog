@@ -1,3 +1,11 @@
+2004-01-27  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* autogen.sh:
+	Handle GNOME2_PATH variable.
+
+	* src/yelp-db2html.c: (main):
+	Don't try to parse html file (Mdk bug #4743).
+
 2003-11-10  Shaun McCance  <shaunm@gnome.org>
 
 	* configure.in: Version 2.4.2
