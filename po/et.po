@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-06-05 20:59+0300\n"
-"PO-Revision-Date: 2002-06-05 21:00+0300\n"
+"POT-Creation-Date: 2002-06-30 00:49+0300\n"
+"PO-Revision-Date: 2002-06-30 00:50+0300\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-main.c:111
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Ei saa Yelpi aktiveerida: '%s'"
 
-#: src/yelp-main.c:130
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
@@ -132,11 +132,11 @@ msgstr "Manuaalilehed"
 msgid "Info Pages"
 msgstr "Infolehed"
 
-#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Dokumendid"
 
-#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Kategooriad"
 
@@ -144,97 +144,109 @@ msgstr "Kategooriad"
 msgid "Manual pages"
 msgstr "Manuaalilehed"
 
-#: src/yelp-window.c:156
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME on"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "vaba tarkvara"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "©"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Fail/_Uus aken"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Fail/_Sulge aken"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:160
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/_Liigu"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Liigu/_Tagasi"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Liigu/_Edasi"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Liigu/_Kodu"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Liigu/_Indeks"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Abi"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Abi/_Info"
 
-#: src/yelp-window.c:228 src/yelp-window.c:430
+#: src/yelp-window.c:231 src/yelp-window.c:433
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:343
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumenti '%s' ei ole olemas"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:599
+#: src/yelp-window.c:602
 msgid "translator_credits"
 msgstr ""
 "Tõlge eesti keelde:\n"
 "       Tõivo Leedjärv <toivo@linux.ee>, 2002."
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:606
 msgid "Help Browser for GNOME 2.0"
 msgstr "GNOME 2.0 abiinfo brauser"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:661
 msgid "Back"
 msgstr "Tagasi"
 
-#: src/yelp-window.c:659
+#: src/yelp-window.c:662
 msgid "Show previous page in history"
 msgstr "Näita eelmist lehekülge ajaloos"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:673
 msgid "Forward"
 msgstr "Edasi"
 
-#: src/yelp-window.c:671
+#: src/yelp-window.c:674
 msgid "Show next page in history"
 msgstr "Näita järgmist lehekülge ajaloos"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:687
 msgid "Home"
 msgstr "Kodu"
 
-#: src/yelp-window.c:685
+#: src/yelp-window.c:688
 msgid "Go to home view"
 msgstr "Liigu koduvaatele"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:698
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:696
+#: src/yelp-window.c:699
 msgid "Search in the index"
 msgstr "Otsi indeksist"
 
