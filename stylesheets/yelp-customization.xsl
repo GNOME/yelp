@@ -149,7 +149,11 @@
        LI P {margin-bottom: 0}
        LI P {margin-top: 0}
        P.header-title {text-align: center; margin-top: 0; margin-bottom: 0}
-       P.copyright {margin-left: 2em; margin-bottom: 0; margin-top: 0}
+       P.copyright {margin-bottom: 0; margin-top: 0}
+       H2 + P.copyright {margin-top: 1em}
+       DIV.legalnotice P {font-size: 0.8em}
+       DIV.revhistory TR {vertical-align: top}
+       TT {font-family: monospace}
        P.about {margin-bottom: 0}
        DD P {margin-top: 0}
        DD P {margin-bottom: 0}
@@ -159,24 +163,32 @@
        LI UL {margin-left: 2em; margin-top: 0.66em}
        OL LI UL {list-style-type: disc}
        UL LI UL {list-style-type: circle}
-       OL LI OL {list-style-type: lower-roman}
+       OL LI OL {list-style-type: lower-alpha}
        DD {margin-left: 2em}
        DL {margin-top: 0}
        DL {margin-bottom: 0}
+       DIV.variablelist DT {margin-top: 1em }
+       DIV.variablelist DD P {margin-top: 0.5em}
+       DIV.variablelist DD UL {margin-top: 0.5em}
+       DIV.variablelist DD LI P {margin-top: 0}
        HR.bottom {margin-top: 2ex; margin-bottom: 0}
+       TD {vertical-align: top}
+       TH {vertical-align: top}
+       DIV.table P {margin-top: 0}
        TABLE P {margin-bottom: 0; margin-top: 0}
+       TABLE UL {margin-top: 0.66em;}
        DIV.toc {margin-bottom: 3ex}
        DIV TD {padding-right: 1em; padding-left: 1em; padding-top: 0.5ex; padding-bottom: 0.5ex}
        DIV TH {padding-right: 1em; padding-left: 1em; padding-top: 0.5ex; padding-bottom: 0.5ex}
        DIV.note TD {padding-left: 0; padding-top: 0}
        DIV.note TH {padding-left: 0; padding-top: 0}
-       LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
-       DIV.informaltable TABLE {border-bottom: solid; border-bottom-width: 3; border-top: solid; border-top-width: 3}
-       DIV.informaltable TABLE THEAD TR {border-bottom: 3px solid black !IMPORTANT; border-top: 3px solid black !IMPORTANT;}
-       DIV.informaltable TH {border-bottom: 3px solid black !IMPORTANT;}
-       DIV.table TABLE {border-bottom: 3px solid black !IMPORTANT; border-top: 3px solid black !IMPORTANT;}
-       DIV.table TABLE THEAD TR {border-bottom: 3px solid black !IMPORTANT; border-top: 3px solid black !IMPORTANT;}
+       DIV.informaltable TABLE {border-bottom: solid 3px black}
+       DIV.informaltable TR:FIRST-CHILD {border-top: solid 3px black}
+       DIV.table TR:FIRST-CHILD {border-top: solid 3px black}
+       DIV.table TABLE {border-bottom: solid 3px black}
        DIV.revhistory TABLE {border-spacing: 0}
+       LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
+       LI DIV.figure P {margin-top: 1em; margin-bottom: 1em}
        H1 {font-size: 1.4em}
        H2 {font-size: 1.3em; margin-bottom: 0}
        H3 {font-size: 1.2em; margin-bottom: 0}
@@ -300,7 +312,7 @@
       </xsl:when>
 
       <!-- we need to treat the first sect1 specially -->
-      <xsl:when test="$node=/article/sect1[1]">
+      <xsl:when test="$node=/article/sect1[1] or $node=/part/chapter/sect1[1]">
         <td><a accesskey="p">
           <xsl:attribute name="href">
             <xsl:call-template name="article.toc.ref"/>
@@ -313,7 +325,7 @@
       </xsl:when>
 
       <!-- And the first sect2 of the first sect1 needs the same -->
-      <xsl:when test="$node=/article/sect1[1]/sect2[1]">
+      <xsl:when test="$node=/article/sect1[1]/sect2[1] or $node=/part/chapter/sect1[1]/sect2[1]">
         <td><a accesskey="p">
           <xsl:attribute name="href">
             <xsl:call-template name="article.toc.ref"/>
@@ -426,9 +438,18 @@
         </xsl:call-template>
       </a></td>
       <td></td>
-      <xsl:call-template name="next.link.cell">
-        <xsl:with-param name="object" select="sect1[1]"/>
-      </xsl:call-template>
+      <xsl:choose>
+      <xsl:when test="local-name(.) = 'part'">
+        <xsl:call-template name="next.link.cell">
+          <xsl:with-param name="object" select="chapter[1]/sect1[1]"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="next.link.cell">
+          <xsl:with-param name="object" select="sect1[1]"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+      </xsl:choose>
     </tr>
   </table>
 </xsl:template>
@@ -503,7 +524,19 @@
   <xsl:comment> End of chunk </xsl:comment>
 </xsl:for-each>
 
+<xsl:for-each select="$root/part/appendix">
+  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+  <xsl:call-template name="component.toc"/>
+  <xsl:comment> End of chunk </xsl:comment>
+</xsl:for-each>
+
 <xsl:for-each select="$root/chapter">
+  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+  <xsl:call-template name="component.toc"/>
+  <xsl:comment> End of chunk </xsl:comment>
+</xsl:for-each>
+
+<xsl:for-each select="$root/appendix">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="component.toc"/>
   <xsl:comment> End of chunk </xsl:comment>

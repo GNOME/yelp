@@ -270,6 +270,10 @@
 <xsl:param name="generate.legalnotice.link" select="0"/>
 
 <xsl:template match="legalnotice[1]" mode="titlepage.mode">
+  <xsl:element name="div">
+    <xsl:attribute name="class">
+      <xsl:text>legalnotice</xsl:text>
+    </xsl:attribute>
   <xsl:text>&#xA;</xsl:text>
   <h2>
   <xsl:call-template name="gentext">
@@ -277,6 +281,7 @@
   </xsl:call-template>
   </h2>
   <xsl:apply-templates mode="titlepage.mode"/>
+  </xsl:element>
 </xsl:template>
 
 <!-- Makes the address inside the legalnotice inline instead of separated 
