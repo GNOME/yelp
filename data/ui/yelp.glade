@@ -279,7 +279,6 @@
 
 	      <child>
 		<widget class="GtkCheckButton" id="word_check">
-		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">Match _entire word</property>
 		  <property name="use_underline">True</property>
@@ -298,7 +297,6 @@
 
 	      <child>
 		<widget class="GtkCheckButton" id="wrap_check">
-		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">Automatically _wrap around</property>
 		  <property name="use_underline">True</property>
