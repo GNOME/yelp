@@ -132,8 +132,8 @@
 		<xsl:when test="$depth_chunk &lt; $chunk_depth and $node/*[&is-division;]">
 			<xsl:value-of select="$node/*[&is-division;][1]/@id"/>
 		</xsl:when>
-		<xsl:when test="following-sibling::*[&is-division;]">
-			<xsl:value-of select="following-sibling::*[&is-division;][1]/@id"/>
+		<xsl:when test="$node/following-sibling::*[&is-division;]">
+			<xsl:value-of select="$node/following-sibling::*[&is-division;][1]/@id"/>
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:call-template name="navbar.following">
