@@ -753,7 +753,7 @@ window_handle_pager_uri (YelpWindow  *window,
     if (yelp_uri_get_resource_type (uri) == YELP_URI_TYPE_TOC) {
 	pager = YELP_PAGER (yelp_toc_pager_get ());
     } else {
-	path  = g_strdup (gnome_vfs_uri_get_path (uri->uri));
+	path  = (gchar *) gnome_vfs_uri_get_path (uri->uri);
 	pager = (YelpPager *) yelp_cache_lookup (path);
 
 	// Create a new pager if one doesn't exist in the cache
@@ -773,7 +773,7 @@ window_handle_pager_uri (YelpWindow  *window,
 	    }
 
 	    if (pager)
-		yelp_cache_add (path, (GObject *) pager);
+		yelp_cache_add (g_strdup (path), (GObject *) pager);
 	}
     }
 
@@ -1033,6 +1033,8 @@ window_handle_page (YelpWindow   *window,
 		gtk_tree_path_free (path);
 		break;
 	    }
+
+	    g_free (id);
 
 	    valid = tree_model_iter_following (model, &iter);
 	}
