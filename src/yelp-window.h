@@ -48,7 +48,7 @@ struct _YelpWindow
 
 struct _YelpWindowClass
 {
-    GtkWindowClass  paretn_class;
+    GtkWindowClass  parent_class;
 
     /* Signals */
     void (*new_window_requested) (YelpWindow *window);

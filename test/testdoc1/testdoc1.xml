@@ -243,7 +243,7 @@
 			<listitem>
 				<para>
 					The <sgmltag>link</sgmltag> element is used as a general-purpose
-					hypertext link.  Here is a link to the
+					intra-document hypertext link.  Here is a link to the
 					<link linkend="td-admonitions" id="beware">admonitions</link>.
 					And here's the same link, using the
 					<sgmltag class="attribute">endterm</sgmltag> attribute:
@@ -310,6 +310,16 @@
 					respectively.  Future versions of &yelp; may support MathML, which
 					will totally rock.  Here is a subscript: A<subscript>12</subscript>.
 					And a superscript: 2<superscript>64</superscript>.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry><term><sgmltag>xref</sgmltag></term>
+			<listitem>
+				<para>
+					The <sgmltag>xref</sgmltag> element is used to cross-reference
+					another section of the document, and is usually rendered as a
+					link by online viewers like &yelp;.  Here is a link to
+					<xref linkend="td-admonitions"/>.
 				</para>
 			</listitem>
 		</varlistentry>
