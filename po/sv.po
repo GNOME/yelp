@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-04-05 14:51+0200\n"
-"PO-Revision-Date: 2002-04-05 14:51+0200\n"
+"POT-Creation-Date: 2002-04-12 01:31+0200\n"
+"PO-Revision-Date: 2002-04-12 01:31+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-html.c:137
+#: src/yelp-html.c:136
 msgid "Loading..."
 msgstr "Läser in..."
 
@@ -114,7 +114,7 @@ msgstr "Systemadministration"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:197 src/yelp-view-index.c:359
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:364
 msgid "Section"
 msgstr "Avdelning"
 
@@ -122,33 +122,42 @@ msgstr "Avdelning"
 msgid "Search for:"
 msgstr "Sök efter:"
 
-#: src/yelp-view-toc.c:271
-msgid "Other Documents"
-msgstr "Andra dokument"
+#: src/yelp-view-toc.c:315
+msgid "Help Contents"
+msgstr "Hjälpinnehåll"
 
-#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:502
+#: src/yelp-view-toc.c:316
+msgid "GNOME - Desktop"
+msgstr "GNOME - Skrivbord"
+
+#: src/yelp-view-toc.c:317
+msgid "Additional documents"
+msgstr "Ytterligare dokument"
+
+#: src/yelp-view-toc.c:318 src/yelp-view-toc.c:517 src/yelp-view-toc.c:749
 msgid "Manual pages"
 msgstr "Manualsidor"
 
-#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:579 src/yelp-view-toc.c:598
+#: src/yelp-view-toc.c:319 src/yelp-view-toc.c:518 src/yelp-view-toc.c:826
+#: src/yelp-view-toc.c:845
 msgid "Info pages"
 msgstr "Infosidor"
 
-#: src/yelp-view-toc.c:274
+#: src/yelp-view-toc.c:516
+msgid "Other Documents"
+msgstr "Andra dokument"
+
+#: src/yelp-view-toc.c:519
 msgid "Installed documents"
 msgstr "Installerade dokument"
 
-#: src/yelp-view-toc.c:288
+#: src/yelp-view-toc.c:533
 msgid "Start page"
 msgstr "Startsida"
 
-#: src/yelp-view-toc.c:532
+#: src/yelp-view-toc.c:779
 msgid "Manual Pages"
 msgstr "Manualsidor"
-
-#: src/yelp-view-toc.c:700
-msgid "Scrollkeeper docs for category"
-msgstr "Scrollkeeper-dokument för kategorin"
 
 #: src/yelp-window.c:150
 msgid "/_File"
@@ -197,46 +206,46 @@ msgstr "Hjälpvisare"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:545
+#: src/yelp-window.c:547
 msgid "translator_credits"
 msgstr ""
 "Christian Rose\n"
 "Richard Hult\n"
 "Rapportera fel i översättningen till sv@li.org"
 
-#: src/yelp-window.c:549
+#: src/yelp-window.c:551
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:605
 msgid "Back"
 msgstr "Bakåt"
 
-#: src/yelp-window.c:605
+#: src/yelp-window.c:606
 msgid "Show previous page in history"
 msgstr "Visa föregående sida i historiken"
 
-#: src/yelp-window.c:616
+#: src/yelp-window.c:617
 msgid "Forward"
 msgstr "Framåt"
 
-#: src/yelp-window.c:617
+#: src/yelp-window.c:618
 msgid "Show next page in history"
 msgstr "Visa nästa sida i historiken"
 
-#: src/yelp-window.c:630
+#: src/yelp-window.c:631
 msgid "Home"
 msgstr "Hem"
 
-#: src/yelp-window.c:631
+#: src/yelp-window.c:632
 msgid "Go to home view"
 msgstr "Gå till hemvyn"
 
-#: src/yelp-window.c:641
+#: src/yelp-window.c:642
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:642
+#: src/yelp-window.c:643
 msgid "Search in the index"
 msgstr "Sök i indexet"
 
@@ -247,6 +256,12 @@ msgstr "Få hjälp med GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjälp"
+
+#~ msgid "Contents"
+#~ msgstr "Innehåll"
+
+#~ msgid "Scrollkeeper docs for category"
+#~ msgstr "Scrollkeeper-dokument för kategorin"
 
 #~ msgid "/File/_Quit"
 #~ msgstr "/Arkiv/_Avsluta"
@@ -304,6 +319,3 @@ msgstr "Hjälp"
 
 #~ msgid "Invalid URI: %s\n"
 #~ msgstr "Ogiltig URI: %s\n"
-
-#~ msgid "Contents"
-#~ msgstr "Innehåll"
