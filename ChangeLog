@@ -1,5 +1,28 @@
 2002-06-02  Mikael Hallendal  <micke@codefactory.se>
 
+	* Fixes #69047
+
+	* src/yelp-window.c (yelp_window_new): connect to title_changed
+	  signal on content and TOC views.
+	(window_title_changed_cb): set the new title.
+
+	* src/yelp-view-toc.c: added title_changed signal. I soooo want
+	  the views to inherit from the same base :) Will fix after 2.0.0
+	(toc_html_title_changed_cb): emit title changed signal.
+	(toc_page_start): take extra argument so that you can set title
+	  and page header.
+
+	* src/yelp-view-content.c: added signal title_changed. 
+	(content_html_title_changed_cb): emit title changed signal.
+
+	* src/yelp-html-gtkhtml2.c:
+	(html_title_changed_cb): emit title changed signal.
+
+	* src/yelp-html.h: added title_changed signal.
+
+	* src/yelp-html-gtkhtml1.c: 
+	- started on emit title changed	code. WIP.
+
 	* src/yelp-uri.c:
 	(uri_get_doc_type): set info:dir to be toc:info
 	(uri_get_doc_path): same

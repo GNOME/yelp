@@ -67,6 +67,7 @@ static void      html_link_clicked_cb    (GtkHTML            *html_view,
 
 enum {
 	URI_SELECTED,
+	TITLE_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -134,6 +135,17 @@ html_class_init (YelpHtmlClass *klass)
 			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
 			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+
+	signals[TITLE_CHANGED] = 
+		g_signal_new ("title_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpHtmlClass,
+					       title_changed),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
 }
 
 static void

@@ -48,9 +48,11 @@ struct _YelpHtmlClass {
         GObjectClass  parent_class;
 
 	/* Signals */
-	void (*uri_selected)   (YelpHtml  *view,
-				YelpURI   *uri,
-				gboolean   handled);
+	void (*uri_selected)   (YelpHtml    *view,
+				YelpURI     *uri,
+				gboolean     handled);
+	void (*title_changed)  (YelpHtml    *view,
+				const gchar *new_title);
 };
 
 GType           yelp_html_get_type       (void);

@@ -64,11 +64,16 @@ static void      html_cancel_stream      (HtmlStream         *stream,
 static void      html_link_clicked_cb    (HtmlDocument       *doc, 
 					  const gchar        *url, 
 					  YelpHtml           *html);
+static void      html_title_changed_cb   (HtmlDocument       *doc,
+					  const gchar        *new_title,
+					  YelpHtml           *html);
+
 
 #define BUFFER_SIZE 16384
 
 enum {
 	URI_SELECTED,
+	TITLE_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -121,6 +126,9 @@ html_init (YelpHtml *html)
         g_signal_connect (G_OBJECT (priv->doc), "request_url",
                           G_CALLBACK (html_url_requested_cb), html);
 
+        g_signal_connect (G_OBJECT (priv->doc), "title_changed",
+                          G_CALLBACK (html_title_changed_cb), html);
+
         html->priv = priv;
 }
 
@@ -137,6 +145,17 @@ html_class_init (YelpHtmlClass *klass)
 			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
 			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+
+	signals[TITLE_CHANGED] = 
+		g_signal_new ("title_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpHtmlClass,
+					       title_changed),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
 }
 
 static void
@@ -229,6 +248,17 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 	g_signal_emit (html, signals[URI_SELECTED], 0, uri, handled);
 
 	yelp_uri_unref (uri);
+}
+
+static void
+html_title_changed_cb (HtmlDocument *doc, 
+		       const gchar  *new_title,
+		       YelpHtml     *html)
+{
+	g_return_if_fail (HTML_IS_DOCUMENT (doc));
+	g_return_if_fail (new_title != NULL);
+	
+	g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
 }
 
 YelpHtml *

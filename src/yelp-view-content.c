@@ -50,6 +50,9 @@ static void content_html_uri_selected_cb      (YelpHtml             *html,
 					       YelpURI              *uri,
 					       gboolean              handled,
 					       YelpViewContent      *view);
+static void content_html_title_changed_cb     (YelpHtml             *html,
+					       const gchar          *title,
+					       YelpViewContent      *view);
 #if 0
 static void content_reader_start_cb           (YelpReader           *reader,
 					       YelpViewContent      *view);
@@ -68,6 +71,7 @@ static void content_reader_error_cb           (YelpReader           *reader,
 
 enum {
 	URI_SELECTED,
+	TITLE_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -145,6 +149,9 @@ content_init (YelpViewContent *view)
 	g_signal_connect (priv->html_view, "uri_selected",
 			  G_CALLBACK (content_html_uri_selected_cb), 
 			  view);
+	g_signal_connect (priv->html_view, "title_changed",
+			  G_CALLBACK (content_html_title_changed_cb),
+			  view);
 
 	priv->reader      = yelp_reader_new ();
 	
@@ -177,6 +184,17 @@ content_class_init (YelpViewContentClass *klass)
 			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
 			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+
+	signals[TITLE_CHANGED] = 
+		g_signal_new ("title_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpViewContentClass,
+					       title_changed),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
 }
 
 static void
@@ -191,6 +209,16 @@ content_html_uri_selected_cb (YelpHtml        *html,
 		   handled));
 	
 	g_signal_emit (view, signals[URI_SELECTED], 0, uri, handled);
+}
+
+static void
+content_html_title_changed_cb (YelpHtml        *html,
+			       const gchar     *title,
+			       YelpViewContent *view)
+{
+	g_print ("Title changed to: %s\n", title);
+
+	g_signal_emit (view, signals[TITLE_CHANGED], 0, title);
 }
 
 static void

@@ -50,9 +50,11 @@ struct _YelpViewTOCClass {
 
 	/* Signals */
 
-	void (*uri_selected)   (YelpViewTOC   *view,
-				YelpURI       *uri,
-				gboolean       handled);
+	void (*uri_selected)   (YelpViewTOC     *view,
+				YelpURI         *uri,
+				gboolean         handled);
+	void (*title_changed)  (YelpViewTOC     *view,
+				const gchar     *new_title);
 };
 
 GType           yelp_view_toc_get_type       (void);

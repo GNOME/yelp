@@ -52,6 +52,8 @@ struct _YelpViewContentClass {
 	void (*uri_selected)   (YelpViewContent *view,
 				YelpURI         *uri,
 				gboolean         handled);
+	void (*title_changed)  (YelpViewContent *view,
+				const gchar     *new_title);
 };
 
 GType           yelp_view_content_get_type     (void);

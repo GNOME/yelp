@@ -51,12 +51,17 @@ static void   toc_uri_selected_cb           (YelpHtml         *html,
 					     YelpURI          *uri,
 					     gboolean          handled,
 					     YelpViewTOC      *view);
+static void   toc_html_title_changed_cb     (YelpHtml         *html,
+					     const gchar      *title,
+					     YelpViewTOC      *view);
 static void   toc_page_start                (YelpViewTOC      *view,
-					     const gchar      *page_name);
+					     const gchar      *title,
+					     const gchar      *heading);
 static void   toc_page_end                  (YelpViewTOC      *view);
 
 enum {
 	URI_SELECTED,
+	TITLE_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -117,8 +122,12 @@ toc_init (YelpViewTOC *view)
 	priv->html_view   = yelp_html_new ();
 	priv->html_widget = yelp_html_get_widget (priv->html_view);
 
-	g_signal_connect (G_OBJECT (priv->html_view), "uri_selected",
-			  G_CALLBACK (toc_uri_selected_cb), 
+	g_signal_connect (priv->html_view, "uri_selected",
+			  G_CALLBACK (toc_uri_selected_cb),
+			  view);
+
+	g_signal_connect (priv->html_view, "title_changed",
+			  G_CALLBACK (toc_html_title_changed_cb),
 			  view);
 }
 
@@ -135,6 +144,17 @@ toc_class_init (YelpViewTOCClass *klass)
 			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
 			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+
+	signals[TITLE_CHANGED] = 
+		g_signal_new ("title_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpViewTOCClass,
+					       title_changed),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
 }
 
 #if 0
@@ -176,7 +196,7 @@ toc_start (YelpViewTOC *view)
 	
  	yelp_html_clear (priv->html_view);
 
-	toc_page_start (view, page_title);
+	toc_page_start (view, page_title, page_title);
 
 	sections = priv->important_sections;
 	
@@ -444,6 +464,7 @@ toc_man_2 (YelpViewTOC *view,
 	GNode           *first;
 	gchar           *name;
 	gchar           *string = _("Manual pages");
+	gchar           *title;
 
 	g_return_if_fail (YELP_IS_VIEW_TOC (view));
 	
@@ -456,15 +477,18 @@ toc_man_2 (YelpViewTOC *view,
 	first = root->children;
 
 	yelp_html_clear (priv->html_view);
-
-	toc_page_start (view, string);
-
+ 
 	name = toc_full_path_name (view, root);
+	
+	title = g_strdup_printf ("%s/%s", string, name);
 
-	yelp_html_printf (priv->html_view,
-			  "<td colspan=\"2\"><h2>%s/%s</h2><ul>",
-			  string, name);
+	toc_page_start (view, title, string);
 
+ 	yelp_html_printf (priv->html_view,
+ 			  "<td colspan=\"2\"><h2>%s</h2><ul>",
+ 			  title);
+
+	g_free (title);
 	g_free (name);
 
 	toc_man_emit (view, first);
@@ -505,7 +529,7 @@ toc_man_1 (YelpViewTOC *view)
 
 	yelp_html_clear (priv->html_view);
 
-	toc_page_start (view, string);
+	toc_page_start (view, string, string);
 
 	yelp_html_printf (priv->html_view,
 			  "<td colspan=\"2\"><h2>%s</h2><ul>",
@@ -561,7 +585,7 @@ toc_info (YelpViewTOC *view)
 
 	yelp_html_clear (priv->html_view);
 
-	toc_page_start (view, string);
+	toc_page_start (view, string, string);
 
 	yelp_html_printf (priv->html_view, 
 			  "<td colspan=\"2\"><h2>%s</h2><ul>", str_docs);
@@ -657,12 +681,23 @@ toc_uri_selected_cb (YelpHtml    *html,
 }
 
 static void
-toc_page_start (YelpViewTOC *view, const gchar *page_name)
+toc_html_title_changed_cb (YelpHtml    *html, 
+			   const gchar *title,
+			   YelpViewTOC *view)
+{
+	g_print ("Title changed to: %s\n", title);
+
+	g_signal_emit (view, signals[TITLE_CHANGED], 0, title);
+}
+
+static void
+toc_page_start (YelpViewTOC *view, const gchar *title, const gchar *heading)
 {
 	YelpViewTOCPriv *priv;
 	
 	g_return_if_fail (YELP_IS_VIEW_TOC (view));
-	g_return_if_fail (page_name != NULL);
+	g_return_if_fail (title != NULL);
+	g_return_if_fail (heading != NULL);
 	
 	priv = view->priv;
 	
@@ -670,6 +705,7 @@ toc_page_start (YelpViewTOC *view, const gchar *page_name)
 			  "<html>\n"
 			  "<head>\n"
 			  "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
+			  "<title>%s</title>\n"
 			  "</head>\n"
 			  "<body marginwidth=\"0\"\n"
 			  "background=\"file:" IMAGEDIR "/bcg.png\" marginheight=\"0\"\n"
@@ -686,7 +722,8 @@ toc_page_start (YelpViewTOC *view, const gchar *page_name)
 			  "<td width=\"75\">\n"
 			  "<img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\">\n"
 			  "</td>\n",
-			  page_name);
+			  title,
+			  heading);
 }
 
 static void
@@ -761,7 +798,7 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 
 	yelp_html_clear (priv->html_view);
 
-	toc_page_start (view, name);
+	toc_page_start (view, name, name);
 
 	yelp_html_printf (priv->html_view, "<td colspan=\"2\">");
 

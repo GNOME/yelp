@@ -63,57 +63,60 @@ static void        window_class_init	          (YelpWindowClass   *klass);
 static void        window_populate                (YelpWindow        *window);
 
 static gboolean    window_handle_uri              (YelpWindow        *window,
-						    YelpURI          *uri);
+						   YelpURI           *uri);
 static void        window_uri_selected_cb         (gpointer           view,
-						    YelpURI          *uri,
-						    gboolean          handled,
-						    YelpWindow       *window);
+						   YelpURI           *uri,
+						   gboolean           handled,
+						   YelpWindow        *window);
+static void        window_title_changed_cb        (gpointer           view,
+						   const gchar       *title,
+						   YelpWindow        *window);
 static void        window_toggle_history_back     (YelpHistory       *history,
-						    gboolean          sensitive,
-						    YelpWindow       *window);
-
+						   gboolean           sensitive,
+						   YelpWindow        *window);
+ 
 static void        window_toggle_history_forward  (YelpHistory       *history,
 						   gboolean           sensitive,
 						   YelpWindow        *window);
 
 static void        window_history_action          (YelpWindow        *window,
 						   YelpHistoryAction  action);
-static void        window_back_button_clicked     (GtkWidget        *button,
-						   YelpWindow       *window);
-static void        window_forward_button_clicked  (GtkWidget        *button,
-						   YelpWindow       *window);
-static void        window_home_button_clicked     (GtkWidget        *button,
-						   YelpWindow       *window);
-static void        window_index_button_clicked    (GtkWidget        *button,
-						   YelpWindow       *window);
-static void        window_new_window_cb           (gpointer          data,
-						   guint             section,
-						   GtkWidget        *widget);
-static void        window_close_window_cb         (gpointer          data,
-						   guint             section,
-						   GtkWidget        *widget);
-static void        window_history_go_cb           (gpointer          data,
-						   guint             section,
-						   GtkWidget        *widget);
-static void        window_go_home_cb              (gpointer          data,
-						   guint             section,
-						   GtkWidget        *widget);
-static void        window_go_index_cb             (gpointer          data,
-						   guint             section,
-						   GtkWidget        *widget);
-static void        window_about_cb                (gpointer          data,
-						   guint             section,
-						   GtkWidget        *widget);
-static GtkWidget * window_create_toolbar          (YelpWindow       *window);
+static void        window_back_button_clicked     (GtkWidget         *button,
+						   YelpWindow        *window);
+static void        window_forward_button_clicked  (GtkWidget         *button,
+						   YelpWindow        *window);
+static void        window_home_button_clicked     (GtkWidget         *button,
+						   YelpWindow        *window);
+static void        window_index_button_clicked    (GtkWidget         *button,
+						   YelpWindow        *window);
+static void        window_new_window_cb           (gpointer           data,
+						   guint              section,
+						   GtkWidget         *widget);
+static void        window_close_window_cb         (gpointer           data,
+						   guint              section,
+						   GtkWidget         *widget);
+static void        window_history_go_cb           (gpointer           data,
+						   guint              section,
+						   GtkWidget         *widget);
+static void        window_go_home_cb              (gpointer           data,
+						   guint              section,
+						   GtkWidget         *widget);
+static void        window_go_index_cb             (gpointer           data,
+						   guint              section,
+						   GtkWidget         *widget);
+static void        window_about_cb                (gpointer           data,
+						   guint              section,
+						   GtkWidget         *widget);
+static GtkWidget * window_create_toolbar          (YelpWindow        *window);
 
-static void        window_toolbar_style_changed_cb (GConfClient     *client,
-						    guint            cnxn_id,
-						    GConfEntry      *entry,
-						    gpointer         data);
+static void        window_toolbar_style_changed_cb (GConfClient      *client,
+						    guint             cnxn_id,
+						    GConfEntry       *entry,
+						    gpointer          data);
 
 #if 0
-static void        window_remove_notify_cb        (GtkObject        *obj, 
-						   gpointer          data);
+static void        window_remove_notify_cb        (GtkObject         *obj, 
+						   gpointer           data);
 #endif
 
 enum {
@@ -410,6 +413,21 @@ window_uri_selected_cb (gpointer    view,
 	}
 
 	yelp_uri_unref (uri);
+}
+
+static void
+window_title_changed_cb (gpointer view, const gchar *title, YelpWindow *window)
+{
+	gchar *new_title;
+	
+	g_return_if_fail (title != NULL);
+	g_return_if_fail (YELP_IS_WINDOW (window));
+	
+	new_title = g_strconcat (_("Help Browser"), ":", title, NULL);
+
+	gtk_window_set_title (GTK_WINDOW (window), new_title);
+
+	g_free (new_title);
 }
 
 static void
@@ -746,8 +764,16 @@ yelp_window_new (GNode *doc_tree, GList *index)
 			  G_CALLBACK (window_uri_selected_cb),
 			  window);
 
+	g_signal_connect (priv->toc_view, "title_changed",
+			  G_CALLBACK (window_title_changed_cb),
+			  window);
+
 	g_signal_connect (priv->content_view, "uri_selected",
 			  G_CALLBACK (window_uri_selected_cb),
+			  window);
+
+	g_signal_connect (priv->content_view, "title_changed",
+			  G_CALLBACK (window_title_changed_cb),
 			  window);
 
 	window_populate (window);
