@@ -1,11 +1,21 @@
 2002-01-19  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-man.c (yelp_man_init): 
+	- Use g_spawn_command_line_sync instead of popen.
+	- if 'manpath' command is not found, look for MANPATH env. before
+	  using /usr/man and /usr/share/man
+	- cleaned up a little to better fit into Yelp code.
+
+2002-01-19  Mikael Hallendal  <micke@codefactory.se>
+
 	* src/yelp-html.c (yelp_html_new): remove the temp printout. just
 	  print Yelp for now.
 
 	* src/yelp-man.c (yelp_man_init): 
 	  check that /usr/man and /usr/share/man doesn't point to the same
 	  place. 
+
+2002-01-19  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-scrollkeeper.c:
 	(ys_strip_scheme): rewrote to

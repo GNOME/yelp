@@ -540,43 +540,40 @@ yelp_man_push_initial_tree (struct TreeNode *node, GtkTreeStore *store, GtkTreeI
 gboolean
 yelp_man_init (GtkTreeStore *store)
 {
-	FILE *fh;
-	char aline[1024];
-	char **manpath = NULL;
-	int i;
-	GHashTable *section_hash;
-	struct TreeNode *root;
-	struct stat stat_dir1;
-	struct stat stat_dir2;
-	
+	gchar            *manpath = NULL;
+ 	char            **manpathes = NULL;
+	GHashTable       *section_hash;
+	struct TreeNode  *root;
+	struct stat       stat_dir1;
+	struct stat       stat_dir2;
+	int               i;
+
 	/* Go through all the man pages:
 	 * 1. Determine the places to search (run 'manpath').
-	 * 2. Go through all subdirectories to find individual files.
-	 * 3. For each file, add it onto the tree at the right place.
+	 * 2. If that is not found, use MANPATH environment variable.
+	 * 3. Go through all subdirectories to find individual files.
+	 * 4. For each file, add it onto the tree at the right place.
 	 */
 
 	section_hash = g_hash_table_new (g_str_hash, g_str_equal);
 	
 	root = yelp_man_make_initial_tree (&root_data, section_hash);
 
-	fh = popen ("manpath", "r");
-	g_return_val_if_fail (fh, FALSE);
-
-	if (fgets (aline, sizeof (aline), fh)) {
-		g_strstrip (aline);
-		manpath = g_strsplit (aline, ":", -1);
-	} else {
-		g_warning ("Couldn't get manpath");
+	if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL)) {
+		g_print ("manpath not found, looking for MANPATH env\n");
+		manpath = g_strdup (g_getenv ("MANPATH"));
 	}
-	pclose (fh);
 
-	i = 0;
 	if (manpath) {
-		for (; manpath[i]; i++)
-			yelp_man_populate_tree_for_dir (section_hash, manpath[i]);
-	}
-	if (!manpath || !manpath[0]) {
+		g_strstrip (manpath);
+		manpathes = g_strsplit (manpath, ":", -1);
+		g_free (manpath);
 
+		for (i = 0; manpathes[i]; i++) {
+			yelp_man_populate_tree_for_dir (section_hash, 
+							manpathes[i]);
+		}
+	} else {
 		stat ("/usr/man", &stat_dir1);
 		stat ("/usr/share/man", &stat_dir2);
 		
