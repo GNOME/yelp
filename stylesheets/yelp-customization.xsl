@@ -136,6 +136,8 @@
        LI {margin-left: 3em}
        LI P {margin-bottom: 0}
        LI P {margin-top: 0}
+       P.header-title {text-align: center; margin-top: 0; margin-bottom: 0}
+       P.copyright {margin-left: 2em; margin-bottom: 0; margin-top: 0}
        DD P {margin-top: 0}
        DD P {margin-bottom: 0}
        OL {margin-top: 0}
@@ -145,13 +147,20 @@
        DD {margin-left: 2em}
        DL {margin-top: 0}
        DL {margin-bottom: 0}
+       DIV.toc {margin-bottom: 3ex}
+       DIV TD {padding-right: 1em; padding-left: 1em}
+       DIV TH {padding-right: 1em; padding-left: 1em}
+       DIV.informaltable table {border-width: 0; border-bottom-width: 3}
+       DIV.informaltable THEAD TR {border-bottom: solid; border-top: solid; border-left:none; border-right: none}
+       DIV.informaltable TH {border-width: 0}
+       DIV.revhistory TABLE {border-spacing: 0}
      </xsl:text>
    </style>
 </xsl:template>
 
 <xsl:template name="next.link.cell">
 <xsl:param name="object" select="."/>
-   <td align="right"><a accesskey="n">
+   <td align="right" width="33%"><a accesskey="n">
    <xsl:attribute name="href">
       <xsl:call-template name="href.target">
          <xsl:with-param name="object" select="$object"/>
@@ -163,7 +172,7 @@
 
 <xsl:template name="prev.link.cell">
 <xsl:param name="object" select="."/>
-   <td align="left"><a accesskey="p">
+   <td align="left" width="33%"><a accesskey="p">
    <xsl:attribute name="href">
       <xsl:call-template name="href.target">
          <xsl:with-param name="object" select="$object"/>
@@ -251,7 +260,7 @@
 <xsl:param name="doit" select="1"/>
 <xsl:choose>
   <xsl:when test="$doit=1">
-   <td align="center">
+   <td align="center" width="33%">
      <xsl:choose>
        <xsl:when test="local-name($node)='sect1' or local-name($node)='sect2'">
          <a accesskey="u">
@@ -282,7 +291,7 @@
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-    	  <td align="right">
+    	  <td align="right" width="33%">
     	  </td>
       </xsl:otherwise>
     </xsl:choose>
@@ -314,8 +323,8 @@
 <xsl:template name="article.render.chunk">
 <xsl:param name="node" select="."/>
 <xsl:param name="title" select="/article/articleinfo/title"/>
-  <p align="center"><xsl:value-of select="$title"/></p>
-  <table width="100%">
+  <p class="header-title"><xsl:value-of select="$title"/></p>
+  <table width="100%" align="justify">
     <xsl:call-template name="article.chunk.navigate">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="link-toc" select="0"/>
@@ -324,7 +333,7 @@
   <xsl:element name="hr" />
   <xsl:apply-templates select="$node"/>
   <xsl:element name="hr" />
-  <table width="100%">
+  <table width="100%" align="justify">
     <xsl:call-template name="article.chunk.navigate">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -334,7 +343,7 @@
 <xsl:template name="make.toc.navbar">
   <table width="100%">
     <tr>
-      <td><a accesskey="p">
+      <td width="33%"><a accesskey="p">
         <xsl:attribute name="href">
           <xsl:call-template name="titlepage.ref"/>
         </xsl:attribute>
@@ -369,7 +378,7 @@
 
 <xsl:template name="yelp.render.toc">
 <xsl:param name="title" select="''" />
-  <p align="center"><xsl:value-of select="$title"/></p>
+  <p class="header-title"><xsl:value-of select="$title"/></p>
   <xsl:call-template name="make.toc.navbar"/>
   <xsl:element name="hr"/>
   <p><a>
@@ -378,7 +387,16 @@
     </xsl:attribute>
     <xsl:text>About This Document</xsl:text>
   </a></p>
-  <xsl:call-template name="component.toc"/>
+  <xsl:choose>
+  <xsl:when test="local-name(.)='part'">
+    <xsl:for-each select="chapter">
+      <xsl:call-template name="component.toc"/>
+    </xsl:for-each>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="component.toc"/>
+  </xsl:otherwise>
+  </xsl:choose>
   <xsl:element name="hr"/>
   <xsl:call-template name="make.toc.navbar"/>
 </xsl:template>
@@ -429,10 +447,10 @@
 </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="/chapter">
+<xsl:template match="/part">
 <xsl:call-template name="yelp.generic.root">
-  <xsl:with-param name="container" select="/chapter/chapterinfo"/>
-  <xsl:with-param name="type" select="'chapter'"/>
+  <xsl:with-param name="container" select="/part/partinfo"/>
+  <xsl:with-param name="type" select="'part'"/>
 </xsl:call-template>
 </xsl:template>
 
