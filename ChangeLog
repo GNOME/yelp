@@ -1,3 +1,19 @@
+2004-10-28  James Henstridge  <james@jamesh.id.au>
+
+	* src/Makefile.am: fix up handling of built sources for
+	srcdir!=builddir builds.
+
+	* po/POTFILES.in: remove some files that have been removed.
+
+	* data/Makefile.am: add some files to the clean list.
+
+	* Makefile.am: add intltool files to the distclean list.
+
+	* configure.in: clean up a bit, removing obsolete macro usage.
+
+	* autogen.sh: use the gnome-common autogen.sh script.  Request a
+	Automake 1.7.
+
 2004-10-26  Shaun McCance  <shaunm@gnome.org>
 
 	* data/ui/yelp-ui.xml:

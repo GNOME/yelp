@@ -25,3 +25,5 @@ install-data-local:
 else
 install-data-local:
 endif
+
+CLEANFILES = yelp.schemas toc.xml

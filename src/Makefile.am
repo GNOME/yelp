@@ -21,7 +21,6 @@ INCLUDES =								\
 	-DDATADIR=\""$(datadir)"\"					\
 	-DLIBDIR=\""$(libdir)"\"					\
 	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
-	-DGNOMELOCALEDIR=\""$(yelplocaledir)"\"				\
 	-DLIBGNOME_MAN2HTML=\"$(LIBGNOME_MAN2HTML)\"			\
 	-DLIBGNOME_INFO2HTML=\"$(LIBGNOME_INFO2HTML)\"			\
 	-DSERVERDIR=\"$(libexecdir)\"					\
@@ -35,20 +34,6 @@ yelp_LDFLAGS = -R$(MOZILLA_HOME)
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
 	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
-
-yelp-marshal.h: yelp-marshal.list
-	cd $(srcdir) && \
-	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --header > yelp-marshal1.tmp \
-	&& mv yelp-marshal1.tmp yelp-marshal.h ) \
-	|| ( rm -f yelp-marshal1.tmp && exit 1 )
-
-yelp-marshal.c: yelp-marshal.h
-	cd $(srcdir) && \
-	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --body > yelp-marshal2.tmp \
-	&& mv yelp-marshal2.tmp yelp-marshal.c ) \
-	|| ( rm -f yelp-marshal2.tmp && exit 1 )
-
-yelp-marshal-main.c: yelp-marshal.c
 
 test_man_parser_SOURCES =					\
 	yelp-error.c		yelp-error.h			\
@@ -99,30 +84,50 @@ yelp_SOURCES =							\
 
 yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS) $(MOZILLA_COMPONENT_LIBS)
 
-gnome_yelp_idl_sources =						\
-	GNOME_Yelp-stubs.c						\
-	GNOME_Yelp-skels.c						\
-	GNOME_Yelp-common.c						\
-	GNOME_Yelp.h
-
-$(gnome_yelp_idl_sources): gnome_yelp_idl_stamp
-
-gnome_yelp_idl_stamp: $(top_srcdir)/idl/GNOME_Yelp.idl $(ORBIT_IDL)
-	$(ORBIT_IDL) $(YELP_IDL_INCLUDES) -I$(top_srcdir) $<
-	touch $@
-
-$(yelp_OBJECTS): yelp-marshal.h gnome_yelp_idl_stamp
-
 serverdir = $(libdir)/bonobo/servers
 server_in_files = GNOME_Yelp.server.in
 server_DATA = $(server_in_files:.server.in=.server)
 
 @INTLTOOL_SERVER_RULE@
 
+BUILT_SOURCES = yelp-marshal.h yelp-marshal.c $(gnome_yelp_idl_sources)
+
+yelp-marshal.h: stamp-yelp-marshal.h
+	@true
+stamp-yelp-marshal.h: yelp-marshal.list
+	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
+	&& (cmp -s xgen-ymh yelp-marshal.h || cp xgen-ymh yelp-marshal.h) \
+	&& rm -f xgen-ymh xgen-ymh~ \
+	&& echo timestamp > $(@F)
+
+yelp-marshal.c: yelp-marshal.list
+	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --body > xgen-ymc \
+	&& cp xgen-ymc yelp-marshal.c \
+	&& rm -f xgen-ymc xgen-ymc~
+
+yelp-marshal-main.c: yelp-marshal.c
+
+gnome_yelp_idl_sources =						\
+	GNOME_Yelp-stubs.c						\
+	GNOME_Yelp-skels.c						\
+	GNOME_Yelp-common.c						\
+	GNOME_Yelp.h
+
+$(gnome_yelp_idl_sources): $(top_srcdir)/idl/GNOME_Yelp.idl $(ORBIT_IDL)
+	$(ORBIT_IDL) $(YELP_IDL_INCLUDES) -I$(top_srcdir) $<
+
 CLEANFILES =								\
 	$(gnome_yelp_idl_sources)					\
 	gnome_yelp_idl_stamp						\
-	GNOME_Yelp.server
+	GNOME_Yelp.server						\
+	xgen-ymh xgen-ymc
+
+MAINTAINERCLEANFILES = stamp-yelp-marshal.h $(BUILT_SOURCES)
+
+distclean-local:
+	if test $(srcdir) != .; then \
+	  rm -f $(MAINTAINERCLEANFILES); \
+	fi
 
 EXTRA_DIST =								\
 	yelp-marshal.list						\

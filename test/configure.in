@@ -1,7 +1,11 @@
 # copyright (c) 2000-2002 Sun Microsystems, Inc. and Dan Mueth
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(testdoc1/testdoc1.xml)
+AC_INIT([yelp-tests], [2.5])
+AC_CONFIG_SRCDIR(testdoc1/testdoc1.xml)
+AC_CONFIG_HEADERS(config.h)
+
+AM_INIT_AUTOMAKE
 
 dnl ==========================================================================
 dnl
@@ -59,12 +63,12 @@ dnl ====================================
 dnl = End tests for scrollkeeper
 dnl ====================================
 
-AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(yelp-tests,2.5)
 AM_PROG_LIBTOOL
 
-AC_OUTPUT(
+AC_CONFIG_FILES(
 Makefile
 testdoc1/Makefile
 xhelp/Makefile
 )
+
+AC_OUTPUT

@@ -1,9 +1,12 @@
-AC_INIT(src/yelp-main.c)
-AM_INIT_AUTOMAKE(yelp, 2.6.0)
-AM_CONFIG_HEADER(config.h)
+AC_INIT([yelp], [2.6.0],
+        [http://bugzilla.gnome.org/enter_bug.cgi?product=yelp])
+AC_CONFIG_SRCDIR(src/yelp-main.c)
+AC_CONFIG_HEADERS(config.h)
 
-AM_SANITY_CHECK
+AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
+
+AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
 
 AC_PROG_INTLTOOL
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
@@ -26,23 +29,13 @@ fi
 
 GETTEXT_PACKAGE=yelp
 AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",
+                   [The gettext translation domain])
 
 ALL_LINGUAS="af am ar az be bg bn bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja ka kn ko li lt lv mk ml mn mr ms nb ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta tg th tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
-# AM_GLIB_GNU_GETTEXT above substs $DATADIRNAME
-# this is the directory where the *.{mo,gmo} files are installed
-yelplocaledir='${prefix}/${DATADIRNAME}/locale'
-AC_SUBST(yelplocaledir)
-
-
-if test "x$prefix" = "xNONE"; then
-  GNOMELOCALEDIR=$ac_default_prefix/share/locale
-else
-  GNOMELOCALEDIR=$prefix/share/locale
-fi
-AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
+AM_GLIB_DEFINE_LOCALEDIR([GNOMELOCALEDIR])
 
 PKG_CHECK_MODULES(YELP,
 [
@@ -59,10 +52,6 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 ])
 
-AC_SUBST([YELP_CFLAGS])
-
-CFLAGS="$YELP_CFLAGS $CFLAGS"
-
 YELP_MODULES="gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"
 
 idl_dirs="`$PKG_CONFIG --variable=idldir gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0 bonobo-activation-2.0`"
@@ -74,8 +63,6 @@ DB2HTML="`$PKG_CONFIG --variable=db2html gnome-doc-utils`"
 AC_SUBST(DB2HTML)
 
 PKG_CHECK_MODULES(MOZILLA_COMPONENT, mozilla-gtkmozembed)
-AC_SUBST(MOZILLA_COMPONENT_CFLAGS)
-AC_SUBST(MOZILLA_COMPONENT_LIBS)
 
 MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir mozilla-gtkmozembed`"
 AC_SUBST(MOZILLA_INCLUDE_ROOT)
@@ -84,11 +71,10 @@ MOZILLA_HOME="`$PKG_CONFIG --variable=libdir mozilla-gtkmozembed`"
 AC_SUBST(MOZILLA_HOME)
 
 dnl Check for whereis
-AC_CANONICAL_HOST
-  case $host in
+case $host in
   *-linux-gnu | *-irix6*) AC_DEFINE(HAVE_MAN_WHEREIS, 1, [man(1)  understands -w option]);;
   *-solaris*) AC_DEFINE(HAVE_MAN_DEBUG, 1, [man(1) has a -d debug option]);;
-  esac
+esac
 
 dnl ===================================================
 dnl = Check for popt, reported to be needed on AIX
@@ -130,7 +116,7 @@ dnl <= Check for bzip2 > 1.0.0
     dnl =>
 AC_SUBST(BZ_LIBS)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 src/Makefile
 stylesheets/Makefile
@@ -140,3 +126,5 @@ data/icons/Makefile
 data/ui/Makefile
 po/Makefile.in
 ])
+
+AC_OUTPUT
