@@ -64,14 +64,17 @@ void            yelp_html_clear          (YelpHtml    *html);
 void            yelp_html_write          (YelpHtml    *html,
 					  const gchar *data,
 					  gint         len);
-void            yelp_html_printf         (YelpHtml *html, 
+void            yelp_html_printf         (YelpHtml    *html, 
 					  char        *format, 
 					  ...);
 void            yelp_html_close          (YelpHtml    *html);
 
-GtkWidget *     yelp_html_get_widget     (YelpHtml      *html);
+GtkWidget *     yelp_html_get_widget     (YelpHtml    *html);
 
-void            yelp_html_find_next      (YelpHtml *html);
+void            yelp_html_find           (YelpHtml    *html,
+					  const gchar *str,
+					  gboolean     match_case,
+					  gboolean     forward);
 
 #endif /* __YELP_HTML_H__ */
 
