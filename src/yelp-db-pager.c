@@ -79,24 +79,24 @@ struct _DBWalker {
     gint max_depth;
 };
 
-static void          db_pager_class_init   (YelpDBPagerClass *klass);
-static void          db_pager_init         (YelpDBPager      *pager);
-static void          db_pager_dispose      (GObject          *gobject);
+static void           db_pager_class_init   (YelpDBPagerClass *klass);
+static void           db_pager_init         (YelpDBPager      *pager);
+static void           db_pager_dispose      (GObject          *gobject);
 
-static void          db_pager_cancel       (YelpPager        *pager);
-static xmlDocPtr     db_pager_parse        (YelpPager        *pager);
-static gchar **      db_pager_params       (YelpPager        *pager);
+static void           db_pager_cancel       (YelpPager        *pager);
+static xmlDocPtr      db_pager_parse        (YelpPager        *pager);
+static gchar **       db_pager_params       (YelpPager        *pager);
 
-const gchar *        db_pager_resolve_frag (YelpPager        *pager,
-					    const gchar      *frag_id);
-GtkTreeModel *       db_pager_get_sections (YelpPager        *pager);
+static const gchar *  db_pager_resolve_frag (YelpPager        *pager,
+					     const gchar      *frag_id);
+static GtkTreeModel * db_pager_get_sections (YelpPager        *pager);
 
-static void          walker_walk_xml       (DBWalker         *walker);
-static gboolean      walker_is_chunk       (DBWalker         *walker);
+static void            walker_walk_xml      (DBWalker         *walker);
+static gboolean        walker_is_chunk      (DBWalker         *walker);
 
-static gboolean      xml_is_division       (xmlNodePtr        node);
-static gboolean      xml_is_info           (xmlNodePtr        node);
-static gchar *       xml_get_title         (xmlNodePtr        node);
+static gboolean        xml_is_division      (xmlNodePtr        node);
+static gboolean        xml_is_info          (xmlNodePtr        node);
+static gchar *         xml_get_title        (xmlNodePtr        node);
 
 static YelpPagerClass *parent_class;
 
@@ -359,7 +359,8 @@ db_pager_params (YelpPager *pager)
     params[params_i++] = g_strdup ("0");
     params[params_i++] = "admon_graphics_path";
     params[params_i++] = g_strdup_printf ("\"file://%s\"", DATADIR "/yelp/icons/");
-    params[params_i++] = NULL;
+
+    params[params_i] = NULL;
 
     return params;
 }
@@ -382,7 +383,7 @@ db_pager_cancel (YelpPager *pager)
     YELP_PAGER_CLASS (parent_class)->cancel (pager);
 }
 
-const gchar *
+static const gchar *
 db_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
     YelpDBPager  *db_pager;
@@ -402,7 +403,7 @@ db_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
     return (const gchar *) page_id;
 }
 
-GtkTreeModel *
+static GtkTreeModel *
 db_pager_get_sections (YelpPager *pager)
 {
     g_return_val_if_fail (pager != NULL, NULL);

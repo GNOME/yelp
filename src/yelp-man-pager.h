@@ -26,6 +26,7 @@
 #include <glib-object.h>
 
 #include "yelp-pager.h"
+#include "yelp-xslt-pager.h"
 
 #define YELP_TYPE_MAN_PAGER         (yelp_man_pager_get_type ())
 #define YELP_MAN_PAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_MAN_PAGER, YelpManPager))
@@ -39,13 +40,13 @@ typedef struct _YelpManPagerClass YelpManPagerClass;
 typedef struct _YelpManPagerPriv  YelpManPagerPriv;
 
 struct _YelpManPager {
-    YelpPager        parent;
+    YelpXsltPager    parent;
 
     YelpManPagerPriv *priv;
 };
 
 struct _YelpManPagerClass {
-    YelpPagerClass   parent_class;
+    YelpXsltPagerClass   parent_class;
 };
 
 GType           yelp_man_pager_get_type     (void);

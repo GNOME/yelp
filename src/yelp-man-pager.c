@@ -51,27 +51,19 @@
 #define d(x)
 
 struct _YelpManPagerPriv {
+    gpointer unused;
 };
 
-static void          man_pager_class_init   (YelpManPagerClass *klass);
-static void          man_pager_init         (YelpManPager      *pager);
-static void          man_pager_dispose      (GObject           *gobject);
+static void           man_pager_class_init   (YelpManPagerClass *klass);
+static void           man_pager_init         (YelpManPager      *pager);
+static void           man_pager_dispose      (GObject           *gobject);
 
-void                 man_pager_error        (YelpPager        *pager);
-void                 man_pager_cancel       (YelpPager        *pager);
-void                 man_pager_finish       (YelpPager        *pager);
+static xmlDocPtr      man_pager_parse        (YelpPager        *pager);
+static gchar **       man_pager_params       (YelpPager        *pager);
 
-gboolean             man_pager_process      (YelpPager        *pager);
-const gchar *        man_pager_resolve_frag (YelpPager        *pager,
-					     const gchar      *frag_id);
-GtkTreeModel *       man_pager_get_sections (YelpPager        *pager);
-
-static void        xslt_yelp_document    (xsltTransformContextPtr ctxt,
-					  xmlNodePtr              node,
-					  xmlNodePtr              inst,
-					  xsltStylePreCompPtr     comp);
-static gboolean    xml_is_info           (xmlNodePtr        node);
-static gchar *     xml_get_title         (xmlNodePtr node);
+static const gchar *  man_pager_resolve_frag (YelpPager        *pager,
+					      const gchar      *frag_id);
+static GtkTreeModel * man_pager_get_sections (YelpPager        *pager);
 
 static YelpPagerClass *parent_class;
 
@@ -92,7 +84,7 @@ yelp_man_pager_get_type (void)
 	    0,
 	    (GInstanceInitFunc) man_pager_init,
 	};
-	type = g_type_register_static (YELP_TYPE_PAGER,
+	type = g_type_register_static (YELP_TYPE_XSLT_PAGER,
 				       "YelpManPager", 
 				       &info, 0);
     }
@@ -104,18 +96,19 @@ man_pager_class_init (YelpManPagerClass *klass)
 {
     GObjectClass   *object_class = G_OBJECT_CLASS (klass);
     YelpPagerClass *pager_class  = YELP_PAGER_CLASS (klass);
+    YelpXsltPagerClass *xslt_class = YELP_XSLT_PAGER_CLASS (klass);
 
     parent_class = g_type_class_peek_parent (klass);
 
     object_class->dispose = man_pager_dispose;
 
-    pager_class->error        = man_pager_error;
-    pager_class->cancel       = man_pager_cancel;
-    pager_class->finish       = man_pager_finish;
-
-    pager_class->process      = man_pager_process;
     pager_class->resolve_frag = man_pager_resolve_frag;
     pager_class->get_sections = man_pager_get_sections;
+
+    xslt_class->parse  = man_pager_parse;
+    xslt_class->params = man_pager_params;
+
+    xslt_class->stylesheet = MAN_STYLESHEET;
 }
 
 static void
@@ -153,8 +146,8 @@ yelp_man_pager_new (YelpDocInfo *doc_info)
     return (YelpPager *) pager;
 }
 
-gboolean
-man_pager_process (YelpPager *pager)
+static xmlDocPtr
+man_pager_parse (YelpPager *pager)
 {
     YelpDocInfo   *doc_info;
     gchar         *filename;
@@ -162,21 +155,12 @@ man_pager_process (YelpPager *pager)
     xmlDocPtr      doc;
     GError        *error;
 
-    xsltStylesheetPtr       stylesheet;
-    xsltTransformContextPtr tctxt;
-
-    const gchar  *params[40];
-    gint i = 0;
-
     g_return_val_if_fail (YELP_IS_MAN_PAGER (pager), FALSE);
 
     doc_info = yelp_pager_get_doc_info (pager);
-
     filename = yelp_doc_info_get_filename (doc_info);
 
     g_object_ref (pager);
-
-    yelp_toc_pager_pause (yelp_toc_pager_get ());
 
     parser = yelp_man_parser_new ();
     doc = yelp_man_parser_parse_file (parser, filename);
@@ -185,239 +169,38 @@ man_pager_process (YelpPager *pager)
     if (doc == NULL) {
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
 	yelp_pager_error (pager, error);
-	return FALSE;
     }
-
-    g_signal_emit_by_name (pager, "contents");
-
-    while (gtk_events_pending ())
-	gtk_main_iteration ();
-
-    params[i++] = "stylesheet_path";
-    params[i++] = "\"file://" MAN_STYLESHEET_PATH "/\"";
-    /*
-    params[i++] = "color_gray_background";
-    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BACKGROUND);
-    params[i++] = "color_gray_border";
-    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BORDER);
-    */
-    params[i++] = NULL;
-
-    stylesheet = xsltParseStylesheetFile (MAN_STYLESHEET);
-    tctxt      = xsltNewTransformContext (stylesheet,
-					  doc);
-    tctxt->_private = pager;
-    xsltRegisterExtElement (tctxt,
-			    "document",
-			    YELP_NAMESPACE,
-			    (xsltTransformFunction) xslt_yelp_document);
-
-    while (gtk_events_pending ())
-	gtk_main_iteration ();
-
-    xsltApplyStylesheetUser (stylesheet,
-			     doc,
-			     params,
-			     NULL, NULL,
-			     tctxt);
-
-    xmlFreeDoc (doc);
-    xsltFreeStylesheet (stylesheet);
-
-    g_free (filename);
-
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
-    g_signal_emit_by_name (pager, "finish");
 
     g_object_unref (pager);
 
-    return FALSE;
+    return doc;
 }
 
-void
-man_pager_error (YelpPager   *pager)
+static gchar **
+man_pager_params (YelpPager *pager)
 {
-    yelp_toc_pager_unpause (yelp_toc_pager_get ());
+    gchar **params;
+    gint params_i = 0;
+    gint params_max = 10;
+
+    params = g_new0 (gchar *, params_max);
+
+    params[params_i++] = "stylesheet_path";
+    params[params_i++] = g_strdup_printf ("\"file://%s\"", MAN_STYLESHEET_PATH);
+
+    params[params_i] = NULL;
+
+    return params;
 }
 
-void
-man_pager_cancel (YelpPager *pager)
-{
-    yelp_toc_pager_unpause (yelp_toc_pager_get ());
-    // FIXME: actually cancel
-}
-
-void
-man_pager_finish (YelpPager   *pager)
-{
-    yelp_toc_pager_unpause (yelp_toc_pager_get ());
-}
-
-const gchar *
+static const gchar *
 man_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
     return "index";
 }
 
-GtkTreeModel *
+static GtkTreeModel *
 man_pager_get_sections (YelpPager *pager)
 {
     return NULL;
-}
-
-void
-xslt_yelp_document (xsltTransformContextPtr ctxt,
-		    xmlNodePtr              node,
-		    xmlNodePtr              inst,
-		    xsltStylePreCompPtr     comp)
-{
-    GError  *error;
-    YelpPage *page;
-    xmlChar *page_id = NULL;
-    xmlChar *page_title = NULL;
-    xmlChar *page_buf;
-    gint     buf_size;
-    YelpPager *pager;
-    xsltStylesheetPtr style = NULL;
-    const char *old_outfile;
-    xmlDocPtr   new_doc, old_doc;
-    xmlNodePtr  old_insert;
-
-    if (!ctxt || !node || !inst || !comp)
-	return;
-
-    while (gtk_events_pending ())
-	gtk_main_iteration ();
-
-    pager = (YelpPager *) ctxt->_private;
-
-    page_id = xsltEvalAttrValueTemplate (ctxt, inst,
-					  (const xmlChar *) "href",
-					  NULL);
-    if (page_id == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("No href attribute found on yelp:document"));
-	error = NULL;
-	yelp_pager_error (pager, error);
-
-	return;
-    }
-
-    old_outfile = ctxt->outputFile;
-    old_doc     = ctxt->output;
-    old_insert  = ctxt->insert;
-    ctxt->outputFile = (const char *) page_id;
-
-    style = xsltNewStylesheet ();
-    if (style == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("Out of memory"));
-	error = NULL;
-	yelp_pager_error (pager, error);
-
-	return;
-    }
-
-    style->omitXmlDeclaration = TRUE;
-
-    new_doc = xmlNewDoc ("1.0");
-    new_doc->charset = XML_CHAR_ENCODING_UTF8;
-    ctxt->output = new_doc;
-    ctxt->insert = (xmlNodePtr) new_doc;
-
-    xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
-
-    htmlDocDumpMemory (new_doc, &page_buf, &buf_size, 0);
-
-    ctxt->outputFile = old_outfile;
-    ctxt->output     = old_doc;
-    ctxt->insert     = old_insert;
-
-    page_title = xml_get_title (node);
-
-    if (!page_title)
-	page_title = g_strdup ("FIXME");
-
-    page = g_new0 (YelpPage, 1);
-
-    page->page_id  = page_id;
-    page->title    = page_title;
-    page->contents = page_buf;
-
-    page->prev_id = NULL;
-    page->next_id = NULL;
-    page->toc_id  = NULL;
-
-    yelp_pager_add_page (pager, page);
-    g_signal_emit_by_name (pager, "page", page_id);
-
-    while (gtk_events_pending ())
-	gtk_main_iteration ();
-
-    xmlFreeDoc (new_doc);
-}
-
-gchar *
-xml_get_title (xmlNodePtr node)
-{
-    gchar *title = NULL;
-    gchar *ret   = NULL;
-    xmlNodePtr cur;
-
-    if (xml_is_info (node))
-	title = g_strdup (_("Titlepage"));
-    else if (node->parent && node->parent->type == XML_DOCUMENT_NODE)
-	title = g_strdup (_("Contents"));
-    else {
-	for (cur = node->children; cur; cur = cur->next) {
-	    if (!xmlStrcmp (cur->name, (xmlChar *) "title")) {
-		if (title)
-		    g_free (title);
-		title = xmlNodeGetContent (cur);
-	    }
-	    else if (!xmlStrcmp (cur->name, (xmlChar *) "titleabbrev")) {
-		if (title)
-		    g_free (title);
-		title = xmlNodeGetContent (cur);
-		break;
-	    }
-	}
-    }
-
-    if (!title)
-	title = g_strdup (_("Unknown"));
-
-    // This really isn't adequate for what we want.
-    ret = g_strdup (g_strstrip (title));
-    g_free (title);
-
-    return ret;
-}
-
-gboolean
-xml_is_info (xmlNodePtr node)
-{
-    return (!xmlStrcmp (node->name, (const xmlChar *) "appendixinfo")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "articleinfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "bookinfo")         ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "bibliographyinfo") ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "chapterinfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "glossaryinfo")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "indexinfo")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "partinfo")         ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "prefaceinfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "referenceinfo")    ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refentryinfo")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsect1info")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsect2info")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsect3info")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsectioninfo")   ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect1info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect2info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect3info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect4info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect5info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sectioninfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "setinfo")          ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "setindexinfo")     );
 }
