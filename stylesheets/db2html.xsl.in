@@ -67,19 +67,19 @@
     <xsl:attribute name="src">
       <xsl:choose>
         <xsl:when test="$node/self::caution">
-          <xsl:value-of select="yelp.image.caution"/>
+          <xsl:value-of select="$yelp.image.caution"/>
         </xsl:when>
         <xsl:when test="$node/self::important">
-          <xsl:value-of select="yelp.image.important"/>
+          <xsl:value-of select="$yelp.image.important"/>
         </xsl:when>
         <xsl:when test="$node/self::note">
-          <xsl:value-of select="yelp.image.note"/>
+          <xsl:value-of select="$yelp.image.note"/>
         </xsl:when>
         <xsl:when test="$node/self::tip">
-          <xsl:value-of select="yelp.image.tip"/>
+          <xsl:value-of select="$yelp.image.tip"/>
         </xsl:when>
         <xsl:when test="$node/self::warning">
-          <xsl:value-of select="yelp.image.warning"/>
+          <xsl:value-of select="$yelp.image.warning"/>
         </xsl:when>
       </xsl:choose>
     </xsl:attribute>
