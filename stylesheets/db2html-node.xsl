@@ -666,13 +666,24 @@
 		sect1    | sect2      | sect3    | sect4    | sect5      |
 		section  | simplesect ">
 	<xsl:variable name="sect" select="."/>
-	<xsl:call-template name="format.section.number">
-		<xsl:with-param name="parent">
-			<xsl:apply-templates select=".." mode="node.number.mode"/>
-		</xsl:with-param>
-		<xsl:with-param name="section" select="
-			count(preceding-sibling::*[name(.) = name($sect)]) + 1"/>
-	</xsl:call-template>
+	<xsl:choose>
+		<xsl:when test="
+				name(..) = 'article' or name(..) = 'partintro' or name(..) = 'preface'">
+			<xsl:call-template name="format.section.number">
+				<xsl:with-param name="section" select="
+					count(preceding-sibling::*[name(.) = name($sect)]) + 1"/>
+			</xsl:call-template>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:call-template name="format.subsection.number">
+				<xsl:with-param name="parent">
+					<xsl:apply-templates select=".." mode="node.number.mode"/>
+				</xsl:with-param>
+				<xsl:with-param name="section" select="
+					count(preceding-sibling::*[name(.) = name($sect)]) + 1"/>
+			</xsl:call-template>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <xsl:template mode="node.number.mode" match="set"/>

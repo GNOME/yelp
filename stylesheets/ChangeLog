@@ -1,5 +1,12 @@
 2003-10-16  Shaun McCance  <shaunm@gnome.org>
 
+	* db2html-node.xsl:
+	* gettext.xsl:
+	- Only include parent number in section number when below
+	  something we typically number.
+
+2003-10-16  Shaun McCance  <shaunm@gnome.org>
+
 	* db2html-chunk.xsl:
 	* db2html-xref.xsl:
 	- Fix links to titlepage

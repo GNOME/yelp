@@ -105,6 +105,11 @@
 </xsl:template>
 
 <xsl:template name="format.section.number">
+	<xsl:param name="section"/>
+	<xsl:number value="$section"/>
+</xsl:template>
+
+<xsl:template name="format.subsection.number">
 	<xsl:param name="parent"/>
 	<xsl:param name="section"/>
 	<xsl:value-of select="concat($parent, '.')"/>
