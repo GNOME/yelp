@@ -30,11 +30,17 @@
 GHashTable *cache_table;
 GMutex     *cache_mutex;
 
+GHashTable *links_table;
+GMutex     *links_mutex;
+
 void
 yelp_cache_init (void)
 {
  	cache_mutex = g_mutex_new ();
         cache_table = g_hash_table_new (g_str_hash, g_str_equal);
+
+	links_mutex = g_mutex_new ();
+	links_table = g_hash_table_new (g_str_hash, g_str_equal);
 }
 
 const gchar *
@@ -51,6 +57,20 @@ yelp_cache_lookup (const gchar *path)
         return ret_val;
 }
 
+YelpNavLinks *
+yelp_cache_lookup_links (const gchar *path)
+{
+	YelpNavLinks *ret_val;
+
+	g_mutex_lock (links_mutex);
+
+	ret_val = (YelpNavLinks *) g_hash_table_lookup (links_table, path);
+
+	g_mutex_unlock (links_mutex);
+
+	return ret_val;
+}
+
 void
 yelp_cache_add (const gchar *path, const gchar *html)
 {
@@ -59,4 +79,16 @@ yelp_cache_add (const gchar *path, const gchar *html)
         g_hash_table_insert (cache_table, (gchar *) path, g_strdup (html));
         
         g_mutex_unlock (cache_mutex);
+}
+
+void
+yelp_cache_add_links (const gchar *path, const YelpNavLinks *links)
+{
+	YelpNavLinks *new_links;
+
+	g_mutex_lock (links_mutex);
+
+	g_hash_table_insert (links_table, (gchar *) path, links);
+
+	g_mutex_unlock (links_mutex);
 }

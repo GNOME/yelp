@@ -94,7 +94,7 @@ static void      reader_q_data_free       (ReaderQueueData     *q_data);
 static void      reader_th_data_free      (ReaderThreadData    *th_data);
 #endif
 static gchar *   reader_get_chunk            (const gchar         *document,
-					      const gchar         *section);
+					      YelpURI             *uri);
 static gchar *   
 reader_look_for_cached_help_file             (const gchar         *url);
 
@@ -261,9 +261,15 @@ reader_convert_start (ReaderThreadData *th_data)
 		break;
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
-		command_line = g_strdup_printf ("%s/yelp-db2html %s",
-						SERVERDIR,
-						yelp_uri_get_path (uri));
+		if (yelp_cache_lookup_links (yelp_uri_to_string (uri))) {
+			command_line = g_strdup_printf ("%s/yelp-db2html -n %s",
+							SERVERDIR,
+							yelp_uri_get_path (uri));
+		} else {
+			command_line = g_strdup_printf ("%s/yelp-db2html %s",
+							SERVERDIR,
+							yelp_uri_get_path (uri));
+		}
 		break;
 	default:
 		/* Set error */
@@ -312,14 +318,7 @@ reader_convert_start (ReaderThreadData *th_data)
 		    yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
 			gchar *chunk;
 			
-			if (yelp_uri_get_section (uri) &&
-			    strcmp (yelp_uri_get_section (uri), "")) {
-				chunk = reader_get_chunk (q_data->data,
-							  yelp_uri_get_section (uri));
-			} else {
-				chunk = reader_get_chunk (q_data->data,
-							  "toc");
-			}
+			chunk = reader_get_chunk (q_data->data, uri);
 
 			g_free (q_data->data);
 			q_data->data = chunk;
@@ -634,25 +633,30 @@ reader_th_data_free (ReaderThreadData *th_data)
 #endif
 
 static gchar *
-reader_get_chunk (const gchar *document, const gchar *section)
+reader_get_chunk (const gchar *document, YelpURI *uri)
 {
-	gchar       *header;
-	gchar       *chunk;
-	const gchar *footer;
-	gchar       *ret_val;
-	const gchar *start;
-	const gchar *end;
-	gchar       *tag;
-	GTimer      *timer;
-	
-/* 	g_print ("%s\n", document); */
+	const gchar  *section;
+	gchar        *header;
+	gchar        *chunk;
+	const gchar  *footer;
+	gchar        *ret_val;
+	const gchar  *start;
+	const gchar  *end;
+	gchar        *tag;
+	GTimer       *timer;
+	YelpNavLinks *links;
+	const gchar  *nav_top;
+	const gchar  *nav_bottom;
 
-	timer = g_timer_new ();
+	//	timer = g_timer_new ();
+
+	section = yelp_uri_get_section (uri);
+	if (!section || !strcmp (section, ""))
+		section = "toc";
 
 	end = strstr (document, "<!-- End of header -->");
 	
 	if (!end) {
-/* 		g_warning ("Wrong type of document\n"); */
 		return g_strdup (document);
 	}
 	
@@ -663,7 +667,6 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	g_free (tag);
 	
 	if (!start) {
-/* 		g_warning ("Document doesn't include section: '%s'", section); */
 		g_free (header);
 
 		return g_strdup (document);
@@ -672,8 +675,6 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	end = strstr (start, "<!-- End of chunk -->");
 
 	if (!end) {
-/* 		g_warning ("Document is doesn't contain end tag for section: %s", */
-/* 			   section); */
 		g_free (header);
 
 		return g_strdup (document);
@@ -684,15 +685,59 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	footer = strstr (document, "<!-- Start of footer -->");
 	
 	if (!footer) {
-/* 		g_warning ("Couldn't find footer in document"); */
 		g_free (header);
 		g_free (chunk);
 
 		return g_strdup (document);
 	}
-	 
-	ret_val = g_strconcat (header, chunk, footer, NULL);
-	
+
+	links = yelp_cache_lookup_links (yelp_uri_to_string (uri));
+
+	if (!links) {
+		nav_top = "";
+		nav_bottom = "";
+	} else {
+		nav_top = g_strconcat ("<table width='100%'><tr>",
+				       "<td width='40%' align='left'>",
+				       "<a accesskey='p' href='",
+				       links->prev_link_uri, "'>",
+				       links->prev_link_title,
+				       "</a></td>",	
+				       "<td width='40%' align='right'>",
+				       "<a accesskey='n' href='",
+				       links->next_link_uri, "'>",
+				       links->next_link_title,
+				       "</a></td>",
+				       "</tr></table>",
+				       "<hr>",
+				       NULL);
+		nav_bottom = g_strconcat ("<hr class='bottom'>",
+					  "<table width='100%'><tr>",
+					  "<td width='40%' align='left'>",
+					  "<a accesskey='p' href='",
+					  links->prev_link_uri, "'>",
+					  links->prev_link_title,
+					  "</a><br>",
+					  links->prev_link_text,
+					  "</td>",	
+					  "<td width='20%' align='center'>",
+					  "<a accesskey='u' href='",
+					  links->up_link_uri, "'>",
+					  links->up_link_title,
+					  "</a></td>",
+					  "<td width='40%' align='right'>",
+					  "<a accesskey='n' href='",
+					  links->next_link_uri, "'>",
+					  links->next_link_title,
+					  "</a><br>",
+					  links->next_link_text,
+					  "</td>",
+					  "</tr></table>",
+					  NULL);
+	}
+
+	ret_val = g_strconcat (header, nav_top, chunk, nav_bottom, footer, NULL);
+
 	g_free (header);
 	g_free (chunk);
 
@@ -902,14 +947,8 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 		} else {
 			document = read_document;
 		}
-		
-		if (yelp_uri_get_section (new_uri) &&
-		    strcmp (yelp_uri_get_section (new_uri), "")) {
-			chunk = reader_get_chunk (document,
-						  yelp_uri_get_section (new_uri));
-		} else {
-			chunk = reader_get_chunk (document, "toc");
-		}
+
+		chunk = reader_get_chunk (document, new_uri);
 
 		g_free (read_document);
 		yelp_uri_unref (new_uri);

@@ -1,5 +1,16 @@
 2003-08-26  Shaun McCance  <shaunm@wolfram.com>
 
+	* src/yelp-cache.c
+	* src/yelp-cache.h
+	* src/yelp-db2html.c
+	* src/yelp-reader.c
+	* src/yelp-scrollkeeper.c
+	* src/yelp-view-content.c
+	- Big speedup to transformation of large DocBook documents
+	  by generating navigation links in C from ScrollKeeper info.
+
+2003-08-26  Shaun McCance  <shaunm@wolfram.com>
+
 	* README: Updated README so it's correct
 
 2003-08-18  Shaun McCance  <shaunm@wolfram.com>

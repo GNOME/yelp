@@ -39,6 +39,7 @@
 #include "yelp-scrollkeeper.h"
 #include "yelp-util.h"
 #include "yelp-uri.h"
+#include "yelp-cache.h"
 #include "yelp-view-content.h"
 
 #define d(x)
@@ -73,6 +74,9 @@ static void content_insert_tree               (YelpViewContent      *content,
 					       GNode                *node);
 static void content_set_tree                  (YelpViewContent      *content, 
 					       GNode                *node);
+gboolean    content_generate_links            (GNode                *node,
+					       gpointer              data);
+GNode     * node_last_ancestor                (GNode                *node);
 static void
 content_show_uri                              (YelpView              *view, 
 					       YelpURI               *uri,
@@ -420,6 +424,98 @@ content_set_tree (YelpViewContent *content, GNode *node)
 	}
 }
 
+
+GNode *
+node_last_ancestor (GNode *node)
+{
+	if (node->children)
+		return node_last_ancestor (g_node_last_child (node));
+	else
+		return node;
+}
+
+
+gboolean
+content_generate_links (GNode *node, gpointer data)
+{
+	GNode        *prev_node;
+	GNode        *next_node;
+	GNode        *up_node;
+	YelpURI      *prev_uri;
+	YelpURI      *next_uri;
+	YelpURI      *up_uri;
+	YelpNavLinks *links = g_new0 (YelpNavLinks, 1);
+	YelpURI      *uri;
+
+	if (!node->data)
+		return FALSE;
+
+	uri = YELP_SECTION (node->data)->uri;
+
+	if (yelp_cache_lookup_links (yelp_uri_to_string (uri)))
+		return FALSE;
+
+	if (node->prev)
+		prev_node = node_last_ancestor (node->prev);
+	else if (node->parent && node->parent->data)
+		prev_node = node->parent;
+	else
+		prev_node = NULL;
+
+	if (node->children)
+		next_node = node->children;
+	else if (node->next)
+		next_node = node->next;
+	else if (node->parent && node->parent->next)
+		next_node = node->parent->next;
+	else
+		next_node = NULL;
+
+	if (yelp_uri_get_section (uri) &&
+	    strcmp (yelp_uri_get_section (uri), "") &&
+	    strcmp (yelp_uri_get_section (uri), "toc") &&
+	    strcmp (yelp_uri_get_section (uri), "title-page"))
+		up_node = g_node_nth_child (g_node_get_root (node), 1);
+	else
+		up_node = NULL;
+
+	if (!prev_node) {
+		links->prev_link_uri = "";
+		links->prev_link_title = "";
+		links->prev_link_text = "";
+	} else {
+		prev_uri = YELP_SECTION (prev_node->data)->uri;
+		links->prev_link_uri = yelp_uri_to_string (prev_uri);
+		links->prev_link_title = _("Previous");
+		links->prev_link_text = YELP_SECTION (prev_node->data)->name;
+	}
+
+	if (!next_node) {
+		links->next_link_uri = "";
+		links->next_link_title = "";
+		links->next_link_text = "";
+	} else {
+		next_uri = YELP_SECTION (next_node->data)->uri;
+		links->next_link_uri = yelp_uri_to_string (next_uri);
+		links->next_link_title = _("Next");
+		links->next_link_text = YELP_SECTION (next_node->data)->name;
+	}
+
+	if (!up_node) {
+		links->up_link_uri = "";
+		links->up_link_title = "";
+	} else {
+		up_uri = YELP_SECTION (up_node->data)->uri;
+		links->up_link_uri = yelp_uri_to_string (up_uri);
+		links->up_link_title = YELP_SECTION (up_node->data)->name;
+	}
+
+	yelp_cache_add_links (yelp_uri_to_string (uri), links);
+
+	return FALSE;
+}
+
+
 static void
 content_show_uri (YelpView *view, YelpURI *uri, GError **error)
 {
@@ -445,7 +541,13 @@ content_show_uri (YelpView *view, YelpURI *uri, GError **error)
 				gtk_widget_show (priv->tree_sw);
 				content_set_tree (YELP_VIEW_CONTENT (view), 
 						  node);
-				
+
+				g_node_traverse (node,
+						 G_PRE_ORDER,
+						 G_TRAVERSE_ALL,
+						 -1,
+						 (GNodeTraverseFunc) content_generate_links,
+						 NULL);
 			} else {
 				if (gtk_widget_is_focus (priv->tree_sw)) {
 					reset_focus = TRUE;

@@ -27,10 +27,31 @@
 
 #include "yelp-uri.h"
 
+typedef struct _YelpNavLinks YelpNavLinks;
+
+#define YELP_NAV_LINKS(x) ((YelpNavLinks *) x)
+
+struct _YelpNavLinks {
+	gchar *prev_link_uri;
+	gchar *next_link_uri;
+	gchar *prev_link_title;
+	gchar *next_link_title;
+	gchar *prev_link_text;
+	gchar *next_link_text;
+	gchar *up_link_uri;
+	gchar *up_link_title;
+};
+
 void           yelp_cache_init          (void);
 
 const gchar *  yelp_cache_lookup        (const gchar *path);
 
 void           yelp_cache_add           (const gchar *path,
                                          const gchar *html);
+
+YelpNavLinks * yelp_cache_lookup_links  (const gchar        *path);
+
+void           yelp_cache_add_links     (const gchar        *path,
+					 const YelpNavLinks *links);
+
 #endif /* __YELP_CACHE_H__ */
