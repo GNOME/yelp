@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-15 16:35+0200\n"
-"PO-Revision-Date: 2005-01-15 16:38+0200\n"
+"POT-Creation-Date: 2005-01-29 21:17+0200\n"
+"PO-Revision-Date: 2005-01-29 21:19+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgstr "Mokomosios programos"
 msgid "Graphics"
 msgstr "Grafika"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:386
 msgid "Help Topics"
 msgstr "Pagalbos temos"
 
@@ -149,28 +149,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Daugialypė terpė"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Biuras"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Kita"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Kita dokumentacija"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Programavimas"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Mokslinės programos"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Garsas ir vaizdas"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
@@ -300,27 +300,39 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp gamykla"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:150
+msgid "Open Bookmark in New Window"
+msgstr "Atidaryti žymelę naujame lange"
+
+#: src/yelp-bookmarks.c:154
+msgid "Rename Bookmark"
+msgstr "Pervadinti žymelę"
+
+#: src/yelp-bookmarks.c:158
+msgid "Remove Bookmark"
+msgstr "Pašalinti žymelę"
+
+#: src/yelp-bookmarks.c:301 src/yelp-bookmarks.c:373
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
 
-#: src/yelp-bookmarks.c:341
+#: src/yelp-bookmarks.c:401
 msgid "Document Sections"
 msgstr "Dokumento skyriai"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
-"Nepavyko apdoroti bylos „%s“. Arba byla neegzistuoja, arba ji nėra tinkamai "
+"Nepavyko apdoroti bylos „%s“. Arba byla neegzistuoja, arba tai nėra tinkamai "
 "suformuota XML byla."
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Nežinoma"
+#: src/yelp-db-pager.c:489
+msgid "Unknown Section"
+msgstr "Nežinomas skyrius"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -659,7 +671,7 @@ msgid "Loading..."
 msgstr "Įkeliama..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
@@ -682,7 +694,7 @@ msgstr ""
 "Nepavyko išnagrinėti bylos „%s“. Arba ši byla neegzistuoja, arba ji "
 "suformuota neteisingai."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -691,18 +703,19 @@ msgstr ""
 "Nepavyko apdoroti dokumento „%s“. Arba bylos „%s“ nėra, arba ji nėra tinkama "
 "XSLT stiliaus byla."
 
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-"Nepavyko apdoroti dokumento „%s“. Arba bylos „%s“ nėra, arba ji nėra tinkama "
-"XSLT stiliaus byla."
-
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Gauti pagalbą dirbant su GNOME"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Garsas ir vaizdas"
+
+#~ msgid ""
+#~ "The document ‘%s’could not be processed. The file ‘%s’ is either missing "
+#~ "or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Nepavyko apdoroti dokumento „%s“. Arba bylos „%s“ nėra, arba ji nėra "
+#~ "tinkama XSLT stiliaus byla."
 
 #~ msgid "_Home"
 #~ msgstr "_Pradžia"
