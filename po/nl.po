@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
-"POT-Creation-Date: 2004-04-20 17:58-0500\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-04 04:58+0200\n"
 "PO-Revision-Date: 2004-02-09 17:14+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -138,25 +138,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:438 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Geen href attribuut gevonden op yelp:document"
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:453 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:641 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Titelpagina"
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:643 src/yelp-man-pager.c:372
+#: stylesheets/l10n.xml.in.h:30
 msgid "Contents"
 msgstr "Inhoudsopgave"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:661 src/yelp-man-pager.c:390
+#: stylesheets/l10n.xml.in.h:69
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -387,32 +387,33 @@ msgstr "Bezig met laden..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1303
+#: src/yelp-window.c:1304
 msgid "translator_credits"
 msgstr ""
 "Tino Meinen <a.t.meinen@chello.nl>\n"
 "Ronald Hummelink <ronald@hummelink.xs4all.nl>"
 
 # Een Hulp voor GNOME, een Hulp-programma voor GNOME
-#: src/yelp-window.c:1309
+#: src/yelp-window.c:1310
 msgid "A Help Browser for GNOME"
 msgstr "Een Hulp-browser voor GNOME"
 
+# Dit zijn multibyte tekens (utf8 in hexadicmale notatie)
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
-msgstr "&#8216;"
+msgstr "‘"
 
 #: stylesheets/l10n.xml.in.h:2
 msgid "&#8217;"
-msgstr "&#8217;"
+msgstr "’"
 
 #: stylesheets/l10n.xml.in.h:3
 msgid "&#8220;"
-msgstr "&#8220;"
+msgstr "“"
 
 #: stylesheets/l10n.xml.in.h:4
 msgid "&#8221;"
-msgstr "&#8221;"
+msgstr "”"
 
 # onderdeel beter dan artikel
 #: stylesheets/l10n.xml.in.h:5
