@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-14 09:06+0100\n"
-"PO-Revision-Date: 2004-01-14 09:06+0100\n"
+"POT-Creation-Date: 2004-01-17 02:11+0100\n"
+"PO-Revision-Date: 2004-01-17 02:12+0100\n"
 "Last-Translator: Goran Rakić <gox@devbase.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,24 +137,24 @@ msgstr "Jelp"
 msgid "Yelp Factory"
 msgstr "Jelp fabrika"
 
-#: src/yelp-db-pager.c:424 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:430 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Nisam našao href atribut u yelp:document-u"
 
-#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:445 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Ponestalo memorije"
 
-#: src/yelp-db-pager.c:616 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:622 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Naslovnica"
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:624 stylesheets/l10n.xml.in.h:27
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:642 stylesheets/l10n.xml.in.h:61
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Nepoznato"
@@ -261,16 +261,20 @@ msgstr "Adresa dokumenta"
 msgid "The URI of the document to be processed"
 msgstr "Adresa dokumenta za obradu"
 
-# bug: pause or page?
 #: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: brojač pauza je negativan."
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Nisam mogao da učitam OMF datoteku „%s“."
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "Kategorije"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "Dokumenti"
 
