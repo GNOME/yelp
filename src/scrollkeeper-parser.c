@@ -31,32 +31,24 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include "scrollkeeper-parser.h"
 
-static void scrollkeeper_parser_init       (ScrollKeeperParser      *parser);
-static void scrollkeeper_parser_class_init (ScrollKeeperParserClass *klass);
-static void scrollkeeper_parser_finalize   (GObject                 *object);
-static void 
-scrollkeeper_parser_metadata_parser_init   (MetaDataParserIface     *iface);
-static gboolean 
-scrollkeeper_parser_trim_empty_branches    (xmlNode                 *cl_node);
-static xmlDoc *
-scrollkeeper_parser_get_xml_tree_of_locale (gchar                   *locale);
-static gboolean
-scrollkeeper_parser_tree_empty             (xmlNode                 *cl_node);
+static void       sp_init                   (ScrollKeeperParser      *parser);
+static void       sp_class_init             (ScrollKeeperParserClass *klass);
+static void       sp_finalize               (GObject                 *object);
+static void       sp_metadata_parser_init   (MetaDataParserIface     *iface);
+static gboolean   sp_trim_empty_branches    (xmlNode                 *cl_node);
+static xmlDoc *   sp_get_xml_tree_of_locale (gchar                   *locale);
+static gboolean   sp_tree_empty             (xmlNode                 *cl_node);
 
-static void 
-scrollkeeper_parser_parse_books            (ScrollKeeperParser      *parser, 
-					    xmlDoc                  *doc);
-static YelpBook *
-scrollkeeper_parser_parse_book             (ScrollKeeperParser      *parser, 
-					    xmlNode                 *node);
-static void
-scrollkeeper_parser_tree_parse_section     (GNode                   *parent,
-					    xmlNode                 *xml_node);
-static void
-scrollkeeper_parser_tree_parse_doc         (GNode                   *parent,
-					    xmlNode                 *xml_node);
+static void       sp_parse_books            (ScrollKeeperParser      *parser, 
+					     xmlDoc                  *doc);
+static YelpBook * sp_parse_book             (ScrollKeeperParser      *parser, 
+					     xmlNode                 *node);
+static void       sp_tree_parse_section     (GNode                   *parent,
+					     xmlNode                 *xml_node);
+static void       sp_tree_parse_doc         (GNode                   *parent,
+					     xmlNode                 *xml_node);
 /* MetaDataParser */
-static gboolean scrollkeeper_parser_parse  (MetaDataParser          *parser);
+static gboolean   sp_parse                  (MetaDataParser          *parser);
 
 struct _ScrollKeeperParserPriv {
         GSList *paths;
@@ -72,16 +64,16 @@ scrollkeeper_parser_get_type (void)
                         sizeof (ScrollKeeperParserClass),
                         NULL,
                         NULL,
-                        (GClassInitFunc) scrollkeeper_parser_class_init,
+                        (GClassInitFunc) sp_class_init,
                         NULL,
                         NULL,
                         sizeof (ScrollKeeperParser),
                         0,
-                        (GInstanceInitFunc) scrollkeeper_parser_init,
+                        (GInstanceInitFunc) sp_init,
                 };
                 
                 static const GInterfaceInfo metadata_parser_info = {
-                        (GInterfaceInitFunc) scrollkeeper_parser_metadata_parser_init,
+                        (GInterfaceInitFunc) sp_metadata_parser_init,
                         NULL,
                         NULL
                 };
@@ -99,7 +91,7 @@ scrollkeeper_parser_get_type (void)
 }
 
 static void
-scrollkeeper_parser_init (ScrollKeeperParser *parser)
+sp_init (ScrollKeeperParser *parser)
 {
         ScrollKeeperParserPriv *priv;
         
@@ -109,17 +101,17 @@ scrollkeeper_parser_init (ScrollKeeperParser *parser)
 }
 
 static void
-scrollkeeper_parser_class_init (ScrollKeeperParserClass *klass)
+sp_class_init (ScrollKeeperParserClass *klass)
 {
         GObjectClass *object_class;
 
         object_class = G_OBJECT_CLASS (klass);
         
-        object_class->finalize = scrollkeeper_parser_finalize;
+        object_class->finalize = sp_finalize;
 }
 
 static void
-scrollkeeper_parser_finalize (GObject *object)
+sp_finalize (GObject *object)
 {
         ScrollKeeperParser     *parser;
         ScrollKeeperParserPriv *priv;
@@ -143,13 +135,13 @@ scrollkeeper_parser_finalize (GObject *object)
 }
 
 static void
-scrollkeeper_parser_metadata_parser_init (MetaDataParserIface *iface)
+sp_metadata_parser_init (MetaDataParserIface *iface)
 {
-        iface->parse = scrollkeeper_parser_parse;
+        iface->parse = sp_parse;
 }
 
 static gboolean
-scrollkeeper_parser_parse (MetaDataParser *parser)
+sp_parse (MetaDataParser *parser)
 {
 	xmlDoc      *doc;
 	const GList *node;
@@ -159,10 +151,10 @@ scrollkeeper_parser_parse (MetaDataParser *parser)
 	doc = NULL;
 
 	for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
-		doc = scrollkeeper_parser_get_xml_tree_of_locale (node->data);
+		doc = sp_get_xml_tree_of_locale (node->data);
 
 		if (doc) {
-			if (doc->xmlRootNode && !scrollkeeper_parser_tree_empty(doc->xmlRootNode->xmlChildrenNode)) {
+			if (doc->xmlRootNode && !sp_tree_empty(doc->xmlRootNode->xmlChildrenNode)) {
 				break;
 			} else {
 				xmlFreeDoc (doc);
@@ -172,9 +164,9 @@ scrollkeeper_parser_parse (MetaDataParser *parser)
 	}
 		
 	if (doc) {
-		scrollkeeper_parser_trim_empty_branches (doc->xmlRootNode);
+		sp_trim_empty_branches (doc->xmlRootNode);
 
-		scrollkeeper_parser_parse_books (
+		sp_parse_books (
 			SCROLLKEEPER_PARSER (parser), doc);
 
 		xmlFreeDoc (doc);
@@ -185,7 +177,7 @@ scrollkeeper_parser_parse (MetaDataParser *parser)
 }
 
 static gboolean
-scrollkeeper_parser_trim_empty_branches (xmlNode *node)
+sp_trim_empty_branches (xmlNode *node)
 {
 	xmlNode  *child;
 	xmlNode  *next;
@@ -199,7 +191,7 @@ scrollkeeper_parser_trim_empty_branches (xmlNode *node)
 		next = child->next;
 		
 		if (!g_strcasecmp (child->name, "sect")) {
-			empty = scrollkeeper_parser_trim_empty_branches (child);
+			empty = sp_trim_empty_branches (child);
 			if (empty) {
 				xmlUnlinkNode (child);
 				xmlFreeNode (child);
@@ -219,7 +211,7 @@ scrollkeeper_parser_trim_empty_branches (xmlNode *node)
 
 /* retrieve the XML tree of a certain locale */
 static xmlDoc *
-scrollkeeper_parser_get_xml_tree_of_locale (gchar *locale)
+sp_get_xml_tree_of_locale (gchar *locale)
 {
 	xmlDoc    *doc;
 	FILE      *pipe;
@@ -262,7 +254,7 @@ scrollkeeper_parser_get_xml_tree_of_locale (gchar *locale)
 }
 
 static gboolean
-scrollkeeper_parser_tree_empty (xmlNode *cl_node)
+sp_tree_empty (xmlNode *cl_node)
 {
 	xmlNode  *node, *next;
 	gboolean  ret_val;
@@ -275,7 +267,7 @@ scrollkeeper_parser_tree_empty (xmlNode *cl_node)
 
 		if (!strcmp (node->name, "sect") &&
 		    node->xmlChildrenNode->next != NULL) {
-			ret_val = scrollkeeper_parser_tree_empty (
+			ret_val = sp_tree_empty (
 				node->xmlChildrenNode->next);
 
 			if (!ret_val) {
@@ -292,7 +284,7 @@ scrollkeeper_parser_tree_empty (xmlNode *cl_node)
 }
 
 static void
-scrollkeeper_parser_parse_books (ScrollKeeperParser  *parser, 
+sp_parse_books (ScrollKeeperParser  *parser, 
 				 xmlDoc              *doc)
 {
 	xmlNode  *node;
@@ -310,7 +302,7 @@ scrollkeeper_parser_parse_books (ScrollKeeperParser  *parser,
 
 	for (node = node->xmlChildrenNode; node; node = node->next) {
 		if (!g_strcasecmp (node->name, "sect")) {
-			book = scrollkeeper_parser_parse_book (parser, node);
+			book = sp_parse_book (parser, node);
 			
 			if (book) {
 				g_signal_emit_by_name (parser, 
@@ -322,7 +314,7 @@ scrollkeeper_parser_parse_books (ScrollKeeperParser  *parser,
 }
 
 static YelpBook *
-scrollkeeper_parser_parse_book (ScrollKeeperParser *parser, 
+sp_parse_book (ScrollKeeperParser *parser, 
 				xmlNode            *node)
 {
 	xmlNode     *cur;
@@ -354,11 +346,11 @@ scrollkeeper_parser_parse_book (ScrollKeeperParser *parser,
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
-			scrollkeeper_parser_tree_parse_section (book->root, 
+			sp_tree_parse_section (book->root, 
 								cur);
 		}
 		else if (!g_strcasecmp (cur->name, "doc")) {
-			scrollkeeper_parser_tree_parse_doc (book->root, cur);
+			sp_tree_parse_doc (book->root, cur);
 		}
 	}
 	
@@ -366,7 +358,7 @@ scrollkeeper_parser_parse_book (ScrollKeeperParser *parser,
 }
 
 static void
-scrollkeeper_parser_tree_parse_section (GNode *parent, xmlNode *xml_node)
+sp_tree_parse_section (GNode *parent, xmlNode *xml_node)
 {
 	xmlNode *cur;
 	xmlChar *xml_str;
@@ -393,17 +385,17 @@ scrollkeeper_parser_tree_parse_section (GNode *parent, xmlNode *xml_node)
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
-			scrollkeeper_parser_tree_parse_section (node,
+			sp_tree_parse_section (node,
 								cur);
 		}
 		else if (!g_strcasecmp (cur->name, "doc")) {
-			scrollkeeper_parser_tree_parse_doc (node, cur);
+			sp_tree_parse_doc (node, cur);
 		}
 	}
 }
 
 static void
-scrollkeeper_parser_tree_parse_doc (GNode *parent, xmlNode *xml_node) 
+sp_tree_parse_doc (GNode *parent, xmlNode *xml_node) 
 {
 	xmlNode     *cur;
 	xmlChar     *xml_str;
@@ -412,6 +404,7 @@ scrollkeeper_parser_tree_parse_doc (GNode *parent, xmlNode *xml_node)
 	gchar       *link;
 	gchar       *format;
 	GnomeVFSURI *uri;
+	GNode       *node;
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "doctitle")) {
@@ -438,10 +431,12 @@ scrollkeeper_parser_tree_parse_doc (GNode *parent, xmlNode *xml_node)
 
 	uri = gnome_vfs_uri_new (link);
 
-	yelp_book_add_section (parent, title, uri, NULL);
+	node = yelp_book_add_section (parent, title, uri, NULL);
 	
 	gnome_vfs_uri_unref (uri);
 	
+	/* sp_parse_toc (node, docsource); */
+
 	g_free (title);
 	g_free (omf);
 	g_free (link);

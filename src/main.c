@@ -45,8 +45,6 @@ main (int argc, char **argv)
 				      LIBGNOMEUI_MODULE,
 				      argc, argv, NULL);
 
-/* 	gtk_init (&argc, &argv); */
-
 	gnome_vfs_init ();
 	
         base = yelp_base_new ();

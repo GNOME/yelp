@@ -1,3 +1,10 @@
+2001-11-30  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/main.c (main): don't run gtk_init, using gnome-program.
+
+	* src/scrollkeeper-parser.c: renamed internal functions to sp_ to
+	  get the names shorter.
+
 2001-11-27  Richard Hult  <rhult@codefactory.se>
 
 	* src/scrollkeeper-parser.c: Include string.h to get rid of a
