@@ -109,7 +109,7 @@ static GtkItemFactoryEntry menu_items[] = {
 	{N_("/File/_New window"), "<Control>N", yw_new_window_cb, 0, NULL},
 	{N_("/File/_Close window"), "<Control>W", yw_close_window_cb, 0, NULL},
 	{N_("/File/E_xit"),       "<Control>Q", yw_exit_cb,       0, NULL    },
-	{N_("/_Help"),          NULL,        0,                0, "<LastBranch>"},
+	{N_("/_Help"),          NULL,        0,                0, "<Branch>"},
 	{N_("/Help/_About"),    NULL,        yw_about_cb,      0, NULL       },
 };
 
