@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.6.99\n"
-"POT-Creation-Date: 2002-04-28 15:55+0200\n"
-"PO-Revision-Date: 2002-04-16 16:54-0400\n"
+"POT-Creation-Date: 2002-05-05 12:44+0200\n"
+"PO-Revision-Date: 2002-05-05 00:11-0400\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
-"Language-Team: GnomeVN\n"
+"Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,24 +26,26 @@ msgid ""
 "Error while parsing the stylesheet, make sure you have your docbook "
 "environment setup correctly."
 msgstr ""
+"Lỗi phân tích stylesheet, hãy chắc rằng bạn đã cài đặt môi trường DocBook "
+"đúng."
 
 #: src/yelp-db2html.c:122
 #, c-format
 msgid "The document '%s' does not exist"
-msgstr ""
+msgstr "Tài liệu '%s' không tồn tại"
 
 #: src/yelp-db2html.c:137
 #, c-format
 msgid "Couldn't parse the document '%s'."
-msgstr ""
+msgstr "Không thể phân tích tài liệu '%s'"
 
 #: src/yelp-db2html.c:176
 msgid "Error while applying the stylesheet."
-msgstr ""
+msgstr "Lỗi áp dụng stylesheet."
 
-#: src/yelp-html.c:155
+#: src/yelp-html.c:156
 msgid "Loading..."
-msgstr ""
+msgstr "Đang nạp..."
 
 #: src/yelp-info.c:138
 msgid "info"
@@ -141,37 +143,35 @@ msgstr "Tìm:"
 
 #: src/yelp-view-toc.c:323
 msgid "Help Contents"
-msgstr ""
+msgstr "Nội dung trợ giúp"
 
 #: src/yelp-view-toc.c:324
 msgid "GNOME - Desktop"
-msgstr ""
+msgstr "GNOME - Desktop"
 
 #: src/yelp-view-toc.c:325
-#, fuzzy
 msgid "Additional documents"
-msgstr "Các tài liệu đã cài đặt"
+msgstr "Các tài liệu bổ sung"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
-msgid "Manual pages"
-msgstr "Các trang Man"
+#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:666
+msgid "Manual Pages"
+msgstr "Trang Man"
 
 #: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
-msgid "Info pages"
-msgstr "Các tran Info"
+msgid "Info Pages"
+msgstr "Các trang Info"
 
 #: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
-#, fuzzy
 msgid "Documents"
-msgstr "Các tài liệu khác"
+msgstr "Tài liệu"
 
 #: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
 msgid "Categories"
-msgstr ""
+msgstr "Phân loại"
 
-#: src/yelp-view-toc.c:666
-msgid "Manual Pages"
-msgstr "Trang Man"
+#: src/yelp-view-toc.c:609
+msgid "Manual pages"
+msgstr "Các trang Man"
 
 #: src/yelp-window.c:152
 msgid "/_File"
@@ -222,7 +222,7 @@ msgstr "Trình trợ giúp"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:567
 msgid "translator_credits"
-msgstr "translator_credits"
+msgstr ""
 
 #: src/yelp-window.c:571
 msgid "Help Browser for GNOME 2.0"
