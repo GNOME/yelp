@@ -1758,8 +1758,6 @@ idle_write (IdleWriterContext *context)
 			     context->buffer + context->cur,
 			     BUFFER_SIZE);
 	    context->cur += BUFFER_SIZE;
-	    if (context->cur + BUFFER_SIZE >= context->length)
-		gtk_widget_grab_focus (yelp_html_get_widget (priv->html_view));
 	    return TRUE;
 	} else {
 	    if (context->length > context->cur)

@@ -29,25 +29,39 @@
 
 	<xsl:variable name="cols" select="$chunk_depth - $depth_chunk + 1"/>
 
-	<h2><xsl:call-template name="gettext">
-		<xsl:with-param name="msgid">
-			<xsl:choose>
-				<xsl:when test=". = /*">
-					<xsl:value-of select="'Table of Contents'"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="'Contents'"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:with-param>
-	</xsl:call-template></h2>
-	<div class="toc"><table class="toc">
-		<xsl:apply-templates mode="toc.table.tr.mode">
-			<xsl:with-param name="cols" select="$cols"/>
-			<xsl:with-param name="depth_table" select="0"/>
-			<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
-		</xsl:apply-templates>
-	</table></div>
+	<xsl:if test="
+			appendix 		| appendixinfo			| article			| articleinfo	|
+			bibliography	| bibliographyinfo	| book				| bookinfo		|
+			chapter			| chapterinfo			| colophon			| glossary		|
+			glossaryinfo	| index					| indexinfo			| part			|
+			partinfo			| preface				| prefaceinfo		| refentry		|
+			refentryinfo	| reference				| referenceinfo	| refsect1		|
+			refsect1info	| refsect2				| refsect2info		| refsect3		|
+			refsect3info	| refsection			| refsectioninfo	| sect1			|
+			sect1info		| sect2					| sect2info			| sect3			|
+			sect3info		| sect4					| sect4info			| sect5			|
+			sect5info		| section				| sectioninfo		| set				|
+			setindex			| setindexinfo			| setinfo			| simplesect	">
+		<h2><xsl:call-template name="gettext">
+			<xsl:with-param name="msgid">
+				<xsl:choose>
+					<xsl:when test=". = /*">
+						<xsl:value-of select="'Table of Contents'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'Contents'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:call-template></h2>
+		<div class="toc"><table class="toc">
+			<xsl:apply-templates mode="toc.table.tr.mode">
+				<xsl:with-param name="cols" select="$cols"/>
+				<xsl:with-param name="depth_table" select="0"/>
+				<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
+			</xsl:apply-templates>
+		</table></div>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template mode="toc.table.tr.mode" match="
@@ -61,65 +75,32 @@
 	<xsl:param name="depth_chunk">
 		<xsl:call-template name="depth.chunk"/>
 	</xsl:param>
-	<xsl:param name="indent" select="false()"/>
+
+	<xsl:if test="($depth_table = 0) and ($cols &gt; 2)">
+		<tr border="1"><td colspan="$cols"/></tr>
+	</xsl:if>
 
 	<tr class="{name(.)}">
 		<xsl:if test="$depth_table &gt; 0">
-			<td colspan="{$depth_table}"/>
+			<xsl:for-each select="ancestor::*[position() &lt;= $depth_table]">
+				<td/>
+			</xsl:for-each>
 		</xsl:if>
-		<td>
-			<xsl:if test="$indent"><xsl:text>&#160;&#160;</xsl:text></xsl:if>
-			<a>
-				<xsl:attribute name="href">
-					<xsl:call-template name="xref.target">
-						<xsl:with-param name="linkend" select="@id"/>
-						<xsl:with-param name="target" select="."/>
-					</xsl:call-template>
-				</xsl:attribute>
-				<xsl:choose>
-					<xsl:when test="@xreflabel">
-						<xsl:value-of select="$target/@xreflabel"/>
-					</xsl:when>
-					<xsl:when test="$depth_table = 0">
-						<xsl:call-template name="xref.content">
-							<xsl:with-param name="linkend" select="@id"/>
-							<xsl:with-param name="target" select="."/>
-						</xsl:call-template>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:call-template name="header.number"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</a>
-		</td>
 		<td colspan="{$cols - $depth_table - 1}">
+			<xsl:call-template name="xref">
+				<xsl:with-param name="linkend" select="@id"/>
+				<xsl:with-param name="target" select="."/>
+			</xsl:call-template>
+		</td>
+		<td>
 			<xsl:apply-templates select="title/node()"/>
 		</td>
 	</tr>
 	<xsl:if test="$depth_chunk &lt; $chunk_depth">
 		<xsl:apply-templates mode="toc.table.tr.mode">
 			<xsl:with-param name="cols" select="$cols"/>
-			<xsl:with-param name="depth_table">
-				<xsl:choose>
-					<xsl:when test="name(.) = 'part'">
-						<xsl:value-of select="$depth_table"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="$depth_table + 1"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:with-param>
+			<xsl:with-param name="depth_table" select="$depth_table + 1"/>
 			<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
-			<xsl:with-param name="indent">
-				<xsl:choose>
-					<xsl:when test="name(.) = 'part'">
-						<xsl:value-of select="true()"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="false()"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:with-param>
 		</xsl:apply-templates>
 	</xsl:if>
 </xsl:template>

@@ -219,6 +219,8 @@ div[class="synopsis"] {
 
 tt { font-family: monospace; }
 
+table[class="toc"] td { padding-right: 1.6em; }
+
 <!--
 table {
 	border: outset 1px;

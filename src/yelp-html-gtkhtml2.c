@@ -340,8 +340,6 @@ adjustment_timeout_cb (gpointer data)
      * or not we readd the timeout function, seems to be fairly reliable.
      */
 
-    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
-
     if (priv->view->relayout_timeout_id != 0)
 	return TRUE;
 
