@@ -1,3 +1,10 @@
+2004-10-19  James Bowes  <bowes@cs.dal.ca>
+
+	* src/yelp-man-parser.c: (yelp_man_parser_parse_file),
+	(parser_handle_linetag), (parser_handle_inline): Add more tags 
+	to the parser, including the inline comment tag, some bsd mandoc 
+	macros, and hypertext macros.
+
 2004-10-18  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-db-pager.c:

@@ -71,6 +71,8 @@ struct _YelpManParser {
     gchar        *anc;           // The anchor point in the document
     gchar        *cur;           // Our current position in the document
 
+    gboolean      make_links;    // Allow auto-generated hyperlinks to be disabled.
+
     GSList       *nodeStack;
 };
 
@@ -94,6 +96,8 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
     parser->doc = xmlNewDoc ("1.0");
     parser->ins = xmlNewNode (NULL, BAD_CAST "Man");
     xmlDocSetRootElement (parser->doc, parser->ins);
+
+    parser->make_links = TRUE;
 
     while (g_io_channel_read_line (parser->channel,
 				   &(parser->buffer),
@@ -223,7 +227,7 @@ parser_handle_linetag (YelpManParser *parser) {
 	}
     }
     else if (g_str_equal (str, "P") || g_str_equal (str, "PP") ||
-	     g_str_equal (str, "LP")) {
+	     g_str_equal (str, "LP") || g_str_equal (str, "Pp")) {
 	parser_ensure_P (parser);
     }
     else if (g_str_equal (str, "br")) {
@@ -240,7 +244,8 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser->ins = parser->ins->parent;
     }
-    else if (g_str_equal (str, "SH") || g_str_equal (str, "SS")) {
+    else if (g_str_equal (str, "SH") || g_str_equal (str, "SS") || 
+	     g_str_equal (str, "Sh") || g_str_equal (str, "Ss")) {
 	gint i;
 	for (i = 0; i < 6; i++) {
 	    if (PARSER_CUR && *(parser->cur) != '\n') {
@@ -345,24 +350,50 @@ parser_handle_linetag (YelpManParser *parser) {
 	g_free (str);
     }
     else if (g_str_equal (str, "UR")) {
-	parser->ins = parser_append_node (parser, str);
-        g_free (str);
+	gchar *buf;
 
-	parser_stack_push_node (parser, parser->ins);
+	while (PARSER_CUR
+	   && *(parser->cur) != ' '
+	   && *(parser->cur) != '\n')
+	    parser->cur++;
+	
+	c = *(parser->cur);
+	*(parser->cur) = '\0';
+	
+	buf = g_strdup (parser->anc + 1);
+	*(parser->cur) = c;
 
-        if (PARSER_CUR && *(parser->cur) != '\n') {
-            parser->ins = parser_append_node (parser, "URI");
-            parser_append_token (parser);
-            parser->ins = parser->ins->parent;
-        }
+	/* 
+	 * If someone wants to do automatic hyperlink wizardry outside
+	 * for the parser, then this should instead generate a tag.
+         */
+	if (g_str_equal (buf, ":"))
+	    parser->make_links = FALSE;
+	else {
+	    parser->ins = parser_append_node (parser, str);
+	    
+	    parser_stack_push_node (parser, parser->ins);
+	    
+	    if (PARSER_CUR && *(parser->cur) != '\n') {
+		parser->ins = parser_append_node (parser, "URI");
+		parser_append_text (parser);
+		parser->ins = parser->ins->parent;
+	    }
+	}
+
+	g_free (str);
+	g_free (buf);
     }
     else if (g_str_equal (str, "UE")) {
-        tmpNode = parser_stack_pop_node (parser, "RS");
+	if (parser->make_links) {
+	    tmpNode = parser_stack_pop_node (parser, "UR");
 
-        if (tmpNode == NULL)
-            g_warning ("Found unexpected tag: '%s'\n", str);
-        else
-            parser->ins = tmpNode;
+	    if (tmpNode == NULL)
+		g_warning ("Found unexpected tag: '%s'\n", str);
+	    else
+		parser->ins = tmpNode;
+	} else
+	    parser->make_links = TRUE;
 
         g_free (str);
     }
@@ -372,6 +403,65 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser_append_token (parser);
 	parser->ins = parser->ins->parent;
+    }
+
+    /* BSD mandoc macros */
+
+    /* 
+     * Since mandoc man pages are required to begin with Dd, Dt, Os,
+     * we will use this to create the TH tag.
+     */
+    else if (g_str_equal (str, "Dd")) {
+	g_free (str);
+
+	parser->ins = parser_append_node (parser, "TH");
+
+	if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Date");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
+    }
+    else if (g_str_equal (str, "Dt")) {
+	g_free (str);
+
+	if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Title");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
+    }
+    else if (g_str_equal (str, "Os")) {
+	g_free (str);
+
+	if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Os");
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
+
+	/* Leave the TH tag */
+	parser->ins = parser->ins->parent;
+    }
+    else if (g_str_equal (str, "Bl")) {
+        parser->ins = parser_append_node (parser, str);
+        g_free (str);
+
+        parser_stack_push_node (parser, parser->ins);
+    }
+    else if (g_str_equal (str, "El")) {
+        tmpNode = parser_stack_pop_node (parser, "Bl");
+
+        if (tmpNode == NULL)
+            g_warning ("Found unexpected tag: '%s'\n", str);
+        else
+            parser->ins = tmpNode;
+
+        g_free (str);
+    }
+    else if (g_str_equal (str, "It")) {
+	parser->ins = parser_append_node (parser, str);
+	g_free(str);
     }
 
     /* Table (tbl) macros */
@@ -388,6 +478,25 @@ parser_handle_linetag (YelpManParser *parser) {
 	g_warning ("Found unexpected tag: '%s'\n", str);
         g_free (str);
     }
+
+    /* 
+     * From man(7): macros that many processors will simply ignore...
+     * so lets do that for now.
+     */
+    else if (g_str_equal (str, "ad") || g_str_equal (str, "bp") 
+	     || g_str_equal (str, "ce") || g_str_equal (str, "de") 
+	     || g_str_equal (str, "ds") || g_str_equal (str, "el") 
+	     || g_str_equal (str, "ie") || g_str_equal (str, "if") 
+	     || g_str_equal (str, "fi") || g_str_equal (str, "ft") 
+	     || g_str_equal (str, "hy") || g_str_equal (str, "ig") 
+	     || g_str_equal (str, "in") || g_str_equal (str, "na") 
+	     || g_str_equal (str, "ne") || g_str_equal (str, "nf") 
+	     || g_str_equal (str, "nh") || g_str_equal (str, "ps") 
+	     || g_str_equal (str, "so") || g_str_equal (str, "ti") 
+	     || g_str_equal (str, "tr")) {
+	/* Do nothing */
+    }
+
     else {
 	g_warning ("No rule matching the tag '%s'\n", str);
     }
@@ -580,6 +689,11 @@ parser_handle_inline (YelpManParser *parser)
 	break;
     case '&':
 	parser->cur++;
+	parser->anc = parser->cur;
+	break;
+    case '"':
+	/* Marks comments till end of line. so we can ignore it. */
+	parser_read_until (parser, '\n');
 	parser->anc = parser->cur;
 	break;
     default:
