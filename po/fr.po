@@ -1,15 +1,16 @@
 # French translation of Yelp.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002-2003 Free Software Foundation, Inc.
 # maintainer: Jean-Michel Ardantz <jmardantz@ifrance.com>, 2002.
-# Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002.
+# Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002-2003.
 # Christophe Fergeau <teuf@users.sourceforge.net>, 2002.
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.1.2\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-12-15 18:26+0100\n"
+"Project-Id-Version: yelp 2.2.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-05 19:25+0200\n"
+"PO-Revision-Date: 2003-06-05 19:21+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -134,11 +135,11 @@ msgstr "Résumés"
 msgid "System Administration"
 msgstr "Administration système"
 
-#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Section"
 
@@ -205,7 +206,7 @@ msgstr "/Fichier/_Fermer la fenêtre"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr "/Édition"
+msgstr "/_Édition"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
@@ -254,7 +255,7 @@ msgstr "Le document « %s » n'existe pas"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:675
+#: src/yelp-window.c:677
 msgid "translator_credits"
 msgstr ""
 "Mainteneur :\n"
@@ -265,39 +266,39 @@ msgstr ""
 "Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Sun G11n <gnome_int_l10n@ireland.sun.com>"
 
-#: src/yelp-window.c:679
+#: src/yelp-window.c:681
 msgid "Help Browser for GNOME 2.0"
 msgstr "Navigateur d'aide de GNOME 2.0"
 
-#: src/yelp-window.c:788
+#: src/yelp-window.c:796
 msgid "Back"
 msgstr "Précédent"
 
-#: src/yelp-window.c:789
+#: src/yelp-window.c:797
 msgid "Show previous page in history"
 msgstr "Affiche la page précédente de l'historique"
 
-#: src/yelp-window.c:800
+#: src/yelp-window.c:808
 msgid "Forward"
 msgstr "Suivant"
 
-#: src/yelp-window.c:801
+#: src/yelp-window.c:809
 msgid "Show next page in history"
 msgstr "Affiche la page suivante de l'historique"
 
-#: src/yelp-window.c:814
+#: src/yelp-window.c:822
 msgid "Home"
 msgstr "Accueil"
 
-#: src/yelp-window.c:815
+#: src/yelp-window.c:823
 msgid "Go to home view"
 msgstr "Affiche la page d'accueil"
 
-#: src/yelp-window.c:825
+#: src/yelp-window.c:833
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:826
+#: src/yelp-window.c:834
 msgid "Search in the index"
 msgstr "Recherche dans l'index"
 
