@@ -166,16 +166,13 @@ yelp_base_new (void)
 {
         YelpBase     *base;
 	YelpBasePriv *priv;
-	gboolean      result;
 	
         base = g_object_new (YELP_TYPE_BASE, NULL);
 	priv = base->priv;
 	
-	result = yelp_scrollkeeper_init (priv->toc_tree,
-					 (&priv->index));
-
-	result = yelp_man_init (base->priv->toc_tree);
-	result = yelp_info_init (base->priv->toc_tree);
+	yelp_scrollkeeper_init (priv->toc_tree, (&priv->index));
+	yelp_man_init (base->priv->toc_tree);
+	yelp_info_init (base->priv->toc_tree);
 	
         return base;
 }

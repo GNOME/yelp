@@ -1,5 +1,25 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-toc.c (yelp_view_toc_start): 
+	- Fixes #72146
+	- Don't show "Other documents" if neither man or info are
+	  installed.
+	- Don't show "Manual pages" link if no man pages are installed
+	- Don't show "Info pages" link of no info pages are installed.
+
+	* src/yelp-man.c (yelp_man_init): 
+	- return FALSE and don't create a topnode 'man' in the content
+	  tree if there weren't any man pages installed.
+
+	* src/yelp-info.c (yelp_info_init): 
+	- return FALSE if no info pages was found. Also don't create the
+	  topnode 'info' in the content-tree if there weren't any pages.
+
+	* src/yelp-html.c: removed commeted code.
+
+	* src/yelp-base.c (yelp_base_new): don't care about the result for
+	  now.
+
 	* src/yelp-info.c:
 	- Fixes #73270
 	(yelp_info_read_info_dir): renamed from

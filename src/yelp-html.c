@@ -249,6 +249,7 @@ yh_url_requested_cb (HtmlDocument *doc,
         sdata         = g_new0 (StreamData, 1);
 	sdata->view   = view;
 	sdata->stream = stream;
+
 	
         priv->connections = g_slist_prepend (priv->connections, sdata);
 
@@ -265,25 +266,6 @@ yh_url_requested_cb (HtmlDocument *doc,
 
 	html_stream_set_cancel_func (stream, yh_stream_cancel, sdata);
 }
-
-/* static void */
-/* kill_old_connections (HtmlDocument *doc) */
-/* { */
-/* 	GSList *connection_list, *tmp; */
-
-/* 	tmp = connection_list = g_object_get_data (G_OBJECT (doc), "connection_list"); */
-/* 	while(tmp) { */
-
-/* 		StreamData *sdata = (StreamData *)tmp->data; */
-/* 		gnome_vfs_async_cancel (sdata->handle); */
-/* 		free_stream_data (sdata, FALSE); */
-
-/* 		tmp = tmp->next; */
-/* 	} */
-
-/* 	g_object_set_data (G_OBJECT (doc), "connection_list", NULL); */
-/* 	g_slist_free (connection_list); */
-/* } */
 
 static void
 yh_stream_cancel (HtmlStream *stream, 

@@ -274,6 +274,8 @@ yelp_view_toc_start (YelpViewTOC *view)
 	gchar           *installed_string = _("Installed documents");
 	YelpImportantDocsSection *important_section;
 	gboolean         important_doc_installed = FALSE;
+	gboolean         man_installed = FALSE;
+	gboolean         info_installed = FALSE;
       
 	priv = view->priv;
 
@@ -362,13 +364,32 @@ yelp_view_toc_start (YelpViewTOC *view)
 		node = g_node_next_sibling (node);
 	}
 
+	if (yelp_util_find_toplevel (priv->doc_tree, "man")) {
+		man_installed = TRUE;
+	}
 	
-	yelp_view_toc_printf (view, 
-			     "<h2>%s</h2>\n"
-			     "<a href=\"toc:man\">%s</a><br>\n"
-			     "<a href=\"toc:info\">%s</a><br>\n",
-			      other_docs_string, man_string, info_string);
-			      
+	if (yelp_util_find_toplevel (priv->doc_tree, "info")) {
+		info_installed = TRUE;
+	}
+	
+	
+	if (man_installed || info_installed) {
+		yelp_view_toc_printf (view, "<h2>%s</h2>\n", 
+				      other_docs_string);
+		
+		if (man_installed) {
+			yelp_view_toc_printf (view, 
+					      "<a href=\"toc:man\">%s</a><br>\n",
+					      man_string);
+		}
+		
+		if (info_installed) {
+			yelp_view_toc_printf (view,
+					      "<a href=\"toc:info\">%s</a><br>\n",
+					      info_string);
+		}
+	}
+	
 	yelp_view_toc_write (view, 
 			     "</td>\n", -1);
 

@@ -42,7 +42,7 @@
 #include "yelp-man.h"
 
 struct TreeNode {
-	char *name;
+	char  *name;
 
 	GList *tree_nodes;
 
@@ -50,10 +50,12 @@ struct TreeNode {
 };
 
 struct TreeData {
-	char *name;
+	char            *name;
 	struct TreeData *children;
-	char *section;
+	char            *section;
 };
+
+static gboolean any_man_pages = FALSE;
 
 /* Caller must free this */
 static char *
@@ -61,7 +63,7 @@ extract_secnum_from_filename (const char *filename)
 {
 	char *end_string = NULL;
 	char *start;
-	int len;
+	int   len;
 
 #ifdef HAVE_LIBBZ2
 	end_string =  g_strrstr (filename, ".bz2");
@@ -119,9 +121,10 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 				   char secnum)
 {
 	DIR *dirh;
-	struct dirent *dent;
-	char uribuf[128], titlebuf[128];
+	struct dirent   *dent;
+	char             uribuf[128], titlebuf[128];
 	struct TreeNode *node;
+	YelpSection     *yelp_section;
 
 	dirh = opendir (basedir);
 	if (!dirh) {
@@ -153,10 +156,13 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		manname = man_name_without_suffix (dent->d_name);
 		filename = g_build_filename (basedir, dent->d_name, NULL);
 
-		g_snprintf (titlebuf, sizeof (titlebuf), "%s (%s)", manname, section);
+		g_snprintf (titlebuf, sizeof (titlebuf), "%s (%s)", 
+			    manname, section);
+
 		g_snprintf (uribuf, sizeof (uribuf), "man:%s", filename);
 
 		node = g_hash_table_lookup (section_hash, section);
+
 		if (node == NULL) {
 			char buf[2];
 			buf[0] = secnum; buf[1] = 0;
@@ -166,10 +172,14 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 
 		g_assert (node != NULL);
 		
-		node->pages = g_list_prepend (node->pages, 
-					      yelp_section_new (YELP_SECTION_DOCUMENT,
-								titlebuf, uribuf, 
-								NULL, NULL));
+		any_man_pages = TRUE;
+		
+		yelp_section = yelp_section_new (YELP_SECTION_DOCUMENT,
+						 titlebuf, uribuf, 
+						 NULL, NULL);
+
+		node->pages = g_list_prepend (node->pages, yelp_section);
+					
 		g_free (manname);
 		g_free (section);
 		g_free (filename);
@@ -502,7 +512,7 @@ yelp_man_cleanup_initial_tree (struct TreeNode *node)
 		
 	}
 
-	node->pages = g_list_sort (node->pages, (GCompareFunc)yelp_section_compare);
+	node->pages = g_list_sort (node->pages, yelp_section_compare);
 }
 
 static void
@@ -596,6 +606,10 @@ yelp_man_init (GNode *tree)
 
 	yelp_man_cleanup_initial_tree (root);
 	
+	if (!any_man_pages) {
+		return FALSE;
+	}
+
 	yelp_man_push_initial_tree (root, tree);
 	
 	yelp_man_free_initial_tree (root);

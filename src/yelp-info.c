@@ -104,11 +104,6 @@ yelp_info_init (GNode *tree)
 	GSList      *info_list = NULL;
 	GSList      *node;
 	
-	root = g_node_append_data (tree, 
-				   yelp_section_new (YELP_SECTION_CATEGORY,
-						     _("info"), NULL, 
-						     NULL, NULL));
-
 	stat ("/usr/info", &stat_dir1);
 	stat ("/usr/share/info", &stat_dir2);
 	
@@ -117,6 +112,15 @@ yelp_info_init (GNode *tree)
 	if (stat_dir1.st_ino != stat_dir2.st_ino) {
 		yelp_info_read_info_dir  ("/usr/share/info", &info_list);
 	}
+
+	if (g_slist_length (info_list) <= 0) {
+		return FALSE;
+	}
+
+	root = g_node_append_data (tree, 
+				   yelp_section_new (YELP_SECTION_CATEGORY,
+						     _("info"), NULL, 
+						     NULL, NULL));
 
 	info_list = g_slist_sort (info_list, yelp_section_compare);
 
