@@ -244,7 +244,6 @@
 
 <xsl:template name="article.chunk.prev">
 <xsl:param name="node" select="."/>
-  <td>
     <xsl:choose>
 
       <xsl:when test="count($node/preceding-sibling::*) > 1">
@@ -280,7 +279,6 @@
       </xsl:when>
 
     </xsl:choose>
-  </td>
 </xsl:template>
 
 <xsl:template name="article.chunk.up">
