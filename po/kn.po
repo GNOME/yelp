@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp.Gnome.Core-2.1\n"
-"POT-Creation-Date: 2003-12-02 03:43-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-09 00:18-0600\n"
 "PO-Revision-Date: 2002-12-27 17:17+0530\n"
 "Last-Translator: Pramod <rpramod@postmaster.co.uk>\n"
 "Language-Team: Kannada <LL@li.org>\n"
@@ -139,6 +140,32 @@ msgstr "ಯೆಲ್ಪ್"
 msgid "Yelp Factory"
 msgstr "ಯೆಲ್ಪ್ ಖಾರ್ಕಾಣೆ"
 
+#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
+#: src/yelp-window.c:976
+#, c-format
+msgid "The document '%s' could not be opened"
+msgstr ""
+
+#: src/yelp-db-pager.c:404
+msgid "No href attribute found on yelp:document"
+msgstr ""
+
+#: src/yelp-db-pager.c:419
+msgid "Out of memory"
+msgstr ""
+
+#: src/yelp-db-pager.c:547
+msgid "Titlepage"
+msgstr ""
+
+#: src/yelp-db-pager.c:549
+msgid "Contents"
+msgstr ""
+
+#: src/yelp-db-pager.c:567
+msgid "Unknown"
+msgstr ""
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr ""
@@ -213,12 +240,39 @@ msgstr ""
 msgid "System Administration"
 msgstr ""
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
-#: src/yelp-window.c:888
+#: src/yelp-pager.c:117
+#, fuzzy
+msgid "Document URI"
+msgstr "ದಸ್ತಾವೇಜುಗಳು"
+
+#: src/yelp-pager.c:118
+msgid "The URI of the document to be processed"
+msgstr ""
+
+#: src/yelp-toc-pager.c:229
+msgid "YelpTocPager: Pause count is negative."
+msgstr ""
+
+#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+msgid "The table of contents could not be read."
+msgstr ""
+
+#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:741
+msgid "Categories"
+msgstr "ವಿಭಾಗಗಳು"
+
+#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:740
+msgid "Documents"
+msgstr "ದಸ್ತಾವೇಜುಗಳು"
+
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
+#: src/yelp-window.c:899
 msgid "Loading..."
 msgstr "ಓದುತ್ತಿದೆ..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
 msgid "Section"
 msgstr "ವಿಭಾಗ"
 
@@ -242,14 +296,6 @@ msgstr ""
 msgid "Info Pages"
 msgstr "ಮಾಹಿತಿ ಪುಟಗಳು"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
-msgid "Documents"
-msgstr "ದಸ್ತಾವೇಜುಗಳು"
-
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
-msgid "Categories"
-msgstr "ವಿಭಾಗಗಳು"
-
 #: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr ""
@@ -266,118 +312,116 @@ msgstr ""
 msgid "(C)"
 msgstr ""
 
-#: src/yelp-window.c:200
+#: src/yelp-window.c:213
 msgid "/_File"
 msgstr "/ಕಡತ"
 
-#: src/yelp-window.c:201
+#: src/yelp-window.c:214
 msgid "/File/_New window"
 msgstr "/ಕಡತ/ಹೊಸ ಕಿಟಕಿ"
 
-#: src/yelp-window.c:204
+#: src/yelp-window.c:217
 msgid "/File/_Close window"
 msgstr "/ಕಡತ/ಕಿಟಕಿ ಮುಚ್ಚು"
 
-#: src/yelp-window.c:208
+#: src/yelp-window.c:221
 msgid "/_Edit"
 msgstr "/ಸಂಸ್ಕರಿಸು"
 
-#.
-#. {N_("/Edit/_Find in page..."),   NULL,
-#. window_find_cb,                 0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#. {N_("/Edit/_Find again"),        "<Control>g",
-#. window_find_again_cb,           0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#.
-#: src/yelp-window.c:218
+#: src/yelp-window.c:222
+msgid "/Edit/_Find in page..."
+msgstr "/ಸಂಸ್ಕರಿಸು/ಪುಟದಲ್ಲಿ ಹುಡುಕು"
+
+#: src/yelp-window.c:225
+msgid "/Edit/_Find again"
+msgstr "/ಸಂಸ್ಕರಿಸು/ಮತ್ತೆ ಹುಡುಕು"
+
+#: src/yelp-window.c:229
 msgid "/_Go"
 msgstr "/ಹೊಗು"
 
+#: src/yelp-window.c:230
+msgid "/Go/_Back"
+msgstr "/ಹೊಗು/ಹಿಂದೆ"
+
+#: src/yelp-window.c:233
+msgid "/Go/_Forward"
+msgstr "/ಹೊಗು/ಮುಂದೆ"
+
+#: src/yelp-window.c:236
+msgid "/Go/_Home"
+msgstr "/ಹೊಗು/ಪ್ರಾರಂಭಿಕ ಪುಟ"
+
 #.
-#. {N_("/Go/_Back"),                NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
-#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
-#. {N_("/Go/_Forward"),             NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
-#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
-#. {N_("/Go/_Home"),                NULL,
-#. window_go_home_cb,              0,
-#. "<StockItem>",                  GTK_STOCK_HOME             },
 #. {N_("/Go/_Index"),               NULL,
 #. window_go_index_cb,             0,
 #. "<StockItem>",                  GTK_STOCK_INDEX            },
 #.
-#: src/yelp-window.c:234
+#: src/yelp-window.c:245
 msgid "/_Help"
 msgstr "/ಸಹಾಯ "
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:246
 msgid "/Help/_About"
 msgstr "/ಸಹಾಯ/ತಂತ್ರಾಂಶದ ಬಗ್ಗೆ "
 
-#: src/yelp-window.c:297
+#: src/yelp-window.c:308
 msgid "Help Browser"
 msgstr "ಸಹಾಯ ವೀಕ್ಷಕ"
 
-#: src/yelp-window.c:494
+#: src/yelp-window.c:505
 msgid "Back"
 msgstr "ಹಿಂದೆ"
 
-#: src/yelp-window.c:495
+#: src/yelp-window.c:506
 msgid "Show previous page in history"
 msgstr ""
 
-#: src/yelp-window.c:505
+#: src/yelp-window.c:516
 msgid "Forward"
 msgstr "ಮುಂದೆ"
 
-#: src/yelp-window.c:506
+#: src/yelp-window.c:517
 msgid "Show next page in history"
 msgstr ""
 
-#: src/yelp-window.c:518
+#: src/yelp-window.c:529
 msgid "Home"
 msgstr "ಪ್ರಾರಂಭಿಕ ಪುಟ"
 
-#: src/yelp-window.c:519
+#: src/yelp-window.c:530
 msgid "Go to home view"
 msgstr "ಪ್ರಾರಂಭಿಕ ಪುಟಕ್ಕೆ ಹೋಗು"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:635
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr ""
 
-#: src/yelp-window.c:644
+#: src/yelp-window.c:655
 msgid "DocBook SGML documents are no longer supported."
 msgstr ""
 
-#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr ""
-
-#: src/yelp-window.c:876
+#: src/yelp-window.c:887
 msgid "Loading&nbsp;&nbsp;&nbsp;"
 msgstr ""
 
-#: src/yelp-window.c:880
+#: src/yelp-window.c:891
 msgid "Loading.&nbsp;&nbsp;"
 msgstr ""
 
-#: src/yelp-window.c:884
+#: src/yelp-window.c:895
 #, fuzzy
 msgid "Loading..&nbsp;"
 msgstr "ಓದುತ್ತಿದೆ..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1046
+#: src/yelp-window.c:1057
 msgid "translator_credits"
 msgstr "ಅನುವಾದಕರು - ಪ್ರಮೋದ್.ಆರ್"
 
-#: src/yelp-window.c:1051
+#: src/yelp-window.c:1062
 #, fuzzy
 msgid "A Help Browser for GNOME"
 msgstr "ಸಹಾಯ ವೀಕ್ಷಕ"
@@ -389,18 +433,3 @@ msgstr "ಘನೋಮಿನ ಬಗ್ಗೆ ಸಹಾಯ ಪಡೆ"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "ಸಹಾಯ"
-
-#~ msgid "/Edit/_Find in page..."
-#~ msgstr "/ಸಂಸ್ಕರಿಸು/ಪುಟದಲ್ಲಿ ಹುಡುಕು"
-
-#~ msgid "/Edit/_Find again"
-#~ msgstr "/ಸಂಸ್ಕರಿಸು/ಮತ್ತೆ ಹುಡುಕು"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/ಹೊಗು/ಹಿಂದೆ"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/ಹೊಗು/ಮುಂದೆ"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/ಹೊಗು/ಪ್ರಾರಂಭಿಕ ಪುಟ"

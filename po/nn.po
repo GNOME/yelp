@@ -5,7 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 1.0\n"
-"POT-Creation-Date: 2003-12-02 03:43-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-09 00:18-0600\n"
 "PO-Revision-Date: 2002-01-31 18:35+0100\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: Norwegian/Nynorsk <nn@li.org>\n"
@@ -139,6 +140,33 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp fabrikk"
 
+#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
+#: src/yelp-window.c:976
+#, c-format
+msgid "The document '%s' could not be opened"
+msgstr ""
+
+#: src/yelp-db-pager.c:404
+msgid "No href attribute found on yelp:document"
+msgstr ""
+
+#: src/yelp-db-pager.c:419
+msgid "Out of memory"
+msgstr ""
+
+#: src/yelp-db-pager.c:547
+msgid "Titlepage"
+msgstr ""
+
+#: src/yelp-db-pager.c:549
+#, fuzzy
+msgid "Contents"
+msgstr "Hjelp om"
+
+#: src/yelp-db-pager.c:567
+msgid "Unknown"
+msgstr ""
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr ""
@@ -213,12 +241,40 @@ msgstr "Oversikter"
 msgid "System Administration"
 msgstr "Systemadministrasjon"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
-#: src/yelp-window.c:888
+#: src/yelp-pager.c:117
+#, fuzzy
+msgid "Document URI"
+msgstr "Andre dokument"
+
+#: src/yelp-pager.c:118
+msgid "The URI of the document to be processed"
+msgstr ""
+
+#: src/yelp-toc-pager.c:229
+msgid "YelpTocPager: Pause count is negative."
+msgstr ""
+
+#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+msgid "The table of contents could not be read."
+msgstr ""
+
+#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:741
+msgid "Categories"
+msgstr ""
+
+#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:740
+#, fuzzy
+msgid "Documents"
+msgstr "Andre dokument"
+
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
+#: src/yelp-window.c:899
 msgid "Loading..."
 msgstr ""
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
 msgid "Section"
 msgstr "Avsnitt"
 
@@ -245,15 +301,6 @@ msgstr "Manualsider"
 msgid "Info Pages"
 msgstr "Info-sider"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
-#, fuzzy
-msgid "Documents"
-msgstr "Andre dokument"
-
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
-msgid "Categories"
-msgstr ""
-
 #: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "Manualsider"
@@ -270,117 +317,115 @@ msgstr ""
 msgid "(C)"
 msgstr ""
 
-#: src/yelp-window.c:200
+#: src/yelp-window.c:213
 msgid "/_File"
 msgstr "/_Fil"
 
-#: src/yelp-window.c:201
+#: src/yelp-window.c:214
 msgid "/File/_New window"
 msgstr "/Fil/_Nytt vindauge"
 
-#: src/yelp-window.c:204
+#: src/yelp-window.c:217
 msgid "/File/_Close window"
 msgstr "/Fil/_Lukk vindauge"
 
-#: src/yelp-window.c:208
+#: src/yelp-window.c:221
 msgid "/_Edit"
 msgstr ""
 
-#.
-#. {N_("/Edit/_Find in page..."),   NULL,
-#. window_find_cb,                 0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#. {N_("/Edit/_Find again"),        "<Control>g",
-#. window_find_again_cb,           0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#.
-#: src/yelp-window.c:218
+#: src/yelp-window.c:222
+msgid "/Edit/_Find in page..."
+msgstr ""
+
+#: src/yelp-window.c:225
+msgid "/Edit/_Find again"
+msgstr ""
+
+#: src/yelp-window.c:229
 msgid "/_Go"
 msgstr "/_Gå"
 
+#: src/yelp-window.c:230
+msgid "/Go/_Back"
+msgstr "/Gå/Til_bake"
+
+#: src/yelp-window.c:233
+msgid "/Go/_Forward"
+msgstr "/Gå/_Framover"
+
+#: src/yelp-window.c:236
+msgid "/Go/_Home"
+msgstr "/Gå/_Heim"
+
 #.
-#. {N_("/Go/_Back"),                NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
-#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
-#. {N_("/Go/_Forward"),             NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
-#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
-#. {N_("/Go/_Home"),                NULL,
-#. window_go_home_cb,              0,
-#. "<StockItem>",                  GTK_STOCK_HOME             },
 #. {N_("/Go/_Index"),               NULL,
 #. window_go_index_cb,             0,
 #. "<StockItem>",                  GTK_STOCK_INDEX            },
 #.
-#: src/yelp-window.c:234
+#: src/yelp-window.c:245
 msgid "/_Help"
 msgstr "/_Hjelp"
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:246
 msgid "/Help/_About"
 msgstr "/Hjelp/_Om"
 
-#: src/yelp-window.c:297
+#: src/yelp-window.c:308
 msgid "Help Browser"
 msgstr "Hjelplesar"
 
-#: src/yelp-window.c:494
+#: src/yelp-window.c:505
 msgid "Back"
 msgstr "Tilbake"
 
-#: src/yelp-window.c:495
+#: src/yelp-window.c:506
 msgid "Show previous page in history"
 msgstr "Vis forrige side i historikken"
 
-#: src/yelp-window.c:505
+#: src/yelp-window.c:516
 msgid "Forward"
 msgstr "Framover"
 
-#: src/yelp-window.c:506
+#: src/yelp-window.c:517
 msgid "Show next page in history"
 msgstr "Vis neste side i historikken"
 
-#: src/yelp-window.c:518
+#: src/yelp-window.c:529
 msgid "Home"
 msgstr "Heim"
 
-#: src/yelp-window.c:519
+#: src/yelp-window.c:530
 msgid "Go to home view"
 msgstr "Gå til startside"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:635
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr ""
 
-#: src/yelp-window.c:644
+#: src/yelp-window.c:655
 msgid "DocBook SGML documents are no longer supported."
 msgstr ""
 
-#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr ""
-
-#: src/yelp-window.c:876
+#: src/yelp-window.c:887
 msgid "Loading&nbsp;&nbsp;&nbsp;"
 msgstr ""
 
-#: src/yelp-window.c:880
+#: src/yelp-window.c:891
 msgid "Loading.&nbsp;&nbsp;"
 msgstr ""
 
-#: src/yelp-window.c:884
+#: src/yelp-window.c:895
 msgid "Loading..&nbsp;"
 msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1046
+#: src/yelp-window.c:1057
 msgid "translator_credits"
 msgstr "Roy-Magne Mo <rmo@sunnmore.net>"
 
-#: src/yelp-window.c:1051
+#: src/yelp-window.c:1062
 #, fuzzy
 msgid "A Help Browser for GNOME"
 msgstr "Hjelplesar for GNOME 2.0"
@@ -392,15 +437,6 @@ msgstr "Få hjelp om GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjelp"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Gå/Til_bake"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Gå/_Framover"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Gå/_Heim"
 
 #~ msgid "/Go/_Index"
 #~ msgstr "/Gå/_Indeks"

@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.1.3\n"
-"POT-Creation-Date: 2003-12-02 03:43-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-09 00:18-0600\n"
 "PO-Revision-Date: 2003-08-24 03:44+0900\n"
 "Last-Translator: Young-Ho, Cha <ganadist@mizi.com>\n"
 "Language-Team: GTP Korean <gnome-kr-translation@gnome.or.kr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1 src/yelp-man.c:429
 msgid "Applications"
@@ -141,6 +141,33 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp 팩토리"
 
+#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
+#: src/yelp-window.c:976
+#, fuzzy, c-format
+msgid "The document '%s' could not be opened"
+msgstr "문서 '%s'(이)가 없습니다"
+
+#: src/yelp-db-pager.c:404
+msgid "No href attribute found on yelp:document"
+msgstr ""
+
+#: src/yelp-db-pager.c:419
+msgid "Out of memory"
+msgstr ""
+
+#: src/yelp-db-pager.c:547
+msgid "Titlepage"
+msgstr ""
+
+#: src/yelp-db-pager.c:549
+#, fuzzy
+msgid "Contents"
+msgstr "도움말 목록"
+
+#: src/yelp-db-pager.c:567
+msgid "Unknown"
+msgstr ""
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr "사용할 캐쉬 디렉토리를 정의합니다"
@@ -215,12 +242,40 @@ msgstr "전체"
 msgid "System Administration"
 msgstr "시스템 관리"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
-#: src/yelp-window.c:888
+#: src/yelp-pager.c:117
+#, fuzzy
+msgid "Document URI"
+msgstr "문서"
+
+#: src/yelp-pager.c:118
+msgid "The URI of the document to be processed"
+msgstr ""
+
+#: src/yelp-toc-pager.c:229
+msgid "YelpTocPager: Pause count is negative."
+msgstr ""
+
+#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#, fuzzy
+msgid "The table of contents could not be read."
+msgstr "문서 '%s'(이)가 없습니다"
+
+#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:741
+msgid "Categories"
+msgstr "분류"
+
+#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:740
+msgid "Documents"
+msgstr "문서"
+
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
+#: src/yelp-window.c:899
 msgid "Loading..."
 msgstr "읽고 있습니다..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
 msgid "Section"
 msgstr "단락"
 
@@ -244,14 +299,6 @@ msgstr "설명서 페이지"
 msgid "Info Pages"
 msgstr "정보 페이지"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
-msgid "Documents"
-msgstr "문서"
-
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
-msgid "Categories"
-msgstr "분류"
-
 #: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "설명서 페이지"
@@ -268,118 +315,116 @@ msgstr "자유 소프트웨어"
 msgid "(C)"
 msgstr "(C)"
 
-#: src/yelp-window.c:200
+#: src/yelp-window.c:213
 msgid "/_File"
 msgstr "/파일(_F)"
 
-#: src/yelp-window.c:201
+#: src/yelp-window.c:214
 msgid "/File/_New window"
 msgstr "/파일/새 창(_N)"
 
-#: src/yelp-window.c:204
+#: src/yelp-window.c:217
 msgid "/File/_Close window"
 msgstr "/파일/창 닫기(_C)"
 
-#: src/yelp-window.c:208
+#: src/yelp-window.c:221
 msgid "/_Edit"
 msgstr "/편집(_E)"
 
-#.
-#. {N_("/Edit/_Find in page..."),   NULL,
-#. window_find_cb,                 0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#. {N_("/Edit/_Find again"),        "<Control>g",
-#. window_find_again_cb,           0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#.
-#: src/yelp-window.c:218
+#: src/yelp-window.c:222
+msgid "/Edit/_Find in page..."
+msgstr "/편집/페이지에서 찾기(_F)..."
+
+#: src/yelp-window.c:225
+msgid "/Edit/_Find again"
+msgstr "/편집/다시 찾기(_F)"
+
+#: src/yelp-window.c:229
 msgid "/_Go"
 msgstr "/이동(_G)"
 
+#: src/yelp-window.c:230
+msgid "/Go/_Back"
+msgstr "/이동/뒤로(_B)"
+
+#: src/yelp-window.c:233
+msgid "/Go/_Forward"
+msgstr "/이동/앞으로(_F)"
+
+#: src/yelp-window.c:236
+msgid "/Go/_Home"
+msgstr "/이동/홈(_H)"
+
 #.
-#. {N_("/Go/_Back"),                NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
-#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
-#. {N_("/Go/_Forward"),             NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
-#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
-#. {N_("/Go/_Home"),                NULL,
-#. window_go_home_cb,              0,
-#. "<StockItem>",                  GTK_STOCK_HOME             },
 #. {N_("/Go/_Index"),               NULL,
 #. window_go_index_cb,             0,
 #. "<StockItem>",                  GTK_STOCK_INDEX            },
 #.
-#: src/yelp-window.c:234
+#: src/yelp-window.c:245
 msgid "/_Help"
 msgstr "/도움말(_H)"
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:246
 msgid "/Help/_About"
 msgstr "/도움말/이 프로그램은(_A)"
 
-#: src/yelp-window.c:297
+#: src/yelp-window.c:308
 msgid "Help Browser"
 msgstr "도움말 브라우저"
 
-#: src/yelp-window.c:494
+#: src/yelp-window.c:505
 msgid "Back"
 msgstr "뒤로"
 
-#: src/yelp-window.c:495
+#: src/yelp-window.c:506
 msgid "Show previous page in history"
 msgstr "방문 기록의 이전 페이지를 봅니다"
 
-#: src/yelp-window.c:505
+#: src/yelp-window.c:516
 msgid "Forward"
 msgstr "앞으로"
 
-#: src/yelp-window.c:506
+#: src/yelp-window.c:517
 msgid "Show next page in history"
 msgstr "방문 기록의 다음 페이지를 봅니다"
 
-#: src/yelp-window.c:518
+#: src/yelp-window.c:529
 msgid "Home"
 msgstr "홈"
 
-#: src/yelp-window.c:519
+#: src/yelp-window.c:530
 msgid "Go to home view"
 msgstr "홈 보기로 가기"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:635
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "문서 '%s'(이)가 없습니다"
 
-#: src/yelp-window.c:644
+#: src/yelp-window.c:655
 msgid "DocBook SGML documents are no longer supported."
 msgstr ""
 
-#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
-#, fuzzy, c-format
-msgid "The document '%s' could not be opened"
-msgstr "문서 '%s'(이)가 없습니다"
-
-#: src/yelp-window.c:876
+#: src/yelp-window.c:887
 msgid "Loading&nbsp;&nbsp;&nbsp;"
 msgstr ""
 
-#: src/yelp-window.c:880
+#: src/yelp-window.c:891
 msgid "Loading.&nbsp;&nbsp;"
 msgstr ""
 
-#: src/yelp-window.c:884
+#: src/yelp-window.c:895
 #, fuzzy
 msgid "Loading..&nbsp;"
 msgstr "읽고 있습니다..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1046
+#: src/yelp-window.c:1057
 msgid "translator_credits"
 msgstr "차영호 <ganadist@mizi.com> 2002"
 
-#: src/yelp-window.c:1051
+#: src/yelp-window.c:1062
 msgid "A Help Browser for GNOME"
 msgstr "그놈용 도움말 브라우저"
 
@@ -390,21 +435,6 @@ msgstr "그놈에서 도움말을 봅니다"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "도움말"
-
-#~ msgid "/Edit/_Find in page..."
-#~ msgstr "/편집/페이지에서 찾기(_F)..."
-
-#~ msgid "/Edit/_Find again"
-#~ msgstr "/편집/다시 찾기(_F)"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/이동/뒤로(_B)"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/이동/앞으로(_F)"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/이동/홈(_H)"
 
 #~ msgid "/Go/_Index"
 #~ msgstr "/가기/색인(_I)"

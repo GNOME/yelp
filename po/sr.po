@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-03 05:02+0100\n"
+"POT-Creation-Date: 2003-12-09 00:18-0600\n"
 "PO-Revision-Date: 2003-12-03 05:05+0100\n"
 "Last-Translator: Goran Rakić <gox@devbase.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
@@ -134,8 +134,8 @@ msgstr "Јелп"
 msgid "Yelp Factory"
 msgstr "Јелп фабрика"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:719 src/yelp-window.c:806
-#: src/yelp-window.c:965
+#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
+#: src/yelp-window.c:976
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "Не могу да отворим документ „%s“"
@@ -243,30 +243,30 @@ msgid "The URI of the document to be processed"
 msgstr "Адреса документа за обраду"
 
 # bug: pause or page?
-#: src/yelp-toc-pager.c:224
+#: src/yelp-toc-pager.c:229
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: бројач пауза је негативан."
 
-#: src/yelp-toc-pager.c:557 src/yelp-toc-pager.c:569
+#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
 msgid "The table of contents could not be read."
 msgstr "Не могу да прочитам садржај."
 
-#: src/yelp-toc-pager.c:770 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
+#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
 #: src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "Категорије"
 
-#: src/yelp-toc-pager.c:791 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
+#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
 #: src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "Документи"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
-#: src/yelp-window.c:888
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
+#: src/yelp-window.c:899
 msgid "Loading..."
 msgstr "Учитавам..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
 msgid "Section"
 msgstr "Одељак"
 
@@ -306,115 +306,118 @@ msgstr "Слободан програм"
 msgid "(C)"
 msgstr "(C)"
 
-#: src/yelp-window.c:200
+#: src/yelp-window.c:213
 msgid "/_File"
 msgstr "/_Датотека"
 
-#: src/yelp-window.c:201
+#: src/yelp-window.c:214
 msgid "/File/_New window"
 msgstr "/_Датотека/_Нови прозор"
 
-#: src/yelp-window.c:204
+#: src/yelp-window.c:217
 msgid "/File/_Close window"
 msgstr "/_Датотека/_Затвори прозор"
 
-#: src/yelp-window.c:208
+#: src/yelp-window.c:221
 msgid "/_Edit"
 msgstr "/_Измени"
 
-#.
-#. {N_("/Edit/_Find in page..."),   NULL,
-#. window_find_cb,                 0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#. {N_("/Edit/_Find again"),        "<Control>g",
-#. window_find_again_cb,           0,
-#. "<StockItem>",                  GTK_STOCK_FIND             },
-#.
-#: src/yelp-window.c:218
+#: src/yelp-window.c:222
+msgid "/Edit/_Find in page..."
+msgstr "/_Измени/Пронађи на страници..."
+
+#: src/yelp-window.c:225
+msgid "/Edit/_Find again"
+msgstr "/_Измени/Пронађи поново"
+
+#: src/yelp-window.c:229
 msgid "/_Go"
 msgstr "/_Иди"
 
+#: src/yelp-window.c:230
+msgid "/Go/_Back"
+msgstr "/_Иди/Назад"
+
+#: src/yelp-window.c:233
+msgid "/Go/_Forward"
+msgstr "/_Иди/Напред"
+
+#: src/yelp-window.c:236
+msgid "/Go/_Home"
+msgstr "/_Иди/Полазна страница"
+
 #.
-#. {N_("/Go/_Back"),                NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
-#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
-#. {N_("/Go/_Forward"),             NULL,
-#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
-#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
-#. {N_("/Go/_Home"),                NULL,
-#. window_go_home_cb,              0,
-#. "<StockItem>",                  GTK_STOCK_HOME             },
 #. {N_("/Go/_Index"),               NULL,
 #. window_go_index_cb,             0,
 #. "<StockItem>",                  GTK_STOCK_INDEX            },
 #.
-#: src/yelp-window.c:234
+#: src/yelp-window.c:245
 msgid "/_Help"
 msgstr "/_Помоћ"
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:246
 msgid "/Help/_About"
 msgstr "/_Помоћ/О програму"
 
-#: src/yelp-window.c:297
+#: src/yelp-window.c:308
 msgid "Help Browser"
 msgstr "Прегледник помоћи"
 
-#: src/yelp-window.c:494
+#: src/yelp-window.c:505
 msgid "Back"
 msgstr "Назад"
 
-#: src/yelp-window.c:495
+#: src/yelp-window.c:506
 msgid "Show previous page in history"
 msgstr "Прикажи претходну страницу из историјата"
 
-#: src/yelp-window.c:505
+#: src/yelp-window.c:516
 msgid "Forward"
 msgstr "Напред"
 
-#: src/yelp-window.c:506
+#: src/yelp-window.c:517
 msgid "Show next page in history"
 msgstr "Прикажи наредну страницу из историјата"
 
-#: src/yelp-window.c:518
+#: src/yelp-window.c:529
 msgid "Home"
 msgstr "Полазна страница"
 
-#: src/yelp-window.c:519
+#: src/yelp-window.c:530
 msgid "Go to home view"
 msgstr "Иди на полазну страницу"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:635
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Документ „%s“ не постоји"
 
-#: src/yelp-window.c:644
+#: src/yelp-window.c:655
 msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML документи више нису подржани."
 
-#: src/yelp-window.c:876
+#: src/yelp-window.c:887
 msgid "Loading&nbsp;&nbsp;&nbsp;"
 msgstr "Учитавам&nbsp;&nbsp;&nbsp;"
 
-#: src/yelp-window.c:880
+#: src/yelp-window.c:891
 msgid "Loading.&nbsp;&nbsp;"
 msgstr "Учитавам.&nbsp;&nbsp;"
 
-#: src/yelp-window.c:884
+#: src/yelp-window.c:895
 msgid "Loading..&nbsp;"
 msgstr "Учитавам...&nbsp;"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1046
+#: src/yelp-window.c:1057
 msgid "translator_credits"
 msgstr ""
 "Горан Ракић <gox@devbase.net>\n"
 "\n"
 "Prevod.org — превод на српски језик."
 
-#: src/yelp-window.c:1051
+#: src/yelp-window.c:1062
 msgid "A Help Browser for GNOME"
 msgstr "Прегледник помоћи за Гном"
 
@@ -434,21 +437,6 @@ msgstr "Помоћ"
 
 #~ msgid "Next"
 #~ msgstr "Следеће"
-
-#~ msgid "/Edit/_Find in page..."
-#~ msgstr "/_Измени/Пронађи на страници..."
-
-#~ msgid "/Edit/_Find again"
-#~ msgstr "/_Измени/Пронађи поново"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/_Иди/Назад"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/_Иди/Напред"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/_Иди/Полазна страница"
 
 #~ msgid "/Go/_Index"
 #~ msgstr "/_Иди/_Индекс"
