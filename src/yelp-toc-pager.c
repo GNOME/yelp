@@ -302,7 +302,7 @@ toc_pager_process (YelpPager *pager)
 	    priv->man_dir_pending = g_slist_prepend (priv->man_dir_pending,
 						     g_strdup (paths[i]));
 
-	g_free (paths);
+	g_strfreev (paths);
 	g_free (manpath);
     }
 
