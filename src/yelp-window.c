@@ -178,15 +178,19 @@ yw_populate (YelpWindow *window)
 	GtkWidget      *main_box;
 	GtkWidget      *sw;
 	GtkItemFactory *item_factory;
-
+	GtkAccelGroup  *accel_group;
+	
         priv = window->priv;
 
 	main_box        = gtk_vbox_new (FALSE, 0);
 	
 	gtk_container_add (GTK_CONTAINER (window), main_box);
 
+	accel_group  = gtk_accel_group_new ();
 	item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
-					     "<main>", NULL);
+					     "<main>", accel_group);
+
+	gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
 	gtk_item_factory_create_items (item_factory,
 				       G_N_ELEMENTS (menu_items),
@@ -223,9 +227,6 @@ yw_populate (YelpWindow *window)
 	gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
 				  priv->index_view,
 				  NULL, PAGE_INDEX_VIEW);
-	
-/*  	priv->view_current = yelp_view_content_new (priv->tree_model); */
-/*  	priv->view_current = yelp_view_home_new (priv->tree_model); */
 	
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
 	gtk_box_pack_end (GTK_BOX (main_box), priv->notebook,
@@ -382,7 +383,7 @@ yw_create_toolbar (YelpWindow *window)
 
 	priv->back_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 						      "gtk-go-back",
-						      "", "",
+						      _("Go back in the history list"), "",
 						      NULL, NULL, -1);
 
 	gtk_widget_set_sensitive (priv->back_button, FALSE);
@@ -397,7 +398,7 @@ yw_create_toolbar (YelpWindow *window)
 	
 	priv->forward_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 							 "gtk-go-forward",
-							 "", "",
+							 _("Go forth in the history list"), "",
 							 NULL, NULL, -1);
 
 	gtk_widget_set_sensitive (priv->forward_button, FALSE);
@@ -412,7 +413,7 @@ yw_create_toolbar (YelpWindow *window)
 
 	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar), 
 					   "gtk-home",
-					   "", "",
+					   _("Overview of contents"), "",
 					   NULL, NULL, -1);
 
 	g_signal_connect (G_OBJECT (button), "clicked",
@@ -423,7 +424,7 @@ yw_create_toolbar (YelpWindow *window)
 
 	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 					   "gtk-index",
-					   "", "",
+					   _("Search in the index"), "",
 					   NULL, NULL, -1);
 	
 	g_signal_connect (G_OBJECT (button), "clicked",
@@ -434,7 +435,7 @@ yw_create_toolbar (YelpWindow *window)
 	
 	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 					   "gtk-find",
-					   "", "",
+					   _("Search for a phrase in the document"), "",
 					   NULL, NULL, -1);
 
 	/* Connect to find-button */
@@ -445,7 +446,7 @@ yw_create_toolbar (YelpWindow *window)
 	
 	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
 				   gtk_entry_new (),
-				   "", "");
+				   _("Enter phrase to search for in all documents"), "");
 
 	return toolbar;
 }
