@@ -118,9 +118,9 @@ struct _YelpViewTOCPriv {
 #define TOC_BLOCK_SEPARATOR " \
                 </td> \
 	      </tr> \
-              <tr>
-                <td>&nbsp;</td>
-              </tr>
+              <tr> \
+                <td>&nbsp;</td> \
+              </tr> \
 	      <tr>\
 	        <td>"
 
