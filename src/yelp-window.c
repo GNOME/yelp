@@ -1142,7 +1142,7 @@ window_disconnect (YelpWindow *window)
     if (GTK_WIDGET (window)->window)
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
-    if (window->current_doc) {
+    if (window->priv->current_doc) {
 	if (priv->parse_handler) {
 	    g_signal_handler_disconnect (priv->current_doc->pager,
 					 priv->parse_handler);
