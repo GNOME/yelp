@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-02-11 16:51+0900\n"
+"POT-Creation-Date: 2004-11-05 16:40+0900\n"
+"PO-Revision-Date: 2004-11-04 23:05+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -102,35 +102,35 @@ msgstr "X アプリケーション"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "固定幅テキストのフォント"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "テキストのフォント"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "等幅のテキストに適用するフォントです。"
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "可変幅のテキストに適用するフォントです。"
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "ヘルプを表示したらキーボードから操作できるキャレットを使用します。"
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "キャレットを使用する"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "システム・フォントを使用する"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "システムのデフォルト・フォントを使用します。"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -138,11 +138,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>アクセシビリティ</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>フォント</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -153,18 +153,16 @@ msgid "Find"
 msgstr "検索"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "献辞"
+msgstr "場所を開く"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "リファレンス"
+msgstr "設定"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "キャレット・モードで閲覧する(_B)"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -172,12 +170,11 @@ msgstr "検索する内容(_F):"
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "等幅(_F):"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "献辞"
+msgstr "場所(_L):"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -189,11 +186,11 @@ msgstr "前へ(_P)"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "システムのフォントを使う(_U)"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "可変幅(_V):"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -250,9 +247,8 @@ msgid "The selected file could not be read."
 msgstr "選択したファイルを読み込めませんでした。"
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "選択したファイルを読み込めませんでした。"
+msgstr "ファイルを処理することができませんでした。"
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -333,13 +329,12 @@ msgid "System Administration"
 msgstr "システム管理 (#8)"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "リリース情報"
+msgstr "ドキュメントの情報"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "ドキュメントの YelpDocInfo 構造体"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -359,124 +354,108 @@ msgid "Documents"
 msgstr "ドキュメント"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "_File"
-msgstr "/ファイル(_F)"
+msgstr "ファイル(_F)"
 
 #: src/yelp-window.c:283
-#, fuzzy
 msgid "_Edit"
-msgstr "/編集(_E)"
+msgstr "編集(_E)"
 
 #: src/yelp-window.c:284
-#, fuzzy
 msgid "_Go"
-msgstr "/ジャンプ(_G)"
+msgstr "ジャンプ(_G)"
 
 #: src/yelp-window.c:285
-#, fuzzy
 msgid "_Help"
-msgstr "/ヘルプ(_H)"
+msgstr "ヘルプ(_H)"
 
 #: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/ファイル(_F)/新規(_N)"
+msgstr "新しいウィンドウ(_N)"
 
 #: src/yelp-window.c:293
 msgid "Open _Location"
-msgstr ""
+msgstr "場所を開く(_L)"
 
 #: src/yelp-window.c:298
-#, fuzzy
 msgid "_Close window"
-msgstr "/ファイル(_F)/閉じる(_C)"
+msgstr "閉じる(_C)"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "コピー(_C)"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_Find..."
-msgstr "/編集(_E)/検索(_F)..."
+msgstr "検索(_F)..."
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "_Preferences"
-msgstr "リファレンス"
+msgstr "設定(_P)"
 
 #: src/yelp-window.c:319
 msgid "_Reload"
-msgstr ""
+msgstr "再読込み(_R)"
 
 #: src/yelp-window.c:325
-#, fuzzy
 msgid "_Back"
-msgstr "戻る"
+msgstr "戻る(_B)"
 
 #: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "履歴の中の前のページを表示します"
 
 #: src/yelp-window.c:330
-#, fuzzy
 msgid "_Forward"
-msgstr "進む"
+msgstr "進む(_F)"
 
 #: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "履歴の中の次のページを表示します"
 
 #: src/yelp-window.c:335
-#, fuzzy
 msgid "_Home"
-msgstr "ホーム"
+msgstr "ホーム(_H)"
 
 #: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "ホームビューにジャンプします"
 
 #: src/yelp-window.c:340
-#, fuzzy
 msgid "_Previous Page"
-msgstr "/ジャンプ/前のページ(_P)"
+msgstr "前のページ(_P)"
 
 #: src/yelp-window.c:345
-#, fuzzy
 msgid "_Next Page"
-msgstr "/ジャンプ/次のページ(_N)"
+msgstr "次のページ(_N)"
 
 #: src/yelp-window.c:350
-#, fuzzy
 msgid "_Contents"
-msgstr "目次"
+msgstr "目次(_C)"
 
 #: src/yelp-window.c:355
 msgid "_Open Link"
-msgstr ""
+msgstr "リンク先を開く(_O)"
 
 #: src/yelp-window.c:360
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "新しいウィンドウでリンク先を開く(_N)"
 
 #: src/yelp-window.c:365
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "リンク先のアドレスのコピー(_C)"
 
 #: src/yelp-window.c:371
-#, fuzzy
 msgid "_About"
-msgstr "/ヘルプ(_H)/情報(_A)"
+msgstr "情報(_A)"
 
 #: src/yelp-window.c:422
 msgid "Help Browser"
 msgstr "ヘルプ・ブラウザ"
 
 #: src/yelp-window.c:915
-#, fuzzy
 msgid "Fin_d"
-msgstr "検索"
+msgstr "検索(_D)"
 
 #: src/yelp-window.c:1186
 msgid "Loading..."
@@ -787,34 +766,4 @@ msgstr "GNOME のヘルプを手にいれます"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
-
-#~ msgid "Document URI"
-#~ msgstr "ドキュメントの URI"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "処理するドキュメントの URI"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/編集(_E)/次を検索(_X)"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/編集(_E)/前を検索(_V)"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/ジャンプ(_G)/戻る(_B)"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/ジャンプ(_G)/進む(_F)"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/ジャンプ(_G)/ホーム(_H)"
-
-#~ msgid "/Go/"
-#~ msgstr "/ジャンプ/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/ジャンプ/目次(_C)"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "GNOME 向けのヘルプ・ブラウザ"
+msgstr "yelp-watermark-blockquote-201C"
