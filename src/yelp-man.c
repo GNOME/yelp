@@ -564,11 +564,48 @@ yelp_man_push_initial_tree (struct TreeNode *node, GNode *parent)
 	}
 }
 
+static gchar** 
+yelp_man_remove_duplicates_from_manpath (gchar *manpath)
+{
+ 	gchar	**manpathes = NULL;
+	gchar	**tmppathes = NULL;
+	gint     i, j;
+
+	if (manpath == NULL)
+		return NULL;
+	
+	g_strstrip (manpath);
+	if (manpath[0] == '\0') 
+		return NULL;
+
+	tmppathes = g_strsplit (manpath, ":", -1);
+
+	for (i = 1; tmppathes[i]; i++);
+	manpathes = (char **) g_malloc0(i * sizeof(char **));
+
+	manpathes[0] = g_strdup (tmppathes[0]);
+	manpathes[1] = NULL;
+	for ( i = 1; tmppathes[i];  i++){
+		for (j = 0; manpathes[j]; j++) {
+ 			if(!(strcmp(tmppathes[i], manpathes[j])))	
+				break;
+		}
+		if (manpathes[j] == NULL) {
+			manpathes[j] = g_strdup (tmppathes[i]);
+			manpathes[j + 1] = NULL;
+		}
+	}
+
+	g_strfreev (tmppathes);
+
+	return manpathes;
+}
+
 gboolean
 yelp_man_init (GNode *tree, GList **index)
 {
 	gchar            *manpath = NULL;
- 	char            **manpathes = NULL;
+ 	gchar            **manpathes = NULL;
 	GHashTable       *section_hash;
 	struct TreeNode  *root;
 	struct stat       stat_dir1;
@@ -586,16 +623,17 @@ yelp_man_init (GNode *tree, GList **index)
 	
 	root = yelp_man_make_initial_tree (&root_data, section_hash);
 
-	if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL)) {
-		g_print ("manpath not found, looking for MANPATH env\n");
-		manpath = g_strdup (g_getenv ("MANPATH"));
-	}
-
-	if (manpath) {
+	if (g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL)) {
 		g_strstrip (manpath);
 		manpathes = g_strsplit (manpath, ":", -1);
-		g_free (manpath);
-
+	} else {
+		g_print ("manpath not found, looking for MANPATH env\n");
+		manpath = g_strdup (g_getenv ("MANPATH"));
+		manpathes = yelp_man_remove_duplicates_from_manpath (manpath);
+	}
+	g_free (manpath);
+	
+	if (manpathes != NULL) {
 		for (i = 0; manpathes[i]; i++) {
 			yelp_man_populate_tree_for_dir (section_hash, 
 							manpathes[i]);
