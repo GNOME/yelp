@@ -24,7 +24,7 @@
 #ifndef __HELP_HISTORY_H__
 #define __HELP_HISTORY_H__
 
-#include <gobject/gobject.h>
+#include <glib-object.h>
 
 #define HELP_TYPE_HISTORY         (help_history_get_type ())
 #define HELP_HISTORY(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), HELP_TYPE_HISTORY, HelpHistory))

@@ -25,6 +25,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <libxml/parser.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomevfs/gnome-vfs.h>

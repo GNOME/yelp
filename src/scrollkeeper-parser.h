@@ -25,7 +25,7 @@
 #define __SCROLLKEEPER_PARSER_H__
 
 #include "metadata-parser.h"
-#include <gobject/gobject.h>
+#include <glib-object.h>
 
 #define TYPE_SCROLLKEEPER_PARSER         (scrollkeeper_parser_get_type ())
 #define SCROLLKEEPER_PARSER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), TYPE_SCROLLKEEPER_PARSER, ScrollKeeperParser))

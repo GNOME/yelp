@@ -25,7 +25,7 @@
 #define __METADATA_PARSER_H__
 
 #include <glib.h>
-#include <gobject/gobject.h>
+#include <glib-object.h>
 #include "yelp-book.h"
 
 #define TYPE_META_DATA_PARSER             (metadata_parser_get_type ())

@@ -1,3 +1,11 @@
+2001-11-27  Richard Hult  <rhult@codefactory.se>
+
+	* src/scrollkeeper-parser.c: Include string.h to get rid of a
+	warning.
+
+	* src/*.h: Fix build by including glib-object.h instead of
+	gobject/gobject.h everywhere. 
+
 2001-11-16    <micke@codefactory.se>
 
         * vfs-help-module: removed, included in platform now.

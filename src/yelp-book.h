@@ -24,7 +24,7 @@
 #ifndef __YELP_BOOK_H__ 
 #define __YELP_BOOK_H__ 
 
-#include <gobject/gobject.h>
+#include <glib-object.h>
 #include <libgnomevfs/gnome-vfs.h>
 
 #define YELP_TYPE_BOOK         (yelp_book_get_type ())

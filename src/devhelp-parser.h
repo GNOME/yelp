@@ -25,7 +25,7 @@
 #define __DEVHELP_PARSER_H__
 
 #include "metadata-parser.h"
-#include <gobject/gobject.h>
+#include <glib-object.h>
 
 #define TYPE_DEVHELP_PARSER         (devhelp_parser_get_type ())
 #define DEVHELP_PARSER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), TYPE_DEVHELP_PARSER, DevHelpParser))

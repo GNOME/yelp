@@ -24,7 +24,7 @@
 #ifndef __YELP_KEYWORD_DB_H__
 #define __YELP_KEYWORD_DB_H__
 
-#include <gobject/gobject.h>
+#include <glib-object.h>
 #include <libgnomevfs/gnome-vfs.h>
 
 #define YELP_TYPE_KEYWORD_DB         (yelp_keyword_db_get_type ())
