@@ -54,6 +54,8 @@ static void     yvi_entry_text_inserted_cb     (GtkEntry            *entry,
 static gboolean yvi_complete_idle              (YelpViewIndex       *view);
 static gboolean yvi_filter_idle                (YelpViewIndex       *view);
 static gchar *  yvi_complete_func              (YelpSection         *section);
+static void     set_relation                   (GtkWidget           *widget,
+						GtkLabel            *label);
 
 struct _YelpViewIndexPriv {
 	/* List of keywords */
@@ -328,6 +330,8 @@ yelp_view_index_new (GList *index)
 
 	priv->entry = gtk_entry_new ();
 
+	set_relation (priv->entry, GTK_LABEL (label));
+
 	g_signal_connect (priv->entry, "changed", 
 			  G_CALLBACK (yvi_entry_changed_cb),
 			  view);
@@ -407,4 +411,40 @@ yelp_view_index_show_uri (YelpViewIndex *view, const gchar *uri)
 	real_uri = uri + 6;
 
 	yelp_html_open_uri (YELP_HTML (priv->html_view), real_uri, NULL);
+}
+
+/**
+ * set_relation
+ * @widget : The Gtk widget which is labelled by @label
+ * @label : The label for the @widget.
+ * Description : This function establishes atk relation
+ * between a gtk widget and a label.
+ */
+
+static void
+set_relation (GtkWidget *widget, GtkLabel *label)
+{
+	AtkObject *aobject;
+	AtkRelationSet *relation_set;
+	AtkRelation *relation;
+	AtkObject *targets[1];
+
+	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_return_if_fail (GTK_IS_LABEL (label));
+
+	aobject = gtk_widget_get_accessible (widget);
+
+	/* Return if GAIL is not loaded */
+	if (! GTK_IS_ACCESSIBLE (aobject))
+		return;
+	/* Set the ATK_RELATION_LABEL_FOR relation */
+	gtk_label_set_mnemonic_widget (label, widget);
+
+	targets[0] = gtk_widget_get_accessible (GTK_WIDGET (label));
+
+	relation_set = atk_object_ref_relation_set (aobject);
+
+	relation = atk_relation_new (targets, 1, ATK_RELATION_LABELLED_BY);
+	atk_relation_set_add (relation_set, relation);
+	g_object_unref (G_OBJECT (relation));
 }
