@@ -159,6 +159,7 @@ yelp_view_home_new (GtkTreeModel *tree_model)
 	{
 		int len;
 		gchar *name;
+
 		gchar *text;
 		gchar *header = "
 <html>
@@ -167,14 +168,13 @@ yelp_view_home_new (GtkTreeModel *tree_model)
       Help Home View
     </title> 
     <style type=\"text/css\">
-      A:link { color: white }          /* unvisited link */
-      A:visited { color: white }        /* visited links */
-      A:active { color: white }        /* active links */
-      BODY { color: white }
+      A:link { color: #00008b }          /* unvisited link */
+      A:visited { color: #00008b }        /* visited links */
+      A:active { color: #00008b }        /* active links */
+      BODY { color: #00008b }
     </style>
   </head>
-
-  <body bgcolor=\"#104e8b\" link=\"white\">
+  <body bgcolor=\"#ffffff\">
     <center>
       <table cellspacing=\"20\" width=\"100%\">
         <tr>
