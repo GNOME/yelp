@@ -432,7 +432,8 @@ reader_man_info_start (ReaderThreadData *th_data)
 		    yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
 			gchar *chunk;
 			
-			if (yelp_uri_get_section (uri)) {
+			if (yelp_uri_get_section (uri) &&
+			    strcmp (yelp_uri_get_section (uri), "")) {
 				chunk = reader_get_chunk (q_data->data,
 							  yelp_uri_get_section (uri));
 			} else {
@@ -789,7 +790,7 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	g_free (tag);
 	
 	if (!start) {
-		g_warning ("Document doesn't include section: %s", section);
+		g_warning ("Document doesn't include section: '%s'", section);
 		g_free (header);
 		
 		return NULL;
@@ -841,7 +842,7 @@ yelp_reader_new ()
         return reader;
 }
 
-void
+gboolean
 yelp_reader_start (YelpReader *reader, YelpURI *uri)
 {
         YelpReaderPriv   *priv;
@@ -878,7 +879,8 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 		document = yelp_cache_lookup (yelp_uri_get_path (uri));
 		
 		if (document) {
-			if (yelp_uri_get_section (uri)) {
+			if (yelp_uri_get_section (uri) &&
+			    strcmp (yelp_uri_get_section (uri), "")) {
 				chunk = reader_get_chunk (document, 
 							  yelp_uri_get_section (uri));
 			} else {
@@ -907,7 +909,7 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 						    q_data);
 
 				g_idle_add ((GSourceFunc) reader_idle_check_queue, th_data);
-				return;
+				return TRUE;
 			}
 		}
 	}
@@ -917,6 +919,7 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	g_thread_create ((GThreadFunc) reader_start, th_data,
 			 TRUE, 
 			 NULL /* FIXME: check for errors */);
+	return FALSE;
 }
 
 void

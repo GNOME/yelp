@@ -422,7 +422,6 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 {
 	YelpViewContentPriv *priv;
 	GNode               *node;
-	gchar               *loading = _("Loading...");
 	GdkCursor           *cursor;
 	
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
@@ -455,28 +454,29 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 		
 	}
 	
+	priv->loading = TRUE;
+	
+	cursor = gdk_cursor_new (GDK_WATCH);
+		
+	gdk_window_set_cursor (priv->html_widget->window, cursor);
+	gdk_cursor_unref (cursor);
+
 	if (priv->current_uri) {
 		yelp_uri_unref (priv->current_uri);
 	}
 	
 	priv->current_uri = yelp_uri_ref (uri);
-
+	
 	yelp_html_set_base_uri (priv->html_view, uri);
+		
+	if (!yelp_reader_start (priv->reader, uri)) {
+		gchar     *loading = _("Loading...");
 
-	yelp_html_clear (priv->html_view);
+		yelp_html_clear (priv->html_view);
 
-	cursor = gdk_cursor_new (GDK_WATCH);
-	
-	gdk_window_set_cursor (priv->html_widget->window, cursor);
-	gdk_cursor_unref (cursor);
-
-	priv->loading = TRUE;
-	
-	yelp_html_printf (priv->html_view, 
-			  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body bgcolor=\"white\"><center>%s</center></body></html>", 
-			  loading);
- 	yelp_html_close (priv->html_view);
-	
-	yelp_reader_start (priv->reader, uri);
-
+		yelp_html_printf (priv->html_view, 
+				  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body bgcolor=\"white\"><center>%s</center></body></html>", 
+				  loading);
+		yelp_html_close (priv->html_view);
+	}
 }

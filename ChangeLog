@@ -1,5 +1,16 @@
 2002-05-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-content.c (yelp_view_content_show_uri): 
+	- don't set "Loading..." if the doc is cached. It will only result
+	  in flicker.
+
+	* src/yelp-reader.c:
+	(reader_man_info_start):
+	- make sure that section is not an empty string.
+	(yelp_reader_start): 
+	- make sure that section is not an empty string.
+	- return a boolean to say if the document was cached or not.
+	
 	* src/yelp-reader.c:
 	(reader_get_chunk): added, used to get a chunk from a multi
 	  chunked document.

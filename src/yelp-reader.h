@@ -61,7 +61,7 @@ struct _YelpReaderClass {
 GType            yelp_reader_get_type     (void);
 YelpReader *     yelp_reader_new          (void);
 
-void             yelp_reader_start        (YelpReader *reader,
+gboolean         yelp_reader_start        (YelpReader *reader,
 					   YelpURI    *uri);
 void             yelp_reader_cancel       (YelpReader *reader);
 
