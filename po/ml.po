@@ -1,0 +1,301 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FSF-India <locale@gnu.org.in>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp 2.2.x\n"
+"POT-Creation-Date: 2003-03-10 05:29+0100\n"
+"PO-Revision-Date: 2003-03-05 10:29+0530\n"
+"Last-Translator: FSF-India <locale@gnu.org.in>\n"
+"Language-Team: Malayalam <locale@gnu.org.in>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "ഈ ഗ്രന്ഥത്തില് വാക്ക് കണ്ടെത്തുക"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "സ്വയമേവ ചുറ്റിത്തിരിയുക"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "അടുത്തത് കണ്ടെത്തുക"
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "മുഴുവന് വാക്കും ഒത്തുനോക്കുക"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "ലിപി തുലനം"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "അടുത്ത"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "മുന്പത്തേത്"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "സഹായം"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "സഹായ ശാല"
+
+#: src/yelp-main.c:117
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "%s-ന്റെ സഹായഗ്രന്ഥം തുറക്കാനാവുന്നില്ല"
+
+#: src/yelp-main.c:136
+msgid "Could not open new window."
+msgstr "പുതിയ ജാലകം തുറക്കാനാവുന്നില്ല"
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "പേള്"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "വ്യ‍ൂഹ വിളികള്‌"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "നിര്ദ്ദേശസംഹിതാ പ്രവ‌ര്ത്തനങ്ങള്"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "കെ‌ര്ണല്  കാര്യ‌ക്രമങ്ങള്"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "പ്രയോഗങ്ങള്‌"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "വികസനം‌"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "ഖരസാമഗ്രി ഉപകരണങ്ങള്"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "വിന്യാസ രചനകള്"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "കളികള്"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "അവലോകനങ്ങള്"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "വ്യൂഹ കൃത്യനി‌‌ര്‌വഹണം"
+
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "കാത്തിരിക്കൂ..."
+
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "വിഭാഗം"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "ഇത് തെരയുക"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "സഹായ ഉള്ളടക്കം"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "ഗ്നോം - പണിയിടം"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "കൂടുതല് ഗ്രന്ഥങ്ങള്"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+msgid "Manual Pages"
+msgstr "കരകൃത താളുകള്‌"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+msgid "Info Pages"
+msgstr "വിവര താളുകള്‌‌"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+msgid "Documents"
+msgstr "ഗ്രന്ഥങ്ങള്"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+msgid "Categories"
+msgstr "വ‍ര്ഗ്ഗങ്ങള്"
+
+#: src/yelp-view-toc.c:448
+msgid "Manual pages"
+msgstr "കരകൃത താളുകള്‌"
+
+#: src/yelp-view-toc.c:712
+msgid "GNOME is"
+msgstr "ഗ്നോം ആകുന്നു"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr "സ്വതന്ത്ര സോഫ്റ്റ്‍വെയര്"
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:163
+msgid "/_File"
+msgstr "ശേഖരം"
+
+#: src/yelp-window.c:164
+msgid "/File/_New window"
+msgstr "പുതിയ ജാലകം"
+
+#: src/yelp-window.c:165
+msgid "/File/_Close window"
+msgstr "ജാലകം അടയ്‍ക്കുക"
+
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr "ചിട്ട"
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr "താളില് കണ്ടെത്തുക..."
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "വീണ്ടും കണ്ടെത്തുക"
+
+#: src/yelp-window.c:171
+msgid "/_Go"
+msgstr "പോകുക"
+
+#: src/yelp-window.c:172
+msgid "/Go/_Back"
+msgstr "പിന്നോട്ട്"
+
+#: src/yelp-window.c:173
+msgid "/Go/_Forward"
+msgstr "മുന്നോട്ട്"
+
+#: src/yelp-window.c:174
+msgid "/Go/_Home"
+msgstr "ആസ്ഥാനം"
+
+#: src/yelp-window.c:175
+msgid "/Go/_Index"
+msgstr "സൂചിക"
+
+#: src/yelp-window.c:177
+msgid "/_Help"
+msgstr "സഹായം"
+
+#: src/yelp-window.c:178
+msgid "/Help/_About"
+msgstr "കുറിപ്പ്"
+
+#: src/yelp-window.c:238 src/yelp-window.c:438
+msgid "Help Browser"
+msgstr "സഹായ ബ്രൌസ‍ര്"
+
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:675
+msgid "translator_credits"
+msgstr "എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>"
+
+#: src/yelp-window.c:679
+msgid "Help Browser for GNOME 2.0"
+msgstr "GNOME 2 "
+
+#: src/yelp-window.c:788
+msgid "Back"
+msgstr "പിന്നോട്ട്"
+
+#: src/yelp-window.c:789
+msgid "Show previous page in history"
+msgstr "മുന്പ് സന്ദ‍ര്ശിച്ച സ്ഥാനത്തേക്ക് പോകുക"
+
+#: src/yelp-window.c:800
+msgid "Forward"
+msgstr "മുന്നോട്ട്"
+
+#: src/yelp-window.c:801
+msgid "Show next page in history"
+msgstr "സന്ദ‍ര്ശിച്ചവയില് അടുത്ത സ്ഥാനത്തേക്ക് പോകുക"
+
+#: src/yelp-window.c:814
+msgid "Home"
+msgstr "ആസ്ഥാനം"
+
+#: src/yelp-window.c:815
+msgid "Go to home view"
+msgstr "ആസ്ഥാനത്തേക്ക് പോകുക"
+
+#: src/yelp-window.c:825
+msgid "Index"
+msgstr "സൂചിക"
+
+#: src/yelp-window.c:826
+msgid "Search in the index"
+msgstr "സൂചികയില് തിരയുക"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "ഗ്നോം സഹായം ലഭിക്കുക"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "സഹായം"
