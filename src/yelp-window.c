@@ -30,6 +30,7 @@
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-about.h>
+#include <libgnomeui/gnome-stock-icons.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-url.h>
 #include <string.h>
@@ -158,7 +159,7 @@ static GtkItemFactoryEntry menu_items[] = {
 	{N_("/Go/_Home"),           NULL,         window_go_home_cb,      0,                           "<StockItem>", GTK_STOCK_HOME },
 	{N_("/Go/_Index"),          NULL,         window_go_index_cb,     0,                           "<StockItem>", GTK_STOCK_INDEX },
 	{N_("/_Help"),              NULL,         0,                  0,                           "<Branch>"},
-	{N_("/Help/_About"),        NULL,         window_about_cb,        0,                           NULL },
+	{N_("/Help/_About"),        NULL,         window_about_cb,        0,                           "<StockItem>", GNOME_STOCK_ABOUT },
 };
 
 GType
