@@ -19,9 +19,6 @@ if test "x$GCC" = "xyes"; then
    CFLAGS="$CFLAGS -Wall -Wno-uninitialized -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Wno-sign-compare"
 fi
 
-AC_SUBST(CFLAGS)
-AC_SUBST(LDFLAGS)
-
 GETTEXT_PACKAGE=yelp
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
