@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-15 02:57+0100\n"
-"PO-Revision-Date: 2005-01-15 02:58+0100\n"
+"POT-Creation-Date: 2005-01-23 15:47+0100\n"
+"PO-Revision-Date: 2005-01-23 15:48+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "Aplicaciones educativas"
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:386
 msgid "Help Topics"
 msgstr "Temas de la ayuda"
 
@@ -155,28 +155,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Oficina"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Otros"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Otra documentación"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Programación"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Científicas"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Sonido y vídeo"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
@@ -306,16 +306,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:150
+msgid "Open Bookmark in New Window"
+msgstr "Abrir marcador en una ventana nueva"
+
+#: src/yelp-bookmarks.c:154
+msgid "Rename Bookmark"
+msgstr "Renombrar marcador"
+
+#: src/yelp-bookmarks.c:158
+msgid "Remove Bookmark"
+msgstr "Eliminar marcador"
+
+#: src/yelp-bookmarks.c:301 src/yelp-bookmarks.c:373
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Ya existe un marcador titulado <b>%s</b> para esta página."
 
-#: src/yelp-bookmarks.c:341
+#: src/yelp-bookmarks.c:401
 msgid "Document Sections"
 msgstr "Secciones del documento"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -324,9 +336,9 @@ msgstr ""
 "El archivo «%s» no se pudo analizar. O el archivo no existe, o no es un XML "
 "bien formado."
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Desconocido"
+#: src/yelp-db-pager.c:489
+msgid "Unknown Section"
+msgstr "Sección desconocida"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -688,7 +700,7 @@ msgstr ""
 "El archivo «%s» no se pudo analizar. O el archivo no existe, o está "
 "formateado erróneamente."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -697,18 +709,19 @@ msgstr ""
 "El documento «%s» no se pudo procesar. El archivo  «%s» falta, o no es una "
 "hoja de estilo XSLT válida."
 
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-"El documento «%s» no se pudo procesar. El archivo  «%s» falta o no es una "
-"hoja de estilo XSLT válida."
-
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtenga ayuda acerca de Gnome"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Sonido y vídeo"
+
+#~ msgid ""
+#~ "The document ‘%s’could not be processed. The file ‘%s’ is either missing "
+#~ "or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "El documento «%s» no se pudo procesar. El archivo  «%s» falta o no es una "
+#~ "hoja de estilo XSLT válida."
 
 #~ msgid "_Home"
 #~ msgstr "_Inicio"
@@ -766,9 +779,6 @@ msgstr "Obtenga ayuda acerca de Gnome"
 
 #~ msgid "Kernels"
 #~ msgstr "Núcleo"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "Aplicaciones multimedia"
 
 #~ msgid "Office and Productivity Applications"
 #~ msgstr "Oficina y aplicaciones de productividad"
