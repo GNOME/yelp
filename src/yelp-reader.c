@@ -434,7 +434,6 @@ reader_start (ReaderThreadData *th_data)
 	YelpReader         *reader;
 	YelpReaderPriv     *priv;
 	YelpURI            *uri;
-	gchar              *str_uri;
 	
 	g_return_val_if_fail (th_data != NULL, NULL);
 
@@ -724,7 +723,8 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
         YelpReaderPriv   *priv;
 	ReaderThreadData *th_data;
 	gint              stamp;
-	
+	gchar              *str_uri;
+
 	g_return_val_if_fail (YELP_IS_READER (reader), FALSE);
 	g_return_val_if_fail (uri != NULL, FALSE);
 

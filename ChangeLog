@@ -1,3 +1,8 @@
+2002-10-21  jacob berkman  <jacob@ximian.com>
+
+	* src/yelp-reader.c (yelp_reader_start): fix build (move str_uri
+	decl. to right function)
+
 2002-10-19  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-reader.c:
