@@ -1,0 +1,307 @@
+# translation of yelp.gnome-2-4.po to basque
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp.gnome-2-4\n"
+"POT-Creation-Date: 2003-11-10 11:07-0600\n"
+"PO-Revision-Date: 2004-03-08 12:30GMT\n"
+"Last-Translator: Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>\n"
+"Language-Team: basque <itzulpena@euskalgnu.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"X-Generator: KBabel 1.3\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>Bilatu testu hau dokumentuan:</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "Itzul_biratu automatikoki"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "Bilatu testua..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "Hitz o_soak soilik"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "_Bereizi maiuskulak eta minuskulak"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "_Hurrengoa"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "_Aurrekoa"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp fabrika"
+
+#: src/yelp-main.c:94
+msgid "Define which cache directory to use"
+msgstr "Zehaztu zein cache-direktorio erabili behar den"
+
+#: src/yelp-main.c:128
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Ezin izan da Yelp aktibatu: '%s'"
+
+#: src/yelp-main.c:147
+msgid "Could not open new window."
+msgstr "Ezin izan da leiho berria ireki."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Sistema-deiak"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Liburutegi-funtzioak"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Nukleo-errutinak"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "Aplikazioak"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "Garapena"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Hardwarearen gailuak"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Konfigurazio-fitxategiak"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Jokoak"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Informazio orokorrak"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Sistema-administrazioa"
+
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "Kargatzen..."
+
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Atala"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "Bila_tu:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Laguntzaren edukia"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "GNOME - Mahaigaina"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "Dokumentu osagarriak"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
+msgid "Manual Pages"
+msgstr "Eskuliburuko orrialdeak"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
+msgid "Info Pages"
+msgstr "Informazio-orriak"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
+msgid "Documents"
+msgstr "Dokumentuak"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
+msgid "Categories"
+msgstr "Kategoriak"
+
+#: src/yelp-view-toc.c:447
+msgid "Manual pages"
+msgstr "Eskuliburuko orrialdeak"
+
+#: src/yelp-view-toc.c:707
+msgid "GNOME is"
+msgstr "GNOME "
+
+#: src/yelp-view-toc.c:708
+msgid "Free Software"
+msgstr "software librea da"
+
+#: src/yelp-view-toc.c:709
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:171
+msgid "/_File"
+msgstr "/_Fitxategia"
+
+#: src/yelp-window.c:172
+msgid "/File/_New window"
+msgstr "/Fitxategia/_Leiho berria"
+
+#: src/yelp-window.c:173
+msgid "/File/_Close window"
+msgstr "/Fitxategia/_Itxi leihoa"
+
+#: src/yelp-window.c:175
+msgid "/_Edit"
+msgstr "/_Editatu"
+
+#: src/yelp-window.c:176
+msgid "/Edit/_Find in page..."
+msgstr "/Editatu/_Bilatu orrialde honetan..."
+
+#: src/yelp-window.c:177
+msgid "/Edit/_Find again"
+msgstr "/Editatu/_Bilatu berriro"
+
+#: src/yelp-window.c:179
+msgid "/_Go"
+msgstr "/_Joan"
+
+#: src/yelp-window.c:180
+msgid "/Go/_Back"
+msgstr "/Joan/_Atzera"
+
+#: src/yelp-window.c:181
+msgid "/Go/_Forward"
+msgstr "/Joan/A_urrera"
+
+#: src/yelp-window.c:182
+msgid "/Go/_Home"
+msgstr "/Joan/Et_xea"
+
+#: src/yelp-window.c:183
+msgid "/Go/_Index"
+msgstr "/Joan/_Indizea"
+
+#: src/yelp-window.c:185
+msgid "/_Help"
+msgstr "/Lagu_ntza"
+
+#: src/yelp-window.c:186
+msgid "/Help/_About"
+msgstr "/Laguntza/H_oni buruz"
+
+#: src/yelp-window.c:255 src/yelp-window.c:455
+msgid "Help Browser"
+msgstr "Laguntza-arakatzailea"
+
+#: src/yelp-window.c:368
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "'%s' dokumentua ez dago"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:695
+msgid "translator_credits"
+msgstr "Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>"
+
+#: src/yelp-window.c:699
+msgid "A Help Browser for GNOME"
+msgstr "GNOMErako laguntza-arakatzailea"
+
+#: src/yelp-window.c:813
+msgid "Back"
+msgstr "Atzera"
+
+#: src/yelp-window.c:814
+msgid "Show previous page in history"
+msgstr "Erakutsi historiako aurreko orrialdea "
+
+#: src/yelp-window.c:825
+msgid "Forward"
+msgstr "Aurrera"
+
+#: src/yelp-window.c:826
+msgid "Show next page in history"
+msgstr "Erakutsi historiako hurrengo orrialdea "
+
+#: src/yelp-window.c:839
+msgid "Home"
+msgstr "Etxea"
+
+#: src/yelp-window.c:840
+msgid "Go to home view"
+msgstr "Joan etxearen ikuspegira"
+
+#: src/yelp-window.c:850
+msgid "Index"
+msgstr "Indizea"
+
+#: src/yelp-window.c:851
+msgid "Search in the index"
+msgstr "Bilatu indizean"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Eskuratu GNOMEri buruzko laguntza "
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Laguntza"
