@@ -420,12 +420,31 @@
       <xsl:call-template name="component.toc"/>
     </xsl:for-each>
   </xsl:when>
+  <xsl:when test="local-name(.)='book'">
+    <xsl:call-template name="division.toc"/>
+  </xsl:when>
   <xsl:otherwise>
     <xsl:call-template name="component.toc"/>
   </xsl:otherwise>
   </xsl:choose>
   <xsl:element name="hr"/>
   <xsl:call-template name="make.toc.navbar"/>
+</xsl:template>
+
+<xsl:template name="yelp.book.multichunk">
+<xsl:param name="root" select="."/>
+
+<xsl:for-each select="$root/part/chapter">
+  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+  <xsl:call-template name="yelp.render.toc"/>
+  <xsl:comment> End of chunk </xsl:comment>
+</xsl:for-each>
+
+<xsl:for-each select="$root/chapter">
+  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+  <xsl:call-template name="yelp.render.toc"/>
+  <xsl:comment> End of chunk </xsl:comment>
+</xsl:for-each>
 </xsl:template>
 
 <xsl:template name="yelp.multichunk">
@@ -449,7 +468,11 @@
 
 <xsl:comment> End of chunk </xsl:comment>
 
-<xsl:for-each select="$root/sect1">
+<xsl:if test="$type = 'book'">
+  <xsl:call-template name="yelp.book.multichunk"/>
+</xsl:if>
+
+<xsl:for-each select="//sect1">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="article.render.chunk">
    <xsl:with-param name="title" select="$container/title"/> 
@@ -457,7 +480,7 @@
   <xsl:comment> End of chunk </xsl:comment>
 </xsl:for-each>
 
-<xsl:for-each select="$root/sect1/sect2">
+<xsl:for-each select="//sect2">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="article.render.chunk"> 
     <xsl:with-param name="title" select="$container/title"/>
@@ -465,7 +488,7 @@
   <xsl:comment> End of chunk </xsl:comment>
 </xsl:for-each>
 
-<xsl:for-each select="$root/sect1/sect2/sect3">
+<xsl:for-each select="//sect3">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="article.render.chunk">
     <xsl:with-param name="title" select="$container/title"/>
@@ -488,6 +511,13 @@
   <xsl:with-param name="container" select="/part/partinfo"/>
   <xsl:with-param name="type" select="'part'"/>
   <xsl:with-param name="root" select="chapter"/>
+</xsl:call-template>
+</xsl:template>
+
+<xsl:template match="/book">
+<xsl:call-template name="yelp.generic.root">
+  <xsl:with-param name="container" select="."/>
+  <xsl:with-param name="type" select='book'/>
 </xsl:call-template>
 </xsl:template>
 
