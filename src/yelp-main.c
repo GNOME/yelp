@@ -57,7 +57,9 @@ struct poptOption options[] = {
          1,
          NULL,
          NULL,
-	}};
+	},
+         NULL
+	};
 
 static BonoboObject * yelp_base_factory       (BonoboGenericFactory *factory,
 					       const gchar          *iid,
