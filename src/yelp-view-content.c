@@ -38,6 +38,7 @@
 #include "yelp-reader.h"
 #include "yelp-scrollkeeper.h"
 #include "yelp-util.h"
+#include "yelp-uri.h"
 #include "yelp-view-content.h"
 
 #define d(x)
@@ -62,12 +63,14 @@ static void content_reader_data_cb            (YelpReader           *reader,
 					       gint                  len,
 					       YelpViewContent      *view);
 static void content_reader_finished_cb        (YelpReader           *reader,
+					       YelpURI              *uri,
 					       YelpViewContent      *view);
 static void content_reader_error_cb           (YelpReader           *reader,
 					       GError               *error,
 					       YelpViewContent      *view);
-
-
+static GtkTreePath *
+content_find_path_from_uri                    (GtkTreeModel         *model,
+					       YelpURI              *uri);
 
 enum {
 	URI_SELECTED,
@@ -216,14 +219,12 @@ content_html_title_changed_cb (YelpHtml        *html,
 			       const gchar     *title,
 			       YelpViewContent *view)
 {
-	g_print ("Title changed to: %s\n", title);
-
 	g_signal_emit (view, signals[TITLE_CHANGED], 0, title);
 }
 
 static void
 content_tree_selection_changed_cb (GtkTreeSelection *selection, 
-			       YelpViewContent  *content)
+				   YelpViewContent  *content)
 {
 	YelpViewContentPriv *priv;
  	GtkTreeIter          iter;
@@ -309,9 +310,12 @@ content_reader_data_cb (YelpReader      *reader,
 }
 
 static void
-content_reader_finished_cb (YelpReader *reader, YelpViewContent *view)
+content_reader_finished_cb (YelpReader      *reader, 
+			    YelpURI         *uri,
+			    YelpViewContent *view)
 {
 	YelpViewContentPriv *priv;
+	GtkTreePath         *path = NULL;
 	
 	g_return_if_fail (YELP_IS_READER (reader));
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
@@ -319,6 +323,54 @@ content_reader_finished_cb (YelpReader *reader, YelpViewContent *view)
 	priv = view->priv;
 
 	yelp_html_close (priv->html_view);
+
+	path = content_find_path_from_uri (GTK_TREE_MODEL (priv->tree_store),
+					   uri);
+	
+	if (path) {
+		GtkTreeSelection *selection;
+		GtkTreePath      *parent;
+
+		/* Open the correct node in the tree */
+
+		d(g_print ("Found path\n"));
+		
+		selection = gtk_tree_view_get_selection (
+			GTK_TREE_VIEW (priv->content_tree));
+			
+ 		parent = gtk_tree_path_copy (path);
+		
+		gtk_tree_path_up (parent);
+
+		gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content_tree),
+ 					  parent, FALSE);
+
+		gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content_tree),
+ 					  path, TRUE);
+
+		parent = gtk_tree_path_copy (path);
+		
+		g_signal_handlers_block_by_func (
+			selection,
+			content_tree_selection_changed_cb,
+			view);
+ 
+		gtk_tree_selection_select_path (selection, path);
+		
+		g_signal_handlers_unblock_by_func (
+			selection,
+			content_tree_selection_changed_cb,
+			view);
+
+		while (gtk_tree_path_up (path)) {
+			gtk_tree_view_expand_row (
+				GTK_TREE_VIEW (priv->content_tree),
+				path, FALSE);
+		}
+
+		gtk_tree_path_free (path);
+		gtk_tree_path_free (parent);
+	}
 
 	gdk_window_set_cursor (priv->html_widget->window, NULL);
 	gtk_widget_grab_focus (priv->html_widget);
@@ -339,6 +391,47 @@ content_reader_error_cb (YelpReader      *reader,
 	/* Popup window */
 	
 	g_warning ("%s\n", error->message);
+}
+
+static GtkTreePath *found_path;
+
+static gboolean
+content_tree_model_foreach (GtkTreeModel *model,
+			    GtkTreePath  *path,
+			    GtkTreeIter  *iter,
+			    YelpURI      *uri)
+{
+	YelpSection *section = NULL;
+	
+	g_return_val_if_fail (GTK_IS_TREE_MODEL (model), TRUE);
+	g_return_val_if_fail (uri != NULL, TRUE);
+	
+	gtk_tree_model_get (model, iter, 
+			    1, &section, 
+			    -1);
+
+	if (!section) {
+		return FALSE;
+	}
+	
+	if (yelp_uri_equal (uri, section->uri)) {
+		found_path = gtk_tree_path_copy (path);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static GtkTreePath *
+content_find_path_from_uri (GtkTreeModel *model, YelpURI *uri)
+{
+	found_path = NULL;
+	
+	gtk_tree_model_foreach (model, 
+				(GtkTreeModelForeachFunc) content_tree_model_foreach,
+				uri);
+
+	return found_path;
 }
 
 GtkWidget *

@@ -52,7 +52,8 @@ struct _YelpReaderClass {
         void (*data)      (YelpReader         *reader,
 			   const gchar        *buffer,
 			   gint                len);
-        void (*finished)  (YelpReader         *reader);
+        void (*finished)  (YelpReader         *reader,
+			   YelpURI            *read_uri);
 	void (*cancelled) (YelpReader         *reader);
         void (*error)     (YelpReader         *reader,
 			   GError             *error);

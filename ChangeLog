@@ -1,3 +1,19 @@
+2002-06-03  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-content.c: 
+	(content_find_path_from_uri): added, used to find the path to a
+	  certain URI.
+	(content_tree_model_foreach): added, used by above function.
+	(content_reader_finished_cb): expand tree and select the correct
+	  node. Fixes #80518
+
+	* src/yelp-reader.h: finish signal includes the URI which finished
+	  loading.
+
+	* src/yelp-db2html.c: send path to the docbook stylesheets as a
+          parameter. Still doesn't seem to fix the path problem with the
+	  images.
+
 2002-06-02  Mikael Hallendal  <micke@codefactory.se>
 
 	* Fixes #69047

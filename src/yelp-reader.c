@@ -166,9 +166,9 @@ reader_class_init (YelpReaderClass *klass)
 			      G_STRUCT_OFFSET (YelpReaderClass,
 					       finished),
 			      NULL, NULL,
-			      yelp_marshal_VOID__VOID,
+			      yelp_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
-			      0);
+			      1, G_TYPE_POINTER);
 	signals[CANCELLED] =
 		g_signal_new ("cancelled",
 			      G_TYPE_FROM_CLASS (klass),
@@ -402,7 +402,7 @@ reader_file_start (ReaderThreadData *th_data)
 	}
 	
 	q_data = reader_q_data_new (reader, stamp, READER_QUEUE_TYPE_FINISHED);
-	
+
 	g_async_queue_push (priv->thread_queue, q_data);
 }
 
@@ -582,7 +582,8 @@ reader_idle_check_queue (ReaderThreadData *th_data)
 				priv->stamp = 1;
 			}
 
-			g_signal_emit (reader, signals[FINISHED], 0);
+			g_signal_emit (reader, signals[FINISHED], 0,
+				       th_data->uri);
 
 			ret_val = FALSE;
 			break;

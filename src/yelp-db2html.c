@@ -48,8 +48,8 @@
 
 /* stylesheet location based on Linux Standard Base      *
  * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
-#define STYLESHEET_PATH DATADIR"/sgml/docbook/yelp"
-#define STYLESHEET STYLESHEET_PATH"/yelp-customization.xsl"
+#define DB_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/docbook"
+#define STYLESHEET DATADIR"/sgml/docbook/yelp/yelp-customization.xsl"
 
 /* xmlParserInput * */
 /* external_entity_loader (const char    *URL,  */
@@ -114,7 +114,7 @@ main (gint argc, gchar **argv)
 	params[2] = "gdb_pathname";
 	params[3] = g_strconcat("\"", pathname, "\"", NULL) ;
 	params[4] = "gdb_stylesheet_path";
-        params[5] = STYLESHEET_PATH;
+        params[5] = DB_STYLESHEET_PATH;
         params[6] = "gdb_multichunk";
         params[7] = "1";
         params[8] = NULL;

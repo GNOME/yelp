@@ -685,8 +685,6 @@ toc_html_title_changed_cb (YelpHtml    *html,
 			   const gchar *title,
 			   YelpViewTOC *view)
 {
-	g_print ("Title changed to: %s\n", title);
-
 	g_signal_emit (view, signals[TITLE_CHANGED], 0, title);
 }
 
