@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-07 14:34+0100\n"
+"POT-Creation-Date: 2004-12-13 21:02+0100\n"
 "PO-Revision-Date: 2004-12-07 14:39+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -50,7 +50,7 @@ msgstr "Kernerutiner"
 msgid "Library Functions"
 msgstr "Biblioteksfunktioner"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:777
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:779
 msgid "Man Pages"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgstr "Undervisningsprogrammer"
 msgid "Graphics"
 msgstr ""
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1056
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1058
 msgid "Help Contents"
 msgstr "Indhold i hjælp"
 
@@ -216,11 +216,11 @@ msgstr "Skrifttype for tekst med variabel bredde."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Benyt en tastatur-kontrolleret cirkumfleks ved visning af sider."
+msgstr "Benyt en tastatur-kontrolleret markør ved visning af sider."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr "Benyt cirkumfleks"
+msgstr "Benyt markør"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
@@ -260,7 +260,7 @@ msgstr "Indstillinger"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr "_Gennemse med cirkumfleks"
+msgstr "_Gennemse med markør"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -294,7 +294,7 @@ msgstr "_Variabel bredde:"
 msgid "_Wrap around"
 msgstr "_Start automatisk forfra"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:1944
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:1999
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -302,23 +302,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db-pager.c:505 src/yelp-toc-pager.c:1001 src/yelp-man-pager.c:299
-msgid "No href attribute found on yelp:document"
-msgstr "Ingen 'href'-egenskab fundet i 'yelp:document'"
-
-#: src/yelp-db-pager.c:519 src/yelp-toc-pager.c:1015 src/yelp-man-pager.c:314
-msgid "Out of memory"
-msgstr "Løbet tør for hukommelse"
-
-#: src/yelp-db-pager.c:717 src/yelp-man-pager.c:368
+#: src/yelp-db-pager.c:527
 msgid "Titlepage"
 msgstr "Titelside"
 
-#: src/yelp-db-pager.c:719 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:529
 msgid "Contents"
 msgstr "Indhold"
 
-#: src/yelp-db-pager.c:737 src/yelp-man-pager.c:388
+#: src/yelp-db-pager.c:547
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -380,126 +372,134 @@ msgstr "YelpTocPager: Pausetal er negativt."
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunne ikke indlæse OMF-filen \"%s\"."
 
-#: src/yelp-toc-pager.c:679
+#: src/yelp-toc-pager.c:681
 #, c-format
 msgid "Read man page for %s"
 msgstr ""
 
-#: src/yelp-window.c:286
+#: src/yelp-toc-pager.c:1003
+msgid "No href attribute found on yelp:document"
+msgstr "Ingen 'href'-egenskab fundet i 'yelp:document'"
+
+#: src/yelp-toc-pager.c:1017
+msgid "Out of memory"
+msgstr "Løbet tør for hukommelse"
+
+#: src/yelp-window.c:297
 msgid "_File"
 msgstr "_Fil"
 
-#: src/yelp-window.c:287
+#: src/yelp-window.c:298
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: src/yelp-window.c:288
+#: src/yelp-window.c:299
 msgid "_Go"
 msgstr "_Navigering"
 
-#: src/yelp-window.c:289
+#: src/yelp-window.c:300
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: src/yelp-window.c:292
+#: src/yelp-window.c:303
 msgid "_New window"
 msgstr "_Nyt vindue"
 
-#: src/yelp-window.c:297
+#: src/yelp-window.c:308
 msgid "Open _Location"
 msgstr "Åbn _sted"
 
-#: src/yelp-window.c:302
+#: src/yelp-window.c:313
 msgid "_Close window"
 msgstr "_Luk vindue"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:319
 msgid "_Copy"
 msgstr "_Kopiér"
 
-#: src/yelp-window.c:314
+#: src/yelp-window.c:325
 msgid "_Select All"
 msgstr "_Markér alt"
 
-#: src/yelp-window.c:319
+#: src/yelp-window.c:330
 msgid "_Find..."
 msgstr "_Find..."
 
-#: src/yelp-window.c:324
+#: src/yelp-window.c:335
 msgid "_Preferences"
 msgstr "_Indstillinger"
 
-#: src/yelp-window.c:329
+#: src/yelp-window.c:340
 msgid "_Reload"
 msgstr "_Genindlæs"
 
-#: src/yelp-window.c:335
+#: src/yelp-window.c:346
 msgid "_Back"
 msgstr "_Tilbage"
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:348
 msgid "Show previous page in history"
 msgstr "Vis foregående side i historikken"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:351
 msgid "_Forward"
 msgstr "F_remad"
 
-#: src/yelp-window.c:342
+#: src/yelp-window.c:353
 msgid "Show next page in history"
 msgstr "Vis næste side i historikken"
 
-#: src/yelp-window.c:345
+#: src/yelp-window.c:356
 msgid "_Home"
 msgstr "_Hjem"
 
-#: src/yelp-window.c:347
+#: src/yelp-window.c:358
 msgid "Go to home view"
 msgstr "Gå til startvisning"
 
-#: src/yelp-window.c:350
+#: src/yelp-window.c:361
 msgid "_Previous Page"
 msgstr "F_orrige side"
 
-#: src/yelp-window.c:355
+#: src/yelp-window.c:366
 msgid "_Next Page"
 msgstr "_Næste side"
 
-#: src/yelp-window.c:360
+#: src/yelp-window.c:371
 msgid "_Contents"
 msgstr "_Indhold"
 
-#: src/yelp-window.c:365
+#: src/yelp-window.c:376
 msgid "_Open Link"
 msgstr "_Åbn link"
 
-#: src/yelp-window.c:370
+#: src/yelp-window.c:381
 msgid "Open Link in _New Window"
 msgstr "Åbn link i _nyt vindue"
 
-#: src/yelp-window.c:375
+#: src/yelp-window.c:386
 msgid "_Copy Link Address"
 msgstr "_Kopiér link-adresse"
 
-#: src/yelp-window.c:381
+#: src/yelp-window.c:392
 msgid "_About"
 msgstr "_Om"
 
-#: src/yelp-window.c:432
+#: src/yelp-window.c:443
 msgid "Help Browser"
 msgstr "Hjælpelæser"
 
-#: src/yelp-window.c:925
+#: src/yelp-window.c:950
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: src/yelp-window.c:1200
+#: src/yelp-window.c:1230
 msgid "Loading..."
 msgstr "Indlæser..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1941
+#: src/yelp-window.c:1996
 #, fuzzy
 msgid "translator-credits"
 msgstr ""
@@ -509,7 +509,7 @@ msgstr ""
 "Dansk-gruppen <dansk@klid.dk>\n"
 "Mere info: http://www.klid.dk/dansk/"
 
-#: src/yelp-window.c:1946
+#: src/yelp-window.c:2001
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 
