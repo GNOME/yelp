@@ -205,8 +205,9 @@ yelp_db_pager_new (YelpDocInfo *doc_info)
 					  "document-info", doc_info,
 					  NULL);
 
-    pager->priv->sects =
-	GTK_TREE_MODEL (gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING));
+    if (!pager->priv->sects)
+	pager->priv->sects =
+	    GTK_TREE_MODEL (gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING));
 
     return (YelpPager *) pager;
 }
@@ -276,7 +277,7 @@ db_pager_process (YelpPager *pager)
 
     id = xmlGetProp (walker->cur, "id");
     if (id)
-	priv->root_id = (gchar *) id;
+	priv->root_id = g_strdup (id);
     else
 	priv->root_id = g_strdup ("index");
 
@@ -424,11 +425,40 @@ db_pager_error (YelpPager   *pager)
 static void
 db_pager_cancel (YelpPager *pager)
 {
+    YelpDBPagerPriv *priv = YELP_DB_PAGER (pager)->priv;
+
     d (g_print ("db_pager_cancel\n"));
+
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
     if (yelp_pager_get_state (pager) <= YELP_PAGER_STATE_RUNNING)
 	yelp_toc_pager_unpause (yelp_toc_pager_get ());
-    // FIXME: actually cancel
+
+    gtk_tree_store_clear (GTK_TREE_STORE (priv->sects));
+    g_hash_table_foreach_remove (priv->frags_hash, gtk_true, NULL);
+
+    g_free (priv->root_id);
+    priv->root_id = NULL;
+
+    if (priv->inputDoc) {
+	xmlFreeDoc (priv->inputDoc);
+	priv->inputDoc = NULL;
+    }
+    if (priv->outputDoc) {
+	xmlFreeDoc (priv->outputDoc);
+	priv->outputDoc = NULL;
+    }
+    if (priv->parserCtxt) {
+	xmlFreeParserCtxt (priv->parserCtxt);
+	priv->parserCtxt = NULL;
+    }
+    if (priv->stylesheet) {
+	xsltFreeStylesheet (priv->stylesheet);
+	priv->stylesheet = NULL;
+    }
+    if (priv->transformContext) {
+	xsltFreeTransformContext (priv->transformContext);
+	priv->transformContext = NULL;
+    }
 }
 
 static void
@@ -497,9 +527,11 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     EVENTS_PENDING;
     CANCEL_CHECK;
 
+    d (g_print ("xslt_yelp_document\n"));
+
     page_id = xsltEvalAttrValueTemplate (ctxt, inst,
-					  (const xmlChar *) "href",
-					  NULL);
+					 (const xmlChar *) "href",
+					 NULL);
     if (page_id == NULL) {
 	xsltTransformError (ctxt, NULL, inst,
 			    _("No href attribute found on yelp:document"));
@@ -507,6 +539,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	yelp_pager_error (pager, error);
 	goto done;
     }
+    d (g_print ("  page_id = \"%s\"\n", page_id));
 
     old_outfile = ctxt->outputFile;
     old_doc     = ctxt->output;
@@ -551,7 +584,10 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     page = g_new0 (YelpPage, 1);
 
-    page->page_id  = page_id;
+    page->page_id  = g_strdup (page_id);
+    xmlFree (page_id);
+    page_id = NULL;
+
     page->title    = page_title;
     page->contents = page_buf;
 
@@ -563,11 +599,11 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 		    xmlChar *rel = xmlGetProp (cur, "rel");
 
 		    if (!xmlStrcmp (rel, (xmlChar *) "Previous"))
-			page->prev_id = xmlGetProp (cur, "href");
+			page->prev_id = g_strdup (xmlGetProp (cur, "href"));
 		    else if (!xmlStrcmp (rel, (xmlChar *) "Next"))
-			page->next_id = xmlGetProp (cur, "href");
+			page->next_id = g_strdup (xmlGetProp (cur, "href"));
 		    else if (!xmlStrcmp (rel, (xmlChar *) "Top"))
-			page->toc_id = xmlGetProp (cur, "href");
+			page->toc_id = g_strdup (xmlGetProp (cur, "href"));
 
 		    xmlFree (rel);
 		}
@@ -579,7 +615,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     CANCEL_CHECK;
 
     yelp_pager_add_page (pager, page);
-    g_signal_emit_by_name (pager, "page", page_id);
+    g_signal_emit_by_name (pager, "page", page->page_id);
 
     EVENTS_PENDING;
     CANCEL_CHECK;

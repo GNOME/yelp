@@ -186,7 +186,7 @@ pager_init (YelpPager *pager)
     priv->page_hash =
 	g_hash_table_new_full (g_str_hash,
 			       g_str_equal,
-			       g_free,
+			       NULL, /* Use page->page_id directly */
 			       (GDestroyNotify) yelp_page_free);
 }
 
@@ -380,7 +380,7 @@ yelp_pager_add_page (YelpPager *pager,
 
     g_return_if_fail (page->page_id != NULL);
 
-    g_hash_table_insert (pager->priv->page_hash, page->page_id, page);
+    g_hash_table_replace (pager->priv->page_hash, page->page_id, page);
 }
 
 void

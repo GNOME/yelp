@@ -238,7 +238,8 @@ yelp_doc_info_free (YelpDocInfo *doc)
     if (!doc)
 	return;
 
-    g_object_unref (doc->pager);
+    if (doc->pager)
+	g_object_unref (doc->pager);
 
     g_free (doc->title);
     for (i = 0; i < doc->num_uris; i++)
@@ -503,7 +504,8 @@ get_doc_type (gchar *uri)
 	return YELP_DOC_TYPE_EXTERNAL;
 
     mime_type = gnome_vfs_get_mime_type (uri);
-    g_return_val_if_fail (mime_type != NULL, YELP_DOC_TYPE_ERROR);
+    if (mime_type == NULL)
+	return YELP_DOC_TYPE_ERROR;
 
     if (g_str_equal (mime_type, "text/xml"))
 	type = YELP_DOC_TYPE_DOCBOOK_XML;

@@ -66,6 +66,11 @@
 #define BUFFER_SIZE 16384
 
 typedef struct {
+    YelpWindow *window;
+    gchar      *uri;
+} YelpLoadData;
+
+typedef struct {
     YelpDocInfo *doc_info;
 
     gchar *frag_id;
@@ -170,6 +175,8 @@ static void    window_copy_link_cb      (GtkAction *action, YelpWindow *window);
 static void    window_open_link_cb      (GtkAction *action, YelpWindow *window);
 static void    window_open_link_new_cb  (GtkAction *action, YelpWindow *window);
 
+static gboolean           window_load_async      (YelpLoadData *data);
+
 /** History Functions **/
 static void               history_push_back      (YelpWindow       *window);
 static void               history_push_forward   (YelpWindow       *window);
@@ -178,6 +185,8 @@ static void               history_step_back      (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_back       (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_forward    (YelpWindow       *window);
 static void               history_entry_free     (YelpHistoryEntry *entry);
+
+static void               load_data_free         (YelpLoadData     *data);
 
 static void               location_response_cb    (GtkDialog       *dialog,
 						   gint             id,
@@ -611,6 +620,17 @@ history_entry_free (YelpHistoryEntry *entry)
     g_free (entry);
 }
 
+static void
+load_data_free (YelpLoadData *data)
+{
+    g_return_if_fail (data != NULL);
+
+    g_object_unref (data->window);
+    g_free (data->uri);
+
+    g_free (data);
+}
+
 /******************************************************************************/
 
 GtkWidget *
@@ -669,10 +689,10 @@ yelp_window_load (YelpWindow *window, gchar *uri)
     if (priv->current_doc && yelp_doc_info_equal (priv->current_doc, doc_info)) {
 	if (priv->current_frag) {
 	    if (frag_id && g_str_equal (priv->current_frag, frag_id))
-		goto done;
+		goto load;
 	}
 	else if (!frag_id)
-	    goto done;
+	    goto load;
     }
 
     if (priv->current_doc)
@@ -687,6 +707,7 @@ yelp_window_load (YelpWindow *window, gchar *uri)
     priv->current_doc  = yelp_doc_info_ref (doc_info);
     priv->current_frag = g_strdup (frag_id);
 
+ load:
     window_do_load (window, doc_info, frag_id);
 
  done:
@@ -714,6 +735,8 @@ window_do_load (YelpWindow  *window,
 
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (doc_info != NULL);
+
+    d (g_print ("window_do_laod\n"));
 
     priv = window->priv;
 
@@ -1767,13 +1790,33 @@ window_reload_cb (GtkAction *action, YelpWindow *window)
     d (g_print ("window_reload_cb\n"));
 
     if (window->priv->current_doc) {
+	YelpLoadData *data;
+	gchar *uri;
 	pager = yelp_doc_info_get_pager (window->priv->current_doc);
 
 	if (!pager)
 	    return;
 
 	yelp_pager_cancel (pager);
+
+	uri = yelp_doc_info_get_uri (window->priv->current_doc,
+				     window->priv->current_frag,
+				     YELP_URI_TYPE_ANY);
+	data = g_new0 (YelpLoadData, 1);
+	data->window = g_object_ref (window);
+	data->uri = uri;
+	g_idle_add ((GSourceFunc) window_load_async, data);
     }
+}
+
+static gboolean
+window_load_async (YelpLoadData *data)
+{
+    yelp_window_load (data->window, data->uri);
+
+    load_data_free (data);
+
+    return FALSE;
 }
 
 static void
