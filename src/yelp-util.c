@@ -22,6 +22,7 @@
 
 #include "yelp-util.h"
 
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <string.h>
 
 GtkTreeIter *
@@ -294,3 +295,138 @@ yelp_util_resolve_relative_uri (const char *base_uri,
 	return result;
 }
 
+char *
+yelp_util_node_to_string_path (GNode *node)
+{
+	char *str, *t;
+	char *escaped_node_name;
+	YelpSection *section;
+
+	section = node->data;
+	escaped_node_name = gnome_vfs_escape_set (section->name, " \t\n;:%");
+	
+	str = escaped_node_name;
+	while (node->parent != NULL) {
+		node = node->parent;
+		
+		section = node->data;
+		if (section) {
+			escaped_node_name = gnome_vfs_escape_set (section->name, " \t\n;:%");
+			
+			t = g_strconcat (escaped_node_name, ":", str, NULL);
+			g_free (escaped_node_name);
+			g_free (str);
+			str = t;
+		}
+	}
+	return str;
+}
+
+static GNode *
+yelp_util_string_path_to_node_helper (char  **path,
+				      GNode  *node)
+{
+	char *node_name;
+	char *unescaped_pathname;
+	YelpSection *section;
+		
+	if (*path == NULL) {
+		return NULL;
+	}
+
+	unescaped_pathname = gnome_vfs_unescape_string (*path, NULL);
+	
+	do {
+		section = node->data;
+		node_name = section->name;
+
+		if (strcmp (node_name, unescaped_pathname) == 0) {
+			g_free (unescaped_pathname);
+			path += 1;
+			
+			if (*path == NULL) {
+				return node;
+			}
+			
+			if (node->children) {
+				return yelp_util_string_path_to_node_helper (path, node->children);
+			} else {
+				return NULL;
+			}
+		}
+		
+	} while ((node = node->next) != NULL);
+
+	g_free (unescaped_pathname);
+	
+	return NULL;
+}
+
+     
+GNode *
+yelp_util_string_path_to_node (const char *string_path,
+			       GNode      *root)
+{
+	char **path;
+	GNode *node;
+
+	path = g_strsplit (string_path, ":", 0);
+
+	node = yelp_util_string_path_to_node_helper (path, root->children);
+	
+	g_strfreev (path);
+		
+	return node;
+}
+
+
+GNode *
+yelp_util_decompose_path_url (GNode      *root,
+			      const char *path_url,
+			      char      **embedded_url)
+{
+	const char *first_part;
+	const char *second_part;
+	char *path;
+	GNode *res;
+
+	*embedded_url = NULL;
+	
+	if (strncmp (path_url, "path:", 5) != 0) {
+		return NULL;
+	}
+
+	first_part = path_url + 5;
+	second_part = strchr(first_part, ';');
+	if (second_part) {
+		path = g_strndup (first_part, second_part - first_part);
+		second_part += 1;
+	} else {
+		path = g_strdup (first_part);
+	}
+
+	res = yelp_util_string_path_to_node (path, root);
+	g_free (path);
+
+	if (second_part) {
+		*embedded_url = g_strdup (second_part);
+	}
+	
+	return res;
+}
+
+char *
+yelp_util_compose_path_url (GNode      *node,
+			    const char *embedded_url)
+{
+	char *path;
+
+	path = yelp_util_node_to_string_path (node);
+
+	if (path == NULL) {
+		return NULL;
+	}
+
+	return  g_strconcat ("path:", path, ";", embedded_url, NULL);
+}
+ 

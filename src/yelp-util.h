@@ -27,12 +27,22 @@
 #include <gtk/gtktreemodel.h>
 #include "yelp-section.h"
 
-GtkTreeIter * yelp_util_contents_add_section (GtkTreeStore *store,
-                                              GtkTreeIter  *parent,
-                                              YelpSection  *section);
+GtkTreeIter *yelp_util_contents_add_section (GtkTreeStore  *store,
+					     GtkTreeIter   *parent,
+					     YelpSection   *section);
+char *       yelp_util_resolve_relative_uri (const char    *base_uri,
+					     const char    *uri);
 
-char * yelp_util_resolve_relative_uri (const char *base_uri,
-				       const char *uri);
+char *       yelp_util_node_to_string_path  (GNode         *node);
+GNode *      yelp_util_string_path_to_node  (const char   *string_path,
+					     GNode         *root);
+
+GNode *      yelp_util_decompose_path_url   (GNode         *root,
+					     const char    *path_url,
+					     char         **embedded_url);
+char *       yelp_util_compose_path_url     (GNode         *node,
+					     const char    *embedded_url);
+
 
 
 #endif /* __YELP_UTIL_H__ */

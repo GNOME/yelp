@@ -33,6 +33,7 @@
 
 #include "yelp-view-toc.h"
 #include "yelp-marshal.h"
+#include "yelp-util.h"
 
 #define d(x) x
 
@@ -303,78 +304,65 @@ yelp_view_toc_find_toplevel (YelpViewTOC *view, gchar *name)
 	return NULL;
 }
 
-#if 0
 static char *
-yelp_view_toc_full_path_name (YelpViewTOC *view, GtkTreeIter *top) 
+yelp_view_toc_full_path_name (YelpViewTOC *view, GNode *node) 
 {
 	char *str, *t;		
-/* 		gtk_tree_model_get (priv->tree_model, &iter, */
-/* 				    0, &name, */
-/* 				    -1); */
-		
-/* 		path = gtk_tree_model_get_path (priv->tree_model, &iter); */
-/* 		path_str = gtk_tree_path_to_string (path); */
-
-	GtkTreeIter iter;
-	GtkTreeIter next_iter;
+	YelpSection *section;
 	char *node_name;
 
-	gtk_tree_model_get (view->priv->tree_model, top,
-			    0, &str,
-			    -1);
+	section = node->data;
+	node_name = section->name;
 
-	iter = *top;
-	while (gtk_tree_model_iter_parent (view->priv->tree_model,
-					   &iter, &iter)) {
-		if (!gtk_tree_model_iter_parent (view->priv->tree_model,
-						 &next_iter, &iter))
+	str = node_name;
+
+	while (node->parent) {
+		node = node->parent;
+		
+		if (node->parent == NULL) {
+			/* Skip top node */
 			break;
-		gtk_tree_model_get (view->priv->tree_model, &iter,
-				    0, &node_name,
-				    -1);
+		}
+		
+		section = node->data;
+		node_name = section->name;
+		
 		t = g_strconcat (node_name, "/", str, NULL);
 		g_free (str);
-		g_free (node_name);
 		str = t;
 	}
 	return str;
 }
 
 static void
-yelp_view_toc_man_emit (YelpViewTOC *view, GtkTreeIter *first, int level)
+yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 {
 	YelpViewTOCPriv *priv;
-	GtkTreeIter iter, child;
-	char level_c;
+	GNode *node, *child;
+	YelpSection *section;
 	char *name;
-	char *path_string;
 	gboolean got_a_leaf;
-	GtkTreePath *path;
+	char *path;
 	int i;
 
 	priv = view->priv;
 
-	level_c = '1' + level;
 	got_a_leaf = FALSE;
-	iter = *first;
+	node = first;
 	do {
-		if (gtk_tree_model_iter_children  (view->priv->tree_model,
-						   &child, &iter)) {
+		if (node->children != NULL) {
+			child = node->children;
 			
-			gtk_tree_model_get (priv->tree_model, &iter,
-					    0, &name,
-					    -1);
-			
-			path = gtk_tree_model_get_path (priv->tree_model, &iter);
-			path_string = gtk_tree_path_to_string (path);
-			yelp_view_toc_printf (view, "<h2><a href=\"toc:man/%s\">%s</a></h2>\n", path_string, name);
-			gtk_tree_path_free (path);
-			g_free (path_string);
-			g_free (name);
+			section = node->data;
+			name = section->name;
+
+			path = yelp_util_node_to_string_path (node);
+			yelp_view_toc_printf (view, "<h2><a href=\"toc:man/%s\">%s</a></h2>\n", path, name);
+			g_free (path);
 		} else {
 			got_a_leaf = TRUE;
 		}
-	} while (gtk_tree_model_iter_next  (priv->tree_model, &iter));
+	} while ((node = node->next) != NULL);
 
 
 	if (got_a_leaf) {
@@ -383,27 +371,25 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GtkTreeIter *first, int level)
 				     -1);
 
 		i = 0;
-		iter = *first;
+		node = first;
 		do {
-			if (i % 3 == 0) {
-				if (i == 0) {
-					yelp_view_toc_write (view, "<tr>\n", -1);
-				} else {
-					yelp_view_toc_write (view, "</tr>\n<tr>\n", -1);
-				}
-			}
-			
-			if (!gtk_tree_model_iter_has_child (view->priv->tree_model,
-							    &iter)) {
+			if (node->children == NULL) {
 				YelpSection *section;
-				gtk_tree_model_get (priv->tree_model, &iter,
-						    0, &name,
-						    1, &section, -1);
+				
+				if (i % 3 == 0) {
+					if (i == 0) {
+						yelp_view_toc_write (view, "<tr>\n", -1);
+					} else {
+						yelp_view_toc_write (view, "</tr>\n<tr>\n", -1);
+					}
+				}
+			
+				section = node->data;
+				name = section->name;
 				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", section->uri, name);
-				g_free (name);
 				i++;
 			}
-		} while (gtk_tree_model_iter_next  (priv->tree_model, &iter));
+		} while ((node = node->next) != NULL);
 		
 		yelp_view_toc_write (view, "</tr>\n", -1);
 		yelp_view_toc_write (view, "</tbody></table>\n", -1);
@@ -412,35 +398,30 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GtkTreeIter *first, int level)
 
 static void 
 yelp_view_toc_man_2 (YelpViewTOC *view,
-		     GtkTreeIter *root)
+		     GNode *root)
 {
-	GtkTreeIter first;
+	GNode *first;
 	gchar *name;
 
-	if (!gtk_tree_model_iter_children (view->priv->tree_model,
-					   &first,
-					   root)) {
+	if (root->children == NULL) {
 		return;
 	}
+	
+	first = root->children;
 
 	yelp_view_toc_open (view);
 	
 	yelp_view_toc_write_header (view, "Manual pages");
 		
-	/*	gtk_tree_model_get (view->priv->tree_model, root,
-			    0, &name,
-			    -1);*/
 	name = yelp_view_toc_full_path_name (view, root);
 	yelp_view_toc_printf (view, "<h1>Manual pages for section '%s'</h1>\n", name);
-	
 	g_free (name);
 	
-	yelp_view_toc_man_emit (view, &first, 0);
+	yelp_view_toc_man_emit (view, first);
 		
 	yelp_view_toc_write_footer (view);
 	yelp_view_toc_close (view);
 }
-#endif
 
 static void 
 yelp_view_toc_man_1 (YelpViewTOC *view)
@@ -448,12 +429,8 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 	YelpViewTOCPriv *priv;
 	GNode           *root, *node, *child;
 	YelpSection     *section;
+	char            *path;
 	
-/* 	gchar           *name, *path_string; */
-/* 	GtkTreeIter      root, first; */
-/* 	GtkTreeIter      iter, child; */
-/* 	GtkTreePath     *path; */
-
 	priv = view->priv;
 
 	root = yelp_view_toc_find_toplevel (view, "man");
@@ -480,9 +457,11 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 		
 		if (child) {
 			section = (YelpSection *) node->data;
+			path = yelp_util_node_to_string_path (node);
 			yelp_view_toc_printf (view, 
 					      "<a href=\"toc:man/%s\">%s</a><br>\n", 
-					      section->uri, section->name);
+					      path, section->name);
+			g_free (path);
 		}
 	} while ((node = g_node_next_sibling (node)));
 		
@@ -512,6 +491,7 @@ yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 {
 	const char *toc_type;
 	const char *path_string;
+	GNode *node;
 	
 	g_assert (strncmp (url, "toc:", 4) == 0);
 	
@@ -520,31 +500,29 @@ yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 	}
 
 	toc_type = url + 4;
+
+	g_print ("toc_type: %s\n", toc_type);
 	
 	if (*toc_type == 0) {
 		yelp_view_toc_start (view);
 	} else if (strncmp (toc_type, "man", 3) == 0) {
 		path_string = toc_type + 3;
+		g_print ("path_string: %s\n", path_string);
 
 		if (path_string[0] == 0) {
  			yelp_view_toc_man_1 (view);
 		} else if (path_string[0] == '/') {
 			/* Calculate where it should go */
-			return ;
-#if 0
 			path_string++;
 
-			path = gtk_tree_path_new_from_string  (path_string);
-
-			if (gtk_tree_model_get_iter (view->priv->tree_model,
-						     &iter, path)) {
-				yelp_view_toc_man_2 (view, &iter);
+			g_print ("path_string: %s\n", path_string);
+			node = yelp_util_string_path_to_node  (path_string,
+							       view->priv->doc_tree);
+			if (node) {
+				yelp_view_toc_man_2 (view, node);
 			} else {
 				g_warning ("Bad path in toc url %s\n", url);
 			}
-			
-			gtk_tree_path_free (path);
-#endif
 		}
 	} else {
 		g_warning ("Unknown toc type %s\n", url);

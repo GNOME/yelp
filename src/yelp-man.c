@@ -533,7 +533,7 @@ yelp_man_push_initial_tree (struct TreeNode *node, GNode *parent)
 		page = l->data;
 		l = l->next;
 
-		g_node_append_data (parent, page);
+		g_node_append_data (man_node, page);
 	}
 }
 
