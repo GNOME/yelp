@@ -138,6 +138,7 @@
 #ifdef HAVE_LIBBZ2
 #include <bzlib.h>
 #endif
+#include <glib.h>
 
 static char *URLbasename = NULL;
 
@@ -3721,10 +3722,10 @@ main(int argc, char **argv)
 
 		    *ctmp = '\0';
 
-		    snprintf(cmdline, sizeof(cmdline), "man -w %c %s", section, infile);
+		    g_snprintf(cmdline, sizeof(cmdline), "man -w %c %s", section, infile);
 		  }
 		else
-		  snprintf(cmdline, sizeof(cmdline), "man -w %s", infile);
+		  g_snprintf(cmdline, sizeof(cmdline), "man -w %s", infile);
 
 		fh = popen(cmdline, "r");
 		fgets(output, sizeof(output), fh);
