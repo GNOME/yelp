@@ -1,5 +1,10 @@
 2004-04-16  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-window.c:
+	- NULL check on priv->pager before g_object_unref, fixes #140300
+
+2004-04-16  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-toc-pager.c:
 	- Better handling of category_hash, as per #128914
 
