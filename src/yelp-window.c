@@ -807,6 +807,7 @@ window_do_load (YelpWindow  *window,
 		       "the author of the document to convert to XML."));
 	break;
     case YELP_DOC_TYPE_HTML:
+    case YELP_DOC_TYPE_XHTML:
 	handled = window_do_load_html (window, doc_info, frag_id);
 	break;
     case YELP_DOC_TYPE_EXTERNAL:
@@ -1309,7 +1310,17 @@ window_do_load_html (YelpWindow    *window,
     }
 
     yelp_html_set_base_uri (priv->html_view, uri);
-    yelp_html_open_stream (priv->html_view, "text/html");
+
+    switch (yelp_doc_info_get_type (doc_info)) {
+    case YELP_DOC_TYPE_HTML:
+	yelp_html_open_stream (priv->html_view, "text/html");
+	break;
+    case YELP_DOC_TYPE_XHTML:
+	yelp_html_open_stream (priv->html_view, "application/xhtml+xml");
+	break;
+    default:
+	g_assert_not_reached ();
+    }
 
     while ((result = gnome_vfs_read
 	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {

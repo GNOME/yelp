@@ -1,3 +1,14 @@
+2005-02-22  Ross Burton  <ross@burtonini.com>
+
+	* src/yelp-utils.h:
+	Add YELP_DOC_TYPE_XHTML.
+	
+	* src/yelp-utils.c:
+	Handle application/xml+html as HTML.
+
+	* src/yelp-window.c:
+	Pass a MIME type to window_do_load_html.
+
 2005-02-06  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* src/yelp-gecko-utils.cpp: Fix leak

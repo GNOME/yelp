@@ -521,6 +521,8 @@ get_doc_type (gchar *uri)
 	type = YELP_DOC_TYPE_DOCBOOK_SGML;
     else if (g_str_equal (mime_type, "text/html"))
 	type = YELP_DOC_TYPE_HTML;
+    else if (g_str_equal (mime_type, "application/xhtml+xml"))
+	type = YELP_DOC_TYPE_XHTML;
     else
 	type = YELP_DOC_TYPE_EXTERNAL;
 

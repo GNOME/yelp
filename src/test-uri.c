@@ -48,6 +48,9 @@ print_doc_info (YelpDocInfo *doc)
     case YELP_DOC_TYPE_HTML:
 	type = "YELP_DOC_TYPE_HTML";
 	break;
+    case YELP_DOC_TYPE_XHTML:
+	type = "YELP_DOC_TYPE_XHTML";
+	break;
     case YELP_DOC_TYPE_MAN:
 	type = "YELP_DOC_TYPE_MAN";
 	break;
