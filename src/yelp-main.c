@@ -42,8 +42,8 @@
 #define YELP_FACTORY_OAFIID "OAFIID:GNOME_Yelp_Factory"
 
 static BonoboObject * yelp_base_factory       (BonoboGenericFactory *factory,
-					      const gchar           *iid,
-					      gpointer               closure);
+					       const gchar          *iid,
+					       gpointer              closure);
 static CORBA_Object   yelp_main_activate_base (void);
 static gboolean       yelp_main_idle_start    (gchar                *url);
 
@@ -75,9 +75,8 @@ yelp_main_activate_base ()
 							0, NULL, &ev);
 	
 	if (BONOBO_EX (&ev) || yelp_base == CORBA_OBJECT_NIL) {
-		g_warning (_("Could not activate Yelp: '%s'"),
+		g_error (_("Could not activate Yelp: '%s'"),
 			   bonobo_exception_get_text (&ev));
-		exit (1);
 	}
 
 	CORBA_exception_free (&ev);
@@ -95,8 +94,7 @@ yelp_main_open_new_window (CORBA_Object yelp_base, const gchar *url)
 	GNOME_Yelp_newWindow (yelp_base, url, &ev);
 	
 	if (BONOBO_EX (&ev)) {
-		g_warning (_("Could not open new window."));
-		exit (1);
+		g_error (_("Could not open new window."));
 	}
 
 	CORBA_exception_free (&ev);

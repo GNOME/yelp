@@ -30,7 +30,8 @@ typedef struct _YelpSection   YelpSection;
 typedef enum {
 	YELP_SECTION_DOCUMENT_SECTION,
 	YELP_SECTION_DOCUMENT,
-	YELP_SECTION_CATEGORY
+	YELP_SECTION_CATEGORY,
+	YELP_SECTION_INDEX
 } YelpSectionType;
 
 struct _YelpSection {

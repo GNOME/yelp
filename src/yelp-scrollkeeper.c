@@ -41,7 +41,8 @@ static gboolean   ys_parse_books          (GNode                *tree,
 static gboolean   ys_parse_section        (GNode                *parent,
 					   xmlNode              *xml_node);
 static void       ys_parse_doc            (GNode                *parent,
-					   xmlNode              *xml_node);
+					   xmlNode              *xml_node,
+					   gchar                *docid);
 static void       ys_parse_toc_section    (GNode                *parent,
 					   xmlNode              *xml_node,
 					   const gchar          *base_uri);
@@ -51,9 +52,19 @@ static gchar *    ys_get_xml_docpath      (const gchar          *command,
 static gchar *    ys_strip_scheme         (gchar                *original_uri,
 					   gchar               **scheme);
 
+static gboolean   ys_parse_index          (GList               **index);
+static void       ys_parse_index_file     (GList               **index,
+                                           const gchar          *index_path,
+					   YelpSection          *section);
+static void       ys_parse_index_item     (GList               **index,
+                                           YelpSection          *section,
+					   xmlNode              *node);
+
+
 static gint calls = 0;
 
 static GHashTable *seriesid_hash = NULL;
+static GHashTable *docid_hash    = NULL;
 
 static gboolean
 ys_trim_empty_branches (xmlNode *node)
@@ -69,7 +80,7 @@ ys_trim_empty_branches (xmlNode *node)
 	for (child = node->xmlChildrenNode; child; child = next) {
 		next = child->next;
 		
-		if (!g_strcasecmp (child->name, "sect")) {
+		if (!g_ascii_strcasecmp (child->name, "sect")) {
 			empty = ys_trim_empty_branches (child);
 			if (empty) {
 				xmlUnlinkNode (child);
@@ -79,8 +90,8 @@ ys_trim_empty_branches (xmlNode *node)
 	}
 
 	for (child = node->xmlChildrenNode; child; child = child->next) {
-		if (!g_strcasecmp (child->name, "sect") ||
-		    !g_strcasecmp (child->name, "doc")) {
+		if (!g_ascii_strcasecmp (child->name, "sect") ||
+		    !g_ascii_strcasecmp (child->name, "doc")) {
 			return FALSE;
 		}
 	}
@@ -100,7 +111,7 @@ ys_tree_empty (xmlNode *cl_node)
 	for (node = cl_node; node != NULL; node = next) {
 		next = node->next;
 
-		if (!strcmp (node->name, "sect") &&
+		if (!g_ascii_strcasecmp (node->name, "sect") &&
 		    node->xmlChildrenNode->next != NULL) {
 			ret_val = ys_tree_empty (
 				node->xmlChildrenNode->next);
@@ -110,7 +121,7 @@ ys_tree_empty (xmlNode *cl_node)
 			}
 		}
 
-		if (!strcmp (node->name, "doc")) {
+		if (!g_ascii_strcasecmp (node->name, "doc")) {
 			return FALSE;
 		}
 	}
@@ -130,7 +141,7 @@ ys_parse_books (GNode *tree, xmlDoc *doc)
 	node = doc->xmlRootNode;
 
 	if (!node || !node->name || 
-	    g_strcasecmp (node->name, "ScrollKeeperContentsList")) {
+	    g_ascii_strcasecmp (node->name, "ScrollKeeperContentsList")) {
 		g_warning ("Invalid ScrollKeeper XML Contents List!");
 		return FALSE;
 	}
@@ -141,7 +152,7 @@ ys_parse_books (GNode *tree, xmlDoc *doc)
 							  NULL, NULL));
        
 	for (node = node->xmlChildrenNode; node; node = node->next) {
-		if (!g_strcasecmp (node->name, "sect")) {
+		if (!g_ascii_strcasecmp (node->name, "sect")) {
 			success = ys_parse_section (book_node, node);
 		}
 	}
@@ -152,14 +163,15 @@ ys_parse_books (GNode *tree, xmlDoc *doc)
 static gboolean
 ys_parse_section (GNode *parent, xmlNode *xml_node)
 {
-	xmlNode     *cur;
-	xmlChar     *xml_str;
-	gchar       *name;
-	GNode       *node;
+	xmlNode *cur;
+	xmlChar *xml_str;
+	gchar   *name;
+	GNode   *node;
+	gchar   *docid;
 	
 	/* Find the title */
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
-		if (!g_strcasecmp (cur->name, "title")) {
+		if (!g_ascii_strcasecmp (cur->name, "title")) {
 			xml_str = xmlNodeGetContent (cur);
 			
 			if (xml_str) {
@@ -180,11 +192,18 @@ ys_parse_section (GNode *parent, xmlNode *xml_node)
 						     NULL, NULL));
 
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
-		if (!g_strcasecmp (cur->name, "sect")) {
+		if (!g_ascii_strcasecmp (cur->name, "sect")) {
 			ys_parse_section (node, cur);
 		}
-		else if (!g_strcasecmp (cur->name, "doc")) {
-			ys_parse_doc (node, cur);
+		else if (!g_ascii_strcasecmp (cur->name, "doc")) {
+
+			xml_str = xmlGetProp (cur, "docid");
+			if (xml_str) {
+				docid = g_strdup (xml_str);
+				xmlFree (xml_str);
+			}
+			
+			ys_parse_doc (node, cur, docid);
 		}
 	}
 	
@@ -192,42 +211,42 @@ ys_parse_section (GNode *parent, xmlNode *xml_node)
 }
 
 static void
-ys_parse_doc (GNode *parent, xmlNode *xml_node) 
+ys_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 {
-	xmlNode     *cur;
-	xmlChar     *xml_str;
-	gchar       *title;
-	gchar       *omf;
-	gchar       *link;
-	gchar       *format;
-	gchar       *docsource;
-	gchar       *docseriesid;
-	GNode       *node;
+	xmlNode *cur;
+	xmlChar *xml_str;
+	gchar   *title;
+	gchar   *omf;
+	gchar   *link;
+	gchar   *format;
+	gchar   *docsource;
+	gchar   *docseriesid;
+	GNode   *node;
 
 	docseriesid = NULL;
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
-		if (!g_strcasecmp (cur->name, "doctitle")) {
+		if (!g_ascii_strcasecmp (cur->name, "doctitle")) {
 			xml_str = xmlNodeGetContent (cur);
 			title   = g_strdup (xml_str);
 			xmlFree (xml_str);
 		}
-		else if (!g_strcasecmp (cur->name, "docomf")) {
+		else if (!g_ascii_strcasecmp (cur->name, "docomf")) {
 			xml_str = xmlNodeGetContent (cur);
 			omf     = g_strdup (xml_str);
 			xmlFree (xml_str);
 		}
-		else if (!g_strcasecmp (cur->name, "docsource")) {
+		else if (!g_ascii_strcasecmp (cur->name, "docsource")) {
 			xml_str = xmlNodeGetContent (cur);
 			docsource = ys_strip_scheme (xml_str, NULL);
 			link    = g_strconcat ("ghelp:", docsource, NULL);
 			xmlFree (xml_str);
 		}
-		else if (!g_strcasecmp (cur->name, "docformat")) {
+		else if (!g_ascii_strcasecmp (cur->name, "docformat")) {
 			xml_str = xmlNodeGetContent (cur);
 			format  = g_strdup (xml_str);
 			xmlFree (xml_str);
 		}
-		else if (!g_strcasecmp (cur->name, "docseriesid")) {
+		else if (!g_ascii_strcasecmp (cur->name, "docseriesid")) {
 			xml_str = xmlNodeGetContent (cur);
 			docseriesid  = g_strdup (xml_str);
 			xmlFree (xml_str);
@@ -243,13 +262,8 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node)
 		g_hash_table_insert (seriesid_hash, docseriesid, node);
 	}
 	
-/* 	index_location = ys_get_xml_docpath ("scrollkeeper-get-index-from-docpath", */
-/* 					     docsource); */
+	g_hash_table_insert (docid_hash, docid, node);
 	
-/* 	if (index_location) { */
-/* 		g_print ("Found index: %s\n", index_location); */
-/* 	} */
-
 	g_free (title);
 	g_free (omf);
 	g_free (link);
@@ -298,7 +312,7 @@ ys_parse_toc_section (GNode       *parent,
                                                      link, NULL));
 	
 	for (; next_child != NULL; next_child = next_child->next) {
-		if (!g_strncasecmp (next_child->name, "tocsect", 7)) {
+		if (!g_ascii_strncasecmp (next_child->name, "tocsect", 7)) {
 			ys_parse_toc_section (node, next_child, base_uri);
 		}
 	}
@@ -361,8 +375,125 @@ ys_strip_scheme(gchar *original_uri, gchar **scheme)
 	return new_uri;
 }
 
+static gboolean
+ys_parse_index (GList **index)
+{
+	gchar                   *sk_data_dir = NULL;
+	gchar                   *index_dir;
+	GnomeVFSDirectoryHandle *dir;
+	GnomeVFSResult           result;
+	GnomeVFSFileInfo        *file_info;
+	GNode                   *node;
+	YelpSection             *section;
+	
+	sk_data_dir = ys_get_xml_docpath ("scrollkeeper-config",
+					  "--pkglocalstatedir");
+
+	index_dir = g_strdup_printf ("%s/index", sk_data_dir);
+
+	g_free (sk_data_dir);
+	
+	result = gnome_vfs_directory_open (&dir, index_dir, 
+					   GNOME_VFS_FILE_INFO_DEFAULT);
+
+	if (result != GNOME_VFS_OK) {
+		g_warning ("Error opening directory: %s\n", index_dir);
+		return FALSE;
+	}
+
+	file_info = gnome_vfs_file_info_new ();
+
+	while (gnome_vfs_directory_read_next (dir, file_info) == GNOME_VFS_OK) {
+		node = g_hash_table_lookup (docid_hash, file_info->name);
+		
+		if (node) {
+			gchar *index_path = g_strdup_printf ("%s/%s",
+							     index_dir,
+							     file_info->name);
+			
+			section = (YelpSection *) node->data;
+			
+			ys_parse_index_file (index, index_path, section);
+
+			g_free (index_path);
+			
+			g_print ("FOUND INDEX FOR: %s/%s\n", 
+				 section->uri, file_info->name);
+		}
+	}
+	
+	g_free (index_dir);
+	gnome_vfs_file_info_unref (file_info);
+
+	return TRUE;
+}
+
+static void
+ys_parse_index_file (GList       **index, 
+		     const gchar  *index_path,
+		     YelpSection  *section)
+{
+	xmlDoc  *doc;
+	xmlNode *node;
+	
+	doc = xmlParseFile (index_path);
+	
+	if (doc) {
+		node = doc->xmlRootNode;
+		
+		if (!node || !node->name || 
+		    g_ascii_strcasecmp (node->name, "indexdoc")) {
+			g_warning ("Invalid Index file, root node is '%s', it should be 'indexdoc'!", node->name);
+			return;
+		}
+
+		for (node = node->xmlChildrenNode; node; node = node->next) {
+			if (!g_ascii_strcasecmp (node->name, "indexitem")) {
+				
+				g_print ("Found an indexitem!\n");
+				ys_parse_index_item (index, section, node);
+			}
+		}
+	}
+}
+
+static void
+ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
+{
+	xmlNode     *cur;
+	xmlChar     *title = NULL;
+	xmlChar     *link  = NULL;
+	YelpSection *index_section;
+	
+	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
+		if (!g_ascii_strcasecmp (cur->name, "title")) {
+			title = xmlNodeGetContent (cur);
+			g_print ("TITLE: %s\n", title);
+		}
+		else if (!g_ascii_strcasecmp (cur->name, "link")) {
+			link = xmlGetProp (cur, "linkid");
+			
+			g_print ("LINK: %s\n", link);
+		}
+		else if (!g_ascii_strcasecmp (cur->name, "indexitem")) {
+			ys_parse_index_item (index, section, cur);
+		}
+	}
+
+	if (title && link) {
+		index_section = yelp_section_new (YELP_SECTION_INDEX,
+						  title, section->uri,
+						  link, NULL);
+		
+		*index = g_list_prepend (*index, index_section);
+		
+		xmlFree (title);
+		xmlFree (link);
+	}
+}
+
 gboolean
-yelp_scrollkeeper_init (GNode *tree)
+yelp_scrollkeeper_init (GNode *tree, GList **index)
 {
        gchar       *docpath;
        xmlDoc      *doc;
@@ -373,6 +504,9 @@ yelp_scrollkeeper_init (GNode *tree)
        seriesid_hash = g_hash_table_new_full (g_str_hash,
 					      g_str_equal,
 					      g_free, NULL);
+
+       docid_hash = g_hash_table_new_full (g_str_hash, g_str_equal, 
+					   g_free, NULL);
        
        doc = NULL;
        for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
@@ -401,6 +535,8 @@ yelp_scrollkeeper_init (GNode *tree)
 		
 		xmlFreeDoc (doc);
 	}        
+
+	ys_parse_index (index);
 
 	g_print ("Number of script calls: %d\n", calls);
         
@@ -441,7 +577,7 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 		return NULL;
 	}
 	
-	if (g_strcasecmp (doc->xmlRootNode->name, "toc")) {
+	if (g_ascii_strcasecmp (doc->xmlRootNode->name, "toc")) {
 		g_warning ("Document with wrong root node, got: '%s'",
 			   doc->xmlRootNode->name);
 	}

@@ -24,6 +24,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include "yelp-history.h"
 
 static void    yelp_history_init              (YelpHistory      *history);

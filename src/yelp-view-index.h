@@ -52,6 +52,6 @@ struct _YelpViewIndexClass {
 };
 
 GType           yelp_view_index_get_type     (void);
-GtkWidget      *yelp_view_index_new          (GtkTreeModel     *tree_model);
+GtkWidget      *yelp_view_index_new          (GList *index);
 
 #endif /* __YELP_VIEW_INDEX__ */

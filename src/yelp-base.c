@@ -39,9 +39,10 @@ typedef struct {
 } ForeachData;
 
 struct _YelpBasePriv {
-	GNode         *toc_tree;
+	GNode  *toc_tree;
 
-	GSList        *windows;
+	GList  *index;
+	GSList *windows;
 };
 
 
@@ -130,12 +131,15 @@ yelp_base_window_finalized_cb (YelpBase *base, YelpWindow *window)
 YelpBase *
 yelp_base_new (void)
 {
-        YelpBase *base;
-	gboolean  result;
+        YelpBase     *base;
+	YelpBasePriv *priv;
+	gboolean      result;
 
         base = g_object_new (YELP_TYPE_BASE, NULL);
-
-	result = yelp_scrollkeeper_init (base->priv->toc_tree);
+	priv = base->priv;
+	
+	result = yelp_scrollkeeper_init (priv->toc_tree,
+					 &priv->index);
 	result = yelp_man_init (base->priv->toc_tree);
 	result = yelp_info_init (base->priv->toc_tree);
 	
@@ -152,7 +156,7 @@ yelp_base_new_window (YelpBase *base)
 
 	priv = base->priv;
         
-        window = yelp_window_new (base->priv->toc_tree);
+        window = yelp_window_new (priv->toc_tree, priv->index);
         
 	priv->windows = g_slist_prepend (priv->windows, window);
 

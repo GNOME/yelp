@@ -93,6 +93,7 @@ static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpWindowPriv {
 	GNode          *doc_tree;
+	GList          *index;
 
 	GtkWidget      *notebook;
 
@@ -505,7 +506,7 @@ yw_create_toolbar (YelpWindow *window)
 }
 
 GtkWidget *
-yelp_window_new (GNode *doc_tree)
+yelp_window_new (GNode *doc_tree, GList *index)
 {
 	YelpWindow     *window;
 	YelpWindowPriv *priv;
@@ -514,10 +515,11 @@ yelp_window_new (GNode *doc_tree)
 	priv   = window->priv;
 
 	priv->doc_tree = doc_tree;
+	priv->index    = index;
 
  	priv->toc_view    = yelp_view_toc_new (doc_tree);
  	priv->content_view = yelp_view_content_new (doc_tree);
-	priv->index_view   = yelp_view_index_new (NULL);
+	priv->index_view   = yelp_view_index_new (index);
 
 	g_signal_connect (priv->toc_view, "url_selected",
 			  G_CALLBACK (yw_url_selected_cb),

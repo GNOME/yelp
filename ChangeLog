@@ -1,3 +1,35 @@
+2002-02-25  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c:
+	(yelp_window_new): added index-list to arguments.
+
+	* src/yelp-view-index.c: started to fix (was a copy&paste from
+	  yelp-view-content.
+
+	* src/yelp-section.h: added YELP_SECTION_INDEX to YelpSectionType.
+
+	* src/yelp-section.c: include string.h, fixes compile warning.
+
+	* src/yelp-scrollkeeper.c:
+	- Basic support for ScrollKeeper index added
+	- use g_ascii_strcasecmp instead of depricated g_strcasecmp.
+	  Thanks to the wipro guys for notifying.
+	(ys_parse_index): added/impl.
+	(ys_parse_index_file): added/impl.
+	(ys_parse_index_item): added/impl.
+	(yelp_scrollkeeper_init): 
+	- added GList **index to arguments.
+
+	* src/yelp-main.c:
+	(yelp_main_open_new_window): use g_error
+	(yelp_main_start): same.
+
+	* src/yelp-history.c: include string.h, fixes compile warning.
+
+	* src/yelp-base.c: added index-list to priv-struct
+	(yelp_base_new): call scrollkeeper_init with index-list
+	(yelp_base_new_window): send the index-list to the new window.
+
 2002-02-22  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* src/yelp-main.c: Remove unsupported #ifdef ENABLE_NLS stuff.
