@@ -26,28 +26,116 @@
 
 #include <gtk/gtkmain.h>
 #include <gtk/gtkwidget.h>
+#include <bonobo/bonobo-context.h>
+#include <bonobo/bonobo-exception.h>
+#include <bonobo/bonobo-generic-factory.h>
+#include <bonobo/bonobo-main.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "yelp-window.h"
+#include "GNOME_Yelp.h"
 #include "yelp-base.h"
 
-int
-main (int argc, char **argv)
-{
-	GnomeProgram *program;
-	YelpBase     *base;
-	GtkWidget    *window;
+#define YELP_FACTORY_OAFIID "OAFIID:GNOME_Yelp_Factory"
 
+static BonoboObject * yelp_base_factory       (BonoboGenericFactory *factory,
+					      const gchar           *iid,
+					      gpointer               closure);
+static CORBA_Object   yelp_main_activate_base (void);
+static gboolean       yelp_main_idle_start    (gpointer              data);
+
+static BonoboObject *
+yelp_base_factory (BonoboGenericFactory *factory,
+		   const gchar          *iid,
+		   gpointer              closure)
+{
+	static YelpBase *yelp_base = NULL;
+
+	if (!yelp_base) {
+		yelp_base = yelp_base_new ();
+	} else { 
+		bonobo_object_ref (BONOBO_OBJECT (yelp_base));
+	}
+
+	return BONOBO_OBJECT (yelp_base);
+}
+
+static CORBA_Object
+yelp_main_activate_base ()
+{
+	CORBA_Environment ev;
+	CORBA_Object      yelp_base;
+	
+	CORBA_exception_init (&ev);
+	
+	yelp_base = bonobo_activation_activate_from_id ("OAFIID:GNOME_Yelp",
+							0, NULL, &ev);
+	
+	if (BONOBO_EX (&ev) || yelp_base == CORBA_OBJECT_NIL) {
+		g_warning (_("Could not activate Yelp: '%s'"),
+			   bonobo_exception_get_text (&ev));
+		exit (1);
+	}
+
+	CORBA_exception_free (&ev);
+	
+	return yelp_base;
+}
+
+static void
+yelp_main_open_new_window (CORBA_Object yelp_base)
+{
+	CORBA_Environment ev;
+	
+	CORBA_exception_init (&ev);
+	
+	GNOME_Yelp_newWindow (yelp_base, &ev);
+	
+	if (BONOBO_EX (&ev)) {
+		g_warning (_("Could not open new window."));
+		exit (1);
+	}
+
+	CORBA_exception_free (&ev);
+}
+	
+static void
+yelp_main_start () 
+{
+	CORBA_Object yelp_base;
+	
+	yelp_base = yelp_main_activate_base ();
+	yelp_main_open_new_window (yelp_base);
+	
+	bonobo_object_release_unref (yelp_base, NULL);
+}
+
+static gboolean
+yelp_main_idle_start (gpointer null_data)
+{
+	CORBA_Object yelp_base;
+	
+	yelp_base = yelp_main_activate_base ();
+	yelp_main_open_new_window (yelp_base);
+	
+	return FALSE;
+}
+
+int
+main (int argc, char **argv) 
+{
+	GnomeProgram      *program;
+	CORBA_Object       factory;
+	
 #ifdef ENABLE_NLS
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 #endif 
-
 	g_thread_init (NULL);
-
+	
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE,
 				      argc, argv, 
@@ -55,20 +143,27 @@ main (int argc, char **argv)
 				      NULL);
 
 	gnome_vfs_init ();
-	
-        base = yelp_base_new ();
-	
-	window = yelp_base_new_window (base);
 
-	if (argc >= 2) {
-		yelp_window_open_uri (YELP_WINDOW (window), argv[1]);
+	factory = bonobo_activation_activate_from_id (YELP_FACTORY_OAFIID,
+						      Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, 
+						      NULL, NULL);
+	
+	if (!factory) {
+		BonoboGenericFactory   *factory;
+		/* Not started, start now */
+
+		g_print ("Creating factory\n");
+
+		factory = bonobo_generic_factory_new (YELP_FACTORY_OAFIID,
+						      yelp_base_factory,
+						      NULL);
+
+		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
+		g_idle_add (yelp_main_idle_start, NULL);
+		bonobo_main ();
+	} else {
+		yelp_main_start ();
 	}
-
-	g_signal_connect (window, "delete-event", gtk_main_quit, NULL);
-	
-	gtk_widget_show_all (window);
-
-	gtk_main ();
 
         return 0;
 }

@@ -1,0 +1,17 @@
+<oaf_info>
+  <oaf_server iid="OAFIID:GNOME_Yelp_Factory" type="exe" location="yelp-base">
+    <oaf_attribute name="repo_ids" type="stringv">
+      <item value="IDL:GNOME/GenericFactory:1.0"/>
+    </oaf_attribute>
+
+    <oaf_attribute name="name" type="string" _value="Yelp Factory"/>
+  </oaf_server>
+
+  <oaf_server iid="OAFIID:GNOME_Yelp" type="factory" location="OAFIID:GNOME_Yelp_Factory">
+    <oaf_attribute name="repo_ids" type="stringv">
+      <item value="IDL:Bonobo/Unknown:1.0"/>
+      <item value="IDL:GNOME/Yelp:1.0"/>
+    </oaf_attribute>
+    <oaf_attribute name="name" type="string" _value="Yelp"/>
+  </oaf_server>
+</oaf_info>

@@ -20,6 +20,8 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
+#include <config.h>
+
 #include "yelp-window.h"
 #include "yelp-section.h"
 #include "yelp-scrollkeeper.h"
@@ -30,39 +32,29 @@ typedef struct {
 	GtkTreeIter *parent;
 } ForeachData;
 
-static void          yelp_base_init               (YelpBase        *base);
-static void          yelp_base_class_init         (YelpBaseClass   *klass);
-static void          yelp_base_new_window_cb      (YelpWindow      *window,
-						   YelpBase        *base);
+static void           yelp_base_init          (YelpBase             *base);
+static void           yelp_base_class_init    (YelpBaseClass        *klass);
+static void           yelp_base_new_window_cb (YelpWindow           *window,
+					       YelpBase             *base);
+
+#define PARENT_TYPE BONOBO_X_OBJECT_TYPE
+static BonoboXObjectClass *parent_class;
 
 struct _YelpBasePriv {
         GtkTreeStore  *content_store;
 };
 
-GType
-yelp_base_get_type (void)
+static void
+impl_Yelp_newWindow (PortableServer_Servant   servant,
+		     CORBA_Environment       *ev)
 {
-        static GType base_type = 0;
-
-        if (!base_type) {
-                static const GTypeInfo base_info = {
-                        sizeof (YelpBaseClass),
-                        NULL,
-                        NULL,
-                        (GClassInitFunc) yelp_base_class_init,
-                        NULL,
-                        NULL,
-                        sizeof (YelpBase),
-                        0,
-                        (GInstanceInitFunc) yelp_base_init,
-                };
-                
-                base_type = g_type_register_static (G_TYPE_OBJECT,
-						    "YelpBase", 
-						    &base_info, 0);
-        }
-        
-        return base_type;
+	YelpBase  *yelp_base;
+	GtkWidget *window;
+	
+	yelp_base = YELP_BASE (bonobo_x_object (servant));
+	
+	window = yelp_base_new_window (yelp_base);
+	gtk_widget_show_all (window);
 }
 
 static void
@@ -82,6 +74,11 @@ yelp_base_init (YelpBase *base)
 static void
 yelp_base_class_init (YelpBaseClass *klass)
 {
+	POA_GNOME_Yelp__epv *epv = &klass->epv;
+	
+	parent_class = gtk_type_class (PARENT_TYPE);
+
+	epv->newWindow = impl_Yelp_newWindow;
 }
 
 static void
@@ -124,5 +121,7 @@ yelp_base_new_window (YelpBase *base)
 			  G_CALLBACK (yelp_base_new_window_cb),
 			  base);
 
-        return window;
+	return window;
 }
+
+BONOBO_X_TYPE_FUNC_FULL (YelpBase, GNOME_Yelp, PARENT_TYPE, yelp_base);

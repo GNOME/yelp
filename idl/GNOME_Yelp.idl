@@ -1,0 +1,16 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/*
+ * Interface for Yelp
+ *
+ */
+
+#include <Bonobo.idl>
+
+module GNOME {
+        interface Yelp : Bonobo::Unknown {
+                void   newWindow ();
+        };
+};
+
+
+

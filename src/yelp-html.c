@@ -355,7 +355,7 @@ GtkWidget *
 yelp_html_new (void)
 {
         YelpHtml *view;
-        
+
         d(puts(__FUNCTION__));
 
         view = g_object_new (YELP_TYPE_HTML, NULL);
@@ -363,10 +363,10 @@ yelp_html_new (void)
 	html_document_open_stream (view->priv->doc, "text/html");
 	
 	{
-		int len;
+		gint len;
 		gchar *text = N_("<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the README and TODO<br></body></html>");
 		len = strlen (_(text));
-                
+		
 		html_document_write_stream (view->priv->doc, _(text), len);
 	}
 	

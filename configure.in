@@ -14,6 +14,8 @@ AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
 
+AM_PATH_ORBIT2
+
 dnl NOTE : it appears that some systems do not like it when you use line
 dnl        continuation charactes to split CFLAGS into readable chunks
 CFLAGS="$CFLAGS -Wall -Wno-uninitialized -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith	 -Wno-sign-compare -Wsign-promo"
@@ -37,10 +39,16 @@ AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
 
 PKG_CHECK_MODULES(YELP, libgtkhtml-2.0 >= 1.99.2	\
 			gnome-vfs-2.0 >= 1.1		\
-			libgnomeui-2.0 >= 1.103.0)
+			libgnomeui-2.0 >= 1.103.0	\
+			libbonobo-2.0 >= 1.108.0)
 
 AC_SUBST(YELP_CFLAGS)
 AC_SUBST(YELP_LIBS)
+
+YELP_MODULES="libgtkhtml-2.0 gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"
+
+YELP_IDL_INCLUDES="`$PKG_CONFIG --variable=idldir libgtkhtml-2.0 gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0 bonobo-activation-2.0| sed -e 's/^/ /' -e 's/ \+$//' -e 's/ \+/ -I /g' -e 's/^ \+//'`"
+AC_SUBST(YELP_IDL_INCLUDES)
 
 AC_OUTPUT([
 Makefile

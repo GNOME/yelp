@@ -12,6 +12,7 @@ EXTRA_DIST = 				\
 	intltool-extract.in  		\
 	intltool-merge.in    		\
 	intltool-update.in		\
+	idl/GNOME_Yelp.idl		\
 	$(DESKTOP_IN_FILES)		\
 	$(DESKTOP_FILES)
 

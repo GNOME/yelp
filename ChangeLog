@@ -1,3 +1,44 @@
+2002-01-05  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c (yw_exit_cb): use bonobo_main_quit instead of
+	  gtk_main_quit. This should be moved to yelp-base instead.
+
+	* src/yelp-view-content.c:
+	(yelp_view_content_show_uri): added, not impl.
+
+	* src/yelp-main.c: 
+	- uses bonobo-activation to start Yelp and connect to an already
+	  running instance.
+	(yelp_base_factory): added. the factory-function.
+	(yelp_main_activate_base): added, gets an CORBA_Object reference
+	  to the YelpBase.
+	(yelp_main_open_new_window): added, calls GNOME_Yelp_newWindow on
+	  the CORBA_Object to open a new window.
+	(yelp_main_start): added, called if another instance is already
+	  running. 
+	(yelp_main_idle_start): called from an idle function if this is
+	  the first instance.
+	(main): start the factory. and call yelp_main_start or
+	  yelp_main_idle_start depending on if it's the first instance. 
+
+	* src/yelp-base.[ch]:
+	- Made a BonoboXObject instead of GObject.
+	(impl_Yelp_newWindow): added, implemented GNOME_Yelp_newWindow. 
+	(yelp_base_class_init): initialize the epv-functions.
+	
+
+	* src/Makefile.am: updated for idl and .server
+	  generation.
+
+	* src/GNOME_Yelp.server.in: added for bonobo-activation.
+
+	* idl/GNOME_Yelp.idl: Added. Yelp-interface (might be a module
+	  eventaully).
+
+	* configure.in: updated for use with bonobo.
+
+	* Makefile.am (EXTRA_DIST): added idl/GNOME_Yelp.idl
+
 2002-01-04  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-main.c (main): removed setlocale

@@ -23,7 +23,8 @@
 #ifndef __YELP_BASE_H__
 #define __YELP_BASE_H__
 
-#include <gtk/gtktreestore.h>
+#include <bonobo/bonobo-xobject.h>
+#include "GNOME_Yelp.h"
 
 typedef struct _YelpBase      YelpBase;
 typedef struct _YelpBaseClass YelpBaseClass;
@@ -38,13 +39,15 @@ typedef struct _YelpBasePriv  YelpBasePriv;
 
 
 struct _YelpBase {
-        GObject       parent;
+        BonoboXObject  parent;
         
-        YelpBasePriv *priv;
+        YelpBasePriv  *priv;
 };
 
 struct _YelpBaseClass {
-        GObjectClass  parent_class;
+        BonoboXObjectClass       parent_class;
+
+	POA_GNOME_Yelp__epv epv;
 };
 
 GType            yelp_base_get_type       (void);

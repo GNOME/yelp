@@ -56,6 +56,8 @@ GtkWidget      *yelp_view_content_new          (GtkTreeModel      *tree_model);
 
 void            yelp_view_content_show_path    (YelpViewContent   *content,
 						GtkTreePath       *path);
+void            yelp_view_content_show_uri     (YelpViewContent   *content,
+						const gchar       *uri);
 
 #if 0
 gboolean        yelp_view_content_set_root     (YelpViewContent   *content,

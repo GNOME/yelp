@@ -26,7 +26,8 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
-#include <libgtkhtml/gtkhtml.h>
+#include <bonobo/bonobo-main.h>
+/* #include <libgtkhtml/gtkhtml.h> */
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-i18n.h>
@@ -357,7 +358,8 @@ yw_close_window_cb (gpointer   data,
 static void
 yw_exit_cb (gpointer data, guint section, GtkWidget *widget)
 {
-	gtk_main_quit ();
+/* 	gtk_main_quit (); */
+	bonobo_main_quit ();
 }
 
 static void

@@ -211,4 +211,9 @@ yelp_view_content_show_path (YelpViewContent *content,
 				  path, FALSE);
 }
 
+void
+yelp_view_content_show_uri (YelpViewContent *content, const gchar *uri)
+{
+	/* FIX: Find the path in the tree */
+}
 
