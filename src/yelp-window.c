@@ -79,6 +79,7 @@ static gboolean    window_handle_pager_uri        (YelpWindow        *window,
 						   YelpURI           *uri);
 static gboolean    window_handle_html_uri         (YelpWindow        *window,
 						   YelpURI           *uri);
+static void        window_disconnect              (YelpWindow        *window);
 
 static void        pager_page_cb                  (YelpPager         *pager,
 						   gchar             *page_id,
@@ -584,9 +585,10 @@ window_handle_uri (YelpWindow *window,
 		     YELP_ERROR,
 		     YELP_ERROR_URI_NOT_EXIST,
 		     _("The document '%s' does not exist"), str_uri);
-	g_free (str_uri);
-
 	window_error (window, error);
+
+	g_free (str_uri);
+	g_error_free (error);
 
 	return FALSE;
     }
@@ -605,6 +607,7 @@ window_handle_uri (YelpWindow *window,
 		     _("DocBook SGML documents are no longer supported."));
 
 	window_error (window, error);
+	g_error_free (error);
 	return FALSE;
     case YELP_URI_TYPE_HTML:
 	handled = window_handle_html_uri (window, uri);
@@ -641,22 +644,7 @@ window_handle_pager_uri (YelpWindow *window,
 
     priv = window->priv;
 
-    // Disconnect signal handlers
-    if (priv->page_handler) {
-	g_signal_handler_disconnect (priv->pager,
-				     priv->page_handler);
-	priv->page_handler = 0;
-    }
-    if (priv->error_handler) {
-	g_signal_handler_disconnect (priv->pager,
-				     priv->error_handler);
-	priv->error_handler = 0;
-    }
-    if (priv->finish_handler) {
-	g_signal_handler_disconnect (priv->pager,
-				     priv->finish_handler);
-	priv->finish_handler = 0;
-    }
+    window_disconnect (window);
 
     // Grab the appropriate pager from the cache
     if (yelp_uri_get_resource_type (uri) == YELP_URI_TYPE_TOC) {
@@ -692,8 +680,9 @@ window_handle_pager_uri (YelpWindow *window,
 		     YELP_ERROR,
 		     YELP_ERROR_FAILED_OPEN,
 		     _("The document '%s' could not be opened"), str_uri);
-	g_free (str_uri);
 	window_error (window, error);
+	g_free (str_uri);
+	g_error_free (error);
     }
 
     g_object_ref (pager);
@@ -775,9 +764,12 @@ window_handle_pager_uri (YelpWindow *window,
 			 YELP_ERROR,
 			 YELP_ERROR_FAILED_OPEN,
 			 _("The document '%s' could not be opened"), str_uri);
-	    g_free (str_uri);
 
 	    window_error (window, error);
+
+	    g_free (str_uri);
+	    g_error_free (error);
+
 	    return FALSE;
 	}
 
@@ -806,6 +798,29 @@ window_handle_html_uri (YelpWindow    *window,
 }
 
 static void
+window_disconnect (YelpWindow *window)
+{
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    YelpWindowPriv *priv = window->priv;
+
+    if (priv->page_handler) {
+	g_signal_handler_disconnect (priv->pager,
+				     priv->page_handler);
+	priv->page_handler = 0;
+    }
+    if (priv->error_handler) {
+	g_signal_handler_disconnect (priv->pager,
+				     priv->error_handler);
+	priv->error_handler = 0;
+    }
+    if (priv->finish_handler) {
+	g_signal_handler_disconnect (priv->pager,
+				     priv->finish_handler);
+	priv->finish_handler = 0;
+    }
+}
+
+static void
 pager_page_cb (YelpPager *pager,
 	       gchar     *page_id,
 	       gpointer   user_data)
@@ -817,22 +832,7 @@ pager_page_cb (YelpPager *pager,
     uri  = yelp_window_get_current_uri (window);
 
     if (yelp_pager_uri_is_page (pager, page_id, uri)) {
-	if (window->priv->page_handler) {
-	    g_signal_handler_disconnect (window->priv->pager,
-					 window->priv->page_handler);
-	    window->priv->page_handler = 0;
-	}
-	if (window->priv->error_handler) {
-	    g_signal_handler_disconnect (window->priv->pager,
-					 window->priv->error_handler);
-	    window->priv->error_handler = 0;
-	}
-	if (window->priv->finish_handler) {
-	    g_signal_handler_disconnect (window->priv->pager,
-					 window->priv->finish_handler);
-	    window->priv->finish_handler = 0;
-	}
-
+	window_disconnect (window);
 	page = (YelpPage *) yelp_pager_get_page (pager, page_id);
 
 	yelp_html_clear (window->priv->html_view);
@@ -851,7 +851,13 @@ static void
 pager_error_cb (YelpPager   *pager,
 		gpointer     user_data)
 {
-    // FIXME
+    YelpWindow *window = YELP_WINDOW (user_data);
+    GError *error = yelp_pager_get_error (pager);
+
+    window_disconnect (window);
+    window_error (window, error);
+
+    g_error_free (error);
 }
 
 static void
@@ -866,28 +872,17 @@ pager_finish_cb (YelpPager   *pager,
     uri     = yelp_window_get_current_uri (window);
     str_uri = yelp_uri_to_string (uri);
 
-    if (window->priv->page_handler) {
-	g_signal_handler_disconnect (window->priv->pager,
-				     window->priv->page_handler);
-	window->priv->page_handler = 0;
-    }
-    if (window->priv->error_handler) {
-	g_signal_handler_disconnect (window->priv->pager,
-				     window->priv->error_handler);
-	window->priv->error_handler = 0;
-    }
-    if (window->priv->finish_handler) {
-	g_signal_handler_disconnect (window->priv->pager,
-				     window->priv->finish_handler);
-	window->priv->finish_handler = 0;
-    }
+    window_disconnect (window);
 
     g_set_error (&error,
 		 YELP_ERROR,
 		 YELP_ERROR_FAILED_OPEN,
 		 _("The document '%s' could not be opened"), str_uri);
-    g_free (str_uri);
+
     window_error (window, error);
+
+    g_free (str_uri);
+    g_error_free (error);
 }
 
 static void
