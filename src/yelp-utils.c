@@ -36,20 +36,20 @@
 
 #define d(x)
 
-GHashTable *document_info_table;
+GHashTable *doc_info_table;
 
-static gchar *           convert_ghelp_uri    (gchar   *uri);
-static gchar *           convert_man_uri      (gchar   *uri);
-static gchar *           convert_info_uri     (gchar   *uri);
-static YelpDocumentType  get_document_type    (gchar   *uri);
+static gchar *      convert_ghelp_uri  (gchar   *uri);
+static gchar *      convert_man_uri    (gchar   *uri);
+static gchar *      convert_info_uri   (gchar   *uri);
+static YelpDocType  get_doc_type       (gchar   *uri);
 
 
-YelpDocumentInfo *
-yelp_document_info_new (gchar *uri)
+YelpDocInfo *
+yelp_doc_info_new (gchar *uri)
 {
-    YelpDocumentInfo *doc;
-    gchar            *doc_uri = NULL;
-    YelpDocumentType  doc_type;
+    YelpDocInfo *doc;
+    gchar       *doc_uri = NULL;
+    YelpDocType  doc_type;
     gchar *cur;
 
     g_return_val_if_fail (uri != NULL, NULL);
@@ -59,65 +59,68 @@ yelp_document_info_new (gchar *uri)
 	    doc_uri = g_strndup (uri, cur - uri);
 	else
 	    doc_uri = g_strdup (uri);
-	doc_type = get_document_type (doc_uri);
+	doc_type = get_doc_type (doc_uri);
     }
     if (!strncmp (uri, "ghelp:", 6)) {
 	doc_uri  = convert_ghelp_uri (uri);
 	if (doc_uri)
-	    doc_type = get_document_type (doc_uri);
+	    doc_type = get_doc_type (doc_uri);
     }
     else if (!strncmp (uri, "man:", 4)) {
 	doc_uri  = convert_man_uri (uri);
-	doc_type = YELP_TYPE_MAN;
+	doc_type = YELP_DOC_TYPE_MAN;
     }
     else if (!strncmp (uri, "info:", 5)) {
 	doc_uri  = convert_info_uri (uri);
-	doc_type = YELP_TYPE_INFO;
+	doc_type = YELP_DOC_TYPE_INFO;
     }
     else if (!strncmp (uri, "x-yelp-toc:", 11)) {
+	doc_uri  = g_strdup ("x-yelp-toc:");
+	doc_type = YELP_DOC_TYPE_TOC;
     }
 
     if (doc_uri) {
-	doc = g_new0 (YelpDocumentInfo, 1);
+	doc = g_new0 (YelpDocInfo, 1);
 	doc->uri  = doc_uri;
 	doc->type = doc_type;
+	doc->ref_count = 1;
 	return doc;
     } else {
 	return NULL;
     }
 }
 
-YelpDocumentInfo *
-yelp_document_info_get (gchar *uri)
+YelpDocInfo *
+yelp_doc_info_get (gchar *uri)
 {
-    YelpDocumentInfo *doc;
+    YelpDocInfo *doc;
 
-    if (!document_info_table)
-	document_info_table =
+    if (!doc_info_table)
+	doc_info_table =
 	    g_hash_table_new_full (g_str_hash,
 				   g_str_equal,
 				   g_free,
-				   (GDestroyNotify) yelp_document_info_free);
+				   (GDestroyNotify) yelp_doc_info_unref);
 
-    doc = (YelpDocumentInfo *) g_hash_table_lookup (document_info_table, uri);
+    doc = (YelpDocInfo *) g_hash_table_lookup (doc_info_table, uri);
 
     if (!doc) {
-	doc = yelp_document_info_new (uri);
-	if (doc && doc->type != YELP_TYPE_EXTERNAL) {
-	    YelpDocumentInfo *old_doc;
+	doc = yelp_doc_info_new (uri);
+	if (doc && doc->type != YELP_DOC_TYPE_EXTERNAL) {
+	    YelpDocInfo *old_doc;
 
-	    if ((old_doc = g_hash_table_lookup (document_info_table, doc->uri))) {
-		yelp_document_info_free (doc);
+	    if ((old_doc = g_hash_table_lookup (doc_info_table, doc->uri))) {
+		yelp_doc_info_free (doc);
 		doc = old_doc;
-		g_hash_table_insert (document_info_table,
+		g_hash_table_insert (doc_info_table,
 				     g_strdup (uri),
 				     doc);
 	    } else {
-		g_hash_table_insert (document_info_table,
+		g_hash_table_insert (doc_info_table,
 				     g_strdup (uri),
 				     doc);
 		if (!g_str_equal (uri, doc->uri))
-		    g_hash_table_insert (document_info_table,
+		    g_hash_table_insert (doc_info_table,
 					 g_strdup (doc->uri),
 					 doc);
 	    }
@@ -127,18 +130,54 @@ yelp_document_info_get (gchar *uri)
     return doc;
 }
 
+YelpDocInfo *
+yelp_doc_info_ref (YelpDocInfo *doc)
+{
+    g_return_val_if_fail (doc != NULL, NULL);
+    (doc->ref_count)++;
+    return doc;
+}
+
 void
-yelp_document_info_free (YelpDocumentInfo *doc)
+yelp_doc_info_unref (YelpDocInfo *doc)
+{
+    g_return_if_fail (doc != NULL);
+
+    if (--(doc->ref_count) < 1)
+	yelp_doc_info_free (doc);
+}
+
+void
+yelp_doc_info_free (YelpDocInfo *doc)
 {
     if (!doc)
 	return;
+
+    //    g_object_unref (doc->pager);
 
     g_free (doc->uri);
     g_free (doc);
 }
 
 gchar *
-yelp_document_info_get_filename (YelpDocumentInfo *doc) {
+yelp_doc_info_get_uri (YelpDocInfo *doc,
+		       gchar       *frag_id)
+{
+    g_return_val_if_fail (doc != NULL, NULL);
+
+    if (!frag_id)
+	return g_strdup (doc->uri);
+
+    switch (doc->type) {
+    case YELP_DOC_TYPE_TOC:
+	return g_strconcat (doc->uri, frag_id, NULL);
+    default:
+	return g_strconcat (doc->uri, "#", frag_id, NULL);
+    }
+}
+
+gchar *
+yelp_doc_info_get_filename (YelpDocInfo *doc) {
     gchar *path = NULL;
 
     g_return_val_if_fail (doc != NULL, NULL);
@@ -149,8 +188,22 @@ yelp_document_info_get_filename (YelpDocumentInfo *doc) {
     return path;
 }
 
+gboolean
+yelp_doc_info_equal (YelpDocInfo *doc1, YelpDocInfo *doc2)
+{
+    gboolean equal = TRUE;
+
+    g_return_val_if_fail (doc1 != NULL, FALSE);
+    g_return_val_if_fail (doc2 != NULL, FALSE);
+
+    if (!g_str_equal (doc1->uri, doc2->uri))
+	equal = FALSE;
+
+    return equal;
+}
+
 void
-yelp_document_page_free (YelpDocumentPage *page)
+yelp_doc_page_free (YelpDocPage *page)
 {
     if (!page)
 	return;
@@ -166,28 +219,73 @@ yelp_document_page_free (YelpDocumentPage *page)
     g_free (page);
 }
 
-static YelpDocumentType
-get_document_type (gchar *uri)
+gchar *
+yelp_uri_get_fragment (gchar *uri)
+{
+    gchar *cur;
+    gchar *frag_id = NULL;
+
+    g_return_val_if_fail (uri != NULL, NULL);
+
+    if (g_str_has_prefix (uri, "ghelp:"))
+	if ((cur = strchr (uri, '?')))
+	    if (*(++cur) != '\0')
+		frag_id = g_strdup (cur);
+
+    if (g_str_has_prefix (uri, "x-yelp-toc:"))
+	if ((cur = strchr (uri, ':')))
+	    if (*(++cur) != '\0')
+		frag_id = g_strdup (cur);
+
+    if ((cur = strchr (uri, '#')))
+	if (*(++cur) != '\0') {
+	    if (frag_id)
+		g_free (frag_id);
+	    frag_id = g_strdup (cur);
+	}
+
+    return frag_id;
+}
+
+gchar *
+yelp_uri_get_relative (gchar *base, gchar *ref)
+{
+    GnomeVFSURI *vfs_base, *vfs_uri;
+    gchar *uri;
+
+    vfs_base = gnome_vfs_uri_new (base);
+    vfs_uri  = gnome_vfs_uri_resolve_relative (vfs_base, ref);
+
+    uri = gnome_vfs_uri_to_string (vfs_uri, GNOME_VFS_URI_HIDE_NONE);
+
+    gnome_vfs_uri_unref (vfs_base);
+    gnome_vfs_uri_unref (vfs_uri);
+
+    return uri;
+}
+
+static YelpDocType
+get_doc_type (gchar *uri)
 {
     gchar *mime_type;
-    YelpDocumentType type;
+    YelpDocType type;
 
-    g_return_val_if_fail (uri != NULL, YELP_TYPE_ERROR);
+    g_return_val_if_fail (uri != NULL, YELP_DOC_TYPE_ERROR);
 
     if (strncmp (uri, "file:", 5))
-	return YELP_TYPE_EXTERNAL;
+	return YELP_DOC_TYPE_EXTERNAL;
 
     mime_type = gnome_vfs_get_mime_type (uri);
-    g_return_val_if_fail (mime_type != NULL, YELP_TYPE_ERROR);
+    g_return_val_if_fail (mime_type != NULL, YELP_DOC_TYPE_ERROR);
 
     if (g_str_equal (mime_type, "text/xml"))
-	type = YELP_TYPE_DOCBOOK_XML;
+	type = YELP_DOC_TYPE_DOCBOOK_XML;
     else if (g_str_equal (mime_type, "text/sgml"))
-	type = YELP_TYPE_DOCBOOK_SGML;
+	type = YELP_DOC_TYPE_DOCBOOK_SGML;
     else if (g_str_equal (mime_type, "text/html"))
-	type = YELP_TYPE_HTML;
+	type = YELP_DOC_TYPE_HTML;
     else
-	type = YELP_TYPE_EXTERNAL;
+	type = YELP_DOC_TYPE_EXTERNAL;
 
     g_free (mime_type);
     return type;
@@ -291,7 +389,7 @@ convert_ghelp_uri (gchar *uri)
 		goto done;
 	}
 
-	/* Look in C locale since that exists for almost all documents */
+	/* Look in C locale since that exists for almost all docs */
 	doc_uri = locate_file_lang (location, doc_name, "C");
 	if (doc_uri)
 	    goto done;

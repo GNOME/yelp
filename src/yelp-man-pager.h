@@ -49,6 +49,6 @@ struct _YelpManPagerClass {
 };
 
 GType           yelp_man_pager_get_type     (void);
-YelpPager *     yelp_man_pager_new          (YelpURI *uri);
+YelpPager *     yelp_man_pager_new          (YelpDocInfo *doc_info);
 
 #endif /* __YELP_MAN_PAGER_H__ */

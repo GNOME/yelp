@@ -29,30 +29,32 @@
 
 #include "yelp-pager.h"
 #include "yelp-marshal.h"
-#include "yelp-uri.h"
 
 #include <string.h>
 
+#ifdef YELP_DEBUG
+#define d(x) x
+#else
 #define d(x)
+#endif
 
 struct _YelpPagerPriv {
-    YelpURI        *uri;
+    YelpDocInfo     *doc_info;
+    YelpPagerState   state;
 
-    YelpPagerState  state;
+    GError          *error;
 
-    GError         *error;
-
-    GHashTable     *page_hash;
+    GHashTable      *page_hash;
 };
 
 enum {
     PROP_0,
-    PROP_URI
+    PROP_DOCINFO
 };
 
 enum {
-    START,
-    CONTENTS,
+    PARSE,
+    RUN,
     PAGE,
     FINISH,
     CANCEL,
@@ -113,22 +115,22 @@ pager_class_init (YelpPagerClass *klass)
 
     g_object_class_install_property
 	(object_class,
-	 PROP_URI,
-	 g_param_spec_pointer ("uri",
-			       _("Document URI"),
-			       _("The URI of the document to be processed"),
+	 PROP_DOCINFO,
+	 g_param_spec_pointer ("document-info",
+			       _("Document Information"),
+			       _("The YelpDocInfo struct of the document"),
 			       G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 
-    signals[START] = g_signal_new
-	("start",
+    signals[PARSE] = g_signal_new
+	("parse",
 	 G_TYPE_FROM_CLASS (klass),
 	 G_SIGNAL_RUN_FIRST, 0,
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
 
-    signals[CONTENTS] = g_signal_new
-	("contents",
+    signals[RUN] = g_signal_new
+	("start",
 	 G_TYPE_FROM_CLASS (klass),
 	 G_SIGNAL_RUN_FIRST, 0,
 	 NULL, NULL,
@@ -147,8 +149,7 @@ pager_class_init (YelpPagerClass *klass)
     signals[FINISH] = g_signal_new
 	("finish",
 	 G_TYPE_FROM_CLASS (klass),
-	 G_SIGNAL_RUN_LAST,
-	 G_STRUCT_OFFSET (YelpPagerClass, finish),
+	 G_SIGNAL_RUN_FIRST, G_STRUCT_OFFSET (YelpPagerClass, finish),
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
@@ -156,8 +157,7 @@ pager_class_init (YelpPagerClass *klass)
     signals[CANCEL] = g_signal_new
 	("cancel",
 	 G_TYPE_FROM_CLASS (klass),
-	 G_SIGNAL_RUN_LAST,
-	 G_STRUCT_OFFSET (YelpPagerClass, cancel),
+	 G_SIGNAL_RUN_FIRST, G_STRUCT_OFFSET (YelpPagerClass, cancel),
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
@@ -165,8 +165,7 @@ pager_class_init (YelpPagerClass *klass)
     signals[ERROR] = g_signal_new
 	("error",
 	 G_TYPE_FROM_CLASS (klass),
-	 G_SIGNAL_RUN_LAST,
-	 G_STRUCT_OFFSET (YelpPagerClass, error),
+	 G_SIGNAL_RUN_FIRST, G_STRUCT_OFFSET (YelpPagerClass, error),
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
@@ -180,11 +179,11 @@ pager_init (YelpPager *pager)
     priv = g_new0 (YelpPagerPriv, 1);
     pager->priv = priv;
 
-    pager->priv->uri   = NULL;
-    pager->priv->state = 0;
+    priv->doc_info = NULL;
+    priv->state = YELP_PAGER_STATE_NEW;
 
-    pager->priv->error = NULL;
-    pager->priv->page_hash =
+    priv->error = NULL;
+    priv->page_hash =
 	g_hash_table_new_full (g_str_hash,
 			       g_str_equal,
 			       g_free,
@@ -200,15 +199,12 @@ pager_set_property (GObject      *object,
     YelpPager *pager = YELP_PAGER (object);
 
     switch (prop_id) {
-    case PROP_URI:
-	if (pager->priv->uri)
-	    yelp_uri_unref (pager->priv->uri);
-
-	pager->priv->uri = (YelpURI *) g_value_get_pointer (value);
-
-	if (pager->priv->uri)
-	    yelp_uri_ref (pager->priv->uri);
-
+    case PROP_DOCINFO:
+	if (pager->priv->doc_info)
+	    yelp_doc_info_unref (pager->priv->doc_info);
+	pager->priv->doc_info =
+	    (YelpDocInfo *) g_value_get_pointer (value);
+	yelp_doc_info_ref (pager->priv->doc_info);
 	break;
     default:
 	break;
@@ -224,8 +220,8 @@ pager_get_property (GObject      *object,
     YelpPager *pager = YELP_PAGER (object);
 
     switch (prop_id) {
-    case PROP_URI:
-	g_value_set_pointer (value, pager->priv->uri);
+    case PROP_DOCINFO:
+	g_value_set_pointer (value, pager->priv->doc_info);
 	break;
     default:
 	break;
@@ -237,7 +233,8 @@ pager_dispose (GObject *object)
 {
     YelpPager *pager = YELP_PAGER (object);
 
-    yelp_uri_unref (pager->priv->uri);
+    if (pager->priv->doc_info)
+	yelp_doc_info_unref (pager->priv->doc_info);
 
     if (pager->priv->error)
 	g_error_free (pager->priv->error);
@@ -254,30 +251,20 @@ pager_dispose (GObject *object)
 gboolean
 yelp_pager_start (YelpPager *pager)
 {
-    YelpPagerState state;
-
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_PAGER (pager), FALSE);
+    g_return_val_if_fail (pager->priv->state == YELP_PAGER_STATE_NEW ||
+			  pager->priv->state == YELP_PAGER_STATE_INVALID,
+			  FALSE);
 
-    state = yelp_pager_get_state (pager);
-    if (!(state & YELP_PAGER_STATE_STARTED) ||
-	 (state & YELP_PAGER_STATE_STOPPED)) {
+    d (printf ("yelp_pager_start\n"));
+    d (printf ("  uri = \"%s\"\n", pager->priv->doc_info->uri));
 
-	yelp_pager_clear_state (pager);
-	yelp_pager_set_state   (pager, YELP_PAGER_STATE_STARTED);
+    pager->priv->state = YELP_PAGER_STATE_STARTED;
+    gtk_idle_add ((GtkFunction) (YELP_PAGER_GET_CLASS (pager)->process),
+		  pager);
 
-	g_object_ref (pager);
-	g_signal_emit (pager, signals[START], 0);
-
-	gtk_idle_add ((GtkFunction) (YELP_PAGER_GET_CLASS (pager)->process),
-		      pager);
-
-	g_object_unref (pager);
-	return TRUE;
-    } else {
-	g_object_unref (pager);
-	return FALSE;
-    }
+    return TRUE;
 }
 
 void
@@ -286,18 +273,19 @@ yelp_pager_cancel (YelpPager *pager)
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_STOPPED);
+    d (printf ("yelp_pager_cancel\n"));
 
-    YELP_PAGER_GET_CLASS (pager)->cancel (pager);
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
+
+    g_signal_emit (pager, signals[CANCEL], 0);
 }
 
-YelpURI *
-yelp_pager_get_uri (YelpPager *pager)
+YelpDocInfo *
+yelp_pager_get_doc_info (YelpPager *pager)
 {
-    g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
-    return pager->priv->uri;
+    return pager->priv->doc_info;
 }
 
 YelpPagerState
@@ -310,21 +298,12 @@ yelp_pager_get_state (YelpPager *pager)
 }
 
 void
-yelp_pager_clear_state (YelpPager *pager)
-{
-    g_return_if_fail (pager != NULL);
-    g_return_if_fail (YELP_IS_PAGER (pager));
-
-    pager->priv->state = 0;
-}
-
-void
 yelp_pager_set_state (YelpPager *pager, YelpPagerState state)
 {
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    pager->priv->state = pager->priv->state | state;
+    pager->priv->state = state;
 }
 
 GError *
@@ -346,16 +325,18 @@ yelp_pager_get_error (YelpPager *pager)
 void
 yelp_pager_error (YelpPager *pager, GError *error)
 {
+    d (printf ("yelp_pager_error\n"));
+
     if (pager->priv->error)
 	g_error_free (pager->priv->error);
     pager->priv->error = error;
 
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_STOPPED);
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
 
-    g_signal_emit_by_name (pager, "error");
+    g_signal_emit (pager, signals[ERROR], 0);
 }
 
-const GtkTreeModel *
+GtkTreeModel *
 yelp_pager_get_sections (YelpPager *pager)
 {
     g_return_val_if_fail (pager != NULL, NULL);

@@ -25,9 +25,9 @@
 gint 
 main (gint argc, gchar **argv) 
 {
-    YelpManParser     *parser;
-    YelpDocumentInfo  *doc_info;
-    xmlDocPtr          doc;
+    YelpManParser *parser;
+    YelpDocInfo   *doc_info;
+    xmlDocPtr      doc;
 
     if (argc < 2) {
 	g_error ("Usage: test-man-parser file\n");
@@ -35,12 +35,12 @@ main (gint argc, gchar **argv)
     }
 
     parser = yelp_man_parser_new ();
-    doc_info = yelp_document_info_get (argv[1]);
+    doc_info = yelp_doc_info_get (argv[1]);
     if (!doc_info) {
 	printf ("Failed to load URI: %s\n", argv[1]);
 	return -1;
     }
-    doc = yelp_man_parser_parse_document (parser, doc_info);
+    doc = yelp_man_parser_parse_doc (parser, doc_info);
 
     yelp_man_parser_free (parser);
 

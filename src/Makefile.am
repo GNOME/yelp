@@ -1,6 +1,10 @@
+# for debugging
+YELP_CFLAGS += -DYELP_DEBUG
+# -pedantic -ansi -Werror
+
 INCLUDES =								\
 	-I$(top_srcdir)							\
-	@YELP_CFLAGS@							\
+	$(YELP_CFLAGS)							\
 	$(MOZILLA_COMPONENT_CFLAGS)					\
 	-I$(MOZILLA_INCLUDE_ROOT)					\
 	-I$(MOZILLA_INCLUDE_ROOT)/dom					\
@@ -62,6 +66,7 @@ test_pager_SOURCES =						\
 	yelp-theme.c		yelp-theme.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h		\
 	yelp-uri.c		yelp-uri.h			\
+	yelp-utils.c		yelp-utils.h			\
 	yelp-marshal-main.c	test-pager.c
 
 test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)

@@ -27,7 +27,7 @@
 #include <gtk/gtkwindow.h>
 
 #include "yelp-base.h"
-#include "yelp-uri.h"
+#include "yelp-utils.h"
 
 #define YELP_TYPE_WINDOW		(yelp_window_get_type ())
 #define YELP_WINDOW(obj)		(GTK_CHECK_CAST ((obj), YELP_TYPE_WINDOW, YelpWindow))
@@ -57,8 +57,8 @@ struct _YelpWindowClass
 GType            yelp_window_get_type        (void);
 GtkWidget *      yelp_window_new             (GNode         *doc_tree,
 					      GList         *index);
-void             yelp_window_open_uri        (YelpWindow    *window,
-					      YelpURI       *uri);
-YelpURI *        yelp_window_get_current_uri (YelpWindow    *window);
+void             yelp_window_load            (YelpWindow    *window,
+					      gchar         *uri);
+YelpDocInfo *    yelp_window_get_doc_info    (YelpWindow    *window);
 
 #endif /* __YELP_WINDOW_H__ */

@@ -55,6 +55,8 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 ])
 
+AC_SUBST([YELP_CFLAGS])
+
 CFLAGS="$YELP_CFLAGS $CFLAGS"
 
 YELP_MODULES="gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"

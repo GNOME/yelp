@@ -31,12 +31,16 @@
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 
-#include "yelp-uri.h"
 #include "yelp-error.h"
 #include "yelp-theme.h"
 #include "yelp-toc-pager.h"
+#include "yelp-utils.h"
 
+#ifdef YELP_DEBUG
+#define d(x) x
+#else
 #define d(x)
+#endif
 
 typedef gboolean      (*ProcessFunction)        (YelpTocPager      *pager);
 
@@ -121,11 +125,15 @@ static void          toc_pager_class_init      (YelpTocPagerClass *klass);
 static void          toc_pager_init            (YelpTocPager      *pager);
 static void          toc_pager_dispose         (GObject           *gobject);
 
+static void          toc_pager_error           (YelpPager        *pager);
+static void          toc_pager_cancel          (YelpPager        *pager);
+static void          toc_pager_finish          (YelpPager        *pager);
+
 gboolean             toc_pager_process         (YelpPager         *pager);
 void                 toc_pager_cancel          (YelpPager         *pager);
 const gchar *        toc_pager_resolve_frag    (YelpPager         *pager,
 						const gchar       *frag_id);
-const GtkTreeModel * toc_pager_get_sections    (YelpPager         *pager);
+GtkTreeModel *       toc_pager_get_sections    (YelpPager         *pager);
 
 static gboolean      toc_process_pending       (YelpTocPager      *pager);
 
@@ -194,6 +202,10 @@ toc_pager_class_init (YelpTocPagerClass *klass)
 
     object_class->dispose = toc_pager_dispose;
 
+    pager_class->error        = toc_pager_error;
+    pager_class->cancel       = toc_pager_cancel;
+    pager_class->finish       = toc_pager_finish;
+
     pager_class->process      = toc_pager_process;
     pager_class->cancel       = toc_pager_cancel;
     pager_class->resolve_frag = toc_pager_resolve_frag;
@@ -234,12 +246,13 @@ toc_pager_dispose (GObject *object)
 void
 yelp_toc_pager_init (void)
 {
-    YelpURI *uri;
+    YelpDocInfo *doc_info;
 
-    uri = yelp_uri_new ("toc:");
+    doc_info = yelp_doc_info_get ("x-yelp-toc:");
     
-    toc_pager = (YelpTocPager *) g_object_new (YELP_TYPE_TOC_PAGER, 
-    					       "uri", uri, NULL);
+    toc_pager = (YelpTocPager *) g_object_new (YELP_TYPE_TOC_PAGER,
+					       "document-info", doc_info,
+					       NULL);
 
     yelp_pager_start (YELP_PAGER (toc_pager));
 }
@@ -254,6 +267,10 @@ void
 yelp_toc_pager_pause (YelpTocPager *pager)
 {
     g_return_if_fail (pager != NULL);
+
+    d (printf ("yelp_toc_pager_pause\n"));
+    d (printf ("  pause_caunt = %i\n", pager->priv->pause_count + 1));
+
     pager->priv->pause_count = pager->priv->pause_count + 1;
 }
 
@@ -261,8 +278,11 @@ void
 yelp_toc_pager_unpause (YelpTocPager *pager)
 {
     g_return_if_fail (pager != NULL);
-    pager->priv->pause_count = pager->priv->pause_count - 1;
 
+    d (printf ("yelp_toc_pager_unpause\n"));
+    d (printf ("  pause_caunt = %i\n", pager->priv->pause_count - 1));
+
+    pager->priv->pause_count = pager->priv->pause_count - 1;
     if (pager->priv->pause_count < 0) {
 	g_warning (_("YelpTocPager: Pause count is negative."));
 	pager->priv->pause_count = 0;
@@ -277,11 +297,41 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 
 /******************************************************************************/
 
+static void
+toc_pager_error (YelpPager *pager)
+{
+    d (printf ("toc_pager_error\n"));
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
+}
+
+static void
+toc_pager_cancel (YelpPager *pager)
+{
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+
+    d (printf ("toc_pager_cancel\n"));
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
+
+    priv->cancel = TRUE;
+}
+
+static void
+toc_pager_finish (YelpPager   *pager)
+{
+    d (printf ("toc_pager_finish\n"));
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
+}
+
 gboolean
 toc_pager_process (YelpPager *pager)
 {
     gchar  *manpath;
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+
+    d (printf ("toc_pager_process\n"));
+
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
+    g_signal_emit_by_name (pager, "parse");
 
     /* Set the man directories to be read */
     if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
@@ -305,20 +355,15 @@ toc_pager_process (YelpPager *pager)
     /* Set the info directories to be read */
 
     /* Set it running */
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_RUNNING);
+    g_signal_emit_by_name (pager, "start");
+
     priv->pending_func = (ProcessFunction) process_omf_cl;
 
     gtk_idle_add_priority (G_PRIORITY_LOW,
 			   (GtkFunction) toc_process_pending,
 			   pager);
     return FALSE;
-}
-
-void
-toc_pager_cancel (YelpPager *pager)
-{
-    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
-
-    priv->cancel = TRUE;
 }
 
 const gchar *
@@ -330,7 +375,7 @@ toc_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 	return frag_id;
 }
 
-const GtkTreeModel *
+GtkTreeModel *
 toc_pager_get_sections (YelpPager *pager)
 {
     return NULL;
@@ -378,7 +423,7 @@ toc_process_pending (YelpTocPager *pager)
     if (priv->pending_func == NULL)
 	g_signal_emit_by_name (pager, "finish");
 
-    if (priv->pending_func && (priv->pause_count < 1))
+    if ((priv->pending_func != NULL) && (priv->pause_count < 1))
 	return TRUE;
     else
 	return FALSE;
@@ -423,6 +468,7 @@ static gboolean
 process_omf_cl (YelpTocPager *pager)
 {
     gchar  *content_list;
+    gchar  *stderr;
     GList  *langs;
     gchar  *lang;
     gchar  *command;
@@ -436,7 +482,7 @@ process_omf_cl (YelpTocPager *pager)
 
     command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
 
-    if (g_spawn_command_line_sync (command, &content_list, NULL, NULL, NULL)) {
+    if (g_spawn_command_line_sync (command, &content_list, &stderr, NULL, NULL)) {
 	if (!omf_cl_sax_handler.startElement) {
 	    omf_cl_sax_handler.startElement = omf_cl_startElement;
 	    omf_cl_sax_handler.endElement   = omf_cl_endElement;
@@ -447,6 +493,8 @@ process_omf_cl (YelpTocPager *pager)
 	xmlSAXUserParseFile (&omf_cl_sax_handler, pager, content_list);
     }
 
+    g_free (content_list);
+    g_free (stderr);
     g_free (command);
     return FALSE;
 }
@@ -739,6 +787,8 @@ process_menu_pending (YelpTocPager *pager)
 
     YelpTocPagerPriv *priv = pager->priv;
 
+    d (printf ("process_menu_pending\n"));
+
     first = priv->menu_pending;
     priv->menu_pending = g_slist_remove_link (priv->menu_pending, first);
 
@@ -890,7 +940,7 @@ menu_write_menu (YelpMenu  *menu,
 	    YelpMenu   *cur_menu = (YelpMenu *) cur->_private;
 	    if (cur_menu && (cur_menu->has_submenus || cur_menu->metafiles))
 		g_string_append_printf (gstr,
-					"<li><a href='toc:%s'>%s</a></li>\n",
+					"<li><a href='x-yelp-toc:%s'>%s</a></li>\n",
 					cur_menu->id,
 					cur_menu->title);
 	}

@@ -64,7 +64,7 @@ void                 man_pager_finish       (YelpPager        *pager);
 gboolean             man_pager_process      (YelpPager        *pager);
 const gchar *        man_pager_resolve_frag (YelpPager        *pager,
 					     const gchar      *frag_id);
-const GtkTreeModel * man_pager_get_sections (YelpPager        *pager);
+GtkTreeModel *       man_pager_get_sections (YelpPager        *pager);
 
 static void        xslt_yelp_document    (xsltTransformContextPtr ctxt,
 					  xmlNodePtr              node,
@@ -140,14 +140,14 @@ man_pager_dispose (GObject *object)
 /******************************************************************************/
 
 YelpPager *
-yelp_man_pager_new (YelpURI *uri)
+yelp_man_pager_new (YelpDocInfo *doc_info)
 {
     YelpManPager *pager;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (doc_info != NULL, NULL);
 
     pager = (YelpManPager *) g_object_new (YELP_TYPE_MAN_PAGER,
-					   "uri", uri,
+					   "document-info", doc_info,
 					   NULL);
 
     return (YelpPager *) pager;
@@ -156,8 +156,8 @@ yelp_man_pager_new (YelpURI *uri)
 gboolean
 man_pager_process (YelpPager *pager)
 {
-    YelpURI       *uri = yelp_pager_get_uri (pager);
-    gchar         *path;
+    YelpDocInfo   *doc_info;
+    gchar         *filename;
     YelpManParser *parser;
     xmlDocPtr      doc;
     GError        *error;
@@ -168,23 +168,18 @@ man_pager_process (YelpPager *pager)
     const gchar  *params[40];
     gint i = 0;
 
-    g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_MAN_PAGER (pager), FALSE);
 
-    path = gnome_vfs_uri_to_string (uri->uri,
-				    GNOME_VFS_URI_HIDE_USER_NAME           |
-				    GNOME_VFS_URI_HIDE_PASSWORD            |
-				    GNOME_VFS_URI_HIDE_HOST_NAME           |
-				    GNOME_VFS_URI_HIDE_HOST_PORT           |
-				    GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD     |
-				    GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER );
+    doc_info = yelp_pager_get_doc_info (pager);
+
+    filename = yelp_doc_info_get_filename (doc_info);
 
     g_object_ref (pager);
 
     yelp_toc_pager_pause (yelp_toc_pager_get ());
 
     parser = yelp_man_parser_new ();
-    doc = yelp_man_parser_parse_file (parser, path);
+    doc = yelp_man_parser_parse_file (parser, filename);
     yelp_man_parser_free (parser);
 
     if (doc == NULL) {
@@ -193,7 +188,6 @@ man_pager_process (YelpPager *pager)
 	return FALSE;
     }
 
-    yelp_pager_set_state  (pager, YELP_PAGER_STATE_CONTENTS);
     g_signal_emit_by_name (pager, "contents");
 
     while (gtk_events_pending ())
@@ -228,6 +222,8 @@ man_pager_process (YelpPager *pager)
     xmlFreeDoc (doc);
     xsltFreeStylesheet (stylesheet);
 
+    g_free (filename);
+
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
     g_signal_emit_by_name (pager, "finish");
 
@@ -261,7 +257,7 @@ man_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
     return "index";
 }
 
-const GtkTreeModel *
+GtkTreeModel *
 man_pager_get_sections (YelpPager *pager)
 {
     return NULL;

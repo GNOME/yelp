@@ -30,7 +30,7 @@
 #include "yelp-uri.h"
 
 static void 
-print_document_info (YelpDocumentInfo *doc)
+print_doc_info (YelpDocInfo *doc)
 {
     gchar *type, *file;
 
@@ -61,7 +61,7 @@ print_document_info (YelpDocumentInfo *doc)
 	break;
     }
 
-    file = yelp_document_info_get_filename (doc);
+    file = yelp_doc_info_get_filename (doc);
 
     printf ("Address:  %i\n"
 	    "URI:      %s\n"
@@ -79,7 +79,7 @@ int
 main (int argc, char **argv)
 {
     GnomeProgram *program;
-    YelpDocumentInfo *doc;
+    YelpDocInfo  *doc;
     gint i;
 	
     if (argc < 2) {
@@ -97,9 +97,9 @@ main (int argc, char **argv)
     for (i = 1; i < argc; i++) {
 	if (i != 1)
 	    printf ("\n");
-	doc = yelp_document_info_get (argv[i]);
+	doc = yelp_doc_info_get (argv[i]);
 	if (doc)
-	    print_document_info (doc);
+	    print_doc_info (doc);
 	else
 	    printf ("Failed to load URI: %s\n", argv[i]);
     }

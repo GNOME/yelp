@@ -26,7 +26,6 @@
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkmarshal.h>
-#include "yelp-uri.h"
 
 #define YELP_TYPE_HTML        (yelp_html_get_type ())
 #define YELP_HTML(o)          (GTK_CHECK_CAST ((o), YELP_TYPE_HTML, YelpHtml))
@@ -49,7 +48,7 @@ struct _YelpHtmlClass {
 
 	/* Signals */
 	void (*uri_selected)   (YelpHtml    *view,
-				YelpURI     *uri,
+				gchar       *uri,
 				gboolean     handled);
 	void (*title_changed)  (YelpHtml    *view,
 				const gchar *new_title);
@@ -59,7 +58,7 @@ GType           yelp_html_get_type       (void);
 YelpHtml *      yelp_html_new            (void);
 
 void            yelp_html_set_base_uri   (YelpHtml    *html,
-					  YelpURI     *uri);
+					  const gchar *uri);
 void            yelp_html_clear          (YelpHtml    *html);
 void            yelp_html_write          (YelpHtml    *html,
 					  const gchar *data,

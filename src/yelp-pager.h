@@ -25,7 +25,6 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
-#include "yelp-uri.h"
 
 #define YELP_TYPE_PAGER         (yelp_pager_get_type ())
 #define YELP_PAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_PAGER, YelpPager))
@@ -39,16 +38,18 @@ typedef struct _YelpPagerClass YelpPagerClass;
 typedef struct _YelpPagerPriv  YelpPagerPriv;
 typedef struct _YelpPage       YelpPage;
 
-typedef gulong YelpPagerState;
-enum {
-    YELP_PAGER_STATE_STARTED  = 1 << 0,
-    YELP_PAGER_STATE_STOPPED  = 1 << 1,
-    YELP_PAGER_STATE_FINISHED = 1 << 3,
+typedef enum {
+    YELP_PAGER_STATE_NEW,
+    YELP_PAGER_STATE_STARTED,
+    YELP_PAGER_STATE_PARSING,
+    YELP_PAGER_STATE_RUNNING,
+    YELP_PAGER_STATE_ERROR,
+    YELP_PAGER_STATE_INVALID,
+    YELP_PAGER_STATE_FINISHED,
+    YELP_PAGER_NUM_STATES
+} YelpPagerState;
 
-    YELP_PAGER_STATE_CONTENTS = 1 << 4,
-
-    YELP_PAGER_LAST_STATE     = 1 << 4
-};
+#include "yelp-utils.h"
 
 struct _YelpPager {
     GObject        parent;
@@ -67,7 +68,7 @@ struct _YelpPagerClass {
     gboolean             (*process)      (YelpPager    *pager);
     const gchar *        (*resolve_frag) (YelpPager    *pager,
 					  const gchar  *frag_id);
-    const GtkTreeModel * (*get_sections) (YelpPager *pager);
+    GtkTreeModel *       (*get_sections) (YelpPager *pager);
 };
 
 struct _YelpPage {
@@ -85,10 +86,9 @@ GType                yelp_pager_get_type     (void);
 gboolean             yelp_pager_start        (YelpPager      *pager);
 void                 yelp_pager_cancel       (YelpPager      *pager);
 
-YelpURI *            yelp_pager_get_uri      (YelpPager      *pager);
+YelpDocInfo *        yelp_pager_get_doc_info (YelpPager      *pager);
 
 YelpPagerState       yelp_pager_get_state    (YelpPager      *pager);
-void                 yelp_pager_clear_state  (YelpPager      *pager);
 void                 yelp_pager_set_state    (YelpPager      *pager,
 					      YelpPagerState  state);
 
@@ -96,7 +96,7 @@ GError *             yelp_pager_get_error    (YelpPager      *pager);
 void                 yelp_pager_error        (YelpPager      *pager,
 					      GError         *error);
 
-const GtkTreeModel * yelp_pager_get_sections       (YelpPager      *pager);
+GtkTreeModel *       yelp_pager_get_sections       (YelpPager      *pager);
 
 const gchar *        yelp_pager_resolve_frag       (YelpPager      *pager,
 						    const gchar    *frag_id);

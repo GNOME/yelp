@@ -158,7 +158,7 @@ history_free_history_list (GList *history_list)
 	GList *node;
         
 	for (node = history_list; node; node = node->next)
-		yelp_uri_unref ((YelpURI *) node->data);
+	    g_free (node->data);
 
 	g_list_free (history_list);
 }
@@ -191,7 +191,7 @@ history_maybe_emit (YelpHistory *history)
 }
 
 void
-yelp_history_goto (YelpHistory *history, YelpURI *uri)
+yelp_history_goto (YelpHistory *history, const gchar *uri)
 {
     YelpHistoryPriv *priv;
     GList           *forward_list;
@@ -202,17 +202,9 @@ yelp_history_goto (YelpHistory *history, YelpURI *uri)
     priv = history->priv;
 
     if (priv->current && priv->current->data) {
-	YelpURI *cur_uri = (YelpURI *) priv->current->data;
-	if (gnome_vfs_uri_equal(cur_uri->uri, uri->uri)) {
-	    const gchar *cur_frag, *frag;
-
-	    cur_frag = gnome_vfs_uri_get_fragment_identifier (cur_uri->uri);
-	    frag     = gnome_vfs_uri_get_fragment_identifier (uri->uri);
-
-	    if ((!cur_frag && !frag)
-		|| (cur_frag && frag && !strcmp (cur_frag, frag)))
-		return;
-	}
+	gchar *cur_uri = (gchar *) priv->current->data;
+	if (g_str_equal (cur_uri, uri))
+	    return;
     }
 
     if (yelp_history_exist_forward (history)) {
@@ -223,70 +215,69 @@ yelp_history_goto (YelpHistory *history, YelpURI *uri)
     }
 
     priv->history_list = g_list_append (priv->history_list,
-					yelp_uri_ref (uri));
+					g_strdup (uri));
 	
     priv->current = g_list_last (priv->history_list);
 	
     history_maybe_emit (history);
 }
 
-YelpURI *
+const gchar *
 yelp_history_go_forward (YelpHistory *history)
 {
-	YelpHistoryPriv *priv;
+    YelpHistoryPriv *priv;
         
-	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
+    g_return_val_if_fail (history != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
 
-	priv = history->priv;
+    priv = history->priv;
         
-	if (priv->current->next) {
-		priv->current = priv->current->next;
+    if (priv->current->next) {
+	priv->current = priv->current->next;
 
-		history_maybe_emit (history);
+	history_maybe_emit (history);
 		
-		return (YelpURI *) priv->current->data;
-	}
+	return (const gchar *) priv->current->data;
+    }
 
-	return NULL;
+    return NULL;
 }
 
-YelpURI *
+const gchar *
 yelp_history_go_back (YelpHistory *history)
 {
-	YelpHistoryPriv *priv;
+    YelpHistoryPriv *priv;
 	
-	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
+    g_return_val_if_fail (history != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
 
-	priv = history->priv;
+    priv = history->priv;
         
-	if (priv->current->prev) {
-		priv->current = priv->current->prev;
+    if (priv->current->prev) {
+	priv->current = priv->current->prev;
 
-		history_maybe_emit (history);
+	history_maybe_emit (history);
 
-		return (YelpURI *) priv->current->data;
-	}
+	return (const gchar *) priv->current->data;
+    }
         
-	return NULL;
+    return NULL;
 }
 
-YelpURI *
+const gchar *
 yelp_history_get_current (YelpHistory *history)
 {
-	YelpHistoryPriv *priv;
+    YelpHistoryPriv *priv;
 	
-	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
+    g_return_val_if_fail (history != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
 
-	priv = history->priv;
+    priv = history->priv;
 	
-	if (!priv->current) {
-		return NULL;
-	}
+    if (!priv->current)
+	return NULL;
 
-	return (YelpURI *) priv->current->data;
+    return (const gchar *) priv->current->data;
 }
 
 gboolean

@@ -31,9 +31,10 @@
 #include "yelp-man-pager.h"
 #include "yelp-theme.h"
 #include "yelp-toc-pager.h"
-#include "yelp-uri.h"
+#include "yelp-utils.h"
 
-static void    pager_contents_cb     (YelpPager    *pager);
+static void    pager_parse_cb        (YelpPager    *pager);
+static void    pager_start_cb        (YelpPager    *pager);
 static void    pager_page_cb         (YelpPager    *pager,
 				      gchar        *page_id);
 static void    pager_finish_cb       (YelpPager    *pager);
@@ -43,10 +44,11 @@ static void    pager_error_cb        (YelpPager    *pager);
 gint 
 main (gint argc, gchar **argv) 
 {
-    YelpURI   *uri;
-    YelpPager *pager;
+    YelpDocInfo *doc_info;
+    YelpPager   *pager;
 
     if (argc < 2) {
+	g_error ("Usage: test-pager file\n");
 	return 1;
     }
 
@@ -54,25 +56,30 @@ main (gint argc, gchar **argv)
 			LIBGNOMEUI_MODULE, argc, argv,
 			GNOME_PROGRAM_STANDARD_PROPERTIES,
 			NULL);
-    gnome_vfs_init ();
     yelp_toc_pager_init ();
     yelp_theme_init ();
 
-    uri = yelp_uri_new (argv[1]);
+    doc_info = yelp_doc_info_get (argv[1]);
 
-    switch (yelp_uri_get_resource_type (uri)) {
-    case YELP_URI_TYPE_DOCBOOK_XML:
-	pager = yelp_db_pager_new (uri);
+    if (!doc_info) {
+	printf ("Failed to load URI: %s\n", argv[1]);
+	return -1;
+    }
+
+    switch (doc_info->type) {
+    case YELP_TYPE_DOCBOOK_XML:
+	pager = yelp_db_pager_new (doc_info);
 	break;
-    case YELP_URI_TYPE_MAN:
-	pager = yelp_man_pager_new (uri);
+    case YELP_TYPE_MAN:
+	pager = yelp_man_pager_new (doc_info);
 	break;
     default:
 	printf ("No pager type exists for this URI.\n");
 	return 1;
     }
 
-    g_signal_connect (pager, "contents", G_CALLBACK (pager_contents_cb), NULL);
+    g_signal_connect (pager, "parse",    G_CALLBACK (pager_parse_cb), NULL);
+    g_signal_connect (pager, "start",    G_CALLBACK (pager_start_cb), NULL);
     g_signal_connect (pager, "page",     G_CALLBACK (pager_page_cb), NULL);
     g_signal_connect (pager, "finish",   G_CALLBACK (pager_finish_cb), NULL);
     g_signal_connect (pager, "cancel",   G_CALLBACK (pager_cancel_cb), NULL);
@@ -86,9 +93,15 @@ main (gint argc, gchar **argv)
 }
 
 static void
-pager_contents_cb (YelpPager    *pager)
+pager_parse_cb (YelpPager    *pager)
 {
-    printf ("pager_contents_cb\n");
+    printf ("pager_parse_cb\n");
+}
+
+static void
+pager_start_cb (YelpPager    *pager)
+{
+    printf ("pager_start_cb\n");
 }
 
 static void

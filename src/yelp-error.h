@@ -26,12 +26,12 @@
 #define YELP_ERROR yelp_error_quark ()
 
 typedef enum {
-	YELP_ERROR_NO_DOC,        // Selected document not found
-	YELP_ERROR_NO_PAGE,       // Selected page not found
-	YELP_ERROR_NO_TOC,        // Could not read the TOC
-	YELP_ERROR_NO_SGML,       // SGML is no longer supported
-	YELP_ERROR_IO,            // Error in IO
-	YELP_ERROR_PROC           // Error processing the document
+	YELP_ERROR_NO_DOC,        /* Selected document not found   */
+	YELP_ERROR_NO_PAGE,       /* Selected page not found       */
+	YELP_ERROR_NO_TOC,        /* Could not read the TOC        */
+	YELP_ERROR_NO_SGML,       /* SGML is no longer supported   */
+	YELP_ERROR_IO,            /* Error in IO                   */
+	YELP_ERROR_PROC           /* Error processing the document */
 } YelpError;
 
 GQuark   yelp_error_quark     (void) G_GNUC_CONST;

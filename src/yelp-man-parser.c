@@ -134,17 +134,17 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 }
 
 xmlDocPtr
-yelp_man_parser_parse_document (YelpManParser    *parser,
-				YelpDocumentInfo *doc_info)
+yelp_man_parser_parse_doc (YelpManParser *parser,
+			   YelpDocInfo   *doc_info)
 {
     gchar     *file;
     xmlDocPtr  doc;
 
     g_return_val_if_fail (parser != NULL, NULL);
     g_return_val_if_fail (doc != NULL, NULL);
-    g_return_val_if_fail (doc->type != YELP_TYPE_MAN, NULL);
+    g_return_val_if_fail (doc->type != YELP_DOC_TYPE_MAN, NULL);
 
-    file = yelp_document_info_get_filename (doc_info);
+    file = yelp_doc_info_get_filename (doc_info);
 
     if (!file)
 	return NULL;

@@ -30,11 +30,11 @@
 
 typedef struct _YelpManParser YelpManParser;
 
-YelpManParser *     yelp_man_parser_new            (void);
-xmlDocPtr           yelp_man_parser_parse_file     (YelpManParser    *parser,
-						    gchar            *file);
-xmlDocPtr           yelp_man_parser_parse_document (YelpManParser    *parser,
-						    YelpDocumentInfo *doc);
-void                yelp_man_parser_free           (YelpManParser    *parser);
+YelpManParser *     yelp_man_parser_new         (void);
+xmlDocPtr           yelp_man_parser_parse_file  (YelpManParser   *parser,
+						 gchar           *file);
+xmlDocPtr           yelp_man_parser_parse_doc   (YelpManParser   *parser,
+						 YelpDocInfo     *doc);
+void                yelp_man_parser_free        (YelpManParser   *parser);
 
 #endif /* __YELP_MAN_PARSER_H__ */

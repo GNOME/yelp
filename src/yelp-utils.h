@@ -23,28 +23,34 @@
 #ifndef __YELP_UTILS_H__
 #define __YELP_UTILS_H__
 
-typedef struct _YelpDocumentInfo YelpDocumentInfo;
-typedef struct _YelpDocumentPage YelpDocumentPage;
+typedef struct _YelpDocInfo YelpDocInfo;
+typedef struct _YelpDocPage YelpDocPage;
 
 typedef enum {
-    YELP_TYPE_ERROR = 0,
-    YELP_TYPE_DOCBOOK_XML,
-    YELP_TYPE_DOCBOOK_SGML,
-    YELP_TYPE_HTML,
-    YELP_TYPE_MAN,
-    YELP_TYPE_INFO,
-    YELP_TYPE_TOC,
-    YELP_TYPE_EXTERNAL
-} YelpDocumentType;
+    YELP_DOC_TYPE_ERROR = 0,
+    YELP_DOC_TYPE_DOCBOOK_XML,
+    YELP_DOC_TYPE_DOCBOOK_SGML,
+    YELP_DOC_TYPE_HTML,
+    YELP_DOC_TYPE_MAN,
+    YELP_DOC_TYPE_INFO,
+    YELP_DOC_TYPE_TOC,
+    YELP_DOC_TYPE_EXTERNAL
+} YelpDocType;
 
-struct _YelpDocumentInfo {
+#include "yelp-pager.h"
+
+struct _YelpDocInfo {
     gchar *uri;
 
-    YelpDocumentType type;
+    YelpDocType type;
+
+    YelpPager  *pager;
+
+    gint ref_count;
 };
 
-struct _YelpDocumentPage {
-    YelpDocumentInfo *document;
+struct _YelpDocPage {
+    YelpDocInfo *document;
     gchar *page_id;
     gchar *title;
     gchar *contents;
@@ -54,13 +60,22 @@ struct _YelpDocumentPage {
     gchar *toc_id;
 };
 
-YelpDocumentInfo *   yelp_document_info_new          (gchar            *uri);
-YelpDocumentInfo *   yelp_document_info_get          (gchar            *uri);
-void                 yelp_document_info_free         (YelpDocumentInfo *doc);
+YelpDocInfo *       yelp_doc_info_new           (gchar         *uri);
+YelpDocInfo *       yelp_doc_info_get           (gchar         *uri);
+YelpDocInfo *       yelp_doc_info_ref           (YelpDocInfo   *doc);
+void                yelp_doc_info_unref         (YelpDocInfo   *doc);
+void                yelp_doc_info_free          (YelpDocInfo   *doc);
 
-gchar *              yelp_document_info_get_filename (YelpDocumentInfo *doc);
+gchar *             yelp_doc_info_get_uri       (YelpDocInfo   *doc,
+						 gchar         *frag_id);
+gchar *             yelp_doc_info_get_filename  (YelpDocInfo   *doc);
+gboolean            yelp_doc_info_equal         (YelpDocInfo   *doc1,
+						 YelpDocInfo   *doc2);
 
+void                yelp_doc_page_free          (YelpDocPage   *page);
 
-void                 yelp_document_page_free         (YelpDocumentPage *page);
+gchar *             yelp_uri_get_fragment       (gchar         *uri);
+gchar *             yelp_uri_get_relative       (gchar         *base,
+						 gchar         *ref);
 
 #endif /* __YELP_PAGER_H__ */

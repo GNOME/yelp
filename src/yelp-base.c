@@ -72,7 +72,7 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 	GNOME_Yelp_WindowList *list;
 	gint                   len, i;
 	GSList                *node;
-	YelpURI               *uri;
+	YelpDocInfo           *doc_info;
 	
 	base = YELP_BASE (bonobo_object (servant));
 	priv = base->priv;
@@ -86,13 +86,8 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 	CORBA_sequence_set_release (list, CORBA_TRUE);
 	
 	for (node = priv->windows, i = 0; node; node = node->next, i++) {
-		gchar *str_uri;
-
-		uri = yelp_window_get_current_uri (YELP_WINDOW (node->data));
-		str_uri = gnome_vfs_uri_to_string (uri->uri,
-						   GNOME_VFS_URI_HIDE_NONE);
-		list->_buffer[i] = CORBA_string_dup (str_uri);
-		g_free (str_uri);
+		doc_info = yelp_window_get_doc_info (YELP_WINDOW (node->data));
+		list->_buffer[i] = CORBA_string_dup (doc_info->uri);
 	}
 	
 	return list;
@@ -177,11 +172,10 @@ yelp_base_new (void)
 }
 
 GtkWidget *
-yelp_base_new_window (YelpBase *base, const gchar *str_uri)
+yelp_base_new_window (YelpBase *base, const gchar *uri)
 {
 	YelpBasePriv *priv;
 	gchar        *str;
-	YelpURI      *uri;
 	GtkWidget    *window;
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
@@ -203,22 +197,20 @@ yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 
 	gtk_widget_show (window);
 
-	if (str_uri && strcmp (str_uri, "")) {
+	if (uri && strcmp (uri, "")) {
 		gchar *dir = g_get_current_dir ();
 		gchar *dirs = g_strconcat ("file://", dir, "/", NULL);
-		str = gnome_vfs_uri_make_full_from_relative (dirs, str_uri);
+		str = gnome_vfs_uri_make_full_from_relative (dirs, uri);
 		g_free (dirs);
 		g_free (dir);
 	} else {
-		str = g_strdup ("toc:");
+		str = g_strdup ("x-yelp-toc:");
 	}
 
-	uri = yelp_uri_new (str);
+	yelp_window_load (YELP_WINDOW (window), str);
 	g_free (str);
-
-	yelp_window_open_uri (YELP_WINDOW (window), uri);
 
 	return window;
 }
 
-BONOBO_TYPE_FUNC_FULL (YelpBase, GNOME_Yelp, PARENT_TYPE, yelp_base);
+BONOBO_TYPE_FUNC_FULL (YelpBase, GNOME_Yelp, PARENT_TYPE, yelp_base)

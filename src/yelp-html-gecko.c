@@ -31,9 +31,15 @@
 #include "yelp-marshal.h"
 #include "yelp-gecko-utils.h"
 
+#ifdef YELP_DEBUG
+#define d(x) x
+#else
+#define d(x)
+#endif
+
 struct _YelpHtmlPriv {
     GtkWidget	*embed;
-    YelpURI	*base_uri;
+    gchar       *base_uri;
     gchar       *anchor;
 };
 
@@ -89,16 +95,15 @@ embed_title_cb (GtkMozEmbed *embed, YelpHtml *html)
 }
 
 static gint
-embed_open_uri_cb (GtkMozEmbed *embed, const char *url, YelpHtml *html)
+embed_open_uri_cb (GtkMozEmbed *embed, const gchar *uri, YelpHtml *html)
 {
-    YelpURI *uri;
-
-    g_return_val_if_fail (url != NULL, FALSE);
+    g_return_val_if_fail (uri != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_HTML (html), FALSE);
 
-    uri = yelp_uri_new (url);
+    d (printf ("embed_open_uri_cb\n"));
+    d (printf ("  uri = \"%s\"\n", uri));
+
     g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
-    yelp_uri_unref (uri);
 
     return TRUE;
 }
@@ -159,33 +164,30 @@ yelp_html_new (void)
 }
 
 void
-yelp_html_set_base_uri (YelpHtml *html, YelpURI *uri)
+yelp_html_set_base_uri (YelpHtml *html, const gchar *uri)
 {
     YelpHtmlPriv *priv;
 
     g_return_if_fail (YELP_IS_HTML (html));
 
+    d (printf ("yelp_html_set_base_uri\n"));
+    d (printf ("  uri = \"%s\"\n", uri));
+
     priv = html->priv;
 
     if (priv->base_uri)
-	yelp_uri_unref (priv->base_uri);
+	g_free (priv->base_uri);
 
-    yelp_uri_ref (uri);
-    priv->base_uri = uri;
+    priv->base_uri = g_strdup (uri);
 }
 
 void
 yelp_html_clear (YelpHtml *html)
 {
-    char *base_uri;
-
-    base_uri = gnome_vfs_uri_to_string (html->priv->base_uri->uri,
-                                        GNOME_VFS_URI_HIDE_NONE);
-
+    d (printf ("yelp_html_clear\n"));
     gtk_moz_embed_open_stream (GTK_MOZ_EMBED (html->priv->embed),
-			       base_uri, "text/html");
-
-    g_free (base_uri);
+			       html->priv->base_uri,
+			       "text/html");
 }
 
 void
@@ -193,8 +195,12 @@ yelp_html_write (YelpHtml *html, const gchar *data, gint len)
 {
      if (len == -1) len = strlen (data);
 
-     gtk_moz_embed_append_data (GTK_MOZ_EMBED (html->priv->embed),
-			        data, len);
+    d (printf ("yelp_html_write\n"));
+    d (printf ("  data = %i bytes\n", strlen (data)));
+    d (printf ("  len  = %i\n", len));
+
+    gtk_moz_embed_append_data (GTK_MOZ_EMBED (html->priv->embed),
+			       data, len);
 }
 
 void
@@ -217,6 +223,7 @@ yelp_html_printf (YelpHtml *html, char *format, ...)
 void
 yelp_html_close (YelpHtml *html)
 {
+    d (printf ("yelp_html_close\n"));
     gtk_moz_embed_close_stream (GTK_MOZ_EMBED (html->priv->embed));
 }
 

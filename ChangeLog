@@ -1,3 +1,34 @@
+2004-10-07  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* src/Makefile.am:
+	* src/test-man-parser.c:
+	* src/test-pager.c:
+	* src/test-uri.c:
+	* src/yelp-base.c:
+	* src/yelp-base.h:
+	* src/yelp-db-pager.c:
+	* src/yelp-db-pager.h:
+	* src/yelp-error.h:
+	* src/yelp-history.c:
+	* src/yelp-history.h:
+	* src/yelp-html-gecko.c:
+	* src/yelp-html.h:
+	* src/yelp-man-pager.c:
+	* src/yelp-man-pager.h:
+	* src/yelp-man-parser.c:
+	* src/yelp-man-parser.h:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	* src/yelp-toc-pager.c:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* src/yelp-window.c:
+	* src/yelp-window.h:
+	- Switched most of the stuff over to YelpDocInfo
+	- Reworked parser semantics to make it simpler
+	- Broke lots of stuff
+
 2004-09-30  James Bowes  <bowes@cs.dal.ca>
 
 	* src/yelp-man-parser.c: (parser_handle_linetag),
