@@ -18,6 +18,7 @@
  * Boston, MA 02111-1307, USA.
  *
  * Author: Shaun McCance  <shaunm@gnome.org>
+ *         Davyd Madeley  <davyd@madeley.id.au>
  */
 
 #ifdef HAVE_CONFIG_H

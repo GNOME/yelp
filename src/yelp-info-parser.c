@@ -1,3 +1,24 @@
+/*
+ * Copyright (C) 2005 Davyd Madeley  <davyd@madeley.id.au>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Author: Davyd Madeley  <davyd@madeley.id.au>
+ */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -94,6 +115,7 @@ static char
 		if (items[0])
 		{
 			filename = g_strdup_printf (
+					/* FIXME */
 					"/usr/share/info/%s.gz", items[0]);
 			str = open_info_file (filename);
 	
@@ -241,7 +263,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 
 	iter = g_malloc0 (sizeof (GtkTreeIter));
 	/* check to see if we need to process our parent and siblings */
-	if (up && strcmp (up, "(dir)"))
+	if (up && strcmp (up, "(dir)") && strcmp (up, "Top"))
 	{
 		page = node2page (nodes2offsets, offsets2pages, up);
 		if (!processed_table[page])
@@ -265,7 +287,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	}
 	
 	/* by this point our parent and older sibling should be processed */
-	if (!up || !strcmp (up, "(dir)"))
+	if (!up || !strcmp (up, "(dir)") || !strcmp (up, "Top"))
 	{
 		g_print ("\t> no parent\n");
 		if (!prev || !strcmp (prev, "(dir)"))
