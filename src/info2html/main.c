@@ -216,7 +216,7 @@ main(int argc, const char **argv)
 	work_line_number = 0;
 
 	/* hack, just send to stdout for now */
-	fprintf(stdout, "<HTML><BODY>\n");
+	g_print("<HTML><HEAD><TITLE>Info page for \"%s\"</TITLE></BODY><BODY>\n", argv[1]);
 	
 	/* big loop to identify sections of info files */
 	/* NEW PLAN - format on the fly */
