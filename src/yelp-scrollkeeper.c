@@ -390,6 +390,10 @@ scrollkeeper_parse_index (GList **index)
 	sk_data_dir = scrollkeeper_get_xml_docpath ("scrollkeeper-config",
 						    "--pkglocalstatedir");
 
+	if (!sk_data_dir) {
+		return FALSE;
+	}
+	
 	index_dir = g_strdup_printf ("%s/index", sk_data_dir);
 
 	g_free (sk_data_dir);
