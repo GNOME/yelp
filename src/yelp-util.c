@@ -303,7 +303,7 @@ yelp_util_node_to_string_path (GNode *node)
 	YelpSection *section;
 
 	section = node->data;
-	escaped_node_name = gnome_vfs_escape_set (section->name, " \t\n;:%");
+	escaped_node_name = gnome_vfs_escape_set (section->name, " \t\n;/%");
 	
 	str = escaped_node_name;
 	while (node->parent != NULL) {
@@ -311,9 +311,9 @@ yelp_util_node_to_string_path (GNode *node)
 		
 		section = node->data;
 		if (section) {
-			escaped_node_name = gnome_vfs_escape_set (section->name, " \t\n;:%");
+			escaped_node_name = gnome_vfs_escape_set (section->name, " \t\n;/%");
 			
-			t = g_strconcat (escaped_node_name, ":", str, NULL);
+			t = g_strconcat (escaped_node_name, "/", str, NULL);
 			g_free (escaped_node_name);
 			g_free (str);
 			str = t;
@@ -372,7 +372,7 @@ yelp_util_string_path_to_node (const char *string_path,
 	char **path;
 	GNode *node;
 
-	path = g_strsplit (string_path, ":", 0);
+	path = g_strsplit (string_path, "/", 0);
 
 	node = yelp_util_string_path_to_node_helper (path, root->children);
 	

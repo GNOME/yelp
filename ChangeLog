@@ -1,6 +1,14 @@
 2002-01-23  Alex Larsson  <alexl@redhat.com>
 
 	* src/yelp-util.c:
+	Change path separator to '/'.
+
+	* src/yelp-view-toc.c:
+	Implement simple toc:info URL handler.
+
+2002-01-23  Alex Larsson  <alexl@redhat.com>
+
+	* src/yelp-util.c:
 	Clean up section->name usage
 	
 	* src/yelp-view-toc.c:

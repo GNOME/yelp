@@ -339,7 +339,7 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 	GNode *node, *child;
 	YelpSection *section;
 	gboolean got_a_leaf;
-	char *path;
+	char *path, *url;
 	int i;
 
 	priv = view->priv;
@@ -381,7 +381,9 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 				}
 			
 				section = node->data;
-				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", section->uri, section->name);
+				url = yelp_util_compose_path_url (node->parent, section->uri);
+				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", url, section->name);
+				g_free (url);
 				i++;
 			}
 		} while ((node = node->next) != NULL);
@@ -464,6 +466,49 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 	yelp_view_toc_close (view);
 }
 
+static void 
+yelp_view_toc_info (YelpViewTOC *view)
+{
+	YelpViewTOCPriv *priv;
+	GNode           *root, *node, *child;
+	YelpSection     *section;
+	char            *url;
+	
+	priv = view->priv;
+
+	root = yelp_view_toc_find_toplevel (view, "info");
+
+	if (!root) {
+		g_warning ("Unable to find info toplevel");
+		return;
+	}
+	
+	node = g_node_first_child (root);
+
+	if (!node) {
+		return;
+	}
+
+	yelp_view_toc_open (view);
+	
+	yelp_view_toc_write_header (view, "Info pages");
+	
+	yelp_view_toc_write (view, "<h1>Info pages</h1>\n", -1);
+	
+	do {
+		section = (YelpSection *) node->data;
+		url = yelp_util_compose_path_url (root, section->uri);
+		yelp_view_toc_printf (view, 
+				      "<a href=\"%s\">%s</a><br>\n", 
+				      url, section->name);
+		g_free  (url);
+	} while ((node = g_node_next_sibling (node)));
+		
+	yelp_view_toc_write_footer (view);
+	yelp_view_toc_close (view);
+}
+
+
 GtkWidget *
 yelp_view_toc_new (GNode *doc_tree)
 {
@@ -515,6 +560,8 @@ yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 				g_warning ("Bad path in toc url %s\n", url);
 			}
 		}
+	} else if (strcmp (toc_type, "info") == 0) {
+		yelp_view_toc_info (view);
 	} else {
 		g_warning ("Unknown toc type %s\n", url);
 	}
