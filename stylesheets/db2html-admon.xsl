@@ -12,7 +12,7 @@
 			<xsl:otherwise>
 				<table style="border: none;">
 					<tr>
-						<td rowspan="2" align="center" valign="top">
+						<td rowspan="2" align="center" valign="top" class="image">
 							<img>
 								<xsl:attribute name="src">
 									<xsl:value-of select="$admon_graphics_path"/>

@@ -133,6 +133,7 @@ div[class="informaltable"],
 div[class="msgset"],
 div[class="table"],
 div[class="variablelist"] {
+	margin-top: 1.6em;
 	margin-left: 1.6em;
 	margin-right: 1.6em;
 	margin-bottom: 0.8em;
@@ -145,16 +146,23 @@ div[class="sidebar"] {
 }
 
 div[class="admonition"] {
-	margin: 1.6em;
-	padding: 1.6em;
+	margin-top: 1.6em;
+	margin-left: 1.6em;
+	margin-right: 1.6em;
+	margin-bottom: 0.8em;
+	padding: 0.8em;
 	background-color: #CCCCCC;
 	border: solid 2px #C0C0C0;
 }
+div[class="admonition"] td[class="image"] { margin-right: 1.6em; }
 
 div[class="programlisting"],
 div[class="screen"] {
-	margin: 1.6em;
-	padding: 1.6em;
+	margin-top: 1.6em;
+	margin-left: 1.6em;
+	margin-right: 1.6em;
+	margin-bottom: 0.8em;
+	padding: 0.8em;
 	background-color: </xsl:text>
 <xsl:value-of select="$color_gray_background"/><xsl:text>;
 	border: solid 1px </xsl:text>

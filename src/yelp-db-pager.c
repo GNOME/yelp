@@ -207,14 +207,14 @@ db_pager_process (YelpPager *pager)
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr tctxt;
 
-    gchar *p_doc_name, *p_doc_path, *p_sty_path;
+    gchar *p_doc_name, *p_doc_path;
 
     YelpDBPagerPriv *priv = YELP_DB_PAGER (pager)->priv;
 
     gchar        *uri_slash;
     gchar        *doc_name;
     gchar        *doc_path;
-    const gchar  *params[19];
+    const gchar  *params[21];
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
@@ -273,14 +273,13 @@ db_pager_process (YelpPager *pager)
 
     p_doc_name = g_strconcat("\"", doc_name, "\"", NULL);
     p_doc_path = g_strconcat("\"file://", doc_path, "/\"", NULL);
-    p_sty_path = g_strconcat("\"file://", DB_STYLESHEET_PATH, "/\"", NULL);
 
     params[0]  = "doc_name";
     params[1]  = p_doc_name;
     params[2]  = "doc_path";
     params[3]  = p_doc_path;
     params[4]  = "stylesheet_path";
-    params[5]  = p_sty_path;
+    params[5]  = "\"file://" DB_STYLESHEET_PATH "/\"";
     params[6]  = "chunk_depth";
     params[7]  = "2";
     params[8]  = "html_extension";
@@ -293,7 +292,9 @@ db_pager_process (YelpPager *pager)
     params[15] = yelp_theme_get_gray_background ();
     params[16] = "color_gray_border";
     params[17] = yelp_theme_get_gray_border ();
-    params[18] = NULL;
+    params[18] = "admon_graphics_path";
+    params[19] = "\"file://" DATADIR "/yelp/icons/\"";
+    params[20] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     tctxt      = xsltNewTransformContext (stylesheet,
@@ -317,10 +318,8 @@ db_pager_process (YelpPager *pager)
 			     NULL, NULL,
 			     tctxt);
 
-
     g_free (p_doc_name);
     g_free (p_doc_path);
-    g_free (p_sty_path);
     xmlFreeDoc (doc);
     xsltFreeStylesheet (stylesheet);
     xmlFreeParserCtxt (ctxt);

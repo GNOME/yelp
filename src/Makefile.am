@@ -36,7 +36,7 @@ test_pager_SOURCES =							\
 	yelp-marshal-main.c	test-pager.c
 
 test_pager_LDADD =							\
-	@DB2HTML_LIBS@ @YELP_LIBS@ -lexslt
+	@YELP_LIBS@
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -63,10 +63,10 @@ yelp_db2html_SOURCES =							\
 	yelp-db2html.c
 
 yelp_db2html_LDADD =							\
-	@DB2HTML_LIBS@ -lexslt
+	@YELP_LIBS@
 
 yelp_pregenerate_LDADD =						\
-	@YELP_LIBS@ -lexslt
+	@YELP_LIBS@
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\

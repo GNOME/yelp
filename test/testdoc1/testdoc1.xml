@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2.2//EN" 
-"http://www.oasis-open.org/docbook/xml/4.2.2/docbookx.dtd" [
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2.0//EN" 
+"http://www.oasis-open.org/docbook/xml/4.2.0/docbookx.dtd" [
 	<!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY yelp "<application>Yelp</application>">
 ]>
@@ -57,9 +57,9 @@
 	</caution>
 
 	<para>
-		Here we have an <sgmltag>important</sgmltag> and a <sgmltag>important</sgmltag>
-		right next to each other.  This is a nice thing to test, but it should generally
-		be considered bad style.
+		Here we have an <sgmltag>important</sgmltag> and a <sgmltag>note</sgmltag>
+		right next to each other.  This is a nice thing to test, but it should
+		generally be considered bad style.
 	</para>
 
 	<important>
@@ -78,6 +78,19 @@
 			claimed to be.
 		</para>
 	</note>
+
+	<para>
+		Next, we have a tip.
+	</para>
+
+	<tip>
+		<title>$2.24</title>
+		<para>
+			If your meal costs $11.20, you should tip $2.24, or 20%.  Of course,
+			you should not feal obliged to give a full 20% tip if your service
+			wasn't up to par.
+		</para>
+	</tip>
 
 	<para>
 		And finally, we'll have a <sgmltag>warning</sgmltag>.  Just to mix things

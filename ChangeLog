@@ -1,5 +1,26 @@
 2003-12-26  Shaun McCance  <shaunm@gnome.org>
 
+	* configure.in
+	* src/Makefile.am
+	- Updates dependencies.
+
+	* data/Makefile.am:
+	* data/icons/Makefile.am:
+	* data/icons/caution.png:
+	* data/icons/important.png:
+	* data/icons/note.png:
+	* data/icons/tip.png:
+	* data/icons/warning.png:
+	- Adding icons here.
+
+	* src/yelp-db-pager.c:
+	- Changed params around a bit.
+
+	* test/testdoc1/testdoc1.xml:
+	- Changes to admonition samples.
+
+2003-12-26  Shaun McCance  <shaunm@gnome.org>
+
 	* AUTHORS:
 	- Added myself to AUTHORS.
 

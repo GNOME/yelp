@@ -1,4 +1,4 @@
-SUBDIRS = images ui
+SUBDIRS = icons ui
 
 @INTLTOOL_XML_RULE@
 

@@ -42,23 +42,19 @@ else
 fi
 AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
 
-PKG_CHECK_MODULES(DB2HTML,
-[
-	glib-2.0 >= 2.0.6
-	libxslt >= 1.0.15
-])
-
 PKG_CHECK_MODULES(YELP,
 [
+	gconf-2.0
 	gnome-vfs-2.0 >= 1.1
+	gtk+-2.0 >= 2.3.1
+	libbonobo-2.0 >= 1.108.0
+	libglade-2.0 >= 2.0.0
 	libgnome-2.0 >= 2.0.2
 	libgnomeui-2.0 >= 1.103.0
-	libbonobo-2.0 >= 1.108.0
-	libxml-2.0 >= 2.6.0
-	libxslt >= 1.0.33
-	libglade-2.0 >= 2.0.0
-	gconf-2.0
 	libgtkhtml-2.0 >= 2.1.2
+	libxml-2.0 >= 2.6.0
+	libxslt >= 1.1.1
+	libexslt >= 0.8.1
 ])
 
 CFLAGS="$YELP_CFLAGS $CFLAGS"
@@ -122,7 +118,7 @@ src/man2html/Makefile
 src/info2html/Makefile
 stylesheets/Makefile
 data/Makefile
-data/images/Makefile
+data/icons/Makefile
 data/ui/Makefile
 po/Makefile.in
 test/testdoc1/Makefile
