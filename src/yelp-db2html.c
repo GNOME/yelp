@@ -50,57 +50,35 @@ yelp_db2html_convert (YelpURI             *uri,
                       xmlOutputBufferPtr   buf, 
                       GError             **error)
 {
-	static xsltStylesheetPtr gdb_xslreturn = NULL;
-        char              *gdb_docname;
-        xmlDocPtr          gdb_doc;
-        xmlDocPtr          gdb_results;
-	const char        *params[16 + 1];
-	char              *gdb_pathname;       /* path to the file to be parsed */
-	char              *gdb_rootid;         /* id of sect, chapt, etc to be parsed */
-	char             **gdb_split_docname;  /* placeholder for file type determination */
-        char              *ptr;
-	gboolean           has_rootid;
-        GTimer            *timer;
+	static xsltStylesheetPtr  stylesheet = NULL;
+        xmlDocPtr                 db_doc;
+        xmlDocPtr                 final_doc;
+	const char               *params[16 + 1];
+	gchar                    *pathname;
+        GTimer                   *timer;
         
-	has_rootid = FALSE; 
-	gdb_doc    = NULL;
-	gdb_rootid = NULL;
+	db_doc    = NULL;
 
         timer = g_timer_new ();
 
-        gdb_docname = g_strconcat (yelp_uri_get_path (uri), "?",
-                                   yelp_uri_get_section (uri), 
-                                   NULL);
-
-	d(g_print ("Convert file: %s\n", gdb_docname));
+	d(g_print ("Convert file: %s\n", yelp_uri_get_path (uri)));
 	
-	/* check to see if gdb_docname has a ?sectid included */
-	for (ptr = gdb_docname; *ptr; ptr++){
-		if (*ptr == '?') {
-			*ptr = '\000';
-			if (*(ptr + 1)) {
-				gdb_rootid = ptr;
-				has_rootid = TRUE;
-			}
-		}
-	}
-
 	/* libxml housekeeping */
 	xmlSubstituteEntitiesDefault(1);
 	xmlLoadExtDtdDefaultValue = 1;
 
 	/* parse the stylesheet */
-        if (!gdb_xslreturn) {
+        if (!stylesheet) {
                 gchar *gdb_stylesheet;
                 /* stylesheet location based on Linux Standard Base      *
                  * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
                 gdb_stylesheet = g_strconcat (DATADIR "/sgml/docbook/yelp/yelp-customization.xsl", NULL);
 
-                gdb_xslreturn  = xsltParseStylesheetFile ((const xmlChar *) gdb_stylesheet);
+                stylesheet  = xsltParseStylesheetFile ((const xmlChar *) gdb_stylesheet);
                 g_free (gdb_stylesheet);
         }
         
-        if (!gdb_xslreturn) {
+        if (!stylesheet) {
                 g_set_error (error,
                              YELP_ERROR,
                              YELP_ERROR_DOCBOOK_2_HTML,
@@ -109,68 +87,51 @@ yelp_db2html_convert (YelpURI             *uri,
                 /* FIXME: Set GError */
                 return FALSE;
         }
-        
-	/* check the file type by looking at name
-	 * FIXME - we need to be more sophisticated about this
-	 * then parse as either xml or sgml */
 
-	gdb_split_docname = g_strsplit(gdb_docname, ".", 2);
-
-        if (!g_file_test (gdb_docname, G_FILE_TEST_EXISTS)) {
-                g_set_error (error, 
-                             YELP_ERROR,
-                             YELP_ERROR_DOCBOOK_2_HTML,
-                             _("The document '%s' does not exist"),
-                             gdb_docname);
-                return FALSE;
-        }
-
-	if (!strcmp(gdb_split_docname[1], "sgml")) {
-                gdb_doc = docbParseFile (gdb_docname, "UTF-8");
+	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML) {
+		db_doc = xmlParseFile (yelp_uri_get_path (uri));
 	} else {
-		(gdb_doc = xmlParseFile (gdb_docname));
+                db_doc = docbParseFile (yelp_uri_get_path (uri), "UTF-8");
 	}
-	if (gdb_doc == NULL) {
+
+	if (db_doc == NULL) {
                 /* FIXME: Set something in the GError */
                 g_set_error (error,
                              YELP_ERROR,
                              YELP_ERROR_DOCBOOK_2_HTML,
                              _("Couldn't parse the document '%s'."),
-                             gdb_docname);
+                             yelp_uri_get_path (uri));
                 
-                g_free (gdb_docname);
-
                 return FALSE;
 	}
 	
 	/* retrieve path component of filename passed in at
 	   command line */
-	gdb_pathname = g_path_get_dirname (gdb_doc->URL);
-	gdb_docname  = g_path_get_basename (gdb_doc->URL);
-
-	for (ptr = gdb_docname; *ptr; ptr++){
-		if (*ptr == '.') {
-			*ptr = '\000';
-			
-		}
-	}
-
+	pathname = g_path_get_dirname (yelp_uri_get_path (uri));
+        
 	/* set params to be passed to stylesheet */
 	params[0] = "gdb_docname";
-	params[1] = g_strconcat("\"", gdb_doc->URL, "\"", NULL) ;
+	params[1] = g_strconcat("\"", yelp_uri_get_path (uri), "\"", NULL) ;
 	params[2] = "gdb_pathname";
-	params[3] = g_strconcat("\"", gdb_pathname, "\"", NULL) ;
+	params[3] = g_strconcat("\"", pathname, "\"", NULL) ;
 	params[4] = NULL;
 
-	if (has_rootid) {
+        g_free (pathname);
+
+	if (yelp_uri_get_section (uri)) {
   		params[4] = "gdb_rootid"; 
-		params[5] = g_strconcat("\"", gdb_rootid + 1, "\"", NULL) ;
+		params[5] = g_strconcat("\"", 
+                                        yelp_uri_get_section (uri), 
+                                        "\"", 
+                                        NULL) ;
 		params[6] = NULL;
 	}
 
-        gdb_results = xsltApplyStylesheet(gdb_xslreturn, gdb_doc, params);
+        final_doc = xsltApplyStylesheet (stylesheet, db_doc, params);
 
-        if (!gdb_results) {
+        xmlFree (db_doc);
+
+        if (!final_doc) {
                 g_set_error (error,
                              YELP_ERROR,
                              YELP_ERROR_DOCBOOK_2_HTML,
@@ -179,10 +140,9 @@ yelp_db2html_convert (YelpURI             *uri,
         }
 
 	/* Output the results to the OutputBuffer */
-        xsltSaveResultTo (buf, gdb_results, gdb_xslreturn);
+        xsltSaveResultTo (buf, final_doc, stylesheet);
 
-        g_free (gdb_docname);
-        xmlFree (gdb_results);
+        xmlFree (final_doc);
 
         d(g_print ("docbook -> html took: %f s\n", g_timer_elapsed (timer, 0)));
 	return TRUE;

@@ -1,5 +1,10 @@
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-db2html.c: 
+	- cleaning up
+	- made to use YelpURI instead of copying parts from it
+	- plugged leaks.
+
 	* src/test-reader.c (main): create reader without an argument.
 	* src/yelp-view-content.c (content_init): same
 
