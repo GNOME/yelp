@@ -65,7 +65,7 @@ static void yh_url_requested_cb      (HtmlDocument          *doc,
 				      HtmlStream            *stream,
 				      gpointer               data);
 
-#define BUFFER_SIZE 8192
+#define BUFFER_SIZE 16384
 
 enum {
 	URL_SELECTED,
@@ -242,12 +242,6 @@ yh_url_requested_cb (HtmlDocument *doc,
 
         view = YELP_HTML (data);
         priv = view->priv;
-
-/* 	if (priv->base_uri) { */
-/* 		vfs_uri = gnome_vfs_uri_resolve_relative (priv->base_uri, uri); */
-/*         } else { */
-/* 		vfs_uri = gnome_vfs_uri_new (uri); */
-/*         } */
 
 	g_assert (HTML_IS_DOCUMENT(doc));
 	g_assert (stream != NULL);

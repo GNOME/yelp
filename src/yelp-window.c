@@ -108,12 +108,12 @@ struct _YelpWindowPriv {
 };
 
 static GtkItemFactoryEntry menu_items[] = {
-	{N_("/_File"),          NULL,        0,                0, "<Branch>"},
-	{N_("/File/_New window"), "<Control>N", yw_new_window_cb, 0, NULL},
-	{N_("/File/_Close window"), "<Control>W", yw_close_window_cb, 0, NULL},
-	{N_("/File/E_xit"),       "<Control>Q", yw_exit_cb,       0, NULL    },
-	{N_("/_Help"),          NULL,        0,                0, "<Branch>"},
-	{N_("/Help/_About"),    NULL,        yw_about_cb,      0, NULL       },
+	{N_("/_File"),              NULL,         0,                  0, "<Branch>"},
+	{N_("/File/_New window"),   "<Control>N", yw_new_window_cb,   0, "<StockItem>", GTK_STOCK_NEW   },
+	{N_("/File/_Close window"), "<Control>W", yw_close_window_cb, 0, "<StockItem>", GTK_STOCK_CLOSE },
+	{N_("/File/_Quit"),         "<Control>Q", yw_exit_cb,         0, "<StockItem>", GTK_STOCK_QUIT  },
+	{N_("/_Help"),              NULL,         0,                  0, "<Branch>"},
+	{N_("/Help/_About"),        NULL,         yw_about_cb,        0, NULL },
 };
 
 GType

@@ -60,6 +60,8 @@ static gchar *    ys_get_xml_docpath      (const gchar          *command,
 static gchar *    ys_strip_scheme         (gchar                *original_uri,
 					   gchar               **scheme);
 
+static gint calls = 0;
+
 static gboolean
 ys_trim_empty_branches (xmlNode *node)
 {
@@ -236,8 +238,10 @@ ys_parse_doc (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 					       yelp_section_new (YELP_SECTION_DOCUMENT,
 								 title, link, 
 								 NULL, NULL));
-	
+
+#if 0
 	ys_parse_toc (data, iter, docsource);
+#endif
 
 /* 	index_location = ys_get_xml_docpath ("scrollkeeper-get-index-from-docpath", */
 /* 					     docsource); */
@@ -261,8 +265,8 @@ ys_parse_toc (ParseData *data, GtkTreeIter *parent, const gchar *docsource)
 	xmlNode     *xml_node;
 	YelpSection *section;
 	
-	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
-				       docsource);
+ 	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
+ 				       docsource);
 
 	if (toc_file) {
 		doc = xmlParseFile (toc_file);
@@ -270,7 +274,7 @@ ys_parse_toc (ParseData *data, GtkTreeIter *parent, const gchar *docsource)
 	}
 
 	if (!doc) {
-		g_warning ("Tried to parse a non-valid TOC file");
+/* 		g_warning ("Tried to parse a non-valid TOC file"); */
 		return;
 	}
 	
@@ -352,6 +356,8 @@ ys_get_xml_docpath (const gchar *command, const gchar *argument)
 	success = g_spawn_command_line_sync (full_command, &xml_location,
 					     NULL, NULL, NULL);
 
+	calls++;
+	
 	g_free (full_command);
 	
 	if (!success) {
@@ -437,6 +443,7 @@ yelp_scrollkeeper_init (GtkTreeStore *store)
 		xmlFreeDoc (doc);
 	}        
 
+	g_print ("Number of script calls: %d\n", calls);
         
         return TRUE;
 }
