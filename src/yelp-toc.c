@@ -25,6 +25,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <libgnome/gnome-i18n.h>
 #include "yelp-toc.h"
 
 static void yelp_toc_init	 (YelpToc            *toc);
@@ -136,7 +137,7 @@ yelp_toc_new (GtkTreeStore *model)
                                  GTK_TREE_MODEL (model));
 
         cell   = gtk_cell_renderer_text_new ();
-        column = gtk_tree_view_column_new_with_attributes ("Section", cell,
+        column = gtk_tree_view_column_new_with_attributes (_("Section"), cell,
                                                            "text", 0,
                                                            NULL);
 

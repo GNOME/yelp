@@ -27,6 +27,7 @@
 
 #include <gtk/gtkmain.h>
 #include <gtk/gtkwidget.h>
+#include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -38,8 +39,15 @@ main (int argc, char **argv)
 	GnomeProgram *program;
 	YelpBase     *base;
 	GtkWidget    *window;
-	
-  	g_thread_init (NULL);
+
+#ifdef ENABLE_NLS
+	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
+	textdomain(GETTEXT_PACKAGE);
+#endif 
+
+	setlocale (LC_ALL, "");
+
+	g_thread_init (NULL);
 
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE,
@@ -54,6 +62,8 @@ main (int argc, char **argv)
 	if (argc >= 2) {
 		yelp_window_open_uri (window, argv[1]);
 	}
+
+	g_signal_connect (window, "delete-event", gtk_main_quit, NULL);
 	
 	gtk_widget_show_all (window);
 

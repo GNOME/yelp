@@ -32,7 +32,7 @@ main (int argc, char **argv)
 	GnomeVFSURI    *vfs_uri;
 	
         if (argc <= 1) {
-                g_print ("Usage '%s uri'\n", argv[0]);
+                g_print (_("Usage '%s uri'\n"), argv[0]);
                 exit (1);
         }
 
@@ -40,7 +40,7 @@ main (int argc, char **argv)
 
         switch (result) {
 	case GNOME_VFS_OK:
-                g_print ("Transformed URI: %s\n", uri);
+                g_print (_("Transformed URI: %s\n"), uri);
 		vfs_uri = gnome_vfs_uri_new (uri);
 		if (!vfs_uri) {
 			g_print ("Eeeeeek\n");
@@ -49,11 +49,11 @@ main (int argc, char **argv)
                 exit (0);
 		break;
 	case GNOME_VFS_ERROR_NOT_FOUND:
-		g_print ("File not found: %s\n", argv[1]);
+		g_print (_("File not found: %s\n"), argv[1]);
 		exit (1);
 		break;
 	case GNOME_VFS_ERROR_INVALID_URI:
-		g_print ("Invalid URI: %s\n", argv[1]);
+		g_print (_("Invalid URI: %s\n"), argv[1]);
 		exit (1);
 		break;
 	default:

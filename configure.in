@@ -1,8 +1,13 @@
 AC_INIT(src/main.c)
-
 AM_CONFIG_HEADER(config.h)
-
 AM_INIT_AUTOMAKE(Yelp, 0.01)
+
+AC_PROG_INTLTOOL
+
+AM_MAINTAINER_MODE
+GNOME_COMMON_INIT
+
+GNOME_PLATFORM_GNOME_2(yes)
 
 AC_PROG_CC
 AC_ISC_POSIX
@@ -18,6 +23,20 @@ CFLAGS="$CFLAGS						\
 AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
 
+GETTEXT_PACKAGE=yelp
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+
+ALL_LINGUAS="sv"
+AM_GLIB_GNU_GETTEXT
+
+if test "x$prefix" = "xNONE"; then
+  GNOMELOCALEDIR=$ac_default_prefix/share/locale
+else
+  GNOMELOCALEDIR=$prefix/share/locale
+fi
+AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
+
 PKG_CHECK_MODULES(YELP, libgtkhtml-2.0 >= 1.99.2	\
 			gnome-vfs-2.0 >= 1.1		\
 			libgnomeui-2.0 >= 1.103.0)
@@ -28,4 +47,5 @@ AC_SUBST(YELP_LIBS)
 AC_OUTPUT([
 Makefile
 src/Makefile
+po/Makefile.in
 ])

@@ -25,6 +25,7 @@
 #endif
 
 #include <libgnomevfs/gnome-vfs.h>
+#include <libgnome/gnome-i18n.h>
 #include <stdio.h>
 #include "yelp-view.h"
 
@@ -360,10 +361,10 @@ yelp_view_new (void)
 	html_document_open_stream (priv->doc, "text/html");
 	{
 		int len; 
-		gchar *text = "<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the README and TODO<br></body></html>";
-		len = strlen (text);
+		gchar *text = N_("<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the README and TODO<br></body></html>");
+		len = strlen (_(text));
                 
-		html_document_write_stream (priv->doc, text, len);
+		html_document_write_stream (priv->doc, _(text), len);
 	}
         
 	html_document_close_stream (priv->doc);

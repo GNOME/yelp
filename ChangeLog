@@ -1,3 +1,21 @@
+2001-12-01  Richard Hult  <rhult@codefactory.se>
+
+	* src/main.c (main): Exit when the window is closed.
+
+	* src/*.c: Mark strings as translatable.
+
+	* src/main.c (main): Init gettext.
+
+	* acconfig.h: Add.
+
+	* configure.in: Gettextize and intltoolize.
+
+	* autogen.sh: Redirect to the installed one for gnome 2.
+
+	* yelp.desktop.in: Desktop file.
+
+	* Makefile.am: Add a desktop file and intltool rule for it.
+
 2001-12-01  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/scrollkeeper-parser.c: path uri's as strings instead of

@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2001 CodeFactory AB
  * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
- *
+< *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 2 of the
@@ -31,6 +31,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-app.h>
 #include <libgnomeui/gnome-about.h>
+#include <libgnome/gnome-i18n.h>
 #include <string.h>
 #include "ghelp-uri.h"
 #include "yelp-index.h"
@@ -75,11 +76,11 @@ struct _YelpWindowPriv {
 };
 
 static GtkItemFactoryEntry menu_items[] = {
-	{ "/_File",        NULL,           0, 0,                 "<Branch>" },
-	{ "/File/_New window", "<Control>N", yelp_window_new_window, 0, NULL},
-	{ "/File/E_xit",   "<Control>Q",   yelp_window_exit,  0, NULL       },
-	{ "/_Help",        NULL,           0, 0,                 "<Branch>" },
-	{ "/Help/_About",  NULL,           yelp_window_about, 0, NULL       },
+	{ N_("/_File"),        NULL,          0, 0,                 "<Branch>" },
+	{ N_("/File/_New window"), "<Control>N", yelp_window_new_window, 0, NULL},
+	{ N_("/File/E_xit"),   "<Control>Q",   yelp_window_exit,  0, NULL       },
+	{ N_("/_Help"),        NULL,          0, 0,                 "<Branch>" },
+	{ N_("/Help/_About"),  NULL,          yelp_window_about, 0, NULL       },
 };
 
 GType
@@ -125,7 +126,7 @@ yelp_window_init (YelpWindow *window)
 
         gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
 
-	gtk_window_set_title (GTK_WINDOW (window), "Yelp: GNOME Help Browser");
+	gtk_window_set_title (GTK_WINDOW (window), _("Yelp: GNOME Help Browser"));
 }
 
 static void
@@ -225,7 +226,7 @@ yelp_window_populate (YelpWindow *window)
                                         GTK_POLICY_AUTOMATIC);
 
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), 
-                                  tree_sw, gtk_label_new ("Contents"));
+                                  tree_sw, gtk_label_new (_("Contents")));
 
 	g_signal_connect_swapped (G_OBJECT (priv->yelp_toc), 
 				  "section_selected",
@@ -241,7 +242,7 @@ yelp_window_populate (YelpWindow *window)
                                         GTK_POLICY_AUTOMATIC);
 
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), 
-                                  search_box, gtk_label_new ("Index"));
+                                  search_box, gtk_label_new (_("Index")));
 
         gtk_box_pack_start (GTK_BOX (search_box), 
 			    yelp_index_get_entry (priv->index),
@@ -330,7 +331,7 @@ yelp_window_about (gpointer data, guint section, GtkWidget *widget)
 	
 	about = gnome_about_new (PACKAGE, VERSION,
 				 "(C) 2001 Mikael Hallendal <micke@codefactory.se>",
-				 "Help Browser for GNOME 2.0",
+				 _("Help Browser for GNOME 2.0"),
 				 authors,
 				 NULL,
 				 NULL,

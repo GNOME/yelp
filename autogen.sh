@@ -1,34 +1,22 @@
 #!/bin/sh
+# Run this to generate all the initial makefiles, etc.
 
-(gettextize --version) < /dev/null > /dev/null 2>&1 || {
-	echo;
-	echo "You must have gettext installed to compile GtkHtml";
-	echo;
-	exit;
+srcdir=`dirname $0`
+test -z "$srcdir" && srcdir=.
+
+PKG_NAME="Yelp"
+
+(test -f $srcdir/configure.in \
+  && test -f $srcdir/src/main.c \
+  && test -f $srcdir/README) || {
+    echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
+    echo " top-level yelp directory"
+    exit 1
 }
 
-(automake --version) < /dev/null > /dev/null 2>&1 || {
-	echo;
-	echo "You must have automake installed to compile GtkHtml";
-	echo;
-	exit;
+
+which gnome-autogen.sh || {
+    echo "You need to install gnome-common from the GNOME CVS"
+    exit 1
 }
-
-(autoconf --version) < /dev/null > /dev/null 2>&1 || {
-	echo;
-	echo "You must have autoconf installed to compile GtkHtml";
-	echo;
-	exit;
-}
-
-echo "Generating configuration files for GtkHtml2, please wait...."
-echo;
-
-echo n | gettextize --copy --force;
-aclocal $ACLOCAL_FLAGS;
-autoheader;
-automake --add-missing;
-autoconf;
-
-./configure $@ --enable-maintainer-mode --enable-compile-warnings
-
+USE_GNOME2_MACROS=1 . gnome-autogen.sh
