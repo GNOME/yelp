@@ -6,22 +6,24 @@
 
 <widget class="GtkDialog" id="find_dialog">
   <property name="border_width">4</property>
-  <property name="title" translatable="yes">Find text...</property>
+  <property name="height_request">150</property>
+  <property name="visible">True</property>
+  <property name="title" translatable="yes">Find</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
-  <property name="resizable">True</property>
+  <property name="resizable">False</property>
   <property name="destroy_with_parent">False</property>
   <property name="has_separator">False</property>
 
   <child internal-child="vbox">
-    <widget class="GtkVBox" id="dialog-vbox4">
+    <widget class="GtkVBox" id="dialog-vbox5">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
       <property name="spacing">0</property>
 
       <child internal-child="action_area">
-	<widget class="GtkHButtonBox" id="dialog-action_area4">
+	<widget class="GtkHButtonBox" id="dialog-action_area5">
 	  <property name="visible">True</property>
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
@@ -34,7 +36,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-7</property>
-	      <signal name="clicked" handler="find_close_button_clicked_cb"/>
 	    </widget>
 	  </child>
 
@@ -45,10 +46,9 @@
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">1</property>
-	      <signal name="clicked" handler="find_prev_button_clicked_cb"/>
 
 	      <child>
-		<widget class="GtkAlignment" id="alignment7">
+		<widget class="GtkAlignment" id="alignment8">
 		  <property name="visible">True</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
@@ -56,13 +56,13 @@
 		  <property name="yscale">0</property>
 
 		  <child>
-		    <widget class="GtkHBox" id="hbox85">
+		    <widget class="GtkHBox" id="hbox86">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">False</property>
 		      <property name="spacing">2</property>
 
 		      <child>
-			<widget class="GtkImage" id="image5">
+			<widget class="GtkImage" id="image6">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">4</property>
@@ -79,7 +79,7 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkLabel" id="label1222">
+			<widget class="GtkLabel" id="label1223">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_Previous</property>
 			  <property name="use_underline">True</property>
@@ -109,14 +109,12 @@
 	    <widget class="GtkButton" id="next_button">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
-	      <property name="has_default">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">2</property>
-	      <signal name="clicked" handler="find_next_button_clicked_cb"/>
 
 	      <child>
-		<widget class="GtkAlignment" id="alignment6">
+		<widget class="GtkAlignment" id="alignment9">
 		  <property name="visible">True</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
@@ -124,13 +122,13 @@
 		  <property name="yscale">0</property>
 
 		  <child>
-		    <widget class="GtkHBox" id="hbox84">
+		    <widget class="GtkHBox" id="hbox87">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">False</property>
 		      <property name="spacing">2</property>
 
 		      <child>
-			<widget class="GtkImage" id="image4">
+			<widget class="GtkImage" id="image7">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">4</property>
@@ -147,7 +145,7 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkLabel" id="label1221">
+			<widget class="GtkLabel" id="label1224">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_Next</property>
 			  <property name="use_underline">True</property>
@@ -182,79 +180,79 @@
       </child>
 
       <child>
-	<widget class="GtkVBox" id="vbox131">
-	  <property name="border_width">6</property>
+	<widget class="GtkAlignment" id="alignment10">
 	  <property name="visible">True</property>
-	  <property name="homogeneous">False</property>
-	  <property name="spacing">0</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">1</property>
+	  <property name="xscale">0.9</property>
+	  <property name="yscale">0.5</property>
 
 	  <child>
-	    <widget class="GtkVBox" id="vbox109">
+	    <widget class="GtkVBox" id="vbox132">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
-	      <property name="spacing">6</property>
+	      <property name="spacing">8</property>
 
 	      <child>
-		<widget class="GtkHBox" id="hbox72">
+		<widget class="GtkHBox" id="hbox88">
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
-		  <property name="spacing">6</property>
+		  <property name="spacing">0</property>
 
 		  <child>
-		    <widget class="GtkLabel" id="label63">
+		    <widget class="GtkLabel" id="label1225">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Find text in the document:&lt;/b&gt;</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">True</property>
+		      <property name="label" translatable="yes">_Find: </property>
+		      <property name="use_underline">True</property>
+		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
 		      <property name="selectable">False</property>
-		      <property name="xalign">7.45058e-09</property>
+		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">find_entry</property>
 		    </widget>
 		    <packing>
-		      <property name="padding">0</property>
+		      <property name="padding">3</property>
 		      <property name="expand">False</property>
 		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GnomeEntry" id="find_gnome_entry">
+		      <property name="visible">True</property>
+		      <property name="history_id">FindEntry</property>
+		      <property name="max_saved">10</property>
+
+		      <child internal-child="entry">
+			<widget class="GtkEntry" id="find_entry">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="has_focus">True</property>
+			  <property name="editable">True</property>
+			  <property name="visibility">True</property>
+			  <property name="max_length">0</property>
+			  <property name="text" translatable="yes"></property>
+			  <property name="has_frame">True</property>
+			  <property name="invisible_char" translatable="yes">*</property>
+			  <property name="activates_default">False</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">3</property>
+		      <property name="expand">True</property>
+		      <property name="fill">True</property>
 		    </packing>
 		  </child>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
 		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GnomeEntry" id="find_gnome_entry">
-		  <property name="visible">True</property>
-		  <property name="history_id">FindEntry</property>
-		  <property name="max_saved">10</property>
-
-		  <child internal-child="entry">
-		    <widget class="GtkEntry" id="find_entry">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="has_focus">True</property>
-		      <property name="editable">True</property>
-		      <property name="visibility">True</property>
-		      <property name="max_length">0</property>
-		      <property name="text" translatable="yes"></property>
-		      <property name="has_frame">True</property>
-		      <property name="invisible_char" translatable="yes">*</property>
-		      <property name="activates_default">False</property>
-		      <signal name="activate" handler="find_entry_activate_cb"/>
-		      <signal name="changed" handler="find_entry_changed_cb"/>
-		    </widget>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
+		  <property name="fill">True</property>
 		</packing>
 	      </child>
 
@@ -262,31 +260,12 @@
 		<widget class="GtkCheckButton" id="case_check">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">_Match upper/lower case</property>
+		  <property name="label" translatable="yes">C_ase sensitive</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="active">False</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="find_check_toggled_cb" last_modification_time="Wed, 03 Apr 2002 12:46:24 GMT"/>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkCheckButton" id="word_check">
-		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Match _entire word</property>
-		  <property name="use_underline">True</property>
-		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="active">False</property>
-		  <property name="inconsistent">False</property>
-		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="find_check_toggled_cb" last_modification_time="Wed, 03 Apr 2002 12:46:34 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -297,14 +276,14 @@
 
 	      <child>
 		<widget class="GtkCheckButton" id="wrap_check">
+		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Automatically _wrap around</property>
+		  <property name="label" translatable="yes">_Wrap around</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="active">False</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="find_check_toggled_cb" last_modification_time="Wed, 03 Apr 2002 12:47:04 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -313,17 +292,12 @@
 		</packing>
 	      </child>
 	    </widget>
-	    <packing>
-	      <property name="padding">0</property>
-	      <property name="expand">True</property>
-	      <property name="fill">True</property>
-	    </packing>
 	  </child>
 	</widget>
 	<packing>
-	  <property name="padding">2</property>
-	  <property name="expand">False</property>
-	  <property name="fill">False</property>
+	  <property name="padding">0</property>
+	  <property name="expand">True</property>
+	  <property name="fill">True</property>
 	</packing>
       </child>
     </widget>

@@ -67,6 +67,7 @@ struct _YelpHtmlPriv {
 struct _YelpHtmlBoxNode {
     HtmlBox *find_box;
     glong    find_index;
+    gint     find_len;
 };
 
 static void      html_init               (YelpHtml           *html);
@@ -96,6 +97,11 @@ static gint      html_cmp_box_text       (gconstpointer       a,
 static void      html_get_box_list       (YelpHtml           *html);
 
 static void      html_clear_find_data    (YelpHtml           *html);
+static gboolean  html_find_text          (YelpHtml           *html,
+					  const gchar *       find_string,
+					  gboolean            match_case,
+					  gboolean            wrap,
+					  gboolean            forward);
 
 #define BUFFER_SIZE 16384
 
@@ -143,6 +149,8 @@ html_init (YelpHtml *html)
     priv->view        = HTML_VIEW (html_view_new ());
     priv->doc         = html_document_new ();
     priv->base_uri    = NULL;
+
+    priv->find_is_forward = TRUE;
 
     html_view_set_document (HTML_VIEW (priv->view), priv->doc);
 
@@ -425,10 +433,8 @@ html_clear_find_data (YelpHtml *html)
 	    priv->find_list = NULL;
 	}
 
-	if (priv->find_str) {
-	    g_free (priv->find_str);
-	    priv->find_str = NULL;
-	}
+	g_free (priv->find_str);
+	priv->find_str = NULL;
 
 	priv->find_elem = NULL;
 
@@ -494,12 +500,13 @@ html_get_box_list (YelpHtml *html)
     HtmlBox         *html_box;
     gint             len;
     glong            total_len;
-    
+
     g_return_if_fail (YELP_IS_HTML (html));
 
     priv = html->priv;
 
     g_return_if_fail (priv->find_iter != NULL);
+    g_assert (priv->find_list == NULL);
 
     node = dom_NodeIterator_nextNode (priv->find_iter, 
 				      NULL);
@@ -515,15 +522,19 @@ html_get_box_list (YelpHtml *html)
 		(!g_list_find_custom (priv->find_list,
 				      html_box,
 				      html_cmp_box_text))) {
-		box_node             = g_new0 (YelpHtmlBoxNode, 1);
-		
-		box_node->find_box   = html_box;
-		box_node->find_index = total_len;
-		priv->find_list      = g_list_append (priv->find_list, box_node);
-
 		html_box_text_get_text (HTML_BOX_TEXT (html_box), &len);
 
-		total_len += len;
+		if (len > 0) {
+		    box_node             = g_new0 (YelpHtmlBoxNode, 1);
+		    
+		    box_node->find_box   = html_box;
+		    box_node->find_index = total_len;
+		    box_node->find_len   = len;
+		    
+		    priv->find_list      = g_list_append (priv->find_list, box_node);
+
+		    total_len += len;
+		}
 	    } else {
 		total_len = 0;
 	    }
@@ -538,12 +549,210 @@ html_get_box_list (YelpHtml *html)
 			
 	node = dom_NodeIterator_nextNode (priv->find_iter,
 					  NULL);
-    }
-    
+    }    
 }
 
-/* This code is really ugly, need to clean up. */
-void
+static void
+html_find_selection_set (HtmlView *view,
+			 DomNode  *node,
+			 gint      offset,
+			 gint      len)
+{
+    g_return_if_fail (HTML_IS_VIEW (view));
+    g_return_if_fail (DOM_IS_NODE (node));
+    g_return_if_fail (offset >= 0);
+    g_return_if_fail (len >= 0);
+
+    html_selection_set (view,
+			node,
+			offset,
+			len);
+
+    html_view_scroll_to_node (view,
+			      node,
+			      HTML_VIEW_SCROLL_TO_TOP);    
+}
+
+static void
+html_find_reset (YelpHtml *html)
+{
+    
+    YelpHtmlPriv *priv;
+
+    g_return_if_fail (YELP_IS_HTML (html));
+
+    priv = html->priv;
+
+    g_return_if_fail (priv->find_list != NULL);
+
+    priv->find_elem       = priv->find_list;
+    priv->find_offset     = 0;
+    priv->find_is_forward = TRUE;    
+
+    g_free (priv->find_str);
+    priv->find_str = NULL;
+}
+			 
+static gboolean
+html_find_text (YelpHtml    *html,
+		const gchar *find_string,
+		gboolean     match_case,
+		gboolean     wrap,
+		gboolean     forward)		
+{
+    YelpHtmlPriv    *priv;
+    YelpHtmlBoxNode *box_node;
+    gchar           *box_text;
+    gchar           *str;
+    gchar           *haystack;
+    gchar           *hit;
+    gchar           *found_str;
+    GList           *next_elem;
+    GList           *next_list;
+    GList           *first_elem;
+    gint             len;
+    gint             next_offset;
+    gboolean         found;
+
+    g_return_val_if_fail (YELP_IS_HTML (html), FALSE);
+    g_return_val_if_fail (find_string != NULL, FALSE);
+
+    priv  = html->priv;
+
+    next_list   = priv->find_list;
+    next_elem   = priv->find_elem;
+    next_offset = priv->find_offset;
+    
+    if (priv->find_is_forward != forward) {
+	next_list = g_list_reverse (next_list);
+
+	if (next_elem) {
+	    box_node = next_elem->data;
+
+	    if (priv->find_str) {
+		next_offset = box_node->find_len - next_offset + strlen (priv->find_str);
+	    } else {
+		if (!forward) {
+		    next_offset = box_node->find_len;
+		} else {
+		    g_assert (next_offset == 0);
+		}
+	    }
+	}
+    } 
+
+    first_elem = next_elem;
+    found      = FALSE;
+    found_str  = NULL;
+
+    while (next_elem) {
+	box_node = next_elem->data;
+	box_text = html_box_text_get_text (HTML_BOX_TEXT (box_node->find_box), &len);
+
+	g_assert (box_node->find_len == len);
+
+	if (len > 0) {
+	    str = g_strndup (box_text, len);
+
+	    if (!match_case) {
+		haystack = g_utf8_casefold (str, -1);
+	    } else {
+		haystack = g_strdup (str);
+	    }
+
+	    if (forward) {
+		hit = strstr (haystack + next_offset, find_string);
+	    } else {
+		hit = g_strrstr_len (haystack, len - next_offset,
+				     find_string);
+	    }
+
+	    if (hit) {
+		html_find_selection_set (priv->view,
+					 box_node->find_box->dom_node,
+					 box_node->find_index + (hit - haystack),
+					 strlen (find_string));
+		found = TRUE;
+
+		if (forward) {
+		    next_offset = (hit - haystack + strlen (find_string));
+		}else {
+		    next_offset = strlen (hit);
+		}
+		
+		found_str = g_strndup (box_text + (hit - haystack), strlen (find_string));
+	    }
+	    
+	    g_free (str);
+	    g_free (haystack);
+	}
+
+	if (found)
+	    break;
+		
+	next_offset = 0;
+	next_elem   = g_list_next (next_elem);
+
+	if (first_elem == next_elem) {
+	    next_elem = NULL;
+	} else if (!next_elem) {
+	    if (wrap) {
+		next_elem  = next_list;
+ 		first_elem = g_list_next (first_elem); 
+	    }
+	}
+    }
+
+    if (!next_elem) {
+	if (priv->find_is_forward != forward) {
+	   g_list_reverse (next_list);
+	}
+
+	if (priv->find_str) {
+	    str = g_strdup (priv->find_str);
+
+	    if (!match_case) {
+		haystack = g_utf8_casefold (str, -1);
+	    } else {
+		haystack = g_strdup (str);
+	    }
+
+	    if (!strcmp (find_string, haystack)) {
+		box_node = priv->find_elem->data;
+
+		if (priv->find_is_forward) {
+		    html_find_selection_set (priv->view,
+					     box_node->find_box->dom_node,
+					     box_node->find_index + (priv->find_offset - 
+								     strlen (priv->find_str)),
+					     strlen (priv->find_str));
+		} else {
+		    html_find_selection_set (priv->view,
+					     box_node->find_box->dom_node,
+					     box_node->find_index + (box_node->find_len - 
+								     priv->find_offset),
+					     strlen (priv->find_str));		
+		}
+	    }
+	    
+	    g_free (str);
+	    g_free (haystack);
+	}
+    } else {
+	priv->find_list   = next_list;
+	priv->find_elem   = next_elem;	
+	priv->find_offset = next_offset;
+
+	g_free (priv->find_str);
+	priv->find_str = found_str;
+
+	priv->find_is_forward = forward;
+    }
+
+    return next_elem != NULL;
+}
+
+gboolean
 yelp_html_find (YelpHtml    *html,
 		const gchar *find_string,
 		gboolean     match_case,
@@ -551,17 +760,10 @@ yelp_html_find (YelpHtml    *html,
 		gboolean     forward)
 {
     YelpHtmlPriv    *priv;
-    YelpHtmlBoxNode *box_node;
     DomNode         *node;
-    gchar           *box_text;
-    gchar           *str;
-    gchar           *haystack;
-    gchar           *hit;
-    gint             len;
-    gboolean         found;
 
-    g_return_if_fail (YELP_IS_HTML (html));
-    g_return_if_fail (find_string != NULL);
+    g_return_val_if_fail (YELP_IS_HTML (html), FALSE);
+    g_return_val_if_fail (find_string != NULL, FALSE);
 
     priv = html->priv;
 
@@ -569,8 +771,8 @@ yelp_html_find (YelpHtml    *html,
 	node = html_get_dom_node (priv->doc, "body");
 
 	if (!node) {
-	    g_warning ("html_find(): Couldn't find html body.");  
-	    return;
+	    g_warning ("yelp_html_find(): Couldn't find html body.");  
+	    return FALSE;
 	}
 
 	priv->find_iter = dom_DocumentTraversal_createNodeIterator
@@ -583,86 +785,8 @@ yelp_html_find (YelpHtml    *html,
 
 	html_get_box_list (html);
 
-	if (!forward) {
-	    priv->find_list = g_list_reverse (priv->find_list);
-	}
-	
-	priv->find_str        = NULL;
-	priv->find_offset     = 0;
-	priv->find_elem       = NULL;
-	priv->find_is_forward = forward;
+	html_find_reset (html);
     }
 
-    if (!priv->find_elem) { 
-	priv->find_elem = priv->find_list; 
-    }
-    
-    if (priv->find_is_forward != forward) {
-	box_node = priv->find_elem->data;
-	html_box_text_get_text (HTML_BOX_TEXT (box_node->find_box), &len);
-
-	priv->find_offset     = len - priv->find_offset + strlen (priv->find_str);
-	priv->find_list       = g_list_reverse (priv->find_list);
-	priv->find_is_forward = forward;
-    } 
-
-    if (priv->find_str)
-	g_free (priv->find_str);
-    
-    priv->find_str = g_strdup (find_string);
-
-    found = FALSE;
-
-    while (priv->find_elem) {
-	box_node = priv->find_elem->data;
-	box_text = html_box_text_get_text (HTML_BOX_TEXT (box_node->find_box), &len);
-		
-	if (len > 0) {
-	    str = g_strndup (box_text, len);
-
-	    if (!match_case) {
-		haystack = g_utf8_casefold (str, -1);
-	    } else {
-		haystack = g_strdup (str);
-	    }
-
-	    if (forward) {
-		hit = strstr (haystack + priv->find_offset, find_string);
-	    } else {
-		hit = g_strrstr_len (haystack, len - priv->find_offset,
-				     find_string);
-	    }
-
-	    if (hit) {
-		html_selection_set (priv->view,
-				    box_node->find_box->dom_node,
-				    box_node->find_index + (hit - haystack),
-				    strlen (find_string));
-
-		html_view_scroll_to_node (priv->view,
-					  box_node->find_box->dom_node,
-					  HTML_VIEW_SCROLL_TO_TOP);
-		found = TRUE;
-
-		if (forward) {
-		    priv->find_offset = (hit - haystack + strlen (find_string));
-		}else {
-		    priv->find_offset = strlen (hit);
-		}
-	    }
-
-	    g_free (str);
-	    g_free (haystack);
-	}
-
-	if (found)
-	    break;
-		
-	priv->find_offset = 0;
-	priv->find_elem   = g_list_next (priv->find_elem);
-    }
-
-    if (!priv->find_elem) {
-	html_selection_clear (priv->view);
-    }	
+    return html_find_text (html, find_string, match_case, wrap, forward);
 }

@@ -1,3 +1,31 @@
+2003-12-18  Shaun McCance  <shaunm@gnome.org>
+
+	All from Chee Bin HOH:
+
+	* data/ui/yelp.glade:
+	- A new 'Find dialog which has same GUI as epiphany's Find dialog.
+
+	* src/yelp-html-gtkhtml2.c:
+	- Add automatically 'wrap around' if finding reaches the end of an
+	  html page (but avoid searching twice).
+	- Searching from where the previous finding stops.
+	- Clean up the yelp-html-gtkhtml2.c source a bit.
+
+	* src/yelp-html.c:
+	- Change yelp_html_find to return a boolean value to indicate the
+	  success or failure of findiing.
+
+	* src/yelp-window.c:
+	- Change 'Find in page... Ctrl+F' to 'Find... Ctrl+F'
+	- Change 'Find again  Ctrl+G' to 'Find Next  Ctrl+G'
+	- Add 'Find Previous  Shift+Ctrl+G' to 'Edit' menu.
+	- Disable the 'Next' button if finding next fails or 'Previous'
+	  button if finding previous fails.
+	- Disable 'Next' and 'Previous' buttons if no text being entered
+	  into the 'Find' text entry, else enable the both buttons.
+	- Hitting 'Alt-N' or 'Alt+P' will only activate the 'Next' button or
+	  'Previous' button, NOT pulling down the 'Find' combobox entry list.
+
 2003-12-17  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:

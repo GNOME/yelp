@@ -48,13 +48,15 @@
 #include "yelp-window.h"
 
 #define d(x)
-#define RESPONSE_PREV 1
-#define RESPONSE_NEXT 2
-
 #define YELP_CONFIG_WIDTH  "/yelp/Geometry/width"
 #define YELP_CONFIG_HEIGHT "/yelp/Geometry/height"
 #define YELP_CONFIG_WIDTH_DEFAULT  "600"
 #define YELP_CONFIG_HEIGHT_DEFAULT "420"
+
+typedef enum {
+    YELP_WINDOW_FIND_PREV = 1,
+    YELP_WINDOW_FIND_NEXT
+} YelpFindAction;
 
 typedef enum {
     YELP_WINDOW_GO_BACK = 1,
@@ -143,10 +145,20 @@ static void        window_find_cb                 (gpointer           data,
 static void        window_find_again_cb           (gpointer           data,
 						   guint              action,
 						   GtkWidget         *widget);
-
+static gboolean    window_find_action             (YelpWindow        *window, 
+						   YelpFindAction     action);
 static gboolean    window_find_delete_event_cb    (GtkWidget         *widget,
 						   GdkEvent          *event,
  			                           gpointer           data);
+static void        window_find_entry_changed_cb   (GtkEditable       *editable,
+						   gpointer           data);
+static void        window_find_case_toggled_cb    (GtkWidget         *widget,
+						   gpointer           data);
+static void        window_find_wrap_toggled_cb    (GtkWidget         *widget,
+						   gpointer           data);
+static void        window_find_save_settings      (YelpWindow        *window);
+static void        window_find_buttons_set_sensitive (YelpWindow      *window,
+						      gboolean        sensitive);
 static void        window_find_response_cb        (GtkWidget         *dialog ,
 						   gint               response,
 						   YelpWindow        *window);
@@ -177,6 +189,10 @@ struct _YelpWindowPriv {
     GtkWidget      *find_entry;
     GtkWidget      *case_checkbutton;
     GtkWidget      *wrap_checkbutton;
+    GtkWidget      *find_prev_button;
+    GtkWidget      *find_next_button;
+    GtkWidget      *find_close_button;
+
     gchar          *find_string;
     gboolean        match_case;
     gboolean        wrap;
@@ -210,12 +226,15 @@ static GtkItemFactoryEntry menu_items[] = {
      "<StockItem>",                  GTK_STOCK_CLOSE            },
 
     {N_("/_Edit"),                   NULL, 0, 0, "<Branch>"     },
-    {N_("/Edit/_Find in page..."),   NULL,
+    {N_("/Edit/_Find..."),           "<Control>f",
      window_find_cb,                 0,
      "<StockItem>",                  GTK_STOCK_FIND             },
-    {N_("/Edit/_Find again"),        "<Control>g",
-     window_find_again_cb,           0,
-     "<StockItem>",                  GTK_STOCK_FIND             },
+    {N_("/Edit/Find Ne_xt"),        "<Control>g",
+     window_find_again_cb,           YELP_WINDOW_FIND_NEXT,
+     "<Item>",                       NULL                       },
+    {N_("/Edit/Find Pre_vious"),    "<Shift><Control>g",
+     window_find_again_cb,           YELP_WINDOW_FIND_PREV, 
+     "<Item>",                       NULL                       },
 
     {N_("/_Go"),                     NULL, 0, 0, "<Branch>"     },
     {N_("/Go/_Back"),                NULL,
@@ -402,6 +421,8 @@ yelp_window_open_uri (YelpWindow  *window,
  
     if (error)
 	window_error (window, error);
+
+    window_find_buttons_set_sensitive (window, TRUE);    
 }
 
 YelpURI *
@@ -1323,25 +1344,58 @@ window_find_delete_event_cb (GtkWidget *widget,
     return TRUE;
 }
 
+static void
+window_find_save_settings (YelpWindow * window)
+{
+    YelpWindowPriv *priv;
+    const gchar    *tmp;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = window->priv;
+
+    tmp = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
+
+    priv->match_case = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->case_checkbutton));
+    priv->wrap       = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->wrap_checkbutton));
+
+    g_free (priv->find_string);
+		
+    if (!priv->match_case) {
+	priv->find_string = g_utf8_casefold (tmp, -1);
+    } else {
+	priv->find_string = g_strdup (tmp);
+    }				  
+}
+
+static gboolean
+window_find_action (YelpWindow *window, YelpFindAction action)
+{
+    YelpWindowPriv *priv;
+
+    priv = window->priv;
+
+    window_find_save_settings (window);
+
+    return yelp_html_find (priv->html_view,
+			   priv->find_string,
+			   priv->match_case,
+			   priv->wrap,
+			   (action == YELP_WINDOW_FIND_NEXT) ? TRUE: FALSE);
+}
+
 static void 
 window_find_again_cb (gpointer   data,
                       guint      action,
 		      GtkWidget *widget)
 {
-    YelpWindowPriv *priv;
-
+    YelpWindow *window;
 
     g_return_if_fail (YELP_IS_WINDOW (data));
-    
-    priv = YELP_WINDOW (data)->priv;
+ 
+    window = YELP_WINDOW (data);
 
-    if (priv->find_string) {
-	yelp_html_find (priv->html_view,
-			priv->find_string,
-			priv->match_case,
-			priv->wrap,
-			TRUE);
-    }
+    window_find_action (window, (YelpFindAction)action);
 }
 
 static void
@@ -1350,7 +1404,6 @@ window_find_response_cb (GtkWidget  *dialog,
 			 YelpWindow *window)
 {
     YelpWindowPriv * priv;
-    const gchar *tmp;
 
     priv = window->priv;
 
@@ -1359,30 +1412,92 @@ window_find_response_cb (GtkWidget  *dialog,
 	gtk_widget_hide (dialog);
 	break;
 	
-    case RESPONSE_PREV:
-    case RESPONSE_NEXT:
-	tmp = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
-	
-	priv->match_case = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->case_checkbutton));
-	priv->wrap = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->wrap_checkbutton));
-	
-	g_free (priv->find_string);
-
-	if (!priv->match_case) {
-	    priv->find_string = g_utf8_casefold (tmp, -1);
+    case YELP_WINDOW_FIND_NEXT:
+    case YELP_WINDOW_FIND_PREV:
+	if (!window_find_action (window, response)) {
+	    if (YELP_WINDOW_FIND_NEXT == response) {
+		gtk_widget_set_sensitive (priv->find_next_button, FALSE);
+		gtk_widget_set_sensitive (priv->find_prev_button, TRUE);
+	    } else {
+		gtk_widget_set_sensitive (priv->find_next_button, TRUE);
+		gtk_widget_set_sensitive (priv->find_prev_button, FALSE);
+	    }
 	} else {
-	    priv->find_string = g_strdup (tmp);
+	    window_find_buttons_set_sensitive (window, TRUE);
 	}
 
-	yelp_html_find (priv->html_view,
-			priv->find_string,
-			priv->match_case,
-			priv->wrap,
-			RESPONSE_NEXT == response);
 	break;
 
     default:
 	break;
+    }
+}
+
+static void
+window_find_entry_changed_cb (GtkEditable *editable,
+			      gpointer     data)
+{
+    YelpWindow     *window;
+    gchar          *text;
+
+    g_return_if_fail (YELP_IS_WINDOW(data));
+	
+    window = YELP_WINDOW (data);
+
+    text = gtk_editable_get_chars (editable, 0, -1);
+
+    if (!strlen (text)) {
+	window_find_buttons_set_sensitive (window, FALSE);
+    } else {
+	window_find_buttons_set_sensitive (window, TRUE);
+    }
+ 
+    g_free (text);
+}
+
+static void
+window_find_case_toggled_cb (GtkWidget *widget,
+			     gpointer   data)
+{
+    YelpWindow     *window;
+    YelpWindowPriv *priv;
+
+    g_return_if_fail (YELP_IS_WINDOW (data));
+
+    window = YELP_WINDOW (data);
+    priv   = window->priv;
+
+    window_find_entry_changed_cb (GTK_EDITABLE (priv->find_entry),
+				  window);
+}
+
+static void
+window_find_wrap_toggled_cb (GtkWidget *widget,
+			     gpointer   data)
+{
+    YelpWindow     *window;
+    YelpWindowPriv *priv;
+
+    g_return_if_fail (YELP_IS_WINDOW (data));
+
+    window = YELP_WINDOW (data);
+    priv   = window->priv;
+
+    window_find_entry_changed_cb (GTK_EDITABLE (priv->find_entry),
+				  window);
+}
+
+static void
+window_find_buttons_set_sensitive (YelpWindow *window,
+				  gboolean    sensitive)
+{
+    YelpWindowPriv *priv;
+
+    priv = window->priv;
+
+    if (priv->find_dialog) {
+	gtk_widget_set_sensitive (priv->find_next_button, sensitive);
+	gtk_widget_set_sensitive (priv->find_prev_button, sensitive);
     }
 }
 
@@ -1394,6 +1509,7 @@ window_find_cb (gpointer   data,
     YelpWindow     *window;
     YelpWindowPriv *priv;
     GladeXML       *glade;
+    GtkWidget      *gnome_entry;
 
     g_return_if_fail (YELP_IS_WINDOW (data));
     
@@ -1409,13 +1525,36 @@ window_find_cb (gpointer   data,
 	    return;
 	}
 
-	priv->find_dialog = glade_xml_get_widget (glade, "find_dialog");	
-	priv->find_entry = glade_xml_get_widget (glade, "find_entry");
-	priv->case_checkbutton = glade_xml_get_widget (glade, "case_check");
-	priv->wrap_checkbutton = glade_xml_get_widget (glade, "wrap_check");
+	priv->find_dialog       = glade_xml_get_widget (glade, "find_dialog");	
+	priv->find_entry        = glade_xml_get_widget (glade, "find_entry");
+	priv->case_checkbutton  = glade_xml_get_widget (glade, "case_check");
+	priv->wrap_checkbutton  = glade_xml_get_widget (glade, "wrap_check");
+	priv->find_next_button  = glade_xml_get_widget (glade, "next_button");
+	priv->find_prev_button  = glade_xml_get_widget (glade, "prev_button");
+	priv->find_close_button = glade_xml_get_widget (glade, "close_button");	
+	gnome_entry             = glade_xml_get_widget (glade, "find_gnome_entry");
+
+	gtk_window_set_transient_for (GTK_WINDOW (priv->find_dialog), 
+				      GTK_WINDOW (window));
+	gtk_window_set_destroy_with_parent (GTK_WINDOW (priv->find_dialog),
+					    TRUE);
+
+	gtk_combo_set_use_arrows (GTK_COMBO (gnome_entry), FALSE);
 	
 	gtk_entry_set_activates_default (GTK_ENTRY (priv->find_entry), TRUE);
 	gtk_widget_grab_default (glade_xml_get_widget (glade, "next_button"));
+
+	gtk_widget_set_sensitive (priv->find_next_button, FALSE);
+	gtk_widget_set_sensitive (priv->find_prev_button, FALSE);
+
+	g_signal_connect (G_OBJECT (priv->find_entry), "changed",
+			  G_CALLBACK (window_find_entry_changed_cb), window);	
+
+	g_signal_connect (G_OBJECT (priv->wrap_checkbutton), "toggled",
+			  G_CALLBACK (window_find_wrap_toggled_cb), window);
+
+	g_signal_connect (G_OBJECT (priv->case_checkbutton), "toggled",
+			  G_CALLBACK (window_find_case_toggled_cb), window);
 
 	g_signal_connect (G_OBJECT (priv->find_dialog), "delete_event",
 			  G_CALLBACK (window_find_delete_event_cb), NULL);

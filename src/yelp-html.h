@@ -70,7 +70,7 @@ void            yelp_html_close          (YelpHtml    *html);
 
 GtkWidget *     yelp_html_get_widget     (YelpHtml    *html);
 
-void            yelp_html_find           (YelpHtml    *html,
+gboolean        yelp_html_find           (YelpHtml    *html,
 					  const gchar *str,
 					  gboolean     match_case,
 					  gboolean     wrap,
