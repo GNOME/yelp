@@ -71,7 +71,7 @@ yelp_pregenerate_SOURCES =						\
 	yelp-pregenerate.c      yelp-pregenerate.h
 
 yelp_db2html_LDADD =							\
-	@YELP_LIBS@
+	@DB2HTML_LIBS@
 
 yelp_pregenerate_LDADD =						\
 	@YELP_LIBS@

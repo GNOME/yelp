@@ -58,6 +58,9 @@ else
 fi
 AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
 
+PKG_CHECK_MODULES(DB2HTML, glib-2.0 >= 2.0.6		\
+			   libxslt >= 1.0.15)
+
 PKG_CHECK_MODULES(YELP, gnome-vfs-2.0 >= 1.1		\
 			libgnome-2.0 >= 2.0.2		\
 			libgnomeui-2.0 >= 1.103.0	\

@@ -1,3 +1,12 @@
+2002-09-23  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-db2html.c: Don't include libgnome and gnome-vfs stuff.
+
+	* configure.in: Added DB2HTML_* variables.
+
+	* src/Makefile.am (test_uri_LDADD): use special LIBS for
+	  yelp-db2html.
+
 2002-09-23  Sander Vesik <sander.vesik@sun.com>
 
 	* stylesheets/yelp-customization.xsl:
