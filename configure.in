@@ -35,18 +35,6 @@ yelplocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(yelplocaledir)
 
 
-# libgnome
-LIBGNOME_SERVERDIR=`$PKG_CONFIG --variable=libgnome_serverdir libgnome-2.0`
-if test x"$LIBGNOME_SERVERDIR" = x; then
-   LIBGNOME_MAN2HTML="gnome2-man2html"
-   LIBGNOME_INFO2HTML="gnome2-info2html"
-else
-   LIBGNOME_MAN2HTML="$LIBGNOME_SERVERDIR/gnome2-man2html"
-   LIBGNOME_INFO2HTML="$LIBGNOME_SERVERDIR/gnome2-info2html"
-fi
-AC_SUBST(LIBGNOME_MAN2HTML)
-AC_SUBST(LIBGNOME_INFO2HTML)
-
 if test "x$prefix" = "xNONE"; then
   GNOMELOCALEDIR=$ac_default_prefix/share/locale
 else
@@ -79,13 +67,12 @@ YELP_MODULES="gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"
 YELP_IDL_INCLUDES="`$PKG_CONFIG --variable=idldir gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0 bonobo-activation-2.0| sed -e 's/^/ /' -e 's/ \+$//' -e 's/ \+/ -I /g' -e 's/^ \+//'`"
 AC_SUBST(YELP_IDL_INCLUDES)
 
-dnl ====================================
-dnl = Bzip2, for the help converters
-dnl ====================================
-AC_CHECK_LIB(bz2, bzread, [AC_DEFINE(HAVE_LIBBZ2)])
-dnl <= Check for bzip2 > 1.0.0
-    AC_CHECK_LIB(bz2, BZ2_bzread, [AC_DEFINE(HAVE_LIBBZ2)])
-    dnl =>
+dnl Check for whereis
+AC_CANONICAL_HOST
+  case $host in
+  *-linux-gnu | *-irix6*) AC_DEFINE(HAVE_MAN_WHEREIS, 1, [man(1)  understands -w option]);;
+  *-solaris*) AC_DEFINE(HAVE_MAN_DEBUG, 1, [man(1) has a -d debug option]);;
+  esac
 
 dnl ===================================================
 dnl = Check for popt, reported to be needed on AIX
@@ -95,9 +82,43 @@ AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],
 
 AC_SUBST(POPT_LIBS)
 
+
+dnl ====================================
+dnl = zlib for help converters
+dnl ====================================
+AC_CHECK_LIB(z, gzopen, [Z_LIBS=-lz
+AC_SUBST(Z_LIBS)], AC_MSG_ERROR([*** zlib is required]))
+
+dnl ====================================
+dnl = Bzip2, for the help converters
+dnl ====================================
+BZ_LIBS=
+AC_CHECK_LIB(bz2, bzread, [AC_DEFINE(HAVE_LIBBZ2, 1, [Compile with libbz2 suppot])
+			  BZ_LIBS="-lbz2"])
+dnl <= Check for bzip2 > 1.0.0
+    AC_CHECK_LIB(bz2, BZ2_bzread, [AC_DEFINE(HAVE_LIBBZ2, 1, [Compile with libbz2 support])
+		      	  BZ_LIBS="-lbz2"
+    dnl <= define the wrapper-functions to get the Bzip2 stuff working .. =>	
+	   AC_DEFINE(bzread,BZ2_bzread, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzopen,BZ2_bzopen, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzdopen,BZ2_bzdopen, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzwrite,BZ2_bzwrite, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzerror,BZ2_bzerror, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzclose,BZ2_bzclose, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzflush,BZ2_bzflush, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzCompress,BZ2_bzCompress, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzCompressInit,BZ2_bzCompressInit, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzDecompress,BZ2_bzDecompress, [Needed to get Bzip2 working])
+	   AC_DEFINE(bzDecompressInit,BZ2_bzDecompressInit, [Needed to get Bzip2 working])	
+	   ])
+    dnl =>
+AC_SUBST(BZ_LIBS)
+
 AC_OUTPUT([
 Makefile
 src/Makefile
+src/man2html/Makefile
+src/info2html/Makefile
 stylesheets/Makefile
 stylesheets/docbook/Makefile
 stylesheets/docbook/catalog

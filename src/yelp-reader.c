@@ -240,21 +240,21 @@ reader_convert_start (ReaderThreadData *th_data)
 
 	switch (yelp_uri_get_type (uri)) {
 	case YELP_URI_TYPE_MAN:
-		command_line = g_strdup_printf ("%s %s",
-						LIBGNOME_MAN2HTML,
+		command_line = g_strdup_printf ("%s/yelp-man2html %s",
+						SERVERDIR,
 						yelp_uri_get_path (uri));
 		break;
 	case YELP_URI_TYPE_INFO:
 		if (yelp_uri_get_section (uri)) {
 			command_line = 
-				g_strdup_printf ("%s %s?%s",
-						 LIBGNOME_INFO2HTML,
+				g_strdup_printf ("%s/yelp-info2html %s?%s",
+						 SERVERDIR,
 						 yelp_uri_get_path (uri),
 						 yelp_uri_get_section (uri));
 		} else { 
 			command_line = 
-				g_strdup_printf ("%s %s",
-						 LIBGNOME_INFO2HTML,
+				g_strdup_printf ("%s/yelp-info2html %s",
+						 SERVERDIR,
 						 yelp_uri_get_path (uri));
 		}
 		

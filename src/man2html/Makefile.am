@@ -1,15 +1,16 @@
 ## Process this file with automake to produce Makefile.in.
 
-INCLUDES = $(LIBGNOME_CFLAGS)			\
-	   -I$(top_srcdir)
+INCLUDES = 								\
+	-I$(top_srcdir)							\
+	@YELP_CFLAGS@							
 
-libexec_PROGRAMS = gnome2-man2html
 
-gnome2_man2html_SOURCES = gnome-man2html.c
+libexec_PROGRAMS = yelp-man2html
 
-gnome2_man2html_LDADD = \
-	$(top_builddir)/libgnome/libgnome-2.la		\
-	$(LIBGNOME_LIBS) $(Z_LIBS) $(BZ_LIBS)
+yelp_man2html_SOURCES = yelp-man2html.c
+
+yelp_man2html_LDADD = 							\
+	@YELP_LIBS@ $(Z_LIBS) $(BZ_LIBS)
 
 #CFLAGS += -Wall
 

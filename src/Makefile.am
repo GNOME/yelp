@@ -1,3 +1,5 @@
+SUBDIRS = man2html info2html
+
 INCLUDES =								\
 	-I$(top_srcdir)							\
 	@YELP_CFLAGS@							\

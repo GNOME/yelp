@@ -1,9 +1,9 @@
 ## Process this file with automake to produce Makefile.in.
 
-INCLUDES = $(LIBGNOME_CFLAGS)
+INCLUDES = @YELP_CFLAGS@
 
-libexec_PROGRAMS = gnome2-info2html
+libexec_PROGRAMS = yelp-info2html
 
-gnome2_info2html_SOURCES = main.c parse.c utils.c html.c data.h html.h parse.h utils.h version.h
+yelp_info2html_SOURCES = main.c parse.c utils.c html.c data.h html.h parse.h utils.h version.h
 
-gnome2_info2html_LDADD = $(LIBGNOME_LIBS) $(Z_LIBS) $(BZ_LIBS)
+yelp_info2html_LDADD = @YELP_LIBS@ $(Z_LIBS) $(BZ_LIBS)
