@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-02-24 01:24+0000\n"
+"POT-Creation-Date: 2005-02-24 07:35+0100\n"
+"PO-Revision-Date: 2005-02-28 07:03+0100\n"
 "Last-Translator: Rhys Jones <rhys@sucs.org>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: data/man.xml.in.h:1
+#: data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "Rhaglenni"
 
@@ -29,9 +29,10 @@ msgstr "Datblygu"
 
 #: data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "Ffwythiannau FORTRAN"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: data/man.xml.in.h:5
+#: data/toc.xml.in.h:7
 msgid "Games"
 msgstr "Gêmau"
 
@@ -48,25 +49,22 @@ msgstr "Ffwythiannau'r Cnewyllyn"
 msgid "Library Functions"
 msgstr "Ffwythiannau'r Llyfrgell"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-#, fuzzy
+#: data/man.xml.in.h:9
+#: src/yelp-toc-pager.c:787
 msgid "Man Pages"
-msgstr "Tudalennau Llawlyfr"
+msgstr "Man Pages"
 
 #: data/man.xml.in.h:10
-#, fuzzy
 msgid "OpenSSL Applications"
-msgstr "Rhaglenni X"
+msgstr "Rhaglenni OpenSSL"
 
 #: data/man.xml.in.h:11
-#, fuzzy
 msgid "OpenSSL Configuration"
-msgstr "Ffeiliau Cyfluniad"
+msgstr "Cyfluniad OpenSSL"
 
 #: data/man.xml.in.h:12
-#, fuzzy
 msgid "OpenSSL Overviews"
-msgstr "Trosolygon"
+msgstr "Trosolygon OpenSSL"
 
 #: data/man.xml.in.h:13
 msgid "Overviews"
@@ -74,15 +72,13 @@ msgstr "Trosolygon"
 
 # 'llyfrgell' ddefnyddir yng ngweddill y cyfieithiadau GNOME, mae'n debyg
 #: data/man.xml.in.h:14
-#, fuzzy
 msgid "Perl Functions"
-msgstr "Ffwythiannau'r Llyfrgell"
+msgstr "Ffwythiannau Perl"
 
 # 'llyfrgell' ddefnyddir yng ngweddill y cyfieithiadau GNOME, mae'n debyg
 #: data/man.xml.in.h:15
-#, fuzzy
 msgid "Qt Functions"
-msgstr "Ffwythiannau'r Llyfrgell"
+msgstr "Ffwythiannau Qt"
 
 #: data/man.xml.in.h:16
 msgid "System Administration"
@@ -93,51 +89,45 @@ msgid "System Calls"
 msgstr "Galwadau System"
 
 #: data/man.xml.in.h:18
-#, fuzzy
 msgid "Termcap Applications"
-msgstr "Rhaglenni X"
+msgstr "Rhaglenni Termcap"
 
 #: data/man.xml.in.h:19
-#, fuzzy
 msgid "X11 Applications"
-msgstr "Rhaglenni X"
+msgstr "Rhaglenni X11"
 
 #: data/man.xml.in.h:20
-#, fuzzy
 msgid "X11 Configuration"
-msgstr "Ffeiliau Cyfluniad"
+msgstr "Cyfluniad X11"
 
 #: data/man.xml.in.h:21
 msgid "X11 Devices"
-msgstr ""
+msgstr "Dyfeisiau X11"
 
 # 'llyfrgell' ddefnyddir yng ngweddill y cyfieithiadau GNOME, mae'n debyg
 #: data/man.xml.in.h:22
-#, fuzzy
 msgid "X11 Functions"
-msgstr "Ffwythiannau'r Llyfrgell"
+msgstr "Ffwythiannau X11"
 
 #: data/man.xml.in.h:23
-#, fuzzy
 msgid "X11 Games"
-msgstr "Gêmau"
+msgstr "Gêmau X11"
 
 #: data/man.xml.in.h:24
-#, fuzzy
 msgid "X11 Overviews"
-msgstr "Trosolygon"
+msgstr "Trosolygon X11"
 
 #: data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "Hygyrchedd"
 
 #: data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "Ategynnau"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Rhaglennigion"
+msgid "Administration"
+msgstr "Gweinyddiaeth"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -149,82 +139,85 @@ msgstr "Rhaglenni Addysg"
 
 #: data/toc.xml.in.h:8
 msgid "Graphics"
-msgstr ""
+msgstr "Graffeg"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
+#: data/toc.xml.in.h:9
+#: src/yelp-bookmarks.c:391
 msgid "Help Topics"
-msgstr "Porwr Cymorth"
+msgstr "Testunau Cymorth"
 
 #: data/toc.xml.in.h:10
-#, fuzzy
 msgid "Internet"
-msgstr "Cynnwys"
+msgstr "Rhyngrwyd"
 
 #: data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
-msgid "Office"
-msgstr ""
+msgid "Multimedia"
+msgstr "Amlgyfrwng"
 
 #: data/toc.xml.in.h:13
-msgid "Other"
-msgstr ""
+msgid "Office"
+msgstr "Swyddfa"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
-msgid "Other Documentation"
-msgstr "Gwybodaeth Rhyddhad"
+msgid "Other"
+msgstr "Arall"
 
 #: data/toc.xml.in.h:15
-msgid "Programming"
-msgstr ""
+msgid "Other Documentation"
+msgstr "Dogfennaeth Arall"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
-msgid "Scientific"
-msgstr "Rhaglenni Gwyddonol"
+msgid "Panel Applets"
+msgstr "Rhaglennigion Panel"
 
 #: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr ""
+#: data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Hoffterau"
 
 #: data/toc.xml.in.h:18
-#, fuzzy
-msgid "System Tools"
-msgstr "Galwadau System"
+msgid "Programming"
+msgstr "Rhaglenni"
 
 #: data/toc.xml.in.h:19
+msgid "Scientific"
+msgstr "Gwyddonol"
+
+#: data/toc.xml.in.h:20
+msgid "System Tools"
+msgstr "Erfynnau System"
+
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "Rhaglenni X"
 
 #: data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Hygyrchedd</b>"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Ffontiau</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "Llyfr"
+msgstr "<b>_Llyfrnodau:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
-msgstr ""
+msgstr "<b>_Teitl:</b>"
 
 #: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Ychwanegu Llyfrnod"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Bookmarks"
-msgstr "Llyfr"
+msgstr "Llyfrnodau"
 
 #: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
@@ -235,22 +228,16 @@ msgid "Find"
 msgstr "Chwilio"
 
 #: data/ui/yelp.glade.h:9
-#, fuzzy
 msgid "Open Location"
-msgstr "Cyflwyniad"
-
-#: data/ui/yelp.glade.h:10
-#, fuzzy
-msgid "Preferences"
-msgstr "Cyfeiriad"
+msgstr "Agor Lleoliad"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "Ail_enwi"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Pori gyda lleolnod"
 
 #: data/ui/yelp.glade.h:13
 msgid "_Find: "
@@ -258,12 +245,11 @@ msgstr "_Chwilio: "
 
 #: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Lled benodol:"
 
 #: data/ui/yelp.glade.h:15
-#, fuzzy
 msgid "_Location:"
-msgstr "Cyflwyniad"
+msgstr "_Lleoliad:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Next"
@@ -275,11 +261,11 @@ msgstr "_Blaenorol"
 
 #: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Defnyddio ffontiau system"
 
 #: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Lled amrywiol:"
 
 #: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
@@ -287,37 +273,38 @@ msgstr "_Amlapio"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Ffont ar gyfer testun penodol"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Ffont ar gyfer testun"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Ffont ar gyfer testun â lled benodol."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Ffont ar gyfer testun â lled amrywiol."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Defnyddio lleolnod y gellir ei reoli â'r bysellfwrdd wrth wylio tudalennau."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Defnyddio lleolnod"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Defnyddio ffontiau system"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "Defnyddio'r ffontiau rhagosodedig, wedi eu gosod ar gyfer y system."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
+#: src/GNOME_Yelp.server.in.h:1
+#: src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -325,68 +312,74 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Ffatri Yelp"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:155
+msgid "Open Bookmark in New Window"
+msgstr "Agor Llyfnod mewn Ffenest Newydd"
+
+#: src/yelp-bookmarks.c:159
+msgid "Rename Bookmark"
+msgstr "Ailenwi Llyfrnod"
+
+#: src/yelp-bookmarks.c:163
+msgid "Remove Bookmark"
+msgstr "Tynnu Llyfrnod"
+
+#: src/yelp-bookmarks.c:306
+#: src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "Mae llyfrnod o'r enw <b>%s</b> yn bodoli eisoes ar gyfer y dudalen."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
-msgstr "Gwybodaeth Rhyddhad"
+msgstr "Adrannau Dogfen"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
+msgstr "Methwyd gramadegu'r ffeil ‘%s’. Naill ai nid yw'n bodoli, neu nid yw'n XML da."
 
 #: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Anhysbys"
+msgid "Unknown Section"
+msgstr "Adran Anhysbys"
 
-#: src/yelp-error.c:42 src/yelp-error.c:58
+#: src/yelp-error.c:42
+#: src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Digwyddodd gwall anhysbys"
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "Could not load document"
-msgstr "Dogfennau ychwanegol"
+msgstr "Methu llwytho dogfen"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Methu agor ffenestr newydd."
+msgstr "Methu llwytho adran"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Methwyd llwytho'r ffeil OMF '%s'."
+msgstr "Methwyd darllen tabl cynnwys"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Fformat na gynhelir"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Methu darllen y ddogfen"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Methu prosesu'r ddogfen"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "Does dim gwybodaeth ar gael am y gwall."
 
 #: src/yelp-io-channel.c:98
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
+msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+msgstr "Methwyd darllen a dadgodio'r ffeil ‘%s’. Mae'n bosib bod y ffeil wedi ei chywasgu mewn modd na gynhelir."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -401,50 +394,32 @@ msgstr "Methu rhedeg Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Methu agor ffenestr newydd."
 
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: src/yelp-main.c:326
+#: yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Cymorth"
 
 #: src/yelp-man-pager.c:164
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
+msgstr "Methwyd gramadegu'r ffeil ‘%s’. Naill ai nid yw'n bodoli, neu mae wedi ei fformatio'n anghywir."
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Gwybodaeth Rhyddhad"
+msgstr "Gwybodaeth Dogfen"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "Strwythur YelpDocInfo y ddogfen"
 
 #. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
 #. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
 #. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
 #: src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
@@ -455,244 +430,216 @@ msgstr "YelpTocPager: Cyfrif seibiau yn negatif."
 msgid "Could not load the OMF file '%s'."
 msgstr "Methwyd llwytho'r ffeil OMF '%s'."
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "Darllen y dudalen 'man' ar gyfer %s "
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
+msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
+msgstr "Methu llwytho'r tabl cynnwys. Naill ai bod y ffeil ‘%s’ ar goll, neu nid yw'n XML dilys."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+msgstr "Methu prosesu'r tabl cynnwys. Naill ai bod y ffeil ‘%s’ ar goll, neu nid yw'n daflen arddull XSLT dilys."
 
 # Neu '...yn y yelp:document' efallai?
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029
+#: src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Heb ddarganfod priodoledd href yn y ddogfen yelp:"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043
+#: src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Dim cof ar ôl"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Cynnwys Help"
 
-#: src/yelp-window.c:302
-#, fuzzy
+#: src/yelp-window.c:292
 msgid "_File"
-msgstr "/_Ffeil"
+msgstr "_Ffeil"
 
-#: src/yelp-window.c:303
-#, fuzzy
+#: src/yelp-window.c:293
 msgid "_Edit"
-msgstr "/_Golygu"
+msgstr "_Golygu"
+
+#: src/yelp-window.c:294
+msgid "_Go"
+msgstr "_Mynd"
+
+#: src/yelp-window.c:295
+msgid "_Bookmarks"
+msgstr "_Llyfrnodau"
+
+#: src/yelp-window.c:296
+msgid "_Help"
+msgstr "_Cymorth"
+
+#: src/yelp-window.c:299
+msgid "_New Window"
+msgstr "_Ffenestr newydd"
 
 #: src/yelp-window.c:304
-#, fuzzy
-msgid "_Go"
-msgstr "/_Mynd"
-
-#: src/yelp-window.c:305
-msgid "_Bookmarks"
-msgstr ""
-
-#: src/yelp-window.c:306
-#, fuzzy
-msgid "_Help"
-msgstr "/_Cymorth"
+msgid "About This Document"
+msgstr "Ynghylch y Ddogfen"
 
 #: src/yelp-window.c:309
-#, fuzzy
-msgid "_New Window"
-msgstr "/Ffeil/Ffenestr _newydd"
+msgid "Open _Location"
+msgstr "Agor _Lleoliad"
 
 #: src/yelp-window.c:314
-#, fuzzy
-msgid "About This Document"
-msgstr "Ynghylch y Set Hon"
-
-#: src/yelp-window.c:319
-msgid "Open _Location"
-msgstr ""
-
-#: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
-msgstr "/Ffeil/_Cau ffenestr"
+msgstr "_Cau ffenestr"
 
-#: src/yelp-window.c:330
+#: src/yelp-window.c:320
 msgid "_Copy"
-msgstr ""
+msgstr "_Copïo"
+
+#: src/yelp-window.c:326
+msgid "_Select All"
+msgstr "_Dewis Popeth"
+
+#: src/yelp-window.c:331
+msgid "_Find..."
+msgstr "_Canfod..."
 
 #: src/yelp-window.c:336
-#, fuzzy
-msgid "_Select All"
-msgstr "Gweler Hefyd"
+msgid "_Preferences"
+msgstr "_Hoffterau"
 
 #: src/yelp-window.c:341
-#, fuzzy
-msgid "_Find..."
-msgstr "/Golygu/Canfod..."
-
-#: src/yelp-window.c:346
-#, fuzzy
-msgid "_Preferences"
-msgstr "Cyfeiriad"
-
-#: src/yelp-window.c:351
 msgid "_Reload"
-msgstr ""
+msgstr "_Ail-lwytho"
 
-#: src/yelp-window.c:357
-#, fuzzy
+#: src/yelp-window.c:347
 msgid "_Back"
-msgstr "Yn ôl"
+msgstr "_Yn ôl"
 
-#: src/yelp-window.c:359
+#: src/yelp-window.c:349
 msgid "Show previous page in history"
 msgstr "Dangos y dudalen flaenorol yn yr hanes"
 
-#: src/yelp-window.c:362
-#, fuzzy
+#: src/yelp-window.c:352
 msgid "_Forward"
-msgstr "Ymlaen"
+msgstr "Y_mlaen"
 
-#: src/yelp-window.c:364
+#: src/yelp-window.c:354
 msgid "Show next page in history"
 msgstr "Dangos y dudalen nesaf"
 
-#: src/yelp-window.c:367
+#: src/yelp-window.c:357
 msgid "_Help Topics"
-msgstr ""
+msgstr "Pynciau _Cymorth"
 
-#: src/yelp-window.c:369
+#: src/yelp-window.c:359
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Mynd at y rhestr o bynciau cymorth"
+
+#: src/yelp-window.c:362
+msgid "_Previous Section"
+msgstr "Adran _Flaenorol"
+
+#: src/yelp-window.c:367
+msgid "_Next Section"
+msgstr "Adran _Nesaf"
 
 #: src/yelp-window.c:372
-#, fuzzy
-msgid "_Previous Section"
-msgstr "/Mynd/Tudalen _Flaenorol"
-
-#: src/yelp-window.c:377
-#, fuzzy
-msgid "_Next Section"
-msgstr "Adran"
-
-#: src/yelp-window.c:382
-#, fuzzy
 msgid "_Contents"
-msgstr "Cynnwys"
+msgstr "_Cynnwys"
 
-#: src/yelp-window.c:388
+#: src/yelp-window.c:378
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "_Ychwanegu Llyfrnod"
 
-#: src/yelp-window.c:393
+#: src/yelp-window.c:383
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "_Golygu Llyfrnodau..."
+
+#: src/yelp-window.c:389
+msgid "_Open Link"
+msgstr "_Agor Cyswllt"
+
+#: src/yelp-window.c:394
+msgid "Open Link in _New Window"
+msgstr "Agor Cyswllt mewn _Ffenestr Newydd"
 
 #: src/yelp-window.c:399
-msgid "_Open Link"
-msgstr ""
-
-#: src/yelp-window.c:404
-msgid "Open Link in _New Window"
-msgstr ""
-
-#: src/yelp-window.c:409
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Copïo Cyfeiriad y Cyswllt"
 
-#: src/yelp-window.c:415
-#, fuzzy
+#: src/yelp-window.c:405
 msgid "_About"
-msgstr "/Cymorth/_Ynghylch"
+msgstr "_Ynghylch"
 
-#: src/yelp-window.c:466
+#: src/yelp-window.c:456
 msgid "Help Browser"
 msgstr "Porwr Cymorth"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
+#: src/yelp-window.c:687
+#: src/yelp-window.c:820
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "Mae'r URI ar gyfer y ffeil yn annilys."
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: src/yelp-window.c:699
+#: src/yelp-window.c:815
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
+msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
+msgstr "Mae'r URI ‘%s’ naill ai'n annilys, neu nid yw'n pwyntio at ffeil go iawn."
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
+#: src/yelp-window.c:775
+#: src/yelp-window.c:1130
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Ni chynhelir tudalennau 'man' yn y fersiwn hon."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
+#: src/yelp-window.c:785
+#: src/yelp-window.c:1121
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Ni chynhelir tudalennau info GNU yn y fersiwn hon."
 
-#: src/yelp-window.c:806
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
+#: src/yelp-window.c:795
+msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
+msgstr "Ni chynhelir dogfennau SGML bellach. Gofynnwch i awdur y ddogfen ei throsi i XML."
 
-#: src/yelp-window.c:1024
-#, fuzzy
+#: src/yelp-window.c:1014
 msgid "Find:"
-msgstr "Chwilio"
+msgstr "Chwilio am:"
 
-#: src/yelp-window.c:1040
-#, fuzzy
+#: src/yelp-window.c:1030
 msgid "Find _Next"
-msgstr "Chwilio am destun..."
+msgstr "Chwilio am y _Nesaf"
 
-#: src/yelp-window.c:1052
-#, fuzzy
+#: src/yelp-window.c:1042
 msgid "Find _Previous"
-msgstr "_Blaenorol"
+msgstr "Chwilio am y _Blaenorol"
 
-#: src/yelp-window.c:1157
+#: src/yelp-window.c:1147
 #, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
+msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
+msgstr "Methwyd creu cyd-destun trawsffurfio ar gyfer y ffeil ‘%s’. Efallai na chynhelir ffurf y ffeil."
+
+#: src/yelp-window.c:1177
+#: src/yelp-window.c:1601
+#: src/yelp-window.c:1668
+#, c-format
+msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
+#: src/yelp-window.c:1292
 #, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-
-#: src/yelp-window.c:1302
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
+msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
 msgstr ""
 
 #: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Yn Llwytho..."
 
-#. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#  Note to translators: put here your name (and address) so it
 #: src/yelp-window.c:2166
-#, fuzzy
 msgid "translator-credits"
 msgstr ""
 "Chris M. Jackson <chris@www.linux.org.uk>\n"
@@ -701,27 +648,17 @@ msgstr ""
 
 #: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "Yn eich galluogi i ddarllen a phori dogfennaeth, ar gyfer Penbwrdd Gnome."
 
 #: src/yelp-xslt-pager.c:194
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
 msgstr ""
 
 #: src/yelp-xslt-pager.c:215
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-
 #: src/yelp-xslt-pager.c:228
 #, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
+msgid "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it is not a valid XSLT stylesheet."
 msgstr ""
 
 #: yelp.desktop.in.in.h:1
