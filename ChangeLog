@@ -1,5 +1,13 @@
 2002-01-11  Alex Larsson  <alexl@redhat.com>
 
+	* src/yelp-html.c (yh_link_clicked_cb):
+	Shortcut pure relative links.
+	(yelp_html_open_section): If there is a fragment
+	in the uri, put that in sdata->anchor so that we
+	jump to the anchor on load.
+
+2002-01-11  Alex Larsson  <alexl@redhat.com>
+
 	* src/yelp-util.[ch]:
 	Add yelp_util_resolve_relative_uri() that resolves
 	relative text uris. Taken from Gnome VFS. We can't use

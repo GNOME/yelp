@@ -24,6 +24,10 @@
 #include <config.h>
 #endif
 
+#include "yelp-util.h"
+
+#include <string.h>
+
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
 #include <stdio.h>
@@ -158,7 +162,7 @@ yh_async_close_cb (GnomeVFSAsyncHandle *handle,
 	d(puts(__FUNCTION__));
 
 	sdata = (StreamData *) callback_data;
-	
+
 	if (sdata->anchor) {
 		html_view_jump_to_anchor (HTML_VIEW (sdata->view),
  					  sdata->anchor);
@@ -338,6 +342,13 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 
         priv = html->priv;
 
+	/* If this is a relative reference. Shortcut reload. */
+	if (url && url[0] == '#') {
+		html_view_jump_to_anchor (HTML_VIEW (html),
+ 					  &url[1]);
+		return;
+	}
+	
 	if (priv->base_uri) {
 		abs_uri = yelp_util_resolve_relative_uri (priv->base_uri, url);
 		g_print ("Link '%s' pressed relative to: %s -> %s\n", 
@@ -384,6 +395,7 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
         YelpHtmlPriv *priv;
         StreamData   *sdata;
 	GnomeVFSURI  *uri;
+	const char   *fragment;
 	
         d(puts(__FUNCTION__));
 	
@@ -409,10 +421,6 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
 	sdata->stream  = priv->doc->current_stream;
 	sdata->anchor  = NULL;
 	
-	if (section->reference) {
-		sdata->anchor = g_strdup (section->reference);
-	}
-	
 	priv->connections = g_slist_prepend (priv->connections, sdata);
 
 	if (section->reference) {
@@ -424,7 +432,15 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
 		uri = gnome_vfs_uri_new (section->uri);
 	}
 
-
+	if (section->reference) {
+		sdata->anchor = g_strdup (section->reference);
+	} else if (uri) {
+		fragment = gnome_vfs_uri_get_fragment_identifier (uri);
+		if (fragment) {
+			sdata->anchor = g_strdup (fragment);
+		}
+	}
+	
 	gnome_vfs_async_open_uri (&sdata->handle,
 				  uri,
 				  GNOME_VFS_OPEN_READ,
