@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
-"PO-Revision-Date: 2003-11-20 20:25+0100\n"
+"POT-Creation-Date: 2003-12-09 21:53+0100\n"
+"PO-Revision-Date: 2003-12-09 22:01+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -19,41 +19,36 @@ msgid "Applications"
 msgstr "Programmer"
 
 #: data/toc.xml.in.h:2
-#, fuzzy
 msgid "Desktop"
-msgstr "Gnome - skrivebordsmiljøet"
+msgstr "Skrivebord"
 
 #: data/toc.xml.in.h:3 src/yelp-man.c:434
 msgid "Development"
 msgstr "Udvikling"
 
 #: data/toc.xml.in.h:4
-#, fuzzy
 msgid "Development Environments"
-msgstr "Udvikling"
+msgstr "Udviklingsmiljøer"
 
 #: data/toc.xml.in.h:5
-#, fuzzy
 msgid "Development Tools"
-msgstr "Udvikling"
+msgstr "Udviklingsværktøjer"
 
 #: data/toc.xml.in.h:6
-#, fuzzy
 msgid "Editors"
-msgstr "/_Redigér"
+msgstr "Redigeringsprogrammer"
 
 #: data/toc.xml.in.h:7
-#, fuzzy
 msgid "Education Applications"
-msgstr "Programmer"
+msgstr "Undervisningsprogrammer"
 
 #: data/toc.xml.in.h:8
 msgid "Games and Entertainment"
-msgstr ""
+msgstr "Spil og underholdning"
 
 #: data/toc.xml.in.h:9
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #. GList           *seriesids;
 #: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
@@ -61,45 +56,40 @@ msgid "Help Contents"
 msgstr "Indhold i hjælp"
 
 #: data/toc.xml.in.h:11
-#, fuzzy
 msgid "Internet Applications"
-msgstr "Programmer"
+msgstr "Internetprogrammer"
 
 #: data/toc.xml.in.h:12
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #: data/toc.xml.in.h:13
-#, fuzzy
 msgid "Kernels"
-msgstr "Kernerutiner"
+msgstr "Kerner"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
 msgid "Multimedia Applications"
-msgstr "Programmer"
+msgstr "Multimediaprogrammer"
 
 #: data/toc.xml.in.h:15
 msgid "Office and Productivity Applications"
-msgstr ""
+msgstr "Kontorprogrammer"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
 msgid "Scientific Applications"
-msgstr "Programmer"
+msgstr "Videnskabelige programmer"
 
 #: data/toc.xml.in.h:17
 msgid "Securities"
-msgstr ""
+msgstr "Sikkerhed"
 
 #: data/toc.xml.in.h:18
 msgid "Utilities"
-msgstr ""
+msgstr "Værktøjer"
 
 #: data/toc.xml.in.h:19
-#, fuzzy
 msgid "X Applications"
-msgstr "Programmer"
+msgstr "X-programmer"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -143,21 +133,21 @@ msgstr "Yelp-fabrik"
 
 #: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
 #: src/yelp-window.c:976
-#, fuzzy, c-format
+#, c-format
 msgid "The document '%s' could not be opened"
-msgstr "Dokumentet '%s' eksisterer ikke"
+msgstr "Kunne ikke åbne dokumentet '%s'"
 
 #: src/yelp-db-pager.c:404
 msgid "No href attribute found on yelp:document"
-msgstr ""
+msgstr "Ingen 'href'-egenskab fundet i 'yelp:document'"
 
 #: src/yelp-db-pager.c:419
 msgid "Out of memory"
-msgstr ""
+msgstr "Løbet tør for hukommelse"
 
 #: src/yelp-db-pager.c:547
 msgid "Titlepage"
-msgstr ""
+msgstr "Titelside"
 
 #: src/yelp-db-pager.c:549
 msgid "Contents"
@@ -165,7 +155,7 @@ msgstr "Indhold"
 
 #: src/yelp-db-pager.c:567
 msgid "Unknown"
-msgstr ""
+msgstr "Ukendt"
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -242,22 +232,20 @@ msgid "System Administration"
 msgstr "Systemadministration"
 
 #: src/yelp-pager.c:117
-#, fuzzy
 msgid "Document URI"
-msgstr "Dokumenter"
+msgstr "Dokument-URI"
 
 #: src/yelp-pager.c:118
 msgid "The URI of the document to be processed"
-msgstr ""
+msgstr "URI'en for det dokument der skal behandles"
 
 #: src/yelp-toc-pager.c:229
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: Pausetal er negativt."
 
 #: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
-#, fuzzy
 msgid "The table of contents could not be read."
-msgstr "Dokumentet '%s' eksisterer ikke"
+msgstr "Kunne ikke læse indholdsfortegnelsen."
 
 #: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
 #: src/yelp-view-toc.c:741
@@ -402,20 +390,19 @@ msgstr "Dokumentet '%s' eksisterer ikke"
 
 #: src/yelp-window.c:655
 msgid "DocBook SGML documents are no longer supported."
-msgstr ""
+msgstr "DocBook SGML-dokumenter understøttes ikke længere."
 
 #: src/yelp-window.c:887
 msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr ""
+msgstr "Indlæser&nbsp;&nbsp;&nbsp;"
 
 #: src/yelp-window.c:891
 msgid "Loading.&nbsp;&nbsp;"
-msgstr ""
+msgstr "Indlæser.&nbsp;&nbsp;"
 
 #: src/yelp-window.c:895
-#, fuzzy
 msgid "Loading..&nbsp;"
-msgstr "Indlæser..."
+msgstr "Indlæser..&nbsp;"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
