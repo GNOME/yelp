@@ -92,6 +92,11 @@ uri_set_resource_type (YelpURI *uri)
 
     g_return_if_fail (uri != NULL);
 
+    if (!uri->uri) {
+	uri->resource_type = YELP_URI_TYPE_ERROR;
+	return;
+    }
+
     if (strcmp (gnome_vfs_uri_get_scheme (uri->uri), "file")) {
 	uri->resource_type = YELP_URI_TYPE_EXTERNAL;
 	return;
@@ -113,6 +118,8 @@ uri_set_resource_type (YelpURI *uri)
 	uri->resource_type = YELP_URI_TYPE_DOCBOOK_SGML;
     else if (!strcmp (mime_type, "text/html"))
 	uri->resource_type = YELP_URI_TYPE_HTML;
+    else
+	uri->resource_type = YELP_URI_TYPE_EXTERNAL;
 
     g_free (mime_type);
     g_free (uri_str);
@@ -134,7 +141,8 @@ yelp_uri_unref (YelpURI   *uri)
     g_return_if_fail (uri != NULL);
 
     if (--uri->refcount < 1) {
-	gnome_vfs_uri_unref (uri->uri);
+	if (uri->uri)
+	    gnome_vfs_uri_unref (uri->uri);
 
 	if (uri->src_uri)
 	    g_free (uri->src_uri);
@@ -156,6 +164,10 @@ uri_parse_uri (YelpURI *uri)
     }
     else if (!strncmp (uri->src_uri, "toc:", 4)) {
 	uri_parse_toc_uri (uri);
+	return TRUE;
+    }
+    else if (!strncmp (uri->src_uri, "mailto:", 7)) {
+	uri->resource_type = YELP_URI_TYPE_MAILTO;
 	return TRUE;
     }
     else

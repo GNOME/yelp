@@ -1,5 +1,16 @@
 2004-01-22  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-uri.c:
+	* src/yelp-uri.h:
+	- Handle mailto: URIs.
+	- Make file: URIs be _TYPE_UNKNOWN for formats we don't know.
+
+	* src/yelp-window.c:
+	- Handle mailto: URIs.
+	- Some NULL checking.
+
+2004-01-22  Shaun McCance  <shaunm@gnome.org>
+
 	* data/toc.xml.in:
 	- Handling another category that doesn't exist.  ~sigh~
 

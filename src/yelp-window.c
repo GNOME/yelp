@@ -391,7 +391,8 @@ yelp_window_open_uri (YelpWindow  *window,
     priv = window->priv;
 
     cur_uri = yelp_history_get_current (window->priv->history);
-    if (cur_uri && gnome_vfs_uri_equal (cur_uri->uri, uri->uri)) {
+    if ((cur_uri && cur_uri->uri && uri->uri)
+	&& gnome_vfs_uri_equal (cur_uri->uri, uri->uri)) {
 	const gchar *cur_frag, *frag;
 	cur_frag = gnome_vfs_uri_get_fragment_identifier (cur_uri->uri);
 	frag     = gnome_vfs_uri_get_fragment_identifier (uri->uri);
@@ -436,6 +437,9 @@ window_handle_uri (YelpWindow  *window,
 	str_uri = gnome_vfs_uri_to_string (uri->uri, GNOME_VFS_URI_HIDE_NONE);
 	gnome_url_show (str_uri, &error);
 	g_free (str_uri);
+	break;
+    case YELP_URI_TYPE_MAILTO:
+	gnome_url_show (uri->src_uri, &error);
 	break;
     case YELP_URI_TYPE_ERROR:
     default:
