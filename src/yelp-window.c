@@ -664,26 +664,33 @@ window_go_index_cb (gpointer data, guint section, GtkWidget *widget)
 static void
 window_about_cb (gpointer data, guint section, GtkWidget *widget)
 {
-	GtkWidget   *about;
-	const gchar *authors[] = { 
-		"Mikael Hallendal <micke@codefactory.se>",
-		"Alexander Larsson <alexl@redhat.com>",
-		NULL
-	};
-	/* Note to translators: put here your name (and address) so it
-	 * will shop up in the "about" box */
-	gchar       *translator_credits = _("translator_credits");
-	
-	about = gnome_about_new (PACKAGE, VERSION,
-				 "Copyright 2001-2002 Mikael Hallendal <micke@codefactory.se>",
-				 _("A Help Browser for GNOME"),
-				 authors,
-				 NULL,
-				 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-				 window_load_icon ());
+	static GtkWidget *about = NULL;
 
-	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
-	gtk_widget_show (about);
+	if (about == NULL) {
+		const gchar *authors[] = { 
+			"Mikael Hallendal <micke@codefactory.se>",
+			"Alexander Larsson <alexl@redhat.com>",
+			NULL
+		};
+		/* Note to translators: put here your name (and address) so it
+		 * will shop up in the "about" box */
+		gchar       *translator_credits = _("translator_credits");
+	
+		about = gnome_about_new (PACKAGE, VERSION,
+					 "Copyright 2001-2002 Mikael Hallendal <micke@codefactory.se>",
+					 _("A Help Browser for GNOME"),
+					 authors,
+					 NULL,
+					 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
+					 window_load_icon ());
+
+		/* set the widget pointer to NULL when the widget is destroyed */
+		g_signal_connect (G_OBJECT (about), "destroy",
+				  G_CALLBACK (gtk_widget_destroyed),
+				  &about);
+		gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
+	}
+	gtk_window_present (GTK_WINDOW (about));
 }
 
 static gboolean
