@@ -11,7 +11,7 @@ INCLUDES =								\
 
 bin_PROGRAMS = yelp
 
-install-local:
+install-exec-local:
 	rm -f $(bindir)/gnome-help
 	ln -s yelp $(bindir)/gnome-help
 

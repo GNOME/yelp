@@ -1,3 +1,8 @@
+2002-02-13  jacob berkman  <jacob@ximian.com>
+
+	* src/Makefile.am (install-exec-local): rename install-local since
+	automake doesn't like it
+
 2002-02-13  Alex Larsson  <alexl@redhat.com>
 
 	* src/yelp-view-toc.c (yelp_view_toc_write, yelp_view_toc_close,
