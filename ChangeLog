@@ -1,5 +1,7 @@
 2004-04-26  Morten Welinder  <terra@gnome.org>
 
+	* src/yelp-window.c (window_handle_page): Fix the rest of #140595.
+
 	* src/yelp-db-pager.c (db_pager_process): Free path, free walker,
 	and free the transformed document.  (#140630)
 

@@ -1031,6 +1031,7 @@ window_handle_page (YelpWindow   *window,
 						   tree_selection_changed_cb,
 						   window);
 		gtk_tree_path_free (path);
+		g_free (id);
 		break;
 	    }
 
