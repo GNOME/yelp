@@ -1996,7 +1996,8 @@ window_add_bookmark_cb (GtkAction *action, YelpWindow *window)
     if (!uri)
 	return;
 
-    yelp_bookmarks_add (uri, gtk_window_get_title (GTK_WINDOW (window)));
+    yelp_bookmarks_add (uri, gtk_window_get_title (GTK_WINDOW (window)), 
+			TRUE);
 }
 
 static void window_copy_link_cb (GtkAction *action, YelpWindow *window) 
