@@ -23,7 +23,7 @@
 #ifndef __YELP_BASE_H__
 #define __YELP_BASE_H__
 
-#include <bonobo/bonobo-xobject.h>
+#include <bonobo/bonobo-object.h>
 #include "GNOME_Yelp.h"
 
 typedef struct _YelpBase      YelpBase;
@@ -39,13 +39,13 @@ typedef struct _YelpBasePriv  YelpBasePriv;
 
 
 struct _YelpBase {
-        BonoboXObject  parent;
+        BonoboObject  parent;
         
         YelpBasePriv  *priv;
 };
 
 struct _YelpBaseClass {
-        BonoboXObjectClass       parent_class;
+        BonoboObjectClass       parent_class;
 
 	POA_GNOME_Yelp__epv epv;
 };

@@ -37,8 +37,8 @@ static void           yelp_base_class_init    (YelpBaseClass        *klass);
 static void           yelp_base_new_window_cb (YelpWindow           *window,
 					       YelpBase             *base);
 
-#define PARENT_TYPE BONOBO_X_OBJECT_TYPE
-static BonoboXObjectClass *parent_class;
+#define PARENT_TYPE BONOBO_OBJECT_TYPE
+static BonoboObjectClass *parent_class;
 
 struct _YelpBasePriv {
         GtkTreeStore  *content_store;
@@ -51,7 +51,7 @@ impl_Yelp_newWindow (PortableServer_Servant   servant,
 	YelpBase  *yelp_base;
 	GtkWidget *window;
 	
-	yelp_base = YELP_BASE (bonobo_x_object (servant));
+	yelp_base = YELP_BASE (bonobo_object (servant));
 	
 	window = yelp_base_new_window (yelp_base);
 	gtk_widget_show_all (window);
@@ -124,4 +124,4 @@ yelp_base_new_window (YelpBase *base)
 	return window;
 }
 
-BONOBO_X_TYPE_FUNC_FULL (YelpBase, GNOME_Yelp, PARENT_TYPE, yelp_base);
+BONOBO_TYPE_FUNC_FULL (YelpBase, GNOME_Yelp, PARENT_TYPE, yelp_base);
