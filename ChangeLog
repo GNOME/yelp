@@ -1,5 +1,10 @@
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-reader.c: use yelp-db2html again.
+
+	* src/yelp-db2html.c: use #define for stylesheet location instead
+	  of creating a string with it.
+
 	* src/Makefile.am (yelp_SOURCES): don't include yelp-db2html.
 
 	* src/yelp-reader.c (reader_db_start): 

@@ -45,6 +45,10 @@
 
 #define d(x)
 
+/* stylesheet location based on Linux Standard Base      *
+ * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
+#define STYLESHEET DATADIR"/sgml/docbook/yelp/yelp-customization.xsl"
+
 gboolean
 yelp_db2html_convert (YelpURI             *uri,
                       xmlOutputBufferPtr   buf, 
@@ -69,13 +73,7 @@ yelp_db2html_convert (YelpURI             *uri,
 
 	/* parse the stylesheet */
         if (!stylesheet) {
-                gchar *gdb_stylesheet;
-                /* stylesheet location based on Linux Standard Base      *
-                 * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
-                gdb_stylesheet = g_strconcat (DATADIR "/sgml/docbook/yelp/yelp-customization.xsl", NULL);
-
-                stylesheet  = xsltParseStylesheetFile ((const xmlChar *) gdb_stylesheet);
-                g_free (gdb_stylesheet);
+                stylesheet  = xsltParseStylesheetFile (STYLESHEET);
         }
         
         if (!stylesheet) {

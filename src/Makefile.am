@@ -59,6 +59,7 @@ yelp_SOURCES =								\
 	yelp-marshal.c		yelp-marshal.h				\
 	yelp-base.c		yelp-base.h				\
 	yelp-error.c		yelp-error.h				\
+	yelp-db2html.c		yelp-db2html.h				\
 	yelp-history.c		yelp-history.h				\
 	$(html_widget_impl) 	yelp-html.h				\
 	yelp-index-model.c	yelp-index-model.h			\

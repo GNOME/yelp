@@ -36,8 +36,6 @@
 #define d(x) 
 #define BUFFER_SIZE 16384
 
-#define STYLESHEET DATADIR"/sgml/docbook/yelp/yelp-customization.xsl"
-
 #define STAMP_MUTEX_LOCK    g_mutex_lock(priv->stamp_mutex);
 #define STAMP_MUTEX_UNLOCK  g_mutex_unlock(priv->stamp_mutex);
 
@@ -49,8 +47,6 @@ struct _YelpReaderPriv {
 	/* Locks */
 	GMutex         *stamp_mutex;
 	GAsyncQueue    *thread_queue;
-
-	xsltStylesheet *stylesheet;
 };
 
 typedef struct {
@@ -197,10 +193,6 @@ reader_class_init (YelpReaderClass *klass)
 			      yelp_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
-
-	/* libxml housekeeping, not sure where to put these. */
-	xmlSubstituteEntitiesDefault(1);
-	xmlLoadExtDtdDefaultValue = 1;
 }
 
 static void
@@ -215,8 +207,6 @@ reader_init (YelpReader *reader)
 	priv->stamp        = 0;
 	priv->stamp_mutex  = g_mutex_new ();
 	priv->thread_queue = g_async_queue_new ();
-
-	priv->stylesheet   = xsltParseStylesheetFile (STYLESHEET);
 }
 
 static void
@@ -226,17 +216,12 @@ reader_db_start (ReaderThreadData *th_data)
 	YelpReaderPriv     *priv;
 	xmlOutputBufferPtr  buf;
 	ReaderQueueData    *q_data;
-	YelpURI            *uri;
-        xmlDoc             *db_doc;
-        xmlDoc             *final_doc;
-	const gchar        *params[16 + 1];
-	gchar              *pathname;
-
+	GError             *error = NULL;
+	
 	g_return_if_fail (th_data != NULL);
 
 	reader = th_data->reader;
 	priv   = reader->priv;
-	uri    = th_data->uri;
 	
 	STAMP_MUTEX_LOCK;
 	
@@ -254,55 +239,14 @@ reader_db_start (ReaderThreadData *th_data)
 
 	g_async_queue_push (priv->thread_queue, q_data);
 	
-	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML) {
-		db_doc = xmlParseFile (yelp_uri_get_path (uri));
-	} 
-	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
-                db_doc = docbParseFile (yelp_uri_get_path (uri), "UTF-8");
-	} else {
-		/* FIXME: Signal error */
-		return;
-	}
-
-	if (db_doc == NULL) {
-		/* FIXME: Signal error */
-		return;
-	}
-
-	pathname = g_path_get_dirname (yelp_uri_get_path (uri));
-	
-	/* set params to be passed to stylesheet */
-	params[0] = "gdb_docname";
-	params[1] = g_strconcat("\"", yelp_uri_get_path (uri), "\"", NULL) ;
-	params[2] = "gdb_pathname";
-	params[3] = g_strconcat("\"", pathname, "\"", NULL) ;
-	params[4] = NULL;
-
-        g_free (pathname);
-
-	if (yelp_uri_get_section (uri)) {
-  		params[4] = "gdb_rootid"; 
-		params[5] = g_strconcat("\"", 
-                                        yelp_uri_get_section (uri), 
-                                        "\"", 
-                                        NULL) ;
-		params[6] = NULL;
-	}
-
-        final_doc = xsltApplyStylesheet (priv->stylesheet, db_doc, params);
-	
-	xmlFree (db_doc);
-
 	buf = xmlAllocOutputBuffer (NULL);
 	
 	buf->writecallback = (xmlOutputWriteCallback) reader_db_write;
 	buf->closecallback = (xmlOutputCloseCallback) reader_db_close;
 	buf->context       = th_data;
 
-	xsltSaveResultTo (buf, final_doc, priv->stylesheet);
+	yelp_db2html_convert (th_data->uri, buf, &error);
 	
-	xmlFree (final_doc);
-
         xmlOutputBufferClose (buf);
 }
 
