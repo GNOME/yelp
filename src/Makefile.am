@@ -23,8 +23,8 @@ yelp_SOURCES =								\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
 	yelp-util.c		yelp-util.h				\
 	yelp-view-content.c	yelp-view-content.h			\
-	yelp-view-home.c	yelp-view-home.h			\
 	yelp-view-index.c	yelp-view-index.h			\
+	yelp-view-toc.c		yelp-view-toc.h				\
 	yelp-window.c 		yelp-window.h
 
 yelp_LDADD =								\

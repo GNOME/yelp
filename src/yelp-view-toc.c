@@ -28,15 +28,15 @@
 #include <libgnome/gnome-i18n.h>
 #include <libgtkhtml/gtkhtml.h>
 #include <stdio.h>
-#include "yelp-view-home.h"
+#include "yelp-view-toc.h"
 
 #define d(x) x
 
-static void yvh_init               (YelpViewHome          *html);
-static void yvh_class_init         (YelpViewHomeClass     *klass);
+static void yvh_init               (YelpViewTOC          *html);
+static void yvh_class_init         (YelpViewTOCClass     *klass);
 static void yvh_link_clicked_cb    (HtmlDocument          *doc, 
 				    const gchar           *url, 
-				    YelpViewHome          *view);
+				    YelpViewTOC          *view);
 
 enum {
 	PATH_SELECTED,
@@ -45,14 +45,14 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
-struct _YelpViewHomePriv {
+struct _YelpViewTOCPriv {
 	GtkWidget    *html_view;
 	HtmlDocument *doc;
 	GtkTreeModel *tree_model;
 };
 
 GType
-yelp_view_home_get_type (void)
+yelp_view_toc_get_type (void)
 {
         static GType view_type = 0;
 
@@ -60,19 +60,19 @@ yelp_view_home_get_type (void)
         {
                 static const GTypeInfo view_info =
                         {
-                                sizeof (YelpViewHomeClass),
+                                sizeof (YelpViewTOCClass),
                                 NULL,
                                 NULL,
                                 (GClassInitFunc) yvh_class_init,
                                 NULL,
                                 NULL,
-                                sizeof (YelpViewHome),
+                                sizeof (YelpViewTOC),
                                 0,
                                 (GInstanceInitFunc) yvh_init,
                         };
                 
                 view_type = g_type_register_static (HTML_TYPE_VIEW,
-                                                    "YelpViewHome", 
+                                                    "YelpViewTOC", 
                                                     &view_info, 0);
         }
         
@@ -80,11 +80,11 @@ yelp_view_home_get_type (void)
 }
 
 static void
-yvh_init (YelpViewHome *view)
+yvh_init (YelpViewTOC *view)
 {
-	YelpViewHomePriv *priv;
+	YelpViewTOCPriv *priv;
 	
-	priv = g_new0 (YelpViewHomePriv, 1);
+	priv = g_new0 (YelpViewTOCPriv, 1);
 	view->priv = priv;
 	
 	priv->doc = html_document_new ();
@@ -96,13 +96,13 @@ yvh_init (YelpViewHome *view)
 }
 
 static void
-yvh_class_init (YelpViewHomeClass *klass)
+yvh_class_init (YelpViewTOCClass *klass)
 {
 	signals[PATH_SELECTED] = 
 		g_signal_new ("path_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (YelpViewHomeClass,
+			      G_STRUCT_OFFSET (YelpViewTOCClass,
 					       path_selected),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
@@ -111,14 +111,14 @@ yvh_class_init (YelpViewHomeClass *klass)
 }
 
 static void
-yvh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpViewHome *view)
+yvh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpViewTOC *view)
 {
-	YelpViewHomePriv *priv;
+	YelpViewTOCPriv *priv;
 	GtkTreePath      *path;
 	
 	g_return_if_fail (HTML_IS_DOCUMENT (doc));
 	g_return_if_fail (url != NULL);
-	g_return_if_fail (YELP_IS_VIEW_HOME (view));
+	g_return_if_fail (YELP_IS_VIEW_TOC (view));
 	
 	priv = view->priv;
 
@@ -134,13 +134,13 @@ yvh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpViewHome *view)
 }
 
 GtkWidget *
-yelp_view_home_new (GtkTreeModel *tree_model)
+yelp_view_toc_new (GtkTreeModel *tree_model)
 {
-	YelpViewHome     *view;
-	YelpViewHomePriv *priv;
-	GtkTreeIter       iter;
+	YelpViewTOC     *view;
+	YelpViewTOCPriv *priv;
+	GtkTreeIter      iter;
 
-	view = g_object_new (YELP_TYPE_VIEW_HOME, NULL);
+	view = g_object_new (YELP_TYPE_VIEW_TOC, NULL);
 
 	priv = view->priv;
 
@@ -165,7 +165,7 @@ yelp_view_home_new (GtkTreeModel *tree_model)
 <html>
   <head>
     <title>
-      Help Home View
+      Help Toc View
     </title> 
     <style type=\"text/css\">
       A:link { color: #00008b }          /* unvisited link */

@@ -20,39 +20,39 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __YELP_VIEW_HOME_H__
-#define __YELP_VIEW_HOME_H__
+#ifndef __YELP_VIEW_TOC_H__
+#define __YELP_VIEW_TOC_H__
 
 #include <gtk/gtktreemodel.h>
 #include <libgtkhtml/gtkhtml.h>
 #include "yelp-section.h"
 
-#define YELP_TYPE_VIEW_HOME    (yelp_view_home_get_type ())
-#define YELP_VIEW_HOME(o)      (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW_HOME, YelpViewHome))
-#define YELP_VIEW_HOME_CLASS(k)(GTK_CHECK_FOR_CAST((k), YELP_TYPE_VIEW_HOME, YelpViewHomeClass))
-#define YELP_IS_VIEW_HOME(o)       (GTK_CHECK_TYPE ((o), YELP_TYPE_VIEW_HOME))
-#define YELP_IS_VIEW_HOME_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), YELP_TYPE_VIEW_HOME))
+#define YELP_TYPE_VIEW_TOC    (yelp_view_toc_get_type ())
+#define YELP_VIEW_TOC(o)      (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW_TOC, YelpViewTOC))
+#define YELP_VIEW_TOC_CLASS(k)(GTK_CHECK_FOR_CAST((k), YELP_TYPE_VIEW_TOC, YelpViewTOCClass))
+#define YELP_IS_VIEW_TOC(o)       (GTK_CHECK_TYPE ((o), YELP_TYPE_VIEW_TOC))
+#define YELP_IS_VIEW_TOC_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), YELP_TYPE_VIEW_TOC))
 
-typedef struct _YelpViewHome        YelpViewHome;
-typedef struct _YelpViewHomeClass   YelpViewHomeClass;
-typedef struct _YelpViewHomePriv    YelpViewHomePriv;
+typedef struct _YelpViewTOC        YelpViewTOC;
+typedef struct _YelpViewTOCClass   YelpViewTOCClass;
+typedef struct _YelpViewTOCPriv    YelpViewTOCPriv;
 
-struct _YelpViewHome {
+struct _YelpViewTOC {
 	HtmlView          parent;
 
-	YelpViewHomePriv *priv;
+	YelpViewTOCPriv *priv;
 };
 
-struct _YelpViewHomeClass {
+struct _YelpViewTOCClass {
 	HtmlViewClass parent_class;
 
 	/* Signals */
 	
-	void (*path_selected)   (YelpViewHome   *view,
+	void (*path_selected)   (YelpViewTOC   *view,
 				 GtkTreePath    *path);
 };
 
-GType           yelp_view_home_get_type       (void);
-GtkWidget      *yelp_view_home_new            (GtkTreeModel *tree_model);
+GType           yelp_view_toc_get_type       (void);
+GtkWidget      *yelp_view_toc_new            (GtkTreeModel *tree_model);
 
-#endif /* __YELP_VIEW_HOME__ */
+#endif /* __YELP_VIEW_TOC__ */

@@ -27,7 +27,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
-/* #include <libgtkhtml/gtkhtml.h> */
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-i18n.h>
@@ -36,8 +35,8 @@
 #include "yelp-section.h"
 #include "yelp-history.h"
 #include "yelp-view-content.h"
-#include "yelp-view-home.h"
 #include "yelp-view-index.h"
+#include "yelp-view-toc.h"
 #include "yelp-window.h"
 
 static void yw_init		      (YelpWindow          *window);
@@ -49,7 +48,7 @@ static void yw_populate               (YelpWindow          *window);
 static void yw_section_selected_cb    (YelpWindow          *window,
 				       YelpSection         *section);
 #endif
-static void yw_home_path_selected_cb  (YelpViewHome        *view,
+static void yw_toc_path_selected_cb   (YelpViewTOC         *view,
 				       GtkTreePath         *path,
 				       YelpWindow          *window);
 static void yw_toggle_history_buttons (GtkWidget           *button,
@@ -76,7 +75,7 @@ static void yw_about_cb               (gpointer             data,
 static GtkWidget * yw_create_toolbar  (YelpWindow          *window);
 
 enum {
-	PAGE_HOME_VIEW,
+	PAGE_TOC_VIEW,
 	PAGE_CONTENT_VIEW,
 	PAGE_INDEX_VIEW
 };
@@ -93,7 +92,7 @@ struct _YelpWindowPriv {
 
 	GtkWidget      *notebook;
 
-	GtkWidget      *home_view;
+	GtkWidget      *toc_view;
 	GtkWidget      *content_view;
 	GtkWidget      *index_view;
 	
@@ -149,7 +148,7 @@ yw_init (YelpWindow *window)
         priv = g_new0 (YelpWindowPriv, 1);
         window->priv = priv;
         
-	priv->home_view    = NULL;
+	priv->toc_view    = NULL;
 	priv->content_view = NULL;
 	priv->index_view   = NULL;
 	priv->view_current = NULL;
@@ -220,10 +219,10 @@ yw_populate (YelpWindow *window)
 					GTK_POLICY_NEVER,
 					GTK_POLICY_NEVER);
 
-	gtk_container_add (GTK_CONTAINER (sw), priv->home_view);
+	gtk_container_add (GTK_CONTAINER (sw), priv->toc_view);
 
 	gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
-				  sw, NULL, PAGE_HOME_VIEW);
+				  sw, NULL, PAGE_TOC_VIEW);
 	
 	gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
 				  priv->content_view,
@@ -259,13 +258,13 @@ yw_section_selected_cb (YelpWindow  *window,
 #endif
 
 static void
-yw_home_path_selected_cb (YelpViewHome *view,
-			  GtkTreePath  *path,
-			  YelpWindow   *window)
+yw_toc_path_selected_cb (YelpViewTOC *view,
+			 GtkTreePath  *path,
+			 YelpWindow   *window)
 {
 	YelpWindowPriv *priv;
 	
-	g_return_if_fail (YELP_IS_VIEW_HOME (view));
+	g_return_if_fail (YELP_IS_VIEW_TOC (view));
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	
 	priv = window->priv;
@@ -324,7 +323,7 @@ yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
 	g_print ("Home button clicked\n");
 
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
-				       PAGE_HOME_VIEW);
+				       PAGE_TOC_VIEW);
 }
 
 static void
@@ -479,10 +478,10 @@ yelp_window_new (GtkTreeModel *tree_model)
 
 	priv->tree_model = tree_model;
 
-	priv->home_view    = yelp_view_home_new (tree_model);
+	priv->toc_view    = yelp_view_toc_new (tree_model);
 
-	g_signal_connect (priv->home_view, "path_selected",
-			  G_CALLBACK (yw_home_path_selected_cb),
+	g_signal_connect (priv->toc_view, "path_selected",
+			  G_CALLBACK (yw_toc_path_selected_cb),
 			  window);
 
 	priv->content_view = yelp_view_content_new (tree_model);
