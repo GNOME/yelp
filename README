@@ -6,14 +6,65 @@ was suggested by Daniel Lundin. Yelp is pronounced the same as the
 swedish word for 'help'.
 
 
+
 Requirments:
 ------------
 
-* GNOME 2.0 (beta2)
-* A working ScrollKeeper installation (suggested > 0.3).
-* Docbook DTD's/stylesheets
+* GNOME 2.0 (beta4)
+* A working ScrollKeeper installation ( > 0.3.6 ).
+* Docbook DTD's/stylesheets 1.48
 
 If the docbook -> html converting is really slow (like 30 seconds to 1
 minute per document it means that your xml catalog is not correctly
 set up). Please look in libgnome/help-converters/README to see how to
 set it up.
+
+
+
+Reporting bugs:
+---------------
+
+Bugs should be reported to the GNOME bug tracking system
+(http://bugzilla.gnome.org, product yelp.) You will need to create an
+account for yourself.
+
+
+
+Sending patches:
+----------------
+
+Please submit your patches to bugzilla.gnome.org. If the patch
+fixes an existing bug, add the patch as an attachment to that bug
+report.
+
+Otherwise, enter a new bug report that describes the patch, and attach
+the patch to that bug report.
+
+Bug reports containing patches should include the PATCH keyword in their
+keyword fields. If the patch adds to or changes the GTK programming
+interface, the API keyword should also be included.
+  
+Patches should be in unified diff form. (The -u option to GNU diff.)
+
+
+
+Help on setting your system up:
+-------------------------------
+
+A brief note on how to get the docbook stuff to work. 
+
+1) Install Scrollkeeper 0.3.6: 
+http://apt-rpm.codefactory.se/mirror/extra/7.2/RPMS/scrollkeeper-0.3.6-1.i386.rpm
+http://prdownloads.sourceforge.net/scrollkeeper/scrollkeeper-0.3.6.tar.gz
+
+Edit /etc/scrollkeeper.conf to include your $(gnome2_prefix)/share/omf
+directory. For best use in GNOME 2.0, remove all other directories. 
+
+Run scrollkeeper-update. 
+
+2) Install docbook-style-xsl and xml-common: 
+http://apt-rpm.codefactory.se/mirror/extra/7.2/RPMS/docbook-style-xsl-1.48-3.noarch.rpm
+http://apt-rpm.codefactory.se/mirror/extra/7.2/RPMS/xml-common-0.6.3-8.noarch.rpm
+
+The rpm's are for Red Hat 7.2 (might need other packages, they should be
+available on the same place though, let me know if they are not). 
