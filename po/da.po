@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2002-02-28 21:01+0100\n"
-"PO-Revision-Date: 2002-02-28 21:03+0100\n"
+"POT-Creation-Date: 2002-03-02 15:43+0100\n"
+"PO-Revision-Date: 2002-03-02 15:44+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Systemadministration"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:209 src/yelp-view-index.c:229
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:312
 msgid "Section"
 msgstr "Del"
 
-#: src/yelp-view-index.c:211
+#: src/yelp-view-index.c:282
 msgid "Search for:"
 msgstr "Søg efter:"
 
@@ -143,63 +143,103 @@ msgstr "Manualsider"
 msgid "Scrollkeeper docs for category"
 msgstr "Scrollkeeperdokumenter for kategori"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:138
 msgid "/_File"
 msgstr "/_Fil"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:139
 msgid "/File/_New window"
 msgstr "/Fil/_Nyt vindue"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:140
 msgid "/File/_Close window"
 msgstr "/Fil/_Luk vindue"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:141
 msgid "/File/_Quit"
 msgstr "/Fil/_Afslut"
 
-#: src/yelp-window.c:117
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_Navigering"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Navigering/_Tilbage"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Navigering/_Fremad"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Navigering/_Startside"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Navigering/_Indeks"
+
+#: src/yelp-window.c:147
 msgid "/_Help"
 msgstr "/_Hjælp"
 
-#: src/yelp-window.c:118
+#: src/yelp-window.c:148
 msgid "/Help/_About"
 msgstr "/Hjælp/_Om"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:207
 msgid "Help Browser"
 msgstr "Hjælpelæser"
 
-#: src/yelp-window.c:414
+#: src/yelp-window.c:529
+msgid "translator_credits"
+msgstr "Ole Laursen <olau@hardworking.dk>"
+
+#: src/yelp-window.c:533
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjælpelæser til Gnome 2.0"
 
-#: src/yelp-window.c:438
+#: src/yelp-window.c:560
+msgid "Back"
+msgstr "Tilbage"
+
+#: src/yelp-window.c:561
 msgid "Show previous page in history"
 msgstr "Vis foregående side i historikken"
 
-#: src/yelp-window.c:453
+#: src/yelp-window.c:572
+msgid "Forward"
+msgstr "Fremad"
+
+#: src/yelp-window.c:573
 msgid "Show next page in history"
 msgstr "Vis næste side i historikken"
 
-#: src/yelp-window.c:468
+#: src/yelp-window.c:586
+msgid "Home"
+msgstr "Start"
+
+#: src/yelp-window.c:587
 msgid "Go to home view"
 msgstr "Gå til startvisning"
 
-#: src/yelp-window.c:479
+#: src/yelp-window.c:597
+msgid "Index"
+msgstr "Indeks"
+
+#: src/yelp-window.c:598
 msgid "Search in the index"
 msgstr "Søg i indekset"
 
-#: src/yelp-window.c:491
+#: src/yelp-window.c:608
 msgid "Search for a phrase in the document"
 msgstr "Søg efter ord i dokumentet"
 
-#: src/yelp-window.c:497
+#: src/yelp-window.c:614
 msgid "Help on "
 msgstr "Hjælp om"
 
-#: src/yelp-window.c:502
+#: src/yelp-window.c:619
 msgid "Enter phrase to search for in all documents"
 msgstr "Skriv de ord du vil søge efter i alle dokumenter"
 
