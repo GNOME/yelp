@@ -190,8 +190,8 @@ void make_nav_links( FILE *f, NODE *node )
   write_node_link_html( f, node->filename, "Up:", node->up );
   fprintf(f,"</PRE>\n");
 #else
-  fprintf(f,"<TABLE border=2 cellspacing=1 cellpadding=4 width=100%%>\n");
-  fprintf(f,"<TR bgcolor=\"#eeeee0\">\n");
+  fprintf(f,"<TABLE border=1 cellspacing=0 cellpadding=4 width=100%%>\n");
+  fprintf(f,"<TR>\n");
   fprintf(f,"\t<TH align=center width=33%%>\n\t");
   write_node_link_html( f, node->filename, "Next:", node->next );
   fprintf(f,"\t</TH>\n");
