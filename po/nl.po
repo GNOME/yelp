@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 20:40+0100\n"
-"PO-Revision-Date: 2005-01-12 23:26+0100\n"
+"POT-Creation-Date: 2005-01-19 04:33+0100\n"
+"PO-Revision-Date: 2005-01-19 12:15+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr "Educatieve toepassingen"
 msgid "Graphics"
 msgstr "Grafisch"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
 msgid "Help Topics"
 msgstr "Hulp-onverwerpen"
 
@@ -150,29 +150,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Kantoor"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Overig"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Overige documentatie"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Programmeren"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Wetenschappelijk"
-
-# geluid en video
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Audio &amp; Video"
 
 # systeemfuncties
 #: data/toc.xml.in.h:18
@@ -192,69 +191,77 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Lettertypes</b>"
 
 #: data/ui/yelp.glade.h:3
+msgid "<b>_Bookmarks:</b>"
+msgstr "<b>_Favorieten:</b>"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Titel:</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Favoriet toevoegen"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "Favorieten"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "_Hoofdlettergevoelig"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "Zoeken"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Lokatie openen"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr "_Hernoemen"
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "_Met caret verkennen"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "_Zoeken: "
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "_Vaste breedte:"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Lokatie:"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_Volgende"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "V_orige"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "_Systeemlettertypes gebruiken:"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "_Variabele breedte:"
 
 # hele discussie hierover op http://home.o2w.net/~ivo/wiki.pl?WrapAround
 # Betere vertaling hier in yelp?
 # was Terugloop, maar consensus schijnt te zijn: Doorgaan na documenteinde
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_Doorgaan na documenteinde"
 
@@ -305,12 +312,29 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
-#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#: src/yelp-bookmarks.c:141
+msgid "Open Bookmark in New Window"
+msgstr "Favoriet openen in _nieuw venster"
+
+#: src/yelp-bookmarks.c:145
+msgid "Rename Bookmark"
+msgstr "Favoriet hernoemen"
+
+#: src/yelp-bookmarks.c:149
+msgid "Remove Bookmark"
+msgstr "Favoriet verwijderen"
+
+#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Een favoriet met titel <b>%s</b> bestaat al voor deze pagina."
 
-#: src/yelp-db-pager.c:238
+# onderdelen/secties
+#: src/yelp-bookmarks.c:377
+msgid "Document Sections"
+msgstr "Documentsecties"
+
+#: src/yelp-db-pager.c:241
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -319,9 +343,10 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt. Ofwel het bestand bestaat niet, "
 "of het is niet-juist gevormde XML."
 
+# sectie/onderdeel
 #: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Onbekend"
+msgid "Unknown Section"
+msgstr "Onbekende sectie"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -578,7 +603,7 @@ msgstr "_Link openen"
 
 #: src/yelp-window.c:404
 msgid "Open Link in _New Window"
-msgstr "Link openen in _nieuwe venster"
+msgstr "Link openen in _nieuw venster"
 
 #: src/yelp-window.c:409
 msgid "_Copy Link Address"
@@ -713,6 +738,10 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "Hulp bij GNOME"
 
+# geluid en video
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Audio &amp; Video"
+
 #~ msgid "_Home"
 #~ msgstr "_Startpagina"
 
@@ -771,9 +800,6 @@ msgstr "Hulp bij GNOME"
 
 #~ msgid "Kernels"
 #~ msgstr "Kernels"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "Multimediatoepassingen"
 
 # Office niet vertalen?
 #~ msgid "Office and Productivity Applications"
