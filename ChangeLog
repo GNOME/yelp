@@ -1,3 +1,11 @@
+2003-12-08  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-toc-pager.c:
+	- Fixed a crasher with gnome_vfs_directory_close.
+
+	* src/yelp-window.c:
+	- Moved a declaration to the beginning for ANSI C.
+
 2003-12-06  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-pager.c:

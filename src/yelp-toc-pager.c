@@ -369,8 +369,10 @@ process_dir_pending (YelpTocPager *pager)
     }
 
  done:
-    gnome_vfs_file_info_unref (file_info);
-    gnome_vfs_directory_close (dir);
+    if (file_info)
+    	gnome_vfs_file_info_unref (file_info);
+    if (dir && !result)
+	gnome_vfs_directory_close (dir);
     g_slist_free_1 (first);
     g_free (dirstr);
 
@@ -383,8 +385,8 @@ process_dir_pending (YelpTocPager *pager)
 static gboolean
 process_omf_pending (YelpTocPager *pager)
 {
-    GSList    *first;
-    gchar     *file;
+    GSList    *first = NULL;
+    gchar     *file  = NULL;
     xmlDocPtr  omf_doc = NULL;
     xmlNodePtr omf_cur;
     gint       lang_priority;
@@ -395,6 +397,9 @@ process_omf_pending (YelpTocPager *pager)
     YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
 
     first = priv->omf_pending;
+    if (!first)
+	goto done;
+
     priv->omf_pending = g_slist_remove_link (priv->omf_pending, first);
 
     file = (gchar *) first->data;

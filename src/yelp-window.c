@@ -852,8 +852,8 @@ window_handle_html_uri (YelpWindow    *window,
 static void
 window_disconnect (YelpWindow *window)
 {
-    g_return_if_fail (YELP_IS_WINDOW (window));
     YelpWindowPriv *priv = window->priv;
+    g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv->loading = 0;
     if (priv->page_handler) {
