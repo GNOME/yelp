@@ -18,24 +18,12 @@ INCLUDES =								\
 libexec_PROGRAMS = yelp-db2html
 bin_PROGRAMS = yelp yelp-pregenerate
 
-noinst_PROGRAMS = test-uri test-reader test-pager
+noinst_PROGRAMS = test-uri test-pager
 test_uri_SOURCES = 							\
 	test-uri.c							\
 	yelp-uri.c		yelp-uri.h
 
 test_uri_LDADD = 							\
-	@YELP_LIBS@
-
-test_reader_SOURCES = 							\
-	test-reader.c							\
-	yelp-uri.c		yelp-uri.h				\
-	yelp-cache.c		yelp-cache.h				\
-	yelp-reader.c		yelp-reader.h				\
-	yelp-error.c		yelp-error.h				\
-	yelp-util.c		yelp-util.h				\
-	yelp-marshal-main.c
-
-test_reader_LDADD = 							\
 	@YELP_LIBS@
 
 test_pager_SOURCES =							\
