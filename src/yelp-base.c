@@ -175,6 +175,7 @@ GtkWidget *
 yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 {
 	YelpBasePriv *priv;
+	YelpURI      *uri;
 	GtkWidget    *window;
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
@@ -196,11 +197,12 @@ yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 
 	gtk_widget_show_all (window);
 
-	if (str_uri && strcmp (str_uri, "")) {
-		yelp_window_open_uri (YELP_WINDOW (window), str_uri);
-	} else {
-		yelp_window_open_uri (YELP_WINDOW (window), "toc:");
-	}
+	if (str_uri && strcmp (str_uri, ""))
+		uri = yelp_uri_new (str_uri);
+	else
+		uri = yelp_uri_new ("toc:");
+
+	yelp_window_open_uri (YELP_WINDOW (window), uri);
 
 	return window;
 }

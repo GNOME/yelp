@@ -136,7 +136,7 @@ history_finalize (GObject *object)
 	priv    = history->priv;
         
 	for (node = priv->history_list; node; node = node->next) {
-		yelp_uri_unref (YELP_URI (node->data));
+		g_object_unref (G_OBJECT (node->data));
 	}
 
 	g_list_free (priv->history_list);
@@ -152,7 +152,7 @@ history_free_history_list (GList *history_list)
 	GList *node;
         
 	for (node = history_list; node; node = node->next) {
-		yelp_uri_unref (YELP_URI (node->data));
+		g_object_unref (G_OBJECT (node->data));
 	}
 
 	g_list_free (history_list);
@@ -209,7 +209,7 @@ yelp_history_goto (YelpHistory *history, YelpURI *uri)
 	}
 
  	priv->history_list = g_list_append (priv->history_list, 
-					    yelp_uri_ref (uri));
+					    g_object_ref (uri));
 	
 	priv->current = g_list_last (priv->history_list);
 	
