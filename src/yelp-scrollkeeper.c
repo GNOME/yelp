@@ -412,7 +412,8 @@ ys_parse_index (GList **index)
 	
 	g_free (index_dir);
 	gnome_vfs_file_info_unref (file_info);
-
+	gnome_vfs_directory_close (dir);
+	
 	return TRUE;
 }
 
