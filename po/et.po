@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-01-03 00:16+0200\n"
+"POT-Creation-Date: 2004-01-12 18:01-0600\n"
 "PO-Revision-Date: 2004-01-03 00:17+0200\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -133,30 +133,48 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:249 src/yelp-window.c:439 src/yelp-window.c:763
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Ei saa dokumenti '%s' avada"
-
-#: src/yelp-db-pager.c:429
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "Ei leia href-atribuuti yelp:document pealt"
 
-#: src/yelp-db-pager.c:444
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "Mälu otsas"
 
-#: src/yelp-db-pager.c:621
+#: src/yelp-db-pager.c:616
 msgid "Titlepage"
 msgstr "Tiitelleht"
 
-#: src/yelp-db-pager.c:623
+#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Sisukord"
 
-#: src/yelp-db-pager.c:641
+#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Tundmatu"
+
+#: src/yelp-error.c:46
+#, fuzzy
+msgid "The selected document could not be opened"
+msgstr "Ei saa dokumenti '%s' avada"
+
+#: src/yelp-error.c:52
+#, fuzzy
+msgid "The selected page could not be found in this document."
+msgstr "Ei leia selles dokumendis lehekülge '%s'."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Ei saa sisukorda lugeda."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "DocBook SGML dokumendid ei ole enam toetatud."
+
+#: src/yelp-error.c:70
+#, fuzzy
+msgid "The selected file could not be read."
+msgstr "Ei saa sisukorda lugeda."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -240,99 +258,93 @@ msgstr "Dokumendi URI"
 msgid "The URI of the document to be processed"
 msgstr "Töödeldava dokumendi URI"
 
-#: src/yelp-toc-pager.c:261
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauside arv on negatiivne."
 
-#: src/yelp-toc-pager.c:649 src/yelp-toc-pager.c:661
-msgid "The table of contents could not be read."
-msgstr "Ei saa sisukorda lugeda."
-
-#: src/yelp-toc-pager.c:868
+#: src/yelp-toc-pager.c:880
 msgid "Categories"
 msgstr "Kategooriad"
 
-#: src/yelp-toc-pager.c:889
+#: src/yelp-toc-pager.c:894
 msgid "Documents"
 msgstr "Dokumendid"
 
-#: src/yelp-window.c:228
+#: src/yelp-window.c:229
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:230
 msgid "/File/_New window"
 msgstr "/Fail/_Uus aken"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:233
 msgid "/File/_Close window"
 msgstr "/Fail/_Sulge aken"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:237
 msgid "/_Edit"
 msgstr "/_Redaktor"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:238
 msgid "/Edit/_Find..."
 msgstr "/Redaktor/_Otsi..."
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:241
 msgid "/Edit/Find Ne_xt"
 msgstr "/Redaktor/Otsi _järgmine"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:244
 msgid "/Edit/Find Pre_vious"
 msgstr "/Redaktor/Otsi _eelmine"
 
-#: src/yelp-window.c:247
+#: src/yelp-window.c:248
 msgid "/_Go"
 msgstr "/_Liigu"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/Go/_Back"
 msgstr "/Liigu/_Tagasi"
 
-#: src/yelp-window.c:251
+#: src/yelp-window.c:252
 msgid "/Go/_Forward"
 msgstr "/Liigu/_Edasi"
 
-#: src/yelp-window.c:254
+#: src/yelp-window.c:255
 msgid "/Go/_Home"
 msgstr "/Liigu/_Kodu"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 msgid "/Go/"
 msgstr "/Liigu/"
 
-#: src/yelp-window.c:258
-msgid "/Go/_Previous"
+#: src/yelp-window.c:259
+#, fuzzy
+msgid "/Go/_Previous Page"
 msgstr "/Liigu/_Eelmine"
 
-#: src/yelp-window.c:261
-msgid "/Go/_Next"
+#: src/yelp-window.c:262
+#, fuzzy
+msgid "/Go/_Next Page"
 msgstr "/Liigu/_Järgmine"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:265
 msgid "/Go/_Contents"
 msgstr "/Liigu/_Sisukord"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/_Help"
 msgstr "/_Abi"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:270
 msgid "/Help/_About"
 msgstr "/Abi/_Info"
 
-#: src/yelp-window.c:331
+#: src/yelp-window.c:332
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:423
-msgid "DocBook SGML documents are no longer supported."
-msgstr "DocBook SGML dokumendid ei ole enam toetatud."
-
-#: src/yelp-window.c:546
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Peatükk"
 
@@ -360,28 +372,264 @@ msgstr "Kodu"
 msgid "Go to home view"
 msgstr "Liigu koduvaatele"
 
-#: src/yelp-window.c:796 src/yelp-window.c:825 src/yelp-window.c:1102
-#: src/yelp-window.c:1161
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "Ei leia selles dokumendis lehekülge '%s'."
-
-#: src/yelp-window.c:848
+#: src/yelp-window.c:834
 msgid "Loading..."
 msgstr "Laadimine..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1252
+#: src/yelp-window.c:1228
 msgid "translator_credits"
 msgstr ""
 "Tõlge eesti keelde:\n"
 "       Tõivo Leedjärv <toivo@linux.ee>, 2002-2004.\n"
 "       Allan Sims <allsi@eau.ee>. 2003."
 
-#: src/yelp-window.c:1257
+#: src/yelp-window.c:1233
 msgid "A Help Browser for GNOME"
 msgstr "GNOME abiinfo brauser"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:16
+#, fuzzy
+msgid "Affiliation"
+msgstr "Rakendused"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:30
+#, fuzzy
+msgid "Dedication"
+msgstr "Peatükk"
+
+#: stylesheets/l10n.xml.in.h:31
+#, fuzzy
+msgid "Editor"
+msgstr "Tekstiredaktorid"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr "Indeks"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:56
+#, fuzzy
+msgid "Set Index"
+msgstr "Indeks"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+#, fuzzy
+msgid "Table of Contents"
+msgstr "Abiinfo sisukord"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:60
+#, fuzzy
+msgid "Title"
+msgstr "Tiitelleht"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr ""
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -439,9 +687,6 @@ msgstr "Abi"
 #, fuzzy
 #~ msgid "Loading..&nbsp;"
 #~ msgstr "Laadimine..."
-
-#~ msgid "Index"
-#~ msgstr "Indeks"
 
 #~ msgid "Search in the index"
 #~ msgstr "Otsi indeksist"

@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.3.6\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-30 07:14-0600\n"
+"POT-Creation-Date: 2004-01-12 18:01-0600\n"
 "PO-Revision-Date: 2003-08-29 20:17+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 #, fuzzy
@@ -147,11 +147,6 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp 工廠"
 
-#: src/yelp-db-pager.c:241 src/yelp-window.c:758
-#, fuzzy, c-format
-msgid "The document '%s' could not be opened"
-msgstr "文件‘%s’不存在"
-
 #: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr ""
@@ -160,17 +155,41 @@ msgstr ""
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:602
+#: src/yelp-db-pager.c:616
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:604
+#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "內容"
 
-#: src/yelp-db-pager.c:622
+#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr ""
+
+#: src/yelp-error.c:46
+#, fuzzy
+msgid "The selected document could not be opened"
+msgstr "文件‘%s’不存在"
+
+#: src/yelp-error.c:52
+#, fuzzy
+msgid "The selected page could not be found in this document."
+msgstr "文件‘%s’不存在"
+
+#: src/yelp-error.c:58
+#, fuzzy
+msgid "The table of contents could not be read."
+msgstr "文件‘%s’不存在"
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr ""
+
+#: src/yelp-error.c:70
+#, fuzzy
+msgid "The selected file could not be read."
+msgstr "文件‘%s’不存在"
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -255,152 +274,132 @@ msgstr "文件"
 msgid "The URI of the document to be processed"
 msgstr ""
 
-#: src/yelp-toc-pager.c:260
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
-#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
-#, fuzzy
-msgid "The table of contents could not be read."
-msgstr "文件‘%s’不存在"
-
-#: src/yelp-toc-pager.c:841
+#: src/yelp-toc-pager.c:880
 msgid "Categories"
 msgstr "分類"
 
-#: src/yelp-toc-pager.c:862
+#: src/yelp-toc-pager.c:894
 msgid "Documents"
 msgstr "文件"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:229
 msgid "/_File"
 msgstr "/檔案(_F)"
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:230
 msgid "/File/_New window"
 msgstr "/檔案(F)/新增視窗(_N)"
 
-#: src/yelp-window.c:227
+#: src/yelp-window.c:233
 msgid "/File/_Close window"
 msgstr "/檔案(F)/關閉視窗(_C)"
 
-#: src/yelp-window.c:231
+#: src/yelp-window.c:237
 msgid "/_Edit"
 msgstr "/編輯(_E)"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:238
 #, fuzzy
 msgid "/Edit/_Find..."
 msgstr "/編輯(E)/在頁面中搜尋(_F)..."
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:241
 #, fuzzy
 msgid "/Edit/Find Ne_xt"
 msgstr "/編輯(E)/繼續搜尋(_F)"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:244
 #, fuzzy
 msgid "/Edit/Find Pre_vious"
 msgstr "/編輯(E)/繼續搜尋(_F)"
 
-#: src/yelp-window.c:242
+#: src/yelp-window.c:248
 msgid "/_Go"
 msgstr "/前往(_G)"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:249
 msgid "/Go/_Back"
 msgstr "/前往(G)/上一頁(_B)"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:252
 msgid "/Go/_Forward"
 msgstr "/前往(G)/下一頁(_F)"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:255
 msgid "/Go/_Home"
 msgstr "/前往(G)/首頁(_H)"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:258
 #, fuzzy
 msgid "/Go/"
 msgstr "/前往(_G)"
 
-#: src/yelp-window.c:253
+#: src/yelp-window.c:259
 #, fuzzy
-msgid "/Go/_Previous"
+msgid "/Go/_Previous Page"
 msgstr "上一個(_P)"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:262
 #, fuzzy
-msgid "/Go/_Next"
+msgid "/Go/_Next Page"
 msgstr "/前往(G)/索引(_I)"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:265
 #, fuzzy
 msgid "/Go/_Contents"
 msgstr "內容"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:269
 msgid "/_Help"
 msgstr "/求助(_H)"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:270
 msgid "/Help/_About"
 msgstr "/求助(H)/關於(_A)"
 
-#: src/yelp-window.c:326
+#: src/yelp-window.c:332
 msgid "Help Browser"
 msgstr "說明文件瀏覽程式"
 
-#: src/yelp-window.c:390
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "文件‘%s’不存在"
-
-#: src/yelp-window.c:426
-msgid "DocBook SGML documents are no longer supported."
-msgstr ""
-
-#: src/yelp-window.c:545
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "章節"
 
-#: src/yelp-window.c:598
+#: src/yelp-window.c:603
 msgid "Back"
 msgstr "上一頁"
 
-#: src/yelp-window.c:599
+#: src/yelp-window.c:604
 msgid "Show previous page in history"
 msgstr "顯示紀錄中的上一頁"
 
-#: src/yelp-window.c:609
+#: src/yelp-window.c:614
 msgid "Forward"
 msgstr "下一頁"
 
-#: src/yelp-window.c:610
+#: src/yelp-window.c:615
 msgid "Show next page in history"
 msgstr "顯示紀錄中的下一頁"
 
-#: src/yelp-window.c:622
+#: src/yelp-window.c:627
 msgid "Home"
 msgstr "首頁"
 
-#: src/yelp-window.c:623
+#: src/yelp-window.c:628
 msgid "Go to home view"
 msgstr "前往首頁"
 
-#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
-#: src/yelp-window.c:1105
-#, fuzzy, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "文件‘%s’不存在"
-
-#: src/yelp-window.c:847
+#: src/yelp-window.c:834
 msgid "Loading..."
 msgstr "載入..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1228
 msgid "translator_credits"
 msgstr ""
 "i18n 程式中文化計劃\n"
@@ -409,9 +408,260 @@ msgstr ""
 "Abel Cheung <maddog@linux.org.hk>, 2002-03\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2002"
 
-#: src/yelp-window.c:1191
+#: src/yelp-window.c:1233
 msgid "A Help Browser for GNOME"
 msgstr "GNOME 說明文件瀏覽程式"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:6
+#, fuzzy
+msgid "About This Book"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:7
+#, fuzzy
+msgid "About This Chapter"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:8
+#, fuzzy
+msgid "About This Entry"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:9
+#, fuzzy
+msgid "About This Glossary"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:10
+#, fuzzy
+msgid "About This Index"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:11
+#, fuzzy
+msgid "About This Part"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:12
+#, fuzzy
+msgid "About This Preface"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:13
+#, fuzzy
+msgid "About This Reference"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:14
+#, fuzzy
+msgid "About This Section"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:15
+#, fuzzy
+msgid "About This Set"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:16
+#, fuzzy
+msgid "Affiliation"
+msgstr "程式"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:30
+#, fuzzy
+msgid "Dedication"
+msgstr "章節"
+
+#: stylesheets/l10n.xml.in.h:31
+#, fuzzy
+msgid "Editor"
+msgstr "/編輯(_E)"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr "索引"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:56
+#, fuzzy
+msgid "Set Index"
+msgstr "索引"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+#, fuzzy
+msgid "Table of Contents"
+msgstr "說明文件"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Title"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr ""
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -420,6 +670,9 @@ msgstr "顯示 GNOME 說明文件"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "說明文件瀏覽器"
+
+#~ msgid "The document '%s' does not exist"
+#~ msgstr "文件‘%s’不存在"
 
 #~ msgid "<b>Find text in the document:</b>"
 #~ msgstr "<b>在文件中搜尋文字：</b>"
@@ -467,17 +720,11 @@ msgstr "說明文件瀏覽器"
 #~ msgid "Loading..&nbsp;"
 #~ msgstr "載入..."
 
-#~ msgid "About This Document"
-#~ msgstr "關於這份文件"
-
 #~ msgid "Previous"
 #~ msgstr "上一頁"
 
 #~ msgid "Next"
 #~ msgstr "下一頁"
-
-#~ msgid "Index"
-#~ msgstr "索引"
 
 #~ msgid "Search in the index"
 #~ msgstr "在索引中搜尋"

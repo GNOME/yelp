@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2004-01-04 17:13+0800\n"
+"POT-Creation-Date: 2004-01-12 18:01-0600\n"
 "PO-Revision-Date: 2004-01-04 17:18+0730\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -18,8 +18,7 @@ msgstr ""
 msgid "Applets"
 msgstr "Aplet"
 
-#: data/toc.xml.in.h:2
-#: src/yelp-man.c:429
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Aplikasi"
 
@@ -27,8 +26,7 @@ msgstr "Aplikasi"
 msgid "Desktop"
 msgstr "Desktop"
 
-#: data/toc.xml.in.h:4
-#: src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Pembangunan"
 
@@ -136,32 +134,48 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Kilang Yelp"
 
-#: src/yelp-db-pager.c:249
-#: src/yelp-window.c:439
-#: src/yelp-window.c:763
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Dokumen '%s' tidak dapat dibuka"
-
-#: src/yelp-db-pager.c:429
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "Tiada href dijumpai pada yelp:docoment"
 
-#: src/yelp-db-pager.c:444
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "Kehabisan memori"
 
-#: src/yelp-db-pager.c:621
+#: src/yelp-db-pager.c:616
 msgid "Titlepage"
 msgstr "Titlepage"
 
-#: src/yelp-db-pager.c:623
+#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Kandungan"
 
-#: src/yelp-db-pager.c:641
+#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Entah"
+
+#: src/yelp-error.c:46
+#, fuzzy
+msgid "The selected document could not be opened"
+msgstr "Dokumen '%s' tidak dapat dibuka"
+
+#: src/yelp-error.c:52
+#, fuzzy
+msgid "The selected page could not be found in this document."
+msgstr "Halaman '%s' tidak dijumpai pada dokumen ini."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Jadual kandungan tak dapat dibaca."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "Dokumen SGML DocBook SGML tidak lagi disokong."
+
+#: src/yelp-error.c:70
+#, fuzzy
+msgid "The selected file could not be read."
+msgstr "Jadual kandungan tak dapat dibaca."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -176,19 +190,12 @@ msgstr "Tak dapat mengaktifkan Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Tak dapat membuka tetingkap baru."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -252,102 +259,95 @@ msgstr "URI Dokumen"
 msgid "The URI of the document to be processed"
 msgstr "Uri bagi dokumen untuk diproses"
 
-#: src/yelp-toc-pager.c:261
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Kiraan kaku adalah negatif."
 
-#: src/yelp-toc-pager.c:649
-#: src/yelp-toc-pager.c:661
-msgid "The table of contents could not be read."
-msgstr "Jadual kandungan tak dapat dibaca."
-
-#: src/yelp-toc-pager.c:868
+#: src/yelp-toc-pager.c:880
 msgid "Categories"
 msgstr "Kategori"
 
-#: src/yelp-toc-pager.c:889
+#: src/yelp-toc-pager.c:894
 msgid "Documents"
 msgstr "Dokumen"
 
-#: src/yelp-window.c:228
+#: src/yelp-window.c:229
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:230
 msgid "/File/_New window"
 msgstr "/Fail/Tetingkap Ba_ru"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:233
 msgid "/File/_Close window"
 msgstr "/Fail/_Tutup tetingkap"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:237
 msgid "/_Edit"
 msgstr "/_Edit"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:238
 msgid "/Edit/_Find..."
 msgstr "/Edit/_Cari..."
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:241
 msgid "/Edit/Find Ne_xt"
 msgstr "/Edit/Cari _berikutnya"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:244
 msgid "/Edit/Find Pre_vious"
 msgstr "/Edit/Cari _terdahulu"
 
-#: src/yelp-window.c:247
+#: src/yelp-window.c:248
 msgid "/_Go"
 msgstr "/_Pergi"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/Go/_Back"
 msgstr "Pergi/_Undur"
 
-#: src/yelp-window.c:251
+#: src/yelp-window.c:252
 msgid "/Go/_Forward"
 msgstr "/Pergi/_Maju"
 
-#: src/yelp-window.c:254
+#: src/yelp-window.c:255
 msgid "/Go/_Home"
 msgstr "/Pergi/_Rumah"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 msgid "/Go/"
 msgstr "/Pergi/"
 
-#: src/yelp-window.c:258
-msgid "/Go/_Previous"
+#: src/yelp-window.c:259
+#, fuzzy
+msgid "/Go/_Previous Page"
 msgstr "/Pergi/_Terdahulu"
 
-#: src/yelp-window.c:261
-msgid "/Go/_Next"
+#: src/yelp-window.c:262
+#, fuzzy
+msgid "/Go/_Next Page"
 msgstr "/Pergi/_Berikutnya"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:265
 msgid "/Go/_Contents"
 msgstr "/Pergi/_Kandungan"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/_Help"
 msgstr "/_Bantuan"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:270
 msgid "/Help/_About"
 msgstr "/Bantuan/_Perihal"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
-#: src/yelp-window.c:331
+#: src/yelp-window.c:332
 msgid "Help Browser"
 msgstr "Pelungsur Bantuan"
 
-#: src/yelp-window.c:423
-msgid "DocBook SGML documents are no longer supported."
-msgstr "Dokumen SGML DocBook SGML tidak lagi disokong."
-
-#: src/yelp-window.c:546
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Seksyen"
 
@@ -375,29 +375,262 @@ msgstr "Rumah"
 msgid "Go to home view"
 msgstr "Pergi ke paparan rumah"
 
-#: src/yelp-window.c:796
-#: src/yelp-window.c:825
-#: src/yelp-window.c:1102
-#: src/yelp-window.c:1161
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "Halaman '%s' tidak dijumpai pada dokumen ini."
-
-#: src/yelp-window.c:848
+#: src/yelp-window.c:834
 msgid "Loading..."
 msgstr "Memuatkan..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1252
+#: src/yelp-window.c:1228
 msgid "translator_credits"
 msgstr ""
 "Mohamad Afifi Omar <mr_mohd_afifi@yahoo.com>\n"
 "Hasbullah Bin Pit <sebol@ikhlas.com>, Merlimau."
 
-#: src/yelp-window.c:1257
+#: src/yelp-window.c:1233
 msgid "A Help Browser for GNOME"
 msgstr "Pelungsur Bantuan bagi GNOME"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:16
+#, fuzzy
+msgid "Affiliation"
+msgstr "Aplikasi"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:30
+#, fuzzy
+msgid "Dedication"
+msgstr "Seksyen"
+
+#: stylesheets/l10n.xml.in.h:31
+#, fuzzy
+msgid "Editor"
+msgstr "Editor"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Set Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+#, fuzzy
+msgid "Table of Contents"
+msgstr "Kandungan Bantuan"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:60
+#, fuzzy
+msgid "Title"
+msgstr "Titlepage"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr ""
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -406,4 +639,3 @@ msgstr "Mendapatkan bantuan bersama GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Bantuan"
-

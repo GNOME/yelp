@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-11 17:53+0100\n"
+"POT-Creation-Date: 2004-01-12 18:01-0600\n"
 "PO-Revision-Date: 2004-01-11 17:56+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 #: data/toc.xml.in.h:1
@@ -137,23 +137,23 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-db-pager.c:426
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "No se encontró atributo href en yelp:document"
 
-#: src/yelp-db-pager.c:441
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "Se agotó la memoria"
 
-#: src/yelp-db-pager.c:618
+#: src/yelp-db-pager.c:616
 msgid "Titlepage"
 msgstr "Página de título"
 
-#: src/yelp-db-pager.c:620 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Índice"
 
-#: src/yelp-db-pager.c:638 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -259,132 +259,134 @@ msgstr "URI del documento"
 msgid "The URI of the document to be processed"
 msgstr "La URI del documento a ser procesado"
 
-#: src/yelp-toc-pager.c:264
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: El contador de pausa es negativo."
 
-#: src/yelp-toc-pager.c:876
+#: src/yelp-toc-pager.c:880
 msgid "Categories"
 msgstr "Categorías"
 
-#: src/yelp-toc-pager.c:890
+#: src/yelp-toc-pager.c:894
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/yelp-window.c:228
+#: src/yelp-window.c:229
 msgid "/_File"
 msgstr "/_Archivo"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:230
 msgid "/File/_New window"
 msgstr "/Archivo/_Nueva ventana"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:233
 msgid "/File/_Close window"
 msgstr "/Archivo/_Cerrar ventana"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:237
 msgid "/_Edit"
 msgstr "/_Editar"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:238
 msgid "/Edit/_Find..."
 msgstr "/Editar/_Buscar..."
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:241
 msgid "/Edit/Find Ne_xt"
 msgstr "/Editar/Buscar _siguiente"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:244
 msgid "/Edit/Find Pre_vious"
 msgstr "/Editar/Buscar _anterior"
 
-#: src/yelp-window.c:247
+#: src/yelp-window.c:248
 msgid "/_Go"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/Go/_Back"
 msgstr "/Ir/_Atrás"
 
-#: src/yelp-window.c:251
+#: src/yelp-window.c:252
 msgid "/Go/_Forward"
 msgstr "/Ir/A_delante"
 
-#: src/yelp-window.c:254
+#: src/yelp-window.c:255
 msgid "/Go/_Home"
 msgstr "/Ir/_Inicio"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 msgid "/Go/"
 msgstr "/Ir/"
 
-#: src/yelp-window.c:258
-msgid "/Go/_Previous"
+#: src/yelp-window.c:259
+#, fuzzy
+msgid "/Go/_Previous Page"
 msgstr "/Ir/_Anterior"
 
-#: src/yelp-window.c:261
-msgid "/Go/_Next"
+#: src/yelp-window.c:262
+#, fuzzy
+msgid "/Go/_Next Page"
 msgstr "/Ir/_Siguiente"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:265
 msgid "/Go/_Contents"
 msgstr "/Ir/_Contenido"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/_Help"
 msgstr "/A_yuda"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:270
 msgid "/Help/_About"
 msgstr "/Ayuda/_Acerca de"
 
-#: src/yelp-window.c:331
+#: src/yelp-window.c:332
 msgid "Help Browser"
 msgstr "Navegador de ayuda"
 
-#: src/yelp-window.c:545 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Sección"
 
-#: src/yelp-window.c:602
+#: src/yelp-window.c:603
 msgid "Back"
 msgstr "Atrás"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:604
 msgid "Show previous page in history"
 msgstr "Muestra la página anterior del historial"
 
-#: src/yelp-window.c:613
+#: src/yelp-window.c:614
 msgid "Forward"
 msgstr "Adelante"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:615
 msgid "Show next page in history"
 msgstr "Muestra la siguiente página del historial"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:627
 msgid "Home"
 msgstr "Inicio"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:628
 msgid "Go to home view"
 msgstr "Ir a la vista de inicio"
 
-#: src/yelp-window.c:832
+#: src/yelp-window.c:834
 msgid "Loading..."
 msgstr "Cargando..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1226
+#: src/yelp-window.c:1228
 msgid "translator_credits"
 msgstr ""
 "Francisco J.F. Serrador <serrador@cvs.gnome.org>\n"
 "Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Germán Poo Caamaño <gpoo@ubiobio.cl>"
 
-#: src/yelp-window.c:1231
+#: src/yelp-window.c:1233
 msgid "A Help Browser for GNOME"
 msgstr "Visualizador de ayuda para Gnome"
 
@@ -694,4 +696,3 @@ msgstr "Ayuda"
 
 #~ msgid "Search in the index"
 #~ msgstr "Buscar en el índice"
-

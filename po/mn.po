@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
-"POT-Creation-Date: 2003-12-30 07:14-0600\n"
+"POT-Creation-Date: 2004-01-12 18:01-0600\n"
 "PO-Revision-Date: 2003-12-31 22:13+0800\n"
 "Last-Translator: Dulmandakh <sdulmandakh@yahoo.com>\n"
 "Language-Team: Mongolian <openmn-kdemn@lists.sourceforge.net>\n"
@@ -20,8 +20,7 @@ msgstr ""
 msgid "Applets"
 msgstr "Аплетүүд"
 
-#: data/toc.xml.in.h:2
-#: src/yelp-man.c:429
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Х.программ"
 
@@ -29,8 +28,7 @@ msgstr "Х.программ"
 msgid "Desktop"
 msgstr "Дэлгэц"
 
-#: data/toc.xml.in.h:4
-#: src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Хөгжил"
 
@@ -138,12 +136,6 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp үйлдвэр"
 
-#: src/yelp-db-pager.c:241
-#: src/yelp-window.c:758
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "'%s'  баримт нээгдэхгүй байна"
-
 #: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "Елп баримтад href шинж алга"
@@ -152,17 +144,40 @@ msgstr "Елп баримтад href шинж алга"
 msgid "Out of memory"
 msgstr "Санах ойноос хэтэрлээ"
 
-#: src/yelp-db-pager.c:602
+#: src/yelp-db-pager.c:616
 msgid "Titlepage"
 msgstr "Гарчигийн хуудас"
 
-#: src/yelp-db-pager.c:604
+#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Агууллагууд"
 
-#: src/yelp-db-pager.c:622
+#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Үл мэдэгдэх"
+
+#: src/yelp-error.c:46
+#, fuzzy
+msgid "The selected document could not be opened"
+msgstr "'%s'  баримт нээгдэхгүй байна"
+
+#: src/yelp-error.c:52
+#, fuzzy
+msgid "The selected page could not be found in this document."
+msgstr "Энэ баримтанд '%s' хуудас олдсонгүй"
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Агуулагын хүснэгт уншигдахгүй байна."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "ДокБүүк-ийн СЖМЛ баримт дэмжигдэхээ болисон."
+
+#: src/yelp-error.c:70
+#, fuzzy
+msgid "The selected file could not be read."
+msgstr "Агуулагын хүснэгт уншигдахгүй байна."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -177,19 +192,12 @@ msgstr "Yelp »%s« идэвхижсэнгүй."
 msgid "Could not open new window."
 msgstr "Шинэ цонх нээгдэх боломжгүй."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -254,158 +262,379 @@ msgstr "Баримтын URI"
 msgid "The URI of the document to be processed"
 msgstr "Боловсруулах баримтын URI"
 
-#: src/yelp-toc-pager.c:260
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "ЕлпТокПейжэр: Түр зогсолтын тоо сөрөг байна."
 
-#: src/yelp-toc-pager.c:628
-#: src/yelp-toc-pager.c:640
-msgid "The table of contents could not be read."
-msgstr "Агуулагын хүснэгт уншигдахгүй байна."
-
-#: src/yelp-toc-pager.c:841
+#: src/yelp-toc-pager.c:880
 msgid "Categories"
 msgstr "Категорууд"
 
 # CHECK
-#: src/yelp-toc-pager.c:862
+#: src/yelp-toc-pager.c:894
 msgid "Documents"
 msgstr "Баримтууд"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:229
 msgid "/_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:230
 msgid "/File/_New window"
 msgstr "/Файл/_Шинэ цонх"
 
-#: src/yelp-window.c:227
+#: src/yelp-window.c:233
 msgid "/File/_Close window"
 msgstr "/Файл/Цонх _хаах"
 
-#: src/yelp-window.c:231
+#: src/yelp-window.c:237
 msgid "/_Edit"
 msgstr "/_Боловсруулах"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:238
 msgid "/Edit/_Find..."
 msgstr "/Засварлах/_Ол..."
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:241
 msgid "/Edit/Find Ne_xt"
 msgstr "/Засварлах/_Дараагийнхыг ол"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:244
 msgid "/Edit/Find Pre_vious"
 msgstr "/Засварлах/_Өмнөхийг ол"
 
-#: src/yelp-window.c:242
+#: src/yelp-window.c:248
 msgid "/_Go"
 msgstr "/_Оч"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:249
 msgid "/Go/_Back"
 msgstr "/Оч/_Хойш"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:252
 msgid "/Go/_Forward"
 msgstr "/Оч/_Урагш"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:255
 msgid "/Go/_Home"
 msgstr "/Оч/_Эхлэл"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:258
 msgid "/Go/"
 msgstr "/Оч/"
 
-#: src/yelp-window.c:253
-msgid "/Go/_Previous"
+#: src/yelp-window.c:259
+#, fuzzy
+msgid "/Go/_Previous Page"
 msgstr "/Оч/Өмнөх"
 
-#: src/yelp-window.c:256
-msgid "/Go/_Next"
+#: src/yelp-window.c:262
+#, fuzzy
+msgid "/Go/_Next Page"
 msgstr "/Оч/_Дараагийн"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:265
 msgid "/Go/_Contents"
 msgstr "/Оч/_Агууллагууд"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:269
 msgid "/_Help"
 msgstr "/_Тусламж"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:270
 msgid "/Help/_About"
 msgstr "/Тусламж/_Тухай"
 
-#: src/yelp-window.c:326
+#: src/yelp-window.c:332
 msgid "Help Browser"
 msgstr "Тусламж хөтөч"
 
-#: src/yelp-window.c:390
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "»%s« баримт алга байна"
-
-#: src/yelp-window.c:426
-msgid "DocBook SGML documents are no longer supported."
-msgstr "ДокБүүк-ийн СЖМЛ баримт дэмжигдэхээ болисон."
-
-#: src/yelp-window.c:545
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Хэсэг"
 
-#: src/yelp-window.c:598
+#: src/yelp-window.c:603
 msgid "Back"
 msgstr "Буцах"
 
-#: src/yelp-window.c:599
+#: src/yelp-window.c:604
 msgid "Show previous page in history"
 msgstr "Түүх доторхи өмнөх хуудсыг харуулах"
 
-#: src/yelp-window.c:609
+#: src/yelp-window.c:614
 msgid "Forward"
 msgstr "Урагш"
 
-#: src/yelp-window.c:610
+#: src/yelp-window.c:615
 msgid "Show next page in history"
 msgstr "Түүх доторхи дараах хуудсыг харуулах"
 
-#: src/yelp-window.c:622
+#: src/yelp-window.c:627
 msgid "Home"
 msgstr "Эхлэл"
 
 # CHECK
-#: src/yelp-window.c:623
+#: src/yelp-window.c:628
 msgid "Go to home view"
 msgstr "Эхлэл рүү очих"
 
-#: src/yelp-window.c:791
-#: src/yelp-window.c:822
-#: src/yelp-window.c:1043
-#: src/yelp-window.c:1105
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "Энэ баримтанд '%s' хуудас олдсонгүй"
-
-#: src/yelp-window.c:847
+#: src/yelp-window.c:834
 msgid "Loading..."
 msgstr "Ачаалж байна..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1228
 msgid "translator_credits"
 msgstr ""
 "Санлиг Бадрал <badral@chinggis.com>\n"
 "Очирбат Батзаяа <buuvei@yahoo.com>\n"
 "Сүхбаатар Дөлмандах <sdulmandakh@yahoo.com>"
 
-#: src/yelp-window.c:1191
+#: src/yelp-window.c:1233
 msgid "A Help Browser for GNOME"
 msgstr "Гноме-ийн Тусламж Хөтөч"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:16
+#, fuzzy
+msgid "Affiliation"
+msgstr "Х.программ"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bibliography"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:30
+#, fuzzy
+msgid "Dedication"
+msgstr "Хэсэг"
+
+#: stylesheets/l10n.xml.in.h:31
+#, fuzzy
+msgid "Editor"
+msgstr "Засварлагчууд"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Set Index"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+#, fuzzy
+msgid "Table of Contents"
+msgstr "Тусламж агуулга"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:60
+#, fuzzy
+msgid "Title"
+msgstr "Гарчигийн хуудас"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr ""
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -415,3 +644,5 @@ msgstr "ГНОМЕ-р тусламж авах"
 msgid "Help"
 msgstr "Тусламж"
 
+#~ msgid "The document '%s' does not exist"
+#~ msgstr "»%s« баримт алга байна"

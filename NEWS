@@ -1,3 +1,43 @@
+Changes in 2.5.3:
+-----------------
+* Previous and Next changed to Previous Page and Next Page  (Shaun McCance)
+* Set encoding to utf-8 in the generated html (#131186)     (Richard Hult)
+* New man converter, which will be totally unadvertised
+  for the 2.6 release, due to its unreadiness               (Shaun McCance)
+* i18n in place for the XSLT                                (Shaun McCance)
+* Some nice work on the test document, which though not
+  included in the release, has shown some XSLT errors       (Eric Baudais)
+* Fixes and improvements to the DocBook XSLT                (Shaun McCance)
+* Mildly better error dialogs, still need work              (Shaun McCance)
+* Some under-the-hood improvements to the TOC maker         (Shaun McCance)
+* Anchor jumping stuff, which is still giving problems      (Shaun McCance)
+* Added yelp:chunk-depth processing instruction             (Shaun McCance)
+* Handle absolute ghelp: URIs again                         (Shaun McCance)
+* Actually handle HTML pages                                (Shaun McCance)
+* Handle links to stuff that goes outside Yelp              (Shaun McCance)
+* Fix annoying whitespace problem in sidebar                (Shaun McCance)
+* Update translations:
+  ar      (Arafat Medini)
+  ca      (Jordi Mallach)
+  cs      (Miloslav Trmac)
+  de      (Christian Neumair)
+  es      (Francisco Javier F. Serrador)
+  et      (Tõivo Leedjärv)
+  fr      (Sebastien Bacher)
+  hr      (Robert Sedak) 
+  ko      (Changwoo Ryu) 
+  lt      (Žygimantas Beručka)
+  mn      (Sanlig Badral)
+  ms      (Hasbullah Bin Pit)
+  nl      (Tino Meinen)
+  nn      (Åsmund Skjæveland)
+  pl      (GNOME PL Team)
+  pt      (Duarte Loreto)
+  sr      (Danilo Šegan)
+  sr@Latn (Danilo Šegan)
+  sv      (Christian Rose)
+  ja      (Takeshi AIHANA)
+
 Changes in 2.5.2.1:
 -------------------
 * Fix the intltool 0.28 build breakage
