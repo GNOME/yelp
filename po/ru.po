@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 3.0\n"
-"POT-Creation-Date: 2002-03-04 22:19+0100\n"
+"POT-Creation-Date: 2002-03-23 15:39+0200\n"
 "PO-Revision-Date: 2002-03-07 10:48+0300\n"
 "Last-Translator: Igor Androsov <blace@mail.ru>\n"
 "Language-Team:  <gnome-cur@gnome.org>\n"
@@ -13,24 +13,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/GNOME_Yelp.server.in.h:1
-msgid "Yelp"
-msgstr "Yelp"
-
-#: src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Фабрика Yelp"
-
 #: src/yelp-info.c:126
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:91
+#: src/yelp-main.c:109
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не могу активировать Yelp: '%s'"
 
-#: src/yelp-main.c:110
+#: src/yelp-main.c:128
 msgid "Could not open new window."
 msgstr "Не могу открыть новое окно"
 
@@ -107,11 +99,11 @@ msgstr "Системное администрирование"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:359
 msgid "Section"
 msgstr "Разделы"
 
-#: src/yelp-view-index.c:325
+#: src/yelp-view-index.c:327
 msgid "Search for:"
 msgstr "Поиск:"
 
@@ -240,3 +232,9 @@ msgstr "Получить справку в GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Справка"
+
+#~ msgid "Yelp"
+#~ msgstr "Yelp"
+
+#~ msgid "Yelp Factory"
+#~ msgstr "Фабрика Yelp"
