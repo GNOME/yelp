@@ -1,15 +1,14 @@
-# Yelp strings in Welsh
-# Copyright (C) 2003 Chris M. Jackson.
+# GNOME yn Gymraeg.
+# Copyright (C) 2003 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
-# Chris M. Jackson <chris@www.linux.org.uk>
+# Chris Jackson <chris@www.linux.org.uk>, 2003
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "POT-Creation-Date: 2003-05-25 12:54+0200\n"
-"PO-Revision-Date: 2003-05-27 00:00+0100\n"
-"Last-Translator: Chris M Jackson <chris@www.linux.org.uk>\n"
+"PO-Revision-Date: 2003-05-31 17:01+0100\n"
+"Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,15 +20,15 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr "<b>Chwilio testun yn y dogfen:</b>"
+msgstr "<b>Chwilio am destun yn y dogfen:</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr "_Amlapio'n Awtomatig"
+msgstr "_Amlapio o gwmpas yn awtomatig"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr "Chwilio testun..."
+msgstr "Chwilio am destun..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
@@ -111,7 +110,7 @@ msgstr "Ffwythiannau'r Cnewyllyn"
 
 #: src/yelp-man.c:429
 msgid "Applications"
-msgstr "Rhaglennau"
+msgstr "Rhaglenni"
 
 #: src/yelp-man.c:434
 msgid "Development"
@@ -127,7 +126,7 @@ msgstr "Ffeiliau Ffurfweddu"
 
 #: src/yelp-man.c:449
 msgid "Games"
-msgstr "Ge^mau"
+msgstr "Gêmau"
 
 #: src/yelp-man.c:454
 msgid "Overviews"
@@ -164,7 +163,7 @@ msgstr "Dogfennau ychwanegol"
 
 #: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
-msgstr "Tudalennau'r Lawlyfr"
+msgstr "Tudalennau Llawlyfr"
 
 #: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
@@ -212,7 +211,7 @@ msgstr "/_Golygu"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr "/Golygu/_Chwilio ar tudalen..."
+msgstr "/Golygu/_Chwilio mewn tudalen..."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
@@ -224,11 +223,11 @@ msgstr "/_Mynd"
 
 #: src/yelp-window.c:172
 msgid "/Go/_Back"
-msgstr "/Mynd/Yn _o^l"
+msgstr "/Mynd/Yn _ôl"
 
 #: src/yelp-window.c:173
 msgid "/Go/_Forward"
-msgstr "/Mynd/Y_mlaen"
+msgstr "/Mynd/_Ymlaen"
 
 #: src/yelp-window.c:174
 msgid "/Go/_Home"
@@ -236,7 +235,7 @@ msgstr "/Mynd/_Adre"
 
 #: src/yelp-window.c:175
 msgid "/Go/_Index"
-msgstr "/Mynd/Myne_gai"
+msgstr "/Mynd/_Mynegai"
 
 #: src/yelp-window.c:177
 msgid "/_Help"
@@ -244,11 +243,11 @@ msgstr "/_Cymorth"
 
 #: src/yelp-window.c:178
 msgid "/Help/_About"
-msgstr "/Cymorth/_Am y rhaglen"
+msgstr "/Cymorth/_Ynghylch"
 
 #: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
-msgstr "Porwr Help"
+msgstr "Porwr Cymorth"
 
 #: src/yelp-window.c:351
 #, c-format
@@ -259,20 +258,21 @@ msgstr "Dydy'r ddogfen '%s' ddim yn bodoli"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:675
 msgid "translator_credits"
-msgstr "Chris M. Jackson <chris@www.linux.org.uk>"
+msgstr "Chris M. Jackson <chris@www.linux.org.uk>, "
+"Dafydd Harries <daf@parnassus.ath.cx>"
 
 
 #: src/yelp-window.c:679
 msgid "A Help Browser for GNOME"
-msgstr "Porwr Help i GNOME"
+msgstr "Porwr Cymorth ar gyfer GNOME"
 
 #: src/yelp-window.c:788
 msgid "Back"
-msgstr "Yn o^l"
+msgstr "Yn ôl"
 
 #: src/yelp-window.c:789
 msgid "Show previous page in history"
-msgstr "Dangos y tudalen blaenorol"
+msgstr "Dangos y dudalen blaenorol"
 
 #: src/yelp-window.c:800
 msgid "Forward"
@@ -300,8 +300,9 @@ msgstr "Chwilio'r mynegai"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr "Cael cymorth a^ GNOME"
+msgstr "Cael cymorth â GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
-msgstr "Help"
+msgstr "Cymorth"
+
