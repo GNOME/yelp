@@ -32,10 +32,12 @@
 #include <yelp-util.h>
 #include <libgnome/gnome-i18n.h>
 
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <string.h>
 #include <stdio.h>
 #include <dirent.h>
+#include <unistd.h>
 
 struct TreeNode {
 	char *name;
@@ -544,7 +546,9 @@ yelp_man_init (GtkTreeStore *store)
 	int i;
 	GHashTable *section_hash;
 	struct TreeNode *root;
-
+	struct stat stat_dir1;
+	struct stat stat_dir2;
+	
 	/* Go through all the man pages:
 	 * 1. Determine the places to search (run 'manpath').
 	 * 2. Go through all subdirectories to find individual files.
@@ -572,10 +576,17 @@ yelp_man_init (GtkTreeStore *store)
 			yelp_man_populate_tree_for_dir (section_hash, manpath[i]);
 	}
 	if (!manpath || !manpath[0]) {
-		yelp_man_populate_tree_for_dir (section_hash, "/usr/man");
-		yelp_man_populate_tree_for_dir (section_hash, "/usr/share/man");
-	}
 
+		stat ("/usr/man", &stat_dir1);
+		stat ("/usr/share/man", &stat_dir2);
+		
+		yelp_man_populate_tree_for_dir (section_hash, "/usr/man");
+
+		if (stat_dir1.st_ino != stat_dir2.st_ino) {
+			yelp_man_populate_tree_for_dir (section_hash, 
+							"/usr/share/man");
+		}
+	}
 
 	yelp_man_cleanup_initial_tree (root);
 	

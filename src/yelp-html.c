@@ -379,10 +379,10 @@ yelp_html_new (void)
 	
 	{
 		gint len;
-		gchar *text = N_("<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the README and TODO<br></body></html>");
-		len = strlen (_(text));
+		gchar *text = "<html><body bgcolor=\"white\"><h1>Yelp</h1></body></html>";
+		len = strlen (text);
 		
-		html_document_write_stream (view->priv->doc, _(text), len);
+		html_document_write_stream (view->priv->doc, text, len);
 	}
 	
 	html_document_close_stream (view->priv->doc);
