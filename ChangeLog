@@ -1,3 +1,8 @@
+2003-09-03  Shaun McCance  <shaunm@wolfram.com>
+
+	* src/yelp-main.c:
+	- Fix from alexl for forkbomb when DISPLAY is set.
+
 2003-09-01  Shaun McCance  <shaunm@wolfram.com>
 
 	* configure.in: Version 2.3.90
