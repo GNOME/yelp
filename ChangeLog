@@ -1,3 +1,10 @@
+2004-05-07  Arvind Samptur  <arvind.samptur@wipro.com>
+
+	* src/yelp-main.c (main_save_session): Get the open_urls
+	in the right index of argv
+	(main_restore_session): Need get rid of "\"" before passing
+	the url to main_open_new_window ().  (#142081)
+
 2004-04-27  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added Basque (eu) end Georgian (ka),
