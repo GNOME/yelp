@@ -33,6 +33,7 @@ yelpcustomization_DATA = 	\
 	db2html-xref.xsl	\
 	db2html.xsl		\
 	gettext.xsl		\
-	l10n.xml
+	l10n.xml		\
+	man2html.xsl
 
 EXTRA_DIST=$(yelpcustomization_DATA)

@@ -155,7 +155,7 @@ yelp_io_free          (GIOChannel    *channel)
 
 #ifdef HAVE_LIBBZ2
     if (yelp_channel->bzin)
-	free (yelp_channel->bzin);
+	g_free (yelp_channel->bzin);
 #endif
 
     g_free (yelp_channel);

@@ -28,6 +28,7 @@
 #include "config.h"
 #include "yelp-pager.h"
 #include "yelp-db-pager.h"
+#include "yelp-man-pager.h"
 #include "yelp-theme.h"
 #include "yelp-toc-pager.h"
 #include "yelp-uri.h"
@@ -63,8 +64,11 @@ main (gint argc, gchar **argv)
     case YELP_URI_TYPE_DOCBOOK_XML:
 	pager = yelp_db_pager_new (uri);
 	break;
+    case YELP_URI_TYPE_MAN:
+	pager = yelp_man_pager_new (uri);
+	break;
     default:
-	printf ("No pager type exists for this URI.");
+	printf ("No pager type exists for this URI.\n");
 	return 1;
     }
 

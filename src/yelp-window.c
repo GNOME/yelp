@@ -43,6 +43,7 @@
 #include "yelp-error.h"
 #include "yelp-history.h"
 #include "yelp-html.h"
+#include "yelp-man-pager.h"
 #include "yelp-pager.h"
 #include "yelp-toc-pager.h"
 #include "yelp-theme.h"
@@ -742,7 +743,7 @@ window_handle_pager_uri (YelpWindow  *window,
 		// FIXME: yelp_info_pager_new (uri);
 		break;
 	    case YELP_URI_TYPE_MAN:
-		// FIXME: yelp_man_pager_new (uri);
+		pager = yelp_man_pager_new (uri);
 		break;
 	    default:
 		break;

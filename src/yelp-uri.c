@@ -36,6 +36,7 @@
 static void          uri_set_resource_type         (YelpURI      *uri);
 static gboolean      uri_parse_uri                 (YelpURI      *uri);
 static void          uri_parse_toc_uri             (YelpURI      *uri);
+static void          uri_parse_man_uri             (YelpURI      *uri);
 static void          uri_parse_ghelp_uri           (YelpURI      *uri);
 static gchar *       uri_locate_file               (gchar        *path,
 						    gchar        *file);
@@ -149,6 +150,10 @@ uri_parse_uri (YelpURI *uri)
 	uri_parse_ghelp_uri (uri);
 	return TRUE;
     }
+    else if (!strncmp (uri->src_uri, "man:", 4)) {
+	uri_parse_man_uri (uri);
+	return TRUE;
+    }
     else if (!strncmp (uri->src_uri, "toc:", 4)) {
 	uri_parse_toc_uri (uri);
 	return TRUE;
@@ -174,6 +179,28 @@ uri_parse_toc_uri (YelpURI *uri)
 
     g_free (str);
     return;
+}
+
+static void
+uri_parse_man_uri (YelpURI *uri)
+{
+    gchar *path;
+    // gchar *manpath;
+
+    if ((path = strchr(uri->src_uri, ':')))
+	path++;
+    else
+	return;
+
+    if (path[0] == '/') {
+	gchar *str = g_strconcat ("file:", path, NULL);
+	uri->uri = gnome_vfs_uri_new (str);
+	g_free (str);
+	uri->resource_type = YELP_URI_TYPE_MAN;
+	return;
+    }
+
+    // FIXME: handle "relative" man URI
 }
 
 static void

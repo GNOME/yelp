@@ -1,5 +1,3 @@
-SUBDIRS = man2html info2html
-
 INCLUDES =								\
 	-I$(top_srcdir)							\
 	@YELP_CFLAGS@							\
@@ -42,19 +40,21 @@ test_man_parser_SOURCES =						\
 	yelp-man-parser.c	yelp-man-parser.h			\
 	test-man-parser.c
 
-test_man_parser_LDADD =							\
-	@YELP_LIBS@ $(Z_LIBS) $(BZ_LIBS)
+test_man_parser_LDADD = @YELP_LIBS@ $(Z_LIBS) $(BZ_LIBS)
 
 test_pager_SOURCES =							\
 	yelp-db-pager.c		yelp-db-pager.h				\
 	yelp-error.c		yelp-error.h				\
+	yelp-io-channel.c	yelp-io-channel.h			\
+	yelp-man-pager.c	yelp-man-pager.h			\
+	yelp-man-parser.c	yelp-man-parser.h			\
 	yelp-pager.c		yelp-pager.h				\
 	yelp-theme.c		yelp-theme.h				\
 	yelp-toc-pager.c	yelp-toc-pager.h			\
 	yelp-uri.c		yelp-uri.h				\
 	yelp-marshal-main.c	test-pager.c
 
-test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS)
+test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
@@ -64,6 +64,9 @@ yelp_SOURCES =								\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html-gtkhtml2.c	yelp-html.h				\
+	yelp-io-channel.c	yelp-io-channel.h			\
+	yelp-man-pager.c	yelp-man-pager.h			\
+	yelp-man-parser.c	yelp-man-parser.h			\
 	yelp-pager.c		yelp-pager.h				\
 	yelp-toc-pager.c	yelp-toc-pager.h			\
 	yelp-theme.c		yelp-theme.h				\
@@ -71,7 +74,7 @@ yelp_SOURCES =								\
 	yelp-uri.c	        yelp-uri.h				\
 	yelp-marshal-main.c	yelp-main.c
 
-yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS)
+yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
 
 gnome_yelp_idl_sources =						\
 	GNOME_Yelp-stubs.c						\

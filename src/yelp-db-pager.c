@@ -84,21 +84,21 @@ gchar *              db_pager_resolve_uri  (YelpPager        *pager,
 					    YelpURI          *uri);
 const GtkTreeModel * db_pager_get_sections (YelpPager        *pager);
 
-static void     walker_walk_xml       (DBWalker         *walker);
-gboolean        walker_is_chunk       (DBWalker         *walker);
+static void          walker_walk_xml       (DBWalker         *walker);
+static gboolean      walker_is_chunk       (DBWalker         *walker);
 
-gboolean        xml_is_division       (xmlNodePtr        node);
-gboolean        xml_is_info           (xmlNodePtr        node);
-gchar *         xml_get_title         (xmlNodePtr        node);
+static gboolean      xml_is_division       (xmlNodePtr        node);
+static gboolean      xml_is_info           (xmlNodePtr        node);
+static gchar *       xml_get_title         (xmlNodePtr        node);
 
-void            xslt_yelp_document    (xsltTransformContextPtr ctxt,
-				       xmlNodePtr              node,
-				       xmlNodePtr              inst,
-				       xsltStylePreCompPtr     comp);
-void            xslt_yelp_cache       (xsltTransformContextPtr ctxt,
-				       xmlNodePtr              node,
-				       xmlNodePtr              inst,
-				       xsltStylePreCompPtr     comp);
+static void          xslt_yelp_document    (xsltTransformContextPtr ctxt,
+					    xmlNodePtr              node,
+					    xmlNodePtr              inst,
+					    xsltStylePreCompPtr     comp);
+static void          xslt_yelp_cache       (xsltTransformContextPtr ctxt,
+					    xmlNodePtr              node,
+					    xmlNodePtr              inst,
+					    xsltStylePreCompPtr     comp);
 
 static YelpPagerClass *parent_class;
 
@@ -214,7 +214,8 @@ db_pager_process (YelpPager *pager)
 
     gchar        *doc_name;
     gchar        *doc_path;
-    const gchar  *params[21];
+    const gchar  *params[40];
+    gint i = 0;
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
@@ -242,12 +243,8 @@ db_pager_process (YelpPager *pager)
 			   XML_PARSE_NONET    );
 
     if (doc == NULL) {
-	gchar *str_uri = gnome_vfs_uri_to_string (uri->uri,
-						  GNOME_VFS_URI_HIDE_NONE);
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
 	yelp_pager_error (pager, error);
-
-	g_free (str_uri);
 	return FALSE;
     }
 
@@ -279,25 +276,25 @@ db_pager_process (YelpPager *pager)
     p_doc_name = g_strconcat("\"", doc_name, "\"", NULL);
     p_doc_path = g_strconcat("\"file://", doc_path, "/\"", NULL);
 
-    params[0]  = "doc_name";
-    params[1]  = p_doc_name;
-    params[2]  = "doc_path";
-    params[3]  = p_doc_path;
-    params[4]  = "stylesheet_path";
-    params[5]  = "\"file://" DB_STYLESHEET_PATH "/\"";
-    params[6]  = "html_extension";
-    params[7]  = "\"\"";
-    params[8] = "resolve_xref_chunk";
-    params[9] = "0";
-    params[10] = "mediaobject_path";
-    params[11] = p_doc_path;
-    params[12] = "color_gray_background";
-    params[13] = yelp_theme_get_gray_background ();
-    params[14] = "color_gray_border";
-    params[15] = yelp_theme_get_gray_border ();
-    params[16] = "admon_graphics_path";
-    params[17] = "\"file://" DATADIR "/yelp/icons/\"";
-    params[18] = NULL;
+    params[i++] = "doc_name";
+    params[i++] = p_doc_name;
+    params[i++] = "doc_path";
+    params[i++] = p_doc_path;
+    params[i++] = "stylesheet_path";
+    params[i++] = "\"file://" DB_STYLESHEET_PATH "/\"";
+    params[i++] = "html_extension";
+    params[i++] = "\"\"";
+    params[i++] = "resolve_xref_chunk";
+    params[i++] = "0";
+    params[i++] = "mediaobject_path";
+    params[i++] = p_doc_path;
+    params[i++] = "color_gray_background";
+    params[i++] = yelp_theme_get_gray_background ();
+    params[i++] = "color_gray_border";
+    params[i++] = yelp_theme_get_gray_border ();
+    params[i++] = "admon_graphics_path";
+    params[i++] = "\"file://" DATADIR "/yelp/icons/\"";
+    params[i++] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     tctxt      = xsltNewTransformContext (stylesheet,
