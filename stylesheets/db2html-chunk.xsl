@@ -414,7 +414,8 @@
 			<xsl:with-param name="node" select="$node"/>
 		</xsl:call-template>
 	</xsl:param>
-	<xsl:for-each select="refentry | sect1 | section | simplesect">
+	<xsl:for-each select="
+			glossary | index | refentry | sect1 | section | simplesect">
 		<xsl:call-template name="chunk">
 			<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
 		</xsl:call-template>

@@ -76,7 +76,14 @@
 <xsl:template name="format.header">
 	<xsl:param name="header"/>
 	<xsl:param name="number"/>
-	<xsl:value-of select="concat($header, '&#x00A0;', $number)"/>
+	<xsl:choose>
+		<xsl:when test="string-length($number) &gt; 0">
+			<xsl:value-of select="concat($header, '&#x00A0;', $number)"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="$header"/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <!-- ======================================================================= -->
