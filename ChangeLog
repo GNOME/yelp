@@ -1,3 +1,8 @@
+2004-04-26  Morten Welinder  <terra@gnome.org>
+
+	* src/yelp-db-pager.c (db_pager_process): Free path, free walker,
+	and free the transformed document.  (#140630)
+
 2003-01-15  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added Georgian (ka) to ALL_LINGUAS.

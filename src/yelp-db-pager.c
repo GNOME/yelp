@@ -205,7 +205,7 @@ db_pager_process (YelpPager *pager)
     xmlChar   *id;
     GError    *error = NULL;
 
-    xmlDocPtr               doc;
+    xmlDocPtr               doc, newdoc;
     xmlParserCtxtPtr        ctxt;
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr tctxt;
@@ -323,12 +323,15 @@ db_pager_process (YelpPager *pager)
     while (gtk_events_pending ())
 	gtk_main_iteration ();
 
-    xsltApplyStylesheetUser (stylesheet,
-			     doc,
-			     params,
-			     NULL, NULL,
-			     tctxt);
+    newdoc = xsltApplyStylesheetUser (stylesheet,
+				      doc,
+				      params,
+				      NULL, NULL,
+				      tctxt);
+    xmlFreeDoc (newdoc);
 
+    g_free (path);
+    g_free (walker);
     g_free (p_doc_name);
     g_free (p_doc_path);
     g_free (doc_name);
