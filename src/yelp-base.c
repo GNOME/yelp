@@ -23,6 +23,7 @@
 #include <config.h>
 
 #include <bonobo/bonobo-main.h>
+#include <libgnomevfs/gnome-vfs.h>
 
 #include <string.h>
 
@@ -73,6 +74,7 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 	gint                   len, i;
 	GSList                *node;
 	YelpDocInfo           *doc_info;
+	gchar                 *uri;
 	
 	base = YELP_BASE (bonobo_object (servant));
 	priv = base->priv;
@@ -87,7 +89,9 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 	
 	for (node = priv->windows, i = 0; node; node = node->next, i++) {
 		doc_info = yelp_window_get_doc_info (YELP_WINDOW (node->data));
-		list->_buffer[i] = CORBA_string_dup (doc_info->uri);
+		uri = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_ANY);
+		list->_buffer[i] = CORBA_string_dup (uri);
+		g_free (uri);
 	}
 	
 	return list;

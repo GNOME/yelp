@@ -27,52 +27,64 @@
 #include <libgnomevfs/gnome-vfs.h>
 
 #include "yelp-utils.h"
-#include "yelp-uri.h"
 
 static void 
 print_doc_info (YelpDocInfo *doc)
 {
-    gchar *type, *file;
+    gchar *type, *uri, *file;
+    gboolean hasfile = FALSE;
+    gint i, max, tmp;
 
-    switch (doc->type) {
-    case YELP_TYPE_ERROR:
-	type = "YELP_TYPE_ERROR";
+    switch (yelp_doc_info_get_type(doc)) {
+    case YELP_DOC_TYPE_ERROR:
+	type = "YELP_DOC_TYPE_ERROR";
 	break;
-    case YELP_TYPE_DOCBOOK_XML:
-	type = "YELP_TYPE_DOCBOOK_XML";
+    case YELP_DOC_TYPE_DOCBOOK_XML:
+	type = "YELP_DOC_TYPE_DOCBOOK_XML";
 	break;
-    case YELP_TYPE_DOCBOOK_SGML:
-	type = "YELP_TYPE_DOCBOOK_SGML";
+    case YELP_DOC_TYPE_DOCBOOK_SGML:
+	type = "YELP_DOC_TYPE_DOCBOOK_SGML";
 	break;
-    case YELP_TYPE_HTML:
-	type = "YELP_TYPE_HTML";
+    case YELP_DOC_TYPE_HTML:
+	type = "YELP_DOC_TYPE_HTML";
 	break;
-    case YELP_TYPE_MAN:
-	type = "YELP_TYPE_MAN";
+    case YELP_DOC_TYPE_MAN:
+	type = "YELP_DOC_TYPE_MAN";
 	break;
-    case YELP_TYPE_INFO:
-	type = "YELP_TYPE_INFO";
+    case YELP_DOC_TYPE_INFO:
+	type = "YELP_DOC_TYPE_INFO";
 	break;
-    case YELP_TYPE_TOC:
-	type = "YELP_TYPE_DOC";
+    case YELP_DOC_TYPE_TOC:
+	type = "YELP_DOC_TYPE_DOC";
 	break;
-    case YELP_TYPE_EXTERNAL:
-	type = "YELP_TYPE_EXTERNAL";
+    case YELP_DOC_TYPE_EXTERNAL:
+	type = "YELP_DOC_TYPE_EXTERNAL";
 	break;
     }
 
-    file = yelp_doc_info_get_filename (doc);
+    printf ("Address:  %i\n", (guint) doc);
+    printf ("Type:     %s\n", type);
 
-    printf ("Address:  %i\n"
-	    "URI:      %s\n"
-	    "Type:     %s\n"
-	    "Filename: %s\n",
-	    (gint) doc,
-	    doc->uri,
-	    type,
-	    file);
+    max = 0;
+    tmp = YELP_URI_TYPE_ANY;
+    while ((tmp = tmp >> 1))
+	max++;
 
-    g_free (file);
+    for (i = 0; i <= max; i++) {
+	uri = yelp_doc_info_get_uri (doc, NULL, 1 << i);
+	if (uri) {
+	    printf ("URI:      %s\n", uri);
+	    if ((1 << i) == YELP_URI_TYPE_FILE)
+		hasfile = TRUE;
+	    g_free (uri);
+	}
+    }
+
+    if (hasfile) {
+	file = yelp_doc_info_get_filename (doc);
+	printf ("Filename: %s\n", file);
+	g_free (file);
+    }
 }
 
 int

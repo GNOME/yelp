@@ -26,8 +26,6 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "yelp-uri.h"
-
 void           yelp_cache_init          (void);
 
 GObject *      yelp_cache_lookup        (const gchar *path);

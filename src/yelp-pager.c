@@ -257,9 +257,6 @@ yelp_pager_start (YelpPager *pager)
 			  pager->priv->state == YELP_PAGER_STATE_INVALID,
 			  FALSE);
 
-    d (printf ("yelp_pager_start\n"));
-    d (printf ("  uri = \"%s\"\n", pager->priv->doc_info->uri));
-
     pager->priv->state = YELP_PAGER_STATE_STARTED;
     gtk_idle_add ((GtkFunction) (YELP_PAGER_GET_CLASS (pager)->process),
 		  pager);

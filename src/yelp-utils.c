@@ -42,11 +42,30 @@
 
 GHashTable *doc_info_table;
 
+typedef struct {
+    gchar       *uri;
+    YelpURIType  type;
+} DocInfoURI;
+
+struct _YelpDocInfo {
+    DocInfoURI *uris;
+    gint        num_uris;
+    gint        max_uris;
+
+    YelpDocType type;
+
+    YelpPager  *pager;
+
+    gint ref_count;
+};
+
+static void         doc_info_add_uri   (YelpDocInfo *doc_info,
+					gchar       *uri,
+					YelpURIType  type);
 static gchar *      convert_ghelp_uri  (gchar   *uri);
 static gchar *      convert_man_uri    (gchar   *uri);
 static gchar *      convert_info_uri   (gchar   *uri);
 static YelpDocType  get_doc_type       (gchar   *uri);
-
 
 YelpDocInfo *
 yelp_doc_info_new (gchar *uri)
@@ -54,38 +73,56 @@ yelp_doc_info_new (gchar *uri)
     YelpDocInfo *doc;
     gchar       *doc_uri = NULL;
     YelpDocType  doc_type;
+    YelpURIType  uri_type;
     gchar *cur;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    if (!strncmp (uri, "file:", 5)) {
+    d (printf ("yelp_doc_info_new\n"));
+    d (printf ("  uri     = \"%s\"\n", uri));
+
+    if (g_str_has_prefix (uri, "file:")) {
 	if ((cur = strchr (uri, '#')))
 	    doc_uri = g_strndup (uri, cur - uri);
 	else
 	    doc_uri = g_strdup (uri);
 	doc_type = get_doc_type (doc_uri);
+	uri_type = YELP_URI_TYPE_FILE;
     }
-    if (!strncmp (uri, "ghelp:", 6)) {
+    if (g_str_has_prefix (uri, "ghelp:")) {
 	doc_uri  = convert_ghelp_uri (uri);
 	if (doc_uri)
 	    doc_type = get_doc_type (doc_uri);
+	uri_type = YELP_URI_TYPE_GHELP;
     }
-    else if (!strncmp (uri, "man:", 4)) {
+    else if (g_str_has_prefix (uri, "man:")) {
 	doc_uri  = convert_man_uri (uri);
 	doc_type = YELP_DOC_TYPE_MAN;
+	uri_type = YELP_URI_TYPE_MAN;
     }
-    else if (!strncmp (uri, "info:", 5)) {
+    else if (g_str_has_prefix (uri, "info:")) {
 	doc_uri  = convert_info_uri (uri);
 	doc_type = YELP_DOC_TYPE_INFO;
+	uri_type = YELP_URI_TYPE_INFO;
     }
-    else if (!strncmp (uri, "x-yelp-toc:", 11)) {
+    else if (g_str_has_prefix (uri, "x-yelp-toc:")) {
 	doc_uri = g_strdup ("file://" DATADIR "/yelp/toc.xml");
 	doc_type = YELP_DOC_TYPE_TOC;
+	uri_type = YELP_URI_TYPE_TOC;
     }
+
+    d (printf ("  doc_uri = \"%s\"\n", uri));
 
     if (doc_uri) {
 	doc = g_new0 (YelpDocInfo, 1);
-	doc->uri  = doc_uri;
+	doc->uris = g_new (DocInfoURI, 8);
+	doc->num_uris = 0;
+	doc->max_uris = 8;
+
+	doc_info_add_uri (doc, doc_uri, YELP_URI_TYPE_FILE);
+	if (uri_type && uri_type != YELP_URI_TYPE_FILE)
+	    doc_info_add_uri (doc, uri, uri_type);
+
 	doc->type = doc_type;
 	doc->ref_count = 1;
 	return doc;
@@ -98,8 +135,12 @@ YelpDocInfo *
 yelp_doc_info_get (gchar *uri)
 {
     YelpDocInfo *doc;
+    gint i;
 
     g_return_val_if_fail (uri != NULL, NULL);
+
+    d (printf ("yelp_doc_info_get\n"));
+    d (printf ("  uri     = \"%s\"\n", uri));
 
     if (!doc_info_table)
 	doc_info_table =
@@ -115,19 +156,18 @@ yelp_doc_info_get (gchar *uri)
 	if (doc && doc->type != YELP_DOC_TYPE_EXTERNAL) {
 	    YelpDocInfo *old_doc;
 
-	    if ((old_doc = g_hash_table_lookup (doc_info_table, doc->uri))) {
+	    /* Hackish and not reliable, but it basically works */
+	    if ((old_doc = g_hash_table_lookup (doc_info_table, doc->uris->uri))) {
 		yelp_doc_info_free (doc);
 		doc = old_doc;
-		g_hash_table_insert (doc_info_table,
-				     g_strdup (uri),
-				     doc);
-	    } else {
-		g_hash_table_insert (doc_info_table,
-				     g_strdup (uri),
-				     doc);
-		if (!g_str_equal (uri, doc->uri))
+		for (i = 0; i < doc->num_uris; i++)
 		    g_hash_table_insert (doc_info_table,
-					 g_strdup (doc->uri),
+					 g_strdup ((doc->uris + i)->uri),
+					 doc);
+	    } else {
+		for (i = 0; i < doc->num_uris; i++)
+		    g_hash_table_insert (doc_info_table,
+					 g_strdup ((doc->uris + i)->uri),
 					 doc);
 	    }
 	}
@@ -156,40 +196,92 @@ yelp_doc_info_unref (YelpDocInfo *doc)
 void
 yelp_doc_info_free (YelpDocInfo *doc)
 {
+    gint i;
+
+    d (printf ("yelp_doc_info_free\n"));
+    d (printf ("  uri = \"%s\"\n", doc->uris->uri));
+
     if (!doc)
 	return;
 
-    d (printf ("yelp_doc_info_free\n"));
-    d (printf ("  uri = \"%s\"\n", doc->uri));
-
     g_object_unref (doc->pager);
 
-    g_free (doc->uri);
+    for (i = 0; i < doc->num_uris; i++)
+	g_free ((doc->uris + i)->uri);
+    g_free (doc->uris);
     g_free (doc);
+}
+
+YelpPager *
+yelp_doc_info_get_pager (YelpDocInfo *doc)
+{
+    g_return_val_if_fail (doc != NULL, NULL);
+
+    return doc->pager;
+}
+
+void
+yelp_doc_info_set_pager (YelpDocInfo *doc, YelpPager *pager)
+{
+    g_return_if_fail (doc != NULL);
+
+    if (doc->pager)
+	g_object_unref (doc->pager);
+
+    doc->pager = g_object_ref (pager);
+}
+
+YelpDocType
+yelp_doc_info_get_type (YelpDocInfo *doc)
+{
+    g_return_val_if_fail (doc != NULL, YELP_DOC_TYPE_ERROR);
+
+    return doc->type;
 }
 
 gchar *
 yelp_doc_info_get_uri (YelpDocInfo *doc,
-		       gchar       *frag_id)
+		       gchar       *frag_id,
+		       YelpURIType  uri_type)
 {
+    gchar *base = NULL;
+    gint i;
+
     g_return_val_if_fail (doc != NULL, NULL);
 
-    if (!frag_id || *frag_id == '\0')
-	return g_strdup (doc->uri);
+    for (i = 0; i < doc->num_uris; i++)
+	if ((doc->uris + i)->type & uri_type) {
+	    base = (doc->uris + i)->uri;
+	    break;
+	}
 
-    return g_strconcat (doc->uri, "#", frag_id, NULL);
+    if (!base)
+	return NULL;
+
+    if (!frag_id || *frag_id == '\0')
+	return g_strdup (base);
+
+    return g_strconcat (base, "#", frag_id, NULL);
 }
 
 gchar *
 yelp_doc_info_get_filename (YelpDocInfo *doc) {
-    gchar *path = NULL;
+    gchar *filename = NULL;
+    gchar *base = NULL;
+    gint i;
 
     g_return_val_if_fail (doc != NULL, NULL);
 
-    if (!strncmp (doc->uri, "file://", 7))
-	path = g_strdup (doc->uri + 7);
+    for (i = 0; i < doc->num_uris; i++)
+	if ((doc->uris + i)->type == YELP_URI_TYPE_FILE) {
+	    base = (doc->uris + i)->uri;
+	    break;
+	}
 
-    return path;
+    if (g_str_has_prefix (base, "file://"))
+	filename = g_strdup (base + 7);
+
+    return filename;
 }
 
 gboolean
@@ -200,7 +292,8 @@ yelp_doc_info_equal (YelpDocInfo *doc1, YelpDocInfo *doc2)
     g_return_val_if_fail (doc1 != NULL, FALSE);
     g_return_val_if_fail (doc2 != NULL, FALSE);
 
-    if (!g_str_equal (doc1->uri, doc2->uri))
+    /* FIXME: this sucks */
+    if (!g_str_equal (doc1->uris->uri, doc2->uris->uri))
 	equal = FALSE;
 
     return equal;
@@ -293,6 +386,36 @@ get_doc_type (gchar *uri)
 
     g_free (mime_type);
     return type;
+}
+
+static void
+doc_info_add_uri (YelpDocInfo *doc_info,
+		  gchar       *uri,
+		  YelpURIType  type)
+{
+    DocInfoURI *info_uri;
+
+    d (printf ("yelp_doc_add_uri\n"));
+
+    g_assert (doc_info->num_uris <= doc_info->max_uris);
+
+    if (doc_info->num_uris == doc_info->max_uris) {
+	doc_info->max_uris += 8;
+	doc_info->uris = g_renew (DocInfoURI,
+				  doc_info->uris,
+				  doc_info->max_uris);
+    }
+
+    info_uri = doc_info->uris + doc_info->num_uris;
+
+    info_uri->uri  = g_strdup (uri);
+    info_uri->type = type;
+
+    doc_info->num_uris++;
+
+    d (printf ("  uri      = \"%s\"\n", uri));
+    d (printf ("  num_uris = %i\n", doc_info->num_uris));
+    d (printf ("  max_uris = %i\n", doc_info->max_uris));
 }
 
 /******************************************************************************/

@@ -1,3 +1,23 @@
+2004-10-12  Shaun McCance  <shaunm@gnome.org>
+
+	* data/ui/yelp-ui.xml:
+	* src/yelp-window.c:
+	- Added Copy, breaking Copy
+	- DND from the tree view
+
+	* src/Makefile.am:
+	* src/yelp-cache.h:
+	- Removed yelp-uri
+
+	* src/test-uri.c:
+	* src/yelp-base.c:
+	* src/yelp-pager.c:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* src/yelp-window.c:
+	- Privatized YelpDocInfo
+	- Added multiple URI support to YelpDocInfo
+
 2004-10-10  Shaun McCance  <shaunm@gnome.org>
 
 	* data/ui/yelp.glade:

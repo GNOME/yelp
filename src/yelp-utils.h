@@ -37,17 +37,31 @@ typedef enum {
     YELP_DOC_TYPE_EXTERNAL
 } YelpDocType;
 
+typedef enum {
+    YELP_URI_TYPE_ERROR    = 0,
+    YELP_URI_TYPE_FILE     = 1 << 0,
+    YELP_URI_TYPE_GHELP    = 1 << 1,
+    YELP_URI_TYPE_MAN      = 1 << 2,
+    YELP_URI_TYPE_INFO     = 1 << 3,
+    YELP_URI_TYPE_TOC      = 1 << 4,
+    YELP_URI_TYPE_EXTERNAL = 1 << 5,
+
+    YELP_URI_TYPE_NO_FILE =
+      YELP_URI_TYPE_GHELP   |
+      YELP_URI_TYPE_MAN     |
+      YELP_URI_TYPE_INFO    |
+      YELP_URI_TYPE_TOC     |
+      YELP_URI_TYPE_EXTERNAL,
+    YELP_URI_TYPE_ANY =
+      YELP_URI_TYPE_FILE    |
+      YELP_URI_TYPE_GHELP   |
+      YELP_URI_TYPE_MAN     |
+      YELP_URI_TYPE_INFO    |
+      YELP_URI_TYPE_TOC     |
+      YELP_URI_TYPE_EXTERNAL
+} YelpURIType;
+
 #include "yelp-pager.h"
-
-struct _YelpDocInfo {
-    gchar *uri;
-
-    YelpDocType type;
-
-    YelpPager  *pager;
-
-    gint ref_count;
-};
 
 struct _YelpDocPage {
     YelpDocInfo *document;
@@ -66,8 +80,14 @@ YelpDocInfo *       yelp_doc_info_ref           (YelpDocInfo   *doc);
 void                yelp_doc_info_unref         (YelpDocInfo   *doc);
 void                yelp_doc_info_free          (YelpDocInfo   *doc);
 
+YelpPager *         yelp_doc_info_get_pager     (YelpDocInfo   *doc);
+void                yelp_doc_info_set_pager     (YelpDocInfo   *doc,
+						 YelpPager     *pager);
+
+YelpDocType         yelp_doc_info_get_type      (YelpDocInfo   *doc);
 gchar *             yelp_doc_info_get_uri       (YelpDocInfo   *doc,
-						 gchar         *frag_id);
+						 gchar         *frag_id,
+						 YelpURIType    uri_type);
 gchar *             yelp_doc_info_get_filename  (YelpDocInfo   *doc);
 gboolean            yelp_doc_info_equal         (YelpDocInfo   *doc1,
 						 YelpDocInfo   *doc2);
