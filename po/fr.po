@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.7\n"
-"POT-Creation-Date: 2002-05-08 00:01+0200\n"
-"PO-Revision-Date: 2002-05-08 00:01+0200\n"
+"POT-Creation-Date: 2002-05-19 11:31+0200\n"
+"PO-Revision-Date: 2002-05-19 11:23+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,9 @@ msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Usine Yelp"
+msgstr "Fabrique Yelp"
 
-#: src/yelp-db2html.c:106
+#: src/yelp-db2html.c:107
 msgid ""
 "Error while parsing the stylesheet, make sure you have your docbook "
 "environment setup correctly."
@@ -30,28 +30,24 @@ msgstr ""
 "Erreur durant l'analyse de la feuille de style, veuillez vérifier que vous "
 "avez correctement configuré votre environnment docbook."
 
-#: src/yelp-db2html.c:122
+#: src/yelp-db2html.c:123
 #, c-format
 msgid "The document '%s' does not exist"
-msgstr "Le document « %s » n'existe pas"
+msgstr "Le document « %s » n'existe pas"
 
-#: src/yelp-db2html.c:137
+#: src/yelp-db2html.c:138
 #, c-format
 msgid "Couldn't parse the document '%s'."
-msgstr "Ne peut analyser le document « %s »."
+msgstr "Ne peut analyser le document « %s »."
 
-#: src/yelp-db2html.c:176
+#: src/yelp-db2html.c:177
 msgid "Error while applying the stylesheet."
 msgstr "Erreur durant l'application de la feuille de style."
-
-#: src/yelp-html.c:149
-msgid "Loading..."
-msgstr "Chargement..."
 
 #: src/yelp-main.c:109
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Impossible d'activer Yelp : «%s»"
+msgstr "Ne peut activer Yelp : « %s »"
 
 #: src/yelp-main.c:128
 msgid "Could not open new window."
@@ -126,88 +122,88 @@ msgstr "Résumés"
 msgid "System Administration"
 msgstr "Administration système"
 
-#: src/yelp-view-content.c:204 src/yelp-view-index.c:373
+#: src/yelp-view-content.c:307 src/yelp-view-index.c:373
 msgid "Section"
 msgstr "Section"
 
 #: src/yelp-view-index.c:336
 msgid "Search for:"
-msgstr "Rechercher :"
+msgstr "Rechercher :"
 
-#: src/yelp-view-toc.c:328
+#: src/yelp-view-toc.c:246
 msgid "Help Contents"
 msgstr "Contenu de l'aide"
 
-#: src/yelp-view-toc.c:329
+#: src/yelp-view-toc.c:247
 msgid "GNOME - Desktop"
 msgstr "GNOME - Bureau"
 
-#: src/yelp-view-toc.c:330
+#: src/yelp-view-toc.c:248
 msgid "Additional documents"
 msgstr "Documents supplémentaires"
 
-#: src/yelp-view-toc.c:331 src/yelp-view-toc.c:673
+#: src/yelp-view-toc.c:249 src/yelp-view-toc.c:603
 msgid "Manual Pages"
 msgstr "Pages de manuel"
 
-#: src/yelp-view-toc.c:332 src/yelp-view-toc.c:735
+#: src/yelp-view-toc.c:250 src/yelp-view-toc.c:662
 msgid "Info Pages"
 msgstr "Pages Info"
 
-#: src/yelp-view-toc.c:530 src/yelp-view-toc.c:736 src/yelp-view-toc.c:878
+#: src/yelp-view-toc.c:455 src/yelp-view-toc.c:663 src/yelp-view-toc.c:807
 msgid "Documents"
 msgstr "Documents"
 
-#: src/yelp-view-toc.c:531 src/yelp-view-toc.c:674 src/yelp-view-toc.c:879
+#: src/yelp-view-toc.c:456 src/yelp-view-toc.c:604 src/yelp-view-toc.c:808
 msgid "Categories"
 msgstr "Catégories"
 
-#: src/yelp-view-toc.c:616
+#: src/yelp-view-toc.c:542
 msgid "Manual pages"
 msgstr "Pages de manuel"
 
-#: src/yelp-window.c:151
+#: src/yelp-window.c:152
 msgid "/_File"
 msgstr "/_Fichier"
 
-#: src/yelp-window.c:152
+#: src/yelp-window.c:153
 msgid "/File/_New window"
 msgstr "/Fichier/_Nouvelle fenêtre"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:154
 msgid "/File/_Close window"
 msgstr "/Fichier/_Fermer la fenêtre"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:155
-msgid "/_Go"
-msgstr "/_Voir"
-
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
 #: src/yelp-window.c:156
-msgid "/Go/_Back"
-msgstr "/Voir/_Précédent"
+msgid "/_Go"
+msgstr "/A_ller"
 
 #: src/yelp-window.c:157
-msgid "/Go/_Forward"
-msgstr "/Voir/_Suivant"
+msgid "/Go/_Back"
+msgstr "/Aller/_Précédent"
 
 #: src/yelp-window.c:158
-msgid "/Go/_Home"
-msgstr "/Voir/_Accueil"
+msgid "/Go/_Forward"
+msgstr "/Aller/_Suivant"
 
 #: src/yelp-window.c:159
-msgid "/Go/_Index"
-msgstr "/Voir/_Index"
+msgid "/Go/_Home"
+msgstr "/Aller/_Accueil"
 
 #: src/yelp-window.c:160
+msgid "/Go/_Index"
+msgstr "/Aller/_Index"
+
+#: src/yelp-window.c:161
 msgid "/_Help"
 msgstr "/_Aide"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:162
 msgid "/Help/_About"
 msgstr "/Aide/À _propos..."
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:224
 msgid "Help Browser"
 msgstr "Navigateur d'aide"
 
@@ -216,9 +212,10 @@ msgstr "Navigateur d'aide"
 #: src/yelp-window.c:567
 msgid "translator_credits"
 msgstr ""
-"Mainteneur :\n"
+"Mainteneur :\n"
 "Jean-Michel Ardantz <jmardantz@ifrance.com>\n"
-"Contributeur :\n"
+"\n"
+"Contributeur :\n"
 "Christophe Merlet (RedFox) <christophe@merlet.net>"
 
 #: src/yelp-window.c:571
@@ -231,7 +228,7 @@ msgstr "Précédent"
 
 #: src/yelp-window.c:626
 msgid "Show previous page in history"
-msgstr "Afficher la page précédente de l'historique"
+msgstr "Affiche la page précédente de l'historique"
 
 #: src/yelp-window.c:637
 msgid "Forward"
@@ -239,7 +236,7 @@ msgstr "Suivant"
 
 #: src/yelp-window.c:638
 msgid "Show next page in history"
-msgstr "Afficher la page suivante de l'historique"
+msgstr "Affiche la page suivante de l'historique"
 
 #: src/yelp-window.c:651
 msgid "Home"
@@ -247,7 +244,7 @@ msgstr "Accueil"
 
 #: src/yelp-window.c:652
 msgid "Go to home view"
-msgstr "Afficher l'index"
+msgstr "Affiche la page d'accueil"
 
 #: src/yelp-window.c:662
 msgid "Index"
@@ -255,7 +252,7 @@ msgstr "Index"
 
 #: src/yelp-window.c:663
 msgid "Search in the index"
-msgstr "Rechercher dans l'index"
+msgstr "Recherche dans l'index"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -264,6 +261,9 @@ msgstr "Aide sur GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Aide"
+
+#~ msgid "Loading..."
+#~ msgstr "Chargement..."
 
 #~ msgid "info"
 #~ msgstr "info"
