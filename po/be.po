@@ -1,0 +1,258 @@
+# translation of yelp.
+# Copyright (C) 2002 Free Software Foundation, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp 3.0\n"
+"POT-Creation-Date: 2002-09-04 14:29+0200\n"
+"PO-Revision-Date: 2002-10-27 08:31GMT+2\n"
+"Last-Translator: Vital Khilko <dojlid@mova.org>\n"
+"Language-Team: belarusian <i18n@mova.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Фабрыка Yelp"
+
+#: src/yelp-main.c:114
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Ня атрымалася актывізаваць Yelp: \"%s\""
+
+#: src/yelp-main.c:133
+msgid "Could not open new window."
+msgstr "Ня атрымалася адчыніць новае акно"
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Сыстэмныя выклікі"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Бібліятэчныя функцыі"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Функцыі ядра"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "Дастасаваньні"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "Распрацоўка"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Апаратныя сродкі"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Канфігурацыйныя файлы"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Гульні"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Агляды"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Сыстэмнае адміністраваньне"
+
+#: src/yelp-view-content.c:422 src/yelp-view-index.c:498
+msgid "Section"
+msgstr "Параграфы"
+
+#: src/yelp-view-content.c:567 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: src/yelp-view-index.c:461
+msgid "Search for:"
+msgstr "Адшукаць:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:183
+msgid "Help Contents"
+msgstr "Зьмест даведкі"
+
+#: src/yelp-view-toc.c:184
+msgid "GNOME - Desktop"
+msgstr "Асяродьдзе GNOME - Сталец"
+
+#: src/yelp-view-toc.c:185
+msgid "Additional documents"
+msgstr "Дадатковыя дакумэнты"
+
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "Старонкі кіраўніцтва"
+
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+msgid "Info Pages"
+msgstr "Старонкі info"
+
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
+msgid "Documents"
+msgstr "Дакумэнты"
+
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
+msgid "Categories"
+msgstr "Катэгорыі"
+
+#: src/yelp-view-toc.c:466
+msgid "Manual pages"
+msgstr "Старонкі кіраўніцтва"
+
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "Асяродьдзе GNOME зьяўляецца"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Вольным праграмным забясьпячэньнем"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
+msgid "/_File"
+msgstr "/_Файл"
+
+#: src/yelp-window.c:160
+msgid "/File/_New window"
+msgstr "/Файл/_Стварыць акно"
+
+#: src/yelp-window.c:161
+msgid "/File/_Close window"
+msgstr "/Файл/_Зачыніць акно"
+
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:163
+msgid "/_Go"
+msgstr "/Пера_ход"
+
+#: src/yelp-window.c:164
+msgid "/Go/_Back"
+msgstr "/Пераход/На_зад"
+
+#: src/yelp-window.c:165
+msgid "/Go/_Forward"
+msgstr "/Пераход/На_перад"
+
+#: src/yelp-window.c:166
+msgid "/Go/_Home"
+msgstr "/Пераход/У _пачатак"
+
+#: src/yelp-window.c:167
+msgid "/Go/_Index"
+msgstr "/Пераход/Да _зьместу"
+
+#: src/yelp-window.c:168
+msgid "/_Help"
+msgstr "/_Дапамога"
+
+#: src/yelp-window.c:169
+msgid "/Help/_About"
+msgstr "/Дапамога/_Пра праграму"
+
+#: src/yelp-window.c:227 src/yelp-window.c:429
+msgid "Help Browser"
+msgstr "Праглядальнік даведкі"
+
+#: src/yelp-window.c:339
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Дакумэнт \"%s\" ня існуе"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:598
+msgid "translator_credits"
+msgstr "Belarusian Language Linux Team <i18n@mova.org>"
+
+#: src/yelp-window.c:602
+msgid "Help Browser for GNOME 2.0"
+msgstr "Праграма прагляду даведкі для асяродьдзя GNOME 2.0"
+
+#: src/yelp-window.c:657
+msgid "Back"
+msgstr "Назад"
+
+#: src/yelp-window.c:658
+msgid "Show previous page in history"
+msgstr "Паказаць папярэднюю старонку"
+
+#: src/yelp-window.c:669
+msgid "Forward"
+msgstr "Наперад"
+
+#: src/yelp-window.c:670
+msgid "Show next page in history"
+msgstr "Паказаць наступную старонку"
+
+#: src/yelp-window.c:683
+msgid "Home"
+msgstr "У пачатак"
+
+#: src/yelp-window.c:684
+msgid "Go to home view"
+msgstr "Перайсьці ў пачатак прагляду"
+
+#: src/yelp-window.c:694
+msgid "Index"
+msgstr "Зьмест"
+
+#: src/yelp-window.c:695
+msgid "Search in the index"
+msgstr "Адшукаць у зьмесьце"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Атрымаць дапамогу ў асяродьдзі GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Дапамога"
+
