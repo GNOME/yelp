@@ -40,6 +40,8 @@ enum {
 	LAST_SIGNAL 
 }; 
 
+static GObjectClass *parent_class;
+
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpHistoryPriv {
@@ -95,6 +97,8 @@ history_class_init (YelpHistoryClass *klass)
 {
         GObjectClass *object_class;
         
+	parent_class = g_type_class_peek_parent (klass);
+
         object_class = (GObjectClass *) klass;
 
         object_class->finalize = history_finalize;
@@ -144,6 +148,8 @@ history_finalize (GObject *object)
 	g_free (priv);
 
 	history->priv = NULL;
+
+        (* parent_class->finalize) (object);
 }
 
 static void

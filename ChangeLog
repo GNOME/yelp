@@ -1,3 +1,8 @@
+2004-08-10  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-history.c:
+	- Make history_finalize chain up to parent's finalize, #140663
+
 2004-08-07  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-window.c:
