@@ -1,13 +1,14 @@
 # Turkish translation of yelp.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002-2003 Free Software Foundation, Inc.
 # Görkem Çetin <gorkem@gelecek.com.tr>, 2002.
+# Arman Aksoy <armish@linux-sevenler.de>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 0.2.99\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-01-06 07:52-0500\n"
-"Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
+"Project-Id-Version: yelp\n"
+"POT-Creation-Date: 2003-02-03 12:11+0100\n"
+"PO-Revision-Date: 2003-02-03 20:01+0200\n"
+"Last-Translator: Arman Aksoy (Armish) <armish@linux-sevenler.de>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,35 +16,35 @@ msgstr ""
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>Metni dökümanda bul:</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "Otomatik olarak _kaydır"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "Metin bul..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "Tüm kelimeyi _eşleştir"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "Küçük/Büyük _duyarlı eşleştir"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "_Sonraki"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "_Önceki"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -51,7 +52,7 @@ msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Yelp Mimarisi"
+msgstr "Yelp Üreticisi"
 
 #: src/yelp-main.c:117
 #, c-format
@@ -133,49 +134,44 @@ msgstr "Sistem Yönetimi"
 
 #: src/yelp-view-content.c:502 src/yelp-view-index.c:423
 msgid "Loading..."
-msgstr ""
+msgstr "Yükleniyor..."
 
 #: src/yelp-view-content.c:543 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Bölüm"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "Ara:"
+msgstr "_Ara:"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
-#, fuzzy
 msgid "Help Contents"
-msgstr "Yardım: "
+msgstr "Yardım İçeriği"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
-msgstr ""
+msgstr "GNOME - Masaüstü"
 
 #: src/yelp-view-toc.c:167
-#, fuzzy
 msgid "Additional documents"
-msgstr "Kurulu belgeler"
+msgstr "Ek dökümanlar"
 
 #: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
 msgstr "Kılavuz Sayfaları"
 
 #: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
-#, fuzzy
 msgid "Info Pages"
-msgstr "Bilgi sayfaları"
+msgstr "Bilgi Sayfaları"
 
 #: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
-#, fuzzy
 msgid "Documents"
-msgstr "Diğer Belgeler"
+msgstr "Dökümanlar"
 
 #: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
-msgstr ""
+msgstr "Kategoriler"
 
 #: src/yelp-view-toc.c:448
 msgid "Manual pages"
@@ -183,15 +179,15 @@ msgstr "Kılavuz sayfaları"
 
 #: src/yelp-view-toc.c:712
 msgid "GNOME is"
-msgstr ""
+msgstr "GNOME"
 
 #: src/yelp-view-toc.c:713
 msgid "Free Software"
-msgstr ""
+msgstr "Serbest Yazılım"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
-msgstr ""
+msgstr "(C)"
 
 #: src/yelp-window.c:163
 msgid "/_File"
@@ -207,15 +203,15 @@ msgstr "/Dosya/_Pencereyi kapat"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/Dü_zenle"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/Dü_zenle/_Sayfada bul..."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/Dü_zenle/_Yeniden bul"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
@@ -252,7 +248,7 @@ msgstr "Yardım Tarayıcısı"
 #: src/yelp-window.c:351
 #, c-format
 msgid "The document '%s' does not exist"
-msgstr ""
+msgstr "'%s' dökümanı yok"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
@@ -339,3 +335,4 @@ msgstr "Yardım"
 
 #~ msgid "Enter phrase to search for in all documents"
 #~ msgstr "Tüm belgelerde arama yapmak için bir sözcük girin"
+
