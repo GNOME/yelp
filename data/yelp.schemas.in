@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><!-- -*- indent-tabs-mode: nil -*- -->
+<gconfschemafile>
+  <schemalist>
+    <schema>
+      <key>/schemas/apps/yelp/use_system_fonts</key>
+      <applyto>/apps/yelp/use_system_fonts</applyto>
+      <owner>yelp</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Use system fonts</short>
+        <long>
+          Use the systems default fonts.
+        </long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/yelp/variable_font</key>
+      <applyto>/apps/yelp/variable_font</applyto>
+      <owner>yelp</owner>
+      <type>string</type>
+      <default>Sans 12</default>
+      <locale name="C">
+        <short>Font for text</short>
+        <long>
+          Font for text with variable width.
+        </long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/yelp/fixed_font</key>
+      <applyto>/apps/yelp/fixed_font</applyto>
+      <owner>yelp</owner>
+      <type>string</type>
+      <default>Monospace 12</default>
+      <locale name="C">
+        <short>Font for fixed text</short>
+        <long>
+          Font for text with fixed width.
+        </long>
+      </locale>
+    </schema>
+  </schemalist>
+</gconfschemafile>
