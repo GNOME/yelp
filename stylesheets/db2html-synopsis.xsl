@@ -31,7 +31,7 @@
 <!-- == classsynopsis ====================================================== -->
 
 <xsl:template match="classsynopsisinfo">
-	<xsl:call-template name="FIXME"/>
+	<xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="
@@ -86,15 +86,8 @@
 
 <xsl:template match="cmdsynopsis">
 	<div class="{name(.)}">
-		<p>
-			<xsl:call-template name="anchor"/>
-			<xsl:for-each select="*">
-				<xsl:if test="name(.) = 'command' and position() != 1">
-					<br/>
-				</xsl:if>
-				<xsl:apply-templates select="."/>
-			</xsl:for-each>
-		</p>
+		<xsl:call-template name="anchor"/>
+		<xsl:apply-templates mode="cmdsynopsis.mode"/>
 	</div>
 </xsl:template>
 
@@ -150,16 +143,44 @@
 	</xsl:choose>
 </xsl:template>
 
+<xsl:template mode="cmdsynopsis.mode" match="arg | group">
+	<xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template mode="cmdsynopsis.mode" match="command">
+	<div class="{name(.)}">
+		<xsl:apply-templates select="."/>
+	</div>
+</xsl:template>
+
 <xsl:template match="sbr">
 	<br/>
 </xsl:template>
 
+<xsl:template mode="cmdsynopsis.mode" match="sbr">
+	<xsl:apply-templates select="."/>
+</xsl:template>
+
 <xsl:template match="synopfragment">
-	<xsl:call-template name="FIXME"/>
+	<div class="{name(.)}">
+		<xsl:call-template name="anchor"/>
+		<i><xsl:call-template name="header"/></i>
+		<xsl:apply-templates/>
+	</div>
+</xsl:template>
+
+<xsl:template mode="cmdsynopsis.mode" match="synopfragment">
+	<xsl:apply-templates select="."/>
 </xsl:template>
 
 <xsl:template match="synopfragmentref">
-	<xsl:call-template name="FIXME"/>
+	<xsl:call-template name="xref">
+		<xsl:with-param name="linkend" select="@linkend"/>
+	</xsl:call-template>
+</xsl:template>
+
+<xsl:template mode="cmdsynopsis.mode" match="synopfragmentref">
+	<xsl:apply-templates select="."/>
 </xsl:template>
 
 <!-- == funcsynopsis ======================================================= -->

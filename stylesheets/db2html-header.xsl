@@ -92,6 +92,12 @@
 	</xsl:choose>
 </xsl:template>
 
+<xsl:template mode="header.mode" match="synopfragment">
+	<xsl:text>(</xsl:text>
+	<xsl:call-template name="header.number"/>
+	<xsl:text>)</xsl:text>
+</xsl:template>
+
 <xsl:template mode="header.mode" match="title | subtitle">
 	<xsl:call-template name="header">
 		<xsl:with-param name="node" select=".."/>
@@ -452,6 +458,10 @@
 <xsl:template mode="header.number.mode" match="
 	book	| bibliography	| colophon	| glossary	|
 	index	| preface		| set			| setindex	"/>
+
+<xsl:template mode="header.number.mode" match="synopfragment">
+	<xsl:value-of select="count(preceding-sibling::synopfragment) + 1"/>
+</xsl:template>
 
 <xsl:template mode="header.number.mode" match="subtitle">
 	<xsl:call-template name="header.number">
