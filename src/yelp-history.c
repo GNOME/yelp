@@ -151,7 +151,7 @@ yelp_history_free_history_list (GList *yelp_history_list)
 	GList *node;
         
 	for (node = yelp_history_list; node; node = node->next) {
-		yelp_section_free ((YelpSection *) node->data);
+		g_free (node->data);
 	}
 
 	g_list_free (yelp_history_list);
@@ -185,7 +185,7 @@ yelp_history_maybe_emit (YelpHistory *history)
 }
 
 void
-yelp_history_goto (YelpHistory *history, const YelpSection *section)
+yelp_history_goto (YelpHistory *history, const gchar *location)
 {
 	YelpHistoryPriv *priv;
 	GList           *forward_list;
@@ -203,14 +203,14 @@ yelp_history_goto (YelpHistory *history, const YelpSection *section)
 	}
 
  	priv->yelp_history_list = g_list_append (priv->yelp_history_list, 
-						 yelp_section_copy (section));
+						 g_strdup (location));
 	
 	priv->current = g_list_last (priv->yelp_history_list);
 	
 	yelp_history_maybe_emit (history);
 }
 
-const YelpSection *
+const gchar *
 yelp_history_go_forward (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -225,13 +225,13 @@ yelp_history_go_forward (YelpHistory *history)
 
 		yelp_history_maybe_emit (history);
 		
-		return (YelpSection *) priv->current->data;
+		return (const gchar *) priv->current->data;
 	}
 
 	return NULL;
 }
 
-const YelpSection *
+const gchar *
 yelp_history_go_back (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -246,13 +246,13 @@ yelp_history_go_back (YelpHistory *history)
 
 		yelp_history_maybe_emit (history);
 
-		return (YelpSection *) priv->current->data;
+		return (const gchar *) priv->current->data;
 	}
         
 	return NULL;
 }
 
-const YelpSection *
+const gchar *
 yelp_history_get_current (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -266,7 +266,7 @@ yelp_history_get_current (YelpHistory *history)
 		return NULL;
 	}
 
-	return (YelpSection *) priv->current->data;
+	return (const gchar *) priv->current->data;
 }
 
 gboolean

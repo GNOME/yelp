@@ -1,3 +1,11 @@
+2002-01-23  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c (yw_history_button_clicked): 
+	- use string instead of YelpSection with history.
+
+	* src/yelp-history.[ch]: work with strings instead of
+	  YelpSection. 
+
 2002-01-22  Hasbullah Bin Pit <sebol@ikhlas.com>
 
 	* configure.in: Added ms to ALL_LINGUAS.

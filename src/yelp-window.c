@@ -335,20 +335,20 @@ static void
 yw_history_button_clicked (GtkWidget *button, YelpWindow *window)
 {
 	YelpWindowPriv    *priv;
-	const YelpSection *section = NULL;
+	const gchar       *location;
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
 	priv = window->priv;
 
 	if (button == priv->forward_button) {
-		section = yelp_history_go_forward (priv->history);
+		location = yelp_history_go_forward (priv->history);
 	}
 	else if (button == priv->back_button) {
-		section = yelp_history_go_back (priv->history);
+		location = yelp_history_go_back (priv->history);
 	}
 
-	if (section) {
+	if (location) {
 		/* FIXME: Do something */
 /* 		yelp_html_open_section (YELP_HTML (priv->yelp_html), section); */
 	}
