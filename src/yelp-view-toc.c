@@ -312,7 +312,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 	GNode           *root;
 	char            *path;
 	GList           *sections, *seriesids;
-	gchar           *page_title = _("Get help on...");
+	gchar           *page_title = _("Help Contents");
 	gchar           *section_gnome = _("GNOME - Desktop");
 	gchar           *section_additional = _("Additional documents");
 	gchar           *man_string = _("Manual pages");
