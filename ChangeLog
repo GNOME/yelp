@@ -1,5 +1,13 @@
 2002-06-01  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-toc.c (toc_page_start): removed all of the CSS
+	  used to get it to not render huge fonts, now handled by
+	  Gtkhtml2.
+
+	* stylesheets/yelp-customization.xsl: 
+	- don't hard code font size to 10pt. Use the font set by Gtkhtml2
+	  (which is taken from the theme)
+
 	* src/yelp-db2html.c (main): don't load the DTD from the net.
 
 	* src/yelp-reader.c (reader_file_start): Fixed #83668
