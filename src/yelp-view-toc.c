@@ -749,7 +749,7 @@ toc_page_end (YelpViewTOC *view)
 			  "<td width=\"75\"><img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\"></td>\n"
 			  "<td>\n"
 			  "<a href=\"http://www.gnome.org\" target=\"_blank\">\n"
-			  "<img src=\"file:" IMAGEDIR "/gnome2-button.png\" width=\"64\" height=\"64\" border=\"0\">\n"
+			  "<img src=\"file:" IMAGEDIR "/gnome2-button.png\" border=\"0\">\n"
 			  "</a>\n"
 			  "</td>\n"
 			  "<td>\n"
