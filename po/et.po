@@ -5,9 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 23:35-0500\n"
-"PO-Revision-Date: 2004-02-27 18:33+0300\n"
+"POT-Creation-Date: 2004-09-04 12:20+0200\n"
+"PO-Revision-Date: 2004-09-04 16:05+0300\n"
 "Last-Translator: Priit Laes <amd@tt.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +17,8 @@ msgstr ""
 msgid "Applets"
 msgstr "Rakendid"
 
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/toc.xml.in.h:2
+#: src/yelp-man.c:429
 msgid "Applications"
 msgstr "Rakendused"
 
@@ -26,7 +26,8 @@ msgstr "Rakendused"
 msgid "Desktop"
 msgstr "Töölaud"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/toc.xml.in.h:4
+#: src/yelp-man.c:434
 msgid "Development"
 msgstr "Arendus"
 
@@ -38,7 +39,8 @@ msgstr "Arenduskeskkonnad"
 msgid "Development Tools"
 msgstr "Arendustööriistad"
 
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
+#: data/toc.xml.in.h:7
+#: stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Tekstiredaktorid"
 
@@ -134,24 +136,29 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:438 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:438
+#: src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Ei leia href-atribuuti yelp:document pealt"
 
-#: src/yelp-db-pager.c:453 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:453
+#: src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Mälu otsas"
 
-#: src/yelp-db-pager.c:641 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:641
+#: src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Tiitelleht"
 
-#: src/yelp-db-pager.c:643 src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:643
+#: src/yelp-man-pager.c:372
 #: stylesheets/l10n.xml.in.h:30
 msgid "Contents"
 msgstr "Sisukord"
 
-#: src/yelp-db-pager.c:661 src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:661
+#: src/yelp-man-pager.c:390
 #: stylesheets/l10n.xml.in.h:69
 msgid "Unknown"
 msgstr "Tundmatu"
@@ -189,12 +196,19 @@ msgstr "Ei saa Yelpi aktiveerida: '%s'"
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
+#: src/yelp-man.c:296
+#: src/yelp-man.c:317
+#: src/yelp-man.c:353
+#: src/yelp-man.c:385
+#: src/yelp-man.c:401
+#: src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+#: src/yelp-man.c:301
+#: src/yelp-man.c:332
+#: src/yelp-man.c:390
+#: src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -347,7 +361,8 @@ msgstr "/Abi/_Info"
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570
+#: stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Peatükk"
 
@@ -457,9 +472,8 @@ msgid "About This Set"
 msgstr "Kogumikust"
 
 #: stylesheets/l10n.xml.in.h:17
-#, fuzzy
 msgid "Affiliation"
-msgstr "Rakendused"
+msgstr "Ühing"
 
 #: stylesheets/l10n.xml.in.h:18
 msgid "Appendix"
@@ -499,15 +513,15 @@ msgstr "Peatükk"
 
 #: stylesheets/l10n.xml.in.h:27
 msgid "Collaborator"
-msgstr ""
+msgstr "Kaastöötaja"
 
 #: stylesheets/l10n.xml.in.h:28
 msgid "Collaborators"
-msgstr ""
+msgstr "Kaastöötajad"
 
 #: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
-msgstr ""
+msgstr "Järelsõna"
 
 #: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
@@ -606,28 +620,24 @@ msgid "Publishers"
 msgstr "Kirjastajad"
 
 #: stylesheets/l10n.xml.in.h:56
-#, fuzzy
 msgid "Reference"
 msgstr "Viide"
 
 #: stylesheets/l10n.xml.in.h:57
-#, fuzzy
 msgid "Reference Entry"
 msgstr "Viite kirjend"
 
 #: stylesheets/l10n.xml.in.h:58
-#, fuzzy
 msgid "Reference Section"
 msgstr "Viiteosa"
 
 #: stylesheets/l10n.xml.in.h:59
 msgid "Release Information"
-msgstr ""
+msgstr "Väljaandmise info"
 
 #: stylesheets/l10n.xml.in.h:60
-#, fuzzy
 msgid "Revision History"
-msgstr "Vigade paranduse ajalugu"
+msgstr "Paranduste ajalugu"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
@@ -668,3 +678,4 @@ msgstr "Abistab GNOMEi kasutamisel"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Abi"
+
