@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
+"POT-Creation-Date: 2004-11-09 11:18+0800\n"
 "PO-Revision-Date: 2004-01-20 20:19+0730\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -101,35 +101,35 @@ msgstr "Aplikasi X"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Font bagi teks lebartetap"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Font bagi teks"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Font bagi teks dengan kelebaran tetap."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Font bagi teks dengan kelebaran bolehubah."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Guna caret dikawal papan kekunci bila melihat halaman."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Guna caret"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Guna font sistem"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Guna font default sistem."
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -137,11 +137,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Kebolehcapaian</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Font</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -152,18 +152,16 @@ msgid "Find"
 msgstr "Cari"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Dedikasi"
+msgstr "Buka Lokasi"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Rujukan"
+msgstr "Keutamaan"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Lungsur dengan caret"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -171,12 +169,11 @@ msgstr "_Cari:"
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "Lebar _tetap:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Dedikasi"
+msgstr "_Lokasi:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -188,11 +185,11 @@ msgstr "_Terdahulu"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Guna font sistem"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Lebar bolehubah:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -249,24 +246,23 @@ msgid "The selected file could not be read."
 msgstr "Fail dipilih tak dapat dibaca."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Fail dipilih tak dapat dibaca."
+msgstr "Fail dipilih tak dapat diproses."
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "Takrifkan dimana direktori cache untuk digunakan"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Tak dapat mengaktifkan Yelp: '%s'"
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Tak dapat membuka tetingkap baru."
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Bantuan"
 
@@ -332,13 +328,12 @@ msgid "System Administration"
 msgstr "Pentadbir Sistem"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "URI Dokumen"
+msgstr "Maklumat Dokumen"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "Struct YelpDocInfo bagi dokumen"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -358,115 +353,100 @@ msgid "Documents"
 msgstr "Dokumen"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "_File"
-msgstr "/_Fail"
+msgstr "_Fail"
 
 #: src/yelp-window.c:283
-#, fuzzy
 msgid "_Edit"
-msgstr "/_Edit"
+msgstr "_Edit"
 
 #: src/yelp-window.c:284
-#, fuzzy
 msgid "_Go"
-msgstr "/_Pergi"
+msgstr "_Pergi"
 
 #: src/yelp-window.c:285
-#, fuzzy
 msgid "_Help"
-msgstr "/_Bantuan"
+msgstr "_Bantuan"
 
 #: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/Fail/Tetingkap Ba_ru"
+msgstr "Tetingkap ba_ru"
 
 #: src/yelp-window.c:293
 msgid "Open _Location"
-msgstr ""
+msgstr "Buka _Lokasi"
 
 #: src/yelp-window.c:298
-#, fuzzy
 msgid "_Close window"
-msgstr "/Fail/_Tutup tetingkap"
+msgstr "_Tutup tetingkap"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "_Salin"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_Find..."
-msgstr "/Edit/_Cari..."
+msgstr "_Cari..."
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "_Preferences"
-msgstr "Rujukan"
+msgstr "Ke_utamaan"
 
 #: src/yelp-window.c:319
 msgid "_Reload"
-msgstr ""
+msgstr "_Ulangmuat"
 
 #: src/yelp-window.c:325
-#, fuzzy
 msgid "_Back"
-msgstr "Undur"
+msgstr "_Undur"
 
 #: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Papar halaman terdahulu dalam sejarah"
 
 #: src/yelp-window.c:330
-#, fuzzy
 msgid "_Forward"
-msgstr "Maju"
+msgstr "_Maju"
 
 #: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Papar halaman seterusnya dalam sejaraj"
 
 #: src/yelp-window.c:335
-#, fuzzy
 msgid "_Home"
-msgstr "Rumah"
+msgstr "_Rumah"
 
 #: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Pergi ke paparan rumah"
 
 #: src/yelp-window.c:340
-#, fuzzy
 msgid "_Previous Page"
-msgstr "/Pergi/Halaman _Terdahulu"
+msgstr "Halaman _Terdahulu"
 
 #: src/yelp-window.c:345
-#, fuzzy
 msgid "_Next Page"
-msgstr "/Pergi/Halaman _Berikutnya"
+msgstr "Halaman _Berikutnya"
 
 #: src/yelp-window.c:350
-#, fuzzy
 msgid "_Contents"
-msgstr "Kandungan"
+msgstr "_Kandungan"
 
 #: src/yelp-window.c:355
 msgid "_Open Link"
-msgstr ""
+msgstr "_Buka Pautan"
 
 #: src/yelp-window.c:360
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Buka Pautan di Tetingkap Ba_ru"
 
 #: src/yelp-window.c:365
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Salin Alamat Pautan"
 
 #: src/yelp-window.c:371
-#, fuzzy
 msgid "_About"
-msgstr "/Bantuan/_Perihal"
+msgstr "_Perihal"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
@@ -475,9 +455,8 @@ msgid "Help Browser"
 msgstr "Pelungsur Bantuan"
 
 #: src/yelp-window.c:915
-#, fuzzy
 msgid "Fin_d"
-msgstr "Cari"
+msgstr "_Cari"
 
 #: src/yelp-window.c:1186
 msgid "Loading..."
@@ -787,7 +766,7 @@ msgstr "Mendapatkan bantuan bersama GNOME"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
 #~ msgid "The URI of the document to be processed"
 #~ msgstr "Uri bagi dokumen untuk diproses"
