@@ -1,5 +1,10 @@
 2004-02-16  Shaun McCance  <shaunm@gnome.org>
 
+	* stylesheets/db2html-toc.xsl:
+	- Changed $cols to {$cols}, so that it'll actually work. :/
+
+2004-02-16  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-db-pager.c:
 	- Patch from DV to stop mixing malloc and free wrappers from glib and
 	  libxml2.  Fixes a crash with latest libxslt.

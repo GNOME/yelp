@@ -78,7 +78,7 @@
 	</xsl:param>
 
 	<xsl:if test="($depth_table = 0) and ($cols &gt; 2)">
-		<tr border="1"><td colspan="$cols"/></tr>
+		<tr border="1"><td colspan="{$cols}"/></tr>
 	</xsl:if>
 
 	<tr class="{name(.)}">
