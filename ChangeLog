@@ -1,5 +1,17 @@
 2002-05-05  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-uri.c (uri_get_doc_type): 
+	- Now implements jrb's ghelp-uri scheme.
+	- added doc_path-argument so that it doesn't have to be calculated
+	  twice when creating a YelpURI.
+	(uri_get_path_from_relative): added/impl.
+	(uri_locate_help_file): added/impl.
+	(uri_locate_help_file_with_lang): added/impl.
+	(yelp_uri_new): removed the GError-argument.
+
+	* src/test-uri.c (main): 
+	- be a GnomeProgram so that it can actually test something :)
+
 	* src/yelp-error.h: added YELP_ERROR_URI_NOT_EXIST
 
 	* src/yelp-uri.[ch]: 

@@ -20,29 +20,41 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
+#include <config.h>
+
+#include <libgnome/gnome-init.h>
+#include <libgnome/gnome-program.h>
 #include <libgnomevfs/gnome-vfs.h>
+
+
 #include "yelp-uri.h"
 
 int
 main (int argc, char **argv)
 {
-        YelpURI *uri;
-        GError  *error = NULL;
+	GnomeProgram *program;
+        YelpURI      *uri;
         
         if (argc < 2) {
                 g_print ("Usage: test-uri uri\n");
                 return 1;
         }
 
+	program = gnome_program_init (PACKAGE, VERSION,
+				      LIBGNOME_MODULE,
+				      argc, argv,
+				      GNOME_PROGRAM_STANDARD_PROPERTIES,
+				      NULL);
+
 	gnome_vfs_init ();
 
-        uri = yelp_uri_new (argv[1], &error);
+        uri = yelp_uri_new (argv[1]);
         
-        if (error) {
-                g_print ("Error: %s\n", error->message);
+        if (!yelp_uri_exists (uri)) {
+                g_print ("URI (%s) does not exist\n", argv[1]);
 
                 return 1;
-        } 
+        }
 
         g_print ("URI_TYPE   : %d\n", yelp_uri_get_type (uri));
 	g_print ("URI_PATH   : %s\n", yelp_uri_get_path (uri));

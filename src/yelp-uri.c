@@ -24,12 +24,13 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnome/gnome-i18n.h>
+#include <libgnome/gnome-program.h>
 
 #include "yelp-error.h"
 #include "yelp-util.h"
 #include "yelp-uri.h"
 
-#define d(x) x
+#define d(x)
 
 struct _YelpURI {
 	YelpURIType  type;
@@ -38,57 +39,20 @@ struct _YelpURI {
 	gint         ref_count;
 };
 
-static YelpURIType   uri_get_doc_type         (const gchar    *str_uri);
-static gchar *       uri_get_doc_path         (const gchar    *str_uri,
-					       GError        **error);
-static gchar *       uri_get_doc_section      (const gchar    *str_uri);
-static gchar *       uri_get_absolute_path    (const gchar    *path);
-
-static YelpURIType
-uri_get_doc_type (const gchar *str_uri)
-{
-        YelpURIType ret_val = YELP_URI_TYPE_UNKNOWN;
-
-     	if (!strncmp (str_uri, "man:", 4)) {
-                ret_val = YELP_URI_TYPE_MAN;
-	}
-	else if (!strncmp (str_uri, "info:", 5)) {
-                ret_val = YELP_URI_TYPE_INFO;
-	} 
-        else if (!strncmp (str_uri, "ghelp:", 6)) {
-		gchar *mime_type = NULL;
-		gchar *docpath;
-
-		docpath   = uri_get_doc_path (str_uri, NULL);
-		
-		if (!docpath) {
-			return YELP_URI_TYPE_NON_EXISTENT;
-		} 
-		
-		mime_type = gnome_vfs_get_mime_type (docpath);
-		
-		if (mime_type) {
-			if (!g_strcasecmp (mime_type, "text/xml")) {
-					ret_val = YELP_URI_TYPE_DOCBOOK_XML;
-			}
-			else if (!g_strcasecmp (mime_type, "text/sgml")) {
-					ret_val = YELP_URI_TYPE_DOCBOOK_SGML;
-			}
-			else if (!g_strcasecmp (mime_type, "text/html")) {
-				ret_val = YELP_URI_TYPE_HTML;
-			}
-			
-			g_free (mime_type);
-		}
-		
-		g_free (docpath);
-	}
-
-        return ret_val;
-}
+static gchar *      uri_get_doc_path                 (const gchar  *str_uri);
+static YelpURIType  uri_get_doc_type                 (const gchar  *str_uri,
+						      const gchar  *doc_path);
+static gchar *      uri_get_doc_section              (const gchar  *str_uri);
+static gchar *      uri_get_path_from_ghelp_uri      (const gchar  *path);
+static gchar *      uri_get_path_from_relative       (const gchar  *path);
+static gchar *      uri_locate_help_file             (const gchar  *path,
+						      const gchar  *file_name);
+static gchar *      uri_locate_help_file_with_lang   (const gchar  *path,
+						      const gchar  *file_name,
+						      const gchar  *locate);
 
 static gchar *
-uri_get_doc_path (const gchar *str_uri, GError **error)
+uri_get_doc_path (const gchar *str_uri)
 {
 	gchar       *no_anchor_uri;
 	gchar       *ret_val = NULL;
@@ -108,21 +72,61 @@ uri_get_doc_path (const gchar *str_uri, GError **error)
 		ret_val = g_strdup (no_anchor_uri + 5);
 	} 
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "ghelp:", 6)) {
-		ret_val = uri_get_absolute_path (no_anchor_uri + 6);
-
-		if (!g_file_test (ret_val, G_FILE_TEST_EXISTS)) {
-			g_set_error (error,
-				     YELP_ERROR,
-				     YELP_ERROR_URI_NOT_EXIST,
-				     _("%s does not exist."), str_uri);
-			g_free (ret_val);
- 			ret_val = NULL;
-		}
+		ret_val = uri_get_path_from_ghelp_uri (no_anchor_uri + 6);
 	}
 	
 	g_free (no_anchor_uri);
 
 	return ret_val;
+}
+
+static YelpURIType
+uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
+{
+        YelpURIType ret_val = YELP_URI_TYPE_UNKNOWN;
+
+     	if (!strncmp (str_uri, "man:", 4)) {
+                ret_val = YELP_URI_TYPE_MAN;
+	}
+	else if (!strncmp (str_uri, "info:", 5)) {
+                ret_val = YELP_URI_TYPE_INFO;
+	} 
+        else if (!strncmp (str_uri, "ghelp:", 6)) {
+		gchar *mime_type = NULL;
+		gchar *docpath;
+
+		if (doc_path) {
+			docpath = (gchar *) doc_path;
+		} else {
+			docpath = uri_get_doc_path (str_uri);
+		}
+
+		if (!g_file_test (docpath, G_FILE_TEST_EXISTS)) {
+			return YELP_URI_TYPE_NON_EXISTENT;
+		} 
+		
+		mime_type = gnome_vfs_get_mime_type (docpath);
+		
+		if (mime_type) {
+			if (!g_strcasecmp (mime_type, "text/xml")) {
+					ret_val = YELP_URI_TYPE_DOCBOOK_XML;
+			}
+			else if (!g_strcasecmp (mime_type, "text/sgml")) {
+					ret_val = YELP_URI_TYPE_DOCBOOK_SGML;
+			}
+			else if (!g_strcasecmp (mime_type, "text/html")) {
+				ret_val = YELP_URI_TYPE_HTML;
+			}
+			
+			g_free (mime_type);
+		}
+		
+		if (docpath != doc_path) {
+			g_free (docpath);
+		}
+	}
+
+        return ret_val;
 }
 
 static gchar *
@@ -138,7 +142,7 @@ uri_get_doc_section (const gchar *str_uri)
 }
 
 static gchar *
-uri_get_absolute_path (const gchar *path)
+uri_get_path_from_ghelp_uri (const gchar *path)
 {
 	gchar *ret_val = NULL;
 	gchar *work_path;
@@ -148,6 +152,7 @@ uri_get_absolute_path (const gchar *path)
 	g_strstrip (work_path);
 
 	if (path[0] == '/') {
+		/* Absolute URL */
 		gint i = 1;
 		gint len = strlen (work_path);
 		
@@ -155,59 +160,175 @@ uri_get_absolute_path (const gchar *path)
 			++i;
 		}
 
-		/* check_xml_promotion ? */
+		/* Should we always try to use xml here even if full *
+		 * path to a sgml or html document is given?         */
 
 		ret_val = g_strdup (work_path + (i - 1));
 	} else {
-/* 
- * 1:  ghelp:nautilus
- * 2:  ghelp:AisleRiot2/Klondike
- */
+		ret_val = uri_get_path_from_relative (path);
 	}
 	
 	g_free (work_path);
 
 	return ret_val;
-		/* ... implement jrb's uri scheme */
 }
 
-YelpURIReader *
-yelp_uri_reader_new (YelpURIReaderOpenCallback  open_cb,
-                     YelpURIReaderReadCallback  read_cb,
-                     YelpURIReaderCloseCallback close_cb,
-                     gpointer                   user_data)
+static gchar *
+uri_get_path_from_relative (const gchar *path)
 {
-        YelpURIReader *reader;
-        
-        reader = g_new0 (YelpURIReader, 1);
-        
-        reader->open_callback  = open_cb;
-        reader->read_callback  = read_cb;
-        reader->close_callback = close_cb;
-        reader->user_data      = user_data;
-        
-        return reader;
+	GnomeProgram *program;
+	GSList       *ret_locations = NULL;
+	GSList       *node;
+	gchar        *doc_id;
+	gchar        *file_name;
+	gchar        *ret_val = NULL;
+	const gchar  *ch;
+	
+	program = gnome_program_get ();
+
+	if ((ch = strchr (path, '/'))) {
+		/* 2:  ghelp:AisleRiot2/Klondike */
+		doc_id    = g_strndup (path, ch - path);
+		file_name = g_strdup  (ch + 1);
+	} else {
+		/* 1:  ghelp:nautilus */
+		doc_id    = (gchar *)path;
+		file_name = (gchar *)path;
+	}
+
+	gnome_program_locate_file (program,
+				   GNOME_FILE_DOMAIN_HELP,
+				   doc_id,
+				   FALSE,
+				   &ret_locations);
+	
+	if (!ret_locations) {
+		return NULL;
+	}
+	
+	for (node = ret_locations; node; node = node->next) {
+		gchar *help_path = node->data;
+
+		d(g_print ("PATH: %s\n", help_path));
+
+		ret_val = uri_locate_help_file (help_path, file_name);
+		
+		if (ret_val) {
+			break;
+		}
+	}
+
+	g_slist_foreach (ret_locations, (GFunc) g_free, NULL);
+	g_slist_free (ret_locations);
+
+	d(g_print ("Absolute path: %s\n", ret_val));
+	
+	if (doc_id != path) {
+		g_free (doc_id);
+	}
+
+	if (file_name != path) {
+		g_free (file_name);
+	}
+
+	return ret_val;
+}
+
+static gchar *
+uri_locate_help_file (const gchar *path, const gchar *file_name)
+{
+	gchar       *ret_val;
+	const GList *lang_list;
+
+	lang_list = gnome_i18n_get_language_list ("LC_MESSAGES");
+
+	for (;lang_list != NULL; lang_list = lang_list->next) {
+		const gchar *lang = lang_list->data;
+		
+		d(g_print ("lang: %s\n", lang));
+				
+		/* This has to be a valid language AND a language with
+		 * no encoding postfix.  The language will come up without
+		 * encoding next */
+		if (lang == NULL || strchr (lang, '.') != NULL) {
+			continue;
+		}
+
+		ret_val = uri_locate_help_file_with_lang (path, file_name, 
+							  lang);
+
+		if (!ret_val) {
+			/* Check for index file in wanted locale */
+			ret_val = uri_locate_help_file_with_lang (path, 
+								  "index", 
+								  lang);
+		}
+		
+		if (ret_val) {
+			return ret_val;
+		}
+	}
+
+	/* Look in C locale since that exists for almost all documents */
+	ret_val = uri_locate_help_file_with_lang (path, file_name, "C");
+	
+	if (ret_val) {
+		return ret_val;
+	}
+	
+	/* Last chance, look for index-file with C lang */
+	return uri_locate_help_file_with_lang (path, "index", "C");
+}
+
+static gchar *
+uri_locate_help_file_with_lang (const gchar *path,
+				const gchar *file_name,
+				const gchar *lang)
+{
+	gchar *exts[] = {".xml", ".docbook", ".sgml", ".html", "", NULL};
+	gint   i;
+
+	for (i = 0; exts[i] != NULL; i++) {
+		gchar *full;
+		
+		full = g_strconcat (path, "/", lang, "/", 
+				       file_name, exts[i], NULL);
+		
+		if (g_file_test (full, G_FILE_TEST_EXISTS)) {
+			return full;
+		}
+		
+		g_free (full);
+	}
+
+ 	return NULL;
 }
 
 YelpURI *
-yelp_uri_new (const gchar *str_uri, GError **error)
+yelp_uri_new (const gchar *str_uri)
 {
 	YelpURI *uri;
-	GError  *tmp_error = NULL;
 
 	uri = g_new0 (YelpURI, 1);
 
-	uri->type      = uri_get_doc_type (str_uri);
-	uri->path      = uri_get_doc_path (str_uri, &tmp_error);
+	uri->path      = uri_get_doc_path (str_uri);
+	uri->type      = uri_get_doc_type (str_uri, uri->path);
 	uri->section   = uri_get_doc_section (str_uri);
 	uri->ref_count = 1;
 
-	if (tmp_error) {
-		g_propagate_error (error, tmp_error);
-		g_error_free (tmp_error);
+	return uri;
+}
+
+gboolean
+yelp_uri_exists (YelpURI *uri)
+{
+	g_return_val_if_fail (uri != NULL, FALSE);
+	
+	if (!uri->path) {
+		return FALSE;
 	}
 
-	return uri;
+	return g_file_test (uri->path, G_FILE_TEST_EXISTS);
 }
 
 YelpURIType
@@ -244,7 +365,7 @@ yelp_uri_read (YelpURI *uri, YelpURIReader *reader, GError **error)
 gboolean
 yelp_uri_read_async (YelpURI *uri, YelpURIReader *reader, GError **error)
 {
-        /* For now read in a g_idle */
+        /* For now read in a g_idle and later in own thread/gnome-vfs-async */
 	return TRUE;
 }
 
@@ -271,3 +392,22 @@ yelp_uri_unref (YelpURI *uri)
 		g_free (uri);
 	}
 }
+
+YelpURIReader *
+yelp_uri_reader_new (YelpURIReaderOpenCallback  open_cb,
+                     YelpURIReaderReadCallback  read_cb,
+                     YelpURIReaderCloseCallback close_cb,
+                     gpointer                   user_data)
+{
+        YelpURIReader *reader;
+        
+        reader = g_new0 (YelpURIReader, 1);
+        
+        reader->open_callback  = open_cb;
+        reader->read_callback  = read_cb;
+        reader->close_callback = close_cb;
+        reader->user_data      = user_data;
+        
+        return reader;
+}
+

@@ -54,13 +54,8 @@ typedef struct {
         gpointer                   user_data;
 } YelpURIReader;
 
-YelpURIReader * yelp_uri_reader_new  (YelpURIReaderOpenCallback    open_cb,
-				      YelpURIReaderReadCallback    read_cb,
-				      YelpURIReaderCloseCallback   close_cb,
-				      gpointer                     user_data);
-
-YelpURI *       yelp_uri_new         (const gchar                 *str_uri,
-				      GError                     **error);
+YelpURI *       yelp_uri_new         (const gchar                 *str_uri);
+gboolean        yelp_uri_exists      (YelpURI                     *uri);
 
 YelpURIType     yelp_uri_get_type    (YelpURI                     *uri);
 const gchar *   yelp_uri_get_path    (YelpURI                     *uri);
@@ -76,5 +71,12 @@ gboolean        yelp_uri_read_async  (YelpURI                     *uri,
 
 void            yelp_uri_ref         (YelpURI                     *uri);
 void            yelp_uri_unref       (YelpURI                     *uri);
+
+
+/* Convenience function for creating a Reader-struct. */
+YelpURIReader * yelp_uri_reader_new  (YelpURIReaderOpenCallback    open_cb,
+				      YelpURIReaderReadCallback    read_cb,
+				      YelpURIReaderCloseCallback   close_cb,
+				      gpointer                     user_data);
 
 #endif /* __YELP_URI_H__ */
