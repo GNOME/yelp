@@ -2,7 +2,7 @@ SUBDIRS = src po
 
 @INTLTOOL_DESKTOP_RULE@
 
-DESKTOP_IN_FILES=yelp.desktop.in
+DESKTOP_IN_FILES=gnome-help.desktop.in
 DESKTOP_FILES=$(DESKTOP_IN_FILES:.desktop.in=.desktop)
 
 Applicationsdir = $(datadir)/applications
