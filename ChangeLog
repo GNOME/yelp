@@ -1,5 +1,10 @@
 2004-02-03  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-pager.c:
+	- s/FALSE/NULL/ for return value for a function that returns a pointer.
+
+2004-02-03  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-html-gtkhtml2.c:
 	- Introduced a timeout function for scrolling to anchor/top, since gtkhtml2
 	  also has a timeout that likes to scroll to the first link.  This timeout

@@ -294,8 +294,8 @@ yelp_pager_cancel (YelpPager *pager)
 YelpURI *
 yelp_pager_get_uri (YelpPager *pager)
 {
-    g_return_val_if_fail (pager != NULL, FALSE);
-    g_return_val_if_fail (YELP_IS_PAGER (pager), FALSE);
+    g_return_val_if_fail (pager != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
     return pager->priv->uri;
 }
