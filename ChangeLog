@@ -1,3 +1,28 @@
+2002-01-10  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-content.c: 
+	- use the new GtkTreeModelFilter.
+	(yvc_tree_selection_changed_cb): get the model from the actual
+	  tree and use it to get the section selected.
+	(yelp_view_content_new): don't set the model here, use the
+	  filtered model in content_show_path instead.
+	(yelp_view_content_show_path): set the model to a filtered model
+	  with virtual root set to the selected path.
+
+	* src/yelp-util.c (yelp_util_contents_add_section): set third
+	  hidden filter-column to always TRUE (always visible).
+
+	* src/yelp-base.c (yelp_base_init): added boolean hidden column
+	  needed by the filtering.
+
+	* src/gtktreemodelfilter.[ch]: added GtkTreeModelFilter from
+	  Kristian Rietval, this is temporaray until this makes it into
+	  Gtk+ or some extra library.
+
+	* src/Makefile.am:
+	(yelp_LDADD): added libgtktreemodelfilter
+	(noinst_LTLIBRARIES): added libgtktreemodelfilter.
+
 2002-01-10  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "nl" to ALL_LINGUAS.

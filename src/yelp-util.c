@@ -39,6 +39,7 @@ yelp_util_contents_add_section (GtkTreeStore *store,
 	gtk_tree_store_set (store, iter,
 			    0, section->name,
 			    1, section,
+			    2, TRUE,
 			    -1);
 	return iter;
 }

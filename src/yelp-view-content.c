@@ -26,6 +26,7 @@
 
 #include <libgnome/gnome-i18n.h>
 #include <gtk/gtktreeview.h>
+#include "gtktreemodelfilter.h"
 #include "yelp-html.h"
 #include "yelp-view-content.h"
 
@@ -99,6 +100,7 @@ yvc_tree_selection_changed_cb (GtkTreeSelection *selection,
 	YelpViewContentPriv *priv;
  	GtkTreeIter          iter;
 	YelpSection         *section;
+	GtkTreeModel        *model;
 	
 	g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
@@ -106,7 +108,9 @@ yvc_tree_selection_changed_cb (GtkTreeSelection *selection,
 	priv = content->priv;
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
-		gtk_tree_model_get (GTK_TREE_MODEL (priv->tree_model), &iter,
+		model = gtk_tree_view_get_model (priv->content_tree);
+		
+		gtk_tree_model_get (model, &iter, 
 				    1, &section,
 				    -1);
 
@@ -134,34 +138,27 @@ yelp_view_content_new (GtkTreeModel *tree_model)
 {
 	YelpViewContent     *view;
 	YelpViewContentPriv *priv;
-        GtkCellRenderer     *cell;
-        GtkTreeViewColumn   *column;
 	GtkTreeSelection    *selection;
         GtkWidget           *html_sw;
-        GtkWidget           *tree_sw;
+	GtkWidget           *tree_sw;
 	GtkWidget           *frame;
-
+	
 	view = g_object_new (YELP_TYPE_VIEW_CONTENT, NULL);
 	priv = view->priv;
 
 	priv->tree_model = tree_model;
-
+	
 	/* Setup the content tree */
         tree_sw = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (tree_sw),
                                         GTK_POLICY_AUTOMATIC, 
                                         GTK_POLICY_AUTOMATIC);
 
-        gtk_tree_view_set_model (GTK_TREE_VIEW (priv->content_tree), 
-				 tree_model);
-
-        cell   = gtk_cell_renderer_text_new ();
-        column = gtk_tree_view_column_new_with_attributes (_("Section"), cell,
-                                                           "text", 0,
-                                                           NULL);
-        gtk_tree_view_column_set_sort_column_id (column, 0);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (priv->content_tree), 
-				     column);
+	gtk_tree_view_insert_column_with_attributes (
+		GTK_TREE_VIEW (priv->content_tree), -1,
+		_("Section"), gtk_cell_renderer_text_new (),
+		"text", 0, 
+		NULL);
 
 	selection = gtk_tree_view_get_selection (
 		GTK_TREE_VIEW (priv->content_tree));
@@ -169,7 +166,7 @@ yelp_view_content_new (GtkTreeModel *tree_model)
 	g_signal_connect (selection, "changed",
 			  G_CALLBACK (yvc_tree_selection_changed_cb), 
 			  view);
-	
+
         gtk_container_add (GTK_CONTAINER (tree_sw), priv->content_tree);
 
         /* Setup the Html view */
@@ -196,19 +193,21 @@ yelp_view_content_new (GtkTreeModel *tree_model)
 }
 
 void
-yelp_view_content_show_path (YelpViewContent *content,
+yelp_view_content_show_path (YelpViewContent *content_view,
 			     GtkTreePath     *path)
 {
 	YelpViewContentPriv *priv;
+	GtkTreeModel        *model;
 	
-	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
+	g_return_if_fail (YELP_IS_VIEW_CONTENT (content_view));
 
-	priv = content->priv;
+	priv = content_view->priv;
+
+	model = gtk_tree_model_filter_new_with_model (priv->tree_model,
+						      2, path);
+
+	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->content_tree), model);
 	
-	gtk_tree_view_collapse_all (GTK_TREE_VIEW (priv->content_tree));
-
-	gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content_tree),
-				  path, FALSE);
 }
 
 void

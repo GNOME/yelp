@@ -28,7 +28,13 @@ yelp_SOURCES =								\
 	yelp-window.c 		yelp-window.h
 
 yelp_LDADD =								\
-	$(YELP_LIBS)
+	$(YELP_LIBS)							\
+	libgtktreemodelfilter.la
+
+noinst_LTLIBRARIES = libgtktreemodelfilter.la
+
+libgtktreemodelfilter_la_SOURCES =					\
+	gtktreemodelfilter.c	gtktreemodelfilter.h
 
 gnome_yelp_idl_sources =						\
 	GNOME_Yelp-stubs.c						\

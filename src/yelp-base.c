@@ -66,9 +66,10 @@ yelp_base_init (YelpBase *base)
 
         priv = g_new0 (YelpBasePriv, 1);
         
-        priv->content_store  = gtk_tree_store_new (2, 
+        priv->content_store  = gtk_tree_store_new (3, 
 						   G_TYPE_STRING, 
-						   G_TYPE_POINTER);
+						   G_TYPE_POINTER,
+						   G_TYPE_BOOLEAN);
         
         base->priv       = priv;
 }
