@@ -1,12 +1,12 @@
 # Romanian translation for yelp-1.0.1
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# Mugurel Tudor <mugurelu@go.ro>, 2002.
+# Mugurel Tudor <mugurelu@go.ro>, 2002-2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.1\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-08-30 14:06+0300\n"
+"POT-Creation-Date: 2003-01-20 12:26+0100\n"
+"PO-Revision-Date: 2003-01-20 23:09+0200\n"
 "Last-Translator: Mugurel Tudor <mugurelu@go.ro>\n"
 "Language-Team: română <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,35 +16,35 @@ msgstr ""
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>Caută în document textul:</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "Rupe _automat liniile"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "Caută text..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "Potrivire la _cuvântul întreg"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "Cu _majuscule semnificative"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "_Următorul"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "_Precedentul"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -141,9 +141,8 @@ msgid "Section"
 msgstr "Secţiune"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "Caută după:"
+msgstr "Caută _după:"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -179,17 +178,16 @@ msgid "Manual pages"
 msgstr "Pagini de manual"
 
 #: src/yelp-view-toc.c:712
-#, fuzzy
 msgid "GNOME is"
-msgstr "Desktop GNOME"
+msgstr "Gnome este"
 
 #: src/yelp-view-toc.c:713
 msgid "Free Software"
-msgstr ""
+msgstr "Software liber"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
-msgstr ""
+msgstr "©"
 
 #: src/yelp-window.c:163
 msgid "/_File"
@@ -205,15 +203,15 @@ msgstr "/Fişier/_Închide fereastra"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/_Editare"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/Editare/_Caută în pagină..."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/Editare/Caută _următorul"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
@@ -301,3 +299,4 @@ msgstr "Primeşte ajutor despre GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ajutor"
+
