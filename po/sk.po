@@ -1,18 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# yelp Slovak translation.
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2001.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-04 15:55+0100\n"
-"PO-Revision-Date: 2002-01-04 15:56CET\n"
+"Project-Id-Version: yelp\n"
+"POT-Creation-Date: 2002-01-08 12:11+0100\n"
+"PO-Revision-Date: 2002-01-08 12:11CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 0.9.5\n"
+
+#: src/GNOME_Yelp.server.in.h:1 yelp.desktop.in.h:2
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Vytváracie rozhanie Yelp"
 
 #: src/yelp-html.c:367
 msgid ""
@@ -23,78 +31,83 @@ msgid ""
 msgstr ""
 "<html><head><title>Toto je Yelp, prehliadač Pomocníka pre GNOME 2.0</title></"
 "head><body bgcolor=\"white\"><h3>Víta vás Yelp!</h3>Toto je prehliadač "
-"pomocníka pre GNOME 2.0 od Mikaela Hallendala.<br><br>Prosím, prečítajte "
-"si súbory README a TODO<br></body></html>"
+"pomocníka pre GNOME 2.0, ktorý napísal Mikael Hallendal.<br><br>Prosím, "
+"prečítajte si súbory README a TODO<br></body></html>"
+
+#: src/yelp-main.c:77
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Nepodarilo sa aktivovať Yelp: '%s'"
+
+#: src/yelp-main.c:97
+msgid "Could not open new window."
+msgstr "Nepodarilo sa otvoriť nové okno."
 
 #: src/yelp-view-content.c:159 src/yelp-view-index.c:172
 msgid "Section"
-msgstr ""
-
-#: src/yelp-window.c:108
-msgid "/_File"
-msgstr ""
+msgstr "aapitola"
 
 #: src/yelp-window.c:109
-msgid "/File/_New window"
-msgstr ""
+msgid "/_File"
+msgstr "/_Súbor"
 
 #: src/yelp-window.c:110
-msgid "/File/_Close window"
-msgstr ""
+msgid "/File/_New window"
+msgstr "/Súbor/_Nové okno"
 
 #: src/yelp-window.c:111
-msgid "/File/E_xit"
-msgstr ""
+msgid "/File/_Close window"
+msgstr "/Súbor/_Zavrieť okno"
 
 #: src/yelp-window.c:112
-msgid "/_Help"
-msgstr ""
+msgid "/File/E_xit"
+msgstr "/Súbor/_Koniec"
 
 #: src/yelp-window.c:113
+msgid "/_Help"
+msgstr "/_Pomocník"
+
+#: src/yelp-window.c:114
 msgid "/Help/_About"
-msgstr ""
+msgstr "/Pomocník/_O aplikácii"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:161
 msgid "Help Browser"
-msgstr ""
+msgstr "Pomocník"
 
-#: src/yelp-window.c:374
+#: src/yelp-window.c:376
 msgid "Help Browser for GNOME 2.0"
-msgstr ""
+msgstr " omocník pre GNOME 2.0"
 
-#: src/yelp-window.c:398
+#: src/yelp-window.c:400
 msgid "Go back in the history list"
-msgstr ""
+msgstr "Prejsť dozadu v histórii"
 
-#: src/yelp-window.c:413
+#: src/yelp-window.c:415
 msgid "Go forth in the history list"
-msgstr ""
+msgstr "Prejsť dopredu v histórii"
 
-#: src/yelp-window.c:428
+#: src/yelp-window.c:430
 msgid "Overview of contents"
-msgstr ""
+msgstr "Prehľad obsahu"
 
-#: src/yelp-window.c:439
+#: src/yelp-window.c:441
 msgid "Search in the index"
-msgstr ""
+msgstr "Nájsť v indexe"
 
-#: src/yelp-window.c:450
+#: src/yelp-window.c:452
 msgid "Search for a phrase in the document"
-msgstr ""
+msgstr "Hľadať frázu v dokumente"
 
-#: src/yelp-window.c:456
+#: src/yelp-window.c:458
 msgid "Help on "
-msgstr ""
+msgstr "Pomoc pre"
 
-#: src/yelp-window.c:461
+#: src/yelp-window.c:463
 msgid "Enter phrase to search for in all documents"
-msgstr ""
+msgstr "Zadajte frázu, ktorú chcete nájsť vo všetkých dokumentoch"
 
 #: yelp.desktop.in.h:1
 msgid "GNOME Helpbrowser"
-msgstr ""
-
-#: yelp.desktop.in.h:2
-msgid "Yelp"
-msgstr ""
+msgstr "GNOME Pomocník"
 
