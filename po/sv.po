@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-12-13 12:42+0100\n"
-"PO-Revision-Date: 2003-12-13 12:42+0100\n"
+"POT-Creation-Date: 2003-12-22 00:54+0100\n"
+"PO-Revision-Date: 2003-12-22 00:54+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -53,8 +53,7 @@ msgstr "Spel och underhållning"
 msgid "General"
 msgstr "Allmänt"
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:10
 msgid "Help Contents"
 msgstr "Hjälpinnehåll"
 
@@ -99,32 +98,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Sök text i dokumentet:</b>"
+msgid "C_ase sensitive"
+msgstr "_Gör skillnad på gemener/VERSALER"
 
 #: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "_Radbryt automatiskt"
+msgid "Find"
+msgstr "Sök"
 
 #: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Sök text..."
+msgid "_Find: "
+msgstr "_Sök: "
 
 #: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "Matcha _hela ordet"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "_Matcha stora/små bokstäver"
-
-#: data/ui/yelp.glade.h:7
 msgid "_Next"
 msgstr "_Nästa"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "_Föregående"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr "_Börja om från början"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -134,29 +129,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:238 src/yelp-window.c:735
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "Dokumentet \"%s\" kunde inte öppnas"
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:410
 msgid "No href attribute found on yelp:document"
 msgstr "Inget href-attribut hittat på yelp:document"
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:425
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:584
 msgid "Titlepage"
 msgstr "Titelsida"
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:586
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:604
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -234,11 +228,11 @@ msgstr "Översikter"
 msgid "System Administration"
 msgstr "Systemadministration"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:118
 msgid "Document URI"
 msgstr "Dokument-URI"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
 msgstr "URI:n för dokumentet som ska behandlas"
 
@@ -246,177 +240,147 @@ msgstr "URI:n för dokumentet som ska behandlas"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausräknaren är negativ."
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:570 src/yelp-toc-pager.c:582
 msgid "The table of contents could not be read."
 msgstr "Innehållsförteckningen kunde inte läsas."
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:784
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:805
 msgid "Documents"
 msgstr "Dokument"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "Läser in..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "Avdelning"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Sök efter:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "GNOME - Skrivbord"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Ytterligare dokument"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Manualsidor"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Infosidor"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Manualsidor"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "GNOME är"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "fri programvara"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "©"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:220
 msgid "/_File"
 msgstr "/_Arkiv"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:221
 msgid "/File/_New window"
 msgstr "/Arkiv/_Nytt fönster"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:224
 msgid "/File/_Close window"
 msgstr "/Arkiv/_Stäng fönster"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:228
 msgid "/_Edit"
 msgstr "/_Redigera"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
-msgstr "/Redigera/_Sök på sidan..."
-
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
-msgstr "/Redigera/_Sök igen"
-
 #: src/yelp-window.c:229
+msgid "/Edit/_Find..."
+msgstr "/Redigera/_Sök..."
+
+#: src/yelp-window.c:232
+msgid "/Edit/Find Ne_xt"
+msgstr "/Redigera/Sök _nästa"
+
+#: src/yelp-window.c:235
+msgid "/Edit/Find Pre_vious"
+msgstr "/Redigera/Sök _föregående"
+
+#: src/yelp-window.c:239
 msgid "/_Go"
 msgstr "/_Gå"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:240
 msgid "/Go/_Back"
 msgstr "/Gå/_Bakåt"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:243
 msgid "/Go/_Forward"
 msgstr "/Gå/_Framåt"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:246
 msgid "/Go/_Home"
 msgstr "/Gå/_Hem"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:249
+msgid "/Go/"
+msgstr "/Gå/"
+
+#: src/yelp-window.c:250
+msgid "/Go/_Previous"
+msgstr "/Gå/_Föregående"
+
+#: src/yelp-window.c:253
+msgid "/Go/_Next"
+msgstr "/Gå/_Nästa"
+
+#: src/yelp-window.c:256
+msgid "/Go/_Contents"
+msgstr "/Gå/_Innehåll"
+
+#: src/yelp-window.c:260
 msgid "/_Help"
 msgstr "/_Hjälp"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:261
 msgid "/Help/_About"
 msgstr "/Hjälp/_Om"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:323
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "Bakåt"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "Visa föregående sida i historiken"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "Framåt"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "Visa nästa sida i historiken"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "Hem"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "Gå till hemvyn"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:383
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet \"%s\" finns inte"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:403
 msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML-dokument stöds inte längre."
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr "Läser in&nbsp;&nbsp;&nbsp;"
+#: src/yelp-window.c:522
+msgid "Section"
+msgstr "Avdelning"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr "Läser in.&nbsp;&nbsp;"
+#: src/yelp-window.c:575
+msgid "Back"
+msgstr "Bakåt"
 
-#: src/yelp-window.c:895
-msgid "Loading..&nbsp;"
-msgstr "Läser in..&nbsp;"
+#: src/yelp-window.c:576
+msgid "Show previous page in history"
+msgstr "Visa föregående sida i historiken"
+
+#: src/yelp-window.c:586
+msgid "Forward"
+msgstr "Framåt"
+
+#: src/yelp-window.c:587
+msgid "Show next page in history"
+msgstr "Visa nästa sida i historiken"
+
+#: src/yelp-window.c:599
+msgid "Home"
+msgstr "Hem"
+
+#: src/yelp-window.c:600
+msgid "Go to home view"
+msgstr "Gå till hemvyn"
+
+#: src/yelp-window.c:768 src/yelp-window.c:799 src/yelp-window.c:1013
+#: src/yelp-window.c:1075
+#, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "Sidan \"%s\" kunde inte hittas i detta dokument."
+
+#: src/yelp-window.c:824
+msgid "Loading..."
+msgstr "Läser in..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1156
 msgid "translator_credits"
 msgstr ""
 "Christian Rose\n"
 "Richard Hult\n"
 "Skicka synpunkter på översättningen till sv@li.org"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1161
 msgid "A Help Browser for GNOME"
 msgstr "En hjälpvisare för GNOME"
 
@@ -427,6 +391,66 @@ msgstr "Få hjälp med GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjälp"
+
+#~ msgid "_Find:"
+#~ msgstr "_Sök:"
+
+#~ msgid "_Find"
+#~ msgstr "_Sök"
+
+#~ msgid "Go"
+#~ msgstr "Gå"
+
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Sök text i dokumentet:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "_Radbryt automatiskt"
+
+#~ msgid "Find text..."
+#~ msgstr "Sök text..."
+
+#~ msgid "Match _entire word"
+#~ msgstr "Matcha _hela ordet"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "_Matcha stora/små bokstäver"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Sök efter:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "GNOME - Skrivbord"
+
+#~ msgid "Additional documents"
+#~ msgstr "Ytterligare dokument"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Manualsidor"
+
+#~ msgid "Info Pages"
+#~ msgstr "Infosidor"
+
+#~ msgid "Manual pages"
+#~ msgstr "Manualsidor"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME är"
+
+#~ msgid "Free Software"
+#~ msgstr "fri programvara"
+
+#~ msgid "(C)"
+#~ msgstr "©"
+
+#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
+#~ msgstr "Läser in&nbsp;&nbsp;&nbsp;"
+
+#~ msgid "Loading.&nbsp;&nbsp;"
+#~ msgstr "Läser in.&nbsp;&nbsp;"
+
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "Läser in..&nbsp;"
 
 #~ msgid "Development Environment"
 #~ msgstr "Utvecklingsmiljö"
@@ -451,9 +475,6 @@ msgstr "Hjälp"
 
 #~ msgid "Next"
 #~ msgstr "Nästa"
-
-#~ msgid "/Go/_Index"
-#~ msgstr "/Gå/_Index"
 
 #~ msgid "Index"
 #~ msgstr "Index"
