@@ -124,7 +124,7 @@ yh_init (YelpHtml *view)
 
         priv->doc         = html_document_new ();
         priv->connections = NULL;
-        priv->base_uri    = NULL;
+        priv->base_uri    = g_strdup ("");
 
         html_view_set_document (HTML_VIEW (view), priv->doc);
         
@@ -370,8 +370,11 @@ yelp_html_new (void)
         return GTK_WIDGET (view);
 }
 
+
 void
-yelp_html_open_section (YelpHtml *view, const YelpSection *section)
+yelp_html_open_uri (YelpHtml    *view, 
+		    const gchar *str_uri,
+		    const gchar *reference)
 {
         YelpHtmlPriv *priv;
         StreamData   *sdata;
@@ -381,11 +384,11 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
         d(puts(G_GNUC_FUNCTION));
 	
 	g_return_if_fail (YELP_IS_HTML (view));
-	g_return_if_fail (section != NULL);
+	g_return_if_fail (str_uri != NULL);
 
         priv = view->priv;
 
-	d(g_print ("Trying to open: %s\n", section->uri));
+	d(g_print ("Trying to open: %s\n", str_uri));
 	
         html_document_clear (priv->doc);
         html_document_open_stream (priv->doc, "text/html");
@@ -393,11 +396,10 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
 	gtk_adjustment_set_value (
 		gtk_layout_get_vadjustment (GTK_LAYOUT (view)), 0);
 
-	if (priv->base_uri) {
+	if (strcmp (priv->base_uri, str_uri)) {
 		g_free (priv->base_uri);
+		priv->base_uri = g_strdup (str_uri);
 	}
-	
-        priv->base_uri = g_strdup (section->uri);
 
 	sdata          = g_new0 (StreamData, 1);
 	sdata->view    = view;
@@ -406,18 +408,16 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
 	
 	priv->connections = g_slist_prepend (priv->connections, sdata);
 
-	if (section->reference) {
- 		gchar *tmp_uri = g_strconcat (section->uri, 
-					      section->reference,
-					      NULL);
+	if (reference) {
+ 		gchar *tmp_uri = g_strconcat (str_uri, reference, NULL);
 		uri = gnome_vfs_uri_new (tmp_uri);
 		g_free (tmp_uri);
 	} else {
-		uri = gnome_vfs_uri_new (section->uri);
+		uri = gnome_vfs_uri_new (str_uri);
 	}
 
-	if (section->reference) {
-		sdata->anchor = g_strdup (section->reference);
+	if (reference) {
+		sdata->anchor = g_strdup (reference);
 	} else if (uri) {
 		fragment = gnome_vfs_uri_get_fragment_identifier (uri);
 		if (fragment) {

@@ -58,8 +58,9 @@ struct _YelpHtmlClass {
 GType           yelp_html_get_type       (void);
 GtkWidget      *yelp_html_new            (void);
  
-void            yelp_html_open_section   (YelpHtml          *view,
-					  const YelpSection *section);
+void            yelp_html_open_uri       (YelpHtml      *view,
+					  const gchar   *uri,
+					  const gchar   *reference);
 
 #endif /* __YELP_HTML_H__ */
 

@@ -194,6 +194,11 @@ yelp_history_goto (YelpHistory *history, const gchar *location)
 	g_return_if_fail (YELP_IS_HISTORY (history));
 
 	priv = history->priv;
+
+	if (priv->current && priv->current->data && 
+	    !strcmp ((gchar *)priv->current->data, location)) {
+		return;
+	}
 	
 	if (yelp_history_exist_forward (history)) {
 		forward_list = priv->current->next;

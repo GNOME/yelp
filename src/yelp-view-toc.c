@@ -57,10 +57,10 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
-struct YelpImportantDocsSection {
+typedef struct {
 	char *title;
 	GList *seriesids;
-};
+} YelpImportantDocsSection;
 
 #define BUFFER_SIZE 4096
 
@@ -272,8 +272,9 @@ yelp_view_toc_start (YelpViewTOC *view)
 	gchar           *man_string = _("Manual pages");
 	gchar           *info_string = _("Info pages");
 	gchar           *installed_string = _("Installed documents");
-	struct YelpImportantDocsSection *important_section;
-	
+	YelpImportantDocsSection *important_section;
+	gboolean         important_doc_installed = FALSE;
+      
 	priv = view->priv;
 
 	if (!g_node_first_child (priv->doc_tree)) {
@@ -292,16 +293,36 @@ yelp_view_toc_start (YelpViewTOC *view)
 	sections = priv->important_sections;
 	while (sections != NULL) {
 		important_section = sections->data;
-		
-		yelp_view_toc_printf (view, 
-				      "<h2>%s</h2>\n"
-				      "<ul>\n", important_section->title);
 
 		seriesids = important_section->seriesids;
+
+		/* Check if any of the important documents are installed  *
+		 * before trying to write the section topic               */
+
+		for (seriesids = important_section->seriesids; 
+		     seriesids; 
+		     seriesids = seriesids->next) {
+			seriesid = seriesids->data;
+
+			if (yelp_scrollkeeper_lookup_seriesid (seriesid)){
+				important_doc_installed = TRUE;
+			}
+		}
+		
+ 		if (important_doc_installed) {
+			yelp_view_toc_printf (view, 
+					      "<h2>%s</h2>\n"
+					      "<ul>\n", 
+					      important_section->title);
+		}
+		
+		seriesids = important_section->seriesids;
+		
 		while (seriesids != NULL) {
 			seriesid = seriesids->data;
 
 			node = yelp_scrollkeeper_lookup_seriesid (seriesid);
+
 			if (node) {
 				section = node->data;
 				yelp_view_toc_printf (view, 
@@ -457,7 +478,7 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 {
 	GNode *first;
 	gchar *name;
-	gchar *string = _("<a href=\"toc:man\">Manual pages</a>: ");
+	gchar *string = _("Manual pages");
 	
 	if (root->children == NULL) {
 		return;
@@ -471,7 +492,7 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 		
 	name = yelp_view_toc_full_path_name (view, root);
 	
-	yelp_view_toc_printf (view, "<h1>%s '%s'</h1>\n", string, name);
+	yelp_view_toc_printf (view, "<h1><a href=\"toc:man\">%s</a>: '%s'</h1>\n", string, name);
 	g_free (name);
 
 	yelp_view_toc_man_emit (view, first);
@@ -579,7 +600,7 @@ yelp_view_read_important_docs (YelpViewTOC *view)
 	xmlNodePtr section;
 	xmlNodePtr title;
 	xmlChar *prop;
-	struct YelpImportantDocsSection *important_section;
+	YelpImportantDocsSection *important_section;
 	
 	doc = xmlParseFile (DATADIR "/yelp/important_docs.xml");
 	if (doc == NULL)
@@ -599,8 +620,7 @@ yelp_view_read_important_docs (YelpViewTOC *view)
 	section = node->children;
 	while (section) {
 		if (strcmp (section->name, "section") == 0) {
-			important_section = g_new0 (struct YelpImportantDocsSection, 1);
-			
+			important_section = g_new0 (YelpImportantDocsSection, 1);
 			child = section->children;
 			while (child) {
 				if (strcmp (child->name, "title") == 0) {

@@ -30,6 +30,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-i18n.h>
+#include <libgnome/gnome-url.h>
 #include <string.h>
 #include "yelp-html.h"
 #include "yelp-util.h"
@@ -159,7 +160,7 @@ yw_init (YelpWindow *window)
 	priv->history = yelp_history_new ();
 	yelp_history_goto (priv->history, "toc:");
 	
-        gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
+	gtk_window_set_default_size (GTK_WINDOW (window), 600, 420);
 
 	gtk_window_set_title (GTK_WINDOW (window), _("Help Browser"));
 }
@@ -269,7 +270,7 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 		return TRUE;
 	} else {
 		/* FIXME: Show dialog on failure? */
-		gnome_url_show (url);
+		gnome_url_show (url, NULL);
 	}
 
 	return FALSE;
@@ -356,8 +357,11 @@ yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
 	g_return_if_fail (GTK_IS_BUTTON (button));
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
+	yelp_history_goto (window->priv->history, "toc:");
+	
 	yelp_view_toc_open_url (YELP_VIEW_TOC (window->priv->toc_view),
 				"toc:");
+
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
 				       PAGE_TOC_VIEW);
 }

@@ -485,12 +485,16 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 		return NULL;
 	}
 
-	
 	if ((extension = strstr (str_uri, ".xml"))) {
 		const gchar *str;
 		str = str_uri + 6;
 		/* This means we have a ghelp-uri with full path */
 		docpath = g_strndup (str, extension + 4 - str);
+	}
+	else if ((extension = strstr (str_uri, ".sgml"))) {
+		const gchar *str;
+		str = str_uri + 6;
+		docpath = g_strndup (str, extension + 5 - str);
 	} else {
 		/* URI not a fullpath URI, let the GnomeVFS help module 
 		   calculate the full URI */

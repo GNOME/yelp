@@ -290,7 +290,6 @@ yelp_view_content_show_uri (YelpViewContent *content,
 			    const gchar     *url)
 {
 	YelpViewContentPriv *priv;
-	YelpSection         *section;
 	gchar               *content_url;
 	GNode               *node;
 	
@@ -323,7 +322,7 @@ yelp_view_content_show_uri (YelpViewContent *content,
 			/* Try to find it in the scrollkeeper database, 
 			   doesn't have to exist here */
 			node = yelp_scrollkeeper_get_toc_tree (docpath);
-
+			
 			if (node) {
 				yelp_view_content_set_tree (content, node);
 				
@@ -351,15 +350,10 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		content_url = (char *) url;
 	}
 
-	/* FIXME: This is a quite dubious way to load the url... */
-	section = yelp_section_new (YELP_SECTION_DOCUMENT,
-				    NULL, content_url, NULL, NULL);
-
-	yelp_html_open_section (YELP_HTML (content->priv->html_view), section);
-	yelp_section_free (section);
+	yelp_html_open_uri (YELP_HTML (content->priv->html_view), 
+			    content_url, NULL);
 
 	if (content_url != url) {
 		g_free (content_url);
 	}
 }
-

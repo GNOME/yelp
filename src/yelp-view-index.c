@@ -116,7 +116,8 @@ yvi_tree_selection_changed_cb (GtkTreeSelection *selection,
 				    1, &section,
 				    -1);
 
-		yelp_html_open_section (YELP_HTML (priv->html_view), section);
+		yelp_html_open_uri (YELP_HTML (priv->html_view), 
+				    section->uri, section->reference);
 	}
 	
 	/* FIXME: Emit section_selected?? */

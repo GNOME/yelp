@@ -1,3 +1,33 @@
+2002-02-18  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-history.c (yelp_history_goto): don't add entry to
+	  history list if it's the same as the current.
+
+	* src/yelp-window.c (yw_home_button_clicked): Notify the history
+	  list that we have moved.
+
+	* src/yelp-view-index.c (yvi_tree_selection_changed_cb): call
+	  yelp_html_open_uri instead of yelp_html_open_section.
+
+	* src/yelp-html.[ch] (yelp_html_open_uri): renamed from
+	  yelp_html_open_sectoin. It now takes an uri and a reference 
+	  instead of a YelpSection.
+
+	* src/yelp-view-content.c (yelp_view_content_show_uri): call
+	  yelp_html_open_uri instead of creating a temporary YelpSection.
+
+	* src/yelp-view-toc.c (yelp_view_toc_man_2): don't send html for
+	  translations, reported by Christian Rose
+
+	* src/yelp-window.c (yw_init): make the default size smaller.
+
+	* src/yelp-view-toc.c: typedef the YelpImportantDocsSection struct
+	(yelp_view_toc_start): only write section topic for important
+	  documents if there is any documents installed in that section.
+
+	* src/yelp-util.c: (yelp_util_extract_docpath_from_uri): 
+	- Also work for sgml documents.
+
 2002-02-18  Gediminas Paulauskas <menesis@delfi.lt>
 
 	* configure.in: remove GNOME_COMMON_INIT, GNOME_PLATFORM_GNOME_2

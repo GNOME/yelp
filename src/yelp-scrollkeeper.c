@@ -426,6 +426,8 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 
         tree = g_node_new (NULL);
 
+	g_print ("Trying to find doc tree for: %s\n", docpath);
+	
  	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
  				       docpath);
 
