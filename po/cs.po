@@ -1,16 +1,16 @@
 # Czech translation of Yelp
 # Copyright (C) 2002 Free Software Foundation
-# Copyright (C) 2003 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) 2003, 2004 Miloslav Trmac <mitr@volny.cz>
 # This file is distributed under the same license as the Yelp package.
 # Michal Bukovjan <bukm@centrum.cz>, 2002.
-# Miloslav Trmac <mitr@volny.cz>, 2003.
+# Miloslav Trmac <mitr@volny.cz>, 2003, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-30 20:48+0100\n"
-"PO-Revision-Date: 2003-12-30 22:37+0100\n"
+"POT-Creation-Date: 2004-01-09 15:59+0100\n"
+"PO-Revision-Date: 2004-01-09 19:01+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,28 +137,23 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
-#: src/yelp-db-pager.c:241 src/yelp-window.c:758
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Dokument '%s' nelze otevřít"
-
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:426
 msgid "No href attribute found on yelp:document"
 msgstr "V yelp:document nenalezen atribut href"
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:441
 msgid "Out of memory"
 msgstr "Nedostatek paměti"
 
-#: src/yelp-db-pager.c:602
+#: src/yelp-db-pager.c:618
 msgid "Titlepage"
 msgstr "Titulní strana"
 
-#: src/yelp-db-pager.c:604
+#: src/yelp-db-pager.c:620 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/yelp-db-pager.c:622
+#: src/yelp-db-pager.c:638 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -244,152 +239,369 @@ msgstr "URI dokumentu"
 msgid "The URI of the document to be processed"
 msgstr "URI dokumentu, který zpracovat"
 
-#: src/yelp-toc-pager.c:260
+#: src/yelp-toc-pager.c:264
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Počet stran je záporný."
 
-#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
-msgid "The table of contents could not be read."
-msgstr "Nemohu číst obsah."
-
-#: src/yelp-toc-pager.c:841
+#: src/yelp-toc-pager.c:876
 msgid "Categories"
 msgstr "Kategorie"
 
-#: src/yelp-toc-pager.c:862
+#: src/yelp-toc-pager.c:890
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:228
 msgid "/_File"
 msgstr "/_Soubor"
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:229
 msgid "/File/_New window"
 msgstr "/Soubor/_Nové okno"
 
-#: src/yelp-window.c:227
+#: src/yelp-window.c:232
 msgid "/File/_Close window"
 msgstr "/Soubor/_Zavřít okno"
 
-#: src/yelp-window.c:231
+#: src/yelp-window.c:236
 msgid "/_Edit"
 msgstr "/Ú_pravy"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:237
 msgid "/Edit/_Find..."
 msgstr "/Úpravy/_Hledat..."
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:240
 msgid "/Edit/Find Ne_xt"
 msgstr "/Úpravy/Hledat _následující"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:243
 msgid "/Edit/Find Pre_vious"
 msgstr "/Úpravy/Hledat _předchozí"
 
-#: src/yelp-window.c:242
+#: src/yelp-window.c:247
 msgid "/_Go"
 msgstr "/Pře_jít"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:248
 msgid "/Go/_Back"
 msgstr "/Přejít/_Zpět"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:251
 msgid "/Go/_Forward"
 msgstr "/Přejít/_Vpřed"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:254
 msgid "/Go/_Home"
 msgstr "/Přejít/_Domů"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:257
 msgid "/Go/"
 msgstr "/Pře_jít/"
 
-#: src/yelp-window.c:253
+#: src/yelp-window.c:258
 msgid "/Go/_Previous"
 msgstr "/Přejít/_Předchozí"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:261
 msgid "/Go/_Next"
 msgstr "/Přejít/_Následující"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:264
 msgid "/Go/_Contents"
 msgstr "/Přejít/_Obsah"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:268
 msgid "/_Help"
 msgstr "/_Nápověda"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:269
 msgid "/Help/_About"
 msgstr "/Nápověda/_O aplikaci"
 
-#: src/yelp-window.c:326
+#: src/yelp-window.c:331
 msgid "Help Browser"
 msgstr "Prohlížeč nápovědy"
 
-#: src/yelp-window.c:390
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "Dokument '%s' neexistuje"
-
-#: src/yelp-window.c:426
-msgid "DocBook SGML documents are no longer supported."
-msgstr "Dokumenty DocBook SGML už nejsou podporovány."
-
-#: src/yelp-window.c:545
+#: src/yelp-window.c:545 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Sekce"
 
-#: src/yelp-window.c:598
+#: src/yelp-window.c:602
 msgid "Back"
 msgstr "Zpět"
 
-#: src/yelp-window.c:599
+#: src/yelp-window.c:603
 msgid "Show previous page in history"
 msgstr "Zobrazí předchozí stránku v historii"
 
-#: src/yelp-window.c:609
+#: src/yelp-window.c:613
 msgid "Forward"
 msgstr "Vpřed"
 
-#: src/yelp-window.c:610
+#: src/yelp-window.c:614
 msgid "Show next page in history"
 msgstr "Zobrazí následující stránku v historii"
 
-#: src/yelp-window.c:622
+#: src/yelp-window.c:626
 msgid "Home"
 msgstr "Domů"
 
-#: src/yelp-window.c:623
+#: src/yelp-window.c:627
 msgid "Go to home view"
 msgstr "Přejde na domovskou stránku"
 
-#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
-#: src/yelp-window.c:1105
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "Strana '%s' nebyla v tomto dokumentu nalezena."
-
-#: src/yelp-window.c:847
+#: src/yelp-window.c:832
 msgid "Loading..."
 msgstr "Načítám..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1226
 msgid "translator_credits"
 msgstr ""
 "Michal Bukovjan\n"
 "Miloslav Trmač <mitr@volny.cz>"
 
-#: src/yelp-window.c:1191
+#: src/yelp-window.c:1231
 msgid "A Help Browser for GNOME"
 msgstr "Prohlížeč nápovědy pro GNOME"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr "&#8222;"
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr "&#8221;"
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr "O této bibliografii"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr "O této knize"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr "O této kapitole"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr "O této položce"
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr "O tomto slovníku pojmů"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr "O tomto rejstříku"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr "O této části"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr "O této předmluvě"
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr "O této příručce"
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr "O tomto oddílu"
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr "O této sadě"
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "Affiliation"
+msgstr "Přidružení"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr "Příloha"
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr "Článek"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr "Adresáti"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr "Autor"
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bigliography"
+msgstr "Bibliografie"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr "Kniha"
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr "Pozor"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr "Kapitola"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr "Spolupracovník"
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr "Tiráž"
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr "Copyright"
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr "Datum"
+
+#: stylesheets/l10n.xml.in.h:30
+msgid "Dedication"
+msgstr "Věnování"
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Editor"
+msgstr "Redaktor"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr "E-mail"
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr "Příklad"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr "Obrázek"
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr "Slovník pojmů"
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr "Důležité"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr "Rejstřík"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr "Právní oznámení"
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr "Úroveň"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr "Adresáti zprávy"
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr "Úroveň zprávy"
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr "Původ zprávy"
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr "Poznámka"
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr "Původ"
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr "Jiný spolupracovník"
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr "Část"
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr "Předmluva"
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr "Vydavatel"
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr "Příručka"
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr "Položka přírušky"
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr "Oddíl příručky"
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr "Historie změn"
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr "Viz"
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr "Viz také"
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Set Index"
+msgstr "Skupina indexů"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr "Tabulka"
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Table of Contents"
+msgstr "Obsah"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr "Tip"
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Title"
+msgstr "Název"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr "Varování"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -398,6 +610,18 @@ msgstr "Získat nápovědu o GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Nápověda"
+
+#~ msgid "The document '%s' could not be opened"
+#~ msgstr "Dokument '%s' nelze otevřít"
+
+#~ msgid "The document '%s' does not exist"
+#~ msgstr "Dokument '%s' neexistuje"
+
+#~ msgid "DocBook SGML documents are no longer supported."
+#~ msgstr "Dokumenty DocBook SGML už nejsou podporovány."
+
+#~ msgid "The page '%s' could not be found in this document."
+#~ msgstr "Strana '%s' nebyla v tomto dokumentu nalezena."
 
 #~ msgid "Could not obtain a GtkStyle."
 #~ msgstr "Nemohu získat GtkStyle."
