@@ -4,7 +4,7 @@ INCLUDES =						\
 	$(YELP_CFLAGS)					\
 	-DG_LOG_DOMAIN=\"Yelp\"
 
-bin_PROGRAMS = yelp ghelp-test
+bin_PROGRAMS = yelp
 
 yelp_SOURCES =						\
 	main.c						\
@@ -18,15 +18,7 @@ yelp_SOURCES =						\
 	yelp-keyword-db.c	yelp-keyword-db.h	\
 	metadata-parser.c	metadata-parser.h	\
 	devhelp-parser.c	devhelp-parser.h	\
-	scrollkeeper-parser.c	scrollkeeper-parser.h	\
-	ghelp-uri.c		ghelp-uri.h
+	scrollkeeper-parser.c	scrollkeeper-parser.h
 
 yelp_LDADD =						\
-	$(YELP_LIBS)
-
-ghelp_test_SOURCES =					\
-	ghelp-main.c					\
-	ghelp-uri.c		ghelp-uri.h
-
-ghelp_test_LDADD =					\
 	$(YELP_LIBS)
