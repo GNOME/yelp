@@ -84,14 +84,22 @@
 <xsl:template name="xref.target">
 	<xsl:param name="linkend" select="@linkend"/>
 	<xsl:param name="target" select="id($linkend)"/>
-	<xsl:variable name="chunk_id">
-		<xsl:apply-templates select="$target" mode="chunk.id.mode"/>
-	</xsl:variable>
-	<xsl:value-of select="concat($chunk_id, $html_extension)"/>
-	<xsl:if test="$linkend and string($chunk_id) != $linkend">
-		<xsl:text>#</xsl:text>
-		<xsl:value-of select="$linkend"/>
-	</xsl:if>
+	<xsl:choose>
+		<xsl:when test="$resolve_xref_chunk">
+			<xsl:variable name="chunk_id">
+				<xsl:apply-templates select="$target" mode="chunk.id.mode"/>
+			</xsl:variable>
+			<xsl:value-of select="concat($chunk_id, $html_extension)"/>
+			<xsl:if test="$linkend and string($chunk_id) != $linkend">
+				<xsl:text>#</xsl:text>
+				<xsl:value-of select="$linkend"/>
+			</xsl:if>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:text>#</xsl:text>
+			<xsl:value-of select="$linkend"/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <!-- ======================================================================= -->

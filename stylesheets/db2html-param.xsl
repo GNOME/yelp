@@ -45,6 +45,8 @@
 
 <xsl:param name="mediaobject_path" select="$doc_path"/>
 
+<xsl:param name="resolve_xref_chunk" select="true()"/>
+
 <xsl:param name="text_only" select="false()"/>
 
 </xsl:stylesheet>
