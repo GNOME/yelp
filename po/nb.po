@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-19 12:49+0100\n"
-"PO-Revision-Date: 2005-01-19 12:56+0100\n"
+"POT-Creation-Date: 2005-02-08 14:06+0100\n"
+"PO-Revision-Date: 2005-02-08 14:07+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Kjernerutiner"
 msgid "Library Functions"
 msgstr "Bibliotekfunksjoner"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
 msgstr "Manualsider"
 
@@ -119,8 +119,8 @@ msgid "Accessories"
 msgstr "Tilbehør"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Panelprogrammer"
+msgid "Administration"
+msgstr "Administrasjon"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -134,7 +134,7 @@ msgstr "Utdanningsprogrammer"
 msgid "Graphics"
 msgstr "Grafikk"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
 msgstr "Hjelpemner"
 
@@ -163,18 +163,26 @@ msgid "Other Documentation"
 msgstr "Annen dokumentasjon"
 
 #: data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "Panelprogrammer"
+
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Brukervalg"
+
+#: data/toc.xml.in.h:18
 msgid "Programming"
 msgstr "Programmering"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:19
 msgid "Scientific"
 msgstr "Vitenskapelig"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:20
 msgid "System Tools"
 msgstr "Systemverktøy"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "Programmer for X"
 
@@ -213,10 +221,6 @@ msgstr "Finn"
 #: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Åpne lokasjon"
-
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "Brukervalg"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
@@ -298,33 +302,35 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp factory"
 
-#: src/yelp-bookmarks.c:141
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
 msgstr "Åpne bokmerke i nytt vindu"
 
-#: src/yelp-bookmarks.c:145
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
 msgstr "Endre navn på bokmerke"
 
-#: src/yelp-bookmarks.c:149
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
 msgstr "Fjern bokmerke"
 
-#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Et bokmerke med navn <b>%s</b> eksisterer allerede for denne siden."
 
-#: src/yelp-bookmarks.c:377
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Dokumentdeler"
 
-#: src/yelp-db-pager.c:241
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den ikke velformet XML."
+msgstr ""
+"Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den "
+"ikke velformet XML."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown Section"
@@ -367,7 +373,9 @@ msgstr "Ingen informasjon er tilgjengelig for denne feilen."
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr "Filen «%s» kunne ikke leses og dekodes. Filen kan være komprimert i et format som ikke støttes."
+msgstr ""
+"Filen «%s» kunne ikke leses og dekodes. Filen kan være komprimert i et "
+"format som ikke støttes."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -391,7 +399,9 @@ msgstr "Hjelp"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filene eller så er den ikke riktig formatert."
+msgstr ""
+"Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filene eller så er den "
+"ikke riktig formatert."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -422,7 +432,7 @@ msgstr "YelpDocInfo-struktur for dokumentet"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -435,34 +445,38 @@ msgstr "YelpTocPager: Pausetall er negativt."
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunne ikke laste OMF-fil «%s»."
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "Les manualside for %s"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den ikke velutformet XML."
+msgstr ""
+"Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den "
+"ikke velutformet XML."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den ikke et gyldig XSLT-stilark."
+msgstr ""
+"Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den "
+"ikke et gyldig XSLT-stilark."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Ingen href-attributt funnet på yelp:document"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Ikke mer minne"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Hjelpinnhold"
 
@@ -630,7 +644,9 @@ msgstr "_Finn forrige"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr "Kunne ikke opprette en transformeringskontekst for filen «%s». Formatet er kanskje ikke støttet."
+msgstr ""
+"Kunne ikke opprette en transformeringskontekst for filen «%s». Formatet er "
+"kanskje ikke støttet."
 
 #: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
@@ -638,21 +654,26 @@ msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr "Delen «%s» eksisterer ikke i dette dokumentet. Hvis du ble sendt hit fra en Hjelp-knapp i et program bør du rapportere dette til utviklerene av dette programmet."
+msgstr ""
+"Delen «%s» eksisterer ikke i dette dokumentet. Hvis du ble sendt hit fra en "
+"Hjelp-knapp i et program bør du rapportere dette til utviklerene av dette "
+"programmet."
 
 #: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr "Filen «%s» kunne ikke leses. Filen kan mangle eller kanskje du ikke har rettigheter til å lese den."
+msgstr ""
+"Filen «%s» kunne ikke leses. Filen kan mangle eller kanskje du ikke har "
+"rettigheter til å lese den."
 
 #: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Laster..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
@@ -666,343 +687,19 @@ msgstr "Program for å finne og lese dokumentasjon for GNOME skrivebordet."
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den ikke riktig formatert."
+msgstr ""
+"Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den "
+"ikke riktig formatert."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-msgstr "Dokumentet «%s» kunne ikke prosesseres. Filen «%s» mangler eller så er den ikke et gyldig XSLT-stilark."
-
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr "Dokumentet «%s» kunne ikke prosesseres. Filen «%s» mangler eller så er den ikke et gyldig XSLT-stilark."
+msgstr ""
+"Dokumentet «%s» kunne ikke prosesseres. Filen «%s» mangler eller så er den "
+"ikke et gyldig XSLT-stilark."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjelp med GNOME"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Lyd &amp; bilde"
-
-#~ msgid "_Home"
-#~ msgstr "_Hjem"
-
-#~ msgid "Go to home view"
-#~ msgstr "Gå til åpningssiden"
-
-#~ msgid "Fin_d"
-#~ msgstr "Fi_nn"
-
-#~ msgid "Titlepage"
-#~ msgstr "Tittelside"
-
-#~ msgid "Contents"
-#~ msgstr "Innhold"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Valgt dokument kunne ikke åpnes"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Valgt side kunne ikke finnes i dokumentet."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Innholdsfortegnelsen kunne ikke leses."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "Dokumenter i Docbook SGML støttes ikke lengre."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "Valgt fil kunne ikke leses."
-
-#~ msgid "The file could not be processed."
-#~ msgstr "Filen kunne ikke prosesseres."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "_Next Page"
-#~ msgstr "_Neste side"
-
-#~ msgid "Development Environments"
-#~ msgstr "Utviklingsmiljøer"
-
-#~ msgid "Development Tools"
-#~ msgstr "Utviklingsverktøy"
-
-#~ msgid "Editors"
-#~ msgstr "Redigeringsprogram"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "Spill og underholdning"
-
-#~ msgid "General"
-#~ msgstr "Generelt"
-
-#~ msgid "Internet Applications"
-#~ msgstr "Internettprogrammer"
-
-#~ msgid "Kernels"
-#~ msgstr "Kjerner"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "Kontorstøtteprogrammer"
-
-#~ msgid "Securities"
-#~ msgstr "Sikkerhet"
-
-#~ msgid "System"
-#~ msgstr "System"
-
-#~ msgid "Utilities"
-#~ msgstr "Verktøy"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Categories"
-#~ msgstr "Kategorier"
-
-#~ msgid "Documents"
-#~ msgstr "Dokumenter"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
-
-#~ msgid "About This Article"
-#~ msgstr "Om denne artikkelen"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "Om denne bibliografien"
-
-#~ msgid "About This Book"
-#~ msgstr "Om denne boken"
-
-#~ msgid "About This Chapter"
-#~ msgstr "Om dette kapittelet"
-
-#~ msgid "About This Entry"
-#~ msgstr "Om denne oppføringen"
-
-#~ msgid "About This Glossary"
-#~ msgstr "Om denne ordboken"
-
-#~ msgid "About This Index"
-#~ msgstr "Om denne indeksen"
-
-#~ msgid "About This Part"
-#~ msgstr "Om denne delen"
-
-#~ msgid "About This Preface"
-#~ msgstr "Om denne innledningen"
-
-#~ msgid "About This Reference"
-#~ msgstr "Om denne referansen"
-
-#~ msgid "About This Section"
-#~ msgstr "Om denne seksjonen"
-
-#~ msgid "Affiliation"
-#~ msgstr "Tilhørighet"
-
-#~ msgid "Appendix"
-#~ msgstr "Appendiks"
-
-#~ msgid "Article"
-#~ msgstr "Artikkel"
-
-#~ msgid "Audience"
-#~ msgstr "Publikum"
-
-#~ msgid "Author"
-#~ msgstr "Forfatter"
-
-#~ msgid "Authors"
-#~ msgstr "Forfattere"
-
-#~ msgid "Bibliography"
-#~ msgstr "Bibliografi"
-
-#~ msgid "Caution"
-#~ msgstr "Advarsel"
-
-#~ msgid "Chapter"
-#~ msgstr "Kapittel"
-
-#~ msgid "Collaborator"
-#~ msgstr "Medarbeider"
-
-#~ msgid "Collaborators"
-#~ msgstr "Medarbeidere"
-
-#~ msgid "Colophon"
-#~ msgstr "Kolofon"
-
-#~ msgid "Copyright"
-#~ msgstr "Opphavsrett"
-
-#~ msgid "Copyrights"
-#~ msgstr "Opphavsrett"
-
-#~ msgid "Date"
-#~ msgstr "Dato"
-
-#~ msgid "Dedication"
-#~ msgstr "Dedikasjon"
-
-#~ msgid "Editor"
-#~ msgstr "Redaktør"
-
-#~ msgid "Email"
-#~ msgstr "E-post"
-
-#~ msgid "Example"
-#~ msgstr "Eksempel"
-
-#~ msgid "Figure"
-#~ msgstr "Figur"
-
-#~ msgid "Glossary"
-#~ msgstr "Ordbok"
-
-#~ msgid "Important"
-#~ msgstr "Viktig"
-
-#~ msgid "Index"
-#~ msgstr "Indeks"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Juridisk notat"
-
-#~ msgid "Level"
-#~ msgstr "Nivå"
-
-#~ msgid "Message Audience"
-#~ msgstr "Publikum for melding"
-
-#~ msgid "Message Level"
-#~ msgstr "Meldingsnivå"
-
-#~ msgid "Message Origin"
-#~ msgstr "Meldingsopphav"
-
-#~ msgid "Note"
-#~ msgstr "Merknad"
-
-#~ msgid "Origin"
-#~ msgstr "Opphav"
-
-#~ msgid "Other Contributor"
-#~ msgstr "Annen deltaker"
-
-#~ msgid "Other Contributors"
-#~ msgstr "Andre deltakere"
-
-#~ msgid "Part"
-#~ msgstr "Del"
-
-#~ msgid "Preface"
-#~ msgstr "Innledning"
-
-#~ msgid "Publisher"
-#~ msgstr "Utgiver"
-
-#~ msgid "Publishers"
-#~ msgstr "Utgivere"
-
-#~ msgid "Reference"
-#~ msgstr "Referanse"
-
-#~ msgid "Reference Entry"
-#~ msgstr "Referanseoppføring"
-
-#~ msgid "Reference Section"
-#~ msgstr "Referanseseksjon"
-
-#~ msgid "Release Information"
-#~ msgstr "Informasjon om denne utgaven"
-
-#~ msgid "Revision History"
-#~ msgstr "Revisjonshistorikk"
-
-#~ msgid "See"
-#~ msgstr "Se"
-
-#~ msgid "See Also"
-#~ msgstr "Se også"
-
-#~ msgid "Set Index"
-#~ msgstr "Sett indeks"
-
-#~ msgid "Table"
-#~ msgstr "Tabell"
-
-#~ msgid "Table of Contents"
-#~ msgstr "Innholdsfortegnelse"
-
-#~ msgid "Tip"
-#~ msgstr "Tips"
-
-#~ msgid "Title"
-#~ msgstr "Tittel"
-
-#~ msgid "Warning"
-#~ msgstr "Advarsel"
-
-#~ msgid "Document URI"
-#~ msgstr "Dokument-URI"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "URI for dokument som skal prosesseres"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Rediger/Finn forri_ge"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Naviger/Til_bake"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Naviger/_Fremover"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Naviger/_Hjem"
-
-#~ msgid "/Go/"
-#~ msgstr "/Naviger/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Naviger/_Innhold"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Hjelp leser for GNOME"
