@@ -3782,15 +3782,14 @@ main(int argc, char **argv)
 		len = strlen(output);
 		for(i = 0; i < len; i++)
 		{
-			if (isspace((unsigned char)output[i] && output[i+1] == '/'))
+			if (isspace((unsigned char)output[i] && (output[i+1] == '/')))
 				output[i] = '\0';
 		}
-		
-		/*
+			
 		i = strlen(output) - 1;
-		while(isspace((unsigned char)output[i])) output[i--] = '\0';
-		*/
-		
+		while (isspace((unsigned char)output[i])) 
+			output[i--] = '\0';
+
 		
 		if (output[0]) {
 #ifdef HAVE_LIBBZ2
