@@ -1,14 +1,14 @@
 # Dutch translation of Yelp.
 # Copyright © 2002 Free Software Foundation, Inc.
-# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004
+# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004, 2005
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2004-12-25 13:45+0100\n"
+"POT-Creation-Date: 2005-01-05 20:32+0100\n"
+"PO-Revision-Date: 2005-01-05 22:48+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -192,14 +192,12 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Lettertypes</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Lettertypes</b>"
+msgstr "<b>_Titel:</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "Add Bookmark"
-msgstr "_Favoriet toevoegen"
+msgstr "Favoriet toevoegen"
 
 #: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
@@ -306,12 +304,17 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Een favoriet met titel <b>%s</b> bestaat al voor deze pagina."
+
 #: src/yelp-db-pager.c:238
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr ""
+msgstr "Het bestand ‘%s’ kon niet worden verwerkt. Ofwel het bestand bestaat niet, of het is niet-juist gevormde XML."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
@@ -319,38 +322,42 @@ msgstr "Onbekend"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Er was een onbekende fout"
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "Could not load document"
-msgstr "Aanvullende documenten"
+msgstr "Kon document niet laden"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Kon geen nieuw venster openen."
+msgstr "Kon sectie niet laden"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Kon het OMF bestand niet laden: '%s'."
+msgstr "Kon de inhoudstabel niet lezen"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Niet ondersteund formaat"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Kon het document niet lezen"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Kon het document niet verwerken"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "Er is geen informatie beschikbaar voor deze fout."
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
+msgstr "Het bestand ‘%s’ kon niet worden gelezen en gedecodeerd. Het bestand is mogelijk gecomprimeerd in een onbekend formaat."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -374,7 +381,7 @@ msgstr "Hulp"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
+msgstr "Het bestand ‘%s’ kon niet worden verwerkt.  Ofwel het bestand bestaat niet, of het is niet correct opgemaakt."
 
 # specifieke informatie?
 #: src/yelp-pager.c:120
@@ -426,19 +433,20 @@ msgstr "Kon het OMF bestand niet laden: '%s'."
 msgid "Read man page for %s"
 msgstr "Man-pagina's over %s lezen"
 
+# niet-juist gevormde/niet-juist opgemaakte
 #: src/yelp-toc-pager.c:765
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
+msgstr "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, of het is niet-juist gevormde XML."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, of het is geen geldige XSLT stylesheet."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -469,21 +477,18 @@ msgid "_Help"
 msgstr "_Hulp"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "_Nieuw venster"
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "About This Document"
-msgstr "Over deze verzameling"
+msgstr "Over dit document"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "_Lokatie openen"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
 msgstr "Venster sl_uiten"
 
@@ -532,14 +537,12 @@ msgid "Go to home view"
 msgstr "De startpagina tonen"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "V_orige pagina"
+msgstr "V_orige sectie"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "Sectie"
+msgstr "_Volgende sectie"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -573,30 +576,31 @@ msgstr "In_fo"
 msgid "Help Browser"
 msgstr "Hulp-browser"
 
+# de URI
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "De Uniform Resource Identifier voor het bestand is ongeldig."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "De Uniform Resource Identifier ‘%s’ is ongeldig of wijst niet naar een bestaand bestand."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1124
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Man pagina's zijn niet ondersteund in deze versie."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1115
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "GNU info pagina's zijn niet ondersteund in deze versie"
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "SGML documenten zijn niet langer ondersteund. Vraag de auteur het document om te zetten naar XML."
 
 #: src/yelp-window.c:1021
 msgid "Fin_d"
@@ -607,7 +611,7 @@ msgstr "_Zoeken"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr ""
+msgstr "Een transformatiecontext kon niet worden aangemaakt voor het bestand ‘%s’. De opmaak wordt mogelijk niet ondersteund."
 
 #: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
 #, c-format
@@ -615,14 +619,14 @@ msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr ""
+msgstr "De sectie ‘%s’ bestaat niet in dit document. Indien u hier terechtkwam door de Hulp aan te klikken in een toepassing, rapporteert u dit dan alstublieft aan de beheerders van die toepassing."
 
 #: src/yelp-window.c:1286
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr ""
+msgstr "Het bestand ‘%s’ kon niet worden gelezen.  Ofwel het bestand ontbreekt, of u heeft geen toestemming het te lezen."
 
 #: src/yelp-window.c:1320
 msgid "Loading..."
@@ -648,14 +652,14 @@ msgstr "Een documentatieverkenner voor Gnome"
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr ""
+msgstr "Het bestand ‘%s’ kon niet worden verwerkt. Ofwel het bestand bestaat niet, of het heeft niet de juiste opmaak."
 
 #: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Het document ‘%s’ kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, of het is geen geldige XSLT stylesheet."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
