@@ -1,7 +1,13 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
-	* src/yelp-info.c: conform with the Yelp coding style.
+	* src/yelp-info.c:
+	- Fixes #73270
+	(yelp_info_read_info_dir): renamed from
+	  yelp_info_populate_tree_for_subdir. It not takes a list instead.
+	(yelp_info_init): First read the sections into a list, sort it and
+	  append it to the GNode.
 
+	* src/yelp-info.c: conform with the Yelp coding style.
 	* src/yelp-man.c: same
 
 	* configure.in (GNOMELOCALEDIR): depend on a certain number of

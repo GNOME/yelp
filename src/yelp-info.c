@@ -43,10 +43,11 @@
 
 
 static void
-yelp_info_populate_tree_for_subdir (const char *basedir, GNode *parent)
+yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 {
 	DIR           *dirh;
 	struct dirent *dent;
+	YelpSection   *section;
 
 	dirh = opendir (basedir);
 	if (!dirh) {
@@ -83,10 +84,12 @@ yelp_info_populate_tree_for_subdir (const char *basedir, GNode *parent)
 
 		g_snprintf (uribuf, sizeof (uribuf), "info:%s", dent->d_name);
 
-		g_node_append_data (parent, 
-				    yelp_section_new (YELP_SECTION_DOCUMENT,
-						      titlebuf, uribuf, 
-						      NULL, NULL));
+		section = yelp_section_new (YELP_SECTION_DOCUMENT,
+					    titlebuf, uribuf, 
+					    NULL, NULL);
+		
+		*info_list = g_slist_prepend (*info_list, section);
+						      
 	}
 
 	closedir (dirh);
@@ -98,6 +101,8 @@ yelp_info_init (GNode *tree)
 	GNode       *root;
 	struct stat  stat_dir1;
 	struct stat  stat_dir2;
+	GSList      *info_list = NULL;
+	GSList      *node;
 	
 	root = g_node_append_data (tree, 
 				   yelp_section_new (YELP_SECTION_CATEGORY,
@@ -107,12 +112,19 @@ yelp_info_init (GNode *tree)
 	stat ("/usr/info", &stat_dir1);
 	stat ("/usr/share/info", &stat_dir2);
 	
-	yelp_info_populate_tree_for_subdir ("/usr/info", root);
+	yelp_info_read_info_dir ("/usr/info", &info_list);
 	
 	if (stat_dir1.st_ino != stat_dir2.st_ino) {
-		yelp_info_populate_tree_for_subdir ("/usr/share/info", 
-						    root);
+		yelp_info_read_info_dir  ("/usr/share/info", &info_list);
 	}
+
+	info_list = g_slist_sort (info_list, yelp_section_compare);
+
+	for (node = info_list; node; node = node->next) {
+		g_node_append_data (root, node->data);
+	}
+
+	g_slist_free (info_list);
 
 	return TRUE;
 }
