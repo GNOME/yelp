@@ -55,7 +55,8 @@ typedef enum {
 static GConfEnumStringPair toolbar_styles[] = {
         { GTK_TOOLBAR_TEXT, "text" },
         { GTK_TOOLBAR_ICONS, "icons" },
-        { GTK_TOOLBAR_BOTH, "both" }
+        { GTK_TOOLBAR_BOTH, "both" },
+	{ GTK_TOOLBAR_BOTH_HORIZ, "both_horiz" }
 };
 
 static void        window_init		          (YelpWindow        *window);
