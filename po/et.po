@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-02-17 00:09+0200\n"
-"PO-Revision-Date: 2002-02-17 00:10+0200\n"
+"POT-Creation-Date: 2002-02-28 18:10+0200\n"
+"PO-Revision-Date: 2002-02-28 18:10+0200\n"
 "Last-Translator: Tõivo Leedjärv <leedjarv@interest.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "info"
 msgid "Could not activate Yelp: '%s'"
 msgstr "Ei saa Yelpi aktiveerida: '%s'"
 
-#: src/yelp-main.c:98
+#: src/yelp-main.c:97
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
@@ -65,15 +65,15 @@ msgstr "PThreads"
 
 #: src/yelp-man.c:339
 msgid "System Calls"
-msgstr ""
+msgstr "Süsteemipöördused"
 
 #: src/yelp-man.c:344
 msgid "Library Functions"
-msgstr ""
+msgstr "Teegifunktsioonid"
 
 #: src/yelp-man.c:349
 msgid "Kernel Routines"
-msgstr ""
+msgstr "Kernelitoimingud"
 
 #: src/yelp-man.c:404
 msgid "Applications"
@@ -107,19 +107,23 @@ msgstr "Süsteemi administreerimine"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:209 src/yelp-view-index.c:176
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:229
 msgid "Section"
 msgstr "Peatükk"
 
-#: src/yelp-view-toc.c:271
-msgid "Other document systems"
-msgstr ""
+#: src/yelp-view-index.c:211
+msgid "Search for:"
+msgstr "Otsi:"
 
-#: src/yelp-view-toc.c:272
+#: src/yelp-view-toc.c:271
+msgid "Other Documents"
+msgstr "Muud dokumendid"
+
+#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
 msgid "Manual pages"
 msgstr "Manuaalilehed"
 
-#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:537 src/yelp-view-toc.c:556
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:558 src/yelp-view-toc.c:577
 msgid "Info pages"
 msgstr "Infolehed"
 
@@ -127,85 +131,81 @@ msgstr "Infolehed"
 msgid "Installed documents"
 msgstr "Installitud dokumendid"
 
-#: src/yelp-view-toc.c:285
+#: src/yelp-view-toc.c:286
 msgid "Start page"
 msgstr "Algusleht"
 
-#: src/yelp-view-toc.c:460
-msgid "<a href=\"toc:man\">Manual pages</a>: "
-msgstr "<a href=\"toc:man\">Manuaalilehed</a>: "
+#: src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "Manuaalilehed"
 
-#: src/yelp-view-toc.c:490 src/yelp-view-toc.c:509
-msgid "Manual page sections"
-msgstr "Manuaalilehtede peatükid"
-
-#: src/yelp-view-toc.c:659
+#: src/yelp-view-toc.c:679
 msgid "Scrollkeeper docs for category"
-msgstr ""
+msgstr "Scrollkeeperi dokumendid kategoorias"
 
-#: src/yelp-window.c:111
+#: src/yelp-window.c:113
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:114
 msgid "/File/_New window"
 msgstr "/Fail/_Uus aken"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:115
 msgid "/File/_Close window"
 msgstr "/Fail/_Sulge aken"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:116
 msgid "/File/_Quit"
 msgstr "/Fail/_Lõpeta"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:117
 msgid "/_Help"
 msgstr "/_Abi"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:118
 msgid "/Help/_About"
 msgstr "/Abi/_Info"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:166
 msgid "Help Browser"
-msgstr "Abilehitseja"
+msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:409
+#: src/yelp-window.c:414
 msgid "Help Browser for GNOME 2.0"
-msgstr "GNOME 2.0 abilehitseja"
+msgstr "GNOME 2.0 abiinfo brauser"
 
-#: src/yelp-window.c:433
-msgid "Go back in the history list"
+#: src/yelp-window.c:438
+msgid "Show previous page in history"
 msgstr ""
 
-#: src/yelp-window.c:448
-msgid "Go forth in the history list"
+#: src/yelp-window.c:453
+msgid "Show next page in history"
 msgstr ""
 
-#: src/yelp-window.c:463
-msgid "Overview of contents"
+#: src/yelp-window.c:468
+msgid "Go to home view"
 msgstr ""
 
-#: src/yelp-window.c:474
+#: src/yelp-window.c:479
 msgid "Search in the index"
 msgstr ""
 
-#: src/yelp-window.c:486
+#: src/yelp-window.c:491
 msgid "Search for a phrase in the document"
-msgstr ""
+msgstr "Otsi dokumendist fraasi"
 
-#: src/yelp-window.c:492
+#: src/yelp-window.c:497
 msgid "Help on "
 msgstr ""
 
-#: src/yelp-window.c:497
+#: src/yelp-window.c:502
 msgid "Enter phrase to search for in all documents"
-msgstr ""
+msgstr "Sisesta fraas, mida kõigist dokumentidest otsida"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr ""
+msgstr "Abistab GNOMEi kasutamisel"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
