@@ -9,20 +9,20 @@
 	<xsl:param name="node" select="."/>
 	<xsl:choose>
 		<xsl:when test="
-				($node/preceding-sibling::*) and
-				(yelp:get-depth(.) = $gdb_max_chunk_depth)">
-			<func:result select="$node/preceding-sibling::*[1]"/>
+				(yelp:get-depth(.) = $yelp_max_chunk_depth) and
+				$node/preceding-sibling::*[yelp:is-division(.)]">
+			<func:result select="$node/preceding-sibling::*[yelp:is-division(.)][1]"/>
 		</xsl:when>
 		<xsl:when test="
 				($node/preceding-sibling::*/descendant-or-self::*)
 				[@id]
 				[yelp:is-division(.)]
-				[yelp:get-depth(.) &lt;= $gdb_max_chunk_depth]">
+				[yelp:get-depth(.) &lt;= $yelp_max_chunk_depth]">
 			<func:result select="
 				($node/preceding-sibling::*/descendant-or-self::*)
 				[@id]
 				[yelp:is-division(.)]
-				[yelp:get-depth(.) &lt;= $gdb_max_chunk_depth]
+				[yelp:get-depth(.) &lt;= $yelp_max_chunk_depth]
 				[last()]"/>
 		</xsl:when>
 		<xsl:when test="yelp:get-depth($node) &gt; 1">
@@ -38,7 +38,7 @@
 	<xsl:param name="node" select="."/>
 	<xsl:choose>
 		<xsl:when test="
-				(yelp:get-depth($node) &lt; $gdb_max_chunk_depth) and
+				(yelp:get-depth($node) &lt; $yelp_max_chunk_depth) and
 				(count(yelp:get-divisions($node)[@id]) &gt; 1)">
 			<func:result select="yelp:get-divisions($node)[@id][1]"/>
 		</xsl:when>

@@ -1,4 +1,20 @@
-2008-07-15  Shaun McCance  <shaunm@wolfram.com>
+2003-07-20  Shaun McCance  <shaunm@wolfram.com>
+
+	* yelp-customization.xsl:
+	- Support for chunking to files.
+	- Import current nwalsh xsl.  There don't seem to be problems.
+	- Changed gdb_ [sic] to yelp_.
+	- Removed link color attributes on body.
+	- Revert the use-titles-as-prev-next-text change.
+	  Do as the GDP xsl does instead.
+
+	* yelp-functions.xsl:
+	- Fix a problem in get-prev where a first subsection would point
+	  to the last introductory para of its parent.  Links resolved,
+	  but titles didn't.
+	- Changed gdb_ [sic] to yelp_.
+
+2003-07-15  Shaun McCance  <shaunm@wolfram.com>
 
 	* yelp-functions.xsl: Speed improvement
 
