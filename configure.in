@@ -39,6 +39,18 @@ yelplocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(yelplocaledir)
 
 
+# libgnome
+LIBGNOME_SERVERDIR=`$PKG_CONFIG --variable=libgnome_serverdir libgnome-2.0`
+if test x"$LIBGNOME_SERVERDIR" = x; then
+   LIBGNOME_MAN2HTML="gnome2-man2html"
+   LIBGNOME_INFO2HTML="gnome2-info2html"
+else
+   LIBGNOME_MAN2HTML="$LIBGNOME_SERVERDIR/gnome2-man2html"
+   LIBGNOME_INFO2HTML="$LIBGNOME_SERVERDIR/gnome2-info2html"
+fi
+AC_SUBST(LIBGNOME_MAN2HTML)
+AC_SUBST(LIBGNOME_INFO2HTML)
+
 if test "x$prefix" = "xNONE"; then
   GNOMELOCALEDIR=$ac_default_prefix/share/locale
 else

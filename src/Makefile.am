@@ -7,7 +7,11 @@ INCLUDES =								\
 	-DDATADIR=\""$(datadir)"\"					\
 	-DLIBDIR=\""$(libdir)"\"					\
 	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
-	-DGNOMELOCALEDIR=\""$(yelplocaledir)"\"
+	-DGNOMELOCALEDIR=\""$(yelplocaledir)"\"				\
+	-DLIBGNOME_MAN2HTML=\"$(LIBGNOME_MAN2HTML)\"			\
+	-DLIBGNOME_INFO2HTML=\"$(LIBGNOME_INFO2HTML)\"			\
+	-DSERVERDIR=\"$(libexecdir)\"
+
 
 if HTML_WIDGET_GTKHTML1
 html_widget_impl=yelp-html-gtkhtml1.c
@@ -15,7 +19,8 @@ else
 html_widget_impl=yelp-html-gtkhtml2.c
 endif
 
-bin_PROGRAMS = yelp yelp-db2html
+libexec_PROGRAMS = yelp-db2html
+bin_PROGRAMS = yelp
 
 noinst_PROGRAMS = test-uri test-reader
 

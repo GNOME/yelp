@@ -239,25 +239,29 @@ reader_convert_start (ReaderThreadData *th_data)
 
 	switch (yelp_uri_get_type (uri)) {
 	case YELP_URI_TYPE_MAN:
-		command_line = g_strdup_printf ("gnome2-man2html %s",
+		command_line = g_strdup_printf ("%s %s",
+						LIBGNOME_MAN2HTML,
 						yelp_uri_get_path (uri));
 		break;
 	case YELP_URI_TYPE_INFO:
 		if (yelp_uri_get_section (uri)) {
 			command_line = 
-				g_strdup_printf ("gnome2-info2html %s?%s",
-						 yelp_uri_get_path (uri),
-						 yelp_uri_get_section (uri));
+				g_strdup_printf ("%s %s?%s",
+						LIBGNOME_INFO2HTML,
+						yelp_uri_get_path (uri),
+						yelp_uri_get_section (uri));
 		} else { 
 			command_line = 
-				g_strdup_printf ("gnome2-info2html %s",
-						 yelp_uri_get_path (uri));
+				g_strdup_printf ("%s %s",
+						LIBGNOME_INFO2HTML,
+						yelp_uri_get_path (uri));
 		}
 		
 		break;
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
-		command_line = g_strdup_printf ("yelp-db2html %s",
+		command_line = g_strdup_printf ("%s/yelp-db2html %s",
+						SERVERDIR,
 						yelp_uri_get_path (uri));
 		break;
 	default:
