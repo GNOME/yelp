@@ -1,5 +1,10 @@
 2004-08-07  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-window.c:
+	- (tree_model_iter_following) Don't leak old_iter, #140757
+
+2004-08-07  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-html-gtkhtml2.c:
 	- Part of a patch from Kirti Sinha for #139739
 

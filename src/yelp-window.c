@@ -1727,8 +1727,12 @@ tree_model_iter_following (GtkTreeModel  *model,
     gboolean     valid;
     GtkTreeIter *old_iter = gtk_tree_iter_copy (iter);
 
-    if (gtk_tree_model_iter_has_child (model, iter))
-	return gtk_tree_model_iter_children (model, iter, old_iter);
+    if (gtk_tree_model_iter_has_child (model, iter)) {
+	gboolean ret_val;
+	ret_val = gtk_tree_model_iter_children (model, iter, old_iter);
+	gtk_tree_iter_free (old_iter);
+	return ret_val;
+    }
     else do {
 	valid = gtk_tree_model_iter_next (model, iter);
 
