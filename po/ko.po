@@ -5,14 +5,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.3\n"
-"POT-Creation-Date: 2004-02-04 17:19-0600\n"
-"PO-Revision-Date: 2004-01-30 03:38+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-08 02:18+0900\n"
+"PO-Revision-Date: 2004-02-08 02:16+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -142,16 +143,16 @@ msgstr "yelp:document에 href 속성이 없습니다"
 msgid "Out of memory"
 msgstr "메모리가 부족합니다"
 
-#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:631 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "제목 페이지"
 
-#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:633 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "차례"
 
-#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
+#: src/yelp-db-pager.c:651 stylesheets/l10n.xml.in.h:68
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "알 수 없음"
@@ -281,11 +282,11 @@ msgstr "/파일(_F)"
 
 #: src/yelp-window.c:249
 msgid "/File/_New window"
-msgstr "/파일/새 창(_N)"
+msgstr "/파일(F)/새 창(_N)"
 
 #: src/yelp-window.c:252
 msgid "/File/_Close window"
-msgstr "/파일/창 닫기(_C)"
+msgstr "/파일(F)/창 닫기(_C)"
 
 #: src/yelp-window.c:256
 msgid "/_Edit"
@@ -293,15 +294,15 @@ msgstr "/편집(_E)"
 
 #: src/yelp-window.c:257
 msgid "/Edit/_Find..."
-msgstr "/편집/찾기(_F)..."
+msgstr "/편집(E)/찾기(_F)..."
 
 #: src/yelp-window.c:260
 msgid "/Edit/Find Ne_xt"
-msgstr "/편집/다음 찾기(_X)"
+msgstr "/편집(E)/다음 찾기(_X)"
 
 #: src/yelp-window.c:263
 msgid "/Edit/Find Pre_vious"
-msgstr "/편집/이전 찾기(_V)"
+msgstr "/편집(E)/이전 찾기(_V)"
 
 #: src/yelp-window.c:267
 msgid "/_Go"
@@ -309,31 +310,31 @@ msgstr "/이동(_G)"
 
 #: src/yelp-window.c:268
 msgid "/Go/_Back"
-msgstr "/이동/뒤로(_B)"
+msgstr "/이동(G)/뒤로(_B)"
 
 #: src/yelp-window.c:271
 msgid "/Go/_Forward"
-msgstr "/이동/앞으로(_F)"
+msgstr "/이동(G)/앞으로(_F)"
 
 #: src/yelp-window.c:274
 msgid "/Go/_Home"
-msgstr "/이동/홈(_H)"
+msgstr "/이동(G)/홈(_H)"
 
 #: src/yelp-window.c:277
 msgid "/Go/"
-msgstr "/이동/"
+msgstr "/이동(G)/"
 
 #: src/yelp-window.c:278
 msgid "/Go/_Previous Page"
-msgstr "/이동/이전 페이지(_P)"
+msgstr "/이동(G)/이전 페이지(_P)"
 
 #: src/yelp-window.c:281
 msgid "/Go/_Next Page"
-msgstr "/이동/다음 페이지(_N)"
+msgstr "/이동(G)/다음 페이지(_N)"
 
 #: src/yelp-window.c:284
 msgid "/Go/_Contents"
-msgstr "/이동/차례(_C)"
+msgstr "/이동(G)/차례(_C)"
 
 #: src/yelp-window.c:288
 msgid "/_Help"
@@ -341,7 +342,7 @@ msgstr "/도움말(_H)"
 
 #: src/yelp-window.c:289
 msgid "/Help/_About"
-msgstr "/도움말/이 프로그램은(_A)"
+msgstr "/도움말(H)/정보(_A)"
 
 #: src/yelp-window.c:351
 msgid "Help Browser"
@@ -563,7 +564,7 @@ msgstr "중요도"
 
 #: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
-msgstr "받는 이"
+msgstr "읽는 사람"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
@@ -571,7 +572,7 @@ msgstr "중요도"
 
 #: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
-msgstr "보내는 이"
+msgstr "보내는 사람"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
