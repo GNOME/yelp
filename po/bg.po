@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-06-10 17:16+0200\n"
-"PO-Revision-Date: 2002-06-10 22:35+0200\n"
+"POT-Creation-Date: 2002-06-28 10:19+0200\n"
+"PO-Revision-Date: 2002-06-28 10:20+0200\n"
 "Last-Translator: Yanko Kaneti <yaneti@declera.com>\n"
 "Language-Team: Bulgarian <dict@linuz.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,12 @@ msgstr "Йелп"
 msgid "Yelp Factory"
 msgstr "Фабрика на Йелп"
 
-#: src/yelp-main.c:111
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не можах да активирам Йелп: '%s'"
 
-#: src/yelp-main.c:130
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Не можах да отворя нов прозорец."
 
@@ -134,11 +134,11 @@ msgstr "Страници на ръководствата"
 msgid "Info Pages"
 msgstr "Инфо страници"
 
-#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Документи"
 
-#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Категории"
 
@@ -146,95 +146,107 @@ msgstr "Категории"
 msgid "Manual pages"
 msgstr "Страници на ръководствата"
 
-#: src/yelp-window.c:156
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME e"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Свободен Софтуер"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "©"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Файл/_Нов прозорец"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Файл/Затвори прозоре_ц"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:160
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/_Иди"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Иди/_Назад"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Иди/Н_апред"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Иди/_В началото"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Иди/_Индекс"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Помощ"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Помощ/Информ_ация"
 
-#: src/yelp-window.c:228 src/yelp-window.c:430
+#: src/yelp-window.c:231 src/yelp-window.c:433
 msgid "Help Browser"
 msgstr "Навигатор на помощта"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:343
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Документът '%s' не съществува"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:599
+#: src/yelp-window.c:602
 msgid "translator_credits"
 msgstr "Александър Шопов"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:606
 msgid "Help Browser for GNOME 2.0"
 msgstr "Навигаторът на помощта за ГНОМ 2.0"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:661
 msgid "Back"
 msgstr "Назад"
 
-#: src/yelp-window.c:659
+#: src/yelp-window.c:662
 msgid "Show previous page in history"
 msgstr "Покажи предната страница в историята"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:673
 msgid "Forward"
 msgstr "Напред"
 
-#: src/yelp-window.c:671
+#: src/yelp-window.c:674
 msgid "Show next page in history"
 msgstr "Покажи следващата страница в историята"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:687
 msgid "Home"
 msgstr "Вкъщи"
 
-#: src/yelp-window.c:685
+#: src/yelp-window.c:688
 msgid "Go to home view"
 msgstr "Иди в началото"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:698
 msgid "Index"
 msgstr "Индекс"
 
-#: src/yelp-window.c:696
+#: src/yelp-window.c:699
 msgid "Search in the index"
 msgstr "Търси в индекса"
 
