@@ -46,8 +46,6 @@ struct _YelpHtmlPriv {
 	HtmlView     *view;
 
         HtmlDocument *doc;
-	HtmlDocument *load_doc;
-        GSList       *connections;
 	YelpURI      *base_uri;
 	YelpReader   *reader;
 };
@@ -55,18 +53,6 @@ struct _YelpHtmlPriv {
 
 static void      html_init               (YelpHtml           *html);
 static void      html_class_init         (YelpHtmlClass      *klass);
-
-static void      html_reader_start_cb    (YelpReader         *reader,
-					  YelpHtml           *html);
-static void      html_reader_data_cb     (YelpReader         *reader,
-					  gint                len,
-					  const gchar        *data,
-					  YelpHtml           *html);
-static void      html_reader_finished_cb (YelpReader         *reader,
-					  YelpHtml           *html);
-static void      html_reader_error_cb    (YelpReader         *reader,
-					  GError             *error,
-					  YelpHtml           *html);
 
 static void      html_url_requested_cb   (HtmlDocument       *doc,
 					  const gchar        *uri,
@@ -126,38 +112,7 @@ html_init (YelpHtml *html)
 
 	priv->view        = HTML_VIEW (html_view_new ());
         priv->doc         = html_document_new ();
-        priv->connections = NULL;
         priv->base_uri    = NULL;
-	priv->load_doc    = html_document_new ();
-	priv->reader      = yelp_reader_new (FALSE);
-	
-	g_signal_connect (G_OBJECT (priv->reader), "start",
-			  G_CALLBACK (html_reader_start_cb),
-			  html);
-	g_signal_connect (G_OBJECT (priv->reader), "data",
-			  G_CALLBACK (html_reader_data_cb),
-			  html);
-	g_signal_connect (G_OBJECT (priv->reader), "finished",
-			  G_CALLBACK (html_reader_finished_cb),
-			  html);
-	g_signal_connect (G_OBJECT (priv->reader), "error",
-			  G_CALLBACK (html_reader_error_cb),
-			  html);
-	
-	
-	html_document_open_stream (priv->load_doc, "text/html");
-	
-	{
-		gint len;
-		gchar *str = _("Loading...");
-		gchar *text = g_strdup_printf ("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body bgcolor=\"white\"><center>%s</center></body></html>", str);
-		len = strlen (text);
-
-		html_document_write_stream (priv->load_doc, text, len);
-		g_free (text);
-	}
-	
-	html_document_close_stream (priv->load_doc);
 
         html_view_set_document (HTML_VIEW (priv->view), priv->doc);
         
@@ -183,83 +138,6 @@ html_class_init (YelpHtmlClass *klass)
 			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
 			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
-}
-
-static void
-html_reader_start_cb (YelpReader *reader, YelpHtml *html)
-{
-	YelpHtmlPriv *priv;
-	GdkCursor    *cursor;
-
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (YELP_IS_HTML (html));
-
-	priv = html->priv;
-
-	cursor = gdk_cursor_new (GDK_WATCH);
-	
-	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, cursor);
-	gdk_cursor_unref (cursor);
-	
-	html_document_clear (priv->doc);
-	html_document_open_stream (priv->doc, "text/html");
-
-	html_stream_set_cancel_func (priv->doc->current_stream,
- 				     html_cancel_stream,
- 				     html);
-}
-
-static void
-html_reader_data_cb (YelpReader  *reader,
-		     gint         len,
-		     const gchar *data,
-		     YelpHtml    *html)
-{
-	YelpHtmlPriv *priv;
-	
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (YELP_IS_HTML (html));
-	
-	priv = html->priv;
-
-	if (len <= 0) {
-		return;
-	}
-
-	html_document_write_stream (html->priv->doc, data, len);
-}
-
-static void
-html_reader_finished_cb (YelpReader *reader, YelpHtml *html)
-{
-	YelpHtmlPriv *priv;
-	
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (YELP_IS_HTML (html));
-
-	priv = html->priv;
-
-	html_document_close_stream (html->priv->doc);
-	
-	gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
-				  0);
-
-	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, NULL);
-}
-
-static void
-html_reader_error_cb (YelpReader *reader, GError *error, YelpHtml *html)
-{
-	YelpHtmlPriv *priv;
-	
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (YELP_IS_HTML (html));
-
-	priv = html->priv;
-
-	/* Popup window */
-	
-	g_warning ("%s\n", error->message);
 }
 
 static void
@@ -380,29 +258,66 @@ yelp_html_new (void)
 }
 
 void
-yelp_html_open_uri (YelpHtml *html, YelpURI *uri, GError **error)
+yelp_html_set_base_uri (YelpHtml *html, YelpURI *uri)
 {
-        YelpHtmlPriv *priv;
-
-	d(g_print ("Open URI: %s\n", yelp_uri_to_string (uri)));
-
+	YelpHtmlPriv *priv;
+	
 	g_return_if_fail (YELP_IS_HTML (html));
-	g_return_if_fail (uri != NULL);
 
-        priv = html->priv;
+	priv = html->priv;
 
 	if (priv->base_uri) {
 		yelp_uri_unref (priv->base_uri);
 	}
 
 	priv->base_uri = yelp_uri_ref (uri);
-
-	yelp_reader_read (priv->reader, uri);
 }
 
 void
-yelp_html_cancel_loading (YelpHtml *html)
+yelp_html_clear (YelpHtml *html)
 {
+	YelpHtmlPriv *priv;
+	
+	g_return_if_fail (YELP_IS_HTML (html));
+
+	priv = html->priv;
+
+	html_document_clear (priv->doc);
+	html_document_open_stream (priv->doc, "text/html");
+	html_stream_set_cancel_func (priv->doc->current_stream,
+ 				     html_cancel_stream,
+ 				     html);
+}
+
+void
+yelp_html_write (YelpHtml *html, gint len, const gchar *data)
+{
+	YelpHtmlPriv *priv;
+	
+	g_return_if_fail (YELP_IS_HTML (html));
+	
+	priv = html->priv;
+	
+	if (len <= 0) {
+		return;
+	}
+	
+	html_document_write_stream (priv->doc, data, len);
+}
+
+void
+yelp_html_close (YelpHtml *html)
+{
+	YelpHtmlPriv *priv;
+	
+	g_return_if_fail (YELP_IS_HTML (html));
+	
+	priv = html->priv;
+	
+	html_document_close_stream (html->priv->doc);
+
+	gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
+				  0);
 }
 
 GtkWidget *

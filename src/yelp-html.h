@@ -55,13 +55,16 @@ struct _YelpHtmlClass {
 
 GType           yelp_html_get_type       (void);
 YelpHtml *      yelp_html_new            (void);
- 
-void            yelp_html_open_uri       (YelpHtml      *html,
-					  YelpURI       *uri,
-					  GError       **error);
-void            yelp_html_cancel_loading (YelpHtml      *html);
-GtkWidget *     yelp_html_get_widget     (YelpHtml      *html);
 
+void            yelp_html_set_base_uri   (YelpHtml    *html,
+					  YelpURI     *uri);
+void            yelp_html_clear          (YelpHtml    *html);
+void            yelp_html_write          (YelpHtml    *html,
+					  gint         len,
+					  const gchar *data);
+void            yelp_html_close          (YelpHtml    *html);
+
+GtkWidget *     yelp_html_get_widget     (YelpHtml      *html);
 
 #endif /* __YELP_HTML_H__ */
 

@@ -325,8 +325,6 @@ yw_handle_uri (YelpWindow *window, YelpURI *uri)
 
 	d(g_print ("Handling URL: %s\n", yelp_uri_to_string (uri)));
 
-/*  	yelp_view_content_stop (YELP_VIEW_CONTENT (priv->content_view)); */
-
 	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC) {
 		d(g_print ("[TOC]\n"));
 		

@@ -424,7 +424,7 @@ yelp_view_index_show_uri (YelpViewIndex  *view,
 	priv = view->priv;
 
 	/* FIXME: Handle the GError */
-	yelp_html_open_uri (priv->html_view, uri, error);
+/* 	yelp_html_open_uri (priv->html_view, uri, error); */
 }
 
 /**

@@ -35,20 +35,33 @@
 
 #include "yelp-html.h"
 #include "yelp-marshal.h"
+#include "yelp-reader.h"
 #include "yelp-scrollkeeper.h"
 #include "yelp-util.h"
 #include "yelp-view-content.h"
 
 #define d(x)
 
-static void yvc_init                      (YelpViewContent         *html);
-static void yvc_class_init                (YelpViewContentClass    *klass);
-static void yvc_tree_selection_changed_cb (GtkTreeSelection        *selection,
-					   YelpViewContent         *content);
-static void yvc_html_uri_selected_cb      (YelpHtml                *html,
-					   YelpURI                 *uri,
-					   gboolean                 handled,
-					   YelpViewContent         *view);
+static void content_init                      (YelpViewContent      *html);
+static void content_class_init                (YelpViewContentClass *klass);
+static void content_tree_selection_changed_cb (GtkTreeSelection     *selection,
+				   	       YelpViewContent      *content);
+static void content_html_uri_selected_cb      (YelpHtml             *html,
+					       YelpURI              *uri,
+					       gboolean              handled,
+					       YelpViewContent      *view);
+static void content_reader_start_cb           (YelpReader           *reader,
+					       YelpViewContent      *view);
+static void content_reader_data_cb            (YelpReader           *reader,
+					       gint                  len,
+					       const gchar          *data,
+					       YelpViewContent      *view);
+static void content_reader_finished_cb        (YelpReader           *reader,
+					       YelpViewContent      *view);
+static void content_reader_error_cb           (YelpReader           *reader,
+					       GError               *error,
+					       YelpViewContent      *view);
+
 
 
 enum {
@@ -65,8 +78,11 @@ struct _YelpViewContentPriv {
 	GtkTreeStore *tree_store;
 	GNode        *doc_tree;
 
+	YelpReader   *reader;
+
 	/* Html view */
 	YelpHtml     *html_view;
+	GtkWidget    *html_widget;
 
 	gchar        *current_docpath;
 };
@@ -83,12 +99,12 @@ yelp_view_content_get_type (void)
                                 sizeof (YelpViewContentClass),
                                 NULL,
                                 NULL,
-                                (GClassInitFunc) yvc_class_init,
+                                (GClassInitFunc) content_class_init,
                                 NULL,
                                 NULL,
                                 sizeof (YelpViewContent),
                                 0,
-                                (GInstanceInitFunc) yvc_init,
+                                (GInstanceInitFunc) content_init,
                         };
                 
                 view_type = g_type_register_static (GTK_TYPE_HPANED,
@@ -101,7 +117,7 @@ yelp_view_content_get_type (void)
 
 
 static void
-yvc_init (YelpViewContent *view)
+content_init (YelpViewContent *view)
 {
 	YelpViewContentPriv *priv;
 	
@@ -117,15 +133,31 @@ yvc_init (YelpViewContent *view)
 				 GTK_TREE_MODEL (priv->tree_store));
 	
 	priv->html_view       = yelp_html_new ();
+	priv->html_widget     = yelp_html_get_widget (priv->html_view);
 	priv->current_docpath = g_strdup ("");
 	
 	g_signal_connect (priv->html_view, "uri_selected",
-			  G_CALLBACK (yvc_html_uri_selected_cb), 
+			  G_CALLBACK (content_html_uri_selected_cb), 
+			  view);
+
+	priv->reader      = yelp_reader_new (FALSE);
+	
+	g_signal_connect (G_OBJECT (priv->reader), "start",
+			  G_CALLBACK (content_reader_start_cb),
+			  view);
+	g_signal_connect (G_OBJECT (priv->reader), "data",
+			  G_CALLBACK (content_reader_data_cb),
+			  view);
+	g_signal_connect (G_OBJECT (priv->reader), "finished",
+			  G_CALLBACK (content_reader_finished_cb),
+			  view);
+	g_signal_connect (G_OBJECT (priv->reader), "error",
+			  G_CALLBACK (content_reader_error_cb),
 			  view);
 }
 
 static void
-yvc_class_init (YelpViewContentClass *klass)
+content_class_init (YelpViewContentClass *klass)
 {
 	signals[URI_SELECTED] = 
 		g_signal_new ("uri_selected",
@@ -140,7 +172,7 @@ yvc_class_init (YelpViewContentClass *klass)
 }
 
 static void
-yvc_html_uri_selected_cb (YelpHtml        *html,
+content_html_uri_selected_cb (YelpHtml        *html,
 			  YelpURI         *uri,
 			  gboolean         handled,
 			  YelpViewContent *view)
@@ -154,7 +186,7 @@ yvc_html_uri_selected_cb (YelpHtml        *html,
 }
 
 static void
-yvc_tree_selection_changed_cb (GtkTreeSelection *selection, 
+content_tree_selection_changed_cb (GtkTreeSelection *selection, 
 			       YelpViewContent  *content)
 {
 	YelpViewContentPriv *priv;
@@ -177,6 +209,77 @@ yvc_tree_selection_changed_cb (GtkTreeSelection *selection,
  		g_signal_emit (content, signals[URI_SELECTED], 0,
  			       section->uri, FALSE);
 	}
+}
+
+static void
+content_reader_start_cb (YelpReader *reader, YelpViewContent *view)
+{
+	YelpViewContentPriv *priv;
+	GdkCursor           *cursor;
+
+	g_return_if_fail (YELP_IS_READER (reader));
+	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
+
+	priv = view->priv;
+
+	cursor = gdk_cursor_new (GDK_WATCH);
+	
+	gdk_window_set_cursor (priv->html_widget->window, cursor);
+	gdk_cursor_unref (cursor);
+	
+	yelp_html_clear (priv->html_view);
+}
+
+static void
+content_reader_data_cb (YelpReader      *reader,
+			gint             len,
+			const gchar     *data,
+			YelpViewContent *view)
+{
+	YelpViewContentPriv *priv;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
+	
+	priv = view->priv;
+
+	if (len <= 0) {
+		return;
+	}
+
+	yelp_html_write (priv->html_view, len, data);
+}
+
+static void
+content_reader_finished_cb (YelpReader *reader, YelpViewContent *view)
+{
+	YelpViewContentPriv *priv;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
+
+	priv = view->priv;
+
+	yelp_html_close (priv->html_view);
+
+	gdk_window_set_cursor (priv->html_widget->window, NULL);
+}
+
+static void
+content_reader_error_cb (YelpReader      *reader,
+			 GError          *error, 
+			 YelpViewContent *view)
+{
+	YelpViewContentPriv *priv;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
+
+	priv = view->priv;
+
+	/* Popup window */
+	
+	g_warning ("%s\n", error->message);
 }
 
 GtkWidget *
@@ -209,7 +312,7 @@ yelp_view_content_new (GNode *doc_tree)
 		GTK_TREE_VIEW (priv->content_tree));
 
 	g_signal_connect (selection, "changed",
-			  G_CALLBACK (yvc_tree_selection_changed_cb), 
+			  G_CALLBACK (content_tree_selection_changed_cb), 
 			  view);
 
         gtk_container_add (GTK_CONTAINER (priv->tree_sw), priv->content_tree);
@@ -223,8 +326,8 @@ yelp_view_content_new (GNode *doc_tree)
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
-        gtk_container_add (GTK_CONTAINER (html_sw), 
-			   yelp_html_get_widget (priv->html_view));
+        gtk_container_add (GTK_CONTAINER (html_sw), priv->html_widget);
+
 
 	/* Add the tree and html view to the paned */
 	gtk_paned_add1 (GTK_PANED (view), priv->tree_sw);
@@ -320,13 +423,9 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 		gtk_widget_hide (priv->tree_sw);
 	}
 
-	yelp_html_open_uri (priv->html_view, uri, error);
-}
-
-void
-yelp_view_content_stop (YelpViewContent *content)
-{
-	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
+	yelp_html_set_base_uri (priv->html_view, uri);
 	
-	yelp_html_cancel_loading (content->priv->html_view);
+	yelp_reader_read (priv->reader, uri);
+
+/* 	yelp_html_open_uri (priv->html_view, uri, error); */
 }

@@ -1,5 +1,28 @@
 2002-05-18  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-index.c (yelp_view_index_show_uri): 
+	- commented out call to yelp_html_open_uri since it's been
+	  removed.
+
+	* src/yelp-view-content.c: 
+	- changed name on internal functions to conform with style.
+	- moved functions from yelp-html.c
+	- use the YelpReader to read the data instead of letting YelpHtml
+	  handle it.
+	(yelp_view_content_stop): removed.
+
+	* src/yelp-html.c: 
+	(html_reader_start_cb): moved to yelp-view-content.c
+	(html_reader_data_cb): same
+	(html_reader_finished_cb): same
+	(html_reader_error_cb): same
+	(yelp_html_clear): added/impl.
+	(yelp_html_write): added/impl.
+	(yelp_html_close): added/impl.
+	(yelp_html_cancel_loading): removed
+	(yelp_html_open_uri): removed
+	(yelp_html_set_base_uri): added/impl.
+
 	* src/yelp-reader.c:
 	(reader_man_info_start): emit "start"-signal.
 	(reader_io_watch_cb): do the right thing (hopefully) :)
