@@ -463,7 +463,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
 
-    xmlDocDumpFormatMemory (new_doc, &page_buf, &buf_size, 0);
+    xsltSaveResultToString (&page_buf, &buf_size, new_doc, style);
 
     ctxt->outputFile = old_outfile;
     ctxt->output     = old_doc;
@@ -508,6 +508,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	gtk_main_iteration ();
 
     xmlFreeDoc (new_doc);
+    xsltFreeStylesheet (style);
 }
 
 void
