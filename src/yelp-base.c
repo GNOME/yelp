@@ -174,6 +174,7 @@ yelp_base_new (void)
         path = g_strconcat (g_getenv("HOME"), "/.devhelp/specs", NULL);
         
         parser = devhelp_parser_new (path);
+/* 	parser = scrollkeeper_parser_new (); */
         
         g_signal_connect (G_OBJECT (parser), "new_book",
                           G_CALLBACK (yelp_base_new_book_cb),

@@ -1,5 +1,15 @@
 2001-10-28  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-book.c (yelp_book_section_new): accept uri == NULL and
+	don't ref it, if it is.
+	(yelp_book_add_section): accept uri == NULL.
+
+	* src/scrollkeeper-parser.c: started work on building index from
+	Scrollkeeper.
+
+	* src/devhelp-parser.c (devhelp_parser_parse_book): use xmlChar
+	instead of gchar.
+
 	* vfs-help-module/help-method.c 
 	(help_name_to_local_path): gnome_i18n_get_language_list returns
 	const GList.

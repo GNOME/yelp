@@ -87,12 +87,15 @@ yelp_book_section_new (const gchar *name,
 	YelpSection *section;
 
 	g_return_val_if_fail (name != NULL, NULL);
-	g_return_val_if_fail (uri != NULL, NULL);
 	
 	section = g_new0 (YelpSection, 1);
 	
 	section->name      = g_strdup (name);
-	section->uri       = gnome_vfs_uri_ref (uri);
+
+	if (uri) {
+		section->uri       = gnome_vfs_uri_ref (uri);
+	}
+
 	section->reference = g_strdup (reference);
 	
 	return section;
@@ -107,7 +110,6 @@ yelp_book_add_section (GNode       *parent,
 	GNode *node;
 	
 	g_return_val_if_fail (name != NULL, NULL);
-	g_return_val_if_fail (uri != NULL, NULL);
 
 /* 	g_print ("Adding section: %s\n", name); */
 	

@@ -235,7 +235,7 @@ devhelp_parser_parse_book (DevHelpParser *parser, const GnomeVFSURI *uri)
 	const gchar *file_name;
 	gchar       *name;
 	GnomeVFSURI *index_uri;
-	gchar       *xml_str;
+	xmlChar     *xml_str;
 	YelpBook    *book;
 	
 	file_name = gnome_vfs_uri_get_path (uri);
