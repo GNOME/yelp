@@ -82,7 +82,7 @@ static void        window_populate                (YelpWindow        *window);
 static void        window_populate_find           (YelpWindow        *window,
 						   GtkWidget         *find_bar);
 static GtkWidget * window_create_toolbar          (YelpWindow        *window);
-static GdkPixbuf * window_load_icon               (void);
+static void        window_set_icon                (YelpWindow        *window);
 static void        window_set_sections            (YelpWindow        *window,
 						   GtkTreeModel      *sections);
 static void        window_handle_uri              (YelpWindow        *window,
@@ -208,6 +208,8 @@ struct _YelpWindowPriv {
     gulong          error_handler;
     gulong          finish_handler;
     guint           idle_write;
+
+    guint           icons_hook;
 
     GtkItemFactory *item_factory;
 
@@ -369,9 +371,12 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
     priv   = window->priv;
 
-    window_populate (window);
+    window_set_icon (window);
+    priv->icons_hook = yelp_theme_notify_add (YELP_THEME_INFO_ICONS,
+					      (GHookFunc) window_set_icon,
+					      window);
 
-    gtk_window_set_icon (GTK_WINDOW (window), window_load_icon ());
+    window_populate (window);
 
     g_signal_connect (G_OBJECT (window), "destroy",
 		      G_CALLBACK (yelp_window_destroyed),
@@ -712,26 +717,28 @@ window_create_toolbar (YelpWindow *window)
     return toolbar;
 }
 
-static GdkPixbuf *
-window_load_icon (void)
+static void
+window_set_icon (YelpWindow *window)
 {
-    static GdkPixbuf *pixbuf = NULL;
+    GtkIconTheme *icon_theme;
+    GdkPixbuf *pixbuf = NULL;
+    GError    *error  = NULL;
 
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    icon_theme = (GtkIconTheme *) yelp_theme_get_icon_theme ();
+
+    pixbuf = gtk_icon_theme_load_icon (icon_theme,
+				       "gnome-help",
+				       36, 0,
+				       &error);
     if (!pixbuf) {
-	GError *error = NULL;
-	GtkIconTheme *icon_theme = (GtkIconTheme *) yelp_theme_get_icon_theme ();
-
-	pixbuf = gtk_icon_theme_load_icon (icon_theme,
-					   "gnome-help",
-					   36, 0,
-					   &error);
-	if (!pixbuf) {
-	    g_warning ("Couldn't load icon: %s", error->message);
-	    g_error_free (error);
-	}
+	g_warning ("Couldn't load icon: %s", error->message);
+	g_error_free (error);
+	return;
     }
 
-    return pixbuf;
+    gtk_window_set_icon (GTK_WINDOW (window), pixbuf);
 }
 
 static void
@@ -1151,9 +1158,12 @@ yelp_window_destroyed (GtkWidget *window,
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    window_disconnect (YELP_WINDOW (window));
-
     priv = YELP_WINDOW(window)->priv;
+
+    yelp_theme_notify_remove (YELP_THEME_INFO_ICONS,
+			      priv->icons_hook);
+
+    window_disconnect (YELP_WINDOW (window));
 
     g_object_unref (priv->pane);
     g_object_unref (priv->side_sw);
@@ -1333,8 +1343,8 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 	     authors,
 	     NULL,
 	     strcmp (translator_credits, "translator_credits") != 0
-	     ? translator_credits : NULL,
-	     window_load_icon ());
+	     ? translator_credits : NULL, NULL);
+	//	     window_load_icon ());
 
 	/* set the widget pointer to NULL when the widget is destroyed */
 	g_signal_connect (G_OBJECT (about), "destroy",

@@ -26,9 +26,21 @@
 #include <glib.h>
 #include <gtk/gtkicontheme.h>
 
-void                  yelp_theme_init                 (void);
-const GtkIconTheme *  yelp_theme_get_icon_theme       (void);
+typedef enum {
+    YELP_THEME_INFO_COLOR = 1 << 0,
+    YELP_THEME_INFO_ICONS = 1 << 1,
+    YELP_THEME_INFO_CSS   = 1 << 2,
+    YELP_THEME_NUM_TYPES  = 3
+} YelpThemeInfoType;
 
+void          yelp_theme_init             (void);
+guint         yelp_theme_notify_add       (guint      type,
+					   GHookFunc  func,
+					   gpointer   data);
+void          yelp_theme_notify_remove    (guint      type,
+					   guint      id);
+
+const GtkIconTheme *  yelp_theme_get_icon_theme       (void);
 const gchar *         yelp_theme_get_css_file         (void);
 const gchar *         yelp_theme_get_gray_background  (void);
 const gchar *         yelp_theme_get_gray_border      (void);

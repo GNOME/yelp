@@ -27,41 +27,85 @@
 #include <string.h>
 #include <gtk/gtk.h>
 #include <libgnome/gnome-i18n.h>
+#include <gconf/gconf-client.h>
 #include "yelp-theme.h"
 
-GtkIconTheme *icon_theme;
+#define KEY_INTERFACE_DIR    "/desktop/gnome/interface"
+#define KEY_GTK_THEME        KEY_INTERFACE_DIR "/gtk_theme"
 
-gchar gray_background[10];
-gchar gray_border[10];
+static GHookList    *hook_lists[YELP_THEME_NUM_TYPES];
+
+static GtkIconTheme *icon_theme;
+
+static gchar gray_background[10];
+static gchar gray_border[10];
+
+static void     yelp_theme_update      (guint         type);
+static void     yelp_theme_notify      (GConfClient  *gconf,
+					guint         id,
+					GConfEntry   *entry,
+					gpointer      user_data);
+static void     icon_theme_changed     (GtkIconTheme *theme,
+					gpointer      user_data);
 
 void
 yelp_theme_init (void)
 {
-    GtkStyle *style;
+    GConfClient *gconf;
+    gint i;
+
+    gconf = gconf_client_get_default ();
+    gconf_client_notify_add (gconf,
+			     KEY_INTERFACE_DIR,
+			     yelp_theme_notify,
+			     NULL, NULL, NULL);
+
+    for (i = 0; i < YELP_THEME_NUM_TYPES; i++) {
+	hook_lists[i] = g_new0 (GHookList, 1);
+	g_hook_list_init (hook_lists[i], sizeof (GHook));
+    }
 
     icon_theme = gtk_icon_theme_get_default ();
+    g_signal_connect (icon_theme,
+		      "changed",
+		      (GCallback) icon_theme_changed,
+		      NULL);
 
-    style = gtk_rc_get_style_by_paths (gtk_settings_get_default (),
-				       "GtkWidget", "GtkWidget",
-				       GTK_TYPE_WIDGET);
+    yelp_theme_update (YELP_THEME_INFO_COLOR |
+		       YELP_THEME_INFO_ICONS |
+		       YELP_THEME_INFO_CSS   );
 
-    if (style)
-	g_object_ref (G_OBJECT (style));
-    else
-	style = gtk_style_new ();
+}
 
-    g_snprintf (gray_background, 10,
-		"\"#%02X%02X%02X\"",
-		style->bg[GTK_STATE_NORMAL].red >> 8,
-		style->bg[GTK_STATE_NORMAL].green >> 8,
-		style->bg[GTK_STATE_NORMAL].blue >> 8);
-    g_snprintf (gray_border, 10,
-		"\"#%02X%02X%02X\"",
-		style->dark[GTK_STATE_NORMAL].red >> 8,
-		style->dark[GTK_STATE_NORMAL].green >> 8,
-		style->dark[GTK_STATE_NORMAL].blue >> 8);
+guint
+yelp_theme_notify_add (guint      type,
+		       GHookFunc  func,
+		       gpointer   data)
+{
+    GHook *hook;
+    gint   i;
 
-    g_object_unref (G_OBJECT (style));
+    for (i = 0; i < YELP_THEME_NUM_TYPES; i++) {
+	if (type & (1 << i)) {
+	    hook = g_hook_alloc (hook_lists[i]);
+	    hook->func = func;
+	    hook->data = data;
+	    g_hook_prepend (hook_lists[i], hook);
+	    return hook->hook_id;
+	}
+    }
+
+    return 0;
+}
+
+void
+yelp_theme_notify_remove (guint type, guint id)
+{
+    gint   i;
+
+    for (i = 0; i < YELP_THEME_NUM_TYPES; i++)
+	if (type & (1 << i))
+	    g_hook_destroy (hook_lists[i], id);
 }
 
 const GtkIconTheme*
@@ -86,4 +130,57 @@ const gchar *
 yelp_theme_get_gray_border (void)
 {
     return gray_border;
+}
+
+static void
+yelp_theme_update (guint type)
+{
+    GtkStyle *style;
+    gint i;
+
+    if (type & YELP_THEME_INFO_COLOR) {
+	style = gtk_rc_get_style_by_paths (gtk_settings_get_default (),
+					   "GtkWidget", "GtkWidget",
+					   GTK_TYPE_WIDGET);
+	if (style)
+	    g_object_ref (G_OBJECT (style));
+	else
+	    style = gtk_style_new ();
+
+	g_snprintf (gray_background, 10,
+		    "\"#%02X%02X%02X\"",
+		    style->bg[GTK_STATE_NORMAL].red >> 8,
+		    style->bg[GTK_STATE_NORMAL].green >> 8,
+		    style->bg[GTK_STATE_NORMAL].blue >> 8);
+	g_snprintf (gray_border, 10,
+		    "\"#%02X%02X%02X\"",
+		    style->dark[GTK_STATE_NORMAL].red >> 8,
+		    style->dark[GTK_STATE_NORMAL].green >> 8,
+		    style->dark[GTK_STATE_NORMAL].blue >> 8);
+
+	g_object_unref (G_OBJECT (style));
+    }
+
+    for (i = 0; i < YELP_THEME_NUM_TYPES; i++)
+	if (type & (1 << i))
+	    g_hook_list_invoke (hook_lists[i], FALSE);
+}
+
+static void
+yelp_theme_notify (GConfClient *gconf,
+		   guint        id,
+		   GConfEntry  *entry,
+		   gpointer     user_data)
+{
+    g_return_if_fail (entry && entry->key);
+
+    if (g_str_equal (entry->key, KEY_GTK_THEME)) {
+	yelp_theme_update (YELP_THEME_INFO_COLOR);
+    }
+}
+
+static void
+icon_theme_changed (GtkIconTheme *theme, gpointer user_data)
+{
+    yelp_theme_update (YELP_THEME_INFO_ICONS);
 }

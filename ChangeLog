@@ -1,3 +1,11 @@
+2004-09-30  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-theme.c:
+	* src/yelp-theme.h:
+	* src/yelp-window.c:
+	- Hooked up notifications for theme changes
+	- Hooked up the window icon to use said notifications
+
 2004-09-29  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:
