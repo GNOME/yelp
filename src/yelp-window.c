@@ -40,38 +40,40 @@
 #include "yelp-view-toc.h"
 #include "yelp-window.h"
 
-static void yw_init		      (YelpWindow          *window);
-static void yw_class_init	      (YelpWindowClass     *klass);
+static void        yw_init		     (YelpWindow          *window);
+static void        yw_class_init	     (YelpWindowClass     *klass);
 
-static void yw_populate               (YelpWindow          *window);
-	
-static void yw_url_selected_cb        (gpointer             view,
-				       char                *url,
-				       char                *base_url,
-				       gboolean             handled,
-				       YelpWindow          *window);
-static void yw_toggle_history_buttons (GtkWidget           *button,
-				       gboolean             sensitive,
-				       YelpHistory         *history);
-static void yw_history_button_clicked (GtkWidget           *button,
-				       YelpWindow          *window);
-static void yw_home_button_clicked    (GtkWidget           *button,
-				       YelpWindow          *window);
-static void yw_index_button_clicked   (GtkWidget           *button,
-				       YelpWindow          *window);
-static void yw_new_window_cb          (gpointer             data,
-				       guint                section,
-				       GtkWidget           *widget);
-static void yw_close_window_cb        (gpointer             data,
-				       guint                section,
-				       GtkWidget           *widget);
-static void yw_exit_cb                (gpointer             data,
-				       guint                section,
-				       GtkWidget           *widget);
-static void yw_about_cb               (gpointer             data,
-				       guint                section,
-				       GtkWidget           *widget);
-static GtkWidget * yw_create_toolbar  (YelpWindow          *window);
+static void        yw_populate               (YelpWindow          *window);
+
+static gboolean    yw_handle_url             (YelpWindow          *window,
+					      const gchar         *url);
+static void        yw_url_selected_cb        (gpointer             view,
+					      char                *url,
+					      char                *base_url,
+					      gboolean             handled,
+					      YelpWindow          *window);
+static void        yw_toggle_history_buttons (GtkWidget           *button,
+					      gboolean             sensitive,
+					      YelpHistory         *history);
+static void        yw_history_button_clicked (GtkWidget           *button,
+					      YelpWindow          *window);
+static void        yw_home_button_clicked    (GtkWidget           *button,
+					      YelpWindow          *window);
+static void        yw_index_button_clicked   (GtkWidget           *button,
+					      YelpWindow          *window);
+static void        yw_new_window_cb          (gpointer             data,
+					      guint                section,
+					      GtkWidget           *widget);
+static void        yw_close_window_cb        (gpointer             data,
+					      guint                section,
+					      GtkWidget           *widget);
+static void        yw_exit_cb                (gpointer             data,
+					      guint                section,
+					      GtkWidget           *widget);
+static void        yw_about_cb               (gpointer             data,
+					      guint                section,
+					      GtkWidget           *widget);
+static GtkWidget * yw_create_toolbar         (YelpWindow          *window);
 
 enum {
 	PAGE_TOC_VIEW,
@@ -153,6 +155,7 @@ yw_init (YelpWindow *window)
 	priv->view_current = NULL;
 	
 	priv->history = yelp_history_new ();
+	yelp_history_goto (priv->history, "toc:");
 	
         gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
 
@@ -236,6 +239,36 @@ yw_populate (YelpWindow *window)
 			  TRUE, TRUE, 0);
 }
 
+static gboolean
+yw_handle_url (YelpWindow *window, const gchar *url)
+{
+	YelpWindowPriv *priv;
+	
+	priv = window->priv;
+	
+	if (strncmp (url, "toc:", 4) == 0) {
+		yelp_view_toc_open_url (YELP_VIEW_TOC (priv->toc_view),
+					url);
+		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
+					       PAGE_TOC_VIEW);
+		return TRUE;
+	} else if (strncmp (url, "man:", 4) == 0 ||
+		   strncmp (url, "info:", 5) == 0 ||
+		   strncmp (url, "ghelp:", 6) == 0 ||
+		   strncmp (url, "path:", 5) == 0) {
+		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
+					    url);
+		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
+					       PAGE_CONTENT_VIEW);
+		return TRUE;
+	} else {
+		g_warning ("Unhandled URL: %s\n", url);
+		/* TODO: Open external url in mozilla/evoltion etc */
+	}
+
+	return FALSE;
+}
+
 static void
 yw_url_selected_cb (gpointer    view,
 		    char       *url,
@@ -245,6 +278,8 @@ yw_url_selected_cb (gpointer    view,
 {
 	YelpWindowPriv *priv;
 	gchar *abs_url;
+
+	g_return_if_fail (YELP_IS_WINDOW (window));
 
 	g_print ("url_selected: %s base: %s, handled: %d\n", url, base_url, handled);
 
@@ -261,22 +296,8 @@ yw_url_selected_cb (gpointer    view,
         }
 
 	if (!handled) {
-		if (strncmp (abs_url, "toc:", 4) == 0) {
-			yelp_view_toc_open_url (YELP_VIEW_TOC (priv->toc_view),
-						abs_url);
-			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-						       PAGE_TOC_VIEW);
-		} else if (strncmp (abs_url, "man:", 4) == 0 ||
-			   strncmp (abs_url, "info:", 5) == 0 ||
-			   strncmp (abs_url, "ghelp:", 6) == 0 ||
-			   strncmp (abs_url, "path:", 5) == 0) {
-			yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
-						    abs_url);
-			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-						       PAGE_CONTENT_VIEW);
-		} else {
-			g_warning ("Unhandled URL: %s\n", abs_url);
-			/* TODO: Open external url in mozilla/evoltion etc */
+		if (yw_handle_url (window, url)) {
+			yelp_history_goto (priv->history, abs_url);
 		}
 	}
 
@@ -302,22 +323,21 @@ static void
 yw_history_button_clicked (GtkWidget *button, YelpWindow *window)
 {
 	YelpWindowPriv    *priv;
-	const gchar       *location;
+	const gchar       *url;
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
 	priv = window->priv;
 
 	if (button == priv->forward_button) {
-		location = yelp_history_go_forward (priv->history);
+		url = yelp_history_go_forward (priv->history);
 	}
 	else if (button == priv->back_button) {
-		location = yelp_history_go_back (priv->history);
+		url = yelp_history_go_back (priv->history);
 	}
 
-	if (location) {
-		/* FIXME: Do something */
-/* 		yelp_html_open_section (YELP_HTML (priv->yelp_html), section); */
+	if (url) {
+		yw_handle_url (window, url);
 	}
 }
 

@@ -1,3 +1,13 @@
+2002-01-26  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c:
+	- Fixed history
+	(yw_handle_url): added, broke out code from
+	  yw_url_selected_cb. Called from history_button_clicked too.  
+	(yw_url_selected_cb): call yw_handle_url instead of parsing the
+	  url internally. If yw_handle_url returns TRUE, add the url in
+	  the history.
+
 2002-01-25  Alex Larsson  <alexl@redhat.com>
 
 	* important_docs.xml:
