@@ -149,7 +149,8 @@
 	</span>
 </xsl:template>
 
-<xsl:template match="author" mode="titlepage.mode">
+<xsl:template mode="titlepage.mode"
+		match="author | editor | othercredit">
 	<dt><xsl:call-template name="person.name"/></dt>
 	<xsl:for-each select="affiliation/orgname">
 		<dd>
@@ -162,14 +163,14 @@
 			<xsl:apply-templates select="." mode="titlepage.mode"/>
 		</dd>
 	</xsl:for-each>
-	<xsl:for-each select="email">
+	<xsl:for-each select="email | address/email">
 		<dd>
-			<strong>
+			<i>
 				<xsl:call-template name="gettext">
 					<xsl:with-param name="msgid" select="'Email'"/>
 				</xsl:call-template>
 				<xsl:text>: </xsl:text>
-			</strong>
+			</i>
 			<xsl:apply-templates select="." mode="titlepage.mode"/>
 		</dd>
 	</xsl:for-each>
@@ -233,22 +234,6 @@
 	<dt><xsl:apply-templates mode="titlepage.mode"/></dt>
 </xsl:template>
 
-<xsl:template match="editor" mode="titlepage.mode">
-	<dt><xsl:call-template name="person.name"/></dt>
-	<xsl:for-each select="email">
-		<dd>
-			<strong>
-				<xsl:call-template name="gettext">
-					<xsl:with-param name="msgid" select="'Email'"/>
-				</xsl:call-template>
-				<xsl:text>: </xsl:text>
-			</strong>
-			<xsl:apply-templates select="." mode="titlepage.mode"/>
-		</dd>
-	</xsl:for-each>
-	<xsl:apply-templates select="personblurb"/>
-</xsl:template>
-
 <xsl:template match="holder" mode="titlepage.mode">
 	<xsl:apply-templates/>
 </xsl:template>
@@ -282,23 +267,6 @@
 	<h2 class="legalnotice">
 		<xsl:apply-templates/>
 	</h2>
-</xsl:template>
-
-<xsl:template match="othercredit" mode="titlepage.mode">
-	<dt><xsl:call-template name="person.name"/></dt>
-	<dt><xsl:call-template name="person.name"/></dt>
-	<xsl:for-each select="email">
-		<dd>
-			<strong>
-				<xsl:call-template name="gettext">
-					<xsl:with-param name="msgid" select="'Email'"/>
-				</xsl:call-template>
-				<xsl:text>: </xsl:text>
-			</strong>
-			<xsl:apply-templates select="." mode="titlepage.mode"/>
-		</dd>
-	</xsl:for-each>
-	<xsl:apply-templates select="personblurb"/>
 </xsl:template>
 
 <xsl:template match="personblurb" mode="titlepage.mode">

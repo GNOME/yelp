@@ -1,3 +1,12 @@
+2004-02-18  Shaun McCance  <shaunm@gnome.org>
+
+	* stylesheets/db2html-titlepage.xsl:
+	* test/testdoc1/testdoc1.xml:
+	- Added support address/email in titlepage, per #134769.  Also don't
+	  duplicate then name of othercredit.
+	- Merged templates for author | editor | othercredit, since they're
+	  all the same.
+
 2004-02-17  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-db-pager.c:
