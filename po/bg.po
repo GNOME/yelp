@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10 gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2005-01-08 22:59+0200\n"
+"POT-Creation-Date: 2005-01-17 15:00+0200\n"
+"PO-Revision-Date: 2005-01-17 08:56+0200\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -139,9 +139,8 @@ msgid "Graphics"
 msgstr "Графика"
 
 #: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
 msgid "Help Topics"
-msgstr "Навигатор на помощта"
+msgstr "Съдържание на помощта"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -192,9 +191,8 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Шрифтове</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "_Отметки"
+msgstr "<b>_Отметки:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
@@ -226,7 +224,7 @@ msgstr "Настройки"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "Пре_именуване"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
@@ -293,9 +291,8 @@ msgid "Use system fonts"
 msgstr "Използване на системните шрифтове"
 
 #: data/yelp.schemas.in.h:8
-#, fuzzy
 msgid "Use the default fonts set for the system."
-msgstr "Използване на стандартните шрифтове на системата."
+msgstr "Използване на стандартните шрифтове към системата."
 
 #: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
@@ -311,9 +308,8 @@ msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Отметка с име <b>%s</b>, вече съществува за тази страница."
 
 #: src/yelp-bookmarks.c:341
-#, fuzzy
 msgid "Document Sections"
-msgstr "Информация относно документа"
+msgstr "Раздели на документа"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -546,11 +542,11 @@ msgstr "Показване на следващата страница в ист�
 
 #: src/yelp-window.c:367
 msgid "_Help Topics"
-msgstr ""
+msgstr "Съдържание на _помощта"
 
 #: src/yelp-window.c:369
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Отиване в съдържанието на помощта"
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -624,19 +620,16 @@ msgstr ""
 "документа да го конвертира в XML формат."
 
 #: src/yelp-window.c:1024
-#, fuzzy
 msgid "Find:"
-msgstr "Търсене"
+msgstr "Търсене:"
 
 #: src/yelp-window.c:1040
-#, fuzzy
 msgid "Find _Next"
-msgstr "_Следваща"
+msgstr "_Следващо търсене"
 
 #: src/yelp-window.c:1052
-#, fuzzy
 msgid "Find _Previous"
-msgstr "_Предишна"
+msgstr "_Предишно търсене"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -694,13 +687,13 @@ msgstr ""
 "форматиран правилно."
 
 #: src/yelp-xslt-pager.c:215
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
 "Документът \"%s\" не може да бъде обработен. Или файлът \"%s\" липсва, или е "
-"невалиден шаблон на XSLT."
+"невалиден шаблон на XSLT stylesheet."
 
 #: src/yelp-xslt-pager.c:228
 #, c-format
