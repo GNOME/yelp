@@ -39,14 +39,15 @@
 #define d(x) x
 #undef DEBUG_OUTPUT
 
-static void   yvh_init                    (YelpViewTOC      *html);
-static void   yvh_class_init              (YelpViewTOCClass *klass);
-static void   yvh_link_clicked_cb         (HtmlDocument     *doc,
-					   const gchar      *url,
-					   YelpViewTOC      *view);
-static void   yelp_view_toc_man_1         (YelpViewTOC      *view);
-static void   yelp_view_toc_man_2         (YelpViewTOC      *view,
-					   GNode            *root);
+static void   yvh_init                      (YelpViewTOC      *html);
+static void   yvh_class_init                (YelpViewTOCClass *klass);
+static void   yvh_link_clicked_cb           (HtmlDocument     *doc,
+					     const gchar      *url,
+					     YelpViewTOC      *view);
+static void   yelp_view_toc_man_1           (YelpViewTOC      *view);
+static void   yelp_view_toc_man_2           (YelpViewTOC      *view,
+					     GNode            *root);
+static void   yelp_view_read_important_docs (YelpViewTOC      *view);
 
 enum {
 	URL_SELECTED,
@@ -59,6 +60,7 @@ struct _YelpViewTOCPriv {
 	GtkWidget    *html_view;
 	HtmlDocument *doc;
 	GNode        *doc_tree;
+	GList        *important_docs;
 };
 
 GType
@@ -97,6 +99,8 @@ yvh_init (YelpViewTOC *view)
 	priv = g_new0 (YelpViewTOCPriv, 1);
 	view->priv = priv;
 	
+	yelp_view_read_important_docs (view);
+
 	priv->doc = html_document_new ();
 
 	html_view_set_document (HTML_VIEW (view), priv->doc);
@@ -229,16 +233,10 @@ yelp_view_toc_start (YelpViewTOC *view)
     </table>
    </center>
 ";
-	/* FIXME: Hardcoded crap: */
-	char *seriesids[] = {
-		"01ddeea4-0a42-11d6-9cf9-ee43c422358d",
-		"01ddeea4-0a42-11d6-9cf9-ee43c422358e",
-		NULL
-	};
 	char *seriesid;
-	char **p;
 	GNode *root;
 	char *path;
+	GList *list;
 	
 	priv = view->priv;
 
@@ -257,10 +255,9 @@ yelp_view_toc_start (YelpViewTOC *view)
 			      "<h2>Important documents</h2>\n"
 			      "<ul>\n", -1);
 
-	p = &seriesids[0];
-	while (*p != NULL) {
-		seriesid = *p;
-		p++;
+	list = priv->important_docs;
+	while (list != NULL) {
+		seriesid = list->data;
 
 		node = yelp_scrollkeeper_lookup_seriesid (seriesid);
 		if (node) {
@@ -270,6 +267,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 					      section->uri, section->name);
 		}
 
+		list = list->next;
 	}
 	
 			      
@@ -516,6 +514,44 @@ yelp_view_toc_info (YelpViewTOC *view)
 	yelp_view_toc_close (view);
 }
 
+static void
+yelp_view_read_important_docs (YelpViewTOC *view)
+{
+	xmlDocPtr doc;
+	xmlNodePtr node;
+	xmlNodePtr child;
+	xmlChar *prop;
+	
+	doc = xmlParseFile (DATADIR "/yelp/important_docs.xml");
+	if (doc == NULL)
+		return;
+
+	node = xmlDocGetRootElement (doc);
+	if (node == NULL) {
+		xmlFreeDoc(doc);
+		return;
+	}
+
+	if (strcmp (node->name, "docs") != 0) {
+		xmlFreeDoc(doc);
+		return;
+	}
+
+	child = node->children;
+	while (child) {
+		if (strcmp (child->name, "document") == 0) {
+  
+			prop = xmlGetProp (child, "seriesid");
+			if (prop) {
+				view->priv->important_docs = g_list_append (view->priv->important_docs, g_strdup (prop));
+				xmlFree (prop);
+			}
+		}
+		child = child->next;
+	}
+	
+	xmlFreeDoc(doc);
+}
 
 GtkWidget *
 yelp_view_toc_new (GNode *doc_tree)
@@ -530,7 +566,7 @@ yelp_view_toc_new (GNode *doc_tree)
 	priv->doc_tree = doc_tree;
 
 	yelp_view_toc_open_url (view, "toc:");
-
+	
 	return GTK_WIDGET (view);
 }
 

@@ -1,3 +1,17 @@
+2002-01-25  Alex Larsson  <alexl@redhat.com>
+
+	* important_docs.xml:
+	New file.
+	
+	* Makefile.am:
+	Install important_docs.xml
+
+	* src/yelp-view-toc.c:
+	Parse important_docs.xml instead of hardcoding them
+	
+	* configure.in:
+	Remove "hu" from ALL_LINGUAS, as it breaks the build.
+
 2002-01-25  Ole Laursen  <olau@hardworking.dk>
 
 	* configure.in: Added "da" to ALL_LINGUAS.
