@@ -27,7 +27,6 @@
 
 /* This code comes from gnome vfs: */
 
-
 static gboolean
 is_uri_relative (const char *uri)
 {
@@ -450,9 +449,6 @@ tree_find_node (GNode *node, const gchar *uri)
 	}
 	
 	if (!g_ascii_strcasecmp (uri, section->uri)) {
-		g_print (">>>>>>>>>>>>>>>>  FOUND A MATCH: %s == %s\n",
-			 uri, section->uri);
-		
 		found_node = node;
 		return TRUE;
 	}
@@ -520,12 +516,6 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 								     NULL);
 			}
 		}
-	}
-
-	if (docpath) {
-		g_print ("||||| docpath: %s\n", docpath);
-	} else {
-		g_print ("----- transformed_uri: %s\n", transformed_uri);
 	}
 
 	return docpath;

@@ -33,6 +33,8 @@
 #include "yelp-util.h"
 #include "yelp-view-content.h"
 
+#define d(x)
+
 static void yvc_init                      (YelpViewContent         *html);
 static void yvc_class_init                (YelpViewContentClass    *klass);
 static void yvc_tree_selection_changed_cb (GtkTreeSelection        *selection,
@@ -96,7 +98,7 @@ yvc_html_url_selected_cb (YelpHtml        *html,
 			  YelpViewContent *view)
 {
 	/* Just propagate the signal to the view */
-	g_print ("***** URI Clicked: %s, %s\n", base_url, url);
+	d(g_print ("***** URI Clicked: %s, %s\n", base_url, url));
 	
 	g_signal_emit (view, signals[URL_SELECTED], 0,
 		       url, base_url, handled);

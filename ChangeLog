@@ -1,5 +1,13 @@
 2002-01-30  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-util.c: removed debug printouts.
+
+	* src/yelp-html.c: hide debug printouts.
+
+	* src/yelp-view-content.c: same.
+
+	* src/yelp-window.c: same.
+	
 	* src/yelp-window.c (yw_populate): translate strings from item
 	  factory.
 

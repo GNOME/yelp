@@ -34,7 +34,7 @@
 #include <stdio.h>
 #include "yelp-html.h"
 
-#define d(x) x
+#define d(x)
 
 typedef struct _StreamData StreamData;
 

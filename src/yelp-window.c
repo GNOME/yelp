@@ -40,6 +40,8 @@
 #include "yelp-view-toc.h"
 #include "yelp-window.h"
 
+#define d(x)
+
 static void        yw_init		     (YelpWindow          *window);
 static void        yw_class_init	     (YelpWindowClass     *klass);
 
@@ -285,16 +287,16 @@ yw_url_selected_cb (gpointer    view,
 
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
-	g_print ("url_selected: %s base: %s, handled: %d\n", url, base_url, handled);
+	d(g_print ("url_selected: %s base: %s, handled: %d\n", url, base_url, handled));
 
 	priv = window->priv;
 	
 	if (url && base_url) {
 		abs_url = yelp_util_resolve_relative_uri (base_url, url);
-		g_print ("Link '%s' pressed relative to: %s -> %s\n", 
-			 url,
-			 base_url,
-			 abs_url);
+		d(g_print ("Link '%s' pressed relative to: %s -> %s\n", 
+			   url,
+			   base_url,
+			   abs_url));
         } else {
 		if (url) {
 			abs_url = g_strdup (url);
@@ -323,8 +325,6 @@ yw_toggle_history_buttons (GtkWidget   *button,
 	g_return_if_fail (GTK_IS_BUTTON (button));
 	g_return_if_fail (YELP_IS_HISTORY (history));
 
-	g_print ("History button toggled\n");
-	
 	gtk_widget_set_sensitive (button, sensitive);
 }
 
@@ -356,8 +356,6 @@ yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
 	g_return_if_fail (GTK_IS_BUTTON (button));
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
-	g_print ("Home button clicked\n");
-
 	yelp_view_toc_open_url (YELP_VIEW_TOC (window->priv->toc_view),
 				"toc:");
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
@@ -370,8 +368,6 @@ yw_index_button_clicked (GtkWidget *button, YelpWindow *window)
 	g_return_if_fail (GTK_IS_BUTTON (button));
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
-	g_print ("Index button clicked\n");
-	
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
 				       PAGE_INDEX_VIEW);
 }
