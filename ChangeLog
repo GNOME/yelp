@@ -1,3 +1,9 @@
+2005-02-02  Chris Lahey  <clahey@clahey.net>
+
+	* src/yelp-pager.c (yelp_pager_get_page): Check for a NULL page_id
+	here.  Fixes a crash if you go to a non-existing link in an
+	existing page.
+
 2005-02-01  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-bookmarks.c:

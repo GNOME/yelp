@@ -366,6 +366,9 @@ yelp_pager_get_page (YelpPager *pager, const gchar *frag_id)
     const gchar *page_id =
 	YELP_PAGER_GET_CLASS (pager)->resolve_frag (pager, frag_id);
 
+    if (page_id == NULL)
+	return NULL;
+
     page = (YelpPage *) g_hash_table_lookup (pager->priv->page_hash, page_id);
 
     return (const YelpPage *) page;
