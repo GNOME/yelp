@@ -335,7 +335,7 @@ toc_start (YelpViewTOC *view)
 	}
 
 	yelp_html_printf (priv->html_view,
-			  "</ul></td><td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td></tr>");
+			  "</ul></td><td></td></tr>");
 	
 	toc_page_end (view);
 
@@ -494,7 +494,7 @@ toc_man_2 (YelpViewTOC *view,
 	toc_man_emit (view, first);
 
 	yelp_html_printf (priv->html_view,
-			  "</td><td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td></tr>\n");
+			  "</td></tr>\n");
 		
 	toc_page_end (view);
 
@@ -551,7 +551,7 @@ toc_man_1 (YelpViewTOC *view)
 	} while ((node = g_node_next_sibling (node)));
 
 	yelp_html_printf (priv->html_view,
-			  "</ul></td><td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td></tr>");
+			  "</ul></td></tr>");
 
 	toc_page_end (view);
 
@@ -605,7 +605,7 @@ toc_info (YelpViewTOC *view)
 	} while ((node = g_node_next_sibling (node)));
 	
 	yelp_html_printf (priv->html_view,
-			  "</ul></td><td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td></tr>");
+			  "</ul></td></tr>");
 
 	toc_page_end (view);
 
@@ -707,14 +707,13 @@ toc_page_start (YelpViewTOC *view, const gchar *title, const gchar *heading)
 			  "</head>\n"
 			  "<body marginwidth=\"0\"\n"
 			  "background=\"file:" IMAGEDIR "/bcg.png\" marginheight=\"0\"\n"
-			  "border=\"10\" topmargin=\"0\" leftmargin=\"0\">\n"
+			  "border=\"10\" topmargin=\"0\" leftmargin=\"0\">\n<br><br>"
 			  "<table width=\"100%%\" border=\"0\" cellpadding=\"4\" cellspacing=\"0\">\n"
 			  "<tr valign=\"top\">\n"
 			  "<td width=\"75\">\n"
 			  "<img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\">\n"
 			  "</td>\n"
 			  "<td colspan=\"2\"><h1>%s</h1></td>\n"
-			  "<td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td>\n"
 			  "</tr>\n"
 			  "<tr valign=\"top\">\n"
 			  "<td width=\"75\">\n"
@@ -744,19 +743,9 @@ toc_page_end (YelpViewTOC *view)
 			  "<td colspan=\"2\">\n"
 			  "<img src=\"file:" IMAGEDIR "/empty.png\" height=\"200\">\n"
 			  "</td>\n"
-			  "<td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td></tr>\n"
+			  "<td></td></tr>\n"
 			  "<tr valign=\"top\">\n"
 			  "<td width=\"75\"><img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\"></td>\n"
-			  "<td>\n"
-			  "<a href=\"http://www.gnome.org\" target=\"_blank\">\n"
-			  "<img src=\"file:" IMAGEDIR "/gnome2-button.png\" border=\"0\">\n"
-			  "</a>\n"
-			  "</td>\n"
-			  "<td>\n"
-			  "<font size=\"-1\">%s <a href=\"http://www.gnu.org/philosophy/free-sw.html\">%s</a> | <a href=\"http://www.gnome.org\">http://www.gnome.org</a><br>\n"
-			  "%s 2001-2002 Mikael Hallendal</font>\n"
-			  "</td>\n"
-			  "<td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td>\n"
 			  "</tr>\n"
 			  "</table></body></html>\n",
 			  str_gnome_is,
@@ -865,7 +854,7 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 	}
 
 	yelp_html_printf (priv->html_view,
-			  "</ul></td><td bgcolor=\"#3b3b4f\" width=\"10%%\">&nbsp;</td></tr>");
+			  "</ul></td></tr>");
 	
 	toc_page_end (view);
 
