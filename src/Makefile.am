@@ -92,6 +92,7 @@ yelp_SOURCES =								\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
 	yelp-util.c		yelp-util.h				\
+	yelp-view.c		yelp-view.h				\
 	yelp-view-content.c	yelp-view-content.h			\
 	yelp-view-index.c	yelp-view-index.h			\
 	yelp-view-toc.c		yelp-view-toc.h				\

@@ -28,6 +28,7 @@
 
 #include "yelp-section.h"
 #include "yelp-uri.h"
+#include "yelp-view.h"
 
 #define YELP_TYPE_VIEW_TOC    (yelp_view_toc_get_type ())
 #define YELP_VIEW_TOC(o)      (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW_TOC, YelpViewTOC))
@@ -40,27 +41,16 @@ typedef struct _YelpViewTOCClass   YelpViewTOCClass;
 typedef struct _YelpViewTOCPriv    YelpViewTOCPriv;
 
 struct _YelpViewTOC {
-	GObject          parent;
-
+	YelpView         parent;
+	
 	YelpViewTOCPriv *priv;
 };
 
 struct _YelpViewTOCClass {
-	GObjectClass     parent_class;
-
-	/* Signals */
-
-	void (*uri_selected)   (YelpViewTOC     *view,
-				YelpURI         *uri,
-				gboolean         handled);
-	void (*title_changed)  (YelpViewTOC     *view,
-				const gchar     *new_title);
+	YelpViewClass    parent_class;
 };
 
 GType           yelp_view_toc_get_type       (void);
-YelpViewTOC    *yelp_view_toc_new            (GNode        *doc_tree);
-void            yelp_view_toc_open_uri       (YelpViewTOC  *view,
-					      YelpURI      *uri);
-GtkWidget      *yelp_view_toc_get_widget     (YelpViewTOC  *view);
+YelpView       *yelp_view_toc_new            (GNode        *doc_tree);
 
 #endif /* __YELP_VIEW_TOC__ */

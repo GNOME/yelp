@@ -25,7 +25,9 @@
 
 #include <gtk/gtkhpaned.h>
 #include <gtk/gtktreemodel.h>
+
 #include "yelp-section.h"
+#include "yelp-view.h"
 
 #define YELP_TYPE_VIEW_INDEX        (yelp_view_index_get_type ())
 #define YELP_VIEW_INDEX(o)          (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW_INDEX, YelpViewIndex))
@@ -38,26 +40,16 @@ typedef struct _YelpViewIndexClass   YelpViewIndexClass;
 typedef struct _YelpViewIndexPriv    YelpViewIndexPriv;
 
 struct _YelpViewIndex {
-	GtkHPaned          parent;
+	YelpView           parent;
 	
 	YelpViewIndexPriv *priv;
 };
 
 struct _YelpViewIndexClass {
-        GtkHPanedClass    parent_class;
-
-	/* Signals */
-
-	void (*uri_selected)   (YelpViewIndex *view,
-				YelpURI       *uri,
-				gboolean       handled);
+        YelpViewClass      parent_class;
 };
 
 GType           yelp_view_index_get_type     (void);
-GtkWidget      *yelp_view_index_new          (GList            *index);
-
-void            yelp_view_index_show_uri     (YelpViewIndex    *view,
-					      YelpURI          *uri,
-					      GError          **error);
+YelpView *      yelp_view_index_new          (GList            *index);
 
 #endif /* __YELP_VIEW_INDEX__ */

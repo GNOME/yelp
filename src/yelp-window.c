@@ -141,9 +141,9 @@ struct _YelpWindowPriv {
 
 	GtkWidget      *notebook;
 
-	YelpViewTOC    *toc_view;
-	GtkWidget      *content_view;
-	GtkWidget      *index_view;
+	YelpView       *toc_view;
+	YelpView       *content_view;
+	YelpView       *index_view;
 	
 	GtkWidget      *view_current;
 
@@ -298,18 +298,18 @@ window_populate (YelpWindow *window)
 					GTK_POLICY_AUTOMATIC);
 
 	gtk_container_add (GTK_CONTAINER (sw), 
-			   yelp_view_toc_get_widget (priv->toc_view));
+			   priv->toc_view->widget);
 
 	gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
 				  sw, NULL, PAGE_TOC_VIEW);
 	
 	gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
-				  priv->content_view,
+				  priv->content_view->widget,
 				  NULL, PAGE_CONTENT_VIEW);
 
 	if (priv->index) {
 		gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
-					  priv->index_view,
+					  priv->index_view->widget,
 					  NULL, PAGE_INDEX_VIEW);
 	}
 	
@@ -341,7 +341,7 @@ window_handle_uri (YelpWindow *window, YelpURI *uri)
 	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC) {
 		d(g_print ("[TOC]\n"));
 		
-		yelp_view_toc_open_uri (YELP_VIEW_TOC (priv->toc_view), uri);
+		yelp_view_show_uri (priv->toc_view, uri, NULL);
 
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_TOC_VIEW);
@@ -351,9 +351,7 @@ window_handle_uri (YelpWindow *window, YelpURI *uri)
 		d(g_print ("[INDEX]\n"));
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_INDEX_VIEW);
-		yelp_view_index_show_uri (YELP_VIEW_INDEX (priv->index_view),
-					  uri, 
-					  &error);
+		yelp_view_show_uri (priv->index_view, uri, &error);
 		handled = TRUE;
 	}
 	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_MAN ||
@@ -365,9 +363,8 @@ window_handle_uri (YelpWindow *window, YelpURI *uri)
 		d(g_print ("[CONTENT]\n"));
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_CONTENT_VIEW);
-		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
-					    uri,
-					    &error);
+		yelp_view_show_uri (priv->content_view,
+				    uri, &error);
 		handled = TRUE;
 	} else {
 		gnome_url_show (yelp_uri_to_string (uri), &error);
@@ -526,7 +523,7 @@ window_home_button_clicked (GtkWidget *button, YelpWindow *window)
 	uri = yelp_uri_new ("toc:");
 
 	yelp_history_goto (window->priv->history, uri);
-	yelp_view_toc_open_uri (window->priv->toc_view, uri);
+	yelp_view_show_uri (window->priv->toc_view, uri, NULL);
 
 	yelp_uri_unref (uri);
 

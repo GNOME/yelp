@@ -1,3 +1,23 @@
+2002-09-20  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c: changed to reflect changes in the views.
+
+	* src/yelp-view.[ch]:
+	- added
+	- new super class of the views.
+	
+	* src/yelp-view-content.[ch]: 
+	* src/yelp-view-index.[ch]: 
+	* src/yelp-view-toc.[ch]: 
+	- removed signals
+	- cleaning up and making it a YelpView subclass.
+
+	* src/yelp-view-content.c: 
+	- removed signals
+	- cleaning up and making it a YelpView subclass.
+
+	* src/Makefile.am (yelp_SOURCES): added yelp-view.[ch]
+
 2002-09-03  Padraig O'Briain  <padraig.obriain@sun.com>
  
 	* src/yelp-view-content.c (content_reader_finished_cb):

@@ -28,6 +28,7 @@
 
 #include "yelp-section.h"
 #include "yelp-uri.h"
+#include "yelp-view.h"
 
 #define YELP_TYPE_VIEW_CONTENT        (yelp_view_content_get_type ())
 #define YELP_VIEW_CONTENT(o)          (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW_CONTENT, YelpViewContent))
@@ -40,27 +41,16 @@ typedef struct _YelpViewContentClass   YelpViewContentClass;
 typedef struct _YelpViewContentPriv    YelpViewContentPriv;
 
 struct _YelpViewContent {
-	GtkHPaned         parent;
+	YelpView             parent;
 	
 	YelpViewContentPriv *priv;
 };
 
 struct _YelpViewContentClass {
-        GtkHPanedClass    parent_class;
-
-	/* Signals */
-	void (*uri_selected)   (YelpViewContent *view,
-				YelpURI         *uri,
-				gboolean         handled);
-	void (*title_changed)  (YelpViewContent *view,
-				const gchar     *new_title);
+        YelpViewClass        parent_class;
 };
 
 GType           yelp_view_content_get_type     (void);
-GtkWidget      *yelp_view_content_new          (GNode             *doc_tree);
-
-void            yelp_view_content_show_uri     (YelpViewContent   *content,
-						YelpURI           *uri,
-						GError           **error);
+YelpView *      yelp_view_content_new          (GNode  *doc_tree);
 
 #endif /* __YELP_VIEW_CONTENT__ */

@@ -41,31 +41,26 @@
 
 #define d(x)
 
-static void   toc_init                      (YelpViewTOC      *html);
-static void   toc_class_init                (YelpViewTOCClass *klass);
-static void   toc_man_1                     (YelpViewTOC      *view);
-static void   toc_man_2                     (YelpViewTOC      *view,
-					     GNode            *root);
-static void   toc_read_important_docs       (YelpViewTOC      *view);
-static void   toc_uri_selected_cb           (YelpHtml         *html,
-					     YelpURI          *uri,
-					     gboolean          handled,
-					     YelpViewTOC      *view);
-static void   toc_html_title_changed_cb     (YelpHtml         *html,
-					     const gchar      *title,
-					     YelpViewTOC      *view);
-static void   toc_page_start                (YelpViewTOC      *view,
-					     const gchar      *title,
-					     const gchar      *heading);
-static void   toc_page_end                  (YelpViewTOC      *view);
-
-enum {
-	URI_SELECTED,
-	TITLE_CHANGED,
-	LAST_SIGNAL
-};
-
-static gint signals[LAST_SIGNAL] = { 0 };
+static void   toc_init                      (YelpViewTOC       *html);
+static void   toc_class_init                (YelpViewTOCClass  *klass);
+static void   toc_man_1                     (YelpViewTOC       *view);
+static void   toc_man_2                     (YelpViewTOC       *view,
+					     GNode             *root);
+static void   toc_read_important_docs       (YelpViewTOC       *view);
+static void   toc_uri_selected_cb           (YelpHtml          *html,
+					     YelpURI           *uri,
+					     gboolean           handled,
+					     YelpViewTOC       *view);
+static void   toc_html_title_changed_cb     (YelpHtml          *html,
+					     const gchar       *title,
+					     YelpViewTOC       *view);
+static void   toc_page_start                (YelpViewTOC       *view,
+					     const gchar       *title,
+					     const gchar       *heading);
+static void   toc_page_end                  (YelpViewTOC       *view);
+static void   toc_show_uri                  (YelpView          *view,
+					     YelpURI           *uri,
+					     GError          **error);
 
 typedef struct {
 	char  *title;
@@ -101,7 +96,7 @@ yelp_view_toc_get_type (void)
                                 (GInstanceInitFunc) toc_init,
                         };
                 
-                view_type = g_type_register_static (G_TYPE_OBJECT,
+                view_type = g_type_register_static (YELP_TYPE_VIEW,
                                                     "YelpViewTOC", 
                                                     &view_info, 0);
         }
@@ -121,6 +116,7 @@ toc_init (YelpViewTOC *view)
 
 	priv->html_view   = yelp_html_new ();
 	priv->html_widget = yelp_html_get_widget (priv->html_view);
+	YELP_VIEW (view)->widget = priv->html_widget;
 
 	g_signal_connect (priv->html_view, "uri_selected",
 			  G_CALLBACK (toc_uri_selected_cb),
@@ -134,27 +130,9 @@ toc_init (YelpViewTOC *view)
 static void
 toc_class_init (YelpViewTOCClass *klass)
 {
-	signals[URI_SELECTED] = 
-		g_signal_new ("uri_selected",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (YelpViewTOCClass,
-					       uri_selected),
-			      NULL, NULL,
-			      yelp_marshal_VOID__POINTER_BOOLEAN,
-			      G_TYPE_NONE,
-			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
-
-	signals[TITLE_CHANGED] = 
-		g_signal_new ("title_changed",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (YelpViewTOCClass,
-					       title_changed),
-			      NULL, NULL,
-			      yelp_marshal_VOID__STRING,
-			      G_TYPE_NONE,
-			      1, G_TYPE_STRING);
+	YelpViewClass *view_class = YELP_VIEW_CLASS (klass);
+       
+	view_class->show_uri = toc_show_uri;
 }
 
 #if 0
@@ -677,7 +655,7 @@ toc_uri_selected_cb (YelpHtml    *html,
 		     gboolean     handled,
 		     YelpViewTOC *view)
 {
-	g_signal_emit (view, signals[URI_SELECTED], 0, uri, FALSE);
+	g_signal_emit_by_name (view, "uri_selected", uri, FALSE);
 }
 
 static void
@@ -685,7 +663,7 @@ toc_html_title_changed_cb (YelpHtml    *html,
 			   const gchar *title,
 			   YelpViewTOC *view)
 {
-	g_signal_emit (view, signals[TITLE_CHANGED], 0, title);
+	g_signal_emit_by_name (view, "title_changed", title);
 }
 
 static void
@@ -753,20 +731,6 @@ toc_page_end (YelpViewTOC *view)
 			  str_copyright);
 }
 
-YelpViewTOC *
-yelp_view_toc_new (GNode *doc_tree)
-{
-	YelpViewTOC     *view;
-	YelpViewTOCPriv *priv;
-
-	view = g_object_new (YELP_TYPE_VIEW_TOC, NULL);
-
-	priv = view->priv;
-
-	priv->doc_tree = doc_tree;
-
-	return view;
-}
 
 static void 
 toc_scrollkeeper (YelpViewTOC *view, GNode *root)
@@ -861,16 +825,18 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 	yelp_html_close (priv->html_view);
 }
 
-void
-yelp_view_toc_open_uri (YelpViewTOC *view, YelpURI *uri)
+static void
+toc_show_uri (YelpView *view, YelpURI *uri, GError **error)
 {
 	YelpViewTOCPriv *priv;
 	GNode           *node;
 	const gchar     *path;
 	
+	g_return_if_fail (YELP_IS_VIEW_TOC (view));
+
 	g_assert (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC);
 
-	priv = view->priv;
+	priv = YELP_VIEW_TOC(view)->priv;
 
 	yelp_html_set_base_uri (priv->html_view, uri);
 
@@ -879,27 +845,27 @@ yelp_view_toc_open_uri (YelpViewTOC *view, YelpURI *uri)
 	d(g_print ("PATH:[%s]\n", path));
 	
 	if (!strcmp (path, "")) {
-		toc_start (view);
+		toc_start (YELP_VIEW_TOC (view));
 	} 
 	else if (strncmp (path, "man", 3) == 0) {
 		path += 3;
 		if (path[0] == 0) {
- 			toc_man_1 (view);
+ 			toc_man_1 (YELP_VIEW_TOC (view));
 		} else if (path[0] == '/') {
 			/* Calculate where it should go */
 			path++;
 
 			node = yelp_util_string_path_to_node  (path,
-							       view->priv->doc_tree);
+							       priv->doc_tree);
 			if (node) {
-				toc_man_2 (view, node);
+				toc_man_2 (YELP_VIEW_TOC (view), node);
 			} else {
 				g_warning ("Bad path in toc url %s\n", 
 					   yelp_uri_to_string (uri));
 			}
 		}
 	} else if (strcmp (path, "info") == 0) {
-		toc_info (view);
+		toc_info (YELP_VIEW_TOC (view));
 	} else if (strncmp (path, "scrollkeeper", strlen ("scrollkeeper")) == 0) {
 		path = path + strlen ("scrollkeeper");
 		if (path[0] == '/') {
@@ -907,9 +873,9 @@ yelp_view_toc_open_uri (YelpViewTOC *view, YelpURI *uri)
 			path++;
 			
 			node = yelp_util_string_path_to_node  (path,
-							       view->priv->doc_tree);
+							       priv->doc_tree);
 			if (node) {
-				toc_scrollkeeper (view, node);
+				toc_scrollkeeper (YELP_VIEW_TOC (view), node);
 			} else {
 				g_warning ("Bad path in toc url %s\n", 
 					   yelp_uri_to_string (uri));
@@ -921,10 +887,17 @@ yelp_view_toc_open_uri (YelpViewTOC *view, YelpURI *uri)
 	}
 }
 
-GtkWidget *
-yelp_view_toc_get_widget (YelpViewTOC  *view)
+YelpView *
+yelp_view_toc_new (GNode *doc_tree)
 {
-	g_return_val_if_fail (YELP_IS_VIEW_TOC (view), NULL);
-	
-	return view->priv->html_widget;
+	YelpViewTOC     *view;
+	YelpViewTOCPriv *priv;
+
+	view = g_object_new (YELP_TYPE_VIEW_TOC, NULL);
+
+	priv = view->priv;
+
+	priv->doc_tree = doc_tree;
+
+	return YELP_VIEW (view);
 }
