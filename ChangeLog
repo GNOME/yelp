@@ -1,3 +1,21 @@
+2003-12-24  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	- Add yelp-theme to test_pager_SOURCES
+
+	* src/yelp-db-pager.c:
+	* src/yelp-theme.c:
+	* src/yelp-theme.h:
+	- Theme the gray color of screen, programlisting, etc.
+
+	* src/yelp-window.c:
+	- Change keybindings up, for fun.
+
+	* stylesheets/Makefile.am:
+	* stylesheets/db2html-formal.xsl:
+	* stylesheets/db2html-lists.xsl:
+	- Removing db2html-formal and db2html-lists
+
 2003-12-22  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-toc-pager.c:

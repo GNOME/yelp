@@ -44,12 +44,12 @@
 
 <xsl:template name="format.header.prefix.named">
 	<xsl:param name="header"/>
-	<xsl:value-of select="concat($header, '&#x2003;')"/>
+	<xsl:value-of select="concat($header, '&#160;&#160;')"/>
 </xsl:template>
 
 <xsl:template name="format.header.prefix.unnamed">
 	<xsl:param name="header"/>
-	<xsl:value-of select="concat($header, '&#x2003;')"/>
+	<xsl:value-of select="concat($header, '&#160;&#160;')"/>
 </xsl:template>
 
 <xsl:template name="format.header">

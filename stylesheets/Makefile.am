@@ -10,14 +10,12 @@ yelpcustomization_DATA = 	\
 	db2html-division.xsl	\
 	db2html-ebnf.xsl	\
 	db2html-footnote.xsl	\
-	db2html-formal.xsl	\
 	db2html-glossary.xsl	\
 	db2html-header.xsl	\
 	db2html-html.xsl	\
 	db2html-index.xsl	\
 	db2html-inline.xsl	\
 	db2html-list.xsl	\
-	db2html-lists.xsl	\
 	db2html-math.xsl	\
 	db2html-media.xsl	\
 	db2html-navbar.xsl	\

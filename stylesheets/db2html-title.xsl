@@ -20,28 +20,10 @@
 <xsl:template match="constraintdef/title">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
-<xsl:template match="glossdiv/title">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-<xsl:template match="indexdiv/title">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-<xsl:template match="msg/title">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
 <xsl:template match="msgexplan/title">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 <xsl:template match="msgmain/title">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-<xsl:template match="msgrel/title">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-<xsl:template match="msgset/title">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-<xsl:template match="msgsub/title">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 <xsl:template match="productionset/title">
@@ -64,12 +46,6 @@
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 <xsl:template match="biblioset/subtitle">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-<xsl:template match="glossidv/subtitle">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-<xsl:template match="indexdiv/subtitle">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 <xsl:template match="refsynopsisdiv/subtitle">
@@ -96,7 +72,8 @@
 <!-- == title.header ======================================================= -->
 
 <xsl:template name="title.header" match="
-		equation/title | example/title | figure/title | table/title ">
+		equation/title | example/title | figure/title | msg/title   |
+		msgrel/title   | msgset/title  | msgsub/title | table/title ">
 	<div class="{name(.)}">
 		<i>
 			<xsl:call-template name="header.prefix"/>
@@ -110,13 +87,14 @@
 <xsl:template name="title.h" match="
 		appendix/title			| article/title		| bibliodiv/title		|
 		bibliography/title	| book/title			| chapter/title		|
-		colophon/title			| glossary/title		| index/title			|
-		part/title				| partintro/title		| preface/title		|
-		reference/title		| refsect1/title		| refsect2/title		|
-		refsect3/title			| refsection/title	| sect1/title			|
-		sect2/title				| sect3/title			| sect4/title			|
-		sect5/title				| section/title		| set/title				|
-		setindex/title			| simplesect/title	">
+		colophon/title			| glossary/title		| glossdiv/title		|
+		index/title				| indexdiv/title		| part/title			|
+		partintro/title		| preface/title		| reference/title		|
+		refsect1/title			| refsect2/title		| refsect3/title		|
+		refsection/title		| sect1/title			| sect2/title			|
+		sect3/title				| sect4/title			| sect5/title			|
+		section/title			| set/title				| setindex/title		|
+		simplesect/title		">
 	<xsl:param name="depth_in_chunk">
 		<xsl:call-template name="depth.in.chunk"/>
 	</xsl:param>
@@ -145,13 +123,14 @@
 <xsl:template name="subtitle.h" match="
 		appendix/subtitle			| article/subtitle		| bibliodiv/subtitle		|
 		bibliography/subtitle	| book/subtitle			| chapter/subtitle		|
-		colophon/subtitle			| glossary/subtitle		| index/subtitle			|
-		part/subtitle				| partintro/subtitle		| preface/subtitle		|
-		reference/subtitle		| refsect1/subtitle		| refsect2/subtitle		|
-		refsect3/subtitle			| refsection/subtitle	| sect1/subtitle			|
-		sect2/subtitle				| sect3/subtitle			| sect4/subtitle			|
-		sect5/subtitle				| section/subtitle		| set/subtitle				|
-		setindex/subtitle			| simplesect/subtitle	">
+		colophon/subtitle			| glossary/subtitle		| glossdiv/subtitle		|
+		index/subtitle				| indexdiv/subtitle		| part/subtitle			|
+		partintro/subtitle		| preface/subtitle		| reference/subtitle		|
+		refsect1/subtitle			| refsect2/subtitle		| refsect3/subtitle		|
+		refsection/subtitle		| sect1/subtitle			| sect2/subtitle			|
+		sect3/subtitle				| sect4/subtitle			| sect5/subtitle			|
+		section/subtitle			| set/subtitle				| setindex/subtitle		|
+		simplesect/subtitle		">
 	<xsl:param name="depth_in_chunk">
 		<xsl:call-template name="depth.in.chunk"/>
 	</xsl:param>

@@ -38,6 +38,7 @@
 #include "yelp-error.h"
 #include "yelp-db-pager.h"
 #include "yelp-toc-pager.h"
+#include "yelp-theme.h"
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
@@ -211,7 +212,7 @@ db_pager_process (YelpPager *pager)
     gchar        *uri_slash;
     gchar        *doc_name;
     gchar        *doc_path;
-    const gchar  *params[15];
+    const gchar  *params[19];
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
@@ -282,7 +283,11 @@ db_pager_process (YelpPager *pager)
     params[11] = "0";
     params[12] = "mediaobject_path";
     params[13] = doc_path;
-    params[14] = NULL;
+    params[14] = "color_gray_background";
+    params[15] = yelp_theme_get_gray_background ();
+    params[16] = "color_gray_border";
+    params[17] = yelp_theme_get_gray_border ();
+    params[18] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     tctxt      = xsltNewTransformContext (stylesheet,

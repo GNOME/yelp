@@ -88,9 +88,11 @@
 				<xsl:with-param name="next" select="$next"/>
 			</xsl:call-template>
 
-			<xsl:apply-templates select="$node">
-				<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
-			</xsl:apply-templates>
+			<div class="body">
+				<xsl:apply-templates select="$node">
+					<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+				</xsl:apply-templates>
+			</div>
 
 			<xsl:call-template name="html.navbar.bottom">
 				<xsl:with-param name="node" select="$node"/>
@@ -106,109 +108,63 @@
 </xsl:template>
 
 <xsl:template name="html.css"><xsl:text>
-<!--
-body {
-	margin-right: 1em;
-}
+h1 { font-size: 1.6em; font-weight: bold; }
+h2 { font-size: 1.4em; font-weight: bold; }
+h3 { font-size: 1.2em; font-weight: bold; }
 
-h1 {
-	font-size: 1.6em;
-	font-weight: bold;
-	margin-bottom: 0em;
-	padding-bottom: 0em;
-}
-h1 + * {
-	margin-top: 0.2em;
-	padding-top: 0em;
-}
-h2 {
-	font-size: 1.4em;
-	font-weight: bold;
-	margin-top: 1.2em;
-	margin-bottom: 0em;
-	padding-bottom: 0em;
-}
-h2 + * {
-	margin-top: 0.2em;
-	padding-top: 0em;
-}
-h3 {
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-bottom: 0em;
-	padding-bottom: 0em;
-}
-h3 + * {
-	margin-top: 0.2em;
-	padding-top: 0em;
-}
-h4 {
-	margin-bottom: 0em;
-	padding-bottom: 0em;
-}
-h4 + * {
-	margin-top: 0.2em;
-	padding-top: 0em;
-}
+div[class="title"] + * { margin-top: 0.8em; }
+div[class="body"] { margin-bottom: 1.6em; }
 
-div[class="heading"] {
-	margin-bottom: 0.5em;
-}
+p, div { margin: 0em; }
+p + p, p + div, div + p, div + div { margin-top: 0.8em; }
 
-div[class="admonition"] {
-	border-top: outset 1px;
-	border-bottom: outset 1px;
-	margin-left: 2em;
-	margin-right: 2em;
-	margin-bottom: 1em;
-}
+dl { margin: 0em; }
+ol { margin: 0em; }
+ul { margin: 0em; }
+ul li { padding-left: 0.4em; }
 
-div[class="informalexample"] {
-	margin-left: 2em;
-	margin-right: 1em;
-	margin-bottom: 1em;
-}
-div[class="informalfigure"] {
-	margin-left: 2em;
-	margin-right: 1em;
-	margin-bottom: 1em;
-}
-div[class="informaltable"] {
-	margin-left: 2em;
-	margin-right: 1em;
-	margin-bottom: 1em;
-}
-div[class="example"] {
-	margin-left: 2em;
-	margin-right: 1em;
-	margin-bottom: 1em;
-}
-div[class="figure"] {
-	margin-left: 2em;
-	margin-right: 1em;
-	margin-bottom: 1em;
-}
-div[class="table"] {
-	margin-left: 2em;
-	margin-right: 1em;
-	margin-bottom: 1em;
+dd + dt { margin-top: 0.8em; }
+
+div[class="example"],
+div[class="figure"],
+div[class="informalexample"],
+div[class="informalfigure"],
+div[class="informaltable"],
+div[class="msgset"],
+div[class="table"],
+div[class="variablelist"] {
+	margin-left: 1.6em;
+	margin-right: 1.6em;
+	margin-bottom: 0.8em;
 }
 
 div[class="sidebar"] {
 	border: outset 1px;
-	margin-left: 2em;
-	margin-right: 2em;
+	margin-left: 1.6em;
+	margin-right: 1.6em;
 }
 
-ul {
-	list-style-image: url("li.png")
+div[class="admonition"] {
+	margin: 1.6em;
+	padding: 1.6em;
+	background-color: #CCCCCC;
+	border: solid 2px #C0C0C0;
+}
+
+div[class="programlisting"],
+div[class="screen"] {
+	margin: 1.6em;
+	padding: 1.6em;
+	background-color: </xsl:text>
+<xsl:value-of select="$color_gray_background"/><xsl:text>;
+	border: solid 1px </xsl:text>
+<xsl:value-of select="$color_gray_border"/><xsl:text>;
 }
 
 <!--
 table {
 	border: outset 1px;
 }
--->
 thead th {
 	border-bottom: solid 1px;
 }

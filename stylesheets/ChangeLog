@@ -1,3 +1,29 @@
+2003-12-24  Shaun McCance  <shaunm@gnome.org>
+
+	* Makefile.am:
+	* db2html-formal.xsl:
+	* db2html-lists.xsl:
+	- Removing db2html-formal and db2html-lists
+
+	* db2html-block.xsl:
+	- Better implementation of msg stuff.
+
+	* db2html-html.xsl:
+	* db2html-param.xsl:
+	- Theme the gray color of screen, programlisting, etc.
+	- Various stylistic improvements in the CSS.
+
+	* db2html-inline.xsl:
+	* db2html-titlepage.xsl:
+	* gettext.xsl:
+	- Get rid of em-dashes.  ~sigh~
+
+	* db2html-title.xsl:
+	- Implemented some more titles and subtitles.
+
+	* db2html-titlepage.xsl:
+	- Deboldify Affiliation.  The pages are too bold.
+
 2003-12-22  Shaun McCance  <shaunm@gnome.org>
 
 	* Makefile.am:

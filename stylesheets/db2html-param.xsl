@@ -21,6 +21,9 @@
 
 <xsl:param name="classsynopsis_default_langauge" select="'idl'"/>
 
+<xsl:param name="color_gray_background" select="'#E6E6E6'"/>
+<xsl:param name="color_gray_border" select="'#A1A1A1'"/>
+
 <xsl:param name="doc_name" select="''"/>
 <xsl:param name="doc_path" select="''"/>
 

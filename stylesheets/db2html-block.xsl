@@ -30,16 +30,33 @@
 
 <xsl:template name="block.pre" match="
 		literallayout | programlisting | screen | synopsis">
-	<pre class="{name(.)}">
+	<div class="{name(.)}"><pre>
 		<xsl:call-template name="anchor"/>
 		<xsl:apply-templates/>
-	</pre>
+	</pre></div>
 </xsl:template>
 
-<xsl:template name="block.header" match="msgaud | msglevel | msgorig">
+<xsl:template name="block.msg" match="msgaud | msglevel | msgorig">
 	<div class="{name(.)}">
 		<xsl:call-template name="anchor"/>
-		<xsl:call-template name="node.heading"/>
+		<b>
+			<xsl:call-template name="gettext">
+				<xsl:with-param name="key">
+					<xsl:choose>
+						<xsl:when test="name(.) = 'msgaud'">
+							<xsl:value-of select="'Audience'"/>
+						</xsl:when>
+						<xsl:when test="name(.) = 'msglevel'">
+							<xsl:value-of select="'Level'"/>
+						</xsl:when>
+						<xsl:when test="name(.) = 'msgorig'">
+							<xsl:value-of select="'Origin'"/>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:text>: </xsl:text>
+		</b>
 		<xsl:apply-templates/>
 	</div>
 </xsl:template>

@@ -347,7 +347,7 @@
 	<span class="{name(.)}">
 		<xsl:for-each select="*[name(.) != 'shortcut']">
 			<xsl:if test="position() &gt; 1">
-				<xsl:text>&#x2009;&#x2192;&#x2009;</xsl:text>
+				<xsl:text>&#160;&#x2192;&#160;</xsl:text>
 			</xsl:if>
 			<xsl:apply-templates select="."/>
 		</xsl:for-each>

@@ -146,12 +146,12 @@
 	<dt><xsl:call-template name="person.name"/></dt>
 	<xsl:for-each select="affiliation/orgname">
 		<dd>
-			<strong>
+			<i>
 				<xsl:call-template name="gettext">
 					<xsl:with-param name="key" select="'Affiliation'"/>
 				</xsl:call-template>
 				<xsl:text>: </xsl:text>
-			</strong>
+			</i>
 			<xsl:apply-templates select="." mode="titlepage.mode"/>
 		</dd>
 	</xsl:for-each>
@@ -212,7 +212,7 @@
 			</xsl:if>
 			<xsl:apply-templates select="." mode="titlepage.mode"/>
 		</xsl:for-each>
-		<xsl:text>&#x2003;</xsl:text>
+		<xsl:text>&#160;&#160;</xsl:text>
 		<xsl:for-each select="holder">
 			<xsl:if test="position() &gt; 1">
 				<xsl:text>, </xsl:text>

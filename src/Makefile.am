@@ -31,6 +31,7 @@ test_pager_SOURCES =							\
 	yelp-pager.c		yelp-pager.h				\
 	yelp-db-pager.c		yelp-db-pager.h				\
 	yelp-toc-pager.c	yelp-toc-pager.h			\
+	yelp-theme.c		yelp-theme.h				\
 	yelp-uri.c		yelp-uri.h				\
 	yelp-marshal-main.c	test-pager.c
 
