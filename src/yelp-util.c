@@ -22,30 +22,8 @@
 
 #include "yelp-util.h"
 
-#include <libgnomevfs/gnome-vfs-utils.h>
+#include <libgnomevfs/gnome-vfs.h>
 #include <string.h>
-
-GtkTreeIter *
-yelp_util_contents_add_section (GtkTreeStore *store,
-                                GtkTreeIter  *parent,
-                                YelpSection  *section)
-{
-	GtkTreeIter *iter;
-	
-	g_return_val_if_fail (GTK_IS_TREE_STORE (store), NULL);
-	g_return_val_if_fail (section != NULL, NULL);
-
-	iter = g_new0 (GtkTreeIter, 1);
-	
-	gtk_tree_store_append (store, iter, parent);
-	
-	gtk_tree_store_set (store, iter,
-			    0, section->name,
-			    1, section,
-			    2, TRUE,
-			    -1);
-	return iter;
-}
 
 /* This code comes from gnome vfs: */
 
@@ -173,7 +151,10 @@ yelp_util_resolve_relative_uri (const char *base_uri,
 	 * functionality differs from what Mozilla itself would do.
 	 */
 
-	if (is_uri_relative (uri)) {
+	if (uri[0] == '?') {
+		result = g_strconcat (base_uri, uri, NULL);
+	}
+	else if (is_uri_relative (uri)) {
 		char *mutable_base_uri;
 		char *mutable_uri;
 
@@ -383,14 +364,14 @@ yelp_util_string_path_to_node (const char *string_path,
 
 
 GNode *
-yelp_util_decompose_path_url (GNode      *root,
-			      const char *path_url,
-			      char      **embedded_url)
+yelp_util_decompose_path_url (GNode       *root,
+			      const char  *path_url,
+			      gchar      **embedded_url)
 {
-	const char *first_part;
-	const char *second_part;
-	char *path;
-	GNode *res;
+	const gchar *first_part;
+	const gchar *second_part;
+	gchar       *path;
+	GNode       *res;
 
 	*embedded_url = NULL;
 	
@@ -400,6 +381,7 @@ yelp_util_decompose_path_url (GNode      *root,
 
 	first_part = path_url + 5;
 	second_part = strchr(first_part, ';');
+
 	if (second_part) {
 		path = g_strndup (first_part, second_part - first_part);
 		second_part += 1;
@@ -454,9 +436,98 @@ yelp_util_find_toplevel (GNode *doc_tree,
 	return NULL;
 }
 
+static GNode *found_node;
+
+static gboolean
+tree_find_node (GNode *node, const gchar *uri)
+{
+	YelpSection *section;
+	
+	section = (YelpSection *) node->data;
+
+	if (!section || !section->uri) {
+		return FALSE;
+	}
+	
+	if (!g_ascii_strcasecmp (uri, section->uri)) {
+		g_print (">>>>>>>>>>>>>>>>  FOUND A MATCH: %s == %s\n",
+			 uri, section->uri);
+		
+		found_node = node;
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
 GNode *
 yelp_util_find_node_from_uri (GNode *doc_tree, const gchar *uri)
 {
-	return NULL;
+	found_node = NULL;
+	
+	g_node_traverse (doc_tree, G_IN_ORDER,
+			 G_TRAVERSE_ALL,
+			 -1,
+			 (GNodeTraverseFunc) tree_find_node,
+			 (gchar *) uri);
+	    
+	return found_node;
+}
+
+gchar *
+yelp_util_extract_docpath_from_uri (const gchar *str_uri)
+{
+	GnomeVFSURI *uri;
+	gchar       *transformed_uri;
+	gchar       *docpath = NULL;
+	gchar       *extension;
+
+	if (strncmp (str_uri, "ghelp:", 6)) {
+		/* This function is only valid for ghelp-uri's */
+		g_warning ("URI not of ghelp: form");
+		return NULL;
+	}
+
+	docpath = str_uri + 6;
+	
+	if ((extension = strstr (str_uri, ".xml"))) {
+		/* This means we have a ghelp-uri with full path */
+		docpath = g_strndup (docpath, extension + 4 - docpath);
+	} else {
+		/* URI not a fullpath URI, let the GnomeVFS help module 
+		   calculate the full URI */
+		uri = gnome_vfs_uri_new (str_uri);
+		
+		if (uri) {
+			transformed_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+
+			if (!strncmp (transformed_uri, "file://", 7)) {
+				docpath = g_strdup (transformed_uri + 7);
+			}
+			else if (!strncmp (transformed_uri, "pipe:", 5)) {
+				gchar *start, *end;
+				gchar *escaped_string;
+			
+				/* pipe:gnome2-db2html%20'%2Fusr%2Fshare%2Fgnome%2Fhelp%2Fgaleon-manual%2FC%2Fgaleon-manual.sgml'%3Bmime-type%3Dtext%2Fhtml */
+
+				start = strchr (transformed_uri, '\'') + 1;
+				end   = strrchr (transformed_uri, '\'');
+
+				escaped_string = g_strndup (start, 
+							    end - start);
+				
+				docpath = gnome_vfs_unescape_string (escaped_string,
+								     NULL);
+			}
+		}
+	}
+
+	if (docpath) {
+		g_print ("||||| docpath: %s\n", docpath);
+	} else {
+		g_print ("----- transformed_uri: %s\n", transformed_uri);
+	}
+
+	return docpath;
 }
 

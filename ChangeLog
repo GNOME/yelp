@@ -1,3 +1,39 @@
+2002-01-30  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c:
+	(yw_url_selected_cb): 
+	- if both base_url and url is set call resolve_relative_url to get
+	  the absolute url. 
+	- if only one of them is set, use that one.
+
+	* src/yelp-view-content.c: 
+	- moved the scrolled window for the tree into the priv-class.
+	(yvc_tree_selection_changed_cb): emit url-selected signal.
+	(yelp_view_content_show_path): removed, unused.
+	(yelp_view_content_show_uri): 
+	- hide the tree if: man, info or xml/sgml document without TOC.
+	- don't reload the tree if it's the same document that's going to
+	  be showed again.
+	- Retrieve the ScrollKeeper tree based on fullpath uri to file,
+	  relative link stripped.
+
+	* src/yelp-util.c: 
+	(yelp_util_contents_add_section): removed, unused.
+	(yelp_util_resolve_relative_uri): if uri starts with ? just concat
+	  the base_uri with the relative link.
+	(tree_find_node): Search a tree to find a node that matches an
+	  uri.
+	(yelp_util_find_node_from_uri): traverse the tree to find the node
+	  for a certain URI.
+	(yelp_util_extract_docpath_from_uri): added, helper function that
+	  takes a URI and calculates an absolute path to the document
+	  (without anchors). This is used to find the TOC tree for that
+	  document. This function needs some tweaking.
+
+	* src/yelp-scrollkeeper.[ch] 
+	(yelp_scrollkeeper_get_toc_tree): renamed from
+	  ..._get_toc_tree_model.
+
 2002-01-29  Seth Nickell  <snickell@stanford.edu>
 
 	* yelp.desktop.in:

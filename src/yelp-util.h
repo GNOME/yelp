@@ -23,30 +23,27 @@
 #ifndef __YELP_UTIL_H__
 #define __YELP_UTIL_H__
 
-#include <gtk/gtktreestore.h>
-#include <gtk/gtktreemodel.h>
 #include "yelp-section.h"
 
-GtkTreeIter *yelp_util_contents_add_section (GtkTreeStore  *store,
-					     GtkTreeIter   *parent,
-					     YelpSection   *section);
-gchar *      yelp_util_resolve_relative_uri (const gchar   *base_uri,
+gchar *  yelp_util_resolve_relative_uri     (const gchar   *base_uri,
 					     const gchar   *uri);
 
-gchar *      yelp_util_node_to_string_path  (GNode         *node);
-GNode *      yelp_util_string_path_to_node  (const gchar   *string_path,
+gchar *  yelp_util_node_to_string_path      (GNode         *node);
+GNode *  yelp_util_string_path_to_node      (const gchar   *string_path,
 					     GNode         *root);
 
-GNode *      yelp_util_decompose_path_url   (GNode         *root,
+GNode *  yelp_util_decompose_path_url       (GNode         *root,
 					     const gchar   *path_url,
 					     char         **embedded_url);
-gchar *      yelp_util_compose_path_url     (GNode         *node,
+gchar *  yelp_util_compose_path_url         (GNode         *node,
 					     const gchar   *embedded_url);
 
-GNode *      yelp_util_find_toplevel        (GNode         *doc_tree,
+GNode *  yelp_util_find_toplevel            (GNode         *doc_tree,
 					     gchar         *name);
 
-GNode *      yelp_util_find_node_from_uri   (GNode         *doc_tree,
+GNode *  yelp_util_find_node_from_uri       (GNode         *doc_tree,
 					     const gchar   *uri);
+
+gchar *  yelp_util_extract_docpath_from_uri (const gchar   *uri);
 
 #endif /* __YELP_UTIL_H__ */

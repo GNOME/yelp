@@ -242,10 +242,6 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node)
 		g_hash_table_insert (seriesid_hash, docseriesid, node);
 	}
 	
-#if 0
-	ys_parse_toc (NULL, NULL, docsource);
-#endif
-
 /* 	index_location = ys_get_xml_docpath ("scrollkeeper-get-index-from-docpath", */
 /* 					     docsource); */
 	
@@ -417,7 +413,7 @@ yelp_scrollkeeper_lookup_seriesid (const gchar *seriesid)
 }
 
 GNode *
-yelp_scrollkeeper_get_toc_tree_model (const gchar *docpath)
+yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 {
 	gchar   *toc_file;
 	xmlDoc  *doc = NULL;
@@ -426,8 +422,6 @@ yelp_scrollkeeper_get_toc_tree_model (const gchar *docpath)
 	gchar   *full_path;
         
         g_return_val_if_fail (docpath != NULL, NULL);
-
-        g_print ("Trying to get tree for: %s\n", docpath);
 
         tree = g_node_new (NULL);
 
@@ -440,7 +434,7 @@ yelp_scrollkeeper_get_toc_tree_model (const gchar *docpath)
 	}
 
 	if (!doc) {
-/* 		g_warning ("Tried to parse a non-valid TOC file"); */
+		/* g_warning ("Tried to parse a non-valid TOC file"); */
 		return NULL;
 	}
 	

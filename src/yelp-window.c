@@ -277,7 +277,7 @@ yw_url_selected_cb (gpointer    view,
 		    YelpWindow *window)
 {
 	YelpWindowPriv *priv;
-	gchar *abs_url;
+	gchar          *abs_url = NULL;
 
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
@@ -285,18 +285,25 @@ yw_url_selected_cb (gpointer    view,
 
 	priv = window->priv;
 	
-	if (base_url) {
+	if (url && base_url) {
 		abs_url = yelp_util_resolve_relative_uri (base_url, url);
 		g_print ("Link '%s' pressed relative to: %s -> %s\n", 
 			 url,
 			 base_url,
 			 abs_url);
         } else {
-		abs_url = g_strdup (url);
+		if (url) {
+			abs_url = g_strdup (url);
+		}
+		else if (base_url) {
+			abs_url = g_strdup (base_url);
+		}
         }
 
-	if (!handled) {
-		if (yw_handle_url (window, url)) {
+	if (handled) {
+		yelp_history_goto (priv->history, abs_url);
+	} else {
+		if (yw_handle_url (window, abs_url)) {
 			yelp_history_goto (priv->history, abs_url);
 		}
 	}
@@ -398,7 +405,7 @@ yw_about_cb (gpointer data, guint section, GtkWidget *widget)
 	};
 	
 	about = gnome_about_new (PACKAGE, VERSION,
-				 "(C) 2001 Mikael Hallendal <micke@codefactory.se>",
+				 "(C) 2001-2002 Mikael Hallendal <micke@codefactory.se>",
 				 _("Help Browser for GNOME 2.0"),
 				 authors,
 				 NULL,

@@ -29,6 +29,6 @@
 gboolean       yelp_scrollkeeper_init               (GNode          *tree);
 GNode *        yelp_scrollkeeper_lookup_seriesid    (const gchar    *seriesid);
 
-GNode *        yelp_scrollkeeper_get_toc_tree_model (const gchar    *docpath);
+GNode *        yelp_scrollkeeper_get_toc_tree       (const gchar    *docpath);
 
 #endif /* __YELP_SCROLLKEEPER_H__ */
