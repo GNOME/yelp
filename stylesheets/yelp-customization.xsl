@@ -125,6 +125,26 @@
    <xsl:value-of select="$object/@id"/>
 </xsl:template>
 
+<!-- make a small custom css stylesheet reside in <head>...</head> -->
+
+<xsl:template name="user.head.content">
+   <style>
+     <xsl:text>
+       BODY {font-size: 10pt}
+       LI {margin-left: 3em}
+       LI {margin-bottom: 0}
+       LI P {margin-bottom: 0}
+       OL {margin-top: 0}
+       OL {margin-bottom: 0}
+       UL {margin-top: 0}
+       UL {margin-bottom: 0}
+       DD {margin-left: 2em}
+       DL {margin-top: 0}
+       DL {margin-bottom: 0}
+     </xsl:text>
+   </style>
+</xsl:template>
+
 <xsl:template name="next.link.cell">
 <xsl:param name="object" select="."/>
    <td align="right"><a accesskey="n">
