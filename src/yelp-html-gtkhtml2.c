@@ -90,8 +90,7 @@ yelp_html_get_type (void)
 {
         static GType view_type = 0;
 
-        if (!view_type)
-        {
+        if (!view_type) {
                 static const GTypeInfo view_info =
                         {
                                 sizeof (YelpHtmlClass),
