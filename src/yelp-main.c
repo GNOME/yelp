@@ -265,13 +265,17 @@ main (int argc, char **argv)
 	gchar        *url = NULL;
 	GnomeClient  *client;
 	gboolean      flag = FALSE;
+	gboolean      gman = FALSE;
 	
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 	g_thread_init (NULL);
-	
-	if (argc >= 2) {
+
+	if (strcmp (argv[0], "gman") == 0) {
+		url = g_strdup ("toc:man");
+	}
+	else if (argc >= 2) {
 		url = g_strdup (argv[1]);
 	} else {
 		url = g_strdup ("");

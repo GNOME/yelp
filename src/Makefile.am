@@ -49,6 +49,7 @@ test_reader_LDADD = 							\
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
 	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
+	ln -sf yelp $(DESTDIR)$(bindir)/gman
 
 yelp-marshal.h: yelp-marshal.list
 	cd $(srcdir) && \
@@ -106,7 +107,6 @@ yelp_LDADD =								\
 gnome_yelp_idl_sources =						\
 	GNOME_Yelp-stubs.c						\
 	GNOME_Yelp-skels.c						\
-	GNOME_Yelp.in							\
 	GNOME_Yelp-common.c						\
 	GNOME_Yelp.h
 

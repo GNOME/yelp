@@ -1,14 +1,12 @@
 AC_INIT(src/yelp-main.c)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(yelp, 1.0.6)
+AM_INIT_AUTOMAKE(yelp, 2.1.0)
 
 AC_PROG_INTLTOOL
 
 AC_ARG_WITH(html-widget, [  --with-html-widget=[gtkhtml1/gtkhtml2] html widget to use])
 
 AM_MAINTAINER_MODE
-GNOME_COMMON_INIT
-GNOME_COMPILE_WARNINGS(error)
 
 AC_PROG_CC
 AC_ISC_POSIX
