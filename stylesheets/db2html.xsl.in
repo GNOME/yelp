@@ -1,18 +1,43 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns="http://www.w3.org/1999/xhtml"
                 extension-element-prefixes="yelp"
                 version="1.0">
 
 <xsl:import href="@DB2HTML@"/>
 
-<xsl:param name="yelp.image.blockquote"/>
-<xsl:param name="yelp.image.caution"/>
-<xsl:param name="yelp.image.important"/>
-<xsl:param name="yelp.image.note"/>
-<xsl:param name="yelp.image.programlisting"/>
-<xsl:param name="yelp.image.tip"/>
-<xsl:param name="yelp.image.warning"/>
+<xsl:param name="yelp.icon.blockquote"/>
+<xsl:param name="yelp.icon.caution"/>
+<xsl:param name="yelp.icon.important"/>
+<xsl:param name="yelp.icon.note"/>
+<xsl:param name="yelp.icon.programlisting"/>
+<xsl:param name="yelp.icon.tip"/>
+<xsl:param name="yelp.icon.warning"/>
+
+<xsl:param name="yelp.color.text"/>
+<xsl:param name="yelp.color.anchor"/>
+<xsl:param name="yelp.color.background"/>
+<xsl:param name="yelp.color.base0"/>
+<xsl:param name="yelp.color.base1"/>
+<xsl:param name="yelp.color.base2"/>
+<xsl:param name="yelp.color.base3"/>
+<xsl:param name="yelp.color.selected0"/>
+<xsl:param name="yelp.color.selected1"/>
+<xsl:param name="yelp.color.selected2"/>
+<xsl:param name="yelp.color.selected3"/>
+
+<xsl:param name="db2html.admon.border_color"
+           select="$yelp.color.selected0"/>
+
+<xsl:param name="db2html.programlisting.background_color"
+           select="$yelp.color.base0"/>
+<xsl:param name="db2html.programlisting.border_color"
+           select="$yelp.color.base1"/>
+<xsl:param name="db2html.screen.background_color"
+           select="$yelp.color.base0"/>
+<xsl:param name="db2html.screen.border_color"
+           select="$yelp.color.base1"/>
 
 <xsl:param name="db.chunk.chunk_top" select="true()"/>
 <xsl:param name="db.chunk.extension" select="''"/>
@@ -58,6 +83,12 @@
       <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     </xsl:call-template>
   </yelp:document>
+  <xsl:if test="string($template) = ''">
+    <xsl:call-template name="db.chunk.children">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <!-- == db.xref.target == -->
@@ -66,101 +97,62 @@
   <xsl:value-of select="concat('#', $linkend)"/>
 </xsl:template>
 
-<!-- == db2html.admon.image == -->
-<xsl:template name="db2html.admon.image">
-  <xsl:param name="node" select="."/>
-  <img style="float:left;">
-    <xsl:attribute name="src">
-      <xsl:choose>
-        <xsl:when test="$node/self::caution">
-          <xsl:value-of select="$yelp.image.caution"/>
-        </xsl:when>
-        <xsl:when test="$node/self::important">
-          <xsl:value-of select="$yelp.image.important"/>
-        </xsl:when>
-        <xsl:when test="$node/self::note">
-          <xsl:value-of select="$yelp.image.note"/>
-        </xsl:when>
-        <xsl:when test="$node/self::tip">
-          <xsl:value-of select="$yelp.image.tip"/>
-        </xsl:when>
-        <xsl:when test="$node/self::warning">
-          <xsl:value-of select="$yelp.image.warning"/>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:attribute>
-  </img>
-</xsl:template>
-
 <!-- == db2html.css.custom == -->
 <xsl:template name="db2html.css.custom">
   <xsl:text>
-    div[class="programlisting"] {
+    h1 + div h2[class~="title"] { margin-top: 2em; }
+    h1 { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    h2 { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    h3 { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    h4 { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    h5 { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    h6 { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    h7 { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    h3 span[class~="title"] { border-bottom: none; }
+    h4 span[class~="title"] { border-bottom: none; }
+    h5 span[class~="title"] { border-bottom: none; }
+    h6 span[class~="title"] { border-bottom: none; }
+    h7 span[class~="title"] { border-bottom: none; }
+    div[class~="admonition"] { color: </xsl:text>
+    <xsl:value-of select="$yelp.color.base3"/><xsl:text>; }
+    div[class~="programlisting"] {
       background-image: url(</xsl:text>
-      <xsl:value-of select="$yelp.image.programlisting"/><xsl:text>);
+      <xsl:value-of select="$yelp.icon.programlisting"/><xsl:text>);
       background-repeat: no-repeat;
     }
-   div[class="blockquote"] {
-      background-image: url(</xsl:text>
-      <xsl:value-of select="$yelp.image.blockquote"/><xsl:text>);
+   div[class~="blockquote"] {
+      background-image: url("</xsl:text>
+      <xsl:value-of select="$yelp.icon.blockquote"/><xsl:text>");
       background-repeat: no-repeat;
+    }
+    div[class~="caution"] {
+      background-image: url("</xsl:text>
+      <xsl:value-of select="$yelp.icon.caution"/><xsl:text>");
+    }
+    div[class~="important"] {
+      background-image: url("</xsl:text>
+      <xsl:value-of select="$yelp.icon.important"/><xsl:text>");
+    }
+    div[class~="note"] {
+      background-image: url("</xsl:text>
+      <xsl:value-of select="$yelp.icon.note"/><xsl:text>");
+    }
+    div[class~="tip"] {
+      background-image: url("</xsl:text>
+      <xsl:value-of select="$yelp.icon.tip"/><xsl:text>");
+    }
+    div[class~="warning"] {
+      background-image: url("</xsl:text>
+      <xsl:value-of select="$yelp.icon.warning"/><xsl:text>");
     }
   </xsl:text>
 </xsl:template>
-
-<!--
-<xsl:variable name="newline"><xsl:text>
-</xsl:text></xsl:variable>
-
-<xsl:include href="db2html-param.xsl"/>
-
-<xsl:include href="gettext.xsl"/>
-
-<xsl:include href="db2html-common.xsl"/>
-<xsl:include href="db2html-header.xsl"/>
-<xsl:include href="db2html-title.xsl"/>
-
-<xsl:include href="db2html-chunk.xsl"/>
-<xsl:include href="db2html-html.xsl"/>
-<xsl:include href="db2html-navbar.xsl"/>
-
-<xsl:include href="db2html-suppressed.xsl"/>
-
-<xsl:include href="db2html-division.xsl"/>
-<xsl:include href="db2html-titlepage.xsl"/>
-
-<xsl:include href="db2html-admon.xsl"/>
-<xsl:include href="db2html-biblio.xsl"/>
-<xsl:include href="db2html-block.xsl"/>
-<xsl:include href="db2html-callout.xsl"/>
-<xsl:include href="db2html-glossary.xsl"/>
-<xsl:include href="db2html-index.xsl"/>
-<xsl:include href="db2html-inline.xsl"/>
-<xsl:include href="db2html-list.xsl"/>
-<xsl:include href="db2html-media.xsl"/>
-<xsl:include href="db2html-refentry.xsl"/>
-<xsl:include href="db2html-synopsis.xsl"/>
-<xsl:include href="db2html-table.xsl"/>
-<xsl:include href="db2html-toc.xsl"/>
-<xsl:include href="db2html-xref.xsl"/>
-
-<xsl:template match="/">
-	<xsl:call-template name="chunk">
-		<xsl:with-param name="node" select="*"/>
-	</xsl:call-template>
-</xsl:template>
-
-<xsl:template match="*">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template name="FIXME">
-	<span class="{name(.)}">
-		<span class="FIXME" style="color: red">
-			<xsl:apply-templates/>
-		</span>
-	</span>
-</xsl:template>
--->
 
 </xsl:stylesheet>

@@ -63,23 +63,23 @@
         }
         div[class~="rightbar"] {
           padding-left: 200px;
+          padding-bottom: 1em;
         }
-        div[class~="tocs"] { border-top: solid 1px; }
-        div[class~="docs"] { border-top: solid 1px; }
-        ul {
-          margin-left: 16px;
-          padding-left: 0px;
-        }
+        div[class~="tocs"] { border-top: solid 1px </xsl:text>
+        <xsl:value-of select="$yelp.color.selected0"/><xsl:text>; }
+        div[class~="docs"] { border-top: solid 1px </xsl:text>
+        <xsl:value-of select="$yelp.color.selected0"/><xsl:text>; }
+        ul { margin-left: 0em; padding-left: 0em; }
         li {
-          margin-top: 0.4em;
-          margin-left: 0px;
-          padding-left: 0px;
+          margin-top: 0.5em;
+          margin-left: 0em;
+          padding-left: 0em;
           font-size: 1.2em;
-          list-style-type: square;
+          list-style-type: none;
         }
-        dl { margin-left: 0px; padding-left: 0px; }
-        dt { font-size: 1.2em; margin-top: 0.6em; }
-        dd { margin-left: 16px; margin-top: 0.2em; }
+        dl { margin-left: 0em; padding-left: 0em; }
+        dt { font-size: 1.2em; margin-top: 1em; }
+        dd { margin-left: 1em; margin-top: 0.5em; }
         a { text-decoration: none; }
         a:hover { text-decoration: underline; }
         </xsl:text></style>
