@@ -224,9 +224,9 @@ struct _YelpWindowPriv {
     GtkWidget      *back_button;
 
     /* Don't free these */
-    gchar          *prev;
-    gchar          *next;
-    gchar          *toc;
+    gchar          *prev_id;
+    gchar          *next_id;
+    gchar          *toc_id;
 };
 
 typedef struct _IdleWriterContext IdleWriterContext;
@@ -744,6 +744,8 @@ window_handle_pager_uri (YelpWindow  *window,
     YelpPage    *page = NULL;
     YelpPager   *pager;
     YelpPagerState state;
+    const gchar *frag_id =
+	gnome_vfs_uri_get_fragment_identifier (uri->uri);
 
     priv = window->priv;
 
@@ -803,21 +805,17 @@ window_handle_pager_uri (YelpWindow  *window,
 
     if (state & YELP_PAGER_STATE_STARTED) {
 	if (state & YELP_PAGER_STATE_CONTENTS) {
-	    const gchar *frag_id =
-		gnome_vfs_uri_get_fragment_identifier (uri->uri);
-	    gchar *page_id = yelp_pager_resolve_uri (pager, uri);
+	    const gchar *page_id =
+		yelp_pager_resolve_frag (pager, frag_id);
 
 	    if (!page_id && (frag_id && strcmp (frag_id, ""))) {
 		yelp_set_error (&error, YELP_ERROR_NO_PAGE);
 		window_error (window, error);
 
-		g_free (page_id);
 		g_error_free (error);
 
 		return FALSE;
 	    }
-
-	    g_free (page_id);
 	} else {
 	    priv->contents_handler =
 		g_signal_connect (pager,
@@ -826,7 +824,7 @@ window_handle_pager_uri (YelpWindow  *window,
 				  window);
 	}
 
-	page = (YelpPage *) yelp_pager_lookup_page (pager, uri);
+	page = (YelpPage *) yelp_pager_get_page (pager, frag_id);
 	loadnow  = (page ? TRUE : FALSE);
 	startnow = FALSE;
 
@@ -997,6 +995,7 @@ window_handle_page (YelpWindow   *window,
     YelpWindowPriv *priv;
     gchar          *id;
     gboolean        valid;
+    const gchar    *frag_id;
     IdleWriterContext *context;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
@@ -1007,13 +1006,15 @@ window_handle_page (YelpWindow   *window,
 
     model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
 
+    frag_id = gnome_vfs_uri_get_fragment_identifier (uri->uri);
+
     if (model) {
 	valid = gtk_tree_model_get_iter_first (model, &iter);
 	while (valid) {
 	    gtk_tree_model_get (model, &iter,
 				0, &id,
 				-1);
-	    if (yelp_pager_uri_is_page (priv->pager, id, uri)) {
+	    if (yelp_pager_page_contains_frag (priv->pager, id, frag_id)) {
 		GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
 		GtkTreeSelection *selection =
 		    gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
@@ -1041,29 +1042,29 @@ window_handle_page (YelpWindow   *window,
 	}
     }
 
-    priv->prev = page->prev;
+    priv->prev_id = page->prev_id;
     menu_item =
 	gtk_item_factory_get_item_by_action (priv->item_factory,
 					     YELP_WINDOW_GO_PREVIOUS);
     if (menu_item)
 	gtk_widget_set_sensitive (menu_item,
-				  priv->prev ? TRUE : FALSE);
+				  priv->prev_id ? TRUE : FALSE);
 
-    priv->next = page->next;
+    priv->next_id = page->next_id;
     menu_item =
 	gtk_item_factory_get_item_by_action (priv->item_factory,
 					     YELP_WINDOW_GO_NEXT);
     if (menu_item)
 	gtk_widget_set_sensitive (menu_item,
-				  priv->next ? TRUE : FALSE);
+				  priv->next_id ? TRUE : FALSE);
 
-    priv->toc = page->toc;
+    priv->toc_id = page->toc_id;
     menu_item =
 	gtk_item_factory_get_item_by_action (priv->item_factory,
 					     YELP_WINDOW_GO_TOC);
     if (menu_item)
 	gtk_widget_set_sensitive (menu_item,
-				  priv->toc ? TRUE : FALSE);
+				  priv->toc_id ? TRUE : FALSE);
 
     gtk_window_set_title (GTK_WINDOW (window),
 			  (const gchar *) page->title);
@@ -1071,8 +1072,8 @@ window_handle_page (YelpWindow   *window,
     context = g_new0 (IdleWriterContext, 1);
     context->window = window;
     context->type   = IDLE_WRITER_MEMORY;
-    context->buffer = page->chunk;
-    context->length = strlen (page->chunk);
+    context->buffer = page->contents;
+    context->length = strlen (page->contents);
 
     yelp_html_clear (priv->html_view);
     yelp_html_set_base_uri (priv->html_view, uri);
@@ -1147,21 +1148,20 @@ pager_contents_cb (YelpPager   *pager,
     YelpWindow  *window = YELP_WINDOW (user_data);
     YelpURI     *uri    = NULL;
     GError      *error  = NULL;
-    const gchar *frag;
-    gchar       *page;
+    const gchar *frag_id;
+    const gchar *page_id;
 
     uri  = yelp_window_get_current_uri (window);
-    frag = gnome_vfs_uri_get_fragment_identifier (uri->uri);
-    page = yelp_pager_resolve_uri (pager, uri);
+    frag_id = gnome_vfs_uri_get_fragment_identifier (uri->uri);
+    page_id = yelp_pager_resolve_frag (pager, frag_id);
 
-    if (!page && (frag && strcmp (frag, ""))) {
+    if (!page_id && (frag_id && strcmp (frag_id, ""))) {
 	window_disconnect (window);
 
 	yelp_set_error (&error, YELP_ERROR_NO_PAGE);
 	window_error (window, error);
 	g_error_free (error);
     }
-    g_free (page);
 }
 
 static void
@@ -1172,10 +1172,13 @@ pager_page_cb (YelpPager *pager,
     YelpWindow  *window = YELP_WINDOW (user_data);
     YelpURI     *uri;
     YelpPage    *page;
+    const gchar *frag_id;
 
     uri  = yelp_window_get_current_uri (window);
 
-    if (yelp_pager_uri_is_page (pager, page_id, uri)) {
+    frag_id = gnome_vfs_uri_get_fragment_identifier (uri->uri);
+
+    if (yelp_pager_page_contains_frag (pager, page_id, frag_id)) {
 	window_disconnect (window);
 
 	page = (YelpPage *) yelp_pager_get_page (pager, page_id);
@@ -1378,19 +1381,19 @@ window_go_cb (gpointer   data,
 
     case YELP_WINDOW_GO_PREVIOUS:
 	uri = yelp_uri_resolve_relative (yelp_window_get_current_uri (window),
-					 window->priv->prev);
+					 window->priv->prev_id);
 	yelp_window_open_uri (window, uri);
 	yelp_uri_unref (uri);
 	break;
     case YELP_WINDOW_GO_NEXT:
 	uri = yelp_uri_resolve_relative (yelp_window_get_current_uri (window),
-					 window->priv->next);
+					 window->priv->next_id);
 	yelp_window_open_uri (window, uri);
 	yelp_uri_unref (uri);
 	break;
     case YELP_WINDOW_GO_TOC:
 	uri = yelp_uri_resolve_relative (yelp_window_get_current_uri (window),
-					 window->priv->toc);
+					 window->priv->toc_id);
 	yelp_window_open_uri (window, uri);
 	yelp_uri_unref (uri);
 	break;

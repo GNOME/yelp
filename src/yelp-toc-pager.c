@@ -123,8 +123,8 @@ static void          toc_pager_dispose         (GObject           *gobject);
 
 gboolean             toc_pager_process         (YelpPager         *pager);
 void                 toc_pager_cancel          (YelpPager         *pager);
-gchar *              toc_pager_resolve_uri     (YelpPager         *pager,
-						YelpURI           *uri);
+const gchar *        toc_pager_resolve_frag    (YelpPager         *pager,
+						const gchar       *frag_id);
 const GtkTreeModel * toc_pager_get_sections    (YelpPager         *pager);
 
 static gboolean      toc_process_pending       (YelpTocPager      *pager);
@@ -196,7 +196,7 @@ toc_pager_class_init (YelpTocPagerClass *klass)
 
     pager_class->process      = toc_pager_process;
     pager_class->cancel       = toc_pager_cancel;
-    pager_class->resolve_uri  = toc_pager_resolve_uri;
+    pager_class->resolve_frag = toc_pager_resolve_frag;
     pager_class->get_sections = toc_pager_get_sections;
 }
 
@@ -325,15 +325,13 @@ toc_pager_cancel (YelpPager *pager)
     priv->cancel = TRUE;
 }
 
-gchar *
-toc_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
+const gchar *
+toc_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
-    const gchar *frag = gnome_vfs_uri_get_fragment_identifier (uri->uri);
-
-    if (!frag)
-	return g_strdup ("index");
+    if (!frag_id)
+	return "index";
     else
-	return g_strdup (frag);
+	return frag_id;
 }
 
 const GtkTreeModel *
@@ -772,9 +770,9 @@ process_menu_pending (YelpTocPager *pager)
 
     if (menu->has_submenus || menu->metafiles) {
 	YelpPage *page = g_new0 (YelpPage, 1);
-	page->chunk    = menu_write_page (menu);
-	page->id    = menu->id;
-	page->title = menu->title;
+	page->page_id  = menu->id;
+	page->title    = menu->title;
+	page->contents = menu_write_page (menu);
 
 	yelp_pager_add_page (YELP_PAGER (pager), page);
 	g_signal_emit_by_name (pager, "page", menu->id);

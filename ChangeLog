@@ -1,3 +1,22 @@
+2004-06-01  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* stylesheets/db2html.xsl:
+	* stylesheets/db2html.xsl.in:
+	- Switched to the stylesheets from gnome-doc-utils
+
+	* src/yelp-io-channel.c:
+	- Moved #include <stdio.h> above the other #includes
+
+	* src/test-pager.c:
+	* src/yelp-db-pager.c:
+	* src/yelp-man-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	* src/yelp-toc-pager.c:
+	* src/yelp-window.c:
+	- Made some changes to frag resolving that I've been wanting to do
+
 2004-05-24  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added Tajik (tg) to ALL_LINGUAS.

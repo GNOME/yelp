@@ -62,8 +62,8 @@ void                 man_pager_cancel       (YelpPager        *pager);
 void                 man_pager_finish       (YelpPager        *pager);
 
 gboolean             man_pager_process      (YelpPager        *pager);
-gchar *              man_pager_resolve_uri  (YelpPager        *pager,
-					     YelpURI          *uri);
+const gchar *        man_pager_resolve_frag (YelpPager        *pager,
+					     const gchar      *frag_id);
 const GtkTreeModel * man_pager_get_sections (YelpPager        *pager);
 
 static void        xslt_yelp_document    (xsltTransformContextPtr ctxt,
@@ -114,7 +114,7 @@ man_pager_class_init (YelpManPagerClass *klass)
     pager_class->finish       = man_pager_finish;
 
     pager_class->process      = man_pager_process;
-    pager_class->resolve_uri  = man_pager_resolve_uri;
+    pager_class->resolve_frag = man_pager_resolve_frag;
     pager_class->get_sections = man_pager_get_sections;
 }
 
@@ -255,10 +255,10 @@ man_pager_finish (YelpPager   *pager)
     yelp_toc_pager_unpause (yelp_toc_pager_get ());
 }
 
-gchar *
-man_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
+const gchar *
+man_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
-    return g_strdup ("index");
+    return "index";
 }
 
 const GtkTreeModel *
@@ -342,13 +342,13 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     page = g_new0 (YelpPage, 1);
 
-    page->id    = page_id;
-    page->title = page_title;
-    page->chunk = page_buf;
+    page->page_id  = page_id;
+    page->title    = page_title;
+    page->contents = page_buf;
 
-    page->prev = NULL;
-    page->next = NULL;
-    page->toc = NULL;
+    page->prev_id = NULL;
+    page->next_id = NULL;
+    page->toc_id  = NULL;
 
     yelp_pager_add_page (pager, page);
     g_signal_emit_by_name (pager, "page", page_id);

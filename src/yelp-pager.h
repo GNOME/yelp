@@ -65,19 +65,19 @@ struct _YelpPagerClass {
 
     /* Virtual Functions */
     gboolean             (*process)      (YelpPager    *pager);
-    gchar *              (*resolve_uri)  (YelpPager    *pager,
-					  YelpURI      *uri);
+    const gchar *        (*resolve_frag) (YelpPager    *pager,
+					  const gchar  *frag_id);
     const GtkTreeModel * (*get_sections) (YelpPager *pager);
 };
 
 struct _YelpPage {
-    gchar *id;
+    gchar *page_id;
     gchar *title;
-    gchar *chunk;
+    gchar *contents;
 
-    gchar *prev;
-    gchar *next;
-    gchar *toc;
+    gchar *prev_id;
+    gchar *next_id;
+    gchar *toc_id;
 };
 
 GType                yelp_pager_get_type     (void);
@@ -96,20 +96,17 @@ GError *             yelp_pager_get_error    (YelpPager      *pager);
 void                 yelp_pager_error        (YelpPager      *pager,
 					      GError         *error);
 
-const GtkTreeModel * yelp_pager_get_sections (YelpPager      *pager);
+const GtkTreeModel * yelp_pager_get_sections       (YelpPager      *pager);
 
-gchar *              yelp_pager_resolve_uri  (YelpPager      *pager,
-					      YelpURI        *uri);
-gboolean             yelp_pager_uri_is_page  (YelpPager      *pager,
-					      gchar          *page_id,
-					      YelpURI        *uri);
-const YelpPage *     yelp_pager_lookup_page  (YelpPager      *pager,
-					      YelpURI        *uri);
-const YelpPage *     yelp_pager_get_page     (YelpPager      *pager,
-					      gchar          *id);
-void                 yelp_pager_add_page     (YelpPager      *pager,
-					      YelpPage       *page);
-
-void                 yelp_page_free          (YelpPage       *page);
+const gchar *        yelp_pager_resolve_frag       (YelpPager      *pager,
+						    const gchar    *frag_id);
+gboolean             yelp_pager_page_contains_frag (YelpPager      *pager,
+						    const gchar    *page_id,
+						    const gchar    *frag_id);
+const YelpPage *     yelp_pager_get_page           (YelpPager      *pager,
+						    const gchar    *frag_id);
+void                 yelp_pager_add_page           (YelpPager      *pager,
+						    YelpPage       *page);
+void                 yelp_page_free                (YelpPage       *page);
 
 #endif /* __YELP_PAGER_H__ */

@@ -101,9 +101,9 @@ pager_page_cb (YelpPager    *pager,
 	    "   id:     %s\n"
 	    "   title:  %s\n"
 	    "   strlen: %d\n",
-	    page->id,
+	    page->page_id,
 	    page->title,
-	    strlen (page->chunk));
+	    strlen (page->contents));
 }
 
 static void

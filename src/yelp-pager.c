@@ -364,71 +364,31 @@ yelp_pager_get_sections (YelpPager *pager)
     return YELP_PAGER_GET_CLASS (pager)->get_sections (pager);
 }
 
-gchar *
-yelp_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
+const gchar *
+yelp_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
-    gchar *frag_id = NULL;
-
-    frag_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
-
-    return frag_id;
+    return YELP_PAGER_GET_CLASS (pager)->resolve_frag (pager, frag_id);
 }
 
 gboolean
-yelp_pager_uri_is_page (YelpPager *pager, gchar *page_id, YelpURI *uri)
+yelp_pager_page_contains_frag (YelpPager   *pager,
+			       const gchar *page_id,
+			       const gchar *frag_id)
 {
-    gchar    *frag_id = NULL;
-    gboolean  equal;
+    const gchar *frag_page_id =
+	YELP_PAGER_GET_CLASS (pager)->resolve_frag (pager, frag_id);
 
-    frag_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
-
-    if (!frag_id || !strcmp (frag_id, ""))
-	equal = FALSE;
-    else if (!page_id || !strcmp (page_id, "") || !strcmp (page_id, "index")) {
-	if (!strcmp (frag_id, "index"))
-	    equal = TRUE;
-	else
-	    equal = FALSE;
-    }
-    else if (!strcmp (page_id, frag_id))
-	equal = TRUE;
-    else
-	equal = FALSE;
-
-    g_free (frag_id);
-    return equal;
+    return !strcmp (frag_page_id, page_id);
 }
 
 const YelpPage *
-yelp_pager_lookup_page (YelpPager *pager, YelpURI *uri)
+yelp_pager_get_page (YelpPager *pager, const gchar *frag_id)
 {
-    gchar *page_id = NULL;
-    YelpPage *page;
+    YelpPage    *page;
+    const gchar *page_id =
+	YELP_PAGER_GET_CLASS (pager)->resolve_frag (pager, frag_id);
 
-    g_return_val_if_fail (pager != NULL, NULL);
-    g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
-
-    page_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
-
-    if (!page_id)
-	page_id = g_strdup (gnome_vfs_uri_get_fragment_identifier (uri->uri));
-
-    page = (YelpPage *) yelp_pager_get_page (pager, page_id);
-
-    g_free (page_id);
-
-    return (const YelpPage *) page;
-}
-
-const YelpPage *
-yelp_pager_get_page (YelpPager *pager, gchar *id)
-{
-    YelpPage *page;
-
-    g_return_val_if_fail (pager != NULL, NULL);
-    g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
-
-    page = (YelpPage *) g_hash_table_lookup (pager->priv->page_hash, id);
+    page = (YelpPage *) g_hash_table_lookup (pager->priv->page_hash, page_id);
 
     return (const YelpPage *) page;
 }
@@ -440,21 +400,23 @@ yelp_pager_add_page (YelpPager *pager,
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    g_return_if_fail (page->id != NULL);
+    g_return_if_fail (page->page_id != NULL);
 
-    g_hash_table_insert (pager->priv->page_hash, page->id, page);
+    g_hash_table_insert (pager->priv->page_hash, page->page_id, page);
 }
 
 void
 yelp_page_free (YelpPage *page)
 {
-    g_free (page->id);
-    g_free (page->title);
-    g_free (page->chunk);
+    g_return_if_fail (page != NULL);
 
-    g_free (page->prev);
-    g_free (page->next);
-    g_free (page->toc);
+    g_free (page->page_id);
+    g_free (page->title);
+    g_free (page->contents);
+
+    g_free (page->prev_id);
+    g_free (page->next_id);
+    g_free (page->toc_id);
 
     g_free (page);
 }

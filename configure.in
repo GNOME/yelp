@@ -42,6 +42,7 @@ AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
 PKG_CHECK_MODULES(YELP,
 [
 	gconf-2.0
+	gnome-doc-utils
 	gnome-vfs-2.0 >= 1.1
 	gtk+-2.0 >= 2.3.1
 	libbonobo-2.0 >= 1.108.0
@@ -62,6 +63,9 @@ idl_dirs="`$PKG_CONFIG --variable=idldir gnome-vfs-2.0 libgnomeui-2.0 libbonobo-
 AC_PATH_PROGS(SED, gsed sed)
 YELP_IDL_INCLUDES="`echo ${idl_dirs} | ${SED} -e 's/^/ /' -e 's/  *$//' -e 's/  */ -I /g' -e 's/^  *//'`"
 AC_SUBST(YELP_IDL_INCLUDES)
+
+DB2HTML="`$PKG_CONFIG --variable=db2html gnome-doc-utils`"
+AC_SUBST(DB2HTML)
 
 dnl Check for whereis
 AC_CANONICAL_HOST
@@ -114,6 +118,7 @@ AC_OUTPUT([
 Makefile
 src/Makefile
 stylesheets/Makefile
+stylesheets/db2html.xsl
 data/Makefile
 data/icons/Makefile
 data/ui/Makefile
