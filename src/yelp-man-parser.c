@@ -116,6 +116,9 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 	case '\n':
 	    parser->ins = xmlDocGetRootElement (parser->doc);
 	    break;
+	case '\'':
+	    parser->cur = parser->buffer + parser->length - 1;
+	    parser->anc = parser->cur;
 	default:
 	    break;
 	}
@@ -208,18 +211,15 @@ parser_handle_linetag (YelpManParser *parser) {
 	     g_str_equal (str, "IB") || g_str_equal (str, "BI") ||
 	     g_str_equal (str, "RB") || g_str_equal (str, "BR") ) {
 
-	gint  i;
 	gchar a[2], b[2];
 	a[0] = str[0]; b[0] = str[1]; a[1] = b[1] = '\0';
 
 	parser_ensure_P (parser);
 
-	for (i = 0; i < 6; i++) {
-	    if (PARSER_CUR && *(parser->cur) != '\n') {
+	while (PARSER_CUR && *(parser->cur) != '\n') {
 		parser->ins = parser_append_node (parser, a);
 		parser_append_token (parser);
 		parser->ins = parser->ins->parent;
-	    } else break;
 	    if (PARSER_CUR && *(parser->cur) != '\n') {
 		parser->ins = parser_append_node (parser, b);
 		parser_append_token (parser);
@@ -247,13 +247,13 @@ parser_handle_linetag (YelpManParser *parser) {
     }
     else if (g_str_equal (str, "SH") || g_str_equal (str, "SS") || 
 	     g_str_equal (str, "Sh") || g_str_equal (str, "Ss")) {
-	gint i;
-	for (i = 0; i < 6; i++) {
-	    if (PARSER_CUR && *(parser->cur) != '\n') {
-		parser->ins = parser_append_node (parser, str);
-		parser_append_token (parser);
-		parser->ins = parser->ins->parent;
-	    } else break;
+	/* Sections should be their own, well, section */
+	parser->ins = xmlDocGetRootElement (parser->doc);
+
+	while (PARSER_CUR && *(parser->cur) != '\n') {
+	    parser->ins = parser_append_node (parser, str);
+	    parser_append_token (parser);
+	    parser->ins = parser->ins->parent;
 	}
     }
     else if (g_str_equal (str, "TH")) {
@@ -815,7 +815,6 @@ parser_handle_row_options (YelpManParser *parser)
 	
 	parser_read_until (parser, '.');
 	
-	
 	if (*(parser->cur) == '.') {
 	    g_free (parser->buffer);
 	    break;
@@ -834,6 +833,7 @@ static void
 parser_parse_table (YelpManParser *parser)
 {
     xmlNodePtr table_start;
+    gboolean empty_row;
 
     table_start = parser->ins;
 
@@ -875,6 +875,8 @@ parser_parse_table (YelpManParser *parser)
 	    parser->anc = parser->buffer;
 	    parser->cur = parser->buffer;
 	    
+	    empty_row = FALSE;
+
 	    switch (*(parser->buffer)) {
 	    case '.':
 		if (*(parser->buffer + 1) == 'T'
@@ -883,30 +885,38 @@ parser_parse_table (YelpManParser *parser)
 			g_warning ("Found unexpected tag: 'TE'\n");
 		    else {
 			parser->ins = table_start;
-		    
+			
 			parser->anc = parser->buffer + 3;
 			parser->cur = parser->buffer + 3;
 			return;
 		    }
-		} else {
+		} else if (*(parser->buffer + 1) == 'T'
+			   && *(parser->buffer + 2) == 'H') {
+		    /* Do nothing */
+		    empty_row = TRUE;
+		}else {
 		    parser_handle_linetag (parser);
 		    break;
 		}
 	    case '\n':
+		empty_row = TRUE;
 		break;
 	    default:
 		break;
 	    }
 	    
-	    parser->ins = parser_append_node (parser, "ROW");
-	    while (PARSER_CUR && *(parser->cur) != '\n') {
-		parser_read_until (parser, '\t');
-		parser->ins = parser_append_node (parser, "CELL");
-		parser_append_text (parser);
-		parser->ins = parser->ins->parent;
-		parser->anc++;
-		parser->cur++;
+	    if (!empty_row) {
+		parser->ins = parser_append_node (parser, "ROW");
+		while (PARSER_CUR && *(parser->cur) != '\n') {
+		    parser_read_until (parser, '\t');
+		    parser->ins = parser_append_node (parser, "CELL");
+		    parser_append_text (parser);
+		    parser->ins = parser->ins->parent;
+		    parser->anc++;
+		    parser->cur++;
+		}
 	    }
+
 	    g_free (parser->buffer);
 
 	    parser->ins = table_start;
