@@ -1,13 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Yelp Hungarian po.
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Szabolcs Ban <shooby@gnome.hu>, 2002.
+# Emese Kovacs <emese@gnome.hu>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp VERSION\n"
-"POT-Creation-Date: 2002-01-25 13:22+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Emese Kovacs <emese@gnome.hu>\n"
+"POT-Creation-Date: 2002-03-17 08:51+0100\n"
+"PO-Revision-Date: 2002-03-17 08:39+0100\n"
+"Last-Translator: Szabolcs Ban <shooby@gnome.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,159 +22,221 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-info.c:96
+#: src/yelp-info.c:126
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:77
+#: src/yelp-main.c:91
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "A Yelp aktiválása sikertelen: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:110
 msgid "Could not open new window."
 msgstr "Ablak nyitása sikertelen."
 
-#: src/yelp-man.c:269 src/yelp-man.c:290 src/yelp-man.c:326 src/yelp-man.c:358
-#: src/yelp-man.c:374 src/yelp-man.c:385
+#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
+#: src/yelp-man.c:406 src/yelp-man.c:417
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:274 src/yelp-man.c:305 src/yelp-man.c:363 src/yelp-man.c:390
+#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:279
+#: src/yelp-man.c:311
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:295
+#: src/yelp-man.c:327
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:300
+#: src/yelp-man.c:332
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:310
+#: src/yelp-man.c:342
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:315
+#: src/yelp-man.c:347
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:337
+#: src/yelp-man.c:369
 msgid "System Calls"
 msgstr "Rendszerhívások"
 
-#: src/yelp-man.c:342
+#: src/yelp-man.c:374
 msgid "Library Functions"
 msgstr "Függvények"
 
-#: src/yelp-man.c:347
+#: src/yelp-man.c:379
 msgid "Kernel Routines"
 msgstr "Rendszermag rutinok"
 
-#: src/yelp-man.c:402
+#: src/yelp-man.c:434
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#: src/yelp-man.c:407
+#: src/yelp-man.c:439
 msgid "Development"
 msgstr "Fejlesztés"
 
-#: src/yelp-man.c:412
+#: src/yelp-man.c:444
 msgid "Hardware Devices"
 msgstr "Hardver eszközök"
 
-#: src/yelp-man.c:417
+#: src/yelp-man.c:449
 msgid "Configuration Files"
 msgstr "Konfigurációs fájlok"
 
-#: src/yelp-man.c:422
+#: src/yelp-man.c:454
 msgid "Games"
 msgstr "Játékok"
 
-#: src/yelp-man.c:427
+#: src/yelp-man.c:459
 msgid "Overviews"
 msgstr "Áttekintő leírások"
 
-#: src/yelp-man.c:432
+#: src/yelp-man.c:464
 msgid "System Administration"
 msgstr "Rendszeradminisztráció"
 
-#: src/yelp-man.c:443
+#: src/yelp-man.c:475
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:181 src/yelp-view-index.c:175
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
 msgid "Section"
 msgstr "Fejezet"
 
-#: src/yelp-window.c:111
+#: src/yelp-view-index.c:325
+msgid "Search for:"
+msgstr "Keresés:"
+
+#: src/yelp-view-toc.c:271
+msgid "Other Documents"
+msgstr "Más dokumentumok"
+
+#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:502
+msgid "Manual pages"
+msgstr "Kézikönyvek"
+
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:579 src/yelp-view-toc.c:598
+msgid "Info pages"
+msgstr "Info lapok"
+
+#: src/yelp-view-toc.c:274
+msgid "Installed documents"
+msgstr "Telepített dokumentumok"
+
+#: src/yelp-view-toc.c:288
+msgid "Start page"
+msgstr "Induló lap"
+
+#: src/yelp-view-toc.c:532
+msgid "Manual Pages"
+msgstr "Kézikönyvek"
+
+#: src/yelp-view-toc.c:700
+msgid "Scrollkeeper docs for category"
+msgstr "Scrollkeeper dokumentumok a kategóriához"
+
+#: src/yelp-window.c:138
 msgid "/_File"
 msgstr "/_Fájl"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:139
 msgid "/File/_New window"
 msgstr "/Fájl/Új _ablak"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:140
 msgid "/File/_Close window"
 msgstr "/Fájl/Ablak _bezárása"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:141
 msgid "/File/_Quit"
 msgstr "/File/_Kilépés"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_Ugrás"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Ugrás/_Vissza"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Ugrás/_Előre"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Ugrás/_Haza"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Ugrás/_Indexre"
+
+#: src/yelp-window.c:147
 msgid "/_Help"
 msgstr "/_Súgó"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:148
 msgid "/Help/_About"
 msgstr "/Súgó/_Névjegy"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:207
 msgid "Help Browser"
 msgstr "Súgóböngésző"
 
-#: src/yelp-window.c:418
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:539
+msgid "translator_credits"
+msgstr "translator_credits"
+
+#: src/yelp-window.c:543
 msgid "Help Browser for GNOME 2.0"
 msgstr "A GNOME 2.0 súgóböngészője"
 
-#: src/yelp-window.c:442
-msgid "Go back in the history list"
-msgstr "Vissza az emlékezetlistában"
+#: src/yelp-window.c:570
+msgid "Back"
+msgstr "Vissza"
 
-#: src/yelp-window.c:457
-msgid "Go forth in the history list"
-msgstr "Előre az emlékezetlistában"
+#: src/yelp-window.c:571
+msgid "Show previous page in history"
+msgstr "Az előző lap mutatása az előzménylistából"
 
-#: src/yelp-window.c:472
-msgid "Overview of contents"
-msgstr "Tartalom áttekintése"
+#: src/yelp-window.c:582
+msgid "Forward"
+msgstr "Előre"
 
-#: src/yelp-window.c:483
+#: src/yelp-window.c:583
+msgid "Show next page in history"
+msgstr "A következő lap mutatása az előzménylistából"
+
+#: src/yelp-window.c:596
+msgid "Home"
+msgstr "Haza"
+
+#: src/yelp-window.c:597
+msgid "Go to home view"
+msgstr "Az induló lap mutatása"
+
+#: src/yelp-window.c:607
+msgid "Index"
+msgstr "Index"
+
+#: src/yelp-window.c:608
 msgid "Search in the index"
 msgstr "Keresés a tárgymutatóban"
 
-#: src/yelp-window.c:495
-msgid "Search for a phrase in the document"
-msgstr "Keresés egy a dokumentumban előforduló kifejezésre"
-
-#: src/yelp-window.c:501
-msgid "Help on "
-msgstr "Súgó erről: "
-
-#: src/yelp-window.c:506
-msgid "Enter phrase to search for in all documents"
-msgstr "Írd be az összes dokumentumban keresendő kifejezést"
-
 #: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "GNOME súgóböngésző"
+msgid "Get help with GNOME"
+msgstr "Súgó a Gnome-ról"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
