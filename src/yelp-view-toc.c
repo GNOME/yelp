@@ -57,7 +57,7 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 typedef struct {
-	char *title;
+	char  *title;
 	GList *seriesids;
 } YelpImportantDocsSection;
 
@@ -76,6 +76,45 @@ struct _YelpViewTOCPriv {
 #define BG_COLOR "#ffffff"
 #define BLOCK_BG_COLOR "#c1c1c1"
 #define HELP_IMAGE "file:///gnome/head/INSTALL/share/pixmaps/gnome-help.png"
+
+#define PAGE_HEADER "<html>\n \
+  <head>\n \
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n \
+    <title>\n \
+      %s\n \
+    </title> \n \
+    <style type=\"text/css\">\n \
+      A:link { color: #00008b; font-size: 10 }\n \
+      A:visited { color: #00008b; font-size: 10}\n \
+      A:active { color: #00008b; font-size: 10}\n \
+      h1 { font-size: 25 }\n \
+      h2 { font-size: 15 }\n \
+      BODY { color: #000000; font-size: 10 }\n \
+    </style>\n \
+  </head>\n \
+  <body bgcolor=\"" BG_COLOR "\">"
+
+#define PAGE_START "<table cellpadding=\"0\" \
+			      border=\"0\" \
+ 			      align=\"center\" \
+			      cellspacing=\"10\" \
+			      width=\"100%\"> \
+			      <tr align=\"left\" \
+			          valign=\"top\" \
+			          bgcolor=\"" BG_COLOR "\"> \
+			      <td height=\"69\" \
+			          align=\"center\" \
+			          valign=\"center\" \
+			          bgcolor=\"" BLOCK_BG_COLOR "\" \
+			          colspan=\"2\"> \
+			        <h1> \
+			          %s \
+			        </h1> \
+			      </td> \
+			      </tr> \
+			      <tr>"
+
+#define PAGE_END "</tr></table>"
 
 #define COLUMN_LEFT_START "<td valign=\"top\" width=\"50%\"> \
             <table cellpadding=\"0\" \
@@ -264,35 +303,6 @@ yelp_view_toc_printf (YelpViewTOC *view, char *format, ...)
 }
 
 static void
-yelp_view_toc_write_header (YelpViewTOC *view, char *title)
-{
-	char *header="\n"
-"<html>\n"
-"  <head>\n"
-"    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-"    <title>\n"
-"      %s\n"
-"    </title> \n"
-"    <style type=\"text/css\">\n"
-"      A:link { color: #00008b; font-size: 10 }\n"
-"      A:visited { color: #00008b; font-size: 10}\n"
-"      A:active { color: #00008b; font-size: 10}\n"
-"      h1 { font-size: 25 }\n"
-"      h2 { font-size: 15 }\n"
-"      BODY { color: #000000; font-size: 10 }\n"
-"    </style>\n"
-"  </head>\n"
-"  <body bgcolor=\"" BG_COLOR "\">";
-	char *s;
-
-	s = g_strdup_printf (header, title);
-
-	yelp_view_toc_write (view, s, -1);
-
-	g_free (s);
-}
-
-static void
 yelp_view_toc_write_footer (YelpViewTOC *view)
 {
 	char *footer="\n"
@@ -329,28 +339,10 @@ yelp_view_toc_start (YelpViewTOC *view)
 	
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, page_title);
+	yelp_view_toc_printf (view, PAGE_HEADER, page_title);
 	
 	yelp_view_toc_printf (view, 
-			      "<table cellpadding=\"0\""
-			      "border=\"0\""
-			      "align=\"center\""
-			      "cellspacing=\"10\""
-			      "width=\"100%\">"
-			      "<tr align=\"left\""
-			      "    valign=\"top\""
-			      "    bgcolor=\"" BG_COLOR "\">"
-			      "<td height=\"69\""
-			      "    align=\"center\""
-			      "    valign=\"center\""
-			      "    bgcolor=\"" BLOCK_BG_COLOR "\""
-			      "    colspan=\"2\">"
-			      "  <h1>"
-			      "    %s"
-			      "  </h1>"
-			      "</td>"
-			      "</tr>"
-			      "<tr>",
+			      PAGE_START,
 			      page_title);
 	
 	sections = priv->important_sections;
@@ -494,159 +486,6 @@ yelp_view_toc_start (YelpViewTOC *view)
 	yelp_view_toc_close (view);
 }
 
-#if 0
-static void 
-yelp_view_toc_start (YelpViewTOC *view)
-{
-	YelpViewTOCPriv *priv;
-	GNode           *node;
-	YelpSection     *section;
-	gchar           *table_start = "\n"
-"    <center>\n"
-"      <table cellspacing=\"20\" width=\"100%\">\n"
-"        <tr>\n";
-	gchar           *table_end = "\n"
-"      </tr>\n"
-"    </table>\n"
-"   </center>\n";
-	char            *seriesid;
-	GNode           *root;
-	char            *path;
-	GList           *sections, *seriesids;
-	gchar           *other_docs_string = _("Other Documents");
-	gchar           *man_string = _("Manual pages");
-	gchar           *info_string = _("Info pages");
-	gchar           *installed_string = _("Installed documents");
-	YelpImportantDocsSection *important_section;
-	gboolean         important_doc_installed = FALSE;
-	gboolean         man_installed = FALSE;
-	gboolean         info_installed = FALSE;
-      
-	priv = view->priv;
-
-	if (!g_node_first_child (priv->doc_tree)) {
-		g_warning ("No nodes in tree");
-	}
-	
-	yelp_view_toc_open (view);
-	
-	yelp_view_toc_write_header (view, _("Start page"));
-	
-	yelp_view_toc_write (view, table_start, -1);
-
-	yelp_view_toc_printf (view, 
-			      "<td valign=\"top\">\n");
-
-	sections = priv->important_sections;
-	while (sections != NULL) {
-		important_section = sections->data;
-
-		seriesids = important_section->seriesids;
-
-		/* Check if any of the important documents are installed  *
-		 * before trying to write the section topic               */
-
-		for (seriesids = important_section->seriesids; 
-		     seriesids; 
-		     seriesids = seriesids->next) {
-			seriesid = seriesids->data;
-
-			if (yelp_scrollkeeper_lookup_seriesid (seriesid)){
-				important_doc_installed = TRUE;
-			}
-		}
-		
- 		if (important_doc_installed) {
-			yelp_view_toc_printf (view, 
-					      "<h2>%s</h2>\n"
-					      "<ul>\n", 
-					      important_section->title);
-		}
-		
-		seriesids = important_section->seriesids;
-		
-		while (seriesids != NULL) {
-			seriesid = seriesids->data;
-
-			node = yelp_scrollkeeper_lookup_seriesid (seriesid);
-
-			if (node) {
-				section = node->data;
-				yelp_view_toc_printf (view, 
-						      "<li><a href=\"%s\">%s</a>\n",
-						      section->uri, section->name);
-			}
-
-			seriesids = seriesids->next;
-		}
-
-		yelp_view_toc_printf (view, "</ul>\n");
-		
-		sections = sections->next;
-	}
-	
-			      
-	yelp_view_toc_write (view, 
-			     "</ul>\n"
-			     "</td>\n", -1);
-
-
-
-	yelp_view_toc_printf (view, 
-			      "<td bgcolor=\"" BLOCK_BG_COLOR "\""
-			      "    valign=\"top\">\n"
-			      "<h2>%s</h2>\n", installed_string);
-
-	root = yelp_util_find_toplevel (priv->doc_tree, "scrollkeeper");
-	node = g_node_first_child (root);
-
-	while (node) {
-		section = YELP_SECTION (node->data);
-		path = yelp_util_node_to_string_path (node);
-		yelp_view_toc_printf (view, 
-				      "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
-				      path, section->name);
-		g_free (path);
-		
-		node = g_node_next_sibling (node);
-	}
-
-	if (yelp_util_find_toplevel (priv->doc_tree, "man")) {
-		man_installed = TRUE;
-	}
-	
-	if (yelp_util_find_toplevel (priv->doc_tree, "info")) {
-		info_installed = TRUE;
-	}
-	
-	if (man_installed || info_installed) {
-		yelp_view_toc_printf (view, "<tr><td bgcolor=\"#c1c1c1\" valign=\"top\"><h2>%s</h2>\n",
-				      other_docs_string);
-		
-		if (man_installed) {
-			yelp_view_toc_printf (view, 
-					      "<a href=\"toc:man\">%s</a><br>\n",
-					      man_string);
-		}
-		
-		if (info_installed) {
-			yelp_view_toc_printf (view,
-					      "<a href=\"toc:info\">%s</a><br>\n",
-					      info_string);
-		}
-	}
-	
-	yelp_view_toc_write (view, 
-			     "</td>\n", -1);
-
-	yelp_view_toc_write (view, table_end, -1);
-
-	yelp_view_toc_write_footer (view);
-
-	yelp_view_toc_close (view);
-}
-#endif
-
 static char *
 yelp_view_toc_full_path_name (YelpViewTOC *view, GNode *node) 
 {
@@ -779,7 +618,7 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, string);
+	yelp_view_toc_printf (view, PAGE_HEADER, string);
 		
 	name = yelp_view_toc_full_path_name (view, root);
 
@@ -825,7 +664,8 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 	YelpSection     *section;
 	char            *path;
 	gchar           *string = _("Manual Pages");
-	
+	gchar           *str_subcats = _("Categories");
+
 	priv = view->priv;
 
 	root = yelp_util_find_toplevel (priv->doc_tree, "man");
@@ -843,32 +683,16 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, string);
+	yelp_view_toc_printf (view, PAGE_HEADER, string);
 
 	yelp_view_toc_printf (view, 
-			      "<table cellpadding=\"0\""
-			      "border=\"0\""
-			      "align=\"center\""
-			      "cellspacing=\"10\""
-			      "width=\"100%\">"
-			      "<tr align=\"left\""
-			      "    valign=\"top\""
-			      "    bgcolor=\"" BG_COLOR "\">"
-			      "<td height=\"69\""
-			      "    align=\"center\""
-			      "    valign=\"center\""
-			      "    bgcolor=\"" BLOCK_BG_COLOR "\""
-			      "    colspan=\"2\">"
-			      "  <h1>"
-			      "    %s"
-			      "  </h1>"
-			      "</td>"
-			      "</tr>"
-			      "<tr>",
+			      PAGE_START, 
 			      string);
-	
-	yelp_view_toc_printf (view, COLUMN_RIGHT_START);
-	yelp_view_toc_printf (view, TOC_BLOCK_START);
+
+	yelp_view_toc_printf (view, 
+			      COLUMN_RIGHT_START
+			      TOC_BLOCK_START
+			      "<h2>%s</h2>", str_subcats);
 
 	do {
 		child = g_node_first_child (node);
@@ -876,6 +700,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 		if (child) {
 			section = YELP_SECTION (node->data);
 			path = yelp_util_node_to_string_path (node);
+
 			yelp_view_toc_printf (view, 
 					      "<a href=\"toc:man/%s\">%s</a><br>\n", 
 					      path, section->name);
@@ -883,8 +708,10 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 		}
 	} while ((node = g_node_next_sibling (node)));
 
-	yelp_view_toc_printf (view, TOC_BLOCK_END);
-	yelp_view_toc_printf (view, COLUMN_END);
+	yelp_view_toc_printf (view, 
+			      TOC_BLOCK_END
+			      COLUMN_END
+			      PAGE_END);
 
 	yelp_view_toc_write_footer (view);
 	yelp_view_toc_close (view);
@@ -917,30 +744,9 @@ yelp_view_toc_info (YelpViewTOC *view)
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, string);
+	yelp_view_toc_printf (view, PAGE_HEADER, string);
 
-	yelp_view_toc_printf (view, 
-			      "<table cellpadding=\"0\""
-			      "border=\"0\""
-			      "align=\"center\""
-			      "cellspacing=\"10\""
-			      "width=\"100%\">"
-			      "<tr align=\"left\""
-			      "    valign=\"top\""
-			      "    bgcolor=\"" BG_COLOR "\">"
-			      "<td height=\"69\""
-			      "    align=\"center\""
-			      "    valign=\"center\""
-			      "    bgcolor=\"" BLOCK_BG_COLOR "\""
-			      "    colspan=\"2\">"
-			      "  <h1>"
-			      "    %s"
-			      "  </h1>"
-			      "</td>"
-			      "</tr>"
-			      "<tr>",
-			      string);
-	
+	yelp_view_toc_printf (view, PAGE_START, string);
 	yelp_view_toc_printf (view, COLUMN_RIGHT_START);
 	yelp_view_toc_printf (view, TOC_BLOCK_START);
 
@@ -1061,29 +867,9 @@ yelp_view_toc_scrollkeeper (YelpViewTOC *view,
 	
 	name = yelp_view_toc_full_path_name (view, root);
 
-	yelp_view_toc_write_header (view, name);
+	yelp_view_toc_printf (view, PAGE_HEADER, name);
 
-	yelp_view_toc_printf (view, 
-			      "<table cellpadding=\"0\""
-			      "border=\"0\""
-			      "align=\"center\""
-			      "cellspacing=\"10\""
-			      "width=\"100%\">"
-			      "<tr align=\"left\""
-			      "    valign=\"top\""
-			      "    bgcolor=\"" BG_COLOR "\">"
-			      "<td height=\"69\""
-			      "    align=\"center\""
-			      "    valign=\"center\""
-			      "    bgcolor=\"" BLOCK_BG_COLOR "\""
-			      "    colspan=\"2\">"
-			      "  <h1>"
-			      "    %s"
-			      "  </h1>"
-			      "</td>"
-			      "</tr>"
-			      "<tr>",
-			      name);
+	yelp_view_toc_printf (view, PAGE_START, name);
 	
 	g_free (name);
 
