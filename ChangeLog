@@ -1,3 +1,10 @@
+2004-11-13  James Bowes  <bowes@cs.dal.ca>
+
+	* src/yelp-man-parser.c: (parser_read_until), 
+	(parser_parse_table), (parser_make_link): Add in 
+	detection of page_name(section_num) style man page 
+	references, and create the appropriate link.
+
 2004-11-08  Sebastien Bacher  <seb128@debian.org>
 
 	* configure.in:

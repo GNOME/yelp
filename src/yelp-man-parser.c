@@ -57,6 +57,7 @@ static void        parser_stack_push_node   (YelpManParser *parser,
 static xmlNodePtr  parser_stack_pop_node    (YelpManParser *parser,
 					     gchar         *name);
 static void        parser_parse_table       (YelpManParser *parser);
+static void        parser_make_link         (YelpManParser *parser);
 
 typedef struct _StackElem StackElem;
 struct _YelpManParser {
@@ -515,11 +516,14 @@ parser_read_until (YelpManParser *parser,
 {
     while (PARSER_CUR
 	   && *(parser->cur) != '\n'
-	   && *(parser->cur) != delim)
+	   && *(parser->cur) != delim) {
 	if (*(parser->cur) == '\\')
 	    parser_handle_inline (parser);
+        else if (*(parser->cur) == '(' && parser->make_links)
+	    parser_make_link (parser);
 	else
 	    parser->cur++;
+    }
 }
 
 static void
@@ -908,4 +912,63 @@ parser_parse_table (YelpManParser *parser)
 	    parser->ins = table_start;
 	}
     }
+}
+
+static void
+parser_make_link (YelpManParser *parser)
+{
+    gchar *space_pos;
+    gchar *tmp_cur;
+    gchar *url;
+    gchar  c;
+    
+    space_pos = parser->cur;
+    
+    while (space_pos != parser->anc
+	   && *(space_pos - 1) != ' ') {
+	space_pos--;
+    }
+    
+    if (space_pos == parser->cur) {
+	parser->cur++;
+	return;
+    }
+
+    /* Let's assume there are only 9 manual sections */
+    parser->cur++;
+    
+    if (!g_ascii_isdigit (*(parser->cur)))
+	return;
+    
+    parser->cur++;
+
+    if (*(parser->cur) != ')')
+	return;
+
+    parser->cur++;
+
+    tmp_cur = parser->cur;
+    parser->cur = space_pos;
+    
+    parser_append_text (parser);
+    
+    parser->cur = tmp_cur;
+
+    c = *(parser->cur);
+    *(parser->cur) = '\0';
+
+    url = g_strdup_printf ("man:%s", parser->anc);
+
+    *(parser->cur) = c;
+
+    parser->ins = parser_append_node (parser, "UR");
+    parser->ins = parser_append_node (parser, "URI");
+
+    parser_append_given_text (parser, url);
+    parser->ins = parser->ins->parent;
+    
+    parser_append_text (parser);
+    parser->ins = parser->ins->parent;
+
+    g_free (url);
 }
