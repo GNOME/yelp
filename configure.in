@@ -71,7 +71,7 @@ dnl <= Check for bzip2 > 1.0.0
 if test x$with_html_widget = xgtkhtml1; then
 	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-3.0 >= 3.0)
 else
-	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-2.0 >= 1.99.8)
+	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-2.0 >= 1.99.9)
 fi
 	
 CFLAGS="$HTML_WIDGET_CFLAGS $CFLAGS"
