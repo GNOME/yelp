@@ -1,3 +1,9 @@
+2003-08-15  Mikael Hallendal  <micke@imendio.com>
+ 
+        * src/yelp-main.c:
+        (main_restore_session): Return FALSE, otherwise we'll try to start Yelp
+          from the session over and over again. Reported by Jody earlier.
+
 2003-07-01  Telsa Gwynne  <hobbit@aloss.ukuu.org.uk>
 
 	* configure.in: Added "cy" (Welsh) to ALL_LINGUAS

@@ -482,7 +482,7 @@ reader_start (ReaderThreadData *th_data)
 		/* Hmm .. is this wrong or what?? */
 		break;
 	default:
-		g_assert_not_reached ();
+		/* g_assert_not_reached (); */
 		
 		break;
 	}

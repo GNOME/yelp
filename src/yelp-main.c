@@ -257,7 +257,7 @@ main_restore_session (void)
                 }
         }
 
-	return TRUE;
+	return FALSE;
 }
 
 int
