@@ -15,7 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"POT-Creation-Date: 2004-03-15 01:43+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-16 23:31-0600\n"
 "PO-Revision-Date: 2004-03-15 01:57-0200\n"
 "Last-Translator: Nikos Charonitakis <charosn@her.fothnet.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -27,8 +28,7 @@ msgstr ""
 msgid "Applets"
 msgstr "Εφαρμογίδια"
 
-#: data/toc.xml.in.h:2
-#: src/yelp-man.c:429
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Εφαρμογές"
 
@@ -36,8 +36,7 @@ msgstr "Εφαρμογές"
 msgid "Desktop"
 msgstr "Επιφάνεια εργασίας"
 
-#: data/toc.xml.in.h:4
-#: src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Ανάπτυξη Εφαρμογών"
 
@@ -49,8 +48,7 @@ msgstr "Περιβάλλοντα Ανάπτυξης Εφαρμογών"
 msgid "Development Tools"
 msgstr "Εργαλεία Ανάπτυξης Εφαρμογών"
 
-#: data/toc.xml.in.h:7
-#: stylesheets/l10n.xml.in.h:36
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Διορθωτές Κειμένου"
 
@@ -147,29 +145,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Εργοστάσιο Yelp"
 
-#: src/yelp-db-pager.c:435
-#: src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Δε βρέθηκε γνώρισμα href  στο  yelp:document"
 
-#: src/yelp-db-pager.c:450
-#: src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Η μνήμη εξαντλήθηκε"
 
-#: src/yelp-db-pager.c:638
-#: src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Τίτλος σελίδας"
 
-#: src/yelp-db-pager.c:640
-#: stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
-#: src/yelp-db-pager.c:658
-#: stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Άγνωστο"
@@ -207,20 +200,13 @@ msgstr "Αδύνατη η ενεργοποίηση του Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Αδύνατο το άνοιγμα νέου παραθύρου."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
 #
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -376,8 +362,7 @@ msgid "Help Browser"
 msgstr "Πρόγραμμα Βοήθειας"
 
 #
-#: src/yelp-window.c:570
-#: stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Ενότητα"
 
@@ -694,4 +679,3 @@ msgstr "Λήψη βοήθειας για το GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Βοήθεια"
-
