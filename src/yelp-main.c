@@ -59,7 +59,9 @@ struct poptOption options[] = {
 		NULL,
 		NULL,
 	},
-	NULL
+	{
+		NULL
+	}
 };
 
 static BonoboObject * main_base_factory       (BonoboGenericFactory *factory,

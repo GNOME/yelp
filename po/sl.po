@@ -5,13 +5,45 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2002-06-08 12:20+0200\n"
+"POT-Creation-Date: 2002-12-16 09:34+0100\n"
 "PO-Revision-Date: 2001-07-29 12:32+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr ""
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr ""
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr ""
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr ""
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr ""
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr ""
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -21,218 +53,243 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Tovarna Yelp"
 
-#: src/yelp-main.c:111
+#: src/yelp-main.c:117
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Nisem mogel aktivirati Yelpa: '%s'"
 
-#: src/yelp-main.c:130
+#: src/yelp-main.c:136
 msgid "Could not open new window."
 msgstr "Nisemo mogel odpreti novega okna."
 
-#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
-#: src/yelp-man.c:399 src/yelp-man.c:410
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:304
+#: src/yelp-man.c:306
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:320
+#: src/yelp-man.c:322
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:325
+#: src/yelp-man.c:327
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:335
+#: src/yelp-man.c:337
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:340
+#: src/yelp-man.c:342
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:362
+#: src/yelp-man.c:364
 msgid "System Calls"
 msgstr "Sistemski klici"
 
-#: src/yelp-man.c:367
+#: src/yelp-man.c:369
 msgid "Library Functions"
 msgstr "Funkcije knjižnjice"
 
-#: src/yelp-man.c:372
+#: src/yelp-man.c:374
 msgid "Kernel Routines"
 msgstr "Funkcije jedra"
 
-#: src/yelp-man.c:427
+#: src/yelp-man.c:429
 msgid "Applications"
 msgstr "Programi"
 
-#: src/yelp-man.c:432
+#: src/yelp-man.c:434
 msgid "Development"
 msgstr "Razvoj"
 
-#: src/yelp-man.c:437
+#: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "Strojne naprava"
 
-#: src/yelp-man.c:442
+#: src/yelp-man.c:444
 msgid "Configuration Files"
 msgstr "Nastavitvene datoteke"
 
-#: src/yelp-man.c:447
+#: src/yelp-man.c:449
 msgid "Games"
 msgstr "Igre"
 
-#: src/yelp-man.c:452
+#: src/yelp-man.c:454
 msgid "Overviews"
 msgstr "Drugi pogledi"
 
-#: src/yelp-man.c:457
+#: src/yelp-man.c:459
 msgid "System Administration"
 msgstr "Sistemska administracija"
 
-#: src/yelp-view-content.c:420 src/yelp-view-index.c:498
-msgid "Section"
-msgstr "Odsek"
-
-#: src/yelp-view-content.c:555 src/yelp-view-index.c:562
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Nalagam..."
 
-#: src/yelp-view-index.c:461
-msgid "Search for:"
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Odsek"
+
+#: src/yelp-view-index.c:480
+#, fuzzy
+msgid "_Search for:"
 msgstr "Išči za:"
 
 #. GList           *seriesids;
-#: src/yelp-view-toc.c:183
+#: src/yelp-view-toc.c:165
 msgid "Help Contents"
 msgstr "Vsebina pomoči"
 
-#: src/yelp-view-toc.c:184
+#: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
 msgstr "Namizje GNOME"
 
-#: src/yelp-view-toc.c:185
+#: src/yelp-view-toc.c:167
 msgid "Additional documents"
 msgstr "Dodatni dokumenti"
 
-#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
 msgstr "Strani priročnika (man)"
 
-#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
 msgstr "Strani info"
 
-#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "Dokumenti"
 
-#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
 msgstr "Kategorije"
 
-#: src/yelp-view-toc.c:466
+#: src/yelp-view-toc.c:448
 msgid "Manual pages"
 msgstr "Strai priročnika (man)"
 
-#: src/yelp-window.c:156
+#: src/yelp-view-toc.c:712
+#, fuzzy
+msgid "GNOME is"
+msgstr "Namizje GNOME"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr ""
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr ""
+
+#: src/yelp-window.c:163
 msgid "/_File"
 msgstr "/_Datoteka"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:164
 msgid "/File/_New window"
 msgstr "/Datoteka/_Novo okno"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:165
 msgid "/File/_Close window"
 msgstr "/Datoteka/_Zapri okno"
 
-#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:160
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr ""
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr ""
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr ""
+
+#: src/yelp-window.c:171
 msgid "/_Go"
 msgstr "/Po_jdi"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:172
 msgid "/Go/_Back"
 msgstr "/Pojdi/Na_zaj"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:173
 msgid "/Go/_Forward"
 msgstr "/Pojdi/na_prej"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:174
 msgid "/Go/_Home"
 msgstr "/Pojdi/_Domov"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:175
 msgid "/Go/_Index"
 msgstr "/Pojdi/_Kazalo"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:177
 msgid "/_Help"
 msgstr "/_Pomoč"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:178
 msgid "/Help/_About"
 msgstr "/pomoč/_O programu"
 
-#: src/yelp-window.c:228 src/yelp-window.c:430
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "Brskalnik po pomoči"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:351
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokument '%s' ne obstaja"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:599
+#: src/yelp-window.c:675
 msgid "translator_credits"
 msgstr "Andraž Tori"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
 msgstr "Brskalnik pomoči za GNOME 2.0"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:788
 msgid "Back"
 msgstr "Nazaj"
 
-#: src/yelp-window.c:659
+#: src/yelp-window.c:789
 msgid "Show previous page in history"
 msgstr "Kaži prejšnjo stran v zgodovini"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:800
 msgid "Forward"
 msgstr "Naprej"
 
-#: src/yelp-window.c:671
+#: src/yelp-window.c:801
 msgid "Show next page in history"
 msgstr "Kaži naslednjo stran v zgodovini"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:814
 msgid "Home"
 msgstr "Dom"
 
-#: src/yelp-window.c:685
+#: src/yelp-window.c:815
 msgid "Go to home view"
 msgstr "Pojdi na pogled doma"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:825
 msgid "Index"
 msgstr "Kazalo"
 
-#: src/yelp-window.c:696
+#: src/yelp-window.c:826
 msgid "Search in the index"
 msgstr "Išči po kazalu"
 

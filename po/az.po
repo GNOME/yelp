@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.01\n"
-"POT-Creation-Date: 2001-12-09 09:09+0100\n"
+"POT-Creation-Date: 2002-12-16 09:34+0100\n"
 "PO-Revision-Date: 2001-12-20 18:44GMT+0200\n"
 "Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
 "Language-Team: Azerbaijani Turkic <linuxaz@azerimail.net>\n"
@@ -14,35 +14,306 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: src/yelp-toc.c:140
-msgid "Section"
-msgstr "Qisim"
-
-#: src/yelp-view-doc.c:363
-msgid ""
-"<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help "
-"browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the "
-"README and TODO<br></body></html>"
+#: data/ui/yelp.glade.h:1
+msgid "*"
 msgstr ""
-"<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help "
-"browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the "
-"README and TODO<br></body></html>"
 
-#: src/yelp-window.c:116
-msgid "Yelp: GNOME Help Browser"
-msgstr "Yelp: GNOME Yardım Səyyahı"
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr ""
 
-#: src/yelp-window.c:198
-msgid "Help on "
-msgstr "Yardım yeri "
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr ""
 
-#: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "GNOME Yardımsəyyahı"
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr ""
 
-#: yelp.desktop.in.h:2
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr ""
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr ""
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr ""
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr ""
+
+#: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
 msgstr "Yelp"
 
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr ""
+
+#: src/yelp-main.c:117
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr ""
+
+#: src/yelp-main.c:136
+msgid "Could not open new window."
+msgstr ""
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr ""
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr ""
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr ""
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr ""
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr ""
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr ""
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr ""
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr ""
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr ""
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr ""
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr ""
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr ""
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr ""
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr ""
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr ""
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr ""
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr ""
+
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr ""
+
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Qisim"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr ""
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+#, fuzzy
+msgid "Help Contents"
+msgstr "Yardım yeri "
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr ""
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr ""
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+msgid "Manual Pages"
+msgstr ""
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+msgid "Info Pages"
+msgstr ""
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+msgid "Documents"
+msgstr ""
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+msgid "Categories"
+msgstr ""
+
+#: src/yelp-view-toc.c:448
+msgid "Manual pages"
+msgstr ""
+
+#: src/yelp-view-toc.c:712
+msgid "GNOME is"
+msgstr ""
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr ""
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr ""
+
+#: src/yelp-window.c:163
+msgid "/_File"
+msgstr ""
+
+#: src/yelp-window.c:164
+msgid "/File/_New window"
+msgstr ""
+
+#: src/yelp-window.c:165
+msgid "/File/_Close window"
+msgstr ""
+
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr ""
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr ""
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr ""
+
+#: src/yelp-window.c:171
+msgid "/_Go"
+msgstr ""
+
+#: src/yelp-window.c:172
+msgid "/Go/_Back"
+msgstr ""
+
+#: src/yelp-window.c:173
+msgid "/Go/_Forward"
+msgstr ""
+
+#: src/yelp-window.c:174
+msgid "/Go/_Home"
+msgstr ""
+
+#: src/yelp-window.c:175
+msgid "/Go/_Index"
+msgstr ""
+
+#: src/yelp-window.c:177
+#, fuzzy
+msgid "/_Help"
+msgstr "Yelp"
+
+#: src/yelp-window.c:178
+msgid "/Help/_About"
+msgstr ""
+
+#: src/yelp-window.c:238 src/yelp-window.c:438
+#, fuzzy
+msgid "Help Browser"
+msgstr "GNOME Yardımsəyyahı"
+
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr ""
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:675
+msgid "translator_credits"
+msgstr ""
+
+#: src/yelp-window.c:679
+msgid "Help Browser for GNOME 2.0"
+msgstr ""
+
+#: src/yelp-window.c:788
+msgid "Back"
+msgstr ""
+
+#: src/yelp-window.c:789
+msgid "Show previous page in history"
+msgstr ""
+
+#: src/yelp-window.c:800
+msgid "Forward"
+msgstr ""
+
+#: src/yelp-window.c:801
+msgid "Show next page in history"
+msgstr ""
+
+#: src/yelp-window.c:814
+msgid "Home"
+msgstr ""
+
+#: src/yelp-window.c:815
+msgid "Go to home view"
+msgstr ""
+
+#: src/yelp-window.c:825
+msgid "Index"
+msgstr ""
+
+#: src/yelp-window.c:826
+msgid "Search in the index"
+msgstr ""
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr ""
+
+#: yelp.desktop.in.h:2
+#, fuzzy
+msgid "Help"
+msgstr "Yelp"
+
+#~ msgid ""
+#~ "<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
+#~ "head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a "
+#~ "help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please "
+#~ "read the README and TODO<br></body></html>"
+#~ msgstr ""
+#~ "<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
+#~ "head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a "
+#~ "help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please "
+#~ "read the README and TODO<br></body></html>"
+
+#~ msgid "Yelp: GNOME Help Browser"
+#~ msgstr "Yelp: GNOME Yardım Səyyahı"
