@@ -69,14 +69,8 @@ struct _YelpDocInfo {
 static YelpDocType  get_doc_type       (gchar   *uri);
 static gchar *      convert_ghelp_uri  (gchar   *uri);
 
-#ifdef ENABLE_MAN
 static gchar *      convert_man_uri    (gchar   *uri);
-#endif
-
-#ifdef ENABLE_INFO
 static gchar *      convert_info_uri   (gchar   *uri);
-#endif
-
 
 YelpDocInfo *
 yelp_doc_info_new (const gchar *uri)
@@ -112,20 +106,16 @@ yelp_doc_info_new (const gchar *uri)
 	    doc_type = get_doc_type (doc_uri);
 	uri_type = YELP_URI_TYPE_GHELP;
     }
-#ifdef ENABLE_MAN
     else if (g_str_has_prefix (full_uri, "man:")) {
 	doc_uri  = convert_man_uri (full_uri);
 	doc_type = YELP_DOC_TYPE_MAN;
 	uri_type = YELP_URI_TYPE_MAN;
     }
-#endif
-#ifdef ENABLE_INFO
     else if (g_str_has_prefix (full_uri, "info:")) {
 	doc_uri  = convert_info_uri (full_uri);
 	doc_type = YELP_DOC_TYPE_INFO;
 	uri_type = YELP_URI_TYPE_INFO;
     }
-#endif
     else if (g_str_has_prefix (full_uri, "x-yelp-toc:")) {
 	doc_uri = g_strdup ("file://" DATADIR "/yelp/toc.xml");
 	doc_type = YELP_DOC_TYPE_TOC;
@@ -688,7 +678,6 @@ convert_ghelp_uri (gchar *uri)
     return doc_uri;
 }
 
-#ifdef ENABLE_MAN
 static gchar *
 convert_man_uri (gchar *uri)
 {
@@ -805,9 +794,7 @@ convert_man_uri (gchar *uri)
 
     return doc_uri;
 }
-#endif
 
-#ifdef ENABLE_INFO
 static gchar *
 convert_info_uri (gchar   *uri)
 {
@@ -907,4 +894,3 @@ convert_info_uri (gchar   *uri)
     g_free (info_name);
     return doc_uri;
 }
-#endif

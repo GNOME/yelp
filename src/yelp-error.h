@@ -29,14 +29,14 @@ typedef enum {
 	YELP_ERROR_NO_DOC,        /* Selected document not found   */
 	YELP_ERROR_NO_PAGE,       /* Selected page not found       */
 	YELP_ERROR_NO_TOC,        /* Could not read the TOC        */
-	YELP_ERROR_NO_SGML,       /* SGML is no longer supported   */
+	YELP_ERROR_FORMAT,        /* Format is not supported       */
 	YELP_ERROR_IO,            /* Error in IO                   */
 	YELP_ERROR_PROC           /* Error processing the document */
 } YelpError;
 
-GQuark   yelp_error_quark     (void) G_GNUC_CONST;
+GQuark           yelp_error_quark         (void) G_GNUC_CONST;
 
-void     yelp_set_error       (GError     **error,
-			       YelpError    code);
+const gchar *    yelp_error_get_primary   (GError      *error);
+const gchar *    yelp_error_get_secondary (GError      *error);
 
 #endif /* __YELP_ERROR_H__ */

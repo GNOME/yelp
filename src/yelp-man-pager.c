@@ -160,7 +160,10 @@ man_pager_parse (YelpPager *pager)
     yelp_man_parser_free (parser);
 
     if (doc == NULL) {
-	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+		     _("The file ‘%s’ could not be parsed.  Either the file "
+		       "does not exist, or it is formatted incorrectly."),
+		     filename);
 	yelp_pager_error (pager, error);
     }
 

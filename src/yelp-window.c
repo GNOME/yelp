@@ -687,9 +687,10 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 
     if (!uri) {
 	GError *error = NULL;
-	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+		     _("The Uniform Resource Identifier for the file is "
+		       "invalid."));
 	window_error (window, error, FALSE);
-	g_error_free (error);
 	return;
     }
 
@@ -698,9 +699,11 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     doc_info = yelp_doc_info_get (uri);
     if (!doc_info) {
 	GError *error = NULL;
-	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+		     _("The Uniform Resource Identifier ‘%s’ is invalid "
+		       "or does not point to an actual file."),
+		     uri);
 	window_error (window, error, FALSE);
-	g_error_free (error);
 	return;
     }
     frag_id  = yelp_uri_get_fragment (uri);
@@ -768,14 +771,34 @@ window_do_load (YelpWindow  *window,
     priv = window->priv;
 
     switch (yelp_doc_info_get_type (doc_info)) {
-    case YELP_DOC_TYPE_DOCBOOK_XML:
     case YELP_DOC_TYPE_MAN:
+#ifdef ENABLE_MAN
+	handled = window_do_load_pager (window, doc_info, frag_id);
+	break;
+#else
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
+		     _("Man pages are not supported in this version."));
+	break;
+#endif
+
     case YELP_DOC_TYPE_INFO:
+#ifdef ENABLE_INFO
+	handled = window_do_load_pager (window, doc_info, frag_id);
+	break;
+#else
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
+		     _("GNU info pages are not supported in this version"));
+	break;
+#endif
+
+    case YELP_DOC_TYPE_DOCBOOK_XML:
     case YELP_DOC_TYPE_TOC:
 	handled = window_do_load_pager (window, doc_info, frag_id);
 	break;
     case YELP_DOC_TYPE_DOCBOOK_SGML:
-	yelp_set_error (&error, YELP_ERROR_NO_SGML);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
+		     _("SGML documents are no longer supported. Please ask "
+		       "the author of the document to convert to XML."));
 	break;
     case YELP_DOC_TYPE_HTML:
 	handled = window_do_load_html (window, doc_info, frag_id);
@@ -788,13 +811,24 @@ window_do_load (YelpWindow  *window,
 	break;
     case YELP_DOC_TYPE_ERROR:
     default:
-	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	uri = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_NO_FILE);
+	if (!uri)
+	    uri = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_FILE);
+	if (uri)
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+			 _("The Uniform Resource Identifier ‘%s’ is invalid "
+			   "or does not point to an actual file."),
+			 uri);
+	else
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+			 _("The Uniform Resource Identifier for the file is "
+			   "invalid."));
+	g_free (uri);
 	break;
     }
  
     if (error) {
 	window_error (window, error, TRUE);
-	g_error_free (error);
     }
 
     window_find_buttons_set_sensitive (window, TRUE);    
@@ -824,16 +858,19 @@ window_error (YelpWindow *window, GError *error, gboolean pop)
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
 
-    if (error) {
-	dialog = gtk_message_dialog_new
-	    (GTK_WINDOW (window),
-	     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-	     GTK_MESSAGE_ERROR,
-	     GTK_BUTTONS_OK,
-	     error->message);
-	gtk_dialog_run (GTK_DIALOG (dialog));
-	gtk_widget_destroy (dialog);
-    }
+    dialog = gtk_message_dialog_new
+	(GTK_WINDOW (window),
+	 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+	 GTK_MESSAGE_ERROR,
+	 GTK_BUTTONS_OK,
+	 "%s", yelp_error_get_primary (error));
+    gtk_message_dialog_format_secondary_markup
+	(GTK_MESSAGE_DIALOG (dialog), "%s",
+	 yelp_error_get_secondary (error));
+    gtk_dialog_run (GTK_DIALOG (dialog));
+
+    g_error_free (error);
+    gtk_widget_destroy (dialog);
 }
 
 static void
@@ -871,7 +908,6 @@ window_populate (YelpWindow *window)
 					  DATADIR "/yelp/ui/yelp-ui.xml",
 					  &error)) {
 	window_error (window, error, FALSE);
-	g_error_free (error);
     }
 
     yelp_bookmarks_register (window);
@@ -1062,16 +1098,25 @@ window_do_load_pager (YelpWindow  *window,
 	case YELP_DOC_TYPE_DOCBOOK_XML:
 	    pager = yelp_db_pager_new (doc_info);
 	    break;
-#ifdef ENABLE_INFO
 	case YELP_DOC_TYPE_INFO:
+#ifdef ENABLE_INFO
 	    pager = yelp_info_pager_new (doc_info);
 	    break;
+#else
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
+		     _("GNU info pages are not supported in this version"));
 #endif
-#ifdef ENABLE_MAN
+
 	case YELP_DOC_TYPE_MAN:
+#ifdef ENABLE_MAN
 	    pager = yelp_man_pager_new (doc_info);
 	    break;
+#else
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
+			 _("Man pages are not supported in this version."));
+	    break;
 #endif
+
 	case YELP_DOC_TYPE_TOC:
 	    pager = YELP_PAGER (yelp_toc_pager_get ());
 	    break;
@@ -1083,9 +1128,12 @@ window_do_load_pager (YelpWindow  *window,
     }
 
     if (!pager) {
-	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	if (!error)
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
+			 _("A transformation context could not be created for "
+			   "the file ‘%s’. The format may not be supported."),
+			 uri);
 	window_error (window, error, TRUE);
-	g_error_free (error);
 	handled = FALSE;
 	goto done;
     }
@@ -1111,9 +1159,13 @@ window_do_load_pager (YelpWindow  *window,
 
 	page = (YelpPage *) yelp_pager_get_page (pager, frag_id);
 	if (!page && (state == YELP_PAGER_STATE_FINISHED)) {
-	    yelp_set_error (&error, YELP_ERROR_NO_PAGE);
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_PAGE,
+			 _("The section ‘%s’ does not exist in this document. "
+			   "If you were directed to this section from a Help "
+			   "button in an application, please report this to "
+			   "the maintainers of that application."),
+			 frag_id);
 	    window_error (window, error, TRUE);
-	    g_error_free (error);
 	    handled = FALSE;
 	    goto done;
 	}
@@ -1222,9 +1274,12 @@ window_do_load_html (YelpWindow    *window,
 
     if (result != GNOME_VFS_OK) {
 	GError *error = NULL;
-	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	g_set_error (error, YELP_ERROR, YELP_ERROR_IO,
+		     _("The file ‘%s’ could not be read.  This file might "
+		       "be missing, or you might not have permissions to "
+		       "read it."),
+		     uri);
 	window_error (window, error, TRUE);
-	g_error_free (error);
 	handled = FALSE;
 	goto done;
     }
@@ -1516,12 +1571,18 @@ pager_start_cb (YelpPager   *pager,
     window_set_sections (window,
 			 yelp_pager_get_sections (pager));
 
-    if (!page_id && (window->priv->current_frag && strcmp (window->priv->current_frag, ""))) {
+    if (!page_id && window->priv->current_frag &&
+	strcmp (window->priv->current_frag, "")) {
+
 	window_disconnect (window);
 
-	yelp_set_error (&error, YELP_ERROR_NO_PAGE);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_PAGE,
+		     _("The section ‘%s’ does not exist in this document. "
+		       "If you were directed to this section from a Help "
+		       "button in an application, please report this to "
+		       "the maintainers of that application."),
+		     window->priv->current_frag);
 	window_error (window, error, TRUE);
-	g_error_free (error);
     }
 }
 
@@ -1558,8 +1619,6 @@ pager_error_cb (YelpPager   *pager,
     window_disconnect (window);
     window_error (window, error, TRUE);
 
-    g_error_free (error);
-
     history_step_back (window);
 }
 
@@ -1584,10 +1643,13 @@ pager_finish_cb (YelpPager   *pager,
 
     window_disconnect (window);
 
-    yelp_set_error (&error, YELP_ERROR_NO_PAGE);
+    g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_PAGE,
+		 _("The section ‘%s’ does not exist in this document. "
+		   "If you were directed to this section from a Help "
+		   "button in an application, please report this to "
+		   "the maintainers of that application."),
+		 window->priv->current_frag);
     window_error (window, error, TRUE);
-
-    g_error_free (error);
 
     // FIXME: Remove the URI from the history and go back
 }

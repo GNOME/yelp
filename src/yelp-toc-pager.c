@@ -761,7 +761,10 @@ process_read_menu (YelpTocPager *pager)
 				     XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
 				     XML_PARSE_NONET    );
     if (!priv->toc_doc) {
-	yelp_set_error (&error, YELP_ERROR_NO_TOC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_TOC,
+		     _("The table of contents could not be loaded. The file "
+		       "‘%s’ is either missing or is not well-formed XML."),
+		     DATADIR "/yelp/toc.xml");
 	yelp_pager_error (YELP_PAGER (pager), error);
 	priv->cancel = TRUE;
 	return FALSE;
@@ -866,7 +869,11 @@ process_xslt (YelpTocPager *pager)
 
     priv->stylesheet = xsltParseStylesheetFile (TOC_STYLESHEET);
     if (!priv->stylesheet) {
-	yelp_set_error (&error, YELP_ERROR_PROC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
+		     _("The table of contents could not be processed. The "
+		       "file ‘%s’ is either missing or is not a valid XSLT "
+		       "stylesheet."),
+		     TOC_STYLESHEET);
 	yelp_pager_error (YELP_PAGER (pager), error);
 	goto done;
     }

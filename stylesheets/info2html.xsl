@@ -38,7 +38,7 @@
     <html>
       <head>
         <title>
-          <xsl:text>FOO</xsl:text>
+          <xsl:value-of select="@name"/>
         </title>
         <style type="text/css">
           <xsl:call-template name="html.css"/>

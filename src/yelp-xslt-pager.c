@@ -190,7 +190,10 @@ xslt_pager_process (YelpPager *pager)
     priv->inputDoc = klass->parse (pager);
 
     if (priv->inputDoc == NULL) {
-	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+		     _("The file ‘%s’ could not be parsed. Either the file "
+		       "does not exist, or it is improperly formatted."),
+		     filename);
 	yelp_pager_error (pager, error);
 	goto done;
     }
@@ -208,7 +211,12 @@ xslt_pager_process (YelpPager *pager)
 
     priv->stylesheet = xsltParseStylesheetFile (klass->stylesheet);
     if (!priv->stylesheet) {
-	yelp_set_error (&error, YELP_ERROR_PROC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
+		     _("The document ‘%s’could not be processed. The file "
+		       "‘%s’ is either missing or is not a valid XSLT "
+		       "stylesheet."),
+		     filename,
+		     klass->stylesheet);
 	yelp_pager_error (pager, error);
 	goto done;
     }
@@ -216,7 +224,12 @@ xslt_pager_process (YelpPager *pager)
     priv->transformContext = xsltNewTransformContext (priv->stylesheet,
 						      priv->inputDoc);
     if (!priv->transformContext) {
-	yelp_set_error (&error, YELP_ERROR_PROC);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
+		     _("The document ‘%s’could not be processed. The file "
+		       "‘%s’ is either missing or is not a valid XSLT "
+		       "stylesheet."),
+		     filename,
+		     klass->stylesheet);
 	yelp_pager_error (pager, error);
 	goto done;
     }

@@ -35,48 +35,35 @@ yelp_error_quark (void)
     return q;
 }
 
-void
-yelp_set_error (GError **error, YelpError code)
+const gchar *
+yelp_error_get_primary (GError  *error)
 {
-    switch (code) {
+    if (!error || error->domain != YELP_ERROR)
+	return _("An unknown error occured");
+
+    switch (error->code) {
     case YELP_ERROR_NO_DOC:
-	g_set_error (error,
-		     YELP_ERROR,
-		     YELP_ERROR_NO_DOC,
-		     _("The selected document could not be opened"));
-	break;
+	return _("Could not load document");
     case YELP_ERROR_NO_PAGE:
-	g_set_error (error,
-		     YELP_ERROR,
-		     YELP_ERROR_NO_PAGE,
-		     _("The selected page could not be found in this document."));
-	break;
+	return _("Could not load section");
     case YELP_ERROR_NO_TOC:
-	g_set_error (error,
-		     YELP_ERROR,
-		     YELP_ERROR_NO_TOC,
-		     _("The table of contents could not be read."));
-	break;
-    case YELP_ERROR_NO_SGML:
-	g_set_error (error,
-		     YELP_ERROR,
-		     YELP_ERROR_NO_SGML,
-		     _("DocBook SGML documents are no longer supported."));
-	break;
+	return _("Could not read the table of contents");
+    case YELP_ERROR_FORMAT:
+	return _("Unsupported Format");
     case YELP_ERROR_IO:
-	g_set_error (error,
-		     YELP_ERROR,
-		     YELP_ERROR_IO,
-		     _("The selected file could not be read."));
-	break;
+	return _("Could not read document");
     case YELP_ERROR_PROC:
-	g_set_error (error,
-		     YELP_ERROR,
-		     YELP_ERROR_PROC,
-		     _("The file could not be processed."));
-	break;
+	return _("Could not process document");
     default:
-	g_assert_not_reached ();
+	return _("An unknown error occured");
     }
 }
 
+const gchar *
+yelp_error_get_secondary (GError  *error)
+{
+    if (!error || !error->message)
+	return _("No information is available about the error.");
+    else
+	return error->message;
+}

@@ -26,6 +26,7 @@
 
 #include <stdio.h>
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <zlib.h>
 #ifdef HAVE_LIBBZ2
 #include <bzlib.h>
@@ -76,13 +77,12 @@ yelp_io_channel_new_file (gchar    *file,
     GIOChannel    *iochannel;
 
     g_return_val_if_fail (file != NULL, NULL);
-    g_return_val_if_fail ((error == NULL) || (*error == NULL), NULL);
 
     channel = g_new0(YelpIOChannel, 1);
     iochannel = (GIOChannel *) channel;
 
 #ifdef HAVE_LIBBZ2
-    if (strstr (file, ".bz2"))
+    if (g_str_has_suffix (file, ".bz2"))
 	channel->bzin = bzopen (file, "r");
     else
 #endif
@@ -93,7 +93,12 @@ yelp_io_channel_new_file (gchar    *file,
 #else
     if (!channel->gzin) {
 #endif
-	yelp_set_error (error, YELP_ERROR_IO);
+	if (error)
+	    g_set_error (error, YELP_ERROR, YELP_ERROR_IO,
+			 _("The file ‘%s’ could not be read and decoded. "
+			   "The file may be compressed in an unsupported "
+			   "format."),
+			 file);
 	return NULL;
     }
 

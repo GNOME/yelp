@@ -1,3 +1,22 @@
+2005-01-01  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-io-channel.c:
+	* src/yelp-man-pager.c:
+	* src/yelp-toc-pager.c:
+	* src/yelp-window.c:
+	* src/yelp-xslt-pager.c:
+	- HIGified the error dialogs
+
+	* src/yelp-utils.c:
+	* src/yelp-window.c:
+	- Handle man: and info: URIs with errors when --disable-(man|info)
+
+	* stylesheets/info2html.xsl:
+	- Set the title of info pages
+
 2004-12-31  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-utils.c:
