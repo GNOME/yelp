@@ -1,3 +1,21 @@
+2003-11-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	- Add yelp-error.[ch] to SOURCES for test-pager.
+
+	* src/yelp-error.h:
+	- Add YELP_ERROR_FAILED_TOC.
+
+	* src/yelp-pager.c:
+	- Don't free memory you're not supposed to, dummy.
+
+	* src/yelp-toc-pager.c:
+	- More work on the toc generation.
+
+	* src/yelp-window.c:
+	- Make sidebar selection work.
+	- Remove huge block of commented-out code.
+
 2003-11-19  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-toc-pager.c:

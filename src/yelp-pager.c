@@ -349,6 +349,8 @@ yelp_pager_lookup_page (YelpPager *pager, YelpURI *uri)
 
     if (!page_id)
 	page_id = yelp_uri_get_fragment (uri);
+    else
+	page_id = g_strdup (page_id);
 
     page = (YelpPage *) yelp_pager_get_page (pager, page_id);
 

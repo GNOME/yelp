@@ -27,12 +27,12 @@ test_uri_LDADD = 							\
 	@YELP_LIBS@
 
 test_pager_SOURCES =							\
-	test-pager.c							\
+	yelp-error.c		yelp-error.h				\
 	yelp-pager.c		yelp-pager.h				\
 	yelp-db-pager.c		yelp-db-pager.h				\
 	yelp-toc-pager.c	yelp-toc-pager.h			\
 	yelp-uri.c		yelp-uri.h				\
-	yelp-marshal-main.c
+	yelp-marshal-main.c	test-pager.c
 
 test_pager_LDADD =							\
 	@DB2HTML_LIBS@ @YELP_LIBS@ -lexslt

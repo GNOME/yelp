@@ -88,6 +88,8 @@ static void        html_uri_selected_cb           (YelpHtml          *html,
 						   YelpURI           *uri,
 						   gboolean           handled,
 						   gpointer           user_data);
+static void        tree_selection_changed_cb      (GtkTreeSelection  *selection,
+						   YelpWindow        *window);
 
 static void        window_new_window_cb           (gpointer           data,
 						   guint              section,
@@ -360,11 +362,12 @@ window_error (YelpWindow *window, GError *error)
 static void
 window_populate (YelpWindow *window)
 {
-    YelpWindowPriv *priv;
-    GtkWidget      *main_box;
-    GtkWidget      *toolbar;
-    GtkAccelGroup  *accel_group;
-    GtkWidget      *menu_item;
+    YelpWindowPriv     *priv;
+    GtkWidget          *main_box;
+    GtkWidget          *toolbar;
+    GtkAccelGroup      *accel_group;
+    GtkWidget          *menu_item;
+    GtkTreeSelection   *selection;
 
     priv = window->priv;
 
@@ -427,6 +430,12 @@ window_populate (YelpWindow *window)
 	 _("Section"), gtk_cell_renderer_text_new (),
 	 "text", 1,
 	 NULL);
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
+
+    g_signal_connect (selection, "changed",
+		      G_CALLBACK (tree_selection_changed_cb),
+		      window);
 
     gtk_container_add (GTK_CONTAINER (priv->side_sw),     priv->side_sects);
     gtk_paned_add1    (GTK_PANED (priv->pane), priv->side_sw);
@@ -819,6 +828,34 @@ html_uri_selected_cb (YelpHtml  *html,
     yelp_window_open_uri (window, uri);
 }
 
+static void
+tree_selection_changed_cb (GtkTreeSelection *selection,
+			   YelpWindow       *window)
+{
+    GtkTreeModel    *model;
+    GtkTreeIter      iter;
+    gchar           *id, *frag;
+    YelpURI         *uri;
+
+    YelpWindowPriv *priv = window->priv;
+
+    if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+	model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
+		
+	gtk_tree_model_get (model, &iter,
+			    0, &id,
+			    -1);
+
+	frag = g_strconcat ("#", id, NULL);
+	uri = yelp_uri_new_relative
+	    (yelp_window_get_current_uri (window), frag);
+
+	yelp_window_open_uri (window, uri);
+
+	g_free (frag);
+    }
+}
+
 
 /******************************************************************************/
 
@@ -998,242 +1035,3 @@ window_history_action (YelpWindow        *window,
     }
 }
 
-/***************************** FIXME below
-
-static void
-window_uri_selected_cb (gpointer    view, 
-			YelpURI    *uri, 
-			gboolean    handled,
-			YelpWindow *window)
-{
-	YelpWindowPriv *priv;
-
-	g_return_if_fail (YELP_IS_WINDOW (window));
-
-	d(g_print ("uri_selected: %s, handled: %d\n", 
-		   yelp_uri_to_string (uri), handled));
-
-	priv = window->priv;
-
-	yelp_uri_ref (uri);
-	
-	if (handled) {
-		yelp_history_goto (priv->history, uri);
-	} else {
-		if (window_handle_uri (window, uri)) {
-			yelp_history_goto (priv->history, uri);
-		}
-	}
-
-	yelp_uri_unref (uri);
-}
-
-static void
-window_title_changed_cb (gpointer view, const gchar *title, YelpWindow *window)
-{
-	gchar *new_title;
-	
-	g_return_if_fail (title != NULL);
-	g_return_if_fail (YELP_IS_WINDOW (window));
-	
-	new_title = g_strconcat (title, " - ", _("Help Browser"), NULL);
-
-	gtk_window_set_title (GTK_WINDOW (window), new_title);
-
-	g_free (new_title);
-}
-
-
-
-
-
-static void
-window_index_button_clicked (GtkWidget *button, YelpWindow *window)
-{
-	YelpURI *uri;
-	
-	g_return_if_fail (YELP_IS_WINDOW (window));
-
-	uri = yelp_uri_new ("index:");
-	yelp_history_goto (window->priv->history, uri);
-	yelp_uri_unref (uri);
-	
-	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
-				       PAGE_INDEX_VIEW);
-}
-
-
-static void
-window_find_cb (gpointer data, guint section, GtkWidget *widget)
-{
-	YelpWindow     *window = data;
-	YelpWindowPriv *priv;
-	GladeXML       *glade;
-	
-	g_return_if_fail (YELP_IS_WINDOW (data));
-
-	window = YELP_WINDOW (data);
-
-	priv = window->priv;
-
-	if (!priv->find_dialog) {
-		glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade", "find_dialog", NULL);
-		if (!glade) {
-			g_warning ("Couldn't find necessary glade file " DATADIR "/yelp/ui/yelp.glade");
-			return;
-		}
-
-		priv->find_dialog = glade_xml_get_widget (glade, "find_dialog");
-
-		priv->find_entry = glade_xml_get_widget (glade, "find_entry");
-		priv->case_checkbutton = glade_xml_get_widget (glade, "case_check");
-		priv->wrap_checkbutton = glade_xml_get_widget (glade, "wrap_check");
-
-		g_signal_connect (priv->find_dialog,
-				  "delete_event",
-				  G_CALLBACK (window_find_delete_event_cb),
-				  NULL);
-
-		g_signal_connect (priv->find_dialog,
-				  "response",
-				  G_CALLBACK (window_find_response_cb),
-				  window);
-
-		g_object_unref (glade);
-	}
-
-	gtk_window_present (GTK_WINDOW (priv->find_dialog));
-}
-
-static void
-window_find_again_cb (gpointer data, guint section, GtkWidget *widget)
-{
-	YelpWindow     *window = data;
-	YelpWindowPriv *priv;
-	YelpView       *view;
-	YelpHtml       *html;
-	
-	g_return_if_fail (YELP_IS_WINDOW (data));
-
-	window = YELP_WINDOW (data);
-
-	priv = window->priv;
-
-	if (priv->find_string) {
-		view = window_get_active_view (window);
-		html = yelp_view_get_html (view);
-		
-		yelp_html_find (html,
-				priv->find_string,
-				priv->match_case,
-				priv->wrap,
-				TRUE);
-	}
-}
-	
-static void
-window_history_go_cb (gpointer data, guint section, GtkWidget *widget)
-{
-	window_history_action (data, section);
-}
-
-static void
-window_go_home_cb (gpointer data, guint section, GtkWidget *widget)
-{
-	window_home_button_clicked (NULL, YELP_WINDOW (data));
-}
-
-static void
-window_go_index_cb (gpointer data, guint section, GtkWidget *widget)
-{
-	window_index_button_clicked (NULL, YELP_WINDOW (data));
-}
-
-
-static gboolean
-window_find_delete_event_cb (GtkWidget *widget, gpointer user_data)
-{
-	gtk_widget_hide (widget);
-	
-	return TRUE;
-}
-
-static void
-window_find_response_cb (GtkWidget  *dialog ,
-			 gint        response,
-			 YelpWindow *window)
-{
-	YelpWindowPriv *priv;
-	YelpView       *view;
-	YelpHtml       *html;
-	const gchar    *tmp;
-	
-	priv = window->priv;
-
-	view = window_get_active_view (window);
-	html = yelp_view_get_html (view);
-
-	switch (response) {
-	case GTK_RESPONSE_CLOSE:
-		gtk_widget_hide (dialog);
-		break;
-
-	case RESPONSE_PREV:
-	case RESPONSE_NEXT:
-		tmp = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
-
-		priv->match_case = gtk_toggle_button_get_active (
-			GTK_TOGGLE_BUTTON (priv->case_checkbutton));
-
-		priv->wrap = gtk_toggle_button_get_active (
-			GTK_TOGGLE_BUTTON (priv->wrap_checkbutton));
-
-		g_free (priv->find_string);
-		
-		if (!priv->match_case) {
-			priv->find_string = g_utf8_casefold (tmp, -1);
-		} else {
-			priv->find_string = g_strdup (tmp);
-		}
-		
-		yelp_html_find (html,
-				priv->find_string,
-				priv->match_case,
-				priv->wrap,
-				response == RESPONSE_NEXT);
-		break;
-		
-	default:
-		break;
-	}
-	
-}
-
-static YelpView *
-window_get_active_view (YelpWindow *window)
-{
-	YelpWindowPriv *priv;
-	
-	priv = window->priv;
-	
-	switch (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook))) {
-	case PAGE_TOC_VIEW:
-		return priv->toc_view;
-	case PAGE_CONTENT_VIEW:
-		return priv->content_view;
-	case PAGE_INDEX_VIEW:
-		return priv->index_view;
-		break;
-	default:
-		g_assert_not_reached ();
-	}
-
-	return NULL;
-}
-
-
-
-
-
-
-**************************/
