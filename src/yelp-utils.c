@@ -165,6 +165,7 @@ yelp_doc_info_get (const gchar *uri)
 {
     YelpDocInfo *doc;
     gint i;
+    gchar *c, *doc_uri;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
@@ -178,10 +179,19 @@ yelp_doc_info_get (const gchar *uri)
 				   g_free,
 				   (GDestroyNotify) yelp_doc_info_unref);
 
-    doc = (YelpDocInfo *) g_hash_table_lookup (doc_info_table, uri);
+    c = strchr (uri, '?');
+    if (c == NULL)
+	c = strchr (uri, '#');
+
+    if (c != NULL)
+	doc_uri = g_strndup (uri, c - uri);
+    else
+	doc_uri = g_strdup (uri);
+
+    doc = (YelpDocInfo *) g_hash_table_lookup (doc_info_table, doc_uri);
 
     if (!doc) {
-	doc = yelp_doc_info_new (uri);
+	doc = yelp_doc_info_new (doc_uri);
 	if (doc && doc->type != YELP_DOC_TYPE_EXTERNAL) {
 	    YelpDocInfo *old_doc;
 
@@ -213,6 +223,7 @@ yelp_doc_info_get (const gchar *uri)
 	}
     }
 
+    g_free (doc_uri);
     return doc;
 }
 

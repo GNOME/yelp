@@ -1,5 +1,10 @@
 2004-12-31  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-utils.c:
+	- Strip off frags when doing doc_info_table lookups
+
+2004-12-31  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-info-pager.c:
 	- Make a hash of section ids and do resolve_frag properly
 
