@@ -117,6 +117,8 @@ static void        pager_page_cb                  (YelpPager         *pager,
 						   gpointer           user_data);
 static void        pager_error_cb                 (YelpPager         *pager,
 						   gpointer           user_data);
+static void        pager_cancel_cb                (YelpPager         *pager,
+						   gpointer           user_data);
 static void        pager_finish_cb                (YelpPager         *pager,
 						   gpointer           user_data);
 
@@ -152,6 +154,7 @@ static void    window_close_window_cb   (GtkAction *action, YelpWindow *window);
 static void    window_copy_cb           (GtkAction *action, YelpWindow *window);
 static void    window_find_cb           (GtkAction *action, YelpWindow *window);
 static void    window_preferences_cb    (GtkAction *action, YelpWindow *window);
+static void    window_reload_cb         (GtkAction *action, YelpWindow *window);
 static void    window_go_back_cb        (GtkAction *action, YelpWindow *window);
 static void    window_go_forward_cb     (GtkAction *action, YelpWindow *window);
 static void    window_go_home_cb        (GtkAction *action, YelpWindow *window);
@@ -237,9 +240,9 @@ struct _YelpWindowPriv {
     gulong          start_handler;
     gulong          page_handler;
     gulong          error_handler;
+    gulong          cancel_handler;
     gulong          finish_handler;
     guint           idle_write;
-    guint           icons_hook;
 
     GtkActionGroup *action_group;
     GtkUIManager   *ui_manager;
@@ -311,6 +314,12 @@ static GtkActionEntry entries[] = {
       N_("_Preferences"),
       NULL, NULL,
       G_CALLBACK (window_preferences_cb) },
+
+    { "Reload", NULL,
+      N_("_Reload"),
+      "<Control>R",
+      NULL,
+      G_CALLBACK (window_reload_cb) },
 
     { "GoBack", GTK_STOCK_GO_BACK,
       N_("_Back"),
@@ -1081,6 +1090,11 @@ window_do_load_pager (YelpWindow  *window,
 			      "error",
 			      G_CALLBACK (pager_error_cb),
 			      window);
+	priv->cancel_handler =
+	    g_signal_connect (pager,
+			      "error",
+			      G_CALLBACK (pager_cancel_cb),
+			      window);
 	priv->finish_handler =
 	    g_signal_connect (pager,
 			      "finish",
@@ -1354,6 +1368,11 @@ window_disconnect (YelpWindow *window)
 					 priv->error_handler);
 	    priv->error_handler = 0;
 	}
+	if (priv->cancel_handler) {
+	    g_signal_handler_disconnect (pager,
+					 priv->cancel_handler);
+	    priv->cancel_handler = 0;
+	}
 	if (priv->finish_handler) {
 	    g_signal_handler_disconnect (pager,
 					 priv->finish_handler);
@@ -1378,12 +1397,7 @@ yelp_window_destroyed (GtkWidget *window,
 
     priv = YELP_WINDOW(window)->priv;
 
-    yelp_settings_notify_remove (YELP_SETTINGS_INFO_ICONS,
-				 priv->icons_hook);
-
     window_disconnect (YELP_WINDOW (window));
-
-    priv = YELP_WINDOW(window)->priv;
 
     if (priv->current_doc)
 	yelp_doc_info_unref (priv->current_doc);
@@ -1467,7 +1481,17 @@ pager_error_cb (YelpPager   *pager,
 
     g_error_free (error);
 
-    // FIXME: Remove the URI from the history and go back
+    history_step_back (window);
+}
+
+static void
+pager_cancel_cb (YelpPager   *pager,
+		gpointer     user_data)
+{
+    YelpWindow *window = YELP_WINDOW (user_data);
+    d (g_print ("pager_cancel_cb\n"));
+
+    window_disconnect (window);
 }
 
 static void
@@ -1693,6 +1717,25 @@ window_preferences_cb (GtkAction *action, YelpWindow *window)
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     yelp_settings_open_preferences ();
+}
+
+static void
+window_reload_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpPager *pager;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    d (g_print ("window_reload_cb\n"));
+
+    if (window->priv->current_doc) {
+	pager = yelp_doc_info_get_pager (window->priv->current_doc);
+
+	if (!pager)
+	    return;
+
+	yelp_pager_cancel (pager);
+    }
 }
 
 static void

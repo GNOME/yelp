@@ -1,3 +1,20 @@
+2004-11-01  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* src/Makefile.am:
+	- Do the -fno-rtti thing the way epiphany does it
+
+	* data/ui/yelp-ui.xml:
+	* src/yelp-base.c:
+	* src/yelp-db-pager.c:
+	* src/yelp-utils.c:
+	* src/yelp-window.c:
+	- Added stub for reload.  Don't use it unless you like things to crash
+	- Cancellation is somewhat working
+
+	* po/POTFILES.in:
+	- Added data/yelp.schemas.in and src/yelp-settings.c
+
 2004-10-28  James Henstridge  <james@jamesh.id.au>
 
 	* src/Makefile.am: fix up handling of built sources for

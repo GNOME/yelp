@@ -14,7 +14,6 @@ INCLUDES =								\
 	-I$(MOZILLA_INCLUDE_ROOT)/string				\
 	-I$(MOZILLA_INCLUDE_ROOT)/webshell				\
 	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h		\
-	-fno-rtti							\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"				\

@@ -34,6 +34,8 @@
 #include "yelp-toc-pager.h"
 #include "yelp-base.h"
 
+gboolean main_running;
+
 struct _YelpBasePriv {
 	GNode  *toc_tree;
 
@@ -118,11 +120,13 @@ static void
 yelp_base_class_init (YelpBaseClass *klass)
 {
 	POA_GNOME_Yelp__epv *epv = &klass->epv;
-	
+
 	parent_class = gtk_type_class (PARENT_TYPE);
 
 	epv->newWindow  = impl_Yelp_newWindow;
 	epv->getWindows = impl_Yelp_getWindows;
+
+	main_running = TRUE;
 }
 
 static void
@@ -145,12 +149,13 @@ yelp_base_window_finalized_cb (YelpBase *base, YelpWindow *window)
 	YelpBasePriv *priv;
 	
 	g_return_if_fail (YELP_IS_BASE (base));
-	
+
 	priv = base->priv;
 	
 	priv->windows = g_slist_remove (priv->windows, window);
 
 	if (g_slist_length (priv->windows) == 0) {
+		main_running = FALSE;
 		bonobo_main_quit ();
 	}
 }

@@ -239,7 +239,10 @@ yelp_doc_info_set_pager (YelpDocInfo *doc, YelpPager *pager)
     if (doc->pager)
 	g_object_unref (doc->pager);
 
-    doc->pager = g_object_ref (pager);
+    if (pager)
+	g_object_ref (pager);
+
+    doc->pager = pager;
 }
 
 YelpDocType
