@@ -1,14 +1,13 @@
 # Danish translation of Yelp.
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Ole Laursen <olau@hardworking.dk>, 2002.
-# Kenneth Chritiansen <kenneth@gnu.org>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2002-02-28 00:53+0100\n"
-"PO-Revision-Date: 2002-02-16 11:36+0100\n"
-"Last-Translator: Ole Laursen og Kenneth Christiansen\n"
+"POT-Creation-Date: 2002-02-28 21:01+0100\n"
+"PO-Revision-Date: 2002-02-28 21:03+0100\n"
+"Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,12 +25,12 @@ msgstr "Yelp-fabrik"
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:78
+#: src/yelp-main.c:91
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kunne ikke aktivere Yelp: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:110
 msgid "Could not open new window."
 msgstr "Kunne ikke åbne nyt vindue."
 
@@ -114,7 +113,7 @@ msgstr "Del"
 
 #: src/yelp-view-index.c:211
 msgid "Search for:"
-msgstr "Søg efter"
+msgstr "Søg efter:"
 
 #: src/yelp-view-toc.c:271
 msgid "Other Documents"
@@ -178,7 +177,7 @@ msgstr "Hjælpelæser til Gnome 2.0"
 
 #: src/yelp-window.c:438
 msgid "Show previous page in history"
-msgstr "Vis forrige side i historikken"
+msgstr "Vis foregående side i historikken"
 
 #: src/yelp-window.c:453
 msgid "Show next page in history"
@@ -186,7 +185,7 @@ msgstr "Vis næste side i historikken"
 
 #: src/yelp-window.c:468
 msgid "Go to home view"
-msgstr "Gå til velkomstsiden"
+msgstr "Gå til startvisning"
 
 #: src/yelp-window.c:479
 msgid "Search in the index"
@@ -212,20 +211,8 @@ msgstr "Få hjælp til Gnome"
 msgid "Help"
 msgstr "Hjælp"
 
-#~ msgid "<a href=\"toc:man\">Manual pages</a>: "
-#~ msgstr "<a href=\"toc:man\">Manualsider</a>: "
-
-#~ msgid "Manual page sections"
-#~ msgstr "Manualsidesektioner"
-
-#~ msgid "Go back in the history list"
-#~ msgstr "Gå tilbage i historikken"
-
-#~ msgid "Go forth in the history list"
-#~ msgstr "Gå fremad i historikken"
-
 #~ msgid "Overview of contents"
-#~ msgstr "Indholdsoversigt"
+#~ msgstr "Indholdsfortegnelse"
 
 #~ msgid "Important documents"
 #~ msgstr "Vigtige dokumenter"
