@@ -309,11 +309,9 @@ content_reader_finished_cb (YelpReader      *reader,
 		gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content_tree),
  					  path, TRUE);
 
-		parent = gtk_tree_path_copy (path);
-		
 		g_signal_handlers_block_by_func (
 			selection,
-			content_tree_selection_changed_cb,
+			(gpointer) content_tree_selection_changed_cb,
 			view);
  
 /* 		gtk_tree_selection_select_path (selection, path); */
@@ -322,7 +320,7 @@ content_reader_finished_cb (YelpReader      *reader,
 		
 		g_signal_handlers_unblock_by_func (
 			selection,
-			content_tree_selection_changed_cb,
+			(gpointer) content_tree_selection_changed_cb,
 			view);
 
 		while (gtk_tree_path_up (path)) {
@@ -333,10 +331,12 @@ content_reader_finished_cb (YelpReader      *reader,
 
 		gtk_tree_path_free (path);
 		gtk_tree_path_free (parent);
+
+	} else {
+		gtk_widget_grab_focus (priv->html_widget);
 	}
 
 	gdk_window_set_cursor (priv->html_widget->window, NULL);
-	gtk_widget_grab_focus (priv->html_widget);
 }
 
 static void

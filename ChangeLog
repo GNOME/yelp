@@ -1,3 +1,12 @@
+2002-09-18  Padraig O'Briain  <padraig.obriain@sun.com>
+
+	* src/yelp-view-content.c (content_reader_finished_cb):
+ 	- Remove redundant call to gtk_tree_path_copy().
+ 	- Add casts to fix compiler warnings on Solaris.
+ 	- Do not focus HtmlView widget if we have a row in the content
+	  tree. 
+	- Fixes #91708.
+
 2002-09-08  Yanko Kaneti  <yaneti@declera.com>
 
 	* configure.in: Added Hebrew (he) to ALL_LINGUAS
