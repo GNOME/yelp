@@ -44,20 +44,24 @@ yelp_theme_init (void)
     style = gtk_rc_get_style_by_paths (gtk_settings_get_default (),
 				       "GtkWidget", "GtkWidget",
 				       GTK_TYPE_WIDGET);
-    if (!style) {
-	g_warning (_("Could not obtain a GtkStyle."));
-    } else {
-	g_snprintf (gray_background, 10,
-		    "\"#%02X%02X%02X\"",
-		    style->bg[GTK_STATE_NORMAL].red >> 8,
-		    style->bg[GTK_STATE_NORMAL].green >> 8,
-		    style->bg[GTK_STATE_NORMAL].blue >> 8);
-	g_snprintf (gray_border, 10,
-		    "\"#%02X%02X%02X\"",
-		    style->dark[GTK_STATE_NORMAL].red >> 8,
-		    style->dark[GTK_STATE_NORMAL].green >> 8,
-		    style->dark[GTK_STATE_NORMAL].blue >> 8);
-    }
+
+    if (!style)
+	style = gtk_style_new ();
+
+    g_object_ref (G_OBJECT (style));
+
+    g_snprintf (gray_background, 10,
+		"\"#%02X%02X%02X\"",
+		style->bg[GTK_STATE_NORMAL].red >> 8,
+		style->bg[GTK_STATE_NORMAL].green >> 8,
+		style->bg[GTK_STATE_NORMAL].blue >> 8);
+    g_snprintf (gray_border, 10,
+		"\"#%02X%02X%02X\"",
+		style->dark[GTK_STATE_NORMAL].red >> 8,
+		style->dark[GTK_STATE_NORMAL].green >> 8,
+		style->dark[GTK_STATE_NORMAL].blue >> 8);
+
+    g_object_unref (G_OBJECT (style));
 }
 
 const GtkIconTheme*

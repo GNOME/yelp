@@ -1,5 +1,10 @@
 2003-12-30  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-theme.c:
+	- Grab the default style if gtk_rc_get_style_by_paths returns NULL.
+
+2003-12-30  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-db-pager.c:
 	- doc_name and doc_path were reversed for some reason.
 
