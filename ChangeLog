@@ -1,3 +1,10 @@
+2004-02-19  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Adding dictionary to the new xmlDoc for each chunk.  This works around
+	  the libxslt bug in 1.1.3 and in principle makes the transformation faster.
+	- Another NULL check.
+
 2004-02-18  Shaun McCance  <shaunm@gnome.org>
 
 	* stylesheets/db2html-titlepage.xsl:

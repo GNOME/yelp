@@ -458,6 +458,9 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     new_doc = xmlNewDoc ("1.0");
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
+    new_doc->dict = ctxt->dict;
+    xmlDictReference (new_doc->dict);
+
     ctxt->output = new_doc;
     ctxt->insert = (xmlNodePtr) new_doc;
 
@@ -555,7 +558,8 @@ walker_walk_xml (DBWalker *walker)
 
     if (walker_is_chunk (walker)) {
 	if (xml_is_info (walker->cur)) {
-	    xmlFree (id);
+	    if (id)
+		xmlFree (id);
 	    id = xmlStrdup ("titlepage");
 	}
 
