@@ -238,9 +238,16 @@
          <xsl:with-param name="object" select="$object"/>
       </xsl:call-template>
    </xsl:attribute>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'Next'"/>
-    </xsl:call-template>
+   <xsl:choose>
+      <xsl:when test="$object/title">
+         <xsl:value-of select="$object/title/text()"/>
+      </xsl:when>
+      <xsl:otherwise>
+         <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Next'"/>
+         </xsl:call-template>
+      </xsl:otherwise>
+   </xsl:choose>
    <xsl:text> &gt;&gt;&gt;</xsl:text>
    </a></td>
 </xsl:template>
@@ -254,10 +261,16 @@
       </xsl:call-template>
    </xsl:attribute>
    <xsl:text>&lt;&lt;&lt; </xsl:text>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'Previous'"/>
-    </xsl:call-template>
-
+   <xsl:choose>
+      <xsl:when test="$object/title">
+         <xsl:value-of select="$object/title/text()"/>
+      </xsl:when>
+      <xsl:otherwise>
+         <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Previous'"/>
+         </xsl:call-template>
+      </xsl:otherwise>
+   </xsl:choose>
    </a></td>
 </xsl:template>
 
