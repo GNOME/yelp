@@ -313,6 +313,18 @@
 				</para>
 			</listitem>
 		</varlistentry>
+		<varlistentry><term><sgmltag>ulink</sgmltag></term>
+			<listitem>
+				<para>
+					The <sgmltag>ulink</sgmltag> element is used as a general-purpose
+					hyperlink which addresses its target by a URL.  Here is a ghelp
+					link: <ulink url="ghelp:gnome-feedback"/>.  Here is a http link:
+					<ulink url="http://www.gnome.org"/>.  Here is a file link: <ulink
+					url="file:///home/"/>.  And here is a mailto link to <ulink
+					url="mailto:shaunm@gnome.org">email me</ulink>.
+				</para>
+			</listitem>
+		</varlistentry>
 		<varlistentry><term><sgmltag>xref</sgmltag></term>
 			<listitem>
 				<para>
@@ -414,7 +426,6 @@ systemitem
 token
 trademark
 type
-ulink
 userinput
 varname
 wordasword

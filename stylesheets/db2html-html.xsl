@@ -175,9 +175,11 @@ div[class="table"] {
 
 div[class="variablelist"] {
 	margin-top: 0.8em;
-	margin-left: 1.6em;
 	margin-right: 1.6em;
 	margin-bottom: 0.8em;
+}
+div[class="variablelist"] dd {
+	margin-left: 1.6em;
 }
 
 div[class="sidebar"] {

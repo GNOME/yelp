@@ -1,5 +1,19 @@
 2004-01-22  Shaun McCance  <shaunm@gnome.org>
 
+	* data/toc.xml.in:
+	- Handling another category that doesn't exist.  ~sigh~
+
+	* stylesheets/db2html-html.xsl:
+	- Modification to variablelist rendering.
+
+	* stylesheets/db2html-xref.xsl:
+	- Pull content of ulink from url when there's no content.
+
+	* test/testdoc1/testdoc1.xml:
+	- Test ulink.
+
+2004-01-22  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-window.c:
 	- Implemented destroy callback to unref stuff I ref.
 
