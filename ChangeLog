@@ -1,5 +1,8 @@
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (window_about_cb): 
+	- fixed copyright notice in about dialog. Thanks menthos.
+
 	* src/test-reader.c:
 	(main): call yelp_reader_new with TRUE for async.
 	(data_cb): swapped buffer and len arguments.

@@ -567,7 +567,7 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 	gchar       *translator_credits = _("translator_credits");
 	
 	about = gnome_about_new (PACKAGE, VERSION,
-				 "(C) 2001-2002 Mikael Hallendal <micke@codefactory.se>",
+				 "Copyright 2001-2002 Mikael Hallendal <micke@codefactory.se>",
 				 _("Help Browser for GNOME 2.0"),
 				 authors,
 				 NULL,
