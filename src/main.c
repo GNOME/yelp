@@ -51,7 +51,9 @@ main (int argc, char **argv)
 
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE,
-				      argc, argv, NULL);
+				      argc, argv, 
+				      GNOME_PROGRAM_STANDARD_PROPERTIES,
+				      NULL);
 
 	gnome_vfs_init ();
 	

@@ -1,3 +1,9 @@
+2001-12-02  Malcolm Tredinnick <malcolm@commsecure.com.au>
+	* src/main.c (main): pass in GNOME_PROGRAM_STANDARD_PROPERTIES to
+	  gnome_program_init().
+
+	* src/Makefile.am: Add some defines for the install paths.
+
 2001-12-01  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/scrollkeeper-parser.c:

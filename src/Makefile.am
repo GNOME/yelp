@@ -2,7 +2,12 @@ INCLUDES =						\
 	-I$(top_srcdir)					\
 	-I$(includedir)					\
 	$(YELP_CFLAGS)					\
-	-DG_LOG_DOMAIN=\"Yelp\"
+	-DG_LOG_DOMAIN=\"Yelp\"				\
+	-DPREFIX=\""$(prefix)"\"			\
+	-DSYSCONFDIR=\""$(sysconfdir)"\"		\
+	-DDATADIR=\""$(datadir)"\"			\
+	-DLIBDIR=\""$(libdir)"\"
+
 
 bin_PROGRAMS = yelp
 
