@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-05-05 20:21+0200\n"
-"PO-Revision-Date: 2002-05-05 20:21+0200\n"
+"POT-Creation-Date: 2002-06-30 19:42+0200\n"
+"PO-Revision-Date: 2002-06-30 22:35+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,36 +24,6 @@ msgstr "Yelp"
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp Factory"
 msgstr "Generator Yelpa"
-
-#: src/yelp-db2html.c:1
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr ""
-"Przy analizie arkusza stylów wystąpił błąd. Upewnij się, że zostało "
-"poprawnie ustawione środowisko docbooka."
-
-#: src/yelp-db2html.c:1
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "Dokument \"%s\" nie istnieje"
-
-#: src/yelp-db2html.c:1
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "Przy analizie dokumentu \"%s\" wystąpił błąd."
-
-#: src/yelp-db2html.c:1
-msgid "Error while applying the stylesheet."
-msgstr "Błąd przy zastosowywaniu arkusza stylów."
-
-#: src/yelp-html.c:1
-msgid "Loading..."
-msgstr "Odczytywanie..."
-
-#: src/yelp-info.c:1
-msgid "info"
-msgstr "info"
 
 #: src/yelp-main.c:1
 #, c-format
@@ -133,18 +103,19 @@ msgstr "Zestawienia"
 msgid "System Administration"
 msgstr "Administracja systemem"
 
-#: src/yelp-man.c:1
-msgid "man"
-msgstr "man"
-
 #: src/yelp-view-content.c:1 src/yelp-view-index.c:1
 msgid "Section"
 msgstr "Sekcja"
+
+#: src/yelp-view-content.c:1 src/yelp-view-index.c:1
+msgid "Loading..."
+msgstr "Odczytywanie..."
 
 #: src/yelp-view-index.c:1
 msgid "Search for:"
 msgstr "Znajdź:"
 
+#. GList           *seriesids;
 #: src/yelp-view-toc.c:1
 msgid "Help Contents"
 msgstr "Zawartość pomocy"
@@ -177,6 +148,18 @@ msgstr "Kategorie"
 msgid "Manual pages"
 msgstr "Strony podręcznikowe"
 
+#: src/yelp-view-toc.c:1
+msgid "GNOME is"
+msgstr "GNOME to"
+
+#: src/yelp-view-toc.c:1
+msgid "Free Software"
+msgstr "Wolne Oprogramowanie"
+
+#: src/yelp-view-toc.c:1
+msgid "(C)"
+msgstr "(C)"
+
 #: src/yelp-window.c:1
 msgid "/_File"
 msgstr "/_Plik"
@@ -189,7 +172,7 @@ msgstr "/Plik/_Nowe okno"
 msgid "/File/_Close window"
 msgstr "/Plik/Za_mknij okno"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
 #: src/yelp-window.c:1
 msgid "/_Go"
 msgstr "/P_rzejście"
@@ -218,9 +201,14 @@ msgstr "/Pomo_c"
 msgid "/Help/_About"
 msgstr "/Pomoc/_Informacje o"
 
-#: src/yelp-window.c:1
+#: src/yelp-window.c:1 src/yelp-window.c:1
 msgid "Help Browser"
 msgstr "Przeglądarka pomocy"
+
+#: src/yelp-window.c:1
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Dokument \"%s\" nie istnieje"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
