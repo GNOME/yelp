@@ -42,7 +42,7 @@
     help files for applications and other components of the desktop.</para>
 
     <para>Documents are located and categorized dynamically by reading metadata
-    files from standard locations.  The metadata files use the Desktop Entry
+    files from standard locations.  The metadata files use the desktop entry
     format, which is defined by the
     <ulink url="http://www.freedesktop.org/Standards/desktop-entry-spec">Desktop
     Entry Specification</ulink> on freedesktop.org.</para>
@@ -59,13 +59,13 @@
   <section id="xhelp-metadata">
     <title>Metadata File Format</title>
 
-    <para>The metadata files use the Desktop Entry format.  However, this
+    <para>The metadata files use the desktop entry format.  However, this
     specification provides its own set of keys to describe a document.  Only
     those keys listed in this specification should be considered standard.
     For non-standard key usage, see <xref linkend="xhelp-extending"/>.</para>
 
     <para>Since this specification defines its own set of keys, a unique group
-    header is necessary to identify Desktop Entry files.  Thus, Desktop Entry
+    header is necessary to identify desktop entry files.  Thus, desktop entry
     files for documentation must use the group header
     <property>[Documentation]</property>.</para>
 
@@ -83,25 +83,15 @@
     accept this production for values will be specified as accepting
     UTF-8 strings.</para>
 
-    <para>The following keys are defined for Desktop Entry files for
+    <para>The following keys are defined for desktop entry files for
     documentation:</para>
 
     <variablelist>
       <varlistentry>
-	<term><property>ID</property></term>
+	<term><property>ContentType</property></term>
 	<listitem><para>
-	The <property>ID</property> key is a unique identifier for a document
-	or set of documents.  Variations of the same logical document must
-	use the same <property>ID</property>.  The <property>ID</property>
-	key is discussed in detail in <xref linkend="xhelp-id"/>.
-	</para></listitem>
-      </varlistentry>
-
-      <varlistentry>
-	<term><property>Title</property></term>
-	<listitem><para>
-	The <property>Title</property> key provides the title of the document.
-	This key accepts any UTF-8 string.
+	The <property>ContentType</property> key provides the MIME type of the
+	document.  This key is mandatory.
 	</para></listitem>
       </varlistentry>
 
@@ -111,6 +101,16 @@
 	The <property>Description</property> key provides a short description
 	of the document.  The <property>Description</property> key is optional.
 	This key accepts any UTF-8 string.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><property>ID</property></term>
+	<listitem><para>
+	The <property>ID</property> key is a unique identifier for a document
+	or set of documents.  Variations of the same logical document must
+	use the same <property>ID</property>.  The <property>ID</property>
+	key is discussed in detail in <xref linkend="xhelp-id"/>.
 	</para></listitem>
       </varlistentry>
 
@@ -125,34 +125,20 @@
       </varlistentry>
 
       <varlistentry>
-	<term><property>ContentType</property></term>
+	<term><property>Location</property></term>
 	<listitem><para>
-	The <property>ContentType</property> key provides the MIME type of the
-	document.  This key is mandatory.  If the document is in an SGML or XML
-	vocabulary, the properties <property>ContentTypeSystem</property> and
-	<property>ContentTypeNamespace</property> may also be used to provide
-	additional information about the file format.
+	The <property>Location</property> key provides the location of the
+	documents, either as a URL or a simple file path.  If a relative
+	file path is given, it is taken relative to the location of the
+	desktop entry file.
 	</para></listitem>
       </varlistentry>
 
       <varlistentry>
-	<term><property>ContentTypeSystem</property></term>
+	<term><property>Title</property></term>
 	<listitem><para>
-	The <property>ContentTypeSystem</property> key provides the system
-	identifier of an XML or SGML document.  This may be used to specify
-	the particular SGML or XML vocabulary used by the document when the
-	MIME type is not sufficient.  The value of this field should be a URL,
-	typically pointing to the DTD.  This key is optional.
-	</para></listitem>
-      </varlistentry>
-
-      <varlistentry>
-	<term><property>ContentTypeNamespace</property></term>
-	<listitem><para>
-	The <property>ContentTypeNamespace</property> key provides the namespace
-	of the top-level element of an XML document.  This may be used to specify
-	the particular XML vocabulary used by the document when the MIME type is
-	not sufficient.  This key is optional.
+	The <property>Title</property> key provides the title of the document.
+	This key accepts any UTF-8 string.
 	</para></listitem>
       </varlistentry>
     </variablelist>
@@ -160,6 +146,16 @@
 
   <section id="xhelp-id">
     <title>The <property>ID</property> Key</title>
+
+    <para>The <property>ID</property> key provides an indentifier for the
+    document.  Versions and translations of the same document should use
+    the same <property>ID</property>.</para>
+
+    <para>In order to avoid name clashes, a simple namespace mechanism is
+    used for <property>ID</property>.  The <property>ID</property> is a
+    sequence of components, each seperated by a slash
+    (<literal>U+002F</literal>).</para>
+
   </section>
 
   <section id="xhelp-extending">
