@@ -1,22 +1,22 @@
-# translation of yelp.HEAD.tr.po to Turkish
 # Turkish translation of yelp.
-# Copyright (C) 2002-2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2002-2003, 2004, 2005 Free Software Foundation, Inc.
 # Görkem Çetin <gorkem@gelecek.com.tr>, 2002.
 # Arman Aksoy <armish@linux-sevenler.de>, 2003.
-# Baris Cicek <baris@teamforce.name.tr>, 2004.
+# Baris Cicek <baris@teamforce.name.tr>, 2004, 2005.
+# Serkan Kenar <serkan@ieee.metu.edu.tr>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD.tr\n"
+"Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-02-26 14:12+0200\n"
-"Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
+"POT-Creation-Date: 2005-02-22 04:05+0200\n"
+"PO-Revision-Date: 2005-02-16 00:16+0200\n"
+"Last-Translator: Serkan Kenar <serkan@ieee.metu.edu.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.2\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
@@ -32,7 +32,7 @@ msgstr "Geliştirme"
 
 #: data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "FORTRAN İşlevleri"
 
 #: data/man.xml.in.h:5 data/toc.xml.in.h:7
 msgid "Games"
@@ -48,40 +48,35 @@ msgstr "Çekirdek Yordamları"
 
 #: data/man.xml.in.h:8
 msgid "Library Functions"
-msgstr "Kütüphane Fonksiyonları"
+msgstr "Kütüphane İşlevleri"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
-msgstr ""
+msgstr "Kılavuz Sayfaları"
 
 #: data/man.xml.in.h:10
-#, fuzzy
 msgid "OpenSSL Applications"
-msgstr "X Uygulamaları"
+msgstr "OpenSSL Uygulamaları"
 
 #: data/man.xml.in.h:11
-#, fuzzy
 msgid "OpenSSL Configuration"
-msgstr "Yapılandırma Dosyaları"
+msgstr "OpenSSL Yapılandırması"
 
 #: data/man.xml.in.h:12
-#, fuzzy
 msgid "OpenSSL Overviews"
-msgstr "İzlenimler"
+msgstr "OpenSSL İzlenimleri"
 
 #: data/man.xml.in.h:13
 msgid "Overviews"
 msgstr "İzlenimler"
 
 #: data/man.xml.in.h:14
-#, fuzzy
 msgid "Perl Functions"
-msgstr "Kütüphane Fonksiyonları"
+msgstr "Perl İşlevleri"
 
 #: data/man.xml.in.h:15
-#, fuzzy
 msgid "Qt Functions"
-msgstr "Kütüphane Fonksiyonları"
+msgstr "Qt İşlevleri"
 
 #: data/man.xml.in.h:16
 msgid "System Administration"
@@ -92,50 +87,44 @@ msgid "System Calls"
 msgstr "Sistem Çağrıları"
 
 #: data/man.xml.in.h:18
-#, fuzzy
 msgid "Termcap Applications"
-msgstr "X Uygulamaları"
+msgstr "Termcap Uygulamaları"
 
 #: data/man.xml.in.h:19
-#, fuzzy
 msgid "X11 Applications"
-msgstr "X Uygulamaları"
+msgstr "X11 Uygulamaları"
 
 #: data/man.xml.in.h:20
-#, fuzzy
 msgid "X11 Configuration"
-msgstr "Yapılandırma Dosyaları"
+msgstr "X11 Yapılandırması"
 
 #: data/man.xml.in.h:21
 msgid "X11 Devices"
-msgstr ""
+msgstr "X11 Aygıtları"
 
 #: data/man.xml.in.h:22
-#, fuzzy
 msgid "X11 Functions"
-msgstr "Kütüphane Fonksiyonları"
+msgstr "X11 İşlevleri"
 
 #: data/man.xml.in.h:23
-#, fuzzy
 msgid "X11 Games"
-msgstr "Oyunlar"
+msgstr "X11 Oyunları"
 
 #: data/man.xml.in.h:24
-#, fuzzy
 msgid "X11 Overviews"
-msgstr "İzlenimler"
+msgstr "X11 İzlenimleri"
 
 #: data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "Erişilebilirlik"
 
 #: data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "Donatılar"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Uygulamacıklar"
+msgid "Administration"
+msgstr "Yönetim"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -147,82 +136,83 @@ msgstr "Eğitim Uygulamaları"
 
 #: data/toc.xml.in.h:8
 msgid "Graphics"
-msgstr ""
+msgstr "Grafik"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
-msgstr "Yardım Tarayıcısı"
+msgstr "Yardım Konuları"
 
 #: data/toc.xml.in.h:10
-#, fuzzy
 msgid "Internet"
-msgstr "İçindekiler"
+msgstr "İnternet"
 
 #: data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
-msgid "Office"
-msgstr ""
+msgid "Multimedia"
+msgstr "Çokluortam"
 
 #: data/toc.xml.in.h:13
-msgid "Other"
-msgstr ""
+msgid "Office"
+msgstr "Ofis"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
-msgid "Other Documentation"
-msgstr "Referans Bilgisi"
+msgid "Other"
+msgstr "Diğer"
 
 #: data/toc.xml.in.h:15
-msgid "Programming"
-msgstr ""
+msgid "Other Documentation"
+msgstr "Diğer Belgelendirmeler"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
-msgid "Scientific"
-msgstr "Bilimsel Uygulamalar"
+msgid "Panel Applets"
+msgstr "Panel Uygulamacıkları"
 
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr ""
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Tercihler"
 
 #: data/toc.xml.in.h:18
-#, fuzzy
-msgid "System Tools"
-msgstr "Sistem Çağrıları"
+msgid "Programming"
+msgstr "Programlama"
 
 #: data/toc.xml.in.h:19
+msgid "Scientific"
+msgstr "Bilimsel"
+
+#: data/toc.xml.in.h:20
+msgid "System Tools"
+msgstr "Sistem Araçları"
+
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X Uygulamaları"
 
 #: data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Erişilebilirlik</b>"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Yazıtipleri</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "Kitap "
+msgstr "<b>_Yer İmleri:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
-msgstr ""
+msgstr "<b>_Başlık:</b>"
 
 #: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Yer İmi Ekle"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Bookmarks"
-msgstr "Kitap "
+msgstr "Yer İmleri"
 
 #: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
@@ -233,22 +223,16 @@ msgid "Find"
 msgstr "Bul"
 
 #: data/ui/yelp.glade.h:9
-#, fuzzy
 msgid "Open Location"
-msgstr "Adama"
-
-#: data/ui/yelp.glade.h:10
-#, fuzzy
-msgid "Preferences"
-msgstr "Referans"
+msgstr "Konumu Aç"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "Ye_niden Adlandır"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
-msgstr ""
+msgstr "İ_mleç ile tara"
 
 #: data/ui/yelp.glade.h:13
 msgid "_Find: "
@@ -256,12 +240,11 @@ msgstr "_Bul: "
 
 #: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Sabit genişlik:"
 
 #: data/ui/yelp.glade.h:15
-#, fuzzy
 msgid "_Location:"
-msgstr "Adama"
+msgstr "_Konum:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Next"
@@ -273,11 +256,11 @@ msgstr "_Önceki"
 
 #: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Sistem yazıtiplerini kullan"
 
 #: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Değişken genişlik:"
 
 #: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
@@ -285,35 +268,35 @@ msgstr "_Satıra göre böl"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Sabit metin için yazıtipi"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Metin için yazıtipi"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Sabit genişlikli metin için yazıtipi."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Değişken genişlikli metin için yazıtipi."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Sayfaları izlerken klavye kontrollü imleci kullan."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "İmleç kullan"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Sistem yazıtiplerini kullan"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "Sistem için öntanımlı yazıtiplerini kullan."
 
 #: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
@@ -323,60 +306,71 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Üreticisi"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:155
+msgid "Open Bookmark in New Window"
+msgstr "Yer İmini Yeni Pencerede Aç"
+
+#: src/yelp-bookmarks.c:159
+msgid "Rename Bookmark"
+msgstr "Yer İmini Yeniden Adlandır"
+
+#: src/yelp-bookmarks.c:163
+msgid "Remove Bookmark"
+msgstr "Yer İmini Kaldır"
+
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "Bu sayfa için <b>%s</b> isimli bir yer imi zaten var."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
-msgstr "Referans Bilgisi"
+msgstr "Belge Bölümleri"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
+"'%s' dosyası işlenemiyor. Dosya mevcut değil ya da doğru biçimlendirilmiş "
+"XML değil."
 
 #: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Bilinmeyen"
+msgid "Unknown Section"
+msgstr "Bilinmeyen Bölüm"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Bilinmeyen bir hata oluştu"
 
 #: src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "Belge yüklenemiyor"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Yeni pencere açılamadı."
+msgstr "Bölüm yüklenemiyor"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "OMF dosyası '%s' yüklenemedi."
+msgstr "İçindekiler okunamıyor"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Desteklenmeyen Biçim"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Belge okunamıyor"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Belge işlenemiyor"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "Hata hakkında hiç bilgi yok."
 
 #: src/yelp-io-channel.c:98
 #, c-format
@@ -384,6 +378,8 @@ msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
+"'%s' dosyası okunamıyor ve çözülemiyor. Dosya desteklenmeyen bir biçimde "
+"sıkıştırılmış olabilir."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -408,15 +404,16 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
+"'%s' dosyası ayrıştırılamıyor.  Dosya bulunamadı ya da hatalı "
+"biçimlendirilmiş."
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Referans Bilgisi"
+msgstr "Belge Bilgisi"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "Belgenin YelpDocInfo yapısı"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -439,9 +436,9 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
 #: src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
@@ -452,116 +449,108 @@ msgstr "YelpTocPager: Bekletme sayımı negatif."
 msgid "Could not load the OMF file '%s'."
 msgstr "OMF dosyası '%s' yüklenemedi."
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "%s için kılavuz sayfasını okuyun"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
+"İçindekiler yüklenemiyor. '%s' dosyası bulunmuyor ya da doğru "
+"biçimlendirilmiş XML değil."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
+"İçindekiler işlenemiyor. '%s' dosyası bulunmuyor ya da dosya geçerli bir "
+"XSLT biçiminde değil."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Yelp belgesinde hiç bir href özniteliği bulunamadı"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Bellek yetersiz"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Yardım İçeriği"
 
 #: src/yelp-window.c:302
-#, fuzzy
 msgid "_File"
-msgstr "/_Dosya"
+msgstr "_Dosya"
 
 #: src/yelp-window.c:303
-#, fuzzy
 msgid "_Edit"
-msgstr "/Dü_zenle"
+msgstr "Dü_zenle"
 
 #: src/yelp-window.c:304
-#, fuzzy
 msgid "_Go"
-msgstr "/_Git"
+msgstr "_Git"
 
 #: src/yelp-window.c:305
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_Yer İmleri"
 
 #: src/yelp-window.c:306
-#, fuzzy
 msgid "_Help"
-msgstr "/_Yardım"
+msgstr "_Yardım"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
-msgstr "/Dosya/_Yeni pencere"
+msgstr "_Yeni Pencere"
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "About This Document"
-msgstr "Bu Küme Hakkında"
+msgstr "Bu Belge Hakkında"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
-msgstr ""
+msgstr "_Konumu Aç"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
-msgstr "/Dosya/_Pencereyi kapat"
+msgstr "_Pencereyi Kapat"
 
 #: src/yelp-window.c:330
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopyala"
 
 #: src/yelp-window.c:336
-#, fuzzy
 msgid "_Select All"
-msgstr "Ayrıca Bakın"
+msgstr "_Hepsini Seç"
 
 #: src/yelp-window.c:341
-#, fuzzy
 msgid "_Find..."
-msgstr "/Düzenle/_Bul..."
+msgstr "_Bul..."
 
 #: src/yelp-window.c:346
-#, fuzzy
 msgid "_Preferences"
-msgstr "Referans"
+msgstr "_Tercihler"
 
 #: src/yelp-window.c:351
 msgid "_Reload"
-msgstr ""
+msgstr "_Tekrar Yükle"
 
 #: src/yelp-window.c:357
-#, fuzzy
 msgid "_Back"
-msgstr "Geri"
+msgstr "_Geri"
 
 #: src/yelp-window.c:359
 msgid "Show previous page in history"
 msgstr "Geçmişte bulunan önceki sayfayı göster"
 
 #: src/yelp-window.c:362
-#, fuzzy
 msgid "_Forward"
-msgstr "İleri"
+msgstr "_İleri"
 
 #: src/yelp-window.c:364
 msgid "Show next page in history"
@@ -569,51 +558,47 @@ msgstr "Geçmişte bulunan sonraki sayfayı göster"
 
 #: src/yelp-window.c:367
 msgid "_Help Topics"
-msgstr ""
+msgstr "_Yardım Konuları"
 
 #: src/yelp-window.c:369
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Yardım konuları listesine git"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "/Git/Ö_nceki Sayfa"
+msgstr "Ö_nceki Bölüm"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "Bölüm"
+msgstr "_Sonraki Bölüm"
 
 #: src/yelp-window.c:382
-#, fuzzy
 msgid "_Contents"
-msgstr "İçindekiler"
+msgstr "_İçindekiler"
 
 #: src/yelp-window.c:388
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "Yer İmi _Ekle"
 
 #: src/yelp-window.c:393
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "Yer İmlerini _Düzenle..."
 
 #: src/yelp-window.c:399
 msgid "_Open Link"
-msgstr ""
+msgstr "Bağlantı _Aç"
 
 #: src/yelp-window.c:404
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Yeni Pencerede Bağlantı _Aç"
 
 #: src/yelp-window.c:409
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "Bağlantı Adresini _Kopyala"
 
 #: src/yelp-window.c:415
-#, fuzzy
 msgid "_About"
-msgstr "/Yardım/_Hakkında"
+msgstr "_Hakkında"
 
 #: src/yelp-window.c:466
 msgid "Help Browser"
@@ -621,43 +606,42 @@ msgstr "Yardım Tarayıcısı"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "Dosya URI'si geçersiz."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "'%s' URI'si geçersiz ya da mevcut bir dosyayı belirtmiyor."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Bu sürümde kılavuz sayfaları desteklenmemektedir."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Bu sürümde GNU bilgi sayfaları desteklenmemektedir"
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
+"SGML belgeleri artık desteklenmiyor. Lütfen bu belgenin yazarından belgeyi "
+"XML'e dönüştürmesini isteyin."
 
 #: src/yelp-window.c:1024
-#, fuzzy
 msgid "Find:"
-msgstr "Bul"
+msgstr "Bul:"
 
 #: src/yelp-window.c:1040
-#, fuzzy
 msgid "Find _Next"
-msgstr "/Düzenle/Sonrakini B_ul"
+msgstr "Sonrakini B_ul"
 
 #: src/yelp-window.c:1052
-#, fuzzy
 msgid "Find _Previous"
-msgstr "_Önceki"
+msgstr "Ö_ncekini Bul"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -665,6 +649,8 @@ msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
+"'%s' dosyası için dönüştürme ortamı oluşturulamadı. Biçim desteklenmiyor "
+"olabilir."
 
 #: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
@@ -673,6 +659,9 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
+"'%s' bölümü belgede bulunmuyor. Bu bölüme uygulama içindeki bir Yardım "
+"düğmesiyle ulaştıysanız, lütfen bu hatayı uygulama geliştiricilerine "
+"bildiriniz."
 
 #: src/yelp-window.c:1302
 #, c-format
@@ -680,21 +669,22 @@ msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
+"'%s' dosyası okunamıyor. Dosya bulunmuyor ya da dosyayı okumak için izniniz "
+"yok."
 
 #: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Yükleniyor..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
-#, fuzzy
 msgid "translator-credits"
-msgstr "Barış Çiçek"
+msgstr "Serkan Kenar <serkan@ieee.metu.edu.tr>"
 
 #: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "Gnome Masaüstü için bir belgelendirme tarayıcısı ve göstericisi."
 
 #: src/yelp-xslt-pager.c:194
 #, c-format
@@ -702,340 +692,18 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
+"'%s' dosyası ayrıştırılamıyor. Dosya bulunmuyor ya da hatalı "
+"biçimlendirilmiş."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
-
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
+"'%s' belgesi işlenemiyor. '%s' dosyası bulunmuyor ya da dosya geçerli bir "
+"XSLT biçiminde değil."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "GNOME ile Yardım Alın"
-
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Başlangıç"
-
-#~ msgid "Go to home view"
-#~ msgstr "Başlangıç görünümüne git"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "Bul"
-
-#~ msgid "Development Environments"
-#~ msgstr "Geliştirme Ortamı"
-
-#~ msgid "Development Tools"
-#~ msgstr "Geliştirme Araçları"
-
-#~ msgid "Editors"
-#~ msgstr "Düzenleyiciler"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "Oyunlar ve Eğlence"
-
-#~ msgid "General"
-#~ msgstr "Genel"
-
-#~ msgid "Internet Applications"
-#~ msgstr "İnternet Uygulamaları"
-
-#~ msgid "Kernels"
-#~ msgstr "Çekirdekler"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "Çokluortam Uygulamaları"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "Ofis ve Üretkenlik Uygulamaları"
-
-#~ msgid "Securities"
-#~ msgstr "Güvenlik"
-
-#~ msgid "System"
-#~ msgstr "Sistem"
-
-#~ msgid "Utilities"
-#~ msgstr "Araçlar"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Titlepage"
-#~ msgstr "Başlık sayfası"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Seçilen belge açılamadı"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Seçilen sayfa bu belge içerisinde bulunamadı."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "İçerik tablosu okunamadı."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "DocBook SGML belgeleri artık desteklenmiyor."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "Seçilen dosya okunamadı."
-
-#, fuzzy
-#~ msgid "The file could not be processed."
-#~ msgstr "Seçilen dosya okunamadı."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Kategoriler"
-
-#~ msgid "Documents"
-#~ msgstr "Belgeler"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "/Git/_Sonraki Sayfa"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
-
-#~ msgid "About This Article"
-#~ msgstr "Bu Makale Hakkında"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "Bu Bibliografya Hakkında"
-
-#~ msgid "About This Book"
-#~ msgstr "Bu Kitap Hakkında"
-
-#~ msgid "About This Chapter"
-#~ msgstr "Bu Bölüm Hakkında"
-
-#~ msgid "About This Entry"
-#~ msgstr "Bu Girdi Hakkında"
-
-#~ msgid "About This Glossary"
-#~ msgstr "Bu Sözlük Hakkında"
-
-#~ msgid "About This Index"
-#~ msgstr "Bu İndeks Hakkında"
-
-#~ msgid "About This Part"
-#~ msgstr "Bu Bölüm Hakkında"
-
-#~ msgid "About This Preface"
-#~ msgstr "Bu Önsöz Hakkında"
-
-#~ msgid "About This Reference"
-#~ msgstr "Bu Referans Hakkında"
-
-#~ msgid "About This Section"
-#~ msgstr "Bu Bölüm Hakkında"
-
-#~ msgid "Affiliation"
-#~ msgstr "Üyelikler"
-
-#~ msgid "Appendix"
-#~ msgstr "Ekler"
-
-#~ msgid "Article"
-#~ msgstr "Makale"
-
-#~ msgid "Audience"
-#~ msgstr "İzleyici"
-
-#~ msgid "Author"
-#~ msgstr "Yazar"
-
-#~ msgid "Authors"
-#~ msgstr "Yazarlar"
-
-#~ msgid "Bibliography"
-#~ msgstr "Bibliografya"
-
-#~ msgid "Caution"
-#~ msgstr "Dikkat"
-
-#~ msgid "Chapter"
-#~ msgstr "Bölüm"
-
-#~ msgid "Collaborator"
-#~ msgstr "Katkıda bulunan"
-
-#~ msgid "Collaborators"
-#~ msgstr "Katkıda bulunanlar"
-
-#~ msgid "Colophon"
-#~ msgstr "Baskı bilgisi"
-
-#~ msgid "Copyright"
-#~ msgstr "Tekif hakkı"
-
-#~ msgid "Copyrights"
-#~ msgstr "Telif hakları"
-
-#~ msgid "Date"
-#~ msgstr "Tarih"
-
-#~ msgid "Dedication"
-#~ msgstr "Adama"
-
-#~ msgid "Editor"
-#~ msgstr "Düzenleyici"
-
-#~ msgid "Email"
-#~ msgstr "Eposta"
-
-#~ msgid "Example"
-#~ msgstr "Örnek"
-
-#~ msgid "Figure"
-#~ msgstr "Figür"
-
-#~ msgid "Glossary"
-#~ msgstr "Sözlük"
-
-#~ msgid "Important"
-#~ msgstr "Önemli"
-
-#~ msgid "Index"
-#~ msgstr "İndeks"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Yasal Uyarı"
-
-#~ msgid "Level"
-#~ msgstr "Seviye"
-
-#~ msgid "Message Audience"
-#~ msgstr "İleti İzleyicisi"
-
-#~ msgid "Message Level"
-#~ msgstr "İleti Seviyesi"
-
-#~ msgid "Message Origin"
-#~ msgstr "İleti Temeli"
-
-#~ msgid "Note"
-#~ msgstr "Not"
-
-#~ msgid "Origin"
-#~ msgstr "Temel"
-
-#~ msgid "Other Contributor"
-#~ msgstr "Diğer Katkı Sağlayan"
-
-#~ msgid "Other Contributors"
-#~ msgstr "Diğer Katkı Sağlayanlar"
-
-#~ msgid "Part"
-#~ msgstr "Bölüm"
-
-#~ msgid "Preface"
-#~ msgstr "Önsöz"
-
-#~ msgid "Publisher"
-#~ msgstr "Yayımcı"
-
-#~ msgid "Publishers"
-#~ msgstr "Yayımcılar"
-
-#~ msgid "Reference"
-#~ msgstr "Referans"
-
-#~ msgid "Reference Entry"
-#~ msgstr "Referans Girdisi"
-
-#~ msgid "Reference Section"
-#~ msgstr "Referans Bölümü"
-
-#~ msgid "Release Information"
-#~ msgstr "Referans Bilgisi"
-
-#~ msgid "Revision History"
-#~ msgstr "Referans Geçmişi"
-
-#~ msgid "See"
-#~ msgstr "Bakın"
-
-#~ msgid "Set Index"
-#~ msgstr "İndeks Ayarla"
-
-#~ msgid "Table"
-#~ msgstr "Tablo"
-
-#~ msgid "Table of Contents"
-#~ msgstr "İçerik Tablosu"
-
-#~ msgid "Tip"
-#~ msgstr "Tüyo"
-
-#~ msgid "Title"
-#~ msgstr "Başlık"
-
-#~ msgid "Warning"
-#~ msgstr "Uyarı"
-
-#~ msgid "Document URI"
-#~ msgstr "Belge URIsi"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "İşlenecek belgenin URIsi"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Düzenle/Öncekini Bu_l"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Git/_Geri"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Git/İ_leri"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Git/_Başlangıç"
-
-#~ msgid "/Go/"
-#~ msgstr "/Git/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Git/İç_indekiler"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "GNOME için bir yardım tarayıcı"
+msgstr "GNOME ile yardım alın"
