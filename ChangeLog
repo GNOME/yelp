@@ -1,3 +1,57 @@
+2001-12-10  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c: 
+	- cleaned up a little.
+	- now has tree views (home/content/index) in a Notebook
+	- First shows the Home-page, when click a link in it, swap to
+	  content-view.
+	(yw_populate): only set up the notebook, other code moved to the
+	  three views.
+	(yw_create_toolbar): new function, creates the toolbar.
+
+	* src/yelp-view-index.[ch]: 
+	- added
+	- this handles the index view (with index-term searching to the
+	  left).
+	- not finished.
+
+	* src/yelp-view-home.[ch]: 
+	- Now draws an test-page. This should be made nicer.
+	- The HTML-stuff is _not_ finished.
+	- Signals path_selected when a user press a link.
+	
+	* src/yelp-view-doc.[ch]: removed, I must have been tired when
+	  commiting this :)
+
+	* src/yelp-view-content.[ch]: 
+	- added
+	- takes care of the content-view (the one with the tree to the
+	  left).
+	- This view is accessed from the home-view.
+	
+	* src/yelp-toc.[ch]: removed, now handled inside
+	  yelp-view-content.[ch].
+	
+	* src/yelp-scrollkeeper.c:
+	(ys_parse_book): only parse if Toplevel == GNOME.
+
+	* src/yelp-index.[ch]: removed, this is now handled inside
+	  yelp-view-index.c
+	
+	* src/yelp-view.[ch]: moved to yelp-html, yelp-view-* is the
+	  various main-views.
+
+	* src/yelp-html.[ch]: added, this is the previous yelp-view.[ch]
+
+	* src/yelp-base.c: priv->bookshelf -> content_store.
+	(yelp_base_get_bookshelf): removed, was used by YelpWindow, but
+	  YelpWindow shouldn't know anything about YelpBase.
+	(yelp_base_new_window): send the content_store to yelp_window_new
+	  instead.
+
+	* src/Makefile.am (yelp_SOURCES): updated to reflect the current
+	  files.
+
 2001-12-09  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added "az" entry to ALL_LINGUAS.

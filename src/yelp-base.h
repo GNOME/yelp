@@ -50,7 +50,6 @@ struct _YelpBaseClass {
 GType            yelp_base_get_type       (void);
 YelpBase *       yelp_base_new            (void);
 
-GtkTreeStore *   yelp_base_get_bookshelf  (YelpBase *base);
 GtkWidget *      yelp_base_new_window     (YelpBase *base);
 
 #endif /* __YELP_BASE_H__ */

@@ -144,10 +144,6 @@ ys_parse_books (ParseData *data, xmlDoc *doc)
 	for (node = node->xmlChildrenNode; node; node = node->next) {
 		if (!g_strcasecmp (node->name, "sect")) {
 			success = ys_parse_book (data, node);
-			
-			if (!success) {
-				return success;
-			}
 		}
 	}
 
@@ -177,13 +173,21 @@ ys_parse_book (ParseData *data, xmlNode *node)
 	if (!name) {
 		g_warning ("Couldn't find the name of the book");
 		return FALSE;
-	} 
+	}
+
+	/* Only use the GNOME toplevel */
+
+	if (g_ascii_strcasecmp ("GNOME", name)) {
+		g_print ("Not GNOME toplevel: %s\n", name);
+		return FALSE;
+	}
 
 	g_print ("Parse book: %s\n", name);
 
-	root = yelp_util_contents_add_section (data->store, NULL,
-					       yelp_section_new (name, NULL, 
-								 NULL, NULL));
+/* 	root = yelp_util_contents_add_section (data->store, NULL, */
+/* 					       yelp_section_new (name, NULL,  */
+/* 								 NULL, NULL)); */
+	root = NULL;
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {

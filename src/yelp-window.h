@@ -23,8 +23,8 @@
 #ifndef __YELP_WINDOW_H__
 #define __YELP_WINDOW_H__
 
-#include <glib.h>
-#include <gtk/gtk.h>
+#include <gtk/gtkwindow.h>
+#include <gtk/gtktreemodel.h>
 #include "yelp-base.h"
 
 #define YELP_TYPE_WINDOW		(yelp_window_get_type ())
@@ -39,20 +39,20 @@ typedef struct _YelpWindowPriv   YelpWindowPriv;
 
 struct _YelpWindow
 {
-        GtkWindow         parent;
+        GtkWindow       parent;
         
-        YelpWindowPriv   *priv;
+        YelpWindowPriv *priv;
 };
 
 struct _YelpWindowClass
 {
-        GtkWindowClass    parent_class;
+        GtkWindowClass  parent_class;
 
         /* Signals */
 };
 
 GType            yelp_window_get_type        (void);
-GtkWidget *      yelp_window_new             (YelpBase      *base);
+GtkWidget *      yelp_window_new             (GtkTreeModel  *tree_model);
 
 void             yelp_window_open_uri        (YelpWindow    *window,
 					      const gchar   *str_uri);

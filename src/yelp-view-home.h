@@ -23,9 +23,7 @@
 #ifndef __YELP_VIEW_HOME_H__
 #define __YELP_VIEW_HOME_H__
 
-#include <gtk/gtkobject.h>
-#include <gtk/gtktypeutils.h>
-#include <gtk/gtkmarshal.h>
+#include <gtk/gtktreemodel.h>
 #include <libgtkhtml/gtkhtml.h>
 #include "yelp-section.h"
 
@@ -41,19 +39,20 @@ typedef struct _YelpViewHomePriv    YelpViewHomePriv;
 
 struct _YelpViewHome {
 	HtmlView          parent;
-	
-	YelpViewHomePriv  *priv;
+
+	YelpViewHomePriv *priv;
 };
 
 struct _YelpViewHomeClass {
-        HtmlViewClass    parent_class;
+	HtmlViewClass parent_class;
 
 	/* Signals */
-
-        /* Signal when icon is clicked. */
+	
+	void (*path_selected)   (YelpViewHome   *view,
+				 GtkTreePath    *path);
 };
 
 GType           yelp_view_home_get_type       (void);
-GtkWidget      *yelp_view_home_new            (GtkTreeStore    *store);
+GtkWidget      *yelp_view_home_new            (GtkTreeModel *tree_model);
 
 #endif /* __YELP_VIEW_HOME__ */

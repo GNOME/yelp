@@ -34,7 +34,7 @@ static void          yelp_base_init               (YelpBase        *base);
 static void          yelp_base_class_init         (YelpBaseClass   *klass);
 
 struct _YelpBasePriv {
-        GtkTreeStore  *bookshelf;
+        GtkTreeStore  *content_store;
 };
 
 GType
@@ -70,8 +70,9 @@ yelp_base_init (YelpBase *base)
 
         priv = g_new0 (YelpBasePriv, 1);
         
-        priv->bookshelf  = gtk_tree_store_new (2, 
-                                               G_TYPE_STRING, G_TYPE_POINTER);
+        priv->content_store  = gtk_tree_store_new (2, 
+						   G_TYPE_STRING, 
+						   G_TYPE_POINTER);
         
         base->priv       = priv;
 }
@@ -89,17 +90,9 @@ yelp_base_new (void)
 
         base = g_object_new (YELP_TYPE_BASE, NULL);
 
-	result = yelp_scrollkeeper_init (base->priv->bookshelf);
+	result = yelp_scrollkeeper_init (base->priv->content_store);
 
         return base;
-}
-
-GtkTreeStore *
-yelp_base_get_bookshelf (YelpBase *base)
-{
-        g_return_val_if_fail (YELP_IS_BASE (base), NULL);
-        
-        return base->priv->bookshelf;
 }
 
 GtkWidget *
@@ -109,7 +102,7 @@ yelp_base_new_window (YelpBase *base)
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
         
-        window = yelp_window_new (base);
+        window = yelp_window_new (GTK_TREE_MODEL (base->priv->content_store));
         
         return window;
 }
