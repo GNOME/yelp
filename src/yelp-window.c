@@ -687,6 +687,7 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 		const gchar *authors[] = { 
 			"Mikael Hallendal <micke@imendio.com>",
 			"Alexander Larsson <alexl@redhat.com>",
+			"Shaun McCance <shaunm@gnome.org>",
 			NULL
 		};
 		/* Note to translators: put here your name (and address) so it
