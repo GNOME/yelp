@@ -1,3 +1,11 @@
+2002-01-16  Seth Nickell  <snickell@stanford.edu>
+
+	* Makefile.am:
+	* yelp.desktop.in:
+
+	Install .desktop file into the proper location, and fix
+	its Categories field. Use the gnome-help.png icon. 
+	
 2002-01-15  Alex Larsson  <alexl@redhat.com>
 
 	* src/yelp-view-toc.c:

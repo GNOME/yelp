@@ -5,7 +5,7 @@ SUBDIRS = src po
 DESKTOP_IN_FILES=yelp.desktop.in
 DESKTOP_FILES=$(DESKTOP_IN_FILES:.desktop.in=.desktop)
 
-Applicationsdir = $(datadir)/gnome/apps/Applications
+Applicationsdir = $(datadir)/applications
 Applications_DATA = $(DESKTOP_FILES)
 
 EXTRA_DIST = 				\
