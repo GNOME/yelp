@@ -8,15 +8,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2001-12-08 19:59+0100\n"
-"PO-Revision-Date: 2001-12-08 19:59+0100\n"
+"POT-Creation-Date: 2001-12-10 06:32+0100\n"
+"PO-Revision-Date: 2001-12-10 06:32+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/yelp-doc-view.c:363
+#: src/yelp-html.c:367
 msgid ""
 "<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
 "head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help "
@@ -28,21 +28,41 @@ msgstr ""
 "hjälpvisare under utveckling, för GNOME 2.0, skriven av Mikael Hallendal."
 "<br><br>Läs gärna filerna README och TODO<br></body></html>"
 
-#: src/yelp-toc.c:140
+#: src/yelp-view-content.c:159 src/yelp-view-index.c:172
 msgid "Section"
 msgstr "Avdelning"
 
-#: src/yelp-window.c:127
-msgid "Yelp: GNOME Help Browser"
-msgstr "Yelp: Hjälpvisare för GNOME"
+#: src/yelp-window.c:105
+msgid "/_File"
+msgstr "/_Arkiv"
 
-#: src/yelp-window.c:206
-msgid "Help on "
-msgstr "Hjälp om "
+#: src/yelp-window.c:106
+msgid "/File/_New window"
+msgstr "/Arkiv/_Nytt fönster"
 
-#: src/yelp-window.c:334
+#: src/yelp-window.c:107
+msgid "/File/E_xit"
+msgstr "/Arkiv/_Avsluta"
+
+#: src/yelp-window.c:108
+msgid "/_Help"
+msgstr "/_Hjälp"
+
+#: src/yelp-window.c:109
+msgid "/Help/_About"
+msgstr "/Hjälp/_Om"
+
+#: src/yelp-window.c:156
+msgid "Help Browser"
+msgstr "Hjälpvisare"
+
+#: src/yelp-window.c:361
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
+
+#: src/yelp-window.c:443
+msgid "Help on "
+msgstr "Hjälp om "
 
 #: yelp.desktop.in.h:1
 msgid "GNOME Helpbrowser"
@@ -51,6 +71,9 @@ msgstr "Hjälpvisare för GNOME"
 #: yelp.desktop.in.h:2
 msgid "Yelp"
 msgstr "Yelp"
+
+#~ msgid "Yelp: GNOME Help Browser"
+#~ msgstr "Yelp: Hjälpvisare för GNOME"
 
 #~ msgid "Usage '%s uri'\n"
 #~ msgstr "Användning \"%s uri\"\n"
@@ -63,21 +86,6 @@ msgstr "Yelp"
 
 #~ msgid "Invalid URI: %s\n"
 #~ msgstr "Ogiltig URI: %s\n"
-
-#~ msgid "/_File"
-#~ msgstr "/_Arkiv"
-
-#~ msgid "/File/_New window"
-#~ msgstr "/Arkiv/_Nytt fönster"
-
-#~ msgid "/File/E_xit"
-#~ msgstr "/Arkiv/_Avsluta"
-
-#~ msgid "/_Help"
-#~ msgstr "/_Hjälp"
-
-#~ msgid "/Help/_About"
-#~ msgstr "/Hjälp/_Om"
 
 #~ msgid "Contents"
 #~ msgstr "Innehåll"
