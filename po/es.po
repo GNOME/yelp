@@ -5,14 +5,16 @@
 # Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2001-2002,2003.
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 # Francisco Javier F. Serrador <franciscojavier.fernandez.serrador@hispalinux.es>, 2003.
+# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
-"PO-Revision-Date: 2003-12-10 20:28+0100\n"
-"Last-Translator: Francisco Javier F. Serrador <franciscojavier.fernandez.serrador@hispalinux.es>\n"
+"POT-Creation-Date: 2003-12-20 14:56+0100\n"
+"PO-Revision-Date: 2003-12-20 14:59+0100\n"
+"Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
+"serrador@hispalinux.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,8 +57,7 @@ msgstr "Juegos y entretenimientos"
 msgid "General"
 msgstr "General"
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:10
 msgid "Help Contents"
 msgstr "Contenido de la ayuda"
 
@@ -101,32 +102,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Buscar texto en el documento:</b>"
+msgid "C_ase sensitive"
+msgstr "Distinguir _capitalización"
 
 #: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "A_justar línea automáticamente"
+msgid "Find"
+msgstr "Buscar"
 
 #: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Buscar texto..."
+msgid "_Find: "
+msgstr "_Buscar:"
 
 #: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "Sólo palabras _completas"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "_Distinguir entre mayúsculas y minúsculas"
-
-#: data/ui/yelp.glade.h:7
 msgid "_Next"
 msgstr "_Siguiente"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "_Anterior"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr "_Volver al principio"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -136,29 +133,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:238 src/yelp-window.c:735
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "El documento «%s» no pudo abrirse"
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:410
 msgid "No href attribute found on yelp:document"
 msgstr "No se encontró atributo href en yelp:document"
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:425
 msgid "Out of memory"
 msgstr "Se agotó la memoria"
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:584
 msgid "Titlepage"
 msgstr "Página de título"
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:586
 msgid "Contents"
 msgstr "Índice"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:604
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -236,11 +232,11 @@ msgstr "Vistas generales"
 msgid "System Administration"
 msgstr "Administración del sistema"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:118
 msgid "Document URI"
 msgstr "URI del documento"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
 msgstr "La URI del documento a ser procesado"
 
@@ -248,177 +244,147 @@ msgstr "La URI del documento a ser procesado"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: El contador de pausa es negativo."
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:570 src/yelp-toc-pager.c:582
 msgid "The table of contents could not be read."
 msgstr "La tabla de contenidos no se pudo leer."
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:784
 msgid "Categories"
 msgstr "Categorías"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:805
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "Cargando..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "Sección"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Buscar:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "Escritorio GNOME"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Documentos adicionales"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Páginas del manual"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Páginas info"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Páginas del manual"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "GNOME es"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "Software libre"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "©"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:220
 msgid "/_File"
 msgstr "/_Archivo"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:221
 msgid "/File/_New window"
 msgstr "/Archivo/_Nueva ventana"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:224
 msgid "/File/_Close window"
 msgstr "/Archivo/_Cerrar ventana"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:228
 msgid "/_Edit"
 msgstr "/_Editar"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
-msgstr "/Editar/_Buscar en la página..."
-
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
-msgstr "/Editar/_Repetir la búsqueda"
-
 #: src/yelp-window.c:229
+msgid "/Edit/_Find..."
+msgstr "/Editar/_Buscar..."
+
+#: src/yelp-window.c:232
+msgid "/Edit/Find Ne_xt"
+msgstr "/Editar/Buscar _siguiente"
+
+#: src/yelp-window.c:235
+msgid "/Edit/Find Pre_vious"
+msgstr "/Editar/Buscar _anterior"
+
+#: src/yelp-window.c:239
 msgid "/_Go"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:240
 msgid "/Go/_Back"
 msgstr "/Ir/_Atrás"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:243
 msgid "/Go/_Forward"
 msgstr "/Ir/A_delante"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:246
 msgid "/Go/_Home"
 msgstr "/Ir/_Inicio"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:249
+msgid "/Go/"
+msgstr "/Ir/"
+
+#: src/yelp-window.c:250
+msgid "/Go/_Previous"
+msgstr "/Ir/_Anterior"
+
+#: src/yelp-window.c:253
+msgid "/Go/_Next"
+msgstr "/Ir/_Siguiente"
+
+#: src/yelp-window.c:256
+msgid "/Go/_Contents"
+msgstr "/Ir/_Contenido"
+
+#: src/yelp-window.c:260
 msgid "/_Help"
 msgstr "/A_yuda"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:261
 msgid "/Help/_About"
 msgstr "/Ayuda/_Acerca de"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:323
 msgid "Help Browser"
 msgstr "Navegador de ayuda"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "Atrás"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "Muestra la página anterior del historial"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "Adelante"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "Muestra la siguiente página del historial"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "Inicio"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "Ir a la vista de inicio"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:383
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "El documento «%s» no existe"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:403
 msgid "DocBook SGML documents are no longer supported."
 msgstr "Los documentos SGML DocBook SGML ya no se soportan."
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr "Cargando&nbsp;&nbsp;&nbsp;"
+#: src/yelp-window.c:522
+msgid "Section"
+msgstr "Sección"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr "Cargando.&nbsp;&nbsp;"
+#: src/yelp-window.c:575
+msgid "Back"
+msgstr "Atrás"
 
-#: src/yelp-window.c:895
-msgid "Loading..&nbsp;"
-msgstr "Cargando..&nbsp;"
+#: src/yelp-window.c:576
+msgid "Show previous page in history"
+msgstr "Muestra la página anterior del historial"
+
+#: src/yelp-window.c:586
+msgid "Forward"
+msgstr "Adelante"
+
+#: src/yelp-window.c:587
+msgid "Show next page in history"
+msgstr "Muestra la siguiente página del historial"
+
+#: src/yelp-window.c:599
+msgid "Home"
+msgstr "Inicio"
+
+#: src/yelp-window.c:600
+msgid "Go to home view"
+msgstr "Ir a la vista de inicio"
+
+#: src/yelp-window.c:768 src/yelp-window.c:799 src/yelp-window.c:1013
+#: src/yelp-window.c:1075
+#, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "La página «%s» no pudo encontrarse en este documento."
+
+#: src/yelp-window.c:824
+msgid "Loading..."
+msgstr "Cargando..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1156
 msgid "translator_credits"
 msgstr ""
 "Francisco J.F. Serrador <serrador@cvs.gnome.org>\n"
 "Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Germán Poo Caamaño <gpoo@ubiobio.cl>"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1161
 msgid "A Help Browser for GNOME"
 msgstr "Visualizador de ayuda para GNOME"
 
@@ -430,6 +396,57 @@ msgstr "Obtenga ayuda acerca de GNOME"
 msgid "Help"
 msgstr "Ayuda"
 
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Buscar texto en el documento:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "A_justar línea automáticamente"
+
+#~ msgid "Find text..."
+#~ msgstr "Buscar texto..."
+
+#~ msgid "Match _entire word"
+#~ msgstr "Sólo palabras _completas"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "_Distinguir entre mayúsculas y minúsculas"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Buscar:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "Escritorio GNOME"
+
+#~ msgid "Additional documents"
+#~ msgstr "Documentos adicionales"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Páginas del manual"
+
+#~ msgid "Info Pages"
+#~ msgstr "Páginas info"
+
+#~ msgid "Manual pages"
+#~ msgstr "Páginas del manual"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME es"
+
+#~ msgid "Free Software"
+#~ msgstr "Software libre"
+
+#~ msgid "(C)"
+#~ msgstr "©"
+
+#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
+#~ msgstr "Cargando&nbsp;&nbsp;&nbsp;"
+
+#~ msgid "Loading.&nbsp;&nbsp;"
+#~ msgstr "Cargando.&nbsp;&nbsp;"
+
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "Cargando..&nbsp;"
+
 #~ msgid "About This Document"
 #~ msgstr "Acerca de este documento"
 
@@ -438,9 +455,6 @@ msgstr "Ayuda"
 
 #~ msgid "Next"
 #~ msgstr "Siguiente"
-
-#~ msgid "/Go/_Index"
-#~ msgstr "/Ir/Índi_ce"
 
 #~ msgid "Index"
 #~ msgstr "Índice"
