@@ -1,3 +1,9 @@
+2004-04-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-window.c:
+	- Fixed leak in window_handle_pager_uri, #140597  (Morten Welinder)
+	- Fixed leak in window_handle_page, #140595  (Morten Welinder)
+
 2004-04-19  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-io-channel.c:
