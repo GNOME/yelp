@@ -125,13 +125,11 @@ struct _YelpViewTOCPriv {
               <tr> \
 	        <td>"
 #define COLUMN_RIGHT_START "<td valign=\"top\"> \
-            <table cellpadding=\"0\" \
-                   border=\"0\" \
-		   align=\"right\" \
-		   cellspacing=\"0\" \
-		   width=\"100%\"> \
-              <tr> \
-	        <td>"
+			      <table cellpadding=\"0\" \
+			             border=\"0\" \
+			             align=\"right\" \
+			             cellspacing=\"0\" \
+			             width=\"100%\"><tr><td>"
 
 #define COLUMN_END " \
 		</td> \
@@ -477,9 +475,9 @@ yelp_view_toc_start (YelpViewTOC *view)
 	}
 
 	yelp_view_toc_printf (view,
-			      TOC_BLOCK_END);
-
-	yelp_view_toc_printf (view, COLUMN_END);
+			      TOC_BLOCK_END
+			      COLUMN_END 
+			      PAGE_END);
 	
 	yelp_view_toc_write_footer (view);
 
@@ -650,7 +648,9 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 
 	yelp_view_toc_man_emit (view, first);
 		
-	yelp_view_toc_printf (view, COLUMN_END);
+	yelp_view_toc_printf (view, 
+			      COLUMN_END
+			      PAGE_END);
 
 	yelp_view_toc_write_footer (view);
 	yelp_view_toc_close (view);
@@ -689,10 +689,11 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 			      PAGE_START, 
 			      string);
 
-	yelp_view_toc_printf (view, 
+	yelp_view_toc_printf (view,
 			      COLUMN_RIGHT_START
-			      TOC_BLOCK_START
-			      "<h2>%s</h2>", str_subcats);
+			      TOC_BLOCK_START 
+			      "<h2>%s</h2>", 
+			      str_subcats);
 
 	do {
 		child = g_node_first_child (node);
@@ -761,8 +762,10 @@ yelp_view_toc_info (YelpViewTOC *view)
 		g_free  (url);
 	} while ((node = g_node_next_sibling (node)));
 		
-	yelp_view_toc_printf (view, TOC_BLOCK_END);
-	yelp_view_toc_printf (view, COLUMN_END);
+	yelp_view_toc_printf (view, 
+			      TOC_BLOCK_END
+			      COLUMN_END
+			      PAGE_END);
 
 	yelp_view_toc_write_footer (view);
 	yelp_view_toc_close (view);
@@ -921,19 +924,18 @@ yelp_view_toc_scrollkeeper (YelpViewTOC *view,
 			
 				section = node->data;
 				yelp_view_toc_printf (view, "<a href=\"%s\">%s</a><br>\n", section->uri, section->name);
-/* 				yelp_view_toc_printf (view, "<li><a href=\"%s\">%s</a>\n", section->uri, section->name); */
 			}
 		}
-		
-/* 		yelp_view_toc_write (view, "</ul>\n", -1); */
+
 		yelp_view_toc_printf (view, TOC_BLOCK_END);
 	}
 
-	yelp_view_toc_printf (view, COLUMN_END);
+	yelp_view_toc_printf (view, 
+			      COLUMN_END
+			      PAGE_END);
 	yelp_view_toc_write_footer (view);
 	yelp_view_toc_close (view);
 }
-
 
 void
 yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
