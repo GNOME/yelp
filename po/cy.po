@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-06-28 02:42+0100\n"
-"PO-Revision-Date: 2003-06-28 02:44+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-19 02:59+0100\n"
+"PO-Revision-Date: 2003-08-14 21:33+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +37,7 @@ msgstr "Cydweddu _gair cyfan"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr "Cydweddu'r prif lythyrau a llythrennau bach"
+msgstr "_Cydweddu'r prif lythyrau a llythrennau bach"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
@@ -161,140 +162,140 @@ msgstr "GNOME - Penbwrdd"
 msgid "Additional documents"
 msgstr "Dogfennau ychwanegol"
 
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "Tudalennau Llawlyfr"
 
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "Tudalennau Info"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "Dogfennau"
 
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "Categorïau"
 
-#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "Tudalennau'r lawlyfr"
 
-#: src/yelp-view-toc.c:712
+#: src/yelp-view-toc.c:707
 msgid "GNOME is"
 msgstr "Mae GNOME yn"
 
-#: src/yelp-view-toc.c:713
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr "Feddalwedd Rhydd"
 
-#: src/yelp-view-toc.c:714
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr "(H)"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:171
 msgid "/_File"
 msgstr "/_Ffeil"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:172
 msgid "/File/_New window"
 msgstr "/Ffeil/Ffenestr _newydd"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:173
 msgid "/File/_Close window"
 msgstr "/Ffeil/_Cau ffenestr"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:175
 msgid "/_Edit"
 msgstr "/_Golygu"
 
-#: src/yelp-window.c:168
+#: src/yelp-window.c:176
 msgid "/Edit/_Find in page..."
 msgstr "/Golygu/_Chwilio mewn tudalen..."
 
-#: src/yelp-window.c:169
+#: src/yelp-window.c:177
 msgid "/Edit/_Find again"
 msgstr "/Golygu/_Chwilio eto"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:179
 msgid "/_Go"
 msgstr "/_Mynd"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:180
 msgid "/Go/_Back"
 msgstr "/Mynd/Yn _ôl"
 
-#: src/yelp-window.c:173
+#: src/yelp-window.c:181
 msgid "/Go/_Forward"
 msgstr "/Mynd/_Ymlaen"
 
-#: src/yelp-window.c:174
+#: src/yelp-window.c:182
 msgid "/Go/_Home"
 msgstr "/Mynd/_Adre"
 
-#: src/yelp-window.c:175
+#: src/yelp-window.c:183
 msgid "/Go/_Index"
 msgstr "/Mynd/_Mynegai"
 
-#: src/yelp-window.c:177
+#: src/yelp-window.c:185
 msgid "/_Help"
 msgstr "/_Cymorth"
 
-#: src/yelp-window.c:178
+#: src/yelp-window.c:186
 msgid "/Help/_About"
 msgstr "/Cymorth/_Ynghylch"
 
-#: src/yelp-window.c:238 src/yelp-window.c:438
+#: src/yelp-window.c:255 src/yelp-window.c:455
 msgid "Help Browser"
 msgstr "Porwr Cymorth"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:368
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dydy'r ddogfen '%s' ddim yn bodoli"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:677
+#: src/yelp-window.c:694
 msgid "translator_credits"
 msgstr ""
 "Chris M. Jackson <chris@www.linux.org.uk>, Dafydd Harries <daf@parnassus.ath."
 "cx>"
 
-#: src/yelp-window.c:681
+#: src/yelp-window.c:698
 msgid "A Help Browser for GNOME"
 msgstr "Porwr Cymorth ar gyfer GNOME"
 
-#: src/yelp-window.c:795
+#: src/yelp-window.c:812
 msgid "Back"
 msgstr "Yn ôl"
 
-#: src/yelp-window.c:796
+#: src/yelp-window.c:813
 msgid "Show previous page in history"
 msgstr "Dangos y dudalen blaenorol"
 
-#: src/yelp-window.c:807
+#: src/yelp-window.c:824
 msgid "Forward"
 msgstr "Ymlaen"
 
-#: src/yelp-window.c:808
+#: src/yelp-window.c:825
 msgid "Show next page in history"
 msgstr "Dangos y tudalen nesaf"
 
-#: src/yelp-window.c:821
+#: src/yelp-window.c:838
 msgid "Home"
 msgstr "Cartref"
 
-#: src/yelp-window.c:822
+#: src/yelp-window.c:839
 msgid "Go to home view"
 msgstr "Ewch i'r olygfa gartref"
 
-#: src/yelp-window.c:832
+#: src/yelp-window.c:849
 msgid "Index"
 msgstr "Mynegai"
 
-#: src/yelp-window.c:833
+#: src/yelp-window.c:850
 msgid "Search in the index"
 msgstr "Chwilio'r mynegai"
 
