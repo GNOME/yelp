@@ -1,6 +1,11 @@
 2003-11-18  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-db-pager.c:
+	- Pass $mediaobject_path as a param
+
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
 	* src/yelp-pager.c:
 	* src/yelp-pager.h:
 	- Implement pausing of the TocPager.

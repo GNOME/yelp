@@ -202,7 +202,7 @@ db_pager_process (YelpPager *pager)
     gchar        *uri_slash;
     gchar        *doc_name;
     gchar        *doc_path;
-    const gchar  *params[13];
+    const gchar  *params[15];
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
@@ -253,7 +253,9 @@ db_pager_process (YelpPager *pager)
     params[9]  = "\"\"";
     params[10] = "resolve_xref_chunk";
     params[11] = "0";
-    params[12] = NULL;
+    params[12] = "mediaobject_path";
+    params[13] = doc_path;
+    params[14] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     tctxt      = xsltNewTransformContext (stylesheet,
