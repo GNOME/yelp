@@ -1,4 +1,11 @@
-2002-07-25  Sander Vesik <sander.vesik@sun.com>
+2002-07-06  Sander Vesik <sander.vesik@sun.com>
+	* stylesheets/yelp-customization.xsl
+	- make <part> and <chapter> have plain unstyled toc-s
+	  until yelp.render.toc is sufficently advanced
+	- correctly pass in a string parameter when matching /book
+	- call correct titlepage template for <book>
+
+2002-07-05  Sander Vesik <sander.vesik@sun.com>
 	* stylesheets/yelp-customization.xsl
 	- make <book> support somewhat work
 
