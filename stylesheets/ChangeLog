@@ -1,7 +1,15 @@
+2003-04-02  Mikael Hallendal  <micke@codefactory.se>
+
+	* images/*: Updated images so that they have transparent
+	  background. Thanks Alexander, Fixes #91622
+	
 2003-03-31  Mikael Hallendal  <micke@codefactory.se>
 
-	* Applied patch from Baudais@kkpsi.org to make table borders
-	  lighter.
+	* yelp-customization.xsl: 
+	- Applied patch from Baudais@kkpsi.org to lessen space before
+	  figure captions. Fixes #100414.
+	- Applied patch from Baudais@kkpsi.org to make table borders
+	  lighter. Fixes #100479
 	
 2003-03-16  Andras Timar  <timar@gnome.hu>
 

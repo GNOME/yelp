@@ -189,6 +189,7 @@
        DIV.revhistory TABLE {border-spacing: 0}
        LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
        LI DIV.figure P {margin-top: 1em; margin-bottom: 1em}
+       DIV.figure {margin-bottom: 4em}
        H1 {font-size: 1.4em}
        H2 {font-size: 1.3em; margin-bottom: 0}
        H3 {font-size: 1.2em; margin-bottom: 0}
