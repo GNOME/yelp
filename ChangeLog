@@ -1,3 +1,23 @@
+2002-09-16  Sander Vesik <sander.vesik@sun.com>
+
+	* stylesheets/yelp-customization.xsl:
+	- unindent copyright
+	- leave space inbetween the 'Copyright' header and copyright
+	  holders
+	- emulate 'fine print' on licence text
+	- make <TT> use monospaced font (should go into gtkhtml2)
+	- give <variablelist>-s back internal spacing that was
+	  originaly lost due to both <variablelist> and table of
+	  contents resulting in the same html tags
+	- change nested ordered lists to use "lower-alpha" instead of
+	  "lower-roman" 
+	- yet more fighting with table borders
+	- make tables be consistently top aligned
+	- leave space before figures and figure titles inside lists
+
+	* stylesheets/yelp-custom.xsl:
+	- wrap legalnotice in <div class="legalnotice">...</div>
+
 2002-09-04  Mikael Hallendal  <micke@codefactory.se>
 
 	* Release 1.0.6
