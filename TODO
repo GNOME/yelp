@@ -4,28 +4,32 @@ FEATURES:
 * Index-search (keyword search). I've been told that ScrollKeeper CVS
   has support for this, it should be used in Yelp.
 
-* Support man/info (currently being implemented, or already done just 
-  not commited by Patanjali).
-
 * Support for external links (if a link points outside the documents the
   prefered web browser should be started to handle this).
+
+* Create the tree out of information from the system 
+  - Add man  (Patanjali?)
+  - Add info (Patanjali?)
+
+* Home view:
+  - The homeview should show the top two levels of the contents tree.
+  - Clicking on a link in the home view should give you the contents-view 
+    with contents-root being the node you clicked in the home-view.
+  - Use toplevel for Info and Man.
 
 * Generate HTML-indexes for sections without a document (when opening a 
   node in the tree, if that node doesn't have a document connected to it
   a HTML page should be generated, to allow the user to browse only in 
   the HTML widget).
-
-* Create the tree out of information from the system 
-  (somewhat fixed, SK support works).
-
-* Nice start page. (TOC?)
+  (might not be needed when we have the Home-scheme)
 
 * Bookmark support
+
+* Recently viewed
 
 
 INTERNALS:
 ----------
-
 Clean up the code, I thought a little bigscale in the beginning, no
 time for this. Will be cleaning up a lot in the near future.
 
