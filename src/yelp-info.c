@@ -54,9 +54,6 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 		return;
 	}
 
-	readdir (dirh);		/* skip . & .. */
-	readdir (dirh);
-
 	while ((dent = readdir (dirh))) {
 		char *ctmp = NULL;
 		char uribuf[128], titlebuf[128];
