@@ -1,15 +1,15 @@
 # Lithuanian translation of yelp
-# Copyright (C) 2003-2004 Free Software Foundation, Inc.
+# Copyright (C) 2003-2005 Free Software Foundation, Inc.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003-2004.
-# Žygimantas Beručka  <uid0@akl.lt>, 2004
+# Žygimantas Beručka  <uid0@akl.lt>, 2004-2005.
 # 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2005-01-03 21:58+0200\n"
+"POT-Creation-Date: 2005-01-15 16:35+0200\n"
+"PO-Revision-Date: 2005-01-15 16:38+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -137,9 +137,8 @@ msgid "Graphics"
 msgstr "Grafika"
 
 #: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
 msgid "Help Topics"
-msgstr "Pagalbos naršyklė"
+msgstr "Pagalbos temos"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -190,9 +189,8 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Šriftai</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "Ž_ymelės"
+msgstr "<b>Ž_ymelės:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
@@ -224,7 +222,7 @@ msgstr "Nustatymai"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "Per_vadinti"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
@@ -291,9 +289,8 @@ msgid "Use system fonts"
 msgstr "Naudoti sistemos šriftus"
 
 #: data/yelp.schemas.in.h:8
-#, fuzzy
 msgid "Use the default fonts set for the system."
-msgstr "Naudoti įprastus sistemos šriftus."
+msgstr "Naudoti įprastus sistemoje nustatytus šriftus."
 
 #: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
@@ -309,9 +306,8 @@ msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
 
 #: src/yelp-bookmarks.c:341
-#, fuzzy
 msgid "Document Sections"
-msgstr "Dokumento informacija"
+msgstr "Dokumento skyriai"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -544,11 +540,11 @@ msgstr "Rodyti kitą puslapį esantį atmintyje"
 
 #: src/yelp-window.c:367
 msgid "_Help Topics"
-msgstr ""
+msgstr "_Pagalbos temos"
 
 #: src/yelp-window.c:369
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Eiti į pagalbos temų sąrašą"
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -618,19 +614,16 @@ msgstr ""
 "paverstų į XML."
 
 #: src/yelp-window.c:1024
-#, fuzzy
 msgid "Find:"
-msgstr "Ieškoti"
+msgstr "Rasti:"
 
 #: src/yelp-window.c:1040
-#, fuzzy
 msgid "Find _Next"
-msgstr "_Kitas"
+msgstr "Rasti _sekantį"
 
 #: src/yelp-window.c:1052
-#, fuzzy
 msgid "Find _Previous"
-msgstr "_Ankstesnis"
+msgstr "Rasti _ankstesnį"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -690,7 +683,7 @@ msgstr ""
 "suformuota neteisingai."
 
 #: src/yelp-xslt-pager.c:215
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
