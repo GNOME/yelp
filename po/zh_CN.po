@@ -1,15 +1,20 @@
-# 
+# Translation of yelp.po to Simplified Chinese.
+# This file is distributed under the same license as the yelp package.
+# Zipeco <Zipeco@btamail.net.cn>, 2002.
+# Funda Wang <fundawang@en2china.com>, 2003.
+# Jan2xue <75jan@163.com>, 2003-2004.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-16 23:31-0600\n"
-"PO-Revision-Date: 2004-03-01 00:43+0800\n"
-"Last-Translator: 周延潮 <75jan@163.com>\n"
+"Project-Id-Version: yelp 2.6\n"
+"POT-Creation-Date: 2004-03-21 04:38+0100\n"
+"PO-Revision-Date: 2004-03-21 21:08+0800\n"
+"Last-Translator: jan2xue <75jan@163.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -57,7 +62,7 @@ msgstr "帮助目录"
 
 #: data/toc.xml.in.h:12
 msgid "Internet Applications"
-msgstr "Internet 应用程序"
+msgstr "互联网应用程序"
 
 #: data/toc.xml.in.h:13
 msgid "KDE"
@@ -137,7 +142,7 @@ msgstr "在 yelp:document 中未发现 href 属性"
 
 #: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
-msgstr "内存溢出"
+msgstr "内存不足"
 
 #: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
@@ -262,7 +267,7 @@ msgstr "YelpTocPager: 暂停数为负数。"
 #: src/yelp-toc-pager.c:486
 #, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "无法装入 OME 文件：“%s”。"
+msgstr "无法载入 OMF 文件“%s”。"
 
 #: src/yelp-toc-pager.c:883
 msgid "Categories"
@@ -370,7 +375,7 @@ msgstr "首页"
 
 #: src/yelp-window.c:650
 msgid "Go to home view"
-msgstr "转到首页"
+msgstr "转到首页视图"
 
 #: src/yelp-window.c:860
 msgid "Loading..."
@@ -381,9 +386,10 @@ msgstr "正在载入..."
 #: src/yelp-window.c:1300
 msgid "translator_credits"
 msgstr ""
+"开源软件国际化简体中文组(http://i18n.linux.net.cn)\n"
 "Zipeco <Zipeco@btamail.net.cn>, 2002\n"
 "Funda Wang <fundawang@en2china.com>, 2003\n"
-"Jan2xue <75jan@163.com> 2003"
+"Jan2xue <75jan@163.com>, 2003-2004"
 
 #: src/yelp-window.c:1306
 msgid "A Help Browser for GNOME"
@@ -487,7 +493,7 @@ msgstr "书"
 
 #: stylesheets/l10n.xml.in.h:25
 msgid "Caution"
-msgstr "警示"
+msgstr "警告"
 
 #: stylesheets/l10n.xml.in.h:26
 msgid "Chapter"
@@ -503,7 +509,7 @@ msgstr "合作者"
 
 #: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
-msgstr ""
+msgstr "末页"
 
 #: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
@@ -519,11 +525,11 @@ msgstr "日期"
 
 #: stylesheets/l10n.xml.in.h:34
 msgid "Dedication"
-msgstr "贡献"
+msgstr "献辞"
 
 #: stylesheets/l10n.xml.in.h:35
 msgid "Editor"
-msgstr "编辑器"
+msgstr "编辑"
 
 #: stylesheets/l10n.xml.in.h:37
 msgid "Email"
@@ -539,11 +545,11 @@ msgstr "图"
 
 #: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
-msgstr "词典"
+msgstr "术语表"
 
 #: stylesheets/l10n.xml.in.h:41
 msgid "Important"
-msgstr "重要"
+msgstr "要点"
 
 #: stylesheets/l10n.xml.in.h:42
 msgid "Index"
@@ -563,7 +569,7 @@ msgstr "消息受众"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
-msgstr "信息级别"
+msgstr "消息级别"
 
 #: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
@@ -571,19 +577,19 @@ msgstr "信息来源"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
-msgstr "注"
+msgstr "注释"
 
 #: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
-msgstr "源"
+msgstr "来源"
 
 #: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
-msgstr "别的贡献者"
+msgstr "其他贡献者"
 
 #: stylesheets/l10n.xml.in.h:51
 msgid "Other Contributors"
-msgstr "别的贡献者"
+msgstr "其他贡献者"
 
 #: stylesheets/l10n.xml.in.h:52
 msgid "Part"
@@ -623,7 +629,7 @@ msgstr "修订历史"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
-msgstr "见"
+msgstr "参见"
 
 #: stylesheets/l10n.xml.in.h:63
 msgid "See Also"
@@ -635,7 +641,7 @@ msgstr "设置索引"
 
 #: stylesheets/l10n.xml.in.h:65
 msgid "Table"
-msgstr "表格"
+msgstr "表"
 
 #: stylesheets/l10n.xml.in.h:66
 msgid "Table of Contents"
