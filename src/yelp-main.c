@@ -307,7 +307,6 @@ int
 main (int argc, char **argv) 
 {
 	GnomeProgram  *program;
-	gchar         *display_name;
 	CORBA_Object   factory;
 	gchar         *url = NULL;
 	GnomeClient   *client;
@@ -328,9 +327,9 @@ main (int argc, char **argv)
 
 	/* Need to set this to the canonical DISPLAY value, since
 	   that's where we're registering per-display components */
-	display_name = gdk_display_get_name (gdk_display_get_default ());
-	bonobo_activation_set_activation_env_value ("DISPLAY", display_name);
-	g_free (display_name);
+	bonobo_activation_set_activation_env_value
+		("DISPLAY",
+		 gdk_display_get_name (gdk_display_get_default ()) );
 
 	gnome_vfs_init ();
 

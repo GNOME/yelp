@@ -89,7 +89,6 @@ yelp_SOURCES =							\
 	yelp-pager.c		yelp-pager.h			\
 	yelp-settings.c		yelp-settings.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h		\
-	yelp-uri.c	        yelp-uri.h			\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-window.c 		yelp-window.h			\
 	yelp-xslt-pager.c	yelp-xslt-pager.h		\

@@ -1,3 +1,11 @@
+2005-04-06  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	- yelp-uri has been dead for a while, no need to link it in
+
+	* src/yelp-main.c:
+	- Reverted #168262, fixing #169160
+
 2005-02-23  Paolo Borelli  <pborelli@katamail.com>
 
 	* src/yelp-main.c (main): do not leak display_name.
