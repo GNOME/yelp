@@ -557,7 +557,7 @@ settings_update (YelpSettingsType type)
     GtkWidget *widget;
     GtkStyle  *style;
     GdkColor  *color;
-    GdkColor   blue = { 0, 0x0000, 0x0000, 0xffff };
+    GdkColor   blue = { 0, 0x1E1E, 0x3E3E, 0xE7E7 };
     guint8     max_text, max_base;
     guint16    rval, gval, bval;
     gint i;
@@ -623,11 +623,10 @@ settings_update (YelpSettingsType type)
 
 	for (i = 0; i < 2; i++) {
 	    gint mult = (i == 0) ? max_base : max_text;
-	    mult = (mult / 2) + 128;
 
-	    rval = ((mult * 255) / 255);
-	    gval = ((mult * 255) / 255);
-	    bval = ((mult * 207) / 255);
+	    rval = ((255 * mult) / 255);
+	    gval = ((255 * mult) / 255);
+	    bval = ((220 * mult) / 255);
 
 	    g_snprintf (colors[YELP_COLOR_YELLOW_BG + i], 8,
 			"#%02X%02X%02X", rval, gval, bval);

@@ -54,8 +54,7 @@
           top: 6px;
           right: 18px;
         }
-        div[class~="body"] {
-        }
+        div[class~="body"] { }
         div[class~="leftbar"] {
           position: absolute;
           top: 4em;
@@ -71,6 +70,7 @@
           background-position: </xsl:text>
           <xsl:value-of select="(192 - $help_icon_size) div 2"/><xsl:text>px 0px;
           background-repeat: no-repeat;
+          opacity: .3;
         }
         div[class~="rightbar"] {
           margin-left: 216px;

@@ -1,3 +1,15 @@
+2005-02-03  Shaun McCance  <shaunm@gnome.org>
+
+	* data/scrollkeeper.xml:
+	* data/toc.xml.in:
+	- Added Preferences and Administration, per panel changes
+	- Renamed Applets to Panel Applets
+
+	* src/yelp-settings.c:
+	* stylesheets/db2html.xsl.in:
+	* stylesheets/toc2html.xsl:
+	- Rendering improvements
+
 2005-02-04  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* src/yelp-db-pager.c: (db_pager_params):  Fix a leak.
