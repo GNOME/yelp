@@ -45,11 +45,13 @@ install-exec-local:
 	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
 
 yelp-marshal.h: yelp-marshal.list
+	cd $(srcdir) && \
 	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --header > yelp-marshal1.tmp \
 	&& mv yelp-marshal1.tmp yelp-marshal.h ) \
 	|| ( rm -f yelp-marshal1.tmp && exit 1 )
 
 yelp-marshal.c: yelp-marshal.h
+	cd $(srcdir) && \
 	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --body > yelp-marshal2.tmp \
 	&& mv yelp-marshal2.tmp yelp-marshal.c ) \
 	|| ( rm -f yelp-marshal2.tmp && exit 1 )
