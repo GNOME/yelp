@@ -48,7 +48,7 @@ h2 { font-size: 1.4em; font-weight: bold; }
 h3 { font-size: 1.2em; font-weight: bold; }
 
 div[class~="SH"] { margin-left: 1.2em; }
-div[class~="SS"] { margin-left: 1.2em; }
+div[class~="SS"] { margin-left: 1.6em; }
 
 span[class~="Section"] {margin-left: 0.4em; }
 
@@ -83,6 +83,28 @@ dd + dt { margin-top: 1.6em; }
   <i><xsl:apply-templates/></i>
 </xsl:template>
 
+<xsl:template match="IP">
+  <xsl:choose>
+    <xsl:when test="preceding-sibling::*[1][self::IP]"/>
+    <xsl:otherwise>
+      <dl>
+        <xsl:apply-templates mode="IP.mode" select="."/>
+      </dl>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template mode="IP.mode" match="IP">
+  <dt>
+    <xsl:apply-templates select="Tag"/>
+  </dt>
+  <dd>
+    <xsl:apply-templates select="Tag/following-sibling::node()"/>
+  </dd>
+  <xsl:apply-templates mode="IP.mode"
+                       select="following-sibling::*[self::IP][1]"/>
+</xsl:template>
+
 <xsl:template match="P">
   <p><xsl:apply-templates/></p>
 </xsl:template>
@@ -92,7 +114,39 @@ dd + dt { margin-top: 1.6em; }
 </xsl:template>
 
 <xsl:template match="SS">
+  <xsl:variable name="nextSH" select="following-sibling::SH[1]"/>
   <h3><xsl:apply-templates/></h3>
+  <div class="SS">
+    <xsl:choose>
+      <xsl:when test="$nextSH">
+        <xsl:variable
+         name="nextSS"
+         select="following-sibling::SS[following-sibling::SH = $nextSH][1]"/>
+        <xsl:choose>
+          <xsl:when test="$nextSS">
+            <xsl:apply-templates
+             select="following-sibling::*[following-sibling::SS = $nextSS]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates
+             select="following-sibling::*[following-sibling::SH = $nextSH]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="nextSS" select="following-sibling::SS[1]"/>
+        <xsl:choose>
+          <xsl:when test="$nextSS">
+            <xsl:apply-templates
+             select="following-sibling::*[following-sibling::SS = $nextSS]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="following-sibling::*"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </div>
 </xsl:template>
 
 <xsl:template match="SH">
@@ -101,11 +155,26 @@ dd + dt { margin-top: 1.6em; }
   <div class="SH">
     <xsl:choose>
       <xsl:when test="$nextSH">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::* = $nextSH]"/>
+        <xsl:choose>
+          <xsl:when test="following-sibling::SS[following-sibling::* = $nextSH]">
+            <xsl:apply-templates
+             select="following-sibling::SS[following-sibling::* = $nextSH]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates
+             select="following-sibling::*[following-sibling::* = $nextSH]"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="following-sibling::*"/>
+        <xsl:choose>
+          <xsl:when test="following-sibling::SS">
+            <xsl:apply-templates select="following-sibling::SS"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="following-sibling::*"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </div>
@@ -113,6 +182,10 @@ dd + dt { margin-top: 1.6em; }
 
 <xsl:template match="TABLE">
   <table><xsl:apply-templates/></table>
+</xsl:template>
+
+<xsl:template match="Tag">
+  <span class="Tag"><xsl:apply-templates/></span>
 </xsl:template>
 
 <xsl:template match="TH">
