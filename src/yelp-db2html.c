@@ -3,8 +3,8 @@
  * gnome-db2html3 - by John Fleck - based on Daniel Veillard's
  * xsltproc: user program for the XSL Transformation engine
  * 
- * Copyright (C) John Fleck, 2001
- * Copyright (C) Mikael Hallendal, 2002
+ * Copyright (C) 2001 John Fleck        <jfleck@inkstain.net>
+ * Copyright (C) 2002 Mikael Hallendal  <micke@imendio.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,6 +76,11 @@ main (gint argc, gchar **argv)
         }
 
         docpath = argv[1];
+
+	if (!g_file_test (docpath, G_FILE_TEST_EXISTS)) {
+		g_warning ("'%s' doesn't exist.", docpath);
+		exit (1);
+	}
 
 	/* libxml housekeeping */
 	xmlSubstituteEntitiesDefault(1);

@@ -1,3 +1,8 @@
+2003-06-16  Mikael Hallendal  <micke@imendio.com>
+
+	* src/yelp-db2html.c: 
+	(main): Exit with a warning if file doesn't exist. Fixes #104478.
+
 2003-06-13  Mikael Hallendal  <micke@imendio.com>
 
         * *: Updated my contact information
