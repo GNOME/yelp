@@ -1,17 +1,49 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2003 Jitendra Shah
 # Swapnil Hajare <dreamil1000a@yahoo.com>, 2003
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp 2.0 \n"
-"POT-Creation-Date: 2003-01-26 19:54+0100\n"
+"POT-Creation-Date: 2003-09-08 22:19-0500\n"
 "PO-Revision-Date: 2003-01-10 20:38+0530\n"
 "Last-Translator: Jitendra Shah <jitendras@vsnl.com>\n"
 "Language-Team: Marathi <www.indictrans.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>कागदपत्रां मध्ये पाठ्य शोधा :</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "स्वता हून आवरण करा "
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "पाठ्य शोधा.."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "पूर्ण शब्द संगती करा (_e)"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr " संगती करा मोठा /छोटा केस (_M)"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "पुढील (_N)"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "मागील  (_P)"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -21,12 +53,16 @@ msgstr "यल्प "
 msgid "Yelp Factory"
 msgstr "यल्प कारखाना"
 
-#: src/yelp-main.c:114
+#: src/yelp-main.c:94
+msgid "Define which cache directory to use"
+msgstr ""
+
+#: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "यल्प ला चालू करू शकत नाही  %s"
 
-#: src/yelp-main.c:133
+#: src/yelp-main.c:147
 msgid "Could not open new window."
 msgstr "नविन विन्डो उघडू शकत नाही "
 
@@ -99,153 +135,165 @@ msgstr "संक्षेप"
 msgid "System Administration"
 msgstr "प्रणाली  प्रधान"
 
-#: src/yelp-view-content.c:422 src/yelp-view-index.c:498
-msgid "Section"
-msgstr "विभाग"
-
-#: src/yelp-view-content.c:567 src/yelp-view-index.c:566
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "लोड होत आहे ..."
 
-#: src/yelp-view-index.c:461
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "विभाग"
+
+#: src/yelp-view-index.c:480
 #, fuzzy
-msgid "Search for:"
+msgid "_Search for:"
 msgstr "च्या साठी शोधणे : (_S)"
 
 #. GList           *seriesids;
-#: src/yelp-view-toc.c:183
+#: src/yelp-view-toc.c:165
 msgid "Help Contents"
 msgstr "मदतीचे  घटक"
 
-#: src/yelp-view-toc.c:184
+#: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
 msgstr "गनोम डेस्कटाप"
 
-#: src/yelp-view-toc.c:185
+#: src/yelp-view-toc.c:167
 msgid "Additional documents"
 msgstr "अन्य कगदपत्रे "
 
-#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "निर्देश पाने "
 
-#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "माहीतीचे पाने"
 
-#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "कागदपत्रे"
 
-#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "वर्ग"
 
-#: src/yelp-view-toc.c:466
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "निर्देश पाने"
 
-#: src/yelp-view-toc.c:731
+#: src/yelp-view-toc.c:707
 msgid "GNOME is"
 msgstr "गनोम आहे "
 
-#: src/yelp-view-toc.c:732
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr "स्वतंत्र सोफटवेर"
 
-#: src/yelp-view-toc.c:733
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr "(C)"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:171
 msgid "/_File"
 msgstr "/फाइल (_F)"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:172
 msgid "/File/_New window"
 msgstr "/फाइल/नवीन विन्डो (_N)"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:173
 msgid "/File/_Close window"
 msgstr "/फाईल/विन्डो बंद करा (_C)"
 
-#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:163
+#: src/yelp-window.c:175
+msgid "/_Edit"
+msgstr "/संपादन (_E)"
+
+#: src/yelp-window.c:176
+msgid "/Edit/_Find in page..."
+msgstr "/संपादन/पाना मध्ये शोधा ... (_F)"
+
+#: src/yelp-window.c:177
+msgid "/Edit/_Find again"
+msgstr "/संपादन/परत शोधा (_F)"
+
+#: src/yelp-window.c:179
 msgid "/_Go"
 msgstr "/जा (_G)"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:180
 msgid "/Go/_Back"
 msgstr "/जा/मागे (_B)"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:181
 msgid "/Go/_Forward"
 msgstr "/जा/पुढे (_F)"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:182
 msgid "/Go/_Home"
 msgstr "/जा/पहीले (_H)"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:183
 msgid "/Go/_Index"
 msgstr "/जा/विवरण (_I)"
 
-#: src/yelp-window.c:168
+#: src/yelp-window.c:185
 msgid "/_Help"
 msgstr "/मदत (_H)"
 
-#: src/yelp-window.c:169
+#: src/yelp-window.c:186
 msgid "/Help/_About"
 msgstr "/मदत /च्या विषयी  (_A)"
 
-#: src/yelp-window.c:227 src/yelp-window.c:429
+#: src/yelp-window.c:255 src/yelp-window.c:455
 msgid "Help Browser"
 msgstr "मदत ब्राउजर"
 
-#: src/yelp-window.c:339
+#: src/yelp-window.c:368
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "कागदपत्रे '%s' आस्तित्वात नाहींे "
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:598
+#: src/yelp-window.c:695
 msgid "translator_credits"
 msgstr "अनुवादक ला श्रेय  (_c)"
 
-#: src/yelp-window.c:602
-msgid "Help Browser for GNOME 2.0"
+#: src/yelp-window.c:699
+#, fuzzy
+msgid "A Help Browser for GNOME"
 msgstr "गनोम 2.0 च्या साठी ब्राउजर मदत "
 
-#: src/yelp-window.c:657
+#: src/yelp-window.c:813
 msgid "Back"
 msgstr "मागे "
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:814
 msgid "Show previous page in history"
 msgstr "सुरूवातीचा मागील पान दाखवा "
 
-#: src/yelp-window.c:669
+#: src/yelp-window.c:825
 msgid "Forward"
 msgstr "पुढे व्हा "
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:826
 msgid "Show next page in history"
 msgstr "सुरूवातीचा पुढील पान दाखवा"
 
-#: src/yelp-window.c:683
+#: src/yelp-window.c:839
 msgid "Home"
 msgstr "घर"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:840
 msgid "Go to home view"
 msgstr "घर देखाव्या वर जा"
 
-#: src/yelp-window.c:694
+#: src/yelp-window.c:850
 msgid "Index"
 msgstr "विवरणिका"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:851
 msgid "Search in the index"
 msgstr "विवरणिका मध्ये शोधा "
 
@@ -256,36 +304,3 @@ msgstr "गनोम पासून मदत घ्या "
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "मदत"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>कागदपत्रां मध्ये पाठ्य शोधा :</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "स्वता हून आवरण करा "
-
-#~ msgid "Find text..."
-#~ msgstr "पाठ्य शोधा.."
-
-#~ msgid "Match _entire word"
-#~ msgstr "पूर्ण शब्द संगती करा (_e)"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr " संगती करा मोठा /छोटा केस (_M)"
-
-#~ msgid "_Next"
-#~ msgstr "पुढील (_N)"
-
-#~ msgid "_Previous"
-#~ msgstr "मागील  (_P)"
-
-#~ msgid "/_Edit"
-#~ msgstr "/संपादन (_E)"
-
-#~ msgid "/Edit/_Find in page..."
-#~ msgstr "/संपादन/पाना मध्ये शोधा ... (_F)"
-
-#~ msgid "/Edit/_Find again"
-#~ msgstr "/संपादन/परत शोधा (_F)"
