@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY yelp "<application>Yelp</application>">
+]>
+<article id="index" lang="en">
+<articleinfo> 
+	<title>Help System Specification</title>
+
+	<copyright>
+		<year>2003</year>
+		<holder>Shaun McCance</holder>
+	</copyright>
+
+	<authorgroup> 
+		<author>
+			<firstname>Shaun</firstname>
+			<surname>McCance</surname> 
+			<affiliation> 
+				<orgname>GNOME Documentation Project</orgname> 
+				<address><email>shaunm@gnome.org</email></address> 
+			</affiliation> 
+		</author> 
+	</authorgroup>
+
+	<revhistory>
+		<revision>
+			<revnumber>Help System Specification 0.1</revnumber>
+	    <date>January 2004</date>
+		</revision>
+	</revhistory>
+
+	<releaseinfo>
+		This is a DRAFT specification for the freedesktop.org help system.
+	</releaseinfo>
+</articleinfo>
+
+<sect1 id="xhelp-introduction">
+<title>Introduction</title>
+<para>This DRAFT document defines a new system for installing a locating help files
+	for applications and other components of the desktop.</para>
+<itemizedlist>
+	<listitem><para>The help system should impose as little policy as possible
+		on the help browser, and should expose as little policy as possible to
+		people writing documentation.</para></listitem>
+	<listitem><para>It should be simple to place a document into the help
+		system.  The installation and uninstallation procedures should be as
+		simple as copying resp. removing files.</para></listitem>
+	<listitem><para>The help system should not assume anything about the
+		program that is using it.  The system should be useful for programs
+		other than graphical help viewers.</para></listitem>
+	<listitem><para>Documents should be able to supply meaningful metadata,
+		while help viers may be able to use.  The metadata format for documents
+		should be easily extended in a well-defined way.</para></listitem>
+	<listitem><para>Applications should have a simple and consistent way of
+		accessing documentation.</para></listitem>
+	<listitem><para>Documents should have a simple and consistent way of
+		referencing other documents.</para></listitem>
+	<listitem><para>The help system should be capable of importing information
+		from other, existing help systems.</para></listitem>
+</itemizedlist>
+<para></para>
+</sect1>
+
+<sect1 id="xhelp-locations">
+<title>File Locations</title>
+<para>Files involved in this specification are located according to the <ulink
+	url="http://www.freedesktop.org/Standards/basedir-spec">Base Directory
+	Specification</ulink> on freedesktop.org.  The following files are either
+	defined or referenced by this specification.</para>
+<variablelist>
+	<varlistentry>
+		<term><filename>$XDG_CONFIG_DIRS/menus/help.menu</filename></term>
+		<listitem><para>This file contains the XML definition of the main help menu layout.
+			The first file found in the search path should be used; other files are ignored.
+			This implies that if the user has their own <filename>help.menu</filename>, it
+			replaces the systemwide one.  (Though the user's menu may explicitly merge the
+			systemwide one.)</para></listitem>
+	</varlistentry>
+	<varlistentry>
+		<term><filename>$XDG_CONFIG_DIRS/menus/applications.menu</filename></term>
+		<listitem><para>This is the <filename>applications.menu</filename> file specified
+			in the <ulink url="http://www.freedesktop.org/Standards/basedir-spec">Desktop
+			Menu Specification</ulink> on freedesktop.org.  This specification makes some
+			extensions to the format of this file, which is the same format used by the
+			<filename>help.menu</filename> file.  The <filename>help.menu</filename> file
+			will typically merge the <filename>applications.menu</filename> file for the
+			listing of application manuals.</para></listitem>
+	</varlistentry>
+	<varlistentry>
+		<term><filename>$XDG_CONFIG_DIRS/menus/<replaceable>menu-file-basename</replaceable>-merged/</filename></term>
+		<listitem><para>These are the default merge directories included by the
+			<sgmltag>DefaultMergeDirs</sgmltag> element.  By convention, third parties
+			may add new menu files in this location.
+			<replaceable>menu-file-basename</replaceable> means the
+			<filename>help</filename> from
+			<filename>help.menu</filename> for example.  So the merge directory
+			would be <filename>help-merged</filename>.</para></listitem>
+	</varlistentry>
+	<varlistentry>
+		<term><filename>$XDG_DATA_DIRS/help/</filename></term>
+		<listitem>
+			<para>This directory contains a .desktop file for each possible item in
+				the help menu.  Each directory in the <filename>$XDG_DATA_DIRS</filename>
+				search path should be used (i.e. desktop entries are collected from all of
+				them, not just the first one that exists).</para>
+			<para>The <sgmltag>DefaultHelpDirs</sgmltag> element in a menu file indicates
+				that this default list of desktop entry locations should be scanned at this
+				point.  If a menu file does not contain <sgmltag>DefaultHelpDirs</sgmltag>,
+				then these locations are not scanned.</para>
+		</listitem>
+	</varlistentry>
+	<varlistentry>
+		<term><filename>$XDG_DATA_DIRS/desktop-directories/</filename></term>
+		<listitem><para>This directory contains directory entries which may be
+			associated with folders in the menu layout.  This is specified in the
+			<ulink url="http://www.freedesktop.org/Standards/basedir-spec">Desktop
+			Menu Specification</ulink> on freedesktop.org.</para></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+</article>

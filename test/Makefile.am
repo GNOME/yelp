@@ -1,1 +1,1 @@
-SUBDIRS = testdoc1
+SUBDIRS = testdoc1 xhelp
