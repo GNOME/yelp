@@ -14,11 +14,9 @@ AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
 
-CFLAGS="$CFLAGS						\
-	-Wall -Wno-uninitialized -Wchar-subscripts	\ 
-	-Wmissing-declarations -Wmissing-prototypes	\
-	-Wnested-externs -Wpointer-arith		\
-	-Wno-sign-compare -Wsign-promo"
+dnl NOTE : it appears that some systems do not like it when you use line
+dnl        continuation charactes to split CFLAGS into readable chunks
+CFLAGS="$CFLAGS -Wall -Wno-uninitialized -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith	 -Wno-sign-compare -Wsign-promo"
 
 AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
