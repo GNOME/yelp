@@ -2,19 +2,20 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Alexander Shopov <al_shopov@web.bg>, 2002.
 # small update for completeness, Yanko Kaneti <yaneti@declera.com>, 2002.
-# small update, Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2004
+# small update, Vladimir Petkov <vpetkov@i-space.org>, 2004
+# 
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp\n"
+"Project-Id-Version: yelp 2.10 gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-07-05 19:27+0300\n"
-"Last-Translator: Vladimir \"Kaladan\" Petkov <vpetkov@i-space.org>\n"
+"POT-Creation-Date: 2004-10-29 13:13+0200\n"
+"PO-Revision-Date: 2004-11-08 07:53+0200\n"
+"Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -50,7 +51,7 @@ msgstr "Образователни програми"
 
 #: data/toc.xml.in.h:9
 msgid "Games and Entertainment"
-msgstr "Игри и Забавление"
+msgstr "Игри и забавление"
 
 #: data/toc.xml.in.h:10
 msgid "General"
@@ -100,49 +101,17 @@ msgstr "Полезни"
 msgid "X Applications"
 msgstr "Графични програми"
 
-#: data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
-
-#: data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr ""
-
-#: data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr ""
-
-#: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
-msgstr ""
-
 #: data/ui/yelp.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Достъпност</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Шрифтове</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -153,14 +122,12 @@ msgid "Find"
 msgstr "Търсене"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Посвещение"
+msgstr "Отваряне на местоположение"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Референция"
+msgstr "Настройки"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
@@ -172,12 +139,11 @@ msgstr "_Търсене: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Фиксирана ширина:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Посвещение"
+msgstr "_Местоположение:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -189,11 +155,11 @@ msgstr "_Предишна"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Използване на системните шрифтове"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Променлива ширина:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -207,24 +173,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрика на Yelp"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
+#: src/yelp-db-pager.c:506 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "Не е намерен href атрибутът в този документ на Yelp"
 
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
+#: src/yelp-db-pager.c:521 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Няма достатъчно памет"
 
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:709 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Заглавна страница"
 
-#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:711 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Съдържание"
 
-#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:729 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Неизвестен"
@@ -243,16 +209,15 @@ msgstr "Таблицата със съдържанието не може да б
 
 #: src/yelp-error.c:64
 msgid "DocBook SGML documents are no longer supported."
-msgstr "Документи от типа DocBook·SGML вече не се поддържат."
+msgstr "Документи от типа DocBook SGML вече не се поддържат."
 
 #: src/yelp-error.c:70
 msgid "The selected file could not be read."
 msgstr "Избраният файл не може да бъде прочетен."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Избраният файл не може да бъде прочетен."
+msgstr "Файлът не може да бъде обработен."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -333,13 +298,12 @@ msgid "System Administration"
 msgstr "Системна администрация"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Информация относно датата на издаване"
+msgstr "Информация относно документа"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "The·YelpDocInfo·struct·of·the·document"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -358,133 +322,113 @@ msgstr "Категории"
 msgid "Documents"
 msgstr "Документи"
 
-#: src/yelp-window.c:282
-#, fuzzy
+#: src/yelp-window.c:279
 msgid "_File"
-msgstr "/_Файл"
+msgstr "_Файл"
 
-#: src/yelp-window.c:283
-#, fuzzy
+#: src/yelp-window.c:280
 msgid "_Edit"
-msgstr "/_Редактиране"
+msgstr "_Редактиране"
 
-#: src/yelp-window.c:284
-#, fuzzy
+#: src/yelp-window.c:281
 msgid "_Go"
-msgstr "/_Отиване"
+msgstr "_Отиване"
+
+#: src/yelp-window.c:282
+msgid "_Help"
+msgstr "_Помощ"
 
 #: src/yelp-window.c:285
-#, fuzzy
-msgid "_Help"
-msgstr "/_Помощ"
-
-#: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/Файл/_Нов прозорец"
+msgstr "_Нов прозорец"
 
-#: src/yelp-window.c:293
+#: src/yelp-window.c:290
 msgid "Open _Location"
-msgstr ""
+msgstr "Отваряне на _местоположение"
 
-#: src/yelp-window.c:298
-#, fuzzy
+#: src/yelp-window.c:295
 msgid "_Close window"
-msgstr "/Файл/Затворяне на прозоре_ц"
+msgstr "_Затваряне на прозоре_ца"
 
-#: src/yelp-window.c:304
+#: src/yelp-window.c:301
 msgid "_Copy"
-msgstr ""
+msgstr "_Копиране"
 
-#: src/yelp-window.c:309
-#, fuzzy
+#: src/yelp-window.c:306
 msgid "_Find..."
-msgstr "/Редактиране/_Търсене..."
+msgstr "_Търсене..."
 
-#: src/yelp-window.c:314
-#, fuzzy
+#: src/yelp-window.c:311
 msgid "_Preferences"
-msgstr "Референция"
+msgstr "_Настройки"
 
-#: src/yelp-window.c:319
-msgid "_Reload"
-msgstr ""
-
-#: src/yelp-window.c:325
-#, fuzzy
+#: src/yelp-window.c:316
 msgid "_Back"
-msgstr "Назад"
+msgstr "На_зад"
 
-#: src/yelp-window.c:327
+#: src/yelp-window.c:318
 msgid "Show previous page in history"
 msgstr "Показване на предишната страница в историята"
 
-#: src/yelp-window.c:330
-#, fuzzy
+#: src/yelp-window.c:321
 msgid "_Forward"
-msgstr "Напред"
+msgstr "На_пред"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:323
 msgid "Show next page in history"
 msgstr "Показване на следващата страница в историята"
 
-#: src/yelp-window.c:335
-#, fuzzy
+#: src/yelp-window.c:326
 msgid "_Home"
-msgstr "У Дома"
+msgstr "У _дома"
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:328
 msgid "Go to home view"
 msgstr "Отиване в началото"
 
-#: src/yelp-window.c:340
-#, fuzzy
+#: src/yelp-window.c:331
 msgid "_Previous Page"
-msgstr "/Отиване/_Предишна Страница"
+msgstr "_Предишна страница"
 
-#: src/yelp-window.c:345
-#, fuzzy
+#: src/yelp-window.c:336
 msgid "_Next Page"
-msgstr "/Отиване/_Следваща Страница"
+msgstr "_Следваща страница"
 
-#: src/yelp-window.c:350
-#, fuzzy
+#: src/yelp-window.c:341
 msgid "_Contents"
-msgstr "Съдържание"
+msgstr "_Съдържание"
 
-#: src/yelp-window.c:355
+#: src/yelp-window.c:346
 msgid "_Open Link"
-msgstr ""
+msgstr "_Отваряне на връзка"
 
-#: src/yelp-window.c:360
+#: src/yelp-window.c:351
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Отваряне на връзката в _нов прозорец"
 
-#: src/yelp-window.c:365
+#: src/yelp-window.c:356
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Копиране адресът на връзката"
 
-#: src/yelp-window.c:371
-#, fuzzy
+#: src/yelp-window.c:362
 msgid "_About"
-msgstr "/Помощ/_Относно"
+msgstr "_Относно"
 
-#: src/yelp-window.c:422
+#: src/yelp-window.c:413
 msgid "Help Browser"
 msgstr "Навигатор на помощта"
 
-#: src/yelp-window.c:915
-#, fuzzy
+#: src/yelp-window.c:906
 msgid "Fin_d"
-msgstr "Търсене"
+msgstr "_Търсене"
 
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1172
 msgid "Loading..."
 msgstr "Зареждане..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1903
+#: src/yelp-window.c:1860
 msgid "translator_credits"
 msgstr "Александър Шопов/nVladimir \"Kaladan\" Petkov <vpetkov@i-space.org>"
 
@@ -510,47 +454,47 @@ msgstr "Относно тази статия"
 
 #: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
-msgstr "Относно тази Библиография"
+msgstr "Относно тази библиография"
 
 #: stylesheets/l10n.xml.in.h:7
 msgid "About This Book"
-msgstr "Относно Тази Книга"
+msgstr "Относно тази книга"
 
 #: stylesheets/l10n.xml.in.h:8
 msgid "About This Chapter"
-msgstr "Относно Тази Глава"
+msgstr "Относно тази глава"
 
 #: stylesheets/l10n.xml.in.h:9
 msgid "About This Entry"
-msgstr "Относно Този Запис"
+msgstr "Относно този запис"
 
 #: stylesheets/l10n.xml.in.h:10
 msgid "About This Glossary"
-msgstr "Относно Този Речник"
+msgstr "Относно този речник"
 
 #: stylesheets/l10n.xml.in.h:11
 msgid "About This Index"
-msgstr "Относно Този Индекс"
+msgstr "Относно този индекс"
 
 #: stylesheets/l10n.xml.in.h:12
 msgid "About This Part"
-msgstr "Относно Тази Част"
+msgstr "Относно тази част"
 
 #: stylesheets/l10n.xml.in.h:13
 msgid "About This Preface"
-msgstr "Относно Този Предговор"
+msgstr "Относно този предговор"
 
 #: stylesheets/l10n.xml.in.h:14
 msgid "About This Reference"
-msgstr "Относно Тази Референция"
+msgstr "Относно тази референция"
 
 #: stylesheets/l10n.xml.in.h:15
 msgid "About This Section"
-msgstr "Относно Тази Секция"
+msgstr "Относно тази секция"
 
 #: stylesheets/l10n.xml.in.h:16
 msgid "About This Set"
-msgstr "Относно Тази Подредба"
+msgstr "Относно тази подредба"
 
 #: stylesheets/l10n.xml.in.h:17
 msgid "Affiliation"
@@ -658,15 +602,15 @@ msgstr "Ниво"
 
 #: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
-msgstr "Читатели на Съобщението"
+msgstr "Читатели на съобщението"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
-msgstr "Ниво на Съобщението"
+msgstr "Ниво на съобщението"
 
 #: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
-msgstr "Източник на Съобщението"
+msgstr "Източник на съобщението"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
@@ -682,7 +626,7 @@ msgstr "Друг сътрудник"
 
 #: stylesheets/l10n.xml.in.h:51
 msgid "Other Contributors"
-msgstr "Други Сътрудници"
+msgstr "Други сътрудници"
 
 #: stylesheets/l10n.xml.in.h:52
 msgid "Part"
@@ -706,11 +650,11 @@ msgstr "Референция"
 
 #: stylesheets/l10n.xml.in.h:57
 msgid "Reference Entry"
-msgstr "Запис на Референция"
+msgstr "Запис на референция"
 
 #: stylesheets/l10n.xml.in.h:58
 msgid "Reference Section"
-msgstr "Секция на Референция"
+msgstr "Секция на референция"
 
 #: stylesheets/l10n.xml.in.h:59
 msgid "Release Information"
@@ -730,7 +674,7 @@ msgstr "Виж"
 
 #: stylesheets/l10n.xml.in.h:63
 msgid "See Also"
-msgstr "Виж Също"
+msgstr "Виж също"
 
 #: stylesheets/l10n.xml.in.h:64
 msgid "Set Index"
@@ -742,7 +686,7 @@ msgstr "Таблица"
 
 #: stylesheets/l10n.xml.in.h:66
 msgid "Table of Contents"
-msgstr "Таблица на Съдържанието"
+msgstr "Съдържание"
 
 #: stylesheets/l10n.xml.in.h:67
 msgid "Tip"
@@ -759,32 +703,6 @@ msgstr "Предупреждение"
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
 msgstr "Помощ за GNOME"
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use either 201C or 201E, depending on whether
-#. the opening quote is raised or at the baseline.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: src/yelp-settings.c:125
-msgid "yelp-watermark-blockquote-201C"
-msgstr ""
 
 #~ msgid "Document URI"
 #~ msgstr "Документ URI"
@@ -864,6 +782,3 @@ msgstr ""
 #, fuzzy
 #~ msgid "Loading..&nbsp;"
 #~ msgstr "Зареждам..."
-
-#~ msgid "Search in the index"
-#~ msgstr "Търси в индекса"
