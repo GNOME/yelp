@@ -184,6 +184,9 @@ parser_handle_linetag (YelpManParser *parser) {
     gchar c, *str;
     xmlNodePtr tmpNode;
 
+    /* Clean up from 'lists'. If this is null we don't care. */
+    tmpNode = parser_stack_pop_node (parser, "IP");
+
     while (PARSER_CUR
 	   && *(parser->cur) != ' '
 	   && *(parser->cur) != '\n')
@@ -294,8 +297,6 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "TP")) {
-	/* Deal with 'lists'... grrr */
-	tmpNode = parser_stack_pop_node (parser, "IP");
 	if (tmpNode != NULL)
 	    parser->ins = tmpNode->parent;
 
@@ -324,25 +325,23 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser_stack_push_node (parser, parser->ins);
     }
     else if (g_str_equal (str, "IP")) {
-	tmpNode = parser_stack_pop_node (parser, "IP");
 	if (tmpNode != NULL)
 	    parser->ins = tmpNode->parent;
 
         parser->ins = parser_append_node (parser, str);
         g_free (str);
 
-        if (PARSER_CUR && *(parser->cur) != '\n') {
-            parser->ins = parser_append_node (parser, "Tag");
-	    parser_read_until (parser, ' ');
-            parser_append_token (parser);
-            parser->ins = parser->ins->parent;
-        }
 	if (PARSER_CUR && *(parser->cur) != '\n') {
+	    parser->ins = parser_append_node (parser, "Tag");
+
+	    parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+
             parser->ins = parser_append_node (parser, "Indent");
 	    parser_read_until (parser, '\n');
             parser_append_token (parser);
             parser->ins = parser->ins->parent;
-        }
+	}
 
 	parser_stack_push_node (parser, parser->ins);
     }
@@ -357,9 +356,6 @@ parser_handle_linetag (YelpManParser *parser) {
         }
     }
     else if (g_str_equal (str, "RS")) {
-	/* Clean up from 'lists'. If this is null we don't care. */
-	parser_stack_pop_node (parser, "IP");
-
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
 
@@ -372,9 +368,6 @@ parser_handle_linetag (YelpManParser *parser) {
         }
     }
     else if (g_str_equal (str, "RE")) {
-	/* Clean up from 'lists'. If this is null we don't care. */
-	parser_stack_pop_node (parser, "IP");
-
 	tmpNode = parser_stack_pop_node (parser, "RS");
 
 	if (tmpNode == NULL)

@@ -1,5 +1,10 @@
 2004-11-13  James Bowes  <bowes@cs.dal.ca>
 
+	* src/yelp-man-parser.c: (parser_handle_linetag):
+	More hanging tag (IP, TP) fixes.
+	
+2004-11-13  James Bowes  <bowes@cs.dal.ca>
+
 	* src/yelp-man-parser.c: (yelp_man_parser_parse_file),
 	(parser_parse_line), (parser_handle_linetag): More 
 	manpage fixing, including better handling of using 
