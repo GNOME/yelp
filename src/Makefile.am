@@ -1,6 +1,5 @@
 INCLUDES =								\
 	-I$(top_srcdir)							\
-	-I$(includedir)							\
 	$(YELP_CFLAGS)							\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\
