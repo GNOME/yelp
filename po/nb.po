@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2004-12-22 01:18+0100\n"
+"POT-Creation-Date: 2005-01-11 02:36+0100\n"
+"PO-Revision-Date: 2005-01-11 02:42+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -134,9 +134,9 @@ msgstr "Utdanningsprogrammer"
 msgid "Graphics"
 msgstr "Grafikk"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Hjelpinnhold"
+#: data/toc.xml.in.h:9
+msgid "Help Topics"
+msgstr "Hjelpemner"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -187,14 +187,12 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Skrifter</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Skrifter</b>"
+msgstr "<b>_Tittel:</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "Add Bookmark"
-msgstr "_Legg til bokmerke"
+msgstr "Legg til bokmerke"
 
 #: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
@@ -281,16 +279,21 @@ msgid "Use system fonts"
 msgstr "Bruk systemets skrifter"
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
+msgid "Use the default fonts set for the system."
 msgstr "Bruk systemets forvalgte skrifter."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
 msgstr "Yelp factory"
+
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Et bokmerke med navn <b>%s</b> eksisterer allerede for denne siden."
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -305,36 +308,41 @@ msgstr "Ukjent"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "En ukjent feil oppsto"
 
 #: src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "Kunne ikke laste dokumentet"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Kunne ikke åpne nytt vindu."
+msgstr "Kunne ikke laste del"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Kunne ikke laste OMF-fil «%s»."
+msgstr "Kunne ikke lese innholdsfortegnelsen"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Formatet er ikke støttet"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Kunne ikke lese dokumentet"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Kunne ikke prosessere dokumentet"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr "Ingen informasjon er tilgjengelig for denne feilen."
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
 
 #: src/yelp-main.c:95
@@ -390,7 +398,7 @@ msgstr "YelpDocInfo-struktur for dokumentet"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -430,6 +438,10 @@ msgstr "Ingen href-attributt funnet på yelp:document"
 msgid "Out of memory"
 msgstr "Ikke mer minne"
 
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "Hjelpinnhold"
+
 #: src/yelp-window.c:302
 msgid "_File"
 msgstr "_Fil"
@@ -451,21 +463,18 @@ msgid "_Help"
 msgstr "_Hjelp"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "_Nytt vindu"
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "About This Document"
-msgstr "Om dette settet"
+msgstr "Om dette dokumentet"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Åpne _lokasjon"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
 msgstr "_Lukk vindu"
 
@@ -506,22 +515,20 @@ msgid "Show next page in history"
 msgstr "Vis neste side i historikken"
 
 #: src/yelp-window.c:367
-msgid "_Home"
-msgstr "_Hjem"
+msgid "_Help Topics"
+msgstr "_Hjelpemner"
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "Gå til åpningssiden"
+msgid "Go to the listing of help topics"
+msgstr "Gå til listen over hjelpemner"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "_Forrige side"
+msgstr "_Forrige del"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "Del"
+msgstr "_Neste del"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -557,7 +564,7 @@ msgstr "Hjelp leser"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "Ugyldig URI for denne filen."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
@@ -566,32 +573,40 @@ msgid ""
 "actual file."
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Manualsider er ikke støttet i denne versjonen."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "GNU info-sider er ikke støttet i denne versjonen"
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "SGML-dokumenter er ikke støttet lengre. Vennligst spør forfatteren av dokumenet om å konvertere det tilXML."
 
-#: src/yelp-window.c:1021
-msgid "Fin_d"
-msgstr "Fi_nn"
+#: src/yelp-window.c:1024
+msgid "Find:"
+msgstr "Finn:"
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+msgid "Find _Next"
+msgstr "Finn _neste"
+
+#: src/yelp-window.c:1052
+msgid "Find _Previous"
+msgstr "_Finn forrige"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -599,24 +614,24 @@ msgid ""
 "maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Laster..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Program for å finne og lese dokumentasjon for GNOME skrivebordet."
 
@@ -627,7 +642,14 @@ msgid ""
 "improperly formatted."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
@@ -637,6 +659,15 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjelp med GNOME"
+
+#~ msgid "_Home"
+#~ msgstr "_Hjem"
+
+#~ msgid "Go to home view"
+#~ msgstr "Gå til åpningssiden"
+
+#~ msgid "Fin_d"
+#~ msgstr "Fi_nn"
 
 #~ msgid "Titlepage"
 #~ msgstr "Tittelside"
@@ -928,9 +959,6 @@ msgstr "Få hjelp med GNOME"
 
 #~ msgid "The URI of the document to be processed"
 #~ msgstr "URI for dokument som skal prosesseres"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Rediger/Finn ne_ste"
 
 #~ msgid "/Edit/Find Pre_vious"
 #~ msgstr "/Rediger/Finn forri_ge"
