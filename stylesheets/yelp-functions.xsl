@@ -1,9 +1,51 @@
-<?xml version='1.0'?>
+<?xml version='1.0'?><!-- -*- tab-width: 3 -*- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:func="http://exslt.org/functions"
                 xmlns:yelp="http://www.gnome.org/"
                 extension-element-prefixes="func yelp"
                 version='1.0'>
+
+<func:function name="yelp:get-prev">
+	<xsl:param name="node" select="."/>
+	<xsl:choose>
+		<xsl:when test="
+				($node/preceding-sibling::*/descendant-or-self::*)
+				[yelp:is-division(.)]
+				[yelp:get-depth(.) &lt;= $gdb_max_chunk_depth]">
+			<func:result select="
+				($node/preceding-sibling::*/descendant-or-self::*)
+				[yelp:is-division(.)]
+				[yelp:get-depth(.) &lt;= $gdb_max_chunk_depth]
+				[last()]"/>
+		</xsl:when>
+		<xsl:when test="yelp:get-depth($node) &gt; 1">
+			<func:result select="$node/ancestor::*[yelp:is-division(.)][1]"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<func:result select="'toc'"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</func:function>
+
+<func:function name="yelp:get-next">
+	<xsl:param name="node" select="."/>
+	<xsl:choose>
+		<xsl:when test="
+				(yelp:get-depth($node) &lt; $gdb_max_chunk_depth) and
+				(count(yelp:get-divisions($node)) &gt; 1)">
+			<func:result select="yelp:get-divisions($node)[1]"/>
+		</xsl:when>
+		<xsl:when test="$node/following-sibling::*[yelp:is-division(.)]">
+			<func:result select="$node/following-sibling::*[yelp:is-division(.)][1]"/>
+		</xsl:when>
+		<xsl:when test="$node/following::*[yelp:is-division(.)]">
+			<func:result select="$node/following::*[yelp:is-division(.)][1]"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<func:result select="false()"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</func:function>
 
 <func:function name="yelp:get-depth">
 	<xsl:param name="node" select="."/>
