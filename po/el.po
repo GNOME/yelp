@@ -1,5 +1,6 @@
+# translation of el.po to 
 # Greek translation of yelp.
-# Copyright (C) 2002, 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
 #
 # 59 messages, 19Aug2002, started logging.
 # kostas:70 messages, 05Jan2003, updated translation for Gnome 2..1x
@@ -11,18 +12,21 @@
 # Kostas Papadimas <pkst@gmx.net>, 2003.
 # Kostas Papadimas <pkst@gnome.org>, 2003, 2004.
 # Nikos Charonitakis <frolix68@yahoo.gr>, 2003.
+# Nikos Charonitakis <charosn@her.forthnet.gr>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.9.1\n"
+"Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-04 10:07+0200\n"
-"PO-Revision-Date: 2005-02-04 10:06+0200\n"
-"Last-Translator: Nikos Charonitakis <charosn@her.fothnet.gr>\n"
-"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"POT-Creation-Date: 2005-02-07 01:58+0200\n"
+"PO-Revision-Date: 2005-02-07 02:14+0200\n"
+"Last-Translator: Nikos Charonitakis <charosn@her.forthnet.gr>\n"
+"Language-Team:  <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
@@ -38,7 +42,7 @@ msgstr "Ανάπτυξη Εφαρμογών"
 
 #: data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr "Συναρτήσεις FORTRAN·"
+msgstr "Συναρτήσεις FORTRAN"
 
 #: data/man.xml.in.h:5 data/toc.xml.in.h:7
 msgid "Games"
@@ -58,7 +62,7 @@ msgstr "Συναρτήσεις Βιβλιοθήκων"
 
 #: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
-msgstr "Σελίδας Man"
+msgstr "Σελίδες Man"
 
 #: data/man.xml.in.h:10
 msgid "OpenSSL Applications"
@@ -94,7 +98,7 @@ msgstr "Κλήσεις Συστήματος"
 
 #: data/man.xml.in.h:18
 msgid "Termcap Applications"
-msgstr "Εφαρμογές Termcap·"
+msgstr "Εφαρμογές Termcap"
 
 #: data/man.xml.in.h:19
 msgid "X11 Applications"
@@ -146,7 +150,7 @@ msgstr "Γραφικά"
 
 #: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
-msgstr "Θέματα βοήθειας"
+msgstr "Θέματα Βοήθειας"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -162,7 +166,7 @@ msgstr "Πολυμέσα"
 
 #: data/toc.xml.in.h:13
 msgid "Office"
-msgstr "Αρχείο"
+msgstr "Γραφείο"
 
 #: data/toc.xml.in.h:14
 msgid "Other"
@@ -170,7 +174,7 @@ msgstr "Άλλα"
 
 #: data/toc.xml.in.h:15
 msgid "Other Documentation"
-msgstr "Άλλη τεκμηρίωση"
+msgstr "Άλλη Τεκμηρίωση"
 
 #: data/toc.xml.in.h:16
 msgid "Panel Applets"
@@ -214,7 +218,7 @@ msgstr "<b>_Τίτλος:</b>"
 
 #: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
-msgstr "Προσθήκη σελιδοδείκτη"
+msgstr "Προσθήκη Σελιδοδείκτη"
 
 #: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
@@ -222,7 +226,7 @@ msgstr "Σελιδοδείκτες"
 
 #: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
-msgstr "Διάκ_κριση πεζών κεφαλαίων"
+msgstr "Διά_κριση πεζών από κεφαλαία"
 
 #: data/ui/yelp.glade.h:8
 msgid "Find"
@@ -321,21 +325,20 @@ msgstr "Άνοιγμα σελιδοδείκτη σε νέο παράθυρο"
 
 #: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
-msgstr "Μετονομασία σελιδοδείκτη"
+msgstr "Μετονομασία Σελιδοδείκτη"
 
 #: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
-msgstr "Αφαίρεση σελιδοδείκτη"
+msgstr "Αφαίρεση Σελιδοδείκτη"
 
 #: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
-"Ένασ σελιδοδείκτης με το όνομα <b>%s</b> υπάρχει ήδη για αυτή την σελίδα."
+msgstr "Ένασ σελιδοδείκτης με το όνομα <b>%s</b> υπάρχει ήδη για αυτή την σελίδα."
 
 #: src/yelp-bookmarks.c:406
 msgid "Document Sections"
-msgstr "Ενότητες εγγράφου"
+msgstr "Ενότητες Εγγράφου"
 
 #: src/yelp-db-pager.c:242
 #, c-format
@@ -380,7 +383,7 @@ msgstr "Αδυναμία διεργασίας εγγράφου"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες για αυτό το σφάλμα"
+msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες για αυτό το σφάλμα."
 
 #: src/yelp-io-channel.c:98
 #, c-format
@@ -509,7 +512,7 @@ msgstr "_Μετάβαση"
 
 #: src/yelp-window.c:305
 msgid "_Bookmarks"
-msgstr "_Σελιδπδείκτες"
+msgstr "_Σελιδοδείκτες"
 
 #: src/yelp-window.c:306
 msgid "_Help"
@@ -517,11 +520,11 @@ msgstr "_Βοήθεια"
 
 #: src/yelp-window.c:309
 msgid "_New Window"
-msgstr "_Νέο παράθυρο"
+msgstr "_Νέο Παράθυρο"
 
 #: src/yelp-window.c:314
 msgid "About This Document"
-msgstr "Περί αυτού του εγγράφου"
+msgstr "Περί Αυτού του Εγγράφου"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
@@ -529,7 +532,7 @@ msgstr "Άνοιγμα _Τοποθεσίας"
 
 #: src/yelp-window.c:324
 msgid "_Close Window"
-msgstr "_Κλείσιμο παραθύρου"
+msgstr "_Κλείσιμο Παραθύρου"
 
 #: src/yelp-window.c:330
 msgid "_Copy"
@@ -537,7 +540,7 @@ msgstr "_Αντιγραφή"
 
 #: src/yelp-window.c:336
 msgid "_Select All"
-msgstr "Ε_πιλογή όλων"
+msgstr "Ε_πιλογή Όλων"
 
 #: src/yelp-window.c:341
 msgid "_Find..."
@@ -569,7 +572,7 @@ msgstr "Εμφάνιση επόμενης σελίδες του ιστορικο
 
 #: src/yelp-window.c:367
 msgid "_Help Topics"
-msgstr "Περιε_χόμενα βοήθειας"
+msgstr "Περιε_χόμενα Βοήθειας"
 
 #: src/yelp-window.c:369
 msgid "Go to the listing of help topics"
@@ -590,11 +593,11 @@ msgstr "_Περιεχόμενα"
 
 #: src/yelp-window.c:388
 msgid "_Add Bookmark"
-msgstr "Προσ_θήκη σελιδοδείκτη"
+msgstr "Προσ_θήκη Σελιδοδείκτη"
 
 #: src/yelp-window.c:393
 msgid "_Edit Bookmarks..."
-msgstr "_Επεξεργασία σελιδοδεικτών"
+msgstr "_Επεξεργασία Σελιδοδεικτών..."
 
 #: src/yelp-window.c:399
 msgid "_Open Link"
@@ -606,7 +609,7 @@ msgstr "Άνοιγμα Συνδέσμου σε _Νέο Παράθυρο"
 
 #: src/yelp-window.c:409
 msgid "_Copy Link Address"
-msgstr "Αντιγρα_φή Συνδέσμου Τοποθεσίας"
+msgstr "Αντιγρα_φή Διεύθυνσης Συνδέσμου"
 
 #: src/yelp-window.c:415
 msgid "_About"
@@ -631,7 +634,7 @@ msgstr ""
 
 #: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
-msgstr "Οι σελίδες man δεν υποστηρίζονται σε αυτή την έκδοση"
+msgstr "Οι σελίδες man δεν υποστηρίζονται σε αυτή την έκδοση."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
@@ -651,11 +654,11 @@ msgstr "Εύρεση:"
 
 #: src/yelp-window.c:1040
 msgid "Find _Next"
-msgstr "Εύρεση επομέ_νου"
+msgstr "Εύρεση Επομέ_νου"
 
 #: src/yelp-window.c:1052
 msgid "Find _Previous"
-msgstr "Εύρεση· _προηγουμένου"
+msgstr "Εύρεση _Προηγουμένου"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -664,7 +667,7 @@ msgid ""
 "may not be supported."
 msgstr ""
 "Δεν είναι δυνατή η δημιουργία περιεχομένου μετατροπής για το αρχείο ‘%s’. Η "
-"μορφή πιθανόν να μην υποστηρίζεται.·"
+"μορφή πιθανόν να μην υποστηρίζεται."
 
 #: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
@@ -724,290 +727,3 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "Λήψη βοήθειας για το GNOME"
 
-#~ msgid "_Home"
-#~ msgstr "_Αρχή"
-
-#~ msgid "Go to home view"
-#~ msgstr "Πήγαινε στην προβολή περιεχομένων"
-
-#~ msgid "Fin_d"
-#~ msgstr "Εύ_ρεση"
-
-#~ msgid "Development Environments"
-#~ msgstr "Περιβάλλοντα Ανάπτυξης Εφαρμογών"
-
-#~ msgid "Development Tools"
-#~ msgstr "Εργαλεία Ανάπτυξης Εφαρμογών"
-
-#~ msgid "Editors"
-#~ msgstr "Διορθωτές Κειμένου"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "Ψυχαγωγία και Παιχνίδια"
-
-#~ msgid "General"
-#~ msgstr "Γενικά"
-
-#~ msgid "Internet Applications"
-#~ msgstr "Εφαρμογές Διαδικτύου"
-
-#~ msgid "Kernels"
-#~ msgstr "Πυρήνες"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "Εφαρμογές Γραφείου και Παραγωγικότητας"
-
-#~ msgid "Securities"
-#~ msgstr "Ασφάλειες"
-
-#~ msgid "System"
-#~ msgstr "Σύστημα"
-
-#~ msgid "Utilities"
-#~ msgstr "Βοηθήματα"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Titlepage"
-#~ msgstr "Τίτλος σελίδας"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Το επιλεγμένο έγγραφο δε μπορεί να ανοιχθεί"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Η επιλεγμένη σελίδα δε μπορεί να βρεθεί στο έγγραφο."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Δε μπόρεσε να αναγνωστεί ο πίνακας περιεχομένων."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "Δεν υποστηρίζονται πλέον έγγραφα DocBook SGML."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "Αδυναμία αναγνώρισης του επιλεγμένου αρχείου."
-
-#~ msgid "The file could not be processed."
-#~ msgstr "Αδυναμία επεξεργασίας αρχείου."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Κατηγορίες"
-
-#
-#~ msgid "Documents"
-#~ msgstr "Έγγραφα"
-
-#~ msgid "_Next Page"
-#~ msgstr "Επό_μενη Σελίδα"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
-
-#~ msgid "About This Article"
-#~ msgstr "Περί Αυτού του Άρθρου"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "Περί Αυτής της Βιβλιογραφίας"
-
-#~ msgid "About This Book"
-#~ msgstr "Περί Αυτού του Βιβλίου"
-
-#~ msgid "About This Chapter"
-#~ msgstr "Περί Αυτού του Κεφαλαίου"
-
-#~ msgid "About This Entry"
-#~ msgstr "Περί Aυτής της Καταχώρησης"
-
-#~ msgid "About This Glossary"
-#~ msgstr "Περί Αυτού του Γλωσσαρίου"
-
-#~ msgid "About This Index"
-#~ msgstr "Περί Αυτού του Ευρετηρίου"
-
-#~ msgid "About This Part"
-#~ msgstr "Περί Αυτού του Κομματιού"
-
-#~ msgid "About This Preface"
-#~ msgstr "Περί Αυτής της Εισαγωγής"
-
-#~ msgid "About This Reference"
-#~ msgstr "Περί Αυτής της Αναφοράς"
-
-#~ msgid "About This Section"
-#~ msgstr "Περί Αυτής της Ενότητας"
-
-#~ msgid "Affiliation"
-#~ msgstr "Υπαγωγή"
-
-#~ msgid "Appendix"
-#~ msgstr "Appendix"
-
-#~ msgid "Article"
-#~ msgstr "Άρθρο"
-
-#~ msgid "Audience"
-#~ msgstr "Κοινό"
-
-#~ msgid "Author"
-#~ msgstr "Συγγραφέας"
-
-#~ msgid "Authors"
-#~ msgstr "Συγγραφείς"
-
-#~ msgid "Bibliography"
-#~ msgstr "Βιβλιογραφία"
-
-#~ msgid "Caution"
-#~ msgstr "Caution"
-
-#~ msgid "Chapter"
-#~ msgstr "Κεφάλαιο"
-
-#~ msgid "Collaborator"
-#~ msgstr "Συνεργάτης"
-
-#~ msgid "Collaborators"
-#~ msgstr "Συνεργάτες"
-
-#~ msgid "Colophon"
-#~ msgstr "Τυπογραφική κορωνίδα"
-
-#~ msgid "Copyright"
-#~ msgstr "Πνευματικό Δικαίωμα"
-
-#~ msgid "Copyrights"
-#~ msgstr "Πνευματικά Δικαιώματα"
-
-#~ msgid "Date"
-#~ msgstr "Ημερομηνία"
-
-#
-#~ msgid "Dedication"
-#~ msgstr "Αφιέρωση"
-
-#~ msgid "Editor"
-#~ msgstr "Επεξεργαστής"
-
-#~ msgid "Email"
-#~ msgstr "Email"
-
-#~ msgid "Example"
-#~ msgstr "Παράδειγμα"
-
-#~ msgid "Figure"
-#~ msgstr "Figure"
-
-#~ msgid "Glossary"
-#~ msgstr "Γλωσσάρι"
-
-#~ msgid "Important"
-#~ msgstr "Σημαντικό"
-
-#~ msgid "Index"
-#~ msgstr "Ευρετήριο"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Νομική Ειδοποίηση"
-
-#~ msgid "Level"
-#~ msgstr "Επίπεδο"
-
-#~ msgid "Message Audience"
-#~ msgstr "Μήνυμα Κοινού"
-
-#~ msgid "Message Level"
-#~ msgstr "Επίπεδο Μηνύματος"
-
-#~ msgid "Message Origin"
-#~ msgstr "Σημείο Αναφοράς Μηνύματος"
-
-#~ msgid "Note"
-#~ msgstr "Σημείωση"
-
-#~ msgid "Origin"
-#~ msgstr "Σημείο αναφοράς"
-
-#~ msgid "Other Contributor"
-#~ msgstr "Άλλος Συντελεστής"
-
-#~ msgid "Other Contributors"
-#~ msgstr "Άλλοι Συντελεστές"
-
-#~ msgid "Part"
-#~ msgstr "Μέρος"
-
-#~ msgid "Preface"
-#~ msgstr "Εισαγωγή"
-
-#~ msgid "Publisher"
-#~ msgstr "Εκδότης"
-
-#~ msgid "Publishers"
-#~ msgstr "Εκδότες"
-
-#~ msgid "Reference"
-#~ msgstr "Αναφορά"
-
-#~ msgid "Reference Entry"
-#~ msgstr "Καταχώρηση Αναφοράς"
-
-#~ msgid "Reference Section"
-#~ msgstr "Ενότητα Αναφοράς"
-
-#~ msgid "Release Information"
-#~ msgstr "Πληροφορίες Έκδοσης"
-
-#~ msgid "Revision History"
-#~ msgstr "Ιστορικό Αναθεώρησης"
-
-#~ msgid "See"
-#~ msgstr "Βλ."
-
-#~ msgid "Set Index"
-#~ msgstr "Ορισμός Ευρετηρίου"
-
-#~ msgid "Table"
-#~ msgstr "Πίνακας"
-
-#~ msgid "Table of Contents"
-#~ msgstr "Πίνακας Περιεχομένων"
-
-#~ msgid "Tip"
-#~ msgstr "Συμβουλή"
-
-#~ msgid "Title"
-#~ msgstr "Τίτλος"
-
-#~ msgid "Warning"
-#~ msgstr "Προειδοποίηση"
