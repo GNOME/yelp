@@ -243,7 +243,7 @@ yh_url_requested_cb (HtmlDocument *doc,
 	GnomeVFSURI  *vfs_uri;
 	StreamData   *sdata;
 
-        d(puts(G_GNUC_FUNCTION));
+	d(g_print ("URL REQUESTED: %s\n", uri));
 
         view = YELP_HTML (data);
         priv = view->priv;
@@ -255,7 +255,6 @@ yh_url_requested_cb (HtmlDocument *doc,
 	sdata->view   = view;
 	sdata->stream = stream;
 
-	
         priv->connections = g_slist_prepend (priv->connections, sdata);
 
 	vfs_uri = gnome_vfs_uri_new (uri);
