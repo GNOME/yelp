@@ -484,27 +484,27 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 		else if (!g_ascii_strcasecmp (cur->name, "indexitem")) {
 			ys_parse_index_item (index, section, cur);
 		}
+	}
 
-		if (title && link) {
-			YelpURI     *uri;
-			YelpSection *index_section;
+	if (title && link) {
+		YelpURI     *uri;
+		YelpSection *index_section;
 		
-			uri = yelp_uri_get_relative (section->uri, link);
-			
-			d(g_print ("%s\n", yelp_uri_to_string (uri)));
-			
-			index_section = yelp_section_new (YELP_SECTION_INDEX,
-							  title, uri);
-			
-			yelp_uri_unref (uri);
-			
-			*index = g_list_prepend (*index, index_section);
-			
-			g_free (title);
-			g_free (link);
-
-			title = link = NULL;
-		}
+		uri = yelp_uri_get_relative (section->uri, link);
+		
+		d(g_print ("%s\n", yelp_uri_to_string (uri)));
+		
+		index_section = yelp_section_new (YELP_SECTION_INDEX,
+						  title, uri);
+		
+		yelp_uri_unref (uri);
+		
+		*index = g_list_prepend (*index, index_section);
+		
+		g_free (title);
+		g_free (link);
+		
+		title = link = NULL;
 	}
 }
 

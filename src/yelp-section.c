@@ -37,7 +37,13 @@ yelp_section_new (YelpSectionType  type,
 	section = g_new0 (YelpSection, 1);
 
 	section->type      = type;
-	section->name      = g_strdup (name);
+
+	if (name) {
+		section->name = g_strdup (name);
+	} else {
+		section->name = g_strdup ("");
+	}
+	
 	if (uri) {
 		section->uri = yelp_uri_ref (uri);
 	} else {
