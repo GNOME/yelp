@@ -206,6 +206,7 @@ db_pager_process (YelpPager *pager)
     YelpDBPagerPriv *priv;
     YelpDocInfo     *doc_info;
     gchar           *filename;
+    gint i = 0;
 
     DBWalker    *walker;
     xmlChar     *id;
@@ -222,8 +223,6 @@ db_pager_process (YelpPager *pager)
     d (g_print ("db_pager_process\n"));
 
     doc_info = yelp_pager_get_doc_info (pager);
-
-    gint i = 0;
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
