@@ -22,38 +22,58 @@
 #include <gtk/gtk.h>
 #include <stdio.h>
 
+#include <libgnomeui/gnome-ui-init.h>
+#include <string.h>
+
+#include "config.h"
 #include "yelp-pager.h"
 #include "yelp-db-pager.h"
+#include "yelp-theme.h"
+#include "yelp-toc-pager.h"
+#include "yelp-uri.h"
 
-void     list_sections     (YelpPager  *pager);
-void     save_chunk        (YelpPager  *pager,
-			    gchar      *chunk_id);
+static void    pager_contents_cb     (YelpPager    *pager);
+static void    pager_page_cb         (YelpPager    *pager,
+				      gchar        *page_id);
+static void    pager_finish_cb       (YelpPager    *pager);
+static void    pager_cancel_cb       (YelpPager    *pager);
+static void    pager_error_cb        (YelpPager    *pager);
 
 gint 
 main (gint argc, gchar **argv) 
 {
-    YelpURI   *uri;
-    YelpPager *pager;
+    GnomeVFSURI  *uri;
+    YelpPager    *pager;
 
     if (argc < 2) {
 	return 1;
     }
 
-    g_type_init ();
-    g_thread_init (NULL);
+    gnome_program_init (PACKAGE, VERSION,
+			LIBGNOMEUI_MODULE, argc, argv,
+			GNOME_PROGRAM_STANDARD_PROPERTIES,
+			NULL);
+    gnome_vfs_init ();
+
+    yelp_theme_init ();
+    yelp_toc_pager_init ();
 
     uri = yelp_uri_new (argv[1]);
-    pager = yelp_db_pager_new (uri);
 
-    g_signal_connect (pager,
-		      "sections",
-		      G_CALLBACK (list_sections),
-		      NULL);
+    switch (yelp_uri_get_resource_type (uri)) {
+    case YELP_URI_TYPE_DOCBOOK_XML:
+	pager = yelp_db_pager_new (uri);
+	break;
+    default:
+	printf ("No pager type exists for this URI.");
+	return 1;
+    }
 
-    g_signal_connect (pager,
-		      "chunk",
-		      G_CALLBACK (save_chunk),
-		      NULL);
+    g_signal_connect (pager, "contents", G_CALLBACK (pager_contents_cb), NULL);
+    g_signal_connect (pager, "page",     G_CALLBACK (pager_page_cb), NULL);
+    g_signal_connect (pager, "finish",   G_CALLBACK (pager_finish_cb), NULL);
+    g_signal_connect (pager, "cancel",   G_CALLBACK (pager_cancel_cb), NULL);
+    g_signal_connect (pager, "error",    G_CALLBACK (pager_error_cb), NULL);
 
     yelp_pager_start (pager);
 
@@ -62,17 +82,50 @@ main (gint argc, gchar **argv)
     return 0;
 }
 
-void save_chunk (YelpPager *pager, gchar *chunk_id)
+static void
+pager_contents_cb (YelpPager    *pager)
 {
-    printf("save_chunk: %s\n", chunk_id);
+    printf ("pager_contents_cb\n");
 }
 
-void
-list_sections (YelpPager *pager)
+static void
+pager_page_cb (YelpPager    *pager,
+	       gchar        *page_id)
 {
-    const GtkTreeModel *sections;
+    const YelpPage *page = yelp_pager_get_page (pager, page_id);
 
-    sections = yelp_pager_get_sections (pager);
+    printf ("pager_page_cb:\n"
+	    "   id:     %s\n"
+	    "   title:  %s\n"
+	    "   strlen: %d\n",
+	    page->id,
+	    page->title,
+	    strlen (page->chunk));
+}
 
-    printf ("%i\n", gtk_tree_model_get_n_columns (sections));
+static void
+pager_finish_cb (YelpPager    *pager)
+{
+    printf ("pager_finish_cb\n");
+    gtk_main_quit ();
+}
+
+static void
+pager_cancel_cb (YelpPager    *pager)
+{
+    printf ("pager_cancel_cb\n");
+    gtk_main_quit ();
+}
+
+static void
+pager_error_cb (YelpPager    *pager)
+{
+    GError *error = yelp_pager_get_error (pager);
+
+    if (!error)
+	printf ("pager_error_cb: NO ERROR\n");
+    else
+	printf ("pager_error_cb: %s\n", error->message);
+
+    gtk_main_quit ();
 }

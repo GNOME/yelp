@@ -16,6 +16,7 @@ INCLUDES =								\
 	-DBINDIR=\""$(bindir)"\"
 
 bin_PROGRAMS = yelp
+noinst_PROGRAMS = test-pager
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -34,6 +35,19 @@ yelp-marshal.c: yelp-marshal.h
 	|| ( rm -f yelp-marshal2.tmp && exit 1 )
 
 yelp-marshal-main.c: yelp-marshal.c
+
+test_pager_SOURCES =							\
+	yelp-db-pager.c		yelp-db-pager.h				\
+	yelp-error.c		yelp-error.h				\
+	yelp-pager.c		yelp-pager.h				\
+	yelp-theme.c		yelp-theme.h				\
+	yelp-toc-pager.c	yelp-toc-pager.h			\
+	yelp-uri.c		yelp-uri.h				\
+	yelp-marshal-main.c	test-pager.c
+
+test_pager_LDADD =							\
+	@YELP_LIBS@							\
+	$(POPT_LIBS)
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
