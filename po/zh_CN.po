@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-09 12:16+0100\n"
+"POT-Creation-Date: 2004-11-24 12:07+0100\n"
 "PO-Revision-Date: 2004-11-09 23:08+0800\n"
 "Last-Translator: jan2xue <75jan@163.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -204,25 +204,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp 工厂"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:299
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中未发现 href 属性"
 
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:314
 msgid "Out of memory"
 msgstr "内存不足"
 
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:368
 msgid "Titlepage"
 msgstr "标题页"
 
 #: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:368
+#: src/yelp-man-pager.c:370
 msgid "Contents"
 msgstr "目录"
 
 #: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:386
+#: src/yelp-man-pager.c:388
 msgid "Unknown"
 msgstr "未知"
 
@@ -263,7 +263,7 @@ msgstr "无法激活 Yelp：“%s”"
 msgid "Could not open new window."
 msgstr "无法打开新窗口。"
 
-#: src/yelp-main.c:326 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "帮助"
 
@@ -385,85 +385,89 @@ msgstr "关闭窗口(_C)"
 msgid "_Copy"
 msgstr "剪切(_C)"
 
-#: src/yelp-window.c:309
+#: src/yelp-window.c:310
+msgid "_Select All"
+msgstr "全选(_S)"
+
+#: src/yelp-window.c:315
 msgid "_Find..."
 msgstr "查找(_F)..."
 
-#: src/yelp-window.c:314
+#: src/yelp-window.c:320
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: src/yelp-window.c:319
+#: src/yelp-window.c:325
 msgid "_Reload"
 msgstr "重新装入(_R)"
 
-#: src/yelp-window.c:325
+#: src/yelp-window.c:331
 msgid "_Back"
 msgstr "后退(_B)"
 
-#: src/yelp-window.c:327
+#: src/yelp-window.c:333
 msgid "Show previous page in history"
 msgstr "显示历史中的上一页"
 
-#: src/yelp-window.c:330
+#: src/yelp-window.c:336
 msgid "_Forward"
 msgstr "前进(_F)"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:338
 msgid "Show next page in history"
 msgstr "显示历史中的下一页"
 
-#: src/yelp-window.c:335
+#: src/yelp-window.c:341
 msgid "_Home"
 msgstr "首页(_H)"
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:343
 msgid "Go to home view"
 msgstr "转到首页视图"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:346
 msgid "_Previous Page"
 msgstr "上一页(_P)"
 
-#: src/yelp-window.c:345
+#: src/yelp-window.c:351
 msgid "_Next Page"
 msgstr "下一页(_N)"
 
-#: src/yelp-window.c:350
+#: src/yelp-window.c:356
 msgid "_Contents"
 msgstr "目录(_C)"
 
-#: src/yelp-window.c:355
+#: src/yelp-window.c:361
 msgid "_Open Link"
 msgstr "打开链接(_O)"
 
-#: src/yelp-window.c:360
+#: src/yelp-window.c:366
 msgid "Open Link in _New Window"
 msgstr "在新窗口打开链接(_N)"
 
-#: src/yelp-window.c:365
+#: src/yelp-window.c:371
 msgid "_Copy Link Address"
 msgstr "复制链接地址(_C)"
 
-#: src/yelp-window.c:371
+#: src/yelp-window.c:377
 msgid "_About"
 msgstr "关于(_A)"
 
-#: src/yelp-window.c:422
+#: src/yelp-window.c:428
 msgid "Help Browser"
 msgstr "帮助浏览器"
 
-#: src/yelp-window.c:915
+#: src/yelp-window.c:921
 msgid "Fin_d"
 msgstr "查找(_D)"
 
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1192
 msgid "Loading..."
 msgstr "正在载入..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1903
+#: src/yelp-window.c:1933
 msgid "translator_credits"
 msgstr ""
 "开源软件国际化简体中文组(http://i18n.linux.net.cn)\n"
@@ -739,7 +743,7 @@ msgstr "标题"
 msgid "Warning"
 msgstr "警告"
 
-#: yelp.desktop.in.h:1
+#: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
 
