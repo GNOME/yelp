@@ -46,11 +46,16 @@ main (int argc, char **argv)
 				      argc, argv, NULL);
 
 /* 	gtk_init (&argc, &argv); */
+
 	gnome_vfs_init ();
 	
         base = yelp_base_new ();
-
+	
 	window = yelp_base_new_window (base);
+
+	if (argc >= 2) {
+		yelp_window_open_uri (window, argv[1]);
+	}
 	
 	gtk_widget_show_all (window);
 

@@ -1,3 +1,10 @@
+2001-10-29  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/main.c (main): if argument is passed, pass that argument to
+	  yelp_window_open_uri.
+
+	* src/yelp-window.c (yelp_window_open_uri): added/impl.
+
 2001-10-28  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-window.c (yelp_window_uri_selected_cb): don't segfault

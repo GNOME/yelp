@@ -339,3 +339,21 @@ yelp_window_new (YelpBase *base)
         return GTK_WIDGET (window);
 }
 
+void
+yelp_window_open_uri (YelpWindow  *window,
+		      const gchar *str_uri)
+{
+	YelpWindowPriv *priv;
+	GnomeVFSURI    *uri;
+	
+	g_return_if_fail (YELP_IS_WINDOW (window));
+	
+	priv = window->priv;
+	
+	gtk_entry_set_text (GTK_ENTRY (priv->uri_entry), str_uri);
+
+	uri = gnome_vfs_uri_new (str_uri);
+	yelp_view_open_uri (YELP_VIEW (priv->yelp_view), uri);
+	gnome_vfs_uri_unref (uri);
+}
+

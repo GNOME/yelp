@@ -53,6 +53,9 @@ struct _YelpWindowClass
 };
 
 GType            yelp_window_get_type        (void);
-GtkWidget *      yelp_window_new             (YelpBase *base);
+GtkWidget *      yelp_window_new             (YelpBase      *base);
+
+void             yelp_window_open_uri        (YelpWindow    *window,
+					      const gchar   *str_uri);
 
 #endif /* __YELP_WINDOW_H__ */
