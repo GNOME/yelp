@@ -1,13 +1,13 @@
 # Traditional Chinese translation of yelp.
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# This file is distributed under the same license as the yelp package.
 # Joe Man <trmetal@yahoo.com.hk>, 2002.
+# Abel Cheung <maddog@linux.org.hk>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 0.6.99\n"
-"POT-Creation-Date: 2002-04-16 10:07+0800\n"
-"PO-Revision-Date: 2002-04-16 10:08+0800\n"
+"Project-Id-Version: yelp 1.0\n"
+"POT-Creation-Date: 2002-06-11 06:52+0800\n"
+"PO-Revision-Date: 2002-06-11 07:04+0800\n"
 "Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -22,247 +22,218 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp 工廠"
 
-#: src/yelp-db2html.c:105
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr ""
-
-#: src/yelp-db2html.c:121
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr ""
-
-#: src/yelp-db2html.c:136
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr ""
-
-#: src/yelp-db2html.c:175
-msgid "Error while applying the stylesheet."
-msgstr ""
-
-#: src/yelp-html.c:130
-msgid "Loading..."
-msgstr "載入..."
-
-#: src/yelp-html.c:308
-#, c-format
-msgid "Failed to open document '%s'"
-msgstr ""
-
-#: src/yelp-info.c:141
-msgid "info"
-msgstr "資訊"
-
-#: src/yelp-main.c:109
+#: src/yelp-main.c:111
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "無法啟動 Yelp：‘%s’"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:130
 msgid "Could not open new window."
 msgstr "無法開啟新視窗。"
 
-#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
-#: src/yelp-man.c:406 src/yelp-man.c:417
+#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
+#: src/yelp-man.c:399 src/yelp-man.c:410
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
+#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:311
+#: src/yelp-man.c:304
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:327
+#: src/yelp-man.c:320
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:332
+#: src/yelp-man.c:325
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:342
+#: src/yelp-man.c:335
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:347
+#: src/yelp-man.c:340
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:369
+#: src/yelp-man.c:362
 msgid "System Calls"
 msgstr "系統函式"
 
-#: src/yelp-man.c:374
+#: src/yelp-man.c:367
 msgid "Library Functions"
 msgstr "函式庫"
 
-#: src/yelp-man.c:379
+#: src/yelp-man.c:372
 msgid "Kernel Routines"
 msgstr "內核"
 
-#: src/yelp-man.c:434
+#: src/yelp-man.c:427
 msgid "Applications"
 msgstr "程式"
 
-#: src/yelp-man.c:439
+#: src/yelp-man.c:432
 msgid "Development"
 msgstr "開發"
 
-#: src/yelp-man.c:444
+#: src/yelp-man.c:437
 msgid "Hardware Devices"
 msgstr "硬件裝置"
 
-#: src/yelp-man.c:449
+#: src/yelp-man.c:442
 msgid "Configuration Files"
 msgstr "設定檔案"
 
-#: src/yelp-man.c:454
+#: src/yelp-man.c:447
 msgid "Games"
 msgstr "遊戲"
 
-#: src/yelp-man.c:459
+#: src/yelp-man.c:452
 msgid "Overviews"
 msgstr "概覽"
 
-#: src/yelp-man.c:464
+#: src/yelp-man.c:457
 msgid "System Administration"
 msgstr "系統管理"
 
-#: src/yelp-man.c:475
-msgid "man"
-msgstr "man(說明文件)"
-
-#: src/yelp-view-content.c:200 src/yelp-view-index.c:374
+#: src/yelp-view-content.c:420 src/yelp-view-index.c:498
 msgid "Section"
 msgstr "章節"
 
-#: src/yelp-view-index.c:337
+#: src/yelp-view-content.c:555 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "載入..."
+
+#: src/yelp-view-index.c:461
 msgid "Search for:"
-msgstr "尋找目標："
+msgstr "尋找："
 
-#: src/yelp-view-toc.c:323
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:183
 msgid "Help Contents"
-msgstr ""
+msgstr "說明文件"
 
-#: src/yelp-view-toc.c:324
+#: src/yelp-view-toc.c:184
 msgid "GNOME - Desktop"
-msgstr ""
+msgstr "GNOME - 桌面"
 
-#: src/yelp-view-toc.c:325
-#, fuzzy
+#: src/yelp-view-toc.c:185
 msgid "Additional documents"
-msgstr "已安裝文件"
+msgstr "額外文件"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "手冊頁(Manpage)"
+
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+msgid "Info Pages"
+msgstr "資訊文件(Info)"
+
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+msgid "Documents"
+msgstr "文件"
+
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+msgid "Categories"
+msgstr "分類"
+
+#: src/yelp-view-toc.c:466
 msgid "Manual pages"
 msgstr "說明文件"
 
-#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
-msgid "Info pages"
-msgstr "資訊文件(Info)"
-
-#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
-#, fuzzy
-msgid "Documents"
-msgstr "其它文件"
-
-#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
-msgid "Categories"
-msgstr ""
-
-#: src/yelp-view-toc.c:666
-msgid "Manual Pages"
-msgstr "說明文件"
-
-#: src/yelp-window.c:152
+#: src/yelp-window.c:156
 msgid "/_File"
 msgstr "/檔案(_F)"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:157
 msgid "/File/_New window"
 msgstr "/檔案/新增視窗(_N)"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:158
 msgid "/File/_Close window"
 msgstr "/檔案/關閉視窗(_C)"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:160
 msgid "/_Go"
 msgstr "/移至(_G)"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:161
 msgid "/Go/_Back"
 msgstr "/移至/上一頁(_B)"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:162
 msgid "/Go/_Forward"
 msgstr "/移至/下一頁(_F)"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:163
 msgid "/Go/_Home"
 msgstr "/移至/首頁(_H)"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:164
 msgid "/Go/_Index"
 msgstr "/移至/索引(_I)"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:165
 msgid "/_Help"
 msgstr "/說明(_H)"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:166
 msgid "/Help/_About"
 msgstr "/說明/關於(_A)"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:228 src/yelp-window.c:430
 msgid "Help Browser"
-msgstr "說明瀏覽程式"
+msgstr "說明文件瀏覽程式"
+
+#: src/yelp-window.c:340
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "文件‘%s’不存在"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:565
+#: src/yelp-window.c:599
 msgid "translator_credits"
 msgstr "Joe Man <trmetal@yahoo.com.hk>"
 
-#: src/yelp-window.c:569
+#: src/yelp-window.c:603
 msgid "Help Browser for GNOME 2.0"
-msgstr "GNOME 2.0 的說明瀏覽程式"
+msgstr "GNOME 2.0 的說明文件瀏覽程式"
 
-#: src/yelp-window.c:623
+#: src/yelp-window.c:658
 msgid "Back"
 msgstr "上一頁"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:659
 msgid "Show previous page in history"
 msgstr "顯示紀錄中的上一頁"
 
-#: src/yelp-window.c:635
+#: src/yelp-window.c:670
 msgid "Forward"
 msgstr "下一頁"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:671
 msgid "Show next page in history"
 msgstr "顯示紀錄中的下一頁"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:684
 msgid "Home"
 msgstr "首頁"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:685
 msgid "Go to home view"
 msgstr "移至首頁"
 
-#: src/yelp-window.c:660
+#: src/yelp-window.c:695
 msgid "Index"
 msgstr "索引"
 
-#: src/yelp-window.c:661
+#: src/yelp-window.c:696
 msgid "Search in the index"
 msgstr "在索引中尋找"
 
