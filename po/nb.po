@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-02-09 14:38+0100\n"
+"POT-Creation-Date: 2004-11-25 10:47+0100\n"
+"PO-Revision-Date: 2004-11-25 10:52+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -100,35 +100,35 @@ msgstr "Programmer for X"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Skrift for fast tekst"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Skrift for tekst"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Skrift for tekst med fast bredde."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Skrift for tekst med variabel bredde."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Bruk tastaturkontrollert markør ved visning av sider."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Bruk markør"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Bruk systemets skrifter"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Bruk systemets forvalgte skrifter."
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -136,11 +136,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Tilgjengelighet</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Skrifter</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -151,18 +151,16 @@ msgid "Find"
 msgstr "Finn"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Dedikasjon"
+msgstr "Åpne lokasjon"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Referanse"
+msgstr "Brukervalg"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Bruk markør"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -170,12 +168,11 @@ msgstr "_Finn: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Fast bredde:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Dedikasjon"
+msgstr "_Lokasjon:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -187,11 +184,11 @@ msgstr "_Forrige"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "Br_uk systemets skrifter"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Variabel bredde:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -205,25 +202,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp factory"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:299
 msgid "No href attribute found on yelp:document"
 msgstr "Ingen href-attributt funnet på yelp:document"
 
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:314
 msgid "Out of memory"
 msgstr "Ikke mer minne"
 
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:368
 msgid "Titlepage"
 msgstr "Tittelside"
 
 #: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:368
+#: src/yelp-man-pager.c:370
 msgid "Contents"
 msgstr "Innhold"
 
 #: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:386
+#: src/yelp-man-pager.c:388
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -248,24 +245,23 @@ msgid "The selected file could not be read."
 msgstr "Valgt fil kunne ikke leses."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Valgt fil kunne ikke leses."
+msgstr "Filen kunne ikke prosesseres."
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "Definer hvilken bufferkatalog som skal brukes"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kunne ikke aktivere Yelp: «%s»"
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Kunne ikke åpne nytt vindu."
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjelp"
 
@@ -331,13 +327,12 @@ msgid "System Administration"
 msgstr "Systemadministrasjon"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Informasjon om denne utgaven"
+msgstr "Dokumentinformasjon"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "YelpDocInfo-struktur for dokumentet"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -348,141 +343,129 @@ msgstr "YelpTocPager: Pausetall er negativt."
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunne ikke laste OMF-fil «%s»."
 
-#: src/yelp-toc-pager.c:937
+#: src/yelp-toc-pager.c:939
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/yelp-toc-pager.c:951
+#: src/yelp-toc-pager.c:953
 msgid "Documents"
 msgstr "Dokumenter"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "_File"
-msgstr "/_Fil"
+msgstr "_Fil"
 
 #: src/yelp-window.c:283
-#, fuzzy
 msgid "_Edit"
-msgstr "/R_ediger"
+msgstr "R_ediger"
 
 #: src/yelp-window.c:284
-#, fuzzy
 msgid "_Go"
-msgstr "/_Naviger"
+msgstr "_Naviger"
 
 #: src/yelp-window.c:285
-#, fuzzy
 msgid "_Help"
-msgstr "/_Hjelp"
+msgstr "_Hjelp"
 
 #: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/Fil/_Nytt vindu"
+msgstr "_Nytt vindu"
 
 #: src/yelp-window.c:293
 msgid "Open _Location"
-msgstr ""
+msgstr "Åpne _lokasjon"
 
 #: src/yelp-window.c:298
-#, fuzzy
 msgid "_Close window"
-msgstr "/Fil/_Lukk vindu"
+msgstr "_Lukk vindu"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopier"
 
-#: src/yelp-window.c:309
-#, fuzzy
+#: src/yelp-window.c:310
+msgid "_Select All"
+msgstr "_Velg alt"
+
+#: src/yelp-window.c:315
 msgid "_Find..."
-msgstr "/Rediger/_Finn..."
+msgstr "_Finn..."
 
-#: src/yelp-window.c:314
-#, fuzzy
+#: src/yelp-window.c:320
 msgid "_Preferences"
-msgstr "Referanse"
-
-#: src/yelp-window.c:319
-msgid "_Reload"
-msgstr ""
+msgstr "_Brukervalg"
 
 #: src/yelp-window.c:325
-#, fuzzy
-msgid "_Back"
-msgstr "Tilbake"
+msgid "_Reload"
+msgstr "_Gjenles"
 
-#: src/yelp-window.c:327
+#: src/yelp-window.c:331
+msgid "_Back"
+msgstr "Til_bake"
+
+#: src/yelp-window.c:333
 msgid "Show previous page in history"
 msgstr "Vis forrige side i historikken"
 
-#: src/yelp-window.c:330
-#, fuzzy
+#: src/yelp-window.c:336
 msgid "_Forward"
-msgstr "Fremover"
+msgstr "_Fremover"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:338
 msgid "Show next page in history"
 msgstr "Vis neste side i historikken"
 
-#: src/yelp-window.c:335
-#, fuzzy
+#: src/yelp-window.c:341
 msgid "_Home"
-msgstr "Hjem"
+msgstr "_Hjem"
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:343
 msgid "Go to home view"
 msgstr "Gå til åpningssiden"
 
-#: src/yelp-window.c:340
-#, fuzzy
+#: src/yelp-window.c:346
 msgid "_Previous Page"
-msgstr "/Naviger/_Forrige side"
+msgstr "_Forrige side"
 
-#: src/yelp-window.c:345
-#, fuzzy
+#: src/yelp-window.c:351
 msgid "_Next Page"
-msgstr "/Naviger/_Neste side"
+msgstr "_Neste side"
 
-#: src/yelp-window.c:350
-#, fuzzy
+#: src/yelp-window.c:356
 msgid "_Contents"
-msgstr "Innhold"
+msgstr "_Innhold"
 
-#: src/yelp-window.c:355
+#: src/yelp-window.c:361
 msgid "_Open Link"
-msgstr ""
+msgstr "Å_pne lenke"
 
-#: src/yelp-window.c:360
+#: src/yelp-window.c:366
 msgid "Open Link in _New Window"
-msgstr ""
-
-#: src/yelp-window.c:365
-msgid "_Copy Link Address"
-msgstr ""
+msgstr "Åpne lenke i _nytt vindu"
 
 #: src/yelp-window.c:371
-#, fuzzy
-msgid "_About"
-msgstr "/Hjelp/_Om"
+msgid "_Copy Link Address"
+msgstr "_Kopier lenkens adresse"
 
-#: src/yelp-window.c:422
+#: src/yelp-window.c:377
+msgid "_About"
+msgstr "_Om"
+
+#: src/yelp-window.c:428
 msgid "Help Browser"
 msgstr "Hjelp leser"
 
-#: src/yelp-window.c:915
-#, fuzzy
+#: src/yelp-window.c:921
 msgid "Fin_d"
-msgstr "Finn"
+msgstr "Fi_nn"
 
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1192
 msgid "Loading..."
 msgstr "Laster..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1903
+#: src/yelp-window.c:1933
 msgid "translator_credits"
 msgstr "translator_credits"
 
@@ -754,7 +737,7 @@ msgstr "Tittel"
 msgid "Warning"
 msgstr "Advarsel"
 
-#: yelp.desktop.in.h:1
+#: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjelp med GNOME"
 
@@ -782,7 +765,7 @@ msgstr "Få hjelp med GNOME"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
 #~ msgid "Document URI"
 #~ msgstr "Dokument-URI"
