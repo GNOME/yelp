@@ -484,15 +484,6 @@ process_omf_pending (YelpTocPager *pager)
 			       XML_PARSE_NONET    );
     if (!omf_doc) {
 	g_warning (_("Could not load the OMF file '%s'."), file);
-	/* FIXME:
-	 * There is a bug in libxml2 (#131745) that prevents files from being
-	 * parsed with a parser context after that context has failed on any
-	 * single file.  To work around this, we'll free the parser and make
-	 * a new one.  Remove the next two lines once configure.in requires
-	 * a version of libxml2 that has the bug fixed.
-	 */
-	xmlFreeParserCtxt (priv->parser);
-	priv->parser = xmlNewParserCtxt ();
 	goto done;
     }
 
