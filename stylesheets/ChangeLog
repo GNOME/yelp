@@ -1,3 +1,11 @@
+2003-07-07  Shaun McCacne  <shaunm@wolfram.com
+
+	* yelp-customization.xsl:
+	* yelp-functions.xsl:
+	- Move the id-less part hackery into get-divisions, fixing the Next
+	  link in the User Guide and reducing the chance of other subtle bugs
+	  resulting from this stuff.
+
 2003-07-02  Shaun McCance  <shaunm@wolfram.com>
 
 	* yelp-customization.xsl:

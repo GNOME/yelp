@@ -188,6 +188,12 @@
 <func:function name="yelp:get-divisions">
 	<xsl:param name="node" select="."/>
 	<xsl:choose>
+		<!-- The id-less part hackery -->
+		<xsl:when test="$node/self::part and not($node/@id)">
+			<func:result select="yelp:get-divisions($node/appendix | $node/chapter | $node/index
+						| $node/glossary | $node/bibliography | $node/article
+						| $node/preface | $node/refentry | $node/reference)"/>
+		</xsl:when>
 		<xsl:when test="$node/self::appendix | $node/self::chapter
 				| $node/self::preface">
 			<func:result select="$node/sect1 | $node/refentry | $node/simplesect

@@ -591,17 +591,7 @@
 				<xsl:with-param name="key">TableofContents</xsl:with-param>
 			</xsl:call-template>
 		</b></p>
-		<xsl:choose>
-			<!-- Hackery for the User's Guide, which I don't like -->
-			<xsl:when test="(local-name(.) = 'part') and not(@id)">
-				<xsl:for-each select="yelp:get-divisions(.)">
-					<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
-				</xsl:for-each>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
-			</xsl:otherwise>
-		</xsl:choose>
+		<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
 	</div>
 	<xsl:call-template name="yelp.navbar.bottom">
 		<xsl:with-param name="node" select="."/>
@@ -611,21 +601,11 @@
 	</xsl:call-template>
 	<xsl:comment> End of chunk </xsl:comment>
 
-	<xsl:choose>
-		<!-- Hackery for the User's Guide, which I don't like -->
-		<xsl:when test="(local-name(.) = 'part') and not(@id)">
-			<xsl:for-each select="yelp:get-divisions(yelp:get-divisions(.))">
-				<xsl:call-template name="yelp.component.chunk">
-					<xsl:with-param name="depth" select="1"/>
-				</xsl:call-template>
-			</xsl:for-each>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:call-template name="yelp.component.chunk">
-				<xsl:with-param name="depth" select="0"/>
-			</xsl:call-template>
-		</xsl:otherwise>
-	</xsl:choose>
+	<xsl:for-each select="yelp:get-divisions(.)">
+		<xsl:call-template name="yelp.component.chunk">
+			<xsl:with-param name="depth" select="1"/>
+		</xsl:call-template>
+	</xsl:for-each>
 
 	<xsl:comment> Start of footer </xsl:comment>
 </xsl:template>
