@@ -200,7 +200,7 @@ static void
 window_init (YelpWindow *window)
 {
         YelpWindowPriv *priv;
-	YelpURI        *uri;
+/* 	YelpURI        *uri; */
 	
         priv = g_new0 (YelpWindowPriv, 1);
         window->priv = priv;
@@ -211,10 +211,6 @@ window_init (YelpWindow *window)
 	priv->view_current = NULL;
 	
 	priv->history = yelp_history_new ();
-
-	uri = yelp_uri_new ("toc:");
-	yelp_history_goto (priv->history, uri);
-	yelp_uri_unref (uri);
 
 	g_signal_connect (priv->history, 
 			  "back_exists_changed",
@@ -795,8 +791,6 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
 	window_populate (window);
 
-	yelp_window_open_uri (window, "toc:");
-
 	gtk_window_set_icon (GTK_WINDOW (window), window_load_icon ());
 
         return GTK_WIDGET (window);
@@ -815,6 +809,8 @@ yelp_window_open_uri (YelpWindow  *window,
 
 	uri = yelp_uri_new (str_uri);
 
+	yelp_history_goto (priv->history, uri);
+	
 	window_handle_uri (window, uri);
 	
 	yelp_uri_unref (uri);
