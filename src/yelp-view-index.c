@@ -37,10 +37,11 @@ static void     yvi_init                       (YelpViewIndex       *view);
 static void     yvi_class_init                 (YelpViewIndexClass  *klass);
 static void     yvi_index_selection_changed_cb (GtkTreeSelection    *selection,
 						YelpViewIndex       *content);
-static void     yvi_html_url_selected_cb       (YelpViewIndex       *content,
+static void     yvi_html_url_selected_cb       (YelpHtml            *html,
 						char                *url,
 						char                *base_url,
-						gboolean             handled);
+						gboolean             handled,
+						YelpViewIndex       *view);
 static void     yvi_entry_changed_cb           (GtkEntry            *entry,
 						YelpViewIndex       *view);
 static void     yvi_entry_activated_cb         (GtkEntry            *entry,
@@ -172,16 +173,22 @@ yvi_index_selection_changed_cb (GtkTreeSelection *selection,
 }
 
 static void
-yvi_html_url_selected_cb (YelpViewIndex *content,
+yvi_html_url_selected_cb (YelpHtml      *html,
 			  char          *url,
 			  char          *base_url,
-			  gboolean       handled)
+			  gboolean       handled,
+			  YelpViewIndex *view)
 {
-	g_return_if_fail (YELP_IS_VIEW_INDEX (content));
-
-	/* TODO: What to do here? */
+	gchar *real_base_url;
 	
-	/* FIXME: Emit section_selected?? */
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+
+	real_base_url = g_strconcat ("index:", base_url, NULL);
+
+	g_signal_emit (view, signals[URL_SELECTED], 0, 
+		       url, real_base_url, handled);
+
+	g_free (real_base_url);
 }
 
 static void
@@ -389,7 +396,7 @@ void
 yelp_view_index_show_uri (YelpViewIndex *view, const gchar *uri)
 {
 	YelpViewIndexPriv *priv;
-	gchar             *real_uri;
+	const gchar       *real_uri;
 
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
 	g_return_if_fail (uri != NULL);

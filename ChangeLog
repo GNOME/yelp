@@ -1,5 +1,10 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-index.c:
+	- Fixed #67954
+	(yvi_html_url_selected_cb): implemented.
+	(yelp_view_index_show_uri): fixed compile warning.
+
 	* src/yelp-window.c:
 	(yw_handle_url): check if url starts with index:, if so, let
 	  YelpViewIndex handle it.
