@@ -353,6 +353,7 @@
   <table width="100%" align="justify">
     <xsl:call-template name="article.chunk.navigate">
       <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="link-toc" select="1"/>
     </xsl:call-template>
   </table>
 </xsl:template>
