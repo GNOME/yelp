@@ -10,101 +10,197 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-23 14:24+0100\n"
-"PO-Revision-Date: 2004-11-23 14:38+0100\n"
+"POT-Creation-Date: 2004-12-07 14:34+0100\n"
+"PO-Revision-Date: 2004-12-07 14:39+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1
-msgid "Applets"
-msgstr "Panelprogrammer"
-
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "Programmer"
 
-#: data/toc.xml.in.h:3
-msgid "Desktop"
-msgstr "Skrivebord"
+#: data/man.xml.in.h:2
+msgid "Configuration Files"
+msgstr "Konfigurationsfiler"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/man.xml.in.h:3
 msgid "Development"
 msgstr "Udvikling"
 
+#: data/man.xml.in.h:4
+msgid "FORTRAN Functions"
+msgstr ""
+
+#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+msgid "Games"
+msgstr "Spil"
+
+#: data/man.xml.in.h:6
+msgid "Hardware Devices"
+msgstr "Hardwareenheder"
+
+#: data/man.xml.in.h:7
+msgid "Kernel Routines"
+msgstr "Kernerutiner"
+
+#: data/man.xml.in.h:8
+msgid "Library Functions"
+msgstr "Biblioteksfunktioner"
+
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:777
+msgid "Man Pages"
+msgstr ""
+
+#: data/man.xml.in.h:10
+#, fuzzy
+msgid "OpenSSL Applications"
+msgstr "X-programmer"
+
+#: data/man.xml.in.h:11
+#, fuzzy
+msgid "OpenSSL Configuration"
+msgstr "Konfigurationsfiler"
+
+#: data/man.xml.in.h:12
+#, fuzzy
+msgid "OpenSSL Overviews"
+msgstr "Oversigter"
+
+#: data/man.xml.in.h:13
+msgid "Overviews"
+msgstr "Oversigter"
+
+#: data/man.xml.in.h:14
+#, fuzzy
+msgid "Perl Functions"
+msgstr "Biblioteksfunktioner"
+
+#: data/man.xml.in.h:15
+#, fuzzy
+msgid "Qt Functions"
+msgstr "Biblioteksfunktioner"
+
+#: data/man.xml.in.h:16
+msgid "System Administration"
+msgstr "Systemadministration"
+
+#: data/man.xml.in.h:17
+msgid "System Calls"
+msgstr "Systemkald"
+
+#: data/man.xml.in.h:18
+#, fuzzy
+msgid "Termcap Applications"
+msgstr "X-programmer"
+
+#: data/man.xml.in.h:19
+#, fuzzy
+msgid "X11 Applications"
+msgstr "X-programmer"
+
+#: data/man.xml.in.h:20
+#, fuzzy
+msgid "X11 Configuration"
+msgstr "Konfigurationsfiler"
+
+#: data/man.xml.in.h:21
+msgid "X11 Devices"
+msgstr ""
+
+#: data/man.xml.in.h:22
+#, fuzzy
+msgid "X11 Functions"
+msgstr "Biblioteksfunktioner"
+
+#: data/man.xml.in.h:23
+#, fuzzy
+msgid "X11 Games"
+msgstr "Spil"
+
+#: data/man.xml.in.h:24
+#, fuzzy
+msgid "X11 Overviews"
+msgstr "Oversigter"
+
+#: data/toc.xml.in.h:1
+#, fuzzy
+msgid "Accessibility"
+msgstr "<b>Tilgængelighed</b>"
+
+#: data/toc.xml.in.h:2
+msgid "Accessories"
+msgstr ""
+
+#: data/toc.xml.in.h:3
+msgid "Applets"
+msgstr "Panelprogrammer"
+
 #: data/toc.xml.in.h:5
-msgid "Development Environments"
-msgstr "Udviklingsmiljøer"
+msgid "Desktop"
+msgstr "Skrivebord"
 
 #: data/toc.xml.in.h:6
-msgid "Development Tools"
-msgstr "Udviklingsværktøjer"
-
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
-msgid "Editors"
-msgstr "Redigeringsprogrammer"
-
-#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Undervisningsprogrammer"
 
-#: data/toc.xml.in.h:9
-msgid "Games and Entertainment"
-msgstr "Spil og underholdning"
+#: data/toc.xml.in.h:8
+msgid "Graphics"
+msgstr ""
 
-#: data/toc.xml.in.h:10
-msgid "General"
-msgstr "Generelt"
-
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1056
 msgid "Help Contents"
 msgstr "Indhold i hjælp"
 
-#: data/toc.xml.in.h:12
-msgid "Internet Applications"
-msgstr "Internetprogrammer"
+#: data/toc.xml.in.h:10
+#, fuzzy
+msgid "Internet"
+msgstr "Indhold"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
+#: data/toc.xml.in.h:12
+msgid "Office"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+msgid "Other"
+msgstr ""
+
 #: data/toc.xml.in.h:14
-msgid "Kernels"
-msgstr "Kerner"
+#, fuzzy
+msgid "Other Documentation"
+msgstr "Dokumentinformation"
 
 #: data/toc.xml.in.h:15
-msgid "Multimedia Applications"
-msgstr "Multimediaprogrammer"
+msgid "Programming"
+msgstr ""
 
 #: data/toc.xml.in.h:16
-msgid "Office and Productivity Applications"
-msgstr "Kontorprogrammer"
-
-#: data/toc.xml.in.h:17
-msgid "Scientific Applications"
+#, fuzzy
+msgid "Scientific"
 msgstr "Videnskabelige programmer"
 
+#: data/toc.xml.in.h:17
+msgid "Sound &amp; Video"
+msgstr ""
+
 #: data/toc.xml.in.h:18
-msgid "Securities"
-msgstr "Sikkerhed"
+#, fuzzy
+msgid "System Tools"
+msgstr "Systemkald"
 
 #: data/toc.xml.in.h:19
-msgid "System"
-msgstr "System"
-
-#: data/toc.xml.in.h:20
-msgid "Utilities"
-msgstr "Værktøjer"
-
-#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X-programmer"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr "Skrifttype for fastbredde tekst"
+msgstr "Skrifttype for tekst med fast bredde"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
@@ -116,11 +212,11 @@ msgstr "Skrifttype for tekst med fast bredde."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "Font for tekst med variabel bredde."
+msgstr "Skrifttype for tekst med variabel bredde."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Benyt et tastatur-kontrolleret cirkumfleks ved visning af sider."
+msgstr "Benyt en tastatur-kontrolleret cirkumfleks ved visning af sider."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -198,7 +294,7 @@ msgstr "_Variabel bredde:"
 msgid "_Wrap around"
 msgstr "_Start automatisk forfra"
 
-#: src/GNOME_Yelp.server.in.h:1
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:1944
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -206,25 +302,23 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:299
+#: src/yelp-db-pager.c:505 src/yelp-toc-pager.c:1001 src/yelp-man-pager.c:299
 msgid "No href attribute found on yelp:document"
 msgstr "Ingen 'href'-egenskab fundet i 'yelp:document'"
 
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:314
+#: src/yelp-db-pager.c:519 src/yelp-toc-pager.c:1015 src/yelp-man-pager.c:314
 msgid "Out of memory"
 msgstr "Løbet tør for hukommelse"
 
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:368
+#: src/yelp-db-pager.c:717 src/yelp-man-pager.c:368
 msgid "Titlepage"
 msgstr "Titelside"
 
-#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:719 src/yelp-man-pager.c:370
 msgid "Contents"
 msgstr "Indhold"
 
-#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:388
+#: src/yelp-db-pager.c:737 src/yelp-man-pager.c:388
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -269,67 +363,6 @@ msgstr "Kunne ikke åbne nyt vindue."
 msgid "Help"
 msgstr "Hjælp"
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
-msgid "X11"
-msgstr "X11"
-
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
-msgid "OpenSSL"
-msgstr "OpenSSL"
-
-#: src/yelp-man.c:306
-msgid "Termcap"
-msgstr "Termcap"
-
-#: src/yelp-man.c:322
-msgid "Perl"
-msgstr "Perl"
-
-#: src/yelp-man.c:327
-msgid "Qt"
-msgstr "Qt"
-
-#: src/yelp-man.c:337
-msgid "TIFF"
-msgstr "TIFF"
-
-#: src/yelp-man.c:342
-msgid "PThreads"
-msgstr "PThreads"
-
-#: src/yelp-man.c:364
-msgid "System Calls"
-msgstr "Systemkald"
-
-#: src/yelp-man.c:369
-msgid "Library Functions"
-msgstr "Biblioteksfunktioner"
-
-#: src/yelp-man.c:374
-msgid "Kernel Routines"
-msgstr "Kernerutiner"
-
-#: src/yelp-man.c:439
-msgid "Hardware Devices"
-msgstr "Hardwareenheder"
-
-#: src/yelp-man.c:444
-msgid "Configuration Files"
-msgstr "Konfigurationsfiler"
-
-#: src/yelp-man.c:449
-msgid "Games"
-msgstr "Spil"
-
-#: src/yelp-man.c:454
-msgid "Overviews"
-msgstr "Oversigter"
-
-#: src/yelp-man.c:459
-msgid "System Administration"
-msgstr "Systemadministration"
-
 #: src/yelp-pager.c:120
 msgid "Document Information"
 msgstr "Dokumentinformation"
@@ -338,139 +371,137 @@ msgstr "Dokumentinformation"
 msgid "The YelpDocInfo struct of the document"
 msgstr "Dokumentets YelpDocInfo-struktur"
 
-#: src/yelp-toc-pager.c:287
+#: src/yelp-toc-pager.c:267
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausetal er negativt."
 
-#: src/yelp-toc-pager.c:538
+#: src/yelp-toc-pager.c:490
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunne ikke indlæse OMF-filen \"%s\"."
 
-#: src/yelp-toc-pager.c:937
-msgid "Categories"
-msgstr "Kategorier"
+#: src/yelp-toc-pager.c:679
+#, c-format
+msgid "Read man page for %s"
+msgstr ""
 
-#: src/yelp-toc-pager.c:951
-msgid "Documents"
-msgstr "Dokumenter"
-
-#: src/yelp-window.c:282
+#: src/yelp-window.c:286
 msgid "_File"
 msgstr "_Fil"
 
-#: src/yelp-window.c:283
+#: src/yelp-window.c:287
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: src/yelp-window.c:284
+#: src/yelp-window.c:288
 msgid "_Go"
 msgstr "_Navigering"
 
-#: src/yelp-window.c:285
+#: src/yelp-window.c:289
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: src/yelp-window.c:288
+#: src/yelp-window.c:292
 msgid "_New window"
 msgstr "_Nyt vindue"
 
-#: src/yelp-window.c:293
+#: src/yelp-window.c:297
 msgid "Open _Location"
 msgstr "Åbn _sted"
 
-#: src/yelp-window.c:298
+#: src/yelp-window.c:302
 msgid "_Close window"
 msgstr "_Luk vindue"
 
-#: src/yelp-window.c:304
+#: src/yelp-window.c:308
 msgid "_Copy"
 msgstr "_Kopiér"
 
-#: src/yelp-window.c:310
+#: src/yelp-window.c:314
 msgid "_Select All"
 msgstr "_Markér alt"
 
-#: src/yelp-window.c:315
+#: src/yelp-window.c:319
 msgid "_Find..."
 msgstr "_Find..."
 
-#: src/yelp-window.c:320
+#: src/yelp-window.c:324
 msgid "_Preferences"
 msgstr "_Indstillinger"
 
-#: src/yelp-window.c:325
+#: src/yelp-window.c:329
 msgid "_Reload"
 msgstr "_Genindlæs"
 
-#: src/yelp-window.c:331
+#: src/yelp-window.c:335
 msgid "_Back"
 msgstr "_Tilbage"
 
-#: src/yelp-window.c:333
+#: src/yelp-window.c:337
 msgid "Show previous page in history"
 msgstr "Vis foregående side i historikken"
 
-#: src/yelp-window.c:336
+#: src/yelp-window.c:340
 msgid "_Forward"
 msgstr "F_remad"
 
-#: src/yelp-window.c:338
+#: src/yelp-window.c:342
 msgid "Show next page in history"
 msgstr "Vis næste side i historikken"
 
-#: src/yelp-window.c:341
+#: src/yelp-window.c:345
 msgid "_Home"
 msgstr "_Hjem"
 
-#: src/yelp-window.c:343
+#: src/yelp-window.c:347
 msgid "Go to home view"
 msgstr "Gå til startvisning"
 
-#: src/yelp-window.c:346
+#: src/yelp-window.c:350
 msgid "_Previous Page"
 msgstr "F_orrige side"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:355
 msgid "_Next Page"
 msgstr "_Næste side"
 
-#: src/yelp-window.c:356
+#: src/yelp-window.c:360
 msgid "_Contents"
 msgstr "_Indhold"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:365
 msgid "_Open Link"
 msgstr "_Åbn link"
 
-#: src/yelp-window.c:366
+#: src/yelp-window.c:370
 msgid "Open Link in _New Window"
 msgstr "Åbn link i _nyt vindue"
 
-#: src/yelp-window.c:371
+#: src/yelp-window.c:375
 msgid "_Copy Link Address"
 msgstr "_Kopiér link-adresse"
 
-#: src/yelp-window.c:377
+#: src/yelp-window.c:381
 msgid "_About"
 msgstr "_Om"
 
-#: src/yelp-window.c:428
+#: src/yelp-window.c:432
 msgid "Help Browser"
 msgstr "Hjælpelæser"
 
-#: src/yelp-window.c:921
+#: src/yelp-window.c:925
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: src/yelp-window.c:1192
+#: src/yelp-window.c:1200
 msgid "Loading..."
 msgstr "Indlæser..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1933
-msgid "translator_credits"
+#: src/yelp-window.c:1941
+#, fuzzy
+msgid "translator-credits"
 msgstr ""
 "Martin Willemoes Hansen\n"
 "Ole Laursen\n"
@@ -478,273 +509,9 @@ msgstr ""
 "Dansk-gruppen <dansk@klid.dk>\n"
 "Mere info: http://www.klid.dk/dansk/"
 
-#: stylesheets/l10n.xml.in.h:1
-msgid "&#8216;"
-msgstr "‚"
-
-#: stylesheets/l10n.xml.in.h:2
-msgid "&#8217;"
-msgstr "‛"
-
-#: stylesheets/l10n.xml.in.h:3
-msgid "&#8220;"
-msgstr "„"
-
-#: stylesheets/l10n.xml.in.h:4
-msgid "&#8221;"
-msgstr "‟"
-
-#: stylesheets/l10n.xml.in.h:5
-msgid "About This Article"
-msgstr "Om denne artikel"
-
-#: stylesheets/l10n.xml.in.h:6
-msgid "About This Bibliography"
-msgstr "Om denne litteraturliste"
-
-#: stylesheets/l10n.xml.in.h:7
-msgid "About This Book"
-msgstr "Om denne bog"
-
-#: stylesheets/l10n.xml.in.h:8
-msgid "About This Chapter"
-msgstr "Om dette kapitel"
-
-#: stylesheets/l10n.xml.in.h:9
-msgid "About This Entry"
-msgstr "Om dette element"
-
-#: stylesheets/l10n.xml.in.h:10
-msgid "About This Glossary"
-msgstr "Om denne ordliste"
-
-#: stylesheets/l10n.xml.in.h:11
-msgid "About This Index"
-msgstr "Om dette indeks"
-
-#: stylesheets/l10n.xml.in.h:12
-msgid "About This Part"
-msgstr "Om denne del"
-
-#: stylesheets/l10n.xml.in.h:13
-msgid "About This Preface"
-msgstr "Om dette forord"
-
-#: stylesheets/l10n.xml.in.h:14
-msgid "About This Reference"
-msgstr "Om denne reference"
-
-#: stylesheets/l10n.xml.in.h:15
-msgid "About This Section"
-msgstr "Om denne sektion"
-
-#: stylesheets/l10n.xml.in.h:16
-msgid "About This Set"
-msgstr "Om dette sæt"
-
-#: stylesheets/l10n.xml.in.h:17
-msgid "Affiliation"
-msgstr "Tilknytning"
-
-#: stylesheets/l10n.xml.in.h:18
-msgid "Appendix"
-msgstr "Appendiks"
-
-#: stylesheets/l10n.xml.in.h:19
-msgid "Article"
-msgstr "Artikel"
-
-#: stylesheets/l10n.xml.in.h:20
-msgid "Audience"
-msgstr "Publikum"
-
-#: stylesheets/l10n.xml.in.h:21
-msgid "Author"
-msgstr "Forfatter"
-
-#: stylesheets/l10n.xml.in.h:22
-msgid "Authors"
-msgstr "Forfattere"
-
-#: stylesheets/l10n.xml.in.h:23
-msgid "Bibliography"
-msgstr "Litteraturliste"
-
-#: stylesheets/l10n.xml.in.h:24
-msgid "Book"
-msgstr "Bog"
-
-#: stylesheets/l10n.xml.in.h:25
-msgid "Caution"
-msgstr "Advarsel"
-
-#: stylesheets/l10n.xml.in.h:26
-msgid "Chapter"
-msgstr "Kapitel"
-
-#: stylesheets/l10n.xml.in.h:27
-msgid "Collaborator"
-msgstr "Bidrager"
-
-#: stylesheets/l10n.xml.in.h:28
-msgid "Collaborators"
-msgstr "Bidragere"
-
-#: stylesheets/l10n.xml.in.h:29
-msgid "Colophon"
-msgstr "Kolofon"
-
-#: stylesheets/l10n.xml.in.h:31
-msgid "Copyright"
-msgstr "Ophavsret"
-
-#: stylesheets/l10n.xml.in.h:32
-msgid "Copyrights"
-msgstr "Ophavsret"
-
-#: stylesheets/l10n.xml.in.h:33
-msgid "Date"
-msgstr "Dato"
-
-#: stylesheets/l10n.xml.in.h:34
-msgid "Dedication"
-msgstr "Dedikering"
-
-#: stylesheets/l10n.xml.in.h:35
-msgid "Editor"
-msgstr "Redigeringsprogram"
-
-#: stylesheets/l10n.xml.in.h:37
-msgid "Email"
-msgstr "E-post"
-
-#: stylesheets/l10n.xml.in.h:38
-msgid "Example"
-msgstr "Eksempel"
-
-#: stylesheets/l10n.xml.in.h:39
-msgid "Figure"
-msgstr "Figur"
-
-#: stylesheets/l10n.xml.in.h:40
-msgid "Glossary"
-msgstr "Ordliste"
-
-#: stylesheets/l10n.xml.in.h:41
-msgid "Important"
-msgstr "Vigtigt"
-
-#: stylesheets/l10n.xml.in.h:42
-msgid "Index"
-msgstr "Indeks"
-
-#: stylesheets/l10n.xml.in.h:43
-msgid "Legal Notice"
-msgstr "Betingelser for brug"
-
-#: stylesheets/l10n.xml.in.h:44
-msgid "Level"
-msgstr "Niveau"
-
-#: stylesheets/l10n.xml.in.h:45
-msgid "Message Audience"
-msgstr "Budskabsmodtager"
-
-#: stylesheets/l10n.xml.in.h:46
-msgid "Message Level"
-msgstr "Budskabsniveau"
-
-#: stylesheets/l10n.xml.in.h:47
-msgid "Message Origin"
-msgstr "Budskabsophav"
-
-#: stylesheets/l10n.xml.in.h:48
-msgid "Note"
-msgstr "Bemærk"
-
-#: stylesheets/l10n.xml.in.h:49
-msgid "Origin"
-msgstr "Ophav"
-
-#: stylesheets/l10n.xml.in.h:50
-msgid "Other Contributor"
-msgstr "Anden bidragyder"
-
-#: stylesheets/l10n.xml.in.h:51
-msgid "Other Contributors"
-msgstr "Andre bidragyder"
-
-#: stylesheets/l10n.xml.in.h:52
-msgid "Part"
-msgstr "Del"
-
-#: stylesheets/l10n.xml.in.h:53
-msgid "Preface"
-msgstr "Forord"
-
-#: stylesheets/l10n.xml.in.h:54
-msgid "Publisher"
-msgstr "Forlag"
-
-#: stylesheets/l10n.xml.in.h:55
-msgid "Publishers"
-msgstr "Forlag"
-
-#: stylesheets/l10n.xml.in.h:56
-msgid "Reference"
-msgstr "Reference"
-
-#: stylesheets/l10n.xml.in.h:57
-msgid "Reference Entry"
-msgstr "Referencepunkt"
-
-#: stylesheets/l10n.xml.in.h:58
-msgid "Reference Section"
-msgstr "Referencesektion"
-
-#: stylesheets/l10n.xml.in.h:59
-msgid "Release Information"
-msgstr "Frigivelsesoplysninger"
-
-#: stylesheets/l10n.xml.in.h:60
-msgid "Revision History"
-msgstr "Reversionshistorik"
-
-#: stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Sektion"
-
-#: stylesheets/l10n.xml.in.h:62
-msgid "See"
-msgstr "Se"
-
-#: stylesheets/l10n.xml.in.h:63
-msgid "See Also"
-msgstr "Se også"
-
-#: stylesheets/l10n.xml.in.h:64
-msgid "Set Index"
-msgstr "Sætindeks"
-
-#: stylesheets/l10n.xml.in.h:65
-msgid "Table"
-msgstr "Tabel"
-
-#: stylesheets/l10n.xml.in.h:66
-msgid "Table of Contents"
-msgstr "Indholdsfortegnelse"
-
-#: stylesheets/l10n.xml.in.h:67
-msgid "Tip"
-msgstr "Tip"
-
-#: stylesheets/l10n.xml.in.h:68
-msgid "Title"
-msgstr "Titel"
-
-#: stylesheets/l10n.xml.in.h:70
-msgid "Warning"
-msgstr "Advarsel"
+#: src/yelp-window.c:1946
+msgid "A documentation browser and viewer for the Gnome Desktop."
+msgstr ""
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
@@ -775,6 +542,270 @@ msgstr "Få hjælp til Gnome"
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
+
+#~ msgid "Development Environments"
+#~ msgstr "Udviklingsmiljøer"
+
+#~ msgid "Development Tools"
+#~ msgstr "Udviklingsværktøjer"
+
+#~ msgid "Editors"
+#~ msgstr "Redigeringsprogrammer"
+
+#~ msgid "Games and Entertainment"
+#~ msgstr "Spil og underholdning"
+
+#~ msgid "General"
+#~ msgstr "Generelt"
+
+#~ msgid "Internet Applications"
+#~ msgstr "Internetprogrammer"
+
+#~ msgid "Kernels"
+#~ msgstr "Kerner"
+
+#~ msgid "Multimedia Applications"
+#~ msgstr "Multimediaprogrammer"
+
+#~ msgid "Office and Productivity Applications"
+#~ msgstr "Kontorprogrammer"
+
+#~ msgid "Securities"
+#~ msgstr "Sikkerhed"
+
+#~ msgid "System"
+#~ msgstr "System"
+
+#~ msgid "Utilities"
+#~ msgstr "Værktøjer"
+
+#~ msgid "X11"
+#~ msgstr "X11"
+
+#~ msgid "OpenSSL"
+#~ msgstr "OpenSSL"
+
+#~ msgid "Termcap"
+#~ msgstr "Termcap"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+
+#~ msgid "PThreads"
+#~ msgstr "PThreads"
+
+#~ msgid "Categories"
+#~ msgstr "Kategorier"
+
+#~ msgid "Documents"
+#~ msgstr "Dokumenter"
+
+#~ msgid "&#8216;"
+#~ msgstr "‚"
+
+#~ msgid "&#8217;"
+#~ msgstr "‛"
+
+#~ msgid "&#8220;"
+#~ msgstr "„"
+
+#~ msgid "&#8221;"
+#~ msgstr "‟"
+
+#~ msgid "About This Article"
+#~ msgstr "Om denne artikel"
+
+#~ msgid "About This Bibliography"
+#~ msgstr "Om denne litteraturliste"
+
+#~ msgid "About This Book"
+#~ msgstr "Om denne bog"
+
+#~ msgid "About This Chapter"
+#~ msgstr "Om dette kapitel"
+
+#~ msgid "About This Entry"
+#~ msgstr "Om dette element"
+
+#~ msgid "About This Glossary"
+#~ msgstr "Om denne ordliste"
+
+#~ msgid "About This Index"
+#~ msgstr "Om dette indeks"
+
+#~ msgid "About This Part"
+#~ msgstr "Om denne del"
+
+#~ msgid "About This Preface"
+#~ msgstr "Om dette forord"
+
+#~ msgid "About This Reference"
+#~ msgstr "Om denne reference"
+
+#~ msgid "About This Section"
+#~ msgstr "Om denne sektion"
+
+#~ msgid "About This Set"
+#~ msgstr "Om dette sæt"
+
+#~ msgid "Affiliation"
+#~ msgstr "Tilknytning"
+
+#~ msgid "Appendix"
+#~ msgstr "Appendiks"
+
+#~ msgid "Article"
+#~ msgstr "Artikel"
+
+#~ msgid "Audience"
+#~ msgstr "Publikum"
+
+#~ msgid "Author"
+#~ msgstr "Forfatter"
+
+#~ msgid "Authors"
+#~ msgstr "Forfattere"
+
+#~ msgid "Bibliography"
+#~ msgstr "Litteraturliste"
+
+#~ msgid "Book"
+#~ msgstr "Bog"
+
+#~ msgid "Caution"
+#~ msgstr "Advarsel"
+
+#~ msgid "Chapter"
+#~ msgstr "Kapitel"
+
+#~ msgid "Collaborator"
+#~ msgstr "Bidrager"
+
+#~ msgid "Collaborators"
+#~ msgstr "Bidragere"
+
+#~ msgid "Colophon"
+#~ msgstr "Kolofon"
+
+#~ msgid "Copyright"
+#~ msgstr "Ophavsret"
+
+#~ msgid "Copyrights"
+#~ msgstr "Ophavsret"
+
+#~ msgid "Date"
+#~ msgstr "Dato"
+
+#~ msgid "Dedication"
+#~ msgstr "Dedikering"
+
+#~ msgid "Editor"
+#~ msgstr "Redigeringsprogram"
+
+#~ msgid "Email"
+#~ msgstr "E-post"
+
+#~ msgid "Example"
+#~ msgstr "Eksempel"
+
+#~ msgid "Figure"
+#~ msgstr "Figur"
+
+#~ msgid "Glossary"
+#~ msgstr "Ordliste"
+
+#~ msgid "Important"
+#~ msgstr "Vigtigt"
+
+#~ msgid "Index"
+#~ msgstr "Indeks"
+
+#~ msgid "Legal Notice"
+#~ msgstr "Betingelser for brug"
+
+#~ msgid "Level"
+#~ msgstr "Niveau"
+
+#~ msgid "Message Audience"
+#~ msgstr "Budskabsmodtager"
+
+#~ msgid "Message Level"
+#~ msgstr "Budskabsniveau"
+
+#~ msgid "Message Origin"
+#~ msgstr "Budskabsophav"
+
+#~ msgid "Note"
+#~ msgstr "Bemærk"
+
+#~ msgid "Origin"
+#~ msgstr "Ophav"
+
+#~ msgid "Other Contributor"
+#~ msgstr "Anden bidragyder"
+
+#~ msgid "Other Contributors"
+#~ msgstr "Andre bidragyder"
+
+#~ msgid "Part"
+#~ msgstr "Del"
+
+#~ msgid "Preface"
+#~ msgstr "Forord"
+
+#~ msgid "Publisher"
+#~ msgstr "Forlag"
+
+#~ msgid "Publishers"
+#~ msgstr "Forlag"
+
+#~ msgid "Reference"
+#~ msgstr "Reference"
+
+#~ msgid "Reference Entry"
+#~ msgstr "Referencepunkt"
+
+#~ msgid "Reference Section"
+#~ msgstr "Referencesektion"
+
+#~ msgid "Release Information"
+#~ msgstr "Frigivelsesoplysninger"
+
+#~ msgid "Revision History"
+#~ msgstr "Reversionshistorik"
+
+#~ msgid "Section"
+#~ msgstr "Sektion"
+
+#~ msgid "See"
+#~ msgstr "Se"
+
+#~ msgid "See Also"
+#~ msgstr "Se også"
+
+#~ msgid "Set Index"
+#~ msgstr "Sætindeks"
+
+#~ msgid "Table"
+#~ msgstr "Tabel"
+
+#~ msgid "Table of Contents"
+#~ msgstr "Indholdsfortegnelse"
+
+#~ msgid "Tip"
+#~ msgstr "Tip"
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Warning"
+#~ msgstr "Advarsel"
 
 #~ msgid "Document URI"
 #~ msgstr "Dokument-URI"
