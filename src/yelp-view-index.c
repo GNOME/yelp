@@ -82,6 +82,10 @@ static void  index_show_uri                   (YelpView            *view,
 					       YelpURI             *index_uri,
 					       GError             **error);
 
+static YelpHtml *
+index_get_html                                (YelpView            *view);
+
+
 struct _YelpViewIndexPriv {
 	/* List of keywords */
 	GtkWidget      *index_view;
@@ -176,6 +180,7 @@ index_class_init (YelpViewIndexClass *klass)
 	YelpViewClass *view_class = YELP_VIEW_CLASS (klass);
        
 	view_class->show_uri = index_show_uri;
+	view_class->get_html = index_get_html;
 }
 
 static void
@@ -432,6 +437,20 @@ index_show_uri (YelpView *view, YelpURI *index_uri, GError **error)
 
 	/* FIXME: Handle the GError */
 /* 	yelp_html_open_uri (priv->html_view, uri, error); */
+}
+
+static YelpHtml *
+index_get_html (YelpView *view)
+{
+	YelpViewIndex     *index;
+	YelpViewIndexPriv *priv;
+	
+	g_return_val_if_fail (YELP_IS_VIEW_INDEX (view), NULL);
+
+	index = YELP_VIEW_INDEX (view);
+	priv = index->priv;
+		
+	return YELP_HTML (priv->html_view);
 }
 
 YelpView *

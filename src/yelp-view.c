@@ -126,3 +126,12 @@ yelp_view_show_uri (YelpView *view, YelpURI *uri, GError **error)
 	}
 }
 
+YelpHtml *
+yelp_view_get_html (YelpView *view)
+{
+	if (YELP_VIEW_GET_CLASS (view)->get_html) {
+		return YELP_VIEW_GET_CLASS (view)->get_html (view);
+	}
+
+	return NULL;
+}

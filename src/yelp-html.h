@@ -71,5 +71,7 @@ void            yelp_html_close          (YelpHtml    *html);
 
 GtkWidget *     yelp_html_get_widget     (YelpHtml      *html);
 
+void            yelp_html_find_next      (YelpHtml *html);
+
 #endif /* __YELP_HTML_H__ */
 

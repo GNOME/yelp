@@ -61,6 +61,9 @@ static void   toc_page_end                  (YelpViewTOC       *view);
 static void   toc_show_uri                  (YelpView          *view,
 					     YelpURI           *uri,
 					     GError          **error);
+static YelpHtml *
+toc_get_html                                (YelpView         *view);
+
 
 typedef struct {
 	char  *title;
@@ -133,6 +136,7 @@ toc_class_init (YelpViewTOCClass *klass)
 	YelpViewClass *view_class = YELP_VIEW_CLASS (klass);
        
 	view_class->show_uri = toc_show_uri;
+	view_class->get_html = toc_get_html;
 }
 
 #if 0
@@ -885,6 +889,20 @@ toc_show_uri (YelpView *view, YelpURI *uri, GError **error)
 		g_warning ("Unknown toc type %s\n", 
 			   yelp_uri_to_string (uri));
 	}
+}
+
+static YelpHtml *
+toc_get_html (YelpView *view)
+{
+	YelpViewTOC     *toc;
+	YelpViewTOCPriv *priv;
+	
+	g_return_val_if_fail (YELP_IS_VIEW_TOC (view), NULL);
+
+	toc = YELP_VIEW_TOC (view);
+	priv = toc->priv;
+		
+	return YELP_HTML (priv->html_view);
 }
 
 YelpView *

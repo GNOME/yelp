@@ -26,6 +26,7 @@
 #include <gtk/gtkhpaned.h>
 #include <gtk/gtktreemodel.h>
 #include "yelp-section.h"
+#include "yelp-html.h"
 
 #define YELP_TYPE_VIEW         (yelp_view_get_type ())
 #define YELP_VIEW(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_VIEW, YelpView))
@@ -58,6 +59,7 @@ struct _YelpViewClass {
 	void        (*show_uri)       (YelpView      *view,
 				       YelpURI       *uri,
 				       GError      **error);
+	YelpHtml *  (*get_html)       (YelpView      *view);
 };
 
 GType           yelp_view_get_type     (void);
@@ -65,5 +67,7 @@ GType           yelp_view_get_type     (void);
 void            yelp_view_show_uri     (YelpView  *view,
 					YelpURI   *uri,
 					GError   **error);
+
+YelpHtml *      yelp_view_get_html     (YelpView  *view);
 
 #endif /* __YELP_INDEX__ */

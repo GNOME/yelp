@@ -90,6 +90,8 @@ static void        window_new_window_cb           (gpointer           data,
 static void        window_close_window_cb         (gpointer           data,
 						   guint              section,
 						   GtkWidget         *widget);
+static void        window_find_cb                 (gpointer data,     guint section,
+						   GtkWidget         *widget);
 static void        window_history_go_cb           (gpointer           data,
 						   guint              section,
 						   GtkWidget         *widget);
@@ -131,7 +133,7 @@ struct _YelpWindowPriv {
 	YelpView       *content_view;
 	YelpView       *index_view;
 	
-	GtkWidget      *view_current;
+	GtkWidget      *find_dialog;
 
 	YelpHistory    *history;
 
@@ -144,6 +146,7 @@ struct _YelpWindowPriv {
 static GtkItemFactoryEntry menu_items[] = {
 	{N_("/_File"),              NULL,         0,                  0,                           "<Branch>"},
 	{N_("/File/_New window"),   NULL,         window_new_window_cb,   0,                           "<StockItem>", GTK_STOCK_NEW     },
+/*	{N_("/File/_Find in page..."), NULL,      window_find_cb,         0,                           "<StockItem>", GTK_STOCK_FIND   },*/
 	{N_("/File/_Close window"), NULL,         window_close_window_cb, 0,                           "<StockItem>", GTK_STOCK_CLOSE   },
 	{N_("/_Go"),                NULL,         0,                  0,                           "<Branch>"},
 	{N_("/Go/_Back"),           NULL,         window_history_go_cb,   YELP_WINDOW_ACTION_BACK,     "<StockItem>", GTK_STOCK_GO_BACK    },
@@ -193,7 +196,6 @@ window_init (YelpWindow *window)
 	priv->toc_view     = NULL;
 	priv->content_view = NULL;
 	priv->index_view   = NULL;
-	priv->view_current = NULL;
 	
 	priv->history = yelp_history_new ();
 
@@ -547,6 +549,48 @@ window_close_window_cb (gpointer   data,
 			GtkWidget *widget)
 {
 	gtk_widget_destroy (GTK_WIDGET (data));
+}
+
+static void
+window_find_cb (gpointer data, guint section, GtkWidget *widget)
+{
+	YelpWindow     *window = data;
+	YelpWindowPriv *priv;
+	YelpHtml       *html;
+	
+	g_return_if_fail (YELP_IS_WINDOW (data));
+
+	window = YELP_WINDOW (data);
+
+	priv = window->priv;
+
+	/* To get rid of warning for now. */
+	if (0) {
+		window_find_cb (data, section, widget);
+	}
+	
+	switch (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook))) {
+	case PAGE_TOC_VIEW:
+		html = yelp_view_get_html (priv->toc_view);
+		break;
+	case PAGE_CONTENT_VIEW:
+		html = yelp_view_get_html (priv->content_view);
+		break;
+	case PAGE_INDEX_VIEW:
+		html = yelp_view_get_html (priv->index_view);
+		break;
+	default:
+		g_assert_not_reached ();
+	}
+
+	if (priv->find_dialog) {
+		gtk_window_present (GTK_WINDOW (priv->find_dialog));
+	} else {
+		priv->find_dialog = NULL;
+	}
+
+	/* FIXME: Implement the dialog. */
+	yelp_html_find_next (html);
 }
 
 static void

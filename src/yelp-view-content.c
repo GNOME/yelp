@@ -74,9 +74,13 @@ static void content_insert_tree               (YelpViewContent      *content,
 static void content_set_tree                  (YelpViewContent      *content, 
 					       GNode                *node);
 static void
-content_show_uri                             (YelpView              *view, 
-					      YelpURI               *uri,
-					      GError               **error);
+content_show_uri                              (YelpView              *view, 
+					       YelpURI               *uri,
+					       GError               **error);
+
+static YelpHtml *
+content_get_html                              (YelpView              *view);
+
 
 struct _YelpViewContentPriv {
 	GtkWidget    *hpaned;
@@ -176,6 +180,7 @@ content_class_init (YelpViewContentClass *klass)
 	YelpViewClass *view_class = YELP_VIEW_CLASS (klass);
        
 	view_class->show_uri = content_show_uri;
+	view_class->get_html = content_get_html;
 }
 
 static void
@@ -474,7 +479,7 @@ content_show_uri (YelpView *view, YelpURI *uri, GError **error)
 	}
 
 	if (reset_focus) {
-		gtk_widget_child_focus (GTK_WIDGET (view),
+		gtk_widget_child_focus (GTK_WIDGET (view->widget),
 					GTK_DIR_TAB_FORWARD);
 	}
 	
@@ -568,3 +573,16 @@ yelp_view_content_new (GNode *doc_tree)
 	return YELP_VIEW (view);
 }
 
+static YelpHtml *
+content_get_html (YelpView *view)
+{
+	YelpViewContent     *content;
+	YelpViewContentPriv *priv;
+	
+	g_return_val_if_fail (YELP_IS_VIEW_CONTENT (view), NULL);
+
+	content = YELP_VIEW_CONTENT (view);
+	priv = content->priv;
+		
+	return YELP_HTML (priv->html_view);
+}

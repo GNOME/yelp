@@ -51,6 +51,7 @@ struct _YelpViewContentClass {
 };
 
 GType           yelp_view_content_get_type     (void);
-YelpView *      yelp_view_content_new          (GNode  *doc_tree);
+
+YelpView *      yelp_view_content_new          (GNode *doc_tree);
 
 #endif /* __YELP_VIEW_CONTENT__ */
