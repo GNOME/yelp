@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-29 21:17+0200\n"
-"PO-Revision-Date: 2005-01-29 21:19+0200\n"
+"POT-Creation-Date: 2005-02-05 03:50+0200\n"
+"PO-Revision-Date: 2005-02-05 03:50+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Branduolio funkcijos"
 msgid "Library Functions"
 msgstr "Bibliotekų funkcijos"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
 msgstr "Žinynų puslapiai"
 
@@ -121,8 +121,8 @@ msgid "Accessories"
 msgstr "Reikmenys"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Įtaisai"
+msgid "Administration"
+msgstr "Administravimas"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -136,7 +136,7 @@ msgstr "Mokomosios programos"
 msgid "Graphics"
 msgstr "Grafika"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:386
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
 msgstr "Pagalbos temos"
 
@@ -165,18 +165,26 @@ msgid "Other Documentation"
 msgstr "Kita dokumentacija"
 
 #: data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "Skydelio įtaisai"
+
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#: data/toc.xml.in.h:18
 msgid "Programming"
 msgstr "Programavimas"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:19
 msgid "Scientific"
 msgstr "Mokslinės programos"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:20
 msgid "System Tools"
 msgstr "Sisteminiai įrankiai"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X programos"
 
@@ -215,10 +223,6 @@ msgstr "Ieškoti"
 #: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Atidaryti vietą"
-
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "Nustatymai"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
@@ -300,24 +304,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp gamykla"
 
-#: src/yelp-bookmarks.c:150
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
 msgstr "Atidaryti žymelę naujame lange"
 
-#: src/yelp-bookmarks.c:154
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
 msgstr "Pervadinti žymelę"
 
-#: src/yelp-bookmarks.c:158
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
 msgstr "Pašalinti žymelę"
 
-#: src/yelp-bookmarks.c:301 src/yelp-bookmarks.c:373
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
 
-#: src/yelp-bookmarks.c:401
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Dokumento skyriai"
 
@@ -330,7 +334,7 @@ msgstr ""
 "Nepavyko apdoroti bylos „%s“. Arba byla neegzistuoja, arba tai nėra tinkamai "
 "suformuota XML byla."
 
-#: src/yelp-db-pager.c:489
+#: src/yelp-db-pager.c:486
 msgid "Unknown Section"
 msgstr "Nežinomas skyrius"
 
@@ -430,7 +434,7 @@ msgstr "YelpDocInfo dokumento struktūra"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -443,12 +447,12 @@ msgstr "YelpTocPager: Pauzės skaičiavimas yra neigiamas."
 msgid "Could not load the OMF file '%s'."
 msgstr "Nepavyko įkelti OMF bylos: '%s'"
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "Skaityti %s žinyną"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -457,7 +461,7 @@ msgstr ""
 "Nepavyko įkelti turinio. Arba trūksta bylos „%s“, arba ji yra blogai "
 "suformuota XML byla."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -466,15 +470,15 @@ msgstr ""
 "Nepavyko apdoroti turinio. Arba trūksta bylos „%s“, arba ji nėra tinkama "
 "XSLT stiliaus byla."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Href atributų yelp:document nerasta"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Nėra atminties"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Pagalbos žinyno turinys"
 
