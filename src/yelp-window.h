@@ -23,8 +23,8 @@
 #ifndef __YELP_WINDOW_H__
 #define __YELP_WINDOW_H__
 
-#include <libgnomeui/gnome-app.h>
 #include <gtk/gtktreemodel.h>
+#include <gtk/gtkwindow.h>
 
 #include "yelp-base.h"
 #include "yelp-uri.h"
