@@ -10,16 +10,18 @@
 	<xsl:choose>
 		<xsl:when test="
 				($node/preceding-sibling::*/descendant-or-self::*)
+				[@id]
 				[yelp:is-division(.)]
 				[yelp:get-depth(.) &lt;= $gdb_max_chunk_depth]">
 			<func:result select="
 				($node/preceding-sibling::*/descendant-or-self::*)
+				[@id]
 				[yelp:is-division(.)]
 				[yelp:get-depth(.) &lt;= $gdb_max_chunk_depth]
 				[last()]"/>
 		</xsl:when>
 		<xsl:when test="yelp:get-depth($node) &gt; 1">
-			<func:result select="$node/ancestor::*[yelp:is-division(.)][1]"/>
+			<func:result select="$node/ancestor::*[@id][yelp:is-division(.)][1]"/>
 		</xsl:when>
 		<xsl:otherwise>
 			<func:result select="'toc'"/>
@@ -32,14 +34,14 @@
 	<xsl:choose>
 		<xsl:when test="
 				(yelp:get-depth($node) &lt; $gdb_max_chunk_depth) and
-				(count(yelp:get-divisions($node)) &gt; 1)">
-			<func:result select="yelp:get-divisions($node)[1]"/>
+				(count(yelp:get-divisions($node)[@id]) &gt; 1)">
+			<func:result select="yelp:get-divisions($node)[@id][1]"/>
 		</xsl:when>
-		<xsl:when test="$node/following-sibling::*[yelp:is-division(.)]">
-			<func:result select="$node/following-sibling::*[yelp:is-division(.)][1]"/>
+		<xsl:when test="$node/following-sibling::*[@id][yelp:is-division(.)]">
+			<func:result select="$node/following-sibling::*[@id][yelp:is-division(.)][1]"/>
 		</xsl:when>
-		<xsl:when test="$node/following::*[yelp:is-division(.)]">
-			<func:result select="$node/following::*[yelp:is-division(.)][1]"/>
+		<xsl:when test="$node/following::*[@id][yelp:is-division(.)]">
+			<func:result select="$node/following::*[@id][yelp:is-division(.)][1]"/>
 		</xsl:when>
 		<xsl:otherwise>
 			<func:result select="false()"/>
