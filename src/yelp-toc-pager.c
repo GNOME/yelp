@@ -41,7 +41,10 @@ typedef struct _OMF OMF;
 struct _YelpTocPagerPriv {
     GSList           *omf_pending;
 
+    xmlDocPtr         toc_doc;
     GSList           *toc_pending;
+
+    GSList           *idx_pending;
 
     GHashTable       *unique_hash_omf;
     GHashTable       *category_hash_omf;
@@ -88,6 +91,11 @@ static void          toc_unhash_omf            (YelpTocPager      *pager,
 
 static gboolean      toc_process_toc           (YelpTocPager      *pager);
 static gboolean      toc_process_toc_pending   (YelpTocPager      *pager);
+
+static gboolean      toc_process_idx           (YelpTocPager      *pager);
+static gboolean      toc_process_idx_pending   (YelpTocPager      *pager);
+
+static xmlChar *     node_get_title            (xmlNodePtr         node);
 
 static void          omf_free                  (OMF               *omf);
 
@@ -224,8 +232,16 @@ toc_pager_cancel (YelpPager *pager)
 gchar *
 toc_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 {
-    // FIXME
-    return NULL;
+    gchar *path = yelp_uri_get_path (uri);
+
+    if (!strcmp (path, "")) {
+	g_free (path);
+	return g_strdup ("index");
+    }
+    else if (!path)
+	return g_strdup ("index");
+    else
+	return path;
 }
 
 const GtkTreeModel *
@@ -414,7 +430,6 @@ toc_process_omf_pending (YelpPager *pager)
 	    omf_free (omf);
 	    goto done;
 	} else {
-	    printf (":: %s %s\n", omf_old->omf_file, omf->omf_file);
 	    toc_unhash_omf (YELP_TOC_PAGER (pager), omf_old);
 	    omf_free (omf_old);
 
@@ -449,18 +464,16 @@ toc_process_omf_pending (YelpPager *pager)
 static gboolean
 toc_process_toc (YelpTocPager *pager)
 {
-    xmlDocPtr    toc_doc;
     xmlNodePtr   toc_node;
     GError      *error = NULL;
 
     YelpTocPagerPriv *priv = pager->priv;
 
-    printf ("toc_process_toc\n");
-    toc_doc = xmlCtxtReadFile (priv->parser,
-			       DATADIR "/yelp/toc.xml",
-			       NULL, 0);
+    priv->toc_doc = xmlCtxtReadFile (priv->parser,
+				     DATADIR "/yelp/toc.xml",
+				     NULL, 0);
 
-    if (!toc_doc) {
+    if (!priv->toc_doc) {
 	g_set_error (&error,
 		     YELP_ERROR,
 		     YELP_ERROR_FAILED_TOC,
@@ -469,9 +482,9 @@ toc_process_toc (YelpTocPager *pager)
 	return FALSE;
     }
 
-    toc_node = xmlDocGetRootElement (toc_doc);
+    toc_node = xmlDocGetRootElement (priv->toc_doc);
 
-    if (!xmlStrcmp (toc_node->name, "toc")) {
+    if (xmlStrcmp (toc_node->name, (const xmlChar *) "toc")) {
 	g_set_error (&error,
 		     YELP_ERROR,
 		     YELP_ERROR_FAILED_TOC,
@@ -486,7 +499,6 @@ toc_process_toc (YelpTocPager *pager)
 			   (GtkFunction) toc_process_toc_pending,
 			   pager);
 
-    xmlFreeDoc (toc_doc);
     return FALSE;
 }
 
@@ -496,8 +508,10 @@ toc_process_toc_pending (YelpTocPager *pager)
     GSList      *first;
     xmlNodePtr   node;
     xmlNodePtr   cur;
-    xmlChar     *id;
-    gchar       *url;
+    xmlChar     *id = NULL;
+    xmlChar     *title;
+    GSList      *subcats = NULL;
+    GSList      *subomfs = NULL;
 
     YelpTocPagerPriv *priv = pager->priv;
 
@@ -507,51 +521,188 @@ toc_process_toc_pending (YelpTocPager *pager)
     node = first->data;
 
     id = xmlGetProp (node, (const xmlChar *) "id");
-    url = g_strconcat ("toc:", (gchar *) id, NULL);
-    xmlFree (id);
+
+    title = node_get_title (node);
 
     for (cur = node->children; cur; cur = cur->next) {
-	printf ("cur: %s\n", cur->name);
+	if (cur->type == XML_ELEMENT_NODE) {
+	    if (!xmlStrcmp (cur->name, "toc")) {
+		priv->toc_pending = g_slist_append (priv->toc_pending, cur);
+		subcats = g_slist_prepend (subcats, cur);
+	    }
+	    else if (!xmlStrcmp (cur->name, "category")) {
+		GSList  *omf;
+		xmlChar *cat;
+
+		cat = xmlNodeGetContent (cur);
+		omf = g_hash_table_lookup (priv->category_hash_omf, cat);
+
+		for ( ; omf; omf = omf->next)
+		    subomfs = g_slist_prepend (subomfs, omf->data);
+
+		xmlFree (cat);
+	    }
+	}
     }
 
+    if (id) {
+	yelp_pager_add_page (YELP_PAGER (pager),
+			     id, title,
+			     g_strdup ("<html><body>FIXME</body></html"));
+	g_signal_emit_by_name (pager, "page", id);
+    } else {
+	g_warning (_("YelpTocPager: TOC entry has no id."));
+	g_free (title);
+    }
+
+    g_slist_free (subcats);
+    g_slist_free (subomfs);
     g_slist_free_1 (first);
 
     if (!priv->toc_pending) {
+	xmlFreeDoc (priv->toc_doc);
+	g_signal_emit_by_name (pager, "finish");
+
+	if (priv->pause_count > 0)
+	    priv->unpause_func = (GtkFunction) toc_process_idx;
+	else
+	    gtk_idle_add_priority (G_PRIORITY_LOW,
+				   (GtkFunction) toc_process_idx,
+				   pager);
 	return FALSE;
     }
     else if (priv->pause_count > 0) {
 	priv->unpause_func = (GtkFunction) toc_process_toc_pending;
 	return FALSE;
     }
-    else
+    else {
 	return TRUE;
+    }
+}
+
+static gboolean
+toc_process_idx (YelpTocPager *pager)
+{
+    gtk_idle_add_priority (G_PRIORITY_LOW,
+			   (GtkFunction) toc_process_idx_pending,
+			   pager);
+    return FALSE;
+}
+
+static gboolean
+toc_process_idx_pending (YelpTocPager *pager)
+{
+    GSList      *first;
+    OMF         *omf;
+    YelpURI     *uri;
+    gchar       *path;
+    xmlDocPtr    doc;
+
+    YelpTocPagerPriv *priv = pager->priv;
+
+    first = priv->idx_pending;
+    priv->idx_pending = g_slist_remove_link (priv->idx_pending, first);
+
+    omf = first->data;
+
+    printf ("OMF: %s\n", omf->xml_file);
+
+    uri  = yelp_uri_new (omf->xml_file);
+    path = yelp_uri_get_path (uri);
+
+    /*
+    doc = xmlCtxtReadFile (priv->parser,
+			   path,
+			   NULL, 0);
+
+    xmlFreeDoc (doc);
+    */
+
+    g_free (path);
+    g_object_unref (uri);
+    g_slist_free_1 (first);
+
+    if (!priv->idx_pending) {
+	return FALSE;
+    }
+    else if (priv->pause_count > 0) {
+	priv->unpause_func = (GtkFunction) toc_process_idx_pending;
+	return FALSE;
+    }
+    else {
+	return TRUE;
+    }
+}
+
+static xmlChar *
+node_get_title (xmlNodePtr node)
+{
+    xmlNodePtr  cur;
+    xmlChar    *title = NULL;
+    xmlChar    *language = NULL;
+    gint        priority = 0;
+
+    for (cur = node->children; cur; cur = cur->next) {
+	if (!xmlStrcmp (cur->name, (const xmlChar *) "title")) {
+	    gint pri = 0;
+	    xmlChar *tlang = xmlNodeGetLang (cur);
+	    GList *langs = (GList *) gnome_i18n_get_language_list ("LC_MESSAGES");
+
+	    for ( ; langs != NULL; langs = langs->next) {
+		gchar *lang = langs->data;
+		pri++;
+
+		if (lang == NULL || strchr (lang, '.') != NULL)
+		    continue;
+
+		if (!xmlStrcmp ((xmlChar *) lang, tlang))
+		    break;
+	    }
+	    if (priority == 0 || pri < priority) {
+		if (title)
+		    xmlFree (title);
+		if (language)
+		    xmlFree (language);
+		title = xmlNodeGetContent (cur);
+		language = tlang;
+		priority = pri;
+	    } else {
+		xmlFree (tlang);
+	    }
+	}
+    }
+    return title;
 }
 
 static void
 toc_hash_omf (YelpTocPager *pager, OMF *omf)
 {
     GSList *category;
+    YelpTocPagerPriv *priv = pager->priv;
 
-    g_hash_table_insert (pager->priv->unique_hash_omf,
+    g_hash_table_insert (priv->unique_hash_omf,
 			 omf->uniqueid,
 			 omf);
 
     for (category = omf->categories; category; category = category->next) {
 	gchar  *catstr = (gchar *) category->data;
 	GSList *omfs =
-	    (GSList *) g_hash_table_lookup (pager->priv->category_hash_omf,
+	    (GSList *) g_hash_table_lookup (priv->category_hash_omf,
 					    catstr);
 	omfs = g_slist_prepend (omfs, omf);
 
-	g_hash_table_insert (pager->priv->category_hash_omf,
+	g_hash_table_insert (priv->category_hash_omf,
 			     catstr, omfs);
     }
+
+    priv->idx_pending = g_slist_prepend (priv->idx_pending, omf);
 }
 
 static void
 toc_unhash_omf (YelpTocPager *pager, OMF *omf)
 {
     GSList *category;
+    YelpTocPagerPriv *priv = pager->priv;
 
     g_hash_table_remove (pager->priv->unique_hash_omf,
 			 omf->uniqueid);
@@ -567,6 +718,8 @@ toc_unhash_omf (YelpTocPager *pager, OMF *omf)
 				 catstr, omfs);
 	}
     }
+
+    priv->idx_pending = g_slist_remove (priv->idx_pending, omf);
 }
 
 static void

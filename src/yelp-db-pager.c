@@ -195,6 +195,7 @@ db_pager_process (YelpPager *pager)
     DBWalker      *walker;
     GError        *error;
 
+    xmlDocPtr               doc;
     xmlParserCtxtPtr        ctxt;
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr tctxt;
@@ -211,13 +212,13 @@ db_pager_process (YelpPager *pager)
 
     yelp_toc_pager_pause (yelp_toc_pager_get ());
 
-    ctxt = xmlCreateFileParserCtxt (uri_str);
+    ctxt = xmlNewParserCtxt ();
     ctxt->replaceEntities = TRUE;
     ctxt->validate        = FALSE;
     ctxt->loadsubset      = TRUE;
-    xmlParseDocument (ctxt);
+    doc = xmlCtxtReadFile (ctxt, (const char *) uri_str, NULL, 0);
 
-    if (ctxt->myDoc == NULL) {
+    if (doc == NULL) {
 	error = NULL;
 	yelp_pager_error (pager, error);
 
@@ -226,7 +227,7 @@ db_pager_process (YelpPager *pager)
 
     walker = g_new0 (DBWalker, 1);
     walker->pager = YELP_DB_PAGER (pager);
-    walker->doc   = ctxt->myDoc;
+    walker->doc   = doc;
     walker->cur   = xmlDocGetRootElement (walker->doc);
 
     while (gtk_events_pending ())
@@ -259,7 +260,7 @@ db_pager_process (YelpPager *pager)
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     tctxt      = xsltNewTransformContext (stylesheet,
-					  ctxt->myDoc);
+					  doc);
     tctxt->_private = pager;
     xsltRegisterExtElement (tctxt,
 			    "document",
@@ -274,11 +275,12 @@ db_pager_process (YelpPager *pager)
 	gtk_main_iteration ();
 
     xsltApplyStylesheetUser (stylesheet,
-			     ctxt->myDoc,
+			     doc,
 			     params,
 			     NULL, NULL,
 			     tctxt);
 
+    xmlFreeDoc (doc);
     xsltFreeStylesheet (stylesheet);
     xmlFreeParserCtxt (ctxt);
 
@@ -326,8 +328,11 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 
     frag_id = yelp_uri_get_fragment (uri);
 
-    page_id = g_hash_table_lookup (db_pager->priv->frags_hash,
-				   frag_id);
+    if (frag_id)
+	page_id = g_hash_table_lookup (db_pager->priv->frags_hash,
+				       frag_id);
+    else
+	page_id = g_strdup ("index");
 
     g_free (frag_id);
     return page_id;

@@ -1,3 +1,26 @@
+2003-11-28  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Switched to a different bit of the libxml2 API to parse the document.
+	- Made page_id default to "index" when frag_id == NULL.
+
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Implemented yelp_uri_is_page.
+
+	* src/yelp-toc-pager.c:
+	- Implemented resolve_uri.
+	- Finished parsing of TOC, just need to write the pages.
+	- Began work on indexing stuff.
+
+	* src/yelp-uri.c:
+	- Fixed memory corruption.
+
+	* src/yelp-window.c:
+	- Added callbacks for error and finish signals.
+	- Made the TOC go through window_handle_pager_uri.
+	- Switched to yelp_pager_uri_is_page in page callback.
+
 2003-11-12  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:

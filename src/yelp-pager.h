@@ -90,6 +90,9 @@ void                 yelp_pager_error        (YelpPager      *pager,
 
 const GtkTreeModel * yelp_pager_get_sections (YelpPager      *pager);
 
+gboolean             yelp_pager_uri_is_page  (YelpPager      *pager,
+					      gchar          *page_id,
+					      YelpURI        *uri);
 const YelpPage *     yelp_pager_lookup_page  (YelpPager      *pager,
 					      YelpURI        *uri);
 const YelpPage *     yelp_pager_get_page     (YelpPager      *pager,

@@ -346,7 +346,7 @@ uri_parse_uri (YelpURI *uri, const gchar *uri_str)
 	scheme     = g_strndup (path, c - path);
     } else {
 	priv->type = YELP_URI_TYPE_RELATIVE;
-	priv->path = path;
+	priv->path = g_strdup (path);
 	return;
     }
 

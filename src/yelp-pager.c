@@ -31,6 +31,8 @@
 #include "yelp-marshal.h"
 #include "yelp-uri.h"
 
+#include <string.h>
+
 #define d(x)
 
 struct _YelpPagerPriv {
@@ -334,6 +336,31 @@ yelp_pager_get_sections (YelpPager *pager)
     g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
     return YELP_PAGER_GET_CLASS (pager)->get_sections (pager);
+}
+
+gboolean
+yelp_pager_uri_is_page (YelpPager *pager, gchar *page_id, YelpURI *uri)
+{
+    gchar    *frag_id = NULL;
+    gboolean  equal;
+
+    frag_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
+
+    if (!frag_id || !strcmp (frag_id, ""))
+	equal = FALSE;
+    else if (!page_id || !strcmp (page_id, "") || !strcmp (page_id, "index")) {
+	if (!strcmp (frag_id, "index"))
+	    equal = TRUE;
+	else
+	    equal = FALSE;
+    }
+    else if (!strcmp (page_id, frag_id))
+	equal = TRUE;
+    else
+	equal = FALSE;
+
+    g_free (frag_id);
+    return equal;
 }
 
 const YelpPage *
