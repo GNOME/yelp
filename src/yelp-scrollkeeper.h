@@ -23,8 +23,8 @@
 #ifndef __YELP_SCROLLKEEPER_H__
 #define __YELP_SCROLLKEEPER_H__
 
-#include <gtk/gtktreestore.h>
+#include <glib.h>
 
-gboolean yelp_scrollkeeper_init (GtkTreeStore *store);
+gboolean yelp_scrollkeeper_init (GNode *tree);
 
 #endif /* __YELP_SCROLLKEEPER_H__ */

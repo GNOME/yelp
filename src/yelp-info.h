@@ -23,8 +23,8 @@
 #ifndef __YELP_INFO_H__
 #define __YELP_INFO_H__
 
-#include <gtk/gtktreestore.h>
+#include <glib.h>
 
-gboolean yelp_info_init (GtkTreeStore *store);
+gboolean yelp_info_init (GNode *tree);
 
 #endif /* __YELP_INFO_H__ */

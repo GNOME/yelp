@@ -91,7 +91,7 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpWindowPriv {
-	GtkTreeModel   *tree_model;
+	GNode          *doc_tree;
 
 	GtkWidget      *notebook;
 
@@ -109,9 +109,9 @@ struct _YelpWindowPriv {
 
 static GtkItemFactoryEntry menu_items[] = {
 	{N_("/_File"),              NULL,         0,                  0, "<Branch>"},
-	{N_("/File/_New window"),   "<Control>N", yw_new_window_cb,   0, "<StockItem>", GTK_STOCK_NEW   },
-	{N_("/File/_Close window"), "<Control>W", yw_close_window_cb, 0, "<StockItem>", GTK_STOCK_CLOSE },
-	{N_("/File/_Quit"),         "<Control>Q", yw_exit_cb,         0, "<StockItem>", GTK_STOCK_QUIT  },
+	{N_("/File/_New window"),   NULL,         yw_new_window_cb,   0, "<StockItem>", GTK_STOCK_NEW   },
+	{N_("/File/_Close window"), NULL,         yw_close_window_cb, 0, "<StockItem>", GTK_STOCK_CLOSE },
+	{N_("/File/_Quit"),         NULL,         yw_exit_cb,         0, "<StockItem>", GTK_STOCK_QUIT  },
 	{N_("/_Help"),              NULL,         0,                  0, "<Branch>"},
 	{N_("/Help/_About"),        NULL,         yw_about_cb,        0, NULL },
 };
@@ -510,7 +510,7 @@ yw_create_toolbar (YelpWindow *window)
 }
 
 GtkWidget *
-yelp_window_new (GtkTreeModel *tree_model)
+yelp_window_new (GNode *doc_tree)
 {
 	YelpWindow     *window;
 	YelpWindowPriv *priv;
@@ -518,10 +518,10 @@ yelp_window_new (GtkTreeModel *tree_model)
 	window = g_object_new (YELP_TYPE_WINDOW, NULL);
 	priv   = window->priv;
 
-	priv->tree_model = tree_model;
+	priv->doc_tree = doc_tree;
 
-	priv->toc_view    = yelp_view_toc_new (tree_model);
-	priv->content_view = yelp_view_content_new (tree_model);
+ 	priv->toc_view    = yelp_view_toc_new (doc_tree);
+/* 	priv->content_view = yelp_view_content_new (tree_model); */
 	priv->index_view   = yelp_view_index_new (NULL);
 
 	g_signal_connect (priv->toc_view, "url_selected",

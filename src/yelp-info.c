@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2002 Red Hat Inc.
  * Copyright (C) 2000 Sun Microsystems, Inc. 
- * Copyright (C) 2001 Eazel, Inc. 
+ * Copyright (C) 2001 Eazel, Inc.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -40,11 +40,9 @@
 #include <unistd.h>
 
 static void
-yelp_info_populate_tree_for_subdir (GtkTreeStore *store,
-				    const char *basedir,
-				    GtkTreeIter *parent)
+yelp_info_populate_tree_for_subdir (const char *basedir, GNode *parent)
 {
-	DIR *dirh;
+	DIR           *dirh;
 	struct dirent *dent;
 
 	dirh = opendir (basedir);
@@ -77,34 +75,34 @@ yelp_info_populate_tree_for_subdir (GtkTreeStore *store,
 
 		g_snprintf (uribuf, sizeof (uribuf), "info:%s", dent->d_name);
 
-		yelp_util_contents_add_section (store, parent, 
-						yelp_section_new (YELP_SECTION_DOCUMENT,
-								  titlebuf, uribuf, 
-								  NULL, NULL));
+		g_node_append_data (parent, 
+				    yelp_section_new (YELP_SECTION_DOCUMENT,
+						      titlebuf, uribuf, 
+						      NULL, NULL));
 	}
 
 	closedir (dirh);
 }
 
 gboolean
-yelp_info_init (GtkTreeStore *store)
+yelp_info_init (GNode *tree)
 {
-	GtkTreeIter *root;
+	GNode       *root;
 	struct stat  stat_dir1;
 	struct stat  stat_dir2;
 	
-	root = yelp_util_contents_add_section (store, NULL, 
-					       yelp_section_new (YELP_SECTION_CATEGORY,
-								 _("info"), NULL, 
-								  NULL, NULL));
+	root = g_node_append_data (tree, 
+				   yelp_section_new (YELP_SECTION_CATEGORY,
+						     _("info"), NULL, 
+						     NULL, NULL));
 
 	stat ("/usr/info", &stat_dir1);
 	stat ("/usr/share/info", &stat_dir2);
 	
-	yelp_info_populate_tree_for_subdir (store, "/usr/info", root);
+	yelp_info_populate_tree_for_subdir ("/usr/info", root);
 	
 	if (stat_dir1.st_ino != stat_dir2.st_ino) {
-		yelp_info_populate_tree_for_subdir (store, "/usr/share/info", 
+		yelp_info_populate_tree_for_subdir ("/usr/share/info", 
 						    root);
 	}
 

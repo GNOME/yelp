@@ -23,8 +23,8 @@
 #ifndef __YELP_MAN_H__
 #define __YELP_MAN_H__
 
-#include <gtk/gtktreestore.h>
+#include <glib.h>
 
-gboolean yelp_man_init (GtkTreeStore *store);
+gboolean yelp_man_init (GNode *tree);
 
 #endif /* __YELP_MAN_H__ */

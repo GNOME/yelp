@@ -508,24 +508,24 @@ yelp_man_free_initial_tree (struct TreeNode *node)
 }
 
 static void
-yelp_man_push_initial_tree (struct TreeNode *node, GtkTreeStore *store, GtkTreeIter *parent)
+yelp_man_push_initial_tree (struct TreeNode *node, GNode *parent)
 {
 	struct TreeNode *child;
-	YelpSection *page;
-	GtkTreeIter *iter;
-	GList *l;
-
-	iter = yelp_util_contents_add_section (store, parent, 
-					       yelp_section_new (YELP_SECTION_CATEGORY,
-								 node->name, NULL, 
-								 NULL, NULL));
+	YelpSection     *page;
+	GList           *l;
+	GNode           *man_node;
+	
+	man_node = g_node_append_data (parent, 
+				       yelp_section_new (YELP_SECTION_CATEGORY,
+							 node->name, NULL, 
+							 NULL, NULL));
 	
 	l = node->tree_nodes;
 	while (l) {
 		child = l->data;
 		l = l->next;
 
-		yelp_man_push_initial_tree (child, store, iter);
+		yelp_man_push_initial_tree (child, man_node);
 	}
 	
 	l = node->pages;
@@ -533,12 +533,12 @@ yelp_man_push_initial_tree (struct TreeNode *node, GtkTreeStore *store, GtkTreeI
 		page = l->data;
 		l = l->next;
 
-		yelp_util_contents_add_section (store, iter, page);
+		g_node_append_data (parent, page);
 	}
 }
 
 gboolean
-yelp_man_init (GtkTreeStore *store)
+yelp_man_init (GNode *tree)
 {
 	gchar            *manpath = NULL;
  	char            **manpathes = NULL;
@@ -587,7 +587,7 @@ yelp_man_init (GtkTreeStore *store)
 
 	yelp_man_cleanup_initial_tree (root);
 	
-	yelp_man_push_initial_tree (root, store, NULL);
+	yelp_man_push_initial_tree (root, tree);
 	
 	yelp_man_free_initial_tree (root);
 	g_hash_table_destroy (section_hash);

@@ -56,7 +56,7 @@ struct _YelpViewTOCClass {
 };
 
 GType           yelp_view_toc_get_type       (void);
-GtkWidget      *yelp_view_toc_new            (GtkTreeModel *tree_model);
+GtkWidget      *yelp_view_toc_new            (GNode        *doc_tree);
 void            yelp_view_toc_open_url       (YelpViewTOC  *view,
 					      const char   *url);
 

@@ -36,7 +36,7 @@ typedef struct {
 } ForeachData;
 
 struct _YelpBasePriv {
-        GtkTreeStore  *content_store;
+	GNode         *toc_tree;
 
 	GSList        *windows;
 };
@@ -73,11 +73,8 @@ yelp_base_init (YelpBase *base)
 
         priv = g_new0 (YelpBasePriv, 1);
         
-        priv->content_store  = gtk_tree_store_new (3, 
-						   G_TYPE_STRING, 
-						   G_TYPE_POINTER,
-						   G_TYPE_BOOLEAN);
-        
+	priv->toc_tree = g_node_new(NULL);
+
 	priv->windows = NULL;
         base->priv    = priv;
 }
@@ -129,10 +126,10 @@ yelp_base_new (void)
 
         base = g_object_new (YELP_TYPE_BASE, NULL);
 
-	result = yelp_scrollkeeper_init (base->priv->content_store);
-	result = yelp_man_init (base->priv->content_store);
-	result = yelp_info_init (base->priv->content_store);
-
+	result = yelp_scrollkeeper_init (base->priv->toc_tree);
+	result = yelp_man_init (base->priv->toc_tree);
+	result = yelp_info_init (base->priv->toc_tree);
+	
         return base;
 }
 
@@ -146,7 +143,7 @@ yelp_base_new_window (YelpBase *base)
 
 	priv = base->priv;
         
-        window = yelp_window_new (GTK_TREE_MODEL (base->priv->content_store));
+        window = yelp_window_new (base->priv->toc_tree);
         
 	priv->windows = g_slist_prepend (priv->windows, window);
 
