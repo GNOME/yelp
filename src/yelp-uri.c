@@ -252,6 +252,10 @@ uri_get_path_from_relative (const gchar *path)
 	g_slist_foreach (ret_locations, (GFunc) g_free, NULL);
 	g_slist_free (ret_locations);
 
+	if (!ret_val) {
+		ret_val = g_strdup (path);
+	}
+
 	d(g_print ("Absolute path: %s\n", ret_val));
 	
 	if (doc_id != path) {

@@ -1,5 +1,8 @@
 2002-06-01  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-uri.c (uri_get_path_from_relative): if URI can't get
+	  resolved, set path to in-string.
+
 	* src/yelp-window.c (window_handle_uri): show error dialog if URI
 	  doesn't exist.
 	(yelp_window_open_uri): don't return if URI doesn't exist.
