@@ -15,7 +15,7 @@ else
 html_widget_impl=yelp-html-gtkhtml2.c
 endif
 
-bin_PROGRAMS = yelp
+bin_PROGRAMS = yelp yelp-db2html
 
 noinst_PROGRAMS = test-uri test-reader
 
@@ -31,10 +31,10 @@ test_uri_LDADD = 							\
 test_reader_SOURCES = 							\
 	test-reader.c							\
 	yelp-uri.c		yelp-uri.h				\
+	yelp-cache.c		yelp-cache.h				\
 	yelp-reader.c		yelp-reader.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-util.c		yelp-util.h				\
-	yelp-db2html.c		yelp-db2html.h				\
 	yelp-marshal-main.c
 
 test_reader_LDADD = 							\
@@ -56,11 +56,17 @@ yelp-marshal.c: yelp-marshal.h
 
 yelp-marshal-main.c: yelp-marshal.c
 
+yelp_db2html_SOURCES =							\
+	yelp-db2html.c
+
+yelp_db2html_LDADD =							\
+	@YELP_LIBS@
+
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-base.c		yelp-base.h				\
+	yelp-cache.c		yelp-cache.h				\
 	yelp-error.c		yelp-error.h				\
-	yelp-db2html.c		yelp-db2html.h				\
 	yelp-history.c		yelp-history.h				\
 	$(html_widget_impl) 	yelp-html.h				\
 	yelp-index-model.c	yelp-index-model.h			\

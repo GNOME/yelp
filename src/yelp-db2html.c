@@ -39,112 +39,92 @@
 #include <libxslt/xsltInternals.h>
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
+#include <libgnomevfs/gnome-vfs-init.h>
 
 #include "yelp-error.h"
 #include "yelp-db2html.h"
-
-#define d(x)
 
 /* stylesheet location based on Linux Standard Base      *
  * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
 #define STYLESHEET_PATH DATADIR"/sgml/docbook/yelp"
 #define STYLESHEET STYLESHEET_PATH"/yelp-customization.xsl"
 
-gboolean
-yelp_db2html_convert (YelpURI             *uri,
-                      xmlOutputBufferPtr   buf, 
-                      GError             **error)
+gint 
+main (gint argc, gchar **argv) 
 {
-	static xsltStylesheetPtr  stylesheet = NULL;
-        xmlDocPtr                 db_doc;
-        xmlDocPtr                 final_doc;
-	const gchar              *params[16 + 1];
-	gchar                    *pathname;
-        GTimer                   *timer;
+	xsltStylesheet *stylesheet = NULL;
+/*         YelpURI        *uri; */
+        xmlDocPtr       db_doc;
+        xmlDocPtr       final_doc;
+	const gchar    *params[16 + 1];
+	gchar          *pathname;
+        gchar          *docpath;
         
-	db_doc    = NULL;
+	db_doc = NULL;
 
-        timer = g_timer_new ();
+        if (argc < 2) {
+                g_print ("Usage 'yelp-db2html url'\n");
+                exit (1);
+        }
 
-	d(g_print ("Convert file: %s\n", yelp_uri_get_path (uri)));
-	
+        docpath = argv[1];
+
 	/* libxml housekeeping */
 	xmlSubstituteEntitiesDefault(1);
 	xmlLoadExtDtdDefaultValue = 1;
 
 	/* parse the stylesheet */
-        if (!stylesheet) {
-                stylesheet  = xsltParseStylesheetFile (STYLESHEET);
-        }
+        stylesheet  = xsltParseStylesheetFile (STYLESHEET);
         
         if (!stylesheet) {
-                g_set_error (error,
-                             YELP_ERROR,
-                             YELP_ERROR_DOCBOOK_2_HTML,
-                             _("Error while parsing the stylesheet, make sure you have your docbook environment setup correctly."));
-                             
-                /* FIXME: Set GError */
-                return FALSE;
+                g_error ("Error while parsing the stylesheet, make sure you have your docbook environment setup correctly.");
+                exit (1);
         }
 
-	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML) {
-		db_doc = xmlParseFile (yelp_uri_get_path (uri));
+	if (strstr (docpath, ".sgml")) {
+                db_doc = docbParseFile (docpath, "UTF-8");
 	} else {
-                db_doc = docbParseFile (yelp_uri_get_path (uri), "UTF-8");
+		db_doc = xmlParseFile (docpath);
 	}
 
 	if (db_doc == NULL) {
-                /* FIXME: Set something in the GError */
-                g_set_error (error,
-                             YELP_ERROR,
-                             YELP_ERROR_DOCBOOK_2_HTML,
-                             _("Couldn't parse the document '%s'."),
-                             yelp_uri_get_path (uri));
-                
-                return FALSE;
+                g_error ("Couldn't parse the document '%s'.", 
+                         docpath);
+                exit (1);
 	}
 	
 	/* retrieve path component of filename passed in at
 	   command line */
-	pathname = g_path_get_dirname (yelp_uri_get_path (uri));
+	pathname = g_path_get_dirname (docpath);
         
 	/* set params to be passed to stylesheet */
 	params[0] = "gdb_docname";
-	params[1] = g_strconcat("\"", yelp_uri_get_path (uri), "\"", NULL) ;
+	params[1] = g_strconcat("\"", docpath, "\"", NULL) ;
 	params[2] = "gdb_pathname";
 	params[3] = g_strconcat("\"", pathname, "\"", NULL) ;
 	params[4] = "gdb_stylesheet_path";
         params[5] = STYLESHEET_PATH;
-        params[6] = NULL;
+        params[6] = "gdb_multichunk";
+        params[7] = "1";
+        params[8] = NULL;
         
         g_free (pathname);
-
-	if (yelp_uri_get_section (uri)) {
-  		params[6] = "gdb_rootid"; 
-		params[7] = g_strconcat("\"", 
-                                        yelp_uri_get_section (uri), 
-                                        "\"", 
-                                        NULL) ;
-		params[8] = NULL;
-	}
 
         final_doc = xsltApplyStylesheet (stylesheet, db_doc, params);
 
         xmlFree (db_doc);
 
         if (!final_doc) {
-                g_set_error (error,
-                             YELP_ERROR,
-                             YELP_ERROR_DOCBOOK_2_HTML,
-                             _("Error while applying the stylesheet."));
-                return FALSE;
+                g_error ("Error while applying the stylesheet.");
+                exit (1);
         }
 
-	/* Output the results to the OutputBuffer */
-        xsltSaveResultTo (buf, final_doc, stylesheet);
+        xsltSaveResultToFile(stdout, final_doc, stylesheet);
+        xsltFreeStylesheet(stylesheet);
 
         xmlFree (final_doc);
+        xsltCleanupGlobals();
+        xmlCleanupParser();
 
-        d(g_print ("docbook -> html took: %f s\n", g_timer_elapsed (timer, 0)));
-	return TRUE;
+	return 0;
 }

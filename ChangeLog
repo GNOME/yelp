@@ -1,3 +1,33 @@
+2002-05-27  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-reader.c:
+	(reader_get_chunk): added, used to get a chunk from a multi
+	  chunked document.
+	(reader_man_info_start): 
+	- now handles docbook too. will be renamed later.
+	- add docbook results in cache.
+	- get chunk from document if docbook.
+	(yelp_reader_start): 
+	- check in cache if document is there, if so, just get the chunk 
+	  and signal. 
+	- if not in cache, use g_timeout_add instead of idle.
+
+	* src/yelp-db2html.c: 
+	- this is now it's own binary
+	- use multichunk
+	- don't use YelpURI so that we don't need to init gnome vfs
+
+	* src/yelp-db2html.h: removed
+	
+	* src/yelp-cache.c: first dummy implementation of cache.
+
+	* src/yelp-base.c (yelp_base_init): init the cache.
+
+	* src/Makefile.am:
+	(yelp_db2html_LDADD): added binary for db2html.
+	(yelp_SOURCES): added yelp-cache.[ch] and removed 
+	  yelp-db2html.[ch]
+
 2002-05-26  Mikael Hallendal  <micke@codefactory.se>
 
 	* stylesheets/yelp-customization.xsl: 

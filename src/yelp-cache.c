@@ -20,22 +20,43 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __YELP_DB2HTML_H__
-#define __YELP_DB2HTML_H__
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
-#include <glib.h>
-#include <libxml/xmlversion.h>
-#include <libxml/xmlmemory.h>
-#include <libxml/debugXML.h>
-#include <libxml/HTMLtree.h>
-#include <libxml/DOCBparser.h>
-#include <libxml/catalog.h>
+#include <string.h>
+#include "yelp-cache.h"
 
-#include "yelp-uri.h"
+GHashTable *cache_table;
+GMutex     *cache_mutex;
 
-gboolean
-yelp_db2html_convert (YelpURI             *uri,
-                      xmlOutputBufferPtr   buf, 
-                      GError             **error);
+void
+yelp_cache_init (void)
+{
+ 	cache_mutex = g_mutex_new ();
+        cache_table = g_hash_table_new (g_str_hash, g_str_equal);
+}
 
-#endif /* __YELP_DB2HTML_H__ */
+const gchar *
+yelp_cache_lookup (const gchar *path)
+{ 
+        const gchar *ret_val;
+        
+        g_mutex_lock (cache_mutex);
+        
+        ret_val = (const gchar *) g_hash_table_lookup (cache_table, path);
+        
+        g_mutex_unlock (cache_mutex);
+
+        return ret_val;
+}
+
+void
+yelp_cache_add (const gchar *path, const gchar *html)
+{
+        g_mutex_lock (cache_mutex);
+        
+        g_hash_table_insert (cache_table, (gchar *) path, g_strdup (html));
+        
+        g_mutex_unlock (cache_mutex);
+}

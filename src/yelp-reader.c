@@ -29,11 +29,13 @@
 #include <libxslt/xsltutils.h>
 #include <string.h>
 
+#include "yelp-cache.h"
 #include "yelp-db2html.h"
 #include "yelp-marshal.h"
 #include "yelp-reader.h"
 
-#define d(x) 
+#define d(x)
+
 #define BUFFER_SIZE 16384
 
 #define STAMP_MUTEX_LOCK    g_mutex_lock(priv->stamp_mutex);
@@ -69,15 +71,17 @@ typedef struct {
 	ReaderQueueType  type;
 } ReaderQueueData;
 
-
 static void      reader_class_init        (YelpReaderClass     *klass);
 static void      reader_init              (YelpReader          *reader);
 
+#if 0
 static void      reader_db_start          (ReaderThreadData    *th_data);
 static gint      reader_db_write          (ReaderThreadData    *th_data,
 					   const gchar         *buffer,
 					   gint                 len);
 static gint      reader_db_close          (ReaderThreadData    *th_data);
+#endif
+
 static void      reader_man_info_start    (ReaderThreadData    *th_data);
 
 static void      reader_file_start        (ReaderThreadData    *th_data);
@@ -86,7 +90,7 @@ static gboolean  reader_check_cancelled   (YelpReader          *reader,
 					   gint                 stamp);
 static gpointer  reader_start             (ReaderThreadData    *th_data);
 static void      reader_change_stamp      (YelpReader          *reader);
-static gboolean  reader_idle_check_queue  (ReaderThreadData    *th_data);
+static gboolean      reader_idle_check_queue  (ReaderThreadData    *th_data);
 
 static ReaderQueueData * 
 reader_q_data_new                         (YelpReader          *reader,
@@ -98,7 +102,8 @@ static void      reader_q_data_free       (ReaderQueueData     *q_data);
 /* FIXME: Solve this so we don't leak */
 static void      reader_th_data_free      (ReaderThreadData    *th_data);
 #endif
-
+static gchar *   reader_get_chunk         (const gchar         *document,
+					   const gchar         *section);
 
 enum {
 	START,
@@ -209,6 +214,7 @@ reader_init (YelpReader *reader)
 	priv->thread_queue = g_async_queue_new ();
 }
 
+#if 0
 static void
 reader_db_start (ReaderThreadData *th_data)
 {
@@ -278,7 +284,11 @@ reader_db_write (ReaderThreadData *th_data, const gchar *buffer, gint len)
 	if (len <= 0) {
 		return 0;
 	}
-
+	
+	g_print ("------------------------------------------\n");
+	
+	g_print ("%s\n", buffer);
+	
 	q_data = reader_q_data_new (reader, th_data->stamp,
 				    READER_QUEUE_TYPE_DATA);
 
@@ -319,6 +329,7 @@ reader_db_close (ReaderThreadData *th_data)
 
 	return 0;
 }
+#endif
 
 static void
 reader_man_info_start (ReaderThreadData *th_data)
@@ -330,7 +341,7 @@ reader_man_info_start (ReaderThreadData *th_data)
 	GError          *error = NULL;
 	gint             exit_status;
 	ReaderQueueData *q_data;
-	gint             stamp;
+	gint             stamp; 
 	
 	g_return_if_fail (th_data != NULL);
 
@@ -363,12 +374,17 @@ reader_man_info_start (ReaderThreadData *th_data)
 				g_strdup_printf ("gnome2-info2html %s?%s",
 						 yelp_uri_get_path (uri),
 						 yelp_uri_get_section (uri));
-		} else {
+		} else { 
 			command_line = 
 				g_strdup_printf ("gnome2-info2html %s",
 						 yelp_uri_get_path (uri));
 		}
 		
+		break;
+	case YELP_URI_TYPE_DOCBOOK_XML:
+	case YELP_URI_TYPE_DOCBOOK_SGML:
+		command_line = g_strdup_printf ("yelp-db2html %s",
+						yelp_uri_get_path (uri));
 		break;
 	default:
 		/* Set error */
@@ -388,6 +404,10 @@ reader_man_info_start (ReaderThreadData *th_data)
 				   NULL,
 				   &exit_status,
 				   &error /* FIXME */);
+	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML ||
+	    yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
+		 yelp_cache_add (yelp_uri_get_path (uri), q_data->data);
+	}
 
 	g_free (command_line);
 
@@ -409,8 +429,28 @@ reader_man_info_start (ReaderThreadData *th_data)
 		g_signal_emit (reader, signals[ERROR], 0, error);
 		g_error_free (error);
 	} else {
-		g_async_queue_push (priv->thread_queue, q_data);
+		if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML ||
+		    yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
+			gchar *chunk;
+			
+			if (yelp_uri_get_section (uri)) {
+				chunk = reader_get_chunk (q_data->data,
+							  yelp_uri_get_section (uri));
+			} else {
+				chunk = reader_get_chunk (q_data->data,
+							  "toc");
+			}
+
+			g_free (q_data->data);
+			q_data->data = chunk;
+
+			if (!q_data->data) {
+				q_data->data = g_strdup ("<html><body></body></html>");
+			}
+		}
 		
+		g_async_queue_push (priv->thread_queue, q_data);
+			
 		q_data = reader_q_data_new (reader, priv->stamp, 
 					    READER_QUEUE_TYPE_FINISHED);
 
@@ -532,7 +572,7 @@ reader_start (ReaderThreadData *th_data)
 		STAMP_MUTEX_UNLOCK;
 
 		/* FIXME: refs??? */
-/* 		reader_th_data_free (th_data); */
+/* 		reader_th_data_free(th_data); */
 
 		return NULL;
 	}
@@ -544,10 +584,10 @@ reader_start (ReaderThreadData *th_data)
 	STAMP_MUTEX_UNLOCK;
 	
 	switch (yelp_uri_get_type (uri)) {
+/* 		reader_db_start (th_data); */
+/* 		break; */
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
-		reader_db_start (th_data);
-		break;
 	case YELP_URI_TYPE_MAN:
 	case YELP_URI_TYPE_INFO:
 		reader_man_info_start (th_data);
@@ -720,6 +760,75 @@ reader_th_data_free (ReaderThreadData *th_data)
 }
 #endif
 
+static gchar *
+reader_get_chunk (const gchar *document, const gchar *section)
+{
+	gchar       *header;
+	gchar       *chunk;
+	const gchar *footer;
+	gchar       *ret_val;
+	const gchar *start;
+	const gchar *end;
+	gchar       *tag;
+	GTimer      *timer;
+	
+/* 	g_print ("%s\n", document); */
+
+	timer = g_timer_new ();
+
+	end = strstr (document, "<!-- End of header -->");
+	
+	if (!end) {
+		g_warning ("Wrong type of document\n");
+		return NULL;
+	}
+	
+	header = g_strndup (document, end - document);
+	
+	tag = g_strdup_printf ("<!-- Start of chunk: [%s] -->", section);
+	start = strstr (document, tag);
+	g_free (tag);
+	
+	if (!start) {
+		g_warning ("Document doesn't include section: %s", section);
+		g_free (header);
+		
+		return NULL;
+	}
+
+	end = strstr (start, "<!-- End of chunk -->");
+
+	if (!end) {
+		g_warning ("Document is doesn't contain end tag for section: %s",
+			   section);
+		g_free (header);
+		
+		return NULL;
+	}
+	
+	chunk = g_strndup (start, end - start);
+	
+	footer = strstr (document, "<!-- Start of footer -->");
+	
+	if (!footer) {
+		g_warning ("Couldn't find footer in document");
+		g_free (header);
+		g_free (chunk);
+		
+		return NULL;
+	}
+	 
+	ret_val = g_strconcat (header, chunk, footer, NULL);
+	
+	g_free (header);
+	g_free (chunk);
+
+/* 	g_print ("Finding chunk took: %f seconds\n",  */
+/* 		 g_timer_elapsed (timer, 0)); */
+
+	return ret_val;
+}
+
 YelpReader *
 yelp_reader_new ()
 {
@@ -755,14 +864,56 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	
 	stamp = priv->stamp;
 
+	STAMP_MUTEX_UNLOCK;
+
 	th_data = g_new0 (ReaderThreadData, 1);
 	th_data->reader = g_object_ref (reader);
 	th_data->uri    = yelp_uri_ref (uri);
 	th_data->stamp  = stamp;
 
-	STAMP_MUTEX_UNLOCK;
+	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML || 
+	    yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
+		const gchar *document;
+		gchar *chunk;
 
-	g_idle_add ((GSourceFunc) reader_idle_check_queue, th_data);
+		document = yelp_cache_lookup (yelp_uri_get_path (uri));
+		
+		if (document) {
+			if (yelp_uri_get_section (uri)) {
+				chunk = reader_get_chunk (document, 
+							  yelp_uri_get_section (uri));
+			} else {
+				chunk = reader_get_chunk (document, "toc");
+			}
+		
+			if (chunk) {
+				ReaderQueueData *q_data;
+				
+				q_data = reader_q_data_new (reader, stamp, 
+							    READER_QUEUE_TYPE_START);
+				g_async_queue_push (priv->thread_queue, 
+						    q_data);
+
+				q_data = reader_q_data_new (reader, stamp, 
+							    READER_QUEUE_TYPE_DATA);
+
+				q_data->data = chunk;
+				g_async_queue_push (priv->thread_queue, 
+						    q_data);
+				
+				q_data = reader_q_data_new (reader, stamp, 
+							    READER_QUEUE_TYPE_FINISHED);
+
+				g_async_queue_push (priv->thread_queue, 
+						    q_data);
+
+				g_idle_add ((GSourceFunc) reader_idle_check_queue, th_data);
+				return;
+			}
+		}
+	}
+	
+	g_timeout_add (100, (GSourceFunc) reader_idle_check_queue, th_data);
 
 	g_thread_create ((GThreadFunc) reader_start, th_data,
 			 TRUE, 

@@ -322,4 +322,3 @@ yelp_history_new ()
 {
 	return g_object_new (YELP_TYPE_HISTORY, NULL);
 }
-
