@@ -1,5 +1,10 @@
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-reader.c (reader_man_info_start): support chunked info.
+
+	* src/yelp-html-gtkhtml2.c
+	(html_link_clicked_cb): don't shortcut if info. it's now chunked.
+
 	* src/yelp-reader.c: use yelp-db2html again.
 
 	* src/yelp-db2html.c: use #define for stylesheet location instead

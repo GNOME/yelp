@@ -72,11 +72,15 @@ main (int argc, char **argv)
         }
 
 	print_uri (uri);
+
+	g_print ("---------------\n");
 	
 	rel_uri = yelp_uri_get_relative (uri, "?link");
 	print_uri (rel_uri);
 	yelp_uri_unref (rel_uri);
 	
+	g_print ("---------------\n");
+
 	rel_uri = yelp_uri_get_relative (uri, "link");
 	print_uri (rel_uri);
 	yelp_uri_unref (rel_uri);

@@ -358,8 +358,17 @@ reader_man_info_start (ReaderThreadData *th_data)
 						yelp_uri_get_path (uri));
 		break;
 	case YELP_URI_TYPE_INFO:
-		command_line = g_strdup_printf ("gnome2-info2html %s",
-						yelp_uri_get_path (uri));
+		if (yelp_uri_get_section (uri)) {
+			command_line = 
+				g_strdup_printf ("gnome2-info2html %s?%s",
+						 yelp_uri_get_path (uri),
+						 yelp_uri_get_section (uri));
+		} else {
+			command_line = 
+				g_strdup_printf ("gnome2-info2html %s",
+						 yelp_uri_get_path (uri));
+		}
+		
 		break;
 	default:
 		/* Set error */
