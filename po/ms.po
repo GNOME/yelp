@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2002-05-28 03:29+0800\n"
+"POT-Creation-Date: 2002-07-09 09:02+0800\n"
 "PO-Revision-Date: 2002-02-04 03:03+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -22,12 +22,12 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Kilang Yelp"
 
-#: src/yelp-main.c:109
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Tak dapat mengaktifkan Yelp: '%s'"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Tak dapat membuka tetingkap baru."
 
@@ -100,139 +100,156 @@ msgstr "Sekilas pandang"
 msgid "System Administration"
 msgstr "Pentadbir Sistem"
 
-#: src/yelp-view-content.c:229 src/yelp-view-content.c:473
-msgid "Loading..."
-msgstr "Memuat..."
-
-#: src/yelp-view-content.c:338 src/yelp-view-index.c:375
+#: src/yelp-view-content.c:420 src/yelp-view-index.c:498
 msgid "Section"
 msgstr "Seksyen"
 
-#: src/yelp-view-index.c:338
+#: src/yelp-view-content.c:555 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "Memuat..."
+
+#: src/yelp-view-index.c:461
 msgid "Search for:"
 msgstr "Cari untuk:"
 
 #. GList           *seriesids;
-#: src/yelp-view-toc.c:163
+#: src/yelp-view-toc.c:183
 msgid "Help Contents"
 msgstr "Kandungan Bantuan"
 
-#: src/yelp-view-toc.c:164
+#: src/yelp-view-toc.c:184
 msgid "GNOME - Desktop"
 msgstr "GNOME - Desktop"
 
-#: src/yelp-view-toc.c:165
+#: src/yelp-view-toc.c:185
 msgid "Additional documents"
 msgstr "Dokumen tambahan"
 
-#: src/yelp-view-toc.c:166 src/yelp-view-toc.c:487
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
 msgid "Manual Pages"
 msgstr "Halaman Manual"
 
-#: src/yelp-view-toc.c:167 src/yelp-view-toc.c:543
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
 msgid "Info Pages"
 msgstr "Halaman Maklumat"
 
-#: src/yelp-view-toc.c:364 src/yelp-view-toc.c:544 src/yelp-view-toc.c:759
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Dokumen"
 
-#: src/yelp-view-toc.c:365 src/yelp-view-toc.c:488 src/yelp-view-toc.c:760
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Kategori"
 
-#: src/yelp-view-toc.c:446
+#: src/yelp-view-toc.c:466
 msgid "Manual pages"
 msgstr "Halaman Manual"
 
-#: src/yelp-window.c:152
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME adalah"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Perisian Bebas"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Fail/Teti_ngkap Baru"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Fail/_Tutup tetingkap"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/_Pergi"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "Pergi/_Undur"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Pergi/_Maju"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Pergi/_Rumah"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "Pergi/_Indeks"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Bantuan"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Bantuan/Perih_al"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
-#: src/yelp-window.c:224
+#: src/yelp-window.c:231 src/yelp-window.c:433
 msgid "Help Browser"
 msgstr "Pelungsur Bantuan"
 
+#: src/yelp-window.c:343
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Dokumen '%s' tidak wujud"
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:567
+#: src/yelp-window.c:602
 msgid "translator_credits"
 msgstr ""
 "Mohamad Afifi Omar <mr_mohd_afifi@yahoo.com>\n"
 "Hasbullah Bin Pit <sebol@ikhlas.com>, Merlimau."
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:606
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pelungsur Fail Bantuan GNOME 2.0"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:661
 msgid "Back"
 msgstr "Undur"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:662
 msgid "Show previous page in history"
 msgstr "Papar halaman terdahulu dalam sejarah"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:673
 msgid "Forward"
 msgstr "Maju"
 
-#: src/yelp-window.c:638
+#: src/yelp-window.c:674
 msgid "Show next page in history"
 msgstr "Papar halaman seterusnya dalam sejaraj"
 
-#: src/yelp-window.c:651
+#: src/yelp-window.c:687
 msgid "Home"
 msgstr "Rumah"
 
-#: src/yelp-window.c:652
+#: src/yelp-window.c:688
 msgid "Go to home view"
 msgstr "Pergi ke paparan rumah"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:698
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:699
 msgid "Search in the index"
 msgstr "Cari di dalam indeks"
 
@@ -250,9 +267,6 @@ msgstr "Bantuan"
 #~ msgstr ""
 #~ "Ralat bila menghantar stylesheet, pastikan anda menetapkan persekitaran "
 #~ "docbook dengan betul."
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Dokumen '%s' tidak wujud"
 
 #~ msgid "Couldn't parse the document '%s'."
 #~ msgstr "Tak dapat menghantar documen '%s'."
