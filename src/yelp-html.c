@@ -56,40 +56,41 @@ typedef struct {
 	gchar      *section;
 } ReadData;
 
-static void      yh_init                  (YelpHtml           *html);
-static void      yh_class_init            (YelpHtmlClass      *klass);
-static int       yelp_html_do_write       (void               *context,
-					   const char         *buffer,
-					   int                 len);
-static int       yelp_html_do_close       (void               *context);
+static void      html_init               (YelpHtml           *html);
+static void      html_class_init         (YelpHtmlClass      *klass);
 
-static void      yelp_html_do_docbook     (YelpHtml           *html,
-					   YelpURI            *uri,
-					   GError            **error);
-static gboolean  yelp_html_io_watch_cb    (GIOChannel         *iochannel, 
-					   GIOCondition        cond, 
-					   ReadData           *read_data);
+static int       html_do_write           (void               *context,
+					  const char         *buffer,
+					  int                 len);
+static int       html_do_close           (void               *context);
 
-static void      yelp_html_do_maninfo     (YelpHtml           *html,
-					   HtmlStream         *stream,
-					   YelpURI            *uri,
-					   GError            **error);
-static void      yelp_html_do_html        (YelpHtml           *html,
-					   HtmlStream         *stream,
-					   const gchar        *uri,
-					   const gchar        *section,
-					   GError            **error);
-static void      yh_url_requested_cb      (HtmlDocument       *doc,
-					   const gchar        *uri,
-					   HtmlStream         *stream,
-					   gpointer            data);
-static void      yh_stream_cancel         (HtmlStream         *stream, 
-					   gpointer            user_data, 
-					   gpointer            cancel_data);
+static void      html_do_docbook         (YelpHtml           *html,
+					  YelpURI            *uri,
+					  GError            **error);
+static gboolean  html_io_watch_cb        (GIOChannel         *iochannel, 
+					  GIOCondition        cond, 
+					  ReadData           *read_data);
 
-static void      yh_link_clicked_cb       (HtmlDocument       *doc, 
-					   const gchar        *url, 
-					   YelpHtml           *html);
+static void      html_do_maninfo         (YelpHtml           *html,
+					  HtmlStream         *stream,
+					  YelpURI            *uri,
+					  GError            **error);
+static void      html_do_html            (YelpHtml           *html,
+					  HtmlStream         *stream,
+					  const gchar        *uri,
+					  const gchar        *section,
+					  GError            **error);
+static void      html_url_requested_cb   (HtmlDocument       *doc,
+					  const gchar        *uri,
+					  HtmlStream         *stream,
+					  gpointer            data);
+static void      html_cancel_stream      (HtmlStream         *stream, 
+					  gpointer            user_data, 
+					  gpointer            cancel_data);
+
+static void      html_link_clicked_cb    (HtmlDocument       *doc, 
+					  const gchar        *url, 
+					  YelpHtml           *html);
 
 #define BUFFER_SIZE 16384
 
@@ -112,12 +113,12 @@ yelp_html_get_type (void)
                                 sizeof (YelpHtmlClass),
                                 NULL,
                                 NULL,
-                                (GClassInitFunc) yh_class_init,
+                                (GClassInitFunc) html_class_init,
                                 NULL,
                                 NULL,
                                 sizeof (YelpHtml),
                                 0,
-                                (GInstanceInitFunc) yh_init,
+                                (GInstanceInitFunc) html_init,
                         };
                 
                 view_type = g_type_register_static (G_TYPE_OBJECT,
@@ -129,7 +130,7 @@ yelp_html_get_type (void)
 }
 
 static void
-yh_init (YelpHtml *html)
+html_init (YelpHtml *html)
 {
         YelpHtmlPriv *priv;
 
@@ -158,16 +159,16 @@ yh_init (YelpHtml *html)
         html_view_set_document (HTML_VIEW (priv->view), priv->doc);
         
         g_signal_connect (G_OBJECT (priv->doc), "link_clicked",
-                          G_CALLBACK (yh_link_clicked_cb), html);
+                          G_CALLBACK (html_link_clicked_cb), html);
         
         g_signal_connect (G_OBJECT (priv->doc), "request_url",
-                          G_CALLBACK (yh_url_requested_cb), html);
+                          G_CALLBACK (html_url_requested_cb), html);
 
         html->priv = priv;
 }
 
 static void
-yh_class_init (YelpHtmlClass *klass)
+html_class_init (YelpHtmlClass *klass)
 {
 	signals[URI_SELECTED] = 
 		g_signal_new ("uri_selected",
@@ -182,7 +183,7 @@ yh_class_init (YelpHtmlClass *klass)
 }
 
 static int 
-yelp_html_do_write (void * context, const char * buffer, int len)
+html_do_write (void * context, const char * buffer, int len)
 {
 	YelpHtml     *html;
 	YelpHtmlPriv *priv;
@@ -204,7 +205,7 @@ yelp_html_do_write (void * context, const char * buffer, int len)
 }
 
 static int
-yelp_html_do_close (void *context)
+html_do_close (void *context)
 {
 	YelpHtml     *html;
 	YelpHtmlPriv *priv;
@@ -226,7 +227,7 @@ yelp_html_do_close (void *context)
 }
 
 static void
-yelp_html_do_docbook (YelpHtml *html, YelpURI *uri, GError **error)
+html_do_docbook (YelpHtml *html, YelpURI *uri, GError **error)
 {
 	xmlOutputBufferPtr  buf;
 	YelpHtmlPriv       *priv;
@@ -237,8 +238,8 @@ yelp_html_do_docbook (YelpHtml *html, YelpURI *uri, GError **error)
 
 	buf = xmlAllocOutputBuffer (NULL);
 		
-	buf->writecallback = yelp_html_do_write;
-	buf->closecallback = yelp_html_do_close;
+	buf->writecallback = html_do_write;
+	buf->closecallback = html_do_close;
 	buf->context       = html;
 		
 	yelp_db2html_convert (uri, buf, error);
@@ -247,9 +248,9 @@ yelp_html_do_docbook (YelpHtml *html, YelpURI *uri, GError **error)
 }
 
 static gboolean
-yelp_html_io_watch_cb (GIOChannel   *iochannel, 
-		       GIOCondition  cond, 
-		       ReadData     *read_data)
+html_io_watch_cb (GIOChannel   *iochannel, 
+		  GIOCondition  cond, 
+		  ReadData     *read_data)
 {
 	YelpHtmlPriv *priv;
 	static gchar  buffer[BUFFER_SIZE];
@@ -272,13 +273,13 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 						  NULL);
 
 		if (status == G_IO_STATUS_NORMAL) {
-			yelp_html_do_write (read_data->html, buffer, n);
+			html_do_write (read_data->html, buffer, n);
 		} 
 		else if (status == G_IO_STATUS_EOF ||
 			 status == G_IO_STATUS_ERROR) {
 			if (n > 0) {
-				yelp_html_do_write (read_data->html, 
-						    buffer, n);
+				html_do_write (read_data->html, 
+					       buffer, n);
 			}
 
 			finished = TRUE;
@@ -312,10 +313,10 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 }
 
 static void
-yelp_html_do_maninfo (YelpHtml    *html,
-		      HtmlStream  *stream,
-		      YelpURI     *uri,
-		      GError     **error)
+html_do_maninfo (YelpHtml    *html,
+		 HtmlStream  *stream,
+		 YelpURI     *uri,
+		 GError     **error)
 {
 	gchar       *command_line = NULL;
 	gchar      **argv = 0;
@@ -366,18 +367,18 @@ yelp_html_do_maninfo (YelpHtml    *html,
 	read_data->section = NULL;
 	
 	g_io_add_watch (io_channel, G_IO_IN | G_IO_HUP, 
-			(GIOFunc) yelp_html_io_watch_cb,
+			(GIOFunc) html_io_watch_cb,
 			read_data);
 
 	d(g_print ("returning from maninfo: %d\n", output_fd));
 }
 
 static void
-yelp_html_do_html (YelpHtml     *html,
-		   HtmlStream   *stream,
-		   const gchar  *docpath,
-		   const gchar  *section,
-		   GError      **error)
+html_do_html (YelpHtml     *html,
+	      HtmlStream   *stream,
+	      const gchar  *docpath,
+	      const gchar  *section,
+	      GError      **error)
 {
 	GIOChannel *io_channel = NULL;
 	ReadData   *read_data;
@@ -396,15 +397,15 @@ yelp_html_do_html (YelpHtml     *html,
 	read_data->section = g_strdup (section);
 	
 	g_io_add_watch (io_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) yelp_html_io_watch_cb,
+			(GIOFunc) html_io_watch_cb,
 			read_data);
 }
 
 static void
-yh_url_requested_cb (HtmlDocument *doc,
-		     const gchar  *url,
-		     HtmlStream   *stream,
-		     gpointer      data)
+html_url_requested_cb (HtmlDocument *doc,
+		       const gchar  *url,
+		       HtmlStream   *stream,
+		       gpointer      data)
 {
 	YelpHtmlPriv     *priv;
         YelpHtml         *html;
@@ -418,7 +419,7 @@ yh_url_requested_cb (HtmlDocument *doc,
         html = YELP_HTML (data);
 	priv = html->priv;
 	
-	html_stream_set_cancel_func (stream, yh_stream_cancel, html);
+	html_stream_set_cancel_func (stream, html_cancel_stream, html);
 
 	d(g_print ("URL REQUESTED: %s\n", url));
 
@@ -447,9 +448,9 @@ yh_url_requested_cb (HtmlDocument *doc,
 }
 
 static void
-yh_stream_cancel (HtmlStream *stream, 
-		  gpointer    user_data, 
-		  gpointer    cancel_data)
+html_cancel_stream (HtmlStream *stream, 
+		    gpointer    user_data, 
+		    gpointer    cancel_data)
 {
 	d(g_print ("CANCEL!!\n"));
 
@@ -457,7 +458,7 @@ yh_stream_cancel (HtmlStream *stream,
 }
 
 static void
-yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
+html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 {
 	YelpHtmlPriv *priv;
 	gboolean      handled;
@@ -533,7 +534,7 @@ yelp_html_open_uri (YelpHtml *html, YelpURI *uri, GError **error)
         html_document_clear (priv->doc);
         html_document_open_stream (priv->doc, "text/html");
 	html_stream_set_cancel_func (priv->doc->current_stream,
- 				     yh_stream_cancel,
+ 				     html_cancel_stream,
  				     html);
 	gtk_adjustment_set_value (
 		gtk_layout_get_vadjustment (
@@ -556,17 +557,17 @@ yelp_html_open_uri (YelpHtml *html, YelpURI *uri, GError **error)
 	switch (yelp_uri_get_type (uri)) {
 	case YELP_URI_TYPE_MAN:
 	case YELP_URI_TYPE_INFO:
-		yelp_html_do_maninfo (html, priv->doc->current_stream, 
-				      uri, error);
+		html_do_maninfo (html, priv->doc->current_stream, 
+				 uri, error);
 		break;
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
-		yelp_html_do_docbook (html, uri, error);
+		html_do_docbook (html, uri, error);
 		break;
 	case YELP_URI_TYPE_HTML:
-		yelp_html_do_html (html, priv->doc->current_stream,
-				   yelp_uri_get_path (uri),
-				   yelp_uri_get_section (uri), error);
+		html_do_html (html, priv->doc->current_stream,
+			      yelp_uri_get_path (uri),
+			      yelp_uri_get_section (uri), error);
 		break;
 	default:
 		g_assert_not_reached ();
