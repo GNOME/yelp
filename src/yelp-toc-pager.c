@@ -31,6 +31,7 @@
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 
+#include "yelp-uri.h"
 #include "yelp-error.h"
 #include "yelp-toc-pager.h"
 
@@ -198,7 +199,11 @@ toc_pager_dispose (GObject *object)
 void
 yelp_toc_pager_init (void)
 {
-    toc_pager = (YelpTocPager *) g_object_new (YELP_TYPE_TOC_PAGER, NULL);
+    YelpURI *uri;
+    
+    uri = yelp_uri_new ("toc:");
+    toc_pager = (YelpTocPager *) g_object_new (YELP_TYPE_TOC_PAGER, 
+    					       "uri", uri, NULL);
 
     yelp_pager_start (YELP_PAGER (toc_pager));
 }
