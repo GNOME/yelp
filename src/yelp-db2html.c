@@ -114,6 +114,15 @@ yelp_db2html_convert (const gchar         *document,
 
 	gdb_split_docname = g_strsplit(gdb_docname, ".", 2);
 
+        if (!g_file_test (gdb_docname, G_FILE_TEST_EXISTS)) {
+                g_set_error (error, 
+                             YELP_ERROR,
+                             YELP_ERROR_DOCBOOK_2_HTML,
+                             _("The document '%s' does not exist"),
+                             gdb_docname);
+                return FALSE;
+        }
+
 	if (!strcmp(gdb_split_docname[1], "sgml")) {
 			gdb_doc = docbParseFile(gdb_docname, "UTF-8");
 	} else {

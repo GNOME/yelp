@@ -468,4 +468,3 @@ yelp_html_get_widget (YelpHtml *html)
 	
 	return GTK_WIDGET (html->priv->view);
 }
-

@@ -1,5 +1,11 @@
 2002-04-14  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (yw_handle_url): pass the error to
+	  gnome_url_show.
+
+	* src/yelp-db2html.c (yelp_db2html_convert): better
+	  error-handling.
+
 	* src/yelp-html.c:
 	(yelp_html_idle_read_end): don't free the handle twice.
 	(yelp_html_idle_read_end): reset pointer to normal.

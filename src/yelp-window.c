@@ -345,8 +345,7 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 					  &error);
 		handled = TRUE;
 	} else {
-		/* FIXME: Show dialog on failure? */
-		gnome_url_show (url, NULL);
+		gnome_url_show (url, error);
 		handled = FALSE;
 	}
 
