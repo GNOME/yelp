@@ -363,7 +363,7 @@ yelp_view_content_new (GNode *doc_tree)
 	/* Add the tree and html view to the paned */
 	gtk_paned_add1 (GTK_PANED (view), priv->tree_sw);
         gtk_paned_add2 (GTK_PANED (view), frame);
-        gtk_paned_set_position (GTK_PANED (view), 250);
+        gtk_paned_set_position (GTK_PANED (view), 175);
 
 	return GTK_WIDGET (view);
 }
