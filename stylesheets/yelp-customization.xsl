@@ -6,13 +6,17 @@
                 extension-element-prefixes="func exsl"
                 version='1.0'>
 
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"/>
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/1.48/html/docbook.xsl"/>
 <xsl:include href="yelp-custom.xsl"/>
 <xsl:include href="yelp-functions.xsl"/>
 
-<xsl:param name="yelp_docname" />
-<xsl:param name="yelp_pathname" />
-<xsl:param name="yelp_stylesheet_path" select="'No Stylesheet'" />
+<xsl:param name="gdb_docname"/>
+<xsl:param name="gdb_pathname"/>
+<xsl:param name="gdb_stylesheet_path" select="'No Stylesheet'" />
+
+<xsl:param name="yelp_docname" select="$gdb_docname"/>
+<xsl:param name="yelp_pathname" select="$gdb_pathname"/>
+<xsl:param name="yelp_stylesheet_path" select="$gdb_stylesheet_path" />
 
 <xsl:param name="yelp_max_chunk_depth" select="2" />
 <xsl:param name="yelp_generate_navbar" select="true()"/>
