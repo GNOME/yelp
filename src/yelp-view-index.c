@@ -424,10 +424,10 @@ yelp_view_index_show_uri (YelpViewIndex *view, const gchar *uri)
 static void
 set_relation (GtkWidget *widget, GtkLabel *label)
 {
-	AtkObject *aobject;
+	AtkObject      *aobject;
 	AtkRelationSet *relation_set;
-	AtkRelation *relation;
-	AtkObject *targets[1];
+	AtkRelation    *relation;
+	AtkObject      *targets[1];
 
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 	g_return_if_fail (GTK_IS_LABEL (label));
@@ -435,8 +435,10 @@ set_relation (GtkWidget *widget, GtkLabel *label)
 	aobject = gtk_widget_get_accessible (widget);
 
 	/* Return if GAIL is not loaded */
-	if (! GTK_IS_ACCESSIBLE (aobject))
+	if (! GTK_IS_ACCESSIBLE (aobject)) {
 		return;
+	}
+	
 	/* Set the ATK_RELATION_LABEL_FOR relation */
 	gtk_label_set_mnemonic_widget (label, widget);
 
