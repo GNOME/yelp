@@ -83,7 +83,6 @@ yelp_SOURCES =							\
 	yelp-cache.c		yelp-cache.h			\
 	yelp-db-pager.c		yelp-db-pager.h			\
 	yelp-error.c		yelp-error.h			\
-	yelp-history.c		yelp-history.h			\
 	yelp-html-gecko.c	yelp-html.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
 	yelp-io-channel.c	yelp-io-channel.h		\
