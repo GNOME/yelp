@@ -2,9 +2,9 @@
 
 LDADD = $(Z_LIBS) $(BZ_LIBS)
 
-bin_PROGRAMS = gnome-man2html2
+bin_PROGRAMS = gnome2-man2html
 
-gnome_man2html2_SOURCES = gnome-man2html.c
+gnome2_man2html_SOURCES = gnome-man2html.c
 
 #CFLAGS += -Wall
 

@@ -1,8 +1,9 @@
 ## Process this file with automake to produce Makefile.in.
 
-INCLUDES = 
-LDADD = 
+INCLUDES = $(LIBGNOME_CFLAGS)
 
-bin_PROGRAMS = gnome-info2html2
+bin_PROGRAMS = gnome2-info2html
 
-gnome_info2html2_SOURCES = main.c parse.c utils.c html.c data.h html.h parse.h utils.h version.h
+gnome2_info2html_SOURCES = main.c parse.c utils.c html.c data.h html.h parse.h utils.h version.h
+
+gnome2_info2html_LDADD = $(LIBGNOME_LIBS) $(BZ_LIBS)

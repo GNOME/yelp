@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gnome.h>
+#include <popt.h>
 #include <zlib.h>
 #ifdef HAVE_LIBBZ2
 #include <bzlib.h>
@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 #include <limits.h>
 
+#include <glib.h>
 #include "data.h"
 #include "html.h"
 #include "parse.h"
@@ -42,7 +43,7 @@ file_exists(const char *fn)
 }
 
 int
-main(int argc, char **argv)
+main(int argc, const char **argv)
 {
 	gzFile f = NULL;
 	int bz = 0;
