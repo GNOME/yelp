@@ -1,3 +1,21 @@
+2002-04-23  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-toc.c: added lots of \n to the outputed html,
+	  makes it easier to read it.
+
+	* src/yelp-util.c (yelp_util_extract_docpath_from_uri): 
+	- make this return a string with all duplicate // printed as /.
+	- This solves some IMPORTANT issues.
+	- Though I did this in a lazy way (by calling gnome_vfs_uri_new
+	  and then back to string with gnome_vfs_uri_to_string. Should 
+	  probably look into if there is a function in gnome-vfs that does
+	  this.
+
+	* src/yelp-html.c (yelp_html_io_watch_cb): 
+	- made this actually work as expected. 
+	- don't use g_io_channel_read, use g_io_channel_read_chars
+	  instead.
+
 2002-04-22  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-content.c (yelp_view_content_show_uri): 

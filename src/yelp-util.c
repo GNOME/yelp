@@ -481,11 +481,11 @@ tree_find_node_uri (GNode *node, const gchar *uri)
 		return FALSE;
 	}
 	
-	if (!g_ascii_strcasecmp (uri, section->uri)) {
+	if (!g_ascii_strcasecmp (uri, section->uri)) { 
 		found_node = node;
 		return TRUE;
 	}
-	
+
 	return FALSE;
 }
 
@@ -530,16 +530,16 @@ yelp_util_extract_docpath_from_uri (const gchar *inc_uri)
 		return str_uri;
 	}
 
-	if ((extension = strstr (str_uri, ".xml"))) {
+	if (strstr (str_uri, ".xml") || strstr (str_uri, ".sgml")) {
 		gchar *str;
+
 		str = str_uri + 6;
-		/* This means we have a ghelp-uri with full path */
-		docpath = g_strndup (str, extension + 4 - str);
-	}
-	else if ((extension = strstr (str_uri, ".sgml"))) {
-		gchar *str;
-		str = str_uri + 6;
-		docpath = g_strndup (str, extension + 5 - str);
+		uri = gnome_vfs_uri_new (str);
+		str = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+
+		/* strlen ("file://") == 7 */
+		docpath = g_strdup (str + 7);
+		g_free (str);
 	} else {
 		/* URI not a fullpath URI, let the GnomeVFS help module 
 		   calculate the full URI */
@@ -622,3 +622,4 @@ yelp_util_find_anchor_in_uri (const gchar *str_uri)
 
 	return NULL;
 }
+

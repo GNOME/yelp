@@ -53,4 +53,7 @@ gchar *  yelp_util_split_uri                (const gchar   *uri,
 
 const gchar *  yelp_util_find_anchor_in_uri (const gchar   *str_uri);
 
+gchar *  yelp_util_str_remove_multiple_chars (const gchar  *str,
+					      const gchar  *chr);
+
 #endif /* __YELP_UTIL_H__ */

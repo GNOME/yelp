@@ -94,72 +94,72 @@ struct _YelpViewTOCPriv {
   </head>\n \
   <body bgcolor=\"" BG_COLOR "\">"
 
-#define PAGE_START "<table cellpadding=\"0\" \
-			      border=\"0\" \
- 			      align=\"center\" \
-			      cellspacing=\"10\" \
-			      width=\"100%\"> \
-			      <tr align=\"left\" \
-			          valign=\"top\" \
-			          bgcolor=\"" BG_COLOR "\"> \
-			      <td height=\"69\" \
-			          align=\"center\" \
-			          valign=\"center\" \
-			          bgcolor=\"" BLOCK_BG_COLOR "\" \
-			          colspan=\"2\"> \
-			        <h1> \
-			          %s \
-			        </h1> \
-			      </td> \
-			      </tr> \
-			      <tr>"
+#define PAGE_START "<table cellpadding=\"0\" \n\
+			      border=\"0\" \n \
+ 			      align=\"center\" \n \
+			      cellspacing=\"10\" \n\
+			      width=\"100%\"> \n\
+			      <tr align=\"left\" \n \
+			          valign=\"top\" \n \
+			          bgcolor=\"" BG_COLOR "\"> \n\
+			      <td height=\"69\" \n\
+			          align=\"center\" \n\
+			          valign=\"center\" \n\
+			          bgcolor=\"" BLOCK_BG_COLOR "\" \n\
+			          colspan=\"2\"> \n\
+			        <h1> \n\
+			          %s \n\
+			        </h1> \n\
+			      </td> \n\
+			      </tr> \n\
+			      <tr>\n"
 
-#define PAGE_END "</tr></table>"
+#define PAGE_END "</tr></table>\n"
 
-#define COLUMN_LEFT_START "<td valign=\"top\" width=\"50%\"> \
-            <table cellpadding=\"0\" \
-                   border=\"0\" \
-		   align=\"left\" \
-		   cellspacing=\"0\" \
-		   width=\"100%\"> \
-              <tr> \
-	        <td>"
-#define COLUMN_RIGHT_START "<td valign=\"top\"> \
-			      <table cellpadding=\"0\" \
-			             border=\"0\" \
-			             align=\"right\" \
-			             cellspacing=\"0\" \
-			             width=\"100%\"><tr><td>"
+#define COLUMN_LEFT_START "<td valign=\"top\" width=\"50%\"> \n\
+            <table cellpadding=\"0\" \n\
+                   border=\"0\" \n\
+		   align=\"left\" \n\
+		   cellspacing=\"0\" \n\
+		   width=\"100%\"> \n\
+              <tr> \n\
+	        <td>\n"
+#define COLUMN_RIGHT_START "<td valign=\"top\"> \n\
+			      <table cellpadding=\"0\" \n\
+			             border=\"0\" \n\
+			             align=\"right\" \n\
+			             cellspacing=\"0\" \n\
+			             width=\"100%\"><tr><td>\n"
 
-#define COLUMN_END " \
-		</td> \
-              </tr> \
-            </table> \
-          </td>"
+#define COLUMN_END " \n\
+		</td> \n\
+              </tr> \n\
+            </table> \n\
+          </td>\n"
 
 #define TOC_BLOCK_START " \
-		  <table cellpadding=\"5\" \
-		         border=\"0\" \
-			 align=\"left\" \
-			 cellspacing=\"0\" \
-			 width=\"100%\" \
-			 bgcolor=\"" BLOCK_BG_COLOR "\"> \
-		    <tr> \
-		      <td>"
+		  <table cellpadding=\"5\" \n\
+		         border=\"0\" \n\
+			 align=\"left\" \n\
+			 cellspacing=\"0\" \n\
+			 width=\"100%\" \n\
+			 bgcolor=\"" BLOCK_BG_COLOR "\"> \n\
+		    <tr> \n\
+		      <td>\n"
 
-#define TOC_BLOCK_END " \
-		      </td> \
-		    </tr> \
-		  </table> "
+#define TOC_BLOCK_END "\n \
+		      </td> \n\
+		    </tr> \n\
+		  </table>\n "
 
-#define TOC_BLOCK_SEPARATOR " \
-                </td> \
-	      </tr> \
-              <tr> \
-                <td>&nbsp;</td> \
-              </tr> \
-	      <tr>\
-	        <td>"
+#define TOC_BLOCK_SEPARATOR " \n\
+                </td>\n \
+	      </tr> \n\
+              <tr> \n\
+                <td>&nbsp;</td> \n\
+              </tr> \n\
+	      <tr>\n\
+	        <td>\n"
 
 GType
 yelp_view_toc_get_type (void)
@@ -621,25 +621,25 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 	name = yelp_view_toc_full_path_name (view, root);
 
 	yelp_view_toc_printf (view, 
-			      "<table cellpadding=\"0\""
-			      "border=\"0\""
-			      "align=\"center\""
-			      "cellspacing=\"10\""
-			      "width=\"100%\">"
-			      "<tr align=\"left\""
-			      "    valign=\"top\""
-			      "    bgcolor=\"" BG_COLOR "\">"
-			      "<td height=\"69\""
-			      "    align=\"center\""
-			      "    valign=\"center\""
-			      "    bgcolor=\"" BLOCK_BG_COLOR "\""
-			      "    colspan=\"2\">"
-			      "  <h2>"
-			      "    %s/%s"
-			      "  </h2>"
-			      "</td>"
-			      "</tr>"
-			      "<tr>",
+			      "<table cellpadding=\"0\"\n"
+			      "border=\"0\"\n"
+			      "align=\"center\"\n"
+			      "cellspacing=\"10\"\n"
+			      "width=\"100%\">\n"
+			      "<tr align=\"left\"\n"
+			      "    valign=\"top\"\n"
+			      "    bgcolor=\"" BG_COLOR "\">\n"
+			      "<td height=\"69\"\n"
+			      "    align=\"center\"\n"
+			      "    valign=\"center\"\n"
+			      "    bgcolor=\"" BLOCK_BG_COLOR "\"\n"
+			      "    colspan=\"2\">\n"
+			      "  <h2>\n"
+			      "    %s/%s\n"
+			      "  </h2>\n"
+			      "</td>\n"
+			      "</tr>\n"
+			      "<tr>\n",
 			      string, name);
 
 	g_free (name);

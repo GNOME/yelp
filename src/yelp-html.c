@@ -269,8 +269,8 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 	YelpHtmlPriv *priv;
 	static gchar  buffer[BUFFER_SIZE];
 	guint         n;
-	GIOError      io_error;
 	gboolean      finished = FALSE;
+	GIOStatus     status;
 
 	g_return_val_if_fail (read_data != NULL, FALSE);
 	g_return_val_if_fail (YELP_IS_HTML (read_data->html), FALSE);
@@ -280,16 +280,22 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 	if (cond & G_IO_IN) {
  		d(g_print ("Read available\n"));
 		
-		io_error = g_io_channel_read (iochannel, buffer, 
-					      BUFFER_SIZE, &n);
-		if (io_error != G_IO_ERROR_NONE) {
-			g_warning ("Read Error: %d", io_error);
-			return FALSE;
-		}
+		status = g_io_channel_read_chars (iochannel,
+						  buffer,
+						  BUFFER_SIZE,
+						  &n,
+						  NULL);
 
-		yelp_html_do_write (read_data->html, buffer, n);
-		
-		if (n < BUFFER_SIZE) {
+		if (status == G_IO_STATUS_NORMAL) {
+			yelp_html_do_write (read_data->html, buffer, n);
+		} 
+		else if (status == G_IO_STATUS_EOF ||
+			 status == G_IO_STATUS_ERROR) {
+			if (n > 0) {
+				yelp_html_do_write (read_data->html, 
+						    buffer, n);
+			}
+
 			finished = TRUE;
 		}
 	}
