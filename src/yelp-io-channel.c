@@ -150,7 +150,7 @@ yelp_io_close         (GIOChannel    *channel,
     if (yelp_channel->gzin)
 	gzclose (yelp_channel->gzin);
 
-    // FIXME: return error on error
+    /* FIXME: return error on error */
     return G_IO_STATUS_NORMAL;
 }
 

@@ -62,18 +62,18 @@ static void        parser_make_link         (YelpManParser *parser);
 
 typedef struct _StackElem StackElem;
 struct _YelpManParser {
-    xmlDocPtr     doc;           // The top-level XML document
-    xmlNodePtr    ins;           // The insertion node
+    xmlDocPtr     doc;           /* The top-level XML document */
+    xmlNodePtr    ins;           /* The insertion node */
 
-    GIOChannel   *channel;       // GIOChannel for the entire document
+    GIOChannel   *channel;       /* GIOChannel for the entire document */
 
-    gchar        *buffer;        // The buffer, line at a time
-    gint          length;        // The buffer length
+    gchar        *buffer;        /* The buffer, line at a time */
+    gint          length;        /* The buffer length */
 
-    gchar        *anc;           // The anchor point in the document
-    gchar        *cur;           // Our current position in the document
+    gchar        *anc;           /* The anchor point in the document */
+    gchar        *cur;           /* Our current position in the document */
 
-    gboolean      make_links;    // Allow auto-generated hyperlinks to be disabled.
+    gboolean      make_links;    /* Allow auto-generated hyperlinks to be disabled. */
 
     GSList       *nodeStack;
 };
@@ -580,7 +580,7 @@ parser_escape_tags (YelpManParser *parser,
     xmlNodePtr cur  = parser->ins;
     GSList *path = NULL;
 
-    // Find the top node we can escape from
+    /* Find the top node we can escape from */
     while (cur->parent != (xmlNodePtr) parser->doc) {
 	for (i = 0; i < ntags; i++)
 	    if (!xmlStrcmp (cur->name, BAD_CAST tags[i])) {
@@ -591,7 +591,7 @@ parser_escape_tags (YelpManParser *parser,
 	cur = cur->parent;
     }
 
-    // Walk back down, reproducing nodes we aren't escaping
+    /* Walk back down, reproducing nodes we aren't escaping */
     if (node) {
 	GSList *c = path;
 	while (c && (xmlNodePtr) c->data != node)

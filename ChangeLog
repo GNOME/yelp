@@ -1,5 +1,18 @@
 2005-03-10  Christian Persch  <chpe@cvs.gnome.org>
 
+	* src/yelp-db-pager.c: (walker_walk_xml):
+	* src/yelp-io-channel.c:
+	* src/yelp-man-parser.c: (parser_escape_tags):
+	* src/yelp-toc-pager.c: (toc_process_pending):
+	* src/yelp-window.c: (window_populate), (window_do_load_pager),
+	(pager_finish_cb):
+	* src/yelp-xslt-pager.c: (xslt_yelp_cache):
+
+	Don't use C++ comments in C files. Fixes the build with
+	--enable-debug.
+
+2005-03-10  Christian Persch  <chpe@cvs.gnome.org>
+
 	* .cvsignore:
 	R INSTALL:
 	* autogen.sh:

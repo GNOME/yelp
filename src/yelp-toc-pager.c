@@ -365,7 +365,7 @@ toc_process_pending (YelpTocPager *pager)
     static gint process_i = 0;
 
     if (priv->cancel || !priv->pending_func) {
-	// FIXME: clean stuff up.
+	/* FIXME: clean stuff up. */
 	return FALSE;
     }
 

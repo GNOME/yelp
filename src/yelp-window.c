@@ -920,7 +920,7 @@ window_populate (YelpWindow *window)
 
     priv->pane = gtk_hpaned_new ();
     gtk_widget_ref (priv->pane);
-    // We should probably remember the last position and set to that.
+    /* We should probably remember the last position and set to that. */
     gtk_paned_set_position (GTK_PANED (priv->pane), 180);
 
     priv->side_sw = gtk_scrolled_window_new (NULL, NULL);
@@ -1189,7 +1189,7 @@ window_do_load_pager (YelpWindow  *window,
     case YELP_PAGER_STATE_NEW:
     case YELP_PAGER_STATE_INVALID:
 	startnow = TRUE;
-	// no break
+	/* no break */
     case YELP_PAGER_STATE_STARTED:
     case YELP_PAGER_STATE_PARSING:
 	priv->start_handler =
@@ -1241,7 +1241,7 @@ window_do_load_pager (YelpWindow  *window,
 	    }
 	}
 
-	// FIXME: error if !handled
+	/* FIXME: error if !handled */
     }
 
  done:
@@ -1672,7 +1672,7 @@ pager_finish_cb (YelpPager   *pager,
 		 window->priv->current_frag);
     window_error (window, error, TRUE);
 
-    // FIXME: Remove the URI from the history and go back
+    /* FIXME: Remove the URI from the history and go back */
 }
 
 /** Gecko Callbacks ***********************************************************/

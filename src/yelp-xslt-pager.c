@@ -464,5 +464,5 @@ xslt_yelp_cache (xsltTransformContextPtr ctxt,
 
     while (gtk_events_pending ())
 	gtk_main_iteration ();
-    // FIXME : check for cancel
+    /* FIXME : check for cancel */
 }
