@@ -1,6 +1,12 @@
 2004-02-12  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-window.c:
+	- Disconnect idle_write when closing a window or switching to a different
+	  page, because some people apparently don't like Yelp to crash.
+
+2004-02-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-window.c:
 	- Don't crash when the window is closed before the transformation is
 	  finished, from Jan Arne Petersen.  (#134266)
 

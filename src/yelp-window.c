@@ -216,6 +216,7 @@ struct _YelpWindowPriv {
     gulong          page_handler;
     gulong          error_handler;
     gulong          finish_handler;
+    guint           idle_write;
 
     GtkItemFactory *item_factory;
 
@@ -1002,6 +1003,8 @@ window_handle_page (YelpWindow   *window,
 
     priv = window->priv;
 
+    window_disconnect (window);
+
     model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
 
     if (model) {
@@ -1071,7 +1074,7 @@ window_handle_page (YelpWindow   *window,
     yelp_html_clear (priv->html_view);
     yelp_html_set_base_uri (priv->html_view, uri);
 
-    gtk_idle_add ((GtkFunction) idle_write, context);
+    priv->idle_write = gtk_idle_add ((GtkFunction) idle_write, context);
 
     if (gnome_vfs_uri_get_fragment_identifier (uri->uri)) {
 	yelp_html_jump_to_anchor
@@ -1086,7 +1089,8 @@ window_disconnect (YelpWindow *window)
     YelpWindowPriv *priv = window->priv;
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+    if (GTK_WIDGET (window)->window)
+	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
     if (priv->contents_handler) {
 	g_signal_handler_disconnect (priv->pager,
@@ -1107,6 +1111,10 @@ window_disconnect (YelpWindow *window)
 	g_signal_handler_disconnect (priv->pager,
 				     priv->finish_handler);
 	priv->finish_handler = 0;
+    }
+    if (priv->idle_write) {
+	gtk_idle_remove (priv->idle_write);
+	priv->idle_write = 0;
     }
 }
 
@@ -1768,6 +1776,7 @@ idle_write (IdleWriterContext *context)
 				 context->length - context->cur);
 	    yelp_html_close (priv->html_view);
 	    g_free (context);
+	    priv->idle_write = 0;
 	    return FALSE;
 	}
 	break;
