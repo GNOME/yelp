@@ -288,10 +288,13 @@ parser_handle_linetag (YelpManParser *parser) {
 				&(parser->length),
 				NULL, NULL)
 	    == G_IO_STATUS_NORMAL) {
-
+	    parser->cur = parser->buffer;
+            parser->anc = parser->buffer;
+	    
 	    parser->ins = parser_append_node (parser, "Term");
 	    parser_read_until (parser, '\n');
 	}
+	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "IP")) {
         parser->ins = parser_append_node (parser, str);
