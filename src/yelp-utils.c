@@ -137,6 +137,18 @@ yelp_document_info_free (YelpDocumentInfo *doc)
     g_free (doc);
 }
 
+gchar *
+yelp_document_info_get_filename (YelpDocumentInfo *doc) {
+    gchar *path = NULL;
+
+    g_return_val_if_fail (doc != NULL, NULL);
+
+    if (!strncmp (doc->uri, "file://", 7))
+	path = g_strdup (doc->uri + 7);
+
+    return path;
+}
+
 void
 yelp_document_page_free (YelpDocumentPage *page)
 {

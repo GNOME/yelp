@@ -32,7 +32,7 @@
 static void 
 print_document_info (YelpDocumentInfo *doc)
 {
-    gchar *type;
+    gchar *type, *file;
 
     switch (doc->type) {
     case YELP_TYPE_ERROR:
@@ -61,12 +61,18 @@ print_document_info (YelpDocumentInfo *doc)
 	break;
     }
 
-    printf ("Address: %i\n"
-	    "URI:     %s\n"
-	    "Type:    %s\n",
+    file = yelp_document_info_get_filename (doc);
+
+    printf ("Address:  %i\n"
+	    "URI:      %s\n"
+	    "Type:     %s\n"
+	    "Filename: %s\n",
 	    (gint) doc,
 	    doc->uri,
-	    type);
+	    type,
+	    file);
+
+    g_free (file);
 }
 
 int

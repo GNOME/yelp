@@ -54,10 +54,13 @@ struct _YelpDocumentPage {
     gchar *toc_id;
 };
 
-YelpDocumentInfo *   yelp_document_info_new     (gchar            *uri);
-YelpDocumentInfo *   yelp_document_info_get     (gchar            *uri);
-void                 yelp_document_info_free    (YelpDocumentInfo *doc);
+YelpDocumentInfo *   yelp_document_info_new          (gchar            *uri);
+YelpDocumentInfo *   yelp_document_info_get          (gchar            *uri);
+void                 yelp_document_info_free         (YelpDocumentInfo *doc);
 
-void                 yelp_document_page_free    (YelpDocumentPage *page);
+gchar *              yelp_document_info_get_filename (YelpDocumentInfo *doc);
+
+
+void                 yelp_document_page_free         (YelpDocumentPage *page);
 
 #endif /* __YELP_PAGER_H__ */

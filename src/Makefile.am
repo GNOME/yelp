@@ -43,24 +43,25 @@ yelp-marshal.c: yelp-marshal.h
 
 yelp-marshal-main.c: yelp-marshal.c
 
-test_man_parser_SOURCES =						\
-	yelp-error.c		yelp-error.h				\
-	yelp-io-channel.c	yelp-io-channel.h			\
-	yelp-man-parser.c	yelp-man-parser.h			\
+test_man_parser_SOURCES =					\
+	yelp-error.c		yelp-error.h			\
+	yelp-io-channel.c	yelp-io-channel.h		\
+	yelp-man-parser.c	yelp-man-parser.h		\
+	yelp-utils.c		yelp-utils.h			\
 	test-man-parser.c
 
 test_man_parser_LDADD = @YELP_LIBS@ $(Z_LIBS) $(BZ_LIBS)
 
-test_pager_SOURCES =							\
-	yelp-db-pager.c		yelp-db-pager.h				\
-	yelp-error.c		yelp-error.h				\
-	yelp-io-channel.c	yelp-io-channel.h			\
-	yelp-man-pager.c	yelp-man-pager.h			\
-	yelp-man-parser.c	yelp-man-parser.h			\
-	yelp-pager.c		yelp-pager.h				\
-	yelp-theme.c		yelp-theme.h				\
-	yelp-toc-pager.c	yelp-toc-pager.h			\
-	yelp-uri.c		yelp-uri.h				\
+test_pager_SOURCES =						\
+	yelp-db-pager.c		yelp-db-pager.h			\
+	yelp-error.c		yelp-error.h			\
+	yelp-io-channel.c	yelp-io-channel.h		\
+	yelp-man-pager.c	yelp-man-pager.h		\
+	yelp-man-parser.c	yelp-man-parser.h		\
+	yelp-pager.c		yelp-pager.h			\
+	yelp-theme.c		yelp-theme.h			\
+	yelp-toc-pager.c	yelp-toc-pager.h		\
+	yelp-uri.c		yelp-uri.h			\
 	yelp-marshal-main.c	test-pager.c
 
 test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
@@ -71,23 +72,24 @@ test_uri_SOURCES =					\
 
 test_uri_LDADD = @YELP_LIBS@
 
-yelp_SOURCES =								\
-	$(gnome_yelp_idl_sources)					\
-	yelp-base.c		yelp-base.h				\
-	yelp-cache.c		yelp-cache.h				\
-	yelp-db-pager.c		yelp-db-pager.h				\
-	yelp-error.c		yelp-error.h				\
-	yelp-history.c		yelp-history.h				\
-	yelp-html-gecko.c	yelp-html.h				\
-	yelp-gecko-utils.cpp	yelp-gecko-utils.h			\
-	yelp-io-channel.c	yelp-io-channel.h			\
-	yelp-man-pager.c	yelp-man-pager.h			\
-	yelp-man-parser.c	yelp-man-parser.h			\
-	yelp-pager.c		yelp-pager.h				\
-	yelp-toc-pager.c	yelp-toc-pager.h			\
-	yelp-theme.c		yelp-theme.h				\
-	yelp-window.c 		yelp-window.h				\
-	yelp-uri.c	        yelp-uri.h				\
+yelp_SOURCES =							\
+	$(gnome_yelp_idl_sources)				\
+	yelp-base.c		yelp-base.h			\
+	yelp-cache.c		yelp-cache.h			\
+	yelp-db-pager.c		yelp-db-pager.h			\
+	yelp-error.c		yelp-error.h			\
+	yelp-history.c		yelp-history.h			\
+	yelp-html-gecko.c	yelp-html.h			\
+	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
+	yelp-io-channel.c	yelp-io-channel.h		\
+	yelp-man-pager.c	yelp-man-pager.h		\
+	yelp-man-parser.c	yelp-man-parser.h		\
+	yelp-pager.c		yelp-pager.h			\
+	yelp-toc-pager.c	yelp-toc-pager.h		\
+	yelp-theme.c		yelp-theme.h			\
+	yelp-window.c 		yelp-window.h			\
+	yelp-uri.c	        yelp-uri.h			\
+	yelp-utils.c		yelp-utils.h			\
 	yelp-marshal-main.c	yelp-main.c
 
 yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS) $(MOZILLA_COMPONENT_LIBS)

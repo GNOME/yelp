@@ -31,24 +31,27 @@
 
 #include "yelp-io-channel.h"
 #include "yelp-man-parser.h"
+#include "yelp-utils.h"
 
 #define d(x)
 
 #define PARSER_CUR (*(parser->cur) != '\0' \
     && (parser->cur - parser->buffer < parser->length))
 
-static void        parser_handle_linetag (YelpManParser *parser);
-static void        parser_handle_inline  (YelpManParser *parser);
-static void        parser_ensure_P       (YelpManParser *parser);
-static void        parser_read_until     (YelpManParser *parser,
-					  gchar          delim);
-static void        parser_escape_tags    (YelpManParser *parser,
-					  gchar        **tags,
-					  gint           ntags);
-static void        parser_append_token   (YelpManParser *parser);
-static xmlNodePtr  parser_append_text    (YelpManParser *parser);
-static xmlNodePtr  parser_append_node    (YelpManParser *parser,
-					  gchar         *name);
+static void        parser_handle_linetag    (YelpManParser *parser);
+static void        parser_handle_inline     (YelpManParser *parser);
+static void        parser_ensure_P          (YelpManParser *parser);
+static void        parser_read_until        (YelpManParser *parser,
+					     gchar          delim);
+static void        parser_escape_tags       (YelpManParser *parser,
+					     gchar        **tags,
+					     gint           ntags);
+static void        parser_append_token      (YelpManParser *parser);
+static xmlNodePtr  parser_append_text       (YelpManParser *parser);
+static xmlNodePtr  parser_append_given_text (YelpManParser *parser,
+					     gchar         *text);
+static xmlNodePtr  parser_append_node       (YelpManParser *parser,
+					     gchar         *name);
 
 typedef struct _StackElem StackElem;
 struct _YelpManParser {
@@ -62,6 +65,8 @@ struct _YelpManParser {
 
     gchar        *anc;           // The anchor point in the document
     gchar        *cur;           // Our current position in the document
+
+    GSList       *nodeStack;
 };
 
 YelpManParser *
@@ -123,6 +128,29 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
     return parser->doc;
 }
 
+xmlDocPtr
+yelp_man_parser_parse_document (YelpManParser    *parser,
+				YelpDocumentInfo *doc_info)
+{
+    gchar     *file;
+    xmlDocPtr  doc;
+
+    g_return_val_if_fail (parser != NULL, NULL);
+    g_return_val_if_fail (doc != NULL, NULL);
+    g_return_val_if_fail (doc->type != YELP_TYPE_MAN, NULL);
+
+    file = yelp_document_info_get_filename (doc_info);
+
+    if (!file)
+	return NULL;
+
+    doc = yelp_man_parser_parse_file (parser, file);
+
+    g_free (file);
+
+    return doc;
+}
+
 void
 yelp_man_parser_free (YelpManParser *parser)
 {
@@ -161,7 +189,8 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
 
-	parser_append_token (parser);
+	parser_read_until (parser, '\n');
+	parser_append_text (parser);
 	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "IR") || g_str_equal (str, "RI") ||
@@ -187,9 +216,16 @@ parser_handle_linetag (YelpManParser *parser) {
 	    } else break;
 	}
     }
-    else if (g_str_equal (str, "P") || g_str_equal (str, "PP")) {
+    else if (g_str_equal (str, "P") || g_str_equal (str, "PP") ||
+	     g_str_equal (str, "LP")) {
 	parser->ins = xmlDocGetRootElement (parser->doc);
 	parser_ensure_P (parser);
+    }
+    else if (g_str_equal (str, "br")) {
+	parser_append_node (parser, str);
+    }
+    else if (g_str_equal (str, "sp")) {
+	
     }
     else if (g_str_equal (str, "SH") || g_str_equal (str, "SS")) {
 	gint i;
@@ -246,6 +282,41 @@ parser_handle_linetag (YelpManParser *parser) {
 	    parser->ins = parser_append_node (parser, "Term");
 	    parser_read_until (parser, '\n');
 	}
+    }
+    else if (g_str_equal (str, "IP")) {
+
+    }
+    else if (g_str_equal (str, "HP")) {
+
+    }
+    else if (g_str_equal (str, "RS")) {
+	parser->ins = parser_append_node (parser, str);
+	g_free (str);
+
+	parser_read_until (parser, '\n');
+
+	parser->nodeStack = g_slist_prepend (parser->nodeStack, parser->ins);
+    }
+    else if (g_str_equal (str, "RE")) {
+	parser_read_until (parser, '\n');
+
+	if (parser->nodeStack == NULL)
+	    g_warning ("Found unexpected tag: '%s'\n", str);
+	else {
+	    parser->ins = (xmlNodePtr) parser->nodeStack->data;
+	    parser->nodeStack = g_slist_remove (parser->nodeStack, parser->ins);
+	}
+
+	g_free (str);
+    }
+    else if (g_str_equal (str, "UR")) {
+
+    }
+    else if (g_str_equal (str, "UE")) {
+
+    }
+    else if (g_str_equal (str, "UN")) {
+
     }
     else {
 	g_warning ("No rule matching the tag '%s'\n", str);
@@ -349,6 +420,7 @@ parser_handle_inline (YelpManParser *parser)
     case '\0':
 	break;
     case '-':
+    case '\\':
 	parser->cur++;
 	parser_append_text (parser);
 	parser->anc = parser->cur;
@@ -371,10 +443,69 @@ parser_handle_inline (YelpManParser *parser)
 
 	if (g_str_equal (str, "fI") || g_str_equal (str, "fB"))
 	    parser->ins = parser_append_node (parser, str);
-	else if (!g_str_equal (str, "fR"))
+	else if (!g_str_equal (str, "fR") && !g_str_equal (str, "fP"))
 	    g_warning ("No rule matching the tag '%s'\n", str);
 
 	g_free (str);
+	parser->anc = parser->cur;
+	break;
+    case '(':
+	parser->cur++;
+	if (!PARSER_CUR) break;
+	parser->cur++;
+	if (!PARSER_CUR) break;
+	parser->cur++;
+
+	c = *(parser->cur);
+	*(parser->cur) = '\0';
+	str = g_strdup (parser->anc);
+	*(parser->cur) = c;
+
+	if (g_str_equal (str, "(co"))
+	    parser_append_given_text (parser, "©");
+
+	g_free (str);
+	parser->anc = parser->cur;
+        break;
+    case '*':
+	parser->cur++;
+	if (!PARSER_CUR) break;
+
+	if (*(parser->cur) == 'R') {
+	    parser_append_given_text (parser, "®");
+	    parser->cur++;
+	} else if (*(parser->cur) == '(') {
+	    parser->cur++;
+	    if (!PARSER_CUR) break;
+	    parser->cur++;
+	    if (!PARSER_CUR) break;
+	    parser->cur++;
+	    
+	    c = *(parser->cur);
+	    *(parser->cur) = '\0';
+	    str = g_strdup (parser->anc);
+	    *(parser->cur) = c;
+
+	    if (g_str_equal (str, "*(Tm"))
+		parser_append_given_text (parser, "™");
+	    else if (g_str_equal (str, "*(lq"))
+		parser_append_given_text (parser, "“");
+	    else if (g_str_equal (str, "*(rq"))
+		parser_append_given_text (parser, "”");
+
+	    g_free (str);
+	}
+	
+	parser->cur++;
+	parser->anc = parser->cur;
+	break;
+    case 'e':
+	parser->cur++;
+	parser->anc = parser->cur;
+	parser_append_given_text (parser, "\\");
+	break;
+    case '&':
+	parser->cur++;
 	parser->anc = parser->cur;
 	break;
     default:
@@ -385,7 +516,7 @@ parser_handle_inline (YelpManParser *parser)
 	str = g_strdup (parser->anc);
 	*(parser->cur) = c;
 
-	g_warning ("No rule matching the tag '%s'\n", str);
+	g_warning ("No rule matching the inline tag '%s'\n", str);
 
 	g_free (str);
 	parser->anc--;
@@ -413,6 +544,20 @@ parser_append_text (YelpManParser *parser)
     *(parser->cur) = c;
 
     parser->anc = parser->cur;
+
+    return node;
+}
+
+static xmlNodePtr
+parser_append_given_text (YelpManParser *parser,
+			  gchar         *text)
+{
+    xmlNodePtr  node;
+
+    parser_ensure_P (parser);
+
+    node = xmlNewText (BAD_CAST text);
+    xmlAddChild (parser->ins, node);
 
     return node;
 }

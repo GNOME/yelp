@@ -1,5 +1,17 @@
 2004-09-29  Shaun McCance  <shaunm@gnome.org>
 
+	* src/Makefile.am:
+	* src/test-man-parser.c:
+	* src/test-uri.c:
+	* src/yelp-man-parser.c:
+	* src/yelp-man-parser.h:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	- Added yelp_document_info_get_filename
+	- Made yelp-man-parser use YelpDocument
+
+2004-09-29  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-man-parser.c:
 	- DIE STRCMP DIE
 
