@@ -63,6 +63,8 @@ static gchar *    ys_strip_scheme         (gchar                *original_uri,
 
 static gint calls = 0;
 
+static GHashTable *seriesid_hash = NULL;
+
 static gboolean
 ys_trim_empty_branches (xmlNode *node)
 {
@@ -207,8 +209,10 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node)
 	gchar       *link;
 	gchar       *format;
 	gchar       *docsource;
+	gchar       *docseriesid;
 	GNode       *node;
 
+	docseriesid = NULL;
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "doctitle")) {
 			xml_str = xmlNodeGetContent (cur);
@@ -231,12 +235,21 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node)
 			format  = g_strdup (xml_str);
 			xmlFree (xml_str);
 		}
+		else if (!g_strcasecmp (cur->name, "docseriesid")) {
+			xml_str = xmlNodeGetContent (cur);
+			docseriesid  = g_strdup (xml_str);
+			xmlFree (xml_str);
+		}
 	}
 
 	node = g_node_append_data (parent, yelp_section_new (YELP_SECTION_DOCUMENT,
 							     title, link,
 							     NULL, NULL));
 
+	if (docseriesid) {
+		g_hash_table_insert (seriesid_hash, docseriesid, node);
+	}
+	
 #if 0
 	ys_parse_toc (NULL, NULL, docsource);
 #endif
@@ -450,6 +463,12 @@ yelp_scrollkeeper_init (GtkTreeStore *store)
 }
 #endif
 
+GNode *
+yelp_scrollkeeper_lookup_seriesid (const char *seriesid)
+{
+	return g_hash_table_lookup (seriesid_hash, seriesid);
+}
+
 gboolean
 yelp_scrollkeeper_init (GNode *tree)
 {
@@ -459,8 +478,11 @@ yelp_scrollkeeper_init (GNode *tree)
         
        g_return_val_if_fail (tree != NULL, FALSE);
 
+       seriesid_hash = g_hash_table_new_full (g_str_hash,
+					      g_str_equal,
+					      g_free, NULL);
+       
        doc = NULL;
-
        for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
 	       docpath = ys_get_xml_docpath ("scrollkeeper-get-content-list",
 					     node->data);

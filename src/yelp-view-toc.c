@@ -34,17 +34,20 @@
 #include "yelp-view-toc.h"
 #include "yelp-marshal.h"
 #include "yelp-util.h"
+#include "yelp-scrollkeeper.h"
 
 #define d(x) x
 
-static void yvh_init               (YelpViewTOC          *html);
-static void yvh_class_init         (YelpViewTOCClass     *klass);
-static void yvh_link_clicked_cb    (HtmlDocument          *doc, 
-				    const gchar           *url, 
-				    YelpViewTOC          *view);
-static void yelp_view_toc_man_1    (YelpViewTOC          *view);
-static void yelp_view_toc_man_2    (YelpViewTOC          *view,
-				    GNode                *root);
+static void   yvh_init                    (YelpViewTOC      *html);
+static void   yvh_class_init              (YelpViewTOCClass *klass);
+static void   yvh_link_clicked_cb         (HtmlDocument     *doc,
+					   const gchar      *url,
+					   YelpViewTOC      *view);
+static void   yelp_view_toc_man_1         (YelpViewTOC      *view);
+static void   yelp_view_toc_man_2         (YelpViewTOC      *view,
+					   GNode            *root);
+static GNode *yelp_view_toc_find_toplevel (YelpViewTOC      *view,
+					   gchar            *name);
 
 enum {
 	URL_SELECTED,
@@ -216,37 +219,28 @@ yelp_view_toc_write_footer (YelpViewTOC *view)
 static void 
 yelp_view_toc_start (YelpViewTOC *view)
 {
+	YelpViewTOCPriv *priv;
+	GNode           *node;
+	YelpSection     *section;
 	gchar *table_start = "
     <center>
       <table cellspacing=\"20\" width=\"100%\">
-        <tr>
-          <td valign=\"top\">
-	    <h2>GNOME</h2>
-             <ul>
-               <li><b>Introduction to GNOME</b>
-               <li><b>GNOME User Guide</b>
-             </ul>
-             <ul>
-";
+        <tr>";
 	gchar *table_end = "
-             </ul>
-	  </td>
-          <td valign=\"top\">
-            <h2>System</h2>
-            <ul>
-              <li><b>Man pages</b><br>
-                Describe what <a href=\"toc:man\">man pages</a> are...
-              <li><b>Info pages</b><br>
-                Describe what <a href=\"toc:info\">info pages</a> are...
-            </ul>
-          </td>
       </tr>
     </table>
    </center>
 ";
-	YelpViewTOCPriv *priv;
-	GNode           *node;
-	YelpSection     *section;
+	/* FIXME: Hardcoded crap: */
+	char *seriesids[] = {
+		"01ddeea4-0a42-11d6-9cf9-ee43c422358d",
+		"01ddeea4-0a42-11d6-9cf9-ee43c422358e",
+		NULL
+	};
+	char *seriesid;
+	char **p;
+	GNode *root;
+	char *path;
 	
 	priv = view->priv;
 
@@ -259,18 +253,60 @@ yelp_view_toc_start (YelpViewTOC *view)
 	yelp_view_toc_write_header (view, "Start page");
 	
 	yelp_view_toc_write (view, table_start, -1);
-	
-	node = g_node_first_child (priv->doc_tree);
 
-	do {
-		section = (YelpSection *) node->data;
-		
-		yelp_view_toc_printf (view, 
-				      "<li><a href=\"path:%s\">%s</a>\n", 
-				      section->uri, section->name);
-		
-	} while ((node = g_node_next_sibling (node)));
+	yelp_view_toc_write (view, 
+			      "<td valign=\"top\">\n"
+			      "<h2>Important documents</h2>\n"
+			      "<ul>\n", -1);
+
+	p = &seriesids[0];
+	while (*p != NULL) {
+		seriesid = *p;
+		p++;
+
+		node = yelp_scrollkeeper_lookup_seriesid (seriesid);
+		if (node) {
+			section = node->data;
+			yelp_view_toc_printf (view, 
+					      "<li><a href=\"%s\">%s</a>\n",
+					      section->uri, section->name);
+		}
+
+	}
 	
+			      
+	yelp_view_toc_write (view, 
+			     "</ul>\n"
+			     "</td>\n", -1);
+
+
+
+	yelp_view_toc_write (view, 
+			     "<td valign=\"top\">\n"
+			     "<h2>Installed documents</h2>\n", -1);
+
+	root = yelp_view_toc_find_toplevel (view, "scrollkeeper");
+	node = g_node_first_child (root);
+
+	while (node) {
+		section = (YelpSection *) node->data;
+		path = yelp_util_node_to_string_path (node);
+		yelp_view_toc_printf (view, 
+				      "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
+				      path, section->name);
+		
+		node = g_node_next_sibling (node);
+	}
+
+	
+	yelp_view_toc_write (view, 
+			     "<h2>Other document systems</h2>\n"
+			     "<a href=\"toc:man\">Manual pages</a><br>\n"
+			     "<a href=\"toc:info\">Info pages</a><br>\n", -1);
+			      
+	yelp_view_toc_write (view, 
+			     "</td>\n", -1);
+
 	yelp_view_toc_write (view, table_end, -1);
 	yelp_view_toc_write_footer (view);
 
@@ -470,7 +506,7 @@ static void
 yelp_view_toc_info (YelpViewTOC *view)
 {
 	YelpViewTOCPriv *priv;
-	GNode           *root, *node, *child;
+	GNode           *root, *node;
 	YelpSection     *section;
 	char            *url;
 	

@@ -25,6 +25,6 @@
 
 #include <glib.h>
 
-gboolean yelp_scrollkeeper_init (GNode *tree);
-
+gboolean yelp_scrollkeeper_init            (GNode *tree);
+GNode *  yelp_scrollkeeper_lookup_seriesid (const char *seriesid);
 #endif /* __YELP_SCROLLKEEPER_H__ */

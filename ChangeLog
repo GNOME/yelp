@@ -1,5 +1,14 @@
 2002-01-23  Alex Larsson  <alexl@redhat.com>
 
+	* src/yelp-scrollkeeper.[ch]:
+	Implement seriesid lookup.
+
+	* src/yelp-view-toc.c:
+	Fix the startpage to contain the seriesid docs, and
+	be more dynamic.
+
+2002-01-23  Alex Larsson  <alexl@redhat.com>
+
 	* src/yelp-util.c:
 	Change path separator to '/'.
 
