@@ -33,6 +33,7 @@
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-url.h>
 #include <libgnome/gnome-program.h>
+#include <libgnome/gnome-config.h>
 #include <glade/glade.h>
 #include <string.h>
 #include "yelp-error.h"
@@ -48,6 +49,11 @@
 #define d(x)
 #define RESPONSE_PREV 1
 #define RESPONSE_NEXT 2
+
+#define YELP_CONFIG_WIDTH  "/yelp/Geometry/width"
+#define YELP_CONFIG_HEIGHT "/yelp/Geometry/height"
+#define YELP_CONFIG_WIDTH_DEFAULT  "600"
+#define YELP_CONFIG_HEIGHT_DEFAULT "420"
 
 typedef enum {
 	YELP_WINDOW_ACTION_BACK = 1,
@@ -117,7 +123,9 @@ static void        window_find_response_cb        (GtkWidget         *dialog ,
 static YelpView *  window_get_active_view         (YelpWindow        *window);
 static GtkWidget * window_create_toolbar          (YelpWindow        *window);
 static GdkPixbuf * window_load_icon               (void);
-
+static gboolean    window_configure_cb            (GtkWidget         *widget,
+						   GdkEventConfigure *event,
+						   gpointer           data);
 
 
 enum {
@@ -233,7 +241,16 @@ window_init (YelpWindow *window)
 			  G_CALLBACK (window_toggle_history_forward),
 			  window);
 
-	gtk_window_set_default_size (GTK_WINDOW (window), 600, 420);
+	gint width, height;
+	width = gnome_config_get_int (YELP_CONFIG_WIDTH
+				     "=" YELP_CONFIG_WIDTH_DEFAULT);
+	height = gnome_config_get_int (YELP_CONFIG_HEIGHT
+				      "=" YELP_CONFIG_HEIGHT_DEFAULT);
+	gtk_window_set_default_size (GTK_WINDOW (window), width, height);
+	g_signal_connect (window,
+			  "configure-event",
+			  G_CALLBACK (window_configure_cb),
+			  NULL);
 
 	gtk_window_set_title (GTK_WINDOW (window), _("Help Browser"));
 }
@@ -865,6 +882,19 @@ window_load_icon (void)
 	return pixbuf;
 }
 
+static gboolean
+window_configure_cb (GtkWidget         *widget,
+		     GdkEventConfigure *event,
+		     gpointer           data)
+{
+	gint width, height;
+	gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
+	gnome_config_set_int (YELP_CONFIG_WIDTH, width);
+	gnome_config_set_int (YELP_CONFIG_HEIGHT, height);
+	gnome_config_sync ();
+
+	return FALSE;
+}
 
 GtkWidget *
 yelp_window_new (GNode *doc_tree, GList *index)
