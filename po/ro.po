@@ -1,0 +1,247 @@
+# Romanian translation for yelp-1.0.1
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Mugurel Tudor <mugurelu@go.ro>, 2002.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.1\n"
+"POT-Creation-Date: 2002-06-19 12:22+0200\n"
+"PO-Revision-Date: 2002-08-30 14:06+0300\n"
+"Last-Translator: Mugurel Tudor <mugurelu@go.ro>\n"
+"Language-Team: română <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.6\n"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Factory Yelp"
+
+#: src/yelp-main.c:111
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Nu am putut activa Yelp: '%s'"
+
+#: src/yelp-main.c:130
+msgid "Could not open new window."
+msgstr "Nu am putut deschide o nouă fereastră."
+
+#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
+#: src/yelp-man.c:399 src/yelp-man.c:410
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:304
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:320
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:325
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:335
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:340
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:362
+msgid "System Calls"
+msgstr "Apeluri de sistem"
+
+#: src/yelp-man.c:367
+msgid "Library Functions"
+msgstr "Funcţii de librărie"
+
+#: src/yelp-man.c:372
+msgid "Kernel Routines"
+msgstr "Rutine kernel"
+
+#: src/yelp-man.c:427
+msgid "Applications"
+msgstr "Aplicaţii"
+
+#: src/yelp-man.c:432
+msgid "Development"
+msgstr "Dezvoltare"
+
+#: src/yelp-man.c:437
+msgid "Hardware Devices"
+msgstr "Dispozitive hardware"
+
+#: src/yelp-man.c:442
+msgid "Configuration Files"
+msgstr "Fişiere de configurare"
+
+#: src/yelp-man.c:447
+msgid "Games"
+msgstr "Jocuri"
+
+#: src/yelp-man.c:452
+msgid "Overviews"
+msgstr "Rezumate"
+
+#: src/yelp-man.c:457
+msgid "System Administration"
+msgstr "Administrare sistem"
+
+#: src/yelp-view-content.c:420 src/yelp-view-index.c:498
+msgid "Section"
+msgstr "Secţie"
+
+#: src/yelp-view-content.c:555 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "Încarc..."
+
+#: src/yelp-view-index.c:461
+msgid "Search for:"
+msgstr "Caută după:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:183
+msgid "Help Contents"
+msgstr "Index documentaţie"
+
+#: src/yelp-view-toc.c:184
+msgid "GNOME - Desktop"
+msgstr "Desktop GNOME"
+
+#: src/yelp-view-toc.c:185
+msgid "Additional documents"
+msgstr "Documentaţii suplimentare"
+
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "Pagini de manual"
+
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+msgid "Info Pages"
+msgstr "Pagini de info"
+
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+msgid "Documents"
+msgstr "Documente"
+
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+msgid "Categories"
+msgstr "Categorii"
+
+#: src/yelp-view-toc.c:466
+msgid "Manual pages"
+msgstr "Pagini de manual"
+
+#: src/yelp-window.c:156
+msgid "/_File"
+msgstr "/_Fişier"
+
+#: src/yelp-window.c:157
+msgid "/File/_New window"
+msgstr "/Fişier/_Fereastră nouă"
+
+#: src/yelp-window.c:158
+msgid "/File/_Close window"
+msgstr "/Fişier/_Închide fereastra"
+
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:160
+msgid "/_Go"
+msgstr "/_Du-te"
+
+#: src/yelp-window.c:161
+msgid "/Go/_Back"
+msgstr "/Du-te/_Înapoi"
+
+#: src/yelp-window.c:162
+msgid "/Go/_Forward"
+msgstr "/Du-te/Î_nainte"
+
+#: src/yelp-window.c:163
+msgid "/Go/_Home"
+msgstr "/Du-te/_Acasă"
+
+#: src/yelp-window.c:164
+msgid "/Go/_Index"
+msgstr "/Du-te/_Index"
+
+#: src/yelp-window.c:165
+msgid "/_Help"
+msgstr "/_Ajutor"
+
+#: src/yelp-window.c:166
+msgid "/Help/_About"
+msgstr "/Ajutor/_Despre"
+
+#: src/yelp-window.c:228 src/yelp-window.c:430
+msgid "Help Browser"
+msgstr "Navigator pentru documentaţii"
+
+#: src/yelp-window.c:340
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Documentul '%s' nu există"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:599
+msgid "translator_credits"
+msgstr "Mugurel Tudor <mugurelu@go.ro>"
+
+#: src/yelp-window.c:603
+msgid "Help Browser for GNOME 2.0"
+msgstr "Navigator în documentaţii pentru GNOME 2.0"
+
+#: src/yelp-window.c:658
+msgid "Back"
+msgstr "Înapoi"
+
+#: src/yelp-window.c:659
+msgid "Show previous page in history"
+msgstr "Arată pagina anterioară din istoric"
+
+#: src/yelp-window.c:670
+msgid "Forward"
+msgstr "Înainte"
+
+#: src/yelp-window.c:671
+msgid "Show next page in history"
+msgstr "Arată următoarea pagină din istoric"
+
+#: src/yelp-window.c:684
+msgid "Home"
+msgstr "Acasă"
+
+#: src/yelp-window.c:685
+msgid "Go to home view"
+msgstr "Mergi acasă"
+
+#: src/yelp-window.c:695
+msgid "Index"
+msgstr "Index"
+
+#: src/yelp-window.c:696
+msgid "Search in the index"
+msgstr "Caută în index"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Primeşte ajutor despre GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Ajutor"
+
