@@ -59,7 +59,8 @@ YelpHtml *      yelp_html_new            (void);
  
 void            yelp_html_open_uri       (YelpHtml      *html,
 					  const gchar   *uri,
-					  const gchar   *reference);
+					  const gchar   *reference,
+					  GError       **error);
 void            yelp_html_cancel_loading (YelpHtml      *html);
 GtkWidget *     yelp_html_get_widget     (YelpHtml      *html);
 

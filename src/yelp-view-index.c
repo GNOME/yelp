@@ -76,7 +76,7 @@ struct _YelpViewIndexPriv {
 	GtkWidget      *entry;
 	
 	/* Html view */
-	GtkWidget      *html_view;
+	YelpHtml       *html_view;
 
 	GCompletion    *completion;
 
@@ -413,7 +413,9 @@ yelp_view_index_new (GList *index)
 }
 
 void
-yelp_view_index_show_uri (YelpViewIndex *view, const gchar *uri)
+yelp_view_index_show_uri (YelpViewIndex  *view,
+			  const gchar    *uri, 
+			  GError        **error)
 {
 	YelpViewIndexPriv *priv;
 	const gchar       *real_uri;
@@ -426,7 +428,8 @@ yelp_view_index_show_uri (YelpViewIndex *view, const gchar *uri)
 
 	real_uri = uri + 6;
 
-	yelp_html_open_uri (YELP_HTML (priv->html_view), real_uri, NULL);
+	/* FIXME: Handle the GError */
+	yelp_html_open_uri (priv->html_view, real_uri, NULL, error);
 }
 
 /**

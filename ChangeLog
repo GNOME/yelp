@@ -1,6 +1,17 @@
 2002-04-14  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (yw_handle_url): If error is set during
+	  set_uri, popup an error-dialog describing the error.
+
+	* src/yelp-html.c: 
+	- Added support for GError's
+	* src/yelp-view-index.c: same.
+	* src/yelp-view-content.c: same.
+
 	* src/yelp-db2html.c: 
+	- Include gnome-i18n.h
+	- Mark the error messages for translation.
+	
 	(yelp_db2html_convert): revert a little, in wait for sanders new
 	  stylesheets.
 	- use GError to signal errors while parsing document. Still needs

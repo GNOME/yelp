@@ -58,6 +58,7 @@ GType           yelp_view_index_get_type     (void);
 GtkWidget      *yelp_view_index_new          (GList            *index);
 
 void            yelp_view_index_show_uri     (YelpViewIndex    *view,
-					      const gchar      *uri);
+					      const gchar      *uri,
+					      GError          **error);
 
 #endif /* __YELP_VIEW_INDEX__ */

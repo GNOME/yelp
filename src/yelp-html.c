@@ -208,7 +208,7 @@ yelp_html_do_close (void *context)
 }
 
 static void
-yelp_html_do_docbook (YelpHtml *html, const gchar *uri)
+yelp_html_do_docbook (YelpHtml *html, const gchar *uri, GError **error)
 {
 	xmlOutputBufferPtr  buf;
 	YelpHtmlPriv       *priv;
@@ -223,7 +223,7 @@ yelp_html_do_docbook (YelpHtml *html, const gchar *uri)
 	buf->closecallback = yelp_html_do_close;
 	buf->context       = html;
 		
-	yelp_db2html_convert (uri, buf, NULL);
+	yelp_db2html_convert (uri, buf, error);
 }
 
 static gboolean
@@ -279,7 +279,8 @@ yelp_html_idle_read_end (gpointer data)
 
 static void
 yelp_html_do_non_docbook (YelpHtml *html, HtmlStream *stream, 
-			  const gchar *uri, gboolean is_doc)
+			  const gchar *uri, gboolean is_doc, 
+			  GError **error)
 {
 	GnomeVFSHandle *handle;
 	GnomeVFSResult  result;
@@ -413,9 +414,10 @@ yelp_html_new (void)
 }
 
 void
-yelp_html_open_uri (YelpHtml    *html, 
-		    const gchar *str_uri,
-		    const gchar *reference)
+yelp_html_open_uri (YelpHtml     *html, 
+		    const gchar  *str_uri,
+		    const gchar  *reference,
+		    GError      **error)
 {
         YelpHtmlPriv *priv;
 	
@@ -439,13 +441,13 @@ yelp_html_open_uri (YelpHtml    *html,
 			GTK_LAYOUT (priv->view)), 0);
 
 	if (!strncmp (str_uri, "ghelp:", 6)) {
-		yelp_html_do_docbook (html, str_uri + 6);
+		yelp_html_do_docbook (html, str_uri + 6, error);
 		/* Docbook or HTML */
 		return;
 	}
 
 	yelp_html_do_non_docbook (html, priv->doc->current_stream, 
-				  str_uri, TRUE);
+				  str_uri, TRUE, error);
 }
 
 void

@@ -314,7 +314,9 @@ static gboolean
 yw_handle_url (YelpWindow *window, const gchar *url)
 {
 	YelpWindowPriv *priv;
-	
+	GError         *error = NULL;
+	gboolean        handled = FALSE;
+
 	priv = window->priv;
 
  	yelp_view_content_stop (YELP_VIEW_CONTENT (priv->content_view));
@@ -324,7 +326,7 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 					url);
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_TOC_VIEW);
-		return TRUE;
+		handled = TRUE;
 	} else if (strncmp (url, "man:", 4) == 0 ||
 		   strncmp (url, "info:", 5) == 0 ||
 		   strncmp (url, "ghelp:", 6) == 0 ||
@@ -332,20 +334,35 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_CONTENT_VIEW);
 		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
-					    url);
-		return TRUE;
+					    url,
+					    &error);
+		handled = TRUE;
 	} else if (strncmp (url, "index:", 6) == 0) {
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_INDEX_VIEW);
 		yelp_view_index_show_uri (YELP_VIEW_INDEX (priv->index_view),
-					  url);
-		return TRUE;
+					  url,
+					  &error);
+		handled = TRUE;
 	} else {
 		/* FIXME: Show dialog on failure? */
 		gnome_url_show (url, NULL);
+		handled = FALSE;
 	}
 
-	return FALSE;
+	if (error) {
+		GtkWidget *dialog;
+		
+		dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+						 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_OK,
+						 error->message);
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+	}
+
+	return handled;
 }
 
 static void

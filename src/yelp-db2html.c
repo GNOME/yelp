@@ -27,6 +27,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <libgnome/gnome-i18n.h>
 #include <libxml/xmlversion.h>
 #include <libxml/xmlmemory.h>
 #include <libxml/debugXML.h>
@@ -101,7 +102,7 @@ yelp_db2html_convert (const gchar         *document,
                 g_set_error (error,
                              YELP_ERROR,
                              YELP_ERROR_DOCBOOK_2_HTML,
-                             "Error while parsing the stylesheet, make sure you have your docbook environment setup correctly");
+                             _("Error while parsing the stylesheet, make sure you have your docbook environment setup correctly."));
                              
                 /* FIXME: Set GError */
                 return FALSE;
@@ -123,7 +124,7 @@ yelp_db2html_convert (const gchar         *document,
                 g_set_error (error,
                              YELP_ERROR,
                              YELP_ERROR_DOCBOOK_2_HTML,
-                             "Couldn't parse the document '%s'",
+                             _("Couldn't parse the document '%s'."),
                              gdb_docname);
                 
                 g_free (gdb_docname);
@@ -151,6 +152,8 @@ yelp_db2html_convert (const gchar         *document,
 	params[4] = NULL;
 
 	if (has_rootid) {
+                /* FIXME: Change this when sander has the new 
+                   stylesheets ready */
                 params[4] = "rootid";
 /*  		params[4] = "gdb_rootid"; */
 		params[5] = g_strconcat("\"", gdb_rootid + 1, "\"", NULL) ;
@@ -163,7 +166,7 @@ yelp_db2html_convert (const gchar         *document,
                 g_set_error (error,
                              YELP_ERROR,
                              YELP_ERROR_DOCBOOK_2_HTML,
-                             "Error while applying the stylesheet");
+                             _("Error while applying the stylesheet."));
                 return FALSE;
         }
 

@@ -279,8 +279,9 @@ yelp_view_content_set_tree (YelpViewContent *content,
 }
 
 void
-yelp_view_content_show_uri (YelpViewContent *content,
-			    const gchar     *url)
+yelp_view_content_show_uri (YelpViewContent  *content,
+			    const gchar      *url,
+			    GError          **error)
 {
 	YelpViewContentPriv *priv;
 	gchar               *content_url;
@@ -343,7 +344,7 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		content_url = (char *) url;
 	}
 
-	yelp_html_open_uri (priv->html_view, content_url, NULL);
+	yelp_html_open_uri (priv->html_view, content_url, NULL, error);
 
 	if (content_url != url) {
 		g_free (content_url);
