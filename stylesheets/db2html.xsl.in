@@ -229,15 +229,14 @@
 	    </xsl:when>
 	    <xsl:otherwise>
 	      <xsl:attribute name="title">
-		<xsl:call-template name="db.xref.tooltip">
+		<xsl:call-template name="db.title">
 		  <xsl:with-param name="linkend" select="$prev_id"/>
 		  <xsl:with-param name="target"  select="$prev_node"/>
 		</xsl:call-template>
 	      </xsl:attribute>
 	      <img src="{$yelp.icon.previous}" class="navbar-previous"/>
-	      <xsl:call-template name="db.label">
+	      <xsl:call-template name="db.title">
 		<xsl:with-param name="node" select="$prev_node"/>
-		<xsl:with-param name="role" select="'title'"/>
 	      </xsl:call-template>
 	    </xsl:otherwise>
 	  </xsl:choose>
@@ -256,9 +255,8 @@
 	      <xsl:with-param name="target"  select="$next_node"/>
 	    </xsl:call-template>
 	  </xsl:attribute>
-	  <xsl:call-template name="db.label">
+	  <xsl:call-template name="db.title">
 	    <xsl:with-param name="node" select="$next_node"/>
-	    <xsl:with-param name="role" select="'title'"/>
 	  </xsl:call-template>
 	  <img src="{$yelp.icon.next}" class="navbar-next"/>
 	</a>

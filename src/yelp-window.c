@@ -1442,14 +1442,14 @@ window_handle_page (YelpWindow   *window,
 		      "sensitive",
 		      priv->prev_id ? TRUE : FALSE,
 		      NULL);
-    priv->prev_id = page->prev_id;
+    priv->next_id = page->next_id;
     action = gtk_action_group_get_action (priv->action_group, "GoNext");
     if (action)
 	g_object_set (G_OBJECT (action),
 		      "sensitive",
 		      priv->next_id ? TRUE : FALSE,
 		      NULL);
-    priv->prev_id = page->prev_id;
+    priv->toc_id = page->toc_id;
     action = gtk_action_group_get_action (priv->action_group, "GoContents");
     if (action)
 	g_object_set (G_OBJECT (action),

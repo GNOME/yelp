@@ -425,11 +425,11 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 		if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
 		    xmlChar *rel = xmlGetProp (cur, "rel");
 
-		    if (!xmlStrcmp (rel, (xmlChar *) "Previous"))
+		    if (!xmlStrcmp (rel, (xmlChar *) "previous"))
 			page->prev_id = g_strdup (xmlGetProp (cur, "href"));
-		    else if (!xmlStrcmp (rel, (xmlChar *) "Next"))
+		    else if (!xmlStrcmp (rel, (xmlChar *) "next"))
 			page->next_id = g_strdup (xmlGetProp (cur, "href"));
-		    else if (!xmlStrcmp (rel, (xmlChar *) "Top"))
+		    else if (!xmlStrcmp (rel, (xmlChar *) "top"))
 			page->toc_id = g_strdup (xmlGetProp (cur, "href"));
 
 		    xmlFree (rel);
