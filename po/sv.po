@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-15 21:48+0100\n"
-"PO-Revision-Date: 2005-01-15 21:48+0100\n"
+"POT-Creation-Date: 2005-01-20 16:53+0100\n"
+"PO-Revision-Date: 2005-01-20 16:53+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr "Utbildningsprogram"
 msgid "Graphics"
 msgstr "Grafik"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
 msgid "Help Topics"
 msgstr "Hjälprubriker"
 
@@ -150,28 +150,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Kontor"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Annan"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Annan dokumentation"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Programmering"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Vetenskaplig"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Ljud och video"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
@@ -302,16 +302,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:141
+msgid "Open Bookmark in New Window"
+msgstr "Öppna bokmärke i nytt fönster"
+
+#: src/yelp-bookmarks.c:145
+msgid "Rename Bookmark"
+msgstr "Byt namn på bokmärke"
+
+#: src/yelp-bookmarks.c:149
+msgid "Remove Bookmark"
+msgstr "Ta bort bokmärke"
+
+#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Det finns redan ett bokmärke med namnet <b>%s</b> för denna sida."
 
-#: src/yelp-bookmarks.c:341
+#: src/yelp-bookmarks.c:377
 msgid "Document Sections"
 msgstr "Dokumentavsnitt"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -320,9 +332,9 @@ msgstr ""
 "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
 "inte korrekt XML."
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Okänd"
+#: src/yelp-db-pager.c:489
+msgid "Unknown Section"
+msgstr "Okänt avsnitt"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -730,6 +742,27 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "Få hjälp med GNOME"
 
+#~ msgid "Multimedia Applications"
+#~ msgstr "Multimediaprogram"
+
+#~ msgid "Multimedia applications"
+#~ msgstr "Multimediaprogram"
+
+#~ msgid "Bookmark"
+#~ msgstr "Bokmärke"
+
+#~ msgid "Open Bookmark in _New Window"
+#~ msgstr "Öppna bokmärke i _nytt fönster"
+
+#~ msgid "Delete Bookmark"
+#~ msgstr "Ta bort bokmärke"
+
+#~ msgid "Unknown"
+#~ msgstr "Okänd"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Ljud och video"
+
 #~ msgid "_Bookmarks:"
 #~ msgstr "_Bokmärken:"
 
@@ -891,9 +924,6 @@ msgstr "Få hjälp med GNOME"
 
 #~ msgid "Kernels"
 #~ msgstr "Kärnor"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "Multimediaprogram"
 
 #~ msgid "Office and Productivity Applications"
 #~ msgstr "Kontors- och produktivitetsprogram"
