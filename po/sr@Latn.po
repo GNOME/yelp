@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-17 02:11+0100\n"
-"PO-Revision-Date: 2004-01-17 02:12+0100\n"
+"POT-Creation-Date: 2004-01-18 13:12+0100\n"
+"PO-Revision-Date: 2004-01-18 13:12+0100\n"
 "Last-Translator: Goran Rakić <gox@devbase.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Razvojna okruženja"
 msgid "Development Tools"
 msgstr "Razvojni alati"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:35
 msgid "Editors"
 msgstr "Uređivači"
 
@@ -149,12 +149,12 @@ msgstr "Ponestalo memorije"
 msgid "Titlepage"
 msgstr "Naslovnica"
 
-#: src/yelp-db-pager.c:624 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:624 stylesheets/l10n.xml.in.h:29
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/yelp-db-pager.c:642 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:642 stylesheets/l10n.xml.in.h:67
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Nepoznato"
@@ -350,7 +350,7 @@ msgstr "/_Pomoć/O programu"
 msgid "Help Browser"
 msgstr "Preglednik pomoći"
 
-#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:59
 msgid "Section"
 msgstr "Odeljak"
 
@@ -474,162 +474,182 @@ msgstr "Publika"
 
 #: stylesheets/l10n.xml.in.h:20
 msgid "Author"
-msgstr "Autori"
+msgstr "Autor"
 
 #: stylesheets/l10n.xml.in.h:21
+msgid "Authors"
+msgstr "Autori"
+
+#: stylesheets/l10n.xml.in.h:22
 msgid "Bibliography"
 msgstr "Literatura"
 
-#: stylesheets/l10n.xml.in.h:22
+#: stylesheets/l10n.xml.in.h:23
 msgid "Book"
 msgstr "Knjiga"
 
-#: stylesheets/l10n.xml.in.h:23
+#: stylesheets/l10n.xml.in.h:24
 msgid "Caution"
 msgstr "Pažnja"
 
-#: stylesheets/l10n.xml.in.h:24
+#: stylesheets/l10n.xml.in.h:25
 msgid "Chapter"
 msgstr "Glava"
 
-#: stylesheets/l10n.xml.in.h:25
+#: stylesheets/l10n.xml.in.h:26
 msgid "Collaborator"
 msgstr "Saradnik"
 
-#: stylesheets/l10n.xml.in.h:26
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborators"
+msgstr "Saradnici"
+
+#: stylesheets/l10n.xml.in.h:28
 msgid "Colophon"
 msgstr "Znak štampara"
 
-#: stylesheets/l10n.xml.in.h:28
+#: stylesheets/l10n.xml.in.h:30
 msgid "Copyright"
 msgstr "Autorska prava"
 
-#: stylesheets/l10n.xml.in.h:29
+#: stylesheets/l10n.xml.in.h:31
+msgid "Copyrights"
+msgstr "Autorska prava"
+
+#: stylesheets/l10n.xml.in.h:32
 msgid "Date"
 msgstr "Datum"
 
-#: stylesheets/l10n.xml.in.h:30
+#: stylesheets/l10n.xml.in.h:33
 msgid "Dedication"
 msgstr "Posveta"
 
-#: stylesheets/l10n.xml.in.h:31
+#: stylesheets/l10n.xml.in.h:34
 msgid "Editor"
 msgstr "Urednik"
 
-#: stylesheets/l10n.xml.in.h:32
+#: stylesheets/l10n.xml.in.h:36
 msgid "Email"
 msgstr "E-pošta"
 
-#: stylesheets/l10n.xml.in.h:33
+#: stylesheets/l10n.xml.in.h:37
 msgid "Example"
 msgstr "Primer"
 
-#: stylesheets/l10n.xml.in.h:34
+#: stylesheets/l10n.xml.in.h:38
 msgid "Figure"
 msgstr "Slika"
 
-#: stylesheets/l10n.xml.in.h:35
+#: stylesheets/l10n.xml.in.h:39
 msgid "Glossary"
 msgstr "Pojmovnik"
 
-#: stylesheets/l10n.xml.in.h:36
+#: stylesheets/l10n.xml.in.h:40
 msgid "Important"
 msgstr "Važno"
 
-#: stylesheets/l10n.xml.in.h:37
+#: stylesheets/l10n.xml.in.h:41
 msgid "Index"
 msgstr "Indeks"
 
-#: stylesheets/l10n.xml.in.h:38
+#: stylesheets/l10n.xml.in.h:42
 msgid "Legal Notice"
 msgstr "Zakonska napomena"
 
-#: stylesheets/l10n.xml.in.h:39
+#: stylesheets/l10n.xml.in.h:43
 msgid "Level"
 msgstr "Nivo"
 
-#: stylesheets/l10n.xml.in.h:40
+#: stylesheets/l10n.xml.in.h:44
 msgid "Message Audience"
 msgstr "Namena poruke"
 
-#: stylesheets/l10n.xml.in.h:41
+#: stylesheets/l10n.xml.in.h:45
 msgid "Message Level"
 msgstr "Nivo poruke"
 
-#: stylesheets/l10n.xml.in.h:42
+#: stylesheets/l10n.xml.in.h:46
 msgid "Message Origin"
 msgstr "Poreklo poruke"
 
-#: stylesheets/l10n.xml.in.h:43
+#: stylesheets/l10n.xml.in.h:47
 msgid "Note"
 msgstr "Beleška"
 
-#: stylesheets/l10n.xml.in.h:44
+#: stylesheets/l10n.xml.in.h:48
 msgid "Origin"
 msgstr "Poreklo"
 
-#: stylesheets/l10n.xml.in.h:45
+#: stylesheets/l10n.xml.in.h:49
 msgid "Other Contributor"
 msgstr "Ostali doprinosioci"
 
-#: stylesheets/l10n.xml.in.h:46
+#: stylesheets/l10n.xml.in.h:50
+msgid "Other Contributors"
+msgstr "Ostali doprinosioci"
+
+#: stylesheets/l10n.xml.in.h:51
 msgid "Part"
 msgstr "Deo"
 
-#: stylesheets/l10n.xml.in.h:47
+#: stylesheets/l10n.xml.in.h:52
 msgid "Preface"
 msgstr "Predgovor"
 
-#: stylesheets/l10n.xml.in.h:48
+#: stylesheets/l10n.xml.in.h:53
 msgid "Publisher"
 msgstr "Izdavač"
 
-#: stylesheets/l10n.xml.in.h:49
+#: stylesheets/l10n.xml.in.h:54
+msgid "Publishers"
+msgstr "Izdavači"
+
+#: stylesheets/l10n.xml.in.h:55
 msgid "Reference"
 msgstr "Referenca"
 
-#: stylesheets/l10n.xml.in.h:50
+#: stylesheets/l10n.xml.in.h:56
 msgid "Reference Entry"
 msgstr "Unos reference"
 
-#: stylesheets/l10n.xml.in.h:51
+#: stylesheets/l10n.xml.in.h:57
 msgid "Reference Section"
 msgstr "Odeljak sa referencama"
 
-#: stylesheets/l10n.xml.in.h:52
+#: stylesheets/l10n.xml.in.h:58
 msgid "Revision History"
 msgstr "Istorijat izdanja"
 
-#: stylesheets/l10n.xml.in.h:54
+#: stylesheets/l10n.xml.in.h:60
 msgid "See"
 msgstr "Videti"
 
-#: stylesheets/l10n.xml.in.h:55
+#: stylesheets/l10n.xml.in.h:61
 msgid "See Also"
 msgstr "Videti takođe"
 
 # bug: is "Set Index" "Index of the Set", or "set an index"
-#: stylesheets/l10n.xml.in.h:56
+#: stylesheets/l10n.xml.in.h:62
 msgid "Set Index"
 msgstr "Indeks skupa"
 
-#: stylesheets/l10n.xml.in.h:57
+#: stylesheets/l10n.xml.in.h:63
 msgid "Table"
 msgstr "Tabela"
 
-#: stylesheets/l10n.xml.in.h:58
+#: stylesheets/l10n.xml.in.h:64
 msgid "Table of Contents"
 msgstr "Sadržaj"
 
-#: stylesheets/l10n.xml.in.h:59
+#: stylesheets/l10n.xml.in.h:65
 msgid "Tip"
 msgstr "Savet"
 
-#: stylesheets/l10n.xml.in.h:60
+#: stylesheets/l10n.xml.in.h:66
 msgid "Title"
 msgstr "Naslov"
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:68
 msgid "Warning"
 msgstr "Upozorenje"
 
