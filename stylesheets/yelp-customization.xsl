@@ -289,16 +289,12 @@
 <xsl:choose>
   <xsl:when test="$doit=1">
    <td align="center" width="33%">
-     <xsl:choose>
-       <xsl:when test="local-name($node)='sect1' or local-name($node)='sect2'">
          <a accesskey="u">
            <xsl:attribute name="href">
              <xsl:call-template name="article.toc.ref"/>
            </xsl:attribute>
              <xsl:text>Contents</xsl:text>
          </a>
-       </xsl:when>
-     </xsl:choose>
    </td>
   </xsl:when>
   <xsl:otherwise>
