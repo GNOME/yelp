@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.0\n"
-"POT-Creation-Date: 2002-06-02 13:26+0200\n"
+"POT-Creation-Date: 2002-09-09 05:14+0200\n"
 "PO-Revision-Date: 2002-06-02 18:24+0100\n"
 "Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -22,218 +22,231 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-main.c:111
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "No se pudo activar Yelp: '%s'"
+msgstr "No se pudo activar Yelp: «%s»"
 
-#: src/yelp-main.c:130
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "No se pudo abrir una ventana nueva."
 
-#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
-#: src/yelp-man.c:399 src/yelp-man.c:410
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:304
+#: src/yelp-man.c:306
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:320
+#: src/yelp-man.c:322
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:325
+#: src/yelp-man.c:327
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:335
+#: src/yelp-man.c:337
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:340
+#: src/yelp-man.c:342
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:362
+#: src/yelp-man.c:364
 msgid "System Calls"
 msgstr "Llamadas al sistema"
 
-#: src/yelp-man.c:367
+#: src/yelp-man.c:369
 msgid "Library Functions"
 msgstr "Biblioteca de funciones"
 
-#: src/yelp-man.c:372
+#: src/yelp-man.c:374
 msgid "Kernel Routines"
 msgstr "Rutinas del núcleo"
 
-#: src/yelp-man.c:427
+#: src/yelp-man.c:429
 msgid "Applications"
 msgstr "Aplicaciones"
 
-#: src/yelp-man.c:432
+#: src/yelp-man.c:434
 msgid "Development"
 msgstr "Desarrollo"
 
-#: src/yelp-man.c:437
+#: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "Dispositivos de hardware"
 
-#: src/yelp-man.c:442
+#: src/yelp-man.c:444
 msgid "Configuration Files"
 msgstr "Archivos de configuración"
 
-#: src/yelp-man.c:447
+#: src/yelp-man.c:449
 msgid "Games"
 msgstr "Juegos"
 
-#: src/yelp-man.c:452
+#: src/yelp-man.c:454
 msgid "Overviews"
 msgstr "Vistas generales"
 
-#: src/yelp-man.c:457
+#: src/yelp-man.c:459
 msgid "System Administration"
 msgstr "Administración del sistema"
 
-#: src/yelp-view-content.c:229 src/yelp-view-content.c:473
-msgid "Loading..."
-msgstr "Cargando..."
-
-#: src/yelp-view-content.c:338 src/yelp-view-index.c:377
+#: src/yelp-view-content.c:422 src/yelp-view-index.c:498
 msgid "Section"
 msgstr "Sección"
 
-#: src/yelp-view-index.c:340
+#: src/yelp-view-content.c:567 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: src/yelp-view-index.c:461
 msgid "Search for:"
 msgstr "Buscar:"
 
 #. GList           *seriesids;
-#: src/yelp-view-toc.c:163
+#: src/yelp-view-toc.c:183
 msgid "Help Contents"
 msgstr "Contenidos de la ayuda"
 
-#: src/yelp-view-toc.c:164
+#: src/yelp-view-toc.c:184
 msgid "GNOME - Desktop"
 msgstr "Escritorio de GNOME"
 
-#: src/yelp-view-toc.c:165
+#: src/yelp-view-toc.c:185
 msgid "Additional documents"
 msgstr "Documentos adicionales"
 
-#: src/yelp-view-toc.c:166 src/yelp-view-toc.c:487
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
 msgid "Manual Pages"
 msgstr "Páginas del manual"
 
-#: src/yelp-view-toc.c:167 src/yelp-view-toc.c:543
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
 msgid "Info Pages"
 msgstr "Páginas info"
 
-#: src/yelp-view-toc.c:364 src/yelp-view-toc.c:544 src/yelp-view-toc.c:751
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/yelp-view-toc.c:365 src/yelp-view-toc.c:488 src/yelp-view-toc.c:752
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Categorías"
 
-#: src/yelp-view-toc.c:446
+#: src/yelp-view-toc.c:466
 msgid "Manual pages"
 msgstr "Páginas del manual"
 
-#: src/yelp-window.c:153
+#: src/yelp-view-toc.c:731
+#, fuzzy
+msgid "GNOME is"
+msgstr "Escritorio de GNOME"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Software libre"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Archivo"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Archivo/_Nueva ventana"
 
-#: src/yelp-window.c:155
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Archivo/_Cerrar ventana"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:157
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Ir/_Atrás"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Ir/A_delante"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Ir/_Inicio"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Ir/Índi_ce"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:168
 msgid "/_Help"
-msgstr "/_Ayuda"
+msgstr "/A_yuda"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Ayuda/_Acerca de ..."
 
-#: src/yelp-window.c:225
+#: src/yelp-window.c:227 src/yelp-window.c:429
 msgid "Help Browser"
-msgstr "Navegador de ayuda"
+msgstr "Navegador de la ayuda"
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:339
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "El documento «%s» no existe"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:577
+#: src/yelp-window.c:598
 msgid "translator_credits"
 msgstr "Juan Manuel García Molina <juanma_gm@wanadoo.es>"
 
-#: src/yelp-window.c:581
+#: src/yelp-window.c:602
 msgid "Help Browser for GNOME 2.0"
-msgstr "Navegador de ayuda para GNOME 2.0"
+msgstr "Navegador de la ayuda para GNOME 2.0"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:657
 msgid "Back"
 msgstr "Atrás"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:658
 msgid "Show previous page in history"
 msgstr "Muestra la página anterior de la historia"
 
-#: src/yelp-window.c:648
+#: src/yelp-window.c:669
 msgid "Forward"
 msgstr "Adelante"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:670
 msgid "Show next page in history"
 msgstr "Muestra la página anterior de la historia"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:683
 msgid "Home"
 msgstr "Inicio"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:684
 msgid "Go to home view"
 msgstr "Ir a la vista de inicio"
 
-#: src/yelp-window.c:673
+#: src/yelp-window.c:694
 msgid "Index"
 msgstr "Índice"
 
-#: src/yelp-window.c:674
+#: src/yelp-window.c:695
 msgid "Search in the index"
 msgstr "Busca en el índice"
 
