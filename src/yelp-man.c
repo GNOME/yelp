@@ -66,8 +66,9 @@ extract_secnum_from_filename (const char *filename)
 #ifdef HAVE_LIBBZ2
 	end_string =  g_strrstr (filename, ".bz2");
 #endif
-	if (end_string == NULL)
+	if (end_string == NULL) {
 		end_string =  g_strrstr (filename, ".gz");
+	}
 
 	if (end_string) {
 		len = end_string - filename;
@@ -123,8 +124,9 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 	struct TreeNode *node;
 
 	dirh = opendir (basedir);
-	if (!dirh)
+	if (!dirh) {
 		return;
+	}
 
 	readdir (dirh);		/* skip . & .. */
 	readdir (dirh);
@@ -134,12 +136,14 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		char *manname;
 		char *filename;
 
-		if (dent->d_name[0] == '.')
+		if (dent->d_name[0] == '.') {
 			continue;
+		}
 
 		section = extract_secnum_from_filename (dent->d_name);
-		if (!section)
+		if (!section) {
 			continue;
+		}
 
 		if (section[0] != secnum) {
 			g_free (section);
@@ -491,8 +495,11 @@ yelp_man_cleanup_initial_tree (struct TreeNode *node)
 		child = l->data;
 		l = l->next;
 		
-		if (child->pages == NULL && child->tree_nodes == NULL)
-			node->tree_nodes = g_list_remove (node->tree_nodes, child);
+		if (child->pages == NULL && child->tree_nodes == NULL) {
+			node->tree_nodes = g_list_remove (node->tree_nodes, 
+							  child);
+		}
+		
 	}
 
 	node->pages = g_list_sort (node->pages, (GCompareFunc)yelp_section_compare);

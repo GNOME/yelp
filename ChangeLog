@@ -1,5 +1,12 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-info.c: conform with the Yelp coding style.
+
+	* src/yelp-man.c: same
+
+	* configure.in (GNOMELOCALEDIR): depend on a certain number of
+	  libgnome, will update this when new libgnome get's released.
+
 	* src/yelp-window.c:
 	- Fixes #73056
 	(yelp_window_new): don't create index view if no index is

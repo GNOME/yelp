@@ -474,7 +474,7 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 
 static void 
 yelp_view_toc_man_2 (YelpViewTOC *view,
-		     GNode *root)
+		     GNode       *root)
 {
 	GNode *first;
 	gchar *name;

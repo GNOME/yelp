@@ -49,8 +49,9 @@ yelp_info_populate_tree_for_subdir (const char *basedir, GNode *parent)
 	struct dirent *dent;
 
 	dirh = opendir (basedir);
-	if (!dirh)
+	if (!dirh) {
 		return;
+	}
 
 	readdir (dirh);		/* skip . & .. */
 	readdir (dirh);
@@ -59,17 +60,21 @@ yelp_info_populate_tree_for_subdir (const char *basedir, GNode *parent)
 		char *ctmp = NULL;
 		char uribuf[128], titlebuf[128];
 
-		if (dent->d_name[0] == '.')
+		if (dent->d_name[0] == '.') {
 			continue;
+		}
 
 		do {
-			if (ctmp)
+			if (ctmp) {
 				*ctmp = '\0';
+			}
+			
 			ctmp = strrchr (dent->d_name, '.');
 		} while (ctmp && strcmp (ctmp, ".info"));
 
-		if (!ctmp)
+		if (!ctmp) {
 			continue;
+		}
 
 		*ctmp = '\0';
 

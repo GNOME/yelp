@@ -40,6 +40,7 @@ AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
 
 PKG_CHECK_MODULES(YELP, libgtkhtml-2.0 >= 1.99.2	\
 			gnome-vfs-2.0 >= 1.1		\
+			libgnome-2.0 >= 1.112.0		\
 			libgnomeui-2.0 >= 1.103.0	\
 			libbonobo-2.0 >= 1.108.0)
 

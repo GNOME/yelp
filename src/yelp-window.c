@@ -396,8 +396,6 @@ yw_toggle_history_back (YelpHistory *history,
 	menu_item = gtk_item_factory_get_item_by_action (priv->item_factory,
 							 YELP_WINDOW_ACTION_BACK);
 	gtk_widget_set_sensitive (menu_item, sensitive);
-	
-	/* FIXME: Set menu item sens too */
 }
 
 static void
