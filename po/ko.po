@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.1.3\n"
-"POT-Creation-Date: 2003-09-01 16:45-0500\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-09-03 01:55+0900\n"
 "PO-Revision-Date: 2003-08-24 03:44+0900\n"
 "Last-Translator: Young-Ho, Cha <ganadist@mizi.com>\n"
 "Language-Team: GTP Korean <gnome-kr-translation@gnome.or.kr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -36,7 +36,7 @@ msgstr "모든 단어 일치(_E)"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr "대/소문자 일치(_M)"
+msgstr "대/소문자 가리지 않기(_M)"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
@@ -151,7 +151,7 @@ msgstr "찾기(_S):"
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
 msgid "Help Contents"
-msgstr "도움말 목록"
+msgstr "도움말 차례"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
@@ -159,7 +159,7 @@ msgstr "그놈 - 바탕화면"
 
 #: src/yelp-view-toc.c:167
 msgid "Additional documents"
-msgstr "추가 문서"
+msgstr "기타 문서"
 
 #: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
@@ -219,19 +219,19 @@ msgstr "/편집/다시 찾기(_F)"
 
 #: src/yelp-window.c:179
 msgid "/_Go"
-msgstr "/이동(_G)"
+msgstr "/가기(_G)"
 
 #: src/yelp-window.c:180
 msgid "/Go/_Back"
-msgstr "/이동/뒤로(_B)"
+msgstr "/가기/뒤로(_B)"
 
 #: src/yelp-window.c:181
 msgid "/Go/_Forward"
-msgstr "/이동/앞으로(_F)"
+msgstr "/가기/앞으로(_F)"
 
 #: src/yelp-window.c:182
 msgid "/Go/_Home"
-msgstr "/이동/홈(_H)"
+msgstr "/가기/홈(_H)"
 
 #: src/yelp-window.c:183
 msgid "/Go/_Index"
@@ -243,7 +243,7 @@ msgstr "/도움말(_H)"
 
 #: src/yelp-window.c:186
 msgid "/Help/_About"
-msgstr "/도움말/이 프로그램은(_A)"
+msgstr "/도움말/정보(_A)"
 
 #: src/yelp-window.c:255 src/yelp-window.c:455
 msgid "Help Browser"
@@ -258,7 +258,7 @@ msgstr "문서 '%s'(이)가 없습니다"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:694
 msgid "translator_credits"
-msgstr "차영호 <ganadist@mizi.com> 2002"
+msgstr "차영호 <ganadist at mizi.com> 2002-2003"
 
 #: src/yelp-window.c:698
 msgid "A Help Browser for GNOME"
