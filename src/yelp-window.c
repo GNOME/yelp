@@ -444,7 +444,8 @@ yw_create_toolbar (YelpWindow *window)
 	g_signal_connect (G_OBJECT (button), "clicked",
 			  G_CALLBACK (yw_index_button_clicked),
 			  G_OBJECT (window));
-	
+
+#if 0	
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
 	
 	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
@@ -461,6 +462,7 @@ yw_create_toolbar (YelpWindow *window)
 	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
 				   gtk_entry_new (),
 				   _("Enter phrase to search for in all documents"), "");
+#endif
 
 	return toolbar;
 }
