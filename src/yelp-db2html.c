@@ -117,15 +117,19 @@ main (gint argc, gchar **argv)
 	pathname = g_path_get_dirname (docpath);
 
 	/* set params to be passed to stylesheet */
-	params[0] = "gdb_docname";
-	params[1] = g_strconcat("\"", docpath, "\"", NULL) ;
-	params[2] = "gdb_pathname";
-	params[3] = g_strconcat("\"", pathname, "\"", NULL) ;
-	params[4] = "gdb_stylesheet_path";
-        params[5] = g_strconcat("\"", DB_STYLESHEET_PATH, "\"", NULL) ;
-        params[6] = "gdb_multichunk";
-        params[7] = "1";
-        params[8] = NULL;
+	params[0]  = "yelp_docname";
+	params[1]  = g_strconcat("\"", docpath, "\"", NULL) ;
+	params[2]  = "yelp_pathname";
+	params[3]  = g_strconcat("\"", pathname, "\"", NULL) ;
+	params[4]  = "yelp_stylesheet_path";
+        params[5]  = g_strconcat("\"", DB_STYLESHEET_PATH, "\"", NULL) ;
+        params[6]  = "yelp_max_chunk_depth";
+        params[7]  = "2";
+	params[8]  = "yelp_generate_navbar";
+	params[9]  = "1";
+	params[10] = "yelp_chunk_method";
+	params[11] = "'yelp'";
+        params[12] = NULL;
         
         g_free (pathname);
 
