@@ -615,7 +615,9 @@
 											<xsl:with-param name="key">TableofContents</xsl:with-param>
 										</xsl:call-template>
 									</b></p>
-									<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
+									<dl>
+										<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
+									</dl>
 								</div>
 							</xsl:when>
 							<xsl:otherwise>
@@ -680,7 +682,9 @@
 						<xsl:with-param name="key">TableofContents</xsl:with-param>
 					</xsl:call-template>
 				</b></p>
-				<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
+				<dl>
+					<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
+				</dl>
 			</div>
 			<xsl:call-template name="yelp.navbar.bottom">
 				<xsl:with-param name="node" select="."/>
