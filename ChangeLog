@@ -1,3 +1,14 @@
+2002-01-11  Alex Larsson  <alexl@redhat.com>
+
+	* src/yelp-util.[ch]:
+	Add yelp_util_resolve_relative_uri() that resolves
+	relative text uris. Taken from Gnome VFS. We can't use
+	the Gnome-vfs one, since gnome_vfs_uri_new() expands
+	the uris.
+	
+	* src/yelp-html.c (yh_link_clicked_cb):
+	Correctly follow relative URIs.
+
 2002-01-11  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-window.c (yw_create_toolbar): don't include help-on in

@@ -31,4 +31,8 @@ GtkTreeIter * yelp_util_contents_add_section (GtkTreeStore *store,
                                               GtkTreeIter  *parent,
                                               YelpSection  *section);
 
+char * yelp_util_resolve_relative_uri (const char *base_uri,
+				       const char *uri);
+
+
 #endif /* __YELP_UTIL_H__ */

@@ -330,6 +330,7 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 {
         YelpHtmlPriv *priv;
 	YelpSection  *section;
+	gchar *abs_uri;
 
 	g_return_if_fail (HTML_IS_DOCUMENT (doc));
 	g_return_if_fail (url != NULL);
@@ -337,18 +338,20 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 
         priv = html->priv;
 
-	/* FIXME: */
-
 	if (priv->base_uri) {
-		g_print ("Link '%s' pressed relative to: %s\n", 
+		abs_uri = yelp_util_resolve_relative_uri (priv->base_uri, url);
+		g_print ("Link '%s' pressed relative to: %s -> %s\n", 
 			 url,
-			 priv->base_uri);
+			 priv->base_uri,
+			 abs_uri);
         } else {
+		abs_uri = g_strdup (url);
         }
 
-	section = yelp_section_new (NULL, url, NULL, NULL);
+	section = yelp_section_new (NULL, abs_uri, NULL, NULL);
 
 	g_signal_emit (html, signals[SECTION_SELECTED], 0, section);
+	g_free (abs_uri);
 }
 
 GtkWidget *
