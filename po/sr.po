@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.2\n"
-"POT-Creation-Date: 2003-04-09 12:52+0100\n"
+"POT-Creation-Date: 2003-06-05 20:57+0200\n"
 "PO-Revision-Date: 2003-04-09 12:52+0100\n"
 "Last-Translator: Goran Rakić <gox@devbase.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
@@ -134,11 +134,11 @@ msgstr "Прегледи"
 msgid "System Administration"
 msgstr "Администрација система"
 
-#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Учитавам..."
 
-#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Одељак"
 
@@ -254,43 +254,47 @@ msgstr "Документ „%s“ не постоји"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:675
+#: src/yelp-window.c:677
 msgid "translator_credits"
-msgstr "Горан Ракић <gox@devbase.net>\n\nПројекат превођења Гном окружења на српски језик\nhttp://www.prevod.org"
+msgstr ""
+"Горан Ракић <gox@devbase.net>\n"
+"\n"
+"Пројекат превођења Гном окружења на српски језик\n"
+"http://www.prevod.org"
 
-#: src/yelp-window.c:679
+#: src/yelp-window.c:681
 msgid "Help Browser for GNOME 2.0"
 msgstr "Прегледник помоћи за Гном 2.0"
 
-#: src/yelp-window.c:788
+#: src/yelp-window.c:796
 msgid "Back"
 msgstr "Назад"
 
-#: src/yelp-window.c:789
+#: src/yelp-window.c:797
 msgid "Show previous page in history"
 msgstr "Прикажи претходну страницу из историјата"
 
-#: src/yelp-window.c:800
+#: src/yelp-window.c:808
 msgid "Forward"
 msgstr "Напред"
 
-#: src/yelp-window.c:801
+#: src/yelp-window.c:809
 msgid "Show next page in history"
 msgstr "Прикажи наредну страницу из историјата"
 
-#: src/yelp-window.c:814
+#: src/yelp-window.c:822
 msgid "Home"
 msgstr "Полазна страница"
 
-#: src/yelp-window.c:815
+#: src/yelp-window.c:823
 msgid "Go to home view"
 msgstr "Иди на полазну страницу"
 
-#: src/yelp-window.c:825
+#: src/yelp-window.c:833
 msgid "Index"
 msgstr "Индекс"
 
-#: src/yelp-window.c:826
+#: src/yelp-window.c:834
 msgid "Search in the index"
 msgstr "Претражи у индексу"
 

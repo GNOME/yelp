@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-05-24 17:01-0500\n"
+"POT-Creation-Date: 2003-06-05 20:57+0200\n"
 "PO-Revision-Date: 2002-05-31 19:28-0300\n"
 "Last-Translator: Isam Bayazidi <bayazidi@arabeyes.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -14,6 +14,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr ""
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr ""
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr ""
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr ""
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr ""
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr ""
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -23,228 +55,243 @@ msgstr "يلب"
 msgid "Yelp Factory"
 msgstr "مصنع يلب"
 
-#: src/yelp-db2html.c:84
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr "حدث خطأ أثناء إعراب صفحة النمط، تأكد من كونك نصبت بيئة docbook بشكل صحيح."
-
-#: src/yelp-db2html.c:101
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "تعذر إعراب المستند '%s'."
-
-#: src/yelp-db2html.c:139
-msgid "Error while applying the stylesheet."
-msgstr "حدث خطأ أثناء تطبيق صفحة النمط."
-
-#: src/yelp-main.c:109
+#: src/yelp-main.c:117
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "لا استطيع تنشيط يلب : '%s'"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:136
 msgid "Could not open new window."
 msgstr "لا استطيع فتح نافذة جديدة"
 
-#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
-#: src/yelp-man.c:399 src/yelp-man.c:410
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:304
+#: src/yelp-man.c:306
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:320
+#: src/yelp-man.c:322
 msgid "Perl"
 msgstr "بيرل"
 
-#: src/yelp-man.c:325
+#: src/yelp-man.c:327
 msgid "Qt"
 msgstr "كيو تي"
 
-#: src/yelp-man.c:335
+#: src/yelp-man.c:337
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:340
+#: src/yelp-man.c:342
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:362
+#: src/yelp-man.c:364
 msgid "System Calls"
 msgstr "نداءات النظام"
 
-#: src/yelp-man.c:367
+#: src/yelp-man.c:369
 msgid "Library Functions"
 msgstr "وظائف المكتبة"
 
-#: src/yelp-man.c:372
+#: src/yelp-man.c:374
 msgid "Kernel Routines"
 msgstr "روتين النواة"
 
-#: src/yelp-man.c:427
+#: src/yelp-man.c:429
 msgid "Applications"
 msgstr "تطبيقات"
 
-#: src/yelp-man.c:432
+#: src/yelp-man.c:434
 msgid "Development"
 msgstr "تطوير"
 
-#: src/yelp-man.c:437
+#: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "عتاد"
 
-#: src/yelp-man.c:442
+#: src/yelp-man.c:444
 msgid "Configuration Files"
 msgstr "ملفات تعريف"
 
-#: src/yelp-man.c:447
+#: src/yelp-man.c:449
 msgid "Games"
 msgstr "ألعاب"
 
-#: src/yelp-man.c:452
+#: src/yelp-man.c:454
 msgid "Overviews"
 msgstr "معاينات"
 
-#: src/yelp-man.c:457
+#: src/yelp-man.c:459
 msgid "System Administration"
 msgstr "مدير النظام"
 
-#: src/yelp-view-content.c:229 src/yelp-view-content.c:425
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "جاري التحميل..."
 
-#: src/yelp-view-content.c:338 src/yelp-view-index.c:375
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "فصل"
 
-#: src/yelp-view-index.c:338
-msgid "Search for:"
+#: src/yelp-view-index.c:480
+#, fuzzy
+msgid "_Search for:"
 msgstr "بحث عن:"
 
 #. GList           *seriesids;
-#: src/yelp-view-toc.c:163
+#: src/yelp-view-toc.c:165
 msgid "Help Contents"
 msgstr "محتويات المساعدة"
 
-#: src/yelp-view-toc.c:164
+#: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
 msgstr "سطح مكتب - جينوم"
 
-#: src/yelp-view-toc.c:165
+#: src/yelp-view-toc.c:167
 msgid "Additional documents"
 msgstr "مستندات إضافية"
 
-#: src/yelp-view-toc.c:166 src/yelp-view-toc.c:487
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
 msgstr "صفحات الدليل"
 
-#: src/yelp-view-toc.c:167 src/yelp-view-toc.c:543
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
 msgstr "صفحات المعلومات"
 
-#: src/yelp-view-toc.c:364 src/yelp-view-toc.c:544 src/yelp-view-toc.c:759
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "المستندات"
 
-#: src/yelp-view-toc.c:365 src/yelp-view-toc.c:488 src/yelp-view-toc.c:760
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
 msgstr "التصنيفات"
 
-#: src/yelp-view-toc.c:446
+#: src/yelp-view-toc.c:448
 msgid "Manual pages"
 msgstr "صفحات الدليل"
 
-#: src/yelp-window.c:152
+#: src/yelp-view-toc.c:712
+#, fuzzy
+msgid "GNOME is"
+msgstr "سطح مكتب - جينوم"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr ""
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr ""
+
+#: src/yelp-window.c:163
 msgid "/_File"
 msgstr "/ملف"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:164
 msgid "/File/_New window"
 msgstr "/ملف/نافذة جديدة"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:165
 msgid "/File/_Close window"
 msgstr "/ملف/اغلق النافذة"
 
-#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr ""
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr ""
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr ""
+
+#: src/yelp-window.c:171
 msgid "/_Go"
 msgstr "/انطلق"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:172
 msgid "/Go/_Back"
 msgstr "/انطلق/خلف"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:173
 msgid "/Go/_Forward"
 msgstr "/انطلق/تقديم"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:174
 msgid "/Go/_Home"
 msgstr "/انطلق/منزل"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:175
 msgid "/Go/_Index"
 msgstr "/انطلق/فهرس"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:177
 msgid "/_Help"
 msgstr "/مساعدة"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:178
 msgid "/Help/_About"
 msgstr "/مساعدة/عن"
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "متصفح المساعدة"
 
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "المستند '%s' ليس موجود"
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:567
+#: src/yelp-window.c:677
 msgid "translator_credits"
 msgstr "تكريم للمترجمين"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:681
 msgid "Help Browser for GNOME 2.0"
 msgstr "متصفح المساعدة لـ جينوم 2.0"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:796
 msgid "Back"
 msgstr "خلف"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:797
 msgid "Show previous page in history"
 msgstr "اظهر الصغحة السابقة في التاريخ"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:808
 msgid "Forward"
 msgstr "تقديم"
 
-#: src/yelp-window.c:638
+#: src/yelp-window.c:809
 msgid "Show next page in history"
 msgstr "اظهر الصفحة التالية في التاريخ"
 
-#: src/yelp-window.c:651
+#: src/yelp-window.c:822
 msgid "Home"
 msgstr "منزل"
 
-#: src/yelp-window.c:652
+#: src/yelp-window.c:823
 msgid "Go to home view"
 msgstr "انتقل الى عرض المنزل"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:833
 msgid "Index"
 msgstr "فهرس"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:834
 msgid "Search in the index"
 msgstr "ابحث في الفهرس"
 
@@ -256,12 +303,20 @@ msgstr "احصل على المساعدة مع جينوم"
 msgid "Help"
 msgstr "مساعدة"
 
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "المستند '%s' ليس موجود"
+#~ msgid ""
+#~ "Error while parsing the stylesheet, make sure you have your docbook "
+#~ "environment setup correctly."
+#~ msgstr ""
+#~ "حدث خطأ أثناء إعراب صفحة النمط، تأكد من كونك نصبت بيئة docbook بشكل صحيح."
+
+#~ msgid "Couldn't parse the document '%s'."
+#~ msgstr "تعذر إعراب المستند '%s'."
+
+#~ msgid "Error while applying the stylesheet."
+#~ msgstr "حدث خطأ أثناء تطبيق صفحة النمط."
 
 #~ msgid "info"
 #~ msgstr "معلومة"
 
 #~ msgid "man"
 #~ msgstr "man"
-
