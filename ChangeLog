@@ -1,5 +1,8 @@
 2002-01-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/Makefile.am: removed BUILD_SOURCES since it seems to create
+	  problems with automake 1.4.
+
         * Thanks to Laszlo PETER <Laszlo.Peter@ireland.sun.com> for the
 	  following patches.
 	

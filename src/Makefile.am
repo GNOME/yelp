@@ -77,6 +77,3 @@ EXTRA_DIST =								\
 	yelp-marshal.list						\
 	$(server_in_files)						\
 	$(server_DATA)
-
-BUILT_SOURCES =								\
-	$(gnome_yelp_idl_sources)
