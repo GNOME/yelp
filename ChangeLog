@@ -1,3 +1,9 @@
+2001-12-04  Malcolm Tredinnick <malcolm@commsecure.com.au>
+	* src/yelp-window.c:
+	remove obsolete include of ghelp-uri.h.
+	(yelp_window_section_select_cb): There are YelpSections that
+	don't have uris (section headings). Don't try to open them.
+
 2001-12-04  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/ghelp-uri.[ch]: removed, old junk

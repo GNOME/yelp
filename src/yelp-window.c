@@ -33,7 +33,6 @@
 #include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-i18n.h>
 #include <string.h>
-#include "ghelp-uri.h"
 #include "yelp-index.h"
 #include "yelp-toc.h"
 #include "yelp-view.h"
@@ -309,7 +308,7 @@ yelp_window_section_selected_cb (YelpWindow  *window,
 	
 	priv = window->priv;
 
-	if (!section) {
+	if (!section->uri) {
 		return;
 	}
 
