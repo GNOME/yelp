@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-01-27 01:11+0100\n"
-"PO-Revision-Date: 2002-01-27 01:11+0100\n"
+"POT-Creation-Date: 2002-01-29 22:46+0100\n"
+"PO-Revision-Date: 2002-01-29 22:46+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr "Systemadministration"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:189 src/yelp-view-index.c:175
+#: src/yelp-view-content.c:202 src/yelp-view-index.c:175
 msgid "Section"
 msgstr "Avdelning"
 
@@ -142,45 +142,48 @@ msgstr "/Hjälp/_Om"
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: src/yelp-window.c:405
+#: src/yelp-window.c:402
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
 
-#: src/yelp-window.c:429
+#: src/yelp-window.c:426
 msgid "Go back in the history list"
 msgstr "Gå bakåt i historiklistan"
 
-#: src/yelp-window.c:444
+#: src/yelp-window.c:441
 msgid "Go forth in the history list"
 msgstr "Gå framåt i historiklistan"
 
-#: src/yelp-window.c:459
+#: src/yelp-window.c:456
 msgid "Overview of contents"
 msgstr "Innehållsöversikt"
 
-#: src/yelp-window.c:470
+#: src/yelp-window.c:467
 msgid "Search in the index"
 msgstr "Sök i indexet"
 
-#: src/yelp-window.c:482
+#: src/yelp-window.c:479
 msgid "Search for a phrase in the document"
 msgstr "Sök efter en text i dokumentet"
 
-#: src/yelp-window.c:488
+#: src/yelp-window.c:485
 msgid "Help on "
 msgstr "Hjälp med "
 
-#: src/yelp-window.c:493
+#: src/yelp-window.c:490
 msgid "Enter phrase to search for in all documents"
 msgstr "Ange texten att söka efter i alla dokument"
 
 #: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "Hjälpvisare för GNOME"
+msgid "Get help with GNOME"
+msgstr "Få hjälp med GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjälp"
+
+#~ msgid "GNOME Helpbrowser"
+#~ msgstr "Hjälpvisare för GNOME"
 
 #~ msgid "TreeModelFilter model"
 #~ msgstr "TreeModelFilter-modell"
