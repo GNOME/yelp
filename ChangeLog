@@ -1,3 +1,8 @@
+2002-03-20  Padraig O'Briain  <padraig.obriain@sun.com>
+
+	* src/yelp-window.c (yw_handle_url): Call yelp_view-content)show_uri()
+	before gtk_notebook_set_current_page() (#75570)
+
 2002-03-20  Christophe Merlet  <redfox@eikonex.org>
 
 	* configure.in: Added fr to $ALL_LINGUAS.
