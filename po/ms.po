@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2004-01-12 18:01-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-04 01:23+0800\n"
 "PO-Revision-Date: 2004-01-20 20:19+0730\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -18,8 +19,7 @@ msgstr ""
 msgid "Applets"
 msgstr "Aplet"
 
-#: data/toc.xml.in.h:2
-#: src/yelp-man.c:429
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Aplikasi"
 
@@ -27,8 +27,7 @@ msgstr "Aplikasi"
 msgid "Desktop"
 msgstr "Desktop"
 
-#: data/toc.xml.in.h:4
-#: src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Pembangunan"
 
@@ -40,7 +39,7 @@ msgstr "Persekitaran Pembangunan"
 msgid "Development Tools"
 msgstr "Alatan Pembangunan"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Editor"
 
@@ -136,25 +135,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Kilang Yelp"
 
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Tiada href dijumpai pada yelp:docoment"
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Kehabisan memori"
 
-#: src/yelp-db-pager.c:616
+#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Titlepage"
 
-#: src/yelp-db-pager.c:618
-#: stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Kandungan"
 
-#: src/yelp-db-pager.c:636
-#: stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Entah"
 
@@ -191,19 +190,12 @@ msgstr "Tak dapat mengaktifkan Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Tak dapat membuka tetingkap baru."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -271,130 +263,134 @@ msgstr "Uri bagi dokumen untuk diproses"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Kiraan kaku adalah negatif."
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Tak dapat memuatkan fail OMF '%s'."
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "Kategori"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "Dokumen"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:231
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:232
 msgid "/File/_New window"
 msgstr "/Fail/Tetingkap Ba_ru"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:235
 msgid "/File/_Close window"
 msgstr "/Fail/_Tutup tetingkap"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:239
 msgid "/_Edit"
 msgstr "/_Edit"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:240
 msgid "/Edit/_Find..."
 msgstr "/Edit/_Cari..."
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:243
 msgid "/Edit/Find Ne_xt"
 msgstr "/Edit/Cari _berikutnya"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:246
 msgid "/Edit/Find Pre_vious"
 msgstr "/Edit/Cari _terdahulu"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:250
 msgid "/_Go"
 msgstr "/_Pergi"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:251
 msgid "/Go/_Back"
 msgstr "Pergi/_Undur"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:254
 msgid "/Go/_Forward"
 msgstr "/Pergi/_Maju"
 
-#: src/yelp-window.c:255
+#: src/yelp-window.c:257
 msgid "/Go/_Home"
 msgstr "/Pergi/_Rumah"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:260
 msgid "/Go/"
 msgstr "/Pergi/"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:261
 msgid "/Go/_Previous Page"
 msgstr "/Pergi/Halaman _Terdahulu"
 
-#: src/yelp-window.c:262
+#: src/yelp-window.c:264
 msgid "/Go/_Next Page"
 msgstr "/Pergi/Halaman _Berikutnya"
 
-#: src/yelp-window.c:265
+#: src/yelp-window.c:267
 msgid "/Go/_Contents"
 msgstr "/Pergi/_Kandungan"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:271
 msgid "/_Help"
 msgstr "/_Bantuan"
 
-#: src/yelp-window.c:270
+#: src/yelp-window.c:272
 msgid "/Help/_About"
 msgstr "/Bantuan/_Perihal"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
-#: src/yelp-window.c:332
+#: src/yelp-window.c:334
 msgid "Help Browser"
 msgstr "Pelungsur Bantuan"
 
-#: src/yelp-window.c:546
-#: stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:552 stylesheets/l10n.xml.in.h:60
 msgid "Section"
 msgstr "Seksyen"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:609
 msgid "Back"
 msgstr "Undur"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:610
 msgid "Show previous page in history"
 msgstr "Papar halaman terdahulu dalam sejarah"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:620
 msgid "Forward"
 msgstr "Maju"
 
-#: src/yelp-window.c:615
+#: src/yelp-window.c:621
 msgid "Show next page in history"
 msgstr "Papar halaman seterusnya dalam sejaraj"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:633
 msgid "Home"
 msgstr "Rumah"
 
-#: src/yelp-window.c:628
+#: src/yelp-window.c:634
 msgid "Go to home view"
 msgstr "Pergi ke paparan rumah"
 
-#: src/yelp-window.c:834
+#: src/yelp-window.c:844
 msgid "Loading..."
 msgstr "Memuatkan..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1228
+#: src/yelp-window.c:1267
 msgid "translator_credits"
 msgstr ""
 "Mohamad Afifi Omar <mr_mohd_afifi@yahoo.com>\n"
 "Hasbullah Bin Pit <sebol@ikhlas.com>, Merlimau."
 
-#: src/yelp-window.c:1233
+#: src/yelp-window.c:1272
 msgid "A Help Browser for GNOME"
 msgstr "Pelungsur Bantuan bagi GNOME"
 
@@ -415,222 +411,246 @@ msgid "&#8221;"
 msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
+msgid "About This Article"
+msgstr "Perihal Artikel Ini"
+
+#: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
 msgstr "Perihal Biblografi Ini"
 
-#: stylesheets/l10n.xml.in.h:6
+#: stylesheets/l10n.xml.in.h:7
 msgid "About This Book"
 msgstr "Perihal Buku Ini"
 
-#: stylesheets/l10n.xml.in.h:7
+#: stylesheets/l10n.xml.in.h:8
 msgid "About This Chapter"
 msgstr "Perihal Bab ini"
 
-#: stylesheets/l10n.xml.in.h:8
+#: stylesheets/l10n.xml.in.h:9
 msgid "About This Entry"
 msgstr "Perihal Kemasukan Ini"
 
-#: stylesheets/l10n.xml.in.h:9
+#: stylesheets/l10n.xml.in.h:10
 msgid "About This Glossary"
 msgstr "Perihal Glosari Ini"
 
-#: stylesheets/l10n.xml.in.h:10
+#: stylesheets/l10n.xml.in.h:11
 msgid "About This Index"
 msgstr "Perihal Indeks Ini"
 
-#: stylesheets/l10n.xml.in.h:11
+#: stylesheets/l10n.xml.in.h:12
 msgid "About This Part"
 msgstr "Perihal Bahagian Ini"
 
-#: stylesheets/l10n.xml.in.h:12
+#: stylesheets/l10n.xml.in.h:13
 msgid "About This Preface"
 msgstr "Perihal Pendahuluan Ini"
 
-#: stylesheets/l10n.xml.in.h:13
+#: stylesheets/l10n.xml.in.h:14
 msgid "About This Reference"
 msgstr "Perihal Rujukan Ini"
 
-#: stylesheets/l10n.xml.in.h:14
+#: stylesheets/l10n.xml.in.h:15
 msgid "About This Section"
 msgstr "Perihal Seksyen Ini"
 
-#: stylesheets/l10n.xml.in.h:15
+#: stylesheets/l10n.xml.in.h:16
 msgid "About This Set"
 msgstr "Perihal Set Ini"
 
-#: stylesheets/l10n.xml.in.h:16
+#: stylesheets/l10n.xml.in.h:17
 msgid "Affiliation"
 msgstr "Afiliasi"
 
-#: stylesheets/l10n.xml.in.h:17
+#: stylesheets/l10n.xml.in.h:18
 msgid "Appendix"
 msgstr "Apendiks"
 
-#: stylesheets/l10n.xml.in.h:18
+#: stylesheets/l10n.xml.in.h:19
 msgid "Article"
 msgstr "Artikel"
 
-#: stylesheets/l10n.xml.in.h:19
+#: stylesheets/l10n.xml.in.h:20
 msgid "Audience"
 msgstr "Pendengar"
 
-#: stylesheets/l10n.xml.in.h:20
+#: stylesheets/l10n.xml.in.h:21
 msgid "Author"
 msgstr "Penulis"
 
-#: stylesheets/l10n.xml.in.h:21
+#: stylesheets/l10n.xml.in.h:22
+msgid "Authors"
+msgstr "Penulis"
+
+#: stylesheets/l10n.xml.in.h:23
 msgid "Bibliography"
 msgstr "Bibliografi"
 
-#: stylesheets/l10n.xml.in.h:22
+#: stylesheets/l10n.xml.in.h:24
 msgid "Book"
 msgstr "Buku"
 
-#: stylesheets/l10n.xml.in.h:23
+#: stylesheets/l10n.xml.in.h:25
 msgid "Caution"
 msgstr "Amaran"
 
-#: stylesheets/l10n.xml.in.h:24
+#: stylesheets/l10n.xml.in.h:26
 msgid "Chapter"
 msgstr "Bab"
 
-#: stylesheets/l10n.xml.in.h:25
+#: stylesheets/l10n.xml.in.h:27
 msgid "Collaborator"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:26
+#: stylesheets/l10n.xml.in.h:28
+msgid "Collaborators"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:28
+#: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
 msgstr "Hakcipta"
 
-#: stylesheets/l10n.xml.in.h:29
+#: stylesheets/l10n.xml.in.h:32
+msgid "Copyrights"
+msgstr "Hakcipta"
+
+#: stylesheets/l10n.xml.in.h:33
 msgid "Date"
 msgstr "Tarikh"
 
-#: stylesheets/l10n.xml.in.h:30
+#: stylesheets/l10n.xml.in.h:34
 msgid "Dedication"
 msgstr "Dedikasi"
 
-#: stylesheets/l10n.xml.in.h:31
+#: stylesheets/l10n.xml.in.h:35
 msgid "Editor"
 msgstr "Editor"
 
-#: stylesheets/l10n.xml.in.h:32
+#: stylesheets/l10n.xml.in.h:37
 msgid "Email"
 msgstr "Emel"
 
-#: stylesheets/l10n.xml.in.h:33
+#: stylesheets/l10n.xml.in.h:38
 msgid "Example"
 msgstr "Contoh"
 
-#: stylesheets/l10n.xml.in.h:34
+#: stylesheets/l10n.xml.in.h:39
 msgid "Figure"
 msgstr "Gambarajah"
 
-#: stylesheets/l10n.xml.in.h:35
+#: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
 msgstr "Glosari"
 
-#: stylesheets/l10n.xml.in.h:36
+#: stylesheets/l10n.xml.in.h:41
 msgid "Important"
 msgstr "Penting"
 
-#: stylesheets/l10n.xml.in.h:37
+#: stylesheets/l10n.xml.in.h:42
 msgid "Index"
 msgstr "Indeks"
 
-#: stylesheets/l10n.xml.in.h:38
+#: stylesheets/l10n.xml.in.h:43
 msgid "Legal Notice"
 msgstr "Maklumat Perundangan"
 
-#: stylesheets/l10n.xml.in.h:39
+#: stylesheets/l10n.xml.in.h:44
 msgid "Level"
 msgstr "Peringkat"
 
-#: stylesheets/l10n.xml.in.h:40
+#: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
 msgstr "Pengdengar Mesej"
 
-#: stylesheets/l10n.xml.in.h:41
+#: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
 msgstr "Peringkat Mesej"
 
-#: stylesheets/l10n.xml.in.h:42
+#: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
 msgstr "Asal Mesej"
 
-#: stylesheets/l10n.xml.in.h:43
+#: stylesheets/l10n.xml.in.h:48
 msgid "Note"
 msgstr "Nota"
 
-#: stylesheets/l10n.xml.in.h:44
+#: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
 msgstr "Asalan"
 
-#: stylesheets/l10n.xml.in.h:45
+#: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
 msgstr "Penyumbang Lain"
 
-#: stylesheets/l10n.xml.in.h:46
+#: stylesheets/l10n.xml.in.h:51
+msgid "Other Contributors"
+msgstr "Penyumbang Lain"
+
+#: stylesheets/l10n.xml.in.h:52
 msgid "Part"
 msgstr "Bahagian"
 
-#: stylesheets/l10n.xml.in.h:47
+#: stylesheets/l10n.xml.in.h:53
 msgid "Preface"
 msgstr "Pendahuluan"
 
-#: stylesheets/l10n.xml.in.h:48
+#: stylesheets/l10n.xml.in.h:54
 msgid "Publisher"
 msgstr "Penerbit"
 
-#: stylesheets/l10n.xml.in.h:49
+#: stylesheets/l10n.xml.in.h:55
+msgid "Publishers"
+msgstr "Penerbit"
+
+#: stylesheets/l10n.xml.in.h:56
 msgid "Reference"
 msgstr "Rujukan"
 
-#: stylesheets/l10n.xml.in.h:50
+#: stylesheets/l10n.xml.in.h:57
 msgid "Reference Entry"
 msgstr "Kemasukan Rujukan"
 
-#: stylesheets/l10n.xml.in.h:51
+#: stylesheets/l10n.xml.in.h:58
 msgid "Reference Section"
 msgstr "Seksyen Rujukan"
 
-#: stylesheets/l10n.xml.in.h:52
+#: stylesheets/l10n.xml.in.h:59
 msgid "Revision History"
 msgstr "Sejarah Rujukan"
 
-#: stylesheets/l10n.xml.in.h:54
+#: stylesheets/l10n.xml.in.h:61
 msgid "See"
 msgstr "Lihat"
 
-#: stylesheets/l10n.xml.in.h:55
+#: stylesheets/l10n.xml.in.h:62
 msgid "See Also"
 msgstr "Lihat Juga"
 
-#: stylesheets/l10n.xml.in.h:56
+#: stylesheets/l10n.xml.in.h:63
 msgid "Set Index"
 msgstr "Set Indeks"
 
-#: stylesheets/l10n.xml.in.h:57
+#: stylesheets/l10n.xml.in.h:64
 msgid "Table"
 msgstr "Jadual"
 
-#: stylesheets/l10n.xml.in.h:58
+#: stylesheets/l10n.xml.in.h:65
 msgid "Table of Contents"
 msgstr "Jadual Kandungan"
 
-#: stylesheets/l10n.xml.in.h:59
+#: stylesheets/l10n.xml.in.h:66
 msgid "Tip"
 msgstr "Tip"
 
-#: stylesheets/l10n.xml.in.h:60
+#: stylesheets/l10n.xml.in.h:67
 msgid "Title"
 msgstr "Tajuk"
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:69
 msgid "Warning"
 msgstr "Amaran"
 
@@ -641,4 +661,3 @@ msgstr "Mendapatkan bantuan bersama GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Bantuan"
-
