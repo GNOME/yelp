@@ -1,5 +1,5 @@
 # for debugging
-#YELP_CFLAGS += -DYELP_DEBUG -pedantic -ansi -Werror
+# YELP_CFLAGS += -DYELP_DEBUG -pedantic -ansi -Werror
 
 if ENABLE_MAN
 man_sources = yelp-man-parser.c yelp-man-parser.h yelp-man-pager.c yelp-man-pager.h
@@ -57,6 +57,7 @@ test_pager_SOURCES =						\
 	yelp-pager.c		yelp-pager.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h		\
 	yelp-utils.c		yelp-utils.h			\
+	yelp-xslt-pager.c	yelp-xslt-pager.h		\
 	yelp-marshal-main.c	test-pager.c
 
 test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
@@ -74,15 +75,16 @@ yelp_SOURCES =							\
 	yelp-cache.c		yelp-cache.h			\
 	yelp-db-pager.c		yelp-db-pager.h			\
 	yelp-error.c		yelp-error.h			\
-	yelp-html-gecko.c	yelp-html.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
+	yelp-html-gecko.c	yelp-html.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-pager.c		yelp-pager.h			\
 	yelp-settings.c		yelp-settings.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h		\
-	yelp-window.c 		yelp-window.h			\
 	yelp-uri.c	        yelp-uri.h			\
 	yelp-utils.c		yelp-utils.h			\
+	yelp-window.c 		yelp-window.h			\
+	yelp-xslt-pager.c	yelp-xslt-pager.h		\
 	yelp-marshal-main.c	yelp-main.c
 
 yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS) $(MOZILLA_COMPONENT_LIBS)

@@ -47,8 +47,6 @@
 #define d(x)
 #endif
 
-#define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
-
 #define DB_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/"
 #define DB_STYLESHEET      DB_STYLESHEET_PATH"db2html.xsl"
 
@@ -62,16 +60,9 @@ extern gboolean main_running;
 
 struct _YelpDBPagerPriv {
     GtkTreeModel   *sects;
-
     GHashTable     *frags_hash;
 
     gchar          *root_id;
-
-    xmlDocPtr               inputDoc;
-    xmlDocPtr               outputDoc;
-    xmlParserCtxtPtr        parserCtxt;
-    xsltStylesheetPtr       stylesheet;
-    xsltTransformContextPtr transformContext;
 };
 
 typedef struct _DBWalker DBWalker;
@@ -92,11 +83,10 @@ static void          db_pager_class_init   (YelpDBPagerClass *klass);
 static void          db_pager_init         (YelpDBPager      *pager);
 static void          db_pager_dispose      (GObject          *gobject);
 
-static void          db_pager_error        (YelpPager        *pager);
 static void          db_pager_cancel       (YelpPager        *pager);
-static void          db_pager_finish       (YelpPager        *pager);
+static xmlDocPtr     db_pager_parse        (YelpPager        *pager);
+static gchar **      db_pager_params       (YelpPager        *pager);
 
-gboolean             db_pager_process      (YelpPager        *pager);
 const gchar *        db_pager_resolve_frag (YelpPager        *pager,
 					    const gchar      *frag_id);
 GtkTreeModel *       db_pager_get_sections (YelpPager        *pager);
@@ -107,15 +97,6 @@ static gboolean      walker_is_chunk       (DBWalker         *walker);
 static gboolean      xml_is_division       (xmlNodePtr        node);
 static gboolean      xml_is_info           (xmlNodePtr        node);
 static gchar *       xml_get_title         (xmlNodePtr        node);
-
-static void          xslt_yelp_document    (xsltTransformContextPtr ctxt,
-					    xmlNodePtr              node,
-					    xmlNodePtr              inst,
-					    xsltStylePreCompPtr     comp);
-static void          xslt_yelp_cache       (xsltTransformContextPtr ctxt,
-					    xmlNodePtr              node,
-					    xmlNodePtr              inst,
-					    xsltStylePreCompPtr     comp);
 
 static YelpPagerClass *parent_class;
 
@@ -136,7 +117,7 @@ yelp_db_pager_get_type (void)
 	    0,
 	    (GInstanceInitFunc) db_pager_init,
 	};
-	type = g_type_register_static (YELP_TYPE_PAGER,
+	type = g_type_register_static (YELP_TYPE_XSLT_PAGER,
 				       "YelpDBPager", 
 				       &info, 0);
     }
@@ -148,18 +129,21 @@ db_pager_class_init (YelpDBPagerClass *klass)
 {
     GObjectClass   *object_class = G_OBJECT_CLASS (klass);
     YelpPagerClass *pager_class  = YELP_PAGER_CLASS (klass);
+    YelpXsltPagerClass *xslt_class = YELP_XSLT_PAGER_CLASS (klass);
 
     parent_class = g_type_class_peek_parent (klass);
 
     object_class->dispose = db_pager_dispose;
 
-    pager_class->error        = db_pager_error;
-    pager_class->cancel       = db_pager_cancel;
-    pager_class->finish       = db_pager_finish;
+    pager_class->cancel   = db_pager_cancel;
 
-    pager_class->process      = db_pager_process;
     pager_class->resolve_frag = db_pager_resolve_frag;
     pager_class->get_sections = db_pager_get_sections;
+
+    xslt_class->parse  = db_pager_parse;
+    xslt_class->params = db_pager_params;
+
+    xslt_class->stylesheet = DB_STYLESHEET;
 }
 
 static void
@@ -212,65 +196,56 @@ yelp_db_pager_new (YelpDocInfo *doc_info)
     return (YelpPager *) pager;
 }
 
-gboolean
-db_pager_process (YelpPager *pager)
+static xmlDocPtr
+db_pager_parse (YelpPager *pager)
 {
     YelpDBPagerPriv *priv;
     YelpDocInfo     *doc_info;
     gchar           *filename;
-    gint  params_i = 0;
-    gint  i;
+
+    xmlParserCtxtPtr parserCtxt;
+    xmlDocPtr doc;
 
     DBWalker    *walker;
     xmlChar     *id;
     GError      *error = NULL;
 
-    GtkIconInfo *icon_info;
-    gchar *icon_file;
-    gchar *icons[YELP_NUM_ICONS];
-
-    const gchar  *params[40];
-
-    d (g_print ("db_pager_process\n"));
+    d (g_print ("db_pager_parse\n"));
 
     doc_info = yelp_pager_get_doc_info (pager);
 
-    g_return_val_if_fail (pager != NULL, FALSE);
-    g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
+    g_return_val_if_fail (pager != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_DB_PAGER (pager), NULL);
     priv = YELP_DB_PAGER (pager)->priv;
+
+    g_object_ref (pager);
 
     if (yelp_pager_get_state (pager) >= YELP_PAGER_STATE_ERROR)
 	goto done;
 
     filename = yelp_doc_info_get_filename (doc_info);
 
-    g_object_ref (pager);
-    yelp_toc_pager_pause (yelp_toc_pager_get ());
-
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
-    g_signal_emit_by_name (pager, "parse");
-
-    priv->parserCtxt = xmlNewParserCtxt ();
-    priv->inputDoc   = xmlCtxtReadFile (priv->parserCtxt,
-					(const char *) filename, NULL,
-					XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
-					XML_PARSE_NOENT   | XML_PARSE_NONET   );
-    if (priv->inputDoc == NULL) {
+    parserCtxt = xmlNewParserCtxt ();
+    doc = xmlCtxtReadFile (parserCtxt,
+			   (const char *) filename, NULL,
+			   XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
+			   XML_PARSE_NOENT   | XML_PARSE_NONET   );
+    if (doc == NULL) {
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
 	yelp_pager_error (pager, error);
 	goto done;
     }
 
-    xmlXIncludeProcessFlags (priv->inputDoc,
+    xmlXIncludeProcessFlags (doc,
 			     XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			     XML_PARSE_NOENT   | XML_PARSE_NONET   );
 
     walker = g_new0 (DBWalker, 1);
     walker->pager     = YELP_DB_PAGER (pager);
-    walker->doc       = priv->inputDoc;
+    walker->doc       = doc;
     walker->cur       = xmlDocGetRootElement (walker->doc);
 
-    if (!xmlStrcmp (xmlDocGetRootElement (priv->inputDoc)->name, BAD_CAST "book"))
+    if (!xmlStrcmp (xmlDocGetRootElement (doc)->name, BAD_CAST "book"))
 	walker->max_depth = BOOK_CHUNK_DEPTH;
     else
 	walker->max_depth = ARTICLE_CHUNK_DEPTH;
@@ -286,28 +261,54 @@ db_pager_process (YelpPager *pager)
 
     walker_walk_xml (walker);
 
-    CANCEL_CHECK;
+ done:
+    g_free (filename);
+    g_free (walker);
 
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_RUNNING);
-    g_signal_emit_by_name (pager, "start");
+    if (parserCtxt)
+	xmlFreeParserCtxt (parserCtxt);
 
-    EVENTS_PENDING;
-    CANCEL_CHECK;
+    g_object_unref (pager);
 
-    for (i = 0; i < YELP_NUM_ICONS; i++) {
-	icon_info = yelp_settings_get_icon (i);
-	if (icon_info) {
-	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
-	    if (icon_file)
-		icons[i] = g_strdup_printf ("\"%s\"", icon_file);
-	    else 
-		icons[i] = g_strdup ("\"\"");
-	    gtk_icon_info_free (icon_info);
-	} else {
-	    icons[i] = g_strdup ("\"\"");
+    return doc;
+}
+
+static gchar **
+db_pager_params (YelpPager *pager)
+{
+    YelpDBPagerPriv *priv;
+    YelpDocInfo     *doc_info;
+    gchar           *filename;
+    gchar **params;
+    gint params_i = 0;
+    gint params_max = 20;
+
+    GtkIconInfo *icon_info;
+    gchar *icon_file;
+    gint   icons_i;
+
+    d (g_print ("db_pager_process\n"));
+
+    doc_info = yelp_pager_get_doc_info (pager);
+
+    g_return_val_if_fail (pager != NULL, FALSE);
+    g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
+    priv = YELP_DB_PAGER (pager)->priv;
+
+    if (yelp_pager_get_state (pager) >= YELP_PAGER_STATE_ERROR)
+	return NULL;
+
+    filename = yelp_doc_info_get_filename (doc_info);
+
+    params = g_new0 (gchar *, params_max);
+
+    for (icons_i = 0; icons_i < YELP_NUM_ICONS; icons_i++) {
+	if ((params_i + 1) >= params_max - 1) {
+	    params_max += 20;
+	    params = g_renew (gchar *, params, params_max);
 	}
 
-	switch (i) {
+	switch (icons_i) {
 	case YELP_ICON_BLOCKQUOTE:
 	    params[params_i++] = "yelp.image.blockquote";
 	    break;
@@ -332,9 +333,24 @@ db_pager_process (YelpPager *pager)
 	default:
 	    g_assert_not_reached ();
 	}
-	params[params_i++] = icons[i];
+
+	icon_info = yelp_settings_get_icon (icons_i);
+	if (icon_info) {
+	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
+	    if (icon_file)
+		params[params_i++] = g_strdup_printf ("\"%s\"", icon_file);
+	    else 
+		params[params_i++] = g_strdup ("\"\"");
+	    gtk_icon_info_free (icon_info);
+	} else {
+	    params[params_i++] = g_strdup ("\"\"");
+	}
     }
 
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 20;
+	params = g_renew (gchar *, params, params_max);
+    }
     params[params_i++] = "stylesheet_path";
     params[params_i++] = g_strdup_printf ("\"file://%s\"", DB_STYLESHEET_PATH);
     params[params_i++] = "html_extension";
@@ -345,81 +361,7 @@ db_pager_process (YelpPager *pager)
     params[params_i++] = g_strdup_printf ("\"file://%s\"", DATADIR "/yelp/icons/");
     params[params_i++] = NULL;
 
-    priv->stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
-    if (!priv->stylesheet) {
-	yelp_set_error (&error, YELP_ERROR_PROC);
-	yelp_pager_error (pager, error);
-	goto done;
-    }
-
-    priv->transformContext = xsltNewTransformContext (priv->stylesheet,
-						      priv->inputDoc);
-    if (!priv->transformContext) {
-	yelp_set_error (&error, YELP_ERROR_PROC);
-	yelp_pager_error (pager, error);
-	goto done;
-    }
-
-    priv->transformContext->_private = pager;
-    xsltRegisterExtElement (priv->transformContext,
-			    "document",
-			    YELP_NAMESPACE,
-			    (xsltTransformFunction) xslt_yelp_document);
-    xsltRegisterExtElement (priv->transformContext,
-			    "cache",
-			    YELP_NAMESPACE,
-			    (xsltTransformFunction) xslt_yelp_cache);
-
-    EVENTS_PENDING;
-    CANCEL_CHECK;
-
-    priv->outputDoc = xsltApplyStylesheetUser (priv->stylesheet,
-					       priv->inputDoc,
-					       params, NULL, NULL,
-					       priv->transformContext);
-    CANCEL_CHECK;
-    g_signal_emit_by_name (pager, "finish");
-
- done:
-    for (params_i = 0; params[params_i] != NULL; params_i++)
-	if (params_i % 2 == 1)
-	    g_free (params[params_i]);
-    g_free (filename);
-    g_free (walker);
-
-    if (priv->inputDoc) {
-	xmlFreeDoc (priv->inputDoc);
-	priv->inputDoc = NULL;
-    }
-    if (priv->outputDoc) {
-	xmlFreeDoc (priv->outputDoc);
-	priv->outputDoc = NULL;
-    }
-    if (priv->parserCtxt) {
-	xmlFreeParserCtxt (priv->parserCtxt);
-	priv->parserCtxt = NULL;
-    }
-    if (priv->stylesheet) {
-	xsltFreeStylesheet (priv->stylesheet);
-	priv->stylesheet = NULL;
-    }
-    if (priv->transformContext) {
-	xsltFreeTransformContext (priv->transformContext);
-	priv->transformContext = NULL;
-    }
-
-    g_object_unref (pager);
-
-    return FALSE;
-}
-
-static void
-db_pager_error (YelpPager   *pager)
-{
-    d (g_print ("db_pager_error\n"));
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
-    if (yelp_pager_get_state (pager) <= YELP_PAGER_STATE_RUNNING)
-	yelp_toc_pager_unpause (yelp_toc_pager_get ());
+    return params;
 }
 
 static void
@@ -430,8 +372,6 @@ db_pager_cancel (YelpPager *pager)
     d (g_print ("db_pager_cancel\n"));
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
-    if (yelp_pager_get_state (pager) <= YELP_PAGER_STATE_RUNNING)
-	yelp_toc_pager_unpause (yelp_toc_pager_get ());
 
     gtk_tree_store_clear (GTK_TREE_STORE (priv->sects));
     g_hash_table_foreach_remove (priv->frags_hash, gtk_true, NULL);
@@ -439,35 +379,7 @@ db_pager_cancel (YelpPager *pager)
     g_free (priv->root_id);
     priv->root_id = NULL;
 
-    if (priv->inputDoc) {
-	xmlFreeDoc (priv->inputDoc);
-	priv->inputDoc = NULL;
-    }
-    if (priv->outputDoc) {
-	xmlFreeDoc (priv->outputDoc);
-	priv->outputDoc = NULL;
-    }
-    if (priv->parserCtxt) {
-	xmlFreeParserCtxt (priv->parserCtxt);
-	priv->parserCtxt = NULL;
-    }
-    if (priv->stylesheet) {
-	xsltFreeStylesheet (priv->stylesheet);
-	priv->stylesheet = NULL;
-    }
-    if (priv->transformContext) {
-	xsltFreeTransformContext (priv->transformContext);
-	priv->transformContext = NULL;
-    }
-}
-
-static void
-db_pager_finish (YelpPager   *pager)
-{
-    d (g_print ("db_pager_finish\n"));
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
-    if (yelp_pager_get_state (pager) <= YELP_PAGER_STATE_RUNNING)
-	yelp_toc_pager_unpause (yelp_toc_pager_get ());
+    YELP_PAGER_CLASS (parent_class)->cancel (pager);
 }
 
 const gchar *
@@ -499,146 +411,7 @@ db_pager_get_sections (YelpPager *pager)
     return YELP_DB_PAGER (pager)->priv->sects;
 }
 
-void
-xslt_yelp_document (xsltTransformContextPtr ctxt,
-		    xmlNodePtr              node,
-		    xmlNodePtr              inst,
-		    xsltStylePreCompPtr     comp)
-{
-    GError  *error;
-    YelpPage *page;
-    xmlChar *page_id = NULL;
-    xmlChar *page_title = NULL;
-    xmlChar *page_buf;
-    gint     buf_size;
-    YelpPager *pager;
-    xsltStylesheetPtr style = NULL;
-    const char *old_outfile;
-    xmlDocPtr   new_doc = NULL;
-    xmlDocPtr   old_doc;
-    xmlNodePtr  old_insert;
-    xmlNodePtr  cur;
-
-    if (!ctxt || !node || !inst || !comp)
-	return;
-
-    pager = (YelpPager *) ctxt->_private;
-
-    EVENTS_PENDING;
-    CANCEL_CHECK;
-
-    d (g_print ("xslt_yelp_document\n"));
-
-    page_id = xsltEvalAttrValueTemplate (ctxt, inst,
-					 (const xmlChar *) "href",
-					 NULL);
-    if (page_id == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("No href attribute found on yelp:document"));
-	error = NULL;
-	yelp_pager_error (pager, error);
-	goto done;
-    }
-    d (g_print ("  page_id = \"%s\"\n", page_id));
-
-    old_outfile = ctxt->outputFile;
-    old_doc     = ctxt->output;
-    old_insert  = ctxt->insert;
-    ctxt->outputFile = (const char *) page_id;
-
-    style = xsltNewStylesheet ();
-    if (style == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("Out of memory"));
-	error = NULL;
-	yelp_pager_error (pager, error);
-	goto done;
-    }
-
-    style->omitXmlDeclaration = TRUE;
-
-    new_doc = xmlNewDoc ("1.0");
-    new_doc->charset = XML_CHAR_ENCODING_UTF8;
-    new_doc->dict = ctxt->dict;
-    xmlDictReference (new_doc->dict);
-
-    ctxt->output = new_doc;
-    ctxt->insert = (xmlNodePtr) new_doc;
-
-    xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
-
-    CANCEL_CHECK;
-
-    xsltSaveResultToString (&page_buf, &buf_size, new_doc, style);
-
-    ctxt->outputFile = old_outfile;
-    ctxt->output     = old_doc;
-    ctxt->insert     = old_insert;
-
-    page_title = xml_get_title (node);
-
-    CANCEL_CHECK;
-
-    if (!page_title)
-	page_title = g_strdup ("FIXME");
-
-    page = g_new0 (YelpPage, 1);
-
-    page->page_id  = g_strdup (page_id);
-    xmlFree (page_id);
-    page_id = NULL;
-
-    page->title    = page_title;
-    page->contents = page_buf;
-
-    cur = xmlDocGetRootElement (new_doc);
-    for (cur = cur->children; cur; cur = cur->next) {
-	if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
-	    for (cur = cur->children; cur; cur = cur->next) {
-		if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
-		    xmlChar *rel = xmlGetProp (cur, "rel");
-
-		    if (!xmlStrcmp (rel, (xmlChar *) "Previous"))
-			page->prev_id = g_strdup (xmlGetProp (cur, "href"));
-		    else if (!xmlStrcmp (rel, (xmlChar *) "Next"))
-			page->next_id = g_strdup (xmlGetProp (cur, "href"));
-		    else if (!xmlStrcmp (rel, (xmlChar *) "Top"))
-			page->toc_id = g_strdup (xmlGetProp (cur, "href"));
-
-		    xmlFree (rel);
-		}
-	    }
-	    break;
-	}
-    }
-
-    CANCEL_CHECK;
-
-    yelp_pager_add_page (pager, page);
-    g_signal_emit_by_name (pager, "page", page->page_id);
-
-    EVENTS_PENDING;
-    CANCEL_CHECK;
-
- done:
-    if (new_doc)
-	xmlFreeDoc (new_doc);
-    if (style)
-	xsltFreeStylesheet (style);
-}
-
-void
-xslt_yelp_cache (xsltTransformContextPtr ctxt,
-		 xmlNodePtr              node,
-		 xmlNodePtr              inst,
-		 xsltStylePreCompPtr     comp)
-{
-    xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
-
-    while (gtk_events_pending ())
-	gtk_main_iteration ();
-    // FIXME : check for cancel
-}
+/******************************************************************************/
 
 static void
 walker_walk_xml (DBWalker *walker)

@@ -1,3 +1,13 @@
+2004-12-11  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-db-pager.c:
+	* src/yelp-db-pager.h:
+	* src/yelp-window.c:
+	* src/yelp-xslt-pager.c:
+	* src/yelp-xslt-pager.h:
+	- Added yelp-xslt-pager.[ch] to abstract out common pager stuff
+
 2004-12-09  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-base.c:

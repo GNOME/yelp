@@ -257,6 +257,8 @@ struct _YelpWindowPriv {
     gulong          finish_handler;
     guint           idle_write;
 
+    gint            toc_pause;
+
     GtkActionGroup *action_group;
     GtkUIManager   *ui_manager;
 
@@ -1138,8 +1140,13 @@ window_do_load_pager (YelpWindow  *window,
 			      G_CALLBACK (pager_finish_cb),
 			      window);
 
-	if (startnow)
+	if (startnow) {
 	    handled = yelp_pager_start (pager);
+	    if (handled) {
+		yelp_toc_pager_pause (yelp_toc_pager_get ());
+		priv->toc_pause++;
+	    }
+	}
 
 	// FIXME: error if !handled
     }
@@ -1388,6 +1395,11 @@ window_disconnect (YelpWindow *window)
 
     if (GTK_WIDGET (window)->window)
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+
+    if (window->priv->toc_pause > 0) {
+	window->priv->toc_pause--;
+	yelp_toc_pager_unpause (yelp_toc_pager_get ());
+    }
 
     if (window->priv->current_doc) {
 	if (priv->start_handler) {
