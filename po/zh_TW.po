@@ -1,14 +1,14 @@
 # Traditional Chinese translation of yelp.
-# Copyright (C) 2002, 03 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003 Free Software Foundation, Inc.
 # Joe Man <trmetal@yahoo.com.hk>, 2002.
 # Abel Cheung <maddog@linux.org.hk>, 2002-2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.2.0\n"
-"POT-Creation-Date: 2003-04-23 23:01+0800\n"
-"PO-Revision-Date: 2003-04-24 14:29+0800\n"
-"Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
+"Project-Id-Version: yelp 2.3.0\n"
+"POT-Creation-Date: 2003-05-13 11:52+0800\n"
+"PO-Revision-Date: 2003-05-13 18:23+0800\n"
+"Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +28,7 @@ msgstr "自動換行(_W)"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr "繼續搜尋..."
+msgstr "搜尋文字..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
@@ -56,7 +56,7 @@ msgstr "Yelp 工廠"
 
 #: src/yelp-main.c:94
 msgid "Define which cache dir to use"
-msgstr "決定將會使用的快取目錄"
+msgstr "指定會使用的暫存目錄"
 
 #: src/yelp-main.c:128
 #, c-format
@@ -219,23 +219,23 @@ msgstr "/編輯(E)/繼續搜尋(_F)"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
-msgstr "/移至(_G)"
+msgstr "/前往(_G)"
 
 #: src/yelp-window.c:172
 msgid "/Go/_Back"
-msgstr "/移至(G)/上一頁(_B)"
+msgstr "/前往(G)/上一頁(_B)"
 
 #: src/yelp-window.c:173
 msgid "/Go/_Forward"
-msgstr "/移至(G)/下一頁(_F)"
+msgstr "/前往(G)/下一頁(_F)"
 
 #: src/yelp-window.c:174
 msgid "/Go/_Home"
-msgstr "/移至(G)/首頁(_H)"
+msgstr "/前往(G)/首頁(_H)"
 
 #: src/yelp-window.c:175
 msgid "/Go/_Index"
-msgstr "/移至(G)/索引(_I)"
+msgstr "/前往(G)/索引(_I)"
 
 #: src/yelp-window.c:177
 msgid "/_Help"
@@ -262,12 +262,12 @@ msgstr ""
 "i18n 程式中文化計劃\n"
 "http://i18n.linux.org.tw/\n"
 "\n"
-"Joe Man <trmetal@yahoo.com.hk>, 2002\n"
-"Abel Cheung <maddog@linux.org.hk>, 2002-2003"
+"Abel Cheung <maddog@linux.org.hk>, 2002-03\n"
+"Joe Man <trmetal@yahoo.com.hk>, 2002"
 
 #: src/yelp-window.c:679
 msgid "A Help Browser for GNOME"
-msgstr "GNOME 的說明文件瀏覽程式"
+msgstr "GNOME 說明文件瀏覽程式"
 
 #: src/yelp-window.c:788
 msgid "Back"
@@ -291,7 +291,7 @@ msgstr "首頁"
 
 #: src/yelp-window.c:815
 msgid "Go to home view"
-msgstr "移至首頁"
+msgstr "前往首頁"
 
 #: src/yelp-window.c:825
 msgid "Index"
