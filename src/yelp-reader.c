@@ -33,12 +33,10 @@
 #define d(x) 
 #define BUFFER_SIZE 16384
 
-#define STAMP_MUTEX_LOCK    if(priv->async)g_mutex_lock(priv->stamp_mutex);
-#define STAMP_MUTEX_UNLOCK  if(priv->async)g_mutex_unlock(priv->stamp_mutex);
+#define STAMP_MUTEX_LOCK    g_mutex_lock(priv->stamp_mutex);
+#define STAMP_MUTEX_UNLOCK  g_mutex_unlock(priv->stamp_mutex);
 
 struct _YelpReaderPriv {
-	gboolean     async;
-
 	gint         stamp;
 
         gboolean     active;
@@ -703,6 +701,7 @@ reader_q_data_free (ReaderQueueData *q_data)
 	g_free (q_data->data);
 	g_free (q_data);
 }
+
 #if 0
 static void
 reader_th_data_free (ReaderThreadData *th_data)
@@ -715,8 +714,9 @@ reader_th_data_free (ReaderThreadData *th_data)
 	g_free (th_data);
 }
 #endif
+
 YelpReader *
-yelp_reader_new (gboolean async)
+yelp_reader_new ()
 {
         YelpReader     *reader;
         YelpReaderPriv *priv;
@@ -725,8 +725,6 @@ yelp_reader_new (gboolean async)
         
 	priv = reader->priv;
 	
-	priv->async = async;
-
         return reader;
 }
 
@@ -759,15 +757,11 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 
 	STAMP_MUTEX_UNLOCK;
 
-	if (priv->async) {
-		g_idle_add ((GSourceFunc) reader_idle_check_queue, th_data);
+	g_idle_add ((GSourceFunc) reader_idle_check_queue, th_data);
 
-		g_thread_create ((GThreadFunc) reader_start, th_data,
-				 TRUE, 
-				 NULL /* FIXME: check for errors */);
-	} else {
-		reader_start (th_data);
-	}
+	g_thread_create ((GThreadFunc) reader_start, th_data,
+			 TRUE, 
+			 NULL /* FIXME: check for errors */);
 }
 
 void

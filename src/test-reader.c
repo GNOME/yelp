@@ -82,7 +82,7 @@ main (int argc, char **argv)
                 return 1;
         }
 
-	reader = yelp_reader_new (TRUE);
+	reader = yelp_reader_new ();
 
 	g_signal_connect (reader, "start", 
 			  G_CALLBACK (start_cb),

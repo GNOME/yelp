@@ -146,7 +146,7 @@ content_init (YelpViewContent *view)
 			  G_CALLBACK (content_html_uri_selected_cb), 
 			  view);
 
-	priv->reader      = yelp_reader_new (TRUE);
+	priv->reader      = yelp_reader_new ();
 	
 #if 0
 	g_signal_connect (G_OBJECT (priv->reader), "start",

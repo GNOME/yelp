@@ -1,5 +1,10 @@
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/test-reader.c (main): create reader without an argument.
+	* src/yelp-view-content.c (content_init): same
+
+	* src/yelp-reader.c: always be async, don't be optional.
+
 	* src/yelp-view-toc.c (toc_page_end): added a space, thanks rhult.
 
 	* src/yelp-window.c (window_about_cb): 
