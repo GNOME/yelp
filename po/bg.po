@@ -1,0 +1,176 @@
+# Bulgarian translation of Yelp po file
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Alexander Shopov <al_shopov@web.bg>, 2002.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"POT-Creation-Date: 2002-01-20 09:35-0500\n"
+"PO-Revision-Date: 2002-01-23 22:52+0200\n"
+"Last-Translator: Alexander Shopov <al_shopov@web.bg>\n"
+"Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/GNOME_Yelp.server.in.h:1 yelp.desktop.in.h:2
+msgid "Yelp"
+msgstr "Йелп"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Фабрика на Йелп"
+
+#: src/yelp-info.c:98
+msgid "info"
+msgstr "Инфо ръководства"
+
+#: src/yelp-main.c:77
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Не можах да активирам Йелп: '%s'"
+
+#: src/yelp-main.c:97
+msgid "Could not open new window."
+msgstr "Не можах да отворя нов прозорец."
+
+#: src/yelp-man.c:269 src/yelp-man.c:290 src/yelp-man.c:326 src/yelp-man.c:358
+#: src/yelp-man.c:374 src/yelp-man.c:385
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:274 src/yelp-man.c:305 src/yelp-man.c:363 src/yelp-man.c:390
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:279
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:295
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:300
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:310
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:315
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:337
+msgid "System Calls"
+msgstr "Системни извиквания"
+
+#: src/yelp-man.c:342
+msgid "Library Functions"
+msgstr "Библиотечни функции"
+
+#: src/yelp-man.c:347
+msgid "Kernel Routines"
+msgstr "Функции на ядрото"
+
+#: src/yelp-man.c:402
+msgid "Applications"
+msgstr "Приложения"
+
+#: src/yelp-man.c:407
+msgid "Development"
+msgstr "Разработка"
+
+#: src/yelp-man.c:412
+msgid "Hardware Devices"
+msgstr "Хардуерни устройства"
+
+#: src/yelp-man.c:417
+msgid "Configuration Files"
+msgstr "Конфигурационни файлове"
+
+#: src/yelp-man.c:422
+msgid "Games"
+msgstr "Игри"
+
+#: src/yelp-man.c:427
+msgid "Overviews"
+msgstr "Прегледи"
+
+#: src/yelp-man.c:432
+msgid "System Administration"
+msgstr "Системна администрация"
+
+#: src/yelp-man.c:443
+msgid "man"
+msgstr "Ръководства"
+
+#: src/yelp-view-content.c:159 src/yelp-view-index.c:172
+msgid "Section"
+msgstr "Секция"
+
+#: src/yelp-window.c:108
+msgid "/_File"
+msgstr "/_Файл"
+
+#: src/yelp-window.c:109
+msgid "/File/_New window"
+msgstr "/Файл/_Нов прозорец"
+
+#: src/yelp-window.c:110
+msgid "/File/_Close window"
+msgstr "/Файл/Затвори прозоре_ц"
+
+#: src/yelp-window.c:111
+msgid "/File/E_xit"
+msgstr "/Файл/Из_ход"
+
+#: src/yelp-window.c:112
+msgid "/_Help"
+msgstr "/_Помощ"
+
+#: src/yelp-window.c:113
+msgid "/Help/_About"
+msgstr "/Помощ/Информ_ация"
+
+#: src/yelp-window.c:160
+msgid "Help Browser"
+msgstr "Навигатор на помощта"
+
+#: src/yelp-window.c:376
+msgid "Help Browser for GNOME 2.0"
+msgstr "Навигатора на помощта за ГНОМ 2.0"
+
+#: src/yelp-window.c:400
+msgid "Go back in the history list"
+msgstr "Върни се назад в историята"
+
+#: src/yelp-window.c:415
+msgid "Go forth in the history list"
+msgstr "Иди напред в историята"
+
+#: src/yelp-window.c:430
+msgid "Overview of contents"
+msgstr "Преглед на съдържанието"
+
+#: src/yelp-window.c:441
+msgid "Search in the index"
+msgstr "Търси в индекса"
+
+#: src/yelp-window.c:453
+msgid "Search for a phrase in the document"
+msgstr "Търси фраза в документа"
+
+#: src/yelp-window.c:459
+msgid "Help on "
+msgstr "Включи помощта"
+
+#: src/yelp-window.c:464
+msgid "Enter phrase to search for in all documents"
+msgstr "Въведете фраза за търсене във всички документи"
+
+#: yelp.desktop.in.h:1
+msgid "GNOME Helpbrowser"
+msgstr "Навигатор на помощта на ГНОМ"
