@@ -1,100 +1,105 @@
+Changes in 0.10:
+----------------
+ 
+* Show the open section in the TOC tree          (Mikael Hallendal)
+* Re enabled viewing documents in the index view (Mikael Hallendal)
+* Handle info:dir                                (Mikael Hallendal)
+* Set window title to say which document is 
+  displayed                                      (Mikael Hallendal)
+* Ship docbook DTD                               (Mikael Hallendal)
+* Don't hard code font sizes                     (Mikael Hallendal,
+					 	  Bill Haneman)
+* Fix that made index page only work for first
+  window                                         (Mikael Hallendal)
+* Better error handling                          (Mikael Hallendal)
+* Fixed session bug (#82605)                     (Yogeesh MB)
+* Fixes to db2html                               (Mikael Hallendal,
+						  James Henstridge)
+
 Changes in 0.9.1:
 -----------------
 
-* Shipping the 1.48 stylesheets with Yelp       (Mikael Hallendal)
+* Shipping the 1.48 stylesheets with Yelp        (Mikael Hallendal)
 
 Changes in 0.9:
 ---------------
 
-* Caching docbook in memory for faster access   (Mikael Hallendal)
-* Fixed bug that caused crashes on Solaris      (Mikael Hallendal)
-* View info pages in chunks                     (Patanjali Somayaji)
-* Fixed mem leaks                               (Mikael Hallendal,
-						 Richard Hult)
-* Stylesheet updates                            (Sander Vesik)
+* Caching docbook in memory for faster access    (Mikael Hallendal)
+* Fixed bug that caused crashes on Solaris       (Mikael Hallendal) 
+* View info pages in chunks                      (Patanjali Somayaji)
+* Fixed mem leaks                                (Mikael Hallendal,
+					  	  Richard Hult)
+* Stylesheet updates                             (Sander Vesik)
 
 Changes in 0.8:
 ---------------
 
-* Async reading of all documents                (Mikael Hallendal)
-* New nice look from Jimmacs mockups            (Mikael Hallendal,
-                                                 Jakub Steiner)
-* Added support for gtkhtml1                    (Mikael Hallendal)
-* Plugged lots of mem leaks                     (Mikael Hallendal)
-* Fixed the nasty bug that made it crash on     (Mikael Hallendal,
-  Debian unstable.                               Stéphane Démurget)
-* Various bugfixes                              (Mikael Hallendal)
-* Stylesheets improvments                       (Sander Vesik)
+* Async reading of all documents                 (Mikael Hallendal)
+* New nice look from Jimmacs mockups             (Mikael Hallendal,
+                                                  Jakub Steiner)
+* Added support for gtkhtml1                     (Mikael Hallendal)
+* Plugged lots of mem leaks                      (Mikael Hallendal)
+* Fixed the nasty bug that made it crash on      (Mikael Hallendal,
+  Debian unstable.                                Stéphane Démurget)
+* Various bugfixes                               (Mikael Hallendal)
+* Stylesheets improvments                        (Sander Vesik)
 
 Changes in 0.7:
 ---------------
 
-* Stylesheets improvement                       (Sander Vesik)
+* Stylesheets improvement                        (Sander Vesik)
 * URI fixing, now fully support jrb's 
-  uri-scheme                                    (Mikael Hallendal)
-* Cleaned up the error-reporting on stdout      (Mikael Hallendal)
-* Bugfixes for the index-searching              (Mikael Hallendal)
+  uri-scheme                                     (Mikael Hallendal)
+* Cleaned up the error-reporting on stdout       (Mikael Hallendal)
+* Bugfixes for the index-searching               (Mikael Hallendal)
 
 Changes in 0.6.1:
 -----------------
 
-* Docbook fixes                                 (John Fleck)
-* Handle HTML-pages better                      (Mikael Hallendal)
-* Stylesheet updates                            (Sander Vesik)
+* Docbook fixes                                  (John Fleck)
+* Handle HTML-pages better                       (Mikael Hallendal)
+* Stylesheet updates                             (Sander Vesik)
 * man/info-fix fixing a bug resulting in 
-  sometime man/info didn't get displayed at all (Mikael Hallendal)
+  sometime man/info didn't get displayed at all  (Mikael Hallendal)
 * Man-fixes when viewing man-pages with a .so 
-  in them.                                      (Mikael Hallendal)
+  in them.                                       (Mikael Hallendal)
 
 
 Changes in 0.6:
 ---------------
 
-* Made the TOC view look better                 (Mikael Hallendal,
-						 Tammy Fox)
-* Better error handling when viewing docbook    (Mikael Hallendal)
-* Docbook speedups                              (Mikael Hallendal)
-* Chunking stylesheet fixes                     (Sander Vesik)
-* Fixed a couple of Calum's usability issues    (Mikael Hallendal)
-* Use toolbar settings from GConf               (Mikael Hallendal)
-* Style fixes in the index view                 (Richard Hult)
-* Fixed memory leaks                            (Padraig O'Briain
-						 Mikael Hallendal)
+* Made the TOC view look better                  (Mikael Hallendal,
+					 	  Tammy Fox)
+* Better error handling when viewing docbook     (Mikael Hallendal)
+* Docbook speedups                               (Mikael Hallendal)
+* Chunking stylesheet fixes                      (Sander Vesik)
+* Fixed a couple of Calum's usability issues     (Mikael Hallendal)
+* Use toolbar settings from GConf                (Mikael Hallendal)
+* Style fixes in the index view                  (Richard Hult)
+* Fixed memory leaks                             (Padraig O'Briain
+						  Mikael Hallendal)
 
 Changes in 0.5:
 ---------------
 
-* Support for INFOPATH                          (Mikael Hallendal)
-* Faster in-doc browsing .                      (Mikael Hallendal)
-* Fixed bugs: #72637, #72965, #75081            (Mikael Hallendal)
-* UTF8 Fix                                      (Zbigniew Chyla)
-* Accessibility fixes                           (Padraig O'Briain,
-						 Jagadeesh B. G)
+* Support for INFOPATH                           (Mikael Hallendal)
+* Faster in-doc browsing .                       (Mikael Hallendal)
+* Fixed bugs: #72637, #72965, #75081             (Mikael Hallendal)
+* UTF8 Fix                                       (Zbigniew Chyla)
+* Accessibility fixes                            (Padraig O'Briain,
+					 	  Jagadeesh B. G)
 
 Changes in 0.4:
 ---------------
 
-* Session management                            (Sandeep V Honde)
+* Session management                             (Sandeep V Honde)
 
 Changes in 0.3:
 ---------------
 
-* gnome-help symlink                      	(Alex Larsson)
-* history fixes                           	(Mikael Hallendal)
-* Added support for index search          	(Mikael Hallendal)
-* Changed strings suggested by Calum      	(Mikael Hallendal)
-* Added Go menu with toolbar alternatives 	(Mikael Hallendal)
-* Lots of bugfixes                              (Mikael Hallendal)
-* Updated translations                          (Christian Rose,
-						 Ole Laursen,
-						 Tõivo Leedjärv,
-						 Zbigniew Chyla,
-						 Hasbullah Bin Pit,
-						 Simos Xenitellis,
-						 Fatih Demir,	
-						 Stanislav Visnovsky,
-						 Christian Meyer,
-						 Kenneth Rohde Christiansen,
-						 Kjartan Maraas,
-						 Wang Jian,
-						 Pablo Saratxaga)
+* gnome-help symlink                        	 (Alex Larsson)
+* history fixes                            	 (Mikael Hallendal)
+* Added support for index search          	 (Mikael Hallendal)
+* Changed strings suggested by Calum      	 (Mikael Hallendal)
+* Added Go menu with toolbar alternatives 	 (Mikael Hallendal)
+* Lots of bugfixes                               (Mikael Hallendal)
