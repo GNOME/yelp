@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-02 20:36+0100\n"
-"PO-Revision-Date: 2003-12-03 02:15+0100\n"
+"POT-Creation-Date: 2003-12-04 04:32+0100\n"
+"PO-Revision-Date: 2003-12-04 13:20+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -133,6 +133,32 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
+#: src/yelp-db-pager.c:238 src/yelp-window.c:719 src/yelp-window.c:806
+#: src/yelp-window.c:965
+#, c-format
+msgid "The document '%s' could not be opened"
+msgstr "Het document '%s' kon niet worden geopend"
+
+#: src/yelp-db-pager.c:404
+msgid "No href attribute found on yelp:document"
+msgstr "Geen href attribuut gevonden op yelp:document"
+
+#: src/yelp-db-pager.c:419
+msgid "Out of memory"
+msgstr "Geen geheugen meer"
+
+#: src/yelp-db-pager.c:547
+msgid "Titlepage"
+msgstr "Titelpagina"
+
+#: src/yelp-db-pager.c:549
+msgid "Contents"
+msgstr "Inhoudsopgave"
+
+#: src/yelp-db-pager.c:567
+msgid "Unknown"
+msgstr "Onbekend"
+
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
 msgstr "Aangeven welke map moet worden gebruikt voor tijdelijke opslag"
@@ -207,6 +233,32 @@ msgstr "Overzichten"
 msgid "System Administration"
 msgstr "Systeemadministratie"
 
+#: src/yelp-pager.c:117
+msgid "Document URI"
+msgstr "Document URI"
+
+#: src/yelp-pager.c:118
+msgid "The URI of the document to be processed"
+msgstr "De URI van het te verwerken document"
+
+#: src/yelp-toc-pager.c:224
+msgid "YelpTocPager: Pause count is negative."
+msgstr "YelpTocPager: Pauzerentelling is negatief."
+
+#: src/yelp-toc-pager.c:557 src/yelp-toc-pager.c:569
+msgid "The table of contents could not be read."
+msgstr "De inhoudsopgave kon niet worden gelezen."
+
+#: src/yelp-toc-pager.c:770 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:741
+msgid "Categories"
+msgstr "Categorieën"
+
+#: src/yelp-toc-pager.c:791 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:740
+msgid "Documents"
+msgstr "Documenten"
+
 #: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
 #: src/yelp-window.c:888
 msgid "Loading..."
@@ -235,14 +287,6 @@ msgstr "Handleiding-pagina's"
 #: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "Info-pagina's"
-
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
-msgid "Documents"
-msgstr "Documenten"
-
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
-msgid "Categories"
-msgstr "Categorieën"
 
 #: src/yelp-view-toc.c:447
 msgid "Manual pages"
@@ -347,11 +391,6 @@ msgstr "Het document '%s' bestaat niet"
 msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML documenten worden niet meer ondersteund."
 
-#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Het document '%s' kon niet worden geopend"
-
 #: src/yelp-window.c:876
 msgid "Loading&nbsp;&nbsp;&nbsp;"
 msgstr "Bezig met laden&nbsp;&nbsp;&nbsp;"
@@ -387,9 +426,6 @@ msgstr "Hulp"
 
 #~ msgid "About This Document"
 #~ msgstr "Over dit document"
-
-#~ msgid "Contents"
-#~ msgstr "Inhoudsopgave"
 
 #~ msgid "Previous"
 #~ msgstr "Vorige"
