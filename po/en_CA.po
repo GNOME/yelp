@@ -1,15 +1,15 @@
 # Canadian English translation of yelp
-# Copyright (C) Adam Weinberger and the GNOME Foundation
+# Copyright (C) 2004-2005 Adam Weinberger and the GNOME Foundation
 # This file is distributed under the same licence as the yelp package.
 # Alexander Winston <alexander.winston@comcast.net>, 2004.
-# Adam Weinberger <adamw@gnome.org>, 2004.
+# Adam Weinberger <adamw@gnome.org>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 01:44-0500\n"
-"PO-Revision-Date: 2005-01-10 22:18-0400\n"
+"POT-Creation-Date: 2005-01-11 01:02-0500\n"
+"PO-Revision-Date: 2005-01-11 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -136,9 +136,9 @@ msgstr "Educational Applications"
 msgid "Graphics"
 msgstr "Graphics"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Help Contents"
+#: data/toc.xml.in.h:9
+msgid "Help Topics"
+msgstr "Help Topics"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -284,7 +284,7 @@ msgstr "Use system fonts"
 msgid "Use the default fonts set for the system."
 msgstr "Use the default fonts set for the system."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2152
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -406,7 +406,7 @@ msgstr "The YelpDocInfo struct of the document"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -449,6 +449,10 @@ msgstr "No href attribute found on yelp:document"
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Out of memory"
+
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "Help Contents"
 
 #: src/yelp-window.c:302
 msgid "_File"
@@ -523,12 +527,12 @@ msgid "Show next page in history"
 msgstr "Show next page in history"
 
 #: src/yelp-window.c:367
-msgid "_Home"
-msgstr "_Home"
+msgid "_Help Topics"
+msgstr "_Help Topics"
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "Go to home view"
+msgid "Go to the listing of help topics"
+msgstr "Go to the listing of help topics"
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -583,11 +587,11 @@ msgstr ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr "Man pages are not supported in this version."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU info pages are not supported in this version"
 
@@ -599,11 +603,19 @@ msgstr ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 
-#: src/yelp-window.c:1021
-msgid "Fin_d"
-msgstr "Fin_d"
+#: src/yelp-window.c:1024
+msgid "Find:"
+msgstr "Find:"
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+msgid "Find _Next"
+msgstr "Find _Next"
+
+#: src/yelp-window.c:1052
+msgid "Find _Previous"
+msgstr "Find _Previous"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -612,7 +624,7 @@ msgstr ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -623,7 +635,7 @@ msgstr ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -632,19 +644,19 @@ msgstr ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2149
+#: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
 "Maintainer: Adam Weinberger <adamw@gnome.org>\n"
 "Alexander Winston <alexander.winston@comcast.net>"
 
-#: src/yelp-window.c:2154
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "A documentation browser and viewer for the Gnome Desktop."
 
