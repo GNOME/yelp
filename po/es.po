@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.0\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-07-24 16:33+0200\n"
-"Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2002-12-17 23:12-0300\n"
+"PO-Revision-Date: 2002-12-17 23:18GMT\n"
+"Last-Translator: Germán Poo-Caamaño <gpoo@ubiobio.cl>\n"
+"Language-Team:  <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,35 +16,35 @@ msgstr ""
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>Buscar texto en el documento:</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "A_justar línea automáticamente"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "Buscar texto..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "Sólo palabras _completas"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "_Distinguir entre mayúsculas y minúsculas"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "_Siguiente"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "_Anterior"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -141,9 +141,8 @@ msgid "Section"
 msgstr "Sección"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "Buscar:"
+msgstr "_Buscar:"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -184,11 +183,11 @@ msgstr "GNOME es"
 
 #: src/yelp-view-toc.c:713
 msgid "Free Software"
-msgstr "software libre"
+msgstr "Software Libre"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
-msgstr "(C)"
+msgstr "©"
 
 #: src/yelp-window.c:163
 msgid "/_File"
@@ -204,15 +203,15 @@ msgstr "/Archivo/_Cerrar ventana"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/_Editar"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/Editar/_Buscar en la página..."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/Editar/_Repetir la búsqueda"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
@@ -232,7 +231,7 @@ msgstr "/Ir/_Inicio"
 
 #: src/yelp-window.c:175
 msgid "/Go/_Index"
-msgstr "/Ir/Índi_ce"
+msgstr "/Ir/Indi_ce"
 
 #: src/yelp-window.c:177
 msgid "/_Help"
@@ -255,7 +254,9 @@ msgstr "El documento «%s» no existe"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:675
 msgid "translator_credits"
-msgstr "Juan Manuel García Molina <juanma_gm@wanadoo.es>"
+msgstr ""
+"Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
+"Germán Poo Caamaño <gpoo@ubiobio.cl>"
 
 #: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
@@ -267,7 +268,7 @@ msgstr "Atrás"
 
 #: src/yelp-window.c:789
 msgid "Show previous page in history"
-msgstr "Muestra la página anterior de la historia"
+msgstr "Muestra la página anterior del historial"
 
 #: src/yelp-window.c:800
 msgid "Forward"
@@ -275,7 +276,7 @@ msgstr "Adelante"
 
 #: src/yelp-window.c:801
 msgid "Show next page in history"
-msgstr "Muestra la página anterior de la historia"
+msgstr "Muestra la siguiente página del historial"
 
 #: src/yelp-window.c:814
 msgid "Home"
@@ -287,16 +288,17 @@ msgstr "Ir a la vista de inicio"
 
 #: src/yelp-window.c:825
 msgid "Index"
-msgstr "Índice"
+msgstr "Indice"
 
 #: src/yelp-window.c:826
 msgid "Search in the index"
-msgstr "Busca en el índice"
+msgstr "Buscar en el índice"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr "Obtenga ayuda con GNOME"
+msgstr "Obtener ayuda con GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ayuda"
+
