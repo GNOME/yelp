@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * gnome-db2html3 - by John Fleck - based on Daniel Veillard's
  * xsltproc: user program for the XSL Transformation engine

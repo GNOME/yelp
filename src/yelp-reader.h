@@ -65,5 +65,6 @@ YelpReader *     yelp_reader_new          (void);
 gboolean         yelp_reader_start        (YelpReader *reader,
 					   YelpURI    *uri);
 void             yelp_reader_cancel       (YelpReader *reader);
+gchar *          look_for_html_help_file  (gchar      *xml_uri);
 
 #endif /* __YELP_READER_H__ */

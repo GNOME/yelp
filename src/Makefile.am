@@ -10,7 +10,8 @@ INCLUDES =								\
 	-DGNOMELOCALEDIR=\""$(yelplocaledir)"\"				\
 	-DLIBGNOME_MAN2HTML=\"$(LIBGNOME_MAN2HTML)\"			\
 	-DLIBGNOME_INFO2HTML=\"$(LIBGNOME_INFO2HTML)\"			\
-	-DSERVERDIR=\"$(libexecdir)\"
+	-DSERVERDIR=\"$(libexecdir)\"					\
+	-DBINDIR=\""$(bindir)"\"
 
 
 if HTML_WIDGET_GTKHTML1
@@ -20,7 +21,7 @@ html_widget_impl=yelp-html-gtkhtml2.c
 endif
 
 libexec_PROGRAMS = yelp-db2html
-bin_PROGRAMS = yelp
+bin_PROGRAMS = yelp yelp-pregenerate
 
 noinst_PROGRAMS = test-uri test-reader
 
@@ -66,7 +67,13 @@ yelp-marshal-main.c: yelp-marshal.c
 yelp_db2html_SOURCES =							\
 	yelp-db2html.c
 
+yelp_pregenerate_SOURCES =						\
+	yelp-pregenerate.c      yelp-pregenerate.h
+
 yelp_db2html_LDADD =							\
+	@YELP_LIBS@
+
+yelp_pregenerate_LDADD =						\
 	@YELP_LIBS@
 
 yelp_SOURCES =								\

@@ -1,3 +1,12 @@
+2002-08-07  Narayana Pattipati <narayana.pattipati@wipro.com>
+
+	* src/yelp-reader.c (yelp_reader_start): Made changes to make yelp
+          read the cached HTML files. Fixes #85258
+	* src/yelp-pregenerate.c: new file. Creates yelp-pregenerate utility
+          which pre-generates HTML files from XML files.
+	* src/yelp-pregenerate.h: new file
+	* src/yelp-reader.h: Added prototype for look_for_html_help_file
+
 2002-08-05  Sander Vesik <sander.vesik@sun.com>
 	* stylesheets/yelp-customization.xsl:
 	- apply bold formating to guibuttons

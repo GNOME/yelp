@@ -725,9 +725,14 @@ yelp_reader_new ()
 gboolean
 yelp_reader_start (YelpReader *reader, YelpURI *uri)
 {
-        YelpReaderPriv   *priv;
+	YelpReaderPriv   *priv;
 	ReaderThreadData *th_data;
 	gint              stamp;
+	const gchar      *document = NULL;
+	gchar            *chunk = NULL;
+	gchar            *str_uri = NULL;
+	gchar             buffer[BUFFER_SIZE];
+	YelpURI	         *new_uri;
 	
 	g_return_val_if_fail (YELP_IS_READER (reader), FALSE);
 	g_return_val_if_fail (uri != NULL, FALSE);
@@ -751,49 +756,100 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	th_data->uri    = yelp_uri_ref (uri);
 	th_data->stamp  = stamp;
 
-	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML || 
-	    yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
-		const gchar *document;
-		gchar *chunk;
+	str_uri = yelp_uri_to_string (uri);
 
-		document = yelp_cache_lookup (yelp_uri_get_path (uri));
-		
-		if (document) {
-			if (yelp_uri_get_section (uri) &&
-			    strcmp (yelp_uri_get_section (uri), "")) {
-				chunk = reader_get_chunk (document, 
-							  yelp_uri_get_section (uri));
-			} else {
-				chunk = reader_get_chunk (document, "toc");
+	if (str_uri && *str_uri) {
+		str_uri = look_for_html_help_file (str_uri);
+		new_uri = yelp_uri_new (str_uri);
+	}
+	else
+		new_uri = yelp_uri_copy (uri);
+
+	g_free (str_uri);
+
+	if (yelp_uri_get_type (new_uri) == YELP_URI_TYPE_DOCBOOK_XML ||
+	    yelp_uri_get_type (new_uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
+
+		document = yelp_cache_lookup (yelp_uri_get_path (new_uri));
+	}
+
+        /* check if there is HTML cache. If found, use the HTML cache. */
+	else if (yelp_uri_get_type (new_uri) == YELP_URI_TYPE_HTML) {
+		GnomeVFSHandle   *handle;
+		GnomeVFSResult    result;
+		GString          *html_buffer;
+		GnomeVFSFileSize  n;
+
+		result = gnome_vfs_open (&handle,
+					 yelp_uri_get_path (new_uri),
+					 GNOME_VFS_OPEN_READ);
+
+		if (result != GNOME_VFS_OK) {
+			/* FIXME: Signal error */
+			yelp_uri_unref (new_uri);
+			return FALSE;
+		}
+
+		html_buffer = NULL;
+
+		while (TRUE) {
+			result = gnome_vfs_read (handle, buffer,
+						 BUFFER_SIZE, &n);
+
+			/* FIXME: Do some error checking */
+			if (result != GNOME_VFS_OK) {
+				break;
 			}
-		
-			if (chunk) {
-				ReaderQueueData *q_data;
-				
-				q_data = reader_q_data_new (reader, stamp, 
-							    READER_QUEUE_TYPE_START);
-				g_async_queue_push (priv->thread_queue, 
-						    q_data);
 
-				q_data = reader_q_data_new (reader, stamp, 
-							    READER_QUEUE_TYPE_DATA);
+			if (html_buffer == NULL)
+				html_buffer = g_string_new (g_strndup (buffer,
+							    n));
+			else
+				html_buffer = g_string_append (html_buffer,
+							       g_strndup (buffer,
+							       n));
+		}
+		document = html_buffer->str;
+		g_string_free (html_buffer, FALSE);
+	}
 
-				q_data->data = chunk;
-				g_async_queue_push (priv->thread_queue, 
-						    q_data);
-				
-				q_data = reader_q_data_new (reader, stamp, 
-							    READER_QUEUE_TYPE_FINISHED);
+	if (document) {
+		if (yelp_uri_get_section (new_uri) &&
+		    strcmp (yelp_uri_get_section (new_uri), "")) {
+			chunk = reader_get_chunk (document,
+						  yelp_uri_get_section (new_uri));
+		} else {
+			chunk = reader_get_chunk (document, "toc");
+		}
 
-				g_async_queue_push (priv->thread_queue, 
-						    q_data);
+		if (chunk) {
+			ReaderQueueData *q_data;
 
-				g_idle_add ((GSourceFunc) reader_idle_check_queue, th_data);
-				return TRUE;
-			}
+			q_data = reader_q_data_new (reader, stamp,
+						    READER_QUEUE_TYPE_START);
+			g_async_queue_push (priv->thread_queue,
+					    q_data);
+
+			q_data = reader_q_data_new (reader, stamp,
+						    READER_QUEUE_TYPE_DATA);
+
+			q_data->data = chunk;
+			g_async_queue_push (priv->thread_queue,
+					    q_data);
+
+			q_data = reader_q_data_new (reader, stamp,
+						    READER_QUEUE_TYPE_FINISHED);
+			g_async_queue_push (priv->thread_queue,
+					    q_data);
+
+			g_idle_add ((GSourceFunc) reader_idle_check_queue,
+				    th_data);
+
+			yelp_uri_unref (new_uri);
+			return TRUE;
 		}
 	}
-	
+
 	g_timeout_add (100, (GSourceFunc) reader_idle_check_queue, th_data);
 
 	g_thread_create_full ((GThreadFunc) reader_start, th_data,
@@ -801,6 +857,9 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 			      TRUE,
 			      FALSE, G_THREAD_PRIORITY_NORMAL,
 			      NULL /* FIXME: check for errors */);
+
+	yelp_uri_unref (new_uri);
+
 	return FALSE;
 }
 
@@ -818,4 +877,80 @@ yelp_reader_cancel (YelpReader *reader)
 	reader_change_stamp (reader);
 
 	STAMP_MUTEX_UNLOCK;
+}
+
+
+/* Given an XML file, look if there is a cached HTML file. If the HTML is
+ * newer than XML, return it. Else return XML only.
+ */
+
+gchar *
+look_for_html_help_file (gchar *url)
+{
+	gchar *sect, *pos;
+	int len=0;
+	GString *path;
+	char    *html_url, *xml_url;
+	char    *scheme;
+	struct stat html_stat, xml_stat;
+
+	if (g_strrstr (url, ".xml") == NULL)
+		return url;
+
+	path = g_string_new (url);
+	sect = g_strrstr (url, "?");
+
+	len = sect - url;
+	path = g_string_truncate (path, len);
+
+	scheme = g_strrstr (path->str, ":");
+
+	xml_url = g_strdup (scheme + 1);
+
+	pos = g_strrstr (path->str, ".xml");
+
+	if (pos == NULL) {
+		g_string_free (path, TRUE);
+		g_free (xml_url);
+
+		return url;
+	}
+
+	len = pos - path->str;
+
+	path = g_string_truncate (path, len);
+
+	path = g_string_append (path, ".html");
+
+	scheme = g_strrstr (path->str, ":");
+
+	html_url = g_strdup (scheme + 1);
+
+	if (g_file_test (html_url, G_FILE_TEST_EXISTS)) {
+
+		stat (html_url, &html_stat);
+		stat (xml_url, &xml_stat);
+
+		g_free (xml_url);
+		g_free (html_url);
+
+		if (html_stat.st_mtime >= xml_stat.st_mtime) {
+
+			if (sect)
+				path = g_string_append (path, sect);
+
+			return g_string_free (path, FALSE);
+		}
+		else {
+			g_string_free (path, TRUE);
+			return url;
+		}
+	}
+	else {
+		g_free (xml_url);
+		g_free (html_url);
+		g_string_free (path, TRUE);
+
+		return url;
+	}
 }
