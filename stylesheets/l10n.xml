@@ -114,4 +114,19 @@
   </l:context>
 </l:l10n>
  
+<!-- *************** Romanian ***************** -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ro">
+  <l:gentext key="Title" text="Titlu"/>
+  <l:gentext key="Author" text="Autor"/>
+  <l:gentext key="Authors" text="Autori"/>
+  <l:gentext key="Affiliation" text="Organiza&#355;ie"/>  
+  <l:gentext key="Email" text="Email"/>  
+  <l:gentext key="Publisher" text="Editor"/>
+  <l:gentext key="Date" text="Data"/>
+  <l:context name="title">
+   <l:template name="bookinfo" text="Informa&#355;ii despre acest document"/>
+   <l:template name="articleinfo" text="Informa&#355;ii despre acest document"/>
+  </l:context>
+ </l:l10n>
+
 </i18n>
