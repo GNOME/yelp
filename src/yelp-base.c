@@ -29,6 +29,7 @@
 #include "yelp-cache.h"
 #include "yelp-window.h"
 #include "yelp-theme.h"
+#include "yelp-pager.h"
 #include "yelp-toc-pager.h"
 #include "yelp-base.h"
 
@@ -71,7 +72,7 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 	GNOME_Yelp_WindowList *list;
 	gint                   len, i;
 	GSList                *node;
-	YelpURI               *uri;
+	GnomeVFSURI           *uri;
 	
 	base = YELP_BASE (bonobo_object (servant));
 	priv = base->priv;
@@ -88,7 +89,7 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 		gchar *str_uri;
 
 		uri = yelp_window_get_current_uri (YELP_WINDOW (node->data));
-		str_uri = yelp_uri_to_string (uri);
+		str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 		list->_buffer[i] = CORBA_string_dup (str_uri);
 		g_free (str_uri);
 	}
@@ -178,7 +179,7 @@ GtkWidget *
 yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 {
 	YelpBasePriv *priv;
-	YelpURI      *uri;
+	GnomeVFSURI  *uri;
 	GtkWidget    *window;
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
@@ -202,8 +203,10 @@ yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 
 	if (str_uri && strcmp (str_uri, ""))
 		uri = yelp_uri_new (str_uri);
-	else
-		uri = yelp_uri_new ("toc:");
+	else {
+		uri = yelp_pager_get_uri (YELP_PAGER (yelp_toc_pager_get ()));
+		gnome_vfs_uri_ref (uri);
+	}
 
 	yelp_window_open_uri (YELP_WINDOW (window), uri);
 

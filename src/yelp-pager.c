@@ -36,7 +36,7 @@
 #define d(x)
 
 struct _YelpPagerPriv {
-    YelpURI        *uri;
+    GnomeVFSURI    *uri;
 
     YelpPagerState  state;
 
@@ -114,11 +114,10 @@ pager_class_init (YelpPagerClass *klass)
     g_object_class_install_property
 	(object_class,
 	 PROP_URI,
-	 g_param_spec_object ("uri",
-			      _("Document URI"),
-			      _("The URI of the document to be processed"),
-			      YELP_TYPE_URI,
-			      G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+	 g_param_spec_pointer ("uri",
+			       _("Document URI"),
+			       _("The URI of the document to be processed"),
+			       G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 
     signals[START] = g_signal_new
 	("start",
@@ -203,12 +202,12 @@ pager_set_property (GObject      *object,
     switch (prop_id) {
     case PROP_URI:
 	if (pager->priv->uri)
-	    g_object_unref (pager->priv->uri);
+	    gnome_vfs_uri_unref (pager->priv->uri);
 
-	pager->priv->uri = (YelpURI *) g_value_get_object (value);
+	pager->priv->uri = (GnomeVFSURI *) g_value_get_pointer (value);
 
 	if (pager->priv->uri)
-	    g_object_ref (pager->priv->uri);
+	    gnome_vfs_uri_ref (pager->priv->uri);
 
 	break;
     default:
@@ -292,7 +291,7 @@ yelp_pager_cancel (YelpPager *pager)
     YELP_PAGER_GET_CLASS (pager)->cancel (pager);
 }
 
-YelpURI *
+GnomeVFSURI *
 yelp_pager_get_uri (YelpPager *pager)
 {
     g_return_val_if_fail (pager != NULL, FALSE);
@@ -366,9 +365,9 @@ yelp_pager_get_sections (YelpPager *pager)
 }
 
 gchar *
-yelp_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
+yelp_pager_resolve_uri (YelpPager *pager, GnomeVFSURI *uri)
 {
-    gchar    *frag_id = NULL;
+    gchar *frag_id = NULL;
 
     frag_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
 
@@ -376,7 +375,7 @@ yelp_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 }
 
 gboolean
-yelp_pager_uri_is_page (YelpPager *pager, gchar *page_id, YelpURI *uri)
+yelp_pager_uri_is_page (YelpPager *pager, gchar *page_id, GnomeVFSURI *uri)
 {
     gchar    *frag_id = NULL;
     gboolean  equal;
@@ -401,7 +400,7 @@ yelp_pager_uri_is_page (YelpPager *pager, gchar *page_id, YelpURI *uri)
 }
 
 const YelpPage *
-yelp_pager_lookup_page (YelpPager *pager, YelpURI *uri)
+yelp_pager_lookup_page (YelpPager *pager, GnomeVFSURI *uri)
 {
     gchar *page_id = NULL;
     YelpPage *page;
@@ -412,9 +411,7 @@ yelp_pager_lookup_page (YelpPager *pager, YelpURI *uri)
     page_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
 
     if (!page_id)
-	page_id = yelp_uri_get_fragment (uri);
-    else
-	page_id = g_strdup (page_id);
+	page_id = g_strdup (gnome_vfs_uri_get_fragment_identifier (uri));
 
     page = (YelpPage *) yelp_pager_get_page (pager, page_id);
 

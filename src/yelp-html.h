@@ -48,7 +48,7 @@ struct _YelpHtmlClass {
 
 	/* Signals */
 	void (*uri_selected)   (YelpHtml    *view,
-				YelpURI     *uri,
+				GnomeVFSURI *uri,
 				gboolean     handled);
 	void (*title_changed)  (YelpHtml    *view,
 				const gchar *new_title);
@@ -58,7 +58,7 @@ GType           yelp_html_get_type       (void);
 YelpHtml *      yelp_html_new            (void);
 
 void            yelp_html_set_base_uri   (YelpHtml    *html,
-					  YelpURI     *uri);
+					  GnomeVFSURI *uri);
 void            yelp_html_clear          (YelpHtml    *html);
 void            yelp_html_write          (YelpHtml    *html,
 					  const gchar *data,

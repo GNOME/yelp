@@ -36,7 +36,6 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "yelp-util.h"
 #include "yelp-marshal.h"
 #include "yelp-error.h"
 #include "yelp-uri.h"
@@ -52,7 +51,7 @@ struct _YelpHtmlPriv {
     HtmlView        *view;
 
     HtmlDocument    *doc;
-    YelpURI         *base_uri;
+    GnomeVFSURI     *base_uri;
 
     DomNodeIterator *find_iter;
     gint             find_offset;
@@ -202,7 +201,8 @@ html_url_requested_cb (HtmlDocument *doc,
     GnomeVFSResult    result;
     gchar             buffer[BUFFER_SIZE];
     GnomeVFSFileSize  read_len;
-    gchar            *absolute_url;
+    GnomeVFSURI      *absolute_uri;
+    gchar            *absolute_uri_str;
 
     html = YELP_HTML (data);
     priv = html->priv;
@@ -214,19 +214,22 @@ html_url_requested_cb (HtmlDocument *doc,
 
     d(g_print ("URL REQUESTED: %s\n", url));
 
-    absolute_url = yelp_util_resolve_relative_url (yelp_uri_get_path (priv->base_uri),
-						   url);
+    absolute_uri = gnome_vfs_uri_resolve_relative (priv->base_uri, url);
+    absolute_uri_str = gnome_vfs_uri_to_string (absolute_uri,
+						GNOME_VFS_URI_HIDE_NONE);
 
-    result = gnome_vfs_open (&handle, absolute_url, GNOME_VFS_OPEN_READ);
+    result = gnome_vfs_open (&handle, absolute_uri_str, GNOME_VFS_OPEN_READ);
 
     if (result != GNOME_VFS_OK) {
-	g_warning ("Failed to open: %s", absolute_url);
-	g_free (absolute_url);
+	g_warning ("Failed to open: %s", absolute_uri_str);
+	gnome_vfs_uri_unref (absolute_uri);
+	g_free (absolute_uri_str);
 
 	return;
     }
 
-    g_free (absolute_url);
+    gnome_vfs_uri_unref (absolute_uri);
+    g_free (absolute_uri_str);
 
     while (gnome_vfs_read (handle, buffer, BUFFER_SIZE, &read_len) ==
 	   GNOME_VFS_OK) {
@@ -251,8 +254,10 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 {
     YelpHtmlPriv *priv;
     gboolean      handled;
-    YelpURI      *uri;
-    gchar        *fragment;
+    GnomeVFSURI  *uri;
+    const gchar  *fragment;
+    YelpURIType   res_type;
+    const gchar  *uri_path, *base_uri_path;
 
     g_return_if_fail (HTML_IS_DOCUMENT (doc));
     g_return_if_fail (url != NULL);
@@ -263,20 +268,22 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 
     d(g_print ("Link clicked: %s\n", url));
 
-    uri = yelp_uri_new_relative (priv->base_uri, url);
+    uri = yelp_uri_resolve_relative (priv->base_uri, url);
 
-    d(g_print ("That would be: %s\n", yelp_uri_to_string (uri)));
-	
-    /* If this is a relative reference. Shortcut reload. */
-    if (yelp_uri_equal_path (uri, priv->base_uri)) {
-	fragment = yelp_uri_get_fragment (uri);
-	if (fragment) {
-	    if (yelp_uri_get_resource_type (uri) == YELP_URI_TYPE_HTML ||
-		yelp_uri_get_resource_type (uri) == YELP_URI_TYPE_MAN) {
+    /* If this is a relative reference, shortcut reload.  This only happens for
+     * HTML and man, because these are single-page formats where the fragment
+     * can't possibly jump to a new chunk.
+     */
+    res_type = yelp_uri_get_resource_type (uri);
+    if (res_type == YELP_URI_TYPE_HTML || res_type == YELP_URI_TYPE_MAN) {
+	uri_path      = gnome_vfs_uri_get_path (uri);
+	base_uri_path = gnome_vfs_uri_get_path (priv->base_uri);
 
+	if (!strcmp (uri_path, base_uri_path)) {
+	    fragment = gnome_vfs_uri_get_fragment_identifier (uri);
+	    if (fragment) {
 		html_view_jump_to_anchor (HTML_VIEW (html->priv->view),
 					  fragment);
-		g_free (fragment);
 		handled = TRUE;
 	    }
 	}
@@ -286,8 +293,6 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
     html_clear_find_data (html);
 
     g_signal_emit (html, signals[URI_SELECTED], 0, uri, handled);
-
-    g_object_unref (uri);
 }
 
 static void
@@ -324,7 +329,7 @@ yelp_html_new (void)
 }
 
 void
-yelp_html_set_base_uri (YelpHtml *html, YelpURI *uri)
+yelp_html_set_base_uri (YelpHtml *html, GnomeVFSURI *uri)
 {
     YelpHtmlPriv *priv;
 
@@ -333,9 +338,9 @@ yelp_html_set_base_uri (YelpHtml *html, YelpURI *uri)
     priv = html->priv;
 
     if (priv->base_uri)
-	g_object_unref (priv->base_uri);
+	gnome_vfs_uri_unref (priv->base_uri);
 
-    g_object_ref (uri);
+    gnome_vfs_uri_ref (uri);
     priv->base_uri = uri;
 }
 

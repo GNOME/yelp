@@ -74,14 +74,14 @@ static void          db_pager_class_init   (YelpDBPagerClass *klass);
 static void          db_pager_init         (YelpDBPager      *pager);
 static void          db_pager_dispose      (GObject          *gobject);
 
-void                 db_pager_error        (YelpPager   *pager);
-void                 db_pager_cancel       (YelpPager   *pager);
-void                 db_pager_finish       (YelpPager   *pager);
+void                 db_pager_error        (YelpPager        *pager);
+void                 db_pager_cancel       (YelpPager        *pager);
+void                 db_pager_finish       (YelpPager        *pager);
 
-gboolean             db_pager_process      (YelpPager   *pager);
-gchar *              db_pager_resolve_uri  (YelpPager   *pager,
-					    YelpURI     *uri);
-const GtkTreeModel * db_pager_get_sections (YelpPager   *pager);
+gboolean             db_pager_process      (YelpPager        *pager);
+gchar *              db_pager_resolve_uri  (YelpPager        *pager,
+					    GnomeVFSURI      *uri);
+const GtkTreeModel * db_pager_get_sections (YelpPager        *pager);
 
 static void     walker_walk_xml       (DBWalker         *walker);
 gboolean        walker_is_chunk       (DBWalker         *walker);
@@ -177,11 +177,11 @@ db_pager_dispose (GObject *object)
 /******************************************************************************/
 
 YelpPager *
-yelp_db_pager_new (YelpURI *uri)
+yelp_db_pager_new (GnomeVFSURI *uri)
 {
     YelpDBPager *pager;
 
-    g_return_val_if_fail (YELP_IS_URI (uri), NULL);
+    g_return_val_if_fail (uri != NULL, NULL);
 
     pager = (YelpDBPager *) g_object_new (YELP_TYPE_DB_PAGER,
 					  "uri", uri,
@@ -196,8 +196,8 @@ yelp_db_pager_new (YelpURI *uri)
 gboolean
 db_pager_process (YelpPager *pager)
 {
-    YelpURI *uri           = yelp_pager_get_uri (pager);
-    gchar         *uri_str = yelp_uri_get_path ((YelpURI *) uri);
+    GnomeVFSURI   *uri     = yelp_pager_get_uri (pager);
+    gchar         *path;
     DBWalker      *walker;
     xmlChar       *id;
     GError        *error = NULL;
@@ -211,7 +211,6 @@ db_pager_process (YelpPager *pager)
 
     YelpDBPagerPriv *priv = YELP_DB_PAGER (pager)->priv;
 
-    gchar        *uri_slash;
     gchar        *doc_name;
     gchar        *doc_path;
     const gchar  *params[21];
@@ -219,13 +218,21 @@ db_pager_process (YelpPager *pager)
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
 
+    path = gnome_vfs_uri_to_string (uri,
+				    GNOME_VFS_URI_HIDE_USER_NAME           |
+				    GNOME_VFS_URI_HIDE_PASSWORD            |
+				    GNOME_VFS_URI_HIDE_HOST_NAME           |
+				    GNOME_VFS_URI_HIDE_HOST_PORT           |
+				    GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD     |
+				    GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER );
+
     g_object_ref (pager);
 
     yelp_toc_pager_pause (yelp_toc_pager_get ());
 
     ctxt = xmlNewParserCtxt ();
     doc = xmlCtxtReadFile (ctxt,
-			   (const char *) uri_str,
+			   (const char *) path,
 			   NULL,
 			   XML_PARSE_DTDLOAD  |
 			   XML_PARSE_XINCLUDE |
@@ -234,7 +241,7 @@ db_pager_process (YelpPager *pager)
 			   XML_PARSE_NONET    );
 
     if (doc == NULL) {
-	gchar *str_uri = yelp_uri_to_string (uri);
+	gchar *str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	g_set_error (&error,
 		     YELP_ERROR,
 		     YELP_ERROR_FAILED_OPEN,
@@ -267,10 +274,8 @@ db_pager_process (YelpPager *pager)
     while (gtk_events_pending ())
 	gtk_main_iteration ();
 
-    uri_slash = g_strrstr (uri_str, "/");
-    doc_name  = g_strdup  (uri_slash + 1);
-    doc_path  = g_strndup (uri_str, uri_slash - uri_str + 1);
-
+    doc_name = gnome_vfs_uri_extract_short_name (uri);
+    doc_path = gnome_vfs_uri_extract_dirname (uri);
     p_doc_name = g_strconcat("\"", doc_name, "\"", NULL);
     p_doc_path = g_strconcat("\"file://", doc_path, "/\"", NULL);
 
@@ -320,12 +325,13 @@ db_pager_process (YelpPager *pager)
 
     g_free (p_doc_name);
     g_free (p_doc_path);
+    g_free (doc_name);
+    g_free (doc_path);
+
     xmlFreeDoc (doc);
     xsltFreeStylesheet (stylesheet);
     xmlFreeParserCtxt (ctxt);
 
-    g_free (doc_name);
-    g_free (doc_path);
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
     g_signal_emit_by_name (pager, "finish");
@@ -355,18 +361,18 @@ db_pager_finish (YelpPager   *pager)
 }
 
 gchar *
-db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
+db_pager_resolve_uri (YelpPager *pager, GnomeVFSURI *uri)
 {
-    YelpDBPager *db_pager;
-    gchar       *frag_id;
-    gchar       *page_id = NULL;
+    YelpDBPager  *db_pager;
+    const gchar  *frag_id;
+    gchar        *page_id = NULL;
 
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), NULL);
 
     db_pager = YELP_DB_PAGER (pager);
 
-    frag_id = yelp_uri_get_fragment (uri);
+    frag_id = gnome_vfs_uri_get_fragment_identifier (uri);
 
     if (frag_id)
 	page_id = g_hash_table_lookup (db_pager->priv->frags_hash,
@@ -376,7 +382,6 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
     else
 	page_id = "index";
 
-    g_free (frag_id);
     return g_strdup (page_id);
 }
 
@@ -596,6 +601,7 @@ gchar *
 xml_get_title (xmlNodePtr node)
 {
     gchar *title = NULL;
+    gchar *ret   = NULL;
     xmlNodePtr cur;
 
     if (xml_is_info (node))
@@ -621,7 +627,10 @@ xml_get_title (xmlNodePtr node)
     if (!title)
 	title = g_strdup (_("Unknown"));
 
-    return title;
+    ret = g_strdup (g_strstrip (title));
+    g_free (title);
+
+    return ret;
 }
 
 gboolean

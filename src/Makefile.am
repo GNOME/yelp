@@ -15,28 +15,7 @@ INCLUDES =								\
 	-DSERVERDIR=\"$(libexecdir)\"					\
 	-DBINDIR=\""$(bindir)"\"
 
-libexec_PROGRAMS = yelp-db2html
-bin_PROGRAMS = yelp yelp-pregenerate
-
-noinst_PROGRAMS = test-uri test-pager
-test_uri_SOURCES = 							\
-	test-uri.c							\
-	yelp-uri.c		yelp-uri.h
-
-test_uri_LDADD = 							\
-	@YELP_LIBS@
-
-test_pager_SOURCES =							\
-	yelp-error.c		yelp-error.h				\
-	yelp-pager.c		yelp-pager.h				\
-	yelp-db-pager.c		yelp-db-pager.h				\
-	yelp-toc-pager.c	yelp-toc-pager.h			\
-	yelp-theme.c		yelp-theme.h				\
-	yelp-uri.c		yelp-uri.h				\
-	yelp-marshal-main.c	test-pager.c
-
-test_pager_LDADD =							\
-	@YELP_LIBS@
+bin_PROGRAMS = yelp
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -56,18 +35,6 @@ yelp-marshal.c: yelp-marshal.h
 
 yelp-marshal-main.c: yelp-marshal.c
 
-yelp_pregenerate_SOURCES =						\
-	yelp-pregenerate.c      yelp-pregenerate.h
-
-yelp_db2html_SOURCES =							\
-	yelp-db2html.c
-
-yelp_db2html_LDADD =							\
-	@YELP_LIBS@
-
-yelp_pregenerate_LDADD =						\
-	@YELP_LIBS@
-
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-base.c		yelp-base.h				\
@@ -79,7 +46,6 @@ yelp_SOURCES =								\
 	yelp-pager.c		yelp-pager.h				\
 	yelp-toc-pager.c	yelp-toc-pager.h			\
 	yelp-theme.c		yelp-theme.h				\
-	yelp-util.c		yelp-util.h				\
 	yelp-window.c 		yelp-window.h				\
 	yelp-uri.c	        yelp-uri.h				\
 	yelp-marshal-main.c	yelp-main.c

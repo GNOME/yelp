@@ -58,7 +58,7 @@ GType            yelp_window_get_type        (void);
 GtkWidget *      yelp_window_new             (GNode         *doc_tree,
 					      GList         *index);
 void             yelp_window_open_uri        (YelpWindow    *window,
-					      YelpURI       *uri);
-YelpURI *        yelp_window_get_current_uri (YelpWindow    *window);
+					      GnomeVFSURI   *uri);
+GnomeVFSURI *    yelp_window_get_current_uri (YelpWindow    *window);
 
 #endif /* __YELP_WINDOW_H__ */

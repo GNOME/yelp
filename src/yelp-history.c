@@ -152,7 +152,7 @@ history_free_history_list (GList *history_list)
 	GList *node;
         
 	for (node = history_list; node; node = node->next) {
-		g_object_unref (G_OBJECT (node->data));
+		gnome_vfs_uri_unref ((GnomeVFSURI *) node->data);
 	}
 
 	g_list_free (history_list);
@@ -186,7 +186,7 @@ history_maybe_emit (YelpHistory *history)
 }
 
 void
-yelp_history_goto (YelpHistory *history, YelpURI *uri)
+yelp_history_goto (YelpHistory *history, GnomeVFSURI *uri)
 {
 	YelpHistoryPriv *priv;
 	GList           *forward_list;
@@ -197,8 +197,16 @@ yelp_history_goto (YelpHistory *history, YelpURI *uri)
 	priv = history->priv;
 
 	if (priv->current && priv->current->data &&
-	    yelp_uri_equal (YELP_URI (priv->current->data), uri)) {
-		return;
+	    gnome_vfs_uri_equal (priv->current->data, uri)) {
+		GnomeVFSURI *cur_uri = (GnomeVFSURI *) priv->current->data;
+		const gchar *cur_frag, *frag;
+
+		cur_frag = gnome_vfs_uri_get_fragment_identifier (cur_uri);
+		frag     = gnome_vfs_uri_get_fragment_identifier (uri);
+
+		if ((!cur_frag && !frag)
+		    || (cur_frag && frag && !strcmp (cur_frag, frag)))
+			return;
 	}
 
 	if (yelp_history_exist_forward (history)) {
@@ -209,14 +217,14 @@ yelp_history_goto (YelpHistory *history, YelpURI *uri)
 	}
 
  	priv->history_list = g_list_append (priv->history_list, 
-					    g_object_ref (uri));
+					    gnome_vfs_uri_ref (uri));
 	
 	priv->current = g_list_last (priv->history_list);
 	
 	history_maybe_emit (history);
 }
 
-YelpURI *
+GnomeVFSURI *
 yelp_history_go_forward (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -231,13 +239,13 @@ yelp_history_go_forward (YelpHistory *history)
 
 		history_maybe_emit (history);
 		
-		return YELP_URI (priv->current->data);
+		return (GnomeVFSURI *) priv->current->data;
 	}
 
 	return NULL;
 }
 
-YelpURI *
+GnomeVFSURI *
 yelp_history_go_back (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -252,13 +260,13 @@ yelp_history_go_back (YelpHistory *history)
 
 		history_maybe_emit (history);
 
-		return YELP_URI (priv->current->data);
+		return (GnomeVFSURI *) priv->current->data;
 	}
         
 	return NULL;
 }
 
-YelpURI *
+GnomeVFSURI *
 yelp_history_get_current (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -272,7 +280,7 @@ yelp_history_get_current (YelpHistory *history)
 		return NULL;
 	}
 
-	return YELP_URI (priv->current->data);
+	return (GnomeVFSURI *) priv->current->data;
 }
 
 gboolean

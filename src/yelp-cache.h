@@ -24,6 +24,7 @@
 #define __YELP_CACHE_H__
 
 #include <glib.h>
+#include <glib-object.h>
 
 #include "yelp-uri.h"
 

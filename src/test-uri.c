@@ -35,17 +35,14 @@ print_uri (YelpURI *uri)
     gchar *str_uri;
 	
     switch (yelp_uri_get_resource_type (uri)) {
-    case YELP_URI_TYPE_UNKNOWN:
-	type = "YELP_URI_TYPE_UNKNOWN";
-	break;
-    case YELP_URI_TYPE_RELATIVE:
-	type = "YELP_URI_TYPE_RELATIVE";
-	break;
     case YELP_URI_TYPE_DOCBOOK_XML:
 	type = "YELP_URI_TYPE_DOCBOOK_XML";
 	break;
     case YELP_URI_TYPE_DOCBOOK_SGML:
 	type = "YELP_URI_TYPE_DOCBOOK_SGML";
+	break;
+    case YELP_URI_TYPE_ERROR:
+	type = "YELP_URI_TYPE_ERROR";
 	break;
     case YELP_URI_TYPE_GHELP:
 	type = "YELP_URI_TYPE_GHELP";
@@ -89,8 +86,7 @@ int
 main (int argc, char **argv)
 {
     GnomeProgram *program;
-    YelpURI      *uri;
-    YelpURI      *rel_uri;
+    GnomeVFSURI  *uri;
 	
     if (argc < 2) {
 	g_print ("Usage: test-uri uri\n");
@@ -107,32 +103,11 @@ main (int argc, char **argv)
 
     uri = yelp_uri_new (argv[1]);
 
-    /*
-    if (!yelp_uri_exists (uri)) {
-	g_print ("URI (%s) does not exist\n", argv[1]);
-
-	return 1;
-    }
-    */
-
     g_print ("STRING   : %s\n", argv[1]);
+
     print_uri (uri);
-
-    /*
-    g_print ("---------------\n");
 	
-    rel_uri = yelp_uri_get_relative (uri, "?link");
-    print_uri (rel_uri);
-    g_object_unref (rel_uri);
-	
-    g_print ("---------------\n");
-
-    rel_uri = yelp_uri_get_relative (uri, "link");
-    print_uri (rel_uri);
-    g_object_unref (rel_uri);
-    */
-	
-    g_object_unref (uri);
+    gnome_vfs_uri_unref (uri);
 
     gnome_vfs_shutdown ();
 

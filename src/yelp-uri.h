@@ -25,73 +25,29 @@
 #ifndef __YELP_URI_H__
 #define __YELP_URI_H__
 
-#include <glib.h>
-#include <glib-object.h>
-
-#define YELP_TYPE_URI         (yelp_uri_get_type ())
-#define YELP_URI(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_URI, YelpURI))
-#define YELP_URI_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_URI, YelpURIClass))
-#define YELP_IS_URI(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), YELP_TYPE_URI))
-#define YELP_IS_URI_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_URI))
-#define YELP_URI_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_URI, YelpURIClass))
-
-typedef struct _YelpURI      YelpURI;
-typedef struct _YelpURIClass YelpURIClass;
-typedef struct _YelpURIPriv  YelpURIPriv;
+#include <libgnomevfs/gnome-vfs.h>
 
 typedef enum {
-    YELP_URI_TYPE_UNKNOWN,
-    YELP_URI_TYPE_RELATIVE,
+    YELP_URI_TYPE_EXTERNAL,
     YELP_URI_TYPE_DOCBOOK_XML,
     YELP_URI_TYPE_DOCBOOK_SGML,
     YELP_URI_TYPE_HTML,
     YELP_URI_TYPE_MAN,
     YELP_URI_TYPE_INFO,
+    YELP_URI_TYPE_TOC,
 
     YELP_URI_TYPE_GHELP,
     YELP_URI_TYPE_GHELP_OTHER,
-    YELP_URI_TYPE_TOC,
     YELP_URI_TYPE_INDEX,
     YELP_URI_TYPE_PATH,
-    YELP_URI_TYPE_FILE
+    YELP_URI_TYPE_FILE,
+
+    YELP_URI_TYPE_ERROR
 } YelpURIType;
 
-struct _YelpURI {
-    GObject      parent;
-
-    YelpURIPriv *priv;
-};
-
-struct _YelpURIClass {
-    GObjectClass parent_class;
-};
-
-
-GType           yelp_uri_get_type          (void);
-
-YelpURI *       yelp_uri_new               (const gchar   *uri_str);
-YelpURI *       yelp_uri_new_relative      (YelpURI       *base,
-					    const gchar   *uri_str);
-gboolean        yelp_uri_exists            (YelpURI       *uri);
-
-YelpURIType     yelp_uri_get_resource_type (YelpURI       *uri);
-gchar *         yelp_uri_get_path          (YelpURI       *uri);
-gchar *         yelp_uri_get_fragment      (YelpURI       *uri);
-
-gchar *         yelp_uri_to_string         (YelpURI       *uri);
-
-gboolean        yelp_uri_equal             (YelpURI       *uri1,
-					    YelpURI       *uri2);
-gboolean        yelp_uri_equal_path        (YelpURI       *uri1,
-					    YelpURI       *uri2);
-gboolean        yelp_uri_equal_fragment    (YelpURI       *uri1,
-					    YelpURI       *uri2);
-
-/*
-YelpURI *       yelp_uri_copy             (YelpURI       *uri);
-YelpURI *       yelp_uri_to_index         (YelpURI       *uri);
-YelpURI *       yelp_uri_from_index       (YelpURI       *uri);
-gboolean        yelp_uri_no_path          (YelpURI       *uri);
-*/
+GnomeVFSURI *     yelp_uri_new                (const gchar   *uri_str);
+GnomeVFSURI *     yelp_uri_resolve_relative   (GnomeVFSURI   *base,
+					       const gchar   *uri_str);
+YelpURIType       yelp_uri_get_resource_type  (GnomeVFSURI   *uri);
 
 #endif /* __YELP_URI_H__ */
