@@ -46,8 +46,6 @@ main (int argc, char **argv)
 	textdomain(GETTEXT_PACKAGE);
 #endif 
 
-	setlocale (LC_ALL, "");
-
 	g_thread_init (NULL);
 
 	program = gnome_program_init (PACKAGE, VERSION,
