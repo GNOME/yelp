@@ -1,5 +1,10 @@
 2002-05-31  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-reader.c (reader_get_chunk):
+	- return the full document if finding the chunk comments
+	  fail. This is better than just returning NULL. Also silence the
+	  warnings for now.
+
 	* Release 0.9.1
 
 	* configure.in: bumped version to 0.9.1

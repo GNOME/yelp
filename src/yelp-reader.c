@@ -654,8 +654,8 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	end = strstr (document, "<!-- End of header -->");
 	
 	if (!end) {
-		g_warning ("Wrong type of document\n");
-		return NULL;
+/* 		g_warning ("Wrong type of document\n"); */
+		return g_strdup (document);
 	}
 	
 	header = g_strndup (document, end - document);
@@ -665,20 +665,20 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	g_free (tag);
 	
 	if (!start) {
-		g_warning ("Document doesn't include section: '%s'", section);
+/* 		g_warning ("Document doesn't include section: '%s'", section); */
 		g_free (header);
-		
-		return NULL;
+
+		return g_strdup (document);
 	}
 
 	end = strstr (start, "<!-- End of chunk -->");
 
 	if (!end) {
-		g_warning ("Document is doesn't contain end tag for section: %s",
-			   section);
+/* 		g_warning ("Document is doesn't contain end tag for section: %s", */
+/* 			   section); */
 		g_free (header);
-		
-		return NULL;
+
+		return g_strdup (document);
 	}
 	
 	chunk = g_strndup (start, end - start);
@@ -686,11 +686,11 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	footer = strstr (document, "<!-- Start of footer -->");
 	
 	if (!footer) {
-		g_warning ("Couldn't find footer in document");
+/* 		g_warning ("Couldn't find footer in document"); */
 		g_free (header);
 		g_free (chunk);
-		
-		return NULL;
+
+		return g_strdup (document);
 	}
 	 
 	ret_val = g_strconcat (header, chunk, footer, NULL);
