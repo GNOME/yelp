@@ -1,3 +1,9 @@
+2003-11-10  Shaun McCance  <shaunm@gnome.org>
+
+	* src/info2html/main.c:
+	- Fix silliness with g_strdup_printf
+	  (Joe Marcus Clarke and Roderich Schupp)
+
 2003-10-06  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "mr" to ALL_LINGUAS.
