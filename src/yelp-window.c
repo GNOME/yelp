@@ -1133,7 +1133,8 @@ yelp_window_destroyed (GtkWidget *window,
     g_object_unref (priv->pane);
     g_object_unref (priv->side_sw);
     g_object_unref (priv->html_sw);
-    g_object_unref (priv->pager);
+    if (priv->pager)
+	g_object_unref (priv->pager);
 }
 
 static void
