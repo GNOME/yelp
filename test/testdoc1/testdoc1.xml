@@ -80,7 +80,7 @@
 	</note>
 
 	<para>
-		Next, we have a tip.
+		Next, we have a <sgmltag>tip</sgmltag>.
 	</para>
 
 	<tip>
@@ -94,7 +94,7 @@
 
 	<para>
 		And finally, we'll have a <sgmltag>warning</sgmltag>.  Just to mix things
-		up a bit, we'll put this one <emph>inside</emph> the paragraph.
+		up a bit, we'll put this one <emphasis>inside</emphasis> the paragraph.
 
 		<warning>
 			<title>DocBook Is a Beast</title>
@@ -110,31 +110,73 @@
 	</para>
 </sect1>
 
+<sect1 id="td-classsynopsis">
+	<title>Class Synopses</title>
+	<para>
+		This section tests the <sgmltag>classsynopsis</sgmltag> element.  The
+		formatting of <sgmltag>classsynopis</sgmltag> is controlled entirely
+		by the <sgmltag class="attribute">language</sgmltag> attribute, which
+		specifies the programming language being presented.
+	</para>
+
+	<para>
+		Here is a <sgmltag>classsynopsis</sgmltag> for Java.
+	</para>
+
+	<classsynopsis language="java">
+		<ooclass>
+			<modifier>public</modifier>
+			<classname>Foo</classname>
+		</ooclass>
+		<ooclass>
+			<classname>Bar</classname>
+		</ooclass>
+		<oointerface>
+			<interfacename>FooInterface</interfacename>
+		</oointerface>
+		<oointerface>
+			<interfacename>BarInterface</interfacename>
+		</oointerface>
+
+		<constructorsynopsis>
+			<modifier>public</modifier>
+			<methodparam>
+				<type>String</type>
+				<parameter>fooStr</parameter>
+			</methodparam>
+		</constructorsynopsis>
+		<constructorsynopsis>
+			<modifier>public</modifier>
+			<void/>
+		</constructorsynopsis>
+	</classsynopsis>
+</sect1>
+
 <sect1 id="td-lists">
 	<title>Lists</title>
 	<para>
 		This sections tests the list elements in DocBook.
 	</para>
 
-	<sect2 id="td-itemizedlist">
-		<title>Itemized Lists</title>
-	</sect2>
+<sect2 id="td-itemizedlist">
+	<title>Itemized Lists</title>
+</sect2>
 
-	<sect2 id="td-orderedlist">
-		<title>Ordered Lists</title>
-	</sect2>
+<sect2 id="td-orderedlist">
+	<title>Ordered Lists</title>
+</sect2>
 
-	<sect2 id="td-segmentedlist">
-		<title>Segmented Lists</title>
-	</sect2>
+<sect2 id="td-segmentedlist">
+	<title>Segmented Lists</title>
+</sect2>
 
-	<sect2 id="td-simplelist">
-		<title>Simple Lists</title>
-	</sect2>
+<sect2 id="td-simplelist">
+	<title>Simple Lists</title>
+</sect2>
 
-	<sect2 id="td-variablelist">
-		<title>Variable Lists</title>
-	</sect2>
+<sect2 id="td-variablelist">
+	<title>Variable Lists</title>
+</sect2>
 </sect1>
 
 </article>

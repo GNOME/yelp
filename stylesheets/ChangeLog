@@ -1,3 +1,18 @@
+2003-12-29  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-html.xsl:
+	- Put classsynopsis in a gray box.
+	- Monospace tt, since gtkhtml2 doesn't.
+
+	* db2html-index.xsl:
+	- Remove indexterm, as it's already in -suppressed.xsl.
+
+	* db2html-synopsis.xsl:
+	- More work on classsynopsis and friends.
+
+	* db2html.xsl:
+	- Actually include -synopsis.xsl.
+
 2003-12-26  Shaun McCance  <shaunm@gnome.org>
 
 	* docbook/

@@ -32,6 +32,7 @@
 <xsl:include href="db2html-list.xsl"/>
 <xsl:include href="db2html-media.xsl"/>
 <xsl:include href="db2html-refentry.xsl"/>
+<xsl:include href="db2html-synopsis.xsl"/>
 <xsl:include href="db2html-table.xsl"/>
 <xsl:include href="db2html-toc.xsl"/>
 <xsl:include href="db2html-xref.xsl"/>

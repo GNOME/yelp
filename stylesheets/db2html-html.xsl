@@ -156,6 +156,7 @@ div[class="admonition"] {
 }
 div[class="admonition"] td[class="image"] { margin-right: 1.6em; }
 
+div[class="classsynopsis"],
 div[class="programlisting"],
 div[class="screen"] {
 	margin-top: 1.6em;
@@ -168,6 +169,8 @@ div[class="screen"] {
 	border: solid 1px </xsl:text>
 <xsl:value-of select="$color_gray_border"/><xsl:text>;
 }
+
+tt { font-family: monospace; }
 
 <!--
 table {

@@ -11,10 +11,6 @@
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template match="indexterm">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
 <xsl:template match="primaryie">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>

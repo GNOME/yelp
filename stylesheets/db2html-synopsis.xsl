@@ -102,7 +102,7 @@
 	<xsl:variable name="sepchar">
 		<xsl:choose>
 			<xsl:when test="ancestor-or-self::*[@sepchar]">
-				<xsl:value-of select="ancestor-or-self::[@sepchar][1]/@sepchar"/>
+				<xsl:value-of select="ancestor-or-self::*[@sepchar][1]/@sepchar"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:text> </xsl:text>
@@ -393,47 +393,53 @@
 				<xsl:call-template name="FIXME"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:apply-template mode="classsynopsis.java" select="ooclass[1]"/>
+				<xsl:for-each select="ooclass[1]/modifier">
+					<xsl:apply-templates mode="classsynopsis.java" select="."/>
+					<xsl:text> </xsl:text>
+				</xsl:for-each>
+				<xsl:text>class </xsl:text>
+				<xsl:apply-templates mode="classsynopsis.java" select="ooclass[1]"/>
 				<xsl:if test="ooclass[position() &gt; 1]">
 					<xsl:text> extends</xsl:text>
-					<xsl:foreach match="ooclass[position() &gt; 1]">
+					<xsl:for-each select="ooclass[position() &gt; 1]">
 						<xsl:text> </xsl:text>
-						<xsl:apply-template mode="classsynopis.java" select="."/>
+						<xsl:apply-templates mode="classsynopsis.java" select="."/>
 						<xsl:if test="following-sibling::ooclass">
 							<xsl:text>,</xsl:text>
 						</xsl:if>
-					</xsl:foreach>
+					</xsl:for-each>
 					<xsl:if test="oointerface|ooexception">
 						<xsl:value-of select="concat($newline, $tab_java)"/>
 					</xsl:if>
 				</xsl:if>
 				<xsl:if test="oointerface">
 					<xsl:text>implements</xsl:text>
-					<xsl:foreach match="oointerface">
+					<xsl:for-each select="oointerface">
 						<xsl:text> </xsl:text>
-						<xsl:apply-template mode="classsynopis.java" select="."/>
+						<xsl:apply-templates mode="classsynopsis.java" select="."/>
 						<xsl:if test="following-sibling::oointerface">
 							<xsl:text>,</xsl:text>
 						</xsl:if>
-					</xsl:foreach>
+					</xsl:for-each>
 					<xsl:if test="ooexception">
 						<xsl:value-of select="concat($newline, $tab_java)"/>
 					</xsl:if>
 				</xsl:if>
-				<xsl:if text="ooexception">
+				<xsl:if test="ooexception">
 					<xsl:text>throws</xsl:text>
-					<xsl:foreach match="ooexception">
+					<xsl:for-each select="ooexception">
 						<xsl:text> </xsl:text>
-						<xsl:apply-template mode="classsynopis.java" select="."/>
+						<xsl:apply-templates mode="classsynopsis.java" select="."/>
 						<xsl:if test="following-sibling::ooexception">
 							<xsl:text>,</xsl:text>
 						</xsl:if>
-					</xsl:foreach>
+					</xsl:for-each>
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
 		<xsl:value-of select="$newline"/>
 		<xsl:text>{</xsl:text>
+		<xsl:value-of select="$newline"/>
 		<xsl:apply-templates mode="classsynopsis.java" select="
 			constructorsynopsis	| destructorsynopsis	| fieldsynopsis	|
 			methodsynopsis			| classsynopsis		"/>
@@ -442,7 +448,7 @@
 </xsl:template>
 
 <xsl:template mode="classsynopsis.java" match="classsynopsisinfo">
-	<xsl:apply-template mode="classsynopsis.java"/>
+	<xsl:apply-templates mode="classsynopsis.java"/>
 </xsl:template>
 
 <xsl:template mode="classsynopsis.java" match="constructorsynopsis">
@@ -450,10 +456,6 @@
 </xsl:template>
 
 <xsl:template mode="classsynopsis.java" match="destructorsynopsis">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="classsynopsis.java" match="exceptionname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
@@ -475,10 +477,27 @@
 
 <xsl:template mode="classsynopsis.java" match="
 		classname		| exceptionname	| interfacename	| methodname	|
-		modifier			| ooclass			| ooexception		| oointerface	|
-		parameter		| type				| varname			">
+		modifier			| parameter			| type				| varname		">
 	<span class="{name(.)}">
 		<xsl:apply-templates mode="classsynopsis.java"/>
+	</span>
+</xsl:template>
+
+<xsl:template mode="classsynopsis.java" match="ooclass">
+	<span class="{name(.)}">
+		<xsl:apply-templates mode="classsynopsis.java" select="classname"/>
+	</span>
+</xsl:template>
+
+<xsl:template mode="classsynopsis.java" match="oointerface">
+	<span class="{name(.)}">
+		<xsl:apply-templates mode="classsynopsis.java" select="interfacename"/>
+	</span>
+</xsl:template>
+
+<xsl:template mode="classsynopsis.java" match="ooexception">
+	<span class="{name(.)}">
+		<xsl:apply-templates mode="classsynopsis.java" select="exceptionname"/>
 	</span>
 </xsl:template>
 
