@@ -1,20 +1,20 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# AktualnÄ… wersjÄ™ tego pliku moÅ¼esz odnaleÅºÄ‡ w repozytorium cvs.gnome.pl
-# (:pserver:anonymous@cvs.gnome.pl:/home/cvs, puste hasÅ‚o)
-# JeÅ›li masz jakiekolwiek uwagi odnoszÄ…ce siÄ™ do tÅ‚umaczenia lub chcesz
-# pomÃ³c w jego rozwijaniu i pielÄ™gnowaniu, napisz do nas na adres:
+# Aktualn± wersjê tego pliku mo¿esz odnale¼æ w repozytorium cvs.gnome.pl
+# (:pserver:anonymous@cvs.gnome.pl:/home/cvs, puste has³o)
+# Je¶li masz jakiekolwiek uwagi odnosz±ce siê do t³umaczenia lub chcesz
+# pomóc w jego rozwijaniu i pielêgnowaniu, napisz do nas na adres:
 # translators@gnome.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-04-05 23:45+0200\n"
-"PO-Revision-Date: 2002-04-05 23:47+0200\n"
+"POT-Creation-Date: 2002-05-05 20:21+0200\n"
+"PO-Revision-Date: 2002-05-05 20:21+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/GNOME_Yelp.server.in.h:1
@@ -24,6 +24,28 @@ msgstr "Yelp"
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp Factory"
 msgstr "Generator Yelpa"
+
+#: src/yelp-db2html.c:1
+msgid ""
+"Error while parsing the stylesheet, make sure you have your docbook "
+"environment setup correctly."
+msgstr ""
+"Przy analizie arkusza stylów wyst±pi³ b³±d. Upewnij siê, ¿e zosta³o "
+"poprawnie ustawione ¶rodowisko docbooka."
+
+#: src/yelp-db2html.c:1
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Dokument \"%s\" nie istnieje"
+
+#: src/yelp-db2html.c:1
+#, c-format
+msgid "Couldn't parse the document '%s'."
+msgstr "Przy analizie dokumentu \"%s\" wyst±pi³ b³±d."
+
+#: src/yelp-db2html.c:1
+msgid "Error while applying the stylesheet."
+msgstr "B³±d przy zastosowywaniu arkusza stylów."
 
 #: src/yelp-html.c:1
 msgid "Loading..."
@@ -36,11 +58,11 @@ msgstr "info"
 #: src/yelp-main.c:1
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Nie moÅ¼na uaktywniÄ‡ Yelpa: \"%s\""
+msgstr "Nie mo¿na uaktywniæ Yelpa: \"%s\""
 
 #: src/yelp-main.c:1
 msgid "Could not open new window."
-msgstr "Nie moÅ¼na otworzyÄ‡ nowego okna."
+msgstr "Nie mo¿na otworzyæ nowego okna."
 
 #: src/yelp-man.c:1 src/yelp-man.c:1 src/yelp-man.c:1 src/yelp-man.c:1
 #: src/yelp-man.c:1 src/yelp-man.c:1
@@ -73,7 +95,7 @@ msgstr "PThreads"
 
 #: src/yelp-man.c:1
 msgid "System Calls"
-msgstr "WywoÅ‚ania systemowe"
+msgstr "Wywo³ania systemowe"
 
 #: src/yelp-man.c:1
 msgid "Library Functions"
@@ -81,7 +103,7 @@ msgstr "Funkcje biblioteczne"
 
 #: src/yelp-man.c:1
 msgid "Kernel Routines"
-msgstr "Funkcje jÄ…dra"
+msgstr "Funkcje j±dra"
 
 #: src/yelp-man.c:1
 msgid "Applications"
@@ -93,7 +115,7 @@ msgstr "Programowanie"
 
 #: src/yelp-man.c:1
 msgid "Hardware Devices"
-msgstr "UrzÄ…dzenia sprzÄ™towe"
+msgstr "Urz±dzenia sprzêtowe"
 
 #: src/yelp-man.c:1
 msgid "Configuration Files"
@@ -121,35 +143,39 @@ msgstr "Sekcja"
 
 #: src/yelp-view-index.c:1
 msgid "Search for:"
-msgstr "ZnajdÅº:"
+msgstr "Znajd¼:"
 
 #: src/yelp-view-toc.c:1
-msgid "Other Documents"
-msgstr "Inne dokumenty"
+msgid "Help Contents"
+msgstr "Zawarto¶æ pomocy"
+
+#: src/yelp-view-toc.c:1
+msgid "GNOME - Desktop"
+msgstr "GNOME - ¶rodowisko"
+
+#: src/yelp-view-toc.c:1
+msgid "Additional documents"
+msgstr "Dodatkowe dokumenty"
 
 #: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
-msgid "Manual pages"
-msgstr "Strony podrÄ™cznikowe"
+msgid "Manual Pages"
+msgstr "Strony podrêcznikowe"
 
-#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
-msgid "Info pages"
+#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
+msgid "Info Pages"
 msgstr "Strony info"
 
-#: src/yelp-view-toc.c:1
-msgid "Installed documents"
-msgstr "Zainstalowane dokumenty"
+#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
+msgid "Documents"
+msgstr "Dokumenty"
+
+#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
+msgid "Categories"
+msgstr "Kategorie"
 
 #: src/yelp-view-toc.c:1
-msgid "Start page"
-msgstr "Strona poczÄ…tkowa"
-
-#: src/yelp-view-toc.c:1
-msgid "Manual Pages"
-msgstr "Strony podrÄ™cznikowe"
-
-#: src/yelp-view-toc.c:1
-msgid "Scrollkeeper docs for category"
-msgstr "Dokumentacja Scrollkeepera dla kategorii"
+msgid "Manual pages"
+msgstr "Strony podrêcznikowe"
 
 #: src/yelp-window.c:1
 msgid "/_File"
@@ -166,23 +192,23 @@ msgstr "/Plik/Za_mknij okno"
 #. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
 #: src/yelp-window.c:1
 msgid "/_Go"
-msgstr "/P_rzejÅ›cie"
+msgstr "/P_rzej¶cie"
 
 #: src/yelp-window.c:1
 msgid "/Go/_Back"
-msgstr "/P_rzejÅ›cie/_Wstecz"
+msgstr "/P_rzej¶cie/_Wstecz"
 
 #: src/yelp-window.c:1
 msgid "/Go/_Forward"
-msgstr "/P_rzejÅ›cie/_NaprzÃ³d"
+msgstr "/P_rzej¶cie/_Naprzód"
 
 #: src/yelp-window.c:1
 msgid "/Go/_Home"
-msgstr "/P_rzejÅ›cie/P_oczÄ…tek"
+msgstr "/P_rzej¶cie/P_ocz±tek"
 
 #: src/yelp-window.c:1
 msgid "/Go/_Index"
-msgstr "/P_rzejÅ›cie/_Indeks"
+msgstr "/P_rzej¶cie/_Indeks"
 
 #: src/yelp-window.c:1
 msgid "/_Help"
@@ -194,7 +220,7 @@ msgstr "/Pomoc/_Informacje o"
 
 #: src/yelp-window.c:1
 msgid "Help Browser"
-msgstr "PrzeglÄ…darka pomocy"
+msgstr "Przegl±darka pomocy"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
@@ -204,7 +230,7 @@ msgstr "GNOME PL Team <translators@gnome.pl>"
 
 #: src/yelp-window.c:1
 msgid "Help Browser for GNOME 2.0"
-msgstr "PrzeglÄ…darka pomocy dla GNOME 2.0"
+msgstr "Przegl±darka pomocy dla GNOME 2.0"
 
 #: src/yelp-window.c:1
 msgid "Back"
@@ -212,23 +238,23 @@ msgstr "Wstecz"
 
 #: src/yelp-window.c:1
 msgid "Show previous page in history"
-msgstr "WyÅ›wietla poprzedniÄ… stronÄ™ z historii"
+msgstr "Wy¶wietla poprzedni± stronê z historii"
 
 #: src/yelp-window.c:1
 msgid "Forward"
-msgstr "NaprzÃ³d"
+msgstr "Naprzód"
 
 #: src/yelp-window.c:1
 msgid "Show next page in history"
-msgstr "WyÅ›wietla nastÄ™pnÄ… stronÄ™ z historii"
+msgstr "Wy¶wietla nastêpn± stronê z historii"
 
 #: src/yelp-window.c:1
 msgid "Home"
-msgstr "PoczÄ…tek"
+msgstr "Pocz±tek"
 
 #: src/yelp-window.c:1
 msgid "Go to home view"
-msgstr "Przechodzi do widoku poczÄ…tkowego"
+msgstr "Przechodzi do widoku pocz±tkowego"
 
 #: src/yelp-window.c:1
 msgid "Index"
