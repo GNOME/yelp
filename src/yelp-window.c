@@ -152,6 +152,7 @@ static void    window_new_window_cb     (GtkAction *action, YelpWindow *window);
 static void    window_open_location_cb  (GtkAction *action, YelpWindow *window);
 static void    window_close_window_cb   (GtkAction *action, YelpWindow *window);
 static void    window_copy_cb           (GtkAction *action, YelpWindow *window);
+static void    window_select_all_cb     (GtkAction *action, YelpWindow *window);
 static void    window_find_cb           (GtkAction *action, YelpWindow *window);
 static void    window_preferences_cb    (GtkAction *action, YelpWindow *window);
 static void    window_reload_cb         (GtkAction *action, YelpWindow *window);
@@ -305,6 +306,12 @@ static GtkActionEntry entries[] = {
       "<Control>C",
       NULL,
       G_CALLBACK (window_copy_cb) },
+
+    { "SelectAll", NULL,
+      N_("_Select All"),
+      "<Control>A",
+      NULL,
+      G_CALLBACK (window_select_all_cb) },
     { "Find", GTK_STOCK_FIND,
       N_("_Find..."),
       "<Control>F",
@@ -1691,9 +1698,33 @@ window_close_window_cb (GtkAction *action, YelpWindow *window)
 static void
 window_copy_cb (GtkAction *action, YelpWindow *window)
 {
+    GtkWidget *widget;
+
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    yelp_html_copy_selection (window->priv->html_view);
+    widget = gtk_window_get_focus (GTK_WINDOW (window));
+
+    if (GTK_IS_EDITABLE (widget)) {
+	gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
+    } else {
+	yelp_html_copy_selection (window->priv->html_view);
+    }
+}
+
+static void
+window_select_all_cb (GtkAction *action, YelpWindow *window)
+{
+    GtkWidget *widget;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    widget = gtk_window_get_focus (GTK_WINDOW (window));
+
+    if (GTK_IS_EDITABLE (widget)) {
+	gtk_editable_select_region (GTK_EDITABLE (widget), 0, -1);
+    } else {
+	yelp_html_select_all (window->priv->html_view);	
+    }
 }
 
 static void

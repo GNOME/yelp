@@ -368,3 +368,15 @@ yelp_html_copy_selection (YelpHtml    *html)
 
     yelp_gecko_copy_selection (GTK_MOZ_EMBED (priv->embed));
 }
+
+void
+yelp_html_select_all (YelpHtml *html)
+{
+    YelpHtmlPriv *priv;
+
+    g_return_if_fail (html != NULL);
+
+    priv = html->priv;
+
+    yelp_gecko_select_all (GTK_MOZ_EMBED (priv->embed));
+}

@@ -41,6 +41,8 @@ gboolean        yelp_gecko_find        (GtkMozEmbed   *html,
 
 gboolean        yelp_gecko_copy_selection (GtkMozEmbed  *html);
 
+gboolean        yelp_gecko_select_all     (GtkMozEmbed  *html);
+
 gchar *         yelp_gecko_mouse_event    (GtkMozEmbed  *html,
 					   gpointer      dom_event);
 

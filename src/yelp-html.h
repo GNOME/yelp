@@ -88,5 +88,7 @@ void            yelp_html_jump_to_anchor (YelpHtml    *html,
 
 void            yelp_html_copy_selection (YelpHtml    *html);
 
+void            yelp_html_select_all     (YelpHtml    *html);
+
 #endif /* __YELP_HTML_H__ */
 

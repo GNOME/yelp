@@ -1,3 +1,17 @@
+2004-11-16  James Bowes  <bowes@cs.dal.ca>
+
+	reviewed by: Shaun McCance  <shaunm@gnome.org>
+
+	* data/ui/yelp-ui.xml:
+	* src/Makefile.am:
+	* src/yelp-gecko-utils.cpp:
+	* src/yelp-gecko-utils.h:
+	* src/yelp-html-gecko.c: (yelp_html_select_all):
+	* src/yelp-html.h:
+	* src/yelp-window.c: (window_copy_cb), (window_select_all_cb): 
+	Add 'select all' to the edit menu, along with supporting 
+	functions. Ensure that 'copy' will copy from the correct widget.
+	
 2004-11-14  James Bowes  <bowes@cs.dal.ca>
 
 	* src/yelp-man-pager.c: (xslt_yelp_document): Dump html

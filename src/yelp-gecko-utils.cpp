@@ -25,6 +25,7 @@
 #include <nsIWebBrowser.h>
 #include <nsIWebBrowserFind.h>
 #include <nsIClipboardCommands.h>
+#include <nsICommandManager.h>
 #include <nsCOMPtr.h>
 #include <nsIInterfaceRequestorUtils.h>
 #include <nsReadableUtils.h>
@@ -207,6 +208,19 @@ yelp_gecko_copy_selection (GtkMozEmbed *embed)
 	NS_ENSURE_TRUE (clip, NS_ERROR_FAILURE);
 	
 	clip->CopySelection();
+}
+
+extern "C" gboolean
+yelp_gecko_select_all (GtkMozEmbed *embed)
+{
+	nsCOMPtr<nsIWebBrowser> webBrowser;
+	gtk_moz_embed_get_nsIWebBrowser (embed, getter_AddRefs(webBrowser));
+
+	nsCOMPtr<nsICommandManager> cmdManager;
+	cmdManager = do_GetInterface (webBrowser);
+	NS_ENSURE_TRUE (cmdManager, NS_ERROR_FAILURE);
+
+	cmdManager->DoCommand ("cmd_selectAll", nsnull, nsnull);
 }
 
 extern "C" gchar*
