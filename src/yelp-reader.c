@@ -796,9 +796,11 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	
 	g_timeout_add (100, (GSourceFunc) reader_idle_check_queue, th_data);
 
-	g_thread_create ((GThreadFunc) reader_start, th_data,
-			 TRUE, 
-			 NULL /* FIXME: check for errors */);
+	g_thread_create_full ((GThreadFunc) reader_start, th_data,
+			      2 * BUFFER_SIZE,
+			      TRUE,
+			      FALSE, G_THREAD_PRIORITY_NORMAL,
+			      NULL /* FIXME: check for errors */);
 	return FALSE;
 }
 
