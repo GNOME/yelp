@@ -397,14 +397,17 @@ html_clear_find_data (YelpHtml *html)
 	}
 }
 
+/* This code is really ugly, need to clean up. */
 void
 yelp_html_find (YelpHtml    *html,
 		const gchar *find_string,
 		gboolean     match_case,
+		gboolean     wrap,
 		gboolean     forward)
 {
 	YelpHtmlPriv    *priv;
 	DomNode         *root;
+	DomNode         *tmp_node;
 	DomNode         *node;
 	DomNodeIterator *iter;
 	gchar           *str;
@@ -418,11 +421,6 @@ yelp_html_find (YelpHtml    *html,
 	g_return_if_fail (YELP_IS_HTML (html));
 	g_return_if_fail (find_string != NULL);
 
-	if (!forward) {
-		/* FIXME: Implement find backwards. */
-		return;
-	}
-	
 	priv = html->priv;
 
 	if (!priv->find_iter) {
@@ -457,9 +455,24 @@ yelp_html_find (YelpHtml    *html,
 			NULL,
 			FALSE,
 			NULL);
-		
-		priv->find_node = dom_NodeIterator_nextNode (priv->find_iter, NULL);
-		priv->find_offset = 0;
+
+		if (forward) {
+			priv->find_node = dom_NodeIterator_nextNode (priv->find_iter, NULL);
+			priv->find_offset = 0;
+		} else {
+			do {
+				tmp_node = priv->find_node;
+				priv->find_node = dom_NodeIterator_nextNode (priv->find_iter, NULL);
+			} while (priv->find_node);
+
+			priv->find_node = tmp_node;
+
+			if (priv->find_node) {
+				box = html_view_find_layout_box (priv->view, priv->find_node, FALSE);
+				box_text = html_box_text_get_text (HTML_BOX_TEXT (box), &len);
+				priv->find_offset = len;
+			}
+		}
 	}
 	
 	while (priv->find_node) {
@@ -467,7 +480,7 @@ yelp_html_find (YelpHtml    *html,
 
 		/* We get the text from the layout box instead from the DOM node
 		 * directly, since the text in the box is canonicalized
-		 * (whitespace stripped in places etc.
+		 * (whitespace stripped in places etc).
 		 */
 		box_text = html_box_text_get_text (HTML_BOX_TEXT (box), &len);
 		if (len) {
@@ -479,42 +492,71 @@ yelp_html_find (YelpHtml    *html,
 		}
 
 		if (!match_case) {
-			haystack = g_utf8_casefold (str + priv->find_offset, len - priv->find_offset);
+			if (forward) {
+				haystack = g_utf8_casefold (str + priv->find_offset, len - priv->find_offset);
+			} else {
+				haystack = g_utf8_casefold (str, priv->find_offset);
+			}
 		} else {
-			haystack = g_strdup (str + priv->find_offset);
+			if (forward) {
+				haystack = g_strdup (str + priv->find_offset);
+			} else {
+				haystack = g_strndup (str, priv->find_offset);
+			}
 		}
 
-		g_free (str);
-		
-		hit = strstr (haystack, find_string);
+		if (forward) {
+			hit = strstr (haystack, find_string);
+		} else {
+			hit = g_strrstr_len (haystack,
+					     priv->find_offset,
+					     find_string);
+		}
+
 		if (hit) {
-			html_selection_set (priv->view,
-					    priv->find_node,
-					    hit - haystack + priv->find_offset,
-					    strlen (find_string));
-			
-			priv->find_offset += hit - haystack;
-			
+			if (forward) {
+				html_selection_set (priv->view,
+						    priv->find_node,
+						    hit - haystack + priv->find_offset,
+						    strlen (find_string));
+				priv->find_offset += hit - haystack + strlen (find_string);
+			} else {
+				html_selection_set (priv->view,
+						    priv->find_node,
+						    hit - haystack,
+						    strlen (find_string));
+				priv->find_offset = hit - haystack;
+			}
+				
 			html_view_scroll_to_node (priv->view,
 						  priv->find_node,
 						  HTML_VIEW_SCROLL_TO_TOP);
-			
-			priv->find_offset += strlen (find_string);
 		}
 
+		g_free (str);
 		g_free (haystack);
 		
 		if (hit) {
 			break;
 		}
 		
-		priv->find_node = dom_NodeIterator_nextNode (priv->find_iter, NULL);
-		priv->find_offset = 0;
+		if (forward) {
+			priv->find_node = dom_NodeIterator_nextNode (priv->find_iter, NULL);
+			priv->find_offset = 0;
+		} else {
+			priv->find_node = dom_NodeIterator_previousNode (priv->find_iter, NULL);
+			if (priv->find_node) {
+				box = html_view_find_layout_box (priv->view, priv->find_node, FALSE);
+				box_text = html_box_text_get_text (HTML_BOX_TEXT (box), &len);
+				priv->find_offset = len;
+			}
+		}			
 	}
 
 	if (!priv->find_node) {
 		g_object_unref (priv->find_iter);
 		priv->find_iter = NULL;
+		priv->find_offset = 0;
 		html_selection_clear (priv->view);
 	}
 }

@@ -74,6 +74,7 @@ GtkWidget *     yelp_html_get_widget     (YelpHtml    *html);
 void            yelp_html_find           (YelpHtml    *html,
 					  const gchar *str,
 					  gboolean     match_case,
+					  gboolean     wrap,
 					  gboolean     forward);
 
 #endif /* __YELP_HTML_H__ */

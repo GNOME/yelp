@@ -95,6 +95,8 @@ static void        window_close_window_cb         (gpointer           data,
 						   GtkWidget         *widget);
 static void        window_find_cb                 (gpointer data,     guint section,
 						   GtkWidget         *widget);
+static void        window_find_again_cb           (gpointer data,     guint section,
+						   GtkWidget         *widget);
 static void        window_history_go_cb           (gpointer           data,
 						   guint              section,
 						   GtkWidget         *widget);
@@ -112,8 +114,8 @@ static gboolean    window_find_delete_event_cb    (GtkWidget         *widget,
 static void        window_find_response_cb        (GtkWidget         *dialog ,
 						   gint               response,
 						   YelpWindow        *window);
+static YelpView *  window_get_active_view         (YelpWindow        *window);
 static GtkWidget * window_create_toolbar          (YelpWindow        *window);
-
 static GdkPixbuf * window_load_icon               (void);
 
 
@@ -144,6 +146,10 @@ struct _YelpWindowPriv {
 	GtkWidget      *find_dialog;
 	GtkWidget      *find_entry;
 	GtkWidget      *case_checkbutton;
+	GtkWidget      *wrap_checkbutton;
+	gchar          *find_string;
+	gboolean        match_case;
+	gboolean        wrap;
 	
 	YelpHistory    *history;
 
@@ -160,7 +166,7 @@ static GtkItemFactoryEntry menu_items[] = {
 
 	{N_("/_Edit"),              NULL,         0,                  0,                           "<Branch>"},
 	{N_("/Edit/_Find in page..."), NULL,      window_find_cb,     0,                           "<StockItem>", GTK_STOCK_FIND    },
-/*	{N_("/Edit/_Find again"),   NULL,         window_find_again_cb, 0,                         "<StockItem>", GTK_STOCK_FIND    },*/
+	{N_("/Edit/_Find again"),   "<Control>g", window_find_again_cb, 0,                         "<StockItem>", GTK_STOCK_FIND    },
 	
 	{N_("/_Go"),                NULL,         0,                  0,                           "<Branch>"},
 	{N_("/Go/_Back"),           NULL,         window_history_go_cb,   YELP_WINDOW_ACTION_BACK,     "<StockItem>", GTK_STOCK_GO_BACK    },
@@ -212,8 +218,11 @@ window_init (YelpWindow *window)
 	priv->content_view = NULL;
 	priv->index_view   = NULL;
 	
-	priv->history = yelp_history_new ();
+	priv->match_case   = FALSE;
+	priv->wrap         = TRUE;
 
+	priv->history = yelp_history_new ();
+	
 	g_signal_connect (priv->history, 
 			  "back_exists_changed",
 			  G_CALLBACK (window_toggle_history_back),
@@ -579,9 +588,7 @@ window_find_cb (gpointer data, guint section, GtkWidget *widget)
 
 	priv = window->priv;
 
-	if (priv->find_dialog) {
-		gtk_window_present (GTK_WINDOW (priv->find_dialog));
-	} else {
+	if (!priv->find_dialog) {
 		glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade", "find_dialog", NULL);
 		if (!glade) {
 			g_warning ("Couldn't find necessary glade file " DATADIR "/yelp/ui/yelp.glade");
@@ -589,10 +596,10 @@ window_find_cb (gpointer data, guint section, GtkWidget *widget)
 		}
 
 		priv->find_dialog = glade_xml_get_widget (glade, "find_dialog");
-		gtk_widget_show (priv->find_dialog);
 
 		priv->find_entry = glade_xml_get_widget (glade, "find_entry");
 		priv->case_checkbutton = glade_xml_get_widget (glade, "case_check");
+		priv->wrap_checkbutton = glade_xml_get_widget (glade, "wrap_check");
 
 		g_signal_connect (priv->find_dialog,
 				  "delete_event",
@@ -606,8 +613,36 @@ window_find_cb (gpointer data, guint section, GtkWidget *widget)
 
 		g_object_unref (glade);
 	}
+
+	gtk_window_present (GTK_WINDOW (priv->find_dialog));
 }
 
+static void
+window_find_again_cb (gpointer data, guint section, GtkWidget *widget)
+{
+	YelpWindow     *window = data;
+	YelpWindowPriv *priv;
+	YelpView       *view;
+	YelpHtml       *html;
+	
+	g_return_if_fail (YELP_IS_WINDOW (data));
+
+	window = YELP_WINDOW (data);
+
+	priv = window->priv;
+
+	if (priv->find_string) {
+		view = window_get_active_view (window);
+		html = yelp_view_get_html (view);
+		
+		yelp_html_find (html,
+				priv->find_string,
+				priv->match_case,
+				priv->wrap,
+				TRUE);
+	}
+}
+	
 static void
 window_history_go_cb (gpointer data, guint section, GtkWidget *widget)
 {
@@ -665,26 +700,14 @@ window_find_response_cb (GtkWidget  *dialog ,
 			 YelpWindow *window)
 {
 	YelpWindowPriv *priv;
+	YelpView       *view;
 	YelpHtml       *html;
 	const gchar    *tmp;
-	gchar          *str;
-	gboolean        match_case;
-
-	priv = window->priv;
 	
-	switch (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook))) {
-	case PAGE_TOC_VIEW:
-		html = yelp_view_get_html (priv->toc_view);
-		break;
-	case PAGE_CONTENT_VIEW:
-		html = yelp_view_get_html (priv->content_view);
-		break;
-	case PAGE_INDEX_VIEW:
-		html = yelp_view_get_html (priv->index_view);
-		break;
-	default:
-		g_assert_not_reached ();
-	}
+	priv = window->priv;
+
+	view = window_get_active_view (window);
+	html = yelp_view_get_html (view);
 
 	switch (response) {
 	case GTK_RESPONSE_CLOSE:
@@ -694,27 +717,54 @@ window_find_response_cb (GtkWidget  *dialog ,
 	case RESPONSE_PREV:
 	case RESPONSE_NEXT:
 		tmp = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
-		match_case = gtk_toggle_button_get_active (
+
+		priv->match_case = gtk_toggle_button_get_active (
 			GTK_TOGGLE_BUTTON (priv->case_checkbutton));
+
+		priv->wrap = gtk_toggle_button_get_active (
+			GTK_TOGGLE_BUTTON (priv->wrap_checkbutton));
+
+		g_free (priv->find_string);
 		
-		if (!match_case) {
-			str = g_utf8_casefold (tmp, -1);
+		if (!priv->match_case) {
+			priv->find_string = g_utf8_casefold (tmp, -1);
 		} else {
-			str = g_strdup (tmp);
+			priv->find_string = g_strdup (tmp);
 		}
-
+		
 		yelp_html_find (html,
-				str,
-				match_case,
+				priv->find_string,
+				priv->match_case,
+				priv->wrap,
 				response == RESPONSE_NEXT);
-
-		g_free (str);
 		break;
 		
 	default:
 		break;
 	}
 	
+}
+
+static YelpView *
+window_get_active_view (YelpWindow *window)
+{
+	YelpWindowPriv *priv;
+	
+	priv = window->priv;
+	
+	switch (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook))) {
+	case PAGE_TOC_VIEW:
+		return priv->toc_view;
+	case PAGE_CONTENT_VIEW:
+		return priv->content_view;
+	case PAGE_INDEX_VIEW:
+		return priv->index_view;
+		break;
+	default:
+		g_assert_not_reached ();
+	}
+
+	return NULL;
 }
 
 static GtkWidget *
