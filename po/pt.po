@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2002-05-07 00:24+0100\n"
-"PO-Revision-Date: 2002-05-07 00:25+0000\n"
+"POT-Creation-Date: 2002-08-05 02:16+0100\n"
+"PO-Revision-Date: 2002-08-05 02:20+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,234 +21,230 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-db2html.c:106
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr ""
-"Erro ao parsear a folha de estilos, certifique-se que tem o ambiente "
-"docbook correctamente configurado."
-
-#: src/yelp-db2html.c:122
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "O documento '%s' não existe"
-
-#: src/yelp-db2html.c:137
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "Incapaz de parsear o documento '%s'."
-
-#: src/yelp-db2html.c:176
-msgid "Error while applying the stylesheet."
-msgstr "Erro ao aplicar a folha de estilos."
-
-#: src/yelp-html.c:149
-msgid "Loading..."
-msgstr "A Carregar..."
-
-#: src/yelp-main.c:109
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Incapaz de activar o Yelp: '%s'"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Incapaz de abrir janela."
 
-#: src/yelp-man.c:292 src/yelp-man.c:313 src/yelp-man.c:349 src/yelp-man.c:381
-#: src/yelp-man.c:397 src/yelp-man.c:408
+#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
+#: src/yelp-man.c:399 src/yelp-man.c:410
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:297 src/yelp-man.c:328 src/yelp-man.c:386 src/yelp-man.c:413
+#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:302
+#: src/yelp-man.c:304
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:318
+#: src/yelp-man.c:320
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:323
+#: src/yelp-man.c:325
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:333
+#: src/yelp-man.c:335
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:338
+#: src/yelp-man.c:340
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:360
+#: src/yelp-man.c:362
 msgid "System Calls"
 msgstr "Chamadas Sistema"
 
-#: src/yelp-man.c:365
+#: src/yelp-man.c:367
 msgid "Library Functions"
 msgstr "Biblioteca Funções"
 
-#: src/yelp-man.c:370
+#: src/yelp-man.c:372
 msgid "Kernel Routines"
 msgstr "Rotinas Kernel"
 
-#: src/yelp-man.c:425
+#: src/yelp-man.c:427
 msgid "Applications"
 msgstr "Aplicações"
 
-#: src/yelp-man.c:430
+#: src/yelp-man.c:432
 msgid "Development"
 msgstr "Desenvolvimento"
 
-#: src/yelp-man.c:435
+#: src/yelp-man.c:437
 msgid "Hardware Devices"
 msgstr "Dispositivos de Equipamento"
 
-#: src/yelp-man.c:440
+#: src/yelp-man.c:442
 msgid "Configuration Files"
 msgstr "Ficheiros de Configuração"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:447
 msgid "Games"
 msgstr "Jogos"
 
-#: src/yelp-man.c:450
+#: src/yelp-man.c:452
 msgid "Overviews"
 msgstr "Resumos"
 
-#: src/yelp-man.c:455
+#: src/yelp-man.c:457
 msgid "System Administration"
 msgstr "Administração de Sistema"
 
-#: src/yelp-view-content.c:204 src/yelp-view-index.c:373
+#: src/yelp-view-content.c:420 src/yelp-view-index.c:498
 msgid "Section"
 msgstr "Secção"
 
-#: src/yelp-view-index.c:336
+#: src/yelp-view-content.c:555 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "A Carregar..."
+
+#: src/yelp-view-index.c:461
 msgid "Search for:"
 msgstr "Procurar por:"
 
-#: src/yelp-view-toc.c:328
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:183
 msgid "Help Contents"
 msgstr "Conteudo Ajuda"
 
-#: src/yelp-view-toc.c:329
+#: src/yelp-view-toc.c:184
 msgid "GNOME - Desktop"
 msgstr "GNOME - Ambiente de Trabalho"
 
-#: src/yelp-view-toc.c:330
+#: src/yelp-view-toc.c:185
 msgid "Additional documents"
 msgstr "Documentos adicionais"
 
-#: src/yelp-view-toc.c:331 src/yelp-view-toc.c:673
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
 msgid "Manual Pages"
 msgstr "Páginas Manual"
 
-#: src/yelp-view-toc.c:332 src/yelp-view-toc.c:735
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
 msgid "Info Pages"
 msgstr "Páginas Info"
 
-#: src/yelp-view-toc.c:530 src/yelp-view-toc.c:736 src/yelp-view-toc.c:878
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/yelp-view-toc.c:531 src/yelp-view-toc.c:674 src/yelp-view-toc.c:879
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Categorias"
 
-#: src/yelp-view-toc.c:616
+#: src/yelp-view-toc.c:466
 msgid "Manual pages"
 msgstr "Páginas manual"
 
-#: src/yelp-window.c:151
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME é"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Aplicação Livre"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Ficheiro"
 
-#: src/yelp-window.c:152
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Ficheiro/_Nova janela"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Ficheiro/_Fechar janela"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:155
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:156
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Ir/_Recuar"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Ir/_Avançar"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Ir/_Casa"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Ir/Índ_ice"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Ajuda"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Ajuda/_Sobre"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:227 src/yelp-window.c:429
 msgid "Help Browser"
 msgstr "Navegador de Ajuda"
 
+#: src/yelp-window.c:339
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "O documento '%s' não existe"
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:567
+#: src/yelp-window.c:598
 msgid "translator_credits"
 msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:602
 msgid "Help Browser for GNOME 2.0"
 msgstr "Navegador de Ajuda para o GNOME 2.0"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:657
 msgid "Back"
 msgstr "Recuar"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:658
 msgid "Show previous page in history"
 msgstr "Mostrar página anterior no histórico"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:669
 msgid "Forward"
 msgstr "Avançar"
 
-#: src/yelp-window.c:638
+#: src/yelp-window.c:670
 msgid "Show next page in history"
 msgstr "Mostrar página seguinte no histórico"
 
-#: src/yelp-window.c:651
+#: src/yelp-window.c:683
 msgid "Home"
 msgstr "Casa"
 
-#: src/yelp-window.c:652
+#: src/yelp-window.c:684
 msgid "Go to home view"
 msgstr "Ir para a vista base"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:694
 msgid "Index"
 msgstr "Índice"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:695
 msgid "Search in the index"
 msgstr "Procurar no índice"
 
@@ -259,6 +255,19 @@ msgstr "Obter ajuda sobre o GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ajuda"
+
+#~ msgid ""
+#~ "Error while parsing the stylesheet, make sure you have your docbook "
+#~ "environment setup correctly."
+#~ msgstr ""
+#~ "Erro ao parsear a folha de estilos, certifique-se que tem o ambiente "
+#~ "docbook correctamente configurado."
+
+#~ msgid "Couldn't parse the document '%s'."
+#~ msgstr "Incapaz de parsear o documento '%s'."
+
+#~ msgid "Error while applying the stylesheet."
+#~ msgstr "Erro ao aplicar a folha de estilos."
 
 #~ msgid "info"
 #~ msgstr "info"
