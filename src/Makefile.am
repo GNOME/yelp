@@ -8,7 +8,7 @@ man_sources =
 endif
 
 if ENABLE_INFO
-info_sources = yelp-info-pager.c yelp-info-pager.h
+info_sources = yelp-info-pager.c yelp-info-pager.h yelp-info-parser.c yelp-info-parser.h
 else
 info_sources =
 endif

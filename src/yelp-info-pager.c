@@ -37,6 +37,7 @@
 
 #include "yelp-error.h"
 #include "yelp-info-pager.h"
+#include "yelp-info-parser.h"
 #include "yelp-settings.h"
 
 #define INFO_STYLESHEET_PATH DATADIR"/sgml/docbook/yelp/"
@@ -145,6 +146,7 @@ info_pager_parse (YelpPager *pager)
     gchar         *filename;
     xmlDocPtr      doc;
     GError        *error;
+    GtkTreeStore  *tree;
 
     g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), FALSE);
 
@@ -154,6 +156,7 @@ info_pager_parse (YelpPager *pager)
     g_object_ref (pager);
 
     /* DO STUFF HERE */
+    tree = yelp_info_parser_parse_file (filename);
 
     g_object_unref (pager);
 
