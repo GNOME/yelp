@@ -39,55 +39,81 @@
 
 typedef gboolean      (*ProcessFunction)        (YelpTocPager      *pager);
 
-typedef struct _OMF OMF;
-typedef struct _TOC TOC;
+typedef enum   _YelpSource   YelpSource;
+typedef enum   _YelpFormat   YelpFormat;
+typedef struct _YelpMetafile YelpMetafile;
+typedef struct _YelpMenu     YelpMenu;
 
 struct _YelpTocPagerPriv {
-    GSList           *dir_pending;
-    GSList           *omf_pending;
-    GSList           *node_pending;
-    GSList           *toc_pending;
-    GSList           *idx_pending;
+    GSList       *omf_dir_pending;
+    GSList       *omf_pending;
 
-    xmlDocPtr         toc_doc;
+    GSList       *man_dir_pending;
+    GSList       *man_pending;
 
-    GHashTable       *unique_hash_omf;
-    GHashTable       *category_hash_omf;
+    GSList       *info_dir_pending;
+    GSList       *info_pending;
+
+    GSList       *node_pending;
+    GSList       *menu_pending;
+
+    GSList       *idx_pending;
+
+    xmlDocPtr     toc_doc;
+
+    GHashTable   *unique_hash;
+    GHashTable   *category_hash;
 
     xmlParserCtxtPtr  parser;
 
     ProcessFunction   pending_func;
 
-    gboolean          cancel;
-    gint              pause_count;
+    gboolean      cancel;
+    gint          pause_count;
 };
 
-struct _OMF {
-    xmlChar   *title;
-    xmlChar   *description;
-    xmlChar   *seriesid;
-
-    gchar     *uniqueid;
-
-    xmlChar   *language;
-    gint       lang_priority;
-
-    GSList    *categories;
-
-    xmlChar   *omf_file;
-    xmlChar   *xml_file;
+enum _YelpSource {
+    YELP_SOURCE_XDG,
+    YELP_SOURCE_OMF,
+    YELP_SOURCE_KDE,
+    YELP_SOURCE_MAN,
+    YELP_SOURCE_INFO
 };
 
-struct _TOC {
+enum _YelpFormat {
+    YELP_FORMAT_XML_DOCBOOK
+};
+
+struct _YelpMetafile {
+    gchar   *id;
+
+    gchar   *title;
+    gchar   *description;
+
+    gchar   *seriesid;
+
+    gchar   *language;
+    gint     lang_priority;
+
+    GSList  *categories;
+
+    YelpSource  source;
+    YelpFormat  format;
+
+    gchar   *metafile;
+    gchar   *file;
+};
+
+struct _YelpMenu {
     gchar       *id;
     gchar       *title;
 
     xmlNodePtr   node;
 
-    GSList      *subtocs;
-    GSList      *subomfs;
+    GSList      *submenus;
+    GSList      *metafiles;
 
-    gboolean     has_subtocs;
+    gboolean     has_submenus;
 };
 
 static void          toc_pager_class_init      (YelpTocPagerClass *klass);
@@ -102,25 +128,30 @@ const GtkTreeModel * toc_pager_get_sections    (YelpPager         *pager);
 
 static gboolean      toc_process_pending       (YelpTocPager      *pager);
 
-static gboolean      process_dir_pending       (YelpTocPager      *pager);
+static gboolean      process_omf_dir_pending   (YelpTocPager      *pager);
 static gboolean      process_omf_pending       (YelpTocPager      *pager);
-static gboolean      process_read_toc          (YelpTocPager      *pager);
-static gboolean      process_node_pending      (YelpTocPager      *pager);
-static gboolean      process_toc_pending       (YelpTocPager      *pager);
+static gboolean      process_man_dir_pending   (YelpTocPager      *pager);
+static gboolean      process_man_pending       (YelpTocPager      *pager);
+static gboolean      process_info_dir_pending  (YelpTocPager      *pager);
+static gboolean      process_info_pending      (YelpTocPager      *pager);
+
+static gboolean      process_read_menu         (YelpTocPager      *pager);
+static gboolean      process_menu_node_pending (YelpTocPager      *pager);
+static gboolean      process_menu_pending      (YelpTocPager      *pager);
 
 #if 0
 static gboolean      toc_process_idx           (YelpTocPager      *pager);
 static gboolean      toc_process_idx_pending   (YelpTocPager      *pager);
-
 #endif
-static gchar *       toc_write_page            (TOC               *toc);
+
+static gchar *       menu_write_page           (YelpMenu          *menu);
 
 static xmlChar *     node_get_title            (xmlNodePtr         node);
-static void          toc_hash_omf              (YelpTocPager      *pager,
-						OMF               *omf);
-static void          toc_unhash_omf            (YelpTocPager      *pager,
-						OMF               *omf);
-static void          omf_free                  (OMF               *omf);
+static void          toc_hash_metafile         (YelpTocPager      *pager,
+						YelpMetafile      *meta);
+static void          toc_unhash_metafile       (YelpTocPager      *pager,
+						YelpMetafile      *meta);
+static void          metafile_free             (YelpMetafile      *meta);
 
 static YelpPagerClass *parent_class;
 
@@ -176,8 +207,8 @@ toc_pager_init (YelpTocPager *pager)
 
     priv->parser = xmlNewParserCtxt ();
 
-    priv->unique_hash_omf = g_hash_table_new (g_str_hash, g_str_equal);
-    priv->category_hash_omf = g_hash_table_new (g_str_hash, g_str_equal);
+    priv->unique_hash   = g_hash_table_new (g_str_hash, g_str_equal);
+    priv->category_hash = g_hash_table_new (g_str_hash, g_str_equal);
 
     priv->cancel       = 0;
     priv->pause_count  = 0;
@@ -244,10 +275,10 @@ toc_pager_process (YelpPager *pager)
 {
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
-    priv->dir_pending = g_slist_prepend (priv->dir_pending,
-					 g_strdup (DATADIR "/omf"));
+    priv->omf_dir_pending = g_slist_prepend (priv->omf_dir_pending,
+					     g_strdup (DATADIR "/omf"));
 
-    priv->pending_func = (ProcessFunction) process_dir_pending;
+    priv->pending_func = (ProcessFunction) process_omf_dir_pending;
 
     gtk_idle_add_priority (G_PRIORITY_LOW,
 			   (GtkFunction) toc_process_pending,
@@ -300,19 +331,26 @@ toc_process_pending (YelpTocPager *pager)
     readd = priv->pending_func(pager);
 
     if (!readd) {
-	if (priv->pending_func == process_dir_pending)
+	if (priv->pending_func == process_omf_dir_pending)
 	    priv->pending_func = process_omf_pending;
-
 	else if (priv->pending_func == process_omf_pending)
-	    priv->pending_func = process_read_toc;
+	    priv->pending_func = process_man_dir_pending;
 
-	else if (priv->pending_func == process_read_toc)
-	    priv->pending_func = process_node_pending;
+	else if (priv->pending_func == process_man_dir_pending)
+	    priv->pending_func = process_man_pending;
+	else if (priv->pending_func == process_man_pending)
+	    priv->pending_func = process_info_dir_pending;
 
-	else if (priv->pending_func == process_node_pending)
-	    priv->pending_func = process_toc_pending;
+	else if (priv->pending_func == process_info_dir_pending)
+	    priv->pending_func = process_info_pending;
+	else if (priv->pending_func == process_info_pending)
+	    priv->pending_func = process_read_menu;
 
-	else if (priv->pending_func == process_toc_pending)
+	else if (priv->pending_func == process_read_menu)
+	    priv->pending_func = process_menu_node_pending;
+	else if (priv->pending_func == process_menu_node_pending)
+	    priv->pending_func = process_menu_pending;
+	else if (priv->pending_func == process_menu_pending)
 	    priv->pending_func = NULL;
     }
 
@@ -326,7 +364,7 @@ toc_process_pending (YelpTocPager *pager)
 }
 
 static gboolean
-process_dir_pending (YelpTocPager *pager)
+process_omf_dir_pending (YelpTocPager *pager)
 {
     GSList  *first  = NULL;
     gchar   *dirstr = NULL;
@@ -336,8 +374,8 @@ process_dir_pending (YelpTocPager *pager)
 
     YelpTocPagerPriv *priv = pager->priv;
 
-    first = priv->dir_pending;
-    priv->dir_pending = g_slist_remove_link (priv->dir_pending, first);
+    first = priv->omf_dir_pending;
+    priv->omf_dir_pending = g_slist_remove_link (priv->omf_dir_pending, first);
     if (!first)
 	goto done;
 
@@ -357,7 +395,7 @@ process_dir_pending (YelpTocPager *pager)
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
 	    if (strcmp (file_info->name, ".") && strcmp (file_info->name, "..")) {
 		gchar *newdir = g_strconcat (dirstr, "/", file_info->name, NULL);
-		priv->dir_pending = g_slist_prepend (priv->dir_pending, newdir);
+		priv->omf_dir_pending = g_slist_prepend (priv->omf_dir_pending, newdir);
 	    }
 	    break;
 	case GNOME_VFS_FILE_TYPE_REGULAR:
@@ -379,7 +417,7 @@ process_dir_pending (YelpTocPager *pager)
     g_slist_free_1 (first);
     g_free (dirstr);
 
-    if (priv->dir_pending)
+    if (priv->omf_dir_pending)
 	return TRUE;
     else
 	return FALSE;
@@ -393,9 +431,9 @@ process_omf_pending (YelpTocPager *pager)
     xmlDocPtr  omf_doc = NULL;
     xmlNodePtr omf_cur;
     gint       lang_priority;
-    OMF       *omf     = NULL;
-    OMF       *omf_old = NULL;
     GList     *langs;
+    YelpMetafile  *omf     = NULL;
+    YelpMetafile  *omf_old = NULL;
 
     YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
 
@@ -432,8 +470,8 @@ process_omf_pending (YelpTocPager *pager)
     if (!omf_cur)
 	goto done;
 
-    omf = g_new0 (OMF, 1);
-    omf->omf_file = (xmlChar *) g_strdup (file);
+    omf = g_new0 (YelpMetafile, 1);
+    omf->metafile = g_strdup (file);
 
     for (omf_cur = omf_cur->children; omf_cur; omf_cur = omf_cur->next) {
 	if (omf_cur->type != XML_ELEMENT_NODE)
@@ -496,43 +534,39 @@ process_omf_pending (YelpTocPager *pager)
 		/* If the language didn't match a user-preferred language,
 		 * omf->lang_priority doesn't get set, so is 0.
 		 */
-		omf_free (omf);
+		metafile_free (omf);
 		goto done;
 	    }
 	}
 	if (!xmlStrcmp (omf_cur->name, (xmlChar *) "identifier")) {
-	    if (omf->xml_file)
-		xmlFree (omf->xml_file);
-	    omf->xml_file = xmlGetProp (omf_cur, (const xmlChar *) "url");
+	    if (omf->file)
+		xmlFree (omf->file);
+	    omf->file = xmlGetProp (omf_cur, (const xmlChar *) "url");
 	}
     }
 
     if (!omf->seriesid) {
-	omf_free (omf);
+	metafile_free (omf);
 	goto done;
     }
 
-    /* Do something better for uniqueid, since people can't seem to manage
-     * to create a proper seriesid.  Ugh.
-     */
-    omf->uniqueid = g_strconcat ("seriesid:", (gchar *) omf->seriesid, NULL);
+    omf->id = g_strconcat ("scrollkeeper/", (gchar *) omf->seriesid, NULL);
 
-    /* If we have one with the same uniqueid, use the one with
-     * the lowest lang_priority.
-     */
-    omf_old = g_hash_table_lookup (priv->unique_hash_omf, omf->uniqueid);
+    // If we have one with the same id, use the one with the lowest lang_priority.
+
+    omf_old = g_hash_table_lookup (priv->unique_hash, omf->id);
     if (omf_old) {
 	if (omf_old->lang_priority < omf->lang_priority) {
-	    omf_free (omf);
+	    metafile_free (omf);
 	    goto done;
 	} else {
-	    toc_unhash_omf (YELP_TOC_PAGER (pager), omf_old);
-	    omf_free (omf_old);
+	    toc_unhash_metafile (YELP_TOC_PAGER (pager), omf_old);
+	    metafile_free (omf_old);
 
-	    toc_hash_omf (YELP_TOC_PAGER (pager), omf);
+	    toc_hash_metafile (YELP_TOC_PAGER (pager), omf);
 	}
     } else {
-	toc_hash_omf (YELP_TOC_PAGER (pager), omf);
+	toc_hash_metafile (YELP_TOC_PAGER (pager), omf);
     }
     
  done:
@@ -547,7 +581,31 @@ process_omf_pending (YelpTocPager *pager)
 }
 
 static gboolean
-process_read_toc (YelpTocPager *pager)
+process_man_dir_pending (YelpTocPager *pager)
+{
+    return FALSE;
+}
+
+static gboolean
+process_man_pending (YelpTocPager *pager)
+{
+    return FALSE;
+}
+
+static gboolean
+process_info_dir_pending (YelpTocPager *pager)
+{
+    return FALSE;
+}
+
+static gboolean
+process_info_pending (YelpTocPager *pager)
+{
+    return FALSE;
+}
+
+static gboolean
+process_read_menu (YelpTocPager *pager)
 {
     xmlNodePtr   toc_node;
     GError      *error = NULL;
@@ -591,10 +649,10 @@ process_read_toc (YelpTocPager *pager)
 }
 
 static gboolean
-process_node_pending (YelpTocPager *pager)
+process_menu_node_pending (YelpTocPager *pager)
 {
     GSList      *first;
-    TOC         *toc;
+    YelpMenu    *menu;
     xmlNodePtr   node;
     xmlNodePtr   cur;
 
@@ -607,28 +665,28 @@ process_node_pending (YelpTocPager *pager)
     if (!node)
 	goto done;
 
-    toc = g_new0 (TOC, 1);
+    menu = g_new0 (YelpMenu, 1);
 
-    toc->node      = node;
-    node->_private = toc;
+    menu->node      = node;
+    node->_private  = menu;
 
-    toc->subtocs = NULL;
+    menu->submenus = NULL;
 
-    toc->id    = (gchar *) xmlGetProp (node, (const xmlChar *) "id");
-    toc->title = (gchar *) node_get_title (node);
+    menu->id    = (gchar *) xmlGetProp (node, (const xmlChar *) "id");
+    menu->title = (gchar *) node_get_title (node);
 
     /* Important:
-     * We MUST prepend self to toc_pending and prepend children to
+     * We MUST prepend self to menu_pending and prepend children to
      * node_pending to get a depth-first, post-order traversal, which
      * is needed to prune empty TOC pages.
      */
-    priv->toc_pending = g_slist_prepend (priv->toc_pending, toc);
+    priv->menu_pending = g_slist_prepend (priv->menu_pending, menu);
 
     for (cur = node->children; cur; cur = cur->next) {
 	if (cur->type == XML_ELEMENT_NODE) {
 	    if (!xmlStrcmp (cur->name, "toc")) {
 		priv->node_pending = g_slist_prepend (priv->node_pending, cur);
-		toc->subtocs = g_slist_append (toc->subtocs, cur);
+		menu->submenus = g_slist_append (menu->submenus, cur);
 	    }
 	}
     }
@@ -643,63 +701,64 @@ process_node_pending (YelpTocPager *pager)
 }
 
 static gboolean
-process_toc_pending (YelpTocPager *pager)
+process_menu_pending (YelpTocPager *pager)
 {
     GSList      *first;
     xmlNodePtr   node;
     xmlNodePtr   cur;
-    TOC         *cur_toc;
-    TOC         *toc;
-    GSList      *omfs = NULL;
+    YelpMenu    *cur_menu;
+    YelpMenu    *menu;
     GSList      *c;
 
     YelpTocPagerPriv *priv = pager->priv;
 
-    first = priv->toc_pending;
-    priv->toc_pending = g_slist_remove_link (priv->toc_pending, first);
+    first = priv->menu_pending;
+    priv->menu_pending = g_slist_remove_link (priv->menu_pending, first);
 
-    toc  = (TOC *) first->data;
-    node = toc->node;
+    menu = (YelpMenu *) first->data;
+    node = menu->node;
 
     for (cur = node->children; cur; cur = cur->next) {
 	if (cur->type == XML_ELEMENT_NODE)
 	    if (!xmlStrcmp (cur->name, "category")) {
-		GSList  *omf;
+		GSList  *meta;
 		xmlChar *cat;
 
 		cat = xmlNodeGetContent (cur);
-		omf = g_hash_table_lookup (priv->category_hash_omf, cat);
+		meta = g_hash_table_lookup (priv->category_hash, cat);
 
 		// FIXME: insert_sorted
-		for ( ; omf; omf = omf->next)
-		    toc->subomfs = g_slist_prepend (toc->subomfs, omf->data);
+		for ( ; meta; meta = meta->next)
+		    menu->metafiles = g_slist_prepend (menu->metafiles, meta->data);
 
 		xmlFree (cat);
 	    }
     }
 
-    toc->has_subtocs = FALSE;
-    for (c = toc->subtocs; c; c = c->next) {
-	cur     = (xmlNodePtr) c->data;
-	cur_toc = (TOC *) cur->_private;
+    menu->has_submenus = FALSE;
+    for (c = menu->submenus; c; c = c->next) {
+	cur      = (xmlNodePtr) c->data;
+	cur_menu = (YelpMenu *) cur->_private;
 
-	if (cur_toc && (cur_toc->has_subtocs || cur_toc->subomfs))
-	    toc->has_subtocs = TRUE;
+	if (cur_menu && (cur_menu->has_submenus || cur_menu->metafiles)) {
+	    menu->has_submenus = TRUE;
+	    break;
+	}
     }
 
-    if (toc->has_subtocs || toc->subomfs) {
+    if (menu->has_submenus || menu->metafiles) {
 	YelpPage *page = g_new0 (YelpPage, 1);
-	page->chunk    = toc_write_page (toc);
-	page->id    = toc->id;
-	page->title = toc->title;
+	page->chunk    = menu_write_page (menu);
+	page->id    = menu->id;
+	page->title = menu->title;
 
 	yelp_pager_add_page (YELP_PAGER (pager), page);
-	g_signal_emit_by_name (pager, "page", toc->id);
+	g_signal_emit_by_name (pager, "page", menu->id);
     }
 
     g_slist_free_1 (first);
 
-    if (priv->toc_pending)
+    if (priv->menu_pending)
 	return TRUE;
     else
 	return FALSE;
@@ -718,22 +777,20 @@ toc_process_idx (YelpTocPager *pager)
 static gboolean
 toc_process_idx_pending (YelpTocPager *pager)
 {
-    GSList      *first;
-    OMF         *omf;
-    YelpURI     *uri;
-    gchar       *path;
-    xmlDocPtr    doc;
+    GSList        *first;
+    YelpMetafile  *meta;
+    YelpURI       *uri;
+    gchar         *path;
+    xmlDocPtr      doc;
 
     YelpTocPagerPriv *priv = pager->priv;
 
     first = priv->idx_pending;
     priv->idx_pending = g_slist_remove_link (priv->idx_pending, first);
 
-    omf = first->data;
+    meta = first->data;
 
-    //printf ("OMF: %s\n", omf->xml_file);
-
-    uri  = yelp_uri_new (omf->xml_file);
+    uri  = yelp_uri_new (omf->file);
     path = yelp_uri_get_path (uri);
 
     /*
@@ -762,7 +819,7 @@ toc_process_idx_pending (YelpTocPager *pager)
 #endif
 
 static gchar *
-toc_write_page (TOC    *toc)
+menu_write_page (YelpMenu  *menu)
 {
     gint      i = 0;
     GSList   *c;
@@ -773,25 +830,25 @@ toc_write_page (TOC    *toc)
     gchar    *page_end;
 
     strs_len =
-	g_slist_length (toc->subtocs) + g_slist_length (toc->subomfs) + 20;
+	g_slist_length (menu->submenus) + g_slist_length (menu->metafiles) + 20;
 
     strs = g_new0 (gchar *, strs_len);
 
-    strs[i] = g_strconcat ("<html><body><h1>", toc->title, "</h1>\n", NULL);
+    strs[i] = g_strconcat ("<html><body><h1>", menu->title, "</h1>\n", NULL);
     page_len += strlen (strs[i]);
 
-    if (toc->has_subtocs) {
+    if (menu->has_submenus) {
 	strs[++i] = g_strconcat ("<h2>", _("Categories"), "</h2><ul>\n", NULL);
 	page_len += strlen (strs[i]);
 
-	for (c = toc->subtocs; c; c = c->next) {
-	    xmlNodePtr  cur     = (xmlNodePtr) c->data;
-	    TOC        *cur_toc = (TOC *) cur->_private;
+	for (c = menu->submenus; c; c = c->next) {
+	    xmlNodePtr  cur      = (xmlNodePtr) c->data;
+	    YelpMenu   *cur_menu = (YelpMenu *) cur->_private;
 
-	    if (cur_toc && (cur_toc->has_subtocs || cur_toc->subomfs)) {
+	    if (cur_menu && (cur_menu->has_submenus || cur_menu->metafiles)) {
 		strs[++i] = g_strconcat
-		    ("<li><a href='toc:", cur_toc->id, "'>",
-		     cur_toc->title,
+		    ("<li><a href='toc:", cur_menu->id, "'>",
+		     cur_menu->title,
 		     "</a></li>\n",
 		     NULL);
 		page_len += strlen (strs[i]);
@@ -801,14 +858,14 @@ toc_write_page (TOC    *toc)
 	page_len += strlen (strs[i]);
     }
 
-    if (toc->subomfs) {
+    if (menu->metafiles) {
 	strs[++i] = g_strconcat ("<h2>", _("Documents"), "</h2><ul>\n", NULL);
 	page_len += strlen (strs[i]);
 
-	for (c = toc->subomfs; c; c = c->next) {
-	    OMF *omf = (OMF *) c->data;
-	    strs[++i] = g_strconcat ("<li><a href='", omf->xml_file, "'>",
-				     omf->title,
+	for (c = menu->metafiles; c; c = c->next) {
+	    YelpMetafile *meta = (YelpMetafile *) c->data;
+	    strs[++i] = g_strconcat ("<li><a href='", meta->file, "'>",
+				     meta->title,
 				     "</a></li>\n",
 				     NULL);
 	    page_len += strlen (strs[i]);
@@ -878,71 +935,66 @@ node_get_title (xmlNodePtr node)
 }
 
 static void
-toc_hash_omf (YelpTocPager *pager, OMF *omf)
+toc_hash_metafile (YelpTocPager *pager, YelpMetafile *meta)
 {
     GSList *category;
     YelpTocPagerPriv *priv = pager->priv;
 
-    g_hash_table_insert (priv->unique_hash_omf,
-			 omf->uniqueid,
-			 omf);
+    g_hash_table_insert (priv->unique_hash, meta->id, meta);
 
-    for (category = omf->categories; category; category = category->next) {
+    for (category = meta->categories; category; category = category->next) {
 	gchar  *catstr = (gchar *) category->data;
-	GSList *omfs =
-	    (GSList *) g_hash_table_lookup (priv->category_hash_omf,
-					    catstr);
-	omfs = g_slist_prepend (omfs, omf);
+	GSList *metas =
+	    (GSList *) g_hash_table_lookup (priv->category_hash, catstr);
+	metas = g_slist_prepend (metas, meta);
 
-	g_hash_table_insert (priv->category_hash_omf,
-			     catstr, omfs);
+	g_hash_table_insert (priv->category_hash, catstr, metas);
     }
 
-    priv->idx_pending = g_slist_prepend (priv->idx_pending, omf);
+    priv->idx_pending = g_slist_prepend (priv->idx_pending, meta);
 }
 
 static void
-toc_unhash_omf (YelpTocPager *pager, OMF *omf)
+toc_unhash_metafile (YelpTocPager *pager, YelpMetafile *meta)
 {
     GSList *category;
     YelpTocPagerPriv *priv = pager->priv;
 
-    g_hash_table_remove (pager->priv->unique_hash_omf,
-			 omf->uniqueid);
+    g_hash_table_remove (pager->priv->unique_hash, meta->id);
 
-    for (category = omf->categories; category; category = category->next) {
+    for (category = meta->categories; category; category = category->next) {
 	gchar  *catstr = (gchar *) category->data;
-	GSList *omfs =
-	    (GSList *) g_hash_table_lookup (pager->priv->category_hash_omf,
-					    catstr);
-	if (omfs) {
-	    omfs = g_slist_remove (omfs, omf);
-	    g_hash_table_insert (pager->priv->category_hash_omf,
-				 catstr, omfs);
+	GSList *metas =
+	    (GSList *) g_hash_table_lookup (pager->priv->category_hash, catstr);
+
+	if (metas) {
+	    metas = g_slist_remove (metas, meta);
+	    g_hash_table_insert (pager->priv->category_hash,
+				 catstr, metas);
 	}
     }
 
-    priv->idx_pending = g_slist_remove (priv->idx_pending, omf);
+    priv->idx_pending = g_slist_remove (priv->idx_pending, meta);
 }
 
 static void
-omf_free (OMF *omf)
+metafile_free (YelpMetafile *meta)
 {
     GSList *category;
 
-    if (omf) {
-	xmlFree (omf->title);
-	xmlFree (omf->description);
-	xmlFree (omf->seriesid);
-	xmlFree (omf->uniqueid);
-	xmlFree (omf->language);
+    if (meta) {
+	g_free (meta->id);
+	g_free (meta->title);
+	g_free (meta->description);
+	g_free (meta->seriesid);
+	g_free (meta->language);
 
-	for (category = omf->categories; category; category = category->next)
-	    xmlFree ((xmlChar *) category->data);
-	g_slist_free (omf->categories);
+	for (category = meta->categories; category; category = category->next)
+	    g_free (category->data);
+	g_slist_free (meta->categories);
 
-	xmlFree (omf->omf_file);
-	xmlFree (omf->xml_file);
+	g_free (meta->metafile);
+	g_free (meta->file);
     }
-    g_free (omf);
+    g_free (meta);
 }
