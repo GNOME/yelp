@@ -9,7 +9,7 @@ INCLUDES =								\
 	-DLIBDIR=\""$(libdir)"\"					\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
-bin_PROGRAMS = gnome-help
+bin_PROGRAMS = yelp
 
 yelp-marshal.h: yelp-marshal.list
 	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --header > yelp-marshal1.tmp \
@@ -21,7 +21,7 @@ yelp-marshal.c: yelp-marshal.h
 	&& mv yelp-marshal2.tmp yelp-marshal.c ) \
 	|| ( rm -f yelp-marshal2.tmp && exit 1 )
 
-gnome_help_SOURCES =								\
+yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-marshal.c		yelp-marshal.h				\
 	yelp-base.c		yelp-base.h				\
@@ -38,7 +38,7 @@ gnome_help_SOURCES =								\
 	yelp-view-toc.c		yelp-view-toc.h				\
 	yelp-window.c 		yelp-window.h
 
-gnome_help_LDADD =								\
+yelp_LDADD =								\
 	$(YELP_LIBS)							\
 	libgtktreemodelfilter.la
 
@@ -60,7 +60,7 @@ gnome_yelp_idl_stamp: $(top_srcdir)/idl/GNOME_Yelp.idl $(ORBIT_IDL)
 	$(ORBIT_IDL) $(YELP_IDL_INCLUDES) -I$(top_srcdir) $<
 	touch $@
 
-$(gnome_help_OBJECTS): yelp-marshal.h gnome_yelp_idl_stamp
+$(yelp_OBJECTS): yelp-marshal.h gnome_yelp_idl_stamp
 
 serverdir = $(libdir)/bonobo/servers
 server_in_files = GNOME_Yelp.server.in
