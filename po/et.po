@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-02-27 04:34+0100\n"
+"POT-Creation-Date: 2004-03-09 03:31-0600\n"
 "PO-Revision-Date: 2004-02-27 18:33+0300\n"
 "Last-Translator: Priit Laes <amd@tt.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -17,8 +17,7 @@ msgstr ""
 msgid "Applets"
 msgstr "Rakendid"
 
-#: data/toc.xml.in.h:2
-#: src/yelp-man.c:429
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Rakendused"
 
@@ -26,8 +25,7 @@ msgstr "Rakendused"
 msgid "Desktop"
 msgstr "Töölaud"
 
-#: data/toc.xml.in.h:4
-#: src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Arendus"
 
@@ -39,8 +37,7 @@ msgstr "Arenduskeskkonnad"
 msgid "Development Tools"
 msgstr "Arendustööriistad"
 
-#: data/toc.xml.in.h:7
-#: stylesheets/l10n.xml.in.h:36
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Tekstiredaktorid"
 
@@ -136,29 +133,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:435
-#: src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Ei leia href-atribuuti yelp:document pealt"
 
-#: src/yelp-db-pager.c:450
-#: src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Mälu otsas"
 
-#: src/yelp-db-pager.c:638
-#: src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Tiitelleht"
 
-#: src/yelp-db-pager.c:640
-#: stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Sisukord"
 
-#: src/yelp-db-pager.c:658
-#: stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Tundmatu"
@@ -196,19 +188,12 @@ msgstr "Ei saa Yelpi aktiveerida: '%s'"
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -281,11 +266,11 @@ msgstr "YelpTocPager: Pauside arv on negatiivne."
 msgid "Could not load the OMF file '%s'."
 msgstr "OMF faili '%s' laadimine ebaõnnestus."
 
-#: src/yelp-toc-pager.c:892
+#: src/yelp-toc-pager.c:883
 msgid "Categories"
 msgstr "Kategooriad"
 
-#: src/yelp-toc-pager.c:906
+#: src/yelp-toc-pager.c:897
 msgid "Documents"
 msgstr "Dokumendid"
 
@@ -361,8 +346,7 @@ msgstr "/Abi/_Info"
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:570
-#: stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Peatükk"
 
@@ -403,7 +387,7 @@ msgstr ""
 "       Tõivo Leedjärv <toivo@linux.ee>, 2002-2004.\n"
 "       Allan Sims <allsi@eau.ee>. 2003."
 
-#: src/yelp-window.c:1305
+#: src/yelp-window.c:1306
 msgid "A Help Browser for GNOME"
 msgstr "GNOME abiinfo brauser"
 
@@ -636,7 +620,6 @@ msgid "Reference Section"
 msgstr "Viiteosa"
 
 #: stylesheets/l10n.xml.in.h:59
-#, fuzzy
 msgid "Release Information"
 msgstr ""
 
@@ -684,4 +667,3 @@ msgstr "Abistab GNOMEi kasutamisel"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Abi"
-

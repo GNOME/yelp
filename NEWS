@@ -1,3 +1,21 @@
+Changes in 2.5.90:
+------------------
+* Fixed problem where documents in certain categories weren't
+  being displayed.                                       (Shaun McCance)
+* Fixed #134698, because people like my name.            (Shaun McCance)
+* A few stylistic changes to the HTML output.            (Shaun McCance)
+* Implement some dictionary magic from DV which fixes the problem
+  with libxslt 1.1.3 and should provide a speedup.       (Shaun McCance)
+* Updated translations:
+  az      (Mətin Əmirov)
+  et      (Priit Laes)
+  fi      (Lauri Nurmi)
+  fr      (Jean-Michel Ardantz)
+  it      (Luca Ferretti)
+  lt      (Žygimantas Beručka)
+  ta      (Dinesh Nadarajah)
+  zh_TW   (Roy Chan)
+
 Changes in 2.5.6:
 -----------------
 * Don't break with libxslt 1.1.3                           (Shaun McCance)
