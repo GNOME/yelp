@@ -2,7 +2,7 @@
 
 INCLUDES = $(LIBGNOME_CFLAGS)
 
-bin_PROGRAMS = gnome2-man2html
+libexec_PROGRAMS = gnome2-man2html
 
 gnome2_man2html_SOURCES = gnome-man2html.c
 
