@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 CodeFactory AB
  * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or

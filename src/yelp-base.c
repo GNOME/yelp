@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 CodeFactory AB
  * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
@@ -21,26 +20,19 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#include "metadata.h"
 #include "yelp-window.h"
 #include "yelp-section.h"
 #include "yelp-keyword-db.h"
+#include "yelp-scrollkeeper.h"
 #include "yelp-base.h"
+
 typedef struct {
 	YelpBase     *base;
 	GtkTreeIter *parent;
 } ForeachData;
 
-static void          yelp_base_init             (YelpBase        *base);
-static void          yelp_base_class_init       (YelpBaseClass   *klass);
-static void          yelp_base_new_book_cb      (MetaDataParser  *parser, 
-                                                 GNode           *root,
-                                                 YelpBase        *base);
-static GtkTreeIter * yelp_base_insert_node      (YelpBase        *base, 
-                                                 GtkTreeIter     *parent, 
-                                                 YelpSection     *section);
-static void          yelp_base_section_foreach  (GNode           *node, 
-                                                 ForeachData     *fdata);
+static void          yelp_base_init               (YelpBase        *base);
+static void          yelp_base_class_init         (YelpBaseClass   *klass);
 
 struct _YelpBasePriv {
         YelpKeywordDb *keyword_db;
@@ -93,94 +85,15 @@ yelp_base_class_init (YelpBaseClass *klass)
 {
 }
 
-static void
-yelp_base_new_book_cb (MetaDataParser *parser, 
-                       GNode          *root,
-                       YelpBase       *base)
-{
-	GtkTreeIter *iter;
-	ForeachData *fdata;
-
-	g_print ("New yelp-book: %s\n", ((YelpSection *) root->data)->name);
-	
-	iter = yelp_base_insert_node (base, NULL, 
-                                      ((YelpSection *) root->data));
-	
-	fdata         = g_new0 (ForeachData, 1);
-	fdata->base   = base;
-	fdata->parent = iter;
-
-	g_node_children_foreach (root, G_TRAVERSE_ALL,
-				 (GNodeForeachFunc) yelp_base_section_foreach,
-				 fdata);
-	
-	g_free (fdata);
-}
-
-static GtkTreeIter *
-yelp_base_insert_node (YelpBase    *base, 
-                       GtkTreeIter *parent, 
-                       YelpSection *section)
-{
-	YelpBasePriv *priv;
-	GtkTreeIter *iter;
-	
-	g_return_val_if_fail (YELP_IS_BASE (base), NULL);
-	g_return_val_if_fail (section != NULL, NULL);
-	
-	priv = base->priv;
-
-	iter = g_new0 (GtkTreeIter, 1);
-
-	gtk_tree_store_append (priv->bookshelf, iter, parent);
-        
-	gtk_tree_store_set (priv->bookshelf, iter,
-			    0, section->name,
-			    1, section,
-			    -1);
-
-	return iter;
-}
-
-static void
-yelp_base_section_foreach (GNode *node, ForeachData *fdata)
-{
-	GtkTreeIter *iter;
-	GtkTreeIter *my_parent;
-	
-	my_parent = fdata->parent;
-	
-	iter = yelp_base_insert_node (fdata->base, my_parent, node->data);
-
-	fdata->parent = iter;
-	
-	g_node_children_foreach (node, 
-				 G_TRAVERSE_ALL, 
-				 (GNodeForeachFunc) yelp_base_section_foreach,
-				 fdata);
-
-	fdata->parent = my_parent;
-}
-
 YelpBase *
 yelp_base_new (void)
 {
-        YelpBase       *base;
-        MetaDataParser *parser;
-        gchar          *path;
-        
+        YelpBase *base;
+	gboolean  result;
+
         base = g_object_new (YELP_TYPE_BASE, NULL);
 
-        path = g_strconcat (g_getenv("HOME"), "/.devhelp/specs", NULL);
-        
-/*         parser = devhelp_parser_new (path); */
- 	parser = scrollkeeper_parser_new ();
-        
-        g_signal_connect (G_OBJECT (parser), "new_book",
-                          G_CALLBACK (yelp_base_new_book_cb),
-                          base);
-        
-        metadata_parser_parse (parser);
+	result = yelp_scrollkeeper_init (base->priv->bookshelf);
 
         return base;
 }
@@ -196,7 +109,7 @@ yelp_base_get_bookshelf (YelpBase *base)
 GtkWidget *
 yelp_base_new_window (YelpBase *base)
 {
-        GtkWidget *window;
+	GtkWidget *window;
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
         
@@ -204,4 +117,3 @@ yelp_base_new_window (YelpBase *base)
         
         return window;
 }
-

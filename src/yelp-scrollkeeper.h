@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 CodeFactory AB
  * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
@@ -21,11 +20,11 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __METADATA_H__ 
-#define __METADATA_H__
+#ifndef __YELP_SCROLLKEEPER_H__
+#define __YELP_SCROLLKEEPER_H__
 
-#include "devhelp-parser.h"
-#include "scrollkeeper-parser.h"
-#include "yelp-section.h"
+#include <gtk/gtktreestore.h>
 
-#endif /* __METADATA_H__ */
+gboolean yelp_scrollkeeper_init (GtkTreeStore *store);
+
+#endif /* __YELP_SCROLLKEEPER_H__ */

@@ -7,7 +7,7 @@ test -z "$srcdir" && srcdir=.
 PKG_NAME="Yelp"
 
 (test -f $srcdir/configure.in \
-  && test -f $srcdir/src/main.c \
+  && test -f $srcdir/src/yelp-main.c \
   && test -f $srcdir/README) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level yelp directory"

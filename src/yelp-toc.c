@@ -150,23 +150,3 @@ yelp_toc_new (GtkTreeStore *model)
 
         return GTK_WIDGET (toc);
 }
-
-gboolean
-yelp_toc_open (YelpToc *toc, GnomeVFSURI *uri)
-{
-/* 	YelpTocPriv *priv; */
-/* 	GtkTreeIter  iter; */
-	
-	g_print ("======> Looking for children... ");
-
-/* 	if (gtk_tree_model_iter_children (priv->model, &iter, NULL)) { */
-/* 		g_print ("found\n"); */
-/* 	} else { */
-/* 		g_print ("not found\n"); */
-/* 	} */
-	
-	/* FIX: Try to find the correct node and expand it */
-
-	return TRUE;
-}
-

@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 CodeFactory AB
  * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
@@ -41,23 +40,6 @@ yelp_section_new (const gchar *name, const gchar *uri, const gchar *reference,
 	section->scheme    = g_strdup (scheme);
 	
 	return section;
-}
-
-GNode *
-yelp_section_add_sub (GNode       *parent,
-		      YelpSection *section)
-{
-	GNode *node;
-	
-	g_return_val_if_fail (section != NULL, NULL);
-
-	node = g_node_new (section);
-
-	if (!parent) {
-		return node;
-	}
-
-	return g_node_insert (parent, -1, node);
 }
 
 YelpSection *

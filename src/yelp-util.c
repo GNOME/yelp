@@ -20,29 +20,25 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __YELP_SECTION_H__ 
-#define __YELP_SECTION_H__ 
+#include "yelp-util.h"
 
-#include <glib-object.h>
+GtkTreeIter *
+yelp_util_contents_add_section (GtkTreeStore *store,
+                                GtkTreeIter  *parent,
+                                YelpSection  *section)
+{
+	GtkTreeIter *iter;
+	
+	g_return_val_if_fail (GTK_IS_TREE_STORE (store), NULL);
+	g_return_val_if_fail (section != NULL, NULL);
 
-typedef struct _YelpSection   YelpSection;
-
-struct _YelpSection {
-	gchar *name;
-	gchar *uri;
-	gchar *reference;
-	gchar *scheme;
-};
-
-YelpSection * yelp_section_new        (const gchar        *name,
-				       const gchar        *uri,
-				       const gchar        *reference,
-				       const gchar        *scheme);
-
-YelpSection * yelp_section_copy       (const YelpSection  *section);
-
-void          yelp_section_free       (YelpSection        *section);
-
-#endif /* __YELP_BOOK_H__ */
-
-
+	iter = g_new0 (GtkTreeIter, 1);
+	
+	gtk_tree_store_append (store, iter, parent);
+	
+	gtk_tree_store_set (store, iter,
+			    0, section->name,
+			    1, section,
+			    -1);
+	return iter;
+}

@@ -1,3 +1,55 @@
+2001-12-08  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-util.c: removed the outcommented menu-code.
+	- No menu will be used, only the toolbar. 
+	- The window-generating code should probably be moved to glade
+	  later.
+
+	* src/yelp-util.[ch]: added, moved the insert-into-tree function
+	  from yelp-section.[ch] here.
+
+	* src/yelp-toc.c: 
+	(yelp_toc_open): removed, unused and unimplemented. Can add it
+	  back when I need it.
+
+	* src/yelp-section.[ch]: 
+	(yelp_section_add_sub): removed, functionality moved to
+	  yelp-util.[ch]
+
+	* src/yelp-scrollkeeper.[ch]: 
+	- renamed from scrollkeeper-parser.[ch]
+	- cleaned up, don't use the metadata-parser interface.
+	- insert into the GtkTreeStore directly.
+
+	* src/yelp-main.c: include yelp-window.h
+
+	* src/yelp-base.c: 
+	(yelp_base_new_book_cb): removed
+	(yelp_base_insert_node): removed
+	(yelp_base_section_foreach): removed
+	(yelp_base_new): don't connect to parser signals, parser gets the
+	  GtkTreeStore and can insert directly into it.
+
+	* src/scrollkeeper-parser.[ch]: moved to yelp-scrollkeeper.[ch]
+
+	* src/metadata.h: removed, was used to help including all the
+	  metadata-parsers.
+
+	* src/main.c: moved to yelp-main.c
+
+	* src/metadata-parser.[ch]: removed, no need for this interface.
+
+	* src/devhelp-parser.[ch]: removed, don't need to support this and
+	  want the source to be as clean as possible.
+	
+	* src/Makefile.am (yelp_SOURCES): changed to build the correct
+	  files after the move-around.
+
+	* configure.in: changed AC_INIT argument to src/yelp-main.
+
+	* autogen.sh (PKG_NAME): changed test for srcdir/main to
+	  srcdir/yelp-main.
+
 2001-12-07  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/Makefile.am (yelp_SOURCES): yelp-view -> yelp-doc-view.

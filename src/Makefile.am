@@ -12,7 +12,7 @@ INCLUDES =						\
 bin_PROGRAMS = yelp
 
 yelp_SOURCES =						\
-	main.c						\
+	yelp-main.c					\
 	yelp-base.c		yelp-base.h		\
 	yelp-window.c 		yelp-window.h		\
 	yelp-toc.c    		yelp-toc.h		\
@@ -21,8 +21,8 @@ yelp_SOURCES =						\
 	yelp-history.c		yelp-history.h		\
 	yelp-section.c		yelp-section.h		\
 	yelp-keyword-db.c	yelp-keyword-db.h	\
-	metadata-parser.c	metadata-parser.h	\
-	scrollkeeper-parser.c	scrollkeeper-parser.h
+	yelp-scrollkeeper.c	yelp-scrollkeeper.h	\
+	yelp-util.c		yelp-util.h
 
 yelp_LDADD =						\
 	$(YELP_LIBS)

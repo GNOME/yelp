@@ -39,9 +39,9 @@ typedef struct _YelpTocPriv   YelpTocPriv;
 
 struct _YelpToc
 {
-        GtkTreeView    parent;
+        GtkTreeView  parent;
         
-        YelpTocPriv   *priv;
+        YelpTocPriv *priv;
 };
 
 struct _YelpTocClass
@@ -49,15 +49,11 @@ struct _YelpTocClass
         GtkTreeViewClass   parent_class;
 
         /* Signals */
-	void   (*section_selected)     (YelpToc             *toc,
-					YelpSection         *section);
+	void   (*section_selected)     (YelpToc          *toc,
+					YelpSection      *section);
 };
 
 GType          yelp_toc_get_type        (void);
 GtkWidget *    yelp_toc_new             (GtkTreeStore    *model);
-gboolean       yelp_toc_open            (YelpToc         *toc,
-					 GnomeVFSURI     *uri);
-void           yelp_toc_add_book        (YelpToc         *toc,
-					 GNode           *root);
 
 #endif /* __YELP_TOC_H__ */
