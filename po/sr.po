@@ -4,15 +4,16 @@
 # This file is distributed under the same license as the yelp package.
 #
 # Maintainer: Горан Ракић <gox@devbase.net>
+# Reviewed on 2004-03-20 by: Слободан Средојевић <ssl@uns.ns.ac.yu>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-16 23:31-0600\n"
-"PO-Revision-Date: 2004-03-11 19:51+0100\n"
-"Last-Translator: Goran Rakić <gox@devbase.net>\n"
-"Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
+"POT-Creation-Date: 2004-03-21 07:34+0100\n"
+"PO-Revision-Date: 2004-03-21 07:34+0100\n"
+"Last-Translator: Слободан Средојевић <ssl@uns.ns.ac.yu>\n"
+"Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -111,19 +112,19 @@ msgstr "Битна је _величина слова"
 
 #: data/ui/yelp.glade.h:3
 msgid "Find"
-msgstr "Нађи"
+msgstr "Претрага текста"
 
 #: data/ui/yelp.glade.h:4
 msgid "_Find: "
-msgstr "_Нађи:"
+msgstr "Тр_ажи: "
 
 #: data/ui/yelp.glade.h:5
 msgid "_Next"
-msgstr "Наредно"
+msgstr "_Наредно"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Previous"
-msgstr "Претходно"
+msgstr "_Претходно"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Wrap around"
@@ -131,11 +132,11 @@ msgstr "У _круг"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
-msgstr "Јелп"
+msgstr "Прегледник помоћи"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Јелп фабрика"
+msgstr "Фабрика прегледника помоћи"
 
 #: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
@@ -147,7 +148,7 @@ msgstr "Понестало меморије"
 
 #: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
-msgstr "Насловница"
+msgstr "Наслов"
 
 #: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
@@ -161,7 +162,7 @@ msgstr "Непознато"
 
 #: src/yelp-error.c:46
 msgid "The selected document could not be opened"
-msgstr "Не може се отворити изабрани документ"
+msgstr "Изабрани документ није могао бити отворен"
 
 #: src/yelp-error.c:52
 msgid "The selected page could not be found in this document."
@@ -186,7 +187,7 @@ msgstr "Дефиниши који директоријум да користи �
 #: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Нисам могао да активитам Јелп: „%s“"
+msgstr "Нисам могао да активирам прегледника помоћи: „%s“"
 
 #: src/yelp-main.c:147
 msgid "Could not open new window."
@@ -207,7 +208,7 @@ msgstr "Тermcap"
 
 #: src/yelp-man.c:322
 msgid "Perl"
-msgstr "Perl"
+msgstr "Перл"
 
 #: src/yelp-man.c:327
 msgid "Qt"
@@ -231,7 +232,7 @@ msgstr "Функције библиотека"
 
 #: src/yelp-man.c:374
 msgid "Kernel Routines"
-msgstr "Рутине језгра"
+msgstr "Потпрограми језгра"
 
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
@@ -308,7 +309,7 @@ msgstr "/Уређивање/Нађи п_ретходно"
 
 #: src/yelp-window.c:268
 msgid "/_Go"
-msgstr "/_Иди"
+msgstr "/_Страна"
 
 #: src/yelp-window.c:269
 msgid "/Go/_Back"
@@ -414,7 +415,7 @@ msgstr "“"
 
 #: stylesheets/l10n.xml.in.h:5
 msgid "About This Article"
-msgstr "О овом чланку"
+msgstr "О овом упутству"
 
 #: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
@@ -422,7 +423,7 @@ msgstr "О овој литератури"
 
 #: stylesheets/l10n.xml.in.h:7
 msgid "About This Book"
-msgstr "О овом књизи"
+msgstr "О овој књизи"
 
 #: stylesheets/l10n.xml.in.h:8
 msgid "About This Chapter"
