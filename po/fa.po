@@ -105,7 +105,7 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "C_ase sensitive"
-msgstr "_حساس به بزرگی و کوچکی حروف"
+msgstr "_حساسیت به بزرگی و کوچکی حروف"
 
 #: data/ui/yelp.glade.h:3
 msgid "Find"
@@ -150,7 +150,7 @@ msgstr "صفحه‌ی عنوان"
 #: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
-msgstr "محتویات"
+msgstr "مندرجات"
 
 #: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
@@ -184,7 +184,7 @@ msgstr "تعیین کنید از کدام شاخه‌ی حافظه‌ی نهان
 #: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "نمی‌توان یلپ را فعال کرد: '%s'"
+msgstr "فعال کردن یلپ ممکن نیست: '%s'"
 
 #: src/yelp-main.c:147
 msgid "Could not open new window."
@@ -237,7 +237,7 @@ msgstr "دستگاه‌های سخت‌افزاری"
 
 #: src/yelp-man.c:444
 msgid "Configuration Files"
-msgstr "پرونده‌های تنظیمات"
+msgstr "پرونده‌های پیکربندی"
 
 #: src/yelp-man.c:449
 msgid "Games"
@@ -264,9 +264,9 @@ msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
 #: src/yelp-toc-pager.c:486
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "نمی‌توان یلپ را فعال کرد: '%s'"
+msgstr "بار کردن پرونده‌ی OMF '%s' ممکن نیست."
 
 #: src/yelp-toc-pager.c:883
 msgid "Categories"
@@ -350,7 +350,7 @@ msgstr "مرورگر راهنماها"
 
 #: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
-msgstr "قسمت"
+msgstr "بخش"
 
 #: src/yelp-window.c:625
 msgid "Back"
@@ -384,7 +384,8 @@ msgstr "در حال بار کردن..."
 #. * will shop up in the "about" box
 #: src/yelp-window.c:1300
 msgid "translator_credits"
-msgstr "روزبه پورنادر ‎<roozbeh@sharif.edu>‎"
+msgstr "روزبه پورنادر ‎<roozbeh@sharif.edu>‎\n"
+"میلاد زکریا<meelad@bamdad.org>"
 
 #: src/yelp-window.c:1306
 msgid "A Help Browser for GNOME"
@@ -504,15 +505,15 @@ msgstr "همکاران"
 
 #: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
-msgstr ""
+msgstr "چاپ - انجامه"
 
 #: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
-msgstr "کپی‌رایت"
+msgstr "حق نسخه‌برداری"
 
 #: stylesheets/l10n.xml.in.h:32
 msgid "Copyrights"
-msgstr "کپی‌رایت‌ها"
+msgstr "حقوق نسخه‌برداری"
 
 #: stylesheets/l10n.xml.in.h:33
 msgid "Date"
@@ -625,16 +626,15 @@ msgstr "تاریخچه‌ی تجدید نظر"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
-msgstr "ببینید"
+msgstr "نگاه کنید به"
 
 #: stylesheets/l10n.xml.in.h:63
 msgid "See Also"
-msgstr ""
+msgstr "نیز نگاه کنید به"
 
 #: stylesheets/l10n.xml.in.h:64
-#, fuzzy
 msgid "Set Index"
-msgstr "نمایه"
+msgstr "تعیین نمایه"
 
 #: stylesheets/l10n.xml.in.h:65
 msgid "Table"
@@ -642,7 +642,7 @@ msgstr "جدول"
 
 #: stylesheets/l10n.xml.in.h:66
 msgid "Table of Contents"
-msgstr "فهرست"
+msgstr "فهرست مندرجات"
 
 #: stylesheets/l10n.xml.in.h:67
 msgid "Tip"
