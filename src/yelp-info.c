@@ -98,25 +98,40 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 gboolean
 yelp_info_init (GNode *tree, GList **index)
 {
-	GNode       *root;
-	struct stat  stat_dir1;
-	struct stat  stat_dir2;
-	GSList      *info_list = NULL;
-	GSList      *node;
-	YelpSection *section;
-	YelpSection *index_section;
-	gchar       *index_name;
-	gchar       *index_uri;
+	GNode        *root;
+	struct stat   stat_dir1;
+	struct stat   stat_dir2;
+	GSList       *info_list = NULL;
+	GSList       *node;
+	YelpSection  *section;
+	YelpSection  *index_section;
+	gchar        *index_name;
+	gchar        *index_uri;
+	gchar       **infopathes;
+	gchar        *infopath;
+	gint          i;
 	
-	stat ("/usr/info", &stat_dir1);
-	stat ("/usr/share/info", &stat_dir2);
+	infopath = g_strdup (g_getenv ("INFOPATH"));
 	
-	yelp_info_read_info_dir ("/usr/info", &info_list);
+	if (infopath) {
+		g_strstrip (infopath);
+		infopathes = g_strsplit (infopath, ":", -1);
+		g_free (infopath);
+		
+		for (i = 0; infopathes[i]; i++) {
+			yelp_info_read_info_dir (infopathes[i], &info_list);
+		}
+	} else {
+		stat ("/usr/info", &stat_dir1);
+		stat ("/usr/share/info", &stat_dir2);
 	
-	if (stat_dir1.st_ino != stat_dir2.st_ino) {
-		yelp_info_read_info_dir  ("/usr/share/info", &info_list);
+		yelp_info_read_info_dir ("/usr/info", &info_list);
+	
+		if (stat_dir1.st_ino != stat_dir2.st_ino) {
+			yelp_info_read_info_dir  ("/usr/share/info", &info_list);
+		}
 	}
-
+	
 	if (g_slist_length (info_list) <= 0) {
 		return FALSE;
 	}

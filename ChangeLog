@@ -1,5 +1,9 @@
 2002-03-23  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-info.c (yelp_info_init): 
+	- Fixed #75218
+	- Read INFOPATH to locate path to info files.
+
 	* src/yelp-util.c:
 	(yelp_util_extract_docpath_from_uri): reverted this to it's
 	  initial behaviour.
