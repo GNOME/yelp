@@ -723,8 +723,9 @@ toc_read_important_docs (YelpViewTOC *view)
 	YelpImportantDocsSection *important_section;
 	
 	doc = xmlParseFile (DATADIR "/yelp/important_docs.xml");
-	if (doc == NULL)
+	if (doc == NULL) {
 		return;
+	}
 
 	node = xmlDocGetRootElement (doc);
 	if (node == NULL) {
