@@ -1,3 +1,26 @@
+2005-02-23  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/yelp-db-pager.c: (node_get_title):
+	* src/yelp-error.c:
+	* src/yelp-html-gtkhtml1.c:
+	* src/yelp-html-gtkhtml2.c:
+	* src/yelp-index-model.c:
+	* src/yelp-info-pager.c:
+	* src/yelp-main.c:
+	* src/yelp-man-pager.c:
+	* src/yelp-man-parser.c:
+	* src/yelp-pager.c:
+	* src/yelp-pregenerate.c:
+	* src/yelp-settings.c:
+	* src/yelp-toc-pager.c: (process_xslt):
+	* src/yelp-uri.c: (uri_locate_file), (uri_locate_file_lang):
+	* src/yelp-utils.c: (locate_file_lang), (convert_ghelp_uri):
+	* src/yelp-window.c: (yelp_window_load),
+	(window_find_entry_changed_cb):
+	* src/yelp-xslt-pager.c: Fix a bunch of warnings, port
+	from gnome_i18n_* to the glib equivalents. Remove deprecated
+	headers.
+
 2005-02-22  Ross Burton  <ross@burtonini.com>
 
 	* src/yelp-window.c:

@@ -28,7 +28,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 #include <libxml/xmlversion.h>
 #include <libxml/xmlmemory.h>
 #include <libxml/debugXML.h>

@@ -24,13 +24,13 @@
 #include <config.h>
 #endif
 
+#include <glib/gi18n.h>
 #include <gtk/gtkmain.h>
 #include <gtk/gtkwidget.h>
 #include <bonobo/bonobo-context.h>
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-generic-factory.h>
 #include <bonobo/bonobo-main.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>

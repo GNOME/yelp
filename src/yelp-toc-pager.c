@@ -866,7 +866,7 @@ process_xslt (YelpTocPager *pager)
     GError *error = NULL;
     xmlDocPtr outdoc;
     YelpTocPagerPriv *priv = pager->priv;
-    const gchar **params;
+    gchar **params;
     gint  params_i = 0;
     gint  params_max = 10;
     GtkIconInfo *info;
@@ -914,7 +914,7 @@ process_xslt (YelpTocPager *pager)
 
     outdoc = xsltApplyStylesheetUser (priv->stylesheet,
 				      priv->toc_doc,
-				      params, NULL, NULL,
+				      (const gchar **)params, NULL, NULL,
 				      priv->transformContext);
     g_signal_emit_by_name (pager, "finish");
 

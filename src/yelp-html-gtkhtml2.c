@@ -24,11 +24,11 @@
 #include <config.h>
 #endif
 
+#include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkenums.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgtkhtml/gtkhtml.h>
 #include <libgtkhtml/dom/traversal/dom-nodeiterator.h>
 #include <libgtkhtml/dom/traversal/dom-documenttraversal.h>

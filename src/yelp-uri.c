@@ -23,9 +23,9 @@
  */
 
 #include <string.h>
+#include <glib/gi18n.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-program.h>
 
 #include "yelp-error.h"
@@ -42,7 +42,7 @@ static gchar *       uri_locate_file               (gchar        *path,
 						    gchar        *file);
 static gchar *       uri_locate_file_lang          (gchar        *path,
 						    gchar        *file,
-						    gchar        *lang);
+						    const gchar  *lang);
 
 YelpURI *
 yelp_uri_new (const gchar *uri_str)
@@ -306,25 +306,25 @@ uri_parse_ghelp_uri (YelpURI *uri)
 static gchar *
 uri_locate_file (gchar *path, gchar *file)
 {
+    gint i;
     gchar *ret;
-    const GList *langs;
+    const gchar * const * langs;
 
-    langs = gnome_i18n_get_language_list ("LC_MESSAGES");
+    langs = g_get_language_names ();
 
-    for (; langs != NULL; langs = langs->next) {
-	gchar *lang = langs->data;
+    for (i = 0; langs[i] != NULL; i++) {
 
 	/* This has to be a valid language AND a language with
 	 * no encoding postfix.  The language will come up without
 	 * encoding next */
-	if (lang == NULL || strchr (lang, '.') != NULL)
+	if (strchr (langs[i], '.') != NULL)
 	    continue;
 
-	ret = uri_locate_file_lang (path, file, lang);
+	ret = uri_locate_file_lang (path, file, langs[i]);
 
 	if (!ret) {
 	    /* Check for index file in wanted locale */
-	    ret = uri_locate_file_lang (path, "index", lang);
+	    ret = uri_locate_file_lang (path, "index", langs[i]);
 	}
 
 	if (ret)
@@ -341,7 +341,7 @@ uri_locate_file (gchar *path, gchar *file)
 }
 
 static gchar *
-uri_locate_file_lang (gchar *path, gchar *file, gchar *lang)
+uri_locate_file_lang (gchar *path, gchar *file, const gchar *lang)
 {
     gchar *exts[] = {".xml", ".docbook", ".sgml", ".html", "", NULL};
     gint   i;

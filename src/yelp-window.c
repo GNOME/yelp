@@ -26,12 +26,12 @@
 #include <config.h>
 #endif
 
+#include <glib/gi18n.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-stock-icons.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-url.h>
 #include <libgnome/gnome-program.h>
 #include <libgnome/gnome-config.h>
@@ -197,9 +197,6 @@ static void               location_response_cb    (GtkDialog       *dialog,
 						   gint             id,
 						   YelpWindow      *window);
 
-static void        window_find_again_cb           (gpointer           data,
-						   guint              action,
-						   GtkWidget         *widget);
 static gboolean    window_find_action             (YelpWindow        *window, 
 						   YelpFindAction     action);
 static void        window_find_entry_changed_cb   (GtkEditable       *editable,
@@ -289,10 +286,6 @@ static gboolean    idle_write    (IdleWriterContext *context);
 #define TARGET_TYPE_URI_LIST     "text/uri-list"
 enum {
     TARGET_URI_LIST
-};
-
-static GtkTargetEntry row_targets[] = {
-    { TARGET_TYPE_URI_LIST, 0, TARGET_URI_LIST }
 };
 
 static GtkActionEntry entries[] = {
@@ -735,7 +728,6 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
  load:
     window_do_load (window, doc_info, frag_id);
 
- done:
     if (priv->current_frag != frag_id)
 	g_free (frag_id);
 }
@@ -2239,20 +2231,6 @@ window_find_action (YelpWindow *window, YelpFindAction action)
 			   (action == YELP_WINDOW_FIND_NEXT) ? TRUE: FALSE);
 }
 
-static void 
-window_find_again_cb (gpointer   data,
-                      guint      action,
-		      GtkWidget *widget)
-{
-    YelpWindow *window;
-
-    g_return_if_fail (YELP_IS_WINDOW (data));
- 
-    window = YELP_WINDOW (data);
-
-    window_find_action (window, (YelpFindAction)action);
-}
-
 static void
 window_find_clicked_cb (GtkWidget  *widget,
 			YelpWindow *window)
@@ -2309,38 +2287,6 @@ window_find_entry_changed_cb (GtkEditable *editable,
 	}
  
     g_free (text);
-}
-
-static void
-window_find_case_toggled_cb (GtkWidget *widget,
-			     gpointer   data)
-{
-    YelpWindow     *window;
-    YelpWindowPriv *priv;
-
-    g_return_if_fail (YELP_IS_WINDOW (data));
-
-    window = YELP_WINDOW (data);
-    priv   = window->priv;
-
-    window_find_entry_changed_cb (GTK_EDITABLE (priv->find_entry),
-				  window);
-}
-
-static void
-window_find_wrap_toggled_cb (GtkWidget *widget,
-			     gpointer   data)
-{
-    YelpWindow     *window;
-    YelpWindowPriv *priv;
-
-    g_return_if_fail (YELP_IS_WINDOW (data));
-
-    window = YELP_WINDOW (data);
-    priv   = window->priv;
-
-    window_find_entry_changed_cb (GTK_EDITABLE (priv->find_entry),
-				  window);
 }
 
 static void

@@ -25,7 +25,7 @@
 #endif
 
 #include <glib.h>
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 
 #include "yelp-pager.h"
 #include "yelp-marshal.h"

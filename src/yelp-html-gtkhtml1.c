@@ -24,9 +24,9 @@
 #include <config.h>
 #endif
 
+#include <glib/gi18n.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <libgnome/gnome-i18n.h>
 #include <gtkhtml/gtkhtml.h>
 #include <gtkhtml/gtkhtml-stream.h>
 

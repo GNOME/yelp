@@ -20,8 +20,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include <glib/gi18n.h>
 #include <gtk/gtktreemodel.h>
-#include <libgnome/gnome-i18n.h>
 #include <string.h>
 
 #include "yelp-section.h"

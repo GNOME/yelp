@@ -25,7 +25,7 @@
 #endif
 
 #include <glib.h>
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xinclude.h>
@@ -481,7 +481,7 @@ node_get_title (DBWalker *walker)
 
     doc = xsltApplyStylesheet (walker->titleStylesheet,
 			       walker->doc,
-			       params);
+			       (const char **)params);
     if (xsltSaveResultToString (&outstr, &outlen, doc, walker->titleStylesheet) < 0)
 	title = _("Unknown Section");
     else {

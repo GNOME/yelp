@@ -24,11 +24,11 @@
 #include <config.h>
 #endif
 
+#include <glib/gi18n.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-href.h>
 #include <string.h>
 #include "yelp-settings.h"

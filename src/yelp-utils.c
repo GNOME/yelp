@@ -25,9 +25,9 @@
 #endif
 
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-program.h>
 
 #include "yelp-utils.h"
@@ -564,7 +564,7 @@ yelp_doc_info_add_uri (YelpDocInfo *doc_info,
 /** Convert fancy URIs to file URIs *******************************************/
 
 static gchar *
-locate_file_lang (gchar *path, gchar *file, gchar *lang)
+locate_file_lang (gchar *path, gchar *file, const gchar *lang)
 {
     gchar *exts[] = {".xml", ".docbook", ".sgml", ".html", "", NULL};
     gint   i;
@@ -635,24 +635,24 @@ convert_ghelp_uri (gchar *uri)
 	goto done;
 
     for (node = locations; node; node = node->next) {
-	const GList *langs;
+	gint i;
+	const gchar * const * langs;
 	gchar *location = (gchar *) node->data;
 
-	langs = gnome_i18n_get_language_list ("LC_MESSAGES");
+	langs = g_get_language_names ();
 
-	for (; langs != NULL; langs = langs->next) {
-	    gchar *lang = langs->data;
+	for (i = 0; langs[i] != NULL; i++) {
 
 	    /* This has to be a valid language AND a language with
 	     * no encoding postfix.  The language will come up without
 	     * encoding next */
-	    if (lang == NULL || strchr (lang, '.') != NULL)
+	    if (strchr (langs[i], '.') != NULL)
 		continue;
 
-	    doc_uri = locate_file_lang (location, doc_name, lang);
+	    doc_uri = locate_file_lang (location, doc_name, langs[i]);
 
 	    if (!doc_uri)
-		doc_uri = locate_file_lang (location, "index", lang);
+		doc_uri = locate_file_lang (location, "index", langs[i]);
 
 	    if (doc_uri)
 		goto done;
