@@ -15,7 +15,7 @@
 <xsl:param name="admon.graphics" select="1"/>
 
 <!-- Specifies the default path for admonition graphics -->
-<xsl:param name="admon.graphics.path">./stylesheet/</xsl:param>
+<xsl:param name="admon.graphics.path"><xsl:text>file://</xsl:text><xsl:value-of select="$gdb_stylesheet_path"/><xsl:text>/images/</xsl:text></xsl:param>
 
 <!-- Specifies the default graphic file if none is given. -->
 <xsl:param name="graphic.default.extension" select="'png'" doc:type="string"/>
