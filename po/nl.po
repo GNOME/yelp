@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2005-01-05 22:48+0100\n"
+"POT-Creation-Date: 2005-01-12 20:40+0100\n"
+"PO-Revision-Date: 2005-01-12 23:26+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,10 +137,9 @@ msgstr "Educatieve toepassingen"
 msgid "Graphics"
 msgstr "Grafisch"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
+#: data/toc.xml.in.h:9
 msgid "Help Topics"
-msgstr "Hulp-browser"
+msgstr "Hulp-onverwerpen"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -193,78 +192,69 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Lettertypes</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
-msgid "<b>_Bookmarks:</b>"
-msgstr "_Favorieten"
-
-#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Titel:</b>"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:4
 msgid "Add Bookmark"
 msgstr "Favoriet toevoegen"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
 msgstr "Favorieten"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:6
 msgid "C_ase sensitive"
 msgstr "_Hoofdlettergevoelig"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:7
 msgid "Find"
 msgstr "Zoeken"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:8
 msgid "Open Location"
 msgstr "Lokatie openen"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:9
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/ui/yelp.glade.h:11
-msgid "Re_name"
-msgstr ""
-
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:10
 msgid "_Browse with caret"
 msgstr "_Met caret verkennen"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:11
 msgid "_Find: "
 msgstr "_Zoeken: "
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:12
 msgid "_Fixed width:"
 msgstr "_Vaste breedte:"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:13
 msgid "_Location:"
 msgstr "_Lokatie:"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:14
 msgid "_Next"
 msgstr "_Volgende"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:15
 msgid "_Previous"
 msgstr "V_orige"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:16
 msgid "_Use system fonts"
 msgstr "_Systeemlettertypes gebruiken:"
 
-#: data/ui/yelp.glade.h:19
+#: data/ui/yelp.glade.h:17
 msgid "_Variable width:"
 msgstr "_Variabele breedte:"
 
 # hele discussie hierover op http://home.o2w.net/~ivo/wiki.pl?WrapAround
 # Betere vertaling hier in yelp?
 # was Terugloop, maar consensus schijnt te zijn: Doorgaan na documenteinde
-#: data/ui/yelp.glade.h:20
+#: data/ui/yelp.glade.h:18
 msgid "_Wrap around"
 msgstr "_Doorgaan na documenteinde"
 
@@ -302,10 +292,10 @@ msgstr "caret gebruiken"
 msgid "Use system fonts"
 msgstr "Systeemlettertypes gebruiken"
 
+# for the system niet meevertaald
 #: data/yelp.schemas.in.h:8
-#, fuzzy
 msgid "Use the default fonts set for the system."
-msgstr "De standaard systeemlettertypes gebruiken"
+msgstr "De standaard lettertypes gebruiken."
 
 #: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
@@ -315,16 +305,10 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Een favoriet met titel <b>%s</b> bestaat al voor deze pagina."
-
-# specifieke informatie?
-#: src/yelp-bookmarks.c:341
-#, fuzzy
-msgid "Document Sections"
-msgstr "Documentinformatie"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -561,11 +545,12 @@ msgstr "De volgende pagina tonen"
 
 #: src/yelp-window.c:367
 msgid "_Help Topics"
-msgstr ""
+msgstr "_Hulp-onderwerpen"
 
+# van/met
 #: src/yelp-window.c:369
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Ga naar het overzicht van hulp-onderwerpen"
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -638,19 +623,16 @@ msgstr ""
 "om te zetten naar XML."
 
 #: src/yelp-window.c:1024
-#, fuzzy
 msgid "Find:"
-msgstr "Zoeken"
+msgstr "Zoeken:"
 
 #: src/yelp-window.c:1040
-#, fuzzy
 msgid "Find _Next"
-msgstr "Tekst zoeken..."
+msgstr "_Volgende zoeken..."
 
 #: src/yelp-window.c:1052
-#, fuzzy
 msgid "Find _Previous"
-msgstr "V_orige"
+msgstr "V_orige zoeken"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -710,7 +692,7 @@ msgstr ""
 "of het heeft niet de juiste opmaak."
 
 #: src/yelp-xslt-pager.c:215
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
