@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp 2.5.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-18 17:57+0100\n"
-"PO-Revision-Date: 2004-01-18 17:57+0100\n"
+"POT-Creation-Date: 2004-01-18 11:09+0100\n"
+"PO-Revision-Date: 2004-01-18 11:09+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Entwicklungsumgebungen"
 msgid "Development Tools"
 msgstr "Entwicklungswerkzeuge"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:35
 msgid "Editors"
 msgstr "Editoren"
 
@@ -147,12 +147,12 @@ msgstr "Speichermangel"
 msgid "Titlepage"
 msgstr "Titelseite"
 
-#: src/yelp-db-pager.c:624 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:624 stylesheets/l10n.xml.in.h:29
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Inhalt"
 
-#: src/yelp-db-pager.c:642 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:642 stylesheets/l10n.xml.in.h:67
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -349,7 +349,7 @@ msgstr "/Hilfe/_Info"
 msgid "Help Browser"
 msgstr "Hilfe-Browser"
 
-#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:59
 msgid "Section"
 msgstr "Abschnitt"
 
@@ -479,164 +479,185 @@ msgid "Author"
 msgstr "Autor"
 
 #: stylesheets/l10n.xml.in.h:21
+msgid "Authors"
+msgstr "Autoren"
+
+#: stylesheets/l10n.xml.in.h:22
 msgid "Bibliography"
 msgstr "Bibliographie"
 
-#: stylesheets/l10n.xml.in.h:22
+#: stylesheets/l10n.xml.in.h:23
 msgid "Book"
 msgstr "Buch"
 
-#: stylesheets/l10n.xml.in.h:23
+#: stylesheets/l10n.xml.in.h:24
 msgid "Caution"
 msgstr "Achtung"
 
-#: stylesheets/l10n.xml.in.h:24
+#: stylesheets/l10n.xml.in.h:25
 msgid "Chapter"
 msgstr "Kapitel"
 
 # CHECK Mitarbeiter?
-#: stylesheets/l10n.xml.in.h:25
+#: stylesheets/l10n.xml.in.h:26
 msgid "Collaborator"
 msgstr "Mitwirkender"
 
+# CHECK Mitarbeiter?
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborators"
+msgstr "Mitwirkende"
+
 # CHECK Fachchinesisch?
-#: stylesheets/l10n.xml.in.h:26
+#: stylesheets/l10n.xml.in.h:28
 msgid "Colophon"
 msgstr "Kolophon"
 
-#: stylesheets/l10n.xml.in.h:28
+#: stylesheets/l10n.xml.in.h:30
 msgid "Copyright"
 msgstr "Copyright"
 
-#: stylesheets/l10n.xml.in.h:29
+#: stylesheets/l10n.xml.in.h:31
+msgid "Copyrights"
+msgstr "Copyright"
+
+#: stylesheets/l10n.xml.in.h:32
 msgid "Date"
 msgstr "Datum"
 
-#: stylesheets/l10n.xml.in.h:30
+#: stylesheets/l10n.xml.in.h:33
 msgid "Dedication"
 msgstr "Widmung"
 
-#: stylesheets/l10n.xml.in.h:31
+#: stylesheets/l10n.xml.in.h:34
 msgid "Editor"
 msgstr "Editor"
 
-#: stylesheets/l10n.xml.in.h:32
+#: stylesheets/l10n.xml.in.h:36
 msgid "Email"
 msgstr "E-Mail"
 
-#: stylesheets/l10n.xml.in.h:33
+#: stylesheets/l10n.xml.in.h:37
 msgid "Example"
 msgstr "Beispiel"
 
 # CHECK
-#: stylesheets/l10n.xml.in.h:34
+#: stylesheets/l10n.xml.in.h:38
 msgid "Figure"
 msgstr "Illustration"
 
-#: stylesheets/l10n.xml.in.h:35
+#: stylesheets/l10n.xml.in.h:39
 msgid "Glossary"
 msgstr "Glossar"
 
-#: stylesheets/l10n.xml.in.h:36
+#: stylesheets/l10n.xml.in.h:40
 msgid "Important"
 msgstr "Wichtig"
 
-#: stylesheets/l10n.xml.in.h:37
+#: stylesheets/l10n.xml.in.h:41
 msgid "Index"
 msgstr "Index"
 
-#: stylesheets/l10n.xml.in.h:38
+#: stylesheets/l10n.xml.in.h:42
 msgid "Legal Notice"
 msgstr "Rechtlicher Hinweis"
 
 # CHECK
-#: stylesheets/l10n.xml.in.h:39
+#: stylesheets/l10n.xml.in.h:43
 msgid "Level"
 msgstr "Niveau"
 
-#: stylesheets/l10n.xml.in.h:40
+#: stylesheets/l10n.xml.in.h:44
 msgid "Message Audience"
 msgstr "Zielgruppe der Nachricht"
 
 # CHECK
-#: stylesheets/l10n.xml.in.h:41
+#: stylesheets/l10n.xml.in.h:45
 msgid "Message Level"
 msgstr "Nachrichtenniveau"
 
-#: stylesheets/l10n.xml.in.h:42
+#: stylesheets/l10n.xml.in.h:46
 msgid "Message Origin"
 msgstr "Nachrichtenursprung"
 
-#: stylesheets/l10n.xml.in.h:43
+#: stylesheets/l10n.xml.in.h:47
 msgid "Note"
 msgstr "Hinweis"
 
-#: stylesheets/l10n.xml.in.h:44
+#: stylesheets/l10n.xml.in.h:48
 msgid "Origin"
 msgstr "Ursprung"
 
-#: stylesheets/l10n.xml.in.h:45
+#: stylesheets/l10n.xml.in.h:49
 msgid "Other Contributor"
 msgstr "Weiterer Mitwirkender"
 
+#: stylesheets/l10n.xml.in.h:50
+msgid "Other Contributors"
+msgstr "Weitere Mitwirkende"
+
 # CHECK
-#: stylesheets/l10n.xml.in.h:46
+#: stylesheets/l10n.xml.in.h:51
 msgid "Part"
 msgstr "Teil"
 
-#: stylesheets/l10n.xml.in.h:47
+#: stylesheets/l10n.xml.in.h:52
 msgid "Preface"
 msgstr "Vorwort"
 
-#: stylesheets/l10n.xml.in.h:48
+#: stylesheets/l10n.xml.in.h:53
 msgid "Publisher"
 msgstr "Herausgeber"
 
-#: stylesheets/l10n.xml.in.h:49
+#: stylesheets/l10n.xml.in.h:54
+msgid "Publishers"
+msgstr "Herausgeber"
+
+#: stylesheets/l10n.xml.in.h:55
 msgid "Reference"
 msgstr "Verweis"
 
-#: stylesheets/l10n.xml.in.h:50
+#: stylesheets/l10n.xml.in.h:56
 msgid "Reference Entry"
 msgstr "Verweiseintrag"
 
-#: stylesheets/l10n.xml.in.h:51
+#: stylesheets/l10n.xml.in.h:57
 msgid "Reference Section"
 msgstr "Verweisabschnitt"
 
-#: stylesheets/l10n.xml.in.h:52
+#: stylesheets/l10n.xml.in.h:58
 msgid "Revision History"
 msgstr "Revisionschronik"
 
-#: stylesheets/l10n.xml.in.h:54
+#: stylesheets/l10n.xml.in.h:60
 msgid "See"
 msgstr "Siehe"
 
-#: stylesheets/l10n.xml.in.h:55
+#: stylesheets/l10n.xml.in.h:61
 msgid "See Also"
 msgstr "Siehe auch"
 
-#: stylesheets/l10n.xml.in.h:56
+#: stylesheets/l10n.xml.in.h:62
 msgid "Set Index"
 msgstr "Satzindex"
 
-#: stylesheets/l10n.xml.in.h:57
+#: stylesheets/l10n.xml.in.h:63
 msgid "Table"
 msgstr "Tabelle"
 
-#: stylesheets/l10n.xml.in.h:58
+#: stylesheets/l10n.xml.in.h:64
 msgid "Table of Contents"
 msgstr "Inhaltsverzeichnis"
 
-#: stylesheets/l10n.xml.in.h:59
+#: stylesheets/l10n.xml.in.h:65
 msgid "Tip"
 msgstr "Tipp"
 
-#: stylesheets/l10n.xml.in.h:60
+#: stylesheets/l10n.xml.in.h:66
 msgid "Title"
 msgstr "Titel"
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:68
 msgid "Warning"
 msgstr "Warnung"
 
