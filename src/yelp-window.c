@@ -1118,6 +1118,8 @@ yelp_window_destroyed (GtkWidget *window,
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
+    window_disconnect (YELP_WINDOW (window));
+
     priv = YELP_WINDOW(window)->priv;
 
     g_object_unref (priv->pane);
