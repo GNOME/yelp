@@ -1,50 +1,50 @@
 # Traditional Chinese translation of yelp.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002-2003 Free Software Foundation, Inc.
 # Joe Man <trmetal@yahoo.com.hk>, 2002.
-# Abel Cheung <maddog@linux.org.hk>, 2002.
+# Abel Cheung <maddog@linux.org.hk>, 2002-2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 1.0\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-06-11 07:04+0800\n"
+"Project-Id-Version: yelp 2.2.0\n"
+"POT-Creation-Date: 2003-01-21 17:45+0800\n"
+"PO-Revision-Date: 2003-01-21 18:24+0800\n"
 "Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
-"Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
+"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>在文件中搜尋文字：</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "自動換行(_W)"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "繼續搜尋..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "符合完整字詞(_E)"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "區分大小寫(_M)"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "下一個(_N)"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "上一個(_P)"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -141,9 +141,8 @@ msgid "Section"
 msgstr "章節"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "尋找："
+msgstr "尋找(_S)："
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -152,7 +151,7 @@ msgstr "說明文件"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
-msgstr "GNOME - 桌面"
+msgstr "GNOME ─ 桌面"
 
 #: src/yelp-view-toc.c:167
 msgid "Additional documents"
@@ -179,17 +178,16 @@ msgid "Manual pages"
 msgstr "說明文件"
 
 #: src/yelp-view-toc.c:712
-#, fuzzy
 msgid "GNOME is"
-msgstr "GNOME - 桌面"
+msgstr "GNOME 是"
 
 #: src/yelp-view-toc.c:713
 msgid "Free Software"
-msgstr ""
+msgstr "自由軟體"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
-msgstr ""
+msgstr "版權所有 ©"
 
 #: src/yelp-window.c:163
 msgid "/_File"
@@ -197,23 +195,23 @@ msgstr "/檔案(_F)"
 
 #: src/yelp-window.c:164
 msgid "/File/_New window"
-msgstr "/檔案/新增視窗(_N)"
+msgstr "/檔案(F)/新增視窗(_N)"
 
 #: src/yelp-window.c:165
 msgid "/File/_Close window"
-msgstr "/檔案/關閉視窗(_C)"
+msgstr "/檔案(F)/關閉視窗(_C)"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/編輯(_E)"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/編輯(E)/在頁面中搜尋(_F)..."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/編輯(E)/繼續搜尋(_F)"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
@@ -221,27 +219,27 @@ msgstr "/移至(_G)"
 
 #: src/yelp-window.c:172
 msgid "/Go/_Back"
-msgstr "/移至/上一頁(_B)"
+msgstr "/移至(G)/上一頁(_B)"
 
 #: src/yelp-window.c:173
 msgid "/Go/_Forward"
-msgstr "/移至/下一頁(_F)"
+msgstr "/移至(G)/下一頁(_F)"
 
 #: src/yelp-window.c:174
 msgid "/Go/_Home"
-msgstr "/移至/首頁(_H)"
+msgstr "/移至(G)/首頁(_H)"
 
 #: src/yelp-window.c:175
 msgid "/Go/_Index"
-msgstr "/移至/索引(_I)"
+msgstr "/移至(G)/索引(_I)"
 
 #: src/yelp-window.c:177
 msgid "/_Help"
-msgstr "/說明(_H)"
+msgstr "/求助(_H)"
 
 #: src/yelp-window.c:178
 msgid "/Help/_About"
-msgstr "/說明/關於(_A)"
+msgstr "/求助(H)/關於(_A)"
 
 #: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
@@ -256,7 +254,12 @@ msgstr "文件‘%s’不存在"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:675
 msgid "translator_credits"
-msgstr "Joe Man <trmetal@yahoo.com.hk>"
+msgstr ""
+"i18n 程式中文化計劃\n"
+"http://i18n.linux.org.tw/\n"
+"\n"
+"Joe Man <trmetal@yahoo.com.hk>, 2002\n"
+"Abel Cheung <maddog@linux.org.hk>, 2002-2003"
 
 #: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
@@ -292,7 +295,7 @@ msgstr "索引"
 
 #: src/yelp-window.c:826
 msgid "Search in the index"
-msgstr "在索引中尋找"
+msgstr "在索引中搜尋"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -300,10 +303,4 @@ msgstr "顯示 GNOME 的說明文件"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
-msgstr "說明"
-
-#~ msgid "Start page"
-#~ msgstr "開始頁"
-
-#~ msgid "Scrollkeeper docs for category"
-#~ msgstr "以下分類的 Scrollkeeper 文件："
+msgstr "說明文件瀏覽器"
