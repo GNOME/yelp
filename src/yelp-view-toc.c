@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2002 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -81,8 +82,7 @@ yelp_view_toc_get_type (void)
 {
         static GType view_type = 0;
 
-        if (!view_type)
-        {
+        if (!view_type) {
                 static const GTypeInfo view_info =
                         {
                                 sizeof (YelpViewTOCClass),
@@ -370,7 +370,6 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 	do {
 		if (node->children != NULL) {
 			if (!sub_started) {
-/* 				yelp_html_printf (priv->html_view, TOC_BLOCK_START); */
 				yelp_html_printf (priv->html_view, "<h3>%s</h3>", 
 						  str_subcats);
 				
@@ -423,7 +422,6 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 				url = yelp_util_compose_path_url (node->parent, yelp_uri_get_path (section->uri));
 				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", yelp_uri_to_string (section->uri), 
 						  section->name);
-/* 				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", url, section->name); */
 				g_free (url);
 				i++;
 			}
@@ -776,8 +774,6 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 
 	got_a_leaf = FALSE;
 	node = root->children;
-
-/* 	yelp_html_printf (priv->html_view, TOC_BLOCK_START); */
 
 	for (node = root->children; node; node = node->next) {
 		

@@ -88,6 +88,8 @@ uri_get_doc_path (const gchar *str_uri)
 	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "file:", 5)) {
 		ret_val = g_strdup (no_anchor_uri + 5);
+	} else {
+		ret_val = g_strdup (no_anchor_uri);
 	}
 	
 	g_free (no_anchor_uri);
@@ -540,8 +542,15 @@ yelp_uri_to_string (YelpURI *uri)
 	
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	if (uri->type == YELP_URI_TYPE_NON_EXISTENT ||
-	    uri->type == YELP_URI_TYPE_UNKNOWN) {
+	if (uri->type == YELP_URI_TYPE_NON_EXISTENT) {
+		return NULL;
+	}
+
+	if (uri->type == YELP_URI_TYPE_UNKNOWN) {
+		if (uri->path) {
+			return g_strdup (uri->path);
+		}
+
 		return NULL;
 	}
 
