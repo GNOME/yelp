@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2002-01-30 22:18+0100\n"
-"PO-Revision-Date: 2002-01-30 22:20+0100\n"
+"POT-Creation-Date: 2002-02-16 11:36+0100\n"
+"PO-Revision-Date: 2002-02-16 11:36+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -21,131 +21,127 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-info.c:96
+#: src/yelp-info.c:99
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:77
+#: src/yelp-main.c:78
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kunne ikke aktivere Yelp: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:98
 msgid "Could not open new window."
 msgstr "Kunne ikke åbne nyt vindue."
 
-#: src/yelp-man.c:269 src/yelp-man.c:290 src/yelp-man.c:326 src/yelp-man.c:358
-#: src/yelp-man.c:374 src/yelp-man.c:385
+#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
+#: src/yelp-man.c:376 src/yelp-man.c:387
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:274 src/yelp-man.c:305 src/yelp-man.c:363 src/yelp-man.c:390
+#: src/yelp-man.c:276 src/yelp-man.c:307 src/yelp-man.c:365 src/yelp-man.c:392
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:279
+#: src/yelp-man.c:281
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:295
+#: src/yelp-man.c:297
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:300
+#: src/yelp-man.c:302
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:310
+#: src/yelp-man.c:312
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:315
+#: src/yelp-man.c:317
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:337
+#: src/yelp-man.c:339
 msgid "System Calls"
 msgstr "Systemkald"
 
-#: src/yelp-man.c:342
+#: src/yelp-man.c:344
 msgid "Library Functions"
 msgstr "Biblioteksfunktioner"
 
-#: src/yelp-man.c:347
+#: src/yelp-man.c:349
 msgid "Kernel Routines"
 msgstr "Kernerutiner"
 
-#: src/yelp-man.c:402
+#: src/yelp-man.c:404
 msgid "Applications"
 msgstr "Programmer"
 
-#: src/yelp-man.c:407
+#: src/yelp-man.c:409
 msgid "Development"
 msgstr "Udvikling"
 
-#: src/yelp-man.c:412
+#: src/yelp-man.c:414
 msgid "Hardware Devices"
 msgstr "Hardwareenheder"
 
-#: src/yelp-man.c:417
+#: src/yelp-man.c:419
 msgid "Configuration Files"
 msgstr "Konfigurationsfiler"
 
-#: src/yelp-man.c:422
+#: src/yelp-man.c:424
 msgid "Games"
 msgstr "Spil"
 
-#: src/yelp-man.c:427
+#: src/yelp-man.c:429
 msgid "Overviews"
 msgstr "Oversigter"
 
-#: src/yelp-man.c:432
+#: src/yelp-man.c:434
 msgid "System Administration"
 msgstr "Systemadministration"
 
-#: src/yelp-man.c:443
+#: src/yelp-man.c:445
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:207 src/yelp-view-index.c:175
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:176
 msgid "Section"
 msgstr "Del"
 
-#: src/yelp-view-toc.c:239
-msgid "Important documents"
-msgstr "Vigtige dokumenter"
-
-#: src/yelp-view-toc.c:240
+#: src/yelp-view-toc.c:271
 msgid "Other document systems"
 msgstr "Andre dokumentsystemer"
 
-#: src/yelp-view-toc.c:241
+#: src/yelp-view-toc.c:272
 msgid "Manual pages"
 msgstr "Manualsider"
 
-#: src/yelp-view-toc.c:242 src/yelp-view-toc.c:495 src/yelp-view-toc.c:514
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:537 src/yelp-view-toc.c:556
 msgid "Info pages"
 msgstr "Infosider"
 
-#: src/yelp-view-toc.c:243
+#: src/yelp-view-toc.c:274
 msgid "Installed documents"
 msgstr "Installerede dokumenter"
 
-#: src/yelp-view-toc.c:253
+#: src/yelp-view-toc.c:285
 msgid "Start page"
 msgstr "Startside"
 
-#: src/yelp-view-toc.c:418
-msgid "Manual pages for section"
-msgstr "Manualsider i sektion"
+#: src/yelp-view-toc.c:460
+msgid "<a href=\"toc:man\">Manual pages</a>: "
+msgstr "<a href=\"toc:man\">Manualsider</a>: "
 
-#: src/yelp-view-toc.c:448 src/yelp-view-toc.c:467
-msgid "Man page sections"
-msgstr "Mansidesektioner"
+#: src/yelp-view-toc.c:490 src/yelp-view-toc.c:509
+msgid "Manual page sections"
+msgstr "Manualsidesektioner"
 
-#: src/yelp-view-toc.c:597
+#: src/yelp-view-toc.c:659
 msgid "Scrollkeeper docs for category"
-msgstr "Scrollkeeper-dokumenter for kategori"
+msgstr "Scrollkeeperdokumenter for kategori"
 
 #: src/yelp-window.c:111
 msgid "/_File"
@@ -214,3 +210,9 @@ msgstr "Få hjælp til Gnome"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjælp"
+
+#~ msgid "Important documents"
+#~ msgstr "Vigtige dokumenter"
+
+#~ msgid "Manual pages for section"
+#~ msgstr "Manualsider i sektion"
