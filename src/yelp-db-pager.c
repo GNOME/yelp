@@ -243,10 +243,7 @@ db_pager_process (YelpPager *pager)
 
     if (doc == NULL) {
 	gchar *str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
-	g_set_error (&error,
-		     YELP_ERROR,
-		     YELP_ERROR_FAILED_OPEN,
-		     _("The document '%s' could not be opened"), str_uri);
+	yelp_set_error (&error, YELP_ERROR_NO_DOC);
 	yelp_pager_error (pager, error);
 
 	g_free (str_uri);

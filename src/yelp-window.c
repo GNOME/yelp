@@ -417,10 +417,7 @@ window_handle_uri (YelpWindow  *window,
 	handled = window_handle_pager_uri (window, uri);
 	break;
     case YELP_URI_TYPE_DOCBOOK_SGML:
-	g_set_error (&error,
-		     YELP_ERROR,
-		     YELP_ERROR_NO_SGML,
-		     _("DocBook SGML documents are no longer supported."));
+	yelp_set_error (&error, YELP_ERROR_NO_SGML);
 	break;
     case YELP_URI_TYPE_HTML:
 	handled = window_handle_html_uri (window, uri);
@@ -432,12 +429,7 @@ window_handle_uri (YelpWindow  *window,
 	break;
     case YELP_URI_TYPE_ERROR:
     default:
-	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
-	g_set_error (&error,
-		     YELP_ERROR,
-		     YELP_ERROR_FAILED_OPEN,
-		     _("The document '%s' could not be opened"), str_uri);
-	g_free (str_uri);
+	yelp_set_error (&error, YELP_ERROR_NO_DOC);
 	break;
     }
  
@@ -717,7 +709,6 @@ window_handle_pager_uri (YelpWindow  *window,
     GError         *error = NULL;
     gboolean     loadnow  = FALSE;
     gboolean     startnow = TRUE;
-    gchar       *str_uri;
     gchar       *path;
     YelpPage    *page = NULL;
     YelpPager   *pager;
@@ -756,13 +747,8 @@ window_handle_pager_uri (YelpWindow  *window,
     }
 
     if (!pager) {
-	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
-	g_set_error (&error,
-		     YELP_ERROR,
-		     YELP_ERROR_FAILED_OPEN,
-		     _("The document '%s' could not be opened"), str_uri);
+	yelp_set_error (&error, YELP_ERROR_NO_DOC);
 	window_error (window, error);
-	g_free (str_uri);
 	g_error_free (error);
     }
 
@@ -790,11 +776,7 @@ window_handle_pager_uri (YelpWindow  *window,
 	    gchar *page_id = yelp_pager_resolve_uri (pager, uri);
 
 	    if (!page_id && (frag_id && strcmp (frag_id, ""))) {
-		g_set_error (&error,
-			     YELP_ERROR,
-			     YELP_ERROR_FAILED_OPEN,
-			     _("The page '%s' could not be found in this document."),
-			     frag_id);
+		yelp_set_error (&error, YELP_ERROR_NO_PAGE);
 		window_error (window, error);
 
 		g_free (page_id);
@@ -818,12 +800,7 @@ window_handle_pager_uri (YelpWindow  *window,
 
 	if (state & YELP_PAGER_STATE_FINISHED) {
 	    if (!page) {
-		const gchar *frag_id = gnome_vfs_uri_get_fragment_identifier (uri);
-		g_set_error (&error,
-			     YELP_ERROR,
-			     YELP_ERROR_FAILED_OPEN,
-			     _("The page '%s' could not be found in this document."),
-			     frag_id);
+		yelp_set_error (&error, YELP_ERROR_NO_PAGE);
 		window_error (window, error);
 		g_error_free (error);
 		return FALSE;
@@ -1092,15 +1069,9 @@ pager_contents_cb (YelpPager   *pager,
     page = yelp_pager_resolve_uri (pager, uri);
 
     if (!page && (frag && strcmp (frag, ""))) {
-	const gchar *frag_id = gnome_vfs_uri_get_fragment_identifier (uri);
-
 	window_disconnect (window);
 
-	g_set_error (&error,
-		     YELP_ERROR,
-		     YELP_ERROR_FAILED_OPEN,
-		     _("The page '%s' could not be found in this document."),
-		     frag_id);
+	yelp_set_error (&error, YELP_ERROR_NO_PAGE);
 	window_error (window, error);
 	g_error_free (error);
     }
@@ -1155,11 +1126,7 @@ pager_finish_cb (YelpPager   *pager,
 
     window_disconnect (window);
 
-    g_set_error (&error,
-		 YELP_ERROR,
-		 YELP_ERROR_FAILED_OPEN,
-		 _("The page '%s' could not be found in this document."),
-		 frag);
+    yelp_set_error (&error, YELP_ERROR_NO_PAGE);
     window_error (window, error);
 
     g_error_free (error);

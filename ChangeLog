@@ -1,3 +1,12 @@
+2004-01-07  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-toc-pager.c:
+	* src/yelp-window.c:
+	- Consolidated all the GError-making in yelp-error.c.
+
 2004-01-05  Shaun McCance  <shaunm@gnome.org>
 
 	* data/Makefile.am:

@@ -26,13 +26,15 @@
 #define YELP_ERROR yelp_error_quark ()
 
 typedef enum {
-	YELP_ERROR_URI_NOT_EXIST,
-        YELP_ERROR_DOCBOOK_2_HTML,
-        YELP_ERROR_FAILED_OPEN,
-	YELP_ERROR_FAILED_TOC,
+	YELP_ERROR_NO_DOC,
+	YELP_ERROR_NO_PAGE,
+	YELP_ERROR_NO_TOC,
 	YELP_ERROR_NO_SGML
 } YelpError;
 
-GQuark yelp_error_quark (void) G_GNUC_CONST;
+GQuark   yelp_error_quark     (void) G_GNUC_CONST;
+
+void     yelp_set_error       (GError     **error,
+			       YelpError    code);
 
 #endif /* __YELP_ERROR_H__ */

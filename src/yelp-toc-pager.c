@@ -646,10 +646,7 @@ process_read_menu (YelpTocPager *pager)
 				     XML_PARSE_NONET    );
 
     if (!priv->toc_doc) {
-	g_set_error (&error,
-		     YELP_ERROR,
-		     YELP_ERROR_FAILED_TOC,
-		     _("The table of contents could not be read."));
+	yelp_set_error (&error, YELP_ERROR_NO_TOC);
 	yelp_pager_error (YELP_PAGER (pager), error);
 	priv->cancel = TRUE;
 	return FALSE;
@@ -658,10 +655,7 @@ process_read_menu (YelpTocPager *pager)
     toc_node = xmlDocGetRootElement (priv->toc_doc);
 
     if (xmlStrcmp (toc_node->name, (const xmlChar *) "toc")) {
-	g_set_error (&error,
-		     YELP_ERROR,
-		     YELP_ERROR_FAILED_TOC,
-		     _("The table of contents could not be read."));
+	yelp_set_error (&error, YELP_ERROR_NO_TOC);
 	yelp_pager_error (YELP_PAGER (pager), error);
 	priv->cancel = TRUE;
 	return FALSE;
