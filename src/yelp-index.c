@@ -114,8 +114,6 @@ yelp_index_entry_active_cb (GtkEntry *entry, gpointer data)
 	text = gtk_entry_get_text (entry);
 
 	g_print ("Index searching isn't supported yet\n");
-
-/* 	g_print ("Hits: %d\n", g_slist_length (hit_list)); */
 }
 
 YelpIndex *

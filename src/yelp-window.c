@@ -29,12 +29,11 @@
 #include <libgtkhtml/gtkhtml.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-app.h>
-#include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-i18n.h>
 #include <string.h>
 #include "yelp-index.h"
 #include "yelp-toc.h"
-#include "yelp-doc-view.h"
+#include "yelp-view-doc.h"
 #include "yelp-window.h"
 #include "yelp-section.h"
 #include "yelp-history.h"
@@ -44,17 +43,12 @@ static void yelp_window_class_init	       (YelpWindowClass     *klass);
 
 static void yelp_window_populate               (YelpWindow          *window);
 
-static void yelp_window_exit                   (gpointer             data,
+static void yelp_window_close_cb               (gpointer             data,
 						guint                section,
 						GtkWidget           *widget);
-static void yelp_window_new_window             (gpointer             data,
-						guint                section,
-						GtkWidget           *widget);
+
 static void yelp_window_section_selected_cb    (YelpWindow          *window,
 						YelpSection         *section);
-static void yelp_window_about                  (gpointer             data,
-						guint                section,
-						GtkWidget           *widget);
 static void yelp_window_toggle_history_buttons (GtkWidget           *button,
 						gboolean             sensitive,
 						YelpHistory         *history);
@@ -64,19 +58,14 @@ static void yelp_window_history_button_pressed (GtkWidget           *button,
 struct _YelpWindowPriv {
 	YelpBase       *base;
 	
-        GtkWidget      *hpaned;
-
-        GtkWidget      *yelp_doc_view;
+        GtkWidget      *yelp_view_doc;
         GtkWidget      *yelp_toc;
 
 	YelpIndex      *index;
-
 	YelpHistory    *history;
 
 	GtkWidget      *forward_button;
 	GtkWidget      *back_button;
-
-	GtkItemFactory *item_factory;
 };
 
 GType
@@ -146,19 +135,18 @@ yelp_window_populate (YelpWindow *window)
 	GtkWidget      *frame;
 	GtkWidget      *main_box;
 	GtkWidget      *toolbar;
+	GtkWidget      *button;
+	GtkWidget      *hpaned;
 	
         priv = window->priv;
 
-	main_box           = gtk_vbox_new (FALSE, 0);
- 	html_sw            = gtk_scrolled_window_new (NULL, NULL);
-        tree_sw            = gtk_scrolled_window_new (NULL, NULL);
-        search_list_sw     = gtk_scrolled_window_new (NULL, NULL); 
-        search_box         = gtk_vbox_new (FALSE, 0);
-
-        priv->hpaned       = gtk_hpaned_new ();
-
-	priv->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR,
-						   "<main>", NULL);
+	main_box        = gtk_vbox_new (FALSE, 0);
+ 	html_sw         = gtk_scrolled_window_new (NULL, NULL);
+        tree_sw         = gtk_scrolled_window_new (NULL, NULL);
+        search_list_sw  = gtk_scrolled_window_new (NULL, NULL); 
+        search_box      = gtk_vbox_new (FALSE, 0);
+        hpaned          = gtk_hpaned_new ();
+	
 	gtk_container_add (GTK_CONTAINER (window), main_box);
 	
 	toolbar = gtk_toolbar_new ();
@@ -183,24 +171,28 @@ yelp_window_populate (YelpWindow *window)
 							 "", "",
 							 NULL, NULL, -1);
 
-	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar), 
-				  "gtk-home",
-				  "", "",
-				  NULL, NULL, -1);
+	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar), 
+					   "gtk-home",
+					   "", "",
+					   NULL, NULL, -1);
+
+	/* Connect to Home-button */
 
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
 
-	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-				  "gtk-index",
-				  "", "",
-				  NULL, NULL, -1);
+	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
+					   "gtk-index",
+					   "", "",
+					   NULL, NULL, -1);
 	
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
 	
-	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-				  "gtk-find",
-				  "", "",
-				  NULL, NULL, -1);
+	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
+					   "gtk-find",
+					   "", "",
+					   NULL, NULL, -1);
+
+	/* Connect to find-button */
 
 	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
 				   gtk_label_new (_("Help on ")),
@@ -220,27 +212,33 @@ yelp_window_populate (YelpWindow *window)
 			  G_CALLBACK (yelp_window_history_button_pressed),
 			  G_OBJECT (window));
 
+	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
+					   "gtk-close",
+					   "", "",
+					   NULL, NULL, -1);
+	
+	g_signal_connect (button, "clicked",
+			  G_CALLBACK (yelp_window_close_cb),
+			  G_OBJECT (window));
 	
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
 
         /* Doc View */
-        priv->yelp_doc_view = yelp_doc_view_new ();
+        priv->yelp_view_doc = yelp_view_doc_new ();
 
-	g_signal_connect_swapped (priv->yelp_doc_view, "section_selected",
+	g_signal_connect_swapped (priv->yelp_view_doc, "section_selected",
 				  G_CALLBACK (yelp_window_section_selected_cb),
 				  G_OBJECT (window));
 	
-        gtk_container_add (GTK_CONTAINER (html_sw), priv->yelp_doc_view);
+        gtk_container_add (GTK_CONTAINER (html_sw), priv->yelp_view_doc);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (html_sw),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
-        
-
 
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-        gtk_paned_add2 (GTK_PANED (priv->hpaned), frame);
+        gtk_paned_add2 (GTK_PANED (hpaned), frame);
 
         /* Tree */
         priv->yelp_toc = yelp_toc_new (yelp_base_get_bookshelf (priv->base));
@@ -266,6 +264,7 @@ yelp_window_populate (YelpWindow *window)
         gtk_box_pack_start (GTK_BOX (search_box), 
 			    yelp_index_get_entry (priv->index),
                             FALSE, FALSE, 0);
+
         gtk_box_pack_end_defaults (GTK_BOX (search_box), search_list_sw);
 
 	frame = gtk_frame_new (NULL);
@@ -273,33 +272,17 @@ yelp_window_populate (YelpWindow *window)
 
 	gtk_container_add (GTK_CONTAINER (frame), tree_sw);
 	
-        gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
+        gtk_paned_add1 (GTK_PANED (hpaned), frame);
         
-        gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
+        gtk_paned_set_position (GTK_PANED (hpaned), 250);
 
-	gtk_box_pack_start (GTK_BOX (main_box), priv->hpaned,
-			    TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (main_box), hpaned, TRUE, TRUE, 0);
 }
 
 static void
-yelp_window_exit (gpointer data, guint section, GtkWidget *widget)
+yelp_window_close_cb (gpointer data, guint section, GtkWidget *widget)
 {
 	gtk_main_quit ();
-}
-
-static void
-yelp_window_new_window (gpointer data, guint section, GtkWidget *widget)
-{
-	YelpWindow *window;
-	GtkWidget  *new_window;
-	
-	g_return_if_fail (YELP_IS_WINDOW (data));
-	
-	window = YELP_WINDOW (data);
-	
-	new_window = yelp_base_new_window (window->priv->base);
-	
-	gtk_widget_show_all (new_window);
 }
 
 static void
@@ -316,29 +299,8 @@ yelp_window_section_selected_cb (YelpWindow  *window,
 
 	yelp_history_goto (priv->history, section);
 
-	yelp_doc_view_open_section (YELP_DOC_VIEW (window->priv->yelp_doc_view), section);
+	yelp_view_doc_open_section (YELP_VIEW_DOC (window->priv->yelp_view_doc), section);
 
-}
-
-static void
-yelp_window_about (gpointer data, guint section, GtkWidget *widget)
-{
-	GtkWidget *about;
-	const gchar *authors[] = { 
-		"Mikael Hallendal <micke@codefactory.se>",
-		NULL
-	};
-	
-	about = gnome_about_new (PACKAGE, VERSION,
-				 "(C) 2001 Mikael Hallendal <micke@codefactory.se>",
-				 _("Help Browser for GNOME 2.0"),
-				 authors,
-				 NULL,
-				 NULL,
-				 NULL);
-
-	gtk_widget_show (about);
-	g_print ("Show about\n");
 }
 
 static void
@@ -372,7 +334,7 @@ yelp_window_history_button_pressed (GtkWidget *button, YelpWindow *window)
 	}
 
 	if (section) {
-		yelp_doc_view_open_section (YELP_DOC_VIEW (priv->yelp_doc_view), section);
+		yelp_view_doc_open_section (YELP_VIEW_DOC (priv->yelp_view_doc), section);
 	}
 }
 
@@ -400,7 +362,7 @@ yelp_window_open_uri (YelpWindow  *window,
 	
 	priv = window->priv;
 	
-	yelp_doc_view_open_section (YELP_DOC_VIEW (priv->yelp_doc_view), 
+	yelp_view_doc_open_section (YELP_VIEW_DOC (priv->yelp_view_doc), 
 				    yelp_section_new (NULL, str_uri,
 						      NULL, NULL));
 }

@@ -1,3 +1,12 @@
+2001-12-09  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-home.c: added, will be the Home-view.
+
+	* src/yelp-doc-view.[ch]: moved to yelp-view-doc.[ch]
+	
+	* src/Makefile.am (yelp_SOURCES): use yelp-view* instead of
+	  yelp-*-view.
+
 2001-12-08  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-main.c (main): cast the window to YELP_WINDOW.

@@ -20,8 +20,8 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __YELP_DOC_VIEW_H__
-#define __YELP_DOC_VIEW_H__
+#ifndef __YELP_VIEW_DOC_H__
+#define __YELP_VIEW_DOC_H__
 
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
@@ -29,42 +29,36 @@
 #include <libgtkhtml/gtkhtml.h>
 #include "yelp-section.h"
 
-#define YELP_TYPE_DOC_VIEW    (yelp_doc_view_get_type ())
-#define YELP_DOC_VIEW(o)      (GTK_CHECK_CAST ((o), YELP_TYPE_DOC_VIEW, YelpDocView))
-#define YELP_DOC_VIEW_CLASS(k)(GTK_CHECK_FOR_CAST((k), YELP_TYPE_DOC_VIEW, YelpDocViewClass))
-#define YELP_IS_DOC_VIEW(o)       (GTK_CHECK_TYPE ((o), YELP_TYPE_DOC_VIEW))
-#define YELP_IS_DOC_VIEW_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), YELP_TYPE_DOC_VIEW))
+#define YELP_TYPE_VIEW_DOC    (yelp_view_doc_get_type ())
+#define YELP_VIEW_DOC(o)      (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW_DOC, YelpViewDoc))
+#define YELP_VIEW_DOC_CLASS(k)(GTK_CHECK_FOR_CAST((k), YELP_TYPE_VIEW_DOC, YelpViewDocClass))
+#define YELP_IS_VIEW_DOC(o)       (GTK_CHECK_TYPE ((o), YELP_TYPE_VIEW_DOC))
+#define YELP_IS_VIEW_DOC_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), YELP_TYPE_VIEW_DOC))
 
-typedef struct _YelpDocView        YelpDocView;
-typedef struct _YelpDocViewClass   YelpDocViewClass;
-typedef struct _YelpDocViewPriv    YelpDocViewPriv;
+typedef struct _YelpViewDoc        YelpViewDoc;
+typedef struct _YelpViewDocClass   YelpViewDocClass;
+typedef struct _YelpViewDocPriv    YelpViewDocPriv;
 
-struct _YelpDocView {
+struct _YelpViewDoc {
 	HtmlView          parent;
 	
-	YelpDocViewPriv  *priv;
+	YelpViewDocPriv  *priv;
 };
 
-struct _YelpDocViewClass {
+struct _YelpViewDocClass {
         HtmlViewClass    parent_class;
 
 	/* Signals */
-	void (*uri_selected) (YelpDocView    *view,
-			      const gchar *uri,
-			      const gchar *anchor);
+	void (*uri_selected) (YelpViewDoc    *view,
+			      const gchar    *uri,
+			      const gchar    *anchor);
 };
 
-GType           yelp_doc_view_get_type       (void);
-GtkWidget      *yelp_doc_view_new            (void);
+GType           yelp_view_doc_get_type       (void);
+GtkWidget      *yelp_view_doc_new            (void);
  
-#if 0
-void            yelp_doc_view_open_uri       (YelpDocView         *view, 
-					      const gchar         *uri);
-#endif
- 
-void            yelp_doc_view_open_section   (YelpDocView         *view,
+void            yelp_view_doc_open_section   (YelpViewDoc         *view,
 					      const YelpSection   *section);
 
-
-#endif /* __YELP_DOC_VIEW_H__ */
+#endif /* __YELP_VIEW_DOC_H__ */
 
