@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
-"POT-Creation-Date: 2004-02-12 17:12+0100\n"
+"POT-Creation-Date: 2004-02-24 18:22-0600\n"
 "PO-Revision-Date: 2004-02-14 15:26+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
@@ -18,8 +18,7 @@ msgstr ""
 msgid "Applets"
 msgstr "Appletlər"
 
-#: data/toc.xml.in.h:2
-#: src/yelp-man.c:429
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Proqramlar"
 
@@ -27,8 +26,7 @@ msgstr "Proqramlar"
 msgid "Desktop"
 msgstr "Masa Üstü"
 
-#: data/toc.xml.in.h:4
-#: src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "İnkişaf"
 
@@ -40,8 +38,7 @@ msgstr "İnkişaf Mühitləri"
 msgid "Development Tools"
 msgstr "İnkişaf Vasitələri"
 
-#: data/toc.xml.in.h:7
-#: stylesheets/l10n.xml.in.h:36
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Editorlar"
 
@@ -138,30 +135,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp E'malatxanası"
 
-#: src/yelp-db-pager.c:435
-#: src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "yelp:document üstündə href attributu tapılmadı"
 
-#: src/yelp-db-pager.c:450
-#: src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Yaddaş çatışmır"
 
-#: src/yelp-db-pager.c:631
-#: src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Başlıq səhifəsi"
 
 #  GList           *seriesids;
-#: src/yelp-db-pager.c:633
-#: stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Məzmun"
 
-#: src/yelp-db-pager.c:651
-#: stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Namə'lum"
@@ -199,19 +191,12 @@ msgstr "Yelp fəallaşdırıla bilmədi: '%s'"
 msgid "Could not open new window."
 msgstr "Yeni pəncərə açıla bilmədi."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -292,109 +277,108 @@ msgstr "Kateqoriyalar"
 msgid "Documents"
 msgstr "Sənədlər"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/_File"
 msgstr "/_Fayl"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:250
 msgid "/File/_New window"
 msgstr "/Fayl/_Yeni pəncərə"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:253
 msgid "/File/_Close window"
 msgstr "/Fayl/Pəncərəni _bağla"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:257
 msgid "/_Edit"
 msgstr "/_Düzəlt"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 msgid "/Edit/_Find..."
 msgstr "/Düzəlt/_Axtar..."
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
 msgstr "/Düzəlt/_Sonrakını Axtar"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
 msgstr "/Düzəlt/Ə_vvəlkini Axtar"
 
-#: src/yelp-window.c:267
+#: src/yelp-window.c:268
 msgid "/_Go"
 msgstr "/_Get"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/Go/_Back"
 msgstr "/Get/_Geri"
 
-#: src/yelp-window.c:271
+#: src/yelp-window.c:272
 msgid "/Go/_Forward"
 msgstr "/Get/_İrəli"
 
-#: src/yelp-window.c:274
+#: src/yelp-window.c:275
 msgid "/Go/_Home"
 msgstr "/Get/_Ev"
 
-#: src/yelp-window.c:277
+#: src/yelp-window.c:278
 msgid "/Go/"
 msgstr "/Get/"
 
-#: src/yelp-window.c:278
+#: src/yelp-window.c:279
 msgid "/Go/_Previous Page"
 msgstr "/Get/Ə_vvəlki Səhifə"
 
-#: src/yelp-window.c:281
+#: src/yelp-window.c:282
 msgid "/Go/_Next Page"
 msgstr "/Get/_Sonrakı Səhifə"
 
 #  GList           *seriesids;
-#: src/yelp-window.c:284
+#: src/yelp-window.c:285
 msgid "/Go/_Contents"
 msgstr "/Get/_Məzmun"
 
-#: src/yelp-window.c:288
+#: src/yelp-window.c:289
 msgid "/_Help"
 msgstr "/_Yardım"
 
-#: src/yelp-window.c:289
+#: src/yelp-window.c:290
 msgid "/Help/_About"
 msgstr "/Yardım/_Haqqında"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:352
 msgid "Help Browser"
 msgstr "Yardım Səyyahı"
 
-#: src/yelp-window.c:569
-#: stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Qisim"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:625
 msgid "Back"
 msgstr "Geri"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:626
 msgid "Show previous page in history"
 msgstr "Keçmişdəki əvvəlki səhifəni göstər"
 
-#: src/yelp-window.c:635
+#: src/yelp-window.c:636
 msgid "Forward"
 msgstr "İrəli"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:637
 msgid "Show next page in history"
 msgstr "Keçmişdəki növbəti səhifəni göstər"
 
-#: src/yelp-window.c:648
+#: src/yelp-window.c:649
 msgid "Home"
 msgstr "Ev"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:650
 msgid "Go to home view"
 msgstr "Ev görünüşünə get"
 
-#: src/yelp-window.c:859
+#: src/yelp-window.c:860
 msgid "Loading..."
 msgstr "Yüklənir..."
 
@@ -402,7 +386,7 @@ msgstr "Yüklənir..."
 #  * will shop up in the "about" box
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1290
+#: src/yelp-window.c:1300
 msgid "translator_credits"
 msgstr ""
 "Vasif İsmailoğlu <linuxaz@azerimail.net>\n"
@@ -411,7 +395,7 @@ msgstr ""
 "Tərcümə işləri üzrə yazışma siyahısı ünvanımız:\n"
 "<translation-team-az@lists.sourceforge.net>"
 
-#: src/yelp-window.c:1295
+#: src/yelp-window.c:1305
 msgid "A Help Browser for GNOME"
 msgstr "GNOME Üçün Yardım Səyyahı"
 
@@ -687,4 +671,3 @@ msgstr "GNOME haqqında yardım alın"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Yardım"
-

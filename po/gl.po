@@ -10,14 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-10 03:17-0600\n"
+"POT-Creation-Date: 2004-02-24 18:22-0600\n"
 "PO-Revision-Date: 2002-06-11 12:16+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <suso@trasno.net>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 #, fuzzy
@@ -158,17 +158,17 @@ msgstr ""
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:631 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:633 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 #, fuzzy
 msgid "Contents"
 msgstr "Contidos da axuda"
 
-#: src/yelp-db-pager.c:651 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr ""
@@ -297,122 +297,122 @@ msgstr "Categorías"
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/_File"
 msgstr "/_Ficheiro"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:250
 msgid "/File/_New window"
 msgstr "/Ficheiro/_Nova fiestra"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:253
 msgid "/File/_Close window"
 msgstr "/Ficheiro/_Pechar fiestra"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:257
 msgid "/_Edit"
 msgstr ""
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 msgid "/Edit/_Find..."
 msgstr ""
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
 msgstr ""
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
 msgstr ""
 
-#: src/yelp-window.c:267
+#: src/yelp-window.c:268
 msgid "/_Go"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/Go/_Back"
 msgstr "/Ir/A_trás"
 
-#: src/yelp-window.c:271
+#: src/yelp-window.c:272
 msgid "/Go/_Forward"
 msgstr "/Ir/A_diante"
 
-#: src/yelp-window.c:274
+#: src/yelp-window.c:275
 msgid "/Go/_Home"
 msgstr "/Ir/_Inicio"
 
-#: src/yelp-window.c:277
+#: src/yelp-window.c:278
 #, fuzzy
 msgid "/Go/"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:278
+#: src/yelp-window.c:279
 msgid "/Go/_Previous Page"
 msgstr ""
 
-#: src/yelp-window.c:281
+#: src/yelp-window.c:282
 #, fuzzy
 msgid "/Go/_Next Page"
 msgstr "/Ir/Í_ndice"
 
-#: src/yelp-window.c:284
+#: src/yelp-window.c:285
 #, fuzzy
 msgid "/Go/_Contents"
 msgstr "Contidos da axuda"
 
-#: src/yelp-window.c:288
+#: src/yelp-window.c:289
 msgid "/_Help"
 msgstr "/A_xuda"
 
-#: src/yelp-window.c:289
+#: src/yelp-window.c:290
 msgid "/Help/_About"
 msgstr "/Axuda/_Acerca"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:352
 msgid "Help Browser"
 msgstr "Navegador de axuda"
 
-#: src/yelp-window.c:569 stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Sección"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:625
 msgid "Back"
 msgstr "Atrás"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:626
 msgid "Show previous page in history"
 msgstr "Mostrar a páxina anterior na historia"
 
-#: src/yelp-window.c:635
+#: src/yelp-window.c:636
 msgid "Forward"
 msgstr "Adiante"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:637
 msgid "Show next page in history"
 msgstr "Mostrar a páxina seguinte na historia"
 
-#: src/yelp-window.c:648
+#: src/yelp-window.c:649
 msgid "Home"
 msgstr "Inicio"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:650
 msgid "Go to home view"
 msgstr "Ir á vista inicial"
 
-#: src/yelp-window.c:859
+#: src/yelp-window.c:860
 msgid "Loading..."
 msgstr "Cargando..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1290
+#: src/yelp-window.c:1300
 msgid "translator_credits"
 msgstr ""
 "Jesús Bravo Álvarez <suso@trasno.net>\n"
 "Proxecto Trasno - http://www.trasno.net"
 
-#: src/yelp-window.c:1295
+#: src/yelp-window.c:1305
 #, fuzzy
 msgid "A Help Browser for GNOME"
 msgstr "Navegador de axuda de GNOME 2.0"

@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-10 03:17-0600\n"
+"POT-Creation-Date: 2004-02-24 18:22-0600\n"
 "PO-Revision-Date: 2003-05-19 15:19+0000\n"
 "Last-Translator: Mathieu van Woerkom <mathieu.brabants.org>\n"
 "Language-Team: Limburgish <li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 #, fuzzy
@@ -154,17 +154,17 @@ msgstr ""
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:631 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:633 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 #, fuzzy
 msgid "Contents"
 msgstr "Hulp Inhaudsopgaaf"
 
-#: src/yelp-db-pager.c:651 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr ""
@@ -294,126 +294,126 @@ msgstr "Kattegerieje"
 msgid "Documents"
 msgstr "Dokkemènter"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/_File"
 msgstr "/_Besjtandj"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:250
 msgid "/File/_New window"
 msgstr "/Besjtandj/_Nuuj vinster"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:253
 msgid "/File/_Close window"
 msgstr "/Besjtandj/Vinster _sjloete"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:257
 msgid "/_Edit"
 msgstr "/B_ewirke"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 #, fuzzy
 msgid "/Edit/_Find..."
 msgstr "/Bewirke/_Zeuke in pagina..."
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:261
 #, fuzzy
 msgid "/Edit/Find Ne_xt"
 msgstr "/Bewirke/_Obbenuuts zeuke"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:264
 #, fuzzy
 msgid "/Edit/Find Pre_vious"
 msgstr "/Bewirke/_Obbenuuts zeuke"
 
-#: src/yelp-window.c:267
+#: src/yelp-window.c:268
 msgid "/_Go"
 msgstr "/_Gank nao"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/Go/_Back"
 msgstr "/Gank nao/V_eurige"
 
-#: src/yelp-window.c:271
+#: src/yelp-window.c:272
 msgid "/Go/_Forward"
 msgstr "/Gank nao/_Naekste"
 
-#: src/yelp-window.c:274
+#: src/yelp-window.c:275
 msgid "/Go/_Home"
 msgstr "/Gank nao/_Sjtartpagina"
 
-#: src/yelp-window.c:277
+#: src/yelp-window.c:278
 #, fuzzy
 msgid "/Go/"
 msgstr "/_Gank nao"
 
-#: src/yelp-window.c:278
+#: src/yelp-window.c:279
 #, fuzzy
 msgid "/Go/_Previous Page"
 msgstr "Veu_rige"
 
-#: src/yelp-window.c:281
+#: src/yelp-window.c:282
 #, fuzzy
 msgid "/Go/_Next Page"
 msgstr "/Gank nao/_Index"
 
-#: src/yelp-window.c:284
+#: src/yelp-window.c:285
 #, fuzzy
 msgid "/Go/_Contents"
 msgstr "Hulp Inhaudsopgaaf"
 
-#: src/yelp-window.c:288
+#: src/yelp-window.c:289
 msgid "/_Help"
 msgstr "/_Hulp"
 
-#: src/yelp-window.c:289
+#: src/yelp-window.c:290
 msgid "/Help/_About"
 msgstr "/Hulp/_Euver"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:352
 msgid "Help Browser"
 msgstr "Hulp Browser"
 
-#: src/yelp-window.c:569 stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Seksie"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:625
 msgid "Back"
 msgstr "Veurige"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:626
 msgid "Show previous page in history"
 msgstr "De veurige pagina tuine"
 
-#: src/yelp-window.c:635
+#: src/yelp-window.c:636
 msgid "Forward"
 msgstr "Naekste"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:637
 msgid "Show next page in history"
 msgstr "De naekste pagina tuine"
 
-#: src/yelp-window.c:648
+#: src/yelp-window.c:649
 msgid "Home"
 msgstr "Sjtartpagina"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:650
 msgid "Go to home view"
 msgstr "De sjtartpagina tuine"
 
-#: src/yelp-window.c:859
+#: src/yelp-window.c:860
 msgid "Loading..."
 msgstr "Baezig mit lajen..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1290
+#: src/yelp-window.c:1300
 msgid "translator_credits"
 msgstr ""
 "mathieu van Woerkom\n"
 "http://mathieu.brabants.org"
 
-#: src/yelp-window.c:1295
+#: src/yelp-window.c:1305
 msgid "A Help Browser for GNOME"
 msgstr "Hulp Browser veur GNOME"
 

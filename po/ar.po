@@ -9,14 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-26 05:22+0100\n"
+"POT-Creation-Date: 2004-02-24 18:22-0600\n"
 "PO-Revision-Date: 2004-02-04 15:38+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -146,16 +146,16 @@ msgstr "لم يوجد إسناد href عند مستند:يالب"
 msgid "Out of memory"
 msgstr "الذاكرة غير كافية"
 
-#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "عنوان الصفحة"
 
-#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "المحتويات"
 
-#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "مجهول"
@@ -279,120 +279,120 @@ msgstr "التصنيفات"
 msgid "Documents"
 msgstr "المستندات"
 
-#: src/yelp-window.c:231
+#: src/yelp-window.c:249
 msgid "/_File"
 msgstr "/م_لف"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:250
 msgid "/File/_New window"
 msgstr "/ملف/نافذة جد_يدة"
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:253
 msgid "/File/_Close window"
 msgstr "/ملف/_غلق النافذة"
 
-#: src/yelp-window.c:239
+#: src/yelp-window.c:257
 msgid "/_Edit"
 msgstr "/_تحرير"
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:258
 msgid "/Edit/_Find..."
 msgstr "/تحرير/_بحث عن التالي..."
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
 msgstr "/تحرير/_بحث عن التالي..."
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
 msgstr "/تحرير/_بحث عن السابق..."
 
-#: src/yelp-window.c:250
+#: src/yelp-window.c:268
 msgid "/_Go"
 msgstr "/اذ_هب"
 
-#: src/yelp-window.c:251
+#: src/yelp-window.c:269
 msgid "/Go/_Back"
 msgstr "/اذهب/_خلف"
 
-#: src/yelp-window.c:254
+#: src/yelp-window.c:272
 msgid "/Go/_Forward"
 msgstr "/اذهب/تق_دّم"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:275
 msgid "/Go/_Home"
 msgstr "/اذهب/_منزل"
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:278
 msgid "/Go/"
 msgstr "/اذهب"
 
-#: src/yelp-window.c:261
+#: src/yelp-window.c:279
 msgid "/Go/_Previous Page"
 msgstr "/اذهب/الصفحة ال_سابقة"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:282
 msgid "/Go/_Next Page"
 msgstr "/اذهب/الصفحة ال_تالية"
 
-#: src/yelp-window.c:267
+#: src/yelp-window.c:285
 msgid "/Go/_Contents"
 msgstr "/اذهب/ال_محتويات"
 
-#: src/yelp-window.c:271
+#: src/yelp-window.c:289
 msgid "/_Help"
 msgstr "/_مساعدة"
 
-#: src/yelp-window.c:272
+#: src/yelp-window.c:290
 msgid "/Help/_About"
 msgstr "/مساعدة/_حول"
 
-#: src/yelp-window.c:334
+#: src/yelp-window.c:352
 msgid "Help Browser"
 msgstr "متصفح المساعدة"
 
-#: src/yelp-window.c:552 stylesheets/l10n.xml.in.h:60
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "فصل"
 
-#: src/yelp-window.c:609
+#: src/yelp-window.c:625
 msgid "Back"
 msgstr "خلف"
 
-#: src/yelp-window.c:610
+#: src/yelp-window.c:626
 msgid "Show previous page in history"
 msgstr "اظهر الصفحة السابقة في التاريخ"
 
-#: src/yelp-window.c:620
+#: src/yelp-window.c:636
 msgid "Forward"
 msgstr "تقديم"
 
-#: src/yelp-window.c:621
+#: src/yelp-window.c:637
 msgid "Show next page in history"
 msgstr "اظهر الصفحة التالية في التاريخ"
 
-#: src/yelp-window.c:633
+#: src/yelp-window.c:649
 msgid "Home"
 msgstr "الدليل المنزلي"
 
-#: src/yelp-window.c:634
+#: src/yelp-window.c:650
 msgid "Go to home view"
 msgstr "اذهب إلى المشهد المنزلي"
 
-#: src/yelp-window.c:844
+#: src/yelp-window.c:860
 msgid "Loading..."
 msgstr "جاري التحميل..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1267
+#: src/yelp-window.c:1300
 msgid "translator_credits"
 msgstr ""
 "تحت إشراف عرب آيز (http://www.arabeyes.org):عرفات المديني، تونس "
 "<lumina@silverpen.de>محمد جمال، مصر محمد عصر، مصر سيد جعفر الموسوي، البحرين، "
 "عصام بيازيدي، الأردن نور الدين أمين آغة، العربية السعودية "
 
-#: src/yelp-window.c:1272
+#: src/yelp-window.c:1305
 msgid "A Help Browser for GNOME"
 msgstr "متصفح مساعدة لجنوم"
 
@@ -510,7 +510,8 @@ msgstr "المتعاونون"
 
 #: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
-msgstr "الورقة الأخيرة المحتوية على معلومات حول الناشر و الكاتب الخ (لم تعد مستخدمة)"
+msgstr ""
+"الورقة الأخيرة المحتوية على معلومات حول الناشر و الكاتب الخ (لم تعد مستخدمة)"
 
 #: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
@@ -621,38 +622,42 @@ msgid "Reference Section"
 msgstr "قسم المرجع"
 
 #: stylesheets/l10n.xml.in.h:59
+msgid "Release Information"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:60
 msgid "Revision History"
 msgstr "تاريخ التنقيح"
 
-#: stylesheets/l10n.xml.in.h:61
+#: stylesheets/l10n.xml.in.h:62
 msgid "See"
 msgstr "راجع"
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:63
 msgid "See Also"
 msgstr "راجع كذلك"
 
-#: stylesheets/l10n.xml.in.h:63
+#: stylesheets/l10n.xml.in.h:64
 msgid "Set Index"
 msgstr "تحديد الفهرس"
 
-#: stylesheets/l10n.xml.in.h:64
+#: stylesheets/l10n.xml.in.h:65
 msgid "Table"
 msgstr "الجدول"
 
-#: stylesheets/l10n.xml.in.h:65
+#: stylesheets/l10n.xml.in.h:66
 msgid "Table of Contents"
 msgstr "جدول المحتويات"
 
-#: stylesheets/l10n.xml.in.h:66
+#: stylesheets/l10n.xml.in.h:67
 msgid "Tip"
 msgstr "تلميحة"
 
-#: stylesheets/l10n.xml.in.h:67
+#: stylesheets/l10n.xml.in.h:68
 msgid "Title"
 msgstr "العنوان"
 
-#: stylesheets/l10n.xml.in.h:69
+#: stylesheets/l10n.xml.in.h:70
 msgid "Warning"
 msgstr "تنبيه"
 
