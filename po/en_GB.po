@@ -1,19 +1,19 @@
 # English (British) translation.
-# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2004 The GNOME Foundation
 # This file is distributed under the same license as the yelp package.
-# Gareth Owen <gowen72@yahoo.com>, 2004.
+# Gareth Owen <gowen72@yahoo.com>, David Lodge <dave@cirt.net>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-03-22 17:51-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-03 23:30+0100\n"
 "PO-Revision-Date: 2004-03-20 09:42-0500\n"
-"Last-Translator: Gareth Owen <gowen72@yahoo.comg>\n"
+"Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -135,24 +135,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:455 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "No href attribute found on yelp:document"
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:470 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Out of memory"
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:658 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Titlepage"
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:660 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Contents"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:678 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Unknown"
@@ -176,6 +176,11 @@ msgstr "DocBook SGML documents are no longer supported."
 #: src/yelp-error.c:70
 msgid "The selected file could not be read."
 msgstr "The selected file could not be read."
+
+#: src/yelp-error.c:76
+#
+msgid "The file could not be processed."
+msgstr "The file could not be processed."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -259,137 +264,138 @@ msgstr "Document URI"
 msgid "The URI of the document to be processed"
 msgstr "The URI of the document to be processed"
 
-#: src/yelp-toc-pager.c:266
+#: src/yelp-toc-pager.c:267
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pause count is negative."
 
-#: src/yelp-toc-pager.c:486
+#: src/yelp-toc-pager.c:490
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Could not load the OMF file '%s'."
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:887
 msgid "Categories"
 msgstr "Categories"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:901
 msgid "Documents"
 msgstr "Documents"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:242
 msgid "/_File"
 msgstr "/_File"
 
-#: src/yelp-window.c:250
+#: src/yelp-window.c:243
 msgid "/File/_New window"
 msgstr "/File/_New window"
 
-#: src/yelp-window.c:253
+#: src/yelp-window.c:246
 msgid "/File/_Close window"
 msgstr "/File/_Close window"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:250
 msgid "/_Edit"
 msgstr "/_Edit"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:251
 msgid "/Edit/_Find..."
 msgstr "/Edit/_Find..."
 
-#: src/yelp-window.c:261
+#: src/yelp-window.c:254
 msgid "/Edit/Find Ne_xt"
 msgstr "/Edit/Find Ne_xt"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:257
 msgid "/Edit/Find Pre_vious"
 msgstr "/Edit/Find Pre_vious"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:261
 msgid "/_Go"
 msgstr "/_Go"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:262
 msgid "/Go/_Back"
 msgstr "/Go/_Back"
 
-#: src/yelp-window.c:272
+#: src/yelp-window.c:265
 msgid "/Go/_Forward"
 msgstr "/Go/_Forward"
 
-#: src/yelp-window.c:275
+#: src/yelp-window.c:268
 msgid "/Go/_Home"
 msgstr "/Go/_Home"
 
-#: src/yelp-window.c:278
+#: src/yelp-window.c:271
 msgid "/Go/"
 msgstr "/Go/"
 
-#: src/yelp-window.c:279
+#: src/yelp-window.c:272
 msgid "/Go/_Previous Page"
 msgstr "/Go/_Previous Page"
 
-#: src/yelp-window.c:282
+#: src/yelp-window.c:275
 msgid "/Go/_Next Page"
 msgstr "/Go/_Next Page"
 
-#: src/yelp-window.c:285
+#: src/yelp-window.c:278
 msgid "/Go/_Contents"
 msgstr "/Go/_Contents"
 
-#: src/yelp-window.c:289
+#: src/yelp-window.c:282
 msgid "/_Help"
 msgstr "/_Help"
 
-#: src/yelp-window.c:290
+#: src/yelp-window.c:283
 msgid "/Help/_About"
 msgstr "/Help/_About"
 
-#: src/yelp-window.c:352
+#: src/yelp-window.c:345
 msgid "Help Browser"
 msgstr "Help Browser"
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Section"
+#: src/yelp-window.c:630
+#
+msgid "Fin_d"
+msgstr "Fin_d"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:687
 msgid "Back"
 msgstr "Back"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:688
 msgid "Show previous page in history"
 msgstr "Show previous page in history"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:698
 msgid "Forward"
 msgstr "Forward"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:699
 msgid "Show next page in history"
 msgstr "Show next page in history"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:711
 msgid "Home"
 msgstr "Home"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:712
 msgid "Go to home view"
 msgstr "Go to home view"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:885
 msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1300
+#: src/yelp-window.c:1336
 msgid "translator_credits"
 msgstr ""
 "Abigail Brady <morwen@evilmagi_c.org>\n"
 "Bastien Nocera <hadess@hadess.net>\n"
 "Gareth Owen <gowen72@yahoo.com>"
 
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1342
 msgid "A Help Browser for GNOME"
 msgstr "A Help Browser for GNOME"
 
@@ -624,6 +630,10 @@ msgstr "Release Information"
 #: stylesheets/l10n.xml.in.h:60
 msgid "Revision History"
 msgstr "Revision History"
+
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Section"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
