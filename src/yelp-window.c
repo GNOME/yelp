@@ -1309,7 +1309,7 @@ window_do_load_html (YelpWindow    *window,
     }
 
     yelp_html_set_base_uri (priv->html_view, uri);
-    yelp_html_clear (priv->html_view);
+    yelp_html_open_stream (priv->html_view, "text/html");
 
     while ((result = gnome_vfs_read
 	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
@@ -1470,7 +1470,7 @@ window_handle_page (YelpWindow   *window,
     d (g_print ("  uri            = %s\n", uri));
 
     yelp_html_set_base_uri (priv->html_view, uri);
-    yelp_html_clear (priv->html_view);
+    yelp_html_open_stream (priv->html_view, "application/xhtml+xml");
 
     priv->idle_write = gtk_idle_add ((GtkFunction) idle_write, context);
 

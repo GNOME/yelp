@@ -239,12 +239,12 @@ yelp_html_set_base_uri (YelpHtml *html, const gchar *uri)
 }
 
 void
-yelp_html_clear (YelpHtml *html)
+yelp_html_open_stream (YelpHtml *html, const gchar *mime)
 {
-    d (g_print ("yelp_html_clear\n"));
+    d (g_print ("yelp_html_open\n"));
     gtk_moz_embed_open_stream (GTK_MOZ_EMBED (html->priv->embed),
 			       html->priv->base_uri,
-			       "application/xhtml+xml");
+			       mime);
 }
 
 void

@@ -67,7 +67,8 @@ YelpHtml *      yelp_html_new            (void);
 
 void            yelp_html_set_base_uri   (YelpHtml    *html,
 					  const gchar *uri);
-void            yelp_html_clear          (YelpHtml    *html);
+void            yelp_html_open_stream    (YelpHtml    *html,
+					  const gchar *mime);
 void            yelp_html_write          (YelpHtml    *html,
 					  const gchar *data,
 					  gint         len);
