@@ -1,3 +1,11 @@
+2003-08-12  Mikael Hallendal  <micke@imendio.com>
+
+	* data/images/bcg.png: 
+	- Replace image for one with transparent background.
+	* src/yelp-view-toc.c: 
+	- Remove the spacer padding image
+	- Both these should finally fix bug #89838. Patches from Shaun McCance.
+
 2003-07-30 John Fleck <jfleck@inkstain.net>
 
 	* src/info2html/html.c

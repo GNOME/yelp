@@ -392,8 +392,7 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 	} while ((node = node->next) != NULL);
 
 	if (sub_started) {
-		yelp_html_printf (priv->html_view,
-				  "<img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" height=\"10\">\n");
+		yelp_html_printf (priv->html_view, "<br>\n");
 	}
 
 	if (got_a_leaf) {
@@ -692,15 +691,11 @@ toc_page_start (YelpViewTOC *view, const gchar *title, const gchar *heading)
 			  "border=\"10\" topmargin=\"0\" leftmargin=\"0\">\n<br><br>"
 			  "<table width=\"100%%\" border=\"0\" cellpadding=\"4\" cellspacing=\"0\">\n"
 			  "<tr valign=\"top\">\n"
-			  "<td width=\"75\">\n"
-			  "<img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\">\n"
-			  "</td>\n"
+			  "<td width=\"75\"></td>\n"
 			  "<td colspan=\"2\"><h1>%s</h1></td>\n"
 			  "</tr>\n"
 			  "<tr valign=\"top\">\n"
-			  "<td width=\"75\">\n"
-			  "<img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\">\n"
-			  "</td>\n",
+			  "<td width=\"75\"></td>\n",
 			  title,
 			  heading);
 }
@@ -719,15 +714,11 @@ toc_page_end (YelpViewTOC *view)
 	
 	yelp_html_printf (priv->html_view,
 			  "<tr>\n"
-			  "<td width=\"75\">\n"
-			  "<img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\">\n"
-			  "</td>\n"
-			  "<td colspan=\"2\">\n"
-			  "<img src=\"file:" IMAGEDIR "/empty.png\" height=\"200\">\n"
-			  "</td>\n"
+			  "<td width=\"75\"></td>\n"
+			  "<td colspan=\"2\"></td>\n"
 			  "<td></td></tr>\n"
 			  "<tr valign=\"top\">\n"
-			  "<td width=\"75\"><img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" width=\"75\" height=\"1\"></td>\n"
+			  "<td width=\"75\"></td>\n"
 			  "</tr>\n"
 			  "</table></body></html>\n",
 			  str_gnome_is,
@@ -794,8 +785,7 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 	}
 
 	if (sub_started) {
-		yelp_html_printf (priv->html_view,
-				  "</ul><br><img alt=\"\" src=\"file:" IMAGEDIR "/empty.png\" height=\"10\"><br>\n");
+		yelp_html_printf (priv->html_view, "<br>\n");
 	}
 
 	if (got_a_leaf) {
