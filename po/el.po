@@ -7,13 +7,15 @@
 # kostas:71 messages,13Jul2003, updated translation for 2.4
 # Simos Xenitellis <simos@hellug.gr>, 2002,2003
 # Kostas Papadimas <pkst@gmx.net>, 2003
+# Kostas Papadimas <pkst@gnome.org>, 2003
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"POT-Creation-Date: 2003-07-13 18:41+0300\n"
-"PO-Revision-Date: 2003-07-13 18:43+0300\n"
-"Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-30 21:24+0200\n"
+"PO-Revision-Date: 2003-10-30 21:25+0200\n"
+"Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,12 +146,28 @@ msgstr "Γενικές Επισκοπήσεις"
 msgid "System Administration"
 msgstr "Διαχείριση Συστήματος"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+#: src/yelp-scrollkeeper.c:627
+msgid "About This Document"
+msgstr "Περί αυτού του εγγράφου"
+
+#: src/yelp-scrollkeeper.c:631
+msgid "Contents"
+msgstr "Περιεχόμενα"
+
+#: src/yelp-view-content.c:489
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+#: src/yelp-view-content.c:500
+msgid "Next"
+msgstr "Επόμενο"
+
+#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Φορτώνεται..."
 
 #
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Ενότητα"
 
@@ -170,141 +188,139 @@ msgstr "GNOME - Επιφάνεια εργασίας"
 msgid "Additional documents"
 msgstr "Επιπλέον έγγραφα"
 
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "Σελίδες Τεκμηρίωσης"
 
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "Σελίδες info"
 
 #
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "Έγγραφα"
 
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "Κατηγορίες"
 
-#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "Σελίδες τεκμηρίωσης"
 
-#: src/yelp-view-toc.c:712
+#: src/yelp-view-toc.c:707
 msgid "GNOME is"
 msgstr "Το GNOME είναι"
 
-#: src/yelp-view-toc.c:713
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr "Ελεύθερο Λογισμικό"
 
-#: src/yelp-view-toc.c:714
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr "(C)"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:171
 msgid "/_File"
 msgstr "/_Αρχείο"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:172
 msgid "/File/_New window"
 msgstr "/Αρχείο/_Νέο παράθυρο"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:173
 msgid "/File/_Close window"
 msgstr "/Αρχείο/Κ_λείσιμο παραθύρου"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:175
 msgid "/_Edit"
 msgstr "/_Επεξεργασία"
 
-#: src/yelp-window.c:168
+#: src/yelp-window.c:176
 msgid "/Edit/_Find in page..."
 msgstr "/Επεξεργασία/Εύ_ρεση στη σελίδα..."
 
-#: src/yelp-window.c:169
+#: src/yelp-window.c:177
 msgid "/Edit/_Find again"
 msgstr "/Επεξεργασία/Εύ_ρεση ξανά"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:179
 msgid "/_Go"
 msgstr "/_Πήγαινε"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:180
 msgid "/Go/_Back"
 msgstr "/Πήγαινε/_Πίσω"
 
-#: src/yelp-window.c:173
+#: src/yelp-window.c:181
 msgid "/Go/_Forward"
 msgstr "/Πήγαινε/_Μπροστά"
 
-#: src/yelp-window.c:174
+#: src/yelp-window.c:182
 msgid "/Go/_Home"
 msgstr "/Πήγαινε/_Αρχή"
 
-#: src/yelp-window.c:175
+#: src/yelp-window.c:183
 msgid "/Go/_Index"
 msgstr "/Μετάβαση/_Περί"
 
-#: src/yelp-window.c:177
+#: src/yelp-window.c:185
 msgid "/_Help"
 msgstr "/_Βοήθεια"
 
-#: src/yelp-window.c:178
+#: src/yelp-window.c:186
 msgid "/Help/_About"
 msgstr "/Βοήθεια/_Περί"
 
-#: src/yelp-window.c:238 src/yelp-window.c:438
+#: src/yelp-window.c:255 src/yelp-window.c:455
 msgid "Help Browser"
 msgstr "Πρόγραμμα Βοήθειας"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:368
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Το έγγραφο '%s' δεν υπάρχει"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:677
+#: src/yelp-window.c:695
 msgid "translator_credits"
-msgstr ""
-"Συμεών (σίμος) Ξενιτέλλης <simos@hellug.gr> "
-"Κώστας Παπαδήμας <pkst@gmx.net>"
+msgstr "Συμεών (σίμος) Ξενιτέλλης <simos@hellug.gr> Κώστας Παπαδήμας <pkst@gmx.net>"
 
-#: src/yelp-window.c:681
+#: src/yelp-window.c:699
 msgid "A Help Browser for GNOME"
 msgstr "Πρόγραμμα Περιήγησης Βοήθειας για το GNOME"
 
-#: src/yelp-window.c:795
+#: src/yelp-window.c:813
 msgid "Back"
 msgstr "Πίσω"
 
-#: src/yelp-window.c:796
+#: src/yelp-window.c:814
 msgid "Show previous page in history"
 msgstr "Εμφάνιση προηγούμενης σελίδας του ιστορικού"
 
-#: src/yelp-window.c:807
+#: src/yelp-window.c:825
 msgid "Forward"
 msgstr "Μπροστά"
 
-#: src/yelp-window.c:808
+#: src/yelp-window.c:826
 msgid "Show next page in history"
 msgstr "Εμφάνιση επόμενης σελίδες του ιστορικού"
 
-#: src/yelp-window.c:821
+#: src/yelp-window.c:839
 msgid "Home"
 msgstr "Αρχή"
 
-#: src/yelp-window.c:822
+#: src/yelp-window.c:840
 msgid "Go to home view"
 msgstr "Πήγαινε στην προβολή περιεχομένων"
 
-#: src/yelp-window.c:832
+#: src/yelp-window.c:850
 msgid "Index"
 msgstr "Περιεχόμενα"
 
-#: src/yelp-window.c:833
+#: src/yelp-window.c:851
 msgid "Search in the index"
 msgstr "Αναζήτηση στο κατάλογο"
 
