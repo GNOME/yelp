@@ -35,6 +35,7 @@
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
 
+#include "yelp-error.h"
 #include "yelp-db-pager.h"
 #include "yelp-toc-pager.h"
 
@@ -190,10 +191,10 @@ yelp_db_pager_new (YelpURI *uri)
 gboolean
 db_pager_process (YelpPager *pager)
 {
-    const YelpURI *uri     = yelp_pager_get_uri (pager);
+    YelpURI *uri           = yelp_pager_get_uri (pager);
     gchar         *uri_str = yelp_uri_get_path ((YelpURI *) uri);
     DBWalker      *walker;
-    GError        *error;
+    GError        *error = NULL;
 
     xmlDocPtr               doc;
     xmlParserCtxtPtr        ctxt;
@@ -213,15 +214,22 @@ db_pager_process (YelpPager *pager)
     yelp_toc_pager_pause (yelp_toc_pager_get ());
 
     ctxt = xmlNewParserCtxt ();
-    ctxt->replaceEntities = TRUE;
-    ctxt->validate        = FALSE;
-    ctxt->loadsubset      = TRUE;
+    xmlCtxtUseOptions (ctxt,
+		       XML_PARSE_NOENT    |
+		       XML_PARSE_DTDLOAD  |
+		       XML_PARSE_XINCLUDE |
+		       XML_PARSE_NONET    );
     doc = xmlCtxtReadFile (ctxt, (const char *) uri_str, NULL, 0);
 
     if (doc == NULL) {
-	error = NULL;
+	gchar *str_uri = yelp_uri_to_string (uri);
+	g_set_error (&error,
+		     YELP_ERROR,
+		     YELP_ERROR_FAILED_OPEN,
+		     _("The document '%s' could not be opened"), str_uri);
 	yelp_pager_error (pager, error);
 
+	g_free (str_uri);
 	return FALSE;
     }
 

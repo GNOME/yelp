@@ -1,5 +1,15 @@
 2003-11-30  Shaun McCance  <shaunm@gnome.org>
 
+	- Some changes I forgot to commit on transformation-playground before merging.
+
+	* src/yelp-db-pager.c:
+	- Some changes to how the XML parser is called.
+
+	* src/yelp-toc-pager.c:
+	- Actually creating the TOC pages.
+
+2003-11-30  Shaun McCance  <shaunm@gnome.org>
+
 	* configure.in:
 	* data/Makefile.am:
 	* po/POTFILES.in:

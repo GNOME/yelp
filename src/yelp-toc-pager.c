@@ -95,6 +95,11 @@ static gboolean      toc_process_toc_pending   (YelpTocPager      *pager);
 static gboolean      toc_process_idx           (YelpTocPager      *pager);
 static gboolean      toc_process_idx_pending   (YelpTocPager      *pager);
 
+static gchar *       toc_write_page            (gchar             *id,
+						gchar             *title,
+						GSList            *cats,
+						GSList            *omfs);
+
 static xmlChar *     node_get_title            (xmlNodePtr         node);
 
 static void          omf_free                  (OMF               *omf);
@@ -546,9 +551,8 @@ toc_process_toc_pending (YelpTocPager *pager)
     }
 
     if (id) {
-	yelp_pager_add_page (YELP_PAGER (pager),
-			     id, title,
-			     g_strdup ("<html><body>FIXME</body></html"));
+	gchar *page = toc_write_page (id, title, subcats, subomfs);
+	yelp_pager_add_page (YELP_PAGER (pager), id, title, page);
 	g_signal_emit_by_name (pager, "page", id);
     } else {
 	g_warning (_("YelpTocPager: TOC entry has no id."));
@@ -605,7 +609,7 @@ toc_process_idx_pending (YelpTocPager *pager)
 
     omf = first->data;
 
-    printf ("OMF: %s\n", omf->xml_file);
+    //printf ("OMF: %s\n", omf->xml_file);
 
     uri  = yelp_uri_new (omf->xml_file);
     path = yelp_uri_get_path (uri);
@@ -632,6 +636,87 @@ toc_process_idx_pending (YelpTocPager *pager)
     else {
 	return TRUE;
     }
+}
+
+static gchar *
+toc_write_page (gchar     *id,
+		gchar     *title,
+		GSList    *cats,
+		GSList    *omfs)
+{
+    gint      i = 0;
+    GSList   *c;
+    gchar   **strs;
+    gint      strs_len;
+    gchar    *page;
+    gint      page_len = 0;
+    gchar    *page_end;
+
+    strs_len = g_slist_length (cats) + g_slist_length (omfs) + 20;
+
+    strs = g_new0 (gchar *, strs_len);
+
+    strs[i] = g_strconcat ("<html><body><h1>", title, "</h1>\n", NULL);
+    page_len += strlen (strs[i]);
+
+    if (cats) {
+	strs[++i] = g_strconcat ("<h2>", _("Categories"), "</h2><ul>\n", NULL);
+	page_len += strlen (strs[i]);
+
+	for (c = cats; c; c = c->next) {
+	    xmlNodePtr cur = (xmlNodePtr) c->data;
+	    xmlChar *id, *title;
+
+	    id = xmlGetProp (cur, (const xmlChar *) "id");
+	    title = node_get_title (cur);
+
+	    strs[++i] = g_strconcat ("<li><a href='toc:", id, "'>",
+				     title,
+				     "</a></li>\n",
+				     NULL);
+	    page_len += strlen (strs[i]);
+
+	    xmlFree (id);
+	    xmlFree (title);
+	}
+	strs[++i] = g_strdup ("</ul>\n");
+	page_len += strlen (strs[i]);
+    }
+
+    if (omfs) {
+	strs[++i] = g_strconcat ("<h2>", _("Documents"), "</h2><ul>\n", NULL);
+	page_len += strlen (strs[i]);
+
+	for (c = omfs; c; c = c->next) {
+	    OMF *omf = (OMF *) c->data;
+	    strs[++i] = g_strconcat ("<li><a href='", omf->xml_file, "'>",
+				     omf->title,
+				     "</a></li>\n",
+				     NULL);
+	    page_len += strlen (strs[i]);
+	}
+	strs[++i] = g_strdup ("</ul>\n");
+	page_len += strlen (strs[i]);
+    }
+
+    strs[++i] = g_strdup ("</body></html>\n");
+    page_len += strlen (strs[i]);
+
+    // Not necessary, but I'm paranoid.
+    strs[++i] = NULL;
+
+    page = g_new0 (gchar, page_len + 1);
+    page_end = page;
+
+    for (i = 0; i < strs_len; i++)
+	if (strs[i]) {
+	    page_end = g_stpcpy (page_end, strs[i]);
+	    g_free (strs[i]);
+	}
+
+    g_free (strs);
+
+    return page;
 }
 
 static xmlChar *
