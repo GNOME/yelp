@@ -211,7 +211,8 @@ toc_pager_init (YelpTocPager *pager)
     priv->parser = xmlNewParserCtxt ();
 
     priv->unique_hash   = g_hash_table_new (g_str_hash, g_str_equal);
-    priv->category_hash = g_hash_table_new (g_str_hash, g_str_equal);
+    priv->category_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
+						 g_free,     NULL);
 
     priv->cancel       = 0;
     priv->pause_count  = 0;
@@ -960,7 +961,7 @@ toc_hash_metafile (YelpTocPager *pager, YelpMetafile *meta)
 	    (GSList *) g_hash_table_lookup (priv->category_hash, catstr);
 	metas = g_slist_prepend (metas, meta);
 
-	g_hash_table_insert (priv->category_hash, catstr, metas);
+	g_hash_table_insert (priv->category_hash, g_strdup (catstr), metas);
     }
 
     priv->idx_pending = g_slist_prepend (priv->idx_pending, meta);
@@ -979,11 +980,12 @@ toc_unhash_metafile (YelpTocPager *pager, YelpMetafile *meta)
 	GSList *metas =
 	    (GSList *) g_hash_table_lookup (pager->priv->category_hash, catstr);
 
-	if (metas) {
-	    metas = g_slist_remove (metas, meta);
+	metas = g_slist_remove (metas, meta);
+	if (metas)
 	    g_hash_table_insert (pager->priv->category_hash,
-				 catstr, metas);
-	}
+				 g_strdup (catstr), metas);
+	else
+	    g_hash_table_remove (pager->priv->category_hash, catstr);
     }
 
     priv->idx_pending = g_slist_remove (priv->idx_pending, meta);
