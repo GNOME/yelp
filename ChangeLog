@@ -1,3 +1,12 @@
+2003-12-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	* src/yelp-window.c:
+	- Changed state to a bitfield, easier to extend.
+	- Re-added the "contents" signal for faster page-existence checking.
+
 2003-12-13  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-db-pager.c:

@@ -83,6 +83,8 @@ static void        window_disconnect              (YelpWindow        *window);
 
 static gboolean    window_loading                 (YelpWindow        *window);
 
+static void        pager_contents_cb              (YelpPager         *pager,
+						   gpointer           user_data);
 static void        pager_page_cb                  (YelpPager         *pager,
 						   gchar             *page_id,
 						   gpointer           user_data);
@@ -197,6 +199,7 @@ struct _YelpWindowPriv {
     YelpHistory    *history;
 
     YelpPager      *pager;
+    gulong          contents_handler;
     gulong          page_handler;
     gulong          error_handler;
     gulong          finish_handler;
@@ -670,7 +673,7 @@ window_handle_uri (YelpWindow *window,
     default:
 	break;
     }
-
+ 
     if (error)
 	window_error (window, error);
 
@@ -689,6 +692,7 @@ window_handle_pager_uri (YelpWindow *window,
     gchar      *path;
     YelpPage   *page = NULL;
     YelpPager  *pager;
+    YelpPagerState state;
 
     priv = window->priv;
 
@@ -738,29 +742,78 @@ window_handle_pager_uri (YelpWindow *window,
 	g_object_unref (priv->pager);
     priv->pager = pager;
 
-    switch (yelp_pager_get_state (pager)) {
-    case YELP_PAGER_STATE_START:
+    state = yelp_pager_get_state (pager);
+
+    loadnow  = FALSE;
+    startnow = TRUE;
+
+    if (state & YELP_PAGER_STATE_STOPPED) {
+	error = yelp_pager_get_error (pager);
+	if (error) {
+	    window_error (window, error);
+	    return FALSE;
+	}
+    }
+
+    if (state & YELP_PAGER_STATE_STARTED) {
+	if (state & YELP_PAGER_STATE_CONTENTS) {
+	    gchar *frag_id = yelp_uri_get_fragment (uri);
+	    gchar *page_id = yelp_pager_resolve_uri (pager, uri);
+
+	    if (!page_id && (frag_id && strcmp (frag_id, ""))) {
+		g_set_error (&error,
+			     YELP_ERROR,
+			     YELP_ERROR_FAILED_OPEN,
+			     _("The page '%s' could not be found in this document."),
+			     frag_id);
+		window_error (window, error);
+
+		g_free (frag_id);
+		g_free (page_id);
+		g_error_free (error);
+
+		return FALSE;
+	    }
+
+	    g_free (frag_id);
+	    g_free (page_id);
+	} else {
+	    priv->contents_handler =
+		g_signal_connect (pager,
+				  "contents",
+				  G_CALLBACK (pager_contents_cb),
+				  window);
+	}
+
 	page = (YelpPage *) yelp_pager_lookup_page (pager, uri);
 	loadnow  = (page ? TRUE : FALSE);
 	startnow = FALSE;
-	break;
-    case YELP_PAGER_STATE_NEW:
-    case YELP_PAGER_STATE_CANCEL:
-	loadnow  = FALSE;
-	startnow = TRUE;
-	break;
-    case YELP_PAGER_STATE_FINISH:
-	page = (YelpPage *) yelp_pager_lookup_page (pager, uri);
-	loadnow = TRUE;
-	break;
-    case YELP_PAGER_STATE_ERROR:
-	error = yelp_pager_get_error (pager);
-	window_error (window, error);
-	return FALSE;
-    default:
-    	g_assert_not_reached ();
-	break;
+
+	if (state & YELP_PAGER_STATE_FINISHED) {
+	    if (!page) {
+		gchar *frag_id = yelp_uri_get_fragment (uri);
+		g_set_error (&error,
+			     YELP_ERROR,
+			     YELP_ERROR_FAILED_OPEN,
+			     _("The page '%s' could not be found in this document."),
+			     frag_id);
+		window_error (window, error);
+
+		g_free (frag_id);
+		g_error_free (error);
+		return FALSE;
+	    }
+	}
+    } else {
+	priv->contents_handler =
+	    g_signal_connect (pager,
+			      "contents",
+			      G_CALLBACK (pager_contents_cb),
+			      window);
     }
+
+    window_set_sections (window,
+			 GTK_TREE_MODEL (yelp_pager_get_sections (pager)));
 
     if (!loadnow) {
 	gchar *loading = _("Loading...");
@@ -768,9 +821,6 @@ window_handle_pager_uri (YelpWindow *window,
 
 	gtk_window_set_title (GTK_WINDOW (window),
 			      (const gchar *) loading);
-
-	window_set_sections (window,
-			     GTK_TREE_MODEL (yelp_pager_get_sections (pager)));
 
 	yelp_html_printf
 	    (priv->html_view,
@@ -808,25 +858,8 @@ window_handle_pager_uri (YelpWindow *window,
 
 	if (startnow)
 	    yelp_pager_start (pager);
+
     } else {
-	if (!page) {
-	    gchar *str_uri = yelp_uri_to_string (uri);
-	    g_set_error (&error,
-			 YELP_ERROR,
-			 YELP_ERROR_FAILED_OPEN,
-			 _("The document '%s' could not be opened"), str_uri);
-
-	    window_error (window, error);
-
-	    g_free (str_uri);
-	    g_error_free (error);
-
-	    return FALSE;
-	}
-
-	window_set_sections (window,
-			     GTK_TREE_MODEL (yelp_pager_get_sections (pager)));
-
 	yelp_html_clear (priv->html_view);
 	yelp_html_set_base_uri (priv->html_view, uri);
 
@@ -856,6 +889,11 @@ window_disconnect (YelpWindow *window)
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv->loading = 0;
+    if (priv->contents_handler) {
+	g_signal_handler_disconnect (priv->pager,
+				     priv->contents_handler);
+	priv->contents_handler = 0;
+    }
     if (priv->page_handler) {
 	g_signal_handler_disconnect (priv->pager,
 				     priv->page_handler);
@@ -915,6 +953,35 @@ window_loading (YelpWindow *window)
 }
 
 static void
+pager_contents_cb (YelpPager   *pager,
+		   gpointer     user_data)
+{
+    YelpWindow *window = YELP_WINDOW (user_data);
+    YelpURI    *uri;
+    GError     *error = NULL;
+
+    uri  = yelp_window_get_current_uri (window);
+
+    gchar *frag = yelp_uri_get_fragment (uri);
+    gchar *page = yelp_pager_resolve_uri (pager, uri);
+
+    if (!page && (frag && strcmp (frag, ""))) {
+	gchar *frag_id = yelp_uri_get_fragment (uri);
+	g_set_error (&error,
+		     YELP_ERROR,
+		     YELP_ERROR_FAILED_OPEN,
+		     _("The page '%s' could not be found in this document."),
+		     frag_id);
+	window_error (window, error);
+
+	g_free (frag_id);
+	g_error_free (error);
+
+	window_disconnect (window);
+    }
+}
+
+static void
 pager_page_cb (YelpPager *pager,
 	       gchar     *page_id,
 	       gpointer   user_data)
@@ -963,21 +1030,21 @@ pager_finish_cb (YelpPager   *pager,
     GError *error = NULL;
     YelpWindow *window = YELP_WINDOW (user_data);
     YelpURI *uri;
-    gchar   *str_uri;
+    gchar   *frag_id;
 
     uri     = yelp_window_get_current_uri (window);
-    str_uri = yelp_uri_to_string (uri);
+    frag_id = yelp_uri_get_fragment (uri);
 
     window_disconnect (window);
 
     g_set_error (&error,
 		 YELP_ERROR,
 		 YELP_ERROR_FAILED_OPEN,
-		 _("The document '%s' could not be opened"), str_uri);
-
+		 _("The page '%s' could not be found in this document."),
+		 frag_id);
     window_error (window, error);
 
-    g_free (str_uri);
+    g_free (frag_id);
     g_error_free (error);
 
     // FIXME: Remove the URI from the history and go back

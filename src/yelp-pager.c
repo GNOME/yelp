@@ -52,6 +52,7 @@ enum {
 
 enum {
     START,
+    CONTENTS,
     PAGE,
     FINISH,
     CANCEL,
@@ -127,6 +128,14 @@ pager_class_init (YelpPagerClass *klass)
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
 
+    signals[CONTENTS] = g_signal_new
+	("contents",
+	 G_TYPE_FROM_CLASS (klass),
+	 G_SIGNAL_RUN_FIRST, 0,
+	 NULL, NULL,
+	 yelp_marshal_VOID__VOID,
+	 G_TYPE_NONE, 0);
+
     signals[PAGE] = g_signal_new
 	("page",
 	 G_TYPE_FROM_CLASS (klass),
@@ -173,7 +182,7 @@ pager_init (YelpPager *pager)
     pager->priv = priv;
 
     pager->priv->uri   = NULL;
-    pager->priv->state = YELP_PAGER_STATE_NEW;
+    pager->priv->state = 0;
 
     pager->priv->error = NULL;
     pager->priv->page_hash =
@@ -246,13 +255,17 @@ pager_dispose (GObject *object)
 gboolean
 yelp_pager_start (YelpPager *pager)
 {
+    YelpPagerState state;
+
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_PAGER (pager), FALSE);
 
-    switch (yelp_pager_get_state (pager)) {
-    case YELP_PAGER_STATE_NEW:
-    case YELP_PAGER_STATE_CANCEL:
-	yelp_pager_set_state (pager, YELP_PAGER_STATE_START);
+    state = yelp_pager_get_state (pager);
+    if (!(state & YELP_PAGER_STATE_STARTED) ||
+	 (state & YELP_PAGER_STATE_STOPPED)) {
+
+	yelp_pager_clear_state (pager);
+	yelp_pager_set_state   (pager, YELP_PAGER_STATE_STARTED);
 
 	g_object_ref (pager);
 	g_signal_emit (pager, signals[START], 0);
@@ -262,8 +275,7 @@ yelp_pager_start (YelpPager *pager)
 
 	g_object_unref (pager);
 	return TRUE;
-
-    default:
+    } else {
 	g_object_unref (pager);
 	return FALSE;
     }
@@ -274,6 +286,8 @@ yelp_pager_cancel (YelpPager *pager)
 {
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
+
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_STOPPED);
 
     YELP_PAGER_GET_CLASS (pager)->cancel (pager);
 }
@@ -297,12 +311,21 @@ yelp_pager_get_state (YelpPager *pager)
 }
 
 void
+yelp_pager_clear_state (YelpPager *pager)
+{
+    g_return_if_fail (pager != NULL);
+    g_return_if_fail (YELP_IS_PAGER (pager));
+
+    pager->priv->state = 0;
+}
+
+void
 yelp_pager_set_state (YelpPager *pager, YelpPagerState state)
 {
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    pager->priv->state = state;
+    pager->priv->state = pager->priv->state | state;
 }
 
 GError *
@@ -328,7 +351,7 @@ yelp_pager_error (YelpPager *pager, GError *error)
 	g_error_free (pager->priv->error);
     pager->priv->error = error;
 
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_STOPPED);
 
     g_signal_emit_by_name (pager, "error");
 }
@@ -340,6 +363,16 @@ yelp_pager_get_sections (YelpPager *pager)
     g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
     return YELP_PAGER_GET_CLASS (pager)->get_sections (pager);
+}
+
+gchar *
+yelp_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
+{
+    gchar    *frag_id = NULL;
+
+    frag_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
+
+    return frag_id;
 }
 
 gboolean

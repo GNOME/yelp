@@ -258,6 +258,9 @@ db_pager_process (YelpPager *pager)
 
     walker_walk_xml (walker);
 
+    yelp_pager_set_state  (pager, YELP_PAGER_STATE_CONTENTS);
+    g_signal_emit_by_name (pager, "contents");
+
     while (gtk_events_pending ())
 	gtk_main_iteration ();
 
@@ -310,7 +313,7 @@ db_pager_process (YelpPager *pager)
     g_free (doc_name);
     g_free (doc_path);
 
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISH);
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
     g_signal_emit_by_name (pager, "finish");
 
     g_object_unref (pager);
@@ -440,8 +443,6 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     ctxt->insert     = old_insert;
 
     page_title = xml_get_title (node);
-
-    printf ("page_title: '%s'\n", page_title);
 
     if (!page_title)
 	page_title = g_strdup ("FIXME");

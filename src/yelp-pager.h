@@ -39,13 +39,16 @@ typedef struct _YelpPagerClass YelpPagerClass;
 typedef struct _YelpPagerPriv  YelpPagerPriv;
 typedef struct _YelpPage       YelpPage;
 
-typedef enum {
-    YELP_PAGER_STATE_NEW,
-    YELP_PAGER_STATE_START,
-    YELP_PAGER_STATE_ERROR,
-    YELP_PAGER_STATE_CANCEL,
-    YELP_PAGER_STATE_FINISH
-} YelpPagerState;
+typedef gulong YelpPagerState;
+enum {
+    YELP_PAGER_STATE_STARTED  = 1 << 0,
+    YELP_PAGER_STATE_STOPPED  = 1 << 1,
+    YELP_PAGER_STATE_FINISHED = 1 << 3,
+
+    YELP_PAGER_STATE_CONTENTS = 1 << 4,
+
+    YELP_PAGER_LAST_STATE     = 1 << 4
+};
 
 struct _YelpPager {
     GObject        parent;
@@ -81,6 +84,7 @@ void                 yelp_pager_cancel       (YelpPager      *pager);
 YelpURI *            yelp_pager_get_uri      (YelpPager      *pager);
 
 YelpPagerState       yelp_pager_get_state    (YelpPager      *pager);
+void                 yelp_pager_clear_state  (YelpPager      *pager);
 void                 yelp_pager_set_state    (YelpPager      *pager,
 					      YelpPagerState  state);
 
@@ -90,6 +94,8 @@ void                 yelp_pager_error        (YelpPager      *pager,
 
 const GtkTreeModel * yelp_pager_get_sections (YelpPager      *pager);
 
+gchar *              yelp_pager_resolve_uri  (YelpPager      *pager,
+					      YelpURI        *uri);
 gboolean             yelp_pager_uri_is_page  (YelpPager      *pager,
 					      gchar          *page_id,
 					      YelpURI        *uri);
