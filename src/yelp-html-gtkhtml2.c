@@ -24,6 +24,8 @@
 #include <config.h>
 #endif
 
+#include <gdk/gdkkeysyms.h>
+#include <gtk/gtkenums.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnome/gnome-i18n.h>
@@ -46,6 +48,7 @@
 typedef struct _YelpHtmlBoxNode YelpHtmlBoxNode;
 
 #define YELP_HTML_BOX_NODE(x)  ((YelpHtmlBoxNode *)(x))
+#define ADJUSTMENT_TIMEOUT_INTERVAL 200
 
 struct _YelpHtmlPriv {
     HtmlView        *view;
@@ -61,6 +64,8 @@ struct _YelpHtmlPriv {
     GList           *find_list;
     GList           *find_elem;
     gboolean         find_is_forward;
+
+    gchar           *anchor;
 };
 
 struct _YelpHtmlBoxNode {
@@ -86,6 +91,7 @@ static void      html_link_clicked_cb    (HtmlDocument       *doc,
 static void      html_title_changed_cb   (HtmlDocument       *doc,
 					  const gchar        *new_title,
 					  YelpHtml           *html);
+static gint      adjustment_timeout_cb   (gpointer         data);
 
 static DomNode * html_get_dom_node       (HtmlDocument       *doc,
 					  const gchar        *node_name);
@@ -159,7 +165,7 @@ html_init (YelpHtml *html)
 		      G_CALLBACK (html_url_requested_cb), html);
     g_signal_connect (G_OBJECT (priv->doc), "title_changed",
 		      G_CALLBACK (html_title_changed_cb), html);
-
+ 
     gtk_widget_set_size_request (GTK_WIDGET (priv->view), 300, 200);
 
     html->priv = priv;
@@ -295,6 +301,7 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
     html_clear_find_data (html);
 
     g_signal_emit (html, signals[URI_SELECTED], 0, uri, handled);
+    yelp_uri_unref (uri);
 }
 
 static void
@@ -306,6 +313,48 @@ html_title_changed_cb (HtmlDocument *doc,
     g_return_if_fail (new_title != NULL);
 
     g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
+}
+
+static gint
+adjustment_timeout_cb (gpointer data)
+{
+    YelpHtml *html = YELP_HTML (data);
+    YelpHtmlPriv *priv = html->priv;
+    GtkAdjustment *adjustment;
+
+    /* gtkhtml registers a relayout callback on a one second timeout which,
+     * among other things, focuses the first link on the page, which causes
+     * it to scroll to said link.  This causes anchor scrolling not to work,
+     * and causes pages without a link at the top to start off scrolled down.
+     * As I'm sure you can imagine, this is really annoying.  Here we have my
+     * ugly hack wherein I put in my own timeout callback to scroll to where
+     * I actually want the page.  In order to make it visually quick but still
+     * avoid happening before gtkhtml's timeout, I check relayout_timeout_id
+     * on the HtmlView, which is non-zero if there's a timeout still waiting
+     * to happen.  If the gtkhtml timeout is still there, this function is
+     * readded, and we try again later.
+     *
+     * There also seems to be an idle function in GtkLayout that triggers the
+     * gtkhtml2 relayout function.  So technically, we have a race condition.
+     * However, grabbing focus before everything else, regardless of whether
+     * or not we readd the timeout function, seems to be fairly reliable.
+     */
+
+    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
+
+    if (priv->view->relayout_timeout_id != 0)
+	return TRUE;
+
+    adjustment = gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view));
+    gtk_adjustment_set_value (adjustment, adjustment->lower);
+
+    adjustment = gtk_layout_get_hadjustment (GTK_LAYOUT (priv->view));
+    gtk_adjustment_set_value (adjustment, adjustment->lower);
+
+    if (priv->anchor)
+	html_view_jump_to_anchor (HTML_VIEW (priv->view), priv->anchor);
+
+    return FALSE;
 }
 
 YelpHtml *
@@ -355,6 +404,11 @@ yelp_html_clear (YelpHtml *html)
     html_clear_find_data (html);
 
     priv = html->priv;
+
+    if (priv->anchor) {
+	g_free (priv->anchor);
+	priv->anchor = NULL;
+    }
 
     html_document_clear (priv->doc);
     html_document_open_stream (priv->doc, "text/html");
@@ -409,8 +463,7 @@ yelp_html_close (YelpHtml *html)
 
     html_document_close_stream (priv->doc);
 
-    gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
-			      0);
+    g_timeout_add (ADJUSTMENT_TIMEOUT_INTERVAL, adjustment_timeout_cb, html);
 }
 
 GtkWidget *
@@ -802,5 +855,14 @@ void
 yelp_html_jump_to_anchor (YelpHtml    *html,
 			  gchar       *anchor)
 {
-    html_view_jump_to_anchor (HTML_VIEW (html->priv->view), anchor);
+    YelpHtmlPriv *priv;
+
+    g_return_if_fail (html != NULL);
+
+    priv = html->priv;
+
+    if (priv->anchor)
+	g_free (priv->anchor);
+
+    priv->anchor = g_strdup (anchor);
 }

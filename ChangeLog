@@ -1,3 +1,16 @@
+2004-02-03  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-html-gtkhtml2.c:
+	- Introduced a timeout function for scrolling to anchor/top, since gtkhtml2
+	  also has a timeout that likes to scroll to the first link.  This timeout
+	  checks if gtkhtml2's timeout is still pending, and readds itself if so.
+
+	* src/yelp-window.c:
+	- Do the writing of the page in an idle, which produces better renderings
+	  and helps me to beat idle and timeout functions that mess with scrolling.
+	- Fix problem where Previous/Next/TOC menu items stayed active when they
+	  shouldn't have.
+
 2004-01-23  Mikael Hallendal  <micke@imendio.com>
 
 	* src/yelp-window.h: include gtkwindow.h instead of gnome-app.h

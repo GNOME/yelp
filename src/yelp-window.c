@@ -26,6 +26,7 @@
 #include <config.h>
 #endif
 
+#include <libgtkhtml/gtkhtml.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
@@ -226,6 +227,22 @@ struct _YelpWindowPriv {
     gchar          *next;
     gchar          *toc;
 };
+
+typedef struct _IdleWriterContext IdleWriterContext;
+struct _IdleWriterContext {
+    YelpWindow   *window;
+
+    enum {
+	IDLE_WRITER_MEMORY,
+	IDLE_WRITER_VFS
+    } type;
+
+    const gchar  *buffer;
+    gint          cur;
+    gint          length;
+};
+
+static gboolean    idle_write    (IdleWriterContext *context);
 
 static GtkItemFactoryEntry menu_items[] = {
     {N_("/_File"),                   NULL, 0, 0, "<Branch>"     },
@@ -584,8 +601,6 @@ window_populate (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (priv->main_box),
 			priv->html_sw,
 			TRUE, TRUE, 0);
-
-    gtk_widget_grab_focus (yelp_html_get_widget (priv->html_view));
 }
 
 static GtkWidget *
@@ -844,8 +859,6 @@ window_handle_pager_uri (YelpWindow  *window,
 	gchar *loading = _("Loading...");
 	GdkCursor *cursor = gdk_cursor_new (GDK_WATCH);
 
-	yelp_html_clear (priv->html_view);
-
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, cursor);
 	gdk_cursor_unref (cursor);
 
@@ -868,6 +881,7 @@ window_handle_pager_uri (YelpWindow  *window,
 	gtk_window_set_title (GTK_WINDOW (window),
 			      (const gchar *) loading);
 
+	yelp_html_clear (priv->html_view);
 	yelp_html_printf
 	    (priv->html_view,
 	     "<html><head><meta http-equiv='Content-Type'"
@@ -944,22 +958,27 @@ window_handle_html_uri (YelpWindow    *window,
 	gtk_widget_set_sensitive (menu_item, FALSE);
 
 
-    yelp_html_clear (priv->html_view);
-    yelp_html_set_base_uri (priv->html_view, uri);
-
     result = gnome_vfs_open (&handle,
 			     gnome_vfs_uri_get_path (uri->uri),
 			     GNOME_VFS_OPEN_READ);
 
     if (result != GNOME_VFS_OK) {
-	// FIXME: Give an error
+	GError *error = NULL;
+	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	window_error (window, error);
+	g_error_free (error);
 	return FALSE;
     }
+
+    yelp_html_clear (priv->html_view);
+    yelp_html_set_base_uri (priv->html_view, uri);
 
     while ((result = gnome_vfs_read
 	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
 	yelp_html_write (priv->html_view, buffer, n);
     }
+
+    yelp_html_close (priv->html_view);
 
     gnome_vfs_close (handle);
 
@@ -977,6 +996,7 @@ window_handle_page (YelpWindow   *window,
     YelpWindowPriv *priv;
     gchar          *id;
     gboolean        valid;
+    IdleWriterContext *context;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
@@ -1015,39 +1035,43 @@ window_handle_page (YelpWindow   *window,
 	}
     }
 
-    if (page->prev) {
-	priv->prev = page->prev;
-	menu_item =
-	    gtk_item_factory_get_item_by_action (priv->item_factory,
-						 YELP_WINDOW_GO_PREVIOUS);
-	if (menu_item)
-	    gtk_widget_set_sensitive (menu_item, TRUE);
-    }
-    if (page->next) {
-	priv->next = page->next;
-	menu_item =
-	    gtk_item_factory_get_item_by_action (priv->item_factory,
-						 YELP_WINDOW_GO_NEXT);
-	if (menu_item)
-	    gtk_widget_set_sensitive (menu_item, TRUE);
-    }
-    if (page->toc) {
-	priv->toc = page->toc;
-	menu_item =
-	    gtk_item_factory_get_item_by_action (priv->item_factory,
-						 YELP_WINDOW_GO_TOC);
-	if (menu_item)
-	    gtk_widget_set_sensitive (menu_item, TRUE);
-    }
+    priv->prev = page->prev;
+    menu_item =
+	gtk_item_factory_get_item_by_action (priv->item_factory,
+					     YELP_WINDOW_GO_PREVIOUS);
+    if (menu_item)
+	gtk_widget_set_sensitive (menu_item,
+				  priv->prev ? TRUE : FALSE);
+
+    priv->next = page->next;
+    menu_item =
+	gtk_item_factory_get_item_by_action (priv->item_factory,
+					     YELP_WINDOW_GO_NEXT);
+    if (menu_item)
+	gtk_widget_set_sensitive (menu_item,
+				  priv->next ? TRUE : FALSE);
+
+    priv->toc = page->toc;
+    menu_item =
+	gtk_item_factory_get_item_by_action (priv->item_factory,
+					     YELP_WINDOW_GO_TOC);
+    if (menu_item)
+	gtk_widget_set_sensitive (menu_item,
+				  priv->toc ? TRUE : FALSE);
 
     gtk_window_set_title (GTK_WINDOW (window),
 			  (const gchar *) page->title);
 
+    context = g_new0 (IdleWriterContext, 1);
+    context->window = window;
+    context->type   = IDLE_WRITER_MEMORY;
+    context->buffer = page->chunk;
+    context->length = strlen (page->chunk);
+
     yelp_html_clear (priv->html_view);
     yelp_html_set_base_uri (priv->html_view, uri);
-    yelp_html_write (priv->html_view,
-		     page->chunk,
-		     strlen (page->chunk));
+
+    gtk_idle_add ((GtkFunction) idle_write, context);
 
     if (gnome_vfs_uri_get_fragment_identifier (uri->uri)) {
 	yelp_html_jump_to_anchor
@@ -1192,7 +1216,6 @@ html_uri_selected_cb (YelpHtml  *html,
 
     if (!handled) {
 	yelp_window_open_uri (window, uri);
-	yelp_uri_unref (uri);
     }
 }
 
@@ -1711,3 +1734,45 @@ tree_model_iter_following (GtkTreeModel  *model,
     return FALSE;
 }
 
+/* Writing incrementally in an idle function has a number of advantages.  First,
+ * it keeps the interface responsive for really big pages.  Second, it prevents
+ * some weird rendering artifacts in gtkhtml2.  Third, and most important, it
+ * helps me beat the relayout race condition that I discuss at length in a big
+ * comment in yelp-html-gtkhtml2.c.
+ */
+
+static gboolean
+idle_write (IdleWriterContext *context)
+{
+    YelpWindowPriv *priv;
+
+    g_return_val_if_fail (context != NULL, FALSE);
+    g_return_val_if_fail (context->window != NULL, FALSE);
+
+    priv = context->window->priv;
+
+    switch (context->type) {
+    case IDLE_WRITER_MEMORY:
+	if (context->cur + BUFFER_SIZE < context->length) {
+	    yelp_html_write (priv->html_view,
+			     context->buffer + context->cur,
+			     BUFFER_SIZE);
+	    context->cur += BUFFER_SIZE;
+	    return TRUE;
+	} else {
+	    if (context->length > context->cur)
+		yelp_html_write (priv->html_view,
+				 context->buffer + context->cur,
+				 context->length - context->cur);
+	    yelp_html_close (priv->html_view);
+	    g_free (context);
+	    return FALSE;
+	}
+	break;
+    case IDLE_WRITER_VFS:
+    default:
+	g_assert_not_reached ();
+    }
+
+    return FALSE;
+}
