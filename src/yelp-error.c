@@ -63,6 +63,12 @@ yelp_set_error (GError **error, YelpError code)
 		     YELP_ERROR_NO_SGML,
 		     _("DocBook SGML documents are no longer supported."));
 	break;
+    case YELP_ERROR_IO:
+	g_set_error (error,
+		     YELP_ERROR,
+		     YELP_ERROR_IO,
+		     _("The selected file could not be read."));
+	break;
     default:
 	g_assert_not_reached ();
     }

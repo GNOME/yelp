@@ -37,10 +37,13 @@ yelp-marshal.c: yelp-marshal.h
 yelp-marshal-main.c: yelp-marshal.c
 
 test_man_parser_SOURCES =						\
+	yelp-error.c		yelp-error.h				\
+	yelp-io-channel.c	yelp-io-channel.h			\
 	yelp-man-parser.c	yelp-man-parser.h			\
 	test-man-parser.c
 
-test_man_parser_LDADD = @YELP_LIBS@
+test_man_parser_LDADD =							\
+	@YELP_LIBS@ $(Z_LIBS) $(BZ_LIBS)
 
 test_pager_SOURCES =							\
 	yelp-db-pager.c		yelp-db-pager.h				\

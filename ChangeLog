@@ -1,5 +1,19 @@
 2004-01-10  Shaun McCance  <shaunm@gnome.org>
 
+	* src/.cvsignore: Added test-man-parser to .cvsignore
+
+	* src/Makefile.am:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-io-channel.c:
+	* src/yelp-io-channel.h:
+	* src/yelp-man-parser.c:
+	- Kick-ass custom GIOChannel that automatically uses zlib and libbz2.
+
+	* stylesheets/.cvsignore: Added l10n.xml to .cvsignore
+
+2004-01-10  Shaun McCance  <shaunm@gnome.org>
+
 	* stylesheets/l10n.xml.in:
 	- Added lots of comments.
 

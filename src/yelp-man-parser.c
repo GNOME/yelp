@@ -29,6 +29,7 @@
 #include <libxml/tree.h>
 #include <string.h>
 
+#include "yelp-io-channel.h"
 #include "yelp-man-parser.h"
 
 #define d(x)
@@ -75,7 +76,7 @@ xmlDocPtr
 yelp_man_parser_parse_file (YelpManParser   *parser,
 			    gchar           *file)
 {
-    parser->channel = g_io_channel_new_file (file, "r", NULL);
+    parser->channel = yelp_io_channel_new_file (file, NULL);
 
     if (!parser->channel)
 	return NULL;
