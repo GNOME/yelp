@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-03-01 10:36+0100\n"
-"PO-Revision-Date: 2002-03-01 10:36+0100\n"
+"POT-Creation-Date: 2002-04-05 23:45+0200\n"
+"PO-Revision-Date: 2002-04-05 23:47+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,10 @@ msgstr "Yelp"
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp Factory"
 msgstr "Generator Yelpa"
+
+#: src/yelp-html.c:1
+msgid "Loading..."
+msgstr "Odczytywanie..."
 
 #: src/yelp-info.c:1
 msgid "info"
@@ -159,10 +163,7 @@ msgstr "/Plik/_Nowe okno"
 msgid "/File/_Close window"
 msgstr "/Plik/Za_mknij okno"
 
-#: src/yelp-window.c:1
-msgid "/File/_Quit"
-msgstr "/Plik/Za_kończ"
-
+#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
 #: src/yelp-window.c:1
 msgid "/_Go"
 msgstr "/P_rzejście"
@@ -195,6 +196,8 @@ msgstr "/Pomoc/_Informacje o"
 msgid "Help Browser"
 msgstr "Przeglądarka pomocy"
 
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
 #: src/yelp-window.c:1
 msgid "translator_credits"
 msgstr "GNOME PL Team <translators@gnome.pl>"
@@ -234,18 +237,6 @@ msgstr "Indeks"
 #: src/yelp-window.c:1
 msgid "Search in the index"
 msgstr "Wyszukuje w indeksie"
-
-#: src/yelp-window.c:1
-msgid "Search for a phrase in the document"
-msgstr "Wyszukuje zwrotu w dokumencie"
-
-#: src/yelp-window.c:1
-msgid "Help on "
-msgstr "Pomoc na temat "
-
-#: src/yelp-window.c:1
-msgid "Enter phrase to search for in all documents"
-msgstr "Wpisz zwrot, który chcesz wyszukać we wszystkich dokumentach"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
