@@ -86,6 +86,7 @@ yelp_db2html_convert (const gchar         *document,
 
 	/* libxml housekeeping */
 	xmlSubstituteEntitiesDefault(1);
+	xmlLoadExtDtdDefaultValue = 1;
 
 	/* parse the stylesheet */
         if (!gdb_xslreturn) {
