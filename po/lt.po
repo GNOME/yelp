@@ -1,0 +1,323 @@
+# Lithuanian translation of yelp
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-06 04:54+0200\n"
+"PO-Revision-Date: 2003-10-06 14:28+0300\n"
+"Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
+"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>Rasti tekstą dokumente:</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "Automatiškai _pradėti nuo pradžios"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "Rasti tesktą..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "Turi sutapti _visas žodis"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "Turi sutapti raidžių _registras"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "_Kitas"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "_Ankstesnis"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Pagalba"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Pagalbos gamykla"
+
+#: src/yelp-main.c:94
+msgid "Define which cache directory to use"
+msgstr "Nustatyti kurį podėlio katalogą naudoti"
+
+#: src/yelp-main.c:128
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Nepavyko paleisti pagalbos sistemos: '%s'"
+
+#: src/yelp-main.c:147
+msgid "Could not open new window."
+msgstr "Nepavyko atidaryti naujo lango."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Sisteminiai šaukiniai"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Bibliotekų funkcijos"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Branduolio funkcijos"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "Programos"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "Programavimas"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Įrengimai"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Nustatymų bylos"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Žaidimai"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Apžvalgos"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Sistemos administravimas"
+
+#: src/yelp-scrollkeeper.c:627
+msgid "About This Document"
+msgstr "Apie šį dokumentą"
+
+#: src/yelp-scrollkeeper.c:631
+msgid "Contents"
+msgstr "Turinys"
+
+#: src/yelp-view-content.c:489
+msgid "Previous"
+msgstr "Ankstesnis"
+
+#: src/yelp-view-content.c:500
+msgid "Next"
+msgstr "Sekantis"
+
+#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "Paleidžiama..."
+
+#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Sekcija"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "_Ieškoti:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Pagalbos žinyno turinys"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "GNOME - Aplinka"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "Papildomi dokumentai"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
+msgid "Manual Pages"
+msgstr "Pagalbos Puslapiai"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
+msgid "Info Pages"
+msgstr "Informaciniai puslapiai"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
+msgid "Documents"
+msgstr "Dokumentai"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: src/yelp-view-toc.c:447
+msgid "Manual pages"
+msgstr "Pagalbos puslapiai"
+
+#: src/yelp-view-toc.c:707
+msgid "GNOME is"
+msgstr "GNOME yra"
+
+#: src/yelp-view-toc.c:708
+msgid "Free Software"
+msgstr "Laisva programinė įranga"
+
+#: src/yelp-view-toc.c:709
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:171
+msgid "/_File"
+msgstr "/_Byla"
+
+#: src/yelp-window.c:172
+msgid "/File/_New window"
+msgstr "/Byla/_Naujas langas"
+
+#: src/yelp-window.c:173
+msgid "/File/_Close window"
+msgstr "/Byla/_Uždaryti langą"
+
+#: src/yelp-window.c:175
+msgid "/_Edit"
+msgstr "/_Taisyti"
+
+#: src/yelp-window.c:176
+msgid "/Edit/_Find in page..."
+msgstr "/Taisyti/_Rasti puslapyje..."
+
+#: src/yelp-window.c:177
+msgid "/Edit/_Find again"
+msgstr "/Taisyti/Rasti _dar"
+
+#: src/yelp-window.c:179
+msgid "/_Go"
+msgstr "/_Eiti"
+
+#: src/yelp-window.c:180
+msgid "/Go/_Back"
+msgstr "/Eiti/_Atgal"
+
+#: src/yelp-window.c:181
+msgid "/Go/_Forward"
+msgstr "/Eiti/_Pirmyn"
+
+#: src/yelp-window.c:182
+msgid "/Go/_Home"
+msgstr "/Eiti/Į p_radžią"
+
+#: src/yelp-window.c:183
+msgid "/Go/_Index"
+msgstr "/Eiti/_Indeksas"
+
+#: src/yelp-window.c:185
+msgid "/_Help"
+msgstr "/_Pagalba"
+
+#: src/yelp-window.c:186
+msgid "/Help/_About"
+msgstr "/Pagalba/_Apie"
+
+#: src/yelp-window.c:255 src/yelp-window.c:455
+msgid "Help Browser"
+msgstr "Pagalbos naršyklė"
+
+#: src/yelp-window.c:368
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Dokumentas '%s' neegzistuoja"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:695
+msgid "translator_credits"
+msgstr "Tomas Kuliavas <tokul@users.sourceforge.net>"
+
+#: src/yelp-window.c:699
+msgid "A Help Browser for GNOME"
+msgstr "GNOME pagalbos žinyno naršyklė"
+
+#: src/yelp-window.c:813
+msgid "Back"
+msgstr "Atgal"
+
+#: src/yelp-window.c:814
+msgid "Show previous page in history"
+msgstr "Rodyti anksčiau rodytą puslapį"
+
+#: src/yelp-window.c:825
+msgid "Forward"
+msgstr "Pirmyn"
+
+#: src/yelp-window.c:826
+msgid "Show next page in history"
+msgstr "Rodyti kitą puslapį esantį atmintyje"
+
+#: src/yelp-window.c:839
+msgid "Home"
+msgstr "Pradžia"
+
+#: src/yelp-window.c:840
+msgid "Go to home view"
+msgstr "Grįžti į pradinį puslapį"
+
+#: src/yelp-window.c:850
+msgid "Index"
+msgstr "Indeksas"
+
+#: src/yelp-window.c:851
+msgid "Search in the index"
+msgstr "Ieškoti tarp indeksų"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Gauti pagalbą dirbant su GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Pagalba"
+
