@@ -5,89 +5,66 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2001-12-03 10:32+0200\n"
+"POT-Creation-Date: 2001-12-10 12:27+0200\n"
 "PO-Revision-Date: 2001-12-03 10:34+0200\n"
 "Last-Translator: Yuriy Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=koi8-u\n"
+"Content-Type: text/plain; charset=uft-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/ghelp-main.c:35
-#, c-format
-msgid "Usage '%s uri'\n"
-msgstr "Використання \"%s URI\"\n"
-
-#: src/ghelp-main.c:43
-#, c-format
-msgid "Transformed URI: %s\n"
-msgstr "Перетворений URI: %s\n"
-
-#: src/ghelp-main.c:52
-#, c-format
-msgid "File not found: %s\n"
-msgstr "Файлу не знайдено: %s\n"
-
-#: src/ghelp-main.c:56
-#, c-format
-msgid "Invalid URI: %s\n"
-msgstr "Нев╕рний URI: %s\n"
-
-#: src/yelp-toc.c:140
-msgid "Section"
-msgstr "Розд╕л"
-
-#: src/yelp-view.c:364
+#: src/yelp-html.c:367
 msgid ""
 "<html><head><title>This is Yelp, a help browser for GNOME "
 "2.0</title></head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is "
 "to be a help browser for GNOME 2.0 written by Mikael "
 "Hallendal.<br><br>Please read the README and TODO<br></body></html>"
 msgstr ""
-"<html><head><title>Це Yelp, програма перегляду дов╕дки для GNOME "
-"2.0</title></head><body bgcolor=\"white\"><h3>Ласкаво просимо у Yelp!</h3>Це програма "
-"перегляду дов╕дки для GNOME 2.0, ща написана М╕келем "
-"Галлендалем.<br><br>Будь ласка, перечитайте файли README та TODO<br></body></html>"
+"<html><head><title>п╕п╣ Yelp, п©я─п╬пЁя─п╟п╪п╟ п©п╣я─п╣пЁп╩я▐п╢я┐ п╢п╬п╡я√п╢п╨п╦ п╢п╩я▐ GNOME "
+"2.0</title></head><body bgcolor=\"white\"><h3>п⌡п╟я│п╨п╟п╡п╬ п©я─п╬я│п╦п╪п╬ я┐ Yelp!</h3>п╕п╣ "
+"п©я─п╬пЁя─п╟п╪п╟ п©п╣я─п╣пЁп╩я▐п╢я┐ п╢п╬п╡я√п╢п╨п╦ п╢п╩я▐ GNOME 2.0, я┴п╟ п╫п╟п©п╦я│п╟п╫п╟ п°я√п╨п╣п╩п╣п╪ "
+"п⌠п╟п╩п╩п╣п╫п╢п╟п╩п╣п╪.<br><br>п▒я┐п╢я▄ п╩п╟я│п╨п╟, п©п╣я─п╣я┤п╦я┌п╟п╧я┌п╣ я└п╟п╧п╩п╦ README я┌п╟ "
+"TODO<br></body></html>"
 
-#: src/yelp-window.c:76
+#: src/yelp-view-content.c:159 src/yelp-view-index.c:172
+msgid "Section"
+msgstr "п═п╬п╥п╢я√п╩"
+
+#: src/yelp-window.c:105
 msgid "/_File"
-msgstr "/_Файл"
+msgstr "/_п╓п╟п╧п╩"
 
-#: src/yelp-window.c:77
+#: src/yelp-window.c:106
 msgid "/File/_New window"
-msgstr "/Файл/_Нове в╕кно"
+msgstr "/п╓п╟п╧п╩/_п²п╬п╡п╣ п╡я√п╨п╫п╬"
 
-#: src/yelp-window.c:78
+#: src/yelp-window.c:107
 msgid "/File/E_xit"
-msgstr "/Файл/Ви_йти"
+msgstr "/п╓п╟п╧п╩/п▓п╦_п╧я┌п╦"
 
-#: src/yelp-window.c:79
+#: src/yelp-window.c:108
 msgid "/_Help"
-msgstr "/_Дов╕дка"
+msgstr "/_п■п╬п╡я√п╢п╨п╟"
 
-#: src/yelp-window.c:80
+#: src/yelp-window.c:109
 msgid "/Help/_About"
-msgstr "/Дов╕дка/_Про"
+msgstr "/п■п╬п╡я√п╢п╨п╟/_п÷я─п╬"
 
-#: src/yelp-window.c:126
-msgid "Yelp: GNOME Help Browser"
-msgstr "Yelp: Переглядач дов╕дки GNOME"
+#: src/yelp-window.c:156
+msgid "Help Browser"
+msgstr "п÷п╣я─п╣пЁп╩я▐п╢ п╢п╬п╡я√п╢п╨п╦"
 
-#: src/yelp-window.c:216
-msgid "Contents"
-msgstr "Вм╕ст"
-
-#: src/yelp-window.c:232
-msgid "Index"
-msgstr "Показчик"
-
-#: src/yelp-window.c:298
+#: src/yelp-window.c:361
 msgid "Help Browser for GNOME 2.0"
-msgstr "Переглядач дов╕дки для GNOME 2.0"
+msgstr "п÷п╣я─п╣пЁп╩я▐п╢ п╢п╬п╡я√п╢п╨п╦ п╢п╩я▐ GNOME 2.0"
+
+#: src/yelp-window.c:443
+msgid "Help on "
+msgstr "п■п╬п╡я√п╢п╨п╟ п©я─п╬ "
 
 #: yelp.desktop.in.h:1
 msgid "GNOME Helpbrowser"
-msgstr "Переглядач дов╕дки GNOME"
+msgstr "п÷п╣я─п╣пЁп╩я▐п╢ п╢п╬п╡я√п╢п╨п╦ GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Yelp"
