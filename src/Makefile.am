@@ -35,7 +35,7 @@ test_reader_SOURCES = 							\
 	yelp-error.c		yelp-error.h				\
 	yelp-util.c		yelp-util.h				\
 	yelp-db2html.c		yelp-db2html.h				\
-	yelp-marshal.c		yelp-marshal.h	
+	yelp-marshal-main.c
 
 test_reader_LDADD = 							\
 	@YELP_LIBS@
@@ -56,7 +56,6 @@ yelp-marshal.c: yelp-marshal.h
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
-	yelp-marshal.c		yelp-marshal.h				\
 	yelp-base.c		yelp-base.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-db2html.c		yelp-db2html.h				\
@@ -66,6 +65,7 @@ yelp_SOURCES =								\
 	yelp-info.c		yelp-info.h				\
 	yelp-main.c							\
 	yelp-man.c		yelp-man.h				\
+	yelp-marshal-main.c						\
 	yelp-reader.c		yelp-reader.h				\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\

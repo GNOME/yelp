@@ -8,7 +8,7 @@ AC_ARG_WITH(html-widget, [  --with-html-widget=[gtkhtml1/gtkhtml2] html widget t
 
 AM_MAINTAINER_MODE
 GNOME_COMMON_INIT
-GNOME_COMPILE_WARNINGS(maximum)
+GNOME_COMPILE_WARNINGS(error)
 
 AC_PROG_CC
 AC_ISC_POSIX

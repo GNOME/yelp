@@ -1,3 +1,11 @@
+2002-05-23  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/Makefile.am (yelp_SOURCES): use yelp-marshal-main.c instead
+	  of yelp-marshal.c and yelp-marshal.h
+
+	* src/yelp-marshal-main.c: added to get rid of warnings in
+	  yelp-marshal.c
+
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-db2html.c (yelp_db2html_convert): 
