@@ -214,12 +214,14 @@ db_pager_process (YelpPager *pager)
     yelp_toc_pager_pause (yelp_toc_pager_get ());
 
     ctxt = xmlNewParserCtxt ();
-    xmlCtxtUseOptions (ctxt,
-		       XML_PARSE_NOENT    |
-		       XML_PARSE_DTDLOAD  |
-		       XML_PARSE_XINCLUDE |
-		       XML_PARSE_NONET    );
-    doc = xmlCtxtReadFile (ctxt, (const char *) uri_str, NULL, 0);
+    doc = xmlCtxtReadFile (ctxt,
+			   (const char *) uri_str,
+			   NULL,
+			   XML_PARSE_DTDLOAD  |
+			   XML_PARSE_XINCLUDE |
+			   XML_PARSE_NOCDATA  |
+			   XML_PARSE_NOENT    |
+			   XML_PARSE_NONET    );
 
     if (doc == NULL) {
 	gchar *str_uri = yelp_uri_to_string (uri);
