@@ -8,23 +8,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-16 11:00-0500\n"
-"PO-Revision-Date: 2004-12-16 22:18-0400\n"
+"POT-Creation-Date: 2004-12-22 02:43-0500\n"
+"PO-Revision-Date: 2004-12-22 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: data/man.xml.in.h:1 data/toc.xml.in.h:4 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Applications"
 
-#: data/man.xml.in.h:2
+#: data/man.xml.in.h:2 src/yelp-man.c:444
 msgid "Configuration Files"
 msgstr "Configuration Files"
 
-#: data/man.xml.in.h:3
+#: data/man.xml.in.h:3 src/yelp-man.c:434
 msgid "Development"
 msgstr "Development"
 
@@ -32,19 +32,19 @@ msgstr "Development"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN Functions"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: data/man.xml.in.h:5 data/toc.xml.in.h:7 src/yelp-man.c:449
 msgid "Games"
 msgstr "Games"
 
-#: data/man.xml.in.h:6
+#: data/man.xml.in.h:6 src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "Hardware Devices"
 
-#: data/man.xml.in.h:7
+#: data/man.xml.in.h:7 src/yelp-man.c:374
 msgid "Kernel Routines"
 msgstr "Kernel Routines"
 
-#: data/man.xml.in.h:8
+#: data/man.xml.in.h:8 src/yelp-man.c:369
 msgid "Library Functions"
 msgstr "Library Functions"
 
@@ -64,7 +64,7 @@ msgstr "OpenSSL Configuration"
 msgid "OpenSSL Overviews"
 msgstr "OpenSSL Overviews"
 
-#: data/man.xml.in.h:13
+#: data/man.xml.in.h:13 src/yelp-man.c:454
 msgid "Overviews"
 msgstr "Overviews"
 
@@ -76,11 +76,11 @@ msgstr "Perl Functions"
 msgid "Qt Functions"
 msgstr "Qt Functions"
 
-#: data/man.xml.in.h:16
+#: data/man.xml.in.h:16 src/yelp-man.c:459
 msgid "System Administration"
 msgstr "System Administration"
 
-#: data/man.xml.in.h:17
+#: data/man.xml.in.h:17 src/yelp-man.c:364
 msgid "System Calls"
 msgstr "System Calls"
 
@@ -180,38 +180,6 @@ msgstr "System Tools"
 msgid "X Applications"
 msgstr "X Applications"
 
-#: data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Font for fixed text"
-
-#: data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Font for text"
-
-#: data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Font for text with fixed width."
-
-#: data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Font for text with variable width."
-
-#: data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Use a keyboard-controllable caret when viewing pages."
-
-#: data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr "Use caret"
-
-#: data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr "Use system fonts"
-
-#: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
-msgstr "Use the system's default fonts."
-
 #: data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
 msgstr "<b>Accessibility</b>"
@@ -276,6 +244,38 @@ msgstr "_Variable width:"
 msgid "_Wrap around"
 msgstr "_Wrap around"
 
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Font for fixed text"
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Font for text"
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Font for text with fixed width."
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Font for text with variable width."
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr "Use a keyboard-controllable caret when viewing pages."
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr "Use caret"
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr "Use system fonts"
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr "Use the system's default fonts."
+
 #: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2043
 msgid "Yelp"
 msgstr "Yelp"
@@ -337,6 +337,35 @@ msgstr "Could not open new window."
 msgid "Help"
 msgstr "Help"
 
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
 #: src/yelp-pager.c:120
 msgid "Document Information"
 msgstr "Document Information"
@@ -344,6 +373,32 @@ msgstr "Document Information"
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
 msgstr "The YelpDocInfo struct of the document"
+
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr "yelp-watermark-blockquote-201C"
 
 #: src/yelp-toc-pager.c:267
 msgid "YelpTocPager: Pause count is negative."
@@ -359,11 +414,11 @@ msgstr "Could not load the OMF file '%s'."
 msgid "Read man page for %s"
 msgstr "Read man page for %s"
 
-#: src/yelp-toc-pager.c:1003
+#: src/yelp-toc-pager.c:1003 src/yelp-xslt-pager.c:352
 msgid "No href attribute found on yelp:document"
 msgstr "No href attribute found on yelp:document"
 
-#: src/yelp-toc-pager.c:1017
+#: src/yelp-toc-pager.c:1017 src/yelp-xslt-pager.c:367
 msgid "Out of memory"
 msgstr "Out of memory"
 
@@ -506,29 +561,3 @@ msgstr "A documentation browser and viewer for the Gnome Desktop."
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Get help with GNOME"
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use either 201C or 201E, depending on whether
-#. the opening quote is raised or at the baseline.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: src/yelp-settings.c:125
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201C"
