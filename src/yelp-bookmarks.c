@@ -53,6 +53,10 @@ static GSList *windows;
 static GtkListStore *actions_store;
 static gboolean dup_flag;
 
+static gboolean have_tocs = FALSE;
+static gboolean have_docs = FALSE;
+static GtkTreeIter *seperator_iter = NULL;
+
 typedef struct _YelpWindowData YelpWindowData;
 struct _YelpWindowData {
     YelpWindow *window;
@@ -90,9 +94,9 @@ void             bookmarks_key_event_cb     (GtkWidget         *widget,
 
 static gboolean  bookmarks_read             (void);
 
-void             bookmarks_add_seperator    (void);
+static void      bookmarks_add_seperator    (void);
 
-gboolean         bookmarks_dup_finder       (GtkTreeModel   *model,
+static gboolean  bookmarks_dup_finder       (GtkTreeModel   *model,
 					     GtkTreePath    *path,
 					     GtkTreeIter    *iter,
 					     gpointer        data);
@@ -110,16 +114,6 @@ yelp_bookmarks_init (void)
 					G_TYPE_BOOLEAN);
 
     read = bookmarks_read ();
-    
-    if (!read) {
-	gtk_list_store_append (actions_store, &iter);
-
-	gtk_list_store_set (actions_store, &iter,
-			    COL_NAME,  NULL,
-			    COL_LABEL, NULL,
-			    COL_SEP,   TRUE,
-			    -1);
-    }
 }
 
 void
@@ -175,19 +169,26 @@ yelp_bookmarks_register (YelpWindow *window)
     windows = g_slist_append (windows, data);
 }
 
-void bookmarks_add_seperator (void)
+static void
+bookmarks_add_seperator (void)
 {
     GtkTreeIter iter;
 
-    gtk_list_store_append (actions_store, &iter);
-    gtk_list_store_set (actions_store, &iter,
-			COL_NAME,  NULL,
-			COL_LABEL, NULL,
-			COL_SEP,   TRUE,
-			-1);
+    if (seperator_iter == NULL) {
+	if (have_tocs)
+	    gtk_list_store_append (actions_store, &iter);
+	else
+	    gtk_list_store_prepend (actions_store, &iter);
+	gtk_list_store_set (actions_store, &iter,
+			    COL_NAME,  NULL,
+			    COL_LABEL, NULL,
+			    COL_SEP,   TRUE,
+			    -1);
+	seperator_iter = gtk_tree_iter_copy (&iter);
+    }
 }
 
-gboolean 
+static gboolean 
 bookmarks_dup_finder (GtkTreeModel *model, GtkTreePath *path,
 		      GtkTreeIter *iter, gpointer data)
 {
@@ -208,12 +209,34 @@ void yelp_bookmarks_add (gchar *uri, const gchar *title, gboolean save)
 {
     GtkTreeIter  iter;
     GSList      *cur;
+    gboolean     tocQ;
     
     dup_flag = FALSE;
     gtk_tree_model_foreach (GTK_TREE_MODEL (actions_store),
 			    bookmarks_dup_finder, uri);
     if (!dup_flag) {
-	gtk_list_store_append (actions_store, &iter);
+	tocQ = g_str_has_prefix (uri, "x-yelp-toc:");
+
+	if (tocQ) {
+	    if (seperator_iter == NULL) {
+		if (have_docs) {
+		    bookmarks_add_seperator ();
+		    gtk_list_store_prepend (actions_store, &iter);
+		} else {
+		    gtk_list_store_append (actions_store, &iter);
+		}
+	    } else {
+		gtk_list_store_insert_before (actions_store,
+					      &iter, seperator_iter);
+	    }
+	    have_tocs = TRUE;
+	} else {
+	    if (seperator_iter == NULL && have_tocs)
+		bookmarks_add_seperator ();
+	    gtk_list_store_append (actions_store, &iter);
+	    have_docs = TRUE;
+	}
+
 	gtk_list_store_set (actions_store, &iter,
 			    COL_NAME,  uri,
 			    COL_LABEL, title,
@@ -539,9 +562,6 @@ bookmarks_read (void)
 	    
 	    if (name && title) {
 		yelp_bookmarks_add (name, title, FALSE);
-	    }
-	    else if (sep) {
-		bookmarks_add_seperator ();
 	    }
 	    g_free (name);
 	    g_free (title);

@@ -3,11 +3,13 @@
   <menubar>
     <menu action="FileMenu">
       <menuitem action="NewWindow"/>
+      <separator/>
+      <menuitem action="AboutDocument"/>
+      <separator/>
       <menuitem action="CloseWindow"/>
     </menu>
     <menu action="EditMenu">
       <menuitem action="Copy"/>
-      <separator/>
       <menuitem action="SelectAll"/>
       <separator/>
       <menuitem action="Find"/>

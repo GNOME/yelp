@@ -363,6 +363,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     if (page_id == NULL) {
 	xsltTransformError (ctxt, NULL, inst,
 			    _("No href attribute found on yelp:document"));
+	/* FIXME: put a real error here */
 	error = NULL;
 	yelp_pager_error (pager, error);
 	goto done;

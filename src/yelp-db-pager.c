@@ -95,7 +95,6 @@ static void            walker_walk_xml      (DBWalker         *walker);
 static gboolean        walker_is_chunk      (DBWalker         *walker);
 
 static gboolean        xml_is_division      (xmlNodePtr        node);
-static gboolean        xml_is_info          (xmlNodePtr        node);
 static gchar *         xml_get_title        (xmlNodePtr        node);
 
 static YelpPagerClass *parent_class;
@@ -188,6 +187,10 @@ yelp_db_pager_new (YelpDocInfo *doc_info)
     pager = (YelpDBPager *) g_object_new (YELP_TYPE_DB_PAGER,
 					  "document-info", doc_info,
 					  NULL);
+
+    g_hash_table_insert (pager->priv->frags_hash,
+			 g_strdup ("x-yelp-titlepage"),
+			 g_strdup ("x-yelp-titlepage"));
 
     if (!pager->priv->sects)
 	pager->priv->sects =
@@ -307,14 +310,10 @@ db_pager_params (YelpPager *pager)
 	params_max += 20;
 	params = g_renew (gchar *, params, params_max);
     }
-    params[params_i++] = "stylesheet_path";
-    params[params_i++] = g_strdup_printf ("\"file://%s\"", DB_STYLESHEET_PATH);
-    params[params_i++] = "html_extension";
+    params[params_i++] = "db.chunk.extension";
     params[params_i++] = g_strdup ("\"\"");
-    params[params_i++] = "resolve_xref_chunk";
-    params[params_i++] = g_strdup ("0");
-    params[params_i++] = "admon_graphics_path";
-    params[params_i++] = g_strdup_printf ("\"file://%s\"", DATADIR "/yelp/icons/");
+    params[params_i++] = "db.chunk.info_basename";
+    params[params_i++] = g_strdup ("\"x-yelp-titlepage\"");
 
     params[params_i] = NULL;
 
@@ -401,21 +400,11 @@ walker_walk_xml (DBWalker *walker)
     }
 
     if (walker_is_chunk (walker)) {
-	if (xml_is_info (walker->cur)) {
-	    if (id)
-		xmlFree (id);
-	    id = xmlStrdup ("titlepage");
-	}
-
 	title = xml_get_title (walker->cur);
 
 	if (id) {
-	    if (xml_is_info (walker->cur))
-		gtk_tree_store_prepend (GTK_TREE_STORE (priv->sects),
-					&iter, walker->iter);
-	    else
-		gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
-				       &iter, walker->iter);
+	    gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
+				   &iter, walker->iter);
 
 	    gtk_tree_store_set (GTK_TREE_STORE (priv->sects),
 				&iter,
@@ -427,11 +416,9 @@ walker_walk_xml (DBWalker *walker)
 	    walker->page_id = id;
 
 	    old_iter     = walker->iter;
-	    if (!xml_is_info (walker->cur) &&
-		walker->cur->parent->type != XML_DOCUMENT_NODE) {
 
-	    walker->iter = &iter;
-	    }
+	    if (walker->cur->parent->type != XML_DOCUMENT_NODE)
+		walker->iter = &iter;
 	}
     }
 
@@ -479,23 +466,19 @@ xml_get_title (xmlNodePtr node)
     gchar *ret   = NULL;
     xmlNodePtr cur;
 
-    if (xml_is_info (node))
-	title = g_strdup (_("Titlepage"));
-    else if (node->parent && node->parent->type == XML_DOCUMENT_NODE)
-	title = g_strdup (_("Contents"));
-    else {
-	for (cur = node->children; cur; cur = cur->next) {
-	    if (!xmlStrcmp (cur->name, (xmlChar *) "title")) {
-		if (title)
-		    g_free (title);
-		title = xmlNodeGetContent (cur);
-	    }
-	    else if (!xmlStrcmp (cur->name, (xmlChar *) "titleabbrev")) {
-		if (title)
-		    g_free (title);
-		title = xmlNodeGetContent (cur);
-		break;
-	    }
+    /* FIXME: this needs so much work */
+
+    for (cur = node->children; cur; cur = cur->next) {
+	if (!xmlStrcmp (cur->name, (xmlChar *) "title")) {
+	    if (title)
+		g_free (title);
+	    title = xmlNodeGetContent (cur);
+	}
+	else if (!xmlStrcmp (cur->name, (xmlChar *) "titleabbrev")) {
+	    if (title)
+		g_free (title);
+	    title = xmlNodeGetContent (cur);
+	    break;
 	}
     }
 
@@ -514,8 +497,6 @@ walker_is_chunk (DBWalker *walker)
 {
     if (walker->depth <= walker->max_depth) {
 	if (xml_is_division (walker->cur))
-	    return TRUE;
-	else if (walker->depth == 1 && xml_is_info (walker->cur))
 	    return TRUE;
     }
     return FALSE;
@@ -549,32 +530,4 @@ xml_is_division (xmlNodePtr node)
 	    !xmlStrcmp (node->name, (const xmlChar *) "set")          ||
 	    !xmlStrcmp (node->name, (const xmlChar *) "setindex")     ||
 	    !xmlStrcmp (node->name, (const xmlChar *) "simplesect")   );
-}
-
-gboolean
-xml_is_info (xmlNodePtr node)
-{
-    return (!xmlStrcmp (node->name, (const xmlChar *) "appendixinfo")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "articleinfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "bookinfo")         ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "bibliographyinfo") ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "chapterinfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "glossaryinfo")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "indexinfo")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "partinfo")         ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "prefaceinfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "referenceinfo")    ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refentryinfo")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsect1info")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsect2info")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsect3info")     ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "refsectioninfo")   ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect1info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect2info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect3info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect4info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sect5info")        ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "sectioninfo")      ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "setinfo")          ||
-	    !xmlStrcmp (node->name, (const xmlChar *) "setindexinfo")     );
 }

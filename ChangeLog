@@ -1,3 +1,16 @@
+2005-01-02  Shaun McCance  <shaunm@gnome.org>
+
+	* data/ui/yelp-ui.xml:
+	* src/yelp-db-pager.c:
+	* src/yelp-window.c:
+	- Set the params correct for current stylesheets
+	- Removed 'Titlepage' from the sidebar
+	- Added 'About This Document' menu item
+	- Got titles working correctly for DocBook
+
+	* src/yelp-bookmarks.c:
+	- Got the tree view working correctly for bookmarks
+
 2005-01-02  Davyd Madeley  <davyd@madeley.id.au>
 
 	* src/yelp-info-pager.c:

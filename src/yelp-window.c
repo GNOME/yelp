@@ -160,6 +160,7 @@ static void    window_add_widget        (GtkUIManager *ui_manager,
 					 GtkWidget    *widget,
 					 GtkWidget    *vbox);
 static void    window_new_window_cb     (GtkAction *action, YelpWindow *window);
+static void    window_about_document_cb (GtkAction *action, YelpWindow *window);
 static void    window_open_location_cb  (GtkAction *action, YelpWindow *window);
 static void    window_close_window_cb   (GtkAction *action, YelpWindow *window);
 static void    window_copy_cb           (GtkAction *action, YelpWindow *window);
@@ -305,17 +306,22 @@ static GtkActionEntry entries[] = {
     { "HelpMenu",      NULL, N_("_Help")      },
 
     { "NewWindow", GTK_STOCK_NEW,
-      N_("_New window"),
+      N_("_New Window"),
       "<Control>N",
       NULL,
       G_CALLBACK (window_new_window_cb) },
+    { "AboutDocument", NULL,
+      N_("About This Document"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_about_document_cb) },
     { "OpenLocation", NULL,
       N_("Open _Location"),
       "<Control>L",
       NULL,
       G_CALLBACK (window_open_location_cb) },
     { "CloseWindow", GTK_STOCK_CLOSE,
-      N_("_Close window"),
+      N_("_Close Window"),
       "<Control>W",
       NULL,
       G_CALLBACK (window_close_window_cb) },
@@ -945,11 +951,13 @@ window_populate (YelpWindow *window)
 	 "text", YELP_PAGER_COLUMN_TITLE,
 	 NULL);
 
+    /* DISABLE FOR NOW
     gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (priv->side_sects),
 					    GDK_BUTTON1_MASK,
 					    row_targets,
 					    G_N_ELEMENTS (row_targets),
 					    GDK_ACTION_LINK);
+    */
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
 
@@ -1376,6 +1384,13 @@ window_handle_page (YelpWindow   *window,
     pager = yelp_doc_info_get_pager (priv->current_doc);
 
     if (model) {
+	GtkTreeSelection *selection =
+	    gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
+	g_signal_handlers_block_by_func (selection,
+					 tree_selection_changed_cb,
+					 window);
+	gtk_tree_selection_unselect_all (selection);
+
 	valid = gtk_tree_model_get_iter_first (model, &iter);
 	while (valid) {
 	    gtk_tree_model_get (model, &iter,
@@ -1385,21 +1400,11 @@ window_handle_page (YelpWindow   *window,
 					       id,
 					       priv->current_frag)) {
 		GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
-		GtkTreeSelection *selection =
-		    gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
-
-		g_signal_handlers_block_by_func (selection,
-						 tree_selection_changed_cb,
-						 window);
 
 		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
 					      path);
-		gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->side_sects),
-					  path, NULL, FALSE);
+		gtk_tree_selection_select_path (selection, path);
 
-		g_signal_handlers_unblock_by_func (selection,
-						   tree_selection_changed_cb,
-						   window);
 		gtk_tree_path_free (path);
 		g_free (id);
 		break;
@@ -1409,6 +1414,9 @@ window_handle_page (YelpWindow   *window,
 
 	    valid = tree_model_iter_following (model, &iter);
 	}
+	g_signal_handlers_unblock_by_func (selection,
+					   tree_selection_changed_cb,
+					   window);
     }
 
     priv->prev_id = page->prev_id;
@@ -1432,9 +1440,6 @@ window_handle_page (YelpWindow   *window,
 		      "sensitive",
 		      priv->toc_id ? TRUE : FALSE,
 		      NULL);
-
-    gtk_window_set_title (GTK_WINDOW (window),
-			  (const gchar *) page->title);
 
     context = g_new0 (IdleWriterContext, 1);
     context->window = window;
@@ -1782,6 +1787,23 @@ window_new_window_cb (GtkAction *action, YelpWindow *window)
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0, NULL);
+}
+
+static void
+window_about_document_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPriv *priv;
+    gchar *uri;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = window->priv;
+
+    uri = yelp_doc_info_get_uri (priv->current_doc,
+				 "x-yelp-titlepage",
+				 YELP_URI_TYPE_ANY);
+    yelp_window_load (window, uri);
+    g_free (uri);
 }
 
 static void
