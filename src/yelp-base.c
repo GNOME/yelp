@@ -135,7 +135,7 @@ yelp_base_new_window_cb (YelpWindow *window, YelpBase *base)
 	
 	new_window = yelp_base_new_window (base, NULL);
 	
-	gtk_widget_show_all (new_window);
+	gtk_widget_show (new_window);
 }
 
 static void
@@ -201,7 +201,7 @@ yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 			  base);
 
 
-	gtk_widget_show_all (window);
+	gtk_widget_show (window);
 
 	if (str_uri && strcmp (str_uri, "")) {
 		gchar *dir = g_get_current_dir ();

@@ -205,10 +205,10 @@ db_pager_process (YelpPager *pager)
     xmlChar   *id;
     GError    *error = NULL;
 
-    xmlDocPtr               doc, newdoc;
-    xmlParserCtxtPtr        ctxt;
-    xsltStylesheetPtr       stylesheet;
-    xsltTransformContextPtr tctxt;
+    xmlDocPtr         doc  = NULL, newdoc = NULL;
+    xmlParserCtxtPtr  ctxt = NULL;
+    xsltStylesheetPtr stylesheet  = NULL;
+    xsltTransformContextPtr tctxt = NULL;
 
     gchar *db_chunk_basename, *db_chunk_basename_q;
     const gchar  *params[40];
@@ -314,8 +314,18 @@ db_pager_process (YelpPager *pager)
     params[i++] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
-    tctxt      = xsltNewTransformContext (stylesheet,
-					  doc);
+    if (!stylesheet) {
+	yelp_set_error (&error, YELP_ERROR_PROC);
+	yelp_pager_error (pager, error);
+	goto done;
+    }
+
+    tctxt = xsltNewTransformContext (stylesheet, doc);
+    if (!tctxt) {
+	yelp_set_error (&error, YELP_ERROR_PROC);
+	yelp_pager_error (pager, error);
+	goto done;
+    }
 
     tctxt->_private = pager;
     xsltRegisterExtElement (tctxt,
@@ -335,7 +345,12 @@ db_pager_process (YelpPager *pager)
 				      params,
 				      NULL, NULL,
 				      tctxt);
-    xmlFreeDoc (newdoc);
+    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
+    g_signal_emit_by_name (pager, "finish");
+
+ done:
+    if (newdoc)
+	xmlFreeDoc (newdoc);
 
     g_free (path);
     g_free (walker);
@@ -343,13 +358,14 @@ db_pager_process (YelpPager *pager)
     g_free (db_chunk_basename);
     g_free (db_chunk_basename_q);
 
-    xmlFreeDoc (doc);
-    xsltFreeStylesheet (stylesheet);
-    xmlFreeParserCtxt (ctxt);
-    xsltFreeTransformContext (tctxt);
-
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
-    g_signal_emit_by_name (pager, "finish");
+    if (doc)
+	xmlFreeDoc (doc);
+    if (stylesheet)
+	xsltFreeStylesheet (stylesheet);
+    if (ctxt)
+	xmlFreeParserCtxt (ctxt);
+    if (tctxt)
+	xsltFreeTransformContext (tctxt);
 
     g_object_unref (pager);
 

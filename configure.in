@@ -7,6 +7,7 @@ AC_PROG_INTLTOOL
 AM_MAINTAINER_MODE
 
 AC_PROG_CC
+AC_PROG_CXX
 AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
@@ -49,7 +50,6 @@ PKG_CHECK_MODULES(YELP,
 	libglade-2.0 >= 2.0.0
 	libgnome-2.0 >= 2.0.2
 	libgnomeui-2.0 >= 1.103.0
-	libgtkhtml-2.0 >= 2.1.2
 	libxml-2.0 >= 2.6.5
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
@@ -66,6 +66,16 @@ AC_SUBST(YELP_IDL_INCLUDES)
 
 DB2HTML="`$PKG_CONFIG --variable=db2html gnome-doc-utils`"
 AC_SUBST(DB2HTML)
+
+PKG_CHECK_MODULES(MOZILLA_COMPONENT, mozilla-gtkmozembed)
+AC_SUBST(MOZILLA_COMPONENT_CFLAGS)
+AC_SUBST(MOZILLA_COMPONENT_LIBS)
+
+MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir mozilla-gtkmozembed`"
+AC_SUBST(MOZILLA_INCLUDE_ROOT)
+
+MOZILLA_HOME="`$PKG_CONFIG --variable=libdir mozilla-gtkmozembed`"
+AC_SUBST(MOZILLA_HOME)
 
 dnl Check for whereis
 AC_CANONICAL_HOST

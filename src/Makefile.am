@@ -1,6 +1,12 @@
 INCLUDES =								\
 	-I$(top_srcdir)							\
 	@YELP_CFLAGS@							\
+	$(MOZILLA_COMPONENT_CFLAGS)					\
+	-I$(MOZILLA_INCLUDE_ROOT)/dom					\
+	-I$(MOZILLA_INCLUDE_ROOT)/find					\
+	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr				\
+	-I$(MOZILLA_INCLUDE_ROOT)/string				\
+	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h		\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"				\
@@ -15,6 +21,8 @@ INCLUDES =								\
 
 bin_PROGRAMS = yelp
 noinst_PROGRAMS = test-man-parser test-pager
+
+yelp_LDFLAGS = -R$(MOZILLA_HOME)
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -63,7 +71,8 @@ yelp_SOURCES =								\
 	yelp-db-pager.c		yelp-db-pager.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
-	yelp-html-gtkhtml2.c	yelp-html.h				\
+	yelp-html-gecko.c	yelp-html.h				\
+	yelp-gecko-utils.cpp	yelp-gecko-utils.h			\
 	yelp-io-channel.c	yelp-io-channel.h			\
 	yelp-man-pager.c	yelp-man-pager.h			\
 	yelp-man-parser.c	yelp-man-parser.h			\
@@ -74,7 +83,7 @@ yelp_SOURCES =								\
 	yelp-uri.c	        yelp-uri.h				\
 	yelp-marshal-main.c	yelp-main.c
 
-yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
+yelp_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS) $(MOZILLA_COMPONENT_LIBS)
 
 gnome_yelp_idl_sources =						\
 	GNOME_Yelp-stubs.c						\

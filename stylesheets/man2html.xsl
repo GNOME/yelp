@@ -72,7 +72,7 @@ dd + dt { margin-top: 1.6em; }
 </xsl:template>
 
 <xsl:template match="I | fI">
-	<i><xsl:apply-template/></i>
+	<i><xsl:apply-templates/></i>
 </xsl:template>
 
 <xsl:template match="P">

@@ -1,3 +1,26 @@
+2004-09-24  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* src/Makefile.am:
+	* src/yelp-html-gecko.c:
+	* src/yelp-gecko-utils.cpp:
+	* src/yelp-gecko-utils.h:
+	* src/yelp-html.h:
+	* src/yelp-window.c:
+	- GEKCO!  Big thanks to Marco for the patch.
+
+	* src/yelp-base.c:
+	* src/yelp-window.c:
+	- Initial work on the Firefox-esque Find toolbar.
+
+	* src/yelp-db-pager.c:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Fixed a crasher.
+
+	* stylesheets/man2html.xsl:
+	- Fixed a type in the templates.
+
 2004-09-22  Shaun McCance  <shaunm@gnome.org>
 
 	* stylesheets/db2html.xsl

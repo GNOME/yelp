@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2004 Marco Pesenti Gritti
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,27 +16,22 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Author: Marco Pesenti Gritti <marco@gnome.org>
  */
 
-#ifndef __YELP_ERROR_H__
-#define __YELP_ERROR_H__
+#ifndef __YELP_GECKO_UTILS_H__
+#define __YELP_GECKO_UTILS_H__
 
-#include <glib.h>
+G_BEGIN_DECLS
 
-#define YELP_ERROR yelp_error_quark ()
+gboolean        yelp_gecko_find           (GtkMozEmbed  *html,
+					   const gchar  *str,
+					   gboolean      match_case,
+					   gboolean      wrap,
+					   gboolean      forward);
 
-typedef enum {
-	YELP_ERROR_NO_DOC,        // Selected document not found
-	YELP_ERROR_NO_PAGE,       // Selected page not found
-	YELP_ERROR_NO_TOC,        // Could not read the TOC
-	YELP_ERROR_NO_SGML,       // SGML is no longer supported
-	YELP_ERROR_IO,            // Error in IO
-	YELP_ERROR_PROC           // Error processing the document
-} YelpError;
+G_END_DECLS
 
-GQuark   yelp_error_quark     (void) G_GNUC_CONST;
+#endif /* __YELP_HTML_H__ */
 
-void     yelp_set_error       (GError     **error,
-			       YelpError    code);
-
-#endif /* __YELP_ERROR_H__ */

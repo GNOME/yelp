@@ -26,7 +26,6 @@
 #include <config.h>
 #endif
 
-#include <libgtkhtml/gtkhtml.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
@@ -80,6 +79,8 @@ static void        window_class_init	          (YelpWindowClass   *klass);
 static void        window_error                   (YelpWindow        *window,
 						   GError            *error);
 static void        window_populate                (YelpWindow        *window);
+static void        window_populate_find           (YelpWindow        *window,
+						   GtkWidget         *find_bar);
 static GtkWidget * window_create_toolbar          (YelpWindow        *window);
 static GdkPixbuf * window_load_icon               (void);
 static void        window_set_sections            (YelpWindow        *window,
@@ -154,7 +155,7 @@ static void        window_go_cb                   (gpointer           data,
 						   guint              action,
 						   GtkWidget         *widget);
 
-static void        window_find_cb                 (gpointer           data,
+static void        window_find_show_cb            (gpointer           data,
 						   guint              action,
 						   GtkWidget         *widget);
 static void        window_find_again_cb           (gpointer           data,
@@ -167,15 +168,10 @@ static gboolean    window_find_delete_event_cb    (GtkWidget         *widget,
  			                           gpointer           data);
 static void        window_find_entry_changed_cb   (GtkEditable       *editable,
 						   gpointer           data);
-static void        window_find_case_toggled_cb    (GtkWidget         *widget,
-						   gpointer           data);
-static void        window_find_wrap_toggled_cb    (GtkWidget         *widget,
-						   gpointer           data);
 static void        window_find_save_settings      (YelpWindow        *window);
 static void        window_find_buttons_set_sensitive (YelpWindow      *window,
 						      gboolean        sensitive);
-static void        window_find_response_cb        (GtkWidget         *dialog ,
-						   gint               response,
+static void        window_find_clicked_cb         (GtkWidget         *button,
 						   YelpWindow        *window);
 
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
@@ -192,22 +188,17 @@ struct _YelpWindowPriv {
     GtkWidget      *main_box;
     GtkWidget      *pane;
     GtkWidget      *side_sects;
+    GtkWidget      *html_pane;
+    GtkWidget      *find_bar;
+    GtkWidget      *find_entry;
     YelpHtml       *html_view;
 
     GtkWidget      *side_sw;
-    GtkWidget      *html_sw;
 
-    GtkWidget      *find_dialog;
-    GtkWidget      *find_entry;
-    GtkWidget      *case_checkbutton;
-    GtkWidget      *wrap_checkbutton;
-    GtkWidget      *find_prev_button;
-    GtkWidget      *find_next_button;
-    GtkWidget      *find_close_button;
+    GtkToolItem    *find_prev;
+    GtkToolItem    *find_next;
 
     gchar          *find_string;
-    gboolean        match_case;
-    gboolean        wrap;
 
     YelpHistory    *history;
 
@@ -256,7 +247,7 @@ static GtkItemFactoryEntry menu_items[] = {
 
     {N_("/_Edit"),                   NULL, 0, 0, "<Branch>"     },
     {N_("/Edit/_Find..."),           "<Control>f",
-     window_find_cb,                 0,
+     window_find_show_cb,            0,
      "<StockItem>",                  GTK_STOCK_FIND             },
     {N_("/Edit/Find Ne_xt"),        "<Control>g",
      window_find_again_cb,           YELP_WINDOW_FIND_NEXT,
@@ -548,11 +539,10 @@ window_populate (YelpWindow *window)
 			FALSE, FALSE, 0);
 
     toolbar = window_create_toolbar (window);
-
     gtk_box_pack_start (GTK_BOX (priv->main_box),
 			GTK_WIDGET (toolbar),
 			FALSE, FALSE, 0);
-			
+
     priv->pane = gtk_hpaned_new ();
     gtk_widget_ref (priv->pane);
     // We should probably remember the last position and set to that.
@@ -563,11 +553,16 @@ window_populate (YelpWindow *window)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->side_sw),
 				    GTK_POLICY_AUTOMATIC,
 				    GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->side_sw),
+					 GTK_SHADOW_IN);
 
     priv->side_sects = gtk_tree_view_new ();
+    g_object_set (priv->side_sects,
+		  "headers-visible",   FALSE,
+		  NULL);
     gtk_tree_view_insert_column_with_attributes
 	(GTK_TREE_VIEW (priv->side_sects), -1,
-	 _("Section"), gtk_cell_renderer_text_new (),
+	 NULL, gtk_cell_renderer_text_new (),
 	 "text", 1,
 	 NULL);
 
@@ -580,11 +575,14 @@ window_populate (YelpWindow *window)
     gtk_container_add (GTK_CONTAINER (priv->side_sw),     priv->side_sects);
     gtk_paned_add1    (GTK_PANED (priv->pane), priv->side_sw);
 
-    priv->html_sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_widget_ref (priv->html_sw);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->html_sw),
-				    GTK_POLICY_AUTOMATIC,
-				    GTK_POLICY_AUTOMATIC);
+    priv->html_pane = gtk_vbox_new (FALSE, 0);
+
+    priv->find_bar = gtk_toolbar_new ();
+    gtk_toolbar_set_style (GTK_TOOLBAR (priv->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
+    window_populate_find (window, priv->find_bar);
+    gtk_box_pack_start (GTK_BOX (priv->html_pane),
+			priv->find_bar,
+			FALSE, FALSE, 0);
 
     priv->html_view  = yelp_html_new ();
     g_signal_connect (priv->html_view,
@@ -595,13 +593,72 @@ window_populate (YelpWindow *window)
 		      "title_changed",
 		      G_CALLBACK (html_title_changed_cb),
 		      window);
+    gtk_box_pack_end (GTK_BOX (priv->html_pane),
+		      yelp_html_get_widget (priv->html_view),
+		      TRUE, TRUE, 0);
 
-    gtk_container_add (GTK_CONTAINER (priv->html_sw),
-		       yelp_html_get_widget (priv->html_view));
-
+    gtk_paned_add2     (GTK_PANED (priv->pane),
+			priv->html_pane);
     gtk_box_pack_start (GTK_BOX (priv->main_box),
-			priv->html_sw,
+			priv->pane,
 			TRUE, TRUE, 0);
+
+    gtk_widget_show_all (toolbar);
+    gtk_widget_show_all (GTK_WIDGET (gtk_item_factory_get_widget
+				     (priv->item_factory, "<main>")) );
+
+    gtk_widget_show_all (yelp_html_get_widget (priv->html_view));
+    gtk_widget_show (priv->html_pane);
+    gtk_widget_show (priv->pane);
+    gtk_widget_show (priv->main_box);
+}
+
+static void
+window_populate_find (YelpWindow *window, GtkWidget *find_bar)
+{
+    GtkWidget *label;
+    GtkToolItem *item;
+    YelpWindowPriv *priv = window->priv;
+    
+    g_return_if_fail (GTK_IS_TOOLBAR (find_bar));
+
+    label = gtk_label_new_with_mnemonic (_("Fin_d"));
+    item = gtk_tool_item_new ();
+    gtk_container_add (GTK_CONTAINER (item), label);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
+
+    priv->find_entry = gtk_entry_new ();
+    g_signal_connect (G_OBJECT (priv->find_entry), "changed",
+		      G_CALLBACK (window_find_entry_changed_cb), window);	
+    item = gtk_tool_item_new ();
+    gtk_container_add (GTK_CONTAINER (item), priv->find_entry);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
+
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->find_entry);
+
+    priv->find_next = gtk_tool_button_new_from_stock (GTK_STOCK_FIND);
+    gtk_tool_item_set_is_important (item, TRUE);
+    g_signal_connect (priv->find_next,
+		      "clicked",
+		      G_CALLBACK (window_find_clicked_cb),
+		      window);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_next, -1);
+
+    priv->find_prev = gtk_tool_button_new_from_stock (GTK_STOCK_FIND);
+    gtk_tool_item_set_is_important (item, TRUE);
+    g_signal_connect (priv->find_prev,
+		      "clicked",
+		      G_CALLBACK (window_find_clicked_cb),
+		      window);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_prev, -1);
+
+    item = gtk_tool_button_new_from_stock (GTK_STOCK_CLOSE);
+    gtk_tool_item_set_is_important (item, FALSE);
+    g_signal_connect_swapped (item,
+			      "clicked",
+			      G_CALLBACK (gtk_widget_hide),
+			      priv->find_bar);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
 }
 
 static GtkWidget *
@@ -681,54 +738,17 @@ static void
 window_set_sections (YelpWindow   *window,
 		     GtkTreeModel *sections)
 {
-    GList *children, *child;
-    gboolean has_child = FALSE;
     YelpWindowPriv *priv;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
     priv = window->priv;
 
-    if (sections) {
-	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
+    gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
 
-	children = gtk_container_get_children (GTK_CONTAINER (priv->main_box));
-
-	for (child = children; child; child = child->next)
-	    if (child->data == priv->html_sw)
-		has_child = TRUE;
-
-	if (has_child) {
-	    gtk_container_remove (GTK_CONTAINER (priv->main_box),
-				  priv->html_sw);
-	    gtk_paned_add2       (GTK_PANED (priv->pane),
-				  priv->html_sw);
-	    gtk_box_pack_start   (GTK_BOX (priv->main_box),
-				  priv->pane,
-				  TRUE, TRUE, 0);
-	    gtk_widget_show_all (priv->main_box);
-	}
-	g_list_free (children);
-    } else {
-	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
-
-	children = gtk_container_get_children (GTK_CONTAINER (priv->main_box));
-
-	for (child = children; child; child = child->next)
-	    if (child->data == priv->pane)
-		has_child = TRUE;
-
-	if (has_child) {
-	    gtk_container_remove (GTK_CONTAINER (priv->main_box),
-				  priv->pane);
-	    gtk_container_remove (GTK_CONTAINER (priv->pane),
-				  priv->html_sw);
-	    gtk_box_pack_start   (GTK_BOX (priv->main_box),
-				  priv->html_sw,
-				  TRUE, TRUE, 0);
-	    gtk_widget_show_all (priv->main_box);
-	}
-	g_list_free (children);
-    }
+    if (sections)
+	gtk_widget_show_all (priv->side_sw);
+    else
+	gtk_widget_hide (priv->side_sw);
 }
 
 static gboolean
@@ -880,6 +900,7 @@ window_handle_pager_uri (YelpWindow  *window,
 	gtk_window_set_title (GTK_WINDOW (window),
 			      (const gchar *) loading);
 
+        yelp_html_set_base_uri (priv->html_view, uri);
 	yelp_html_clear (priv->html_view);
 	yelp_html_printf
 	    (priv->html_view,
@@ -969,8 +990,8 @@ window_handle_html_uri (YelpWindow    *window,
 	return FALSE;
     }
 
-    yelp_html_clear (priv->html_view);
     yelp_html_set_base_uri (priv->html_view, uri);
+    yelp_html_clear (priv->html_view);
 
     while ((result = gnome_vfs_read
 	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
@@ -1075,8 +1096,8 @@ window_handle_page (YelpWindow   *window,
     context->buffer = page->contents;
     context->length = strlen (page->contents);
 
-    yelp_html_clear (priv->html_view);
     yelp_html_set_base_uri (priv->html_view, uri);
+    yelp_html_clear (priv->html_view);
 
     priv->idle_write = gtk_idle_add ((GtkFunction) idle_write, context);
 
@@ -1136,7 +1157,6 @@ yelp_window_destroyed (GtkWidget *window,
 
     g_object_unref (priv->pane);
     g_object_unref (priv->side_sw);
-    g_object_unref (priv->html_sw);
     if (priv->pager)
 	g_object_unref (priv->pager);
 }
@@ -1505,16 +1525,9 @@ window_find_save_settings (YelpWindow * window)
 
     tmp = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
 
-    priv->match_case = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->case_checkbutton));
-    priv->wrap       = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->wrap_checkbutton));
-
     g_free (priv->find_string);
 		
-    if (!priv->match_case) {
-	priv->find_string = g_utf8_casefold (tmp, -1);
-    } else {
-	priv->find_string = g_strdup (tmp);
-    }				  
+    priv->find_string = g_utf8_casefold (tmp, -1);
 }
 
 static gboolean
@@ -1528,8 +1541,7 @@ window_find_action (YelpWindow *window, YelpFindAction action)
 
     return yelp_html_find (priv->html_view,
 			   priv->find_string,
-			   priv->match_case,
-			   priv->wrap,
+			   FALSE, FALSE,
 			   (action == YELP_WINDOW_FIND_NEXT) ? TRUE: FALSE);
 }
 
@@ -1548,38 +1560,33 @@ window_find_again_cb (gpointer   data,
 }
 
 static void
-window_find_response_cb (GtkWidget  *dialog,
-			 gint        response,
-			 YelpWindow *window)
+window_find_clicked_cb (GtkWidget  *widget,
+			YelpWindow *window)
 {
     YelpWindowPriv * priv;
 
+    g_return_if_fail (GTK_IS_TOOL_ITEM (widget));
+
     priv = window->priv;
 
-    switch (response) {
-    case GTK_RESPONSE_CLOSE:
-	gtk_widget_hide (dialog);
-	break;
-	
-    case YELP_WINDOW_FIND_NEXT:
-    case YELP_WINDOW_FIND_PREV:
-	if (!window_find_action (window, response)) {
-	    if (YELP_WINDOW_FIND_NEXT == response) {
-		gtk_widget_set_sensitive (priv->find_next_button, FALSE);
-		gtk_widget_set_sensitive (priv->find_prev_button, TRUE);
-	    } else {
-		gtk_widget_set_sensitive (priv->find_next_button, TRUE);
-		gtk_widget_set_sensitive (priv->find_prev_button, FALSE);
-	    }
+    if (GTK_TOOL_ITEM (widget) == priv->find_next) {
+	if (!window_find_action (window, YELP_WINDOW_FIND_NEXT)) {
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
 	} else {
 	    window_find_buttons_set_sensitive (window, TRUE);
 	}
-
-	break;
-
-    default:
-	break;
     }
+    else if (GTK_TOOL_ITEM (widget) == priv->find_prev) {
+	if (!window_find_action (window, YELP_WINDOW_FIND_PREV)) {
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), TRUE);
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), FALSE);
+	} else {
+	    window_find_buttons_set_sensitive (window, TRUE);
+	}
+    }
+    else
+	g_assert_not_reached ();
 }
 
 static void
@@ -1587,16 +1594,19 @@ window_find_entry_changed_cb (GtkEditable *editable,
 			      gpointer     data)
 {
     YelpWindow     *window;
+    YelpWindowPriv *priv;
     gchar          *text;
 
     g_return_if_fail (YELP_IS_WINDOW(data));
 	
     window = YELP_WINDOW (data);
+    priv = window->priv;
 
     text = gtk_editable_get_chars (editable, 0, -1);
 
-    if (!strlen (text)) {
-	window_find_buttons_set_sensitive (window, FALSE);
+    if (!window_find_action (window, YELP_WINDOW_FIND_NEXT)) {
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
     } else {
 	window_find_buttons_set_sensitive (window, TRUE);
     }
@@ -1638,34 +1648,34 @@ window_find_wrap_toggled_cb (GtkWidget *widget,
 
 static void
 window_find_buttons_set_sensitive (YelpWindow *window,
-				  gboolean    sensitive)
+				   gboolean    sensitive)
 {
     YelpWindowPriv *priv;
 
     priv = window->priv;
 
-    if (priv->find_dialog) {
-	gtk_widget_set_sensitive (priv->find_next_button, sensitive);
-	gtk_widget_set_sensitive (priv->find_prev_button, sensitive);
-    }
+    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), sensitive);
+    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), sensitive);
 }
 
 static void
-window_find_cb (gpointer   data,     
-		guint      action,
-		GtkWidget *widget)
+window_find_show_cb (gpointer   data,     
+		     guint      action,
+		     GtkWidget *widget)
 {
     YelpWindow     *window;
     YelpWindowPriv *priv;
     GladeXML       *glade;
     GtkWidget      *gnome_entry;
 
-    g_return_if_fail (YELP_IS_WINDOW (data));
-    
     window = YELP_WINDOW (data);
 
     priv = window->priv;
 
+    gtk_widget_show_all (priv->find_bar);
+    gtk_widget_grab_focus (priv->find_entry);
+
+    /*
     if (!priv->find_dialog) {
 	glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade", "find_dialog", NULL);
 	
@@ -1678,8 +1688,8 @@ window_find_cb (gpointer   data,
 	priv->find_entry        = glade_xml_get_widget (glade, "find_entry");
 	priv->case_checkbutton  = glade_xml_get_widget (glade, "case_check");
 	priv->wrap_checkbutton  = glade_xml_get_widget (glade, "wrap_check");
-	priv->find_next_button  = glade_xml_get_widget (glade, "next_button");
-	priv->find_prev_button  = glade_xml_get_widget (glade, "prev_button");
+	priv->find_next  = glade_xml_get_widget (glade, "next_button");
+	priv->find_prev  = glade_xml_get_widget (glade, "prev_button");
 	priv->find_close_button = glade_xml_get_widget (glade, "close_button");	
 	gnome_entry             = glade_xml_get_widget (glade, "find_gnome_entry");
 
@@ -1693,8 +1703,8 @@ window_find_cb (gpointer   data,
 	gtk_entry_set_activates_default (GTK_ENTRY (priv->find_entry), TRUE);
 	gtk_widget_grab_default (glade_xml_get_widget (glade, "next_button"));
 
-	gtk_widget_set_sensitive (priv->find_next_button, FALSE);
-	gtk_widget_set_sensitive (priv->find_prev_button, FALSE);
+	gtk_widget_set_sensitive (priv->find_next, FALSE);
+	gtk_widget_set_sensitive (priv->find_prev, FALSE);
 
 	g_signal_connect (G_OBJECT (priv->find_entry), "changed",
 			  G_CALLBACK (window_find_entry_changed_cb), window);	
@@ -1713,13 +1723,15 @@ window_find_cb (gpointer   data,
 
 	g_object_unref (glade);
     }
+    */
 
+    /*
     gtk_editable_select_region (GTK_EDITABLE (priv->find_entry), 0, -1);
 
     gtk_window_present (GTK_WINDOW (priv->find_dialog));
+    */
 }
 
-// This would be nice to have in GTK+
 static gboolean
 tree_model_iter_following (GtkTreeModel  *model,
 			   GtkTreeIter   *iter)

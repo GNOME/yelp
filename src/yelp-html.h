@@ -26,6 +26,7 @@
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkmarshal.h>
+#include "yelp-uri.h"
 
 #define YELP_TYPE_HTML        (yelp_html_get_type ())
 #define YELP_HTML(o)          (GTK_CHECK_CAST ((o), YELP_TYPE_HTML, YelpHtml))

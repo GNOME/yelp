@@ -69,6 +69,12 @@ yelp_set_error (GError **error, YelpError code)
 		     YELP_ERROR_IO,
 		     _("The selected file could not be read."));
 	break;
+    case YELP_ERROR_PROC:
+	g_set_error (error,
+		     YELP_ERROR,
+		     YELP_ERROR_PROC,
+		     _("The file could not be processed."));
+	break;
     default:
 	g_assert_not_reached ();
     }
