@@ -140,6 +140,7 @@
 #include <bzlib.h>
 #endif
 #include <glib.h>
+#include <libgnome/gnome-i18n.h>
 
 static char *URLbasename = NULL;
 
@@ -1904,6 +1905,49 @@ static char
 	return c;
 }
 
+/* Outputs the <META> tag with the language and charset information */
+static void
+output_meta_element (void)
+{
+	const GList *langs;
+	GString *str;
+	const char *lang;
+	const char *uline_pos;
+	const char *dot_pos;
+	const char *p;
+
+	langs = gnome_i18n_get_language_list ("LC_MESSAGES");
+
+	if (!langs)
+		return;
+
+	lang = langs->data;
+
+	str = g_string_new (NULL);
+
+	uline_pos = strchr (lang, '_');
+	dot_pos = strrchr (lang, '.');
+
+	g_string_append (str, "<META LANG=\"");
+
+	for (p = lang;
+	     *p && (uline_pos ? p < uline_pos : TRUE) && (dot_pos ? p < dot_pos : TRUE);
+	     p++)
+		g_string_append_len (str, p, 1);
+
+	g_string_append (str, "\" HTTP-EQUIV=\"Content-Type\"  CONTENT=\"text/html");
+
+	if (dot_pos && *(dot_pos + 1) != '\0') {
+		g_string_append (str, "; charset=");
+		g_string_append (str, dot_pos + 1);
+	}
+
+	g_string_append (str, "\">");
+
+	out_html (str->str);
+	g_string_free (str, TRUE);
+}
+
 static int ifelseval=0;
 
 static char 
@@ -2578,7 +2622,9 @@ static char
 						wordlist[i][-1]='\0';
 					*sl='\0';
 					output_possible=1;
-					out_html("<HTML><HEAD><TITLE>"
+					out_html("<HTML><HEAD>");
+					output_meta_element ();
+					out_html("<TITLE>"
 						 "Manpage of ");
 					out_html(wordlist[0]);
 					out_html("</TITLE>\n</HEAD><BODY>"
