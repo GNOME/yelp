@@ -534,6 +534,8 @@ yw_about_cb (gpointer data, guint section, GtkWidget *widget)
 		"Alexander Larsson <alexl@redhat.com>",
 		NULL
 	};
+	/* Note to translators: put here your name (and address) so it
+	 * will shop up in the "about" box */
 	gchar       *translator_credits = _("translator_credits");
 	
 	about = gnome_about_new (PACKAGE, VERSION,

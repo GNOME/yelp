@@ -1,10 +1,10 @@
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Pablo Saratxaga <srtxg@chanae.alphanet.ch>, 2001.
+# Pablo Saratxaga <srtxg@chanae.alphanet.ch>, 2001,2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 0.01\n"
-"POT-Creation-Date: 2001-12-09 09:09+0100\n"
+"Project-Id-Version: yelp 0.2.99\n"
+"POT-Creation-Date: 2002-03-04 02:05+0100\n"
 "PO-Revision-Date: 2001-12-03 13:31+0200\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: walon <linux-wa@chanae.alphanet.ch>\n"
@@ -12,71 +12,230 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/yelp-toc.c:140
-msgid "Section"
-msgstr "Seccion"
-
-#: src/yelp-view-doc.c:363
-msgid ""
-"<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help "
-"browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the "
-"README and TODO<br></body></html>"
-msgstr ""
-"<html><head><title>Yelp, ene foyeteuse di l'&nbsp;aidance po GNOME 2.0</"
-"title></head><body bgcolor=\"white\"><h3>Wilicome a Yelp!</h3>Çouchal est "
-"Yelp, ene foyteuse di l'&nbsp;aidance po GNOME 2.0 scrit pa Mikael Hallendal."
-"<br><br>Lejhoz les fitchîs «lijhoz mu» (README) eyet «a fé» (TODO), s'&nbsp;"
-"i vs plait.<br></body></html>"
-
-#: src/yelp-window.c:116
-msgid "Yelp: GNOME Help Browser"
-msgstr "Yelp: Foyteuse di l' Aidance di Gnome"
-
-#: src/yelp-window.c:198
-msgid "Help on "
-msgstr "Aidance so "
-
-#: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "Foyteuse di l' aidance di Gnome"
-
-#: yelp.desktop.in.h:2
+#: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
 msgstr "Yelp"
 
-#~ msgid "Usage '%s uri'\n"
-#~ msgstr "Po s' è siervi: «%s HÅRDÊYE»\n"
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Oujhene Yelp"
 
-#~ msgid "Transformed URI: %s\n"
-#~ msgstr "Candjeye hårdêye: %s\n"
+#: src/yelp-info.c:126
+msgid "info"
+msgstr "informåcion"
 
-#~ msgid "File not found: %s\n"
-#~ msgstr "Fitchî nén trové: %s\n"
+#: src/yelp-main.c:91
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Dji n' a savou activer Yelp: «%s»"
 
-#~ msgid "Invalid URI: %s\n"
-#~ msgstr "Hårdéyes nén valåbe: %s\n"
+#: src/yelp-main.c:110
+msgid "Could not open new window."
+msgstr "Dji n' a savou drovi on novea purnea."
 
-#~ msgid "/_File"
-#~ msgstr "/_Fitchî"
+#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
+#: src/yelp-man.c:406 src/yelp-man.c:417
+msgid "X11"
+msgstr "X11"
 
-#~ msgid "/File/_New window"
-#~ msgstr "/Fitchî/_Novea purnea"
+#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
+msgid "OpenSSL"
+msgstr "OpenSSL"
 
-#~ msgid "/File/E_xit"
-#~ msgstr "/Fitchî/_Moussî foû"
+#: src/yelp-man.c:311
+msgid "Termcap"
+msgstr "Termcap"
 
-#~ msgid "/_Help"
-#~ msgstr "/_Aidance"
+#: src/yelp-man.c:327
+msgid "Perl"
+msgstr "Perl"
 
-#~ msgid "/Help/_About"
-#~ msgstr "/Aidance/Å _dfait"
+#: src/yelp-man.c:332
+msgid "Qt"
+msgstr "Qt"
 
-#~ msgid "Contents"
-#~ msgstr "Ådvins"
+#: src/yelp-man.c:342
+msgid "TIFF"
+msgstr "TIFF"
 
-#~ msgid "Index"
-#~ msgstr "Indecse"
+#: src/yelp-man.c:347
+msgid "PThreads"
+msgstr "PThreads"
 
-#~ msgid "Help Browser for GNOME 2.0"
-#~ msgstr "Foyteuse di l' aidance po Gnome 2.0"
+#: src/yelp-man.c:369
+msgid "System Calls"
+msgstr "Houcaedjes sistinme"
+
+#: src/yelp-man.c:374
+msgid "Library Functions"
+msgstr "Lîvreyes di fonccions"
+
+#: src/yelp-man.c:379
+msgid "Kernel Routines"
+msgstr "Routenes do nawea"
+
+#: src/yelp-man.c:434
+msgid "Applications"
+msgstr "Programes"
+
+#: src/yelp-man.c:439
+msgid "Development"
+msgstr "Programaedje"
+
+#: src/yelp-man.c:444
+msgid "Hardware Devices"
+msgstr "Éndjins & éndjolreye"
+
+#: src/yelp-man.c:449
+msgid "Configuration Files"
+msgstr "Fitchîs d' apontiaedje"
+
+#: src/yelp-man.c:454
+msgid "Games"
+msgstr "Djeus"
+
+#: src/yelp-man.c:459
+msgid "Overviews"
+msgstr "Rascourtis"
+
+#: src/yelp-man.c:464
+msgid "System Administration"
+msgstr "Administråcion do sistinme"
+
+#: src/yelp-man.c:475
+msgid "man"
+msgstr "man"
+
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
+msgid "Section"
+msgstr "Seccion"
+
+#: src/yelp-view-index.c:325
+msgid "Search for:"
+msgstr "Cwerî on:"
+
+#: src/yelp-view-toc.c:271
+msgid "Other Documents"
+msgstr "Ôtes documints"
+
+#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:502
+msgid "Manual pages"
+msgstr "Pådjes di manuel"
+
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:579 src/yelp-view-toc.c:598
+msgid "Info pages"
+msgstr "Pådjes d' info"
+
+#: src/yelp-view-toc.c:274
+msgid "Installed documents"
+msgstr "Documints k' i gn a"
+
+#: src/yelp-view-toc.c:288
+msgid "Start page"
+msgstr "Pådje d' enondaedje"
+
+#: src/yelp-view-toc.c:532
+msgid "Manual Pages"
+msgstr "Pådjes di Manuel"
+
+#: src/yelp-view-toc.c:700
+msgid "Scrollkeeper docs for category"
+msgstr "Documints scrollkeeper pol categoreye"
+
+#: src/yelp-window.c:138
+msgid "/_File"
+msgstr "/_Fitchî"
+
+#: src/yelp-window.c:139
+msgid "/File/_New window"
+msgstr "/Fitchî/_Novea purnea"
+
+#: src/yelp-window.c:140
+msgid "/File/_Close window"
+msgstr "/Fitchî/_Clôre li purnea"
+
+#: src/yelp-window.c:141
+msgid "/File/_Quit"
+msgstr "/Fitchî/Moussî _foû"
+
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/Po_tchî"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Potchî/En _erî"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Potchî/En _avant"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Potchî/_Måjhon"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Potchî/_Indecse"
+
+#: src/yelp-window.c:147
+msgid "/_Help"
+msgstr "/_Aidance"
+
+#: src/yelp-window.c:148
+msgid "/Help/_About"
+msgstr "/Aidance/Å _dfait"
+
+#: src/yelp-window.c:207
+msgid "Help Browser"
+msgstr "Foyteuse di l' aidance"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:539
+msgid "translator_credits"
+msgstr "Pablo Saratxaga <pablo@mandrakesoft.com>"
+
+#: src/yelp-window.c:543
+msgid "Help Browser for GNOME 2.0"
+msgstr "Foyteuse di l' aidance po Gnome 2.0"
+
+#: src/yelp-window.c:570
+msgid "Back"
+msgstr "En erî"
+
+#: src/yelp-window.c:571
+msgid "Show previous page in history"
+msgstr "Mostrer li pådje di dvant el istwere des movmints"
+
+#: src/yelp-window.c:582
+msgid "Forward"
+msgstr "En avant"
+
+#: src/yelp-window.c:583
+msgid "Show next page in history"
+msgstr "Mostrer li pådje shûvante el istwere des movmints"
+
+#: src/yelp-window.c:596
+msgid "Home"
+msgstr "Måjhon"
+
+#: src/yelp-window.c:597
+msgid "Go to home view"
+msgstr "Potchî al pådje måjhon"
+
+#: src/yelp-window.c:607
+msgid "Index"
+msgstr "Indecse"
+
+#: src/yelp-window.c:608
+msgid "Search in the index"
+msgstr "Cweri el indecse"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Houkî l' aidance di GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Aidance"
