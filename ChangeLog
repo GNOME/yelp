@@ -165,7 +165,7 @@
 	* yelp-db2html.c
 	  load/parse the DTD
 
-Fri Apr  5 07:20:18 2002  Jonathan Blandford  <jrb@redhat.com>
+2002-04-05 Jonathan Blandford  <jrb@redhat.com>
 
 	* src/yelp-info.c (yelp_info_read_info_dir): remove unneeded
 	  special case.
@@ -191,7 +191,6 @@ Fri Apr  5 07:20:18 2002  Jonathan Blandford  <jrb@redhat.com>
 	- don't use g_io_channel_read, use g_io_channel_read_chars
 	  instead.
 
->>>>>>> 1.202
 2002-04-22  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-content.c (yelp_view_content_show_uri): 
