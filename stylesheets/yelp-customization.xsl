@@ -137,7 +137,7 @@
 <xsl:template name="user.head.content">
    <style>
      <xsl:text>
-       LI {margin-left: 1em}
+       LI {margin-left: 1em; margin-bottom: 0.66em;}
        LI P {margin-bottom: 0}
        LI P {margin-top: 0}
        P.header-title {text-align: center; margin-top: 0; margin-bottom: 0}
@@ -146,9 +146,12 @@
        DD P {margin-top: 0}
        DD P {margin-bottom: 0}
        OL {margin-top: 0; margin-bottom: 0}
-       LI OL {margin-left: 2em}
+       LI OL {margin-left: 2em; margin-top: 0.66em}
        UL {margin-top: 0; margin-bottom: 0}
-       LI UL {margin-left: 2em}
+       LI UL {margin-left: 2em; margin-top: 0.66em}
+       OL LI UL {list-style-type: disc}
+       UL LI UL {list-style-type: circle}
+       OL LI OL {list-style-type: lower-roman}
        DD {margin-left: 2em}
        DL {margin-top: 0}
        DL {margin-bottom: 0}
