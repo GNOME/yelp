@@ -15,6 +15,9 @@
 
 <xsl:param name="gdb_stylesheet_path" select="'No Stylesheet'" />
 
+<!-- Specifies the default path for admonition graphics -->
+<xsl:param name="admon.graphics.path"><xsl:text>file://</xsl:text><xsl:value-of select="$gdb_stylesheet_path"/><xsl:text>/images/</xsl:text></xsl:param>
+
 <xsl:output encoding="ISO-8859-1" />
 
 <!-- direct parametrisation -->
@@ -137,7 +140,10 @@
 <xsl:template name="user.head.content">
    <style>
      <xsl:text>
-       LI {margin-left: 1em; margin-bottom: 0.66em;}
+       B {font-weight: 700}
+       LI {margin-bottom: 0.66em;}
+       UL LI {left-margin: 1em}
+       OL LI {left-margin: 1.5em}
        LI P {margin-bottom: 0}
        LI P {margin-top: 0}
        P.header-title {text-align: center; margin-top: 0; margin-bottom: 0}
