@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.6.99\n"
-"POT-Creation-Date: 2002-05-04 01:28+0200\n"
-"PO-Revision-Date: 2002-05-12 17:59-0400\n"
+"POT-Creation-Date: 2002-07-25 13:26+0200\n"
+"PO-Revision-Date: 2002-07-26 12:25+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,240 +21,230 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db2html.c:106
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr "Lỗi phân tích stylesheet, hãy chắc rằng bạn đã cài đặt môi trường DocBook đúng."
-
-#: src/yelp-db2html.c:122
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "Tài liệu '%s' không tồn tại"
-
-#: src/yelp-db2html.c:137
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "Không thể phân tích tài liệu '%s'"
-
-#: src/yelp-db2html.c:176
-msgid "Error while applying the stylesheet."
-msgstr "Lỗi áp dụng stylesheet."
-
-#: src/yelp-html.c:155
-msgid "Loading..."
-msgstr "Đang nạp..."
-
-#: src/yelp-info.c:138
-msgid "info"
-msgstr "thông tin"
-
-#: src/yelp-main.c:109
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Không thể kích hoạt Yelp: '%s'"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Không thể mở cửa sổ mới."
 
-#: src/yelp-man.c:302 src/yelp-man.c:323 src/yelp-man.c:359 src/yelp-man.c:391
-#: src/yelp-man.c:407 src/yelp-man.c:418
+#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
+#: src/yelp-man.c:399 src/yelp-man.c:410
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:307 src/yelp-man.c:338 src/yelp-man.c:396 src/yelp-man.c:423
+#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:312
+#: src/yelp-man.c:304
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:328
+#: src/yelp-man.c:320
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:333
+#: src/yelp-man.c:325
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:343
+#: src/yelp-man.c:335
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:348
+#: src/yelp-man.c:340
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:370
+#: src/yelp-man.c:362
 msgid "System Calls"
 msgstr "Lệnh gọi hệ thống"
 
-#: src/yelp-man.c:375
+#: src/yelp-man.c:367
 msgid "Library Functions"
 msgstr "Các hàm thư viện"
 
-#: src/yelp-man.c:380
+#: src/yelp-man.c:372
 msgid "Kernel Routines"
 msgstr "Các hàm kernel"
 
-#: src/yelp-man.c:435
+#: src/yelp-man.c:427
 msgid "Applications"
 msgstr "Ứng dụng"
 
-#: src/yelp-man.c:440
+#: src/yelp-man.c:432
 msgid "Development"
 msgstr "Phát triển"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:437
 msgid "Hardware Devices"
 msgstr "Thiết bị phần cứng"
 
-#: src/yelp-man.c:450
+#: src/yelp-man.c:442
 msgid "Configuration Files"
 msgstr "Tập tin cấu hình"
 
-#: src/yelp-man.c:455
+#: src/yelp-man.c:447
 msgid "Games"
 msgstr "Trò chơi"
 
-#: src/yelp-man.c:460
+#: src/yelp-man.c:452
 msgid "Overviews"
 msgstr "Tổng quan"
 
-#: src/yelp-man.c:465
+#: src/yelp-man.c:457
 msgid "System Administration"
 msgstr "Quản trị hệ thống"
 
-#: src/yelp-man.c:476
-msgid "man"
-msgstr "man"
-
-#: src/yelp-view-content.c:200 src/yelp-view-index.c:374
+#: src/yelp-view-content.c:420 src/yelp-view-index.c:498
 msgid "Section"
 msgstr "Phần"
 
-#: src/yelp-view-index.c:337
+#: src/yelp-view-content.c:555 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "Đang nạp..."
+
+#: src/yelp-view-index.c:461
 msgid "Search for:"
 msgstr "Tìm:"
 
-#: src/yelp-view-toc.c:323
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:183
 msgid "Help Contents"
 msgstr "Nội dung trợ giúp"
 
-#: src/yelp-view-toc.c:324
+#: src/yelp-view-toc.c:184
 msgid "GNOME - Desktop"
 msgstr "GNOME - Desktop"
 
-#: src/yelp-view-toc.c:325
+#: src/yelp-view-toc.c:185
 msgid "Additional documents"
 msgstr "Các tài liệu bổ sung"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:666
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
 msgid "Manual Pages"
 msgstr "Trang Man"
 
-#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
 msgid "Info Pages"
 msgstr "Các trang Info"
 
-#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Tài liệu"
 
-#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Phân loại"
 
-#: src/yelp-view-toc.c:609
+#: src/yelp-view-toc.c:466
 msgid "Manual pages"
 msgstr "Các trang Man"
 
-#: src/yelp-window.c:152
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME là"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "Phần mềm tự do"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Tập tin"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Tập tin/_Tạo cửa sổ mới"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Tập tin/Đó_ng cửa sổ"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/Đ_i"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Đi/_Lùi"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Đi/_Tới"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Đi/Về n_hà"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Đi/_Mục lục"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Trợ giúp"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Trợ giúp/_Giới thiệu"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:231 src/yelp-window.c:433
 msgid "Help Browser"
 msgstr "Trình trợ giúp"
 
+#: src/yelp-window.c:343
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Tài liệu '%s' không tồn tại"
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:567
+#: src/yelp-window.c:602
 msgid "translator_credits"
 msgstr "Nguyễn Thái Ngọc Duy"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:606
 msgid "Help Browser for GNOME 2.0"
 msgstr "Trình trợ giúp của GNOME 2.0"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:661
 msgid "Back"
 msgstr "Lùi"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:662
 msgid "Show previous page in history"
 msgstr "Xem trang trước đó"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:673
 msgid "Forward"
 msgstr "Tới"
 
-#: src/yelp-window.c:638
+#: src/yelp-window.c:674
 msgid "Show next page in history"
 msgstr "Xem trang kế"
 
-#: src/yelp-window.c:651
+#: src/yelp-window.c:687
 msgid "Home"
 msgstr "Nhà"
 
-#: src/yelp-window.c:652
+#: src/yelp-window.c:688
 msgid "Go to home view"
 msgstr "Về nhà"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:698
 msgid "Index"
 msgstr "Mục lục"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:699
 msgid "Search in the index"
 msgstr "Tìm trong mục lục"
 
@@ -265,6 +255,25 @@ msgstr "Trợ giúp với GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Trợ giúp"
+
+#~ msgid ""
+#~ "Error while parsing the stylesheet, make sure you have your docbook "
+#~ "environment setup correctly."
+#~ msgstr ""
+#~ "Lỗi phân tích stylesheet, hãy chắc rằng bạn đã cài đặt môi trường DocBook "
+#~ "đúng."
+
+#~ msgid "Couldn't parse the document '%s'."
+#~ msgstr "Không thể phân tích tài liệu '%s'"
+
+#~ msgid "Error while applying the stylesheet."
+#~ msgstr "Lỗi áp dụng stylesheet."
+
+#~ msgid "info"
+#~ msgstr "thông tin"
+
+#~ msgid "man"
+#~ msgstr "man"
 
 #~ msgid "Start page"
 #~ msgstr "Trang bắt đầu"
