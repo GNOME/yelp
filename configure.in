@@ -28,7 +28,7 @@ GETTEXT_PACKAGE=yelp
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
-ALL_LINGUAS="az de es nl no lv pt sk sv tr uk wa"
+ALL_LINGUAS="az de es ms nl no lv pt sk sv tr uk wa"
 AM_GLIB_GNU_GETTEXT
 
 if test "x$prefix" = "xNONE"; then
