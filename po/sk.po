@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-02-27 14:20+0100\n"
-"PO-Revision-Date: 27.02.2002 14:21\n"
+"POT-Creation-Date: 2002-03-04 16:37+0100\n"
+"PO-Revision-Date: 2002-03-04 16:39+0100\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
+"X-Generator: KBabel 0.9.6\n"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -22,105 +22,109 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Vytváracie rozhranie Yelp"
 
-#: src/yelp-info.c:99
+#: src/yelp-info.c:126
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:78
+#: src/yelp-main.c:91
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Nepodarilo sa aktivovať Yelp: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:110
 msgid "Could not open new window."
 msgstr "Nepodarilo sa otvoriť nové okno."
 
-#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
-#: src/yelp-man.c:376 src/yelp-man.c:387
+#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
+#: src/yelp-man.c:406 src/yelp-man.c:417
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:276 src/yelp-man.c:307 src/yelp-man.c:365 src/yelp-man.c:392
+#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:281
+#: src/yelp-man.c:311
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:297
+#: src/yelp-man.c:327
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:302
+#: src/yelp-man.c:332
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:312
+#: src/yelp-man.c:342
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:317
+#: src/yelp-man.c:347
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:339
+#: src/yelp-man.c:369
 msgid "System Calls"
 msgstr "Systémové volania"
 
-#: src/yelp-man.c:344
+#: src/yelp-man.c:374
 msgid "Library Functions"
 msgstr "Funkcie z knižníc"
 
-#: src/yelp-man.c:349
+#: src/yelp-man.c:379
 msgid "Kernel Routines"
 msgstr "Podprogramy jadra"
 
-#: src/yelp-man.c:404
+#: src/yelp-man.c:434
 msgid "Applications"
 msgstr "Aplikácie"
 
-#: src/yelp-man.c:409
+#: src/yelp-man.c:439
 msgid "Development"
 msgstr "Vývoj"
 
-#: src/yelp-man.c:414
+#: src/yelp-man.c:444
 msgid "Hardware Devices"
 msgstr "Hardvérové zariadenia"
 
-#: src/yelp-man.c:419
+#: src/yelp-man.c:449
 msgid "Configuration Files"
 msgstr "Konfiguračné súbory"
 
-#: src/yelp-man.c:424
+#: src/yelp-man.c:454
 msgid "Games"
 msgstr "Hry"
 
-#: src/yelp-man.c:429
+#: src/yelp-man.c:459
 msgid "Overviews"
 msgstr "Prehľady"
 
-#: src/yelp-man.c:434
+#: src/yelp-man.c:464
 msgid "System Administration"
 msgstr "Systémová administrácia"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:475
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:209 src/yelp-view-index.c:219
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
 msgid "Section"
 msgstr "Kapitola"
 
-#: src/yelp-view-toc.c:271
-msgid "Other document systems"
-msgstr "Iné dokumentačné systémy"
+#: src/yelp-view-index.c:325
+msgid "Search for:"
+msgstr "Hľadať:"
 
-#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
+#: src/yelp-view-toc.c:271
+msgid "Other Documents"
+msgstr "Iné dokumenty"
+
+#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:502
 msgid "Manual pages"
 msgstr "Manuálové stránky"
 
-#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:558 src/yelp-view-toc.c:577
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:579 src/yelp-view-toc.c:598
 msgid "Info pages"
 msgstr "Stránky Info"
 
@@ -128,77 +132,107 @@ msgstr "Stránky Info"
 msgid "Installed documents"
 msgstr "Inštalované dokumenty"
 
-#: src/yelp-view-toc.c:286
+#: src/yelp-view-toc.c:288
 msgid "Start page"
 msgstr "Štartovacia stránka"
 
-#: src/yelp-view-toc.c:511 src/yelp-view-toc.c:530
-msgid "Manual page sections"
-msgstr "Sekcie manuálových stránok"
+#: src/yelp-view-toc.c:532
+msgid "Manual Pages"
+msgstr "Manuálové stránky"
 
-#: src/yelp-view-toc.c:679
+#: src/yelp-view-toc.c:700
 msgid "Scrollkeeper docs for category"
 msgstr "Dokumenty Scrollkeeper pre kategóriu"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:138
 msgid "/_File"
 msgstr "/_Súbor"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:139
 msgid "/File/_New window"
 msgstr "/Súbor/_Nové okno"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:140
 msgid "/File/_Close window"
 msgstr "/Súbor/_Zavrieť okno"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:141
 msgid "/File/_Quit"
 msgstr "/Súbor/_Koniec"
 
-#: src/yelp-window.c:117
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_Prejsť"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Prejsť/Do_zadu"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Prejsť/Do_predu"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Prejsť/_Domov"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Prejsť/_Index"
+
+#: src/yelp-window.c:147
 msgid "/_Help"
 msgstr "/_Pomocník"
 
-#: src/yelp-window.c:118
+#: src/yelp-window.c:148
 msgid "/Help/_About"
 msgstr "/Pomocník/_O aplikácii"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:207
 msgid "Help Browser"
 msgstr "Pomocník"
 
-#: src/yelp-window.c:414
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:539
+msgid "translator_credits"
+msgstr "Stanislav Višňovský (visnovsky@nenya.ms.mff.cuni.cz)"
+
+#: src/yelp-window.c:543
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pomocník pre GNOME 2.0"
 
-#: src/yelp-window.c:438
-msgid "Go back in the history list"
-msgstr "Prejsť dozadu v histórii"
+#: src/yelp-window.c:570
+msgid "Back"
+msgstr "Dozadu"
 
-#: src/yelp-window.c:453
-msgid "Go forth in the history list"
-msgstr "Prejsť dopredu v histórii"
+#: src/yelp-window.c:571
+msgid "Show previous page in history"
+msgstr "Zobraziť predchádzajúcu stránku histórie"
 
-#: src/yelp-window.c:468
-msgid "Overview of contents"
-msgstr "Prehľad obsahu"
+#: src/yelp-window.c:582
+msgid "Forward"
+msgstr "Dopredu"
 
-#: src/yelp-window.c:479
+#: src/yelp-window.c:583
+msgid "Show next page in history"
+msgstr "Zobraziť nasledujúcu stránku histórie"
+
+#: src/yelp-window.c:596
+msgid "Home"
+msgstr "Domov"
+
+#: src/yelp-window.c:597
+msgid "Go to home view"
+msgstr "Prejsť na domovský pohľad"
+
+#: src/yelp-window.c:607
+msgid "Index"
+msgstr "Index"
+
+#: src/yelp-window.c:608
 msgid "Search in the index"
 msgstr "Nájsť v indexe"
-
-#: src/yelp-window.c:491
-msgid "Search for a phrase in the document"
-msgstr "Hľadať frázu v dokumente"
-
-#: src/yelp-window.c:497
-msgid "Help on "
-msgstr "Pomoc pre"
-
-#: src/yelp-window.c:502
-msgid "Enter phrase to search for in all documents"
-msgstr "Zadajte frázu, ktorú chcete nájsť vo všetkých dokumentoch"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -207,4 +241,25 @@ msgstr "Zobraziť Pomocníka pre GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Pomocník"
+
+#~ msgid "Manual page sections"
+#~ msgstr "Sekcie manuálových stránok"
+
+#~ msgid "Go back in the history list"
+#~ msgstr "Prejsť dozadu v histórii"
+
+#~ msgid "Go forth in the history list"
+#~ msgstr "Prejsť dopredu v histórii"
+
+#~ msgid "Overview of contents"
+#~ msgstr "Prehľad obsahu"
+
+#~ msgid "Search for a phrase in the document"
+#~ msgstr "Hľadať frázu v dokumente"
+
+#~ msgid "Help on "
+#~ msgstr "Pomoc pre"
+
+#~ msgid "Enter phrase to search for in all documents"
+#~ msgstr "Zadajte frázu, ktorú chcete nájsť vo všetkých dokumentoch"
 
