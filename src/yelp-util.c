@@ -432,3 +432,24 @@ yelp_util_compose_path_url (GNode      *node,
 	return  g_strconcat ("path:", path, ";", embedded_url, NULL);
 }
  
+
+GNode *
+yelp_util_find_toplevel (GNode *doc_tree,
+			 gchar *name)
+{
+	GNode           *node;
+	YelpSection     *section;
+	
+	node = g_node_first_child (doc_tree);
+
+	while (node) {
+		section = (YelpSection *) node->data;
+		
+		if (!strcmp (name, section->name)) {
+			return node;
+		}
+		node = g_node_next_sibling (node);
+	}
+
+	return NULL;
+}

@@ -37,6 +37,7 @@
 #include "yelp-scrollkeeper.h"
 
 #define d(x) x
+#undef DEBUG_OUTPUT
 
 static void   yvh_init                    (YelpViewTOC      *html);
 static void   yvh_class_init              (YelpViewTOCClass *klass);
@@ -46,8 +47,6 @@ static void   yvh_link_clicked_cb         (HtmlDocument     *doc,
 static void   yelp_view_toc_man_1         (YelpViewTOC      *view);
 static void   yelp_view_toc_man_2         (YelpViewTOC      *view,
 					   GNode            *root);
-static GNode *yelp_view_toc_find_toplevel (YelpViewTOC      *view,
-					   gchar            *name);
 
 enum {
 	URL_SELECTED,
@@ -152,7 +151,6 @@ yelp_view_toc_write (YelpViewTOC *view, char *data, int len)
 		len = strlen (data);
 	}
 
-#define DEBUG_OUTPUT
 #ifdef DEBUG_OUTPUT
 	g_print ("%.*s", len,data);
 #endif
@@ -285,7 +283,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 			     "<td valign=\"top\">\n"
 			     "<h2>Installed documents</h2>\n", -1);
 
-	root = yelp_view_toc_find_toplevel (view, "scrollkeeper");
+	root = yelp_util_find_toplevel (priv->doc_tree, "scrollkeeper");
 	node = g_node_first_child (root);
 
 	while (node) {
@@ -312,33 +310,6 @@ yelp_view_toc_start (YelpViewTOC *view)
 	yelp_view_toc_write_footer (view);
 
 	yelp_view_toc_close (view);
-}
-
-static GNode *
-yelp_view_toc_find_toplevel (YelpViewTOC *view, gchar *name)
-{
-	YelpViewTOCPriv *priv;
-	GNode           *node;
-	YelpSection     *section;
-	
-	priv = view->priv;
-	
-	node = g_node_first_child (priv->doc_tree);
-
-	if (!node) {
-		g_warning ("No nodes in tree");
-		return NULL;
-	}
-
-	do {
-		section = (YelpSection *) node->data;
-		
-		if (!strcmp (name, section->name)) {
-			return node;
-		}
-	} while ((node = g_node_next_sibling (node)));
-
-	return NULL;
 }
 
 static char *
@@ -467,7 +438,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 	
 	priv = view->priv;
 
-	root = yelp_view_toc_find_toplevel (view, "man");
+	root = yelp_util_find_toplevel (priv->doc_tree, "man");
 
 	if (!root) {
 		g_warning ("Unable to find man toplevel");
@@ -513,7 +484,7 @@ yelp_view_toc_info (YelpViewTOC *view)
 	
 	priv = view->priv;
 
-	root = yelp_view_toc_find_toplevel (view, "info");
+	root = yelp_util_find_toplevel (priv->doc_tree, "info");
 
 	if (!root) {
 		g_warning ("Unable to find info toplevel");
@@ -571,12 +542,10 @@ yelp_view_toc_scrollkeeper (YelpViewTOC *view,
 	GNode *node, *child;
 	YelpSection *section;
 	gboolean got_a_leaf;
-	char *path, *url;
+	char *path;
 	gchar *name;
 
 	priv = view->priv;
-	
-	g_print ("FFFFFFFFFFFFFOOOOOOOOOOOOOOOOOOOOO\n");
 	
 	if (root->children == NULL) {
 		return;

@@ -56,10 +56,12 @@ struct _YelpViewContentClass {
 };
 
 GType           yelp_view_content_get_type     (void);
-GtkWidget      *yelp_view_content_new          (GtkTreeModel      *tree_model);
+GtkWidget      *yelp_view_content_new          (GNode             *doc_tree);
 
+#if 0
 void            yelp_view_content_show_path    (YelpViewContent   *content,
 						GtkTreePath       *path);
+#endif
 void            yelp_view_content_show_uri     (YelpViewContent   *content,
 						const gchar       *uri);
 

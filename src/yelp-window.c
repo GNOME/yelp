@@ -45,10 +45,6 @@ static void yw_class_init	      (YelpWindowClass     *klass);
 
 static void yw_populate               (YelpWindow          *window);
 	
-#if 0
-static void yw_section_selected_cb    (YelpWindow          *window,
-				       YelpSection         *section);
-#endif
 static void yw_url_selected_cb        (gpointer             view,
 				       char                *url,
 				       char                *base_url,
@@ -240,26 +236,6 @@ yw_populate (YelpWindow *window)
 			  TRUE, TRUE, 0);
 }
 
-#if 0
-static void
-yw_section_selected_cb (YelpWindow  *window,
-				 YelpSection *section)
-{
-	YelpWindowPriv *priv;
-	
-	priv = window->priv;
-
-	if (!section->uri) {
-		return;
-	}
-
-	yelp_history_goto (priv->history, section);
-	
-	/* FIXME: Do something :) */
-/* 	yelp_html_open_section (YELP_HTML (window->priv->yelp_html), section); */
-}
-#endif
-
 static void
 yw_url_selected_cb (gpointer    view,
 		    char       *url,
@@ -290,19 +266,10 @@ yw_url_selected_cb (gpointer    view,
 						abs_url);
 			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 						       PAGE_TOC_VIEW);
-		} else if (strncmp (abs_url, "path:", 5) == 0) {
-			GtkTreePath *path;
-			
-			path = gtk_tree_path_new_from_string  (abs_url + 5);
-			yelp_view_content_show_path (YELP_VIEW_CONTENT (priv->content_view),
-						     path);
-			gtk_tree_path_free (path);
-			
-			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-						       PAGE_CONTENT_VIEW);
 		} else if (strncmp (abs_url, "man:", 4) == 0 ||
 			   strncmp (abs_url, "info:", 5) == 0 ||
-			   strncmp (abs_url, "ghelp:", 6) == 0) {
+			   strncmp (abs_url, "ghelp:", 6) == 0 ||
+			   strncmp (abs_url, "path:", 5) == 0) {
 			yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
 						    abs_url);
 			gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
@@ -521,7 +488,7 @@ yelp_window_new (GNode *doc_tree)
 	priv->doc_tree = doc_tree;
 
  	priv->toc_view    = yelp_view_toc_new (doc_tree);
-/* 	priv->content_view = yelp_view_content_new (tree_model); */
+ 	priv->content_view = yelp_view_content_new (doc_tree);
 	priv->index_view   = yelp_view_index_new (NULL);
 
 	g_signal_connect (priv->toc_view, "url_selected",

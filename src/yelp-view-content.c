@@ -26,10 +26,11 @@
 
 #include <libgnome/gnome-i18n.h>
 #include <gtk/gtktreeview.h>
-#include "gtktreemodelfilter.h"
+#include <string.h>
 #include "yelp-html.h"
 #include "yelp-marshal.h"
 #include "yelp-view-content.h"
+#include "yelp-util.h"
 
 static void yvc_init                      (YelpViewContent         *html);
 static void yvc_class_init                (YelpViewContentClass    *klass);
@@ -47,7 +48,8 @@ static gint signals[LAST_SIGNAL] = { 0 };
 struct _YelpViewContentPriv {
 	/* Content tree */
 	GtkWidget    *content_tree;
-	GtkTreeModel *tree_model;
+	GtkTreeStore *tree_store;
+	GNode        *doc_tree;
 
 	/* Html view */
 	GtkWidget    *html_view;
@@ -104,7 +106,13 @@ yvc_init (YelpViewContent *view)
 	view->priv = priv;
 
 	priv->content_tree = gtk_tree_view_new ();
-	priv->tree_model   = NULL;
+	priv->tree_store   = gtk_tree_store_new (2,
+						 G_TYPE_STRING,
+						 G_TYPE_POINTER);
+	
+	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->content_tree),
+				 GTK_TREE_MODEL (priv->tree_store));
+	
 	priv->html_view    = yelp_html_new ();
 
 	g_signal_connect (priv->html_view, "url_selected",
@@ -156,7 +164,7 @@ yvc_tree_selection_changed_cb (GtkTreeSelection *selection,
 }
 
 GtkWidget *
-yelp_view_content_new (GtkTreeModel *tree_model)
+yelp_view_content_new (GNode *doc_tree)
 {
 	YelpViewContent     *view;
 	YelpViewContentPriv *priv;
@@ -168,7 +176,7 @@ yelp_view_content_new (GtkTreeModel *tree_model)
 	view = g_object_new (YELP_TYPE_VIEW_CONTENT, NULL);
 	priv = view->priv;
 
-	priv->tree_model = tree_model;
+	priv->doc_tree = doc_tree;
 	
 	/* Setup the content tree */
         tree_sw = gtk_scrolled_window_new (NULL, NULL);
@@ -210,6 +218,7 @@ yelp_view_content_new (GtkTreeModel *tree_model)
 	return GTK_WIDGET (view);
 }
 
+#if 0
 void
 yelp_view_content_show_path (YelpViewContent *content_view,
 			     GtkTreePath     *path)
@@ -227,17 +236,82 @@ yelp_view_content_show_path (YelpViewContent *content_view,
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->content_tree), model);
 	
 }
+#endif
+
+static void
+yelp_view_content_insert_tree (YelpViewContent *content,
+			       GtkTreeIter     *parent,
+			       GNode           *node)
+{
+	GtkTreeIter iter;
+	YelpSection *section;
+	GNode *child;
+	
+	gtk_tree_store_append (content->priv->tree_store,
+			       &iter, parent);
+
+	section = node->data;
+	gtk_tree_store_set (content->priv->tree_store,
+			    &iter,
+			    0, section->name,
+			    1, section,
+			    -1);
+
+	child = node->children;
+	while (child) {
+		yelp_view_content_insert_tree (content, &iter, child);
+		
+		child = child->next;
+	}
+}
+
+static void 
+yelp_view_content_set_tree (YelpViewContent *content,
+			    GNode           *node)
+{
+	GNode *child;
+	
+	gtk_tree_store_clear (content->priv->tree_store);
+
+	child = node->children;
+	while (child) {
+		yelp_view_content_insert_tree (content, NULL, child);
+		child = child->next;
+	}
+}
 
 void
-yelp_view_content_show_uri (YelpViewContent *content, const gchar *uri)
+yelp_view_content_show_uri (YelpViewContent *content,
+			    const gchar     *url)
 {
 	YelpSection *section;
-	/* FIXME: Find the path in the tree */
+	char *content_url;
+	GNode *node;
+	YelpViewContentPriv *priv;
+	
+	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
+
+	priv = content->priv;
+	
+	if (strncmp (url, "path:", 5) == 0) {
+		node = yelp_util_decompose_path_url (priv->doc_tree,
+						     url,
+						     &content_url);
+		yelp_view_content_set_tree (content, node);
+	} else {
+		content_url = (char *)url;
+
+		/* TODO: Fill in the tree somehow. Depending on url-scheme */
+	}
+
 
 	/* FIXME: This is a quite dubious way to load the url... */
 	section = yelp_section_new (YELP_SECTION_DOCUMENT,
-				    NULL, uri, NULL, NULL);
+				    NULL, content_url, NULL, NULL);
 	yelp_html_open_section (YELP_HTML (content->priv->html_view), section);
 	yelp_section_free (section);
+	if (content_url != url) {
+		g_free (content_url);
+	}
 }
 

@@ -43,6 +43,8 @@ GNode *      yelp_util_decompose_path_url   (GNode         *root,
 char *       yelp_util_compose_path_url     (GNode         *node,
 					     const char    *embedded_url);
 
+GNode *      yelp_util_find_toplevel        (GNode         *doc_tree,
+					     gchar         *name);
 
 
 #endif /* __YELP_UTIL_H__ */

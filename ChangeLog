@@ -1,5 +1,19 @@
 2002-01-24  Alex Larsson  <alexl@redhat.com>
 
+        * src/yelp-util.[ch]:
+	Add yelp_util_find_toplevel().
+	
+	* src/yelp-view-content.[ch]:
+	Add some tree support.
+
+	* src/yelp-view-toc.c:
+	Add scrollkeeper support.
+
+	* src/yelp-window.c:
+	Remove old crap, make content view work again.
+	
+2002-01-24  Alex Larsson  <alexl@redhat.com>
+
 	* src/yelp-view-toc.c:
 	Add initial scrollkeeper support.
 
