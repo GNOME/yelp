@@ -384,7 +384,7 @@ ys_strip_scheme(gchar **original_uri, gchar **scheme)
 	point = g_strstr_len(*original_uri, strlen(*original_uri), ":");
 	if (!point)
 	{
-		scheme = NULL;
+		*scheme = NULL;
 		return;
 	}
 	*scheme = g_strndup(*original_uri, point - *original_uri);

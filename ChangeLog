@@ -1,3 +1,8 @@
+2002-01-19  Alexander Larsson  <alla@lysator.liu.se>
+
+	* src/yelp-scrollkeeper.c (ys_strip_scheme):
+	Set *scheme, not scheme on error
+
 2002-01-18  Alex Larsson  <alexl@redhat.com>
 
 	* configure.in:
