@@ -527,7 +527,21 @@ window_do_load (YelpWindow  *window,
 static void
 window_error (YelpWindow *window, GError *error)
 {
+    YelpWindowPriv *priv;
     GtkWidget *dialog;
+    GtkAction *action;
+
+    priv = window->priv;
+
+    action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    action = gtk_action_group_get_action (priv->action_group, "GoNext");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    action = gtk_action_group_get_action (priv->action_group, "GoContents");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
 
     if (error) {
 	dialog = gtk_message_dialog_new
@@ -1128,30 +1142,32 @@ window_disconnect (YelpWindow *window)
     if (GTK_WIDGET (window)->window)
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
-    if (priv->parse_handler) {
-	g_signal_handler_disconnect (priv->current_doc->pager,
-				     priv->parse_handler);
-	priv->parse_handler = 0;
-    }
-    if (priv->start_handler) {
-	g_signal_handler_disconnect (priv->current_doc->pager,
-				     priv->start_handler);
-	priv->start_handler = 0;
-    }
-    if (priv->page_handler) {
-	g_signal_handler_disconnect (priv->current_doc->pager,
-				     priv->page_handler);
-	priv->page_handler = 0;
-    }
-    if (priv->error_handler) {
-	g_signal_handler_disconnect (priv->current_doc->pager,
-				     priv->error_handler);
-	priv->error_handler = 0;
-    }
-    if (priv->finish_handler) {
-	g_signal_handler_disconnect (priv->current_doc->pager,
-				     priv->finish_handler);
-	priv->finish_handler = 0;
+    if (window->current_doc) {
+	if (priv->parse_handler) {
+	    g_signal_handler_disconnect (priv->current_doc->pager,
+					 priv->parse_handler);
+	    priv->parse_handler = 0;
+	}
+	if (priv->start_handler) {
+	    g_signal_handler_disconnect (priv->current_doc->pager,
+					 priv->start_handler);
+	    priv->start_handler = 0;
+	}
+	if (priv->page_handler) {
+	    g_signal_handler_disconnect (priv->current_doc->pager,
+					 priv->page_handler);
+	    priv->page_handler = 0;
+	}
+	if (priv->error_handler) {
+	    g_signal_handler_disconnect (priv->current_doc->pager,
+					 priv->error_handler);
+	    priv->error_handler = 0;
+	}
+	if (priv->finish_handler) {
+	    g_signal_handler_disconnect (priv->current_doc->pager,
+					 priv->finish_handler);
+	    priv->finish_handler = 0;
+	}
     }
     if (priv->idle_write) {
 	gtk_idle_remove (priv->idle_write);
@@ -1396,6 +1412,7 @@ window_go_previous_cb (GtkAction *action, YelpWindow *window)
 
     d (printf ("window_go_previous_cb\n"));
     g_return_if_fail (YELP_IS_WINDOW (window));
+    g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
 
     uri = yelp_uri_get_relative (priv->current_doc->uri,
@@ -1412,6 +1429,7 @@ window_go_next_cb (GtkAction *action, YelpWindow *window)
 
     d (printf ("window_go_previous_cb\n"));
     g_return_if_fail (YELP_IS_WINDOW (window));
+    g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
 
     uri = yelp_uri_get_relative (priv->current_doc->uri,
@@ -1428,6 +1446,7 @@ window_go_toc_cb (GtkAction *action, YelpWindow *window)
 
     d (printf ("window_go_previous_cb\n"));
     g_return_if_fail (YELP_IS_WINDOW (window));
+    g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
 
     uri = yelp_uri_get_relative (priv->current_doc->uri,

@@ -34,7 +34,11 @@
 
 #include <string.h>
 
+#ifdef YELP_DEBUG
+#define d(x) x
+#else
 #define d(x)
+#endif
 
 GHashTable *doc_info_table;
 
@@ -95,6 +99,8 @@ yelp_doc_info_get (gchar *uri)
 {
     YelpDocInfo *doc;
 
+    g_return_val_if_fail (uri != NULL, NULL);
+
     if (!doc_info_table)
 	doc_info_table =
 	    g_hash_table_new_full (g_str_hash,
@@ -153,7 +159,10 @@ yelp_doc_info_free (YelpDocInfo *doc)
     if (!doc)
 	return;
 
-    //    g_object_unref (doc->pager);
+    d (printf ("yelp_doc_info_free\n"));
+    d (printf ("  uri = \"%s\"\n", doc->uri));
+
+    g_object_unref (doc->pager);
 
     g_free (doc->uri);
     g_free (doc);

@@ -1,3 +1,12 @@
+2004-10-08  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-utils.c:
+	- A NULL check, and re-enabling the pager unreffing
+
+	* src/yelp-window.c:
+	- Fix for bug #146935: Previous, Next, and Contents were sensitive when
+	  they shouldn't have been
+
 2004-10-07  Shaun McCance  <shaunm@gnome.org>
 
 	* data/ui/Makefile.am:
