@@ -64,8 +64,7 @@ static int       yelp_html_do_write       (void               *context,
 static int       yelp_html_do_close       (void               *context);
 
 static void      yelp_html_do_docbook     (YelpHtml           *html,
-					   const gchar        *docpath,
-					   const gchar        *section,
+					   YelpURI            *uri,
 					   GError            **error);
 static gboolean  yelp_html_io_watch_cb    (GIOChannel         *iochannel, 
 					   GIOCondition        cond, 
@@ -227,18 +226,14 @@ yelp_html_do_close (void *context)
 }
 
 static void
-yelp_html_do_docbook (YelpHtml *html, const gchar *docpath, 
-		      const gchar *section, GError **error)
+yelp_html_do_docbook (YelpHtml *html, YelpURI *uri, GError **error)
 {
 	xmlOutputBufferPtr  buf;
 	YelpHtmlPriv       *priv;
-	gchar              *uri;
 	
 	g_return_if_fail (YELP_IS_HTML (html));
 	
 	priv = html->priv;
-
-	uri = g_strconcat (docpath, "?", section, NULL);
 
 	buf = xmlAllocOutputBuffer (NULL);
 		
@@ -566,8 +561,7 @@ yelp_html_open_uri (YelpHtml *html, YelpURI *uri, GError **error)
 		break;
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
-		yelp_html_do_docbook (html, yelp_uri_get_path (uri),
-				      yelp_uri_get_section (uri), error);
+		yelp_html_do_docbook (html, uri, error);
 		break;
 	case YELP_URI_TYPE_HTML:
 		yelp_html_do_html (html, priv->doc->current_stream,

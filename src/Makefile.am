@@ -22,11 +22,13 @@ test_uri_LDADD = 							\
 	$(YELP_LIBS)
 
 test_reader_SOURCES = 							\
-	test-uri.c							\
+	test-reader.c							\
 	yelp-uri.c		yelp-uri.h				\
 	yelp-reader.c		yelp-reader.h				\
 	yelp-error.c		yelp-error.h				\
-	yelp-util.c		yelp-util.h
+	yelp-util.c		yelp-util.h				\
+	yelp-db2html.c		yelp-db2html.h				\
+	yelp-marshal.c		yelp-marshal.h	
 
 test_reader_LDADD = 							\
 	$(YELP_LIBS)

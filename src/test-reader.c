@@ -26,8 +26,31 @@
 #include <libgnome/gnome-program.h>
 #include <libgnomevfs/gnome-vfs.h>
 
+#include <string.h>
+
 #include "yelp-uri.h"
 #include "yelp-reader.h"
+
+static void
+start_cb (YelpReader *reader)
+{
+	g_print ("------------------------------------------\n");
+}
+
+static void
+data_cb (YelpReader       *reader, 
+	 gint              len,
+	 const gchar      *buffer)
+{
+	g_print ("data_cb [%d <-> %d]\n", len, strlen (buffer));
+ 	g_print (buffer);
+}
+
+static void
+finished_cb (YelpReader *reader)
+{
+	g_print ("------------------------------------------\n");
+}
 
 int
 main (int argc, char **argv)
@@ -59,18 +82,17 @@ main (int argc, char **argv)
 
 	reader = yelp_reader_new (FALSE);
 
+	g_signal_connect (reader, "start", 
+			  G_CALLBACK (start_cb),
+			  NULL);
+	g_signal_connect (reader, "data", 
+			  G_CALLBACK (data_cb),
+			  NULL);
+	g_signal_connect (reader, "finished", 
+			  G_CALLBACK (finished_cb),
+			  NULL);
 
-	g_signal_connect (reader, "open", 
-			  G_CALLBACK (open_cb),
-			  NULL);
-	g_signal_connect (reader, "read", 
-			  G_CALLBACK (read_cb),
-			  NULL);
-	g_signal_connect (reader, "close", 
-			  G_CALLBACK (close_cb),
-			  NULL);
-
-	yelp_reader_read (uri);
+	yelp_reader_read (reader, uri);
 	
 	yelp_uri_unref (uri);
 

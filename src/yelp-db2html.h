@@ -31,8 +31,10 @@
 #include <libxml/DOCBparser.h>
 #include <libxml/catalog.h>
 
+#include "yelp-uri.h"
+
 gboolean
-yelp_db2html_convert (const gchar         *document, 
+yelp_db2html_convert (YelpURI             *uri,
                       xmlOutputBufferPtr   buf, 
                       GError             **error);
 

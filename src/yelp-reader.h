@@ -38,11 +38,6 @@ typedef struct _YelpReader      YelpReader;
 typedef struct _YelpReaderClass YelpReaderClass;
 typedef struct _YelpReaderPriv  YelpReaderPriv;
 
-typedef enum {
-        YELP_READER_STATUS_OK,
-        YELP_READER_STATUS_ERROR
-} YelpReaderStatus;
-
 struct _YelpReader {
         GObject         parent;
         
@@ -53,17 +48,19 @@ struct _YelpReaderClass {
         GObjectClass    parent_class;
 
         /* Signals */
-        gboolean (*open)   (YelpReaderStatus    status);
-        gboolean (*read)   (YelpReaderStatus    status,
-                            gint                len,
-                            gchar              *buffer);
-        gboolean (*close)  (YelpReaderStatus    status);
-        gboolean (*error)  (GError             *error);
+        void (*start)     (YelpReader         *reader);
+        void (*data)      (YelpReader         *reader,
+			   gint                len,
+			   const gchar        *buffer);
+        void (*finished)  (YelpReader         *reader);
+        void (*error)     (YelpReader         *reader,
+			   GError             *error);
 };
 
 GType            yelp_reader_get_type     (void);
 YelpReader *     yelp_reader_new          (gboolean    async);
 
-gboolean         yelp_reader_read         (YelpURI    *uri);
+void             yelp_reader_read         (YelpReader *reader,
+					   YelpURI    *uri);
 
 #endif /* __YELP_READER_H__ */

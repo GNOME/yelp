@@ -46,7 +46,7 @@
 #define d(x)
 
 gboolean
-yelp_db2html_convert (const gchar         *document,
+yelp_db2html_convert (YelpURI             *uri,
                       xmlOutputBufferPtr   buf, 
                       GError             **error)
 {
@@ -55,23 +55,24 @@ yelp_db2html_convert (const gchar         *document,
         xmlDocPtr          gdb_doc;
         xmlDocPtr          gdb_results;
 	const char        *params[16 + 1];
-	char              *gdb_pathname;    /* path to the file to be parsed */
-	char              *gdb_rootid; /* id of sect, chapt, etc to be parsed */
+	char              *gdb_pathname;       /* path to the file to be parsed */
+	char              *gdb_rootid;         /* id of sect, chapt, etc to be parsed */
 	char             **gdb_split_docname;  /* placeholder for file type determination */
         char              *ptr;
 	gboolean           has_rootid;
         GTimer            *timer;
         
 	has_rootid = FALSE; 
-	gdb_doc = NULL;
+	gdb_doc    = NULL;
 	gdb_rootid = NULL;
 
         timer = g_timer_new ();
 
-        gdb_docname = g_strdup (document);
+        gdb_docname = g_strconcat (yelp_uri_get_path (uri), "?",
+                                   yelp_uri_get_section (uri), 
+                                   NULL);
 
 	d(g_print ("Convert file: %s\n", gdb_docname));
-
 	
 	/* check to see if gdb_docname has a ?sectid included */
 	for (ptr = gdb_docname; *ptr; ptr++){
@@ -179,8 +180,6 @@ yelp_db2html_convert (const gchar         *document,
 
 	/* Output the results to the OutputBuffer */
         xsltSaveResultTo (buf, gdb_results, gdb_xslreturn);
-
-        xmlOutputBufferClose (buf);
 
         g_free (gdb_docname);
         xmlFree (gdb_results);

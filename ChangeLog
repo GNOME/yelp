@@ -1,3 +1,38 @@
+2002-05-18  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-reader.h: 
+	- removed YelpReaderStatus.
+
+	* src/yelp-reader.c: 
+	- Now handles docbook, man, info, plain files, and external URI's.
+	(reader_class_init): 
+	- added signals "start", "data", "finished" and "error".
+	(reader_db_start): added/impl.
+	(reader_db_write): added/impl.
+	(reader_db_close): added/impl.
+	(reader_man_info_start): added/impl.
+	(reader_io_watch_cb): added/impl.
+	(reader_file_start): added/impl.
+	(yelp_reader_read): take reader as argument and implemented.
+
+	* src/yelp-marshal.list: added marshal needed by YelpReader.
+
+	* src/yelp-html.c (yelp_html_do_docbook): 
+	- take URI instead of text doc path and section.
+
+	* src/yelp-db2html.c (yelp_db2html_convert): 
+	- take a URI instead of text doc path and section.
+	- don't close OutputBuffer here.
+
+	* src/test-reader.c:
+	(start_cb): added
+	(data_cb): added
+	(finished_cb): added
+	(main): start using the yelp-reader for testing.
+
+	* src/Makefile.am (test_reader_SOURCES): 
+	- added files needed for this test program.
+
 2002-05-08  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/test-reader.c: added, test file for the YelpReader.
