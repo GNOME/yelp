@@ -59,7 +59,6 @@ static GHashTable *seriesid_hash = NULL;
 static GHashTable *docid_hash    = NULL;
 static GList 	  *xml_list      = NULL;
 
-#define YELP_DB2HTML BINDIR"/yelp-db2html"
 #define BUFFER_SIZE 16384
 
 
@@ -174,7 +173,9 @@ main (gint argc, gchar **argv)
 
 		if (html_data) {
 			yelp_pregenerate_write_to_html (xml_url, html_data);
-                }
+                } else {
+			g_print ("Error in pre-generating HTML from %s. The problem could be with yelp-db2html OR the xml file may not be proper. Also check yelp-db2html path. It is assumed that yelp-db2html is installed in $SERVERDIR.\n", xml_url);
+		}
 	}
 
 	g_list_free (xml_list);
