@@ -175,7 +175,7 @@ static char *URLbasename = NULL;
    free will be exit() anyway.  Hack to fix a malloc bug that I couldn't
    track down (michael@actrix.gen.nz).
    */
-#define free(x)
+/* #define free(x) */
 
 static char
 *stralloc(int len)
@@ -1235,7 +1235,7 @@ static char
 	next_row(currow);
 	curfield=layout->first;
 	i=0;
-	while (!finished) {
+	while (!finished && *c) {
 		/* search item */
 		h=c;
 		if ((*c=='_' || *c=='=') && (c[1]==itemsep || c[1]=='\n')) {
