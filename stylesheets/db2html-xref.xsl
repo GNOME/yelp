@@ -23,7 +23,7 @@
 		</xsl:attribute>
 		<xsl:choose>
 			<xsl:when test="@endterm">
-				<xsl:apply-templates select="id(@endterm)"/>
+				<xsl:apply-templates select="id(@endterm)/node()"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:apply-templates/>

@@ -1,6 +1,18 @@
 2004-01-09  Shaun McCance  <shaunm@gnome.org>
 
 	* stylesheets/db2html-xref.xsl:
+	- More link fixes, making endterm cases look right.
+
+	* test/Makefile.am:
+	* test/autogen.sh:
+	* test/configure.in:
+	* test/omf.make:
+	* test/xmldocs.xml:
+	- Making test/ independantly buildable.
+
+2004-01-09  Shaun McCance  <shaunm@gnome.org>
+
+	* stylesheets/db2html-xref.xsl:
 	- Revert link back to the correct behavior.
 
 2004-01-09  Eric Baudais  <drake@gnome.org>
