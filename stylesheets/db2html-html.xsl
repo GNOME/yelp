@@ -155,6 +155,11 @@ div[class="navbar-bottom"],
 <xsl:value-of select="$color_gray_border"/><xsl:text>;
 }
 
+div[class="toc"] {
+	margin-left: 1.6em;
+}
+table[class="toc"] td { padding-right: 0.8em; }
+
 div[class="example"],
 div[class="figure"],
 div[class="informalexample"],

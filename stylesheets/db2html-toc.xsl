@@ -1,106 +1,154 @@
 <?xml version='1.0'?><!-- -*- Mode: fundamental; tab-width: 3 -*- -->
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY is-division "
-	(name(.) = 'appendix')   or (name(.) = 'article')      or
-	(name(.) = 'book')       or (name(.) = 'bibliography') or
-	(name(.) = 'chapter')    or (name(.) = 'colophon')     or
-	(name(.) = 'glossary')   or (name(.) = 'index')        or
-	(name(.) = 'part')       or (name(.) = 'preface')      or
-	(name(.) = 'reference')  or (name(.) = 'refentry')     or
-	(name(.) = 'refsect1')   or (name(.) = 'refsect2')     or
-	(name(.) = 'refsect3')   or (name(.) = 'refsection')   or
-	(name(.) = 'sect1')      or (name(.) = 'sect2')        or
-	(name(.) = 'sect3')      or (name(.) = 'sect4')        or
-	(name(.) = 'sect5')      or (name(.) = 'section')      or
-	(name(.) = 'set')        or (name(.) = 'setindex')     or
-	(name(.) = 'simplesect') ">
-<!ENTITY is-info "
-	(name(.) = 'appendixinfo')     or (name(.) = 'articleinfo')    or
-	(name(.) = 'bibliographyinfo') or (name(.) = 'bookinfo')       or
-	(name(.) = 'chapterinfo')      or (name(.) = 'glossaryinfo')   or
-	(name(.) = 'indexinfo')        or (name(.) = 'partinfo')       or
-	(name(.) = 'prefaceinfo')      or (name(.) = 'refentryinfo')   or
-	(name(.) = 'referenceinfo')    or (name(.) = 'refsect1info')   or
-	(name(.) = 'refsect2info')     or (name(.) = 'refsect3info')   or
-	(name(.) = 'refsectioninfo')   or (name(.) = 'sect1info')      or
-	(name(.) = 'sect2info')        or (name(.) = 'sect3info')      or
-	(name(.) = 'sect4info')        or (name(.) = 'sect5info')      or
-	(name(.) = 'sectioninfo')      or (name(.) = 'setinfo')        or
-	(name(.) = 'setindexinfo')     ">
-]>
-
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
 <!-- ======================================================================= -->
 
 <xsl:template name="toc">
-	<xsl:call-template name="toc.verbose"/>
-</xsl:template>
-
-<!-- ======================================================================= -->
-<!--
-<xsl:template name="toc.simple">
 	<xsl:param name="node" select="."/>
-	<div class="toc">
-		<xsl:call-template name="anchor">
-			<xsl:with-param name="name" select="'toc'"/>
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk">
+			<xsl:with-param name="node" select="$node"/>
 		</xsl:call-template>
+	</xsl:param>
+	<xsl:call-template name="toc.table">
+		<xsl:with-param name="node" select="$node"/>
+		<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+	</xsl:call-template>
+</xsl:template>
 
-		<xsl:if test="$generate_titlepage and /*/*[&is-info;]">
-			<p class="about">
-				<xsl:call-template name="xref">
-					<xsl:with-param name="linkend" select="'titlepage'"/>
-				</xsl:call-template>
-			</p>
+<!-- == toc.table ========================================================== -->
+
+<xsl:template name="toc.table">
+	<xsl:param name="node" select="."/>
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
+	</xsl:param>
+
+	<xsl:variable name="cols" select="$chunk_depth - $depth_chunk + 1"/>
+
+	<h2><xsl:call-template name="gettext">
+		<xsl:with-param name="msgid">
+			<xsl:choose>
+				<xsl:when test=". = /*">
+					<xsl:value-of select="'Table of Contents'"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="'Contents'"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:with-param>
+	</xsl:call-template></h2>
+	<div class="toc"><table class="toc">
+		<xsl:apply-templates mode="toc.table.tr.mode">
+			<xsl:with-param name="cols" select="$cols"/>
+			<xsl:with-param name="depth_table" select="0"/>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
+		</xsl:apply-templates>
+	</table></div>
+</xsl:template>
+
+<xsl:template mode="toc.table.tr.mode" match="
+		appendix		| article	| book		| bibliography	| chapter		|
+		colophon		| glossary	| index		| part			| preface		|
+		reference	| refentry	| refsect1	| refsect2		| refsect3		|
+		refsection	| sect1		| sect2		| sect3			| sect4			|
+		sect5			| section	| set			| setindex		| simplesect	">
+	<xsl:param name="cols"/>
+	<xsl:param name="depth_table"/>
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk"/>
+	</xsl:param>
+	<xsl:param name="indent" select="false()"/>
+
+	<tr class="{name(.)}">
+		<xsl:if test="$depth_table &gt; 0">
+			<td colspan="{$depth_table}"/>
 		</xsl:if>
-		<xsl:call-template name="node.heading">
-			<xsl:with-param name="content">
-				<xsl:call-template name="gettext">
-					<xsl:with-param name="msgid" select="'Table of Contents'"/>
-				</xsl:call-template>
+		<td>
+			<xsl:if test="$indent"><xsl:text>&#160;&#160;</xsl:text></xsl:if>
+			<a>
+				<xsl:attribute name="href">
+					<xsl:call-template name="xref.target">
+						<xsl:with-param name="linkend" select="@id"/>
+						<xsl:with-param name="target" select="."/>
+					</xsl:call-template>
+				</xsl:attribute>
+				<xsl:choose>
+					<xsl:when test="@xreflabel">
+						<xsl:value-of select="$target/@xreflabel"/>
+					</xsl:when>
+					<xsl:when test="$depth_table = 0">
+						<xsl:call-template name="xref.content">
+							<xsl:with-param name="linkend" select="@id"/>
+							<xsl:with-param name="target" select="."/>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="header.number"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</a>
+		</td>
+		<td colspan="{$cols - $depth_table - 1}">
+			<xsl:apply-templates select="title/node()"/>
+		</td>
+	</tr>
+	<xsl:if test="$depth_chunk &lt; $chunk_depth">
+		<xsl:apply-templates mode="toc.table.tr.mode">
+			<xsl:with-param name="cols" select="$cols"/>
+			<xsl:with-param name="depth_table">
+				<xsl:choose>
+					<xsl:when test="name(.) = 'part'">
+						<xsl:value-of select="$depth_table"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$depth_table + 1"/>
+					</xsl:otherwise>
+				</xsl:choose>
 			</xsl:with-param>
-		</xsl:call-template>
-		<ol>
-			<li value="1.1">Foo</li>
-			<li value="12.2">Bar</li>
-		</ol>
-	</div>
-</xsl:template>
--->
-
-<!-- ======================================================================= -->
-
-<xsl:template name="toc.verbose">
-	<div class="toc"><ul>
-		<xsl:for-each select="*[&is-division;]">
-			<xsl:variable name="chunk_id">
-				<xsl:call-template name="chunk.id"/>
-			</xsl:variable>
-			<xsl:if test="string($chunk_id) = @id">
-				<xsl:apply-templates select="." mode="toc.verbose.mode"/>
-			</xsl:if>
-		</xsl:for-each>
-	</ul></div>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
+			<xsl:with-param name="indent">
+				<xsl:choose>
+					<xsl:when test="name(.) = 'part'">
+						<xsl:value-of select="true()"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="false()"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:apply-templates>
+	</xsl:if>
 </xsl:template>
 
-<xsl:template match="*" mode="toc.verbose.mode">
-	<li>
-		<xsl:call-template name="xref">
-			<xsl:with-param name="linkend" select="@id"/>
-		</xsl:call-template>
-		<xsl:choose>
-			<xsl:when test="title">
-				<xsl:text>&#160;&#160;</xsl:text>
-				<xsl:apply-templates select="title/node()"/>
-			</xsl:when>
-			<xsl:when test="*[&is-info;]/title">
-				<xsl:text>&#160;&#160;</xsl:text>
-				<xsl:apply-templates select="*[&is-info;]/title/node()"/>
-			</xsl:when>
-		</xsl:choose>
-	</li>
+<xsl:template mode="toc.table.tr.mode" match="
+		appendixinfo	| articleinfo	| bibliographyinfo	| bookinfo		|
+		chapterinfo		| glossaryinfo	| indexinfo				| partinfo		|
+		prefaceinfo		| refentryinfo	| referenceinfo		| refsect1info	|
+		refsect2info	| refsect3info	| refsectioninfo		| sect1info		|
+		sect2info		| sect3info		| sect4info				| sect5info		|
+		sectioninfo		| setinfo		| setindexinfo			">
+	<xsl:param name="cols"/>
+	<xsl:param name="depth_table"/>
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk"/>
+	</xsl:param>
+	<xsl:param name="indent" select="false()"/>
+
+	<xsl:if test="$depth_chunk = 1">
+		<tr><td colspan="{$cols}">
+			<xsl:call-template name="xref">
+				<xsl:with-param name="linkend" select="'titlepage'"/>
+				<xsl:with-param name="target" select="."/>
+			</xsl:call-template>
+		</td></tr>
+	</xsl:if>
 </xsl:template>
+
+<xsl:template mode="toc.table.tr.mode" match="*"/>
 
 <!-- ======================================================================= -->
 

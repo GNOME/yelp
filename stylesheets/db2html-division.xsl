@@ -48,7 +48,10 @@
 					<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 					<xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>
 				</xsl:apply-templates>
-				<xsl:call-template name="toc"/>
+				<xsl:call-template name="toc">
+					<xsl:with-param name="node" select="."/>
+					<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+				</xsl:call-template>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:apply-templates>
