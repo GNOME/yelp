@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "POT-Creation-Date: 2002-04-14 20:50-0400\n"
-"PO-Revision-Date: 2002-04-17 16:02+0100\n"
+"PO-Revision-Date: 2002-04-18 15:30+0100\n"
 "Last-Translator: Ronald Hummelink <ronald@hummelink.xs4all.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Yelp Factory"
 
 #: src/yelp-db2html.c:105
 msgid "Error while parsing the stylesheet, make sure you have your docbook environment setup correctly."
-msgstr "Fout bij het parsen van de stylesheet, controleer of de docbook omgeving goed geïnstaleerd is."
+msgstr "Fout bij het verwerken van de stylesheet, controleer of de docbook-omgeving goed geïnstaleerd is."
 
 #: src/yelp-db2html.c:121
 #, c-format
@@ -34,7 +34,7 @@ msgstr "Het document '%s' bestaat niet"
 #: src/yelp-db2html.c:136
 #, c-format
 msgid "Couldn't parse the document '%s'."
-msgstr "Kon het document '%s' niet parsen."
+msgstr "Kon het document '%s' niet verwerken."
 
 #: src/yelp-db2html.c:178
 msgid "Error while applying the stylesheet."
@@ -219,15 +219,15 @@ msgstr "/Ga/_Index"
 
 #: src/yelp-window.c:159
 msgid "/_Help"
-msgstr "/_Help"
+msgstr "/_Hulp"
 
 #: src/yelp-window.c:160
 msgid "/Help/_About"
-msgstr "/Help/_Info"
+msgstr "/Hulp/_Info"
 
 #: src/yelp-window.c:219
 msgid "Help Browser"
-msgstr "Help Browser"
+msgstr "Hulp Browser"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
@@ -237,7 +237,7 @@ msgstr "Tino Meinen a.t.meinen@chello.nl"
 
 #: src/yelp-window.c:567
 msgid "Help Browser for GNOME 2.0"
-msgstr "Help Browser voor GNOME 2.0"
+msgstr "Hulp Browser voor GNOME 2.0"
 
 #: src/yelp-window.c:621
 msgid "Back"
@@ -277,5 +277,5 @@ msgstr "Hulp bij GNOME"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
-msgstr "Help"
+msgstr "Hulp"
 
