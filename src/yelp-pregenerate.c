@@ -95,7 +95,7 @@ main (gint argc, gchar **argv)
 	switch (c) {
 	case 'a':
                 g_print ("Pre-generating HTMLs for all XML files installed in the system.\n");
-                tree = g_new0 (GNode, 1);
+                tree = g_node_new (NULL);
                 
                 yelp_pregenerate_xml_list_init (tree);	
                 
@@ -295,9 +295,9 @@ parse_section (GNode *parent, xmlNode *xml_node)
 {
 	xmlNode *cur;
 	xmlChar *xml_str;
-	gchar   *name;
+	gchar   *name = NULL;
 	GNode   *node;
-	gchar   *docid;
+	gchar   *docid = NULL;
 
 	/* Find the title */
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
@@ -308,6 +308,7 @@ parse_section (GNode *parent, xmlNode *xml_node)
 				name = g_strdup (xml_str);
 				xmlFree (xml_str);
 			}
+			break;
 		}
 	}
 

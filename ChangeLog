@@ -1,3 +1,10 @@
+2002-10-27  Richard Hult  <rhult@codefactory.se>
+
+	* src/yelp-pregenerate.c (main): Don't create GNodes with g_new,
+	use g_node_new. Fixes a crash.
+	(parse_section): Initialize variables and break out of loop when
+	we have a match.
+
 2002-10-26  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-base.c: removed unused struct type.
