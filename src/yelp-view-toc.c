@@ -806,4 +806,7 @@ yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
 	} else {
 		g_warning ("Unknown toc type %s\n", url);
 	}
+
+ 	gtk_adjustment_set_value (
+ 		gtk_layout_get_vadjustment (GTK_LAYOUT (view)), 0);
 }
