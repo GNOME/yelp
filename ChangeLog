@@ -1,3 +1,12 @@
+2002-03-24  Zbigniew Chyla  <cyba@gnome.pl>
+
+	Fixes #72583
+
+	* src/yelp-view-toc.c (yelp_view_toc_write_header):
+	Put <meta http-equiv="Content-Type" ...> _before_ <title> tag
+	so that document's encoding is known before we encounter localized
+	title (UTF-8 string).
+
 2002-03-23  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-info.c (yelp_info_init): 
