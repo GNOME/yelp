@@ -63,6 +63,7 @@ struct _YelpDBPagerPriv {
     GtkTreeModel   *sects;
     GHashTable     *frags_hash;
 
+    gint            max_depth;
     gchar          *root_id;
 };
 
@@ -257,9 +258,9 @@ db_pager_parse (YelpPager *pager)
     walker->titleStylesheet = xsltParseStylesheetFile (DB_TITLE);
 
     if (!xmlStrcmp (xmlDocGetRootElement (doc)->name, BAD_CAST "book"))
-	walker->max_depth = BOOK_CHUNK_DEPTH;
+	priv->max_depth = walker->max_depth = BOOK_CHUNK_DEPTH;
     else
-	walker->max_depth = ARTICLE_CHUNK_DEPTH;
+	priv->max_depth = walker->max_depth = ARTICLE_CHUNK_DEPTH;
 
     id = xmlGetProp (walker->cur, "id");
     if (id)
@@ -321,6 +322,8 @@ db_pager_params (YelpPager *pager)
     params[params_i++] = g_strdup ("\"\"");
     params[params_i++] = "db.chunk.info_basename";
     params[params_i++] = g_strdup ("\"x-yelp-titlepage\"");
+    params[params_i++] = "db.chunk.max_depth";
+    params[params_i++] = g_strdup_printf ("%i", priv->max_depth);
 
     params[params_i] = NULL;
 
@@ -396,7 +399,7 @@ walker_walk_xml (DBWalker *walker)
 				(const xmlChar *) "yelp:chunk-depth")) {
 		    gint max = atoi (cur->content);
 		    if (max)
-			walker->max_depth = max;
+			priv->max_depth = walker->max_depth = max;
 		    break;
 		}
     }
