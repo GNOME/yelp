@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
+"Project-Id-Version: yelp.HEAD.sq\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-15 22:43+0100\n"
-"PO-Revision-Date: 2004-01-15 23:11+0100\n"
+"POT-Creation-Date: 2004-02-02 16:08+0100\n"
+"PO-Revision-Date: 2004-02-02 16:08+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Aplikativë"
 
 #: data/toc.xml.in.h:3
 msgid "Desktop"
-msgstr "Desktopi"
+msgstr "Hapësira e Punës"
 
 #: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
@@ -39,7 +39,7 @@ msgstr "Ambiente zhvillimi"
 msgid "Development Tools"
 msgstr "Vegla për zhvillim"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Editues"
 
@@ -53,7 +53,7 @@ msgstr "Lojra dhe argëtime"
 
 #: data/toc.xml.in.h:10
 msgid "General"
-msgstr "E përgjithshme"
+msgstr "Të përgjithshme"
 
 #: data/toc.xml.in.h:11
 msgid "Help Contents"
@@ -135,24 +135,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:424 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Asnjë atribut href u gjet në yelp:dokument"
 
-#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Jashtë memorjes"
 
-#: src/yelp-db-pager.c:616 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Titulli i faqes"
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Përmbajtja"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "I/e panjohur"
@@ -241,7 +241,7 @@ msgstr "Files e konfigurimit"
 
 #: src/yelp-man.c:449
 msgid "Games"
-msgstr "Lojra"
+msgstr "Lojrat"
 
 #: src/yelp-man.c:454
 msgid "Overviews"
@@ -263,125 +263,130 @@ msgstr "URI i dokumentit që duhet procesuar"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Numërimi i pauzës është negativ."
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Nuk arrij të ngarkoj file OMF '%s'."
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "Kategoritë"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
-msgstr "Dokumente"
+msgstr "Dokumentet"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:231
 msgid "/_File"
 msgstr "/_File"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:232
 msgid "/File/_New window"
 msgstr "/File/_Dritare e re"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:235
 msgid "/File/_Close window"
 msgstr "/File/_Mbyll dritaren"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:239
 msgid "/_Edit"
 msgstr "/_Ndrysho"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:240
 msgid "/Edit/_Find..."
 msgstr "/Ndrysho/_Kërko..."
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:243
 msgid "/Edit/Find Ne_xt"
 msgstr "/Ndrysho/_Gjej në vazhdim"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:246
 msgid "/Edit/Find Pre_vious"
 msgstr "/Ndrysho/Gjej pa_raardhësin"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:250
 msgid "/_Go"
 msgstr "/_Shko"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:251
 msgid "/Go/_Back"
 msgstr "/Shko/_Mbrapa"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:254
 msgid "/Go/_Forward"
 msgstr "/Shko/_Para"
 
-#: src/yelp-window.c:255
+#: src/yelp-window.c:257
 msgid "/Go/_Home"
 msgstr "/Shko/_Home"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:260
 msgid "/Go/"
 msgstr "/Shko/"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:261
 msgid "/Go/_Previous Page"
 msgstr "/Shko/Faqja _Paraardhëse"
 
-#: src/yelp-window.c:262
+#: src/yelp-window.c:264
 msgid "/Go/_Next Page"
 msgstr "/Shko/Faqja në _Vazhdim"
 
-#: src/yelp-window.c:265
+#: src/yelp-window.c:267
 msgid "/Go/_Contents"
 msgstr "/shko/_Përmbajtja"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:271
 msgid "/_Help"
 msgstr "/_Ndihmë"
 
-#: src/yelp-window.c:270
+#: src/yelp-window.c:272
 msgid "/Help/_About"
 msgstr "/Ndihmë/_Informacione"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:334
 msgid "Help Browser"
 msgstr "Udhëzuesi online"
 
-#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:552 stylesheets/l10n.xml.in.h:60
 msgid "Section"
 msgstr "Seksioni"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:609
 msgid "Back"
 msgstr "Mbrapa"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:610
 msgid "Show previous page in history"
 msgstr "Shfaq faqen e kaluar në kronollogji"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:620
 msgid "Forward"
 msgstr "Para"
 
-#: src/yelp-window.c:615
+#: src/yelp-window.c:621
 msgid "Show next page in history"
 msgstr "Shfaq faqen në vazhdim në kronollogji"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:633
 msgid "Home"
 msgstr "Home"
 
-#: src/yelp-window.c:628
+#: src/yelp-window.c:634
 msgid "Go to home view"
 msgstr "Shko tek pamja home"
 
-#: src/yelp-window.c:834
+#: src/yelp-window.c:844
 msgid "Loading..."
 msgstr "Duke ngarkuar..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1228
+#: src/yelp-window.c:1267
 msgid "translator_credits"
 msgstr "Laurent Dhima <laurenti@alblinux.net>"
 
-#: src/yelp-window.c:1233
+#: src/yelp-window.c:1272
 msgid "A Help Browser for GNOME"
 msgstr "Një Udhëzues i Shfletueshëm për GNOME "
 
@@ -402,224 +407,246 @@ msgid "&#8221;"
 msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
+msgid "About This Article"
+msgstr "Informacione mbi këtë artikull"
+
+#: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
 msgstr "Informacione në lidhje me këtë Bibliografi"
 
-#: stylesheets/l10n.xml.in.h:6
+#: stylesheets/l10n.xml.in.h:7
 msgid "About This Book"
 msgstr "Informacione në lidhje me këtë libër"
 
-#: stylesheets/l10n.xml.in.h:7
+#: stylesheets/l10n.xml.in.h:8
 msgid "About This Chapter"
 msgstr "Informacione në lidhje me këtë kapitull"
 
-#: stylesheets/l10n.xml.in.h:8
+#: stylesheets/l10n.xml.in.h:9
 msgid "About This Entry"
 msgstr "Informacione në lidhje me këtë zë"
 
-#: stylesheets/l10n.xml.in.h:9
+#: stylesheets/l10n.xml.in.h:10
 msgid "About This Glossary"
 msgstr "Informacione në lidhje me këtë përmbledhje"
 
-#: stylesheets/l10n.xml.in.h:10
+#: stylesheets/l10n.xml.in.h:11
 msgid "About This Index"
 msgstr "Informacione në lidhje me këtë tregues"
 
-#: stylesheets/l10n.xml.in.h:11
+#: stylesheets/l10n.xml.in.h:12
 msgid "About This Part"
 msgstr "Informacione në lidhje me këtë pjesë"
 
-#: stylesheets/l10n.xml.in.h:12
+#: stylesheets/l10n.xml.in.h:13
 msgid "About This Preface"
 msgstr "Informacione në lidhje me këtë hyrje"
 
-#: stylesheets/l10n.xml.in.h:13
+#: stylesheets/l10n.xml.in.h:14
 msgid "About This Reference"
 msgstr "Informacione në lidhje me këtë referim"
 
-#: stylesheets/l10n.xml.in.h:14
+#: stylesheets/l10n.xml.in.h:15
 msgid "About This Section"
 msgstr "Informacione në lidhje me këtë seksion"
 
-#: stylesheets/l10n.xml.in.h:15
+#: stylesheets/l10n.xml.in.h:16
 msgid "About This Set"
 msgstr "Informacione në lidhje me këtë sqarim"
 
-#: stylesheets/l10n.xml.in.h:16
+#: stylesheets/l10n.xml.in.h:17
 msgid "Affiliation"
 msgstr "Afilim"
 
-#: stylesheets/l10n.xml.in.h:17
+#: stylesheets/l10n.xml.in.h:18
 msgid "Appendix"
 msgstr "Shtesë"
 
-#: stylesheets/l10n.xml.in.h:18
+#: stylesheets/l10n.xml.in.h:19
 msgid "Article"
 msgstr "Artikull"
 
-#: stylesheets/l10n.xml.in.h:19
-#: Verifikoje
+#: stylesheets/l10n.xml.in.h:20
 msgid "Audience"
 msgstr "Dëgjim"
 
-#: stylesheets/l10n.xml.in.h:20
+#: stylesheets/l10n.xml.in.h:21
 msgid "Author"
 msgstr "Autori"
 
-#: stylesheets/l10n.xml.in.h:21
+#: stylesheets/l10n.xml.in.h:22
+msgid "Authors"
+msgstr "Autorët"
+
+#: stylesheets/l10n.xml.in.h:23
 msgid "Bibliography"
 msgstr "Bibliografia"
 
-#: stylesheets/l10n.xml.in.h:22
+#: stylesheets/l10n.xml.in.h:24
 msgid "Book"
 msgstr "Libri"
 
-#: stylesheets/l10n.xml.in.h:23
+#: stylesheets/l10n.xml.in.h:25
 msgid "Caution"
 msgstr "Kujdes"
 
-#: stylesheets/l10n.xml.in.h:24
+#: stylesheets/l10n.xml.in.h:26
 msgid "Chapter"
 msgstr "Kapitull"
 
-#: stylesheets/l10n.xml.in.h:25
+#: stylesheets/l10n.xml.in.h:27
 msgid "Collaborator"
 msgstr "Bashkpunëtori"
 
-#: stylesheets/l10n.xml.in.h:26
+#: stylesheets/l10n.xml.in.h:28
+msgid "Collaborators"
+msgstr "Bashkpunues"
+
+#: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
 msgstr "Përshkimi final"
 
-#: stylesheets/l10n.xml.in.h:28
+#: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
 msgstr "Copyright"
 
-#: stylesheets/l10n.xml.in.h:29
+#: stylesheets/l10n.xml.in.h:32
+msgid "Copyrights"
+msgstr "Copyrights"
+
+#: stylesheets/l10n.xml.in.h:33
 msgid "Date"
 msgstr "Data"
 
-#: stylesheets/l10n.xml.in.h:30
+#: stylesheets/l10n.xml.in.h:34
 msgid "Dedication"
 msgstr "Dedikimi"
 
-#: stylesheets/l10n.xml.in.h:31
+#: stylesheets/l10n.xml.in.h:35
 msgid "Editor"
 msgstr "Editori"
 
-#: stylesheets/l10n.xml.in.h:32
+#: stylesheets/l10n.xml.in.h:37
 msgid "Email"
 msgstr "Email"
 
-#: stylesheets/l10n.xml.in.h:33
+#: stylesheets/l10n.xml.in.h:38
 msgid "Example"
 msgstr "Shembull"
 
-#: stylesheets/l10n.xml.in.h:34
+#: stylesheets/l10n.xml.in.h:39
 msgid "Figure"
 msgstr "Figura"
 
-#: stylesheets/l10n.xml.in.h:35
+#: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
 msgstr "Glossary"
 
-#: stylesheets/l10n.xml.in.h:36
+#: stylesheets/l10n.xml.in.h:41
 msgid "Important"
-msgstr "I rëndësishëm"
+msgstr "I rendësishëm"
 
-#: stylesheets/l10n.xml.in.h:37
+#: stylesheets/l10n.xml.in.h:42
 msgid "Index"
 msgstr "Treguesi"
 
-#: stylesheets/l10n.xml.in.h:38
+#: stylesheets/l10n.xml.in.h:43
 msgid "Legal Notice"
 msgstr "Njoftimi ligjor"
 
-#: stylesheets/l10n.xml.in.h:39
+#: stylesheets/l10n.xml.in.h:44
 msgid "Level"
 msgstr "Etiketa"
 
-#: stylesheets/l10n.xml.in.h:40
+#: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
 msgstr "Dëgjim mesazhi"
 
-#: stylesheets/l10n.xml.in.h:41
+#: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
 msgstr "Etiketa mesazhit"
 
-#: stylesheets/l10n.xml.in.h:42
+#: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
 msgstr "Origjina e mesazhit"
 
-#: stylesheets/l10n.xml.in.h:43
+#: stylesheets/l10n.xml.in.h:48
 msgid "Note"
 msgstr "Shënim"
 
-#: stylesheets/l10n.xml.in.h:44
+#: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
 msgstr "Origjina"
 
-#: stylesheets/l10n.xml.in.h:45
+#: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
 msgstr "Kontribues të tjerë"
 
-#: stylesheets/l10n.xml.in.h:46
+#: stylesheets/l10n.xml.in.h:51
+msgid "Other Contributors"
+msgstr "Kontribues të tjerë"
+
+#: stylesheets/l10n.xml.in.h:52
 msgid "Part"
 msgstr "Pjesa"
 
-#: stylesheets/l10n.xml.in.h:47
+#: stylesheets/l10n.xml.in.h:53
 msgid "Preface"
 msgstr "Hyrja"
 
-#: stylesheets/l10n.xml.in.h:48
+#: stylesheets/l10n.xml.in.h:54
 msgid "Publisher"
 msgstr "Publikues"
 
-#: stylesheets/l10n.xml.in.h:49
+#: stylesheets/l10n.xml.in.h:55
+msgid "Publishers"
+msgstr "Publikues"
+
+#: stylesheets/l10n.xml.in.h:56
 msgid "Reference"
 msgstr "Riferime"
 
-#: stylesheets/l10n.xml.in.h:50
+#: stylesheets/l10n.xml.in.h:57
 msgid "Reference Entry"
 msgstr "Element riferues"
 
-#: stylesheets/l10n.xml.in.h:51
+#: stylesheets/l10n.xml.in.h:58
 msgid "Reference Section"
 msgstr "Seksioni riferimeve"
 
-#: stylesheets/l10n.xml.in.h:52
+#: stylesheets/l10n.xml.in.h:59
 msgid "Revision History"
 msgstr "Historiku revizionit"
 
-#: stylesheets/l10n.xml.in.h:54
+#: stylesheets/l10n.xml.in.h:61
 msgid "See"
 msgstr "Shiko"
 
-#: stylesheets/l10n.xml.in.h:55
+#: stylesheets/l10n.xml.in.h:62
 msgid "See Also"
 msgstr "Shiko gjithashtu"
 
-#: stylesheets/l10n.xml.in.h:56
-#, fuzzy
+#: stylesheets/l10n.xml.in.h:63
 msgid "Set Index"
-msgstr "Treguesi"
+msgstr "Vendos tregues"
 
-#: stylesheets/l10n.xml.in.h:57
+#: stylesheets/l10n.xml.in.h:64
 msgid "Table"
 msgstr "Tabela"
 
-#: stylesheets/l10n.xml.in.h:58
+#: stylesheets/l10n.xml.in.h:65
 msgid "Table of Contents"
 msgstr "Tabela e përmbajtjes"
 
-#: stylesheets/l10n.xml.in.h:59
+#: stylesheets/l10n.xml.in.h:66
 msgid "Tip"
 msgstr "Tip"
 
-#: stylesheets/l10n.xml.in.h:60
+#: stylesheets/l10n.xml.in.h:67
 msgid "Title"
 msgstr "Titulli"
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:69
 msgid "Warning"
 msgstr "Kujdes"
 
@@ -630,4 +657,3 @@ msgstr "Merr ndihmë me GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ndihmë"
-
