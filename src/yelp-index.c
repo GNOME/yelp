@@ -26,7 +26,6 @@
 
 #include <gtk/gtk.h>
 #include "yelp-index.h"
-#include "yelp-keyword-db.h"
 
 static void yelp_index_init	       (YelpIndex        *index);
 static void yelp_index_class_init      (YelpIndexClass   *klass);
@@ -107,7 +106,6 @@ void
 yelp_index_entry_active_cb (GtkEntry *entry, gpointer data)
 {
 	const gchar *text;
-/* 	GnomeVFSURI *uri; */
 	GSList      *hit_list;
 	
 	g_return_if_fail (GTK_IS_ENTRY (entry));
@@ -115,14 +113,9 @@ yelp_index_entry_active_cb (GtkEntry *entry, gpointer data)
 	
 	text = gtk_entry_get_text (entry);
 
-/* 	hit_list = yelp_keyword_db_search (priv->keyword_db, text); */
+	g_print ("Index searching isn't supported yet\n");
 
-	g_print ("Hits: %d\n", g_slist_length (hit_list));
-/* 	uri  = gnome_vfs_uri_new (text); */
-	
-/* 	g_signal_emit (G_OBJECT (data), signals[URI_SELECTED], 0, uri); */
-
-/* 	gnome_vfs_uri_unref (uri); */
+/* 	g_print ("Hits: %d\n", g_slist_length (hit_list)); */
 }
 
 YelpIndex *

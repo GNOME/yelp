@@ -22,7 +22,6 @@
 
 #include "yelp-window.h"
 #include "yelp-section.h"
-#include "yelp-keyword-db.h"
 #include "yelp-scrollkeeper.h"
 #include "yelp-base.h"
 
@@ -35,8 +34,6 @@ static void          yelp_base_init               (YelpBase        *base);
 static void          yelp_base_class_init         (YelpBaseClass   *klass);
 
 struct _YelpBasePriv {
-        YelpKeywordDb *keyword_db;
-
         GtkTreeStore  *bookshelf;
 };
 
@@ -73,7 +70,6 @@ yelp_base_init (YelpBase *base)
 
         priv = g_new0 (YelpBasePriv, 1);
         
-        priv->keyword_db = NULL;
         priv->bookshelf  = gtk_tree_store_new (2, 
                                                G_TYPE_STRING, G_TYPE_POINTER);
         

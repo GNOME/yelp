@@ -20,7 +20,6 @@ yelp_SOURCES =						\
 	yelp-index.c		yelp-index.h		\
 	yelp-history.c		yelp-history.h		\
 	yelp-section.c		yelp-section.h		\
-	yelp-keyword-db.c	yelp-keyword-db.h	\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h	\
 	yelp-util.c		yelp-util.h
 

@@ -1,5 +1,20 @@
 2001-12-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-main.c (main): cast the window to YELP_WINDOW.
+
+	* src/yelp-index.c: 
+	- don't include yelp-keyword-db.h
+	- cleaned up some comments.
+
+	* src/yelp-base.c: 
+	- don't include yelp-keyword-db.h
+	- removed keyword_db from priv-struct.
+
+	* src/yelp-keyword-db.[ch]: removed, should use only a GCompletion
+	  plus the eventual support for ModelFilter in GtkTreeView.
+	
+	* src/Makefile.am (yelp_SOURCES): removed yelp-keyword-db.[ch].
+
 	* TODO (FEATURES): updated.
 
 	* src/yelp-util.c: removed the outcommented menu-code.

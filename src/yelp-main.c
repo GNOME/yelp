@@ -62,7 +62,7 @@ main (int argc, char **argv)
 	window = yelp_base_new_window (base);
 
 	if (argc >= 2) {
-		yelp_window_open_uri (window, argv[1]);
+		yelp_window_open_uri (YELP_WINDOW (window), argv[1]);
 	}
 
 	g_signal_connect (window, "delete-event", gtk_main_quit, NULL);
