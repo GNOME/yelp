@@ -7,7 +7,7 @@ INCLUDES =								\
 	-DDATADIR=\""$(datadir)"\"					\
 	-DLIBDIR=\""$(libdir)"\"					\
 	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
+	-DGNOMELOCALEDIR=\""$(yelplocaledir)"\"
 
 if HTML_WIDGET_GTKHTML1
 html_widget_impl=yelp-html-gtkhtml1.c
