@@ -286,8 +286,13 @@
 
 <xsl:template mode="chunk.id.mode" match="*">
 	<xsl:choose>
+<!--
 		<xsl:when test="self::preface[@role = 'bookintro']">
 			<xsl:apply-templates select=".." mode="chunk.id.mode"/>
+		</xsl:when>
+-->
+		<xsl:when test="(&is-info;) and ($generate_titlepage) and (.. = /*)">
+			<xsl:value-of select="'titlepage'"/>
 		</xsl:when>
 		<xsl:when test="
 				(&is-division;) and

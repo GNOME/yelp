@@ -88,7 +88,7 @@
 		<xsl:apply-templates select="$target" mode="chunk.id.mode"/>
 	</xsl:variable>
 	<xsl:value-of select="concat($chunk_id, $html_extension)"/>
-	<xsl:if test="string($chunk_id) != $linkend">
+	<xsl:if test="$linkend and string($chunk_id) != $linkend">
 		<xsl:text>#</xsl:text>
 		<xsl:value-of select="$linkend"/>
 	</xsl:if>
