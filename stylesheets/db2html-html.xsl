@@ -106,6 +106,7 @@
 </xsl:template>
 
 <xsl:template name="html.css"><xsl:text>
+<!--
 body {
 	margin-right: 1em;
 }
@@ -231,6 +232,7 @@ th {
 div[class="attribution"] {
 	text-align: right;
 }
+-->
 </xsl:text></xsl:template>
 
 <xsl:template name="html.head">
