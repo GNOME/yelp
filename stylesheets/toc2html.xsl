@@ -29,34 +29,58 @@
         </title>
         <style><xsl:text>
         body {
-          padding-top: 0em;
-          padding-left: 0em;
-          padding-right: 2em;
+          margin: 0px;
+          padding: 0px;
         }
-        h1 { font-size: 1.6em; margin-bottom: 0.4em; }
-        h1 img { float: right; }
-        h1 { color: </xsl:text>
-        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-        div[class~="leftbar"] {
-          width: 200px;
-          text-align: center;
+        h1 {
+          font-size: 1.6em;
+          margin-bottom: 0.4em;
+          margin-top: 12px;
+          margin-left: 12px;
+          margin-right: 12px;
+          padding-left: 204px;
+          padding-top: 0.2em;
+          padding-bottom: 0.2em;
+          -moz-border-radius: 6px;
+          border: solid 1px </xsl:text>
+          <xsl:value-of select="$yelp.color.selected1"/><xsl:text>;
+          background-color: </xsl:text>
+          <xsl:value-of select="$yelp.color.selected0"/><xsl:text>;
+          color: </xsl:text>
+          <xsl:value-of select="$yelp.color.background"/><xsl:text>;
+        }
+        h1 img {
+          position: absolute;
+          top: 6px;
+          right: 18px;
         }
         div[class~="body"] {
+        }
+        div[class~="leftbar"] {
+          position: absolute;
+          top: 4em;
+          left: 12px;
+          width: 192px;
+          min-height: 192px;
+          text-align: center;
+          <!-- FIXME: this isn't working -->
+          padding-top: </xsl:text>
+          <xsl:value-of select="$help_icon_size"/><xsl:text> px;
           background-image: url("</xsl:text>
           <xsl:value-of select="$help_icon"/><xsl:text>");
           background-position: </xsl:text>
           <xsl:value-of select="(192 - $help_icon_size) div 2"/><xsl:text>px 0px;
           background-repeat: no-repeat;
-          height: 200px;
         }
         div[class~="rightbar"] {
-          padding-left: 200px;
+          margin-left: 216px;
           padding-bottom: 1em;
+          margin-right: 12px;
         }
-        div[class~="tocs"] { border-top: solid 1px </xsl:text>
-        <xsl:value-of select="$yelp.color.selected0"/><xsl:text>; }
-        div[class~="docs"] { border-top: solid 1px </xsl:text>
-        <xsl:value-of select="$yelp.color.selected0"/><xsl:text>; }
+        div[class~="tocs"] + div[class~="docs"] {
+          border-top: solid 1px </xsl:text>
+          <xsl:value-of select="$yelp.color.selected0"/><xsl:text>;
+        }
         ul { margin-left: 0em; padding-left: 0em; }
         li {
           margin-top: 0.5em;
@@ -82,13 +106,15 @@
 
 <xsl:template mode="body.mode" match="toc">
   <div class="body">
+    <h1>
+      <xsl:if test="icon">
+        <img src="{icon/@file}"/>
+      </xsl:if>
+      <xsl:apply-templates select="title[1]/node()"/>
+    </h1>
+    <div class="leftbar">
+    </div>
     <div class="rightbar">
-      <h1>
-        <xsl:if test="icon">
-          <img src="{icon/@file}"/>
-        </xsl:if>
-        <xsl:apply-templates select="title[1]/node()"/>
-      </h1>
       <xsl:if test="toc[.//doc]">
         <div class="tocs">
           <ul>

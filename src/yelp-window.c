@@ -2154,7 +2154,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 {
     const gchar *copyright =
 	"Copyright © 2001-2003 Mikael Hallendal\n"
-	"Copyright © 2003-2004 Shaun McCance";
+	"Copyright © 2003-2005 Shaun McCance";
     const gchar *authors[] = { 
 	"Mikael Hallendal <micke@imendio.com>",
 	"Alexander Larsson <alexl@redhat.com>",
@@ -2162,7 +2162,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 	NULL
     };
     /* Note to translators: put here your name (and address) so it
-     * will shop up in the "about" box */
+     * will show up in the "about" box */
     const gchar *translator_credits = _("translator-credits");
 
     gtk_show_about_dialog (GTK_WINDOW (window),
