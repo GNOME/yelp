@@ -630,15 +630,16 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
 	if (priv->index) {
 		priv->index_view   = yelp_view_index_new (index);
+
+		g_signal_connect (priv->index_view, "url_selected",
+				  G_CALLBACK (yw_url_selected_cb),
+				  window);
 	} 
 
 	g_signal_connect (priv->toc_view, "url_selected",
 			  G_CALLBACK (yw_url_selected_cb),
 			  window);
 	g_signal_connect (priv->content_view, "url_selected",
-			  G_CALLBACK (yw_url_selected_cb),
-			  window);
-	g_signal_connect (priv->index_view, "url_selected",
 			  G_CALLBACK (yw_url_selected_cb),
 			  window);
 

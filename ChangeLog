@@ -1,5 +1,8 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (yelp_window_new): fixed an error if you don't
+	  have an index installed (thanks rhult).
+
 	* src/yelp-index-model.c: use the new YELP_SECTION-macro.
 	* src/yelp-view-toc.c: same.
 	* src/yelp-util.c: same.
