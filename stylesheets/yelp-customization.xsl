@@ -26,7 +26,7 @@
 	<html>
 		<head>
 			<title>
-				<xsl:apply-templates select="$node" mode="title.text.mode"/>
+				<xsl:value-of select="title"/>
 			</title>
 			<style type="text/css">
 				<xsl:call-template name="html.css">
@@ -46,7 +46,9 @@
 			</xsl:call-template>
 
 			<xsl:comment> End of header </xsl:comment>
-			<xsl:apply-templates select="book | article" mode="chunk.mode"/>
+			<xsl:call-template name="chunk">
+				<xsl:with-param name="node" select="*"/>
+			</xsl:call-template>
 			<xsl:comment> Start of footer </xsl:comment>
 
 			<xsl:call-template name="html.body.bottom">
@@ -58,39 +60,46 @@
 
 <xsl:template name="chunk">
 	<xsl:param name="node" select="."/>
-	<xsl:param name="info" select="false()"/>
-	<xsl:param name="divisions" select="false()"/>
 	<xsl:param name="id">
 		<xsl:choose>
-			<xsl:when test="$node = /*">
-				<xsl:text>toc</xsl:text>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$node/@id"/>
-			</xsl:otherwise>
+			<xsl:when test="$node = /*">toc</xsl:when>
+			<xsl:otherwise><xsl:value-of select="$node/@id"/></xsl:otherwise>
 		</xsl:choose>
 	</xsl:param>
+	<xsl:variable name="depth_chunk">
+		<xsl:call-template name="depth.chunk">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
+	</xsl:variable>
 
 	<xsl:comment> Start of chunk: [<xsl:value-of select="$id"/>] </xsl:comment>
 	<xsl:call-template name="html">
 		<xsl:with-param name="node" select="$node"/>
-		<xsl:with-param name="leaf" select="
-			count($node/ancestor::*[&is-division;]) &gt;= $chunk_depth"/>
+		<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 	</xsl:call-template>
 	<xsl:comment> End of chunk </xsl:comment>
 
-	<xsl:if test="$generate_titlepage and $info and ($node = /*)">
-		<xsl:apply-templates select="$info" mode="chunk.mode"/>
+	<xsl:if test="$generate_titlepage and ($node = /*)">
+		<xsl:apply-templates mode="chunk.info.mode" select=".">
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+		</xsl:apply-templates>
 	</xsl:if>
 
-	<xsl:if test="count($node/ancestor::*[&is-division;]) &lt; $chunk_depth">
-		<xsl:apply-templates select="$divisions" mode="chunk.mode"/>
+	<xsl:if test="$depth_chunk &lt; $chunk_depth">
+		<xsl:apply-templates mode="chunk.divisions.mode" select=".">
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+		</xsl:apply-templates>
 	</xsl:if>
 </xsl:template>
 
 <xsl:template name="html">
 	<xsl:param name="node" select="."/>
-	<xsl:param name="leaf" select="true()"/>
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
+	</xsl:param>
+
 	<xsl:variable name="prevlink">
 		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
 	</xsl:variable>
@@ -106,8 +115,7 @@
 		</xsl:call-template>
 
 		<xsl:apply-templates select="$node">
-			<xsl:with-param name="depth" select="0"/>
-			<xsl:with-param name="leaf" select="$leaf"/>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 		</xsl:apply-templates>
 
 		<xsl:call-template name="html.navbar.bottom">

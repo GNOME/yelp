@@ -5,7 +5,12 @@
 
 <xsl:template name="html">
 	<xsl:param name="node" select="."/>
-	<xsl:param name="leaf" select="true()"/>
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
+	</xsl:param>
+
 	<xsl:variable name="prevlink">
 		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
 	</xsl:variable>
@@ -41,8 +46,7 @@
 			</xsl:call-template>
 
 			<xsl:apply-templates select="$node">
-				<xsl:with-param name="depth" select="0"/>
-				<xsl:with-param name="leaf" select="$leaf"/>
+				<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 			</xsl:apply-templates>
 
 			<xsl:call-template name="html.navbar.bottom">

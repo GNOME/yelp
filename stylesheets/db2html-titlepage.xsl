@@ -2,16 +2,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:template mode="content.mode" match="
-		appendixinfo | articleinfo  | bibliographyinfo | bookinfo       |
-		chapterinfo  | glossaryinfo | indexinfo        | partinfo       |
-		prefaceinfo  | refentryinfo | referenceinfo    | refsect1info   |
-		refsect2info | refsect3info | refsectioninfo   | sect1info      |
-		sect2info    | sect3info    | sect4info        | sect5info      |
-		sectioninfo  | setinfo      | setindexinfo     ">
-	<xsl:apply-templates select="."/>
-</xsl:template>
-
 <xsl:template match="
 		appendixinfo | articleinfo  | bibliographyinfo | bookinfo       |
 		chapterinfo  | glossaryinfo | indexinfo        | partinfo       |
@@ -19,6 +9,12 @@
 		refsect2info | refsect3info | refsectioninfo   | sect1info      |
 		sect2info    | sect3info    | sect4info        | sect5info      |
 		sectioninfo  | setinfo      | setindexinfo     ">
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk"/>
+	</xsl:param>
+	<xsl:param name="depth_in_chunk">
+		<xsl:call-template name="depth.in.chunk"/>
+	</xsl:param>
 
 	<xsl:variable name="authors"
 		select="author|authorgroup/author|corpauthor|authorgroup/corpauthor"/>

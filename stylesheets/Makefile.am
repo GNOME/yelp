@@ -14,6 +14,7 @@ yelpcustomization_DATA = 	\
 	db2html-footnote.xsl	\
 	db2html-formal.xsl	\
 	db2html-glossary.xsl	\
+	db2html-header.xsl	\
 	db2html-html.xsl	\
 	db2html-index.xsl	\
 	db2html-inline.xsl	\
@@ -22,11 +23,9 @@ yelpcustomization_DATA = 	\
 	db2html-math.xsl	\
 	db2html-media.xsl	\
 	db2html-navbar.xsl	\
-	db2html-node.xsl	\
 	db2html-param.xsl	\
 	db2html-qanda.xsl	\
 	db2html-refentry.xsl	\
-	db2html-section.xsl	\
 	db2html-suppressed.xsl	\
 	db2html-synopsis.xsl	\
 	db2html-table.xsl	\

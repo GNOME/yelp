@@ -1,5 +1,20 @@
 2003-10-22  Shaun McCance  <shaunm@gnome.org>
 
+	* Makefile.am:
+	- Removed db2html-section.xsl
+	- Removed db2html-node.xsl
+	- Added db2html-header.xsl
+
+	* db2html-chunk.xsl:
+	* db2html-html.xsl:
+	* db2html-titlepage.xsl
+	- Some more changes for the new chunking behavior.  Mostly stuff I forgot.
+
+	* yelp-customization.xsl:
+	- Make the new chunking stuff actually work in Yelp.
+
+2003-10-22  Shaun McCance  <shaunm@gnome.org>
+
 	* db2html-node.xsl:
 	- Removing db2html-node.xsl, replace with db2html-header.xsl
 
