@@ -1,3 +1,11 @@
+2002-03-08  Sandeep V Honde  <sandeep.honde@wipro.com>
+
+	* src/yelp-main.c:
+	- Session management support for multiple
+	  windows added.
+	  (yelp_save_session)    :modified.
+	  (yelp_restore_session) :added/impl.
+
 2002-03-04  Mikael Hallendal  <micke@codefactory.se>
 
 	* configure.in: bumped version to 0.3.99
