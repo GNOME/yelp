@@ -1,5 +1,8 @@
 2003-08-15  Mikael Hallendal  <micke@imendio.com>
 
+        * src/GNOME_Yelp.server.in: Replaced yelp-base for yelp. Not sure what
+          should be in there really... Might fix bug #119764
+
 	* src/yelp-window.c: (window_init), (window_configure_cb):
         - Save size from last window. Patch by Shaun McCance.
         - Fixes bug #90451
