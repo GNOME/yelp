@@ -10,6 +10,17 @@ INCLUDES =								\
 
 bin_PROGRAMS = yelp
 
+noinst_PROGRAMS = test-uri
+
+test_uri_SOURCES = 							\
+	test-uri.c							\
+	yelp-uri.c		yelp-uri.h				\
+	yelp-error.c		yelp-error.h				\
+	yelp-util.c		yelp-util.h
+
+test_uri_LDADD = 							\
+	$(YELP_LIBS)
+
 install-exec-local:
 	rm -f $(bindir)/gnome-help
 	ln -s yelp $(bindir)/gnome-help
@@ -42,8 +53,8 @@ yelp_SOURCES =								\
 	yelp-view-content.c	yelp-view-content.h			\
 	yelp-view-index.c	yelp-view-index.h			\
 	yelp-view-toc.c		yelp-view-toc.h				\
-	yelp-window.c 		yelp-window.h
-
+	yelp-window.c 		yelp-window.h				\
+	yelp-uri.c	        yelp-uri.h
 
 yelp_LDADD =								\
 	$(YELP_LIBS)

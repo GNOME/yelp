@@ -36,6 +36,7 @@
 #include "yelp-marshal.h"
 #include "yelp-db2html.h"
 #include "yelp-error.h"
+#include "yelp-uri.h"
 #include "yelp-html.h"
 
 #define d(x)

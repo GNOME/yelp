@@ -1,3 +1,15 @@
+2002-05-05  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-error.h: added YELP_ERROR_URI_NOT_EXIST
+
+	* src/yelp-uri.[ch]: 
+	- Added, this is functions for manipulating and working with the
+	  different uri-schemes possible.
+
+	* src/Makefile.am:
+	- added test-uri.
+	- added yelp-uri.[ch]
+
 2002-05-04  Sander Vesik <sander.vesik@sun.com>
 
 	* stylesheets/yelp-customization.xsl: remove non-linking Next >>>
