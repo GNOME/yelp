@@ -1,3 +1,27 @@
+2003-11-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-cache.c:
+	* src/yelp-cache.h:
+	* src/yelp-html-gtkhtml2.c:
+	* src/yelp-info.c:
+	* src/yelp-main.c:
+	* src/yelp-main.c:
+	* src/yelp-scrollkeeper.c:
+	* src/yelp-section.c:
+	* src/yelp-window.c:
+	- Changes for GObjectified YelpURI
+	- Using new transformation code
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Dethreadifying
+
+	* src/yelp-uri.c:
+	* src/yelp-uri.h:
+	- Work on relative URI resolver
+
 2003-11-11  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:

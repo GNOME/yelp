@@ -36,13 +36,10 @@
 struct _YelpPagerPriv {
     YelpURI        *uri;
 
-    GMutex         *state_mutex;
     YelpPagerState  state;
 
-    GMutex         *error_mutex;
     GError         *error;
 
-    GMutex         *chunk_mutex;
     GHashTable     *chunk_hash;
 };
 
@@ -182,10 +179,6 @@ pager_init (YelpPager *pager)
     pager->priv->uri   = NULL;
     pager->priv->state = YELP_PAGER_STATE_NEW;
 
-    pager->priv->state_mutex = g_mutex_new ();
-    pager->priv->error_mutex = g_mutex_new ();
-    pager->priv->chunk_mutex = g_mutex_new ();
-
     pager->priv->error = NULL;
     pager->priv->chunk_hash =
 	g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
@@ -235,10 +228,6 @@ pager_dispose (GObject *object)
 
     g_object_unref (pager->priv->uri);
 
-    g_mutex_free (pager->priv->state_mutex);
-    g_mutex_free (pager->priv->error_mutex);
-    g_mutex_free (pager->priv->chunk_mutex);
-
     if (pager->priv->error)
 	g_error_free (pager->priv->error);
 
@@ -251,13 +240,6 @@ pager_dispose (GObject *object)
 
 /******************************************************************************/
 
-/**
- * yelp_pager_start:
- * @pager: a #YelpPager.
- *
- * Spawns a thread to process the document.  If the document has already
- * been processed, no thread will be spawned, and %FALSE will be returned.
- **/
 gboolean
 yelp_pager_start (YelpPager *pager)
 {
@@ -265,8 +247,6 @@ yelp_pager_start (YelpPager *pager)
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_PAGER (pager), FALSE);
-
-    yelp_pager_lock_state (pager);
 
     switch (yelp_pager_get_state (pager)) {
     case YELP_PAGER_STATE_NEW:
@@ -276,36 +256,18 @@ yelp_pager_start (YelpPager *pager)
 	g_object_ref (pager);
 	g_signal_emit (pager, signals[START], 0);
 
-	g_thread_create ((GThreadFunc) (YELP_PAGER_GET_CLASS (pager)->process),
-			 pager, FALSE, &error);
+	gtk_idle_add ((GtkFunction) (YELP_PAGER_GET_CLASS (pager)->process),
+		      pager);
 
-	if (error) {
-	    yelp_pager_unlock_state (pager);
-	    yelp_pager_error (pager, error);
-	    g_object_unref (pager);
-
-	    return FALSE;
-	}
-
-	yelp_pager_unlock_state (pager);
 	g_object_unref (pager);
 	return TRUE;
 
     default:
-	yelp_pager_unlock_state (pager);
 	g_object_unref (pager);
 	return FALSE;
     }
 }
 
-/**
- * yelp_pager_cancel:
- * @pager: a #YelpPager.
- *
- * Cancels the document processing.  The processing thread may continue
- * for a short while after this function returns before it recognizes
- * that it has been cancelled.
- **/
 void
 yelp_pager_cancel (YelpPager *pager)
 {
@@ -315,28 +277,15 @@ yelp_pager_cancel (YelpPager *pager)
     YELP_PAGER_GET_CLASS (pager)->cancel (pager);
 }
 
-/**
- * yelp_pager_get_uri:
- * @pager: a #YelpPager.
- *
- * Returns the URI of the documnt @pager is transforming.
- **/
-const YelpURI *
+YelpURI *
 yelp_pager_get_uri (YelpPager *pager)
 {
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_PAGER (pager), FALSE);
 
-    return (const YelpURI *) (pager->priv->uri);
+    return pager->priv->uri;
 }
 
-/**
- * yelp_pager_get_state:
- * @pager: a #YelpPager
- *
- * Returns the state of @pager.  This does not handle locking itself.  You
- * must call yelp_pager_lock_state before and yelp_pager_unlock_state after.
- **/
 YelpPagerState
 yelp_pager_get_state (YelpPager *pager)
 {
@@ -346,14 +295,6 @@ yelp_pager_get_state (YelpPager *pager)
     return pager->priv->state;
 }
 
-/**
- * yelp_pager_set_state:
- * @pager: a #YelpPager
- * @state: a #YelpPagerState
- *
- * Sets the state of @pager to @state.  This does not handle locking itself. You
- * must call yelp_pager_lock_state before and yelp_pager_unlock_state after.
- **/
 void
 yelp_pager_set_state (YelpPager *pager, YelpPagerState state)
 {
@@ -363,44 +304,6 @@ yelp_pager_set_state (YelpPager *pager, YelpPagerState state)
     pager->priv->state = state;
 }
 
-/**
- * yelp_pager_lock_state:
- * @pager: a #YelpPager.
- *
- * Locks the state @pager.  You should generally maintain a lock on the state
- * across most operations on @pager.
- **/
-void
-yelp_pager_lock_state (YelpPager *pager)
-{
-    g_return_if_fail (pager != NULL);
-    g_return_if_fail (YELP_IS_PAGER (pager));
-
-    g_mutex_lock (pager->priv->state_mutex);
-}
-
-/**
- * yelp_pager_unlock_state:
- * @pager: a #YelpPager.
- *
- * Releases a lock on the state of @pager.
- **/
-void
-yelp_pager_unlock_state (YelpPager *pager)
-{
-    g_return_if_fail (pager != NULL);
-    g_return_if_fail (YELP_IS_PAGER (pager));
-
-    g_mutex_unlock (pager->priv->state_mutex);
-}
-
-/**
- * yelp_pager_get_error:
- * @pager: a #YelpPager.
- *
- * Returns a #GError for the processing error.
- * The caller is responsible for freeing the #GError.
- **/
 GError *
 yelp_pager_get_error (YelpPager *pager)
 {
@@ -409,50 +312,26 @@ yelp_pager_get_error (YelpPager *pager)
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
-    g_mutex_lock (pager->priv->error_mutex);
-
     if (pager->priv->error)
 	error = g_error_copy (pager->priv->error);
     else
 	error = NULL;
 
-    g_mutex_unlock (pager->priv->error_mutex);
-
     return error;
 }
 
-/**
- * yelp_pager_error:
- * @pager: a #YelpPager
- * @error: a #GError
- *
- * Sets the error of @pager and emits the "error" signal.  You must
- * release locks on the state before calling this.
- **/
 void
 yelp_pager_error (YelpPager *pager, GError *error)
 {
-    yelp_pager_lock_state (pager);
-    g_mutex_lock (pager->priv->error_mutex);
-
     if (pager->priv->error)
 	g_error_free (pager->priv->error);
     pager->priv->error = error;
 
-    g_mutex_unlock (pager->priv->error_mutex);
-
     yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
 
     g_signal_emit_by_name (pager, "error");
-    yelp_pager_unlock_state (pager);
 }
 
-/**
- * yelp_pager_get_sections:
- * @pager: a #YelpPager
- *
- * Returns a reference to the #GtkTreeModel where the section outline is stored.
- **/
 const GtkTreeModel *
 yelp_pager_get_sections (YelpPager *pager)
 {
@@ -462,14 +341,6 @@ yelp_pager_get_sections (YelpPager *pager)
     return YELP_PAGER_GET_CLASS (pager)->get_sections (pager);
 }
 
-/**
- * yelp_pager_lookup_chunk:
- * @pager: a #YelpPager
- * @uri: a #YelpURI
- *
- * Look up and return the appropriate chunk for @uri, automatically resolving
- * which chunk to use based on the fragment identifier.
- **/
 const gchar *
 yelp_pager_lookup_chunk (YelpPager *pager, YelpURI *uri)
 {
@@ -493,13 +364,6 @@ yelp_pager_lookup_chunk (YelpPager *pager, YelpURI *uri)
     return (const gchar *) chunk;
 }
 
-/**
- * yelp_pager_get_chunk:
- * @pager: a #YelpPager
- * @id: the chunk id
- *
- * Return the chunk with id @id.
- **/
 const gchar *
 yelp_pager_get_chunk (YelpPager *pager, gchar *id)
 {
@@ -508,28 +372,16 @@ yelp_pager_get_chunk (YelpPager *pager, gchar *id)
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_PAGER (pager), NULL);
 
-    g_mutex_lock (pager->priv->chunk_mutex);
     chunk = (gchar *) g_hash_table_lookup (pager->priv->chunk_hash, id);
-    g_mutex_unlock (pager->priv->chunk_mutex);
 
     return (const gchar *) chunk;
 }
 
-/**
- * yelp_pager_add_chunk:
- * @pager: a #YelpPager
- * @id: the id of the new chunk
- * @chunk: the contents of the new chunk
- *
- * Add the chunk @chunk with id @id.
- **/
 void 
 yelp_pager_add_chunk (YelpPager *pager, gchar *id, gchar *chunk)
 {
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    g_mutex_lock (pager->priv->chunk_mutex);
     g_hash_table_insert (pager->priv->chunk_hash, id, chunk);
-    g_mutex_unlock (pager->priv->chunk_mutex);
 }

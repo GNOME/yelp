@@ -146,6 +146,69 @@ yelp_uri_new (const gchar *uri_str)
     return uri;
 }
 
+YelpURI *
+yelp_uri_new_relative (YelpURI *base, const gchar *uri_str)
+{
+    YelpURI    *uri;
+
+    uri = g_object_new (YELP_TYPE_URI, NULL);
+
+    uri_parse_uri (uri, uri_str);
+
+    if (yelp_uri_get_resource_type (uri) == YELP_URI_TYPE_RELATIVE) {
+	switch (yelp_uri_get_resource_type (base)) {
+	case YELP_URI_TYPE_FILE:
+	case YELP_URI_TYPE_DOCBOOK_XML:
+	case YELP_URI_TYPE_DOCBOOK_SGML:
+	case YELP_URI_TYPE_HTML:
+	    if (!uri->priv->path || uri->priv->path[0] == '\0') {
+		// This is just a fragment reference.
+		if (uri->priv->path)
+		    g_free (uri->priv->path);
+
+		uri->priv->path = g_strdup (base->priv->path);
+		uri->priv->type = base->priv->type;
+	    }
+	    else if (uri->priv->path[0] == '/') {
+		uri_resource_type (uri);
+	    }
+	    else {
+		gchar *base_path;
+		gchar *new_path;
+		gchar *slash;
+
+		slash = strrchr (base->priv->path, '/');
+		base_path = g_strndup (base->priv->path,
+				       slash - base->priv->path + 1);
+		new_path = g_strconcat (base_path, uri->priv->path, NULL);
+
+		g_free (base_path);
+		g_free (uri->priv->path);
+
+		uri->priv->path = new_path;
+		uri_resource_type (uri);
+	    }
+	case YELP_URI_TYPE_MAN:
+	case YELP_URI_TYPE_INFO:
+	case YELP_URI_TYPE_GHELP:
+	case YELP_URI_TYPE_GHELP_OTHER:
+	case YELP_URI_TYPE_UNKNOWN:
+	case YELP_URI_TYPE_RELATIVE:
+	case YELP_URI_TYPE_TOC:
+	case YELP_URI_TYPE_INDEX:
+	case YELP_URI_TYPE_PATH:
+	    // FIXME;
+	    break;
+	default:
+	    g_assert_not_reached ();
+	    break;
+	}
+    }
+
+    return uri;
+}
+
+
 gboolean
 yelp_uri_exists (YelpURI *uri)
 {
@@ -238,6 +301,9 @@ yelp_uri_to_string (YelpURI *uri)
 	break;
     case YELP_URI_TYPE_PATH:
 	type = g_strdup ("path:");
+	break;
+    case YELP_URI_TYPE_RELATIVE:
+	type = g_strdup ("");
 	break;
     default:
 	g_assert_not_reached ();

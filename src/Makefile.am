@@ -86,18 +86,15 @@ yelp_SOURCES =								\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html-gtkhtml2.c	yelp-html.h				\
-	yelp-index-model.c	yelp-index-model.h			\
 	yelp-info.c		yelp-info.h				\
-	yelp-main.c							\
 	yelp-man.c		yelp-man.h				\
-	yelp-marshal-main.c						\
-	yelp-reader.c		yelp-reader.h				\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
 	yelp-pager.c		yelp-pager.h				\
 	yelp-util.c		yelp-util.h				\
 	yelp-window.c 		yelp-window.h				\
-	yelp-uri.c	        yelp-uri.h
+	yelp-uri.c	        yelp-uri.h				\
+	yelp-marshal-main.c	yelp-main.c
 
 yelp_LDADD =								\
 	@YELP_LIBS@							\

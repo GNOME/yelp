@@ -56,7 +56,7 @@ struct _YelpPagerClass {
     GObjectClass    parent_class;
 
     /* Virtual Functions */
-    void                 (*process)      (YelpPager    *pager);
+    gboolean             (*process)      (YelpPager    *pager);
     void                 (*cancel)       (YelpPager    *pager);
     const gchar *        (*resolve_uri)  (YelpPager    *pager,
 					  YelpURI      *uri);
@@ -69,13 +69,11 @@ GType                yelp_pager_get_type     (void);
 gboolean             yelp_pager_start        (YelpPager      *pager);
 void                 yelp_pager_cancel       (YelpPager      *pager);
 
-const YelpURI *      yelp_pager_get_uri      (YelpPager      *pager);
+YelpURI *            yelp_pager_get_uri      (YelpPager      *pager);
 
 YelpPagerState       yelp_pager_get_state    (YelpPager      *pager);
 void                 yelp_pager_set_state    (YelpPager      *pager,
 					      YelpPagerState  state);
-void                 yelp_pager_lock_state   (YelpPager      *pager);
-void                 yelp_pager_unlock_state (YelpPager      *pager);
 
 GError *             yelp_pager_get_error    (YelpPager      *pager);
 void                 yelp_pager_error        (YelpPager      *pager,

@@ -257,7 +257,7 @@ scrollkeeper_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 	node = g_node_append_data (parent, 
                                    yelp_section_new (YELP_SECTION_DOCUMENT,
                                                      title, uri));
-	yelp_uri_unref (uri);
+	g_object_unref (uri);
 
 	if (docseriesid) {
 		g_hash_table_insert (seriesid_hash, docseriesid, node);
@@ -318,7 +318,7 @@ scrollkeeper_parse_toc_section (GNode       *parent,
         node = g_node_append_data (parent, 
                                    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
                                                      name, uri));
-	yelp_uri_unref (uri);
+	g_object_unref (uri);
 	g_free (name);
 	
 	for (; next_child != NULL; next_child = next_child->next) {
@@ -511,14 +511,14 @@ scrollkeeper_parse_index_item (GList **index, YelpSection *section, xmlNode *nod
 		YelpURI     *uri;
 		YelpSection *index_section;
 		
-		uri = yelp_uri_get_relative (section->uri, link);
+		uri = yelp_uri_new_relative (section->uri, link);
 		
 		d(g_print ("%s\n", yelp_uri_to_string (uri)));
 		
 		index_section = yelp_section_new (YELP_SECTION_INDEX,
 						  title, uri);
 		
-		yelp_uri_unref (uri);
+		g_object_unref (uri);
 		
 		*index = g_list_prepend (*index, index_section);
 		

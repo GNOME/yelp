@@ -104,7 +104,7 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 					    title, uri);
 		g_free (title);
 		
-		yelp_uri_unref (uri);
+		g_object_unref (uri);
 		
 		*info_list = g_slist_prepend (*info_list, section);
 	}

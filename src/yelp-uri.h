@@ -69,6 +69,8 @@ struct _YelpURIClass {
 GType           yelp_uri_get_type          (void);
 
 YelpURI *       yelp_uri_new               (const gchar   *uri_str);
+YelpURI *       yelp_uri_new_relative      (YelpURI       *base,
+					    const gchar   *uri_str);
 gboolean        yelp_uri_exists            (YelpURI       *uri);
 
 YelpURIType     yelp_uri_get_resource_type (YelpURI       *uri);
@@ -86,9 +88,6 @@ gboolean        yelp_uri_equal_fragment    (YelpURI       *uri1,
 
 /*
 YelpURI *       yelp_uri_copy             (YelpURI       *uri);
-YelpURI *       yelp_uri_get_relative     (YelpURI       *uri,
-					   const gchar   *link);
-
 YelpURI *       yelp_uri_to_index         (YelpURI       *uri);
 YelpURI *       yelp_uri_from_index       (YelpURI       *uri);
 gboolean        yelp_uri_no_path          (YelpURI       *uri);

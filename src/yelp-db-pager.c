@@ -47,10 +47,8 @@
 #define d(x)
 
 struct _YelpDBPagerPriv {
-    GMutex         *sects_mutex;
     GtkTreeModel   *sects;
 
-    GMutex         *frags_mutex;
     GHashTable     *frags_hash;
 };
 
@@ -71,7 +69,7 @@ static void     db_pager_class_init   (YelpDBPagerClass *klass);
 static void     db_pager_init         (YelpDBPager      *pager);
 static void     db_pager_dispose      (GObject          *gobject);
 
-void                 db_pager_process      (YelpPager   *pager);
+gboolean             db_pager_process      (YelpPager   *pager);
 void                 db_pager_cancel       (YelpPager   *pager);
 const gchar *        db_pager_resolve_uri  (YelpPager   *pager,
 					    YelpURI     *uri);
@@ -143,10 +141,8 @@ db_pager_init (YelpDBPager *pager)
     priv = g_new0 (YelpDBPagerPriv, 1);
     pager->priv = priv;
 
-    pager->priv->sects_mutex = g_mutex_new ();
     pager->priv->sects = NULL;
 
-    pager->priv->frags_mutex = g_mutex_new ();
     pager->priv->frags_hash =
 	g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 }
@@ -156,10 +152,8 @@ db_pager_dispose (GObject *object)
 {
     YelpDBPager *pager = YELP_DB_PAGER (object);
 
-    g_mutex_free (pager->priv->sects_mutex);
     g_object_unref (pager->priv->sects);
 
-    g_mutex_free (pager->priv->frags_mutex);
     g_hash_table_destroy (pager->priv->frags_hash);
 
     g_free (pager->priv);
@@ -169,12 +163,6 @@ db_pager_dispose (GObject *object)
 
 /******************************************************************************/
 
-/**
- * yelp_db_pager_new:
- * @uri: the URI of the DocBook document to process.
- *
- * Creates a new YelpDBPager.
- **/
 YelpPager *
 yelp_db_pager_new (YelpURI *uri)
 {
@@ -186,15 +174,13 @@ yelp_db_pager_new (YelpURI *uri)
 					  "uri", uri,
 					  NULL);
 
-    g_mutex_lock (pager->priv->sects_mutex);
     pager->priv->sects =
 	GTK_TREE_MODEL (gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING));
-    g_mutex_unlock (pager->priv->sects_mutex);
 
     return (YelpPager *) pager;
 }
 
-void
+gboolean
 db_pager_process (YelpPager *pager)
 {
     const YelpURI *uri     = yelp_pager_get_uri (pager);
@@ -209,10 +195,10 @@ db_pager_process (YelpPager *pager)
     gchar        *uri_slash;
     gchar        *doc_name;
     gchar        *doc_path;
-    const gchar  *params[9];
+    const gchar  *params[13];
 
-    g_return_if_fail (pager != NULL);
-    g_return_if_fail (YELP_IS_DB_PAGER (pager));
+    g_return_val_if_fail (pager != NULL, FALSE);
+    g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
 
     g_object_ref (pager);
 
@@ -226,7 +212,7 @@ db_pager_process (YelpPager *pager)
 	error = NULL;
 	yelp_pager_error (pager, error);
 
-	return;
+	return FALSE;
     }
 
     walker = g_new0 (DBWalker, 1);
@@ -234,11 +220,15 @@ db_pager_process (YelpPager *pager)
     walker->doc   = ctxt->myDoc;
     walker->cur   = xmlDocGetRootElement (walker->doc);
 
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
+
     walker_walk_xml (walker);
 
-    yelp_pager_lock_state (pager);
     g_signal_emit_by_name (pager, "sections");
-    yelp_pager_unlock_state (pager);
+
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
 
     uri_slash = g_strrstr (uri_str, "/");
     doc_name  = g_strndup (uri_str, uri_slash - uri_str + 1);
@@ -252,7 +242,11 @@ db_pager_process (YelpPager *pager)
     params[5]  = g_strconcat("\"file://", DB_STYLESHEET_PATH, "/\"", NULL) ;
     params[6]  = "chunk_depth";
     params[7]  = "2";
-    params[8] = NULL;
+    params[8]  = "html_extension";
+    params[9]  = "\"\"";
+    params[10] = "resolve_xref_chunk";
+    params[11] = "0";
+    params[12] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     tctxt      = xsltNewTransformContext (stylesheet,
@@ -266,6 +260,10 @@ db_pager_process (YelpPager *pager)
 			    "cache",
 			    YELP_NAMESPACE,
 			    (xsltTransformFunction) xslt_yelp_cache);
+
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
+
     xsltApplyStylesheetUser (stylesheet,
 			     ctxt->myDoc,
 			     params,
@@ -278,12 +276,12 @@ db_pager_process (YelpPager *pager)
     g_free (doc_name);
     g_free (doc_path);
 
-    yelp_pager_lock_state (pager);
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISH);
     g_signal_emit_by_name (pager, "finish");
-    yelp_pager_unlock_state (pager);
 
     g_object_unref (pager);
+
+    return FALSE;
 }
 
 void
@@ -305,11 +303,9 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 
     frag_id = yelp_uri_get_fragment (uri);
 
-    g_mutex_lock (db_pager->priv->frags_mutex);
     chunk_id =
 	(const gchar *) g_hash_table_lookup (db_pager->priv->frags_hash,
 					     frag_id);
-    g_mutex_unlock (db_pager->priv->frags_mutex);
 
     g_free (frag_id);
     return chunk_id;
@@ -342,6 +338,9 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     if (!ctxt || !node || !inst || !comp)
 	return;
+
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
 
     pager = (YelpPager *) ctxt->_private;
 
@@ -387,12 +386,11 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     ctxt->output     = old_doc;
     ctxt->insert     = old_insert;
 
-    yelp_pager_lock_state (pager);
-
     yelp_pager_add_chunk (pager, chunk_id, chunk_buf);
     g_signal_emit_by_name (pager, "chunk", chunk_id);
 
-    yelp_pager_unlock_state (pager);
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
 
     xmlFreeDoc (new_doc);
 }
@@ -449,11 +447,9 @@ walker_walk_xml (DBWalker *walker)
     walker->depth++;
 
     if (id) {
-	g_mutex_lock (priv->frags_mutex);
 	g_hash_table_insert (priv->frags_hash,
 			     g_strdup (id),
 			     g_strdup (walker->chunk_id));
-	g_mutex_unlock (priv->frags_mutex);
     }
 
     cur = walker->cur->children;
