@@ -47,6 +47,11 @@ struct _YelpViewTOCClass {
 	HtmlViewClass parent_class;
 
 	/* Signals */
+
+
+	void (*url_selected)   (YelpViewTOC   *view,
+				char          *url,
+				char          *base_url);
 	
 	void (*path_selected)   (YelpViewTOC   *view,
 				 GtkTreePath    *path);

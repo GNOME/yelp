@@ -32,6 +32,7 @@
 #include <stdarg.h>
 
 #include "yelp-view-toc.h"
+#include "yelp-marshal.h"
 
 #define d(x) x
 
@@ -45,6 +46,7 @@ static void yelp_view_toc_man_2    (YelpViewTOC          *view,
 				    GtkTreeIter          *root);
 
 enum {
+	URL_SELECTED,
 	PATH_SELECTED,
 	LAST_SIGNAL
 };
@@ -112,6 +114,16 @@ yvh_class_init (YelpViewTOCClass *klass)
 					       path_selected),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
+	signals[URL_SELECTED] = 
+		g_signal_new ("url_selected",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpViewTOCClass,
+					       url_selected),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING_STRING,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 }

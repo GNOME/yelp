@@ -11,8 +11,19 @@ INCLUDES =								\
 
 bin_PROGRAMS = yelp
 
+yelp-marshal.h: yelp-marshal.list
+	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --header > yelp-marshal1.tmp \
+	&& mv yelp-marshal1.tmp yelp-marshal.h ) \
+	|| ( rm -f yelp-marshal1.tmp && exit 1 )
+
+yelp-marshal.c: yelp-marshal.h
+	( @GLIB_GENMARSHAL@ --prefix=yelp_marshal yelp-marshal.list --body > yelp-marshal2.tmp \
+	&& mv yelp-marshal2.tmp yelp-marshal.c ) \
+	|| ( rm -f yelp-marshal2.tmp && exit 1 )
+
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
+	yelp-marshal.c		yelp-marshal.h				\
 	yelp-base.c		yelp-base.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html.c		yelp-html.h				\
@@ -49,7 +60,7 @@ gnome_yelp_idl_stamp: $(top_srcdir)/idl/GNOME_Yelp.idl $(ORBIT_IDL)
 	$(ORBIT_IDL) $(YELP_IDL_INCLUDES) -I$(top_srcdir) $<
 	touch $@
 
-$(yelp_OBJECTS): gnome_yelp_idl_stamp
+$(yelp_OBJECTS): yelp-marshal.h gnome_yelp_idl_stamp
 
 serverdir = $(libdir)/bonobo/servers
 server_in_files = GNOME_Yelp.server.in
@@ -63,6 +74,7 @@ CLEANFILES =								\
 	GNOME_Yelp.server
 
 EXTRA_DIST =								\
+	yelpmarshal.list						\
 	$(server_in_files)						\
 	$(server_DATA)
 

@@ -226,6 +226,8 @@ ys_parse_doc (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 			docsource = g_strdup (xml_str);
 			ys_strip_scheme(&docsource, &scheme);
 			link    = g_strconcat ("ghelp:", docsource, NULL);
+			g_free (scheme);
+			g_free (docsource);
 			g_free (xml_str);
 		}
 		else if (!g_strcasecmp (cur->name, "docformat")) {
