@@ -375,7 +375,14 @@ yelp_window_open_uri (YelpWindow  *window,
     GnomeVFSURI    *cur_uri;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
-    g_return_if_fail (uri != NULL);
+
+    if (uri == NULL) {
+	GError *error = NULL;
+	yelp_set_error (&error, YELP_ERROR_NO_DOC);
+	window_error (window, error);
+	g_error_free (error);
+	return;
+    }
 
     priv = window->priv;
 
