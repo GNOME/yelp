@@ -94,7 +94,7 @@ main(int argc, const char **argv)
 	/* hack to convert the first argument to the form : 
 	   filename?section instead of passing it in with the 
 	   -a option */
-	for (cptr = args [0]; *cptr != '\0'; cptr++) {
+	for (cptr = (char *)args [0]; *cptr != '\0'; cptr++) {
                 if (*cptr == '?') {
                         *cptr++ = '\0';
                         requested_section = g_strdup (cptr);
@@ -109,7 +109,7 @@ main(int argc, const char **argv)
                 char *ctmp, *infopath = g_strdup(g_getenv("INFOPATH"));
                 char *dirs[64], *ext = NULL;
                 int ndirs;
-                char buf[PATH_MAX];
+                char *buf;
 
                 /* First, find the directory that the info file is in. */
                 dirs[0] = "/usr/info";
@@ -125,35 +125,41 @@ main(int argc, const char **argv)
 
                 for(i = 0; i < ndirs; i++) {
                         ext = "";
-                        sprintf(buf, "%s/%s.info", dirs[i], args[0]);
+                        buf = g_strdup_printf (buf, "%s/%s.info", dirs[i], args[0]);
                         if(file_exists(buf))
                                 break;
-                        sprintf(buf, "%s/%s", dirs[i], args[0]);
+			g_free (buf);
+                        buf = g_strdup_printf (buf, "%s/%s", dirs[i], args[0]);
                         if(file_exists(buf)) {
                                 no_info = TRUE;
                                 break;
                         }
-                  
+			g_free (buf);
+			
                         ext = ".gz";
-                        sprintf(buf, "%s/%s.info.gz", dirs[i], args[0]);
+                        buf = g_strdup_printf ("%s/%s.info.gz", dirs[i], args[0]);
                         if(file_exists(buf))
                                 break;
-                        sprintf(buf, "%s/%s.gz", dirs[i], args[0]);
+			g_free (buf);
+			buf = g_strdup_printf (buf, "%s/%s.gz", dirs[i], args[0]);
                         if(file_exists(buf)) {
                                 no_info = TRUE;
                                 break;
                         }
+			g_free (buf);
 #ifdef HAVE_LIBBZ2
                         ext = ".bz2";
-                        sprintf(buf, "%s/%s.info.bz2", dirs[i], args[0]);
+                        buf = g_strdup_printf ("%s/%s.info.bz2", dirs[i], args[0]);
                         if(file_exists(buf))
                                 break;
 
-                        sprintf(buf, "%s/%s.bz2", dirs[i], args[0]);
+			g_free (buf);
+                        buf = g_strdup_printf ("%s/%s.bz2", dirs[i], args[0]);
                         if(file_exists(buf)) {
                                 no_info = TRUE;
                                 break;
                         }
+			g_free (buf);
 #endif
                 }
                 if(i >= ndirs) {
@@ -176,10 +182,12 @@ main(int argc, const char **argv)
                                                         dirs[n], args[0]);
                         } 
 
-                        if(i) { 
-                                sprintf(buf, "%s-%d%s", path, i, ext);
+                        if(i) {
+				g_free (buf);
+                                buf = g_strdup_printf ("%s-%d%s", path, i, ext);
                         } else {
-                                sprintf(buf, "%s%s", path, ext);
+				g_free (buf);				
+                                buf = g_strdup_printf ("%s%s", path, ext);
                         }
 
                         if(!file_exists(buf)) {
@@ -189,6 +197,7 @@ main(int argc, const char **argv)
 
                         fixup_args[i] = strdup(buf);
                 }
+		g_free (buf);
                 args = (const char **)fixup_args;
         }
 	
