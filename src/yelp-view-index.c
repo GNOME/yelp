@@ -24,8 +24,18 @@
 #include <config.h>
 #endif
 
-#include <libgnome/gnome-i18n.h>
+#include <atk/atk.h>
+#include <gtk/gtkaccessible.h>
+#include <gtk/gtkcellrenderertext.h>
+#include <gtk/gtkentry.h>
+#include <gtk/gtkframe.h>
+#include <gtk/gtkhbox.h>
+#include <gtk/gtkvbox.h>
+#include <gtk/gtklabel.h>
+#include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtktreeview.h>
+#include <gtk/gtktreeselection.h>
+#include <libgnome/gnome-i18n.h>
 #include <string.h>
 
 #include "yelp-index-model.h"
@@ -388,7 +398,8 @@ yelp_view_index_new (GList *index)
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	
-        gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view);
+        gtk_container_add (GTK_CONTAINER (html_sw), 
+			   yelp_html_get_widget (YELP_HTML (priv->html_view)));
 
 	/* Add the tree and html view to the paned */
 	gtk_paned_add1 (GTK_PANED (view), box);

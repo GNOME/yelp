@@ -511,9 +511,14 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 	gchar       *docpath = NULL;
 	gchar       *extension;
 
-	if (strncmp (str_uri, "ghelp:", 6)) {
-		/* This function is only valid for ghelp-uri's */
-/* 		g_warning ("URI not of ghelp: form"); */
+	if (!strncmp (str_uri, "man:", 4)) {
+		return g_strdup (str_uri + 4);
+	}
+	else if (!strncmp (str_uri, "info:", 5)) {
+		return g_strdup (str_uri + 5);
+	} 
+	else if (strncmp (str_uri, "ghelp:", 6)) {
+		/* Strange uri, just return the same string */
 		return g_strdup (str_uri);
 	}
 

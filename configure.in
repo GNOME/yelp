@@ -43,6 +43,7 @@ PKG_CHECK_MODULES(YELP, libgtkhtml-2.0 >= 1.99.3	\
 			libgnome-2.0 >= 1.112.1		\
 			libgnomeui-2.0 >= 1.103.0	\
 			libbonobo-2.0 >= 1.108.0	\
+			libxslt >= 1.0.15		\
 			gconf-2.0)
 
 AC_SUBST(YELP_CFLAGS)

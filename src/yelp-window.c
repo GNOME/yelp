@@ -329,10 +329,10 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 		   strncmp (url, "info:", 5) == 0 ||
 		   strncmp (url, "ghelp:", 6) == 0 ||
 		   strncmp (url, "path:", 5) == 0) {
-		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
-					    url);
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_CONTENT_VIEW);
+		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
+					    url);
 		return TRUE;
 	} else if (strncmp (url, "index:", 6) == 0) {
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),

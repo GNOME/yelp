@@ -1,3 +1,30 @@
+2002-04-14  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-content.c: added includes to fix warnings.
+
+	* src/yelp-view-index.c: same.
+
+	* src/yelp-util.c (yelp_util_extract_docpath_from_uri): 
+	- added support for man and info pages too.
+
+	* src/yelp-html.c: 
+	- loads of changes :)
+	- don't use GnomeVFS Async calls.
+	- Read non-docbook data in an idle
+	- Shortcut the gnome vfs help module and call internal
+	  docbook2html code instead if document is xml/sgml docbook.
+	- Needs more cleaning up and breaking out into another file/class.
+	- Don't inherit HtmlView, instead inherit GObject and have a
+	  get_widget function.
+
+	* src/yelp-db2html.[ch]: added from libgnome. Use this in-proc
+	  instead of calling as external scripts.
+
+	* src/Makefile.am (yelp_SOURCES): added yelp-db2html.[ch]
+
+	* configure.in (GNOMELOCALEDIR): depend on libxslt for the
+	  docbook->html conversion.
+
 2002-04-12  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-toc.c (TOC_BLOCK_SEPARATOR): fixed string, thanks

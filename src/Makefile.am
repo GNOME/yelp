@@ -29,6 +29,7 @@ yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-marshal.c		yelp-marshal.h				\
 	yelp-base.c		yelp-base.h				\
+	yelp-db2html.c		yelp-db2html.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html.c		yelp-html.h				\
 	yelp-index-model.c	yelp-index-model.h			\
@@ -42,6 +43,7 @@ yelp_SOURCES =								\
 	yelp-view-index.c	yelp-view-index.h			\
 	yelp-view-toc.c		yelp-view-toc.h				\
 	yelp-window.c 		yelp-window.h
+
 
 yelp_LDADD =								\
 	$(YELP_LIBS)

@@ -26,6 +26,10 @@
 
 #include <libgnome/gnome-i18n.h>
 #include <gtk/gtktreeview.h>
+#include <gtk/gtktreeselection.h>
+#include <gtk/gtkscrolledwindow.h>
+#include <gtk/gtkcellrenderertext.h>
+#include <gtk/gtkframe.h>
 
 #include <string.h>
 
@@ -57,7 +61,7 @@ struct _YelpViewContentPriv {
 	GNode        *doc_tree;
 
 	/* Html view */
-	GtkWidget    *html_view;
+	YelpHtml     *html_view;
 
 	gchar        *current_docpath;
 };
@@ -213,10 +217,11 @@ yelp_view_content_new (GNode *doc_tree)
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
 	frame = gtk_frame_new (NULL);
-	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	
-        gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view);
+	gtk_container_add (GTK_CONTAINER (frame), html_sw);
+        gtk_container_add (GTK_CONTAINER (html_sw), 
+			   yelp_html_get_widget (priv->html_view));
 
 	/* Add the tree and html view to the paned */
 	gtk_paned_add1 (GTK_PANED (view), priv->tree_sw);
@@ -338,8 +343,7 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		content_url = (char *) url;
 	}
 
-	yelp_html_open_uri (YELP_HTML (priv->html_view), 
-			    content_url, NULL);
+	yelp_html_open_uri (priv->html_view, content_url, NULL);
 
 	if (content_url != url) {
 		g_free (content_url);
@@ -351,6 +355,5 @@ yelp_view_content_stop (YelpViewContent *content)
 {
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
 	
-	yelp_html_cancel_loading (YELP_HTML (content->priv->html_view));
+	yelp_html_cancel_loading (content->priv->html_view);
 }
-

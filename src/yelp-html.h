@@ -26,7 +26,6 @@
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkmarshal.h>
-#include <libgtkhtml/gtkhtml.h>
 #include "yelp-section.h"
 
 #define YELP_TYPE_HTML        (yelp_html_get_type ())
@@ -40,13 +39,13 @@ typedef struct _YelpHtmlClass   YelpHtmlClass;
 typedef struct _YelpHtmlPriv    YelpHtmlPriv;
 
 struct _YelpHtml {
-	HtmlView       parent;
+	GObject       parent;
 	
-	YelpHtmlPriv  *priv;
+	YelpHtmlPriv *priv;
 };
 
 struct _YelpHtmlClass {
-        HtmlViewClass    parent_class;
+        GObjectClass  parent_class;
 
 	/* Signals */
 	void (*url_selected)   (YelpHtml  *view,
@@ -56,12 +55,14 @@ struct _YelpHtmlClass {
 };
 
 GType           yelp_html_get_type       (void);
-GtkWidget      *yelp_html_new            (void);
+YelpHtml *      yelp_html_new            (void);
  
-void            yelp_html_open_uri       (YelpHtml      *view,
+void            yelp_html_open_uri       (YelpHtml      *html,
 					  const gchar   *uri,
 					  const gchar   *reference);
-void            yelp_html_cancel_loading (YelpHtml      *view);
+void            yelp_html_cancel_loading (YelpHtml      *html);
+GtkWidget *     yelp_html_get_widget     (YelpHtml      *html);
+
 
 #endif /* __YELP_HTML_H__ */
 
