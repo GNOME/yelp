@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-02 17:13+0100\n"
-"PO-Revision-Date: 2004-01-02 17:16+0100\n"
+"POT-Creation-Date: 2004-01-10 02:16+0100\n"
+"PO-Revision-Date: 2004-01-10 02:23+0100\n"
 "Last-Translator: Goran Rakić <gox@devbase.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,30 +137,41 @@ msgstr "Jelp"
 msgid "Yelp Factory"
 msgstr "Jelp fabrika"
 
-#: src/yelp-db-pager.c:248 src/yelp-window.c:434 src/yelp-window.c:754
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Ne mogu da otvorim dokument „%s“"
-
-#: src/yelp-db-pager.c:429
+#: src/yelp-db-pager.c:426
 msgid "No href attribute found on yelp:document"
 msgstr "Nisam našao href atribut u yelp:document-u"
 
-#: src/yelp-db-pager.c:444
+#: src/yelp-db-pager.c:441
 msgid "Out of memory"
 msgstr "Ponestalo memorije"
 
-#: src/yelp-db-pager.c:608
+#: src/yelp-db-pager.c:618
 msgid "Titlepage"
 msgstr "Naslovnica"
 
-#: src/yelp-db-pager.c:610
+#: src/yelp-db-pager.c:620 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/yelp-db-pager.c:628
+#: src/yelp-db-pager.c:638 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Nepoznato"
+
+#: src/yelp-error.c:46
+msgid "The selected document could not be opened"
+msgstr "Ne može se otvoriti izabrani dokument"
+
+#: src/yelp-error.c:52
+msgid "The selected page could not be found in this document."
+msgstr "Ne može se naći izabrana stranica u ovom dokumentu."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Ne mogu da pročitam sadržaj."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "DocBook SGML dokumenti više nisu podržani."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -245,149 +256,373 @@ msgid "The URI of the document to be processed"
 msgstr "Adresa dokumenta za obradu"
 
 # bug: pause or page?
-#: src/yelp-toc-pager.c:261
+#: src/yelp-toc-pager.c:264
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: brojač pauza je negativan."
 
-#: src/yelp-toc-pager.c:625 src/yelp-toc-pager.c:637
-msgid "The table of contents could not be read."
-msgstr "Ne mogu da pročitam sadržaj."
-
-#: src/yelp-toc-pager.c:844
+#: src/yelp-toc-pager.c:876
 msgid "Categories"
 msgstr "Kategorije"
 
-#: src/yelp-toc-pager.c:865
+#: src/yelp-toc-pager.c:890
 msgid "Documents"
 msgstr "Dokumenti"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:228
 msgid "/_File"
 msgstr "/_Datoteka"
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:229
 msgid "/File/_New window"
 msgstr "/_Datoteka/_Novi prozor"
 
-#: src/yelp-window.c:227
+#: src/yelp-window.c:232
 msgid "/File/_Close window"
 msgstr "/_Datoteka/_Zatvori prozor"
 
-#: src/yelp-window.c:231
+#: src/yelp-window.c:236
 msgid "/_Edit"
 msgstr "/_Uređivanje"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:237
 msgid "/Edit/_Find..."
 msgstr "/Uređivanje/_Nađi..."
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:240
 msgid "/Edit/Find Ne_xt"
 msgstr "/Uređivanje/Nađi _sledeće"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:243
 msgid "/Edit/Find Pre_vious"
 msgstr "/Uređivanje/Nađi p_rethodno"
 
-#: src/yelp-window.c:242
+#: src/yelp-window.c:247
 msgid "/_Go"
 msgstr "/_Idi"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:248
 msgid "/Go/_Back"
 msgstr "/_Idi/Nazad"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:251
 msgid "/Go/_Forward"
 msgstr "/_Idi/Napred"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:254
 msgid "/Go/_Home"
 msgstr "/_Idi/Polazna stranica"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:257
 msgid "/Go/"
 msgstr "/Idi/"
 
-#: src/yelp-window.c:253
+#: src/yelp-window.c:258
 msgid "/Go/_Previous"
 msgstr "/Idi/_Prethodno"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:261
 msgid "/Go/_Next"
 msgstr "/Idi/_Sledeće"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:264
 msgid "/Go/_Contents"
 msgstr "/Idi/Sa_držaj"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:268
 msgid "/_Help"
 msgstr "/_Pomoć"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:269
 msgid "/Help/_About"
 msgstr "/_Pomoć/O programu"
 
-#: src/yelp-window.c:326
+#: src/yelp-window.c:331
 msgid "Help Browser"
 msgstr "Preglednik pomoći"
 
-#: src/yelp-window.c:418
-msgid "DocBook SGML documents are no longer supported."
-msgstr "DocBook SGML dokumenti više nisu podržani."
-
-#: src/yelp-window.c:541
+#: src/yelp-window.c:545 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Odeljak"
 
-#: src/yelp-window.c:594
+#: src/yelp-window.c:602
 msgid "Back"
 msgstr "Nazad"
 
-#: src/yelp-window.c:595
+#: src/yelp-window.c:603
 msgid "Show previous page in history"
 msgstr "Prikaži prethodnu stranicu iz istorijata"
 
-#: src/yelp-window.c:605
+#: src/yelp-window.c:613
 msgid "Forward"
 msgstr "Napred"
 
-#: src/yelp-window.c:606
+#: src/yelp-window.c:614
 msgid "Show next page in history"
 msgstr "Prikaži narednu stranicu iz istorijata"
 
-#: src/yelp-window.c:618
+#: src/yelp-window.c:626
 msgid "Home"
 msgstr "Polazna stranica"
 
-#: src/yelp-window.c:619
+#: src/yelp-window.c:627
 msgid "Go to home view"
 msgstr "Idi na polaznu stranicu"
 
-#: src/yelp-window.c:787 src/yelp-window.c:816 src/yelp-window.c:1072
-#: src/yelp-window.c:1131
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "Ne mogu da nađem stranicu „%s“ u ovom dokumentu."
-
-#: src/yelp-window.c:839
+#: src/yelp-window.c:832
 msgid "Loading..."
 msgstr "Učitavam..."
 
 # bug: in comment, s/shop/show/
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1214
+#: src/yelp-window.c:1226
 msgid "translator_credits"
 msgstr ""
 "Goran Rakić <gox@devbase.net>\n"
 "\n"
 "Prevod.org — prevod na srpski jezik."
 
-#: src/yelp-window.c:1219
+#: src/yelp-window.c:1231
 msgid "A Help Browser for GNOME"
 msgstr "Preglednik pomoći za Gnom"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr "&#8222;"
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr "&#8220;"
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr "O ovoj literaturi"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr "O ovom knjizi"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr "O ovom poglavlju"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr "O ovom unosu"
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr "O ovom pojmovniku"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr "O ovom popisu"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr "O ovom delu"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr "O ovom predgovoru"
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr "O ovoj literaturi"
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr "O ovom odeljku"
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr "O ovom skupu"
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "Affiliation"
+msgstr "Zaposlenje"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr "Dodatak"
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr "Članak"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr "Publika"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr "Autori"
+
+# bug: Bigliography -> Bibliography (g->b)
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bigliography"
+msgstr "Literatura"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr "Knjiga"
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr "Pažnja"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr "Glava"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr "Saradnik"
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr "Znak štampara"
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr "Autorska prava"
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr "Datum"
+
+#: stylesheets/l10n.xml.in.h:30
+msgid "Dedication"
+msgstr "Posveta"
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Editor"
+msgstr "Urednik"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr "E-pošta"
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr "Primer"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr "Slika"
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr "Pojmovnik"
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr "Važno"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr "Indeks"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr "Zakonska napomena"
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr "Nivo"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr "Namena poruke"
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr "Nivo poruke"
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr "Poreklo poruke"
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr "Beleška"
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr "Poreklo"
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr "Ostali doprinosioci"
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr "Deo"
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr "Predgovor"
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr "Izdavač"
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr "Referenca"
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr "Unos reference"
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr "Odeljak sa referencama"
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr "Istorijat izdanja"
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr "Videti"
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr "Videti takođe"
+
+# bug: is "Set Index" "Index of the Set", or "set an index"
+#: stylesheets/l10n.xml.in.h:56
+msgid "Set Index"
+msgstr "Indeks skupa"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr "Tabela"
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Table of Contents"
+msgstr "Sadržaj"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr "Savet"
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Title"
+msgstr "Naslov"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr "Upozorenje"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -454,17 +689,11 @@ msgstr "Pomoć"
 #~ msgid "Loading..&nbsp;"
 #~ msgstr "Učitavam...&nbsp;"
 
-#~ msgid "About This Document"
-#~ msgstr "O ovom dokumentu"
-
 #~ msgid "Previous"
 #~ msgstr "Prethodno"
 
 #~ msgid "Next"
 #~ msgstr "Sledeće"
-
-#~ msgid "Index"
-#~ msgstr "Indeks"
 
 #~ msgid "Search in the index"
 #~ msgstr "Pretraži u indeksu"
