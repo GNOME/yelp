@@ -1,14 +1,15 @@
 # Ukrainian translation of Yelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Yuriy Syrota <rasta@renome.rovno.ua>, 2001.
+# Maxim Dzumanenko <mvd@mylinux.com.ua>, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-03-12 09:32+0200\n"
-"PO-Revision-Date: 2003-04-08 07:25--500\n"
-"Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
+"PO-Revision-Date: 2004-03-15 18:34+0200\n"
+"Last-Translator: Maxim Dzumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +73,7 @@ msgstr "Ядра"
 
 #: data/toc.xml.in.h:15
 msgid "Multimedia Applications"
-msgstr "Програми для мультимедіа"
+msgstr "Програми для мультимедія"
 
 #: data/toc.xml.in.h:16
 msgid "Office and Productivity Applications"
@@ -183,11 +184,11 @@ msgstr "Встановити каталог для кешу"
 #: src/yelp-main.c:128
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Не вдалося активувати Yelp: \"%s\""
+msgstr "Не вдається активувати Yelp: \"%s\""
 
 #: src/yelp-main.c:147
 msgid "Could not open new window."
-msgstr "Не вдалося відкрити нове вікно."
+msgstr "Не вдається відкрити нове вікно."
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -265,7 +266,7 @@ msgstr "YelpTocPager: від'ємна величина паузи."
 #: src/yelp-toc-pager.c:486
 #, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "Не вдалось завантажити файл у форматі OMF: \"%s\""
+msgstr "Не вдається завантажити файл у форматі OMF: \"%s\""
 
 #: src/yelp-toc-pager.c:883
 msgid "Categories"
@@ -281,7 +282,7 @@ msgstr "/_Файл"
 
 #: src/yelp-window.c:250
 msgid "/File/_New window"
-msgstr "/Файл/_Нове вікно"
+msgstr "/Файл/_Створити вікно"
 
 #: src/yelp-window.c:253
 msgid "/File/_Close window"
@@ -289,19 +290,19 @@ msgstr "/Файл/_Закрити вікно"
 
 #: src/yelp-window.c:257
 msgid "/_Edit"
-msgstr "_Редагування"
+msgstr "_Правка"
 
 #: src/yelp-window.c:258
 msgid "/Edit/_Find..."
-msgstr "/Редагування/_Знайти..."
+msgstr "/Правка/З_найти..."
 
 #: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
-msgstr "/Редагування/Знайти _наступне"
+msgstr "/Правка/Зна_йти далі"
 
 #: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
-msgstr "/Редагування/Знайти _попереднє"
+msgstr "/Правка/Знайти _попереднє"
 
 #: src/yelp-window.c:268
 msgid "/_Go"
@@ -341,7 +342,7 @@ msgstr "/_Довідка"
 
 #: src/yelp-window.c:290
 msgid "/Help/_About"
-msgstr "/Довідка/_Про"
+msgstr "/Довідка/_Про програму"
 
 #: src/yelp-window.c:352
 msgid "Help Browser"
@@ -491,7 +492,7 @@ msgstr "Попередження"
 
 #: stylesheets/l10n.xml.in.h:26
 msgid "Chapter"
-msgstr "Грава"
+msgstr "Глава"
 
 #: stylesheets/l10n.xml.in.h:27
 msgid "Collaborator"
@@ -515,7 +516,7 @@ msgstr "Авторські права"
 
 #: stylesheets/l10n.xml.in.h:33
 msgid "Date"
-msgstr "дата"
+msgstr "Дата"
 
 #: stylesheets/l10n.xml.in.h:34
 msgid "Dedication"
@@ -559,7 +560,7 @@ msgstr "Рівень"
 
 #: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
-msgstr "Аудиторя повідомлення"
+msgstr "Аудиторія повідомлення"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
@@ -571,7 +572,7 @@ msgstr "Джерело повідомлення"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
-msgstr "Нотатка"
+msgstr "Примітка"
 
 #: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
