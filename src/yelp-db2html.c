@@ -51,6 +51,11 @@
 #define STYLESHEET_PATH DATADIR"/sgml/docbook/yelp"
 #define STYLESHEET STYLESHEET_PATH"/yelp-customization.xsl"
 
+/* xmlParserInput * */
+/* external_entity_loader (const char    *URL,  */
+/*                         const char    *ID, */
+/*                         xmlParserCtxt *ctxt); */
+
 gint 
 main (gint argc, gchar **argv) 
 {
@@ -73,7 +78,7 @@ main (gint argc, gchar **argv)
 
 	/* libxml housekeeping */
 	xmlSubstituteEntitiesDefault(1);
-	xmlLoadExtDtdDefaultValue = 1;
+	xmlLoadExtDtdDefaultValue = 0;
 
 	/* parse the stylesheet */
         stylesheet  = xsltParseStylesheetFile (STYLESHEET);
