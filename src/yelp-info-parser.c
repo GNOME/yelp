@@ -304,7 +304,8 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	g_hash_table_insert (nodes2iters, g_strdup (node), iter);
 	g_print ("size: %i\n", g_hash_table_size (nodes2iters));
 	gtk_tree_store_set (tree, iter,
-			COLUMN_PAGE_NO, g_strdup (node),
+			COLUMN_PAGE_NO, g_strdup_printf ("%i",
+				node2page (nodes2offsets, offsets2pages, node)),
 			COLUMN_PAGE_NAME, g_strdup (node),
 			COLUMN_PAGE_CONTENT, g_strdup (parts[2]),
 			-1);

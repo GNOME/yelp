@@ -1,5 +1,11 @@
 2005-01-02  Davyd Madeley  <davyd@madeley.id.au>
 
+	* src/yelp-info-parser.c:
+	* src/yelp-info-pager.c: Use page numbers as the section id, not page
+	  names.
+
+2005-01-02  Davyd Madeley  <davyd@madeley.id.au>
+
 	* src/yelp-info-parser.c: Chained info support, parser fixes, and free
 	  some memory we'll never need again a little earlier to save space.
 

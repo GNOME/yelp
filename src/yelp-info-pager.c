@@ -211,7 +211,7 @@ info_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
     if (frag_id)
 	return g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash, frag_id);
     else
-	return g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash, "Top");
+	return g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash, "1");
 }
 
 static GtkTreeModel *
