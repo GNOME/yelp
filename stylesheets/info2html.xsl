@@ -29,8 +29,12 @@
 <xsl:param name="yelp.color.selected2"/>
 <xsl:param name="yelp.color.selected3"/>
 
-<xsl:template match="/">
-  <yelp:document href="index">
+<xsl:template match="/Info">
+  <xsl:apply-templates select="Section"/>
+</xsl:template>
+
+<xsl:template match="Section">
+  <yelp:document href="{@id}">
     <html>
       <head>
         <title>
@@ -41,12 +45,22 @@
         </style>
       </head>
       <body>
+        <xsl:if test="Documnet">
+          <ul>
+            <xsl:for-each select="Document">
+              <li>
+                <xsl:value-of select="@name"/>
+              </li>
+            </xsl:for-each>
+          </ul>
+        </xsl:if>
         <pre class="body">
-          <xsl:value-of select="."/>
+          <xsl:value-of select="node()[not(self::Document)]"/>
         </pre>
       </body>
     </html>
   </yelp:document>
+  <xsl:apply-templates select="Section"/>
 </xsl:template>
 
 <xsl:template name="html.css"><xsl:text>
