@@ -65,9 +65,9 @@ struct _DBWalker {
     gint depth;
 };
 
-static void     db_pager_class_init   (YelpDBPagerClass *klass);
-static void     db_pager_init         (YelpDBPager      *pager);
-static void     db_pager_dispose      (GObject          *gobject);
+static void          db_pager_class_init   (YelpDBPagerClass *klass);
+static void          db_pager_init         (YelpDBPager      *pager);
+static void          db_pager_dispose      (GObject          *gobject);
 
 gboolean             db_pager_process      (YelpPager   *pager);
 void                 db_pager_cancel       (YelpPager   *pager);
@@ -285,6 +285,7 @@ db_pager_process (YelpPager *pager)
 void
 db_pager_cancel (YelpPager *pager)
 {
+    // FIXME
 }
 
 gchar *

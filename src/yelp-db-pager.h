@@ -45,10 +45,10 @@ struct _YelpDBPager {
 };
 
 struct _YelpDBPagerClass {
-    YelpPagerClass parent_class;
+    YelpPagerClass   parent_class;
 };
 
-GType       yelp_db_pager_get_type (void);
-YelpPager * yelp_db_pager_new      (YelpURI *uri);
+GType           yelp_db_pager_get_type     (void);
+YelpPager *     yelp_db_pager_new          (YelpURI *uri);
 
 #endif /* __YELP_DB_PAGER_H__ */

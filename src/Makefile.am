@@ -88,9 +88,10 @@ yelp_SOURCES =								\
 	yelp-html-gtkhtml2.c	yelp-html.h				\
 	yelp-info.c		yelp-info.h				\
 	yelp-man.c		yelp-man.h				\
+	yelp-pager.c		yelp-pager.h				\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
-	yelp-pager.c		yelp-pager.h				\
+	yelp-toc-pager.c	yelp-toc-pager.h			\
 	yelp-util.c		yelp-util.h				\
 	yelp-window.c 		yelp-window.h				\
 	yelp-uri.c	        yelp-uri.h				\

@@ -32,6 +32,7 @@
 #include "yelp-scrollkeeper.h"
 #include "yelp-man.h"
 #include "yelp-info.h"
+#include "yelp-toc-pager.h"
 #include "yelp-base.h"
 
 struct _YelpBasePriv {
@@ -162,11 +163,15 @@ yelp_base_new (void)
         base = g_object_new (YELP_TYPE_BASE, NULL);
 	priv = base->priv;
 	
+	yelp_toc_pager_init ();
+
+	/*
 	yelp_scrollkeeper_init (priv->toc_tree, &priv->index);
 	yelp_man_init (base->priv->toc_tree, &priv->index);
 	yelp_info_init (base->priv->toc_tree, &priv->index);
 	
 	priv->index = g_list_sort (priv->index, yelp_section_compare);
+	*/
 
         return base;
 }
