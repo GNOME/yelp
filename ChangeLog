@@ -1,5 +1,8 @@
 2003-06-04  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-scrollkeeper.c: (scrollkeeper_parse_toc_section):
+	- fixed leak found by Kjartan.
+
 	* src/yelp-reader.c: 
 	- style fixes
 	- fixes memory leaks found and patched by Narayana Pattipati

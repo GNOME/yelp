@@ -287,12 +287,14 @@ scrollkeeper_parse_toc_section (GNode       *parent,
 
 	next_child = xml_node->xmlChildrenNode;
 	
-	name = xmlNodeGetContent (next_child);
+	xml_str = xmlNodeGetContent (next_child);
 	
-	if (!name) {
+	if (!xml_str) {
 		return;
 	}
 
+	name = g_strdup (xml_str);
+	xmlFree (xml_str);
 	g_strstrip (name);
 
 	xml_str = xmlGetProp (xml_node, "linkid");
@@ -311,6 +313,7 @@ scrollkeeper_parse_toc_section (GNode       *parent,
                                    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
                                                      name, uri));
 	yelp_uri_unref (uri);
+	g_free (name);
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_ascii_strncasecmp (next_child->name, "tocsect", 7)) {
