@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-09 15:59+0100\n"
-"PO-Revision-Date: 2004-01-09 19:01+0100\n"
+"POT-Creation-Date: 2004-01-12 05:21+0100\n"
+"PO-Revision-Date: 2004-01-12 10:25+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,25 +137,45 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
-#: src/yelp-db-pager.c:426
+#: src/yelp-db-pager.c:427
 msgid "No href attribute found on yelp:document"
 msgstr "V yelp:document nenalezen atribut href"
 
-#: src/yelp-db-pager.c:441
+#: src/yelp-db-pager.c:442
 msgid "Out of memory"
 msgstr "Nedostatek paměti"
 
-#: src/yelp-db-pager.c:618
+#: src/yelp-db-pager.c:619
 msgid "Titlepage"
 msgstr "Titulní strana"
 
-#: src/yelp-db-pager.c:620 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:621 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/yelp-db-pager.c:638 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:639 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Neznámý"
+
+#: src/yelp-error.c:46
+msgid "The selected document could not be opened"
+msgstr "Vybraný dokument nelze otevřít"
+
+#: src/yelp-error.c:52
+msgid "The selected page could not be found in this document."
+msgstr "Vybraná strana nebyla v tomto dokumentu nalezena."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Obsah nelze číst."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "Dokumenty DocBook SGML už nejsou podporovány."
+
+#: src/yelp-error.c:70
+msgid "The selected file could not be read."
+msgstr "Vybraný soubor nelze číst."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -239,15 +259,15 @@ msgstr "URI dokumentu"
 msgid "The URI of the document to be processed"
 msgstr "URI dokumentu, který zpracovat"
 
-#: src/yelp-toc-pager.c:264
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Počet stran je záporný."
 
-#: src/yelp-toc-pager.c:876
+#: src/yelp-toc-pager.c:878
 msgid "Categories"
 msgstr "Kategorie"
 
-#: src/yelp-toc-pager.c:890
+#: src/yelp-toc-pager.c:892
 msgid "Documents"
 msgstr "Dokumenty"
 
@@ -351,19 +371,19 @@ msgstr "Domů"
 msgid "Go to home view"
 msgstr "Přejde na domovskou stránku"
 
-#: src/yelp-window.c:832
+#: src/yelp-window.c:833
 msgid "Loading..."
 msgstr "Načítám..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1226
+#: src/yelp-window.c:1227
 msgid "translator_credits"
 msgstr ""
 "Michal Bukovjan\n"
 "Miloslav Trmač <mitr@volny.cz>"
 
-#: src/yelp-window.c:1231
+#: src/yelp-window.c:1232
 msgid "A Help Browser for GNOME"
 msgstr "Prohlížeč nápovědy pro GNOME"
 
@@ -448,7 +468,7 @@ msgid "Author"
 msgstr "Autor"
 
 #: stylesheets/l10n.xml.in.h:21
-msgid "Bigliography"
+msgid "Bibliography"
 msgstr "Bibliografie"
 
 #: stylesheets/l10n.xml.in.h:22
@@ -611,17 +631,8 @@ msgstr "Získat nápovědu o GNOME"
 msgid "Help"
 msgstr "Nápověda"
 
-#~ msgid "The document '%s' could not be opened"
-#~ msgstr "Dokument '%s' nelze otevřít"
-
 #~ msgid "The document '%s' does not exist"
 #~ msgstr "Dokument '%s' neexistuje"
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "Dokumenty DocBook SGML už nejsou podporovány."
-
-#~ msgid "The page '%s' could not be found in this document."
-#~ msgstr "Strana '%s' nebyla v tomto dokumentu nalezena."
 
 #~ msgid "Could not obtain a GtkStyle."
 #~ msgstr "Nemohu získat GtkStyle."
@@ -630,7 +641,4 @@ msgstr "Nápověda"
 #~ msgstr "Další dokumenty"
 
 #~ msgid "Manual Pages"
-#~ msgstr "Manuálové stránky"
-
-#~ msgid "Manual pages"
 #~ msgstr "Manuálové stránky"
