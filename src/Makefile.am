@@ -18,13 +18,10 @@ INCLUDES =								\
 libexec_PROGRAMS = yelp-db2html
 bin_PROGRAMS = yelp yelp-pregenerate
 
-noinst_PROGRAMS = test-uri test-reader
-
+noinst_PROGRAMS = test-uri test-reader test-pager
 test_uri_SOURCES = 							\
 	test-uri.c							\
-	yelp-uri.c		yelp-uri.h				\
-	yelp-error.c		yelp-error.h				\
-	yelp-util.c		yelp-util.h
+	yelp-uri.c		yelp-uri.h
 
 test_uri_LDADD = 							\
 	@YELP_LIBS@
@@ -40,6 +37,16 @@ test_reader_SOURCES = 							\
 
 test_reader_LDADD = 							\
 	@YELP_LIBS@
+
+test_pager_SOURCES =							\
+	test-pager.c							\
+	yelp-pager.c		yelp-pager.h				\
+	yelp-db-pager.c		yelp-db-pager.h				\
+	yelp-uri.c		yelp-uri.h				\
+	yelp-marshal-main.c
+
+test_pager_LDADD =							\
+	@DB2HTML_LIBS@ @YELP_LIBS@ -lexslt
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -59,11 +66,11 @@ yelp-marshal.c: yelp-marshal.h
 
 yelp-marshal-main.c: yelp-marshal.c
 
-yelp_db2html_SOURCES =							\
-	yelp-db2html.c
-
 yelp_pregenerate_SOURCES =						\
 	yelp-pregenerate.c      yelp-pregenerate.h
+
+yelp_db2html_SOURCES =							\
+	yelp-db2html.c
 
 yelp_db2html_LDADD =							\
 	@DB2HTML_LIBS@ -lexslt
@@ -75,6 +82,7 @@ yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-base.c		yelp-base.h				\
 	yelp-cache.c		yelp-cache.h				\
+	yelp-db-pager.c		yelp-db-pager.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html-gtkhtml2.c	yelp-html.h				\
@@ -86,6 +94,7 @@ yelp_SOURCES =								\
 	yelp-reader.c		yelp-reader.h				\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
+	yelp-pager.c		yelp-pager.h				\
 	yelp-util.c		yelp-util.h				\
 	yelp-view.c		yelp-view.h				\
 	yelp-view-content.c	yelp-view-content.h			\
