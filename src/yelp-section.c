@@ -32,8 +32,6 @@ yelp_section_new (const gchar *name, const gchar *uri, const gchar *reference)
 {
 	YelpSection *section;
 
-	g_return_val_if_fail (name != NULL, NULL);
-	
 	section = g_new0 (YelpSection, 1);
 	
 	section->name      = g_strdup (name);

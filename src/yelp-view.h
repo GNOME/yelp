@@ -27,6 +27,7 @@
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkmarshal.h>
 #include <libgtkhtml/gtkhtml.h>
+#include "yelp-section.h"
 
 #define YELP_TYPE_VIEW        (yelp_view_get_type ())
 #define YELP_VIEW(o)          (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW, YelpView))
@@ -57,13 +58,13 @@ GType           yelp_view_get_type       (void);
 GtkWidget      *yelp_view_new            (void);
  
 #if 0
-void            yelp_view_open_uri       (YelpView      *view, 
-					  GnomeVFSURI   *uri); 
+void            yelp_view_open_uri       (YelpView            *view, 
+					  const gchar         *uri);
 #endif
+ 
+void            yelp_view_open_section   (YelpView            *view,
+					  const YelpSection   *section);
 
-void            yelp_view_open_uri       (YelpView      *view,
-					  const gchar   *uri,
-					  const gchar   *anchor);
 
 #endif /* __YELP_VIEW_H__ */
 

@@ -61,6 +61,8 @@ static void yelp_window_about                  (gpointer             data,
 static void yelp_window_toggle_history_buttons (GtkWidget           *button,
 						gboolean             sensitive,
 						YelpHistory         *history);
+static void yelp_window_history_button_pressed (GtkWidget           *button,
+						YelpWindow          *window);
 
 struct _YelpWindowPriv {
 	YelpBase       *base;
@@ -195,6 +197,10 @@ yelp_window_populate (YelpWindow *window)
 				  G_CALLBACK (yelp_window_toggle_history_buttons),
 				  G_OBJECT (priv->back_button));
 
+	g_signal_connect (priv->back_button, "clicked",
+			  G_CALLBACK (yelp_window_history_button_pressed),
+			  G_OBJECT (window));
+	
 	priv->forward_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 							 "gtk-go-forward",
 							 "", "",
@@ -206,6 +212,10 @@ yelp_window_populate (YelpWindow *window)
  				  G_CALLBACK (yelp_window_toggle_history_buttons),
 				  G_OBJECT (priv->forward_button));
 	
+	g_signal_connect (priv->forward_button, "clicked",
+			  G_CALLBACK (yelp_window_history_button_pressed),
+			  G_OBJECT (window));
+
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
 	
         /* Html View */
@@ -305,8 +315,8 @@ yelp_window_section_selected_cb (YelpWindow  *window,
 
 	yelp_history_goto (priv->history, section);
 
-	yelp_view_open_uri (YELP_VIEW (window->priv->yelp_view), 
-			    section->uri, section->reference);
+	yelp_view_open_section (YELP_VIEW (window->priv->yelp_view), section);
+
 }
 
 static void
@@ -343,6 +353,28 @@ yelp_window_toggle_history_buttons (GtkWidget   *button,
 	gtk_widget_set_sensitive (button, sensitive);
 }
 
+static void
+yelp_window_history_button_pressed (GtkWidget *button, YelpWindow *window)
+{
+	YelpWindowPriv    *priv;
+	const YelpSection *section = NULL;
+	
+	g_return_if_fail (YELP_IS_WINDOW (window));
+
+	priv = window->priv;
+
+	if (button == priv->forward_button) {
+		section = yelp_history_go_forward (priv->history);
+	}
+	else if (button == priv->back_button) {
+		section = yelp_history_go_back (priv->history);
+	}
+
+	if (section) {
+		yelp_view_open_section (YELP_VIEW (priv->yelp_view), section);
+	}
+}
+
 GtkWidget *
 yelp_window_new (YelpBase *base)
 {
@@ -362,10 +394,12 @@ yelp_window_open_uri (YelpWindow  *window,
 		      const gchar *str_uri)
 {
 	YelpWindowPriv *priv;
+	YelpSection    *section;
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	
 	priv = window->priv;
 	
-	yelp_view_open_uri (YELP_VIEW (priv->yelp_view), str_uri, NULL);
+	yelp_view_open_section (YELP_VIEW (priv->yelp_view), 
+				yelp_section_new (NULL, str_uri, NULL));
 }

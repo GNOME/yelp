@@ -153,7 +153,6 @@ yelp_view_async_close_cb (GnomeVFSAsyncHandle *handle,
                           gpointer             callback_data)
 {
 	StreamData *sdata;
-	gchar *test;
 	
 	d(puts(__FUNCTION__));
 
@@ -373,7 +372,7 @@ yelp_view_new (void)
 }
 
 void
-yelp_view_open_uri (YelpView *view, const gchar *str_uri, const gchar *anchor)
+yelp_view_open_section (YelpView *view, const YelpSection *section)
 {
         YelpViewPriv *priv;
         StreamData   *sdata;
@@ -382,7 +381,7 @@ yelp_view_open_uri (YelpView *view, const gchar *str_uri, const gchar *anchor)
         d(puts(__FUNCTION__));
 	
 	g_return_if_fail (YELP_IS_VIEW (view));
-	g_return_if_fail (str_uri != NULL);
+	g_return_if_fail (section != NULL);
 
         priv = view->priv;
 
@@ -396,25 +395,26 @@ yelp_view_open_uri (YelpView *view, const gchar *str_uri, const gchar *anchor)
 		g_free (priv->base_uri);
 	}
 	
-        priv->base_uri = g_strdup (str_uri);
+        priv->base_uri = g_strdup (section->uri);
 
-	sdata         = g_new0 (StreamData, 1);
-	sdata->view   = view;
-	sdata->stream = priv->doc->current_stream;
-	sdata->anchor = NULL;
+	sdata          = g_new0 (StreamData, 1);
+	sdata->view    = view;
+	sdata->stream  = priv->doc->current_stream;
+	sdata->anchor  = NULL;
 	
-	if (anchor) {
-		sdata->anchor = g_strdup (anchor);
+	if (section->reference) {
+		sdata->anchor = g_strdup (section->reference);
 	}
 	
 	priv->connections = g_slist_prepend (priv->connections, sdata);
 
-	if (anchor) {
- 		gchar *tmp_uri = g_strconcat (str_uri, anchor);
+	if (section->reference) {
+ 		gchar *tmp_uri = g_strconcat (section->uri, 
+					      section->reference);
 		uri = gnome_vfs_uri_new (tmp_uri);
 		g_free (tmp_uri);
 	} else {
-		uri = gnome_vfs_uri_new (str_uri);
+		uri = gnome_vfs_uri_new (section->uri);
 	}
 
 

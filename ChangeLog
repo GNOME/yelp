@@ -1,5 +1,16 @@
 2001-12-04  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c:
+	(yelp_window_populate): connect the history buttons.
+	(yelp_window_history_button_pressed): added/impl.
+	- use yelp_view_open_section instead.
+
+	* src/yelp-view.c:
+	(yelp_view_open_section): renamed from yelp_view_open_uri. Now
+	  takes a section as argument instead.
+
+	* src/yelp-section.c (yelp_section_new): allow name == NULL
+
 	* src/yelp-window.c (yelp_window_populate): connect to the correct
 	  button.
 	(yelp_window_section_selected_cb): notify the history that we are
