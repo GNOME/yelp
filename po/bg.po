@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10 gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-17 15:00+0200\n"
-"PO-Revision-Date: 2005-01-17 08:56+0200\n"
+"POT-Creation-Date: 2005-01-20 14:49+0200\n"
+"PO-Revision-Date: 2005-01-19 19:40+0200\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "Образователни програми"
 msgid "Graphics"
 msgstr "Графика"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
 msgid "Help Topics"
 msgstr "Съдържание на помощта"
 
@@ -151,28 +151,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Мултимедия"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Офис"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Други"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Друга документация"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Разработка"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Научни програми"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Звук и видео"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
@@ -302,16 +302,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Фабрика на Yelp"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:141
+msgid "Open Bookmark in New Window"
+msgstr "Отваряне на връзката в нов прозорец"
+
+#: src/yelp-bookmarks.c:145
+msgid "Rename Bookmark"
+msgstr "Преименуване на отметката"
+
+#: src/yelp-bookmarks.c:149
+msgid "Remove Bookmark"
+msgstr "Премахване на отметката"
+
+#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Отметка с име <b>%s</b>, вече съществува за тази страница."
 
-#: src/yelp-bookmarks.c:341
+#: src/yelp-bookmarks.c:377
 msgid "Document Sections"
 msgstr "Раздели на документа"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -320,9 +332,9 @@ msgstr ""
 "Файлът \"%s\" не може да бъде прегледан. Или той не съществува, или е "
 "изграден чрез не добре написан XML."
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Неизвестен"
+#: src/yelp-db-pager.c:489
+msgid "Unknown Section"
+msgstr "Неизвестен раздел"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -707,6 +719,9 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Помощ за GNOME"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Звук и видео"
 
 #~ msgid "_Home"
 #~ msgstr "У _дома"
