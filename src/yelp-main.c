@@ -91,7 +91,7 @@ struct poptOption options[] = {
 		POPT_ARG_STRING,
 		&cache_dir,
 		OPTION_CACHE_DIR,
-		N_("Define which cache dir to use"),
+		N_("Define which cache directory to use"),
 		NULL,
 	},
 	POPT_TABLEEND
