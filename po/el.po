@@ -15,21 +15,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"POT-Creation-Date: 2004-03-09 03:31-0600\n"
-"PO-Revision-Date: 2004-02-23 13:34+0200\n"
-"Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
+"POT-Creation-Date: 2004-03-15 01:43+0200\n"
+"PO-Revision-Date: 2004-03-15 01:57-0200\n"
+"Last-Translator: Nikos Charonitakis <charosn@her.fothnet.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
-"X-Generator: KBabel 1.0.2\n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
 msgstr "Εφαρμογίδια"
 
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/toc.xml.in.h:2
+#: src/yelp-man.c:429
 msgid "Applications"
 msgstr "Εφαρμογές"
 
@@ -37,7 +36,8 @@ msgstr "Εφαρμογές"
 msgid "Desktop"
 msgstr "Επιφάνεια εργασίας"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/toc.xml.in.h:4
+#: src/yelp-man.c:434
 msgid "Development"
 msgstr "Ανάπτυξη Εφαρμογών"
 
@@ -49,7 +49,8 @@ msgstr "Περιβάλλοντα Ανάπτυξης Εφαρμογών"
 msgid "Development Tools"
 msgstr "Εργαλεία Ανάπτυξης Εφαρμογών"
 
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
+#: data/toc.xml.in.h:7
+#: stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Διορθωτές Κειμένου"
 
@@ -123,7 +124,7 @@ msgstr "Εύρεση"
 
 #: data/ui/yelp.glade.h:4
 msgid "_Find: "
-msgstr "Εύ_ρεση:"
+msgstr "Εύ_ρεση: "
 
 #: data/ui/yelp.glade.h:5
 msgid "_Next"
@@ -146,35 +147,40 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Εργοστάσιο Yelp"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:435
+#: src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
-msgstr "Δεν βρέθηκε γνώρισμα href  στο  yelp:document"
+msgstr "Δε βρέθηκε γνώρισμα href  στο  yelp:document"
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:450
+#: src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Η μνήμη εξαντλήθηκε"
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638
+#: src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Τίτλος σελίδας"
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640
+#: stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658
+#: stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Άγνωστο"
 
 #: src/yelp-error.c:46
 msgid "The selected document could not be opened"
-msgstr "Το επιλεγμένο έγγραφο δεν μπορεί να ανοιχθεί"
+msgstr "Το επιλεγμένο έγγραφο δε μπορεί να ανοιχθεί"
 
 #: src/yelp-error.c:52
 msgid "The selected page could not be found in this document."
-msgstr "Η επιλεγμένη σελίδα δεν μπορεί να βρεθεί στο έγγραφο"
+msgstr "Η επιλεγμένη σελίδα δε μπορεί να βρεθεί στο έγγραφο."
 
 #: src/yelp-error.c:58
 msgid "The table of contents could not be read."
@@ -186,7 +192,7 @@ msgstr "Δεν υποστηρίζονται πλέον έγγραφα DocBook SG
 
 #: src/yelp-error.c:70
 msgid "The selected file could not be read."
-msgstr "Αδυναμία αναγνώρισης του επιλεγμένου αρχείου"
+msgstr "Αδυναμία αναγνώρισης του επιλεγμένου αρχείου."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -201,13 +207,20 @@ msgstr "Αδύνατη η ενεργοποίηση του Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Αδύνατο το άνοιγμα νέου παραθύρου."
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
+#: src/yelp-man.c:296
+#: src/yelp-man.c:317
+#: src/yelp-man.c:353
+#: src/yelp-man.c:385
+#: src/yelp-man.c:401
+#: src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
 #
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+#: src/yelp-man.c:301
+#: src/yelp-man.c:332
+#: src/yelp-man.c:390
+#: src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -312,11 +325,11 @@ msgstr "/Επεξεργασία/Εύ_ρεση..."
 
 #: src/yelp-window.c:261
 msgid "/Edit/Find Ne_xt"
-msgstr "/Επεξεργασία/Εύρεση επομέ_νου"
+msgstr "/Επεξεργασία/Εύρεση Επομέ_νου"
 
 #: src/yelp-window.c:264
 msgid "/Edit/Find Pre_vious"
-msgstr "/Επεξεργασία/Εύρεση _προηγουμένου"
+msgstr "/Επεξεργασία/Εύρεση _Προηγουμένου"
 
 #: src/yelp-window.c:268
 msgid "/_Go"
@@ -340,11 +353,11 @@ msgstr "/Μετάβαση/"
 
 #: src/yelp-window.c:279
 msgid "/Go/_Previous Page"
-msgstr "/Μετάβαση/_Προηγούμενη σελίδα"
+msgstr "/Μετάβαση/_Προηγούμενη Σελίδα"
 
 #: src/yelp-window.c:282
 msgid "/Go/_Next Page"
-msgstr "/Μετάβαση/Επό_μενη σελίδα"
+msgstr "/Μετάβαση/Επό_μενη Σελίδα"
 
 #: src/yelp-window.c:285
 msgid "/Go/_Contents"
@@ -363,7 +376,8 @@ msgid "Help Browser"
 msgstr "Πρόγραμμα Βοήθειας"
 
 #
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570
+#: stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Ενότητα"
 
@@ -425,51 +439,51 @@ msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
 msgid "About This Article"
-msgstr "Περί αυτού του άρθρου"
+msgstr "Περί Αυτού του Άρθρου"
 
 #: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
-msgstr "Περί της βιβλιογραφίας"
+msgstr "Περί Αυτής της Βιβλιογραφίας"
 
 #: stylesheets/l10n.xml.in.h:7
 msgid "About This Book"
-msgstr "Περί του βιβλίου"
+msgstr "Περί Αυτού του Βιβλίου"
 
 #: stylesheets/l10n.xml.in.h:8
 msgid "About This Chapter"
-msgstr "Περί του κεφαλαίου"
+msgstr "Περί Αυτού του Κεφαλαίου"
 
 #: stylesheets/l10n.xml.in.h:9
 msgid "About This Entry"
-msgstr "Περί τηα καταχώρησης"
+msgstr "Περί Aυτής της Καταχώρησης"
 
 #: stylesheets/l10n.xml.in.h:10
 msgid "About This Glossary"
-msgstr "Περί του γλωσσάριου"
+msgstr "Περί Αυτού του Γλωσσαρίου"
 
 #: stylesheets/l10n.xml.in.h:11
 msgid "About This Index"
-msgstr "Περί του ευρετηρίου"
+msgstr "Περί Αυτού του Ευρετηρίου"
 
 #: stylesheets/l10n.xml.in.h:12
 msgid "About This Part"
-msgstr "Περί αυτού του κομματιού"
+msgstr "Περί Αυτού του Κομματιού"
 
 #: stylesheets/l10n.xml.in.h:13
 msgid "About This Preface"
-msgstr "Περί της εισαγωγής"
+msgstr "Περί Αυτής της Εισαγωγής"
 
 #: stylesheets/l10n.xml.in.h:14
 msgid "About This Reference"
-msgstr "Περί της αναφοράς"
+msgstr "Περί Αυτής της Αναφοράς"
 
 #: stylesheets/l10n.xml.in.h:15
 msgid "About This Section"
-msgstr "Περί της ενότητας"
+msgstr "Περί Αυτής της Ενότητας"
 
 #: stylesheets/l10n.xml.in.h:16
 msgid "About This Set"
-msgstr "Περί του σετ"
+msgstr "Περί Αυτού του Σετ"
 
 #: stylesheets/l10n.xml.in.h:17
 msgid "Affiliation"
@@ -525,7 +539,7 @@ msgstr "Τυπογραφική κορωνίδα"
 
 #: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
-msgstr "Πνευματικά Δικαιώματα"
+msgstr "Πνευματικό Δικαίωμα"
 
 #: stylesheets/l10n.xml.in.h:32
 msgid "Copyrights"
@@ -570,7 +584,7 @@ msgstr "Ευρετήριο"
 
 #: stylesheets/l10n.xml.in.h:43
 msgid "Legal Notice"
-msgstr "Νομική ειδοποίηση"
+msgstr "Νομική Ειδοποίηση"
 
 #: stylesheets/l10n.xml.in.h:44
 msgid "Level"
@@ -578,15 +592,15 @@ msgstr "Επίπεδο"
 
 #: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
-msgstr "Μήνυμα κοινού"
+msgstr "Μήνυμα Κοινού"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
-msgstr "Επίπεδο μηνύματος"
+msgstr "Επίπεδο Μηνύματος"
 
 #: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
-msgstr "Σημείο αναφοράς μηνύματος"
+msgstr "Σημείο Αναφοράς Μηνύματος"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
@@ -598,11 +612,11 @@ msgstr "Σημείο αναφοράς"
 
 #: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
-msgstr "Άλλοι συντελεστές"
+msgstr "Άλλος Συντελεστής"
 
 #: stylesheets/l10n.xml.in.h:51
 msgid "Other Contributors"
-msgstr "Άλλοι συντελεστές"
+msgstr "Άλλοι Συντελεστές"
 
 #: stylesheets/l10n.xml.in.h:52
 msgid "Part"
@@ -626,19 +640,19 @@ msgstr "Αναφορά"
 
 #: stylesheets/l10n.xml.in.h:57
 msgid "Reference Entry"
-msgstr "Καταχώρηση αναφοράς"
+msgstr "Καταχώρηση Αναφοράς"
 
 #: stylesheets/l10n.xml.in.h:58
 msgid "Reference Section"
-msgstr "Ενότητα αναφοράς"
+msgstr "Ενότητα Αναφοράς"
 
 #: stylesheets/l10n.xml.in.h:59
 msgid "Release Information"
-msgstr "Πληροφορίες έκδοσης"
+msgstr "Πληροφορίες Έκδοσης"
 
 #: stylesheets/l10n.xml.in.h:60
 msgid "Revision History"
-msgstr "Ιστορικό αναθεώρησης"
+msgstr "Ιστορικό Αναθεώρησης"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
@@ -646,11 +660,11 @@ msgstr "Βλ."
 
 #: stylesheets/l10n.xml.in.h:63
 msgid "See Also"
-msgstr "Βλ. ακόμα"
+msgstr "Βλ. Ακόμα"
 
 #: stylesheets/l10n.xml.in.h:64
 msgid "Set Index"
-msgstr "Ορισμός ευρετηρίου"
+msgstr "Ορισμός Ευρετηρίου"
 
 #: stylesheets/l10n.xml.in.h:65
 msgid "Table"
@@ -681,56 +695,3 @@ msgstr "Λήψη βοήθειας για το GNOME"
 msgid "Help"
 msgstr "Βοήθεια"
 
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Το έγγραφο '%s' δεν υπάρχει"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Εύρεση κειμένου στο έγγραφο:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Αυτόματη αναδίπλ_ωση γύρω"
-
-#~ msgid "Find text..."
-#~ msgstr "Εύρεση κειμένου..."
-
-#~ msgid "Match _entire word"
-#~ msgstr "Ταίριασμα _ολόκληρης λέξης"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "_Ταίριασμα εκθέτη/δείκτη"
-
-#~ msgid "_Search for:"
-#~ msgstr "Ανα_ζήτηση για:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - Επιφάνεια εργασίας"
-
-#~ msgid "Additional documents"
-#~ msgstr "Επιπλέον έγγραφα"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Σελίδες Τεκμηρίωσης"
-
-#~ msgid "Info Pages"
-#~ msgstr "Σελίδες info"
-
-#~ msgid "Manual pages"
-#~ msgstr "Σελίδες τεκμηρίωσης"
-
-#~ msgid "GNOME is"
-#~ msgstr "Το GNOME είναι"
-
-#~ msgid "Free Software"
-#~ msgstr "Ελεύθερο Λογισμικό"
-
-#~ msgid "(C)"
-#~ msgstr "(C)"
-
-#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
-#~ msgstr "Φορτώνεται&nbsp;&nbsp;&nbsp;"
-
-#~ msgid "Loading.&nbsp;&nbsp;"
-#~ msgstr "Φορτώνεται.&nbsp;&nbsp;"
-
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Φορτώνεται..&nbsp;"
