@@ -1,5 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
-/*
+/* gtktreemodelfilter.h
  * Copyright (C) 2000,2001  Red Hat, Inc., Jonathan Blandford <jrb@redhat.com>
  * Copyright (C) 2001,2002  Kristian Rietveld <kris@gtk.org>
  *
@@ -17,8 +16,6 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
- *
- * Author: Kristian Rietveld <kris@gtk.org>
  */
 
 #ifndef __GTK_TREE_MODEL_FILTER_H__
@@ -71,31 +68,22 @@ struct _GtkTreeModelFilterClass
   GObjectClass parent_class;
 };
 
-typedef gboolean (* GtkTreeModelFilterFunc) (GtkTreeModel *model, GtkTreeIter *iter, gpointer data);
+GtkType       gtk_tree_model_filter_get_type                   (void);
+GtkTreeModel *gtk_tree_model_filter_new_with_model             (GtkTreeModel       *child_model,
+								gint                filter_column,
+								GtkTreePath        *virtual_root);
+void          gtk_tree_model_filter_clear_cache                (GtkTreeModelFilter *tree_model_filter);
 
-GtkType       gtk_tree_model_filter_get_type       (void);
-GtkTreeModel *gtk_tree_model_filter_new_with_model (GtkTreeModel          *child_model,
-		                                    gint                   filter_column,
-						    GtkTreePath           *virtual_root);
-void           gtk_tree_model_filter_clear_cache   (GtkTreeModelFilter    *tree_model_filter);
-
-void
-gtk_tree_model_filter_convert_child_iter_to_iter (GtkTreeModelFilter *tree_model_filter,
-		                                  GtkTreeIter        *filter_iter,
-						  GtkTreeIter        *child_iter);
-void
-gtk_tree_model_filter_convert_iter_to_child_iter (GtkTreeModelFilter *tree_model_filter,
-                                                  GtkTreeIter      *child_iter,
-						  GtkTreeIter      *filtered_iter);
-GtkTreePath *
-gtk_tree_model_filter_convert_child_path_to_path (GtkTreeModelFilter *tree_model_filter,
-                                                  GtkTreePath *child_path);
-
-GtkTreePath *
-gtk_tree_model_filter_convert_path_to_child_path (GtkTreeModelFilter *tree_model_filter,
-                                                  GtkTreePath *filtered_path);
-
-
+void          gtk_tree_model_filter_convert_child_iter_to_iter (GtkTreeModelFilter *tree_model_filter,
+								GtkTreeIter        *filter_iter,
+								GtkTreeIter        *child_iter);
+void          gtk_tree_model_filter_convert_iter_to_child_iter (GtkTreeModelFilter *tree_model_filter,
+								GtkTreeIter        *child_iter,
+								GtkTreeIter        *filtered_iter);
+GtkTreePath  *gtk_tree_model_filter_convert_child_path_to_path (GtkTreeModelFilter *tree_model_filter,
+								GtkTreePath        *child_path);
+GtkTreePath  *gtk_tree_model_filter_convert_path_to_child_path (GtkTreeModelFilter *tree_model_filter,
+								GtkTreePath        *filtered_path);
 
 #ifdef __cplusplus
 }
