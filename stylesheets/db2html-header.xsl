@@ -1,6 +1,8 @@
 <?xml version='1.0'?><!-- -*- Mode: fundamental; tab-width: 3 -*- -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://www.gnome.org/yelp/ns"
+                extension-element-prefixes="yelp"
                 version="1.0">
 
 <!-- == header.prefix ====================================================== -->
@@ -369,7 +371,16 @@
 
 <xsl:template name="header.number">
 	<xsl:param name="node" select="."/>
-	<xsl:apply-templates mode="header.number.mode" select="$node"/>
+	<xsl:choose>
+		<xsl:when test="element-available('yelp:cache')">
+			<yelp:cache key="header.number">
+				<xsl:apply-templates mode="header.number.mode" select="$node"/>
+			</yelp:cache>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:apply-templates mode="header.number.mode" select="$node"/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <xsl:template mode="header.number.mode" match="appendix">

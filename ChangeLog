@@ -1,5 +1,16 @@
 2004-02-06  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-db-pager.c:
+	* stylesheets/db2html-header.xsl:
+	- Free the transformation context.
+	- The cache extension element isn't working, but I hooked it in so I have
+	  more oppurtunity to let GTK+ update itself.
+
+	* stylesheets/db2html-navbar.xsl:
+	- Speed improvement to navbar.prev.
+
+2004-02-06  Shaun McCance  <shaunm@gnome.org>
+
 	* stylesheets/db2html-division.xsl:
 	- Fixed blatently wrong chunking in refentry.
 

@@ -337,7 +337,7 @@ db_pager_process (YelpPager *pager)
     xmlFreeDoc (doc);
     xsltFreeStylesheet (stylesheet);
     xmlFreeParserCtxt (ctxt);
-
+    xsltFreeTransformContext (tctxt);
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
     g_signal_emit_by_name (pager, "finish");
@@ -516,6 +516,10 @@ xslt_yelp_cache (xsltTransformContextPtr ctxt,
 		 xmlNodePtr              inst,
 		 xsltStylePreCompPtr     comp)
 {
+    xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
+
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
 }
 
 static void

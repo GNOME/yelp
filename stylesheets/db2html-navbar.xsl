@@ -95,18 +95,18 @@
 				<xsl:value-of select="'titlepage'"/>
 			</xsl:if>
 		</xsl:when>
-		<xsl:when test="$node/preceding-sibling::*[&is-division;]">
+		<xsl:when test="$node/preceding-sibling::*[1][&is-division;]">
 			<xsl:choose>
 				<xsl:when test="$depth_chunk &lt; $chunk_depth">
 					<xsl:call-template name="navbar.last">
 						<xsl:with-param name="node"
-							select="$node/preceding-sibling::*[&is-division;][1]"/>
+							select="$node/preceding-sibling::*[1]"/>
 						<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 					</xsl:call-template>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of
-						select="$node/preceding-sibling::*[&is-division;][1]/@id"/>
+						select="$node/preceding-sibling::*[1]/@id"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:when>
