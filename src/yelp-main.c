@@ -307,13 +307,13 @@ int
 main (int argc, char **argv) 
 {
 	GnomeProgram  *program;
+	gchar         *display_name;
 	CORBA_Object   factory;
 	gchar         *url = NULL;
 	GnomeClient   *client;
 	gboolean       session_started = FALSE;
 	const gchar  **args;
-	
-	
+
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
@@ -328,9 +328,9 @@ main (int argc, char **argv)
 
 	/* Need to set this to the canonical DISPLAY value, since
 	   that's where we're registering per-display components */
-	bonobo_activation_set_activation_env_value
-		("DISPLAY",
-		 gdk_display_get_name (gdk_display_get_default ()) );
+	display_name = gdk_display_get_name (gdk_display_get_default ());
+	bonobo_activation_set_activation_env_value ("DISPLAY", display_name);
+	g_free (display_name);
 
 	gnome_vfs_init ();
 
