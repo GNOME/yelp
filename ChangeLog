@@ -1,3 +1,7 @@
+2002-10-26  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-base.c: removed unused struct type.
+
 2002-10-21  Mikael Hallendal  <micke@codefactory.se>
 
 	* Released 2.1.1
@@ -39,6 +43,9 @@
 	(window_init): Remove unused view_current variable.
 
 2002-10-19  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-db2html.c (main): trying to fix #93814 by checking the
+	  return value from g_path_get_dirname.
 
 	* src/Makefile.am (yelp_LDADD): link with POPT_LIBS. 
 

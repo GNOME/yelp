@@ -106,7 +106,7 @@ main (gint argc, gchar **argv)
 	/* retrieve path component of filename passed in at
 	   command line */
 	pathname = g_path_get_dirname (docpath);
-        
+
 	/* set params to be passed to stylesheet */
 	params[0] = "gdb_docname";
 	params[1] = g_strconcat("\"", docpath, "\"", NULL) ;

@@ -34,18 +34,12 @@
 #include "yelp-info.h"
 #include "yelp-base.h"
 
-typedef struct {
-	YelpBase    *base;
-	GtkTreeIter *parent;
-} ForeachData;
-
 struct _YelpBasePriv {
 	GNode  *toc_tree;
 
 	GList  *index;
 	GSList *windows;
 };
-
 
 static void           yelp_base_init                (YelpBase       *base);
 static void           yelp_base_class_init          (YelpBaseClass  *klass);
