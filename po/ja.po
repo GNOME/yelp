@@ -2,15 +2,15 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # This file is distributed under the same license as the Yelp package.
 # Takeshi Aihana <aihana@gnome.gr.jp>, 2002.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2002.
 # 
-#, no-wrap
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp Ver0.6.99\n"
-"POT-Creation-Date: 2002-04-22 23:50+0900\n"
-"PO-Revision-Date: 2002-04-22 23:50+0900\n"
-"Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
-"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Project-Id-Version: yelp 1.0.6\n"
+"POT-Creation-Date: 2002-09-09 23:41+0900\n"
+"PO-Revision-Date: 2002-09-09 23:46+0900\n"
+"Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
+"Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,242 +23,232 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp ファクトリ"
 
-#: src/yelp-db2html.c:105
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr ""
-"スタイルシートの解析中にエラーが発生しました。dockbook 環境設定が正しいか確認"
-"して下さい。"
-
-#: src/yelp-db2html.c:121
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "ドキュメント '%s' は存在しません"
-
-#: src/yelp-db2html.c:136
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "ドキュメント '%s' を解析できませんでした。"
-
-#: src/yelp-db2html.c:175
-msgid "Error while applying the stylesheet."
-msgstr "スタイルシートの適用中にエラーが発生しました。"
-
-#: src/yelp-html.c:155
-msgid "Loading..."
-msgstr "読み込み中..."
-
-#: src/yelp-info.c:141
-msgid "info"
-msgstr "情報"
-
-#: src/yelp-main.c:109
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Yelp を活性化することが出来ませんでした: '%s'"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "新規にウィンドウを開くことが出来ませんでした。"
 
-#: src/yelp-man.c:302 src/yelp-man.c:323 src/yelp-man.c:359 src/yelp-man.c:391
-#: src/yelp-man.c:407 src/yelp-man.c:418
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:307 src/yelp-man.c:338 src/yelp-man.c:396 src/yelp-man.c:423
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:312
+#: src/yelp-man.c:306
 msgid "Termcap"
 msgstr "Termcap (端末データベース)"
 
-#: src/yelp-man.c:328
+#: src/yelp-man.c:322
 msgid "Perl"
 msgstr "Perl モジュール"
 
-#: src/yelp-man.c:333
+#: src/yelp-man.c:327
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:343
+#: src/yelp-man.c:337
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:348
+#: src/yelp-man.c:342
 msgid "PThreads"
 msgstr "PThreads (POSIX スレッド)"
 
-#: src/yelp-man.c:370
+#: src/yelp-man.c:364
 msgid "System Calls"
 msgstr "システムコール (#2)"
 
-#: src/yelp-man.c:375
+#: src/yelp-man.c:369
 msgid "Library Functions"
 msgstr "ライブラリ関数 (#3)"
 
-#: src/yelp-man.c:380
+#: src/yelp-man.c:374
 msgid "Kernel Routines"
 msgstr "カーネル関数"
 
-#: src/yelp-man.c:435
+#: src/yelp-man.c:429
 msgid "Applications"
 msgstr "アプリケーション"
 
-#: src/yelp-man.c:440
+#: src/yelp-man.c:434
 msgid "Development"
 msgstr "開発"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "特殊なファイル (#4)"
 
-#: src/yelp-man.c:450
+#: src/yelp-man.c:444
 msgid "Configuration Files"
 msgstr "設定ファイル (#5)"
 
-#: src/yelp-man.c:455
+#: src/yelp-man.c:449
 msgid "Games"
 msgstr "ゲーム (#6)"
 
-#: src/yelp-man.c:460
+#: src/yelp-man.c:454
 msgid "Overviews"
 msgstr "概要"
 
-#: src/yelp-man.c:465
+#: src/yelp-man.c:459
 msgid "System Administration"
 msgstr "システム管理 (#8)"
 
-#: src/yelp-man.c:476
-msgid "man"
-msgstr "man"
-
-#: src/yelp-view-content.c:200 src/yelp-view-index.c:374
+#: src/yelp-view-content.c:422 src/yelp-view-index.c:498
 msgid "Section"
 msgstr "セクション"
 
-#: src/yelp-view-index.c:337
+#: src/yelp-view-content.c:567 src/yelp-view-index.c:562
+msgid "Loading..."
+msgstr "読み込み中..."
+
+#: src/yelp-view-index.c:461
 msgid "Search for:"
 msgstr "検索する文字列:"
 
-#: src/yelp-view-toc.c:323
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:183
 msgid "Help Contents"
 msgstr "ヘルプの目次"
 
-#: src/yelp-view-toc.c:324
+#: src/yelp-view-toc.c:184
 msgid "GNOME - Desktop"
 msgstr "GNOME - デスクトップ"
 
-#: src/yelp-view-toc.c:325
+#: src/yelp-view-toc.c:185
 msgid "Additional documents"
 msgstr "追加ドキュメント"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
-msgid "Manual pages"
-msgstr "マニュアル・ページ"
-
-#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
-msgid "Info pages"
-msgstr "Info ページ"
-
-#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
-msgid "Documents"
-msgstr "ドキュメント"
-
-#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
-msgid "Categories"
-msgstr "カテゴリ"
-
-#: src/yelp-view-toc.c:666
+#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
 msgid "Manual Pages"
 msgstr "マニュアル・ページ"
 
-#: src/yelp-window.c:152
+#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+msgid "Info Pages"
+msgstr "Info ページ"
+
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
+msgid "Documents"
+msgstr "ドキュメント"
+
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
+msgid "Categories"
+msgstr "カテゴリ"
+
+#: src/yelp-view-toc.c:466
+msgid "Manual pages"
+msgstr "マニュアル・ページ"
+
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME は"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "フリーソフトウェアです"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/ファイル(_F)"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/ファイル(_F)/新規(_N)"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/ファイル(_F)/閉じる(_C)"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:156
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/ジャンプ(_G)"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/ジャンプ(_G)/戻る(_B)"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/ジャンプ(_G)/進む(_F)"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/ジャンプ(_G)/ホーム(_H)"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/ジャンプ(_G)/目次(_I)"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/ヘルプ(_H)"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/ヘルプ(_H)/情報(_A)"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:227 src/yelp-window.c:429
 msgid "Help Browser"
 msgstr "ヘルプ・ブラウザ"
 
+#: src/yelp-window.c:339
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "ドキュメント '%s' は存在しません"
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:567
+#: src/yelp-window.c:598
 msgid "translator_credits"
-msgstr "翻訳者のクレジット"
+msgstr ""
+"Takeshi Aihana <aihana@gnome.gr.jp>\n"
+"Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:602
 msgid "Help Browser for GNOME 2.0"
 msgstr "GNOME 2.0 向けのヘルプ・ブラウザ"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:657
 msgid "Back"
 msgstr "戻る"
 
-#: src/yelp-window.c:626
+#: src/yelp-window.c:658
 msgid "Show previous page in history"
 msgstr "履歴の中の前のページを表示します"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:669
 msgid "Forward"
 msgstr "進む"
 
-#: src/yelp-window.c:638
+#: src/yelp-window.c:670
 msgid "Show next page in history"
 msgstr "履歴の中の次のページを表示します"
 
-#: src/yelp-window.c:651
+#: src/yelp-window.c:683
 msgid "Home"
 msgstr "ホーム"
 
-#: src/yelp-window.c:652
+#: src/yelp-window.c:684
 msgid "Go to home view"
 msgstr "ホームビューにジャンプします"
 
-#: src/yelp-window.c:662
+#: src/yelp-window.c:694
 msgid "Index"
 msgstr "目次"
 
-#: src/yelp-window.c:663
+#: src/yelp-window.c:695
 msgid "Search in the index"
 msgstr "目次を検索します"
 
@@ -269,3 +259,22 @@ msgstr "GNOME 2.0 向けヘルプ・ブラウザ"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "GNOME ヘルプ・システム"
+
+#~ msgid ""
+#~ "Error while parsing the stylesheet, make sure you have your docbook "
+#~ "environment setup correctly."
+#~ msgstr ""
+#~ "スタイルシートの解析中にエラーが発生しました。dockbook 環境設定が正しいか"
+#~ "確認して下さい。"
+
+#~ msgid "Couldn't parse the document '%s'."
+#~ msgstr "ドキュメント '%s' を解析できませんでした。"
+
+#~ msgid "Error while applying the stylesheet."
+#~ msgstr "スタイルシートの適用中にエラーが発生しました。"
+
+#~ msgid "info"
+#~ msgstr "情報"
+
+#~ msgid "man"
+#~ msgstr "man"
