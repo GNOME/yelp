@@ -593,7 +593,6 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 	xmlNode *xml_node;
 	GNode   *tree;
 	gchar   *full_path;
-	gchar   *title_path;
         
         g_return_val_if_fail (docpath != NULL, NULL);
 
@@ -620,22 +619,11 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 	xml_node = doc->xmlRootNode->xmlChildrenNode;
 
 	full_path = g_strconcat ("ghelp:", docpath, NULL);
-	title_path = g_strconcat (full_path, "?title-page", NULL);
-
-	g_node_append_data (tree,
-			    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
-					      _("About This Document"),
-					      yelp_uri_new (title_path) ));
-	g_node_append_data (tree,
-			    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
-					      _("Contents"),
-					      yelp_uri_new (full_path) ));
 
 	for (; xml_node != NULL; xml_node = xml_node->next) {
 		scrollkeeper_parse_toc_section (tree, xml_node, full_path);
 	}
 
-	g_free (title_path);
 	g_free (full_path);
 	
 	return tree;

@@ -66,28 +66,16 @@ main (gint argc, gchar **argv)
 	const gchar    *params[16 + 1];
 	gchar          *pathname;
         gchar          *docpath;
-	gboolean        gen_links;
 	db_doc = NULL;
 
         putenv ("XML_CATALOG_FILES=" DATADIR "/yelp/catalog");
 
         if (argc < 2) {
-                g_print ("Usage 'yelp-db2html [-n] url'\n");
+                g_print ("Usage 'yelp-db2html url'\n");
                 exit (1);
         }
 
-	if (!strcmp (argv[1], "-n")) {
-		if (argc < 3) {
-			g_print ("Usage 'yelp-db2html [-n] url'\n");
-			exit (1);
-		}
-
-		docpath = argv[2];
-		gen_links = FALSE;
-	} else {
-		docpath = argv[1];
-		gen_links = TRUE;
-	}
+        docpath = argv[1];
 
 	if (!g_file_test (docpath, G_FILE_TEST_EXISTS)) {
 		g_warning ("'%s' doesn't exist.", docpath);
@@ -129,19 +117,13 @@ main (gint argc, gchar **argv)
 	pathname = g_path_get_dirname (docpath);
 
 	/* set params to be passed to stylesheet */
-	params[0]  = "yelp_docname";
+	params[0]  = "doc_name";
 	params[1]  = g_strconcat("\"", docpath, "\"", NULL) ;
-	params[2]  = "yelp_pathname";
-	params[3]  = g_strconcat("\"", pathname, "\"", NULL) ;
-	params[4]  = "yelp_stylesheet_path";
-        params[5]  = g_strconcat("\"", DB_STYLESHEET_PATH, "\"", NULL) ;
-        params[6]  = "yelp_max_chunk_depth";
-        params[7]  = "2";
-	params[8]  = "yelp_generate_navbar";
-	params[9]  = (gen_links ? "1" : "0");
-	params[10] = "yelp_chunk_method";
-	params[11] = "'yelp'";
-        params[12] = NULL;
+	params[2]  = "doc_path";
+	params[3]  = g_strconcat("\"file://", pathname, "/\"", NULL) ;
+	params[4]  = "stylesheet_path";
+        params[5]  = g_strconcat("\"file://", DB_STYLESHEET_PATH, "/\"", NULL) ;
+        params[6] = NULL;
         
         g_free (pathname);
 
