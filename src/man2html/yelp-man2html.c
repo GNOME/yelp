@@ -3793,7 +3793,7 @@ main(int argc, char **argv)
 		len = strlen(output);
 		for(i = 0; i < len; i++)
 		{
-			if (isspace((unsigned char)output[i] && (output[i+1] == '/')))
+			if (isspace((unsigned char)output[i]) && output[i+1] == '/')
 				output[i] = '\0';
 		}
 			
