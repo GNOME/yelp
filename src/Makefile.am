@@ -7,6 +7,12 @@ else
 man_sources =
 endif
 
+if ENABLE_INFO
+info_sources = yelp-info-pager.c yelp-info-pager.h
+else
+info_sources =
+endif
+
 INCLUDES =								\
 	-I$(top_srcdir)							\
 	$(YELP_CFLAGS)							\
@@ -70,6 +76,7 @@ test_uri_LDADD = @YELP_LIBS@
 
 yelp_SOURCES =							\
 	$(gnome_yelp_idl_sources)				\
+	$(info_sources)						\
 	$(man_sources)						\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\

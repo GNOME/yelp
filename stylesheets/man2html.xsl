@@ -1,15 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
                 xmlns:yelp="http://www.gnome.org/yelp/ns"
                 xmlns="http://www.w3.org/1999/xhtml"
-                extension-element-prefixes="exsl yelp"
+                extension-element-prefixes="yelp"
                 version="1.0">
 
 <xsl:param name="stylesheet_path" select="''"/>
-<xsl:param name="color_gray_background" select="'#E6E6E6'"/>
-<xsl:param name="color_gray_border" select="'#A1A1A1'"/>
+
+<xsl:param name="yelp.icon.blockquote"/>
+<xsl:param name="yelp.icon.caution"/>
+<xsl:param name="yelp.icon.important"/>
+<xsl:param name="yelp.icon.note"/>
+<xsl:param name="yelp.icon.programlisting"/>
+<xsl:param name="yelp.icon.tip"/>
+<xsl:param name="yelp.icon.warning"/>
+
+<xsl:param name="yelp.color.text"/>
+<xsl:param name="yelp.color.anchor"/>
+<xsl:param name="yelp.color.background"/>
+<xsl:param name="yelp.color.rule"/>
+<xsl:param name="yelp.color.base0"/>
+<xsl:param name="yelp.color.base1"/>
+<xsl:param name="yelp.color.base2"/>
+<xsl:param name="yelp.color.base3"/>
+<xsl:param name="yelp.color.selected0"/>
+<xsl:param name="yelp.color.selected1"/>
+<xsl:param name="yelp.color.selected2"/>
+<xsl:param name="yelp.color.selected3"/>
 
 <xsl:template match="Man">
   <xsl:choose>
@@ -48,6 +66,9 @@ h1 { font-size: 1.6em; font-weight: bold; }
 h2 { font-size: 1.4em; font-weight: bold; }
 h3 { font-size: 1.2em; font-weight: bold; }
 
+h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
+<xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+
 div[class~="SH"] { margin-left: 1.2em; }
 div[class~="SS"] { margin-left: 1.6em; }
 
@@ -61,13 +82,18 @@ margin-bottom: 1.6em;
 }
 
 p, div { margin: 0em; }
-p + p, p + div, div + p, div + div { margin-top: 0.8em; }
+p + *, div + * { margin-top: 1em; }
 
 dl { margin: 0em; }
-ol { margin: 0em; }
-ul { margin: 0em; }
-ul li { padding-left: 0.4em; }
-dd + dt { margin-top: 1.6em; }
+dl dd + dt { margin-top: 1em; }
+dl dd {
+  margin-top: 0.5em;
+  margin-left: 2em;
+  margin-right: 1em;
+}
+ol { margin-left: 2em; }
+ul { margin-left: 2em; }
+ul li { margin-right: 1em; }
 </xsl:text></xsl:template>
 
 <!-- ======================================================================= -->

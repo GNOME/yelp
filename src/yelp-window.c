@@ -51,6 +51,9 @@
 #ifdef ENABLE_MAN
 #include "yelp-man-pager.h"
 #endif
+#ifdef ENABLE_INFO
+#include "yelp-info-pager.h"
+#endif
 
 #ifdef YELP_DEBUG
 #define d(x) x
@@ -1061,7 +1064,7 @@ window_do_load_pager (YelpWindow  *window,
 	    break;
 #ifdef ENABLE_INFO
 	case YELP_DOC_TYPE_INFO:
-	    // FIXME: yelp_info_pager_new (doc_info);
+	    pager = yelp_info_pager_new (doc_info);
 	    break;
 #endif
 #ifdef ENABLE_MAN

@@ -105,25 +105,15 @@
 <xsl:template name="db2html.css.custom">
   <xsl:text>
     h1 + div h2[class~="title"] { margin-top: 2em; }
-    h1 { color: </xsl:text>
+    h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
     <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-    h2 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-    h3 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-    h4 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-    h5 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-    h6 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-    h7 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+
     h3 span[class~="title"] { border-bottom: none; }
     h4 span[class~="title"] { border-bottom: none; }
     h5 span[class~="title"] { border-bottom: none; }
     h6 span[class~="title"] { border-bottom: none; }
     h7 span[class~="title"] { border-bottom: none; }
+
     div[class~="admonition"] { color: </xsl:text>
     <xsl:value-of select="$yelp.color.base3"/><xsl:text>; }
     div[class~="programlisting"] {

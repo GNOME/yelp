@@ -1,5 +1,24 @@
 2004-12-31  Shaun McCance  <shaunm@gnome.org>
 
+	* src/Makefile.am:
+	* src/yelp-info-pager.c:
+	* src/yelp-info-pager.h:
+	* src/yelp-window.c:
+	- Adding yelp-info-pager.[ch]
+
+	* src/yelp-man-pager.c:
+	- Some cleanups
+
+	* stylesheets/Makefile.am:
+	* stylesheets/info2html.xsl:
+	- Adding info2html.xsl
+
+	* stylesheets/db2html.xsl.in:
+	* stylesheets/man2html.xsl:
+	- Minor stylistic stuff
+
+2004-12-31  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-toc-pager.c:
 	- Put in a NULL check to fix a crahser for Davyd
 

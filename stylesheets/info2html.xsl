@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns="http://www.w3.org/1999/xhtml"
+                extension-element-prefixes="yelp"
+                version="1.0">
+
+<xsl:param name="stylesheet_path" select="''"/>
+
+<xsl:param name="yelp.icon.blockquote"/>
+<xsl:param name="yelp.icon.caution"/>
+<xsl:param name="yelp.icon.important"/>
+<xsl:param name="yelp.icon.note"/>
+<xsl:param name="yelp.icon.programlisting"/>
+<xsl:param name="yelp.icon.tip"/>
+<xsl:param name="yelp.icon.warning"/>
+
+<xsl:param name="yelp.color.text"/>
+<xsl:param name="yelp.color.anchor"/>
+<xsl:param name="yelp.color.background"/>
+<xsl:param name="yelp.color.rule"/>
+<xsl:param name="yelp.color.base0"/>
+<xsl:param name="yelp.color.base1"/>
+<xsl:param name="yelp.color.base2"/>
+<xsl:param name="yelp.color.base3"/>
+<xsl:param name="yelp.color.selected0"/>
+<xsl:param name="yelp.color.selected1"/>
+<xsl:param name="yelp.color.selected2"/>
+<xsl:param name="yelp.color.selected3"/>
+
+<xsl:template match="/">
+  <yelp:document href="index">
+    <html>
+      <head>
+        <title>
+          <xsl:text>FOO</xsl:text>
+        </title>
+        <style type="text/css">
+          <xsl:call-template name="html.css"/>
+        </style>
+      </head>
+      <body>
+        <pre class="body">
+          <xsl:value-of select="."/>
+        </pre>
+      </body>
+    </html>
+  </yelp:document>
+</xsl:template>
+
+<xsl:template name="html.css"><xsl:text>
+h1 { font-size: 1.6em; font-weight: bold; }
+h2 { font-size: 1.4em; font-weight: bold; }
+h3 { font-size: 1.2em; font-weight: bold; }
+
+h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
+<xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+
+body { margin: 0em; padding: 0em; }
+pre[class~="body"] {
+margin-left: 0.8em;
+margin-right: 0.8em;
+margin-bottom: 1.6em;
+}
+
+p, div { margin: 0em; }
+p + *, div + *, { margin-top: 1em; }
+
+dl { margin: 0em; }
+dl dd + dt { margin-top: 1em; }
+dl dd {
+  margin-top: 0.5em;
+  margin-left: 2em;
+  margin-right: 1em;
+}
+ol { margin-left: 2em; }
+ul { margin-left: 2em; }
+ul li { margin-right: 1em; }
+</xsl:text></xsl:template>
+
+</xsl:stylesheet>
