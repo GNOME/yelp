@@ -85,6 +85,7 @@ extract_secnum_from_filename (const char *filename)
 	if (start) {
 		start++;
 		len -= start - filename;
+
 		return g_strndup (start, len);
 	} else {
 		return NULL;
@@ -127,7 +128,7 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 	char             uribuf[128], titlebuf[128];
 	struct TreeNode *node;
 	YelpSection     *yelp_section;
-	
+
 	dirh = opendir (basedir);
 	if (!dirh) {
 		return;
@@ -147,10 +148,11 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		}
 
 		section = extract_secnum_from_filename (dent->d_name);
+
 		if (!section) {
 			continue;
 		}
-
+		
 		if (section[0] != secnum) {
 			g_free (section);
 			continue;
@@ -162,8 +164,8 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		g_snprintf (titlebuf, sizeof (titlebuf), "%s (%s)", 
 			    manname, section);
 
-		g_snprintf (uribuf, sizeof (uribuf), "man:%s.%s", 
-			    manname, section);
+		g_snprintf (uribuf, sizeof (uribuf), "man:%s.%c", 
+			    manname, secnum);
 
 		node = g_hash_table_lookup (section_hash, section);
 

@@ -1,3 +1,25 @@
+2002-05-20  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-content.c: 
+	- use YelpURI instead of docpath for current_uri. 
+	(yelp_view_content_show_uri): 
+	- Fixed a problem that if you viewed a man page and then switched
+ 	  to a docbook with TOC you didn't get the TOC.
+	- Change cursor here.
+	- Write out "Loading..." to the html-view instead of showing old
+	  data while reading.
+	(content_reader_data_cb): clear the "Loading..."-message first
+	  time this is called.
+	(content_reader_finished_cb): 
+	- Fixes #82363
+	- Give focus to html widget.
+
+	* src/yelp-man.c (yelp_man_populate_tree_for_subdir): 
+	- Set the link to be page.secnum instead of page.section.
+	  For example pages with foo.3pm should have the link foo.3, this
+	  solves the problem where you get the error that page is not
+	  found. Might fix #82346.
+
 2002-05-20  Sander Vesik <sander.vesik@sun.com>
 
 	* stylesheets/yelp-customization.xsl:

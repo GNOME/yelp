@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -50,8 +50,10 @@ static void content_html_uri_selected_cb      (YelpHtml             *html,
 					       YelpURI              *uri,
 					       gboolean              handled,
 					       YelpViewContent      *view);
+#if 0
 static void content_reader_start_cb           (YelpReader           *reader,
 					       YelpViewContent      *view);
+#endif
 static void content_reader_data_cb            (YelpReader           *reader,
 					       const gchar          *data,
 					       gint                  len,
@@ -84,7 +86,9 @@ struct _YelpViewContentPriv {
 	YelpHtml     *html_view;
 	GtkWidget    *html_widget;
 
-	gchar        *current_docpath;
+	YelpURI      *current_uri;
+	
+	gboolean      loading;
 };
 
 GType
@@ -134,7 +138,9 @@ content_init (YelpViewContent *view)
 	
 	priv->html_view       = yelp_html_new ();
 	priv->html_widget     = yelp_html_get_widget (priv->html_view);
-	priv->current_docpath = g_strdup ("");
+/* 	priv->current_docpath = g_strdup (""); */
+	priv->current_uri     = NULL;
+	priv->loading         = FALSE;
 	
 	g_signal_connect (priv->html_view, "uri_selected",
 			  G_CALLBACK (content_html_uri_selected_cb), 
@@ -142,9 +148,11 @@ content_init (YelpViewContent *view)
 
 	priv->reader      = yelp_reader_new (TRUE);
 	
+#if 0
 	g_signal_connect (G_OBJECT (priv->reader), "start",
 			  G_CALLBACK (content_reader_start_cb),
 			  view);
+#endif
 	g_signal_connect (G_OBJECT (priv->reader), "data",
 			  G_CALLBACK (content_reader_data_cb),
 			  view);
@@ -211,11 +219,14 @@ content_tree_selection_changed_cb (GtkTreeSelection *selection,
 	}
 }
 
+
+#if 0
 static void
 content_reader_start_cb (YelpReader *reader, YelpViewContent *view)
 {
-	YelpViewContentPriv *priv;
 	GdkCursor           *cursor;
+	YelpViewContentPriv *priv;
+	gchar               *loading = _("Loading...");
 
 	g_return_if_fail (YELP_IS_READER (reader));
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
@@ -230,7 +241,15 @@ content_reader_start_cb (YelpReader *reader, YelpViewContent *view)
 	gdk_cursor_unref (cursor);
 	
 	yelp_html_clear (priv->html_view);
+	
+	priv->loading = TRUE;
+	
+	yelp_html_printf (priv->html_view, 
+			  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><body bgcolor=\"white\"><center>%s</center></body></html>", 
+			  loading);
+ 	yelp_html_close (priv->html_view);
 }
+#endif
 
 static void
 content_reader_data_cb (YelpReader      *reader,
@@ -244,6 +263,11 @@ content_reader_data_cb (YelpReader      *reader,
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
 	
 	priv = view->priv;
+
+	if (priv->loading) {
+		yelp_html_clear (priv->html_view);
+		priv->loading = FALSE;
+	}
 
 	if (len == -1) {
 		len = strlen (data);
@@ -269,6 +293,7 @@ content_reader_finished_cb (YelpReader *reader, YelpViewContent *view)
 	yelp_html_close (priv->html_view);
 
 	gdk_window_set_cursor (priv->html_widget->window, NULL);
+	gtk_widget_grab_focus (priv->html_widget);
 }
 
 static void
@@ -397,6 +422,8 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 {
 	YelpViewContentPriv *priv;
 	GNode               *node;
+	gchar               *loading = _("Loading...");
+	GdkCursor           *cursor;
 	
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
 	g_return_if_fail (uri != NULL);
@@ -405,14 +432,15 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 
 	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML) {
 		/* ghelp uri-scheme /usr/share/gnome/help... */
-		const gchar *docpath;
+/* 		const gchar *docpath; */
 
- 		docpath = yelp_uri_get_path (uri);
+/*  		docpath = yelp_uri_get_path (uri); */
 
-		if (docpath && strcmp (docpath, priv->current_docpath)) {
+		if (!priv->current_uri || 
+		    !yelp_uri_equal_path (uri, priv->current_uri)) {
 			/* Try to find it in the scrollkeeper database,
 			   doesn't have to exist here */
-			node = yelp_scrollkeeper_get_toc_tree (docpath);
+			node = yelp_scrollkeeper_get_toc_tree (yelp_uri_get_path (uri));
 			
 			if (node) {
 				gtk_widget_show (priv->tree_sw);
@@ -421,17 +449,34 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 			} else {
 				gtk_widget_hide (priv->tree_sw);
 			}
-			
-			g_free (priv->current_docpath);
-			priv->current_docpath = g_strdup (docpath);
 		}
 	} else {
 		gtk_widget_hide (priv->tree_sw);
+		
 	}
+	
+	if (priv->current_uri) {
+		yelp_uri_unref (priv->current_uri);
+	}
+	
+	priv->current_uri = yelp_uri_ref (uri);
 
 	yelp_html_set_base_uri (priv->html_view, uri);
+
+	yelp_html_clear (priv->html_view);
+
+	cursor = gdk_cursor_new (GDK_WATCH);
+	
+	gdk_window_set_cursor (priv->html_widget->window, cursor);
+	gdk_cursor_unref (cursor);
+
+	priv->loading = TRUE;
+	
+	yelp_html_printf (priv->html_view, 
+			  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body bgcolor=\"white\"><center>%s</center></body></html>", 
+			  loading);
+ 	yelp_html_close (priv->html_view);
 	
 	yelp_reader_start (priv->reader, uri);
 
-/* 	yelp_html_open_uri (priv->html_view, uri, error); */
 }
