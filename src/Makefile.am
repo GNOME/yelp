@@ -64,10 +64,10 @@ yelp_pregenerate_SOURCES =						\
 	yelp-pregenerate.c      yelp-pregenerate.h
 
 yelp_db2html_LDADD =							\
-	@DB2HTML_LIBS@
+	@DB2HTML_LIBS@ -lexslt
 
 yelp_pregenerate_LDADD =						\
-	@YELP_LIBS@
+	@YELP_LIBS@ -lexslt
 
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\

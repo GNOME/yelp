@@ -42,6 +42,7 @@
 #include <libxslt/xsltInternals.h>
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
+#include <libexslt/exslt.h>
 
 #include "yelp-error.h"
 
@@ -79,6 +80,9 @@ main (gint argc, gchar **argv)
 	/* libxml housekeeping */
 	xmlSubstituteEntitiesDefault(1);
 	xmlLoadExtDtdDefaultValue = 1;
+
+	/* Register the EXSLT extentions */
+	exsltRegisterAll();
 
 	/* parse the stylesheet */
         stylesheet  = xsltParseStylesheetFile (STYLESHEET);

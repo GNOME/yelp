@@ -293,6 +293,12 @@ scrollkeeper_parse_toc_section (GNode       *parent,
 		return;
 	}
 
+	/* Restrict the sidebar to be two levels deep */
+	if (g_ascii_strncasecmp (xml_node->name, "tocsect1", 8) &&
+	    g_ascii_strncasecmp (xml_node->name, "tocsect2", 8)) {
+		return;
+	}
+
 	name = g_strdup (xml_str);
 	xmlFree (xml_str);
 	g_strstrip (name);

@@ -4,6 +4,7 @@ yelpcustomizationdir=$(datadir)/sgml/docbook/yelp
 
 yelpcustomization_DATA = 	\
 	yelp-customization.xsl	\
+	yelp-functions.xsl	\
 	yelp-custom.xsl		\
 	l10n.xml
 

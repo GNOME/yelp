@@ -795,11 +795,12 @@ heading. Borrowed from Walsh's modular stylesheets -->
 </xsl:template>
 
   
-
+<!--
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="book.titlepage.before.verso">
     <img align="left" src="stylesheet/gnome-logo-icon.png" alt="GNOME Logo"/>
   
 </xsl:template>
+-->
 
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="book.titlepage">
@@ -972,11 +973,12 @@ heading. Borrowed from Walsh's modular stylesheets -->
 </xsl:template>
 
   
-
+<!--
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="article.titlepage.before.verso">
     <img align="left" src="stylesheet/gnome-logo-icon.png" alt="GNOME Logo"/>
   
 </xsl:template>
+-->
 
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="article.titlepage">
