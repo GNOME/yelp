@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-26 11:28-0400\n"
-"PO-Revision-Date: 2004-09-26 22:18-0400\n"
+"POT-Creation-Date: 2004-10-07 09:29-0400\n"
+"PO-Revision-Date: 2004-10-07 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -136,25 +136,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:455 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:465 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "No href attribute found on yelp:document"
 
-#: src/yelp-db-pager.c:470 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:480 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Out of memory"
 
-#: src/yelp-db-pager.c:658 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:668 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Titlepage"
 
-#: src/yelp-db-pager.c:660 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:670 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Contents"
 
-#: src/yelp-db-pager.c:678 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:688 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -256,144 +256,144 @@ msgstr "Overviews"
 msgid "System Administration"
 msgstr "System Administration"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "Document URI"
+#: src/yelp-pager.c:120
+msgid "Document Information"
+msgstr "Document Information"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "The URI of the document to be processed"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr "The YelpDocInfo struct of the document"
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pause count is negative."
 
-#: src/yelp-toc-pager.c:490
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Could not load the OMF file '%s'."
 
-#: src/yelp-toc-pager.c:887
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Categories"
 
-#: src/yelp-toc-pager.c:901
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Documents"
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:254
 msgid "/_File"
 msgstr "/_File"
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:255
 msgid "/File/_New window"
 msgstr "/File/_New window"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:258
 msgid "/File/_Close window"
 msgstr "/File/_Close window"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:262
 msgid "/_Edit"
 msgstr "/_Edit"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:263
 msgid "/Edit/_Find..."
 msgstr "/Edit/_Find..."
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:266
 msgid "/Edit/Find Ne_xt"
 msgstr "/Edit/Find Ne_xt"
 
-#: src/yelp-window.c:255
+#: src/yelp-window.c:269
 msgid "/Edit/Find Pre_vious"
 msgstr "/Edit/Find Pre_vious"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:273
 msgid "/_Go"
 msgstr "/_Go"
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:274
 msgid "/Go/_Back"
 msgstr "/Go/_Back"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:277
 msgid "/Go/_Forward"
 msgstr "/Go/_Forward"
 
-#: src/yelp-window.c:266
+#: src/yelp-window.c:280
 msgid "/Go/_Home"
 msgstr "/Go/_Home"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:283
 msgid "/Go/"
 msgstr "/Go/"
 
-#: src/yelp-window.c:270
+#: src/yelp-window.c:284
 msgid "/Go/_Previous Page"
 msgstr "/Go/_Previous Page"
 
-#: src/yelp-window.c:273
+#: src/yelp-window.c:287
 msgid "/Go/_Next Page"
 msgstr "/Go/_Next Page"
 
-#: src/yelp-window.c:276
+#: src/yelp-window.c:290
 msgid "/Go/_Contents"
 msgstr "/Go/_Contents"
 
-#: src/yelp-window.c:280
+#: src/yelp-window.c:294
 msgid "/_Help"
 msgstr "/_Help"
 
-#: src/yelp-window.c:281
+#: src/yelp-window.c:295
 msgid "/Help/_About"
 msgstr "/Help/_About"
 
-#: src/yelp-window.c:343
+#: src/yelp-window.c:357
 msgid "Help Browser"
 msgstr "Help Browser"
 
-#: src/yelp-window.c:625
+#: src/yelp-window.c:669
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: src/yelp-window.c:682
+#: src/yelp-window.c:726
 msgid "Back"
 msgstr "Back"
 
-#: src/yelp-window.c:683
+#: src/yelp-window.c:727
 msgid "Show previous page in history"
 msgstr "Show previous page in history"
 
-#: src/yelp-window.c:693
+#: src/yelp-window.c:737
 msgid "Forward"
 msgstr "Forward"
 
-#: src/yelp-window.c:694
+#: src/yelp-window.c:738
 msgid "Show next page in history"
 msgstr "Show next page in history"
 
-#: src/yelp-window.c:706
+#: src/yelp-window.c:750
 msgid "Home"
 msgstr "Home"
 
-#: src/yelp-window.c:707
+#: src/yelp-window.c:751
 msgid "Go to home view"
 msgstr "Go to home view"
 
-#: src/yelp-window.c:878
+#: src/yelp-window.c:1024
 msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1326
+#: src/yelp-window.c:1423
 msgid "translator_credits"
 msgstr ""
 "Maintainer: Adam Weinberger <adamw@gnome.org>\n"
 "Alexander Winston <alexander.winston@comcast.net>"
 
-#: src/yelp-window.c:1332
+#: src/yelp-window.c:1429
 msgid "A Help Browser for GNOME"
 msgstr "A Help Browser for GNOME"
 
