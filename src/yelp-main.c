@@ -251,7 +251,7 @@ main_save_session (GnomeClient        *client,
 			urls = tmp;
 		}
 
-		argv[2] = g_strconcat (urls, "\"", NULL);
+		argv[arg_len - 1] = g_strconcat (urls, "\"", NULL);
 		g_free (urls);
 	}
 
@@ -286,12 +286,13 @@ main_restore_session (void)
         }
 
 	if (open_urls) {
-		gchar **urls = g_strsplit (open_urls, ";", -1);
+		gchar **urls = g_strsplit_set (open_urls, ";\"", -1);
 		gchar *url;
 		gint   i = 0;
 		
 		while ((url = urls[i]) != NULL) {
-			main_open_new_window (yelp_base, url);
+			if (*url != '\0')
+				main_open_new_window (yelp_base, url);
 			++i;
 		}
 		
