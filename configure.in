@@ -1,6 +1,6 @@
 AC_INIT(src/yelp-main.c)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(yelp, 1.0.1)
+AM_INIT_AUTOMAKE(yelp, 1.0.2)
 
 AC_PROG_INTLTOOL
 
@@ -59,7 +59,7 @@ fi
 AC_DEFINE_UNQUOTED(GNOMELOCALEDIR, "$GNOMELOCALEDIR")
 
 PKG_CHECK_MODULES(YELP, gnome-vfs-2.0 >= 1.1		\
-			libgnome-2.0 >= 1.117.2		\
+			libgnome-2.0 >= 2.0.2		\
 			libgnomeui-2.0 >= 1.103.0	\
 			libbonobo-2.0 >= 1.108.0	\
 			libxslt >= 1.0.15		\
@@ -83,7 +83,7 @@ dnl <= Check for bzip2 > 1.0.0
 if test x$with_html_widget = xgtkhtml1; then
 	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-3.0 >= 3.0)
 else
-	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-2.0 >= 1.99.9)
+	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-2.0 >= 1.99.10)
 fi
 	
 CFLAGS="$HTML_WIDGET_CFLAGS $CFLAGS"
