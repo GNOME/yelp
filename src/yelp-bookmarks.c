@@ -63,6 +63,10 @@ static GtkTreeStore *actions_store;
 static gchar *dup_title;
 
 static GtkWidget *bookmarks_dialog = NULL;
+static GtkWidget *edit_open_button = NULL;
+static GtkWidget *edit_rename_button = NULL;
+static GtkWidget *edit_remove_button = NULL;
+
 
 static gboolean have_toc = FALSE;
 static gboolean have_doc = FALSE;
@@ -143,7 +147,8 @@ static gboolean  bookmarks_button_press_cb  (GtkWidget           *widget,
 static gboolean  bookmarks_configure_cb     (GtkWidget           *widget, 
 					     GdkEventConfigure   *event,
 					     gpointer             data);
-
+static void      selection_changed_cb       (GtkTreeSelection    *selection,
+					     gpointer             data);
 
 static GtkActionEntry popup_entries[] = {
     { "OpenName", GTK_STOCK_OPEN,
@@ -585,7 +590,6 @@ yelp_bookmarks_edit (void)
     GtkTreeView *view;
     GtkTreeSelection *select;
     GtkCellRenderer *renderer;
-    GtkWidget *button;
     gint width, height;
     
     if (!bookmarks_dialog) {
@@ -620,7 +624,7 @@ yelp_bookmarks_edit (void)
 	gtk_tree_view_set_model (view, GTK_TREE_MODEL (actions_store));
 
 	select = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
-
+	
 	gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
 	gtk_tree_view_expand_all (GTK_TREE_VIEW (view));
 
@@ -633,18 +637,21 @@ yelp_bookmarks_edit (void)
 	g_signal_connect (G_OBJECT (renderer), "edited",
 			  G_CALLBACK (bookmarks_cell_edited_cb), NULL);
 
-	button = glade_xml_get_widget (glade, "open_button");
-	g_signal_connect (G_OBJECT (button), "clicked",
+	edit_open_button = glade_xml_get_widget (glade, "open_button");
+	g_signal_connect (G_OBJECT (edit_open_button), "clicked",
 			  G_CALLBACK (bookmarks_open_button_cb),
 			  view);
-	button = glade_xml_get_widget (glade, "rename_button");
-	g_signal_connect (G_OBJECT (button), "clicked",
+	edit_rename_button = glade_xml_get_widget (glade, "rename_button");
+	g_signal_connect (G_OBJECT (edit_rename_button), "clicked",
 			  G_CALLBACK (bookmarks_rename_button_cb),
 			  view);
-	button = glade_xml_get_widget (glade, "remove_button");
-	g_signal_connect (G_OBJECT (button), "clicked",
+	edit_remove_button = glade_xml_get_widget (glade, "remove_button");
+	g_signal_connect (G_OBJECT (edit_remove_button), "clicked",
 			  G_CALLBACK (bookmarks_remove_button_cb),
 			  view);
+	g_signal_connect (G_OBJECT (select), "changed",
+			  G_CALLBACK (selection_changed_cb),
+			  NULL);
 	g_signal_connect (G_OBJECT (view), "button-press-event",
 			  G_CALLBACK (bookmarks_button_press_cb),
 			  NULL);
@@ -670,6 +677,25 @@ bookmarks_configure_cb (GtkWidget *widget, GdkEventConfigure *event,
 
     return FALSE;
 }
+
+static void
+selection_changed_cb (GtkTreeSelection *selection, gpointer data)
+{
+    if (gtk_tree_selection_get_selected (selection, NULL, NULL)) {
+	/*A row is highlighted - sensitise the various widgets*/
+	gtk_widget_set_sensitive (GTK_WIDGET (edit_open_button), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (edit_rename_button), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (edit_remove_button), TRUE);
+    }
+    else {
+	/*No row is highlighted - desensitise the various widgets*/
+	gtk_widget_set_sensitive (GTK_WIDGET (edit_open_button), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (edit_rename_button), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (edit_remove_button), FALSE);
+	
+    }
+}
+
 
 static void
 bookmarks_open_button_cb (GtkWidget *widget, GtkTreeView *view)
