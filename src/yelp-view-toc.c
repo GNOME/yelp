@@ -289,15 +289,15 @@ toc_start (YelpViewTOC *view)
  		if (important_doc_installed) {
 			if (!left_column_started) {
 				yelp_html_printf (priv->html_view, 
-					    COLUMN_LEFT_START);
+						  COLUMN_LEFT_START);
 				left_column_started = TRUE;
 			}
 			
 			yelp_html_printf (priv->html_view, 
-				    TOC_BLOCK_SEPARATOR
-				    TOC_BLOCK_START 
-				    "<h2>%s</h2>",
-				    important_section->title);
+					  TOC_BLOCK_SEPARATOR
+					  TOC_BLOCK_START 
+					  "<h2>%s</h2>",
+					  important_section->title);
 		}
 		
 		seriesids = important_section->seriesids;
@@ -308,10 +308,17 @@ toc_start (YelpViewTOC *view)
 			node = yelp_scrollkeeper_lookup_seriesid (seriesid);
 
 			if (node) {
+				gchar *str_uri;
+				
 				section = node->data;
+
+				str_uri = yelp_uri_to_string (section->uri);
+			      
 				yelp_html_printf (priv->html_view, 
-					    "<a href=\"%s\">%s</a>\n",
-					    yelp_uri_to_string (section->uri), section->name);
+						  "<a href=\"%s\">%s</a>\n",
+						  str_uri,
+						  section->name);
+				g_free (str_uri);
 			}
 
 			seriesids = seriesids->next;
@@ -319,10 +326,10 @@ toc_start (YelpViewTOC *view)
 
 		if (important_doc_installed) {
 			yelp_html_printf (priv->html_view, 
-				    TOC_BLOCK_END);
+					  TOC_BLOCK_END);
 			if (sections->next) {
 				yelp_html_printf (priv->html_view, 
-					    TOC_BLOCK_SEPARATOR);
+						  TOC_BLOCK_SEPARATOR);
 			}
 		}
 		
@@ -335,16 +342,16 @@ toc_start (YelpViewTOC *view)
 	}
 	
 	yelp_html_printf (priv->html_view, 
-		    COLUMN_RIGHT_START);
+			  COLUMN_RIGHT_START);
 
 	root = yelp_util_find_toplevel (priv->doc_tree, "scrollkeeper");
 	node = g_node_first_child (root);
 
 	yelp_html_printf (priv->html_view,
-		    TOC_BLOCK_SEPARATOR
-		    TOC_BLOCK_START
-		    "<h2>%s</h2>\n",
-		    section_gnome);
+			  TOC_BLOCK_SEPARATOR
+			  TOC_BLOCK_START
+			  "<h2>%s</h2>\n",
+			  section_gnome);
 			      
 	root = yelp_util_find_node_from_name (priv->doc_tree, "GNOME");
 	node = g_node_first_child (root);
@@ -353,21 +360,21 @@ toc_start (YelpViewTOC *view)
 		section = YELP_SECTION (node->data);
 		path = yelp_util_node_to_string_path (node);
 		yelp_html_printf (priv->html_view, 
-			    "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
-			    path, section->name);
+				  "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
+				  path, section->name);
 		g_free (path);
 		
 		node = g_node_next_sibling (node);
 	}
 
 	yelp_html_printf (priv->html_view,
-		    TOC_BLOCK_END);
+			  TOC_BLOCK_END);
 
 	yelp_html_printf (priv->html_view,
-		    TOC_BLOCK_SEPARATOR
-		    TOC_BLOCK_START
-		    "<h2>%s</h2>\n",
-		    section_additional);
+			  TOC_BLOCK_SEPARATOR
+			  TOC_BLOCK_START
+			  "<h2>%s</h2>\n",
+			  section_additional);
 
 	root = yelp_util_find_toplevel (priv->doc_tree, "scrollkeeper");
 	node = g_node_first_child (root);
@@ -377,8 +384,8 @@ toc_start (YelpViewTOC *view)
 		if (strcmp (section->name, "GNOME")) {
 			path = yelp_util_node_to_string_path (node);
 			yelp_html_printf (priv->html_view, 
-				    "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
-				    path, section->name);
+					  "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
+					  path, section->name);
 			g_free (path);
 			
 		}
@@ -387,20 +394,20 @@ toc_start (YelpViewTOC *view)
 
 	if (yelp_util_find_toplevel (priv->doc_tree, "man")) {
 		yelp_html_printf (priv->html_view,
-			    "<a href=\"toc:man\">%s</a><br>\n",
-			    man_string);
+				  "<a href=\"toc:man\">%s</a><br>\n",
+				  man_string);
 	}
 		
 	if (yelp_util_find_toplevel (priv->doc_tree, "info")) {
 		yelp_html_printf (priv->html_view,
-			    "<a href=\"toc:info\">%s</a><br>\n",
-			    info_string);
+				  "<a href=\"toc:info\">%s</a><br>\n",
+				  info_string);
 	}
 
 	yelp_html_printf (priv->html_view,
-		    TOC_BLOCK_END
-		    COLUMN_END 
-		    PAGE_END);
+			  TOC_BLOCK_END
+			  COLUMN_END 
+			  PAGE_END);
 	
 	toc_write_footer (view);
 
@@ -457,7 +464,7 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 			if (!sub_started) {
 				yelp_html_printf (priv->html_view, TOC_BLOCK_START);
 				yelp_html_printf (priv->html_view, "<h3>%s</h3>", 
-					    str_subcats);
+						  str_subcats);
 				
 				sub_started = TRUE;
 			}
@@ -482,13 +489,13 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 	if (got_a_leaf) {
 		yelp_html_printf (priv->html_view,  TOC_BLOCK_START);
 		yelp_html_printf (priv->html_view, "<h3>%s</h3>",
-			    str_docs);
+				  str_docs);
 
 		yelp_html_write (priv->html_view, "</td></tr><tr><td>", -1);
 		
 		yelp_html_write (priv->html_view,
-			   "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" width=\"100%%\">\n",
-			   -1);
+				 "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" width=\"100%%\">\n",
+				 -1);
 
 		i = 0;
 		node = first;
@@ -499,19 +506,19 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 				if (i % 3 == 0) {
 					if (i == 0) {
 						yelp_html_write (priv->html_view, 
-							   "<tr>\n",
-							   -1);
+								 "<tr>\n",
+								 -1);
 					} else {
 						yelp_html_write (priv->html_view,
-							   "</tr>\n<tr>\n", 
-							   -1);
+								 "</tr>\n<tr>\n", 
+								 -1);
 					}
 				}
 			
 				section = node->data;
 				url = yelp_util_compose_path_url (node->parent, yelp_uri_get_path (section->uri));
 				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", yelp_uri_to_string (section->uri), 
-					    section->name);
+						  section->name);
 /* 				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", url, section->name); */
 				g_free (url);
 				i++;
@@ -551,26 +558,26 @@ toc_man_2 (YelpViewTOC *view,
 	name = toc_full_path_name (view, root);
 
 	yelp_html_printf (priv->html_view, 
-		    "<table cellpadding=\"0\"\n"
-		    "border=\"0\"\n"
-		    "align=\"center\"\n"
-		    "cellspacing=\"10\"\n"
-		    "width=\"100%\">\n"
-		    "<tr align=\"left\"\n"
-		    "    valign=\"top\"\n"
-		    "    bgcolor=\"" BG_COLOR "\">\n"
-		    "<td height=\"69\"\n"
-		    "    align=\"center\"\n"
-		    "    valign=\"center\"\n"
-		    "    bgcolor=\"" BLOCK_BG_COLOR "\"\n"
-		    "    colspan=\"2\">\n"
-		    "  <h2>\n"
-		    "    %s/%s\n"
-		    "  </h2>\n"
-		    "</td>\n"
-		    "</tr>\n"
-		    "<tr>\n",
-		    string, name);
+			  "<table cellpadding=\"0\"\n"
+			  "border=\"0\"\n"
+			  "align=\"center\"\n"
+			  "cellspacing=\"10\"\n"
+			  "width=\"100%\">\n"
+			  "<tr align=\"left\"\n"
+			  "    valign=\"top\"\n"
+			  "    bgcolor=\"" BG_COLOR "\">\n"
+			  "<td height=\"69\"\n"
+			  "    align=\"center\"\n"
+			  "    valign=\"center\"\n"
+			  "    bgcolor=\"" BLOCK_BG_COLOR "\"\n"
+			  "    colspan=\"2\">\n"
+			  "  <h2>\n"
+			  "    %s/%s\n"
+			  "  </h2>\n"
+			  "</td>\n"
+			  "</tr>\n"
+			  "<tr>\n",
+			  string, name);
 
 	g_free (name);
 
@@ -579,8 +586,8 @@ toc_man_2 (YelpViewTOC *view,
 	toc_man_emit (view, first);
 		
 	yelp_html_printf (priv->html_view, 
-		    COLUMN_END
-		    PAGE_END);
+			  COLUMN_END
+			  PAGE_END);
 
 	toc_write_footer (view);
 	yelp_html_close (priv->html_view);
@@ -611,19 +618,21 @@ toc_man_1 (YelpViewTOC *view)
 		return;
 	}
 
+	g_print ("====================================\n");
+
 	yelp_html_clear (priv->html_view);
 	
 	yelp_html_printf (priv->html_view, PAGE_HEADER, string);
 
 	yelp_html_printf (priv->html_view, 
-		    PAGE_START, 
-		    string);
+			  PAGE_START, 
+			  string);
 
 	yelp_html_printf (priv->html_view,
-		    COLUMN_RIGHT_START
-		    TOC_BLOCK_START 
-		    "<h2>%s</h2>", 
-		    str_subcats);
+			  COLUMN_RIGHT_START
+			  TOC_BLOCK_START 
+			  "<h2>%s</h2>", 
+			  str_subcats);
 
 	do {
 		child = g_node_first_child (node);
@@ -633,16 +642,16 @@ toc_man_1 (YelpViewTOC *view)
 			path = yelp_util_node_to_string_path (node);
 
  			yelp_html_printf (priv->html_view,
-				    "<a href=\"toc:man/%s\">%s</a><br>\n",
-				    path, section->name);
+					  "<a href=\"toc:man/%s\">%s</a><br>\n",
+					  path, section->name);
 			g_free (path);
 		}
 	} while ((node = g_node_next_sibling (node)));
 
 	yelp_html_printf (priv->html_view, 
-		    TOC_BLOCK_END
-		    COLUMN_END
-		    PAGE_END);
+			  TOC_BLOCK_END
+			  COLUMN_END
+			  PAGE_END);
 
 	toc_write_footer (view);
 	yelp_html_close (priv->html_view);
@@ -690,9 +699,9 @@ toc_info (YelpViewTOC *view)
 						  yelp_uri_get_path (section->uri));
 		
 		yelp_html_printf (priv->html_view, 
-			    "<a href=\"%s\">%s</a><br>\n", 
-			    yelp_uri_to_string (section->uri),
-			    section->name);
+				  "<a href=\"%s\">%s</a><br>\n", 
+				  yelp_uri_to_string (section->uri),
+				  section->name);
 /* 		yelp_html_printf (priv->html_view,  */
 /* 				      "<a href=\"%s\">%s</a><br>\n",  */
 /* 				      url, section->name); */
@@ -700,9 +709,9 @@ toc_info (YelpViewTOC *view)
 	} while ((node = g_node_next_sibling (node)));
 		
 	yelp_html_printf (priv->html_view, 
-		    TOC_BLOCK_END
-		    COLUMN_END
-		    PAGE_END);
+			  TOC_BLOCK_END
+			  COLUMN_END
+			  PAGE_END);
 
 	toc_write_footer (view);
 	yelp_html_close (priv->html_view);
@@ -832,7 +841,7 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 			if (!sub_started) {
 				yelp_html_printf (priv->html_view, TOC_BLOCK_START);
 				yelp_html_printf (priv->html_view, "<h2>%s</h2>", 
-					    str_subcats);
+						  str_subcats);
 						      
 				sub_started = TRUE;
 			}
@@ -863,10 +872,18 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 
 		for (node = root->children; node; node = node->next) {
 			if (node->children == NULL) {
+				gchar *str_uri;
+				
 				YelpSection *section;
 			
 				section = node->data;
-				yelp_html_printf (priv->html_view, "<a href=\"%s\">%s</a><br>\n", yelp_uri_to_string (section->uri), section->name);
+				str_uri = yelp_uri_to_string (section->uri);
+				
+				yelp_html_printf (priv->html_view, 
+						  "<a href=\"%s\">%s</a><br>\n", 
+						  str_uri,
+						  section->name);
+				g_free (str_uri);
 			}
 		}
 
@@ -874,8 +891,8 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 	}
 
 	yelp_html_printf (priv->html_view, 
-		    COLUMN_END
-		    PAGE_END);
+			  COLUMN_END
+			  PAGE_END);
 	toc_write_footer (view);
 
 	yelp_html_close (priv->html_view);
