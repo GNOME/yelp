@@ -34,6 +34,9 @@
 #include <libxml/HTMLtree.h>
 #include <libxml/DOCBparser.h>
 #include <libxml/catalog.h>
+#ifdef LIBXML_XINCLUDE_ENABLED
+#  include <libxml/xinclude.h>
+#endif
 #include <libxslt/xsltconfig.h>
 #include <libxslt/xslt.h>
 #include <libxslt/xsltInternals.h>
@@ -84,6 +87,9 @@ main (gint argc, gchar **argv)
                 db_doc = docbParseFile (docpath, "UTF-8");
 	} else {
 		db_doc = xmlParseFile (docpath);
+#ifdef LIBXML_XINCLUDE_ENABLED
+		xmlXIncludeProcess (db_doc);
+#endif
 	}
 
 	if (db_doc == NULL) {
