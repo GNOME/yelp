@@ -1,5 +1,9 @@
 2002-03-23  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c: commented out the Quit-option, we might not
+	  want to have it around because you often use Yelp in another way
+	  (ie. klicking Help in an application). Fixes #75081
+
 	* src/yelp-view-toc.c (yelp_view_toc_open_url): scroll to the
 	  beginning of the document after reading it. Fixes #72965
 

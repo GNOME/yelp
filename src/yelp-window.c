@@ -138,7 +138,7 @@ static GtkItemFactoryEntry menu_items[] = {
 	{N_("/_File"),              NULL,         0,                  0,                           "<Branch>"},
 	{N_("/File/_New window"),   NULL,         yw_new_window_cb,   0,                           "<StockItem>", GTK_STOCK_NEW     },
 	{N_("/File/_Close window"), NULL,         yw_close_window_cb, 0,                           "<StockItem>", GTK_STOCK_CLOSE   },
-	{N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+/*	{N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    }, */
 	{N_("/_Go"),                NULL,         0,                  0,                           "<Branch>"},
 	{N_("/Go/_Back"),           NULL,         yw_history_go_cb,   YELP_WINDOW_ACTION_BACK,     "<StockItem>", GTK_STOCK_GO_BACK    },
 	{N_("/Go/_Forward"),        NULL,         yw_history_go_cb,   YELP_WINDOW_ACTION_FORWARD,  "<StockItem>", GTK_STOCK_GO_FORWARD },
