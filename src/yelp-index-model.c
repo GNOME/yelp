@@ -271,7 +271,7 @@ yim_get_value (GtkTreeModel *tree_model,
         g_return_if_fail (YELP_IS_INDEX_MODEL (tree_model));
         g_return_if_fail (iter != NULL);
 
-	section = (YelpSection *) (G_LIST(iter->user_data)->data);
+	section = YELP_SECTION (G_LIST(iter->user_data)->data);
 	
         switch (column) {
 	case YELP_INDEX_MODEL_COL_NAME:
@@ -460,7 +460,7 @@ yelp_index_model_filter (YelpIndexModel *model, const gchar *string)
 		new_list = priv->original_list;
 	} else {
 		for (node = priv->original_list; node; node = node->next) {
-			section = (YelpSection *) node->data;
+			section = YELP_SECTION (node->data);
 			
 			if (!strncmp (section->name, string, strlen (string))) {
 				/* Include in the new list */

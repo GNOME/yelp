@@ -1,5 +1,10 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-index-model.c: use the new YELP_SECTION-macro.
+	* src/yelp-view-toc.c: same.
+	* src/yelp-util.c: same.
+	* src/yelp-scrollkeeper.c: same.
+
 	* src/yelp-section.h: added casting macro YELP_SECTION.
 
 	* src/yelp-base.c (yelp_base_new): pass index-list to info init.

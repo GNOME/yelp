@@ -407,7 +407,7 @@ ys_parse_index (GList **index)
 							     index_dir,
 							     file_info->name);
 			
-			section = (YelpSection *) node->data;
+			section = YELP_SECTION (node->data);
 			
 			ys_parse_index_file (index, index_path, section);
 

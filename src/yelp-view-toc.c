@@ -354,7 +354,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 	node = g_node_first_child (root);
 
 	while (node) {
-		section = (YelpSection *) node->data;
+		section = YELP_SECTION (node->data);
 		path = yelp_util_node_to_string_path (node);
 		yelp_view_toc_printf (view, 
 				      "<a href=\"toc:scrollkeeper/%s\">%s</a><br>\n", 
@@ -556,7 +556,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 		child = g_node_first_child (node);
 		
 		if (child) {
-			section = (YelpSection *) node->data;
+			section = YELP_SECTION (node->data);
 			path = yelp_util_node_to_string_path (node);
 			yelp_view_toc_printf (view, 
 					      "<a href=\"toc:man/%s\">%s</a><br>\n", 
@@ -600,7 +600,7 @@ yelp_view_toc_info (YelpViewTOC *view)
 	yelp_view_toc_printf (view, "<h1>%s</h1>\n", string);
 	
 	do {
-		section = (YelpSection *) node->data;
+		section = YELP_SECTION (node->data);
 		url = yelp_util_compose_path_url (root, section->uri);
 		yelp_view_toc_printf (view, 
 				      "<a href=\"%s\">%s</a><br>\n", 

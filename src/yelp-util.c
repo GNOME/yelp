@@ -425,7 +425,7 @@ yelp_util_find_toplevel (GNode *doc_tree,
 	node = g_node_first_child (doc_tree);
 
 	while (node) {
-		section = (YelpSection *) node->data;
+		section = YELP_SECTION (node->data);
 		
 		if (!strcmp (name, section->name)) {
 			return node;
@@ -443,7 +443,7 @@ tree_find_node (GNode *node, const gchar *uri)
 {
 	YelpSection *section;
 	
-	section = (YelpSection *) node->data;
+	section = YELP_SECTION (node->data);
 
 	if (!section || !section->uri) {
 		return FALSE;
