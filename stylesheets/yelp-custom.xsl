@@ -829,61 +829,61 @@ heading. Borrowed from Walsh's modular stylesheets -->
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="title" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="subtitle" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="authorgroup" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="author" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="publisher" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="copyright" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="legalnotice" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="revhistory" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="revision" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="releaseinfo" mode="book.titlepage.recto.auto.mode">
-<div use-attribute-sets="book.titlepage.recto.style">
+<div xsl:use-attribute-sets="book.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="book.titlepage.recto.mode"/>
 </div>
 </xsl:template>
@@ -1007,61 +1007,61 @@ heading. Borrowed from Walsh's modular stylesheets -->
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="title" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="subtitle" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="authorgroup" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="author" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="publisher" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="copyright" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="legalnotice" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="revhistory" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="revision" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" match="releaseinfo" mode="article.titlepage.recto.auto.mode">
-<div use-attribute-sets="article.titlepage.recto.style">
+<div xsl:use-attribute-sets="article.titlepage.recto.style">
 <xsl:apply-templates xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="." mode="article.titlepage.recto.mode"/>
 </div>
 </xsl:template>
