@@ -156,6 +156,9 @@ static YelpHistoryEntry * history_pop_back       (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_forward    (YelpWindow       *window);
 static void               history_entry_free     (YelpHistoryEntry *entry);
 
+static void               location_response_cb   (GtkDialog        *dialog,
+						  gint              id,
+						  YelpWindow       *window);
 
 static void        window_find_again_cb           (gpointer           data,
 						   guint              action,
@@ -184,6 +187,7 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpWindowPriv {
+    /* Main Widgets */
     GtkWidget      *main_box;
     GtkWidget      *pane;
     GtkWidget      *side_sects;
@@ -198,19 +202,22 @@ struct _YelpWindowPriv {
     GtkToolItem    *find_next;
     gchar          *find_string;
 
+    /* Open Location */
+    GtkWidget      *location_dialog;
+    GtkWidget      *location_entry;
+
+    /* Location Information */
     YelpDocInfo    *current_doc;
     gchar          *current_frag;
-
     GSList         *history_back;
     GSList         *history_forward;
 
-    gulong          parse_handler;
+    /* Callbacks and Idles */
     gulong          start_handler;
     gulong          page_handler;
     gulong          error_handler;
     gulong          finish_handler;
     guint           idle_write;
-
     guint           icons_hook;
 
     GtkActionGroup *action_group;
@@ -1252,11 +1259,6 @@ window_disconnect (YelpWindow *window)
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
     if (window->priv->current_doc) {
-	if (priv->parse_handler) {
-	    g_signal_handler_disconnect (priv->current_doc->pager,
-					 priv->parse_handler);
-	    priv->parse_handler = 0;
-	}
 	if (priv->start_handler) {
 	    g_signal_handler_disconnect (priv->current_doc->pager,
 					 priv->start_handler);
@@ -1487,7 +1489,41 @@ window_new_window_cb (GtkAction *action, YelpWindow *window)
 static void
 window_open_location_cb (GtkAction *action, YelpWindow *window)
 {
-    d (printf ("window_open_location_cb\n"));
+    YelpWindowPriv *priv;
+    GladeXML       *glade;
+    GtkWidget      *dialog;
+    GtkWidget      *entry;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = window->priv;
+
+    glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
+			   "location_dialog",
+			   NULL);
+    if (!glade) {
+	g_warning ("Could not find necessary glade file "
+		   DATADIR "/yelp/ui/yelp.glade");
+	return;
+    }
+
+    dialog = glade_xml_get_widget (glade, "location_dialog");
+    entry  = glade_xml_get_widget (glade, "location_entry");
+
+    priv->location_dialog = dialog;
+    priv->location_entry  = entry;
+
+    gtk_window_set_transient_for (GTK_WINDOW (dialog),
+				  GTK_WINDOW (window));
+    gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+    g_signal_connect (G_OBJECT (dialog),
+		      "response",
+		      G_CALLBACK (location_response_cb),
+		      window);
+
+    g_object_unref (glade);
+
+    gtk_window_present (GTK_WINDOW (dialog));
 }
 
 static void
@@ -1665,14 +1701,23 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 
 /******************************************************************************/
 
-static gboolean
-window_find_delete_event_cb (GtkWidget *widget,
-			     GdkEvent  *event,
-			     gpointer  data)
+static void
+location_response_cb (GtkDialog *dialog, gint id, YelpWindow *window)
 {
-    gtk_widget_hide (widget);
-    
-    return TRUE;
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    d (printf ("location_response_cb\n"));
+    d (printf ("  id = %i\n", id));
+
+    if (id == GTK_RESPONSE_OK) {
+	const gchar *uri = gtk_entry_get_text (window->priv->location_entry);
+	yelp_window_load (window, uri);
+    }
+
+    window->priv->location_dialog = NULL;
+    window->priv->location_entry  = NULL;
+
+    gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
 static void
