@@ -502,6 +502,18 @@ yelp_man_make_initial_tree (struct TreeData *data,
 }
 
 static void
+yelp_man_free_initial_tree (struct TreeNode *node)
+{
+	g_list_foreach (node->tree_nodes,
+			(GFunc)yelp_man_free_initial_tree,
+			NULL);
+
+	g_list_free (node->tree_nodes);
+	g_list_free (node->pages);
+	g_free (node);
+}
+
+static void
 yelp_man_cleanup_initial_tree (struct TreeNode *node)
 {
 	GList *l;
@@ -519,22 +531,12 @@ yelp_man_cleanup_initial_tree (struct TreeNode *node)
 		if (child->pages == NULL && child->tree_nodes == NULL) {
 			node->tree_nodes = g_list_remove (node->tree_nodes, 
 							  child);
+			yelp_man_free_initial_tree (child);
 		}
 		
 	}
 
 	node->pages = g_list_sort (node->pages, yelp_section_compare);
-}
-
-static void
-yelp_man_free_initial_tree (struct TreeNode *node)
-{
-	g_list_foreach (node->tree_nodes,
-			(GFunc)yelp_man_free_initial_tree,
-			NULL);
-
-	g_list_free (node->tree_nodes);
-	g_list_free (node->pages);
 }
 
 static void

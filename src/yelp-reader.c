@@ -247,14 +247,14 @@ reader_convert_start (ReaderThreadData *th_data)
 		if (yelp_uri_get_section (uri)) {
 			command_line = 
 				g_strdup_printf ("%s %s?%s",
-						LIBGNOME_INFO2HTML,
-						yelp_uri_get_path (uri),
-						yelp_uri_get_section (uri));
+						 LIBGNOME_INFO2HTML,
+						 yelp_uri_get_path (uri),
+						 yelp_uri_get_section (uri));
 		} else { 
 			command_line = 
 				g_strdup_printf ("%s %s",
-						LIBGNOME_INFO2HTML,
-						yelp_uri_get_path (uri));
+						 LIBGNOME_INFO2HTML,
+						 yelp_uri_get_path (uri));
 		}
 		
 		break;
@@ -276,7 +276,7 @@ reader_convert_start (ReaderThreadData *th_data)
 
 	q_data = reader_q_data_new (reader, priv->stamp, 
 				    READER_QUEUE_TYPE_DATA);
-	
+
 	g_spawn_command_line_sync (command_line,
 				   &q_data->data,
 				   NULL,
@@ -371,7 +371,7 @@ reader_file_start (ReaderThreadData *th_data)
 	STAMP_MUTEX_UNLOCK;
 
 	result = gnome_vfs_open (&handle, 
-				 yelp_uri_get_path (uri),
+				 yelp_uri_get_path (uri), 
 				 GNOME_VFS_OPEN_READ);
 	
 	if (result != GNOME_VFS_OK) {
@@ -404,7 +404,7 @@ reader_file_start (ReaderThreadData *th_data)
 		
 		STAMP_MUTEX_UNLOCK;
 	}
-	
+
 	q_data = reader_q_data_new (reader, stamp, READER_QUEUE_TYPE_FINISHED);
 
 	g_async_queue_push (priv->thread_queue, q_data);
