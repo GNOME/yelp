@@ -5,16 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <popt.h>
-#include <zlib.h>
-#ifdef HAVE_LIBBZ2
-#include <bzlib.h>
-#endif
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <limits.h>
 
-#include <glib.h>
 #include "data.h"
 #include "html.h"
 #include "parse.h"
@@ -45,11 +40,7 @@ file_exists(const char *fn)
 int
 main(int argc, const char **argv)
 {
-	gzFile f = NULL;
-	int bz = 0;
-#ifdef HAVE_LIBBZ2
-	BZFILE *bf=NULL;
-#endif
+        ReadBuf *f=NULL;
 	char line[250];
 	poptContext ctx;
 	int result;
@@ -110,7 +101,6 @@ main(int argc, const char **argv)
 		ext = ".bz2";
 		sprintf(buf, "%s/%s.info.bz2", dirs[i], args[0]);		
 		if(file_exists(buf)) {
-		  bz = 1;
 		  break;
 		}
 #endif
@@ -172,61 +162,31 @@ main(int argc, const char **argv)
 	/* No need to store all nodes, etc since we let web server */
 	/* handle resolving tags!                                  */
 	for (;1 || !foundit || !requested_nodename;) {
-	  if(bz)
+	  if(!f)
 	    {
-#ifdef HAVE_LIBBZ2
-	      if(!bf)
+	      if(args && args[curarg])
 		{
-		  if(args && args[curarg])
-		    {
-		      bf = bzopen(args[curarg++], "r");
-		      if(!f)
-			break;
-		      num_files_left = args[curarg]?1:0;
-		      for(work_line_number = 0, bzread(bf, line, sizeof(line)); *line != INFO_COOKIE;
-			  bzread(bf, line, sizeof(line)), work_line_number++)
-			/**/ ;
-		    }
-		  else
+		  f = readbuf_open (args[curarg++]);
+		  if(!f) {
 		    break;
+		  }
+		  num_files_left = args[curarg]?1:0;
+		  for(work_line_number = 0, readbuf_gets(f,line,sizeof(line)); *line != INFO_COOKIE;
+		      readbuf_gets(f,line,sizeof(line)), work_line_number++)
+		    /**/ ;
 		}
-	      if(!bzread(bf, line, sizeof(line)))
-		{
-		  bzclose(bf);
-		  bf = NULL;
-		  continue;
-		}
-#else
-	      g_assert_not_reached();
-#endif
+	      else
+		break;
 	    }
-	  else
+	  if(!readbuf_gets(f,line,sizeof(line)))
 	    {
-	      if(!f)
-		{
-		  if(args && args[curarg])
-		    {
-		      f = gzopen(args[curarg++], "r");
-		      if(!f)
-			break;
-		      num_files_left = args[curarg]?1:0;
-		      for(work_line_number = 0, gzgets(f, line, sizeof(line)); *line != INFO_COOKIE;
-			  gzgets(f, line, sizeof(line)), work_line_number++)
-			/**/ ;
-		    }
-		  else
-		    break;
-		}
-	      if(!gzgets(f, line, sizeof(line)))
-		{
-		  gzclose(f);
-		  f = NULL;
-		  continue;
-		}
+	      readbuf_close(f);
+	      f = NULL;
+	      continue;
 	    }
-		
-	  work_line_number++;
-		
+	
+	work_line_number++;
+
 		/* found a node definition line */
 	  if (!strncmp(line, "File:", 5)) {
 	    node = alloc_node();

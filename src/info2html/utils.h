@@ -14,4 +14,8 @@ void free_node( NODE * );
 void map_spaces_to_underscores( char *str );
 void fixup_info_filename( char *file );
 char *escape_html_chars( char *str );
+ReadBuf * readbuf_open (const char *name);
+int  readbuf_eof (ReadBuf *rb);
+char * readbuf_gets (ReadBuf *rb, char *buf, gsize bufsize);
+void readbuf_close (ReadBuf *rb);
 #endif

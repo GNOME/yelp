@@ -1,5 +1,11 @@
 #ifndef DATA_H
 #define DATA_H
+#include <config.h>
+#include <zlib.h>
+#ifdef HAVE_LIBBZ2
+#include <bzlib.h>
+#endif
+#include <glib.h>
 
 /* data.h - first cut at data structures for info2html filter */
 /* many of these are motivated by the source code to the 'info' program */
@@ -44,6 +50,22 @@ struct info_menu_entry{
   REFERENCE     *ref;
   struct info_menu_entry    *next;
 };
+
+
+enum file_type {GZIP, BZIP2 };
+#define READ_BUF_SIZE (32 * 1024)
+
+typedef struct{
+  enum file_type type;
+  gzFile      *gzfile;
+  char        *buffer;
+  int          eof;
+  gsize size;
+  gsize pos;
+#ifdef HAVE_LIBBZ2
+  BZFILE      *bzfile;
+#endif
+} ReadBuf;
 
 #define INFO_FF '\014'
 #define INFO_COOKIE '\037'

@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <zlib.h>
 
 #include "parse.h"
 #include "data.h"
@@ -16,7 +15,7 @@ int num_files_left;
 
 /* main routine to read in a node once we found its start in file f */
 /* assumes NODE has already been allocated */
-int read_node (gzFile f, char *line, NODE *node)
+int read_node (ReadBuf *f, char *line, NODE *node)
 {
   /* we found a node line */
   if (!parse_node_line( node, line ))
@@ -116,7 +115,7 @@ char *parse_node_label( char **line, char *label, int allow_eof )
 #define SEARCH_BUF_SIZE 1024
 #define CONTENTS_BUF_INCR 1024
 
-int read_node_contents( gzFile f, NODE *node )
+int read_node_contents( ReadBuf *f, NODE *node )
 {
   int nread;
   int found;
@@ -139,14 +138,14 @@ int read_node_contents( gzFile f, NODE *node )
   /* and save contents as we go along                 */
   for ( found=0 ; !found ; )
     {
-      status=gzgets(f,  searchbuf, SEARCH_BUF_SIZE);
+      status=readbuf_gets(f,searchbuf, SEARCH_BUF_SIZE);
       linelen = strlen( searchbuf );
       for (found=0, ptr = searchbuf; *ptr && !found; ptr++)
 	if (*ptr == INFO_FF || *ptr == INFO_COOKIE)
 	    found=1;
 
       /* if we didn't find the magic character, but hit eof, same deal */
-      if (!found && gzeof(f))
+      if (!found && readbuf_eof(f))
 	{
 	  found = 1;
 	  continue;
@@ -160,7 +159,7 @@ int read_node_contents( gzFile f, NODE *node )
 
       memcpy(tmpcontents+nread, searchbuf, linelen);
       nread += linelen;
-      if (!gzeof(f) || num_files_left)
+      if (!readbuf_eof(f) || num_files_left)
 	*(tmpcontents+nread) = '\14';
     }
 

@@ -3,9 +3,14 @@
 #include <config.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <regex.h>
+#include <zlib.h>
 
+#ifdef HAVE_LIBBZ2
+#include <bzlib.h>
+#endif
 #include <glib.h>
 
 #include "data.h"
@@ -198,7 +203,6 @@ NODE *alloc_node()
       tmp->next=NULL;
       tmp->prev=NULL;
       tmp->up=NULL;
-      tmp->filename=NULL;
       tmp->menu=NULL;
       tmp->menu_start=NULL;
     }
@@ -272,4 +276,123 @@ void fixup_info_filename( char *file )
     *ptr1 = '\000';
 
 }
-  
+
+ReadBuf * readbuf_open(const char *name) {
+  ReadBuf *f;
+
+#ifdef HAVE_LIBBZ2  
+  if (strlen(name) > 4 && strcmp(name+strlen(name)-4,".bz2") == 0) {
+    f = g_new0 (ReadBuf, 1);
+    f->buffer = g_malloc(READ_BUF_SIZE);
+    f->bzfile = bzopen(name, "r");
+    if(!f->bzfile) {
+      free(f);
+      return NULL;
+    }
+    
+    f->type = BZIP2;
+    f->eof = FALSE;
+  }
+  else 
+#endif
+    {
+      f = g_new0 (ReadBuf, 1);
+      f->buffer = g_malloc(READ_BUF_SIZE);
+      f->gzfile = gzopen(name, "r");     
+      if (f->gzfile == NULL) {
+	free(f);
+	return NULL;
+      }
+      else {
+	f->type = GZIP;
+	f->eof = FALSE;
+      }
+    }
+  return f;
+}
+
+void readbuf_close(ReadBuf *f) 
+{
+  switch (f->type) {
+  case GZIP:
+    gzclose(f->gzfile);
+    break;
+#ifdef HAVE_LIBBZ2
+  case BZIP2:
+    bzclose(f->bzfile);
+    break;
+#endif
+  }
+  g_free (f->buffer);
+  g_free (f);
+  }
+
+int readbuf_eof(ReadBuf *f)
+{
+  return f->eof;
+}
+
+static int
+readbuf_getc (ReadBuf *rb)
+{
+	if (rb->eof)
+		return EOF;
+
+	if (rb->size == 0 ||
+	    rb->pos == rb->size) {
+		int bytes_read;
+		
+		switch (rb->type) {
+		case GZIP:
+		  bytes_read = gzread(rb->gzfile,rb->buffer,READ_BUF_SIZE);
+		  break;
+#ifdef HAVE_LIBBZ2
+		case BZIP2:
+		  bytes_read = bzread(rb->bzfile,rb->buffer,READ_BUF_SIZE);
+		  break;
+#endif
+		}
+
+		if (bytes_read == 0) {
+			rb->eof = TRUE;
+			return EOF;
+		}
+
+		rb->size = bytes_read;
+		rb->pos = 0;
+
+	}
+
+	return (guchar) rb->buffer[rb->pos++];
+}
+
+char *
+readbuf_gets (ReadBuf *rb, char *buf, gsize bufsize)
+{
+	int c;
+	gsize pos;
+
+	g_return_val_if_fail (buf != NULL, NULL);
+	g_return_val_if_fail (rb != NULL, NULL);
+
+	pos = 0;
+	buf[0] = '\0';
+
+	do {
+		c = readbuf_getc (rb);
+		if (c == EOF || c == '\n')
+			break;
+		buf[pos++] = c;
+	} while (pos < bufsize-1);
+
+	if (c == EOF && pos == 0)
+		return NULL;
+
+	if (c == '\n')
+	  buf[pos++] = '\n';
+
+	buf[pos++] = '\0';
+
+	return buf;
+}
+
