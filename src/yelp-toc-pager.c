@@ -24,8 +24,10 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <glib.h>
 #include <libgnome/gnome-i18n.h>
+#include <libgnomevfs/gnome-vfs.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 
@@ -33,18 +35,44 @@
 
 #define d(x)
 
+typedef struct _OMF OMF;
+
 struct _YelpTocPagerPriv {
+    GSList           *omf_pending;
+    GSList           *omf_list;
+
+    GHashTable       *seriesid_hash;
+    GHashTable       *category_hash;
+
+    xmlParserCtxtPtr  parser;
+};
+
+struct _OMF {
+    xmlChar   *title;
+    xmlChar   *description;
+
+    xmlChar   *language;
+    gint     lang_priority;
+
+    xmlChar   *omf_file;
+    xmlChar   *xml_file;
 };
 
 static void          toc_pager_class_init   (YelpTocPagerClass *klass);
 static void          toc_pager_init         (YelpTocPager      *pager);
 static void          toc_pager_dispose      (GObject           *gobject);
 
-gboolean             toc_pager_process      (YelpPager   *pager);
-void                 toc_pager_cancel       (YelpPager   *pager);
-gchar *              toc_pager_resolve_uri  (YelpPager   *pager,
-					     YelpURI     *uri);
-const GtkTreeModel * toc_pager_get_sections (YelpPager   *pager);
+gboolean             toc_pager_process      (YelpPager         *pager);
+void                 toc_pager_cancel       (YelpPager         *pager);
+gchar *              toc_pager_resolve_uri  (YelpPager         *pager,
+					     YelpURI           *uri);
+const GtkTreeModel * toc_pager_get_sections (YelpPager         *pager);
+
+static void          toc_read_omf_dir       (YelpTocPager      *pager,
+					     const gchar       *dirstr);
+static gboolean      toc_process_pending    (YelpPager         *pager);
+
+static void          omf_free               (OMF               *omf);
 
 static YelpPagerClass *parent_class;
 
@@ -97,6 +125,11 @@ toc_pager_init (YelpTocPager *pager)
 
     priv = g_new0 (YelpTocPagerPriv, 1);
     pager->priv = priv;
+
+    priv->parser = xmlNewParserCtxt ();
+
+    priv->seriesid_hash = g_hash_table_new (g_str_hash, g_str_equal);
+    priv->category_hash = g_hash_table_new (g_str_hash, g_str_equal);
 }
 
 static void
@@ -130,11 +163,10 @@ yelp_toc_pager_get (void)
 gboolean
 toc_pager_process (YelpPager *pager)
 {
-    // FIXME below
+    toc_read_omf_dir (YELP_TOC_PAGER (pager), DATADIR"/omf");
 
-    while (gtk_events_pending ())
-	gtk_main_iteration ();
-
+    gtk_idle_add ((GtkFunction) toc_process_pending,
+		  pager);
     return FALSE;
 }
 
@@ -158,3 +190,159 @@ toc_pager_get_sections (YelpPager *pager)
 }
 
 /******************************************************************************/
+
+static void
+toc_read_omf_dir (YelpTocPager *pager, const gchar *dirstr)
+{
+    GnomeVFSResult           result;
+    GnomeVFSDirectoryHandle *dir;
+    GnomeVFSFileInfo        *file_info;
+
+    YelpTocPagerPriv *priv = pager->priv;
+
+    result = gnome_vfs_directory_open (&dir, dirstr,
+				       GNOME_VFS_FILE_INFO_DEFAULT);
+    if (result != GNOME_VFS_OK)
+	return;
+
+    file_info = gnome_vfs_file_info_new ();
+
+    while (gnome_vfs_directory_read_next (dir, file_info) == GNOME_VFS_OK) {
+	switch (file_info->type) {
+	case GNOME_VFS_FILE_TYPE_DIRECTORY:
+	    if (strcmp (file_info->name, ".") && strcmp (file_info->name, "..")) {
+		gchar *newdir = g_strconcat (dirstr, "/", file_info->name, NULL);
+		toc_read_omf_dir (pager, newdir);
+		g_free (newdir);
+	    }
+	    break;
+	case GNOME_VFS_FILE_TYPE_REGULAR:
+	case GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
+	    priv->omf_pending =
+		g_slist_prepend (priv->omf_pending,
+				 g_strconcat (dirstr, "/", file_info->name, NULL));
+	    break;
+	default:
+	    break;
+	}
+    }
+
+    gnome_vfs_file_info_unref (file_info);
+    gnome_vfs_directory_close (dir);
+
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
+
+}
+
+static gboolean
+toc_process_pending (YelpPager *pager)
+{
+    GSList    *first;
+    gchar     *file;
+    xmlDocPtr  omf_doc;
+    xmlNodePtr omf_cur;
+    gint       lang_priority;
+    OMF       *omf = NULL;
+
+    const GList      *langs = gnome_i18n_get_language_list ("LC_MESSAGES");
+    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
+
+    first = priv->omf_pending;
+    priv->omf_pending = g_slist_remove_link (priv->omf_pending, first);
+
+    file = (gchar *) first->data;
+
+    omf_doc = xmlCtxtReadFile (priv->parser,
+			       (const char *) file,
+			       NULL, 0);
+    if (!omf_doc)
+	goto done;
+
+    omf_cur = xmlDocGetRootElement (omf_doc);
+    if (!omf_cur)
+	goto done;
+
+    for (omf_cur = omf_cur->children; omf_cur; omf_cur = omf_cur->next) {
+	if (omf_cur->type == XML_ELEMENT_NODE &&
+	    !xmlStrcmp (omf_cur->name, (xmlChar *) "resource"))
+	    break;
+    }
+    if (!omf_cur)
+	goto done;
+
+    omf = g_new0 (OMF, 1);
+    omf->omf_file = (xmlChar *) g_strdup (file);
+
+    for (omf_cur = omf_cur->children; omf_cur; omf_cur = omf_cur->next) {
+	if (omf_cur->type != XML_ELEMENT_NODE)
+	    continue;
+
+	if (!xmlStrcmp (omf_cur->name, (xmlChar *) "title")) {
+	    if (omf->title)
+		xmlFree (omf->title);
+	    omf->title = xmlNodeGetContent (omf_cur);
+	    continue;
+	}
+	if (!xmlStrcmp (omf_cur->name, (xmlChar *) "description")) {
+	    if (omf->description)
+		xmlFree (omf->description);
+	    omf->description = xmlNodeGetContent (omf_cur);
+	    continue;
+	}
+	if (!xmlStrcmp (omf_cur->name, (xmlChar *) "language")) {
+	    if (omf->language)
+		xmlFree (omf->language);
+	    omf->language = xmlGetProp (omf_cur, (const xmlChar *) "code");
+
+	    lang_priority = 0;
+
+	    for (; langs != NULL; langs = langs->next) {
+		gchar *lang = langs->data;
+		lang_priority++;
+
+		if (lang == NULL || strchr (lang, '.') != NULL)
+		    continue;
+
+		if (!xmlStrcmp ((xmlChar *) lang, omf->language)) {
+		    omf->lang_priority = lang_priority;
+		    break;
+		}
+	    }
+
+	    if (!omf->lang_priority) {
+		// Not a language we want to display
+		omf_free (omf);
+		goto done;
+	    }
+	}
+	if (!xmlStrcmp (omf_cur->name, (xmlChar *) "identifier")) {
+	    if (omf->xml_file)
+		xmlFree (omf->xml_file);
+	    omf->xml_file = xmlGetProp (omf_cur, (const xmlChar *) "url");
+	}
+    }
+
+ done:
+    xmlFreeDoc (omf_doc);
+    g_free (file);
+    g_slist_free_1 (first);
+
+    if (priv->omf_pending)
+	return TRUE;
+    else
+	return FALSE;
+}
+
+static void
+omf_free (OMF *omf)
+{
+    if (omf) {
+	xmlFree (omf->title);
+	xmlFree (omf->description);
+	xmlFree (omf->language);
+	xmlFree (omf->omf_file);
+	xmlFree (omf->xml_file);
+    }
+    g_free (omf);
+}
