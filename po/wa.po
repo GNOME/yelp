@@ -1,11 +1,11 @@
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Copyright (C) 2001,2002 Free Software Foundation, Inc.
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch>, 2001,2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.6.99\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-04-28 16:09MET\n"
+"POT-Creation-Date: 2002-12-29 13:40+0100\n"
+"PO-Revision-Date: 2002-12-29 13:48+0100\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.stben.be>\n"
 "MIME-Version: 1.0\n"
@@ -14,35 +14,35 @@ msgstr ""
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b> Trover l' tecse dins l' documint</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "_Ricmincî otomaticmint al copete del pådje"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "Trover tecse..."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "Èn cweri ki des mots _etirs"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "Diferince pitiès/grandès _letes"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "_Shuvant"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "Di _dvant"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -139,9 +139,8 @@ msgid "Section"
 msgstr "Seccion"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "Cweri:"
+msgstr "_Cweri après:"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -202,15 +201,15 @@ msgstr "/Fitchî/_Clôre li purnea"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/_Candjî"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/Candjî/_Trover dins l' pådje..."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/Candjî/_Trover co ene feye"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
@@ -247,7 +246,7 @@ msgstr "Foyteuse di l' aidance"
 #: src/yelp-window.c:351
 #, c-format
 msgid "The document '%s' does not exist"
-msgstr "Li documint «%s» n' egzisteye nén"
+msgstr "Li documint «%s» n' egzistêye nén"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
@@ -298,9 +297,3 @@ msgstr "Houkî l' aidance di GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Aidance"
-
-#~ msgid "info"
-#~ msgstr "informåcion"
-
-#~ msgid "man"
-#~ msgstr "man"
