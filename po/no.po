@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2003-08-20 15:42+0200\n"
-"PO-Revision-Date: 2003-08-20 16:06+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-14 10:04+0100\n"
+"PO-Revision-Date: 2003-11-14 10:04+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokml) <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -135,11 +136,27 @@ msgstr "Oversikter"
 msgid "System Administration"
 msgstr "Systemadministrasjon"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+#: src/yelp-scrollkeeper.c:627
+msgid "About This Document"
+msgstr "Om dette dokumentet"
+
+#: src/yelp-scrollkeeper.c:631
+msgid "Contents"
+msgstr "Innhold"
+
+#: src/yelp-view-content.c:489
+msgid "Previous"
+msgstr "Forrige"
+
+#: src/yelp-view-content.c:500
+msgid "Next"
+msgstr "Neste"
+
+#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Laster..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Del"
 
@@ -255,43 +272,43 @@ msgstr "Dokumentet «%s» eksisterer ikke"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:694
+#: src/yelp-window.c:695
 msgid "translator_credits"
 msgstr "translator_credits"
 
-#: src/yelp-window.c:698
+#: src/yelp-window.c:699
 msgid "A Help Browser for GNOME"
 msgstr "Hjelp leser for GNOME"
 
-#: src/yelp-window.c:812
+#: src/yelp-window.c:813
 msgid "Back"
 msgstr "Tilbake"
 
-#: src/yelp-window.c:813
+#: src/yelp-window.c:814
 msgid "Show previous page in history"
 msgstr "Vis forrige side i historikken"
 
-#: src/yelp-window.c:824
+#: src/yelp-window.c:825
 msgid "Forward"
 msgstr "Fremover"
 
-#: src/yelp-window.c:825
+#: src/yelp-window.c:826
 msgid "Show next page in history"
 msgstr "Vis neste side i historikken"
 
-#: src/yelp-window.c:838
+#: src/yelp-window.c:839
 msgid "Home"
 msgstr "Hjem"
 
-#: src/yelp-window.c:839
+#: src/yelp-window.c:840
 msgid "Go to home view"
 msgstr "Gå til åpningssiden"
 
-#: src/yelp-window.c:849
+#: src/yelp-window.c:850
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:850
+#: src/yelp-window.c:851
 msgid "Search in the index"
 msgstr "Søk i indeksen"
 
