@@ -752,7 +752,7 @@ window_handle_pager_uri (YelpWindow *window,
     }
 
     if (!loadnow) {
-	gchar *loading = _("Loading&nbsp;&nbsp;&nbsp;");
+	gchar *loading = _("Loading...");
 	yelp_html_clear (priv->html_view);
 
 	gtk_window_set_title (GTK_WINDOW (window),
