@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2002-03-01 02:37+0800\n"
+"POT-Creation-Date: 2002-03-01 12:29+0800\n"
 "PO-Revision-Date: 2002-02-04 03:03+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -144,65 +144,105 @@ msgstr "Halaman Manual"
 msgid "Scrollkeeper docs for category"
 msgstr "Scrollkeeper dokumen untuk kategori"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:138
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:139
 msgid "/File/_New window"
 msgstr "/Fail/Teti_ngkap Baru"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:140
 msgid "/File/_Close window"
 msgstr "/Fail/_Tutup tetingkap"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:141
 msgid "/File/_Quit"
 msgstr "/Fail/_Keluar"
 
-#: src/yelp-window.c:117
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_PerGi"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "Pergi/_Undur"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Pergi/_Maju"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Pergi/_Rumah"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "Pergi/_Indeks"
+
+#: src/yelp-window.c:147
 msgid "/_Help"
 msgstr "/_Bantuan"
 
-#: src/yelp-window.c:118
+#: src/yelp-window.c:148
 msgid "/Help/_About"
 msgstr "/Bantuan/Perih_al"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
-#: src/yelp-window.c:166
+#: src/yelp-window.c:207
 msgid "Help Browser"
 msgstr "Pelungsur Fail Bantuan"
 
-#: src/yelp-window.c:414
+#: src/yelp-window.c:529
+msgid "translator_credits"
+msgstr "Mohamad Afifi Omar + Hasbullah Pit"
+
+#: src/yelp-window.c:533
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pelungsur Fail Bantuan GNOME 2.0"
 
-#: src/yelp-window.c:438
+#: src/yelp-window.c:560
+msgid "Back"
+msgstr "Undur"
+
+#: src/yelp-window.c:561
 msgid "Show previous page in history"
 msgstr "Papar halaman terdahulu dalam sejarah"
 
-#: src/yelp-window.c:453
+#: src/yelp-window.c:572
+msgid "Forward"
+msgstr "Maju"
+
+#: src/yelp-window.c:573
 msgid "Show next page in history"
 msgstr "Papar halaman seterusnya dalam sejaraj"
 
-#: src/yelp-window.c:468
+#: src/yelp-window.c:586
+msgid "Home"
+msgstr "Rumah"
+
+#: src/yelp-window.c:587
 msgid "Go to home view"
 msgstr "Pergi ke paparan rumah"
 
-#: src/yelp-window.c:479
+#: src/yelp-window.c:597
+msgid "Index"
+msgstr "Indeks"
+
+#: src/yelp-window.c:598
 msgid "Search in the index"
 msgstr "Cari di dalam indeks"
 
-#: src/yelp-window.c:491
+#: src/yelp-window.c:608
 msgid "Search for a phrase in the document"
 msgstr "Cari frasa di dalam dokument"
 
-#: src/yelp-window.c:497
+#: src/yelp-window.c:614
 msgid "Help on "
 msgstr "Bantuan mengenai "
 
-#: src/yelp-window.c:502
+#: src/yelp-window.c:619
 msgid "Enter phrase to search for in all documents"
 msgstr "Sila memasukkan frasa untuk dicari di dalam semua dokumen"
 
@@ -213,4 +253,3 @@ msgstr "Mendapatkan bantuan bersama GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Bantuan"
-
