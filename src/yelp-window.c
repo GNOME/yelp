@@ -1620,6 +1620,9 @@ window_close_window_cb (GtkAction *action, YelpWindow *window)
 static void
 window_copy_cb (GtkAction *action, YelpWindow *window)
 {
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    yelp_html_copy_selection (window->priv->html_view);
 }
 
 static void

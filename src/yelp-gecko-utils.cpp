@@ -24,6 +24,7 @@
 #include <gtkmozembed_internal.h>
 #include <nsIWebBrowser.h>
 #include <nsIWebBrowserFind.h>
+#include <nsIClipboardCommands.h>
 #include <nsCOMPtr.h>
 #include <nsIInterfaceRequestorUtils.h>
 #include <nsReadableUtils.h>
@@ -143,4 +144,16 @@ yelp_gecko_find (GtkMozEmbed  *embed,
     finder->FindNext (&didFind);
 
     return didFind;
+}
+
+extern "C" gboolean
+yelp_gecko_copy_selection (GtkMozEmbed *embed)
+{
+	nsCOMPtr<nsIWebBrowser> webBrowser;
+	gtk_moz_embed_get_nsIWebBrowser (embed, getter_AddRefs(webBrowser));
+
+	nsCOMPtr<nsIClipboardCommands> clip (do_GetInterface(webBrowser));
+	NS_ENSURE_TRUE (clip, NS_ERROR_FAILURE);
+	
+	clip->CopySelection();
 }

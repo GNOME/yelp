@@ -81,5 +81,7 @@ gboolean        yelp_html_find           (YelpHtml    *html,
 void            yelp_html_jump_to_anchor (YelpHtml    *html,
 					  gchar       *anchor);
 
+void            yelp_html_copy_selection (YelpHtml    *html);
+
 #endif /* __YELP_HTML_H__ */
 

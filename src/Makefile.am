@@ -12,6 +12,7 @@ INCLUDES =								\
 	-I$(MOZILLA_INCLUDE_ROOT)/pref					\
 	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr				\
 	-I$(MOZILLA_INCLUDE_ROOT)/string				\
+	-I$(MOZILLA_INCLUDE_ROOT)/webshell				\
 	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h		\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\

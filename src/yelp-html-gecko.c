@@ -289,3 +289,15 @@ html_set_fonts (void)
     yelp_gecko_set_font (YELP_FONT_FIXED, font);
     g_free (font);
 }
+
+void
+yelp_html_copy_selection (YelpHtml    *html)
+{
+    YelpHtmlPriv *priv;
+
+    g_return_if_fail (html != NULL);
+
+    priv = html->priv;
+
+    yelp_gecko_copy_selection (GTK_MOZ_EMBED (priv->embed));
+}

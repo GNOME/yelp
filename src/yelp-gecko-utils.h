@@ -36,6 +36,8 @@ gboolean        yelp_gecko_find        (GtkMozEmbed  *html,
 					gboolean      wrap,
 					gboolean      forward);
 
+gboolean        yelp_gecko_copy_selection (GtkMozEmbed  *html);
+
 G_END_DECLS
 
 #endif /* __YELP_GECKO_UTILS_H__ */
