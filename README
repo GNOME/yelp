@@ -5,15 +5,15 @@ Yelp is supposed to become a help browser for GNOME 2.0. The name Yelp
 was suggested by Daniel Lundin. Yelp is pronounced the same as the
 swedish word for 'help'.
 
-It uses the gnome-vfs help module from Nautilus (should this be moved
-somewhere where all could use it, gnome-vfs?)
 
-Support for different meta-data formats:
-----------------------------------------
+Requirments:
+------------
 
-The help browser should support at least Scrollkeeper and the old
-DevHelp format.
+* GNOME 2.0 (beta2)
+* A working ScrollKeeper installation (suggested > 0.3).
+* Docbook DTD's/stylesheets
 
-A start-flag '-d' to read metadata using DevHelp format would probably
-do it. (not included yet).
-
+If the docbook -> html converting is really slow (like 30 seconds to 1
+minute per document it means that your xml catalog is not correctly
+set up). Please look in libgnome/help-converters/README to see how to
+set it up.

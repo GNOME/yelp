@@ -190,6 +190,7 @@ yelp_view_toc_write_header (YelpViewTOC *view, char *title)
 "    <title>\n"
 "      %s\n"
 "    </title> \n"
+"    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
 "    <style type=\"text/css\">\n"
 "      A:link { color: #00008b }\n"
 "      A:visited { color: #00008b }\n"
@@ -309,6 +310,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 			     "</td>\n", -1);
 
 	yelp_view_toc_write (view, table_end, -1);
+
 	yelp_view_toc_write_footer (view);
 
 	yelp_view_toc_close (view);
