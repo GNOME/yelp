@@ -374,6 +374,7 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	GnomeVFSURI *uri;
 	GNode       *node;
 	gchar       *docsource;
+	gchar       *index_location;
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "doctitle")) {
@@ -406,6 +407,13 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	gnome_vfs_uri_unref (uri);
 	
 	sp_parse_toc (node, docsource);
+
+/* 	index_location = sp_get_xml_docpath ("scrollkeeper-get-index-from-docpath", */
+/* 					     docsource); */
+	
+/* 	if (index_location) { */
+/* 		g_print ("Found index: %s\n", index_location); */
+/* 	} */
 
 	g_free (title);
 	g_free (omf);
