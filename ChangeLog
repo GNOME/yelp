@@ -1,3 +1,20 @@
+2002-01-09  Alex Larsson  <alexl@redhat.com>
+
+	* acconfig.h:
+	* configure.in:
+	Look for libbz2
+
+	* src/Makefile.am
+	* src/yelp-man.[ch]:
+	* src/yelp-info.[ch]:
+	New files
+
+	* src/yelp-base.c (yelp_base_new):
+	Call yelp_man_init() and yelp_info_init().
+
+	* src/yelp-section.[ch]:
+	Add yelp_section_compare for sorting by name.
+
 2002-01-09  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-base.[ch]: use BonoboObject instead of BonoboXObject,

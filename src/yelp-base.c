@@ -26,6 +26,8 @@
 #include "yelp-section.h"
 #include "yelp-scrollkeeper.h"
 #include "yelp-base.h"
+#include "yelp-man.h"
+#include "yelp-info.h"
 
 typedef struct {
 	YelpBase     *base;
@@ -103,6 +105,8 @@ yelp_base_new (void)
         base = g_object_new (YELP_TYPE_BASE, NULL);
 
 	result = yelp_scrollkeeper_init (base->priv->content_store);
+	result = yelp_man_init (base->priv->content_store);
+	result = yelp_info_init (base->priv->content_store);
 
         return base;
 }

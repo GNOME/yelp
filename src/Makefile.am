@@ -16,7 +16,9 @@ yelp_SOURCES =								\
 	yelp-base.c		yelp-base.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html.c		yelp-html.h				\
+	yelp-info.c		yelp-info.h				\
 	yelp-main.c							\
+	yelp-man.c		yelp-man.h				\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
 	yelp-util.c		yelp-util.h				\

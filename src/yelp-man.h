@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2002 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,35 +17,14 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@codefactory.se>
+ * Author: Alexander Larsson <alexl@redhat.com>
  */
 
-#ifndef __YELP_SECTION_H__ 
-#define __YELP_SECTION_H__ 
+#ifndef __YELP_MAN_H__
+#define __YELP_MAN_H__
 
-#include <glib-object.h>
+#include <gtk/gtktreestore.h>
 
-typedef struct _YelpSection   YelpSection;
+gboolean yelp_man_init (GtkTreeStore *store);
 
-struct _YelpSection {
-	gchar *name;
-	gchar *uri;
-	gchar *reference;
-	gchar *scheme;
-};
-
-YelpSection * yelp_section_new        (const gchar        *name,
-				       const gchar        *uri,
-				       const gchar        *reference,
-				       const gchar        *scheme);
-
-YelpSection * yelp_section_copy       (const YelpSection  *section);
-
-void          yelp_section_free       (YelpSection        *section);
-
-gint          yelp_section_compare    (const YelpSection  *a,
-				       const YelpSection  *b);
-
-#endif /* __YELP_BOOK_H__ */
-
-
+#endif /* __YELP_MAN_H__ */

@@ -67,3 +67,9 @@ yelp_section_free (YelpSection *section)
 	}
 }
 
+gint
+yelp_section_compare  (const YelpSection  *a,
+		       const YelpSection  *b)
+{
+	return strcmp (a->name, b->name);
+}

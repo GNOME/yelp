@@ -50,6 +50,14 @@ YELP_MODULES="libgtkhtml-2.0 gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"
 YELP_IDL_INCLUDES="`$PKG_CONFIG --variable=idldir libgtkhtml-2.0 gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0 bonobo-activation-2.0| sed -e 's/^/ /' -e 's/ \+$//' -e 's/ \+/ -I /g' -e 's/^ \+//'`"
 AC_SUBST(YELP_IDL_INCLUDES)
 
+dnl ====================================
+dnl = Bzip2, for the help converters
+dnl ====================================
+AC_CHECK_LIB(bz2, bzread, [AC_DEFINE(HAVE_LIBBZ2)])
+dnl <= Check for bzip2 > 1.0.0
+    AC_CHECK_LIB(bz2, BZ2_bzread, [AC_DEFINE(HAVE_LIBBZ2)])
+    dnl =>
+	
 AC_OUTPUT([
 Makefile
 src/Makefile
