@@ -728,6 +728,9 @@ static void
 toc_page_end (YelpViewTOC *view)
 {
 	YelpViewTOCPriv *priv;
+	gchar           *str_gnome_is  = _("GNOME is");
+	gchar           *str_fs        = _("Free Software");
+	gchar           *str_copyright = _("(C)");
 	
 	g_return_if_fail (YELP_IS_VIEW_TOC (view));
 	
@@ -750,12 +753,15 @@ toc_page_end (YelpViewTOC *view)
 			  "</a>\n"
 			  "</td>\n"
 			  "<td>\n"
-			  "<font size=\"-1\">GNOME is <a href=\"http://www.gnu.org/philosophy/free-sw.html\"><font size=\"-1\">Free Software</font></a> | <a href=\"http://www.gnome.org\"><font size=\"-1\">http://www.gnome.org</font></a><br>\n"
-			  "(C) 2001-2002 Mikael Hallendal</font>\n"
+			  "<font size=\"-1\">%s <a href=\"http://www.gnu.org/philosophy/free-sw.html\">%s</a> | <a href=\"http://www.gnome.org\">http://www.gnome.org</a><br>\n"
+			  "%s 2001-2002 Mikael Hallendal</font>\n"
 			  "</td>\n"
 			  "<td bgcolor=\"#3b3b4f\" width=\"10%\">&nbsp;</td>\n"
 			  "</tr>\n"
-			  "</table></body></html>\n");
+			  "</table></body></html>\n",
+			  str_gnome_is,
+			  str_fs,
+			  str_copyright);
 }
 
 YelpViewTOC *
