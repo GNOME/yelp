@@ -84,11 +84,14 @@ static GdkPixbuf * window_load_icon               (void);
 static void        window_set_sections            (YelpWindow        *window,
 						   GtkTreeModel      *sections);
 static void        window_handle_uri              (YelpWindow        *window,
-						   YelpURI           *uri);
+						   YelpURI           *uri,
+						   gboolean           historyq);
 static gboolean    window_handle_pager_uri        (YelpWindow        *window,
-						   YelpURI           *uri);
+						   YelpURI           *uri,
+						   gboolean           historyq);
 static gboolean    window_handle_html_uri         (YelpWindow        *window,
-						   YelpURI           *uri);
+						   YelpURI           *uri,
+						   gboolean           historyq);
 static void        window_handle_page             (YelpWindow        *window,
 						   YelpPage          *page,
 						   YelpURI           *uri);
@@ -398,14 +401,13 @@ yelp_window_open_uri (YelpWindow  *window,
 	    return;
     }
 
-    yelp_history_goto (window->priv->history, uri);
-
-    window_handle_uri (window, uri);
+    window_handle_uri (window, uri, TRUE);
 }
 
 void
 window_handle_uri (YelpWindow  *window,
-		   YelpURI     *uri)
+		   YelpURI     *uri,
+		   gboolean     historyq)
 {
     YelpWindowPriv *priv;
     GError         *error = NULL;
@@ -422,13 +424,13 @@ window_handle_uri (YelpWindow  *window,
     case YELP_URI_TYPE_MAN:
     case YELP_URI_TYPE_INFO:
     case YELP_URI_TYPE_TOC:
-	handled = window_handle_pager_uri (window, uri);
+	handled = window_handle_pager_uri (window, uri, historyq);
 	break;
     case YELP_URI_TYPE_DOCBOOK_SGML:
 	yelp_set_error (&error, YELP_ERROR_NO_SGML);
 	break;
     case YELP_URI_TYPE_HTML:
-	handled = window_handle_html_uri (window, uri);
+	handled = window_handle_html_uri (window, uri, historyq);
 	break;
     case YELP_URI_TYPE_EXTERNAL:
 	str_uri = gnome_vfs_uri_to_string (uri->uri, GNOME_VFS_URI_HIDE_NONE);
@@ -711,7 +713,8 @@ window_set_sections (YelpWindow   *window,
 
 static gboolean
 window_handle_pager_uri (YelpWindow  *window,
-			 YelpURI     *uri)
+			 YelpURI     *uri,
+			 gboolean     historyq)
 {
     YelpWindowPriv *priv;
     GError         *error = NULL;
@@ -823,6 +826,9 @@ window_handle_pager_uri (YelpWindow  *window,
 			      window);
     }
 
+    if (historyq)
+	yelp_history_goto (window->priv->history, uri);
+
     window_set_sections (window,
 			 GTK_TREE_MODEL (yelp_pager_get_sections (pager)));
 
@@ -898,7 +904,8 @@ window_handle_pager_uri (YelpWindow  *window,
 
 static gboolean
 window_handle_html_uri (YelpWindow    *window,
-			YelpURI       *uri)
+			YelpURI       *uri,
+			gboolean       historyq)
 {
     GnomeVFSHandle  *handle;
     GnomeVFSResult   result;
@@ -910,6 +917,9 @@ window_handle_html_uri (YelpWindow    *window,
 
     g_return_val_if_fail (YELP_IS_WINDOW (window), FALSE);
     g_return_val_if_fail (uri != NULL, FALSE);
+
+    if (historyq)
+	yelp_history_goto (window->priv->history, uri);
 
     window_set_sections (window, NULL);
 
@@ -955,7 +965,7 @@ window_handle_html_uri (YelpWindow    *window,
 static void
 window_handle_page (YelpWindow   *window,
 		    YelpPage     *page,
-		    YelpURI  *uri)
+		    YelpURI      *uri)
 {
     GtkWidget      *menu_item;
     GtkTreeModel   *model;
@@ -978,12 +988,21 @@ window_handle_page (YelpWindow   *window,
 				-1);
 	    if (yelp_pager_uri_is_page (priv->pager, id, uri)) {
 		GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
+		GtkTreeSelection *selection =
+		    gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
+
+		g_signal_handlers_block_by_func (selection,
+						 tree_selection_changed_cb,
+						 window);
 
 		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
 					      path);
 		gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->side_sects),
 					  path, NULL, FALSE);
 
+		g_signal_handlers_unblock_by_func (selection,
+						   tree_selection_changed_cb,
+						   window);
 		gtk_tree_path_free (path);
 		break;
 	    }
@@ -1400,7 +1419,7 @@ window_history_action (YelpWindow        *window,
     }
 	
     if (uri) {
-	window_handle_uri (window, uri);
+	window_handle_uri (window, uri, FALSE);
     }
 }
 
