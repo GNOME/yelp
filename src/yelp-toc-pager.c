@@ -854,7 +854,9 @@ menu_write_page (YelpMenu  *menu)
 
     g_string_append_printf
 	(gstr,
-	 "<head><link rel='stylesheet' type='text/css' href='%s'></head>\n",
+	 "<head><meta http-equiv='Content-Type'"
+	 " content='text/html=; charset=utf-8'>"
+	 "<link rel='stylesheet' type='text/css' href='%s'></head>\n",
 	 yelp_theme_get_css_file ());
 
     g_string_append_printf (gstr, "<body><h1>%s</h1>\n", menu->title);

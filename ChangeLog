@@ -1,3 +1,8 @@
+2004-01-12  Richard Hult  <richard@imendio.com>
+
+	* src/yelp-toc-pager.c (menu_write_page): Set encoding to utf-8 in
+	the generated html. Fixes bug #131186.
+
 2004-01-11  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:
