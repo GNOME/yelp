@@ -1,5 +1,27 @@
 2002-06-01  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (window_handle_uri): show error dialog if URI
+	  doesn't exist.
+	(yelp_window_open_uri): don't return if URI doesn't exist.
+
+	* src/yelp-uri.c: 
+	- Added a type YELP_URI_TYPE_GHELP_OTHER so that I can recreate a
+	  URI for error messaging.
+	(yelp_uri_exists): do a check rather then just a look at the type.
+	(uri_get_doc_type): don't check if URI exists here.
+	(yelp_uri_to_string): handle GHELP_OTHER.
+
+	* src/yelp-reader.c (reader_start): return if URI doesn't exists,
+	  shouldn't happen.
+
+	* src/yelp-uri.h: removed YELP_URI_TYPE_NON_EXIST, use
+	  yelp_uri_exists.
+
+	* stylesheets/docbook/Makefile.am: Install the images
+
+	* stylesheets/docbook/images/*: Added some of the images from XSL
+	  stylesheets. 
+
 	* Fixes #83156
 
 	* src/yelp-index-model.c:

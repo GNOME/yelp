@@ -34,6 +34,7 @@
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-url.h>
 #include <string.h>
+#include "yelp-error.h"
 #include "yelp-html.h"
 #include "yelp-util.h"
 #include "yelp-section.h"
@@ -327,7 +328,16 @@ window_handle_uri (YelpWindow *window, YelpURI *uri)
 
 	d(g_print ("Handling URL: %s\n", yelp_uri_to_string (uri)));
 
-	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC) {
+	if (!yelp_uri_exists (uri)) {
+		gchar *str_uri = yelp_uri_to_string (uri);
+		
+		g_set_error (&error,
+			     YELP_ERROR,
+			     YELP_ERROR_URI_NOT_EXIST,
+			     _("The document '%s' does not exist"), str_uri);
+		g_free (str_uri);
+	}
+	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC) {
 		d(g_print ("[TOC]\n"));
 		
 		yelp_view_toc_open_uri (YELP_VIEW_TOC (priv->toc_view), uri);
@@ -335,7 +345,7 @@ window_handle_uri (YelpWindow *window, YelpURI *uri)
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_TOC_VIEW);
 		handled = TRUE;
-	} 
+	}
 	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_INDEX) {
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_INDEX_VIEW);
@@ -760,9 +770,7 @@ yelp_window_open_uri (YelpWindow  *window,
 
 	uri = yelp_uri_new (str_uri);
 
-	if (yelp_uri_exists (uri)) {
-		window_handle_uri (window, uri);
-	}
+	window_handle_uri (window, uri);
 	
 	yelp_uri_unref (uri);
 }

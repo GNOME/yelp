@@ -50,16 +50,16 @@ gint         next_opt;
 
 struct poptOption options[] = {
 	{
-	 "url",
-         'u',
-         POPT_ARG_STRING,
-         NULL,
-         1,
-         NULL,
-         NULL,
+		"url",
+		'u',
+		POPT_ARG_STRING,
+		NULL,
+		1,
+		NULL,
+		NULL,
 	},
-         NULL
-	};
+	NULL
+};
 
 static BonoboObject * yelp_base_factory       (BonoboGenericFactory *factory,
 					       const gchar          *iid,

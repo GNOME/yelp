@@ -1,6 +1,7 @@
 DIRECTORIES=												\
 	common												\
 	html												\
+	images												\
 	lib
 
 DOCBOOK_DIR=$(datadir)/sgml/docbook/yelp/docbook
@@ -12,7 +13,7 @@ install-data-local:
 	for DIR in $(DIRECTORIES); do									\
 		echo '-- Installing '$$DIR;								\
 		$(mkinstalldirs) $(DESTDIR)$(DOCBOOK_DIR)/$$DIR;					\
-		(installfiles=`find $(srcdir)/$$DIR -name "*.xml" -o -name "*.xsl" -o -name "*.dtd"`;	\
+		(installfiles=`find $(srcdir)/$$DIR -name "*.xml" -o -name "*.xsl" -o -name "*.dtd" -o -name "*.png"`;	\
 		 for i in $$installfiles; do 								\
 			echo '-- Installing '$$i;							\
 			$(INSTALL_DATA) $$i $(DESTDIR)$(DOCBOOK_DIR)/$$DIR;				\
@@ -26,7 +27,7 @@ dist-hook:
 	for DIR in $(DIRECTORIES); do									\
 		echo '-- Disting '$$DIR;								\
 		mkdir $(distdir)/$$DIR;									\
-		(installfiles=`find $(srcdir)/$$DIR -name "*.xml" -o -name "*.xsl" -o -name "*.dtd"`;	\
+		(installfiles=`find $(srcdir)/$$DIR -name "*.xml" -o -name "*.xsl" -o -name "*.dtd" -o -name "*.png"`;	\
 		 for i in $$installfiles; do 								\
 			echo '-- Disting '$$i;								\
 			cp $$i $(distdir)/$$DIR;							\

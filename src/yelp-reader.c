@@ -440,6 +440,10 @@ reader_start (ReaderThreadData *th_data)
 	
 	d(g_print ("reader_start\n"));
 
+	if (!yelp_uri_exists (uri)) {
+		return NULL;
+	}
+
 	STAMP_MUTEX_LOCK;
 	
 	if (reader_check_cancelled (reader, th_data->stamp)) {
@@ -471,9 +475,6 @@ reader_start (ReaderThreadData *th_data)
 		break;
 	case YELP_URI_TYPE_TOC:
 		/* Should this be handled here?? */
-		break;
-	case YELP_URI_TYPE_NON_EXISTENT:
-		/* Set GError and signal error */
 		break;
 	case YELP_URI_TYPE_INDEX:
 	case YELP_URI_TYPE_PATH:

@@ -37,6 +37,7 @@ struct _YelpURI {
 	gchar       *path;
 	gchar       *section;
 	gint         ref_count;
+	gboolean     exists;
 };
 
 static gchar *      uri_get_doc_path                 (const gchar  *str_uri);
@@ -131,18 +132,14 @@ uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
 			docpath = uri_get_doc_path (str_uri);
 		}
 
-		if (!g_file_test (docpath, G_FILE_TEST_EXISTS)) {
-			return YELP_URI_TYPE_NON_EXISTENT;
-		} 
-		
 		mime_type = gnome_vfs_get_mime_type (docpath);
 		
 		if (mime_type) {
 			if (!g_strcasecmp (mime_type, "text/xml")) {
-					ret_val = YELP_URI_TYPE_DOCBOOK_XML;
+				ret_val = YELP_URI_TYPE_DOCBOOK_XML;
 			}
 			else if (!g_strcasecmp (mime_type, "text/sgml")) {
-					ret_val = YELP_URI_TYPE_DOCBOOK_SGML;
+				ret_val = YELP_URI_TYPE_DOCBOOK_SGML;
 			}
 			else if (!g_strcasecmp (mime_type, "text/html")) {
 				ret_val = YELP_URI_TYPE_HTML;
@@ -153,6 +150,10 @@ uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
 		
 		if (docpath != doc_path) {
 			g_free (docpath);
+		}
+		
+		if (ret_val == YELP_URI_TYPE_UNKNOWN) {
+			ret_val = YELP_URI_TYPE_GHELP_OTHER;
 		}
 	}
 
@@ -365,11 +366,24 @@ yelp_uri_exists (YelpURI *uri)
 		return FALSE;
 	}
 
-	if (uri->type == YELP_URI_TYPE_NON_EXISTENT) {
+	switch (uri->type) {
+	case YELP_URI_TYPE_TOC:
+	case YELP_URI_TYPE_MAN:
+	case YELP_URI_TYPE_INFO:
+	case YELP_URI_TYPE_PATH:
+	case YELP_URI_TYPE_INDEX:
+	case YELP_URI_TYPE_UNKNOWN:
+		return TRUE;
+		break;
+	case YELP_URI_TYPE_DOCBOOK_XML:
+	case YELP_URI_TYPE_DOCBOOK_SGML:
+	case YELP_URI_TYPE_HTML:
+	case YELP_URI_TYPE_FILE:
+		return g_file_test (uri->path, G_FILE_TEST_EXISTS);
+		break;
+	default:
 		return FALSE;
 	}
-	
-	return TRUE;
 }
 
 YelpURIType
@@ -542,10 +556,6 @@ yelp_uri_to_string (YelpURI *uri)
 	
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	if (uri->type == YELP_URI_TYPE_NON_EXISTENT) {
-		return NULL;
-	}
-
 	if (uri->type == YELP_URI_TYPE_UNKNOWN) {
 		if (uri->path) {
 			return g_strdup (uri->path);
@@ -564,6 +574,7 @@ yelp_uri_to_string (YelpURI *uri)
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
 	case YELP_URI_TYPE_HTML:
+	case YELP_URI_TYPE_GHELP_OTHER:
 		type = g_strdup ("ghelp:");
 		break;
 	case YELP_URI_TYPE_TOC:
