@@ -327,6 +327,9 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 		handled = TRUE;
 	}
 	
+	d(g_print ("link clicked: URL=%s baseUri=%s\n", url,
+		   html->priv->base_uri));
+
 	g_signal_emit (html, signals[URL_SELECTED], 0,
 		       url, html->priv->base_uri, handled);
 }
@@ -365,6 +368,7 @@ yelp_html_open_uri (YelpHtml    *view,
         StreamData   *sdata;
 	GnomeVFSURI  *uri;
 	gchar        *docpath;
+	gchar        *anchor;
 	
         d(puts(G_GNUC_FUNCTION));
 	
@@ -373,22 +377,30 @@ yelp_html_open_uri (YelpHtml    *view,
 
         priv = view->priv;
 
-	docpath = yelp_util_extract_docpath_from_uri (str_uri, TRUE);
-
-	if (!reference) {
-		reference = yelp_util_find_anchor_in_uri (str_uri);
+	docpath = yelp_util_split_uri (str_uri, &anchor);
+	
+	if (reference && !anchor) {
+		anchor = g_strdup (reference);
 	}
 
 	if (!strcmp (priv->base_uri, docpath)) {
 		/* Same document that are already shown in this view */
 		/* Just jump if we have an anchor */
-		if (reference) {
+		if (anchor) {
+			d(g_print ("Jumping to [%s]\n", anchor));
+			
 			html_view_jump_to_anchor (HTML_VIEW (view),
-						  reference);
+						  anchor);
+		} else {
+			d(g_print ("Going to the beginning of the page"));
+			
+		 	gtk_adjustment_set_value ( 
+				gtk_layout_get_vadjustment (GTK_LAYOUT (view)),
+				0);
 		}
 
 		return;
-	}
+	} 
 
 	/* New document needs to be read. */
 	g_free (priv->base_uri);
@@ -409,8 +421,8 @@ yelp_html_open_uri (YelpHtml    *view,
 
 	uri = gnome_vfs_uri_new (docpath);
 	
-	if (reference) {
-		sdata->anchor = g_strdup (reference);
+	if (anchor) {
+		sdata->anchor = anchor;
 	}
 
 	d(g_print ("Trying to open: %s[%s]\n", docpath, reference));

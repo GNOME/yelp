@@ -472,18 +472,17 @@ yelp_util_find_node_from_uri (GNode *doc_tree, const gchar *uri)
 }
 
 gchar *
-yelp_util_extract_docpath_from_uri (const gchar *str_uri, gboolean add_ghelp)
+yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 {
 	GnomeVFSURI *uri;
 	gchar       *transformed_uri;
 	gchar       *docpath = NULL;
 	gchar       *extension;
-	gchar       *ret;
 
 	if (strncmp (str_uri, "ghelp:", 6)) {
 		/* This function is only valid for ghelp-uri's */
 /* 		g_warning ("URI not of ghelp: form"); */
-		return str_uri;
+		return g_strdup (str_uri);
 	}
 
 	if ((extension = strstr (str_uri, ".xml"))) {
@@ -527,13 +526,37 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri, gboolean add_ghelp)
 		}
 	}
 
-	if (add_ghelp) {
-		ret = g_strconcat ("ghelp:", docpath, NULL);
-	} else {
-		ret = g_strdup (docpath);
-	}
+	return docpath;
+}
 
-	g_free (docpath);
+gchar *
+yelp_util_split_uri (const gchar *uri, gchar **anchor)
+{
+	gchar *str;
+	gchar *ret = NULL;
+	gchar *anchor_ptr;
+	gint   len;
+	
+	anchor_ptr = yelp_util_find_anchor_in_uri (uri);
+	
+	if (!strncmp (uri, "ghelp:", 6)) {
+		str = yelp_util_extract_docpath_from_uri (uri); 
+		ret = g_strconcat ("ghelp:", str, NULL);
+		g_free (str);
+	}
+	else if (!strncmp (uri, "man:", 4) || !strncmp (uri, "info:", 5)) {
+		if (!anchor_ptr) {
+			len = strlen (uri);
+		} else {
+			len = anchor_ptr - 1 - uri;
+		}
+
+		ret = g_strndup (uri, len);
+	}
+	
+	if (anchor) {
+		*anchor = g_strdup (anchor_ptr);
+	}
 
 	return ret;
 }
@@ -544,10 +567,10 @@ yelp_util_find_anchor_in_uri (const gchar *str_uri)
 	gchar *anchor;
 	
 	if ((anchor = strstr (str_uri, "?"))) {
-		return g_strdup (anchor + 1);
+		return anchor + 1;
 	}
 	else if ((anchor = strstr (str_uri, "#"))) {
-		return g_strdup (anchor + 1);
+		return anchor + 1;
 	}
 
 	return NULL;

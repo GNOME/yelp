@@ -304,7 +304,7 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		/* ghelp uri-scheme /usr/share/gnome/help... */
 		gchar *docpath;
 		
- 		docpath = yelp_util_extract_docpath_from_uri (url, FALSE);
+ 		docpath = yelp_util_extract_docpath_from_uri (url);
 
 		if (docpath && strcmp (docpath, priv->current_docpath)) {
 			/* Try to find it in the scrollkeeper database, 

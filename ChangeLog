@@ -1,5 +1,18 @@
 2002-03-23  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-util.c:
+	(yelp_util_extract_docpath_from_uri): reverted this to it's
+	  initial behaviour.
+	(yelp_util_split_uri): added this instead which supports
+	  ghelp/man/info uri's. It also always have the type of uri 
+	  prepended in the return uri.
+
+	* src/yelp-html.c (yelp_html_open_uri): this function is getting
+	  ugly, have to clean it up.
+	(yelp_html_open_uri): use yelp_util_split_uri intead to get the
+	  docpath and the anchor (it supports man and info too, not just
+	  ghelp:-uri's. Fixes #72637).
+
 	* src/yelp-window.c: commented out the Quit-option, we might not
 	  want to have it around because you often use Yelp in another way
 	  (ie. klicking Help in an application). Fixes #75081
