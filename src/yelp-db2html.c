@@ -114,7 +114,7 @@ main (gint argc, gchar **argv)
 	params[2] = "gdb_pathname";
 	params[3] = g_strconcat("\"", pathname, "\"", NULL) ;
 	params[4] = "gdb_stylesheet_path";
-        params[5] = DB_STYLESHEET_PATH;
+        params[5] = g_strconcat("\"", DB_STYLESHEET_PATH, "\"", NULL) ;
         params[6] = "gdb_multichunk";
         params[7] = "1";
         params[8] = NULL;
