@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-01-05 18:25+0100\n"
-"PO-Revision-Date: 2004-01-05 18:25+0100\n"
+"POT-Creation-Date: 2004-01-12 19:04+0100\n"
+"PO-Revision-Date: 2004-01-12 19:04+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,30 +137,45 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db-pager.c:249 src/yelp-window.c:439 src/yelp-window.c:763
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Dokumentet \"%s\" kunde inte öppnas"
-
-#: src/yelp-db-pager.c:429
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "Inget href-attribut hittat på yelp:document"
 
-#: src/yelp-db-pager.c:444
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: src/yelp-db-pager.c:621
+#: src/yelp-db-pager.c:616
 msgid "Titlepage"
 msgstr "Titelsida"
 
-#: src/yelp-db-pager.c:623
+#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/yelp-db-pager.c:641
+#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Okänd"
+
+#: src/yelp-error.c:46
+msgid "The selected document could not be opened"
+msgstr "Det valda dokumentet kunde inte öppnas"
+
+#: src/yelp-error.c:52
+msgid "The selected page could not be found in this document."
+msgstr "Den valda sidan kunde inte hittas i detta dokument."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Innehållsförteckningen kunde inte läsas."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "DocBook SGML-dokument stöds inte längre."
+
+#: src/yelp-error.c:70
+msgid "The selected file could not be read."
+msgstr "Den valda filen kunde inte läsas."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -244,99 +259,91 @@ msgstr "Dokument-URI"
 msgid "The URI of the document to be processed"
 msgstr "URI:n för dokumentet som ska behandlas"
 
-#: src/yelp-toc-pager.c:264
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausräknaren är negativ."
 
-#: src/yelp-toc-pager.c:652 src/yelp-toc-pager.c:664
-msgid "The table of contents could not be read."
-msgstr "Innehållsförteckningen kunde inte läsas."
-
-#: src/yelp-toc-pager.c:882
+#: src/yelp-toc-pager.c:880
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/yelp-toc-pager.c:896
+#: src/yelp-toc-pager.c:894
 msgid "Documents"
 msgstr "Dokument"
 
-#: src/yelp-window.c:228
+#: src/yelp-window.c:229
 msgid "/_File"
 msgstr "/_Arkiv"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:230
 msgid "/File/_New window"
 msgstr "/Arkiv/_Nytt fönster"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:233
 msgid "/File/_Close window"
 msgstr "/Arkiv/_Stäng fönster"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:237
 msgid "/_Edit"
 msgstr "/_Redigera"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:238
 msgid "/Edit/_Find..."
 msgstr "/Redigera/_Sök..."
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:241
 msgid "/Edit/Find Ne_xt"
 msgstr "/Redigera/Sök _nästa"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:244
 msgid "/Edit/Find Pre_vious"
 msgstr "/Redigera/Sök _föregående"
 
-#: src/yelp-window.c:247
+#: src/yelp-window.c:248
 msgid "/_Go"
 msgstr "/_Gå"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:249
 msgid "/Go/_Back"
 msgstr "/Gå/_Bakåt"
 
-#: src/yelp-window.c:251
+#: src/yelp-window.c:252
 msgid "/Go/_Forward"
 msgstr "/Gå/_Framåt"
 
-#: src/yelp-window.c:254
+#: src/yelp-window.c:255
 msgid "/Go/_Home"
 msgstr "/Gå/_Hem"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:258
 msgid "/Go/"
 msgstr "/Gå/"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:259
 msgid "/Go/_Previous"
 msgstr "/Gå/_Föregående"
 
-#: src/yelp-window.c:261
+#: src/yelp-window.c:262
 msgid "/Go/_Next"
 msgstr "/Gå/_Nästa"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:265
 msgid "/Go/_Contents"
 msgstr "/Gå/_Innehåll"
 
-#: src/yelp-window.c:268
+#: src/yelp-window.c:269
 msgid "/_Help"
 msgstr "/_Hjälp"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:270
 msgid "/Help/_About"
 msgstr "/Hjälp/_Om"
 
-#: src/yelp-window.c:331
+#: src/yelp-window.c:332
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: src/yelp-window.c:423
-msgid "DocBook SGML documents are no longer supported."
-msgstr "DocBook SGML-dokument stöds inte längre."
-
-#: src/yelp-window.c:546
+#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Avdelning"
 
@@ -364,28 +371,259 @@ msgstr "Hem"
 msgid "Go to home view"
 msgstr "Gå till hemvyn"
 
-#: src/yelp-window.c:796 src/yelp-window.c:825 src/yelp-window.c:1102
-#: src/yelp-window.c:1161
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "Sidan \"%s\" kunde inte hittas i detta dokument."
-
-#: src/yelp-window.c:848
+#: src/yelp-window.c:834
 msgid "Loading..."
 msgstr "Läser in..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1252
+#: src/yelp-window.c:1228
 msgid "translator_credits"
 msgstr ""
 "Christian Rose\n"
 "Richard Hult\n"
 "Skicka synpunkter på översättningen till sv@li.org"
 
-#: src/yelp-window.c:1257
+#: src/yelp-window.c:1233
 msgid "A Help Browser for GNOME"
 msgstr "En hjälpvisare för GNOME"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr "&#8220;"
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr "&#8221;"
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr "Om denna bibliografi"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr "Om denna bok"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr "Om detta kapitel"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr "Om denna post"
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr "Om denna ordlista"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr "Om detta index"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr "Om denna del"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr "Om detta förord"
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr "Om denna referens"
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr "Om detta avsnitt"
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr "Om denna samling"
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "Affiliation"
+msgstr "Anknytning"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr "Appendix"
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr "Artikel"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr "Målgrupp"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr "Författare"
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bibliography"
+msgstr "Bibliografi"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr "Bok"
+
+# Detta borde nog vara något annat istället
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr "Varning"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr "Kapitel"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr "Kollaboratör"
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr "Kolofon"
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr "Copyright"
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr "Datum"
+
+#: stylesheets/l10n.xml.in.h:30
+msgid "Dedication"
+msgstr "Tillägning"
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Editor"
+msgstr "Redaktör"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr "E-post"
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr "Exempel"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr "Figur"
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr "Ordlista"
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr "Viktigt"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr "Index"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr "Juridisk information"
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr "Nivå"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr "Meddelandemålgrupp"
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr "Meddelandenivå"
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr "Meddelandeursprung"
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr "Anteckning"
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr "Ursprung"
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr "Annan bidragsgivare"
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr "Del"
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr "Förord"
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr "Förläggare"
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr "Referens"
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr "Referenspost"
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr "Referensavsnitt"
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr "Revisionshistorik"
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr "Se"
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr "Se även"
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Set Index"
+msgstr "Samlingsindex"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr "Tabell"
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Table of Contents"
+msgstr "Innehållsförteckning"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr "Tips"
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Title"
+msgstr "Titel"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr "Varning"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -476,17 +714,11 @@ msgstr "Hjälp"
 #~ msgid "Loading"
 #~ msgstr "Läser in"
 
-#~ msgid "About This Document"
-#~ msgstr "Om detta dokument"
-
 #~ msgid "Previous"
 #~ msgstr "Föregående"
 
 #~ msgid "Next"
 #~ msgstr "Nästa"
-
-#~ msgid "Index"
-#~ msgstr "Index"
 
 #~ msgid "Search in the index"
 #~ msgstr "Sök i indexet"
@@ -554,9 +786,6 @@ msgstr "Hjälp"
 
 #~ msgid "Overview of contents"
 #~ msgstr "Innehållsöversikt"
-
-#~ msgid "Important documents"
-#~ msgstr "Viktiga dokument"
 
 #~ msgid "Manual pages for section"
 #~ msgstr "Manualsidor för avdelning"
