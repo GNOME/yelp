@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-03-09 03:31-0600\n"
-"PO-Revision-Date: 2004-02-16 23:05-0600\n"
+"POT-Creation-Date: 2004-02-24 18:22-0600\n"
+"PO-Revision-Date: 2004-03-09 20:04-0600\n"
 "Last-Translator: Paisa Seeluangsawat <paisa@users.sf.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "ทั่วไป"
 
 #: data/toc.xml.in.h:11
 msgid "Help Contents"
-msgstr "เนื้อหาวิธิใช้"
+msgstr "สารบัญวิธีใช้"
 
 #: data/toc.xml.in.h:12
 msgid "Internet Applications"
@@ -143,14 +143,17 @@ msgstr ""
 msgid "Out of memory"
 msgstr "หน่วยความจำหมด"
 
+# Note from Paisa:
+# This lists author, publisher, legal notice, revision history.
+# It's not หน้าปก, ปกใน, หัวเรื่อง.  So I just make it up.
 #: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
 msgid "Titlepage"
-msgstr ""
+msgstr "เกี่ยวกับเอกสารนี้"
 
 #: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
-msgstr "เนื้อหา"
+msgstr "สารบัญ"
 
 #: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
@@ -261,18 +264,18 @@ msgstr "URI ของเอกสารที่จะอ่าน"
 
 #: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: จำนวนหน้าเป็นลบ"
 
 #: src/yelp-toc-pager.c:486
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "ไม่สามารถอ่านแฟ้ม OMF: '%s'"
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "ประเภท"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "เอกสาร"
 
@@ -368,6 +371,7 @@ msgstr "เดินหน้า"
 msgid "Show next page in history"
 msgstr "ไปหน้าถัดไปในประวัติการใช้"
 
+# This is not help's home, not user's home (~)
 #: src/yelp-window.c:649
 msgid "Home"
 msgstr "หน้าเริ่มต้น"
@@ -390,7 +394,7 @@ msgstr ""
 "ถ้ามีเวลาโปรดมาช่วยกันแปล ;-)\n"
 "http://gnome-th.sf.net"
 
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1305
 msgid "A Help Browser for GNOME"
 msgstr "ตัวแสดงวิธีใช้ของ GNOME"
 
@@ -569,11 +573,11 @@ msgstr ""
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
-msgstr ""
+msgstr "ระดับข้อความ"
 
 #: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
-msgstr ""
+msgstr "ที่มาของข้อความ"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
