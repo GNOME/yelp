@@ -39,6 +39,7 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 
+#include "yelp-error.h"
 #include "yelp-db2html.h"
 
 #define d(x)
@@ -54,7 +55,6 @@ yelp_db2html_convert (const gchar         *document,
 	const char        *params[16 + 1];
 	char              *gdb_pathname;    /* path to the file to be parsed */
 	char              *gdb_rootid; /* id of sect, chapt, etc to be parsed */
-        static char       *gdb_stylesheet;      /* stylesheet to be used */
 	char             **gdb_split_docname;  /* placeholder for file type determination */
         char              *ptr;
 	gboolean           has_rootid;
@@ -70,9 +70,6 @@ yelp_db2html_convert (const gchar         *document,
 
 	d(g_print ("Convert file: %s\n", gdb_docname));
 
-	/* stylesheet location based on Linux Standard Base      *
-	 * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
-	gdb_stylesheet = g_strconcat (PREFIX "/share/sgml/docbook/gnome-customization-0.1/gnome-customization.xsl", NULL);
 	
 	/* check to see if gdb_docname has a ?sectid included */
 	for (ptr = gdb_docname; *ptr; ptr++){
@@ -90,10 +87,21 @@ yelp_db2html_convert (const gchar         *document,
 
 	/* parse the stylesheet */
         if (!gdb_xslreturn) {
-                gdb_xslreturn  = xsltParseStylesheetFile ((const xmlChar *)gdb_stylesheet);
+                gchar *gdb_stylesheet;
+                /* stylesheet location based on Linux Standard Base      *
+                 * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
+                gdb_stylesheet = g_strconcat (PREFIX "/share/sgml/docbook/gnome-customization-0.1/gnome-customization.xsl", NULL);
+
+                gdb_xslreturn  = xsltParseStylesheetFile ((const xmlChar *) gdb_stylesheet);
+                g_free (gdb_stylesheet);
         }
         
         if (!gdb_xslreturn) {
+                g_set_error (error,
+                             YELP_ERROR,
+                             YELP_ERROR_DOCBOOK_2_HTML,
+                             "Error while parsing the stylesheet, make sure you have your docbook environment setup correctly");
+                             
                 /* FIXME: Set GError */
                 return FALSE;
         }
@@ -102,14 +110,21 @@ yelp_db2html_convert (const gchar         *document,
 	 * FIXME - we need to be more sophisticated about this
 	 * then parse as either xml or sgml */
 	gdb_split_docname = g_strsplit(gdb_docname, ".", 2);
+
 	if (!strcmp(gdb_split_docname[1], "sgml")) {
-			gdb_doc = docbParseFile(gdb_docname, "UTF-8"); 
+			gdb_doc = docbParseFile(gdb_docname, "UTF-8");
 	} else {
 		(gdb_doc = xmlParseFile(gdb_docname));
 	}
 
 	if (gdb_doc == NULL) {
                 /* FIXME: Set something in the GError */
+                g_set_error (error,
+                             YELP_ERROR,
+                             YELP_ERROR_DOCBOOK_2_HTML,
+                             "Couldn't parse the document '%s'",
+                             gdb_docname);
+                
                 g_free (gdb_docname);
 
                 return FALSE;
@@ -144,7 +159,10 @@ yelp_db2html_convert (const gchar         *document,
 	gdb_results = xsltApplyStylesheet(gdb_xslreturn, gdb_doc, params);
 
         if (!gdb_results) {
-                /* FIXME: Set GError */
+                g_set_error (error,
+                             YELP_ERROR,
+                             YELP_ERROR_DOCBOOK_2_HTML,
+                             "Error while applying the stylesheet");
                 return FALSE;
         }
 

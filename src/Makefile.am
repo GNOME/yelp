@@ -30,6 +30,7 @@ yelp_SOURCES =								\
 	yelp-marshal.c		yelp-marshal.h				\
 	yelp-base.c		yelp-base.h				\
 	yelp-db2html.c		yelp-db2html.h				\
+	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html.c		yelp-html.h				\
 	yelp-index-model.c	yelp-index-model.h			\
