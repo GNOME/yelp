@@ -1,3 +1,8 @@
+2004-03-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-window.c:
+	- Fix for #137216, infinite loop in tree traversal.
+
 2004-03-10  Alexander Winston  <alexander.winston@comcast.net>
 
 	* configure.in: Added en_CA to ALL_LINGUAS.

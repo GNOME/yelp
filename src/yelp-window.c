@@ -1729,16 +1729,17 @@ tree_model_iter_following (GtkTreeModel  *model,
 	if (valid) {
 	    gtk_tree_iter_free (old_iter);
 	    return TRUE;
-	} else {
-	    *iter = *old_iter;
-
-	    valid = gtk_tree_model_iter_parent (model, iter, old_iter);
-
-	    if (!valid) {
-		gtk_tree_iter_free (old_iter);
-		return FALSE;
-	    }
 	}
+
+	valid = gtk_tree_model_iter_parent (model, iter, old_iter);
+
+	if (!valid) {
+	    gtk_tree_iter_free (old_iter);
+	    return FALSE;
+	}
+
+	*old_iter = *iter;
+
     } while (TRUE);
 
     g_assert_not_reached ();
