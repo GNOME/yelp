@@ -29,6 +29,7 @@
 #include <libxml/parser.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include "yelp-book.h"
 #include "scrollkeeper-parser.h"
 
 static void       sp_init                   (ScrollKeeperParser      *parser);
@@ -36,7 +37,6 @@ static void       sp_class_init             (ScrollKeeperParserClass *klass);
 static void       sp_finalize               (GObject                 *object);
 static void       sp_metadata_parser_init   (MetaDataParserIface     *iface);
 static gboolean   sp_trim_empty_branches    (xmlNode                 *cl_node);
-static xmlDoc *   sp_get_xml_tree_of_locale (gchar                   *locale);
 static gboolean   sp_tree_empty             (xmlNode                 *cl_node);
 
 static void       sp_parse_books            (ScrollKeeperParser      *parser, 
@@ -47,8 +47,11 @@ static void       sp_parse_section          (GNode                   *parent,
 					     xmlNode                 *xml_node);
 static void       sp_parse_doc              (GNode                   *parent,
 					     xmlNode                 *xml_node);
-static void       sp_parse_doc_toc          (GNode                   *parent,
+static void       sp_parse_toc              (GNode                   *parent,
 					     const gchar             *docsource);
+static void       sp_parse_toc_section      (GNode                   *parent,
+					     xmlNode                 *xml_node,
+					     GnomeVFSURI             *base_uri);
 static gchar *    sp_get_xml_docpath        (const gchar             *command,
 					     const gchar             *argument);
 /* MetaDataParser */
@@ -147,6 +150,7 @@ sp_metadata_parser_init (MetaDataParserIface *iface)
 static gboolean
 sp_parse (MetaDataParser *parser)
 {
+	gchar       *docpath;
 	xmlDoc      *doc;
 	const GList *node;
 
@@ -155,7 +159,13 @@ sp_parse (MetaDataParser *parser)
 	doc = NULL;
 
 	for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
-		doc = sp_get_xml_tree_of_locale (node->data);
+		docpath = sp_get_xml_docpath ("scrollkeeper-get-content-list",
+					      node->data);
+
+		if (docpath) {
+			doc = xmlParseFile (docpath);
+			g_free (docpath);
+		}
 
 		if (doc) {
 			if (doc->xmlRootNode && !sp_tree_empty(doc->xmlRootNode->xmlChildrenNode)) {
@@ -170,9 +180,8 @@ sp_parse (MetaDataParser *parser)
 	if (doc) {
 		sp_trim_empty_branches (doc->xmlRootNode);
 
-		sp_parse_books (
-			SCROLLKEEPER_PARSER (parser), doc);
-
+		sp_parse_books (SCROLLKEEPER_PARSER (parser), doc);
+		
 		xmlFreeDoc (doc);
 	}        
 
@@ -211,28 +220,6 @@ sp_trim_empty_branches (xmlNode *node)
 	}
 
 	return TRUE;
-}
-
-/* retrieve the XML tree of a certain locale */
-static xmlDoc *
-sp_get_xml_tree_of_locale (gchar *locale)
-{
-	xmlDoc    *doc = NULL;
-	gchar     *docpath;
-	
-	if (locale == NULL)
-	    return NULL;
-	
-	docpath = sp_get_xml_docpath ("scrollkeeper-get-content-list",
-				      locale);
-
-	if (docpath) {
-		doc = xmlParseFile (docpath);
-	}
-
-	g_free (docpath);
-
-	return doc;
 }
 
 static gboolean
@@ -386,6 +373,7 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	gchar       *format;
 	GnomeVFSURI *uri;
 	GNode       *node;
+	gchar       *docsource;
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "doctitle")) {
@@ -400,7 +388,8 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 		}
 		else if (!g_strcasecmp (cur->name, "docsource")) {
 			xml_str = xmlNodeGetContent (cur);
-			link    = g_strconcat ("ghelp:", xml_str, NULL);
+			docsource = g_strdup (xml_str);
+			link    = g_strconcat ("ghelp:", docsource, NULL);
 			g_free (xml_str);
 		}
 		else if (!g_strcasecmp (cur->name, "docformat")) {
@@ -416,52 +405,122 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	
 	gnome_vfs_uri_unref (uri);
 	
-	sp_parse_doc_toc (node, link);
+	sp_parse_toc (node, docsource);
 
 	g_free (title);
 	g_free (omf);
 	g_free (link);
 	g_free (format);
+	g_free (docsource);
 }
 
 static void
-sp_parse_doc_toc (GNode *parent, const gchar *docsource)
+sp_parse_toc (GNode *parent, const gchar *docsource)
 {
-	gchar *toc_file;
+	gchar       *toc_file;
+	xmlDoc      *doc = NULL;
+	xmlNode     *xml_node;
+	GnomeVFSURI *base_uri;
 	
+	toc_file = sp_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
+				       docsource);
+
+	g_print ("Trying to parse: %s\n", toc_file);
+
+	if (toc_file) {
+		doc = xmlParseFile (toc_file);
+		g_free (toc_file);
+	}
+
+	if (!doc) {
+		g_warning ("Tried to parse a non-valid TOC file");
+		return;
+	}
+
+	base_uri = gnome_vfs_uri_ref (((YelpSection *) parent->data)->uri);
+
+	if (g_strcasecmp (doc->xmlRootNode->name, "toc")) {
+		g_warning ("Document with wrong root node, got: '%s'",
+			   doc->xmlRootNode->name);
+	}
+
+	xml_node = doc->xmlRootNode->xmlChildrenNode;
+
+	for (; xml_node != NULL; xml_node = xml_node->next) {
+		sp_parse_toc_section (parent, xml_node, base_uri);
+	}
+}
+
+static void
+sp_parse_toc_section (GNode *parent, xmlNode *xml_node, GnomeVFSURI *base_uri)
+{
+	gchar       *name;
+	gchar       *link;
+	xmlNode     *next_child;
+	xmlChar     *xml_str;
+	GnomeVFSURI *uri;
+	GNode       *node;
+
+	next_child = xml_node->xmlChildrenNode;
+	
+	name = xmlNodeGetContent (next_child);
+	
+	if (!name) {
+		return;
+	}
+	
+
+	xml_str = xmlGetProp (xml_node, "linkid");
+	
+	if (xml_str) {
+		link = g_strconcat ("#", xml_str, NULL);
+		xmlFree (xml_str);
+	}
+	
+/* 	if (link) { */
+/* 		uri = gnome_vfs_uri_resolve_relative (base_uri, link); */
+/* 	} else { */
+	uri = gnome_vfs_uri_ref (base_uri);
+/* 	} */
+
+	node = yelp_book_add_section (parent, name, uri, link);
+	
+	for (; next_child != NULL; next_child = next_child->next) {
+		if (!g_strncasecmp (next_child->name, "tocsect", 7)) {
+			sp_parse_toc_section (node, next_child, base_uri);
+		}
+	}
+
+	gnome_vfs_uri_unref (uri);
 }
 
 static gchar *
 sp_get_xml_docpath (const gchar *command, const gchar *argument)
 {
-	FILE  *pipe;
-	gchar *full_command;
-	gchar *xml_location;
-	gint   bytes_read;
+	gboolean  success;
+	gchar    *full_command;
+	gchar    *xml_location = NULL;
 	
- 	xml_location = g_new0 (char, 1024);
-
-	/* Use g_snprintf here because we don't know how long the */
-	/* location will be                                       */
 	full_command = g_strconcat (command, " ", argument, NULL);
-	
-/* 	g_snprintf (xml_location, 1024, command, argument); */
 
-	pipe = popen (full_command, "r");
+	success = g_spawn_command_line_sync (full_command, &xml_location,
+					     NULL, NULL, NULL);
+
 	g_free (full_command);
+	
+	if (!success) {
+		g_warning ("Didn't successfully run command: '%s %s'", 
+			   command, argument);
 
-	bytes_read = fread ((void *) xml_location, sizeof (char), 1024, pipe);
-
-	/* Make sure that we don't end up out-of-bunds */
-	if (bytes_read < 1) {
-		pclose (pipe);
-		g_free (xml_location);
+		if (xml_location) {
+			g_free (xml_location);
+		}
+     
 		return NULL;
 	}
-
-	/* Make sure the string is properly terminated */
-	xml_location[bytes_read - 1] = '\0';
-
+	
+	g_strchomp (xml_location);
+	
 	return xml_location;
 }
 

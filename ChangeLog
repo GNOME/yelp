@@ -1,6 +1,13 @@
 2001-11-30  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/scrollkeeper-parser.c:
+	Now handles TOC parsing, needs some fixing with the internal
+	links.
+	include yelp-book.h
+	(sp_get_xml_tree_of_locale): removed
+	(sp_parse_toc): renamed from sp_parse_doc_toc., implemented to now
+	  parse the toc.
+	(sp_parse_toc_section): added, impl.
 	(sp_parse_section): renamed from sp_tree_parse_section.
 	(sp_parse_doc): renamed from sp_tree_parse_doc
 	(sp_parse_doc_toc): added (not impl. yet).
