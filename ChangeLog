@@ -1,3 +1,11 @@
+2002-02-13  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-main.c (main): initiate url to empty string instead of
+	  NULL. Fixed #71350
+	
+	* src/yelp-base.c (impl_Yelp_newWindow): check if url is empty
+	  before trying to open it.
+
 2002-02-12  Alex Larsson  <alexl@redhat.com>
 
 	* important_docs.xml:

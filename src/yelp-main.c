@@ -158,6 +158,8 @@ main (int argc, char **argv)
 	
 	if (argc >= 2) {
 		url = g_strdup (argv[1]);
+	} else {
+		url = g_strdup ("");
 	}
 
 	program = gnome_program_init (PACKAGE, VERSION,
@@ -175,8 +177,6 @@ main (int argc, char **argv)
 	if (!factory) {
 		BonoboGenericFactory   *factory;
 		/* Not started, start now */
-
-		g_print ("Creating factory\n");
 
 		factory = bonobo_generic_factory_new (YELP_FACTORY_OAFIID,
 						      yelp_base_factory,

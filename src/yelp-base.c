@@ -24,6 +24,8 @@
 
 #include <bonobo/bonobo-main.h>
 
+#include <string.h>
+
 #include "yelp-window.h"
 #include "yelp-section.h"
 #include "yelp-scrollkeeper.h"
@@ -68,7 +70,7 @@ impl_Yelp_newWindow (PortableServer_Servant  servant,
 
 	gtk_widget_show_all (window);
 
-	if (url) {
+	if (url && strcmp (url, "")) {
 		yelp_window_open_uri (YELP_WINDOW (window), url);
 	}
 }
