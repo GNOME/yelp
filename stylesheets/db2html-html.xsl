@@ -137,13 +137,18 @@ div[class="body"] {
 }
 
 p, div { margin: 0em; }
-p + p, p + div, div + p, div + div { margin-top: 0.8em; }
+p + p, div + p, p + div, div + div { margin-top: 0.8em; }
 
 dl { margin: 0em; }
 ol { margin: 0em; }
 ul { margin: 0em; }
 ul li { padding-left: 0.4em; }
 dd + dt { margin-top: 1.6em; }
+dt + dd { margin-top: 0.4em; }
+li + li { margin-top: 0.4em; }
+
+td, th { padding-right: 0.4em; }
+td + td, th + th { padding-left: 0.4em; }
 
 div[class="navbar-top"],
 div[class="navbar-bottom"],
@@ -158,7 +163,9 @@ div[class="navbar-bottom"],
 div[class="toc"] {
 	margin-left: 1.6em;
 }
+<!--
 table[class="toc"] td { padding-right: 0.8em; }
+-->
 
 div[class="example"],
 div[class="figure"],
@@ -167,16 +174,14 @@ div[class="informalfigure"],
 div[class="informaltable"],
 div[class="msgset"],
 div[class="table"] {
-	margin-top: 1.6em;
 	margin-left: 1.6em;
 	margin-right: 1.6em;
-	margin-bottom: 0.8em;
+	margin-bottom: 0.4em;
 }
 
 div[class="variablelist"] {
-	margin-top: 0.8em;
 	margin-right: 1.6em;
-	margin-bottom: 0.8em;
+	margin-bottom: 0.4em;
 }
 div[class="variablelist"] dd {
 	margin-left: 1.6em;
@@ -189,10 +194,9 @@ div[class="sidebar"] {
 }
 
 div[class="admonition"] {
-	margin-top: 1.6em;
 	margin-left: 1.6em;
 	margin-right: 1.6em;
-	margin-bottom: 0.8em;
+	margin-bottom: 0.4em;
 	padding: 0.8em;
 	background-color: </xsl:text>
 <xsl:value-of select="$color_gray_background"/><xsl:text>;
@@ -206,13 +210,10 @@ div[class="literallayout"],
 div[class="programlisting"],
 div[class="screen"],
 div[class="synopsis"] {
-	margin-top: 1.6em;
 	margin-left: 1.6em;
 	margin-right: 1.6em;
-	margin-bottom: 0.8em;
-	padding: 0.8em;
-	background-color: </xsl:text>
-<xsl:value-of select="$color_gray_background"/><xsl:text>;
+	margin-bottom: 0.4em;
+	padding: 1.2em;
 	border: solid 1px </xsl:text>
 <xsl:value-of select="$color_gray_border"/><xsl:text>;
 }

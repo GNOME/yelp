@@ -1,5 +1,18 @@
 2004-03-03  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-window.c:
+	- Added me to the copyrights on About.
+
+
+	* stylesheets/db2html-html.xsl:
+	- Stylistic changes that should hopefully benefit documents with deeper
+	  list nesting.  I've added margins on li elements, because it's really
+	  needed.  Unfortunately, gtkhtml doesn't seem to understand that it
+	  should also pad down the leading bullet/number.  We'll just have to
+	  suffer it.
+
+2004-03-03  Shaun McCance  <shaunm@gnome.org>
+
 	* configure.in:
 	- Require libxml2-2.6.5 and libxslt-1.1.4 for the dictionary stuff.
 

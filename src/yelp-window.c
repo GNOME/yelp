@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2003 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2003,2004 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -1301,7 +1301,8 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 
 	about = gnome_about_new
 	    (PACKAGE, VERSION,
-	     "Copyright 2001-2003 Mikael Hallendal <micke@imendio.com>\n",
+	     "Copyright 2001-2003 Mikael Hallendal <micke@imendio.com>\n"
+	     "Copyright 2003,2004 Shaun McCance <shaunm@gnome.org>",
 	     _("A Help Browser for GNOME"),
 	     authors,
 	     NULL,
