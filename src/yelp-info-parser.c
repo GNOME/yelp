@@ -16,6 +16,7 @@ enum
 {
 	PAGE_TAG_TABLE,
 	PAGE_NODE,
+	PAGE_INDIRECT,
 	PAGE_OTHER
 };
 
@@ -33,10 +34,102 @@ page_type (char *page)
 {
 	if (strncmp (page, "Tag Table:\n", 11) == 0)
 		return PAGE_TAG_TABLE;
+	else if (strncmp (page, "Indirect:\n", 10) == 0)
+		return PAGE_INDIRECT;
 	else if (strncmp (page, "File: ", 6) == 0)
 		return PAGE_NODE;
 	else
 		return PAGE_OTHER;
+}
+
+static char
+*open_info_file (char *file)
+{
+	GIOChannel *channel;
+	int i;
+	int len;
+	char *str;
+
+	g_print ("!! Opening %s...\n", file);
+	
+	channel = yelp_io_channel_new_file (file, NULL);
+	g_io_channel_read_to_end (channel, &str, &len, NULL);
+	g_io_channel_shutdown (channel, FALSE, NULL);
+
+	for (i = 0; i < len - 1; i++)
+	{
+		if (str[i] == '\0' && str[i+1] == '\b')
+		{
+			g_print ("=> got a NULL, replacing\n");
+			str[i] = ' '; str[i+1] = ' ';
+		}
+	}
+
+	return str;
+}
+
+static char
+*process_indirect_map (char *page)
+{
+	char **lines;
+	char **ptr;
+	char *composite;
+	
+	lines = g_strsplit (page, "\n", 0);
+	composite = NULL;
+
+	for (ptr = lines + 1; *ptr != NULL; ptr++);
+	for (ptr--; ptr != lines; ptr--)
+	{
+		char **items;
+		char *filename;
+		char *str;
+		char **pages;
+		int offset;
+		int plength;
+
+		g_print ("Line: %s\n", *ptr);
+		items = g_strsplit (*ptr, ": ", 2);
+
+		if (items[0])
+		{
+			filename = g_strdup_printf (
+					"/usr/share/info/%s.gz", items[0]);
+			str = open_info_file (filename);
+	
+			pages = g_strsplit (str, "", 2);
+			g_free (str);
+
+			offset =  atoi(items[1]);
+			plength = strlen(pages[1]);
+			
+			g_print ("Need to make string %s+%i bytes = %i\n",
+					items[1], plength,
+					offset + plength);
+			
+			if (!composite) /* not yet created, malloc it */
+			{
+				int length;
+
+				length = offset + plength;
+				composite = g_malloc (sizeof (char) *
+						length + 1);
+				memset (composite, '-', length);
+				composite[length + 1] = '\0';
+			}
+			composite[offset] = '';
+			memcpy (composite + offset + 1, pages[1], plength);
+			
+			g_free (filename);
+			g_strfreev (pages);
+		}
+		
+		g_strfreev (items);
+	}
+
+	g_strfreev (lines);
+
+	return composite;
 }
 
 static GHashTable
@@ -191,9 +284,16 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 			node2iter (nodes2iters, up));
 	}
 	else if (up && prev)
+	{
+		g_print ("+++ Parent: %s Previous: %s\n", up, prev);
+		if (node2iter (nodes2iters, up))
+			g_print ("++++ Have parent node!\n");
+		if (node2iter (nodes2iters, prev))
+			g_print ("++++ Have previous node!\n");
 			gtk_tree_store_insert_after (tree, iter,
 				node2iter (nodes2iters, up),
 				node2iter (nodes2iters, prev));
+	}
 	else
 	{
 		g_print ("# node %s was not put in tree\n", node);
@@ -232,26 +332,25 @@ GtkTreeStore
 	GHashTable *nodes2iters;
 	int *processed_table;
 	GtkTreeStore *tree;
+	int pt;
 	char *str;
-	int len;
-	GIOChannel *channel;
+	gboolean chained_info;
 	
-	channel = yelp_io_channel_new_file (file, NULL);
-	g_io_channel_read_to_end (channel, &str, &len, NULL);
-	g_io_channel_shutdown (channel, FALSE, NULL);
-	
+	str = open_info_file (file);
 	page_list = g_strsplit (str, "\n", 0);
 
 	g_free (str);
 	
 	pages = 0;
 	offset = 0;
+	chained_info = FALSE;
 
 	offsets2pages = g_hash_table_new (g_str_hash, g_str_equal);
 	
 	for (ptr = page_list; *ptr != NULL; ptr++)
 	{
 		g_print ("page %i at offset %i\n", pages, offset);
+/*		g_print ("page starts:\n%s...\n", *ptr); */
 
 		g_hash_table_insert (offsets2pages,
 				g_strdup_printf ("%i", offset), 
@@ -261,12 +360,46 @@ GtkTreeStore
 		offset += strlen (*ptr);
 		if (pages) offset += 2;
 		pages++;
-		if (page_type (*ptr) == PAGE_TAG_TABLE)
+		pt = page_type (*ptr);
+		if (pt == PAGE_TAG_TABLE)
 		{
 			g_print ("Have the Tag Table\n");
 			/* this needs to be freed later too */
 			nodes2offsets = process_tag_table (*ptr);
 			break;
+		}
+		else if (pt == PAGE_INDIRECT)
+		{
+			g_print ("Have the indirect mapping table\n");
+			chained_info = TRUE;
+			str = process_indirect_map (*ptr);
+		}
+	}
+
+	if (chained_info)
+	{
+		/* this is a chained info file, and therefore will require
+		 * more processing */
+		g_strfreev (page_list);
+		g_hash_table_destroy (offsets2pages);
+		
+		pages = 0;
+		offset = 0;
+		
+		page_list = g_strsplit (str, "\n", 0);
+		offsets2pages = g_hash_table_new (g_str_hash, g_str_equal);
+		
+		g_free (str);
+		
+		for (ptr = page_list; *ptr != NULL; ptr++)
+		{
+			g_print ("page %i at offset %i\n", pages, offset);
+			g_hash_table_insert (offsets2pages,
+					g_strdup_printf ("%i", offset),
+					 GINT_TO_POINTER (pages));
+			offset += strlen (*ptr);
+			if (pages) offset += 2;
+			pages++;
 		}
 	}
 
@@ -322,6 +455,11 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 		newnode = xmlNewTextChild (*node, NULL,
 				BAD_CAST "Section",
 				page_content);
+		/* if we free the page content, now it's in the XML, we can
+		 * save some memory */
+		g_free (page_content);
+		page_content = NULL;
+
 		xmlNewProp (newnode, "id", g_strdup (page_no));
 		xmlNewProp (newnode, "name", g_strdup (page_name));
 		if (gtk_tree_model_iter_children (GTK_TREE_MODEL (tree),
@@ -340,8 +478,10 @@ yelp_info_parser_parse_tree (GtkTreeStore *tree)
 	xmlNodePtr node;
 	GtkTreeIter iter;
 
+	/*
 	xmlChar *xmlbuf;
 	int bufsiz;
+	*/
 
 	doc = xmlNewDoc ("1.0");
 	node = xmlNewNode (NULL, BAD_CAST "Info");
@@ -358,8 +498,10 @@ yelp_info_parser_parse_tree (GtkTreeStore *tree)
 	else
 		g_print ("Empty tree?\n");
 
+	/*
 	xmlDocDumpFormatMemory (doc, &xmlbuf, &bufsiz, 1);
 	g_print ("XML follows:\n%s\n", xmlbuf);
+	*/
 
 	return doc;
 }
