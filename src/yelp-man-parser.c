@@ -184,9 +184,6 @@ parser_handle_linetag (YelpManParser *parser) {
     gchar c, *str;
     xmlNodePtr tmpNode;
 
-    /* Clean up from 'lists'. If this is null we don't care. */
-    tmpNode = parser_stack_pop_node (parser, "IP");
-
     while (PARSER_CUR
 	   && *(parser->cur) != ' '
 	   && *(parser->cur) != '\n')
@@ -212,8 +209,7 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
 
-	parser_read_until (parser, '\n');
-	parser_append_text (parser);
+	parser_append_token (parser);
 	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "IR") || g_str_equal (str, "RI") ||
@@ -238,6 +234,15 @@ parser_handle_linetag (YelpManParser *parser) {
     }
     else if (g_str_equal (str, "P") || g_str_equal (str, "PP") ||
 	     g_str_equal (str, "LP") || g_str_equal (str, "Pp")) {
+
+	/* Clean up from 'lists'. If this is null we don't care. */
+	tmpNode = parser_stack_pop_node (parser, "IP");
+	
+	tmpNode = parser_stack_pop_node (parser, "P");
+	if (tmpNode != NULL) {
+	    parser->ins = tmpNode->parent;
+	}
+
 	parser_ensure_P (parser);
     }
     else if (g_str_equal (str, "br")) {
@@ -256,6 +261,8 @@ parser_handle_linetag (YelpManParser *parser) {
     }
     else if (g_str_equal (str, "SH") || g_str_equal (str, "SS") || 
 	     g_str_equal (str, "Sh") || g_str_equal (str, "Ss")) {
+	parser_stack_pop_node (parser, "IP");
+
 	/* Sections should be their own, well, section */
 	parser->ins = xmlDocGetRootElement (parser->doc);
 
@@ -297,6 +304,8 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "TP")) {
+	tmpNode = parser_stack_pop_node (parser, "IP");
+
 	if (tmpNode != NULL)
 	    parser->ins = tmpNode->parent;
 
@@ -325,6 +334,8 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser_stack_push_node (parser, parser->ins);
     }
     else if (g_str_equal (str, "IP")) {
+	tmpNode = parser_stack_pop_node (parser, "IP");
+
 	if (tmpNode != NULL)
 	    parser->ins = tmpNode->parent;
 
@@ -346,6 +357,8 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser_stack_push_node (parser, parser->ins);
     }
     else if (g_str_equal (str, "HP")) {
+	parser_stack_pop_node (parser, "IP");
+
 	parser->ins = parser_append_node (parser, str);
         g_free (str);
 
@@ -368,6 +381,8 @@ parser_handle_linetag (YelpManParser *parser) {
         }
     }
     else if (g_str_equal (str, "RE")) {
+	parser_stack_pop_node (parser, "IP");
+
 	tmpNode = parser_stack_pop_node (parser, "RS");
 
 	if (tmpNode == NULL)
@@ -533,8 +548,10 @@ parser_handle_linetag (YelpManParser *parser) {
 static void
 parser_ensure_P (YelpManParser *parser)
 {
-    if (!xmlStrcmp (parser->ins->name, BAD_CAST "Man"))
+    if (xmlStrEqual (parser->ins->name, BAD_CAST "Man")) {
 	parser->ins = parser_append_node (parser, "P");
+	parser_stack_push_node (parser, parser->ins);
+    }
 }
 
 static void
@@ -735,10 +752,13 @@ parser_handle_inline (YelpManParser *parser)
 	str = g_strdup (parser->anc);
 	*(parser->cur) = c;
 
-	g_warning ("No rule matching the inline tag '%s'\n", str);
+	parser->anc++;
+	parser_append_text (parser);
+
+	g_warning ("No rule matching the inline tag '%s' "
+		   "(assuming escaped text)\n", str);
 
 	g_free (str);
-	parser->anc--;
 	break;
     }
 }
@@ -811,7 +831,7 @@ parser_stack_pop_node (YelpManParser *parser,
    
     popped = (xmlNodePtr) parser->nodeStack->data;
     
-    if (!g_str_equal (name, popped->name))
+    if (!xmlStrEqual (BAD_CAST name, popped->name))
 	return NULL;
 	
     parser->nodeStack = g_slist_remove (parser->nodeStack, popped);

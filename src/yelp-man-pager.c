@@ -327,7 +327,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
 
-    xmlDocDumpFormatMemory (new_doc, &page_buf, &buf_size, 0);
+    htmlDocDumpMemory (new_doc, &page_buf, &buf_size, 0);
 
     ctxt->outputFile = old_outfile;
     ctxt->output     = old_doc;

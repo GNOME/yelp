@@ -1,3 +1,12 @@
+2004-11-14  James Bowes  <bowes@cs.dal.ca>
+
+	* src/yelp-man-pager.c: (xslt_yelp_document): Dump html
+	rather than xml, so gecko can parse it correctly.
+	* src/yelp-man-parser.c: (parser_handle_linetag),
+	(parser_ensure_P), (parser_handle_inline), 
+	(parser_stack_pop_node): Man page fixes for paragraphs,
+	inline tags, and line tags with arguments.
+
 2004-11-13  James Bowes  <bowes@cs.dal.ca>
 
 	* src/yelp-man-parser.c: (parser_handle_linetag):
