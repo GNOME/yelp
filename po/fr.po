@@ -1,11 +1,11 @@
 # Traduction Francaise de Yelp.
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# Jean-Michel Ardantz <jmardantz@ifrance.com>, 2002.
+# maintainer: Jean-Michel Ardantz <jmardantz@ifrance.com>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.4.99\n"
-"POT-Creation-Date: 2002-03-20 08:54+0100\n"
+"POT-Creation-Date: 2002-03-29 09:17+0100\n"
 "PO-Revision-Date: 2002-03-20 08:54+0100\n"
 "Last-Translator: Jean-Michel Ardantz <jmardantz@ifrance.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -21,7 +21,7 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Usine Yelp"
 
-#: src/yelp-info.c:126
+#: src/yelp-info.c:141
 msgid "info"
 msgstr "info"
 
@@ -107,11 +107,11 @@ msgstr "Administration système"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:359
 msgid "Section"
 msgstr "Section"
 
-#: src/yelp-view-index.c:325
+#: src/yelp-view-index.c:327
 msgid "Search for:"
 msgstr "Rechercher :"
 
@@ -155,10 +155,7 @@ msgstr "/Fichier/_Nouvelle fenêtre"
 msgid "/File/_Close window"
 msgstr "/Fichier/_Fermer fenêtre"
 
-#: src/yelp-window.c:141
-msgid "/File/_Quit"
-msgstr "/Fichier/_Quitter"
-
+#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
 #: src/yelp-window.c:142
 msgid "/_Go"
 msgstr "/_Voir"
@@ -240,3 +237,6 @@ msgstr "Aide sur GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Aide"
+
+#~ msgid "/File/_Quit"
+#~ msgstr "/Fichier/_Quitter"
