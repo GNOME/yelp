@@ -1,5 +1,16 @@
 2002-01-26  Mikael Hallendal  <micke@codefactory.se>
 
+        * Thanks to Laszlo PETER <Laszlo.Peter@ireland.sun.com> for the
+	  following patches.
+	
+	* src/yelp-view-toc.c:
+	(yelp_view_toc_write_header): buildfixes when not using gcc.
+	(yelp_view_toc_start): dito
+
+	* src/yelp-html.c: build fixes when not using glibc.
+
+	* configure.in: make yelp build with other compilers than GCC.
+
 	* src/yelp-window.c:
 	- Fixed history
 	(yw_handle_url): added, broke out code from

@@ -184,20 +184,20 @@ yelp_view_toc_printf (YelpViewTOC *view, char *format, ...)
 static void
 yelp_view_toc_write_header (YelpViewTOC *view, char *title)
 {
-	char *header="
-<html>
-  <head>
-    <title>
-      %s
-    </title> 
-    <style type=\"text/css\">
-      A:link { color: #00008b }
-      A:visited { color: #00008b }
-      A:active { color: #00008b }
-      BODY { color: #00008b }
-    </style>
-  </head>
-  <body bgcolor=\"#ffffff\">";
+	char *header="\n"
+"<html>\n"
+"  <head>\n"
+"    <title>\n"
+"      %s\n"
+"    </title> \n"
+"    <style type=\"text/css\">\n"
+"      A:link { color: #00008b }\n"
+"      A:visited { color: #00008b }\n"
+"      A:active { color: #00008b }\n"
+"      BODY { color: #00008b }\n"
+"    </style>\n"
+"  </head>\n"
+"  <body bgcolor=\"#ffffff\">";
 	char *s;
 
 	s = g_strdup_printf (header, title);
@@ -210,10 +210,9 @@ yelp_view_toc_write_header (YelpViewTOC *view, char *title)
 static void
 yelp_view_toc_write_footer (YelpViewTOC *view)
 {
-	char *footer="
-  </body>
-</html>
-";
+	char *footer="\n"
+"  </body>\n"
+"</html>\n";
 	yelp_view_toc_write (view, footer, -1);
 	
 }
@@ -224,15 +223,14 @@ yelp_view_toc_start (YelpViewTOC *view)
 	YelpViewTOCPriv *priv;
 	GNode           *node;
 	YelpSection     *section;
-	gchar *table_start = "
-    <center>
-      <table cellspacing=\"20\" width=\"100%\">
-        <tr>";
-	gchar *table_end = "
-      </tr>
-    </table>
-   </center>
-";
+	gchar *table_start = "\n"
+"    <center>\n"
+"      <table cellspacing=\"20\" width=\"100%\">\n"
+"        <tr>\n";
+	gchar *table_end = "\n"
+"      </tr>\n"
+"    </table>\n"
+"   </center>\n";
 	char *seriesid;
 	GNode *root;
 	char *path;
@@ -369,7 +367,7 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 
 	if (got_a_leaf) {
 		yelp_view_toc_write (view,
-				     "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" width=\"100\%\"><tbody>\n",
+				     "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" width=\"100%%\"><tbody>\n",
 				     -1);
 
 		i = 0;

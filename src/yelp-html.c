@@ -160,7 +160,7 @@ yh_async_close_cb (GnomeVFSAsyncHandle *handle,
 {
 	StreamData *sdata;
 	
-	d(puts(__FUNCTION__));
+	d(puts(G_GNUC_FUNCTION));
 
 	sdata = (StreamData *) callback_data;
 
@@ -182,7 +182,7 @@ yh_async_read_cb (GnomeVFSAsyncHandle *handle,
 {
 	StreamData *sdata;
 
-        d(puts(__FUNCTION__));
+        d(puts(G_GNUC_FUNCTION));
 
         sdata = (StreamData *) callback_data;
 
@@ -207,7 +207,7 @@ yh_async_open_cb  (GnomeVFSAsyncHandle *handle,
 {
 	StreamData *sdata;
         
-        d(puts(__FUNCTION__));
+        d(puts(G_GNUC_FUNCTION));
 
         sdata = (StreamData *) callback_data;
 
@@ -238,7 +238,7 @@ yh_url_requested_cb (HtmlDocument *doc,
 	GnomeVFSURI  *vfs_uri;
 	StreamData   *sdata;
 
-        d(puts(__FUNCTION__));
+        d(puts(G_GNUC_FUNCTION));
 
         view = YELP_HTML (data);
         priv = view->priv;
@@ -292,7 +292,7 @@ yh_stream_cancel (HtmlStream *stream,
 {
 	StreamData *sdata = (StreamData *)cancel_data;
 
-        d(puts(__FUNCTION__));
+        d(puts(G_GNUC_FUNCTION));
 
 	gnome_vfs_async_cancel (sdata->handle);
 
@@ -304,7 +304,7 @@ yh_free_stream_data (StreamData *sdata, gboolean remove)
 {
         YelpHtmlPriv *priv;
         
-        d(puts(__FUNCTION__));
+        d(puts(G_GNUC_FUNCTION));
 
         priv = sdata->view->priv;
         
@@ -351,7 +351,7 @@ yelp_html_new (void)
 {
         YelpHtml *view;
 
-        d(puts(__FUNCTION__));
+        d(puts(G_GNUC_FUNCTION));
 
         view = g_object_new (YELP_TYPE_HTML, NULL);
 
@@ -378,7 +378,7 @@ yelp_html_open_section (YelpHtml *view, const YelpSection *section)
 	GnomeVFSURI  *uri;
 	const char   *fragment;
 	
-        d(puts(__FUNCTION__));
+        d(puts(G_GNUC_FUNCTION));
 	
 	g_return_if_fail (YELP_IS_HTML (view));
 	g_return_if_fail (section != NULL);
