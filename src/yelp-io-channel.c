@@ -24,13 +24,13 @@
 #include <config.h>
 #endif
 
+#include <stdio.h>
 #include <glib.h>
 #include <zlib.h>
 #ifdef HAVE_LIBBZ2
 #include <bzlib.h>
 #endif
 #include <string.h>
-#include <stdio.h>
 
 #include "yelp-error.h"
 #include "yelp-io-channel.h"
