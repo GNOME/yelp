@@ -39,10 +39,11 @@ typedef struct _OMF OMF;
 
 struct _YelpTocPagerPriv {
     GSList           *omf_pending;
-    GSList           *omf_list;
 
-    GHashTable       *seriesid_hash;
-    GHashTable       *category_hash;
+    GSList           *menu_pending;
+
+    GHashTable       *unique_hash_omf;
+    GHashTable       *category_hash_omf;
 
     xmlParserCtxtPtr  parser;
 
@@ -54,6 +55,8 @@ struct _OMF {
     xmlChar   *title;
     xmlChar   *description;
     xmlChar   *seriesid;
+
+    gchar     *uniqueid;
 
     xmlChar   *language;
     gint       lang_priority;
@@ -81,6 +84,9 @@ static void          toc_hash_omf           (YelpTocPager      *pager,
 					     OMF               *omf);
 static void          toc_unhash_omf         (YelpTocPager      *pager,
 					     OMF               *omf);
+
+static gboolean      toc_process_menu       (YelpTocPager      *pager);
+static gboolean      toc_process_page       (YelpTocPager      *pager);
 
 static void          omf_free               (OMF               *omf);
 
@@ -138,8 +144,8 @@ toc_pager_init (YelpTocPager *pager)
 
     priv->parser = xmlNewParserCtxt ();
 
-    priv->seriesid_hash = g_hash_table_new (g_str_hash, g_str_equal);
-    priv->category_hash = g_hash_table_new (g_str_hash, g_str_equal);
+    priv->unique_hash_omf = g_hash_table_new (g_str_hash, g_str_equal);
+    priv->category_hash_omf = g_hash_table_new (g_str_hash, g_str_equal);
 
     priv->pause_count = 0;
     priv->unpause_func = NULL;
@@ -388,15 +394,26 @@ toc_process_pending (YelpPager *pager)
 	}
     }
 
-    /* If we have one with the same seriesid, use the one with
+    if (!omf->seriesid) {
+	omf_free (omf);
+	goto done;
+    }
+
+    /* Do something better for uniqueid, since people can't seem to manage
+     * to create a proper seriesid.  Ugh.
+     */
+    omf->uniqueid = g_strconcat ("seriesid:", (gchar *) omf->seriesid, NULL);
+
+    /* If we have one with the same uniqueid, use the one with
      * the lowest lang_priority.
      */
-    omf_old = g_hash_table_lookup (priv->seriesid_hash, omf->seriesid);
+    omf_old = g_hash_table_lookup (priv->unique_hash_omf, omf->uniqueid);
     if (omf_old) {
 	if (omf_old->lang_priority < omf->lang_priority) {
 	    omf_free (omf);
 	    goto done;
 	} else {
+	    printf (":: %s %s\n", omf_old->omf_file, omf->omf_file);
 	    toc_unhash_omf (YELP_TOC_PAGER (pager), omf_old);
 	    omf_free (omf_old);
 
@@ -406,19 +423,51 @@ toc_process_pending (YelpPager *pager)
 	toc_hash_omf (YELP_TOC_PAGER (pager), omf);
     }
     
-    //    priv->seriesid_hash = g_hash_table_new (g_str_hash, g_str_equal);
-    //    priv->category_hash = g_hash_table_new (g_str_hash, g_str_equal);
-
  done:
     xmlFreeDoc (omf_doc);
     g_free (file);
     g_slist_free_1 (first);
 
     if (!priv->omf_pending) {
+	if (priv->pause_count > 0)
+	    priv->unpause_func = (GtkFunction) toc_process_menu;
+	else
+	    gtk_idle_add_priority (G_PRIORITY_LOW,
+				   (GtkFunction) toc_process_menu,
+				   pager);
+	return FALSE;
+    }
+    if (priv->pause_count > 0) {
+	priv->unpause_func = (GtkFunction) toc_process_pending;
+	return FALSE;
+    }
+    else
+	return TRUE;
+}
+
+static gboolean
+toc_process_menu (YelpTocPager *pager)
+{
+    printf ("toc_process_menu\n");
+
+    gtk_idle_add_priority (G_PRIORITY_LOW,
+			   (GtkFunction) toc_process_page,
+			   pager);
+    return FALSE;
+}
+
+static gboolean
+toc_process_page (YelpTocPager *pager)
+{
+    YelpTocPagerPriv *priv = pager->priv;
+
+    printf ("toc_process_page\n");
+
+    if (!priv->menu_pending) {
 	return FALSE;
     }
     else if (priv->pause_count > 0) {
-	priv->unpause_func = (GtkFunction) toc_process_pending;
+	priv->unpause_func = (GtkFunction) toc_process_page;
 	return FALSE;
     }
     else
@@ -430,18 +479,18 @@ toc_hash_omf (YelpTocPager *pager, OMF *omf)
 {
     GSList *category;
 
-    g_hash_table_insert (pager->priv->seriesid_hash,
-			 omf->seriesid,
+    g_hash_table_insert (pager->priv->unique_hash_omf,
+			 omf->uniqueid,
 			 omf);
 
     for (category = omf->categories; category; category = category->next) {
 	gchar  *catstr = (gchar *) category->data;
 	GSList *omfs =
-	    (GSList *) g_hash_table_lookup (pager->priv->category_hash,
+	    (GSList *) g_hash_table_lookup (pager->priv->category_hash_omf,
 					    catstr);
 	omfs = g_slist_prepend (omfs, omf);
 
-	g_hash_table_insert (pager->priv->category_hash,
+	g_hash_table_insert (pager->priv->category_hash_omf,
 			     catstr, omfs);
     }
 }
@@ -451,17 +500,17 @@ toc_unhash_omf (YelpTocPager *pager, OMF *omf)
 {
     GSList *category;
 
-    g_hash_table_remove (pager->priv->seriesid_hash,
-			 omf->seriesid);
+    g_hash_table_remove (pager->priv->unique_hash_omf,
+			 omf->uniqueid);
 
     for (category = omf->categories; category; category = category->next) {
 	gchar  *catstr = (gchar *) category->data;
 	GSList *omfs =
-	    (GSList *) g_hash_table_lookup (pager->priv->category_hash,
+	    (GSList *) g_hash_table_lookup (pager->priv->category_hash_omf,
 					    catstr);
 	if (omfs) {
 	    omfs = g_slist_remove (omfs, omf);
-	    g_hash_table_insert (pager->priv->category_hash,
+	    g_hash_table_insert (pager->priv->category_hash_omf,
 				 catstr, omfs);
 	}
     }
@@ -470,12 +519,22 @@ toc_unhash_omf (YelpTocPager *pager, OMF *omf)
 static void
 omf_free (OMF *omf)
 {
+    GSList *category;
+
     if (omf) {
 	xmlFree (omf->title);
 	xmlFree (omf->description);
+	xmlFree (omf->seriesid);
+	xmlFree (omf->uniqueid);
 	xmlFree (omf->language);
+
+	for (category = omf->categories; category; category = category->next)
+	    xmlFree ((xmlChar *) category->data);
+	g_slist_free (omf->categories);
+
 	xmlFree (omf->omf_file);
 	xmlFree (omf->xml_file);
     }
     g_free (omf);
 }
+
