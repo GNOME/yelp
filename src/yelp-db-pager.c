@@ -550,13 +550,13 @@ walker_walk_xml (DBWalker *walker)
 
     id = xmlGetProp (walker->cur, "id");
     if (!id && walker->cur->parent->type == XML_DOCUMENT_NODE) {
-	id = g_strdup ("index");
+	id = xmlStrdup ("index");
     }
 
     if (walker_is_chunk (walker)) {
 	if (xml_is_info (walker->cur)) {
 	    xmlFree (id);
-	    id = g_strdup ("titlepage");
+	    id = xmlStrdup ("titlepage");
 	}
 
 	title = xml_get_title (walker->cur);
@@ -617,8 +617,10 @@ walker_walk_xml (DBWalker *walker)
 	walker->page_id = old_id;
     }
 
-    xmlFree (id);
-    xmlFree (title);
+    if (id != NULL)
+	xmlFree (id);
+    if (title != NULL)
+	xmlFree (title);
 }
 
 gchar *

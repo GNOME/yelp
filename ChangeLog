@@ -1,5 +1,11 @@
 2004-02-16  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-db-pager.c:
+	- Patch from DV to stop mixing malloc and free wrappers from glib and
+	  libxml2.  Fixes a crash with latest libxslt.
+
+2004-02-16  Shaun McCance  <shaunm@gnome.org>
+
 	* configure.in:
 	- Patch from Julio M. Merino Vidal for portable sed usage (#134534)
 
