@@ -18,6 +18,7 @@
 <xsl:param name="yelp.color.text"/>
 <xsl:param name="yelp.color.anchor"/>
 <xsl:param name="yelp.color.background"/>
+<xsl:param name="yelp.color.rule"/>
 <xsl:param name="yelp.color.base0"/>
 <xsl:param name="yelp.color.base1"/>
 <xsl:param name="yelp.color.base2"/>
@@ -38,6 +39,9 @@
            select="$yelp.color.base0"/>
 <xsl:param name="db2html.screen.border_color"
            select="$yelp.color.base1"/>
+
+<xsl:param name="db2html.table.rule_color"
+	   select="$yelp.color.rule"/>
 
 <xsl:param name="db.chunk.chunk_top" select="true()"/>
 <xsl:param name="db.chunk.extension" select="''"/>

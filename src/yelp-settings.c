@@ -54,6 +54,7 @@ static const gchar *color_params[YELP_NUM_COLORS] = {
     "yelp.color.text",
     "yelp.color.anchor",
     "yelp.color.background",
+    "yelp.color.rule",
     "yelp.color.base0",
     "yelp.color.base1",
     "yelp.color.base2",
@@ -576,6 +577,15 @@ settings_update (YelpSettingsType type)
 		    style->base[GTK_STATE_NORMAL].red >> 8,
 		    style->base[GTK_STATE_NORMAL].green >> 8,
 		    style->base[GTK_STATE_NORMAL].blue >> 8);
+
+	g_snprintf (colors[YELP_COLOR_RULE], 8,
+		    "#%02X%02X%02X",
+		    ((style->base[GTK_STATE_NORMAL].red >> 8) + 
+		     (style->bg[GTK_STATE_NORMAL].red >> 8) ) / 2,
+		    ((style->base[GTK_STATE_NORMAL].green >> 8) + 
+		     (style->bg[GTK_STATE_NORMAL].green >> 8) ) / 2,
+		    ((style->base[GTK_STATE_NORMAL].blue >> 8) + 
+		     (style->bg[GTK_STATE_NORMAL].blue >> 8) ) / 2);
 
 	for (i = 0; i < 4; i++) {
 	    rval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
