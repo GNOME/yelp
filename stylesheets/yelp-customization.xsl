@@ -204,6 +204,7 @@
        H2 {font-size: 1.3em; margin-bottom: 0}
        H3 {font-size: 1.2em; margin-bottom: 0}
        H4 {font-size: 1.1em}
+       DIV.sect3 H4 {margin-bottom: -0.5em}
      </xsl:text>
    </style>
 </xsl:template>
