@@ -510,7 +510,6 @@ yelp_util_extract_docpath_from_uri (const gchar *inc_uri)
 	gchar       *str_uri;
 	gchar       *transformed_uri;
 	gchar       *docpath = NULL;
-	gchar       *extension;
 	const gchar *ch = NULL;
 	
 	if ((ch = strchr (inc_uri, '?')) || (ch = strchr (inc_uri, '#'))) {
@@ -538,11 +537,16 @@ yelp_util_extract_docpath_from_uri (const gchar *inc_uri)
 		str = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
 		/* strlen ("file://") == 7 */
-		docpath = g_strdup (str + 7);
+		if (!strncmp (str, "file://", 7)) {
+			docpath = g_strdup (str + 7);
+		}
+		
 		g_free (str);
-	} else {
-		/* URI not a fullpath URI, let the GnomeVFS help module 
-		   calculate the full URI */
+	} 
+
+	if (!docpath) {
+		/* OK, nothing else have worked, try to get the docpath by *
+		 * using the gnome-vfs-module                              */
 		uri = gnome_vfs_uri_new (str_uri);
 		
 		if (uri) {
@@ -572,6 +576,8 @@ yelp_util_extract_docpath_from_uri (const gchar *inc_uri)
 	}
 
 	g_free (str_uri);
+
+/* 	g_print ("Returning docpath: %s\n", docpath) */
 	
 	return docpath;
 }
