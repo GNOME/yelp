@@ -180,6 +180,7 @@ GtkWidget *
 yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 {
 	YelpBasePriv *priv;
+	gchar        *str;
 	YelpURI      *uri;
 	GtkWidget    *window;
         
@@ -202,12 +203,18 @@ yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 
 	gtk_widget_show_all (window);
 
-	if (str_uri && strcmp (str_uri, ""))
-		uri = yelp_uri_new (str_uri);
-	else {
-		uri = yelp_pager_get_uri (YELP_PAGER (yelp_toc_pager_get ()));
-		yelp_uri_ref (uri);
+	if (str_uri && strcmp (str_uri, "")) {
+		gchar *dir = g_get_current_dir ();
+		gchar *dirs = g_strconcat (dir, "/", NULL);
+		str = gnome_vfs_uri_make_full_from_relative (dirs, str_uri);
+		g_free (dirs);
+		g_free (dir);
+	} else {
+		str = g_strdup ("toc:");
 	}
+
+	uri = yelp_uri_new (str);
+	g_free (str);
 
 	yelp_window_open_uri (YELP_WINDOW (window), uri);
 
