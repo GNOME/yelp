@@ -54,6 +54,8 @@ yelp-marshal.c: yelp-marshal.h
 	&& mv yelp-marshal2.tmp yelp-marshal.c ) \
 	|| ( rm -f yelp-marshal2.tmp && exit 1 )
 
+yelp-marshal-main.c: yelp-marshal.c
+
 yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-base.c		yelp-base.h				\

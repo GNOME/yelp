@@ -1,3 +1,8 @@
+2002-05-23  Jacob Berkman  <jacob@ximian.com>
+
+	* src/Makefile.am (yelp-marshal-main.c): add explicit dependency
+	on yelp-marshal.c to make automake work
+
 2002-05-23  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-content.c:
