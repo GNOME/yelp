@@ -346,8 +346,7 @@ reader_file_start (ReaderThreadData *th_data)
 	gchar             buffer[BUFFER_SIZE];
 	GnomeVFSFileSize  n;
 	
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (uri != NULL);
+	g_return_if_fail (th_data != NULL);
 
 	reader = th_data->reader;
 	priv   = reader->priv;
