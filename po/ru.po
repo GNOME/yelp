@@ -1,13 +1,13 @@
 # translation of yelp.
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Igor Androsov <blace@mail.ru>, 2002.
-# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 3.0\n"
-"POT-Creation-Date: 2002-12-16 09:34+0100\n"
-"PO-Revision-Date: 2002-06-29 17:57+0400\n"
+"POT-Creation-Date: 2003-01-12 15:34+0300\n"
+"PO-Revision-Date: 2003-01-12 16:03+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team:  Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,52 +16,52 @@ msgstr ""
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Find text in the document:</b>"
-msgstr ""
+msgstr "<b>Найти текст в документе:</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "Automatically _wrap around"
-msgstr ""
+msgstr "Автоматически п_ереносить"
 
 #: data/ui/yelp.glade.h:4
 msgid "Find text..."
-msgstr ""
+msgstr "Найти текст.."
 
 #: data/ui/yelp.glade.h:5
 msgid "Match _entire word"
-msgstr ""
+msgstr "Совпадает _целое слово"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr ""
+msgstr "_Чувствительно к регистру"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
-msgstr ""
+msgstr "_Следующее"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr ""
+msgstr "_Предыдущее"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
-msgstr "Yelp"
+msgstr "Йелп"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Фабрика Yelp"
+msgstr "Фабрика программы \"Йелп\""
 
 #: src/yelp-main.c:117
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Не удалось активировать Yelp: \"%s\""
+msgstr "Не удалось активировать \"Йелп\": \"%s\""
 
 #: src/yelp-main.c:136
 msgid "Could not open new window."
-msgstr "Не удалось открыть новое окно"
+msgstr "Не удалось открыть новое окно."
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -134,16 +134,15 @@ msgstr "Системное администрирование"
 
 #: src/yelp-view-content.c:502 src/yelp-view-index.c:423
 msgid "Loading..."
-msgstr "Загрузка..."
+msgstr "Загружается..."
 
 #: src/yelp-view-content.c:543 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Разделы"
 
 #: src/yelp-view-index.c:480
-#, fuzzy
 msgid "_Search for:"
-msgstr "Найти:"
+msgstr "_Найти:"
 
 #. GList           *seriesids;
 #: src/yelp-view-toc.c:165
@@ -152,7 +151,7 @@ msgstr "Содержание Справки"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
-msgstr "Среда GNOME - Рабочий стол"
+msgstr "Среда Гном - Рабочий стол"
 
 #: src/yelp-view-toc.c:167
 msgid "Additional documents"
@@ -160,11 +159,11 @@ msgstr "Дополнительные документы"
 
 #: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
-msgstr "Страницы руководства"
+msgstr "Справочная информация формата man"
 
 #: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
-msgstr "Страницы info"
+msgstr "Справочная информация формата info"
 
 #: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
@@ -176,11 +175,11 @@ msgstr "Категории"
 
 #: src/yelp-view-toc.c:448
 msgid "Manual pages"
-msgstr "Страницы руководства"
+msgstr "Справочная информация формата man"
 
 #: src/yelp-view-toc.c:712
 msgid "GNOME is"
-msgstr "Среда GNOME является"
+msgstr "Среда Гном является"
 
 #: src/yelp-view-toc.c:713
 msgid "Free Software"
@@ -188,7 +187,7 @@ msgstr "Свободное программное обеспечение"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
-msgstr "(C)"
+msgstr "©"
 
 #: src/yelp-window.c:163
 msgid "/_File"
@@ -204,15 +203,15 @@ msgstr "/Файл/_Закрыть окно"
 
 #: src/yelp-window.c:167
 msgid "/_Edit"
-msgstr ""
+msgstr "/_Правка"
 
 #: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
-msgstr ""
+msgstr "/Правка/_Найти на странице.."
 
 #: src/yelp-window.c:169
 msgid "/Edit/_Find again"
-msgstr ""
+msgstr "/Правка/Найти _снова"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
@@ -261,7 +260,7 @@ msgstr ""
 
 #: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
-msgstr "Программа просмотра справки для среды GNOME 2.0"
+msgstr "Программа просмотра справки для среды Гном версии 2"
 
 #: src/yelp-window.c:788
 msgid "Back"
@@ -297,7 +296,7 @@ msgstr "Найти в содержании"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr "Получить справку в среде GNOME"
+msgstr "Окно для получения справки в среде Гном"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
