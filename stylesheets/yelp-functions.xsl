@@ -383,7 +383,8 @@
 </func:function>
 <func:function name="yelp:get-admon.class">
 	<xsl:param name="node" select="."/>
-	<func:result select="$node/caution/important/note/tip.warning"/>
+	<func:result select="$node/caution | $node/important | $node/note
+		| $node/tip | $node/warning"/>
 </func:function>
 <func:function name="yelp:get-linespecific.class">
 	<xsl:param name="node" select="."/>
