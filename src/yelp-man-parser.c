@@ -38,6 +38,7 @@
 #define PARSER_CUR (*(parser->cur) != '\0' \
     && (parser->cur - parser->buffer < parser->length))
 
+static void        parser_parse_line        (YelpManParser *parser);
 static void        parser_handle_linetag    (YelpManParser *parser);
 static void        parser_handle_inline     (YelpManParser *parser);
 static void        parser_ensure_P          (YelpManParser *parser);
@@ -106,32 +107,7 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 				   NULL, NULL)
 	   == G_IO_STATUS_NORMAL) {
 
-	parser->anc = parser->buffer;
-	parser->cur = parser->buffer;
-
-	switch (*(parser->buffer)) {
-	case '.':
-	    parser_handle_linetag (parser);
-	    break;
-	case '\n':
-	    parser->ins = xmlDocGetRootElement (parser->doc);
-	    break;
-	case '\'':
-	    parser->cur = parser->buffer + parser->length - 1;
-	    parser->anc = parser->cur;
-	default:
-	    break;
-	}
-
-	parser_read_until (parser, '\n');
-
-	if (parser->cur != parser->anc)
-	    parser_append_text (parser);
-
-	if (PARSER_CUR) {
-	    parser->cur++;
-	    parser_append_text (parser);
-	}
+	parser_parse_line (parser);
 
 	g_free (parser->buffer);
     }
@@ -172,6 +148,36 @@ yelp_man_parser_free (YelpManParser *parser)
 }
 
 /******************************************************************************/
+
+static void
+parser_parse_line (YelpManParser *parser) {
+    parser->anc = parser->buffer;
+    parser->cur = parser->buffer;
+    
+    switch (*(parser->buffer)) {
+    case '.':
+	parser_handle_linetag (parser);
+	break;
+    case '\n':
+	parser->ins = xmlDocGetRootElement (parser->doc);
+	break;
+    case '\'':
+	parser->cur = parser->buffer + parser->length - 1;
+	parser->anc = parser->cur;
+    default:
+	break;
+    }
+    
+    parser_read_until (parser, '\n');
+    
+    if (parser->cur != parser->anc)
+	parser_append_text (parser);
+    
+    if (PARSER_CUR) {
+	parser->cur++;
+	parser_append_text (parser);
+    }
+}
 
 static void
 parser_handle_linetag (YelpManParser *parser) {
@@ -288,21 +294,40 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->ins = parser->ins->parent;
     }
     else if (g_str_equal (str, "TP")) {
+	/* Deal with 'lists'... grrr */
+	tmpNode = parser_stack_pop_node (parser, "IP");
+	if (tmpNode != NULL)
+	    parser->ins = tmpNode->parent;
+
+	parser->ins = parser_append_node (parser, "IP");
+	g_free (str);
+	
+	if (PARSER_CUR && *(parser->cur) != '\n') {
+            parser->ins = parser_append_node (parser, "Indent");
+	    parser_read_until (parser, '\n');
+            parser_append_token (parser);
+            parser->ins = parser->ins->parent;
+        }
+
 	g_free (parser->buffer);
+
 	if (g_io_channel_read_line (parser->channel,
 				&(parser->buffer),
 				&(parser->length),
 				NULL, NULL)
 	    == G_IO_STATUS_NORMAL) {
-	    parser->cur = parser->buffer;
-            parser->anc = parser->buffer;
-	    
-	    parser->ins = parser_append_node (parser, "Term");
-	    parser_read_until (parser, '\n');
+	    parser->ins = parser_append_node (parser, "Tag");
+	    parser_parse_line (parser);
+	    parser->ins = parser->ins->parent;
 	}
-	parser->ins = parser->ins->parent;
+
+	parser_stack_push_node (parser, parser->ins);
     }
     else if (g_str_equal (str, "IP")) {
+	tmpNode = parser_stack_pop_node (parser, "IP");
+	if (tmpNode != NULL)
+	    parser->ins = tmpNode->parent;
+
         parser->ins = parser_append_node (parser, str);
         g_free (str);
 
@@ -314,9 +339,12 @@ parser_handle_linetag (YelpManParser *parser) {
         }
 	if (PARSER_CUR && *(parser->cur) != '\n') {
             parser->ins = parser_append_node (parser, "Indent");
+	    parser_read_until (parser, '\n');
             parser_append_token (parser);
             parser->ins = parser->ins->parent;
         }
+
+	parser_stack_push_node (parser, parser->ins);
     }
     else if (g_str_equal (str, "HP")) {
 	parser->ins = parser_append_node (parser, str);
@@ -329,6 +357,9 @@ parser_handle_linetag (YelpManParser *parser) {
         }
     }
     else if (g_str_equal (str, "RS")) {
+	/* Clean up from 'lists'. If this is null we don't care. */
+	parser_stack_pop_node (parser, "IP");
+
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
 
@@ -341,6 +372,9 @@ parser_handle_linetag (YelpManParser *parser) {
         }
     }
     else if (g_str_equal (str, "RE")) {
+	/* Clean up from 'lists'. If this is null we don't care. */
+	parser_stack_pop_node (parser, "IP");
+
 	tmpNode = parser_stack_pop_node (parser, "RS");
 
 	if (tmpNode == NULL)
