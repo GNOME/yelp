@@ -39,10 +39,12 @@
 typedef gboolean      (*ProcessFunction)        (YelpTocPager      *pager);
 
 typedef struct _OMF OMF;
+typedef struct _TOC TOC;
 
 struct _YelpTocPagerPriv {
     GSList           *dir_pending;
     GSList           *omf_pending;
+    GSList           *node_pending;
     GSList           *toc_pending;
     GSList           *idx_pending;
 
@@ -75,6 +77,18 @@ struct _OMF {
     xmlChar   *xml_file;
 };
 
+struct _TOC {
+    gchar       *id;
+    gchar       *title;
+
+    xmlNodePtr   node;
+
+    GSList      *subtocs;
+    GSList      *subomfs;
+
+    gboolean     pruned;
+};
+
 static void          toc_pager_class_init      (YelpTocPagerClass *klass);
 static void          toc_pager_init            (YelpTocPager      *pager);
 static void          toc_pager_dispose         (GObject           *gobject);
@@ -90,20 +104,16 @@ static gboolean      toc_process_pending       (YelpTocPager      *pager);
 static gboolean      process_dir_pending       (YelpTocPager      *pager);
 static gboolean      process_omf_pending       (YelpTocPager      *pager);
 static gboolean      process_read_toc          (YelpTocPager      *pager);
+static gboolean      process_node_pending      (YelpTocPager      *pager);
 static gboolean      process_toc_pending       (YelpTocPager      *pager);
 
 #if 0
-static gboolean      toc_process_toc           (YelpTocPager      *pager);
-static gboolean      toc_process_toc_pending   (YelpTocPager      *pager);
-
 static gboolean      toc_process_idx           (YelpTocPager      *pager);
 static gboolean      toc_process_idx_pending   (YelpTocPager      *pager);
 
 #endif
-static gchar *       toc_write_page            (gchar             *id,
-						gchar             *title,
-						GSList            *cats,
-						GSList            *omfs);
+static gchar *       toc_write_page            (TOC               *toc);
+
 static xmlChar *     node_get_title            (xmlNodePtr         node);
 static void          toc_hash_omf              (YelpTocPager      *pager,
 						OMF               *omf);
@@ -292,6 +302,9 @@ toc_process_pending (YelpTocPager *pager)
 	    priv->pending_func = process_read_toc;
 
 	else if (priv->pending_func == process_read_toc)
+	    priv->pending_func = process_node_pending;
+
+	else if (priv->pending_func == process_node_pending)
 	    priv->pending_func = process_toc_pending;
 
 	else if (priv->pending_func == process_toc_pending)
@@ -559,9 +572,61 @@ process_read_toc (YelpTocPager *pager)
 	return FALSE;
     }
 
-    priv->toc_pending = g_slist_append (priv->toc_pending, toc_node);
+    priv->node_pending = g_slist_append (priv->node_pending, toc_node);
 
     return FALSE;
+}
+
+static gboolean
+process_node_pending (YelpTocPager *pager)
+{
+    GSList      *first;
+    TOC         *toc;
+    xmlNodePtr   node;
+    xmlNodePtr   cur;
+
+    YelpTocPagerPriv *priv = pager->priv;
+
+    first = priv->node_pending;
+    priv->node_pending = g_slist_remove_link (priv->node_pending, first);
+
+    node = (xmlNodePtr) first->data;
+    if (!node)
+	goto done;
+
+    toc = g_new0 (TOC, 1);
+
+    toc->node      = node;
+    node->_private = toc;
+
+    toc->subtocs = NULL;
+
+    toc->id    = (gchar *) xmlGetProp (node, (const xmlChar *) "id");
+    toc->title = (gchar *) node_get_title (node);
+
+    /* Important:
+     * We MUST prepend self to toc_pending and prepend children to
+     * node_pending to get a depth-first, post-order traversal, which
+     * is needed to prune empty TOC pages.
+     */
+    priv->toc_pending = g_slist_prepend (priv->toc_pending, toc);
+
+    for (cur = node->children; cur; cur = cur->next) {
+	if (cur->type == XML_ELEMENT_NODE) {
+	    if (!xmlStrcmp (cur->name, "toc")) {
+		priv->node_pending = g_slist_prepend (priv->node_pending, cur);
+		toc->subtocs = g_slist_append (toc->subtocs, cur);
+	    }
+	}
+    }
+
+ done:
+    g_slist_free_1 (first);
+
+    if (priv->node_pending)
+	return TRUE;
+    else
+	return FALSE;
 }
 
 static gboolean
@@ -570,54 +635,62 @@ process_toc_pending (YelpTocPager *pager)
     GSList      *first;
     xmlNodePtr   node;
     xmlNodePtr   cur;
-    xmlChar     *id = NULL;
-    xmlChar     *title;
-    GSList      *subcats = NULL;
-    GSList      *subomfs = NULL;
+    TOC         *cur_toc;
+    TOC         *toc;
+    GSList      *omfs = NULL;
+    GSList      *c;
 
     YelpTocPagerPriv *priv = pager->priv;
 
     first = priv->toc_pending;
     priv->toc_pending = g_slist_remove_link (priv->toc_pending, first);
 
-    node = first->data;
-
-    id = xmlGetProp (node, (const xmlChar *) "id");
-
-    title = node_get_title (node);
+    toc  = (TOC *) first->data;
+    node = toc->node;
 
     for (cur = node->children; cur; cur = cur->next) {
-	if (cur->type == XML_ELEMENT_NODE) {
-	    if (!xmlStrcmp (cur->name, "toc")) {
-		priv->toc_pending = g_slist_append (priv->toc_pending, cur);
-		subcats = g_slist_append (subcats, cur);
-	    }
-	    else if (!xmlStrcmp (cur->name, "category")) {
+	if (cur->type == XML_ELEMENT_NODE)
+	    if (!xmlStrcmp (cur->name, "category")) {
 		GSList  *omf;
 		xmlChar *cat;
 
 		cat = xmlNodeGetContent (cur);
 		omf = g_hash_table_lookup (priv->category_hash_omf, cat);
 
+		// FIXME: insert_sorted
 		for ( ; omf; omf = omf->next)
-		    subomfs = g_slist_prepend (subomfs, omf->data);
+		    omfs = g_slist_prepend (omfs, omf->data);
 
 		xmlFree (cat);
+	    }
+    }
+
+    // Determine whether to prune this TOC page.
+    toc->pruned = TRUE;
+    if (omfs) {
+	toc->pruned  = FALSE;
+	toc->subomfs = omfs;
+    } else {
+	for (c = toc->subtocs; c; c = c->next) {
+	    cur     = (xmlNodePtr) c->data;
+	    cur_toc = (TOC *) cur->_private;
+
+	    if (cur_toc && !cur_toc->pruned) {
+		toc->pruned = FALSE;
+		break;
 	    }
 	}
     }
 
-    if (id) {
-	gchar *page = toc_write_page (id, title, subcats, subomfs);
-	yelp_pager_add_page (YELP_PAGER (pager), id, title, page);
-	g_signal_emit_by_name (pager, "page", id);
-    } else {
-	g_warning (_("YelpTocPager: TOC entry has no id."));
-	g_free (title);
+    if (!toc->pruned) {
+	gchar *page = toc_write_page (toc);
+	yelp_pager_add_page (YELP_PAGER (pager),
+			     toc->id,
+			     toc->title,
+			     page);
+	g_signal_emit_by_name (pager, "page", toc->id);
     }
 
-    g_slist_free (subcats);
-    g_slist_free (subomfs);
     g_slist_free_1 (first);
 
     if (priv->toc_pending)
@@ -683,10 +756,7 @@ toc_process_idx_pending (YelpTocPager *pager)
 #endif
 
 static gchar *
-toc_write_page (gchar     *id,
-		gchar     *title,
-		GSList    *cats,
-		GSList    *omfs)
+toc_write_page (TOC    *toc)
 {
     gint      i = 0;
     GSList   *c;
@@ -696,42 +766,40 @@ toc_write_page (gchar     *id,
     gint      page_len = 0;
     gchar    *page_end;
 
-    strs_len = g_slist_length (cats) + g_slist_length (omfs) + 20;
+    strs_len =
+	g_slist_length (toc->subtocs) + g_slist_length (toc->subomfs) + 20;
 
     strs = g_new0 (gchar *, strs_len);
 
-    strs[i] = g_strconcat ("<html><body><h1>", title, "</h1>\n", NULL);
+    strs[i] = g_strconcat ("<html><body><h1>", toc->title, "</h1>\n", NULL);
     page_len += strlen (strs[i]);
 
-    if (cats) {
+    if (toc->subtocs) {
 	strs[++i] = g_strconcat ("<h2>", _("Categories"), "</h2><ul>\n", NULL);
 	page_len += strlen (strs[i]);
 
-	for (c = cats; c; c = c->next) {
-	    xmlNodePtr cur = (xmlNodePtr) c->data;
-	    xmlChar *id, *title;
+	for (c = toc->subtocs; c; c = c->next) {
+	    xmlNodePtr  cur     = (xmlNodePtr) c->data;
+	    TOC        *cur_toc = (TOC *) cur->_private;
 
-	    id = xmlGetProp (cur, (const xmlChar *) "id");
-	    title = node_get_title (cur);
-
-	    strs[++i] = g_strconcat ("<li><a href='toc:", id, "'>",
-				     title,
-				     "</a></li>\n",
-				     NULL);
-	    page_len += strlen (strs[i]);
-
-	    xmlFree (id);
-	    xmlFree (title);
+	    if (cur_toc && !cur_toc->pruned) {
+		strs[++i] = g_strconcat
+		    ("<li><a href='toc:", cur_toc->id, "'>",
+		     cur_toc->title,
+		     "</a></li>\n",
+		     NULL);
+		page_len += strlen (strs[i]);
+	    }
 	}
 	strs[++i] = g_strdup ("</ul>\n");
 	page_len += strlen (strs[i]);
     }
 
-    if (omfs) {
+    if (toc->subomfs) {
 	strs[++i] = g_strconcat ("<h2>", _("Documents"), "</h2><ul>\n", NULL);
 	page_len += strlen (strs[i]);
 
-	for (c = omfs; c; c = c->next) {
+	for (c = toc->subomfs; c; c = c->next) {
 	    OMF *omf = (OMF *) c->data;
 	    strs[++i] = g_strconcat ("<li><a href='", omf->xml_file, "'>",
 				     omf->title,

@@ -1,5 +1,11 @@
 2003-12-01  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-toc-pager.c:
+	- Changed the way toc nodes are processed to give a depth-first,
+	  post-order traversal.  This way I can prune empty toc pages.
+
+2003-12-01  Shaun McCance  <shaunm@gnome.org>
+
 	* data/toc.xml.in:
 	- Handling all SK categories, from mariano.
 
