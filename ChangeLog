@@ -1,3 +1,7 @@
+2005-02-04  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/yelp-db-pager.c: (db_pager_params):  Fix a leak.
+
 2005-02-02  Chris Lahey  <clahey@clahey.net>
 
 	* src/yelp-pager.c (yelp_pager_get_page): Check for a NULL page_id

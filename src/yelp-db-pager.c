@@ -292,7 +292,6 @@ db_pager_params (YelpPager *pager)
 {
     YelpDBPagerPriv *priv;
     YelpDocInfo     *doc_info;
-    gchar           *filename;
     gchar **params;
     gint params_i = 0;
     gint params_max = 20;
@@ -307,8 +306,6 @@ db_pager_params (YelpPager *pager)
 
     if (yelp_pager_get_state (pager) >= YELP_PAGER_STATE_ERROR)
 	return NULL;
-
-    filename = yelp_doc_info_get_filename (doc_info);
 
     params = g_new0 (gchar *, params_max);
 
