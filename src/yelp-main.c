@@ -324,6 +324,11 @@ main (int argc, char **argv)
 				      GNOME_PROGRAM_STANDARD_PROPERTIES,
 				      NULL);
 
+	/* Need to set this to the canonical DISPLAY value, since
+	   that's where we're registering per-display components */
+	bonobo_activation_set_activation_env_value ("DISPLAY",
+						    gdk_display_get_name (gdk_display_get_default ()));
+
 	gnome_vfs_init ();
 	
 	/* Commandline parsing is done here */
