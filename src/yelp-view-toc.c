@@ -721,7 +721,7 @@ toc_page_end (YelpViewTOC *view)
 			  "</td>\n"
 			  "<td>\n"
 			  "(C) 1998-2002 Gnome Hackers<br>\n"
-			  "Gnome is <a href=\"http://www.gnu.org/philosophy/free-sw.html\">Free Software</a>. |<a href=\"http://www.gnome.org\">http://www.gnome.org</a>\n"
+			  "Gnome is <a href=\"http://www.gnu.org/philosophy/free-sw.html\">Free Software</a>. | <a href=\"http://www.gnome.org\">http://www.gnome.org</a>\n"
 			  "</td>\n"
 			  "<td bgcolor=\"#3b3b4f\" width=\"10%\">&nbsp;</td>\n"
 			  "</tr>\n"
