@@ -321,6 +321,8 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 
 	priv = window->priv;
 
+	d(g_print ("Handling URL: %s\n", url));
+
  	yelp_view_content_stop (YELP_VIEW_CONTENT (priv->content_view));
 
 	if (strncmp (url, "toc:", 4) == 0) {

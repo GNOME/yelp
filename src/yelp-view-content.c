@@ -285,6 +285,7 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 	YelpViewContentPriv *priv;
 	gchar               *content_url;
 	GNode               *node;
+	gchar               *section = NULL;
 	
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
 	g_return_if_fail (url != NULL);
@@ -308,7 +309,7 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 	} else if (strncmp (url, "ghelp:", 6) == 0) {
 		/* ghelp uri-scheme /usr/share/gnome/help... */
 		gchar *docpath;
-		
+
  		docpath = yelp_util_extract_docpath_from_uri (url);
 
 		if (docpath && strcmp (docpath, priv->current_docpath)) {
@@ -317,9 +318,9 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 			node = yelp_scrollkeeper_get_toc_tree (docpath);
 			
 			if (node) {
+				gtk_widget_show (priv->tree_sw);
 				yelp_view_content_set_tree (content, node);
 				
-				gtk_widget_show (priv->tree_sw);
 			} else {
 				gtk_widget_hide (priv->tree_sw);
 			}
@@ -327,10 +328,11 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 			g_free (priv->current_docpath);
 			priv->current_docpath = g_strdup (docpath);
 		}
-		
+
 		g_free (docpath);
 
-		content_url = (char *) url;
+		content_url = yelp_util_split_uri (url, &section);
+		
 	} else if (!strncmp (url, "info:", 5) || !strncmp (url, "man:", 4)) {
 		node = yelp_util_find_node_from_uri (priv->doc_tree, url);
 
@@ -343,7 +345,7 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 		content_url = (char *) url;
 	}
 
-	yelp_html_open_uri (priv->html_view, content_url, NULL, error);
+	yelp_html_open_uri (priv->html_view, content_url, section, error);
 
 	if (content_url != url) {
 		g_free (content_url);

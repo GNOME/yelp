@@ -1,3 +1,26 @@
+2002-04-22  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-content.c (yelp_view_content_show_uri): 
+	- split the url and send the section in the correct way to
+	  yelp_html_open_uri.
+
+	* src/yelp-util.c (yelp_util_extract_docpath_from_uri): 
+	- don't include the section/anchor/reference in the returned
+	  string.
+	(yelp_util_resolve_relative_uri): handle #-sections too (html).
+
+	* src/yelp-html.c:
+	(yelp_html_do_html): added.
+	(yelp_html_do_docbook): get the section too.
+	(yelp_html_io_watch_cb): 
+	- also finish if we couldn't read as much as we wanted.
+	- if section exists, jump to anchor.
+	(yh_url_requested_cb): correctly handle relative url's.
+	(yh_link_clicked_cb): don't shortcut if section is specified with
+	  '?' which means it's docbook (which are chunked, not one big
+	  document with anchors). 
+	(yelp_html_open_uri): handle html, fixes: 79015
+
 2002-04-19  Sander Vesik <sander.vesik@sun.com>
 	* stylesheets/yelp-customization.xsl: make "indirect" links work
 	  and make several beautification changes

@@ -151,7 +151,7 @@ yelp_util_resolve_relative_uri (const char *base_uri,
 	 * functionality differs from what Mozilla itself would do.
 	 */
 
-	if (uri[0] == '?') {
+	if (uri[0] == '?' || uri[0] == '#') {
 		result = g_strconcat (base_uri, uri, NULL);
 	}
 	else if (is_uri_relative (uri)) {
@@ -504,32 +504,40 @@ yelp_util_find_node_from_uri (GNode *doc_tree, const gchar *uri)
 }
 
 gchar *
-yelp_util_extract_docpath_from_uri (const gchar *str_uri)
+yelp_util_extract_docpath_from_uri (const gchar *inc_uri)
 {
 	GnomeVFSURI *uri;
+	gchar       *str_uri;
 	gchar       *transformed_uri;
 	gchar       *docpath = NULL;
 	gchar       *extension;
+	const gchar *ch = NULL;
+	
+	if ((ch = strchr (inc_uri, '?')) || (ch = strchr (inc_uri, '#'))) {
+		str_uri = g_strndup (inc_uri, ch - inc_uri);
+	} else {
+		str_uri = g_strdup (inc_uri);
+	}
 
 	if (!strncmp (str_uri, "man:", 4)) {
-		return g_strdup (str_uri + 4);
+		return str_uri;
 	}
 	else if (!strncmp (str_uri, "info:", 5)) {
-		return g_strdup (str_uri + 5);
+		return str_uri;
 	} 
 	else if (strncmp (str_uri, "ghelp:", 6)) {
 		/* Strange uri, just return the same string */
-		return g_strdup (str_uri);
+		return str_uri;
 	}
 
 	if ((extension = strstr (str_uri, ".xml"))) {
-		const gchar *str;
+		gchar *str;
 		str = str_uri + 6;
 		/* This means we have a ghelp-uri with full path */
 		docpath = g_strndup (str, extension + 4 - str);
 	}
 	else if ((extension = strstr (str_uri, ".sgml"))) {
-		const gchar *str;
+		gchar *str;
 		str = str_uri + 6;
 		docpath = g_strndup (str, extension + 5 - str);
 	} else {
@@ -559,20 +567,22 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 								     NULL);
 			}
 		} else {
-			return NULL;
+			docpath = NULL;
 		}
 	}
 
+	g_free (str_uri);
+	
 	return docpath;
 }
 
 gchar *
 yelp_util_split_uri (const gchar *uri, gchar **anchor)
 {
-	gchar *str;
-	gchar *ret = NULL;
-	gchar *anchor_ptr;
-	gint   len;
+	gchar       *str;
+	gchar       *ret = NULL;
+	const gchar *anchor_ptr;
+	gint         len;
 	
 	anchor_ptr = yelp_util_find_anchor_in_uri (uri);
 	

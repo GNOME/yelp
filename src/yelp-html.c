@@ -55,8 +55,9 @@ struct _YelpHtmlPriv {
 };
 
 typedef struct {
-	YelpHtml       *html;
-	HtmlStream     *stream;
+	YelpHtml   *html;
+	HtmlStream *stream;
+	gchar      *section;
 } ReadData;
 
 static void      yh_init                  (YelpHtml           *html);
@@ -67,7 +68,8 @@ static int       yelp_html_do_write       (void               *context,
 static int       yelp_html_do_close       (void               *context);
 
 static void      yelp_html_do_docbook     (YelpHtml           *html,
-					   const gchar        *uri,
+					   const gchar        *docpath,
+					   const gchar        *section,
 					   GError            **error);
 static gboolean  yelp_html_io_watch_cb    (GIOChannel         *iochannel, 
 					   GIOCondition        cond, 
@@ -77,6 +79,11 @@ static void      yelp_html_do_maninfo     (YelpHtml           *html,
 					   HtmlStream         *stream,
 					   DocType             type, 
 					   const gchar        *uri,
+					   GError            **error);
+static void      yelp_html_do_html        (YelpHtml           *html,
+					   HtmlStream         *stream,
+					   const gchar        *uri,
+					   const gchar        *section,
 					   GError            **error);
 static void      yh_url_requested_cb      (HtmlDocument       *doc,
 					   const gchar        *uri,
@@ -230,14 +237,18 @@ yelp_html_do_close (void *context)
 }
 
 static void
-yelp_html_do_docbook (YelpHtml *html, const gchar *uri, GError **error)
+yelp_html_do_docbook (YelpHtml *html, const gchar *docpath, 
+		      const gchar *section, GError **error)
 {
 	xmlOutputBufferPtr  buf;
 	YelpHtmlPriv       *priv;
-
+	gchar              *uri;
+	
 	g_return_if_fail (YELP_IS_HTML (html));
 	
 	priv = html->priv;
+
+	uri = g_strconcat (docpath, "?", section, NULL);
 
 	buf = xmlAllocOutputBuffer (NULL);
 		
@@ -246,6 +257,8 @@ yelp_html_do_docbook (YelpHtml *html, const gchar *uri, GError **error)
 	buf->context       = html;
 		
 	yelp_db2html_convert (uri, buf, error);
+
+	g_free (uri);
 }
 
 static gboolean
@@ -257,6 +270,7 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 	static gchar  buffer[BUFFER_SIZE];
 	guint         n;
 	GIOError      io_error;
+	gboolean      finished = FALSE;
 
 	g_return_val_if_fail (read_data != NULL, FALSE);
 	g_return_val_if_fail (YELP_IS_HTML (read_data->html), FALSE);
@@ -264,7 +278,7 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 	priv = read_data->html->priv;
 
 	if (cond & G_IO_IN) {
-		d(g_print ("Read available\n"));
+ 		d(g_print ("Read available\n"));
 		
 		io_error = g_io_channel_read (iochannel, buffer, 
 					      BUFFER_SIZE, &n);
@@ -274,18 +288,30 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 		}
 
 		yelp_html_do_write (read_data->html, buffer, n);
+		
+		if (n < BUFFER_SIZE) {
+			finished = TRUE;
+		}
 	}
 
-	if (cond & G_IO_HUP) {
+	if (cond & G_IO_HUP || finished) {
 		html_stream_close (read_data->stream);
 		
 		d(g_print ("Close\n"));
 
+		g_io_channel_unref (iochannel);
+		
 		gtk_adjustment_set_value (
 			gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
 			0);
 
 		gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, NULL);
+
+		if (read_data->section) {
+			html_view_jump_to_anchor (priv->view, 
+						  read_data->section);
+			g_free (read_data->section);
+		}
 
 		g_free (read_data);
 		return FALSE;
@@ -340,9 +366,10 @@ yelp_html_do_maninfo (YelpHtml *html, HtmlStream *stream,
 	io_channel = g_io_channel_unix_new (output_fd);
 	
 	read_data = g_new (ReadData, 1);
-	read_data->html   = html;
-	read_data->stream = stream;
-
+	read_data->html    = html;
+	read_data->stream  = stream;
+	read_data->section = NULL;
+	
 	g_io_add_watch (io_channel, G_IO_IN | G_IO_HUP, 
 			(GIOFunc) yelp_html_io_watch_cb,
 			read_data);
@@ -351,29 +378,67 @@ yelp_html_do_maninfo (YelpHtml *html, HtmlStream *stream,
 }
 
 static void
+yelp_html_do_html (YelpHtml     *html,
+		   HtmlStream   *stream,
+		   const gchar  *docpath,
+		   const gchar  *section,
+		   GError      **error)
+{
+	GIOChannel *io_channel = NULL;
+	ReadData   *read_data;
+
+	d(g_print ("Opening html-file: %s\n", docpath));
+
+	io_channel = g_io_channel_new_file (docpath, "r", error);
+
+	if (!io_channel) {
+		return;
+	}
+
+	read_data = g_new (ReadData, 1);
+	read_data->html = html;
+	read_data->stream = stream;
+	read_data->section = g_strdup (section);
+	
+	g_io_add_watch (io_channel, G_IO_IN | G_IO_HUP,
+			(GIOFunc) yelp_html_io_watch_cb,
+			read_data);
+}
+
+static void
 yh_url_requested_cb (HtmlDocument *doc,
 		     const gchar  *uri,
 		     HtmlStream   *stream,
 		     gpointer      data)
 {
+	YelpHtmlPriv     *priv;
         YelpHtml         *html;
 	GnomeVFSHandle   *handle;
 	GnomeVFSResult    result;
 	gchar             buffer[BUFFER_SIZE];
 	GnomeVFSFileSize  read_len;
-
-	d(g_print ("URL REQUESTED: %s\n", uri));
+	gchar            *abs_url;
+	gchar            *docpath;
 
         html = YELP_HTML (data);
-
+	priv = html->priv;
+	
 	html_stream_set_cancel_func (stream, yh_stream_cancel, html);
 
-	result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
+	abs_url = yelp_util_resolve_relative_uri (priv->base_uri, uri);
+	docpath = yelp_util_extract_docpath_from_uri (abs_url);
 	
+	d(g_print ("URL REQUESTED: %s\n", abs_url));
+	g_free (abs_url);
+
+	result = gnome_vfs_open (&handle, docpath, GNOME_VFS_OPEN_READ);
+
 	if (result != GNOME_VFS_OK) {
-		g_warning ("Failed to open: %s", uri);
+		g_warning ("Failed to open: %s", docpath);
+		g_free (docpath);
 		return;
 	}
+	g_free (docpath);
 
 	while (gnome_vfs_read (handle, buffer, BUFFER_SIZE, &read_len) ==
 	       GNOME_VFS_OK) {
@@ -396,24 +461,39 @@ yh_stream_cancel (HtmlStream *stream,
 static void
 yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 {
-	gboolean handled;
+	YelpHtmlPriv *priv;
+	gboolean      handled;
+	gchar        *abs_url;
+	gchar        *section;
+	gchar        *docurl;
 
 	g_return_if_fail (HTML_IS_DOCUMENT (doc));
 	g_return_if_fail (url != NULL);
 	g_return_if_fail (YELP_IS_HTML (html));
 
+	priv    = html->priv;
 	handled = FALSE;
 
+	abs_url = yelp_util_resolve_relative_uri (priv->base_uri, url);
+	docurl  = yelp_util_split_uri (abs_url, &section);
+
+	d(g_print ("link clicked: ABS Url: %s\n", docurl));
+	
 	/* If this is a relative reference. Shortcut reload. */
-	if (url && (url[0] == '#' || url[0] == '?')) {
-		html_view_jump_to_anchor (HTML_VIEW (html->priv->view),
- 					  &url[1]);
-		handled = TRUE;
+	if (!g_ascii_strcasecmp (docurl, priv->base_uri) &&
+	    !strchr (abs_url, '?')) {
+		if (section) {
+			html_view_jump_to_anchor (HTML_VIEW (html->priv->view),
+						  section);
+			handled = TRUE;
+		}
 	}
+
+	g_free (abs_url);
 	
 	d(g_print ("link clicked: URL=%s baseUri=%s\n", url,
 		   html->priv->base_uri));
-
+	
 	g_signal_emit (html, signals[URL_SELECTED], 0,
 		       url, html->priv->base_uri, handled);
 }
@@ -445,13 +525,13 @@ yelp_html_new (void)
 void
 yelp_html_open_uri (YelpHtml     *html, 
 		    const gchar  *str_uri,
-		    const gchar  *reference,
+		    const gchar  *section,
 		    GError      **error)
 {
         YelpHtmlPriv *priv;
 	GdkCursor    *cursor;
 	
-	d(g_print ("Open URI: %s\n", str_uri));
+	d(g_print ("Open URI: %s with section: %s\n", str_uri, section));
 
 	g_return_if_fail (YELP_IS_HTML (html));
 	g_return_if_fail (str_uri != NULL);
@@ -475,19 +555,42 @@ yelp_html_open_uri (YelpHtml     *html,
 	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, cursor);
 	gdk_cursor_unref (cursor);
 	
-	if (!strncmp (str_uri, "ghelp:", 6)) {
-		yelp_html_do_docbook (html, str_uri + 6, error);
-		/* Docbook or HTML */
-	} 
-	else if (!strncmp (str_uri, "man:", 4)) {
+	g_free (priv->base_uri);
+	priv->base_uri = g_strdup (str_uri);
+
+	if (!strncmp (str_uri, "man:", 4)) {
 		yelp_html_do_maninfo (html, priv->doc->current_stream, MAN,
 				      str_uri + 4, error);
 	}
-	else if (!strncmp(str_uri, "info:", 5)) {
+	else if (!strncmp (str_uri, "info:", 5)) {
 		yelp_html_do_maninfo (html, priv->doc->current_stream, INFO,
 				      str_uri + 5, error);
 	} else {
-		/* Set error */
+		gchar *mime_type = NULL;
+		gchar *docpath;
+
+		docpath   = yelp_util_extract_docpath_from_uri (str_uri);
+		mime_type = gnome_vfs_get_mime_type (docpath);
+
+		if (mime_type) {
+			d(g_print ("mime_type: %s\n", mime_type));
+			
+			if (!g_strcasecmp (mime_type, "text/sgml") ||
+			    !g_strcasecmp (mime_type, "text/xml")) {
+				yelp_html_do_docbook (html,
+						      docpath, section, error);
+			}
+			else if (!g_strcasecmp (mime_type, "text/html")) {
+				yelp_html_do_html (html,
+						   priv->doc->current_stream,
+						   docpath, section, error);
+			}
+
+			g_free (mime_type);
+		}
+
+		d(g_print ("Docpath: %s\n", docpath));
+		g_free (docpath);
 	}
 }
 
