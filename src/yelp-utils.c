@@ -60,13 +60,17 @@ YelpDocumentInfo *
 yelp_document_info_new (gchar *uri)
 {
     YelpDocumentInfo *doc;
-    gchar            *doc_uri;
+    gchar            *doc_uri = NULL;
     YelpDocumentType  doc_type;
+    gchar *cur;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
     if (!strncmp (uri, "file:", 5)) {
-	doc_uri = g_strdup (uri);
+	if ((cur = strchr (uri, '#')))
+	    doc_uri = g_strndup (uri, cur - uri);
+	else
+	    doc_uri = g_strdup (uri);
 	doc_type = get_document_type (doc_uri);
     }
     if (!strncmp (uri, "ghelp:", 6)) {
@@ -80,7 +84,7 @@ yelp_document_info_new (gchar *uri)
     }
     else if (!strncmp (uri, "info:", 5)) {
 	doc_uri  = convert_info_uri (uri);
-	doc_type = YELP_TYPE_DOCBOOK_XML;
+	doc_type = YELP_TYPE_INFO;
     }
     else if (!strncmp (uri, "x-yelp-toc:", 11)) {
     }
@@ -197,7 +201,7 @@ locate_file_lang (gchar *path, gchar *file, gchar *lang)
 
     for (i = 0; exts[i] != NULL; i++) {
 	full = g_strconcat (path, "/", lang, "/", file, exts[i], NULL);
-	if (g_file_test (full, G_FILE_TEST_EXISTS))
+	if (g_file_test (full, G_FILE_TEST_IS_REGULAR))
 	    uri = g_strconcat ("file://", full, NULL);
 	g_free (full);
 	if (uri)
@@ -334,7 +338,8 @@ convert_man_uri (gchar *uri)
 
     /* An absolute file path after man: */
     if (path[0] == '/') {
-	doc_uri = g_strconcat ("file://", path, NULL);
+	if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
+	    doc_uri = g_strconcat ("file://", path, NULL);
 	goto done;
     }
 
@@ -343,15 +348,15 @@ convert_man_uri (gchar *uri)
        for each program invocation.
     */
     if (!manpath) {
-	gchar *man;
+	gchar *manp;
 
-	if (!g_spawn_command_line_sync ("manpath", &man, NULL, NULL, NULL))
-	    man = g_strdup (g_getenv ("MANPATH"));
+	if (!g_spawn_command_line_sync ("manpath", &manp, NULL, NULL, NULL))
+	    manp = g_strdup (g_getenv ("MANPATH"));
 
-	g_strstrip (man);
-	manpath = g_strsplit (man, ":", -1);
+	g_strstrip (manp);
+	manpath = g_strsplit (manp, ":", -1);
 
-	g_free (man);
+	g_free (manp);
     }
 
     /* The URI is either man:frobnicate or man:frobnicate(1).  If the former,
@@ -383,7 +388,7 @@ convert_man_uri (gchar *uri)
 
     for (i = 0; manpath[i]; i++) {
 	/* The man_dir/mandirs thing is probably cleverer than it should be. */
-	for (j = 0; man_dir ? j < 1 : mandirs[j]; j++) {
+	for (j = 0; man_dir ? (j < 1) : (mandirs[j] != NULL); j++) {
 	    dirname = g_build_filename (manpath[i],
 					man_dir ? man_dir : mandirs[j],
 					NULL);
@@ -407,7 +412,8 @@ convert_man_uri (gchar *uri)
     }
 
  done:
-    g_pattern_spec_free (pspec);
+    if (pspec)
+	g_pattern_spec_free (pspec);
     g_free (man_dir);
     g_free (man_num);
     g_free (man_name);
@@ -418,6 +424,99 @@ convert_man_uri (gchar *uri)
 static gchar *
 convert_info_uri (gchar   *uri)
 {
-    // FIXME;
-    return NULL;
+    gchar *path, *cur;
+    gchar *doc_uri  = NULL;
+    gchar *info_name = NULL;
+    gchar *info_dot_info = NULL;
+
+    static gchar **infopath = NULL;
+    static gchar *infopath_d[] = {"/usr/info", "/usr/share/info", NULL};
+
+    gint i;
+
+    GDir  *dir;
+    const gchar *filename;
+    gchar *pattern;
+    GPatternSpec *pspec = NULL;
+
+    if ((path = strchr(uri, ':')))
+	path++;
+    else
+	goto done;
+
+    /* An absolute path after info: */
+    if (path[0] == '/') {
+	if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
+	    doc_uri = g_strconcat ("file://", path, NULL);
+	goto done;
+    }
+
+    /* Get the infopath, either from the INFOPATH envar,
+       or from the default infopath_d.
+    */
+    if (!infopath) {
+	gchar *infop;
+
+	infop = g_strdup (g_getenv ("INFOPATH"));
+	if (infop) {
+	    g_strstrip (infop);
+	    infopath = g_strsplit (infop, ":", -1);
+	    g_free (infop);
+	} else {
+	    infopath = infopath_d;
+	}
+    }
+
+    /* The URI is one of the following:
+       info:info_name
+       info:info_name#node
+       info:(info_name)
+       info:(info_name)node
+       In the first two, spaces are replaced with underscores.  In the other
+       two, they're preserved.  That should really only matter for the node
+       identifier, which we're not concerned with here.  All we need is to
+       extract info_name.
+    */
+    if (path[0] == '(') {
+	path++;
+	cur = strchr (path, ')');
+	if (!cur)
+	    goto done;
+	info_name = g_strndup (path, cur - path);
+    }
+    else if ((cur = strchr (path, '#')))
+	info_name = g_strndup (path, cur - path);
+    else
+	info_name = g_strdup (path);
+
+    pattern = g_strdup_printf ("%s.info.*", info_name);
+    pspec = g_pattern_spec_new (pattern);
+    g_free (pattern);
+
+    info_dot_info = g_strconcat (info_name, ".info", NULL);
+
+    for (i = 0; infopath[i]; i++) {
+	dir = g_dir_open (infopath[i], 0, NULL);
+	if (dir) {
+	    while ((filename = g_dir_read_name (dir))) {
+		if (g_str_equal (info_dot_info, filename)  ||
+		    g_pattern_match_string (pspec, filename) ) {
+		    doc_uri = g_strconcat ("file://",
+					   infopath[i], "/",
+					   filename,
+					   NULL);
+		    g_dir_close (dir);
+		    goto done;
+		}
+	    }
+	    g_dir_close (dir);
+	}
+    }
+
+ done:
+    if (pspec)
+	g_pattern_spec_free (pspec);
+    g_free (info_dot_info);
+    g_free (info_name);
+    return doc_uri;
 }
