@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
+"POT-Creation-Date: 2003-12-30 07:14-0600\n"
 "PO-Revision-Date: 2003-12-04 15:34+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@tuxfamily.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -16,80 +16,89 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1 src/yelp-man.c:429
+#: data/toc.xml.in.h:1
+#, fuzzy
+msgid "Applets"
+msgstr "Programos"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Programos"
 
-#: data/toc.xml.in.h:2
+#: data/toc.xml.in.h:3
 msgid "Desktop"
 msgstr "Darbastalis"
 
-#: data/toc.xml.in.h:3 src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Programavimas"
 
-#: data/toc.xml.in.h:4
+#: data/toc.xml.in.h:5
 msgid "Development Environments"
 msgstr "Programavimo aplinkos"
 
-#: data/toc.xml.in.h:5
+#: data/toc.xml.in.h:6
 msgid "Development Tools"
 msgstr "Programavimo įrankiai"
 
-#: data/toc.xml.in.h:6
+#: data/toc.xml.in.h:7
 msgid "Editors"
 msgstr "Redaktoriai"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Mokomosios programos"
 
-#: data/toc.xml.in.h:8
+#: data/toc.xml.in.h:9
 msgid "Games and Entertainment"
 msgstr "Žaidimai ir pramogos"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:10
 msgid "General"
 msgstr "Pagrindiniai"
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:11
 msgid "Help Contents"
 msgstr "Pagalbos žinyno turinys"
 
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:12
 msgid "Internet Applications"
 msgstr "Interneto programos"
 
-#: data/toc.xml.in.h:12
+#: data/toc.xml.in.h:13
 msgid "KDE"
 msgstr "KDE"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Kernels"
 msgstr "Branduoliai"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Multimedia Applications"
 msgstr "Multimedia programos"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Office and Productivity Applications"
 msgstr "Ofisinės programos"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific Applications"
 msgstr "Mokslinės programos"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:18
 msgid "Securities"
 msgstr "Apsaugos"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "System"
+msgstr "Sisteminiai šaukiniai"
+
+#: data/toc.xml.in.h:20
 msgid "Utilities"
 msgstr "Naudės"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X Programos"
 
@@ -98,32 +107,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Rasti tekstą dokumente:</b>"
+msgid "C_ase sensitive"
+msgstr ""
 
 #: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "Automatiškai _pažymėti radinį"
+msgid "Find"
+msgstr ""
 
 #: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Rasti tesktą..."
+msgid "_Find: "
+msgstr ""
 
 #: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "Turi sutapti _visas žodis"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "Turi sutapti raidžių _registras"
-
-#: data/ui/yelp.glade.h:7
 msgid "_Next"
 msgstr "_Kitas"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "_Ankstesnis"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr ""
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -133,29 +138,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp gamykla"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:241 src/yelp-window.c:758
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "Dokumentas '%s' negali būti atidarytas"
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "Href atributų yelp:document nerasta"
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "Nėra atminties"
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:602
 msgid "Titlepage"
 msgstr "Antraštinis puslapis"
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:604
 msgid "Contents"
 msgstr "Turinys"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:622
 msgid "Unknown"
 msgstr "Nežinima"
 
@@ -233,188 +237,165 @@ msgstr "Apžvalgos"
 msgid "System Administration"
 msgstr "Sistemos administravimas"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:118
 msgid "Document URI"
 msgstr "Dokumento URI"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
 msgstr "Apdorojamo dokumento URI"
 
-#: src/yelp-toc-pager.c:229
+#: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauzės skaičiavimas yra neigiamas."
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
 msgid "The table of contents could not be read."
 msgstr "Turinys negali būti perskaitytas."
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:841
 msgid "Categories"
 msgstr "Kategorijos"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:862
 msgid "Documents"
 msgstr "Dokumentai"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "Įkeliama..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "Skyrius"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Ieškoti:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "GNOME - Aplinka"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Papildomi dokumentai"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Pagalbos Puslapiai"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Informaciniai puslapiai"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Pagalbos puslapiai"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "GNOME yra"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "Laisva programinė įranga"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "(C)"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:223
 msgid "/_File"
 msgstr "/_Byla"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:224
 msgid "/File/_New window"
 msgstr "/Byla/_Naujas langas"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:227
 msgid "/File/_Close window"
 msgstr "/Byla/_Uždaryti langą"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:231
 msgid "/_Edit"
 msgstr "/_Taisyti"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
+#: src/yelp-window.c:232
+#, fuzzy
+msgid "/Edit/_Find..."
 msgstr "/Taisyti/_Rasti puslapyje..."
 
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
+#: src/yelp-window.c:235
+#, fuzzy
+msgid "/Edit/Find Ne_xt"
 msgstr "/Taisyti/Rasti _dar"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:238
+#, fuzzy
+msgid "/Edit/Find Pre_vious"
+msgstr "/Taisyti/Rasti _dar"
+
+#: src/yelp-window.c:242
 msgid "/_Go"
 msgstr "/_Eiti"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:243
 msgid "/Go/_Back"
 msgstr "/Eiti/_Atgal"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:246
 msgid "/Go/_Forward"
 msgstr "/Eiti/_Pirmyn"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:249
 msgid "/Go/_Home"
 msgstr "/Eiti/Į p_radžią"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:252
+#, fuzzy
+msgid "/Go/"
+msgstr "/_Eiti"
+
+#: src/yelp-window.c:253
+#, fuzzy
+msgid "/Go/_Previous"
+msgstr "_Ankstesnis"
+
+#: src/yelp-window.c:256
+#, fuzzy
+msgid "/Go/_Next"
+msgstr "/Eiti/_Indeksas"
+
+#: src/yelp-window.c:259
+#, fuzzy
+msgid "/Go/_Contents"
+msgstr "Turinys"
+
+#: src/yelp-window.c:263
 msgid "/_Help"
 msgstr "/_Pagalba"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:264
 msgid "/Help/_About"
 msgstr "/Pagalba/_Apie"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:326
 msgid "Help Browser"
 msgstr "Pagalbos naršyklė"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "Atgal"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "Rodyti anksčiau rodytą puslapį"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "Pirmyn"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "Rodyti kitą puslapį esantį atmintyje"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "Pradžia"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "Grįžti į pradinį puslapį"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:390
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentas '%s' neegzistuoja"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:426
 msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML dokumentai daugiau nepalaikomi."
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr "Įkeliama&nbsp;&nbsp;&nbsp;"
+#: src/yelp-window.c:545
+msgid "Section"
+msgstr "Skyrius"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr "Įkeliama.&nbsp;&nbsp;"
+#: src/yelp-window.c:598
+msgid "Back"
+msgstr "Atgal"
 
-#: src/yelp-window.c:895
-msgid "Loading..&nbsp;"
-msgstr "Įkeliama..&nbsp;"
+#: src/yelp-window.c:599
+msgid "Show previous page in history"
+msgstr "Rodyti anksčiau rodytą puslapį"
+
+#: src/yelp-window.c:609
+msgid "Forward"
+msgstr "Pirmyn"
+
+#: src/yelp-window.c:610
+msgid "Show next page in history"
+msgstr "Rodyti kitą puslapį esantį atmintyje"
+
+#: src/yelp-window.c:622
+msgid "Home"
+msgstr "Pradžia"
+
+#: src/yelp-window.c:623
+msgid "Go to home view"
+msgstr "Grįžti į pradinį puslapį"
+
+#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
+#: src/yelp-window.c:1105
+#, fuzzy, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "Dokumentas '%s' negali būti atidarytas"
+
+#: src/yelp-window.c:847
+msgid "Loading..."
+msgstr "Įkeliama..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1186
 msgid "translator_credits"
 msgstr ""
 "Tomas Kuliavas <tokul@users.sourceforge.net>,Žygimantas Beručka "
 "<uid0@tuxfamily.org>"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1191
 msgid "A Help Browser for GNOME"
 msgstr "GNOME pagalbos žinyno naršyklė"
 
@@ -426,8 +407,56 @@ msgstr "Gauti pagalbą dirbant su GNOME"
 msgid "Help"
 msgstr "Pagalba"
 
-#~ msgid "/Go/_Index"
-#~ msgstr "/Eiti/_Indeksas"
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Rasti tekstą dokumente:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "Automatiškai _pažymėti radinį"
+
+#~ msgid "Find text..."
+#~ msgstr "Rasti tesktą..."
+
+#~ msgid "Match _entire word"
+#~ msgstr "Turi sutapti _visas žodis"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "Turi sutapti raidžių _registras"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Ieškoti:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "GNOME - Aplinka"
+
+#~ msgid "Additional documents"
+#~ msgstr "Papildomi dokumentai"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Pagalbos Puslapiai"
+
+#~ msgid "Info Pages"
+#~ msgstr "Informaciniai puslapiai"
+
+#~ msgid "Manual pages"
+#~ msgstr "Pagalbos puslapiai"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME yra"
+
+#~ msgid "Free Software"
+#~ msgstr "Laisva programinė įranga"
+
+#~ msgid "(C)"
+#~ msgstr "(C)"
+
+#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
+#~ msgstr "Įkeliama&nbsp;&nbsp;&nbsp;"
+
+#~ msgid "Loading.&nbsp;&nbsp;"
+#~ msgstr "Įkeliama.&nbsp;&nbsp;"
+
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "Įkeliama..&nbsp;"
 
 #~ msgid "Index"
 #~ msgstr "Indeksas"

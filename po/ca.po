@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-16 13:34+0100\n"
+"POT-Creation-Date: 2003-12-30 07:14-0600\n"
 "PO-Revision-Date: 2003-12-16 13:42+0100\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -15,80 +15,89 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1 src/yelp-man.c:429
+#: data/toc.xml.in.h:1
+#, fuzzy
+msgid "Applets"
+msgstr "Aplicacions"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Aplicacions"
 
-#: data/toc.xml.in.h:2
+#: data/toc.xml.in.h:3
 msgid "Desktop"
 msgstr "Escriptori"
 
-#: data/toc.xml.in.h:3 src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Desenvolupament"
 
-#: data/toc.xml.in.h:4
+#: data/toc.xml.in.h:5
 msgid "Development Environments"
 msgstr "Entorns de desenvolupament"
 
-#: data/toc.xml.in.h:5
+#: data/toc.xml.in.h:6
 msgid "Development Tools"
 msgstr "Eines de desenvolupament"
 
-#: data/toc.xml.in.h:6
+#: data/toc.xml.in.h:7
 msgid "Editors"
 msgstr "Editors"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Aplicacions d'educació"
 
-#: data/toc.xml.in.h:8
+#: data/toc.xml.in.h:9
 msgid "Games and Entertainment"
 msgstr "Jocs i entreteniment"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:10
 msgid "General"
 msgstr "General"
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:11
 msgid "Help Contents"
 msgstr "Continguts de l'ajuda"
 
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:12
 msgid "Internet Applications"
 msgstr "Aplicacions d'Internet"
 
-#: data/toc.xml.in.h:12
+#: data/toc.xml.in.h:13
 msgid "KDE"
 msgstr "KDE"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Kernels"
 msgstr "Nuclis"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Multimedia Applications"
 msgstr "Aplicacions multimèdia"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Office and Productivity Applications"
 msgstr "Oficina i aplicacions de productivitat"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific Applications"
 msgstr "Aplicacions científiques"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:18
 msgid "Securities"
 msgstr "Seguretat"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "System"
+msgstr "Cridades al sistema"
+
+#: data/toc.xml.in.h:20
 msgid "Utilities"
 msgstr "Utilitats"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "Aplicacions per a X"
 
@@ -97,32 +106,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Cerca text en el document:</b>"
+msgid "C_ase sensitive"
+msgstr ""
 
 #: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "A_justa automàticament"
+msgid "Find"
+msgstr ""
 
 #: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Cerca text..."
+msgid "_Find: "
+msgstr ""
 
 #: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "Coincideix amb paraules s_enceres"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "Distingueix entre _majúscules i minúscules"
-
-#: data/ui/yelp.glade.h:7
 msgid "_Next"
 msgstr "_Següent"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "_Anterior"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr ""
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -132,28 +137,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fàbrica de Yelp"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:714
+#: src/yelp-db-pager.c:241 src/yelp-window.c:758
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "No s'ha pogut obrir el document «%s»"
 
-#: src/yelp-db-pager.c:410
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "No s'ha trobat cap atribut href en yelp:document"
 
-#: src/yelp-db-pager.c:425
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "S'ha exhaurit la memòria"
 
-#: src/yelp-db-pager.c:584
+#: src/yelp-db-pager.c:602
 msgid "Titlepage"
 msgstr "Pàgina de títol"
 
-#: src/yelp-db-pager.c:586
+#: src/yelp-db-pager.c:604
 msgid "Contents"
 msgstr "Continguts"
 
-#: src/yelp-db-pager.c:604
+#: src/yelp-db-pager.c:622
 msgid "Unknown"
 msgstr "Desconegut"
 
@@ -239,182 +244,151 @@ msgstr "URI del document"
 msgid "The URI of the document to be processed"
 msgstr "L'URI del document a processar"
 
-#: src/yelp-toc-pager.c:229
+#: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: el compte de pausa és negatiu."
 
-#: src/yelp-toc-pager.c:570 src/yelp-toc-pager.c:582
+#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
 msgid "The table of contents could not be read."
 msgstr "No s'ha pogut llegir la taula de continguts."
 
-#: src/yelp-toc-pager.c:784 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:841
 msgid "Categories"
 msgstr "Categories"
 
-#: src/yelp-toc-pager.c:805 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:862
 msgid "Documents"
 msgstr "Documents"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:803
-msgid "Loading..."
-msgstr "S'està carregant..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:499
-msgid "Section"
-msgstr "Secció"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Cerca:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "GNOME - Escriptori"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Documents addicionals"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Pàgines de manual"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Pàgines info"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Pàgines de manual"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "GNOME és"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "Programari Lliure"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "©"
-
-#: src/yelp-window.c:202
+#: src/yelp-window.c:223
 msgid "/_File"
 msgstr "/_Fitxer"
 
-#: src/yelp-window.c:203
+#: src/yelp-window.c:224
 msgid "/File/_New window"
 msgstr "/Fitxer/_Nova finestra"
 
-#: src/yelp-window.c:206
+#: src/yelp-window.c:227
 msgid "/File/_Close window"
 msgstr "/Fitxer/_Tanca la finestra"
 
-#: src/yelp-window.c:210
+#: src/yelp-window.c:231
 msgid "/_Edit"
 msgstr "/_Edita"
 
-#: src/yelp-window.c:211
-msgid "/Edit/_Find in page..."
+#: src/yelp-window.c:232
+#, fuzzy
+msgid "/Edit/_Find..."
 msgstr "/Edita/_Cerca en la pàgina..."
 
-#: src/yelp-window.c:214
-msgid "/Edit/_Find again"
+#: src/yelp-window.c:235
+#, fuzzy
+msgid "/Edit/Find Ne_xt"
 msgstr "/Edit/_Cerca de nou"
 
-#: src/yelp-window.c:218
+#: src/yelp-window.c:238
+#, fuzzy
+msgid "/Edit/Find Pre_vious"
+msgstr "/Edit/_Cerca de nou"
+
+#: src/yelp-window.c:242
 msgid "/_Go"
 msgstr "/_Vés"
 
-#: src/yelp-window.c:219
+#: src/yelp-window.c:243
 msgid "/Go/_Back"
 msgstr "/Vés/_Endarrere"
 
-#: src/yelp-window.c:222
+#: src/yelp-window.c:246
 msgid "/Go/_Forward"
 msgstr "/Vés/E_ndavant"
 
-#: src/yelp-window.c:225
+#: src/yelp-window.c:249
 msgid "/Go/_Home"
 msgstr "/Vés/_Pàgina inicial"
 
-#: src/yelp-window.c:228
+#: src/yelp-window.c:252
 msgid "/Go/"
 msgstr "/Vés/"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:253
 msgid "/Go/_Previous"
 msgstr "/Vés/_Anterior"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:256
 msgid "/Go/_Next"
 msgstr "/Vés/_Següent"
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:259
 msgid "/Go/_Contents"
 msgstr "/Vés/_Continguts"
 
-#: src/yelp-window.c:239
+#: src/yelp-window.c:263
 msgid "/_Help"
 msgstr "/A_juda"
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:264
 msgid "/Help/_About"
 msgstr "/Ajuda/_Quant a"
 
-#: src/yelp-window.c:302
+#: src/yelp-window.c:326
 msgid "Help Browser"
 msgstr "Navegador d'ajuda"
 
-#: src/yelp-window.c:362
+#: src/yelp-window.c:390
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "El document «%s» no existeix"
 
-#: src/yelp-window.c:382
+#: src/yelp-window.c:426
 msgid "DocBook SGML documents are no longer supported."
 msgstr "Els documents DocBook SGML ja no són suportats."
 
-#: src/yelp-window.c:552
+#: src/yelp-window.c:545
+msgid "Section"
+msgstr "Secció"
+
+#: src/yelp-window.c:598
 msgid "Back"
 msgstr "Endarrere"
 
-#: src/yelp-window.c:553
+#: src/yelp-window.c:599
 msgid "Show previous page in history"
 msgstr "Mostra la pàgina anterior en la història"
 
-#: src/yelp-window.c:563
+#: src/yelp-window.c:609
 msgid "Forward"
 msgstr "Endavant"
 
-#: src/yelp-window.c:564
+#: src/yelp-window.c:610
 msgid "Show next page in history"
 msgstr "Mostra la pàgina següent en la història"
 
-#: src/yelp-window.c:576
+#: src/yelp-window.c:622
 msgid "Home"
 msgstr "Inici"
 
-#: src/yelp-window.c:577
+#: src/yelp-window.c:623
 msgid "Go to home view"
 msgstr "Vés a la pàgina inicial"
 
-#: src/yelp-window.c:747 src/yelp-window.c:778 src/yelp-window.c:965
-#: src/yelp-window.c:1027
+#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
+#: src/yelp-window.c:1105
 #, c-format
 msgid "The page '%s' could not be found in this document."
 msgstr "No s'ha pogut trobar la pàgina «%s» en aquest document."
 
+#: src/yelp-window.c:847
+msgid "Loading..."
+msgstr "S'està carregant..."
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1108
+#: src/yelp-window.c:1186
 msgid "translator_credits"
 msgstr "Jordi Mallach <jordi@sindominio.net>"
 
-#: src/yelp-window.c:1113
+#: src/yelp-window.c:1191
 msgid "A Help Browser for GNOME"
 msgstr "Navegador d'ajuda per al GNOME"
 
@@ -425,6 +399,48 @@ msgstr "Obteniu ajuda amb GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ajuda"
+
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Cerca text en el document:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "A_justa automàticament"
+
+#~ msgid "Find text..."
+#~ msgstr "Cerca text..."
+
+#~ msgid "Match _entire word"
+#~ msgstr "Coincideix amb paraules s_enceres"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "Distingueix entre _majúscules i minúscules"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Cerca:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "GNOME - Escriptori"
+
+#~ msgid "Additional documents"
+#~ msgstr "Documents addicionals"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Pàgines de manual"
+
+#~ msgid "Info Pages"
+#~ msgstr "Pàgines info"
+
+#~ msgid "Manual pages"
+#~ msgstr "Pàgines de manual"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME és"
+
+#~ msgid "Free Software"
+#~ msgstr "Programari Lliure"
+
+#~ msgid "(C)"
+#~ msgstr "©"
 
 #~ msgid "About This Document"
 #~ msgstr "Quant a aquest document"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
+"POT-Creation-Date: 2003-12-30 07:14-0600\n"
 "PO-Revision-Date: 2003-05-19 15:19+0000\n"
 "Last-Translator: Mathieu van Woerkom <mathieu.brabants.org>\n"
 "Language-Team: Limburgish <li.org>\n"
@@ -14,89 +14,98 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1 src/yelp-man.c:429
+#: data/toc.xml.in.h:1
+#, fuzzy
+msgid "Applets"
+msgstr "Toepassinge"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Toepassinge"
 
-#: data/toc.xml.in.h:2
+#: data/toc.xml.in.h:3
 #, fuzzy
 msgid "Desktop"
 msgstr "GNOME - Beroblaad"
 
-#: data/toc.xml.in.h:3 src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
-msgstr "Development"
-
-#: data/toc.xml.in.h:4
-#, fuzzy
-msgid "Development Environments"
 msgstr "Development"
 
 #: data/toc.xml.in.h:5
 #, fuzzy
-msgid "Development Tools"
+msgid "Development Environments"
 msgstr "Development"
 
 #: data/toc.xml.in.h:6
 #, fuzzy
+msgid "Development Tools"
+msgstr "Development"
+
+#: data/toc.xml.in.h:7
+#, fuzzy
 msgid "Editors"
 msgstr "/B_ewirke"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:8
 #, fuzzy
 msgid "Education Applications"
 msgstr "Toepassinge"
 
-#: data/toc.xml.in.h:8
+#: data/toc.xml.in.h:9
 msgid "Games and Entertainment"
 msgstr ""
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:10
 msgid "General"
 msgstr ""
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:11
 msgid "Help Contents"
 msgstr "Hulp Inhaudsopgaaf"
 
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:12
 #, fuzzy
 msgid "Internet Applications"
 msgstr "Toepassinge"
 
-#: data/toc.xml.in.h:12
+#: data/toc.xml.in.h:13
 msgid "KDE"
 msgstr ""
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 #, fuzzy
 msgid "Kernels"
 msgstr "Kernelróttines"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 #, fuzzy
 msgid "Multimedia Applications"
 msgstr "Toepassinge"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Office and Productivity Applications"
 msgstr ""
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 #, fuzzy
 msgid "Scientific Applications"
 msgstr "Toepassinge"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:18
 msgid "Securities"
 msgstr ""
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "System"
+msgstr "Systeemfónksies"
+
+#: data/toc.xml.in.h:20
 msgid "Utilities"
 msgstr ""
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 #, fuzzy
 msgid "X Applications"
 msgstr "Toepassinge"
@@ -106,32 +115,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Zeuke nao teks in 't dokkemènt:</b>"
+msgid "C_ase sensitive"
+msgstr ""
 
 #: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "Automatisse _doorloup"
+msgid "Find"
+msgstr ""
 
 #: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Teks zeuke..."
+msgid "_Find: "
+msgstr ""
 
 #: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "Ganse _wäörd zeuke"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "_Huidbooksjtaafgeveulig"
-
-#: data/ui/yelp.glade.h:7
 msgid "_Next"
 msgstr "_Naekste"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "Veu_rige"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr ""
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -141,30 +146,29 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-Febrik"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:241 src/yelp-window.c:758
 #, fuzzy, c-format
 msgid "The document '%s' could not be opened"
 msgstr "'t dokkemènt '%s' besjteit neet"
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr ""
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:602
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:604
 #, fuzzy
 msgid "Contents"
 msgstr "Hulp Inhaudsopgaaf"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:622
 msgid "Unknown"
 msgstr ""
 
@@ -243,191 +247,167 @@ msgstr "Euverzichte"
 msgid "System Administration"
 msgstr "Systeemadminnestrasie"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:118
 #, fuzzy
 msgid "Document URI"
 msgstr "Dokkemènter"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
 msgstr ""
 
-#: src/yelp-toc-pager.c:229
+#: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
 #, fuzzy
 msgid "The table of contents could not be read."
 msgstr "'t dokkemènt '%s' besjteit neet"
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:841
 msgid "Categories"
 msgstr "Kattegerieje"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:862
 msgid "Documents"
 msgstr "Dokkemènter"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "Baezig mit lajen..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "Seksie"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Zeuke nao:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "GNOME - Beroblaad"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Aanvöllende dokkemènter"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Handjleijing-pagina's"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Info-pagina's"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Handjleijing-pagina's"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "GNOME is"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "Vrieje Software"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "©"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:223
 msgid "/_File"
 msgstr "/_Besjtandj"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:224
 msgid "/File/_New window"
 msgstr "/Besjtandj/_Nuuj vinster"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:227
 msgid "/File/_Close window"
 msgstr "/Besjtandj/Vinster _sjloete"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:231
 msgid "/_Edit"
 msgstr "/B_ewirke"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
+#: src/yelp-window.c:232
+#, fuzzy
+msgid "/Edit/_Find..."
 msgstr "/Bewirke/_Zeuke in pagina..."
 
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
+#: src/yelp-window.c:235
+#, fuzzy
+msgid "/Edit/Find Ne_xt"
 msgstr "/Bewirke/_Obbenuuts zeuke"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:238
+#, fuzzy
+msgid "/Edit/Find Pre_vious"
+msgstr "/Bewirke/_Obbenuuts zeuke"
+
+#: src/yelp-window.c:242
 msgid "/_Go"
 msgstr "/_Gank nao"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:243
 msgid "/Go/_Back"
 msgstr "/Gank nao/V_eurige"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:246
 msgid "/Go/_Forward"
 msgstr "/Gank nao/_Naekste"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:249
 msgid "/Go/_Home"
 msgstr "/Gank nao/_Sjtartpagina"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:252
+#, fuzzy
+msgid "/Go/"
+msgstr "/_Gank nao"
+
+#: src/yelp-window.c:253
+#, fuzzy
+msgid "/Go/_Previous"
+msgstr "Veu_rige"
+
+#: src/yelp-window.c:256
+#, fuzzy
+msgid "/Go/_Next"
+msgstr "/Gank nao/_Index"
+
+#: src/yelp-window.c:259
+#, fuzzy
+msgid "/Go/_Contents"
+msgstr "Hulp Inhaudsopgaaf"
+
+#: src/yelp-window.c:263
 msgid "/_Help"
 msgstr "/_Hulp"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:264
 msgid "/Help/_About"
 msgstr "/Hulp/_Euver"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:326
 msgid "Help Browser"
 msgstr "Hulp Browser"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "Veurige"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "De veurige pagina tuine"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "Naekste"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "De naekste pagina tuine"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "Sjtartpagina"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "De sjtartpagina tuine"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:390
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "'t dokkemènt '%s' besjteit neet"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:426
 msgid "DocBook SGML documents are no longer supported."
 msgstr ""
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr ""
+#: src/yelp-window.c:545
+msgid "Section"
+msgstr "Seksie"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr ""
+#: src/yelp-window.c:598
+msgid "Back"
+msgstr "Veurige"
 
-#: src/yelp-window.c:895
-#, fuzzy
-msgid "Loading..&nbsp;"
+#: src/yelp-window.c:599
+msgid "Show previous page in history"
+msgstr "De veurige pagina tuine"
+
+#: src/yelp-window.c:609
+msgid "Forward"
+msgstr "Naekste"
+
+#: src/yelp-window.c:610
+msgid "Show next page in history"
+msgstr "De naekste pagina tuine"
+
+#: src/yelp-window.c:622
+msgid "Home"
+msgstr "Sjtartpagina"
+
+#: src/yelp-window.c:623
+msgid "Go to home view"
+msgstr "De sjtartpagina tuine"
+
+#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
+#: src/yelp-window.c:1105
+#, fuzzy, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "'t dokkemènt '%s' besjteit neet"
+
+#: src/yelp-window.c:847
+msgid "Loading..."
 msgstr "Baezig mit lajen..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1186
 msgid "translator_credits"
 msgstr ""
 "mathieu van Woerkom\n"
 "http://mathieu.brabants.org"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1191
 msgid "A Help Browser for GNOME"
 msgstr "Hulp Browser veur GNOME"
 
@@ -439,8 +419,51 @@ msgstr "Hulp bie GNOME"
 msgid "Help"
 msgstr "Hulp"
 
-#~ msgid "/Go/_Index"
-#~ msgstr "/Gank nao/_Index"
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Zeuke nao teks in 't dokkemènt:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "Automatisse _doorloup"
+
+#~ msgid "Find text..."
+#~ msgstr "Teks zeuke..."
+
+#~ msgid "Match _entire word"
+#~ msgstr "Ganse _wäörd zeuke"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "_Huidbooksjtaafgeveulig"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Zeuke nao:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "GNOME - Beroblaad"
+
+#~ msgid "Additional documents"
+#~ msgstr "Aanvöllende dokkemènter"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Handjleijing-pagina's"
+
+#~ msgid "Info Pages"
+#~ msgstr "Info-pagina's"
+
+#~ msgid "Manual pages"
+#~ msgstr "Handjleijing-pagina's"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME is"
+
+#~ msgid "Free Software"
+#~ msgstr "Vrieje Software"
+
+#~ msgid "(C)"
+#~ msgstr "©"
+
+#, fuzzy
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "Baezig mit lajen..."
 
 #~ msgid "Index"
 #~ msgstr "Indeks"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-29 17:02+0100\n"
+"POT-Creation-Date: 2003-12-30 07:14-0600\n"
 "PO-Revision-Date: 2003-12-29 19:23+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -17,83 +17,88 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1 src/yelp-man.c:429
+#: data/toc.xml.in.h:1
+#, fuzzy
+msgid "Applets"
+msgstr "Aplikace"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Aplikace"
 
-#: data/toc.xml.in.h:2
+#: data/toc.xml.in.h:3
 msgid "Desktop"
 msgstr "Prostředí pracovní plochy"
 
-#: data/toc.xml.in.h:3 src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "Vývoj"
 
-#: data/toc.xml.in.h:4
+#: data/toc.xml.in.h:5
 msgid "Development Environments"
 msgstr "Vývojová prostředí"
 
-#: data/toc.xml.in.h:5
+#: data/toc.xml.in.h:6
 msgid "Development Tools"
 msgstr "Vývojové nástroje"
 
-#: data/toc.xml.in.h:6
+#: data/toc.xml.in.h:7
 msgid "Editors"
 msgstr "Editory"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Vzdělávací aplikace"
 
-#: data/toc.xml.in.h:8
+#: data/toc.xml.in.h:9
 msgid "Games and Entertainment"
 msgstr "Hry a zábava"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:10
 msgid "General"
 msgstr "Obecné"
 
-#: data/toc.xml.in.h:10
+#: data/toc.xml.in.h:11
 msgid "Help Contents"
 msgstr "Obsah nápovědy"
 
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:12
 msgid "Internet Applications"
 msgstr "Internetové aplikace"
 
-#: data/toc.xml.in.h:12
+#: data/toc.xml.in.h:13
 msgid "KDE"
 msgstr "KDE"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Kernels"
 msgstr "Jádra"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Multimedia Applications"
 msgstr "Multimediální aplikace"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Office and Productivity Applications"
 msgstr "Kancelářské aplikace"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific Applications"
 msgstr "Vědecké aplikace"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:18
 msgid "Securities"
 msgstr "Zabezpečení"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:19
 msgid "System"
 msgstr "Systém"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:20
 msgid "Utilities"
 msgstr "Nástroje"
 
-#: data/toc.xml.in.h:20
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "Aplikace pro X"
 
@@ -133,7 +138,7 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
-#: src/yelp-db-pager.c:241 src/yelp-window.c:736
+#: src/yelp-db-pager.c:241 src/yelp-window.c:758
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "Dokument '%s' nelze otevřít"
@@ -146,15 +151,15 @@ msgstr "V yelp:document nenalezen atribut href"
 msgid "Out of memory"
 msgstr "Nedostatek paměti"
 
-#: src/yelp-db-pager.c:598
+#: src/yelp-db-pager.c:602
 msgid "Titlepage"
 msgstr "Titulní strana"
 
-#: src/yelp-db-pager.c:600
+#: src/yelp-db-pager.c:604
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/yelp-db-pager.c:618
+#: src/yelp-db-pager.c:622
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -240,10 +245,6 @@ msgstr "URI dokumentu"
 msgid "The URI of the document to be processed"
 msgstr "URI dokumentu, který zpracovat"
 
-#: src/yelp-theme.c:48
-msgid "Could not obtain a GtkStyle."
-msgstr "Nemohu získat GtkStyle."
-
 #: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Počet stran je záporný."
@@ -260,134 +261,134 @@ msgstr "Kategorie"
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:223
 msgid "/_File"
 msgstr "/_Soubor"
 
-#: src/yelp-window.c:222
+#: src/yelp-window.c:224
 msgid "/File/_New window"
 msgstr "/Soubor/_Nové okno"
 
-#: src/yelp-window.c:225
+#: src/yelp-window.c:227
 msgid "/File/_Close window"
 msgstr "/Soubor/_Zavřít okno"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:231
 msgid "/_Edit"
 msgstr "/Ú_pravy"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:232
 msgid "/Edit/_Find..."
 msgstr "/Úpravy/_Hledat..."
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:235
 msgid "/Edit/Find Ne_xt"
 msgstr "/Úpravy/Hledat _následující"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:238
 msgid "/Edit/Find Pre_vious"
 msgstr "/Úpravy/Hledat _předchozí"
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:242
 msgid "/_Go"
 msgstr "/Pře_jít"
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:243
 msgid "/Go/_Back"
 msgstr "/Přejít/_Zpět"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:246
 msgid "/Go/_Forward"
 msgstr "/Přejít/_Vpřed"
 
-#: src/yelp-window.c:247
+#: src/yelp-window.c:249
 msgid "/Go/_Home"
 msgstr "/Přejít/_Domů"
 
-#: src/yelp-window.c:250
+#: src/yelp-window.c:252
 msgid "/Go/"
 msgstr "/Pře_jít/"
 
-#: src/yelp-window.c:251
+#: src/yelp-window.c:253
 msgid "/Go/_Previous"
 msgstr "/Přejít/_Předchozí"
 
-#: src/yelp-window.c:254
+#: src/yelp-window.c:256
 msgid "/Go/_Next"
 msgstr "/Přejít/_Následující"
 
-#: src/yelp-window.c:257
+#: src/yelp-window.c:259
 msgid "/Go/_Contents"
 msgstr "/Přejít/_Obsah"
 
-#: src/yelp-window.c:261
+#: src/yelp-window.c:263
 msgid "/_Help"
 msgstr "/_Nápověda"
 
-#: src/yelp-window.c:262
+#: src/yelp-window.c:264
 msgid "/Help/_About"
 msgstr "/Nápověda/_O aplikaci"
 
-#: src/yelp-window.c:324
+#: src/yelp-window.c:326
 msgid "Help Browser"
 msgstr "Prohlížeč nápovědy"
 
-#: src/yelp-window.c:384
+#: src/yelp-window.c:390
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokument '%s' neexistuje"
 
-#: src/yelp-window.c:404
+#: src/yelp-window.c:426
 msgid "DocBook SGML documents are no longer supported."
 msgstr "Dokumenty DocBook SGML už nejsou podporovány."
 
-#: src/yelp-window.c:523
+#: src/yelp-window.c:545
 msgid "Section"
 msgstr "Sekce"
 
-#: src/yelp-window.c:576
+#: src/yelp-window.c:598
 msgid "Back"
 msgstr "Zpět"
 
-#: src/yelp-window.c:577
+#: src/yelp-window.c:599
 msgid "Show previous page in history"
 msgstr "Zobrazí předchozí stránku v historii"
 
-#: src/yelp-window.c:587
+#: src/yelp-window.c:609
 msgid "Forward"
 msgstr "Vpřed"
 
-#: src/yelp-window.c:588
+#: src/yelp-window.c:610
 msgid "Show next page in history"
 msgstr "Zobrazí následující stránku v historii"
 
-#: src/yelp-window.c:600
+#: src/yelp-window.c:622
 msgid "Home"
 msgstr "Domů"
 
-#: src/yelp-window.c:601
+#: src/yelp-window.c:623
 msgid "Go to home view"
 msgstr "Přejde na domovskou stránku"
 
-#: src/yelp-window.c:769 src/yelp-window.c:800 src/yelp-window.c:1014
-#: src/yelp-window.c:1076
+#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
+#: src/yelp-window.c:1105
 #, c-format
 msgid "The page '%s' could not be found in this document."
 msgstr "Strana '%s' nebyla v tomto dokumentu nalezena."
 
-#: src/yelp-window.c:825
+#: src/yelp-window.c:847
 msgid "Loading..."
 msgstr "Načítám..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1157
+#: src/yelp-window.c:1186
 msgid "translator_credits"
 msgstr ""
 "Michal Bukovjan\n"
 "Miloslav Trmač <mitr@volny.cz>"
 
-#: src/yelp-window.c:1162
+#: src/yelp-window.c:1191
 msgid "A Help Browser for GNOME"
 msgstr "Prohlížeč nápovědy pro GNOME"
 
@@ -398,6 +399,9 @@ msgstr "Poradí s prostředím GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Nápověda"
+
+#~ msgid "Could not obtain a GtkStyle."
+#~ msgstr "Nemohu získat GtkStyle."
 
 #~ msgid "Additional documents"
 #~ msgstr "Další dokumenty"

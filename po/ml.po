@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ml\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
+"POT-Creation-Date: 2003-12-30 07:14-0600\n"
 "PO-Revision-Date: 2003-06-12 17:52-0600\n"
 "Last-Translator: Suresh VP <mvpsuresh@yahoo.com>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
@@ -17,89 +17,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0\n"
 
-#: data/toc.xml.in.h:1 src/yelp-man.c:429
+#: data/toc.xml.in.h:1
+#, fuzzy
+msgid "Applets"
+msgstr "പ്രയോഗങ്ങള്‌"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "പ്രയോഗങ്ങള്‌"
 
-#: data/toc.xml.in.h:2
+#: data/toc.xml.in.h:3
 #, fuzzy
 msgid "Desktop"
 msgstr "ഗ്നോം - പണിയിടം"
 
-#: data/toc.xml.in.h:3 src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
-msgstr "വികസനം‌"
-
-#: data/toc.xml.in.h:4
-#, fuzzy
-msgid "Development Environments"
 msgstr "വികസനം‌"
 
 #: data/toc.xml.in.h:5
 #, fuzzy
-msgid "Development Tools"
+msgid "Development Environments"
 msgstr "വികസനം‌"
 
 #: data/toc.xml.in.h:6
 #, fuzzy
+msgid "Development Tools"
+msgstr "വികസനം‌"
+
+#: data/toc.xml.in.h:7
+#, fuzzy
 msgid "Editors"
 msgstr "ചിട്ട"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:8
 #, fuzzy
 msgid "Education Applications"
 msgstr "പ്രയോഗങ്ങള്‌"
 
-#: data/toc.xml.in.h:8
+#: data/toc.xml.in.h:9
 msgid "Games and Entertainment"
 msgstr ""
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:10
 msgid "General"
 msgstr ""
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:11
 msgid "Help Contents"
 msgstr "സഹായ ഉള്ളടക്കം"
 
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:12
 #, fuzzy
 msgid "Internet Applications"
 msgstr "പ്രയോഗങ്ങള്‌"
 
-#: data/toc.xml.in.h:12
+#: data/toc.xml.in.h:13
 msgid "KDE"
 msgstr ""
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 #, fuzzy
 msgid "Kernels"
 msgstr "കെ‌ര്ണല്  കാര്യ‌ക്രമങ്ങള്"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 #, fuzzy
 msgid "Multimedia Applications"
 msgstr "പ്രയോഗങ്ങള്‌"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Office and Productivity Applications"
 msgstr ""
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 #, fuzzy
 msgid "Scientific Applications"
 msgstr "പ്രയോഗങ്ങള്‌"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:18
 msgid "Securities"
 msgstr ""
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "System"
+msgstr "വ്യ‍ൂഹ വിളികള്‌"
+
+#: data/toc.xml.in.h:20
 msgid "Utilities"
 msgstr ""
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 #, fuzzy
 msgid "X Applications"
 msgstr "പ്രയോഗങ്ങള്‌"
@@ -109,32 +118,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "ഈ ഗ്രന്ഥത്തില് വാക്ക് കണ്ടെത്തുക"
+msgid "C_ase sensitive"
+msgstr ""
 
 #: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "സ്വയമേവ ചുറ്റിത്തിരിയുക"
+msgid "Find"
+msgstr ""
 
 #: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "അടുത്തത് കണ്ടെത്തുക"
+msgid "_Find: "
+msgstr ""
 
 #: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "മുഴുവന് വാക്കും ഒത്തുനോക്കുക"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "ലിപി തുലനം"
-
-#: data/ui/yelp.glade.h:7
 msgid "_Next"
 msgstr "അടുത്ത"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "മുന്പത്തേത്"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr ""
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -144,30 +149,29 @@ msgstr "സഹായം"
 msgid "Yelp Factory"
 msgstr "സഹായ ശാല"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:241 src/yelp-window.c:758
 #, fuzzy, c-format
 msgid "The document '%s' could not be opened"
 msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr ""
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:602
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:604
 #, fuzzy
 msgid "Contents"
 msgstr "സഹായ ഉള്ളടക്കം"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:622
 msgid "Unknown"
 msgstr ""
 
@@ -246,189 +250,165 @@ msgstr "അവലോകനങ്ങള്"
 msgid "System Administration"
 msgstr "വ്യൂഹ കൃത്യനി‌‌ര്‌വഹണം"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:118
 #, fuzzy
 msgid "Document URI"
 msgstr "ഗ്രന്ഥങ്ങള്"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
 msgstr ""
 
-#: src/yelp-toc-pager.c:229
+#: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
 #, fuzzy
 msgid "The table of contents could not be read."
 msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:841
 msgid "Categories"
 msgstr "വ‍ര്ഗ്ഗങ്ങള്"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:862
 msgid "Documents"
 msgstr "ഗ്രന്ഥങ്ങള്"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "കാത്തിരിക്കൂ..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "വിഭാഗം"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "ഇത് തെരയുക"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "ഗ്നോം - പണിയിടം"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "കൂടുതല് ഗ്രന്ഥങ്ങള്"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "കരകൃത താളുകള്‌"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "വിവര താളുകള്‌‌"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "കരകൃത താളുകള്‌"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "ഗ്നോം ആകുന്നു"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "സ്വതന്ത്ര സോഫ്റ്റ്‍വെയര്"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "(C)"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:223
 msgid "/_File"
 msgstr "ശേഖരം"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:224
 msgid "/File/_New window"
 msgstr "പുതിയ ജാലകം"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:227
 msgid "/File/_Close window"
 msgstr "ജാലകം അടയ്‍ക്കുക"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:231
 msgid "/_Edit"
 msgstr "ചിട്ട"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
+#: src/yelp-window.c:232
+#, fuzzy
+msgid "/Edit/_Find..."
 msgstr "താളില് കണ്ടെത്തുക..."
 
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
+#: src/yelp-window.c:235
+#, fuzzy
+msgid "/Edit/Find Ne_xt"
 msgstr "വീണ്ടും കണ്ടെത്തുക"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:238
+#, fuzzy
+msgid "/Edit/Find Pre_vious"
+msgstr "വീണ്ടും കണ്ടെത്തുക"
+
+#: src/yelp-window.c:242
 msgid "/_Go"
 msgstr "പോകുക"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:243
 msgid "/Go/_Back"
 msgstr "പിന്നോട്ട്"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:246
 msgid "/Go/_Forward"
 msgstr "മുന്നോട്ട്"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:249
 msgid "/Go/_Home"
 msgstr "ആസ്ഥാനം"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:252
+#, fuzzy
+msgid "/Go/"
+msgstr "പോകുക"
+
+#: src/yelp-window.c:253
+#, fuzzy
+msgid "/Go/_Previous"
+msgstr "മുന്പത്തേത്"
+
+#: src/yelp-window.c:256
+#, fuzzy
+msgid "/Go/_Next"
+msgstr "സൂചിക"
+
+#: src/yelp-window.c:259
+#, fuzzy
+msgid "/Go/_Contents"
+msgstr "സഹായ ഉള്ളടക്കം"
+
+#: src/yelp-window.c:263
 msgid "/_Help"
 msgstr "സഹായം"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:264
 msgid "/Help/_About"
 msgstr "കുറിപ്പ്"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:326
 msgid "Help Browser"
 msgstr "സഹായ ബ്രൌസ‍ര്"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "പിന്നോട്ട്"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "മുന്പ് സന്ദ‍ര്ശിച്ച സ്ഥാനത്തേക്ക് പോകുക"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "മുന്നോട്ട്"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "സന്ദ‍ര്ശിച്ചവയില് അടുത്ത സ്ഥാനത്തേക്ക് പോകുക"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "ആസ്ഥാനം"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "ആസ്ഥാനത്തേക്ക് പോകുക"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:390
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:426
 msgid "DocBook SGML documents are no longer supported."
 msgstr ""
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr ""
+#: src/yelp-window.c:545
+msgid "Section"
+msgstr "വിഭാഗം"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr ""
+#: src/yelp-window.c:598
+msgid "Back"
+msgstr "പിന്നോട്ട്"
 
-#: src/yelp-window.c:895
-#, fuzzy
-msgid "Loading..&nbsp;"
+#: src/yelp-window.c:599
+msgid "Show previous page in history"
+msgstr "മുന്പ് സന്ദ‍ര്ശിച്ച സ്ഥാനത്തേക്ക് പോകുക"
+
+#: src/yelp-window.c:609
+msgid "Forward"
+msgstr "മുന്നോട്ട്"
+
+#: src/yelp-window.c:610
+msgid "Show next page in history"
+msgstr "സന്ദ‍ര്ശിച്ചവയില് അടുത്ത സ്ഥാനത്തേക്ക് പോകുക"
+
+#: src/yelp-window.c:622
+msgid "Home"
+msgstr "ആസ്ഥാനം"
+
+#: src/yelp-window.c:623
+msgid "Go to home view"
+msgstr "ആസ്ഥാനത്തേക്ക് പോകുക"
+
+#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
+#: src/yelp-window.c:1105
+#, fuzzy, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "%s എന്ന രചന നിലനില്ക്കുന്നില്ല"
+
+#: src/yelp-window.c:847
+msgid "Loading..."
 msgstr "കാത്തിരിക്കൂ..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1186
 msgid "translator_credits"
 msgstr "എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1191
 #, fuzzy
 msgid "A Help Browser for GNOME"
 msgstr "ഒരു GNOME സഹായന്വേഷണ ഉപകരണം്"
@@ -441,8 +421,51 @@ msgstr "ഗ്നോം സഹായം ലഭിക്കുക"
 msgid "Help"
 msgstr "സഹായം"
 
-#~ msgid "/Go/_Index"
-#~ msgstr "സൂചിക"
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "ഈ ഗ്രന്ഥത്തില് വാക്ക് കണ്ടെത്തുക"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "സ്വയമേവ ചുറ്റിത്തിരിയുക"
+
+#~ msgid "Find text..."
+#~ msgstr "അടുത്തത് കണ്ടെത്തുക"
+
+#~ msgid "Match _entire word"
+#~ msgstr "മുഴുവന് വാക്കും ഒത്തുനോക്കുക"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "ലിപി തുലനം"
+
+#~ msgid "_Search for:"
+#~ msgstr "ഇത് തെരയുക"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "ഗ്നോം - പണിയിടം"
+
+#~ msgid "Additional documents"
+#~ msgstr "കൂടുതല് ഗ്രന്ഥങ്ങള്"
+
+#~ msgid "Manual Pages"
+#~ msgstr "കരകൃത താളുകള്‌"
+
+#~ msgid "Info Pages"
+#~ msgstr "വിവര താളുകള്‌‌"
+
+#~ msgid "Manual pages"
+#~ msgstr "കരകൃത താളുകള്‌"
+
+#~ msgid "GNOME is"
+#~ msgstr "ഗ്നോം ആകുന്നു"
+
+#~ msgid "Free Software"
+#~ msgstr "സ്വതന്ത്ര സോഫ്റ്റ്‍വെയര്"
+
+#~ msgid "(C)"
+#~ msgstr "(C)"
+
+#, fuzzy
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "കാത്തിരിക്കൂ..."
 
 #~ msgid "Index"
 #~ msgstr "സൂചിക"
