@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-27 16:17+0100\n"
-"PO-Revision-Date: 2003-12-27 20:57+0100\n"
+"POT-Creation-Date: 2003-12-29 17:02+0100\n"
+"PO-Revision-Date: 2003-12-29 19:23+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -240,6 +240,10 @@ msgstr "URI dokumentu"
 msgid "The URI of the document to be processed"
 msgstr "URI dokumentu, který zpracovat"
 
+#: src/yelp-theme.c:48
+msgid "Could not obtain a GtkStyle."
+msgstr "Nemohu získat GtkStyle."
+
 #: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Počet stran je záporný."
@@ -394,9 +398,6 @@ msgstr "Poradí s prostředím GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Nápověda"
-
-#~ msgid "Match _entire word"
-#~ msgstr "Pouze c_elá slova"
 
 #~ msgid "Additional documents"
 #~ msgstr "Další dokumenty"
