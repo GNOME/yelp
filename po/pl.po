@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-02-18 19:48+0100\n"
-"PO-Revision-Date: 2002-02-25 22:48+0100\n"
+"POT-Creation-Date: 2002-02-28 18:03+0100\n"
+"PO-Revision-Date: 2002-02-28 18:07+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -115,9 +115,13 @@ msgstr "man"
 msgid "Section"
 msgstr "Sekcja"
 
+#: src/yelp-view-index.c:1
+msgid "Search for:"
+msgstr "Znajdź:"
+
 #: src/yelp-view-toc.c:1
-msgid "Other document systems"
-msgstr "Inne systemy dokumentacji"
+msgid "Other Documents"
+msgstr "Inne dokumenty"
 
 #: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
 msgid "Manual pages"
@@ -135,9 +139,9 @@ msgstr "Zainstalowane dokumenty"
 msgid "Start page"
 msgstr "Strona początkowa"
 
-#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
-msgid "Manual page sections"
-msgstr "Sekcje stron podręcznikowych"
+#: src/yelp-view-toc.c:1
+msgid "Manual Pages"
+msgstr "Strony podręcznikowe"
 
 #: src/yelp-view-toc.c:1
 msgid "Scrollkeeper docs for category"
@@ -176,16 +180,16 @@ msgid "Help Browser for GNOME 2.0"
 msgstr "Przeglądarka pomocy dla GNOME 2.0"
 
 #: src/yelp-window.c:1
-msgid "Go back in the history list"
-msgstr "Przechodzi o pozycję wstecz na liście historii"
+msgid "Show previous page in history"
+msgstr "Wyświetla poprzednią stronę z historii"
 
 #: src/yelp-window.c:1
-msgid "Go forth in the history list"
-msgstr "Przechodzi o pozycję naprzód na liście historii"
+msgid "Show next page in history"
+msgstr "Wyświetla następną stronę z historii"
 
 #: src/yelp-window.c:1
-msgid "Overview of contents"
-msgstr "Zestawienie zawartości"
+msgid "Go to home view"
+msgstr "Przechodzi do widoku początkowego"
 
 #: src/yelp-window.c:1
 msgid "Search in the index"
