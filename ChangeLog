@@ -1,3 +1,9 @@
+2002-08-27  Kristian Rietveld  <kris@gtk.org>
+
+	* src/yelp-view-content.c (content_reader_finished_cb): don't just
+	  select that path, but set the cursor at that path (fixes
+	  #91609).
+
 2002-08-23  Mikael Hallendal  <micke@codefactory.se>
 
 	* Release 1.0.4

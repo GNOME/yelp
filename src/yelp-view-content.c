@@ -316,7 +316,9 @@ content_reader_finished_cb (YelpReader      *reader,
 			content_tree_selection_changed_cb,
 			view);
  
-		gtk_tree_selection_select_path (selection, path);
+/* 		gtk_tree_selection_select_path (selection, path); */
+		gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->content_tree),
+					  path, NULL, FALSE);
 		
 		g_signal_handlers_unblock_by_func (
 			selection,
