@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-10 02:16+0100\n"
-"PO-Revision-Date: 2004-01-10 02:23+0100\n"
+"POT-Creation-Date: 2004-01-12 02:54+0100\n"
+"PO-Revision-Date: 2004-01-12 02:55+0100\n"
 "Last-Translator: Goran Rakić <gox@devbase.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,23 +137,23 @@ msgstr "Jelp"
 msgid "Yelp Factory"
 msgstr "Jelp fabrika"
 
-#: src/yelp-db-pager.c:426
+#: src/yelp-db-pager.c:427
 msgid "No href attribute found on yelp:document"
 msgstr "Nisam našao href atribut u yelp:document-u"
 
-#: src/yelp-db-pager.c:441
+#: src/yelp-db-pager.c:442
 msgid "Out of memory"
 msgstr "Ponestalo memorije"
 
-#: src/yelp-db-pager.c:618
+#: src/yelp-db-pager.c:619
 msgid "Titlepage"
 msgstr "Naslovnica"
 
-#: src/yelp-db-pager.c:620 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:621 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/yelp-db-pager.c:638 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:639 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Nepoznato"
 
@@ -172,6 +172,10 @@ msgstr "Ne mogu da pročitam sadržaj."
 #: src/yelp-error.c:64
 msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML dokumenti više nisu podržani."
+
+#: src/yelp-error.c:70
+msgid "The selected file could not be read."
+msgstr "Ne može se pročitati izabrana datoteka."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -256,15 +260,15 @@ msgid "The URI of the document to be processed"
 msgstr "Adresa dokumenta za obradu"
 
 # bug: pause or page?
-#: src/yelp-toc-pager.c:264
+#: src/yelp-toc-pager.c:266
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: brojač pauza je negativan."
 
-#: src/yelp-toc-pager.c:876
+#: src/yelp-toc-pager.c:878
 msgid "Categories"
 msgstr "Kategorije"
 
-#: src/yelp-toc-pager.c:890
+#: src/yelp-toc-pager.c:892
 msgid "Documents"
 msgstr "Dokumenti"
 
@@ -368,21 +372,21 @@ msgstr "Polazna stranica"
 msgid "Go to home view"
 msgstr "Idi na polaznu stranicu"
 
-#: src/yelp-window.c:832
+#: src/yelp-window.c:833
 msgid "Loading..."
 msgstr "Učitavam..."
 
 # bug: in comment, s/shop/show/
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1226
+#: src/yelp-window.c:1227
 msgid "translator_credits"
 msgstr ""
 "Goran Rakić <gox@devbase.net>\n"
 "\n"
 "Prevod.org — prevod na srpski jezik."
 
-#: src/yelp-window.c:1231
+#: src/yelp-window.c:1232
 msgid "A Help Browser for GNOME"
 msgstr "Preglednik pomoći za Gnom"
 
@@ -466,9 +470,8 @@ msgstr "Publika"
 msgid "Author"
 msgstr "Autori"
 
-# bug: Bigliography -> Bibliography (g->b)
 #: stylesheets/l10n.xml.in.h:21
-msgid "Bigliography"
+msgid "Bibliography"
 msgstr "Literatura"
 
 #: stylesheets/l10n.xml.in.h:22
