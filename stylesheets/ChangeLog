@@ -1,4 +1,19 @@
-2003-10-12  Shaun McCance  <shaunm@gnome.org>
+2003-10-23  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-header.xsl:
+	- call-template instead of apply-templates for header
+
+	* db2html-navbar.xsl:
+	- New navbar handlers, as necessitated by new chunk handlers
+
+	* db2html-html.xsl:
+	* yelp-customization.xsl:
+	- Using new navbar handlers
+
+	* db2html-xref.xsl:
+	- A few additional rules for xref.content
+	
+2003-10-22  Shaun McCance  <shaunm@gnome.org>
 
 	* db2html-division.xsl:
 	- Use $depth_chunk instead of $depth

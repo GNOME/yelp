@@ -109,7 +109,30 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template mode="header.mode" match="glossentry">
+<xsl:template mode="xref.content.mode" match="article | reference">
+	<xsl:choose>
+		<xsl:when test="
+				(preceding-sibling::*[name(.) = name(current())])							or
+				(following-sibling::*[name(.) = name(current())])							or
+				(parent::part/preceding-sibling::part/*[name(.) = name(current())])	or
+				(parent::part/following-sibling::part/*[name(.) = name(current())])	">
+			<xsl:call-template name="header"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:call-template name="gettext">
+				<xsl:with-param name="key" select="'Table of Contents'"/>
+			</xsl:call-template>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template mode="xref.content.mode" match="book">
+	<xsl:call-template name="gettext">
+		<xsl:with-param name="key" select="'Table of Contents'"/>
+	</xsl:call-template>
+</xsl:template>
+
+<xsl:template mode="xref.content.mode" match="glossentry">
 	<xsl:apply-templates mode="xref.content.mode" select="glossterm[1]"/>
 </xsl:template>
 

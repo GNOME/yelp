@@ -55,7 +55,7 @@
 	<xsl:apply-templates mode="header.mode" select="$node"/>
 </xsl:template>
 
-<!-- header -->
+<!-- header.named -->
 <xsl:template name="header.named" mode="header.mode" match="
 		appendix	| chapter	| part	| sect1		| sect2		|
 		sect3		| sect4		| sect5	| section	| simplesect">
@@ -91,7 +91,9 @@
 </xsl:template>
 
 <xsl:template mode="header.mode" match="title | subtitle">
-	<xsl:apply-templates mode="header.mode" select=".."/>
+	<xsl:call-template name="header">
+		<xsl:with-param name="node" select=".."/>
+	</xsl:call-template>
 </xsl:template>
 
 <xsl:template mode="header.mode" match="appendixinfo">

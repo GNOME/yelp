@@ -12,10 +12,16 @@
 	</xsl:param>
 
 	<xsl:variable name="prevlink">
-		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
+		<xsl:call-template name="navbar.prev.link">
+			<xsl:with-param name="node" select="$node"/>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+		</xsl:call-template>
 	</xsl:variable>
 	<xsl:variable name="nextlink">
-		<xsl:apply-templates select="$node" mode="navbar.next.link.mode"/>
+		<xsl:call-template name="navbar.next.link">
+			<xsl:with-param name="node" select="$node"/>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+		</xsl:call-template>
 	</xsl:variable>
 
 	<html>

@@ -66,11 +66,11 @@
 			<xsl:otherwise><xsl:value-of select="$node/@id"/></xsl:otherwise>
 		</xsl:choose>
 	</xsl:param>
-	<xsl:variable name="depth_chunk">
+	<xsl:param name="depth_chunk">
 		<xsl:call-template name="depth.chunk">
 			<xsl:with-param name="node" select="$node"/>
 		</xsl:call-template>
-	</xsl:variable>
+	</xsl:param>
 
 	<xsl:comment> Start of chunk: [<xsl:value-of select="$id"/>] </xsl:comment>
 	<xsl:call-template name="html">
@@ -101,10 +101,16 @@
 	</xsl:param>
 
 	<xsl:variable name="prevlink">
-		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
+		<xsl:call-template name="navbar.prev.link">
+			<xsl:with-param name="node" select="$node"/>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+		</xsl:call-template>
 	</xsl:variable>
 	<xsl:variable name="nextlink">
-		<xsl:apply-templates select="$node" mode="navbar.next.link.mode"/>
+		<xsl:call-template name="navbar.next.link">
+			<xsl:with-param name="node" select="$node"/>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+		</xsl:call-template>
 	</xsl:variable>
 
 	<div>
