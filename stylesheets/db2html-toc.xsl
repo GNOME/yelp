@@ -28,8 +28,7 @@
 	</xsl:param>
 
 	<xsl:variable name="cols" select="$chunk_depth - $depth_chunk + 1"/>
-
-	<xsl:if test="
+	<xsl:variable name="divs" select="
 			appendix 		| appendixinfo			| article			| articleinfo	|
 			bibliography	| bibliographyinfo	| book				| bookinfo		|
 			chapter			| chapterinfo			| colophon			| glossary		|
@@ -41,7 +40,9 @@
 			sect1info		| sect2					| sect2info			| sect3			|
 			sect3info		| sect4					| sect4info			| sect5			|
 			sect5info		| section				| sectioninfo		| set				|
-			setindex			| setindexinfo			| setinfo			| simplesect	">
+			setindex			| setindexinfo			| setinfo			| simplesect	"/>
+
+	<xsl:if test="$divs">
 		<h2><xsl:call-template name="gettext">
 			<xsl:with-param name="msgid">
 				<xsl:choose>
@@ -55,7 +56,7 @@
 			</xsl:with-param>
 		</xsl:call-template></h2>
 		<div class="toc"><table class="toc">
-			<xsl:apply-templates mode="toc.table.tr.mode">
+			<xsl:apply-templates mode="toc.table.tr.mode" select="$divs">
 				<xsl:with-param name="cols" select="$cols"/>
 				<xsl:with-param name="depth_table" select="0"/>
 				<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
