@@ -58,7 +58,6 @@ yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-marshal.c		yelp-marshal.h				\
 	yelp-base.c		yelp-base.h				\
-	yelp-db2html.c		yelp-db2html.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
 	$(html_widget_impl) 	yelp-html.h				\

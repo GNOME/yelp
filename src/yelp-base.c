@@ -121,6 +121,7 @@ yelp_base_init (YelpBase *base)
 	priv->index    = NULL;
 	priv->windows  = NULL;
         base->priv     = priv;
+
 }
 
 static void

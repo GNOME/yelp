@@ -1,5 +1,10 @@
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/Makefile.am (yelp_SOURCES): don't include yelp-db2html.
+
+	* src/yelp-reader.c (reader_db_start): 
+	- try to do the docbook-stuff here instead.
+
 	* src/yelp-view-toc.c (toc_page_end): updated footer some.
 
 2002-05-22  Richard Hult  <rhult@codefactory.se>

@@ -53,7 +53,7 @@ yelp_db2html_convert (YelpURI             *uri,
 	static xsltStylesheetPtr  stylesheet = NULL;
         xmlDocPtr                 db_doc;
         xmlDocPtr                 final_doc;
-	const char               *params[16 + 1];
+	const gchar              *params[16 + 1];
 	gchar                    *pathname;
         GTimer                   *timer;
         
