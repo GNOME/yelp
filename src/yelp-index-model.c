@@ -128,7 +128,6 @@ yim_class_init (YelpIndexModelClass *class)
 static void
 yim_tree_model_init (GtkTreeModelIface *iface)
 {
-/*         iface->get_flags       = yim_get_flags; */
         iface->get_n_columns   = yim_get_n_columns;
         iface->get_column_type = yim_get_column_type;
         iface->get_iter        = yim_get_iter;
@@ -166,7 +165,7 @@ yim_finalize (GObject *object)
         
         if (model->priv) {
 		if (model->priv->index_words) {
-			/* FIXME: Clean up the list */
+			g_list_free (model->priv->index_words);
 		}
 
                 g_free (model->priv);
@@ -406,34 +405,12 @@ void
 yelp_index_model_set_words (YelpIndexModel *model, GList *index_words)
 {
 	YelpIndexModelPriv *priv;
-#if 0
-	GList              *node;
-	gint                i = 0;
-	GtkTreePath        *path;
-	GtkTreeIter         iter;
-#endif	
+
 	g_return_if_fail (YELP_IS_INDEX_MODEL (model));
 
 	priv = model->priv;
 		
-	priv->original_list = g_list_sort (index_words, yelp_section_compare);
-
-#if 0
- 	priv->index_words = priv->original_list;
-
-	for (node = priv->index_words; node; node = node->next) {
-		path = gtk_tree_path_new ();
-		
-		gtk_tree_path_append_index (path, i);
-		
-		yim_get_iter (GTK_TREE_MODEL (model), &iter, path);
-		
-		gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), 
-					     path, &iter);
-		
-		gtk_tree_path_free (path);
-	}
-#endif
+	priv->original_list = g_list_copy (index_words);
 }
 
 void
@@ -460,9 +437,6 @@ yelp_index_model_filter (YelpIndexModel *model, const gchar *string)
 	old_length = g_list_length (priv->index_words);
 
 	if (!strcmp ("", string)) {
-#if 0
- 		new_list = priv->original_list;
-#endif
 		new_list = NULL;
 	} else {
 		for (node = priv->original_list; node; node = node->next) {

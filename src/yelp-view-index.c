@@ -199,8 +199,6 @@ yvi_html_uri_selected_cb (YelpHtml      *html,
 	d(g_print ("Index View: uri selected: %s\n", 
 		   yelp_uri_to_string (uri)));
 
-	g_print ("INDEX: uri_selected_cb\n");
-	
 	g_signal_emit (view, signals[URI_SELECTED], 0, uri, handled);
 }
 
@@ -213,7 +211,9 @@ yvi_entry_changed_cb (GtkEntry *entry, YelpViewIndex *view)
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
 	
 	priv = view->priv;
-	
+ 
+	d(g_print ("Entry changed\n"));
+
 	if (!priv->idle_filter) {
 		priv->idle_filter =
 			g_idle_add ((GSourceFunc) yvi_filter_idle, view);
@@ -299,6 +299,8 @@ yvi_filter_idle (YelpViewIndex *view)
 
 	priv = view->priv;
 
+	d(g_print ("Filter idle\n"));
+	
 	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
 	
 	yelp_index_model_filter (view->priv->model, str);
@@ -406,7 +408,9 @@ yelp_view_index_new (GList *index)
 	gtk_paned_add1 (GTK_PANED (view), box);
         gtk_paned_add2 (GTK_PANED (view), frame);
         gtk_paned_set_position (GTK_PANED (view), 250);
-
+ 
+	d(g_print ("List length: %d\n", g_list_length (index)));
+	
 	g_completion_add_items (priv->completion, index);
 	yelp_index_model_set_words (priv->model, index);
 

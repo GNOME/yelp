@@ -179,6 +179,8 @@ yelp_base_new (void)
 	yelp_man_init (base->priv->toc_tree, &priv->index);
 	yelp_info_init (base->priv->toc_tree, &priv->index);
 	
+	priv->index = g_list_sort (priv->index, yelp_section_compare);
+
         return base;
 }
 

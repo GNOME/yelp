@@ -1,5 +1,13 @@
 2002-06-01  Mikael Hallendal  <micke@codefactory.se>
 
+	* Fixes #83156
+
+	* src/yelp-index-model.c:
+	(yim_finalize): free the index list.
+	(yelp_index_model_set_words): copy the list and don't sort.
+
+	* src/yelp-base.c (yelp_base_new): sort the index list here.
+
 	* src/yelp-view-toc.c (toc_page_start): removed all of the CSS
 	  used to get it to not render huge fonts, now handled by
 	  Gtkhtml2.
