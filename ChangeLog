@@ -1,10 +1,12 @@
 2003-08-15  Mikael Hallendal  <micke@imendio.com>
 
+	* src/yelp-window.c: (window_init), (window_configure_cb):
+        - Save size from last window. Patch by Shaun McCance.
+        - Fixes bug #90451
+
 	* configure.in: 
         - Applied patch from Steve Chaplin that fixes the CFLAGS.
         - Fixes bug #118984
-
-2003-08-15  Mikael Hallendal  <micke@imendio.com>
 
 	* src/yelp-main.c: 
         (main_restore_session): Return FALSE, otherwise we'll try to start Yelp
