@@ -1,122 +1,146 @@
-<?xml version="1.0"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY yelp "<application>Yelp</application>">
 ]>
 <article id="index" lang="en">
-<articleinfo> 
-	<title>Help System Specification</title>
+  <articleinfo> 
+    <title>Help System Specification</title>
 
-	<copyright>
-		<year>2003</year>
-		<holder>Shaun McCance</holder>
-	</copyright>
+    <copyright>
+      <year>2003</year>
+      <holder>Shaun McCance</holder>
+    </copyright>
 
-	<authorgroup> 
-		<author>
-			<firstname>Shaun</firstname>
-			<surname>McCance</surname> 
-			<affiliation> 
-				<orgname>GNOME Documentation Project</orgname> 
-				<address><email>shaunm@gnome.org</email></address> 
-			</affiliation> 
-		</author> 
-	</authorgroup>
+    <authorgroup> 
+      <author>
+	<firstname>Shaun</firstname>
+	<surname>McCance</surname> 
+	<affiliation> 
+	  <orgname>GNOME Documentation Project</orgname> 
+	</affiliation> 
+	<address><email>shaunm@gnome.org</email></address> 
+      </author> 
+    </authorgroup>
 
-	<revhistory>
-		<revision>
-			<revnumber>Help System Specification 0.1</revnumber>
-	    <date>January 2004</date>
-		</revision>
-	</revhistory>
+    <revhistory>
+      <revision>
+	<revnumber>Help System Specification 0.1</revnumber>
+	<date>January 2004</date>
+      </revision>
+    </revhistory>
 
-	<releaseinfo>
-		This is a DRAFT specification for the freedesktop.org help system.
-	</releaseinfo>
-</articleinfo>
+    <releaseinfo>
+      This is a DRAFT specification for the freedesktop.org help system.
+    </releaseinfo>
+  </articleinfo>
 
-<sect1 id="xhelp-introduction">
-<title>Introduction</title>
-<para>This DRAFT document defines a new system for installing a locating help files
-	for applications and other components of the desktop.</para>
-<itemizedlist>
-	<listitem><para>The help system should impose as little policy as possible
-		on the help browser, and should expose as little policy as possible to
-		people writing documentation.</para></listitem>
-	<listitem><para>It should be simple to place a document into the help
-		system.  The installation and uninstallation procedures should be as
-		simple as copying resp. removing files.</para></listitem>
-	<listitem><para>The help system should not assume anything about the
-		program that is using it.  The system should be useful for programs
-		other than graphical help viewers.</para></listitem>
-	<listitem><para>Documents should be able to supply meaningful metadata,
-		while help viers may be able to use.  The metadata format for documents
-		should be easily extended in a well-defined way.</para></listitem>
-	<listitem><para>Applications should have a simple and consistent way of
-		accessing documentation.</para></listitem>
-	<listitem><para>Documents should have a simple and consistent way of
-		referencing other documents.</para></listitem>
-	<listitem><para>The help system should be capable of importing information
-		from other, existing help systems.</para></listitem>
-</itemizedlist>
-<para></para>
-</sect1>
+  <section id="xhelp-introduction">
+    <title>Introduction</title>
 
-<sect1 id="xhelp-locations">
-<title>File Locations</title>
-<para>Files involved in this specification are located according to the <ulink
-	url="http://www.freedesktop.org/Standards/basedir-spec">Base Directory
-	Specification</ulink> on freedesktop.org.  The following files are either
-	defined or referenced by this specification.</para>
-<variablelist>
-	<varlistentry>
-		<term><filename>$XDG_CONFIG_DIRS/menus/help.menu</filename></term>
-		<listitem><para>This file contains the XML definition of the main help menu layout.
-			The first file found in the search path should be used; other files are ignored.
-			This implies that if the user has their own <filename>help.menu</filename>, it
-			replaces the systemwide one.  (Though the user's menu may explicitly merge the
-			systemwide one.)</para></listitem>
-	</varlistentry>
-	<varlistentry>
-		<term><filename>$XDG_CONFIG_DIRS/menus/applications.menu</filename></term>
-		<listitem><para>This is the <filename>applications.menu</filename> file specified
-			in the <ulink url="http://www.freedesktop.org/Standards/basedir-spec">Desktop
-			Menu Specification</ulink> on freedesktop.org.  This specification makes some
-			extensions to the format of this file, which is the same format used by the
-			<filename>help.menu</filename> file.  The <filename>help.menu</filename> file
-			will typically merge the <filename>applications.menu</filename> file for the
-			listing of application manuals.</para></listitem>
-	</varlistentry>
-	<varlistentry>
-		<term><filename>$XDG_CONFIG_DIRS/menus/<replaceable>menu-file-basename</replaceable>-merged/</filename></term>
-		<listitem><para>These are the default merge directories included by the
-			<sgmltag>DefaultMergeDirs</sgmltag> element.  By convention, third parties
-			may add new menu files in this location.
-			<replaceable>menu-file-basename</replaceable> means the
-			<filename>help</filename> from
-			<filename>help.menu</filename> for example.  So the merge directory
-			would be <filename>help-merged</filename>.</para></listitem>
-	</varlistentry>
-	<varlistentry>
-		<term><filename>$XDG_DATA_DIRS/help/</filename></term>
-		<listitem>
-			<para>This directory contains a .desktop file for each possible item in
-				the help menu.  Each directory in the <filename>$XDG_DATA_DIRS</filename>
-				search path should be used (i.e. desktop entries are collected from all of
-				them, not just the first one that exists).</para>
-			<para>The <sgmltag>DefaultHelpDirs</sgmltag> element in a menu file indicates
-				that this default list of desktop entry locations should be scanned at this
-				point.  If a menu file does not contain <sgmltag>DefaultHelpDirs</sgmltag>,
-				then these locations are not scanned.</para>
-		</listitem>
-	</varlistentry>
-	<varlistentry>
-		<term><filename>$XDG_DATA_DIRS/desktop-directories/</filename></term>
-		<listitem><para>This directory contains directory entries which may be
-			associated with folders in the menu layout.  This is specified in the
-			<ulink url="http://www.freedesktop.org/Standards/basedir-spec">Desktop
-			Menu Specification</ulink> on freedesktop.org.</para></listitem>
-	</varlistentry>
-</variablelist>
-</sect1>
+    <para>This DRAFT document defines a new system for installing a locating
+    help files for applications and other components of the desktop.</para>
+
+    <para>Documents are located and categorized dynamically by reading metadata
+    files from standard locations.  The metadata files use the Desktop Entry
+    format, which is defined by the
+    <ulink url="http://www.freedesktop.org/Standards/desktop-entry-spec">Desktop
+    Entry Specification</ulink> on freedesktop.org.</para>
+
+    <para>A single metadata file describes one document.  There is no provision
+    for describing multiple documents with a single metadata file.  This is true
+    even of variations of the same document.  For instance, if a document is
+    translated into multiple languages, a metadata file must be provided for
+    each translation.  Variations of a single logical document are identified
+    as such using the <property>ID</property> key, which is discussed in
+    <xref linkend="xhelp-id"/>.</para>
+  </section>
+
+  <section id="xhelp-metadata">
+    <title>Metadata File Format</title>
+
+    <para>The metadata files use the Desktop Entry format.  However, this
+    specification provides its own set of keys to describe a document.  Only
+    those keys listed in this specification should be considered standard.
+    For non-standard key usage, see <xref linkend="xhelp-extending"/>.</para>
+
+    <para>Since this specification defines its own set of keys, a unique group
+    header is necessary to identify Desktop Entry files.  Thus, Desktop Entry
+    files for documentation must use the group header
+    <property>[Documentation]</property>.</para>
+
+    <para>Many keys allow arbitrary text for the value.  The values for these
+    keys may contain any character from the following Unicode ranges:</para>
+
+    <literallayout>[#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]</literallayout>
+
+    <para>Additionally, the escape sequences <literal>\s</literal>,
+    <literal>\n</literal>, <literal>\t</literal>, <literal>\r</literal>, and
+    <literal>\\</literal> are supported, meaning ASCII space, newline, tab,
+    carriage return, and backslash, respectively.  Note that these strings
+    must be encoded in UTF-8, as well as the rest of the file.  The
+    <literal>LegacyMixed</literal> encoding is not supported. Keys which
+    accept this production for values will be specified as accepting
+    UTF-8 strings.</para>
+
+    <para>The following keys are defined for Desktop Entry files for
+    documentation:</para>
+
+    <variablelist>
+      <varlistentry>
+	<term><property>ID</property></term>
+	<listitem><para>
+	The <property>ID</property> key is a unique identifier for a document
+	or set of documents.  Variations of the same logical document must
+	use the same <property>ID</property>.  The <property>ID</property>
+	key is discussed in detail in <xref linkend="xhelp-id"/>.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><property>Title</property></term>
+	<listitem><para>
+	The <property>Title</property> key provides the title of the document.
+	This key accepts any UTF-8 string.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><property>Description</property></term>
+	<listitem><para>
+	The <property>Description</property> key provides a short description
+	of the document.  The <property>Description</property> key is optional.
+	This key accepts any UTF-8 string.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><property>Language</property></term>
+	<listitem><para>
+	The <property>Language</property> key provides the written language of
+	the document.
+	</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="xhelp-id">
+    <title>The <property>ID</property> Key</title>
+  </section>
+
+  <section id="xhelp-extending">
+    <title>Extending the Format</title>
+
+    <para>If one particular party wishes to add a key for personal use, they
+    should prefix the key with the string <property>X-PRODUCT</property>,
+    i.e. <property>X-NewDesktop-Foo</property>, following the precedent
+    set by other IETF and RFC standards.</para>
+
+    <para> Alternatively, fields can be placed in their own group, where
+    they may then have arbitrary key names. If this is the case, the group
+    should follow the scheme outlined above, i.e. <property>[X-PRODUCT
+    GROUPNAME]</property> or something similar. These steps will avoid
+    namespace clashes between different yet similar environments.</para>
+  </section>
 
 </article>
