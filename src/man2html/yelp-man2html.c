@@ -3762,6 +3762,16 @@ main(int argc, char **argv)
 	      infile = argv[i];
 	  }
 
+	if (g_file_test(infile, G_FILE_TEST_IS_DIR)) {
+		printf("<HTML><HEAD><TITLE>Document not found</TITLE>\n"
+                         "</HEAD><BODY>"
+                         "I don't know how to open the document \"%s\" "
+                         "on your system.\n"
+                         "</BODY></HTML>\n", infile);
+
+                  return 4;
+	}
+
 	if(!infile || !strcmp(infile, "-"))
 	  infh = gzdopen(0, "r");
 	else
