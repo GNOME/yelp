@@ -1,3 +1,15 @@
+2001-11-16    <micke@codefactory.se>
+
+        * vfs-help-module: removed, included in platform now.
+	
+	* configure.in: don't build vfs-help-module, it's now in libgnome.
+
+	* Makefile.am (SUBDIRS): dito
+
+	* src/yelp-view.c (yelp_view_url_requested_cb): GNOME_VFS_PRIORITY
+	  fixed to work with resent changes in API.
+	(yelp_view_open_uri): dito.
+
 2001-10-29  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/main.c (main): if argument is passed, pass that argument to

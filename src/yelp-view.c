@@ -246,7 +246,7 @@ yelp_view_url_requested_cb (HtmlDocument *doc,
 	gnome_vfs_async_open_uri (&sdata->handle, 
                                   vfs_uri, 
                                   GNOME_VFS_OPEN_READ,
-				  GNOME_VFS_DEFAULT_PRIORITY,
+				  GNOME_VFS_PRIORITY_DEFAULT,
                                   yelp_view_async_open_cb, 
                                   sdata);
 
@@ -386,7 +386,7 @@ yelp_view_open_uri (YelpView *view, GnomeVFSURI *uri)
 	gnome_vfs_async_open_uri (&sdata->handle,
 				  uri,
 				  GNOME_VFS_OPEN_READ,
-				  GNOME_VFS_DEFAULT_PRIORITY,
+				  GNOME_VFS_PRIORITY_DEFAULT,
 				  yelp_view_async_open_cb,
 				  sdata);
 

@@ -1,1 +1,1 @@
-SUBDIRS = src vfs-help-module
+SUBDIRS = src
