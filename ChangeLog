@@ -1,3 +1,12 @@
+2002-02-28  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c:
+	- #72636 fixed.
+	- added GtkItemFactory to priv-struct.
+	- added a Go-menu with the actions from the toolbar in it.
+	- removed accelerators from toolbar items.
+	- renamed some functions that made it easier to add the Go-menu.
+	
 2002-02-28  Sandeep V Honde <sandeep.honde@wipro.com>
 
 	* src/yelp-main.c :

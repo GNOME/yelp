@@ -43,6 +43,11 @@
 
 #define d(x)
 
+typedef enum {
+	YELP_WINDOW_ACTION_BACK = 1,
+	YELP_WINDOW_ACTION_FORWARD,
+} YelpHistoryAction;
+
 static void        yw_init		     (YelpWindow          *window);
 static void        yw_class_init	     (YelpWindowClass     *klass);
 
@@ -55,10 +60,19 @@ static void        yw_url_selected_cb        (gpointer             view,
 					      char                *base_url,
 					      gboolean             handled,
 					      YelpWindow          *window);
-static void        yw_toggle_history_buttons (GtkWidget           *button,
+static void        yw_toggle_history_back    (YelpHistory         *history,
 					      gboolean             sensitive,
-					      YelpHistory         *history);
-static void        yw_history_button_clicked (GtkWidget           *button,
+					      YelpWindow          *window);
+
+static void        yw_toggle_history_forward (YelpHistory         *history,
+					      gboolean             sensitive,
+					      YelpWindow          *window);
+
+static void        yw_history_action         (YelpWindow          *window,
+					      YelpHistoryAction    action);
+static void        yw_back_button_clicked    (GtkWidget           *button,
+					      YelpWindow          *window);
+static void        yw_forward_button_clicked (GtkWidget           *button,
 					      YelpWindow          *window);
 static void        yw_home_button_clicked    (GtkWidget           *button,
 					      YelpWindow          *window);
@@ -71,6 +85,15 @@ static void        yw_close_window_cb        (gpointer             data,
 					      guint                section,
 					      GtkWidget           *widget);
 static void        yw_exit_cb                (gpointer             data,
+					      guint                section,
+					      GtkWidget           *widget);
+static void        yw_history_go_cb          (gpointer             data,
+					      guint                section,
+					      GtkWidget           *widget);
+static void        yw_go_home_cb             (gpointer             data,
+					      guint                section,
+					      GtkWidget           *widget);
+static void        yw_go_index_cb            (gpointer             data,
 					      guint                section,
 					      GtkWidget           *widget);
 static void        yw_about_cb               (gpointer             data,
@@ -105,17 +128,24 @@ struct _YelpWindowPriv {
 
 	YelpHistory    *history;
 
+	GtkItemFactory *item_factory;
+
 	GtkWidget      *forward_button;
 	GtkWidget      *back_button;
 };
 
 static GtkItemFactoryEntry menu_items[] = {
-	{N_("/_File"),              NULL,         0,                  0, "<Branch>"},
-	{N_("/File/_New window"),   NULL,         yw_new_window_cb,   0, "<StockItem>", GTK_STOCK_NEW   },
-	{N_("/File/_Close window"), NULL,         yw_close_window_cb, 0, "<StockItem>", GTK_STOCK_CLOSE },
-	{N_("/File/_Quit"),         NULL,         yw_exit_cb,         0, "<StockItem>", GTK_STOCK_QUIT  },
-	{N_("/_Help"),              NULL,         0,                  0, "<Branch>"},
-	{N_("/Help/_About"),        NULL,         yw_about_cb,        0, NULL },
+	{N_("/_File"),              NULL,         0,                  0,                           "<Branch>"},
+	{N_("/File/_New window"),   NULL,         yw_new_window_cb,   0,                           "<StockItem>", GTK_STOCK_NEW     },
+	{N_("/File/_Close window"), NULL,         yw_close_window_cb, 0,                           "<StockItem>", GTK_STOCK_CLOSE   },
+	{N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+	{N_("/_Go"),                NULL,         0,                  0,                           "<Branch>"},
+	{N_("/Go/_Back"),           NULL,         yw_history_go_cb,   YELP_WINDOW_ACTION_BACK,     "<StockItem>", GTK_STOCK_GO_BACK    },
+	{N_("/Go/_Forward"),        NULL,         yw_history_go_cb,   YELP_WINDOW_ACTION_FORWARD,  "<StockItem>", GTK_STOCK_GO_FORWARD },
+	{N_("/Go/_Home"),           NULL,         yw_go_home_cb,      0,                           "<StockItem>", GTK_STOCK_HOME },
+	{N_("/Go/_Index"),          NULL,         yw_go_index_cb,     0,                           "<StockItem>", GTK_STOCK_INDEX },
+	{N_("/_Help"),              NULL,         0,                  0,                           "<Branch>"},
+	{N_("/Help/_About"),        NULL,         yw_about_cb,        0,                           NULL },
 };
 
 GType
@@ -159,8 +189,19 @@ yw_init (YelpWindow *window)
 	priv->view_current = NULL;
 	
 	priv->history = yelp_history_new ();
+
 	yelp_history_goto (priv->history, "toc:");
-	
+
+	g_signal_connect (priv->history, 
+			  "back_exists_changed",
+			  G_CALLBACK (yw_toggle_history_back),
+			  window);
+
+	g_signal_connect (priv->history, 
+			  "forward_exists_changed",
+			  G_CALLBACK (yw_toggle_history_forward),
+			  window);
+
 	gtk_window_set_default_size (GTK_WINDOW (window), 600, 420);
 
 	gtk_window_set_title (GTK_WINDOW (window), _("Help Browser"));
@@ -187,8 +228,8 @@ yw_populate (YelpWindow *window)
 	GtkWidget      *toolbar;
 	GtkWidget      *main_box;
 	GtkWidget      *sw;
-	GtkItemFactory *item_factory;
 	GtkAccelGroup  *accel_group;
+	GtkWidget      *menu_item;
 	
         priv = window->priv;
 
@@ -197,22 +238,30 @@ yw_populate (YelpWindow *window)
 	gtk_container_add (GTK_CONTAINER (window), main_box);
 
 	accel_group  = gtk_accel_group_new ();
-	item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
+	priv->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
 					     "<main>", accel_group);
 
-	gtk_item_factory_set_translate_func (item_factory, 
+	gtk_item_factory_set_translate_func (priv->item_factory, 
 					     (GtkTranslateFunc) gettext,
 					     NULL, NULL);
 
 	gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
-	gtk_item_factory_create_items (item_factory,
+	gtk_item_factory_create_items (priv->item_factory,
 				       G_N_ELEMENTS (menu_items),
 				       menu_items,
 				       window);
 
+	menu_item = gtk_item_factory_get_item_by_action (priv->item_factory,
+							 YELP_WINDOW_ACTION_BACK);
+	gtk_widget_set_sensitive (menu_item, FALSE);
+
+	menu_item = gtk_item_factory_get_item_by_action (priv->item_factory,
+							 YELP_WINDOW_ACTION_FORWARD);
+	gtk_widget_set_sensitive (menu_item, FALSE);
+
 	gtk_box_pack_start (GTK_BOX (main_box),
-			    gtk_item_factory_get_widget (item_factory,
+			    gtk_item_factory_get_widget (priv->item_factory,
 							 "<main>"),
 			    FALSE, FALSE, 0);
 
@@ -320,42 +369,94 @@ yw_url_selected_cb (gpointer    view,
 }
 
 static void
-yw_toggle_history_buttons (GtkWidget   *button, 
-			   gboolean     sensitive,
-			   YelpHistory *history)
+yw_toggle_history_back (YelpHistory *history,
+			gboolean     sensitive,
+			YelpWindow  *window)
 {
-	g_return_if_fail (GTK_IS_BUTTON (button));
-	g_return_if_fail (YELP_IS_HISTORY (history));
+	YelpWindowPriv *priv;
+	GtkWidget      *menu_item;
 
-	gtk_widget_set_sensitive (button, sensitive);
+	g_return_if_fail (YELP_IS_HISTORY (history));
+	g_return_if_fail (YELP_IS_WINDOW (window));
+
+	priv = window->priv;
+
+	gtk_widget_set_sensitive (priv->back_button, sensitive);
+
+	menu_item = gtk_item_factory_get_item_by_action (priv->item_factory,
+							 YELP_WINDOW_ACTION_BACK);
+	gtk_widget_set_sensitive (menu_item, sensitive);
+	
+	/* FIXME: Set menu item sens too */
 }
 
 static void
-yw_history_button_clicked (GtkWidget *button, YelpWindow *window)
+yw_toggle_history_forward (YelpHistory *history,
+			   gboolean     sensitive,
+			   YelpWindow  *window)
 {
-	YelpWindowPriv    *priv;
-	const gchar       *url;
+	YelpWindowPriv *priv;
+	GtkWidget      *menu_item;
+
+	g_return_if_fail (YELP_IS_HISTORY (history));
+	g_return_if_fail (YELP_IS_WINDOW (window));
+
+	priv = window->priv;
+
+	gtk_widget_set_sensitive (priv->forward_button, sensitive);
+
+	menu_item = gtk_item_factory_get_item_by_action (priv->item_factory,
+							 YELP_WINDOW_ACTION_FORWARD);
+	gtk_widget_set_sensitive (menu_item, sensitive);
+}
+
+static void
+yw_history_action (YelpWindow *window, YelpHistoryAction action)
+{
+	YelpWindowPriv *priv;
+	const gchar    *url;
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
 	priv = window->priv;
 
-	if (button == priv->forward_button) {
-		url = yelp_history_go_forward (priv->history);
-	}
-	else if (button == priv->back_button) {
+	switch (action) {
+	case YELP_WINDOW_ACTION_BACK:
 		url = yelp_history_go_back (priv->history);
+		break;
+	case YELP_WINDOW_ACTION_FORWARD:
+		url = yelp_history_go_forward (priv->history);
+		break;
+	default:
+		return;
 	}
-
+	
 	if (url) {
 		yw_handle_url (window, url);
 	}
 }
 
 static void
-yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
+yw_back_button_clicked (GtkWidget *button, YelpWindow *window)
 {
 	g_return_if_fail (GTK_IS_BUTTON (button));
+	g_return_if_fail (YELP_IS_WINDOW (window));
+
+	yw_history_action (window, YELP_WINDOW_ACTION_BACK);
+}
+
+static void
+yw_forward_button_clicked (GtkWidget *button, YelpWindow *window)
+{
+	g_return_if_fail (GTK_IS_BUTTON (button));
+	g_return_if_fail (YELP_IS_WINDOW (window));
+
+	yw_history_action (window, YELP_WINDOW_ACTION_FORWARD);
+}
+
+static void
+yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
+{
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
 	yelp_history_goto (window->priv->history, "toc:");
@@ -370,7 +471,6 @@ yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
 static void
 yw_index_button_clicked (GtkWidget *button, YelpWindow *window)
 {
-	g_return_if_fail (GTK_IS_BUTTON (button));
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
@@ -400,6 +500,24 @@ yw_exit_cb (gpointer data, guint section, GtkWidget *widget)
 }
 
 static void
+yw_history_go_cb (gpointer data, guint section, GtkWidget *widget)
+{
+	yw_history_action (data, section);
+}
+
+static void
+yw_go_home_cb (gpointer data, guint section, GtkWidget *widget)
+{
+	yw_home_button_clicked (NULL, YELP_WINDOW (data));
+}
+
+static void
+yw_go_index_cb (gpointer data, guint section, GtkWidget *widget)
+{
+	yw_index_button_clicked (NULL, YELP_WINDOW (data));
+}
+
+static void
 yw_about_cb (gpointer data, guint section, GtkWidget *widget)
 {
 	GtkWidget *about;
@@ -426,6 +544,7 @@ yw_create_toolbar (YelpWindow *window)
 	YelpWindowPriv *priv;
 	GtkWidget      *toolbar;
 	GtkWidget      *button;
+	GtkWidget      *icon;
 
 	g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
 
@@ -433,55 +552,52 @@ yw_create_toolbar (YelpWindow *window)
 
 	toolbar = gtk_toolbar_new ();
 
-	priv->back_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-						      "gtk-go-back",
-						      _("Show previous page in history"), "",
-						      NULL, NULL, -1);
+	icon = gtk_image_new_from_stock ("gtk-go-back", 
+					 GTK_ICON_SIZE_LARGE_TOOLBAR);
 
+	priv->back_button = gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
+						     _("Back"),
+						     _("Show previous page in history"),
+						     NULL, icon, 
+						     G_CALLBACK (yw_back_button_clicked),
+						     window);
+	
 	gtk_widget_set_sensitive (priv->back_button, FALSE);
 
-	g_signal_connect_swapped (priv->history, "back_exists_changed",
-				  G_CALLBACK (yw_toggle_history_buttons),
-				  G_OBJECT (priv->back_button));
+	icon = gtk_image_new_from_stock ("gtk-go-forward", 
+					 GTK_ICON_SIZE_LARGE_TOOLBAR);
 
-	g_signal_connect (priv->back_button, "clicked",
-			  G_CALLBACK (yw_history_button_clicked),
-			  G_OBJECT (window));
-	
-	priv->forward_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-							 "gtk-go-forward",
-							 _("Show next page in history"), "",
-							 NULL, NULL, -1);
+	priv->forward_button = gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
+							_("Forward"),
+							_("Show next page in history"),
+							NULL, icon,
+							G_CALLBACK (yw_forward_button_clicked),
+							window);
 
 	gtk_widget_set_sensitive (priv->forward_button, FALSE);
 
-	g_signal_connect_swapped (priv->history, "forward_exists_changed",
- 				  G_CALLBACK (yw_toggle_history_buttons),
-				  G_OBJECT (priv->forward_button));
-	
-	g_signal_connect (priv->forward_button, "clicked",
-			  G_CALLBACK (yw_history_button_clicked),
-			  G_OBJECT (window));
-
-	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar), 
-					   "gtk-home",
-					   _("Go to home view"), "",
-					   NULL, NULL, -1);
-
-	g_signal_connect (G_OBJECT (button), "clicked",
-			  G_CALLBACK (yw_home_button_clicked),
-			  G_OBJECT (window));
-
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
 
-	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-					   "gtk-index",
-					   _("Search in the index"), "",
-					   NULL, NULL, -1);
+	icon = gtk_image_new_from_stock ("gtk-home", 
+					 GTK_ICON_SIZE_LARGE_TOOLBAR);
 	
-	g_signal_connect (G_OBJECT (button), "clicked",
-			  G_CALLBACK (yw_index_button_clicked),
-			  G_OBJECT (window));
+	button = gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
+					  _("Home"),
+					  _("Go to home view"), 
+					  NULL, icon,
+					  G_CALLBACK (yw_home_button_clicked),
+					  window);
+
+
+	icon = gtk_image_new_from_stock ("gtk-index",
+					 GTK_ICON_SIZE_LARGE_TOOLBAR);
+
+	button = gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
+					  _("Index"),
+					  _("Search in the index"), 
+					  NULL, icon,
+					  G_CALLBACK (yw_index_button_clicked),
+					  window);
 
 #if 0	
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
