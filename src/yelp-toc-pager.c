@@ -688,11 +688,12 @@ process_toc_pending (YelpTocPager *pager)
     }
 
     if (toc->has_subtocs || toc->subomfs) {
-	gchar *page = toc_write_page (toc);
-	yelp_pager_add_page (YELP_PAGER (pager),
-			     toc->id,
-			     toc->title,
-			     page);
+	YelpPage *page = g_new0 (YelpPage, 1);
+	page->chunk    = toc_write_page (toc);
+	page->id    = toc->id;
+	page->title = toc->title;
+
+	yelp_pager_add_page (YELP_PAGER (pager), page);
 	g_signal_emit_by_name (pager, "page", toc->id);
     }
 

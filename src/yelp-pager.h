@@ -74,6 +74,10 @@ struct _YelpPage {
     gchar *id;
     gchar *title;
     gchar *chunk;
+
+    gchar *prev;
+    gchar *next;
+    gchar *toc;
 };
 
 GType                yelp_pager_get_type     (void);
@@ -104,9 +108,7 @@ const YelpPage *     yelp_pager_lookup_page  (YelpPager      *pager,
 const YelpPage *     yelp_pager_get_page     (YelpPager      *pager,
 					      gchar          *id);
 void                 yelp_pager_add_page     (YelpPager      *pager,
-					      gchar          *id,
-					      gchar          *title,
-					      gchar          *chunk);
+					      YelpPage       *page);
 
 void                 yelp_page_free          (YelpPage       *page);
 

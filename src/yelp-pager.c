@@ -438,22 +438,14 @@ yelp_pager_get_page (YelpPager *pager, gchar *id)
 
 void 
 yelp_pager_add_page (YelpPager *pager,
-		     gchar     *id,
-		     gchar     *title,
-		     gchar     *chunk)
+		     YelpPage  *page)
 {
-    YelpPage *page;
-
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    page = g_new0 (YelpPage, 1);
+    g_return_if_fail (page->id != NULL);
 
-    page->id    = id;
-    page->title = title;
-    page->chunk = chunk;
-
-    g_hash_table_insert (pager->priv->page_hash, id, page);
+    g_hash_table_insert (pager->priv->page_hash, page->id, page);
 }
 
 void
@@ -462,6 +454,10 @@ yelp_page_free (YelpPage *page)
     g_free (page->id);
     g_free (page->title);
     g_free (page->chunk);
+
+    g_free (page->prev);
+    g_free (page->next);
+    g_free (page->toc);
 
     g_free (page);
 }

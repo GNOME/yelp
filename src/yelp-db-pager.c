@@ -382,6 +382,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 		    xsltStylePreCompPtr     comp)
 {
     GError  *error;
+    YelpPage *page;
     xmlChar *page_id = NULL;
     xmlChar *page_title = NULL;
     xmlChar *page_buf;
@@ -391,6 +392,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     const char *old_outfile;
     xmlDocPtr   new_doc, old_doc;
     xmlNodePtr  old_insert;
+    xmlNodePtr  cur;
 
     if (!ctxt || !node || !inst || !comp)
 	return;
@@ -447,7 +449,34 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     if (!page_title)
 	page_title = g_strdup ("FIXME");
 
-    yelp_pager_add_page (pager, page_id, page_title, page_buf);
+    page = g_new0 (YelpPage, 1);
+
+    page->id    = page_id;
+    page->title = page_title;
+    page->chunk = page_buf;
+
+    cur = xmlDocGetRootElement (new_doc);
+    for (cur = cur->children; cur; cur = cur->next) {
+	if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
+	    for (cur = cur->children; cur; cur = cur->next) {
+		if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
+		    xmlChar *rel = xmlGetProp (cur, "rel");
+
+		    if (!xmlStrcmp (rel, (xmlChar *) "Previous"))
+			page->prev = xmlGetProp (cur, "href");
+		    else if (!xmlStrcmp (rel, (xmlChar *) "Next"))
+			page->next = xmlGetProp (cur, "href");
+		    else if (!xmlStrcmp (rel, (xmlChar *) "Top"))
+			page->toc = xmlGetProp (cur, "href");
+
+		    xmlFree (rel);
+		}
+	    }
+	    break;
+	}
+    }
+
+    yelp_pager_add_page (pager, page);
     g_signal_emit_by_name (pager, "page", page_id);
 
     while (gtk_events_pending ())
