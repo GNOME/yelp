@@ -7,6 +7,6 @@ tocdir = $(datadir)/yelp
 toc_DATA =						\
 	toc.xml
 
-EXTRADIST :=						\
+EXTRA_DIST =						\
 	toc.xml.in					\
 	toc.xml

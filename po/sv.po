@@ -8,13 +8,100 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-08-27 09:23+0200\n"
+"POT-Creation-Date: 2003-12-02 03:43-0600\n"
 "PO-Revision-Date: 2003-08-27 09:24+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/toc.xml.in.h:1 src/yelp-man.c:429
+msgid "Applications"
+msgstr "Program"
+
+#: data/toc.xml.in.h:2
+#, fuzzy
+msgid "Desktop"
+msgstr "GNOME - Skrivbord"
+
+#: data/toc.xml.in.h:3 src/yelp-man.c:434
+msgid "Development"
+msgstr "Utveckling"
+
+#: data/toc.xml.in.h:4
+#, fuzzy
+msgid "Development Environments"
+msgstr "Utveckling"
+
+#: data/toc.xml.in.h:5
+#, fuzzy
+msgid "Development Tools"
+msgstr "Utveckling"
+
+#: data/toc.xml.in.h:6
+#, fuzzy
+msgid "Editors"
+msgstr "/_Redigera"
+
+#: data/toc.xml.in.h:7
+#, fuzzy
+msgid "Education Applications"
+msgstr "Program"
+
+#: data/toc.xml.in.h:8
+msgid "Games and Entertainment"
+msgstr ""
+
+#: data/toc.xml.in.h:9
+msgid "General"
+msgstr ""
+
+#. GList           *seriesids;
+#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Hjälpinnehåll"
+
+#: data/toc.xml.in.h:11
+#, fuzzy
+msgid "Internet Applications"
+msgstr "Program"
+
+#: data/toc.xml.in.h:12
+msgid "KDE"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+#, fuzzy
+msgid "Kernels"
+msgstr "Kärnrutiner"
+
+#: data/toc.xml.in.h:14
+#, fuzzy
+msgid "Multimedia Applications"
+msgstr "Program"
+
+#: data/toc.xml.in.h:15
+msgid "Office and Productivity Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:16
+#, fuzzy
+msgid "Scientific Applications"
+msgstr "Program"
+
+#: data/toc.xml.in.h:17
+msgid "Securities"
+msgstr ""
+
+#: data/toc.xml.in.h:18
+msgid "Utilities"
+msgstr ""
+
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "X Applications"
+msgstr "Program"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -110,14 +197,6 @@ msgstr "Biblioteksfunktioner"
 msgid "Kernel Routines"
 msgstr "Kärnrutiner"
 
-#: src/yelp-man.c:429
-msgid "Applications"
-msgstr "Program"
-
-#: src/yelp-man.c:434
-msgid "Development"
-msgstr "Utveckling"
-
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "Hårdvaruenheter"
@@ -138,38 +217,18 @@ msgstr "Översikter"
 msgid "System Administration"
 msgstr "Systemadministration"
 
-#: src/yelp-scrollkeeper.c:627
-msgid "About This Document"
-msgstr "Om detta dokument"
-
-#: src/yelp-scrollkeeper.c:631
-msgid "Contents"
-msgstr "Innehåll"
-
-#: src/yelp-view-content.c:489
-msgid "Previous"
-msgstr "Föregående"
-
-#: src/yelp-view-content.c:500
-msgid "Next"
-msgstr "Nästa"
-
-#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
+#: src/yelp-window.c:888
 msgid "Loading..."
 msgstr "Läser in..."
 
-#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
 msgid "Section"
 msgstr "Avdelning"
 
 #: src/yelp-view-index.c:480
 msgid "_Search for:"
 msgstr "_Sök efter:"
-
-#. GList           *seriesids;
-#: src/yelp-view-toc.c:165
-msgid "Help Contents"
-msgstr "Hjälpinnehåll"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
@@ -211,111 +270,123 @@ msgstr "fri programvara"
 msgid "(C)"
 msgstr "©"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:200
 msgid "/_File"
 msgstr "/_Arkiv"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:201
 msgid "/File/_New window"
 msgstr "/Arkiv/_Nytt fönster"
 
-#: src/yelp-window.c:173
+#: src/yelp-window.c:204
 msgid "/File/_Close window"
 msgstr "/Arkiv/_Stäng fönster"
 
-#: src/yelp-window.c:175
+#: src/yelp-window.c:208
 msgid "/_Edit"
 msgstr "/_Redigera"
 
-#: src/yelp-window.c:176
-msgid "/Edit/_Find in page..."
-msgstr "/Redigera/_Sök på sidan..."
-
-#: src/yelp-window.c:177
-msgid "/Edit/_Find again"
-msgstr "/Redigera/_Sök igen"
-
-#: src/yelp-window.c:179
+#.
+#. {N_("/Edit/_Find in page..."),   NULL,
+#. window_find_cb,                 0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#. {N_("/Edit/_Find again"),        "<Control>g",
+#. window_find_again_cb,           0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#.
+#: src/yelp-window.c:218
 msgid "/_Go"
 msgstr "/_Gå"
 
-#: src/yelp-window.c:180
-msgid "/Go/_Back"
-msgstr "/Gå/_Bakåt"
-
-#: src/yelp-window.c:181
-msgid "/Go/_Forward"
-msgstr "/Gå/_Framåt"
-
-#: src/yelp-window.c:182
-msgid "/Go/_Home"
-msgstr "/Gå/_Hem"
-
-#: src/yelp-window.c:183
-msgid "/Go/_Index"
-msgstr "/Gå/_Index"
-
-#: src/yelp-window.c:185
+#.
+#. {N_("/Go/_Back"),                NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
+#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
+#. {N_("/Go/_Forward"),             NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
+#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
+#. {N_("/Go/_Home"),                NULL,
+#. window_go_home_cb,              0,
+#. "<StockItem>",                  GTK_STOCK_HOME             },
+#. {N_("/Go/_Index"),               NULL,
+#. window_go_index_cb,             0,
+#. "<StockItem>",                  GTK_STOCK_INDEX            },
+#.
+#: src/yelp-window.c:234
 msgid "/_Help"
 msgstr "/_Hjälp"
 
-#: src/yelp-window.c:186
+#: src/yelp-window.c:235
 msgid "/Help/_About"
 msgstr "/Hjälp/_Om"
 
-#: src/yelp-window.c:255 src/yelp-window.c:455
+#: src/yelp-window.c:297
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: src/yelp-window.c:368
+#: src/yelp-window.c:494
+msgid "Back"
+msgstr "Bakåt"
+
+#: src/yelp-window.c:495
+msgid "Show previous page in history"
+msgstr "Visa föregående sida i historiken"
+
+#: src/yelp-window.c:505
+msgid "Forward"
+msgstr "Framåt"
+
+#: src/yelp-window.c:506
+msgid "Show next page in history"
+msgstr "Visa nästa sida i historiken"
+
+#: src/yelp-window.c:518
+msgid "Home"
+msgstr "Hem"
+
+#: src/yelp-window.c:519
+msgid "Go to home view"
+msgstr "Gå till hemvyn"
+
+#: src/yelp-window.c:624
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet \"%s\" finns inte"
 
+#: src/yelp-window.c:644
+msgid "DocBook SGML documents are no longer supported."
+msgstr ""
+
+#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
+#, fuzzy, c-format
+msgid "The document '%s' could not be opened"
+msgstr "Dokumentet \"%s\" finns inte"
+
+#: src/yelp-window.c:876
+msgid "Loading&nbsp;&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:880
+msgid "Loading.&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:884
+#, fuzzy
+msgid "Loading..&nbsp;"
+msgstr "Läser in..."
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:694
+#: src/yelp-window.c:1046
 msgid "translator_credits"
 msgstr ""
 "Christian Rose\n"
 "Richard Hult\n"
 "Skicka synpunkter på översättningen till sv@li.org"
 
-#: src/yelp-window.c:698
+#: src/yelp-window.c:1051
 msgid "A Help Browser for GNOME"
 msgstr "En hjälpvisare för GNOME"
-
-#: src/yelp-window.c:812
-msgid "Back"
-msgstr "Bakåt"
-
-#: src/yelp-window.c:813
-msgid "Show previous page in history"
-msgstr "Visa föregående sida i historiken"
-
-#: src/yelp-window.c:824
-msgid "Forward"
-msgstr "Framåt"
-
-#: src/yelp-window.c:825
-msgid "Show next page in history"
-msgstr "Visa nästa sida i historiken"
-
-#: src/yelp-window.c:838
-msgid "Home"
-msgstr "Hem"
-
-#: src/yelp-window.c:839
-msgid "Go to home view"
-msgstr "Gå till hemvyn"
-
-#: src/yelp-window.c:849
-msgid "Index"
-msgstr "Index"
-
-#: src/yelp-window.c:850
-msgid "Search in the index"
-msgstr "Sök i indexet"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -324,6 +395,42 @@ msgstr "Få hjälp med GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjälp"
+
+#~ msgid "About This Document"
+#~ msgstr "Om detta dokument"
+
+#~ msgid "Contents"
+#~ msgstr "Innehåll"
+
+#~ msgid "Previous"
+#~ msgstr "Föregående"
+
+#~ msgid "Next"
+#~ msgstr "Nästa"
+
+#~ msgid "/Edit/_Find in page..."
+#~ msgstr "/Redigera/_Sök på sidan..."
+
+#~ msgid "/Edit/_Find again"
+#~ msgstr "/Redigera/_Sök igen"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Gå/_Bakåt"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Gå/_Framåt"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Gå/_Hem"
+
+#~ msgid "/Go/_Index"
+#~ msgstr "/Gå/_Index"
+
+#~ msgid "Index"
+#~ msgstr "Index"
+
+#~ msgid "Search in the index"
+#~ msgstr "Sök i indexet"
 
 #~ msgid "Define which cache dir to use"
 #~ msgstr "Ange vilken cachekatalog som ska användas"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-06-04 11:54+0200\n"
+"POT-Creation-Date: 2003-12-02 03:43-0600\n"
 "PO-Revision-Date: 2002-05-31 19:28-0300\n"
 "Last-Translator: Isam Bayazidi <bayazidi@arabeyes.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -14,6 +14,92 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
+
+#: data/toc.xml.in.h:1 src/yelp-man.c:429
+msgid "Applications"
+msgstr "تطبيقات"
+
+#: data/toc.xml.in.h:2
+#, fuzzy
+msgid "Desktop"
+msgstr "سطح مكتب - جينوم"
+
+#: data/toc.xml.in.h:3 src/yelp-man.c:434
+msgid "Development"
+msgstr "تطوير"
+
+#: data/toc.xml.in.h:4
+#, fuzzy
+msgid "Development Environments"
+msgstr "تطوير"
+
+#: data/toc.xml.in.h:5
+#, fuzzy
+msgid "Development Tools"
+msgstr "تطوير"
+
+#: data/toc.xml.in.h:6
+msgid "Editors"
+msgstr ""
+
+#: data/toc.xml.in.h:7
+#, fuzzy
+msgid "Education Applications"
+msgstr "تطبيقات"
+
+#: data/toc.xml.in.h:8
+msgid "Games and Entertainment"
+msgstr ""
+
+#: data/toc.xml.in.h:9
+msgid "General"
+msgstr ""
+
+#. GList           *seriesids;
+#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "محتويات المساعدة"
+
+#: data/toc.xml.in.h:11
+#, fuzzy
+msgid "Internet Applications"
+msgstr "تطبيقات"
+
+#: data/toc.xml.in.h:12
+msgid "KDE"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+#, fuzzy
+msgid "Kernels"
+msgstr "روتين النواة"
+
+#: data/toc.xml.in.h:14
+#, fuzzy
+msgid "Multimedia Applications"
+msgstr "تطبيقات"
+
+#: data/toc.xml.in.h:15
+msgid "Office and Productivity Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:16
+#, fuzzy
+msgid "Scientific Applications"
+msgstr "تطبيقات"
+
+#: data/toc.xml.in.h:17
+msgid "Securities"
+msgstr ""
+
+#: data/toc.xml.in.h:18
+msgid "Utilities"
+msgstr ""
+
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "X Applications"
+msgstr "تطبيقات"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -56,7 +142,7 @@ msgid "Yelp Factory"
 msgstr "مصنع يلب"
 
 #: src/yelp-main.c:94
-msgid "Define which cache dir to use"
+msgid "Define which cache directory to use"
 msgstr ""
 
 #: src/yelp-main.c:128
@@ -109,14 +195,6 @@ msgstr "وظائف المكتبة"
 msgid "Kernel Routines"
 msgstr "روتين النواة"
 
-#: src/yelp-man.c:429
-msgid "Applications"
-msgstr "تطبيقات"
-
-#: src/yelp-man.c:434
-msgid "Development"
-msgstr "تطوير"
-
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "عتاد"
@@ -137,11 +215,12 @@ msgstr "معاينات"
 msgid "System Administration"
 msgstr "مدير النظام"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
+#: src/yelp-window.c:888
 msgid "Loading..."
 msgstr "جاري التحميل..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
 msgid "Section"
 msgstr "فصل"
 
@@ -149,11 +228,6 @@ msgstr "فصل"
 #, fuzzy
 msgid "_Search for:"
 msgstr "بحث عن:"
-
-#. GList           *seriesids;
-#: src/yelp-view-toc.c:165
-msgid "Help Contents"
-msgstr "محتويات المساعدة"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
@@ -163,142 +237,154 @@ msgstr "سطح مكتب - جينوم"
 msgid "Additional documents"
 msgstr "مستندات إضافية"
 
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "صفحات الدليل"
 
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "صفحات المعلومات"
 
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "المستندات"
 
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "التصنيفات"
 
-#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "صفحات الدليل"
 
-#: src/yelp-view-toc.c:712
+#: src/yelp-view-toc.c:707
 #, fuzzy
 msgid "GNOME is"
 msgstr "سطح مكتب - جينوم"
 
-#: src/yelp-view-toc.c:713
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr ""
 
-#: src/yelp-view-toc.c:714
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr ""
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:200
 msgid "/_File"
 msgstr "/ملف"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:201
 msgid "/File/_New window"
 msgstr "/ملف/نافذة جديدة"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:204
 msgid "/File/_Close window"
 msgstr "/ملف/اغلق النافذة"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:208
 msgid "/_Edit"
 msgstr ""
 
-#: src/yelp-window.c:168
-msgid "/Edit/_Find in page..."
-msgstr ""
-
-#: src/yelp-window.c:169
-msgid "/Edit/_Find again"
-msgstr ""
-
-#: src/yelp-window.c:171
+#.
+#. {N_("/Edit/_Find in page..."),   NULL,
+#. window_find_cb,                 0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#. {N_("/Edit/_Find again"),        "<Control>g",
+#. window_find_again_cb,           0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#.
+#: src/yelp-window.c:218
 msgid "/_Go"
 msgstr "/انطلق"
 
-#: src/yelp-window.c:172
-msgid "/Go/_Back"
-msgstr "/انطلق/خلف"
-
-#: src/yelp-window.c:173
-msgid "/Go/_Forward"
-msgstr "/انطلق/تقديم"
-
-#: src/yelp-window.c:174
-msgid "/Go/_Home"
-msgstr "/انطلق/منزل"
-
-#: src/yelp-window.c:175
-msgid "/Go/_Index"
-msgstr "/انطلق/فهرس"
-
-#: src/yelp-window.c:177
+#.
+#. {N_("/Go/_Back"),                NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
+#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
+#. {N_("/Go/_Forward"),             NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
+#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
+#. {N_("/Go/_Home"),                NULL,
+#. window_go_home_cb,              0,
+#. "<StockItem>",                  GTK_STOCK_HOME             },
+#. {N_("/Go/_Index"),               NULL,
+#. window_go_index_cb,             0,
+#. "<StockItem>",                  GTK_STOCK_INDEX            },
+#.
+#: src/yelp-window.c:234
 msgid "/_Help"
 msgstr "/مساعدة"
 
-#: src/yelp-window.c:178
+#: src/yelp-window.c:235
 msgid "/Help/_About"
 msgstr "/مساعدة/عن"
 
-#: src/yelp-window.c:238 src/yelp-window.c:438
+#: src/yelp-window.c:297
 msgid "Help Browser"
 msgstr "متصفح المساعدة"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:494
+msgid "Back"
+msgstr "خلف"
+
+#: src/yelp-window.c:495
+msgid "Show previous page in history"
+msgstr "اظهر الصغحة السابقة في التاريخ"
+
+#: src/yelp-window.c:505
+msgid "Forward"
+msgstr "تقديم"
+
+#: src/yelp-window.c:506
+msgid "Show next page in history"
+msgstr "اظهر الصفحة التالية في التاريخ"
+
+#: src/yelp-window.c:518
+msgid "Home"
+msgstr "منزل"
+
+#: src/yelp-window.c:519
+msgid "Go to home view"
+msgstr "انتقل الى عرض المنزل"
+
+#: src/yelp-window.c:624
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "المستند '%s' ليس موجود"
 
+#: src/yelp-window.c:644
+msgid "DocBook SGML documents are no longer supported."
+msgstr ""
+
+#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
+#, fuzzy, c-format
+msgid "The document '%s' could not be opened"
+msgstr "المستند '%s' ليس موجود"
+
+#: src/yelp-window.c:876
+msgid "Loading&nbsp;&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:880
+msgid "Loading.&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:884
+#, fuzzy
+msgid "Loading..&nbsp;"
+msgstr "جاري التحميل..."
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:677
+#: src/yelp-window.c:1046
 msgid "translator_credits"
 msgstr "تكريم للمترجمين"
 
-#: src/yelp-window.c:681
+#: src/yelp-window.c:1051
 #, fuzzy
 msgid "A Help Browser for GNOME"
 msgstr "متصفح المساعدة لـ جينوم 2.0"
-
-#: src/yelp-window.c:795
-msgid "Back"
-msgstr "خلف"
-
-#: src/yelp-window.c:796
-msgid "Show previous page in history"
-msgstr "اظهر الصغحة السابقة في التاريخ"
-
-#: src/yelp-window.c:807
-msgid "Forward"
-msgstr "تقديم"
-
-#: src/yelp-window.c:808
-msgid "Show next page in history"
-msgstr "اظهر الصفحة التالية في التاريخ"
-
-#: src/yelp-window.c:821
-msgid "Home"
-msgstr "منزل"
-
-#: src/yelp-window.c:822
-msgid "Go to home view"
-msgstr "انتقل الى عرض المنزل"
-
-#: src/yelp-window.c:832
-msgid "Index"
-msgstr "فهرس"
-
-#: src/yelp-window.c:833
-msgid "Search in the index"
-msgstr "ابحث في الفهرس"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -307,6 +393,24 @@ msgstr "احصل على المساعدة مع جينوم"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "مساعدة"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/انطلق/خلف"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/انطلق/تقديم"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/انطلق/منزل"
+
+#~ msgid "/Go/_Index"
+#~ msgstr "/انطلق/فهرس"
+
+#~ msgid "Index"
+#~ msgstr "فهرس"
+
+#~ msgid "Search in the index"
+#~ msgstr "ابحث في الفهرس"
 
 #~ msgid ""
 #~ "Error while parsing the stylesheet, make sure you have your docbook "

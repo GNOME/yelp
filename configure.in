@@ -1,6 +1,6 @@
 AC_INIT(src/yelp-main.c)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(yelp, 2.3.6)
+AM_INIT_AUTOMAKE(yelp, 2.5.0)
 
 AC_PROG_INTLTOOL
 
@@ -121,9 +121,6 @@ src/Makefile
 src/man2html/Makefile
 src/info2html/Makefile
 stylesheets/Makefile
-stylesheets/docbook/Makefile
-stylesheets/docbook/catalog
-stylesheets/docbook/dtd/Makefile
 data/Makefile
 data/images/Makefile
 data/ui/Makefile

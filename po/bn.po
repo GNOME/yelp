@@ -6,13 +6,103 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
-"POT-Creation-Date: 2003-06-04 11:54+0200\n"
+"POT-Creation-Date: 2003-12-02 03:43-0600\n"
 "PO-Revision-Date: 2003-03-11 13:01+0600\n"
 "Last-Translator: Khandakar Mujahidul Islam <suzan229@yahoo.com>\n"
 "Language-Team: Bengali - Ankur Group <gnome-translation@bengalinux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/toc.xml.in.h:1 src/yelp-man.c:429
+msgid "Applications"
+msgstr "এপ্লিকেশন"
+
+# msgstr "সাহায্যের পরিমাণ"
+#: data/toc.xml.in.h:2
+#, fuzzy
+msgid "Desktop"
+msgstr "গুহ্‌নোম - ডেস্কটপ"
+
+#: data/toc.xml.in.h:3 src/yelp-man.c:434
+msgid "Development"
+msgstr "উন্নয়ন"
+
+#: data/toc.xml.in.h:4
+#, fuzzy
+msgid "Development Environments"
+msgstr "উন্নয়ন"
+
+#: data/toc.xml.in.h:5
+#, fuzzy
+msgid "Development Tools"
+msgstr "উন্নয়ন"
+
+# msgstr "/ফাইল/_বন্ধ উইন্ডো"
+#: data/toc.xml.in.h:6
+#, fuzzy
+msgid "Editors"
+msgstr "/_সম্পাদনা"
+
+#: data/toc.xml.in.h:7
+#, fuzzy
+msgid "Education Applications"
+msgstr "এপ্লিকেশন"
+
+#: data/toc.xml.in.h:8
+msgid "Games and Entertainment"
+msgstr ""
+
+#: data/toc.xml.in.h:9
+msgid "General"
+msgstr ""
+
+# msgstr "_অনুসন্ধান হচ্ছেঃ "
+#. GList           *seriesids;
+#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "সাহায্য উপাদান"
+
+#: data/toc.xml.in.h:11
+#, fuzzy
+msgid "Internet Applications"
+msgstr "এপ্লিকেশন"
+
+#: data/toc.xml.in.h:12
+msgid "KDE"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+#, fuzzy
+msgid "Kernels"
+msgstr "কার্নেলের রুটিন"
+
+#: data/toc.xml.in.h:14
+#, fuzzy
+msgid "Multimedia Applications"
+msgstr "এপ্লিকেশন"
+
+#: data/toc.xml.in.h:15
+msgid "Office and Productivity Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:16
+#, fuzzy
+msgid "Scientific Applications"
+msgstr "এপ্লিকেশন"
+
+#: data/toc.xml.in.h:17
+msgid "Securities"
+msgstr ""
+
+#: data/toc.xml.in.h:18
+msgid "Utilities"
+msgstr ""
+
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "X Applications"
+msgstr "এপ্লিকেশন"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -67,7 +157,8 @@ msgid "Yelp Factory"
 msgstr "ইয়েল্প কারখানা"
 
 #: src/yelp-main.c:94
-msgid "Define which cache dir to use"
+#, fuzzy
+msgid "Define which cache directory to use"
 msgstr "কোথায় ক্যাস করা হবে ঠিক করুন"
 
 # msgstr "Yelp কারখানা"
@@ -124,14 +215,6 @@ msgstr "লাইব্রেরী ফাংশন"
 msgid "Kernel Routines"
 msgstr "কার্নেলের রুটিন"
 
-#: src/yelp-man.c:429
-msgid "Applications"
-msgstr "এপ্লিকেশন"
-
-#: src/yelp-man.c:434
-msgid "Development"
-msgstr "উন্নয়ন"
-
 # msgstr "তৈরী / উন্নয়ন"
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
@@ -156,11 +239,12 @@ msgstr "সিস্টেমের অ্যাডমিনস্ট্রে�
 
 # msgstr "সিস্টেমের ব্যবস্থাপনা"
 # msgstr "সিস্টেমের পরিচালনা"
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
+#: src/yelp-window.c:888
 msgid "Loading..."
 msgstr "আসিতেছে..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
 msgid "Section"
 msgstr "অংশ"
 
@@ -168,12 +252,6 @@ msgstr "অংশ"
 #: src/yelp-view-index.c:480
 msgid "_Search for:"
 msgstr "_খোঁজ:"
-
-# msgstr "_অনুসন্ধান হচ্ছেঃ "
-#. GList           *seriesids;
-#: src/yelp-view-toc.c:165
-msgid "Help Contents"
-msgstr "সাহায্য উপাদান"
 
 # msgstr "সাহায্যের পরিমাণ"
 #: src/yelp-view-toc.c:166
@@ -185,169 +263,176 @@ msgstr "গুহ্‌নোম - ডেস্কটপ"
 msgid "Additional documents"
 msgstr "অতিরিক্ত ডকুমেন্ট"
 
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "ম্যানুয়াল পাতাগুলো"
 
 # msgstr "ম্যানুয়াল পেজ"
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "তথ্য পাতাগুলো"
 
 # msgstr "তথ্য পেজ"
-#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "ডকুমেন্ট"
 
-#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "শ্রেণী"
 
 # msgstr "ক্যাটেগরি"
-#: src/yelp-view-toc.c:448
+#: src/yelp-view-toc.c:447
 msgid "Manual pages"
 msgstr "ম্যানুয়াল পাতাগুলো"
 
 # msgstr "ম্যানুয়াল পেজ"
-#: src/yelp-view-toc.c:712
+#: src/yelp-view-toc.c:707
 msgid "GNOME is"
 msgstr "গুহ্‌নোম হচ্ছে"
 
 # msgstr "জিনোম হচ্ছে"
-#: src/yelp-view-toc.c:713
+#: src/yelp-view-toc.c:708
 msgid "Free Software"
 msgstr "স্বাধীন সফটওয়্যার "
 
 # msgstr "উন্মুক্ত সফটওয়্যার"
 # msgstr "বিনামূল্যের সফটওয়্যার"
-#: src/yelp-view-toc.c:714
+#: src/yelp-view-toc.c:709
 msgid "(C)"
 msgstr "©"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:200
 msgid "/_File"
 msgstr "/_ফাইল"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:201
 msgid "/File/_New window"
 msgstr "/ফাইল/_নতুন উইন্ডো"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:204
 msgid "/File/_Close window"
 msgstr "/ফাইল/_উইন্ডো বন্ধ কর"
 
 # msgstr "/ফাইল/_বন্ধ উইন্ডো"
-#: src/yelp-window.c:167
+#: src/yelp-window.c:208
 msgid "/_Edit"
 msgstr "/_সম্পাদনা"
 
-#: src/yelp-window.c:168
-msgid "/Edit/_Find in page..."
-msgstr "/_সম্পাদনা/_পাতার ভেতরে খোঁজ..."
-
-# msgstr "/_সম্পাদনা/_পাতার ভেতরে খুঁজুন"
-# msgstr "/_সম্পাদনা/_পাতার ভেতরে খোঁজা হোক....."
-#: src/yelp-window.c:169
-msgid "/Edit/_Find again"
-msgstr "/_সম্পাদনা/_আবার খোঁজ"
-
 # msgstr "/_সম্পাদনা/_আবার খুঁজুন"
 # msgstr "/_সম্পাদনা/_আবার অনুসন্ধান করুন"
-#: src/yelp-window.c:171
+#.
+#. {N_("/Edit/_Find in page..."),   NULL,
+#. window_find_cb,                 0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#. {N_("/Edit/_Find again"),        "<Control>g",
+#. window_find_again_cb,           0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#.
+#: src/yelp-window.c:218
 msgid "/_Go"
 msgstr "/_যাও"
 
-# msgstr "/_যাওয়া"
-#: src/yelp-window.c:172
-msgid "/Go/_Back"
-msgstr "/_যাও/_পেছনে"
-
-#: src/yelp-window.c:173
-msgid "/Go/_Forward"
-msgstr "/_যাও/_সামনে"
-
-#: src/yelp-window.c:174
-msgid "/Go/_Home"
-msgstr "/_যাও/_বাড়ি"
-
-# msgstr "/_যাও/_হোম"
-#: src/yelp-window.c:175
-msgid "/Go/_Index"
-msgstr "/যাও/_সূচক"
-
 # msgstr "/যাও/_সূচি"
-#: src/yelp-window.c:177
+#.
+#. {N_("/Go/_Back"),                NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
+#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
+#. {N_("/Go/_Forward"),             NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
+#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
+#. {N_("/Go/_Home"),                NULL,
+#. window_go_home_cb,              0,
+#. "<StockItem>",                  GTK_STOCK_HOME             },
+#. {N_("/Go/_Index"),               NULL,
+#. window_go_index_cb,             0,
+#. "<StockItem>",                  GTK_STOCK_INDEX            },
+#.
+#: src/yelp-window.c:234
 msgid "/_Help"
 msgstr "/_সাহায্য"
 
 # msgstr "/_সহায়তা"
-#: src/yelp-window.c:178
+#: src/yelp-window.c:235
 msgid "/Help/_About"
 msgstr "/_সাহায্য/_সম্বন্ধে"
 
 # msgstr "/_সহায়তা/_সম্বন্ধে"
-#: src/yelp-window.c:238 src/yelp-window.c:438
+#: src/yelp-window.c:297
 msgid "Help Browser"
 msgstr "সহায়ক তথ্য প্রদর্শনকারী ব্রাউজার"
 
-# msgstr "সাহায্যকারী  ব্রাউজার"
-#: src/yelp-window.c:351
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "'%s' ডকুমেন্টটির অস্তিত্ব নেই"
-
-#. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:677
-msgid "translator_credits"
-msgstr "মুজাহিদুল ইসলাম"
-
-#: src/yelp-window.c:681
-msgid "A Help Browser for GNOME"
-msgstr "গুহ্‌নোম এর সহায়ক তথ্য প্রদর্শনকারী ব্রাউজার"
-
 # msgstr "জিনোম ২.০ সহায়ক তথ্য  প্রদর্শনকারী ব্রাউজার"
-#: src/yelp-window.c:795
+#: src/yelp-window.c:494
 msgid "Back"
 msgstr "পেছনে"
 
-#: src/yelp-window.c:796
+#: src/yelp-window.c:495
 msgid "Show previous page in history"
 msgstr "হিস্টোরির পূর্ববর্তী পাতাটি দেখাও"
 
 # msgstr "হিস্টোরি থেকে পূর্ববর্তী পাতাটি দেখানো হোক"
 # msgstr "পূর্বে ব্যবহৃত পাতার তালিকা থেকে শেষ পাতাটি দেখানো হোক"
-#: src/yelp-window.c:807
+#: src/yelp-window.c:505
 msgid "Forward"
 msgstr "সামনে"
 
-#: src/yelp-window.c:808
+#: src/yelp-window.c:506
 msgid "Show next page in history"
 msgstr "হিস্টোরির পরবর্তী পাতাটি দেখাও"
 
 # msgstr "হিস্টোরি থেকে পরবর্তী পাতাটি দেখানো হোক"
 # msgstr "হিস্টোরির পরের পাতাটি দেখাও"
 # msgstr "হিস্টোরিতে পরের পাতাটি দেখাও"
-#: src/yelp-window.c:821
+#: src/yelp-window.c:518
 msgid "Home"
 msgstr "বাড়ি"
 
 # msgstr "হোম"
-#: src/yelp-window.c:822
+#: src/yelp-window.c:519
 msgid "Go to home view"
 msgstr "বাড়ি প্রদর্শনীর দিকে যাও"
 
-# msgstr "হোম ভিউয়ের দিকে যাও"
-#: src/yelp-window.c:832
-msgid "Index"
-msgstr "সূচি"
+# msgstr "সাহায্যকারী  ব্রাউজার"
+#: src/yelp-window.c:624
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "'%s' ডকুমেন্টটির অস্তিত্ব নেই"
 
-# msgstr "সূচক"
-# msgstr "সূচিপত্র"
-# msgstr "তালিকা"
-#: src/yelp-window.c:833
-msgid "Search in the index"
-msgstr "সূচীতে খুঁজুন"
+#: src/yelp-window.c:644
+msgid "DocBook SGML documents are no longer supported."
+msgstr ""
+
+# msgstr "সাহায্যকারী  ব্রাউজার"
+#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
+#, fuzzy, c-format
+msgid "The document '%s' could not be opened"
+msgstr "'%s' ডকুমেন্টটির অস্তিত্ব নেই"
+
+#: src/yelp-window.c:876
+msgid "Loading&nbsp;&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:880
+msgid "Loading.&nbsp;&nbsp;"
+msgstr ""
+
+# msgstr "সিস্টেমের ব্যবস্থাপনা"
+# msgstr "সিস্টেমের পরিচালনা"
+#: src/yelp-window.c:884
+#, fuzzy
+msgid "Loading..&nbsp;"
+msgstr "আসিতেছে..."
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:1046
+msgid "translator_credits"
+msgstr "মুজাহিদুল ইসলাম"
+
+#: src/yelp-window.c:1051
+msgid "A Help Browser for GNOME"
+msgstr "গুহ্‌নোম এর সহায়ক তথ্য প্রদর্শনকারী ব্রাউজার"
 
 # msgstr "সূচকে খুঁজুন"
 # msgstr "ইনডেকসে খুঁজুন"
@@ -359,3 +444,35 @@ msgstr "গুহ্‌নোমের মধ্যে দেয়া সহায়
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "সহায়তা"
+
+#~ msgid "/Edit/_Find in page..."
+#~ msgstr "/_সম্পাদনা/_পাতার ভেতরে খোঁজ..."
+
+# msgstr "/_সম্পাদনা/_পাতার ভেতরে খুঁজুন"
+# msgstr "/_সম্পাদনা/_পাতার ভেতরে খোঁজা হোক....."
+#~ msgid "/Edit/_Find again"
+#~ msgstr "/_সম্পাদনা/_আবার খোঁজ"
+
+# msgstr "/_যাওয়া"
+#~ msgid "/Go/_Back"
+#~ msgstr "/_যাও/_পেছনে"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/_যাও/_সামনে"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/_যাও/_বাড়ি"
+
+# msgstr "/_যাও/_হোম"
+#~ msgid "/Go/_Index"
+#~ msgstr "/যাও/_সূচক"
+
+# msgstr "হোম ভিউয়ের দিকে যাও"
+#~ msgid "Index"
+#~ msgstr "সূচি"
+
+# msgstr "সূচক"
+# msgstr "সূচিপত্র"
+# msgstr "তালিকা"
+#~ msgid "Search in the index"
+#~ msgstr "সূচীতে খুঁজুন"

@@ -6,14 +6,101 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.3.6\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-29 20:16+0800\n"
+"POT-Creation-Date: 2003-12-02 03:43-0600\n"
 "PO-Revision-Date: 2003-08-29 20:17+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+
+#: data/toc.xml.in.h:1 src/yelp-man.c:429
+msgid "Applications"
+msgstr "程式"
+
+#: data/toc.xml.in.h:2
+#, fuzzy
+msgid "Desktop"
+msgstr "GNOME ─ 桌面"
+
+#: data/toc.xml.in.h:3 src/yelp-man.c:434
+msgid "Development"
+msgstr "開發"
+
+#: data/toc.xml.in.h:4
+#, fuzzy
+msgid "Development Environments"
+msgstr "開發"
+
+#: data/toc.xml.in.h:5
+#, fuzzy
+msgid "Development Tools"
+msgstr "開發"
+
+#: data/toc.xml.in.h:6
+#, fuzzy
+msgid "Editors"
+msgstr "/編輯(_E)"
+
+#: data/toc.xml.in.h:7
+#, fuzzy
+msgid "Education Applications"
+msgstr "程式"
+
+#: data/toc.xml.in.h:8
+msgid "Games and Entertainment"
+msgstr ""
+
+#: data/toc.xml.in.h:9
+msgid "General"
+msgstr ""
+
+#. GList           *seriesids;
+#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "說明文件"
+
+#: data/toc.xml.in.h:11
+#, fuzzy
+msgid "Internet Applications"
+msgstr "程式"
+
+#: data/toc.xml.in.h:12
+msgid "KDE"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+#, fuzzy
+msgid "Kernels"
+msgstr "內核"
+
+#: data/toc.xml.in.h:14
+#, fuzzy
+msgid "Multimedia Applications"
+msgstr "程式"
+
+#: data/toc.xml.in.h:15
+msgid "Office and Productivity Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:16
+#, fuzzy
+msgid "Scientific Applications"
+msgstr "程式"
+
+#: data/toc.xml.in.h:17
+msgid "Securities"
+msgstr ""
+
+#: data/toc.xml.in.h:18
+msgid "Utilities"
+msgstr ""
+
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "X Applications"
+msgstr "程式"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -109,14 +196,6 @@ msgstr "函式庫"
 msgid "Kernel Routines"
 msgstr "內核"
 
-#: src/yelp-man.c:429
-msgid "Applications"
-msgstr "程式"
-
-#: src/yelp-man.c:434
-msgid "Development"
-msgstr "開發"
-
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "硬件裝置"
@@ -137,38 +216,18 @@ msgstr "概覽"
 msgid "System Administration"
 msgstr "系統管理"
 
-#: src/yelp-scrollkeeper.c:627
-msgid "About This Document"
-msgstr "關於這份文件"
-
-#: src/yelp-scrollkeeper.c:631
-msgid "Contents"
-msgstr "內容"
-
-#: src/yelp-view-content.c:489
-msgid "Previous"
-msgstr "上一頁"
-
-#: src/yelp-view-content.c:500
-msgid "Next"
-msgstr "下一頁"
-
-#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
+#: src/yelp-window.c:888
 msgid "Loading..."
 msgstr "載入..."
 
-#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
 msgid "Section"
 msgstr "章節"
 
 #: src/yelp-view-index.c:480
 msgid "_Search for:"
 msgstr "搜尋(_S)："
-
-#. GList           *seriesids;
-#: src/yelp-view-toc.c:165
-msgid "Help Contents"
-msgstr "說明文件"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
@@ -210,70 +269,114 @@ msgstr "自由軟體"
 msgid "(C)"
 msgstr "版權所有 ©"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:200
 msgid "/_File"
 msgstr "/檔案(_F)"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:201
 msgid "/File/_New window"
 msgstr "/檔案(F)/新增視窗(_N)"
 
-#: src/yelp-window.c:173
+#: src/yelp-window.c:204
 msgid "/File/_Close window"
 msgstr "/檔案(F)/關閉視窗(_C)"
 
-#: src/yelp-window.c:175
+#: src/yelp-window.c:208
 msgid "/_Edit"
 msgstr "/編輯(_E)"
 
-#: src/yelp-window.c:176
-msgid "/Edit/_Find in page..."
-msgstr "/編輯(E)/在頁面中搜尋(_F)..."
-
-#: src/yelp-window.c:177
-msgid "/Edit/_Find again"
-msgstr "/編輯(E)/繼續搜尋(_F)"
-
-#: src/yelp-window.c:179
+#.
+#. {N_("/Edit/_Find in page..."),   NULL,
+#. window_find_cb,                 0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#. {N_("/Edit/_Find again"),        "<Control>g",
+#. window_find_again_cb,           0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#.
+#: src/yelp-window.c:218
 msgid "/_Go"
 msgstr "/前往(_G)"
 
-#: src/yelp-window.c:180
-msgid "/Go/_Back"
-msgstr "/前往(G)/上一頁(_B)"
-
-#: src/yelp-window.c:181
-msgid "/Go/_Forward"
-msgstr "/前往(G)/下一頁(_F)"
-
-#: src/yelp-window.c:182
-msgid "/Go/_Home"
-msgstr "/前往(G)/首頁(_H)"
-
-#: src/yelp-window.c:183
-msgid "/Go/_Index"
-msgstr "/前往(G)/索引(_I)"
-
-#: src/yelp-window.c:185
+#.
+#. {N_("/Go/_Back"),                NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
+#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
+#. {N_("/Go/_Forward"),             NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
+#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
+#. {N_("/Go/_Home"),                NULL,
+#. window_go_home_cb,              0,
+#. "<StockItem>",                  GTK_STOCK_HOME             },
+#. {N_("/Go/_Index"),               NULL,
+#. window_go_index_cb,             0,
+#. "<StockItem>",                  GTK_STOCK_INDEX            },
+#.
+#: src/yelp-window.c:234
 msgid "/_Help"
 msgstr "/求助(_H)"
 
-#: src/yelp-window.c:186
+#: src/yelp-window.c:235
 msgid "/Help/_About"
 msgstr "/求助(H)/關於(_A)"
 
-#: src/yelp-window.c:255 src/yelp-window.c:455
+#: src/yelp-window.c:297
 msgid "Help Browser"
 msgstr "說明文件瀏覽程式"
 
-#: src/yelp-window.c:368
+#: src/yelp-window.c:494
+msgid "Back"
+msgstr "上一頁"
+
+#: src/yelp-window.c:495
+msgid "Show previous page in history"
+msgstr "顯示紀錄中的上一頁"
+
+#: src/yelp-window.c:505
+msgid "Forward"
+msgstr "下一頁"
+
+#: src/yelp-window.c:506
+msgid "Show next page in history"
+msgstr "顯示紀錄中的下一頁"
+
+#: src/yelp-window.c:518
+msgid "Home"
+msgstr "首頁"
+
+#: src/yelp-window.c:519
+msgid "Go to home view"
+msgstr "前往首頁"
+
+#: src/yelp-window.c:624
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "文件‘%s’不存在"
 
+#: src/yelp-window.c:644
+msgid "DocBook SGML documents are no longer supported."
+msgstr ""
+
+#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
+#, fuzzy, c-format
+msgid "The document '%s' could not be opened"
+msgstr "文件‘%s’不存在"
+
+#: src/yelp-window.c:876
+msgid "Loading&nbsp;&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:880
+msgid "Loading.&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:884
+#, fuzzy
+msgid "Loading..&nbsp;"
+msgstr "載入..."
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:694
+#: src/yelp-window.c:1046
 msgid "translator_credits"
 msgstr ""
 "i18n 程式中文化計劃\n"
@@ -282,41 +385,9 @@ msgstr ""
 "Abel Cheung <maddog@linux.org.hk>, 2002-03\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2002"
 
-#: src/yelp-window.c:698
+#: src/yelp-window.c:1051
 msgid "A Help Browser for GNOME"
 msgstr "GNOME 說明文件瀏覽程式"
-
-#: src/yelp-window.c:812
-msgid "Back"
-msgstr "上一頁"
-
-#: src/yelp-window.c:813
-msgid "Show previous page in history"
-msgstr "顯示紀錄中的上一頁"
-
-#: src/yelp-window.c:824
-msgid "Forward"
-msgstr "下一頁"
-
-#: src/yelp-window.c:825
-msgid "Show next page in history"
-msgstr "顯示紀錄中的下一頁"
-
-#: src/yelp-window.c:838
-msgid "Home"
-msgstr "首頁"
-
-#: src/yelp-window.c:839
-msgid "Go to home view"
-msgstr "前往首頁"
-
-#: src/yelp-window.c:849
-msgid "Index"
-msgstr "索引"
-
-#: src/yelp-window.c:850
-msgid "Search in the index"
-msgstr "在索引中搜尋"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -325,3 +396,39 @@ msgstr "顯示 GNOME 說明文件"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "說明文件瀏覽器"
+
+#~ msgid "About This Document"
+#~ msgstr "關於這份文件"
+
+#~ msgid "Contents"
+#~ msgstr "內容"
+
+#~ msgid "Previous"
+#~ msgstr "上一頁"
+
+#~ msgid "Next"
+#~ msgstr "下一頁"
+
+#~ msgid "/Edit/_Find in page..."
+#~ msgstr "/編輯(E)/在頁面中搜尋(_F)..."
+
+#~ msgid "/Edit/_Find again"
+#~ msgstr "/編輯(E)/繼續搜尋(_F)"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/前往(G)/上一頁(_B)"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/前往(G)/下一頁(_F)"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/前往(G)/首頁(_H)"
+
+#~ msgid "/Go/_Index"
+#~ msgstr "/前往(G)/索引(_I)"
+
+#~ msgid "Index"
+#~ msgstr "索引"
+
+#~ msgid "Search in the index"
+#~ msgstr "在索引中搜尋"

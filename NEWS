@@ -1,3 +1,14 @@
+Changes in 2.5.0:
+-----------------
+Completely new transformation system.  This is really just a whole
+slew of changes that I just can't list.  The transformations are
+done entirely differently, in-process, and unthreaded.  A YelpPager
+is used to hold the transformation, and it emits signals when pages
+are ready to be displayed.  The "views" are removed from YelpWindow,
+because everything goes through YelpPager, and it's considerably
+simpler.  There are a lot of regressions and breakages, but the
+new infastructure will prove itself.            (Shaun McCance)
+
 Changes in 2.3.6:
 -----------------
 * A11y fixes to the contents view, #89838       (Shaun McCance)

@@ -7,8 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-12 13:04+0200\n"
+"POT-Creation-Date: 2003-12-02 03:43-0600\n"
 "PO-Revision-Date: 2003-08-12 21:23+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
@@ -16,6 +15,94 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+
+#: data/toc.xml.in.h:1 src/yelp-man.c:429
+msgid "Applications"
+msgstr "Sovellukset"
+
+#: data/toc.xml.in.h:2
+#, fuzzy
+msgid "Desktop"
+msgstr "Gnome - Työpöytä"
+
+#: data/toc.xml.in.h:3 src/yelp-man.c:434
+msgid "Development"
+msgstr "Ohjelmakehitys"
+
+#: data/toc.xml.in.h:4
+#, fuzzy
+msgid "Development Environments"
+msgstr "Ohjelmakehitys"
+
+#: data/toc.xml.in.h:5
+#, fuzzy
+msgid "Development Tools"
+msgstr "Ohjelmakehitys"
+
+#: data/toc.xml.in.h:6
+#, fuzzy
+msgid "Editors"
+msgstr "/_Muokkaa"
+
+#: data/toc.xml.in.h:7
+#, fuzzy
+msgid "Education Applications"
+msgstr "Sovellukset"
+
+#: data/toc.xml.in.h:8
+msgid "Games and Entertainment"
+msgstr ""
+
+#: data/toc.xml.in.h:9
+msgid "General"
+msgstr ""
+
+#. GList           *seriesids;
+#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Ohjeen sisältö"
+
+#: data/toc.xml.in.h:11
+#, fuzzy
+msgid "Internet Applications"
+msgstr "Sovellukset"
+
+#: data/toc.xml.in.h:12
+msgid "KDE"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+#, fuzzy
+msgid "Kernels"
+msgstr "Kernelrutiinit"
+
+#: data/toc.xml.in.h:14
+#, fuzzy
+msgid "Multimedia Applications"
+msgstr "Sovellukset"
+
+#: data/toc.xml.in.h:15
+msgid "Office and Productivity Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:16
+#, fuzzy
+msgid "Scientific Applications"
+msgstr "Sovellukset"
+
+#: data/toc.xml.in.h:17
+msgid "Securities"
+msgstr ""
+
+#: data/toc.xml.in.h:18
+msgid "Utilities"
+msgstr ""
+
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "X Applications"
+msgstr "Sovellukset"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -111,14 +198,6 @@ msgstr "Kirjastofunktiot"
 msgid "Kernel Routines"
 msgstr "Kernelrutiinit"
 
-#: src/yelp-man.c:429
-msgid "Applications"
-msgstr "Sovellukset"
-
-#: src/yelp-man.c:434
-msgid "Development"
-msgstr "Ohjelmakehitys"
-
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "Laitteisto"
@@ -139,22 +218,18 @@ msgstr "Yleiskatsaukset"
 msgid "System Administration"
 msgstr "Järjestelmänvalvonta"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
+#: src/yelp-window.c:888
 msgid "Loading..."
 msgstr "Ladataan..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
 msgid "Section"
 msgstr "Sisällys"
 
 #: src/yelp-view-index.c:480
 msgid "_Search for:"
 msgstr "_Etsi:"
-
-#. GList           *seriesids;
-#: src/yelp-view-toc.c:165
-msgid "Help Contents"
-msgstr "Ohjeen sisältö"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
@@ -196,70 +271,114 @@ msgstr "vapaa ohjelmisto"
 msgid "(C)"
 msgstr "©"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:200
 msgid "/_File"
 msgstr "/_Tiedosto"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:201
 msgid "/File/_New window"
 msgstr "/Tiedosto/_Uusi ikkuna"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:204
 msgid "/File/_Close window"
 msgstr "/Tiedosto/_Sulje ikkuna"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:208
 msgid "/_Edit"
 msgstr "/_Muokkaa"
 
-#: src/yelp-window.c:168
-msgid "/Edit/_Find in page..."
-msgstr "/Muokkaa/_Etsi sivulta..."
-
-#: src/yelp-window.c:169
-msgid "/Edit/_Find again"
-msgstr "/Muokkaa/Etsi _uudelleen"
-
-#: src/yelp-window.c:171
+#.
+#. {N_("/Edit/_Find in page..."),   NULL,
+#. window_find_cb,                 0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#. {N_("/Edit/_Find again"),        "<Control>g",
+#. window_find_again_cb,           0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#.
+#: src/yelp-window.c:218
 msgid "/_Go"
 msgstr "/_Siirry"
 
-#: src/yelp-window.c:172
-msgid "/Go/_Back"
-msgstr "/Siirry/_Takaisin"
-
-#: src/yelp-window.c:173
-msgid "/Go/_Forward"
-msgstr "/Siirry/_Eteenpäin"
-
-#: src/yelp-window.c:174
-msgid "/Go/_Home"
-msgstr "/Siirry/_Koti"
-
-#: src/yelp-window.c:175
-msgid "/Go/_Index"
-msgstr "/Siirry/_Hakemisto"
-
-#: src/yelp-window.c:177
+#.
+#. {N_("/Go/_Back"),                NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
+#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
+#. {N_("/Go/_Forward"),             NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
+#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
+#. {N_("/Go/_Home"),                NULL,
+#. window_go_home_cb,              0,
+#. "<StockItem>",                  GTK_STOCK_HOME             },
+#. {N_("/Go/_Index"),               NULL,
+#. window_go_index_cb,             0,
+#. "<StockItem>",                  GTK_STOCK_INDEX            },
+#.
+#: src/yelp-window.c:234
 msgid "/_Help"
 msgstr "/_Ohje"
 
-#: src/yelp-window.c:178
+#: src/yelp-window.c:235
 msgid "/Help/_About"
 msgstr "/Ohje/_Tietoja"
 
-#: src/yelp-window.c:238 src/yelp-window.c:438
+#: src/yelp-window.c:297
 msgid "Help Browser"
 msgstr "Ohje-selain"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:494
+msgid "Back"
+msgstr "Takaisin"
+
+#: src/yelp-window.c:495
+msgid "Show previous page in history"
+msgstr "Näytä edellinen sivu"
+
+#: src/yelp-window.c:505
+msgid "Forward"
+msgstr "Eteenpäin"
+
+#: src/yelp-window.c:506
+msgid "Show next page in history"
+msgstr "Näytä seuraava sivu"
+
+#: src/yelp-window.c:518
+msgid "Home"
+msgstr "Koti"
+
+#: src/yelp-window.c:519
+msgid "Go to home view"
+msgstr "Siirry kotinäkymään"
+
+#: src/yelp-window.c:624
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentti \"%s\" ei ole olemassa"
 
+#: src/yelp-window.c:644
+msgid "DocBook SGML documents are no longer supported."
+msgstr ""
+
+#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
+#, fuzzy, c-format
+msgid "The document '%s' could not be opened"
+msgstr "Dokumentti \"%s\" ei ole olemassa"
+
+#: src/yelp-window.c:876
+msgid "Loading&nbsp;&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:880
+msgid "Loading.&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:884
+#, fuzzy
+msgid "Loading..&nbsp;"
+msgstr "Ladataan..."
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:677
+#: src/yelp-window.c:1046
 msgid "translator_credits"
 msgstr ""
 "Lauri Nurmi, 2003\n"
@@ -267,41 +386,9 @@ msgstr ""
 "\n"
 "http://gnome-fi.org/"
 
-#: src/yelp-window.c:681
+#: src/yelp-window.c:1051
 msgid "A Help Browser for GNOME"
 msgstr "Gnomen ohje-selain"
-
-#: src/yelp-window.c:795
-msgid "Back"
-msgstr "Takaisin"
-
-#: src/yelp-window.c:796
-msgid "Show previous page in history"
-msgstr "Näytä edellinen sivu"
-
-#: src/yelp-window.c:807
-msgid "Forward"
-msgstr "Eteenpäin"
-
-#: src/yelp-window.c:808
-msgid "Show next page in history"
-msgstr "Näytä seuraava sivu"
-
-#: src/yelp-window.c:821
-msgid "Home"
-msgstr "Koti"
-
-#: src/yelp-window.c:822
-msgid "Go to home view"
-msgstr "Siirry kotinäkymään"
-
-#: src/yelp-window.c:832
-msgid "Index"
-msgstr "Hakemisto"
-
-#: src/yelp-window.c:833
-msgid "Search in the index"
-msgstr "Etsi hakemistosta"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -310,3 +397,27 @@ msgstr "Hae apua Gnomen käytössä"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Ohje"
+
+#~ msgid "/Edit/_Find in page..."
+#~ msgstr "/Muokkaa/_Etsi sivulta..."
+
+#~ msgid "/Edit/_Find again"
+#~ msgstr "/Muokkaa/Etsi _uudelleen"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Siirry/_Takaisin"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Siirry/_Eteenpäin"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Siirry/_Koti"
+
+#~ msgid "/Go/_Index"
+#~ msgstr "/Siirry/_Hakemisto"
+
+#~ msgid "Index"
+#~ msgstr "Hakemisto"
+
+#~ msgid "Search in the index"
+#~ msgstr "Etsi hakemistosta"

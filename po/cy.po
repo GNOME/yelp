@@ -6,14 +6,101 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-27 06:31+0100\n"
+"POT-Creation-Date: 2003-12-02 03:43-0600\n"
 "PO-Revision-Date: 2003-08-14 21:33+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+
+#: data/toc.xml.in.h:1 src/yelp-man.c:429
+msgid "Applications"
+msgstr "Rhaglenni"
+
+#: data/toc.xml.in.h:2
+#, fuzzy
+msgid "Desktop"
+msgstr "GNOME - Penbwrdd"
+
+#: data/toc.xml.in.h:3 src/yelp-man.c:434
+msgid "Development"
+msgstr "Datblygu"
+
+#: data/toc.xml.in.h:4
+#, fuzzy
+msgid "Development Environments"
+msgstr "Datblygu"
+
+#: data/toc.xml.in.h:5
+#, fuzzy
+msgid "Development Tools"
+msgstr "Datblygu"
+
+#: data/toc.xml.in.h:6
+#, fuzzy
+msgid "Editors"
+msgstr "/_Golygu"
+
+#: data/toc.xml.in.h:7
+#, fuzzy
+msgid "Education Applications"
+msgstr "Rhaglenni"
+
+#: data/toc.xml.in.h:8
+msgid "Games and Entertainment"
+msgstr ""
+
+#: data/toc.xml.in.h:9
+msgid "General"
+msgstr ""
+
+#. GList           *seriesids;
+#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Cynnwys Help"
+
+#: data/toc.xml.in.h:11
+#, fuzzy
+msgid "Internet Applications"
+msgstr "Rhaglenni"
+
+#: data/toc.xml.in.h:12
+msgid "KDE"
+msgstr ""
+
+#: data/toc.xml.in.h:13
+#, fuzzy
+msgid "Kernels"
+msgstr "Ffwythiannau'r Cnewyllyn"
+
+#: data/toc.xml.in.h:14
+#, fuzzy
+msgid "Multimedia Applications"
+msgstr "Rhaglenni"
+
+#: data/toc.xml.in.h:15
+msgid "Office and Productivity Applications"
+msgstr ""
+
+#: data/toc.xml.in.h:16
+#, fuzzy
+msgid "Scientific Applications"
+msgstr "Rhaglenni"
+
+#: data/toc.xml.in.h:17
+msgid "Securities"
+msgstr ""
+
+#: data/toc.xml.in.h:18
+msgid "Utilities"
+msgstr ""
+
+#: data/toc.xml.in.h:19
+#, fuzzy
+msgid "X Applications"
+msgstr "Rhaglenni"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -109,14 +196,6 @@ msgstr "Ffwythiannau'r Rhaglengell"
 msgid "Kernel Routines"
 msgstr "Ffwythiannau'r Cnewyllyn"
 
-#: src/yelp-man.c:429
-msgid "Applications"
-msgstr "Rhaglenni"
-
-#: src/yelp-man.c:434
-msgid "Development"
-msgstr "Datblygu"
-
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
 msgstr "Dyfeisiau Meddalwedd"
@@ -137,38 +216,18 @@ msgstr "Trosolygon"
 msgid "System Administration"
 msgstr "Gweinyddiaeth System"
 
-#: src/yelp-scrollkeeper.c:627
-msgid "About This Document"
-msgstr "Ynghylch y Ddogfen Hwn"
-
-#: src/yelp-scrollkeeper.c:631
-msgid "Contents"
-msgstr "Cynnwys"
-
-#: src/yelp-view-content.c:489
-msgid "Previous"
-msgstr "Blaenorol"
-
-#: src/yelp-view-content.c:500
-msgid "Next"
-msgstr "Nesaf"
-
-#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:755
+#: src/yelp-window.c:888
 msgid "Loading..."
 msgstr "Yn Llwytho..."
 
-#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:441
 msgid "Section"
 msgstr "Adran"
 
 #: src/yelp-view-index.c:480
 msgid "_Search for:"
 msgstr "_Chwilio am:"
-
-#. GList           *seriesids;
-#: src/yelp-view-toc.c:165
-msgid "Help Contents"
-msgstr "Cynnwys Help"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
@@ -210,110 +269,122 @@ msgstr "Feddalwedd Rhydd"
 msgid "(C)"
 msgstr "(H)"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:200
 msgid "/_File"
 msgstr "/_Ffeil"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:201
 msgid "/File/_New window"
 msgstr "/Ffeil/Ffenestr _newydd"
 
-#: src/yelp-window.c:173
+#: src/yelp-window.c:204
 msgid "/File/_Close window"
 msgstr "/Ffeil/_Cau ffenestr"
 
-#: src/yelp-window.c:175
+#: src/yelp-window.c:208
 msgid "/_Edit"
 msgstr "/_Golygu"
 
-#: src/yelp-window.c:176
-msgid "/Edit/_Find in page..."
-msgstr "/Golygu/_Chwilio mewn tudalen..."
-
-#: src/yelp-window.c:177
-msgid "/Edit/_Find again"
-msgstr "/Golygu/_Chwilio eto"
-
-#: src/yelp-window.c:179
+#.
+#. {N_("/Edit/_Find in page..."),   NULL,
+#. window_find_cb,                 0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#. {N_("/Edit/_Find again"),        "<Control>g",
+#. window_find_again_cb,           0,
+#. "<StockItem>",                  GTK_STOCK_FIND             },
+#.
+#: src/yelp-window.c:218
 msgid "/_Go"
 msgstr "/_Mynd"
 
-#: src/yelp-window.c:180
-msgid "/Go/_Back"
-msgstr "/Mynd/Yn _ôl"
-
-#: src/yelp-window.c:181
-msgid "/Go/_Forward"
-msgstr "/Mynd/_Ymlaen"
-
-#: src/yelp-window.c:182
-msgid "/Go/_Home"
-msgstr "/Mynd/_Adre"
-
-#: src/yelp-window.c:183
-msgid "/Go/_Index"
-msgstr "/Mynd/_Mynegai"
-
-#: src/yelp-window.c:185
+#.
+#. {N_("/Go/_Back"),                NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_BACK,
+#. "<StockItem>",                  GTK_STOCK_GO_BACK          },
+#. {N_("/Go/_Forward"),             NULL,
+#. window_history_go_cb,           YELP_WINDOW_ACTION_FORWARD,
+#. "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
+#. {N_("/Go/_Home"),                NULL,
+#. window_go_home_cb,              0,
+#. "<StockItem>",                  GTK_STOCK_HOME             },
+#. {N_("/Go/_Index"),               NULL,
+#. window_go_index_cb,             0,
+#. "<StockItem>",                  GTK_STOCK_INDEX            },
+#.
+#: src/yelp-window.c:234
 msgid "/_Help"
 msgstr "/_Cymorth"
 
-#: src/yelp-window.c:186
+#: src/yelp-window.c:235
 msgid "/Help/_About"
 msgstr "/Cymorth/_Ynghylch"
 
-#: src/yelp-window.c:255 src/yelp-window.c:455
+#: src/yelp-window.c:297
 msgid "Help Browser"
 msgstr "Porwr Cymorth"
 
-#: src/yelp-window.c:368
+#: src/yelp-window.c:494
+msgid "Back"
+msgstr "Yn ôl"
+
+#: src/yelp-window.c:495
+msgid "Show previous page in history"
+msgstr "Dangos y dudalen blaenorol"
+
+#: src/yelp-window.c:505
+msgid "Forward"
+msgstr "Ymlaen"
+
+#: src/yelp-window.c:506
+msgid "Show next page in history"
+msgstr "Dangos y tudalen nesaf"
+
+#: src/yelp-window.c:518
+msgid "Home"
+msgstr "Cartref"
+
+#: src/yelp-window.c:519
+msgid "Go to home view"
+msgstr "Ewch i'r olygfa gartref"
+
+#: src/yelp-window.c:624
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dydy'r ddogfen '%s' ddim yn bodoli"
 
+#: src/yelp-window.c:644
+msgid "DocBook SGML documents are no longer supported."
+msgstr ""
+
+#: src/yelp-window.c:719 src/yelp-window.c:806 src/yelp-window.c:965
+#, fuzzy, c-format
+msgid "The document '%s' could not be opened"
+msgstr "Dydy'r ddogfen '%s' ddim yn bodoli"
+
+#: src/yelp-window.c:876
+msgid "Loading&nbsp;&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:880
+msgid "Loading.&nbsp;&nbsp;"
+msgstr ""
+
+#: src/yelp-window.c:884
+#, fuzzy
+msgid "Loading..&nbsp;"
+msgstr "Yn Llwytho..."
+
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:694
+#: src/yelp-window.c:1046
 msgid "translator_credits"
 msgstr ""
 "Chris M. Jackson <chris@www.linux.org.uk>, Dafydd Harries <daf@parnassus.ath."
 "cx>"
 
-#: src/yelp-window.c:698
+#: src/yelp-window.c:1051
 msgid "A Help Browser for GNOME"
 msgstr "Porwr Cymorth ar gyfer GNOME"
-
-#: src/yelp-window.c:812
-msgid "Back"
-msgstr "Yn ôl"
-
-#: src/yelp-window.c:813
-msgid "Show previous page in history"
-msgstr "Dangos y dudalen blaenorol"
-
-#: src/yelp-window.c:824
-msgid "Forward"
-msgstr "Ymlaen"
-
-#: src/yelp-window.c:825
-msgid "Show next page in history"
-msgstr "Dangos y tudalen nesaf"
-
-#: src/yelp-window.c:838
-msgid "Home"
-msgstr "Cartref"
-
-#: src/yelp-window.c:839
-msgid "Go to home view"
-msgstr "Ewch i'r olygfa gartref"
-
-#: src/yelp-window.c:849
-msgid "Index"
-msgstr "Mynegai"
-
-#: src/yelp-window.c:850
-msgid "Search in the index"
-msgstr "Chwilio'r mynegai"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -322,3 +393,39 @@ msgstr "Cael cymorth â GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Cymorth"
+
+#~ msgid "About This Document"
+#~ msgstr "Ynghylch y Ddogfen Hwn"
+
+#~ msgid "Contents"
+#~ msgstr "Cynnwys"
+
+#~ msgid "Previous"
+#~ msgstr "Blaenorol"
+
+#~ msgid "Next"
+#~ msgstr "Nesaf"
+
+#~ msgid "/Edit/_Find in page..."
+#~ msgstr "/Golygu/_Chwilio mewn tudalen..."
+
+#~ msgid "/Edit/_Find again"
+#~ msgstr "/Golygu/_Chwilio eto"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Mynd/Yn _ôl"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Mynd/_Ymlaen"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Mynd/_Adre"
+
+#~ msgid "/Go/_Index"
+#~ msgstr "/Mynd/_Mynegai"
+
+#~ msgid "Index"
+#~ msgstr "Mynegai"
+
+#~ msgid "Search in the index"
+#~ msgstr "Chwilio'r mynegai"

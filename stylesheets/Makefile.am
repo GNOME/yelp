@@ -1,5 +1,3 @@
-SUBDIRS = docbook
-
 yelpcustomizationdir=$(datadir)/sgml/docbook/yelp
 
 yelpcustomization_DATA = 	\
