@@ -75,7 +75,7 @@ yelp_doc_info_new (gchar *uri)
 	doc_type = YELP_DOC_TYPE_INFO;
     }
     else if (!strncmp (uri, "x-yelp-toc:", 11)) {
-	doc_uri  = g_strdup ("x-yelp-toc:");
+	doc_uri = g_strdup ("file://" DATADIR "/yelp/toc.xml");
 	doc_type = YELP_DOC_TYPE_TOC;
     }
 
@@ -165,15 +165,10 @@ yelp_doc_info_get_uri (YelpDocInfo *doc,
 {
     g_return_val_if_fail (doc != NULL, NULL);
 
-    if (!frag_id)
+    if (!frag_id || *frag_id == '\0')
 	return g_strdup (doc->uri);
 
-    switch (doc->type) {
-    case YELP_DOC_TYPE_TOC:
-	return g_strconcat (doc->uri, frag_id, NULL);
-    default:
-	return g_strconcat (doc->uri, "#", frag_id, NULL);
-    }
+    return g_strconcat (doc->uri, "#", frag_id, NULL);
 }
 
 gchar *
