@@ -9,89 +9,92 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-29 12:58+0100\n"
 "PO-Revision-Date: 2003-01-02 02:27+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
-#: data/toc.xml.in.h:1 src/yelp-man.c:429
+#: data/toc.xml.in.h:1 src/yelp-man.c:1
 msgid "Applications"
 msgstr "Aplikacje"
 
-#: data/toc.xml.in.h:2
+#: data/toc.xml.in.h:1
 msgid "Desktop"
 msgstr "Pulpit"
 
-#: data/toc.xml.in.h:3 src/yelp-man.c:434
+#: data/toc.xml.in.h:1 src/yelp-man.c:1
 msgid "Development"
 msgstr "Programowanie"
 
-#: data/toc.xml.in.h:4
+#: data/toc.xml.in.h:1
 msgid "Development Environments"
 msgstr "Środowiska programistyczne"
 
-#: data/toc.xml.in.h:5
+#: data/toc.xml.in.h:1
 msgid "Development Tools"
 msgstr "Narzędzia programistyczne"
 
-#: data/toc.xml.in.h:6
+#: data/toc.xml.in.h:1
 msgid "Editors"
 msgstr "Edytory"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:1
 msgid "Education Applications"
 msgstr "Aplikacje edukacyjne"
 
-#: data/toc.xml.in.h:8
+#: data/toc.xml.in.h:1
 msgid "Games and Entertainment"
 msgstr "Gry i rozrywka"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:1
 msgid "General"
 msgstr "Ogólne"
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:1
 msgid "Help Contents"
 msgstr "Zawartość pomocy"
 
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:1
 msgid "Internet Applications"
 msgstr "Aplikacje internetowe"
 
-#: data/toc.xml.in.h:12
+#: data/toc.xml.in.h:1
 msgid "KDE"
 msgstr "KDE"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:1
 msgid "Kernels"
 msgstr "Jądra"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:1
 msgid "Multimedia Applications"
 msgstr "Aplikacje multimedialne"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:1
 msgid "Office and Productivity Applications"
 msgstr "Aplikacje biurowe"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:1
 msgid "Scientific Applications"
 msgstr "Aplikacje naukowe"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:1
 msgid "Securities"
 msgstr "Bezpieczeństwo"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:1
+msgid "System"
+msgstr "System"
+
+#: data/toc.xml.in.h:1
 msgid "Utilities"
 msgstr "Narzędzia"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:1
 msgid "X Applications"
 msgstr "Aplikacje X"
 
@@ -99,322 +102,289 @@ msgstr "Aplikacje X"
 msgid "*"
 msgstr "*"
 
-#: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Wyszukiwanie tekstu w dokumencie:</b>"
+#: data/ui/yelp.glade.h:1
+msgid "C_ase sensitive"
+msgstr "_Ważna wielkość liter"
 
-#: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "Automatyczne _zawijanie"
+#: data/ui/yelp.glade.h:1
+msgid "Find"
+msgstr "Znajdź"
 
-#: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Wyszukiwanie tekstu"
+#: data/ui/yelp.glade.h:1
+msgid "_Find: "
+msgstr "_Znajdź: "
 
-#: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "_Całe słowo"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "_Rozróżnianie małych i wielkich liter"
-
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:1
 msgid "_Next"
 msgstr "_Następne"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:1
 msgid "_Previous"
 msgstr "_Poprzednie"
+
+#: data/ui/yelp.glade.h:1
+msgid "_Wrap around"
+msgstr "Z_awijanie wierszy"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
 msgstr "Yelp"
 
-#: src/GNOME_Yelp.server.in.h:2
+#: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp Factory"
 msgstr "Generator Yelpa"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:1 src/yelp-window.c:1
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "Nie można otworzyć dokumentu \"%s\""
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:1
 msgid "No href attribute found on yelp:document"
 msgstr "Nie znaleziono atrybutu href dla yelp:document"
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:1
 msgid "Out of memory"
 msgstr "Brak pamięci"
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:1
 msgid "Titlepage"
 msgstr "Strona tytułowa"
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:1
 msgid "Contents"
 msgstr "Zawartość"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:1
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:1
 msgid "Define which cache directory to use"
 msgstr "Określ używany katalog z tymczasowymi plikami"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:1
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Nie można uaktywnić Yelpa: \"%s\""
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:1
 msgid "Could not open new window."
 msgstr "Nie można otworzyć nowego okna."
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
+#: src/yelp-man.c:1
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+#: src/yelp-man.c:1
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:306
+#: src/yelp-man.c:1
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:322
+#: src/yelp-man.c:1
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:327
+#: src/yelp-man.c:1
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:337
+#: src/yelp-man.c:1
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:342
+#: src/yelp-man.c:1
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:364
+#: src/yelp-man.c:1
 msgid "System Calls"
 msgstr "Wywołania systemowe"
 
-#: src/yelp-man.c:369
+#: src/yelp-man.c:1
 msgid "Library Functions"
 msgstr "Funkcje biblioteczne"
 
-#: src/yelp-man.c:374
+#: src/yelp-man.c:1
 msgid "Kernel Routines"
 msgstr "Funkcje jądra"
 
-#: src/yelp-man.c:439
+#: src/yelp-man.c:1
 msgid "Hardware Devices"
 msgstr "Urządzenia sprzętowe"
 
-#: src/yelp-man.c:444
+#: src/yelp-man.c:1
 msgid "Configuration Files"
 msgstr "Pliki konfiguracyjne"
 
-#: src/yelp-man.c:449
+#: src/yelp-man.c:1
 msgid "Games"
 msgstr "Gry"
 
-#: src/yelp-man.c:454
+#: src/yelp-man.c:1
 msgid "Overviews"
 msgstr "Zestawienia"
 
-#: src/yelp-man.c:459
+#: src/yelp-man.c:1
 msgid "System Administration"
 msgstr "Administracja systemem"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:1
 msgid "Document URI"
 msgstr "URI dokumentu"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:1
 msgid "The URI of the document to be processed"
 msgstr "URI dokumentu do przetworzenia"
 
-#: src/yelp-toc-pager.c:229
+#: src/yelp-theme.c:1
+msgid "Could not obtain a GtkStyle."
+msgstr "Nie można otrzymać GtkStyle."
+
+#: src/yelp-toc-pager.c:1
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: licznik przerw jest ujemny."
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:1
 msgid "The table of contents could not be read."
 msgstr "Nie można odczytać spisu treści."
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:1
 msgid "Categories"
 msgstr "Kategorie"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:1
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "Wczytywanie..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "Sekcja"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Znajdź:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "GNOME - środowisko"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Dodatkowe dokumenty"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Strony podręcznikowe"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Strony info"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Strony podręcznikowe"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "GNOME to"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "Wolne Oprogramowanie"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "(C)"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:1
 msgid "/_File"
 msgstr "/_Plik"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:1
 msgid "/File/_New window"
 msgstr "/Plik/_Nowe okno"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:1
 msgid "/File/_Close window"
 msgstr "/Plik/Za_mknij okno"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:1
 msgid "/_Edit"
 msgstr "/_Edycja"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
-msgstr "/Edycja/_Znajdź na stronie..."
+#: src/yelp-window.c:1
+msgid "/Edit/_Find..."
+msgstr "/Edycja/_Znajdź..."
 
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
-msgstr "/Edycja/_Znajdź ponownie..."
+#: src/yelp-window.c:1
+msgid "/Edit/Find Ne_xt"
+msgstr "/Edycja/Znajdź _następne"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:1
+msgid "/Edit/Find Pre_vious"
+msgstr "/Edycja/Znajdź p_oprzednie"
+
+#: src/yelp-window.c:1
 msgid "/_Go"
 msgstr "/P_rzejście"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:1
 msgid "/Go/_Back"
 msgstr "/P_rzejście/_Wstecz"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:1
 msgid "/Go/_Forward"
 msgstr "/P_rzejście/_Naprzód"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:1
 msgid "/Go/_Home"
 msgstr "/P_rzejście/P_oczątek"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:1
+msgid "/Go/"
+msgstr "/Przejście/"
+
+#: src/yelp-window.c:1
+msgid "/Go/_Previous"
+msgstr "/Przejście/_Poprzedni"
+
+#: src/yelp-window.c:1
+msgid "/Go/_Next"
+msgstr "/Przejście/_Następny"
+
+#: src/yelp-window.c:1
+msgid "/Go/_Contents"
+msgstr "/Przejście/Z_awartość"
+
+#: src/yelp-window.c:1
 msgid "/_Help"
 msgstr "/Pomo_c"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:1
 msgid "/Help/_About"
 msgstr "/Pomoc/_Informacje o"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:1
 msgid "Help Browser"
 msgstr "Przeglądarka pomocy"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "Wstecz"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "Wyświetla poprzednią stronę z historii"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "Naprzód"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "Wyświetla następną stronę z historii"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "Początek"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "Przechodzi do widoku początkowego"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:1
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokument \"%s\" nie istnieje"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:1
 msgid "DocBook SGML documents are no longer supported."
 msgstr "Dokumenty DocBook SGML nie są już obsługiwane."
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr "Wczytywanie;&nbsp;&nbsp;"
+#: src/yelp-window.c:1
+msgid "Section"
+msgstr "Sekcja"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr "Wczytywanie.&nbsp;&nbsp;"
+#: src/yelp-window.c:1
+msgid "Back"
+msgstr "Wstecz"
 
-#: src/yelp-window.c:895
-msgid "Loading..&nbsp;"
-msgstr "Wczytywanie..&nbsp;"
+#: src/yelp-window.c:1
+msgid "Show previous page in history"
+msgstr "Wyświetla poprzednią stronę z historii"
+
+#: src/yelp-window.c:1
+msgid "Forward"
+msgstr "Naprzód"
+
+#: src/yelp-window.c:1
+msgid "Show next page in history"
+msgstr "Wyświetla następną stronę z historii"
+
+#: src/yelp-window.c:1
+msgid "Home"
+msgstr "Początek"
+
+#: src/yelp-window.c:1
+msgid "Go to home view"
+msgstr "Przechodzi do widoku początkowego"
+
+#: src/yelp-window.c:1
+#, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "W tym dokumencie nie można znaleźć strony \"%s\"."
+
+#: src/yelp-window.c:1
+msgid "Loading..."
+msgstr "Wczytywanie..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1
 msgid "translator_credits"
 msgstr "GNOME PL Team <translators@gnome.pl>"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1
 msgid "A Help Browser for GNOME"
 msgstr "Przeglądarka pomocy dla GNOME"
 
@@ -422,24 +392,72 @@ msgstr "Przeglądarka pomocy dla GNOME"
 msgid "Get help with GNOME"
 msgstr "Pomoc GNOME"
 
-#: yelp.desktop.in.h:2
+#: yelp.desktop.in.h:1
 msgid "Help"
 msgstr "Pomoc"
 
-msgid "About This Document"
-msgstr "Informacje o dokumencie"
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Wyszukiwanie tekstu w dokumencie:</b>"
 
-msgid "Previous"
-msgstr "Poprzednia"
+#~ msgid "Automatically _wrap around"
+#~ msgstr "Automatyczne _zawijanie"
 
-msgid "Next"
-msgstr "Następna"
+#~ msgid "Find text..."
+#~ msgstr "Wyszukiwanie tekstu"
 
-msgid "/Go/_Index"
-msgstr "/Przejście/_Spis"
+#~ msgid "Match _entire word"
+#~ msgstr "_Całe słowo"
 
-msgid "Index"
-msgstr "Indeks"
+#~ msgid "_Match upper/lower case"
+#~ msgstr "_Rozróżnianie małych i wielkich liter"
 
-msgid "Search in the index"
-msgstr "Wyszukuje w indeksie"
+#~ msgid "_Search for:"
+#~ msgstr "_Znajdź:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "GNOME - środowisko"
+
+#~ msgid "Additional documents"
+#~ msgstr "Dodatkowe dokumenty"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Strony podręcznikowe"
+
+#~ msgid "Info Pages"
+#~ msgstr "Strony info"
+
+#~ msgid "Manual pages"
+#~ msgstr "Strony podręcznikowe"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME to"
+
+#~ msgid "Free Software"
+#~ msgstr "Wolne Oprogramowanie"
+
+#~ msgid "(C)"
+#~ msgstr "(C)"
+
+#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
+#~ msgstr "Wczytywanie;&nbsp;&nbsp;&nbsp;"
+
+#~ msgid "Loading.&nbsp;&nbsp;"
+#~ msgstr "Wczytywanie.&nbsp;&nbsp;"
+
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "Wczytywanie..&nbsp;"
+
+#~ msgid "About This Document"
+#~ msgstr "Informacje o dokumencie"
+
+#~ msgid "Previous"
+#~ msgstr "Poprzednia"
+
+#~ msgid "Next"
+#~ msgstr "Następna"
+
+#~ msgid "Index"
+#~ msgstr "Indeks"
+
+#~ msgid "Search in the index"
+#~ msgstr "Wyszukuje w indeksie"
