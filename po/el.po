@@ -1,20 +1,20 @@
-# translation of el.po to Greek
 # Greek translation of yelp.
-# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004 Free Software Foundation, Inc.
 #
 # 59 messages, 19Aug2002, started logging.
 # kostas:70 messages, 05Jan2003, updated translation for Gnome 2..1x
 # kostas:71 messages,13Jul2003, updated translation for 2.4
 # Nikos:92 messages,12Dec2003, updated translation for 2.6
 # kostas:152 messages, 13Jan2004
-# Simos Xenitellis <simos@hellug.gr>, 2002,2003.
+# simos: 180 messages, 27Nov2004
+# Simos Xenitellis <simos@gnome.org>, 2002, 2003,2004.
 # Kostas Papadimas <pkst@gmx.net>, 2003.
 # Kostas Papadimas <pkst@gnome.org>, 2003, 2004.
 # Nikos Charonitakis <frolix68@yahoo.gr>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: el\n"
+"Project-Id-Version: yelp 2.9.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-11-01 02:49-0600\n"
 "PO-Revision-Date: 2004-03-15 01:57-0200\n"
@@ -110,35 +110,35 @@ msgstr "Εφαρμογές X"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Γραμματοσειρά σταθερού κειμένου"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Γραμματοσειρά κειμένου"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Γραμματοσειρά κειμένου σταθερού πλάτους."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Γραμματοσειρά κειμένου μεταβλητού πλάτους."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Χρήση δρομέα μέσω πληκτρολογίου κατά την περιήγηση σελίδων."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Χρήση δρομέα"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Χρήση γραμματοσειρών συστήματος"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Χρήση των εξ ορισμού γραμματοσειρών συστήματος."
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -146,11 +146,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Προσβασιμότητα</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Γραμματοσειρές</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -162,18 +162,16 @@ msgstr "Εύρεση"
 
 #
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Αφιέρωση"
+msgstr "Άνοιγμα Τοποθεσίας"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Αναφορά"
+msgstr "Προτιμήσεις"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Περιήγηση με δρομέα"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -181,13 +179,12 @@ msgstr "Εύ_ρεση: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Σταθερό πλάτος:"
 
 #
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Αφιέρωση"
+msgstr "_Τοποθεσία:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -199,11 +196,11 @@ msgstr "_Προηγούμενο"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Χρήση γραμματοσειρών συστήματος"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Μεταβλητό πλάτος:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -261,9 +258,8 @@ msgid "The selected file could not be read."
 msgstr "Αδυναμία αναγνώρισης του επιλεγμένου αρχείου."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Αδυναμία αναγνώρισης του επιλεγμένου αρχείου."
+msgstr "Αδυναμία επεξεργασίας αρχείου."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -346,13 +342,12 @@ msgid "System Administration"
 msgstr "Διαχείριση Συστήματος"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Πληροφορίες Έκδοσης"
+msgstr "Πληροφορίες Εγγράφου"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "Η δομή YelpDocInfo του εγγράφου"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -373,124 +368,108 @@ msgid "Documents"
 msgstr "Έγγραφα"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "_File"
-msgstr "/_Αρχείο"
+msgstr "_Αρχείο"
 
 #: src/yelp-window.c:283
-#, fuzzy
 msgid "_Edit"
-msgstr "/_Επεξεργασία"
+msgstr "_Επεξεργασία"
 
 #: src/yelp-window.c:284
-#, fuzzy
 msgid "_Go"
-msgstr "/_Μετάβαση"
+msgstr "_Μετάβαση"
 
 #: src/yelp-window.c:285
-#, fuzzy
 msgid "_Help"
-msgstr "/_Βοήθεια"
+msgstr "_Βοήθεια"
 
 #: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/Αρχείο/_Νέο παράθυρο"
+msgstr "_Νέο παράθυρο"
 
 #: src/yelp-window.c:293
 msgid "Open _Location"
-msgstr ""
+msgstr "Άνοιγμα _Τοποθεσίας"
 
 #: src/yelp-window.c:298
-#, fuzzy
 msgid "_Close window"
-msgstr "/Αρχείο/_Κλείσιμο παραθύρου"
+msgstr "_Κλείσιμο παραθύρου"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "_Αντιγραφή"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_Find..."
-msgstr "/Επεξεργασία/Εύ_ρεση..."
+msgstr "Εύ_ρεση..."
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "_Preferences"
-msgstr "Αναφορά"
+msgstr "_Προτιμήσεις"
 
 #: src/yelp-window.c:319
 msgid "_Reload"
-msgstr ""
+msgstr "_Επαναφόρτωση"
 
 #: src/yelp-window.c:325
-#, fuzzy
 msgid "_Back"
-msgstr "Πίσω"
+msgstr "_Πίσω"
 
 #: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Εμφάνιση προηγούμενης σελίδας του ιστορικού"
 
 #: src/yelp-window.c:330
-#, fuzzy
 msgid "_Forward"
-msgstr "Μπροστά"
+msgstr "_Μπροστά"
 
 #: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Εμφάνιση επόμενης σελίδες του ιστορικού"
 
 #: src/yelp-window.c:335
-#, fuzzy
 msgid "_Home"
-msgstr "Αρχή"
+msgstr "_Αρχή"
 
 #: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Πήγαινε στην προβολή περιεχομένων"
 
 #: src/yelp-window.c:340
-#, fuzzy
 msgid "_Previous Page"
-msgstr "/Μετάβαση/_Προηγούμενη Σελίδα"
+msgstr "_Προηγούμενη Σελίδα"
 
 #: src/yelp-window.c:345
-#, fuzzy
 msgid "_Next Page"
-msgstr "/Μετάβαση/Επό_μενη Σελίδα"
+msgstr "Επό_μενη Σελίδα"
 
 #: src/yelp-window.c:350
-#, fuzzy
 msgid "_Contents"
-msgstr "Περιεχόμενα"
+msgstr "_Περιεχόμενα"
 
 #: src/yelp-window.c:355
 msgid "_Open Link"
-msgstr ""
+msgstr "Άνοιγμα _Συνδέσμου"
 
 #: src/yelp-window.c:360
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Άνοιγμα Συνδέσμου σε _Νέο Παράθυρο"
 
 #: src/yelp-window.c:365
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "Αντιγρα_φή Συνδέσμου Τοποθεσίας"
 
 #: src/yelp-window.c:371
-#, fuzzy
 msgid "_About"
-msgstr "/Βοήθεια/_Περί"
+msgstr "_Περί"
 
 #: src/yelp-window.c:422
 msgid "Help Browser"
 msgstr "Πρόγραμμα Βοήθειας"
 
 #: src/yelp-window.c:915
-#, fuzzy
 msgid "Fin_d"
-msgstr "Εύρεση"
+msgstr "Εύ_ρεση"
 
 #: src/yelp-window.c:1186
 msgid "Loading..."
@@ -802,35 +781,15 @@ msgstr "Λήψη βοήθειας για το GNOME"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-00AB"
 
 #
-#~ msgid "Document URI"
-#~ msgstr "URI Εγγράφου"
 
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "Το URI του εγγράφου που θα προωθηθεί για επεξεργασία"
 
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Επεξεργασία/Εύρεση Επομέ_νου"
 
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Επεξεργασία/Εύρεση _Προηγουμένου"
 
-#~ msgid "/Go/_Back"
-#~ msgstr "/Πήγαινε/_Πίσω"
 
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Πήγαινε/_Μπροστά"
 
-#~ msgid "/Go/_Home"
-#~ msgstr "/Πήγαινε/_Αρχή"
 
-#~ msgid "/Go/"
-#~ msgstr "/Μετάβαση/"
 
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Μετάβαση/_Περιεχόμενα"
 
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Πρόγραμμα Περιήγησης Βοήθειας για το GNOME"
