@@ -464,13 +464,13 @@ yelp_bookmarks_write (void)
 
     rc = xmlTextWriterStartDocument (file, NULL, NULL, NULL);
     rc = xmlTextWriterStartElement (file, BAD_CAST "Body");
-    rc = xmlTextWriterWriteComment (file, BAD_CAST "Yelp Bookmark file - "
-    "Do not edit directly");
-
     rc = xmlTextWriterWriteAttribute(file, BAD_CAST "version",
                                      BAD_CAST "1.0");
     rc = xmlTextWriterWriteAttribute(file, BAD_CAST "xml:lang",
                                      BAD_CAST "en_GB");
+
+    rc = xmlTextWriterWriteComment (file, BAD_CAST "Yelp Bookmark file - "
+    "Do not edit directly");
 
     rc = xmlTextWriterStartElement (file, BAD_CAST "Bookmarks");
 
