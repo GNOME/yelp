@@ -152,6 +152,9 @@ static void        window_find_response_cb        (GtkWidget         *dialog ,
 						   gint               response,
 						   YelpWindow        *window);
 
+static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
+						   GtkTreeIter       *iter);
+
 enum {
     NEW_WINDOW_REQUESTED,
     LAST_SIGNAL
@@ -872,16 +875,39 @@ window_handle_page (YelpWindow   *window,
 		    YelpPage     *page,
 		    YelpURI      *uri)
 {
-    GtkWidget *menu_item;
+    GtkWidget      *menu_item;
+    GtkTreeModel   *model;
+    GtkTreeIter     iter;
     YelpWindowPriv *priv;
+    gchar          *id;
+    gboolean        valid;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (YELP_IS_URI (uri));
 
     priv = window->priv;
 
-    yelp_html_clear (priv->html_view);
-    yelp_html_set_base_uri (priv->html_view, uri);
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
+    valid = gtk_tree_model_get_iter_first (model, &iter);
+
+    while (valid) {
+	gtk_tree_model_get (model, &iter,
+			    0, &id,
+			    -1);
+	if (yelp_pager_uri_is_page (priv->pager, id, uri)) {
+	    GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
+
+	    gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
+					  path);
+	    gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->side_sects),
+				      path, NULL, FALSE);
+
+	    gtk_tree_path_free (path);
+	    break;
+	}
+
+	valid = tree_model_iter_following (model, &iter);
+    }
 
     if (page->prev) {
 	priv->prev = page->prev;
@@ -911,6 +937,8 @@ window_handle_page (YelpWindow   *window,
     gtk_window_set_title (GTK_WINDOW (window),
 			  (const gchar *) page->title);
 
+    yelp_html_clear (priv->html_view);
+    yelp_html_set_base_uri (priv->html_view, uri);
     yelp_html_write (priv->html_view,
 		     page->chunk,
 		     strlen (page->chunk));
@@ -1402,4 +1430,36 @@ window_find_cb (gpointer   data,
     gtk_editable_select_region (GTK_EDITABLE (priv->find_entry), 0, -1);
 
     gtk_window_present (GTK_WINDOW (priv->find_dialog));
+}
+
+// This would be nice to have in GTK+
+static gboolean
+tree_model_iter_following (GtkTreeModel  *model,
+			   GtkTreeIter   *iter)
+{
+    gboolean     valid;
+    GtkTreeIter *old_iter = gtk_tree_iter_copy (iter);
+
+    if (gtk_tree_model_iter_has_child (model, iter))
+	return gtk_tree_model_iter_children (model, iter, old_iter);
+    else do {
+	valid = gtk_tree_model_iter_next (model, iter);
+
+	if (valid) {
+	    gtk_tree_iter_free (old_iter);
+	    return TRUE;
+	} else {
+	    *iter = *old_iter;
+
+	    valid = gtk_tree_model_iter_parent (model, iter, old_iter);
+
+	    if (!valid) {
+		gtk_tree_iter_free (old_iter);
+		return FALSE;
+	    }
+	}
+    } while (TRUE);
+
+    g_assert_not_reached ();
+    return FALSE;
 }
