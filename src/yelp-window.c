@@ -1813,10 +1813,23 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
     GladeXML       *glade;
     GtkWidget      *dialog;
     GtkWidget      *entry;
+    gchar          *uri;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
+
+    if (priv->current_doc) {
+	uri = yelp_doc_info_get_uri (priv->current_doc,
+				     priv->current_frag,
+				     YELP_URI_TYPE_NO_FILE);
+	if (!uri)
+	    uri = yelp_doc_info_get_uri (priv->current_doc,
+					 priv->current_frag,
+					 YELP_URI_TYPE_FILE);
+    } else {
+	uri = NULL;
+    }
 
     glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
 			   "location_dialog",
@@ -1832,6 +1845,11 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
 
     priv->location_dialog = dialog;
     priv->location_entry  = entry;
+
+    if (uri) {
+	gtk_entry_set_text (GTK_ENTRY (entry), uri);
+	gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
+    }
 
     gtk_window_set_transient_for (GTK_WINDOW (dialog),
 				  GTK_WINDOW (window));
