@@ -2,18 +2,20 @@
 # Copyright (C) 2001-2004 Free Software Foundation, Inc.
 # Christian Meyer <chrisime@gnome.org>, 2001, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
-#
+# Christian Neumair <chris@gnome-de.org>, 2004.
+# 
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Yelp 2.5.5\n"
+"Project-Id-Version: Yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-02-21 00:16+0100\n"
-"Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
+"POT-Creation-Date: 2004-11-19 17:36+0100\n"
+"PO-Revision-Date: 2004-11-19 18:04+0100\n"
+"Last-Translator: Hendrik Brandt <eru@gmx.li>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -45,7 +47,7 @@ msgstr "Editoren"
 
 #: data/toc.xml.in.h:8
 msgid "Education Applications"
-msgstr "Erziehungsanwendungen"
+msgstr "Lehr- und Lernprogramme"
 
 #: data/toc.xml.in.h:9
 msgid "Games and Entertainment"
@@ -77,7 +79,7 @@ msgstr "Multimedia-Anwendungen"
 
 #: data/toc.xml.in.h:16
 msgid "Office and Productivity Applications"
-msgstr "Büro- und Produktivanwendungen"
+msgstr "Büro- und Produktivitätsanwendungen"
 
 #: data/toc.xml.in.h:17
 msgid "Scientific Applications"
@@ -101,35 +103,35 @@ msgstr "X-Anwendungen"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Dicktengleiche Schrift"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Standardschrift"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Schrift für Buchstaben mit fester Breite (Dicktengleichheit)"
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Schrift für Buchstaben mit variabler Breite"
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Einen über die Tastatur kontrolliebaren Rahmen verwenden, wenn Seiten betrachtet werden."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Rahmen verwenden"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Systemschriften verwenden"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Die vom System vorgegebenen Schriften verwenden."
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -137,11 +139,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Barrierefreiheit</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Schrift</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -152,18 +154,16 @@ msgid "Find"
 msgstr "Suchen"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Widmung"
+msgstr "Ort öffnen"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Verweis"
+msgstr "Einstellungen"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "Mit _Rahmen navigieren"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -171,12 +171,11 @@ msgstr "_Suchen:"
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Feste Breite:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Widmung"
+msgstr "_Ort:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -188,11 +187,11 @@ msgstr "_Rückwärts suchen"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Systemschriften verwenden"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Variable Breite:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -206,25 +205,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-Fabrik"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:299
 msgid "No href attribute found on yelp:document"
 msgstr "Kein href-Attribut im yelp:-Dokument gefunden"
 
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:314
 msgid "Out of memory"
 msgstr "Speichermangel"
 
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:368
 msgid "Titlepage"
 msgstr "Titelseite"
 
 #: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:368
+#: src/yelp-man-pager.c:370
 msgid "Contents"
 msgstr "Inhalt"
 
 #: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:386
+#: src/yelp-man-pager.c:388
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -249,25 +248,23 @@ msgid "The selected file could not be read."
 msgstr "Die gewählte Datei konnte nicht gelesen werden."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Die gewählte Datei konnte nicht gelesen werden."
+msgstr "Die gewählte Datei konnte nicht verarbeitet werden."
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
-msgstr ""
-"Festlegen, welches Verzichnis als Zwischenspeicher verwendet werden soll"
+msgstr "Das Verzeichnis für den Zwischenspeicher festlegen"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Yelp konnte nicht aktiviert werden: »%s«"
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Es konnte kein neues Fenster geöffnet werden."
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hilfe"
 
@@ -330,16 +327,15 @@ msgstr "Übersichten"
 
 #: src/yelp-man.c:459
 msgid "System Administration"
-msgstr "Systemadministration"
+msgstr "Systemverwaltung"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Release-Informationen"
+msgstr "Dokumentinformationen"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "Die YelpDocInfo-Struktur dieses Dokuments"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -358,138 +354,126 @@ msgstr "Kategorien"
 msgid "Documents"
 msgstr "Dokumente"
 
-#: src/yelp-window.c:282
-#, fuzzy
-msgid "_File"
-msgstr "/_Datei"
-
 #: src/yelp-window.c:283
-#, fuzzy
-msgid "_Edit"
-msgstr "/_Bearbeiten"
+msgid "_File"
+msgstr "_Datei"
 
 #: src/yelp-window.c:284
-#, fuzzy
-msgid "_Go"
-msgstr "/_Gehe zu"
+msgid "_Edit"
+msgstr "_Bearbeiten"
 
 #: src/yelp-window.c:285
-#, fuzzy
+msgid "_Go"
+msgstr "_Gehe zu"
+
+#: src/yelp-window.c:286
 msgid "_Help"
-msgstr "/_Hilfe"
+msgstr "_Hilfe"
 
-#: src/yelp-window.c:288
-#, fuzzy
+#: src/yelp-window.c:289
 msgid "_New window"
-msgstr "/Datei/_Neues Fenster"
+msgstr "_Neues Fenster"
 
-#: src/yelp-window.c:293
+#: src/yelp-window.c:294
 msgid "Open _Location"
-msgstr ""
+msgstr "_Ort öffnen"
 
-#: src/yelp-window.c:298
-#, fuzzy
+#: src/yelp-window.c:299
 msgid "_Close window"
-msgstr "/Datei/Fenster s_chließen"
+msgstr "Fenster s_chließen"
 
-#: src/yelp-window.c:304
+#: src/yelp-window.c:305
 msgid "_Copy"
-msgstr ""
+msgstr "K_opieren"
 
-#: src/yelp-window.c:309
-#, fuzzy
+#: src/yelp-window.c:311
+msgid "_Select All"
+msgstr "_Alles auswählen"
+
+#: src/yelp-window.c:316
 msgid "_Find..."
-msgstr "/Bearbeiten/_Suchen..."
+msgstr "_Suchen..."
 
-#: src/yelp-window.c:314
-#, fuzzy
+#: src/yelp-window.c:321
 msgid "_Preferences"
-msgstr "Verweis"
+msgstr "_Einstellungen"
 
-#: src/yelp-window.c:319
+#: src/yelp-window.c:326
 msgid "_Reload"
-msgstr ""
+msgstr "_Neu laden"
 
-#: src/yelp-window.c:325
-#, fuzzy
+#: src/yelp-window.c:332
 msgid "_Back"
-msgstr "Zurück"
+msgstr "_Zurück"
 
-#: src/yelp-window.c:327
+#: src/yelp-window.c:334
 msgid "Show previous page in history"
 msgstr "Die vorherige Seite in der Chronik anzeigen"
 
-#: src/yelp-window.c:330
-#, fuzzy
+#: src/yelp-window.c:337
 msgid "_Forward"
-msgstr "Vor"
+msgstr "_Vor"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:339
 msgid "Show next page in history"
 msgstr "Die nächste Seite in der Chronik anzeigen"
 
-#: src/yelp-window.c:335
-#, fuzzy
+#: src/yelp-window.c:342
 msgid "_Home"
-msgstr "Inhalt"
+msgstr "In_halt"
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:344
 msgid "Go to home view"
-msgstr "Zur Inhaltsansicht gehen"
+msgstr "Zum Inhaltsverzeichnis gehen"
 
-#: src/yelp-window.c:340
-#, fuzzy
+#: src/yelp-window.c:347
 msgid "_Previous Page"
-msgstr "/Gehe zu/V_orherige Seite"
+msgstr "V_orherige Seite"
 
-#: src/yelp-window.c:345
-#, fuzzy
+#: src/yelp-window.c:352
 msgid "_Next Page"
-msgstr "/Gehe zu/_Nächste Seite"
+msgstr "_Nächste Seite"
 
-#: src/yelp-window.c:350
-#, fuzzy
+#: src/yelp-window.c:357
 msgid "_Contents"
-msgstr "Inhalt"
+msgstr "_Inhalte"
 
-#: src/yelp-window.c:355
+#: src/yelp-window.c:362
 msgid "_Open Link"
-msgstr ""
+msgstr "_Verweis öffnen"
 
-#: src/yelp-window.c:360
+#: src/yelp-window.c:367
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Verweis in _neuem Fenster öffnen"
 
-#: src/yelp-window.c:365
+#: src/yelp-window.c:372
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "Verweisadresse _kopieren"
 
-#: src/yelp-window.c:371
-#, fuzzy
+#: src/yelp-window.c:378
 msgid "_About"
-msgstr "/Hilfe/_Info"
+msgstr "_Info"
 
-#: src/yelp-window.c:422
+#: src/yelp-window.c:429
 msgid "Help Browser"
 msgstr "Hilfe-Browser"
 
-#: src/yelp-window.c:915
-#, fuzzy
+#: src/yelp-window.c:922
 msgid "Fin_d"
-msgstr "Suchen"
+msgstr "_Suchen"
 
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1193
 msgid "Loading..."
 msgstr "Ladevorgang..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1903
+#: src/yelp-window.c:1934
 msgid "translator_credits"
-msgstr ""
-"Christian Meyer <chrisime@gnome.org>\n"
+msgstr "Christian Meyer <chrisime@gnome.org>\n"
 "Christian Neumair <chris@gnome-de.org>\n"
-"Matthias Warkus <mawarkus@gnome.org>"
+"Matthias Warkus <mawarkus@gnome.org>\n"
+"Hendrik Brandt <eru@gmx.li>"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -602,7 +586,7 @@ msgstr "Kapitel"
 # CHECK Mitarbeiter?
 #: stylesheets/l10n.xml.in.h:27
 msgid "Collaborator"
-msgstr "Mitwirkender"
+msgstr "Mitwirkende/r"
 
 # CHECK Mitarbeiter?
 #: stylesheets/l10n.xml.in.h:28
@@ -691,7 +675,7 @@ msgstr "Ursprung"
 
 #: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
-msgstr "Weiterer Mitwirkender"
+msgstr "Weitere/r Mitwirkende/r"
 
 #: stylesheets/l10n.xml.in.h:51
 msgid "Other Contributors"
@@ -798,34 +782,5 @@ msgstr "Hilfe zu GNOME holen"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
-#~ msgid "Document URI"
-#~ msgstr "Dokumentenadresse"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "Die Adresse des zu verarbeitenden Dokuments"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Bearbeiten/_Weitersuchen"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Bearbeiten/_Rückwärts suchen"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Gehe zu/_Zurück"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Gehe zu/_Vor"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Gehe zu/_Inhalt"
-
-#~ msgid "/Go/"
-#~ msgstr "/Gehe zu/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Gehe zu/_Inhalt"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Ein Hilfe-Browser für GNOME"
