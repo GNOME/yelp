@@ -18,8 +18,8 @@
         </title>
         <style><xsl:text>
         body {
-          padding-top: 8px;
-          padding-left: 8px;
+          padding-top: 0px;
+          padding-left: 0px;
           padding-right: 12px;
         }
         h1 { font-size: 2em; }
@@ -38,7 +38,12 @@
         div[class~="rightbar"] {
           padding-left: 200px;
         }
-        ul { margin-left: 16px; padding-left: 0px; }
+        div[class~="tocs"] { border-top: solid 1px; }
+        div[class~="docs"] { border-top: solid 1px; }
+        ul {
+          margin-left: 16px;
+          padding-left: 0px;
+        }
         li {
           margin-top: 0.4em;
           margin-left: 0px;
@@ -67,15 +72,17 @@
       <h1>
         <xsl:apply-templates select="title[1]/node()"/>
       </h1>
-      <ul>
-        <xsl:for-each select="toc">
-          <li class="toc">
-            <a href="x-yelp-toc:{@id}">
-              <xsl:apply-templates select="title[1]/node()"/>
-            </a>
-          </li>
-        </xsl:for-each>
-      </ul>
+      <div class="tocs">
+        <ul>
+          <xsl:for-each select="toc">
+            <li class="toc">
+              <a href="x-yelp-toc:{@id}">
+                <xsl:apply-templates select="title[1]/node()"/>
+              </a>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </div>
     </div>
   </div>
 </xsl:template>
@@ -86,29 +93,37 @@
       <h1>
         <xsl:apply-templates select="title[1]/node()"/>
       </h1>
-      <ul>
-        <xsl:for-each select="toc[.//doc]">
-          <xsl:sort select="title"/>
-          <li class="toc">
-            <a href="x-yelp-toc:{@id}">
-              <xsl:apply-templates select="title[1]/node()"/>
-            </a>
-          </li>
-        </xsl:for-each>
-      </ul>
-      <dl>
-        <xsl:for-each select="doc">
-          <xsl:sort select="title"/>
-          <dt class="doc">
-            <a href="{@href}">
-              <xsl:value-of select="title"/>
-            </a>
-          </dt>
-          <dd>
-            <xsl:value-of select="description"/>
-          </dd>
-        </xsl:for-each>
-      </dl>
+      <xsl:if test="toc[.//doc]">
+        <div class="tocs">
+          <ul>
+            <xsl:for-each select="toc[.//doc]">
+              <xsl:sort select="title"/>
+              <li class="toc">
+                <a href="x-yelp-toc:{@id}">
+                  <xsl:apply-templates select="title[1]/node()"/>
+                </a>
+              </li>
+            </xsl:for-each>
+          </ul>
+        </div>
+      </xsl:if>
+      <xsl:if test="doc">
+        <div class="docs">
+          <dl>
+            <xsl:for-each select="doc">
+              <xsl:sort select="title"/>
+              <dt class="doc">
+                <a href="{@href}">
+                  <xsl:value-of select="title"/>
+                </a>
+              </dt>
+              <dd>
+                <xsl:value-of select="description"/>
+              </dd>
+            </xsl:for-each>
+          </dl>
+        </div>
+      </xsl:if>
     </div>
   </div>
 </xsl:template>

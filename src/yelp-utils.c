@@ -103,7 +103,8 @@ yelp_doc_info_new (gchar *uri)
 	doc_type = get_doc_type (doc_uri);
 	uri_type = YELP_URI_TYPE_FILE;
     }
-    if (g_str_has_prefix (uri, "ghelp:")) {
+    if (g_str_has_prefix (uri, "ghelp:") ||
+	g_str_has_prefix (uri, "gnome-help:")) {
 	doc_uri  = convert_ghelp_uri (uri);
 	if (doc_uri)
 	    doc_type = get_doc_type (doc_uri);
@@ -128,6 +129,13 @@ yelp_doc_info_new (gchar *uri)
 	doc_type = YELP_DOC_TYPE_TOC;
 	uri_type = YELP_URI_TYPE_TOC;
     }
+    else if (g_str_has_prefix (uri, "http:") ||
+	     g_str_has_prefix (uri, "mailto:")){
+	doc_uri = g_strdup (uri);
+	doc_type = YELP_DOC_TYPE_EXTERNAL;
+	uri_type = YELP_URI_TYPE_EXTERNAL;
+    }
+
 
     d (g_print ("  doc_uri = \"%s\"\n", doc_uri));
 

@@ -445,7 +445,7 @@ window_class_init (YelpWindowClass *klass)
 		      G_STRUCT_OFFSET (YelpWindowClass,
 				       new_window_requested),
 		      NULL, NULL,
-		      g_cclosure_marshal_VOID__POINTER,
+		      g_cclosure_marshal_VOID__STRING,
 		      G_TYPE_NONE, 1, G_TYPE_STRING);
 }
 
