@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
+"POT-Creation-Date: 2003-12-28 21:52+0000\n"
 "PO-Revision-Date: 2003-02-03 20:01+0200\n"
 "Last-Translator: Arman Aksoy (Armish) <armish@linux-sevenler.de>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -56,8 +56,7 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#. GList           *seriesids;
-#: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
+#: data/toc.xml.in.h:10
 msgid "Help Contents"
 msgstr "Yardım İçeriği"
 
@@ -94,10 +93,15 @@ msgid "Securities"
 msgstr ""
 
 #: data/toc.xml.in.h:18
+#, fuzzy
+msgid "System"
+msgstr "Sistem Çağrıları"
+
+#: data/toc.xml.in.h:19
 msgid "Utilities"
 msgstr ""
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:20
 #, fuzzy
 msgid "X Applications"
 msgstr "Uygulamalar"
@@ -107,32 +111,28 @@ msgid "*"
 msgstr "*"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Find text in the document:</b>"
-msgstr "<b>Metni dökümanda bul:</b>"
+msgid "C_ase sensitive"
+msgstr ""
 
 #: data/ui/yelp.glade.h:3
-msgid "Automatically _wrap around"
-msgstr "Otomatik olarak _kaydır"
+msgid "Find"
+msgstr ""
 
 #: data/ui/yelp.glade.h:4
-msgid "Find text..."
-msgstr "Metin bul..."
+msgid "_Find: "
+msgstr ""
 
 #: data/ui/yelp.glade.h:5
-msgid "Match _entire word"
-msgstr "Tüm kelimeyi _eşleştir"
-
-#: data/ui/yelp.glade.h:6
-msgid "_Match upper/lower case"
-msgstr "Küçük/Büyük _duyarlı eşleştir"
-
-#: data/ui/yelp.glade.h:7
 msgid "_Next"
 msgstr "_Sonraki"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:6
 msgid "_Previous"
 msgstr "_Önceki"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr ""
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -142,30 +142,29 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Üreticisi"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
-#: src/yelp-window.c:976
+#: src/yelp-db-pager.c:241 src/yelp-window.c:736
 #, fuzzy, c-format
 msgid "The document '%s' could not be opened"
 msgstr "'%s' dökümanı yok"
 
-#: src/yelp-db-pager.c:404
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr ""
 
-#: src/yelp-db-pager.c:419
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:547
+#: src/yelp-db-pager.c:598
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:549
+#: src/yelp-db-pager.c:600
 #, fuzzy
 msgid "Contents"
 msgstr "Yardım İçeriği"
 
-#: src/yelp-db-pager.c:567
+#: src/yelp-db-pager.c:618
 msgid "Unknown"
 msgstr ""
 
@@ -243,189 +242,165 @@ msgstr "İzlenimler"
 msgid "System Administration"
 msgstr "Sistem Yönetimi"
 
-#: src/yelp-pager.c:117
+#: src/yelp-pager.c:118
 #, fuzzy
 msgid "Document URI"
 msgstr "Dökümanlar"
 
-#: src/yelp-pager.c:118
+#: src/yelp-pager.c:119
 msgid "The URI of the document to be processed"
 msgstr ""
 
-#: src/yelp-toc-pager.c:229
+#: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
-#: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
+#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
 #, fuzzy
 msgid "The table of contents could not be read."
 msgstr "'%s' dökümanı yok"
 
-#: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-toc-pager.c:841
 msgid "Categories"
 msgstr "Kategoriler"
 
-#: src/yelp-toc-pager.c:801 src/yelp-view-toc.c:366 src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-toc-pager.c:862
 msgid "Documents"
 msgstr "Dökümanlar"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423 src/yelp-window.c:766
-#: src/yelp-window.c:899
-msgid "Loading..."
-msgstr "Yükleniyor..."
-
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517 src/yelp-window.c:452
-msgid "Section"
-msgstr "Bölüm"
-
-#: src/yelp-view-index.c:480
-msgid "_Search for:"
-msgstr "_Ara:"
-
-#: src/yelp-view-toc.c:166
-msgid "GNOME - Desktop"
-msgstr "GNOME - Masaüstü"
-
-#: src/yelp-view-toc.c:167
-msgid "Additional documents"
-msgstr "Ek dökümanlar"
-
-#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
-msgid "Manual Pages"
-msgstr "Kılavuz Sayfaları"
-
-#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
-msgid "Info Pages"
-msgstr "Bilgi Sayfaları"
-
-#: src/yelp-view-toc.c:447
-msgid "Manual pages"
-msgstr "Kılavuz sayfaları"
-
-#: src/yelp-view-toc.c:707
-msgid "GNOME is"
-msgstr "GNOME"
-
-#: src/yelp-view-toc.c:708
-msgid "Free Software"
-msgstr "Serbest Yazılım"
-
-#: src/yelp-view-toc.c:709
-msgid "(C)"
-msgstr "(C)"
-
-#: src/yelp-window.c:213
+#: src/yelp-window.c:221
 msgid "/_File"
 msgstr "/_Dosya"
 
-#: src/yelp-window.c:214
+#: src/yelp-window.c:222
 msgid "/File/_New window"
 msgstr "/Dosya/_Yeni pencere"
 
-#: src/yelp-window.c:217
+#: src/yelp-window.c:225
 msgid "/File/_Close window"
 msgstr "/Dosya/_Pencereyi kapat"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:229
 msgid "/_Edit"
 msgstr "/Dü_zenle"
 
-#: src/yelp-window.c:222
-msgid "/Edit/_Find in page..."
+#: src/yelp-window.c:230
+#, fuzzy
+msgid "/Edit/_Find..."
 msgstr "/Dü_zenle/_Sayfada bul..."
 
-#: src/yelp-window.c:225
-msgid "/Edit/_Find again"
+#: src/yelp-window.c:233
+#, fuzzy
+msgid "/Edit/Find Ne_xt"
 msgstr "/Dü_zenle/_Yeniden bul"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:236
+#, fuzzy
+msgid "/Edit/Find Pre_vious"
+msgstr "/Dü_zenle/_Yeniden bul"
+
+#: src/yelp-window.c:240
 msgid "/_Go"
 msgstr "/_Git"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:241
 msgid "/Go/_Back"
 msgstr "/Git/_Geri"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:244
 msgid "/Go/_Forward"
 msgstr "/Git/İ_leri"
 
-#: src/yelp-window.c:236
+#: src/yelp-window.c:247
 msgid "/Go/_Home"
 msgstr "/Git/_Başlangıç"
 
-#.
-#. {N_("/Go/_Index"),               NULL,
-#. window_go_index_cb,             0,
-#. "<StockItem>",                  GTK_STOCK_INDEX            },
-#.
-#: src/yelp-window.c:245
+#: src/yelp-window.c:250
+#, fuzzy
+msgid "/Go/"
+msgstr "/_Git"
+
+#: src/yelp-window.c:251
+#, fuzzy
+msgid "/Go/_Previous"
+msgstr "_Önceki"
+
+#: src/yelp-window.c:254
+#, fuzzy
+msgid "/Go/_Next"
+msgstr "/Git/İ_ndeks"
+
+#: src/yelp-window.c:257
+#, fuzzy
+msgid "/Go/_Contents"
+msgstr "Yardım İçeriği"
+
+#: src/yelp-window.c:261
 msgid "/_Help"
 msgstr "/_Yardım"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:262
 msgid "/Help/_About"
 msgstr "/Yardım/_Hakkında"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:324
 msgid "Help Browser"
 msgstr "Yardım Tarayıcısı"
 
-#: src/yelp-window.c:505
-msgid "Back"
-msgstr "Geri"
-
-#: src/yelp-window.c:506
-msgid "Show previous page in history"
-msgstr "Günlükte bulunan önceki sayfayı göster"
-
-#: src/yelp-window.c:516
-msgid "Forward"
-msgstr "İleri"
-
-#: src/yelp-window.c:517
-msgid "Show next page in history"
-msgstr "Günlükte bulunan sonraki sayfayı göster"
-
-#: src/yelp-window.c:529
-msgid "Home"
-msgstr "Başlangıç"
-
-#: src/yelp-window.c:530
-msgid "Go to home view"
-msgstr "Başlangıç görünümüne git"
-
-#: src/yelp-window.c:635
+#: src/yelp-window.c:384
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "'%s' dökümanı yok"
 
-#: src/yelp-window.c:655
+#: src/yelp-window.c:404
 msgid "DocBook SGML documents are no longer supported."
 msgstr ""
 
-#: src/yelp-window.c:887
-msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr ""
+#: src/yelp-window.c:523
+msgid "Section"
+msgstr "Bölüm"
 
-#: src/yelp-window.c:891
-msgid "Loading.&nbsp;&nbsp;"
-msgstr ""
+#: src/yelp-window.c:576
+msgid "Back"
+msgstr "Geri"
 
-#: src/yelp-window.c:895
-#, fuzzy
-msgid "Loading..&nbsp;"
+#: src/yelp-window.c:577
+msgid "Show previous page in history"
+msgstr "Günlükte bulunan önceki sayfayı göster"
+
+#: src/yelp-window.c:587
+msgid "Forward"
+msgstr "İleri"
+
+#: src/yelp-window.c:588
+msgid "Show next page in history"
+msgstr "Günlükte bulunan sonraki sayfayı göster"
+
+#: src/yelp-window.c:600
+msgid "Home"
+msgstr "Başlangıç"
+
+#: src/yelp-window.c:601
+msgid "Go to home view"
+msgstr "Başlangıç görünümüne git"
+
+#: src/yelp-window.c:769 src/yelp-window.c:800 src/yelp-window.c:1014
+#: src/yelp-window.c:1076
+#, fuzzy, c-format
+msgid "The page '%s' could not be found in this document."
+msgstr "'%s' dökümanı yok"
+
+#: src/yelp-window.c:825
+msgid "Loading..."
 msgstr "Yükleniyor..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1057
+#: src/yelp-window.c:1157
 msgid "translator_credits"
 msgstr "Görkem Çetin"
 
-#: src/yelp-window.c:1062
+#: src/yelp-window.c:1162
 #, fuzzy
 msgid "A Help Browser for GNOME"
 msgstr "GNOME 2.0 için yardım tarayıcısı"
@@ -438,8 +413,51 @@ msgstr "GNOME hakkında yardım"
 msgid "Help"
 msgstr "Yardım"
 
-#~ msgid "/Go/_Index"
-#~ msgstr "/Git/İ_ndeks"
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Metni dökümanda bul:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "Otomatik olarak _kaydır"
+
+#~ msgid "Find text..."
+#~ msgstr "Metin bul..."
+
+#~ msgid "Match _entire word"
+#~ msgstr "Tüm kelimeyi _eşleştir"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "Küçük/Büyük _duyarlı eşleştir"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Ara:"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "GNOME - Masaüstü"
+
+#~ msgid "Additional documents"
+#~ msgstr "Ek dökümanlar"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Kılavuz Sayfaları"
+
+#~ msgid "Info Pages"
+#~ msgstr "Bilgi Sayfaları"
+
+#~ msgid "Manual pages"
+#~ msgstr "Kılavuz sayfaları"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME"
+
+#~ msgid "Free Software"
+#~ msgstr "Serbest Yazılım"
+
+#~ msgid "(C)"
+#~ msgstr "(C)"
+
+#, fuzzy
+#~ msgid "Loading..&nbsp;"
+#~ msgstr "Yükleniyor..."
 
 #~ msgid "Index"
 #~ msgstr "İndeks"
