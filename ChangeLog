@@ -1,3 +1,13 @@
+2002-10-21  Mikael Hallendal  <micke@codefactory.se>
+
+	* Released 2.1.1
+
+	* NEWS: updated for 2.1.1
+
+	* configure.in: 
+	- bumped version to 2.1.1
+	- depend on gtkhtml2 2.1.1
+
 2002-10-21  Richard Hult  <rhult@codefactory.se>
 
 	* src/yelp-view-content.c (content_show_uri): Ditto.
@@ -52,23 +62,24 @@
 2002-10-08  Paolo Maggi <maggi@athena.polito.it>
 
 	* src/yelp-window.[ch]: YelpWindow is now inherited from GnomeApp.
-	The window title is now "title - Help Browser", instead of 
-	"Help Browser:title", in this way you can see in the tasklist applet
-	the name of the loaded page.
-	Removed the gconf stuff since is no more needed.
-	Note that Yelp still does not monitor menus_have_icons gconf key
+	  The window title is now "title - Help Browser", instead of  
+	  "Help Browser:title", in this way you can see in the tasklist
+	  applet the name of the loaded page. Removed the gconf stuff
+	  since is no more needed. Note that Yelp still does not monitor
+	  menus_have_icons gconf key 
 
 	* src/yelp-view-content.c (content_show_uri): set the loading page
-	title to "Loading...", instead of ".."
+	  title to "Loading...", instead of ".."
 
-	* src/yelp-view-index.c (index_show_uri): ditto
+	* src/yelp-view-index.c:
+	(index_show_uri): ditto
 	(set_relation): removed since no more needed
 	(yelp_view_index_new): add an accellerator to "Search for:"
 
 2002-10-04  Marius Andreiana <mandreiana@yahoo.com>
 
 	* stylesheets/yelp-customization.xsl: made translatable the
-	following strings: Next,Previous,Contents,About This Document
+	  following strings: Next,Previous,Contents,About This Document
 	* stylesheets/l10n.xml: added strings Next,Previous,Contents
 	
 2002-10-04  Mikael Hallendal  <micke@codefactory.se>
