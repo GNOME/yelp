@@ -1,3 +1,8 @@
+2004-01-22  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-window.c:
+	- Implemented destroy callback to unref stuff I ref.
+
 2004-01-21  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-window.h:

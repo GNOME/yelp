@@ -96,6 +96,8 @@ static void        window_handle_page             (YelpWindow        *window,
 						   YelpPage          *page,
 						   YelpURI           *uri);
 static void        window_disconnect              (YelpWindow        *window);
+static void        yelp_window_destroyed          (GtkWidget         *window,
+						   gpointer           user_data);
 
 static void        pager_contents_cb              (YelpPager         *pager,
 						   gpointer           user_data);
@@ -186,9 +188,6 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _YelpWindowPriv {
-    GNode          *doc_tree;
-    GList          *index;
-
     GtkWidget      *main_box;
     GtkWidget      *pane;
     GtkWidget      *side_sects;
@@ -361,12 +360,13 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
     priv   = window->priv;
 
-    priv->doc_tree = doc_tree;
-    priv->index    = index;
-
     window_populate (window);
 
     gtk_window_set_icon (GTK_WINDOW (window), window_load_icon ());
+
+    g_signal_connect (G_OBJECT (window), "destroy",
+		      G_CALLBACK (yelp_window_destroyed),
+		      NULL);
 
     return GTK_WIDGET (window);
 }
@@ -1083,6 +1083,22 @@ window_disconnect (YelpWindow *window)
 }
 
 static void
+yelp_window_destroyed (GtkWidget *window,
+		       gpointer   user_data)
+{
+    YelpWindowPriv *priv;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = YELP_WINDOW(window)->priv;
+
+    g_object_unref (priv->pane);
+    g_object_unref (priv->side_sw);
+    g_object_unref (priv->html_sw);
+    g_object_unref (priv->pager);
+}
+
+static void
 pager_contents_cb (YelpPager   *pager,
 		   gpointer     user_data)
 {
@@ -1690,3 +1706,4 @@ tree_model_iter_following (GtkTreeModel  *model,
     g_assert_not_reached ();
     return FALSE;
 }
+
