@@ -582,7 +582,7 @@ xml_get_title (xmlNodePtr node)
 
     if (xml_is_info (node))
 	title = g_strdup (_("Titlepage"));
-    else if (node->parent->type == XML_DOCUMENT_NODE)
+    else if (node->parent && node->parent->type == XML_DOCUMENT_NODE)
 	title = g_strdup (_("Contents"));
     else {
 	for (cur = node->children; cur; cur = cur->next) {
