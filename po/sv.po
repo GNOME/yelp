@@ -9,141 +9,189 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-08-03 19:55+0200\n"
+"POT-Creation-Date: 2004-12-20 14:07+0100\n"
+"PO-Revision-Date: 2004-12-20 14:08+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/toc.xml.in.h:1
-msgid "Applets"
-msgstr "Panelprogram"
-
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/man.xml.in.h:1 data/toc.xml.in.h:4 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Program"
 
-#: data/toc.xml.in.h:3
-msgid "Desktop"
-msgstr "Skrivbord"
+#: data/man.xml.in.h:2 src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Konfigurationsfiler"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/man.xml.in.h:3 src/yelp-man.c:434
 msgid "Development"
 msgstr "Utveckling"
 
+#: data/man.xml.in.h:4
+msgid "FORTRAN Functions"
+msgstr "FORTRAN-funktioner"
+
+#: data/man.xml.in.h:5 data/toc.xml.in.h:7 src/yelp-man.c:449
+msgid "Games"
+msgstr "Spel"
+
+#: data/man.xml.in.h:6 src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Hårdvaruenheter"
+
+#: data/man.xml.in.h:7 src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Kärnrutiner"
+
+#: data/man.xml.in.h:8 src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Biblioteksfunktioner"
+
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:779
+msgid "Man Pages"
+msgstr "Manualsidor"
+
+#: data/man.xml.in.h:10
+msgid "OpenSSL Applications"
+msgstr "OpenSSL-program"
+
+#: data/man.xml.in.h:11
+msgid "OpenSSL Configuration"
+msgstr "Konfiguration av OpenSSL"
+
+#: data/man.xml.in.h:12
+msgid "OpenSSL Overviews"
+msgstr "Översikter av OpenSSL"
+
+#: data/man.xml.in.h:13 src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Översikter"
+
+#: data/man.xml.in.h:14
+msgid "Perl Functions"
+msgstr "Perl-funktioner"
+
+#: data/man.xml.in.h:15
+msgid "Qt Functions"
+msgstr "Qt-funktioner"
+
+#: data/man.xml.in.h:16 src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Systemadministration"
+
+#: data/man.xml.in.h:17 src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Systemanrop"
+
+#: data/man.xml.in.h:18
+msgid "Termcap Applications"
+msgstr "Termcap-program"
+
+#: data/man.xml.in.h:19
+msgid "X11 Applications"
+msgstr "X11-program"
+
+#: data/man.xml.in.h:20
+msgid "X11 Configuration"
+msgstr "Konfiguration av X11"
+
+#: data/man.xml.in.h:21
+msgid "X11 Devices"
+msgstr "X11-enheter"
+
+#: data/man.xml.in.h:22
+msgid "X11 Functions"
+msgstr "X11-funktioner"
+
+#: data/man.xml.in.h:23
+msgid "X11 Games"
+msgstr "X11-spel"
+
+#: data/man.xml.in.h:24
+msgid "X11 Overviews"
+msgstr "Översikter av X11"
+
+#: data/toc.xml.in.h:1
+msgid "Accessibility"
+msgstr "Tillgänglighet"
+
+#: data/toc.xml.in.h:2
+msgid "Accessories"
+msgstr "Tillbehör"
+
+#: data/toc.xml.in.h:3
+msgid "Applets"
+msgstr "Panelprogram"
+
 #: data/toc.xml.in.h:5
-msgid "Development Environments"
-msgstr "Utvecklingsmiljöer"
+msgid "Desktop"
+msgstr "Skrivbord"
 
 #: data/toc.xml.in.h:6
-msgid "Development Tools"
-msgstr "Utvecklingsverktyg"
-
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
-msgid "Editors"
-msgstr "Redigerare"
-
-#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Utbildningsprogram"
 
-#: data/toc.xml.in.h:9
-msgid "Games and Entertainment"
-msgstr "Spel och underhållning"
+#: data/toc.xml.in.h:8
+msgid "Graphics"
+msgstr "Grafik"
 
-#: data/toc.xml.in.h:10
-msgid "General"
-msgstr "Allmänt"
-
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1058
 msgid "Help Contents"
 msgstr "Hjälpinnehåll"
 
-#: data/toc.xml.in.h:12
-msgid "Internet Applications"
-msgstr "Internetprogram"
+#: data/toc.xml.in.h:10
+msgid "Internet"
+msgstr "Internet"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
+#: data/toc.xml.in.h:12
+msgid "Office"
+msgstr "Kontor"
+
+#: data/toc.xml.in.h:13
+msgid "Other"
+msgstr "Annan"
+
 #: data/toc.xml.in.h:14
-msgid "Kernels"
-msgstr "Kärnor"
+msgid "Other Documentation"
+msgstr "Annan dokumentation"
 
 #: data/toc.xml.in.h:15
-msgid "Multimedia Applications"
-msgstr "Multimediaprogram"
+msgid "Programming"
+msgstr "Programmering"
 
 #: data/toc.xml.in.h:16
-msgid "Office and Productivity Applications"
-msgstr "Kontors- och produktivitetsprogram"
+msgid "Scientific"
+msgstr "Vetenskaplig"
 
 #: data/toc.xml.in.h:17
-msgid "Scientific Applications"
-msgstr "Vetenskapliga program"
+msgid "Sound &amp; Video"
+msgstr "Ljud och video"
 
 #: data/toc.xml.in.h:18
-msgid "Securities"
-msgstr "Säkerheter"
+msgid "System Tools"
+msgstr "Systemverktyg"
 
 #: data/toc.xml.in.h:19
-msgid "System"
-msgstr "System"
-
-#: data/toc.xml.in.h:20
-msgid "Utilities"
-msgstr "Verktyg"
-
-#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X-program"
 
-#: data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
-
-#: data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr ""
-
-#: data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr ""
-
-#: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
-msgstr ""
-
 #: data/ui/yelp.glade.h:1
-msgid "*"
-msgstr "*"
+msgid "<b>Accessibility</b>"
+msgstr "<b>Tillgänglighet</b>"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Accessibility</b>"
-msgstr ""
+msgid "<b>Fonts</b>"
+msgstr "<b>Typsnitt</b>"
 
 #: data/ui/yelp.glade.h:3
-msgid "<b>Fonts</b>"
-msgstr ""
+msgid "Bookmarks"
+msgstr "Bokmärken"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -154,18 +202,16 @@ msgid "Find"
 msgstr "Sök"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Tillägning"
+msgstr "Öppna plats"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Referens"
+msgstr "Inställningar"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Bläddra med markör"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -173,12 +219,11 @@ msgstr "_Sök: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Fast breddsteg:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Tillägning"
+msgstr "_Plats:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -190,17 +235,50 @@ msgstr "_Föregående"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Använd systemtypsnitt"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Variabelt breddsteg:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "_Börja om från början"
 
-#: src/GNOME_Yelp.server.in.h:1
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Typsnitt för text med fast bredd"
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Typsnitt för text"
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Typsnitt för text med fast breddsteg."
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Typsnitt för text med variabelt breddsteg."
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+"Använd en markör som kan styras från tangentbordet för visning av sidor."
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr "Använd markör"
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr "Använd systemtypsnitt"
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr "Använd systemen standardtypsnitt."
+
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2043
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -208,25 +286,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
-msgid "No href attribute found on yelp:document"
-msgstr "Inget href-attribut hittat på yelp:document"
-
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
-msgid "Out of memory"
-msgstr "Slut på minne"
-
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:527
 msgid "Titlepage"
 msgstr "Titelsida"
 
-#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:368
+#: src/yelp-db-pager.c:529
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:386
+#: src/yelp-db-pager.c:547
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -251,24 +319,23 @@ msgid "The selected file could not be read."
 msgstr "Den valda filen kunde inte läsas."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Den valda filen kunde inte läsas."
+msgstr "Filen kunde inte behandlas."
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "Ange vilken cachekatalog som ska användas"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kunde inte aktivera Yelp: \"%s\""
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Kunde inte öppna nytt fönster."
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjälp"
 
@@ -301,471 +368,40 @@ msgstr "TIFF"
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:364
-msgid "System Calls"
-msgstr "Systemanrop"
-
-#: src/yelp-man.c:369
-msgid "Library Functions"
-msgstr "Biblioteksfunktioner"
-
-#: src/yelp-man.c:374
-msgid "Kernel Routines"
-msgstr "Kärnrutiner"
-
-#: src/yelp-man.c:439
-msgid "Hardware Devices"
-msgstr "Hårdvaruenheter"
-
-#: src/yelp-man.c:444
-msgid "Configuration Files"
-msgstr "Konfigurationsfiler"
-
-#: src/yelp-man.c:449
-msgid "Games"
-msgstr "Spel"
-
-#: src/yelp-man.c:454
-msgid "Overviews"
-msgstr "Översikter"
-
-#: src/yelp-man.c:459
-msgid "System Administration"
-msgstr "Systemadministration"
-
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Information"
+msgstr "Dokumentinformation"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
-
-#: src/yelp-toc-pager.c:287
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: Pausräknaren är negativ."
-
-#: src/yelp-toc-pager.c:538
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Kunde inte läsa in OMF-filen \"%s\"."
-
-#: src/yelp-toc-pager.c:937
-msgid "Categories"
-msgstr "Kategorier"
-
-#: src/yelp-toc-pager.c:951
-msgid "Documents"
-msgstr "Dokument"
-
-#: src/yelp-window.c:282
-#, fuzzy
-msgid "_File"
-msgstr "/_Arkiv"
-
-#: src/yelp-window.c:283
-#, fuzzy
-msgid "_Edit"
-msgstr "/_Redigera"
-
-#: src/yelp-window.c:284
-#, fuzzy
-msgid "_Go"
-msgstr "/_Gå"
-
-#: src/yelp-window.c:285
-#, fuzzy
-msgid "_Help"
-msgstr "/_Hjälp"
-
-#: src/yelp-window.c:288
-#, fuzzy
-msgid "_New window"
-msgstr "/Arkiv/_Nytt fönster"
-
-#: src/yelp-window.c:293
-msgid "Open _Location"
-msgstr ""
-
-#: src/yelp-window.c:298
-#, fuzzy
-msgid "_Close window"
-msgstr "/Arkiv/_Stäng fönster"
-
-#: src/yelp-window.c:304
-msgid "_Copy"
-msgstr ""
-
-#: src/yelp-window.c:309
-#, fuzzy
-msgid "_Find..."
-msgstr "_Sök"
-
-#: src/yelp-window.c:314
-#, fuzzy
-msgid "_Preferences"
-msgstr "Referens"
-
-#: src/yelp-window.c:319
-msgid "_Reload"
-msgstr ""
-
-#: src/yelp-window.c:325
-#, fuzzy
-msgid "_Back"
-msgstr "Bakåt"
-
-#: src/yelp-window.c:327
-msgid "Show previous page in history"
-msgstr "Visa föregående sida i historiken"
-
-#: src/yelp-window.c:330
-#, fuzzy
-msgid "_Forward"
-msgstr "Framåt"
-
-#: src/yelp-window.c:332
-msgid "Show next page in history"
-msgstr "Visa nästa sida i historiken"
-
-#: src/yelp-window.c:335
-#, fuzzy
-msgid "_Home"
-msgstr "Hem"
-
-#: src/yelp-window.c:337
-msgid "Go to home view"
-msgstr "Gå till hemvyn"
-
-#: src/yelp-window.c:340
-#, fuzzy
-msgid "_Previous Page"
-msgstr "/Gå/_Föregående sida"
-
-#: src/yelp-window.c:345
-#, fuzzy
-msgid "_Next Page"
-msgstr "/Gå/_Nästa sida"
-
-#: src/yelp-window.c:350
-#, fuzzy
-msgid "_Contents"
-msgstr "Innehåll"
-
-#: src/yelp-window.c:355
-msgid "_Open Link"
-msgstr ""
-
-#: src/yelp-window.c:360
-msgid "Open Link in _New Window"
-msgstr ""
-
-#: src/yelp-window.c:365
-msgid "_Copy Link Address"
-msgstr ""
-
-#: src/yelp-window.c:371
-#, fuzzy
-msgid "_About"
-msgstr "/Hjälp/_Om"
-
-#: src/yelp-window.c:422
-msgid "Help Browser"
-msgstr "Hjälpvisare"
-
-#: src/yelp-window.c:915
-#, fuzzy
-msgid "Fin_d"
-msgstr "Sök"
-
-#: src/yelp-window.c:1186
-msgid "Loading..."
-msgstr "Läser in..."
-
-#. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:1903
-msgid "translator_credits"
-msgstr ""
-"Christian Rose\n"
-"Richard Hult\n"
-"Skicka synpunkter på översättningen till sv@li.org"
-
-#: stylesheets/l10n.xml.in.h:1
-msgid "&#8216;"
-msgstr "&#8216;"
-
-#: stylesheets/l10n.xml.in.h:2
-msgid "&#8217;"
-msgstr "&#8217;"
-
-#: stylesheets/l10n.xml.in.h:3
-msgid "&#8220;"
-msgstr "&#8220;"
-
-#: stylesheets/l10n.xml.in.h:4
-msgid "&#8221;"
-msgstr "&#8221;"
-
-#: stylesheets/l10n.xml.in.h:5
-msgid "About This Article"
-msgstr "Om denna artikel"
-
-#: stylesheets/l10n.xml.in.h:6
-msgid "About This Bibliography"
-msgstr "Om denna bibliografi"
-
-#: stylesheets/l10n.xml.in.h:7
-msgid "About This Book"
-msgstr "Om denna bok"
-
-#: stylesheets/l10n.xml.in.h:8
-msgid "About This Chapter"
-msgstr "Om detta kapitel"
-
-#: stylesheets/l10n.xml.in.h:9
-msgid "About This Entry"
-msgstr "Om denna post"
-
-#: stylesheets/l10n.xml.in.h:10
-msgid "About This Glossary"
-msgstr "Om denna ordlista"
-
-#: stylesheets/l10n.xml.in.h:11
-msgid "About This Index"
-msgstr "Om detta index"
-
-#: stylesheets/l10n.xml.in.h:12
-msgid "About This Part"
-msgstr "Om denna del"
-
-#: stylesheets/l10n.xml.in.h:13
-msgid "About This Preface"
-msgstr "Om detta förord"
-
-#: stylesheets/l10n.xml.in.h:14
-msgid "About This Reference"
-msgstr "Om denna referens"
-
-#: stylesheets/l10n.xml.in.h:15
-msgid "About This Section"
-msgstr "Om detta avsnitt"
-
-#: stylesheets/l10n.xml.in.h:16
-msgid "About This Set"
-msgstr "Om denna samling"
-
-#: stylesheets/l10n.xml.in.h:17
-msgid "Affiliation"
-msgstr "Anknytning"
-
-#: stylesheets/l10n.xml.in.h:18
-msgid "Appendix"
-msgstr "Appendix"
-
-#: stylesheets/l10n.xml.in.h:19
-msgid "Article"
-msgstr "Artikel"
-
-#: stylesheets/l10n.xml.in.h:20
-msgid "Audience"
-msgstr "Målgrupp"
-
-#: stylesheets/l10n.xml.in.h:21
-msgid "Author"
-msgstr "Författare"
-
-#: stylesheets/l10n.xml.in.h:22
-msgid "Authors"
-msgstr "Författare"
-
-#: stylesheets/l10n.xml.in.h:23
-msgid "Bibliography"
-msgstr "Bibliografi"
-
-#: stylesheets/l10n.xml.in.h:24
-msgid "Book"
-msgstr "Bok"
-
-# Detta borde nog vara något annat istället
-#: stylesheets/l10n.xml.in.h:25
-msgid "Caution"
-msgstr "Varning"
-
-#: stylesheets/l10n.xml.in.h:26
-msgid "Chapter"
-msgstr "Kapitel"
-
-#: stylesheets/l10n.xml.in.h:27
-msgid "Collaborator"
-msgstr "Kollaboratör"
-
-#: stylesheets/l10n.xml.in.h:28
-msgid "Collaborators"
-msgstr "Kollaboratörer"
-
-#: stylesheets/l10n.xml.in.h:29
-msgid "Colophon"
-msgstr "Kolofon"
-
-#: stylesheets/l10n.xml.in.h:31
-msgid "Copyright"
-msgstr "Copyright"
-
-# Osäker
-#: stylesheets/l10n.xml.in.h:32
-msgid "Copyrights"
-msgstr "Copyright"
-
-#: stylesheets/l10n.xml.in.h:33
-msgid "Date"
-msgstr "Datum"
-
-#: stylesheets/l10n.xml.in.h:34
-msgid "Dedication"
-msgstr "Tillägning"
-
-#: stylesheets/l10n.xml.in.h:35
-msgid "Editor"
-msgstr "Redaktör"
-
-#: stylesheets/l10n.xml.in.h:37
-msgid "Email"
-msgstr "E-post"
-
-#: stylesheets/l10n.xml.in.h:38
-msgid "Example"
-msgstr "Exempel"
-
-#: stylesheets/l10n.xml.in.h:39
-msgid "Figure"
-msgstr "Figur"
-
-#: stylesheets/l10n.xml.in.h:40
-msgid "Glossary"
-msgstr "Ordlista"
-
-#: stylesheets/l10n.xml.in.h:41
-msgid "Important"
-msgstr "Viktigt"
-
-#: stylesheets/l10n.xml.in.h:42
-msgid "Index"
-msgstr "Index"
-
-#: stylesheets/l10n.xml.in.h:43
-msgid "Legal Notice"
-msgstr "Juridisk information"
-
-#: stylesheets/l10n.xml.in.h:44
-msgid "Level"
-msgstr "Nivå"
-
-#: stylesheets/l10n.xml.in.h:45
-msgid "Message Audience"
-msgstr "Meddelandemålgrupp"
-
-#: stylesheets/l10n.xml.in.h:46
-msgid "Message Level"
-msgstr "Meddelandenivå"
-
-#: stylesheets/l10n.xml.in.h:47
-msgid "Message Origin"
-msgstr "Meddelandeursprung"
-
-#: stylesheets/l10n.xml.in.h:48
-msgid "Note"
-msgstr "Anteckning"
-
-#: stylesheets/l10n.xml.in.h:49
-msgid "Origin"
-msgstr "Ursprung"
-
-#: stylesheets/l10n.xml.in.h:50
-msgid "Other Contributor"
-msgstr "Annan bidragsgivare"
-
-#: stylesheets/l10n.xml.in.h:51
-msgid "Other Contributors"
-msgstr "Andra bidragsgivare"
-
-#: stylesheets/l10n.xml.in.h:52
-msgid "Part"
-msgstr "Del"
-
-#: stylesheets/l10n.xml.in.h:53
-msgid "Preface"
-msgstr "Förord"
-
-#: stylesheets/l10n.xml.in.h:54
-msgid "Publisher"
-msgstr "Förläggare"
-
-#: stylesheets/l10n.xml.in.h:55
-msgid "Publishers"
-msgstr "Förläggare"
-
-#: stylesheets/l10n.xml.in.h:56
-msgid "Reference"
-msgstr "Referens"
-
-#: stylesheets/l10n.xml.in.h:57
-msgid "Reference Entry"
-msgstr "Referenspost"
-
-#: stylesheets/l10n.xml.in.h:58
-msgid "Reference Section"
-msgstr "Referensavsnitt"
-
-#: stylesheets/l10n.xml.in.h:59
-msgid "Release Information"
-msgstr "Utgåveinformation"
-
-#: stylesheets/l10n.xml.in.h:60
-msgid "Revision History"
-msgstr "Revisionshistorik"
-
-#: stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Avdelning"
-
-#: stylesheets/l10n.xml.in.h:62
-msgid "See"
-msgstr "Se"
-
-#: stylesheets/l10n.xml.in.h:63
-msgid "See Also"
-msgstr "Se även"
-
-#: stylesheets/l10n.xml.in.h:64
-msgid "Set Index"
-msgstr "Samlingsindex"
-
-#: stylesheets/l10n.xml.in.h:65
-msgid "Table"
-msgstr "Tabell"
-
-#: stylesheets/l10n.xml.in.h:66
-msgid "Table of Contents"
-msgstr "Innehållsförteckning"
-
-#: stylesheets/l10n.xml.in.h:67
-msgid "Tip"
-msgstr "Tips"
-
-#: stylesheets/l10n.xml.in.h:68
-msgid "Title"
-msgstr "Titel"
-
-#: stylesheets/l10n.xml.in.h:70
-msgid "Warning"
-msgstr "Varning"
-
-#: yelp.desktop.in.h:1
-msgid "Get help with GNOME"
-msgstr "Få hjälp med GNOME"
-
+msgstr "YelpDocInfo-structen för dokumentet"
+
+# Swedish uses a simple rule for quotation, where opening and closing
+# quote characters are always identical.
+# An example would be "Det här är ett exempel", where " would be regular
+# upper double quotes.
+#
+# An extract from § 213 in "Svenska skrivregler" (Rules for the Writing
+# of Swedish"), the probably most official handbook about Swedish writing,
+# published by Svenska språknämnden:
+#
+# "Citattecken (även kallade citationstecken eller anföringstecken) kan
+#  variera i utseende. I svensk text är inledande och avslutande tecken
+#  identiska, och bägge placeras över skrivlinjen. Citattecknen står
+#  intill den text de omger utan mellanrum."
+#
+# A rough translation:
+#
+# "The appearance of quote characters (sometimes called quotation
+#  characters or cite characters) may vary. In Swedish text, the opening
+#  and closing characters are identical, and both are placed above the
+#  baseline. Quote characters are placed immediately next to the
+#  surrounded text without any space."
+#
+# Thus, 201D (right double quotation mark) is probably the most suitable
+# choice for both opening and closing quotation in Swedish.
+#
+#
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
 #. blockquote elements.  Different languages use different opening
@@ -790,7 +426,457 @@ msgstr "Få hjälp med GNOME"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
+msgstr "yelp-watermark-blockquote-201D"
+
+#: src/yelp-toc-pager.c:267
+msgid "YelpTocPager: Pause count is negative."
+msgstr "YelpTocPager: Pausräknaren är negativ."
+
+#: src/yelp-toc-pager.c:490
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Kunde inte läsa in OMF-filen \"%s\"."
+
+#: src/yelp-toc-pager.c:681
+#, c-format
+msgid "Read man page for %s"
+msgstr "Läs manualsida för %s"
+
+#: src/yelp-toc-pager.c:1003 src/yelp-xslt-pager.c:352
+msgid "No href attribute found on yelp:document"
+msgstr "Inget href-attribut hittat på yelp:document"
+
+#: src/yelp-toc-pager.c:1017 src/yelp-xslt-pager.c:367
+msgid "Out of memory"
+msgstr "Slut på minne"
+
+#: src/yelp-window.c:298
+msgid "_File"
+msgstr "_Arkiv"
+
+#: src/yelp-window.c:299
+msgid "_Edit"
+msgstr "_Redigera"
+
+#: src/yelp-window.c:300
+msgid "_Go"
+msgstr "_Gå"
+
+#: src/yelp-window.c:301
+msgid "_Bookmarks"
+msgstr "_Bokmärken"
+
+#: src/yelp-window.c:302
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: src/yelp-window.c:305
+msgid "_New window"
+msgstr "_Nytt fönster"
+
+#: src/yelp-window.c:310
+msgid "Open _Location"
+msgstr "Öppna _plats"
+
+#: src/yelp-window.c:315
+msgid "_Close window"
+msgstr "_Stäng fönster"
+
+#: src/yelp-window.c:321
+msgid "_Copy"
+msgstr "_Kopiera"
+
+#: src/yelp-window.c:327
+msgid "_Select All"
+msgstr "_Markera allt"
+
+#: src/yelp-window.c:332
+msgid "_Find..."
+msgstr "_Sök..."
+
+#: src/yelp-window.c:337
+msgid "_Preferences"
+msgstr "_Inställningar"
+
+#: src/yelp-window.c:342
+msgid "_Reload"
+msgstr "_Läs om"
+
+#: src/yelp-window.c:348
+msgid "_Back"
+msgstr "_Bakåt"
+
+#: src/yelp-window.c:350
+msgid "Show previous page in history"
+msgstr "Visa föregående sida i historiken"
+
+#: src/yelp-window.c:353
+msgid "_Forward"
+msgstr "_Framåt"
+
+#: src/yelp-window.c:355
+msgid "Show next page in history"
+msgstr "Visa nästa sida i historiken"
+
+#: src/yelp-window.c:358
+msgid "_Home"
+msgstr "_Hem"
+
+#: src/yelp-window.c:360
+msgid "Go to home view"
+msgstr "Gå till hemvyn"
+
+#: src/yelp-window.c:363
+msgid "_Previous Page"
+msgstr "_Föregående sida"
+
+#: src/yelp-window.c:368
+msgid "_Next Page"
+msgstr "_Nästa sida"
+
+#: src/yelp-window.c:373
+msgid "_Contents"
+msgstr "_Innehåll"
+
+#: src/yelp-window.c:379
+msgid "_Add Bookmark"
+msgstr "_Lägg till bokmärke"
+
+#: src/yelp-window.c:384
+msgid "_Edit Bookmarks..."
+msgstr "_Redigera bokmärken..."
+
+#: src/yelp-window.c:390
+msgid "_Open Link"
+msgstr "_Öppna länk"
+
+#: src/yelp-window.c:395
+msgid "Open Link in _New Window"
+msgstr "Öppna länk i _nytt fönster"
+
+#: src/yelp-window.c:400
+msgid "_Copy Link Address"
+msgstr "_Kopiera länkadress"
+
+#: src/yelp-window.c:406
+msgid "_About"
+msgstr "_Om"
+
+#: src/yelp-window.c:457
+msgid "Help Browser"
+msgstr "Hjälpvisare"
+
+#: src/yelp-window.c:974
+msgid "Fin_d"
+msgstr "Sö_k"
+
+#: src/yelp-window.c:1254
+msgid "Loading..."
+msgstr "Läser in..."
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:2040
+msgid "translator-credits"
 msgstr ""
+"Christian Rose\n"
+"Richard Hult\n"
+"Skicka synpunkter på översättningen till sv@li.org"
+
+#: src/yelp-window.c:2045
+msgid "A documentation browser and viewer for the Gnome Desktop."
+msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
+
+#: yelp.desktop.in.in.h:1
+msgid "Get help with GNOME"
+msgstr "Få hjälp med GNOME"
+
+#~ msgid "Man pages"
+#~ msgstr "Manualsidor"
+
+#~ msgid "Manpages"
+#~ msgstr "Manualsidor"
+
+#~ msgid "Sound & Video"
+#~ msgstr "Ljud och video"
+
+#~ msgid "Sound and Video"
+#~ msgstr "Ljud och video"
+
+#~ msgid "Fonts"
+#~ msgstr "Typsnitt"
+
+#~ msgid "Use the system's default fonts."
+#~ msgstr "Använd systemets standardtypsnitt."
+
+#~ msgid "Use the default fonts of the system."
+#~ msgstr "Använd systemets standardtypsnitt."
+
+#~ msgid "Information"
+#~ msgstr "Information"
+
+#~ msgid "_Find"
+#~ msgstr "_Sök"
+
+#~ msgid "Back"
+#~ msgstr "Bakåt"
+
+#~ msgid "Forward"
+#~ msgstr "Framåt"
+
+#~ msgid "Home"
+#~ msgstr "Hem"
+
+#~ msgid "translator_credits"
+#~ msgstr ""
+#~ "Christian Rose\n"
+#~ "Richard Hult\n"
+#~ "Skicka synpunkter på översättningen till sv@li.org"
+
+#~ msgid "A documentation browser and viewer for the GNOME Desktop."
+#~ msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
+
+#~ msgid "Development Environments"
+#~ msgstr "Utvecklingsmiljöer"
+
+#~ msgid "Development Tools"
+#~ msgstr "Utvecklingsverktyg"
+
+#~ msgid "Editors"
+#~ msgstr "Redigerare"
+
+#~ msgid "Games and Entertainment"
+#~ msgstr "Spel och underhållning"
+
+#~ msgid "General"
+#~ msgstr "Allmänt"
+
+#~ msgid "Internet Applications"
+#~ msgstr "Internetprogram"
+
+#~ msgid "Kernels"
+#~ msgstr "Kärnor"
+
+#~ msgid "Multimedia Applications"
+#~ msgstr "Multimediaprogram"
+
+#~ msgid "Office and Productivity Applications"
+#~ msgstr "Kontors- och produktivitetsprogram"
+
+#~ msgid "Securities"
+#~ msgstr "Säkerheter"
+
+#~ msgid "System"
+#~ msgstr "System"
+
+#~ msgid "Utilities"
+#~ msgstr "Verktyg"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "Categories"
+#~ msgstr "Kategorier"
+
+#~ msgid "Documents"
+#~ msgstr "Dokument"
+
+#~ msgid "&#8216;"
+#~ msgstr "&#8216;"
+
+#~ msgid "&#8217;"
+#~ msgstr "&#8217;"
+
+#~ msgid "&#8220;"
+#~ msgstr "&#8220;"
+
+#~ msgid "&#8221;"
+#~ msgstr "&#8221;"
+
+#~ msgid "About This Article"
+#~ msgstr "Om denna artikel"
+
+#~ msgid "About This Bibliography"
+#~ msgstr "Om denna bibliografi"
+
+#~ msgid "About This Book"
+#~ msgstr "Om denna bok"
+
+#~ msgid "About This Chapter"
+#~ msgstr "Om detta kapitel"
+
+#~ msgid "About This Entry"
+#~ msgstr "Om denna post"
+
+#~ msgid "About This Glossary"
+#~ msgstr "Om denna ordlista"
+
+#~ msgid "About This Index"
+#~ msgstr "Om detta index"
+
+#~ msgid "About This Part"
+#~ msgstr "Om denna del"
+
+#~ msgid "About This Preface"
+#~ msgstr "Om detta förord"
+
+#~ msgid "About This Reference"
+#~ msgstr "Om denna referens"
+
+#~ msgid "About This Section"
+#~ msgstr "Om detta avsnitt"
+
+#~ msgid "About This Set"
+#~ msgstr "Om denna samling"
+
+#~ msgid "Affiliation"
+#~ msgstr "Anknytning"
+
+#~ msgid "Appendix"
+#~ msgstr "Appendix"
+
+#~ msgid "Article"
+#~ msgstr "Artikel"
+
+#~ msgid "Audience"
+#~ msgstr "Målgrupp"
+
+#~ msgid "Author"
+#~ msgstr "Författare"
+
+#~ msgid "Authors"
+#~ msgstr "Författare"
+
+#~ msgid "Bibliography"
+#~ msgstr "Bibliografi"
+
+# Detta borde nog vara något annat istället
+#~ msgid "Caution"
+#~ msgstr "Varning"
+
+#~ msgid "Chapter"
+#~ msgstr "Kapitel"
+
+#~ msgid "Collaborator"
+#~ msgstr "Kollaboratör"
+
+#~ msgid "Collaborators"
+#~ msgstr "Kollaboratörer"
+
+#~ msgid "Colophon"
+#~ msgstr "Kolofon"
+
+#~ msgid "Copyright"
+#~ msgstr "Copyright"
+
+# Osäker
+#~ msgid "Copyrights"
+#~ msgstr "Copyright"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Dedication"
+#~ msgstr "Tillägning"
+
+#~ msgid "Editor"
+#~ msgstr "Redaktör"
+
+#~ msgid "Email"
+#~ msgstr "E-post"
+
+#~ msgid "Example"
+#~ msgstr "Exempel"
+
+#~ msgid "Figure"
+#~ msgstr "Figur"
+
+#~ msgid "Glossary"
+#~ msgstr "Ordlista"
+
+#~ msgid "Important"
+#~ msgstr "Viktigt"
+
+#~ msgid "Index"
+#~ msgstr "Index"
+
+#~ msgid "Legal Notice"
+#~ msgstr "Juridisk information"
+
+#~ msgid "Level"
+#~ msgstr "Nivå"
+
+#~ msgid "Message Audience"
+#~ msgstr "Meddelandemålgrupp"
+
+#~ msgid "Message Level"
+#~ msgstr "Meddelandenivå"
+
+#~ msgid "Message Origin"
+#~ msgstr "Meddelandeursprung"
+
+#~ msgid "Note"
+#~ msgstr "Anteckning"
+
+#~ msgid "Origin"
+#~ msgstr "Ursprung"
+
+#~ msgid "Other Contributor"
+#~ msgstr "Annan bidragsgivare"
+
+#~ msgid "Other Contributors"
+#~ msgstr "Andra bidragsgivare"
+
+#~ msgid "Part"
+#~ msgstr "Del"
+
+#~ msgid "Preface"
+#~ msgstr "Förord"
+
+#~ msgid "Publisher"
+#~ msgstr "Förläggare"
+
+#~ msgid "Publishers"
+#~ msgstr "Förläggare"
+
+#~ msgid "Reference"
+#~ msgstr "Referens"
+
+#~ msgid "Reference Entry"
+#~ msgstr "Referenspost"
+
+#~ msgid "Reference Section"
+#~ msgstr "Referensavsnitt"
+
+#~ msgid "Release Information"
+#~ msgstr "Utgåveinformation"
+
+#~ msgid "Revision History"
+#~ msgstr "Revisionshistorik"
+
+#~ msgid "Section"
+#~ msgstr "Avdelning"
+
+#~ msgid "See"
+#~ msgstr "Se"
+
+#~ msgid "Set Index"
+#~ msgstr "Samlingsindex"
+
+#~ msgid "Table"
+#~ msgstr "Tabell"
+
+#~ msgid "Table of Contents"
+#~ msgstr "Innehållsförteckning"
+
+#~ msgid "Tip"
+#~ msgstr "Tips"
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Warning"
+#~ msgstr "Varning"
 
 #~ msgid "Document URI"
 #~ msgstr "Dokument-URI"
@@ -894,9 +980,6 @@ msgstr ""
 
 #~ msgid "Additional documents"
 #~ msgstr "Ytterligare dokument"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Manualsidor"
 
 #~ msgid "Info Pages"
 #~ msgstr "Infosidor"
