@@ -515,6 +515,8 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 				docpath = gnome_vfs_unescape_string (escaped_string,
 								     NULL);
 			}
+		} else {
+			return NULL;
 		}
 	}
 
