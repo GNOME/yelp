@@ -22,6 +22,7 @@
 
 #include <config.h>
 
+#include <bonobo/bonobo-main.h>
 #include "yelp-window.h"
 #include "yelp-section.h"
 #include "yelp-scrollkeeper.h"
@@ -34,17 +35,23 @@ typedef struct {
 	GtkTreeIter *parent;
 } ForeachData;
 
-static void           yelp_base_init          (YelpBase             *base);
-static void           yelp_base_class_init    (YelpBaseClass        *klass);
-static void           yelp_base_new_window_cb (YelpWindow           *window,
-					       YelpBase             *base);
+struct _YelpBasePriv {
+        GtkTreeStore  *content_store;
+
+	GSList        *windows;
+};
+
+
+static void           yelp_base_init                (YelpBase       *base);
+static void           yelp_base_class_init          (YelpBaseClass  *klass);
+static void           yelp_base_new_window_cb       (YelpWindow     *window,
+						     YelpBase       *base);
+static void           yelp_base_window_finalized_cb (YelpBase       *base,
+						     YelpWindow     *window);
+
 
 #define PARENT_TYPE BONOBO_OBJECT_TYPE
 static BonoboObjectClass *parent_class;
-
-struct _YelpBasePriv {
-        GtkTreeStore  *content_store;
-};
 
 static void
 impl_Yelp_newWindow (PortableServer_Servant   servant,
@@ -71,7 +78,8 @@ yelp_base_init (YelpBase *base)
 						   G_TYPE_POINTER,
 						   G_TYPE_BOOLEAN);
         
-        base->priv       = priv;
+	priv->windows = NULL;
+        base->priv    = priv;
 }
 
 static void
@@ -97,6 +105,22 @@ yelp_base_new_window_cb (YelpWindow *window, YelpBase *base)
 	gtk_widget_show_all (new_window);
 }
 
+static void
+yelp_base_window_finalized_cb (YelpBase *base, YelpWindow *window)
+{
+	YelpBasePriv *priv;
+	
+	g_return_if_fail (YELP_IS_BASE (base));
+	
+	priv = base->priv;
+	
+	priv->windows = g_slist_remove (priv->windows, window);
+
+	if (g_slist_length (priv->windows) == 0) {
+		bonobo_main_quit ();
+	}
+}
+
 YelpBase *
 yelp_base_new (void)
 {
@@ -115,13 +139,22 @@ yelp_base_new (void)
 GtkWidget *
 yelp_base_new_window (YelpBase *base)
 {
-	GtkWidget *window;
+	YelpBasePriv *priv;
+	GtkWidget    *window;
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
+
+	priv = base->priv;
         
-	/* FIXME: Have the windows in a list */
         window = yelp_window_new (GTK_TREE_MODEL (base->priv->content_store));
         
+	priv->windows = g_slist_prepend (priv->windows, window);
+
+	g_object_weak_ref (G_OBJECT (window),
+			   (GWeakNotify) yelp_base_window_finalized_cb,
+			   base);
+	
+
 	g_signal_connect (window, "new_window_requested",
 			  G_CALLBACK (yelp_base_new_window_cb),
 			  base);
