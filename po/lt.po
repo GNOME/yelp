@@ -1,6 +1,7 @@
 # Lithuanian translation of yelp
-# Copyright (C) 2003 Free Software Foundation, Inc.
+# Copyright (C) 2003-2004 Free Software Foundation, Inc.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003-2004.
+# Žygimantas Beručka  <uid0@akl.lt>, 2004
 # 
 # 
 msgid ""
@@ -8,7 +9,7 @@ msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-03-02 10:03+0200\n"
+"PO-Revision-Date: 2004-12-04 08:27+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -101,35 +102,35 @@ msgstr "X Programos"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Fiksuoto pločio teksto šriftas"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Teksto šriftas"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Fiksuoto pločio teksto šriftas."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Kintančio pločio teksto šriftas."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Puslapių peržiūrai naudoti klaviatūra kontroliuojama žymeklį."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Naudoti žymeklį"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Naudoti sistemos šriftus"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Naudoti įprastus sistemos šriftus."
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -137,11 +138,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Prieinamumas</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Šriftai</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -152,18 +153,16 @@ msgid "Find"
 msgstr "Ieškoti"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Dedikacija"
+msgstr "Atidaryti vietą"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Nurodymas"
+msgstr "Nustatymai"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Naršyti su žymekliu"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -171,12 +170,11 @@ msgstr "_Ieškoti: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Fiksuotas plotis:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Dedikacija"
+msgstr "_Vieta:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -188,11 +186,11 @@ msgstr "_Ankstesnis"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Naudoti sistemos šriftus"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Kintantis plotis:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
@@ -226,7 +224,7 @@ msgstr "Turinys"
 #: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:386
 msgid "Unknown"
-msgstr "Nežinima"
+msgstr "Nežinoma"
 
 #: src/yelp-error.c:46
 msgid "The selected document could not be opened"
@@ -238,7 +236,7 @@ msgstr "Pasirinktas puslapis šiame dokumente nėrastas."
 
 #: src/yelp-error.c:58
 msgid "The table of contents could not be read."
-msgstr "Turinys negali būti perskaitytas."
+msgstr "Turinio perskaityti nepavyko."
 
 #: src/yelp-error.c:64
 msgid "DocBook SGML documents are no longer supported."
@@ -246,16 +244,15 @@ msgstr "DocBook SGML dokumentai daugiau nepalaikomi."
 
 #: src/yelp-error.c:70
 msgid "The selected file could not be read."
-msgstr "Pasirinkta byla negalėjo būti perskaityta."
+msgstr "Pasirinktos bylos perskaityti nepavyko."
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Pasirinkta byla negalėjo būti perskaityta."
+msgstr "Bylos nepavyko perskaityti."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
-msgstr "Nustatyti kurį atsargos atmintinės aplanką naudoti"
+msgstr "Nurodyti naudojamą atsargos atmintinės aplanką"
 
 #: src/yelp-main.c:128
 #, c-format
@@ -332,13 +329,12 @@ msgid "System Administration"
 msgstr "Sistemos administravimas"
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Leidimo informacija"
+msgstr "Dokumento informacija"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "YelpDocInfo dokumento struktūra"
 
 #: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
@@ -358,124 +354,108 @@ msgid "Documents"
 msgstr "Dokumentai"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "_File"
-msgstr "/_Byla"
+msgstr "_Byla"
 
 #: src/yelp-window.c:283
-#, fuzzy
 msgid "_Edit"
-msgstr "/_Taisyti"
+msgstr "_Keisti"
 
 #: src/yelp-window.c:284
-#, fuzzy
 msgid "_Go"
-msgstr "/_Eiti"
+msgstr "_Eiti"
 
 #: src/yelp-window.c:285
-#, fuzzy
 msgid "_Help"
-msgstr "/_Pagalba"
+msgstr "_Pagalba"
 
 #: src/yelp-window.c:288
-#, fuzzy
 msgid "_New window"
-msgstr "/Byla/_Naujas langas"
+msgstr "_Naujas langas"
 
 #: src/yelp-window.c:293
 msgid "Open _Location"
-msgstr ""
+msgstr "Atidaryti _vietą"
 
 #: src/yelp-window.c:298
-#, fuzzy
 msgid "_Close window"
-msgstr "/Byla/_Uždaryti langą"
+msgstr "_Uždaryti langą"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopijuoti"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_Find..."
-msgstr "/Taisyti/_Rasti..."
+msgstr "_Rasti..."
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "_Preferences"
-msgstr "Nurodymas"
+msgstr "_Nustatymai"
 
 #: src/yelp-window.c:319
 msgid "_Reload"
-msgstr ""
+msgstr "_Perkrauti"
 
 #: src/yelp-window.c:325
-#, fuzzy
 msgid "_Back"
-msgstr "Atgal"
+msgstr "_Atgal"
 
 #: src/yelp-window.c:327
 msgid "Show previous page in history"
 msgstr "Rodyti anksčiau rodytą puslapį"
 
 #: src/yelp-window.c:330
-#, fuzzy
 msgid "_Forward"
-msgstr "Pirmyn"
+msgstr "_Pirmyn"
 
 #: src/yelp-window.c:332
 msgid "Show next page in history"
 msgstr "Rodyti kitą puslapį esantį atmintyje"
 
 #: src/yelp-window.c:335
-#, fuzzy
 msgid "_Home"
-msgstr "Pradžia"
+msgstr "_Pradžia"
 
 #: src/yelp-window.c:337
 msgid "Go to home view"
 msgstr "Grįžti į pradinį puslapį"
 
 #: src/yelp-window.c:340
-#, fuzzy
 msgid "_Previous Page"
-msgstr "/Eiti/_Ankstesnis puslapis"
+msgstr "_Ankstesnis puslapis"
 
 #: src/yelp-window.c:345
-#, fuzzy
 msgid "_Next Page"
-msgstr "/Eiti/_Kitas puslapis"
+msgstr "_Sekantis puslapis"
 
 #: src/yelp-window.c:350
-#, fuzzy
 msgid "_Contents"
-msgstr "Turinys"
+msgstr "_Turinys"
 
 #: src/yelp-window.c:355
 msgid "_Open Link"
-msgstr ""
+msgstr "_Atidaryti nuorodą"
 
 #: src/yelp-window.c:360
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Atidaryti nuorodą _naujame lange"
 
 #: src/yelp-window.c:365
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Kopijuoti nuorodos adresą"
 
 #: src/yelp-window.c:371
-#, fuzzy
 msgid "_About"
-msgstr "/Pagalba/_Apie"
+msgstr "_Apie"
 
 #: src/yelp-window.c:422
 msgid "Help Browser"
 msgstr "Pagalbos naršyklė"
 
 #: src/yelp-window.c:915
-#, fuzzy
 msgid "Fin_d"
-msgstr "Ieškoti"
+msgstr "Ras_ti"
 
 #: src/yelp-window.c:1186
 msgid "Loading..."
@@ -486,8 +466,11 @@ msgstr "Įkeliama..."
 #: src/yelp-window.c:1903
 msgid "translator_credits"
 msgstr ""
-"Tomas Kuliavas <tokul@users.sourceforge.net>,\n"
-"Žygimantas Beručka <uid0@tuxfamily.org>"
+"Paskutinis vertėjas:\n"
+"Žygimantas Beručka <uid0@akl.lt>\n"
+"\n"
+"Ankstesnis vertėjas:\n"
+"Tomas Kuliavas <tokul@users.sourceforge.net>"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
@@ -785,34 +768,4 @@ msgstr "Gauti pagalbą dirbant su GNOME"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
-
-#~ msgid "Document URI"
-#~ msgstr "Dokumento URI"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "Apdorojamo dokumento URI"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Taisyti/Rasti _dar"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Taisyti/Rasti _ankstesnį"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Eiti/_Atgal"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Eiti/_Pirmyn"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Eiti/Į p_radžią"
-
-#~ msgid "/Go/"
-#~ msgstr "/Eiti/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Eiti/_Turinys"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "GNOME pagalbos žinyno naršyklė"
+msgstr "yelp-watermark-blockquote-201C"
