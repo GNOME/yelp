@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-20 16:53+0100\n"
-"PO-Revision-Date: 2005-01-20 16:53+0100\n"
+"POT-Creation-Date: 2005-02-06 19:10+0100\n"
+"PO-Revision-Date: 2005-02-06 19:10+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "Kärnrutiner"
 msgid "Library Functions"
 msgstr "Biblioteksfunktioner"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
 msgstr "Manualsidor"
 
@@ -122,8 +122,8 @@ msgid "Accessories"
 msgstr "Tillbehör"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Panelprogram"
+msgid "Administration"
+msgstr "Administration"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -137,7 +137,7 @@ msgstr "Utbildningsprogram"
 msgid "Graphics"
 msgstr "Grafik"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
 msgstr "Hjälprubriker"
 
@@ -166,18 +166,26 @@ msgid "Other Documentation"
 msgstr "Annan dokumentation"
 
 #: data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "Panelprogram"
+
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: data/toc.xml.in.h:18
 msgid "Programming"
 msgstr "Programmering"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:19
 msgid "Scientific"
 msgstr "Vetenskaplig"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:20
 msgid "System Tools"
 msgstr "Systemverktyg"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X-program"
 
@@ -216,10 +224,6 @@ msgstr "Sök"
 #: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Öppna plats"
-
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "Inställningar"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
@@ -302,24 +306,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-bookmarks.c:141
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
 msgstr "Öppna bokmärke i nytt fönster"
 
-#: src/yelp-bookmarks.c:145
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
 msgstr "Byt namn på bokmärke"
 
-#: src/yelp-bookmarks.c:149
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
 msgstr "Ta bort bokmärke"
 
-#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Det finns redan ett bokmärke med namnet <b>%s</b> för denna sida."
 
-#: src/yelp-bookmarks.c:377
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Dokumentavsnitt"
 
@@ -332,7 +336,7 @@ msgstr ""
 "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
 "inte korrekt XML."
 
-#: src/yelp-db-pager.c:489
+#: src/yelp-db-pager.c:486
 msgid "Unknown Section"
 msgstr "Okänt avsnitt"
 
@@ -458,7 +462,7 @@ msgstr "YelpDocInfo-structen för dokumentet"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201D"
 
@@ -471,12 +475,12 @@ msgstr "YelpTocPager: Pausräknaren är negativ."
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunde inte läsa in OMF-filen \"%s\"."
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "Läs manualsida för %s"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -485,7 +489,7 @@ msgstr ""
 "Innehållsförteckningen kunde inte läsas in. Antingen saknas filen \"%s\" "
 "eller så är den inte korrekt XML."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -494,15 +498,15 @@ msgstr ""
 "Innehållsförteckningen kunde inte behandlas. Antingen saknas filen \"%s\" "
 "eller så är den inte en giltig XSLT-stilmall."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Inget href-attribut hittat på yelp:document"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Hjälpinnehåll"
 
@@ -699,7 +703,7 @@ msgid "Loading..."
 msgstr "Läser in..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
@@ -720,7 +724,7 @@ msgstr ""
 "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
 "felaktigt formaterad."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -729,18 +733,19 @@ msgstr ""
 "Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte "
 "eller så är den inte en giltig XSLT-stilmall."
 
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-"Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte "
-"eller så är den inte en giltig XSLT-stilmall."
-
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjälp med GNOME"
+
+#~ msgid "Applets"
+#~ msgstr "Panelprogram"
+
+#~ msgid ""
+#~ "The document ‘%s’could not be processed. The file ‘%s’ is either missing "
+#~ "or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte "
+#~ "eller så är den inte en giltig XSLT-stilmall."
 
 #~ msgid "Multimedia Applications"
 #~ msgstr "Multimediaprogram"
