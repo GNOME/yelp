@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-06-05 01:57+0200\n"
-"PO-Revision-Date: 2002-06-05 01:57+0200\n"
+"POT-Creation-Date: 2002-06-28 11:35+0200\n"
+"PO-Revision-Date: 2002-06-28 11:35+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,12 +24,12 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-main.c:111
+#: src/yelp-main.c:114
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kunde inte aktivera Yelp: \"%s\""
 
-#: src/yelp-main.c:130
+#: src/yelp-main.c:133
 msgid "Could not open new window."
 msgstr "Kunde inte öppna nytt fönster."
 
@@ -135,11 +135,11 @@ msgstr "Manualsidor"
 msgid "Info Pages"
 msgstr "Infosidor"
 
-#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:786
+#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
 msgid "Documents"
 msgstr "Dokument"
 
-#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:787
+#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
 msgid "Categories"
 msgstr "Kategorier"
 
@@ -147,98 +147,110 @@ msgstr "Kategorier"
 msgid "Manual pages"
 msgstr "Manualsidor"
 
-#: src/yelp-window.c:156
+#: src/yelp-view-toc.c:731
+msgid "GNOME is"
+msgstr "GNOME är"
+
+#: src/yelp-view-toc.c:732
+msgid "Free Software"
+msgstr "fri programvara"
+
+#: src/yelp-view-toc.c:733
+msgid "(C)"
+msgstr "©"
+
+#: src/yelp-window.c:159
 msgid "/_File"
 msgstr "/_Arkiv"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:160
 msgid "/File/_New window"
 msgstr "/Arkiv/_Nytt fönster"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:161
 msgid "/File/_Close window"
 msgstr "/Arkiv/_Stäng fönster"
 
 #. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:160
+#: src/yelp-window.c:163
 msgid "/_Go"
 msgstr "/_Gå"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:164
 msgid "/Go/_Back"
 msgstr "/Gå/_Bakåt"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:165
 msgid "/Go/_Forward"
 msgstr "/Gå/_Framåt"
 
-#: src/yelp-window.c:163
+#: src/yelp-window.c:166
 msgid "/Go/_Home"
 msgstr "/Gå/_Hem"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:167
 msgid "/Go/_Index"
 msgstr "/Gå/_Index"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:168
 msgid "/_Help"
 msgstr "/_Hjälp"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:169
 msgid "/Help/_About"
 msgstr "/Hjälp/_Om"
 
-#: src/yelp-window.c:228 src/yelp-window.c:430
+#: src/yelp-window.c:231 src/yelp-window.c:433
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:343
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet \"%s\" finns inte"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:599
+#: src/yelp-window.c:602
 msgid "translator_credits"
 msgstr ""
 "Christian Rose\n"
 "Richard Hult\n"
 "Skicka synpunkter på översättningen till sv@li.org"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:606
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:661
 msgid "Back"
 msgstr "Bakåt"
 
-#: src/yelp-window.c:659
+#: src/yelp-window.c:662
 msgid "Show previous page in history"
 msgstr "Visa föregående sida i historiken"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:673
 msgid "Forward"
 msgstr "Framåt"
 
-#: src/yelp-window.c:671
+#: src/yelp-window.c:674
 msgid "Show next page in history"
 msgstr "Visa nästa sida i historiken"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:687
 msgid "Home"
 msgstr "Hem"
 
-#: src/yelp-window.c:685
+#: src/yelp-window.c:688
 msgid "Go to home view"
 msgstr "Gå till hemvyn"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:698
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:696
+#: src/yelp-window.c:699
 msgid "Search in the index"
 msgstr "Sök i indexet"
 
