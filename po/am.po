@@ -7,13 +7,45 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 1.0\n"
-"POT-Creation-Date: 2002-10-03 05:37+0200\n"
-"PO-Revision-Date: 2002-12-10 19:37+EDT\n"
+"POT-Creation-Date: 2002-12-13 06:00+0100\n"
+"PO-Revision-Date: 2002-12-13 23:45+EDT\n"
 "Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr ""
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr ""
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "ጽሑፉን ፈልግ..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr ""
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr ""
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "_የሚቀጥለው"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "የ_ቀድሞው"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -23,12 +55,12 @@ msgstr "የልፕ"
 msgid "Yelp Factory"
 msgstr "የልፕ ፋብሪካ"
 
-#: src/yelp-main.c:114
+#: src/yelp-main.c:115
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "የልፕን ማስጀመር አልቻለም፦ '%s'"
 
-#: src/yelp-main.c:133
+#: src/yelp-main.c:134
 msgid "Could not open new window."
 msgstr "አዲስ መስኮት መክፈት አልቻለም።"
 
@@ -101,152 +133,164 @@ msgstr "ማጠቃለያ"
 msgid "System Administration"
 msgstr "የአሰራሩ አስተዳደር"
 
-#: src/yelp-view-content.c:422 src/yelp-view-index.c:498
-msgid "Section"
-msgstr "ክፍል"
-
-#: src/yelp-view-content.c:567 src/yelp-view-index.c:562
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "በመጫን ላይ..."
 
-#: src/yelp-view-index.c:461
-msgid "Search for:"
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "ክፍል"
+
+#: src/yelp-view-index.c:480
+#, fuzzy
+msgid "_Search for:"
 msgstr "ፈልግ፦"
 
 #. GList           *seriesids;
-#: src/yelp-view-toc.c:183
+#: src/yelp-view-toc.c:165
 msgid "Help Contents"
 msgstr "የመረጃ ማውጫ"
 
-#: src/yelp-view-toc.c:184
+#: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
 msgstr "ኖም - ሠሌዳ"
 
-#: src/yelp-view-toc.c:185
+#: src/yelp-view-toc.c:167
 msgid "Additional documents"
 msgstr "ተጨማሪ ሰነዶች"
 
-#: src/yelp-view-toc.c:186 src/yelp-view-toc.c:511
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
 msgstr "የመመሪያ ገጾች"
 
-#: src/yelp-view-toc.c:187 src/yelp-view-toc.c:567
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
 msgstr "የመግለጫ ገጾች"
 
-#: src/yelp-view-toc.c:384 src/yelp-view-toc.c:568 src/yelp-view-toc.c:792
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "ሰነዶች"
 
-#: src/yelp-view-toc.c:385 src/yelp-view-toc.c:512 src/yelp-view-toc.c:793
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
 msgstr "ምድብ"
 
-#: src/yelp-view-toc.c:466
+#: src/yelp-view-toc.c:448
 msgid "Manual pages"
 msgstr "የመመሪያ ገጾች"
 
-#: src/yelp-view-toc.c:731
+#: src/yelp-view-toc.c:712
 msgid "GNOME is"
 msgstr "ኖም ... ነው"
 
-#: src/yelp-view-toc.c:732
+#: src/yelp-view-toc.c:713
 msgid "Free Software"
 msgstr "ነጻ ሶፍትዌር"
 
-#: src/yelp-view-toc.c:733
+#: src/yelp-view-toc.c:714
 msgid "(C)"
 msgstr "(ም)"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:163
 msgid "/_File"
 msgstr "/_ፋይል"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:164
 msgid "/File/_New window"
 msgstr "/ፋይል/_አዲስ መስኮት"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:165
 msgid "/File/_Close window"
 msgstr "/ፋይል/_መስኮት ዝጋ"
 
-#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:163
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr "/_አስተካክል"
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr "/አስተካክል/_Find in page..."
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "/አስተካክል/_Find again"
+
+#: src/yelp-window.c:171
 msgid "/_Go"
 msgstr "/_ሂድ ወደ"
 
-#: src/yelp-window.c:164
+#: src/yelp-window.c:172
 msgid "/Go/_Back"
 msgstr "/ሂድ ወደ/_ኋላ"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:173
 msgid "/Go/_Forward"
 msgstr "ሂድ ውደ/_ፊት"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:174
 msgid "/Go/_Home"
 msgstr "/ሂድ ወደ/_መጀመሪያ"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:175
 msgid "/Go/_Index"
 msgstr "/ሂድ ወደ/_ማውጫ"
 
-#: src/yelp-window.c:168
+#: src/yelp-window.c:177
 msgid "/_Help"
 msgstr "/_መረጃ"
 
-#: src/yelp-window.c:169
+#: src/yelp-window.c:178
 msgid "/Help/_About"
 msgstr "/መረጃ/_ስለ"
 
-#: src/yelp-window.c:227 src/yelp-window.c:429
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "የመረጃ መቃኛ"
 
-#: src/yelp-window.c:339
+#: src/yelp-window.c:351
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "'%s' የተባለው ሰነድ የለም"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:598
+#: src/yelp-window.c:675
 msgid "translator_credits"
 msgstr "ዘግዕዝ Frontier Foundation"
 
-#: src/yelp-window.c:602
+#: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
 msgstr "የመረጃ መቃኛ ለኖም 2.0"
 
-#: src/yelp-window.c:657
+#: src/yelp-window.c:788
 msgid "Back"
 msgstr "ወደኋላ"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:789
 msgid "Show previous page in history"
 msgstr "የበፊቱን ገጽ በታሪክ ውስጥ አሳይ"
 
-#: src/yelp-window.c:669
+#: src/yelp-window.c:800
 msgid "Forward"
 msgstr "ወደፊት"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:801
 msgid "Show next page in history"
 msgstr "የሚቀጥለውን ገጽ በታሪክ ውስጥ አሳይ"
 
-#: src/yelp-window.c:683
+#: src/yelp-window.c:814
 msgid "Home"
 msgstr "መጀመሪያ"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:815
 msgid "Go to home view"
 msgstr "የመጀመሪያው መመልከቻ ጋር ሂድ"
 
-#: src/yelp-window.c:694
+#: src/yelp-window.c:825
 msgid "Index"
 msgstr "ማውጫ"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:826
 msgid "Search in the index"
 msgstr "ማውጫው ውስጥ አስስ"
 
