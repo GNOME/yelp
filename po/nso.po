@@ -1,0 +1,806 @@
+# Northern Sotho translation of yelp.
+# Copyright (C) 2004 Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the yelp package.
+#
+# Zuza Software Foundation <info@translate.org.za>, 2004
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-11-27 20:46+0200\n"
+"PO-Revision-Date: 2004-11-27 19:32+0200\n"
+"Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
+"Language-Team: Northern Sotho <translate-discuss-nso@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/toc.xml.in.h:1
+msgid "Applets"
+msgstr "Ditirišo tša khomphuthara"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
+msgid "Applications"
+msgstr "Ditirišo"
+
+#: data/toc.xml.in.h:3
+msgid "Desktop"
+msgstr "Teseke"
+
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
+msgid "Development"
+msgstr "Tšwelopele"
+
+#: data/toc.xml.in.h:5
+msgid "Development Environments"
+msgstr "Ditikologo tša Tšwelopele"
+
+#: data/toc.xml.in.h:6
+msgid "Development Tools"
+msgstr "Didirišwa tša Tšwelopele"
+
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
+msgid "Editors"
+msgstr "Barulaganyi"
+
+#: data/toc.xml.in.h:8
+msgid "Education Applications"
+msgstr "Ditirišo tša Thuto"
+
+#: data/toc.xml.in.h:9
+msgid "Games and Entertainment"
+msgstr "Dipapadi le Boithabišo"
+
+#: data/toc.xml.in.h:10
+msgid "General"
+msgstr "Kakaretšo"
+
+#: data/toc.xml.in.h:11
+msgid "Help Contents"
+msgstr "Dikagare tša Thušo"
+
+#: data/toc.xml.in.h:12
+msgid "Internet Applications"
+msgstr "Ditirišo tša Inthanete"
+
+#: data/toc.xml.in.h:13
+msgid "KDE"
+msgstr "KDE"
+
+#: data/toc.xml.in.h:14
+msgid "Kernels"
+msgstr "Dithapo"
+
+#: data/toc.xml.in.h:15
+msgid "Multimedia Applications"
+msgstr "Ditirišo tša Methopo e Fapa-fapanego ya Ditaba"
+
+#: data/toc.xml.in.h:16
+msgid "Office and Productivity Applications"
+msgstr "Ditirišo tša Ofising le tša Tšweletšo"
+
+#: data/toc.xml.in.h:17
+msgid "Scientific Applications"
+msgstr "Ditirišo tše di Raraganego"
+
+#: data/toc.xml.in.h:18
+msgid "Securities"
+msgstr "Dipolokego"
+
+#: data/toc.xml.in.h:19
+msgid "System"
+msgstr "Tshepedišo"
+
+#: data/toc.xml.in.h:20
+msgid "Utilities"
+msgstr "Dithušo"
+
+#: data/toc.xml.in.h:21
+msgid "X Applications"
+msgstr "Ditirišo tša X"
+
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr ""
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr ""
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr ""
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Accessibility</b>"
+msgstr ""
+
+#: data/ui/yelp.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr "<b>Difonto</b>"
+
+#: data/ui/yelp.glade.h:4
+msgid "C_ase sensitive"
+msgstr "Tab _a e swanetšego go swarwa ka bohlale"
+
+#: data/ui/yelp.glade.h:5
+msgid "Find"
+msgstr "Hwetša"
+
+#: data/ui/yelp.glade.h:6
+#, fuzzy
+msgid "Open Location"
+msgstr "Boineelo"
+
+#: data/ui/yelp.glade.h:7
+msgid "Preferences"
+msgstr "Dikganyogo"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Browse with caret"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
+msgid "_Find: "
+msgstr "_Hwetša: "
+
+#: data/ui/yelp.glade.h:10
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:11
+msgid "_Location:"
+msgstr "_Lefelo:"
+
+#: data/ui/yelp.glade.h:12
+msgid "_Next"
+msgstr "_Latelago"
+
+#: data/ui/yelp.glade.h:13
+msgid "_Previous"
+msgstr "_Fetilego"
+
+#: data/ui/yelp.glade.h:14
+msgid "_Use system fonts"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
+msgid "_Variable width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:16
+msgid "_Wrap around"
+msgstr "_Phuthela go dikologa"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Sedirišwa se bogale"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Feketori ya sedirišwa se bogale"
+
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:299
+msgid "No href attribute found on yelp:document"
+msgstr ""
+"Ga go na pharologanyo ya href e hweditšwego go sedirišwa se bogale:tokumente"
+
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:314
+msgid "Out of memory"
+msgstr "Ga e kgone gopolwe"
+
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:368
+msgid "Titlepage"
+msgstr "Letlakala la sehlogo"
+
+#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:370
+msgid "Contents"
+msgstr "Dikagare"
+
+#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:388
+msgid "Unknown"
+msgstr "Tše sa tsebjwego"
+
+#: src/yelp-error.c:46
+msgid "The selected document could not be opened"
+msgstr "Tokumente e kgethilwego ga e bulege"
+
+#: src/yelp-error.c:52
+msgid "The selected page could not be found in this document."
+msgstr "Letlakala le le kgethilwego ga le hwetšwe tokumenteng ye."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Lelokelelo la dikagare ga la ka la balega."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "Ditokumente tša Puku ya Ditokumente tša SGML ga di sa hlwa di thekgwa."
+
+#: src/yelp-error.c:70
+msgid "The selected file could not be read."
+msgstr "Faele e kgethilwego e ka se balwe."
+
+#: src/yelp-error.c:76
+#, fuzzy
+msgid "The file could not be processed."
+msgstr "Faele e kgethilwego e ka se balwe."
+
+#: src/yelp-main.c:95
+msgid "Define which cache directory to use"
+msgstr "Hlalosa gore ke tšhupetšo efe ya cache e ka dirišwago"
+
+#: src/yelp-main.c:129
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "E ka se diragatše Yelp ya: '%s'"
+
+#: src/yelp-main.c:148
+msgid "Could not open new window."
+msgstr "E ka se bule lefesetere le leswa."
+
+#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+msgid "Help"
+msgstr "Thušo"
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "BulaSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "Dihlale tša P"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Go letša ga Tshepedišo"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Ditirišo tša Bokgoba-puku"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Mesepelo ya Dithapo"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Didirišwa tša Thata"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Difaele tša go Fetola Sebopego"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Dipapadi"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Kakaretšo"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Taolo ya Tshepedišo"
+
+#: src/yelp-pager.c:120
+#, fuzzy
+msgid "Document Information"
+msgstr "Lokolla Tšhedimošo"
+
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr ""
+
+#: src/yelp-toc-pager.c:287
+msgid "YelpTocPager: Pause count is negative."
+msgstr "YelpTocPager: Go bala ga go emiša ganyenyane go fošagetše."
+
+#: src/yelp-toc-pager.c:538
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "E ka se kgone go laiša faele ya OMF ya '%s'."
+
+#: src/yelp-toc-pager.c:937
+msgid "Categories"
+msgstr "Magoro"
+
+#: src/yelp-toc-pager.c:951
+msgid "Documents"
+msgstr "Ditokumente"
+
+#: src/yelp-window.c:282
+msgid "_File"
+msgstr "_Faele"
+
+#: src/yelp-window.c:283
+msgid "_Edit"
+msgstr "_Lokiša"
+
+#: src/yelp-window.c:284
+msgid "_Go"
+msgstr "_Eya"
+
+#: src/yelp-window.c:285
+msgid "_Help"
+msgstr "_Thušo"
+
+#: src/yelp-window.c:288
+msgid "_New window"
+msgstr "_Lefesetere le Leswa"
+
+#: src/yelp-window.c:293
+msgid "Open _Location"
+msgstr ""
+
+#: src/yelp-window.c:298
+msgid "_Close window"
+msgstr "_Tswalela lefesetere"
+
+#: src/yelp-window.c:304
+msgid "_Copy"
+msgstr "_Kopiša"
+
+#: src/yelp-window.c:310
+msgid "_Select All"
+msgstr "_Kgetha ka moka"
+
+#: src/yelp-window.c:315
+msgid "_Find..."
+msgstr "_Hwetša..."
+
+#: src/yelp-window.c:320
+msgid "_Preferences"
+msgstr "_Dikganyogo"
+
+#: src/yelp-window.c:325
+msgid "_Reload"
+msgstr "_Laiša gape"
+
+#: src/yelp-window.c:331
+msgid "_Back"
+msgstr "_Morago"
+
+#: src/yelp-window.c:333
+msgid "Show previous page in history"
+msgstr "Bontšha letlakala le le fetilego historing"
+
+#: src/yelp-window.c:336
+msgid "_Forward"
+msgstr "_Fetišetša pele"
+
+#: src/yelp-window.c:338
+msgid "Show next page in history"
+msgstr "Bontšha letlakala le le latelago historing"
+
+#: src/yelp-window.c:341
+msgid "_Home"
+msgstr "_Gae"
+
+#: src/yelp-window.c:343
+msgid "Go to home view"
+msgstr "E-ya mo o ka kgonago go bona gae"
+
+#: src/yelp-window.c:346
+msgid "_Previous Page"
+msgstr "_Letlakala le le Fetilego"
+
+#: src/yelp-window.c:351
+msgid "_Next Page"
+msgstr "_Letlakala le le Latelago"
+
+#: src/yelp-window.c:356
+msgid "_Contents"
+msgstr "_Dikagare"
+
+#: src/yelp-window.c:361
+msgid "_Open Link"
+msgstr ""
+
+#: src/yelp-window.c:366
+msgid "Open Link in _New Window"
+msgstr ""
+
+#: src/yelp-window.c:371
+msgid "_Copy Link Address"
+msgstr ""
+
+#: src/yelp-window.c:377
+msgid "_About"
+msgstr "_Ka ga"
+
+#: src/yelp-window.c:428
+msgid "Help Browser"
+msgstr "Sefetleki sa Thušo"
+
+#: src/yelp-window.c:921
+msgid "Fin_d"
+msgstr "_Hwetša"
+
+#: src/yelp-window.c:1192
+msgid "Loading..."
+msgstr "Go laiša..."
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:1933
+msgid "translator_credits"
+msgstr ""
+"Translate.org.za <info@translate.org.za>\n"
+"Pheledi Mathibela <amathibela@mweb.co.za>"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr "&#8220;"
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr "&#8221;"
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Article"
+msgstr "Ka ga Sehlogo se"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Bibliography"
+msgstr "Ka ga Histori ye"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Book"
+msgstr "Ka ga Puku ye"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Chapter"
+msgstr "Ka ga Kgaolo ye"
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Entry"
+msgstr "Ka ga Tseno ye"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Glossary"
+msgstr "Ka ga Tlhaloso ye ya mathema"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Index"
+msgstr "Ka ga Tlhatlamano ye"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Part"
+msgstr "Ka ga Karolo ye"
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Preface"
+msgstr "Ka ga Ketapele ye"
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Reference"
+msgstr "Ka ga Tšhupetšo ye"
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Section"
+msgstr "Ka ga Karolo ye"
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "About This Set"
+msgstr "Ka ga Peakanyo ye"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Affiliation"
+msgstr "Tswalano"
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Appendix"
+msgstr "Mametletšo"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Article"
+msgstr "Sehlogo"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Audience"
+msgstr "Batheetši"
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Author"
+msgstr "Mongwadi"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Authors"
+msgstr "Bangwadi"
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Bibliography"
+msgstr "Histori"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Book"
+msgstr "Puku"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Caution"
+msgstr "Temošo"
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Chapter"
+msgstr "Kgaolo"
+
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborator"
+msgstr "Modirišani"
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Collaborators"
+msgstr "Badirišani"
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Colophon"
+msgstr "Leswao"
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Copyright"
+msgstr "Tokelo ya ngwalollo"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Copyrights"
+msgstr "Ditokelo tša ngwalollo"
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Date"
+msgstr "Letšatši-kgwedi"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Dedication"
+msgstr "Boineelo"
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Editor"
+msgstr "Morulaganyi"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Email"
+msgstr "Poso ya elektronike"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Example"
+msgstr "Mohlala"
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Figure"
+msgstr "Sebopego"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Glossary"
+msgstr "Tlhaloso ya mathema"
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Important"
+msgstr "Bohlokwa"
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Index"
+msgstr "Tlhatlamano"
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Legal Notice"
+msgstr "Temošo ya Semolao"
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Level"
+msgstr "Mogato"
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Message Audience"
+msgstr "Batheetši ba Molaetša"
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Message Level"
+msgstr "Mogato wa Molaetša"
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Message Origin"
+msgstr "Setlogo sa Molaetša"
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Note"
+msgstr "Tlhokomedišo"
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Origin"
+msgstr "Setlogo"
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Other Contributor"
+msgstr "Motšeakarolo yo Mongwe"
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Other Contributors"
+msgstr "Batšeakarolo ba Bangwe"
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Part"
+msgstr "Karolo"
+
+#: stylesheets/l10n.xml.in.h:53
+msgid "Preface"
+msgstr "Ketapele"
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "Publisher"
+msgstr "Mophahlalatši"
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "Publishers"
+msgstr "Baphatlalatši"
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Reference"
+msgstr "Tšhupetšo"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Reference Entry"
+msgstr "Tsenyo ya Tšhupetšo"
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Reference Section"
+msgstr "Karolo ya Tšhupetšo"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Release Information"
+msgstr "Lokolla Tšhedimošo"
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Revision History"
+msgstr "Histori ya Poeletšo"
+
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Karolo"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "See"
+msgstr "Bona"
+
+#: stylesheets/l10n.xml.in.h:63
+msgid "See Also"
+msgstr "Bona Gape le"
+
+#: stylesheets/l10n.xml.in.h:64
+msgid "Set Index"
+msgstr "Beakanya Tlhatlamano"
+
+#: stylesheets/l10n.xml.in.h:65
+msgid "Table"
+msgstr "Lelokelelo"
+
+#: stylesheets/l10n.xml.in.h:66
+msgid "Table of Contents"
+msgstr "Lelokelelo la Dikagare"
+
+#: stylesheets/l10n.xml.in.h:67
+msgid "Tip"
+msgstr "Maele"
+
+#: stylesheets/l10n.xml.in.h:68
+msgid "Title"
+msgstr "Sehlogo"
+
+#: stylesheets/l10n.xml.in.h:70
+msgid "Warning"
+msgstr "Temošo"
+
+#: yelp.desktop.in.in.h:1
+msgid "Get help with GNOME"
+msgstr "Hwetša thušo ka GNOME"
+
+#. TRANSLATORS:
+#. This is an image of the opening quote character used to watermark
+#. blockquote elements.  Different languages use different opening
+#. quote characters, so the icon name is translatable.  The name of
+#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+#. is the Unicode code point of the opening quote character.   For
+#. example, some languages use the double angle quotation mark, so
+#. those would use "yelp-watermark-blockquote-00AB".  However, the
+#. image is not automagically created.  Do not translate this to a
+#. value if there isn't a corresponding icon in yelp/data/icons.
+#. If you need an image created, contact the maintainers.
+#.
+#. Phew, now some notes on which character to use.  Languages that
+#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. depending on whether the opening quotation is the left guillemet
+#. or the right guillemet.  Languages that use inverted comma style
+#. quotations should use either 201C or 201E, depending on whether
+#. the opening quote is raised or at the baseline.  Note that single
+#. quotation marks don't make very nice watermarks.  So if you use
+#. single quotes as your primary (outer) quotation marks, you should
+#. just use the corresponding double quote watermark.
+#.
+#: src/yelp-settings.c:125
+msgid "yelp-watermark-blockquote-201C"
+msgstr "yelp-watermark-blockquote-201C"
+
+#~ msgid "Document URI"
+#~ msgstr "Tokumente ya URI"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "URI ya tokumente e tla tšwetšwago pele"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Lokiša/Hwetša se La_telago"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Lokiša/Hwetša se Fet_ilego"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Eya/_Morago"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Eya/_Pele"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Eya/_Gae"
+
+#~ msgid "/Go/"
+#~ msgstr "/Eya/"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/Eya/_Dikagare"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "Sefetleki sa Thušo sa GNOME"
