@@ -47,6 +47,7 @@ yelp_SOURCES =								\
 	yelp-info.c		yelp-info.h				\
 	yelp-main.c							\
 	yelp-man.c		yelp-man.h				\
+	yelp-reader.c		yelp-reader.h				\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
 	yelp-util.c		yelp-util.h				\

@@ -384,20 +384,6 @@ yelp_uri_get_section (YelpURI *uri)
 	return uri->section;
 }
 
-gboolean
-yelp_uri_read (YelpURI *uri, YelpURIReader *reader, GError **error)
-{
-        /* Read directly */
-	return TRUE;
-}
-
-gboolean
-yelp_uri_read_async (YelpURI *uri, YelpURIReader *reader, GError **error)
-{
-        /* For now read in a g_idle and later in own thread/gnome-vfs-async */
-	return TRUE;
-}
-
 YelpURI *
 yelp_uri_ref (YelpURI *uri)
 {
@@ -584,22 +570,3 @@ yelp_uri_to_string (YelpURI *uri)
 	
 	return ret_val;
 }
-
-YelpURIReader *
-yelp_uri_reader_new (YelpURIReaderOpenCallback  open_cb,
-                     YelpURIReaderReadCallback  read_cb,
-                     YelpURIReaderCloseCallback close_cb,
-                     gpointer                   user_data)
-{
-        YelpURIReader *reader;
-        
-        reader = g_new0 (YelpURIReader, 1);
-        
-        reader->open_callback  = open_cb;
-        reader->read_callback  = read_cb;
-        reader->close_callback = close_cb;
-        reader->user_data      = user_data;
-        
-        return reader;
-}
-

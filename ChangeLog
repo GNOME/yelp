@@ -1,3 +1,15 @@
+2002-05-08  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/Makefile.am (yelp_SOURCES): 
+	- added yelp-reader.[ch]
+
+	* src/yelp-uri.[ch]: 
+	- removed the YelpReader-stuff from here.
+
+	* src/yelp-reader.[ch]: 
+	- starting on this class that will take care of reading any given
+	  YelpURI *uri and signalling when there is something to read.
+
 2002-05-07  Christophe Merlet  <christophe@merlet.net>
 
 	* src/Makefile.am: Really add ??!! $(DESTDIR) variable.
