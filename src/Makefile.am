@@ -1,6 +1,12 @@
 # for debugging
 #YELP_CFLAGS += -DYELP_DEBUG -pedantic -ansi -Werror
 
+if ENABLE_MAN
+man_sources = yelp-man-parser.c yelp-man-parser.h yelp-man-pager.c yelp-man-pager.h
+else
+man_sources =
+endif
+
 INCLUDES =								\
 	-I$(top_srcdir)							\
 	$(YELP_CFLAGS)							\
@@ -20,8 +26,6 @@ INCLUDES =								\
 	-DDATADIR=\""$(datadir)"\"					\
 	-DLIBDIR=\""$(libdir)"\"					\
 	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
-	-DLIBGNOME_MAN2HTML=\"$(LIBGNOME_MAN2HTML)\"			\
-	-DLIBGNOME_INFO2HTML=\"$(LIBGNOME_INFO2HTML)\"			\
 	-DSERVERDIR=\"$(libexecdir)\"					\
 	-DBINDIR=\""$(bindir)"\"					\
 	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""
@@ -65,6 +69,7 @@ test_uri_LDADD = @YELP_LIBS@
 
 yelp_SOURCES =							\
 	$(gnome_yelp_idl_sources)				\
+	$(man_sources)						\
 	yelp-base.c		yelp-base.h			\
 	yelp-cache.c		yelp-cache.h			\
 	yelp-db-pager.c		yelp-db-pager.h			\
@@ -72,8 +77,6 @@ yelp_SOURCES =							\
 	yelp-html-gecko.c	yelp-html.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
 	yelp-io-channel.c	yelp-io-channel.h		\
-	yelp-man-pager.c	yelp-man-pager.h		\
-	yelp-man-parser.c	yelp-man-parser.h		\
 	yelp-pager.c		yelp-pager.h			\
 	yelp-settings.c		yelp-settings.h			\
 	yelp-toc-pager.c	yelp-toc-pager.h		\

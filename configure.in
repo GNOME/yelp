@@ -67,9 +67,30 @@ AC_SUBST(DB2HTML)
 
 AC_MSG_CHECKING([which mozilla to use])
 
+AC_ARG_ENABLE([man],
+	[AC_HELP_STRING([--enable-man],
+			[turn on man page support [default=no]])],,
+	enable_man=no)
+AC_ARG_ENABLE([info],
+	[AC_HELP_STRING([--enable-info],
+			[turn on GNU info support [default=no]])],,
+	enable_info=no)
+if test "x$enable_man" = "xyes"; then
+    AC_DEFINE(ENABLE_MAN, 1, [turn on man page support])
+    AM_CONDITIONAL(ENABLE_MAN, true)
+else
+    AM_CONDITIONAL(ENABLE_MAN, false)
+fi
+if test "x$enable_info" = "xyes"; then
+    AC_DEFINE(ENABLE_INFO, 1, [turn on GNU info support])
+    AM_CONDITIONAL(ENABLE_INFO, true)
+else
+    AM_CONDITIONAL(ENABLE_INFO, false)
+fi
+
 MOZILLA=
 AC_ARG_WITH([mozilla],
-	AC_HELP_STRING([--with-mozilla@<:@=mozilla|firefox|thunderbird@:>@],
+	AC_HELP_STRING([--with-mozilla=@<:@mozilla|firefox|thunderbird@:>@],
 		       [Whether to use mozilla, firefox or thunderbird gtkmozembed (default: mozilla)]),
 	[MOZILLA="$withval"])
 

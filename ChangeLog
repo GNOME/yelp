@@ -1,3 +1,19 @@
+2004-11-28  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* data/Makefile.am
+	* data/scrollkeeper.xml:
+	* data/toc.xml.in:
+	* src/Makefile.am:
+	* src/yelp-toc-pager.c:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* src/yelp-window.c:
+	* stylesheets/Makefile.am:
+	* stylesheets/toc2html.xsl:
+	- Added --enable-man and --enable-info
+	- Revamped TOC code
+
 2004-11-27  Dwayne Bailey  <dwayne@translate.org.za>
 
 	* configure.in: Added "nso" to ALL_LINGUAS.

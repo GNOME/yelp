@@ -76,6 +76,7 @@ struct _YelpDocPage {
 
 YelpDocInfo *       yelp_doc_info_new           (gchar         *uri);
 YelpDocInfo *       yelp_doc_info_get           (gchar         *uri);
+
 YelpDocInfo *       yelp_doc_info_ref           (YelpDocInfo   *doc);
 void                yelp_doc_info_unref         (YelpDocInfo   *doc);
 void                yelp_doc_info_free          (YelpDocInfo   *doc);
@@ -83,6 +84,21 @@ void                yelp_doc_info_free          (YelpDocInfo   *doc);
 YelpPager *         yelp_doc_info_get_pager     (YelpDocInfo   *doc);
 void                yelp_doc_info_set_pager     (YelpDocInfo   *doc,
 						 YelpPager     *pager);
+
+const gchar *       yelp_doc_info_get_id        (YelpDocInfo   *doc);
+void                yelp_doc_info_set_id        (YelpDocInfo   *doc,
+						 gchar         *id);
+const gchar *       yelp_doc_info_get_title     (YelpDocInfo   *doc);
+void                yelp_doc_info_set_title     (YelpDocInfo   *doc,
+						 gchar         *title);
+const gchar *       yelp_doc_info_get_language  (YelpDocInfo   *doc);
+void                yelp_doc_info_set_language  (YelpDocInfo   *doc,
+						 gchar         *language);
+const gchar *       yelp_doc_info_get_category  (YelpDocInfo   *doc);
+void                yelp_doc_info_set_category  (YelpDocInfo   *doc,
+						 gchar         *category);
+gint                yelp_doc_info_cmp_language  (YelpDocInfo   *doc1,
+						 YelpDocInfo   *doc2);
 
 YelpDocType         yelp_doc_info_get_type      (YelpDocInfo   *doc);
 gchar *             yelp_doc_info_get_uri       (YelpDocInfo   *doc,

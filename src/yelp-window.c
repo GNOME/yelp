@@ -38,15 +38,19 @@
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
 #include <string.h>
+
 #include "yelp-cache.h"
 #include "yelp-db-pager.h"
 #include "yelp-error.h"
 #include "yelp-html.h"
-#include "yelp-man-pager.h"
 #include "yelp-pager.h"
 #include "yelp-settings.h"
 #include "yelp-toc-pager.h"
 #include "yelp-window.h"
+
+#ifdef ENABLE_MAN
+#include "yelp-man-pager.h"
+#endif
 
 #ifdef YELP_DEBUG
 #define d(x) x
@@ -1006,12 +1010,16 @@ window_do_load_pager (YelpWindow  *window,
 	case YELP_DOC_TYPE_DOCBOOK_XML:
 	    pager = yelp_db_pager_new (doc_info);
 	    break;
+#ifdef ENABLE_INFO
 	case YELP_DOC_TYPE_INFO:
 	    // FIXME: yelp_info_pager_new (doc_info);
 	    break;
+#endif
+#ifdef ENABLE_MAN
 	case YELP_DOC_TYPE_MAN:
 	    pager = yelp_man_pager_new (doc_info);
 	    break;
+#endif
 	case YELP_DOC_TYPE_TOC:
 	    pager = YELP_PAGER (yelp_toc_pager_get ());
 	    break;

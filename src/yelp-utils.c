@@ -48,6 +48,12 @@ typedef struct {
 } DocInfoURI;
 
 struct _YelpDocInfo {
+    gchar      *id;
+    gchar      *title;
+    gchar      *category;
+    gchar      *lang;
+    gint        lang_priority;
+
     DocInfoURI *uris;
     gint        num_uris;
     gint        max_uris;
@@ -62,10 +68,17 @@ struct _YelpDocInfo {
 static void         doc_info_add_uri   (YelpDocInfo *doc_info,
 					gchar       *uri,
 					YelpURIType  type);
-static gchar *      convert_ghelp_uri  (gchar   *uri);
-static gchar *      convert_man_uri    (gchar   *uri);
-static gchar *      convert_info_uri   (gchar   *uri);
 static YelpDocType  get_doc_type       (gchar   *uri);
+static gchar *      convert_ghelp_uri  (gchar   *uri);
+
+#ifdef ENABLE_MAN
+static gchar *      convert_man_uri    (gchar   *uri);
+#endif
+
+#ifdef ENABLE_INFO
+static gchar *      convert_info_uri   (gchar   *uri);
+#endif
+
 
 YelpDocInfo *
 yelp_doc_info_new (gchar *uri)
@@ -95,16 +108,20 @@ yelp_doc_info_new (gchar *uri)
 	    doc_type = get_doc_type (doc_uri);
 	uri_type = YELP_URI_TYPE_GHELP;
     }
+#ifdef ENABLE_MAN
     else if (g_str_has_prefix (uri, "man:")) {
 	doc_uri  = convert_man_uri (uri);
 	doc_type = YELP_DOC_TYPE_MAN;
 	uri_type = YELP_URI_TYPE_MAN;
     }
+#endif
+#ifdef ENABLE_INFO
     else if (g_str_has_prefix (uri, "info:")) {
 	doc_uri  = convert_info_uri (uri);
 	doc_type = YELP_DOC_TYPE_INFO;
 	uri_type = YELP_URI_TYPE_INFO;
     }
+#endif
     else if (g_str_has_prefix (uri, "x-yelp-toc:")) {
 	doc_uri = g_strdup ("file://" DATADIR "/yelp/toc.xml");
 	doc_type = YELP_DOC_TYPE_TOC;
@@ -217,6 +234,7 @@ yelp_doc_info_free (YelpDocInfo *doc)
 
     g_object_unref (doc->pager);
 
+    g_free (doc->title);
     for (i = 0; i < doc->num_uris; i++)
 	g_free ((doc->uris + i)->uri);
     g_free (doc->uris);
@@ -243,6 +261,83 @@ yelp_doc_info_set_pager (YelpDocInfo *doc, YelpPager *pager)
 	g_object_ref (pager);
 
     doc->pager = pager;
+}
+
+const gchar *
+yelp_doc_info_get_id (YelpDocInfo *doc)
+{
+    return (const gchar *) doc->id;
+}
+
+void
+yelp_doc_info_set_id (YelpDocInfo *doc, gchar *id)
+{
+    if (doc->id)
+	g_free (doc->id);
+
+    doc->id = g_strdup (id);
+}
+
+const gchar *
+yelp_doc_info_get_title (YelpDocInfo *doc)
+{
+    return (const gchar *) doc->title;
+}
+
+void
+yelp_doc_info_set_title (YelpDocInfo *doc, gchar *title)
+{
+    if (doc->title)
+	g_free (doc->title);
+
+    doc->title = g_strdup (title);
+}
+
+const gchar *
+yelp_doc_info_get_category (YelpDocInfo *doc)
+{
+    return (const gchar *) doc->category;
+}
+
+void
+yelp_doc_info_set_category (YelpDocInfo *doc, gchar *category)
+{
+    if (doc->category)
+	g_free (doc->category);
+
+    doc->category = g_strdup (category);
+}
+
+const gchar *
+yelp_doc_info_get_language (YelpDocInfo *doc)
+{
+    return (const gchar *) doc->lang;
+}
+
+void
+yelp_doc_info_set_language (YelpDocInfo *doc, gchar *language)
+{
+    gint i;
+    const gchar * const * langs = g_get_language_names ();
+
+    if (doc->lang)
+	g_free (doc->lang);
+
+    doc->lang = g_strdup (language);
+
+    doc->lang_priority = INT_MAX;
+    for (i = 0; langs[i] != NULL; i++) {
+	if (g_str_equal (language, langs[i])) {
+	    doc->lang_priority = i;
+	    break;
+	}
+    }
+}
+
+gint
+yelp_doc_info_cmp_language (YelpDocInfo *doc1, YelpDocInfo *doc2)
+{
+    return CLAMP (doc1->lang_priority - doc2->lang_priority, -1, 1);
 }
 
 YelpDocType
@@ -553,6 +648,7 @@ convert_ghelp_uri (gchar *uri)
     return doc_uri;
 }
 
+#ifdef ENABLE_MAN
 static gchar *
 convert_man_uri (gchar *uri)
 {
@@ -663,7 +759,9 @@ convert_man_uri (gchar *uri)
 
     return doc_uri;
 }
+#endif
 
+#ifdef ENABLE_INFO
 static gchar *
 convert_info_uri (gchar   *uri)
 {
@@ -763,3 +861,4 @@ convert_info_uri (gchar   *uri)
     g_free (info_name);
     return doc_uri;
 }
+#endif
