@@ -5,35 +5,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-05-14 11:20+0300\n"
-"PO-Revision-Date: 2002-05-14 10:25+0200\n"
+"POT-Creation-Date: 2002-05-31 18:52+0300\n"
+"PO-Revision-Date: 2002-05-31 18:23+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/yelp-db2html.c:106
-msgid "Error while parsing the stylesheet, make sure you have your docbook environment setup correctly."
-msgstr "Помилка під час аналізування стилів, переконайтесь, що ваше середовище docbook коректно налаштовано."
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
 
-#: src/yelp-db2html.c:122
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "Документа \"%s\" не існує"
-
-#: src/yelp-db2html.c:137
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "Не вдалося проаналізувати документ \"%s\"."
-
-#: src/yelp-db2html.c:176
-msgid "Error while applying the stylesheet."
-msgstr "Помилка застосування стилів."
-
-#: src/yelp-html.c:149
-msgid "Loading..."
-msgstr "Завантаження..."
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Фабрика Yelp"
 
 #: src/yelp-main.c:109
 #, c-format
@@ -44,171 +30,177 @@ msgstr "Не вдалося активувати Yelp: \"%s\""
 msgid "Could not open new window."
 msgstr "Не вдалося відкрити нове вікно."
 
-#: src/yelp-man.c:292
-#: src/yelp-man.c:313
-#: src/yelp-man.c:349
-#: src/yelp-man.c:381
-#: src/yelp-man.c:397
-#: src/yelp-man.c:408
+#: src/yelp-man.c:294
+#: src/yelp-man.c:315
+#: src/yelp-man.c:351
+#: src/yelp-man.c:383
+#: src/yelp-man.c:399
+#: src/yelp-man.c:410
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:297
-#: src/yelp-man.c:328
-#: src/yelp-man.c:386
-#: src/yelp-man.c:413
+#: src/yelp-man.c:299
+#: src/yelp-man.c:330
+#: src/yelp-man.c:388
+#: src/yelp-man.c:415
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:302
+#: src/yelp-man.c:304
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:318
+#: src/yelp-man.c:320
 msgid "Perl"
 msgstr "PERL"
 
-#: src/yelp-man.c:323
+#: src/yelp-man.c:325
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:333
+#: src/yelp-man.c:335
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:338
+#: src/yelp-man.c:340
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:360
+#: src/yelp-man.c:362
 msgid "System Calls"
 msgstr "Системні виклики"
 
-#: src/yelp-man.c:365
+#: src/yelp-man.c:367
 msgid "Library Functions"
 msgstr "Бібліотечні функції"
 
-#: src/yelp-man.c:370
+#: src/yelp-man.c:372
 msgid "Kernel Routines"
 msgstr "Робота з ядром"
 
-#: src/yelp-man.c:425
+#: src/yelp-man.c:427
 msgid "Applications"
 msgstr "Програми"
 
-#: src/yelp-man.c:430
+#: src/yelp-man.c:432
 msgid "Development"
 msgstr "Розробка"
 
-#: src/yelp-man.c:435
+#: src/yelp-man.c:437
 msgid "Hardware Devices"
 msgstr "Апаратні пристрої"
 
-#: src/yelp-man.c:440
+#: src/yelp-man.c:442
 msgid "Configuration Files"
 msgstr "Конфіґураційні файли"
 
-#: src/yelp-man.c:445
+#: src/yelp-man.c:447
 msgid "Games"
 msgstr "Ігри"
 
-#: src/yelp-man.c:450
+#: src/yelp-man.c:452
 msgid "Overviews"
 msgstr "Огляд"
 
-#: src/yelp-man.c:455
+#: src/yelp-man.c:457
 msgid "System Administration"
 msgstr "Системне адміністрування"
 
-#: src/yelp-view-content.c:204
-#: src/yelp-view-index.c:373
+#: src/yelp-view-content.c:229
+#: src/yelp-view-content.c:473
+msgid "Loading..."
+msgstr "Завантаження..."
+
+#: src/yelp-view-content.c:338
+#: src/yelp-view-index.c:375
 msgid "Section"
 msgstr "Розділ"
 
-#: src/yelp-view-index.c:336
+#: src/yelp-view-index.c:338
 msgid "Search for:"
 msgstr "Шукати:"
 
-#: src/yelp-view-toc.c:328
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:163
 msgid "Help Contents"
 msgstr "Змість довідки"
 
-#: src/yelp-view-toc.c:329
+#: src/yelp-view-toc.c:164
 msgid "GNOME - Desktop"
 msgstr "GNOME - Стільниця"
 
-#: src/yelp-view-toc.c:330
+#: src/yelp-view-toc.c:165
 msgid "Additional documents"
 msgstr "Додаткові документи"
 
-#: src/yelp-view-toc.c:331
-#: src/yelp-view-toc.c:673
+#: src/yelp-view-toc.c:166
+#: src/yelp-view-toc.c:487
 msgid "Manual Pages"
 msgstr "Сторінки посібника"
 
-#: src/yelp-view-toc.c:332
-#: src/yelp-view-toc.c:735
+#: src/yelp-view-toc.c:167
+#: src/yelp-view-toc.c:543
 msgid "Info Pages"
 msgstr "Інформаційні сторінки"
 
-#: src/yelp-view-toc.c:530
-#: src/yelp-view-toc.c:736
-#: src/yelp-view-toc.c:878
+#: src/yelp-view-toc.c:364
+#: src/yelp-view-toc.c:544
+#: src/yelp-view-toc.c:759
 msgid "Documents"
 msgstr "Документи"
 
-#: src/yelp-view-toc.c:531
-#: src/yelp-view-toc.c:674
-#: src/yelp-view-toc.c:879
+#: src/yelp-view-toc.c:365
+#: src/yelp-view-toc.c:488
+#: src/yelp-view-toc.c:760
 msgid "Categories"
 msgstr "Категорії"
 
-#: src/yelp-view-toc.c:616
+#: src/yelp-view-toc.c:446
 msgid "Manual pages"
 msgstr "Сторінки посібника"
 
-#: src/yelp-window.c:151
+#: src/yelp-window.c:152
 msgid "/_File"
 msgstr "/_Файл"
 
-#: src/yelp-window.c:152
+#: src/yelp-window.c:153
 msgid "/File/_New window"
 msgstr "/Файл/_Нове вікно"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:154
 msgid "/File/_Close window"
 msgstr "/Файл/_Закрити вікно"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:155
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:156
 msgid "/_Go"
 msgstr "/_Перейти"
 
-#: src/yelp-window.c:156
+#: src/yelp-window.c:157
 msgid "/Go/_Back"
 msgstr "/Перейти/_Вперед"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:158
 msgid "/Go/_Forward"
 msgstr "/Перейти/_Назад"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:159
 msgid "/Go/_Home"
 msgstr "/Перейти/_Домівка"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:160
 msgid "/Go/_Index"
 msgstr "/Перейти/_Покажчик"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:161
 msgid "/_Help"
 msgstr "/_Довідка"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:162
 msgid "/Help/_About"
 msgstr "/Довідка/_Про"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:224
 msgid "Help Browser"
 msgstr "Перегляд довідки"
 
