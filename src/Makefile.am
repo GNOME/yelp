@@ -93,7 +93,8 @@ yelp_SOURCES =								\
 
 yelp_LDADD =								\
 	@YELP_LIBS@							\
-	@HTML_WIDGET_LIBS@
+	@HTML_WIDGET_LIBS@						\
+	$(POPT_LIBS)
 
 gnome_yelp_idl_sources =						\
 	GNOME_Yelp-stubs.c						\

@@ -501,6 +501,10 @@
 	- don't set "Loading..." if the doc is cached. It will only result
 	  in flicker.
 
+	* src/Makefile.am (yelp_LDADD): link with POPT_LIBS. 
+
+	* configure.in: Check for popt, fixes #96168
+
 	* src/yelp-uri.c (yelp_uri_no_path): added, support to easy check
 	  if URI is of type 'index:' without any path.
 
