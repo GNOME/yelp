@@ -301,15 +301,13 @@ yw_url_selected_cb (gpointer    view,
 		}
 	}
 
-	/* TODO: Add abs_uri to the history */
-	
 	g_free (abs_url);
 }
 
 static void
 yw_toggle_history_buttons (GtkWidget   *button, 
-				    gboolean     sensitive,
-				    YelpHistory *history)
+			   gboolean     sensitive,
+			   YelpHistory *history)
 {
 	g_return_if_fail (GTK_IS_BUTTON (button));
 	g_return_if_fail (YELP_IS_HISTORY (history));
@@ -386,7 +384,6 @@ yw_close_window_cb (gpointer   data,
 static void
 yw_exit_cb (gpointer data, guint section, GtkWidget *widget)
 {
-/* 	gtk_main_quit (); */
 	bonobo_main_quit ();
 }
 

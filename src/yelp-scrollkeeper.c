@@ -46,15 +46,10 @@ static gboolean   ys_parse_section        (GNode                *parent,
 					   xmlNode              *xml_node);
 static void       ys_parse_doc            (GNode                *parent,
 					   xmlNode              *xml_node);
-#if 0
-static void       ys_parse_toc            (ParseData            *data,
-					   GtkTreeIter          *parent,
-					   const gchar          *docsource);
-static void       ys_parse_toc_section    (ParseData            *data,
+static void       ys_parse_toc_section    (GtkTreeStore         *store,
 					   GtkTreeIter          *parent,
 					   xmlNode              *xml_node,
 					   const gchar          *base_uri);
-#endif
 static gchar *    ys_get_xml_docpath      (const gchar          *command,
 					   const gchar          *argument);
 
@@ -268,50 +263,11 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node)
  	g_free (docsource);
 }
 
-#if 0
 static void
-ys_parse_toc (ParseData *data, GtkTreeIter *parent, const gchar *docsource)
-{
-	gchar       *toc_file;
-	xmlDoc      *doc = NULL;
-	xmlNode     *xml_node;
-	YelpSection *section;
-	
- 	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
- 				       docsource);
-
-	if (toc_file) {
-		doc = xmlParseFile (toc_file);
-		g_free (toc_file);
-	}
-
-	if (!doc) {
-/* 		g_warning ("Tried to parse a non-valid TOC file"); */
-		return;
-	}
-	
-	if (g_strcasecmp (doc->xmlRootNode->name, "toc")) {
-		g_warning ("Document with wrong root node, got: '%s'",
-			   doc->xmlRootNode->name);
-	}
-
-	xml_node = doc->xmlRootNode->xmlChildrenNode;
-
-	gtk_tree_model_get (GTK_TREE_MODEL (data->store), parent,
-			    1, &section,
-			    -1);
-
-	for (; xml_node != NULL; xml_node = xml_node->next) {
-		ys_parse_toc_section (data, parent, xml_node, 
-				      section->uri);
-	}
-}
-
-static void
-ys_parse_toc_section (ParseData   *data, 
-		      GtkTreeIter *parent, 
-		      xmlNode     *xml_node, 
-		      const gchar *base_uri)
+ys_parse_toc_section (GtkTreeStore *store,
+		      GtkTreeIter  *parent,
+		      xmlNode      *xml_node, 
+		      const gchar  *base_uri)
 {
 	gchar       *name;
 	gchar       *link;
@@ -342,7 +298,7 @@ ys_parse_toc_section (ParseData   *data,
 /* 	} else { */
 /* 	} */
 
-	iter = yelp_util_contents_add_section (data->store, parent, 
+	iter = yelp_util_contents_add_section (store, parent, 
 					       yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
 								 name, 
 								 base_uri,
@@ -350,12 +306,11 @@ ys_parse_toc_section (ParseData   *data,
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_strncasecmp (next_child->name, "tocsect", 7)) {
-			ys_parse_toc_section (data, iter, 
+			ys_parse_toc_section (store, iter, 
 					      next_child, base_uri);
 		}
 	}
 }
-#endif 
 
 static gchar *
 ys_get_xml_docpath (const gchar *command, const gchar *argument)
@@ -439,7 +394,8 @@ yelp_scrollkeeper_init (GtkTreeStore *store)
 			g_free (docpath);
 		}
 
-		if (doc) {
+		if (doc) { {
+
 			if (doc->xmlRootNode && !ys_tree_empty(doc->xmlRootNode->xmlChildrenNode)) {
 				break;
 			} else {
@@ -462,12 +418,6 @@ yelp_scrollkeeper_init (GtkTreeStore *store)
         return TRUE;
 }
 #endif
-
-GNode *
-yelp_scrollkeeper_lookup_seriesid (const char *seriesid)
-{
-	return g_hash_table_lookup (seriesid_hash, seriesid);
-}
 
 gboolean
 yelp_scrollkeeper_init (GNode *tree)
@@ -514,3 +464,44 @@ yelp_scrollkeeper_init (GNode *tree)
         
         return TRUE;
 }
+
+GNode *
+yelp_scrollkeeper_lookup_seriesid (const gchar *seriesid)
+{
+	return g_hash_table_lookup (seriesid_hash, seriesid);
+}
+
+void
+yelp_scrollkeeper_get_toc_tree_model (GtkTreeStore *store, 
+				      const gchar  *docpath)
+{
+	gchar       *toc_file;
+	xmlDoc      *doc = NULL;
+	xmlNode     *xml_node;
+	
+ 	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
+ 				       docpath);
+
+	if (toc_file) {
+		doc = xmlParseFile (toc_file);
+		g_free (toc_file);
+	}
+
+	if (!doc) {
+/* 		g_warning ("Tried to parse a non-valid TOC file"); */
+		return;
+	}
+	
+	if (g_strcasecmp (doc->xmlRootNode->name, "toc")) {
+		g_warning ("Document with wrong root node, got: '%s'",
+			   doc->xmlRootNode->name);
+	}
+
+	xml_node = doc->xmlRootNode->xmlChildrenNode;
+
+	for (; xml_node != NULL; xml_node = xml_node->next) {
+		ys_parse_toc_section (store, NULL, xml_node, docpath);
+	}
+}
+
+

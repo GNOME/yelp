@@ -107,6 +107,11 @@ yelp_main_start ()
 	CORBA_Object yelp_base;
 	
 	yelp_base = yelp_main_activate_base ();
+
+	if (!yelp_base) {
+		g_error ("Couldn't activate YelpBase");
+	}
+	
 	yelp_main_open_new_window (yelp_base);
 	
 	bonobo_object_release_unref (yelp_base, NULL);
@@ -118,6 +123,11 @@ yelp_main_idle_start (gpointer null_data)
 	CORBA_Object yelp_base;
 	
 	yelp_base = yelp_main_activate_base ();
+
+	if (!yelp_base) {
+		g_error ("Couldn't activate YelpBase");
+	}
+
 	yelp_main_open_new_window (yelp_base);
 	
 	return FALSE;

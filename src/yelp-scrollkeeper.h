@@ -24,7 +24,12 @@
 #define __YELP_SCROLLKEEPER_H__
 
 #include <glib.h>
+#include <gtk/gtktreestore.h>
 
-gboolean yelp_scrollkeeper_init            (GNode *tree);
-GNode *  yelp_scrollkeeper_lookup_seriesid (const char *seriesid);
+gboolean       yelp_scrollkeeper_init               (GNode          *tree);
+GNode *        yelp_scrollkeeper_lookup_seriesid    (const gchar    *seriesid);
+
+void           yelp_scrollkeeper_get_toc_tree_model (GtkTreeStore   *store,
+						     const gchar    *docpath);
+
 #endif /* __YELP_SCROLLKEEPER_H__ */

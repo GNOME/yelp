@@ -1,3 +1,16 @@
+2002-01-27  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-scrollkeeper.c:
+	(yelp_parse_toc): removed, code moved to
+	  yelp_scrollkeeper_get_toc_tree_model 
+	(yelp_scrollkeeper_get_toc_tree_model): moved the code from
+	  yelp_parse_toc. 
+
+	* src/yelp-main.c (yelp_main_start): give an error if we can't
+	  active the yelp-base, might solve #69134. Not the cause but the 
+	  segfault.
+	(yelp_main_idle_start): dito.
+
 2002-01-26  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/Makefile.am: removed BUILD_SOURCES since it seems to create
