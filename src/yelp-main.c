@@ -149,11 +149,9 @@ main (int argc, char **argv)
 	CORBA_Object  factory;
 	gchar        *url = NULL;
 	
-#ifdef ENABLE_NLS
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
-#endif 
 	g_thread_init (NULL);
 	
 	if (argc >= 2) {
