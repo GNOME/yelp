@@ -1,6 +1,6 @@
 AC_INIT(src/yelp-main.c)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(yelp, 2.1.1)
+AM_INIT_AUTOMAKE(yelp, 2.1.2)
 
 AC_PROG_INTLTOOL
 
@@ -99,7 +99,7 @@ AC_SUBST(POPT_LIBS)
 if test x$with_html_widget = xgtkhtml1; then
 	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-3.0 >= 3.0)
 else
-	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-2.0 >= 2.1.1)
+	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-2.0 >= 2.1.2)
 fi
 	
 CFLAGS="$HTML_WIDGET_CFLAGS $CFLAGS"
