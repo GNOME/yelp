@@ -73,15 +73,7 @@ typedef struct {
 static void      reader_class_init        (YelpReaderClass     *klass);
 static void      reader_init              (YelpReader          *reader);
 
-#if 0
-static void      reader_db_start          (ReaderThreadData    *th_data);
-static gint      reader_db_write          (ReaderThreadData    *th_data,
-					   const gchar         *buffer,
-					   gint                 len);
-static gint      reader_db_close          (ReaderThreadData    *th_data);
-#endif
-
-static void      reader_man_info_start    (ReaderThreadData    *th_data);
+static void      reader_convert_start     (ReaderThreadData    *th_data);
 
 static void      reader_file_start        (ReaderThreadData    *th_data);
 
@@ -89,7 +81,7 @@ static gboolean  reader_check_cancelled   (YelpReader          *reader,
 					   gint                 stamp);
 static gpointer  reader_start             (ReaderThreadData    *th_data);
 static void      reader_change_stamp      (YelpReader          *reader);
-static gboolean      reader_idle_check_queue  (ReaderThreadData    *th_data);
+static gboolean  reader_idle_check_queue  (ReaderThreadData    *th_data);
 
 static ReaderQueueData * 
 reader_q_data_new                         (YelpReader          *reader,
@@ -213,125 +205,8 @@ reader_init (YelpReader *reader)
 	priv->thread_queue = g_async_queue_new ();
 }
 
-#if 0
 static void
-reader_db_start (ReaderThreadData *th_data)
-{
-	YelpReader         *reader;
-	YelpReaderPriv     *priv;
-	xmlOutputBufferPtr  buf;
-	ReaderQueueData    *q_data;
-	GError             *error = NULL;
-	
-	g_return_if_fail (th_data != NULL);
-
-	reader = th_data->reader;
-	priv   = reader->priv;
-	
-	STAMP_MUTEX_LOCK;
-	
-	if (reader_check_cancelled (reader, th_data->stamp)) {
-		
-		STAMP_MUTEX_UNLOCK;
-		
-		return;
-	}
-
-	STAMP_MUTEX_UNLOCK;
-
-	q_data = reader_q_data_new (reader, th_data->stamp, 
-				    READER_QUEUE_TYPE_START);
-
-	g_async_queue_push (priv->thread_queue, q_data);
-	
-	buf = xmlAllocOutputBuffer (NULL);
-	
-	buf->writecallback = (xmlOutputWriteCallback) reader_db_write;
-	buf->closecallback = (xmlOutputCloseCallback) reader_db_close;
-	buf->context       = th_data;
-
-	yelp_db2html_convert (th_data->uri, buf, &error);
-	
-        xmlOutputBufferClose (buf);
-}
-
-static int
-reader_db_write (ReaderThreadData *th_data, const gchar *buffer, gint len)
-{
-	YelpReader         *reader;
-	YelpReaderPriv     *priv;
-	ReaderQueueData    *q_data;
-
-	g_return_val_if_fail (th_data != NULL, -1);
-	
-	reader = th_data->reader;
-	priv   = reader->priv;
-
-	d(g_print ("reader_db_write: %d\n", len));
-	
-	STAMP_MUTEX_LOCK;
-	
-	if (reader_check_cancelled (reader, th_data->stamp)) {
-		
-		STAMP_MUTEX_UNLOCK;
-		
-		return 0;
-	}
-
-	STAMP_MUTEX_UNLOCK;
-
-	if (len <= 0) {
-		return 0;
-	}
-	
-	g_print ("------------------------------------------\n");
-	
-	g_print ("%s\n", buffer);
-	
-	q_data = reader_q_data_new (reader, th_data->stamp,
-				    READER_QUEUE_TYPE_DATA);
-
-	q_data->data = g_strndup (buffer, len);
-	
-	g_async_queue_push (priv->thread_queue, q_data);
-
-	return len;
-}
-
-static int
-reader_db_close (ReaderThreadData *th_data)
-{
-	YelpReader         *reader;
-	YelpReaderPriv     *priv;
-	ReaderQueueData    *q_data;
-
-	g_return_val_if_fail (th_data != NULL, -1);
-	
-	reader = th_data->reader;
-	priv   = reader->priv;
-
-	STAMP_MUTEX_LOCK;
-	
-	if (reader_check_cancelled (reader, th_data->stamp)) {
-		
-		STAMP_MUTEX_UNLOCK;
-		
-		return 0;
-	}
-
-	STAMP_MUTEX_UNLOCK;
-
-	q_data = reader_q_data_new (reader, th_data->stamp, 
-				    READER_QUEUE_TYPE_FINISHED);
-
-	g_async_queue_push (priv->thread_queue, q_data);
-
-	return 0;
-}
-#endif
-
-static void
-reader_man_info_start (ReaderThreadData *th_data)
+reader_convert_start (ReaderThreadData *th_data)
 {
 	YelpReader      *reader;
 	YelpReaderPriv  *priv;
@@ -349,7 +224,7 @@ reader_man_info_start (ReaderThreadData *th_data)
 	uri    = th_data->uri;
 	stamp  = th_data->stamp;
 	
-	d(g_print ("man_info_start\n"));
+	d(g_print ("convert_start\n"));
 
 	STAMP_MUTEX_LOCK;
 	
@@ -590,7 +465,7 @@ reader_start (ReaderThreadData *th_data)
 	case YELP_URI_TYPE_DOCBOOK_SGML:
 	case YELP_URI_TYPE_MAN:
 	case YELP_URI_TYPE_INFO:
-		reader_man_info_start (th_data);
+		reader_convert_start (th_data);
 		break;
 	case YELP_URI_TYPE_HTML:
 		reader_file_start (th_data);
@@ -849,8 +724,8 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	ReaderThreadData *th_data;
 	gint              stamp;
 	
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (uri != NULL);
+	g_return_val_if_fail (YELP_IS_READER (reader), FALSE);
+	g_return_val_if_fail (uri != NULL, FALSE);
 
 	priv = reader->priv;
 
