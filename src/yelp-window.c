@@ -364,9 +364,9 @@ static GtkActionEntry entries[] = {
       N_("Show next page in history"),
       G_CALLBACK (window_go_forward_cb) },
     { "GoHome", GTK_STOCK_HOME,
-      N_("_Home"),
-      NULL,
-      N_("Go to home view"),
+      N_("_Help Topics"),
+      "<Alt>Home",
+      N_("Go to the listing of help topics"),
       G_CALLBACK (window_go_home_cb) },
     { "GoPrevious", NULL,
       N_("_Previous Section"),
@@ -976,9 +976,9 @@ window_populate (YelpWindow *window)
     priv->find_bar = gtk_toolbar_new ();
     gtk_toolbar_set_style (GTK_TOOLBAR (priv->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
     window_populate_find (window, priv->find_bar);
-    gtk_box_pack_start (GTK_BOX (priv->html_pane),
-			priv->find_bar,
-			FALSE, FALSE, 0);
+    gtk_box_pack_end (GTK_BOX (priv->html_pane),
+		      priv->find_bar,
+		      FALSE, FALSE, 0);
 
     priv->html_view  = yelp_html_new ();
     g_signal_connect (priv->html_view,
@@ -1012,41 +1012,57 @@ window_populate (YelpWindow *window)
 static void
 window_populate_find (YelpWindow *window, GtkWidget *find_bar)
 {
+    GtkWidget *box;
     GtkWidget *label;
     GtkToolItem *item;
+    GtkWidget *arrow;
     YelpWindowPriv *priv = window->priv;
     
     g_return_if_fail (GTK_IS_TOOLBAR (find_bar));
 
-    label = gtk_label_new_with_mnemonic (_("Fin_d"));
-    item = gtk_tool_item_new ();
-    gtk_container_add (GTK_CONTAINER (item), label);
-    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
+    box = gtk_hbox_new (FALSE, 0);
+    label = gtk_label_new_with_mnemonic (_("Find:"));
+    gtk_box_pack_start (box, label, FALSE, FALSE, 6);
 
     priv->find_entry = gtk_entry_new ();
     g_signal_connect (G_OBJECT (priv->find_entry), "changed",
-		      G_CALLBACK (window_find_entry_changed_cb), window);	
+		      G_CALLBACK (window_find_entry_changed_cb), window);
+    gtk_box_pack_start (box, priv->find_entry, TRUE, TRUE, 0);
+
     item = gtk_tool_item_new ();
-    gtk_container_add (GTK_CONTAINER (item), priv->find_entry);
+    gtk_container_add (GTK_CONTAINER (item), box);
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
 
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->find_entry);
 
-    priv->find_next = gtk_tool_button_new_from_stock (GTK_STOCK_FIND);
-    gtk_tool_item_set_is_important (item, TRUE);
+    box = gtk_hbox_new (FALSE, 0);
+    arrow = gtk_arrow_new (GTK_ARROW_RIGHT, GTK_SHADOW_NONE);
+    label = gtk_label_new_with_mnemonic (_("Find _Next"));
+    gtk_box_pack_start (GTK_BOX (box), arrow, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
+    priv->find_next = gtk_tool_button_new (box, NULL);
     g_signal_connect (priv->find_next,
 		      "clicked",
 		      G_CALLBACK (window_find_clicked_cb),
 		      window);
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_next, -1);
 
-    priv->find_prev = gtk_tool_button_new_from_stock (GTK_STOCK_FIND);
-    gtk_tool_item_set_is_important (item, TRUE);
+    box = gtk_hbox_new (FALSE, 0);
+    arrow = gtk_arrow_new (GTK_ARROW_LEFT, GTK_SHADOW_NONE);
+    label = gtk_label_new_with_mnemonic (_("Find _Previous"));
+    gtk_box_pack_start (GTK_BOX (box), arrow, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
+    priv->find_prev = gtk_tool_button_new (box, NULL);
     g_signal_connect (priv->find_prev,
 		      "clicked",
 		      G_CALLBACK (window_find_clicked_cb),
 		      window);
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_prev, -1);
+
+    item = gtk_separator_tool_item_new ();
+    gtk_tool_item_set_expand (item, TRUE);
+    gtk_separator_tool_item_set_draw (GTK_SEPARATOR_TOOL_ITEM (item), FALSE);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
 
     item = gtk_tool_button_new_from_stock (GTK_STOCK_CLOSE);
     gtk_tool_item_set_is_important (item, FALSE);
@@ -1913,6 +1929,7 @@ window_find_cb (GtkAction *action, YelpWindow *window)
 
     gtk_widget_show_all (priv->find_bar);
     gtk_widget_grab_focus (priv->find_entry);
+    window_find_entry_changed_cb (priv->find_entry, window);
 }
 
 static void
@@ -2273,12 +2290,15 @@ window_find_entry_changed_cb (GtkEditable *editable,
 
     text = gtk_editable_get_chars (editable, 0, -1);
 
-    if (!window_find_action (window, YELP_WINDOW_FIND_NEXT)) {
-	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
-	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
-    } else {
-	window_find_buttons_set_sensitive (window, TRUE);
-    }
+    if (text == NULL || text[0] == '\0')
+	window_find_buttons_set_sensitive (window, FALSE);
+    else
+	if (!window_find_action (window, YELP_WINDOW_FIND_NEXT)) {
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
+	} else {
+	    window_find_buttons_set_sensitive (window, TRUE);
+	}
  
     g_free (text);
 }

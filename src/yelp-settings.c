@@ -62,14 +62,16 @@ static const gchar *color_params[YELP_NUM_COLORS] = {
     "yelp.color.selected0",
     "yelp.color.selected1",
     "yelp.color.selected2",
-    "yelp.color.selected3",
+    "yelp.color.selected3"
 };
 
 static const gchar *icon_params[YELP_NUM_ICONS] = {
     "yelp.icon.blockquote",
     "yelp.icon.caution",
     "yelp.icon.important",
+    "yelp.icon.next",
     "yelp.icon.note",
+    "yelp.icon.previous",
     "yelp.icon.programlisting",
     "yelp.icon.tip",
     "yelp.icon.warning"
@@ -154,8 +156,14 @@ yelp_settings_init (void)
 	case YELP_ICON_IMPORTANT:
 	    icon_names[i] = "yelp-icon-important";
 	    break;
+	case YELP_ICON_NEXT:
+	    icon_names[i] = "stock_next-page";
+	    break;
 	case YELP_ICON_NOTE:
 	    icon_names[i] = "yelp-icon-note";
+	    break;
+	case YELP_ICON_PREVIOUS:
+	    icon_names[i] = "stock_previous-page";
 	    break;
 	case YELP_ICON_PROGRAMLISTING:
 	    icon_names[i] = "yelp-watermark-programlisting";

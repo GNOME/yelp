@@ -10,7 +10,9 @@
 <xsl:param name="yelp.icon.blockquote"/>
 <xsl:param name="yelp.icon.caution"/>
 <xsl:param name="yelp.icon.important"/>
+<xsl:param name="yelp.icon.next"/>
 <xsl:param name="yelp.icon.note"/>
+<xsl:param name="yelp.icon.previous"/>
 <xsl:param name="yelp.icon.programlisting"/>
 <xsl:param name="yelp.icon.tip"/>
 <xsl:param name="yelp.icon.warning"/>
@@ -115,7 +117,9 @@
     h7 span[class~="title"] { border-bottom: none; }
 
     div[class~="admonition"] { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.base3"/><xsl:text>; }
+      <xsl:value-of select="$yelp.color.base3"/><xsl:text>;
+      -moz-border-radius-topleft: 12px;
+    }
     div[class~="programlisting"] {
       background-image: url(</xsl:text>
       <xsl:value-of select="$yelp.icon.programlisting"/><xsl:text>);
@@ -146,7 +150,121 @@
       background-image: url("</xsl:text>
       <xsl:value-of select="$yelp.icon.warning"/><xsl:text>");
     }
+
+    div[class~="navbar"] {
+      margin-top: 2em;
+      border: solid 1px </xsl:text>
+      <xsl:value-of select="$yelp.color.selected0"/><xsl:text>;
+      -moz-border-radius: 6px;
+      background-color: </xsl:text>
+      <xsl:value-of select="$yelp.color.base0"/><xsl:text>;
+      padding: 6px;
+      display: table;
+      width: 98%;
+    }
+    div[class~="navbar"] a { text-decoration: none; }
+    div[class~="navbar"] a:hover { text-decoration: underline; }
+    div[class~="navbar"] img { border: none; vertical-align: middle; }
+    span[class~="navbar-previous"] { display: table-cell; }
+    span[class~="navbar-next"] { display: table-cell; text-align: right; }
+    img[class~="navbar-previous"] { padding-right: 0.5em; }
+    img[class~="navbar-next"] { padding-left: 0.5em; }
   </xsl:text>
+</xsl:template>
+
+<xsl:template name="db2html.division.navbar">
+  <xsl:param name="node"/>
+  <xsl:param name="info"/>
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="prev_id">
+    <xsl:choose>
+      <xsl:when test="$depth_of_chunk = 0">
+        <xsl:if test="$info">
+          <xsl:value-of select="$db.chunk.info_basename"/>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="db.chunk.chunk-id.axis">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="axis" select="'previous'"/>
+          <xsl:with-param name="depth_in_chunk" select="0"/>
+          <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+  <xsl:param name="next_id">
+    <xsl:call-template name="db.chunk.chunk-id.axis">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="axis" select="'next'"/>
+      <xsl:with-param name="depth_in_chunk" select="0"/>
+      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="prev_node" select="key('idkey', $prev_id)"/>
+  <xsl:param name="next_node" select="key('idkey', $next_id)"/>
+  <div class="navbar">
+    <xsl:if test="$depth_of_chunk = 0 or $prev_node">
+      <span class="navbar-previous">
+	<a class="navbar-previous">
+	  <xsl:attribute name="href">
+	    <xsl:value-of select="concat('#', $prev_id)"/>
+	  </xsl:attribute>
+	  <xsl:choose>
+	    <xsl:when test="$depth_of_chunk = 0">
+	      <xsl:variable name="label">
+		<xsl:call-template name="db.label">
+		  <xsl:with-param name="node" select="$info"/>
+		</xsl:call-template>
+	      </xsl:variable>
+	      <xsl:attribute name="title">
+		<xsl:value-of select="normalize-space($label)"/>
+	      </xsl:attribute>
+	      <img src="{$yelp.icon.previous}" class="navbar-previous"/>
+	      <xsl:value-of select="$label"/>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:attribute name="title">
+		<xsl:call-template name="db.xref.tooltip">
+		  <xsl:with-param name="linkend" select="$prev_id"/>
+		  <xsl:with-param name="target"  select="$prev_node"/>
+		</xsl:call-template>
+	      </xsl:attribute>
+	      <img src="{$yelp.icon.previous}" class="navbar-previous"/>
+	      <xsl:call-template name="db.label">
+		<xsl:with-param name="node" select="$prev_node"/>
+		<xsl:with-param name="role" select="'title'"/>
+	      </xsl:call-template>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</a>
+      </span>
+    </xsl:if>
+    <xsl:if test="$next_node">
+      <span class="navbar-next">
+	<a class="navbar-next">
+	  <xsl:attribute name="href">
+	    <xsl:value-of select="concat('#', $next_id)"/>
+	  </xsl:attribute>
+	  <xsl:attribute name="title">
+	    <xsl:call-template name="db.xref.tooltip">
+	      <xsl:with-param name="linkend" select="$next_id"/>
+	      <xsl:with-param name="target"  select="$next_node"/>
+	    </xsl:call-template>
+	  </xsl:attribute>
+	  <xsl:call-template name="db.label">
+	    <xsl:with-param name="node" select="$next_node"/>
+	    <xsl:with-param name="role" select="'title'"/>
+	  </xsl:call-template>
+	  <img src="{$yelp.icon.next}" class="navbar-next"/>
+	</a>
+      </span>
+    </xsl:if>
+  </div>
 </xsl:template>
 
 </xsl:stylesheet>
