@@ -110,8 +110,10 @@ static void        yw_toolbar_style_changed_cb (GConfClient         *client,
 						GConfEntry          *entry,
 						gpointer             data);
 
+#if 0
 static void        yw_remove_notify_cb          (GtkObject          *obj, 
 						 gpointer            data);
+#endif
 
 enum {
 	PAGE_TOC_VIEW,
@@ -345,7 +347,7 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 					  &error);
 		handled = TRUE;
 	} else {
-		gnome_url_show (url, error);
+		gnome_url_show (url, &error);
 		handled = FALSE;
 	}
 
@@ -690,6 +692,7 @@ yw_toolbar_style_changed_cb (GConfClient *client,
         gtk_toolbar_set_style(toolbar, style);
 }
 
+#if 0
 static void
 yw_remove_notify_cb (GtkObject *obj, gpointer data)
 {
@@ -701,6 +704,7 @@ yw_remove_notify_cb (GtkObject *obj, gpointer data)
 
         gconf_client_notify_remove(conf_client, notify_id);
 }
+#endif 
 
 GtkWidget *
 yelp_window_new (GNode *doc_tree, GList *index)
