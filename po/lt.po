@@ -1,14 +1,15 @@
 # Lithuanian translation of yelp
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
+# Tomas Kuliavas <tokul@users.sourceforge.net>, 2004.
 # 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-06 14:42+0200\n"
-"PO-Revision-Date: 2004-01-06 14:41+0200\n"
+"POT-Creation-Date: 2004-01-10 16:52+0200\n"
+"PO-Revision-Date: 2004-01-10 16:51+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@tuxfamily.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -105,19 +106,19 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "C_ase sensitive"
-msgstr "Skirti _raidžių dydį"
+msgstr "Skirti r_aidžių dydį"
 
 #: data/ui/yelp.glade.h:3
 msgid "Find"
-msgstr "Rasti"
+msgstr "Ieškoti"
 
 #: data/ui/yelp.glade.h:4
 msgid "_Find: "
-msgstr "_Rasti: "
+msgstr "_Ieškoti: "
 
 #: data/ui/yelp.glade.h:5
 msgid "_Next"
-msgstr "_Sekantis"
+msgstr "_Kitas"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Previous"
@@ -125,7 +126,7 @@ msgstr "_Ankstesnis"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Wrap around"
-msgstr "_Pažymėti"
+msgstr "_Priėjus pabaigą, ieškoti nuo pradžios"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -135,30 +136,41 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp gamykla"
 
-#: src/yelp-db-pager.c:249 src/yelp-window.c:439 src/yelp-window.c:763
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Dokumentas '%s' negali būti atidarytas"
-
-#: src/yelp-db-pager.c:429
+#: src/yelp-db-pager.c:426
 msgid "No href attribute found on yelp:document"
 msgstr "Href atributų yelp:document nerasta"
 
-#: src/yelp-db-pager.c:444
+#: src/yelp-db-pager.c:441
 msgid "Out of memory"
 msgstr "Nėra atminties"
 
-#: src/yelp-db-pager.c:621
+#: src/yelp-db-pager.c:618
 msgid "Titlepage"
 msgstr "Antraštinis puslapis"
 
-#: src/yelp-db-pager.c:623
+#: src/yelp-db-pager.c:620 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Turinys"
 
-#: src/yelp-db-pager.c:641
+#: src/yelp-db-pager.c:638 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Nežinima"
+
+#: src/yelp-error.c:46
+msgid "The selected document could not be opened"
+msgstr "Pasirinktas dokumentas negali būti atidarytas"
+
+#: src/yelp-error.c:52
+msgid "The selected page could not be found in this document."
+msgstr "Pasirinktas puslapis šiame dokumente nėrastas."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Turinys negali būti perskaitytas."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "DocBook SGML dokumentai daugiau nepalaikomi."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -246,15 +258,11 @@ msgstr "Apdorojamo dokumento URI"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauzės skaičiavimas yra neigiamas."
 
-#: src/yelp-toc-pager.c:652 src/yelp-toc-pager.c:664
-msgid "The table of contents could not be read."
-msgstr "Turinys negali būti perskaitytas."
-
-#: src/yelp-toc-pager.c:882
+#: src/yelp-toc-pager.c:876
 msgid "Categories"
 msgstr "Kategorijos"
 
-#: src/yelp-toc-pager.c:896
+#: src/yelp-toc-pager.c:890
 msgid "Documents"
 msgstr "Dokumentai"
 
@@ -280,11 +288,11 @@ msgstr "/Taisyti/_Rasti..."
 
 #: src/yelp-window.c:240
 msgid "/Edit/Find Ne_xt"
-msgstr "/Taisyti/Rasti se_kantį"
+msgstr "/Taisyti/Rasti _dar"
 
 #: src/yelp-window.c:243
 msgid "/Edit/Find Pre_vious"
-msgstr "/Taisyti/Rasti a_nkstesnį"
+msgstr "/Taisyti/Rasti _ankstesnį"
 
 #: src/yelp-window.c:247
 msgid "/_Go"
@@ -312,7 +320,7 @@ msgstr "/Eiti/_Ankstesnis"
 
 #: src/yelp-window.c:261
 msgid "/Go/_Next"
-msgstr "/Eiti/_Sekantis"
+msgstr "/Eiti/_Kitas"
 
 #: src/yelp-window.c:264
 msgid "/Go/_Contents"
@@ -330,59 +338,285 @@ msgstr "/Pagalba/_Apie"
 msgid "Help Browser"
 msgstr "Pagalbos naršyklė"
 
-#: src/yelp-window.c:423
-msgid "DocBook SGML documents are no longer supported."
-msgstr "DocBook SGML dokumentai daugiau nepalaikomi."
-
-#: src/yelp-window.c:546
+#: src/yelp-window.c:545 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Skyrius"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:602
 msgid "Back"
 msgstr "Atgal"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:603
 msgid "Show previous page in history"
 msgstr "Rodyti anksčiau rodytą puslapį"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:613
 msgid "Forward"
 msgstr "Pirmyn"
 
-#: src/yelp-window.c:615
+#: src/yelp-window.c:614
 msgid "Show next page in history"
 msgstr "Rodyti kitą puslapį esantį atmintyje"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:626
 msgid "Home"
 msgstr "Pradžia"
 
-#: src/yelp-window.c:628
+#: src/yelp-window.c:627
 msgid "Go to home view"
 msgstr "Grįžti į pradinį puslapį"
 
-#: src/yelp-window.c:796 src/yelp-window.c:825 src/yelp-window.c:1102
-#: src/yelp-window.c:1161
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "Puslapis „%s“ šiame dokumente nerastas."
-
-#: src/yelp-window.c:848
+#: src/yelp-window.c:832
 msgid "Loading..."
 msgstr "Įkeliama..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1252
+#: src/yelp-window.c:1226
 msgid "translator_credits"
 msgstr ""
-"Tomas Kuliavas <tokul@users.sourceforge.net>,Žygimantas Beručka "
-"<uid0@tuxfamily.org>"
+"Tomas Kuliavas <tokul@users.sourceforge.net>,\n"
+"Žygimantas Beručka <uid0@tuxfamily.org>"
 
-#: src/yelp-window.c:1257
+#: src/yelp-window.c:1231
 msgid "A Help Browser for GNOME"
 msgstr "GNOME pagalbos žinyno naršyklė"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr "&#8220;"
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr "&#8221;"
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr "Apie šią bibliografiją"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr "Apie šią knygą"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr "Apie šį skyrių"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr "Apie šį įrašą"
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr "Apie šį terminų žodyną"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr "Apie šią rodyklę"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr "Apie šią dalį"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr "Apie šią įžangą"
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr "Apie šią nuorodą"
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr "Apie šį skyrių"
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr "Apie šį rinkinį"
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "Affiliation"
+msgstr "Narystė"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr "Priedas"
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr "Straipsnis"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr "Auditorija"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr "Autorius"
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bigliography"
+msgstr "Bibliografija"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr "Knyga"
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr "Įspėjimas"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr "Skyrius"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr "Bendradarbis"
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr "Kolofonas"
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr "Autorinės teisės"
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr "Data"
+
+#: stylesheets/l10n.xml.in.h:30
+msgid "Dedication"
+msgstr "Dedikacija"
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Editor"
+msgstr "Redaktorius"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr "El. paštas"
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr "Pavyzdys"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr "Iliustracija"
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr "Terminų žodynas"
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr "Svarbu"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr "Rodyklė"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr "Teisinė pastaba"
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr "Lygis"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr "Žinutės auditorija"
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr "Žinutės lygis"
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr "Žinutės šaltinis"
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr "Pastaba"
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr "Šaltinis"
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr "Kiti pagalbininkai"
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr "Dalis"
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr "Įžanga"
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr "Leidėjas"
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr "Nurodymas"
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr "Nuorodos įrašas"
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr "Nuorodos skyrius"
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr "Peržiūrėjimo istorija"
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr "Žr."
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr "Taip pat žr."
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Set Index"
+msgstr "Nustatyti rodyklę"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr "Lentelė"
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Table of Contents"
+msgstr "Turinys"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr "Patarimas"
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Title"
+msgstr "Antraštė"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr "Įspėjimas"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -391,72 +625,3 @@ msgstr "Gauti pagalbą dirbant su GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Pagalba"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Dokumentas '%s' neegzistuoja"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Rasti tekstą dokumente:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Automatiškai _pažymėti radinį"
-
-#~ msgid "Find text..."
-#~ msgstr "Rasti tesktą..."
-
-#~ msgid "Match _entire word"
-#~ msgstr "Turi sutapti _visas žodis"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "Turi sutapti raidžių _registras"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Ieškoti:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - Aplinka"
-
-#~ msgid "Additional documents"
-#~ msgstr "Papildomi dokumentai"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Pagalbos Puslapiai"
-
-#~ msgid "Info Pages"
-#~ msgstr "Informaciniai puslapiai"
-
-#~ msgid "Manual pages"
-#~ msgstr "Pagalbos puslapiai"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOME yra"
-
-#~ msgid "Free Software"
-#~ msgstr "Laisva programinė įranga"
-
-#~ msgid "(C)"
-#~ msgstr "(C)"
-
-#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
-#~ msgstr "Įkeliama&nbsp;&nbsp;&nbsp;"
-
-#~ msgid "Loading.&nbsp;&nbsp;"
-#~ msgstr "Įkeliama.&nbsp;&nbsp;"
-
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Įkeliama..&nbsp;"
-
-#~ msgid "Index"
-#~ msgstr "Indeksas"
-
-#~ msgid "Search in the index"
-#~ msgstr "Ieškoti tarp indeksų"
-
-#~ msgid "About This Document"
-#~ msgstr "Apie šį dokumentą"
-
-#~ msgid "Previous"
-#~ msgstr "Ankstesnis"
-
-#~ msgid "Next"
-#~ msgstr "Sekantis"
