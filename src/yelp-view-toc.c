@@ -615,25 +615,20 @@ toc_man_1 (YelpViewTOC *view)
 	node = g_node_first_child (root);
 
 	if (!node) {
+		g_warning ("Unable to find man categories");
 		return;
 	}
-
-	g_print ("====================================\n");
 
 	yelp_html_clear (priv->html_view);
 	
 	yelp_html_printf (priv->html_view, PAGE_HEADER, string);
+	yelp_html_printf (priv->html_view, PAGE_START, string);
 
-	yelp_html_printf (priv->html_view, 
-			  PAGE_START, 
-			  string);
-
-	yelp_html_printf (priv->html_view,
-			  COLUMN_RIGHT_START
-			  TOC_BLOCK_START 
-			  "<h2>%s</h2>", 
-			  str_subcats);
-
+	yelp_html_printf (priv->html_view, COLUMN_RIGHT_START);
+	yelp_html_printf (priv->html_view, TOC_BLOCK_START);
+	
+	yelp_html_printf (priv->html_view, "<h2>%s</h2>", str_subcats);
+	
 	do {
 		child = g_node_first_child (node);
 		
@@ -641,14 +636,15 @@ toc_man_1 (YelpViewTOC *view)
 			section = YELP_SECTION (node->data);
 			path = yelp_util_node_to_string_path (node);
 
- 			yelp_html_printf (priv->html_view,
-					  "<a href=\"toc:man/%s\">%s</a><br>\n",
-					  path, section->name);
+  			yelp_html_printf (priv->html_view,
+ 					  "<a href=\"toc:man/%s\">%s</a><br>\n",
+ 					  path, section->name);
+			
 			g_free (path);
 		}
 	} while ((node = g_node_next_sibling (node)));
 
-	yelp_html_printf (priv->html_view, 
+	yelp_html_printf (priv->html_view,
 			  TOC_BLOCK_END
 			  COLUMN_END
 			  PAGE_END);
@@ -663,7 +659,6 @@ toc_info (YelpViewTOC *view)
 	YelpViewTOCPriv *priv;
 	GNode           *root, *node;
 	YelpSection     *section;
-	char            *url;
 	gchar           *string = _("Info Pages");
 	gchar           *str_docs = _("Documents");
 
@@ -694,18 +689,17 @@ toc_info (YelpViewTOC *view)
 	yelp_html_printf (priv->html_view, "<h2>%s</h2>", str_docs);
 
 	do {
+		gchar *str_uri;
+		
 		section = YELP_SECTION (node->data);
-		url = yelp_util_compose_path_url (root,
-						  yelp_uri_get_path (section->uri));
+
+		str_uri = yelp_uri_to_string (section->uri);
 		
 		yelp_html_printf (priv->html_view, 
 				  "<a href=\"%s\">%s</a><br>\n", 
-				  yelp_uri_to_string (section->uri),
+				  str_uri,
 				  section->name);
-/* 		yelp_html_printf (priv->html_view,  */
-/* 				      "<a href=\"%s\">%s</a><br>\n",  */
-/* 				      url, section->name); */
-		g_free  (url);
+		g_free (str_uri);
 	} while ((node = g_node_next_sibling (node)));
 		
 	yelp_html_printf (priv->html_view, 

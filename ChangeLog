@@ -1,5 +1,9 @@
 2002-05-18  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-toc.c (toc_info): fixed mem leak.
+
+	* configure.in (YELP_IDL_INCLUDES): readded bzip2 check, doh!
+
 	* src/yelp-view-toc.c: 
 	(toc_start): fixed mem leak
 	(toc_scrollkeeper): fixed mem leak
