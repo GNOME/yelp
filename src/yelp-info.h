@@ -25,6 +25,7 @@
 
 #include <glib.h>
 
-gboolean yelp_info_init (GNode *tree);
+gboolean yelp_info_init (GNode  *tree, 
+			 GList **index);
 
 #endif /* __YELP_INFO_H__ */

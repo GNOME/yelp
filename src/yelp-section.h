@@ -27,6 +27,8 @@
 
 typedef struct _YelpSection   YelpSection;
 
+#define YELP_SECTION(x) ((YelpSection *) x)
+
 typedef enum {
 	YELP_SECTION_DOCUMENT_SECTION,
 	YELP_SECTION_DOCUMENT,

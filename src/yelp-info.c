@@ -96,13 +96,16 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 }
 
 gboolean
-yelp_info_init (GNode *tree)
+yelp_info_init (GNode *tree, GList **index)
 {
 	GNode       *root;
 	struct stat  stat_dir1;
 	struct stat  stat_dir2;
 	GSList      *info_list = NULL;
 	GSList      *node;
+	YelpSection *section;
+	YelpSection *index_section;
+	gchar       *index_uri;
 	
 	stat ("/usr/info", &stat_dir1);
 	stat ("/usr/share/info", &stat_dir2);
@@ -126,6 +129,17 @@ yelp_info_init (GNode *tree)
 
 	for (node = info_list; node; node = node->next) {
 		g_node_append_data (root, node->data);
+		section = YELP_SECTION (node->data);
+		
+		index_uri = g_strconcat ("index:", section->uri, NULL);
+
+		index_section = yelp_section_new (YELP_SECTION_INDEX,
+						  section->name, index_uri,
+						  section->reference, 
+						  section->scheme);
+		g_free (index_uri);
+
+		*index = g_list_prepend (*index, index_section);
 	}
 
 	g_slist_free (info_list);

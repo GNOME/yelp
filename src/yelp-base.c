@@ -170,9 +170,9 @@ yelp_base_new (void)
         base = g_object_new (YELP_TYPE_BASE, NULL);
 	priv = base->priv;
 	
-	yelp_scrollkeeper_init (priv->toc_tree, (&priv->index));
+	yelp_scrollkeeper_init (priv->toc_tree, &priv->index);
 	yelp_man_init (base->priv->toc_tree);
-	yelp_info_init (base->priv->toc_tree);
+	yelp_info_init (base->priv->toc_tree, &priv->index);
 	
         return base;
 }

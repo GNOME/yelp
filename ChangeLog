@@ -1,5 +1,14 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-section.h: added casting macro YELP_SECTION.
+
+	* src/yelp-base.c (yelp_base_new): pass index-list to info init.
+
+	* src/yelp-info.c (yelp_info_init): 
+	- Fixes #73291
+	- added index-list to argument.
+	- add info pages to index-list.
+
 	* src/yelp-view-toc.c (yelp_view_toc_start): 
 	- Fixes #72146
 	- Don't show "Other documents" if neither man or info are
