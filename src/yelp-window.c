@@ -171,6 +171,7 @@ struct _YelpWindowPriv {
     GNode          *doc_tree;
     GList          *index;
 
+    GtkWidget      *main_box;
     GtkWidget      *pane;
     GtkWidget      *side_sects;
     YelpHtml       *html_view;
@@ -370,7 +371,6 @@ static void
 window_populate (YelpWindow *window)
 {
     YelpWindowPriv     *priv;
-    GtkWidget          *main_box;
     GtkWidget          *toolbar;
     GtkAccelGroup      *accel_group;
     GtkWidget          *menu_item;
@@ -378,9 +378,9 @@ window_populate (YelpWindow *window)
 
     priv = window->priv;
 
-    main_box        = gtk_vbox_new (FALSE, 0);
+    priv->main_box = gtk_vbox_new (FALSE, 0);
 
-    gtk_container_add (GTK_CONTAINER (window), main_box);
+    gtk_container_add (GTK_CONTAINER (window), priv->main_box);
 	
     accel_group  = gtk_accel_group_new ();
     priv->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
@@ -409,14 +409,14 @@ window_populate (YelpWindow *window)
     if (menu_item)
 	gtk_widget_set_sensitive (menu_item, FALSE);
 
-    gtk_box_pack_start (GTK_BOX (main_box),
+    gtk_box_pack_start (GTK_BOX (priv->main_box),
 			GTK_WIDGET (gtk_item_factory_get_widget
 				    (priv->item_factory, "<main>")),
 			FALSE, FALSE, 0);
 
     toolbar = window_create_toolbar (window);
 
-    gtk_box_pack_start (GTK_BOX (main_box),
+    gtk_box_pack_start (GTK_BOX (priv->main_box),
 			GTK_WIDGET (toolbar),
 			FALSE, FALSE, 0);
 			
@@ -464,7 +464,7 @@ window_populate (YelpWindow *window)
 
     gtk_paned_add2    (GTK_PANED (priv->pane), priv->html_sw);
 
-    gtk_box_pack_start (GTK_BOX (main_box),
+    gtk_box_pack_start (GTK_BOX (priv->main_box),
 			priv->pane,
 			TRUE, TRUE, 0);
 
@@ -550,18 +550,51 @@ static void
 window_set_sections (YelpWindow   *window,
 		     GtkTreeModel *sections)
 {
+    GList *children, *child;
+    gboolean has_child = FALSE;
     YelpWindowPriv *priv;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
-
     priv = window->priv;
 
-    if (sections == NULL) {
-	// FIXME: remove the sidebar.
+    if (sections) {
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
+
+	children = gtk_container_get_children (GTK_CONTAINER (priv->main_box));
+
+	for (child = children; child; child = child->next)
+	    if (child->data == priv->html_view)
+		has_child = TRUE;
+
+	if (has_child) {
+	    gtk_container_remove (GTK_CONTAINER (priv->main_box),
+				  priv->html_sw);
+	    gtk_paned_add2       (GTK_PANED (priv->pane),
+				  priv->html_sw);
+	    gtk_box_pack_start   (GTK_BOX (priv->main_box),
+				  priv->pane,
+				  TRUE, TRUE, 0);
+	}
+	g_list_free (children);
     } else {
-	// FIXME: add the sidebar.
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
+
+	children = gtk_container_get_children (GTK_CONTAINER (priv->main_box));
+
+	for (child = children; child; child = child->next)
+	    if (child->data == priv->pane)
+		has_child = TRUE;
+
+	if (has_child) {
+	    gtk_container_remove (GTK_CONTAINER (priv->main_box),
+				  priv->pane);
+	    gtk_container_remove (GTK_CONTAINER (priv->pane),
+				  priv->html_sw);
+	    gtk_box_pack_start   (GTK_BOX (priv->main_box),
+				  priv->html_sw,
+				  TRUE, TRUE, 0);
+	}
+	g_list_free (children);
     }
 }
 
