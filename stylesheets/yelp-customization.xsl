@@ -296,7 +296,7 @@
    </td>
   </xsl:when>
   <xsl:otherwise>
-    <td><xsl:text>&amp;nbsp;</xsl:text></td>
+    <td><xsl:entity name="nbsp" /></td>
   </xsl:otherwise>
 </xsl:choose>
 </xsl:template>
