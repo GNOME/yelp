@@ -20,10 +20,11 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#include "yelp-util.h"
-
 #include <libgnomevfs/gnome-vfs.h>
 #include <string.h>
+
+#include "yelp-section.h"
+#include "yelp-util.h"
 
 /* This code comes from gnome vfs: */
 
@@ -484,11 +485,12 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 		return NULL;
 	}
 
-	docpath = str_uri + 6;
 	
 	if ((extension = strstr (str_uri, ".xml"))) {
+		const gchar *str;
+		str = str_uri + 6;
 		/* This means we have a ghelp-uri with full path */
-		docpath = g_strndup (docpath, extension + 4 - docpath);
+		docpath = g_strndup (str, extension + 4 - str);
 	} else {
 		/* URI not a fullpath URI, let the GnomeVFS help module 
 		   calculate the full URI */

@@ -26,6 +26,7 @@
 
 #include <libgnome/gnome-i18n.h>
 #include <gtk/gtktreeview.h>
+
 #include "yelp-html.h"
 #include "yelp-view-index.h"
 

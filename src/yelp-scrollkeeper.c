@@ -28,6 +28,7 @@
 #include <libxml/parser.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomevfs/gnome-vfs.h>
+
 #include "yelp-section.h"
 #include "yelp-util.h"
 #include "yelp-scrollkeeper.h"

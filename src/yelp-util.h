@@ -23,7 +23,7 @@
 #ifndef __YELP_UTIL_H__
 #define __YELP_UTIL_H__
 
-#include "yelp-section.h"
+#include <glib.h>
 
 gchar *  yelp_util_resolve_relative_uri     (const gchar   *base_uri,
 					     const gchar   *uri);

@@ -34,8 +34,9 @@
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include "yelp-window.h"
+
 #include "GNOME_Yelp.h"
+#include "yelp-window.h"
 #include "yelp-base.h"
 
 #define YELP_FACTORY_OAFIID "OAFIID:GNOME_Yelp_Factory"

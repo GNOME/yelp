@@ -28,8 +28,6 @@
 #include <config.h>
 #endif
 
-#include <yelp-info.h>
-#include <yelp-util.h>
 #include <libgnome/gnome-i18n.h>
 
 #include <sys/stat.h>
@@ -38,6 +36,11 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <unistd.h>
+
+#include "yelp-section.h"
+#include "yelp-util.h"
+#include "yelp-info.h"
+
 
 static void
 yelp_info_populate_tree_for_subdir (const char *basedir, GNode *parent)

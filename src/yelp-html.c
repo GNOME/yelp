@@ -24,14 +24,14 @@
 #include <config.h>
 #endif
 
-#include "yelp-util.h"
-#include "yelp-marshal.h"
-
-#include <string.h>
-
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
+
+#include <string.h>
 #include <stdio.h>
+
+#include "yelp-util.h"
+#include "yelp-marshal.h"
 #include "yelp-html.h"
 
 #define d(x)

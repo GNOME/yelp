@@ -27,6 +27,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgtkhtml/gtkhtml.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>

@@ -23,12 +23,13 @@
 #include <config.h>
 
 #include <bonobo/bonobo-main.h>
+
 #include "yelp-window.h"
 #include "yelp-section.h"
 #include "yelp-scrollkeeper.h"
-#include "yelp-base.h"
 #include "yelp-man.h"
 #include "yelp-info.h"
+#include "yelp-base.h"
 
 typedef struct {
 	YelpBase     *base;

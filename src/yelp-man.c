@@ -28,8 +28,6 @@
 #include <config.h>
 #endif
 
-#include <yelp-man.h>
-#include <yelp-util.h>
 #include <libgnome/gnome-i18n.h>
 
 #include <sys/stat.h>
@@ -38,6 +36,10 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <unistd.h>
+
+#include "yelp-section.h"
+#include "yelp-util.h"
+#include "yelp-man.h"
 
 struct TreeNode {
 	char *name;
