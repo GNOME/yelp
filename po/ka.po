@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-04-22 13:59+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-30 23:35-0500\n"
 "PO-Revision-Date: 2004-04-23 01:15+0400\n"
 "Last-Translator: Aiet Kolkhi <aiet@qartuli.net>\n"
 "Language-Team: Georgian <aiet@qartuli.net>\n"
@@ -18,8 +19,7 @@ msgstr ""
 msgid "Applets"
 msgstr "აპლეტები"
 
-#: data/toc.xml.in.h:2
-#: src/yelp-man.c:429
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
 msgstr "პროგრამები"
 
@@ -27,8 +27,7 @@ msgstr "პროგრამები"
 msgid "Desktop"
 msgstr "დესკტოპი"
 
-#: data/toc.xml.in.h:4
-#: src/yelp-man.c:434
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
 msgid "Development"
 msgstr "პროგრამირება"
 
@@ -40,8 +39,7 @@ msgstr "პროგრამირების გარსები"
 msgid "Development Tools"
 msgstr "პროგრამირების ხელსაწყოები"
 
-#: data/toc.xml.in.h:7
-#: stylesheets/l10n.xml.in.h:36
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "რედაქტორები"
 
@@ -137,30 +135,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-ის ქარხანა"
 
-#: src/yelp-db-pager.c:435
-#: src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:438 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "yelp:document-ზე ბმულის (href-ის) ატრიბუტი ვერ ვიპოვე"
 
-#: src/yelp-db-pager.c:450
-#: src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:453 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "მეხსიერება არ მყოფნის"
 
-#: src/yelp-db-pager.c:638
-#: src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:641 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "სათაო გვერდი"
 
-#: src/yelp-db-pager.c:640
+#: src/yelp-db-pager.c:643 src/yelp-man-pager.c:372
 #: stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "შინაარსი"
 
-#: src/yelp-db-pager.c:658
+#: src/yelp-db-pager.c:661 src/yelp-man-pager.c:390
 #: stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "უცნობი"
 
@@ -197,19 +190,12 @@ msgstr "ვერ გავააქტიურე Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "ახალი სარკმელი ვერ გავხსენი."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -362,8 +348,7 @@ msgstr "/დახმარება/_შესახებ"
 msgid "Help Browser"
 msgstr "დახმარების მნახველი"
 
-#: src/yelp-window.c:570
-#: stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "განყოფილება"
 
@@ -397,11 +382,14 @@ msgstr "ვიძახებ..."
 
 #  Note to translators: put here your name (and address) so it
 #  * will shop up in the "about" box
-#: src/yelp-window.c:1303
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:1304
 msgid "translator_credits"
-msgstr "ქართული თარგმანი: აიეტ კოლხი <aiet@qartuli.com>   http://aiet.qartuli.net"
+msgstr ""
+"ქართული თარგმანი: აიეტ კოლხი <aiet@qartuli.com>   http://aiet.qartuli.net"
 
-#: src/yelp-window.c:1309
+#: src/yelp-window.c:1310
 msgid "A Help Browser for GNOME"
 msgstr "GNOME-ს დახმარების დამთვალიერებელი"
 
@@ -676,4 +664,3 @@ msgstr "დახმარება GNOME-ში"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "დახმარება"
-
