@@ -50,6 +50,7 @@ typedef struct {
 struct _YelpDocInfo {
     gchar      *id;
     gchar      *title;
+    gchar      *description;
     gchar      *category;
     gchar      *lang;
     gint        lang_priority;
@@ -291,6 +292,21 @@ yelp_doc_info_set_title (YelpDocInfo *doc, gchar *title)
 	g_free (doc->title);
 
     doc->title = g_strdup (title);
+}
+
+const gchar *
+yelp_doc_info_get_description (YelpDocInfo *doc)
+{
+    return (const gchar *) doc->description;
+}
+
+void
+yelp_doc_info_set_description (YelpDocInfo *doc, gchar *desc)
+{
+    if (doc->description)
+	g_free (doc->description);
+
+    doc->description = g_strdup (desc);
 }
 
 const gchar *

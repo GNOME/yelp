@@ -1,3 +1,14 @@
+2004-11-29  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Leak less memory
+
+	* src/yelp-toc-pager.c:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* stylesheets/toc2html.xsl:
+	- More TOC improvements
+
 2004-11-28  Shaun McCance  <shaunm@gnome.org>
 
 	* configure.in:

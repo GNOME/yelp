@@ -530,6 +530,7 @@ process_omf_pending (YelpTocPager *pager)
     yelp_doc_info_set_title (doc_info, omf_title->stringval);
     yelp_doc_info_set_language (doc_info, omf_language->stringval);
     yelp_doc_info_set_category (doc_info, omf_category->stringval);
+    yelp_doc_info_set_description (doc_info, omf_description->stringval);
 
     id = g_strconcat ("scrollkeeper.", (gchar *) omf_seriesid->stringval, NULL);
     yelp_doc_info_set_id (doc_info, id);
@@ -631,26 +632,6 @@ process_read_menu (YelpTocPager *pager)
 	xmlNodePtr cur, keep = NULL;
 	xmlChar *keep_lang = NULL;
 	int j, keep_pri = INT_MAX;
-	xmlChar *icon;
-
-	icon = xmlGetProp (node, "icon");
-	if (icon) {
-	    GtkIconInfo *info;
-	    const GtkIconTheme *theme = yelp_settings_get_icon_theme ();
-	    info = gtk_icon_theme_lookup_icon (theme, icon, 24, 0);
-	    if (info) {
-		xmlNodePtr new = xmlNewChild (node, NULL, "smallicon", NULL);
-		xmlNewNsProp (new, NULL, "file", gtk_icon_info_get_filename (info));
-		gtk_icon_info_free (info);
-	    }
-	    info = gtk_icon_theme_lookup_icon (theme, icon, 48, 0);
-	    if (info) {
-		xmlNodePtr new = xmlNewChild (node, NULL, "largeicon", NULL);
-		xmlNewNsProp (new, NULL, "file", gtk_icon_info_get_filename (info));
-		gtk_icon_info_free (info);
-	    }
-	    xmlFree (icon);
-	}
 
 	for (cur = node->children; cur; cur = cur->next) {
 	    if (!xmlStrcmp (cur->name, BAD_CAST "title")) {
@@ -775,6 +756,9 @@ process_xslt (YelpTocPager *pager)
 	params[params_i++] = "help_icon";
 	params[params_i++] = g_strdup_printf ("\"%s\"",
 					      gtk_icon_info_get_filename (info));
+	params[params_i++] = "help_icon_size";
+	params[params_i++] = g_strdup_printf ("%i",
+					      gtk_icon_info_get_base_size (info));
 	gtk_icon_info_free (info);
     }
     params[params_i++] = NULL;
@@ -828,11 +812,9 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
     xmlNewTextChild (new, NULL, "title", text);
     g_free (text);
 
-    /*
     text = yelp_doc_info_get_description (doc_info);
-    new = xmlNewTextChild (node, NULL, "description", text);
+    xmlNewTextChild (new, NULL, "description", text);
     g_free (text);
-    */
 }
 
 static void

@@ -335,13 +335,13 @@ db_pager_process (YelpPager *pager)
     }
 
     params[params_i++] = "stylesheet_path";
-    params[params_i++] = "\"file://" DB_STYLESHEET_PATH "/\"";
+    params[params_i++] = g_strdup_printf ("\"file://%s\"", DB_STYLESHEET_PATH);
     params[params_i++] = "html_extension";
-    params[params_i++] = "\"\"";
+    params[params_i++] = g_strdup ("\"\"");
     params[params_i++] = "resolve_xref_chunk";
-    params[params_i++] = "0";
+    params[params_i++] = g_strdup ("0");
     params[params_i++] = "admon_graphics_path";
-    params[params_i++] = "\"file://" DATADIR "/yelp/icons/\"";
+    params[params_i++] = g_strdup_printf ("\"file://%s\"", DATADIR "/yelp/icons/");
     params[params_i++] = NULL;
 
     priv->stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
@@ -380,6 +380,9 @@ db_pager_process (YelpPager *pager)
     g_signal_emit_by_name (pager, "finish");
 
  done:
+    for (params_i = 0; params[params_i] != NULL; params_i++)
+	if (params_i % 2 == 1)
+	    g_free (params[params_i]);
     g_free (filename);
     g_free (walker);
 
