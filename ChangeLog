@@ -1,3 +1,20 @@
+2002-05-31  Mikael Hallendal  <micke@codefactory.se>
+
+	* stylesheets/docbook/*: 
+	- Added the 1.48 stylesheets until the stylesheet issues have been 
+	  sorted out. Norm has said that in the 1.50+ the changes between
+	  the different versions will not cause breakage and we can then
+	  use current instead of a certain version of these. Lots of
+	  distributions don't ship 1.48 and this will cause lots of
+	  troubles for the users.
+
+	* stylesheets/yelp-customization.xsl: use a relative link to
+	  reference to the stylesheets.
+
+	* stylesheets/Makefile.am (SUBDIRS): added docbook
+
+	* configure.in: output stylesheet/docbook/Makefile
+
 2002-05-27  Mikael Hallendal  <micke@codefactory.se> 
 
 	* Release 0.9
