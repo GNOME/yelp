@@ -115,7 +115,7 @@ main_base_factory (BonoboGenericFactory *factory,
 }
 
 static CORBA_Object
-main_activate_base ()
+main_activate_base (void)
 {
 	CORBA_Environment ev;
 	CORBA_Object      yelp_base;

@@ -142,7 +142,7 @@ static gboolean  bookmarks_button_press_cb  (GtkWidget           *widget,
 					     GdkEventButton      *event);
 static gboolean  bookmarks_configure_cb     (GtkWidget           *widget, 
 					     GdkEventConfigure   *event,
-					     gpointer            data);
+					     gpointer             data);
 
 
 static GtkActionEntry popup_entries[] = {
@@ -512,32 +512,32 @@ bookmarks_key_event_cb (GtkWidget   *widget,
     model = gtk_tree_view_get_model (view);
     sel = gtk_tree_view_get_selection (view);
     
-    gtk_tree_selection_get_selected (sel, &model, &iter);
-    path = gtk_tree_model_get_path (model, &iter);
-
-    switch (event->keyval) {
-    case GDK_BackSpace:
-    case GDK_Delete:
-	gtk_tree_store_remove (actions_store, &iter);
-	bookmarks_ensure_valid ();
-	bookmarks_rebuild_menus ();
-	break;
-    case GDK_Return:
-    case GDK_KP_Enter:
-	bookmarks_open_cb (view, path, NULL, NULL);
-	break;
-    case GDK_Up:
-	gtk_tree_path_prev (path);
-	gtk_tree_selection_select_path (sel, path);
-	break;
-    case GDK_Down:
-	gtk_tree_path_next (path);
-	gtk_tree_selection_select_path (sel, path);
-	break;
-    default:
-	break;
+    if (gtk_tree_selection_get_selected (sel, &model, &iter)) {
+	path = gtk_tree_model_get_path (model, &iter);
+	
+	switch (event->keyval) {
+	case GDK_BackSpace:
+	case GDK_Delete:
+	    gtk_tree_store_remove (actions_store, &iter);
+	    bookmarks_ensure_valid ();
+	    bookmarks_rebuild_menus ();
+	    break;
+	case GDK_Return:
+	case GDK_KP_Enter:
+	    bookmarks_open_cb (view, path, NULL, NULL);
+	    break;
+	case GDK_Up:
+	    gtk_tree_path_prev (path);
+	    gtk_tree_selection_select_path (sel, path);
+	    break;
+	case GDK_Down:
+	    gtk_tree_path_next (path);
+	    gtk_tree_selection_select_path (sel, path);
+	    break;
+	default:
+	    break;
+	}
     }
-
 }
 
 static void
@@ -682,13 +682,13 @@ bookmarks_open_button_cb (GtkWidget *widget, GtkTreeView *view)
     model = gtk_tree_view_get_model (view);
 
     select = gtk_tree_view_get_selection (view);
-    gtk_tree_selection_get_selected (select, NULL, &iter);
-
-    path = gtk_tree_model_get_path (model, &iter);
-
-    bookmarks_open_cb (view, path, NULL, NULL);
-
-    gtk_tree_path_free (path);
+    if (gtk_tree_selection_get_selected (select, NULL, &iter)) {
+	path = gtk_tree_model_get_path (model, &iter);
+	
+	bookmarks_open_cb (view, path, NULL, NULL);
+	
+	gtk_tree_path_free (path);
+    }
 }
 
 static void
@@ -718,11 +718,12 @@ bookmarks_remove_button_cb (GtkWidget *widget, GtkTreeView *view)
     GtkTreeSelection *select;
 
     select = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
-    gtk_tree_selection_get_selected (select, NULL, &iter);
+    if (gtk_tree_selection_get_selected (select, NULL, &iter)) {
 
-    gtk_tree_store_remove (actions_store, &iter);
-    bookmarks_ensure_valid ();
-    bookmarks_rebuild_menus ();
+	gtk_tree_store_remove (actions_store, &iter);
+	bookmarks_ensure_valid ();
+	bookmarks_rebuild_menus ();
+    }
 }
 
 static void
@@ -774,11 +775,12 @@ bookmarks_menu_edit_cb (GtkAction *action, GtkWidget *widget)
     GtkTreeModel *model = GTK_TREE_MODEL (actions_store);
 
     sel = gtk_tree_view_get_selection (view);
-    gtk_tree_selection_get_selected (sel, &model, &iter);
-    path = gtk_tree_model_get_path (model, &iter);
-    col = gtk_tree_view_get_column (view, 0);
-
-    gtk_tree_view_set_cursor (view, path, col, TRUE);
+    if (gtk_tree_selection_get_selected (sel, &model, &iter)) {
+	path = gtk_tree_model_get_path (model, &iter);
+	col = gtk_tree_view_get_column (view, 0);
+	
+	gtk_tree_view_set_cursor (view, path, col, TRUE);
+    }
 }
 
 static void
@@ -789,11 +791,12 @@ bookmarks_menu_remove_cb (GtkAction *action, GtkWidget *widget)
     GtkTreeIter iter;
 
     sel = gtk_tree_view_get_selection (view);
-    gtk_tree_selection_get_selected (sel, NULL, &iter);
-
-    gtk_tree_store_remove (actions_store, &iter);
-    bookmarks_ensure_valid ();
-    bookmarks_rebuild_menus ();
+    if (gtk_tree_selection_get_selected (sel, NULL, &iter)) {
+	
+	gtk_tree_store_remove (actions_store, &iter);
+	bookmarks_ensure_valid ();
+	bookmarks_rebuild_menus ();
+    }
 }
 
 static void
@@ -805,11 +808,11 @@ bookmarks_menu_open_cb (GtkAction *action, GtkWidget *widget)
     GtkTreeModel *model = GTK_TREE_MODEL (actions_store);
     GtkTreePath *path;
 
-    gtk_tree_selection_get_selected (sel, &model, &iter);
-    path = gtk_tree_model_get_path (model, &iter);
-
-    bookmarks_open_cb (view, path, NULL, NULL);
-
+    if (gtk_tree_selection_get_selected (sel, &model, &iter)) {
+	path = gtk_tree_model_get_path (model, &iter);
+	
+	bookmarks_open_cb (view, path, NULL, NULL);
+    }
 }
 
 static gboolean
