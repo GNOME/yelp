@@ -92,7 +92,12 @@ reader_q_data_new                         (YelpReader          *reader,
 					   gint                 stamp,
 					   ReaderQueueType      type);
 static void      reader_q_data_free       (ReaderQueueData     *q_data);
+
+#if 0
+/* FIXME: Solve this so we don't leak */
 static void      reader_th_data_free      (ReaderThreadData    *th_data);
+#endif
+
 
 enum {
 	START,
@@ -698,7 +703,7 @@ reader_q_data_free (ReaderQueueData *q_data)
 	g_free (q_data->data);
 	g_free (q_data);
 }
-
+#if 0
 static void
 reader_th_data_free (ReaderThreadData *th_data)
 {
@@ -709,9 +714,7 @@ reader_th_data_free (ReaderThreadData *th_data)
 	
 	g_free (th_data);
 }
-
-
-
+#endif
 YelpReader *
 yelp_reader_new (gboolean async)
 {
