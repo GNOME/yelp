@@ -491,7 +491,19 @@
   <xsl:comment> End of chunk </xsl:comment>
 </xsl:for-each>
 
+<xsl:for-each select="$root/part/appendix">
+  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+  <xsl:call-template name="component.toc"/>
+  <xsl:comment> End of chunk </xsl:comment>
+</xsl:for-each>
+
 <xsl:for-each select="$root/chapter">
+  <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
+  <xsl:call-template name="component.toc"/>
+  <xsl:comment> End of chunk </xsl:comment>
+</xsl:for-each>
+
+<xsl:for-each select="$root/appendix">
   <xsl:comment> Start of chunk: [<xsl:value-of select="@id"/>] </xsl:comment>
   <xsl:call-template name="component.toc"/>
   <xsl:comment> End of chunk </xsl:comment>
