@@ -1,5 +1,9 @@
 2002-04-18  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-html.c: 
+	- Use g_spawn_async_with_pipes and then io_watch to read the data
+	  in asynchronous.
+
 	* src/yelp-man.c (yelp_man_populate_tree_for_subdir): set the uri
 	  for man-pages to be man:name.section instead of full path. Seems 
 	  to work much much better this way.

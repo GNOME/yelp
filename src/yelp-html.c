@@ -40,30 +40,10 @@
 
 #define d(x)
 
-typedef struct _StreamData StreamData;
-
-static void yh_init                  (YelpHtml           *html);
-static void yh_class_init            (YelpHtmlClass      *klass);
-static void yh_link_clicked_cb       (HtmlDocument          *doc, 
-				      const gchar           *url, 
-				      YelpHtml              *html);
-static void yh_stream_cancel         (HtmlStream            *stream, 
-				      gpointer               user_data, 
-				      gpointer               cancel_data);
-static void yh_url_requested_cb      (HtmlDocument          *doc,
-				      const gchar           *uri,
-				      HtmlStream            *stream,
-				      gpointer               data);
-
-#define BUFFER_SIZE 16384
-
-enum {
-	URL_SELECTED,
-	LAST_SIGNAL
-};
-
-static gint        signals[LAST_SIGNAL] = { 0 };
-static GHashTable *cache_table = NULL;
+typedef enum {
+	MAN,
+	INFO
+} DocType;
 
 struct _YelpHtmlPriv {
 	HtmlView     *view;
@@ -76,10 +56,49 @@ struct _YelpHtmlPriv {
 
 typedef struct {
 	YelpHtml       *html;
-	gchar          *buffer;
-	GnomeVFSHandle *handle;
 	HtmlStream     *stream;
 } ReadData;
+
+static void      yh_init                  (YelpHtml           *html);
+static void      yh_class_init            (YelpHtmlClass      *klass);
+static int       yelp_html_do_write       (void               *context,
+					   const char         *buffer,
+					   int                 len);
+static int       yelp_html_do_close       (void               *context);
+
+static void      yelp_html_do_docbook     (YelpHtml           *html,
+					   const gchar        *uri,
+					   GError            **error);
+static gboolean  yelp_html_io_watch_cb    (GIOChannel         *iochannel, 
+					   GIOCondition        cond, 
+					   ReadData           *read_data);
+
+static void      yelp_html_do_maninfo     (YelpHtml           *html,
+					   HtmlStream         *stream,
+					   DocType             type, 
+					   const gchar        *uri,
+					   GError            **error);
+static void      yh_url_requested_cb      (HtmlDocument       *doc,
+					   const gchar        *uri,
+					   HtmlStream         *stream,
+					   gpointer            data);
+static void      yh_stream_cancel         (HtmlStream         *stream, 
+					   gpointer            user_data, 
+					   gpointer            cancel_data);
+
+static void      yh_link_clicked_cb       (HtmlDocument       *doc, 
+					   const gchar        *url, 
+					   YelpHtml           *html);
+
+#define BUFFER_SIZE 16384
+
+enum {
+	URL_SELECTED,
+	LAST_SIGNAL
+};
+
+static gint        signals[LAST_SIGNAL] = { 0 };
+static GHashTable *cache_table = NULL;
 
 GType
 yelp_html_get_type (void)
@@ -230,26 +249,45 @@ yelp_html_do_docbook (YelpHtml *html, const gchar *uri, GError **error)
 }
 
 static gboolean
-yelp_html_idle_read (gpointer data)
+yelp_html_io_watch_cb (GIOChannel   *iochannel, 
+		       GIOCondition  cond, 
+		       ReadData     *read_data)
 {
-	ReadData         *read_data = (ReadData *)data;
-	GnomeVFSFileSize  read_len;
-	GnomeVFSResult    result;
-	
-	result = gnome_vfs_read (read_data->handle, 
-				 read_data->buffer,
-				 BUFFER_SIZE, 
-				 &read_len);
+	YelpHtmlPriv *priv;
+	static gchar  buffer[BUFFER_SIZE];
+	guint         n;
+	GIOError      io_error;
 
-	if (result == GNOME_VFS_OK) {
-		d(g_print ("Read: %s\n", read_data->buffer));
+	g_return_val_if_fail (read_data != NULL, FALSE);
+	g_return_val_if_fail (YELP_IS_HTML (read_data->html), FALSE);
 
-		yelp_html_do_write (read_data->html, 
-				    read_data->buffer, 
-				    read_len);
-	} else {
-		d(g_print ("FOOOOO: %s\n", 
-			   gnome_vfs_result_to_string (result)));
+	priv = read_data->html->priv;
+
+	if (cond & G_IO_IN) {
+		d(g_print ("Read available\n"));
+		
+		io_error = g_io_channel_read (iochannel, buffer, 
+					      BUFFER_SIZE, &n);
+		if (io_error != G_IO_ERROR_NONE) {
+			g_warning ("Read Error: %d", io_error);
+			return FALSE;
+		}
+
+		yelp_html_do_write (read_data->html, buffer, n);
+	}
+
+	if (cond & G_IO_HUP) {
+		html_stream_close (read_data->stream);
+		
+		d(g_print ("Close\n"));
+
+		gtk_adjustment_set_value (
+			gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
+			0);
+
+		gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, NULL);
+
+		g_free (read_data);
 		return FALSE;
 	}
 
@@ -257,41 +295,16 @@ yelp_html_idle_read (gpointer data)
 }
 
 static void
-yelp_html_idle_read_end (gpointer data)
-{
-	ReadData     *read_data = (ReadData *)data;
-	YelpHtml     *html;
-	YelpHtmlPriv *priv;
-	
-	html = read_data->html;
-	priv = html->priv;
-	
-	gnome_vfs_close (read_data->handle);
-	
-	html_stream_close (read_data->stream);
-
-	d(g_print ("Close\n"));
-
-	gtk_adjustment_set_value (
-		gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
-		0);
-
-	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, NULL);
-
-	g_free (read_data);
-}
-
-typedef enum {
-	MAN,
-	INFO
-} DocType;
-
-static void
 yelp_html_do_maninfo (YelpHtml *html, HtmlStream *stream,
 		      DocType type, const gchar *uri, GError **error)
 {
-	gchar *command_line = NULL;
-	gchar *stdout       = NULL;;
+	gchar       *command_line = NULL;
+	gchar      **argv = 0;
+	gint         output_fd;
+	GIOChannel  *io_channel;
+	ReadData    *read_data;
+	
+	d(g_print ("entering from maninfo: %d\n", output_fd));
 
 	switch (type) {
 	case MAN:
@@ -305,13 +318,36 @@ yelp_html_do_maninfo (YelpHtml *html, HtmlStream *stream,
 		return;
 	};
 	
-	if (g_spawn_command_line_sync (command_line, &stdout, 
-				      NULL, NULL, error)) {
-		html_stream_write (stream, stdout, strlen (stdout));
-		g_free (stdout);
+	if (!g_shell_parse_argv (command_line, NULL, &argv, error)) {
+		return;
 	}
 
 	g_free (command_line);
+
+	d(g_print ("spawning in maninfo\n"));
+	
+	if (!g_spawn_async_with_pipes (NULL, argv, NULL, 
+				       G_SPAWN_STDERR_TO_DEV_NULL | G_SPAWN_SEARCH_PATH,
+				       NULL, NULL, NULL, NULL, 
+				       &output_fd, NULL, error)) {
+		return;
+	}
+	
+	d(g_print ("spawned in maninfo: %d\n", output_fd));
+
+	g_strfreev (argv);
+
+	io_channel = g_io_channel_unix_new (output_fd);
+	
+	read_data = g_new (ReadData, 1);
+	read_data->html   = html;
+	read_data->stream = stream;
+
+	g_io_add_watch (io_channel, G_IO_IN | G_IO_HUP, 
+			(GIOFunc) yelp_html_io_watch_cb,
+			read_data);
+
+	d(g_print ("returning from maninfo: %d\n", output_fd));
 }
 
 static void
