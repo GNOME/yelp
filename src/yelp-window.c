@@ -218,6 +218,7 @@ window_init (YelpWindow *window)
 {
         YelpWindowPriv *priv;
 /* 	YelpURI        *uri; */
+	gint width, height;
 	
         priv = g_new0 (YelpWindowPriv, 1);
         window->priv = priv;
@@ -241,7 +242,6 @@ window_init (YelpWindow *window)
 			  G_CALLBACK (window_toggle_history_forward),
 			  window);
 
-	gint width, height;
 	width = gnome_config_get_int (YELP_CONFIG_WIDTH
 				     "=" YELP_CONFIG_WIDTH_DEFAULT);
 	height = gnome_config_get_int (YELP_CONFIG_HEIGHT
