@@ -195,7 +195,9 @@ yelp_view_index_new (GList *index)
         GtkWidget         *list_sw;
 	GtkWidget         *frame;
 	GtkWidget         *box;
-	
+	GtkWidget         *hbox;
+	GtkWidget         *label;
+		
 	view = g_object_new (YELP_TYPE_VIEW_INDEX, NULL);
 	priv = view->priv;
 
@@ -204,9 +206,17 @@ yelp_view_index_new (GList *index)
 	/* Setup the index box */
 	box = gtk_vbox_new (FALSE, 0);
 
-	priv->entry = gtk_entry_new ();
+	hbox = gtk_hbox_new (FALSE, 0);
 	
-	gtk_box_pack_start (GTK_BOX (box), priv->entry, 
+	label = gtk_label_new (_("Search for:"));
+
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+	priv->entry = gtk_entry_new ();
+
+	gtk_box_pack_end (GTK_BOX (hbox), priv->entry, FALSE, FALSE, 0);
+	
+	gtk_box_pack_start (GTK_BOX (box), hbox, 
 			    FALSE, FALSE, 0);
 
         list_sw = gtk_scrolled_window_new (NULL, NULL);

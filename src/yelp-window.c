@@ -435,7 +435,7 @@ yw_create_toolbar (YelpWindow *window)
 
 	priv->back_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 						      "gtk-go-back",
-						      _("Go back in the history list"), "",
+						      _("Show previous page in history"), "",
 						      NULL, NULL, -1);
 
 	gtk_widget_set_sensitive (priv->back_button, FALSE);
@@ -450,7 +450,7 @@ yw_create_toolbar (YelpWindow *window)
 	
 	priv->forward_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 							 "gtk-go-forward",
-							 _("Go forth in the history list"), "",
+							 _("Show next page in history"), "",
 							 NULL, NULL, -1);
 
 	gtk_widget_set_sensitive (priv->forward_button, FALSE);
@@ -465,7 +465,7 @@ yw_create_toolbar (YelpWindow *window)
 
 	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar), 
 					   "gtk-home",
-					   _("Overview of contents"), "",
+					   _("Go to home view"), "",
 					   NULL, NULL, -1);
 
 	g_signal_connect (G_OBJECT (button), "clicked",

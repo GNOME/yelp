@@ -1,3 +1,18 @@
+2002-02-28  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-index.c:
+	(yelp_view_index_new): Added "Search for:" label in fron of the
+	  search entry. Fixes #72643
+
+	* src/yelp-window.c:
+	(yw_create_toolbar): 
+	- Update string, fixes #72634
+	- Update string, fixes #72635
+
+	* src/yelp-view-toc.c:
+	(yelp_view_toc_man_1): Update string, fixes #72638
+	(yelp_view_toc_start): Update string, fixes #72632
+
 2002-02-25  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-index.c:

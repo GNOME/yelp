@@ -268,7 +268,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 	GNode           *root;
 	char            *path;
 	GList           *sections, *seriesids;
-	gchar           *other_docs_string = _("Other document systems");
+	gchar           *other_docs_string = _("Other Documents");
 	gchar           *man_string = _("Manual pages");
 	gchar           *info_string = _("Info pages");
 	gchar           *installed_string = _("Installed documents");
@@ -488,7 +488,7 @@ yelp_view_toc_man_2 (YelpViewTOC *view,
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, "Manual pages");
+	yelp_view_toc_write_header (view, string);
 		
 	name = yelp_view_toc_full_path_name (view, root);
 	
@@ -508,7 +508,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 	GNode           *root, *node, *child;
 	YelpSection     *section;
 	char            *path;
-	gchar           *string = _("Manual page sections");
+	gchar           *string = _("Manual Pages");
 	
 	priv = view->priv;
 
@@ -527,7 +527,7 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 
 	yelp_view_toc_open (view);
 	
-	yelp_view_toc_write_header (view, _("Manual page sections"));
+	yelp_view_toc_write_header (view, string);
 	
 	yelp_view_toc_printf (view, "<h1>%s</h1>\n", string);
 	
