@@ -462,10 +462,8 @@ window_populate (YelpWindow *window)
     gtk_container_add (GTK_CONTAINER (priv->html_sw),
 		       yelp_html_get_widget (priv->html_view));
 
-    gtk_paned_add2    (GTK_PANED (priv->pane), priv->html_sw);
-
     gtk_box_pack_start (GTK_BOX (priv->main_box),
-			priv->pane,
+			priv->html_sw,
 			TRUE, TRUE, 0);
 
     gtk_widget_grab_focus (yelp_html_get_widget (priv->html_view));
@@ -574,6 +572,7 @@ window_set_sections (YelpWindow   *window,
 	    gtk_box_pack_start   (GTK_BOX (priv->main_box),
 				  priv->pane,
 				  TRUE, TRUE, 0);
+	    gtk_widget_show_all (priv->main_box);
 	}
 	g_list_free (children);
     } else {
@@ -593,6 +592,7 @@ window_set_sections (YelpWindow   *window,
 	    gtk_box_pack_start   (GTK_BOX (priv->main_box),
 				  priv->html_sw,
 				  TRUE, TRUE, 0);
+	    gtk_widget_show_all (priv->main_box);
 	}
 	g_list_free (children);
     }
