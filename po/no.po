@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2002-10-29 22:22+0100\n"
-"PO-Revision-Date: 2002-10-29 22:23+0100\n"
+"POT-Creation-Date: 2002-11-25 21:09+0100\n"
+"PO-Revision-Date: 2002-11-25 21:10+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokml) <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -156,103 +156,106 @@ msgstr "Fri programvare"
 msgid "(C)"
 msgstr "©"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:163
 msgid "/_File"
 msgstr "/_Fil"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:164
 msgid "/File/_New window"
 msgstr "/Fil/_Nytt vindu"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:165
 msgid "/File/_Close window"
 msgstr "/Fil/_Lukk vindu"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:167
 msgid "/_Edit"
 msgstr "/R_ediger"
 
-#: src/yelp-window.c:162
+#: src/yelp-window.c:168
 msgid "/Edit/_Find in page..."
 msgstr "/Rediger/_Finn på siden..."
 
-#. {N_("/Edit/_Find again"),   NULL,         window_find_again_cb, 0,                         "<StockItem>", GTK_STOCK_FIND    },
-#: src/yelp-window.c:165
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "/Rediger/_Finn igjen"
+
+#: src/yelp-window.c:171
 msgid "/_Go"
 msgstr "/_Gå"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:172
 msgid "/Go/_Back"
 msgstr "/Gå/Til_bake"
 
-#: src/yelp-window.c:167
+#: src/yelp-window.c:173
 msgid "/Go/_Forward"
 msgstr "/Gå/_Fremover"
 
-#: src/yelp-window.c:168
+#: src/yelp-window.c:174
 msgid "/Go/_Home"
 msgstr "/Gå/_Hjem"
 
-#: src/yelp-window.c:169
+#: src/yelp-window.c:175
 msgid "/Go/_Index"
 msgstr "/Gå/_Indeks"
 
-#: src/yelp-window.c:171
+#: src/yelp-window.c:177
 msgid "/_Help"
 msgstr "/_Hjelp"
 
-#: src/yelp-window.c:172
+#: src/yelp-window.c:178
 msgid "/Help/_About"
 msgstr "/Hjelp/_Om"
 
-#: src/yelp-window.c:229 src/yelp-window.c:429
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "Hjelp leser"
 
-#: src/yelp-window.c:342
+#: src/yelp-window.c:351
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet «%s» eksisterer ikke"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:640
+#: src/yelp-window.c:675
 msgid "translator_credits"
 msgstr "translator_credits"
 
-#: src/yelp-window.c:644
+#: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjelp leser for GNOME 2.0"
 
-#: src/yelp-window.c:738
+#: src/yelp-window.c:788
 msgid "Back"
 msgstr "Tilbake"
 
-#: src/yelp-window.c:739
+#: src/yelp-window.c:789
 msgid "Show previous page in history"
 msgstr "Vis forrige side i historikken"
 
-#: src/yelp-window.c:750
+#: src/yelp-window.c:800
 msgid "Forward"
 msgstr "Fremover"
 
-#: src/yelp-window.c:751
+#: src/yelp-window.c:801
 msgid "Show next page in history"
 msgstr "Vis neste side i historikken"
 
-#: src/yelp-window.c:764
+#: src/yelp-window.c:814
 msgid "Home"
 msgstr "Hjem"
 
-#: src/yelp-window.c:765
+#: src/yelp-window.c:815
 msgid "Go to home view"
 msgstr "Gå til åpningssiden"
 
-#: src/yelp-window.c:775
+#: src/yelp-window.c:825
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:776
+#: src/yelp-window.c:826
 msgid "Search in the index"
 msgstr "Søk i indeksen"
 
