@@ -1,19 +1,53 @@
+# translation of yelp.HEAD.he.po to Hebrew
 # translation of yelp.HEAD.po to Hebrew
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2002
+# Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2002,2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
-"POT-Creation-Date: 2002-11-27 05:59+0100\n"
-"PO-Revision-Date: 2002-11-27 14:42+0200\n"
+"Project-Id-Version: yelp.HEAD.he\n"
+"POT-Creation-Date: 2003-01-14 04:07+0100\n"
+"PO-Revision-Date: 2003-01-14 13:18+0200\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0beta2\n"
+"X-Generator: KBabel 1.0\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>מצא מלל במסמך:</b>"
+
+#: data/ui/yelp.glade.h:3
+# he.po: To check!
+msgid "Automatically _wrap around"
+msgstr "_גלוש סביב באופן אוטומטי"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "מצא מלל..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "התאם מילה _שלמה"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "ה_תאם אותיות גדולות/קטנות"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "ה_בא"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "ה_קודם"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -23,12 +57,12 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr ""
 
-#: src/yelp-main.c:115
+#: src/yelp-main.c:117
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "לא ניתן להפעיל את Yelp: '%s'"
 
-#: src/yelp-main.c:134
+#: src/yelp-main.c:136
 msgid "Could not open new window."
 msgstr "לא ניתן לפתוח חלון חדש."
 
