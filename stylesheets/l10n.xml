@@ -173,6 +173,391 @@
     <l:template name="bookinfo" text="Om dette dokumentet"/>
     <l:template name="articleinfo" text="Om dette dokumentet"/>
   </l:context>
+</l:l10n>
+
+<!-- ************ German ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de">
+  <l:gentext key="Title" text="Titel"/>
+  <l:gentext key="Author" text="Autor"/>
+  <l:gentext key="Authors" text="Autoren"/>
+  <l:gentext key="Affiliation" text="Affiliation"/>
+  <l:gentext key="History" text="Geschichte"/>
+  <l:gentext key="Email" text="E-Mail"/>
+  <l:gentext key="Publisher" text="Herausgeber"/>
+  <l:gentext key="Date" text="Datum"/>
+  <l:gentext key="Next" text="Weiter"/>
+  <l:gentext key="Previous" text="Zur&#252;ck"/>
+  <l:gentext key="Contents" text="Inhalt"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="Informationen zu diesem Dokument"/>
+    <l:template name="articleinfo" text="Informationen zu diesem Dokument"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+</l:l10n>
+
+<!-- ************ es ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="es">
+  <l:gentext key="Title" text="T&#237;tulo"/>  
+  <l:gentext key="Author" text="Autor"/>
+  <l:gentext key="Authors" text="Autores"/>
+  <l:gentext key="Affiliation" text="Afiliaci&#243;n"/>  
+  <l:gentext key="History" text="Historia"/>  
+  <l:gentext key="Email" text="Correo electr&#243;nico"/>  
+  <l:gentext key="Publisher" text="Editor"/>
+  <l:gentext key="Date" text="Fecha"/>
+  <l:gentext key="Next" text="Siguiente"/>
+  <l:gentext key="Previous" text="Anterior"/>
+  <l:gentext key="Contents" text="Contenido"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="Acerca de este documento"/>
+    <l:template name="articleinfo" text="Acerca de este documento"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+</l:l10n>
+
+<!-- ************ fr ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="fr">
+  <l:gentext key="Title" text="Titre"/>
+  <l:gentext key="Author" text="Auteur"/>
+  <l:gentext key="Authors" text="Auteurs"/>
+  <l:gentext key="Affiliation" text="Affiliation"/>
+  <l:gentext key="History" text="Historique"/>
+  <l:gentext key="Email" text="E-mail"/>
+  <l:gentext key="Publisher" text="Editeur"/>
+  <l:gentext key="Date" text="Date"/>
+  <l:gentext key="Next" text="Suivant"/>
+  <l:gentext key="Previous" text="Pr&#233;c&#233;dent"/>
+  <l:gentext key="Contents" text="Sommaire"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="A propos de ce document"/>
+    <l:template name="articleinfo" text="A propos de ce document"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+</l:l10n>
+
+<!-- ************ ja ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
+  <l:gentext key="Title" text="&#12479;&#12452;&#12488;&#12523;"/>  
+  <l:gentext key="Author" text="&#33879;&#32773;"/>
+  <l:gentext key="Authors" text="&#33879;&#32773;"/>
+  <l:gentext key="Affiliation" text="&#25152;&#23646;"/>  
+  <l:gentext key="History" text="&#32076;&#27508;"/>  
+  <l:gentext key="Email" text="Email"/>  
+  <l:gentext key="Publisher" text="&#20986;&#29256;&#31038;"/>
+  <l:gentext key="Date" text="&#26085;&#20184;"/>
+  <l:gentext key="Next" text="&#27425;&#12408;"/>
+  <l:gentext key="Previous" text="&#25147;&#12427;"/>
+  <l:gentext key="Contents" text="&#30446;&#27425;"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="&#12371;&#12398;&#12489;&#12461;&#12517;&#12513;&#12531;&#12488;&#12395;&#12388;&#12356;&#12390;"/>
+    <l:template name="articleinfo" text="&#12371;&#12398;&#12489;&#12461;&#12517;&#12513;&#12531;&#12488;&#12395;&#12388;&#12356;&#12390;"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+</l:l10n>
+
+<!-- ************ ko ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ko">
+  <l:gentext key="Title" text="&#51228;&#47785;"/>  
+  <l:gentext key="Author" text="&#51200;&#51088;"/>
+  <l:gentext key="Authors" text="&#51200;&#51088;"/>
+  <l:gentext key="Affiliation" text="&#49548;&#49549;"/>  
+  <l:gentext key="History" text="&#45236;&#50669;"/>  
+  <l:gentext key="Email" text="&#51204;&#51088; &#47700;&#51068;"/>  
+  <l:gentext key="Publisher" text="&#48156;&#54665;&#51088;"/>
+  <l:gentext key="Date" text="&#45216;&#51676;"/>
+  <l:gentext key="Next" text="&#45796;&#51020;"/>
+  <l:gentext key="Previous" text="&#51060;&#51204;"/>
+  <l:gentext key="Contents" text="&#45236;&#50857;"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="&#51060; &#52293;&#51032; &#51221;&#48372;"/>
+    <l:template name="articleinfo" text="&#51060; &#44544;&#51032; &#51221;&#48372;"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+</l:l10n>
+
+<!-- ************ pl ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="pl">
+  <l:gentext key="Title" text="Tytu&#322;"/>  
+  <l:gentext key="Author" text="Autor"/>
+  <l:gentext key="Authors" text="Autorzy"/>
+  <l:gentext key="Affiliation" text="Przynale&#380;no&#347;&#263;"/>  
+  <l:gentext key="History" text="Historia"/>  
+  <l:gentext key="Email" text="E-mail"/>  
+  <l:gentext key="Publisher" text="Wydawca"/>
+  <l:gentext key="Date" text="Data"/>
+  <l:gentext key="Next" text="Nast&#281;pny"/>
+  <l:gentext key="Previous" text="Poprzedni"/>
+  <l:gentext key="Contents" text="Spis tre&#347;ci"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="Informacje o tym dokumencie"/>
+    <l:template name="articleinfo" text="Informacje o tym dokumencie"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+</l:l10n>
+
+<!-- ************ sv ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="sv">
+  <l:gentext key="Title" text="Titel"/>  
+  <l:gentext key="Author" text="F&#246;rfattare"/>
+  <l:gentext key="Authors" text="F&#246;rfattare"/>
+  <l:gentext key="Affiliation" text="Anknytning"/>  
+  <l:gentext key="History" text="Historia"/>  
+  <l:gentext key="Email" text="E-post"/>  
+  <l:gentext key="Publisher" text="Utgivare"/>
+  <l:gentext key="Date" text="Datum"/>
+  <l:gentext key="Next" text="N&#228;sta"/>
+  <l:gentext key="Previous" text="F&#246;reg&#229;ende"/>
+  <l:gentext key="Contents" text="Inneh&#229;ll"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="Om detta dokument"/>
+    <l:template name="articleinfo" text="Om detta dokument"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+</l:l10n>
+
+<!-- ************ Simplified Chinese ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh_cn">
+  <l:gentext key="Title" text="&#26631;&#39064;"/>  
+  <l:gentext key="Author" text="&#20316;&#32773;"/>
+  <l:gentext key="Authors" text="&#20316;&#32773;&#32676;"/>
+  <l:gentext key="Affiliation" text="&#32852;&#31995;"/>  
+  <l:gentext key="History" text="&#21382;&#21490;"/>  
+  <l:gentext key="Email" text="&#30005;&#23376;&#37038;&#20214;"/>  
+  <l:gentext key="Publisher" text="&#20986;&#29256;&#21830;"/>
+  <l:gentext key="Date" text="&#26085;&#26399;"/>
+  <l:gentext key="Next" text="&#19979;&#19968;&#20010;"/>
+  <l:gentext key="Previous" text="&#19978;&#19968;&#20010;"/>
+  <l:gentext key="Contents" text="&#20869;&#23481;"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="&#20851;&#20110;&#26412;&#25991;&#26723;"/>
+    <l:template name="articleinfo" text="&#20851;&#20110;&#26412;&#25991;&#26723;"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+</l:l10n>
+
+<!-- ************ Traditional Chinese ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh_tw">
+  <l:gentext key="Title" text="&#27161;&#38988;"/>  
+  <l:gentext key="Author" text="&#20316;&#32773;"/>
+  <l:gentext key="Authors" text="&#20316;&#32773;"/>
+  <l:gentext key="Affiliation" text="&#22296;&#39636;"/>  
+  <l:gentext key="History" text="&#27511;&#21490;"/>  
+  <l:gentext key="Email" text="&#38651;&#23376;&#37109;&#20214;"/>  
+  <l:gentext key="Publisher" text="&#30332;&#34892;&#20154;"/>
+  <l:gentext key="Date" text="&#26085;&#26399;"/>
+  <l:gentext key="Next" text="&#19979;&#19968;&#38913;"/>
+  <l:gentext key="Previous" text="&#19978;&#19968;&#38913;"/>
+  <l:gentext key="Contents" text="&#20839;&#23481;"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="&#38364;&#26044;&#26412;&#25991;&#20214;"/>
+    <l:template name="articleinfo" text="&#38364;&#26044;&#26412;&#25991;&#20214;"/>
+  </l:context>
+
+   <l:context name="section-xref">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
+
+   <l:context name="section-xref-numbered">
+      <l:template name="bridgehead" text="%t"/>
+      <l:template name="sect1" text="%t"/>
+      <l:template name="sect2" text="%t"/>
+      <l:template name="sect3" text="%t"/>
+      <l:template name="sect4" text="%t"/>
+      <l:template name="sect5" text="%t"/>
+      <l:template name="section" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+   </l:context>
 
 </l:l10n>
 </i18n>
