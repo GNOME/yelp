@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  *
@@ -58,13 +58,13 @@ GType               yelp_history_get_type      (void);
 YelpHistory *       yelp_history_new           (void);
 
 void                yelp_history_goto          (YelpHistory         *history,
-						GnomeVFSURI         *uri);
+						YelpURI             *uri);
 
-GnomeVFSURI *       yelp_history_go_forward    (YelpHistory         *history);
+YelpURI *           yelp_history_go_forward    (YelpHistory         *history);
 
-GnomeVFSURI *       yelp_history_go_back       (YelpHistory         *history);
+YelpURI *           yelp_history_go_back       (YelpHistory         *history);
 
-GnomeVFSURI *       yelp_history_get_current   (YelpHistory         *history);
+YelpURI *           yelp_history_get_current   (YelpHistory         *history);
 
 gboolean            yelp_history_exist_forward (YelpHistory         *history);
 gboolean            yelp_history_exist_back    (YelpHistory         *history);

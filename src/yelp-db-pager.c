@@ -81,7 +81,7 @@ void                 db_pager_finish       (YelpPager        *pager);
 
 gboolean             db_pager_process      (YelpPager        *pager);
 gchar *              db_pager_resolve_uri  (YelpPager        *pager,
-					    GnomeVFSURI      *uri);
+					    YelpURI          *uri);
 const GtkTreeModel * db_pager_get_sections (YelpPager        *pager);
 
 static void     walker_walk_xml       (DBWalker         *walker);
@@ -178,7 +178,7 @@ db_pager_dispose (GObject *object)
 /******************************************************************************/
 
 YelpPager *
-yelp_db_pager_new (GnomeVFSURI *uri)
+yelp_db_pager_new (YelpURI *uri)
 {
     YelpDBPager *pager;
 
@@ -197,11 +197,11 @@ yelp_db_pager_new (GnomeVFSURI *uri)
 gboolean
 db_pager_process (YelpPager *pager)
 {
-    GnomeVFSURI   *uri     = yelp_pager_get_uri (pager);
-    gchar         *path;
-    DBWalker      *walker;
-    xmlChar       *id;
-    GError        *error = NULL;
+    YelpURI   *uri = yelp_pager_get_uri (pager);
+    gchar     *path;
+    DBWalker  *walker;
+    xmlChar   *id;
+    GError    *error = NULL;
 
     xmlDocPtr               doc;
     xmlParserCtxtPtr        ctxt;
@@ -219,7 +219,7 @@ db_pager_process (YelpPager *pager)
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
 
-    path = gnome_vfs_uri_to_string (uri,
+    path = gnome_vfs_uri_to_string (uri->uri,
 				    GNOME_VFS_URI_HIDE_USER_NAME           |
 				    GNOME_VFS_URI_HIDE_PASSWORD            |
 				    GNOME_VFS_URI_HIDE_HOST_NAME           |
@@ -242,7 +242,8 @@ db_pager_process (YelpPager *pager)
 			   XML_PARSE_NONET    );
 
     if (doc == NULL) {
-	gchar *str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+	gchar *str_uri = gnome_vfs_uri_to_string (uri->uri,
+						  GNOME_VFS_URI_HIDE_NONE);
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
 	yelp_pager_error (pager, error);
 
@@ -273,8 +274,8 @@ db_pager_process (YelpPager *pager)
     while (gtk_events_pending ())
 	gtk_main_iteration ();
 
-    doc_name = gnome_vfs_uri_extract_short_name (uri);
-    doc_path = gnome_vfs_uri_extract_dirname (uri);
+    doc_name = gnome_vfs_uri_extract_short_name (uri->uri);
+    doc_path = gnome_vfs_uri_extract_dirname (uri->uri);
     p_doc_name = g_strconcat("\"", doc_name, "\"", NULL);
     p_doc_path = g_strconcat("\"file://", doc_path, "/\"", NULL);
 
@@ -358,7 +359,7 @@ db_pager_finish (YelpPager   *pager)
 }
 
 gchar *
-db_pager_resolve_uri (YelpPager *pager, GnomeVFSURI *uri)
+db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 {
     YelpDBPager  *db_pager;
     const gchar  *frag_id;
@@ -369,7 +370,7 @@ db_pager_resolve_uri (YelpPager *pager, GnomeVFSURI *uri)
 
     db_pager = YELP_DB_PAGER (pager);
 
-    frag_id = gnome_vfs_uri_get_fragment_identifier (uri);
+    frag_id = gnome_vfs_uri_get_fragment_identifier (uri->uri);
 
     if (frag_id)
 	page_id = g_hash_table_lookup (db_pager->priv->frags_hash,

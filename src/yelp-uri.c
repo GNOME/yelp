@@ -29,99 +29,155 @@
 #include <libgnome/gnome-program.h>
 
 #include "yelp-error.h"
-#include "yelp-toc-pager.h"
 #include "yelp-uri.h"
  
 #define d(x)
 
-static GnomeVFSURI * uri_parse_ghelp_uri           (const gchar  *uri_str);
+static void          uri_set_resource_type         (YelpURI      *uri);
+static gboolean      uri_parse_uri                 (YelpURI      *uri);
+static void          uri_parse_toc_uri             (YelpURI      *uri);
+static void          uri_parse_ghelp_uri           (YelpURI      *uri);
 static gchar *       uri_locate_file               (gchar        *path,
 						    gchar        *file);
 static gchar *       uri_locate_file_lang          (gchar        *path,
 						    gchar        *file,
 						    gchar        *lang);
 
-GnomeVFSURI *
+YelpURI *
 yelp_uri_new (const gchar *uri_str)
 {
-    GnomeVFSURI *uri;
+    YelpURI *uri = g_new0 (YelpURI, 1);
 
-    if (!strncmp (uri_str, "ghelp:", 6)) {
-	uri = uri_parse_ghelp_uri (uri_str);
-    }
-    else {
-	uri = gnome_vfs_uri_new (uri_str);
+    uri->refcount = 1;
+    uri->src_uri = g_strdup (uri_str);
+
+    if (!uri_parse_uri (uri)) {
+	uri->uri = gnome_vfs_uri_new (uri_str);
+	uri_set_resource_type (uri);
     }
 
     return uri;
 }
 
-GnomeVFSURI *
-yelp_uri_resolve_relative (GnomeVFSURI *base, const gchar *uri_str)
+YelpURI *
+yelp_uri_resolve_relative (YelpURI *base, const gchar *uri_str)
 {
-    GnomeVFSURI *uri;
+    YelpURI *uri = g_new0 (YelpURI, 1);
 
-    if (!strncmp (uri_str, "ghelp:", 6)) {
-	uri = uri_parse_ghelp_uri (uri_str);
-    }
-    else {
-	uri = gnome_vfs_uri_resolve_relative (base, uri_str);
+    uri->refcount = 1;
+    uri->src_uri = g_strdup (uri_str);
+
+    if (!uri_parse_uri (uri)) {
+	uri->uri = gnome_vfs_uri_resolve_relative (base->uri, uri_str);
+	uri_set_resource_type (uri);
     }
 
     return uri;
 }
 
 YelpURIType
-yelp_uri_get_resource_type (GnomeVFSURI *uri)
+yelp_uri_get_resource_type (YelpURI *uri)
+{
+    g_return_val_if_fail (uri != NULL, YELP_URI_TYPE_ERROR);
+
+    return uri->resource_type;
+}
+
+static void
+uri_set_resource_type (YelpURI *uri)
 {
     gchar *uri_str;
     gchar *mime_type;
-    GnomeVFSURI *toc_uri;
-    gchar       *toc_uri_str;
-    YelpURIType type = YELP_URI_TYPE_EXTERNAL;
 
-    g_return_val_if_fail (uri != NULL, YELP_URI_TYPE_ERROR);
+    g_return_if_fail (uri != NULL);
 
-    if (strcmp (gnome_vfs_uri_get_scheme (uri), "file"))
-	return YELP_URI_TYPE_EXTERNAL;
+    if (strcmp (gnome_vfs_uri_get_scheme (uri->uri), "file")) {
+	uri->resource_type = YELP_URI_TYPE_EXTERNAL;
+	return;
+    }
 
-    uri_str = gnome_vfs_uri_to_string (uri,
+    uri_str = gnome_vfs_uri_to_string (uri->uri,
 				       GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER);
-    if (!uri_str) {
-	return YELP_URI_TYPE_ERROR;
-    }
-
-    toc_uri = yelp_pager_get_uri (YELP_PAGER (yelp_toc_pager_get ()));
-    toc_uri_str = gnome_vfs_uri_to_string (toc_uri,
-					   GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER);
-    if (toc_uri_str && !strcmp (uri_str, toc_uri_str)) {
-	g_free (uri_str);
-	g_free (toc_uri_str);
-	return YELP_URI_TYPE_TOC;
-    }
+    g_return_if_fail (uri_str != NULL);
 
     mime_type = gnome_vfs_get_mime_type (uri_str);
     if (!mime_type) {
 	g_free (uri_str);
-	return YELP_URI_TYPE_ERROR;
+	return;
     }
 
     if (!strcmp (mime_type, "text/xml"))
-	type = YELP_URI_TYPE_DOCBOOK_XML;
+	uri->resource_type = YELP_URI_TYPE_DOCBOOK_XML;
     else if (!strcmp (mime_type, "text/sgml"))
-	type = YELP_URI_TYPE_DOCBOOK_SGML;
+	uri->resource_type = YELP_URI_TYPE_DOCBOOK_SGML;
     else if (!strcmp (mime_type, "text/html"))
-	type = YELP_URI_TYPE_HTML;
+	uri->resource_type = YELP_URI_TYPE_HTML;
 
     g_free (mime_type);
     g_free (uri_str);
-
-    return type;
 }
 
+YelpURI *
+yelp_uri_ref (YelpURI   *uri)
+{
+    g_return_val_if_fail (uri != NULL, NULL);
 
-static GnomeVFSURI *
-uri_parse_ghelp_uri (const gchar *uri_str)
+    uri->refcount++;
+
+    return uri;
+}
+
+void
+yelp_uri_unref (YelpURI   *uri)
+{
+    g_return_if_fail (uri != NULL);
+
+    if (--uri->refcount < 1) {
+	gnome_vfs_uri_unref (uri->uri);
+
+	if (uri->src_uri)
+	    g_free (uri->src_uri);
+
+	g_free (uri);
+    }
+}
+
+static gboolean
+uri_parse_uri (YelpURI *uri)
+{
+    if (!strncmp (uri->src_uri, "ghelp:", 6)) {
+	uri_parse_ghelp_uri (uri);
+	return TRUE;
+    }
+    else if (!strncmp (uri->src_uri, "toc:", 4)) {
+	uri_parse_toc_uri (uri);
+	return TRUE;
+    }
+    else
+	return FALSE;
+}
+
+static void
+uri_parse_toc_uri (YelpURI *uri)
+{
+    gchar *c, *str;
+
+    c = strchr (uri->src_uri, ':');
+
+    if (c && *c != '\0' && *(++c) != '\0')
+	str = g_strconcat (DATADIR, "/yelp/toc.xml#", c, NULL);
+    else
+	str = g_strconcat (DATADIR, "/yelp/toc.xml", NULL);
+
+    uri->uri = gnome_vfs_uri_new (str);
+    uri->resource_type = YELP_URI_TYPE_TOC;
+
+    g_free (str);
+    return;
+}
+
+static void
+uri_parse_ghelp_uri (YelpURI *uri)
 {
     GSList *locations = NULL;
     GSList *node;
@@ -129,11 +185,10 @@ uri_parse_ghelp_uri (const gchar *uri_str)
     gchar  *doc_id    = NULL;
     gchar  *file_name = NULL;
     gchar  *link_id   = NULL;
-    GnomeVFSURI *uri  = NULL;
 
     GnomeProgram *program = gnome_program_get ();
 
-    if ((path = strchr(uri_str, ':')))
+    if ((path = strchr(uri->src_uri, ':')))
 	path++;
     else
 	goto done;
@@ -144,10 +199,11 @@ uri_parse_ghelp_uri (const gchar *uri_str)
 	if ((c = strchr (str, '?')))
 	    *c = '#';
 
-	uri = gnome_vfs_uri_new (str);
-
+	uri->uri = gnome_vfs_uri_new (str);
 	g_free (str);
-	return uri;
+
+	uri_set_resource_type (uri);
+	return;
     }
 
     if ((c = strchr (path, '/'))) {
@@ -189,10 +245,12 @@ uri_parse_ghelp_uri (const gchar *uri_str)
 	    else
 		full_uri = g_strconcat ("file://", full_path, NULL);
 
-	    uri = gnome_vfs_uri_new (full_uri);
+	    uri->uri = gnome_vfs_uri_new (full_uri);
 
 	    g_free (full_uri);
 	    g_free (full_path);
+
+	    uri_set_resource_type (uri);
 	    break;
 	}
     }
@@ -203,9 +261,7 @@ uri_parse_ghelp_uri (const gchar *uri_str)
     g_free (link_id);
 
     if (!uri)
-	g_warning ("Couldn't resolve ghelp URI: %s", uri_str);
-
-    return uri;
+	g_warning ("Couldn't resolve ghelp URI: %s", uri->src_uri);
 }
 
 static gchar *

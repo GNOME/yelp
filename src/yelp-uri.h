@@ -28,26 +28,34 @@
 #include <libgnomevfs/gnome-vfs.h>
 
 typedef enum {
-    YELP_URI_TYPE_EXTERNAL,
+    YELP_URI_TYPE_ERROR = 0,
+
     YELP_URI_TYPE_DOCBOOK_XML,
     YELP_URI_TYPE_DOCBOOK_SGML,
     YELP_URI_TYPE_HTML,
     YELP_URI_TYPE_MAN,
     YELP_URI_TYPE_INFO,
     YELP_URI_TYPE_TOC,
-
-    YELP_URI_TYPE_GHELP,
-    YELP_URI_TYPE_GHELP_OTHER,
-    YELP_URI_TYPE_INDEX,
-    YELP_URI_TYPE_PATH,
-    YELP_URI_TYPE_FILE,
-
-    YELP_URI_TYPE_ERROR
+    YELP_URI_TYPE_EXTERNAL
 } YelpURIType;
 
-GnomeVFSURI *     yelp_uri_new                (const gchar   *uri_str);
-GnomeVFSURI *     yelp_uri_resolve_relative   (GnomeVFSURI   *base,
-					       const gchar   *uri_str);
-YelpURIType       yelp_uri_get_resource_type  (GnomeVFSURI   *uri);
+typedef struct _YelpURI YelpURI;
+struct _YelpURI {
+    GnomeVFSURI *uri;
+
+    gint         refcount;
+
+    gchar       *src_uri;
+
+    YelpURIType  resource_type;
+};
+
+YelpURI *     yelp_uri_new                (const gchar   *uri_str);
+YelpURI *     yelp_uri_resolve_relative   (YelpURI       *uri,
+					   const gchar   *uri_str);
+YelpURIType   yelp_uri_get_resource_type  (YelpURI       *uri);
+
+YelpURI *     yelp_uri_ref                (YelpURI       *uri);
+void          yelp_uri_unref              (YelpURI       *uri);
 
 #endif /* __YELP_URI_H__ */

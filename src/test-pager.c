@@ -42,8 +42,8 @@ static void    pager_error_cb        (YelpPager    *pager);
 gint 
 main (gint argc, gchar **argv) 
 {
-    GnomeVFSURI  *uri;
-    YelpPager    *pager;
+    YelpURI   *uri;
+    YelpPager *pager;
 
     if (argc < 2) {
 	return 1;
@@ -54,9 +54,8 @@ main (gint argc, gchar **argv)
 			GNOME_PROGRAM_STANDARD_PROPERTIES,
 			NULL);
     gnome_vfs_init ();
-
-    yelp_theme_init ();
     yelp_toc_pager_init ();
+    yelp_theme_init ();
 
     uri = yelp_uri_new (argv[1]);
 

@@ -51,7 +51,7 @@ struct _YelpHtmlPriv {
     HtmlView        *view;
 
     HtmlDocument    *doc;
-    GnomeVFSURI     *base_uri;
+    YelpURI         *base_uri;
 
     DomNodeIterator *find_iter;
     gint             find_offset;
@@ -203,7 +203,7 @@ html_url_requested_cb (HtmlDocument *doc,
     GnomeVFSResult    result;
     gchar             buffer[BUFFER_SIZE];
     GnomeVFSFileSize  read_len;
-    GnomeVFSURI      *absolute_uri;
+    YelpURI          *absolute_uri;
     gchar            *absolute_uri_str;
 
     html = YELP_HTML (data);
@@ -216,21 +216,21 @@ html_url_requested_cb (HtmlDocument *doc,
 
     d(g_print ("URL REQUESTED: %s\n", url));
 
-    absolute_uri = gnome_vfs_uri_resolve_relative (priv->base_uri, url);
-    absolute_uri_str = gnome_vfs_uri_to_string (absolute_uri,
+    absolute_uri = yelp_uri_resolve_relative (priv->base_uri, url);
+    absolute_uri_str = gnome_vfs_uri_to_string (absolute_uri->uri,
 						GNOME_VFS_URI_HIDE_NONE);
 
     result = gnome_vfs_open (&handle, absolute_uri_str, GNOME_VFS_OPEN_READ);
 
     if (result != GNOME_VFS_OK) {
 	g_warning ("Failed to open: %s", absolute_uri_str);
-	gnome_vfs_uri_unref (absolute_uri);
+	yelp_uri_unref (absolute_uri);
 	g_free (absolute_uri_str);
 
 	return;
     }
 
-    gnome_vfs_uri_unref (absolute_uri);
+    yelp_uri_unref (absolute_uri);
     g_free (absolute_uri_str);
 
     while (gnome_vfs_read (handle, buffer, BUFFER_SIZE, &read_len) ==
@@ -256,7 +256,7 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 {
     YelpHtmlPriv *priv;
     gboolean      handled;
-    GnomeVFSURI  *uri;
+    YelpURI      *uri;
     const gchar  *fragment;
     YelpURIType   res_type;
     const gchar  *uri_path, *base_uri_path;
@@ -278,11 +278,11 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
      */
     res_type = yelp_uri_get_resource_type (uri);
     if (res_type == YELP_URI_TYPE_HTML || res_type == YELP_URI_TYPE_MAN) {
-	uri_path      = gnome_vfs_uri_get_path (uri);
-	base_uri_path = gnome_vfs_uri_get_path (priv->base_uri);
+	uri_path      = gnome_vfs_uri_get_path (uri->uri);
+	base_uri_path = gnome_vfs_uri_get_path (priv->base_uri->uri);
 
 	if (!strcmp (uri_path, base_uri_path)) {
-	    fragment = gnome_vfs_uri_get_fragment_identifier (uri);
+	    fragment = gnome_vfs_uri_get_fragment_identifier (uri->uri);
 	    if (fragment) {
 		html_view_jump_to_anchor (HTML_VIEW (html->priv->view),
 					  fragment);
@@ -331,7 +331,7 @@ yelp_html_new (void)
 }
 
 void
-yelp_html_set_base_uri (YelpHtml *html, GnomeVFSURI *uri)
+yelp_html_set_base_uri (YelpHtml *html, YelpURI *uri)
 {
     YelpHtmlPriv *priv;
 
@@ -340,9 +340,9 @@ yelp_html_set_base_uri (YelpHtml *html, GnomeVFSURI *uri)
     priv = html->priv;
 
     if (priv->base_uri)
-	gnome_vfs_uri_unref (priv->base_uri);
+	yelp_uri_unref (priv->base_uri);
 
-    gnome_vfs_uri_ref (uri);
+    yelp_uri_ref (uri);
     priv->base_uri = uri;
 }
 

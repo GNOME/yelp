@@ -83,14 +83,14 @@ static GdkPixbuf * window_load_icon               (void);
 static void        window_set_sections            (YelpWindow        *window,
 						   GtkTreeModel      *sections);
 static void        window_handle_uri              (YelpWindow        *window,
-						   GnomeVFSURI       *uri);
+						   YelpURI           *uri);
 static gboolean    window_handle_pager_uri        (YelpWindow        *window,
-						   GnomeVFSURI       *uri);
+						   YelpURI           *uri);
 static gboolean    window_handle_html_uri         (YelpWindow        *window,
-						   GnomeVFSURI       *uri);
+						   YelpURI           *uri);
 static void        window_handle_page             (YelpWindow        *window,
 						   YelpPage          *page,
-						   GnomeVFSURI       *uri);
+						   YelpURI           *uri);
 static void        window_disconnect              (YelpWindow        *window);
 
 static void        pager_contents_cb              (YelpPager         *pager,
@@ -104,7 +104,7 @@ static void        pager_finish_cb                (YelpPager         *pager,
 						   gpointer           user_data);
 
 static void        html_uri_selected_cb           (YelpHtml          *html,
-						   GnomeVFSURI       *uri,
+						   YelpURI           *uri,
 						   gboolean           handled,
 						   gpointer           user_data);
 static void        html_title_changed_cb          (YelpHtml          *html,
@@ -369,10 +369,10 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
 void
 yelp_window_open_uri (YelpWindow  *window,
-		      GnomeVFSURI *uri)
+		      YelpURI     *uri)
 {
     YelpWindowPriv *priv;
-    GnomeVFSURI    *cur_uri;
+    YelpURI        *cur_uri;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
@@ -387,10 +387,10 @@ yelp_window_open_uri (YelpWindow  *window,
     priv = window->priv;
 
     cur_uri = yelp_history_get_current (window->priv->history);
-    if (cur_uri && gnome_vfs_uri_equal (cur_uri, uri)) {
+    if (cur_uri && gnome_vfs_uri_equal (cur_uri->uri, uri->uri)) {
 	const gchar *cur_frag, *frag;
-	cur_frag = gnome_vfs_uri_get_fragment_identifier (cur_uri);
-	frag     = gnome_vfs_uri_get_fragment_identifier (uri);
+	cur_frag = gnome_vfs_uri_get_fragment_identifier (cur_uri->uri);
+	frag     = gnome_vfs_uri_get_fragment_identifier (uri->uri);
 
 	if ((!cur_frag && !frag)
 	    || (cur_frag && frag && !strcmp (cur_frag, frag)))
@@ -404,7 +404,7 @@ yelp_window_open_uri (YelpWindow  *window,
 
 void
 window_handle_uri (YelpWindow  *window,
-		   GnomeVFSURI *uri)
+		   YelpURI     *uri)
 {
     YelpWindowPriv *priv;
     GError         *error = NULL;
@@ -430,7 +430,7 @@ window_handle_uri (YelpWindow  *window,
 	handled = window_handle_html_uri (window, uri);
 	break;
     case YELP_URI_TYPE_EXTERNAL:
-	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+	str_uri = gnome_vfs_uri_to_string (uri->uri, GNOME_VFS_URI_HIDE_NONE);
 	gnome_url_show (str_uri, &error);
 	g_free (str_uri);
 	break;
@@ -448,7 +448,7 @@ window_handle_uri (YelpWindow  *window,
     window_find_buttons_set_sensitive (window, TRUE);    
 }
 
-GnomeVFSURI *
+YelpURI *
 yelp_window_get_current_uri (YelpWindow *window)
 {
     g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
@@ -710,7 +710,7 @@ window_set_sections (YelpWindow   *window,
 
 static gboolean
 window_handle_pager_uri (YelpWindow  *window,
-			 GnomeVFSURI *uri)
+			 YelpURI     *uri)
 {
     YelpWindowPriv *priv;
     GError         *error = NULL;
@@ -729,7 +729,7 @@ window_handle_pager_uri (YelpWindow  *window,
     if (yelp_uri_get_resource_type (uri) == YELP_URI_TYPE_TOC) {
 	pager = YELP_PAGER (yelp_toc_pager_get ());
     } else {
-	path  = g_strdup (gnome_vfs_uri_get_path (uri));
+	path  = g_strdup (gnome_vfs_uri_get_path (uri->uri));
 	pager = (YelpPager *) yelp_cache_lookup (path);
 
 	// Create a new pager if one doesn't exist in the cache
@@ -779,7 +779,8 @@ window_handle_pager_uri (YelpWindow  *window,
 
     if (state & YELP_PAGER_STATE_STARTED) {
 	if (state & YELP_PAGER_STATE_CONTENTS) {
-	    const gchar *frag_id = gnome_vfs_uri_get_fragment_identifier (uri);
+	    const gchar *frag_id =
+		gnome_vfs_uri_get_fragment_identifier (uri->uri);
 	    gchar *page_id = yelp_pager_resolve_uri (pager, uri);
 
 	    if (!page_id && (frag_id && strcmp (frag_id, ""))) {
@@ -896,7 +897,7 @@ window_handle_pager_uri (YelpWindow  *window,
 
 static gboolean
 window_handle_html_uri (YelpWindow    *window,
-			GnomeVFSURI   *uri)
+			YelpURI       *uri)
 {
     GnomeVFSHandle  *handle;
     GnomeVFSResult   result;
@@ -932,7 +933,7 @@ window_handle_html_uri (YelpWindow    *window,
     yelp_html_set_base_uri (priv->html_view, uri);
 
     result = gnome_vfs_open (&handle,
-			     gnome_vfs_uri_get_path (uri),
+			     gnome_vfs_uri_get_path (uri->uri),
 			     GNOME_VFS_OPEN_READ);
 
     if (result != GNOME_VFS_OK) {
@@ -953,7 +954,7 @@ window_handle_html_uri (YelpWindow    *window,
 static void
 window_handle_page (YelpWindow   *window,
 		    YelpPage     *page,
-		    GnomeVFSURI  *uri)
+		    YelpURI  *uri)
 {
     GtkWidget      *menu_item;
     GtkTreeModel   *model;
@@ -1024,10 +1025,10 @@ window_handle_page (YelpWindow   *window,
 		     page->chunk,
 		     strlen (page->chunk));
 
-    if (gnome_vfs_uri_get_fragment_identifier (uri)) {
+    if (gnome_vfs_uri_get_fragment_identifier (uri->uri)) {
 	yelp_html_jump_to_anchor
 	    (priv->html_view,
-	     (gchar *) gnome_vfs_uri_get_fragment_identifier (uri));
+	     (gchar *) gnome_vfs_uri_get_fragment_identifier (uri->uri));
     }
 }
 
@@ -1066,13 +1067,13 @@ pager_contents_cb (YelpPager   *pager,
 		   gpointer     user_data)
 {
     YelpWindow  *window = YELP_WINDOW (user_data);
-    GnomeVFSURI *uri    = NULL;
+    YelpURI     *uri    = NULL;
     GError      *error  = NULL;
     const gchar *frag;
     gchar       *page;
 
     uri  = yelp_window_get_current_uri (window);
-    frag = gnome_vfs_uri_get_fragment_identifier (uri);
+    frag = gnome_vfs_uri_get_fragment_identifier (uri->uri);
     page = yelp_pager_resolve_uri (pager, uri);
 
     if (!page && (frag && strcmp (frag, ""))) {
@@ -1091,7 +1092,7 @@ pager_page_cb (YelpPager *pager,
 	       gpointer   user_data)
 {
     YelpWindow  *window = YELP_WINDOW (user_data);
-    GnomeVFSURI *uri;
+    YelpURI     *uri;
     YelpPage    *page;
 
     uri  = yelp_window_get_current_uri (window);
@@ -1125,11 +1126,11 @@ pager_finish_cb (YelpPager   *pager,
 {
     GError *error = NULL;
     YelpWindow  *window = YELP_WINDOW (user_data);
-    GnomeVFSURI *uri;
+    YelpURI     *uri;
     const gchar *frag;
 
     uri  = yelp_window_get_current_uri (window);
-    frag = gnome_vfs_uri_get_fragment_identifier (uri);
+    frag = gnome_vfs_uri_get_fragment_identifier (uri->uri);
 
     window_disconnect (window);
 
@@ -1142,16 +1143,16 @@ pager_finish_cb (YelpPager   *pager,
 }
 
 static void
-html_uri_selected_cb (YelpHtml    *html,
-		      GnomeVFSURI *uri,
-		      gboolean     handled,
-		      gpointer     user_data)
+html_uri_selected_cb (YelpHtml  *html,
+		      YelpURI   *uri,
+		      gboolean   handled,
+		      gpointer   user_data)
 {
     YelpWindow *window = YELP_WINDOW (user_data);
 
     if (!handled) {
 	yelp_window_open_uri (window, uri);
-	gnome_vfs_uri_unref (uri);
+	yelp_uri_unref (uri);
     }
 }
 
@@ -1167,10 +1168,10 @@ static void
 tree_selection_changed_cb (GtkTreeSelection *selection,
 			   YelpWindow       *window)
 {
-    GtkTreeModel    *model;
-    GtkTreeIter      iter;
-    gchar           *id, *frag;
-    GnomeVFSURI     *uri;
+    GtkTreeModel  *model;
+    GtkTreeIter    iter;
+    gchar         *id, *frag;
+    YelpURI       *uri;
 
     YelpWindowPriv *priv = window->priv;
 
@@ -1281,8 +1282,8 @@ window_go_cb (gpointer   data,
 	      guint      action,
 	      GtkWidget *widget)
 {
-    YelpWindow  *window;
-    GnomeVFSURI *uri;
+    YelpWindow *window;
+    YelpURI    *uri;
 
     g_return_if_fail (YELP_IS_WINDOW (YELP_WINDOW (data)));
 
@@ -1301,19 +1302,19 @@ window_go_cb (gpointer   data,
 	uri = yelp_uri_resolve_relative (yelp_window_get_current_uri (window),
 					 window->priv->prev);
 	yelp_window_open_uri (window, uri);
-	gnome_vfs_uri_unref (uri);
+	yelp_uri_unref (uri);
 	break;
     case YELP_WINDOW_GO_NEXT:
 	uri = yelp_uri_resolve_relative (yelp_window_get_current_uri (window),
 					 window->priv->next);
 	yelp_window_open_uri (window, uri);
-	gnome_vfs_uri_unref (uri);
+	yelp_uri_unref (uri);
 	break;
     case YELP_WINDOW_GO_TOC:
 	uri = yelp_uri_resolve_relative (yelp_window_get_current_uri (window),
 					 window->priv->toc);
 	yelp_window_open_uri (window, uri);
-	gnome_vfs_uri_unref (uri);
+	yelp_uri_unref (uri);
 	break;
     default:
 	break;
@@ -1324,7 +1325,7 @@ static void
 window_home_button_clicked (GtkWidget  *button,
 			    YelpWindow *window)
 {
-    GnomeVFSURI *uri;
+    YelpURI *uri;
 	
     g_return_if_fail (YELP_IS_WINDOW (window));
 	
@@ -1380,7 +1381,7 @@ window_history_action (YelpWindow        *window,
 		       YelpHistoryAction  action)
 {
     YelpWindowPriv *priv;
-    GnomeVFSURI    *uri;
+    YelpURI        *uri;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 

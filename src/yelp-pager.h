@@ -66,7 +66,7 @@ struct _YelpPagerClass {
     /* Virtual Functions */
     gboolean             (*process)      (YelpPager    *pager);
     gchar *              (*resolve_uri)  (YelpPager    *pager,
-					  GnomeVFSURI  *uri);
+					  YelpURI      *uri);
     const GtkTreeModel * (*get_sections) (YelpPager *pager);
 };
 
@@ -85,7 +85,7 @@ GType                yelp_pager_get_type     (void);
 gboolean             yelp_pager_start        (YelpPager      *pager);
 void                 yelp_pager_cancel       (YelpPager      *pager);
 
-GnomeVFSURI *        yelp_pager_get_uri      (YelpPager      *pager);
+YelpURI *            yelp_pager_get_uri      (YelpPager      *pager);
 
 YelpPagerState       yelp_pager_get_state    (YelpPager      *pager);
 void                 yelp_pager_clear_state  (YelpPager      *pager);
@@ -99,12 +99,12 @@ void                 yelp_pager_error        (YelpPager      *pager,
 const GtkTreeModel * yelp_pager_get_sections (YelpPager      *pager);
 
 gchar *              yelp_pager_resolve_uri  (YelpPager      *pager,
-					      GnomeVFSURI    *uri);
+					      YelpURI        *uri);
 gboolean             yelp_pager_uri_is_page  (YelpPager      *pager,
 					      gchar          *page_id,
-					      GnomeVFSURI    *uri);
+					      YelpURI        *uri);
 const YelpPage *     yelp_pager_lookup_page  (YelpPager      *pager,
-					      GnomeVFSURI    *uri);
+					      YelpURI        *uri);
 const YelpPage *     yelp_pager_get_page     (YelpPager      *pager,
 					      gchar          *id);
 void                 yelp_pager_add_page     (YelpPager      *pager,

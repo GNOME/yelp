@@ -124,7 +124,7 @@ static void          toc_pager_dispose         (GObject           *gobject);
 gboolean             toc_pager_process         (YelpPager         *pager);
 void                 toc_pager_cancel          (YelpPager         *pager);
 gchar *              toc_pager_resolve_uri     (YelpPager         *pager,
-						GnomeVFSURI       *uri);
+						YelpURI           *uri);
 const GtkTreeModel * toc_pager_get_sections    (YelpPager         *pager);
 
 static gboolean      toc_process_pending       (YelpTocPager      *pager);
@@ -233,9 +233,9 @@ toc_pager_dispose (GObject *object)
 void
 yelp_toc_pager_init (void)
 {
-    GnomeVFSURI *uri;
+    YelpURI *uri;
 
-    uri = gnome_vfs_uri_new (DATADIR "/yelp/toc.xml");
+    uri = yelp_uri_new ("toc:");
     
     toc_pager = (YelpTocPager *) g_object_new (YELP_TYPE_TOC_PAGER, 
     					       "uri", uri, NULL);
@@ -252,12 +252,14 @@ yelp_toc_pager_get (void)
 void
 yelp_toc_pager_pause (YelpTocPager *pager)
 {
+    g_return_if_fail (pager != NULL);
     pager->priv->pause_count = pager->priv->pause_count + 1;
 }
 
 void
 yelp_toc_pager_unpause (YelpTocPager *pager)
 {
+    g_return_if_fail (pager != NULL);
     pager->priv->pause_count = pager->priv->pause_count - 1;
 
     if (pager->priv->pause_count < 0) {
@@ -323,9 +325,9 @@ toc_pager_cancel (YelpPager *pager)
 }
 
 gchar *
-toc_pager_resolve_uri (YelpPager *pager, GnomeVFSURI *uri)
+toc_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 {
-    const gchar *frag = gnome_vfs_uri_get_fragment_identifier (uri);
+    const gchar *frag = gnome_vfs_uri_get_fragment_identifier (uri->uri);
 
     if (!frag)
 	return g_strdup ("index");
@@ -797,7 +799,7 @@ toc_process_idx_pending (YelpTocPager *pager)
 {
     GSList        *first;
     YelpMetafile  *meta;
-    GnomeVFSURI   *uri;
+    YelpURI       *uri;
     gchar         *path;
     xmlDocPtr      doc;
 
@@ -809,7 +811,7 @@ toc_process_idx_pending (YelpTocPager *pager)
     meta = first->data;
 
     uri  = yelp_uri_new (omf->file);
-    path = gnome_vfs_uri_to_string (uri,
+    path = gnome_vfs_uri_to_string (uri->uri,
 				    GNOME_VFS_URI_HIDE_USER_NAME           |
 				    GNOME_VFS_URI_HIDE_PASSWORD            |
 				    GNOME_VFS_URI_HIDE_HOST_NAME           |
@@ -826,7 +828,7 @@ toc_process_idx_pending (YelpTocPager *pager)
     */
 
     g_free (path);
-    gnome_vfs_uri_unref (uri);
+    yelp_uri_unref (uri);
     g_slist_free_1 (first);
 
     if (!priv->idx_pending) {
@@ -879,7 +881,7 @@ menu_write_menu (YelpMenu  *menu,
 	    YelpMenu   *cur_menu = (YelpMenu *) cur->_private;
 	    if (cur_menu && (cur_menu->has_submenus || cur_menu->metafiles))
 		g_string_append_printf (gstr,
-					"<li><a href='#%s'>%s</a></li>\n",
+					"<li><a href='toc:%s'>%s</a></li>\n",
 					cur_menu->id,
 					cur_menu->title);
 	}
