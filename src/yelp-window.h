@@ -49,6 +49,7 @@ struct _YelpWindowClass
         GtkWindowClass  parent_class;
 
         /* Signals */
+	void (*new_window_requested) (YelpWindow *window);
 };
 
 GType            yelp_window_get_type        (void);

@@ -32,6 +32,8 @@ typedef struct {
 
 static void          yelp_base_init               (YelpBase        *base);
 static void          yelp_base_class_init         (YelpBaseClass   *klass);
+static void          yelp_base_new_window_cb      (YelpWindow      *window,
+						   YelpBase        *base);
 
 struct _YelpBasePriv {
         GtkTreeStore  *content_store;
@@ -82,6 +84,19 @@ yelp_base_class_init (YelpBaseClass *klass)
 {
 }
 
+static void
+yelp_base_new_window_cb (YelpWindow *window, YelpBase *base)
+{
+	GtkWidget *new_window;
+	
+	g_return_if_fail (YELP_IS_WINDOW (window));
+	g_return_if_fail (YELP_IS_BASE (base));
+	
+	new_window = yelp_base_new_window (base);
+	
+	gtk_widget_show_all (new_window);
+}
+
 YelpBase *
 yelp_base_new (void)
 {
@@ -102,7 +117,12 @@ yelp_base_new_window (YelpBase *base)
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
         
+	/* FIXME: Have the windows in a list */
         window = yelp_window_new (GTK_TREE_MODEL (base->priv->content_store));
         
+	g_signal_connect (window, "new_window_requested",
+			  G_CALLBACK (yelp_base_new_window_cb),
+			  base);
+
         return window;
 }

@@ -77,6 +77,13 @@ enum {
 	PAGE_INDEX_VIEW
 };
 
+enum {
+	NEW_WINDOW_REQUESTED,
+	LAST_SIGNAL
+};
+
+static gint signals[LAST_SIGNAL] = { 0 };
+
 struct _YelpWindowPriv {
 	GtkTreeModel   *tree_model;
 
@@ -152,9 +159,15 @@ yw_init (YelpWindow *window)
 static void
 yw_class_init (YelpWindowClass *klass)
 {
-        GtkObjectClass *object_class;
-        
-        object_class = (GtkObjectClass*) klass;
+	signals[NEW_WINDOW_REQUESTED] =
+		g_signal_new ("new_window_requested",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpWindowClass,
+					       new_window_requested),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
+			      G_TYPE_NONE, 0);
 }
 
 static void
@@ -323,18 +336,9 @@ yw_index_button_clicked (GtkWidget *button, YelpWindow *window)
 static void
 yw_new_window_cb (gpointer data, guint section, GtkWidget *widget)
 {
-/* 	YelpWindow *window; */
-	
 	g_return_if_fail (YELP_IS_WINDOW (data));
-	
-/* 	window = YELP_WINDOW (data); */
 
-	g_print ("FIXME: NEW WINDOW\n");
-	
-	/* Emit new_window signal */
-/* 	new_window = yelp_base_new_window (window->priv->base); */
-	
-/* 	gtk_widget_show_all (new_window); */
+	g_signal_emit (data, signals[NEW_WINDOW_REQUESTED], 0);
 }
 
 static void

@@ -1,5 +1,16 @@
 2001-12-10  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (yw_class_init): added signal for new window.
+	(yw_new_window_cb): amit new_window_requested-signal
+
+	* src/yelp-base.c:
+	(yelp_base_new_window_cb): added, listens for new_window_requested
+	  from windows.
+	(yelp_base_new_window): connect to signal in gtk-window.
+
+	* TODO (FEATURES): updated
+	
+
 	* src/yelp-window.c: Some fixes after discussion with seth.
 	(yw_init): Yelp: GNOME Help Browser -> Help Browser.
 	(yw_populate): readded the menu
