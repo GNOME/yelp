@@ -1,5 +1,13 @@
 /* little test main() to see how we're doing */
 
+/* modifications to support : 
+   1. command-line of the form filename?section for yelp support
+   2. outputs only "Top" section of document if no node / section is specified
+   3. links modified to be of the form "info://filename?section"
+   
+   - Patanjali 
+*/
+
 #include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,9 +27,13 @@
 /* be quiet or not? */
 static int be_quiet=1;
 
+char top_string [] = "Top";
+
 /* line_number we're on */
 static int work_line_number;
+
 static char *requested_nodename=NULL;
+static char *requested_section=NULL;
 static struct poptOption options[] = {
   {NULL, 'a', POPT_ARG_STRING, &requested_nodename},
   {NULL, 'b', POPT_ARG_STRING, &OverrideBaseFilename},
@@ -46,6 +58,7 @@ main(int argc, const char **argv)
 	int result;
 	int foundit=0;
 	int i, n;
+	char *cptr;
 
 	char convanc[1024];
 	NODE *node;
@@ -68,6 +81,19 @@ main(int argc, const char **argv)
 	  return 1;
 
 	for(n = 0; args[n]; n++) /* */;
+
+	/* hack to convert the first argument to the form : 
+	   filename?section instead of passing it in with the 
+	   -a option */
+	for (cptr = args [0]; *cptr != '\0'; cptr++) {
+	  if (*cptr == '?') {
+	    *cptr++ = '\0';
+	    requested_section = g_strdup (cptr);
+	    break;
+	  }
+
+	} 
+	/* requested_section now contains the requested section, if at all ... */
 	if(n == 1 && !file_exists(args[0]))
 	  {
 	    /* As strtok destroys the string it parses and g_getenv returns a pointer to
@@ -150,8 +176,17 @@ main(int argc, const char **argv)
 
 	    /* convert anchor so matching works */
 	    map_spaces_to_underscores(requested_nodename);
+	  } else {
+	    /* since no node has been asked for, it might have been passed in 
+	       as filename?section. In that case, set requested_nodename
+	       to what is in requested_section, if that is NULL, set requested_nodename
+	       to "Top" to display only the "Top" Node */
+	    if (requested_section) {
+	      requested_nodename = requested_section;
+	    } else {
+	      requested_nodename = top_string;
+	    }
 	  }
-
 	work_line_number = 0;
 
 	/* hack, just send to stdout for now */
@@ -238,7 +273,7 @@ main(int argc, const char **argv)
 	  else
 	    continue;
 	}
-
+	
 	if (!foundit && requested_nodename) {
 	  fprintf(stderr, "Requested node <b>%s</b> not found\n",
 		  requested_nodename);

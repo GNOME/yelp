@@ -54,12 +54,14 @@ char *form_info_tag_href( char *nodefile, char *nodename )
     }
   else
 	  filename = nodefile;
-
+  
   if (galeon_mode)
     g_snprintf (tmp, sizeof (tmp), "HREF=\"info:%s?%s\"", filename,  escaped_nodename);
-  else
-    g_snprintf (tmp, sizeof (tmp), "HREF=\"#%s\"", escaped_nodename);
-
+  /*else
+    g_snprintf (tmp, sizeof (tmp), "HREF=\"#%s\"", escaped_nodename); */
+  /* make the default mode output links of the form "info:filename?section" */
+  else 
+    g_snprintf (tmp, sizeof (tmp), "HREF=\"info:%s?%s\"", filename, escaped_nodename);
   if (escaped_nodename)
     g_free(escaped_nodename);
   return g_strdup(tmp);
@@ -142,13 +144,13 @@ void write_node_link_html( FILE *f, char *nodefile, char *refname, char *ref )
 {
   char *converted_nodename;
   char *href;
-
+  
   if (ref) {
       if (g_strcasecmp(ref, "(dir)")) {
 	  converted_nodename = g_strdup( ref );
 	  map_spaces_to_underscores( converted_nodename );
 	  href = form_info_tag_href(nodefile, converted_nodename);
-	  fprintf(f,"<A %s>%s%s</A>\n", href, refname, ref);
+	  fprintf(f,"<A %s>%s%s</A>\n", href, refname, ref); 
 	  g_free(href);
 	  g_free(converted_nodename);
 	} else {
