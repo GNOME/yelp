@@ -1,7 +1,7 @@
 # Swedish messages for Yelp.
-# Copyright (C) 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
 # Richard Hult <rhult@codefactory.se>, 2001.
-# Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004.
+# Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004, 2005.
 #
 # $Id$
 #
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2004-12-20 14:08+0100\n"
+"POT-Creation-Date: 2005-01-03 14:16+0100\n"
+"PO-Revision-Date: 2005-01-03 14:17+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -190,14 +190,12 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Typsnitt</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Typsnitt</b>"
+msgstr "<b>_Titel:</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "Add Bookmark"
-msgstr "_Lägg till bokmärke"
+msgstr "Lägg till bokmärke"
 
 #: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
@@ -296,12 +294,19 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Det finns redan ett bokmärke med namnet <b>%s</b> för denna sida."
+
 #: src/yelp-db-pager.c:238
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
+"Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
+"inte korrekt XML."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
@@ -309,40 +314,44 @@ msgstr "Okänd"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Ett okänt fel inträffade"
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "Could not load document"
-msgstr "Kunde inte tolka dokumentet \"%s\"."
+msgstr "Kunde inte läsa in dokument"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Kunde inte öppna nytt fönster."
+msgstr "Kunde inte läsa in avsnitt"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Kunde inte läsa in OMF-filen \"%s\"."
+msgstr "Kunde inte läsa innehållsförteckningen"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Formatet stöds inte"
 
 #: src/yelp-error.c:54
-#, fuzzy
 msgid "Could not read document"
-msgstr "Kunde inte tolka dokumentet \"%s\"."
+msgstr "Kunde inte läsa dokument"
 
 #: src/yelp-error.c:56
-#, fuzzy
 msgid "Could not process document"
-msgstr "Kunde inte tolka dokumentet \"%s\"."
+msgstr "Kunde inte behandla dokument"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr "Ingen information om felet är tillgänglig."
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
+"Filen \"%s\" kunde inte läsas och avkodas. Filen kan vara komprimerad med "
+"ett format som inte stöds."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -367,6 +376,8 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
+"Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
+"felaktigt formaterad."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -447,6 +458,8 @@ msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
+"Innehållsförteckningen kunde inte läsas in. Antingen saknas filen \"%s\" "
+"eller så är den inte korrekt XML."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
@@ -454,6 +467,8 @@ msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
+"Innehållsförteckningen kunde inte behandlas. Antingen saknas filen \"%s\" "
+"eller så är den inte en giltig XSLT-stilmall."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -484,21 +499,18 @@ msgid "_Help"
 msgstr "_Hjälp"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "About This Document"
-msgstr "Om denna samling"
+msgstr "Om detta dokument"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Öppna _plats"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
 msgstr "_Stäng fönster"
 
@@ -547,14 +559,12 @@ msgid "Go to home view"
 msgstr "Gå till hemvyn"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "_Föregående sida"
+msgstr "_Föregående avsnitt"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "Avdelning"
+msgstr "_Nästa avsnitt"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -590,28 +600,30 @@ msgstr "Hjälpvisare"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "URI:n för filen är ogiltig."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "URI:n \"%s\" är ogiltig eller pekar inte till en verklig fil."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1124
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Manualsidor stöds inte i denna version."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1115
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "GNU-infosidor stöds inte i denna version"
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
+"SGML-dokument stöds inte längre. Be författaren av dokumentet att konvertera "
+"det till XML."
 
 #: src/yelp-window.c:1021
 msgid "Fin_d"
@@ -623,6 +635,8 @@ msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
+"Ett omvandlingssammanhang kunde inte skapas för filen \"%s\". Formatet "
+"kanske inte stöds."
 
 #: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
 #, c-format
@@ -631,6 +645,9 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
+"Avsnittet \"%s\" finns inte i detta dokument. Om du hänvisades till detta "
+"avsnitt från en hjälpknapp i ett program bör du rapportera detta till de som "
+"underhåller det programmet."
 
 #: src/yelp-window.c:1286
 #, c-format
@@ -638,6 +655,8 @@ msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
+"Filen \"%s\" kunde inte läsas. Filen kanske saknas eller så har du inte "
+"rättigheter att läsa den."
 
 #: src/yelp-window.c:1320
 msgid "Loading..."
@@ -662,6 +681,8 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
+"Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
+"felaktigt formaterad."
 
 #: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
@@ -669,10 +690,40 @@ msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
 msgstr ""
+"Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte "
+"eller så är den inte en giltig XSLT-stilmall."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjälp med GNOME"
+
+#~ msgid "_Title:"
+#~ msgstr "_Titel:"
+
+#~ msgid "_Title"
+#~ msgstr "_Titel"
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "Det finns redan ett bokmärke med namnet %s för denna sida."
+
+#~ msgid "_New window"
+#~ msgstr "_Nytt fönster"
+
+#~ msgid "_Close window"
+#~ msgstr "_Stäng fönster"
+
+#~ msgid "Man pages are not supported in this version"
+#~ msgstr "Manualsidor stöds inte i denna version"
+
+#~ msgid "GNU info pages are not supported in this version."
+#~ msgstr "GNU-infosidor stöds inte i denna version."
+
+#~ msgid ""
+#~ "The document ‘%s’ could not be processed. The file ‘%s’ is either missing "
+#~ "or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte "
+#~ "eller så är den inte en giltig XSLT-stilmall."
 
 #~ msgid "Titlepage"
 #~ msgstr "Titelsida"
@@ -1204,7 +1255,7 @@ msgstr "Få hjälp med GNOME"
 #~ msgstr "<a href=\"toc:man\">Manualsidor</a>: "
 
 #~ msgid "Manual page sections"
-#~ msgstr "Manualsideavdelningar"
+#~ msgstr "Manualsideavsnitt"
 
 #~ msgid "Go back in the history list"
 #~ msgstr "Gå bakåt i historiklistan"
@@ -1216,7 +1267,7 @@ msgstr "Få hjälp med GNOME"
 #~ msgstr "Innehållsöversikt"
 
 #~ msgid "Manual pages for section"
-#~ msgstr "Manualsidor för avdelning"
+#~ msgstr "Manualsidor för avsnitt"
 
 #~ msgid "GNOME Helpbrowser"
 #~ msgstr "GNOME-hjälpvisare"
