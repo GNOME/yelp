@@ -1,3 +1,17 @@
+2002-08-04  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c:
+	(window_init): don't automatically go to uri "toc:" in history. 
+	(yelp_window_new): don't open "toc:", this is now done from
+	  yelp_base_new_window 
+	(yelp_window_open_uri): goto the uri in history, Fixes #86538.
+
+	* src/yelp-base.c:
+	(impl_Yelp_newWindow): don't show window and open_uri here. Do it in
+	  yelp_base_new_window instead.
+	(yelp_base_new_window): added a uri argument. If it's passed it's
+	  opened, otherwise "toc:" is opened.
+
 2002-08-04  Yogeesh MB <yogeeshappa.mathighatta@wipro.com> 
 
 	* src/yelp-man.c: added function which removes multiple 

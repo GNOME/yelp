@@ -53,6 +53,7 @@ struct _YelpBaseClass {
 GType            yelp_base_get_type       (void);
 YelpBase *       yelp_base_new            (void);
 
-GtkWidget *      yelp_base_new_window     (YelpBase *base);
+GtkWidget *      yelp_base_new_window     (YelpBase    *base,
+					   const gchar *str_uri);
 
 #endif /* __YELP_BASE_H__ */

@@ -64,17 +64,10 @@ impl_Yelp_newWindow (PortableServer_Servant  servant,
 		     CORBA_Environment      *ev)
 {
 	YelpBase  *yelp_base;
-	GtkWidget *window;
 	
 	yelp_base = YELP_BASE (bonobo_object (servant));
-	
-	window = yelp_base_new_window (yelp_base);
 
-	gtk_widget_show_all (window);
-
-	if (url && strcmp (url, "")) {
-		yelp_window_open_uri (YELP_WINDOW (window), url);
-	}
+	yelp_base_new_window (yelp_base, url);
 }
 
 static GNOME_Yelp_WindowList *
@@ -145,7 +138,7 @@ yelp_base_new_window_cb (YelpWindow *window, YelpBase *base)
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	g_return_if_fail (YELP_IS_BASE (base));
 	
-	new_window = yelp_base_new_window (base);
+	new_window = yelp_base_new_window (base, NULL);
 	
 	gtk_widget_show_all (new_window);
 }
@@ -185,7 +178,7 @@ yelp_base_new (void)
 }
 
 GtkWidget *
-yelp_base_new_window (YelpBase *base)
+yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 {
 	YelpBasePriv *priv;
 	GtkWidget    *window;
@@ -205,6 +198,15 @@ yelp_base_new_window (YelpBase *base)
 	g_signal_connect (window, "new_window_requested",
 			  G_CALLBACK (yelp_base_new_window_cb),
 			  base);
+
+
+	gtk_widget_show_all (window);
+
+	if (str_uri && strcmp (str_uri, "")) {
+		yelp_window_open_uri (YELP_WINDOW (window), str_uri);
+	} else {
+		yelp_window_open_uri (YELP_WINDOW (window), "toc:");
+	}
 
 	return window;
 }
