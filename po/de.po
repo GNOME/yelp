@@ -1,74 +1,210 @@
 # German translation for Yelp
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Christian Meyer <chrisime@gnome.org>, 2001.
+# Copyright (C) 2001, 2002 Free Software Foundation, Inc.
+# Christian Meyer <chrisime@gnome.org>, 2001, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp CVS \n"
-"POT-Creation-Date: 2001-12-05 00:41+0100\n"
-"PO-Revision-Date: 2001-12-05 00:27+0100\n"
+"POT-Creation-Date: 2002-02-27 22:01+0100\n"
+"PO-Revision-Date: 2002-02-27 22:01+0100\n"
 "Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/yelp-toc.c:140
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp-Fabrik"
+
+#: src/yelp-info.c:99
+msgid "info"
+msgstr "Info"
+
+#: src/yelp-main.c:78
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Yelp konnte nicht aktiviert werden: '%s'"
+
+#: src/yelp-main.c:97
+msgid "Could not open new window."
+msgstr "Neues Fenster konnte nicht geöffnet werden."
+
+#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
+#: src/yelp-man.c:376 src/yelp-man.c:387
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:276 src/yelp-man.c:307 src/yelp-man.c:365 src/yelp-man.c:392
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:281
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:297
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:302
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:312
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:317
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:339
+msgid "System Calls"
+msgstr "Systemaufrufe"
+
+#: src/yelp-man.c:344
+msgid "Library Functions"
+msgstr "Bibliotheksfunktionen"
+
+#: src/yelp-man.c:349
+msgid "Kernel Routines"
+msgstr "Kernelroutinen"
+
+#: src/yelp-man.c:404
+msgid "Applications"
+msgstr "Anwendungen"
+
+#: src/yelp-man.c:409
+msgid "Development"
+msgstr "Entwicklung"
+
+#: src/yelp-man.c:414
+msgid "Hardware Devices"
+msgstr "Hardware-Geräte"
+
+#: src/yelp-man.c:419
+msgid "Configuration Files"
+msgstr "Konfigurationsdateien"
+
+#: src/yelp-man.c:424
+msgid "Games"
+msgstr "Spiele"
+
+#: src/yelp-man.c:429
+msgid "Overviews"
+msgstr "Übersicht"
+
+#: src/yelp-man.c:434
+msgid "System Administration"
+msgstr "System-Administration"
+
+#: src/yelp-man.c:445
+msgid "man"
+msgstr "man"
+
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:219
 msgid "Section"
 msgstr "Abschnitt"
 
-#: src/yelp-view.c:363
-msgid ""
-"<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help "
-"browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the "
-"README and TODO<br></body></html>"
-msgstr ""
-"<html><head><title>Dies ist Yelp. ein Hilfe-Browser f�r GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Willkommen zu Yelp!</h3>Dies wird der Hilfe-"
-"Browser f�r GNOME 2.0 sein, geschrieben von Mikael Hallendal.<br><br>Bitte "
-"lesen Sie die README- und TODO-Datei<br></body></html>"
+# CHECK
+#: src/yelp-view-toc.c:271
+msgid "Other document systems"
+msgstr "Andere Dokument-Systeme"
 
-#: src/yelp-window.c:86
+#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
+msgid "Manual pages"
+msgstr "Manual-Seitem"
+
+#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:558 src/yelp-view-toc.c:577
+msgid "Info pages"
+msgstr "Info-Seiten"
+
+#: src/yelp-view-toc.c:274
+msgid "Installed documents"
+msgstr "Installierte Dokumente"
+
+#: src/yelp-view-toc.c:286
+msgid "Start page"
+msgstr "Startseite"
+
+#: src/yelp-view-toc.c:511 src/yelp-view-toc.c:530
+msgid "Manual page sections"
+msgstr "Abschnitte in Manuel-Seite"
+
+#: src/yelp-view-toc.c:679
+msgid "Scrollkeeper docs for category"
+msgstr "Scrollkeeper-Doks für Kategorie"
+
+#: src/yelp-window.c:113
 msgid "/_File"
 msgstr "/_Datei"
 
-#: src/yelp-window.c:87
+#: src/yelp-window.c:114
 msgid "/File/_New window"
 msgstr "/Datei/Neues Fenster"
 
-#: src/yelp-window.c:88
-msgid "/File/E_xit"
-msgstr "/File/_Beenden"
+#: src/yelp-window.c:115
+msgid "/File/_Close window"
+msgstr "/Datei/Fenster s_chließen"
 
-#: src/yelp-window.c:89
+#: src/yelp-window.c:116
+msgid "/File/_Quit"
+msgstr "/Datei/_Beenden"
+
+#: src/yelp-window.c:117
 msgid "/_Help"
 msgstr "/_Hilfe"
 
-#: src/yelp-window.c:90
+#: src/yelp-window.c:118
 msgid "/Help/_About"
 msgstr "/Hilfe/_Info"
 
-#: src/yelp-window.c:138
-msgid "Yelp: GNOME Help Browser"
-msgstr "Yelp: GNOME Hilfe-Browser"
+#: src/yelp-window.c:166
+msgid "Help Browser"
+msgstr "Hilfe-Browser"
 
-#: src/yelp-window.c:248
-msgid "Contents"
-msgstr "Inhalt"
-
-#: src/yelp-window.c:264
-msgid "Index"
-msgstr "�bersicht"
-
-#: src/yelp-window.c:332
+#: src/yelp-window.c:414
 msgid "Help Browser for GNOME 2.0"
-msgstr "Hilfe-Browser f�r GNOME 2.0"
+msgstr "Hilfe-Browser für GNOME 2.0"
+
+#: src/yelp-window.c:438
+msgid "Go back in the history list"
+msgstr "In der Chronikliste zurückgehen"
+
+# CHECK
+#: src/yelp-window.c:453
+msgid "Go forth in the history list"
+msgstr "In der Chronikliste vorwärtsgehen"
+
+#: src/yelp-window.c:468
+msgid "Overview of contents"
+msgstr "Inhaltsverzeichnis"
+
+#: src/yelp-window.c:479
+msgid "Search in the index"
+msgstr "Im Index suchen"
+
+#: src/yelp-window.c:491
+msgid "Search for a phrase in the document"
+msgstr ""
+
+#: src/yelp-window.c:497
+msgid "Help on "
+msgstr "Hilfe für "
+
+#: src/yelp-window.c:502
+msgid "Enter phrase to search for in all documents"
+msgstr ""
 
 #: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "GNOME Hilfe-Browser"
+msgid "Get help with GNOME"
+msgstr "Hilfe für GNOME holen"
 
 #: yelp.desktop.in.h:2
-msgid "Yelp"
-msgstr "Yelp"
+msgid "Help"
+msgstr "Hilfe"
