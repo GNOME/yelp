@@ -45,6 +45,7 @@
 
 struct _YelpInfoPagerPriv {
     GtkTreeStore  *tree;
+    GHashTable    *frags_hash;
 };
 
 static void           info_pager_class_init   (YelpInfoPagerClass *klass);
@@ -55,8 +56,13 @@ static xmlDocPtr      info_pager_parse        (YelpPager        *pager);
 static gchar **       info_pager_params       (YelpPager        *pager);
 
 static const gchar *  info_pager_resolve_frag (YelpPager        *pager,
-					      const gchar      *frag_id);
+					      const gchar       *frag_id);
 static GtkTreeModel * info_pager_get_sections (YelpPager        *pager);
+
+static gboolean       tree_hash_id            (GtkTreeModel     *model,
+					       GtkTreePath      *path,
+					       GtkTreeIter      *iter,
+					       YelpInfoPager    *pager);
 
 static YelpPagerClass *parent_class;
 
@@ -110,6 +116,10 @@ info_pager_init (YelpInfoPager *pager)
     YelpInfoPagerPriv *priv;
 
     priv = g_new0 (YelpInfoPagerPriv, 1);
+
+    /* In this hash, key == value */
+    priv->frags_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+
     pager->priv = priv;
 }
 
@@ -117,6 +127,9 @@ static void
 info_pager_dispose (GObject *object)
 {
     YelpInfoPager *pager = YELP_INFO_PAGER (object);
+
+    g_object_unref (pager->priv->tree);
+    g_hash_table_destroy (pager->priv->frags_hash);
 
     g_free (pager->priv);
 
@@ -163,6 +176,10 @@ info_pager_parse (YelpPager *pager)
 
     /* create the XML file */
     doc = yelp_info_parser_parse_tree (priv->tree);
+
+    gtk_tree_model_foreach (GTK_TREE_MODEL (priv->tree),
+			    (GtkTreeModelForeachFunc) tree_hash_id,
+			    pager);
     
     g_object_unref (pager);
 
@@ -189,8 +206,12 @@ info_pager_params (YelpPager *pager)
 static const gchar *
 info_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
-    /* MUST DO THIS RIGHTLY */
-    return "Top";
+    g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), NULL);
+
+    if (frag_id)
+	return g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash, frag_id);
+    else
+	return g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash, "Top");
 }
 
 static GtkTreeModel *
@@ -199,4 +220,24 @@ info_pager_get_sections (YelpPager *pager)
     g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), NULL);
 
     return YELP_INFO_PAGER (pager)->priv->tree;
+}
+
+static gboolean
+tree_hash_id (GtkTreeModel   *model,
+	      GtkTreePath    *path,
+	      GtkTreeIter    *iter,
+	      YelpInfoPager  *pager)
+{
+    YelpInfoPagerPriv *priv;
+    gchar *id;
+
+    priv = pager->priv;
+
+    gtk_tree_model_get (model, iter,
+			YELP_PAGER_COLUMN_ID, &id,
+			-1);
+    if (id)
+	g_hash_table_replace (priv->frags_hash, id, id);
+
+    return FALSE;
 }
