@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp VERSION\n"
-"POT-Creation-Date: 2002-10-21 17:54+0200\n"
-"PO-Revision-Date: 2002-03-17 08:39+0100\n"
+"POT-Creation-Date: 2002-12-02 16:20+0100\n"
+"PO-Revision-Date: 2002-12-02 16:21+0100\n"
 "Last-Translator: Szabolcs Ban <shooby@gnome.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -157,97 +157,108 @@ msgstr "Szabad szoftver"
 msgid "(C)"
 msgstr "(C)"
 
-#: src/yelp-window.c:147
+#: src/yelp-window.c:163
 msgid "/_File"
 msgstr "/_Fájl"
 
-#: src/yelp-window.c:148
+#: src/yelp-window.c:164
 msgid "/File/_New window"
 msgstr "/Fájl/Új _ablak"
 
-#. {N_("/File/_Find in page..."), NULL,      window_find_cb,         0,                           "<StockItem>", GTK_STOCK_FIND   },
-#: src/yelp-window.c:150
+#: src/yelp-window.c:165
 msgid "/File/_Close window"
 msgstr "/Fájl/Ablak _bezárása"
 
-#: src/yelp-window.c:151
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr "/S_zerkesztés"
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr "/Szerkesztés/_Keresés az oldalon..."
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "/Szerkesztés/_Következő találat"
+
+#: src/yelp-window.c:171
 msgid "/_Go"
 msgstr "/_Ugrás"
 
-#: src/yelp-window.c:152
+#: src/yelp-window.c:172
 msgid "/Go/_Back"
 msgstr "/Ugrás/_Vissza"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:173
 msgid "/Go/_Forward"
 msgstr "/Ugrás/_Előre"
 
-#: src/yelp-window.c:154
+#: src/yelp-window.c:174
 msgid "/Go/_Home"
 msgstr "/Ugrás/_Kezdőlap"
 
-#: src/yelp-window.c:155
+#: src/yelp-window.c:175
 msgid "/Go/_Index"
 msgstr "/Ugrás/_Index"
 
-#: src/yelp-window.c:156
+#: src/yelp-window.c:177
 msgid "/_Help"
 msgstr "/_Súgó"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:178
 msgid "/Help/_About"
 msgstr "/Súgó/_Névjegy"
 
-#: src/yelp-window.c:214 src/yelp-window.c:414
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "Súgóböngésző"
 
-#: src/yelp-window.c:327
+#: src/yelp-window.c:351
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "A '%s' nevű dokumentum nem létezik"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:625
+#: src/yelp-window.c:675
 msgid "translator_credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
 "Tímár András <timar@gnome.hu>"
 
-#: src/yelp-window.c:629
+#: src/yelp-window.c:679
 msgid "Help Browser for GNOME 2.0"
 msgstr "A GNOME 2.0 súgóböngészője"
 
-#: src/yelp-window.c:657
+#: src/yelp-window.c:788
 msgid "Back"
 msgstr "Vissza"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:789
 msgid "Show previous page in history"
 msgstr "Az előző lap mutatása az előzménylistából"
 
-#: src/yelp-window.c:669
+#: src/yelp-window.c:800
 msgid "Forward"
 msgstr "Előre"
 
-#: src/yelp-window.c:670
+#: src/yelp-window.c:801
 msgid "Show next page in history"
 msgstr "A következő lap mutatása az előzménylistából"
 
-#: src/yelp-window.c:683
+#: src/yelp-window.c:814
 msgid "Home"
 msgstr "Kezdőlap"
 
-#: src/yelp-window.c:684
+#: src/yelp-window.c:815
 msgid "Go to home view"
 msgstr "A kezdőlap mutatása"
 
-#: src/yelp-window.c:694
+#: src/yelp-window.c:825
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:695
+#: src/yelp-window.c:826
 msgid "Search in the index"
 msgstr "Keresés a tárgymutatóban"
 
