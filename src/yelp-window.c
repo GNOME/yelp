@@ -1938,13 +1938,16 @@ window_about_cb (GtkAction *action, YelpWindow *window)
     };
     /* Note to translators: put here your name (and address) so it
      * will shop up in the "about" box */
-    const gchar *translator_credits = _("translator_credits");
+    const gchar *translator_credits = _("translator-credits");
 
     gtk_show_about_dialog (GTK_WINDOW (window),
+			   "name", _("Yelp"),
 			   "version", VERSION,
+			   "comments", _("A documentation browser and "
+					 "viewer for the Gnome Desktop."),
 			   "copyright", copyright,
 			   "authors", authors,
-			   "translator_credits", translator_credits,
+			   "translator-credits", translator_credits,
 			   "logo-icon-name", "gnome-help",
 			   NULL);
 }
@@ -1972,7 +1975,7 @@ location_response_cb (GtkDialog *dialog, gint id, YelpWindow *window)
 }
 
 static void
-window_find_save_settings (YelpWindow * window)
+window_find_save_settings (YelpWindow *window)
 {
     YelpWindowPriv *priv;
     const gchar    *tmp;
