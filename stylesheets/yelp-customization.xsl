@@ -1,4 +1,4 @@
-<?xml version='1.0'?><!-- -*- tab-width: 3 -*- -->
+<?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:func="http://exslt.org/functions"
                 xmlns:exsl="http://exslt.org/common"
@@ -12,9 +12,8 @@
 
 <xsl:param name="yelp_docname" />
 <xsl:param name="yelp_pathname" />
-<xsl:param name="yelp_rootid" select="''" />
-<xsl:param name="yelp_multichunk" select="0" />
 <xsl:param name="yelp_stylesheet_path" select="'No Stylesheet'" />
+
 <xsl:param name="yelp_max_chunk_depth" select="2" />
 <xsl:param name="yelp_generate_navbar" select="true()"/>
 <!-- either 'yelp' or 'exslt' -->
@@ -451,7 +450,21 @@
 			<xsl:comment> End of chunk </xsl:comment>
 		</xsl:when>
 		<xsl:when test="$yelp_chunk_method = 'exslt'">
-			<exsl:document href="{concat($id, '.html')}">
+			<xsl:variable name="filename">
+				<xsl:choose>
+					<xsl:when test="$id = 'title-page'">
+						<xsl:text>titlepage.html</xsl:text>
+					</xsl:when>
+					<xsl:when test="$id = 'toc'">
+						<xsl:text>index.html</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$id"/>
+						<xsl:text>.html</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<exsl:document href="{$filename}">
 				<html>
 					<head>
 						<xsl:call-template name="head.content">

@@ -1,4 +1,4 @@
-<?xml version='1.0'?><!-- -*- tab-width: 3 -*- -->
+<?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:func="http://exslt.org/functions"
                 xmlns:yelp="http://www.gnome.org/"

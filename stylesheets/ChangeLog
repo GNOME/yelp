@@ -1,6 +1,13 @@
 2003-07-20  Shaun McCance  <shaunm@wolfram.com>
 
 	* yelp-customization.xsl:
+	- Remove unused params.
+	- Change toc and title-page filenames on file chunking to be
+	  the same as the current GDP stylesheets.
+
+2003-07-20  Shaun McCance  <shaunm@wolfram.com>
+
+	* yelp-customization.xsl:
 	- Support for chunking to files.
 	- Import current nwalsh xsl.  There don't seem to be problems.
 	- Changed gdb_ [sic] to yelp_.
