@@ -41,6 +41,9 @@ static void        parser_handle_inline  (YelpManParser *parser);
 static void        parser_ensure_P       (YelpManParser *parser);
 static void        parser_read_until     (YelpManParser *parser,
 					  gchar          delim);
+static void        parser_escape_tags    (YelpManParser *parser,
+					  gchar        **tags,
+					  gint           ntags);
 static void        parser_append_token   (YelpManParser *parser);
 static xmlNodePtr  parser_append_text    (YelpManParser *parser);
 static xmlNodePtr  parser_append_node    (YelpManParser *parser,
@@ -147,7 +150,12 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->cur++;
     parser->anc = parser->cur;
 
-    if (!strcmp (str, "B") || !strcmp (str, "I") || !strcmp (str, "SM")) {
+    if (!strcmp (str, "\\\"")) {
+	while (PARSER_CUR)
+	    parser->anc = ++parser->cur;
+    }
+    else if (!strcmp (str, "B") || !strcmp (str, "I") ||
+	     !strcmp (str, "SM")) {
 	parser_ensure_P (parser);
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
@@ -178,7 +186,11 @@ parser_handle_linetag (YelpManParser *parser) {
 	    } else break;
 	}
     }
-    else if (!strcmp (str, "SH")) {
+    else if (!strcmp (str, "P") || !strcmp (str, "PP")) {
+	parser->ins = xmlDocGetRootElement (parser->doc);
+	parser_ensure_P (parser);
+    }
+    else if (!strcmp (str, "SH") || !strcmp (str, "SS")) {
 	gint i;
 	for (i = 0; i < 6; i++) {
 	    if (PARSER_CUR && *(parser->cur) != '\n') {
@@ -221,6 +233,19 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser->ins = parser->ins->parent;
     }
+    else if (!strcmp (str, "TP")) {
+	parser->ins = xmlDocGetRootElement (parser->doc);
+	g_free (parser->buffer);
+	if (g_io_channel_read_line (parser->channel,
+				&(parser->buffer),
+				&(parser->length),
+				NULL, NULL)
+	    == G_IO_STATUS_NORMAL) {
+
+	    parser->ins = parser_append_node (parser, "Term");
+	    parser_read_until (parser, '\n');
+	}
+    }
     else {
 	g_warning ("No rule matching the tag '%s'\n", str);
     }
@@ -247,6 +272,51 @@ parser_read_until (YelpManParser *parser,
 }
 
 static void
+parser_escape_tags (YelpManParser *parser,
+		    gchar        **tags,
+		    gint           ntags)
+{
+    gint i;
+    xmlNodePtr node = NULL;
+    xmlNodePtr cur  = parser->ins;
+    GSList *path = NULL;
+
+    // Find the top node we can escape from
+    while (cur->parent != (xmlNodePtr) parser->doc) {
+	for (i = 0; i < ntags; i++)
+	    if (!xmlStrcmp (cur->name, BAD_CAST tags[i])) {
+		node = cur;
+		break;
+	    }
+	path = g_slist_prepend (path, cur);
+	cur = cur->parent;
+    }
+
+    // Walk back down, reproducing nodes we aren't escaping
+    if (node) {
+	GSList *c = path;
+	while (c && (xmlNodePtr) c->data != node)
+	    c = g_slist_next (c);
+
+	parser->ins = node->parent;
+	parser_ensure_P (parser);
+
+	while ((c = c->next)) {
+	    gboolean insert = TRUE;
+	    cur = (xmlNodePtr) c->data;
+
+	    for (i = 0; i < ntags; i++)
+		if (!xmlStrcmp (cur->name, BAD_CAST tags[i])) {
+		    insert = FALSE;
+		    break;
+		}
+	    if (insert)
+		parser->ins = parser_append_node (parser, (gchar *) cur->name);
+	}
+    }
+}
+
+static void
 parser_append_token (YelpManParser *parser)
 {
     while (*(parser->cur) == ' ')
@@ -269,6 +339,7 @@ static void
 parser_handle_inline (YelpManParser *parser)
 {
     gchar c, *str;
+    gchar **escape;
 
     parser_append_text (parser);
     parser->anc = ++parser->cur;
@@ -281,20 +352,42 @@ parser_handle_inline (YelpManParser *parser)
 	parser_append_text (parser);
 	parser->anc = parser->cur;
 	break;
-    default:
-	while (PARSER_CUR
-	       && *(parser->cur) != ' '
-	       && *(parser->cur) != '\n')
-	    parser->cur++;
+    case 'f':
+	parser->cur++;
+	if (!PARSER_CUR) break;
+	parser->cur++;
 
 	c = *(parser->cur);
 	*(parser->cur) = '\0';
-
 	str = g_strdup (parser->anc);
-	parser->ins = parser_append_node (parser, str);
-	g_free (str);
+	*(parser->cur) = c;
 
-	parser->anc = ++parser->cur;
+	escape = g_new0 (gchar *, 2);
+	escape[0] = "fB";
+	escape[1] = "fI";
+	parser_escape_tags (parser, escape, 2);
+	g_free (escape);
+
+	if (!strcmp (str, "fI") || !strcmp (str, "fB"))
+	    parser->ins = parser_append_node (parser, str);
+	else if (strcmp (str, "fR"))
+	    g_warning ("No rule matching the tag '%s'\n", str);
+
+	g_free (str);
+	parser->anc = parser->cur;
+	break;
+    default:
+	parser->cur++;
+
+	c = *(parser->cur);
+	*(parser->cur) = '\0';
+	str = g_strdup (parser->anc);
+	*(parser->cur) = c;
+
+	g_warning ("No rule matching the tag '%s'\n", str);
+
+	g_free (str);
+	parser->anc--;
 	break;
     }
 }
