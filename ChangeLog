@@ -1,3 +1,29 @@
+2003-12-31  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	- Temporarily removed test programs from the build.
+	- Removed yelp-util from the yelp build.
+
+	* src/test-uri.c:
+	- Some changes for GnomeVFSURI, but not enough.
+
+	* src/yelp-base.c:
+	* src/yelp-cache.h:
+	* src/yelp-db-pager.c:
+	* src/yelp-db-pager.h:
+	* src/yelp-history.c:
+	* src/yelp-history.h:
+	* src/yelp-html-gtkhtml2.c
+	* src/yelp-html.h:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	* src/yelp-toc-pager.c:
+	* src/yelp-uri.c:
+	* src/yelp-uri.h:
+	* src/yelp-window.c:
+	* src/yelp-window.h:
+	- Switching to GnomeVFSURI.
+
 2003-12-30  Shaun McCance  <shaunm@gnome.org>
 
 	* configure.in: Version 2.5.2.
