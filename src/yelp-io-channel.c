@@ -30,6 +30,7 @@
 #include <bzlib.h>
 #endif
 #include <string.h>
+#include <stdio.h>
 
 #include "yelp-error.h"
 #include "yelp-io-channel.h"
