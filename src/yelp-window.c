@@ -39,7 +39,7 @@
 #include <gconf/gconf-client.h>
 #include <string.h>
 
-#include "yelp-cache.h"
+#include "yelp-bookmarks.h"
 #include "yelp-db-pager.h"
 #include "yelp-error.h"
 #include "yelp-html.h"
@@ -170,6 +170,7 @@ static void    window_go_home_cb        (GtkAction *action, YelpWindow *window);
 static void    window_go_previous_cb    (GtkAction *action, YelpWindow *window);
 static void    window_go_next_cb        (GtkAction *action, YelpWindow *window);
 static void    window_go_toc_cb         (GtkAction *action, YelpWindow *window);
+static void    window_add_bookmark_cb   (GtkAction *action, YelpWindow *window);
 static void    window_about_cb          (GtkAction *action, YelpWindow *window);
 static void    window_copy_link_cb      (GtkAction *action, YelpWindow *window);
 static void    window_open_link_cb      (GtkAction *action, YelpWindow *window);
@@ -294,10 +295,11 @@ static GtkTargetEntry row_targets[] = {
 };
 
 static GtkActionEntry entries[] = {
-    { "FileMenu", NULL, N_("_File") },
-    { "EditMenu", NULL, N_("_Edit") },
-    { "GoMenu",   NULL, N_("_Go")   },
-    { "HelpMenu", NULL, N_("_Help") },
+    { "FileMenu",      NULL, N_("_File")      },
+    { "EditMenu",      NULL, N_("_Edit")      },
+    { "GoMenu",        NULL, N_("_Go")        },
+    { "BookmarksMenu", NULL, N_("_Bookmarks") },
+    { "HelpMenu",      NULL, N_("_Help")      },
 
     { "NewWindow", GTK_STOCK_NEW,
       N_("_New window"),
@@ -372,6 +374,18 @@ static GtkActionEntry entries[] = {
       NULL,
       NULL,
       G_CALLBACK (window_go_toc_cb) },
+
+    { "AddBookmark", NULL,
+      N_("_Add Bookmark"),
+      "<Control>D",
+      NULL,
+      G_CALLBACK (window_add_bookmark_cb) },
+    { "EditBookmarks", NULL,
+      N_("_Edit Bookmarks..."),
+      "<Control>B",
+      NULL,
+      G_CALLBACK (yelp_bookmarks_edit) },
+
     { "OpenLink", NULL,
       N_("_Open Link"),
       NULL,
@@ -725,6 +739,14 @@ yelp_window_get_doc_info (YelpWindow *window)
     return window->priv->current_doc;
 }
 
+GtkUIManager *
+yelp_window_get_ui_manager (YelpWindow *window)
+{
+    g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
+
+    return window->priv->ui_manager;
+}
+
 static void
 window_do_load (YelpWindow  *window,
 		YelpDocInfo *doc_info,
@@ -848,6 +870,8 @@ window_populate (YelpWindow *window)
 	window_error (window, error, FALSE);
 	g_error_free (error);
     }
+
+    yelp_bookmarks_register (window);
 
     gtk_ui_manager_ensure_update (priv->ui_manager);
 
@@ -1953,6 +1977,26 @@ window_go_toc_cb (GtkAction *action, YelpWindow *window)
 
     g_free (uri);
     g_free (base);
+}
+
+static void
+window_add_bookmark_cb (GtkAction *action, YelpWindow *window)
+{
+    gchar *uri;
+    YelpWindowPriv *priv = window->priv;
+
+    d (g_print ("window_add_bookmark\n"));
+
+    uri = yelp_doc_info_get_uri (priv->current_doc, priv->current_frag,
+				 YELP_URI_TYPE_NO_FILE);
+    if (!uri)
+	uri = yelp_doc_info_get_uri (priv->current_doc, priv->current_frag,
+				     YELP_URI_TYPE_FILE);
+
+    if (!uri)
+	return;
+
+    yelp_bookmarks_add (uri, gtk_window_get_title (GTK_WINDOW (window)));
 }
 
 static void window_copy_link_cb (GtkAction *action, YelpWindow *window) 

@@ -72,6 +72,7 @@ yelp_SOURCES =							\
 	$(gnome_yelp_idl_sources)				\
 	$(man_sources)						\
 	yelp-base.c		yelp-base.h			\
+	yelp-bookmarks.c 	yelp-bookmarks.h		\
 	yelp-cache.c		yelp-cache.h			\
 	yelp-db-pager.c		yelp-db-pager.h			\
 	yelp-error.c		yelp-error.h			\

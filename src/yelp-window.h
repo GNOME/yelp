@@ -62,5 +62,6 @@ GtkWidget *      yelp_window_new             (GNode         *doc_tree,
 void             yelp_window_load            (YelpWindow    *window,
 					      gchar         *uri);
 YelpDocInfo *    yelp_window_get_doc_info    (YelpWindow    *window);
+GtkUIManager *   yelp_window_get_ui_manager  (YelpWindow    *window);
 
 #endif /* __YELP_WINDOW_H__ */

@@ -138,4 +138,4 @@ gchar *             yelp_uri_get_fragment       (gchar         *uri);
 gchar *             yelp_uri_get_relative       (gchar         *base,
 						 gchar         *ref);
 
-#endif /* __YELP_PAGER_H__ */
+#endif /* __YELP_UTILS_H__ */

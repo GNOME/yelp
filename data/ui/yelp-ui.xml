@@ -23,6 +23,14 @@
       <menuitem action="GoNext"/>
       <menuitem action="GoContents"/>
     </menu>
+    <menu action="BookmarksMenu">
+      <menuitem action="AddBookmark"/>
+      <menuitem action="EditBookmarks"/>
+      <separator/>
+      <placeholder name="BookmarksTOC"/>
+      <separator/>
+      <placeholder name="BookmarksDOC"/>
+    </menu>
     <menu action="HelpMenu">
       <menuitem action="About"/>
     </menu>

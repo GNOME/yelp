@@ -112,6 +112,7 @@ yelp_base_init (YelpBase *base)
 	priv->windows  = NULL;
         base->priv     = priv;
 
+	yelp_bookmarks_init ();
 	yelp_cache_init ();
 	yelp_settings_init ();
 }
