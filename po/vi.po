@@ -1,18 +1,20 @@
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# translation of vi.po to 
+# Copyright (C) 2002, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the PACKAGE package.
-# pclouds <pclouds@vnlinux.org>, 2002-2004.
+# pclouds <pclouds@vnlinux.org>, 2002-2004, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 0.6.99\n"
+"Project-Id-Version: vi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-12-20 21:16+0700\n"
-"Last-Translator: pclouds <pclouds@vnlinux.org>\n"
-"Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2005-03-05 01:51+0700\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
@@ -28,7 +30,7 @@ msgstr "Phát triển"
 
 #: data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "Hàm FORTRAN"
 
 #: data/man.xml.in.h:5 data/toc.xml.in.h:7
 msgid "Games"
@@ -47,38 +49,32 @@ msgid "Library Functions"
 msgstr "Các hàm thư viện"
 
 #: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-#, fuzzy
 msgid "Man Pages"
 msgstr "Trang Man"
 
 #: data/man.xml.in.h:10
-#, fuzzy
 msgid "OpenSSL Applications"
-msgstr "Ứng dụng X"
+msgstr "Ứng dụng OpenSSL"
 
 #: data/man.xml.in.h:11
-#, fuzzy
 msgid "OpenSSL Configuration"
-msgstr "Tập tin cấu hình"
+msgstr "Cấu hình OpenSSL"
 
 #: data/man.xml.in.h:12
-#, fuzzy
 msgid "OpenSSL Overviews"
-msgstr "Tổng quan"
+msgstr "Tổng quan OpenSSL"
 
 #: data/man.xml.in.h:13
 msgid "Overviews"
 msgstr "Tổng quan"
 
 #: data/man.xml.in.h:14
-#, fuzzy
 msgid "Perl Functions"
-msgstr "Các hàm thư viện"
+msgstr "Các hàm Perl"
 
 #: data/man.xml.in.h:15
-#, fuzzy
 msgid "Qt Functions"
-msgstr "Các hàm thư viện"
+msgstr "Các hàm Qt"
 
 #: data/man.xml.in.h:16
 msgid "System Administration"
@@ -89,46 +85,40 @@ msgid "System Calls"
 msgstr "Lệnh gọi hệ thống"
 
 #: data/man.xml.in.h:18
-#, fuzzy
 msgid "Termcap Applications"
-msgstr "Ứng dụng X"
+msgstr "Ứng dụng Termcap"
 
 #: data/man.xml.in.h:19
-#, fuzzy
 msgid "X11 Applications"
-msgstr "Ứng dụng X"
+msgstr "Ứng dụng X11"
 
 #: data/man.xml.in.h:20
-#, fuzzy
 msgid "X11 Configuration"
-msgstr "Tập tin cấu hình"
+msgstr "Cấu hình X11"
 
 #: data/man.xml.in.h:21
 msgid "X11 Devices"
-msgstr ""
+msgstr "Thiết bị X11"
 
 #: data/man.xml.in.h:22
-#, fuzzy
 msgid "X11 Functions"
-msgstr "Các hàm thư viện"
+msgstr "Các hàm X11"
 
 #: data/man.xml.in.h:23
-#, fuzzy
 msgid "X11 Games"
-msgstr "Trò chơi"
+msgstr "Trò chơi X11"
 
 #: data/man.xml.in.h:24
-#, fuzzy
 msgid "X11 Overviews"
-msgstr "Tổng quan"
+msgstr "Tổng quan X11"
 
 #: data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "Truy nhập"
 
 #: data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "Phụ tùng"
 
 #: data/toc.xml.in.h:3
 msgid "Applets"
@@ -144,17 +134,15 @@ msgstr "Ứng dụng Giáo dục"
 
 #: data/toc.xml.in.h:8
 msgid "Graphics"
-msgstr ""
+msgstr "Đồ họa"
 
 #: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
 msgid "Help Topics"
-msgstr "Trình trợ giúp"
+msgstr "Chủ đề trợ giúp"
 
 #: data/toc.xml.in.h:10
-#, fuzzy
 msgid "Internet"
-msgstr "Nội dung"
+msgstr "Internet"
 
 #: data/toc.xml.in.h:11
 msgid "KDE"
@@ -162,34 +150,31 @@ msgstr "KDE"
 
 #: data/toc.xml.in.h:12
 msgid "Office"
-msgstr ""
+msgstr "Văn phòng"
 
 #: data/toc.xml.in.h:13
 msgid "Other"
-msgstr ""
+msgstr "Còn lại"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
 msgid "Other Documentation"
-msgstr "Thông tin Tài liệu"
+msgstr "Tài liệu khác"
 
 #: data/toc.xml.in.h:15
 msgid "Programming"
-msgstr ""
+msgstr "Lập trình"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
 msgid "Scientific"
-msgstr "Ứng dụng Khoa học"
+msgstr "Khoa học"
 
 #: data/toc.xml.in.h:17
 msgid "Sound &amp; Video"
-msgstr ""
+msgstr "Hình&amp;tiếng"
 
 #: data/toc.xml.in.h:18
-#, fuzzy
 msgid "System Tools"
-msgstr "Lệnh gọi hệ thống"
+msgstr "Công cụ hệ thống"
 
 #: data/toc.xml.in.h:19
 msgid "X Applications"
@@ -197,30 +182,27 @@ msgstr "Ứng dụng X"
 
 #: data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Truy nhập</b>"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Phông chữ</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "Sách"
+msgstr "<b>Đá_nh dấu:</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Phông chữ</b>"
+msgstr "<b>_Tiêu đề:</b>"
 
 #: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Thêm đánh dấu"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Bookmarks"
-msgstr "Sách"
+msgstr "Đánh dấu"
 
 #: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
@@ -240,7 +222,7 @@ msgstr "Tùy thích"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "Đổ_i tên"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
@@ -252,7 +234,7 @@ msgstr "_Tìm: "
 
 #: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Phông đều:"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Location:"
@@ -272,7 +254,7 @@ msgstr "_Dùng phông hệ thống"
 
 #: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Phông co dãn:"
 
 #: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
@@ -288,11 +270,11 @@ msgstr "Phông chữ văn bản"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Phông cho văn bản có chữ đều."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Phông cho chữ có bề rộng thay đổi."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
@@ -307,7 +289,6 @@ msgid "Use system fonts"
 msgstr "Dùng phông hệ thống"
 
 #: data/yelp.schemas.in.h:8
-#, fuzzy
 msgid "Use the default fonts set for the system."
 msgstr "Dùng phông mặc định của hệ thống."
 
@@ -322,19 +303,18 @@ msgstr "Yelp Factory"
 #: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "Đánh dấu tên <b>%s</b> cho trang này đã có rồi."
 
 #: src/yelp-bookmarks.c:341
-#, fuzzy
 msgid "Document Sections"
-msgstr "Thông tin Tài liệu"
+msgstr "Phần Tài liệu"
 
 #: src/yelp-db-pager.c:238
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr ""
+msgstr "Không thể phân tích tập tin ‘%s’. Hoặc tập tin không tồn tại, hoặc nó không đúng chuẩn XML."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
@@ -342,47 +322,42 @@ msgstr "Không rõ"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Xảy ra lỗi lạ."
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "Could not load document"
-msgstr "Không thể phân tích tài liệu '%s'"
+msgstr "Không thể nạp tài liệu"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Không thể mở cửa sổ mới."
+msgstr "Không thể nạp phần này"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Không thể nạp tập tin OMF '%s'."
+msgstr "Không thể đọc mục lục"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Dạng thức không hỗ trợ."
 
 #: src/yelp-error.c:54
-#, fuzzy
 msgid "Could not read document"
-msgstr "Không thể phân tích tài liệu '%s'"
+msgstr "Không thể đọc tài liệu"
 
 #: src/yelp-error.c:56
-#, fuzzy
 msgid "Could not process document"
-msgstr "Không thể phân tích tài liệu '%s'"
+msgstr "Không thể xử lý tài liệu"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "Không có thông tin về lỗi này."
 
 #: src/yelp-io-channel.c:98
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr ""
+msgstr "Không thể đọc và giải mã tập tin ‘%s’. Tập tin có lẽ được nén bằng dạng thức không được hỗ trợ."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -406,7 +381,7 @@ msgstr "Trợ giúp"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
+msgstr "Không thể phân tích tập tin ‘%s’.Hoặc tập tin không tồn tại, hoặc không đúng chuẩn."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -453,21 +428,21 @@ msgstr "Không thể nạp tập tin OMF '%s'."
 #: src/yelp-toc-pager.c:680
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "Đọc man page cho %s"
 
 #: src/yelp-toc-pager.c:765
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
+msgstr "Không thể nạp mục lục. Hoặc thiếu tập tin ‘%s’, hoặc tập tin không đúng chuẩn XML."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Không thể xử lý mục lục. Hoặc thiếu tập tin ‘%s’,`hoặc không đúng chuẩn XSLT."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -495,28 +470,25 @@ msgstr "Đ_i"
 
 #: src/yelp-window.c:305
 msgid "_Bookmarks"
-msgstr ""
+msgstr "Đánh _dấu"
 
 #: src/yelp-window.c:306
 msgid "_Help"
 msgstr "Trợ _giúp"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "_Cửa sổ mới"
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "About This Document"
-msgstr "Về phần này"
+msgstr "Về tài liệu này"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Mở _vị trí"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
 msgstr "Đón_g cửa sổ"
 
@@ -525,9 +497,8 @@ msgid "_Copy"
 msgstr "_Chép"
 
 #: src/yelp-window.c:336
-#, fuzzy
 msgid "_Select All"
-msgstr "Xem thêm"
+msgstr "_Chọn tất cả"
 
 #: src/yelp-window.c:341
 msgid "_Find..."
@@ -559,21 +530,19 @@ msgstr "Xem trang kế"
 
 #: src/yelp-window.c:367
 msgid "_Help Topics"
-msgstr ""
+msgstr "_Chủ đề trợ giúp"
 
 #: src/yelp-window.c:369
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Đến danh sách chủ đề trợ giúp"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "Trang T_rước"
+msgstr "Phần t_rước"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "Phần"
+msgstr "Phần _kế"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -581,11 +550,11 @@ msgstr "_Nội dung"
 
 #: src/yelp-window.c:388
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "T_hêm đánh dấu"
 
 #: src/yelp-window.c:393
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "_Sửa đánh dấu..."
 
 #: src/yelp-window.c:399
 msgid "_Open Link"
@@ -609,7 +578,7 @@ msgstr "Trình trợ giúp"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "Uniform Resource Identifier cho tập tin không hợp lệ "
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
@@ -620,32 +589,29 @@ msgstr ""
 
 #: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Man page không được hỗ trợ trong phiên bản này."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "GNU info page không được hỗ trợ trong phiên bản này"
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "Tài liệu SGML không còn được hỗ trợ nữa. Vui lòng đề nghị tác giả tài liệu chuyển sang XML."
 
 #: src/yelp-window.c:1024
-#, fuzzy
 msgid "Find:"
-msgstr "Tìm"
+msgstr "Tìm:"
 
 #: src/yelp-window.c:1040
-#, fuzzy
 msgid "Find _Next"
-msgstr "Tìm chuỗi..."
+msgstr "Tìm t_iếp..."
 
 #: src/yelp-window.c:1052
-#, fuzzy
 msgid "Find _Previous"
-msgstr "T_rước"
+msgstr "Tìm _ngược"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -660,14 +626,14 @@ msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr ""
+msgstr "Phần ‘%s’ không có trong tài liệu. Nếu bạn được đưa đến phần này từ nút Trợ giúp trong ứng dụng, vui lòng báo lại cho người quản lý ứng dụng biết."
 
 #: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr ""
+msgstr "Không thể đọc tập tin ‘%s’. Hoặc thiếu tập tin, hoặc không có quyền đọc tập tin."
 
 #: src/yelp-window.c:1336
 msgid "Loading..."
@@ -676,27 +642,26 @@ msgstr "Đang nạp..."
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
 #: src/yelp-window.c:2166
-#, fuzzy
 msgid "translator-credits"
 msgstr "Nhóm Việt hoá GNOME (http://gnomevi.sourceforge.net)"
 
 #: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "Trình duyệt và xem tài liệu cho Gnome Desktop."
 
 #: src/yelp-xslt-pager.c:194
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr ""
+msgstr "Không thể phân tích tập tin ‘%s’. Hoặc tập tin không tồn tại, hoặc không đúng chuẩn."
 
 #: src/yelp-xslt-pager.c:215
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "Không thể xử lý tập tin ‘%s’. Hoặc tập tin ‘%s’ không tồn tại, hoặc không đúng chuẩn XSLT."
 
 #: src/yelp-xslt-pager.c:228
 #, c-format
@@ -709,363 +674,3 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "Trợ giúp với GNOME"
 
-#~ msgid "_Home"
-#~ msgstr "_Gốc"
-
-#~ msgid "Go to home view"
-#~ msgstr "Về nhà"
-
-#~ msgid "Fin_d"
-#~ msgstr "_Tìm"
-
-#~ msgid "Development Environments"
-#~ msgstr "Môi trường Phát triển"
-
-#~ msgid "Development Tools"
-#~ msgstr "Công cụ Phát triển"
-
-#~ msgid "Editors"
-#~ msgstr "Chủ bút"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "Trò chơi và Giải trí"
-
-#~ msgid "General"
-#~ msgstr "Chung"
-
-#~ msgid "Internet Applications"
-#~ msgstr "Ứng dụng Internet"
-
-#~ msgid "Kernels"
-#~ msgstr "Kernel"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "Ứng dụng Đa phương tiện"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "Ứng dụng Văn phòng và Productivity"
-
-#~ msgid "Securities"
-#~ msgstr "An ninh - Bảo mật"
-
-#~ msgid "System"
-#~ msgstr "Hệ thống"
-
-#~ msgid "Utilities"
-#~ msgstr "Tiện ích"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Titlepage"
-#~ msgstr "Trang tiêu đề"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Không thể mở tài liệu được chọn"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Không tìm thấy tài liệu được chọn."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Không thể đọc mục lục."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "Tài liệu DocBook SGML không còn được hỗ trợ nữa."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "Không thể đọc tập tin được chọn."
-
-#~ msgid "The file could not be processed."
-#~ msgstr "Không thể xử lý tập tin."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Phân loại"
-
-#~ msgid "Documents"
-#~ msgstr "Tài liệu"
-
-#~ msgid "_Next Page"
-#~ msgstr "Trang _kế"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
-
-#~ msgid "About This Article"
-#~ msgstr "Về bài viết này"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "Về thư mục này"
-
-#~ msgid "About This Book"
-#~ msgstr "Về cuốn sách này"
-
-#~ msgid "About This Chapter"
-#~ msgstr "Về chương này"
-
-#~ msgid "About This Entry"
-#~ msgstr "Về mục này"
-
-#~ msgid "About This Glossary"
-#~ msgstr "Về Từ điển Thuật ngữ này"
-
-#~ msgid "About This Index"
-#~ msgstr "Về Mục lục này"
-
-#~ msgid "About This Part"
-#~ msgstr "Về phần này"
-
-#~ msgid "About This Preface"
-#~ msgstr "Về Lời giới thiệu này"
-
-#~ msgid "About This Reference"
-#~ msgstr "Về tham khảo này"
-
-#~ msgid "About This Section"
-#~ msgstr "Về phần này"
-
-#~ msgid "Appendix"
-#~ msgstr "Phụ lục"
-
-#~ msgid "Article"
-#~ msgstr "Bài viết"
-
-#~ msgid "Audience"
-#~ msgstr "Độc giả"
-
-#~ msgid "Author"
-#~ msgstr "Tác giả"
-
-#~ msgid "Authors"
-#~ msgstr "Tác giả"
-
-#~ msgid "Bibliography"
-#~ msgstr "Thư mục"
-
-#~ msgid "Caution"
-#~ msgstr "Thận trọng"
-
-#~ msgid "Chapter"
-#~ msgstr "Chương"
-
-#~ msgid "Collaborator"
-#~ msgstr "Người cộng tác"
-
-#~ msgid "Collaborators"
-#~ msgstr "Người cộng tác"
-
-#~ msgid "Colophon"
-#~ msgstr "Lời kết"
-
-#~ msgid "Copyright"
-#~ msgstr "Bản quyền"
-
-#~ msgid "Copyrights"
-#~ msgstr "Bản quyền"
-
-#~ msgid "Date"
-#~ msgstr "Ngày"
-
-#~ msgid "Dedication"
-#~ msgstr "Đề tặng"
-
-#~ msgid "Editor"
-#~ msgstr "Chủ bút"
-
-#~ msgid "Email"
-#~ msgstr "Email"
-
-#~ msgid "Example"
-#~ msgstr "Ví dụ"
-
-#~ msgid "Figure"
-#~ msgstr "Hình"
-
-#~ msgid "Glossary"
-#~ msgstr "Từ điển Thuật ngữ"
-
-#~ msgid "Important"
-#~ msgstr "Quan trọng"
-
-#~ msgid "Index"
-#~ msgstr "Mục lục"
-
-#~ msgid "Level"
-#~ msgstr "Mức"
-
-#~ msgid "Note"
-#~ msgstr "Ghi chú"
-
-#~ msgid "Origin"
-#~ msgstr "Nguồn gốc"
-
-#~ msgid "Other Contributor"
-#~ msgstr "Những người tham gia khác"
-
-#~ msgid "Other Contributors"
-#~ msgstr "Những người tham gia khác"
-
-#~ msgid "Part"
-#~ msgstr "Phần"
-
-#~ msgid "Preface"
-#~ msgstr "Mở đầu"
-
-#~ msgid "Publisher"
-#~ msgstr "Nhà xuất bản"
-
-#~ msgid "Publishers"
-#~ msgstr "Nhà xuất bản"
-
-#~ msgid "Reference"
-#~ msgstr "Tham khảo"
-
-#~ msgid "Reference Entry"
-#~ msgstr "Mục nhập Tham khảo"
-
-#~ msgid "Reference Section"
-#~ msgstr "Phần tham khảo"
-
-#~ msgid "See"
-#~ msgstr "Xem"
-
-#~ msgid "Set Index"
-#~ msgstr "Đặt Mục lục"
-
-#~ msgid "Table"
-#~ msgstr "Bảng"
-
-#~ msgid "Table of Contents"
-#~ msgstr "Mục lục"
-
-#~ msgid "Tip"
-#~ msgstr "Mẹo"
-
-#~ msgid "Title"
-#~ msgstr "Tựa đề"
-
-#~ msgid "Warning"
-#~ msgstr "Cảnh báo"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Sửa/Tìm _tiếp"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Sửa/Tìm _lại"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Đi/_Lùi"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Đi/_Tới"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Đi/Về n_hà"
-
-#~ msgid "/Go/"
-#~ msgstr "/Đi/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Đi/Nội dung"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Trình duyệt trợ giúp của GNOME"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Tài liệu '%s' không tồn tại"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Tìm văn bản trong tài liệu:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Tự động _cuộn"
-
-#~ msgid "Match _entire word"
-#~ msgstr "Khớp toàn _bộ từ"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "_So khớp chữ hoa/thường"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Tìm:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - Desktop"
-
-#~ msgid "Additional documents"
-#~ msgstr "Các tài liệu bổ sung"
-
-#~ msgid "Info Pages"
-#~ msgstr "Các trang Info"
-
-#~ msgid "Manual pages"
-#~ msgstr "Các trang Man"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOME là"
-
-#~ msgid "Free Software"
-#~ msgstr "Phần mềm tự do"
-
-#~ msgid "(C)"
-#~ msgstr "(C)"
-
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Đang nạp..&nbsp;"
-
-#~ msgid "Search in the index"
-#~ msgstr "Tìm trong mục lục"
-
-#~ msgid ""
-#~ "Error while parsing the stylesheet, make sure you have your docbook "
-#~ "environment setup correctly."
-#~ msgstr ""
-#~ "Lỗi phân tích stylesheet, hãy chắc rằng bạn đã cài đặt môi trường DocBook "
-#~ "đúng."
-
-#~ msgid "Error while applying the stylesheet."
-#~ msgstr "Lỗi áp dụng stylesheet."
-
-#~ msgid "info"
-#~ msgstr "thông tin"
-
-#~ msgid "man"
-#~ msgstr "man"
-
-#~ msgid "Start page"
-#~ msgstr "Trang bắt đầu"
-
-#~ msgid "Scrollkeeper docs for category"
-#~ msgstr "Tài liệu phân loại dựa trên Scrollkeeper"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "URI của tài liệu cần xử lý"
