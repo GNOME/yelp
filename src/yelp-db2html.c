@@ -51,7 +51,8 @@ yelp_db2html_convert (const gchar         *document,
 {
 	static xsltStylesheetPtr gdb_xslreturn = NULL;
         char              *gdb_docname;
-        xmlDocPtr          gdb_doc, gdb_results;
+        xmlDocPtr          gdb_doc;
+        xmlDocPtr          gdb_results;
 	const char        *params[16 + 1];
 	char              *gdb_pathname;    /* path to the file to be parsed */
 	char              *gdb_rootid; /* id of sect, chapt, etc to be parsed */
@@ -109,6 +110,7 @@ yelp_db2html_convert (const gchar         *document,
 	/* check the file type by looking at name
 	 * FIXME - we need to be more sophisticated about this
 	 * then parse as either xml or sgml */
+
 	gdb_split_docname = g_strsplit(gdb_docname, ".", 2);
 
 	if (!strcmp(gdb_split_docname[1], "sgml")) {
@@ -116,7 +118,6 @@ yelp_db2html_convert (const gchar         *document,
 	} else {
 		(gdb_doc = xmlParseFile(gdb_docname));
 	}
-
 	if (gdb_doc == NULL) {
                 /* FIXME: Set something in the GError */
                 g_set_error (error,
@@ -133,7 +134,7 @@ yelp_db2html_convert (const gchar         *document,
 	/* retrieve path component of filename passed in at
 	   command line */
 	gdb_pathname = g_path_get_dirname (gdb_doc->URL);
-	gdb_docname = g_path_get_basename (gdb_doc->URL);
+	gdb_docname  = g_path_get_basename (gdb_doc->URL);
 
 	for (ptr = gdb_docname; *ptr; ptr++){
 		if (*ptr == '.') {
@@ -150,13 +151,13 @@ yelp_db2html_convert (const gchar         *document,
 	params[4] = NULL;
 
 	if (has_rootid) {
-/*  		params[4] = "rootid"; */
- 		params[4] = "gdb_rootid";
+                params[4] = "rootid";
+/*  		params[4] = "gdb_rootid"; */
 		params[5] = g_strconcat("\"", gdb_rootid + 1, "\"", NULL) ;
 		params[6] = NULL;
 	}
 
-	gdb_results = xsltApplyStylesheet(gdb_xslreturn, gdb_doc, params);
+        gdb_results = xsltApplyStylesheet(gdb_xslreturn, gdb_doc, params);
 
         if (!gdb_results) {
                 g_set_error (error,

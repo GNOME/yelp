@@ -1,6 +1,8 @@
 2002-04-14  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-db2html.c: 
+	(yelp_db2html_convert): revert a little, in wait for sanders new
+	  stylesheets.
 	- use GError to signal errors while parsing document. Still needs
 	  to be added to above layers. 
 	- don't leek the stylesheet name.
