@@ -167,7 +167,7 @@ yelp_base_new (void)
         YelpBase     *base;
 	YelpBasePriv *priv;
 	gboolean      result;
-
+	
         base = g_object_new (YELP_TYPE_BASE, NULL);
 	priv = base->priv;
 	
@@ -198,7 +198,6 @@ yelp_base_new_window (YelpBase *base)
 			   (GWeakNotify) yelp_base_window_finalized_cb,
 			   base);
 	
-
 	g_signal_connect (window, "new_window_requested",
 			  G_CALLBACK (yelp_base_new_window_cb),
 			  base);

@@ -1,5 +1,14 @@
 2002-03-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c:
+	- Fixes #73056
+	(yelp_window_new): don't create index view if no index is
+	  available.  
+	(yw_create_toolbar): don't add index-button if index is not
+	  available. 
+	(yw_populate): don't insert index page in notebook if index is not
+	  present.
+
 	* src/yelp-base.c:
 	(impl_Yelp_getWindows): added/impl.
 	(yelp_base_class_init): use getWindows.

@@ -287,9 +287,11 @@ yw_populate (YelpWindow *window)
 				  priv->content_view,
 				  NULL, PAGE_CONTENT_VIEW);
 
-	gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
-				  priv->index_view,
-				  NULL, PAGE_INDEX_VIEW);
+	if (priv->index) {
+		gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
+					  priv->index_view,
+					  NULL, PAGE_INDEX_VIEW);
+	}
 	
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
 	gtk_box_pack_end (GTK_BOX (main_box), priv->notebook,
@@ -597,36 +599,19 @@ yw_create_toolbar (YelpWindow *window)
 					  G_CALLBACK (yw_home_button_clicked),
 					  window);
 
+	if (priv->index) {
+		icon = gtk_image_new_from_stock ("gtk-index",
+						 GTK_ICON_SIZE_LARGE_TOOLBAR);
 
-	icon = gtk_image_new_from_stock ("gtk-index",
-					 GTK_ICON_SIZE_LARGE_TOOLBAR);
-
-	button = gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
-					  _("Index"),
-					  _("Search in the index"), 
-					  NULL, icon,
-					  G_CALLBACK (yw_index_button_clicked),
-					  window);
-
-#if 0	
-	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
+		button = gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
+						  _("Index"),
+						  _("Search in the index"), 
+						  NULL, icon,
+						  G_CALLBACK (yw_index_button_clicked),
+						  window);
+		
+	}
 	
-	button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-					   "gtk-find",
-					   _("Search for a phrase in the document"), "",
-					   NULL, NULL, -1);
-
-	/* Connect to find-button */
-
-	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
-				   gtk_label_new (_("Help on ")),
-				   "", "");
-	
-	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
-				   gtk_entry_new (),
-				   _("Enter phrase to search for in all documents"), "");
-#endif
-
 	return toolbar;
 }
 
@@ -644,7 +629,10 @@ yelp_window_new (GNode *doc_tree, GList *index)
 
  	priv->toc_view    = yelp_view_toc_new (doc_tree);
  	priv->content_view = yelp_view_content_new (doc_tree);
-	priv->index_view   = yelp_view_index_new (index);
+
+	if (priv->index) {
+		priv->index_view   = yelp_view_index_new (index);
+	} 
 
 	g_signal_connect (priv->toc_view, "url_selected",
 			  G_CALLBACK (yw_url_selected_cb),
