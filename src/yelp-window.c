@@ -35,7 +35,7 @@
 #include <string.h>
 #include "yelp-index.h"
 #include "yelp-toc.h"
-#include "yelp-view.h"
+#include "yelp-doc-view.h"
 #include "yelp-window.h"
 #include "yelp-section.h"
 #include "yelp-history.h"
@@ -67,9 +67,9 @@ struct _YelpWindowPriv {
 	YelpBase       *base;
 	
         GtkWidget      *hpaned;
-        GtkWidget      *notebook;
+/*         GtkWidget      *notebook; */
 
-        GtkWidget      *yelp_view;
+        GtkWidget      *yelp_doc_view;
         GtkWidget      *yelp_toc;
 
 	YelpIndex      *index;
@@ -157,6 +157,7 @@ yelp_window_populate (YelpWindow *window)
 	GtkWidget      *frame;
 	GtkWidget      *main_box;
 	GtkWidget      *toolbar;
+	GtkWidget      *search_bar;
 	
         priv = window->priv;
 
@@ -166,22 +167,22 @@ yelp_window_populate (YelpWindow *window)
         search_list_sw     = gtk_scrolled_window_new (NULL, NULL); 
         search_box         = gtk_vbox_new (FALSE, 0);
 
-        priv->notebook     = gtk_notebook_new ();
+/*         priv->notebook     = gtk_notebook_new (); */
         priv->hpaned       = gtk_hpaned_new ();
 
 	priv->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR,
 						   "<main>", NULL);
 	gtk_container_add (GTK_CONTAINER (window), main_box);
 	
-	gtk_item_factory_create_items (priv->item_factory,
-				       G_N_ELEMENTS (menu_items),
-				       menu_items,
-				       window);
+/* 	gtk_item_factory_create_items (priv->item_factory, */
+/* 				       G_N_ELEMENTS (menu_items), */
+/* 				       menu_items, */
+/* 				       window); */
 
-	gtk_box_pack_start (GTK_BOX (main_box),
-			    gtk_item_factory_get_widget (priv->item_factory,
-							 "<main>"),
-			    FALSE, FALSE, 0);
+/* 	gtk_box_pack_start (GTK_BOX (main_box), */
+/* 			    gtk_item_factory_get_widget (priv->item_factory, */
+/* 							 "<main>"), */
+/* 			    FALSE, FALSE, 0); */
 
 	toolbar = gtk_toolbar_new ();
 
@@ -205,6 +206,33 @@ yelp_window_populate (YelpWindow *window)
 							 "", "",
 							 NULL, NULL, -1);
 
+	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar), 
+				  "gtk-home",
+				  "", "",
+				  NULL, NULL, -1);
+
+	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
+
+	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
+				  "gtk-index",
+				  "", "",
+				  NULL, NULL, -1);
+	
+	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
+	
+	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
+				  "gtk-find",
+				  "", "",
+				  NULL, NULL, -1);
+
+	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
+				   gtk_label_new (_("Help on ")),
+				   "", "");
+	
+	gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar),
+				   gtk_entry_new (),
+				   "", "");
+
 	gtk_widget_set_sensitive (priv->forward_button, FALSE);
 
 	g_signal_connect_swapped (priv->history, "forward_exists_changed",
@@ -215,16 +243,21 @@ yelp_window_populate (YelpWindow *window)
 			  G_CALLBACK (yelp_window_history_button_pressed),
 			  G_OBJECT (window));
 
+	
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
+
+/* 	search_bar = gtk_toolbar_new (); */
+
+/* 	gtk_box_pack_start (GTK_BOX (main_box), search_bar, FALSE, FALSE, 0); */
 	
         /* Html View */
-        priv->yelp_view = yelp_view_new ();
+        priv->yelp_doc_view = yelp_doc_view_new ();
 
-	g_signal_connect_swapped (priv->yelp_view, "section_selected",
+	g_signal_connect_swapped (priv->yelp_doc_view, "section_selected",
 				  G_CALLBACK (yelp_window_section_selected_cb),
 				  G_OBJECT (window));
 	
-        gtk_container_add (GTK_CONTAINER (html_sw), priv->yelp_view);
+        gtk_container_add (GTK_CONTAINER (html_sw), priv->yelp_doc_view);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (html_sw),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
@@ -244,8 +277,8 @@ yelp_window_populate (YelpWindow *window)
                                         GTK_POLICY_AUTOMATIC, 
                                         GTK_POLICY_AUTOMATIC);
 
-        gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), 
-                                  tree_sw, gtk_label_new (_("Contents")));
+/*         gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),  */
+/*                                   tree_sw, gtk_label_new (_("Contents"))); */
 
 	g_signal_connect_swapped (G_OBJECT (priv->yelp_toc), 
 				  "section_selected",
@@ -260,8 +293,8 @@ yelp_window_populate (YelpWindow *window)
                                         GTK_POLICY_AUTOMATIC, 
                                         GTK_POLICY_AUTOMATIC);
 
-        gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), 
-                                  search_box, gtk_label_new (_("Index")));
+/*         gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),  */
+/*                                   search_box, gtk_label_new (_("Index"))); */
 
         gtk_box_pack_start (GTK_BOX (search_box), 
 			    yelp_index_get_entry (priv->index),
@@ -270,7 +303,9 @@ yelp_window_populate (YelpWindow *window)
 
 	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-        gtk_container_add (GTK_CONTAINER (frame), priv->notebook);
+/*         gtk_container_add (GTK_CONTAINER (frame), priv->notebook); */
+	gtk_container_add (GTK_CONTAINER (frame), tree_sw);
+	
         gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
         
         gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
@@ -314,7 +349,7 @@ yelp_window_section_selected_cb (YelpWindow  *window,
 
 	yelp_history_goto (priv->history, section);
 
-	yelp_view_open_section (YELP_VIEW (window->priv->yelp_view), section);
+	yelp_doc_view_open_section (YELP_DOC_VIEW (window->priv->yelp_doc_view), section);
 
 }
 
@@ -370,7 +405,7 @@ yelp_window_history_button_pressed (GtkWidget *button, YelpWindow *window)
 	}
 
 	if (section) {
-		yelp_view_open_section (YELP_VIEW (priv->yelp_view), section);
+		yelp_doc_view_open_section (YELP_DOC_VIEW (priv->yelp_doc_view), section);
 	}
 }
 
@@ -399,6 +434,6 @@ yelp_window_open_uri (YelpWindow  *window,
 	
 	priv = window->priv;
 	
-	yelp_view_open_section (YELP_VIEW (priv->yelp_view), 
-				yelp_section_new (NULL, str_uri, NULL, NULL));
+	yelp_doc_view_open_section (YELP_DOC_VIEW (priv->yelp_doc_view), 
+				    yelp_section_new (NULL, str_uri, NULL, NULL));
 }

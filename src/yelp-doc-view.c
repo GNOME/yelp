@@ -27,35 +27,35 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
 #include <stdio.h>
-#include "yelp-view.h"
+#include "yelp-doc-view.h"
 
 #define d(x) x
 
 typedef struct _StreamData StreamData;
 
-static void yelp_view_init             (YelpView              *html);
-static void yelp_view_class_init       (YelpViewClass         *klass);
-static void yelp_view_async_open_cb    (GnomeVFSAsyncHandle   *handle, 
-                                        GnomeVFSResult         result, 
-                                        gpointer               callback_data);
-static void yelp_view_async_read_cb    (GnomeVFSAsyncHandle   *handle, 
+static void ydv_init          (YelpDocView              *html);
+static void ydv_class_init    (YelpDocViewClass         *klass);
+static void ydv_async_open_cb (GnomeVFSAsyncHandle   *handle, 
+					 GnomeVFSResult         result, 
+					 gpointer               callback_data);
+static void ydv_async_read_cb    (GnomeVFSAsyncHandle   *handle, 
                                         GnomeVFSResult         result,
                                         gpointer               buffer, 
                                         GnomeVFSFileSize       bytes_requested,
                                         GnomeVFSFileSize       bytes_read, 
                                         gpointer               callback_data);
-static void yelp_view_async_close_cb   (GnomeVFSAsyncHandle   *handle,
+static void ydv_async_close_cb   (GnomeVFSAsyncHandle   *handle,
                                         GnomeVFSResult         result,
                                         gpointer               callback_data);
-static void yelp_view_link_clicked_cb  (HtmlDocument          *doc, 
+static void ydv_link_clicked_cb  (HtmlDocument          *doc, 
                                         const gchar           *url, 
                                         gpointer               data);
-static void yelp_view_free_stream_data (StreamData            *sdata,
+static void ydv_free_stream_data (StreamData            *sdata,
                                         gboolean               remove);
-static void yelp_view_stream_cancel    (HtmlStream            *stream, 
+static void ydv_stream_cancel    (HtmlStream            *stream, 
                                         gpointer               user_data, 
                                         gpointer               cancel_data);
-static void yelp_view_url_requested_cb (HtmlDocument          *doc,
+static void ydv_url_requested_cb (HtmlDocument          *doc,
                                         const gchar           *uri,
                                         HtmlStream            *stream,
                                         gpointer               data);
@@ -69,21 +69,21 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
-struct _YelpViewPriv {
+struct _YelpDocViewPriv {
         HtmlDocument *doc;
         GSList       *connections;
 	gchar        *base_uri;
 };
 
 struct _StreamData {
-	YelpView            *view;
+	YelpDocView            *view;
 	HtmlStream          *stream;
 	GnomeVFSAsyncHandle *handle;
 	gchar               *anchor;
 };
 
 GType
-yelp_view_get_type (void)
+yelp_doc_view_get_type (void)
 {
         static GType view_type = 0;
 
@@ -91,19 +91,19 @@ yelp_view_get_type (void)
         {
                 static const GTypeInfo view_info =
                         {
-                                sizeof (YelpViewClass),
+                                sizeof (YelpDocViewClass),
                                 NULL,
                                 NULL,
-                                (GClassInitFunc) yelp_view_class_init,
+                                (GClassInitFunc) ydv_class_init,
                                 NULL,
                                 NULL,
-                                sizeof (YelpView),
+                                sizeof (YelpDocView),
                                 0,
-                                (GInstanceInitFunc) yelp_view_init,
+                                (GInstanceInitFunc) ydv_init,
                         };
                 
                 view_type = g_type_register_static (HTML_TYPE_VIEW,
-                                                    "YelpView", 
+                                                    "YelpDocView", 
                                                     &view_info, 0);
         }
         
@@ -111,11 +111,11 @@ yelp_view_get_type (void)
 }
 
 static void
-yelp_view_init (YelpView *view)
+ydv_init (YelpDocView *view)
 {
-        YelpViewPriv *priv;
+        YelpDocViewPriv *priv;
         
-        priv = g_new0 (YelpViewPriv, 1);
+        priv = g_new0 (YelpDocViewPriv, 1);
 
         priv->doc         = html_document_new ();
         priv->connections = NULL;
@@ -124,22 +124,22 @@ yelp_view_init (YelpView *view)
         html_view_set_document (HTML_VIEW (view), priv->doc);
         
         g_signal_connect (G_OBJECT (priv->doc), "link_clicked",
-                          G_CALLBACK (yelp_view_link_clicked_cb), view);
+                          G_CALLBACK (ydv_link_clicked_cb), view);
         
         g_signal_connect (G_OBJECT (priv->doc), "request_url",
-                          G_CALLBACK (yelp_view_url_requested_cb), view);
+                          G_CALLBACK (ydv_url_requested_cb), view);
 
         view->priv = priv;
 }
 
 static void
-yelp_view_class_init (YelpViewClass *klass)
+ydv_class_init (YelpDocViewClass *klass)
 {
 	signals[URI_SELECTED] = 
 		g_signal_new ("uri_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (YelpViewClass, uri_selected),
+			      G_STRUCT_OFFSET (YelpDocViewClass, uri_selected),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
@@ -148,7 +148,7 @@ yelp_view_class_init (YelpViewClass *klass)
 
 
 static void
-yelp_view_async_close_cb (GnomeVFSAsyncHandle *handle,
+ydv_async_close_cb (GnomeVFSAsyncHandle *handle,
                           GnomeVFSResult       result,
                           gpointer             callback_data)
 {
@@ -163,11 +163,11 @@ yelp_view_async_close_cb (GnomeVFSAsyncHandle *handle,
  					  sdata->anchor);
 	}
 
-	yelp_view_free_stream_data (sdata, TRUE);
+	ydv_free_stream_data (sdata, TRUE);
 }
 
 static void
-yelp_view_async_read_cb (GnomeVFSAsyncHandle *handle, 
+ydv_async_read_cb (GnomeVFSAsyncHandle *handle, 
                          GnomeVFSResult       result,
                          gpointer             buffer, 
                          GnomeVFSFileSize     bytes_requested,
@@ -182,10 +182,10 @@ yelp_view_async_read_cb (GnomeVFSAsyncHandle *handle,
 
 	if (result != GNOME_VFS_OK) {
 		gnome_vfs_async_close (handle, 
-                                       yelp_view_async_close_cb, 
+                                       ydv_async_close_cb, 
                                        sdata);
 
-/* 		yelp_view_free_stream_data (sdata, TRUE); */
+/* 		ydv_free_stream_data (sdata, TRUE); */
 		g_free (buffer);
 	} else {
                 g_print ("Writing to html stream... ");
@@ -193,12 +193,12 @@ yelp_view_async_read_cb (GnomeVFSAsyncHandle *handle,
                 g_print ("done\n");
 		
 		gnome_vfs_async_read (handle, buffer, bytes_requested, 
-				      yelp_view_async_read_cb, sdata);
+				      ydv_async_read_cb, sdata);
 	}
 }
 
 static void
-yelp_view_async_open_cb  (GnomeVFSAsyncHandle *handle, 
+ydv_async_open_cb  (GnomeVFSAsyncHandle *handle, 
                           GnomeVFSResult       result, 
                           gpointer             callback_data)
 {
@@ -212,7 +212,7 @@ yelp_view_async_open_cb  (GnomeVFSAsyncHandle *handle,
 		g_warning ("Open failed: %s.\n", 
                            gnome_vfs_result_to_string (result));
 
-		yelp_view_free_stream_data (sdata, TRUE);
+		ydv_free_stream_data (sdata, TRUE);
 	} else {
 		gchar *buffer;
 
@@ -220,24 +220,24 @@ yelp_view_async_open_cb  (GnomeVFSAsyncHandle *handle,
 
 		gnome_vfs_async_read (handle, buffer, 
                                       BUFFER_SIZE, 
-                                      yelp_view_async_read_cb, sdata);
+                                      ydv_async_read_cb, sdata);
 	}
 }
 
 static void
-yelp_view_url_requested_cb (HtmlDocument *doc,
+ydv_url_requested_cb (HtmlDocument *doc,
                             const gchar  *uri,
                             HtmlStream   *stream,
                             gpointer      data)
 {
-        YelpView     *view;
-        YelpViewPriv *priv;
+        YelpDocView     *view;
+        YelpDocViewPriv *priv;
 	GnomeVFSURI  *vfs_uri;
 	StreamData   *sdata;
 
         d(puts(__FUNCTION__));
 
-        view = YELP_VIEW (data);
+        view = YELP_DOC_VIEW (data);
         priv = view->priv;
 
 /* 	if (priv->base_uri) { */
@@ -261,12 +261,12 @@ yelp_view_url_requested_cb (HtmlDocument *doc,
                                   vfs_uri, 
                                   GNOME_VFS_OPEN_READ,
 				  GNOME_VFS_PRIORITY_DEFAULT,
-                                  yelp_view_async_open_cb, 
+                                  ydv_async_open_cb, 
                                   sdata);
 
 	gnome_vfs_uri_unref (vfs_uri);
 
-	html_stream_set_cancel_func (stream, yelp_view_stream_cancel, sdata);
+	html_stream_set_cancel_func (stream, ydv_stream_cancel, sdata);
 }
 
 /* static void */
@@ -289,7 +289,7 @@ yelp_view_url_requested_cb (HtmlDocument *doc,
 /* } */
 
 static void
-yelp_view_stream_cancel (HtmlStream *stream, 
+ydv_stream_cancel (HtmlStream *stream, 
                          gpointer    user_data, 
                          gpointer    cancel_data)
 {
@@ -299,13 +299,13 @@ yelp_view_stream_cancel (HtmlStream *stream,
 
 	gnome_vfs_async_cancel (sdata->handle);
 
-	yelp_view_free_stream_data (sdata, TRUE);
+	ydv_free_stream_data (sdata, TRUE);
 }
 
 static void
-yelp_view_free_stream_data (StreamData *sdata, gboolean remove)
+ydv_free_stream_data (StreamData *sdata, gboolean remove)
 {
-        YelpViewPriv *priv;
+        YelpDocViewPriv *priv;
         
         d(puts(__FUNCTION__));
 
@@ -328,12 +328,12 @@ yelp_view_free_stream_data (StreamData *sdata, gboolean remove)
 }
 
 static void
-yelp_view_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
+ydv_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
 {
-	YelpView     *view;
-        YelpViewPriv *priv;
+	YelpDocView     *view;
+        YelpDocViewPriv *priv;
 	
-        view = YELP_VIEW (data);
+        view = YELP_DOC_VIEW (data);
         priv = view->priv;
 
 	if (priv->base_uri) {
@@ -347,14 +347,14 @@ yelp_view_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
 }
 
 GtkWidget *
-yelp_view_new (void)
+yelp_doc_view_new (void)
 {
-        YelpView     *view;
-        YelpViewPriv *priv;
+        YelpDocView     *view;
+        YelpDocViewPriv *priv;
         
         d(puts(__FUNCTION__));
 
-        view = g_object_new (YELP_TYPE_VIEW, NULL);
+        view = g_object_new (YELP_TYPE_DOC_VIEW, NULL);
         priv = view->priv;
         
 	html_document_open_stream (priv->doc, "text/html");
@@ -372,15 +372,15 @@ yelp_view_new (void)
 }
 
 void
-yelp_view_open_section (YelpView *view, const YelpSection *section)
+yelp_doc_view_open_section (YelpDocView *view, const YelpSection *section)
 {
-        YelpViewPriv *priv;
+        YelpDocViewPriv *priv;
         StreamData   *sdata;
 	GnomeVFSURI  *uri;
 	
         d(puts(__FUNCTION__));
 	
-	g_return_if_fail (YELP_IS_VIEW (view));
+	g_return_if_fail (YELP_IS_DOC_VIEW (view));
 	g_return_if_fail (section != NULL);
 
         priv = view->priv;
@@ -422,12 +422,12 @@ yelp_view_open_section (YelpView *view, const YelpSection *section)
 				  uri,
 				  GNOME_VFS_OPEN_READ,
 				  GNOME_VFS_PRIORITY_DEFAULT,
-				  yelp_view_async_open_cb,
+				  ydv_async_open_cb,
 				  sdata);
 
 	gnome_vfs_uri_unref (uri);
 
 	html_stream_set_cancel_func (sdata->stream, 
-				     yelp_view_stream_cancel, 
+				     ydv_stream_cancel, 
 				     sdata);
 }

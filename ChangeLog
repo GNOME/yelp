@@ -1,3 +1,13 @@
+2001-12-07  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/Makefile.am (yelp_SOURCES): yelp-view -> yelp-doc-view.
+
+	* src/yelp-window.c:
+	- use yelp-doc-view instead of yelp-view.
+	- update GUI after inspiration from M$ help.
+
+	* src/yelp-doc-view.[ch]: renamed from yelp-view.[ch]
+
 2001-12-05  Malcolm Tredinnick <malcolm@commsecure.com.au>
 	* src/yelp-section.[ch]:
 	- add a scheme member to YelpSection. Will usually be NULL,

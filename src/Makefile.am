@@ -16,7 +16,7 @@ yelp_SOURCES =						\
 	yelp-base.c		yelp-base.h		\
 	yelp-window.c 		yelp-window.h		\
 	yelp-toc.c    		yelp-toc.h		\
-	yelp-view.c		yelp-view.h		\
+	yelp-doc-view.c		yelp-doc-view.h		\
 	yelp-index.c		yelp-index.h		\
 	yelp-history.c		yelp-history.h		\
 	yelp-section.c		yelp-section.h		\
