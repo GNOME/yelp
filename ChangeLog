@@ -1,5 +1,13 @@
 2005-01-02  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-bookmarks.c:
+	- Use GTK_MESSAGE_INFO when bookmark exists
+
+	* src/yelp-window.c:
+	- s/Page/Section/ as it makes more sense
+
+2005-01-02  Shaun McCance  <shaunm@gnome.org>
+
 	* data/ui/yelp.glade:
 	* src/yelp-bookmarks.c:
 	* src/yelp-bookmarks.h:

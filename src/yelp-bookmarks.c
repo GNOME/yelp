@@ -243,7 +243,7 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 	dialog = gtk_message_dialog_new_with_markup
 	    (GTK_WINDOW (window),
 	     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-	     GTK_MESSAGE_ERROR,
+	     GTK_MESSAGE_INFO,
 	     GTK_BUTTONS_OK,
 	     _("A bookmark titled <b>%s</b> already exists for this page."),
 	     dup_title);
