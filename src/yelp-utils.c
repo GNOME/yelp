@@ -681,6 +681,8 @@ convert_man_uri (gchar *uri)
     gchar *man_name = NULL;
     gchar *man_num  = NULL;
     gchar *man_dir  = NULL;
+    const gchar * const * langs = g_get_language_names ();
+    gint langs_i;
 
     static gchar **manpath = NULL;
     static gchar *mandirs[] =
@@ -750,27 +752,34 @@ convert_man_uri (gchar *uri)
     g_free (pattern);
 
     for (i = 0; manpath[i]; i++) {
-	/* The man_dir/mandirs thing is probably cleverer than it should be. */
-	for (j = 0; man_dir ? (j < 1) : (mandirs[j] != NULL); j++) {
-	    dirname = g_build_filename (manpath[i],
-					man_dir ? man_dir : mandirs[j],
-					NULL);
-	    dir = g_dir_open (dirname, 0, NULL);
-	    if (dir) {
-		while ((filename = g_dir_read_name (dir))) {
-		    if (g_pattern_match_string (pspec, filename)) {
-			doc_uri = g_strconcat ("file://",
-					       dirname, "/",
-					       filename,
-					       NULL);
-			g_dir_close (dir);
-			g_free (dirname);
-			goto done;
+	for (langs_i = 0; langs[langs_i]; langs_i++) {
+	    for (j = 0; man_dir ? (j < 1) : (mandirs[j] != NULL); j++) {
+		if (g_str_equal (langs[langs_i], "C"))
+		    dirname = g_build_filename (manpath[i],
+						man_dir ? man_dir : mandirs[j],
+						NULL);
+		else
+		    dirname = g_build_filename (manpath[i],
+						langs[langs_i],
+						man_dir ? man_dir : mandirs[j],
+						NULL);
+		dir = g_dir_open (dirname, 0, NULL);
+		if (dir) {
+		    while ((filename = g_dir_read_name (dir))) {
+			if (g_pattern_match_string (pspec, filename)) {
+			    doc_uri = g_strconcat ("file://",
+						   dirname, "/",
+						   filename,
+						   NULL);
+			    g_dir_close (dir);
+			    g_free (dirname);
+			    goto done;
+			}
 		    }
+		    g_dir_close (dir);
 		}
-		g_dir_close (dir);
+		g_free (dirname);
 	    }
-	    g_free (dirname);
 	}
     }
 

@@ -1,6 +1,11 @@
 2004-11-30  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-utils.c:
+	- Make convert_man_uri look up stuff in locales
+
+2004-11-30  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-utils.c:
 	- Allow gnome-help: URI scheme (Don Scorgie)
 	- Make external links actually work (Don Scorgie)
 
