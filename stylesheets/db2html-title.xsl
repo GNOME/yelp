@@ -1,127 +1,178 @@
 <?xml version='1.0'?><!-- -*- Mode: fundamental; tab-width: 3 -*- -->
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY is-info "
-(name(.) = 'appendixinfo')     or (name(.) = 'articleinfo')        or
-(name(.) = 'bibliographyinfo') or (name(.) = 'blockinfo')          or
-(name(.) = 'bookinfo')         or (name(.) = 'chapterinfo')        or
-(name(.) = 'glossaryinfo')     or (name(.) = 'indexinfo')          or
-(name(.) = 'objectinfo')       or (name(.) = 'partinfo')           or
-(name(.) = 'prefaceinfo')      or (name(.) = 'refentryinfo')       or
-(name(.) = 'referenceinfo')    or (name(.) = 'refsect1info')       or
-(name(.) = 'refsect2info')     or (name(.) = 'refsect3info')       or
-(name(.) = 'refsectioninfo')   or (name(.) = 'refsynopsisdivinfo') or
-(name(.) = 'sect1info')        or (name(.) = 'sect2info')          or
-(name(.) = 'sect3info')        or (name(.) = 'sect4info')          or
-(name(.) = 'sect5info')        or (name(.) = 'sectioninfo')        or
-(name(.) = 'setinfo')          or (name(.) = 'setindexinfo')       or
-(name(.) = 'sidebarinfo')      ">
-]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
 <!-- ======================================================================= -->
 
-<xsl:template mode="title.text.mode" match="*">
-	<xsl:choose>
-		<xsl:when test="title">
-			<xsl:value-of select="title"/>
-		</xsl:when>
-		<xsl:when test="(&is-info;) and ../title">
-			<xsl:value-of select="../title"/>
-		</xsl:when>
-		<xsl:when test="*[&is-info;]/title">
-			<xsl:value-of select="*[&is-info;]/title"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="." mode="node.header.inline.mode"/>
-		</xsl:otherwise>
-	</xsl:choose>
+<xsl:template match="biblioentry/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="bibliomixed/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="bibliomset/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="biblioset/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="constraintdef/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="glossdiv/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="indexdiv/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="msg/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="msgexplan/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="msgmain/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="msgrel/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="msgset/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="msgsub/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="productionset/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="qandadiv/title">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="qandaset/title">
+	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="title.text.mode" match="refentry">
-	<xsl:choose>
-		<xsl:when test="refmeta/refentrytitle">
-			<xsl:value-of select="refmeta/refentrytitle"/>
-		</xsl:when>
-		<xsl:when test="refentryinfo/title">
-			<xsl:value-of select="refentryinfo/title"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="." mode="node.header.inline.mode"/>
-		</xsl:otherwise>
-	</xsl:choose>
+<xsl:template match="biblioentry/subtitle">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="bibliomixed/subtitle">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="bibliomset/subtitle">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="biblioset/subtitle">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="glossidv/subtitle">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="indexdiv/subtitle">
+	<xsl:call-template name="FIXME"/>
+</xsl:template>
+<xsl:template match="refsynopsisdiv/subtitle">
+	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<!-- ======================================================================= -->
+<!-- == title.simple ======================================================= -->
 
-<xsl:template mode="titleabbrev.text.mode" match="*">
-	<xsl:choose>
-		<xsl:when test="titleabbrev">
-			<xsl:value-of select="titleabbrev"/>
-		</xsl:when>
-		<xsl:when test="(&is-info;) and ../titleabbrev">
-			<xsl:value-of select="../titleabbrev"/>
-		</xsl:when>
-		<xsl:when test="*[&is-info;]/titleabbrev">
-			<xsl:value-of select="*[&is-info;]/titleabbrev"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="." mode="title.text.mode"/>
-		</xsl:otherwise>
-	</xsl:choose>
+<xsl:template name="title.simple" match="
+		abstract/title			| authorblurb/title		| blockquote/title		|
+		calloutlist/title		| caution/title			| dedication/title		|
+		important/title		| formalpara/title		| itemizedlist/title		|
+		note/title				| orderedlist/title		| personblurb/title		|
+		procedure/title		| refsynopsisdiv/title	| segmentedlist/title	|
+		sidebar/title			| step/title				| tip/title					|
+		variablelist/title	| warning/title			">
+	<div class="{name(.)}"><b><xsl:apply-templates/></b></div>
 </xsl:template>
 
-<!-- ======================================================================= -->
-
-<xsl:template mode="title.inline.mode" match="*">
-	<xsl:choose>
-		<xsl:when test="title">
-			<xsl:apply-templates select="title/node()"/>
-		</xsl:when>
-		<xsl:when test="(&is-info;) and ../title">
-			<xsl:apply-templates select="../title/node()"/>
-		</xsl:when>
-		<xsl:when test="*[&is-info;]/title">
-			<xsl:apply-templates select="*[&is-info;]/title/node()"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="." mode="node.header.inline.mode"/>
-		</xsl:otherwise>
-	</xsl:choose>
+<xsl:template match="dedication/subtitle">
+	<xsl:call-template name="title.simple"/>
 </xsl:template>
 
-<xsl:template mode="title.inline.mode" match="refentry">
-	<xsl:choose>
-		<xsl:when test="refmeta/refentrytitle">
-			<xsl:value-of select="refmeta/refentrytitle"/>
-		</xsl:when>
-		<xsl:when test="refentryinfo/title">
-			<xsl:value-of select="refentryinfo/title"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="." mode="node.header.inline.mode"/>
-		</xsl:otherwise>
-	</xsl:choose>
+<!-- == title.header ======================================================= -->
+
+<xsl:template name="title.header" match="
+		equation/title | example/title | figure/title | table/title ">
+	<div class="{name(.)}">
+		<i>
+			<xsl:call-template name="header.prefix"/>
+		</i>
+		<xsl:apply-templates/>
+	</div>
 </xsl:template>
 
-<!-- ======================================================================= -->
+<!-- == title.h ============================================================ -->
 
-<xsl:template mode="titleabbrev.inline.mode" match="*">
-	<xsl:choose>
-		<xsl:when test="titleabbrev">
-			<xsl:apply-templates select="titleabbrev/node()"/>
-		</xsl:when>
-		<xsl:when test="(&is-info;) and ../titleabbrev">
-			<xsl:apply-templates select="../titleabbrev/node()"/>
-		</xsl:when>
-		<xsl:when test="*[&is-info;]/titleabbrev">
-			<xsl:apply-templates select="*[&is-info;]/titleabbrev/node()"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="." mode="title.inline.mode"/>
-		</xsl:otherwise>
-	</xsl:choose>
+<xsl:template name="title.h" match="
+		appendix/title			| article/title		| bibliodiv/title		|
+		bibliography/title	| book/title			| chapter/title		|
+		colophon/title			| glossary/title		| index/title			|
+		part/title				| partintro/title		| preface/title		|
+		reference/title		| refsect1/title		| refsect2/title		|
+		refsect3/title			| refsection/title	| sect1/title			|
+		sect2/title				| sect3/title			| sect4/title			|
+		sect5/title				| section/title		| set/title				|
+		setindex/title			| simplesect/title	">
+	<xsl:param name="depth_in_chunk">
+		<xsl:call-template name="depth.in.chunk"/>
+	</xsl:param>
+	<xsl:variable name="element">
+		<xsl:choose>
+			<xsl:when test="$depth_in_chunk &lt;= 7">
+				<xsl:value-of select="concat('h', $depth_in_chunk)"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="'h7'"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:element name="{$element}">
+		<xsl:attribute name="class">
+			<xsl:value-of select="name(..)"/>
+		</xsl:attribute>
+		<xsl:call-template name="anchor"/>
+		<xsl:call-template name="header.prefix"/>
+		<xsl:apply-templates/>
+	</xsl:element>
+</xsl:template>
+
+<!-- == subtitle.h ========================================================= -->
+
+<xsl:template name="subtitle.h" match="
+		appendix/subtitle			| article/subtitle		| bibliodiv/subtitle		|
+		bibliography/subtitle	| book/subtitle			| chapter/subtitle		|
+		colophon/subtitle			| glossary/subtitle		| index/subtitle			|
+		part/subtitle				| partintro/subtitle		| preface/subtitle		|
+		reference/subtitle		| refsect1/subtitle		| refsect2/subtitle		|
+		refsect3/subtitle			| refsection/subtitle	| sect1/subtitle			|
+		sect2/subtitle				| sect3/subtitle			| sect4/subtitle			|
+		sect5/subtitle				| section/subtitle		| set/subtitle				|
+		setindex/subtitle			| simplesect/subtitle	">
+	<xsl:param name="depth_in_chunk">
+		<xsl:call-template name="depth.in.chunk"/>
+	</xsl:param>
+	<xsl:variable name="element">
+		<xsl:choose>
+			<xsl:when test="$depth_in_chunk &lt;= 6">
+				<xsl:value-of select="concat('h', $depth_in_chunk + 1)"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="'h7'"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:element name="{$element}">
+		<xsl:attribute name="class">
+			<xsl:value-of select="name(.)"/>
+		</xsl:attribute>
+		<xsl:call-template name="anchor"/>
+		<xsl:call-template name="header.prefix"/>
+		<xsl:apply-templates/>
+	</xsl:element>
 </xsl:template>
 
 <!-- ======================================================================= -->

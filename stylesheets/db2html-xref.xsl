@@ -94,6 +94,8 @@
 	</xsl:if>
 </xsl:template>
 
+<!-- ======================================================================= -->
+
 <xsl:template name="xref.content">
 	<xsl:param name="linkend" select="@linkend"/>
 	<xsl:param name="target" select="id($linkend)"/>
@@ -102,11 +104,25 @@
 			<xsl:value-of select="$target/@xreflabel"/>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:apply-templates select="$target" mode="node.header.inline.mode"/>
+			<xsl:apply-templates mode="xref.content.mode" select="$target"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
+<xsl:template mode="header.mode" match="glossentry">
+	<xsl:apply-templates mode="xref.content.mode" select="glossterm[1]"/>
+</xsl:template>
+
+<xsl:template mode="xref.content.mode" match="glossterm">
+	<xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template mode="xref.content.mode" match="*">
+	<xsl:call-template name="header"/>
+</xsl:template>
+
+
 <!-- ======================================================================= -->
+
 
 </xsl:stylesheet>

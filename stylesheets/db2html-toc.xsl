@@ -75,7 +75,7 @@
 	<div class="toc"><ul>
 		<xsl:for-each select="*[&is-division;]">
 			<xsl:variable name="chunk_id">
-				<xsl:apply-templates select="." mode="chunk.id.mode"/>
+				<xsl:call-template name="chunk.id"/>
 			</xsl:variable>
 			<xsl:if test="string($chunk_id) = @id">
 				<xsl:apply-templates select="." mode="toc.verbose.mode"/>
@@ -92,7 +92,7 @@
 					<xsl:with-param name="linkend" select="@id"/>
 				</xsl:call-template>
 			</xsl:attribute>
-			<xsl:apply-templates select="." mode="node.header.inline.mode"/>
+			<xsl:call-template name="header"/>
 		</a>
 		<xsl:choose>
 			<xsl:when test="title">

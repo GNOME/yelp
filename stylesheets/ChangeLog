@@ -1,3 +1,52 @@
+2003-10-22  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-node.xsl:
+	- Removing db2html-node.xsl, replace with db2html-header.xsl
+
+	* db2html-header.xsl:
+	- Adding db2html-header.xsl
+	- Does much of what db2html-node.xsl did, but better
+
+	* db2html-title.xsl:
+	- New title-handling code
+
+	* db2html-chunk.xsl:
+	- More intelligent chunking templates.  Fewer hoops, easier to extend.
+
+	* db2html-admon.xsl:
+	* db2html-block.xsl:
+	* db2html-division.xsl:
+	* db2html-glossary.xsl:
+	* db2html-list.xsl:
+	* db2html-media.xsl:
+	* db2html-refentry.xsl:
+	* db2html-toc.xsl:
+	- Rearranged block-handling code a bit
+	- Using new title-handling code
+	- Using new chunk-handling code
+	- Using new title-handling code
+
+	* db2html-html.xsl:
+	- New title-handling code necessitated changing how the HTML title
+	  was obtained.	 Current implementation is bad.
+
+	* db2html-inline.xsl:
+	- Moved attribution from inline to block
+	- Changed arrow for menuchoice
+
+	* db2html-navbar.xsl:
+	- Temporarily disabled.  Needs to work with new chunk-handling code.
+
+	* db2html-xref.xsl:
+	- Created xref.content.mode, which will replace node.header.inline.mode.
+	  Needs work.
+
+	* db2html.xsl:
+	- Using new chunk-handling code
+
+	* gettext.xsl:
+	- Changes for the new title- and header-handling code
+
 2003-10-16  Shaun McCance  <shaunm@gnome.org>
 
 	* db2html-node.xsl:

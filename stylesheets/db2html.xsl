@@ -7,7 +7,7 @@
 <xsl:include href="gettext.xsl"/>
 
 <xsl:include href="db2html-common.xsl"/>
-<xsl:include href="db2html-node.xsl"/>
+<xsl:include href="db2html-header.xsl"/>
 <xsl:include href="db2html-title.xsl"/>
 
 <xsl:include href="db2html-chunk.xsl"/>
@@ -34,7 +34,9 @@
 <xsl:include href="db2html-xref.xsl"/>
 
 <xsl:template match="/">
-	<xsl:apply-templates select="book | article" mode="chunk.mode"/>
+	<xsl:call-template name="chunk">
+		<xsl:with-param name="node" select="*"/>
+	</xsl:call-template>
 </xsl:template>
 
 <xsl:template match="*">

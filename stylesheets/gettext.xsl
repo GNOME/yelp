@@ -1,4 +1,5 @@
 <?xml version='1.0'?><!-- -*- Mode: fundamental; tab-width: 3 -*- -->
+
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
@@ -25,42 +26,36 @@
 	<xsl:param name="dingbat"/>
 	<xsl:choose>
 		<xsl:when test="$dingbat = 'copyright'">
-			<xsl:value-of select="'&#169;'"/>
+			<xsl:value-of select="'&#x00A9;'"/>
 		</xsl:when>
 		<xsl:when test="$dingbat = 'registered'">
-			<xsl:value-of select="'&#174;'"/>
+			<xsl:value-of select="'&#x00AE;'"/>
 		</xsl:when>
 		<xsl:when test="$dingbat = 'trade'">
-			<xsl:value-of select="'&#8482;'"/>
+			<xsl:value-of select="'&#x2122;'"/>
 		</xsl:when>
 		<xsl:when test="$dingbat = 'service'">
-			<xsl:value-of select="'&#8480;'"/>
+			<xsl:value-of select="'&#x2120;'"/>
 		</xsl:when>
 	</xsl:choose>
 </xsl:template>
 
 <!-- ======================================================================= -->
 
+<xsl:template name="format.header.prefix.named">
+	<xsl:param name="header"/>
+	<xsl:value-of select="concat($header, '&#x2003;')"/>
+</xsl:template>
+
+<xsl:template name="format.header.prefix.unnamed">
+	<xsl:param name="header"/>
+	<xsl:value-of select="concat($header, '&#x2003;')"/>
+</xsl:template>
+
 <xsl:template name="format.header">
 	<xsl:param name="header"/>
-	<xsl:value-of select="concat($header, '&#8199;')"/>
-</xsl:template>
-
-<xsl:template name="format.header.header">
-	<xsl:param name="header"/>
 	<xsl:param name="number"/>
-	<xsl:value-of select="concat($header, '&#160;', $number, '&#8199;')"/>
-</xsl:template>
-
-<xsl:template name="format.header.number">
-	<xsl:param name="number"/>
-	<xsl:value-of select="concat($number, '&#8199;')"/>
-</xsl:template>
-
-<xsl:template name="format.header.inline">
-	<xsl:param name="header"/>
-	<xsl:param name="number"/>
-	<xsl:value-of select="concat($header, '&#160;', $number)"/>
+	<xsl:value-of select="concat($header, '&#x00A0;', $number)"/>
 </xsl:template>
 
 <!-- ======================================================================= -->

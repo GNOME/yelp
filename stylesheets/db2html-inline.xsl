@@ -82,10 +82,6 @@
 	<xsl:call-template name="inline.italic"/>
 </xsl:template>
 
-<xsl:template match="attribution">
-	<xsl:call-template name="inline"/>
-</xsl:template>
-
 <xsl:template match="author">
 	<span class="{name(.)}"><xsl:call-template name="person.name"/></span>
 </xsl:template>
@@ -351,7 +347,7 @@
 	<span class="{name(.)}">
 		<xsl:for-each select="*[name(.) != 'shortcut']">
 			<xsl:if test="position() &gt; 1">
-				<xsl:text>&#8201;&#8594;&#8201;</xsl:text>
+				<xsl:text>&#x2009;&#x2192;&#x2009;</xsl:text>
 			</xsl:if>
 			<xsl:apply-templates select="."/>
 		</xsl:for-each>

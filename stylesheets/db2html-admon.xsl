@@ -7,8 +7,7 @@
 		<xsl:call-template name="anchor"/>
 		<xsl:choose>
 			<xsl:when test="$text_only">
-				<xsl:call-template name="node.heading"/>
-				<xsl:apply-templates select="*[name(.) != 'title']"/>
+				<xsl:apply-templates/>
 			</xsl:when>
 			<xsl:otherwise>
 				<table style="border: none;">
@@ -23,7 +22,7 @@
 							</img>
 						</td>
 						<th align="left" valign="top">
-							<xsl:call-template name="node.heading"/>
+							<xsl:apply-templates select="title"/>
 						</th>
 					</tr>
 					<tr>

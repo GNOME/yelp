@@ -175,7 +175,7 @@
 </xsl:template>
 
 <xsl:template match="screenshot">
-	<xsl:call-template name="block"/>
+	<xsl:call-template name="block.simple"/>
 </xsl:template>
 
 <xsl:template match="textdata">

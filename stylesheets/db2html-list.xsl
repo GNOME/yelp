@@ -1,18 +1,4 @@
 <?xml version='1.0'?><!-- -*- Mode: fundamental; tab-width: 3 -*- -->
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY listcomponent "
-abstract         | address          | anchor              | authorblurb         |
-beginpage        | blockquote       | bridgehead          | caution             |
-classsynopsis    | cmdsynopsis      | constructorsynopsis | desctructorsynopsis |
-epigraph         | fieldsynopsis    | formalpara          | funcsynopsis        |
-graphic          | graphicco        | highlights          | important           |
-indexterm        | informalequation | informalexample     | informalfigure      |
-informaltable    | literallayout    | mediaobject         | mediaobjectco       |
-methodsynopsis   | note             | para                | programlisting      |
-programlistingco | remark           | screen              | screenco            |
-screenshot       | simpara          | synopsis            | tip                 |
-warning          ">
-]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
@@ -22,10 +8,7 @@ warning          ">
 <xsl:template match="itemizedlist">
 	<div class="{name(.)}">
 		<xsl:call-template name="anchor"/>
-		<xsl:if test="title">
-			<xsl:call-template name="node.heading"/>
-		</xsl:if>
-		<xsl:apply-templates select="&listcomponent;"/>
+		<xsl:apply-templates select="*[name(.) != 'listitem']"/>
 		<ul>
 			<xsl:if test="@mark">
 				<xsl:attribute name="style">
@@ -100,10 +83,7 @@ warning          ">
 	</xsl:variable>
 	<div class="{name(.)}">
 		<xsl:call-template name="anchor"/>
-		<xsl:if test="title">
-			<xsl:call-template name="node.heading"/>
-		</xsl:if>
-		<xsl:apply-templates select="&listcomponent;"/>
+		<xsl:apply-templates select="*[name(.) != 'listitem']"/>
 		<ol>
 			<xsl:if test="@numeration">
 				<xsl:attribute name="type">
@@ -150,12 +130,7 @@ warning          ">
 <xsl:template match="procedure">
 	<div class="{name(.)}">
 		<xsl:call-template name="anchor"/>
-		<xsl:if test="title">
-			<xsl:call-template name="node.heading"/>
-		</xsl:if>
-		<xsl:apply-templates select="*[
-			(name(.) != 'blockinfo')   and (name(.) != 'title') and
-			(name(.) != 'titleabbrev') and (name(.) != 'step')  ]"/>
+		<xsl:apply-templates select="*[name(.) != 'step']"/>
 		<xsl:choose>
 			<xsl:when test="count(step) = 1">
 				<ul>
@@ -173,11 +148,7 @@ warning          ">
 
 <xsl:template match="step">
 	<li>
-		<xsl:call-template name="anchor"/>
-		<xsl:if test="title">
-			<xsl:call-template name="node.heading"/>
-		</xsl:if>
-		<xsl:apply-templates select="*[name(.) != 'title']"/>
+		<xsl:apply-templates/>
 	</li>
 </xsl:template>
 
@@ -195,9 +166,7 @@ warning          ">
 <xsl:template match="segmentedlist">
 	<div class="{name(.)}">
 		<xsl:call-template name="anchor"/>
-		<xsl:if test="title">
-			<xsl:call-template name="node.heading"/>
-		</xsl:if>
+		<xsl:apply-templates select="title"/>
 		<ul style="list-style-type: none;">
 			<xsl:apply-templates select="seglistitem"/>
 		</ul>
@@ -246,10 +215,7 @@ warning          ">
 <xsl:template match="variablelist">
 	<div class="{name(.)}">
 		<xsl:call-template name="anchor"/>
-		<xsl:if test="title">
-			<xsl:call-template name="node.heading"/>
-		</xsl:if>
-		<xsl:apply-templates select="&listcomponent;"/>
+		<xsl:apply-templates select="*[name(.) != 'varlistentry']"/>
 		<dl>
 			<xsl:apply-templates select="varlistentry"/>
 		</dl>

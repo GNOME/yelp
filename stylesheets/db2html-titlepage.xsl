@@ -209,14 +209,14 @@
 		<xsl:call-template name="gettext">
 			<xsl:with-param name="key" select="'Copyright'"/>
 		</xsl:call-template>
-		<xsl:text>&#160;&#169;&#160;</xsl:text>
+		<xsl:text>&#x00A0;&#x00A9;&#x00A0;</xsl:text>
 		<xsl:for-each select="year">
 			<xsl:if test="position() &gt; 1">
 				<xsl:text>, </xsl:text>
 			</xsl:if>
 			<xsl:apply-templates select="." mode="titlepage.mode"/>
 		</xsl:for-each>
-		<xsl:text>&#8195;</xsl:text>
+		<xsl:text>&#x2003;</xsl:text>
 		<xsl:for-each select="holder">
 			<xsl:if test="position() &gt; 1">
 				<xsl:text>, </xsl:text>

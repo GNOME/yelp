@@ -1,4 +1,5 @@
 <?xml version='1.0'?><!-- -*- Mode: fundamental; tab-width: 3 -*- -->
+
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
@@ -15,7 +16,7 @@
 	<html>
 		<head>
 			<title>
-				<xsl:apply-templates select="$node" mode="title.text.mode"/>
+				<xsl:value-of select="title"/>
 			</title>
 			<style type="text/css">
 				<xsl:call-template name="html.css">

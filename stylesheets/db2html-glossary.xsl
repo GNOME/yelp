@@ -37,7 +37,7 @@
 </xsl:template>
 
 <xsl:template match="glossentry">
-	<xsl:call-template name="block"/>
+	<xsl:call-template name="block.simple"/>
 </xsl:template>
 
 <xsl:template match="glosslist">
