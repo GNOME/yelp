@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui>
+  <menubar>
+    <menu action="FileMenu">
+      <menuitem action="NewWindow"/>
+      <menuitem action="CloseWindow"/>
+    </menu>
+    <menu action="EditMenu">
+      <menuitem action="Find"/>
+    </menu>
+    <menu action="GoMenu">
+      <menuitem action="GoBack"/>
+      <menuitem action="GoForward"/>
+      <menuitem action="GoHome"/>
+      <separator/>
+      <menuitem action="GoPrevious"/>
+      <menuitem action="GoNext"/>
+      <menuitem action="GoContents"/>
+    </menu>
+    <menu action="HelpMenu">
+      <menuitem action="About"/>
+    </menu>
+  </menubar>
+  <toolbar>
+    <toolitem action="GoBack"/>
+    <toolitem action="GoForward"/>
+    <separator/>
+    <toolitem action="GoHome"/>
+  </toolbar>
+  <accelerator action="OpenLocation"/>
+</ui>

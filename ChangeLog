@@ -1,5 +1,12 @@
 2004-10-07  Shaun McCance  <shaunm@gnome.org>
 
+	* data/ui/Makefile.am:
+	* data/ui/yelp-ui.xml:
+	* src/yelp-window.c:
+	- Use the new menu API
+
+2004-10-07  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-utils.c:
 	- Using the toc.xml file as the base URI for x-yelp-toc, to please Gecko
 

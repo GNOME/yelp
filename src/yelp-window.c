@@ -86,7 +86,6 @@ static void        window_error                   (YelpWindow        *window,
 static void        window_populate                (YelpWindow        *window);
 static void        window_populate_find           (YelpWindow        *window,
 						   GtkWidget         *find_bar);
-static GtkWidget * window_create_toolbar          (YelpWindow        *window);
 static void        window_set_icon                (YelpWindow        *window);
 static void        window_set_sections            (YelpWindow        *window,
 						   GtkTreeModel      *sections);
@@ -109,8 +108,6 @@ static void        window_disconnect              (YelpWindow        *window);
 static void        yelp_window_destroyed          (GtkWidget         *window,
 						   gpointer           user_data);
 
-static void        pager_parse_cb                 (YelpPager         *pager,
-						   gpointer           user_data);
 static void        pager_start_cb                 (YelpPager         *pager,
 						   gpointer           user_data);
 static void        pager_page_cb                  (YelpPager         *pager,
@@ -131,25 +128,24 @@ static void        html_title_changed_cb          (YelpHtml          *html,
 static void        tree_selection_changed_cb      (GtkTreeSelection  *selection,
 						   YelpWindow        *window);
 
-static void        window_new_window_cb           (gpointer           data,
-						   guint              section,
-						   GtkWidget         *widget);
-static void        window_close_window_cb         (gpointer           data,
-						   guint              section,
-						   GtkWidget         *widget);
-static void        window_about_cb                (gpointer           data,
-						   guint              section,
-						   GtkWidget         *widget);
+static void    window_add_widget      (GtkUIManager *ui_manager,
+				       GtkWidget    *widget,
+				       GtkWidget    *vbox);
+static void    window_new_window_cb     (GtkAction *action, YelpWindow *window);
+static void    window_open_location_cb  (GtkAction *action, YelpWindow *window);
+static void    window_close_window_cb   (GtkAction *action, YelpWindow *window);
+static void    window_find_cb           (GtkAction *action, YelpWindow *window);
+static void    window_go_back_cb        (GtkAction *action, YelpWindow *window);
+static void    window_go_forward_cb     (GtkAction *action, YelpWindow *window);
+static void    window_go_home_cb        (GtkAction *action, YelpWindow *window);
+static void    window_go_previous_cb    (GtkAction *action, YelpWindow *window);
+static void    window_go_next_cb        (GtkAction *action, YelpWindow *window);
+static void    window_go_toc_cb         (GtkAction *action, YelpWindow *window);
+static void    window_about_cb          (GtkAction *action, YelpWindow *window);
+
 static gboolean    window_configure_cb            (GtkWidget         *widget,
 						   GdkEventConfigure *event,
 						   gpointer           data);
-
-static void        window_back_clicked            (GtkWidget         *button,
-						   YelpWindow        *window);
-static void        window_forward_clicked         (GtkWidget         *button,
-						   YelpWindow        *window);
-static void        window_home_button_clicked     (GtkWidget         *button,
-						   YelpWindow        *window);
 
 static void        window_toggle_history_back     (YelpHistory       *history,
 						   gboolean           sensitive,
@@ -161,13 +157,6 @@ static void        window_toggle_history_forward  (YelpHistory       *history,
 static void        window_history_action          (YelpWindow        *window,
 						   YelpHistoryAction  action);
 
-static void        window_go_cb                   (gpointer           data,
-						   guint              action,
-						   GtkWidget         *widget);
-
-static void        window_find_show_cb            (gpointer           data,
-						   guint              action,
-						   GtkWidget         *widget);
 static void        window_find_again_cb           (gpointer           data,
 						   guint              action,
 						   GtkWidget         *widget);
@@ -223,10 +212,8 @@ struct _YelpWindowPriv {
 
     guint           icons_hook;
 
-    GtkItemFactory *item_factory;
-
-    GtkWidget      *forward_button;
-    GtkWidget      *back_button;
+    GtkActionGroup *action_group;
+    GtkUIManager   *ui_manager;
 
     /* Don't free these */
     gchar          *prev_id;
@@ -250,51 +237,70 @@ struct _IdleWriterContext {
 
 static gboolean    idle_write    (IdleWriterContext *context);
 
-static GtkItemFactoryEntry menu_items[] = {
-    {N_("/_File"),                   NULL, 0, 0, "<Branch>"     },
-    {N_("/File/_New window"),        NULL,
-     window_new_window_cb,           0,
-     "<StockItem>",                  GTK_STOCK_NEW              },
-    {N_("/File/_Close window"),      NULL,
-     window_close_window_cb,         0,
-     "<StockItem>",                  GTK_STOCK_CLOSE            },
+static GtkActionEntry entries[] = {
+    { "FileMenu", NULL, N_("_File") },
+    { "EditMenu", NULL, N_("_Edit") },
+    { "GoMenu",   NULL, N_("_Go")   },
+    { "HelpMenu", NULL, N_("_Help") },
 
-    {N_("/_Edit"),                   NULL, 0, 0, "<Branch>"     },
-    {N_("/Edit/_Find..."),           "<Control>f",
-     window_find_show_cb,            0,
-     "<StockItem>",                  GTK_STOCK_FIND             },
-    {N_("/Edit/Find Ne_xt"),        "<Control>g",
-     window_find_again_cb,           YELP_WINDOW_FIND_NEXT,
-     "<Item>",                       NULL                       },
-    {N_("/Edit/Find Pre_vious"),    "<Shift><Control>g",
-     window_find_again_cb,           YELP_WINDOW_FIND_PREV, 
-     "<Item>",                       NULL                       },
+    { "NewWindow", GTK_STOCK_NEW,
+      N_("_New window"),
+      "<Control>N",
+      NULL,
+      G_CALLBACK (window_new_window_cb) },
+    { "OpenLocation", NULL,
+      N_("Open _Location"),
+      "<Control>L",
+      NULL,
+      G_CALLBACK (window_open_location_cb) },
+    { "CloseWindow", GTK_STOCK_CLOSE,
+      N_("_Close window"),
+      "<Control>W",
+      NULL,
+      G_CALLBACK (window_close_window_cb) },
 
-    {N_("/_Go"),                     NULL, 0, 0, "<Branch>"     },
-    {N_("/Go/_Back"),                "<Alt>Left",
-     window_go_cb,                   YELP_WINDOW_GO_BACK,
-     "<StockItem>",                  GTK_STOCK_GO_BACK          },
-    {N_("/Go/_Forward"),             "<Alt>Right",
-     window_go_cb,                   YELP_WINDOW_GO_FORWARD,
-     "<StockItem>",                  GTK_STOCK_GO_FORWARD       },
-    {N_("/Go/_Home"),                NULL,
-     window_go_cb,                   YELP_WINDOW_GO_HOME,
-     "<StockItem>",                  GTK_STOCK_HOME             },
-    {N_("/Go/"),                     NULL, 0, 0, "<Separator>"  },
-    {N_("/Go/_Previous Page"),       "<Alt>Up",
-     window_go_cb,                   YELP_WINDOW_GO_PREVIOUS,
-     0,                              NULL                       },
-    {N_("/Go/_Next Page"),           "<Alt>Down",
-     window_go_cb,                   YELP_WINDOW_GO_NEXT,
-     0,                              NULL                       },
-    {N_("/Go/_Contents"),            NULL,
-     window_go_cb,                   YELP_WINDOW_GO_TOC,
-     0,                              NULL                       },
+    { "Find", GTK_STOCK_FIND,
+      N_("_Find..."),
+      "<Control>F",
+      NULL,
+      G_CALLBACK (window_find_cb) },
 
-    {N_("/_Help"),                   NULL, 0, 0, "<Branch>"     },
-    {N_("/Help/_About"),             NULL,
-     window_about_cb,                0,
-     "<StockItem>",                  GNOME_STOCK_ABOUT          },
+    { "GoBack", GTK_STOCK_GO_BACK,
+      N_("_Back"),
+      "<Alt>Left",
+      N_("Show previous page in history"),
+      G_CALLBACK (window_go_back_cb) },
+    { "GoForward", GTK_STOCK_GO_FORWARD,
+      N_("_Forward"),
+      "<Alt>Right",
+      N_("Show next page in history"),
+      G_CALLBACK (window_go_forward_cb) },
+    { "GoHome", GTK_STOCK_HOME,
+      N_("_Home"),
+      NULL,
+      N_("Go to home view"),
+      G_CALLBACK (window_go_home_cb) },
+    { "GoPrevious", NULL,
+      N_("_Previous Page"),
+      "<Alt>Up",
+      NULL,
+      G_CALLBACK (window_go_previous_cb) },
+    { "GoNext", NULL,
+      N_("_Next Page"),
+      "<Alt>Down",
+      NULL,
+      G_CALLBACK (window_go_next_cb) },
+    { "GoContents", NULL,
+      N_("_Contents"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_go_toc_cb) },
+
+    { "About", GNOME_STOCK_ABOUT,
+      N_("_About"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_about_cb) }
 };
 
 GType
@@ -538,54 +544,49 @@ window_error (YelpWindow *window, GError *error)
 static void
 window_populate (YelpWindow *window)
 {
-    YelpWindowPriv     *priv;
-    GtkWidget          *toolbar;
-    GtkAccelGroup      *accel_group;
-    GtkWidget          *menu_item;
-    GtkTreeSelection   *selection;
+    YelpWindowPriv    *priv;
+    GtkAccelGroup     *accel_group;
+    GError            *error = NULL;
+    GtkAction         *action;
+    GtkTreeSelection  *selection;
 
     priv = window->priv;
 
     priv->main_box = gtk_vbox_new (FALSE, 0);
 
     gtk_container_add (GTK_CONTAINER (window), priv->main_box);
-	
-    accel_group  = gtk_accel_group_new ();
-    priv->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
-					       "<main>", accel_group);
 
-    gtk_item_factory_set_translate_func (priv->item_factory, 
-					 (GtkTranslateFunc) gettext,
-					 NULL, NULL);
+    priv->action_group = gtk_action_group_new ("MenuActions");
+    gtk_action_group_set_translation_domain (priv->action_group,
+					     GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (priv->action_group,
+				  entries, G_N_ELEMENTS (entries),
+				  window);
+    priv->ui_manager = gtk_ui_manager_new ();
+    gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
 
+    accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
     gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
-    gtk_item_factory_create_items (priv->item_factory,
-				   G_N_ELEMENTS (menu_items),
-				   menu_items,
-				   window);
 
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_BACK);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
+    g_signal_connect (G_OBJECT (priv->ui_manager), "add-widget",
+		      G_CALLBACK (window_add_widget), priv->main_box);
 
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_FORWARD);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
+    if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
+					  DATADIR "/yelp/ui/yelp-ui.xml",
+					  &error)) {
+	window_error (window, error);
+	g_error_free (error);
+    }
 
-    gtk_box_pack_start (GTK_BOX (priv->main_box),
-			GTK_WIDGET (gtk_item_factory_get_widget
-				    (priv->item_factory, "<main>")),
-			FALSE, FALSE, 0);
+    gtk_ui_manager_ensure_update (priv->ui_manager);
 
-    toolbar = window_create_toolbar (window);
-    gtk_box_pack_start (GTK_BOX (priv->main_box),
-			GTK_WIDGET (toolbar),
-			FALSE, FALSE, 0);
+    action = gtk_action_group_get_action (priv->action_group, "GoBack");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    action = gtk_action_group_get_action (priv->action_group, "GoForward");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
 
     priv->pane = gtk_hpaned_new ();
     gtk_widget_ref (priv->pane);
@@ -647,9 +648,11 @@ window_populate (YelpWindow *window)
 			priv->pane,
 			TRUE, TRUE, 0);
 
+    /*
     gtk_widget_show_all (toolbar);
     gtk_widget_show_all (GTK_WIDGET (gtk_item_factory_get_widget
 				     (priv->item_factory, "<main>")) );
+    */
 
     gtk_widget_show_all (yelp_html_get_widget (priv->html_view));
     gtk_widget_show (priv->html_pane);
@@ -703,57 +706,6 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
 			      G_CALLBACK (gtk_widget_hide),
 			      priv->find_bar);
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
-}
-
-static GtkWidget *
-window_create_toolbar (YelpWindow *window)
-{
-    YelpWindowPriv  *priv;
-    GtkWidget       *toolbar;
-    GtkWidget       *button;
-    GtkWidget       *icon;
-
-    g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
-
-    priv = window->priv;
-
-    toolbar = gtk_toolbar_new ();
-
-    icon = gtk_image_new_from_stock ("gtk-go-back", 
-				     GTK_ICON_SIZE_LARGE_TOOLBAR);
-    priv->back_button =
-	gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
-				 _("Back"),
-				 _("Show previous page in history"),
-				 NULL, icon, 
-				 G_CALLBACK (window_back_clicked),
-				 window);
-    gtk_widget_set_sensitive (priv->back_button, FALSE);
-
-    icon = gtk_image_new_from_stock ("gtk-go-forward", 
-				     GTK_ICON_SIZE_LARGE_TOOLBAR);
-    priv->forward_button =
-	gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
-				 _("Forward"),
-				 _("Show next page in history"),
-				 NULL, icon,
-				 G_CALLBACK (window_forward_clicked),
-				 window);
-    gtk_widget_set_sensitive (priv->forward_button, FALSE);
-
-    gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
-
-    icon = gtk_image_new_from_stock ("gtk-home", 
-				     GTK_ICON_SIZE_LARGE_TOOLBAR);
-    button =
-	gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-				 _("Home"),
-				 _("Go to home view"), 
-				 NULL, icon,
-				 G_CALLBACK (window_home_button_clicked),
-				 window);
-
-    return toolbar;
 }
 
 static void
@@ -952,7 +904,7 @@ window_do_load_html (YelpWindow    *window,
     GnomeVFSResult   result;
     GnomeVFSFileSize n;
     gchar            buffer[BUFFER_SIZE];
-    GtkWidget       *menu_item;
+    GtkAction       *action;
 
     gboolean  handled = TRUE;
     gchar    *uri;
@@ -969,21 +921,15 @@ window_do_load_html (YelpWindow    *window,
 
     window_set_sections (window, NULL);
 
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_PREVIOUS);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_NEXT);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_TOC);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
+    action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    action = gtk_action_group_get_action (priv->action_group, "GoNext");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    action = gtk_action_group_get_action (priv->action_group, "GoContents");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
 
     result = gnome_vfs_open (&handle, doc_info->uri, GNOME_VFS_OPEN_READ);
 
@@ -1019,7 +965,7 @@ static void
 window_set_loading (YelpWindow *window)
 {
     YelpWindowPriv *priv;
-    GtkWidget *menu_item;
+    GtkAction *action;
     GdkCursor *cursor;
     gchar *loading = _("Loading...");
 
@@ -1031,21 +977,15 @@ window_set_loading (YelpWindow *window)
     gdk_window_set_cursor (GTK_WIDGET (window)->window, cursor);
     gdk_cursor_unref (cursor);
 
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_PREVIOUS);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_NEXT);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_TOC);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, FALSE);
+    action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    action = gtk_action_group_get_action (priv->action_group, "GoNext");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    action = gtk_action_group_get_action (priv->action_group, "GoContents");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
 
     gtk_window_set_title (GTK_WINDOW (window),
 			  (const gchar *) loading);
@@ -1071,7 +1011,7 @@ window_handle_page (YelpWindow   *window,
 {
     YelpWindowPriv *priv;
 
-    GtkWidget      *menu_item;
+    GtkAction      *action;
     GtkTreeModel   *model;
     GtkTreeIter     iter;
 
@@ -1129,28 +1069,26 @@ window_handle_page (YelpWindow   *window,
     }
 
     priv->prev_id = page->prev_id;
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_PREVIOUS);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item,
-				  priv->prev_id ? TRUE : FALSE);
-
-    priv->next_id = page->next_id;
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_NEXT);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item,
-				  priv->next_id ? TRUE : FALSE);
-
-    priv->toc_id = page->toc_id;
-    menu_item =
-	gtk_item_factory_get_item_by_action (priv->item_factory,
-					     YELP_WINDOW_GO_TOC);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item,
-				  priv->toc_id ? TRUE : FALSE);
+    action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
+    if (action)
+	g_object_set (G_OBJECT (action),
+		      "sensitive",
+		      priv->prev_id ? TRUE : FALSE,
+		      NULL);
+    priv->prev_id = page->prev_id;
+    action = gtk_action_group_get_action (priv->action_group, "GoNext");
+    if (action)
+	g_object_set (G_OBJECT (action),
+		      "sensitive",
+		      priv->next_id ? TRUE : FALSE,
+		      NULL);
+    priv->prev_id = page->prev_id;
+    action = gtk_action_group_get_action (priv->action_group, "GoContents");
+    if (action)
+	g_object_set (G_OBJECT (action),
+		      "sensitive",
+		      priv->toc_id ? TRUE : FALSE,
+		      NULL);
 
     gtk_window_set_title (GTK_WINDOW (window),
 			  (const gchar *) page->title);
@@ -1244,13 +1182,6 @@ yelp_window_destroyed (GtkWidget *window,
 
     g_object_unref (priv->pane);
     g_object_unref (priv->side_sw);
-}
-
-static void
-pager_parse_cb (YelpPager   *pager,
-		gpointer     user_data)
-{
-    d (printf ("pager_parse_cb\n"));
 }
 
 static void
@@ -1391,25 +1322,126 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 /******************************************************************************/
 
 static void
-window_new_window_cb (gpointer data, guint section, GtkWidget *widget)
+window_add_widget (GtkUIManager *ui_manager,
+		   GtkWidget    *widget,
+		   GtkWidget    *vbox)
 {
-    g_return_if_fail (YELP_IS_WINDOW (data));
-
-    g_signal_emit (data, signals[NEW_WINDOW_REQUESTED], 0);
+    gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 }
 
 static void
-window_close_window_cb (gpointer   data,
-			guint      section,
-			GtkWidget *widget)
+window_new_window_cb (GtkAction *action, YelpWindow *window)
 {
-    gtk_widget_destroy (GTK_WIDGET (data));
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0);
 }
 
 static void
-window_about_cb (gpointer data, guint section, GtkWidget *widget)
+window_open_location_cb (GtkAction *action, YelpWindow *window)
+{
+    d (printf ("window_open_location_cb\n"));
+}
+
+static void
+window_close_window_cb (GtkAction *action, YelpWindow *window)
+{
+    gtk_widget_destroy (GTK_WIDGET (window));
+}
+
+static void
+window_find_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPriv *priv;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = window->priv;
+
+    d (printf ("window_find_cb\n"));
+
+    gtk_widget_show_all (priv->find_bar);
+    gtk_widget_grab_focus (priv->find_entry);
+}
+
+static void
+window_go_back_cb (GtkAction *action, YelpWindow *window)
+{
+    d (printf ("window_go_back_cb\n"));
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    window_history_action (window, YELP_WINDOW_GO_BACK);
+}
+
+static void
+window_go_forward_cb (GtkAction *action, YelpWindow *window)
+{
+    d (printf ("window_go_forward_cb\n"));
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    window_history_action (window, YELP_WINDOW_GO_FORWARD);
+}
+
+static void
+window_go_home_cb (GtkAction *action, YelpWindow *window)
+{
+    d (printf ("window_go_home_cb\n"));
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    yelp_window_load (window, "x-yelp-toc:");
+}
+
+static void
+window_go_previous_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPriv *priv;
+    gchar *uri;
+
+    d (printf ("window_go_previous_cb\n"));
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    priv = window->priv;
+
+    uri = yelp_uri_get_relative (priv->current_doc->uri,
+				 priv->prev_id);
+    yelp_window_load (window, uri);
+    g_free (uri);
+}
+
+static void
+window_go_next_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPriv *priv;
+    gchar *uri;
+
+    d (printf ("window_go_previous_cb\n"));
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    priv = window->priv;
+
+    uri = yelp_uri_get_relative (priv->current_doc->uri,
+				 priv->next_id);
+    yelp_window_load (window, uri);
+    g_free (uri);
+}
+
+static void
+window_go_toc_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPriv *priv;
+    gchar *uri;
+
+    d (printf ("window_go_previous_cb\n"));
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    priv = window->priv;
+
+    uri = yelp_uri_get_relative (priv->current_doc->uri,
+				 priv->toc_id);
+    yelp_window_load (window, uri);
+    g_free (uri);
+}
+
+static void
+window_about_cb (GtkAction *action, YelpWindow *window)
 {
     static GtkWidget *about = NULL;
+
+    d (printf ("window_go_about_cb\n"));
 
     if (about == NULL) {
 	const gchar *authors[] = { 
@@ -1433,11 +1465,10 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 	     ? translator_credits : NULL, NULL);
 	//	     window_load_icon ());
 
-	/* set the widget pointer to NULL when the widget is destroyed */
 	g_signal_connect (G_OBJECT (about), "destroy",
 			  G_CALLBACK (gtk_widget_destroyed),
 			  &about);
-	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
+	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
     }
     gtk_window_present (GTK_WINDOW (about));
 }
@@ -1457,97 +1488,21 @@ window_configure_cb (GtkWidget         *widget,
 }
 
 static void
-window_back_clicked (GtkWidget  *button,
-		     YelpWindow *window)
-{
-    g_return_if_fail (YELP_IS_WINDOW (window));
-
-    window_history_action (window, YELP_WINDOW_GO_BACK);
-}
-
-static void
-window_forward_clicked (GtkWidget  *button,
-			YelpWindow *window)
-{
-    g_return_if_fail (YELP_IS_WINDOW (window));
-
-    window_history_action (window, YELP_WINDOW_GO_FORWARD);
-}
-
-static void        
-window_go_cb (gpointer   data,
-	      guint      action,
-	      GtkWidget *widget)
-{
-    YelpWindow     *window;
-    YelpWindowPriv *priv;
-
-    gchar *uri;
-
-    g_return_if_fail (YELP_IS_WINDOW (YELP_WINDOW (data)));
-
-    window = YELP_WINDOW (data);
-    priv = window->priv;
-
-    switch (action) {
-    case YELP_WINDOW_GO_BACK:
-    case YELP_WINDOW_GO_FORWARD:
-	window_history_action (YELP_WINDOW (data), action);
-	break;
-    case YELP_WINDOW_GO_HOME:
-	window_home_button_clicked (NULL, YELP_WINDOW (data));
-	break;
-    case YELP_WINDOW_GO_PREVIOUS:
-	uri = yelp_uri_get_relative (priv->current_doc->uri,
-				 priv->prev_id);
-	yelp_window_load (window, uri);
-	g_free (uri);
-	break;
-    case YELP_WINDOW_GO_NEXT:
-	uri = yelp_uri_get_relative (priv->current_doc->uri,
-				 priv->next_id);
-	yelp_window_load (window, uri);
-	g_free (uri);
-	break;
-    case YELP_WINDOW_GO_TOC:
-	uri = yelp_uri_get_relative (priv->current_doc->uri,
-				 priv->toc_id);
-	yelp_window_load (window, uri);
-	g_free (uri);
-	break;
-    default:
-	break;
-    }
-}
-
-static void
-window_home_button_clicked (GtkWidget  *button,
-			    YelpWindow *window)
-{
-    g_return_if_fail (YELP_IS_WINDOW (window));
-
-    yelp_window_load (window, "x-yelp-toc:");
-}
-
-static void
 window_toggle_history_back (YelpHistory *history,
 			    gboolean     sensitive,
 			    YelpWindow  *window)
 {
     YelpWindowPriv *priv;
-    GtkWidget      *menu_item;
+    GtkAction      *action;
 
     g_return_if_fail (YELP_IS_HISTORY (history));
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
 
-    gtk_widget_set_sensitive (priv->back_button, sensitive);
-
-    menu_item = gtk_item_factory_get_item_by_action (priv->item_factory,
-						     YELP_WINDOW_GO_BACK);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, sensitive);
+    action = gtk_action_group_get_action (priv->action_group, "GoBack");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", sensitive, NULL);
 }
 
 static void
@@ -1556,19 +1511,16 @@ window_toggle_history_forward (YelpHistory *history,
 			       YelpWindow  *window)
 {
     YelpWindowPriv *priv;
-    GtkWidget      *menu_item;
+    GtkAction      *action;
 
     g_return_if_fail (YELP_IS_HISTORY (history));
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
 
-    gtk_widget_set_sensitive (priv->forward_button, sensitive);
-
-    menu_item = gtk_item_factory_get_item_by_action (priv->item_factory,
-						     YELP_WINDOW_GO_FORWARD);
-    if (menu_item)
-	gtk_widget_set_sensitive (menu_item, sensitive);
+    action = gtk_action_group_get_action (priv->action_group, "GoBack");
+    if (action)
+	g_object_set (G_OBJECT (action), "sensitive", sensitive, NULL);
 }
 
 static void
@@ -1756,78 +1708,6 @@ window_find_buttons_set_sensitive (YelpWindow *window,
 
     gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), sensitive);
     gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), sensitive);
-}
-
-static void
-window_find_show_cb (gpointer   data,     
-		     guint      action,
-		     GtkWidget *widget)
-{
-    YelpWindow     *window;
-    YelpWindowPriv *priv;
-
-    window = YELP_WINDOW (data);
-
-    priv = window->priv;
-
-    gtk_widget_show_all (priv->find_bar);
-    gtk_widget_grab_focus (priv->find_entry);
-
-    /*
-    if (!priv->find_dialog) {
-	glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade", "find_dialog", NULL);
-	
-	if (!glade) {
-	    g_warning ("Couldn't find necessary glade find " DATADIR "/yelp/ui/yelp.glade");
-	    return;
-	}
-
-	priv->find_dialog       = glade_xml_get_widget (glade, "find_dialog");	
-	priv->find_entry        = glade_xml_get_widget (glade, "find_entry");
-	priv->case_checkbutton  = glade_xml_get_widget (glade, "case_check");
-	priv->wrap_checkbutton  = glade_xml_get_widget (glade, "wrap_check");
-	priv->find_next  = glade_xml_get_widget (glade, "next_button");
-	priv->find_prev  = glade_xml_get_widget (glade, "prev_button");
-	priv->find_close_button = glade_xml_get_widget (glade, "close_button");	
-	gnome_entry             = glade_xml_get_widget (glade, "find_gnome_entry");
-
-	gtk_window_set_transient_for (GTK_WINDOW (priv->find_dialog), 
-				      GTK_WINDOW (window));
-	gtk_window_set_destroy_with_parent (GTK_WINDOW (priv->find_dialog),
-					    TRUE);
-
-	gtk_combo_set_use_arrows (GTK_COMBO (gnome_entry), FALSE);
-	
-	gtk_entry_set_activates_default (GTK_ENTRY (priv->find_entry), TRUE);
-	gtk_widget_grab_default (glade_xml_get_widget (glade, "next_button"));
-
-	gtk_widget_set_sensitive (priv->find_next, FALSE);
-	gtk_widget_set_sensitive (priv->find_prev, FALSE);
-
-	g_signal_connect (G_OBJECT (priv->find_entry), "changed",
-			  G_CALLBACK (window_find_entry_changed_cb), window);	
-
-	g_signal_connect (G_OBJECT (priv->wrap_checkbutton), "toggled",
-			  G_CALLBACK (window_find_wrap_toggled_cb), window);
-
-	g_signal_connect (G_OBJECT (priv->case_checkbutton), "toggled",
-			  G_CALLBACK (window_find_case_toggled_cb), window);
-
-	g_signal_connect (G_OBJECT (priv->find_dialog), "delete_event",
-			  G_CALLBACK (window_find_delete_event_cb), NULL);
-
- 	g_signal_connect (G_OBJECT (priv->find_dialog), "response", 
- 			  G_CALLBACK (window_find_response_cb), window); 
-
-	g_object_unref (glade);
-    }
-    */
-
-    /*
-    gtk_editable_select_region (GTK_EDITABLE (priv->find_entry), 0, -1);
-
-    gtk_window_present (GTK_WINDOW (priv->find_dialog));
-    */
 }
 
 static gboolean
