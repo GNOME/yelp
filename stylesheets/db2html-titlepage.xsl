@@ -118,6 +118,7 @@
 			</div>
 		</xsl:if>
 		<xsl:apply-templates select="legalnotice" mode="titlepage.mode"/>
+		<xsl:apply-templates select="releaseinfo" mode="titlepage.mode"/>
 		<xsl:apply-templates select="revhistory" mode="titlepage.mode"/>
 	</div>
 </xsl:template>
@@ -312,6 +313,17 @@
 	<span class="{name(.)}">
 		<xsl:apply-templates mode="titlepage.mode"/>
 	</span>
+</xsl:template>
+
+<xsl:template match="releaseinfo" mode="titlepage.mode">
+	<div class="{name(.)}">
+		<h2 class="{name(.)}">
+			<xsl:call-template name="gettext">
+				<xsl:with-param name="msgid" select="'Release Information'"/>
+			</xsl:call-template>
+		</h2>
+		<p><xsl:apply-templates/></p>
+	</div>
 </xsl:template>
 
 <xsl:template match="revhistory" mode="titlepage.mode">
