@@ -12,6 +12,7 @@ INCLUDES =								\
 bin_PROGRAMS = yelp
 
 install-local:
+	rm -f $(bindir)/gnome-help
 	ln -s yelp $(bindir)/gnome-help
 
 yelp-marshal.h: yelp-marshal.list
