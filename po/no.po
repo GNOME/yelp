@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.1\n"
-"POT-Creation-Date: 2002-05-08 08:59+0200\n"
+"POT-Creation-Date: 2002-05-18 22:48+0200\n"
 "PO-Revision-Date: 2002-05-08 08:59+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokml) <no@li.org>\n"
@@ -21,7 +21,7 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp factory"
 
-#: src/yelp-db2html.c:106
+#: src/yelp-db2html.c:107
 msgid ""
 "Error while parsing the stylesheet, make sure you have your docbook "
 "environment setup correctly."
@@ -29,23 +29,19 @@ msgstr ""
 "Feil under lesing av stilark. Sjekk at du har satt opp ditt docbook-miljø "
 "korrekt."
 
-#: src/yelp-db2html.c:122
+#: src/yelp-db2html.c:123
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet «%s» eksisterer ikke"
 
-#: src/yelp-db2html.c:137
+#: src/yelp-db2html.c:138
 #, c-format
 msgid "Couldn't parse the document '%s'."
 msgstr "Kunne ikke lese dokumentet «%s»."
 
-#: src/yelp-db2html.c:176
+#: src/yelp-db2html.c:177
 msgid "Error while applying the stylesheet."
 msgstr "Feil under påføring av stilark."
-
-#: src/yelp-html.c:149
-msgid "Loading..."
-msgstr "Laster..."
 
 #: src/yelp-main.c:109
 #, c-format
@@ -125,7 +121,7 @@ msgstr "Oversikter"
 msgid "System Administration"
 msgstr "Systemadministrasjon"
 
-#: src/yelp-view-content.c:204 src/yelp-view-index.c:373
+#: src/yelp-view-content.c:307 src/yelp-view-index.c:373
 msgid "Section"
 msgstr "Del"
 
@@ -133,80 +129,80 @@ msgstr "Del"
 msgid "Search for:"
 msgstr "Søk etter:"
 
-#: src/yelp-view-toc.c:328
+#: src/yelp-view-toc.c:246
 msgid "Help Contents"
 msgstr "Hjelpinnhold"
 
-#: src/yelp-view-toc.c:329
+#: src/yelp-view-toc.c:247
 msgid "GNOME - Desktop"
 msgstr "GNOME - Skrivebord"
 
-#: src/yelp-view-toc.c:330
+#: src/yelp-view-toc.c:248
 msgid "Additional documents"
 msgstr "Tilleggsdokumenter"
 
-#: src/yelp-view-toc.c:331 src/yelp-view-toc.c:673
+#: src/yelp-view-toc.c:249 src/yelp-view-toc.c:603
 msgid "Manual Pages"
 msgstr "Manualsider"
 
-#: src/yelp-view-toc.c:332 src/yelp-view-toc.c:735
+#: src/yelp-view-toc.c:250 src/yelp-view-toc.c:662
 msgid "Info Pages"
 msgstr "Infosider"
 
-#: src/yelp-view-toc.c:530 src/yelp-view-toc.c:736 src/yelp-view-toc.c:878
+#: src/yelp-view-toc.c:455 src/yelp-view-toc.c:663 src/yelp-view-toc.c:806
 msgid "Documents"
 msgstr "Dokumenter"
 
-#: src/yelp-view-toc.c:531 src/yelp-view-toc.c:674 src/yelp-view-toc.c:879
+#: src/yelp-view-toc.c:456 src/yelp-view-toc.c:604 src/yelp-view-toc.c:807
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/yelp-view-toc.c:616
+#: src/yelp-view-toc.c:542
 msgid "Manual pages"
 msgstr "Manualsider"
 
-#: src/yelp-window.c:151
+#: src/yelp-window.c:152
 msgid "/_File"
 msgstr "/_Fil"
 
-#: src/yelp-window.c:152
+#: src/yelp-window.c:153
 msgid "/File/_New window"
 msgstr "/Fil/_Nytt vindu"
 
-#: src/yelp-window.c:153
+#: src/yelp-window.c:154
 msgid "/File/_Close window"
 msgstr "/Fil/_Lukk vindu"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:155
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:156
 msgid "/_Go"
 msgstr "/_Gå"
 
-#: src/yelp-window.c:156
+#: src/yelp-window.c:157
 msgid "/Go/_Back"
 msgstr "/Gå/Til_bake"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:158
 msgid "/Go/_Forward"
 msgstr "/Gå/_Fremover"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:159
 msgid "/Go/_Home"
 msgstr "/Gå/_Hjem"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:160
 msgid "/Go/_Index"
 msgstr "/Gå/_Indeks"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:161
 msgid "/_Help"
 msgstr "/_Hjelp"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:162
 msgid "/Help/_About"
 msgstr "/Hjelp/_Om"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:224
 msgid "Help Browser"
 msgstr "Hjelp leser"
 
@@ -259,3 +255,6 @@ msgstr "Få hjelp med GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjelp"
+
+#~ msgid "Loading..."
+#~ msgstr "Laster..."
