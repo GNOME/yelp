@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0\n"
-"POT-Creation-Date: 2004-03-28 23:42+0200\n"
+"POT-Creation-Date: 2004-04-20 17:58-0500\n"
 "PO-Revision-Date: 2004-03-28 23:42+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -257,20 +257,20 @@ msgstr "URI dokumenta"
 msgid "The URI of the document to be processed"
 msgstr "URI dokumenta koji treba biti obrađen"
 
-#: src/yelp-toc-pager.c:266
+#: src/yelp-toc-pager.c:267
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Brojanje pauze je negativno."
 
-#: src/yelp-toc-pager.c:486
-#, , c-format
+#: src/yelp-toc-pager.c:487
+#, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nisam mogao učitati OMF datoteku '%s'."
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:884
 msgid "Categories"
 msgstr "Kategorije"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:898
 msgid "Documents"
 msgstr "Dokumenti"
 
@@ -379,12 +379,12 @@ msgid "Loading..."
 msgstr "Učitavam..."
 
 #. Note to translators: put here your name (and address) so it
-#.  * will shop up in the "about" box
-#: src/yelp-window.c:1300
+#. * will shop up in the "about" box
+#: src/yelp-window.c:1303
 msgid "translator_credits"
 msgstr "lokalizacija@linux.hr"
 
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1309
 msgid "A Help Browser for GNOME"
 msgstr "Preglednik pomoći za GNOME"
 
@@ -659,4 +659,3 @@ msgstr "Zatražite pomoć za GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Pomoć"
-

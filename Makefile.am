@@ -16,7 +16,6 @@ EXTRA_DIST = 						\
 	intltool-extract.in  				\
 	intltool-merge.in    				\
 	intltool-update.in				\
-	intltool-modules/XML/Parser/Style/OrigTree.pm	\
 	idl/GNOME_Yelp.idl				\
 	important_docs.xml				\
 	$(DESKTOP_IN_FILES)				\

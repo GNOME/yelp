@@ -1,5 +1,16 @@
 2004-04-20  Shaun McCance  <shaunm@gnome.org>
 
+	* Makefile.am:
+	- Removing OrigTree.pm from EXTRA_DIST, I guess
+
+	* configure.in:
+	- Version 2.6.1
+
+	* po/*.po:
+	- Stuff distcheck likes to do
+
+2004-04-20  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-window.c:
 	- Fixed leak in window_handle_pager_uri, #140597  (Morten Welinder)
 	- Fixed leak in window_handle_page, #140595  (Morten Welinder)

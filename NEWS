@@ -1,3 +1,18 @@
+Changes in 2.6.1:
+-----------------
+* Numerous leaks identified and fixed:
+  #140597, #140595, #140546, #140525, #140524          (Morten Welinder)
+* Crash on close fixed, #140300                        (Morten Welinder)
+* Fixed compile failure, #134886                       (Shaun McCance)
+* Fixed potential memory error, #128914                (Shaun McCance)
+* Updated translations:
+  af      (Zuza Software Foundation)
+  gu      (Gujarati Team)
+  is      (Helgi Þormar Þorbjörnsson)
+  th      (Theppitak Karoonboonyanan)
+  hr      (Robert Sedak)
+  hu      (Andras Timar)
+
 Changes in 2.6.0:
 -----------------
 * Fix for for #134534, portable sed usage.          (Laszlo Peter)
