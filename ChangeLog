@@ -1,3 +1,8 @@
+2004-02-17  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Another NULL test before an xmlFree, suggested by William Brack.
+
 2004-02-16  Shaun McCance  <shaunm@gnome.org>
 
 	* stylesheets/db2html-toc.xsl:
