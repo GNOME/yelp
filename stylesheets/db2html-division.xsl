@@ -44,7 +44,7 @@
 	<xsl:param name="depth_in_chunk">
 		<xsl:call-template name="depth_in_chunk"/>
 	</xsl:param>
-	<xsl:if test="preceding-sibling::refentry and $depth &gt; 0">
+	<xsl:if test="preceding-sibling::refentry and $depth_chunk &gt; 0">
 		<hr class="refentry.seperator"/>
 	</xsl:if>
 	<div class="{name(.)}">
