@@ -5,15 +5,15 @@
 # translation of es.po to Spanish
 # translation of yelp.HEAD.po to Spanish
 # yelp spanish .po file.
-# Copyright (C) 2001,2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2001,2003, 2004, 2005 Free Software Foundation, Inc.
 # Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2001-2002,2003.
-# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004.
+# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2004-12-18 14:19+0100\n"
+"POT-Creation-Date: 2005-01-07 02:17+0100\n"
+"PO-Revision-Date: 2005-01-07 02:30+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -195,14 +195,12 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Tipografías</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Tipografías</b>"
+msgstr "<b>_Título:</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "Add Bookmark"
-msgstr "_Añadir marcador"
+msgstr "Añadir marcador"
 
 #: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
@@ -300,12 +298,17 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Ya existe un marcador titulado <b>%s</b> para esta página."
+
 #: src/yelp-db-pager.c:238
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr ""
+msgstr "El archivo «%s» no se pudo analizar. O el archivo no existe, o no es un XML bien formado."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
@@ -313,37 +316,42 @@ msgstr "Desconocido"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Ocurrió un error desconocido"
 
 #: src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "No se pudo cargar el documento"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "No se pudo abrir una ventana nueva."
+msgstr "No se pudo cargar la sección"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "No se pudo cargar el archivo OMF «%s»."
+msgstr "No se pudo leer la tabla de contenidos"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Formato no soportado"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "No se pudo leer el documento"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "No se pudo procesar el documento"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "No hay información disponible acerca del error."
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
+msgstr "El archivo «%s» no se pudo leer y decodificar. El archivo podría estar comprimido en un formato no soportado."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -367,7 +375,7 @@ msgstr "Ayuda"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
+msgstr "El archivo «%s» no se pudo analizar. O el archivo no existe, o está formateado incorrectamente."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -421,14 +429,14 @@ msgstr "Leer la página de manual de %s"
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
+msgstr "La tabla de contenidos no se pudo cargar. El archivo «%s» falta o no es un archivo XML bien formado."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "La tabla de contenido no se pudo procesar. El archivo «%s» falta o no es una hoja de estilos XSLT válida."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -459,21 +467,18 @@ msgid "_Help"
 msgstr "A_yuda"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "Ventana _nueva"
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "About This Document"
-msgstr "Acerca de este conjunto"
+msgstr "Acerca de este documento"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Abrir _dirección"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
 msgstr "_Cerrar ventana"
 
@@ -522,14 +527,12 @@ msgid "Go to home view"
 msgstr "Ir a la vista de inicio"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "Página _anterior"
+msgstr "Sección _anterior"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "Sección"
+msgstr "Sección _siguiente"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -565,28 +568,28 @@ msgstr "Navegador de ayuda"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "El Identificador Uniforme de Recurso (URI) para el archivo es inválido."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "El Identificador Uniforme de Recurso «%s» es inválido o no apunta a un archivo actual."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1124
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Las páginas man no están soportadas en esta versión."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1115
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Las páginas info de GNU no están soportadas en esta versión"
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "Los documentos SGML no se soportan más. Por favor, pida al autor del documento que lo convierta a XML."
 
 #: src/yelp-window.c:1021
 msgid "Fin_d"
@@ -597,7 +600,7 @@ msgstr "_Buscar"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr ""
+msgstr "No se pudo crear un contexto de transformación para el archivo «%s». El formato puede no estar soportado."
 
 #: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
 #, c-format
@@ -605,14 +608,14 @@ msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr ""
+msgstr "La sección «%s» no existe en este documento. Si usted se le indicó esta sección desde un botón «Ayuda» en una aplicación, informe de esto a los mantenedores de esa aplicación."
 
 #: src/yelp-window.c:1286
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr ""
+msgstr "El archivo «%s» no se pudo leer. Este archivo quizá falte, o quizá no tenga permiso para leerlo."
 
 #: src/yelp-window.c:1320
 msgid "Loading..."
@@ -636,14 +639,14 @@ msgstr "Un visor y examinador de documentación para el escritorio Gnome."
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr ""
+msgstr "El archivo «%s» no se pudo analizar. O el archivo no existe, o está formateado erróneamente."
 
 #: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "El documento «%s» no se pudo procesar. El archivo  «%s» falta o no es una hoja de estilo XSLT válida."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
@@ -933,3 +936,4 @@ msgstr "Obtenga ayuda acerca de Gnome"
 
 #~ msgid "Warning"
 #~ msgstr "Atención"
+
