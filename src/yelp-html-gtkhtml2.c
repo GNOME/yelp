@@ -169,7 +169,6 @@ html_url_requested_cb (HtmlDocument *doc,
 	gchar             buffer[BUFFER_SIZE];
 	GnomeVFSFileSize  read_len;
 	gchar            *absolute_url;
-	gchar            *str_uri;
 	
         html = YELP_HTML (data);
 	priv = html->priv;
@@ -178,10 +177,7 @@ html_url_requested_cb (HtmlDocument *doc,
 
 	d(g_print ("URL REQUESTED: %s\n", url));
 
-	str_uri = yelp_uri_to_string (priv->base_uri);
-	absolute_url = yelp_util_resolve_relative_url (str_uri, url);
-	g_free (str_uri);
-	
+	absolute_url = yelp_util_resolve_relative_url (yelp_uri_get_path (priv->base_uri), url);
 	
 	result = gnome_vfs_open (&handle, absolute_url, GNOME_VFS_OPEN_READ);
 
