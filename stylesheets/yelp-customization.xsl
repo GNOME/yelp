@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'>
 
-<xsl:import href="docbook/html/docbook.xsl"/>
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/1.48/html/docbook.xsl"/>
 <xsl:include href="yelp-custom.xsl"/>
 
 <xsl:param name="gdb_docname" />

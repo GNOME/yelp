@@ -66,9 +66,10 @@ main (gint argc, gchar **argv)
 	const gchar    *params[16 + 1];
 	gchar          *pathname;
         gchar          *docpath;
-        
 	db_doc = NULL;
 
+        putenv ("XML_CATALOG_FILES=" DATADIR "/yelp/catalog");
+        
         if (argc < 2) {
                 g_print ("Usage 'yelp-db2html url'\n");
                 exit (1);

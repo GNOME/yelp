@@ -1,0 +1,14 @@
+2002-06-02  Mikael Hallendal  <micke@codefactory.se>
+
+	* docbook/Makefile.am (SUBDIRS): added dtd
+
+	* docbook/catalog.in: added, this is a local catalog for for Yelp.
+	
+	* yelp-customization.xsl: Reverted into having the URI for the
+	  import of stylesheets. Now that I have my own catalog file
+	  installed. 
+
+	* docbook/dtd/*: Added the DTD 4.1.2 for now. Jamesh notified me
+	  that this was needed. The long term solution would be not to
+	  ship these at all but instead depend on the system to do this
+	  correctly.
