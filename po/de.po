@@ -1,13 +1,13 @@
-# German Yelp translation
+# German Yelp translation.
 # Copyright (C) 2001-2003 Free Software Foundation, Inc.
 # Christian Meyer <chrisime@gnome.org>, 2001, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Yelp 2.1.3\n"
-"POT-Creation-Date: 2003-04-07 19:16+0200\n"
-"PO-Revision-Date: 2003-01-20 22:53+0100\n"
+"Project-Id-Version: Yelp 2.4.x\n"
+"POT-Creation-Date: 2003-05-09 17:42+0200\n"
+"PO-Revision-Date: 2003-05-09 17:40+0200\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -57,6 +57,7 @@ msgstr "Yelp-Fabrik"
 #: src/yelp-main.c:94
 msgid "Define which cache dir to use"
 msgstr ""
+"Festlegen, welches Verzichnis als Zwischenspeicher verwendet werden soll"
 
 #: src/yelp-main.c:128
 #, c-format
@@ -169,7 +170,6 @@ msgstr "Handbuchseiten"
 msgid "Info Pages"
 msgstr "Info-Seiten"
 
-# CHECK
 #: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "Dokumente"
@@ -220,23 +220,23 @@ msgstr "/Bearbeiten/_Weitersuchen"
 
 #: src/yelp-window.c:171
 msgid "/_Go"
-msgstr "/_Gehe"
+msgstr "/_Gehe zu"
 
 #: src/yelp-window.c:172
 msgid "/Go/_Back"
-msgstr "/Gehe/_Zurück"
+msgstr "/Gehe zu/_Zurück"
 
 #: src/yelp-window.c:173
 msgid "/Go/_Forward"
-msgstr "/Gehe/_Vorwärts"
+msgstr "/Gehe zu/_Vorwärts"
 
 #: src/yelp-window.c:174
 msgid "/Go/_Home"
-msgstr "/Gehe/_Heim"
+msgstr "/Gehe zu/_Heim"
 
 #: src/yelp-window.c:175
 msgid "/Go/_Index"
-msgstr "/Gehe/_Index"
+msgstr "/Gehe zu/_Index"
 
 #: src/yelp-window.c:177
 msgid "/_Help"
@@ -265,8 +265,8 @@ msgstr ""
 "Matthias Warkus <mawarkus@gnome.org>"
 
 #: src/yelp-window.c:679
-msgid "Help Browser for GNOME 2.0"
-msgstr "Hilfe-Browser für GNOME 2.0"
+msgid "A Help Browser for GNOME"
+msgstr "Ein Hilfe-Browser für GNOME"
 
 #: src/yelp-window.c:788
 msgid "Back"
@@ -274,7 +274,7 @@ msgstr "Zurück"
 
 #: src/yelp-window.c:789
 msgid "Show previous page in history"
-msgstr "Vorrige Seite in der Chronik anzeigen"
+msgstr "Die vorherige Seite in der Chronik anzeigen"
 
 #: src/yelp-window.c:800
 msgid "Forward"
@@ -282,13 +282,12 @@ msgstr "Vor"
 
 #: src/yelp-window.c:801
 msgid "Show next page in history"
-msgstr "Nächste Seite in der Chronik anzeigen"
+msgstr "Die nächste Seite in der Chronik anzeigen"
 
 #: src/yelp-window.c:814
 msgid "Home"
 msgstr "Heim"
 
-# CHECK
 #: src/yelp-window.c:815
 msgid "Go to home view"
 msgstr "Zur Heimansicht gehen"
@@ -303,7 +302,7 @@ msgstr "Im Index suchen"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr "Hilfe für GNOME holen"
+msgstr "Hilfe zu GNOME holen"
 
 #: yelp.desktop.in.h:2
 msgid "Help"
