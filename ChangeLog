@@ -1,3 +1,12 @@
+2005-02-06  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/yelp-gecko-utils.cpp: Fix leak
+	* src/yelp-utils.c: (yelp_doc_info_new): Don't free
+	memory until you're finished using it. 
+	* src/yelp-xslt-pager.c: (xslt_yelp_document): Fix leaks.
+	GetPropInfo already allocates a new string so there's no
+	need to g_strdup it again.
+
 2005-02-04  Davyd Madeley  <davyd@madeley.id.au>
 
 	* src/yelp-bookmarks.c: Add a missing t.

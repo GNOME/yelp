@@ -97,7 +97,6 @@ yelp_doc_info_new (const gchar *uri)
 	else
 	    doc_uri = g_strdup (full_uri);
 	doc_type = get_doc_type (doc_uri);
-	g_free (doc_uri);
 	uri_type = YELP_URI_TYPE_FILE;
     }
     else if (g_str_has_prefix (full_uri, "ghelp:") ||
@@ -142,6 +141,7 @@ yelp_doc_info_new (const gchar *uri)
 	yelp_doc_info_add_uri (doc, doc_uri, YELP_URI_TYPE_FILE);
 	if (uri_type && uri_type != YELP_URI_TYPE_FILE)
 	    yelp_doc_info_add_uri (doc, uri, uri_type);
+	g_free (doc_uri);
 
 	doc->type = doc_type;
 	doc->ref_count = 1;

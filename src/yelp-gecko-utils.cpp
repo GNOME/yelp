@@ -50,6 +50,7 @@ yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 
 	ch = g_utf8_strrchr (tmp_name, -1, ' ');
 	if (!ch || ch == tmp_name) {
+		g_free (tmp_name);
 		return FALSE;
 	}
 

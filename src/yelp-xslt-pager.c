@@ -426,11 +426,11 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 		    xmlChar *rel = xmlGetProp (cur, "rel");
 
 		    if (!xmlStrcmp (rel, (xmlChar *) "previous"))
-			page->prev_id = g_strdup (xmlGetProp (cur, "href"));
+			page->prev_id = xmlGetProp (cur, "href");
 		    else if (!xmlStrcmp (rel, (xmlChar *) "next"))
-			page->next_id = g_strdup (xmlGetProp (cur, "href"));
+			page->next_id = xmlGetProp (cur, "href");
 		    else if (!xmlStrcmp (rel, (xmlChar *) "top"))
-			page->toc_id = g_strdup (xmlGetProp (cur, "href"));
+			page->toc_id = xmlGetProp (cur, "href");
 
 		    xmlFree (rel);
 		}
