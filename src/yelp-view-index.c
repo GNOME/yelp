@@ -28,6 +28,7 @@
 #include <gtk/gtktreeview.h>
 #include <string.h>
 
+#include "yelp-index-model.h"
 #include "yelp-html.h"
 #include "yelp-view-index.h"
 
@@ -39,7 +40,6 @@ static void     yvi_html_url_selected_cb       (YelpViewIndex       *content,
 						char                *url,
 						char                *base_url,
 						gboolean             handled);
-static void     yvi_setup_index_view           (YelpViewIndex       *view);
 static void     yvi_entry_changed_cb           (GtkEntry            *entry,
 						YelpViewIndex       *view);
 static void     yvi_entry_activated_cb         (GtkEntry            *entry,
@@ -55,21 +55,19 @@ static gboolean yvi_complete_idle              (YelpViewIndex       *view);
 static gchar *  yvi_complete_func              (YelpSection         *section);
 
 struct _YelpViewIndexPriv {
-	GList        *index;
-
 	/* List of keywords */
-	GtkWidget    *index_view;
-	GtkListStore *list_store;
+	GtkWidget      *index_view;
+	YelpIndexModel *model;
 
 	/* Query entry */
-	GtkWidget    *entry;
+	GtkWidget      *entry;
 	
 	/* Html view */
-	GtkWidget    *html_view;
+	GtkWidget      *html_view;
 
-	GCompletion  *completion;
+	GCompletion    *completion;
 
-	guint         complete;
+	guint           complete;
 };
 
 GType
@@ -114,11 +112,10 @@ yvi_init (YelpViewIndex *view)
 	g_completion_set_compare (priv->completion, g_ascii_strncasecmp);
 	
 	priv->index_view = gtk_tree_view_new ();
-	priv->list_store = gtk_list_store_new (2, 
-					       G_TYPE_STRING, G_TYPE_POINTER);
+	priv->model      = yelp_index_model_new ();
 
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->index_view),
-				 GTK_TREE_MODEL (priv->list_store));
+				 GTK_TREE_MODEL (priv->model));
 
 	priv->html_view = yelp_html_new ();
 	
@@ -147,7 +144,7 @@ yvi_index_selection_changed_cb (GtkTreeSelection *selection,
 	priv = view->priv;
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
-		gtk_tree_model_get (GTK_TREE_MODEL (priv->list_store), &iter,
+		gtk_tree_model_get (GTK_TREE_MODEL (priv->model), &iter,
 				    1, &section,
 				    -1);
 
@@ -173,41 +170,6 @@ yvi_html_url_selected_cb (YelpViewIndex *content,
 	/* TODO: What to do here? */
 	
 	/* FIXME: Emit section_selected?? */
-}
-
-static void
-yvi_index_term_add (YelpSection *section, YelpViewIndex *view)
-{
-	YelpViewIndexPriv *priv;
-	GtkTreeIter        iter;
-	
-	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
-
-	priv = view->priv;
-	
-	gtk_list_store_append (GTK_LIST_STORE (priv->list_store), &iter);
-
-	gtk_list_store_set (GTK_LIST_STORE (priv->list_store),
-			    &iter,
-			    0, section->name,
-			    1, section,
-			    -1);
-}
-
-static void
-yvi_setup_index_view (YelpViewIndex *view)
-{
-	YelpViewIndexPriv *priv;
-	
-	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
-	
-	priv = view->priv;
-
-	g_completion_add_items (priv->completion, priv->index);
-
-	g_list_foreach (priv->index,
-			(GFunc )yvi_index_term_add, 
-			view);
 }
 
 static void
@@ -312,8 +274,6 @@ yelp_view_index_new (GList *index)
 	view = g_object_new (YELP_TYPE_VIEW_INDEX, NULL);
 	priv = view->priv;
 
-	priv->index = index;
-
 	/* Setup the index box */
 	box = gtk_vbox_new (FALSE, 0);
 
@@ -383,7 +343,8 @@ yelp_view_index_new (GList *index)
         gtk_paned_add2 (GTK_PANED (view), frame);
         gtk_paned_set_position (GTK_PANED (view), 250);
 
-	yvi_setup_index_view (view);
+	g_completion_add_items (priv->completion, index);
+	yelp_index_model_set_words (priv->model, index);
 
 	return GTK_WIDGET (view);
 }

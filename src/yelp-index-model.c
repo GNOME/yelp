@@ -192,7 +192,7 @@ yim_get_iter (GtkTreeModel *tree_model,
         GList               *node;
         gint                 i;
         
-        g_return_val_if_fail (MG_IS_RESOURCE_MODEL (tree_model), FALSE);
+        g_return_val_if_fail (YELP_IS_INDEX_MODEL (tree_model), FALSE);
         g_return_val_if_fail (gtk_tree_path_get_depth (path) > 0, FALSE);
 
         model = YELP_INDEX_MODEL (tree_model);
@@ -222,7 +222,7 @@ yim_get_path (GtkTreeModel *tree_model,
         GList               *node;
         gint                 i = 0;
 
-        g_return_val_if_fail (MG_IS_RESOURCE_MODEL (tree_model), NULL);
+        g_return_val_if_fail (YELP_IS_INDEX_MODEL (tree_model), NULL);
         g_return_val_if_fail (iter->stamp == model->priv->stamp, NULL);
 
         priv = model->priv;
@@ -252,7 +252,7 @@ yim_get_value (GtkTreeModel *tree_model,
 {
         YelpSection *section;
 	
-        g_return_if_fail (MG_IS_RESOURCE_MODEL (tree_model));
+        g_return_if_fail (YELP_IS_INDEX_MODEL (tree_model));
         g_return_if_fail (iter != NULL);
 
 	section = (YelpSection *) (G_LIST(iter->user_data)->data);
@@ -272,7 +272,7 @@ yim_iter_next (GtkTreeModel  *tree_model,
 {
 	YelpIndexModel *model = YELP_INDEX_MODEL (tree_model);
         
-        g_return_val_if_fail (MG_IS_RESOURCE_MODEL (tree_model), FALSE);
+        g_return_val_if_fail (YELP_IS_INDEX_MODEL (tree_model), FALSE);
         g_return_val_if_fail (model->priv->stamp == iter->stamp, FALSE);
 
         iter->user_data = G_LIST(iter->user_data)->next;
@@ -287,7 +287,7 @@ yim_iter_children (GtkTreeModel *tree_model,
 {
         YelpIndexModelPriv *priv;
         
-        g_return_val_if_fail (MG_IS_RESOURCE_MODEL (tree_model), FALSE);
+        g_return_val_if_fail (YELP_IS_INDEX_MODEL (tree_model), FALSE);
         
         priv = YELP_INDEX_MODEL(tree_model)->priv;
         
@@ -322,7 +322,7 @@ yim_iter_n_children (GtkTreeModel *tree_model,
 {
         YelpIndexModelPriv *priv;
         
-        g_return_val_if_fail (MG_IS_RESOURCE_MODEL (tree_model), -1);
+        g_return_val_if_fail (YELP_IS_INDEX_MODEL (tree_model), -1);
 
         priv = YELP_INDEX_MODEL(tree_model)->priv;
 
@@ -344,7 +344,7 @@ yim_iter_nth_child (GtkTreeModel *tree_model,
         YelpIndexModelPriv *priv;
         GList               *child;
 
-        g_return_val_if_fail (MG_IS_RESOURCE_MODEL (tree_model), FALSE);
+        g_return_val_if_fail (YELP_IS_INDEX_MODEL (tree_model), FALSE);
 
         priv = YELP_INDEX_MODEL(tree_model)->priv;
         
@@ -372,7 +372,7 @@ yim_iter_parent (GtkTreeModel *tree_model,
 }
 
 YelpIndexModel *
-yelp_index_model_new (GList *index_words)
+yelp_index_model_new (void)
 {
         YelpIndexModel     *model;
         YelpIndexModelPriv *priv;
@@ -381,8 +381,14 @@ yelp_index_model_new (GList *index_words)
         
         priv = model->priv;
         
-        priv->index_words = index_words;
 
         return model;
 }
 
+void
+yelp_index_model_set_words (YelpIndexModel *model, GList *index_words)
+{
+	g_return_if_fail (YELP_IS_INDEX_MODEL (model));
+	
+        model->priv->index_words = index_words;
+}

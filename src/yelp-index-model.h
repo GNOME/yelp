@@ -30,9 +30,9 @@
 #define YELP_TYPE_INDEX_MODEL	          (yelp_index_model_get_type ())
 #define YELP_INDEX_MODEL(obj)	          (G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_INDEX_MODEL, YelpIndexModel))
 #define YELP_INDEX_MODEL_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), YELP_TYPE_INDEX_MODEL, YelpIndexModelClass))
-#define MG_IS_RESOURCE_MODEL(obj)	  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), YELP_TYPE_INDEX_MODEL))
-#define MG_IS_RESOURCE_MODEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), YELP_TYPE_INDEX_MODEL))
-#define YELP_INDEX_MODEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), YELP_TYPE_INDEX_MODEL, YelpIndexModelClass))
+#define YELP_IS_INDEX_MODEL(obj)	  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), YELP_TYPE_INDEX_MODEL))
+#define YELP_IS_INDEX_MODEL_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), YELP_TYPE_INDEX_MODEL))
+#define YELP_INDEX_MODEL_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), YELP_TYPE_INDEX_MODEL, YelpIndexModelClass))
 
 typedef struct _YelpIndexModel       YelpIndexModel;
 typedef struct _YelpIndexModelClass  YelpIndexModelClass;
@@ -51,7 +51,10 @@ struct _YelpIndexModelClass
   GObjectClass parent_class;
 };
 
-GtkType          yelp_index_model_get_type        (void);
-YelpIndexModel  *yelp_index_model_new             (GList *index_words);
+GtkType          yelp_index_model_get_type     (void);
+
+YelpIndexModel  *yelp_index_model_new          (void);
+void             yelp_index_model_set_words    (YelpIndexModel   *model,
+						GList            *index_words);
 
 #endif /* __YELP_INDEX_MODEL_H__ */
