@@ -1,19 +1,19 @@
 # yelp's Portuguese Translation
-# Copyright (C) 2001, 2004 yelp
+# Copyright © 2001, 2004 yelp
 # Distributed under the same licence as yelp package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2004
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.6\n"
-"POT-Creation-Date: 2004-01-12 18:01-0600\n"
-"PO-Revision-Date: 2004-01-02 22:30+0000\n"
+"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
+"POT-Creation-Date: 2004-02-03 00:58+0000\n"
+"PO-Revision-Date: 2004-02-03 01:10+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -39,7 +39,7 @@ msgstr "Ambientes de Desenvolvimento"
 msgid "Development Tools"
 msgstr "Ferramentas de Desenvolvimento"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Editores"
 
@@ -135,35 +135,35 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Nenhum atributo href encontrado em yelp:document"
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Sem memória livre"
 
-#: src/yelp-db-pager.c:616
+#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Título de página"
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "The selected document could not be opened"
-msgstr "Incapaz de abrir o documento '%s'"
+msgstr "Incapaz de abrir o documento seleccionado"
 
 #: src/yelp-error.c:52
-#, fuzzy
 msgid "The selected page could not be found in this document."
-msgstr "A página '%s' não foi encontrada neste documento."
+msgstr "A página seleccionada não foi encontrada neste documento."
 
 #: src/yelp-error.c:58
 msgid "The table of contents could not be read."
@@ -174,9 +174,8 @@ msgid "DocBook SGML documents are no longer supported."
 msgstr "Documentos DocBook SGML já não são suportados."
 
 #: src/yelp-error.c:70
-#, fuzzy
 msgid "The selected file could not be read."
-msgstr "Incapaz de ler o índice."
+msgstr "Incapaz de ler o ficheiro seleccionado."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -189,7 +188,7 @@ msgstr "Incapaz de activar o Yelp: '%s'"
 
 #: src/yelp-main.c:147
 msgid "Could not open new window."
-msgstr "Incapaz de abrir nova janela."
+msgstr "Incapaz de abrir uma nova janela."
 
 #: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
 #: src/yelp-man.c:401 src/yelp-man.c:412
@@ -264,370 +263,392 @@ msgstr "O URI do documento a ser processado"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Contagem de pausa é negativa."
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Incapaz de ler o ficheiro OMF: '%s'."
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "Categorias"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:231
 msgid "/_File"
 msgstr "/_Ficheiro"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:232
 msgid "/File/_New window"
 msgstr "/Ficheiro/_Nova janela"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:235
 msgid "/File/_Close window"
 msgstr "/Ficheiro/_Fechar janela"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:239
 msgid "/_Edit"
 msgstr "/_Editar"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:240
 msgid "/Edit/_Find..."
 msgstr "/Editar/_Procurar..."
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:243
 msgid "/Edit/Find Ne_xt"
 msgstr "/Editar/Procurar _Seguinte"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:246
 msgid "/Edit/Find Pre_vious"
 msgstr "/Editar/Procurar _Anterior"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:250
 msgid "/_Go"
 msgstr "/_Ir"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:251
 msgid "/Go/_Back"
 msgstr "/Ir/_Retroceder"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:254
 msgid "/Go/_Forward"
 msgstr "/Ir/_Avançar"
 
-#: src/yelp-window.c:255
+#: src/yelp-window.c:257
 msgid "/Go/_Home"
-msgstr "/Ir/_Vista Pessoal"
+msgstr "/Ir/_Página Inicial"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:260
 msgid "/Go/"
 msgstr "/Ir/"
 
-#: src/yelp-window.c:259
-#, fuzzy
+#: src/yelp-window.c:261
 msgid "/Go/_Previous Page"
-msgstr "/Ir/_Anterior"
+msgstr "/Ir/_Página Anterior"
 
-#: src/yelp-window.c:262
-#, fuzzy
+#: src/yelp-window.c:264
 msgid "/Go/_Next Page"
-msgstr "/Ir/_Seguinte"
+msgstr "/Ir/Página _Seguinte"
 
-#: src/yelp-window.c:265
+#: src/yelp-window.c:267
 msgid "/Go/_Contents"
 msgstr "/Ir/_Conteúdo"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:271
 msgid "/_Help"
 msgstr "/_Ajuda"
 
-#: src/yelp-window.c:270
+#: src/yelp-window.c:272
 msgid "/Help/_About"
 msgstr "/Ajuda/_Sobre"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:334
 msgid "Help Browser"
 msgstr "Navegador de Ajuda"
 
-#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:552 stylesheets/l10n.xml.in.h:60
 msgid "Section"
 msgstr "Secção"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:609
 msgid "Back"
 msgstr "Retroceder"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:610
 msgid "Show previous page in history"
-msgstr "Apresentar página anterior no histórico"
+msgstr "Apresentar a página anterior no histórico"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:620
 msgid "Forward"
 msgstr "Avançar"
 
-#: src/yelp-window.c:615
+#: src/yelp-window.c:621
 msgid "Show next page in history"
-msgstr "Apresentar página seguinte no histórico"
+msgstr "Apresentar a página seguinte no histórico"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:633
 msgid "Home"
-msgstr "Vista Pessoal"
+msgstr "Página Inicial"
 
-#: src/yelp-window.c:628
+#: src/yelp-window.c:634
 msgid "Go to home view"
-msgstr "Ir para a vista pessoal"
+msgstr "Ir para a página inicial"
 
-#: src/yelp-window.c:834
+#: src/yelp-window.c:844
 msgid "Loading..."
 msgstr "A Ler..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1228
+#: src/yelp-window.c:1267
 msgid "translator_credits"
 msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
-#: src/yelp-window.c:1233
+#: src/yelp-window.c:1272
 msgid "A Help Browser for GNOME"
 msgstr "Um Navegador de Ajuda para o GNOME"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
-msgstr ""
+msgstr "&#8216;"
 
 #: stylesheets/l10n.xml.in.h:2
 msgid "&#8217;"
-msgstr ""
+msgstr "&#8217;"
 
 #: stylesheets/l10n.xml.in.h:3
 msgid "&#8220;"
-msgstr ""
+msgstr "&#8220;"
 
 #: stylesheets/l10n.xml.in.h:4
 msgid "&#8221;"
-msgstr ""
+msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
-msgid "About This Bibliography"
-msgstr ""
+msgid "About This Article"
+msgstr "Sobre Este Artigo"
 
 #: stylesheets/l10n.xml.in.h:6
-msgid "About This Book"
-msgstr ""
+msgid "About This Bibliography"
+msgstr "Sobre Esta Bibliografia"
 
 #: stylesheets/l10n.xml.in.h:7
-msgid "About This Chapter"
-msgstr ""
+msgid "About This Book"
+msgstr "Sobre Este Livro"
 
 #: stylesheets/l10n.xml.in.h:8
-msgid "About This Entry"
-msgstr ""
+msgid "About This Chapter"
+msgstr "Sobre Este Capítulo"
 
 #: stylesheets/l10n.xml.in.h:9
-msgid "About This Glossary"
-msgstr ""
+msgid "About This Entry"
+msgstr "Sobre Esta Entrada"
 
 #: stylesheets/l10n.xml.in.h:10
-msgid "About This Index"
-msgstr ""
+msgid "About This Glossary"
+msgstr "Sobre Este Glossário"
 
 #: stylesheets/l10n.xml.in.h:11
-msgid "About This Part"
-msgstr ""
+msgid "About This Index"
+msgstr "Sobre Este Índice"
 
 #: stylesheets/l10n.xml.in.h:12
-msgid "About This Preface"
-msgstr ""
+msgid "About This Part"
+msgstr "Sobre Esta Parte"
 
 #: stylesheets/l10n.xml.in.h:13
-msgid "About This Reference"
-msgstr ""
+msgid "About This Preface"
+msgstr "Sobre Este Prefácio"
 
 #: stylesheets/l10n.xml.in.h:14
-msgid "About This Section"
-msgstr ""
+msgid "About This Reference"
+msgstr "Sobre Esta Referência"
 
 #: stylesheets/l10n.xml.in.h:15
-msgid "About This Set"
-msgstr ""
+msgid "About This Section"
+msgstr "Sobre Esta Secção"
 
 #: stylesheets/l10n.xml.in.h:16
-#, fuzzy
-msgid "Affiliation"
-msgstr "Aplicações"
+msgid "About This Set"
+msgstr "Sobre Este Conjunto"
 
 #: stylesheets/l10n.xml.in.h:17
-msgid "Appendix"
-msgstr ""
+msgid "Affiliation"
+msgstr "Afiliação"
 
 #: stylesheets/l10n.xml.in.h:18
-msgid "Article"
-msgstr ""
+msgid "Appendix"
+msgstr "Apêndice"
 
 #: stylesheets/l10n.xml.in.h:19
-msgid "Audience"
-msgstr ""
+msgid "Article"
+msgstr "Artigo"
 
 #: stylesheets/l10n.xml.in.h:20
-msgid "Author"
-msgstr ""
+msgid "Audience"
+msgstr "Audiência"
 
 #: stylesheets/l10n.xml.in.h:21
-msgid "Bibliography"
-msgstr ""
+msgid "Author"
+msgstr "Autor"
 
 #: stylesheets/l10n.xml.in.h:22
-msgid "Book"
-msgstr ""
+msgid "Authors"
+msgstr "Autores"
 
 #: stylesheets/l10n.xml.in.h:23
-msgid "Caution"
-msgstr ""
+msgid "Bibliography"
+msgstr "Bibliografia"
 
 #: stylesheets/l10n.xml.in.h:24
-msgid "Chapter"
-msgstr ""
+msgid "Book"
+msgstr "Livro"
 
 #: stylesheets/l10n.xml.in.h:25
-msgid "Collaborator"
-msgstr ""
+msgid "Caution"
+msgstr "Cuidado"
 
 #: stylesheets/l10n.xml.in.h:26
-msgid "Colophon"
-msgstr ""
+msgid "Chapter"
+msgstr "Capítulo"
+
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborator"
+msgstr "Colaborador"
 
 #: stylesheets/l10n.xml.in.h:28
-msgid "Copyright"
-msgstr ""
+msgid "Collaborators"
+msgstr "Colaboradores"
 
 #: stylesheets/l10n.xml.in.h:29
-msgid "Date"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:30
-#, fuzzy
-msgid "Dedication"
-msgstr "Secção"
+msgid "Colophon"
+msgstr "Notas Finais"
 
 #: stylesheets/l10n.xml.in.h:31
-#, fuzzy
-msgid "Editor"
-msgstr "Editores"
+msgid "Copyright"
+msgstr "Copyright"
 
 #: stylesheets/l10n.xml.in.h:32
-msgid "Email"
-msgstr ""
+msgid "Copyrights"
+msgstr "Copyrights"
 
 #: stylesheets/l10n.xml.in.h:33
-msgid "Example"
-msgstr ""
+msgid "Date"
+msgstr "Data"
 
 #: stylesheets/l10n.xml.in.h:34
-msgid "Figure"
-msgstr ""
+msgid "Dedication"
+msgstr "Dedicatória"
 
 #: stylesheets/l10n.xml.in.h:35
-msgid "Glossary"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:36
-msgid "Important"
-msgstr ""
+msgid "Editor"
+msgstr "Editor"
 
 #: stylesheets/l10n.xml.in.h:37
-msgid "Index"
-msgstr ""
+msgid "Email"
+msgstr "Email"
 
 #: stylesheets/l10n.xml.in.h:38
-msgid "Legal Notice"
-msgstr ""
+msgid "Example"
+msgstr "Exemplo"
 
 #: stylesheets/l10n.xml.in.h:39
-msgid "Level"
-msgstr ""
+msgid "Figure"
+msgstr "Figura"
 
 #: stylesheets/l10n.xml.in.h:40
-msgid "Message Audience"
-msgstr ""
+msgid "Glossary"
+msgstr "Glossário"
 
 #: stylesheets/l10n.xml.in.h:41
-msgid "Message Level"
-msgstr ""
+msgid "Important"
+msgstr "Importante"
 
 #: stylesheets/l10n.xml.in.h:42
-msgid "Message Origin"
-msgstr ""
+msgid "Index"
+msgstr "Índice"
 
 #: stylesheets/l10n.xml.in.h:43
-msgid "Note"
-msgstr ""
+msgid "Legal Notice"
+msgstr "Nota Legal"
 
 #: stylesheets/l10n.xml.in.h:44
-msgid "Origin"
-msgstr ""
+msgid "Level"
+msgstr "Nível"
 
 #: stylesheets/l10n.xml.in.h:45
-msgid "Other Contributor"
-msgstr ""
+msgid "Message Audience"
+msgstr "Audiência da Mensagem"
 
 #: stylesheets/l10n.xml.in.h:46
-msgid "Part"
-msgstr ""
+msgid "Message Level"
+msgstr "Nível da Mensagem"
 
 #: stylesheets/l10n.xml.in.h:47
-msgid "Preface"
-msgstr ""
+msgid "Message Origin"
+msgstr "Origem da Mensagem"
 
 #: stylesheets/l10n.xml.in.h:48
-msgid "Publisher"
-msgstr ""
+msgid "Note"
+msgstr "Nota"
 
 #: stylesheets/l10n.xml.in.h:49
-msgid "Reference"
-msgstr ""
+msgid "Origin"
+msgstr "Origem"
 
 #: stylesheets/l10n.xml.in.h:50
-msgid "Reference Entry"
-msgstr ""
+msgid "Other Contributor"
+msgstr "Outra Contribuição"
 
 #: stylesheets/l10n.xml.in.h:51
-msgid "Reference Section"
-msgstr ""
+msgid "Other Contributors"
+msgstr "Outras Contribuições"
 
 #: stylesheets/l10n.xml.in.h:52
-msgid "Revision History"
-msgstr ""
+msgid "Part"
+msgstr "Parte"
+
+#: stylesheets/l10n.xml.in.h:53
+msgid "Preface"
+msgstr "Prefácio"
 
 #: stylesheets/l10n.xml.in.h:54
-msgid "See"
-msgstr ""
+msgid "Publisher"
+msgstr "Editor"
 
 #: stylesheets/l10n.xml.in.h:55
-msgid "See Also"
-msgstr ""
+msgid "Publishers"
+msgstr "Editores"
 
 #: stylesheets/l10n.xml.in.h:56
-msgid "Set Index"
-msgstr ""
+msgid "Reference"
+msgstr "Referência"
 
 #: stylesheets/l10n.xml.in.h:57
-msgid "Table"
-msgstr ""
+msgid "Reference Entry"
+msgstr "Entrada de Referência"
 
 #: stylesheets/l10n.xml.in.h:58
-#, fuzzy
-msgid "Table of Contents"
-msgstr "Conteúdo da Ajuda"
+msgid "Reference Section"
+msgstr "Secção de Referência"
 
 #: stylesheets/l10n.xml.in.h:59
-msgid "Tip"
-msgstr ""
+msgid "Revision History"
+msgstr "Histórico de Revisões"
 
-#: stylesheets/l10n.xml.in.h:60
-#, fuzzy
-msgid "Title"
-msgstr "Título de página"
+#: stylesheets/l10n.xml.in.h:61
+msgid "See"
+msgstr "Consulte"
 
 #: stylesheets/l10n.xml.in.h:62
+msgid "See Also"
+msgstr "Consulte Também"
+
+#: stylesheets/l10n.xml.in.h:63
+msgid "Set Index"
+msgstr "Definir Índice"
+
+#: stylesheets/l10n.xml.in.h:64
+msgid "Table"
+msgstr "Tabela"
+
+#: stylesheets/l10n.xml.in.h:65
+msgid "Table of Contents"
+msgstr "Tabela de Conteúdo"
+
+#: stylesheets/l10n.xml.in.h:66
+msgid "Tip"
+msgstr "Dica"
+
+#: stylesheets/l10n.xml.in.h:67
+msgid "Title"
+msgstr "Título"
+
+#: stylesheets/l10n.xml.in.h:69
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
