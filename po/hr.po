@@ -4,14 +4,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0\n"
-"POT-Creation-Date: 2004-03-22 17:51-0600\n"
-"PO-Revision-Date: 2004-02-05 23:53+CET\n"
+"POT-Creation-Date: 2004-03-28 23:42+0200\n"
+"PO-Revision-Date: 2004-03-28 23:42+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: TransDict server\n"
 
 #: data/toc.xml.in.h:1
@@ -154,7 +153,7 @@ msgstr "Sadržaj"
 #: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
-msgstr "Napoznato"
+msgstr "Nepoznato"
 
 #: src/yelp-error.c:46
 msgid "The selected document could not be opened"
@@ -263,9 +262,9 @@ msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Brojanje pauze je negativno."
 
 #: src/yelp-toc-pager.c:486
-#, fuzzy, c-format
+#, , c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "Nije moguće aktivirati Yelp: '%s'"
+msgstr "Nisam mogao učitati OMF datoteku '%s'."
 
 #: src/yelp-toc-pager.c:883
 msgid "Categories"
@@ -380,7 +379,7 @@ msgid "Loading..."
 msgstr "Učitavam..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#.  * will shop up in the "about" box
 #: src/yelp-window.c:1300
 msgid "translator_credits"
 msgstr "lokalizacija@linux.hr"
@@ -406,9 +405,8 @@ msgid "&#8221;"
 msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
-#, fuzzy
 msgid "About This Article"
-msgstr "O ovom dokumentu"
+msgstr "O ovom članku"
 
 #: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
@@ -500,7 +498,7 @@ msgstr "Suradnik"
 
 #: stylesheets/l10n.xml.in.h:28
 msgid "Collaborators"
-msgstr ""
+msgstr "Sudionici"
 
 #: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
@@ -512,7 +510,7 @@ msgstr "Autorsko pravo"
 
 #: stylesheets/l10n.xml.in.h:32
 msgid "Copyrights"
-msgstr ""
+msgstr "Autorska prava"
 
 #: stylesheets/l10n.xml.in.h:33
 msgid "Date"
@@ -584,7 +582,7 @@ msgstr "Neki drugi suradnik"
 
 #: stylesheets/l10n.xml.in.h:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Ostali suradnici"
 
 #: stylesheets/l10n.xml.in.h:52
 msgid "Part"
@@ -600,7 +598,7 @@ msgstr "Izdavač"
 
 #: stylesheets/l10n.xml.in.h:55
 msgid "Publishers"
-msgstr ""
+msgstr "Izdavači"
 
 #: stylesheets/l10n.xml.in.h:56
 msgid "Reference"
@@ -616,7 +614,7 @@ msgstr "Odjeljak reference"
 
 #: stylesheets/l10n.xml.in.h:59
 msgid "Release Information"
-msgstr ""
+msgstr "Informacije izdanja"
 
 #: stylesheets/l10n.xml.in.h:60
 msgid "Revision History"
@@ -661,3 +659,4 @@ msgstr "Zatražite pomoć za GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Pomoć"
+
