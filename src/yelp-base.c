@@ -205,7 +205,7 @@ yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 
 	if (str_uri && strcmp (str_uri, "")) {
 		gchar *dir = g_get_current_dir ();
-		gchar *dirs = g_strconcat (dir, "/", NULL);
+		gchar *dirs = g_strconcat ("file://", dir, "/", NULL);
 		str = gnome_vfs_uri_make_full_from_relative (dirs, str_uri);
 		g_free (dirs);
 		g_free (dir);

@@ -28,6 +28,7 @@
 #include <libgnome/gnome-i18n.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
+#include <libxml/xinclude.h>
 #include <libxslt/xslt.h>
 #include <libxslt/templates.h>
 #include <libxslt/transform.h>
@@ -237,7 +238,6 @@ db_pager_process (YelpPager *pager)
 			   (const char *) path,
 			   NULL,
 			   XML_PARSE_DTDLOAD  |
-			   XML_PARSE_XINCLUDE |
 			   XML_PARSE_NOCDATA  |
 			   XML_PARSE_NOENT    |
 			   XML_PARSE_NONET    );
@@ -247,6 +247,12 @@ db_pager_process (YelpPager *pager)
 	yelp_pager_error (pager, error);
 	return FALSE;
     }
+
+    xmlXIncludeProcessFlags (doc,
+			     XML_PARSE_DTDLOAD  |
+			     XML_PARSE_NOCDATA  |
+			     XML_PARSE_NOENT    |
+			     XML_PARSE_NONET    );
 
     walker = g_new0 (DBWalker, 1);
     walker->pager     = YELP_DB_PAGER (pager);

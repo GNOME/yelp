@@ -477,12 +477,23 @@ process_omf_pending (YelpTocPager *pager)
     omf_doc = xmlCtxtReadFile (priv->parser,
 			       (const char *) file,
 			       NULL,
-			       XML_PARSE_XINCLUDE |
+			       XML_PARSE_NOBLANKS |
 			       XML_PARSE_NOCDATA  |
 			       XML_PARSE_NOENT    |
+			       XML_PARSE_NOERROR  |
 			       XML_PARSE_NONET    );
-    if (!omf_doc)
+    if (!omf_doc) {
+	g_warning (_("Could not load the OMF file '%s'."), file);
+	/* FIXME:
+	 * There appears to be a bug in libxml2 that prevents files from being
+	 * parsed with a parser context after that context has failed on any
+	 * single file.  So we'll just free the parser context and make a new
+	 * one if there is an error.
+	 */
+	xmlFreeParserCtxt (priv->parser);
+	priv->parser = xmlNewParserCtxt ();
 	goto done;
+    }
 
     omf_cur = xmlDocGetRootElement (omf_doc);
     if (!omf_cur)
@@ -641,10 +652,10 @@ process_read_menu (YelpTocPager *pager)
     priv->toc_doc = xmlCtxtReadFile (priv->parser,
 				     DATADIR "/yelp/toc.xml",
 				     NULL,
-				     XML_PARSE_XINCLUDE |
 				     XML_PARSE_NOBLANKS |
 				     XML_PARSE_NOCDATA  |
 				     XML_PARSE_NOENT    |
+				     XML_PARSE_NOERROR  |
 				     XML_PARSE_NONET    );
 
     if (!priv->toc_doc) {

@@ -1,3 +1,18 @@
+2004-01-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-base.c:
+	- Relative path handling broke absolute-sans-scheme path handling.
+	  Now fixed.
+
+	* src/yelp-db-pager.c:
+	- Handle XInclude.
+
+	* src/yelp-toc-pager.c:
+	- The parser context seems to fail on all files after a single bad XML
+	  file, which I think is a bug in libxml2.  This caused a single bad
+	  OMF file to bomb the whole TOC.  I've worked around the problem for
+	  now by creating a new parser context after errors.
+
 2004-01-14  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-base.c:
