@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-18 14:48-0500\n"
-"PO-Revision-Date: 2005-01-18 22:18-0400\n"
+"POT-Creation-Date: 2005-02-04 02:34-0500\n"
+"PO-Revision-Date: 2005-02-04 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Kernel Routines"
 msgid "Library Functions"
 msgstr "Library Functions"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
 msgstr "Man Pages"
 
@@ -121,8 +121,8 @@ msgid "Accessories"
 msgstr "Accessories"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Applets"
+msgid "Administration"
+msgstr "Administration"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -136,7 +136,7 @@ msgstr "Educational Applications"
 msgid "Graphics"
 msgstr "Graphics"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
 msgstr "Help Topics"
 
@@ -165,18 +165,26 @@ msgid "Other Documentation"
 msgstr "Other Documentation"
 
 #: data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "Panel Applets"
+
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Preferences"
+
+#: data/toc.xml.in.h:18
 msgid "Programming"
 msgstr "Programming"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:19
 msgid "Scientific"
 msgstr "Scientific"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:20
 msgid "System Tools"
 msgstr "System Tools"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X Applications"
 
@@ -215,10 +223,6 @@ msgstr "Find"
 #: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Open Location"
-
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "Preferences"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
@@ -300,28 +304,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-bookmarks.c:141
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
 msgstr "Open Bookmark in New Window"
 
-#: src/yelp-bookmarks.c:145
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
 msgstr "Rename Bookmark"
 
-#: src/yelp-bookmarks.c:149
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
 msgstr "Remove Bookmark"
 
-#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "A bookmark titled <b>%s</b> already exists for this page."
 
-#: src/yelp-bookmarks.c:377
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Document Sections"
 
-#: src/yelp-db-pager.c:241
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -430,7 +434,7 @@ msgstr "The YelpDocInfo struct of the document"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -443,12 +447,12 @@ msgstr "YelpTocPager: Pause count is negative."
 msgid "Could not load the OMF file '%s'."
 msgstr "Could not load the OMF file '%s'."
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "Read man page for %s"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -457,7 +461,7 @@ msgstr ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -466,15 +470,15 @@ msgstr ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "No href attribute found on yelp:document"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Out of memory"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Help Contents"
 
@@ -673,7 +677,7 @@ msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
@@ -693,7 +697,7 @@ msgstr ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -701,15 +705,6 @@ msgid ""
 msgstr ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
