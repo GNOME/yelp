@@ -295,9 +295,6 @@
          </a>
    </td>
   </xsl:when>
-  <xsl:otherwise>
-    <td><xsl:entity name="nbsp" /></td>
-  </xsl:otherwise>
 </xsl:choose>
 </xsl:template>
 
