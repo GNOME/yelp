@@ -84,7 +84,7 @@ dd + dt { margin-top: 1.6em; }
 </xsl:template>
 
 <xsl:template match="P">
-  <p><pre><xsl:apply-templates/></pre></p>
+  <p><xsl:apply-templates/></p>
 </xsl:template>
 
 <xsl:template match="ROW">

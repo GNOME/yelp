@@ -60,6 +60,12 @@
   </yelp:document>
 </xsl:template>
 
+<!-- == db.xref.target == -->
+<xsl:template name="db.xref.target">
+  <xsl:param name="linkend"/>
+  <xsl:value-of select="concat('#', $linkend)"/>
+</xsl:template>
+
 <!-- == db2html.admon.image == -->
 <xsl:template name="db2html.admon.image">
   <xsl:param name="node" select="."/>

@@ -1,5 +1,13 @@
 2004-11-13  Shaun McCance  <shaunm@gnome.org>
 
+	* stylesheets/db2html.xsl.in:
+	- Override db.xref.target
+
+	* stylesheets/man2html.xsl:
+	- Don't <pre> paragraphs, maybe
+
+2004-11-13  Shaun McCance  <shaunm@gnome.org>
+
 	* src/test-pager.c:
 	* src/yelp-man-pager.c:
 	* stylesheets/man2html.xsl:
