@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-22 04:43+0100\n"
+"POT-Creation-Date: 2005-02-04 22:23+0100\n"
 "PO-Revision-Date: 2005-01-22 16:33+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -48,7 +48,7 @@ msgstr "内核例程"
 msgid "Library Functions"
 msgstr "库函数"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
 msgstr "Man Page"
 
@@ -121,8 +121,8 @@ msgid "Accessories"
 msgstr "附件"
 
 #: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "小程序"
+msgid "Administration"
+msgstr "系统管理"
 
 #: data/toc.xml.in.h:5
 msgid "Desktop"
@@ -136,7 +136,7 @@ msgstr "教育应用程序"
 msgid "Graphics"
 msgstr "图形"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:386
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
 msgstr "帮助主题"
 
@@ -165,18 +165,26 @@ msgid "Other Documentation"
 msgstr "其它文档"
 
 #: data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "面板小程序"
+
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "首选项"
+
+#: data/toc.xml.in.h:18
 msgid "Programming"
 msgstr "编程"
 
-#: data/toc.xml.in.h:17
+#: data/toc.xml.in.h:19
 msgid "Scientific"
 msgstr "科学"
 
-#: data/toc.xml.in.h:18
+#: data/toc.xml.in.h:20
 msgid "System Tools"
 msgstr "系统工具"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:21
 msgid "X Applications"
 msgstr "X 应用程序"
 
@@ -215,10 +223,6 @@ msgstr "查找"
 #: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "打开位置"
-
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "首选项"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
@@ -300,24 +304,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp 工厂"
 
-#: src/yelp-bookmarks.c:150
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
 msgstr "在新窗口打开书签"
 
-#: src/yelp-bookmarks.c:154
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
 msgstr "重命名书签"
 
-#: src/yelp-bookmarks.c:158
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
 msgstr "删除书签"
 
-#: src/yelp-bookmarks.c:301 src/yelp-bookmarks.c:373
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "此页面已经存在标题为 <b>%s</b> 的书签。"
 
-#: src/yelp-bookmarks.c:401
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "文档节"
 
@@ -328,7 +332,7 @@ msgid ""
 "not well-formed XML."
 msgstr "无法分析文件“%s”。可能文件不存在，或者不是有效的 XML。"
 
-#: src/yelp-db-pager.c:489
+#: src/yelp-db-pager.c:486
 msgid "Unknown Section"
 msgstr "未知节"
 
@@ -424,7 +428,7 @@ msgstr "文档的 YelpDocInfo 结构"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -437,34 +441,34 @@ msgstr "YelpTocPager: 暂停数为负数。"
 msgid "Could not load the OMF file '%s'."
 msgstr "无法载入 OMF 文件“%s”。"
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
 msgstr "读取 %s 的 man page"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr "无法装入目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr "无法处理目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中未发现 href 属性"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "内存不足"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "帮助目录"
 
@@ -639,8 +643,8 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
-"此文档中不存在节“%s”。如果您是从应用程序中的帮助按钮转到此节，"
-"请报告给应用程序的维护者。"
+"此文档中不存在节“%s”。如果您是从应用程序中的帮助按钮转到此节，请报告给应用程"
+"序的维护者。"
 
 #: src/yelp-window.c:1302
 #, c-format
@@ -654,7 +658,7 @@ msgid "Loading..."
 msgstr "正在载入..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
@@ -684,4 +688,3 @@ msgstr "无法处理文档“%s”。文件“%s”可能已经丢失，或者�
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
-
