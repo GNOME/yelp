@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-01-29 22:46+0100\n"
-"PO-Revision-Date: 2002-01-29 22:46+0100\n"
+"POT-Creation-Date: 2002-01-30 13:44+0100\n"
+"PO-Revision-Date: 2002-01-30 13:44+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -110,9 +110,45 @@ msgstr "Systemadministration"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:202 src/yelp-view-index.c:175
+#: src/yelp-view-content.c:205 src/yelp-view-index.c:175
 msgid "Section"
 msgstr "Avdelning"
+
+#: src/yelp-view-toc.c:238
+msgid "Important documents"
+msgstr "Viktiga dokument"
+
+#: src/yelp-view-toc.c:239
+msgid "Other document systems"
+msgstr "Andra dokumentsystem"
+
+#: src/yelp-view-toc.c:240
+msgid "Manual pages"
+msgstr "Manualsidor"
+
+#: src/yelp-view-toc.c:241 src/yelp-view-toc.c:493 src/yelp-view-toc.c:512
+msgid "Info pages"
+msgstr "Infosidor"
+
+#: src/yelp-view-toc.c:242
+msgid "Installed documents"
+msgstr "Installerade dokument"
+
+#: src/yelp-view-toc.c:252
+msgid "Start page"
+msgstr "Startsida"
+
+#: src/yelp-view-toc.c:416
+msgid "Manual pages for section"
+msgstr "Manualsidor för avdelning"
+
+#: src/yelp-view-toc.c:446 src/yelp-view-toc.c:465
+msgid "Man page sections"
+msgstr "Manualsideavdelningar"
+
+#: src/yelp-view-toc.c:595
+msgid "Scrollkeeper docs for category"
+msgstr "Scrollkeeper-dokument för kategorin"
 
 #: src/yelp-window.c:109
 msgid "/_File"
@@ -142,35 +178,35 @@ msgstr "/Hjälp/_Om"
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: src/yelp-window.c:402
+#: src/yelp-window.c:413
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
 
-#: src/yelp-window.c:426
+#: src/yelp-window.c:437
 msgid "Go back in the history list"
 msgstr "Gå bakåt i historiklistan"
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:452
 msgid "Go forth in the history list"
 msgstr "Gå framåt i historiklistan"
 
-#: src/yelp-window.c:456
+#: src/yelp-window.c:467
 msgid "Overview of contents"
 msgstr "Innehållsöversikt"
 
-#: src/yelp-window.c:467
+#: src/yelp-window.c:478
 msgid "Search in the index"
 msgstr "Sök i indexet"
 
-#: src/yelp-window.c:479
+#: src/yelp-window.c:490
 msgid "Search for a phrase in the document"
 msgstr "Sök efter en text i dokumentet"
 
-#: src/yelp-window.c:485
+#: src/yelp-window.c:496
 msgid "Help on "
 msgstr "Hjälp med "
 
-#: src/yelp-window.c:490
+#: src/yelp-window.c:501
 msgid "Enter phrase to search for in all documents"
 msgstr "Ange texten att söka efter i alla dokument"
 
@@ -190,12 +226,6 @@ msgstr "Hjälp"
 
 #~ msgid "The model for the TreeModelFilter to filter"
 #~ msgstr "Modellen för TreeModelFilter att filtrera"
-
-#~ msgid "Info Pages"
-#~ msgstr "Infosidor"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Manualsidor"
 
 #~ msgid "Yelp: GNOME Help Browser"
 #~ msgstr "Yelp: Hjälpvisare för GNOME"
