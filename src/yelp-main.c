@@ -297,7 +297,7 @@ main_restore_session (void)
 		g_strfreev (urls);
 	}
 
-	return TRUE;
+	return FALSE;
 }
 
 int

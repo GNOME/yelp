@@ -1,3 +1,9 @@
+2003-08-15  Mikael Hallendal  <micke@imendio.com>
+
+	* src/yelp-main.c: 
+        (main_restore_session): Return FALSE, otherwise we'll try to start Yelp
+          from the session over and over again. Reported by Jody earlier.
+
 2003-08-14  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "ne" to ALL_LINGUAS.
