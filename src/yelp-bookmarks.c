@@ -34,8 +34,11 @@
 #include <gtk/gtktreemodel.h>
 #include <gdk/gdkkeysyms.h>
 #include <glade/glade.h>
+#include <libxml/parser.h>
+#include <libxml/parserInternals.h>
+#include <libxml/xpath.h>
+#include <libxml/xpathInternals.h>
 #include <libxml/xmlwriter.h>
-#include <libxml/xmlreader.h>
 
 #ifdef YELP_DEBUG
 #define d(x) x
@@ -51,7 +54,7 @@
 
 static GSList *windows;
 static GtkListStore *actions_store;
-static gboolean dup_flag;
+static gchar *dup_title;
 
 static gboolean have_tocs = FALSE;
 static gboolean have_docs = FALSE;
@@ -68,6 +71,12 @@ struct _YelpWindowData {
 static void      window_add_bookmark        (YelpWindowData *window,
 					     gchar          *name,
 					     const gchar    *label);
+static void      bookmarks_add_bookmark     (const gchar    *uri,
+					     const gchar    *title,
+					     gboolean        save);
+static void      bookmark_add_response_cb   (GtkDialog      *dialog,
+					     gint            id,
+					     gchar          *uri);
 static void      window_remove_bookmark_menu(YelpWindowData *data);
 static void      window_remove_action       (YelpWindowData *data,
 					     gchar          *name);
@@ -196,59 +205,158 @@ bookmarks_dup_finder (GtkTreeModel *model, GtkTreePath *path,
     gchar *current_uri;
 
     gtk_tree_model_get (model, iter,
-			COL_NAME, &current_uri, -1);
+			COL_NAME, &current_uri,
+			-1);
+
     if (current_uri && g_str_equal (current_uri, uri)) {
-	dup_flag = TRUE;
+	gtk_tree_model_get (model, iter,
+			    COL_LABEL, &dup_title,
+			    -1);
+	g_free (current_uri);
 	return TRUE;
     }
+
+    g_free (current_uri);
     return FALSE;
 }
 
 
-void yelp_bookmarks_add (gchar *uri, const gchar *title, gboolean save)
+void
+yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
+{
+    GladeXML    *glade;
+    GtkWidget   *dialog;
+    GtkEntry    *entry;
+    gchar       *title;
+    gchar       *dup_uri;
+
+    title = gtk_window_get_title (GTK_WINDOW (window));
+    dup_uri = g_strdup (uri);
+    
+    if (dup_title)
+	g_free (dup_title);
+    dup_title = NULL;
+    gtk_tree_model_foreach (GTK_TREE_MODEL (actions_store),
+			    bookmarks_dup_finder, dup_uri);
+    if (dup_title) {
+	GtkWidget *dialog;
+	dialog = gtk_message_dialog_new_with_markup
+	    (GTK_WINDOW (window),
+	     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+	     GTK_MESSAGE_ERROR,
+	     GTK_BUTTONS_OK,
+	     _("A bookmark titled <b>%s</b> already exists for this page."),
+	     dup_title);
+	gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_destroy (dialog);
+	g_free (dup_title);
+	dup_title = NULL;
+	return;
+    }
+
+    glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
+			   "add_bookmark_dialog",
+			   NULL);
+    if (!glade) {
+	g_warning ("Could not find necessary glade file "
+		   DATADIR "/yelp/ui/yelp.glade");
+	return;
+    }
+
+    dialog = glade_xml_get_widget (glade, "add_bookmark_dialog");
+    entry = GTK_ENTRY (glade_xml_get_widget (glade, "bookmark_title_entry"));
+    gtk_entry_set_text (entry, title);
+    gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
+
+    g_object_set_data (G_OBJECT (dialog), "title_entry", entry);
+
+    g_signal_connect (G_OBJECT (dialog),
+		      "response",
+		      G_CALLBACK (bookmark_add_response_cb),
+		      dup_uri);
+
+    g_object_unref (glade);
+    gtk_window_present (GTK_WINDOW (dialog));
+}
+
+static void
+bookmark_add_response_cb (GtkDialog *dialog, gint id, gchar *uri)
+{
+    GtkEntry *entry;
+
+    if (id == GTK_RESPONSE_OK) {
+	entry = GTK_ENTRY (g_object_get_data (G_OBJECT (dialog), "title_entry"));
+	const gchar *title = gtk_entry_get_text (entry);
+
+	bookmarks_add_bookmark (uri, title, TRUE);
+    }
+
+    g_free (uri);
+    gtk_widget_destroy (GTK_WIDGET (dialog));
+}
+
+static void
+bookmarks_add_bookmark (const gchar  *uri,
+			const gchar  *title,
+			gboolean      save)
 {
     GtkTreeIter  iter;
     GSList      *cur;
     gboolean     tocQ;
-    
-    dup_flag = FALSE;
+
+    if (dup_title)
+	g_free (dup_title);
+    dup_title = NULL;
     gtk_tree_model_foreach (GTK_TREE_MODEL (actions_store),
 			    bookmarks_dup_finder, uri);
-    if (!dup_flag) {
-	tocQ = g_str_has_prefix (uri, "x-yelp-toc:");
+    if (dup_title) {
+	GtkWidget *dialog;
+	dialog = gtk_message_dialog_new_with_markup
+	    (NULL,
+	     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+	     GTK_MESSAGE_ERROR,
+	     GTK_BUTTONS_OK,
+	     _("A bookmark titled <b>%s</b> already exists for this page."),
+	     dup_title);
+	gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_destroy (dialog);
+	g_free (dup_title);
+	dup_title = NULL;
+	return;
+    }
 
-	if (tocQ) {
-	    if (seperator_iter == NULL) {
-		if (have_docs) {
-		    bookmarks_add_seperator ();
-		    gtk_list_store_prepend (actions_store, &iter);
-		} else {
-		    gtk_list_store_append (actions_store, &iter);
-		}
-	    } else {
-		gtk_list_store_insert_before (actions_store,
-					      &iter, seperator_iter);
-	    }
-	    have_tocs = TRUE;
-	} else {
-	    if (seperator_iter == NULL && have_tocs)
+    tocQ = g_str_has_prefix (uri, "x-yelp-toc:");
+    if (tocQ) {
+	if (seperator_iter == NULL) {
+	    if (have_docs) {
 		bookmarks_add_seperator ();
-	    gtk_list_store_append (actions_store, &iter);
-	    have_docs = TRUE;
-	}
-
-	gtk_list_store_set (actions_store, &iter,
-			    COL_NAME,  uri,
-			    COL_LABEL, title,
-			    COL_SEP,   FALSE,
-			    -1);
-	
-	if (save) {
-	    for (cur = windows; cur != NULL; cur = cur->next) {
-		window_add_bookmark ((YelpWindowData *) cur->data, uri, title);
+		gtk_list_store_prepend (actions_store, &iter);
+	    } else {
+		gtk_list_store_append (actions_store, &iter);
 	    }
-	    yelp_bookmarks_write ();
+	} else {
+	    gtk_list_store_insert_before (actions_store,
+					  &iter, seperator_iter);
 	}
+	have_tocs = TRUE;
+    } else {
+	if (seperator_iter == NULL && have_tocs)
+	    bookmarks_add_seperator ();
+	gtk_list_store_append (actions_store, &iter);
+	have_docs = TRUE;
+    }
+
+    gtk_list_store_set (actions_store, &iter,
+			COL_NAME,  uri,
+			COL_LABEL, title,
+			COL_SEP,   FALSE,
+			-1);
+	
+    if (save) {
+	for (cur = windows; cur != NULL; cur = cur->next) {
+	    window_add_bookmark ((YelpWindowData *) cur->data, uri, title);
+	}
+	yelp_bookmarks_write ();
     }
 }
 
@@ -476,7 +584,7 @@ yelp_bookmarks_write (void)
     gchar *filename;
 
     filename = g_build_filename (g_get_home_dir (), ".gnome2", 
-				 "yelp-bookmarks", NULL);
+				 "yelp-bookmarks.xbel", NULL);
 
     file = xmlNewTextWriterFilename (filename, 
 				     0);
@@ -486,16 +594,16 @@ yelp_bookmarks_write (void)
     }
 
     rc = xmlTextWriterStartDocument (file, NULL, NULL, NULL);
-    rc = xmlTextWriterStartElement (file, BAD_CAST "Body");
+    rc = xmlTextWriterStartElement (file, BAD_CAST "xbel");
     rc = xmlTextWriterWriteAttribute(file, BAD_CAST "version",
                                      BAD_CAST "1.0");
-    rc = xmlTextWriterWriteAttribute(file, BAD_CAST "xml:lang",
-                                     BAD_CAST "en_GB");
 
-    rc = xmlTextWriterWriteComment (file, BAD_CAST "Yelp Bookmark file - "
-    "Do not edit directly");
-
-    rc = xmlTextWriterStartElement (file, BAD_CAST "Bookmarks");
+    rc = xmlTextWriterStartElement (file, BAD_CAST "info");
+    rc = xmlTextWriterStartElement (file, BAD_CAST "metadata");
+    rc = xmlTextWriterWriteAttribute(file, BAD_CAST "owner",
+                                     BAD_CAST "http://live.gnome.org/Yelp");
+    xmlTextWriterEndElement (file);
+    xmlTextWriterEndElement (file);
 
     res = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (actions_store),
 						  &iter);
@@ -510,13 +618,22 @@ yelp_bookmarks_write (void)
 				COL_LABEL, &label,
 				COL_SEP, &sep, -1);
 	    
-	    xmlTextWriterStartElement (file, BAD_CAST "Entry");
+	    xmlTextWriterStartElement (file, BAD_CAST "bookmark");
  
 	    if (!sep) {
-		xmlTextWriterWriteAttribute (file, "name", name);
-		xmlTextWriterWriteAttribute (file, "label", label);
-	    } else {
-		xmlTextWriterWriteAttribute (file, "seperator", NULL);
+		xmlTextWriterWriteAttribute (file, "href", name);
+
+		rc = xmlTextWriterWriteElement (file,
+						BAD_CAST "title",
+						label);
+
+		rc = xmlTextWriterStartElement (file, BAD_CAST "info");
+		rc = xmlTextWriterStartElement (file, BAD_CAST "metadata");
+		rc = xmlTextWriterWriteAttribute
+		    (file, BAD_CAST "owner",
+		     BAD_CAST "http://live.gnome.org/Yelp");
+		xmlTextWriterEndElement (file);
+		xmlTextWriterEndElement (file);
 	    }
 
 	    xmlTextWriterEndElement (file);
@@ -535,43 +652,60 @@ yelp_bookmarks_write (void)
 static gboolean
 bookmarks_read (void)
 {
-    xmlTextReaderPtr file;
-    gint ret;
-    gchar *filename;
+    xmlParserCtxtPtr   parser;
+    xmlXPathContextPtr xpath;
+    xmlXPathObjectPtr  obj;
+    xmlDocPtr          doc;
+
+    gboolean  ret = TRUE;
+    gchar    *filename;
+    gint      i;
 
     filename = g_build_filename (g_get_home_dir (), ".gnome2", 
-				 "yelp-bookmarks", NULL);
+				 "yelp-bookmarks.xbel", NULL);
 
-    file = xmlReaderForFile(filename, NULL, 0);
+    parser = xmlNewParserCtxt ();
+    doc = xmlCtxtReadFile (parser, filename, NULL,
+			   XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+			   XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+			   XML_PARSE_NONET    );
 
-    if (file == NULL)
+    if (doc == NULL) {
 	return FALSE;
+	goto done;
+    }
 
-    ret = xmlTextReaderRead (file);
+    xpath = xmlXPathNewContext (doc);
+    obj = xmlXPathEvalExpression ("/xbel/bookmark", xpath);
+    for (i = 0; i < obj->nodesetval->nodeNr; i++) {
+	xmlNodePtr node = obj->nodesetval->nodeTab[i];
+	gchar *uri;
+	uri = xmlGetProp (node, "href");
+	if (uri) {
+	    xmlXPathObjectPtr title_obj;
+	    xpath->node = node;
+	    title_obj = xmlXPathEvalExpression ("string(title[1])", xpath);
+	    xpath->node = NULL;
 
-    while (ret) {
-	
-	if (xmlTextReaderHasAttributes (file)) {
-	    gchar *name;
-	    gchar *title;
-	    gchar *sep;
-	    
-	    name = xmlTextReaderGetAttribute (file, "name");
-	    title = xmlTextReaderGetAttribute (file, "label");
-	    sep = xmlTextReaderGetAttribute (file, "seperator");
-	    
-	    if (name && title) {
-		yelp_bookmarks_add (name, title, FALSE);
-	    }
-	    g_free (name);
-	    g_free (title);
-	    g_free (sep);
+	    if (title_obj->stringval)
+		bookmarks_add_bookmark (uri, title_obj->stringval, FALSE);
+
+	    xmlXPathFreeObject (title_obj);
+	    xmlFree (uri);
 	}
-	ret = xmlTextReaderRead (file);	
     }
     
-    xmlTextReaderClose (file);
-    return TRUE;
+ done:
+    g_free (filename);
+    if (obj)
+	xmlXPathFreeObject (obj);
+    if (xpath)
+	xmlXPathFreeContext (xpath);
+    if (parser)
+	xmlFreeParserCtxt (parser);
+    if (doc)
+	xmlFreeDoc (doc);
+    return ret;
 }
 
 static void

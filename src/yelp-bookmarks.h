@@ -30,9 +30,8 @@
 
 void               yelp_bookmarks_init          (void);
 void               yelp_bookmarks_register      (YelpWindow   *window);
-void               yelp_bookmarks_add           (gchar        *uri,
-						 const gchar  *title,
-						 gboolean save);
+void               yelp_bookmarks_add           (const gchar  *uri,
+						 YelpWindow   *window);
 void               yelp_bookmarks_edit          (void);
 void               yelp_bookmarks_write         (void);
 

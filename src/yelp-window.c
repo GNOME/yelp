@@ -1841,7 +1841,6 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
 		      window);
 
     g_object_unref (glade);
-
     gtk_window_present (GTK_WINDOW (dialog));
 }
 
@@ -2086,8 +2085,9 @@ window_add_bookmark_cb (GtkAction *action, YelpWindow *window)
     if (!uri)
 	return;
 
-    yelp_bookmarks_add (uri, gtk_window_get_title (GTK_WINDOW (window)), 
-			TRUE);
+    yelp_bookmarks_add (uri, window);
+
+    g_free (uri);
 }
 
 static void window_copy_link_cb (GtkAction *action, YelpWindow *window) 
