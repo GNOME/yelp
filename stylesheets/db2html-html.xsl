@@ -11,14 +11,20 @@
 		</xsl:call-template>
 	</xsl:param>
 
-	<xsl:variable name="prevlink">
-		<xsl:call-template name="navbar.prev.link">
+	<xsl:variable name="top">
+		<xsl:call-template name="navbar.top">
 			<xsl:with-param name="node" select="$node"/>
 			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 		</xsl:call-template>
 	</xsl:variable>
-	<xsl:variable name="nextlink">
-		<xsl:call-template name="navbar.next.link">
+	<xsl:variable name="prev">
+		<xsl:call-template name="navbar.prev">
+			<xsl:with-param name="node" select="$node"/>
+			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+		</xsl:call-template>
+	</xsl:variable>
+	<xsl:variable name="next">
+		<xsl:call-template name="navbar.next">
 			<xsl:with-param name="node" select="$node"/>
 			<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 		</xsl:call-template>
@@ -34,6 +40,36 @@
 					<xsl:with-param name="node" select="$node"/>
 				</xsl:call-template>
 			</style>
+			<xsl:if test="$prev != ''">
+				<link rel="Previous">
+					<xsl:attribute name="href">
+						<xsl:call-template name="xref.target">
+							<xsl:with-param name="linkend" select="$prev"/>
+							<xsl:with-param name="target" select="/*"/>
+						</xsl:call-template>
+					</xsl:attribute>
+				</link>
+			</xsl:if>
+			<xsl:if test="$next != ''">
+				<link rel="Next">
+					<xsl:attribute name="href">
+						<xsl:call-template name="xref.target">
+							<xsl:with-param name="linkend" select="$next"/>
+							<xsl:with-param name="target" select="/*"/>
+						</xsl:call-template>
+					</xsl:attribute>
+				</link>
+			</xsl:if>
+			<xsl:if test="$top != ''">
+				<link rel="Top">
+					<xsl:attribute name="href">
+						<xsl:call-template name="xref.target">
+							<xsl:with-param name="linkend" select="$top"/>
+							<xsl:with-param name="target" select="/*"/>
+						</xsl:call-template>
+					</xsl:attribute>
+				</link>
+			</xsl:if>
 			<xsl:call-template name="html.head">
 				<xsl:with-param name="node" select="$node"/>
 			</xsl:call-template>
@@ -47,8 +83,9 @@
 			</xsl:call-template>
 			<xsl:call-template name="html.navbar.top">
 				<xsl:with-param name="node" select="$node"/>
-				<xsl:with-param name="prevlink" select="$prevlink"/>
-				<xsl:with-param name="nextlink" select="$nextlink"/>
+				<xsl:with-param name="top"  select="$top"/>
+				<xsl:with-param name="prev" select="$prev"/>
+				<xsl:with-param name="next" select="$next"/>
 			</xsl:call-template>
 
 			<xsl:apply-templates select="$node">
@@ -57,8 +94,9 @@
 
 			<xsl:call-template name="html.navbar.bottom">
 				<xsl:with-param name="node" select="$node"/>
-				<xsl:with-param name="prevlink" select="$prevlink"/>
-				<xsl:with-param name="nextlink" select="$nextlink"/>
+				<xsl:with-param name="top"  select="$top"/>
+				<xsl:with-param name="prev" select="$prev"/>
+				<xsl:with-param name="next" select="$next"/>
 			</xsl:call-template>
 			<xsl:call-template name="html.body.bottom">
 				<xsl:with-param name="node" select="$node"/>
@@ -213,19 +251,32 @@ div[class="attribution"] {
 
 <xsl:template name="html.navbar.top">
 	<xsl:param name="node" select="."/>
-	<xsl:param name="prevlink">
-		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
+	<xsl:param name="top">
+		<xsl:call-template name="navbar.top">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
 	</xsl:param>
-	<xsl:param name="nextlink">
-		<xsl:apply-templates select="$node" mode="navbar.next.link.mode"/>
+	<xsl:param name="prev">
+		<xsl:call-template name="navbar.prev">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
+	</xsl:param>
+	<xsl:param name="next">
+		<xsl:call-template name="navbar.next">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
 	</xsl:param>
 	<table width="100%" cellpadding="0" cellspacing="0">
 		<tr width="100%">
 			<td width="50%" style="text-align: left;">
-				<xsl:copy-of select="$prevlink"/>
+				<xsl:call-template name="xref">
+					<xsl:with-param name="linkend" select="$prev"/>
+				</xsl:call-template>
 			</td>
 			<td width="50%" style="text-align: right;">
-				<xsl:copy-of select="$nextlink"/>
+				<xsl:call-template name="xref">
+					<xsl:with-param name="linkend" select="$next"/>
+				</xsl:call-template>
 			</td>
 		</tr>
 	</table>
@@ -234,20 +285,48 @@ div[class="attribution"] {
 
 <xsl:template name="html.navbar.bottom">
 	<xsl:param name="node" select="."/>
-	<xsl:param name="prevlink">
-		<xsl:apply-templates select="$node" mode="navbar.prev.link.mode"/>
+	<xsl:param name="top">
+		<xsl:call-template name="navbar.top">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
 	</xsl:param>
-	<xsl:param name="nextlink">
-		<xsl:apply-templates select="$node" mode="navbar.next.link.mode"/>
+	<xsl:param name="prev">
+		<xsl:call-template name="navbar.prev">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
+	</xsl:param>
+	<xsl:param name="next">
+		<xsl:call-template name="navbar.next">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
 	</xsl:param>
 	<hr/>
 	<table width="100%" cellpadding="0" cellspacing="0">
 		<tr width="100%">
-			<td width="50%" style="text-align: left;">
-				<xsl:copy-of select="$prevlink"/>
+			<td width="40%" style="text-align: left;">
+				<xsl:call-template name="xref">
+					<xsl:with-param name="linkend" select="$prev"/>
+				</xsl:call-template>
 			</td>
-			<td width="50%" style="text-align: right;">
-				<xsl:copy-of select="$nextlink"/>
+			<td width="20%" style="text-align: center;">
+				<xsl:if test="$top != ''">
+					<a>
+						<xsl:attribute name="href">
+							<xsl:call-template name="xref.target">
+								<xsl:with-param name="linkend" select="$top"/>
+								<xsl:with-param name="target" select="/*"/>
+							</xsl:call-template>
+						</xsl:attribute>
+						<xsl:call-template name="gettext">
+							<xsl:with-param name="key" select="'Contents'"/>
+						</xsl:call-template>
+					</a>
+				</xsl:if>
+			</td>
+			<td width="40%" style="text-align: right;">
+				<xsl:call-template name="xref">
+					<xsl:with-param name="linkend" select="$next"/>
+				</xsl:call-template>
 			</td>
 		</tr>
 	</table>

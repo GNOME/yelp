@@ -32,9 +32,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<!-- == navbar.following.link ============================================== -->
+<!-- == navbar.following =================================================== -->
 
-<xsl:template name="navbar.following.link">
+<xsl:template name="navbar.following">
 	<xsl:param name="node" select="."/>
 	<xsl:param name="depth_chunk">
 		<xsl:call-template name="depth.chunk">
@@ -45,13 +45,11 @@
 		<xsl:when test="
 				($depth_chunk &lt; $chunk_depth)				and
 				$node/following-sibling::*[&is-division;]	">
-			<xsl:call-template name="xref">
-				<xsl:with-param name="target"
-					select="$node/following-sibling::*[&is-division;][1]"/>
-			</xsl:call-template>
+			<xsl:value-of
+				select="$node/following-sibling::*[&is-division;][1]/@id"/>
 		</xsl:when>
 		<xsl:when test="$node/..">
-			<xsl:call-template name="navbar.following.link">
+			<xsl:call-template name="navbar.following">
 				<xsl:with-param name="node" select="$node/.."/>
 				<xsl:with-param name="depth_chunk" select="$depth_chunk - 1"/>
 			</xsl:call-template>
@@ -59,32 +57,9 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="*" mode="navbar.following.link.mode">
-<!--
-	<xsl:variable name="depth" select="count(ancestor::*[&is-div;])"/>
-	<xsl:choose>
-		<xsl:when test="not(&is-div;)">
-			<xsl:apply-templates mode="navbar.following.link.mode"
-				 select="ancestor::*[&is-div;][1]"/>
-		</xsl:when>
-		<xsl:when test="following-sibling::*[&is-div;]">
-			<xsl:variable name="foll"
-				select="following-sibling::*[&is-div;][1]"/>
-			<xsl:call-template name="xref">
-				<xsl:with-param name="linkend" select="$foll/@id"/>
-				<xsl:with-param name="target" select="$foll"/>
-			</xsl:call-template>
-		</xsl:when>
-		<xsl:when test="$depth &gt; 0">
-			<xsl:apply-templates select=".." mode="navbar.following.link.mode"/>
-		</xsl:when>
-	</xsl:choose>
--->
-</xsl:template>
+<!-- == navbar.last ======================================================== -->
 
-<!-- == navbar.last.link =================================================== -->
-
-<xsl:template name="navbar.last.link">
+<xsl:template name="navbar.last">
 	<xsl:param name="node" select="."/>
 	<xsl:param name="depth_chunk">
 		<xsl:call-template name="depth.chunk">
@@ -93,22 +68,20 @@
 	</xsl:param>
 	<xsl:choose>
 		<xsl:when test="($depth_chunk &lt; $chunk_depth) and $node/*[&is-division;]">
-			<xsl:call-template name="navbar.last.link">
+			<xsl:call-template name="navbar.last">
 				<xsl:with-param name="node" select="$node/*[&is-division;][last()]"/>
 				<xsl:with-param name="depth_chunk" select="$depth_chunk + 1"/>
 			</xsl:call-template>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:call-template name="xref">
-				<xsl:with-param name="target" select="$node"/>
-			</xsl:call-template>
+			<xsl:value-of select="$node/@id"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
-<!-- == navbar.prev.link =================================================== -->
+<!-- == navbar.prev ======================================================== -->
 
-<xsl:template name="navbar.prev.link">
+<xsl:template name="navbar.prev">
 	<xsl:param name="node" select="."/>
 	<xsl:param name="depth_chunk">
 		<xsl:call-template name="depth.chunk">
@@ -118,39 +91,33 @@
 	<xsl:choose>
 		<xsl:when test="($node = /*)">
 			<xsl:if test="$generate_titlepage and $node/*[&is-info;]">
-				<xsl:call-template name="xref">
-					<xsl:with-param name="target" select="$node/*[&is-info;]"/>
-				</xsl:call-template>
+				<xsl:value-of select="'titlepage'"/>
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="$node/preceding-sibling::*[&is-division;]">
 			<xsl:choose>
 				<xsl:when test="$depth_chunk &lt; $chunk_depth">
-					<xsl:call-template name="navbar.last.link">
+					<xsl:call-template name="navbar.last">
 						<xsl:with-param name="node"
 							select="$node/preceding-sibling::*[&is-division;][1]"/>
 						<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 					</xsl:call-template>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:call-template name="xref">
-						<xsl:with-param name="target"
-							select="$node/preceding-sibling::*[&is-division;][1]"/>
-					</xsl:call-template>
+					<xsl:value-of
+						select="$node/preceding-sibling::*[&is-division;][1]/@id"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:call-template name="xref">
-				<xsl:with-param name="target" select="$node/.."/>
-			</xsl:call-template>
+			<xsl:value-of select="$node/../@id"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
-<!-- == navbar.next.link =================================================== -->
+<!-- == navbar.next ======================================================== -->
 
-<xsl:template name="navbar.next.link">
+<xsl:template name="navbar.next">
 	<xsl:param name="node" select="."/>
 	<xsl:param name="depth_chunk">
 		<xsl:call-template name="depth.chunk">
@@ -159,28 +126,40 @@
 	</xsl:param>
 	<xsl:choose>
 		<xsl:when test="$node/self::*[&is-info;]">
-			<xsl:call-template name="xref">
-				<xsl:with-param name="target" select="$node/.."/>
-			</xsl:call-template>
+			<xsl:value-of select="$node/../@id"/>
 		</xsl:when>
-		<xsl:when
-				test="$depth_chunk &lt; $chunk_depth and $node/*[&is-division;]">
-			<xsl:call-template name="xref">
-				<xsl:with-param name="target" select="$node/*[&is-division;][1]"/>
-			</xsl:call-template>
+		<xsl:when test="$depth_chunk &lt; $chunk_depth and $node/*[&is-division;]">
+			<xsl:value-of select="$node/*[&is-division;][1]/@id"/>
 		</xsl:when>
 		<xsl:when test="following-sibling::*[&is-division;]">
-			<xsl:call-template name="xref">
-				<xsl:with-param name="target"
-					select="following-sibling::*[&is-division;][1]"/>
-			</xsl:call-template>
+			<xsl:value-of select="following-sibling::*[&is-division;][1]/@id"/>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:call-template name="navbar.following.link">
+			<xsl:call-template name="navbar.following">
 				<xsl:with-param name="node" select="$node/.."/>
 				<xsl:with-param name="depth_chunk" select="$depth_chunk - 1"/>
 			</xsl:call-template>
 		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<!-- == navbar.top ========================================================= -->
+
+<xsl:template name="navbar.top">
+	<xsl:param name="node" select="."/>
+	<xsl:param name="depth_chunk">
+		<xsl:call-template name="depth.chunk">
+			<xsl:with-param name="node" select="$node"/>
+		</xsl:call-template>
+	</xsl:param>
+
+	<xsl:choose>
+		<xsl:when test="($node != /*) and /*/@id">
+			<xsl:value-of select="/*/@id"/>
+		</xsl:when>
+		<xsl:when test="($node != /*)">
+			<xsl:value-of select="'index'"/>
+		</xsl:when>
 	</xsl:choose>
 </xsl:template>
 

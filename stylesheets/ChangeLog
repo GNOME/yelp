@@ -1,3 +1,12 @@
+2003-12-15  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-html.xsl:
+	* db2html-navbar.xsl:
+	- Make prev/next stuff work.
+	- Create a top (TOC) link.
+	- Switch to having db2html-navbar just return an id, more flexible.
+	- Insert link tags in html for prev, next, and top.
+
 2003-12-13  Shaun McCance  <shaunm@gnome.org>
 
 	* db2html-chunk.xsl:
