@@ -13,7 +13,7 @@
 
 <xsl:param name="gdb_multichunk" select="0" />
 
-<xsl:param name="gdb_stylesheet_path" select="'/opt/gnome-2.0/share/xml/docbook/docbook-xsl-1.48.0/'" />
+<xsl:param name="gdb_stylesheet_path" select="'/opt/gnome-2.0/share/xml/docbook/docbook-xsl-1.48'" />
 
 <xsl:output encoding="ISO-8859-1" />
 
@@ -143,6 +143,7 @@
        LI P {margin-top: 0}
        P.header-title {text-align: center; margin-top: 0; margin-bottom: 0}
        P.copyright {margin-left: 2em; margin-bottom: 0; margin-top: 0}
+       P.about {margin-bottom: 0}
        DD P {margin-top: 0}
        DD P {margin-bottom: 0}
        OL {margin-top: 0}
@@ -162,13 +163,15 @@
        DIV.informaltable table {border-width: 0; border-bottom-width: 3; border-top-width: 3}
        DIV.informaltable THEAD TR {border-bottom: solid; border-left:none; border-right: none; border-top: none}
        DIV.informaltable TH {border-width: 0}
+       DIV.infromaltable TD[colspan] {border-width: 0}
+       DIV.informaltable TD[rowspan] {border-width: 0}
        DIV.table table {border-width: 0; border-bottom-width: 3; border-top-width: 3}
        DIV.table THEAD TR {border-bottom: solid; border-left:none; border-right: none; border-top: none}
        DIV.table TH {border-width: 0}
        LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
-       TD[colspan] {border-width: 0}
-       TD[rowspan] {border-width: 0}
        DIV.revhistory TABLE {border-spacing: 0}
+       H2 {margin-bottom: 0}
+       H3 {margin-bottom: 0}
      </xsl:text>
    </style>
 </xsl:template>
@@ -198,10 +201,8 @@
 </xsl:template>
 
 <xsl:template name="article.toc.ref">
-<xsl:attribute name="href">
-  <xsl:text>ghelp:</xsl:text>
-  <xsl:value-of select="$gdb_docname"/>
-</xsl:attribute>
+<xsl:text>ghelp:</xsl:text>
+<xsl:value-of select="$gdb_docname"/>
 </xsl:template>
 
 <xsl:template name="indirect.prev.cell">
@@ -230,7 +231,7 @@
   </xsl:when>
   <xsl:otherwise>
     <xsl:call-template name="next.link.cell">
-      <xsl:with-param name="object" select="$object"/>
+	<xsl:with-param name="object" select="$object"/>
     </xsl:call-template>
   </xsl:otherwise>
 </xsl:choose>
@@ -252,18 +253,30 @@
         </xsl:call-template>
       </xsl:when>
 
-      <xsl:when test="local-name($node)='sect2' and count($node/../preceding-sibling::*) > 1">
+      <xsl:when test="local-name($node)='sect2' and count($node/../preceding-sibling::sect1[position()=last()]/sect2) > 0">
         <xsl:call-template name="indirect.prev.cell">
-          <xsl:with-param name="object" select="$node/../preceding-sibling::*[position()=last()]"/>
+          <xsl:with-param name="object" select="$node/../preceding-sibling::sect1[position()=last()]"/>
         </xsl:call-template>
       </xsl:when>
 
       <!-- we need to treat the first sect1 specially -->
       <xsl:when test="$node=/article/sect1[1]">
         <td><a accesskey="p">
-          <xsl:call-template name="article.toc.ref"/>
+          <xsl:attribute name="href">
+            <xsl:call-template name="article.toc.ref"/>
+          </xsl:attribute>
           <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
         </a></td>
+      </xsl:when>
+
+      <!-- And the first sect2 of the first sect1 needs the same -->
+      <xsl:when test="$node=/article/sect1[1]/sect2[1]">
+        <td><a accesskey="p">
+          <xsl:attribute name="href">
+            <xsl:call-template name="article.toc.ref"/>
+          </xsl:attribute>
+          <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
+	</a></td>
       </xsl:when>
 
     </xsl:choose>
@@ -279,7 +292,9 @@
      <xsl:choose>
        <xsl:when test="local-name($node)='sect1' or local-name($node)='sect2'">
          <a accesskey="u">
-           <xsl:call-template name="article.toc.ref"/>
+           <xsl:attribute name="href">
+             <xsl:call-template name="article.toc.ref"/>
+           </xsl:attribute>
              <xsl:text>Contents</xsl:text>
          </a>
        </xsl:when>
@@ -300,9 +315,9 @@
           <xsl:with-param name="object" select="$node/following-sibling::*[1]"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="local-name($node)='sect2' and count($node/../following-sibling::*) > 0">
+      <xsl:when test="local-name($node)='sect2' and count($node/../following-sibling::sect1[1]/sect2) > 0">
         <xsl:call-template name="indirect.next.cell">
-          <xsl:with-param name="object" select="$node/../following-sibling::*[1]"/>
+          <xsl:with-param name="object" select="$node/../following-sibling::sect1[1]"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
@@ -379,7 +394,9 @@
   <table width="100%">
     <tr>
       <td align="right"><a accesskey="n">
-        <xsl:call-template name="article.toc.ref"/>
+        <xsl:attribute name="href">
+          <xsl:call-template name="article.toc.ref"/>
+        </xsl:attribute>
           <xsl:text>Next &gt;&gt;&gt;</xsl:text>
       </a></td>
     </tr>
@@ -396,10 +413,10 @@
 
 <xsl:template name="yelp.render.toc">
 <xsl:param name="title" select="''" />
-  <p class="header-title"><xsl:value-of select="$title"/></p>
   <xsl:call-template name="make.toc.navbar"/>
   <xsl:element name="hr"/>
-  <p><a>
+  <H1 align="center"><xsl:value-of select="$title"/></H1>
+  <p class="about"><a>
     <xsl:attribute name="href">
       <xsl:call-template name="titlepage.ref"/>
     </xsl:attribute>

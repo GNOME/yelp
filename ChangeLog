@@ -1,3 +1,14 @@
+2002-05-22  Sander Vesik <sander.vesik@sun.com>
+
+	* stylesheets/yelp/customization.xsl:
+	- fix whitespace around 'About This Document'
+	- whitespace reduction for headers
+	- try to fix table of contents links not showing up for Hallski
+	- the 'previous' link on a first sect2 of a sect1 
+	- work on indirect previous links
+	- display the document title as a H1 on the TOC page instead of
+	  having it in the navbar
+
 2002-05-23  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/Makefile.am (yelp_SOURCES): use yelp-marshal-main.c instead
