@@ -72,6 +72,16 @@ struct _YelpWindowData {
     GtkActionGroup *doc_actions;
 };
 
+static const char *ui_description =
+    "<ui>"
+    "  <popup>"
+    "    <menuitem action='OpenName'/>"
+    "    <separator/>"
+    "    <menuitem action='EditName'/>"
+    "    <menuitem action='DeleteName'/>"
+    "  </popup>"
+    "</ui>";
+
 static void      window_add_bookmark        (YelpWindowData *window,
 					     gchar          *name,
 					     const gchar    *label);
@@ -115,6 +125,32 @@ static void      bookmarks_cell_edited_cb   (GtkCellRendererText *cell,
 					     const gchar         *path_string,
 					     const gchar         *new_title,
 					     gpointer             user_data);
+static void      bookmarks_popup_menu       (GtkWidget           *widget,
+					     GdkEventButton      *event);
+static void      bookmarks_menu_edit_cb     (GtkAction           *action,
+					     GtkWidget           *widget);
+static void      bookmarks_menu_remove_cb   (GtkAction           *action,
+					     GtkWidget           *widget);
+static void      bookmarks_menu_open_cb     (GtkAction           *action,
+					     GtkWidget           *widget);
+static gboolean  bookmarks_button_press_cb  (GtkWidget           *widget,
+					     GdkEventButton      *event);
+
+static GtkActionEntry popup_entries[] = {
+    { "OpenName", GTK_STOCK_OPEN,
+      N_("Open Bookmark in New Window"),
+      NULL, NULL,
+      G_CALLBACK (bookmarks_menu_open_cb)},
+    { "EditName", NULL,
+      N_("Rename Bookmark"),
+      NULL, NULL,
+      G_CALLBACK (bookmarks_menu_edit_cb)},
+    { "DeleteName", GTK_STOCK_REMOVE,
+      N_("Remove Bookmark"),
+      NULL, NULL,
+      G_CALLBACK (bookmarks_menu_remove_cb)}
+};
+
 
 void
 yelp_bookmarks_init (void)
@@ -577,6 +613,10 @@ yelp_bookmarks_edit (void)
 	g_signal_connect (G_OBJECT (button), "clicked",
 			  G_CALLBACK (bookmarks_remove_button_cb),
 			  view);
+	g_signal_connect (G_OBJECT (view), "button-press-event",
+			  G_CALLBACK (bookmarks_button_press_cb),
+			  NULL);
+
 
 	g_object_unref (glade);
     }
@@ -607,6 +647,21 @@ bookmarks_open_button_cb (GtkWidget *widget, GtkTreeView *view)
 static void
 bookmarks_rename_button_cb (GtkWidget *widget, GtkTreeView *view)
 {
+    GtkTreePath *path;
+    GtkTreeSelection *sel;
+    GtkTreeIter iter;
+    GtkTreeViewColumn *col;
+    GtkTreeModel *model = GTK_TREE_MODEL (actions_store);
+    gboolean selection;
+
+    sel = gtk_tree_view_get_selection (view);
+    selection = gtk_tree_selection_get_selected (sel, &model, &iter);
+    if (selection) {
+	path = gtk_tree_model_get_path (model, &iter);
+	col = gtk_tree_view_get_column (view, 0);
+	
+	gtk_tree_view_set_cursor (view, path, col, TRUE);
+    }
 }
 
 static void
@@ -621,6 +676,119 @@ bookmarks_remove_button_cb (GtkWidget *widget, GtkTreeView *view)
     gtk_tree_store_remove (actions_store, &iter);
     bookmarks_rebuild_menus ();
 }
+
+static void
+bookmarks_popup_menu (GtkWidget *widget,GdkEventButton *event)
+{
+    GtkWidget *menu;
+    gint button, event_time;
+    GtkActionGroup *action_group;
+    GtkUIManager *ui_manager;
+    GError *error;
+
+    action_group = gtk_action_group_new ("PopupActions");
+    gtk_action_group_set_translation_domain (action_group,
+                                            GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (action_group, popup_entries,
+                                 G_N_ELEMENTS (popup_entries), widget);
+
+    ui_manager = gtk_ui_manager_new ();
+    gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
+
+    if (!gtk_ui_manager_add_ui_from_string (ui_manager,
+                                           ui_description, -1, &error)) {
+       g_message ("Building menus failed: %s", error->message);
+       g_error_free (error);
+       exit (EXIT_FAILURE);
+    }
+    menu = gtk_ui_manager_get_widget (ui_manager, "/popup");
+
+    if (event) {
+       button = event->button;
+       event_time = event->time;
+    } else {
+       button = 0;
+       event_time = gtk_get_current_event_time ();
+    }
+    gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+                   button, event_time);
+
+}
+
+static void
+bookmarks_menu_edit_cb (GtkAction *action, GtkWidget *widget)
+{
+    GtkTreeView *view = GTK_TREE_VIEW (widget);
+    GtkTreePath *path;
+    GtkTreeSelection *sel;
+    GtkTreeIter iter;
+    GtkTreeViewColumn *col;
+    GtkTreeModel *model = GTK_TREE_MODEL (actions_store);
+
+    sel = gtk_tree_view_get_selection (view);
+    gtk_tree_selection_get_selected (sel, &model, &iter);
+    path = gtk_tree_model_get_path (model, &iter);
+    col = gtk_tree_view_get_column (view, 0);
+
+    gtk_tree_view_set_cursor (view, path, col, TRUE);
+}
+
+static void
+bookmarks_menu_remove_cb (GtkAction *action, GtkWidget *widget)
+{
+    GtkTreeView *view = GTK_TREE_VIEW (widget);
+    GtkTreeSelection *sel;
+    GtkTreeIter iter;
+    //GtkTreeModel *model = GTK_TREE_MODEL (actions_store);
+
+    sel = gtk_tree_view_get_selection (view);
+    gtk_tree_selection_get_selected (sel, NULL, &iter);
+
+    gtk_tree_store_remove (actions_store, &iter);
+    bookmarks_rebuild_menus ();
+}
+
+static void
+bookmarks_menu_open_cb (GtkAction *action, GtkWidget *widget)
+{
+    GtkTreeView *view = GTK_TREE_VIEW (widget);
+    GtkTreeSelection *sel = gtk_tree_view_get_selection (view);
+    GtkTreeIter iter;
+    GtkTreeModel *model = GTK_TREE_MODEL (actions_store);
+    GtkTreePath *path;
+
+    gtk_tree_selection_get_selected (sel, &model, &iter);
+    path = gtk_tree_model_get_path (model, &iter);
+
+    bookmarks_open_cb (view, path, NULL, NULL);
+
+}
+
+static gboolean
+bookmarks_button_press_cb (GtkWidget *widget, GdkEventButton *event)
+{
+    GtkTreeView *view = GTK_TREE_VIEW (widget);
+    GtkTreeSelection *sel = gtk_tree_view_get_selection (view);
+    gboolean selection;
+    GtkTreeIter iter;
+    GtkTreeModel *model = GTK_TREE_MODEL (actions_store);
+    gboolean editable;
+
+    selection = gtk_tree_selection_get_selected (sel,
+                                                &model,
+                                                &iter);
+    if (selection) {
+	gtk_tree_model_get (GTK_TREE_MODEL (actions_store), &iter,
+			    COL_EDIT, &editable, -1);
+       if (event->button == 3 && event->type == GDK_BUTTON_PRESS &&
+	   editable) {
+           bookmarks_popup_menu (widget, event);
+	   return TRUE;
+       }
+    }
+    return FALSE;
+}
+
 
 void
 yelp_bookmarks_write (void)

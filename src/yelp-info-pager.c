@@ -197,7 +197,7 @@ info_pager_params (YelpPager *pager)
     params = g_new0 (gchar *, params_max);
 
     params[params_i++] = "stylesheet_path";
-    params[params_i++] = g_strdup_printf ("\"file://%s\"", INFO_STYLESHEET_PATH);
+    params[params_i++] = g_strdup_printf ("\"file://%s\"", STYLESHEET_PATH);
 
     params[params_i] = NULL;
 
