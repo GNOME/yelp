@@ -1,3 +1,15 @@
+2004-06-04  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-toc-pager.c:
+	- s/scrollkeeper\//scrollkeeper./ just for fun
+
+	* src/yelp-window.c:
+	- s/frag/frag_id/ for consistency
+
+	* stylesheets/db2html.xsl:
+	* stylesheets/db2html.xsl.in:
+	- s/db.chunk.top/db.chunk.chunk_top/ so it'll work
+
 2004-06-03  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-toc-pager.c:

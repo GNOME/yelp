@@ -1175,7 +1175,6 @@ pager_page_cb (YelpPager *pager,
     const gchar *frag_id;
 
     uri  = yelp_window_get_current_uri (window);
-
     frag_id = gnome_vfs_uri_get_fragment_identifier (uri->uri);
 
     if (yelp_pager_page_contains_frag (pager, page_id, frag_id)) {
@@ -1208,10 +1207,10 @@ pager_finish_cb (YelpPager   *pager,
     GError *error = NULL;
     YelpWindow  *window = YELP_WINDOW (user_data);
     YelpURI     *uri;
-    const gchar *frag;
+    const gchar *frag_id;
 
     uri  = yelp_window_get_current_uri (window);
-    frag = gnome_vfs_uri_get_fragment_identifier (uri->uri);
+    frag_id = gnome_vfs_uri_get_fragment_identifier (uri->uri);
 
     window_disconnect (window);
 

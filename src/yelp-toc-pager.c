@@ -583,7 +583,7 @@ process_omf_pending (YelpTocPager *pager)
 	goto done;
     }
 
-    omf->id = g_strconcat ("scrollkeeper/", (gchar *) omf->seriesid, NULL);
+    omf->id = g_strconcat ("scrollkeeper.", (gchar *) omf->seriesid, NULL);
 
     // If we have one with the same id, use the one with the lowest lang_priority.
 

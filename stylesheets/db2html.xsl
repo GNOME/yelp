@@ -6,12 +6,12 @@
 
 <xsl:import href="/usr/share/sgml/gnome/docbook/html/db2html.xsl"/>
 
-<xsl:param name="db.chunk.top" select="true()"/>
+<xsl:param name="db.chunk.chunk_top" select="true()"/>
+<xsl:param name="db.chunk.extension" select="''"/>
 <xsl:param name="db.chunk.cover_basename" select="'__yelp_cover'"/>
 <xsl:param name="db.chunk.info_basename"  select="'__yelp_info'"/>
 <xsl:param name="db.chunk.index_basename" select="'__yelp_index'"/>
 <xsl:param name="db.chunk.toc_basename"   select="'__yelp_toc"/>
-<xsl:param name="db.chunk.extension" select="''"/>
 
 <xsl:template name="db.chunk">
   <xsl:param name="node" select="."/>
