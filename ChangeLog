@@ -1,3 +1,9 @@
+2003-12-01  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-toc-pager.c:
+	- Switched to using a single pending function that calls the appropriate
+	  function on each iteration.  Makes the code nicer.
+
 2003-11-30  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-window.c:

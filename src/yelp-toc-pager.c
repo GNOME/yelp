@@ -36,23 +36,27 @@
 
 #define d(x)
 
+typedef gboolean      (*ProcessFunction)        (YelpTocPager      *pager);
+
 typedef struct _OMF OMF;
 
 struct _YelpTocPagerPriv {
+    GSList           *dir_pending;
     GSList           *omf_pending;
+    GSList           *toc_pending;
+    GSList           *idx_pending;
 
     xmlDocPtr         toc_doc;
-    GSList           *toc_pending;
-
-    GSList           *idx_pending;
 
     GHashTable       *unique_hash_omf;
     GHashTable       *category_hash_omf;
 
     xmlParserCtxtPtr  parser;
 
+    ProcessFunction   pending_func;
+
+    gboolean          cancel;
     gint              pause_count;
-    GtkFunction       unpause_func;
 };
 
 struct _OMF {
@@ -81,27 +85,30 @@ gchar *              toc_pager_resolve_uri     (YelpPager         *pager,
 						YelpURI           *uri);
 const GtkTreeModel * toc_pager_get_sections    (YelpPager         *pager);
 
-static void          toc_read_omf_dir          (YelpTocPager      *pager,
-						const gchar       *dirstr);
-static gboolean      toc_process_omf_pending   (YelpPager         *pager);
-static void          toc_hash_omf              (YelpTocPager      *pager,
-						OMF               *omf);
-static void          toc_unhash_omf            (YelpTocPager      *pager,
-						OMF               *omf);
+static gboolean      toc_process_pending       (YelpTocPager      *pager);
 
+static gboolean      process_dir_pending       (YelpTocPager      *pager);
+static gboolean      process_omf_pending       (YelpTocPager      *pager);
+static gboolean      process_read_toc          (YelpTocPager      *pager);
+static gboolean      process_toc_pending       (YelpTocPager      *pager);
+
+#if 0
 static gboolean      toc_process_toc           (YelpTocPager      *pager);
 static gboolean      toc_process_toc_pending   (YelpTocPager      *pager);
 
 static gboolean      toc_process_idx           (YelpTocPager      *pager);
 static gboolean      toc_process_idx_pending   (YelpTocPager      *pager);
 
+#endif
 static gchar *       toc_write_page            (gchar             *id,
 						gchar             *title,
 						GSList            *cats,
 						GSList            *omfs);
-
 static xmlChar *     node_get_title            (xmlNodePtr         node);
-
+static void          toc_hash_omf              (YelpTocPager      *pager,
+						OMF               *omf);
+static void          toc_unhash_omf            (YelpTocPager      *pager,
+						OMF               *omf);
 static void          omf_free                  (OMF               *omf);
 
 static YelpPagerClass *parent_class;
@@ -161,8 +168,9 @@ toc_pager_init (YelpTocPager *pager)
     priv->unique_hash_omf = g_hash_table_new (g_str_hash, g_str_equal);
     priv->category_hash_omf = g_hash_table_new (g_str_hash, g_str_equal);
 
-    priv->pause_count = 0;
-    priv->unpause_func = NULL;
+    priv->cancel       = 0;
+    priv->pause_count  = 0;
+    priv->pending_func = NULL;
 }
 
 static void
@@ -207,11 +215,10 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 	pager->priv->pause_count = 0;
     }
 
-    if (pager->priv->pause_count < 1 && pager->priv->unpause_func) {
+    if (pager->priv->pause_count < 1) {
 	gtk_idle_add_priority (G_PRIORITY_LOW,
-			       pager->priv->unpause_func,
+			       (GtkFunction) toc_process_pending,
 			       pager);
-	pager->priv->unpause_func = NULL;
     }
 }
 
@@ -220,10 +227,15 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 gboolean
 toc_pager_process (YelpPager *pager)
 {
-    toc_read_omf_dir (YELP_TOC_PAGER (pager), DATADIR"/omf");
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+
+    priv->dir_pending = g_slist_prepend (priv->dir_pending,
+					 DATADIR "/omf");
+
+    priv->pending_func = (ProcessFunction) process_dir_pending;
 
     gtk_idle_add_priority (G_PRIORITY_LOW,
-			   (GtkFunction) toc_process_omf_pending,
+			   (GtkFunction) toc_process_pending,
 			   pager);
     return FALSE;
 }
@@ -231,7 +243,9 @@ toc_pager_process (YelpPager *pager)
 void
 toc_pager_cancel (YelpPager *pager)
 {
-    // FIXME
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+
+    priv->cancel = TRUE;
 }
 
 gchar *
@@ -257,19 +271,63 @@ toc_pager_get_sections (YelpPager *pager)
 
 /******************************************************************************/
 
-static void
-toc_read_omf_dir (YelpTocPager *pager, const gchar *dirstr)
+static gboolean
+toc_process_pending (YelpTocPager *pager)
 {
+    gboolean readd;
+    YelpTocPagerPriv *priv = pager->priv;
+
+    if (priv->cancel || !priv->pending_func) {
+	// FIXME: clean stuff up.
+	return FALSE;
+    }
+
+    readd = priv->pending_func(pager);
+
+    if (!readd) {
+	if (priv->pending_func == process_dir_pending)
+	    priv->pending_func = process_omf_pending;
+
+	else if (priv->pending_func == process_omf_pending)
+	    priv->pending_func = process_read_toc;
+
+	else if (priv->pending_func == process_read_toc)
+	    priv->pending_func = process_toc_pending;
+
+	else if (priv->pending_func == process_toc_pending)
+	    priv->pending_func = NULL;
+    }
+
+    if (priv->pending_func && (priv->pause_count < 1))
+	return TRUE;
+    else
+	return FALSE;
+}
+
+static gboolean
+process_dir_pending (YelpTocPager *pager)
+{
+    GSList  *first  = NULL;
+    gchar   *dirstr = NULL;
     GnomeVFSResult           result;
-    GnomeVFSDirectoryHandle *dir;
-    GnomeVFSFileInfo        *file_info;
+    GnomeVFSDirectoryHandle *dir       = NULL;
+    GnomeVFSFileInfo        *file_info = NULL;
 
     YelpTocPagerPriv *priv = pager->priv;
+
+    first = priv->dir_pending;
+    priv->dir_pending = g_slist_remove_link (priv->dir_pending, first);
+    if (!first)
+	goto done;
+
+    dirstr = (gchar *) first->data;
+    if (!dirstr)
+	goto done;
 
     result = gnome_vfs_directory_open (&dir, dirstr,
 				       GNOME_VFS_FILE_INFO_DEFAULT);
     if (result != GNOME_VFS_OK)
-	return;
+	goto done;
 
     file_info = gnome_vfs_file_info_new ();
 
@@ -278,8 +336,7 @@ toc_read_omf_dir (YelpTocPager *pager, const gchar *dirstr)
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
 	    if (strcmp (file_info->name, ".") && strcmp (file_info->name, "..")) {
 		gchar *newdir = g_strconcat (dirstr, "/", file_info->name, NULL);
-		toc_read_omf_dir (pager, newdir);
-		g_free (newdir);
+		priv->dir_pending = g_slist_prepend (priv->dir_pending, newdir);
 	    }
 	    break;
 	case GNOME_VFS_FILE_TYPE_REGULAR:
@@ -293,16 +350,20 @@ toc_read_omf_dir (YelpTocPager *pager, const gchar *dirstr)
 	}
     }
 
+ done:
     gnome_vfs_file_info_unref (file_info);
     gnome_vfs_directory_close (dir);
+    g_slist_free_1 (first);
+    g_free (dirstr);
 
-    while (gtk_events_pending ())
-	gtk_main_iteration ();
-
+    if (priv->dir_pending)
+	return TRUE;
+    else
+	return FALSE;
 }
 
 static gboolean
-toc_process_omf_pending (YelpPager *pager)
+process_omf_pending (YelpTocPager *pager)
 {
     GSList    *first;
     gchar     *file;
@@ -320,12 +381,16 @@ toc_process_omf_pending (YelpPager *pager)
 
     file = (gchar *) first->data;
 
-    if (!g_str_has_suffix (file, ".omf"))
+    if (!file || !g_str_has_suffix (file, ".omf"))
 	goto done;
 
     omf_doc = xmlCtxtReadFile (priv->parser,
 			       (const char *) file,
-			       NULL, 0);
+			       NULL,
+			       XML_PARSE_XINCLUDE |
+			       XML_PARSE_NOCDATA  |
+			       XML_PARSE_NOENT    |
+			       XML_PARSE_NONET    );
     if (!omf_doc)
 	goto done;
 
@@ -449,25 +514,14 @@ toc_process_omf_pending (YelpPager *pager)
     g_free (file);
     g_slist_free_1 (first);
 
-    if (!priv->omf_pending) {
-	if (priv->pause_count > 0)
-	    priv->unpause_func = (GtkFunction) toc_process_toc;
-	else
-	    gtk_idle_add_priority (G_PRIORITY_LOW,
-				   (GtkFunction) toc_process_toc,
-				   pager);
-	return FALSE;
-    }
-    if (priv->pause_count > 0) {
-	priv->unpause_func = (GtkFunction) toc_process_omf_pending;
-	return FALSE;
-    }
-    else
+    if (priv->omf_pending)
 	return TRUE;
+    else
+	return FALSE;
 }
 
 static gboolean
-toc_process_toc (YelpTocPager *pager)
+process_read_toc (YelpTocPager *pager)
 {
     xmlNodePtr   toc_node;
     GError      *error = NULL;
@@ -476,7 +530,12 @@ toc_process_toc (YelpTocPager *pager)
 
     priv->toc_doc = xmlCtxtReadFile (priv->parser,
 				     DATADIR "/yelp/toc.xml",
-				     NULL, 0);
+				     NULL,
+				     XML_PARSE_XINCLUDE |
+				     XML_PARSE_NOBLANKS |
+				     XML_PARSE_NOCDATA  |
+				     XML_PARSE_NOENT    |
+				     XML_PARSE_NONET    );
 
     if (!priv->toc_doc) {
 	g_set_error (&error,
@@ -484,6 +543,7 @@ toc_process_toc (YelpTocPager *pager)
 		     YELP_ERROR_FAILED_TOC,
 		     _("The table of contents could not be read."));
 	yelp_pager_error (YELP_PAGER (pager), error);
+	priv->cancel = TRUE;
 	return FALSE;
     }
 
@@ -495,20 +555,17 @@ toc_process_toc (YelpTocPager *pager)
 		     YELP_ERROR_FAILED_TOC,
 		     _("The table of contents could not be read."));
 	yelp_pager_error (YELP_PAGER (pager), error);
+	priv->cancel = TRUE;
 	return FALSE;
     }
 
     priv->toc_pending = g_slist_append (priv->toc_pending, toc_node);
 
-    gtk_idle_add_priority (G_PRIORITY_LOW,
-			   (GtkFunction) toc_process_toc_pending,
-			   pager);
-
     return FALSE;
 }
 
 static gboolean
-toc_process_toc_pending (YelpTocPager *pager)
+process_toc_pending (YelpTocPager *pager)
 {
     GSList      *first;
     xmlNodePtr   node;
@@ -563,27 +620,13 @@ toc_process_toc_pending (YelpTocPager *pager)
     g_slist_free (subomfs);
     g_slist_free_1 (first);
 
-    if (!priv->toc_pending) {
-	xmlFreeDoc (priv->toc_doc);
-	g_signal_emit_by_name (pager, "finish");
-
-	if (priv->pause_count > 0)
-	    priv->unpause_func = (GtkFunction) toc_process_idx;
-	else
-	    gtk_idle_add_priority (G_PRIORITY_LOW,
-				   (GtkFunction) toc_process_idx,
-				   pager);
-	return FALSE;
-    }
-    else if (priv->pause_count > 0) {
-	priv->unpause_func = (GtkFunction) toc_process_toc_pending;
-	return FALSE;
-    }
-    else {
+    if (priv->toc_pending)
 	return TRUE;
-    }
+    else
+	return FALSE;
 }
 
+#if 0
 static gboolean
 toc_process_idx (YelpTocPager *pager)
 {
@@ -637,6 +680,7 @@ toc_process_idx_pending (YelpTocPager *pager)
 	return TRUE;
     }
 }
+#endif
 
 static gchar *
 toc_write_page (gchar     *id,
@@ -828,4 +872,3 @@ omf_free (OMF *omf)
     }
     g_free (omf);
 }
-
