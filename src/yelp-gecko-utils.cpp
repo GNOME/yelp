@@ -118,6 +118,7 @@ yelp_gecko_set_caret (gboolean value)
 extern "C" void
 yelp_gecko_set_color (YelpColorType type, const gchar *color)
 {
+	gecko_prefs_set_bool ("browser.display.use_system_colors", FALSE);
 	switch (type) {
 	case YELP_COLOR_TEXT:
 		gecko_prefs_set_string ("browser.display.foreground_color",
