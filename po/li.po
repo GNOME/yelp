@@ -1,0 +1,306 @@
+# Limburgish translation of Yelp.
+# 2003
+# Mathieu van Woerkom <mathieu.brabants.org>, 2003.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Yelp cvs\n"
+"POT-Creation-Date: 2003-06-03 22:06+0200\n"
+"PO-Revision-Date: 2003-05-19 15:19+0000\n"
+"Last-Translator: Mathieu van Woerkom <mathieu.brabants.org>\n"
+"Language-Team: Limburgish <li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>Zeuke nao teks in 't dokkemènt:</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "Automatisse _doorloup"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "Teks zeuke..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "Ganse _wäörd zeuke"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "_Huidbooksjtaafgeveulig"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "_Naekste"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "Veu_rige"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp-Febrik"
+
+#: src/yelp-main.c:94
+msgid "Define which cache dir to use"
+msgstr "Aangaeve welke cache dir te gebroeke"
+
+#: src/yelp-main.c:128
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Kós Yelp neet opsjtarte: '%s'"
+
+#: src/yelp-main.c:147
+msgid "Could not open new window."
+msgstr "Kós gein nuuj vinster äöpene."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "ÄöpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Systeemfónksies"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Bibeleteekfónksies"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Kernelróttines"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "Toepassinge"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "Development"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Hardware-apperetuur"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Kóngfiggerasiebesjtenj"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Sjpelkes"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Euverzichte"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Systeemadminnestrasie"
+
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "Baezig mit lajen..."
+
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Seksie"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "_Zeuke nao:"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Hulp Inhaudsopgaaf"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "GNOME - Beroblaad"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "Aanvöllende dokkemènter"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+msgid "Manual Pages"
+msgstr "Handjleijing-pagina's"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+msgid "Info Pages"
+msgstr "Info-pagina's"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+msgid "Documents"
+msgstr "Dokkemènter"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+msgid "Categories"
+msgstr "Kattegerieje"
+
+#: src/yelp-view-toc.c:448
+msgid "Manual pages"
+msgstr "Handjleijing-pagina's"
+
+#: src/yelp-view-toc.c:712
+msgid "GNOME is"
+msgstr "GNOME is"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr "Vrieje Software"
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr "©"
+
+#: src/yelp-window.c:163
+msgid "/_File"
+msgstr "/_Besjtandj"
+
+#: src/yelp-window.c:164
+msgid "/File/_New window"
+msgstr "/Besjtandj/_Nuuj vinster"
+
+#: src/yelp-window.c:165
+msgid "/File/_Close window"
+msgstr "/Besjtandj/Vinster _sjloete"
+
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr "/B_ewirke"
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr "/Bewirke/_Zeuke in pagina..."
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "/Bewirke/_Obbenuuts zeuke"
+
+#: src/yelp-window.c:171
+msgid "/_Go"
+msgstr "/_Gank nao"
+
+#: src/yelp-window.c:172
+msgid "/Go/_Back"
+msgstr "/Gank nao/V_eurige"
+
+#: src/yelp-window.c:173
+msgid "/Go/_Forward"
+msgstr "/Gank nao/_Naekste"
+
+#: src/yelp-window.c:174
+msgid "/Go/_Home"
+msgstr "/Gank nao/_Sjtartpagina"
+
+#: src/yelp-window.c:175
+msgid "/Go/_Index"
+msgstr "/Gank nao/_Index"
+
+#: src/yelp-window.c:177
+msgid "/_Help"
+msgstr "/_Hulp"
+
+#: src/yelp-window.c:178
+msgid "/Help/_About"
+msgstr "/Hulp/_Euver"
+
+#: src/yelp-window.c:238 src/yelp-window.c:438
+msgid "Help Browser"
+msgstr "Hulp Browser"
+
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "'t dokkemènt '%s' besjteit neet"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:675
+msgid "translator_credits"
+msgstr ""
+"mathieu van Woerkom\n"
+"http://mathieu.brabants.org"
+
+#: src/yelp-window.c:679
+msgid "A Help Browser for GNOME"
+msgstr "Hulp Browser veur GNOME"
+
+#: src/yelp-window.c:788
+msgid "Back"
+msgstr "Veurige"
+
+#: src/yelp-window.c:789
+msgid "Show previous page in history"
+msgstr "De veurige pagina tuine"
+
+#: src/yelp-window.c:800
+msgid "Forward"
+msgstr "Naekste"
+
+#: src/yelp-window.c:801
+msgid "Show next page in history"
+msgstr "De naekste pagina tuine"
+
+#: src/yelp-window.c:814
+msgid "Home"
+msgstr "Sjtartpagina"
+
+#: src/yelp-window.c:815
+msgid "Go to home view"
+msgstr "De sjtartpagina tuine"
+
+#: src/yelp-window.c:825
+msgid "Index"
+msgstr "Indeks"
+
+#: src/yelp-window.c:826
+msgid "Search in the index"
+msgstr "De index doorzeuke"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Hulp bie GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Hulp"
