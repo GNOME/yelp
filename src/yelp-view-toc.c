@@ -26,6 +26,7 @@
 
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
+#include <libxml/parser.h>
 
 #include <stdio.h>
 #include <string.h>

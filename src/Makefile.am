@@ -1,12 +1,18 @@
 INCLUDES =								\
 	-I$(top_srcdir)							\
-	$(YELP_CFLAGS)							\
+	@YELP_CFLAGS@							\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"				\
 	-DDATADIR=\""$(datadir)"\"					\
 	-DLIBDIR=\""$(libdir)"\"					\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
+
+if HTML_WIDGET_GTKHTML1
+html_widget_impl=yelp-html-gtkhtml1.c
+else
+html_widget_impl=yelp-html-gtkhtml2.c
+endif
 
 bin_PROGRAMS = yelp
 
@@ -19,7 +25,7 @@ test_uri_SOURCES = 							\
 	yelp-util.c		yelp-util.h
 
 test_uri_LDADD = 							\
-	$(YELP_LIBS)
+	@YELP_LIBS@
 
 test_reader_SOURCES = 							\
 	test-reader.c							\
@@ -31,7 +37,7 @@ test_reader_SOURCES = 							\
 	yelp-marshal.c		yelp-marshal.h	
 
 test_reader_LDADD = 							\
-	$(YELP_LIBS)
+	@YELP_LIBS@
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -54,7 +60,7 @@ yelp_SOURCES =								\
 	yelp-db2html.c		yelp-db2html.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
-	yelp-html.c		yelp-html.h				\
+	$(html_widget_impl) 	yelp-html.h				\
 	yelp-index-model.c	yelp-index-model.h			\
 	yelp-info.c		yelp-info.h				\
 	yelp-main.c							\
@@ -70,7 +76,8 @@ yelp_SOURCES =								\
 	yelp-uri.c	        yelp-uri.h
 
 yelp_LDADD =								\
-	$(YELP_LIBS)
+	@YELP_LIBS@							\
+	@HTML_WIDGET_LIBS@
 
 gnome_yelp_idl_sources =						\
 	GNOME_Yelp-stubs.c						\

@@ -24,7 +24,7 @@
 #define __YELP_VIEW_TOC_H__
 
 #include <gtk/gtktreemodel.h>
-#include <libgtkhtml/gtkhtml.h>
+#include <gtk/gtkwidget.h>
 
 #include "yelp-section.h"
 #include "yelp-uri.h"

@@ -1,3 +1,30 @@
+2002-05-18  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-toc.h: don't include gtkhtml2 headers.
+
+	* src/yelp-view-toc.c: 
+	- include libxml/parser.h now that we don't include gtkhtml2
+	  headers here any more.
+
+	* src/yelp-html-gtkhtml1: 
+	- Added
+	- Makes yelp use GtkHTML1 for HTML rendering instead of GtkHTML2.
+	
+	* src/yelp-html-gtkhtml2: Renamed from yelp-html.c
+
+	* src/yelp-html.c: Moved to yelp-html-gtkhtml2.c
+
+	* src/Makefile.am (html_widget_impl): check for the correct
+	  html-widget implementation.
+
+	* configure.in: 
+	- added --with-html-widget switch which controls if GtkHTML1 or
+	  GtkHTML2 should be used. Default is GtkHTML2
+	- Check for gtkhtml1 libraries and headers if that library should
+	  be used.
+	- Removed bzip2-check, left over from when I tried to merge
+	  man2html into yelp.
+
 2002-05-18  Richard Hult  <rhult@codefactory.se>
 
 	* src/yelp-window.c: Use stock item for about menu item. 
