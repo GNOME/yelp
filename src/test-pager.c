@@ -29,7 +29,7 @@
 #include "yelp-pager.h"
 #include "yelp-db-pager.h"
 #include "yelp-man-pager.h"
-#include "yelp-theme.h"
+#include "yelp-settings.c"
 #include "yelp-toc-pager.h"
 #include "yelp-utils.h"
 
@@ -40,6 +40,8 @@ static void    pager_page_cb         (YelpPager    *pager,
 static void    pager_finish_cb       (YelpPager    *pager);
 static void    pager_cancel_cb       (YelpPager    *pager);
 static void    pager_error_cb        (YelpPager    *pager);
+
+gboolean main_running = TRUE;
 
 gint 
 main (gint argc, gchar **argv) 
@@ -57,7 +59,7 @@ main (gint argc, gchar **argv)
 			GNOME_PROGRAM_STANDARD_PROPERTIES,
 			NULL);
     yelp_toc_pager_init ();
-    yelp_theme_init ();
+    yelp_settings_init ();
 
     doc_info = yelp_doc_info_get (argv[1]);
 
@@ -66,11 +68,11 @@ main (gint argc, gchar **argv)
 	return -1;
     }
 
-    switch (doc_info->type) {
-    case YELP_TYPE_DOCBOOK_XML:
+    switch (yelp_doc_info_get_type (doc_info)) {
+    case YELP_DOC_TYPE_DOCBOOK_XML:
 	pager = yelp_db_pager_new (doc_info);
 	break;
-    case YELP_TYPE_MAN:
+    case YELP_DOC_TYPE_MAN:
 	pager = yelp_man_pager_new (doc_info);
 	break;
     default:

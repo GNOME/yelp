@@ -195,10 +195,12 @@ man_pager_process (YelpPager *pager)
 
     params[i++] = "stylesheet_path";
     params[i++] = "\"file://" MAN_STYLESHEET_PATH "/\"";
+    /*
     params[i++] = "color_gray_background";
     params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BACKGROUND);
     params[i++] = "color_gray_border";
     params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BORDER);
+    */
     params[i++] = NULL;
 
     stylesheet = xsltParseStylesheetFile (MAN_STYLESHEET);
