@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-02-28 18:03+0100\n"
-"PO-Revision-Date: 2002-02-28 18:07+0100\n"
+"POT-Creation-Date: 2002-03-01 10:36+0100\n"
+"PO-Revision-Date: 2002-03-01 10:36+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -164,6 +164,26 @@ msgid "/File/_Quit"
 msgstr "/Plik/Za_kończ"
 
 #: src/yelp-window.c:1
+msgid "/_Go"
+msgstr "/P_rzejście"
+
+#: src/yelp-window.c:1
+msgid "/Go/_Back"
+msgstr "/P_rzejście/_Wstecz"
+
+#: src/yelp-window.c:1
+msgid "/Go/_Forward"
+msgstr "/P_rzejście/_Naprzód"
+
+#: src/yelp-window.c:1
+msgid "/Go/_Home"
+msgstr "/P_rzejście/P_oczątek"
+
+#: src/yelp-window.c:1
+msgid "/Go/_Index"
+msgstr "/P_rzejście/_Indeks"
+
+#: src/yelp-window.c:1
 msgid "/_Help"
 msgstr "/Pomo_c"
 
@@ -176,20 +196,40 @@ msgid "Help Browser"
 msgstr "Przeglądarka pomocy"
 
 #: src/yelp-window.c:1
+msgid "translator_credits"
+msgstr "GNOME PL Team <translators@gnome.pl>"
+
+#: src/yelp-window.c:1
 msgid "Help Browser for GNOME 2.0"
 msgstr "Przeglądarka pomocy dla GNOME 2.0"
+
+#: src/yelp-window.c:1
+msgid "Back"
+msgstr "Wstecz"
 
 #: src/yelp-window.c:1
 msgid "Show previous page in history"
 msgstr "Wyświetla poprzednią stronę z historii"
 
 #: src/yelp-window.c:1
+msgid "Forward"
+msgstr "Naprzód"
+
+#: src/yelp-window.c:1
 msgid "Show next page in history"
 msgstr "Wyświetla następną stronę z historii"
 
 #: src/yelp-window.c:1
+msgid "Home"
+msgstr "Początek"
+
+#: src/yelp-window.c:1
 msgid "Go to home view"
 msgstr "Przechodzi do widoku początkowego"
+
+#: src/yelp-window.c:1
+msgid "Index"
+msgstr "Indeks"
 
 #: src/yelp-window.c:1
 msgid "Search in the index"
