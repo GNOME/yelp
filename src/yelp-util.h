@@ -44,6 +44,8 @@ GNode *  yelp_util_find_toplevel            (GNode         *doc_tree,
 GNode *  yelp_util_find_node_from_uri       (GNode         *doc_tree,
 					     const gchar   *uri);
 
-gchar *  yelp_util_extract_docpath_from_uri (const gchar   *uri);
+gchar *  yelp_util_extract_docpath_from_uri (const gchar   *uri,
+					     gboolean       add_ghelp);
+const gchar *  yelp_util_find_anchor_in_uri (const gchar   *str_uri);
 
 #endif /* __YELP_UTIL_H__ */

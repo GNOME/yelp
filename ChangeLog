@@ -1,3 +1,18 @@
+2002-03-23  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-util.c:
+	(yelp_util_extract_docpath_from_uri): added an argument if we want
+	  the return docpath to be prepended with "ghelp:" or not.
+	(yelp_util_find_anchor_in_uri): added/impl.
+
+	* src/yelp-scrollkeeper.c (ys_parse_toc_section): use strstrip
+	  instead of strchomp to clean up the name.
+
+	* src/yelp-html.c:
+	(yh_link_clicked_cb): also jump if the relative reference is ?foo
+	(yelp_html_open_uri): don't reload the page if it's the same as
+	  already showing.
+
 2002-03-20  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-index.c (set_relation): style-fixes.

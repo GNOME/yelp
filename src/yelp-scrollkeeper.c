@@ -288,7 +288,7 @@ ys_parse_toc_section (GNode       *parent,
 		return;
 	}
 
-	g_strchomp (name);
+	g_strstrip (name);
 
 	xml_str = xmlGetProp (xml_node, "linkid");
 	
@@ -298,11 +298,6 @@ ys_parse_toc_section (GNode       *parent,
 		xmlFree (xml_str);
 	}
 	
-/* 	if (link) { */
-/* 		uri = gnome_vfs_uri_resolve_relative (base_uri, link); */
-/* 	} else { */
-/* 	} */
-
         node = g_node_append_data (parent, 
                                    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
                                                      name, 

@@ -72,7 +72,8 @@ enum {
 	LAST_SIGNAL
 };
 
-static gint signals[LAST_SIGNAL] = { 0 };
+static gint        signals[LAST_SIGNAL] = { 0 };
+static GHashTable *cache_table = NULL;
 
 struct _YelpHtmlPriv {
         HtmlDocument *doc;
@@ -150,6 +151,10 @@ yh_class_init (YelpHtmlClass *klass)
 			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
 			      G_TYPE_NONE,
 			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+	
+	if (cache_table == NULL) {
+		cache_table = g_hash_table_new (g_str_hash, g_str_equal);
+	}
 }
 
 
@@ -159,7 +164,7 @@ yh_async_close_cb (GnomeVFSAsyncHandle *handle,
 		   gpointer             callback_data)
 {
 	StreamData *sdata;
-	
+
 	d(puts(G_GNUC_FUNCTION));
 
 	sdata = (StreamData *) callback_data;
@@ -316,7 +321,7 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 	handled = FALSE;
 	
 	/* If this is a relative reference. Shortcut reload. */
-	if (url && url[0] == '#') {
+	if (url && (url[0] == '#' || url[0] == '?')) {
 		html_view_jump_to_anchor (HTML_VIEW (html),
  					  &url[1]);
 		handled = TRUE;
@@ -341,7 +346,7 @@ yelp_html_new (void)
 		gint len;
 		gchar *text = "<html><body bgcolor=\"white\"><h1>Yelp</h1></body></html>";
 		len = strlen (text);
-		
+
 		html_document_write_stream (view->priv->doc, text, len);
 	}
 	
@@ -359,7 +364,7 @@ yelp_html_open_uri (YelpHtml    *view,
         YelpHtmlPriv *priv;
         StreamData   *sdata;
 	GnomeVFSURI  *uri;
-	const char   *fragment;
+	gchar        *docpath;
 	
         d(puts(G_GNUC_FUNCTION));
 	
@@ -368,18 +373,32 @@ yelp_html_open_uri (YelpHtml    *view,
 
         priv = view->priv;
 
-	d(g_print ("Trying to open: %s\n", str_uri));
-	
+	docpath = yelp_util_extract_docpath_from_uri (str_uri, TRUE);
+
+	if (!reference) {
+		reference = yelp_util_find_anchor_in_uri (str_uri);
+	}
+
+	if (!strcmp (priv->base_uri, docpath)) {
+		/* Same document that are already shown in this view */
+		/* Just jump if we have an anchor */
+		if (reference) {
+			html_view_jump_to_anchor (HTML_VIEW (view),
+						  reference);
+		}
+
+		return;
+	}
+
+	/* New document needs to be read. */
+	g_free (priv->base_uri);
+	priv->base_uri = g_strdup (docpath);
+
         html_document_clear (priv->doc);
         html_document_open_stream (priv->doc, "text/html");
 
-	gtk_adjustment_set_value (
+ 	gtk_adjustment_set_value ( 
 		gtk_layout_get_vadjustment (GTK_LAYOUT (view)), 0);
-
-	if (strcmp (priv->base_uri, str_uri)) {
-		g_free (priv->base_uri);
-		priv->base_uri = g_strdup (str_uri);
-	}
 
 	sdata          = g_new0 (StreamData, 1);
 	sdata->view    = view;
@@ -388,22 +407,15 @@ yelp_html_open_uri (YelpHtml    *view,
 	
 	priv->connections = g_slist_prepend (priv->connections, sdata);
 
-	if (reference) {
- 		gchar *tmp_uri = g_strconcat (str_uri, reference, NULL);
-		uri = gnome_vfs_uri_new (tmp_uri);
-		g_free (tmp_uri);
-	} else {
-		uri = gnome_vfs_uri_new (str_uri);
-	}
-
+	uri = gnome_vfs_uri_new (docpath);
+	
 	if (reference) {
 		sdata->anchor = g_strdup (reference);
-	} else if (uri) {
-		fragment = gnome_vfs_uri_get_fragment_identifier (uri);
-		if (fragment) {
-			sdata->anchor = g_strdup (fragment);
-		}
 	}
+
+	d(g_print ("Trying to open: %s[%s]\n", docpath, reference));
+
+	/* FIXME: Implement some cache */
 	
 	gnome_vfs_async_open_uri (&sdata->handle,
 				  uri,
@@ -413,7 +425,7 @@ yelp_html_open_uri (YelpHtml    *view,
 				  sdata);
 
 	gnome_vfs_uri_unref (uri);
-
+	
 	html_stream_set_cancel_func (sdata->stream, 
 				     yh_stream_cancel, 
 				     sdata);
