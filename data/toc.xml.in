@@ -1,42 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="toc.xml.in.content/toc.css" type="text/css"?>
-<!DOCTYPE toc [
-<!ELEMENT toc (_title?, category*, toc*) >
-<!ATTLIST toc id ID #REQUIRED >
-<!ELEMENT _title (#PCDATA) >
-<!ELEMENT category (#PCDATA) >
-]>
 <toc id="index">
 	<_title>Help Contents</_title>
 
 	<toc id="Desktop">
 		<_title>Desktop</_title>
 
-		<toc id="GNOME">
-			<_title>GNOME</_title>
-
-			<category>GNOME</category>
-			<category>GNOME|Core Desktop</category>
-			<category>GNOME|Desktop</category>
-			<category>GNOME|Applets</category>
-			<category>GNOME|Applets|Amusement</category>
-			<category>GNOME|Applets|Clock</category>
-			<category>GNOME|Applets|Monitors</category>
-			<category>GNOME|Applets|Multimedia</category>
-			<category>GNOME|Applets|Network</category>
-			<category>GNOME|Applets|Utility</category>
-			<category>GNOME|Applications</category>
-			<category>GNOME|Utilities</category>
-			<category>GNOME|Development</category>
-			<category>GNOME|Development|Applications</category>
-			<category>GNOME|Development|Introductory</category>
-			<category>GNOME|Development|Tutorials</category>
-			<category>GNOME|Development|White Papers</category>
-			<category>GNOME|Graphics</category>
-			<category>GNOME|Settings</category>
-			<category>GNOME|System</category>
-			<category>GNOME|Other</category>
-		</toc>
+		<category>GNOME</category>
+		<category>GNOME|Core Desktop</category>
+		<category>GNOME|Desktop</category>
+		<category>GNOME|Applets</category>
+		<category>GNOME|Applets|Amusement</category>
+		<category>GNOME|Applets|Clock</category>
+		<category>GNOME|Applets|Monitors</category>
+		<category>GNOME|Applets|Multimedia</category>
+		<category>GNOME|Applets|Network</category>
+		<category>GNOME|Applets|Utility</category>
+		<category>GNOME|Graphics</category>
+		<category>GNOME|Settings</category>
+		<category>GNOME|System</category>
+		<category>GNOME|Other</category>
 
 		<toc id="KDE">
 			<_title>KDE</_title>
@@ -48,6 +31,8 @@
 
 	<toc id="Applications">
 		<_title>Applications</_title>
+
+		<category>GNOME|Applications</category>
 
 		<toc id="Games">
 			<_title>Games and Entertainment</_title>
@@ -200,6 +185,7 @@
 			<category>Applications|Utilities|Terminals</category>
 			<category>Applications|Utilities|Text Utilities</category>
 			<category>Applications|Utilities|Other</category>
+			<category>GNOME|Utilities</category>
 		</toc>
 		
 		<toc id="X">
@@ -221,6 +207,11 @@
 
 		<category>Development</category>
 		<category>Development|Databases</category>
+		<category>GNOME|Development</category>
+		<category>GNOME|Development|Applications</category>
+		<category>GNOME|Development|Introductory</category>
+		<category>GNOME|Development|Tutorials</category>
+		<category>GNOME|Development|White Papers</category>
 
 		<toc id="Tools">
 			<_title>Development Tools</_title>

@@ -1,5 +1,12 @@
 2003-12-02  Shaun McCance  <shaunm@gnome.org>
 
+	* data/toc.xml.in:
+	- Removed the DOCTYPE, because it was passing straight through intltool
+	  and the resultant toc.xml had an incorrent DOCTYPE.
+	- Rearranged the menu a bit.
+
+2003-12-02  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-db-pager.c:
 	- Don't require top element id to be index.
 
