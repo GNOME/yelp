@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-04 23:17+0100\n"
-"PO-Revision-Date: 2005-02-04 20:10+0100\n"
+"POT-Creation-Date: 2005-02-06 15:32+0100\n"
+"PO-Revision-Date: 2005-02-06 15:32+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "OpenSSL-programmer"
 
 #: ../data/man.xml.in.h:11
 msgid "OpenSSL Configuration"
-msgstr "OpenSSL-konfiguration"
+msgstr "OpenSSL-opsætning"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Overviews"
@@ -100,7 +100,7 @@ msgstr "X11-programmer"
 
 #: ../data/man.xml.in.h:20
 msgid "X11 Configuration"
-msgstr "X11-konfiguration"
+msgstr "X11-opsætning"
 
 #: ../data/man.xml.in.h:21
 msgid "X11 Devices"
@@ -337,8 +337,8 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
-"Filen ‘%s’ kunne ikke læses. Enten eksisterede filen ikke, eller den er ikke "
-"gyldigt XML."
+"Filen \"%s\" kunne ikke læses. Enten eksisterede filen ikke, eller den "
+"består ikke af gyldigt XML."
 
 #: ../src/yelp-db-pager.c:486
 msgid "Unknown Section"
@@ -382,8 +382,8 @@ msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
-"Filen ‘%s’ kunne ikke læses og afkodes. Filen kan være komprimeret i et ikke-"
-"understøttet format."
+"Filen \"%s\" kunne ikke læses og afkodes. Filen kan være komprimeret i et "
+"ikke-understøttet format."
 
 #: ../src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -408,7 +408,7 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
-"Filen ‘%s’ kunne ikke læses. Enten eksisterede filen ikke, eller den er "
+"Filen \"%s\" kunne ikke læses. Enten eksisterede filen ikke, eller den er "
 "formateret forkert."
 
 #: ../src/yelp-pager.c:120
@@ -464,8 +464,8 @@ msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
-"Indholdsfortegnelsen kunne ikke indlæses. Filen ‘%s’ enten mangler eller er "
-"ikke gyldigt XML."
+"Indholdsfortegnelsen kunne ikke indlæses. Filen \"%s\" enten mangler eller "
+"består ikke af gyldigt XML."
 
 #: ../src/yelp-toc-pager.c:878
 #, c-format
@@ -473,8 +473,8 @@ msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
-"Indholdsfortegnelsen kunne ikke behandles. Filen ‘%s’ enten mangler eller er "
-"ikke et gyldigt XSLT-stilark."
+"Indholdsfortegnelsen kunne ikke behandles. Filen \"%s\" enten mangler eller "
+"er ikke et gyldigt XSLT-stilark."
 
 #: ../src/yelp-toc-pager.c:1029 ../src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -617,7 +617,7 @@ msgstr "Adressen på filen er ugyldig."
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr "Adressen ‘%s’ er ugyldig eller peger ikke på en fil."
+msgstr "Adressen \"%s\" er ugyldig eller peger ikke på en fil."
 
 #: ../src/yelp-window.c:786 ../src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
@@ -625,7 +625,7 @@ msgstr "Man-sider understøttes ikke i denne version."
 
 #: ../src/yelp-window.c:796 ../src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
-msgstr "GNU info-sider understøttes ikke i denne version."
+msgstr "GNU-info-sider understøttes ikke i denne version."
 
 #: ../src/yelp-window.c:806
 msgid ""
@@ -653,7 +653,7 @@ msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
-"En transformationskontekst kunne ikke oprettes for filen ‘%s’. Formatet "
+"En transformationskontekst kunne ikke oprettes for filen \"%s\". Formatet "
 "understøttes muligvis ikke."
 
 #: ../src/yelp-window.c:1187 ../src/yelp-window.c:1601
@@ -664,9 +664,9 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
-"Afsnittet ‘%s’ eksisterer ikke i dette dokument. Hvis du blev dirigeret til "
-"dette afsnit fra en \"Hjælp\"-knap i et program, så rapportér venligst dette "
-"til vedligeholderne af det program."
+"Afsnittet \"%s\" eksisterer ikke i dette dokument. Hvis du blev dirigeret "
+"til dette afsnit fra en \"Hjælp\"-knap i et program, så rapportér venligst "
+"dette til vedligeholderne af det program."
 
 #: ../src/yelp-window.c:1302
 #, c-format
@@ -674,7 +674,7 @@ msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"Filen ‘%s’ kunne ikke læses. Filen kan mangle, eller du har måske ikke "
+"Filen \"%s\" kunne ikke læses. Filen kan mangle, eller du har måske ikke "
 "rettigheder til at læse den."
 
 #: ../src/yelp-window.c:1336
@@ -703,7 +703,7 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
-"Filen ‘%s’ kunne ikke læses. Enten eksisterer filen ikke, eller den er "
+"Filen \"%s\" kunne ikke læses. Enten eksisterer filen ikke, eller den er "
 "formateret forkert."
 
 #: ../src/yelp-xslt-pager.c:215 ../src/yelp-xslt-pager.c:228
@@ -712,7 +712,7 @@ msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
-"Dokumentet ‘%s’  kunne ikke behandles. Filen ‘%s’ enten mangler eller er "
+"Dokumentet \"%s\"  kunne ikke behandles. Filen \"%s\" enten mangler eller er "
 "ikke et gyldigt XSLT-stilark."
 
 #: ../yelp.desktop.in.in.h:1
