@@ -240,7 +240,7 @@ toc_pager_process (YelpPager *pager)
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
     priv->dir_pending = g_slist_prepend (priv->dir_pending,
-					 DATADIR "/omf");
+					 g_strdup (DATADIR "/omf"));
 
     priv->pending_func = (ProcessFunction) process_dir_pending;
 

@@ -1,3 +1,12 @@
+2003-12-03  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Patch from Joe Markus Clarke not to free un-malloc'd memory.
+
+	* src/yelp-toc-pager.c:
+	- Fixed problem with un-malloc'd memory being free found by
+	  Joe Markus Clarke.
+
 2003-12-02  Shaun McCance  <shaunm@gnome.org>
 
 	* src/.cvsignore:

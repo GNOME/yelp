@@ -544,9 +544,9 @@ xml_get_title (xmlNodePtr node)
     xmlNodePtr cur;
 
     if (xml_is_info (node))
-	title = _("Titlepage");
+	title = g_strdup (_("Titlepage"));
     else if (node->parent->type == XML_DOCUMENT_NODE)
-	title = _("Contents");
+	title = g_strdup (_("Contents"));
     else {
 	for (cur = node->children; cur; cur = cur->next) {
 	    if (!xmlStrcmp (cur->name, (xmlChar *) "title")) {
@@ -564,7 +564,7 @@ xml_get_title (xmlNodePtr node)
     }
 
     if (!title)
-	title = _("Unknown");
+	title = g_strdup (_("Unknown"));
 
     return title;
 }
