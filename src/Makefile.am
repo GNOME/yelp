@@ -66,7 +66,6 @@ test_pager_SOURCES =							\
 test_pager_LDADD = @YELP_LIBS@ $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
 
 test_uri_SOURCES =					\
-	yelp-uri.c	yelp-uri.h			\
 	yelp-utils.c	yelp-utils.h			\
 	test-uri.c
 

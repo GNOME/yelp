@@ -88,8 +88,6 @@ main (int argc, char **argv)
 
     gnome_vfs_init ();
 
-    yelp_utils_init ();
-
     for (i = 1; i < argc; i++) {
 	if (i != 1)
 	    printf ("\n");

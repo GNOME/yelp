@@ -1,3 +1,12 @@
+2004-09-29  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/test-uri.c:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	- Removed the yelp-uri dependancy from yelp-utils
+	- Removed all the init and mutex stuff
+
 Wed Sep 29 00:53:03 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* src/Makefile.am: Make the Gecko stuff build.

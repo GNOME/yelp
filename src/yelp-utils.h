@@ -23,8 +23,6 @@
 #ifndef __YELP_UTILS_H__
 #define __YELP_UTILS_H__
 
-#include "yelp-uri.h"
-
 typedef struct _YelpDocumentInfo YelpDocumentInfo;
 typedef struct _YelpDocumentPage YelpDocumentPage;
 
@@ -55,8 +53,6 @@ struct _YelpDocumentPage {
     gchar *next_id;
     gchar *toc_id;
 };
-
-void                 yelp_utils_init            (void);
 
 YelpDocumentInfo *   yelp_document_info_new     (gchar            *uri);
 YelpDocumentInfo *   yelp_document_info_get     (gchar            *uri);

@@ -31,30 +31,18 @@
 #include <libgnome/gnome-program.h>
 
 #include "yelp-utils.h"
-#include "yelp-uri.h"
 
 #include <string.h>
 
 #define d(x)
 
 GHashTable *document_info_table;
-GMutex     *document_info_mutex;
 
 static gchar *           convert_ghelp_uri    (gchar   *uri);
 static gchar *           convert_man_uri      (gchar   *uri);
 static gchar *           convert_info_uri     (gchar   *uri);
 static YelpDocumentType  get_document_type    (gchar   *uri);
 
-void
-yelp_utils_init (void)
-{
-    document_info_mutex = g_mutex_new ();
-    document_info_table =
-	g_hash_table_new_full (g_str_hash,
-			       g_str_equal,
-			       g_free,
-			       (GDestroyNotify) yelp_document_info_free);
-}
 
 YelpDocumentInfo *
 yelp_document_info_new (gchar *uri)
@@ -104,7 +92,12 @@ yelp_document_info_get (gchar *uri)
 {
     YelpDocumentInfo *doc;
 
-    g_mutex_lock (document_info_mutex);
+    if (!document_info_table)
+	document_info_table =
+	    g_hash_table_new_full (g_str_hash,
+				   g_str_equal,
+				   g_free,
+				   (GDestroyNotify) yelp_document_info_free);
 
     doc = (YelpDocumentInfo *) g_hash_table_lookup (document_info_table, uri);
 
@@ -131,7 +124,6 @@ yelp_document_info_get (gchar *uri)
 	}
     }
 
-    g_mutex_unlock (document_info_mutex);
     return doc;
 }
 
@@ -177,13 +169,13 @@ get_document_type (gchar *uri)
     g_return_val_if_fail (mime_type != NULL, YELP_TYPE_ERROR);
 
     if (g_str_equal (mime_type, "text/xml"))
-	type = YELP_URI_TYPE_DOCBOOK_XML;
+	type = YELP_TYPE_DOCBOOK_XML;
     else if (g_str_equal (mime_type, "text/sgml"))
-	type = YELP_URI_TYPE_DOCBOOK_SGML;
+	type = YELP_TYPE_DOCBOOK_SGML;
     else if (g_str_equal (mime_type, "text/html"))
-	type = YELP_URI_TYPE_HTML;
+	type = YELP_TYPE_HTML;
     else
-	type = YELP_URI_TYPE_EXTERNAL;
+	type = YELP_TYPE_EXTERNAL;
 
     g_free (mime_type);
     return type;
