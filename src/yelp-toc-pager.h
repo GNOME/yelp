@@ -51,6 +51,9 @@ struct _YelpTocPagerClass {
 GType           yelp_toc_pager_get_type     (void);
 
 void            yelp_toc_pager_init         (void);
-YelpPager *     yelp_toc_pager_get          (void);
+YelpTocPager *  yelp_toc_pager_get          (void);
+
+void            yelp_toc_pager_pause        (YelpTocPager *pager);
+void            yelp_toc_pager_unpause      (YelpTocPager *pager);
 
 #endif /* __YELP_TOC_PAGER_H__ */

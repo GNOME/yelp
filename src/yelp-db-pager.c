@@ -36,6 +36,7 @@
 #include <libxslt/xsltutils.h>
 
 #include "yelp-db-pager.h"
+#include "yelp-toc-pager.h"
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
@@ -69,8 +70,11 @@ static void          db_pager_class_init   (YelpDBPagerClass *klass);
 static void          db_pager_init         (YelpDBPager      *pager);
 static void          db_pager_dispose      (GObject          *gobject);
 
-gboolean             db_pager_process      (YelpPager   *pager);
+void                 db_pager_error        (YelpPager   *pager);
 void                 db_pager_cancel       (YelpPager   *pager);
+void                 db_pager_finish       (YelpPager   *pager);
+
+gboolean             db_pager_process      (YelpPager   *pager);
 gchar *              db_pager_resolve_uri  (YelpPager   *pager,
 					    YelpURI     *uri);
 const GtkTreeModel * db_pager_get_sections (YelpPager   *pager);
@@ -127,8 +131,11 @@ db_pager_class_init (YelpDBPagerClass *klass)
 
     object_class->dispose = db_pager_dispose;
 
-    pager_class->process      = db_pager_process;
+    pager_class->error        = db_pager_error;
     pager_class->cancel       = db_pager_cancel;
+    pager_class->finish       = db_pager_finish;
+
+    pager_class->process      = db_pager_process;
     pager_class->resolve_uri  = db_pager_resolve_uri;
     pager_class->get_sections = db_pager_get_sections;
 }
@@ -201,6 +208,8 @@ db_pager_process (YelpPager *pager)
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
 
     g_object_ref (pager);
+
+    yelp_toc_pager_pause (yelp_toc_pager_get ());
 
     ctxt = xmlCreateFileParserCtxt (uri_str);
     ctxt->replaceEntities = TRUE;
@@ -283,9 +292,22 @@ db_pager_process (YelpPager *pager)
 }
 
 void
+db_pager_error (YelpPager   *pager)
+{
+    yelp_toc_pager_unpause (yelp_toc_pager_get ());
+}
+
+void
 db_pager_cancel (YelpPager *pager)
 {
-    // FIXME
+    yelp_toc_pager_unpause (yelp_toc_pager_get ());
+    // FIXME: actually cancel
+}
+
+void
+db_pager_finish (YelpPager   *pager)
+{
+    yelp_toc_pager_unpause (yelp_toc_pager_get ());
 }
 
 gchar *

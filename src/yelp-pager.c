@@ -137,7 +137,8 @@ pager_class_init (YelpPagerClass *klass)
     signals[FINISH] = g_signal_new
 	("finish",
 	 G_TYPE_FROM_CLASS (klass),
-	 G_SIGNAL_RUN_FIRST, 0,
+	 G_SIGNAL_RUN_LAST,
+	 G_STRUCT_OFFSET (YelpPagerClass, finish),
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
@@ -145,7 +146,8 @@ pager_class_init (YelpPagerClass *klass)
     signals[CANCEL] = g_signal_new
 	("cancel",
 	 G_TYPE_FROM_CLASS (klass),
-	 G_SIGNAL_RUN_FIRST, 0,
+	 G_SIGNAL_RUN_LAST,
+	 G_STRUCT_OFFSET (YelpPagerClass, cancel),
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
@@ -153,7 +155,8 @@ pager_class_init (YelpPagerClass *klass)
     signals[ERROR] = g_signal_new
 	("error",
 	 G_TYPE_FROM_CLASS (klass),
-	 G_SIGNAL_RUN_FIRST, 0,
+	 G_SIGNAL_RUN_LAST,
+	 G_STRUCT_OFFSET (YelpPagerClass, error),
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);

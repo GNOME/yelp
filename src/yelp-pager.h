@@ -56,9 +56,12 @@ struct _YelpPager {
 struct _YelpPagerClass {
     GObjectClass    parent_class;
 
+    void                 (*error)        (YelpPager    *pager);
+    void                 (*cancel)       (YelpPager    *pager);
+    void                 (*finish)       (YelpPager    *pager);
+
     /* Virtual Functions */
     gboolean             (*process)      (YelpPager    *pager);
-    void                 (*cancel)       (YelpPager    *pager);
     gchar *              (*resolve_uri)  (YelpPager    *pager,
 					  YelpURI      *uri);
     const GtkTreeModel * (*get_sections) (YelpPager *pager);

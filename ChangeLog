@@ -1,3 +1,19 @@
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Implement pausing of the TocPager.
+	- Add default handlers for error, cancel, and finish.
+
+	* src/yelp-toc-pager.c:
+	* src/yelp-toc-pager.h:
+	- Implement pausing of the TocPager.
+	- More work on reading OMF files.
+
+	* src/yelp-window.c:
+	- Implement pausing of the TocPager.
+
 2003-11-17  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-toc-pager.c:

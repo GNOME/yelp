@@ -45,14 +45,18 @@ struct _YelpTocPagerPriv {
     GHashTable       *category_hash;
 
     xmlParserCtxtPtr  parser;
+
+    gint              pause_count;
+    GtkFunction       unpause_func;
 };
 
 struct _OMF {
     xmlChar   *title;
     xmlChar   *description;
+    xmlChar   *seriesid;
 
     xmlChar   *language;
-    gint     lang_priority;
+    gint       lang_priority;
 
     xmlChar   *omf_file;
     xmlChar   *xml_file;
@@ -130,6 +134,9 @@ toc_pager_init (YelpTocPager *pager)
 
     priv->seriesid_hash = g_hash_table_new (g_str_hash, g_str_equal);
     priv->category_hash = g_hash_table_new (g_str_hash, g_str_equal);
+
+    priv->pause_count = 0;
+    priv->unpause_func = NULL;
 }
 
 static void
@@ -152,10 +159,29 @@ yelp_toc_pager_init (void)
     yelp_pager_start (YELP_PAGER (toc_pager));
 }
 
-YelpPager *
+YelpTocPager *
 yelp_toc_pager_get (void)
 {
-    return (YelpPager *) toc_pager;
+    return toc_pager;
+}
+
+void
+yelp_toc_pager_pause (YelpTocPager *pager)
+{
+    pager->priv->pause_count = pager->priv->pause_count + 1;
+}
+
+void
+yelp_toc_pager_unpause (YelpTocPager *pager)
+{
+    pager->priv->pause_count = pager->priv->pause_count - 1;
+
+    if (pager->priv->pause_count < 1 && pager->priv->unpause_func) {
+	gtk_idle_add_priority (G_PRIORITY_LOW,
+			       pager->priv->unpause_func,
+			       pager);
+	pager->priv->unpause_func = NULL;
+    }
 }
 
 /******************************************************************************/
@@ -165,8 +191,9 @@ toc_pager_process (YelpPager *pager)
 {
     toc_read_omf_dir (YELP_TOC_PAGER (pager), DATADIR"/omf");
 
-    gtk_idle_add ((GtkFunction) toc_process_pending,
-		  pager);
+    gtk_idle_add_priority (G_PRIORITY_LOW,
+			   (GtkFunction) toc_process_pending,
+			   pager);
     return FALSE;
 }
 
@@ -243,9 +270,10 @@ toc_process_pending (YelpPager *pager)
     xmlDocPtr  omf_doc;
     xmlNodePtr omf_cur;
     gint       lang_priority;
-    OMF       *omf = NULL;
+    OMF       *omf     = NULL;
+    OMF       *omf_old = NULL;
+    GList     *langs;
 
-    const GList      *langs = gnome_i18n_get_language_list ("LC_MESSAGES");
     YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
 
     first = priv->omf_pending;
@@ -290,14 +318,27 @@ toc_process_pending (YelpPager *pager)
 	    omf->description = xmlNodeGetContent (omf_cur);
 	    continue;
 	}
+	if (!xmlStrcmp (omf_cur->name, (xmlChar *) "relation")) {
+	    xmlChar *seriesid =
+		xmlGetProp (omf_cur, (const xmlChar *) "seriesid");
+
+	    if (seriesid) {
+		if (omf->seriesid)
+		    xmlFree (omf->seriesid);
+		omf->seriesid = seriesid;
+	    }
+	}
 	if (!xmlStrcmp (omf_cur->name, (xmlChar *) "language")) {
 	    if (omf->language)
 		xmlFree (omf->language);
 	    omf->language = xmlGetProp (omf_cur, (const xmlChar *) "code");
 
+	    /* The lang_priority of an OMF file is how early it appears in the
+	     * list of preferred languages for the user.  Low numbers are best.
+	     */
 	    lang_priority = 0;
-
-	    for (; langs != NULL; langs = langs->next) {
+	    langs = (GList *) gnome_i18n_get_language_list ("LC_MESSAGES");
+	    for ( ; langs != NULL; langs = langs->next) {
 		gchar *lang = langs->data;
 		lang_priority++;
 
@@ -311,7 +352,9 @@ toc_process_pending (YelpPager *pager)
 	    }
 
 	    if (!omf->lang_priority) {
-		// Not a language we want to display
+		/* If the language didn't match a user-preferred language,
+		 * omf->lang_priority doesn't get set, so is 0.
+		 */
 		omf_free (omf);
 		goto done;
 	    }
@@ -323,15 +366,45 @@ toc_process_pending (YelpPager *pager)
 	}
     }
 
+    /* If we have one with the same seriesid, use the one with
+     * the lowest lang_priority.
+     */
+    omf_old = g_hash_table_lookup (priv->seriesid_hash, omf->seriesid);
+    if (omf_old) {
+	if (omf_old->lang_priority < omf->lang_priority) {
+	    omf_free (omf);
+	    goto done;
+	} else {
+	    printf ("replacing %s with %s\n",
+		    omf_old->omf_file,
+		    omf->omf_file);
+	    g_hash_table_insert (priv->seriesid_hash,
+				       omf->seriesid,
+				       omf);
+	    omf_free (omf_old);
+	}
+    } else {
+	g_hash_table_insert (priv->seriesid_hash,
+				   omf->seriesid,
+				   omf);
+    }
+    
+    //    priv->seriesid_hash = g_hash_table_new (g_str_hash, g_str_equal);
+    //    priv->category_hash = g_hash_table_new (g_str_hash, g_str_equal);
+
  done:
     xmlFreeDoc (omf_doc);
     g_free (file);
     g_slist_free_1 (first);
 
-    if (priv->omf_pending)
-	return TRUE;
-    else
+    if (!priv->omf_pending)
 	return FALSE;
+    else if (priv->pause_count > 0) {
+	priv->unpause_func = (GtkFunction) toc_process_pending;
+	return FALSE;
+    }
+    else
+	return TRUE;
 }
 
 static void

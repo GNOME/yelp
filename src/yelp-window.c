@@ -44,6 +44,7 @@
 #include "yelp-html.h"
 #include "yelp-pager.h"
 #include "yelp-section.h"
+#include "yelp-toc-pager.h"
 #include "yelp-util.h"
 #include "yelp-window.h"
 
@@ -704,8 +705,10 @@ window_handle_pager_uri (YelpWindow *window,
 	     loading, loading);
 	yelp_html_close (priv->html_view);
 
+	yelp_toc_pager_pause (yelp_toc_pager_get ());
 	while (gtk_events_pending ())
 	    gtk_main_iteration ();
+	yelp_toc_pager_unpause (yelp_toc_pager_get ());
 
 	priv->page_handler =
 	    g_signal_connect (pager,
