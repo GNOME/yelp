@@ -162,6 +162,7 @@ main_start (gchar *url)
 	}
 	
 	main_open_new_window (yelp_base, url);
+	gdk_notify_startup_complete ();
 	
 	bonobo_object_release_unref (yelp_base, NULL);
 

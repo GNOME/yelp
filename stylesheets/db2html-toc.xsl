@@ -96,12 +96,12 @@
 		</a>
 		<xsl:choose>
 			<xsl:when test="title">
-				<xsl:text>&#160;</xsl:text>
-				<b><xsl:apply-templates select="title/node()"/></b>
+				<xsl:text>&#160;&#160;</xsl:text>
+				<xsl:apply-templates select="title/node()"/>
 			</xsl:when>
 			<xsl:when test="*[&is-info;]/title">
-				<xsl:text>&#160;</xsl:text>
-				<b><xsl:apply-templates select="*[&is-info;]/title/node()"/></b>
+				<xsl:text>&#160;&#160;</xsl:text>
+				<xsl:apply-templates select="*[&is-info;]/title/node()"/>
 			</xsl:when>
 		</xsl:choose>
 	</li>

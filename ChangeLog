@@ -1,5 +1,16 @@
 2003-12-29  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-db-pager.c:
+	- Transpose Titlepage and Contents.
+
+	* src/yelp-main.c:
+	- Handle startup notification.
+
+	* test/testdoc1/testdoc1.xml:
+	- Change to 4.1.2.  I need to fix this fiasco.  ~sigh~
+
+2003-12-29  Shaun McCance  <shaunm@gnome.org>
+
 	* test/testdoc1/testdoc1.xml:
 	- Put in a test for classsynopsis.
 

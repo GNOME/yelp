@@ -89,6 +89,7 @@
 		</xsl:call-template>
 	</xsl:param>
 	<xsl:choose>
+		<xsl:when test="$node/self::*[&is-info;]"/>
 		<xsl:when test="($node = /*)">
 			<xsl:if test="$generate_titlepage and $node/*[&is-info;]">
 				<xsl:value-of select="'titlepage'"/>

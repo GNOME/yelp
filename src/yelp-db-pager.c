@@ -533,8 +533,12 @@ walker_walk_xml (DBWalker *walker)
 	title = xml_get_title (walker->cur);
 
 	if (id) {
-	    gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
-				   &iter, walker->iter);
+	    if (xml_is_info (walker->cur))
+		gtk_tree_store_prepend (GTK_TREE_STORE (priv->sects),
+					&iter, walker->iter);
+	    else
+		gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
+				       &iter, walker->iter);
 
 	    gtk_tree_store_set (GTK_TREE_STORE (priv->sects),
 				&iter,

@@ -152,8 +152,6 @@
 	<xsl:call-template name="header"/>
 </xsl:template>
 
-
 <!-- ======================================================================= -->
-
 
 </xsl:stylesheet>

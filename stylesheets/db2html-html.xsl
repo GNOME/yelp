@@ -1,4 +1,19 @@
 <?xml version='1.0'?><!-- -*- Mode: fundamental; tab-width: 3 -*- -->
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY is-info "(
+	(name(.) = 'appendixinfo')			or (name(.) = 'articleinfo')    or
+	(name(.) = 'bibliographyinfo')	or (name(.) = 'bookinfo')       or
+	(name(.) = 'chapterinfo')			or (name(.) = 'glossaryinfo')   or
+	(name(.) = 'indexinfo')				or (name(.) = 'partinfo')       or
+	(name(.) = 'prefaceinfo')			or (name(.) = 'refentryinfo')   or
+	(name(.) = 'referenceinfo')		or (name(.) = 'refsect1info')   or
+	(name(.) = 'refsect2info')			or (name(.) = 'refsect3info')   or
+	(name(.) = 'refsectioninfo')		or (name(.) = 'sect1info')      or
+	(name(.) = 'sect2info')				or (name(.) = 'sect3info')      or
+	(name(.) = 'sect4info')				or (name(.) = 'sect5info')      or
+	(name(.) = 'sectioninfo')			or (name(.) = 'setinfo')        or
+	(name(.) = 'setindexinfo'))">
+]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
@@ -238,9 +253,19 @@ div[class="attribution"] {
 	<table width="100%" cellpadding="0" cellspacing="0">
 		<tr width="100%">
 			<td width="50%" style="text-align: left;">
-				<xsl:call-template name="xref">
-					<xsl:with-param name="linkend" select="$prev"/>
-				</xsl:call-template>
+				<xsl:choose>
+					<xsl:when test="$prev = 'titlepage'">
+						<xsl:call-template name="xref">
+							<xsl:with-param name="linkend" select="$prev"/>
+							<xsl:with-param name="target" select="/*/*[&is-info;]"/>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="xref">
+							<xsl:with-param name="linkend" select="$prev"/>
+						</xsl:call-template>
+					</xsl:otherwise>
+				</xsl:choose>
 			</td>
 			<td width="50%" style="text-align: right;">
 				<xsl:call-template name="xref">
@@ -273,9 +298,19 @@ div[class="attribution"] {
 	<table width="100%" cellpadding="0" cellspacing="0">
 		<tr width="100%">
 			<td width="40%" style="text-align: left;">
-				<xsl:call-template name="xref">
-					<xsl:with-param name="linkend" select="$prev"/>
-				</xsl:call-template>
+				<xsl:choose>
+					<xsl:when test="$prev = 'titlepage'">
+						<xsl:call-template name="xref">
+							<xsl:with-param name="linkend" select="$prev"/>
+							<xsl:with-param name="target" select="/*/*[&is-info;]"/>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="xref">
+							<xsl:with-param name="linkend" select="$prev"/>
+						</xsl:call-template>
+					</xsl:otherwise>
+				</xsl:choose>
 			</td>
 			<td width="20%" style="text-align: center;">
 				<xsl:if test="$top != ''">

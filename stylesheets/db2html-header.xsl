@@ -8,7 +8,14 @@
 <!-- header.prefix -->
 <xsl:template name="header.prefix">
 	<xsl:param name="node" select="."/>
-	<xsl:apply-templates mode="header.prefix.mode" select="$node"/>
+	<xsl:choose>
+		<xsl:when test="$node/@label">
+			<xsl:value-of select="$node/@label"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:apply-templates mode="header.prefix.mode" select="$node"/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <!-- header.prefix.named -->
@@ -365,7 +372,7 @@
 	</xsl:call-template>
 </xsl:template>
 
-<!-- == header.number.mode ================================================= -->
+<!-- == header.number ====================================================== -->
 
 <xsl:template name="header.number">
 	<xsl:param name="node" select="."/>

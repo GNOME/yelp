@@ -1,5 +1,17 @@
 2003-12-29  Shaun McCance  <shaunm@gnome.org>
 
+	* db2html-header.xsl
+	- Implement @label attribute.
+
+	* db2html-html.xsl:
+	* db2html-navbar.xsl:
+	- Fixes for prev/next links.
+
+	* db2html-toc.xsl:
+	- Deboldify section titles.
+
+2003-12-29  Shaun McCance  <shaunm@gnome.org>
+
 	* db2html-html.xsl:
 	- Put classsynopsis in a gray box.
 	- Monospace tt, since gtkhtml2 doesn't.
