@@ -155,4 +155,24 @@
   </l:context>
 </l:l10n>
 
+<!-- ************ Norwegian ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="no">
+  <l:gentext key="Title" text="Tittel"/>  
+  <l:gentext key="Author" text="Forfatter"/>
+  <l:gentext key="Authors" text="Forfattere"/>
+  <l:gentext key="Affiliation" text="Tilh&#248;righet"/>  
+  <l:gentext key="History" text="Historikk"/>  
+  <l:gentext key="Email" text="E-post"/>  
+  <l:gentext key="Publisher" text="Utgiver"/>
+  <l:gentext key="Date" text="Dato"/>
+  <l:gentext key="Next" text="Neste"/>
+  <l:gentext key="Previous" text="Forrige"/>
+  <l:gentext key="Contents" text="Innhold"/>
+
+  <l:context name="title">
+    <l:template name="bookinfo" text="Om dette dokumentet"/>
+    <l:template name="articleinfo" text="Om dette dokumentet"/>
+  </l:context>
+
+</l:l10n>
 </i18n>
