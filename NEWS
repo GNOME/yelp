@@ -1,3 +1,44 @@
+Changes in 2.5.4:
+-----------------
+* Massive amount of mind-numbing work in fixing various scrolling
+  issues, including pages loading at the bottom of the page (#131305)
+  and not scrolling to anchors (#93721).                  (Shaun McCance)
+* Build fix in yelp-window.c.                          (Mikael Hallendal)
+* Handle mailto: URIs correctly again.                    (Shaun McCance)
+* Fix double history problem on first page of a document. (Shaun McCance)
+* Fix history problem for any external links.             (Shaun McCance)
+* Some stylistic changes to the stylesheets.              (Shaun McCance)
+* Don't leak massive amounts of memory in yelp-window.c   (Shaun McCance)
+* Nicer automatic chunk depth determination.              (Shaun McCance)
+* Handle XInclude properly.                               (Shaun McCance)
+* Work around libxml2 bug (now fixed, but I don't want to depend
+  on that recent of a version) which caused the TOC not to get
+  loaded if there was a single bad OMF file.              (Shaun McCance)
+* Allow relative paths to file on the command line.       (Shaun McCance)
+* Updated translations:
+  az      (Mətin Əmirov)
+  cs      (Miloslav Trmac)
+  da      (Ole Laursen
+  de      (Christian Neumair)
+  el      (Kostas Papadimas)
+  es      (Francisco Javier F. Serrador)
+  fr      (Christophe Merlet)
+  ga      (Alastair McKinstry)
+  hu      (Andras Timar)
+  ja      (Takeshi AIHANA)
+  ko      (Changwoo Ryu)
+  lt      (Žygimantas Beručka)
+  ms      (Hasbullah Bin Pit)
+  nl      (Vincent van Adrighem)
+  no      (Kjartan Maraas)
+  pl      (Artur Flinta)
+  pt      (Duarte Loreto)
+  pt_BR   (Estêvão Samuel Procópio)
+  sq      (Laurent Dhima)
+  sr      (Danilo Šegan)
+  sr@Latn (Danilo Šegan)
+  sv      (Christian Rose)
+
 Changes in 2.5.3:
 -----------------
 * Previous and Next changed to Previous Page and Next Page  (Shaun McCance)
@@ -41,7 +82,6 @@ Changes in 2.5.3:
 Changes in 2.5.2.1:
 -------------------
 * Fix the intltool 0.28 build breakage
-
 
 Changes in 2.5.2:
 -----------------

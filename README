@@ -11,13 +11,12 @@ Requirments:
 ------------
 
 * GNOME 2.0 ( >= 2.0.2 )
-* A working ScrollKeeper installation ( > 0.3.6 ).
+* A working ScrollKeeper installation ( > 0.3.6 )
+* Version 4.1.2 of the DocBook XML DTD
 
-Note that Yelp does not currently require a separate installation of
-Norm Walsh's DocBook stylesheets, or an installation of XML catalogs.
-Though Yelp's XSLT stylesheets import Norm Walsh's, Yelp ships its
-own copy of the 1.48 version of those stylesheets, as well as a copy
-of the DocBook 4.1.2 DTD.
+Note that Yelp does not require the DocBook XSLT stylesheets.  Yelp
+uses its own custom stylesheets, which are faster and allow better
+integration with Yelp.
 
 
 Reporting bugs:

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-01-12 18:01-0600\n"
+"POT-Creation-Date: 2004-02-04 17:19-0600\n"
 "PO-Revision-Date: 2003-12-07 17:55-0600\n"
 "Last-Translator: Paisa Seeluangsawat <paisa@colorado.edu>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
@@ -40,7 +40,7 @@ msgstr "สภาพแวดล้อมการพัฒนาโปรแกรม"
 msgid "Development Tools"
 msgstr "เครื่องมือพัฒนาโปรแกรม"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "ตัวแก้ไข"
 
@@ -137,24 +137,26 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "โรงงาน Yelp"
 
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr ""
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:616
+#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:372
 #, fuzzy
 msgid "Contents"
 msgstr "เนื้อหาวิธิใช้"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr ""
 
@@ -269,134 +271,139 @@ msgstr ""
 msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, fuzzy, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "เรียกใช้ Yelp ไม่สำเร็จ: '%s'"
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "ประเภท"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "เอกสาร"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:248
 msgid "/_File"
 msgstr "/แฟ้ม (_F)"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:249
 msgid "/File/_New window"
 msgstr "/แฟ้ม/หน้าต่างใหม่ (_N)"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:252
 msgid "/File/_Close window"
 msgstr "/แฟ้ม/ปิดหน้าต่าง (_C)"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:256
 msgid "/_Edit"
 msgstr "/แก้ไข (_E)"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:257
 #, fuzzy
 msgid "/Edit/_Find..."
 msgstr "/แก้ไข/หาในหน้านี้ (_F)..."
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:260
 #, fuzzy
 msgid "/Edit/Find Ne_xt"
 msgstr "/แก้ไข/หาอีก (_F)..."
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:263
 #, fuzzy
 msgid "/Edit/Find Pre_vious"
 msgstr "/แก้ไข/หาอีก (_F)..."
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:267
 msgid "/_Go"
 msgstr "/ไป (_G)"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:268
 msgid "/Go/_Back"
 msgstr "/ไป/ข้างหลัง (_B)"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:271
 msgid "/Go/_Forward"
 msgstr "/ไป/ข้างหน้า (_F)"
 
-#: src/yelp-window.c:255
+#: src/yelp-window.c:274
 msgid "/Go/_Home"
 msgstr "/ไป/บ้าน (_H)"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:277
 #, fuzzy
 msgid "/Go/"
 msgstr "/ไป (_G)"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:278
 #, fuzzy
 msgid "/Go/_Previous Page"
 msgstr "อันก่อน (_P)"
 
-#: src/yelp-window.c:262
+#: src/yelp-window.c:281
 #, fuzzy
 msgid "/Go/_Next Page"
 msgstr "/ไป/ดัชนี (_I)"
 
-#: src/yelp-window.c:265
+#: src/yelp-window.c:284
 #, fuzzy
 msgid "/Go/_Contents"
 msgstr "เนื้อหาวิธิใช้"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:288
 msgid "/_Help"
 msgstr "/วิธีใช้ (_H)"
 
-#: src/yelp-window.c:270
+#: src/yelp-window.c:289
 msgid "/Help/_About"
 msgstr "/วิธีใช้/เกี่ยวกับ (_A)"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:351
 msgid "Help Browser"
 msgstr "ตัวอ่านวิธีใช้"
 
-#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:569 stylesheets/l10n.xml.in.h:60
 msgid "Section"
 msgstr "ส่วน"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:624
 msgid "Back"
 msgstr "ถอย"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:625
 msgid "Show previous page in history"
 msgstr "ไปหน้าก่อนหน้านี้ในประวัติการใช้"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:635
 msgid "Forward"
 msgstr "ถัดไป"
 
-#: src/yelp-window.c:615
+#: src/yelp-window.c:636
 msgid "Show next page in history"
 msgstr "ไปหน้าถัดไปในประวัติการใช้"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:648
 msgid "Home"
 msgstr "เริ่มต้น"
 
-#: src/yelp-window.c:628
+#: src/yelp-window.c:649
 msgid "Go to home view"
 msgstr "ไปที่หน้าเริ่มต้น"
 
-#: src/yelp-window.c:834
+#: src/yelp-window.c:859
 msgid "Loading..."
 msgstr "กำลังเรียก..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1228
+#: src/yelp-window.c:1290
 msgid "translator_credits"
 msgstr ""
 "ไพศาข์ สีเหลือกสวัสดิ์\n"
 "http://gnome-th.sf.net"
 
-#: src/yelp-window.c:1233
+#: src/yelp-window.c:1295
 msgid "A Help Browser for GNOME"
 msgstr "ตัวแสดงวิธีใช้ของ GNOME"
 
@@ -417,227 +424,251 @@ msgid "&#8221;"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:5
-msgid "About This Bibliography"
+msgid "About This Article"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:6
-msgid "About This Book"
+msgid "About This Bibliography"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:7
-msgid "About This Chapter"
+msgid "About This Book"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:8
-msgid "About This Entry"
+msgid "About This Chapter"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:9
-msgid "About This Glossary"
+msgid "About This Entry"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:10
-msgid "About This Index"
+msgid "About This Glossary"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:11
-msgid "About This Part"
+msgid "About This Index"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:12
-msgid "About This Preface"
+msgid "About This Part"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:13
-msgid "About This Reference"
+msgid "About This Preface"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:14
-msgid "About This Section"
+msgid "About This Reference"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:15
-msgid "About This Set"
+msgid "About This Section"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:16
+msgid "About This Set"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:17
 #, fuzzy
 msgid "Affiliation"
 msgstr "โปรแกรมใช้งาน"
 
-#: stylesheets/l10n.xml.in.h:17
+#: stylesheets/l10n.xml.in.h:18
 msgid "Appendix"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:18
+#: stylesheets/l10n.xml.in.h:19
 msgid "Article"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:19
+#: stylesheets/l10n.xml.in.h:20
 msgid "Audience"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:20
+#: stylesheets/l10n.xml.in.h:21
 msgid "Author"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:21
-msgid "Bibliography"
-msgstr ""
-
 #: stylesheets/l10n.xml.in.h:22
-msgid "Book"
+msgid "Authors"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:23
-msgid "Caution"
+msgid "Bibliography"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:24
-msgid "Chapter"
+msgid "Book"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:25
-msgid "Collaborator"
+msgid "Caution"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:26
-msgid "Colophon"
+msgid "Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborator"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:28
-msgid "Copyright"
+msgid "Collaborators"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:29
+msgid "Colophon"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Copyright"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Copyrights"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:33
 msgid "Date"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:30
+#: stylesheets/l10n.xml.in.h:34
 #, fuzzy
 msgid "Dedication"
 msgstr "ส่วน"
 
-#: stylesheets/l10n.xml.in.h:31
+#: stylesheets/l10n.xml.in.h:35
 #, fuzzy
 msgid "Editor"
 msgstr "ตัวแก้ไข"
 
-#: stylesheets/l10n.xml.in.h:32
+#: stylesheets/l10n.xml.in.h:37
 msgid "Email"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:33
+#: stylesheets/l10n.xml.in.h:38
 msgid "Example"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:34
+#: stylesheets/l10n.xml.in.h:39
 msgid "Figure"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:35
+#: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:36
+#: stylesheets/l10n.xml.in.h:41
 msgid "Important"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:37
+#: stylesheets/l10n.xml.in.h:42
 msgid "Index"
 msgstr "ดัชนี"
 
-#: stylesheets/l10n.xml.in.h:38
+#: stylesheets/l10n.xml.in.h:43
 msgid "Legal Notice"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:39
+#: stylesheets/l10n.xml.in.h:44
 msgid "Level"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:40
+#: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:41
+#: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:42
+#: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:43
+#: stylesheets/l10n.xml.in.h:48
 msgid "Note"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:44
+#: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:45
+#: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:46
-msgid "Part"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:47
-msgid "Preface"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:48
-msgid "Publisher"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:49
-msgid "Reference"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:50
-msgid "Reference Entry"
-msgstr ""
-
 #: stylesheets/l10n.xml.in.h:51
-msgid "Reference Section"
+msgid "Other Contributors"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:52
-msgid "Revision History"
+msgid "Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:53
+msgid "Preface"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:54
-msgid "See"
+msgid "Publisher"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:55
-msgid "See Also"
+msgid "Publishers"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:56
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:61
+msgid "See"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "See Also"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:63
 #, fuzzy
 msgid "Set Index"
 msgstr "ดัชนี"
 
-#: stylesheets/l10n.xml.in.h:57
+#: stylesheets/l10n.xml.in.h:64
 msgid "Table"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:58
+#: stylesheets/l10n.xml.in.h:65
 #, fuzzy
 msgid "Table of Contents"
 msgstr "เนื้อหาวิธิใช้"
 
-#: stylesheets/l10n.xml.in.h:59
+#: stylesheets/l10n.xml.in.h:66
 msgid "Tip"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:60
+#: stylesheets/l10n.xml.in.h:67
 msgid "Title"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:69
 msgid "Warning"
 msgstr ""
 

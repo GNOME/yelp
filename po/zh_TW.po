@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.3.6\n"
-"POT-Creation-Date: 2004-01-12 18:01-0600\n"
+"POT-Creation-Date: 2004-02-04 17:19-0600\n"
 "PO-Revision-Date: 2003-08-29 20:17+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -43,7 +43,7 @@ msgstr "開發"
 msgid "Development Tools"
 msgstr "開發"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 #, fuzzy
 msgid "Editors"
 msgstr "/編輯(_E)"
@@ -147,23 +147,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp 工廠"
 
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr ""
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr ""
 
-#: src/yelp-db-pager.c:616
+#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr ""
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "內容"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
+#: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr ""
 
@@ -278,128 +280,133 @@ msgstr ""
 msgid "YelpTocPager: Pause count is negative."
 msgstr ""
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, fuzzy, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "無法啟動 Yelp：‘%s’"
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "分類"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "文件"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:248
 msgid "/_File"
 msgstr "/檔案(_F)"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:249
 msgid "/File/_New window"
 msgstr "/檔案(F)/新增視窗(_N)"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:252
 msgid "/File/_Close window"
 msgstr "/檔案(F)/關閉視窗(_C)"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:256
 msgid "/_Edit"
 msgstr "/編輯(_E)"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:257
 #, fuzzy
 msgid "/Edit/_Find..."
 msgstr "/編輯(E)/在頁面中搜尋(_F)..."
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:260
 #, fuzzy
 msgid "/Edit/Find Ne_xt"
 msgstr "/編輯(E)/繼續搜尋(_F)"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:263
 #, fuzzy
 msgid "/Edit/Find Pre_vious"
 msgstr "/編輯(E)/繼續搜尋(_F)"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:267
 msgid "/_Go"
 msgstr "/前往(_G)"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:268
 msgid "/Go/_Back"
 msgstr "/前往(G)/上一頁(_B)"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:271
 msgid "/Go/_Forward"
 msgstr "/前往(G)/下一頁(_F)"
 
-#: src/yelp-window.c:255
+#: src/yelp-window.c:274
 msgid "/Go/_Home"
 msgstr "/前往(G)/首頁(_H)"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:277
 #, fuzzy
 msgid "/Go/"
 msgstr "/前往(_G)"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:278
 #, fuzzy
 msgid "/Go/_Previous Page"
 msgstr "上一個(_P)"
 
-#: src/yelp-window.c:262
+#: src/yelp-window.c:281
 #, fuzzy
 msgid "/Go/_Next Page"
 msgstr "/前往(G)/索引(_I)"
 
-#: src/yelp-window.c:265
+#: src/yelp-window.c:284
 #, fuzzy
 msgid "/Go/_Contents"
 msgstr "內容"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:288
 msgid "/_Help"
 msgstr "/求助(_H)"
 
-#: src/yelp-window.c:270
+#: src/yelp-window.c:289
 msgid "/Help/_About"
 msgstr "/求助(H)/關於(_A)"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:351
 msgid "Help Browser"
 msgstr "說明文件瀏覽程式"
 
-#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:569 stylesheets/l10n.xml.in.h:60
 msgid "Section"
 msgstr "章節"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:624
 msgid "Back"
 msgstr "上一頁"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:625
 msgid "Show previous page in history"
 msgstr "顯示紀錄中的上一頁"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:635
 msgid "Forward"
 msgstr "下一頁"
 
-#: src/yelp-window.c:615
+#: src/yelp-window.c:636
 msgid "Show next page in history"
 msgstr "顯示紀錄中的下一頁"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:648
 msgid "Home"
 msgstr "首頁"
 
-#: src/yelp-window.c:628
+#: src/yelp-window.c:649
 msgid "Go to home view"
 msgstr "前往首頁"
 
-#: src/yelp-window.c:834
+#: src/yelp-window.c:859
 msgid "Loading..."
 msgstr "載入..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1228
+#: src/yelp-window.c:1290
 msgid "translator_credits"
 msgstr ""
 "i18n 程式中文化計劃\n"
@@ -408,7 +415,7 @@ msgstr ""
 "Abel Cheung <maddog@linux.org.hk>, 2002-03\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2002"
 
-#: src/yelp-window.c:1233
+#: src/yelp-window.c:1295
 msgid "A Help Browser for GNOME"
 msgstr "GNOME 說明文件瀏覽程式"
 
@@ -429,237 +436,262 @@ msgid "&#8221;"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:5
+#, fuzzy
+msgid "About This Article"
+msgstr "關於這份文件"
+
+#: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:6
+#: stylesheets/l10n.xml.in.h:7
 #, fuzzy
 msgid "About This Book"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:7
+#: stylesheets/l10n.xml.in.h:8
 #, fuzzy
 msgid "About This Chapter"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:8
+#: stylesheets/l10n.xml.in.h:9
 #, fuzzy
 msgid "About This Entry"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:9
+#: stylesheets/l10n.xml.in.h:10
 #, fuzzy
 msgid "About This Glossary"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:10
+#: stylesheets/l10n.xml.in.h:11
 #, fuzzy
 msgid "About This Index"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:11
+#: stylesheets/l10n.xml.in.h:12
 #, fuzzy
 msgid "About This Part"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:12
+#: stylesheets/l10n.xml.in.h:13
 #, fuzzy
 msgid "About This Preface"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:13
+#: stylesheets/l10n.xml.in.h:14
 #, fuzzy
 msgid "About This Reference"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:14
+#: stylesheets/l10n.xml.in.h:15
 #, fuzzy
 msgid "About This Section"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:15
+#: stylesheets/l10n.xml.in.h:16
 #, fuzzy
 msgid "About This Set"
 msgstr "關於這份文件"
 
-#: stylesheets/l10n.xml.in.h:16
+#: stylesheets/l10n.xml.in.h:17
 #, fuzzy
 msgid "Affiliation"
 msgstr "程式"
 
-#: stylesheets/l10n.xml.in.h:17
+#: stylesheets/l10n.xml.in.h:18
 msgid "Appendix"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:18
+#: stylesheets/l10n.xml.in.h:19
 msgid "Article"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:19
+#: stylesheets/l10n.xml.in.h:20
 msgid "Audience"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:20
+#: stylesheets/l10n.xml.in.h:21
 msgid "Author"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:21
-msgid "Bibliography"
-msgstr ""
-
 #: stylesheets/l10n.xml.in.h:22
-msgid "Book"
+msgid "Authors"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:23
-msgid "Caution"
+msgid "Bibliography"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:24
-msgid "Chapter"
+msgid "Book"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:25
-msgid "Collaborator"
+msgid "Caution"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:26
-msgid "Colophon"
+msgid "Chapter"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborator"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:28
-msgid "Copyright"
+msgid "Collaborators"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:29
+msgid "Colophon"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Copyright"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Copyrights"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:33
 msgid "Date"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:30
+#: stylesheets/l10n.xml.in.h:34
 #, fuzzy
 msgid "Dedication"
 msgstr "章節"
 
-#: stylesheets/l10n.xml.in.h:31
+#: stylesheets/l10n.xml.in.h:35
 #, fuzzy
 msgid "Editor"
 msgstr "/編輯(_E)"
 
-#: stylesheets/l10n.xml.in.h:32
+#: stylesheets/l10n.xml.in.h:37
 msgid "Email"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:33
+#: stylesheets/l10n.xml.in.h:38
 msgid "Example"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:34
+#: stylesheets/l10n.xml.in.h:39
 msgid "Figure"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:35
+#: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:36
+#: stylesheets/l10n.xml.in.h:41
 msgid "Important"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:37
+#: stylesheets/l10n.xml.in.h:42
 msgid "Index"
 msgstr "索引"
 
-#: stylesheets/l10n.xml.in.h:38
+#: stylesheets/l10n.xml.in.h:43
 msgid "Legal Notice"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:39
+#: stylesheets/l10n.xml.in.h:44
 msgid "Level"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:40
+#: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:41
+#: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:42
+#: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:43
+#: stylesheets/l10n.xml.in.h:48
 msgid "Note"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:44
+#: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:45
+#: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:46
-msgid "Part"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:47
-msgid "Preface"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:48
-msgid "Publisher"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:49
-msgid "Reference"
-msgstr ""
-
-#: stylesheets/l10n.xml.in.h:50
-msgid "Reference Entry"
-msgstr ""
-
 #: stylesheets/l10n.xml.in.h:51
-msgid "Reference Section"
+msgid "Other Contributors"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:52
-msgid "Revision History"
+msgid "Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:53
+msgid "Preface"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:54
-msgid "See"
+msgid "Publisher"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:55
-msgid "See Also"
+msgid "Publishers"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:56
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:61
+msgid "See"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "See Also"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:63
 #, fuzzy
 msgid "Set Index"
 msgstr "索引"
 
-#: stylesheets/l10n.xml.in.h:57
+#: stylesheets/l10n.xml.in.h:64
 msgid "Table"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:58
+#: stylesheets/l10n.xml.in.h:65
 #, fuzzy
 msgid "Table of Contents"
 msgstr "說明文件"
 
-#: stylesheets/l10n.xml.in.h:59
+#: stylesheets/l10n.xml.in.h:66
 msgid "Tip"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:60
+#: stylesheets/l10n.xml.in.h:67
 msgid "Title"
 msgstr ""
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:69
 msgid "Warning"
 msgstr ""
 

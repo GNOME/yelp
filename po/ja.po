@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-14 21:30+0900\n"
+"POT-Creation-Date: 2004-02-04 17:19-0600\n"
 "PO-Revision-Date: 2004-01-14 17:24+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -40,7 +40,7 @@ msgstr "開発環境"
 msgid "Development Tools"
 msgstr "開発ツール"
 
-#: data/toc.xml.in.h:7
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "エディタ"
 
@@ -136,24 +136,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp ファクトリ"
 
-#: src/yelp-db-pager.c:424 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "yelp:document に HREF 属性がありませんでした"
 
-#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "メモリが足りません"
 
-#: src/yelp-db-pager.c:616 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:627 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "タイトルページ"
 
-#: src/yelp-db-pager.c:618 stylesheets/l10n.xml.in.h:27
+#: src/yelp-db-pager.c:629 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "目次"
 
-#: src/yelp-db-pager.c:636 stylesheets/l10n.xml.in.h:61
+#: src/yelp-db-pager.c:647 stylesheets/l10n.xml.in.h:68
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "不明"
@@ -264,127 +264,132 @@ msgstr "処理するドキュメントの URI"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: 一時停止のカウントが負です。"
 
-#: src/yelp-toc-pager.c:880
+#: src/yelp-toc-pager.c:486
+#, fuzzy, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Yelp を活性化できませんでした: '%s'"
+
+#: src/yelp-toc-pager.c:892
 msgid "Categories"
 msgstr "カテゴリ"
 
-#: src/yelp-toc-pager.c:894
+#: src/yelp-toc-pager.c:906
 msgid "Documents"
 msgstr "ドキュメント"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:248
 msgid "/_File"
 msgstr "/ファイル(_F)"
 
-#: src/yelp-window.c:230
+#: src/yelp-window.c:249
 msgid "/File/_New window"
 msgstr "/ファイル(_F)/新規(_N)"
 
-#: src/yelp-window.c:233
+#: src/yelp-window.c:252
 msgid "/File/_Close window"
 msgstr "/ファイル(_F)/閉じる(_C)"
 
-#: src/yelp-window.c:237
+#: src/yelp-window.c:256
 msgid "/_Edit"
 msgstr "/編集(_E)"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:257
 msgid "/Edit/_Find..."
 msgstr "/編集(_E)/検索(_F)..."
 
-#: src/yelp-window.c:241
+#: src/yelp-window.c:260
 msgid "/Edit/Find Ne_xt"
 msgstr "/編集(_E)/次を検索(_X)"
 
-#: src/yelp-window.c:244
+#: src/yelp-window.c:263
 msgid "/Edit/Find Pre_vious"
 msgstr "/編集(_E)/前を検索(_V)"
 
-#: src/yelp-window.c:248
+#: src/yelp-window.c:267
 msgid "/_Go"
 msgstr "/ジャンプ(_G)"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:268
 msgid "/Go/_Back"
 msgstr "/ジャンプ(_G)/戻る(_B)"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:271
 msgid "/Go/_Forward"
 msgstr "/ジャンプ(_G)/進む(_F)"
 
-#: src/yelp-window.c:255
+#: src/yelp-window.c:274
 msgid "/Go/_Home"
 msgstr "/ジャンプ(_G)/ホーム(_H)"
 
-#: src/yelp-window.c:258
+#: src/yelp-window.c:277
 msgid "/Go/"
 msgstr "/ジャンプ/"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:278
 msgid "/Go/_Previous Page"
 msgstr "/ジャンプ/前のページ(_P)"
 
-#: src/yelp-window.c:262
+#: src/yelp-window.c:281
 msgid "/Go/_Next Page"
 msgstr "/ジャンプ/次のページ(_N)"
 
-#: src/yelp-window.c:265
+#: src/yelp-window.c:284
 msgid "/Go/_Contents"
 msgstr "/ジャンプ/目次(_C)"
 
-#: src/yelp-window.c:269
+#: src/yelp-window.c:288
 msgid "/_Help"
 msgstr "/ヘルプ(_H)"
 
-#: src/yelp-window.c:270
+#: src/yelp-window.c:289
 msgid "/Help/_About"
 msgstr "/ヘルプ(_H)/情報(_A)"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:351
 msgid "Help Browser"
 msgstr "ヘルプ・ブラウザ"
 
-#: src/yelp-window.c:546 stylesheets/l10n.xml.in.h:53
+#: src/yelp-window.c:569 stylesheets/l10n.xml.in.h:60
 msgid "Section"
 msgstr "セクション"
 
-#: src/yelp-window.c:603
+#: src/yelp-window.c:624
 msgid "Back"
 msgstr "戻る"
 
-#: src/yelp-window.c:604
+#: src/yelp-window.c:625
 msgid "Show previous page in history"
 msgstr "履歴の中の前のページを表示します"
 
-#: src/yelp-window.c:614
+#: src/yelp-window.c:635
 msgid "Forward"
 msgstr "進む"
 
-#: src/yelp-window.c:615
+#: src/yelp-window.c:636
 msgid "Show next page in history"
 msgstr "履歴の中の次のページを表示します"
 
-#: src/yelp-window.c:627
+#: src/yelp-window.c:648
 msgid "Home"
 msgstr "ホーム"
 
-#: src/yelp-window.c:628
+#: src/yelp-window.c:649
 msgid "Go to home view"
 msgstr "ホームビューにジャンプします"
 
-#: src/yelp-window.c:834
+#: src/yelp-window.c:859
 msgid "Loading..."
 msgstr "読み込み中..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1228
+#: src/yelp-window.c:1290
 msgid "translator_credits"
 msgstr ""
 "Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>"
 
-#: src/yelp-window.c:1233
+#: src/yelp-window.c:1295
 msgid "A Help Browser for GNOME"
 msgstr "GNOME 向けのヘルプ・ブラウザ"
 
@@ -405,222 +410,252 @@ msgid "&#8221;"
 msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
+#, fuzzy
+msgid "About This Article"
+msgstr "このパートについて"
+
+#: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
 msgstr "この目録について"
 
-#: stylesheets/l10n.xml.in.h:6
+#: stylesheets/l10n.xml.in.h:7
 msgid "About This Book"
 msgstr "このブックについて"
 
-#: stylesheets/l10n.xml.in.h:7
+#: stylesheets/l10n.xml.in.h:8
 msgid "About This Chapter"
 msgstr "この章について"
 
-#: stylesheets/l10n.xml.in.h:8
+#: stylesheets/l10n.xml.in.h:9
 msgid "About This Entry"
 msgstr "このエントリについて"
 
-#: stylesheets/l10n.xml.in.h:9
+#: stylesheets/l10n.xml.in.h:10
 msgid "About This Glossary"
 msgstr "この用語集について"
 
-#: stylesheets/l10n.xml.in.h:10
+#: stylesheets/l10n.xml.in.h:11
 msgid "About This Index"
 msgstr "この目次について"
 
-#: stylesheets/l10n.xml.in.h:11
+#: stylesheets/l10n.xml.in.h:12
 msgid "About This Part"
 msgstr "このパートについて"
 
-#: stylesheets/l10n.xml.in.h:12
+#: stylesheets/l10n.xml.in.h:13
 msgid "About This Preface"
 msgstr "この序文について"
 
-#: stylesheets/l10n.xml.in.h:13
+#: stylesheets/l10n.xml.in.h:14
 msgid "About This Reference"
 msgstr "このリファレンスについて"
 
-#: stylesheets/l10n.xml.in.h:14
+#: stylesheets/l10n.xml.in.h:15
 msgid "About This Section"
 msgstr "このセクションについて"
 
-#: stylesheets/l10n.xml.in.h:15
+#: stylesheets/l10n.xml.in.h:16
 msgid "About This Set"
 msgstr "このセットについて"
 
-#: stylesheets/l10n.xml.in.h:16
+#: stylesheets/l10n.xml.in.h:17
 msgid "Affiliation"
 msgstr "関連項目"
 
-#: stylesheets/l10n.xml.in.h:17
+#: stylesheets/l10n.xml.in.h:18
 msgid "Appendix"
 msgstr "補足"
 
-#: stylesheets/l10n.xml.in.h:18
+#: stylesheets/l10n.xml.in.h:19
 msgid "Article"
 msgstr "記事"
 
-#: stylesheets/l10n.xml.in.h:19
+#: stylesheets/l10n.xml.in.h:20
 msgid "Audience"
 msgstr "読者"
 
-#: stylesheets/l10n.xml.in.h:20
+#: stylesheets/l10n.xml.in.h:21
 msgid "Author"
 msgstr "作者"
 
-#: stylesheets/l10n.xml.in.h:21
+#: stylesheets/l10n.xml.in.h:22
+#, fuzzy
+msgid "Authors"
+msgstr "作者"
+
+#: stylesheets/l10n.xml.in.h:23
 msgid "Bibliography"
 msgstr "目録"
 
-#: stylesheets/l10n.xml.in.h:22
+#: stylesheets/l10n.xml.in.h:24
 msgid "Book"
 msgstr "ブック"
 
-#: stylesheets/l10n.xml.in.h:23
+#: stylesheets/l10n.xml.in.h:25
 msgid "Caution"
 msgstr "注意"
 
-#: stylesheets/l10n.xml.in.h:24
+#: stylesheets/l10n.xml.in.h:26
 msgid "Chapter"
 msgstr "章"
 
-#: stylesheets/l10n.xml.in.h:25
+#: stylesheets/l10n.xml.in.h:27
 msgid "Collaborator"
 msgstr "共著者"
 
-#: stylesheets/l10n.xml.in.h:26
+#: stylesheets/l10n.xml.in.h:28
+#, fuzzy
+msgid "Collaborators"
+msgstr "共著者"
+
+#: stylesheets/l10n.xml.in.h:29
 msgid "Colophon"
 msgstr "出版社のマーク"
 
-#: stylesheets/l10n.xml.in.h:28
+#: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
 msgstr "著作権"
 
-#: stylesheets/l10n.xml.in.h:29
+#: stylesheets/l10n.xml.in.h:32
+#, fuzzy
+msgid "Copyrights"
+msgstr "著作権"
+
+#: stylesheets/l10n.xml.in.h:33
 msgid "Date"
 msgstr "発行日"
 
-#: stylesheets/l10n.xml.in.h:30
+#: stylesheets/l10n.xml.in.h:34
 msgid "Dedication"
 msgstr "献辞"
 
-#: stylesheets/l10n.xml.in.h:31
+#: stylesheets/l10n.xml.in.h:35
 msgid "Editor"
 msgstr "エディタ"
 
-#: stylesheets/l10n.xml.in.h:32
+#: stylesheets/l10n.xml.in.h:37
 msgid "Email"
 msgstr "E-メール"
 
-#: stylesheets/l10n.xml.in.h:33
+#: stylesheets/l10n.xml.in.h:38
 msgid "Example"
 msgstr "サンプル"
 
-#: stylesheets/l10n.xml.in.h:34
+#: stylesheets/l10n.xml.in.h:39
 msgid "Figure"
 msgstr "図"
 
-#: stylesheets/l10n.xml.in.h:35
+#: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
 msgstr "用語集"
 
-#: stylesheets/l10n.xml.in.h:36
+#: stylesheets/l10n.xml.in.h:41
 msgid "Important"
 msgstr "重要"
 
-#: stylesheets/l10n.xml.in.h:37
+#: stylesheets/l10n.xml.in.h:42
 msgid "Index"
 msgstr "目次"
 
-#: stylesheets/l10n.xml.in.h:38
+#: stylesheets/l10n.xml.in.h:43
 msgid "Legal Notice"
 msgstr "商標"
 
-#: stylesheets/l10n.xml.in.h:39
+#: stylesheets/l10n.xml.in.h:44
 msgid "Level"
 msgstr "レベル"
 
-#: stylesheets/l10n.xml.in.h:40
+#: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
 msgstr "メッセージの読者"
 
-#: stylesheets/l10n.xml.in.h:41
+#: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
 msgstr "メッセージのレベル"
 
-#: stylesheets/l10n.xml.in.h:42
+#: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
 msgstr "メッセージ元"
 
-#: stylesheets/l10n.xml.in.h:43
+#: stylesheets/l10n.xml.in.h:48
 msgid "Note"
 msgstr "注記"
 
-#: stylesheets/l10n.xml.in.h:44
+#: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
 msgstr "元"
 
-#: stylesheets/l10n.xml.in.h:45
+#: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
 msgstr "その他の貢献者"
 
-#: stylesheets/l10n.xml.in.h:46
+#: stylesheets/l10n.xml.in.h:51
+#, fuzzy
+msgid "Other Contributors"
+msgstr "その他の貢献者"
+
+#: stylesheets/l10n.xml.in.h:52
 msgid "Part"
 msgstr "パート"
 
-#: stylesheets/l10n.xml.in.h:47
+#: stylesheets/l10n.xml.in.h:53
 msgid "Preface"
 msgstr "はじめに"
 
-#: stylesheets/l10n.xml.in.h:48
+#: stylesheets/l10n.xml.in.h:54
 msgid "Publisher"
 msgstr "発行者"
 
-#: stylesheets/l10n.xml.in.h:49
+#: stylesheets/l10n.xml.in.h:55
+#, fuzzy
+msgid "Publishers"
+msgstr "発行者"
+
+#: stylesheets/l10n.xml.in.h:56
 msgid "Reference"
 msgstr "リファレンス"
 
-#: stylesheets/l10n.xml.in.h:50
+#: stylesheets/l10n.xml.in.h:57
 msgid "Reference Entry"
 msgstr "リファレンスのエントリ"
 
-#: stylesheets/l10n.xml.in.h:51
+#: stylesheets/l10n.xml.in.h:58
 msgid "Reference Section"
 msgstr "リファレンスのセクション"
 
-#: stylesheets/l10n.xml.in.h:52
+#: stylesheets/l10n.xml.in.h:59
 msgid "Revision History"
 msgstr "改版履歴"
 
-#: stylesheets/l10n.xml.in.h:54
+#: stylesheets/l10n.xml.in.h:61
 msgid "See"
 msgstr "参照"
 
-#: stylesheets/l10n.xml.in.h:55
+#: stylesheets/l10n.xml.in.h:62
 msgid "See Also"
 msgstr "関連項目"
 
-#: stylesheets/l10n.xml.in.h:56
+#: stylesheets/l10n.xml.in.h:63
 msgid "Set Index"
 msgstr "インデックスのセット"
 
-#: stylesheets/l10n.xml.in.h:57
+#: stylesheets/l10n.xml.in.h:64
 msgid "Table"
 msgstr "表"
 
-#: stylesheets/l10n.xml.in.h:58
+#: stylesheets/l10n.xml.in.h:65
 msgid "Table of Contents"
 msgstr "目次"
 
-#: stylesheets/l10n.xml.in.h:59
+#: stylesheets/l10n.xml.in.h:66
 msgid "Tip"
 msgstr "チップス"
 
-#: stylesheets/l10n.xml.in.h:60
+#: stylesheets/l10n.xml.in.h:67
 msgid "Title"
 msgstr "タイトル"
 
-#: stylesheets/l10n.xml.in.h:62
+#: stylesheets/l10n.xml.in.h:69
 msgid "Warning"
 msgstr "警告"
 
