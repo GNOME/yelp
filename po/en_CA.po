@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 20:00-0500\n"
-"PO-Revision-Date: 2004-11-01 22:18-0400\n"
+"POT-Creation-Date: 2004-11-18 18:50-0500\n"
+"PO-Revision-Date: 2004-11-18 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -204,25 +204,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
+#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:299
 msgid "No href attribute found on yelp:document"
 msgstr "No href attribute found on yelp:document"
 
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
+#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:314
 msgid "Out of memory"
 msgstr "Out of memory"
 
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:368
 msgid "Titlepage"
 msgstr "Titlepage"
 
 #: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:368
+#: src/yelp-man-pager.c:370
 msgid "Contents"
 msgstr "Contents"
 
 #: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:386
+#: src/yelp-man-pager.c:388
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -250,20 +250,20 @@ msgstr "The selected file could not be read."
 msgid "The file could not be processed."
 msgstr "The file could not be processed."
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "Define which cache directory to use"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Could not activate Yelp: '%s'"
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Could not open new window."
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Help"
 
@@ -353,117 +353,121 @@ msgstr "Categories"
 msgid "Documents"
 msgstr "Documents"
 
-#: src/yelp-window.c:282
+#: src/yelp-window.c:283
 msgid "_File"
 msgstr "_File"
 
-#: src/yelp-window.c:283
+#: src/yelp-window.c:284
 msgid "_Edit"
 msgstr "_Edit"
 
-#: src/yelp-window.c:284
+#: src/yelp-window.c:285
 msgid "_Go"
 msgstr "_Go"
 
-#: src/yelp-window.c:285
+#: src/yelp-window.c:286
 msgid "_Help"
 msgstr "_Help"
 
-#: src/yelp-window.c:288
+#: src/yelp-window.c:289
 msgid "_New window"
 msgstr "_New window"
 
-#: src/yelp-window.c:293
+#: src/yelp-window.c:294
 msgid "Open _Location"
 msgstr "Open _Location"
 
-#: src/yelp-window.c:298
+#: src/yelp-window.c:299
 msgid "_Close window"
 msgstr "_Close window"
 
-#: src/yelp-window.c:304
+#: src/yelp-window.c:305
 msgid "_Copy"
 msgstr "_Copy"
 
-#: src/yelp-window.c:309
+#: src/yelp-window.c:311
+msgid "_Select All"
+msgstr "_Select All"
+
+#: src/yelp-window.c:316
 msgid "_Find..."
 msgstr "_Find..."
 
-#: src/yelp-window.c:314
+#: src/yelp-window.c:321
 msgid "_Preferences"
 msgstr "_Preferences"
 
-#: src/yelp-window.c:319
+#: src/yelp-window.c:326
 msgid "_Reload"
 msgstr "_Reload"
 
-#: src/yelp-window.c:325
+#: src/yelp-window.c:332
 msgid "_Back"
 msgstr "_Back"
 
-#: src/yelp-window.c:327
+#: src/yelp-window.c:334
 msgid "Show previous page in history"
 msgstr "Show previous page in history"
 
-#: src/yelp-window.c:330
+#: src/yelp-window.c:337
 msgid "_Forward"
 msgstr "_Forward"
 
-#: src/yelp-window.c:332
+#: src/yelp-window.c:339
 msgid "Show next page in history"
 msgstr "Show next page in history"
 
-#: src/yelp-window.c:335
+#: src/yelp-window.c:342
 msgid "_Home"
 msgstr "_Home"
 
-#: src/yelp-window.c:337
+#: src/yelp-window.c:344
 msgid "Go to home view"
 msgstr "Go to home view"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:347
 msgid "_Previous Page"
 msgstr "_Previous Page"
 
-#: src/yelp-window.c:345
+#: src/yelp-window.c:352
 msgid "_Next Page"
 msgstr "_Next Page"
 
-#: src/yelp-window.c:350
+#: src/yelp-window.c:357
 msgid "_Contents"
 msgstr "_Contents"
 
-#: src/yelp-window.c:355
+#: src/yelp-window.c:362
 msgid "_Open Link"
 msgstr "_Open Link"
 
-#: src/yelp-window.c:360
+#: src/yelp-window.c:367
 msgid "Open Link in _New Window"
 msgstr "Open Link in _New Window"
 
-#: src/yelp-window.c:365
+#: src/yelp-window.c:372
 msgid "_Copy Link Address"
 msgstr "_Copy Link Address"
 
-#: src/yelp-window.c:371
+#: src/yelp-window.c:378
 msgid "_About"
 msgstr "_About"
 
-#: src/yelp-window.c:422
+#: src/yelp-window.c:429
 msgid "Help Browser"
 msgstr "Help Browser"
 
-#: src/yelp-window.c:915
+#: src/yelp-window.c:922
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1193
 msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1903
+#: src/yelp-window.c:1934
 msgid "translator_credits"
 msgstr ""
 "Maintainer: Adam Weinberger <adamw@gnome.org>\n"
