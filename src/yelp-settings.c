@@ -62,7 +62,9 @@ static const gchar *color_params[YELP_NUM_COLORS] = {
     "yelp.color.selected0",
     "yelp.color.selected1",
     "yelp.color.selected2",
-    "yelp.color.selected3"
+    "yelp.color.selected3",
+    "yelp.color.yellow.bg",
+    "yelp.color.yellow.fg"
 };
 
 static const gchar *icon_params[YELP_NUM_ICONS] = {
@@ -556,7 +558,7 @@ settings_update (YelpSettingsType type)
     GtkStyle  *style;
     GdkColor  *color;
     GdkColor   blue = { 0, 0x0000, 0x0000, 0xffff };
-    guint8     max_text;
+    guint8     max_text, max_base;
     guint16    rval, gval, bval;
     gint i;
 
@@ -574,6 +576,9 @@ settings_update (YelpSettingsType type)
 	max_text = MAX(style->text[GTK_STATE_NORMAL].red,
 		       MAX(style->text[GTK_STATE_NORMAL].green,
 			   style->text[GTK_STATE_NORMAL].blue   )) >> 8;
+	max_base = MAX(style->base[GTK_STATE_NORMAL].red,
+		       MAX(style->base[GTK_STATE_NORMAL].green,
+			   style->base[GTK_STATE_NORMAL].blue   )) >> 8;
 
 	g_snprintf (colors[YELP_COLOR_TEXT], 8,
 		    "#%02X%02X%02X",
@@ -613,6 +618,18 @@ settings_update (YelpSettingsType type)
 	    bval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].blue  >> 8) +
 		    i * max_text) / 4;
 	    g_snprintf (colors[YELP_COLOR_SELECTED0 + i], 8,
+			"#%02X%02X%02X", rval, gval, bval);
+	}
+
+	for (i = 0; i < 2; i++) {
+	    gint mult = (i == 0) ? max_base : max_text;
+	    mult = (mult / 2) + 128;
+
+	    rval = ((mult * 255) / 255);
+	    gval = ((mult * 255) / 255);
+	    bval = ((mult * 207) / 255);
+
+	    g_snprintf (colors[YELP_COLOR_YELLOW_BG + i], 8,
 			"#%02X%02X%02X", rval, gval, bval);
 	}
 

@@ -120,7 +120,7 @@
           <ul>
             <xsl:for-each select="toc[../@id = 'index' or .//doc]">
               <xsl:sort select="number(../@id = 'index') * position()"/>
-              <xsl:sort select="title"/>
+              <xsl:sort select="normalize-space(title)"/>
               <li class="toc">
                 <a href="x-yelp-toc:{@id}">
                   <xsl:apply-templates select="title[1]/node()"/>
@@ -134,7 +134,7 @@
         <div class="docs">
           <dl>
             <xsl:for-each select="doc">
-              <xsl:sort select="title"/>
+              <xsl:sort select="normalize-space(title)"/>
               <dt class="doc">
                 <a href="{@href}" title="{@href}">
                   <xsl:if test="tooltip">

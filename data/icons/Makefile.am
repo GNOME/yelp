@@ -1,3 +1,7 @@
+icon192dir = $(datadir)/icons/hicolor/192x192/apps
+
+icon192_DATA = yelp-icon-big.png
+
 icondir = $(datadir)/yelp/icons
 
 icon_DATA = 						\
@@ -12,5 +16,4 @@ icon_DATA = 						\
 	yelp-watermark-blockquote-201D.png		\
 	yelp-watermark-blockquote-201E.png
 
-EXTRA_DIST = 								\
-	$(icon_DATA)
+EXTRA_DIST = $(icon_DATA) $(icon192_DATA)

@@ -30,6 +30,9 @@
 <xsl:param name="yelp.color.selected2"/>
 <xsl:param name="yelp.color.selected3"/>
 
+<xsl:param name="yelp.color.yellow.bg"/>
+<xsl:param name="yelp.color.yellow.fg"/>
+
 <xsl:param name="db2html.admon.border_color"
            select="$yelp.color.selected0"/>
 
@@ -109,16 +112,21 @@
     h1 + div h2[class~="title"] { margin-top: 2em; }
     h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
     <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
-
     h3 span[class~="title"] { border-bottom: none; }
     h4 span[class~="title"] { border-bottom: none; }
     h5 span[class~="title"] { border-bottom: none; }
     h6 span[class~="title"] { border-bottom: none; }
     h7 span[class~="title"] { border-bottom: none; }
 
-    div[class~="admonition"] { color: </xsl:text>
+    div[class~="admonition"] {
+      color: </xsl:text>
       <xsl:value-of select="$yelp.color.base3"/><xsl:text>;
+      border-color: </xsl:text>
+      <xsl:value-of select="$yelp.color.yellow.fg"/><xsl:text>;
       -moz-border-radius-topleft: 12px;
+      -moz-border-radius-bottomleft: 12px;
+      background-color: </xsl:text>
+      <xsl:value-of select="$yelp.color.yellow.bg"/><xsl:text>;
     }
     div[class~="programlisting"] {
       background-image: url(</xsl:text>

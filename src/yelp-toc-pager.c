@@ -894,7 +894,7 @@ process_xslt (YelpTocPager *pager)
 	params = g_renew (gchar *, params, params_max);
     }
 
-    info = gtk_icon_theme_lookup_icon (theme, "gnome-help", 192, 0);
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-icon-big", 192, 0);
     if (info) {
 	params[params_i++] = "help_icon";
 	params[params_i++] = g_strdup_printf ("\"%s\"",
