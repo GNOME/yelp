@@ -54,10 +54,6 @@ static void content_html_uri_selected_cb      (YelpHtml             *html,
 static void content_html_title_changed_cb     (YelpHtml             *html,
 					       const gchar          *title,
 					       YelpViewContent      *view);
-#if 0
-static void content_reader_start_cb           (YelpReader           *reader,
-					       YelpViewContent      *view);
-#endif
 static void content_reader_data_cb            (YelpReader           *reader,
 					       const gchar          *data,
 					       gint                  len,
@@ -95,7 +91,7 @@ struct _YelpViewContentPriv {
 
 	YelpURI      *current_uri;
 	
-	gboolean      loading;
+	gboolean      first;
 };
 
 GType
@@ -147,7 +143,7 @@ content_init (YelpViewContent *view)
 	priv->html_widget     = yelp_html_get_widget (priv->html_view);
 /* 	priv->current_docpath = g_strdup (""); */
 	priv->current_uri     = NULL;
-	priv->loading         = FALSE;
+	priv->first         = FALSE;
 	
 	g_signal_connect (priv->html_view, "uri_selected",
 			  G_CALLBACK (content_html_uri_selected_cb), 
@@ -158,11 +154,6 @@ content_init (YelpViewContent *view)
 
 	priv->reader      = yelp_reader_new ();
 	
-#if 0
-	g_signal_connect (G_OBJECT (priv->reader), "start",
-			  G_CALLBACK (content_reader_start_cb),
-			  view);
-#endif
 	g_signal_connect (G_OBJECT (priv->reader), "data",
 			  G_CALLBACK (content_reader_data_cb),
 			  view);
@@ -248,38 +239,6 @@ content_tree_selection_changed_cb (GtkTreeSelection *selection,
 	}
 }
 
-
-#if 0
-static void
-content_reader_start_cb (YelpReader *reader, YelpViewContent *view)
-{
-	GdkCursor           *cursor;
-	YelpViewContentPriv *priv;
-	gchar               *loading = _("Loading...");
-
-	g_return_if_fail (YELP_IS_READER (reader));
-	g_return_if_fail (YELP_IS_VIEW_CONTENT (view));
-
-	priv = view->priv;
-
-	d(g_print ("Start_cb\n"));
-	
-	cursor = gdk_cursor_new (GDK_WATCH);
-	
-	gdk_window_set_cursor (priv->html_widget->window, cursor);
-	gdk_cursor_unref (cursor);
-	
-	yelp_html_clear (priv->html_view);
-	
-	priv->loading = TRUE;
-	
-	yelp_html_printf (priv->html_view, 
-			  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><body bgcolor=\"white\"><center>%s</center></body></html>", 
-			  loading);
- 	yelp_html_close (priv->html_view);
-}
-#endif
-
 static void
 content_reader_data_cb (YelpReader      *reader,
 			const gchar     *data,
@@ -293,9 +252,9 @@ content_reader_data_cb (YelpReader      *reader,
 	
 	priv = view->priv;
 
-	if (priv->loading) {
+	if (priv->first) {
 		yelp_html_clear (priv->html_view);
-		priv->loading = FALSE;
+		priv->first = FALSE;
 	}
 
 	if (len == -1) {
@@ -322,7 +281,9 @@ content_reader_finished_cb (YelpReader      *reader,
 
 	priv = view->priv;
 
-	yelp_html_close (priv->html_view);
+	if (!priv->first) {
+		yelp_html_close (priv->html_view);
+	}
 
 	path = content_find_path_from_uri (GTK_TREE_MODEL (priv->tree_store),
 					   uri);
@@ -575,7 +536,7 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 		
 	}
 	
-	priv->loading = TRUE;
+	priv->first = TRUE;
 	
 	cursor = gdk_cursor_new (GDK_WATCH);
 		

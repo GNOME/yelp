@@ -350,8 +350,12 @@ window_handle_uri (YelpWindow *window, YelpURI *uri)
 		handled = TRUE;
 	}
 	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_INDEX) {
+		d(g_print ("[INDEX]\n"));
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_INDEX_VIEW);
+		yelp_view_index_show_uri (YELP_VIEW_INDEX (priv->index_view),
+					  uri, 
+					  &error);
 		handled = TRUE;
 	}
 	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_MAN ||

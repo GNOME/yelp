@@ -372,6 +372,9 @@ yelp_uri_new (const gchar *str_uri)
 gboolean
 yelp_uri_exists (YelpURI *uri)
 {
+	gboolean  ret_val;
+	YelpURI  *no_index;
+	
 	g_return_val_if_fail (uri != NULL, FALSE);
 	
 	if (!uri->path) {
@@ -383,19 +386,25 @@ yelp_uri_exists (YelpURI *uri)
 	case YELP_URI_TYPE_MAN:
 	case YELP_URI_TYPE_INFO:
 	case YELP_URI_TYPE_PATH:
-	case YELP_URI_TYPE_INDEX:
 	case YELP_URI_TYPE_UNKNOWN:
-		return TRUE;
+		ret_val = TRUE;
 		break;
 	case YELP_URI_TYPE_DOCBOOK_XML:
 	case YELP_URI_TYPE_DOCBOOK_SGML:
 	case YELP_URI_TYPE_HTML:
 	case YELP_URI_TYPE_FILE:
-		return g_file_test (uri->path, G_FILE_TEST_EXISTS);
+		ret_val = g_file_test (uri->path, G_FILE_TEST_EXISTS);
+		break;
+	case YELP_URI_TYPE_INDEX:
+		no_index = yelp_uri_from_index (uri);
+		ret_val = yelp_uri_exists (no_index);
+		yelp_uri_unref (no_index);
 		break;
 	default:
-		return FALSE;
+		ret_val = FALSE;
 	}
+
+	return ret_val;
 }
 
 YelpURIType
@@ -598,6 +607,9 @@ yelp_uri_to_string (YelpURI *uri)
 	case YELP_URI_TYPE_FILE:
 		type = g_strdup ("file:");
 		break;
+	case YELP_URI_TYPE_INDEX:
+		type = g_strdup ("index:");
+		break;
 	default:
 		g_assert_not_reached ();
 		break;
@@ -615,4 +627,30 @@ yelp_uri_to_string (YelpURI *uri)
 	d(g_print ("URI_TO_STRING: %s\n", ret_val));
 	
 	return ret_val;
+}
+
+YelpURI *
+yelp_uri_to_index (YelpURI *uri)
+{
+	YelpURI *ret_val;
+
+	g_return_val_if_fail (uri != NULL, NULL);
+	
+	ret_val = g_new0 (YelpURI, 1);
+	
+	ret_val->path      = yelp_uri_to_string (uri);
+	ret_val->type      = YELP_URI_TYPE_INDEX;
+	ret_val->section   = NULL;
+	ret_val->ref_count = 1;
+	
+	return ret_val;
+}
+
+YelpURI *
+yelp_uri_from_index (YelpURI *uri)
+{ 
+	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (uri->type == YELP_URI_TYPE_INDEX, NULL);
+
+	return yelp_uri_new (uri->path);
 }

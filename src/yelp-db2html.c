@@ -69,7 +69,7 @@ main (gint argc, gchar **argv)
 	db_doc = NULL;
 
         putenv ("XML_CATALOG_FILES=" DATADIR "/yelp/catalog");
-        
+
         if (argc < 2) {
                 g_print ("Usage 'yelp-db2html url'\n");
                 exit (1);
@@ -79,7 +79,7 @@ main (gint argc, gchar **argv)
 
 	/* libxml housekeeping */
 	xmlSubstituteEntitiesDefault(1);
-	xmlLoadExtDtdDefaultValue = 0;
+	xmlLoadExtDtdDefaultValue = 1;
 
 	/* parse the stylesheet */
         stylesheet  = xsltParseStylesheetFile (STYLESHEET);

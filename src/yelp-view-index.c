@@ -41,6 +41,7 @@
 #include "yelp-index-model.h"
 #include "yelp-html.h"
 #include "yelp-marshal.h"
+#include "yelp-reader.h"
 #include "yelp-view-index.h"
 
 #define d(x)
@@ -67,6 +68,14 @@ static gboolean yvi_filter_idle                (YelpViewIndex       *view);
 static gchar *  yvi_complete_func              (YelpSection         *section);
 static void     set_relation                   (GtkWidget           *widget,
 						GtkLabel            *label);
+static void     yvi_reader_data_cb             (YelpReader          *reader,
+						const gchar         *data,
+						gint                 len,
+						YelpViewIndex       *view);
+static void     yvi_reader_finished_cb         (YelpReader          *reader,
+						YelpURI             *uri,
+						YelpViewIndex       *view);
+
 
 struct _YelpViewIndexPriv {
 	/* List of keywords */
@@ -76,13 +85,18 @@ struct _YelpViewIndexPriv {
 	/* Query entry */
 	GtkWidget      *entry;
 	
+	YelpReader     *reader;
+
 	/* Html view */
 	YelpHtml       *html_view;
+	GtkWidget      *html_widget;
 
 	GCompletion    *completion;
 
 	guint           idle_complete;
 	guint           idle_filter;
+
+	gboolean        first;
 };
 
 enum {
@@ -141,9 +155,19 @@ yvi_init (YelpViewIndex *view)
 				 GTK_TREE_MODEL (priv->model));
 
 	priv->html_view = yelp_html_new ();
+	priv->html_widget = yelp_html_get_widget (priv->html_view);
 	
 	g_signal_connect (priv->html_view, "uri_selected",
 			  G_CALLBACK (yvi_html_uri_selected_cb),
+			  view);
+
+	priv->reader = yelp_reader_new ();
+	
+	g_signal_connect (G_OBJECT (priv->reader), "data",
+			  G_CALLBACK (yvi_reader_data_cb),
+			  view);
+	g_signal_connect (G_OBJECT (priv->reader), "finished",
+			  G_CALLBACK (yvi_reader_finished_cb),
 			  view);
 }
 
@@ -176,6 +200,8 @@ yvi_index_selection_changed_cb (GtkTreeSelection *selection,
 	priv = view->priv;
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+		YelpURI *index_uri;
+		
 		gtk_tree_model_get (GTK_TREE_MODEL (priv->model), &iter,
 				    YELP_INDEX_MODEL_COL_SECTION, &section,
 				    -1);
@@ -183,8 +209,12 @@ yvi_index_selection_changed_cb (GtkTreeSelection *selection,
 		d(g_print ("Index View: selection changed: %s\n", 
 			   yelp_uri_to_string (section->uri)));
 		
+		index_uri = yelp_uri_to_index (section->uri);
+
   		g_signal_emit (view, signals[URI_SELECTED], 0,
- 			       section->uri, FALSE);
+ 			       index_uri, FALSE);
+
+		yelp_uri_unref (index_uri);
 	}
 }
 
@@ -194,12 +224,16 @@ yvi_html_uri_selected_cb (YelpHtml      *html,
 			  gboolean       handled,
 			  YelpViewIndex *view)
 {
+	YelpURI *index_uri;
+
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
 
 	d(g_print ("Index View: uri selected: %s\n", 
 		   yelp_uri_to_string (uri)));
 
-	g_signal_emit (view, signals[URI_SELECTED], 0, uri, handled);
+	index_uri = yelp_uri_to_index (uri);
+	g_signal_emit (view, signals[URI_SELECTED], 0, index_uri, handled);
+	yelp_uri_unref (index_uri);
 }
 
 static void
@@ -316,6 +350,93 @@ yvi_complete_func (YelpSection *section)
 	return section->name;
 }
 
+/**
+ * set_relation
+ * @widget : The Gtk widget which is labelled by @label
+ * @label : The label for the @widget.
+ * Description : This function establishes atk relation
+ * between a gtk widget and a label.
+ */
+
+static void
+set_relation (GtkWidget *widget, GtkLabel *label)
+{
+	AtkObject      *aobject;
+	AtkRelationSet *relation_set;
+	AtkRelation    *relation;
+	AtkObject      *targets[1];
+
+	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_return_if_fail (GTK_IS_LABEL (label));
+
+	aobject = gtk_widget_get_accessible (widget);
+
+	/* Return if GAIL is not loaded */
+	if (! GTK_IS_ACCESSIBLE (aobject)) {
+		return;
+	}
+	
+	/* Set the ATK_RELATION_LABEL_FOR relation */
+	gtk_label_set_mnemonic_widget (label, widget);
+
+	targets[0] = gtk_widget_get_accessible (GTK_WIDGET (label));
+
+	relation_set = atk_object_ref_relation_set (aobject);
+
+	relation = atk_relation_new (targets, 1, ATK_RELATION_LABELLED_BY);
+	atk_relation_set_add (relation_set, relation);
+	g_object_unref (G_OBJECT (relation));
+}
+
+static void
+yvi_reader_data_cb (YelpReader    *reader,
+		    const gchar   *data,
+		    gint           len,
+		    YelpViewIndex *view)
+{
+	YelpViewIndexPriv *priv;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+	
+	priv = view->priv;
+
+	if (priv->first) {
+		yelp_html_clear (priv->html_view);
+		priv->first = FALSE;
+	}
+
+	if (len == -1) {
+		len = strlen (data);
+	}
+
+	if (len <= 0) {
+		return;
+	}
+
+	yelp_html_write (priv->html_view, data, len);
+}
+
+static void
+yvi_reader_finished_cb (YelpReader    *reader,
+			YelpURI       *uri,
+			YelpViewIndex *view)
+{
+	YelpViewIndexPriv *priv;
+	
+	g_return_if_fail (YELP_IS_READER (reader));
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+
+	priv = view->priv;
+ 
+	if (!priv->first) {
+		yelp_html_close (priv->html_view);
+	}
+	
+	gdk_window_set_cursor (priv->html_widget->window, NULL);
+	gtk_widget_grab_focus (priv->html_widget);
+}
+
 GtkWidget *
 yelp_view_index_new (GList *index)
 {
@@ -401,8 +522,7 @@ yelp_view_index_new (GList *index)
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	
-        gtk_container_add (GTK_CONTAINER (html_sw), 
-			   yelp_html_get_widget (YELP_HTML (priv->html_view)));
+        gtk_container_add (GTK_CONTAINER (html_sw), priv->html_widget);
 
 	/* Add the tree and html view to the paned */
 	gtk_paned_add1 (GTK_PANED (view), box);
@@ -419,54 +539,37 @@ yelp_view_index_new (GList *index)
 
 void
 yelp_view_index_show_uri (YelpViewIndex  *view,
-			  YelpURI        *uri,
+			  YelpURI        *index_uri,
 			  GError        **error)
 {
 	YelpViewIndexPriv *priv;
+	YelpURI           *uri;
 
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
-	g_return_if_fail (uri != NULL);
+	g_return_if_fail (index_uri != NULL);
 	
 	priv = view->priv;
+
+	d(g_print ("Index show Uri: %s\n", yelp_uri_to_string (index_uri)));
+
+	uri = yelp_uri_from_index (index_uri);
+
+	priv->first = TRUE;
+
+	yelp_html_set_base_uri (priv->html_view, uri);
+
+	if (!yelp_reader_start (priv->reader, uri)) {
+		gchar     *loading = _("Loading...");
+
+		yelp_html_clear (priv->html_view);
+
+		yelp_html_printf (priv->html_view, 
+				  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body bgcolor=\"white\"><center>%s</center></body></html>", 
+				  loading);
+		yelp_html_close (priv->html_view);
+	}
 
 	/* FIXME: Handle the GError */
 /* 	yelp_html_open_uri (priv->html_view, uri, error); */
 }
 
-/**
- * set_relation
- * @widget : The Gtk widget which is labelled by @label
- * @label : The label for the @widget.
- * Description : This function establishes atk relation
- * between a gtk widget and a label.
- */
-
-static void
-set_relation (GtkWidget *widget, GtkLabel *label)
-{
-	AtkObject      *aobject;
-	AtkRelationSet *relation_set;
-	AtkRelation    *relation;
-	AtkObject      *targets[1];
-
-	g_return_if_fail (GTK_IS_WIDGET (widget));
-	g_return_if_fail (GTK_IS_LABEL (label));
-
-	aobject = gtk_widget_get_accessible (widget);
-
-	/* Return if GAIL is not loaded */
-	if (! GTK_IS_ACCESSIBLE (aobject)) {
-		return;
-	}
-	
-	/* Set the ATK_RELATION_LABEL_FOR relation */
-	gtk_label_set_mnemonic_widget (label, widget);
-
-	targets[0] = gtk_widget_get_accessible (GTK_WIDGET (label));
-
-	relation_set = atk_object_ref_relation_set (aobject);
-
-	relation = atk_relation_new (targets, 1, ATK_RELATION_LABELLED_BY);
-	atk_relation_set_add (relation_set, relation);
-	g_object_unref (G_OBJECT (relation));
-}

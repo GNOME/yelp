@@ -1,5 +1,23 @@
 2002-06-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (window_handle_uri): 
+	- let the index view handle it's own uri's
+
+	* src/yelp-view-content.c (content_reader_finished_cb): 
+	- fixed a possible crash
+
+	* src/yelp-view-index.c:
+	- updated to the YelpReader stuff.
+	- reenable showing docs in the html view here instead of content
+	  view.
+
+	* src/yelp-uri.c: 
+	(yelp_uri_to_index): added, special treatment of index URI's.
+	(yelp_uri_from_index): same.
+	(yelp_uri_exists): handle index uri's correctly.
+
+	* src/yelp-db2html.c (main): load the DTD so that enteties works.
+
 	* src/yelp-view-content.c: 
 	(content_find_path_from_uri): added, used to find the path to a
 	  certain URI.
