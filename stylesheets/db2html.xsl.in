@@ -6,6 +6,14 @@
 
 <xsl:import href="@DB2HTML@"/>
 
+<xsl:param name="yelp.image.blockquote"/>
+<xsl:param name="yelp.image.caution"/>
+<xsl:param name="yelp.image.important"/>
+<xsl:param name="yelp.image.note"/>
+<xsl:param name="yelp.image.programlisting"/>
+<xsl:param name="yelp.image.tip"/>
+<xsl:param name="yelp.image.warning"/>
+
 <xsl:param name="db.chunk.chunk_top" select="true()"/>
 <xsl:param name="db.chunk.extension" select="''"/>
 <xsl:param name="db.chunk.cover_basename" select="'__yelp_cover'"/>
@@ -13,6 +21,7 @@
 <xsl:param name="db.chunk.index_basename" select="'__yelp_index'"/>
 <xsl:param name="db.chunk.toc_basename"   select="'__yelp_toc'"/>
 
+<!-- == db.chunk == -->
 <xsl:template name="db.chunk">
   <xsl:param name="node" select="."/>
   <xsl:param name="info"/>
@@ -49,6 +58,48 @@
       <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     </xsl:call-template>
   </yelp:document>
+</xsl:template>
+
+<!-- == db2html.admon.image == -->
+<xsl:template name="db2html.admon.image">
+  <xsl:param name="node" select="."/>
+  <img style="float:left;">
+    <xsl:attribute name="src">
+      <xsl:choose>
+        <xsl:when test="$node/self::caution">
+          <xsl:value-of select="yelp.image.caution"/>
+        </xsl:when>
+        <xsl:when test="$node/self::important">
+          <xsl:value-of select="yelp.image.important"/>
+        </xsl:when>
+        <xsl:when test="$node/self::note">
+          <xsl:value-of select="yelp.image.note"/>
+        </xsl:when>
+        <xsl:when test="$node/self::tip">
+          <xsl:value-of select="yelp.image.tip"/>
+        </xsl:when>
+        <xsl:when test="$node/self::warning">
+          <xsl:value-of select="yelp.image.warning"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:attribute>
+  </img>
+</xsl:template>
+
+<!-- == db2html.css.custom == -->
+<xsl:template name="db2html.css.custom">
+  <xsl:text>
+    div[class="programlisting"] {
+      background-image: url(</xsl:text>
+      <xsl:value-of select="$yelp.image.programlisting"/><xsl:text>);
+      background-repeat: no-repeat;
+    }
+   div[class="blockquote"] {
+      background-image: url(</xsl:text>
+      <xsl:value-of select="$yelp.image.blockquote"/><xsl:text>);
+      background-repeat: no-repeat;
+    }
+  </xsl:text>
 </xsl:template>
 
 <!--

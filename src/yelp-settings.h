@@ -41,16 +41,30 @@ typedef enum {
 } YelpSettingsType;
 
 typedef enum {
-    YELP_FONT_VARIABLE,
+    YELP_FONT_VARIABLE = 0,
     YELP_FONT_FIXED,
     YELP_NUM_FONTS
 } YelpFontType;
 
 typedef enum {
+    YELP_COLOR_TEXT = 0,
+    YELP_COLOR_ANCHOR,
+    YELP_COLOR_BACKGROUND,
     YELP_COLOR_GRAY_BACKGROUND,
     YELP_COLOR_GRAY_BORDER,
     YELP_NUM_COLORS
 } YelpColorType;
+
+typedef enum {
+    YELP_ICON_BLOCKQUOTE = 0,
+    YELP_ICON_CAUTION,
+    YELP_ICON_IMPORTANT,
+    YELP_ICON_NOTE,
+    YELP_ICON_PROGRAMLISTING,
+    YELP_ICON_TIP,
+    YELP_ICON_WARNING,
+    YELP_NUM_ICONS
+} YelpIconType;
 
 void                  yelp_settings_init                 (void);
 void                  yelp_settings_open_preferences     (void);
@@ -62,6 +76,7 @@ void                  yelp_settings_notify_remove        (YelpSettingsType type,
 							  guint            id);
 
 const GtkIconTheme *  yelp_settings_get_icon_theme       (void);
+GtkIconInfo *         yelp_settings_get_icon             (YelpIconType     icon);
 gchar *               yelp_settings_get_font             (YelpFontType     font);
 const gchar *         yelp_settings_get_color            (YelpColorType    color);
 const gchar *         yelp_settings_get_css_file         (void);

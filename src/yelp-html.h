@@ -48,6 +48,7 @@ struct _YelpHtmlClass {
         GObjectClass  parent_class;
 
 	guint font_handler;
+	guint color_handler;
 
 	/* Signals */
 	void (*uri_selected)   (YelpHtml    *view,

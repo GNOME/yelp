@@ -1,3 +1,35 @@
+2004-10-20  Shaun McCance  <shaunm@gnome.org>
+
+	* data/icons/Makefile.am:
+	* data/yelp-icon-caution.png:
+	* data/yelp-icon-important.png:
+	* data/yelp-icon-note.png:
+	* data/yelp-icon-tip.png:
+	* data/yelp-icon-warning.png:
+	* data/yelp-watermark-blockquote-00AB.png:
+	* data/yelp-watermark-blockquote-00BB.png:
+	* data/yelp-watermark-blockquote-201C.png:
+	* data/yelp-watermark-blockquote-201E.png:
+	* src/yelp-db-pager.c:
+	* src/yelp-settings.c:
+	* src/yelp-settings.h:
+	* stylesheets/db2html.xsl.in:
+	- Themeable icons and watermarks
+
+	* src/yelp-gecko-utils.cpp:
+	* src/yelp-gecko-utils.h:
+	* src/yelp-html-gecko.c:
+	* src/yelp-html.h:
+	* src/yelp-settings.c:
+	* src/yelp-settings.h:
+	- Color settings
+
+	* src/yelp-utils.c:
+	- Fixed a very stupid crasher
+
+	* src/yelp-window.c:
+	- Pop the history stack on errors
+
 2004-10-19  James Bowes  <bowes@cs.dal.ca>
 
 	* src/yelp-man-parser.c: (yelp_man_parser_parse_file),

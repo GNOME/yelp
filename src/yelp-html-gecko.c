@@ -47,6 +47,7 @@ struct _YelpHtmlPriv {
 static void      html_init               (YelpHtml           *html);
 static void      html_class_init         (YelpHtmlClass      *klass);
 static void      html_set_fonts          (void);
+static void      html_set_colors         (void);
 
 enum {
     URI_SELECTED,
@@ -129,6 +130,13 @@ html_init (YelpHtml *html)
 				      (GHookFunc) html_set_fonts,
 				      NULL);
 	html_set_fonts ();
+    }
+    if (!klass->color_handler) {
+	klass->color_handler =
+	    yelp_settings_notify_add (YELP_SETTINGS_INFO_COLOR,
+				      (GHookFunc) html_set_colors,
+				      NULL);
+	html_set_colors ();
     }
 
     g_signal_connect (html->priv->embed, "title",
@@ -288,6 +296,21 @@ html_set_fonts (void)
     font = yelp_settings_get_font (YELP_FONT_FIXED);
     yelp_gecko_set_font (YELP_FONT_FIXED, font);
     g_free (font);
+}
+
+static void
+html_set_colors (void)
+{
+    gchar *color;
+
+    color = (gchar *) yelp_settings_get_color (YELP_COLOR_TEXT);
+    yelp_gecko_set_color (YELP_COLOR_TEXT, color);
+
+    color = (gchar *) yelp_settings_get_color (YELP_COLOR_ANCHOR);
+    yelp_gecko_set_color (YELP_COLOR_ANCHOR, color);
+
+    color = (gchar *) yelp_settings_get_color (YELP_COLOR_BACKGROUND);
+    yelp_gecko_set_color (YELP_COLOR_BACKGROUND, color);
 }
 
 void

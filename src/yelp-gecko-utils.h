@@ -28,13 +28,15 @@
 
 G_BEGIN_DECLS
 
-void            yelp_gecko_set_font    (YelpFontType  font_type,
-				        const gchar  *fontname);
-gboolean        yelp_gecko_find        (GtkMozEmbed  *html,
-					const gchar  *str,
-					gboolean      match_case,
-					gboolean      wrap,
-					gboolean      forward);
+void            yelp_gecko_set_color   (YelpColorType  type,
+					const gchar   *color);
+void            yelp_gecko_set_font    (YelpFontType   font_type,
+				        const gchar   *fontname);
+gboolean        yelp_gecko_find        (GtkMozEmbed   *html,
+					const gchar   *str,
+					gboolean       match_case,
+					gboolean       wrap,
+					gboolean       forward);
 
 gboolean        yelp_gecko_copy_selection (GtkMozEmbed  *html);
 

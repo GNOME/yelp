@@ -81,7 +81,8 @@ static void        window_init		          (YelpWindow        *window);
 static void        window_class_init	          (YelpWindowClass   *klass);
 
 static void        window_error                   (YelpWindow        *window,
-						   GError            *error);
+						   GError            *error,
+						   gboolean           pop);
 static void        window_populate                (YelpWindow        *window);
 static void        window_populate_find           (YelpWindow        *window,
 						   GtkWidget         *find_bar);
@@ -575,7 +576,7 @@ yelp_window_load (YelpWindow *window, gchar *uri)
     if (!uri) {
 	GError *error = NULL;
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
-	window_error (window, error);
+	window_error (window, error, FALSE);
 	g_error_free (error);
 	return;
     }
@@ -586,7 +587,7 @@ yelp_window_load (YelpWindow *window, gchar *uri)
     if (!doc_info) {
 	GError *error = NULL;
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
-	window_error (window, error);
+	window_error (window, error, FALSE);
 	g_error_free (error);
 	return;
     }
@@ -601,7 +602,8 @@ yelp_window_load (YelpWindow *window, gchar *uri)
 	    goto done;
     }
 
-    history_push_back (window);
+    if (priv->current_doc)
+	history_push_back (window);
     history_clear_forward (window);
 
     if (priv->current_doc)
@@ -667,7 +669,7 @@ window_do_load (YelpWindow  *window,
     }
  
     if (error) {
-	window_error (window, error);
+	window_error (window, error, TRUE);
 	g_error_free (error);
     }
 
@@ -677,13 +679,26 @@ window_do_load (YelpWindow  *window,
 /******************************************************************************/
 
 static void
-window_error (YelpWindow *window, GError *error)
+window_error (YelpWindow *window, GError *error, gboolean pop)
 {
     YelpWindowPriv *priv;
     GtkWidget *dialog;
     GtkAction *action;
 
     priv = window->priv;
+
+    if (pop) {
+	YelpHistoryEntry *entry = history_pop_back (window);
+
+	if (priv->current_doc)
+	    yelp_doc_info_unref (priv->current_doc);
+	if (priv->current_frag)
+	    g_free (priv->current_frag);
+	priv->current_doc  = yelp_doc_info_ref (entry->doc_info);
+	priv->current_frag = g_strdup (entry->frag_id);
+
+	history_entry_free (entry);
+    }
 
     action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
     if (action)
@@ -741,7 +756,7 @@ window_populate (YelpWindow *window)
     if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
 					  DATADIR "/yelp/ui/yelp-ui.xml",
 					  &error)) {
-	window_error (window, error);
+	window_error (window, error, FALSE);
 	g_error_free (error);
     }
 
@@ -944,7 +959,7 @@ window_do_load_pager (YelpWindow  *window,
 
     if (!pager) {
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
-	window_error (window, error);
+	window_error (window, error, TRUE);
 	g_error_free (error);
 	handled = FALSE;
 	goto done;
@@ -960,7 +975,7 @@ window_do_load_pager (YelpWindow  *window,
     case YELP_PAGER_STATE_ERROR:
 	error = yelp_pager_get_error (pager);
 	if (error)
-	    window_error (window, error);
+	    window_error (window, error, TRUE);
 	handled = FALSE;
 	goto done;
 	break;
@@ -972,7 +987,7 @@ window_do_load_pager (YelpWindow  *window,
 	page = (YelpPage *) yelp_pager_get_page (pager, frag_id);
 	if (!page && (state == YELP_PAGER_STATE_FINISHED)) {
 	    yelp_set_error (&error, YELP_ERROR_NO_PAGE);
-	    window_error (window, error);
+	    window_error (window, error, TRUE);
 	    g_error_free (error);
 	    handled = FALSE;
 	    goto done;
@@ -1073,7 +1088,7 @@ window_do_load_html (YelpWindow    *window,
     if (result != GNOME_VFS_OK) {
 	GError *error = NULL;
 	yelp_set_error (&error, YELP_ERROR_NO_DOC);
-	window_error (window, error);
+	window_error (window, error, TRUE);
 	g_error_free (error);
 	handled = FALSE;
 	goto done;
@@ -1362,7 +1377,7 @@ pager_start_cb (YelpPager   *pager,
 	window_disconnect (window);
 
 	yelp_set_error (&error, YELP_ERROR_NO_PAGE);
-	window_error (window, error);
+	window_error (window, error, TRUE);
 	g_error_free (error);
     }
 }
@@ -1398,7 +1413,7 @@ pager_error_cb (YelpPager   *pager,
     d (g_print ("pager_error_cb\n"));
 
     window_disconnect (window);
-    window_error (window, error);
+    window_error (window, error, TRUE);
 
     g_error_free (error);
 
@@ -1417,7 +1432,7 @@ pager_finish_cb (YelpPager   *pager,
     window_disconnect (window);
 
     yelp_set_error (&error, YELP_ERROR_NO_PAGE);
-    window_error (window, error);
+    window_error (window, error, TRUE);
 
     g_error_free (error);
 

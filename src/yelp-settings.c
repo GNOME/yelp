@@ -28,6 +28,8 @@
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
+#include <libgnome/gnome-i18n.h>
+#include <libgnomeui/gnome-href.h>
 #include <string.h>
 #include "yelp-settings.h"
 
@@ -50,10 +52,6 @@ static void           settings_update         (YelpSettingsType  type);
 static void           prefs_system_fonts_cb   (GtkWidget        *widget);
 static void           prefs_font_cb           (GtkWidget        *widget);
 static void           toggle_font_table       (GtkWidget        *widget);
-static void           gconf_gtk_theme_cb      (GConfClient      *client,
-					       guint             cnxn_id,
-					       GConfEntry       *entry,
-					       gpointer          data);
 static void           gconf_system_fonts_cb   (GConfClient      *client,
 					       guint             cnxn_id,
 					       GConfEntry       *entry,
@@ -62,6 +60,8 @@ static void           gconf_font_cb           (GConfClient      *client,
 					       guint             cnxn_id,
 					       GConfEntry       *entry,
 					       gpointer          data);
+static void           gtk_theme_changed       (GtkSettings      *settings,
+					       gpointer          user_data);
 static void           icon_theme_changed      (GtkIconTheme     *theme,
 					       gpointer          user_data);
 
@@ -69,8 +69,10 @@ static GConfClient *gconf_client = NULL;
 
 static GHookList    *hook_lists[YELP_SETTINGS_NUM_TYPES];
 
+static GtkSettings  *gtk_settings;
 static GtkIconTheme *icon_theme;
 static gchar colors[YELP_NUM_COLORS][10];
+static gchar *icon_names[YELP_NUM_ICONS] = {NULL,};
 
 static GtkWidget    *prefs_dialog = NULL;
 static GtkWidget    *system_fonts_widget  = NULL;
@@ -86,6 +88,56 @@ yelp_settings_init (void)
 {
     gint i;
 
+    for (i = 0; i < YELP_NUM_ICONS; i++) {
+	switch (i) {
+	case YELP_ICON_BLOCKQUOTE:
+	    /* TRANSLATORS:
+	       This is an image of the opening quote character used to watermark
+	       blockquote elements.  Different languages use different opening
+	       quote characters, so the icon name is translatable.  The name of
+	       the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
+	       is the Unicode code point of the opening quote character.   For
+	       example, some languages use the double angle quotation mark, so
+	       those would use "yelp-watermark-blockquote-00AB".  However, the
+	       image is not automagically created.  Do not translate this to a
+	       value if there isn't a corresponding icon in yelp/data/icons.
+	       If you need an image created, contact the maintainers.
+
+	       Phew, now some notes on which character to use.  Languages that
+	       use guillemets (angle quotations) should use either 00AB or AABB,
+	       depending on whether the opening quotation is the left guillemet
+	       or the right guillemet.  Languages that use inverted comma style
+	       quotations should use either 201C or 201E, depending on whether
+	       the opening quote is raised or at the baseline.  Note that single
+	       quotation marks don't make very nice watermarks.  So if you use
+	       single quotes as your primary (outer) quotation marks, you should
+	       just use the corresponding double quote watermark.
+	    */
+	    icon_names[i] = _("yelp-watermark-blockquote-201C");
+	    break;
+	case YELP_ICON_CAUTION:
+	    icon_names[i] = "yelp-icon-caution";
+	    break;
+	case YELP_ICON_IMPORTANT:
+	    icon_names[i] = "yelp-icon-important";
+	    break;
+	case YELP_ICON_NOTE:
+	    icon_names[i] = "yelp-icon-note";
+	    break;
+	case YELP_ICON_PROGRAMLISTING:
+	    icon_names[i] = "yelp-watermark-programlisting";
+	    break;
+	case YELP_ICON_TIP:
+	    icon_names[i] = "yelp-icon-tip";
+	    break;
+	case YELP_ICON_WARNING:
+	    icon_names[i] = "yelp-icon-warning";
+	    break;
+	default:
+	    g_assert_not_reached ();
+	}
+    }
+
     gconf_client = gconf_client_get_default ();
     gconf_client_add_dir (gconf_client, KEY_GNOME_DIR,
 			  GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
@@ -98,10 +150,6 @@ yelp_settings_init (void)
     gconf_client_notify_add (gconf_client,
 			     KEY_GNOME_FIXED_FONT,
 			     gconf_font_cb,
-			     NULL, NULL, NULL);
-    gconf_client_notify_add (gconf_client,
-			     KEY_GNOME_GTK_THEME,
-			     gconf_gtk_theme_cb,
 			     NULL, NULL, NULL);
     gconf_client_notify_add (gconf_client,
 			     KEY_YELP_SYSTEM_FONTS,
@@ -121,7 +169,15 @@ yelp_settings_init (void)
 	g_hook_list_init (hook_lists[i], sizeof (GHook));
     }
 
+    gtk_settings = gtk_settings_get_default ();
+    g_signal_connect (gtk_settings,
+		      "notify::gtk-theme-name",
+		      (GCallback) gtk_theme_changed,
+		      NULL);
+
     icon_theme = gtk_icon_theme_get_default ();
+    gtk_icon_theme_append_search_path (icon_theme,
+				       DATADIR "/yelp/icons");
     g_signal_connect (icon_theme,
 		      "changed",
 		      (GCallback) icon_theme_changed,
@@ -226,6 +282,19 @@ yelp_settings_get_icon_theme (void)
     return icon_theme;
 }
 
+GtkIconInfo *
+yelp_settings_get_icon (YelpIconType icon)
+{
+    GtkIconInfo *info;
+
+    g_return_val_if_fail (icon < YELP_NUM_ICONS, NULL);
+
+    info = gtk_icon_theme_lookup_icon (icon_theme,
+				       icon_names[icon],
+				       36, 0);
+    return info;
+}
+
 gchar *
 yelp_settings_get_font (YelpFontType font)
 {
@@ -253,7 +322,7 @@ yelp_settings_get_font (YelpFontType font)
 const gchar *
 yelp_settings_get_color (YelpColorType color)
 {
-    g_return_val_if_fail (color >= YELP_NUM_COLORS, NULL);
+    g_return_val_if_fail (color < YELP_NUM_COLORS, NULL);
 
     return colors[color];
 }
@@ -317,18 +386,6 @@ toggle_font_table (GtkWidget *widget)
 /** GConf Callbacks ***********************************************************/
 
 static void
-gconf_gtk_theme_cb (GConfClient *client,
-		    guint        cnxn_id,
-		    GConfEntry  *entry,
-		    gpointer     data)
-{
-    d (g_print ("gconf_gtk_theme_cb\n"));
-
-    if (g_str_equal (gconf_entry_get_key (entry), KEY_GNOME_GTK_THEME))
-	settings_update (YELP_SETTINGS_INFO_COLOR);
-}
-
-static void
 gconf_system_fonts_cb (GConfClient   *client,
 		       guint          cnxn_id,
 		       GConfEntry    *entry,
@@ -387,6 +444,14 @@ gconf_font_cb (GConfClient   *client,
 /******************************************************************************/
 
 static void
+gtk_theme_changed (GtkSettings *settings, gpointer user_data)
+{
+    d (g_print ("gtk_theme_changed\n"));
+
+    settings_update (YELP_SETTINGS_INFO_COLOR);
+}
+
+static void
 icon_theme_changed (GtkIconTheme *theme, gpointer user_data)
 {
     settings_update (YELP_SETTINGS_INFO_ICONS);
@@ -401,7 +466,7 @@ settings_update (YelpSettingsType type)
     d (g_print ("settings_update\n"));
 
     if (type & YELP_SETTINGS_INFO_COLOR) {
-	style = gtk_rc_get_style_by_paths (gtk_settings_get_default (),
+	style = gtk_rc_get_style_by_paths (gtk_settings,
 					   "GtkWidget", "GtkWidget",
 					   GTK_TYPE_WIDGET);
 	if (style)
@@ -409,13 +474,28 @@ settings_update (YelpSettingsType type)
 	else
 	    style = gtk_style_new ();
 
-	g_snprintf (colors[YELP_COLOR_GRAY_BACKGROUND], 10,
-		    "\"#%02X%02X%02X\"",
+	g_snprintf (colors[YELP_COLOR_TEXT], 8,
+		    "#%02X%02X%02X",
+		    style->fg[GTK_STATE_NORMAL].red >> 8,
+		    style->fg[GTK_STATE_NORMAL].green >> 8,
+		    style->fg[GTK_STATE_NORMAL].blue >> 8);
+	g_snprintf (colors[YELP_COLOR_ANCHOR], 8,
+		    "#%02X%02X%02X",
+		    style->fg[GTK_STATE_NORMAL].red >> 8,
+		    style->fg[GTK_STATE_NORMAL].green >> 8,
+		    style->fg[GTK_STATE_NORMAL].blue >> 8);
+	g_snprintf (colors[YELP_COLOR_BACKGROUND], 8,
+		    "#%02X%02X%02X",
+		    style->white.red >> 8,
+		    style->white.green >> 8,
+		    style->white.blue >> 8);
+	g_snprintf (colors[YELP_COLOR_GRAY_BACKGROUND], 8,
+		    "#%02X%02X%02X",
 		    style->bg[GTK_STATE_NORMAL].red >> 8,
 		    style->bg[GTK_STATE_NORMAL].green >> 8,
 		    style->bg[GTK_STATE_NORMAL].blue >> 8);
-	g_snprintf (colors[YELP_COLOR_GRAY_BACKGROUND], 10,
-		    "\"#%02X%02X%02X\"",
+	g_snprintf (colors[YELP_COLOR_GRAY_BACKGROUND], 8,
+		    "#%02X%02X%02X",
 		    style->dark[GTK_STATE_NORMAL].red >> 8,
 		    style->dark[GTK_STATE_NORMAL].green >> 8,
 		    style->dark[GTK_STATE_NORMAL].blue >> 8);

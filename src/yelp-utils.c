@@ -156,19 +156,30 @@ yelp_doc_info_get (gchar *uri)
 	if (doc && doc->type != YELP_DOC_TYPE_EXTERNAL) {
 	    YelpDocInfo *old_doc;
 
-	    /* Hackish and not reliable, but it basically works */
-	    if ((old_doc = g_hash_table_lookup (doc_info_table, doc->uris->uri))) {
+	    for (i = 0; i < doc->num_uris; i++) {
+		old_doc = g_hash_table_lookup (doc_info_table,
+					       (doc->uris + i)->uri);
+		if (old_doc)
+		    break;
+	    }
+
+	    if (old_doc) {
+		for (i = 0; i < doc->num_uris; i++) {
+		    doc_info_add_uri (old_doc,
+				      (doc->uris + i)->uri,
+				      (doc->uris + i)->type);
+		    g_hash_table_insert (doc_info_table,
+					 g_strdup ((doc->uris + i)->uri),
+					 yelp_doc_info_ref (old_doc));
+		}
 		yelp_doc_info_free (doc);
 		doc = old_doc;
-		for (i = 0; i < doc->num_uris; i++)
-		    g_hash_table_insert (doc_info_table,
-					 g_strdup ((doc->uris + i)->uri),
-					 doc);
 	    } else {
-		for (i = 0; i < doc->num_uris; i++)
+		for (i = 0; i < doc->num_uris; i++) {
 		    g_hash_table_insert (doc_info_table,
 					 g_strdup ((doc->uris + i)->uri),
-					 doc);
+					 yelp_doc_info_ref (doc));
+		}
 	    }
 	}
     }

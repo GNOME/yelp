@@ -89,6 +89,25 @@ gecko_prefs_set_int (const gchar *key, gint value)
 }
 
 extern "C" void
+yelp_gecko_set_color (YelpColorType type, const gchar *color)
+{
+	switch (type) {
+	case YELP_COLOR_TEXT:
+		gecko_prefs_set_string ("browser.display.foreground_color",
+					color);
+		break;
+	case YELP_COLOR_ANCHOR:
+		gecko_prefs_set_string ("browser.anchor_color",
+					color);
+		break;
+	case YELP_COLOR_BACKGROUND:
+		gecko_prefs_set_string ("browser.display.background_color",
+					color);
+		break;
+	}
+}
+
+extern "C" void
 yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 {
 	gchar *name;
@@ -99,7 +118,7 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 		g_free (name);
 		return;
 	}
-	
+
 	switch (font_type) {
 	case YELP_FONT_VARIABLE:
 		gecko_prefs_set_string ("font.name.variable.x-western", 
@@ -108,6 +127,10 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 				     size);
 		break;
 	case YELP_FONT_FIXED:
+		gecko_prefs_set_string ("font.name.monospace.x-western", 
+					name);
+		gecko_prefs_set_int ("font.size.monospace.x-western", 
+				     size);
 		gecko_prefs_set_string ("font.name.fixed.x-western", 
 					name);
 		gecko_prefs_set_int ("font.size.fixed.x-western", 

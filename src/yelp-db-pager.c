@@ -206,11 +206,16 @@ db_pager_process (YelpPager *pager)
     YelpDBPagerPriv *priv;
     YelpDocInfo     *doc_info;
     gchar           *filename;
-    gint i = 0;
+    gint params_i = 0;
+    gint i;
 
     DBWalker    *walker;
     xmlChar     *id;
     GError      *error = NULL;
+
+    GtkIconInfo *icon_info;
+    gchar *icon_file;
+    gchar *icons[YELP_NUM_ICONS];
 
     xmlDocPtr         doc  = NULL, newdoc = NULL;
     xmlParserCtxtPtr  ctxt = NULL;
@@ -285,33 +290,72 @@ db_pager_process (YelpPager *pager)
     while (gtk_events_pending ())
 	gtk_main_iteration ();
 
+    for (i = 0; i < YELP_NUM_ICONS; i++) {
+	icon_info = yelp_settings_get_icon (i);
+	if (icon_info) {
+	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
+	    if (icon_file)
+		icons[i] = g_strdup_printf ("\"%s\"", icon_file);
+	    else 
+		icons[i] = g_strdup ("\"\"");
+	    gtk_icon_info_free (icon_info);
+	} else {
+	    icons[i] = g_strdup ("\"\"");
+	}
+
+	switch (i) {
+	case YELP_ICON_BLOCKQUOTE:
+	    params[params_i++] = "yelp.image.blockquote";
+	    break;
+	case YELP_ICON_CAUTION:
+	    params[params_i++] = "yelp.image.caution";
+	    break;
+	case YELP_ICON_IMPORTANT:
+	    params[params_i++] = "yelp.image.important";
+	    break;
+	case YELP_ICON_NOTE:
+	    params[params_i++] = "yelp.image.note";
+	    break;
+	case YELP_ICON_PROGRAMLISTING:
+	    params[params_i++] = "yelp.image.programlisting";
+	    break;
+	case YELP_ICON_TIP:
+	    params[params_i++] = "yelp.image.tip";
+	    break;
+	case YELP_ICON_WARNING:
+	    params[params_i++] = "yelp.image.warning";
+	    break;
+	default:
+	    g_assert_not_reached ();
+	}
+	params[params_i++] = icons[i];
+    }
+
     /*
     db_chunk_basename   = gnome_vfs_uri_extract_short_name (uri->uri);
     db_chunk_basename_q = g_strconcat("\"", db_chunk_basename, "\"", NULL);
     doc_path = gnome_vfs_uri_extract_dirname (uri->uri);
     p_doc_path = g_strconcat("\"file://", doc_path, "/\"", NULL);
-    params[i++] = "db.chunk.basename";
-    params[i++] = db_chunk_basename_q;
-    params[i++] = "doc_path";
-    params[i++] = p_doc_path;
+    params[params_i++] = "db.chunk.basename";
+    params[params_i++] = db_chunk_basename_q;
+    params[params_i++] = "doc_path";
+    params[params_i++] = p_doc_path;
     */
-    params[i++] = "stylesheet_path";
-    params[i++] = "\"file://" DB_STYLESHEET_PATH "/\"";
-    params[i++] = "html_extension";
-    params[i++] = "\"\"";
-    params[i++] = "resolve_xref_chunk";
-    params[i++] = "0";
-    /*
-    params[i++] = "mediaobject_path";
-    params[i++] = p_doc_path;
+    params[params_i++] = "stylesheet_path";
+    params[params_i++] = "\"file://" DB_STYLESHEET_PATH "/\"";
+    params[params_i++] = "html_extension";
+    params[params_i++] = "\"\"";
+    params[params_i++] = "resolve_xref_chunk";
+    params[params_i++] = "0";
+    /* "'%s'" the colors
+    params[params_i++] = "color_gray_background";
+    params[params_i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BACKGROUND);
+    params[params_i++] = "color_gray_border";
+    params[params_i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BORDER);
     */
-    params[i++] = "color_gray_background";
-    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BACKGROUND);
-    params[i++] = "color_gray_border";
-    params[i++] = yelp_settings_get_color (YELP_COLOR_GRAY_BORDER);
-    params[i++] = "admon_graphics_path";
-    params[i++] = "\"file://" DATADIR "/yelp/icons/\"";
-    params[i++] = NULL;
+    params[params_i++] = "admon_graphics_path";
+    params[params_i++] = "\"file://" DATADIR "/yelp/icons/\"";
+    params[params_i++] = NULL;
 
     stylesheet = xsltParseStylesheetFile (DB_STYLESHEET);
     if (!stylesheet) {
