@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-04-17 21:12+0200\n"
-"PO-Revision-Date: 2002-04-17 21:12+0200\n"
+"POT-Creation-Date: 2002-05-05 19:36+0200\n"
+"PO-Revision-Date: 2002-05-05 19:36+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabrik"
 
-#: src/yelp-db2html.c:105
+#: src/yelp-db2html.c:106
 msgid ""
 "Error while parsing the stylesheet, make sure you have your docbook "
 "environment setup correctly."
@@ -32,30 +32,25 @@ msgstr ""
 "Fel vid tolkningen av stilmallen, försäkra dig om att din docbook-miljö är "
 "korrekt installerad."
 
-#: src/yelp-db2html.c:121
+#: src/yelp-db2html.c:122
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokumentet \"%s\" finns inte"
 
-#: src/yelp-db2html.c:136
+#: src/yelp-db2html.c:137
 #, c-format
 msgid "Couldn't parse the document '%s'."
 msgstr "Kunde inte tolka dokumentet \"%s\"."
 
-#: src/yelp-db2html.c:175
+#: src/yelp-db2html.c:176
 msgid "Error while applying the stylesheet."
 msgstr "Fel vid applicering av stilmallen."
 
-#: src/yelp-html.c:130
+#: src/yelp-html.c:156
 msgid "Loading..."
 msgstr "Läser in..."
 
-#: src/yelp-html.c:308
-#, c-format
-msgid "Failed to open document '%s'"
-msgstr "Misslyckades med att öppna dokumentet \"%s\""
-
-#: src/yelp-info.c:141
+#: src/yelp-info.c:138
 msgid "info"
 msgstr "info"
 
@@ -68,76 +63,76 @@ msgstr "Kunde inte aktivera Yelp: \"%s\""
 msgid "Could not open new window."
 msgstr "Kunde inte öppna nytt fönster."
 
-#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
-#: src/yelp-man.c:406 src/yelp-man.c:417
+#: src/yelp-man.c:302 src/yelp-man.c:323 src/yelp-man.c:359 src/yelp-man.c:391
+#: src/yelp-man.c:407 src/yelp-man.c:418
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
+#: src/yelp-man.c:307 src/yelp-man.c:338 src/yelp-man.c:396 src/yelp-man.c:423
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:311
+#: src/yelp-man.c:312
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:327
+#: src/yelp-man.c:328
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:332
+#: src/yelp-man.c:333
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:342
+#: src/yelp-man.c:343
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:347
+#: src/yelp-man.c:348
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:369
+#: src/yelp-man.c:370
 msgid "System Calls"
 msgstr "Systemanrop"
 
-#: src/yelp-man.c:374
+#: src/yelp-man.c:375
 msgid "Library Functions"
 msgstr "Biblioteksfunktioner"
 
-#: src/yelp-man.c:379
+#: src/yelp-man.c:380
 msgid "Kernel Routines"
 msgstr "Kärnrutiner"
 
-#: src/yelp-man.c:434
+#: src/yelp-man.c:435
 msgid "Applications"
 msgstr "Program"
 
-#: src/yelp-man.c:439
+#: src/yelp-man.c:440
 msgid "Development"
 msgstr "Utveckling"
 
-#: src/yelp-man.c:444
+#: src/yelp-man.c:445
 msgid "Hardware Devices"
 msgstr "Hårdvaruenheter"
 
-#: src/yelp-man.c:449
+#: src/yelp-man.c:450
 msgid "Configuration Files"
 msgstr "Konfigurationsfiler"
 
-#: src/yelp-man.c:454
+#: src/yelp-man.c:455
 msgid "Games"
 msgstr "Spel"
 
-#: src/yelp-man.c:459
+#: src/yelp-man.c:460
 msgid "Overviews"
 msgstr "Översikter"
 
-#: src/yelp-man.c:464
+#: src/yelp-man.c:465
 msgid "System Administration"
 msgstr "Systemadministration"
 
-#: src/yelp-man.c:475
+#: src/yelp-man.c:476
 msgid "man"
 msgstr "man"
 
@@ -161,12 +156,12 @@ msgstr "GNOME - Skrivbord"
 msgid "Additional documents"
 msgstr "Ytterligare dokument"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
-msgid "Manual pages"
+#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:666
+msgid "Manual Pages"
 msgstr "Manualsidor"
 
 #: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
-msgid "Info pages"
+msgid "Info Pages"
 msgstr "Infosidor"
 
 #: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
@@ -177,8 +172,8 @@ msgstr "Dokument"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/yelp-view-toc.c:666
-msgid "Manual Pages"
+#: src/yelp-view-toc.c:609
+msgid "Manual pages"
 msgstr "Manualsidor"
 
 #: src/yelp-window.c:152
@@ -228,46 +223,46 @@ msgstr "Hjälpvisare"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:565
+#: src/yelp-window.c:567
 msgid "translator_credits"
 msgstr ""
 "Christian Rose\n"
 "Richard Hult\n"
 "Rapportera fel i översättningen till sv@li.org"
 
-#: src/yelp-window.c:569
+#: src/yelp-window.c:571
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hjälpvisare för GNOME 2.0"
 
-#: src/yelp-window.c:623
+#: src/yelp-window.c:625
 msgid "Back"
 msgstr "Bakåt"
 
-#: src/yelp-window.c:624
+#: src/yelp-window.c:626
 msgid "Show previous page in history"
 msgstr "Visa föregående sida i historiken"
 
-#: src/yelp-window.c:635
+#: src/yelp-window.c:637
 msgid "Forward"
 msgstr "Framåt"
 
-#: src/yelp-window.c:636
+#: src/yelp-window.c:638
 msgid "Show next page in history"
 msgstr "Visa nästa sida i historiken"
 
-#: src/yelp-window.c:649
+#: src/yelp-window.c:651
 msgid "Home"
 msgstr "Hem"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:652
 msgid "Go to home view"
 msgstr "Gå till hemvyn"
 
-#: src/yelp-window.c:660
+#: src/yelp-window.c:662
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:661
+#: src/yelp-window.c:663
 msgid "Search in the index"
 msgstr "Sök i indexet"
 
@@ -278,6 +273,9 @@ msgstr "Få hjälp med GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjälp"
+
+#~ msgid "Failed to open document '%s'"
+#~ msgstr "Misslyckades med att öppna dokumentet \"%s\""
 
 #~ msgid "Installed documents"
 #~ msgstr "Installerade dokument"
