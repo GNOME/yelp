@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"POT-Creation-Date: 2003-11-04 15:23+0200\n"
+"POT-Creation-Date: 2003-11-10 11:07-0600\n"
 "PO-Revision-Date: 2003-11-04 15:29-0200\n"
 "Last-Translator: Nikos Charonitakis <charosn@her.fothnet.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -75,20 +75,13 @@ msgstr "Αδύνατη η ενεργοποίηση του Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Αδύνατο το άνοιγμα νέου παραθύρου."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
 #
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -152,14 +145,12 @@ msgstr "Γενικές Επισκοπήσεις"
 msgid "System Administration"
 msgstr "Διαχείριση Συστήματος"
 
-#: src/yelp-view-content.c:487
-#: src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Φορτώνεται..."
 
 #
-#: src/yelp-view-content.c:528
-#: src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Ενότητα"
 
@@ -180,26 +171,20 @@ msgstr "GNOME - Επιφάνεια εργασίας"
 msgid "Additional documents"
 msgstr "Επιπλέον έγγραφα"
 
-#: src/yelp-view-toc.c:168
-#: src/yelp-view-toc.c:492
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
 msgid "Manual Pages"
 msgstr "Σελίδες Τεκμηρίωσης"
 
-#: src/yelp-view-toc.c:169
-#: src/yelp-view-toc.c:548
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
 msgid "Info Pages"
 msgstr "Σελίδες Info"
 
 #
-#: src/yelp-view-toc.c:366
-#: src/yelp-view-toc.c:549
-#: src/yelp-view-toc.c:740
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
 msgid "Documents"
 msgstr "Έγγραφα"
 
-#: src/yelp-view-toc.c:367
-#: src/yelp-view-toc.c:493
-#: src/yelp-view-toc.c:741
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
 msgid "Categories"
 msgstr "Κατηγορίες"
 
@@ -271,8 +256,7 @@ msgstr "/_Βοήθεια"
 msgid "/Help/_About"
 msgstr "/Βοήθεια/_Περί"
 
-#: src/yelp-window.c:255
-#: src/yelp-window.c:455
+#: src/yelp-window.c:255 src/yelp-window.c:455
 msgid "Help Browser"
 msgstr "Πρόγραμμα Βοήθειας"
 
@@ -333,4 +317,3 @@ msgstr "Λήψη βοήθειας για το GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Βοήθεια"
-
