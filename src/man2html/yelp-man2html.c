@@ -3677,6 +3677,16 @@ main(int argc, char **argv)
 	STRDEF *stdf;
 	char *infile = NULL;
 
+#if defined HAVE_MAN_WHEREIS
+#define MAN_CAN_FIND_SOURCE
+   const char *man_source_locator = "man -w %s";
+   const char *man_source_locator_with_section = "man -w %c %s";
+#elif defined HAVE_MAN_DEBUG
+#define MAN_CAN_FIND_SOURCE
+   const char *man_source_locator = "man -d %s | sed -n 's,^[ \t]*unformatted[ \t]*=[ \t]*,,p'";
+   const char *man_source_locator_with_section = "man -d -s %c %s | sed -n 's,^[ \t]*unformatted[ \t]*=[ \t]*,,p'";
+#endif
+
 	/* see if they gave us a basename for the URL references */
 
 	for(i = 1; i < argc; i++)
@@ -3722,11 +3732,34 @@ main(int argc, char **argv)
 
 		    *ctmp = '\0';
 
-		    g_snprintf(cmdline, sizeof(cmdline), "man -w %c %s", section, infile);
+#ifdef MAN_CAN_FIND_SOURCE
+		    g_snprintf(cmdline, sizeof(cmdline), man_source_locator_with_section, section, infile);
+#else
+		{
+                  printf("<HTML><HEAD><TITLE>Document not found</TITLE>\n"
+                         "</HEAD><BODY>"
+                         "I don't know how to find the document \"%s\" "
+                         "on your system.\n"
+                         "</BODY></HTML>\n", infile);
+
+                  return 4;
+                }
+#endif
 		  }
 		else
-		  g_snprintf(cmdline, sizeof(cmdline), "man -w %s", infile);
+#ifdef MAN_CAN_FIND_SOURCE
+		  g_snprintf(cmdline, sizeof(cmdline), man_source_locator, infile);
+#else
+		{
+                  printf("<HTML><HEAD><TITLE>Document not found</TITLE>\n"
+                         "</HEAD><BODY>"
+                         "I don't know how to find the document \"%s\" "
+                         "on your system.\n"
+                         "</BODY></HTML>\n", infile);
 
+                  return 4;
+                }
+#endif
 		fh = popen(cmdline, "r");
 		fgets(output, sizeof(output), fh);
 		pclose(fh);
