@@ -1,3 +1,8 @@
+2002-05-29  Radek Doulik  <rodo@ximian.com>
+
+	* src/yelp-html-gtkhtml1.c: removed #include "yelp-db2html.h"
+	(html_url_requested_cb): close gtkhtml stream
+
 2002-05-31  Mikael Hallendal  <micke@codefactory.se>
 
 	* configure.in (yelp): define yelplocaledir, Fixes #83639

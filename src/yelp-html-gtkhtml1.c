@@ -28,13 +28,13 @@
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnome/gnome-i18n.h>
 #include <gtkhtml/gtkhtml.h>
+#include <gtkhtml/gtkhtml-stream.h>
 
 #include <string.h>
 #include <stdio.h>
 
 #include "yelp-util.h"
 #include "yelp-marshal.h"
-#include "yelp-db2html.h"
 #include "yelp-error.h"
 #include "yelp-uri.h"
 #include "yelp-reader.h"
@@ -174,6 +174,7 @@ html_url_requested_cb (GtkHTML       *html_view,
 		gtk_html_write (html_view, stream, buffer, read_len);
 	}
 
+	gtk_html_stream_close (stream, GTK_HTML_STREAM_OK);
 	gnome_vfs_close (handle);
 }
 
