@@ -761,19 +761,18 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	if (str_uri && *str_uri) {
 		str_uri = look_for_html_help_file (str_uri);
 		new_uri = yelp_uri_new (str_uri);
-	}
-	else
+	} else {
 		new_uri = yelp_uri_copy (uri);
+	}
 
 	g_free (str_uri);
 
 	if (yelp_uri_get_type (new_uri) == YELP_URI_TYPE_DOCBOOK_XML ||
 	    yelp_uri_get_type (new_uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
 
+		/* check if there is HTML cache. If found, use the HTML cache. */
 		document = yelp_cache_lookup (yelp_uri_get_path (new_uri));
 	}
-
-        /* check if there is HTML cache. If found, use the HTML cache. */
 	else if (yelp_uri_get_type (new_uri) == YELP_URI_TYPE_HTML) {
 		GnomeVFSHandle   *handle;
 		GnomeVFSResult    result;
@@ -801,14 +800,16 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 				break;
 			}
 
-			if (html_buffer == NULL)
+			if (html_buffer == NULL) {
 				html_buffer = g_string_new (g_strndup (buffer,
-							    n));
-			else
+								       n));
+			} else {
 				html_buffer = g_string_append (html_buffer,
 							       g_strndup (buffer,
-							       n));
+									  n));
+			}
 		}
+
 		document = html_buffer->str;
 		g_string_free (html_buffer, FALSE);
 	}

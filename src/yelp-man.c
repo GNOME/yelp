@@ -3,7 +3,7 @@
  * Copyright (C) 2002 Red Hat Inc.
  * Copyright (C) 2000 Sun Microsystems, Inc. 
  * Copyright (C) 2001 Eazel, Inc. 
- * Copyright (C) 2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2002 CodeFactory AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -202,6 +202,8 @@ yelp_man_populate_tree_for_dir (GHashTable *section_hash,
 				const char *basedir)
 {
 	char cbuf[1024];
+
+        g_return_if_fail (basedir != NULL);
 
 	g_snprintf (cbuf, sizeof (cbuf), "%s/man1", basedir);
 	yelp_man_populate_tree_for_subdir (section_hash, cbuf, '1');
@@ -564,53 +566,59 @@ yelp_man_push_initial_tree (struct TreeNode *node, GNode *parent)
 	}
 }
 
-static gchar** 
+static GSList *
 yelp_man_remove_duplicates_from_manpath (gchar *manpath)
 {
- 	gchar	**manpathes = NULL;
-	gchar	**tmppathes = NULL;
-	gint     i, j;
-
-	if (manpath == NULL)
+ 	GSList  *ret_val = NULL;
+	gchar  **tmppathes = NULL;
+        gint     i;
+        
+	if (manpath == NULL) {
 		return NULL;
+	}
 	
 	g_strstrip (manpath);
-	if (manpath[0] == '\0') 
+
+	if (manpath[0] == '\0') {
 		return NULL;
+	}
 
 	tmppathes = g_strsplit (manpath, ":", -1);
 
-	for (i = 1; tmppathes[i]; i++);
-	manpathes = (char **) g_malloc0(i * sizeof(char **));
+	ret_val = g_slist_prepend (ret_val, g_strdup (tmppathes[0]));
 
-	manpathes[0] = g_strdup (tmppathes[0]);
-	manpathes[1] = NULL;
-	for ( i = 1; tmppathes[i];  i++){
-		for (j = 0; manpathes[j]; j++) {
- 			if(!(strcmp(tmppathes[i], manpathes[j])))	
+	for (i = 1; tmppathes[i];  i++) {
+		GSList   *l;
+                gboolean  found = FALSE;
+		
+		for (l = ret_val; l; l = l->next) {
+			if (g_ascii_strcasecmp ((gchar *) l->data,
+						tmppathes[i]) == 0) {
+                                found = TRUE;
 				break;
+			}
 		}
-		if (manpathes[j] == NULL) {
-			manpathes[j] = g_strdup (tmppathes[i]);
-			manpathes[j + 1] = NULL;
-		}
+                
+                if (!found) {
+                        ret_val = g_slist_prepend (ret_val,
+						   g_strdup (tmppathes[i]));
+                }
 	}
 
 	g_strfreev (tmppathes);
 
-	return manpathes;
+	return ret_val;
 }
 
 gboolean
 yelp_man_init (GNode *tree, GList **index)
 {
-	gchar            *manpath = NULL;
- 	gchar            **manpathes = NULL;
-	GHashTable       *section_hash;
-	struct TreeNode  *root;
-	struct stat       stat_dir1;
-	struct stat       stat_dir2;
-	int               i;
+	gchar           *manpath = NULL;
+ 	GSList          *manpathes = NULL;
+	GHashTable      *section_hash;
+	struct TreeNode *root;
+	struct stat      stat_dir1;
+	struct stat      stat_dir2;
 
 	/* Go through all the man pages:
 	 * 1. Determine the places to search (run 'manpath').
@@ -622,22 +630,36 @@ yelp_man_init (GNode *tree, GList **index)
 	section_hash = g_hash_table_new (g_str_hash, g_str_equal);
 	
 	root = yelp_man_make_initial_tree (&root_data, section_hash);
-
+        
 	if (g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL)) {
+                gint i;
+                gchar **tmppathes;
+                
 		g_strstrip (manpath);
-		manpathes = g_strsplit (manpath, ":", -1);
+		tmppathes = g_strsplit (manpath, ":", -1);
+                
+                for (i = 0; tmppathes[i]; ++i) {
+                        manpathes = g_slist_prepend (manpathes, tmppathes[i]);
+                }
+                
+                g_free (tmppathes);
 	} else {
-		g_print ("manpath not found, looking for MANPATH env\n");
 		manpath = g_strdup (g_getenv ("MANPATH"));
 		manpathes = yelp_man_remove_duplicates_from_manpath (manpath);
 	}
+
 	g_free (manpath);
 	
 	if (manpathes != NULL) {
-		for (i = 0; manpathes[i]; i++) {
-			yelp_man_populate_tree_for_dir (section_hash, 
-							manpathes[i]);
+		GSList *l;
+		
+		for (l = manpathes; l; l = l->next) {
+			yelp_man_populate_tree_for_dir (section_hash,
+							(gchar *) l->data);
 		}
+		
+		g_slist_foreach (manpathes, (GFunc) g_free, NULL);
+		g_slist_free (manpathes);
 	} else {
 		stat ("/usr/man", &stat_dir1);
 		stat ("/usr/share/man", &stat_dir2);
@@ -663,7 +685,5 @@ yelp_man_init (GNode *tree, GList **index)
 
 	*index = g_list_concat (*index, man_index);
 
-	g_strfreev (manpathes);
-	
 	return TRUE;
 }

@@ -36,7 +36,6 @@
 #include "yelp-marshal.h"
 #include "yelp-error.h"
 #include "yelp-uri.h"
-#include "yelp-reader.h"
 #include "yelp-html.h"
 
 #define d(x)
@@ -46,7 +45,6 @@ struct _YelpHtmlPriv {
 
         HtmlDocument *doc;
 	YelpURI      *base_uri;
-	YelpReader   *reader;
 };
 
 
