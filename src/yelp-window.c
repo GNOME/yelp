@@ -30,7 +30,6 @@
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnomeui/gnome-about.h>
 #include <libgnomeui/gnome-stock-icons.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-url.h>
@@ -1931,13 +1930,14 @@ window_about_cb (GtkAction *action, YelpWindow *window)
     };
     /* Note to translators: put here your name (and address) so it
      * will shop up in the "about" box */
-    gchar *translator_credits = _("translator_credits");
+    const gchar *translator_credits = _("translator_credits");
 
-    gtk_show_about_dialog (window,
+    gtk_show_about_dialog (GTK_WINDOW (window),
 			   "version", VERSION,
 			   "copyright", copyright,
 			   "authors", authors,
 			   "translator_credits", translator_credits,
+			   "logo-icon-name", "gnome-help",
 			   NULL);
 }
 
