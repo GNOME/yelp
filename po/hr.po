@@ -1,0 +1,321 @@
+# Translation of yelp to Croatian
+# Copyright (C) Croatian team
+# Translators: Automatski Prijevod <>,Denis Lackovic <delacko@fly.srk.fer.hr>,Nikola Planinac <>,
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp 0\n"
+"POT-Creation-Date: 2003-11-06 18:13+0100\n"
+"PO-Revision-Date: 2003-11-06 19:22+CET\n"
+"Last-Translator: auto\n"
+"Language-Team: Croatian <lokalizacija@linux.hr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: TransDict server\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>Traži tekst u dokumentu:</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "Automatsko _omatanje"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "Traži tekst..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "Uspoređuj _cijelu riječ"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "_Osijetljivost na velika/mala slova"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "_Sljedeći"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "_Prethodni"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp Factory"
+
+#: src/yelp-main.c:94
+msgid "Define which cache directory to use"
+msgstr "Odredi koji direktorij sa priručnom memorijom treba koristiti"
+
+#: src/yelp-main.c:128
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Nije moguće aktivirati Yelp: '%s'"
+
+#: src/yelp-main.c:147
+msgid "Could not open new window."
+msgstr "Nije moguće otvoriti novi prozor."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Sustavski pozivi"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Funkcije biblioteke"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Kernel rutine"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "Aplikacije"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "Razvoj"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Hardware uređaji"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Datoteke podešavanja"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Igre"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Osvrti"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Administracija sustava"
+
+#: src/yelp-scrollkeeper.c:627
+msgid "About This Document"
+msgstr "O ovom dokumentu"
+
+#: src/yelp-scrollkeeper.c:631
+msgid "Contents"
+msgstr "Sadržaj"
+
+#: src/yelp-view-content.c:489
+msgid "Previous"
+msgstr "Prethodni"
+
+#: src/yelp-view-content.c:500
+msgid "Next"
+msgstr "Dalje"
+
+#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "Učitavam..."
+
+#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "Odsječak"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "Ožujak"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "Sadržaj pomoći"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "GNOME - Radna površina"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "Dodatni dokumenti"
+
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:492
+msgid "Manual Pages"
+msgstr "Stranice uputstva"
+
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:548
+msgid "Info Pages"
+msgstr "Info stranice"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:549 src/yelp-view-toc.c:740
+msgid "Documents"
+msgstr "Dokumenti"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:493 src/yelp-view-toc.c:741
+msgid "Categories"
+msgstr "Kategorije"
+
+#: src/yelp-view-toc.c:447
+msgid "Manual pages"
+msgstr "Priručne (man) stanice "
+
+#: src/yelp-view-toc.c:707
+msgid "GNOME is"
+msgstr "GNOME je"
+
+#: src/yelp-view-toc.c:708
+msgid "Free Software"
+msgstr "Slobodni softver"
+
+#: src/yelp-view-toc.c:709
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:171
+msgid "/_File"
+msgstr "/_Datoteka"
+
+#: src/yelp-window.c:172
+msgid "/File/_New window"
+msgstr "/File/_Novi prozor"
+
+#: src/yelp-window.c:173
+msgid "/File/_Close window"
+msgstr "/File/_Zatvori prozor"
+
+#: src/yelp-window.c:175
+msgid "/_Edit"
+msgstr "/_Uredi"
+
+#: src/yelp-window.c:176
+msgid "/Edit/_Find in page..."
+msgstr "/Uređivanje/_Traži na stranici..."
+
+#: src/yelp-window.c:177
+msgid "/Edit/_Find again"
+msgstr "/Uređivanje/_Traži ponovo"
+
+#: src/yelp-window.c:179
+msgid "/_Go"
+msgstr "/_Go"
+
+#: src/yelp-window.c:180
+msgid "/Go/_Back"
+msgstr "/Go/_Back"
+
+#: src/yelp-window.c:181
+msgid "/Go/_Forward"
+msgstr "/Go/_Forward"
+
+#: src/yelp-window.c:182
+msgid "/Go/_Home"
+msgstr "/Go/_Home"
+
+#: src/yelp-window.c:183
+msgid "/Go/_Index"
+msgstr "/Go/_Index"
+
+#: src/yelp-window.c:185
+msgid "/_Help"
+msgstr "/_Pomoć"
+
+#: src/yelp-window.c:186
+msgid "/Help/_About"
+msgstr "/Pomoć/_O"
+
+#: src/yelp-window.c:255 src/yelp-window.c:455
+msgid "Help Browser"
+msgstr "Preglednik pomoći"
+
+#: src/yelp-window.c:368
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "Dokument '%s' ne postoji"
+
+#. Note to translators: put here your name (and address) so it
+#.  * will shop up in the "about" box
+#: src/yelp-window.c:695
+msgid "translator_credits"
+msgstr "lokalizacija@linux.hr"
+
+#: src/yelp-window.c:699
+msgid "A Help Browser for GNOME"
+msgstr "Preglednik pomoći za GNOME"
+
+#: src/yelp-window.c:813
+msgid "Back"
+msgstr "Nazad"
+
+#: src/yelp-window.c:814
+msgid "Show previous page in history"
+msgstr "Pokaži prethodnu stranicu u povijesti"
+
+#: src/yelp-window.c:825
+msgid "Forward"
+msgstr "Naprijed"
+
+#: src/yelp-window.c:826
+msgid "Show next page in history"
+msgstr "Pokaži sljedeću stranicu u povijesti"
+
+#: src/yelp-window.c:839
+msgid "Home"
+msgstr "Polazno"
+
+#: src/yelp-window.c:840
+msgid "Go to home view"
+msgstr "Idi na početni pogled"
+
+#: src/yelp-window.c:850
+msgid "Index"
+msgstr "Indeks"
+
+#: src/yelp-window.c:851
+msgid "Search in the index"
+msgstr "Traženje u indeksu"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Zatražite pomoć za GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Pomoć"
+
