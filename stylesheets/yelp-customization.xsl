@@ -15,10 +15,12 @@
 
 <xsl:param name="gdb_stylesheet_path" select="'No Stylesheet'" />
 
+<xsl:output encoding="ISO-8859-1" />
+
 <!-- Specifies the default path for admonition graphics -->
 <xsl:param name="admon.graphics.path"><xsl:text>file://</xsl:text><xsl:value-of select="$gdb_stylesheet_path"/><xsl:text>/images/</xsl:text></xsl:param>
 
-<xsl:output encoding="ISO-8859-1" />
+<xsl:param name="table.borders.with.css" select="1"/>
 
 <!-- direct parametrisation -->
 <xsl:param name="admon.style"><xsl:text>margin-left: 0</xsl:text></xsl:param>
@@ -140,10 +142,10 @@
 <xsl:template name="user.head.content">
    <style>
      <xsl:text>
-       B {font-weight: 700}
+       B {font-weight: bold}
        LI {margin-bottom: 0.66em;}
-       UL LI {left-margin: 1em}
-       OL LI {left-margin: 1.5em}
+       UL LI {margin-left: 1em}
+       OL LI {margin-left: 1.5em}
        LI P {margin-bottom: 0}
        LI P {margin-top: 0}
        P.header-title {text-align: center; margin-top: 0; margin-bottom: 0}
@@ -178,13 +180,38 @@
        DIV.table TH {border-width: 0}
        LI DIV.informaltable {margin-top: 1em; margin-bottom: 1em}
        DIV.revhistory TABLE {border-spacing: 0}
-       H1 {font-size: 140%}
-       H2 {font-size: 130%; margin-bottom: 0}
-       H3 {font-size: 120%; margin-bottom: 0}
-       H4 {font-size: 110%}
+       H1 {font-size: 1.4em}
+       H2 {font-size: 1.3em; margin-bottom: 0}
+       H3 {font-size: 1.2em; margin-bottom: 0}
+       H4 {font-size: 1.1em}
      </xsl:text>
    </style>
 </xsl:template>
+
+<!-- change some formating choices -->
+
+<xsl:template match="guibutton">
+  <xsl:call-template name="inline.boldseq"/>
+</xsl:template>
+
+<xsl:template match="command">
+  <xsl:call-template name="inline.monoseq"/>
+</xsl:template>
+
+
+<xsl:template match="inlinemediaobject">
+  <span class="{name(.)}">
+    <xsl:if test="@id">
+	<a name="{@id}"/>
+    </xsl:if>
+    <xsl:call-template name="select.mediaobject"/>
+  </span>
+<xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
+</xsl:template>
+
+
+
+<!-- the chunking machinery -->
 
 <xsl:template name="next.link.cell">
 <xsl:param name="object" select="."/>
