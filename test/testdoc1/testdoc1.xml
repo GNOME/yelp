@@ -93,6 +93,12 @@
 
 <sect1 id="td-admonitions">
 	<title id="admonition.title">Admonitions</title>
+	<indexterm><primary>caution</primary></indexterm>
+	<indexterm><primary>important</primary></indexterm>
+	<indexterm><primary>note</primary></indexterm>
+	<indexterm><primary>tip</primary></indexterm>
+	<indexterm><primary>warning</primary></indexterm>
+
 	<para>
 		This sections tests the admonition elements in DocBook.
 		Here is a <sgmltag>caution</sgmltag>:
@@ -163,6 +169,7 @@
 
 <sect1 id="td-classsynopsis">
 	<title>Class Synopses</title>
+	<indexterm><primary>classsynopsis</primary></indexterm>
 	<para>
 		This section tests the <sgmltag>classsynopsis</sgmltag> element.  The
 		formatting of <sgmltag>classsynopis</sgmltag> is controlled entirely
@@ -212,16 +219,20 @@
 	</para>
 
 	<variablelist>
-		<varlistentry><term><sgmltag>abbrev</sgmltag></term>
+		<varlistentry>
+			<term><sgmltag>abbrev</sgmltag></term>
 			<listitem>
+				<indexterm><primary>abbrev</primary></indexterm>
 				<para>
 					The <sgmltag>abbrev</sgmltag> is used to indicate an abbreviation,
 					such as <abbrev>st.</abbrev> or even <abbrev>i18n</abbrev>.
 				</para>
 			</listitem>
 		</varlistentry>
-		<varlistentry><term><sgmltag>acronym</sgmltag></term>
+		<varlistentry>
+			<term><sgmltag>acronym</sgmltag></term>
 			<listitem>
+				<indexterm><primary>acronym</primary></indexterm>
 				<para>
 					The <sgmltag>acronym</sgmltag> element marks up a word made from
 					selected letters of a name or phrase, often pronounceable.  Examples
@@ -229,8 +240,10 @@
 				</para>
 			</listitem>
 		</varlistentry>
-		<varlistentry><term><sgmltag>emphasis</sgmltag></term>
+		<varlistentry>
+			<term><sgmltag>emphasis</sgmltag></term>
 			<listitem>
+				<indexterm><primary>emphasis</primary></indexterm>
 				<para>
 					Here is an <emphasis>emphasis</emphasis>.  <sgmltag>emphasis</sgmltag>
 					is used to indicate the certain text is stressed.  It should generally
@@ -239,8 +252,10 @@
 				</para>
 			</listitem>
 		</varlistentry>
-		<varlistentry><term><sgmltag>link</sgmltag></term>
+		<varlistentry>
+			<term><sgmltag>link</sgmltag></term>
 			<listitem>
+				<indexterm><primary>link</primary></indexterm>
 				<para>
 					The <sgmltag>link</sgmltag> element is used as a general-purpose
 					intra-document hypertext link.  Here is a link to the
@@ -251,8 +266,10 @@
 				</para>
 			</listitem>
 		</varlistentry>
-		<varlistentry><term><sgmltag>sgmltag</sgmltag></term>
+		<varlistentry>
+			<term><sgmltag>sgmltag</sgmltag></term>
 			<listitem>
+				<indexterm><primary>sgmltag</primary></indexterm>
 				<para>
 					The <sgmltag>sgmltag</sgmltag> indicates that the text is a
 					token in SGML or XML.  The formatting is controlled by the
@@ -304,6 +321,8 @@
 			<term><sgmltag>subscript</sgmltag></term>
 			<term><sgmltag>superscript</sgmltag></term>
 			<listitem>
+				<indexterm><primary>subscript</primary></indexterm>
+				<indexterm><primary>superscript</primary></indexterm>
 				<para>
 					The <sgmltag>subscript</sgmltag> and <sgmltag>superscript</sgmltag>
 					elements are used for general-purpose subscripts and superscripts,
@@ -313,8 +332,10 @@
 				</para>
 			</listitem>
 		</varlistentry>
-		<varlistentry><term><sgmltag>ulink</sgmltag></term>
+		<varlistentry>
+			<term><sgmltag>ulink</sgmltag></term>
 			<listitem>
+				<indexterm><primary>ulink</primary></indexterm>
 				<para>
 					The <sgmltag>ulink</sgmltag> element is used as a general-purpose
 					hyperlink which addresses its target by a URL.  Here is a ghelp
@@ -325,8 +346,10 @@
 				</para>
 			</listitem>
 		</varlistentry>
-		<varlistentry><term><sgmltag>xref</sgmltag></term>
+		<varlistentry>
+			<term><sgmltag>xref</sgmltag></term>
 			<listitem>
+				<indexterm><primary>xref</primary></indexterm>
 				<para>
 					The <sgmltag>xref</sgmltag> element is used to cross-reference
 					another section of the document, and is usually rendered as a
@@ -336,102 +359,6 @@
 			</listitem>
 		</varlistentry>
 	</variablelist>
-<!--
-action
-anchor
-application
-author
-authorinitials
-beginpage
-citation
-citerefentry
-citetitle
-classname
-classsynopsis
-cmdsynopsis
-command
-computeroutput
-constant
-constructorsynopsis
-corpauthor
-database
-destructorsynopsis
-email
-envar
-errorcode
-errorname
-errortext
-errortype
-exceptionname
-fieldsynopsis
-filename
-firstterm
-footnote
-footnoteref
-foreignphrase
-funcsynopsis
-function
-glossterm
-guibutton
-guiicon
-guilabel
-guimenu
-guimenuitem
-guisubmenu
-hardware
-indexterm
-inlineequation
-inlinegraphic
-inlinemediaobject
-interface
-interfacename
-keycap
-keycode
-keycombo
-keysym
-literal
-markup
-medialabel
-menuchoice
-methodname
-methodsynopsis
-modespec
-mousebutton
-nonterminal
-olink
-ooclass
-ooexception
-oointerface
-option
-optional
-othercredit
-parameter
-personname
-phrase
-productname
-productnumber
-prompt
-property
-quote
-remark
-replaceable
-returnvalue
-revhistory
-sgmltag
-structfield
-structname
-symbol
-synopsis
-systemitem
-token
-trademark
-type
-userinput
-varname
-wordasword
-xref
--->
-
 </sect1>
 
 <sect1 id="td-lists">

@@ -1,5 +1,13 @@
 2004-02-03  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-window.c:
+	- Tweak to the idle writer that squeezes out a few more scroll problems.
+
+	* test/testdoc1/testdoc1.xml:
+	- Added indexterms
+
+2004-02-03  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-pager.c:
 	- s/FALSE/NULL/ for return value for a function that returns a pointer.
 
