@@ -283,10 +283,6 @@ db_pager_params (YelpPager *pager)
     gint params_i = 0;
     gint params_max = 20;
 
-    GtkIconInfo *icon_info;
-    gchar *icon_file;
-    gint   icons_i;
-
     d (g_print ("db_pager_process\n"));
 
     doc_info = yelp_pager_get_doc_info (pager);
@@ -302,50 +298,7 @@ db_pager_params (YelpPager *pager)
 
     params = g_new0 (gchar *, params_max);
 
-    for (icons_i = 0; icons_i < YELP_NUM_ICONS; icons_i++) {
-	if ((params_i + 1) >= params_max - 1) {
-	    params_max += 20;
-	    params = g_renew (gchar *, params, params_max);
-	}
-
-	switch (icons_i) {
-	case YELP_ICON_BLOCKQUOTE:
-	    params[params_i++] = "yelp.image.blockquote";
-	    break;
-	case YELP_ICON_CAUTION:
-	    params[params_i++] = "yelp.image.caution";
-	    break;
-	case YELP_ICON_IMPORTANT:
-	    params[params_i++] = "yelp.image.important";
-	    break;
-	case YELP_ICON_NOTE:
-	    params[params_i++] = "yelp.image.note";
-	    break;
-	case YELP_ICON_PROGRAMLISTING:
-	    params[params_i++] = "yelp.image.programlisting";
-	    break;
-	case YELP_ICON_TIP:
-	    params[params_i++] = "yelp.image.tip";
-	    break;
-	case YELP_ICON_WARNING:
-	    params[params_i++] = "yelp.image.warning";
-	    break;
-	default:
-	    g_assert_not_reached ();
-	}
-
-	icon_info = yelp_settings_get_icon (icons_i);
-	if (icon_info) {
-	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
-	    if (icon_file)
-		params[params_i++] = g_strdup_printf ("\"%s\"", icon_file);
-	    else 
-		params[params_i++] = g_strdup ("\"\"");
-	    gtk_icon_info_free (icon_info);
-	} else {
-	    params[params_i++] = g_strdup ("\"\"");
-	}
-    }
+    yelp_settings_params (&params, &params_i, &params_max);
 
     if ((params_i + 10) >= params_max - 1) {
 	params_max += 20;

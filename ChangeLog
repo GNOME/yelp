@@ -1,3 +1,17 @@
+2004-12-27  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-settings.c:
+	* src/yelp-settings.h:
+	* src/yelp-toc-pager.c:
+	- Added yelp_settings_params to set icon and color params
+	- Added colors selected[0-3] and base[0-3]
+
+	* src/yelp-html-gecko.c:
+	* stylesheets/man2html.xsl:
+	* stylesheets/toc2html.xsl:
+	- Switched to XHTML
+
 2004-12-22  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-bookmarks.c:

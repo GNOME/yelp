@@ -52,8 +52,14 @@ typedef enum {
     YELP_COLOR_TEXT = 0,
     YELP_COLOR_ANCHOR,
     YELP_COLOR_BACKGROUND,
-    YELP_COLOR_GRAY_BACKGROUND,
-    YELP_COLOR_GRAY_BORDER,
+    YELP_COLOR_BASE0,
+    YELP_COLOR_BASE1,
+    YELP_COLOR_BASE2,
+    YELP_COLOR_BASE3,
+    YELP_COLOR_SELECTED0,
+    YELP_COLOR_SELECTED1,
+    YELP_COLOR_SELECTED2,
+    YELP_COLOR_SELECTED3,
     YELP_NUM_COLORS
 } YelpColorType;
 
@@ -83,5 +89,9 @@ gchar *               yelp_settings_get_font             (YelpFontType     font)
 const gchar *         yelp_settings_get_color            (YelpColorType    color);
 const gchar *         yelp_settings_get_css_file         (void);
 gboolean              yelp_settings_get_caret            (void);
+
+void                  yelp_settings_params               (gchar         ***params,
+							  gint            *params_i,
+							  gint            *params_max);
 
 #endif /* __YELP_SETTINGS_H__ */

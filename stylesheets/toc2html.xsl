@@ -1,13 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns="http://www.w3.org/1999/xhtml"
                 extension-element-prefixes="yelp"
                 version="1.0">
 
 <xsl:param name="help_icon"/>
 <xsl:param name="help_icon_size"/>
 
-<xsl:output method="html"/>
+<xsl:param name="yelp.color.text"/>
+<xsl:param name="yelp.color.anchor"/>
+<xsl:param name="yelp.color.background"/>
+<xsl:param name="yelp.color.base0"/>
+<xsl:param name="yelp.color.base1"/>
+<xsl:param name="yelp.color.base2"/>
+<xsl:param name="yelp.color.base3"/>
+<xsl:param name="yelp.color.selected0"/>
+<xsl:param name="yelp.color.selected1"/>
+<xsl:param name="yelp.color.selected2"/>
+<xsl:param name="yelp.color.selected3"/>
 
 <xsl:template match="toc">
   <yelp:document href="{@id}">
@@ -24,6 +35,20 @@
         }
         h1 { font-size: 2em; margin-bottom: 0.4em; }
         h1 img { float: right; }
+        h1 { color: </xsl:text>
+        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+        h2 { color: </xsl:text>
+        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+        h3 { color: </xsl:text>
+        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+        h4 { color: </xsl:text>
+        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+        h5 { color: </xsl:text>
+        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+        h6 { color: </xsl:text>
+        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+        h7 { color: </xsl:text>
+        <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
         div[class~="leftbar"] {
           width: 200px;
           text-align: center;
@@ -32,7 +57,7 @@
           background-image: url("</xsl:text>
           <xsl:value-of select="$help_icon"/><xsl:text>");
           background-position: </xsl:text>
-          <xsl:value-of select="(192 - $help_icon_size) div 2"/><xsl:text> 0;
+          <xsl:value-of select="(192 - $help_icon_size) div 2"/><xsl:text>px 0px;
           background-repeat: no-repeat;
           height: 200px;
         }

@@ -50,6 +50,30 @@
 #define d(x)
 #endif
 
+static const gchar *color_params[YELP_NUM_COLORS] = {
+    "yelp.color.text",
+    "yelp.color.anchor",
+    "yelp.color.background",
+    "yelp.color.base0",
+    "yelp.color.base1",
+    "yelp.color.base2",
+    "yelp.color.base3",
+    "yelp.color.selected0",
+    "yelp.color.selected1",
+    "yelp.color.selected2",
+    "yelp.color.selected3",
+};
+
+static const gchar *icon_params[YELP_NUM_ICONS] = {
+    "yelp.icon.blockquote",
+    "yelp.icon.caution",
+    "yelp.icon.important",
+    "yelp.icon.note",
+    "yelp.icon.programlisting",
+    "yelp.icon.tip",
+    "yelp.icon.warning"
+};
+
 static void           settings_update         (YelpSettingsType  type);
 static void           prefs_system_fonts_cb   (GtkWidget        *widget);
 static void           prefs_font_cb           (GtkWidget        *widget);
@@ -116,8 +140,7 @@ yelp_settings_init (void)
 	       use guillemets (angle quotations) should use either 00AB or AABB,
 	       depending on whether the opening quotation is the left guillemet
 	       or the right guillemet.  Languages that use inverted comma style
-	       quotations should use either 201C or 201E, depending on whether
-	       the opening quote is raised or at the baseline.  Note that single
+	       quotations should use 201C, 201D, or 201E.  Note that single
 	       quotation marks don't make very nice watermarks.  So if you use
 	       single quotes as your primary (outer) quotation marks, you should
 	       just use the corresponding double quote watermark.
@@ -524,6 +547,8 @@ settings_update (YelpSettingsType type)
     GtkStyle  *style;
     GdkColor  *color;
     GdkColor   blue = { 0, 0x0000, 0x0000, 0xffff };
+    guint8     max_text;
+    guint16    rval, gval, bval;
     gint i;
 
     d (g_print ("settings_update\n"));
@@ -537,6 +562,10 @@ settings_update (YelpSettingsType type)
 	else
 	    style = gtk_style_new ();
 
+	max_text = MAX(style->text[GTK_STATE_NORMAL].red,
+		       MAX(style->text[GTK_STATE_NORMAL].green,
+			   style->text[GTK_STATE_NORMAL].blue   )) >> 8;
+
 	g_snprintf (colors[YELP_COLOR_TEXT], 8,
 		    "#%02X%02X%02X",
 		    style->text[GTK_STATE_NORMAL].red >> 8,
@@ -547,16 +576,28 @@ settings_update (YelpSettingsType type)
 		    style->base[GTK_STATE_NORMAL].red >> 8,
 		    style->base[GTK_STATE_NORMAL].green >> 8,
 		    style->base[GTK_STATE_NORMAL].blue >> 8);
-	g_snprintf (colors[YELP_COLOR_GRAY_BACKGROUND], 8,
-		    "#%02X%02X%02X",
-		    style->bg[GTK_STATE_NORMAL].red >> 8,
-		    style->bg[GTK_STATE_NORMAL].green >> 8,
-		    style->bg[GTK_STATE_NORMAL].blue >> 8);
-	g_snprintf (colors[YELP_COLOR_GRAY_BACKGROUND], 8,
-		    "#%02X%02X%02X",
-		    style->dark[GTK_STATE_NORMAL].red >> 8,
-		    style->dark[GTK_STATE_NORMAL].green >> 8,
-		    style->dark[GTK_STATE_NORMAL].blue >> 8);
+
+	for (i = 0; i < 4; i++) {
+	    rval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
+		    i * max_text) / 4;
+	    gval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
+		    i * max_text) / 4;
+	    bval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
+		    i * max_text) / 4;
+	    g_snprintf (colors[YELP_COLOR_BASE0 + i], 8,
+			"#%02X%02X%02X", rval, gval, bval);
+	}
+	for (i = 0; i < 4; i++) {
+	    rval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].red   >> 8) +
+		    i * max_text) / 4;
+	    gval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].green >> 8) +
+		    i * max_text) / 4;
+	    bval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].blue  >> 8) +
+		    i * max_text) / 4;
+	    g_snprintf (colors[YELP_COLOR_SELECTED0 + i], 8,
+			"#%02X%02X%02X", rval, gval, bval);
+	}
+
 	g_object_unref (G_OBJECT (style));
 
 	widget = gnome_href_new ("http://www.gnome.org/", "GNOME");
@@ -576,4 +617,41 @@ settings_update (YelpSettingsType type)
     for (i = 0; i < YELP_SETTINGS_NUM_TYPES; i++)
 	if (type & (1 << i))
 	    g_hook_list_invoke (hook_lists[i], FALSE);
+}
+
+void
+yelp_settings_params (gchar ***params,
+		      gint    *params_i,
+		      gint    *params_max)
+{
+    GtkIconInfo *icon_info;
+    gchar *icon_file;
+    gint colors_i, icons_i;
+
+    if ((*params_i + 2 * (YELP_NUM_COLORS + YELP_NUM_ICONS)) >= *params_max) {
+	*params_max += 2 * (YELP_NUM_COLORS + YELP_NUM_ICONS);
+	*params = g_renew (gchar *, *params, *params_max);
+    }
+
+    for (colors_i = 0; colors_i < YELP_NUM_COLORS; colors_i++) {
+	(*params)[(*params_i)++] = (gchar *) color_params[colors_i];
+	(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"",
+						yelp_settings_get_color (colors_i));
+    }
+
+    for (icons_i = 0; icons_i < YELP_NUM_ICONS; icons_i++) {
+	(*params)[(*params_i)++] = (gchar *) icon_params[icons_i];
+
+	icon_info = yelp_settings_get_icon (icons_i);
+	if (icon_info) {
+	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
+	    if (icon_file)
+		(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"", icon_file);
+	    else 
+		(*params)[(*params_i)++] = g_strdup ("\"\"");
+	    gtk_icon_info_free (icon_info);
+	} else {
+	    (*params)[(*params_i)++] = g_strdup ("\"\"");
+	}
+    }
 }

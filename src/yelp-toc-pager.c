@@ -856,8 +856,9 @@ process_xslt (YelpTocPager *pager)
     GError *error = NULL;
     xmlDocPtr outdoc;
     YelpTocPagerPriv *priv = pager->priv;
-    const gchar *params[10];
+    const gchar **params;
     gint  params_i = 0;
+    gint  params_max = 10;
     GtkIconInfo *info;
     GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
 
@@ -876,6 +877,14 @@ process_xslt (YelpTocPager *pager)
 			    YELP_NAMESPACE,
 			    (xsltTransformFunction) xslt_yelp_document);
 
+    params = g_new0 (gchar *, params_max);
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 10;
+	params = g_renew (gchar *, params, params_max);
+    }
+
     info = gtk_icon_theme_lookup_icon (theme, "gnome-help", 192, 0);
     if (info) {
 	params[params_i++] = "help_icon";
@@ -886,6 +895,7 @@ process_xslt (YelpTocPager *pager)
 					      gtk_icon_info_get_base_size (info));
 	gtk_icon_info_free (info);
     }
+
     params[params_i++] = NULL;
 
     outdoc = xsltApplyStylesheetUser (priv->stylesheet,

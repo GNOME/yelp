@@ -244,7 +244,7 @@ yelp_html_clear (YelpHtml *html)
     d (g_print ("yelp_html_clear\n"));
     gtk_moz_embed_open_stream (GTK_MOZ_EMBED (html->priv->embed),
 			       html->priv->base_uri,
-			       "text/html");
+			       "application/xhtml+xml");
 }
 
 void
