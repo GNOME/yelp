@@ -472,41 +472,36 @@
 </xsl:template>
 
 <xsl:template mode="header.number.mode" match="example | figure | table">
+	<xsl:variable name="section" select="
+		ancestor::*[parent::article][
+			(name(.) = 'refentry') or (name(.) = 'sect1')      or
+			(name(.) = 'section')  or (name(.) = 'simplesect') ]
+	"/>
 	<xsl:variable name="parent">
 		<xsl:choose>
-			<xsl:when test="
-					ancestor::*[
-						(name(.) = 'refentry') or (name(.) = 'sect1')      or
-						(name(.) = 'section')  or (name(.) = 'simplesect') ]
-					[parent::article]">
+			<xsl:when test="$section">
 				<xsl:call-template name="header.number">
-					<xsl:with-param name="node" select="
-						ancestor::*[
-							(name(.) = 'refentry') or (name(.) = 'sect1')      or
-							(name(.) = 'section')  or (name(.) = 'simplesect') ]
-						[parent::article][last()]"/>
+					<xsl:with-param name="node" select="$section[last()]"/>
 				</xsl:call-template>
 			</xsl:when>
-			<xsl:when test="ancestor::*[name(.) = 'appendix' or name(.) = 'chapter']">
-				<xsl:call-template name="header.number">
-					<xsl:with-param name="node" select="
-						ancestor::*[name(.) = 'appendix' or name(.) = 'chapter'][1]"/>
-				</xsl:call-template>
-			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="chapter"
+					select="ancestor::*[name(.) = 'appendix' or name(.) = 'chapter']"/>
+				<xsl:if test="$chapter">
+					<xsl:call-template name="header.number">
+						<xsl:with-param name="node" select="$chapter[1]"/>
+					</xsl:call-template>
+				</xsl:if>
+			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="num">
 		<xsl:choose>
-			<xsl:when test="
-					ancestor::*[
-						(name(.) = 'refentry') or (name(.) = 'sect1')      or
-						(name(.) = 'section')  or (name(.) = 'simplesect') ]
-					[parent::article]">
+			<xsl:when test="$section">
 				<xsl:value-of select="count(
-					ancestor-or-self::*[ancestor::*[
-						(name(.) = 'refentry') or (name(.) = 'sect1')      or
-						(name(.) = 'section')  or (name(.) = 'simplesect') ]
-							[parent::article]
+					ancestor-or-self::*[ancestor::*[parent::article][
+							(name(.) = 'refentry') or (name(.) = 'sect1')      or
+							(name(.) = 'section')  or (name(.) = 'simplesect') ]
 					]/preceding-sibling::*/descendant-or-self::*[
 						name(.) = name(current())]
 					) + 1"/>
