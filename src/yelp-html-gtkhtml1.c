@@ -201,8 +201,7 @@ html_link_clicked_cb (GtkHTML *html_view, const gchar *url, YelpHtml *html)
 	if (yelp_uri_equal_path (uri, priv->base_uri) &&
 	    yelp_uri_get_section (uri)) {
 		if (yelp_uri_get_type (uri) == YELP_URI_TYPE_HTML ||
-		    yelp_uri_get_type (uri) == YELP_URI_TYPE_MAN ||
-		    yelp_uri_get_type (uri) == YELP_URI_TYPE_INFO) {
+		    yelp_uri_get_type (uri) == YELP_URI_TYPE_MAN) {
 			gtk_html_jump_to_anchor (priv->html_view,
                                                  yelp_uri_get_section (uri));
 			handled = TRUE;
