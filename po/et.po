@@ -5,20 +5,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2004-02-24 18:22-0600\n"
-"PO-Revision-Date: 2004-01-03 00:17+0200\n"
-"Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
+"POT-Creation-Date: 2004-02-27 04:34+0100\n"
+"PO-Revision-Date: 2004-02-27 18:33+0300\n"
+"Last-Translator: Priit Laes <amd@tt.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
 msgstr "Rakendid"
 
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/toc.xml.in.h:2
+#: src/yelp-man.c:429
 msgid "Applications"
 msgstr "Rakendused"
 
@@ -26,7 +26,8 @@ msgstr "Rakendused"
 msgid "Desktop"
 msgstr "Töölaud"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/toc.xml.in.h:4
+#: src/yelp-man.c:434
 msgid "Development"
 msgstr "Arendus"
 
@@ -38,7 +39,8 @@ msgstr "Arenduskeskkonnad"
 msgid "Development Tools"
 msgstr "Arendustööriistad"
 
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
+#: data/toc.xml.in.h:7
+#: stylesheets/l10n.xml.in.h:36
 msgid "Editors"
 msgstr "Tekstiredaktorid"
 
@@ -134,37 +136,40 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:435
+#: src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "Ei leia href-atribuuti yelp:document pealt"
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:450
+#: src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "Mälu otsas"
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:638
+#: src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "Tiitelleht"
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:640
+#: stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "Sisukord"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:658
+#: stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "Tundmatu"
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "The selected document could not be opened"
-msgstr "Ei saa dokumenti '%s' avada"
+msgstr "Valitud dokumenti ei saa avada"
 
 #: src/yelp-error.c:52
-#, fuzzy
 msgid "The selected page could not be found in this document."
-msgstr "Ei leia selles dokumendis lehekülge '%s'."
+msgstr "Valitud lehekülge ei leitud dokumendist."
 
 #: src/yelp-error.c:58
 msgid "The table of contents could not be read."
@@ -175,9 +180,8 @@ msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML dokumendid ei ole enam toetatud."
 
 #: src/yelp-error.c:70
-#, fuzzy
 msgid "The selected file could not be read."
-msgstr "Ei saa sisukorda lugeda."
+msgstr "Valitud faili ei saa lugeda."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -192,12 +196,19 @@ msgstr "Ei saa Yelpi aktiveerida: '%s'"
 msgid "Could not open new window."
 msgstr "Ei saa uut akent avada."
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
+#: src/yelp-man.c:296
+#: src/yelp-man.c:317
+#: src/yelp-man.c:353
+#: src/yelp-man.c:385
+#: src/yelp-man.c:401
+#: src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+#: src/yelp-man.c:301
+#: src/yelp-man.c:332
+#: src/yelp-man.c:390
+#: src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -266,9 +277,9 @@ msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauside arv on negatiivne."
 
 #: src/yelp-toc-pager.c:486
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "Ei saa Yelpi aktiveerida: '%s'"
+msgstr "OMF faili '%s' laadimine ebaõnnestus."
 
 #: src/yelp-toc-pager.c:892
 msgid "Categories"
@@ -327,14 +338,12 @@ msgid "/Go/"
 msgstr "/Liigu/"
 
 #: src/yelp-window.c:279
-#, fuzzy
 msgid "/Go/_Previous Page"
-msgstr "/Liigu/_Eelmine"
+msgstr "/Liigu/_Eelmine lehekülg"
 
 #: src/yelp-window.c:282
-#, fuzzy
 msgid "/Go/_Next Page"
-msgstr "/Liigu/_Järgmine"
+msgstr "/Liigu/_Järgmine lehekülg"
 
 #: src/yelp-window.c:285
 msgid "/Go/_Contents"
@@ -352,7 +361,8 @@ msgstr "/Abi/_Info"
 msgid "Help Browser"
 msgstr "Abiinfo brauser"
 
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
+#: src/yelp-window.c:570
+#: stylesheets/l10n.xml.in.h:61
 msgid "Section"
 msgstr "Peatükk"
 
@@ -399,67 +409,67 @@ msgstr "GNOME abiinfo brauser"
 
 #: stylesheets/l10n.xml.in.h:1
 msgid "&#8216;"
-msgstr ""
+msgstr "&#8216;"
 
 #: stylesheets/l10n.xml.in.h:2
 msgid "&#8217;"
-msgstr ""
+msgstr "&#8217;"
 
 #: stylesheets/l10n.xml.in.h:3
 msgid "&#8220;"
-msgstr ""
+msgstr "&#8220;"
 
 #: stylesheets/l10n.xml.in.h:4
 msgid "&#8221;"
-msgstr ""
+msgstr "&#8221;"
 
 #: stylesheets/l10n.xml.in.h:5
 msgid "About This Article"
-msgstr ""
+msgstr "Artiklist"
 
 #: stylesheets/l10n.xml.in.h:6
 msgid "About This Bibliography"
-msgstr ""
+msgstr "Bibliograafiast"
 
 #: stylesheets/l10n.xml.in.h:7
 msgid "About This Book"
-msgstr ""
+msgstr "Raamatust"
 
 #: stylesheets/l10n.xml.in.h:8
 msgid "About This Chapter"
-msgstr ""
+msgstr "Peatükist"
 
 #: stylesheets/l10n.xml.in.h:9
 msgid "About This Entry"
-msgstr ""
+msgstr "Sissekandest"
 
 #: stylesheets/l10n.xml.in.h:10
 msgid "About This Glossary"
-msgstr ""
+msgstr "Sõnastikust"
 
 #: stylesheets/l10n.xml.in.h:11
 msgid "About This Index"
-msgstr ""
+msgstr "Aineregistrist"
 
 #: stylesheets/l10n.xml.in.h:12
 msgid "About This Part"
-msgstr ""
+msgstr "Osast"
 
 #: stylesheets/l10n.xml.in.h:13
 msgid "About This Preface"
-msgstr ""
+msgstr "Eessõnast"
 
 #: stylesheets/l10n.xml.in.h:14
 msgid "About This Reference"
-msgstr ""
+msgstr "Viitest"
 
 #: stylesheets/l10n.xml.in.h:15
 msgid "About This Section"
-msgstr ""
+msgstr "Osast"
 
 #: stylesheets/l10n.xml.in.h:16
 msgid "About This Set"
-msgstr ""
+msgstr "Kogumikust"
 
 #: stylesheets/l10n.xml.in.h:17
 #, fuzzy
@@ -468,39 +478,39 @@ msgstr "Rakendused"
 
 #: stylesheets/l10n.xml.in.h:18
 msgid "Appendix"
-msgstr ""
+msgstr "Lisa"
 
 #: stylesheets/l10n.xml.in.h:19
 msgid "Article"
-msgstr ""
+msgstr "Artikkel"
 
 #: stylesheets/l10n.xml.in.h:20
 msgid "Audience"
-msgstr ""
+msgstr "Kuulajaskond"
 
 #: stylesheets/l10n.xml.in.h:21
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: stylesheets/l10n.xml.in.h:22
 msgid "Authors"
-msgstr ""
+msgstr "Autorid"
 
 #: stylesheets/l10n.xml.in.h:23
 msgid "Bibliography"
-msgstr ""
+msgstr "Bibliograafia"
 
 #: stylesheets/l10n.xml.in.h:24
 msgid "Book"
-msgstr ""
+msgstr "Raamat"
 
 #: stylesheets/l10n.xml.in.h:25
 msgid "Caution"
-msgstr ""
+msgstr "Hoiatus"
 
 #: stylesheets/l10n.xml.in.h:26
 msgid "Chapter"
-msgstr ""
+msgstr "Peatükk"
 
 #: stylesheets/l10n.xml.in.h:27
 msgid "Collaborator"
@@ -516,45 +526,43 @@ msgstr ""
 
 #: stylesheets/l10n.xml.in.h:31
 msgid "Copyright"
-msgstr ""
+msgstr "Autoriõigus"
 
 #: stylesheets/l10n.xml.in.h:32
 msgid "Copyrights"
-msgstr ""
+msgstr "Autoriõigused"
 
 #: stylesheets/l10n.xml.in.h:33
 msgid "Date"
-msgstr ""
+msgstr "Kuupäev"
 
 #: stylesheets/l10n.xml.in.h:34
-#, fuzzy
 msgid "Dedication"
-msgstr "Peatükk"
+msgstr "Pühendus"
 
 #: stylesheets/l10n.xml.in.h:35
-#, fuzzy
 msgid "Editor"
-msgstr "Tekstiredaktorid"
+msgstr "Redaktor"
 
 #: stylesheets/l10n.xml.in.h:37
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: stylesheets/l10n.xml.in.h:38
 msgid "Example"
-msgstr ""
+msgstr "Näidis"
 
 #: stylesheets/l10n.xml.in.h:39
 msgid "Figure"
-msgstr ""
+msgstr "Joonis"
 
 #: stylesheets/l10n.xml.in.h:40
 msgid "Glossary"
-msgstr ""
+msgstr "Sõnastik"
 
 #: stylesheets/l10n.xml.in.h:41
 msgid "Important"
-msgstr ""
+msgstr "Tähtis"
 
 #: stylesheets/l10n.xml.in.h:42
 msgid "Index"
@@ -562,110 +570,112 @@ msgstr "Indeks"
 
 #: stylesheets/l10n.xml.in.h:43
 msgid "Legal Notice"
-msgstr ""
+msgstr "Juriidiline märkus"
 
 #: stylesheets/l10n.xml.in.h:44
 msgid "Level"
-msgstr ""
+msgstr "Tase"
 
 #: stylesheets/l10n.xml.in.h:45
 msgid "Message Audience"
-msgstr ""
+msgstr "Sõnumi kuulajaskond"
 
 #: stylesheets/l10n.xml.in.h:46
 msgid "Message Level"
-msgstr ""
+msgstr "Sõnumi tase"
 
 #: stylesheets/l10n.xml.in.h:47
 msgid "Message Origin"
-msgstr ""
+msgstr "Sõnumi algallikas"
 
 #: stylesheets/l10n.xml.in.h:48
 msgid "Note"
-msgstr ""
+msgstr "Märkus"
 
 #: stylesheets/l10n.xml.in.h:49
 msgid "Origin"
-msgstr ""
+msgstr "Algallikas"
 
 #: stylesheets/l10n.xml.in.h:50
 msgid "Other Contributor"
-msgstr ""
+msgstr "Teine kaastööline"
 
 #: stylesheets/l10n.xml.in.h:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Teised kaastöölised"
 
 #: stylesheets/l10n.xml.in.h:52
 msgid "Part"
-msgstr ""
+msgstr "Osa"
 
 #: stylesheets/l10n.xml.in.h:53
 msgid "Preface"
-msgstr ""
+msgstr "Eessõna"
 
 #: stylesheets/l10n.xml.in.h:54
 msgid "Publisher"
-msgstr ""
+msgstr "Kirjastaja"
 
 #: stylesheets/l10n.xml.in.h:55
 msgid "Publishers"
-msgstr ""
+msgstr "Kirjastajad"
 
 #: stylesheets/l10n.xml.in.h:56
+#, fuzzy
 msgid "Reference"
-msgstr ""
+msgstr "Viide"
 
 #: stylesheets/l10n.xml.in.h:57
+#, fuzzy
 msgid "Reference Entry"
-msgstr ""
+msgstr "Viite kirjend"
 
 #: stylesheets/l10n.xml.in.h:58
+#, fuzzy
 msgid "Reference Section"
-msgstr ""
+msgstr "Viiteosa"
 
 #: stylesheets/l10n.xml.in.h:59
+#, fuzzy
 msgid "Release Information"
 msgstr ""
 
 #: stylesheets/l10n.xml.in.h:60
+#, fuzzy
 msgid "Revision History"
-msgstr ""
+msgstr "Vigade paranduse ajalugu"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
-msgstr ""
+msgstr "Vaata"
 
 #: stylesheets/l10n.xml.in.h:63
 msgid "See Also"
-msgstr ""
+msgstr "Vaata ka"
 
 #: stylesheets/l10n.xml.in.h:64
-#, fuzzy
 msgid "Set Index"
-msgstr "Indeks"
+msgstr "Komplekti aineregister"
 
 #: stylesheets/l10n.xml.in.h:65
 msgid "Table"
-msgstr ""
+msgstr "Tabl"
 
 #: stylesheets/l10n.xml.in.h:66
-#, fuzzy
 msgid "Table of Contents"
-msgstr "Abiinfo sisukord"
+msgstr "Sisukord"
 
 #: stylesheets/l10n.xml.in.h:67
 msgid "Tip"
-msgstr ""
+msgstr "Vihje"
 
 #: stylesheets/l10n.xml.in.h:68
-#, fuzzy
 msgid "Title"
-msgstr "Tiitelleht"
+msgstr "Pealkiri"
 
 #: stylesheets/l10n.xml.in.h:70
 msgid "Warning"
-msgstr ""
+msgstr "Hoiatus"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -675,95 +685,3 @@ msgstr "Abistab GNOMEi kasutamisel"
 msgid "Help"
 msgstr "Abi"
 
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Otsi dokumendist teksti:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Dokumendi lõpust _uuesti algusesse"
-
-#~ msgid "Find text..."
-#~ msgstr "Otsi teksti..."
-
-#~ msgid "Match _entire word"
-#~ msgstr "Otsi _tervet sõna"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "T_õstutundlik"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Otsi:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - Töölaud"
-
-#~ msgid "Additional documents"
-#~ msgstr "Muud dokumendid"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Manuaalilehed"
-
-#~ msgid "Info Pages"
-#~ msgstr "Infolehed"
-
-#~ msgid "Manual pages"
-#~ msgstr "Manuaalilehed"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOME on"
-
-#~ msgid "Free Software"
-#~ msgstr "vaba tarkvara"
-
-#~ msgid "(C)"
-#~ msgstr "©"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Dokumenti '%s' ei ole olemas"
-
-#, fuzzy
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Laadimine..."
-
-#~ msgid "Search in the index"
-#~ msgstr "Otsi indeksist"
-
-#~ msgid ""
-#~ "Error while parsing the stylesheet, make sure you have your docbook "
-#~ "environment setup correctly."
-#~ msgstr ""
-#~ "Viga stiililehe töötlemisel. Palun kontrolli, kas sul on docbook keskkond "
-#~ "korrektselt seadistatud."
-
-#~ msgid "Couldn't parse the document '%s'."
-#~ msgstr "Ei suuda dokumenti '%s' töödelda."
-
-#~ msgid "Error while applying the stylesheet."
-#~ msgstr "Viga stiililehe rakendamisel."
-
-#~ msgid "info"
-#~ msgstr "info"
-
-#~ msgid "man"
-#~ msgstr "man"
-
-#~ msgid "Get help on..."
-#~ msgstr "Otsi abi teemal..."
-
-#, fuzzy
-#~ msgid "Installed documents"
-#~ msgstr "Muud dokumendid"
-
-#~ msgid "Start page"
-#~ msgstr "Algusleht"
-
-#~ msgid "Scrollkeeper docs for category"
-#~ msgstr "Scrollkeeperi dokumendid kategoorias"
-
-#~ msgid "/File/_Quit"
-#~ msgstr "/Fail/_Lõpeta"
-
-#~ msgid "Search for a phrase in the document"
-#~ msgstr "Otsi dokumendist fraasi"
-
-#~ msgid "Enter phrase to search for in all documents"
-#~ msgstr "Sisesta fraas, mida kõigist dokumentidest otsida"
