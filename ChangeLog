@@ -1,5 +1,24 @@
 2002-05-18  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-reader.c:
+	(reader_man_info_start): emit "start"-signal.
+	(reader_io_watch_cb): do the right thing (hopefully) :)
+
+	* src/yelp-html.c: 
+	(html_do_write): removed
+	(html_do_close): removed
+	(html_do_docbook): removed
+	(html_io_watch_cb): removed
+	(html_reader_start_cb): added/implemented, temporary
+	(html_reader_data_cb): added/implemented, temporary
+	(html_reader_finished_cb): added/implemented, temporary
+	(html_reader_error_cb): added/implemented, temporary
+	(html_do_maninfo): removed
+	(html_do_html): removed
+	(html_init): connect to reader signals.
+	(yelp_html_open_uri): removed lots of code and use YelpReader
+	  instead. This should be removed entirely later on.
+
 	* src/yelp-html.c: 
 	- renamed static functions to correspond to style.
 

@@ -27,7 +27,7 @@
 #include "yelp-marshal.h"
 #include "yelp-reader.h"
 
-#define d(x) x
+#define d(x)
 #define BUFFER_SIZE 16384
 
 struct _YelpReaderPriv {
@@ -163,7 +163,7 @@ reader_db_start (YelpReader *reader, YelpURI *uri)
 	yelp_db2html_convert (uri, buf, &error);
 	
 	if (error) {
-		g_print ("Have an error here: %s\n", error->message);
+		g_warning ("Have an error here: %s\n", error->message);
 		g_signal_emit (reader, signals[ERROR], 0, error);
 		g_error_free (error);
 	}
@@ -226,6 +226,8 @@ reader_man_info_start (YelpReader *reader, YelpURI *uri)
 	g_shell_parse_argv (command_line, NULL, &argv, &error);
 	g_free (command_line);
 	
+	g_signal_emit (reader, signals[START], 0);
+	
 	g_spawn_async_with_pipes (NULL, argv, NULL,
 				  G_SPAWN_STDERR_TO_DEV_NULL | G_SPAWN_SEARCH_PATH,
 				  NULL, NULL, NULL, NULL,
@@ -245,43 +247,60 @@ reader_man_info_start (YelpReader *reader, YelpURI *uri)
 }
 
 static gboolean
-reader_io_watch_cb(GIOChannel   *io_channel, 
-		   GIOCondition  condition, 
-		   YelpReader   *reader)
+reader_io_watch_cb (GIOChannel   *io_channel, 
+		    GIOCondition  condition, 
+		    YelpReader   *reader)
 {
-	static gchar     buffer[BUFFER_SIZE];
-	guint            n;
-	gboolean         finished = FALSE;
-	GIOStatus        io_status;
+	static gchar  buffer[BUFFER_SIZE];
+	guint         n = 0;
+	gboolean      finished = FALSE;
+	GIOStatus     io_status;
+	GError       *error = NULL;
 	
 	g_return_val_if_fail (YELP_IS_READER (reader), FALSE);
 
 	if (condition & G_IO_IN) {
  		d(g_print ("Read available\n"));
 		
-		io_status = g_io_channel_read_chars (io_channel,
-						     buffer,
-						     BUFFER_SIZE,
-						     &n,
-						     NULL);
-		switch (io_status) {
-		case G_IO_STATUS_NORMAL:
-			g_signal_emit (reader, signals[DATA], 0, n, buffer);
-			break;
-		case G_IO_STATUS_EOF:
-		case G_IO_STATUS_ERROR:
-			if (n > 0) {
-				g_signal_emit (reader, signals[DATA], 0,
-					       n, buffer);
+		do {
+			io_status = g_io_channel_read_chars (io_channel,
+							     buffer,
+							     BUFFER_SIZE,
+							     &n,
+							     &error);
+			
+			if (error) {
+				g_signal_emit (reader, signals[ERROR], 0, 
+					       error);
+				g_error_free (error);
+				finished = TRUE;
+			} else {
+				switch (io_status) {
+				case G_IO_STATUS_NORMAL:
+					g_signal_emit (reader, signals[DATA], 
+						       0, 
+						       n, buffer);
+				
+					break;
+				case G_IO_STATUS_EOF:
+				case G_IO_STATUS_ERROR:
+					d(g_print ("Finished!\n"));
+					if (n > 0) {
+						g_signal_emit (reader,
+							       signals[DATA], 
+							       0,
+							       n, buffer);
+					}
+				
+					/* Signal error */
+					
+					finished = TRUE;
+					break;
+				default:
+					break;
+				}
 			}
-
-			/* Signal error */
-
-			finished = TRUE;
-			break;
-		default:
-			break;
-		}
+		} while (io_status == G_IO_STATUS_NORMAL);
 	}
 
 	if (condition & G_IO_HUP || finished) {
@@ -369,5 +388,3 @@ yelp_reader_read (YelpReader *reader, YelpURI *uri)
 		g_assert_not_reached ();
 	}
 }
-
-
