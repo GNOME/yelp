@@ -667,21 +667,23 @@ process_mandir_pending (YelpTocPager *pager)
 		    gchar *tooltip, *url_full, *url_short;
 		    YelpDocInfo *info;
 
-		    tmp = xmlNewChild (tmp, NULL, "doc", NULL);
-
 		    url_full = g_strconcat ("man:", dirname, "/", filename, NULL);
 		    url_short = g_strconcat ("man:", manname, ".", mansect, NULL);
 		    info = yelp_doc_info_get (url_full);
-		    yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
-		    xmlNewNsProp (tmp, NULL, "href", url_full);
+
+		    if (info) {
+			yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
+			tmp = xmlNewChild (tmp, NULL, "doc", NULL);
+			xmlNewNsProp (tmp, NULL, "href", url_full);
+
+			xmlNewChild (tmp, NULL, "title", manname);
+			tooltip = g_strdup_printf (_("Read man page for %s"), manname);
+			xmlNewChild (tmp, NULL, "tooltip", tooltip);
+			g_free (tooltip);
+		    }
+
 		    g_free (url_full);
 		    g_free (url_short);
-
-		    xmlNewChild (tmp, NULL, "title", manname);
-
-		    tooltip = g_strdup_printf (_("Read man page for %s"), manname);
-		    xmlNewChild (tmp, NULL, "tooltip", tooltip);
-		    g_free (tooltip);
 		} else {
 		    g_warning ("Could not locate section %s for %s\n",
 			       mansect, manman);
