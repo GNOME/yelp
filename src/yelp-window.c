@@ -400,5 +400,5 @@ yelp_window_open_uri (YelpWindow  *window,
 	priv = window->priv;
 	
 	yelp_view_open_section (YELP_VIEW (priv->yelp_view), 
-				yelp_section_new (NULL, str_uri, NULL));
+				yelp_section_new (NULL, str_uri, NULL, NULL));
 }

@@ -54,6 +54,8 @@ static void       sp_parse_toc_section      (GNode                   *parent,
 					     const gchar             *base_uri);
 static gchar *    sp_get_xml_docpath        (const gchar             *command,
 					     const gchar             *argument);
+static void sp_strip_scheme(gchar **original_uri, gchar **scheme);
+
 /* MetaDataParser */
 static gboolean   sp_parse                  (MetaDataParser          *parser);
 
@@ -311,7 +313,7 @@ sp_parse_book (ScrollKeeperParser *parser,
 	g_print ("Parse book: %s\n", name);
 
 	root = yelp_section_add_sub (NULL, 
-				     yelp_section_new (name, NULL, NULL));
+				     yelp_section_new (name, NULL, NULL, NULL));
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
@@ -350,7 +352,7 @@ sp_parse_section (GNode *parent, xmlNode *xml_node)
 	}
 	
 	node = yelp_section_add_sub (parent, 
-				     yelp_section_new (name, NULL, NULL));
+				     yelp_section_new (name, NULL, NULL, NULL));
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
@@ -373,6 +375,7 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	gchar       *format;
 	GNode       *node;
 	gchar       *docsource;
+	gchar       *scheme;
 /* 	gchar       *index_location; */
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
@@ -389,6 +392,7 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 		else if (!g_strcasecmp (cur->name, "docsource")) {
 			xml_str = xmlNodeGetContent (cur);
 			docsource = g_strdup (xml_str);
+			sp_strip_scheme(&docsource, &scheme);
 			link    = g_strconcat ("ghelp:", docsource, NULL);
 			g_free (xml_str);
 		}
@@ -400,7 +404,7 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	}
 
 	node = yelp_section_add_sub (parent, 
-				     yelp_section_new (title, link, NULL));
+				     yelp_section_new (title, link, NULL, NULL));
 	
 	sp_parse_toc (node, docsource);
 
@@ -484,7 +488,7 @@ sp_parse_toc_section (GNode *parent, xmlNode *xml_node, const gchar *base_uri)
 /* 	} */
 
 	node = yelp_section_add_sub (parent, 
-				     yelp_section_new (name, base_uri, link));
+				     yelp_section_new (name, base_uri, link, NULL));
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_strncasecmp (next_child->name, "tocsect", 7)) {
@@ -531,4 +535,22 @@ scrollkeeper_parser_new (void)
         parser = g_object_new (TYPE_SCROLLKEEPER_PARSER, NULL);
         
         return META_DATA_PARSER (parser);
+}
+
+static void
+sp_strip_scheme(gchar **original_uri, gchar **scheme)
+{
+	gchar *new_uri;
+	gchar *point;
+
+	point = g_strstr_len(*original_uri, strlen(*original_uri), ":");
+	if (!point)
+	{
+		scheme = NULL;
+		return;
+	}
+	*scheme = g_strndup(*original_uri, point - *original_uri);
+	new_uri = g_strdup(point + 1);
+	g_free(*original_uri);
+	*original_uri = new_uri;
 }

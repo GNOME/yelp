@@ -33,11 +33,13 @@ struct _YelpSection {
 	gchar *name;
 	gchar *uri;
 	gchar *reference;
+	gchar *scheme;
 };
 
 YelpSection * yelp_section_new      (const gchar        *name,
 				     const gchar        *uri,
-				     const gchar        *reference);
+				     const gchar        *reference,
+				     const gchar        *scheme);
 
 GNode *       yelp_section_add_sub  (GNode              *parent,
 				     YelpSection        *section);

@@ -1,3 +1,23 @@
+2001-12-05  Malcolm Tredinnick <malcolm@commsecure.com.au>
+	* src/yelp-section.[ch]:
+	- add a scheme member to YelpSection. Will usually be NULL,
+	  except when adding URIs from Scrollkeeper.
+	(yelp_section_new): pass in scheme as the last param.
+	(yelp_section_copy): pass in extra param to yelp_section_new.
+
+	* src/devhelp-parser.c, src/yelp-window.c: pass extra param in
+	calls to yelp_section_new().
+
+	* src/scrollkeeper-parser.c:
+	- parse extra param to yelp_section_new().
+	(sp_parse_doc): strip off the scheme from ScrollKeeper (usually
+	"file:") before adding "ghelp:" to the URI. But save it in case
+	we want act based on this scheme later.
+	(sp_strip_scheme): new function to strip schemes.
+
+	* docs/help-parsing.txt: New file, describing what we have to
+	  handle. Mostly because I keep forgetting.
+
 2001-12-04  Christian Meyer  <chrisime@gnome.org>
 
 	* configure.in: Added "de" entry to ALL_LINGUAS.

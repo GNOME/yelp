@@ -284,7 +284,7 @@ devhelp_parser_parse_book (DevHelpParser *parser, const GnomeVFSURI *uri)
 	}
 
 	root = yelp_section_add_sub (NULL, 
-				     yelp_section_new (name, index_uri, NULL));
+				     yelp_section_new (name, index_uri, NULL, NULL));
 
 	root_node = root_node->xmlChildrenNode;
 	
@@ -381,7 +381,7 @@ devhelp_parser_parse_section (GNode *parent, xmlNode *xml_node)
 	}
 	
 	node = yelp_section_add_sub (parent, 
-				     yelp_section_new (name, uri, NULL));
+				     yelp_section_new (name, uri, NULL, NULL));
 
 	gnome_vfs_uri_unref (uri);
 

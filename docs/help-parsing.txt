@@ -1,0 +1,249 @@
+This document was originally posted to gnome-doc-list by Jonathan Blandford.
+The original mail is available at
+http://mail.gnome.org/archives/gnome-doc-list/2001-September/msg00000.html.
+
+Only minor corrections have been applied to the original and there are still
+some inaccuracies in here, but it is just for the developers' reference at the
+moment.
+
+OVERVIEW:
+=========
+
+ * Have installation of xml as the main supported format, with
+   scrollkeeper supplying metadata
+ * Allow installation in places other than where GNOME is installed
+ * Allow applications to install HTML as a fall back
+ * Allow applications to show system help as well as
+   application-specific help
+ * Define ghelp URI scheme
+ * Have generic method of launching the help system
+ * Define a simple API -- 3 functions.
+ * Assume that the help-browser links with the same gnome-libs that the
+   app links with -- or at least the same prefix.
+
+User documentation has been a somewhat messy, non-standard process in
+the past.  This document aims to specify exactly how help should work,
+rather than rely on the common usage.  It will describe what is
+necessary for an application to install and show user documentation,
+what a help-browser author needs to consider during implementation, and
+where core gnome documentation should go.  It is not really a tutorial
+-- one of those needs to be written at some point.
+
+NOT COVERED:
+============
+ * man/info/other legacy formats
+ * API or developer documentation
+ * Popup help/"What's this?"/tooltips, etc.
+ * Correct use of xml beyond specifying which DTD to use
+ * Tools involved with modifying above xml.
+
+PART 1:  GHELP URI SCHEME
+=========================
+
+The ghelp URI scheme is a fairly simple scheme.  This scheme provides a
+way of mapping to a help file with an optional offset.  Here are a few
+examples:
+
+1:  ghelp:nautilus
+2:  ghelp:AisleRiot2/Klondike
+3:  ghelp:///opt/gnome/share/AisleRiot2/help/it/Klondike.xml?winning
+4:  ghelp:/usr/share/oldapp/help/index.html
+
+There are three basic ghelp styles.  The absolute path, the relative
+path, and the index path.  In the examples above, the last two are
+absolute, the second one is a relative path, and the first one is an
+index path.  Please note that, as this is a URI scheme, all the rules of
+escaping/valid characters for URI's apply.  A quick definition of the
+URI scheme follows:
+
+  1) The absolute ghelp URI:
+
+  The basic form of the absolute ghelp URI scheme follows the "generic URI
+  semantics" as defined in RFC 2396. That is:
+
+           <scheme>://<authority><path>?<query>
+
+  where <scheme> is 'ghelp'.  It is expected that only local files are
+  supported for GNOME 2.0, though it is conceivable that we could host
+  documentation off of gnome.org at some point in the future.  As
+  expected, the common variant with the //<authority> missing is
+  allowed (ie: Example 4)
+
+  1.1) The <query>
+
+  The query in the file is the location in the file to display.  For
+  example, with xml, it would apply to the "id" of the section to
+  display.  In HTML, it would go to an anchor name.  One confusing side
+  effect of this with xml is that the id of a section can be defined in
+  a different file due to entities.  Thus, in the example 3 above, the
+  actual file being read may be different if the winning section is
+  defined outside of Klondike.xml
+
+  2) The relative ghelp URI scheme:
+
+  The basic form of the relative URI scheme is:
+
+                     ghelp:<appid>/<file>[?<query>]
+
+  In general, this form can be turned into an absolute scheme with a
+  little work on the help browser's part.  The primary use of a relative
+  URI is for cleanliness of URI so that the user could enter it by hand.
+  It also gives you a language independent way of referring to a
+  document.
+
+  2.1) The <appid>
+
+    The appid is the id of the application and the location of the help
+    files.
+
+  2.2) The <file>
+
+    The file listed here is a little different from the absolute URI
+    scheme as the extention is optional.  The help browser is expected
+    to try appending ".xml", ".sgml", and ".html", when looking for the
+    file before falling back to <file> without the extention.
+
+  2.3) The <query>
+
+    Identical to the <query> in 1.1
+
+  2.4) Converting a relative ghelp URI to an absolute URI:
+
+    To convert URI schemes, the help browser must convert the
+    <appid>/<file> part to the <path> field.  The basic way of doing this
+    is to do
+    <path> = <GNOME_DATADIR>/<appid>/<LOCALE>/<file>[<extention>]
+
+
+    where <GNOME_DATADIR> is the datadir prefix where the
+    help-browser/GNOME is installed and <LOCALE> is the current locale.
+
+    extention = ( ".xml" | ".sgml" | ".html" | "")
+
+    An interesting thing about doing the conversion is that it requires
+    the application doing the conversion to check to see if the file
+    exists.
+
+  3) The index ghelp URI scheme:
+
+  The basic form of the index URI scheme is:
+
+                             ghelp:<appid>
+
+  This is purely a convenient URI scheme for users interested in looking
+  up help for an application.  The actual information supplied is up to
+  the help browser, but it is expected that they will look up
+  information on the file using scrollkeeper (or possibly another
+  mechanism) and display it.  It is optional for a help browser to
+  implement.
+
+PART 2:  APPLICATION HELP
+=========================
+
+All user documentation should be written in docbook-xml version 4.1 and
+should follow the styleguide put out by the documentation project [1].
+Documentation can and should be translated to multiple languages when
+possible.  The DTD to use is:
+
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBookXML V4.1.2//EN"
+                  "http://www.oasis-open.org/xml/4.1.2/docbookx.dtd">
+
+All applications using gnome-libs should initialize using
+gnome_program_init.  Additionally, they will need to pass in the
+GNOME_PARAM_APP_DATADIR argument, so that the help system knows where to
+look for help.  Those programs using the
+GNOME_PROGRAM_STANDARD_PROPERTIES macro will do so automatically.
+Documentation should then be installed into the
+${DATADIR}/${APPNAME}/help/${LOCALE}/ directory.
+
+For example, consider the help documents for the Italian version of a
+copy of AisleRiot2 installed in /opt/gnome.  These documents would be
+found in the  /opt/gnome/share/AisleRiot2/help/it/ directory.
+
+In addition to installing the actual documentation, the developer should
+also install meta information about the document using scrollkeeper.[2]
+This is just a small bit of metadata so that the help-browser can find
+information about the documentation.
+
+There are 3 proposed API calls for libgnome:
+
+gboolean gnome_help_display         (GnomeProgram  *program,
+                                     char          *doc_name,
+                                     char          *link_id,
+                                     GError       **error);
+gboolean gnome_help_display_desktop (GnomeProgram  *program,
+                                     char          *doc_name,
+                                     char          *link_id,
+                                     GError       **error);
+gboolean gnome_help_display_uri     (char          *help_uri,
+                                     GError       **error);
+
+The first two calls basically construct the appropriate URI, and then
+call gnome_help_display_uri [3].  The difference between the first two
+calls is that the first is used to display the help for the user
+documentation, while the second is intended to show installed help that
+comes with GNOME (such as the glossary).  One assumption made here is
+that this desktop documentation is installed with the same prefix as the
+gnome libraries and help-browser.
+
+One thing about gnome_help_display is that it will try to create a
+relative ghelp URI if possible and fall back to an absolute one if
+necessary.  It will never try to create an index ghelp URI.
+
+PART 3: LAUNCHING THE HELP BROWSER:
+===================================
+
+We use gnome-url to launch the help-browser, allowing us to customize
+the application used to display help.  The actual mechanism for doing
+this needs to be determined[4].  As there is no clear help-browser for
+GNOME 2.0 at this point, we can select a help-browser later on (or
+change it if need be).  Fortunately there are currently at least four
+possible candidates for a help browser that I know of (devhelp,
+encompass, galeon, and nautilus).
+
+PART 4: IMPLEMENTING THE HELP BROWSER:
+======================================
+
+The help browser must implement the following things:
+
+ * support showing both relative and absolute ghelp URI's
+
+ * be able to display docbook xml and HTML
+
+Additionally, the following would be nice:
+
+ * scrollkeeper support to generate an index of topics, and support
+   of index ghelp URIs.
+
+ * indexing of keywords/search of documents
+
+TODO:
+=====
+
+ * I'm not sure at all about the name 'ghelp' for the URI scheme.
+   Perhaps 'gnome-help' would be better.  Then again, the gnu project
+   seems to have taken over the world-wide 'g' namespace.
+
+ * We use '?' to go to a section id in the URI scheme.  Would '#' be
+   better?
+
+ * Write API documentation for the 3 functions.
+
+
+FOOTNOTES:
+==========
+
+[1] More information on actually writing the documentation can be found
+at <A  HREF="http://developer.gnome.org/projects/doc/">http://developer.gnome.org/projects/doc/</A>  FIXME: need better link
+
+[2] More information on scrollkeeper can be found at
+<A  HREF="http://scrollkeeper.sourceforge.net/">http://scrollkeeper.sourceforge.net/</A>.  It would be really nice to have a
+tutorial there, or somewhere.
+
+[3] This actually calls gnome_uri_show_full.  That's okay -- this is
+just a convenience function at this point.  If we decide not to use
+gnome-url, we can change it in the future.
+
+[4] There is one in gnome-url.  I don't understand it b/c I'm tired
+now.  I need to get Martin to explain it to me sometime. (-:
+
