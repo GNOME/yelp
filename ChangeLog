@@ -1,7 +1,9 @@
 2002-05-07  Mikael Hallendal  <micke@codefactory.se>
 
-	* src/yelp-section.c (yelp_section_new): check if name == NULL,
-	  hopefully fixes #80981.
+	* src/yelp-section.c:
+	(yelp_section_compare): return if either of a->name or b->name is
+	  NULL.
+	(yelp_section_new): check if name == NULL, hopefully fixes #80981.
 
 	* src/yelp-scrollkeeper.c:
 	(ys_parse_index_item): reverted my own stupidity.

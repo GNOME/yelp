@@ -78,6 +78,10 @@ gint
 yelp_section_compare  (gconstpointer a,
 		       gconstpointer b)
 {
+	if (!(((YelpSection *)a)->name) || !(((YelpSection *)b)->name)) {
+		return 0;
+	}
+
 	return strcmp (((YelpSection *)a)->name, 
 		       ((YelpSection *)b)->name);
 }
