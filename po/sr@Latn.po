@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-20 06:48+0100\n"
-"PO-Revision-Date: 2003-12-20 06:51+0100\n"
+"POT-Creation-Date: 2003-12-29 02:16+0100\n"
+"PO-Revision-Date: 2003-12-29 02:17+0100\n"
 "Last-Translator: Goran Rakić <gox@devbase.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,10 +86,14 @@ msgid "Securities"
 msgstr "Bezbednost"
 
 #: data/toc.xml.in.h:18
+msgid "System"
+msgstr "Sistem"
+
+#: data/toc.xml.in.h:19
 msgid "Utilities"
 msgstr "Pomoćni alati"
 
-#: data/toc.xml.in.h:19
+#: data/toc.xml.in.h:20
 msgid "X Applications"
 msgstr "Iks programi"
 
@@ -129,28 +133,28 @@ msgstr "Jelp"
 msgid "Yelp Factory"
 msgstr "Jelp fabrika"
 
-#: src/yelp-db-pager.c:238 src/yelp-window.c:735
+#: src/yelp-db-pager.c:241 src/yelp-window.c:736
 #, c-format
 msgid "The document '%s' could not be opened"
 msgstr "Ne mogu da otvorim dokument „%s“"
 
-#: src/yelp-db-pager.c:410
+#: src/yelp-db-pager.c:424
 msgid "No href attribute found on yelp:document"
 msgstr "Nisam našao href atribut u yelp:document-u"
 
-#: src/yelp-db-pager.c:425
+#: src/yelp-db-pager.c:439
 msgid "Out of memory"
 msgstr "Ponestalo memorije"
 
-#: src/yelp-db-pager.c:584
+#: src/yelp-db-pager.c:598
 msgid "Titlepage"
 msgstr "Naslovnica"
 
-#: src/yelp-db-pager.c:586
+#: src/yelp-db-pager.c:600
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/yelp-db-pager.c:604
+#: src/yelp-db-pager.c:618
 msgid "Unknown"
 msgstr "Nepoznato"
 
@@ -236,153 +240,157 @@ msgstr "Adresa dokumenta"
 msgid "The URI of the document to be processed"
 msgstr "Adresa dokumenta za obradu"
 
+#: src/yelp-theme.c:48
+msgid "Could not obtain a GtkStyle."
+msgstr "Ne mogu da pribavim GtkStyle."
+
 # bug: pause or page?
-#: src/yelp-toc-pager.c:229
+#: src/yelp-toc-pager.c:260
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: brojač pauza je negativan."
 
-#: src/yelp-toc-pager.c:570 src/yelp-toc-pager.c:582
+#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
 msgid "The table of contents could not be read."
 msgstr "Ne mogu da pročitam sadržaj."
 
-#: src/yelp-toc-pager.c:784
+#: src/yelp-toc-pager.c:841
 msgid "Categories"
 msgstr "Kategorije"
 
-#: src/yelp-toc-pager.c:805
+#: src/yelp-toc-pager.c:862
 msgid "Documents"
 msgstr "Dokumenti"
 
-#: src/yelp-window.c:220
+#: src/yelp-window.c:221
 msgid "/_File"
 msgstr "/_Datoteka"
 
-#: src/yelp-window.c:221
+#: src/yelp-window.c:222
 msgid "/File/_New window"
 msgstr "/_Datoteka/_Novi prozor"
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:225
 msgid "/File/_Close window"
 msgstr "/_Datoteka/_Zatvori prozor"
 
-#: src/yelp-window.c:228
+#: src/yelp-window.c:229
 msgid "/_Edit"
 msgstr "/_Uređivanje"
 
-#: src/yelp-window.c:229
+#: src/yelp-window.c:230
 msgid "/Edit/_Find..."
 msgstr "/Uređivanje/_Nađi..."
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:233
 msgid "/Edit/Find Ne_xt"
 msgstr "/Uređivanje/Nađi _sledeće"
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:236
 msgid "/Edit/Find Pre_vious"
 msgstr "/Uređivanje/Nađi p_rethodno"
 
-#: src/yelp-window.c:239
+#: src/yelp-window.c:240
 msgid "/_Go"
 msgstr "/_Idi"
 
-#: src/yelp-window.c:240
+#: src/yelp-window.c:241
 msgid "/Go/_Back"
 msgstr "/_Idi/Nazad"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:244
 msgid "/Go/_Forward"
 msgstr "/_Idi/Napred"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:247
 msgid "/Go/_Home"
 msgstr "/_Idi/Polazna stranica"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:250
 msgid "/Go/"
 msgstr "/Idi/"
 
-#: src/yelp-window.c:250
+#: src/yelp-window.c:251
 msgid "/Go/_Previous"
 msgstr "/Idi/_Prethodno"
 
-#: src/yelp-window.c:253
+#: src/yelp-window.c:254
 msgid "/Go/_Next"
 msgstr "/Idi/_Sledeće"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:257
 msgid "/Go/_Contents"
 msgstr "/Idi/Sa_držaj"
 
-#: src/yelp-window.c:260
+#: src/yelp-window.c:261
 msgid "/_Help"
 msgstr "/_Pomoć"
 
-#: src/yelp-window.c:261
+#: src/yelp-window.c:262
 msgid "/Help/_About"
 msgstr "/_Pomoć/O programu"
 
-#: src/yelp-window.c:323
+#: src/yelp-window.c:324
 msgid "Help Browser"
 msgstr "Preglednik pomoći"
 
-#: src/yelp-window.c:383
+#: src/yelp-window.c:384
 #, c-format
 msgid "The document '%s' does not exist"
 msgstr "Dokument „%s“ ne postoji"
 
-#: src/yelp-window.c:403
+#: src/yelp-window.c:404
 msgid "DocBook SGML documents are no longer supported."
 msgstr "DocBook SGML dokumenti više nisu podržani."
 
-#: src/yelp-window.c:522
+#: src/yelp-window.c:523
 msgid "Section"
 msgstr "Odeljak"
 
-#: src/yelp-window.c:575
+#: src/yelp-window.c:576
 msgid "Back"
 msgstr "Nazad"
 
-#: src/yelp-window.c:576
+#: src/yelp-window.c:577
 msgid "Show previous page in history"
 msgstr "Prikaži prethodnu stranicu iz istorijata"
 
-#: src/yelp-window.c:586
+#: src/yelp-window.c:587
 msgid "Forward"
 msgstr "Napred"
 
-#: src/yelp-window.c:587
+#: src/yelp-window.c:588
 msgid "Show next page in history"
 msgstr "Prikaži narednu stranicu iz istorijata"
 
-#: src/yelp-window.c:599
+#: src/yelp-window.c:600
 msgid "Home"
 msgstr "Polazna stranica"
 
-#: src/yelp-window.c:600
+#: src/yelp-window.c:601
 msgid "Go to home view"
 msgstr "Idi na polaznu stranicu"
 
-#: src/yelp-window.c:768 src/yelp-window.c:799 src/yelp-window.c:1013
-#: src/yelp-window.c:1075
+#: src/yelp-window.c:769 src/yelp-window.c:800 src/yelp-window.c:1014
+#: src/yelp-window.c:1076
 #, c-format
 msgid "The page '%s' could not be found in this document."
 msgstr "Ne mogu da nađem stranicu „%s“ u ovom dokumentu."
 
-#: src/yelp-window.c:824
+#: src/yelp-window.c:825
 msgid "Loading..."
 msgstr "Učitavam..."
 
 # bug: in comment, s/shop/show/
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1156
+#: src/yelp-window.c:1157
 msgid "translator_credits"
 msgstr ""
 "Goran Rakić <gox@devbase.net>\n"
 "\n"
 "Prevod.org — prevod na srpski jezik."
 
-#: src/yelp-window.c:1161
+#: src/yelp-window.c:1162
 msgid "A Help Browser for GNOME"
 msgstr "Preglednik pomoći za Gnom"
 
