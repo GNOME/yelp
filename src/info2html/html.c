@@ -324,7 +324,7 @@ void dump_html_for_node( NODE *node )
   /* make an anchor */
   escaped_nodename = escape_html_chars( node->nodename );
   map_spaces_to_underscores( escaped_nodename );
-  fprintf(f, "<A name=\"%s\"></A>\n",escaped_nodename);
+  fprintf(f, "<A name=\"%s\">&nbsp;</A>\n",escaped_nodename);
   g_free(escaped_nodename);
 
   /* links to other immediate nodes */
