@@ -145,6 +145,7 @@ info_pager_parse (YelpPager *pager)
     YelpDocInfo   *doc_info;
     gchar         *filename;
     xmlDocPtr      doc;
+    xmlNodePtr     node;
     GError        *error;
     GtkTreeStore  *tree;
 
@@ -156,8 +157,12 @@ info_pager_parse (YelpPager *pager)
     g_object_ref (pager);
 
     /* DO STUFF HERE */
+    /* parse into a GtkTreeStore */
     tree = yelp_info_parser_parse_file (filename);
 
+    /* create the XML file */
+    doc = yelp_info_parser_parse_tree (tree);
+    
     g_object_unref (pager);
 
     return doc;

@@ -10,6 +10,8 @@
 #include "yelp-info-parser.h"
 #include "yelp-utils.h"
 
+/* Part 1: Parse File Into Tree Store */
+
 enum
 {
 	PAGE_TAG_TABLE,
@@ -202,6 +204,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	g_hash_table_insert (nodes2iters, g_strdup (node), iter);
 	g_print ("size: %i\n", g_hash_table_size (nodes2iters));
 	gtk_tree_store_set (tree, iter,
+			COLUMN_PAGE_NO, g_strdup (node),
 			COLUMN_PAGE_NAME, g_strdup (node),
 			COLUMN_PAGE_CONTENT, g_strdup (parts[2]),
 			-1);
@@ -273,7 +276,7 @@ GtkTreeStore
 	 * rather then consolidating these into one dictionary, we'll just
 	 * chain our lookups */
 	processed_table = g_malloc0 (pages * sizeof (int));
-	tree = gtk_tree_store_new (N_COLUMNS, G_TYPE_INT, G_TYPE_STRING,
+	tree = gtk_tree_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
 			G_TYPE_STRING);
 	nodes2iters = g_hash_table_new (g_str_hash, g_str_equal);
 
@@ -293,4 +296,70 @@ GtkTreeStore
 	g_free (processed_table);
 
 	return tree;
+}
+
+/* End Part 1 */
+/* Part 2: Parse Tree into XML */
+static void
+parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
+{
+	GtkTreeIter children;
+	xmlNodePtr newnode;
+
+	char *page_no;
+	char *page_name;
+	char *page_content;
+	
+	g_print ("Decended\n");
+	do
+	{
+		gtk_tree_model_get (GTK_TREE_MODEL (tree), &iter,
+				COLUMN_PAGE_NO, &page_no,
+				COLUMN_PAGE_NAME, &page_name,
+				COLUMN_PAGE_CONTENT, &page_content,
+				-1);
+		g_print ("Got Section: %s\n", page_name);
+		newnode = xmlNewTextChild (*node, NULL,
+				BAD_CAST "Section",
+				page_content);
+		xmlNewProp (newnode, "id", g_strdup (page_no));
+		xmlNewProp (newnode, "name", g_strdup (page_name));
+		if (gtk_tree_model_iter_children (GTK_TREE_MODEL (tree),
+				&children,
+				&iter))
+			parse_tree_level (tree, &newnode, children);
+	}
+	while (gtk_tree_model_iter_next (GTK_TREE_MODEL (tree), &iter));
+	g_print ("Ascending\n");
+}
+
+xmlDocPtr
+yelp_info_parser_parse_tree (GtkTreeStore *tree)
+{
+	xmlDocPtr doc;
+	xmlNodePtr node;
+	GtkTreeIter iter;
+
+	xmlChar *xmlbuf;
+	int bufsiz;
+
+	doc = xmlNewDoc ("1.0");
+	node = xmlNewNode (NULL, BAD_CAST "Info");
+	xmlDocSetRootElement (doc, node);
+
+	/* functions I will want:
+	gtk_tree_model_get_iter_first;
+	gtk_tree_model_iter_next;
+	gtk_tree_model_iter_children;
+	*/
+
+	if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (tree), &iter))
+		parse_tree_level (tree, &node, iter);
+	else
+		g_print ("Empty tree?\n");
+
+	xmlDocDumpFormatMemory (doc, &xmlbuf, &bufsiz, 1);
+	g_print ("XML follows:\n%s\n", xmlbuf);
+
+	return doc;
 }

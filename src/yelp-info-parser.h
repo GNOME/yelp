@@ -24,10 +24,12 @@
 #define __YELP_INFO_PARSER_H__
 
 #include <glib.h>
+#include <gtk/gtk.h>
 #include <libxml/tree.h>
 
 #include "yelp-utils.h"
 
 GtkTreeStore          *yelp_info_parser_parse_file  (char           *file);
+xmlDocPtr	       yelp_info_parser_parse_tree  (GtkTreeStore   *tree);
 
 #endif /* __YELP_INFO_PARSER_H__ */
