@@ -1,3 +1,9 @@
+2003-06-03  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-content.c: (content_reader_finished_cb):
+	- Use gtp_tree_view_expand_to_path to expand the tree instead of callin
+	  gtk_tree_view_expand_path on all parents. Fixes #113977
+
 2003-06-03  Kenneth Rohde Christiansen  <kenneth@gnu.org>
 
 	* configure.in: Added "li" (Limburgish) to ALL_LINGUAS.
