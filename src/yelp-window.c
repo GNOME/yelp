@@ -574,6 +574,7 @@ window_about_cb (gpointer data, guint section, GtkWidget *widget)
 				 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 				 NULL);
 
+	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
 	gtk_widget_show (about);
 }
 

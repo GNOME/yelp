@@ -1,3 +1,8 @@
+2002-05-31  Ross Burton  <ross@burtonini.com>
+
+	* src/yelp-window.c (window_about_cb): Tell the about dialog who
+	  its parent is, so that it appears at the right location.
+
 2002-05-31  Yogeesh MB <yogeeshappa.mathighatta@wipro.com> 
 
 	* src/yelp-main.c: fixes save session bug, #82605 
