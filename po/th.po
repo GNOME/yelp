@@ -1,0 +1,303 @@
+# Thai translation for yelp.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the yelp package.
+# Paisa Seeluangsawat <paisa@colorado.edu>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp\n"
+"POT-Creation-Date: 2003-02-21 20:23+0100\n"
+"PO-Revision-Date: 2003-02-21 16:47-0700\n"
+"Last-Translator: Paisa Seeluangsawat <paisa@colorado.edu>\n"
+"Language-Team: Thai <L10n@opentle.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "<b>Find text in the document:</b>"
+msgstr "<b>หาข้อความในเอกสาร:</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Automatically _wrap around"
+msgstr "เริ่มต้นใหม่เมื่อสุดเอกสาร"
+
+#: data/ui/yelp.glade.h:4
+msgid "Find text..."
+msgstr "หาข้อความ..."
+
+#: data/ui/yelp.glade.h:5
+msgid "Match _entire word"
+msgstr "ตรงกับทั้งคำ (_E)"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Match upper/lower case"
+msgstr "ตรงอักษรตัวใหญ่เล็ก (_M)"
+
+#: data/ui/yelp.glade.h:7
+msgid "_Next"
+msgstr "ถัดไป (_N)"
+
+#: data/ui/yelp.glade.h:8
+msgid "_Previous"
+msgstr "อันก่อน (_P)"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "โรงงาน Yelp"
+
+#: src/yelp-main.c:117
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "เรียกใช้ Yelp ไม่สำเร็จ: '%s'"
+
+#: src/yelp-main.c:136
+msgid "Could not open new window."
+msgstr "เปิดหน้าต่างใหม่ไม่สำเร็จ"
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "System Calls"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Library Functions"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Kernel Routines"
+
+#: src/yelp-man.c:429
+msgid "Applications"
+msgstr "โปรแกรมใช้งาน"
+
+#: src/yelp-man.c:434
+msgid "Development"
+msgstr "การพัฒนาโปรแกรม"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "ชิ้นส่วนอุปกรณ์"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "แฟ้มปรับแต่งค่า"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "เกม"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "ภาพรวม"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "การดูแลระบบ"
+
+#: src/yelp-view-content.c:502 src/yelp-view-index.c:423
+msgid "Loading..."
+msgstr "กำลังเรียก..."
+
+#: src/yelp-view-content.c:543 src/yelp-view-index.c:517
+msgid "Section"
+msgstr "ส่วน"
+
+#: src/yelp-view-index.c:480
+msgid "_Search for:"
+msgstr "ค้นหา (_S):"
+
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:165
+msgid "Help Contents"
+msgstr "วิธิใช้"
+
+#: src/yelp-view-toc.c:166
+msgid "GNOME - Desktop"
+msgstr "GNOME - Desktop"
+
+#: src/yelp-view-toc.c:167
+msgid "Additional documents"
+msgstr "เอกสารเพิ่มเติม"
+
+# This is Manual as in "man page"...shouldn't be translated
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
+msgid "Manual Pages"
+msgstr "Manual Pages"
+
+# Info as in "Emacs info page"
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
+msgid "Info Pages"
+msgstr "Info Pages"
+
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
+msgid "Documents"
+msgstr "เอกสาร"
+
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
+msgid "Categories"
+msgstr "ประเภท"
+
+#: src/yelp-view-toc.c:448
+msgid "Manual pages"
+msgstr "Manual pages"
+
+#: src/yelp-view-toc.c:712
+msgid "GNOME is"
+msgstr "GNOME คือ"
+
+#: src/yelp-view-toc.c:713
+msgid "Free Software"
+msgstr "Free Software"
+
+#: src/yelp-view-toc.c:714
+msgid "(C)"
+msgstr "(C)"
+
+#: src/yelp-window.c:163
+msgid "/_File"
+msgstr "/แฟ้ม (_F)"
+
+#: src/yelp-window.c:164
+msgid "/File/_New window"
+msgstr "/แฟ้ม/หน้าต่างใหม่ (_N)"
+
+#: src/yelp-window.c:165
+msgid "/File/_Close window"
+msgstr "/แฟ้ม/ปิดหน้าต่าง (_C)"
+
+#: src/yelp-window.c:167
+msgid "/_Edit"
+msgstr "/แก้ไข (_E)"
+
+#: src/yelp-window.c:168
+msgid "/Edit/_Find in page..."
+msgstr "/แก้ไข/หาในหน้านี้ (_F)..."
+
+#: src/yelp-window.c:169
+msgid "/Edit/_Find again"
+msgstr "/แก้ไข/หาอีก (_F)..."
+
+#: src/yelp-window.c:171
+msgid "/_Go"
+msgstr "/ไป (_G)"
+
+#: src/yelp-window.c:172
+msgid "/Go/_Back"
+msgstr "/ไป/ข้างหลัง (_B)"
+
+#: src/yelp-window.c:173
+msgid "/Go/_Forward"
+msgstr "/ไป/ข้างหน้า (_F)"
+
+#: src/yelp-window.c:174
+msgid "/Go/_Home"
+msgstr "/ไป/บ้าน (_H)"
+
+#: src/yelp-window.c:175
+msgid "/Go/_Index"
+msgstr "/ไป/ดัชนี (_I)"
+
+#: src/yelp-window.c:177
+msgid "/_Help"
+msgstr "/วิธีใช้ (_H)"
+
+#: src/yelp-window.c:178
+msgid "/Help/_About"
+msgstr "/วิธีใช้/เกี่ยวกับ (_A)"
+
+#: src/yelp-window.c:238 src/yelp-window.c:438
+msgid "Help Browser"
+msgstr "ตัวอ่านวิธีใช้"
+
+#: src/yelp-window.c:351
+#, c-format
+msgid "The document '%s' does not exist"
+msgstr "เอกสาร '%s' ไม่มีอยู่"
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:675
+msgid "translator_credits"
+msgstr "แปลโดย http://gnome-th.sourceforge.net"
+
+#: src/yelp-window.c:679
+msgid "Help Browser for GNOME 2.0"
+msgstr "ตัวอ่านวิธีใช้ของ GNOME 2.0"
+
+#: src/yelp-window.c:788
+msgid "Back"
+msgstr "ถอย"
+
+#: src/yelp-window.c:789
+msgid "Show previous page in history"
+msgstr "ไปหน้าก่อนหน้านี้ในประวัติการใช้"
+
+#: src/yelp-window.c:800
+msgid "Forward"
+msgstr "ถัดไป"
+
+#: src/yelp-window.c:801
+msgid "Show next page in history"
+msgstr "ไปหน้าถัดไปในประวัติการใช้"
+
+#: src/yelp-window.c:814
+msgid "Home"
+msgstr "เริ่มต้น"
+
+#: src/yelp-window.c:815
+msgid "Go to home view"
+msgstr "ไปที่หน้าเริ่มต้น"
+
+#: src/yelp-window.c:825
+msgid "Index"
+msgstr "ดัชนี"
+
+#: src/yelp-window.c:826
+msgid "Search in the index"
+msgstr "หาในดัชนี"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "วิธีใช้ GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "วิธีใช้"
