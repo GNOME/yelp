@@ -1,5 +1,11 @@
 2002-02-13  Alex Larsson  <alexl@redhat.com>
 
+	* src/yelp-view-toc.c (yelp_view_toc_write, yelp_view_toc_close,
+	yelp_view_toc_open): 
+	Implement buffering writes for generated html.
+
+2002-02-13  Alex Larsson  <alexl@redhat.com>
+
 	* src/Makefile.am (install-local):
 	Remove old gnome-help binary, if any.
 	

@@ -62,11 +62,15 @@ struct YelpImportantDocsSection {
 	GList *seriesids;
 };
 
+#define BUFFER_SIZE 4096
+
 struct _YelpViewTOCPriv {
 	GtkWidget    *html_view;
 	HtmlDocument *doc;
 	GNode        *doc_tree;
 	GList        *important_sections;
+	char          buffer[BUFFER_SIZE];
+	int           buffer_pos;
 };
 
 GType
@@ -145,18 +149,29 @@ static void
 yelp_view_toc_open (YelpViewTOC *view)
 {
 	html_document_open_stream (view->priv->doc, "text/html");
+	view->priv->buffer_pos = 0;
 }
 
 static void
 yelp_view_toc_close (YelpViewTOC *view)
 {
-	/* TODO: If buffering, flush buffers */
+	YelpViewTOCPriv *priv = view->priv;
+	
+	if (priv->buffer_pos > 0) {
+		html_document_write_stream (priv->doc, priv->buffer, priv->buffer_pos);
+		priv->buffer_pos = 0;
+	}
+
+		
 	html_document_close_stream (view->priv->doc);
 }
 
 static void
 yelp_view_toc_write (YelpViewTOC *view, char *data, int len)
 {
+	YelpViewTOCPriv *priv = view->priv;
+	int chunk_size;
+	
 	if (len < 0) {
 		len = strlen (data);
 	}
@@ -165,9 +180,20 @@ yelp_view_toc_write (YelpViewTOC *view, char *data, int len)
 	g_print ("%.*s", len,data);
 #endif
 
-	/* TODO: Maybe we should be buffering writes */
-	
-	html_document_write_stream (view->priv->doc, data, len);
+	while (len > 0) {
+		chunk_size = MIN (BUFFER_SIZE - priv->buffer_pos, len);
+		
+		memcpy (priv->buffer + priv->buffer_pos, data, chunk_size);
+		priv->buffer_pos += chunk_size;
+		len -= chunk_size;
+		data += chunk_size;
+
+		if (priv->buffer_pos == BUFFER_SIZE) {
+			html_document_write_stream (priv->doc, priv->buffer, BUFFER_SIZE);
+			priv->buffer_pos = 0;
+		}
+		
+	}
 }
 
 static void
