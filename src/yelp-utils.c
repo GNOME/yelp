@@ -66,9 +66,6 @@ struct _YelpDocInfo {
     gint ref_count;
 };
 
-static void         doc_info_add_uri   (YelpDocInfo *doc_info,
-					gchar       *uri,
-					YelpURIType  type);
 static YelpDocType  get_doc_type       (gchar   *uri);
 static gchar *      convert_ghelp_uri  (gchar   *uri);
 
@@ -145,9 +142,9 @@ yelp_doc_info_new (gchar *uri)
 	doc->num_uris = 0;
 	doc->max_uris = 8;
 
-	doc_info_add_uri (doc, doc_uri, YELP_URI_TYPE_FILE);
+	yelp_doc_info_add_uri (doc, doc_uri, YELP_URI_TYPE_FILE);
 	if (uri_type && uri_type != YELP_URI_TYPE_FILE)
-	    doc_info_add_uri (doc, uri, uri_type);
+	    yelp_doc_info_add_uri (doc, uri, uri_type);
 
 	doc->type = doc_type;
 	doc->ref_count = 1;
@@ -191,9 +188,9 @@ yelp_doc_info_get (gchar *uri)
 
 	    if (old_doc) {
 		for (i = 0; i < doc->num_uris; i++) {
-		    doc_info_add_uri (old_doc,
-				      (doc->uris + i)->uri,
-				      (doc->uris + i)->type);
+		    yelp_doc_info_add_uri (old_doc,
+					   (doc->uris + i)->uri,
+					   (doc->uris + i)->type);
 		    g_hash_table_insert (doc_info_table,
 					 g_strdup ((doc->uris + i)->uri),
 					 yelp_doc_info_ref (old_doc));
@@ -521,10 +518,10 @@ get_doc_type (gchar *uri)
     return type;
 }
 
-static void
-doc_info_add_uri (YelpDocInfo *doc_info,
-		  gchar       *uri,
-		  YelpURIType  type)
+void
+yelp_doc_info_add_uri (YelpDocInfo *doc_info,
+		       gchar       *uri,
+		       YelpURIType  type)
 {
     DocInfoURI *info_uri;
 
@@ -685,9 +682,6 @@ convert_man_uri (gchar *uri)
     gint langs_i;
 
     static gchar **manpath = NULL;
-    static gchar *mandirs[] =
-	{"man1", "man2", "man3", "man4", "man5", "man6",
-	 "man7", "man8", "man9", "mann", NULL};
     gint i, j;
 
     GDir  *dir;

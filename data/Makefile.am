@@ -7,13 +7,14 @@ schemasdir   = $(GCONF_SCHEMA_FILE_DIR)
 schemas_DATA = yelp.schemas
 
 tocdir   = $(datadir)/yelp
-toc_DATA = toc.xml scrollkeeper.xml
+toc_DATA = man.xml toc.xml scrollkeeper.xml
 
 cssdir   = $(datadir)/yelp
 css_DATA = default.css
 
 EXTRA_DIST =					\
 	yelp.schemas		yelp.schemas.in	\
+	man.xml			man.xml.in	\
 	toc.xml			toc.xml.in	\
 	scrollkeeper.xml	default.css
 
@@ -26,4 +27,4 @@ else
 install-data-local:
 endif
 
-CLEANFILES = yelp.schemas toc.xml
+CLEANFILES = yelp.schemas toc.xml man.xml

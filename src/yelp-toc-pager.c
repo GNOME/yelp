@@ -65,8 +65,13 @@ struct _YelpTocPagerPriv {
     GSList       *omf_pending;
 
 #ifdef ENABLE_MAN
-    GSList       *man_dir_pending;
-    GSList       *man_pending;
+    gint    mandirs_i;
+    gint    langs_i;
+    gint    manpaths_i;
+    gchar **manpaths;
+
+    GHashTable *man_secthash;
+    GHashTable *man_manhash;
 #endif
 
 #ifdef ENABLE_INFO
@@ -122,8 +127,7 @@ static gboolean      process_xslt              (YelpTocPager      *pager);
 static gboolean      process_read_scrollkeeper (YelpTocPager      *pager);
 static gboolean      process_omf_pending       (YelpTocPager      *pager);
 #ifdef ENABLE_MAN
-static gboolean      process_man_dir_pending   (YelpTocPager      *pager);
-static gboolean      process_man_pending       (YelpTocPager      *pager);
+static gboolean      process_mandir_pending    (YelpTocPager      *pager);
 #endif
 #ifdef ENABLE_INFO
 static gboolean      process_info_dir_pending  (YelpTocPager      *pager);
@@ -134,6 +138,7 @@ static void          toc_add_doc_info          (YelpTocPager      *pager,
 						YelpDocInfo       *doc_info);
 static void          toc_remove_doc_info       (YelpTocPager      *pager,
 						YelpDocInfo       *doc_info);
+static void          xml_trim_titles           (xmlNodePtr         node);
 static void          xslt_yelp_document        (xsltTransformContextPtr ctxt,
 						xmlNodePtr              node,
 						xmlNodePtr              inst,
@@ -300,36 +305,12 @@ toc_pager_finish (YelpPager   *pager)
 gboolean
 toc_pager_process (YelpPager *pager)
 {
-    gchar  *manpath;
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
     d (g_print ("toc_pager_process\n"));
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
     g_signal_emit_by_name (pager, "parse");
-
-#ifdef ENABLE_MAN
-    /* Set the man directories to be read */
-    if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
-	manpath = g_strdup (g_getenv ("MANPATH"));
-
-    if (manpath) {
-	gint    i;
-	gchar **paths;
-
-	g_strstrip (manpath);
-	paths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
-                
-	for (i = 0; paths[i]; ++i)
-	    priv->man_dir_pending = g_slist_prepend (priv->man_dir_pending,
-						     g_strdup (paths[i]));
-
-	g_strfreev (paths);
-	g_free (manpath);
-    }
-#endif
-
-    /* Set the info directories to be read */
 
     /* Set it running */
     yelp_pager_set_state (pager, YELP_PAGER_STATE_RUNNING);
@@ -369,15 +350,15 @@ toc_process_pending (YelpTocPager *pager)
 	process_read_menu,
 	process_read_scrollkeeper,
 	process_omf_pending,
+	process_xslt,
 #ifdef ENABLE_MAN
-	process_man_dir_pending,
-	process_man_pending,
+	process_mandir_pending,
+	process_xslt,
 #endif
 #ifdef ENABLE_INFO
 	process_info_dir_pending,
 	process_info_pending,
 #endif
-	process_xslt,
 	NULL
     };
     static gint process_i = 0;
@@ -488,8 +469,6 @@ process_omf_pending (YelpTocPager *pager)
     xmlXPathObjectPtr  omf_language    = NULL;
     xmlXPathObjectPtr  omf_seriesid    = NULL;
 
-    gint         lang_priority;
-    GList       *langs;
     YelpDocInfo *doc_info;
     YelpDocInfo *doc_old;
 
@@ -575,15 +554,175 @@ process_omf_pending (YelpTocPager *pager)
 
 #ifdef ENABLE_MAN
 static gboolean
-process_man_dir_pending (YelpTocPager *pager)
+process_mandir_pending (YelpTocPager *pager)
 {
-    return FALSE;
-}
+    xmlNodePtr tmp;
+    gchar *manpath;
 
-static gboolean
-process_man_pending (YelpTocPager *pager)
-{
-    return FALSE;
+    gchar *dirname, *filename;
+    GDir  *dir;
+
+    const gchar * const * langs = g_get_language_names ();
+
+    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
+
+    if (!priv->toc_doc) {
+	xmlXPathContextPtr xpath;
+	xmlXPathObjectPtr  obj;
+	gint i;
+	priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
+					 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+					 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+					 XML_PARSE_NONET    );
+	priv->man_secthash = g_hash_table_new (g_str_hash, g_str_equal);
+
+	xpath = xmlXPathNewContext (priv->toc_doc);
+	obj = xmlXPathEvalExpression ("//toc", xpath);
+	for (i = 0; i < obj->nodesetval->nodeNr; i++) {
+	    xmlNodePtr node = obj->nodesetval->nodeTab[i];
+	    xmlChar *sect = xmlGetProp (node, "sect");
+	    if (sect)
+		g_hash_table_insert (priv->man_secthash, sect, node);
+
+	    xml_trim_titles (node);
+	}
+    }
+
+    if (priv->langs_i == 0 && priv->manpaths_i == 0) {
+	if (priv->man_manhash)
+	    g_hash_table_destroy (priv->man_manhash);
+	priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
+						   g_free,     NULL);
+    }
+
+    if (!priv->manpaths) {
+	if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
+	    manpath = g_strdup (g_getenv ("MANPATH"));
+
+	if (manpath) {
+	    g_strstrip (manpath);
+	    priv->manpaths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
+	    g_free (manpath);
+	} else {
+	    goto done;
+	}
+    }
+
+    if (g_str_equal (langs[priv->langs_i], "C"))
+	dirname = g_build_filename (priv->manpaths[priv->manpaths_i],
+				    mandirs[priv->mandirs_i],
+				    NULL);
+    else
+	dirname = g_build_filename (priv->manpaths[priv->manpaths_i],
+				    langs[priv->langs_i],
+				    mandirs[priv->mandirs_i],
+				    NULL);
+    dir = g_dir_open (dirname, 0, NULL);
+    if (dir) {
+	while (filename = g_dir_read_name (dir)) {
+	    gchar *c1 = NULL, *c2 = NULL, *manname, *mansect, *manman;
+
+	    c1 = g_strrstr (filename, ".bz2");
+	    if (c1 && strlen (c1) != 4)
+		c1 = NULL;
+
+	    if (!c1) {
+		c1 = g_strrstr (filename, ".gz");
+		if (c1 && strlen (c1) != 3)
+		    c1 = NULL;
+	    }
+
+	    if (c1)
+		c2 = g_strrstr_len (filename, c1 - filename, ".");
+	    else
+		c2 = g_strrstr (filename, ".");
+
+	    if (c2) {
+		manname = g_strndup (filename, c2 - filename);
+		if (c1)
+		    mansect = g_strndup (c2 + 1, c1 - c2 - 1);
+		else
+		    mansect = g_strdup (c2 + 1);
+	    } else {
+		mansect = g_strdup (mandirs[priv->mandirs_i] + 3);
+		if (c1)
+		    manname = g_strndup (filename, c1 - filename);
+		else
+		    manname = g_strdup (filename);
+	    }
+
+	    manman = g_strconcat (manname, ".", mansect, NULL);
+
+	    if (g_hash_table_lookup (priv->man_manhash, manman) == NULL) {
+		tmp = g_hash_table_lookup (priv->man_secthash, mansect);
+		if (tmp == NULL && strlen (mansect) > 1) {
+		    gchar *mansect0 = g_strndup (mansect, 1);
+		    tmp = g_hash_table_lookup (priv->man_secthash, mansect0);
+		}
+
+		if (tmp) {
+		    gchar *tooltip, *url_full, *url_short;
+		    YelpDocInfo *info;
+
+		    tmp = xmlNewChild (tmp, NULL, "doc", NULL);
+
+		    url_full = g_strconcat ("man:", dirname, "/", filename, NULL);
+		    url_short = g_strconcat ("man:", manname, ".", mansect, NULL);
+		    info = yelp_doc_info_get (url_full);
+		    yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
+		    xmlNewNsProp (tmp, NULL, "href", url_full);
+		    g_free (url_full);
+		    g_free (url_short);
+
+		    xmlNewChild (tmp, NULL, "title", manname);
+
+		    tooltip = g_strdup_printf (_("Read man page for %s"), manname);
+		    xmlNewChild (tmp, NULL, "tooltip", tooltip);
+		    g_free (tooltip);
+		} else {
+		    g_warning ("Could not locate section %s for %s\n",
+			       mansect, manman);
+		}
+
+		g_hash_table_insert (priv->man_manhash, g_strdup (manman), priv);
+	    }
+
+	    g_free (manman);
+	    g_free (manname);
+	    g_free (mansect);
+	}
+	g_dir_close (dir);
+    }
+
+ done:
+    g_free (dirname);
+
+    priv->manpaths_i++;
+    if (priv->manpaths[priv->manpaths_i] == NULL) {
+	priv->manpaths_i = 0;
+	priv->langs_i++;
+    }
+    if (langs[priv->langs_i] == NULL) {
+	priv->langs_i = 0;
+	priv->mandirs_i++;
+	if (priv->man_manhash) {
+	    g_hash_table_destroy (priv->man_manhash);
+	    priv->man_manhash = NULL;
+	}
+    }
+    if (mandirs[priv->mandirs_i] == NULL) {
+	if (priv->manpaths) {
+	    g_strfreev (priv->manpaths);
+	    priv->manpaths = NULL;
+	}
+	if (priv->man_secthash) {
+	    g_hash_table_destroy (priv->man_secthash);
+	    priv->man_secthash = NULL;
+	}
+	return FALSE;
+    }
+
+    return TRUE;
 }
 #endif // ENABLE_MAN
 
@@ -607,10 +746,8 @@ process_read_menu (YelpTocPager *pager)
     xmlTextReaderPtr   reader;
     xmlXPathContextPtr xpath;
     xmlXPathObjectPtr  obj;
-    GError *error = NULL;
+    GError  *error = NULL;
     gint i, ret;
-
-    const gchar * const * langs = g_get_language_names ();
 
     YelpTocPagerPriv *priv = pager->priv;
 
@@ -629,48 +766,32 @@ process_read_menu (YelpTocPager *pager)
     obj = xmlXPathEvalExpression ("//toc", xpath);
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
-	xmlNodePtr cur, keep = NULL;
-	xmlChar *keep_lang = NULL;
-	int j, keep_pri = INT_MAX;
+	xmlChar *icon = NULL;
+	xmlChar *id = NULL;
 
-	for (cur = node->children; cur; cur = cur->next) {
-	    if (!xmlStrcmp (cur->name, BAD_CAST "title")) {
-		xmlChar *cur_lang = NULL;
-		int cur_pri = INT_MAX;
-		cur_lang = xmlNodeGetLang (cur);
-		if (cur_lang) {
-		    for (j = 0; langs[j]; j++) {
-			if (g_str_equal (cur_lang, langs[j])) {
-			    cur_pri = j;
-			    break;
-			}
-		    }
-		} else {
-		    cur_pri = INT_MAX - 1;
-		}
-		if (cur_pri <= keep_pri) {
-		    if (keep_lang)
-			xmlFree (keep_lang);
-		    keep_lang = cur_lang;
-		    keep_pri = cur_pri;
-		    keep = cur;
-		} else {
-		    xmlFree (cur_lang);
-		}
+#ifdef ENABLE_MAN
+	id = xmlGetProp (node, "id");
+	if (!xmlStrcmp (id, "index")) {
+	    xmlNodePtr new = xmlNewChild (node, NULL, "toc", NULL);
+	    xmlNewNsProp (new, NULL, "id", "Man");
+	    xmlNewChild (new, NULL, "title", _("Man Pages"));
+	}
+#endif
+
+	xml_trim_titles (node);
+
+	icon = xmlGetProp (node, "icon");
+	if (icon) {
+	    GtkIconInfo *info;
+	    const GtkIconTheme *theme = yelp_settings_get_icon_theme ();
+	    info = gtk_icon_theme_lookup_icon (theme, icon, 48, 0);
+	    if (info) {
+		xmlNodePtr new = xmlNewChild (node, NULL, "icon", NULL);
+		xmlNewNsProp (new, NULL, "file", gtk_icon_info_get_filename (info));
+		gtk_icon_info_free (info);
 	    }
 	}
-	cur = node->children;
-	while (cur) {
-	    xmlNodePtr this = cur;
-	    cur = cur->next;
-	    if (!xmlStrcmp (this->name, BAD_CAST "title")) {
-		if (this != keep) {
-		    xmlUnlinkNode (this);
-		    xmlFreeNode (this);
-		}
-	    }
-	}
-	xmlFree (keep_lang);
+
     }
     xmlXPathFreeObject (obj);
 
@@ -775,6 +896,10 @@ process_xslt (YelpTocPager *pager)
 	    g_free (params[params_i]);
     if (outdoc)
 	xmlFreeDoc (outdoc);
+    if (priv->toc_doc) {
+	xmlFreeDoc (priv->toc_doc);
+	priv->toc_doc = NULL;
+    }
     if (priv->stylesheet) {
 	xsltFreeStylesheet (priv->stylesheet);
 	priv->stylesheet = NULL;
@@ -961,4 +1086,53 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	xmlFreeDoc (new_doc);
     if (style)
 	xsltFreeStylesheet (style);
+}
+
+static void
+xml_trim_titles (xmlNodePtr node)
+{
+    xmlNodePtr cur, keep = NULL;
+    xmlChar *keep_lang = NULL;
+    int j, keep_pri = INT_MAX;
+
+    const gchar * const * langs = g_get_language_names ();
+
+    for (cur = node->children; cur; cur = cur->next) {
+	if (!xmlStrcmp (cur->name, BAD_CAST "title")) {
+	    xmlChar *cur_lang = NULL;
+	    int cur_pri = INT_MAX;
+	    cur_lang = xmlNodeGetLang (cur);
+	    if (cur_lang) {
+		for (j = 0; langs[j]; j++) {
+		    if (g_str_equal (cur_lang, langs[j])) {
+			cur_pri = j;
+			break;
+		    }
+		}
+	    } else {
+		cur_pri = INT_MAX - 1;
+	    }
+	    if (cur_pri <= keep_pri) {
+		if (keep_lang)
+		    xmlFree (keep_lang);
+		keep_lang = cur_lang;
+		keep_pri = cur_pri;
+		keep = cur;
+	    } else {
+		xmlFree (cur_lang);
+	    }
+	}
+    }
+    cur = node->children;
+    while (cur) {
+	xmlNodePtr this = cur;
+	cur = cur->next;
+	if (!xmlStrcmp (this->name, BAD_CAST "title")) {
+	    if (this != keep) {
+		xmlUnlinkNode (this);
+		xmlFreeNode (this);
+	    }
+	}
+    }
+    xmlFree (keep_lang);
 }

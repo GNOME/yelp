@@ -22,7 +22,8 @@
           padding-left: 0px;
           padding-right: 12px;
         }
-        h1 { font-size: 2em; }
+        h1 { font-size: 2em; margin-bottom: 0.4em; }
+        h1 img { float: right; }
         div[class~="leftbar"] {
           width: 200px;
           text-align: center;
@@ -66,37 +67,20 @@
   <xsl:apply-templates select="toc[.//doc]"/>
 </xsl:template>
 
-<xsl:template mode="body.mode" match="toc[@id = 'index']">
-  <div class="body">
-    <div class="rightbar">
-      <h1>
-        <xsl:apply-templates select="title[1]/node()"/>
-      </h1>
-      <div class="tocs">
-        <ul>
-          <xsl:for-each select="toc">
-            <li class="toc">
-              <a href="x-yelp-toc:{@id}">
-                <xsl:apply-templates select="title[1]/node()"/>
-              </a>
-            </li>
-          </xsl:for-each>
-        </ul>
-      </div>
-    </div>
-  </div>
-</xsl:template>
-
 <xsl:template mode="body.mode" match="toc">
   <div class="body">
     <div class="rightbar">
       <h1>
+        <xsl:if test="icon">
+          <img src="{icon/@file}"/>
+        </xsl:if>
         <xsl:apply-templates select="title[1]/node()"/>
       </h1>
       <xsl:if test="toc[.//doc]">
         <div class="tocs">
           <ul>
-            <xsl:for-each select="toc[.//doc]">
+            <xsl:for-each select="toc[../@id = 'index' or .//doc]">
+              <xsl:sort select="number(../@id = 'index') * position()"/>
               <xsl:sort select="title"/>
               <li class="toc">
                 <a href="x-yelp-toc:{@id}">
@@ -113,7 +97,12 @@
             <xsl:for-each select="doc">
               <xsl:sort select="title"/>
               <dt class="doc">
-                <a href="{@href}">
+                <a href="{@href}" title="{@href}">
+                  <xsl:if test="tooltip">
+                    <xsl:attribute name="title">
+                      <xsl:value-of select="tooltip"/>
+                    </xsl:attribute>
+                  </xsl:if>
                   <xsl:value-of select="title"/>
                 </a>
               </dt>

@@ -23,6 +23,8 @@
 #ifndef __YELP_UTILS_H__
 #define __YELP_UTILS_H__
 
+#include <glib/gi18n.h>
+
 typedef struct _YelpDocInfo YelpDocInfo;
 typedef struct _YelpDocPage YelpDocPage;
 
@@ -36,6 +38,23 @@ typedef enum {
     YELP_DOC_TYPE_TOC,
     YELP_DOC_TYPE_EXTERNAL
 } YelpDocType;
+
+static gchar *mandirs[] = {
+    "man0p",
+    "man1",
+    "man1p",
+    "man2",
+    "man3",
+    "man3p",
+    "man4",
+    "man5",
+    "man6",
+    "man7",
+    "man8",
+    "man9",
+    "mann",
+    NULL
+};
 
 typedef enum {
     YELP_URI_TYPE_ERROR    = 0,
@@ -76,7 +95,9 @@ struct _YelpDocPage {
 
 YelpDocInfo *       yelp_doc_info_new           (gchar         *uri);
 YelpDocInfo *       yelp_doc_info_get           (gchar         *uri);
-
+void                yelp_doc_info_add_uri       (YelpDocInfo   *doc_info,
+						 gchar         *uri,
+						 YelpURIType    type);
 YelpDocInfo *       yelp_doc_info_ref           (YelpDocInfo   *doc);
 void                yelp_doc_info_unref         (YelpDocInfo   *doc);
 void                yelp_doc_info_free          (YelpDocInfo   *doc);
