@@ -244,7 +244,7 @@ yim_get_path (GtkTreeModel *tree_model,
 
         for (node = priv->index_words; node; node = node->next)
         {
-                if ((gpointer)node->data == (gpointer)iter->user_data)
+                if ((gpointer)node == (gpointer)iter->user_data)
                         break;
                 i++;
         }
