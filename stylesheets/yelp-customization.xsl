@@ -9,7 +9,7 @@
 
 <xsl:param name="gdb_pathname" />
 
-<xsl:param name="gdb_rootid" select="string()" />
+<xsl:param name="gdb_rootid" select="''" />
 
 <xsl:output encoding="ISO-8859-1" />
 
@@ -281,7 +281,6 @@
       </xsl:when>
       <xsl:otherwise>
     	  <td align="right">
-          <xsl:text>Next &gt;&gt;&gt;</xsl:text>
     	  </td>
       </xsl:otherwise>
     </xsl:choose>
@@ -366,7 +365,7 @@
 
 <xsl:template match="/article">
   <xsl:choose>
-    <xsl:when test="string-length($gdb_rootid) &lt; 1">
+    <xsl:when test="string-length($gdb_rootid) = 0">
       <p align="center"><xsl:value-of select="/article/articleinfo/title"/></p>
       <xsl:call-template name="make.toc.navbar"/>
       <xsl:element name="hr"/>
