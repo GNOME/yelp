@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-03 18:51-0500\n"
-"PO-Revision-Date: 2005-01-03 22:18-0400\n"
+"POT-Creation-Date: 2005-01-10 01:44-0500\n"
+"PO-Revision-Date: 2005-01-10 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -281,10 +281,10 @@ msgid "Use system fonts"
 msgstr "Use system fonts"
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
-msgstr "Use the system's default fonts."
+msgid "Use the default fonts set for the system."
+msgstr "Use the default fonts set for the system."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2152
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -638,13 +638,13 @@ msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2149
 msgid "translator-credits"
 msgstr ""
 "Maintainer: Adam Weinberger <adamw@gnome.org>\n"
 "Alexander Winston <alexander.winston@comcast.net>"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2154
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "A documentation browser and viewer for the Gnome Desktop."
 
@@ -657,7 +657,16 @@ msgstr ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
