@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp CVS \n"
-"POT-Creation-Date: 2002-02-27 22:01+0100\n"
-"PO-Revision-Date: 2002-02-27 22:01+0100\n"
+"POT-Creation-Date: 2002-03-01 01:28+0100\n"
+"PO-Revision-Date: 2002-03-01 00:48+0100\n"
 "Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +25,12 @@ msgstr "Yelp-Fabrik"
 msgid "info"
 msgstr "Info"
 
-#: src/yelp-main.c:78
+#: src/yelp-main.c:91
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Yelp konnte nicht aktiviert werden: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:110
 msgid "Could not open new window."
 msgstr "Neues Fenster konnte nicht geöffnet werden."
 
@@ -107,18 +107,22 @@ msgstr "System-Administration"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:209 src/yelp-view-index.c:219
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:229
 msgid "Section"
 msgstr "Abschnitt"
 
+#: src/yelp-view-index.c:211
+msgid "Search for:"
+msgstr "Suchen nach:"
+
 # CHECK
 #: src/yelp-view-toc.c:271
-msgid "Other document systems"
-msgstr "Andere Dokument-Systeme"
+msgid "Other Documents"
+msgstr "Andere Dokumente"
 
 #: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
 msgid "Manual pages"
-msgstr "Manual-Seitem"
+msgstr "Manual-Seiten"
 
 #: src/yelp-view-toc.c:273 src/yelp-view-toc.c:558 src/yelp-view-toc.c:577
 msgid "Info pages"
@@ -132,72 +136,112 @@ msgstr "Installierte Dokumente"
 msgid "Start page"
 msgstr "Startseite"
 
-#: src/yelp-view-toc.c:511 src/yelp-view-toc.c:530
-msgid "Manual page sections"
-msgstr "Abschnitte in Manuel-Seite"
+#: src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "Manual-Seiten"
 
 #: src/yelp-view-toc.c:679
 msgid "Scrollkeeper docs for category"
 msgstr "Scrollkeeper-Doks für Kategorie"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:138
 msgid "/_File"
 msgstr "/_Datei"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:139
 msgid "/File/_New window"
-msgstr "/Datei/Neues Fenster"
+msgstr "/Datei/_Neues Fenster"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:140
 msgid "/File/_Close window"
 msgstr "/Datei/Fenster s_chließen"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:141
 msgid "/File/_Quit"
 msgstr "/Datei/_Beenden"
 
-#: src/yelp-window.c:117
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_Gehe"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Gehe/_Zurück"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Gehe/_Vorwärts"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Gehe/_Heim"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Gehe/_Index"
+
+#: src/yelp-window.c:147
 msgid "/_Help"
 msgstr "/_Hilfe"
 
-#: src/yelp-window.c:118
+#: src/yelp-window.c:148
 msgid "/Help/_About"
 msgstr "/Hilfe/_Info"
 
-#: src/yelp-window.c:166
+#: src/yelp-window.c:207
 msgid "Help Browser"
 msgstr "Hilfe-Browser"
 
-#: src/yelp-window.c:414
+#: src/yelp-window.c:529
+msgid "translator_credits"
+msgstr "Christian Meyer"
+
+#: src/yelp-window.c:533
 msgid "Help Browser for GNOME 2.0"
 msgstr "Hilfe-Browser für GNOME 2.0"
 
-#: src/yelp-window.c:438
-msgid "Go back in the history list"
-msgstr "In der Chronikliste zurückgehen"
+#: src/yelp-window.c:560
+msgid "Back"
+msgstr "Zurück"
+
+#: src/yelp-window.c:561
+msgid "Show previous page in history"
+msgstr "Vorherige Seite in Chronik zeigen"
+
+#: src/yelp-window.c:572
+msgid "Forward"
+msgstr "Vorwärts"
+
+#: src/yelp-window.c:573
+msgid "Show next page in history"
+msgstr "Nächste Seite in Chronik zeigen"
+
+#: src/yelp-window.c:586
+msgid "Home"
+msgstr "Heim"
 
 # CHECK
-#: src/yelp-window.c:453
-msgid "Go forth in the history list"
-msgstr "In der Chronikliste vorwärtsgehen"
+#: src/yelp-window.c:587
+msgid "Go to home view"
+msgstr "Zur Heimansicht gehen"
 
-#: src/yelp-window.c:468
-msgid "Overview of contents"
-msgstr "Inhaltsverzeichnis"
+#: src/yelp-window.c:597
+msgid "Index"
+msgstr "Index"
 
-#: src/yelp-window.c:479
+#: src/yelp-window.c:598
 msgid "Search in the index"
 msgstr "Im Index suchen"
 
-#: src/yelp-window.c:491
+#: src/yelp-window.c:608
 msgid "Search for a phrase in the document"
 msgstr ""
 
-#: src/yelp-window.c:497
+#: src/yelp-window.c:614
 msgid "Help on "
 msgstr "Hilfe für "
 
-#: src/yelp-window.c:502
+#: src/yelp-window.c:619
 msgid "Enter phrase to search for in all documents"
 msgstr ""
 
