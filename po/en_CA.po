@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-07 09:29-0400\n"
-"PO-Revision-Date: 2004-10-07 22:18-0400\n"
+"POT-Creation-Date: 2004-10-08 16:50-0400\n"
+"PO-Revision-Date: 2004-10-08 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -281,119 +281,99 @@ msgstr "Categories"
 msgid "Documents"
 msgstr "Documents"
 
-#: src/yelp-window.c:254
-msgid "/_File"
-msgstr "/_File"
+#: src/yelp-window.c:241
+msgid "_File"
+msgstr "_File"
 
-#: src/yelp-window.c:255
-msgid "/File/_New window"
-msgstr "/File/_New window"
+#: src/yelp-window.c:242
+msgid "_Edit"
+msgstr "_Edit"
 
-#: src/yelp-window.c:258
-msgid "/File/_Close window"
-msgstr "/File/_Close window"
+#: src/yelp-window.c:243
+msgid "_Go"
+msgstr "_Go"
 
-#: src/yelp-window.c:262
-msgid "/_Edit"
-msgstr "/_Edit"
+#: src/yelp-window.c:244
+msgid "_Help"
+msgstr "_Help"
+
+#: src/yelp-window.c:247
+msgid "_New window"
+msgstr "_New window"
+
+#: src/yelp-window.c:252
+msgid "Open _Location"
+msgstr "Open _Location"
+
+#: src/yelp-window.c:257
+msgid "_Close window"
+msgstr "_Close window"
 
 #: src/yelp-window.c:263
-msgid "/Edit/_Find..."
-msgstr "/Edit/_Find..."
-
-#: src/yelp-window.c:266
-msgid "/Edit/Find Ne_xt"
-msgstr "/Edit/Find Ne_xt"
+msgid "_Find..."
+msgstr "_Find..."
 
 #: src/yelp-window.c:269
-msgid "/Edit/Find Pre_vious"
-msgstr "/Edit/Find Pre_vious"
+msgid "_Back"
+msgstr "_Back"
 
-#: src/yelp-window.c:273
-msgid "/_Go"
-msgstr "/_Go"
-
-#: src/yelp-window.c:274
-msgid "/Go/_Back"
-msgstr "/Go/_Back"
-
-#: src/yelp-window.c:277
-msgid "/Go/_Forward"
-msgstr "/Go/_Forward"
-
-#: src/yelp-window.c:280
-msgid "/Go/_Home"
-msgstr "/Go/_Home"
-
-#: src/yelp-window.c:283
-msgid "/Go/"
-msgstr "/Go/"
-
-#: src/yelp-window.c:284
-msgid "/Go/_Previous Page"
-msgstr "/Go/_Previous Page"
-
-#: src/yelp-window.c:287
-msgid "/Go/_Next Page"
-msgstr "/Go/_Next Page"
-
-#: src/yelp-window.c:290
-msgid "/Go/_Contents"
-msgstr "/Go/_Contents"
-
-#: src/yelp-window.c:294
-msgid "/_Help"
-msgstr "/_Help"
-
-#: src/yelp-window.c:295
-msgid "/Help/_About"
-msgstr "/Help/_About"
-
-#: src/yelp-window.c:357
-msgid "Help Browser"
-msgstr "Help Browser"
-
-#: src/yelp-window.c:669
-msgid "Fin_d"
-msgstr "Fin_d"
-
-#: src/yelp-window.c:726
-msgid "Back"
-msgstr "Back"
-
-#: src/yelp-window.c:727
+#: src/yelp-window.c:271
 msgid "Show previous page in history"
 msgstr "Show previous page in history"
 
-#: src/yelp-window.c:737
-msgid "Forward"
-msgstr "Forward"
+#: src/yelp-window.c:274
+msgid "_Forward"
+msgstr "_Forward"
 
-#: src/yelp-window.c:738
+#: src/yelp-window.c:276
 msgid "Show next page in history"
 msgstr "Show next page in history"
 
-#: src/yelp-window.c:750
-msgid "Home"
-msgstr "Home"
+#: src/yelp-window.c:279
+msgid "_Home"
+msgstr "_Home"
 
-#: src/yelp-window.c:751
+#: src/yelp-window.c:281
 msgid "Go to home view"
 msgstr "Go to home view"
 
-#: src/yelp-window.c:1024
+#: src/yelp-window.c:284
+msgid "_Previous Page"
+msgstr "_Previous Page"
+
+#: src/yelp-window.c:289
+msgid "_Next Page"
+msgstr "_Next Page"
+
+#: src/yelp-window.c:294
+msgid "_Contents"
+msgstr "_Contents"
+
+#: src/yelp-window.c:300
+msgid "_About"
+msgstr "_About"
+
+#: src/yelp-window.c:363
+msgid "Help Browser"
+msgstr "Help Browser"
+
+#: src/yelp-window.c:686
+msgid "Fin_d"
+msgstr "Fin_d"
+
+#: src/yelp-window.c:984
 msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1423
+#: src/yelp-window.c:1474
 msgid "translator_credits"
 msgstr ""
 "Maintainer: Adam Weinberger <adamw@gnome.org>\n"
 "Alexander Winston <alexander.winston@comcast.net>"
 
-#: src/yelp-window.c:1429
+#: src/yelp-window.c:1480
 msgid "A Help Browser for GNOME"
 msgstr "A Help Browser for GNOME"
 
