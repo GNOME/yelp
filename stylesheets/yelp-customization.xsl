@@ -264,7 +264,7 @@
 	<table width="100%"><tr>
 		<xsl:choose>
 			<xsl:when test="$prev = 'title-page'">
-				<td width="33%"><a accesskey="p">
+				<td align="left" width="40%"><a accesskey="p">
 					<xsl:attribute name="href">
 						<xsl:call-template name="yelp.titlepage.ref"/>
 					</xsl:attribute>
@@ -276,7 +276,7 @@
 				</a></td>
 			</xsl:when>
 			<xsl:when test="$prev = 'toc'">
-				<td align="left" width="33%"><a accesskey="p">
+				<td align="left" width="40%"><a accesskey="p">
 					<xsl:attribute name="href">
 						<xsl:call-template name="yelp.toc.ref"/>
 					</xsl:attribute>
@@ -287,7 +287,7 @@
 				</a></td>
 			</xsl:when>
 			<xsl:when test="$prev">
-				<td align="left" width="33%"><a accesskey="p">
+				<td align="left" width="40%"><a accesskey="p">
 					<xsl:attribute name="href">
 						<xsl:call-template name="href.target">
 							<xsl:with-param name="object" select="$prev"/>
@@ -307,11 +307,11 @@
 				</a></td>
 			</xsl:when>
 			<xsl:otherwise>
-				<td align="left" width="33%"></td>
+				<td align="left" width="40%"></td>
 			</xsl:otherwise>
 		</xsl:choose>
 		<xsl:if test="$up">
-			<td align="center" width="33%"><a accesskey="u">
+			<td align="center" width="20%"><a accesskey="u">
 				<xsl:attribute name="href">
 					<xsl:call-template name="yelp.toc.ref"/>
 				</xsl:attribute>
@@ -322,7 +322,7 @@
 		</xsl:if>
 		<xsl:choose>
 			<xsl:when test="$next = 'toc'">
-				<td align="right"><a accesskey="n">
+				<td align="right" width="40%"><a accesskey="n">
 					<xsl:attribute name="href">
 						<xsl:call-template name="yelp.toc.ref"/>
 					</xsl:attribute>
@@ -333,7 +333,7 @@
 				</a></td>
 			</xsl:when>
 			<xsl:when test="$next">
-				<td align="right" width="33%"><a accesskey="n">
+				<td align="right" width="40%"><a accesskey="n">
 					<xsl:attribute name="href">
 						<xsl:call-template name="href.target">
 							<xsl:with-param name="object" select="$next"/>
@@ -353,7 +353,7 @@
 				</a></td>
 			</xsl:when>
 			<xsl:otherwise>
-				<td align="left" width="33%"></td>
+				<td align="right" width="40%"></td>
 			</xsl:otherwise>
 		</xsl:choose>
 	</tr></table>

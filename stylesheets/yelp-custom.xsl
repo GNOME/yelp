@@ -269,7 +269,7 @@
 <!-- Puts a link on the title page to each legalnotice. -->
 <xsl:param name="generate.legalnotice.link" select="0"/>
 
-<xsl:template match="legalnotice[1]" mode="titlepage.mode">
+<xsl:template match="legalnotice[not(title)]" mode="titlepage.mode">
   <xsl:element name="div">
     <xsl:attribute name="class">
       <xsl:text>legalnotice</xsl:text>
