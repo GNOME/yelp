@@ -60,11 +60,10 @@ static void        yw_class_init	       (YelpWindowClass     *klass);
 
 static void        yw_populate                 (YelpWindow          *window);
 
-static gboolean    yw_handle_url               (YelpWindow          *window,
-						const gchar         *url);
-static void        yw_url_selected_cb          (gpointer             view,
-						char                *url,
-						char                *base_url,
+static gboolean    yw_handle_uri               (YelpWindow          *window,
+						YelpURI             *uri);
+static void        yw_uri_selected_cb          (gpointer             view,
+						YelpURI             *uri,
 						gboolean             handled,
 						YelpWindow          *window);
 static void        yw_toggle_history_back      (YelpHistory         *history,
@@ -193,7 +192,8 @@ static void
 yw_init (YelpWindow *window)
 {
         YelpWindowPriv *priv;
-       
+	YelpURI        *uri;
+	
         priv = g_new0 (YelpWindowPriv, 1);
         window->priv = priv;
         
@@ -204,7 +204,9 @@ yw_init (YelpWindow *window)
 	
 	priv->history = yelp_history_new ();
 
-	yelp_history_goto (priv->history, "toc:");
+	uri = yelp_uri_new ("toc:");
+	yelp_history_goto (priv->history, uri);
+	yelp_uri_unref (uri);
 
 	g_signal_connect (priv->history, 
 			  "back_exists_changed",
@@ -313,7 +315,7 @@ yw_populate (YelpWindow *window)
 }
 
 static gboolean
-yw_handle_url (YelpWindow *window, const gchar *url)
+yw_handle_uri (YelpWindow *window, YelpURI *uri)
 {
 	YelpWindowPriv *priv;
 	GError         *error = NULL;
@@ -321,35 +323,39 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 
 	priv = window->priv;
 
-	d(g_print ("Handling URL: %s\n", url));
+	d(g_print ("Handling URL: %s\n", yelp_uri_to_string (uri)));
 
- 	yelp_view_content_stop (YELP_VIEW_CONTENT (priv->content_view));
+/*  	yelp_view_content_stop (YELP_VIEW_CONTENT (priv->content_view)); */
 
-	if (strncmp (url, "toc:", 4) == 0) {
-		yelp_view_toc_open_url (YELP_VIEW_TOC (priv->toc_view),
-					url);
+	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC) {
+		d(g_print ("[TOC]\n"));
+		
+		yelp_view_toc_open_uri (YELP_VIEW_TOC (priv->toc_view), uri);
+
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_TOC_VIEW);
 		handled = TRUE;
-	} else if (strncmp (url, "man:", 4) == 0 ||
-		   strncmp (url, "info:", 5) == 0 ||
-		   strncmp (url, "ghelp:", 6) == 0 ||
-		   strncmp (url, "path:", 5) == 0) {
+	} 
+	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_INDEX) {
+		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
+					       PAGE_INDEX_VIEW);
+		handled = TRUE;
+	}
+	else if (yelp_uri_get_type (uri) == YELP_URI_TYPE_MAN ||
+		 yelp_uri_get_type (uri) == YELP_URI_TYPE_INFO ||
+		 yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML ||
+		 yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_SGML ||
+		 yelp_uri_get_type (uri) == YELP_URI_TYPE_HTML ||
+		 yelp_uri_get_type (uri) == YELP_URI_TYPE_PATH) {
+		d(g_print ("[CONTENT]\n"));
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_CONTENT_VIEW);
 		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
-					    url,
+					    uri,
 					    &error);
 		handled = TRUE;
-	} else if (strncmp (url, "index:", 6) == 0) {
-		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-					       PAGE_INDEX_VIEW);
-		yelp_view_index_show_uri (YELP_VIEW_INDEX (priv->index_view),
-					  url,
-					  &error);
-		handled = TRUE;
 	} else {
-		gnome_url_show (url, &error);
+		gnome_url_show (yelp_uri_to_string (uri), &error);
 		handled = FALSE;
 	}
 
@@ -369,47 +375,31 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 }
 
 static void
-yw_url_selected_cb (gpointer    view,
-		    char       *url,
-		    char       *base_url,
+yw_uri_selected_cb (gpointer    view, 
+		    YelpURI    *uri, 
 		    gboolean    handled,
 		    YelpWindow *window)
 {
 	YelpWindowPriv *priv;
-	gchar          *abs_url = NULL;
-
 
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
-	d(g_print ("url_selected: %s base: %s, handled: %d\n", url, base_url, handled));
+	d(g_print ("uri_selected: %s, handled: %d\n", 
+		   yelp_uri_to_string (uri), handled));
 
 	priv = window->priv;
-	
-	if (url && base_url) {
-		abs_url = yelp_util_resolve_relative_uri (base_url, url);
-		
-		d(g_print ("Link '%s' pressed relative to: %s -> %s\n", 
-			   url,
-			   base_url,
-			   abs_url));
-        } else {
-		if (url) {
-			abs_url = g_strdup (url);
-		}
-		else if (base_url) {
-			abs_url = g_strdup (base_url);
-		}
-        }
 
+	yelp_uri_ref (uri);
+	
 	if (handled) {
-		yelp_history_goto (priv->history, abs_url);
+		yelp_history_goto (priv->history, uri);
 	} else {
-		if (yw_handle_url (window, abs_url)) {
-			yelp_history_goto (priv->history, abs_url);
+		if (yw_handle_uri (window, uri)) {
+			yelp_history_goto (priv->history, uri);
 		}
 	}
 
-	g_free (abs_url);
+	yelp_uri_unref (uri);
 }
 
 static void
@@ -456,7 +446,7 @@ static void
 yw_history_action (YelpWindow *window, YelpHistoryAction action)
 {
 	YelpWindowPriv *priv;
-	const gchar    *url;
+	YelpURI        *uri;
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
@@ -464,17 +454,17 @@ yw_history_action (YelpWindow *window, YelpHistoryAction action)
 
 	switch (action) {
 	case YELP_WINDOW_ACTION_BACK:
-		url = yelp_history_go_back (priv->history);
+		uri = yelp_history_go_back (priv->history);
 		break;
 	case YELP_WINDOW_ACTION_FORWARD:
-		url = yelp_history_go_forward (priv->history);
+		uri = yelp_history_go_forward (priv->history);
 		break;
 	default:
 		return;
 	}
 	
-	if (url) {
-		yw_handle_url (window, url);
+	if (uri) {
+		yw_handle_uri (window, uri);
 	}
 }
 
@@ -499,12 +489,16 @@ yw_forward_button_clicked (GtkWidget *button, YelpWindow *window)
 static void
 yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
 {
-	g_return_if_fail (YELP_IS_WINDOW (window));
-
-	yelp_history_goto (window->priv->history, "toc:");
+	YelpURI *uri;
 	
-	yelp_view_toc_open_url (YELP_VIEW_TOC (window->priv->toc_view),
-				"toc:");
+	g_return_if_fail (YELP_IS_WINDOW (window));
+	
+	uri = yelp_uri_new ("toc:");
+
+	yelp_history_goto (window->priv->history, uri);
+	yelp_view_toc_open_uri (YELP_VIEW_TOC (window->priv->toc_view), uri);
+
+	yelp_uri_unref (uri);
 
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
 				       PAGE_TOC_VIEW);
@@ -513,8 +507,14 @@ yw_home_button_clicked (GtkWidget *button, YelpWindow *window)
 static void
 yw_index_button_clicked (GtkWidget *button, YelpWindow *window)
 {
+	YelpURI *uri;
+	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
+	uri = yelp_uri_new ("index:");
+	yelp_history_goto (window->priv->history, uri);
+	yelp_uri_unref (uri);
+	
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (window->priv->notebook),
 				       PAGE_INDEX_VIEW);
 }
@@ -720,22 +720,22 @@ yelp_window_new (GNode *doc_tree, GList *index)
 	priv->doc_tree = doc_tree;
 	priv->index    = index;
 
- 	priv->toc_view    = yelp_view_toc_new (doc_tree);
+ 	priv->toc_view     = yelp_view_toc_new (doc_tree);
  	priv->content_view = yelp_view_content_new (doc_tree);
 
 	if (priv->index) {
 		priv->index_view = yelp_view_index_new (index);
 
-		g_signal_connect (priv->index_view, "url_selected",
-				  G_CALLBACK (yw_url_selected_cb),
+		g_signal_connect (priv->index_view, "uri_selected",
+				  G_CALLBACK (yw_uri_selected_cb),
 				  window);
 	} 
 
-	g_signal_connect (priv->toc_view, "url_selected",
-			  G_CALLBACK (yw_url_selected_cb),
+	g_signal_connect (priv->toc_view, "uri_selected",
+			  G_CALLBACK (yw_uri_selected_cb),
 			  window);
-	g_signal_connect (priv->content_view, "url_selected",
-			  G_CALLBACK (yw_url_selected_cb),
+	g_signal_connect (priv->content_view, "uri_selected",
+			  G_CALLBACK (yw_uri_selected_cb),
 			  window);
 
 	yw_populate (window);
@@ -748,15 +748,22 @@ yelp_window_open_uri (YelpWindow  *window,
 		      const gchar *str_uri)
 {
 	YelpWindowPriv *priv;
+	YelpURI        *uri;
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	
 	priv = window->priv;
 
-	yw_handle_url (window, str_uri);
+	uri = yelp_uri_new (str_uri);
+
+	if (yelp_uri_exists (uri)) {
+		yw_handle_uri (window, uri);
+	}
+	
+	yelp_uri_unref (uri);
 }
 
-const gchar *
+YelpURI *
 yelp_window_get_current_uri (YelpWindow *window)
 {
 	g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);

@@ -43,13 +43,14 @@
 #include "yelp-marshal.h"
 #include "yelp-view-index.h"
 
+#define d(x)
+
 static void     yvi_init                       (YelpViewIndex       *view);
 static void     yvi_class_init                 (YelpViewIndexClass  *klass);
 static void     yvi_index_selection_changed_cb (GtkTreeSelection    *selection,
 						YelpViewIndex       *content);
-static void     yvi_html_url_selected_cb       (YelpHtml            *html,
-						char                *url,
-						char                *base_url,
+static void     yvi_html_uri_selected_cb       (YelpHtml            *html,
+						YelpURI             *uri,
 						gboolean             handled,
 						YelpViewIndex       *view);
 static void     yvi_entry_changed_cb           (GtkEntry            *entry,
@@ -85,7 +86,7 @@ struct _YelpViewIndexPriv {
 };
 
 enum {
-	URL_SELECTED,
+	URI_SELECTED,
 	LAST_SIGNAL
 };
 
@@ -141,24 +142,24 @@ yvi_init (YelpViewIndex *view)
 
 	priv->html_view = yelp_html_new ();
 	
-	g_signal_connect (priv->html_view, "url_selected",
-			  G_CALLBACK (yvi_html_url_selected_cb),
+	g_signal_connect (priv->html_view, "uri_selected",
+			  G_CALLBACK (yvi_html_uri_selected_cb),
 			  view);
 }
 
 static void
 yvi_class_init (YelpViewIndexClass *klass)
 {
-	signals[URL_SELECTED] =
-		g_signal_new ("url_selected",
+	signals[URI_SELECTED] =
+		g_signal_new ("uri_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (YelpViewIndexClass,
-					       url_selected),
+					       uri_selected),
 			      NULL, NULL,
-			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
+			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
-			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
 }
 
 static void
@@ -179,28 +180,26 @@ yvi_index_selection_changed_cb (GtkTreeSelection *selection,
 				    YELP_INDEX_MODEL_COL_SECTION, &section,
 				    -1);
 
-  		g_signal_emit (view, signals[URL_SELECTED], 0,
- 			       section->reference, section->uri, FALSE);
+		d(g_print ("Index View: selection changed: %s\n", 
+			   yelp_uri_to_string (section->uri)));
+		
+  		g_signal_emit (view, signals[URI_SELECTED], 0,
+ 			       section->uri, FALSE);
 	}
 }
 
 static void
-yvi_html_url_selected_cb (YelpHtml      *html,
-			  char          *url,
-			  char          *base_url,
+yvi_html_uri_selected_cb (YelpHtml      *html, 
+			  YelpURI       *uri, 
 			  gboolean       handled,
 			  YelpViewIndex *view)
 {
-	gchar *real_base_url;
-	
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
 
-	real_base_url = g_strconcat ("index:", base_url, NULL);
+	d(g_print ("Index View: uri selected: %s\n", 
+		   yelp_uri_to_string (uri)));
 
-	g_signal_emit (view, signals[URL_SELECTED], 0, 
-		       url, real_base_url, handled);
-
-	g_free (real_base_url);
+	g_signal_emit (view, signals[URI_SELECTED], 0, uri, handled);
 }
 
 static void
@@ -414,22 +413,18 @@ yelp_view_index_new (GList *index)
 
 void
 yelp_view_index_show_uri (YelpViewIndex  *view,
-			  const gchar    *uri, 
+			  YelpURI        *uri,
 			  GError        **error)
 {
 	YelpViewIndexPriv *priv;
-	const gchar       *real_uri;
 
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
 	g_return_if_fail (uri != NULL);
-	g_return_if_fail (strncmp (uri, "index:", 6) == 0);
 	
 	priv = view->priv;
 
-	real_uri = uri + 6;
-
 	/* FIXME: Handle the GError */
-	yelp_html_open_uri (priv->html_view, real_uri, NULL, error);
+	yelp_html_open_uri (priv->html_view, uri, error);
 }
 
 /**

@@ -29,7 +29,7 @@
 #include "yelp-error.h"
 #include "yelp-util.h"
 #include "yelp-uri.h"
-
+ 
 #define d(x)
 
 struct _YelpURI {
@@ -74,9 +74,15 @@ uri_get_doc_path (const gchar *str_uri)
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "toc:", 4)) {
 		ret_val = g_strdup (no_anchor_uri + 4);
 	}
+	else if (!g_ascii_strncasecmp (no_anchor_uri, "index:", 6)) {
+		ret_val = g_strdup (no_anchor_uri + 6);
+	}
+	else if (!g_ascii_strncasecmp (no_anchor_uri, "path:", 5)) {
+		ret_val = g_strdup (no_anchor_uri + 5);
+	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "ghelp:", 6)) {
 		ret_val = uri_get_path_from_ghelp_uri (no_anchor_uri + 6);
-	}
+	} 
 	
 	g_free (no_anchor_uri);
 
@@ -96,6 +102,12 @@ uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
 	}
 	else if (!g_ascii_strncasecmp (str_uri, "toc:", 4)) {
 		ret_val = YELP_URI_TYPE_TOC;
+	}
+	else if (!g_ascii_strncasecmp (str_uri, "index:", 6)) {
+		ret_val = YELP_URI_TYPE_INDEX;
+	}
+	else if (!g_ascii_strncasecmp (str_uri, "path:", 5)) {
+		ret_val = YELP_URI_TYPE_PATH;
 	}
         else if (!g_ascii_strncasecmp (str_uri, "ghelp:", 6)) {
 		gchar *mime_type = NULL;
@@ -310,6 +322,7 @@ uri_locate_help_file_with_lang (const gchar *path,
  	return NULL;
 }
 
+
 YelpURI *
 yelp_uri_new (const gchar *str_uri)
 {
@@ -317,10 +330,16 @@ yelp_uri_new (const gchar *str_uri)
 
 	uri = g_new0 (YelpURI, 1);
 
+	d(g_print ("New YelpURI: %s\n", str_uri));
+
 	uri->path      = uri_get_doc_path (str_uri);
 	uri->type      = uri_get_doc_type (str_uri, uri->path);
 	uri->section   = uri_get_doc_section (str_uri);
 	uri->ref_count = 1;
+
+	d(g_print ("Resulting path: %s section: %s\n", 
+		   uri->path, 
+		   uri->section));
 
 	return uri;
 }
@@ -379,12 +398,14 @@ yelp_uri_read_async (YelpURI *uri, YelpURIReader *reader, GError **error)
 	return TRUE;
 }
 
-void
+YelpURI *
 yelp_uri_ref (YelpURI *uri)
 {
-	g_return_if_fail (uri != NULL);
+	g_return_val_if_fail (uri != NULL, NULL);
 	
 	uri->ref_count++;
+	
+	return uri;
 }
 
 void
@@ -401,6 +422,167 @@ yelp_uri_unref (YelpURI *uri)
 		g_free (uri->section);
 		g_free (uri);
 	}
+}
+
+YelpURI *
+yelp_uri_copy (YelpURI *uri)
+{
+	YelpURI *new_uri;
+	
+	new_uri = g_new0 (YelpURI, 1);
+	
+	new_uri->type      = uri->type;
+	new_uri->path      = g_strdup (uri->path);
+	new_uri->section   = g_strdup (uri->section);
+	new_uri->ref_count = 1;
+
+	return new_uri;
+}
+
+YelpURI *
+yelp_uri_get_relative (YelpURI *uri, const gchar *link)
+{
+	YelpURI *new_uri = NULL;
+	
+	if (!yelp_util_is_url_relative (link)) {
+		new_uri = yelp_uri_new (link);
+	} else {
+		if (uri->type == YELP_URI_TYPE_MAN ||
+		    uri->type == YELP_URI_TYPE_INFO) {
+			if (link[0] == '#' || link[0] == '?') {
+				new_uri = yelp_uri_copy (uri);
+				g_free (new_uri->section);
+				new_uri->section = g_strdup (link + 1);
+			} else {
+				g_assert_not_reached ();
+			}
+		} else {
+			gchar *str_uri;
+			gchar *new_url;
+			
+			str_uri = yelp_uri_to_string (uri);
+			new_url = yelp_util_resolve_relative_url (str_uri,
+								  link);
+			g_free (str_uri);
+
+			new_uri = yelp_uri_new (new_url);
+			
+			g_free (new_url);
+		}
+	}
+	
+	return new_uri;
+}
+
+gboolean
+yelp_uri_equal (YelpURI *uri1, YelpURI *uri2)
+{
+	if (uri1->type == uri2->type &&
+	    yelp_uri_equal_path (uri1, uri2) &&
+	    yelp_uri_equal_section (uri1, uri2)) {
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+gboolean
+yelp_uri_equal_path (YelpURI *uri1, YelpURI *uri2)
+{
+	g_return_val_if_fail (uri1 != NULL, FALSE);
+	g_return_val_if_fail (uri2 != NULL, FALSE);
+
+	if (uri1->path == NULL) {
+		if (uri2->path == NULL) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	
+	if (uri2->path == NULL) {
+		return FALSE;
+	}
+
+	if (!strcmp (uri1->path, uri2->path)) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gboolean
+yelp_uri_equal_section (YelpURI *uri1, YelpURI *uri2)
+{
+	g_return_val_if_fail (uri1 != NULL, FALSE);
+	g_return_val_if_fail (uri2 != NULL, FALSE);
+
+	if (uri1->section == NULL) {
+		if (uri2->section == NULL) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	
+	if (uri2->section == NULL) {
+		return FALSE;
+	}
+
+	if (!strcmp (uri1->section, uri2->section)) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gchar *
+yelp_uri_to_string (YelpURI *uri)
+{
+	gchar *type;
+	gchar *ret_val = NULL;
+	
+	g_return_val_if_fail (uri != NULL, NULL);
+
+	if (uri->type == YELP_URI_TYPE_NON_EXISTENT ||
+	    uri->type == YELP_URI_TYPE_UNKNOWN) {
+		return NULL;
+	}
+
+	switch (uri->type) {
+	case YELP_URI_TYPE_MAN:
+		type = g_strdup ("man:");
+		break;
+	case YELP_URI_TYPE_INFO:
+		type = g_strdup ("info:");
+		break;
+	case YELP_URI_TYPE_DOCBOOK_XML:
+	case YELP_URI_TYPE_DOCBOOK_SGML:
+	case YELP_URI_TYPE_HTML:
+		type = g_strdup ("ghelp:");
+		break;
+	case YELP_URI_TYPE_TOC:
+		type = g_strdup ("toc:");
+		break;
+	case YELP_URI_TYPE_PATH:
+		type = g_strdup ("path:");
+		break;
+	default:
+		g_assert_not_reached ();
+	}
+
+	if (uri->section) {
+		ret_val = g_strconcat (type, uri->path, "?", uri->section, 
+				       NULL);
+	} else {
+		ret_val = g_strconcat (type, uri->path, NULL);
+	}
+	
+	g_free (type);
+	
+	d(g_print ("URI_TO_STRING: %s\n", ret_val));
+	
+	return ret_val;
 }
 
 YelpURIReader *

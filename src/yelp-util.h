@@ -25,8 +25,12 @@
 
 #include <glib.h>
 
-gchar *  yelp_util_resolve_relative_uri     (const gchar   *base_uri,
-					     const gchar   *uri);
+#include "yelp-uri.h"
+
+gboolean yelp_util_is_url_relative          (const char    *url);
+
+gchar *  yelp_util_resolve_relative_url     (const gchar   *base_uri,
+					     const gchar   *url);
 
 gchar *  yelp_util_node_to_string_path      (GNode         *node);
 GNode *  yelp_util_string_path_to_node      (const gchar   *string_path,
@@ -34,7 +38,7 @@ GNode *  yelp_util_string_path_to_node      (const gchar   *string_path,
 
 GNode *  yelp_util_decompose_path_url       (GNode         *root,
 					     const gchar   *path_url,
-					     char         **embedded_url);
+					     YelpURI      **embedded_uri);
 gchar *  yelp_util_compose_path_url         (GNode         *node,
 					     const gchar   *embedded_url);
 
@@ -45,7 +49,7 @@ GNode *  yelp_util_find_node_from_name      (GNode         *doc_tree,
 					     const gchar   *name);
 
 GNode *  yelp_util_find_node_from_uri       (GNode         *doc_tree,
-					     const gchar   *uri);
+					     YelpURI       *uri);
 
 gchar *  yelp_util_extract_docpath_from_uri (const gchar   *uri);
 gchar *  yelp_util_split_uri                (const gchar   *uri,

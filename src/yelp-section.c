@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -28,11 +28,9 @@
 #include "yelp-section.h"
 
 YelpSection *
-yelp_section_new (YelpSectionType type,
-		  const gchar    *name,
-		  const gchar    *uri,
-		  const gchar    *reference,
-		  const gchar    *scheme)
+yelp_section_new (YelpSectionType  type,
+		  const gchar     *name,
+		  YelpURI         *uri)
 {
 	YelpSection *section;
 
@@ -40,9 +38,12 @@ yelp_section_new (YelpSectionType type,
 
 	section->type      = type;
 	section->name      = g_strdup (name);
-	section->uri       = g_strdup (uri);
-	section->reference = g_strdup (reference);
-	section->scheme    = g_strdup (scheme);
+	if (uri) {
+		section->uri = yelp_uri_ref (uri);
+	} else {
+		section->uri = NULL;
+	}
+	
 	
 	return section;
 }
@@ -52,9 +53,7 @@ yelp_section_copy (const YelpSection *section)
 {
 	return yelp_section_new (section->type, 
 				 section->name, 
-				 section->uri, 
-				 section->reference,
-				 section->scheme);
+				 section->uri);
 }
 
 void 
@@ -65,11 +64,7 @@ yelp_section_free (YelpSection *section)
 	}
 	
 	if (section->uri) {
-		g_free (section->uri);
-	}
-	
-	if (section->reference) {
-		g_free (section->reference);
+		yelp_uri_unref (section->uri);
 	}
 }
 

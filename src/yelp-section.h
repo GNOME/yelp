@@ -25,6 +25,8 @@
 
 #include <glib-object.h>
 
+#include "yelp-uri.h"
+
 typedef struct _YelpSection   YelpSection;
 
 #define YELP_SECTION(x) ((YelpSection *) x)
@@ -37,18 +39,14 @@ typedef enum {
 } YelpSectionType;
 
 struct _YelpSection {
-	gchar *name;
-	gchar *uri;
-	gchar *reference;
-	gchar *scheme;
-	YelpSectionType type;
+	gchar           *name;
+	YelpURI         *uri;
+	YelpSectionType  type;
 };
 
 YelpSection * yelp_section_new        (YelpSectionType     type,
 				       const gchar        *name,
-				       const gchar        *uri,
-				       const gchar        *reference,
-				       const gchar        *scheme);
+				       YelpURI            *uri);
 
 YelpSection * yelp_section_copy       (const YelpSection  *section);
 

@@ -45,9 +45,14 @@ static void yvc_init                      (YelpViewContent         *html);
 static void yvc_class_init                (YelpViewContentClass    *klass);
 static void yvc_tree_selection_changed_cb (GtkTreeSelection        *selection,
 					   YelpViewContent         *content);
+static void yvc_html_uri_selected_cb      (YelpHtml                *html,
+					   YelpURI                 *uri,
+					   gboolean                 handled,
+					   YelpViewContent         *view);
+
 
 enum {
-	URL_SELECTED,
+	URI_SELECTED,
 	LAST_SIGNAL
 };
 
@@ -96,21 +101,6 @@ yelp_view_content_get_type (void)
 
 
 static void
-yvc_html_url_selected_cb (YelpHtml        *html,
-			  char            *url,
-			  char            *base_url,
-			  gboolean         handled,
-			  YelpViewContent *view)
-{
-	/* Just propagate the signal to the view */
-	d(g_print ("***** URI Clicked: %s, %s\n", base_url, url));
-	
-	g_signal_emit (view, signals[URL_SELECTED], 0,
-		       url, base_url, handled);
-}
-
-
-static void
 yvc_init (YelpViewContent *view)
 {
 	YelpViewContentPriv *priv;
@@ -129,24 +119,38 @@ yvc_init (YelpViewContent *view)
 	priv->html_view       = yelp_html_new ();
 	priv->current_docpath = g_strdup ("");
 	
-	g_signal_connect (priv->html_view, "url_selected",
-			  G_CALLBACK (yvc_html_url_selected_cb), 
+	g_signal_connect (priv->html_view, "uri_selected",
+			  G_CALLBACK (yvc_html_uri_selected_cb), 
 			  view);
 }
 
 static void
 yvc_class_init (YelpViewContentClass *klass)
 {
-	signals[URL_SELECTED] = 
-		g_signal_new ("url_selected",
+	signals[URI_SELECTED] = 
+		g_signal_new ("uri_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (YelpViewContentClass,
-					       url_selected),
+					       uri_selected),
 			      NULL, NULL,
-			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
+			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
-			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+}
+
+static void
+yvc_html_uri_selected_cb (YelpHtml        *html,
+			  YelpURI         *uri,
+			  gboolean         handled,
+			  YelpViewContent *view)
+{
+	/* Just propagate the signal to the view */
+	d(g_print ("***** URI Clicked: %s [%d]\n", 
+		   yelp_uri_to_string (uri),
+		   handled));
+	
+	g_signal_emit (view, signals[URI_SELECTED], 0, uri, handled);
 }
 
 static void
@@ -170,8 +174,8 @@ yvc_tree_selection_changed_cb (GtkTreeSelection *selection,
 				    1, &section,
 				    -1);
 
- 		g_signal_emit (content, signals[URL_SELECTED], 0,
- 			       section->reference, section->uri, FALSE);
+ 		g_signal_emit (content, signals[URI_SELECTED], 0,
+ 			       section->uri, FALSE);
 	}
 }
 
@@ -279,41 +283,25 @@ yelp_view_content_set_tree (YelpViewContent *content,
 
 void
 yelp_view_content_show_uri (YelpViewContent  *content,
-			    const gchar      *url,
+			    YelpURI          *uri,
 			    GError          **error)
 {
 	YelpViewContentPriv *priv;
-	gchar               *content_url;
 	GNode               *node;
-	gchar               *section = NULL;
 	
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
-	g_return_if_fail (url != NULL);
+	g_return_if_fail (uri != NULL);
 	
 	priv = content->priv;
 
-	if (strncmp (url, "path:", 5) == 0) {
-		node = yelp_util_decompose_path_url (priv->doc_tree,
-						     url,
-						     &content_url);
-
-		yelp_view_content_set_tree (content, node);
-
-		if (!strncmp (content_url, "info:", 5) || 
-		    !strncmp (content_url, "man:", 4)) {
-			gtk_widget_hide (priv->tree_sw);
-		}
-		else {
-			gtk_widget_show (priv->tree_sw);
-		}
-	} else if (strncmp (url, "ghelp:", 6) == 0) {
+	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML) {
 		/* ghelp uri-scheme /usr/share/gnome/help... */
-		gchar *docpath;
+		const gchar *docpath;
 
- 		docpath = yelp_util_extract_docpath_from_uri (url);
+ 		docpath = yelp_uri_get_path (uri);
 
 		if (docpath && strcmp (docpath, priv->current_docpath)) {
-			/* Try to find it in the scrollkeeper database, 
+			/* Try to find it in the scrollkeeper database,
 			   doesn't have to exist here */
 			node = yelp_scrollkeeper_get_toc_tree (docpath);
 			
@@ -328,28 +316,11 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 			g_free (priv->current_docpath);
 			priv->current_docpath = g_strdup (docpath);
 		}
-
-		g_free (docpath);
-
-		content_url = yelp_util_split_uri (url, &section);
-		
-	} else if (!strncmp (url, "info:", 5) || !strncmp (url, "man:", 4)) {
-		node = yelp_util_find_node_from_uri (priv->doc_tree, url);
-
+	} else {
 		gtk_widget_hide (priv->tree_sw);
-
-		if (node && node->parent) {
-			/* yelp_view_content_set_tree (content, node->parent); */
-		}
-
-		content_url = (char *) url;
 	}
 
-	yelp_html_open_uri (priv->html_view, content_url, section, error);
-
-	if (content_url != url) {
-		g_free (content_url);
-	}
+	yelp_html_open_uri (priv->html_view, uri, error);
 }
 
 void

@@ -28,24 +28,6 @@
 
 /* This code comes from gnome vfs: */
 
-static gboolean
-is_uri_relative (const char *uri)
-{
-	const char *current;
-
-	/* RFC 2396 section 3.1 */
-	for (current = uri ; 
-		*current
-		&& 	((*current >= 'a' && *current <= 'z')
-			 || (*current >= 'A' && *current <= 'Z')
-			 || (*current >= '0' && *current <= '9')
-			 || ('-' == *current)
-			 || ('+' == *current)
-			 || ('.' == *current)) ;
-	     current++);
-
-	return  !(':' == *current);
-}
 
 
 /*
@@ -131,18 +113,36 @@ remove_internal_relative_components (char *uri_current)
 	
 }
 
+gboolean
+yelp_util_is_url_relative (const char *url)
+{
+	const char *current;
+
+	/* RFC 2396 section 3.1 */
+	for (current = url ; 
+		*current
+		&& 	((*current >= 'a' && *current <= 'z')
+			 || (*current >= 'A' && *current <= 'Z')
+			 || (*current >= '0' && *current <= '9')
+			 || ('-' == *current)
+			 || ('+' == *current)
+			 || ('.' == *current)) ;
+	     current++);
+
+	return  !(':' == *current);
+}
 
 /* If I had known this relative uri code would have ended up this long, I would
  * have done it a different way
  */
 char *
-yelp_util_resolve_relative_uri (const char *base_uri,
-				const char *uri)
+yelp_util_resolve_relative_url (const char *base_uri,
+				const char *url)
 {
 	char *result = NULL;
 
-	g_return_val_if_fail (base_uri != NULL, g_strdup (uri));
-	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (url != NULL, NULL);
+	g_return_val_if_fail (base_uri != NULL, g_strdup (url));
 
 	/* See section 5.2 in RFC 2396 */
 
@@ -151,10 +151,10 @@ yelp_util_resolve_relative_uri (const char *base_uri,
 	 * functionality differs from what Mozilla itself would do.
 	 */
 
-	if (uri[0] == '?' || uri[0] == '#') {
-		result = g_strconcat (base_uri, uri, NULL);
+	if (url[0] == '?' || url[0] == '#') {
+		result = g_strconcat (base_uri, url, NULL);
 	}
-	else if (is_uri_relative (uri)) {
+	else if (yelp_util_is_url_relative (url)) {
 		char *mutable_base_uri;
 		char *mutable_uri;
 
@@ -170,7 +170,7 @@ yelp_util_resolve_relative_uri (const char *base_uri,
 		mutable_base_uri = g_malloc(strlen(base_uri)+2);
 		strcpy (mutable_base_uri, base_uri);
 		
-		uri_current = mutable_uri = g_strdup (uri);
+		uri_current = mutable_uri = g_strdup (url);
 
 		/* Chew off Fragment and Query from the base_url */
 
@@ -270,7 +270,7 @@ yelp_util_resolve_relative_uri (const char *base_uri,
 		g_free (mutable_uri); 
 
 	} else {
-		result = g_strdup (uri);
+		result = g_strdup (url);
 	}
 	
 	return result;
@@ -366,14 +366,14 @@ yelp_util_string_path_to_node (const char *string_path,
 GNode *
 yelp_util_decompose_path_url (GNode       *root,
 			      const char  *path_url,
-			      gchar      **embedded_url)
+			      YelpURI    **embedded_uri)
 {
 	const gchar *first_part;
 	const gchar *second_part;
 	gchar       *path;
 	GNode       *res;
 
-	*embedded_url = NULL;
+	*embedded_uri = NULL;
 	
 	if (strncmp (path_url, "path:", 5) != 0) {
 		return NULL;
@@ -393,7 +393,7 @@ yelp_util_decompose_path_url (GNode       *root,
 	g_free (path);
 
 	if (second_part) {
-		*embedded_url = g_strdup (second_part);
+		*embedded_uri = yelp_uri_new (second_part);
 	}
 	
 	return res;
@@ -471,7 +471,7 @@ yelp_util_find_node_from_name (GNode *doc_tree, const gchar *name)
 }
 
 static gboolean
-tree_find_node_uri (GNode *node, const gchar *uri)
+tree_find_node_uri (GNode *node, YelpURI *uri)
 {
 	YelpSection *section;
 	
@@ -481,7 +481,7 @@ tree_find_node_uri (GNode *node, const gchar *uri)
 		return FALSE;
 	}
 	
-	if (!g_ascii_strcasecmp (uri, section->uri)) { 
+	if (yelp_uri_equal (uri, section->uri)) {
 		found_node = node;
 		return TRUE;
 	}
@@ -490,7 +490,7 @@ tree_find_node_uri (GNode *node, const gchar *uri)
 }
 
 GNode *
-yelp_util_find_node_from_uri (GNode *doc_tree, const gchar *uri)
+yelp_util_find_node_from_uri (GNode *doc_tree, YelpURI *uri)
 {
 	found_node = NULL;
 	
@@ -498,7 +498,7 @@ yelp_util_find_node_from_uri (GNode *doc_tree, const gchar *uri)
 			 G_TRAVERSE_ALL,
 			 -1,
 			 (GNodeTraverseFunc) tree_find_node_uri,
-			 (gchar *) uri);
+			 uri);
 	    
 	return found_node;
 }

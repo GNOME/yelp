@@ -48,9 +48,8 @@ struct _YelpViewIndexClass {
 
 	/* Signals */
 
-	void (*url_selected)   (YelpViewIndex *view,
-				gchar         *url,
-				gchar         *base_url,
+	void (*uri_selected)   (YelpViewIndex *view,
+				YelpURI       *uri,
 				gboolean       handled);
 };
 
@@ -58,7 +57,7 @@ GType           yelp_view_index_get_type     (void);
 GtkWidget      *yelp_view_index_new          (GList            *index);
 
 void            yelp_view_index_show_uri     (YelpViewIndex    *view,
-					      const gchar      *uri,
+					      YelpURI          *uri,
 					      GError          **error);
 
 #endif /* __YELP_VIEW_INDEX__ */

@@ -35,7 +35,9 @@ typedef enum {
         YELP_URI_TYPE_HTML,
         YELP_URI_TYPE_MAN,
         YELP_URI_TYPE_INFO,
-	YELP_URI_TYPE_TOC
+	YELP_URI_TYPE_TOC,
+	YELP_URI_TYPE_INDEX,
+	YELP_URI_TYPE_PATH
 } YelpURIType;
 
 typedef struct _YelpURI YelpURI;
@@ -55,29 +57,39 @@ typedef struct {
         gpointer                   user_data;
 } YelpURIReader;
 
-YelpURI *       yelp_uri_new         (const gchar                 *str_uri);
-gboolean        yelp_uri_exists      (YelpURI                     *uri);
+YelpURI *       yelp_uri_new           (const gchar                 *str_uri);
+gboolean        yelp_uri_exists        (YelpURI                     *uri);
 
-YelpURIType     yelp_uri_get_type    (YelpURI                     *uri);
-const gchar *   yelp_uri_get_path    (YelpURI                     *uri);
-const gchar *   yelp_uri_get_section (YelpURI                     *uri);
+YelpURIType     yelp_uri_get_type      (YelpURI                     *uri);
+const gchar *   yelp_uri_get_path      (YelpURI                     *uri);
+const gchar *   yelp_uri_get_section   (YelpURI                     *uri);
 
-gboolean        yelp_uri_read        (YelpURI                     *uri,
-				      YelpURIReader               *reader,
-				      GError                     **error);
+gboolean        yelp_uri_read          (YelpURI                     *uri,
+					YelpURIReader               *reader,
+					GError                     **error);
 
-gboolean        yelp_uri_read_async  (YelpURI                     *uri,
-				      YelpURIReader               *reader,
-				      GError                     **error);
+gboolean        yelp_uri_read_async    (YelpURI                     *uri,
+					YelpURIReader               *reader,
+					GError                     **error);
 
-void            yelp_uri_ref         (YelpURI                     *uri);
-void            yelp_uri_unref       (YelpURI                     *uri);
+YelpURI *       yelp_uri_ref           (YelpURI                     *uri);
+void            yelp_uri_unref         (YelpURI                     *uri);
 
+YelpURI *       yelp_uri_copy          (YelpURI                     *uri);
+YelpURI *       yelp_uri_get_relative  (YelpURI                     *uri,
+					const gchar                 *link);
+gboolean        yelp_uri_equal         (YelpURI                     *uri1,
+					YelpURI                     *uri2);
+gboolean        yelp_uri_equal_path    (YelpURI                     *uri1,
+					YelpURI                     *uri2);
+gboolean        yelp_uri_equal_section (YelpURI                     *uri1,
+				        YelpURI                     *uri2);
+gchar *         yelp_uri_to_string     (YelpURI                     *uri);
 
 /* Convenience function for creating a Reader-struct. */
-YelpURIReader * yelp_uri_reader_new  (YelpURIReaderOpenCallback    open_cb,
-				      YelpURIReaderReadCallback    read_cb,
-				      YelpURIReaderCloseCallback   close_cb,
-				      gpointer                     user_data);
+YelpURIReader * yelp_uri_reader_new    (YelpURIReaderOpenCallback    open_cb,
+					YelpURIReaderReadCallback    read_cb,
+					YelpURIReaderCloseCallback   close_cb,
+					gpointer                     user_data);
 
 #endif /* __YELP_URI_H__ */

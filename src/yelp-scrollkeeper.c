@@ -33,6 +33,8 @@
 #include "yelp-util.h"
 #include "yelp-scrollkeeper.h"
 
+#define d(x)
+
 static gboolean   ys_trim_empty_branches  (xmlNode              *cl_node);
 static gboolean   ys_tree_empty           (xmlNode              *cl_node);
 
@@ -143,12 +145,12 @@ ys_parse_books (GNode *tree, xmlDoc *doc)
 		g_warning ("Invalid ScrollKeeper XML Contents List!");
 		return FALSE;
 	}
-	
+
 	book_node = g_node_append_data (tree, 
 					yelp_section_new (YELP_SECTION_CATEGORY,
-							  "scrollkeeper", NULL,
-							  NULL, NULL));
-       
+							  "scrollkeeper", 
+							  NULL));
+
 	for (node = node->xmlChildrenNode; node; node = node->next) {
 		if (!g_ascii_strcasecmp (node->name, "sect")) {
 			success = ys_parse_section (book_node, node);
@@ -186,8 +188,7 @@ ys_parse_section (GNode *parent, xmlNode *xml_node)
 	
 	node = g_node_append_data (parent, 
 				   yelp_section_new (YELP_SECTION_CATEGORY, 
-						     name, NULL,
-						     NULL, NULL));
+						     name, NULL));
 
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_ascii_strcasecmp (cur->name, "sect")) {
@@ -220,6 +221,7 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 	gchar   *docsource;
 	gchar   *docseriesid;
 	GNode   *node;
+	YelpURI *uri;
 
 	docseriesid = NULL;
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
@@ -251,10 +253,12 @@ ys_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 		}
 	}
 
+	uri = yelp_uri_new (link);
+
 	node = g_node_append_data (parent, 
                                    yelp_section_new (YELP_SECTION_DOCUMENT,
-                                                     title, link,
-                                                     NULL, NULL));
+                                                     title, uri));
+	yelp_uri_unref (uri);
 
 	if (docseriesid) {
 		g_hash_table_insert (seriesid_hash, docseriesid, node);
@@ -274,11 +278,13 @@ ys_parse_toc_section (GNode       *parent,
 		      xmlNode     *xml_node, 
 		      const gchar *base_uri)
 {
-	gchar       *name;
-	gchar       *link;
-	xmlNode     *next_child;
-	xmlChar     *xml_str;
-        GNode       *node;
+	gchar   *name;
+	gchar   *link;
+	xmlNode *next_child;
+	xmlChar *xml_str;
+        GNode   *node;
+	gchar   *str_uri;
+	YelpURI *uri;
 
 	next_child = xml_node->xmlChildrenNode;
 	
@@ -297,12 +303,15 @@ ys_parse_toc_section (GNode       *parent,
 		g_strchomp (link);
 		xmlFree (xml_str);
 	}
+
+	str_uri = g_strconcat (base_uri, link, NULL);
+	uri     = yelp_uri_new (str_uri);
+	g_free (str_uri);
 	
         node = g_node_append_data (parent, 
                                    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
-                                                     name, 
-                                                     base_uri,
-                                                     link, NULL));
+                                                     name, uri));
+	yelp_uri_unref (uri);
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_ascii_strncasecmp (next_child->name, "tocsect", 7)) {
@@ -317,13 +326,15 @@ ys_get_xml_docpath (const gchar *command, const gchar *argument)
 	gboolean  success;
 	gchar    *full_command;
 	gchar    *xml_location = NULL;
+	gchar    *std_err;
 	
 	full_command = g_strconcat (command, " ", argument, NULL);
 
 	success = g_spawn_command_line_sync (full_command, &xml_location,
-					     NULL, NULL, NULL);
+					     &std_err, NULL, NULL);
 
 	g_free (full_command);
+	g_free (std_err);
 	
 	if (!success) {
 		g_warning ("Didn't successfully run command: '%s %s'", 
@@ -451,9 +462,7 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 	xmlNode     *cur;
 	xmlChar     *title = NULL;
 	xmlChar     *link  = NULL;
-	YelpSection *index_section;
 	xmlChar     *xml_str;
-	gchar       *index_uri;
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_ascii_strcasecmp (cur->name, "title")) {
@@ -476,21 +485,27 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 		else if (!g_ascii_strcasecmp (cur->name, "indexitem")) {
 			ys_parse_index_item (index, section, cur);
 		}
-	}
 
-	if (title && link) {
-		index_uri = g_strconcat ("index:", section->uri, NULL);
+		if (title && link) {
+			YelpURI     *uri;
+			YelpSection *index_section;
 		
-		index_section = yelp_section_new (YELP_SECTION_INDEX,
-						  title, index_uri,
-						  link, NULL);
-		
-		g_free (index_uri);
+			uri = yelp_uri_get_relative (section->uri, link);
+			
+			d(g_print ("%s\n", yelp_uri_to_string (uri)));
+			
+			index_section = yelp_section_new (YELP_SECTION_INDEX,
+							  title, uri);
+			
+			yelp_uri_unref (uri);
+			
+			*index = g_list_prepend (*index, index_section);
+			
+			g_free (title);
+			g_free (link);
 
-		*index = g_list_prepend (*index, index_section);
-		
-		g_free (title);
-		g_free (link);
+			title = link = NULL;
+		}
 	}
 }
 
@@ -511,6 +526,7 @@ yelp_scrollkeeper_init (GNode *tree, GList **index)
 					   g_free, NULL);
        
        doc = NULL;
+
        for (node = gnome_i18n_get_language_list ("LC_MESSAGES"); node; node = node->next) {
 	       docpath = ys_get_xml_docpath ("scrollkeeper-get-content-list",
 					     node->data);

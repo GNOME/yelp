@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -83,7 +83,7 @@ yelp_history_init (YelpHistory *history)
 
 	priv = g_new0 (YelpHistoryPriv, 1);
         
-	priv->yelp_history_list      = NULL;
+	priv->yelp_history_list = NULL;
 	priv->current           = NULL;
 	priv->last_emit_forward = FALSE;
 	priv->last_emit_back    = FALSE;
@@ -136,7 +136,7 @@ yelp_history_finalize (GObject *object)
 	priv    = history->priv;
         
 	for (node = priv->yelp_history_list; node; node = node->next) {
-		g_free (node->data);
+		yelp_uri_unref (YELP_URI (node->data));
 	}
 
 	g_list_free (priv->yelp_history_list);
@@ -152,7 +152,7 @@ yelp_history_free_history_list (GList *yelp_history_list)
 	GList *node;
         
 	for (node = yelp_history_list; node; node = node->next) {
-		g_free (node->data);
+		yelp_uri_unref (YELP_URI (node->data));
 	}
 
 	g_list_free (yelp_history_list);
@@ -186,7 +186,7 @@ yelp_history_maybe_emit (YelpHistory *history)
 }
 
 void
-yelp_history_goto (YelpHistory *history, const gchar *location)
+yelp_history_goto (YelpHistory *history, YelpURI *uri)
 {
 	YelpHistoryPriv *priv;
 	GList           *forward_list;
@@ -196,11 +196,11 @@ yelp_history_goto (YelpHistory *history, const gchar *location)
 
 	priv = history->priv;
 
-	if (priv->current && priv->current->data && 
-	    !strcmp ((gchar *)priv->current->data, location)) {
+	if (priv->current && priv->current->data &&
+	    yelp_uri_equal (YELP_URI (priv->current->data), uri)) {
 		return;
 	}
-	
+
 	if (yelp_history_exist_forward (history)) {
 		forward_list = priv->current->next;
 		priv->current->next = NULL;
@@ -209,14 +209,14 @@ yelp_history_goto (YelpHistory *history, const gchar *location)
 	}
 
  	priv->yelp_history_list = g_list_append (priv->yelp_history_list, 
-						 g_strdup (location));
+						 yelp_uri_ref (uri));
 	
 	priv->current = g_list_last (priv->yelp_history_list);
 	
 	yelp_history_maybe_emit (history);
 }
 
-const gchar *
+YelpURI *
 yelp_history_go_forward (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -231,13 +231,13 @@ yelp_history_go_forward (YelpHistory *history)
 
 		yelp_history_maybe_emit (history);
 		
-		return (const gchar *) priv->current->data;
+		return YELP_URI (priv->current->data);
 	}
 
 	return NULL;
 }
 
-const gchar *
+YelpURI *
 yelp_history_go_back (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -252,13 +252,13 @@ yelp_history_go_back (YelpHistory *history)
 
 		yelp_history_maybe_emit (history);
 
-		return (const gchar *) priv->current->data;
+		return YELP_URI (priv->current->data);
 	}
         
 	return NULL;
 }
 
-const gchar *
+YelpURI *
 yelp_history_get_current (YelpHistory *history)
 {
 	YelpHistoryPriv *priv;
@@ -272,7 +272,7 @@ yelp_history_get_current (YelpHistory *history)
 		return NULL;
 	}
 
-	return (const gchar *) priv->current->data;
+	return YELP_URI (priv->current->data);
 }
 
 gboolean

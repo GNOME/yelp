@@ -3,6 +3,7 @@
  * Copyright (C) 2002 Red Hat Inc.
  * Copyright (C) 2000 Sun Microsystems, Inc. 
  * Copyright (C) 2001 Eazel, Inc.
+ * Copyright (C) 2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -48,6 +49,7 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 	DIR           *dirh;
 	struct dirent *dent;
 	YelpSection   *section;
+	YelpURI       *uri;
 
 	dirh = opendir (basedir);
 	if (!dirh) {
@@ -81,9 +83,12 @@ yelp_info_read_info_dir (const char *basedir, GSList **info_list)
 
 		g_snprintf (uribuf, sizeof (uribuf), "info:%s", dent->d_name);
 
+		uri = yelp_uri_new (uribuf);
+
 		section = yelp_section_new (YELP_SECTION_DOCUMENT,
-					    titlebuf, uribuf, 
-					    NULL, NULL);
+					    titlebuf, uri);
+
+		yelp_uri_unref (uri);
 		
 		*info_list = g_slist_prepend (*info_list, section);
 						      
@@ -101,9 +106,6 @@ yelp_info_init (GNode *tree, GList **index)
 	GSList       *info_list = NULL;
 	GSList       *node;
 	YelpSection  *section;
-	YelpSection  *index_section;
-	gchar        *index_name;
-	gchar        *index_uri;
 	gchar       **infopathes;
 	gchar        *infopath;
 	gint          i;
@@ -135,29 +137,15 @@ yelp_info_init (GNode *tree, GList **index)
 
 	root = g_node_append_data (tree,
 				   yelp_section_new (YELP_SECTION_CATEGORY,
-						     _("info"), NULL, 
-						     NULL, NULL));
-
-	info_list = g_slist_sort (info_list, yelp_section_compare);
+						     "info", NULL));
 
 	for (node = info_list; node; node = node->next) {
 		g_node_append_data (root, node->data);
-		section = YELP_SECTION (node->data);
-		
-		index_name = g_ascii_strdown (section->name, -1);
-		index_uri = g_strconcat ("index:", section->uri, NULL);
-
-		index_section = yelp_section_new (YELP_SECTION_INDEX,
-						  index_name, index_uri,
-						  section->reference, 
-						  section->scheme);
-		g_free (index_name);
-		g_free (index_uri);
-
-		*index = g_list_prepend (*index, index_section);
+		*index = g_list_prepend (*index, section);
 	}
 
 	g_slist_free (info_list);
 
 	return TRUE;
 }
+	

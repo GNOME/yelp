@@ -57,13 +57,13 @@ GType               yelp_history_get_type      (void);
 YelpHistory *       yelp_history_new           (void);
 
 void                yelp_history_goto          (YelpHistory         *history,
-						const gchar         *location);
+						YelpURI             *uri);
 
-const gchar *       yelp_history_go_forward    (YelpHistory         *history);
+YelpURI *           yelp_history_go_forward    (YelpHistory         *history);
 
-const gchar *       yelp_history_go_back       (YelpHistory         *history);
+YelpURI *           yelp_history_go_back       (YelpHistory         *history);
 
-const gchar *       yelp_history_get_current   (YelpHistory         *history);
+YelpURI *           yelp_history_get_current   (YelpHistory         *history);
 
 gboolean            yelp_history_exist_forward (YelpHistory         *history);
 gboolean            yelp_history_exist_back    (YelpHistory         *history);

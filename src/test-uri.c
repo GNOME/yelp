@@ -29,12 +29,27 @@
 
 #include "yelp-uri.h"
 
+static void
+print_uri (YelpURI *uri)
+{
+	gchar *str_uri;
+	
+        g_print ("URI_TYPE   : %d\n", yelp_uri_get_type (uri));
+	g_print ("URI_PATH   : %s\n", yelp_uri_get_path (uri));
+	g_print ("URI_SECTION: %s\n", yelp_uri_get_section (uri));
+
+	str_uri = yelp_uri_to_string (uri);
+	g_print ("URI_TO_STRING: %s\n", str_uri);
+	g_free (str_uri);
+}
+
 int
 main (int argc, char **argv)
 {
 	GnomeProgram *program;
         YelpURI      *uri;
-        
+        YelpURI      *rel_uri;
+	
         if (argc < 2) {
                 g_print ("Usage: test-uri uri\n");
                 return 1;
@@ -56,10 +71,16 @@ main (int argc, char **argv)
                 return 1;
         }
 
-        g_print ("URI_TYPE   : %d\n", yelp_uri_get_type (uri));
-	g_print ("URI_PATH   : %s\n", yelp_uri_get_path (uri));
-	g_print ("URI_SECTION: %s\n", yelp_uri_get_section (uri));
-
+	print_uri (uri);
+	
+	rel_uri = yelp_uri_get_relative (uri, "?link");
+	print_uri (rel_uri);
+	yelp_uri_unref (rel_uri);
+	
+	rel_uri = yelp_uri_get_relative (uri, "link");
+	print_uri (rel_uri);
+	yelp_uri_unref (rel_uri);
+	
 	yelp_uri_unref (uri);
 
         gnome_vfs_shutdown ();

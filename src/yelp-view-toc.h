@@ -25,7 +25,9 @@
 
 #include <gtk/gtktreemodel.h>
 #include <libgtkhtml/gtkhtml.h>
+
 #include "yelp-section.h"
+#include "yelp-uri.h"
 
 #define YELP_TYPE_VIEW_TOC    (yelp_view_toc_get_type ())
 #define YELP_VIEW_TOC(o)      (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW_TOC, YelpViewTOC))
@@ -49,15 +51,14 @@ struct _YelpViewTOCClass {
 	/* Signals */
 
 
-	void (*url_selected)   (YelpViewTOC   *view,
-				char          *url,
-				char          *base_url,
+	void (*uri_selected)   (YelpViewTOC   *view,
+				YelpURI       *uri,
 				gboolean       handled);
 };
 
 GType           yelp_view_toc_get_type       (void);
 GtkWidget      *yelp_view_toc_new            (GNode        *doc_tree);
-void            yelp_view_toc_open_url       (YelpViewTOC  *view,
-					      const char   *url);
+void            yelp_view_toc_open_uri       (YelpViewTOC  *view,
+					      YelpURI      *uri);
 
 #endif /* __YELP_VIEW_TOC__ */

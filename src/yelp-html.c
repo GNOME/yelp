@@ -41,18 +41,13 @@
 
 #define d(x)
 
-typedef enum {
-	MAN,
-	INFO
-} DocType;
-
 struct _YelpHtmlPriv {
 	HtmlView     *view;
 
         HtmlDocument *doc;
 	HtmlDocument *load_doc;
         GSList       *connections;
-	gchar        *base_uri;
+	YelpURI      *base_uri;
 };
 
 typedef struct {
@@ -78,8 +73,7 @@ static gboolean  yelp_html_io_watch_cb    (GIOChannel         *iochannel,
 
 static void      yelp_html_do_maninfo     (YelpHtml           *html,
 					   HtmlStream         *stream,
-					   DocType             type, 
-					   const gchar        *uri,
+					   YelpURI            *uri,
 					   GError            **error);
 static void      yelp_html_do_html        (YelpHtml           *html,
 					   HtmlStream         *stream,
@@ -101,12 +95,11 @@ static void      yh_link_clicked_cb       (HtmlDocument       *doc,
 #define BUFFER_SIZE 16384
 
 enum {
-	URL_SELECTED,
+	URI_SELECTED,
 	LAST_SIGNAL
 };
 
 static gint        signals[LAST_SIGNAL] = { 0 };
-static GHashTable *cache_table = NULL;
 
 GType
 yelp_html_get_type (void)
@@ -146,7 +139,7 @@ yh_init (YelpHtml *html)
 	priv->view        = HTML_VIEW (html_view_new ());
         priv->doc         = html_document_new ();
         priv->connections = NULL;
-        priv->base_uri    = g_strdup ("");
+        priv->base_uri    = NULL;
 	priv->load_doc    = html_document_new ();
 	
 	html_document_open_stream (priv->load_doc, "text/html");
@@ -177,20 +170,16 @@ yh_init (YelpHtml *html)
 static void
 yh_class_init (YelpHtmlClass *klass)
 {
-	signals[URL_SELECTED] = 
-		g_signal_new ("url_selected",
+	signals[URI_SELECTED] = 
+		g_signal_new ("uri_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (YelpHtmlClass,
-					       url_selected),
+					       uri_selected),
 			      NULL, NULL,
-			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
+			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
-			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
-	
-	if (cache_table == NULL) {
-		cache_table = g_hash_table_new (g_str_hash, g_str_equal);
-	}
+			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
 }
 
 static int 
@@ -328,8 +317,10 @@ yelp_html_io_watch_cb (GIOChannel   *iochannel,
 }
 
 static void
-yelp_html_do_maninfo (YelpHtml *html, HtmlStream *stream,
-		      DocType type, const gchar *uri, GError **error)
+yelp_html_do_maninfo (YelpHtml    *html,
+		      HtmlStream  *stream,
+		      YelpURI     *uri,
+		      GError     **error)
 {
 	gchar       *command_line = NULL;
 	gchar      **argv = 0;
@@ -339,12 +330,14 @@ yelp_html_do_maninfo (YelpHtml *html, HtmlStream *stream,
 	
 	d(g_print ("entering from maninfo: %d\n", output_fd));
 
-	switch (type) {
-	case MAN:
-		command_line = g_strdup_printf ("gnome2-man2html %s", uri);
+	switch (yelp_uri_get_type (uri)) {
+	case YELP_URI_TYPE_MAN:
+		command_line = g_strdup_printf ("gnome2-man2html %s", 
+						yelp_uri_get_path (uri));
 		break;
-	case INFO:
-		command_line = g_strdup_printf ("gnome2-info2html %s", uri);
+	case YELP_URI_TYPE_INFO:
+		command_line = g_strdup_printf ("gnome2-info2html %s", 
+						yelp_uri_get_path (uri));
 		break;
 	default:
 		g_warning ("Non-supported doctype");
@@ -414,7 +407,7 @@ yelp_html_do_html (YelpHtml     *html,
 
 static void
 yh_url_requested_cb (HtmlDocument *doc,
-		     const gchar  *uri,
+		     const gchar  *url,
 		     HtmlStream   *stream,
 		     gpointer      data)
 {
@@ -424,28 +417,31 @@ yh_url_requested_cb (HtmlDocument *doc,
 	GnomeVFSResult    result;
 	gchar             buffer[BUFFER_SIZE];
 	GnomeVFSFileSize  read_len;
-	gchar            *abs_url;
-	gchar            *docpath;
-
+	gchar            *absolute_url;
+	gchar            *str_uri;
+	
         html = YELP_HTML (data);
 	priv = html->priv;
 	
 	html_stream_set_cancel_func (stream, yh_stream_cancel, html);
 
-	abs_url = yelp_util_resolve_relative_uri (priv->base_uri, uri);
-	docpath = yelp_util_extract_docpath_from_uri (abs_url);
-	
-	d(g_print ("URL REQUESTED: %s\n", abs_url));
-	g_free (abs_url);
+	d(g_print ("URL REQUESTED: %s\n", url));
 
-	result = gnome_vfs_open (&handle, docpath, GNOME_VFS_OPEN_READ);
+	str_uri = yelp_uri_to_string (priv->base_uri);
+	absolute_url = yelp_util_resolve_relative_url (str_uri, url);
+	g_free (str_uri);
+	
+	
+	result = gnome_vfs_open (&handle, absolute_url, GNOME_VFS_OPEN_READ);
 
 	if (result != GNOME_VFS_OK) {
-		g_warning ("Failed to open: %s", docpath);
-		g_free (docpath);
+		g_warning ("Failed to open: %s", absolute_url);
+		g_free (absolute_url);
+
 		return;
 	}
-	g_free (docpath);
+
+	g_free (absolute_url);
 
 	while (gnome_vfs_read (handle, buffer, BUFFER_SIZE, &read_len) ==
 	       GNOME_VFS_OK) {
@@ -470,9 +466,7 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 {
 	YelpHtmlPriv *priv;
 	gboolean      handled;
-	gchar        *abs_url;
-	gchar        *section;
-	gchar        *docurl;
+	YelpURI      *uri;
 
 	g_return_if_fail (HTML_IS_DOCUMENT (doc));
 	g_return_if_fail (url != NULL);
@@ -481,28 +475,27 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 	priv    = html->priv;
 	handled = FALSE;
 
-	abs_url = yelp_util_resolve_relative_uri (priv->base_uri, url);
-	docurl  = yelp_util_split_uri (abs_url, &section);
+	d(g_print ("Link clicked: %s\n", url));
 
-	d(g_print ("link clicked: ABS Url: %s\n", docurl));
+	uri = yelp_uri_get_relative (priv->base_uri, url);
+
+	d(g_print ("That would be: %s\n", yelp_uri_to_string (uri)));
 	
 	/* If this is a relative reference. Shortcut reload. */
-	if (!g_ascii_strcasecmp (docurl, priv->base_uri) &&
-	    !strchr (abs_url, '?')) {
-		if (section) {
+	if (yelp_uri_equal_path (uri, priv->base_uri) &&
+	    yelp_uri_get_section (uri)) {
+		if (yelp_uri_get_type (uri) == YELP_URI_TYPE_HTML ||
+		    yelp_uri_get_type (uri) == YELP_URI_TYPE_MAN ||
+		    yelp_uri_get_type (uri) == YELP_URI_TYPE_INFO) {
 			html_view_jump_to_anchor (HTML_VIEW (html->priv->view),
-						  section);
+						  yelp_uri_get_section (uri));
 			handled = TRUE;
 		}
 	}
 
-	g_free (abs_url);
-	
-	d(g_print ("link clicked: URL=%s baseUri=%s\n", url,
-		   html->priv->base_uri));
-	
-	g_signal_emit (html, signals[URL_SELECTED], 0,
-		       url, html->priv->base_uri, handled);
+	g_signal_emit (html, signals[URI_SELECTED], 0, uri, handled);
+
+	yelp_uri_unref (uri);
 }
 
 YelpHtml *
@@ -530,18 +523,15 @@ yelp_html_new (void)
 }
 
 void
-yelp_html_open_uri (YelpHtml     *html, 
-		    const gchar  *str_uri,
-		    const gchar  *section,
-		    GError      **error)
+yelp_html_open_uri (YelpHtml *html, YelpURI *uri, GError **error)
 {
         YelpHtmlPriv *priv;
 	GdkCursor    *cursor;
 	
-	d(g_print ("Open URI: %s with section: %s\n", str_uri, section));
+	d(g_print ("Open URI: %s\n", yelp_uri_to_string (uri)));
 
 	g_return_if_fail (YELP_IS_HTML (html));
-	g_return_if_fail (str_uri != NULL);
+	g_return_if_fail (uri != NULL);
 
         priv = html->priv;
 
@@ -562,42 +552,30 @@ yelp_html_open_uri (YelpHtml     *html,
 	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, cursor);
 	gdk_cursor_unref (cursor);
 	
-	g_free (priv->base_uri);
-	priv->base_uri = g_strdup (str_uri);
-
-	if (!strncmp (str_uri, "man:", 4)) {
-		yelp_html_do_maninfo (html, priv->doc->current_stream, MAN,
-				      str_uri + 4, error);
+	if (priv->base_uri) {
+		yelp_uri_unref (priv->base_uri);
 	}
-	else if (!strncmp (str_uri, "info:", 5)) {
-		yelp_html_do_maninfo (html, priv->doc->current_stream, INFO,
-				      str_uri + 5, error);
-	} else {
-		gchar *mime_type = NULL;
-		gchar *docpath;
 
-		docpath   = yelp_util_extract_docpath_from_uri (str_uri);
-		mime_type = gnome_vfs_get_mime_type (docpath);
+	priv->base_uri = yelp_uri_ref (uri);
 
-		if (mime_type) {
-			d(g_print ("mime_type: %s\n", mime_type));
-			
-			if (!g_strcasecmp (mime_type, "text/sgml") ||
-			    !g_strcasecmp (mime_type, "text/xml")) {
-				yelp_html_do_docbook (html,
-						      docpath, section, error);
-			}
-			else if (!g_strcasecmp (mime_type, "text/html")) {
-				yelp_html_do_html (html,
-						   priv->doc->current_stream,
-						   docpath, section, error);
-			}
-
-			g_free (mime_type);
-		}
-
-		d(g_print ("Docpath: %s\n", docpath));
-		g_free (docpath);
+	switch (yelp_uri_get_type (uri)) {
+	case YELP_URI_TYPE_MAN:
+	case YELP_URI_TYPE_INFO:
+		yelp_html_do_maninfo (html, priv->doc->current_stream, 
+				      uri, error);
+		break;
+	case YELP_URI_TYPE_DOCBOOK_XML:
+	case YELP_URI_TYPE_DOCBOOK_SGML:
+		yelp_html_do_docbook (html, yelp_uri_get_path (uri),
+				      yelp_uri_get_section (uri), error);
+		break;
+	case YELP_URI_TYPE_HTML:
+		yelp_html_do_html (html, priv->doc->current_stream,
+				   yelp_uri_get_path (uri),
+				   yelp_uri_get_section (uri), error);
+		break;
+	default:
+		g_assert_not_reached ();
 	}
 }
 

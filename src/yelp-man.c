@@ -3,6 +3,7 @@
  * Copyright (C) 2002 Red Hat Inc.
  * Copyright (C) 2000 Sun Microsystems, Inc. 
  * Copyright (C) 2001 Eazel, Inc. 
+ * Copyright (C) 2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -126,9 +127,6 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 	char             uribuf[128], titlebuf[128];
 	struct TreeNode *node;
 	YelpSection     *yelp_section;
-	YelpSection     *index_section;
-	gchar           *index_name;
-	gchar           *index_uri;
 	
 	dirh = opendir (basedir);
 	if (!dirh) {
@@ -139,9 +137,10 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 	readdir (dirh);
 
 	while ((dent = readdir (dirh))) {
-		char *section;
-		char *manname;
-		char *filename;
+		char    *section;
+		char    *manname;
+		char    *filename;
+		YelpURI *uri;
 
 		if (dent->d_name[0] == '.') {
 			continue;
@@ -179,23 +178,14 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		
 		any_man_pages = TRUE;
 		
+		uri = yelp_uri_new (uribuf);
 		yelp_section = yelp_section_new (YELP_SECTION_DOCUMENT,
-						 titlebuf, uribuf, 
-						 NULL, NULL);
-
+						 titlebuf, uri);
+		yelp_uri_unref (uri);
+		
 		node->pages = g_list_prepend (node->pages, yelp_section);
 
-		index_name = g_ascii_strdown (titlebuf, -1);
-		index_uri = g_strconcat ("index:", uribuf, NULL);
-
-		index_section = yelp_section_new (YELP_SECTION_INDEX,
-						  index_name, index_uri,
-						  yelp_section->reference,
-						  yelp_section->scheme);
-		g_free (index_name);
-		g_free (index_uri);
-
-		man_index = g_list_prepend (man_index, index_section);
+		man_index = g_list_prepend (man_index, yelp_section);
 					
 		g_free (manname);
 		g_free (section);
@@ -473,7 +463,7 @@ struct TreeData root_children[] = {
 
 
 struct TreeData root_data = {
-	N_("man"),
+	"man",
 	root_children,
 	NULL
 };
@@ -553,9 +543,8 @@ yelp_man_push_initial_tree (struct TreeNode *node, GNode *parent)
 	
 	man_node = g_node_append_data (parent, 
 				       yelp_section_new (YELP_SECTION_CATEGORY,
-							 node->name, NULL, 
-							 NULL, NULL));
-	
+							 node->name, NULL));
+
 	l = node->tree_nodes;
 	while (l) {
 		child = l->data;

@@ -1,3 +1,89 @@
+2002-05-06  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c: 
+	- use YelpURI.
+	(yw_handle_uri): somewhat cleaned up after YelpURI.
+
+	* src/yelp-view-toc.c: 
+	- use YelpURI.
+	- Changed url_selected signal to uri_selected.
+	- Send the links as man:... instead of path:..
+
+	* src/yelp-view-index.c: 
+	- use YelpURI.
+	- Changed url_selected signal to uri_selected.
+	- thinking about removing the html-view from this and only have it
+	  as a entry + list for now. Later on we can add full text search
+	  or more sofisticated searching.
+
+	* src/yelp-view-content.c: 
+	- use YelpURI.
+	- Changed url_selected signal to uri_selected.
+	(yelp_view_content_show_uri): 
+	- cleaned up A LOT since this became much much easier with
+	  YelpURI.
+
+	* src/yelp-util.c (yelp_util_is_url_relative): 
+	- made external and changed name from is_uri_relative.
+	(yelp_util_resolve_relative_url): 
+	- chagned name from yelp_util_resolve_relative_url.
+	(tree_find_node_uri): use YelpURI.
+	(yelp_util_find_node_from_uri): same.
+
+	* src/yelp-uri.c:
+	- Thinking of making the YelpURIType a bit mask so that I can add
+	  yelp_uri_is_type (YELP_URI_TYPE_MAN | YELP_URI_TYPE_INF) since 
+	  that kind of usage is all over.
+	- Support index: and path: (not sure if we need path:)
+	(yelp_uri_copy): added/impl
+	(yelp_uri_get_relative): added/impl
+	(yelp_uri_equal): added/impl.
+	(yelp_uri_equal_path): added/impl.
+	(yelp_uri_equal_section): added/impl.
+	(yelp_uri_to_string): added/impl.
+
+	* src/yelp-section.c: 
+	- use YelpURI.
+	- Removed reference, scheme.
+
+	* src/yelp-scrollkeeper.c: 
+	- use YelpURI.
+	- Don't create specific index:-uri's
+	(ys_parse_index_item): this was actually broken and only inputed
+	  the last indexitem in the index-file. fixed.
+
+	* src/yelp-marshal.list (VOID:POINTER,BOOLEAN): 
+	- replaced VOID:STRING,STRING,BOOLEAN (the old
+ 	  url_selected-marshal).
+
+	* src/yelp-man.c: 
+	- use YelpURI
+	- Don't create specific index:-uri's
+	(yelp_info_init): don't translate string 'man' which we are
+	  trying to find with strcmp in yelp-view-toc.
+
+	* src/yelp-info.c: 
+	- use YelpURI
+	- Don't create specific index:-uri's
+	(yelp_info_init): don't translate string 'info' which we are
+	trying to find with strcmp in yelp-view-toc.
+
+	* src/yelp-html.c: 
+	- Updated to use YelpURI.
+	- changed signal from url_selected to uri_selected (emits YelpURI
+	  instead of base_uri + rel_uri).
+	(yelp_html_do_maninfo): take a YelpURI instead of text uri + doc
+	  type.
+	(yelp_html_open_uri):
+	- take YelpURI instead of text uri.
+	- this should later be moved into yelp_uri_{read,read_async}.
+
+	* src/yelp-history.c: Updated to use YelpURI.
+
+	* src/yelp-base.c (impl_Yelp_getWindows): use YelpURI.
+
+	* src/test-uri.c: test yelp_uri_to_string.
+
 2002-05-06  Sander Vesik <sander.vesik@sun.com>
 
         * stylesheets/yelp-customization.xsl: Initial multichunking code

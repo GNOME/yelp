@@ -85,7 +85,7 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 	GNOME_Yelp_WindowList *list;
 	gint                   len, i;
 	GSList                *node;
-	const gchar           *url;
+	YelpURI               *uri;
 	
 	base = YELP_BASE (bonobo_object (servant));
 	priv = base->priv;
@@ -99,8 +99,12 @@ impl_Yelp_getWindows (PortableServer_Servant  servant,
 	CORBA_sequence_set_release (list, CORBA_TRUE);
 	
 	for (node = priv->windows, i = 0; node; node = node->next, i++) {
-		url = yelp_window_get_current_uri (YELP_WINDOW (node->data));
-		list->_buffer[i] = CORBA_string_dup (url);
+		gchar *str_uri;
+
+		uri = yelp_window_get_current_uri (YELP_WINDOW (node->data));
+		str_uri = yelp_uri_to_string (uri);
+		list->_buffer[i] = CORBA_string_dup (str_uri);
+		g_free (str_uri);
 	}
 	
 	return list;

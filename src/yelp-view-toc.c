@@ -50,7 +50,7 @@ static void   yelp_view_toc_man_2           (YelpViewTOC      *view,
 static void   yelp_view_read_important_docs (YelpViewTOC      *view);
 
 enum {
-	URL_SELECTED,
+	URI_SELECTED,
 	LAST_SIGNAL
 };
 
@@ -210,27 +210,32 @@ yvh_init (YelpViewTOC *view)
 static void
 yvh_class_init (YelpViewTOCClass *klass)
 {
-	signals[URL_SELECTED] = 
-		g_signal_new ("url_selected",
+	signals[URI_SELECTED] = 
+		g_signal_new ("uri_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (YelpViewTOCClass,
-					       url_selected),
+					       uri_selected),
 			      NULL, NULL,
-			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
+			      yelp_marshal_VOID__POINTER_BOOLEAN,
 			      G_TYPE_NONE,
-			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+			      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
 }
 
 static void
 yvh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpViewTOC *view)
 {
+	YelpURI *uri;
+	
 	g_return_if_fail (HTML_IS_DOCUMENT (doc));
 	g_return_if_fail (url != NULL);
 	g_return_if_fail (YELP_IS_VIEW_TOC (view));
-	
-	g_signal_emit (view, signals[URL_SELECTED], 0,
-		       url, NULL, FALSE);
+
+	d(g_print ("Link clicked: %s\n", url));
+
+	uri = yelp_uri_new (url);
+	g_signal_emit (view, signals[URI_SELECTED], 0, uri, FALSE);
+	yelp_uri_unref (uri);
 }
 
 static void
@@ -388,7 +393,7 @@ yelp_view_toc_start (YelpViewTOC *view)
 				section = node->data;
 				yelp_view_toc_printf (view, 
 						      "<a href=\"%s\">%s</a>\n",
-						      section->uri, section->name);
+						      yelp_uri_to_string (section->uri), section->name);
 			}
 
 			seriesids = seriesids->next;
@@ -586,8 +591,10 @@ yelp_view_toc_man_emit (YelpViewTOC *view, GNode *first)
 				}
 			
 				section = node->data;
-				url = yelp_util_compose_path_url (node->parent, section->uri);
-				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", url, section->name);
+				url = yelp_util_compose_path_url (node->parent, yelp_uri_get_path (section->uri));
+				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", yelp_uri_to_string (section->uri), 
+						      section->name);
+/* 				yelp_view_toc_printf (view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", url, section->name); */
 				g_free (url);
 				i++;
 			}
@@ -702,9 +709,9 @@ yelp_view_toc_man_1 (YelpViewTOC *view)
 			section = YELP_SECTION (node->data);
 			path = yelp_util_node_to_string_path (node);
 
-			yelp_view_toc_printf (view, 
-					      "<a href=\"toc:man/%s\">%s</a><br>\n", 
-					      path, section->name);
+ 			yelp_view_toc_printf (view,
+ 					      "<a href=\"toc:man/%s\">%s</a><br>\n",
+ 					      path, section->name);
 			g_free (path);
 		}
 	} while ((node = g_node_next_sibling (node)));
@@ -740,6 +747,7 @@ yelp_view_toc_info (YelpViewTOC *view)
 	node = g_node_first_child (root);
 
 	if (!node) {
+		d(g_print ("No first node\n"));
 		return;
 	}
 
@@ -755,10 +763,16 @@ yelp_view_toc_info (YelpViewTOC *view)
 
 	do {
 		section = YELP_SECTION (node->data);
-		url = yelp_util_compose_path_url (root, section->uri);
+		url = yelp_util_compose_path_url (root,
+						  yelp_uri_get_path (section->uri));
+		
 		yelp_view_toc_printf (view, 
 				      "<a href=\"%s\">%s</a><br>\n", 
-				      url, section->name);
+				      yelp_uri_to_string (section->uri),
+				      section->name);
+/* 		yelp_view_toc_printf (view,  */
+/* 				      "<a href=\"%s\">%s</a><br>\n",  */
+/* 				      url, section->name); */
 		g_free  (url);
 	} while ((node = g_node_next_sibling (node)));
 		
@@ -834,6 +848,7 @@ yelp_view_toc_new (GNode *doc_tree)
 {
 	YelpViewTOC     *view;
 	YelpViewTOCPriv *priv;
+	YelpURI         *uri;
 
 	view = g_object_new (YELP_TYPE_VIEW_TOC, NULL);
 
@@ -841,7 +856,10 @@ yelp_view_toc_new (GNode *doc_tree)
 
 	priv->doc_tree = doc_tree;
 
-	yelp_view_toc_open_url (view, "toc:");
+	uri = yelp_uri_new ("toc:");
+	
+	yelp_view_toc_open_uri (view, uri);
+	yelp_uri_unref (uri);
 	
 	return GTK_WIDGET (view);
 }
@@ -923,7 +941,7 @@ yelp_view_toc_scrollkeeper (YelpViewTOC *view,
 				YelpSection *section;
 			
 				section = node->data;
-				yelp_view_toc_printf (view, "<a href=\"%s\">%s</a><br>\n", section->uri, section->name);
+				yelp_view_toc_printf (view, "<a href=\"%s\">%s</a><br>\n", yelp_uri_to_string (section->uri), section->name);
 			}
 		}
 
@@ -938,57 +956,57 @@ yelp_view_toc_scrollkeeper (YelpViewTOC *view,
 }
 
 void
-yelp_view_toc_open_url (YelpViewTOC *view, const char *url)
+yelp_view_toc_open_uri (YelpViewTOC *view, YelpURI *uri)
 {
-	const char *toc_type;
-	const char *path_string;
-	GNode *node;
+	GNode       *node;
+	const gchar *path;
 	
-	g_assert (strncmp (url, "toc:", 4) == 0);
+	g_assert (yelp_uri_get_type (uri) == YELP_URI_TYPE_TOC);
+
+	path = yelp_uri_get_path (uri);
+
+	d(g_print ("PATH:[%s]\n", path));
 	
-	if (strncmp (url, "toc:", 4) != 0) {
-		return;
-	}
-
-	toc_type = url + 4;
-
-	if (*toc_type == 0) {
+	if (!strcmp (path, "")) {
 		yelp_view_toc_start (view);
-	} else if (strncmp (toc_type, "man", 3) == 0) {
-		path_string = toc_type + 3;
-
-		if (path_string[0] == 0) {
+	} 
+	else if (strncmp (path, "man", 3) == 0) {
+		path += 3;
+		if (path[0] == 0) {
  			yelp_view_toc_man_1 (view);
-		} else if (path_string[0] == '/') {
+		} else if (path[0] == '/') {
 			/* Calculate where it should go */
-			path_string++;
+			path++;
 
-			node = yelp_util_string_path_to_node  (path_string,
+			node = yelp_util_string_path_to_node  (path,
 							       view->priv->doc_tree);
 			if (node) {
 				yelp_view_toc_man_2 (view, node);
 			} else {
-				g_warning ("Bad path in toc url %s\n", url);
+				g_warning ("Bad path in toc url %s\n", 
+					   yelp_uri_to_string (uri));
 			}
 		}
-	} else if (strcmp (toc_type, "info") == 0) {
+	} else if (strcmp (path, "info") == 0) {
 		yelp_view_toc_info (view);
-	} else if (strncmp (toc_type, "scrollkeeper", strlen ("scrollkeeper")) == 0) {
-		path_string = toc_type + strlen ("scrollkeeper");
-		if (path_string[0] == '/') {
+	} else if (strncmp (path, "scrollkeeper", strlen ("scrollkeeper")) == 0) {
+		path = path + strlen ("scrollkeeper");
+		if (path[0] == '/') {
 			/* Calculate where it should go */
-			path_string++;
+			path++;
 			
-			node = yelp_util_string_path_to_node  (path_string,
+			node = yelp_util_string_path_to_node  (path,
 							       view->priv->doc_tree);
 			if (node) {
 				yelp_view_toc_scrollkeeper (view, node);
 			} else {
-				g_warning ("Bad path in toc url %s\n", url);
+				g_warning ("Bad path in toc url %s\n", 
+					   yelp_uri_to_string (uri));
 			}
 		}
 	} else {
-		g_warning ("Unknown toc type %s\n", url);
+		g_warning ("Unknown toc type %s\n", 
+			   yelp_uri_to_string (uri));
 	}
 
  	gtk_adjustment_set_value (
