@@ -75,7 +75,7 @@
 	</xsl:if>
 	<div class="{name(.)}">
 		<xsl:choose>
-			<xsl:when test="$depth_chunk &lt;= $chunk_depth">
+			<xsl:when test="$depth_chunk &lt; $chunk_depth">
 				<xsl:apply-templates mode="sans.divisions.mode">
 					<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
 					<xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>

@@ -1,3 +1,11 @@
+2004-02-06  Shaun McCance  <shaunm@gnome.org>
+
+	* stylesheets/db2html-division.xsl:
+	- Fixed blatently wrong chunking in refentry.
+
+	* stylesheets/db2html-xref.xsl:
+	- Fixed blatently wrong grabbing of text content for ulink.
+
 2004-02-05  Tomasz K³oczko <kloczek@pld.org.pl>
 
 	* configure.in: Trivial cleanup: remove AC_SUBST(CFLAGS)

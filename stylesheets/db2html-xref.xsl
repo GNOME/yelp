@@ -44,7 +44,7 @@
 			<xsl:when test="$content">
 				<xsl:copy-of select="$content"/>
 			</xsl:when>
-			<xsl:when test="string-length(normalize-space(*)) != 0">
+			<xsl:when test="string-length(normalize-space(node())) != 0">
 				<xsl:apply-templates/>
 			</xsl:when>
 			<xsl:otherwise>
