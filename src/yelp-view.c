@@ -409,9 +409,14 @@ yelp_view_open_uri (YelpView *view, const gchar *str_uri, const gchar *anchor)
 	
 	priv->connections = g_slist_prepend (priv->connections, sdata);
 
-	uri = gnome_vfs_uri_new (str_uri);
+	if (anchor) {
+ 		gchar *tmp_uri = g_strconcat (str_uri, anchor);
+		uri = gnome_vfs_uri_new (tmp_uri);
+		g_free (tmp_uri);
+	} else {
+		uri = gnome_vfs_uri_new (str_uri);
+	}
 
-	g_print ("Trying to open URI: %s\n", str_uri);
 
 	gnome_vfs_async_open_uri (&sdata->handle,
 				  uri,

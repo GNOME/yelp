@@ -372,7 +372,7 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 	gchar       *format;
 	GNode       *node;
 	gchar       *docsource;
-	gchar       *index_location;
+/* 	gchar       *index_location; */
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "doctitle")) {
@@ -471,7 +471,8 @@ sp_parse_toc_section (GNode *parent, xmlNode *xml_node, const gchar *base_uri)
 	xml_str = xmlGetProp (xml_node, "linkid");
 	
 	if (xml_str) {
-		link = g_strconcat ("#", xml_str, NULL);
+		link = g_strconcat ("?", xml_str, NULL);
+		g_strchomp (link);
 		xmlFree (xml_str);
 	}
 	

@@ -46,9 +46,6 @@ static void yelp_window_class_init	         (YelpWindowClass     *klass);
 
 static void yelp_window_populate                 (YelpWindow          *window);
 
-/* static void yelp_window_uri_entry_activate_cb    (GtkWidget           *widget,  */
-/* 						  YelpWindow          *window); */
-
 static void yelp_window_exit                     (gpointer             data,
 						  guint                section,
 						  GtkWidget           *widget);
@@ -188,15 +185,6 @@ yelp_window_populate (YelpWindow *window)
 	
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
 
-/* 	vbox = gtk_vbox_new (FALSE, 3); */
-/* 	priv->uri_entry = gtk_entry_new (); */
-/* 	g_signal_connect (G_OBJECT (priv->uri_entry), */
-/* 			  "activate", */
-/* 			  G_CALLBACK (yelp_window_uri_entry_activate_cb), */
-/* 			  window); */
-
-/* 	gtk_box_pack_start (GTK_BOX (vbox), priv->uri_entry, FALSE, FALSE, 0); */
-
         /* Html View */
         priv->yelp_view = yelp_view_new ();
 
@@ -214,7 +202,6 @@ yelp_window_populate (YelpWindow *window)
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-/* 	gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0), */
         gtk_paned_add2 (GTK_PANED (priv->hpaned), frame);
 
         /* Tree */
@@ -260,25 +247,6 @@ yelp_window_populate (YelpWindow *window)
 			    TRUE, TRUE, 0);
 }
 
-/* static void */
-/* yelp_window_uri_entry_activate_cb (GtkWidget *widget, YelpWindow *window) */
-/* { */
-/* 	YelpWindowPriv *priv; */
-/* 	GnomeVFSURI    *uri; */
-/* 	const gchar    *str; */
-	
-/* 	priv = window->priv; */
-
-/* 	str = gtk_entry_get_text (GTK_ENTRY (widget)); */
-	
-/*  	uri = gnome_vfs_uri_new (str); */
-
-/*  	yelp_view_open_uri (YELP_VIEW (priv->yelp_view), uri); */
-/*  	yelp_toc_open (YELP_TOC (priv->yelp_toc), uri); */
-	
-/*  	gnome_vfs_uri_unref (uri); */
-/* } */
-
 static void
 yelp_window_exit (gpointer data, guint section, GtkWidget *widget)
 {
@@ -311,10 +279,6 @@ yelp_window_section_selected_cb (YelpWindow  *window,
 	if (!section) {
 		return;
 	}
-
-/* 	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE); */
-/* 	gtk_entry_set_text (GTK_ENTRY (priv->uri_entry), str_uri); */
-/* 	g_free (str_uri); */
 
 	yelp_view_open_uri (YELP_VIEW (window->priv->yelp_view), 
 			    section->uri, section->reference);
@@ -360,16 +324,10 @@ yelp_window_open_uri (YelpWindow  *window,
 		      const gchar *str_uri)
 {
 	YelpWindowPriv *priv;
-/* 	GnomeVFSURI    *uri; */
 	
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	
 	priv = window->priv;
 	
-/* 	gtk_entry_set_text (GTK_ENTRY (priv->uri_entry), str_uri); */
-
-/* 	uri = gnome_vfs_uri_new (str_uri); */
 	yelp_view_open_uri (YELP_VIEW (priv->yelp_view), str_uri, NULL);
-/* 	gnome_vfs_uri_unref (uri); */
 }
-
