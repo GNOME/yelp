@@ -1,5 +1,15 @@
 2001-11-30  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/scrollkeeper-parser.c:
+	(sp_parse_section): renamed from sp_tree_parse_section.
+	(sp_parse_doc): renamed from sp_tree_parse_doc
+	(sp_parse_doc_toc): added (not impl. yet).
+	(sp_get_xml_docpath): added. Handles retrieving the xml doc path
+	 from a scrollkeeper-* output.
+	(sp_get_xml_tree_of_locale): moved the
+	 scrollkeeper-get-content-list stuff to sp_get_xml_docpath. Now use
+	 it instead.
+
 	* src/main.c (main): don't run gtk_init, using gnome-program.
 
 	* src/scrollkeeper-parser.c: renamed internal functions to sp_ to

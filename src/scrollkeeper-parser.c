@@ -43,10 +43,14 @@ static void       sp_parse_books            (ScrollKeeperParser      *parser,
 					     xmlDoc                  *doc);
 static YelpBook * sp_parse_book             (ScrollKeeperParser      *parser, 
 					     xmlNode                 *node);
-static void       sp_tree_parse_section     (GNode                   *parent,
+static void       sp_parse_section          (GNode                   *parent,
 					     xmlNode                 *xml_node);
-static void       sp_tree_parse_doc         (GNode                   *parent,
+static void       sp_parse_doc              (GNode                   *parent,
 					     xmlNode                 *xml_node);
+static void       sp_parse_doc_toc          (GNode                   *parent,
+					     const gchar             *docsource);
+static gchar *    sp_get_xml_docpath        (const gchar             *command,
+					     const gchar             *argument);
 /* MetaDataParser */
 static gboolean   sp_parse                  (MetaDataParser          *parser);
 
@@ -213,42 +217,20 @@ sp_trim_empty_branches (xmlNode *node)
 static xmlDoc *
 sp_get_xml_tree_of_locale (gchar *locale)
 {
-	xmlDoc    *doc;
-	FILE      *pipe;
-	gchar     *xml_location;
-	gint       bytes_read;
+	xmlDoc    *doc = NULL;
+	gchar     *docpath;
 	
 	if (locale == NULL)
 	    return NULL;
-
-	xml_location = g_new0 (char, 1024);
-
-	/* Use g_snprintf here because we don't know how long the */
-	/* location will be                                       */
-	g_snprintf (xml_location, 1024, "scrollkeeper-get-content-list %s",
-		    locale);
-
-	pipe = popen (xml_location, "r");
-	bytes_read = fread ((void *) xml_location, sizeof (char), 1024, pipe);
-
-	/* Make sure that we don't end up out-of-bunds */
-	if (bytes_read < 1) {
-		pclose (pipe);
-		g_free (xml_location);
-		return NULL;
-	}
-
-	/* Make sure the string is properly terminated */
-	xml_location[bytes_read - 1] = '\0';
 	
-	doc = NULL;
+	docpath = sp_get_xml_docpath ("scrollkeeper-get-content-list",
+				      locale);
 
-	/* Exit code of 0 means we got a path back from ScrollKeeper */
-	if (!pclose (pipe)) {
-		doc = xmlParseFile (xml_location);
+	if (docpath) {
+		doc = xmlParseFile (docpath);
 	}
 
-	g_free (xml_location);
+	g_free (docpath);
 
 	return doc;
 }
@@ -346,11 +328,10 @@ sp_parse_book (ScrollKeeperParser *parser,
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
-			sp_tree_parse_section (book->root, 
-								cur);
+			sp_parse_section (book->root, cur);
 		}
 		else if (!g_strcasecmp (cur->name, "doc")) {
-			sp_tree_parse_doc (book->root, cur);
+			sp_parse_doc (book->root, cur);
 		}
 	}
 	
@@ -358,7 +339,7 @@ sp_parse_book (ScrollKeeperParser *parser,
 }
 
 static void
-sp_tree_parse_section (GNode *parent, xmlNode *xml_node)
+sp_parse_section (GNode *parent, xmlNode *xml_node)
 {
 	xmlNode *cur;
 	xmlChar *xml_str;
@@ -385,17 +366,17 @@ sp_tree_parse_section (GNode *parent, xmlNode *xml_node)
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
-			sp_tree_parse_section (node,
+			sp_parse_section (node,
 								cur);
 		}
 		else if (!g_strcasecmp (cur->name, "doc")) {
-			sp_tree_parse_doc (node, cur);
+			sp_parse_doc (node, cur);
 		}
 	}
 }
 
 static void
-sp_tree_parse_doc (GNode *parent, xmlNode *xml_node) 
+sp_parse_doc (GNode *parent, xmlNode *xml_node) 
 {
 	xmlNode     *cur;
 	xmlChar     *xml_str;
@@ -435,12 +416,53 @@ sp_tree_parse_doc (GNode *parent, xmlNode *xml_node)
 	
 	gnome_vfs_uri_unref (uri);
 	
-	/* sp_parse_toc (node, docsource); */
+	sp_parse_doc_toc (node, link);
 
 	g_free (title);
 	g_free (omf);
 	g_free (link);
 	g_free (format);
+}
+
+static void
+sp_parse_doc_toc (GNode *parent, const gchar *docsource)
+{
+	gchar *toc_file;
+	
+}
+
+static gchar *
+sp_get_xml_docpath (const gchar *command, const gchar *argument)
+{
+	FILE  *pipe;
+	gchar *full_command;
+	gchar *xml_location;
+	gint   bytes_read;
+	
+ 	xml_location = g_new0 (char, 1024);
+
+	/* Use g_snprintf here because we don't know how long the */
+	/* location will be                                       */
+	full_command = g_strconcat (command, " ", argument, NULL);
+	
+/* 	g_snprintf (xml_location, 1024, command, argument); */
+
+	pipe = popen (full_command, "r");
+	g_free (full_command);
+
+	bytes_read = fread ((void *) xml_location, sizeof (char), 1024, pipe);
+
+	/* Make sure that we don't end up out-of-bunds */
+	if (bytes_read < 1) {
+		pclose (pipe);
+		g_free (xml_location);
+		return NULL;
+	}
+
+	/* Make sure the string is properly terminated */
+	xml_location[bytes_read - 1] = '\0';
+
+	return xml_location;
 }
 
 MetaDataParser *
