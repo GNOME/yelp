@@ -305,7 +305,7 @@
       </xsl:when>
 
       <!-- we need to treat the first sect1 specially -->
-      <xsl:when test="$node=/article/sect1[1]">
+      <xsl:when test="$node=/article/sect1[1] or $node=/part/chapter/sect1[1]">
         <td><a accesskey="p">
           <xsl:attribute name="href">
             <xsl:call-template name="article.toc.ref"/>
@@ -315,7 +315,7 @@
       </xsl:when>
 
       <!-- And the first sect2 of the first sect1 needs the same -->
-      <xsl:when test="$node=/article/sect1[1]/sect2[1]">
+      <xsl:when test="$node=/article/sect1[1]/sect2[1] or $node=/part/chapter/sect1[1]/sect2[1]">
         <td><a accesskey="p">
           <xsl:attribute name="href">
             <xsl:call-template name="article.toc.ref"/>
@@ -420,9 +420,18 @@
         <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
       </a></td>
       <td></td>
-      <xsl:call-template name="next.link.cell">
-        <xsl:with-param name="object" select="sect1[1]"/>
-      </xsl:call-template>
+      <xsl:choose>
+      <xsl:when test="local-name(.) = 'part'">
+        <xsl:call-template name="next.link.cell">
+          <xsl:with-param name="object" select="chapter[1]/sect1[1]"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="next.link.cell">
+          <xsl:with-param name="object" select="sect1[1]"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+      </xsl:choose>
     </tr>
   </table>
 </xsl:template>
