@@ -49,7 +49,7 @@
 
 typedef enum {
 	YELP_WINDOW_ACTION_BACK = 1,
-	YELP_WINDOW_ACTION_FORWARD,
+	YELP_WINDOW_ACTION_FORWARD
 } YelpHistoryAction;
 
 static GConfEnumStringPair toolbar_styles[] = {
