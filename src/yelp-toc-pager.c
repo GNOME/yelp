@@ -316,6 +316,9 @@ toc_process_pending (YelpTocPager *pager)
 	    priv->pending_func = NULL;
     }
 
+    if (priv->pending_func == NULL)
+	g_signal_emit_by_name (pager, "finish");
+
     if (priv->pending_func && (priv->pause_count < 1))
 	return TRUE;
     else

@@ -1,3 +1,8 @@
+2003-12-13  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-chunk.xsl:
+	- Call yelp:document on the selected node, so we can use xml_get_title.
+
 2003-12-02  Shaun McCance  <shaunm@gnome.org>
 
 	* db2html-chunk.xsl:

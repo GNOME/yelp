@@ -29,12 +29,14 @@
 	<xsl:if test="$id">
 		<xsl:choose>
 			<xsl:when test="element-available('yelp:document')">
-				<yelp:document href="{$id}">
-					<xsl:call-template name="html">
-						<xsl:with-param name="node" select="$node"/>
-						<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
-					</xsl:call-template>
-				</yelp:document>
+				<xsl:for-each select="$node[1]">
+					<yelp:document href="{$id}">
+						<xsl:call-template name="html">
+							<xsl:with-param name="node" select="."/>
+							<xsl:with-param name="depth_chunk" select="$depth_chunk"/>
+						</xsl:call-template>
+					</yelp:document>
+				</xsl:for-each>
 			</xsl:when>
 			<xsl:when test="element-available('exsl:document')">
 				<exsl:document href="{concat($id, $html_extension)}">

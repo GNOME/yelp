@@ -380,6 +380,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 {
     GError  *error;
     xmlChar *page_id = NULL;
+    xmlChar *page_title = NULL;
     xmlChar *page_buf;
     gint     buf_size;
     YelpPager *pager;
@@ -438,8 +439,14 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     ctxt->output     = old_doc;
     ctxt->insert     = old_insert;
 
-    // FIXME
-    yelp_pager_add_page (pager, page_id, g_strdup ("FIXME"), page_buf);
+    page_title = xml_get_title (node);
+
+    printf ("page_title: '%s'\n", page_title);
+
+    if (!page_title)
+	page_title = g_strdup ("FIXME");
+
+    yelp_pager_add_page (pager, page_id, page_title, page_buf);
     g_signal_emit_by_name (pager, "page", page_id);
 
     while (gtk_events_pending ())
