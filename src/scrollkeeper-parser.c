@@ -35,7 +35,7 @@ static void scrollkeeper_parser_class_init (ScrollKeeperParserClass *klass);
 static void scrollkeeper_parser_finalize   (GObject                 *object);
 static void 
 scrollkeeper_parser_metadata_parser_init   (MetaDataParserIface     *iface);
-static void 
+static gboolean 
 scrollkeeper_parser_trim_empty_branches    (xmlNode                 *cl_node);
 static xmlDoc *
 scrollkeeper_parser_get_xml_tree_of_locale (gchar                   *locale);
@@ -171,8 +171,7 @@ scrollkeeper_parser_parse (MetaDataParser *parser)
 	}
 		
 	if (doc) {
-		scrollkeeper_parser_trim_empty_branches (
-			doc->xmlRootNode->xmlChildrenNode);
+		scrollkeeper_parser_trim_empty_branches (doc->xmlRootNode);
 
 		scrollkeeper_parser_parse_books (
 			SCROLLKEEPER_PARSER (parser), doc);
@@ -184,28 +183,37 @@ scrollkeeper_parser_parse (MetaDataParser *parser)
         return TRUE;
 }
 
-static void
-scrollkeeper_parser_trim_empty_branches (xmlNode *cl_node)
+static gboolean
+scrollkeeper_parser_trim_empty_branches (xmlNode *node)
 {
-	xmlNode *node, *next;
-
-	if (cl_node == NULL) {
-		return;
+	xmlNode  *child;
+	xmlNode  *next;
+	gboolean  empty;
+	
+	if (!node) {
+		return TRUE;
 	}
 
-	for (node = cl_node; node != NULL; node = next) {
-		next = node->next;
-
-		if (!strcmp (node->name, "sect") && node->xmlChildrenNode->next) {
-			scrollkeeper_parser_trim_empty_branches (
-				node->xmlChildrenNode->next);
-		}
-
-		if (!strcmp (node->name, "sect") && !node->xmlChildrenNode->next) {
-			xmlUnlinkNode (node);
-			xmlFreeNode (node);
+	for (child = node->xmlChildrenNode; child; child = next) {
+		next = child->next;
+		
+		if (!g_strcasecmp (child->name, "sect")) {
+			empty = scrollkeeper_parser_trim_empty_branches (child);
+			if (empty) {
+				xmlUnlinkNode (child);
+				xmlFreeNode (child);
+			}
 		}
 	}
+
+	for (child = node->xmlChildrenNode; child; child = child->next) {
+		if (!g_strcasecmp (child->name, "sect") ||
+		    !g_strcasecmp (child->name, "doc")) {
+			return FALSE;
+		}
+	}
+
+	return TRUE;
 }
 
 /* retrieve the XML tree of a certain locale */
@@ -252,7 +260,6 @@ scrollkeeper_parser_get_xml_tree_of_locale (gchar *locale)
 	return doc;
 }
 
-/* checks if there is any doc in the tree */
 static gboolean
 scrollkeeper_parser_tree_empty (xmlNode *cl_node)
 {
@@ -321,7 +328,7 @@ scrollkeeper_parser_parse_book (ScrollKeeperParser *parser,
 	YelpBook    *book;
 	xmlChar     *xml_str;
 	gchar       *name = NULL;
-	GnomeVFSURI *index_uri;
+/* 	GnomeVFSURI *index_uri; */
 	
 	/* Find the title */
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
@@ -345,10 +352,6 @@ scrollkeeper_parser_parse_book (ScrollKeeperParser *parser,
 	book = yelp_book_new (name, NULL);
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
-		if (scrollkeeper_parser_tree_empty (cur)) {
-			continue;
-		}
-
 		if (!g_strcasecmp (cur->name, "sect")) {
 			scrollkeeper_parser_tree_parse_section (book->root, 
 								cur);
@@ -388,10 +391,6 @@ scrollkeeper_parser_tree_parse_section (GNode *parent, xmlNode *xml_node)
 	node = yelp_book_add_section (parent, name, NULL, NULL);
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
-		if (scrollkeeper_parser_tree_empty (cur)) {
-			continue;
-		}
-
 		if (!g_strcasecmp (cur->name, "sect")) {
 			scrollkeeper_parser_tree_parse_section (node,
 								cur);

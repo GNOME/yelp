@@ -1,5 +1,15 @@
 2001-10-28  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-base.c (yelp_base_new): use the scrollkeeper parser
+	instead of devhelp.
+
+	* src/scrollkeeper-parser.c:
+	(scrollkeeper_parser_parse): call _trim_ with doc->xmlRootNode.
+	(scrollkeeper_parser_trim_empty_branches): now actually works.
+	(scrollkeeper_parser_parse_book): don't call ..._tree_empty. All
+	empty branches has been removed.
+	(scrollkeeper_parser_tree_parse_section): dito.
+
 	* src/yelp-book.c (yelp_book_section_new): accept uri == NULL and
 	don't ref it, if it is.
 	(yelp_book_add_section): accept uri == NULL.
