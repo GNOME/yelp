@@ -81,6 +81,14 @@ dnl <= Check for bzip2 > 1.0.0
     AC_CHECK_LIB(bz2, BZ2_bzread, [AC_DEFINE(HAVE_LIBBZ2)])
     dnl =>
 
+dnl ===================================================
+dnl = Check for popt, reported to be needed on AIX
+dnl ===================================================
+AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],
+		   [AC_MSG_ERROR([popt is required to build yelp])])
+
+AC_SUBST(POPT_LIBS)
+
 if test x$with_html_widget = xgtkhtml1; then
 	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-3.0 >= 3.0)
 else
