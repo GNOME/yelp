@@ -1,3 +1,12 @@
+2003-12-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-html-gtkhtml2.c:
+	- Possible fix problem with Find (#128905) (Chee Bin HOH)
+	- Fix crasher with Find (#128784) (Chee Bin HOH)
+
+	* src/yelp-window.c:
+	- Select existing text in Find dialog (Shaun McCance)
+
 2003-12-08  Shaun McCance  <shaunm@gnome.org>
 
 	* configure.in: Version 2.5.1.

@@ -1325,5 +1325,7 @@ window_find_cb (gpointer   data,
 	g_object_unref (glade);
     }
 
+    gtk_editable_select_region (GTK_EDITABLE (priv->find_entry), 0, -1);
+
     gtk_window_present (GTK_WINDOW (priv->find_dialog));
 }
