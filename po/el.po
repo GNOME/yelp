@@ -5,12 +5,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 1.0\n"
-"POT-Creation-Date: 2002-02-20 14:43+0000\n"
-"PO-Revision-Date: 2002-02-20 15:20+0000\n"
+"POT-Creation-Date: 2002-03-01 15:58+0000\n"
+"PO-Revision-Date: 2002-03-01 15:57+0000\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=ISO-8859-7\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #
@@ -20,22 +20,23 @@ msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Ξ•ΟΞ³ΞΏΟƒΟ„Ξ¬ΟƒΞΉΞΏ Yelp"
+msgstr "Εργοστάσιο Yelp"
 
 #: src/yelp-info.c:99
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:78
+#: src/yelp-main.c:91
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ο„ΞΏΟ… Yelp: '%s'"
+msgstr "Αδύνατη η ενεργοποίηση του Yelp: '%s'"
 
-#: src/yelp-main.c:98
+#: src/yelp-main.c:110
 msgid "Could not open new window."
-msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„ΞΏ Ο„ΞΏ Ξ¬Ξ½ΞΏΞΉΞ³ΞΌΞ± Ξ½Ξ­ΞΏΟ… Ο€Ξ±ΟΞ±ΞΈΟΟΞΏΟ…."
+msgstr "Αδύνατο το άνοιγμα νέου παραθύρου."
 
-#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360 src/yelp-man.c:376 src/yelp-man.c:387
+#: src/yelp-man.c:271 src/yelp-man.c:292 src/yelp-man.c:328 src/yelp-man.c:360
+#: src/yelp-man.c:376 src/yelp-man.c:387
 msgid "X11"
 msgstr "X11"
 
@@ -66,149 +67,204 @@ msgstr "PThreads"
 
 #: src/yelp-man.c:339
 msgid "System Calls"
-msgstr "ΞΞ»Ξ®ΟƒΞµΞΉΟ‚ Ξ£Ο…ΟƒΟ„Ξ®ΞΌΞ±Ο„ΞΏΟ‚"
+msgstr "Κλήσεις Συστήματος"
 
 #: src/yelp-man.c:344
 msgid "Library Functions"
-msgstr "Ξ£Ο…Ξ½Ξ±ΟΟ„Ξ®ΟƒΞµΞΉΟ‚ Ξ’ΞΉΞ²Ξ»ΞΉΞΏΞΈΞ®ΞΊΟ‰Ξ½"
+msgstr "Συναρτήσεις Βιβλιοθήκων"
 
 #: src/yelp-man.c:349
 msgid "Kernel Routines"
-msgstr "Ξ΅ΞΏΟ…Ο„Ξ―Ξ½ΞµΟ‚ Ξ Ο…ΟΞ®Ξ½Ξ±"
+msgstr "Ρουτίνες Πυρήνα"
 
 #: src/yelp-man.c:404
 msgid "Applications"
-msgstr "Ξ•Ο†Ξ±ΟΞΌΞΏΞ³Ξ­Ο‚"
+msgstr "Εφαρμογές"
 
 #: src/yelp-man.c:409
 msgid "Development"
-msgstr "Ξ‘Ξ½Ξ¬Ο€Ο„Ο…ΞΎΞ· Ξ•Ο†Ξ±ΟΞΌΞΏΞ³ΟΞ½"
+msgstr "Ανάπτυξη Εφαρμογών"
 
 #: src/yelp-man.c:414
 msgid "Hardware Devices"
-msgstr "Ξ£Ο…ΟƒΞΊΞµΟ…Ξ­Ο‚ Ξ¥Ξ»ΞΉΞΊΞΏΟ"
+msgstr "Συσκευές Υλικού"
 
 #: src/yelp-man.c:419
 msgid "Configuration Files"
-msgstr "Ξ‘ΟΟ‡ΞµΞ―Ξ± Ξ΅Ο…ΞΈΞΌΞ―ΟƒΞµΟ‰Ξ½"
+msgstr "Αρχεία Ρυθμίσεων"
 
 #: src/yelp-man.c:424
 msgid "Games"
-msgstr "Ξ Ξ±ΞΉΟ‡Ξ½Ξ―Ξ΄ΞΉΞ±"
+msgstr "Παιχνίδια"
 
 #: src/yelp-man.c:429
 msgid "Overviews"
-msgstr "Ξ“ΞµΞ½ΞΉΞΊΞ­Ο‚ Ξ•Ο€ΞΉΟƒΞΊΞΏΟ€Ξ®ΟƒΞµΞΉΟ‚"
+msgstr "Γενικές Επισκοπήσεις"
 
 #: src/yelp-man.c:434
 msgid "System Administration"
-msgstr "Ξ”ΞΉΞ±Ο‡ΞµΞ―ΟΞΉΟƒΞ· Ξ£Ο…ΟƒΟ„Ξ®ΞΌΞ±Ο„ΞΏΟ‚"
+msgstr "Διαχείριση Συστήματος"
 
 #: src/yelp-man.c:445
 msgid "man"
 msgstr "man"
 
 #
-#: src/yelp-view-content.c:209 src/yelp-view-index.c:177
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:229
 msgid "Section"
-msgstr "Ξ•Ξ½ΟΟ„Ξ·Ο„Ξ±"
+msgstr "Ενότητα"
+
+#: src/yelp-view-index.c:211
+msgid "Search for:"
+msgstr "Αναζήτηση για:"
 
 #
 #: src/yelp-view-toc.c:271
-msgid "Other document systems"
-msgstr "Ξ†Ξ»Ξ»Ξ± ΟƒΟ…ΟƒΟ„Ξ®ΞΌΞ±Ο„Ξ± ΞµΞ³Ξ³ΟΞ¬Ο†Ο‰Ξ½"
+msgid "Other Documents"
+msgstr "¶λλα Έγγραφα"
 
 #: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
 msgid "Manual pages"
-msgstr "Ξ£ΞµΞ»Ξ―Ξ΄ΞµΟ‚ Ο„ΞµΞΊΞΌΞ·ΟΞ―Ο‰ΟƒΞ·Ο‚"
+msgstr "Σελίδες τεκμηρίωσης"
 
 #: src/yelp-view-toc.c:273 src/yelp-view-toc.c:558 src/yelp-view-toc.c:577
 msgid "Info pages"
-msgstr "Ξ£ΞµΞ»Ξ―Ξ΄ΞµΟ‚ info"
+msgstr "Σελίδες info"
 
 #: src/yelp-view-toc.c:274
 msgid "Installed documents"
-msgstr "Ξ•Ξ³ΞΊΞ±Ο„ΞµΟƒΟ„Ξ·ΞΌΞ­Ξ½Ξ± Ξ­Ξ³Ξ³ΟΞ±Ο†Ξ±"
+msgstr "Εγκατεστημένα έγγραφα"
 
 #: src/yelp-view-toc.c:286
 msgid "Start page"
-msgstr "Ξ‘ΟΟ‡ΞΉΞΊΞ® ΟƒΞµΞ»Ξ―Ξ΄Ξ±"
+msgstr "Αρχική σελίδα"
 
-#: src/yelp-view-toc.c:511 src/yelp-view-toc.c:530
-msgid "Manual page sections"
-msgstr "Ξ•Ξ½ΟΟ„Ξ·Ο„ΞµΟ‚ ΟƒΞµΞ»Ξ―Ξ΄Ο‰Ξ½ Ο„ΞµΞΊΞΌΞ·ΟΞ―Ο‰ΟƒΞ·Ο‚"
+#: src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "Σελίδες Τεκμηρίωσης"
 
 #: src/yelp-view-toc.c:679
 msgid "Scrollkeeper docs for category"
-msgstr "ΞΞ³Ξ³ΟΞ±Ο†Ξ± scrollkeeper Ξ³ΞΉΞ± ΞΊΞ±Ο„Ξ·Ξ³ΞΏΟΞ―Ξ±"
+msgstr "Έγγραφα scrollkeeper για κατηγορία"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:138
 msgid "/_File"
-msgstr "/_Ξ‘ΟΟ‡ΞµΞ―ΞΏ"
+msgstr "/_Αρχείο"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:139
 msgid "/File/_New window"
-msgstr "/Ξ‘ΟΟ‡ΞµΞ―ΞΏ/_ΞΞ­ΞΏ Ο€Ξ±ΟΞ¬ΞΈΟ…ΟΞΏ"
+msgstr "/Αρχείο/_Νέο παράθυρο"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:140
 msgid "/File/_Close window"
-msgstr "/Ξ‘ΟΟ‡ΞµΞ―ΞΏ/Ξ_Ξ»ΞµΞ―ΟƒΞΉΞΌΞΏ Ο€Ξ±ΟΞ±ΞΈΟΟΞΏΟ…"
+msgstr "/Αρχείο/Κ_λείσιμο παραθύρου"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:141
 msgid "/File/_Quit"
-msgstr "/Ξ‘ΟΟ‡ΞµΞ―ΞΏ/Ξ_ΞΎΞΏΞ΄ΞΏΟ‚"
+msgstr "/Αρχείο/Έ_ξοδος"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:142
+msgid "/_Go"
+msgstr "/_Πήγαινε"
+
+#: src/yelp-window.c:143
+msgid "/Go/_Back"
+msgstr "/Πήγαινε/_Πίσω"
+
+#: src/yelp-window.c:144
+msgid "/Go/_Forward"
+msgstr "/Πήγαινε/_Μπροστά"
+
+#: src/yelp-window.c:145
+msgid "/Go/_Home"
+msgstr "/Πήγαινε/_Αρχή"
+
+#: src/yelp-window.c:146
+msgid "/Go/_Index"
+msgstr "/Πήγαινε/_Περι"
+
+#: src/yelp-window.c:147
 msgid "/_Help"
-msgstr "/_Ξ’ΞΏΞ®ΞΈΞµΞΉΞ±"
+msgstr "/_Βοήθεια"
 
-#: src/yelp-window.c:117
+#: src/yelp-window.c:148
 msgid "/Help/_About"
-msgstr "/Ξ’ΞΏΞ®ΞΈΞµΞΉΞ±/_Ξ ΞµΟΞ―"
+msgstr "/Βοήθεια/_Περί"
 
-#: src/yelp-window.c:165
+#: src/yelp-window.c:207
 msgid "Help Browser"
-msgstr "Ξ ΟΟΞ³ΟΞ±ΞΌΞΌΞ± Ξ’ΞΏΞ®ΞΈΞµΞΉΞ±Ο‚"
+msgstr "Πρόγραμμα Βοήθειας"
 
-#: src/yelp-window.c:413
+#: src/yelp-window.c:529
+msgid "translator_credits"
+msgstr "Συμεών (σίμος) Ξενιτέλλης <simos@hellug.gr>"
+
+#: src/yelp-window.c:533
 msgid "Help Browser for GNOME 2.0"
-msgstr "Ξ ΟΟΞ³ΟΞ±ΞΌΞΌΞ± Ξ ΞµΟΞΉΞ®Ξ³Ξ·ΟƒΞ·Ο‚ Ξ’ΞΏΞ®ΞΈΞµΞΉΞ±Ο‚ Ξ³ΞΉΞ± Ο„ΞΏ GNOME 2.0"
+msgstr "Πρόγραμμα Περιήγησης Βοήθειας για το GNOME 2.0"
 
-#: src/yelp-window.c:437
-msgid "Go back in the history list"
-msgstr "Ξ Ξ®Ξ³Ξ±ΞΉΞ½Ξµ Ο€Ξ―ΟƒΟ‰ ΟƒΟ„Ξ· Ξ»Ξ―ΟƒΟ„Ξ± ΞΉΟƒΟ„ΞΏΟΞΉΞΊΞΏΟ"
+#: src/yelp-window.c:560
+msgid "Back"
+msgstr "Πίσω"
 
-#: src/yelp-window.c:452
-msgid "Go forth in the history list"
-msgstr "Ξ Ξ®Ξ³Ξ±ΞΉΞ½Ξµ ΞΌΟ€ΟΞΏΟƒΟ„Ξ¬ ΟƒΟ„Ξ· Ξ»Ξ―ΟƒΟ„Ξ± ΞΉΟƒΟ„ΞΏΟΞΉΞΊΞΏΟ"
+#: src/yelp-window.c:561
+msgid "Show previous page in history"
+msgstr "Εμφάνιση προηγούμενης σελίδας του ιστορικού"
 
-#
-#: src/yelp-window.c:467
-msgid "Overview of contents"
-msgstr "Ξ•Ο€ΞΉΟƒΞΊΟΟ€Ξ·ΟƒΞ· Ο€ΞµΟΞΉΞµΟ‡ΞΏΞΌΞ­Ξ½Ο‰Ξ½"
+#: src/yelp-window.c:572
+msgid "Forward"
+msgstr "Μπροστά"
 
-#: src/yelp-window.c:478
+#: src/yelp-window.c:573
+msgid "Show next page in history"
+msgstr "Εμφάνιση επόμενης σελίδες του ιστορικού"
+
+#: src/yelp-window.c:586
+msgid "Home"
+msgstr "Αρχή"
+
+#: src/yelp-window.c:587
+msgid "Go to home view"
+msgstr "Πήγαινε στην προβολή περιεχομένων"
+
+#: src/yelp-window.c:597
+msgid "Index"
+msgstr "Περιεχόμενα"
+
+#: src/yelp-window.c:598
 msgid "Search in the index"
-msgstr "Ξ‘Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ· ΟƒΟ„ΞΏ ΞΊΞ±Ο„Ξ¬Ξ»ΞΏΞ³ΞΏ"
+msgstr "Αναζήτηση στο κατάλογο"
 
-#: src/yelp-window.c:490
+#: src/yelp-window.c:608
 msgid "Search for a phrase in the document"
-msgstr "Ξ‘Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ· Ο†ΟΞ¬ΟƒΞ·Ο‚ ΟƒΟ„ΞΏ Ξ­Ξ³Ξ³ΟΞ±Ο†ΞΏ"
+msgstr "Αναζήτηση φράσης στο έγγραφο"
 
-#: src/yelp-window.c:496
+#: src/yelp-window.c:614
 msgid "Help on "
-msgstr "Ξ’ΞΏΞ®ΞΈΞµΞΉΞ± Ο€Ξ¬Ξ½Ο‰ ΟƒΞµ "
+msgstr "Βοήθεια πάνω σε "
 
-#: src/yelp-window.c:501
+#: src/yelp-window.c:619
 msgid "Enter phrase to search for in all documents"
-msgstr "Ξ•ΞΉΟƒΞ±Ξ³Ο‰Ξ³Ξ® Ο†ΟΞ¬ΟƒΞ·Ο‚ Ξ³ΞΉΞ± Ξ±Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ· ΟƒΞµ ΟΞ»Ξ± Ο„Ξ± Ξ­Ξ³Ξ³ΟΞ±Ο†Ξ±"
+msgstr "Εισαγωγή φράσης για αναζήτηση σε όλα τα έγγραφα"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr "Ξ›Ξ®ΟΞ· Ξ²ΞΏΞ®ΞΈΞµΞΉΞ±Ο‚ Ξ³ΞΉΞ± Ο„ΞΏ GNOME"
+msgstr "Λήψη βοήθειας για το GNOME"
 
 #
 #: yelp.desktop.in.h:2
 msgid "Help"
-msgstr "Ξ’ΞΏΞ®ΞΈΞµΞΉΞ±"
+msgstr "Βοήθεια"
 
+#~ msgid "Manual page sections"
+#~ msgstr "Ενότητες σελίδων τεκμηρίωσης"
+
+#~ msgid "Go back in the history list"
+#~ msgstr "Πήγαινε πίσω στη λίστα ιστορικού"
+
+#~ msgid "Go forth in the history list"
+#~ msgstr "Πήγαινε μπροστά στη λίστα ιστορικού"
+
+#
+#~ msgid "Overview of contents"
+#~ msgstr "Επισκόπηση περιεχομένων"
