@@ -38,6 +38,7 @@ static void yvi_html_url_selected_cb       (YelpViewIndex         *content,
 					    char                  *url,
 					    char                  *base_url,
 					    gboolean               handled);
+static void yvi_setup_index_view           (YelpViewIndex         *view);
 
 struct _YelpViewIndexPriv {
 	GList        *index;
@@ -96,7 +97,7 @@ yvi_init (YelpViewIndex *view)
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->index_view),
 				 GTK_TREE_MODEL (priv->list_store));
 
-	priv->html_view    = yelp_html_new ();
+	priv->html_view = yelp_html_new ();
 	
 	g_signal_connect (priv->html_view, "url_selected",
 			  G_CALLBACK (yvi_html_url_selected_cb),
@@ -149,6 +150,39 @@ yvi_html_url_selected_cb (YelpViewIndex *content,
 	/* TODO: What to do here? */
 	
 	/* FIXME: Emit section_selected?? */
+}
+
+static void
+yvi_index_term_add (YelpSection *section, YelpViewIndex *view)
+{
+	YelpViewIndexPriv *priv;
+	GtkTreeIter        iter;
+	
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+
+	priv = view->priv;
+	
+	gtk_list_store_append (GTK_LIST_STORE (priv->list_store), &iter);
+
+	gtk_list_store_set (GTK_LIST_STORE (priv->list_store),
+			    &iter,
+			    0, section->name,
+			    1, section,
+			    -1);
+}
+
+static void
+yvi_setup_index_view (YelpViewIndex *view)
+{
+	YelpViewIndexPriv *priv;
+	
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+	
+	priv = view->priv;
+
+	g_list_foreach (priv->index,
+			(GFunc )yvi_index_term_add, 
+			view);
 }
 
 GtkWidget *
@@ -215,6 +249,8 @@ yelp_view_index_new (GList *index)
 	gtk_paned_add1 (GTK_PANED (view), box);
         gtk_paned_add2 (GTK_PANED (view), frame);
         gtk_paned_set_position (GTK_PANED (view), 250);
+
+	yvi_setup_index_view (view);
 
 	return GTK_WIDGET (view);
 }

@@ -243,9 +243,9 @@ yelp_view_content_insert_tree (YelpViewContent *content,
 			       GtkTreeIter     *parent,
 			       GNode           *node)
 {
-	GtkTreeIter iter;
+	GtkTreeIter  iter;
 	YelpSection *section;
-	GNode *child;
+	GNode       *child;
 	
 	gtk_tree_store_append (content->priv->tree_store,
 			       &iter, parent);
@@ -270,7 +270,7 @@ static void
 yelp_view_content_set_tree (YelpViewContent *content,
 			    GNode           *node)
 {
-	GNode               *child;
+	GNode *child;
 
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
 	g_return_if_fail (node != NULL);

@@ -416,9 +416,6 @@ ys_parse_index (GList **index)
 			ys_parse_index_file (index, index_path, section);
 
 			g_free (index_path);
-			
-			g_print ("FOUND INDEX FOR: %s/%s\n", 
-				 section->uri, file_info->name);
 		}
 	}
 	
@@ -450,7 +447,6 @@ ys_parse_index_file (GList       **index,
 		for (node = node->xmlChildrenNode; node; node = node->next) {
 			if (!g_ascii_strcasecmp (node->name, "indexitem")) {
 				
-				g_print ("Found an indexitem!\n");
 				ys_parse_index_item (index, section, node);
 			}
 		}
@@ -468,12 +464,9 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_ascii_strcasecmp (cur->name, "title")) {
 			title = xmlNodeGetContent (cur);
-			g_print ("TITLE: %s\n", title);
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "link")) {
 			link = xmlGetProp (cur, "linkid");
-			
-			g_print ("LINK: %s\n", link);
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "indexitem")) {
 			ys_parse_index_item (index, section, cur);
@@ -538,8 +531,6 @@ yelp_scrollkeeper_init (GNode *tree, GList **index)
 
 	ys_parse_index (index);
 
-	g_print ("Number of script calls: %d\n", calls);
-        
         return TRUE;
 }
 
@@ -561,8 +552,6 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
         g_return_val_if_fail (docpath != NULL, NULL);
 
         tree = g_node_new (NULL);
-
-	g_print ("Trying to find doc tree for: %s\n", docpath);
 	
  	toc_file = ys_get_xml_docpath ("scrollkeeper-get-toc-from-docpath",
  				       docpath);

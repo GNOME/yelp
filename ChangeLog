@@ -1,5 +1,12 @@
 2002-02-25  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-index.c:
+	(yvi_index_term_add): added/impl.
+	(yvi_setup_index_view): added/impl.
+	(yelp_view_index_new): call yvi_setup_index_view.
+
+	* src/yelp-scrollkeeper.c: removed some debug printouts.
+
 	* src/yelp-window.c:
 	(yelp_window_new): added index-list to arguments.
 

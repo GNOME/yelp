@@ -84,9 +84,11 @@ yelp_base_init (YelpBase *base)
         priv = g_new0 (YelpBasePriv, 1);
         
 	priv->toc_tree = g_node_new (NULL);
+	priv->index    = NULL;
+	priv->windows  = NULL;
+        base->priv     = priv;
 
-	priv->windows = NULL;
-        base->priv    = priv;
+
 }
 
 static void
@@ -139,7 +141,8 @@ yelp_base_new (void)
 	priv = base->priv;
 	
 	result = yelp_scrollkeeper_init (priv->toc_tree,
-					 &priv->index);
+					 (&priv->index));
+
 	result = yelp_man_init (base->priv->toc_tree);
 	result = yelp_info_init (base->priv->toc_tree);
 	
