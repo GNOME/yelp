@@ -150,6 +150,9 @@
 		<xsl:when test="$node/self::preface/prefaceinfo/title">
 			<func:result select="$node/prefaceinfo/title"/>
 		</xsl:when>
+		<xsl:when test="$node/self::refentry/refmeta/refentrytitle">
+			<func:result select="$node/self::refentry/refmeta/refentrytitle"/>
+		</xsl:when>
 		<xsl:when test="$node/self::refentry/refentryinfo/title">
 			<func:result select="$node/refentryinfo/title"/>
 		</xsl:when>
