@@ -1,0 +1,698 @@
+# This is a DRAFT translation into a common dialect
+# for the Frisian Enclave in Northern Low Saxon; which
+# means the Northern Low Saxon variaties grown on 
+# Frisian substrate.
+#
+# This dialect is based on the Northern variaties of 
+# Groningen and East Frisia.
+#
+# So far this is mostly based on Gronings; but that will
+# change. 
+#
+# The orthography is based on ANS; but using some different
+# letter conbinations (ie, öü, üü, ei etc)
+#
+# Copyright © 2002 Free Software Foundation, Inc.
+# Kenneth Christiansen <kenneth@gnu.org>, 2004
+#
+# Ideas are taken from the Dutch translation by
+# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004
+# Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Yelp cvs\n"
+"POT-Creation-Date: 2004-03-22 17:51-0600\n"
+"PO-Revision-Date: 2004-02-09 17:14+0100\n"
+"Last-Translator: Kenneth Christiansen <kenneth@gnu.org>\n"
+"Language-Team: Low Saxon NFE (Northern Frisian Enclave) <kenneth@gnu.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+
+#: data/toc.xml.in.h:1
+msgid "Applets"
+msgstr "Paneelprogramma's"
+
+#: data/toc.xml.in.h:2 src/yelp-man.c:429
+msgid "Applications"
+msgstr "Toupassens"
+
+#: data/toc.xml.in.h:3
+msgid "Desktop"
+msgstr "Desktop"
+
+#: data/toc.xml.in.h:4 src/yelp-man.c:434
+msgid "Development"
+msgstr "Development"
+
+#: data/toc.xml.in.h:5
+msgid "Development Environments"
+msgstr "Ontwikkelomgevens"
+
+#: data/toc.xml.in.h:6
+msgid "Development Tools"
+msgstr "Ontwikkelings-warktüüg"
+
+#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
+msgid "Editors"
+msgstr "Bewarkers"
+
+#: data/toc.xml.in.h:8
+msgid "Education Applications"
+msgstr "Educatieve toupassens"
+
+#: data/toc.xml.in.h:9
+msgid "Games and Entertainment"
+msgstr "Spöllen en amusement"
+
+#: data/toc.xml.in.h:10
+msgid "General"
+msgstr "Algemein"
+
+#: data/toc.xml.in.h:11
+msgid "Help Contents"
+msgstr "Hulp Inholdsopgave"
+
+#: data/toc.xml.in.h:12
+msgid "Internet Applications"
+msgstr "Internettoupassens"
+
+#: data/toc.xml.in.h:13
+msgid "KDE"
+msgstr "KDE"
+
+#: data/toc.xml.in.h:14
+msgid "Kernels"
+msgstr "Kernels"
+
+#: data/toc.xml.in.h:15
+msgid "Multimedia Applications"
+msgstr "Multimediatoupassens"
+
+# Office niet vertalen?
+#: data/toc.xml.in.h:16
+msgid "Office and Productivity Applications"
+msgstr "Kentoor- en productiviteitstoupassens"
+
+#: data/toc.xml.in.h:17
+msgid "Scientific Applications"
+msgstr "Wetenschappelke toupassens"
+
+#: data/toc.xml.in.h:18
+msgid "Securities"
+msgstr "Veilighaid"
+
+#: data/toc.xml.in.h:19
+msgid "System"
+msgstr "Systeem"
+
+#: data/toc.xml.in.h:20
+msgid "Utilities"
+msgstr "Hulpmiddels"
+
+#: data/toc.xml.in.h:21
+msgid "X Applications"
+msgstr "X-toupassens"
+
+#: data/ui/yelp.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: data/ui/yelp.glade.h:2
+msgid "C_ase sensitive"
+msgstr "_Hoofdlettergevoulig"
+
+#: data/ui/yelp.glade.h:3
+msgid "Find"
+msgstr "Söüken"
+
+#: data/ui/yelp.glade.h:4
+msgid "_Find: "
+msgstr "_Söüken: "
+
+#: data/ui/yelp.glade.h:5
+msgid "_Next"
+msgstr "_Völgende"
+
+#: data/ui/yelp.glade.h:6
+msgid "_Previous"
+msgstr "V_orige"
+
+# hele discussie hierover op http://home.o2w.net/~ivo/wiki.pl?WrapAround
+# Betere vertaling hier in yelp?
+#: data/ui/yelp.glade.h:7
+msgid "_Wrap around"
+msgstr "_Trügloop"
+
+#: src/GNOME_Yelp.server.in.h:1
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp-fabriek"
+
+#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+msgid "No href attribute found on yelp:document"
+msgstr "Gein href-attribüüt vonden op yelp:document"
+
+#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+msgid "Out of memory"
+msgstr "Gein gehögen meer"
+
+#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+msgid "Titlepage"
+msgstr "Titelsied"
+
+#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:372
+msgid "Contents"
+msgstr "Inholdsopgave"
+
+#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:390
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: src/yelp-error.c:46
+msgid "The selected document could not be opened"
+msgstr "Et selecteerde dukment kon neit opend worden"
+
+# werd niet gevonden?
+# aangetroffen?
+#: src/yelp-error.c:52
+msgid "The selected page could not be found in this document."
+msgstr "Dei selecteerde sied kon neit in dit dukment vonden worden."
+
+#: src/yelp-error.c:58
+msgid "The table of contents could not be read."
+msgstr "Dei inholdsopgave kon neit lesen worden."
+
+#: src/yelp-error.c:64
+msgid "DocBook SGML documents are no longer supported."
+msgstr "DocBook SGML-dukmenten worden neit meer unnerstöönd."
+
+#: src/yelp-error.c:70
+msgid "The selected file could not be read."
+msgstr "Et selecteerde bestand kon neit lesen worden."
+
+#: src/yelp-main.c:94
+msgid "Define which cache directory to use"
+msgstr "Angeven welke map mout worden bruukt voor tiedelke opslag"
+
+#: src/yelp-main.c:128
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Kon Yelp neit opstarten: '%s'"
+
+#: src/yelp-main.c:147
+msgid "Could not open new window."
+msgstr "Kon gein nei vinster openen."
+
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
+msgid "X11"
+msgstr "X11"
+
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
+msgid "OpenSSL"
+msgstr "OpenSSL"
+
+#: src/yelp-man.c:306
+msgid "Termcap"
+msgstr "Termcap"
+
+#: src/yelp-man.c:322
+msgid "Perl"
+msgstr "Perl"
+
+#: src/yelp-man.c:327
+msgid "Qt"
+msgstr "Qt"
+
+#: src/yelp-man.c:337
+msgid "TIFF"
+msgstr "TIFF"
+
+#: src/yelp-man.c:342
+msgid "PThreads"
+msgstr "PThreads"
+
+#: src/yelp-man.c:364
+msgid "System Calls"
+msgstr "Systeemfunkties"
+
+#: src/yelp-man.c:369
+msgid "Library Functions"
+msgstr "Bibliotheekfunkties"
+
+#: src/yelp-man.c:374
+msgid "Kernel Routines"
+msgstr "Kernelroutines"
+
+#: src/yelp-man.c:439
+msgid "Hardware Devices"
+msgstr "Hardware-apparatuur"
+
+#: src/yelp-man.c:444
+msgid "Configuration Files"
+msgstr "Konfiguratiebestanden"
+
+#: src/yelp-man.c:449
+msgid "Games"
+msgstr "Spölletjes"
+
+#: src/yelp-man.c:454
+msgid "Overviews"
+msgstr "Oversichten"
+
+#: src/yelp-man.c:459
+msgid "System Administration"
+msgstr "Systeemadministratie"
+
+#: src/yelp-pager.c:118
+msgid "Document URI"
+msgstr "Dokment-URI"
+
+#: src/yelp-pager.c:119
+msgid "The URI of the document to be processed"
+msgstr "Dei URI van t te verwerken dukment"
+
+#: src/yelp-toc-pager.c:266
+msgid "YelpTocPager: Pause count is negative."
+msgstr "YelpTocPager: Pauserentelling is negatiev."
+
+#: src/yelp-toc-pager.c:486
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Kon t OMF-bestand neit laden: '%s'."
+
+#: src/yelp-toc-pager.c:883
+msgid "Categories"
+msgstr "Kategorieën"
+
+#: src/yelp-toc-pager.c:897
+msgid "Documents"
+msgstr "Dukmenten"
+
+#: src/yelp-window.c:249
+msgid "/_File"
+msgstr "/_Bestand"
+
+#: src/yelp-window.c:250
+msgid "/File/_New window"
+msgstr "/Bestand/_Nei vinster"
+
+#: src/yelp-window.c:253
+msgid "/File/_Close window"
+msgstr "/Bestand/Vnster _sluten"
+
+#: src/yelp-window.c:257
+msgid "/_Edit"
+msgstr "/Be_warken"
+
+#: src/yelp-window.c:258
+msgid "/Edit/_Find..."
+msgstr "/Bewarken/_Söüken..."
+
+#: src/yelp-window.c:261
+msgid "/Edit/Find Ne_xt"
+msgstr "/Bewarken/_Völgende zöüken"
+
+#: src/yelp-window.c:264
+msgid "/Edit/Find Pre_vious"
+msgstr "/Bewarken/V_orige söüken"
+
+#: src/yelp-window.c:268
+msgid "/_Go"
+msgstr "/_Ga naar"
+
+#: src/yelp-window.c:269
+msgid "/Go/_Back"
+msgstr "/Ga naar/V_orige"
+
+#: src/yelp-window.c:272
+msgid "/Go/_Forward"
+msgstr "/Ga naar/_Völgende"
+
+#: src/yelp-window.c:275
+msgid "/Go/_Home"
+msgstr "/Ga naar/_Startsied"
+
+#: src/yelp-window.c:278
+msgid "/Go/"
+msgstr "/_Ga naar/"
+
+#: src/yelp-window.c:279
+msgid "/Go/_Previous Page"
+msgstr "/Ga naar/V_orige sied"
+
+#: src/yelp-window.c:282
+msgid "/Go/_Next Page"
+msgstr "/Ga naar/_Völgende sied"
+
+#: src/yelp-window.c:285
+msgid "/Go/_Contents"
+msgstr "/Ga naar/_Inholdsopgave"
+
+#: src/yelp-window.c:289
+msgid "/_Help"
+msgstr "/_Hulp"
+
+#: src/yelp-window.c:290
+msgid "/Help/_About"
+msgstr "/Hulp/_Info"
+
+#: src/yelp-window.c:352
+msgid "Help Browser"
+msgstr "Hulp-browser"
+
+#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Sektie"
+
+#: src/yelp-window.c:625
+msgid "Back"
+msgstr "Trüg"
+
+#: src/yelp-window.c:626
+msgid "Show previous page in history"
+msgstr "Dei vorige sied tonen"
+
+#: src/yelp-window.c:636
+msgid "Forward"
+msgstr "Völgende"
+
+#: src/yelp-window.c:637
+msgid "Show next page in history"
+msgstr "Dei völgende sied tonen"
+
+#: src/yelp-window.c:649
+msgid "Home"
+msgstr "Startsied"
+
+#: src/yelp-window.c:650
+msgid "Go to home view"
+msgstr "Dei startsied tonen"
+
+#: src/yelp-window.c:860
+msgid "Loading..."
+msgstr "Besig mit laden..."
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:1300
+msgid "translator_credits"
+msgstr ""
+"Kenneth Christiansen <kenneth@gnu.org"
+
+# Een Hulp voor GNOME, een Hulp-programma voor GNOME
+#: src/yelp-window.c:1306
+msgid "A Help Browser for GNOME"
+msgstr "Ein Hulp-browser vöör GNOME"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr "&#8220;"
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr "&#8221;"
+
+# onderdeel beter dan artikel
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Article"
+msgstr "Över dit onderdeil"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Bibliography"
+msgstr "Över disse bibliografie"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Book"
+msgstr "Över dit bouk"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Chapter"
+msgstr "Över dit hoofdstuk"
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Entry"
+msgstr "Över dit unnerwerp"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Glossary"
+msgstr "Över disse woordenliest"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Index"
+msgstr "Över disse indeks"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Part"
+msgstr "Över dit onderdeil"
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Preface"
+msgstr "Över dit inleiding"
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Reference"
+msgstr "Över disse referentie"
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Section"
+msgstr "Över disse sektie"
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "About This Set"
+msgstr "Över disse touhoopstellen"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Affiliation"
+msgstr "Verwantschup"
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Appendix"
+msgstr "Appendiks"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Article"
+msgstr "Artikel"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Audience"
+msgstr "Publiek"
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Author"
+msgstr "Autöör"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Authors"
+msgstr "Autöörs"
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Bibliography"
+msgstr "Bibliografie"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Book"
+msgstr "Bouk"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Caution"
+msgstr "Waarschuwing"
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Chapter"
+msgstr "Hoofdstuk"
+
+# Medeschrijver?
+#: stylesheets/l10n.xml.in.h:27
+msgid "Collaborator"
+msgstr "Medewarker"
+
+# Medeschrijver?
+#: stylesheets/l10n.xml.in.h:28
+msgid "Collaborators"
+msgstr "Medewarkers"
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Colophon"
+msgstr "Kolofoon"
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Copyright"
+msgstr "Autöörsrecht"
+
+# onvertaald laten?
+#: stylesheets/l10n.xml.in.h:32
+msgid "Copyrights"
+msgstr "Autöörsrechten"
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Date"
+msgstr "Datum"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Dedication"
+msgstr "Touwieding"
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Editor"
+msgstr "Bewarker"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Email"
+msgstr "E-mail"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Example"
+msgstr "Vöörbeeld"
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Figure"
+msgstr "Figuur"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Glossary"
+msgstr "Woordenliest"
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Important"
+msgstr "Belangriek"
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Index"
+msgstr "Indeks"
+
+# Kort:
+# Rechtspraak
+#: stylesheets/l10n.xml.in.h:43
+msgid "Legal Notice"
+msgstr "Juridische opmarking"
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Level"
+msgstr "Nivo"
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Message Audience"
+msgstr "Berichtpubliek"
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Message Level"
+msgstr "Berichtnivo"
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Message Origin"
+msgstr "Berichtbron"
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Note"
+msgstr "Opmerking"
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Origin"
+msgstr "Afkomst"
+
+# bijdrager
+#: stylesheets/l10n.xml.in.h:50
+msgid "Other Contributor"
+msgstr "Andere medewarker"
+
+# bijdrager
+#: stylesheets/l10n.xml.in.h:51
+msgid "Other Contributors"
+msgstr "Överige medewarkers"
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Part"
+msgstr "Deil"
+
+# inleiding
+#: stylesheets/l10n.xml.in.h:53
+msgid "Preface"
+msgstr "Vöörwoord"
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "Publisher"
+msgstr "Uutgever"
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "Publishers"
+msgstr "Uutgevers"
+
+#: stylesheets/l10n.xml.in.h:56
+msgid "Reference"
+msgstr "Verwiesen"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Reference Entry"
+msgstr "Referentieunnerwarp"
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Reference Section"
+msgstr "Referentiesektie"
+
+# specifieke informatie?
+#: stylesheets/l10n.xml.in.h:59
+msgid "Release Information"
+msgstr "Versie-informatie"
+
+# herziening
+#: stylesheets/l10n.xml.in.h:60
+msgid "Revision History"
+msgstr "Revisiegeschiedenis"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "See"
+msgstr "Sei"
+
+#: stylesheets/l10n.xml.in.h:63
+msgid "See Also"
+msgstr "Sei ook"
+
+# is dit de goede context?
+#: stylesheets/l10n.xml.in.h:64
+msgid "Set Index"
+msgstr "Indeks instellen"
+
+#: stylesheets/l10n.xml.in.h:65
+msgid "Table"
+msgstr "Tabel"
+
+#: stylesheets/l10n.xml.in.h:66
+msgid "Table of Contents"
+msgstr "Inholdsopgave"
+
+#: stylesheets/l10n.xml.in.h:67
+msgid "Tip"
+msgstr "Tip"
+
+#: stylesheets/l10n.xml.in.h:68
+msgid "Title"
+msgstr "Titel"
+
+#: stylesheets/l10n.xml.in.h:70
+msgid "Warning"
+msgstr "Waarschuwen"
+
+#: yelp.desktop.in.h:1
+msgid "Get help with GNOME"
+msgstr "Hulp bie GNOME"
+
+#: yelp.desktop.in.h:2
+msgid "Help"
+msgstr "Hulp"
