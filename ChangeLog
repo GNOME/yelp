@@ -1,3 +1,45 @@
+2001-12-04  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c: 
+	- added forward/back-buttons to priv struct.
+	- connect the buttons to forward/back-exists-toggled signals in
+	  history.
+	(yelp_window_toggle_history_buttons): added/impl. will handle when
+	  forward/back signals are emitted from YelpHistory.
+
+	* src/yelp-toc.h: YelpBook->GNode
+
+	* src/yelp-section.[ch]: added to replace yelp-book.[ch]
+	
+	* src/yelp-history.[ch]: 
+	- use YelpSections instead of strings.
+	- renamed all functions to yelp_history instead of help_history.
+
+	* src/yelp-book[ch]: removed, replaced with yelp-section.
+
+	* src/yelp-base.c (yelp_base_new_book_cb): YelpBook->GNode
+
+	* src/scrollkeeper-parser.c: 
+	- lots of updates to stop using YelpBook.
+	- YelpBook -> GNode
+	- return GNode instead of YelpBook.
+	- Use GNode insternaly instead of YelpBook.
+	- now use yelp_section_add_sub instead of yelp_book_add_section.
+	- also, yelp_section_new to get a new section to call
+	  yelp_book_add_section with.
+	
+	* src/metadata.h: yelp-book.h -> yelp-section.h
+
+	* src/metadata-parser.h: use a GNode in the new_book signal
+	  instead of a YelpBook. I might remove this signal entirely and 
+	  instead use a function that might return the root-node.
+
+	* src/devhelp-parser.c: semi-updated, disabled for now
+
+	* src/Makefile.am (yelp_SOURCES): 
+	- don't compile devhelp-parser,
+	- rename yelp-book to yelp-section
+
 2001-12-02  Malcolm Tredinnick <malcolm@commsecure.com.au>
 	* src/main.c (main): pass in GNOME_PROGRAM_STANDARD_PROPERTIES to
 	  gnome_program_init().

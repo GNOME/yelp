@@ -21,52 +21,52 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __HELP_HISTORY_H__
-#define __HELP_HISTORY_H__
+#ifndef __YELP_HISTORY_H__
+#define __YELP_HISTORY_H__
 
 #include <glib-object.h>
+#include "yelp-section.h"
 
-#define HELP_TYPE_HISTORY         (help_history_get_type ())
-#define HELP_HISTORY(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), HELP_TYPE_HISTORY, HelpHistory))
-#define HELP_HISTORY_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), HELP_TYPE_HISTORY, HelpHistoryClass))
-#define HELP_IS_HISTORY(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), HELP_TYPE_HISTORY))
-#define HELP_IS_HISTORY_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), HELP_TYPE_HISTORY))
-#define HELP_HISTORY_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), HELP_TYPE_HISTORY, HelpHistoryClass))
+#define YELP_TYPE_HISTORY         (yelp_history_get_type ())
+#define YELP_HISTORY(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_HISTORY, YelpHistory))
+#define YELP_HISTORY_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_HISTORY, YelpHistoryClass))
+#define YELP_IS_HISTORY(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), YELP_TYPE_HISTORY))
+#define YELP_IS_HISTORY_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_HISTORY))
+#define YELP_HISTORY_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_HISTORY, YelpHistoryClass))
 
-typedef struct _HelpHistory      HelpHistory;
-typedef struct _HelpHistoryClass HelpHistoryClass;
-typedef struct _HelpHistoryPriv  HelpHistoryPriv;
+typedef struct _YelpHistory      YelpHistory;
+typedef struct _YelpHistoryClass YelpHistoryClass;
+typedef struct _YelpHistoryPriv  YelpHistoryPriv;
 
-struct _HelpHistory {
+struct _YelpHistory {
 	GObject          parent;
 	
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
 };
 
-struct _HelpHistoryClass {
+struct _YelpHistoryClass {
 	GObjectClass     parent_class;
 
 	/* Signals */
-	void   (*forward_exists_changed)     (HelpHistory    *history,
-					      gboolean        exists);
-	void   (*back_exists_changed)        (HelpHistory    *history,
-					      gboolean        exists);
+	void   (*forward_exists_changed)       (YelpHistory    *history,
+						gboolean        exists);
+	void   (*back_exists_changed)          (YelpHistory    *history,
+						gboolean        exists);
 };
 
-GType             help_history_get_type      (void);
-HelpHistory *     help_history_new           (void);
+GType               yelp_history_get_type      (void);
+YelpHistory *       yelp_history_new           (void);
 
-void              help_history_goto          (HelpHistory         *history,
-                                              const gchar         *str);
+void                yelp_history_goto          (YelpHistory         *history,
+						const YelpSection   *section);
 
-gchar *           help_history_go_forward    (HelpHistory         *history);
+const YelpSection * yelp_history_go_forward    (YelpHistory         *history);
 
-gchar *           help_history_go_back       (HelpHistory         *history);
+const YelpSection * yelp_history_go_back       (YelpHistory         *history);
 
-gchar *           help_history_get_current   (HelpHistory         *history);
+const YelpSection * yelp_history_get_current   (YelpHistory         *history);
 
-gboolean          help_history_exist_forward (HelpHistory         *history);
-gboolean          help_history_exist_back    (HelpHistory         *history);
+gboolean            yelp_history_exist_forward (YelpHistory         *history);
+gboolean            yelp_history_exist_back    (YelpHistory         *history);
 
-#endif /* __HELP_HISTORY_H__ */
-
+#endif /* __YELP_HISTORY_H__ */

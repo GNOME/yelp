@@ -27,7 +27,7 @@
 
 #include <libxml/parser.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include "yelp-book.h"
+#include "yelp-section.h"
 #include "yelp-keyword-db.h"
 #include "devhelp-parser.h"
 
@@ -44,7 +44,7 @@ static void devhelp_parser_parse_book           (DevHelpParser        *parser,
 static void devhelp_parser_parse_section        (GNode                *parent,
 						 xmlNode              *node);
 
-static void devhelp_parser_parse_function       (YelpBook             *book,
+static void devhelp_parser_parse_function       (GNode                *root,
 						 xmlNode              *node);
 
 
@@ -234,9 +234,9 @@ devhelp_parser_parse_book (DevHelpParser *parser, const GnomeVFSURI *uri)
  	xmlNode     *root_node, *cur;
 	const gchar *file_name;
 	gchar       *name;
-	GnomeVFSURI *index_uri;
+	gchar       *index_uri;
 	xmlChar     *xml_str;
-	YelpBook    *book;
+	GNode       *root;
 	
 	file_name = gnome_vfs_uri_get_path (uri);
 	
@@ -283,7 +283,8 @@ devhelp_parser_parse_book (DevHelpParser *parser, const GnomeVFSURI *uri)
 		index_uri = gnome_vfs_uri_dup (base_uri);
 	}
 
-	book = yelp_book_new (name, index_uri);
+	root = yelp_section_add_sub (NULL, 
+				     yelp_section_new (name, index_uri, NULL));
 
 	root_node = root_node->xmlChildrenNode;
 	
@@ -379,8 +380,9 @@ devhelp_parser_parse_section (GNode *parent, xmlNode *xml_node)
 		uri = gnome_vfs_uri_append_path (base_uri, xml_str);
 	}
 	
-	node = yelp_book_add_section (parent, name, uri, NULL);
-	
+	node = yelp_section_add_sub (parent, 
+				     yelp_section_new (name, uri, NULL));
+
 	gnome_vfs_uri_unref (uri);
 
 	cur = xml_node->xmlChildrenNode;

@@ -23,7 +23,7 @@
 
 #include "metadata.h"
 #include "yelp-window.h"
-#include "yelp-book.h"
+#include "yelp-section.h"
 #include "yelp-keyword-db.h"
 #include "yelp-base.h"
 typedef struct {
@@ -34,7 +34,7 @@ typedef struct {
 static void          yelp_base_init             (YelpBase        *base);
 static void          yelp_base_class_init       (YelpBaseClass   *klass);
 static void          yelp_base_new_book_cb      (MetaDataParser  *parser, 
-                                                 YelpBook        *book, 
+                                                 GNode           *root,
                                                  YelpBase        *base);
 static GtkTreeIter * yelp_base_insert_node      (YelpBase        *base, 
                                                  GtkTreeIter     *parent, 
@@ -95,22 +95,22 @@ yelp_base_class_init (YelpBaseClass *klass)
 
 static void
 yelp_base_new_book_cb (MetaDataParser *parser, 
-                       YelpBook       *book, 
+                       GNode          *root,
                        YelpBase       *base)
 {
 	GtkTreeIter *iter;
 	ForeachData *fdata;
 
-	g_print ("New yelp-book: %s\n", ((YelpSection *)book->root->data)->name);
+	g_print ("New yelp-book: %s\n", ((YelpSection *) root->data)->name);
 	
 	iter = yelp_base_insert_node (base, NULL, 
-                                      ((YelpSection *) book->root->data));
+                                      ((YelpSection *) root->data));
 	
 	fdata         = g_new0 (ForeachData, 1);
 	fdata->base   = base;
 	fdata->parent = iter;
 
-	g_node_children_foreach (book->root, G_TRAVERSE_ALL,
+	g_node_children_foreach (root, G_TRAVERSE_ALL,
 				 (GNodeForeachFunc) yelp_base_section_foreach,
 				 fdata);
 	

@@ -19,10 +19,9 @@ yelp_SOURCES =						\
 	yelp-view.c		yelp-view.h		\
 	yelp-index.c		yelp-index.h		\
 	yelp-history.c		yelp-history.h		\
-	yelp-book.c		yelp-book.h		\
+	yelp-section.c		yelp-section.h		\
 	yelp-keyword-db.c	yelp-keyword-db.h	\
 	metadata-parser.c	metadata-parser.h	\
-	devhelp-parser.c	devhelp-parser.h	\
 	scrollkeeper-parser.c	scrollkeeper-parser.h
 
 yelp_LDADD =						\

@@ -38,25 +38,29 @@
 #include "yelp-toc.h"
 #include "yelp-view.h"
 #include "yelp-window.h"
-#include "yelp-book.h"
+#include "yelp-section.h"
+#include "yelp-history.h"
 #include "metadata.h"
 
-static void yelp_window_init		         (YelpWindow          *window);
-static void yelp_window_class_init	         (YelpWindowClass     *klass);
+static void yelp_window_init		       (YelpWindow          *window);
+static void yelp_window_class_init	       (YelpWindowClass     *klass);
 
-static void yelp_window_populate                 (YelpWindow          *window);
+static void yelp_window_populate               (YelpWindow          *window);
 
-static void yelp_window_exit                     (gpointer             data,
-						  guint                section,
-						  GtkWidget           *widget);
-static void yelp_window_new_window               (gpointer             data,
-						  guint                section,
-						  GtkWidget           *widget);
-static void yelp_window_section_selected_cb      (YelpWindow          *window,
-						  YelpSection         *section);
-static void yelp_window_about                    (gpointer             data,
-						  guint                section,
-						  GtkWidget           *widget);
+static void yelp_window_exit                   (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void yelp_window_new_window             (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void yelp_window_section_selected_cb    (YelpWindow          *window,
+						YelpSection         *section);
+static void yelp_window_about                  (gpointer             data,
+						guint                section,
+						GtkWidget           *widget);
+static void yelp_window_toggle_history_buttons (GtkWidget           *button,
+						gboolean             sensitive,
+						YelpHistory         *history);
 
 struct _YelpWindowPriv {
 	YelpBase       *base;
@@ -68,6 +72,11 @@ struct _YelpWindowPriv {
         GtkWidget      *yelp_toc;
 
 	YelpIndex      *index;
+
+	YelpHistory    *history;
+
+	GtkWidget      *forward_button;
+	GtkWidget      *back_button;
 
 	GtkItemFactory *item_factory;
 };
@@ -115,12 +124,15 @@ yelp_window_init (YelpWindow *window)
         priv = g_new0 (YelpWindowPriv, 1);
         window->priv = priv;
         
-        priv->index = yelp_index_new ();
+        priv->index   = yelp_index_new ();
 
 	g_signal_connect_swapped (priv->index, "section_selected",
 				  G_CALLBACK (yelp_window_section_selected_cb),
 				  G_OBJECT (window));
 
+
+	priv->history = yelp_history_new ();
+	
         gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
 
 	gtk_window_set_title (GTK_WINDOW (window), _("Yelp: GNOME Help Browser"));
@@ -173,18 +185,30 @@ yelp_window_populate (YelpWindow *window)
 
 	toolbar = gtk_toolbar_new ();
 
-	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-				  "gtk-go-back",
-				  "", "",
-				  NULL, NULL, -1);
+	priv->back_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
+						      "gtk-go-back",
+						      "", "",
+						      NULL, NULL, -1);
 
-	gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
-				  "gtk-go-forward",
-				  "", "",
-				  NULL, NULL, -1);
+	gtk_widget_set_sensitive (priv->back_button, FALSE);
+
+	g_signal_connect_swapped (priv->history, "back_exists_changed",
+				  G_CALLBACK (yelp_window_toggle_history_buttons),
+				  G_OBJECT (priv->forward_button));
+
+	priv->forward_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
+							 "gtk-go-forward",
+							 "", "",
+							 NULL, NULL, -1);
+
+	gtk_widget_set_sensitive (priv->forward_button, FALSE);
+
+	g_signal_connect_swapped (priv->history, "forward_exists_changed",
+				  G_CALLBACK (yelp_window_toggle_history_buttons),
+				  G_OBJECT (priv->forward_button));
 	
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
-
+	
         /* Html View */
         priv->yelp_view = yelp_view_new ();
 
@@ -303,6 +327,17 @@ yelp_window_about (gpointer data, guint section, GtkWidget *widget)
 
 	gtk_widget_show (about);
 	g_print ("Show about\n");
+}
+
+static void
+yelp_window_toggle_history_buttons (GtkWidget   *button, 
+				    gboolean     sensitive,
+				    YelpHistory *history)
+{
+	g_return_if_fail (GTK_IS_BUTTON (button));
+	g_return_if_fail (YELP_IS_HISTORY (history));
+	
+	gtk_widget_set_sensitive (button, sensitive);
 }
 
 GtkWidget *

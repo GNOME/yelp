@@ -21,11 +21,31 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __METADATA_H__ 
-#define __METADATA_H__
+#ifndef __YELP_SECTION_H__ 
+#define __YELP_SECTION_H__ 
 
-#include "devhelp-parser.h"
-#include "scrollkeeper-parser.h"
-#include "yelp-section.h"
+#include <glib-object.h>
+#include <libgnomevfs/gnome-vfs.h>
 
-#endif /* __METADATA_H__ */
+typedef struct _YelpSection   YelpSection;
+
+struct _YelpSection {
+	gchar *name;
+	gchar *uri;
+	gchar *reference;
+};
+
+YelpSection * yelp_section_new      (const gchar        *name,
+				     const gchar        *uri,
+				     const gchar        *reference);
+
+GNode *       yelp_section_add_sub  (GNode              *parent,
+				     YelpSection        *section);
+
+YelpSection * yelp_section_copy     (const YelpSection  *section);
+
+void          yelp_section_free     (YelpSection        *section);
+
+#endif /* __YELP_BOOK_H__ */
+
+

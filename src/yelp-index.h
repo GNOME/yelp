@@ -26,7 +26,7 @@
 
 #include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include "yelp-book.h"
+#include "yelp-section.h"
 
 #define YELP_TYPE_INDEX		 (yelp_index_get_type ())
 #define YELP_INDEX(obj)		 (GTK_CHECK_CAST ((obj), YELP_TYPE_INDEX, YelpIndex))

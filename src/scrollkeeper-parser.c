@@ -29,7 +29,7 @@
 #include <libxml/parser.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include "yelp-book.h"
+#include "yelp-section.h"
 #include "scrollkeeper-parser.h"
 
 static void       sp_init                   (ScrollKeeperParser      *parser);
@@ -41,7 +41,7 @@ static gboolean   sp_tree_empty             (xmlNode                 *cl_node);
 
 static void       sp_parse_books            (ScrollKeeperParser      *parser, 
 					     xmlDoc                  *doc);
-static YelpBook * sp_parse_book             (ScrollKeeperParser      *parser, 
+static GNode *    sp_parse_book             (ScrollKeeperParser      *parser, 
 					     xmlNode                 *node);
 static void       sp_parse_section          (GNode                   *parent,
 					     xmlNode                 *xml_node);
@@ -254,10 +254,10 @@ sp_tree_empty (xmlNode *cl_node)
 
 static void
 sp_parse_books (ScrollKeeperParser  *parser, 
-				 xmlDoc              *doc)
+		xmlDoc              *doc)
 {
-	xmlNode  *node;
-	YelpBook *book;
+	xmlNode     *node;
+	GNode       *book;
 	
 	g_return_if_fail (IS_SCROLLKEEPER_PARSER (parser));
 
@@ -282,14 +282,14 @@ sp_parse_books (ScrollKeeperParser  *parser,
 	}
 }
 
-static YelpBook *
+static GNode *
 sp_parse_book (ScrollKeeperParser *parser, 
 				xmlNode            *node)
 {
-	xmlNode     *cur;
-	YelpBook    *book;
-	xmlChar     *xml_str;
-	gchar       *name = NULL;
+	xmlNode *cur;
+	GNode   *root;
+	xmlChar *xml_str;
+	gchar   *name = NULL;
 	
 	/* Find the title */
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
@@ -310,18 +310,19 @@ sp_parse_book (ScrollKeeperParser *parser,
 
 	g_print ("Parse book: %s\n", name);
 
-	book = yelp_book_new (name, NULL);
+	root = yelp_section_add_sub (NULL, 
+				     yelp_section_new (name, NULL, NULL));
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
-			sp_parse_section (book->root, cur);
+			sp_parse_section (root, cur);
 		}
 		else if (!g_strcasecmp (cur->name, "doc")) {
-			sp_parse_doc (book->root, cur);
+			sp_parse_doc (root, cur);
 		}
 	}
 	
-	return book;
+	return root;
 }
 
 static void
@@ -348,12 +349,12 @@ sp_parse_section (GNode *parent, xmlNode *xml_node)
 		return;
 	}
 	
-	node = yelp_book_add_section (parent, name, NULL, NULL);
+	node = yelp_section_add_sub (parent, 
+				     yelp_section_new (name, NULL, NULL));
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "sect")) {
-			sp_parse_section (node,
-								cur);
+			sp_parse_section (node, cur);
 		}
 		else if (!g_strcasecmp (cur->name, "doc")) {
 			sp_parse_doc (node, cur);
@@ -398,7 +399,8 @@ sp_parse_doc (GNode *parent, xmlNode *xml_node)
 		}
 	}
 
-	node = yelp_book_add_section (parent, title, link, NULL);
+	node = yelp_section_add_sub (parent, 
+				     yelp_section_new (title, link, NULL));
 	
 	sp_parse_toc (node, docsource);
 
@@ -481,7 +483,8 @@ sp_parse_toc_section (GNode *parent, xmlNode *xml_node, const gchar *base_uri)
 /* 	} else { */
 /* 	} */
 
-	node = yelp_book_add_section (parent, name, base_uri, link);
+	node = yelp_section_add_sub (parent, 
+				     yelp_section_new (name, base_uri, link));
 	
 	for (; next_child != NULL; next_child = next_child->next) {
 		if (!g_strncasecmp (next_child->name, "tocsect", 7)) {

@@ -26,7 +26,6 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include "yelp-book.h"
 
 #define TYPE_META_DATA_PARSER             (metadata_parser_get_type ())
 #define META_DATA_PARSER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_META_DATA_PARSER, MetaDataParser))
@@ -41,7 +40,7 @@ struct _MetaDataParserIface {
 
         /* Signals */
         void       (*new_book)          (MetaDataParser    *parser,
-					 YelpBook          *book);
+					 GNode             *root);
         
         /* Virtual Table */
         gboolean   (*parse)             (MetaDataParser    *parser);

@@ -25,7 +25,7 @@
 
 #include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include "yelp-book.h"
+#include "yelp-section.h"
 
 #define YELP_TYPE_TOC		 (yelp_toc_get_type ())
 #define YELP_TOC(obj)		 (GTK_CHECK_CAST ((obj), YELP_TYPE_TOC, YelpToc))
@@ -58,6 +58,6 @@ GtkWidget *    yelp_toc_new             (GtkTreeStore    *model);
 gboolean       yelp_toc_open            (YelpToc         *toc,
 					 GnomeVFSURI     *uri);
 void           yelp_toc_add_book        (YelpToc         *toc,
-					 YelpBook        *book);
+					 GNode           *root);
 
 #endif /* __YELP_TOC_H__ */

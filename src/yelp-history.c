@@ -27,12 +27,12 @@
 
 #include "yelp-history.h"
 
-static void    help_history_init              (HelpHistory      *history);
-static void    help_history_class_init        (HelpHistoryClass *klass);
-static void    help_history_finalize          (GObject          *object);
-static void    help_history_free_history_list (GList            *history_list);
+static void    yelp_history_init              (YelpHistory      *history);
+static void    yelp_history_class_init        (YelpHistoryClass *klass);
+static void    yelp_history_finalize          (GObject          *object);
+static void    yelp_history_free_history_list (GList            *history_list);
 
-static void    help_history_maybe_emit        (HelpHistory      *history);
+static void    yelp_history_maybe_emit        (YelpHistory      *history);
 					
 enum { 
 	FORWARD_EXISTS_CHANGED,
@@ -42,8 +42,8 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
-struct _HelpHistoryPriv {
-	GList    *help_history_list;
+struct _YelpHistoryPriv {
+	GList    *yelp_history_list;
 	GList    *current;
 
 	gboolean  last_emit_forward;
@@ -51,25 +51,25 @@ struct _HelpHistoryPriv {
 };
 
 GType
-help_history_get_type (void)
+yelp_history_get_type (void)
 {
         static GType history_type = 0;
 
         if (!history_type) {
                 static const GTypeInfo history_info = {
-                        sizeof (HelpHistoryClass),
+                        sizeof (YelpHistoryClass),
                         NULL,
                         NULL,
-                        (GClassInitFunc) help_history_class_init,
+                        (GClassInitFunc) yelp_history_class_init,
                         NULL,
                         NULL,
-                        sizeof (HelpHistory),
+                        sizeof (YelpHistory),
                         0,
-                        (GInstanceInitFunc) help_history_init,
+                        (GInstanceInitFunc) yelp_history_init,
                 };
                 
                 history_type = g_type_register_static (G_TYPE_OBJECT,
-                                                      "HelpHistory", 
+                                                      "YelpHistory", 
                                                       &history_info, 0);
         }
         
@@ -77,13 +77,13 @@ help_history_get_type (void)
 }
 
 static void
-help_history_init (HelpHistory *history)
+yelp_history_init (YelpHistory *history)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
 
-	priv = g_new0 (HelpHistoryPriv, 1);
+	priv = g_new0 (YelpHistoryPriv, 1);
         
-	priv->help_history_list      = NULL;
+	priv->yelp_history_list      = NULL;
 	priv->current           = NULL;
 	priv->last_emit_forward = FALSE;
 	priv->last_emit_back    = FALSE;
@@ -91,19 +91,19 @@ help_history_init (HelpHistory *history)
 }
 
 static void
-help_history_class_init (HelpHistoryClass *klass)
+yelp_history_class_init (YelpHistoryClass *klass)
 {
         GObjectClass *object_class;
         
         object_class = (GObjectClass *) klass;
 
-        object_class->finalize = help_history_finalize;
+        object_class->finalize = yelp_history_finalize;
 
 	signals[FORWARD_EXISTS_CHANGED] =
                 g_signal_new ("forward_exists_changed",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (HelpHistoryClass, 
+                              G_STRUCT_OFFSET (YelpHistoryClass, 
                                                forward_exists_changed),
                               NULL, NULL,
                               g_cclosure_marshal_VOID__BOOLEAN,
@@ -114,7 +114,7 @@ help_history_class_init (HelpHistoryClass *klass)
 		g_signal_new ("back_exists_changed",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (HelpHistoryClass,
+                              G_STRUCT_OFFSET (YelpHistoryClass,
                                                back_exists_changed),
                               NULL, NULL,
                               g_cclosure_marshal_VOID__BOOLEAN,
@@ -123,23 +123,23 @@ help_history_class_init (HelpHistoryClass *klass)
 }
 
 static void
-help_history_finalize (GObject *object)
+yelp_history_finalize (GObject *object)
 {
-	HelpHistory     *history;
-	HelpHistoryPriv *priv;
+	YelpHistory     *history;
+	YelpHistoryPriv *priv;
 	GList           *node;
         
 	g_return_if_fail (object != NULL);
-	g_return_if_fail (HELP_IS_HISTORY (object));
+	g_return_if_fail (YELP_IS_HISTORY (object));
         
-	history = HELP_HISTORY (object);
+	history = YELP_HISTORY (object);
 	priv    = history->priv;
         
-	for (node = priv->help_history_list; node; node = node->next) {
+	for (node = priv->yelp_history_list; node; node = node->next) {
 		g_free (node->data);
 	}
 
-	g_list_free (priv->help_history_list);
+	g_list_free (priv->yelp_history_list);
 
 	g_free (priv);
 
@@ -147,37 +147,37 @@ help_history_finalize (GObject *object)
 }
 
 static void
-help_history_free_history_list (GList *help_history_list)
+yelp_history_free_history_list (GList *yelp_history_list)
 {
 	GList *node;
         
-	for (node = help_history_list; node; node = node->next) {
-		g_free (node->data);
+	for (node = yelp_history_list; node; node = node->next) {
+		yelp_section_free ((YelpSection *) node->data);
 	}
 
-	g_list_free (help_history_list);
+	g_list_free (yelp_history_list);
 }
 
 static void
-help_history_maybe_emit (HelpHistory *history)
+yelp_history_maybe_emit (YelpHistory *history)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
 		
 	g_return_if_fail (history != NULL);
-	g_return_if_fail (HELP_IS_HISTORY (history));
+	g_return_if_fail (YELP_IS_HISTORY (history));
 	
 	priv = history->priv;
 	
-	if (priv->last_emit_forward != help_history_exist_forward (history)) {
-		priv->last_emit_forward = help_history_exist_forward (history);
+	if (priv->last_emit_forward != yelp_history_exist_forward (history)) {
+		priv->last_emit_forward = yelp_history_exist_forward (history);
 		
 		g_signal_emit (history,
                                signals[FORWARD_EXISTS_CHANGED],
                                priv->last_emit_forward);
 	}
 
-	if (priv->last_emit_back != help_history_exist_back (history)) {
-		priv->last_emit_back = help_history_exist_back (history);
+	if (priv->last_emit_back != yelp_history_exist_back (history)) {
+		priv->last_emit_back = yelp_history_exist_back (history);
 		
 		g_signal_emit (history,
                                signals[BACK_EXISTS_CHANGED],
@@ -186,80 +186,80 @@ help_history_maybe_emit (HelpHistory *history)
 }
 
 void
-help_history_goto (HelpHistory *history, const gchar *str)
+yelp_history_goto (YelpHistory *history, const YelpSection *section)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
 	GList           *forward_list;
 	
 	g_return_if_fail (history != NULL);
-	g_return_if_fail (HELP_IS_HISTORY (history));
+	g_return_if_fail (YELP_IS_HISTORY (history));
 
 	priv = history->priv;
 	
-	if (help_history_exist_forward (history)) {
+	if (yelp_history_exist_forward (history)) {
 		forward_list = priv->current->next;
 		priv->current->next = NULL;
 			
-		help_history_free_history_list (forward_list);
+		yelp_history_free_history_list (forward_list);
 	}
 
- 	priv->help_history_list = g_list_append (priv->help_history_list, 
-					    g_strdup (str));
+ 	priv->yelp_history_list = g_list_append (priv->yelp_history_list, 
+						 yelp_section_copy (section));
 	
-	priv->current      = g_list_last (priv->help_history_list);
+	priv->current = g_list_last (priv->yelp_history_list);
 	
-	help_history_maybe_emit (history);
+	yelp_history_maybe_emit (history);
 }
 
-gchar *
-help_history_go_forward (HelpHistory *history)
+const YelpSection *
+yelp_history_go_forward (YelpHistory *history)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
         
 	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (HELP_IS_HISTORY (history), NULL);
+	g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
 
 	priv = history->priv;
         
 	if (priv->current->next) {
 		priv->current = priv->current->next;
 
-		help_history_maybe_emit (history);
+		yelp_history_maybe_emit (history);
 		
-		return g_strdup ((gchar *)priv->current->data);
+		return (YelpSection *) priv->current->data;
 	}
 
 	return NULL;
 }
 
-gchar *
-help_history_go_back (HelpHistory *history)
+const YelpSection *
+yelp_history_go_back (YelpHistory *history)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
 	
 	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (HELP_IS_HISTORY (history), NULL);
+	g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
 
 	priv = history->priv;
         
 	if (priv->current->prev) {
 		priv->current = priv->current->prev;
 
-		help_history_maybe_emit (history);
+		yelp_history_maybe_emit (history);
 
-		return g_strdup ((gchar *) priv->current->data);
+		return (YelpSection *) priv->current->data;
 	}
         
 	return NULL;
 }
 
-gchar *
-help_history_get_current (HelpHistory *history)
+const YelpSection *
+yelp_history_get_current (YelpHistory *history)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
 	
 	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (HELP_IS_HISTORY (history), NULL);
+	g_return_val_if_fail (YELP_IS_HISTORY (history), NULL);
 
 	priv = history->priv;
 	
@@ -267,16 +267,16 @@ help_history_get_current (HelpHistory *history)
 		return NULL;
 	}
 
-	return g_strdup ((gchar *) priv->current->data);
+	return (YelpSection *) priv->current->data;
 }
 
 gboolean
-help_history_exist_forward (HelpHistory *history)
+yelp_history_exist_forward (YelpHistory *history)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
         
 	g_return_val_if_fail (history != NULL, FALSE);
-	g_return_val_if_fail (HELP_IS_HISTORY (history), FALSE);
+	g_return_val_if_fail (YELP_IS_HISTORY (history), FALSE);
         
 	priv = history->priv;
         
@@ -292,12 +292,12 @@ help_history_exist_forward (HelpHistory *history)
 }
 
 gboolean
-help_history_exist_back (HelpHistory *history)
+yelp_history_exist_back (YelpHistory *history)
 {
-	HelpHistoryPriv *priv;
+	YelpHistoryPriv *priv;
         
 	g_return_val_if_fail (history != NULL, FALSE);
-	g_return_val_if_fail (HELP_IS_HISTORY (history), FALSE);
+	g_return_val_if_fail (YELP_IS_HISTORY (history), FALSE);
 
 	priv = history->priv;
         
@@ -312,9 +312,9 @@ help_history_exist_back (HelpHistory *history)
 	return FALSE;
 }
 
-HelpHistory *
-help_history_new ()
+YelpHistory *
+yelp_history_new ()
 {
-	return g_object_new (HELP_TYPE_HISTORY, NULL);
+	return g_object_new (YELP_TYPE_HISTORY, NULL);
 }
 
