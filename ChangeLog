@@ -1,5 +1,16 @@
 2003-11-30  Shaun McCance  <shaunm@gnome.org>
 
+	* data/toc.xml.in:
+	- Implementing more of the TOC.
+
+	* src/yelp-toc-pager.c:
+	- Don't reverse the subcategories in a TOC.
+
+	* src/yelp-window.c:
+	- Make the sidebar actually appear.
+
+2003-11-30  Shaun McCance  <shaunm@gnome.org>
+
 	- Some changes I forgot to commit on transformation-playground before merging.
 
 	* src/yelp-db-pager.c:

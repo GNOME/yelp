@@ -563,7 +563,7 @@ window_set_sections (YelpWindow   *window,
 	children = gtk_container_get_children (GTK_CONTAINER (priv->main_box));
 
 	for (child = children; child; child = child->next)
-	    if (child->data == priv->html_view)
+	    if (child->data == priv->html_sw)
 		has_child = TRUE;
 
 	if (has_child) {

@@ -2,18 +2,230 @@
 <toc id="index">
 	<_title>Help Contents</_title>
 
-	<toc id="internet">
+	<toc id="Desktop">
+		<_title>Desktop</_title>
+
+		<category>GNOME|Core Desktop</category>
+	</toc>
+
+	<toc id="Games">
+		<_title>Games and Entertainment</_title>
+
+		<category>Applications|Amusement</category>
+		<category>Applications|Games</category>
+		<category>Applications|Games|Arcade</category>
+		<category>Applications|Games|Board</category>
+		<category>Applications|Games|First Person Shooters</category>
+		<category>Applications|Games|Puzzles</category>
+		<category>Applications|Games|Fighting</category>
+		<category>Applications|Games|Role-Playing</category>
+		<category>Applications|Games|Simulation</category>
+		<category>Applications|Games|Strategy</category>
+		<category>Applications|Games|Other</category>
+		<category>GNOME|Games</category>
+	</toc>
+
+	<toc id="Education Applications">
+		<_title>Education</_title>
+
+		<category>Applications|Education</category>
+		<category>Applications|Eduction|Arts</category>
+		<category>Applications|Eduction|Computer Science</category>
+		<category>Applications|Eduction|English</category>
+		<category>Applications|Eduction|Language</category>
+		<category>Applications|Eduction|Maths</category>
+		<category>Applications|Eduction|Music</category>
+		<category>Applications|Eduction|Science</category>
+		<category>Applications|Eduction|Technology</category>
+		<category>Applications|Eduction|Testing</category>
+		<category>Applications|Eduction|Other</category>
+	</toc>
+
+	<toc id="Internet">
 		<_title>Internet Applications</_title>
 
+		<category>Applications|Internet</category>
+		<category>Applications|Internet|Chat</category>
+		<category>Applications|Internet|Email</category>
+		<category>Applications|Internet|Fax</category>
+		<category>Applications|Internet|File Sharing</category>
+		<category>Applications|Internet|FTP</category>
+		<category>Applications|Internet|Internet Phone</category>
+		<category>Applications|Internet|Messaging</category>
+		<category>Applications|Internet|News</category>
+		<category>Applications|Internet|Video Conferencing</category>
+		<category>Applications|Internet|Web</category>
+		<category>Applications|Internet|Other</category>
 		<category>GNOME|Internet</category>
 	</toc>
 
-	<toc id="multimedia">
+	<toc id="Multimedia">
 		<_title>Multimedia Applications</_title>
 
+		<category>Applications|Multimedia</category>
+		<category>Applications|Multimedia|Graphics</category>
+		<category>Applications|Multimedia|Graphics|3D Modelling</category>
+		<category>Applications|Multimedia|Graphics|3D Rendering</category>
+		<category>Applications|Multimedia|Graphics|CAD</category>
+		<category>Applications|Multimedia|Graphics|Capture</category>
+		<category>Applications|Multimedia|Graphics|Conversion</category>
+		<category>Applications|Multimedia|Graphics|Drawing</category>
+		<category>Applications|Multimedia|Graphics|Editing</category>
+		<category>Applications|Multimedia|Graphics|Viewing</category>
+		<category>Applications|Multimedia|Graphics|Other</category>
+		<category>Applications|Multimedia|Sound</category>
+		<category>Applications|Multimedia|Sound|Analysis</category>
+		<category>Applications|Multimedia|Sound|CD Mastering</category>
+		<category>Applications|Multimedia|Sound|Conversion</category>
+		<category>Applications|Multimedia|Sound|Editing</category>
+		<category>Applications|Multimedia|Sound|MIDI</category>
+		<category>Applications|Multimedia|Sound|Mixers</category>
+		<category>Applications|Multimedia|Sound|Players</category>
+		<category>Applications|Multimedia|Sound|Recording</category>
+		<category>Applications|Multimedia|Sound|Speech</category>
+		<category>Applications|Multimedia|Sound|Other</category>
+		<category>Applications|Multimedia|Video</category>
+		<category>Applications|Multimedia|Video|Capture</category>
+		<category>Applications|Multimedia|Video|Conversion</category>
+		<category>Applications|Multimedia|Video|Display</category>
+		<category>Applications|Multimedia|Video|Editing</category>
+		<category>Applications|Multimedia|Video|Other</category>
+		<category>Applications|Multimedia|Other</category>
 		<category>GNOME|Multimedia</category>
+	</toc>
+
+	<toc id="Office">
+		<_title>Office and Productivity Applications</_title>
+
+		<category>Applications|Office</category>
+		<category>Applications|Office|Calendar</category>
+		<category>Applications|Office|Data Processing</category>
+		<category>Applications|Office|Database</category>
+		<category>Applications|Office|Email</category>
+		<category>Applications|Office|Financial</category>
+		<category>Applications|Office|PIM</category>
+		<category>Applications|Office|Plotting</category>
+		<category>Applications|Office|Presentation</category>
+		<category>Applications|Office|Publishing</category>
+		<category>Applications|Office|Publishing|Web Publishing</category>
+		<category>Applications|Office|Word Processing</category>
+		<category>Applications|Office|Other</category>
 	</toc>
 </toc>
 
-	
-	
+<!--
+Applications
+
+<_title>Scientific Applications</_title>
+Applications|Scientific
+Applications|Scientific|Astronomy
+Applications|Scientific|Astrophysics
+Applications|Scientific|Biology
+Applications|Scientific|Chemistry
+Applications|Scientific|EDA
+Applications|Scientific|Genetics
+Applications|Scientific|Math
+Applications|Scientific|Physics
+Applications|Scientific|Visualisation
+Applications|Scientific|Other
+
+
+Applications|Security
+Applications|Security|Cryptography
+Applications|Security|Other
+Applications|Text Editors
+Applications|Text Editors|CLI
+Applications|Text Editors|GUI
+Applications|Text Editors|Other
+Applications|Utilities
+Applications|Utilities|Archiving
+Applications|Utilities|Calculating
+Applications|Utilities|Clocks
+Applications|Utilities|Compression
+Applications|Utilities|File Utilities
+Applications|Utilities|Monitors
+Applications|Utilities|Printing
+Applications|Utilities|Terminals
+Applications|Utilities|Text Utilities
+Applications|Utilities|Other
+Applications|X
+Applications|X|Configuration
+Applications|X|Fonts
+Applications|X|Login Managers
+Applications|X|Screensavers
+Applications|X|Window Managers
+Applications|X|Other
+CDE
+Development
+Development|Databases
+Development|Development Tools
+Development|Development Tools|Build Tools
+Development|Development Tools|Code Generators
+Development|Development Tools|Configuration
+Development|Development Tools|Debuggers
+Development|Development Tools|IDEs
+Development|Development Tools|Packaging
+Development|Development Tools|Profiling
+Development|Development Tools|RAD
+Development|Development Tools|Version Control
+Development|Development Tools|Other
+Development|Environments
+Development|Environments|ADA
+Development|Environments|C
+Development|Environments|C++
+Development|Environments|GNOME
+Development|Environments|GTK+
+Development|Environments|gtk++
+Development|Environments|Java
+Development|Environments|KDE
+Development|Environments|Perl
+Development|Environments|Python
+Development|Environments|Qt
+Development|Environments|Tcl/Tk
+Development|Environments|WebML
+Development|Environments|Other
+Development|Kernels
+Development|Kernels|FreeBSD
+Development|Kernels|Linux
+Development|Kernels|NetBSD
+Development|Kernels|Other
+Development|Libraries
+Development|System Calls
+Development|Other
+General
+General|Licenses
+General|Linux
+General|Linux|Distributions
+General|Linux|Distributions|Caldera
+General|Linux|Distributions|Debian
+General|Linux|Distributions|Mandrake
+General|Linux|Distributions|Red Flag
+General|Linux|Distributions|Red Hat
+General|Linux|Distributions|Slackware
+General|Linux|Distributions|SuSE
+General|Linux|Distributions|Other
+General|Linux|General
+General|Linux|Other
+General|Other
+GNOME
+GNOME|Applets
+GNOME|Applets|Amusement
+GNOME|Applets|Clock
+GNOME|Applets|Monitors
+GNOME|Applets|Multimedia
+GNOME|Applets|Network
+GNOME|Applets|Utility
+GNOME|Applications
+GNOME|Utilities
+GNOME|Development
+GNOME|Development|Applications
+GNOME|Development|Introductory
+GNOME|Development|Tutorials
+GNOME|Development|White Papers
+GNOME|Graphics
+GNOME|Settings
+GNOME|System
+GNOME|Other
+KDE
+KDE|Utilities
+-->

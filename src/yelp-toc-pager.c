@@ -533,7 +533,7 @@ toc_process_toc_pending (YelpTocPager *pager)
 	if (cur->type == XML_ELEMENT_NODE) {
 	    if (!xmlStrcmp (cur->name, "toc")) {
 		priv->toc_pending = g_slist_append (priv->toc_pending, cur);
-		subcats = g_slist_prepend (subcats, cur);
+		subcats = g_slist_append (subcats, cur);
 	    }
 	    else if (!xmlStrcmp (cur->name, "category")) {
 		GSList  *omf;
