@@ -92,7 +92,7 @@ yelp_db2html_convert (const gchar         *document,
                 gchar *gdb_stylesheet;
                 /* stylesheet location based on Linux Standard Base      *
                  * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
-                gdb_stylesheet = g_strconcat (PREFIX "/share/sgml/docbook/gnome-customization-0.1/gnome-customization.xsl", NULL);
+                gdb_stylesheet = g_strconcat (DATADIR "/sgml/docbook/yelp/yelp-customization.xsl", NULL);
 
                 gdb_xslreturn  = xsltParseStylesheetFile ((const xmlChar *) gdb_stylesheet);
                 g_free (gdb_stylesheet);
@@ -161,10 +161,7 @@ yelp_db2html_convert (const gchar         *document,
 	params[4] = NULL;
 
 	if (has_rootid) {
-                /* FIXME: Change this when sander has the new 
-                   stylesheets ready */
-                params[4] = "rootid";
-/*  		params[4] = "gdb_rootid"; */
+  		params[4] = "gdb_rootid"; 
 		params[5] = g_strconcat("\"", gdb_rootid + 1, "\"", NULL) ;
 		params[6] = NULL;
 	}

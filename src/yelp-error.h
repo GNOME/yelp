@@ -26,7 +26,9 @@
 #define YELP_ERROR yelp_error_quark ()
 
 typedef enum {
-        YELP_ERROR_DOCBOOK_2_HTML
+        YELP_ERROR_DOCBOOK_2_HTML,
+        YELP_ERROR_FAILED_OPEN
+        
 } YelpError;
 
 GQuark yelp_error_quark (void) G_GNUC_CONST;

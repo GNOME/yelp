@@ -1,4 +1,4 @@
-SUBDIRS = src po
+SUBDIRS = src stylesheets po
 
 @INTLTOOL_DESKTOP_RULE@
 

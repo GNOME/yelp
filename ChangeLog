@@ -1,3 +1,23 @@
+2002-04-15  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-html.c (yelp_html_do_non_docbook): 
+	- show error dialog if open fails.
+
+	* src/yelp-error.h (YELP_ERROR): added error for non-docbook
+	  documents.
+
+	* src/yelp-db2html.c (yelp_db2html_convert): use stylesheet from
+	  stylesheets/.
+	(yelp_db2html_convert): updated to reflect changes in the
+	  stylesheet.
+
+	* stylesheets/*: Added, includs patch from sander to
+	  gnome-doc-list.
+	
+	* configure.in (AC_OUTPUT): added stylesheets/Makefile.
+
+	* Makefile.am (SUBDIRS): added stylesheets
+
 2002-04-14  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-toc.c: pretty-fied the sub-pages too.

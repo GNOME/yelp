@@ -35,6 +35,7 @@
 #include "yelp-util.h"
 #include "yelp-marshal.h"
 #include "yelp-db2html.h"
+#include "yelp-error.h"
 #include "yelp-html.h"
 
 #define d(x)
@@ -205,6 +206,8 @@ yelp_html_do_close (void *context)
 	gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
 				  0);
 
+	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, NULL);
+
 	return 0;
 }
 
@@ -299,7 +302,11 @@ yelp_html_do_non_docbook (YelpHtml *html, HtmlStream *stream,
 	d(g_print ("Opening took: %f\n", g_timer_elapsed (timer, 0)));
 	
 	if (result != GNOME_VFS_OK) {
-		g_warning ("Failed to open: %s", uri);
+		g_set_error (error,
+			     YELP_ERROR,
+			     YELP_ERROR_FAILED_OPEN,
+			     _("Failed to open document '%s'"),
+			     uri);
 		return;
 	}
 
