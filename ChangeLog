@@ -1,5 +1,8 @@
 2002-05-22  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-db2html.c (yelp_db2html_convert): 
+	- use the new stylesheet parameter gdb_stylesheet_path.
+
 	* src/yelp-reader.c (reader_man_info_start): support chunked info.
 
 	* src/yelp-html-gtkhtml2.c

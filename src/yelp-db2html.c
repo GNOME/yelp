@@ -47,7 +47,8 @@
 
 /* stylesheet location based on Linux Standard Base      *
  * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */
-#define STYLESHEET DATADIR"/sgml/docbook/yelp/yelp-customization.xsl"
+#define STYLESHEET_PATH DATADIR"/sgml/docbook/yelp"
+#define STYLESHEET STYLESHEET_PATH"/yelp-customization.xsl"
 
 gboolean
 yelp_db2html_convert (YelpURI             *uri,
@@ -112,17 +113,19 @@ yelp_db2html_convert (YelpURI             *uri,
 	params[1] = g_strconcat("\"", yelp_uri_get_path (uri), "\"", NULL) ;
 	params[2] = "gdb_pathname";
 	params[3] = g_strconcat("\"", pathname, "\"", NULL) ;
-	params[4] = NULL;
-
+	params[4] = "gdb_stylesheet_path";
+        params[5] = STYLESHEET_PATH;
+        params[6] = NULL;
+        
         g_free (pathname);
 
 	if (yelp_uri_get_section (uri)) {
-  		params[4] = "gdb_rootid"; 
-		params[5] = g_strconcat("\"", 
+  		params[6] = "gdb_rootid"; 
+		params[7] = g_strconcat("\"", 
                                         yelp_uri_get_section (uri), 
                                         "\"", 
                                         NULL) ;
-		params[6] = NULL;
+		params[8] = NULL;
 	}
 
         final_doc = xsltApplyStylesheet (stylesheet, db_doc, params);
