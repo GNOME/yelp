@@ -1,11 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Peteris Krisjanis <peteris.krisjanis@ttc.lv>, 2002
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-12 07:35-0500\n"
+"Project-Id-Version: yelp 0.5.99\n"
+"POT-Creation-Date: 2002-04-11 12:47+0200\n"
 "PO-Revision-Date: 2002-01-15 17:50+0200\n"
 "Last-Translator: Peteris Krisjanis <peteris.krisjanis@ttc.lv>\n"
 "Language-Team: Latvian <ll10nt@ttc.lv>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: src/GNOME_Yelp.server.in.h:1 yelp.desktop.in.h:2
+#: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -22,177 +22,276 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Ražotne"
 
-#: src/gtktreemodelfilter.c:263
-msgid "TreeModelFilter model"
-msgstr "TreeModelFilter modelis"
-
-#: src/gtktreemodelfilter.c:264
-msgid "The model for the TreeModelFilter to filter"
-msgstr "modelis TreeModeFilter filtram"
-
-#: src/yelp-html.c:381
-msgid ""
-"<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
-"head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a help "
-"browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please read the "
-"README and TODO<br></body></html>"
+#: src/yelp-html.c:136
+msgid "Loading..."
 msgstr ""
-"<html><head><title>Šis ir Yelp, GNOME 2.0 palīdzības pārlūks</title></"
-"head><body bgcolor=\"white\"><h3>Sveicināti Yelp!</h3>Šis būs GNOME 2.0 palīdzības pārlūks,"
-"autors Mikael Hallendal.<br><br>Lūdzu izlasiet "
-"README un TODO<br></body></html>"
 
-#: src/yelp-info.c:92
-msgid "Info Pages"
-msgstr "Info Lapas"
+#: src/yelp-info.c:141
+msgid "info"
+msgstr ""
 
-#: src/yelp-main.c:77
+#: src/yelp-main.c:109
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Nevar aktivizēt Yelp: '%s'"
 
-#: src/yelp-main.c:97
+#: src/yelp-main.c:128
 msgid "Could not open new window."
 msgstr "Nevar atvērt jaunu logu."
 
-#: src/yelp-man.c:266 src/yelp-man.c:287 src/yelp-man.c:323 src/yelp-man.c:355
-#: src/yelp-man.c:371 src/yelp-man.c:382
+#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
+#: src/yelp-man.c:406 src/yelp-man.c:417
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:271 src/yelp-man.c:302 src/yelp-man.c:360 src/yelp-man.c:387
+#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:276
+#: src/yelp-man.c:311
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:292
+#: src/yelp-man.c:327
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:297
+#: src/yelp-man.c:332
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:307
+#: src/yelp-man.c:342
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:312
+#: src/yelp-man.c:347
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:334
+#: src/yelp-man.c:369
 msgid "System Calls"
 msgstr "Sistēmu Izsaukumi"
 
-#: src/yelp-man.c:339
+#: src/yelp-man.c:374
 msgid "Library Functions"
 msgstr "Bibliotēku Funkcijas"
 
-#: src/yelp-man.c:344
+#: src/yelp-man.c:379
 msgid "Kernel Routines"
 msgstr "Kodola Rutīnas"
 
-#: src/yelp-man.c:399
+#: src/yelp-man.c:434
 msgid "Applications"
 msgstr "Aplikācija"
 
-#: src/yelp-man.c:404
+#: src/yelp-man.c:439
 msgid "Development"
 msgstr "Veidošana"
 
-#: src/yelp-man.c:409
+#: src/yelp-man.c:444
 msgid "Hardware Devices"
 msgstr "Aparatūras Iekārtas"
 
-#: src/yelp-man.c:414
+#: src/yelp-man.c:449
 msgid "Configuration Files"
 msgstr "Kofigurācijas Faili"
 
-#: src/yelp-man.c:419
+#: src/yelp-man.c:454
 msgid "Games"
 msgstr "Spēles"
 
-#: src/yelp-man.c:424
+#: src/yelp-man.c:459
 msgid "Overviews"
 msgstr "Apskati"
 
-#: src/yelp-man.c:429
+#: src/yelp-man.c:464
 msgid "System Administration"
 msgstr "Sistēmas Administrēšana"
 
-#: src/yelp-man.c:440
-msgid "Manual Pages"
-msgstr "Rokasgrāmatu Lapas"
+#: src/yelp-man.c:475
+msgid "man"
+msgstr ""
 
-#: src/yelp-view-content.c:159 src/yelp-view-index.c:172
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:364
 msgid "Section"
 msgstr "Sekcija"
 
-#: src/yelp-window.c:109
+#: src/yelp-view-index.c:327
+msgid "Search for:"
+msgstr ""
+
+#: src/yelp-view-toc.c:315
+msgid "Get help on..."
+msgstr ""
+
+#: src/yelp-view-toc.c:316
+msgid "GNOME - Desktop"
+msgstr ""
+
+#: src/yelp-view-toc.c:317
+msgid "Additional documents"
+msgstr ""
+
+#: src/yelp-view-toc.c:318 src/yelp-view-toc.c:517 src/yelp-view-toc.c:749
+#, fuzzy
+msgid "Manual pages"
+msgstr "Rokasgrāmatu Lapas"
+
+#: src/yelp-view-toc.c:319 src/yelp-view-toc.c:518 src/yelp-view-toc.c:826
+#: src/yelp-view-toc.c:845
+#, fuzzy
+msgid "Info pages"
+msgstr "Info Lapas"
+
+#: src/yelp-view-toc.c:516
+msgid "Other Documents"
+msgstr ""
+
+#: src/yelp-view-toc.c:519
+msgid "Installed documents"
+msgstr ""
+
+#: src/yelp-view-toc.c:533
+msgid "Start page"
+msgstr ""
+
+#: src/yelp-view-toc.c:779
+msgid "Manual Pages"
+msgstr "Rokasgrāmatu Lapas"
+
+#: src/yelp-window.c:150
 msgid "/_File"
 msgstr "/_Fails"
 
-#: src/yelp-window.c:110
+#: src/yelp-window.c:151
 msgid "/File/_New window"
 msgstr "/Fails/_Jauns logs"
 
-#: src/yelp-window.c:111
+#: src/yelp-window.c:152
 msgid "/File/_Close window"
 msgstr "/Fails/_Aizvērt logu"
 
-#: src/yelp-window.c:112
-msgid "/File/E_xit"
-msgstr "/Fails/Iziet"
+#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:154
+msgid "/_Go"
+msgstr ""
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:155
+msgid "/Go/_Back"
+msgstr ""
+
+#: src/yelp-window.c:156
+msgid "/Go/_Forward"
+msgstr ""
+
+#: src/yelp-window.c:157
+msgid "/Go/_Home"
+msgstr ""
+
+#: src/yelp-window.c:158
+msgid "/Go/_Index"
+msgstr ""
+
+#: src/yelp-window.c:159
 msgid "/_Help"
 msgstr "/_Palīdzēt"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:160
 msgid "/Help/_About"
 msgstr "/Palīdzēt/_Par"
 
-#: src/yelp-window.c:161
+#: src/yelp-window.c:219
 msgid "Help Browser"
 msgstr "Palīdzības Pārlūks"
 
-#: src/yelp-window.c:376
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:547
+msgid "translator_credits"
+msgstr ""
+
+#: src/yelp-window.c:551
 msgid "Help Browser for GNOME 2.0"
 msgstr "GNOME 2.0 Palīdzības Pārlūks"
 
-#: src/yelp-window.c:400
-msgid "Go back in the history list"
-msgstr "Iet atpakaļ vēstures sarakstā"
+#: src/yelp-window.c:605
+msgid "Back"
+msgstr ""
 
-#: src/yelp-window.c:415
-msgid "Go forth in the history list"
-msgstr "Iet uz priekšu vēstures sarakstā"
+#: src/yelp-window.c:606
+msgid "Show previous page in history"
+msgstr ""
 
-#: src/yelp-window.c:430
-msgid "Overview of contents"
-msgstr "Satura pārskats"
+#: src/yelp-window.c:617
+msgid "Forward"
+msgstr ""
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:618
+msgid "Show next page in history"
+msgstr ""
+
+#: src/yelp-window.c:631
+msgid "Home"
+msgstr ""
+
+#: src/yelp-window.c:632
+msgid "Go to home view"
+msgstr ""
+
+#: src/yelp-window.c:642
+msgid "Index"
+msgstr ""
+
+#: src/yelp-window.c:643
 msgid "Search in the index"
 msgstr "Meklēt indeksā"
 
-#: src/yelp-window.c:453
-msgid "Search for a phrase in the document"
-msgstr "Meklēt frāzi dokumentā"
-
-#: src/yelp-window.c:459
-msgid "Help on "
-msgstr "Palīdzēt par"
-
-#: src/yelp-window.c:464
-msgid "Enter phrase to search for in all documents"
-msgstr "Ievadiet frāzi meklēšanai par visiem dokumentiem"
-
 #: yelp.desktop.in.h:1
-msgid "GNOME Helpbrowser"
-msgstr "GNOME Palīdzības pārlūks"
+msgid "Get help with GNOME"
+msgstr ""
 
+#: yelp.desktop.in.h:2
+#, fuzzy
+msgid "Help"
+msgstr "/_Palīdzēt"
+
+#~ msgid "TreeModelFilter model"
+#~ msgstr "TreeModelFilter modelis"
+
+#~ msgid "The model for the TreeModelFilter to filter"
+#~ msgstr "modelis TreeModeFilter filtram"
+
+#~ msgid ""
+#~ "<html><head><title>This is Yelp, a help browser for GNOME 2.0</title></"
+#~ "head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to be a "
+#~ "help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please "
+#~ "read the README and TODO<br></body></html>"
+#~ msgstr ""
+#~ "<html><head><title>Šis ir Yelp, GNOME 2.0 palīdzības pārlūks</title></"
+#~ "head><body bgcolor=\"white\"><h3>Sveicināti Yelp!</h3>Šis būs GNOME 2.0 "
+#~ "palīdzības pārlūks,autors Mikael Hallendal.<br><br>Lūdzu izlasiet README "
+#~ "un TODO<br></body></html>"
+
+#~ msgid "/File/E_xit"
+#~ msgstr "/Fails/Iziet"
+
+#~ msgid "Go back in the history list"
+#~ msgstr "Iet atpakaļ vēstures sarakstā"
+
+#~ msgid "Go forth in the history list"
+#~ msgstr "Iet uz priekšu vēstures sarakstā"
+
+#~ msgid "Overview of contents"
+#~ msgstr "Satura pārskats"
+
+#~ msgid "Search for a phrase in the document"
+#~ msgstr "Meklēt frāzi dokumentā"
+
+#~ msgid "Help on "
+#~ msgstr "Palīdzēt par"
+
+#~ msgid "Enter phrase to search for in all documents"
+#~ msgstr "Ievadiet frāzi meklēšanai par visiem dokumentiem"
+
+#~ msgid "GNOME Helpbrowser"
+#~ msgstr "GNOME Palīdzības pārlūks"
