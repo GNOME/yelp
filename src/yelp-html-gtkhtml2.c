@@ -271,7 +271,7 @@ yelp_html_new (void)
  	yelp_html_clear (html);
 	
  	{
- 		gchar *text = "<html><body bgcolor=\"white\"></body></html>";
+ 		gchar *text = "<html><body></body></html>";
 
  		yelp_html_write (html, text, -1);
  	}
