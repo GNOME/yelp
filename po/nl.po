@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-10-10 13:28+0200\n"
+"POT-Creation-Date: 2004-11-02 20:20+0100\n"
+"PO-Revision-Date: 2004-11-03 03:17+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -100,37 +100,41 @@ msgstr "Hulpmiddelen"
 msgid "X Applications"
 msgstr "X-toepassingen"
 
+# fixed text?
+# platte tekst als compromis, dit is eigenlijk
+# tekst met vaste breedte-lettertype
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Lettertype voor platte tekst"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Lettertype voor tekst"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Lettertype voor tekst met vaste breedte."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Lettertype voor tekst met variabele breedte."
 
+# vertaald als weergeven ipv bekijken
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Bij het weergeven van pagina's een caret gebruiken die met het toetsenbord bediend kan worden."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "caret gebruiken"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Systeemlettertypes gebruiken"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "De standaard systeemlettertypes gebruiken"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -138,11 +142,11 @@ msgstr "*"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Toegangkelijkheid</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Lettertypes</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -153,18 +157,16 @@ msgid "Find"
 msgstr "Zoeken"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "_Lokatie openen"
+msgstr "Lokatie openen"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Verwijzing"
+msgstr "Voorkeuren"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Met caret verkennen"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
@@ -172,12 +174,11 @@ msgstr "_Zoeken: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Vaste breedte:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "_Lokatie openen"
+msgstr "_Lokatie:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -189,11 +190,11 @@ msgstr "V_orige"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Systeemlettertypes gebruiken:"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Variabele breedte:"
 
 # hele discussie hierover op http://home.o2w.net/~ivo/wiki.pl?WrapAround
 # Betere vertaling hier in yelp?
@@ -392,20 +393,19 @@ msgstr "Venster sl_uiten"
 
 #: src/yelp-window.c:304
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopiëren"
 
 #: src/yelp-window.c:309
 msgid "_Find..."
 msgstr "_Zoeken..."
 
 #: src/yelp-window.c:314
-#, fuzzy
 msgid "_Preferences"
-msgstr "Verwijzing"
+msgstr "_Voorkeuren"
 
 #: src/yelp-window.c:319
 msgid "_Reload"
-msgstr ""
+msgstr "_Herladen"
 
 #: src/yelp-window.c:325
 msgid "_Back"
@@ -444,17 +444,16 @@ msgid "_Contents"
 msgstr "_Inhoudsopgave"
 
 #: src/yelp-window.c:355
-#, fuzzy
 msgid "_Open Link"
-msgstr "_Lokatie openen"
+msgstr "_Link openen"
 
 #: src/yelp-window.c:360
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Link openen in _nieuwe venster"
 
 #: src/yelp-window.c:365
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "Linkadres _kopiëren"
 
 #: src/yelp-window.c:371
 msgid "_About"
@@ -766,6 +765,8 @@ msgstr "Waarschuwing"
 msgid "Get help with GNOME"
 msgstr "Hulp bij GNOME"
 
+# Nederlands gebruikt dubbele aanhalingsteken voor een quotatie.
+# Enkele voor een aanhaling
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
 #. blockquote elements.  Different languages use different opening
@@ -790,7 +791,7 @@ msgstr "Hulp bij GNOME"
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
 # Een Hulp voor GNOME, een Hulp-programma voor GNOME
 #~ msgid "A Help Browser for GNOME"
