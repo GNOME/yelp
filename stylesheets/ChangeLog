@@ -1,5 +1,10 @@
 2003-12-29  Shaun McCance  <shaunm@gnome.org>
 
+	* db2html-division.xsl:
+	- Pull titles from articleinfo and bookinfo when necessary.
+
+2003-12-29  Shaun McCance  <shaunm@gnome.org>
+
 	* db2html-header.xsl
 	- Implement @label attribute.
 
@@ -254,7 +259,7 @@
 	* l10n.xml: Added Previous, Next, Contents translation for
 	Serbian.
 
-2003-09-04  Shaun McCance  <shaunm@wolfram.com>
+2003-09-04  Shaun McCance  <shaunm@gnome.org>
 
 	* l10n.xml:
 	- Updated Italian translation from Luca Ferretti
@@ -263,59 +268,59 @@
 
 	* l10n.xml: Added Serbian translation.
 
-2003-08-31  Shaun McCance  <shaunm@wolfram.com>
+2003-08-31  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Fixed bad anchor tag on certain headers.
 
-2003-08-12  Shaun McCance  <shaunm@wolfram.com>
+2003-08-12  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-functions.xsl:
 	- Fixed stupid bad syntax in yelp:get-admon.class
 
-2003-07-31  Shaun McCance  <shaunm@wolfram.com>
+2003-07-31  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Fix for the thing where parts got two TOCs.
 
-2003-07-29  Shaun McCance  <shaunm@wolfram.com>
+2003-07-29  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-functions.xsl:
 	- Abilitity to get title from refmeta/refentrytitle.  Probably
 	  a few more things along this line are needed.
 
-2003-07-24  Shaun McCance  <shaunm@wolfram.com>
+2003-07-24  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Remove compatibility with old param names.
 
-2003-07-21  Shaun McCance  <shaunm@wolfram.com>
+2003-07-21  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	* yelp-functions.xsl:
 	- Fix dumb bug where singleton subsections didn't get processed.
 
-2003-07-21  Shaun McCance  <shaunm@wolfram.com>
+2003-07-21  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Revert current to 1.48 until I can investigate more thoroughly.
 	- Put in compatibility with old param names until I can get the
 	  changes pushed through in C.
 
-2003-07-20  Shaun McCance  <shaunm@wolfram.com>
+2003-07-20  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Fix linking problem to toc and title-page introduced
 	  in previous commit.
 
-2003-07-20  Shaun McCance  <shaunm@wolfram.com>
+2003-07-20  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Remove unused params.
 	- Change toc and title-page filenames on file chunking to be
 	  the same as the current GDP stylesheets.
 
-2003-07-20  Shaun McCance  <shaunm@wolfram.com>
+2003-07-20  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Support for chunking to files.
@@ -331,27 +336,27 @@
 	  but titles didn't.
 	- Changed gdb_ [sic] to yelp_.
 
-2003-07-15  Shaun McCance  <shaunm@wolfram.com>
+2003-07-15  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-functions.xsl: Speed improvement
 
-2003-07-11  Shaun McCance  <shaunm@wolfram.com>
+2003-07-11  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-custom.xsl: Put xsl: prefix on use-attribute-sets,
 	  so it'll actually work.
 
-2003-07-10  Shaun McCance  <shaunm@wolfram.com>
+2003-07-10  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-functions.xsl: Only link Previous and Next to divisions
 	  that have the id attribute.  Yelp and SK currently arent'
 	  capable of working with id-less divisions, so we shouldn't
 	  link to them with Previous and Next.
 
-2003-07-07  Shaun McCance  <shaunm@wolfram.com>
+2003-07-07  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-custom.xsl: Initial work on header spacing
 
-2003-07-07  Shaun McCance  <shaunm@wolfram.com>
+2003-07-07  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	* yelp-functions.xsl:
@@ -359,7 +364,7 @@
 	  link in the User Guide and reducing the chance of other subtle bugs
 	  resulting from this stuff.
 
-2003-07-02  Shaun McCance  <shaunm@wolfram.com>
+2003-07-02  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Minor navbar fixes and tweaks.
@@ -369,20 +374,20 @@
 	  rather than if it's the first legalnotice.  More changes to come
 	  to fix some of the heading's spacing in the title page.
 
-2003-07-02  Shaun McCance  <shaunm@wolfram.com>
+2003-07-02  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	- Insert blank <tr> when there's no previous/next link, for alignment.
 	- Make Contents not link to itself in the up link on the bottom navbar.
 
-2003-07-01  Shaun McCance  <shaunm@wolfram.com>
+2003-07-01  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:
 	* yelp-functions.xsl:
 	- Retooled navbar code to make it cleaner and to generate the location
 	  of previous and next links only once per node.
 
-2003-06-29  Shaun Mccance  <shaunm@wolfram.com>
+2003-06-29  Shaun Mccance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl: Transparently thread parts when there is
 	  no id attribute, rather than when there's only one chapter, for

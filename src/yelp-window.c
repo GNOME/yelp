@@ -80,6 +80,8 @@ static GtkWidget * window_create_toolbar          (YelpWindow        *window);
 static GdkPixbuf * window_load_icon               (void);
 static void        window_set_sections            (YelpWindow        *window,
 						   GtkTreeModel      *sections);
+static void        window_handle_uri              (YelpWindow        *window,
+						   YelpURI           *uri);
 static gboolean    window_handle_pager_uri        (YelpWindow        *window,
 						   YelpURI           *uri);
 static gboolean    window_handle_html_uri         (YelpWindow        *window,
@@ -366,12 +368,16 @@ yelp_window_open_uri (YelpWindow  *window,
 {
     YelpWindowPriv *priv;
     GError         *error = NULL;
-    gboolean        handled = FALSE;
+    YelpURI        *cur_uri;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (YELP_IS_URI (uri));
 
     priv = window->priv;
+
+    cur_uri = yelp_history_get_current (window->priv->history);
+    if (cur_uri && yelp_uri_equal (cur_uri, uri))
+ 	return;
 
     yelp_history_goto (window->priv->history, uri);
 
@@ -389,6 +395,22 @@ yelp_window_open_uri (YelpWindow  *window,
 
 	return;
     }
+
+    window_handle_uri (window, uri);
+}
+
+void
+window_handle_uri (YelpWindow  *window,
+		   YelpURI     *uri)
+{
+    YelpWindowPriv *priv;
+    GError         *error = NULL;
+    gboolean        handled = FALSE;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+    g_return_if_fail (YELP_IS_URI (uri));
+
+    priv = window->priv;
 
     switch (yelp_uri_get_resource_type (uri)) {
     case YELP_URI_TYPE_DOCBOOK_XML:
@@ -823,7 +845,12 @@ window_handle_pager_uri (YelpWindow *window,
     else {
 	GtkWidget *menu_item;
 	gchar *loading = _("Loading...");
+	GdkCursor *cursor = gdk_cursor_new (GDK_WATCH);
+
 	yelp_html_clear (priv->html_view);
+
+	gdk_window_set_cursor (GTK_WIDGET (window)->window, cursor);
+	gdk_cursor_unref (cursor);
 
 	menu_item =
 	    gtk_item_factory_get_item_by_action (priv->item_factory,
@@ -1034,6 +1061,8 @@ pager_page_cb (YelpPager *pager,
     uri  = yelp_window_get_current_uri (window);
 
     if (yelp_pager_uri_is_page (pager, page_id, uri)) {
+	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+
 	window_disconnect (window);
 
 	page = (YelpPage *) yelp_pager_get_page (pager, page_id);
@@ -1047,6 +1076,8 @@ pager_error_cb (YelpPager   *pager,
 {
     YelpWindow *window = YELP_WINDOW (user_data);
     GError *error = yelp_pager_get_error (pager);
+
+    gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
     window_disconnect (window);
     window_error (window, error);
@@ -1331,7 +1362,7 @@ window_history_action (YelpWindow        *window,
     }
 	
     if (uri) {
-	yelp_window_open_uri (window, uri);
+	window_handle_uri (window, uri);
     }
 }
 

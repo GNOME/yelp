@@ -1,5 +1,13 @@
 2003-12-29  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-uri.c:
+	- Consider #index to be equal to no fragment.
+
+	* src/yelp-window.c:
+	- Some improvement to the history mechanism.
+
+2003-12-29  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-db-pager.c:
 	- Transpose Titlepage and Contents.
 
@@ -596,12 +604,12 @@
 
 	* src/yelp-window.c: Added self to About
 
-2003-08-27  Shaun McCance  <shaunm@wolfram.com>
+2003-08-27  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-main.c
 	- Fix from alexl for rather nasty problem when DISPLAY is set.
 
-2003-08-26  Shaun McCance  <shaunm@wolfram.com>
+2003-08-26  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-cache.c
 	* src/yelp-cache.h
@@ -612,11 +620,11 @@
 	- Big speedup to transformation of large DocBook documents
 	  by generating navigation links in C from ScrollKeeper info.
 
-2003-08-26  Shaun McCance  <shaunm@wolfram.com>
+2003-08-26  Shaun McCance  <shaunm@gnome.org>
 
 	* README: Updated README so it's correct
 
-2003-08-18  Shaun McCance  <shaunm@wolfram.com>
+2003-08-18  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-window.c: declare variables at top of block
 
@@ -645,7 +653,7 @@
 
 	* configure.in: Added "ne" to ALL_LINGUAS.
 
-2003-08-13  Shaun McCance  <shaunm@wolfram.com>
+2003-08-13  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-view-toc.c
 	- Re-added a closing ul tag that was accidentally removed
@@ -668,7 +676,7 @@
 	* src/info2html/html.c
 	- patch from Shaun re bug #89838
 
-2003-07-24  Shaun McCance  <shaunm@wolfram.com>
+2003-07-24  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-db2html.c:
 	- Change parameters passed to stylesheets.

@@ -559,12 +559,18 @@ yelp_uri_equal_fragment (YelpURI *uri1, YelpURI *uri2)
     if (uri1->priv->frag == NULL) {
 	if (uri2->priv->frag == NULL)
 	    return TRUE;
+	else if (!strcmp (uri2->priv->frag, "index"))
+	    return TRUE;
 	else
 	    return FALSE;
     }
 
-    if (uri2->priv->frag == NULL)
-	return FALSE;
+    if (uri2->priv->frag == NULL) {
+	if (!strcmp (uri1->priv->frag, "index"))
+	    return TRUE;
+	else
+	    return FALSE;
+    }
 
     if (!strcmp (uri1->priv->frag, uri2->priv->frag))
 	return TRUE;
