@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2005-01-10 21:56+0100\n"
+"POT-Creation-Date: 2005-01-20 12:33+0100\n"
+"PO-Revision-Date: 2005-01-20 20:27+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,10 +137,9 @@ msgstr "Vzdělávací aplikace"
 msgid "Graphics"
 msgstr "Grafika"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
 msgid "Help Topics"
-msgstr "Prohlížeč nápovědy"
+msgstr "Témata nápovědy"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -151,28 +150,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Multimédia"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Kancelář"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Ostatní"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Ostatní dokumentace"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Programování"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Vědecké"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Zvuk &amp; Video"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
@@ -191,9 +190,8 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Písma</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "_Záložky"
+msgstr "<b>_Záložky:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
@@ -225,7 +223,7 @@ msgstr "Nastavení"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "_Přejmenovat"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
@@ -303,17 +301,28 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:141
+msgid "Open Bookmark in New Window"
+msgstr "Otevřít záložku v novém okně"
+
+#: src/yelp-bookmarks.c:145
+msgid "Rename Bookmark"
+msgstr "Přejmenovat záložku"
+
+#: src/yelp-bookmarks.c:149
+msgid "Remove Bookmark"
+msgstr "Odstranit záložku"
+
+#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Na tuto stránku již existuje záložka nazvaná <b>%s</b>."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: src/yelp-bookmarks.c:377
 msgid "Document Sections"
-msgstr "Informace o dokumentu"
+msgstr "Oddíly dokumentu"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -322,9 +331,9 @@ msgstr ""
 "Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje nebo to není správně "
 "utvořené XML."
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Neznámý"
+#: src/yelp-db-pager.c:489
+msgid "Unknown Section"
+msgstr "Neznámý oddíl"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -542,11 +551,11 @@ msgstr "Zobrazí následující stránku v historii"
 
 #: src/yelp-window.c:367
 msgid "_Help Topics"
-msgstr ""
+msgstr "_Témata nápovědy"
 
 #: src/yelp-window.c:369
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Jít na seznam témat nápovědy"
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -618,19 +627,16 @@ msgstr ""
 "jej převedl do XML."
 
 #: src/yelp-window.c:1024
-#, fuzzy
 msgid "Find:"
-msgstr "Hledat"
+msgstr "Hledat:"
 
 #: src/yelp-window.c:1040
-#, fuzzy
 msgid "Find _Next"
-msgstr "_Následující"
+msgstr "Hledat _následující"
 
 #: src/yelp-window.c:1052
-#, fuzzy
 msgid "Find _Previous"
-msgstr "_Předchozí"
+msgstr "Hledat _předchozí"
 
 #: src/yelp-window.c:1157
 #, c-format
@@ -706,6 +712,9 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Získat nápovědu o GNOME"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Zvuk &amp; Video"
 
 #~ msgid "_Home"
 #~ msgstr "_Domů"
