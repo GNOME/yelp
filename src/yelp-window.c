@@ -318,6 +318,12 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
 					    url);
 		return TRUE;
+	} else if (strncmp (url, "index:", 6) == 0) {
+		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
+					       PAGE_INDEX_VIEW);
+		yelp_view_index_show_uri (YELP_VIEW_INDEX (priv->index_view),
+					  url);
+		return TRUE;
 	} else {
 		/* FIXME: Show dialog on failure? */
 		gnome_url_show (url, NULL);
@@ -336,6 +342,7 @@ yw_url_selected_cb (gpointer    view,
 	YelpWindowPriv *priv;
 	gchar          *abs_url = NULL;
 
+
 	g_return_if_fail (YELP_IS_WINDOW (window));
 
 	d(g_print ("url_selected: %s base: %s, handled: %d\n", url, base_url, handled));
@@ -344,6 +351,7 @@ yw_url_selected_cb (gpointer    view,
 	
 	if (url && base_url) {
 		abs_url = yelp_util_resolve_relative_uri (base_url, url);
+		
 		d(g_print ("Link '%s' pressed relative to: %s -> %s\n", 
 			   url,
 			   base_url,
@@ -642,6 +650,9 @@ yelp_window_new (GNode *doc_tree, GList *index)
 			  G_CALLBACK (yw_url_selected_cb),
 			  window);
 	g_signal_connect (priv->content_view, "url_selected",
+			  G_CALLBACK (yw_url_selected_cb),
+			  window);
+	g_signal_connect (priv->index_view, "url_selected",
 			  G_CALLBACK (yw_url_selected_cb),
 			  window);
 

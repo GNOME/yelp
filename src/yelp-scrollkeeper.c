@@ -457,6 +457,7 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 	xmlChar     *link  = NULL;
 	YelpSection *index_section;
 	xmlChar     *xml_str;
+	gchar       *index_uri;
 	
 	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_ascii_strcasecmp (cur->name, "title")) {
@@ -472,7 +473,9 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 			xmlFree (xml_str);
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "link")) {
-			link = xmlGetProp (cur, "linkid");
+			xml_str = xmlGetProp (cur, "linkid");
+			link = g_strconcat ("?", xml_str, NULL);
+			xmlFree (xml_str);
 		}
 		else if (!g_ascii_strcasecmp (cur->name, "indexitem")) {
 			ys_parse_index_item (index, section, cur);
@@ -480,14 +483,18 @@ ys_parse_index_item (GList **index, YelpSection *section, xmlNode *node)
 	}
 
 	if (title && link) {
+		index_uri = g_strconcat ("index:", section->uri, NULL);
+		
 		index_section = yelp_section_new (YELP_SECTION_INDEX,
-						  title, section->uri,
+						  title, index_uri,
 						  link, NULL);
 		
+		g_free (index_uri);
+
 		*index = g_list_prepend (*index, index_section);
 		
-		xmlFree (title);
-		xmlFree (link);
+		g_free (title);
+		g_free (link);
 	}
 }
 

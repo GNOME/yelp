@@ -1,3 +1,29 @@
+2002-03-03  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-window.c:
+	(yw_handle_url): check if url starts with index:, if so, let
+	  YelpViewIndex handle it.
+	(yelp_window_new): connect to url_selected on YelpViewIndex.
+
+	* src/yelp-view-index.c:
+	- added URL_SELECTED signal.
+	(yvi_index_selection_changed_cb): emit url_selected.
+	(yvi_entry_activated_cb): fixed warning.
+	(yvi_filter_idle): same.
+	(yelp_view_index_show_uri): added/impl.
+
+	* src/yelp-view-content.c: removed the title-changed signal for
+	  now. I should really make all views derive from the same
+	  object. Lots of things are similar. (at least for YelpViewIndex
+	  and YelpViewContent.
+
+	* src/yelp-scrollkeeper.c:
+	(ys_parse_index_item): 
+	- add a ? before the link.
+	- add a index: before the uri
+	  The uri will now be index:ghelp:... (not soo nice but it's to
+	  make the window know which view it is).
+
 2002-03-02  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-index.c:

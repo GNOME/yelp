@@ -51,25 +51,12 @@ struct _YelpViewContentClass {
 				gchar           *url,
 				gchar           *base_url,
 				gboolean         handled);
-
-	void (*title_changed)  (YelpViewContent *view,
-				const gchar     *title);
-
-        /* Signal when icon is clicked. */
 };
 
 GType           yelp_view_content_get_type     (void);
 GtkWidget      *yelp_view_content_new          (GNode             *doc_tree);
 
-#if 0
-void            yelp_view_content_show_path    (YelpViewContent   *content,
-						GtkTreePath       *path);
-#endif
 void            yelp_view_content_show_uri     (YelpViewContent   *content,
 						const gchar       *uri);
 
-#if 0
-gboolean        yelp_view_content_set_root     (YelpViewContent   *content,
-						GtkTreePath       *path);
-#endif 
 #endif /* __YELP_VIEW_CONTENT__ */

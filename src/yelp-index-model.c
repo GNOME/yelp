@@ -503,7 +503,7 @@ yelp_index_model_filter (YelpIndexModel *model, const gchar *string)
 						    path);
 			gtk_tree_path_free (path);
 		}
-	}
+	} 
 	else if (old_length < new_length) {
 		/* Add rows old_length - new_length */
 		for (i = old_length; i < new_length; ++i) {

@@ -30,6 +30,7 @@
 
 #include "yelp-index-model.h"
 #include "yelp-html.h"
+#include "yelp-marshal.h"
 #include "yelp-view-index.h"
 
 static void     yvi_init                       (YelpViewIndex       *view);
@@ -69,6 +70,13 @@ struct _YelpViewIndexPriv {
 	guint           idle_complete;
 	guint           idle_filter;
 };
+
+enum {
+	URL_SELECTED,
+	LAST_SIGNAL
+};
+
+static gint signals[LAST_SIGNAL] = { 0 };
 
 GType
 yelp_view_index_get_type (void)
@@ -128,7 +136,16 @@ yvi_init (YelpViewIndex *view)
 static void
 yvi_class_init (YelpViewIndexClass *klass)
 {
-	
+	signals[URL_SELECTED] =
+		g_signal_new ("url_selected",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpViewIndexClass,
+					       url_selected),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
+			      G_TYPE_NONE,
+			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
 }
 
 static void
@@ -149,14 +166,8 @@ yvi_index_selection_changed_cb (GtkTreeSelection *selection,
 				    YELP_INDEX_MODEL_COL_SECTION, &section,
 				    -1);
 
-		/* FIXME: Emit index:string */
-		
-		yelp_html_open_uri (YELP_HTML (priv->html_view),
-				    section->uri, 
-				    section->reference);
-		
-/*  		g_signal_emit (view, signals[URL_SELECTED], 0, */
-/* 			       section->reference, section->uri, FALSE); */
+  		g_signal_emit (view, signals[URL_SELECTED], 0,
+ 			       section->reference, section->uri, FALSE);
 	}
 }
 
@@ -192,11 +203,17 @@ yvi_entry_changed_cb (GtkEntry *entry, YelpViewIndex *view)
 static void
 yvi_entry_activated_cb (GtkEntry *entry, YelpViewIndex *view)
 {
+	YelpViewIndexPriv *priv;
+	gchar             *str;
+	
 	g_return_if_fail (GTK_IS_ENTRY (entry));
 	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+
+	priv = view->priv;
 	
-	yelp_index_model_filter (view->priv->model, 
-				 gtk_entry_get_text (view->priv->entry));
+	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
+	
+	yelp_index_model_filter (view->priv->model, str);
 }
 
 static void
@@ -256,13 +273,15 @@ static gboolean
 yvi_filter_idle (YelpViewIndex *view)
 {
 	YelpViewIndexPriv *priv;
+	gchar             *str;
 	
 	g_return_val_if_fail (YELP_IS_VIEW_INDEX (view), FALSE);
 
 	priv = view->priv;
+
+	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
 	
-	yelp_index_model_filter (view->priv->model, 
-				 gtk_entry_get_text (priv->entry));
+	yelp_index_model_filter (view->priv->model, str);
 
 	priv->idle_filter = 0;
 
@@ -364,4 +383,21 @@ yelp_view_index_new (GList *index)
 	yelp_index_model_set_words (priv->model, index);
 
 	return GTK_WIDGET (view);
+}
+
+void
+yelp_view_index_show_uri (YelpViewIndex *view, const gchar *uri)
+{
+	YelpViewIndexPriv *priv;
+	gchar             *real_uri;
+
+	g_return_if_fail (YELP_IS_VIEW_INDEX (view));
+	g_return_if_fail (uri != NULL);
+	g_return_if_fail (strncmp (uri, "index:", 6) == 0);
+	
+	priv = view->priv;
+
+	real_uri = uri + 6;
+
+	yelp_html_open_uri (YELP_HTML (priv->html_view), real_uri, NULL);
 }

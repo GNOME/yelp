@@ -44,7 +44,6 @@ static void yvc_tree_selection_changed_cb (GtkTreeSelection        *selection,
 
 enum {
 	URL_SELECTED,
-	TITLE_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -144,17 +143,6 @@ yvc_class_init (YelpViewContentClass *klass)
 			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
 			      G_TYPE_NONE,
 			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
-
-	signals[TITLE_CHANGED] = 
-		g_signal_new ("title_changed",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (YelpViewContentClass,
-					       title_changed),
-			      NULL, NULL,
-			      yelp_marshal_VOID__STRING,
-			      G_TYPE_NONE,
-			      1, G_TYPE_STRING);
 }
 
 static void
@@ -350,7 +338,7 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		content_url = (char *) url;
 	}
 
-	yelp_html_open_uri (YELP_HTML (content->priv->html_view), 
+	yelp_html_open_uri (YELP_HTML (priv->html_view), 
 			    content_url, NULL);
 
 	if (content_url != url) {
