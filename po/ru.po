@@ -1,182 +1,229 @@
-# translation of yelp.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# translation of yelp to Russian
+# Copyright (C) 2002, 2004 Free Software Foundation, Inc.
 # Igor Androsov <blace@mail.ru>, 2002.
-# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004
-# 
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004.
+# Leonid Kanter <leon@asplinux.ru>, 2004.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 3.0\n"
+"Project-Id-Version: yelpn"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 02:49-0600\n"
-"PO-Revision-Date: 2004-03-18 10:23+0300\n"
-"Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
-"Language-Team:  Russian <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2004-12-23 12:46+0100\n"
+"PO-Revision-Date: 2004-12-23 15:37+0200\n"
+"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
+"Language-Team:  <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
 
-#: data/toc.xml.in.h:1
-msgid "Applets"
-msgstr "Апплеты"
-
-#: data/toc.xml.in.h:2 src/yelp-man.c:429
+#: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "Приложения"
 
-#: data/toc.xml.in.h:3
-msgid "Desktop"
-msgstr "Рабочий стол"
+#: data/man.xml.in.h:2
+msgid "Configuration Files"
+msgstr "Конфигурационные файлы"
 
-#: data/toc.xml.in.h:4 src/yelp-man.c:434
+#: data/man.xml.in.h:3
 msgid "Development"
 msgstr "Разработка"
 
+#: data/man.xml.in.h:4
+msgid "FORTRAN Functions"
+msgstr "Функции FORTRAN"
+
+#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+msgid "Games"
+msgstr "Игры"
+
+#: data/man.xml.in.h:6
+msgid "Hardware Devices"
+msgstr "Аппаратные средства"
+
+#: data/man.xml.in.h:7
+msgid "Kernel Routines"
+msgstr "Функции ядра"
+
+#: data/man.xml.in.h:8
+msgid "Library Functions"
+msgstr "Библиотечные функции"
+
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:780
+msgid "Man Pages"
+msgstr "Страницы руководства"
+
+#: data/man.xml.in.h:10
+msgid "OpenSSL Applications"
+msgstr "Приложения OpenSSL"
+
+#: data/man.xml.in.h:11
+msgid "OpenSSL Configuration"
+msgstr "Настройка OpenSSL"
+
+#: data/man.xml.in.h:12
+msgid "OpenSSL Overviews"
+msgstr "Обзоры OpenSSL"
+
+#: data/man.xml.in.h:13
+msgid "Overviews"
+msgstr "Обзоры"
+
+#: data/man.xml.in.h:14
+msgid "Perl Functions"
+msgstr "Функции Perl"
+
+#: data/man.xml.in.h:15
+msgid "Qt Functions"
+msgstr "Функции Qt"
+
+#: data/man.xml.in.h:16
+msgid "System Administration"
+msgstr "Системное администрирование"
+
+#: data/man.xml.in.h:17
+msgid "System Calls"
+msgstr "Системные вызовы"
+
+#: data/man.xml.in.h:18
+msgid "Termcap Applications"
+msgstr "Приложения termcap"
+
+#: data/man.xml.in.h:19
+msgid "X11 Applications"
+msgstr "Приложения X11"
+
+#: data/man.xml.in.h:20
+msgid "X11 Configuration"
+msgstr "Настройка X11"
+
+#: data/man.xml.in.h:21
+msgid "X11 Devices"
+msgstr "Устройства X11"
+
+#: data/man.xml.in.h:22
+msgid "X11 Functions"
+msgstr "Функции X11"
+
+#: data/man.xml.in.h:23
+msgid "X11 Games"
+msgstr "Игры X11"
+
+#: data/man.xml.in.h:24
+msgid "X11 Overviews"
+msgstr "Обзоры X11"
+
+#: data/toc.xml.in.h:1
+msgid "Accessibility"
+msgstr "Специальные возможности"
+
+#: data/toc.xml.in.h:2
+msgid "Accessories"
+msgstr "Стандартные приложения"
+
+#: data/toc.xml.in.h:3
+msgid "Applets"
+msgstr "Апплеты"
+
 #: data/toc.xml.in.h:5
-msgid "Development Environments"
-msgstr "Среды разработчика"
+msgid "Desktop"
+msgstr "Рабочий стол"
 
 #: data/toc.xml.in.h:6
-msgid "Development Tools"
-msgstr "Инструменты разработчика"
-
-#: data/toc.xml.in.h:7 stylesheets/l10n.xml.in.h:36
-msgid "Editors"
-msgstr "Редакторы"
-
-#: data/toc.xml.in.h:8
 msgid "Education Applications"
 msgstr "Обучающие приложения"
 
-#: data/toc.xml.in.h:9
-msgid "Games and Entertainment"
-msgstr "Игры и развлечения"
+#: data/toc.xml.in.h:8
+msgid "Graphics"
+msgstr "Графика"
 
-#: data/toc.xml.in.h:10
-msgid "General"
-msgstr "Общие"
-
-#: data/toc.xml.in.h:11
+#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1060
 msgid "Help Contents"
 msgstr "Содержание Справки"
 
+#: data/toc.xml.in.h:10
+msgid "Internet"
+msgstr "Интернет"
+
+#: data/toc.xml.in.h:11
+msgid "KDE"
+msgstr "KDE"
+
 #: data/toc.xml.in.h:12
-msgid "Internet Applications"
-msgstr "Интернет-приложения"
+msgid "Office"
+msgstr "Офис"
 
 #: data/toc.xml.in.h:13
-msgid "KDE"
-msgstr "КДЕ"
+msgid "Other"
+msgstr "Другие"
 
 #: data/toc.xml.in.h:14
-msgid "Kernels"
-msgstr "Ядра"
+msgid "Other Documentation"
+msgstr "Другая документация"
 
 #: data/toc.xml.in.h:15
-msgid "Multimedia Applications"
-msgstr "Мультимедийные приложения"
+msgid "Programming"
+msgstr "Разработка ПО"
 
 #: data/toc.xml.in.h:16
-msgid "Office and Productivity Applications"
-msgstr "Офисные приложения"
+msgid "Scientific"
+msgstr "Научные"
 
 #: data/toc.xml.in.h:17
-msgid "Scientific Applications"
-msgstr "Научные приложения"
+msgid "Sound &amp; Video"
+msgstr "Звук и видео"
 
 #: data/toc.xml.in.h:18
-msgid "Securities"
-msgstr "Безопасность"
+msgid "System Tools"
+msgstr "Системные средства"
 
 #: data/toc.xml.in.h:19
-msgid "System"
-msgstr "Система"
-
-#: data/toc.xml.in.h:20
-msgid "Utilities"
-msgstr "Утилиты"
-
-#: data/toc.xml.in.h:21
 msgid "X Applications"
-msgstr "Приложения для среды Икс (X)"
-
-#: data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
-
-#: data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr ""
-
-#: data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr ""
-
-#: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Приложения X"
 
 #: data/ui/yelp.glade.h:1
-msgid "*"
-msgstr "*"
+msgid "<b>Accessibility</b>"
+msgstr "<b>Специальные возможности</b>"
 
 #: data/ui/yelp.glade.h:2
-msgid "<b>Accessibility</b>"
-msgstr ""
+msgid "<b>Fonts</b>"
+msgstr "<b>Шрифты</b>"
 
 #: data/ui/yelp.glade.h:3
-msgid "<b>Fonts</b>"
-msgstr ""
+msgid "Bookmarks"
+msgstr "Закладки"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
-msgstr "_Чувствительно к регистру"
+msgstr "_Учитывать регистр"
 
 #: data/ui/yelp.glade.h:5
 msgid "Find"
 msgstr "Найти"
 
 #: data/ui/yelp.glade.h:6
-#, fuzzy
 msgid "Open Location"
-msgstr "Посвящение"
+msgstr "Открыть адрес"
 
 #: data/ui/yelp.glade.h:7
-#, fuzzy
 msgid "Preferences"
-msgstr "Ссылки"
+msgstr "Параметры"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Отображать курсор"
 
 #: data/ui/yelp.glade.h:9
 msgid "_Find: "
-msgstr "На_йти:"
+msgstr "На_йти: "
 
 #: data/ui/yelp.glade.h:10
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Фиксированная ширина:"
 
 #: data/ui/yelp.glade.h:11
-#, fuzzy
 msgid "_Location:"
-msgstr "Посвящение"
+msgstr "_Адрес:"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Next"
@@ -188,17 +235,49 @@ msgstr "_Предыдущее"
 
 #: data/ui/yelp.glade.h:14
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Использовать системные шрифты"
 
 #: data/ui/yelp.glade.h:15
 msgid "_Variable width:"
-msgstr ""
+msgstr "_Переменная ширина:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Wrap around"
 msgstr "Пере_ходить к началу"
 
-#: src/GNOME_Yelp.server.in.h:1
+#: data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Шрифт для фиксированного текста"
+
+#: data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Шрифт для текста"
+
+#: data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Шрифт для текста постоянной ширины."
+
+#: data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Шрифт для текста переменной ширины."
+
+#: data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr "Использовать управляемый с клавиатуры курсор при просмотре страниц"
+
+#: data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr "Использовать курсор"
+
+#: data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr "Использовать системные шрифты"
+
+#: data/yelp.schemas.in.h:8
+msgid "Use the systems default fonts."
+msgstr "Использовать системные шрифты по умолчанию."
+
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2044
 msgid "Yelp"
 msgstr "Справка"
 
@@ -206,27 +285,17 @@ msgstr "Справка"
 msgid "Yelp Factory"
 msgstr "Фабрика программы справки"
 
-#: src/yelp-db-pager.c:502 src/yelp-man-pager.c:297
-msgid "No href attribute found on yelp:document"
-msgstr "Отсутстсвует атрибут ссылки"
-
-#: src/yelp-db-pager.c:516 src/yelp-man-pager.c:312
-msgid "Out of memory"
-msgstr "Недостаточно памяти"
-
-#: src/yelp-db-pager.c:714 src/yelp-man-pager.c:366
+#: src/yelp-db-pager.c:527
 msgid "Titlepage"
 msgstr "Титульная страница"
 
-#: src/yelp-db-pager.c:716 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:368
+#: src/yelp-db-pager.c:529
 msgid "Contents"
 msgstr "Содержание"
 
-#: src/yelp-db-pager.c:734 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:386
+#: src/yelp-db-pager.c:547
 msgid "Unknown"
-msgstr "Неизвестное"
+msgstr "Неизв."
 
 #: src/yelp-error.c:46
 msgid "The selected document could not be opened"
@@ -246,520 +315,36 @@ msgstr "Документы в формате Docbook SGML больше не по
 
 #: src/yelp-error.c:70
 msgid "The selected file could not be read."
-msgstr "Не удалось прочитать выбранный файл"
+msgstr "Не удается прочитать выбранный файл"
 
 #: src/yelp-error.c:76
-#, fuzzy
 msgid "The file could not be processed."
-msgstr "Не удалось прочитать выбранный файл"
+msgstr "Не удается обработать выбранный файл."
 
-#: src/yelp-main.c:94
+#: src/yelp-main.c:95
 msgid "Define which cache directory to use"
 msgstr "Определить, какую категорию использовать"
 
-#: src/yelp-main.c:128
+#: src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не удалось активировать справку: \"%s\""
 
-#: src/yelp-main.c:147
+#: src/yelp-main.c:148
 msgid "Could not open new window."
 msgstr "Не удалось открыть новое окно."
 
-#: src/yelp-main.c:325 yelp.desktop.in.h:2
+#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Справка"
 
-#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
-#: src/yelp-man.c:401 src/yelp-man.c:412
-msgid "X11"
-msgstr "X11"
-
-#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
-msgid "OpenSSL"
-msgstr "OpenSSL"
-
-#: src/yelp-man.c:306
-msgid "Termcap"
-msgstr "Termcap"
-
-#: src/yelp-man.c:322
-msgid "Perl"
-msgstr "Perl"
-
-#: src/yelp-man.c:327
-msgid "Qt"
-msgstr "Qt"
-
-#: src/yelp-man.c:337
-msgid "TIFF"
-msgstr "TIFF"
-
-#: src/yelp-man.c:342
-msgid "PThreads"
-msgstr "PThreads"
-
-#: src/yelp-man.c:364
-msgid "System Calls"
-msgstr "Системные вызовы"
-
-#: src/yelp-man.c:369
-msgid "Library Functions"
-msgstr "Библиотечные функции"
-
-#: src/yelp-man.c:374
-msgid "Kernel Routines"
-msgstr "Функции ядра"
-
-#: src/yelp-man.c:439
-msgid "Hardware Devices"
-msgstr "Аппаратные средства"
-
-#: src/yelp-man.c:444
-msgid "Configuration Files"
-msgstr "Конфигурационные файлы"
-
-#: src/yelp-man.c:449
-msgid "Games"
-msgstr "Игры"
-
-#: src/yelp-man.c:454
-msgid "Overviews"
-msgstr "Обзоры"
-
-#: src/yelp-man.c:459
-msgid "System Administration"
-msgstr "Системное администрирование"
-
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Информация о выпуске"
+msgstr "Сведения о документе"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
-
-#: src/yelp-toc-pager.c:287
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: Число остановок отрицательно."
-
-#: src/yelp-toc-pager.c:538
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Не удалось загрузить файл формата OMF: \"%s\""
-
-#: src/yelp-toc-pager.c:937
-msgid "Categories"
-msgstr "Категории"
-
-#: src/yelp-toc-pager.c:951
-msgid "Documents"
-msgstr "Документы"
-
-#: src/yelp-window.c:282
-#, fuzzy
-msgid "_File"
-msgstr "/_Файл"
-
-#: src/yelp-window.c:283
-#, fuzzy
-msgid "_Edit"
-msgstr "/_Правка"
-
-#: src/yelp-window.c:284
-#, fuzzy
-msgid "_Go"
-msgstr "/Пере_ход"
-
-#: src/yelp-window.c:285
-#, fuzzy
-msgid "_Help"
-msgstr "/_Справка"
-
-#: src/yelp-window.c:288
-#, fuzzy
-msgid "_New window"
-msgstr "/Файл/_Создать окно"
-
-#: src/yelp-window.c:293
-msgid "Open _Location"
-msgstr ""
-
-#: src/yelp-window.c:298
-#, fuzzy
-msgid "_Close window"
-msgstr "/Файл/_Закрыть окно"
-
-#: src/yelp-window.c:304
-msgid "_Copy"
-msgstr ""
-
-#: src/yelp-window.c:309
-#, fuzzy
-msgid "_Find..."
-msgstr "/Правка/_Найти.."
-
-#: src/yelp-window.c:314
-#, fuzzy
-msgid "_Preferences"
-msgstr "Ссылки"
-
-#: src/yelp-window.c:319
-msgid "_Reload"
-msgstr ""
-
-#: src/yelp-window.c:325
-#, fuzzy
-msgid "_Back"
-msgstr "Назад"
-
-#: src/yelp-window.c:327
-msgid "Show previous page in history"
-msgstr "Показать предыдущую страницу"
-
-#: src/yelp-window.c:330
-#, fuzzy
-msgid "_Forward"
-msgstr "Вперед"
-
-#: src/yelp-window.c:332
-msgid "Show next page in history"
-msgstr "Показать следующую страницу"
-
-#: src/yelp-window.c:335
-#, fuzzy
-msgid "_Home"
-msgstr "В начало"
-
-#: src/yelp-window.c:337
-msgid "Go to home view"
-msgstr "Перейти в начало просмотра"
-
-#: src/yelp-window.c:340
-#, fuzzy
-msgid "_Previous Page"
-msgstr "/Переход/К пред_ыдущей странице"
-
-#: src/yelp-window.c:345
-#, fuzzy
-msgid "_Next Page"
-msgstr "/Переход/К след_ующей странице"
-
-#: src/yelp-window.c:350
-#, fuzzy
-msgid "_Contents"
-msgstr "Содержание"
-
-#: src/yelp-window.c:355
-msgid "_Open Link"
-msgstr ""
-
-#: src/yelp-window.c:360
-msgid "Open Link in _New Window"
-msgstr ""
-
-#: src/yelp-window.c:365
-msgid "_Copy Link Address"
-msgstr ""
-
-#: src/yelp-window.c:371
-#, fuzzy
-msgid "_About"
-msgstr "/Справка/_О программе"
-
-#: src/yelp-window.c:422
-msgid "Help Browser"
-msgstr "Справочник"
-
-#: src/yelp-window.c:915
-#, fuzzy
-msgid "Fin_d"
-msgstr "Найти"
-
-#: src/yelp-window.c:1186
-msgid "Loading..."
-msgstr "Загружается..."
-
-#. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:1903
-msgid "translator_credits"
-msgstr ""
-"Игорь Андросов <blace@mail.ru>\n"
-"Дмитрий Мастрюков <dmitry@taurussoft.org>"
-
-#: stylesheets/l10n.xml.in.h:1
-msgid "&#8216;"
-msgstr "&#8219;"
-
-#: stylesheets/l10n.xml.in.h:2
-msgid "&#8217;"
-msgstr "&#8216;"
-
-#: stylesheets/l10n.xml.in.h:3
-msgid "&#8220;"
-msgstr "&#8222;"
-
-#: stylesheets/l10n.xml.in.h:4
-msgid "&#8221;"
-msgstr "&#8220;"
-
-#: stylesheets/l10n.xml.in.h:5
-msgid "About This Article"
-msgstr "Об этой статье"
-
-#: stylesheets/l10n.xml.in.h:6
-msgid "About This Bibliography"
-msgstr "Об этой библиографической сводке"
-
-#: stylesheets/l10n.xml.in.h:7
-msgid "About This Book"
-msgstr "Об этой книге"
-
-#: stylesheets/l10n.xml.in.h:8
-msgid "About This Chapter"
-msgstr "Об этой главе"
-
-#: stylesheets/l10n.xml.in.h:9
-msgid "About This Entry"
-msgstr "Об этой ссылке"
-
-#: stylesheets/l10n.xml.in.h:10
-msgid "About This Glossary"
-msgstr "Об этом глоссарии"
-
-#: stylesheets/l10n.xml.in.h:11
-msgid "About This Index"
-msgstr "Об этом индексе"
-
-#: stylesheets/l10n.xml.in.h:12
-msgid "About This Part"
-msgstr "Об этой части"
-
-#: stylesheets/l10n.xml.in.h:13
-msgid "About This Preface"
-msgstr "Об этом предисловии"
-
-#: stylesheets/l10n.xml.in.h:14
-msgid "About This Reference"
-msgstr "Об этих ссылках"
-
-#: stylesheets/l10n.xml.in.h:15
-msgid "About This Section"
-msgstr "Об этой секции"
-
-#: stylesheets/l10n.xml.in.h:16
-msgid "About This Set"
-msgstr "Об этом наборе"
-
-#: stylesheets/l10n.xml.in.h:17
-msgid "Affiliation"
-msgstr "Принадлежность"
-
-#: stylesheets/l10n.xml.in.h:18
-msgid "Appendix"
-msgstr "Приложение"
-
-#: stylesheets/l10n.xml.in.h:19
-msgid "Article"
-msgstr "Статья"
-
-#: stylesheets/l10n.xml.in.h:20
-msgid "Audience"
-msgstr "Аудитория"
-
-#: stylesheets/l10n.xml.in.h:21
-msgid "Author"
-msgstr "Автор"
-
-#: stylesheets/l10n.xml.in.h:22
-msgid "Authors"
-msgstr "Авторы"
-
-#: stylesheets/l10n.xml.in.h:23
-msgid "Bibliography"
-msgstr "Библиография"
-
-#: stylesheets/l10n.xml.in.h:24
-msgid "Book"
-msgstr "Книга"
-
-#: stylesheets/l10n.xml.in.h:25
-msgid "Caution"
-msgstr "Внимание"
-
-#: stylesheets/l10n.xml.in.h:26
-msgid "Chapter"
-msgstr "Глава"
-
-#: stylesheets/l10n.xml.in.h:27
-msgid "Collaborator"
-msgstr "Помощник"
-
-#: stylesheets/l10n.xml.in.h:28
-msgid "Collaborators"
-msgstr "Помощники"
-
-#: stylesheets/l10n.xml.in.h:29
-msgid "Colophon"
-msgstr "Выходные данные"
-
-#: stylesheets/l10n.xml.in.h:31
-msgid "Copyright"
-msgstr "Авторское право"
-
-#: stylesheets/l10n.xml.in.h:32
-msgid "Copyrights"
-msgstr "Авторские права"
-
-#: stylesheets/l10n.xml.in.h:33
-msgid "Date"
-msgstr "Дата"
-
-#: stylesheets/l10n.xml.in.h:34
-msgid "Dedication"
-msgstr "Посвящение"
-
-#: stylesheets/l10n.xml.in.h:35
-msgid "Editor"
-msgstr "Редактор"
-
-#: stylesheets/l10n.xml.in.h:37
-msgid "Email"
-msgstr "Элетронный адрес"
-
-#: stylesheets/l10n.xml.in.h:38
-msgid "Example"
-msgstr "Пример"
-
-#: stylesheets/l10n.xml.in.h:39
-msgid "Figure"
-msgstr "Иллюстрация"
-
-#: stylesheets/l10n.xml.in.h:40
-msgid "Glossary"
-msgstr "Глоссарий"
-
-#: stylesheets/l10n.xml.in.h:41
-msgid "Important"
-msgstr "Важно"
-
-#: stylesheets/l10n.xml.in.h:42
-msgid "Index"
-msgstr "Содержание"
-
-#: stylesheets/l10n.xml.in.h:43
-msgid "Legal Notice"
-msgstr "Предупреждение"
-
-#: stylesheets/l10n.xml.in.h:44
-msgid "Level"
-msgstr "Уровень"
-
-#: stylesheets/l10n.xml.in.h:45
-msgid "Message Audience"
-msgstr "Аудитория сообщения"
-
-#: stylesheets/l10n.xml.in.h:46
-msgid "Message Level"
-msgstr "Уровень сообщения"
-
-#: stylesheets/l10n.xml.in.h:47
-msgid "Message Origin"
-msgstr "Источник сообщения"
-
-#: stylesheets/l10n.xml.in.h:48
-msgid "Note"
-msgstr "Замечание"
-
-#: stylesheets/l10n.xml.in.h:49
-msgid "Origin"
-msgstr "Источник"
-
-#: stylesheets/l10n.xml.in.h:50
-msgid "Other Contributor"
-msgstr "Другой помощник"
-
-#: stylesheets/l10n.xml.in.h:51
-msgid "Other Contributors"
-msgstr "Другие помощники"
-
-#: stylesheets/l10n.xml.in.h:52
-msgid "Part"
-msgstr "Часть"
-
-#: stylesheets/l10n.xml.in.h:53
-msgid "Preface"
-msgstr "Вступление"
-
-#: stylesheets/l10n.xml.in.h:54
-msgid "Publisher"
-msgstr "Издательство"
-
-#: stylesheets/l10n.xml.in.h:55
-msgid "Publishers"
-msgstr "Издательства"
-
-#: stylesheets/l10n.xml.in.h:56
-msgid "Reference"
-msgstr "Ссылки"
-
-#: stylesheets/l10n.xml.in.h:57
-msgid "Reference Entry"
-msgstr "Ссылка"
-
-#: stylesheets/l10n.xml.in.h:58
-msgid "Reference Section"
-msgstr "Блок ссылок"
-
-#: stylesheets/l10n.xml.in.h:59
-msgid "Release Information"
-msgstr "Информация о выпуске"
-
-#: stylesheets/l10n.xml.in.h:60
-msgid "Revision History"
-msgstr "История выпусков"
-
-#: stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Разделы"
-
-#: stylesheets/l10n.xml.in.h:62
-msgid "See"
-msgstr "См."
-
-#: stylesheets/l10n.xml.in.h:63
-msgid "See Also"
-msgstr "См. также"
-
-#: stylesheets/l10n.xml.in.h:64
-msgid "Set Index"
-msgstr "Set Index"
-
-#: stylesheets/l10n.xml.in.h:65
-msgid "Table"
-msgstr "Таблица"
-
-#: stylesheets/l10n.xml.in.h:66
-msgid "Table of Contents"
-msgstr "Содержание"
-
-#: stylesheets/l10n.xml.in.h:67
-msgid "Tip"
-msgstr "Подсказка"
-
-#: stylesheets/l10n.xml.in.h:68
-msgid "Title"
-msgstr "Заголовок"
-
-#: stylesheets/l10n.xml.in.h:70
-msgid "Warning"
-msgstr "Предупреждение"
-
-#: yelp.desktop.in.h:1
-msgid "Get help with GNOME"
-msgstr "Окно для получения справки в среде Гном"
+msgstr "Структура YelpDocInfo документа"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -785,111 +370,168 @@ msgstr "Окно для получения справки в среде Гном
 #.
 #: src/yelp-settings.c:125
 msgid "yelp-watermark-blockquote-201C"
+msgstr "yelp-watermark-blockquote-00AB"
+
+#: src/yelp-toc-pager.c:268
+msgid "YelpTocPager: Pause count is negative."
+msgstr "YelpTocPager: Число остановок отрицательно."
+
+#: src/yelp-toc-pager.c:491
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Не удалось загрузить файл формата OMF: \"%s\""
+
+#: src/yelp-toc-pager.c:682
+#, c-format
+msgid "Read man page for %s"
+msgstr "Просмотреть страницу руководства для %s"
+
+#: src/yelp-toc-pager.c:1005 src/yelp-xslt-pager.c:352
+msgid "No href attribute found on yelp:document"
+msgstr "Отсутстсвует атрибут ссылки"
+
+#: src/yelp-toc-pager.c:1019 src/yelp-xslt-pager.c:367
+msgid "Out of memory"
+msgstr "Недостаточно памяти"
+
+#: src/yelp-window.c:298
+msgid "_File"
+msgstr "_Файл"
+
+#: src/yelp-window.c:299
+msgid "_Edit"
+msgstr "_Правка"
+
+#: src/yelp-window.c:300
+msgid "_Go"
+msgstr "Пере_ход"
+
+#: src/yelp-window.c:301
+msgid "_Bookmarks"
+msgstr "_Закладки"
+
+#: src/yelp-window.c:302
+msgid "_Help"
+msgstr "_Справка"
+
+#: src/yelp-window.c:305
+msgid "_New window"
+msgstr "_Создать окно"
+
+#: src/yelp-window.c:310
+msgid "Open _Location"
+msgstr "Открыть _адрес"
+
+#: src/yelp-window.c:315
+msgid "_Close window"
+msgstr "_Закрыть окно"
+
+#: src/yelp-window.c:321
+msgid "_Copy"
+msgstr "_Копировать"
+
+#: src/yelp-window.c:327
+msgid "_Select All"
+msgstr "Вы_делить все"
+
+#: src/yelp-window.c:332
+msgid "_Find..."
+msgstr "_Найти..."
+
+#: src/yelp-window.c:337
+msgid "_Preferences"
+msgstr "_Параметры"
+
+#: src/yelp-window.c:342
+msgid "_Reload"
+msgstr "_Перечитать"
+
+#: src/yelp-window.c:348
+msgid "_Back"
+msgstr "_Назад"
+
+#: src/yelp-window.c:350
+msgid "Show previous page in history"
+msgstr "Показать предыдущую страницу"
+
+#: src/yelp-window.c:353
+msgid "_Forward"
+msgstr "_Вперед"
+
+#: src/yelp-window.c:355
+msgid "Show next page in history"
+msgstr "Показать следующую страницу"
+
+#: src/yelp-window.c:358
+msgid "_Home"
+msgstr "_В начало"
+
+#: src/yelp-window.c:360
+msgid "Go to home view"
+msgstr "Перейти в начало просмотра"
+
+#: src/yelp-window.c:363
+msgid "_Previous Page"
+msgstr "К пред_ыдущей странице"
+
+#: src/yelp-window.c:368
+msgid "_Next Page"
+msgstr "К след_ующей странице"
+
+#: src/yelp-window.c:373
+msgid "_Contents"
+msgstr "_Содержание"
+
+#: src/yelp-window.c:379
+msgid "_Add Bookmark"
+msgstr "_Добавить закладку"
+
+#: src/yelp-window.c:384
+msgid "_Edit Bookmarks..."
+msgstr "_Изменить закладки"
+
+#: src/yelp-window.c:390
+msgid "_Open Link"
+msgstr "_Открыть ссылку"
+
+#: src/yelp-window.c:395
+msgid "Open Link in _New Window"
+msgstr "Открыть ссылку в _новом окне"
+
+#: src/yelp-window.c:400
+msgid "_Copy Link Address"
+msgstr "_Копировать адрес ссылки"
+
+#: src/yelp-window.c:406
+msgid "_About"
+msgstr "_О программе"
+
+#: src/yelp-window.c:457
+msgid "Help Browser"
+msgstr "Программа просмотра справки"
+
+#: src/yelp-window.c:974
+msgid "Fin_d"
+msgstr "_Найти"
+
+#: src/yelp-window.c:1254
+msgid "Loading..."
+msgstr "Загружается..."
+
+#. Note to translators: put here your name (and address) so it
+#. * will shop up in the "about" box
+#: src/yelp-window.c:2041
+msgid "translator-credits"
 msgstr ""
+"Игорь Андросов <blace@mail.ru>\n"
+"Дмитрий Мастрюков <dmitry@taurussoft.org>\n"
+"Леонид Кантер <leon@asplinux.ru>"
 
-#~ msgid "Document URI"
-#~ msgstr "Идентификатор (URI) документа"
+#: src/yelp-window.c:2046
+msgid "A documentation browser and viewer for the Gnome Desktop."
+msgstr "Программа просмотра документации для среды GNOME."
 
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "Идентификатор (URI) выбранного документа"
+#: yelp.desktop.in.in.h:1
+msgid "Get help with GNOME"
+msgstr "Получение справки в среде GNOME"
 
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Правка/Найти след_ующее"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Правка/Найти пред_ыдущее"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Переход/На_зад"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Переход/В_перед"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Переход/В _начало"
-
-#~ msgid "/Go/"
-#~ msgstr "/Переход/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Переход/К _содержанию"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Программа просмотра справки для среды Гном"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Документ \"%s\" не существует"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Найти текст в документе:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Автоматически п_ереносить"
-
-#~ msgid "Find text..."
-#~ msgstr "Найти текст.."
-
-#~ msgid "Match _entire word"
-#~ msgstr "Совпадает _целое слово"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "_Чувствительно к регистру"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Найти:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "Среда Гном - Рабочий стол"
-
-#~ msgid "Additional documents"
-#~ msgstr "Дополнительные документы"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Справочная информация формата man"
-
-#~ msgid "Info Pages"
-#~ msgstr "Справочная информация формата info"
-
-#~ msgid "Manual pages"
-#~ msgstr "Справочная информация формата man"
-
-#~ msgid "GNOME is"
-#~ msgstr "Среда Гном является"
-
-#~ msgid "Free Software"
-#~ msgstr "Свободное программное обеспечение"
-
-#~ msgid "(C)"
-#~ msgstr "©"
-
-#, fuzzy
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Загружается..."
-
-#~ msgid "Search in the index"
-#~ msgstr "Найти в содержании"
-
-#~ msgid ""
-#~ "Error while parsing the stylesheet, make sure you have your docbook "
-#~ "environment setup correctly."
-#~ msgstr ""
-#~ "Ошибка при разборе стилевой таблицы, Проверьте, что окружение docbook "
-#~ "установлено корректно."
-
-#~ msgid "Couldn't parse the document '%s'."
-#~ msgstr "Не удалось разобрать документ \"%s\"."
-
-#~ msgid "Error while applying the stylesheet."
-#~ msgstr "Ошибка при приминении стилевой таблицы."
-
-#~ msgid "info"
-#~ msgstr "info"
-
-#~ msgid "man"
-#~ msgstr "man"
-
-#~ msgid "Installed documents"
-#~ msgstr "Установленные документы"
-
-#~ msgid "Start page"
-#~ msgstr "Начальная страница"
