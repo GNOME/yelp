@@ -214,7 +214,7 @@
 
 <xsl:template mode="header.name.mode" match="bibliography">
 	<xsl:call-template name="gettext">
-		<xsl:with-param name="msgid" select="'Bigliography'"/>
+		<xsl:with-param name="msgid" select="'Bibliography'"/>
 	</xsl:call-template>
 </xsl:template>
 
