@@ -70,13 +70,19 @@ yelp_theme_get_icon_theme (void)
     return (const GtkIconTheme *) icon_theme;
 }
 
-const gchar*
+const gchar *
+yelp_theme_get_css_file (void)
+{
+    return "file://" DATADIR "/yelp/default.css";
+}
+
+const gchar *
 yelp_theme_get_gray_background (void)
 {
     return gray_background;
 }
 
-const gchar*
+const gchar *
 yelp_theme_get_gray_border (void)
 {
     return gray_border;

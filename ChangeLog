@@ -1,4 +1,16 @@
-2003-01-03  Shaun McCance  <shaunm@gnome.org>
+2004-01-05  Shaun McCance  <shaunm@gnome.org>
+
+	* data/Makefile.am:
+	* data/default.css:
+	* src/yelp-theme.c:
+	* src/yelp-theme.h:
+	- Added default CSS file.
+
+	* src/yelp-toc-pager.c:
+	- Switched to using GString for writing the page.
+	- Put content writing in a separate function, to make inlining easier.
+
+2004-01-03  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:
 	* src/test-pager.c:

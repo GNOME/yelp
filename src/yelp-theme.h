@@ -26,9 +26,11 @@
 #include <glib.h>
 #include <gtk/gtkicontheme.h>
 
-void                 yelp_theme_init                 (void);
-const GtkIconTheme * yelp_theme_get_icon_theme       (void);
-const gchar*         yelp_theme_get_gray_background  (void);
-const gchar*         yelp_theme_get_gray_border      (void);
+void                  yelp_theme_init                 (void);
+const GtkIconTheme *  yelp_theme_get_icon_theme       (void);
+
+const gchar *         yelp_theme_get_css_file         (void);
+const gchar *         yelp_theme_get_gray_background  (void);
+const gchar *         yelp_theme_get_gray_border      (void);
 
 #endif /* __YELP_THEME_H__ */

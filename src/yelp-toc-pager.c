@@ -33,6 +33,7 @@
 
 #include "yelp-uri.h"
 #include "yelp-error.h"
+#include "yelp-theme.h"
 #include "yelp-toc-pager.h"
 
 #define d(x)
@@ -145,6 +146,8 @@ static gboolean      toc_process_idx_pending   (YelpTocPager      *pager);
 #endif
 
 static gchar *       menu_write_page           (YelpMenu          *menu);
+static void          menu_write_menu           (YelpMenu          *menu,
+						GString           *gstr);
 
 static xmlChar *     node_get_title            (xmlNodePtr         node);
 static void          toc_hash_metafile         (YelpTocPager      *pager,
@@ -848,77 +851,58 @@ toc_process_idx_pending (YelpTocPager *pager)
 static gchar *
 menu_write_page (YelpMenu  *menu)
 {
-    gint      i = 0;
-    GSList   *c;
-    gchar   **strs;
-    gint      strs_len;
+    GString  *gstr;
     gchar    *page;
-    gint      page_len = 0;
-    gchar    *page_end;
 
-    strs_len =
-	g_slist_length (menu->submenus) + g_slist_length (menu->metafiles) + 20;
+    gstr = g_string_new ("<html>");
 
-    strs = g_new0 (gchar *, strs_len);
+    g_string_append_printf
+	(gstr,
+	 "<head><link rel='stylesheet' type='text/css' href='%s'></head>\n",
+	 yelp_theme_get_css_file ());
 
-    strs[i] = g_strconcat ("<html><body><h1>", menu->title, "</h1>\n", NULL);
-    page_len += strlen (strs[i]);
+    g_string_append_printf (gstr, "<body><h1>%s</h1>\n", menu->title);
 
+    menu_write_menu (menu, gstr);
+
+    g_string_append (gstr, "</body></html>\n");
+
+    page = gstr->str;
+    g_string_free (gstr, FALSE);
+
+    return page;
+}
+
+static void
+menu_write_menu (YelpMenu  *menu,
+		 GString   *gstr)
+{
+    GSList   *c;
     if (menu->has_submenus) {
-	strs[++i] = g_strconcat ("<h2>", _("Categories"), "</h2><ul>\n", NULL);
-	page_len += strlen (strs[i]);
-
+	g_string_append_printf (gstr, "<h2>%s</h2><ul>\n", _("Categories"));
 	for (c = menu->submenus; c; c = c->next) {
 	    xmlNodePtr  cur      = (xmlNodePtr) c->data;
 	    YelpMenu   *cur_menu = (YelpMenu *) cur->_private;
-
-	    if (cur_menu && (cur_menu->has_submenus || cur_menu->metafiles)) {
-		strs[++i] = g_strconcat
-		    ("<li><a href='#", cur_menu->id, "'>",
-		     cur_menu->title,
-		     "</a></li>\n",
-		     NULL);
-		page_len += strlen (strs[i]);
-	    }
+	    if (cur_menu && (cur_menu->has_submenus || cur_menu->metafiles))
+		g_string_append_printf (gstr,
+					"<li><a href='#%s'>%s</a></li>\n",
+					cur_menu->id,
+					cur_menu->title);
 	}
-	strs[++i] = g_strdup ("</ul>\n");
-	page_len += strlen (strs[i]);
+	g_string_append (gstr, "</ul>\n");
     }
 
     if (menu->metafiles) {
-	strs[++i] = g_strconcat ("<h2>", _("Documents"), "</h2><ul>\n", NULL);
-	page_len += strlen (strs[i]);
-
+	g_string_append_printf (gstr, "<h2>%s</h2><ul>\n", _("Documents"));
 	for (c = menu->metafiles; c; c = c->next) {
 	    YelpMetafile *meta = (YelpMetafile *) c->data;
-	    strs[++i] = g_strconcat ("<li><a href='", meta->file, "'>",
-				     meta->title,
-				     "</a></li>\n",
-				     NULL);
-	    page_len += strlen (strs[i]);
+	    g_string_append_printf (gstr,
+				    "<li><a href='%s'>%s</a></li>\n",
+				    meta->file,
+				    meta->title);
 	}
-	strs[++i] = g_strdup ("</ul>\n");
-	page_len += strlen (strs[i]);
+	g_string_append (gstr, "</ul>\n");
     }
-
-    strs[++i] = g_strdup ("</body></html>\n");
-    page_len += strlen (strs[i]);
-
-    // Not necessary, but I'm paranoid.
-    strs[++i] = NULL;
-
-    page = g_new0 (gchar, page_len + 1);
-    page_end = page;
-
-    for (i = 0; i < strs_len; i++)
-	if (strs[i]) {
-	    page_end = g_stpcpy (page_end, strs[i]);
-	    g_free (strs[i]);
-	}
-
-    g_free (strs);
-
-    return page;
 }
 
 static xmlChar *
