@@ -35,6 +35,7 @@
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-client.h>
+#include <string.h>
 #include <stdlib.h>
 
 #include "GNOME_Yelp.h"
@@ -265,7 +266,6 @@ main (int argc, char **argv)
 	gchar        *url = NULL;
 	GnomeClient  *client;
 	gboolean      flag = FALSE;
-	gboolean      gman = FALSE;
 	
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");

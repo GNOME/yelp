@@ -1,5 +1,13 @@
 2002-10-21  Richard Hult  <rhult@codefactory.se>
 
+	* src/yelp-view-content.c (content_show_uri): Ditto.
+
+	* src/yelp-view-index.c (index_show_uri): Put head tag around meta
+	and title tags.
+
+	* src/yelp-main.c (main): Remove unused variable.
+	Include string.h to avoid warnings.
+
 	* src/yelp-view-content.c (content_show_uri): Don't try to set
 	focus on view, use view->widget.
 

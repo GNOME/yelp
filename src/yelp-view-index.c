@@ -425,9 +425,9 @@ index_show_uri (YelpView *view, YelpURI *index_uri, GError **error)
 		yelp_html_clear (priv->html_view);
 		
 		yelp_html_printf (priv->html_view, 
-				  "<html><meta http-equiv=\"Content-Type\" "
+				  "<html><head><meta http-equiv=\"Content-Type\" "
 				  "content=\"text/html; charset=utf-8\">"
-				  "<title>%s</title>"
+				  "<title>%s</title></head>"
 				  "<body><center>%s</center></body>"
 				  "</html>", 
 				  loading, loading);
