@@ -603,22 +603,26 @@
 				<div class="{local-name(.)}">
 					<xsl:call-template name="yelp.title"/>
 					<xsl:apply-templates select="yelp:get-content(.)"/>
-					<xsl:choose>
-						<xsl:when test="($depth &lt; $yelp_max_chunk_depth)
-								and (count(yelp:get-divisions(.)) &gt; 0)">
-							<div class="toc">
-								<p><b>
-									<xsl:call-template name="gentext">
-										<xsl:with-param name="key">TableofContents</xsl:with-param>
-									</xsl:call-template>
-								</b></p>
-								<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
-							</div>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:apply-templates select="yelp:get-divisions(.)"/>
-						</xsl:otherwise>
-					</xsl:choose>
+					<!-- Don't make TOC for part and reference, because nwalsh's
+						stylesheets automatically stick one in for partintro. -->
+					<xsl:if test="not(self::part | self::reference)">
+						<xsl:choose>
+							<xsl:when test="($depth &lt; $yelp_max_chunk_depth)
+									and (count(yelp:get-divisions(.)) &gt; 0)">
+								<div class="toc">
+									<p><b>
+										<xsl:call-template name="gentext">
+											<xsl:with-param name="key">TableofContents</xsl:with-param>
+										</xsl:call-template>
+									</b></p>
+									<xsl:apply-templates select="yelp:get-divisions(.)" mode="toc"/>
+								</div>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:apply-templates select="yelp:get-divisions(.)"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:if>
 				</div>
 				<xsl:call-template name="yelp.navbar.bottom">
 					<xsl:with-param name="node" select="."/>
