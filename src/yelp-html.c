@@ -79,7 +79,6 @@ typedef struct {
 	gchar          *buffer;
 	GnomeVFSHandle *handle;
 	HtmlStream     *stream;
-	gboolean        is_doc;
 } ReadData;
 
 GType
@@ -243,10 +242,14 @@ yelp_html_idle_read (gpointer data)
 				 &read_len);
 
 	if (result == GNOME_VFS_OK) {
+		d(g_print ("Read: %s\n", read_data->buffer));
+
 		yelp_html_do_write (read_data->html, 
 				    read_data->buffer, 
 				    read_len);
 	} else {
+		d(g_print ("FOOOOO: %s\n", 
+			   gnome_vfs_result_to_string (result)));
 		return FALSE;
 	}
 
@@ -269,61 +272,46 @@ yelp_html_idle_read_end (gpointer data)
 
 	d(g_print ("Close\n"));
 
-	if (read_data->is_doc) {
-		gtk_adjustment_set_value (
-			gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
-			0);
-	}
+	gtk_adjustment_set_value (
+		gtk_layout_get_vadjustment (GTK_LAYOUT (priv->view)),
+		0);
 
 	gdk_window_set_cursor (GTK_WIDGET (priv->view)->window, NULL);
 
 	g_free (read_data);
 }
 
+typedef enum {
+	MAN,
+	INFO
+} DocType;
+
 static void
-yelp_html_do_non_docbook (YelpHtml *html, HtmlStream *stream, 
-			  const gchar *uri, gboolean is_doc, 
-			  GError **error)
+yelp_html_do_maninfo (YelpHtml *html, HtmlStream *stream,
+		      DocType type, const gchar *uri, GError **error)
 {
-	GnomeVFSHandle *handle;
-	GnomeVFSResult  result;
-	gchar           buffer[BUFFER_SIZE];
-	GTimer         *timer;
-	ReadData       *read_data;
-	
-	g_return_if_fail (YELP_IS_HTML (html));
-	
-	d(g_print ("Non docbook: %s\n", uri));
+	gchar *command_line = NULL;
+	gchar *stdout       = NULL;;
 
-	timer = g_timer_new ();
-
-	result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
-
-	d(g_print ("Opening took: %f\n", g_timer_elapsed (timer, 0)));
-	
-	if (result != GNOME_VFS_OK) {
-		g_set_error (error,
-			     YELP_ERROR,
-			     YELP_ERROR_FAILED_OPEN,
-			     _("Failed to open document '%s'"),
-			     uri);
+	switch (type) {
+	case MAN:
+		command_line = g_strdup_printf ("gnome2-man2html %s", uri);
+		break;
+	case INFO:
+		command_line = g_strdup_printf ("gnome2-info2html %s", uri);
+		break;
+	default:
+		g_warning ("Non-supported doctype");
 		return;
+	};
+	
+	if (g_spawn_command_line_sync (command_line, &stdout, 
+				      NULL, NULL, error)) {
+		html_stream_write (stream, stdout, strlen (stdout));
+		g_free (stdout);
 	}
 
-	g_timer_start (timer);
-
-	read_data = g_new0 (ReadData, 1);
-	
-	read_data->html      = html;
-	read_data->buffer    = buffer;
-	read_data->handle    = handle;
-	read_data->stream    = stream;
-	read_data->is_doc    = is_doc;
-
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, 
-			 yelp_html_idle_read,
-			 read_data,
-			 yelp_html_idle_read_end);
+	g_free (command_line);
 }
 
 static void
@@ -357,8 +345,6 @@ yh_url_requested_cb (HtmlDocument *doc,
 	}
 
 	gnome_vfs_close (handle);
-
-/*  	yelp_html_do_non_docbook (html, stream, uri, FALSE); */
 }
 
 static void
@@ -456,11 +442,17 @@ yelp_html_open_uri (YelpHtml     *html,
 	if (!strncmp (str_uri, "ghelp:", 6)) {
 		yelp_html_do_docbook (html, str_uri + 6, error);
 		/* Docbook or HTML */
-		return;
+	} 
+	else if (!strncmp (str_uri, "man:", 4)) {
+		yelp_html_do_maninfo (html, priv->doc->current_stream, MAN,
+				      str_uri + 4, error);
 	}
-
-	yelp_html_do_non_docbook (html, priv->doc->current_stream, 
-				  str_uri, TRUE, error);
+	else if (!strncmp(str_uri, "info:", 5)) {
+		yelp_html_do_maninfo (html, priv->doc->current_stream, INFO,
+				      str_uri + 5, error);
+	} else {
+		/* Set error */
+	}
 }
 
 void

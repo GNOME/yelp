@@ -163,7 +163,8 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		g_snprintf (titlebuf, sizeof (titlebuf), "%s (%s)", 
 			    manname, section);
 
-		g_snprintf (uribuf, sizeof (uribuf), "man:%s", filename);
+		g_snprintf (uribuf, sizeof (uribuf), "man:%s.%s", 
+			    manname, section);
 
 		node = g_hash_table_lookup (section_hash, section);
 

@@ -1,3 +1,18 @@
+2002-04-18  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-man.c (yelp_man_populate_tree_for_subdir): set the uri
+	  for man-pages to be man:name.section instead of full path. Seems 
+	  to work much much better this way.
+
+	* src/yelp-html.c: 
+	- removed is_doc from read_data-struct, not used anymore
+	- Don't use the GnomeVFS module, instead call the external
+	  programs directly with g_spawn.
+	(yelp_html_do_non_docbook): removed, replaced by do_maninfo.
+	(yelp_html_do_maninf): added. This will soon be rewritten to use
+	  g_spawn_async_with_pipes.
+	
+
 2002-04-16  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: Added "zh_TW" to ALL_LINGUAS.
