@@ -18,8 +18,16 @@
 			<xsl:when test="$msg/msgstr[@xml:lang = $lang]">
 				<xsl:value-of select="$msg/msgstr[@xml:lang = $lang]"/>
 			</xsl:when>
-			<xsl:otherwise>
+			<xsl:when test="$msg/msgstr[not(@xml:lang)]">
 				<xsl:value-of select="$msg/msgstr[not(@xml:lang)]"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:message>
+					<xsl:text>No translation available for string '</xsl:text>
+					<xsl:value-of select="$msgid"/>
+					<xsl:text>'.</xsl:text>
+				</xsl:message>
+				<xsl:value-of select="$msgid"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:for-each>
