@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-14 19:00-0500\n"
-"PO-Revision-Date: 2004-12-14 22:18-0400\n"
+"POT-Creation-Date: 2004-12-16 11:00-0500\n"
+"PO-Revision-Date: 2004-12-16 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -213,16 +213,16 @@ msgid "Use the systems default fonts."
 msgstr "Use the system's default fonts."
 
 #: data/ui/yelp.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: data/ui/yelp.glade.h:2
 msgid "<b>Accessibility</b>"
 msgstr "<b>Accessibility</b>"
 
-#: data/ui/yelp.glade.h:3
+#: data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Fonts</b>"
+
+#: data/ui/yelp.glade.h:3
+msgid "Bookmarks"
+msgstr "Bookmarks"
 
 #: data/ui/yelp.glade.h:4
 msgid "C_ase sensitive"
@@ -276,7 +276,7 @@ msgstr "_Variable width:"
 msgid "_Wrap around"
 msgstr "_Wrap around"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:1999
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2043
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -367,127 +367,139 @@ msgstr "No href attribute found on yelp:document"
 msgid "Out of memory"
 msgstr "Out of memory"
 
-#: src/yelp-window.c:297
+#: src/yelp-window.c:298
 msgid "_File"
 msgstr "_File"
 
-#: src/yelp-window.c:298
+#: src/yelp-window.c:299
 msgid "_Edit"
 msgstr "_Edit"
 
-#: src/yelp-window.c:299
+#: src/yelp-window.c:300
 msgid "_Go"
 msgstr "_Go"
 
-#: src/yelp-window.c:300
+#: src/yelp-window.c:301
+msgid "_Bookmarks"
+msgstr "_Bookmarks"
+
+#: src/yelp-window.c:302
 msgid "_Help"
 msgstr "_Help"
 
-#: src/yelp-window.c:303
+#: src/yelp-window.c:305
 msgid "_New window"
 msgstr "_New window"
 
-#: src/yelp-window.c:308
+#: src/yelp-window.c:310
 msgid "Open _Location"
 msgstr "Open _Location"
 
-#: src/yelp-window.c:313
+#: src/yelp-window.c:315
 msgid "_Close window"
 msgstr "_Close window"
 
-#: src/yelp-window.c:319
+#: src/yelp-window.c:321
 msgid "_Copy"
 msgstr "_Copy"
 
-#: src/yelp-window.c:325
+#: src/yelp-window.c:327
 msgid "_Select All"
 msgstr "_Select All"
 
-#: src/yelp-window.c:330
+#: src/yelp-window.c:332
 msgid "_Find..."
 msgstr "_Find..."
 
-#: src/yelp-window.c:335
+#: src/yelp-window.c:337
 msgid "_Preferences"
 msgstr "_Preferences"
 
-#: src/yelp-window.c:340
+#: src/yelp-window.c:342
 msgid "_Reload"
 msgstr "_Reload"
 
-#: src/yelp-window.c:346
+#: src/yelp-window.c:348
 msgid "_Back"
 msgstr "_Back"
 
-#: src/yelp-window.c:348
+#: src/yelp-window.c:350
 msgid "Show previous page in history"
 msgstr "Show previous page in history"
 
-#: src/yelp-window.c:351
+#: src/yelp-window.c:353
 msgid "_Forward"
 msgstr "_Forward"
 
-#: src/yelp-window.c:353
+#: src/yelp-window.c:355
 msgid "Show next page in history"
 msgstr "Show next page in history"
 
-#: src/yelp-window.c:356
+#: src/yelp-window.c:358
 msgid "_Home"
 msgstr "_Home"
 
-#: src/yelp-window.c:358
+#: src/yelp-window.c:360
 msgid "Go to home view"
 msgstr "Go to home view"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:363
 msgid "_Previous Page"
 msgstr "_Previous Page"
 
-#: src/yelp-window.c:366
+#: src/yelp-window.c:368
 msgid "_Next Page"
 msgstr "_Next Page"
 
-#: src/yelp-window.c:371
+#: src/yelp-window.c:373
 msgid "_Contents"
 msgstr "_Contents"
 
-#: src/yelp-window.c:376
+#: src/yelp-window.c:379
+msgid "_Add Bookmark"
+msgstr "_Add Bookmark"
+
+#: src/yelp-window.c:384
+msgid "_Edit Bookmarks..."
+msgstr "_Edit Bookmarks..."
+
+#: src/yelp-window.c:390
 msgid "_Open Link"
 msgstr "_Open Link"
 
-#: src/yelp-window.c:381
+#: src/yelp-window.c:395
 msgid "Open Link in _New Window"
 msgstr "Open Link in _New Window"
 
-#: src/yelp-window.c:386
+#: src/yelp-window.c:400
 msgid "_Copy Link Address"
 msgstr "_Copy Link Address"
 
-#: src/yelp-window.c:392
+#: src/yelp-window.c:406
 msgid "_About"
 msgstr "_About"
 
-#: src/yelp-window.c:443
+#: src/yelp-window.c:457
 msgid "Help Browser"
 msgstr "Help Browser"
 
-#: src/yelp-window.c:950
+#: src/yelp-window.c:974
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: src/yelp-window.c:1230
+#: src/yelp-window.c:1254
 msgid "Loading..."
 msgstr "Loading..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1996
+#: src/yelp-window.c:2040
 msgid "translator-credits"
 msgstr ""
 "Maintainer: Adam Weinberger <adamw@gnome.org>\n"
 "Alexander Winston <alexander.winston@comcast.net>"
 
-#: src/yelp-window.c:2001
+#: src/yelp-window.c:2045
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "A documentation browser and viewer for the Gnome Desktop."
 
