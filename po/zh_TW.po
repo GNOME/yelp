@@ -1,20 +1,20 @@
 # Traditional Chinese translation of yelp.
 # Copyright (C) 2002, 2003, 2004 Free Software Foundation, Inc.
 # Joe Man <trmetal@yahoo.com.hk>, 2002.
-# Abel Cheung <maddog@linux.org.hk>, 2002-2003.
+# Abel Cheung <maddog@linuxhall.org>, 2002, 2003.
 # Roy Chan <roy.chan@linux.org.hk>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.5.6\n"
-"POT-Creation-Date: 2004-03-22 17:51-0600\n"
-"PO-Revision-Date: 2004-03-01 16:03+0800\n"
+"Project-Id-Version: yelp 2.6.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-09-21 20:38+0800\n"
+"PO-Revision-Date: 2004-09-21 20:36+0800\n"
 "Last-Translator: Roy Chan <roy.chan@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1
 msgid "Applets"
@@ -89,9 +89,8 @@ msgid "Securities"
 msgstr "保安"
 
 #: data/toc.xml.in.h:19
-#, fuzzy
 msgid "System"
-msgstr "系統函式"
+msgstr "系統"
 
 #: data/toc.xml.in.h:20
 msgid "Utilities"
@@ -137,24 +136,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp 工廠"
 
-#: src/yelp-db-pager.c:435 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:301
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中找不到 href 屬性"
 
-#: src/yelp-db-pager.c:450 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:454 src/yelp-man-pager.c:316
 msgid "Out of memory"
 msgstr "記憶體不足"
 
-#: src/yelp-db-pager.c:638 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:642 src/yelp-man-pager.c:370
 msgid "Titlepage"
 msgstr "標題頁"
 
-#: src/yelp-db-pager.c:640 stylesheets/l10n.xml.in.h:30
+#: src/yelp-db-pager.c:644 stylesheets/l10n.xml.in.h:30
 #: src/yelp-man-pager.c:372
 msgid "Contents"
 msgstr "內容"
 
-#: src/yelp-db-pager.c:658 stylesheets/l10n.xml.in.h:69
+#: src/yelp-db-pager.c:662 stylesheets/l10n.xml.in.h:69
 #: src/yelp-man-pager.c:390
 msgid "Unknown"
 msgstr "未知"
@@ -261,21 +260,20 @@ msgstr "文件 URI"
 msgid "The URI of the document to be processed"
 msgstr "準備處理的文件的 URI"
 
-#: src/yelp-toc-pager.c:266
-#, fuzzy
+#: src/yelp-toc-pager.c:267
 msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: 暫停計數器值為負數"
+msgstr "YelpTocPager: 暫停計數器值為負數。"
 
-#: src/yelp-toc-pager.c:486
+#: src/yelp-toc-pager.c:490
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "無法載入 OMF 檔案‘%s’。"
 
-#: src/yelp-toc-pager.c:883
+#: src/yelp-toc-pager.c:887
 msgid "Categories"
 msgstr "分類"
 
-#: src/yelp-toc-pager.c:897
+#: src/yelp-toc-pager.c:901
 msgid "Documents"
 msgstr "文件"
 
@@ -379,13 +377,13 @@ msgstr "首頁"
 msgid "Go to home view"
 msgstr "前往首頁"
 
-#: src/yelp-window.c:860
+#: src/yelp-window.c:858
 msgid "Loading..."
 msgstr "載入..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1300
+#: src/yelp-window.c:1306
 msgid "translator_credits"
 msgstr ""
 "i18n 程式中文化計劃\n"
@@ -395,7 +393,7 @@ msgstr ""
 "Abel Cheung <maddog@linux.org.hk>, 2002-03\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2002"
 
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1312
 msgid "A Help Browser for GNOME"
 msgstr "GNOME 說明文件瀏覽程式"
 
@@ -459,10 +457,10 @@ msgstr "關於這份參考"
 msgid "About This Section"
 msgstr "關於這一節"
 
+# Set = Collection of books -- Abel
 #: stylesheets/l10n.xml.in.h:16
-#, fuzzy
 msgid "About This Set"
-msgstr "關於這份文件"
+msgstr "關於整套書"
 
 #: stylesheets/l10n.xml.in.h:17
 msgid "Affiliation"
@@ -529,7 +527,6 @@ msgid "Date"
 msgstr "日期"
 
 #: stylesheets/l10n.xml.in.h:34
-#, fuzzy
 msgid "Dedication"
 msgstr "呈獻"
 
@@ -642,9 +639,8 @@ msgid "See Also"
 msgstr "請參考"
 
 #: stylesheets/l10n.xml.in.h:64
-#, fuzzy
 msgid "Set Index"
-msgstr "索引"
+msgstr "書目索引"
 
 #: stylesheets/l10n.xml.in.h:65
 msgid "Table"
@@ -695,29 +691,11 @@ msgstr "說明文件瀏覽器"
 #~ msgid "_Search for:"
 #~ msgstr "搜尋(_S)："
 
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME ─ 桌面"
-
 #~ msgid "Additional documents"
 #~ msgstr "額外文件"
 
-#~ msgid "Manual Pages"
-#~ msgstr "Manual Page"
-
-#~ msgid "Info Pages"
-#~ msgstr "Info Page"
-
-#~ msgid "Manual pages"
-#~ msgstr "Manual page"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOME 是"
-
 #~ msgid "Free Software"
 #~ msgstr "自由軟體"
-
-#~ msgid "(C)"
-#~ msgstr "版權所有 (c)"
 
 #~ msgid "Previous"
 #~ msgstr "上一頁"
