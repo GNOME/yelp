@@ -359,7 +359,8 @@ yh_link_clicked_cb (HtmlDocument *doc, const gchar *url, YelpHtml *html)
 		abs_uri = g_strdup (url);
         }
 
-	section = yelp_section_new (NULL, abs_uri, NULL, NULL);
+	section = yelp_section_new (YELP_SECTION_DOCUMENT,
+				    NULL, abs_uri, NULL, NULL);
 
 	g_signal_emit (html, signals[SECTION_SELECTED], 0, section);
 	g_free (abs_uri);

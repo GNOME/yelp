@@ -42,9 +42,7 @@ static gboolean   ys_tree_empty           (xmlNode              *cl_node);
 
 static gboolean   ys_parse_books          (ParseData            *data,
 					   xmlDoc               *doc);
-static gboolean   ys_parse_book           (ParseData            *parser, 
-					   xmlNode              *node);
-static void       ys_parse_section        (ParseData            *data,
+static gboolean   ys_parse_section        (ParseData            *data,
 					   GtkTreeIter          *iter,
 					   xmlNode              *xml_node);
 static void       ys_parse_doc            (ParseData            *data,
@@ -130,6 +128,7 @@ ys_parse_books (ParseData *data, xmlDoc *doc)
 {
 	xmlNode  *node;
 	gboolean  success;
+	GtkTreeIter *root;
 	
 	g_return_val_if_fail (data != NULL, FALSE);
 
@@ -140,10 +139,15 @@ ys_parse_books (ParseData *data, xmlDoc *doc)
 		g_warning ("Invalid ScrollKeeper XML Contents List!");
 		return FALSE;
 	}
+	
+	root = yelp_util_contents_add_section (data->store, NULL, 
+ 					       yelp_section_new (YELP_SECTION_CATEGORY,
+								 "Scrollkeeper", NULL,
+								 NULL, NULL));
 
 	for (node = node->xmlChildrenNode; node; node = node->next) {
 		if (!g_strcasecmp (node->name, "sect")) {
-			success = ys_parse_book (data, node);
+			success = ys_parse_section (data, root, node);
 		}
 	}
 
@@ -151,57 +155,6 @@ ys_parse_books (ParseData *data, xmlDoc *doc)
 }
 
 static gboolean
-ys_parse_book (ParseData *data, xmlNode *node)
-{
-	xmlNode     *cur;
-	GtkTreeIter *root;
-	xmlChar     *xml_str;
-	gchar       *name = NULL;
-	
-	/* Find the title */
-	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
-		if (!g_strcasecmp (cur->name, "title")) {
-			xml_str = xmlNodeGetContent (cur);
-			
-			if (xml_str) {
-				name = g_strdup (xml_str);
-				xmlFree (xml_str);
-			}
-		}
-	}
-	
-	if (!name) {
-		g_warning ("Couldn't find the name of the book");
-		return FALSE;
-	}
-
-	/* Only use the GNOME toplevel */
-
-	if (g_ascii_strcasecmp ("GNOME", name)) {
-		g_print ("Not GNOME toplevel: %s\n", name);
-		return FALSE;
-	}
-
-	g_print ("Parse book: %s\n", name);
-
-/* 	root = yelp_util_contents_add_section (data->store, NULL, */
-/* 					       yelp_section_new (name, NULL,  */
-/* 								 NULL, NULL)); */
-	root = NULL;
-	
-	for (cur = node->xmlChildrenNode; cur; cur = cur->next) {
-		if (!g_strcasecmp (cur->name, "sect")) {
-			ys_parse_section (data, root, cur);
-		}
-		else if (!g_strcasecmp (cur->name, "doc")) {
-			ys_parse_doc (data, root, cur);
-		}
-	}
-	
-	return TRUE;
-}
-
-static void
 ys_parse_section (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 {
 	xmlNode     *cur;
@@ -209,6 +162,7 @@ ys_parse_section (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 	gchar       *name;
 	GtkTreeIter *iter;
 	
+	/* Find the title */
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
 		if (!g_strcasecmp (cur->name, "title")) {
 			xml_str = xmlNodeGetContent (cur);
@@ -222,11 +176,12 @@ ys_parse_section (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 
 	if (!name) {
 		g_warning ("Couldn't find name of the section");
-		return;
+		return FALSE;
 	}
 	
 	iter = yelp_util_contents_add_section (data->store, parent, 
-					       yelp_section_new (name, NULL, 
+					       yelp_section_new (YELP_SECTION_CATEGORY,
+								 name, NULL, 
 								 NULL, NULL));
 	
 	for (cur = xml_node->xmlChildrenNode; cur; cur = cur->next) {
@@ -237,6 +192,8 @@ ys_parse_section (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 			ys_parse_doc (data, iter, cur);
 		}
 	}
+	
+	return TRUE;
 }
 
 static void
@@ -279,7 +236,8 @@ ys_parse_doc (ParseData *data, GtkTreeIter *parent, xmlNode *xml_node)
 	}
 
 	iter = yelp_util_contents_add_section (data->store, parent, 
-					       yelp_section_new (title, link, 
+					       yelp_section_new (YELP_SECTION_DOCUMENT,
+								 title, link, 
 								 NULL, NULL));
 	
 	ys_parse_toc (data, iter, docsource);
@@ -372,7 +330,8 @@ ys_parse_toc_section (ParseData   *data,
 /* 	} */
 
 	iter = yelp_util_contents_add_section (data->store, parent, 
-					       yelp_section_new (name, 
+					       yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
+								 name, 
 								 base_uri,
 								 link, NULL));
 	

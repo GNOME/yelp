@@ -27,14 +27,22 @@
 
 typedef struct _YelpSection   YelpSection;
 
+typedef enum {
+	YELP_SECTION_DOCUMENT_SECTION,
+	YELP_SECTION_DOCUMENT,
+	YELP_SECTION_CATEGORY
+} YelpSectionType;
+
 struct _YelpSection {
 	gchar *name;
 	gchar *uri;
 	gchar *reference;
 	gchar *scheme;
+	YelpSectionType type;
 };
 
-YelpSection * yelp_section_new        (const gchar        *name,
+YelpSection * yelp_section_new        (YelpSectionType     type,
+				       const gchar        *name,
 				       const gchar        *uri,
 				       const gchar        *reference,
 				       const gchar        *scheme);

@@ -1,3 +1,17 @@
+2002-01-14  Alex Larsson  <alexl@redhat.com>
+
+	* yelp-section.[ch]:
+	Add section type to section.
+
+	* src/yelp-html.c:
+	* src/yelp-info.c:
+	* src/yelp-man.c:
+	Update for the section type change.
+
+	* src/yelp-scrollkeeper.c: 
+	Update for the section type change.
+	Make a scrollkeeper toplevel node.
+
 2002-01-14  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-view-toc.[ch]: renamed from YelpViewHome.

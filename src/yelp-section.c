@@ -27,13 +27,17 @@
 #include "yelp-section.h"
 
 YelpSection *
-yelp_section_new (const gchar *name, const gchar *uri, const gchar *reference,
-		const gchar *scheme)
+yelp_section_new (YelpSectionType type,
+		  const gchar    *name,
+		  const gchar    *uri,
+		  const gchar    *reference,
+		  const gchar    *scheme)
 {
 	YelpSection *section;
 
 	section = g_new0 (YelpSection, 1);
-	
+
+	section->type      = type;
 	section->name      = g_strdup (name);
 	section->uri       = g_strdup (uri);
 	section->reference = g_strdup (reference);
@@ -45,7 +49,8 @@ yelp_section_new (const gchar *name, const gchar *uri, const gchar *reference,
 YelpSection *
 yelp_section_copy (const YelpSection *section)
 {
-	return yelp_section_new (section->name, 
+	return yelp_section_new (section->type, 
+				 section->name, 
 				 section->uri, 
 				 section->reference,
 				 section->scheme);

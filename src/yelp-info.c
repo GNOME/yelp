@@ -76,7 +76,8 @@ yelp_info_populate_tree_for_subdir (GtkTreeStore *store,
 		g_snprintf (uribuf, sizeof (uribuf), "info:%s", dent->d_name);
 
 		yelp_util_contents_add_section (store, parent, 
-						yelp_section_new (titlebuf, uribuf, 
+						yelp_section_new (YELP_SECTION_DOCUMENT,
+								  titlebuf, uribuf, 
 								  NULL, NULL));
 	}
 
@@ -89,7 +90,8 @@ yelp_info_init (GtkTreeStore *store)
 	GtkTreeIter *root;
 
 	root = yelp_util_contents_add_section (store, NULL, 
-					       yelp_section_new (_("Info Pages"), NULL, 
+					       yelp_section_new (YELP_SECTION_CATEGORY,
+								 _("Info Pages"), NULL, 
 								  NULL, NULL));
 
 	

@@ -159,7 +159,8 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		g_assert (node != NULL);
 		
 		node->pages = g_list_prepend (node->pages, 
-					      yelp_section_new (titlebuf, uribuf, 
+					      yelp_section_new (YELP_SECTION_DOCUMENT,
+								titlebuf, uribuf, 
 								NULL, NULL));
 		g_free (manname);
 		g_free (section);
@@ -513,7 +514,8 @@ yelp_man_push_initial_tree (struct TreeNode *node, GtkTreeStore *store, GtkTreeI
 	GList *l;
 
 	iter = yelp_util_contents_add_section (store, parent, 
-					       yelp_section_new (node->name, NULL, 
+					       yelp_section_new (YELP_SECTION_CATEGORY,
+								 node->name, NULL, 
 								 NULL, NULL));
 	
 	l = node->tree_nodes;
