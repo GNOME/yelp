@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-19 02:59+0100\n"
+"POT-Creation-Date: 2003-08-27 06:31+0100\n"
 "PO-Revision-Date: 2003-08-14 21:33+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -123,7 +123,7 @@ msgstr "Dyfeisiau Meddalwedd"
 
 #: src/yelp-man.c:444
 msgid "Configuration Files"
-msgstr "Ffeiliau Ffurfweddu"
+msgstr "Ffeiliau Cyfluniad"
 
 #: src/yelp-man.c:449
 msgid "Games"
@@ -135,13 +135,29 @@ msgstr "Trosolygon"
 
 #: src/yelp-man.c:459
 msgid "System Administration"
-msgstr "Gweinyddu System"
+msgstr "Gweinyddiaeth System"
 
-#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
+#: src/yelp-scrollkeeper.c:627
+msgid "About This Document"
+msgstr "Ynghylch y Ddogfen Hwn"
+
+#: src/yelp-scrollkeeper.c:631
+msgid "Contents"
+msgstr "Cynnwys"
+
+#: src/yelp-view-content.c:489
+msgid "Previous"
+msgstr "Blaenorol"
+
+#: src/yelp-view-content.c:500
+msgid "Next"
+msgstr "Nesaf"
+
+#: src/yelp-view-content.c:589 src/yelp-view-index.c:423
 msgid "Loading..."
-msgstr "Llwytho..."
+msgstr "Yn Llwytho..."
 
-#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
+#: src/yelp-view-content.c:630 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Adran"
 
