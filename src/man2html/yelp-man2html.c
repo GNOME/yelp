@@ -127,7 +127,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <ctype.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <sys/types.h>
@@ -541,9 +540,9 @@ add_links(char *c)
 			f=idtest[j];
 			/* check section */
 			g=strchr(f,')');
-			if (g && f-g<6 && (isalnum((unsigned char)f[-1]) || f[-1]=='>') &&
-			    ((isdigit((unsigned char)f[1]) && f[1]!='0' &&
-			      (f[2]==')' || (isalpha((unsigned char)f[2]) && f[3]==')') ||
+			if (g && f-g<6 && (g_ascii_isalnum((unsigned char)f[-1]) || f[-1]=='>') &&
+			    ((g_ascii_isdigit((unsigned char)f[1]) && f[1]!='0' &&
+			      (f[2]==')' || (g_ascii_isalpha((unsigned char)f[2]) && f[3]==')') ||
 			       f[2]=='X')) ||
 			     (f[2]==')' && (f[1]=='n' || f[1]=='l')))) {
 				/* this might be a link */
@@ -553,14 +552,14 @@ add_links(char *c)
 					while (h!=c && *h!='<') h--;
 					if (h!=c) h--;
 				}
-				if (isalnum((unsigned char)*h)) {
+				if (g_ascii_isalnum((unsigned char)*h)) {
 					char t,sec,subsec, *e;
 					e=h+1;
 					sec=f[1];
 					subsec=f[2];
 					if ((subsec=='X' && f[3]!=')') ||
 					    subsec==')') subsec='\0';
-					while (h>c && (isalnum((unsigned char)h[-1]) ||
+					while (h>c && (g_ascii_isalnum((unsigned char)h[-1]) ||
 						       h[-1]=='_' ||
 						       h[-1]=='-' || 
 						       h[-1]=='.'))
@@ -607,7 +606,7 @@ add_links(char *c)
 		case 3: /* ftp */
 		case 2: /* www */
 			g=f=idtest[j];
-			while (*g && (isalnum((unsigned char)*g) || *g=='_' || *g=='-' 
+			while (*g && (g_ascii_isalnum((unsigned char)*g) || *g=='_' || *g=='-' 
 				      || *g=='+' ||
 				      *g=='.')) g++;
 			if (g[-1]=='.') g--;
@@ -630,12 +629,12 @@ add_links(char *c)
 			break;
 		case 1: /* mailto */
 			g=f=idtest[1];
-			while (g>c && (isalnum((unsigned char)g[-1]) || g[-1]=='_' 
+			while (g>c && (g_ascii_isalnum((unsigned char)g[-1]) || g[-1]=='_' 
 				       || g[-1]=='-' ||
 				       g[-1]=='+' || g[-1]=='.' 
 				       || g[-1]=='%')) g--;
 			h=f+1;
-			while (*h && (isalnum((unsigned char)*h) || *h=='_' || *h=='-' 
+			while (*h && (g_ascii_isalnum((unsigned char)*h) || *h=='_' || *h=='-' 
 				      || *h=='+' ||
 				      *h=='.')) h++;
 			if (*h=='.') h--;
@@ -658,9 +657,9 @@ add_links(char *c)
 			break;
 		case 0: /* url */
 			g=f=idtest[0];
-			while (g>c && isalpha((unsigned char)g[-1]) && islower((unsigned char)g[-1])) g--;
+			while (g>c && g_ascii_isalpha((unsigned char)g[-1]) && g_ascii_islower((unsigned char)g[-1])) g--;
 			h=f+3;
-			while (*h && !isspace((unsigned char)*h) && *h!='<' && *h!='>' 
+			while (*h && !g_ascii_isspace((unsigned char)*h) && *h!='<' && *h!='>' 
 			       && *h!='"' &&
 			       *h!='&') h++;
 			if (f-g>2 && f-g<7 && h-f>3) {
@@ -892,7 +891,7 @@ static char
 			c=scan_escape(c);
 			i=intresult; if (!j) j=1;
 		} else
-			while (isdigit((unsigned char)*c) && (!i || (!j && i<4)))
+			while (g_ascii_isdigit((unsigned char)*c) && (!i || (!j && i<4)))
 				i=i*10+(*c++)-'0';
 		if (!j) { j=1; if (i) i=i-10; }
 		if (!skip_escape)
@@ -1061,18 +1060,18 @@ static char
 				curfield=curfield->next;
 				*curfield=emptyfield;
 			}
-			curfield->align=toupper(*c);
+			curfield->align=g_ascii_toupper(*c);
 			c++;
 			break;
 		case 'i': case 'I': case 'B': case 'b':
-			curfield->font = toupper(*c);
+			curfield->font = g_ascii_toupper(*c);
 			c++;
 			break;
 		case 'f': case 'F':
 			c++;
-			curfield->font = toupper(*c);
+			curfield->font = g_ascii_toupper(*c);
 			c++;
-			if (!isspace((unsigned char)*c) && *c!='.') c++;
+			if (!g_ascii_isspace((unsigned char)*c) && *c!='.') c++;
 			break;
 		case 't': case 'T': curfield->valign='t'; c++; break;
 		case 'p': case 'P':
@@ -1080,7 +1079,7 @@ static char
 			i=j=0;
 			if (*c=='+') { j=1; c++; }
 			if (*c=='-') { j=-1; c++; }
-			while (isdigit((unsigned char)*c)) i=i*10+(*c++)-'0';
+			while (g_ascii_isdigit((unsigned char)*c)) i=i*10+(*c++)-'0';
 			if (j) curfield->size= i*j; else curfield->size=j-10;
 			break;
 		case 'v': case 'V':
@@ -1098,7 +1097,7 @@ static char
 		case '0': case '1': case '2': case '3': case '4':
 		case '5': case '6': case '7': case '8': case '9':
 			i=0;
-			while (isdigit((unsigned char)*c)) i=i*10+(*c++)-'0';
+			while (g_ascii_isdigit((unsigned char)*c)) i=i*10+(*c++)-'0';
 			curfield->space=i;
 			break;
 		case ',': case '\n':
@@ -1190,7 +1189,7 @@ static char
 	if (h[-1]==';') {
 		/* scan table options */
 		while (c<h) {
-			while (isspace((unsigned char)*c)) c++;
+			while (g_ascii_isspace((unsigned char)*c)) c++;
 			for (i=0; tableopt[i] && 
 				     strncmp(tableopt[i],c,tableoptl[i]);i++);
 			c=c+tableoptl[i];
@@ -1217,7 +1216,7 @@ static char
 			case 6: 
 				while (*c++!='(');
 				linesize=0;
-				while (isdigit((unsigned char)*c))
+				while (g_ascii_isdigit((unsigned char)*c))
 					linesize=linesize*10+(*c++)-'0';
 				break;
 			case 7: 
@@ -1314,7 +1313,7 @@ static char
 				currow->prev->next=NULL;
 			currow->prev=NULL;
 			clear_table(currow);
-		} else if (*c=='.' && c[-1]=='\n' && !isdigit((unsigned char)c[1])) {
+		} else if (*c=='.' && c[-1]=='\n' && !g_ascii_isdigit((unsigned char)c[1])) {
 			/* skip troff request inside table(usually only .sp )*/
 			while (*c++!='\n');
 		} else {
@@ -1544,7 +1543,7 @@ static char
 			c=c+3;
 		c++;
 	} else {
-		while (*c && !isspace((unsigned char)*c) && *c!=')') {
+		while (*c && !g_ascii_isspace((unsigned char)*c) && *c!=')') {
 			opex=0;
 			switch (*c) {
 			case '(':
@@ -1560,16 +1559,16 @@ static char
 			case '8': case '9': {
 				int num=0,denum=1;
 				value2=0;
-				while (isdigit((unsigned char)*c))
+				while (g_ascii_isdigit((unsigned char)*c))
 					value2=value2*10+((*c++)-'0');
 				if (*c=='.') {
 					c++;
-					while (isdigit((unsigned char)*c)) {
+					while (g_ascii_isdigit((unsigned char)*c)) {
 						num=num*10+((*c++)-'0');
 						denum=denum*10;
 					}
 				}
-				if (isalpha((unsigned char)*c)) {
+				if (g_ascii_isalpha((unsigned char)*c)) {
 					/* scale indicator */
 					switch (*c) {
 					case 'i': /* inch -> 10pt */
@@ -1590,7 +1589,7 @@ static char
 			case '\\':
 				c=scan_escape(c+1);
 				value2=intresult*sign;
-				if (isalpha((unsigned char)*c))
+				if (g_ascii_isalpha((unsigned char)*c))
 					c++; /* scale indicator */
 				opex=1;
 				break;
@@ -2071,7 +2070,7 @@ static char
 				c=c+1;
 			else 
 				c=c+2;
-			while (isspace((unsigned char)*c)) 
+			while (g_ascii_isspace((unsigned char)*c)) 
 				c++;
 			if (*c=='"') 
 				c++;
@@ -2693,7 +2692,7 @@ static char
 			c=c+j;
 			i=V(c[0],c[1]);
 			c=c+2;
-			while (isspace((unsigned char)*c) && *c!='\n')
+			while (g_ascii_isspace((unsigned char)*c) && *c!='\n')
 				c++;
 			j=V(c[0],c[1]);
 			while (*c && *c!='\n') 
@@ -2873,7 +2872,7 @@ static char
 			break;
 		case V('I','t'):	/* BSD mandoc */
 			c=c+j;
-			if (strncmp(c, "Xo", 2) == 0 && isspace((unsigned char)*(c+2))) {
+			if (strncmp(c, "Xo", 2) == 0 && g_ascii_isspace((unsigned char)*(c+2))) {
 				c = skip_till_newline(c); 
 			}
 			if (dl_set[itemdepth] & BL_DESC_LIST) {
@@ -3024,23 +3023,23 @@ static char
 			c = c+j;
 			if (*c == '\n')
 				c++; /* Skip spaces */
-			while (isspace((unsigned char)*c) && *c != '\n')
+			while (g_ascii_isspace((unsigned char)*c) && *c != '\n')
 				c++;
-			while (isalnum((unsigned char)*c)) { /* Copy the xyz part */
+			while (g_ascii_isalnum((unsigned char)*c)) { /* Copy the xyz part */
 				*bufptr = *c;
 				bufptr++;
 				if (bufptr >= buff + MED_STR_MAX)
 					break;
 				c++;
 			}
-			while (isspace((unsigned char)*c) && *c != '\n')
+			while (g_ascii_isspace((unsigned char)*c) && *c != '\n')
 				c++;	/* Skip spaces */
 			/* Convert the number if there is one */
-			if (isdigit((unsigned char)*c)) {
+			if (g_ascii_isdigit((unsigned char)*c)) {
 				*bufptr = '(';
 				bufptr++; 
 				if (bufptr < buff + MED_STR_MAX) {
-					while (isalnum((unsigned char)*c)) { 
+					while (g_ascii_isalnum((unsigned char)*c)) { 
 						*bufptr = *c; 
 						bufptr++; 
 						if (bufptr >= buff + 
@@ -3056,7 +3055,7 @@ static char
 			}
 
 			while (*c != '\n') { /* Copy the remainder */
-				if (!isspace((unsigned char)*c)) {
+				if (!g_ascii_isspace((unsigned char)*c)) {
 					*bufptr = *c;
 					bufptr++; 
 					if (bufptr >= buff + MED_STR_MAX)
@@ -3192,11 +3191,11 @@ static char
 			do {	/* Find first whitespace after the 
 				 * first word that isn't a mandoc macro 
 				 */
-				while (*sp && isspace((unsigned char)*sp))
+				while (*sp && g_ascii_isspace((unsigned char)*sp))
 					sp++;
-				while (*sp && !isspace((unsigned char)*sp))
+				while (*sp && !g_ascii_isspace((unsigned char)*sp))
 					sp++;
-			} while (*sp && isupper((unsigned char)*(sp-2)) && islower((unsigned char)*(sp-1)));
+			} while (*sp && g_ascii_isupper((unsigned char)*(sp-2)) && g_ascii_islower((unsigned char)*(sp-1)));
 
 				/* Use a newline to mark the end of text to 
 				 * be quoted 
@@ -3446,8 +3445,8 @@ static char
 				*sl='\n';
 			}
 			else if (mandoc_command && 
-				 ((isupper((unsigned char)*c) && islower((unsigned char)*(c+1)))
-				  || (islower((unsigned char)*c) && isupper((unsigned char)*(c+1))))
+				 ((g_ascii_isupper((unsigned char)*c) && g_ascii_islower((unsigned char)*(c+1)))
+				  || (g_ascii_islower((unsigned char)*c) && g_ascii_isupper((unsigned char)*(c+1))))
 				) {
 				/* Let through any BSD mandoc commands 
 				 * that haven't
@@ -3537,9 +3536,9 @@ static char
 			if (san && h[-1]=='\n')
 				h--;
 		} else if (mandoc_line
-			   && *(h) && isupper((unsigned char)*(h))
-			   && *(h+1) && islower((unsigned char)*(h+1)) 
-			   && *(h+2) && isspace((unsigned char)*(h+2))) {
+			   && *(h) && g_ascii_isupper((unsigned char)*(h))
+			   && *(h+1) && g_ascii_islower((unsigned char)*(h+1)) 
+			   && *(h+2) && g_ascii_isspace((unsigned char)*(h+2))) {
 			/* BSD imbedded command 
 			   eg ".It Fl Ar arg1 Fl Ar arg2" */
 			FLUSHIBP;
@@ -3553,7 +3552,7 @@ static char
 			if (san && h[-1]=='\n') 
 				h--;
 		} else {
-			if (h[-1]=='\n' && still_dd && isalnum((unsigned char)*h)) {
+			if (h[-1]=='\n' && still_dd && g_ascii_isalnum((unsigned char)*h)) {
 				/* sometimes a .HP request is not 
 				   followed by a .br request */
 				FLUSHIBP;
@@ -3708,8 +3707,8 @@ static char
     }
 
     if (end > c + 2
-        && ispunct((unsigned char)*(end - 1)) 
-	&& isspace((unsigned char)*(end - 2)) && *(end - 2) != '\n') {
+        && g_ascii_ispunct((unsigned char)*(end - 1)) 
+	&& g_ascii_isspace((unsigned char)*(end - 2)) && *(end - 2) != '\n') {
       /* Don't format lonely punctuation E.g. in "xyz ," format
        * the xyz and then append the comma removing the space.
        */
@@ -3793,7 +3792,7 @@ main(int argc, char **argv)
 
 		/* Try searching for this as a man page name, instead */
 		ctmp = strrchr(infile, '.');
-		if(ctmp && (isdigit((unsigned char)*(ctmp+1)) || *(ctmp+1) == 'n'))
+		if(ctmp && (g_ascii_isdigit((unsigned char)*(ctmp+1)) || *(ctmp+1) == 'n'))
 		  {
 		    char section = *(ctmp+1);
 
@@ -3849,12 +3848,12 @@ main(int argc, char **argv)
 		len = strlen(output);
 		for(i = 0; i < len; i++)
 		{
-			if (isspace((unsigned char)output[i]) && output[i+1] == '/')
+			if (g_ascii_isspace((unsigned char)output[i]) && output[i+1] == '/')
 				output[i] = '\0';
 		}
 			
 		i = strlen(output) - 1;
-		while (isspace((unsigned char)output[i])) 
+		while (g_ascii_isspace((unsigned char)output[i])) 
 			output[i--] = '\0';
 
 		
