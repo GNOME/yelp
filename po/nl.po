@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
-"POT-Creation-Date: 2002-03-06 15:18+0100\n"
+"POT-Creation-Date: 2002-04-11 21:19+0200\n"
 "PO-Revision-Date: 2002-03-06 12:59+01:00\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -21,16 +21,20 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-info.c:126
+#: src/yelp-html.c:136
+msgid "Loading..."
+msgstr "Bezig met Laden..."
+
+#: src/yelp-info.c:141
 msgid "info"
 msgstr "info"
 
-#: src/yelp-main.c:91
+#: src/yelp-main.c:109
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kon Yelp niet opstarten: '%s'"
 
-#: src/yelp-main.c:110
+#: src/yelp-main.c:128
 msgid "Could not open new window."
 msgstr "Kon geen nieuw window openen."
 
@@ -107,129 +111,135 @@ msgstr "Systeem Administratie"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:197 src/yelp-view-index.c:355
+#: src/yelp-view-content.c:197 src/yelp-view-index.c:364
 msgid "Section"
 msgstr "Sectie"
 
-#: src/yelp-view-index.c:325
+#: src/yelp-view-index.c:327
 msgid "Search for:"
 msgstr "Zoeken naar:"
 
-#: src/yelp-view-toc.c:271
-msgid "Other Documents"
-msgstr "Andere Documenten"
+#: src/yelp-view-toc.c:315
+msgid "Help Contents"
+msgstr "Hulp Inhoudsopgave"
 
-#: src/yelp-view-toc.c:272 src/yelp-view-toc.c:502
+#: src/yelp-view-toc.c:316
+msgid "GNOME - Desktop"
+msgstr "GNOME - Desktop"
+
+#: src/yelp-view-toc.c:317
+msgid "Additional documents"
+msgstr "Aanvullende documenten"
+
+#: src/yelp-view-toc.c:318 src/yelp-view-toc.c:517 src/yelp-view-toc.c:749
 msgid "Manual pages"
 msgstr "Handleiding pagina's"
 
-#: src/yelp-view-toc.c:273 src/yelp-view-toc.c:579 src/yelp-view-toc.c:598
+#: src/yelp-view-toc.c:319 src/yelp-view-toc.c:518 src/yelp-view-toc.c:826
+#: src/yelp-view-toc.c:845
 msgid "Info pages"
 msgstr "Info pagina's"
 
-#: src/yelp-view-toc.c:274
+#: src/yelp-view-toc.c:516
+msgid "Other Documents"
+msgstr "Andere Documenten"
+
+#: src/yelp-view-toc.c:519
 msgid "Installed documents"
 msgstr "Geïnstalleerde documenten"
 
-#: src/yelp-view-toc.c:288
+#: src/yelp-view-toc.c:533
 msgid "Start page"
 msgstr "Start pagina"
 
-#: src/yelp-view-toc.c:532
+#: src/yelp-view-toc.c:779
 msgid "Manual Pages"
 msgstr "Handleiding Pagina's"
 
-#: src/yelp-view-toc.c:700
-msgid "Scrollkeeper docs for category"
-msgstr "Scrollkeeper documentatie voor categorie"
-
-#: src/yelp-window.c:138
+#: src/yelp-window.c:150
 msgid "/_File"
 msgstr "/_Bestand"
 
-#: src/yelp-window.c:139
+#: src/yelp-window.c:151
 msgid "/File/_New window"
 msgstr "/Bestand/_Nieuw window"
 
-#: src/yelp-window.c:140
+#: src/yelp-window.c:152
 msgid "/File/_Close window"
 msgstr "/Bestand/_Sluit window"
 
-#: src/yelp-window.c:141
-msgid "/File/_Quit"
-msgstr "/Bestand/_Afsluiten"
-
-#: src/yelp-window.c:142
+#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:154
 msgid "/_Go"
 msgstr "/_Ga"
 
-#: src/yelp-window.c:143
+#: src/yelp-window.c:155
 msgid "/Go/_Back"
 msgstr "/Ga/_Terug"
 
-#: src/yelp-window.c:144
+#: src/yelp-window.c:156
 msgid "/Go/_Forward"
 msgstr "/Ga/_Vooruit"
 
-#: src/yelp-window.c:145
+#: src/yelp-window.c:157
 msgid "/Go/_Home"
 msgstr "/Ga/T_huis"
 
-#: src/yelp-window.c:146
+#: src/yelp-window.c:158
 msgid "/Go/_Index"
 msgstr "/Ga/_Index"
 
-#: src/yelp-window.c:147
+#: src/yelp-window.c:159
 msgid "/_Help"
 msgstr "/_Help"
 
-#: src/yelp-window.c:148
+#: src/yelp-window.c:160
 msgid "/Help/_About"
 msgstr "/Help/_Info"
 
-#: src/yelp-window.c:207
+#: src/yelp-window.c:219
 msgid "Help Browser"
 msgstr "Help Browser"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:539
+#: src/yelp-window.c:547
 msgid "translator_credits"
 msgstr "Tino Meinen a.t.meinen@chello.nl"
 
-#: src/yelp-window.c:543
+#: src/yelp-window.c:551
 msgid "Help Browser for GNOME 2.0"
 msgstr "Help Browser voor GNOME 2.0"
 
-#: src/yelp-window.c:570
+#: src/yelp-window.c:605
 msgid "Back"
 msgstr "Terug"
 
-#: src/yelp-window.c:571
+#: src/yelp-window.c:606
 msgid "Show previous page in history"
 msgstr "Toon de vorige pagina"
 
-#: src/yelp-window.c:582
+#: src/yelp-window.c:617
 msgid "Forward"
 msgstr "Vooruit"
 
-#: src/yelp-window.c:583
+#: src/yelp-window.c:618
 msgid "Show next page in history"
 msgstr "Toon de volgende pagina"
 
-#: src/yelp-window.c:596
+#: src/yelp-window.c:631
 msgid "Home"
 msgstr "Thuis"
 
-#: src/yelp-window.c:597
+#: src/yelp-window.c:632
 msgid "Go to home view"
 msgstr "Toon de standaard pagina"
 
-#: src/yelp-window.c:607
+#: src/yelp-window.c:642
 msgid "Index"
 msgstr "Index"
 
-#: src/yelp-window.c:608
+#: src/yelp-window.c:643
 msgid "Search in the index"
 msgstr "Doorzoek de index"
 
