@@ -74,7 +74,7 @@ CLEANFILES =								\
 	GNOME_Yelp.server
 
 EXTRA_DIST =								\
-	yelpmarshal.list						\
+	yelp-marshal.list						\
 	$(server_in_files)						\
 	$(server_DATA)
 
