@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2002-02-20 01:41+0800\n"
+"POT-Creation-Date: 2002-03-01 02:37+0800\n"
 "PO-Revision-Date: 2002-02-04 03:03+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -26,12 +26,12 @@ msgstr "Kilang Yelp"
 msgid "info"
 msgstr "maklumat"
 
-#: src/yelp-main.c:78
+#: src/yelp-main.c:91
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Tak dapat mengaktifkan Yelp: '%s'"
 
-#: src/yelp-main.c:98
+#: src/yelp-main.c:110
 msgid "Could not open new window."
 msgstr "Tak dapat membuka tetingkap baru."
 
@@ -108,13 +108,17 @@ msgstr "Pentadbir Sistem"
 msgid "man"
 msgstr "man"
 
-#: src/yelp-view-content.c:209 src/yelp-view-index.c:177
+#: src/yelp-view-content.c:209 src/yelp-view-index.c:229
 msgid "Section"
 msgstr "Seksyen"
 
+#: src/yelp-view-index.c:211
+msgid "Search for:"
+msgstr "Cari untuk:"
+
 #: src/yelp-view-toc.c:271
-msgid "Other document systems"
-msgstr "Sistem dokumen lain"
+msgid "Other Documents"
+msgstr "Dokumen Lain"
 
 #: src/yelp-view-toc.c:272 src/yelp-view-toc.c:481
 msgid "Manual pages"
@@ -132,73 +136,73 @@ msgstr "Dokumen dipasang"
 msgid "Start page"
 msgstr "Laman Mula"
 
-#: src/yelp-view-toc.c:511 src/yelp-view-toc.c:530
-msgid "Manual page sections"
-msgstr "Seksyen Halaman Manual"
+#: src/yelp-view-toc.c:511
+msgid "Manual Pages"
+msgstr "Halaman Manual"
 
 #: src/yelp-view-toc.c:679
 msgid "Scrollkeeper docs for category"
 msgstr "Scrollkeeper dokumen untuk kategori"
 
-#: src/yelp-window.c:112
+#: src/yelp-window.c:113
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:113
+#: src/yelp-window.c:114
 msgid "/File/_New window"
 msgstr "/Fail/Teti_ngkap Baru"
 
-#: src/yelp-window.c:114
+#: src/yelp-window.c:115
 msgid "/File/_Close window"
 msgstr "/Fail/_Tutup tetingkap"
 
-#: src/yelp-window.c:115
+#: src/yelp-window.c:116
 msgid "/File/_Quit"
 msgstr "/Fail/_Keluar"
 
-#: src/yelp-window.c:116
+#: src/yelp-window.c:117
 msgid "/_Help"
 msgstr "/_Bantuan"
 
-#: src/yelp-window.c:117
+#: src/yelp-window.c:118
 msgid "/Help/_About"
 msgstr "/Bantuan/Perih_al"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
-#: src/yelp-window.c:165
+#: src/yelp-window.c:166
 msgid "Help Browser"
 msgstr "Pelungsur Fail Bantuan"
 
-#: src/yelp-window.c:413
+#: src/yelp-window.c:414
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pelungsur Fail Bantuan GNOME 2.0"
 
-#: src/yelp-window.c:437
-msgid "Go back in the history list"
-msgstr "Undur pada senarai sejarah"
+#: src/yelp-window.c:438
+msgid "Show previous page in history"
+msgstr "Papar halaman terdahulu dalam sejarah"
 
-#: src/yelp-window.c:452
-msgid "Go forth in the history list"
-msgstr "Maju pada senarai sejarah"
+#: src/yelp-window.c:453
+msgid "Show next page in history"
+msgstr "Papar halaman seterusnya dalam sejaraj"
 
-#: src/yelp-window.c:467
-msgid "Overview of contents"
-msgstr "Sekilas pandang Kandungan"
+#: src/yelp-window.c:468
+msgid "Go to home view"
+msgstr "Pergi ke paparan rumah"
 
-#: src/yelp-window.c:478
+#: src/yelp-window.c:479
 msgid "Search in the index"
 msgstr "Cari di dalam indeks"
 
-#: src/yelp-window.c:490
+#: src/yelp-window.c:491
 msgid "Search for a phrase in the document"
 msgstr "Cari frasa di dalam dokument"
 
-#: src/yelp-window.c:496
+#: src/yelp-window.c:497
 msgid "Help on "
 msgstr "Bantuan mengenai "
 
-#: src/yelp-window.c:501
+#: src/yelp-window.c:502
 msgid "Enter phrase to search for in all documents"
 msgstr "Sila memasukkan frasa untuk dicari di dalam semua dokumen"
 
