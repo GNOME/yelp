@@ -1,13 +1,13 @@
-# Albanian translation of yelp.
+# Përkthimi i mesazheve të yelp në shqip
 # Copyright (C) 2002,2003, 2004 Free Software Foundation, Inc.
 # Laurent Dhima <laurenti@alblinux.net>, 2002,2003, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
+"Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-23 05:31+0200\n"
-"PO-Revision-Date: 2004-02-23 10:12+0100\n"
+"POT-Creation-Date: 2004-10-09 12:14+0200\n"
+"PO-Revision-Date: 2004-10-09 16:55+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -134,25 +134,25 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fabrika e Yelp"
 
-#: src/yelp-db-pager.c:439 src/yelp-man-pager.c:301
+#: src/yelp-db-pager.c:465 src/yelp-man-pager.c:297
 msgid "No href attribute found on yelp:document"
 msgstr "Asnjë karakteristikë href u gjet në yelp:dokumenti"
 
-#: src/yelp-db-pager.c:454 src/yelp-man-pager.c:316
+#: src/yelp-db-pager.c:480 src/yelp-man-pager.c:312
 msgid "Out of memory"
 msgstr "Jashtë memorjes"
 
-#: src/yelp-db-pager.c:642 src/yelp-man-pager.c:370
+#: src/yelp-db-pager.c:668 src/yelp-man-pager.c:366
 msgid "Titlepage"
 msgstr "Titulli i faqes"
 
-#: src/yelp-db-pager.c:644 stylesheets/l10n.xml.in.h:30
-#: src/yelp-man-pager.c:372
+#: src/yelp-db-pager.c:670 stylesheets/l10n.xml.in.h:30
+#: src/yelp-man-pager.c:368
 msgid "Contents"
 msgstr "Përmbajtja"
 
-#: src/yelp-db-pager.c:662 stylesheets/l10n.xml.in.h:69
-#: src/yelp-man-pager.c:390
+#: src/yelp-db-pager.c:688 stylesheets/l10n.xml.in.h:69
+#: src/yelp-man-pager.c:386
 msgid "Unknown"
 msgstr "Nuk njihet"
 
@@ -175,6 +175,10 @@ msgstr "Dokumentet DocBook SGML nuk suportohen më."
 #: src/yelp-error.c:70
 msgid "The selected file could not be read."
 msgstr "File i zgjedhur nuk mund të lexohet."
+
+#: src/yelp-error.c:76
+msgid "The file could not be processed."
+msgstr "File i zgjedhur nuk mund të proçesohet."
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -238,7 +242,6 @@ msgstr "Dispozitivët hardware"
 msgid "Configuration Files"
 msgstr "Files e konfigurimit"
 
-#. GRUT modified this item
 #: src/yelp-man.c:449
 msgid "Games"
 msgstr "Lojra"
@@ -251,144 +254,122 @@ msgstr "Pamje"
 msgid "System Administration"
 msgstr "Administrimi i sistemit"
 
-#: src/yelp-pager.c:118
-msgid "Document URI"
-msgstr "URI i dokumentit"
+#: src/yelp-pager.c:120
+msgid "Document Information"
+msgstr "Informacione mbi dokumentin"
 
-#: src/yelp-pager.c:119
-msgid "The URI of the document to be processed"
-msgstr "URI i dokumentit që duhet proçesuar"
+#: src/yelp-pager.c:121
+msgid "The YelpDocInfo struct of the document"
+msgstr "Struktura YelpDocInfo e dokumentit"
 
-#: src/yelp-toc-pager.c:267
+#: src/yelp-toc-pager.c:287
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Numërimi i pauzës është negativ."
 
-#: src/yelp-toc-pager.c:490
+#: src/yelp-toc-pager.c:538
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nuk arrij të ngarkoj file OMF '%s'."
 
-#: src/yelp-toc-pager.c:887
+#: src/yelp-toc-pager.c:937
 msgid "Categories"
 msgstr "Kategoritë"
 
-#. GRUT modified this item
-#: src/yelp-toc-pager.c:901
+#: src/yelp-toc-pager.c:951
 msgid "Documents"
 msgstr "Dokumente"
 
-#: src/yelp-window.c:249
-msgid "/_File"
-msgstr "/_File"
+#: src/yelp-window.c:241
+msgid "_File"
+msgstr "_File"
 
-#: src/yelp-window.c:250
-msgid "/File/_New window"
-msgstr "/File/_Dritare e re"
+#: src/yelp-window.c:242
+msgid "_Edit"
+msgstr "_Ndrysho"
 
-#: src/yelp-window.c:253
-msgid "/File/_Close window"
-msgstr "/File/_Mbyll dritaren"
+#: src/yelp-window.c:243
+msgid "_Go"
+msgstr "_Shko"
+
+#: src/yelp-window.c:244
+msgid "_Help"
+msgstr "_Ndihmë"
+
+#: src/yelp-window.c:247
+msgid "_New window"
+msgstr "_Dritare e re"
+
+#: src/yelp-window.c:252
+msgid "Open _Location"
+msgstr "Hap _Pozicionin"
 
 #: src/yelp-window.c:257
-msgid "/_Edit"
-msgstr "/_Ndrysho"
+msgid "_Close window"
+msgstr "_Mbyll dritaren"
 
-#: src/yelp-window.c:258
-msgid "/Edit/_Find..."
-msgstr "/Ndrysho/_Kërko..."
-
-#: src/yelp-window.c:261
-msgid "/Edit/Find Ne_xt"
-msgstr "/Ndrysho/_Gjej në vazhdim"
-
-#: src/yelp-window.c:264
-msgid "/Edit/Find Pre_vious"
-msgstr "/Ndrysho/Gjej pa_raardhësin"
-
-#: src/yelp-window.c:268
-msgid "/_Go"
-msgstr "/_Shko"
+#: src/yelp-window.c:263
+msgid "_Find..."
+msgstr "_Kërko..."
 
 #: src/yelp-window.c:269
-msgid "/Go/_Back"
-msgstr "/Shko/_Mbrapa"
+msgid "_Back"
+msgstr "_Mbrapa"
 
-#: src/yelp-window.c:272
-msgid "/Go/_Forward"
-msgstr "/Shko/_Para"
-
-#: src/yelp-window.c:275
-msgid "/Go/_Home"
-msgstr "/Shko/_Shtëpia"
-
-#: src/yelp-window.c:278
-msgid "/Go/"
-msgstr "/Shko/"
-
-#: src/yelp-window.c:279
-msgid "/Go/_Previous Page"
-msgstr "/Shko/Faqja _Paraardhëse"
-
-#: src/yelp-window.c:282
-msgid "/Go/_Next Page"
-msgstr "/Shko/Faqja në _Vazhdim"
-
-#: src/yelp-window.c:285
-msgid "/Go/_Contents"
-msgstr "/shko/_Përmbajtja"
-
-#: src/yelp-window.c:289
-msgid "/_Help"
-msgstr "/_Ndihmë"
-
-#: src/yelp-window.c:290
-msgid "/Help/_About"
-msgstr "/Ndihmë/_Informacione"
-
-#. GRUT modified this item
-#: src/yelp-window.c:352
-msgid "Help Browser"
-msgstr "Shfletuesi i ndihmës"
-
-#: src/yelp-window.c:570 stylesheets/l10n.xml.in.h:61
-msgid "Section"
-msgstr "Seksioni"
-
-#: src/yelp-window.c:625
-msgid "Back"
-msgstr "Mbrapa"
-
-#: src/yelp-window.c:626
+#: src/yelp-window.c:271
 msgid "Show previous page in history"
 msgstr "Shfaq faqen e kaluar në kronollogji"
 
-#: src/yelp-window.c:636
-msgid "Forward"
-msgstr "Para"
+#: src/yelp-window.c:274
+msgid "_Forward"
+msgstr "_Para"
 
-#: src/yelp-window.c:637
+#: src/yelp-window.c:276
 msgid "Show next page in history"
 msgstr "Shfaq faqen në vazhdim në kronollogji"
 
-#: src/yelp-window.c:649
-msgid "Home"
-msgstr "Shtëpia"
+#: src/yelp-window.c:279
+msgid "_Home"
+msgstr "_Shtëpia"
 
-#: src/yelp-window.c:650
+#: src/yelp-window.c:281
 msgid "Go to home view"
 msgstr "Shko tek paraqitja \"shtëpi\""
 
-#: src/yelp-window.c:858
+#: src/yelp-window.c:284
+msgid "_Previous Page"
+msgstr "Faqja _Paraardhëse"
+
+#: src/yelp-window.c:289
+msgid "_Next Page"
+msgstr "Faqja në _Vazhdim"
+
+#: src/yelp-window.c:294
+msgid "_Contents"
+msgstr "_Përmbajtja"
+
+#: src/yelp-window.c:300
+msgid "_About"
+msgstr "_Informacione"
+
+#: src/yelp-window.c:363
+msgid "Help Browser"
+msgstr "Shfletuesi i ndihmës"
+
+#: src/yelp-window.c:686
+msgid "Fin_d"
+msgstr "Gje_j"
+
+#: src/yelp-window.c:984
 msgid "Loading..."
 msgstr "Duke ngarkuar..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1306
+#: src/yelp-window.c:1474
 msgid "translator_credits"
 msgstr "Laurent Dhima <laurenti@alblinux.net>"
 
-#: src/yelp-window.c:1312
+#: src/yelp-window.c:1480
 msgid "A Help Browser for GNOME"
 msgstr "Një Udhëzues i Shfletueshëm për GNOME "
 
@@ -544,7 +525,6 @@ msgstr "Figura"
 msgid "Glossary"
 msgstr "Glossary"
 
-#. GRUT modified this item
 #: stylesheets/l10n.xml.in.h:41
 msgid "Important"
 msgstr "I rëndësishëm"
@@ -624,6 +604,10 @@ msgstr "Informacione mbi versionin"
 #: stylesheets/l10n.xml.in.h:60
 msgid "Revision History"
 msgstr "Historiku revizionit"
+
+#: stylesheets/l10n.xml.in.h:61
+msgid "Section"
+msgstr "Seksioni"
 
 #: stylesheets/l10n.xml.in.h:62
 msgid "See"
