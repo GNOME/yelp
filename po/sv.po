@@ -8,55 +8,50 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-09 00:18-0600\n"
-"PO-Revision-Date: 2003-08-27 09:24+0200\n"
+"POT-Creation-Date: 2003-12-13 12:42+0100\n"
+"PO-Revision-Date: 2003-12-13 12:42+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: data/toc.xml.in.h:1 src/yelp-man.c:429
 msgid "Applications"
 msgstr "Program"
 
 #: data/toc.xml.in.h:2
-#, fuzzy
 msgid "Desktop"
-msgstr "GNOME - Skrivbord"
+msgstr "Skrivbord"
 
 #: data/toc.xml.in.h:3 src/yelp-man.c:434
 msgid "Development"
 msgstr "Utveckling"
 
 #: data/toc.xml.in.h:4
-#, fuzzy
 msgid "Development Environments"
-msgstr "Utveckling"
+msgstr "Utvecklingsmiljöer"
 
 #: data/toc.xml.in.h:5
-#, fuzzy
 msgid "Development Tools"
-msgstr "Utveckling"
+msgstr "Utvecklingsverktyg"
 
 #: data/toc.xml.in.h:6
-#, fuzzy
 msgid "Editors"
-msgstr "/_Redigera"
+msgstr "Redigerare"
 
 #: data/toc.xml.in.h:7
-#, fuzzy
 msgid "Education Applications"
-msgstr "Program"
+msgstr "Utbildningsprogram"
 
 #: data/toc.xml.in.h:8
 msgid "Games and Entertainment"
-msgstr ""
+msgstr "Spel och underhållning"
 
 #: data/toc.xml.in.h:9
 msgid "General"
-msgstr ""
+msgstr "Allmänt"
 
 #. GList           *seriesids;
 #: data/toc.xml.in.h:10 src/yelp-view-toc.c:165
@@ -64,45 +59,40 @@ msgid "Help Contents"
 msgstr "Hjälpinnehåll"
 
 #: data/toc.xml.in.h:11
-#, fuzzy
 msgid "Internet Applications"
-msgstr "Program"
+msgstr "Internetprogram"
 
 #: data/toc.xml.in.h:12
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #: data/toc.xml.in.h:13
-#, fuzzy
 msgid "Kernels"
-msgstr "Kärnrutiner"
+msgstr "Kärnor"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
 msgid "Multimedia Applications"
-msgstr "Program"
+msgstr "Multimediaprogram"
 
 #: data/toc.xml.in.h:15
 msgid "Office and Productivity Applications"
-msgstr ""
+msgstr "Kontors- och produktivitetsprogram"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
 msgid "Scientific Applications"
-msgstr "Program"
+msgstr "Vetenskapliga program"
 
 #: data/toc.xml.in.h:17
 msgid "Securities"
-msgstr ""
+msgstr "Säkerheter"
 
 #: data/toc.xml.in.h:18
 msgid "Utilities"
-msgstr ""
+msgstr "Verktyg"
 
 #: data/toc.xml.in.h:19
-#, fuzzy
 msgid "X Applications"
-msgstr "Program"
+msgstr "X-program"
 
 #: data/ui/yelp.glade.h:1
 msgid "*"
@@ -146,21 +136,21 @@ msgstr "Yelp-fabrik"
 
 #: src/yelp-db-pager.c:238 src/yelp-window.c:730 src/yelp-window.c:817
 #: src/yelp-window.c:976
-#, fuzzy, c-format
+#, c-format
 msgid "The document '%s' could not be opened"
-msgstr "Dokumentet \"%s\" finns inte"
+msgstr "Dokumentet \"%s\" kunde inte öppnas"
 
 #: src/yelp-db-pager.c:404
 msgid "No href attribute found on yelp:document"
-msgstr ""
+msgstr "Inget href-attribut hittat på yelp:document"
 
 #: src/yelp-db-pager.c:419
 msgid "Out of memory"
-msgstr ""
+msgstr "Slut på minne"
 
 #: src/yelp-db-pager.c:547
 msgid "Titlepage"
-msgstr ""
+msgstr "Titelsida"
 
 #: src/yelp-db-pager.c:549
 msgid "Contents"
@@ -168,7 +158,7 @@ msgstr "Innehåll"
 
 #: src/yelp-db-pager.c:567
 msgid "Unknown"
-msgstr ""
+msgstr "Okänd"
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
@@ -245,22 +235,20 @@ msgid "System Administration"
 msgstr "Systemadministration"
 
 #: src/yelp-pager.c:117
-#, fuzzy
 msgid "Document URI"
-msgstr "Dokument"
+msgstr "Dokument-URI"
 
 #: src/yelp-pager.c:118
 msgid "The URI of the document to be processed"
-msgstr ""
+msgstr "URI:n för dokumentet som ska behandlas"
 
 #: src/yelp-toc-pager.c:229
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: Pausräknaren är negativ."
 
 #: src/yelp-toc-pager.c:567 src/yelp-toc-pager.c:579
-#, fuzzy
 msgid "The table of contents could not be read."
-msgstr "Dokumentet \"%s\" finns inte"
+msgstr "Innehållsförteckningen kunde inte läsas."
 
 #: src/yelp-toc-pager.c:780 src/yelp-view-toc.c:367 src/yelp-view-toc.c:493
 #: src/yelp-view-toc.c:741
@@ -405,20 +393,19 @@ msgstr "Dokumentet \"%s\" finns inte"
 
 #: src/yelp-window.c:655
 msgid "DocBook SGML documents are no longer supported."
-msgstr ""
+msgstr "DocBook SGML-dokument stöds inte längre."
 
 #: src/yelp-window.c:887
 msgid "Loading&nbsp;&nbsp;&nbsp;"
-msgstr ""
+msgstr "Läser in&nbsp;&nbsp;&nbsp;"
 
 #: src/yelp-window.c:891
 msgid "Loading.&nbsp;&nbsp;"
-msgstr ""
+msgstr "Läser in.&nbsp;&nbsp;"
 
 #: src/yelp-window.c:895
-#, fuzzy
 msgid "Loading..&nbsp;"
-msgstr "Läser in..."
+msgstr "Läser in..&nbsp;"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
@@ -440,6 +427,21 @@ msgstr "Få hjälp med GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Hjälp"
+
+#~ msgid "Development Environment"
+#~ msgstr "Utvecklingsmiljö"
+
+#~ msgid "Security"
+#~ msgstr "Säkerhet"
+
+#~ msgid "Document"
+#~ msgstr "Dokument"
+
+#~ msgid "Loading."
+#~ msgstr "Läser in."
+
+#~ msgid "Loading"
+#~ msgstr "Läser in"
 
 #~ msgid "About This Document"
 #~ msgstr "Om detta dokument"
