@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"POT-Creation-Date: 2002-04-16 03:15+0800\n"
+"POT-Creation-Date: 2002-05-28 03:29+0800\n"
 "PO-Revision-Date: 2002-02-04 03:03+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -22,36 +22,6 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Kilang Yelp"
 
-#: src/yelp-db2html.c:105
-msgid ""
-"Error while parsing the stylesheet, make sure you have your docbook "
-"environment setup correctly."
-msgstr ""
-"Ralat bila menghantar stylesheet, pastikan anda menetapkan persekitaran "
-"docbook dengan betul."
-
-#: src/yelp-db2html.c:121
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "Dokumen '%s' tidak wujud"
-
-#: src/yelp-db2html.c:136
-#, c-format
-msgid "Couldn't parse the document '%s'."
-msgstr "Tak dapat menghantar documen '%s'."
-
-#: src/yelp-db2html.c:178
-msgid "Error while applying the stylesheet."
-msgstr "Ralat bila menerapkan stylesheet."
-
-#: src/yelp-html.c:129
-msgid "Loading..."
-msgstr "Memuat..."
-
-#: src/yelp-info.c:141
-msgid "info"
-msgstr "maklumat"
-
 #: src/yelp-main.c:109
 #, c-format
 msgid "Could not activate Yelp: '%s'"
@@ -61,207 +31,208 @@ msgstr "Tak dapat mengaktifkan Yelp: '%s'"
 msgid "Could not open new window."
 msgstr "Tak dapat membuka tetingkap baru."
 
-#: src/yelp-man.c:301 src/yelp-man.c:322 src/yelp-man.c:358 src/yelp-man.c:390
-#: src/yelp-man.c:406 src/yelp-man.c:417
+#: src/yelp-man.c:294 src/yelp-man.c:315 src/yelp-man.c:351 src/yelp-man.c:383
+#: src/yelp-man.c:399 src/yelp-man.c:410
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:306 src/yelp-man.c:337 src/yelp-man.c:395 src/yelp-man.c:422
+#: src/yelp-man.c:299 src/yelp-man.c:330 src/yelp-man.c:388 src/yelp-man.c:415
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: src/yelp-man.c:311
+#: src/yelp-man.c:304
 msgid "Termcap"
 msgstr "Termcap"
 
-#: src/yelp-man.c:327
+#: src/yelp-man.c:320
 msgid "Perl"
 msgstr "Perl"
 
-#: src/yelp-man.c:332
+#: src/yelp-man.c:325
 msgid "Qt"
 msgstr "Qt"
 
-#: src/yelp-man.c:342
+#: src/yelp-man.c:335
 msgid "TIFF"
 msgstr "TIFF"
 
-#: src/yelp-man.c:347
+#: src/yelp-man.c:340
 msgid "PThreads"
 msgstr "PThreads"
 
-#: src/yelp-man.c:369
+#: src/yelp-man.c:362
 msgid "System Calls"
 msgstr "Panggilan Sistem"
 
-#: src/yelp-man.c:374
+#: src/yelp-man.c:367
 msgid "Library Functions"
 msgstr "Fungsi Pustaka"
 
-#: src/yelp-man.c:379
+#: src/yelp-man.c:372
 msgid "Kernel Routines"
 msgstr "Rutun Kernel"
 
-#: src/yelp-man.c:434
+#: src/yelp-man.c:427
 msgid "Applications"
 msgstr "Aplikasi"
 
-#: src/yelp-man.c:439
+#: src/yelp-man.c:432
 msgid "Development"
 msgstr "Pembangunan"
 
-#: src/yelp-man.c:444
+#: src/yelp-man.c:437
 msgid "Hardware Devices"
 msgstr "Peranti Perkakasan"
 
-#: src/yelp-man.c:449
+#: src/yelp-man.c:442
 msgid "Configuration Files"
 msgstr "Fail Konfigurasi"
 
-#: src/yelp-man.c:454
+#: src/yelp-man.c:447
 msgid "Games"
 msgstr "Permainan"
 
-#: src/yelp-man.c:459
+#: src/yelp-man.c:452
 msgid "Overviews"
 msgstr "Sekilas pandang"
 
-#: src/yelp-man.c:464
+#: src/yelp-man.c:457
 msgid "System Administration"
 msgstr "Pentadbir Sistem"
 
-#: src/yelp-man.c:475
-msgid "man"
-msgstr "man"
+#: src/yelp-view-content.c:229 src/yelp-view-content.c:473
+msgid "Loading..."
+msgstr "Memuat..."
 
-#: src/yelp-view-content.c:201 src/yelp-view-index.c:374
+#: src/yelp-view-content.c:338 src/yelp-view-index.c:375
 msgid "Section"
 msgstr "Seksyen"
 
-#: src/yelp-view-index.c:337
+#: src/yelp-view-index.c:338
 msgid "Search for:"
 msgstr "Cari untuk:"
 
-#: src/yelp-view-toc.c:323
+#. GList           *seriesids;
+#: src/yelp-view-toc.c:163
 msgid "Help Contents"
 msgstr "Kandungan Bantuan"
 
-#: src/yelp-view-toc.c:324
+#: src/yelp-view-toc.c:164
 msgid "GNOME - Desktop"
 msgstr "GNOME - Desktop"
 
-#: src/yelp-view-toc.c:325
+#: src/yelp-view-toc.c:165
 msgid "Additional documents"
 msgstr "Dokumen tambahan"
 
-#: src/yelp-view-toc.c:326 src/yelp-view-toc.c:609
-msgid "Manual pages"
-msgstr "Halaman Manual"
-
-#: src/yelp-view-toc.c:327 src/yelp-view-toc.c:728
-msgid "Info pages"
-msgstr "Halaman Maklumat"
-
-#: src/yelp-view-toc.c:525 src/yelp-view-toc.c:729 src/yelp-view-toc.c:860
-msgid "Documents"
-msgstr "Dokumen"
-
-#: src/yelp-view-toc.c:526 src/yelp-view-toc.c:667 src/yelp-view-toc.c:861
-msgid "Categories"
-msgstr "Kategori"
-
-#: src/yelp-view-toc.c:666
+#: src/yelp-view-toc.c:166 src/yelp-view-toc.c:487
 msgid "Manual Pages"
 msgstr "Halaman Manual"
 
-#: src/yelp-window.c:150
+#: src/yelp-view-toc.c:167 src/yelp-view-toc.c:543
+msgid "Info Pages"
+msgstr "Halaman Maklumat"
+
+#: src/yelp-view-toc.c:364 src/yelp-view-toc.c:544 src/yelp-view-toc.c:759
+msgid "Documents"
+msgstr "Dokumen"
+
+#: src/yelp-view-toc.c:365 src/yelp-view-toc.c:488 src/yelp-view-toc.c:760
+msgid "Categories"
+msgstr "Kategori"
+
+#: src/yelp-view-toc.c:446
+msgid "Manual pages"
+msgstr "Halaman Manual"
+
+#: src/yelp-window.c:152
 msgid "/_File"
 msgstr "/_Fail"
 
-#: src/yelp-window.c:151
+#: src/yelp-window.c:153
 msgid "/File/_New window"
 msgstr "/Fail/Teti_ngkap Baru"
 
-#: src/yelp-window.c:152
+#: src/yelp-window.c:154
 msgid "/File/_Close window"
 msgstr "/Fail/_Tutup tetingkap"
 
-#. {N_("/File/_Quit"),         NULL,         yw_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
-#: src/yelp-window.c:154
+#. {N_("/File/_Quit"),         NULL,         window_exit_cb,         0,                           "<StockItem>", GTK_STOCK_QUIT    },
+#: src/yelp-window.c:156
 msgid "/_Go"
 msgstr "/_Pergi"
 
-#: src/yelp-window.c:155
+#: src/yelp-window.c:157
 msgid "/Go/_Back"
 msgstr "Pergi/_Undur"
 
-#: src/yelp-window.c:156
+#: src/yelp-window.c:158
 msgid "/Go/_Forward"
 msgstr "/Pergi/_Maju"
 
-#: src/yelp-window.c:157
+#: src/yelp-window.c:159
 msgid "/Go/_Home"
 msgstr "/Pergi/_Rumah"
 
-#: src/yelp-window.c:158
+#: src/yelp-window.c:160
 msgid "/Go/_Index"
 msgstr "Pergi/_Indeks"
 
-#: src/yelp-window.c:159
+#: src/yelp-window.c:161
 msgid "/_Help"
 msgstr "/_Bantuan"
 
-#: src/yelp-window.c:160
+#: src/yelp-window.c:162
 msgid "/Help/_About"
 msgstr "/Bantuan/Perih_al"
 
 # nota: aku kekalkan browse= lungsur.. pasal aku rasa mungkin kita leh
 # bezakan browse web= layar, browse local = lungsur..
-#: src/yelp-window.c:219
+#: src/yelp-window.c:224
 msgid "Help Browser"
 msgstr "Pelungsur Bantuan"
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:563
+#: src/yelp-window.c:567
 msgid "translator_credits"
 msgstr ""
 "Mohamad Afifi Omar <mr_mohd_afifi@yahoo.com>\n"
 "Hasbullah Bin Pit <sebol@ikhlas.com>, Merlimau."
 
-#: src/yelp-window.c:567
+#: src/yelp-window.c:571
 msgid "Help Browser for GNOME 2.0"
 msgstr "Pelungsur Fail Bantuan GNOME 2.0"
 
-#: src/yelp-window.c:621
+#: src/yelp-window.c:625
 msgid "Back"
 msgstr "Undur"
 
-#: src/yelp-window.c:622
+#: src/yelp-window.c:626
 msgid "Show previous page in history"
 msgstr "Papar halaman terdahulu dalam sejarah"
 
-#: src/yelp-window.c:633
+#: src/yelp-window.c:637
 msgid "Forward"
 msgstr "Maju"
 
-#: src/yelp-window.c:634
+#: src/yelp-window.c:638
 msgid "Show next page in history"
 msgstr "Papar halaman seterusnya dalam sejaraj"
 
-#: src/yelp-window.c:647
+#: src/yelp-window.c:651
 msgid "Home"
 msgstr "Rumah"
 
-#: src/yelp-window.c:648
+#: src/yelp-window.c:652
 msgid "Go to home view"
 msgstr "Pergi ke paparan rumah"
 
-#: src/yelp-window.c:658
+#: src/yelp-window.c:662
 msgid "Index"
 msgstr "Indeks"
 
-#: src/yelp-window.c:659
+#: src/yelp-window.c:663
 msgid "Search in the index"
 msgstr "Cari di dalam indeks"
 
@@ -272,3 +243,25 @@ msgstr "Mendapatkan bantuan bersama GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Bantuan"
+
+#~ msgid ""
+#~ "Error while parsing the stylesheet, make sure you have your docbook "
+#~ "environment setup correctly."
+#~ msgstr ""
+#~ "Ralat bila menghantar stylesheet, pastikan anda menetapkan persekitaran "
+#~ "docbook dengan betul."
+
+#~ msgid "The document '%s' does not exist"
+#~ msgstr "Dokumen '%s' tidak wujud"
+
+#~ msgid "Couldn't parse the document '%s'."
+#~ msgstr "Tak dapat menghantar documen '%s'."
+
+#~ msgid "Error while applying the stylesheet."
+#~ msgstr "Ralat bila menerapkan stylesheet."
+
+#~ msgid "info"
+#~ msgstr "maklumat"
+
+#~ msgid "man"
+#~ msgstr "man"
