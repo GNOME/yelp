@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-30 07:14-0600\n"
+"POT-Creation-Date: 2004-01-09 14:37+0100\n"
 "PO-Revision-Date: 2003-01-02 02:27+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -19,9 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/toc.xml.in.h:1
-#, fuzzy
 msgid "Applets"
-msgstr "Aplikacje"
+msgstr "Aplety"
 
 #: data/toc.xml.in.h:2 src/yelp-man.c:429
 msgid "Applications"
@@ -139,28 +138,23 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generator Yelpa"
 
-#: src/yelp-db-pager.c:241 src/yelp-window.c:758
-#, c-format
-msgid "The document '%s' could not be opened"
-msgstr "Nie można otworzyć dokumentu \"%s\""
-
-#: src/yelp-db-pager.c:424
+#: src/yelp-db-pager.c:426
 msgid "No href attribute found on yelp:document"
 msgstr "Nie znaleziono atrybutu href dla yelp:document"
 
-#: src/yelp-db-pager.c:439
+#: src/yelp-db-pager.c:441
 msgid "Out of memory"
 msgstr "Brak pamięci"
 
-#: src/yelp-db-pager.c:602
+#: src/yelp-db-pager.c:618
 msgid "Titlepage"
 msgstr "Strona tytułowa"
 
-#: src/yelp-db-pager.c:604
+#: src/yelp-db-pager.c:620 stylesheets/l10n.xml.in.h:27
 msgid "Contents"
 msgstr "Zawartość"
 
-#: src/yelp-db-pager.c:622
+#: src/yelp-db-pager.c:638 stylesheets/l10n.xml.in.h:61
 msgid "Unknown"
 msgstr "Nieznany"
 
@@ -246,150 +240,368 @@ msgstr "URI dokumentu"
 msgid "The URI of the document to be processed"
 msgstr "URI dokumentu do przetworzenia"
 
-#: src/yelp-toc-pager.c:260
+#: src/yelp-toc-pager.c:264
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: licznik przerw jest ujemny."
 
-#: src/yelp-toc-pager.c:628 src/yelp-toc-pager.c:640
-msgid "The table of contents could not be read."
-msgstr "Nie można odczytać spisu treści."
-
-#: src/yelp-toc-pager.c:841
+#: src/yelp-toc-pager.c:876
 msgid "Categories"
 msgstr "Kategorie"
 
-#: src/yelp-toc-pager.c:862
+#: src/yelp-toc-pager.c:890
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: src/yelp-window.c:223
+#: src/yelp-window.c:228
 msgid "/_File"
 msgstr "/_Plik"
 
-#: src/yelp-window.c:224
+#: src/yelp-window.c:229
 msgid "/File/_New window"
 msgstr "/Plik/_Nowe okno"
 
-#: src/yelp-window.c:227
+#: src/yelp-window.c:232
 msgid "/File/_Close window"
 msgstr "/Plik/Za_mknij okno"
 
-#: src/yelp-window.c:231
+#: src/yelp-window.c:236
 msgid "/_Edit"
 msgstr "/_Edycja"
 
-#: src/yelp-window.c:232
+#: src/yelp-window.c:237
 msgid "/Edit/_Find..."
 msgstr "/Edycja/_Znajdź..."
 
-#: src/yelp-window.c:235
+#: src/yelp-window.c:240
 msgid "/Edit/Find Ne_xt"
 msgstr "/Edycja/Znajdź _następne"
 
-#: src/yelp-window.c:238
+#: src/yelp-window.c:243
 msgid "/Edit/Find Pre_vious"
 msgstr "/Edycja/Znajdź p_oprzednie"
 
-#: src/yelp-window.c:242
+#: src/yelp-window.c:247
 msgid "/_Go"
 msgstr "/P_rzejście"
 
-#: src/yelp-window.c:243
+#: src/yelp-window.c:248
 msgid "/Go/_Back"
 msgstr "/P_rzejście/_Wstecz"
 
-#: src/yelp-window.c:246
+#: src/yelp-window.c:251
 msgid "/Go/_Forward"
 msgstr "/P_rzejście/_Naprzód"
 
-#: src/yelp-window.c:249
+#: src/yelp-window.c:254
 msgid "/Go/_Home"
 msgstr "/P_rzejście/P_oczątek"
 
-#: src/yelp-window.c:252
+#: src/yelp-window.c:257
 msgid "/Go/"
 msgstr "/Przejście/"
 
-#: src/yelp-window.c:253
+#: src/yelp-window.c:258
 msgid "/Go/_Previous"
 msgstr "/Przejście/_Poprzedni"
 
-#: src/yelp-window.c:256
+#: src/yelp-window.c:261
 msgid "/Go/_Next"
 msgstr "/Przejście/_Następny"
 
-#: src/yelp-window.c:259
+#: src/yelp-window.c:264
 msgid "/Go/_Contents"
 msgstr "/Przejście/Z_awartość"
 
-#: src/yelp-window.c:263
+#: src/yelp-window.c:268
 msgid "/_Help"
 msgstr "/Pomo_c"
 
-#: src/yelp-window.c:264
+#: src/yelp-window.c:269
 msgid "/Help/_About"
 msgstr "/Pomoc/_Informacje o"
 
-#: src/yelp-window.c:326
+#: src/yelp-window.c:331
 msgid "Help Browser"
 msgstr "Przeglądarka pomocy"
 
-#: src/yelp-window.c:390
-#, c-format
-msgid "The document '%s' does not exist"
-msgstr "Dokument \"%s\" nie istnieje"
-
-#: src/yelp-window.c:426
-msgid "DocBook SGML documents are no longer supported."
-msgstr "Dokumenty DocBook SGML nie są już obsługiwane."
-
-#: src/yelp-window.c:545
+#: src/yelp-window.c:545 stylesheets/l10n.xml.in.h:53
 msgid "Section"
 msgstr "Sekcja"
 
-#: src/yelp-window.c:598
+#: src/yelp-window.c:602
 msgid "Back"
 msgstr "Wstecz"
 
-#: src/yelp-window.c:599
+#: src/yelp-window.c:603
 msgid "Show previous page in history"
 msgstr "Wyświetla poprzednią stronę z historii"
 
-#: src/yelp-window.c:609
+#: src/yelp-window.c:613
 msgid "Forward"
 msgstr "Naprzód"
 
-#: src/yelp-window.c:610
+#: src/yelp-window.c:614
 msgid "Show next page in history"
 msgstr "Wyświetla następną stronę z historii"
 
-#: src/yelp-window.c:622
+#: src/yelp-window.c:626
 msgid "Home"
 msgstr "Początek"
 
-#: src/yelp-window.c:623
+#: src/yelp-window.c:627
 msgid "Go to home view"
 msgstr "Przechodzi do widoku początkowego"
 
-#: src/yelp-window.c:791 src/yelp-window.c:822 src/yelp-window.c:1043
-#: src/yelp-window.c:1105
-#, c-format
-msgid "The page '%s' could not be found in this document."
-msgstr "W tym dokumencie nie można znaleźć strony \"%s\"."
-
-#: src/yelp-window.c:847
+#: src/yelp-window.c:832
 msgid "Loading..."
 msgstr "Wczytywanie..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:1186
+#: src/yelp-window.c:1226
 msgid "translator_credits"
 msgstr "GNOME PL Team <translators@gnome.pl>"
 
-#: src/yelp-window.c:1191
+#: src/yelp-window.c:1231
 msgid "A Help Browser for GNOME"
 msgstr "Przeglądarka pomocy dla GNOME"
+
+#: stylesheets/l10n.xml.in.h:1
+msgid "&#8216;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:2
+msgid "&#8217;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:3
+msgid "&#8220;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:4
+msgid "&#8221;"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:5
+msgid "About This Bibliography"
+msgstr "Informacje o bibliografii"
+
+#: stylesheets/l10n.xml.in.h:6
+msgid "About This Book"
+msgstr "Informacje o książce"
+
+#: stylesheets/l10n.xml.in.h:7
+msgid "About This Chapter"
+msgstr "Informacje o rozdziale"
+
+#: stylesheets/l10n.xml.in.h:8
+msgid "About This Entry"
+msgstr "Informacje o pozycji"
+
+#: stylesheets/l10n.xml.in.h:9
+msgid "About This Glossary"
+msgstr "Informacje o słowniku"
+
+#: stylesheets/l10n.xml.in.h:10
+msgid "About This Index"
+msgstr "Informacje o skorowidzu"
+
+#: stylesheets/l10n.xml.in.h:11
+msgid "About This Part"
+msgstr "Informacje o części"
+
+#: stylesheets/l10n.xml.in.h:12
+msgid "About This Preface"
+msgstr "Informacje o przedmowie"
+
+#: stylesheets/l10n.xml.in.h:13
+msgid "About This Reference"
+msgstr "Informacje o odnośniku"
+
+#: stylesheets/l10n.xml.in.h:14
+msgid "About This Section"
+msgstr "Informacje o sekcji"
+
+#: stylesheets/l10n.xml.in.h:15
+msgid "About This Set"
+msgstr "Informacje o zestawie"
+
+#: stylesheets/l10n.xml.in.h:16
+msgid "Affiliation"
+msgstr "Przynależność"
+
+#: stylesheets/l10n.xml.in.h:17
+msgid "Appendix"
+msgstr "Załącznik"
+
+#: stylesheets/l10n.xml.in.h:18
+msgid "Article"
+msgstr "Artykuł"
+
+#: stylesheets/l10n.xml.in.h:19
+msgid "Audience"
+msgstr "Publiczność"
+
+#: stylesheets/l10n.xml.in.h:20
+msgid "Author"
+msgstr "Autor"
+
+#: stylesheets/l10n.xml.in.h:21
+msgid "Bigliography"
+msgstr "Bibliografia"
+
+#: stylesheets/l10n.xml.in.h:22
+msgid "Book"
+msgstr "Książka"
+
+#: stylesheets/l10n.xml.in.h:23
+msgid "Caution"
+msgstr "Ostrzeżenie"
+
+#: stylesheets/l10n.xml.in.h:24
+msgid "Chapter"
+msgstr "Rozdział"
+
+#: stylesheets/l10n.xml.in.h:25
+msgid "Collaborator"
+msgstr "Współpracownik"
+
+#: stylesheets/l10n.xml.in.h:26
+msgid "Colophon"
+msgstr "Kolofon"
+
+#: stylesheets/l10n.xml.in.h:28
+msgid "Copyright"
+msgstr "Chroniony prawem autorskim"
+
+#: stylesheets/l10n.xml.in.h:29
+msgid "Date"
+msgstr "Data"
+
+#: stylesheets/l10n.xml.in.h:30
+msgid "Dedication"
+msgstr "Dedykacja"
+
+#: stylesheets/l10n.xml.in.h:31
+msgid "Editor"
+msgstr "Redaktor"
+
+#: stylesheets/l10n.xml.in.h:32
+msgid "Email"
+msgstr "E-mail"
+
+#: stylesheets/l10n.xml.in.h:33
+msgid "Example"
+msgstr "Przykład"
+
+#: stylesheets/l10n.xml.in.h:34
+msgid "Figure"
+msgstr "Figura"
+
+#: stylesheets/l10n.xml.in.h:35
+msgid "Glossary"
+msgstr "Słownik"
+
+#: stylesheets/l10n.xml.in.h:36
+msgid "Important"
+msgstr "Ważne"
+
+#: stylesheets/l10n.xml.in.h:37
+msgid "Index"
+msgstr "Indeks"
+
+#: stylesheets/l10n.xml.in.h:38
+msgid "Legal Notice"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:39
+msgid "Level"
+msgstr "Poziom"
+
+#: stylesheets/l10n.xml.in.h:40
+msgid "Message Audience"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:41
+msgid "Message Level"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:42
+msgid "Message Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:43
+msgid "Note"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:44
+msgid "Origin"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:45
+msgid "Other Contributor"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:46
+msgid "Part"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:47
+msgid "Preface"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:48
+msgid "Publisher"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:49
+msgid "Reference"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:50
+msgid "Reference Entry"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:51
+msgid "Reference Section"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:52
+msgid "Revision History"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:54
+msgid "See"
+msgstr "Zobacz"
+
+#: stylesheets/l10n.xml.in.h:55
+msgid "See Also"
+msgstr "Zobacz również"
+
+#: stylesheets/l10n.xml.in.h:56
+#, fuzzy
+msgid "Set Index"
+msgstr "Indeks"
+
+#: stylesheets/l10n.xml.in.h:57
+msgid "Table"
+msgstr ""
+
+#: stylesheets/l10n.xml.in.h:58
+msgid "Table of Contents"
+msgstr "Zawartość"
+
+#: stylesheets/l10n.xml.in.h:59
+msgid "Tip"
+msgstr "Podpowiedź"
+
+#: stylesheets/l10n.xml.in.h:60
+msgid "Title"
+msgstr "Tytuł"
+
+#: stylesheets/l10n.xml.in.h:62
+msgid "Warning"
+msgstr "Uwaga"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
@@ -398,72 +610,3 @@ msgstr "Pomoc GNOME"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Pomoc"
-
-#~ msgid "Could not obtain a GtkStyle."
-#~ msgstr "Nie można otrzymać GtkStyle."
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Wyszukiwanie tekstu w dokumencie:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Automatyczne _zawijanie"
-
-#~ msgid "Find text..."
-#~ msgstr "Wyszukiwanie tekstu"
-
-#~ msgid "Match _entire word"
-#~ msgstr "_Całe słowo"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "_Rozróżnianie małych i wielkich liter"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Znajdź:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - środowisko"
-
-#~ msgid "Additional documents"
-#~ msgstr "Dodatkowe dokumenty"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Strony podręcznikowe"
-
-#~ msgid "Info Pages"
-#~ msgstr "Strony info"
-
-#~ msgid "Manual pages"
-#~ msgstr "Strony podręcznikowe"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOME to"
-
-#~ msgid "Free Software"
-#~ msgstr "Wolne Oprogramowanie"
-
-#~ msgid "(C)"
-#~ msgstr "(C)"
-
-#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
-#~ msgstr "Wczytywanie;&nbsp;&nbsp;&nbsp;"
-
-#~ msgid "Loading.&nbsp;&nbsp;"
-#~ msgstr "Wczytywanie.&nbsp;&nbsp;"
-
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Wczytywanie..&nbsp;"
-
-#~ msgid "About This Document"
-#~ msgstr "Informacje o dokumencie"
-
-#~ msgid "Previous"
-#~ msgstr "Poprzednia"
-
-#~ msgid "Next"
-#~ msgstr "Następna"
-
-#~ msgid "Index"
-#~ msgstr "Indeks"
-
-#~ msgid "Search in the index"
-#~ msgstr "Wyszukuje w indeksie"
