@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 01:02-0500\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2005-01-11 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
@@ -136,7 +136,7 @@ msgstr "Educational Applications"
 msgid "Graphics"
 msgstr "Graphics"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
 msgid "Help Topics"
 msgstr "Help Topics"
 
@@ -189,66 +189,75 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Fonts</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "_Bookmarks"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Title:</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Add Bookmark"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "Bookmarks"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "C_ase sensitive"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "Find"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Open Location"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "Preferences"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "_Browse with caret"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "_Find: "
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "_Fixed width:"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Location:"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_Next"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "_Previous"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "_Use system fonts"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "_Variable width:"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_Wrap around"
 
@@ -292,10 +301,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "A bookmark titled <b>%s</b> already exists for this page."
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "Document Information"
 
 #: src/yelp-db-pager.c:238
 #, c-format

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ml\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2003-06-12 17:52-0600\n"
 "Last-Translator: Suresh VP <mvpsuresh@yahoo.com>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
@@ -152,9 +152,10 @@ msgstr "പ്രയോഗങ്ങള്‌"
 msgid "Graphics"
 msgstr ""
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "സഹായ ഉള്ളടക്കം"
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#, fuzzy
+msgid "Help Topics"
+msgstr "സഹായ ബ്രൌസ‍ര്"
 
 #: data/toc.xml.in.h:10
 #, fuzzy
@@ -210,68 +211,76 @@ msgid "<b>Fonts</b>"
 msgstr ""
 
 #: data/ui/yelp.glade.h:3
-msgid "<b>_Title:</b>"
+msgid "<b>_Bookmarks:</b>"
 msgstr ""
 
 #: data/ui/yelp.glade.h:4
-msgid "Add Bookmark"
+msgid "<b>_Title:</b>"
 msgstr ""
 
 #: data/ui/yelp.glade.h:5
-msgid "Bookmarks"
+msgid "Add Bookmark"
 msgstr ""
 
 #: data/ui/yelp.glade.h:6
-msgid "C_ase sensitive"
+msgid "Bookmarks"
 msgstr ""
 
 #: data/ui/yelp.glade.h:7
-msgid "Find"
+msgid "C_ase sensitive"
 msgstr ""
 
 #: data/ui/yelp.glade.h:8
+msgid "Find"
+msgstr ""
+
+#: data/ui/yelp.glade.h:9
 #, fuzzy
 msgid "Open Location"
 msgstr "വിഭാഗം"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr ""
 
-#: data/ui/yelp.glade.h:10
-msgid "_Browse with caret"
-msgstr ""
-
 #: data/ui/yelp.glade.h:11
-msgid "_Find: "
+msgid "Re_name"
 msgstr ""
 
 #: data/ui/yelp.glade.h:12
-msgid "_Fixed width:"
+msgid "_Browse with caret"
 msgstr ""
 
 #: data/ui/yelp.glade.h:13
+msgid "_Find: "
+msgstr ""
+
+#: data/ui/yelp.glade.h:14
+msgid "_Fixed width:"
+msgstr ""
+
+#: data/ui/yelp.glade.h:15
 #, fuzzy
 msgid "_Location:"
 msgstr "വിഭാഗം"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "അടുത്ത"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "മുന്പത്തേത്"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr ""
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr ""
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr ""
 
@@ -304,16 +313,26 @@ msgid "Use system fonts"
 msgstr ""
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
+msgid "Use the default fonts set for the system."
 msgstr ""
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "സഹായം"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
 msgstr "സഹായ ശാല"
+
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr ""
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "ഗ്രന്ഥങ്ങള്"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -359,6 +378,13 @@ msgstr ""
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr ""
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
 
 #: src/yelp-main.c:95
@@ -416,7 +442,7 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr ""
 
@@ -455,6 +481,10 @@ msgstr ""
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr ""
+
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "സഹായ ഉള്ളടക്കം"
 
 #: src/yelp-window.c:302
 #, fuzzy
@@ -538,13 +568,12 @@ msgid "Show next page in history"
 msgstr "സന്ദ‍ര്ശിച്ചവയില് അടുത്ത സ്ഥാനത്തേക്ക് പോകുക"
 
 #: src/yelp-window.c:367
-#, fuzzy
-msgid "_Home"
-msgstr "ആസ്ഥാനം"
+msgid "_Help Topics"
+msgstr ""
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "ആസ്ഥാനത്തേക്ക് പോകുക"
+msgid "Go to the listing of help topics"
+msgstr ""
 
 #: src/yelp-window.c:372
 #, fuzzy
@@ -601,11 +630,11 @@ msgid ""
 "actual file."
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr ""
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr ""
 
@@ -615,18 +644,29 @@ msgid ""
 "document to convert to XML."
 msgstr ""
 
-#: src/yelp-window.c:1021
-msgid "Fin_d"
-msgstr ""
+#: src/yelp-window.c:1024
+#, fuzzy
+msgid "Find:"
+msgstr "താളില് കണ്ടെത്തുക..."
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+#, fuzzy
+msgid "Find _Next"
+msgstr "അടുത്തത് കണ്ടെത്തുക"
+
+#: src/yelp-window.c:1052
+#, fuzzy
+msgid "Find _Previous"
+msgstr "മുന്പത്തേത്"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -634,25 +674,25 @@ msgid ""
 "maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "കാത്തിരിക്കൂ..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2166
 #, fuzzy
 msgid "translator-credits"
 msgstr "എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 
@@ -663,7 +703,14 @@ msgid ""
 "improperly formatted."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
@@ -673,6 +720,13 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "ഗ്നോം സഹായം ലഭിക്കുക"
+
+#, fuzzy
+#~ msgid "_Home"
+#~ msgstr "ആസ്ഥാനം"
+
+#~ msgid "Go to home view"
+#~ msgstr "ആസ്ഥാനത്തേക്ക് പോകുക"
 
 #, fuzzy
 #~ msgid "Development Environments"
@@ -816,9 +870,6 @@ msgstr "ഗ്നോം സഹായം ലഭിക്കുക"
 
 #~ msgid "Automatically _wrap around"
 #~ msgstr "സ്വയമേവ ചുറ്റിത്തിരിയുക"
-
-#~ msgid "Find text..."
-#~ msgstr "അടുത്തത് കണ്ടെത്തുക"
 
 #~ msgid "Match _entire word"
 #~ msgstr "മുഴുവന് വാക്കും ഒത്തുനോക്കുക"

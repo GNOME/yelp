@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 01:09+0900\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2005-01-13 01:18+0900\n"
 "Last-Translator: Satoru SATOH <ss@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -137,7 +137,7 @@ msgstr "教育向けのアプリケーション"
 msgid "Graphics"
 msgstr "グラフィックス"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
 msgid "Help Topics"
 msgstr "ヘルプトピック"
 
@@ -190,66 +190,75 @@ msgid "<b>Fonts</b>"
 msgstr "<b>フォント</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "ブックマーク(_B)"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>タイトル(_T):</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "ブックマークの追加"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "大/小文字を区別する(_A)"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "検索"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "場所を開く"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "設定"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "キャレット・モードで閲覧する(_B)"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "検索する内容(_F):"
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "等幅(_F):"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "場所(_L):"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "次へ(_N)"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "前へ(_P)"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "システムのフォントを使う(_U)"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "可変幅(_V):"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "折り返しも検索する(_W)"
 
@@ -293,10 +302,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp ファクトリ"
 
-#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "<b>%s</b> というこのページのブックマークは既にあります"
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "ドキュメントの情報"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -349,8 +363,8 @@ msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
-"ファイル '%s' を読み込み、解析できませんでした。おそらくファイルが存在しないか、または"
-"フォーマットが妥当ではないようです。"
+"ファイル '%s' を読み込み、解析できませんでした。おそらくファイルが存在しない"
+"か、またはフォーマットが妥当ではないようです。"
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"

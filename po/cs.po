@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 20:33+0100\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2005-01-10 21:56+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -137,9 +137,10 @@ msgstr "Vzdělávací aplikace"
 msgid "Graphics"
 msgstr "Grafika"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Obsah nápovědy"
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#, fuzzy
+msgid "Help Topics"
+msgstr "Prohlížeč nápovědy"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -190,66 +191,75 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Písma</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "_Záložky"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Název</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Přidat záložku"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "Záložky"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "_Rozlišovat velikost písmen"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "Hledat"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Otevřít umístění"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "_Procházet s kurzorem"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "_Hledat: "
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "_Pevná šířka:"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Umístění:"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_Následující"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "_Předchozí"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "_Používat písma systému"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "_Proměnlivá šířka:"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_Přecházet přes okraj"
 
@@ -285,7 +295,7 @@ msgstr "Používat písma systému"
 msgid "Use the default fonts set for the system."
 msgstr "Používat písma nastavená v systému."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2152
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -293,10 +303,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Generátor Yelp"
 
-#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Na tuto stránku již existuje záložka nazvaná <b>%s</b>."
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "Informace o dokumentu"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -406,7 +421,7 @@ msgstr "Struktura YelpDocInfo dokumentu"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201E"
 
@@ -448,6 +463,10 @@ msgstr "V yelp:document nenalezen atribut href"
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Nedostatek paměti"
+
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "Obsah nápovědy"
 
 #: src/yelp-window.c:302
 msgid "_File"
@@ -522,12 +541,12 @@ msgid "Show next page in history"
 msgstr "Zobrazí následující stránku v historii"
 
 #: src/yelp-window.c:367
-msgid "_Home"
-msgstr "_Domů"
+msgid "_Help Topics"
+msgstr ""
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "Přejde na domovskou stránku"
+msgid "Go to the listing of help topics"
+msgstr ""
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -582,11 +601,11 @@ msgstr ""
 "Uniform Resource Identifier ‘%s’ není platný nebo neukazuje na skutečný "
 "soubor."
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr "Stránky man nejsou v této verzi podporovány."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr "Stránky GNU info nejsou v této verzi podporovány."
 
@@ -598,11 +617,22 @@ msgstr ""
 "Dokumenty SGML už nejsou podporovány. Požádejte prosím autora dokumentu, aby "
 "jej převedl do XML."
 
-#: src/yelp-window.c:1021
-msgid "Fin_d"
-msgstr "_Hledat"
+#: src/yelp-window.c:1024
+#, fuzzy
+msgid "Find:"
+msgstr "Hledat"
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+#, fuzzy
+msgid "Find _Next"
+msgstr "_Následující"
+
+#: src/yelp-window.c:1052
+#, fuzzy
+msgid "Find _Previous"
+msgstr "_Předchozí"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -611,7 +641,7 @@ msgstr ""
 "Pro soubor ‘%s’ nelze vytvořit kontext transformace. Formát možná není "
 "podporován."
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -621,7 +651,7 @@ msgstr ""
 "Oddíl ‘%s’ v tomto dokumentu neexistuje. Pokud vás k tomuto oddílu dovedlo "
 "tlačíko Nápověda v aplikaci, ohlaste to prosím správcům této aplikace."
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -630,19 +660,19 @@ msgstr ""
 "Soubor ‘%s’ nelze číst. Tento soubor možná chybí, nebo nemáte oprávnění jej "
 "číst."
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Načítám..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2149
+#: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
 "Michal Bukovjan\n"
 "Miloslav Trmač <mitr@volny.cz>"
 
-#: src/yelp-window.c:2154
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Prohlížeč dokumentace pro prostředí pracovní plochy Gnome."
 
@@ -660,7 +690,9 @@ msgstr ""
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-msgstr "Dokument ‘%s’ nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný stylesheet XSLT."
+msgstr ""
+"Dokument ‘%s’ nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný "
+"stylesheet XSLT."
 
 #: src/yelp-xslt-pager.c:228
 #, c-format
@@ -674,6 +706,15 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Získat nápovědu o GNOME"
+
+#~ msgid "_Home"
+#~ msgstr "_Domů"
+
+#~ msgid "Go to home view"
+#~ msgstr "Přejde na domovskou stránku"
+
+#~ msgid "Fin_d"
+#~ msgstr "_Hledat"
 
 #~ msgid "Titlepage"
 #~ msgstr "Titulní strana"

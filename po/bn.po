@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2004-03-16 11:02+0530\n"
 "Last-Translator: Sayamindu Dasgupta <sayamindu@clai.net>\n"
 "Language-Team: Bengali - Ankur Group <gnome-translation@bengalinux.org>\n"
@@ -152,10 +152,11 @@ msgstr "শিক্ষা সম্বন্ধীয় অ্যাপ্লি�
 msgid "Graphics"
 msgstr ""
 
-# msgstr "_অনুসন্ধান হচ্ছেঃ "
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "সহায়িকা সূচী"
+# msgstr "/_সহায়তা/_সম্বন্ধে"
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#, fuzzy
+msgid "Help Topics"
+msgstr "সহায়ক তথ্য প্রদর্শনকারী ব্রাউজার"
 
 # msgstr "_অনুসন্ধান হচ্ছেঃ "
 #: data/toc.xml.in.h:10
@@ -211,73 +212,82 @@ msgid "<b>Fonts</b>"
 msgstr ""
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "বই"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr ""
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr ""
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 #, fuzzy
 msgid "Bookmarks"
 msgstr "বই"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "ছোট/বড় হাত মিলিয়ে (_ছ)"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "খোঁজো"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 #, fuzzy
 msgid "Open Location"
 msgstr "উত্‍‌সর্গ"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 #, fuzzy
 msgid "Preferences"
 msgstr "রেফারেন্স"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr ""
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "খোঁজো (_খ):"
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr ""
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 #, fuzzy
 msgid "_Location:"
 msgstr "উত্‍‌সর্গ"
 
 # msgstr "উচ্চতর/নিম্নতর ক্ষেত্রে  _তুলনা কর"
 # msgstr "উচ্চতর/নিম্নতর ক্ষেত্রে  _তুলনা করুন"
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_পরবর্তী"
 
 # msgstr "_পরেরটা"
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "_পূর্ববর্তী"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr ""
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr ""
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "ঘুরে আবার ফেরত এসো (_ফ)"
 
@@ -310,11 +320,11 @@ msgid "Use system fonts"
 msgstr ""
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
+msgid "Use the default fonts set for the system."
 msgstr ""
 
 # msgstr "_আগেরটা"
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "ইয়েল্প"
 
@@ -322,6 +332,16 @@ msgstr "ইয়েল্প"
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
 msgstr "ইয়েল্প কারখানা"
+
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr ""
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "রিলিজ সম্বন্ধীয় তথ্য"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -371,6 +391,13 @@ msgstr ""
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr ""
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
 
 #: src/yelp-main.c:95
@@ -431,7 +458,7 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr ""
 
@@ -471,6 +498,11 @@ msgstr "yelp:document-এ কোন href নথী খুঁজে পাওয়�
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "মেমরি ফুরিয়ে গেছে"
+
+# msgstr "_অনুসন্ধান হচ্ছেঃ "
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "সহায়িকা সূচী"
 
 #: src/yelp-window.c:302
 #, fuzzy
@@ -563,18 +595,13 @@ msgstr "পরবর্তী"
 msgid "Show next page in history"
 msgstr "ইতিহাসে পরবর্তী পাতাটি দেখাও"
 
-# msgstr "হিস্টোরি থেকে পরবর্তী পাতাটি দেখানো হোক"
-# msgstr "হিস্টোরির পরের পাতাটি দেখাও"
-# msgstr "হিস্টোরিতে পরের পাতাটি দেখাও"
 #: src/yelp-window.c:367
-#, fuzzy
-msgid "_Home"
-msgstr "প্রথম পৃষ্ঠা"
+msgid "_Help Topics"
+msgstr ""
 
-# msgstr "হোম"
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "প্রথম পৃষ্ঠায় যাও"
+msgid "Go to the listing of help topics"
+msgstr ""
 
 # msgstr "_পরেরটা"
 #: src/yelp-window.c:372
@@ -635,11 +662,11 @@ msgid ""
 "actual file."
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr ""
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr ""
 
@@ -649,19 +676,31 @@ msgid ""
 "document to convert to XML."
 msgstr ""
 
-#: src/yelp-window.c:1021
+#: src/yelp-window.c:1024
 #, fuzzy
-msgid "Fin_d"
+msgid "Find:"
 msgstr "খোঁজো"
 
-#: src/yelp-window.c:1141
+# msgstr "স্বয়ংক্রিয়ভাবে _চারদিক থেকে জড়িয়ে ফেলে"
+#: src/yelp-window.c:1040
+#, fuzzy
+msgid "Find _Next"
+msgstr "টেক্সটটি খোঁজ..."
+
+# msgstr "_পরেরটা"
+#: src/yelp-window.c:1052
+#, fuzzy
+msgid "Find _Previous"
+msgstr "_পূর্ববর্তী"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -669,7 +708,7 @@ msgid ""
 "maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -678,18 +717,18 @@ msgstr ""
 
 # msgstr "সিস্টেমের ব্যবস্থাপনা"
 # msgstr "সিস্টেমের পরিচালনা"
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "আসিতেছে..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2166
 #, fuzzy
 msgid "translator-credits"
 msgstr "মুজাহিদুল ইসলাম"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 
@@ -700,7 +739,14 @@ msgid ""
 "improperly formatted."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
@@ -712,6 +758,21 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "গ্নোমের মধ্যে দিয়ে সহায়িকা পড়ুন"
+
+# msgstr "হিস্টোরি থেকে পরবর্তী পাতাটি দেখানো হোক"
+# msgstr "হিস্টোরির পরের পাতাটি দেখাও"
+# msgstr "হিস্টোরিতে পরের পাতাটি দেখাও"
+#, fuzzy
+#~ msgid "_Home"
+#~ msgstr "প্রথম পৃষ্ঠা"
+
+# msgstr "হোম"
+#~ msgid "Go to home view"
+#~ msgstr "প্রথম পৃষ্ঠায় যাও"
+
+#, fuzzy
+#~ msgid "Fin_d"
+#~ msgstr "খোঁজো"
 
 #~ msgid "Development Environments"
 #~ msgstr "ডেভেলপমেন্ট এনভায়রনমেন্ট"
@@ -1057,10 +1118,6 @@ msgstr "গ্নোমের মধ্যে দিয়ে সহায়িকা
 # msgstr "<b>টেকসটটি  প্রবন্ধে খুঁজে বের করুন:</b>"
 #~ msgid "Automatically _wrap around"
 #~ msgstr "স্বয়ংক্রিয়ভাবে _চারদিক থেকে গুটিয়ে ফেল"
-
-# msgstr "স্বয়ংক্রিয়ভাবে _চারদিক থেকে জড়িয়ে ফেলে"
-#~ msgid "Find text..."
-#~ msgstr "টেক্সটটি খোঁজ..."
 
 # msgstr "অক্ষরটি খোঁজ............."
 # msgstr "টেকসট  সন্ধান করা হোক......."

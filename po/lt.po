@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-03 21:39+0200\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2005-01-03 21:58+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -136,9 +136,10 @@ msgstr "Mokomosios programos"
 msgid "Graphics"
 msgstr "Grafika"
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Pagalbos žinyno turinys"
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#, fuzzy
+msgid "Help Topics"
+msgstr "Pagalbos naršyklė"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -189,66 +190,75 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Šriftai</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "Ž_ymelės"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Pavadinimas:</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Pridėti žymelę"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "Žymelės"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "Skirti r_aidžių dydį"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "Ieškoti"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Atidaryti vietą"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "Nustatymai"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "_Naršyti su žymekliu"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "_Ieškoti: "
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "_Fiksuotas plotis:"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Vieta:"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_Kitas"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "_Ankstesnis"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "_Naudoti sistemos šriftus"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "_Kintantis plotis:"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_Priėjus pabaigą, ieškoti nuo pradžios"
 
@@ -281,10 +291,11 @@ msgid "Use system fonts"
 msgstr "Naudoti sistemos šriftus"
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
+#, fuzzy
+msgid "Use the default fonts set for the system."
 msgstr "Naudoti įprastus sistemos šriftus."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -292,10 +303,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp gamykla"
 
-#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "Dokumento informacija"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -406,7 +422,7 @@ msgstr "YelpDocInfo dokumento struktūra"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -449,6 +465,10 @@ msgstr "Href atributų yelp:document nerasta"
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Nėra atminties"
+
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "Pagalbos žinyno turinys"
 
 #: src/yelp-window.c:302
 msgid "_File"
@@ -523,12 +543,12 @@ msgid "Show next page in history"
 msgstr "Rodyti kitą puslapį esantį atmintyje"
 
 #: src/yelp-window.c:367
-msgid "_Home"
-msgstr "_Pradžia"
+msgid "_Help Topics"
+msgstr ""
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "Grįžti į pradinį puslapį"
+msgid "Go to the listing of help topics"
+msgstr ""
 
 #: src/yelp-window.c:372
 msgid "_Previous Section"
@@ -581,11 +601,11 @@ msgid ""
 "actual file."
 msgstr "Adresas „%s“ yra netinkamas arba rodo ne į tą bylą."
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr "Šioje versijoje žinynų puslapiai yra nepalaikomi."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr "Šioje versijoje GNU info puslapiai yra nepalaikomi"
 
@@ -594,23 +614,34 @@ msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
-"SGML dokumentai daugiau nebepalaikomi. Paprašykit dokumento autorių, kad "
-"ją paverstų į XML."
+"SGML dokumentai daugiau nebepalaikomi. Paprašykit dokumento autorių, kad ją "
+"paverstų į XML."
 
-#: src/yelp-window.c:1021
-msgid "Fin_d"
-msgstr "Ras_ti"
+#: src/yelp-window.c:1024
+#, fuzzy
+msgid "Find:"
+msgstr "Ieškoti"
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+#, fuzzy
+msgid "Find _Next"
+msgstr "_Kitas"
+
+#: src/yelp-window.c:1052
+#, fuzzy
+msgid "Find _Previous"
+msgstr "_Ankstesnis"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
-"Bylai „%s“ nepavyko sukurti transformacijos konteksto. Gali būti nepalaikomas "
-"formatas."
+"Bylai „%s“ nepavyko sukurti transformacijos konteksto. Gali būti "
+"nepalaikomas formatas."
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -621,7 +652,7 @@ msgstr ""
 "nukreipti paspaudę programos mygtuką „Pagalba“, praneškite apie tai šios "
 "programos prižiūrėtojams."
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -630,13 +661,13 @@ msgstr ""
 "Nepavyko perskaityti bylos „%s“. Arba tokios bylos nėra, arba Jūs neturite "
 "reikiamų teisių jai perskaityti."
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Įkeliama..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
 "Paskutinis vertėjas:\n"
@@ -645,7 +676,7 @@ msgstr ""
 "Ankstesnis vertėjas:\n"
 "Tomas Kuliavas <tokul@users.sourceforge.net>"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentacijos naršymo ir peržiūros programa GNOME aplinkai."
 
@@ -658,15 +689,33 @@ msgstr ""
 "Nepavyko išnagrinėti bylos „%s“. Arba ši byla neegzistuoja, arba ji "
 "suformuota neteisingai."
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, fuzzy, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+"Nepavyko apdoroti dokumento „%s“. Arba bylos „%s“ nėra, arba ji nėra tinkama "
+"XSLT stiliaus byla."
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
 msgstr ""
-"Nepavyko apdoroti dokumento „%s“. Arba bylos „%s“ nėra, arba ji nėra "
-"tinkama XSLT stiliaus byla."
+"Nepavyko apdoroti dokumento „%s“. Arba bylos „%s“ nėra, arba ji nėra tinkama "
+"XSLT stiliaus byla."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Gauti pagalbą dirbant su GNOME"
+
+#~ msgid "_Home"
+#~ msgstr "_Pradžia"
+
+#~ msgid "Go to home view"
+#~ msgstr "Grįžti į pradinį puslapį"
+
+#~ msgid "Fin_d"
+#~ msgstr "Ras_ti"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 02:21+0100\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2005-01-12 02:23+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -142,7 +142,7 @@ msgstr "Aplicaciones educativas"
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
 msgid "Help Topics"
 msgstr "Temas de la ayuda"
 
@@ -195,66 +195,75 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Tipografías</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "_Marcadores"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Título:</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Añadir marcador"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "Distinguir _capitalización"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "Buscar"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Abrir dirección"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "_Examinar con cursor"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "_Buscar:"
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "Anchura _fija:"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Dirección:"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_Siguiente"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "_Anterior"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "_Usar tipografía del sistema"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "Anchura _variable:"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_Volver al principio"
 
@@ -298,10 +307,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Fábrica Yelp"
 
-#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Ya existe un marcador titulado <b>%s</b> para esta página."
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "Información del documento"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -582,7 +596,8 @@ msgstr "Navegador de ayuda"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "El Identificador Uniforme de Recurso (URI) para el archivo es inválido."
+msgstr ""
+"El Identificador Uniforme de Recurso (URI) para el archivo es inválido."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
@@ -991,4 +1006,3 @@ msgstr "Obtenga ayuda acerca de Gnome"
 
 #~ msgid "Warning"
 #~ msgstr "Atención"
-

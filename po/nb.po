@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 02:36+0100\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2005-01-11 02:42+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
@@ -134,7 +134,7 @@ msgstr "Utdanningsprogrammer"
 msgid "Graphics"
 msgstr "Grafikk"
 
-#: data/toc.xml.in.h:9
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
 msgid "Help Topics"
 msgstr "Hjelpemner"
 
@@ -187,66 +187,75 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Skrifter</b>"
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "_Bokmerker"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr "<b>_Tittel:</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Legg til bokmerke"
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "Bokmerke"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "_Skill mellom små/store bokstaver"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "Finn"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Åpne lokasjon"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "_Bruk markør"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "_Finn: "
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "_Fast bredde:"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Lokasjon:"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_Neste"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "_Forrige"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "Br_uk systemets skrifter"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "_Variabel bredde:"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_Bryt"
 
@@ -290,10 +299,15 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp factory"
 
-#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Et bokmerke med navn <b>%s</b> eksisterer allerede for denne siden."
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "Dokumentinformasjon"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -585,7 +599,9 @@ msgstr "GNU info-sider er ikke støttet i denne versjonen"
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr "SGML-dokumenter er ikke støttet lengre. Vennligst spør forfatteren av dokumenet om å konvertere det tilXML."
+msgstr ""
+"SGML-dokumenter er ikke støttet lengre. Vennligst spør forfatteren av "
+"dokumenet om å konvertere det tilXML."
 
 #: src/yelp-window.c:1024
 msgid "Find:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2004-11-20 16:30+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -146,9 +146,10 @@ msgstr "Programe edukues"
 msgid "Graphics"
 msgstr ""
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Përmbajtja e Ndihmës"
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#, fuzzy
+msgid "Help Topics"
+msgstr "Shfletuesi i ndihmës"
 
 #: data/toc.xml.in.h:10
 #, fuzzy
@@ -204,67 +205,76 @@ msgstr "<b>Gërmat</b>"
 
 #: data/ui/yelp.glade.h:3
 #, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "Libri"
+
+#: data/ui/yelp.glade.h:4
+#, fuzzy
 msgid "<b>_Title:</b>"
 msgstr "<b>Gërmat</b>"
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr ""
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 #, fuzzy
 msgid "Bookmarks"
 msgstr "Libri"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "Gërma të mëdh_a/të vogla"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "Gjej"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 msgid "Open Location"
 msgstr "Hap Pozicionin"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 msgid "Preferences"
 msgstr "Preferime"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr "_Shfleto me vizore"
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "_Gjej: "
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr "Gjerësia e _fiksuar:"
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Pozicioni:"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "_Pasardhëse"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "_Paraardhësja"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "_Përdor gërmat e sistemit"
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "Gjerësia e _ndryshueshme:"
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_Rifillo nga fillimi"
 
@@ -298,16 +308,27 @@ msgid "Use system fonts"
 msgstr "Përdor gërmat e sistemit"
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
+#, fuzzy
+msgid "Use the default fonts set for the system."
 msgstr "Përdor gërmat e prezgjedhura të sistemit."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
 msgstr "Fabrika e Yelp"
+
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr ""
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "Informacione mbi dokumentin"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -352,6 +373,13 @@ msgstr ""
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr ""
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
 
 #: src/yelp-main.c:95
@@ -407,7 +435,7 @@ msgstr "Struktura YelpDocInfo e dokumentit"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -446,6 +474,10 @@ msgstr "Asnjë karakteristikë href u gjet në yelp:dokumenti"
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Jashtë memorjes"
+
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "Përmbajtja e Ndihmës"
 
 #: src/yelp-window.c:302
 msgid "_File"
@@ -523,12 +555,12 @@ msgid "Show next page in history"
 msgstr "Shfaq faqen në vazhdim në kronollogji"
 
 #: src/yelp-window.c:367
-msgid "_Home"
-msgstr "_Shtëpia"
+msgid "_Help Topics"
+msgstr ""
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "Shko tek paraqitja \"shtëpi\""
+msgid "Go to the listing of help topics"
+msgstr ""
 
 #: src/yelp-window.c:372
 #, fuzzy
@@ -583,11 +615,11 @@ msgid ""
 "actual file."
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr ""
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr ""
 
@@ -597,18 +629,29 @@ msgid ""
 "document to convert to XML."
 msgstr ""
 
-#: src/yelp-window.c:1021
-msgid "Fin_d"
-msgstr "Gje_j"
+#: src/yelp-window.c:1024
+#, fuzzy
+msgid "Find:"
+msgstr "Gjej"
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+#, fuzzy
+msgid "Find _Next"
+msgstr "_Pasardhëse"
+
+#: src/yelp-window.c:1052
+#, fuzzy
+msgid "Find _Previous"
+msgstr "_Paraardhësja"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -616,25 +659,25 @@ msgid ""
 "maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Duke ngarkuar..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2166
 #, fuzzy
 msgid "translator-credits"
 msgstr "Laurent Dhima <laurenti@alblinux.net>"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 
@@ -645,7 +688,14 @@ msgid ""
 "improperly formatted."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
@@ -655,6 +705,15 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Merr ndihmë me GNOME"
+
+#~ msgid "_Home"
+#~ msgstr "_Shtëpia"
+
+#~ msgid "Go to home view"
+#~ msgstr "Shko tek paraqitja \"shtëpi\""
+
+#~ msgid "Fin_d"
+#~ msgstr "Gje_j"
 
 #~ msgid "Development Environments"
 #~ msgstr "Ambiente zhvillimi"

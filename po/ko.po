@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
+"POT-Creation-Date: 2005-01-13 18:12-0600\n"
 "PO-Revision-Date: 2004-02-25 01:10+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -146,9 +146,10 @@ msgstr "교육용 프로그램"
 msgid "Graphics"
 msgstr ""
 
-#: data/toc.xml.in.h:9 src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "도움말 차례"
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#, fuzzy
+msgid "Help Topics"
+msgstr "도움말 브라우저"
 
 #: data/toc.xml.in.h:10
 #, fuzzy
@@ -203,70 +204,79 @@ msgid "<b>Fonts</b>"
 msgstr ""
 
 #: data/ui/yelp.glade.h:3
+#, fuzzy
+msgid "<b>_Bookmarks:</b>"
+msgstr "책"
+
+#: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
 msgstr ""
 
-#: data/ui/yelp.glade.h:4
+#: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr ""
 
-#: data/ui/yelp.glade.h:5
+#: data/ui/yelp.glade.h:6
 #, fuzzy
 msgid "Bookmarks"
 msgstr "책"
 
-#: data/ui/yelp.glade.h:6
+#: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
 msgstr "대소문자 구별(_A)"
 
-#: data/ui/yelp.glade.h:7
+#: data/ui/yelp.glade.h:8
 msgid "Find"
 msgstr "찾기"
 
-#: data/ui/yelp.glade.h:8
+#: data/ui/yelp.glade.h:9
 #, fuzzy
 msgid "Open Location"
 msgstr "바치는 글"
 
-#: data/ui/yelp.glade.h:9
+#: data/ui/yelp.glade.h:10
 #, fuzzy
 msgid "Preferences"
 msgstr "참고문헌"
 
-#: data/ui/yelp.glade.h:10
+#: data/ui/yelp.glade.h:11
+msgid "Re_name"
+msgstr ""
+
+#: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
 msgstr ""
 
-#: data/ui/yelp.glade.h:11
+#: data/ui/yelp.glade.h:13
 msgid "_Find: "
 msgstr "찾기(_F): "
 
-#: data/ui/yelp.glade.h:12
+#: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
 msgstr ""
 
-#: data/ui/yelp.glade.h:13
+#: data/ui/yelp.glade.h:15
 #, fuzzy
 msgid "_Location:"
 msgstr "바치는 글"
 
-#: data/ui/yelp.glade.h:14
+#: data/ui/yelp.glade.h:16
 msgid "_Next"
 msgstr "다음(_N)"
 
-#: data/ui/yelp.glade.h:15
+#: data/ui/yelp.glade.h:17
 msgid "_Previous"
 msgstr "이전(_P)"
 
-#: data/ui/yelp.glade.h:16
+#: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr ""
 
-#: data/ui/yelp.glade.h:17
+#: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr ""
 
-#: data/ui/yelp.glade.h:18
+#: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "끝까지 가면 처음부터(_W)"
 
@@ -299,16 +309,26 @@ msgid "Use system fonts"
 msgstr ""
 
 #: data/yelp.schemas.in.h:8
-msgid "Use the systems default fonts."
+msgid "Use the default fonts set for the system."
 msgstr ""
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2134
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
 msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
 msgstr "Yelp 팩토리"
+
+#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr ""
+
+#: src/yelp-bookmarks.c:341
+#, fuzzy
+msgid "Document Sections"
+msgstr "릴리즈 정보"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -353,6 +373,13 @@ msgstr ""
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr ""
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
 
 #: src/yelp-main.c:95
@@ -409,7 +436,7 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:149
+#: src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr ""
 
@@ -448,6 +475,10 @@ msgstr "yelp:document에 href 속성이 없습니다"
 #: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "메모리가 부족합니다"
+
+#: src/yelp-toc-pager.c:1079
+msgid "Help Contents"
+msgstr "도움말 차례"
 
 #: src/yelp-window.c:302
 #, fuzzy
@@ -534,13 +565,12 @@ msgid "Show next page in history"
 msgstr "방문 기록의 다음 페이지를 봅니다"
 
 #: src/yelp-window.c:367
-#, fuzzy
-msgid "_Home"
-msgstr "홈"
+msgid "_Help Topics"
+msgstr ""
 
 #: src/yelp-window.c:369
-msgid "Go to home view"
-msgstr "홈 보기로 가기"
+msgid "Go to the listing of help topics"
+msgstr ""
 
 #: src/yelp-window.c:372
 #, fuzzy
@@ -597,11 +627,11 @@ msgid ""
 "actual file."
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1124
+#: src/yelp-window.c:786 src/yelp-window.c:1140
 msgid "Man pages are not supported in this version."
 msgstr ""
 
-#: src/yelp-window.c:796 src/yelp-window.c:1115
+#: src/yelp-window.c:796 src/yelp-window.c:1131
 msgid "GNU info pages are not supported in this version"
 msgstr ""
 
@@ -611,19 +641,29 @@ msgid ""
 "document to convert to XML."
 msgstr ""
 
-#: src/yelp-window.c:1021
+#: src/yelp-window.c:1024
 #, fuzzy
-msgid "Fin_d"
+msgid "Find:"
 msgstr "찾기"
 
-#: src/yelp-window.c:1141
+#: src/yelp-window.c:1040
+#, fuzzy
+msgid "Find _Next"
+msgstr "/편집(E)/다음 찾기(_X)"
+
+#: src/yelp-window.c:1052
+#, fuzzy
+msgid "Find _Previous"
+msgstr "이전(_P)"
+
+#: src/yelp-window.c:1157
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
 
-#: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
+#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -631,25 +671,25 @@ msgid ""
 "maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1286
+#: src/yelp-window.c:1302
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 
-#: src/yelp-window.c:1320
+#: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "읽고 있습니다..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will shop up in the "about" box
-#: src/yelp-window.c:2131
+#: src/yelp-window.c:2166
 #, fuzzy
 msgid "translator-credits"
 msgstr "차영호 <ganadist@mizi.com>"
 
-#: src/yelp-window.c:2136
+#: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 
@@ -660,7 +700,14 @@ msgid ""
 "improperly formatted."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: src/yelp-xslt-pager.c:215
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+
+#: src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
@@ -670,6 +717,17 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "그놈에서 도움말을 봅니다"
+
+#, fuzzy
+#~ msgid "_Home"
+#~ msgstr "홈"
+
+#~ msgid "Go to home view"
+#~ msgstr "홈 보기로 가기"
+
+#, fuzzy
+#~ msgid "Fin_d"
+#~ msgstr "찾기"
 
 #~ msgid "Development Environments"
 #~ msgstr "개발 환경"
@@ -961,9 +1019,6 @@ msgstr "그놈에서 도움말을 봅니다"
 
 #~ msgid "The URI of the document to be processed"
 #~ msgstr "처리할 문서의 URI"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/편집(E)/다음 찾기(_X)"
 
 #~ msgid "/Edit/Find Pre_vious"
 #~ msgstr "/편집(E)/이전 찾기(_V)"
