@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-18 00:52-0500\n"
+"POT-Creation-Date: 2005-01-18 14:48-0500\n"
 "PO-Revision-Date: 2005-01-18 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
@@ -136,7 +136,7 @@ msgstr "Educational Applications"
 msgid "Graphics"
 msgstr "Graphics"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
 msgid "Help Topics"
 msgstr "Help Topics"
 
@@ -300,12 +300,24 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp Factory"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:141
+msgid "Open Bookmark in New Window"
+msgstr "Open Bookmark in New Window"
+
+#: src/yelp-bookmarks.c:145
+msgid "Rename Bookmark"
+msgstr "Rename Bookmark"
+
+#: src/yelp-bookmarks.c:149
+msgid "Remove Bookmark"
+msgstr "Remove Bookmark"
+
+#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "A bookmark titled <b>%s</b> already exists for this page."
 
-#: src/yelp-bookmarks.c:341
+#: src/yelp-bookmarks.c:377
 msgid "Document Sections"
 msgstr "Document Sections"
 
