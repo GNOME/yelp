@@ -125,9 +125,9 @@ yelp_db2html_convert (const gchar         *document,
         }
 
 	if (!strcmp(gdb_split_docname[1], "sgml")) {
-			gdb_doc = docbParseFile(gdb_docname, "UTF-8");
+                gdb_doc = docbParseFile (gdb_docname, "UTF-8");
 	} else {
-		(gdb_doc = xmlParseFile(gdb_docname));
+		(gdb_doc = xmlParseFile (gdb_docname));
 	}
 	if (gdb_doc == NULL) {
                 /* FIXME: Set something in the GError */

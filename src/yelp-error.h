@@ -29,7 +29,6 @@ typedef enum {
 	YELP_ERROR_URI_NOT_EXIST,
         YELP_ERROR_DOCBOOK_2_HTML,
         YELP_ERROR_FAILED_OPEN
-        
 } YelpError;
 
 GQuark yelp_error_quark (void) G_GNUC_CONST;

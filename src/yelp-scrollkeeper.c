@@ -399,7 +399,6 @@ ys_parse_index (GList **index)
 					   GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (result != GNOME_VFS_OK) {
-		g_warning ("Error opening index directory: %s\n", index_dir);
 		return FALSE;
 	}
 

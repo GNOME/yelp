@@ -1,5 +1,9 @@
 2002-05-06  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-scrollkeeper.c:
+	- Fixes #80800
+	(ys_parse_index): silenced warning.
+
 	* src/yelp-window.c: 
 	- use YelpURI.
 	(yw_handle_uri): somewhat cleaned up after YelpURI.
