@@ -136,4 +136,22 @@
   </l:context>
  </l:l10n>
 
+<!-- ************ Hungarian ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="hu">
+  <l:gentext key="Title" text="C&#237;m"/>
+  <l:gentext key="Author" text="Szerz&#337;"/>
+  <l:gentext key="Authors" text="Szerz&#337;k"/>
+  <l:gentext key="Affiliation" text="Munkahely"/>
+  <l:gentext key="Email" text="E-mail"/>
+  <l:gentext key="Publisher" text="Kiad&#243;"/>
+  <l:gentext key="Date" text="D&#225;tum"/>
+  <l:gentext key="Next" text="K&#246;vetkez&#337;"/>
+  <l:gentext key="Previous" text="El&#337;z&#337;"/>
+  <l:gentext key="Contents" text="Tartalom"/>
+  <l:context name="title">
+    <l:template name="bookinfo" text="A dokumentum adatlapja"/>
+    <l:template name="articleinfo" text="A dokumentum adatlapja"/>
+  </l:context>
+</l:l10n>
+
 </i18n>
