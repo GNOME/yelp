@@ -5,7 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.4\n"
-"POT-Creation-Date: 2003-07-10 05:23+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-11 12:53+0200\n"
 "PO-Revision-Date: 2003-07-10 19:12+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani <gnome@azitt.com>\n"
@@ -35,7 +36,7 @@ msgstr "Bütün _sözə uyğun"
 
 #: data/ui/yelp.glade.h:6
 msgid "_Match upper/lower case"
-msgstr "Böyük/kiçik hərflərə uyğun"
+msgstr "Böyük/kiçik hərflərə _uyğun"
 
 #: data/ui/yelp.glade.h:7
 msgid "_Next"
@@ -43,7 +44,7 @@ msgstr "_Sonrakı"
 
 #: data/ui/yelp.glade.h:8
 msgid "_Previous"
-msgstr "_Öncəki"
+msgstr "_Əvvəlki"
 
 #: src/GNOME_Yelp.server.in.h:1
 msgid "Yelp"
@@ -51,11 +52,11 @@ msgstr "Yelp"
 
 #: src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Yelp Emalatxanası"
+msgstr "Yelp E'malatxanası"
 
 #: src/yelp-main.c:94
 msgid "Define which cache directory to use"
-msgstr "İstifadə ediləcək ön yaddaş cərgəsini təyin edin"
+msgstr "İstifadə ediləcək ön yaddaş cərgəsini tə'yin edin"
 
 #: src/yelp-main.c:128
 #, c-format
@@ -66,19 +67,12 @@ msgstr "Yelp fəallaşdırıla bilmədi: '%s'"
 msgid "Could not open new window."
 msgstr "Yeni pəncərə açıla bilmədi."
 
-#: src/yelp-man.c:296
-#: src/yelp-man.c:317
-#: src/yelp-man.c:353
-#: src/yelp-man.c:385
-#: src/yelp-man.c:401
-#: src/yelp-man.c:412
+#: src/yelp-man.c:296 src/yelp-man.c:317 src/yelp-man.c:353 src/yelp-man.c:385
+#: src/yelp-man.c:401 src/yelp-man.c:412
 msgid "X11"
 msgstr "X11"
 
-#: src/yelp-man.c:301
-#: src/yelp-man.c:332
-#: src/yelp-man.c:390
-#: src/yelp-man.c:417
+#: src/yelp-man.c:301 src/yelp-man.c:332 src/yelp-man.c:390 src/yelp-man.c:417
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
@@ -112,7 +106,7 @@ msgstr "Kitabxana Funksiyaları"
 
 #: src/yelp-man.c:374
 msgid "Kernel Routines"
-msgstr "Çərdək Qaydaları"
+msgstr "Çəyirdək Qaydaları"
 
 #: src/yelp-man.c:429
 msgid "Applications"
@@ -120,11 +114,11 @@ msgstr "Tə'minatlar"
 
 #: src/yelp-man.c:434
 msgid "Development"
-msgstr "İnkişaf Ettirmə"
+msgstr "İnkişaf"
 
 #: src/yelp-man.c:439
 msgid "Hardware Devices"
-msgstr "Avadanlıqlar"
+msgstr "Avadanlıq"
 
 #: src/yelp-man.c:444
 msgid "Configuration Files"
@@ -142,13 +136,11 @@ msgstr "İcmallar"
 msgid "System Administration"
 msgstr "Sistem İdarəsi"
 
-#: src/yelp-view-content.c:487
-#: src/yelp-view-index.c:423
+#: src/yelp-view-content.c:487 src/yelp-view-index.c:423
 msgid "Loading..."
 msgstr "Yüklənir..."
 
-#: src/yelp-view-content.c:528
-#: src/yelp-view-index.c:517
+#: src/yelp-view-content.c:528 src/yelp-view-index.c:517
 msgid "Section"
 msgstr "Qisim"
 
@@ -164,31 +156,25 @@ msgstr "Yardım Məzmunu"
 
 #: src/yelp-view-toc.c:166
 msgid "GNOME - Desktop"
-msgstr "GNOME Masa üstü"
+msgstr "GNOME - Masa Üstü"
 
 #: src/yelp-view-toc.c:167
 msgid "Additional documents"
 msgstr "Əlavə sənədlər"
 
-#: src/yelp-view-toc.c:168
-#: src/yelp-view-toc.c:493
+#: src/yelp-view-toc.c:168 src/yelp-view-toc.c:493
 msgid "Manual Pages"
-msgstr "Əl kitabları"
+msgstr "Əl Kitabları"
 
-#: src/yelp-view-toc.c:169
-#: src/yelp-view-toc.c:549
+#: src/yelp-view-toc.c:169 src/yelp-view-toc.c:549
 msgid "Info Pages"
 msgstr "Mə'lumat Səhifələri"
 
-#: src/yelp-view-toc.c:366
-#: src/yelp-view-toc.c:550
-#: src/yelp-view-toc.c:749
+#: src/yelp-view-toc.c:366 src/yelp-view-toc.c:550 src/yelp-view-toc.c:749
 msgid "Documents"
 msgstr "Sənədlər"
 
-#: src/yelp-view-toc.c:367
-#: src/yelp-view-toc.c:494
-#: src/yelp-view-toc.c:750
+#: src/yelp-view-toc.c:367 src/yelp-view-toc.c:494 src/yelp-view-toc.c:750
 msgid "Categories"
 msgstr "Kateqoriyalar"
 
@@ -202,7 +188,7 @@ msgstr "GNOME"
 
 #: src/yelp-view-toc.c:713
 msgid "Free Software"
-msgstr "Sərbəst Yazılım"
+msgstr "Sərbəst Tə'minat"
 
 #: src/yelp-view-toc.c:714
 msgid "(C)"
@@ -260,8 +246,7 @@ msgstr "/_Yardım"
 msgid "/Help/_About"
 msgstr "/Yardım/_Haqqında"
 
-#: src/yelp-window.c:238
-#: src/yelp-window.c:438
+#: src/yelp-window.c:238 src/yelp-window.c:438
 msgid "Help Browser"
 msgstr "Yardım Səyyahı"
 
@@ -276,7 +261,9 @@ msgstr "'%s' adlı sənəd mövcud deyil"
 #. * will shop up in the "about" box
 #: src/yelp-window.c:677
 msgid "translator_credits"
-msgstr "Vasif İsmailoğlu <linuxaz@azerimail.net>\nMətin Əmirov <metin@karegen.com>"
+msgstr ""
+"Vasif İsmailoğlu <linuxaz@azerimail.net>\n"
+"Mətin Əmirov <metin@karegen.com>"
 
 #: src/yelp-window.c:681
 msgid "A Help Browser for GNOME"
@@ -288,7 +275,7 @@ msgstr "Geri"
 
 #: src/yelp-window.c:796
 msgid "Show previous page in history"
-msgstr "Keçmişdəki öncəki səhifəni göstər"
+msgstr "Keçmişdəki əvvəlki səhifəni göstər"
 
 #: src/yelp-window.c:807
 msgid "Forward"
@@ -321,4 +308,3 @@ msgstr "GNOME haqqında yardım al"
 #: yelp.desktop.in.h:2
 msgid "Help"
 msgstr "Yardım"
-
