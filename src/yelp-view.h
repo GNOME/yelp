@@ -1,0 +1,65 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/*
+ * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Author: Mikael Hallendal <micke@codefactory.se>
+ */
+
+#ifndef __YELP_VIEW_H__
+#define __YELP_VIEW_H__
+
+#include <gtk/gtkobject.h>
+#include <gtk/gtktypeutils.h>
+#include <gtk/gtkmarshal.h>
+#include <libgtkhtml/gtkhtml.h>
+
+#define YELP_TYPE_VIEW        (yelp_view_get_type ())
+#define YELP_VIEW(o)          (GTK_CHECK_CAST ((o), YELP_TYPE_VIEW, YelpView))
+#define YELP_VIEW_CLASS(k)    (GTK_CHECK_FOR_CAST((k), YELP_TYPE_VIEW, YelpViewClass))
+#define YELP_IS_VIEW(o)       (GTK_CHECK_TYPE ((o), YELP_TYPE_VIEW))
+#define YELP_IS_VIEW_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), YELP_TYPE_VIEW))
+
+typedef struct _YelpView        YelpView;
+typedef struct _YelpViewClass   YelpViewClass;
+typedef struct _YelpViewPriv    YelpViewPriv;
+
+struct _YelpView {
+	HtmlView         parent;
+	
+	YelpViewPriv    *priv;
+};
+
+struct _YelpViewClass {
+        HtmlViewClass    parent_class;
+
+	/* Signals */
+	void (*uri_selected) (YelpView    *view,
+			      GnomeVFSURI *uri);
+};
+
+GType           yelp_view_get_type      (void);
+GtkWidget      *yelp_view_new           (void);
+ 
+void            yelp_view_open_uri      (YelpView      *view, 
+ 					 GnomeVFSURI   *uri); 
+#if 0
+void            yelp_view_open_uri      (YelpView      *view,
+ 					 const gchar   *uri);
+#endif
+#endif /* __YELP_VIEW_H__ */
+

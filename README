@@ -1,0 +1,19 @@
+About:
+------
+
+Yelp is supposed to become a help browser for GNOME 2.0. The name Yelp
+was suggested by Daniel Lundin. Yelp is pronounced the same as the
+swedish word for 'help'.
+
+It uses the gnome-vfs help module from Nautilus (should this be moved
+somewhere where all could use it, gnome-vfs?)
+
+Support for different meta-data formats:
+----------------------------------------
+
+The help browser should support at least Scrollkeeper and the old
+DevHelp format.
+
+A start-flag '-d' to read metadata using DevHelp format would probably
+do it. (not included yet).
+

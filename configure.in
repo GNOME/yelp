@@ -1,0 +1,32 @@
+AC_INIT(src/main.c)
+
+AM_CONFIG_HEADER(config.h)
+
+AM_INIT_AUTOMAKE(Yelp, 0.01)
+
+AC_PROG_CC
+AC_ISC_POSIX
+AC_HEADER_STDC
+AM_PROG_LIBTOOL
+
+CFLAGS="$CFLAGS						\
+	-Wall -Wno-uninitialized -Wchar-subscripts	\ 
+	-Wmissing-declarations -Wmissing-prototypes	\
+	-Wnested-externs -Wpointer-arith		\
+	-Wno-sign-compare -Wsign-promo"
+
+AC_SUBST(CFLAGS)
+AC_SUBST(LDFLAGS)
+
+PKG_CHECK_MODULES(YELP, libgtkhtml-2.0 >= 1.99.2	\
+			gnome-vfs-2.0 >= 1.1		\
+			libgnomeui-2.0 >= 1.103.0)
+
+AC_SUBST(YELP_CFLAGS)
+AC_SUBST(YELP_LIBS)
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+vfs-help-module/Makefile
+])

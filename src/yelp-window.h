@@ -1,0 +1,58 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/*
+ * Copyright (C) 2001 CodeFactory AB
+ * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Author: Mikael Hallendal <micke@codefactory.se>
+ */
+
+#ifndef __YELP_WINDOW_H__
+#define __YELP_WINDOW_H__
+
+#include <glib.h>
+#include <gtk/gtk.h>
+#include "yelp-base.h"
+
+#define YELP_TYPE_WINDOW		(yelp_window_get_type ())
+#define YELP_WINDOW(obj)		(GTK_CHECK_CAST ((obj), YELP_TYPE_WINDOW, YelpWindow))
+#define YELP_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), YELP_TYPE_WINDOW, YelpWindowClass))
+#define YELP_IS_WINDOW(obj)		(GTK_CHECK_TYPE ((obj), YELP_TYPE_WINDOW))
+#define YELP_IS_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), YELP_TYPE_WINDOW))
+
+typedef struct _YelpWindow       YelpWindow;
+typedef struct _YelpWindowClass  YelpWindowClass;
+typedef struct _YelpWindowPriv   YelpWindowPriv;
+
+struct _YelpWindow
+{
+        GtkWindow         parent;
+        
+        YelpWindowPriv   *priv;
+};
+
+struct _YelpWindowClass
+{
+        GtkWindowClass    parent_class;
+
+        /* Signals */
+};
+
+GType            yelp_window_get_type        (void);
+GtkWidget *      yelp_window_new             (YelpBase *base);
+
+#endif /* __YELP_WINDOW_H__ */
