@@ -1,6 +1,6 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2003 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@imendio.com>
+ * Author: Shaun McCance <shaunm@gnome.org>
  */
 
 #ifndef __YELP_CACHE_H__
@@ -27,31 +27,10 @@
 
 #include "yelp-uri.h"
 
-typedef struct _YelpNavLinks YelpNavLinks;
-
-#define YELP_NAV_LINKS(x) ((YelpNavLinks *) x)
-
-struct _YelpNavLinks {
-	gchar *prev_link_uri;
-	gchar *next_link_uri;
-	gchar *prev_link_title;
-	gchar *next_link_title;
-	gchar *prev_link_text;
-	gchar *next_link_text;
-	gchar *up_link_uri;
-	gchar *up_link_title;
-};
-
 void           yelp_cache_init          (void);
 
-const gchar *  yelp_cache_lookup        (const gchar *path);
+GObject *      yelp_cache_lookup        (const gchar *path);
 
 void           yelp_cache_add           (const gchar *path,
-                                         const gchar *html);
-
-YelpNavLinks * yelp_cache_lookup_links  (const gchar        *path);
-
-void           yelp_cache_add_links     (const gchar        *path,
-					 const YelpNavLinks *links);
-
+					 GObject     *object);
 #endif /* __YELP_CACHE_H__ */

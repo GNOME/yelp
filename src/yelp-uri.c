@@ -1,6 +1,6 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2003 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,8 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@imendio.com>
+ * Author: Shaun McCance <shaunm@gnome.org>
+ *   Based on implementation by Mikael Hallendal <micke@imendio.com>
  */
 
 #include <string.h>
@@ -32,14 +33,14 @@
  
 #define d(x)
 
-struct _YelpURI {
-	YelpURIType  type;
-	gchar       *path;
-	gchar       *section;
-	gint         ref_count;
-	gboolean     exists;
+struct _YelpURIPriv {
+    YelpURIType  type;
+    gchar       *path;
+    gchar       *frag;
+    gboolean     exists;
 };
 
+/*
 static gchar *      uri_get_doc_path                 (const gchar  *str_uri);
 static YelpURIType  uri_get_doc_type                 (const gchar  *str_uri,
 						      const gchar  *doc_path);
@@ -51,167 +52,529 @@ static gchar *      uri_locate_help_file             (const gchar  *path,
 static gchar *      uri_locate_help_file_with_lang   (const gchar  *path,
 						      const gchar  *file_name,
 						      const gchar  *locate);
+*/
 
-static gchar *
-uri_get_doc_path (const gchar *str_uri)
+
+static void         uri_class_init                   (YelpURIClass *klass);
+static void         uri_init                         (YelpURI      *uri);
+static void         uri_dispose                      (GObject      *gobject);
+
+static void         uri_parse_uri                    (YelpURI      *uri,
+						      const gchar  *uri_str);
+static void         uri_parse_ghelp_uri              (YelpURI      *uri,
+						      const gchar  *uri_str);
+static void         uri_resource_type                (YelpURI      *uri);
+static gchar *      uri_locate_file                  (gchar        *path,
+						      gchar        *file);
+static gchar *      uri_locate_file_lang             (gchar        *path,
+						      gchar        *file,
+						      gchar        *lang);
+
+static GObjectClass *parent_class;
+
+GType
+yelp_uri_get_type (void)
 {
-	gchar       *no_anchor_uri;
-	gchar       *ret_val = NULL;
-	const gchar *ch = NULL;
-	
-	/* remove the anchor from the doc path */
-	if ((ch = strchr (str_uri, '?')) || (ch = strchr (str_uri, '#'))) {
-		no_anchor_uri = g_strndup (str_uri, ch - str_uri);
-	} else {
-		no_anchor_uri = g_strdup (str_uri);
-	}
+    static GType type = 0;
 
-	if (no_anchor_uri[0] == '/') {
-		ret_val = g_strdup (no_anchor_uri);
-	}
-	else if (!g_ascii_strncasecmp (no_anchor_uri, "man:", 4)) {
-		ret_val = g_strdup (no_anchor_uri + 4);
-	}
-	else if (!g_ascii_strncasecmp (no_anchor_uri, "info:", 5)) {
-		if (!g_ascii_strncasecmp (no_anchor_uri + 5, "dir", 3)) {
-			ret_val = g_strdup ("info");
-		} else {
-			ret_val = g_strdup (no_anchor_uri + 5);
-		}
-	}
-	else if (!g_ascii_strncasecmp (no_anchor_uri, "toc:", 4)) {
-		ret_val = g_strdup (no_anchor_uri + 4);
-	}
-	else if (!g_ascii_strncasecmp (no_anchor_uri, "index:", 6)) {
-		ret_val = g_strdup (no_anchor_uri + 6);
-	}
-	else if (!g_ascii_strncasecmp (no_anchor_uri, "path:", 5)) {
-		ret_val = g_strdup (no_anchor_uri + 5);
-	}
-	else if (!g_ascii_strncasecmp (no_anchor_uri, "ghelp:", 6)) {
-		ret_val = uri_get_path_from_ghelp_uri (no_anchor_uri + 6);
-	}
-	else if (!g_ascii_strncasecmp (no_anchor_uri, "file:", 5)) {
-		ret_val = g_strdup (no_anchor_uri + 5);
-	} else {
-		ret_val = g_strdup (no_anchor_uri);
-	}
-	
-	g_free (no_anchor_uri);
-
- 	return ret_val;
+    if (!type) {
+	static const GTypeInfo info = {
+	    sizeof (YelpURIClass),
+	    NULL,
+	    NULL,
+	    (GClassInitFunc) uri_class_init,
+	    NULL,
+	    NULL,
+	    sizeof (YelpURI),
+	    0,
+	    (GInstanceInitFunc) uri_init,
+	};
+	type = g_type_register_static (G_TYPE_OBJECT,
+				       "YelpURI",
+				       &info, 0);
+    }
+    return type;
 }
 
-static YelpURIType
-uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
+static void
+uri_class_init (YelpURIClass *klass)
 {
-	YelpURIType ret_val = YELP_URI_TYPE_UNKNOWN;
+    GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
-     	if (!g_ascii_strncasecmp (str_uri, "man:", 4)) {
-                ret_val = YELP_URI_TYPE_MAN;
-	}
-	else if (!g_ascii_strncasecmp (str_uri, "info:", 5)) {
-  		if (!g_ascii_strncasecmp (str_uri + 5, "dir", 3)) {
-			ret_val = YELP_URI_TYPE_TOC;
-		} else {
-			ret_val = YELP_URI_TYPE_INFO;
-		}
-	}
-	else if (!g_ascii_strncasecmp (str_uri, "toc:", 4)) {
-		ret_val = YELP_URI_TYPE_TOC;
-	}
-	else if (!g_ascii_strncasecmp (str_uri, "index:", 6)) {
-		ret_val = YELP_URI_TYPE_INDEX;
-	}
-	else if (!g_ascii_strncasecmp (str_uri, "path:", 5)) {
-		ret_val = YELP_URI_TYPE_PATH;
-	}
-	else if (!g_ascii_strncasecmp (str_uri, "file:", 5) ||
-		 str_uri[0] == '/') {
-		ret_val = YELP_URI_TYPE_FILE;
-	}
-        else if (!g_ascii_strncasecmp (str_uri, "ghelp:", 6)) {
-		gchar *mime_type = NULL;
-		gchar *docpath;
+    parent_class = g_type_class_peek_parent (klass);
 
-		if (doc_path) {
-			docpath = (gchar *) doc_path;
-		} else {
-			docpath = uri_get_doc_path (str_uri);
-		}
-
-		mime_type = gnome_vfs_get_mime_type (docpath);
-		
-		if (mime_type) {
-			if (!g_strcasecmp (mime_type, "text/xml")) {
-				ret_val = YELP_URI_TYPE_DOCBOOK_XML;
-			}
-			else if (!g_strcasecmp (mime_type, "text/sgml")) {
-				ret_val = YELP_URI_TYPE_DOCBOOK_SGML;
-			}
-			else if (!g_strcasecmp (mime_type, "text/html")) {
-				ret_val = YELP_URI_TYPE_HTML;
-			}
-			
-			g_free (mime_type);
-		}
-		
-		if (docpath != doc_path) {
-			g_free (docpath);
-		}
-		
-		if (ret_val == YELP_URI_TYPE_UNKNOWN) {
-			ret_val = YELP_URI_TYPE_GHELP_OTHER;
-		}
-	}
-
-        return ret_val;
+    object_class->dispose = uri_dispose;
 }
 
-static gchar *
-uri_get_doc_section (const gchar *str_uri)
+static void
+uri_init (YelpURI *uri)
 {
-	const gchar *ch = NULL;
+    YelpURIPriv *priv;
+
+    priv = g_new0 (YelpURIPriv, 1);
+    uri->priv = priv;
+
+    uri->priv->type = YELP_URI_TYPE_UNKNOWN;
+    uri->priv->path = NULL;
+    uri->priv->frag = NULL;
+}
+
+static void
+uri_dispose (GObject *object)
+{
+    YelpURI *uri = YELP_URI (object);
+
+    g_free (uri->priv->path);
+    g_free (uri->priv->frag);
+
+    g_free (uri->priv);
+
+    G_OBJECT_CLASS (parent_class)->dispose (object);
+}
+
+/******************************************************************************/
+
+YelpURI *
+yelp_uri_new (const gchar *uri_str)
+{
+    YelpURI     *uri;
+
+    uri = g_object_new (YELP_TYPE_URI, NULL);
+
+    uri_parse_uri (uri, uri_str);
+
+    return uri;
+}
+
+YelpURI *
+yelp_uri_new_relative (YelpURI *base, const gchar *uri_str)
+{
+    YelpURI    *uri;
+
+    uri = g_object_new (YELP_TYPE_URI, NULL);
+
+    uri_parse_uri (uri, uri_str);
+
+    if (yelp_uri_get_resource_type (uri) == YELP_URI_TYPE_RELATIVE) {
+	switch (yelp_uri_get_resource_type (base)) {
+	case YELP_URI_TYPE_FILE:
+	case YELP_URI_TYPE_DOCBOOK_XML:
+	case YELP_URI_TYPE_DOCBOOK_SGML:
+	case YELP_URI_TYPE_HTML:
+	    if (!uri->priv->path || uri->priv->path[0] == '\0') {
+		// This is just a fragment reference.
+		if (uri->priv->path)
+		    g_free (uri->priv->path);
+
+		uri->priv->path = g_strdup (base->priv->path);
+		uri->priv->type = base->priv->type;
+	    }
+	    else if (uri->priv->path[0] == '/') {
+		uri_resource_type (uri);
+	    }
+	    else {
+		gchar *base_path;
+		gchar *new_path;
+		gchar *slash;
+
+		slash = strrchr (base->priv->path, '/');
+		base_path = g_strndup (base->priv->path,
+				       slash - base->priv->path + 1);
+		new_path = g_strconcat (base_path, uri->priv->path, NULL);
+
+		g_free (base_path);
+		g_free (uri->priv->path);
+
+		uri->priv->path = new_path;
+		uri_resource_type (uri);
+	    }
+	case YELP_URI_TYPE_MAN:
+	case YELP_URI_TYPE_INFO:
+	case YELP_URI_TYPE_GHELP:
+	case YELP_URI_TYPE_GHELP_OTHER:
+	case YELP_URI_TYPE_UNKNOWN:
+	case YELP_URI_TYPE_RELATIVE:
+	case YELP_URI_TYPE_TOC:
+	case YELP_URI_TYPE_INDEX:
+	case YELP_URI_TYPE_PATH:
+	    // FIXME;
+	    break;
+	default:
+	    g_assert_not_reached ();
+	    break;
+	}
+    }
+
+    return uri;
+}
+
+
+gboolean
+yelp_uri_exists (YelpURI *uri)
+{
+    gboolean  exists;
 	
-	if ((ch = strchr (str_uri, '?')) || (ch = strchr (str_uri, '#'))) {
-		return g_strdup (ch + 1);
-	} 
+    g_return_val_if_fail (uri != NULL, FALSE);
 	
+    if (!uri->priv->path)
+	return FALSE;
+
+    switch (uri->priv->type) {
+    case YELP_URI_TYPE_TOC:
+    case YELP_URI_TYPE_MAN:
+    case YELP_URI_TYPE_INFO:
+    case YELP_URI_TYPE_PATH:
+    case YELP_URI_TYPE_UNKNOWN:
+	exists = TRUE;
+	break;
+    case YELP_URI_TYPE_DOCBOOK_XML:
+    case YELP_URI_TYPE_DOCBOOK_SGML:
+    case YELP_URI_TYPE_HTML:
+    case YELP_URI_TYPE_FILE:
+	exists = g_file_test (uri->priv->path, G_FILE_TEST_EXISTS);
+	break;
+    default:
+	exists = FALSE;
+    }
+
+    return exists;
+}
+
+YelpURIType
+yelp_uri_get_resource_type (YelpURI *uri) {
+    g_return_val_if_fail (uri != NULL, YELP_URI_TYPE_UNKNOWN);
+    g_return_val_if_fail (YELP_IS_URI (uri), YELP_URI_TYPE_UNKNOWN);
+
+    return uri->priv->type;
+}
+
+gchar *
+yelp_uri_get_path (YelpURI *uri)
+{
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_URI (uri), NULL);
+
+    return g_strdup (uri->priv->path);
+}
+
+gchar * yelp_uri_get_fragment (YelpURI *uri)
+{
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_URI (uri), NULL);
+
+    return g_strdup (uri->priv->frag);
+}
+
+gchar *
+yelp_uri_to_string (YelpURI *uri)
+{
+    gchar *type;
+    gchar *uri_str = NULL;
+	
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_URI (uri), NULL);
+
+    if (uri->priv->type == YELP_URI_TYPE_UNKNOWN) {
+	if (uri->priv->path)
+	    return g_strdup (uri->priv->path);
+
 	return NULL;
+    }
+
+    switch (uri->priv->type) {
+    case YELP_URI_TYPE_MAN:
+	type = g_strdup ("man:");
+	break;
+    case YELP_URI_TYPE_INFO:
+	type = g_strdup ("info:");
+	break;
+    case YELP_URI_TYPE_DOCBOOK_XML:
+    case YELP_URI_TYPE_DOCBOOK_SGML:
+    case YELP_URI_TYPE_FILE:
+    case YELP_URI_TYPE_HTML:
+	type = g_strdup ("file:");
+    case YELP_URI_TYPE_GHELP:
+	type = g_strdup ("ghelp:");
+	break;
+    case YELP_URI_TYPE_TOC:
+	type = g_strdup ("toc:");
+	break;
+    case YELP_URI_TYPE_PATH:
+	type = g_strdup ("path:");
+	break;
+    case YELP_URI_TYPE_RELATIVE:
+	type = g_strdup ("");
+	break;
+    default:
+	g_assert_not_reached ();
+	break;
+    }
+
+    if (uri->priv->frag)
+	uri_str = g_strconcat (type, uri->priv->path,
+			       "#",  uri->priv->frag,
+			       NULL);
+    else
+	uri_str = g_strconcat (type, uri->priv->path, NULL);
+	
+    g_free (type);
+
+    return uri_str;
+}
+
+/******************************************************************************/
+
+static void
+uri_parse_uri (YelpURI *uri, const gchar *uri_str)
+{
+    gchar   *c;
+    gchar   *scheme    = NULL;
+    gchar   *path      = NULL;
+
+    YelpURIPriv *priv = uri->priv;
+
+    if ((c = strchr (uri_str, '?')) || (c = strchr (uri_str, '#'))) {
+	path = g_strndup (uri_str, c - uri_str);
+	priv->frag = g_strdup (c + 1);
+    } else {
+	path = g_strdup (uri_str);
+	priv->frag = NULL;
+    }
+
+    if ((c = strchr (path, ':'))) {
+	priv->path = g_strdup (c + 1);
+	scheme     = g_strndup (path, c - path);
+    } else {
+	priv->type = YELP_URI_TYPE_RELATIVE;
+	priv->path = g_strdup (path);
+	return;
+    }
+
+    g_free (path);
+
+    if (!g_ascii_strcasecmp (scheme, "ghelp") && priv->path[0] != '/') {
+	path       = priv->path;
+	priv->path = NULL;
+
+	uri_parse_ghelp_uri (uri, path);
+
+	g_free (path);
+	return;
+    }
+
+    if (!g_ascii_strcasecmp (scheme, "ghelp") || 
+	!g_ascii_strcasecmp (scheme, "file")) {
+
+	uri_resource_type (uri);
+    }
+    else if (!g_ascii_strcasecmp (scheme, "man")) {
+	priv->type = YELP_URI_TYPE_MAN;
+    }
+    else if (!g_ascii_strcasecmp (scheme, "info")) {
+	// FIXME: This just throws away info sections.
+	if (!g_ascii_strncasecmp (priv->path, "dir", 3)) {
+	    g_free (priv->path);
+	    priv->path = g_strdup ("info");
+	    priv->type = YELP_URI_TYPE_TOC;
+	} else {
+	    priv->type = YELP_URI_TYPE_INFO;
+	}
+    }
+    else if (!g_ascii_strcasecmp (scheme, "path")) {
+	priv->type = YELP_URI_TYPE_PATH;
+    }
+    else if (!g_ascii_strcasecmp (scheme, "toc")) {
+	priv->type = YELP_URI_TYPE_TOC;
+    }
+}
+
+static void
+uri_parse_ghelp_uri (YelpURI *uri, const gchar *uri_str)
+{
+    GSList *locations = NULL;
+    GSList *node;
+    gchar  *c;
+    gchar  *doc;
+    gchar  *file;
+
+    YelpURIPriv  *priv    = uri->priv;
+    GnomeProgram *program = gnome_program_get ();
+
+    if ((c = strchr (uri_str, '/'))) {
+	/* 2:  ghelp:AisleRiot2/Klondike */
+	doc  = g_strndup (uri_str, c - uri_str);
+	file = g_strdup (c + 1);
+    } else {
+	/* 1:  ghelp:nautilus */
+	doc  = g_strdup (uri_str);
+	file = g_strdup (uri_str);
+    }
+
+    gnome_program_locate_file (program,
+			       GNOME_FILE_DOMAIN_HELP,
+			       doc,
+			       FALSE,
+			       &locations);
+
+    if (!locations) {
+	priv->type = YELP_URI_TYPE_GHELP;
+	priv->path = g_strdup (uri_str);
+	return;
+    }
+
+    for (node = locations; node; node = node->next) {
+	gchar *path;
+
+	path = uri_locate_file ((gchar *) node->data, file);
+
+	if (path) {
+	    priv->path = path;
+	    uri_resource_type (uri);
+	    break;
+	}
+    }
+
+    g_free (doc);
+    g_free (file);
+}
+
+static void
+uri_resource_type (YelpURI *uri)
+{
+    gchar   *mime_type = gnome_vfs_get_mime_type (uri->priv->path);
+
+    if (mime_type) {
+	if (!g_strcasecmp (mime_type, "text/xml"))
+	    uri->priv->type = YELP_URI_TYPE_DOCBOOK_XML;
+	else if (!g_strcasecmp (mime_type, "text/sgml"))
+	    uri->priv->type = YELP_URI_TYPE_DOCBOOK_SGML;
+	else if (!g_strcasecmp (mime_type, "text/html"))
+	    uri->priv->type = YELP_URI_TYPE_HTML;
+    }
+
+    g_free (mime_type);
 }
 
 static gchar *
-uri_get_path_from_ghelp_uri (const gchar *path)
+uri_locate_file (gchar *path, gchar *file)
 {
-	gchar *ret_val = NULL;
-	gchar *work_path;
-	
-	work_path = g_strdup (path);
-	
-	g_strstrip (work_path);
+    gchar *ret;
+    const GList *langs;
 
-	if (path[0] == '/') {
-		/* Absolute URL */
-		gint i = 1;
-		gint len = strlen (work_path);
-		
-		while (i < len && work_path[i] == '/') {
-			++i;
-		}
+    langs = gnome_i18n_get_language_list ("LC_MESSAGES");
 
-		/* Should we always try to use xml here even if full *
-		 * path to a sgml or html document is given?         */
+    for (; langs != NULL; langs = langs->next) {
+	gchar *lang = langs->data;
 
-		ret_val = g_strdup (work_path + (i - 1));
-	} else {
-		ret_val = uri_get_path_from_relative (path);
+	/* This has to be a valid language AND a language with
+	 * no encoding postfix.  The language will come up without
+	 * encoding next */
+	if (lang == NULL || strchr (lang, '.') != NULL)
+	    continue;
+
+	ret = uri_locate_file_lang (path, file, lang);
+
+	if (!ret) {
+	    /* Check for index file in wanted locale */
+	    ret = uri_locate_file_lang (path, "index", lang);
 	}
-	
-	g_free (work_path);
 
-	return ret_val;
+	if (ret)
+	    return ret;
+    }
+
+    /* Look in C locale since that exists for almost all documents */
+    ret = uri_locate_file_lang (path, file, "C");
+    if (ret)
+	return ret;
+
+    /* Last chance, look for index-file with C lang */
+    return uri_locate_file_lang (path, "index", "C");
 }
 
+static gchar *
+uri_locate_file_lang (gchar *path, gchar *file, gchar *lang)
+{
+    gchar *exts[] = {".xml", ".docbook", ".sgml", ".html", "", NULL};
+    gint   i;
+
+    for (i = 0; exts[i] != NULL; i++) {
+	gchar *full;
+
+	full = g_strconcat (path, "/", lang, "/", file, exts[i], NULL);
+
+	if (g_file_test (full, G_FILE_TEST_EXISTS))
+	    return full;
+
+	g_free (full);
+    }
+
+    return NULL;
+}
+
+gboolean
+yelp_uri_equal (YelpURI *uri1, YelpURI *uri2)
+{
+    g_return_val_if_fail (uri1 != NULL, FALSE);
+    g_return_val_if_fail (uri2 != NULL, FALSE);
+
+    if (uri1->priv->type == uri2->priv->type &&
+	yelp_uri_equal_path (uri1, uri2) &&
+	yelp_uri_equal_fragment (uri1, uri2))
+
+	return TRUE;
+    else
+	return FALSE;
+}
+
+gboolean
+yelp_uri_equal_path (YelpURI *uri1, YelpURI *uri2)
+{
+    g_return_val_if_fail (uri1 != NULL, FALSE);
+    g_return_val_if_fail (uri2 != NULL, FALSE);
+
+    if (uri1->priv->path == NULL) {
+	if (uri2->priv->path == NULL)
+	    return TRUE;
+	else
+	    return FALSE;
+    }
+	
+    if (uri2->priv->path == NULL)
+	return FALSE;
+
+    if (!strcmp (uri1->priv->path, uri2->priv->path))
+	return TRUE;
+
+    return FALSE;
+}
+
+gboolean
+yelp_uri_equal_fragment (YelpURI *uri1, YelpURI *uri2)
+{
+    g_return_val_if_fail (uri1 != NULL, FALSE);
+    g_return_val_if_fail (uri2 != NULL, FALSE);
+
+    if (uri1->priv->frag == NULL) {
+	if (uri2->priv->frag == NULL)
+	    return TRUE;
+	else
+	    return FALSE;
+    }
+
+    if (uri2->priv->frag == NULL)
+	return FALSE;
+
+    if (!strcmp (uri1->priv->frag, uri2->priv->frag))
+	return TRUE;
+
+    return FALSE;
+}
+
+
+
+
+/******************************************************************************
 static gchar *
 uri_get_path_from_relative (const gchar *path)
 {
@@ -226,11 +589,9 @@ uri_get_path_from_relative (const gchar *path)
 	program = gnome_program_get ();
 
 	if ((ch = strchr (path, '/'))) {
-		/* 2:  ghelp:AisleRiot2/Klondike */
 		doc_id    = g_strndup (path, ch - path);
 		file_name = g_strdup  (ch + 1);
 	} else {
-		/* 1:  ghelp:nautilus */
 		doc_id    = (gchar *)path;
 		file_name = (gchar *)path;
 	}
@@ -277,185 +638,11 @@ uri_get_path_from_relative (const gchar *path)
 	return ret_val;
 }
 
-static gchar *
-uri_locate_help_file (const gchar *path, const gchar *file_name)
-{
-	gchar       *ret_val;
-	const GList *lang_list;
-
-	lang_list = gnome_i18n_get_language_list ("LC_MESSAGES");
-
-	for (;lang_list != NULL; lang_list = lang_list->next) {
-		const gchar *lang = lang_list->data;
-		
-		d(g_print ("lang: %s\n", lang));
-				
-		/* This has to be a valid language AND a language with
-		 * no encoding postfix.  The language will come up without
-		 * encoding next */
-		if (lang == NULL || strchr (lang, '.') != NULL) {
-			continue;
-		}
-
-		ret_val = uri_locate_help_file_with_lang (path, file_name, 
-							  lang);
-
-		if (!ret_val) {
-			/* Check for index file in wanted locale */
-			ret_val = uri_locate_help_file_with_lang (path, 
-								  "index", 
-								  lang);
-		}
-		
-		if (ret_val) {
-			return ret_val;
-		}
-	}
-
-	/* Look in C locale since that exists for almost all documents */
-	ret_val = uri_locate_help_file_with_lang (path, file_name, "C");
-	
-	if (ret_val) {
-		return ret_val;
-	}
-	
-	/* Last chance, look for index-file with C lang */
-	return uri_locate_help_file_with_lang (path, "index", "C");
-}
-
-static gchar *
-uri_locate_help_file_with_lang (const gchar *path,
-				const gchar *file_name,
-				const gchar *lang)
-{
-	gchar *exts[] = {".xml", ".docbook", ".sgml", ".html", "", NULL};
-	gint   i;
-
-	for (i = 0; exts[i] != NULL; i++) {
-		gchar *full;
-		
-		full = g_strconcat (path, "/", lang, "/", 
-				       file_name, exts[i], NULL);
-		
-		if (g_file_test (full, G_FILE_TEST_EXISTS)) {
-			return full;
-		}
-		
-		g_free (full);
-	}
-
- 	return NULL;
-}
-
-
-YelpURI *
-yelp_uri_new (const gchar *str_uri)
-{
-	YelpURI *uri;
-
-	uri = g_new0 (YelpURI, 1);
-
-	d(g_print ("New YelpURI: %s\n", str_uri));
-
-	uri->path      = uri_get_doc_path (str_uri);
-	uri->type      = uri_get_doc_type (str_uri, uri->path);
-	uri->section   = uri_get_doc_section (str_uri);
-	uri->ref_count = 1;
-
-	d(g_print ("Resulting path: %s section: %s\n", 
-		   uri->path, 
-		   uri->section));
-
-	return uri;
-}
-
 gboolean
 yelp_uri_exists (YelpURI *uri)
 {
-	gboolean  ret_val;
-	YelpURI  *no_index;
-	
-	g_return_val_if_fail (uri != NULL, FALSE);
-	
-	if (!uri->path) {
-		return FALSE;
-	}
-
-	switch (uri->type) {
-	case YELP_URI_TYPE_TOC:
-	case YELP_URI_TYPE_MAN:
-	case YELP_URI_TYPE_INFO:
-	case YELP_URI_TYPE_PATH:
-	case YELP_URI_TYPE_UNKNOWN:
-		ret_val = TRUE;
-		break;
-	case YELP_URI_TYPE_DOCBOOK_XML:
-	case YELP_URI_TYPE_DOCBOOK_SGML:
-	case YELP_URI_TYPE_HTML:
-	case YELP_URI_TYPE_FILE:
-		ret_val = g_file_test (uri->path, G_FILE_TEST_EXISTS);
-		break;
-	case YELP_URI_TYPE_INDEX:
-		no_index = yelp_uri_from_index (uri);
-		ret_val = yelp_uri_exists (no_index);
-		yelp_uri_unref (no_index);
-		break;
-	default:
-		ret_val = FALSE;
-	}
-
-	return ret_val;
 }
 
-YelpURIType
-yelp_uri_get_type (YelpURI *uri)
-{
-	g_return_val_if_fail (uri != NULL, YELP_URI_TYPE_UNKNOWN);
-	
-	return uri->type;
-}
-
-const gchar *
-yelp_uri_get_path (YelpURI *uri)
-{
-	g_return_val_if_fail (uri != NULL, NULL);
-	
-	return uri->path;
-}
-
-const gchar *
-yelp_uri_get_section (YelpURI *uri)
-{
-	g_return_val_if_fail (uri != NULL, NULL);
-	
-	return uri->section;
-}
-
-YelpURI *
-yelp_uri_ref (YelpURI *uri)
-{
-	g_return_val_if_fail (uri != NULL, NULL);
-	
-	uri->ref_count++;
-	
-	return uri;
-}
-
-void
-yelp_uri_unref (YelpURI *uri)
-{
-	g_return_if_fail (uri != NULL);
-	
-	uri->ref_count--;
-
-	if (uri->ref_count == 0) {
-		d(g_print ("Freeing up URI\n"));
-		
-		g_free (uri->path);
-		g_free (uri->section);
-		g_free (uri);
-	}
-}
 
 YelpURI *
 yelp_uri_copy (YelpURI *uri)
@@ -507,127 +694,7 @@ yelp_uri_get_relative (YelpURI *uri, const gchar *link)
 	return new_uri;
 }
 
-gboolean
-yelp_uri_equal (YelpURI *uri1, YelpURI *uri2)
-{
-	if (uri1->type == uri2->type &&
-	    yelp_uri_equal_path (uri1, uri2) &&
-	    yelp_uri_equal_section (uri1, uri2)) {
-		return TRUE;
-	}
-	
-	return FALSE;
-}
 
-gboolean
-yelp_uri_equal_path (YelpURI *uri1, YelpURI *uri2)
-{
-	g_return_val_if_fail (uri1 != NULL, FALSE);
-	g_return_val_if_fail (uri2 != NULL, FALSE);
-
-	if (uri1->path == NULL) {
-		if (uri2->path == NULL) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-	
-	if (uri2->path == NULL) {
-		return FALSE;
-	}
-
-	if (!strcmp (uri1->path, uri2->path)) {
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-gboolean
-yelp_uri_equal_section (YelpURI *uri1, YelpURI *uri2)
-{
-	g_return_val_if_fail (uri1 != NULL, FALSE);
-	g_return_val_if_fail (uri2 != NULL, FALSE);
-
-	if (uri1->section == NULL) {
-		if (uri2->section == NULL) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-	
-	if (uri2->section == NULL) {
-		return FALSE;
-	}
-
-	if (!strcmp (uri1->section, uri2->section)) {
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-gchar *
-yelp_uri_to_string (YelpURI *uri)
-{
-	gchar *type;
-	gchar *ret_val = NULL;
-	
-	g_return_val_if_fail (uri != NULL, NULL);
-
-	if (uri->type == YELP_URI_TYPE_UNKNOWN) {
-		if (uri->path) {
-			return g_strdup (uri->path);
-		}
-
-		return NULL;
-	}
-
-	switch (uri->type) {
-	case YELP_URI_TYPE_MAN:
-		type = g_strdup ("man:");
-		break;
-	case YELP_URI_TYPE_INFO:
-		type = g_strdup ("info:");
-		break;
-	case YELP_URI_TYPE_DOCBOOK_XML:
-	case YELP_URI_TYPE_DOCBOOK_SGML:
-	case YELP_URI_TYPE_HTML:
-	case YELP_URI_TYPE_GHELP_OTHER:
-		type = g_strdup ("ghelp:");
-		break;
-	case YELP_URI_TYPE_TOC:
-		type = g_strdup ("toc:");
-		break;
-	case YELP_URI_TYPE_PATH:
-		type = g_strdup ("path:");
-		break;
-	case YELP_URI_TYPE_FILE:
-		type = g_strdup ("file:");
-		break;
-	case YELP_URI_TYPE_INDEX:
-		type = g_strdup ("index:");
-		break;
-	default:
-		g_assert_not_reached ();
-		break;
-	}
-
-	if (uri->section) {
-		ret_val = g_strconcat (type, uri->path, "?", uri->section, 
-				       NULL);
-	} else {
-		ret_val = g_strconcat (type, uri->path, NULL);
-	}
-	
-	g_free (type);
-	
-	d(g_print ("URI_TO_STRING: %s\n", ret_val));
-	
-	return ret_val;
-}
 
 YelpURI *
 yelp_uri_to_index (YelpURI *uri)
@@ -667,3 +734,4 @@ yelp_uri_no_path (YelpURI *uri)
 	return FALSE;
 }
 
+*/

@@ -45,7 +45,8 @@ yelp_section_new (YelpSectionType  type,
 	}
 	
 	if (uri) {
-		section->uri = yelp_uri_ref (uri);
+		g_object_ref (uri);
+		section->uri = uri;
 	} else {
 		section->uri = NULL;
 	}
@@ -70,7 +71,7 @@ yelp_section_free (YelpSection *section)
 	}
 	
 	if (section->uri) {
-		yelp_uri_unref (section->uri);
+		g_object_unref (section->uri);
 	}
 }
 

@@ -183,7 +183,7 @@ yelp_man_populate_tree_for_subdir (GHashTable *section_hash,
 		uri = yelp_uri_new (uribuf);
 		yelp_section = yelp_section_new (YELP_SECTION_DOCUMENT,
 						 titlebuf, uri);
-		yelp_uri_unref (uri);
+		g_object_unref (uri);
 		
 		node->pages = g_list_prepend (node->pages, yelp_section);
 

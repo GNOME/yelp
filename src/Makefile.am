@@ -18,28 +18,24 @@ INCLUDES =								\
 libexec_PROGRAMS = yelp-db2html
 bin_PROGRAMS = yelp yelp-pregenerate
 
-noinst_PROGRAMS = test-uri test-reader
-
+noinst_PROGRAMS = test-uri test-pager
 test_uri_SOURCES = 							\
 	test-uri.c							\
-	yelp-uri.c		yelp-uri.h				\
-	yelp-error.c		yelp-error.h				\
-	yelp-util.c		yelp-util.h
+	yelp-uri.c		yelp-uri.h
 
 test_uri_LDADD = 							\
 	@YELP_LIBS@
 
-test_reader_SOURCES = 							\
-	test-reader.c							\
-	yelp-uri.c		yelp-uri.h				\
-	yelp-cache.c		yelp-cache.h				\
-	yelp-reader.c		yelp-reader.h				\
+test_pager_SOURCES =							\
 	yelp-error.c		yelp-error.h				\
-	yelp-util.c		yelp-util.h				\
-	yelp-marshal-main.c
+	yelp-pager.c		yelp-pager.h				\
+	yelp-db-pager.c		yelp-db-pager.h				\
+	yelp-toc-pager.c	yelp-toc-pager.h			\
+	yelp-uri.c		yelp-uri.h				\
+	yelp-marshal-main.c	test-pager.c
 
-test_reader_LDADD = 							\
-	@YELP_LIBS@
+test_pager_LDADD =							\
+	@DB2HTML_LIBS@ @YELP_LIBS@ -lexslt
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
@@ -59,11 +55,11 @@ yelp-marshal.c: yelp-marshal.h
 
 yelp-marshal-main.c: yelp-marshal.c
 
-yelp_db2html_SOURCES =							\
-	yelp-db2html.c
-
 yelp_pregenerate_SOURCES =						\
 	yelp-pregenerate.c      yelp-pregenerate.h
+
+yelp_db2html_SOURCES =							\
+	yelp-db2html.c
 
 yelp_db2html_LDADD =							\
 	@DB2HTML_LIBS@ -lexslt
@@ -75,24 +71,20 @@ yelp_SOURCES =								\
 	$(gnome_yelp_idl_sources)					\
 	yelp-base.c		yelp-base.h				\
 	yelp-cache.c		yelp-cache.h				\
+	yelp-db-pager.c		yelp-db-pager.h				\
 	yelp-error.c		yelp-error.h				\
 	yelp-history.c		yelp-history.h				\
 	yelp-html-gtkhtml2.c	yelp-html.h				\
-	yelp-index-model.c	yelp-index-model.h			\
 	yelp-info.c		yelp-info.h				\
-	yelp-main.c							\
 	yelp-man.c		yelp-man.h				\
-	yelp-marshal-main.c						\
-	yelp-reader.c		yelp-reader.h				\
+	yelp-pager.c		yelp-pager.h				\
 	yelp-section.c		yelp-section.h				\
 	yelp-scrollkeeper.c	yelp-scrollkeeper.h			\
+	yelp-toc-pager.c	yelp-toc-pager.h			\
 	yelp-util.c		yelp-util.h				\
-	yelp-view.c		yelp-view.h				\
-	yelp-view-content.c	yelp-view-content.h			\
-	yelp-view-index.c	yelp-view-index.h			\
-	yelp-view-toc.c		yelp-view-toc.h				\
 	yelp-window.c 		yelp-window.h				\
-	yelp-uri.c	        yelp-uri.h
+	yelp-uri.c	        yelp-uri.h				\
+	yelp-marshal-main.c	yelp-main.c
 
 yelp_LDADD =								\
 	@YELP_LIBS@							\

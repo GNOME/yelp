@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  *
@@ -41,25 +41,24 @@ typedef struct _YelpWindowPriv   YelpWindowPriv;
 
 struct _YelpWindow
 {
-        GnomeApp        parent;
-        
-        YelpWindowPriv *priv;
+    GtkWindow       parent;
+
+    YelpWindowPriv *priv;
 };
 
 struct _YelpWindowClass
 {
-        GnomeAppClass   parent_class;
+    GtkWindowClass  paretn_class;
 
-        /* Signals */
-	void (*new_window_requested) (YelpWindow *window);
+    /* Signals */
+    void (*new_window_requested) (YelpWindow *window);
 };
 
 GType            yelp_window_get_type        (void);
 GtkWidget *      yelp_window_new             (GNode         *doc_tree,
 					      GList         *index);
-
 void             yelp_window_open_uri        (YelpWindow    *window,
-					      const gchar   *str_uri);
+					      YelpURI       *uri);
 YelpURI *        yelp_window_get_current_uri (YelpWindow    *window);
 
 #endif /* __YELP_WINDOW_H__ */

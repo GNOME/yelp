@@ -32,6 +32,7 @@
 #include "yelp-scrollkeeper.h"
 #include "yelp-man.h"
 #include "yelp-info.h"
+#include "yelp-toc-pager.h"
 #include "yelp-base.h"
 
 struct _YelpBasePriv {
@@ -162,11 +163,15 @@ yelp_base_new (void)
         base = g_object_new (YELP_TYPE_BASE, NULL);
 	priv = base->priv;
 	
+	yelp_toc_pager_init ();
+
+	/*
 	yelp_scrollkeeper_init (priv->toc_tree, &priv->index);
 	yelp_man_init (base->priv->toc_tree, &priv->index);
 	yelp_info_init (base->priv->toc_tree, &priv->index);
 	
 	priv->index = g_list_sort (priv->index, yelp_section_compare);
+	*/
 
         return base;
 }
@@ -175,6 +180,7 @@ GtkWidget *
 yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 {
 	YelpBasePriv *priv;
+	YelpURI      *uri;
 	GtkWidget    *window;
         
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
@@ -196,11 +202,12 @@ yelp_base_new_window (YelpBase *base, const gchar *str_uri)
 
 	gtk_widget_show_all (window);
 
-	if (str_uri && strcmp (str_uri, "")) {
-		yelp_window_open_uri (YELP_WINDOW (window), str_uri);
-	} else {
-		yelp_window_open_uri (YELP_WINDOW (window), "toc:");
-	}
+	if (str_uri && strcmp (str_uri, ""))
+		uri = yelp_uri_new (str_uri);
+	else
+		uri = yelp_uri_new ("toc:");
+
+	yelp_window_open_uri (YELP_WINDOW (window), uri);
 
 	return window;
 }

@@ -1,6 +1,6 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2003 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@imendio.com>
+ * Author: Shaun McCance <shaunm@gnome.org>
  */
 
 #ifdef HAVE_CONFIG_H
@@ -30,65 +30,36 @@
 GHashTable *cache_table;
 GMutex     *cache_mutex;
 
-GHashTable *links_table;
-GMutex     *links_mutex;
-
 void
 yelp_cache_init (void)
 {
- 	cache_mutex = g_mutex_new ();
-        cache_table = g_hash_table_new (g_str_hash, g_str_equal);
-
-	links_mutex = g_mutex_new ();
-	links_table = g_hash_table_new (g_str_hash, g_str_equal);
+    cache_mutex = g_mutex_new ();
+    cache_table = g_hash_table_new_full (g_str_hash,
+					 g_str_equal,
+					 g_free,
+					 g_object_unref);
 }
 
-const gchar *
+GObject *
 yelp_cache_lookup (const gchar *path)
-{ 
-        const gchar *ret_val;
-        
-        g_mutex_lock (cache_mutex);
-        
-        ret_val = (const gchar *) g_hash_table_lookup (cache_table, path);
-        
-        g_mutex_unlock (cache_mutex);
-
-        return ret_val;
-}
-
-YelpNavLinks *
-yelp_cache_lookup_links (const gchar *path)
 {
-	YelpNavLinks *ret_val;
+    GObject *object;
 
-	g_mutex_lock (links_mutex);
+    g_mutex_lock (cache_mutex);
 
-	ret_val = (YelpNavLinks *) g_hash_table_lookup (links_table, path);
+    object = (GObject *) g_hash_table_lookup (cache_table, path);
 
-	g_mutex_unlock (links_mutex);
+    g_mutex_unlock (cache_mutex);
 
-	return ret_val;
+    return object;
 }
 
 void
-yelp_cache_add (const gchar *path, const gchar *html)
+yelp_cache_add (const gchar *path, GObject *object)
 {
-        g_mutex_lock (cache_mutex);
-        
-        g_hash_table_insert (cache_table, (gchar *) path, g_strdup (html));
-        
-        g_mutex_unlock (cache_mutex);
-}
+    g_mutex_lock (cache_mutex);
 
-void
-yelp_cache_add_links (const gchar *path, const YelpNavLinks *links)
-{
-	YelpNavLinks *new_links;
+    g_hash_table_insert (cache_table, (gchar *) path, object);
 
-	g_mutex_lock (links_mutex);
-
-	g_hash_table_insert (links_table, (gchar *) path, links);
-
-	g_mutex_unlock (links_mutex);
+    g_mutex_unlock (cache_mutex);
 }

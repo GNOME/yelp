@@ -1,3 +1,148 @@
+2003-11-30  Shaun McCance  <shaunm@gnome.org>
+
+	* stylesheets/ChangeLog:
+	* stylesheets/Makefile.am:
+	* stylesheets/yelp-customization.xsl:
+	* stylesheets/docbook/Makefile.am:
+	- Merging transformation-playground
+
+2003-11-15  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-param.xsl:
+	* db2html-xref.xsl:
+	- Added resolve_xref_chunk parameter
+
+2003-10-30  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-chunk.xsl:
+	- Small fixes to chunking code.
+
+2003-10-29  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-chunk.xsl:
+	- Added yelp:document in preparation for new transformation code.
+
+2003-10-23  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-header.xsl:
+	- call-template instead of apply-templates for header
+
+	* db2html-navbar.xsl:
+	- New navbar handlers, as necessitated by new chunk handlers
+
+	* db2html-html.xsl:
+	* yelp-customization.xsl:
+	- Using new navbar handlers
+
+	* db2html-xref.xsl:
+	- A few additional rules for xref.content
+	
+2003-10-22  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-division.xsl:
+	- Use $depth_chunk instead of $depth
+
+2003-10-22  Shaun McCance  <shaunm@gnome.org>
+
+	* Makefile.am:
+	- Removed db2html-section.xsl
+	- Removed db2html-node.xsl
+	- Added db2html-header.xsl
+
+	* db2html-chunk.xsl:
+	* db2html-html.xsl:
+	* db2html-titlepage.xsl
+	- Some more changes for the new chunking behavior.  Mostly stuff I forgot.
+
+	* yelp-customization.xsl:
+	- Make the new chunking stuff actually work in Yelp.
+
+2003-10-22  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-node.xsl:
+	- Removing db2html-node.xsl, replace with db2html-header.xsl
+
+	* db2html-header.xsl:
+	- Adding db2html-header.xsl
+	- Does much of what db2html-node.xsl did, but better
+
+	* db2html-title.xsl:
+	- New title-handling code
+
+	* db2html-chunk.xsl:
+	- More intelligent chunking templates.  Fewer hoops, easier to extend.
+
+	* db2html-admon.xsl:
+	* db2html-block.xsl:
+	* db2html-division.xsl:
+	* db2html-glossary.xsl:
+	* db2html-list.xsl:
+	* db2html-media.xsl:
+	* db2html-refentry.xsl:
+	* db2html-toc.xsl:
+	- Rearranged block-handling code a bit
+	- Using new title-handling code
+	- Using new chunk-handling code
+	- Using new title-handling code
+
+	* db2html-html.xsl:
+	- New title-handling code necessitated changing how the HTML title
+	  was obtained.	 Current implementation is bad.
+
+	* db2html-inline.xsl:
+	- Moved attribution from inline to block
+	- Changed arrow for menuchoice
+
+	* db2html-navbar.xsl:
+	- Temporarily disabled.  Needs to work with new chunk-handling code.
+
+	* db2html-xref.xsl:
+	- Created xref.content.mode, which will replace node.header.inline.mode.
+	  Needs work.
+
+	* db2html.xsl:
+	- Using new chunk-handling code
+
+	* gettext.xsl:
+	- Changes for the new title- and header-handling code
+
+2003-10-16  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-node.xsl:
+	* gettext.xsl:
+	- Only include parent number in section number when below
+	  something we typically number.
+
+2003-10-16  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-chunk.xsl:
+	* db2html-xref.xsl:
+	- Fix links to titlepage
+
+2003-10-16  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-titlepage.xsl:
+	- Fix copyright so it works
+
+2003-10-16  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html-html.xsl:
+	* yelp-customization.xsl:
+	- Actually use html.navbar.*, passing in links as params
+
+	* db2html-inline.xsl:
+	- Handle interface, because Gnumeric hates me
+
+2003-10-12  Shaun McCance  <shaunm@gnome.org>
+
+	* db2html*.xsl:
+	* yelp-customization.xsl:
+	- Uber-fast new stylesheets
+
+	* Makefile.am:
+	* docbook/Makefile.am:
+	- Use new stylesheets
+
 2003-09-08  Shaun McCance  <shaunm@gnome.org>
 
 	* yelp-customization.xsl:

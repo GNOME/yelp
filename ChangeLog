@@ -1,8 +1,277 @@
+2003-11-30  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* data/Makefile.am:
+	* po/POTFILES.in:
+	* src/Makefile.am:
+	* src/test-uri.c:
+	* src/yelp-base.c:
+	* src/yelp-cache.c:
+	* src/yelp-cache.c:
+	* src/yelp-cache.h:
+	* src/yelp-db2html.c:
+	* src/yelp-error.h:
+	* src/yelp-history.c:
+	* src/yelp-html-gtkhtml2.c:
+	* src/yelp-info.c:
+	* src/yelp-main.c:
+	* src/yelp-man.c:
+	* src/yelp-scrollkeeper.c:
+	* src/yelp-section.c:
+	* src/yelp-uri.c:
+	* src/yelp-uri.h:
+	* src/yelp-view-content.c:
+	* src/yelp-window.c:
+	* src/yelp-window.h:
+	- Merging transformation-playground
+
+2003-11-29  Shaun McCance  <shaunm@gnome.org>
+
+	* data/toc.xml.in:
+	- Filled in just a little more to show how it works, so that I can
+	  get somebody else to write this file for me.
+
+2003-11-29  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-window.c:
+	- Make the sidebar disappear for no-sidebar pages.
+
+2003-11-29  Shaun McCance  <shaunm@gnome.org>
+
+	* data/Makefile.am:
+	* data/toc.xml:
+	* po/POTFILES.in:
+	- Added the TOC XML file.
+
+2003-11-29  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-window.c:
+	- Don't leak GErrors.
+	- Report an error in the error signal callback.
+
+2003-11-28  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Switched to a different bit of the libxml2 API to parse the document.
+	- Made page_id default to "index" when frag_id == NULL.
+
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Implemented yelp_uri_is_page.
+
+	* src/yelp-toc-pager.c:
+	- Implemented resolve_uri.
+	- Finished parsing of TOC, just need to write the pages.
+	- Began work on indexing stuff.
+
+	* src/yelp-uri.c:
+	- Fixed memory corruption.
+
+	* src/yelp-window.c:
+	- Added callbacks for error and finish signals.
+	- Made the TOC go through window_handle_pager_uri.
+	- Switched to yelp_pager_uri_is_page in page callback.
+
+2003-11-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	- Add yelp-error.[ch] to SOURCES for test-pager.
+
+	* src/yelp-error.h:
+	- Add YELP_ERROR_FAILED_TOC.
+
+	* src/yelp-pager.c:
+	- Don't free memory you're not supposed to, dummy.
+
+	* src/yelp-toc-pager.c:
+	- More work on the toc generation.
+
+	* src/yelp-window.c:
+	- Make sidebar selection work.
+	- Remove huge block of commented-out code.
+
+2003-11-19  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-toc-pager.c:
+	- Prepare to work around seriesid madness.
+	- Prepare to read the actual toc file in.
+
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	- Add yelp-toc-pager.[ch] to test-pager build.
+
+	* src/yelp-toc-pager.c:
+	- Make the hashing of OMF files work completely.
+
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-reader.c:
+	* src/yelp-reader.h:
+	- Removing YelpReader
+
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-toc-pager.c:
+	- Only read files ending in .omf
+
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Pass $mediaobject_path as a param
+
+2003-11-18  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Implement pausing of the TocPager.
+	- Add default handlers for error, cancel, and finish.
+
+	* src/yelp-toc-pager.c:
+	* src/yelp-toc-pager.h:
+	- Implement pausing of the TocPager.
+	- More work on reading OMF files.
+
+	* src/yelp-window.c:
+	- Implement pausing of the TocPager.
+
+2003-11-17  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-toc-pager.c:
+	- More work on the TOC pager.
+
+2003-11-16  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	- Make the titles for sidebars actually work.  That was stupid.
+
+	* src/yelp-window.c:
+	- Make the titles for sidebars actually work.
+	- Keep a reference to the scrolling areas, so I can reparent.
+
+2003-11-16  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-base.c:
+	* src/yelp-toc-pager.c:
+	* src/yelp-toc-pager.h:
+	- Adding YelpTocPager
+
+	* src/yelp-db-pager.c:
+	* src/yelp-db-pager.h:
+	- Whitespace changes
+
+2003-11-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Change resolve_uri to return a non-const gchar *
+	- Remove sections event, as it's not necessary using the
+	  GtkTreeModel without all that threading crap.
+
+	* src/yelp-db-pager.c:
+	- Remove sections event.
+
+2003-11-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Use a YelpPage struct rather than just a gchar, so a page can
+	  hold the id and title and well as the contents.
+
+	* src/yelp-error.h:
+	- Add an error code for no-longer-supported SGML.
+
+	* src/yelp-window.c:
+	- Prepare to work TOC back in.
+	- Use YelpPage.
+	- Some more error-handling.
+	- Make "Loading..." actually work.
+	- Set window title.
+
+2003-11-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-cache.c:
+	* src/yelp-cache.h:
+	* src/yelp-html-gtkhtml2.c:
+	* src/yelp-info.c:
+	* src/yelp-main.c:
+	* src/yelp-main.c:
+	* src/yelp-scrollkeeper.c:
+	* src/yelp-section.c:
+	* src/yelp-window.c:
+	- Changes for GObjectified YelpURI
+	- Using new transformation code
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- Dethreadifying
+
+	* src/yelp-uri.c:
+	* src/yelp-uri.h:
+	- Work on relative URI resolver
+
+2003-11-11  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-base.c:
+	* src/yelp-history.c:
+	* src/yelp-window.c:
+	* src/yelp-window.h:
+	- Breaking things more for the new transformations
+
 2003-11-10  Shaun McCance  <shaunm@gnome.org>
 
 	* src/info2html/main.c:
 	- Fix silliness with g_strdup_printf
 	  (Joe Marcus Clarke and Roderich Schupp)
+
+2003-11-06  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	- Require libxml-2.0 2.6.0, because I do
+
+2003-11-06  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-uri.h:
+	- #include <glib-object.h>
+
+2003-11-06  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	- Changes for new URI and Pager code
+
+2003-11-06  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-uri:
+	* src/yelp-uri.c:
+	* src/yelp-uri.h:
+	- New GObjectified URI code
+
+	* src/test-pager.c:
+	* src/yelp-db-pager.c:
+	* src/yelp-db-pager.h:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	- New transformation code
+
+2003-10-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-cache.c:
+	* src/yelp-cache.h:
+	* src/yelp-db2html.c:
+	* src/yelp-reader.c:
+	* src/yelp-scrollkeeper.c:
+	* src/yelp-view-content.c:
+	- Revert change for making navbars in C.  Should not be necessary
+	  with new stylesheets.
+	- Use new stylesheets
 
 2003-10-06  Christian Rose  <menthos@menthos.com>
 

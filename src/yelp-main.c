@@ -314,8 +314,6 @@ main (int argc, char **argv)
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
-	g_thread_init (NULL);
-
 
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE,
@@ -326,8 +324,9 @@ main (int argc, char **argv)
 
 	/* Need to set this to the canonical DISPLAY value, since
 	   that's where we're registering per-display components */
-	bonobo_activation_set_activation_env_value ("DISPLAY",
-						    gdk_display_get_name (gdk_display_get_default ()));
+	bonobo_activation_set_activation_env_value
+		("DISPLAY",
+		 gdk_display_get_name (gdk_display_get_default ()) );
 
 	gnome_vfs_init ();
 	

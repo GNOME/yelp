@@ -257,7 +257,7 @@ scrollkeeper_parse_doc (GNode *parent, xmlNode *xml_node, gchar *docid)
 	node = g_node_append_data (parent, 
                                    yelp_section_new (YELP_SECTION_DOCUMENT,
                                                      title, uri));
-	yelp_uri_unref (uri);
+	g_object_unref (uri);
 
 	if (docseriesid) {
 		g_hash_table_insert (seriesid_hash, docseriesid, node);
@@ -318,7 +318,7 @@ scrollkeeper_parse_toc_section (GNode       *parent,
         node = g_node_append_data (parent, 
                                    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
                                                      name, uri));
-	yelp_uri_unref (uri);
+	g_object_unref (uri);
 	g_free (name);
 	
 	for (; next_child != NULL; next_child = next_child->next) {
@@ -511,14 +511,14 @@ scrollkeeper_parse_index_item (GList **index, YelpSection *section, xmlNode *nod
 		YelpURI     *uri;
 		YelpSection *index_section;
 		
-		uri = yelp_uri_get_relative (section->uri, link);
+		uri = yelp_uri_new_relative (section->uri, link);
 		
 		d(g_print ("%s\n", yelp_uri_to_string (uri)));
 		
 		index_section = yelp_section_new (YELP_SECTION_INDEX,
 						  title, uri);
 		
-		yelp_uri_unref (uri);
+		g_object_unref (uri);
 		
 		*index = g_list_prepend (*index, index_section);
 		
@@ -593,7 +593,6 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 	xmlNode *xml_node;
 	GNode   *tree;
 	gchar   *full_path;
-	gchar   *title_path;
         
         g_return_val_if_fail (docpath != NULL, NULL);
 
@@ -620,22 +619,11 @@ yelp_scrollkeeper_get_toc_tree (const gchar *docpath)
 	xml_node = doc->xmlRootNode->xmlChildrenNode;
 
 	full_path = g_strconcat ("ghelp:", docpath, NULL);
-	title_path = g_strconcat (full_path, "?title-page", NULL);
-
-	g_node_append_data (tree,
-			    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
-					      _("About This Document"),
-					      yelp_uri_new (title_path) ));
-	g_node_append_data (tree,
-			    yelp_section_new (YELP_SECTION_DOCUMENT_SECTION,
-					      _("Contents"),
-					      yelp_uri_new (full_path) ));
 
 	for (; xml_node != NULL; xml_node = xml_node->next) {
 		scrollkeeper_parse_toc_section (tree, xml_node, full_path);
 	}
 
-	g_free (title_path);
 	g_free (full_path);
 	
 	return tree;
