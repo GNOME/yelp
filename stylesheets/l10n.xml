@@ -56,52 +56,6 @@
 
 </l:l10n>
 
-<!-- ************ Russian ******************* -->
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ru">
-  <l:gentext key="Title" text="&#1047;&#1072;&#1075;&#1083;&#1072;&#1074;&#1080;&#1077;"/>  <!-- zaglavie -->
-  <l:gentext key="Author" text="&#1040;&#1074;&#1090;&#1086;&#1088;"/>    <!-- avtor -->
-  <l:gentext key="Authors" text="&#1040;&#1074;&#1090;&#1086;&#1088;&#1099;"/>  <!-- avtory -->
-  <l:gentext key="Affiliation" text="&#1054;&#1088;&#1075;&#1072;&#1085;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103;"/>  <!-- organizaciya -->
-  <l:gentext key="Email" text="Email"/>  
-  <l:gentext key="Publisher" text="&#1048;&#1079;&#1076;&#1072;&#1090;&#1077;&#1083;&#1100;&#1089;&#1090;&#1074;&#1086;"/> <!-- izdatel'stvo -->
-  <l:gentext key="Date" text="&#1044;&#1072;&#1090;&#1072;"/>              <!-- data -->  
-  <l:context name="title">
-    <l:template name="bookinfo" text="&#1054;&#1073; &#1101;&#1090;&#1086;&#1084; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1077;"/> 
-                                    <!-- Ob etom dokumente --> 
-    <l:template name="articleinfo" text="&#1054;&#1073; &#1101;&#1090;&#1086;&#1084; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1077;"/>
-  </l:context>
-</l:l10n>
-
-<!-- ************ Estonian ******************* -->
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="et">
-  <l:gentext key="Title" text="Pealkiri"/>  
-  <l:gentext key="Author" text="Autor"/>
-  <l:gentext key="Authors" text="Autorid"/>
-  <l:gentext key="Affiliation" text="Organisatsioon"/>  
-  <l:gentext key="Email" text="E-post"/>  
-  <l:gentext key="Publisher" text="Kirjastaja"/>
-  <l:gentext key="Date" text="Kuup&#228;ev"/>
-  <l:context name="title">
-    <l:template name="bookinfo" text="Sellest dokumendist"/>
-    <l:template name="articleinfo" text="Sellest dokumendist"/>
-  </l:context>
-</l:l10n>
-
-<!-- *************** Italian ***************** -->
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="it">
-  <l:gentext key="Title" text="Titolo"/>
-  <l:gentext key="Author" text="Autore"/>
-  <l:gentext key="Authors" text="Autori"/>
-  <l:gentext key="Affiliation" text="Organizzazione"/>  
-  <l:gentext key="Email" text="Email"/>  
-  <l:gentext key="Publisher" text="Editore"/>
-  <l:gentext key="Date" text="Data"/>
-  <l:context name="title">
-   <l:template name="bookinfo" text="Informazioni su questo documento"/>
-   <l:template name="articleinfo" text="Informazioni su questo documento"/>
-  </l:context>
- </l:l10n>
-
 <!-- ************ Greek ******************* -->
 <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="el">
   <l:gentext key="Title" text="&#932;&#943;&#964;&#955;&#959;&#962;"/>  
@@ -117,22 +71,54 @@
   </l:context>
 </l:l10n>
  
-<!-- *************** Romanian ***************** -->
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ro">
-  <l:gentext key="Title" text="Titlu"/>
+<!-- ************ Estonian ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="et">
+  <l:gentext key="Title" text="Pealkiri"/>  
   <l:gentext key="Author" text="Autor"/>
-  <l:gentext key="Authors" text="Autori"/>
-  <l:gentext key="Affiliation" text="Organiza&#355;ie"/>  
-  <l:gentext key="Email" text="Email"/>  
-  <l:gentext key="Publisher" text="Editor"/>
-  <l:gentext key="Date" text="Data"/>
-  <l:gentext key="Next" text="Urm&#259;torul"/>
-  <l:gentext key="Previous" text="Precedentul"/>
-  <l:gentext key="Contents" text="Cuprins"/>
-
+  <l:gentext key="Authors" text="Autorid"/>
+  <l:gentext key="Affiliation" text="Organisatsioon"/>  
+  <l:gentext key="Email" text="E-post"/>  
+  <l:gentext key="Publisher" text="Kirjastaja"/>
+  <l:gentext key="Date" text="Kuup&#228;ev"/>
   <l:context name="title">
-   <l:template name="bookinfo" text="Informa&#355;ii despre acest document"/>
-   <l:template name="articleinfo" text="Informa&#355;ii despre acest document"/>
+    <l:template name="bookinfo" text="Sellest dokumendist"/>
+    <l:template name="articleinfo" text="Sellest dokumendist"/>
+  </l:context>
+</l:l10n>
+
+<!-- *************** Spanish ***************** -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="es">
+  <l:gentext key="Title" text="T&#237;tulo"/>
+  <l:gentext key="Author" text="Autor"/>
+  <l:gentext key="Authors" text="Autores"/>
+  <l:gentext key="Affiliation" text="Organizaci&#243;n"/>  
+  <l:gentext key="Email" text="Correo electr&#243;nico"/>  
+  <l:gentext key="Publisher" text="Editor"/>
+  <l:gentext key="Date" text="Fecha"/>
+  <l:gentext key="Next" text="Siguiente"/>
+  <l:gentext key="Previous" text="Anterior"/>
+  <l:gentext key="Contents" text="Contenido"/>
+  <l:context name="title">
+    <l:template name="bookinfo" text="Acerca de este documento"/>
+    <l:template name="articleinfo" text="Acerca de este documento"/>
+  </l:context>
+ </l:l10n>
+
+<!-- *************** French ***************** -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="fr">
+  <l:gentext key="Title" text="Titre"/>
+  <l:gentext key="Author" text="Auteur"/>
+  <l:gentext key="Authors" text="Auteurs"/>
+  <l:gentext key="Affiliation" text="Organisation"/>  
+  <l:gentext key="Email" text="Courriel"/>  
+  <l:gentext key="Publisher" text="&#201;diteur"/>
+  <l:gentext key="Date" text="Date"/>
+  <l:gentext key="Next" text="Suivant"/>
+  <l:gentext key="Previous" text="Pr&#233;cedent"/>
+  <l:gentext key="Contents" text="Contenu"/>
+  <l:context name="title">
+    <l:template name="bookinfo" text="&#192; propos de ce document"/>
+    <l:template name="articleinfo" text="&#192; propos de ce document"/>
   </l:context>
  </l:l10n>
 
@@ -154,6 +140,74 @@
     <l:template name="articleinfo" text="A dokumentum adatlapja"/>
   </l:context>
 </l:l10n>
+
+<!-- *************** Italian ***************** -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="it">
+  <l:gentext key="Title" text="Titolo"/>
+  <l:gentext key="Author" text="Autore"/>
+  <l:gentext key="Authors" text="Autori"/>
+  <l:gentext key="Affiliation" text="Organizzazione"/>  
+  <l:gentext key="Email" text="Email"/>  
+  <l:gentext key="Publisher" text="Editore"/>
+  <l:gentext key="Date" text="Data"/>
+  <l:context name="title">
+   <l:template name="bookinfo" text="Informazioni su questo documento"/>
+   <l:template name="articleinfo" text="Informazioni su questo documento"/>
+  </l:context>
+ </l:l10n>
+
+<!-- *************** Romanian ***************** -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ro">
+  <l:gentext key="Title" text="Titlu"/>
+  <l:gentext key="Author" text="Autor"/>
+  <l:gentext key="Authors" text="Autori"/>
+  <l:gentext key="Affiliation" text="Organiza&#355;ie"/>  
+  <l:gentext key="Email" text="Email"/>  
+  <l:gentext key="Publisher" text="Editor"/>
+  <l:gentext key="Date" text="Data"/>
+  <l:gentext key="Next" text="Urm&#259;torul"/>
+  <l:gentext key="Previous" text="Precedentul"/>
+  <l:gentext key="Contents" text="Cuprins"/>
+
+  <l:context name="title">
+   <l:template name="bookinfo" text="Informa&#355;ii despre acest document"/>
+   <l:template name="articleinfo" text="Informa&#355;ii despre acest document"/>
+  </l:context>
+ </l:l10n>
+
+<!-- ************ Russian ******************* -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ru">
+  <l:gentext key="Title" text="&#1047;&#1072;&#1075;&#1083;&#1072;&#1074;&#1080;&#1077;"/>  <!-- zaglavie -->
+  <l:gentext key="Author" text="&#1040;&#1074;&#1090;&#1086;&#1088;"/>    <!-- avtor -->
+  <l:gentext key="Authors" text="&#1040;&#1074;&#1090;&#1086;&#1088;&#1099;"/>  <!-- avtory -->
+  <l:gentext key="Affiliation" text="&#1054;&#1088;&#1075;&#1072;&#1085;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103;"/>  <!-- organizaciya -->
+  <l:gentext key="Email" text="Email"/>  
+  <l:gentext key="Publisher" text="&#1048;&#1079;&#1076;&#1072;&#1090;&#1077;&#1083;&#1100;&#1089;&#1090;&#1074;&#1086;"/> <!-- izdatel'stvo -->
+  <l:gentext key="Date" text="&#1044;&#1072;&#1090;&#1072;"/>              <!-- data -->  
+  <l:context name="title">
+    <l:template name="bookinfo" text="&#1054;&#1073; &#1101;&#1090;&#1086;&#1084; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1077;"/> 
+                                    <!-- Ob etom dokumente --> 
+    <l:template name="articleinfo" text="&#1054;&#1073; &#1101;&#1090;&#1086;&#1084; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1077;"/>
+  </l:context>
+</l:l10n>
+
+<!-- *************** Walloon ***************** -->
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="wa">
+  <l:gentext key="Title" text="Tite"/>
+  <l:gentext key="Author" text="Oteur"/>
+  <l:gentext key="Authors" text="Oteurs"/>
+  <l:gentext key="Affiliation" text="Adjin&#231;naedje"/>  
+  <l:gentext key="Email" text="Emile"/>  
+  <l:gentext key="Publisher" text="Eplaideu"/>
+  <l:gentext key="Date" text="Date"/>
+  <l:gentext key="Next" text="Shuvant"/>
+  <l:gentext key="Previous" text="Di dvant"/>
+  <l:gentext key="Contents" text="&#197; dvins"/>
+  <l:context name="title">
+    <l:template name="bookinfo" text="&#197; dfait di ci documint chal"/>
+    <l:template name="articleinfo" text="&#197; dfait di ci documint chal"/>
+  </l:context>
+ </l:l10n>
 
 <!-- ********** Traditional Chinese ********* -->
 <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh_tw">
