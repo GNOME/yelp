@@ -268,8 +268,8 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 					    url);
 		return TRUE;
 	} else {
-		g_warning ("Unhandled URL: %s\n", url);
-		/* TODO: Open external url in mozilla/evoltion etc */
+		/* FIXME: Show dialog on failure? */
+		gnome_url_show (url);
 	}
 
 	return FALSE;

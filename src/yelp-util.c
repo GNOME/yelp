@@ -522,4 +522,3 @@ yelp_util_extract_docpath_from_uri (const gchar *str_uri)
 
 	return docpath;
 }
-
