@@ -2,6 +2,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
+<xsl:variable name="newline"><xsl:text>
+</xsl:text></xsl:variable>
+
 <xsl:include href="db2html-param.xsl"/>
 
 <xsl:include href="gettext.xsl"/>

@@ -4,7 +4,7 @@
                 version="1.0">
 
 <xsl:template match="indexdiv">
-	<xsl:call-template name="FIXME"/>
+	<xsl:call-template name="block.simple"/>
 </xsl:template>
 
 <xsl:template match="indexentry">

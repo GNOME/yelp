@@ -8,7 +8,7 @@
 </xsl:template>
 
 <xsl:template match="bibliodiv">
-	<xsl:call-template name="FIXME"/>
+	<xsl:call-template name="block.simple"/>
 </xsl:template>
 
 <xsl:template match="biblioentry">

@@ -27,7 +27,6 @@ yelpcustomization_DATA = 	\
 	db2html-table.xsl	\
 	db2html-title.xsl	\
 	db2html-titlepage.xsl	\
-	db2html-tmp.xsl		\
 	db2html-toc.xsl		\
 	db2html-xref.xsl	\
 	db2html.xsl		\

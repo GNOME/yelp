@@ -15,6 +15,19 @@
 	</xsl:if>
 </xsl:template>
 
+<xsl:variable name="tab_cpp">
+	<xsl:text>&#160;&#160;&#160;&#160;</xsl:text>
+</xsl:variable>
+<xsl:variable name="tab_idl">
+	<xsl:text>&#160;&#160;&#160;&#160;</xsl:text>
+</xsl:variable>
+<xsl:variable name="tab_java">
+	<xsl:text>&#160;&#160;&#160;&#160;</xsl:text>
+</xsl:variable>
+<xsl:variable name="tab_python">
+	<xsl:text>&#160;&#160;&#160;&#160;</xsl:text>
+</xsl:variable>
+
 <!-- == classsynopsis ====================================================== -->
 
 <xsl:template match="classsynopsisinfo">
@@ -45,11 +58,20 @@
 		<xsl:when test="$language = 'java'">
 			<xsl:apply-templates select="." mode="classsynopsis.java"/>
 		</xsl:when>
-		<xsl:when test="$language = 'perl'">
-			<xsl:apply-templates select="." mode="classsynopsis.perl"/>
-		</xsl:when>
 		<xsl:when test="$language = 'python'">
-			<xsl:apply-templates select="." mode="classsynopsis.perl"/>
+			<xsl:apply-templates select="." mode="classsynopsis.python"/>
+		</xsl:when>
+		<xsl:when test="$language = $classsynopsis_default_language">
+			<!--
+				If we are using the default language and we got this
+				far, we should error out, rather than re-applying with
+				the default language.  Otherwise we get an infinite loop.
+			-->
+			<xsl:message>
+				<xsl:text>No information about the language '</xsl:text>
+				<xsl:value-of select="$language"/>
+				<xsl:text>' for classsynopsis.</xsl:text>
+			</xsl:message>
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:apply-templates select=".">
@@ -186,433 +208,367 @@
 	<xsl:text>void</xsl:text>
 </xsl:template>
 
-<!-- == synopsis.cpp.mode ================================================== -->
+<!-- == classsynopsis.cpp ================================================== -->
 
-<xsl:template mode="synopsis.cpp.mode" match="*">
+<xsl:template mode="classsynopsis.cpp" match="*">
 	<xsl:apply-templates select="."/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="classsynopsis">
+<xsl:template mode="classsynopsis.cpp" match="classsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="classsynopsisinfo">
+<xsl:template mode="classsynopsis.cpp" match="classsynopsisinfo">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="classname">
+<xsl:template mode="classsynopsis.cpp" match="classname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="constructorsynopsis">
+<xsl:template mode="classsynopsis.cpp" match="constructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="destructorsynopsis">
+<xsl:template mode="classsynopsis.cpp" match="destructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="exceptionname">
+<xsl:template mode="classsynopsis.cpp" match="exceptionname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="fieldsynopsis">
+<xsl:template mode="classsynopsis.cpp" match="fieldsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="initializer">
+<xsl:template mode="classsynopsis.cpp" match="initializer">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="interfacename">
+<xsl:template mode="classsynopsis.cpp" match="interfacename">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="methodname">
+<xsl:template mode="classsynopsis.cpp" match="methodname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="methodparam">
+<xsl:template mode="classsynopsis.cpp" match="methodparam">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="methodsynopsis">
+<xsl:template mode="classsynopsis.cpp" match="methodsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="modifier">
+<xsl:template mode="classsynopsis.cpp" match="modifier">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="ooclass">
+<xsl:template mode="classsynopsis.cpp" match="ooclass">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="ooexception">
+<xsl:template mode="classsynopsis.cpp" match="ooexception">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="oointerface">
+<xsl:template mode="classsynopsis.cpp" match="oointerface">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="parameter">
+<xsl:template mode="classsynopsis.cpp" match="parameter">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="type">
+<xsl:template mode="classsynopsis.cpp" match="type">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="varname">
+<xsl:template mode="classsynopsis.cpp" match="varname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.cpp.mode" match="void">
+<xsl:template mode="classsynopsis.cpp" match="void">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<!-- == synopsis.idl.mode ================================================== -->
+<!-- == classsynopsis.idl ================================================== -->
 
-<xsl:template mode="synopsis.idl.mode" match="*">
+<xsl:template mode="classsynopsis.idl" match="*">
 	<xsl:apply-templates select="."/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="classsynopsis">
+<xsl:template mode="classsynopsis.idl" match="classsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="classsynopsisinfo">
+<xsl:template mode="classsynopsis.idl" match="classsynopsisinfo">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="classname">
+<xsl:template mode="classsynopsis.idl" match="classname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="constructorsynopsis">
+<xsl:template mode="classsynopsis.idl" match="constructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="destructorsynopsis">
+<xsl:template mode="classsynopsis.idl" match="destructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="exceptionname">
+<xsl:template mode="classsynopsis.idl" match="exceptionname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="fieldsynopsis">
+<xsl:template mode="classsynopsis.idl" match="fieldsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="initializer">
+<xsl:template mode="classsynopsis.idl" match="initializer">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="interfacename">
+<xsl:template mode="classsynopsis.idl" match="interfacename">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="methodname">
+<xsl:template mode="classsynopsis.idl" match="methodname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="methodparam">
+<xsl:template mode="classsynopsis.idl" match="methodparam">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="methodsynopsis">
+<xsl:template mode="classsynopsis.idl" match="methodsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="modifier">
+<xsl:template mode="classsynopsis.idl" match="modifier">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="ooclass">
+<xsl:template mode="classsynopsis.idl" match="ooclass">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="ooexception">
+<xsl:template mode="classsynopsis.idl" match="ooexception">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="oointerface">
+<xsl:template mode="classsynopsis.idl" match="oointerface">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="parameter">
+<xsl:template mode="classsynopsis.idl" match="parameter">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="type">
+<xsl:template mode="classsynopsis.idl" match="type">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="varname">
+<xsl:template mode="classsynopsis.idl" match="varname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.idl.mode" match="void">
+<xsl:template mode="classsynopsis.idl" match="void">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<!-- == synopsis.java.mode ================================================= -->
+<!-- == classsynopsis.java ================================================= -->
 
-<xsl:template mode="synopsis.java.mode" match="*">
+<xsl:template mode="classsynopsis.java" match="*">
 	<xsl:apply-templates select="."/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="classsynopsis">
+<xsl:template mode="classsynopsis.java" match="classsynopsis">
+	<div class="{name(.)}"><pre class="java">
+		<xsl:choose>
+			<xsl:when test="@class = 'interface'">
+				<xsl:call-template name="FIXME"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-template mode="classsynopsis.java" select="ooclass[1]"/>
+				<xsl:if test="ooclass[position() &gt; 1]">
+					<xsl:text> extends</xsl:text>
+					<xsl:foreach match="ooclass[position() &gt; 1]">
+						<xsl:text> </xsl:text>
+						<xsl:apply-template mode="classsynopis.java" select="."/>
+						<xsl:if test="following-sibling::ooclass">
+							<xsl:text>,</xsl:text>
+						</xsl:if>
+					</xsl:foreach>
+					<xsl:if test="oointerface|ooexception">
+						<xsl:value-of select="concat($newline, $tab_java)"/>
+					</xsl:if>
+				</xsl:if>
+				<xsl:if test="oointerface">
+					<xsl:text>implements</xsl:text>
+					<xsl:foreach match="oointerface">
+						<xsl:text> </xsl:text>
+						<xsl:apply-template mode="classsynopis.java" select="."/>
+						<xsl:if test="following-sibling::oointerface">
+							<xsl:text>,</xsl:text>
+						</xsl:if>
+					</xsl:foreach>
+					<xsl:if test="ooexception">
+						<xsl:value-of select="concat($newline, $tab_java)"/>
+					</xsl:if>
+				</xsl:if>
+				<xsl:if text="ooexception">
+					<xsl:text>throws</xsl:text>
+					<xsl:foreach match="ooexception">
+						<xsl:text> </xsl:text>
+						<xsl:apply-template mode="classsynopis.java" select="."/>
+						<xsl:if test="following-sibling::ooexception">
+							<xsl:text>,</xsl:text>
+						</xsl:if>
+					</xsl:foreach>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:value-of select="$newline"/>
+		<xsl:text>{</xsl:text>
+		<xsl:apply-templates mode="classsynopsis.java" select="
+			constructorsynopsis	| destructorsynopsis	| fieldsynopsis	|
+			methodsynopsis			| classsynopsis		"/>
+		<xsl:text>}</xsl:text>
+	</pre></div>
+</xsl:template>
+
+<xsl:template mode="classsynopsis.java" match="classsynopsisinfo">
+	<xsl:apply-template mode="classsynopsis.java"/>
+</xsl:template>
+
+<xsl:template mode="classsynopsis.java" match="constructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="classsynopsisinfo">
+<xsl:template mode="classsynopsis.java" match="destructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="classname">
+<xsl:template mode="classsynopsis.java" match="exceptionname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="constructorsynopsis">
+<xsl:template mode="classsynopsis.java" match="fieldsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="destructorsynopsis">
+<xsl:template mode="classsynopsis.java" match="initializer">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="exceptionname">
+<xsl:template mode="classsynopsis.java" match="methodparam">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="fieldsynopsis">
+<xsl:template mode="classsynopsis.java" match="methodsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="initializer">
-	<xsl:call-template name="FIXME"/>
+<xsl:template mode="classsynopsis.java" match="
+		classname		| exceptionname	| interfacename	| methodname	|
+		modifier			| ooclass			| ooexception		| oointerface	|
+		parameter		| type				| varname			">
+	<span class="{name(.)}">
+		<xsl:apply-templates mode="classsynopsis.java"/>
+	</span>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="interfacename">
-	<xsl:call-template name="FIXME"/>
+<xsl:template mode="classsynopsis.java" match="void">
+	<span class="{name(.)}">void</span>
 </xsl:template>
 
-<xsl:template mode="synopsis.java.mode" match="methodname">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
+<!-- == classsynopsis.python ================================================= -->
 
-<xsl:template mode="synopsis.java.mode" match="methodparam">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="methodsynopsis">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="modifier">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="ooclass">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="ooexception">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="oointerface">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="parameter">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="type">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="varname">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.java.mode" match="void">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<!-- == synopsis.perl.mode ================================================= -->
-
-<xsl:template mode="synopsis.perl.mode" match="*">
+<xsl:template mode="classsynopsis.python" match="*">
 	<xsl:apply-templates select="."/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="classsynopsis">
+<xsl:template mode="classsynopsis.python" match="classsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="classsynopsisinfo">
+<xsl:template mode="classsynopsis.python" match="classsynopsisinfo">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="classname">
+<xsl:template mode="classsynopsis.python" match="classname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="constructorsynopsis">
+<xsl:template mode="classsynopsis.python" match="constructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="destructorsynopsis">
+<xsl:template mode="classsynopsis.python" match="destructorsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="exceptionname">
+<xsl:template mode="classsynopsis.python" match="exceptionname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="fieldsynopsis">
+<xsl:template mode="classsynopsis.python" match="fieldsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="initializer">
+<xsl:template mode="classsynopsis.python" match="initializer">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="interfacename">
+<xsl:template mode="classsynopsis.python" match="interfacename">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="methodname">
+<xsl:template mode="classsynopsis.python" match="methodname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="methodparam">
+<xsl:template mode="classsynopsis.python" match="methodparam">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="methodsynopsis">
+<xsl:template mode="classsynopsis.python" match="methodsynopsis">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="modifier">
+<xsl:template mode="classsynopsis.python" match="modifier">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="ooclass">
+<xsl:template mode="classsynopsis.python" match="ooclass">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="ooexception">
+<xsl:template mode="classsynopsis.python" match="ooexception">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="oointerface">
+<xsl:template mode="classsynopsis.python" match="oointerface">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="parameter">
+<xsl:template mode="classsynopsis.python" match="parameter">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="type">
+<xsl:template mode="classsynopsis.python" match="type">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="varname">
+<xsl:template mode="classsynopsis.python" match="varname">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
-<xsl:template mode="synopsis.perl.mode" match="void">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<!-- == synopsis.python.mode ================================================= -->
-
-<xsl:template mode="synopsis.python.mode" match="*">
-	<xsl:apply-templates select="."/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="classsynopsis">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="classsynopsisinfo">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="classname">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="constructorsynopsis">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="destructorsynopsis">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="exceptionname">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="fieldsynopsis">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="initializer">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="interfacename">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="methodname">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="methodparam">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="methodsynopsis">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="modifier">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="ooclass">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="ooexception">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="oointerface">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="parameter">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="type">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="varname">
-	<xsl:call-template name="FIXME"/>
-</xsl:template>
-
-<xsl:template mode="synopsis.python.mode" match="void">
+<xsl:template mode="classsynopsis.python" match="void">
 	<xsl:call-template name="FIXME"/>
 </xsl:template>
 
