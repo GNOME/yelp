@@ -1,0 +1,112 @@
+# Dutch translation of Yelp.
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Tino Meinen <a.t.meinen@chello.nl>, 2002.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Yelp cvs\n"
+"POT-Creation-Date: 2002-01-07 07:52-0500\n"
+"PO-Revision-Date: 2002-01-08 00:42+0100\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"Language-Team: Dutch <nl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/GNOME_Yelp.server.in.h:1 yelp.desktop.in.h:2
+msgid "Yelp"
+msgstr "Yelp"
+
+#: src/GNOME_Yelp.server.in.h:2
+msgid "Yelp Factory"
+msgstr "Yelp Factory"
+
+#: src/yelp-html.c:367
+msgid ""
+"<html><head><title>This is Yelp, a help browser for GNOME "
+"2.0</title></head><body bgcolor=\"white\"><h3>Welcome to Yelp!</h3>This is to "
+"be a help browser for GNOME 2.0 written by Mikael Hallendal.<br><br>Please "
+"read the README and TODO<br></body></html>"
+msgstr ""
+"<html><head><title>Dit is Yelp, een help browser voor GNOME "
+"2.0</title></head><body bgcolor=\"white\"><h3>Welkom bij Yelp!</h3>Dit is "
+"bedoeld als een help browser voor GNOME 2.0 geschreven door Mikael "
+"Hallendal.<br><br>Lees aub README en TODO<br></body></html>"
+
+#: src/yelp-main.c:77
+#, c-format
+msgid "Could not activate Yelp: '%s'"
+msgstr "Kon Yelp niet opstarten: '%s'"
+
+#: src/yelp-main.c:97
+msgid "Could not open new window."
+msgstr "Kon geen nieuw window openen."
+
+#: src/yelp-view-content.c:159 src/yelp-view-index.c:172
+msgid "Section"
+msgstr "Sectie"
+
+#: src/yelp-window.c:109
+msgid "/_File"
+msgstr "/_Bestand"
+
+#: src/yelp-window.c:110
+msgid "/File/_New window"
+msgstr "/Bestand/_Nieuw window"
+
+#: src/yelp-window.c:111
+msgid "/File/_Close window"
+msgstr "/Bestand/_Sluit window"
+
+#: src/yelp-window.c:112
+msgid "/File/E_xit"
+msgstr "/Bestand/_Afsluiten"
+
+#: src/yelp-window.c:113
+msgid "/_Help"
+msgstr "/_Help"
+
+#: src/yelp-window.c:114
+msgid "/Help/_About"
+msgstr "/Help/_Over"
+
+#: src/yelp-window.c:161
+msgid "Help Browser"
+msgstr "Help Browser"
+
+#: src/yelp-window.c:376
+msgid "Help Browser for GNOME 2.0"
+msgstr "Help Browser voor GNOME 2.0"
+
+#: src/yelp-window.c:400
+msgid "Go back in the history list"
+msgstr "Ga terug in de geschiedenis lijst"
+
+#: src/yelp-window.c:415
+msgid "Go forth in the history list"
+msgstr "Ga vooruit in de geschiedenislijst"
+
+#: src/yelp-window.c:430
+msgid "Overview of contents"
+msgstr "Overzicht van de inhoud"
+
+#: src/yelp-window.c:441
+msgid "Search in the index"
+msgstr "Doorzoek de index"
+
+#: src/yelp-window.c:452
+msgid "Search for a phrase in the document"
+msgstr "Zoek naar een tekst in het document"
+
+#: src/yelp-window.c:458
+msgid "Help on "
+msgstr "Help over"
+
+#: src/yelp-window.c:463
+msgid "Enter phrase to search for in all documents"
+msgstr "Voer de zoektekst in. Alle documenten zullen worden doorzocht."
+
+#: yelp.desktop.in.h:1
+msgid "GNOME Helpbrowser"
+msgstr "GNOME Helpbrowser"
+
