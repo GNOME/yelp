@@ -50,7 +50,6 @@ enum {
 
 enum {
     START,
-    SECTIONS,
     PAGE,
     FINISH,
     CANCEL,
@@ -120,14 +119,6 @@ pager_class_init (YelpPagerClass *klass)
 
     signals[START] = g_signal_new
 	("start",
-	 G_TYPE_FROM_CLASS (klass),
-	 G_SIGNAL_RUN_FIRST, 0,
-	 NULL, NULL,
-	 yelp_marshal_VOID__VOID,
-	 G_TYPE_NONE, 0);
-
-    signals[SECTIONS] = g_signal_new
-	("sections",
 	 G_TYPE_FROM_CLASS (klass),
 	 G_SIGNAL_RUN_FIRST, 0,
 	 NULL, NULL,
@@ -353,9 +344,7 @@ yelp_pager_lookup_page (YelpPager *pager, YelpURI *uri)
 
     page_id = (gchar *) (YELP_PAGER_GET_CLASS (pager)->resolve_uri (pager, uri));
 
-    if (page_id)
-	page_id = g_strdup (page_id);
-    else
+    if (!page_id)
 	page_id = yelp_uri_get_fragment (uri);
 
     page = (YelpPage *) yelp_pager_get_page (pager, page_id);

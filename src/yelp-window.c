@@ -82,8 +82,6 @@ static gboolean    window_handle_toc_uri          (YelpWindow        *window,
 static void        pager_page_cb                  (YelpPager         *pager,
 						   gchar             *page_id,
 						   gpointer           user_data);
-static void        pager_sections_cb              (YelpPager         *pager,
-						   gpointer           user_data);
 
 static void        html_uri_selected_cb           (YelpHtml          *html,
 						   YelpURI           *uri,
@@ -173,7 +171,6 @@ struct _YelpWindowPriv {
 
     YelpPager      *pager;
     gulong          page_handler;
-    gulong          sections_handler;
 
     GtkItemFactory *item_factory;
 
@@ -621,11 +618,6 @@ window_handle_pager_uri (YelpWindow *window,
 				     priv->page_handler);
 	priv->page_handler = 0;
     }
-    if (priv->sections_handler) {
-	g_signal_handler_disconnect (priv->pager,
-				     priv->sections_handler);
-	priv->sections_handler = 0;
-    }
 
     // Grab the appropriate pager from the cache
     path  = yelp_uri_get_path (uri);
@@ -688,6 +680,9 @@ window_handle_pager_uri (YelpWindow *window,
 	gtk_window_set_title (GTK_WINDOW (window),
 			      (const gchar *) loading);
 
+	window_set_sections (window,
+			     GTK_TREE_MODEL (yelp_pager_get_sections (pager)));
+
 	yelp_html_printf
 	    (priv->html_view,
 	     "<html><head><meta http-equiv='Content-Type'"
@@ -705,11 +700,6 @@ window_handle_pager_uri (YelpWindow *window,
 	    g_signal_connect (pager,
 			      "page",
 			      G_CALLBACK (pager_page_cb),
-			      window);
-	priv->sections_handler =
-	    g_signal_connect (pager,
-			      "sections",
-			      G_CALLBACK (pager_sections_cb),
 			      window);
 
 	if (startnow)
@@ -759,11 +749,6 @@ window_handle_toc_uri (YelpWindow  *window,
 				     priv->page_handler);
 	priv->page_handler = 0;
     }
-    if (priv->sections_handler) {
-	g_signal_handler_disconnect (priv->pager,
-				     priv->sections_handler);
-	priv->sections_handler = 0;
-    }
 
     gchar *str_uri = yelp_uri_to_string (uri);
     printf ("::: %s\n", str_uri);
@@ -808,27 +793,6 @@ pager_page_cb (YelpPager *pager,
     }
 
     g_free (frag);
-}
-
-static void
-pager_sections_cb (YelpPager *pager,
-		   gpointer   user_data)
-{
-    YelpWindow *window = YELP_WINDOW (user_data);
-    YelpURI    *uri;
-
-    uri  = yelp_window_get_current_uri (window);
-
-    if ( (yelp_uri_equal_path (uri, yelp_pager_get_uri (pager)))) {
-	if (window->priv->sections_handler) {
-	    g_signal_handler_disconnect (window->priv->pager,
-					 window->priv->sections_handler);
-	    window->priv->sections_handler = 0;
-	}
-
-	window_set_sections (window,
-			     GTK_TREE_MODEL (yelp_pager_get_sections (pager)));
-    }
 }
 
 static void

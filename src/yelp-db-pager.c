@@ -71,7 +71,7 @@ static void     db_pager_dispose      (GObject          *gobject);
 
 gboolean             db_pager_process      (YelpPager   *pager);
 void                 db_pager_cancel       (YelpPager   *pager);
-const gchar *        db_pager_resolve_uri  (YelpPager   *pager,
+gchar *              db_pager_resolve_uri  (YelpPager   *pager,
 					    YelpURI     *uri);
 const GtkTreeModel * db_pager_get_sections (YelpPager   *pager);
 
@@ -225,8 +225,6 @@ db_pager_process (YelpPager *pager)
 
     walker_walk_xml (walker);
 
-    g_signal_emit_by_name (pager, "sections");
-
     while (gtk_events_pending ())
 	gtk_main_iteration ();
 
@@ -289,12 +287,12 @@ db_pager_cancel (YelpPager *pager)
 {
 }
 
-const gchar *
+gchar *
 db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 {
     YelpDBPager *db_pager;
     gchar       *frag_id;
-    const gchar *page_id;
+    gchar       *page_id;
 
     g_return_val_if_fail (pager != NULL, NULL);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), NULL);
@@ -303,9 +301,8 @@ db_pager_resolve_uri (YelpPager *pager, YelpURI *uri)
 
     frag_id = yelp_uri_get_fragment (uri);
 
-    page_id =
-	(const gchar *) g_hash_table_lookup (db_pager->priv->frags_hash,
-					     frag_id);
+    page_id = g_hash_table_lookup (db_pager->priv->frags_hash,
+				   frag_id);
 
     g_free (frag_id);
     return page_id;
@@ -440,9 +437,16 @@ walker_walk_xml (DBWalker *walker)
 	    walker->page_id = id;
 
 	    old_iter     = walker->iter;
+	    if (!xml_is_info (walker->cur) &&
+		walker->cur->parent->type != XML_DOCUMENT_NODE) {
+
 	    walker->iter = &iter;
+	    }
 	}
     }
+
+    while (gtk_events_pending ())
+	gtk_main_iteration ();
 
     old_cur = walker->cur;
     walker->depth++;
@@ -467,6 +471,7 @@ walker_walk_xml (DBWalker *walker)
 
     if (walker_is_chunk (walker) && id) {
 	walker->iter     = old_iter;
+
 	walker->page_id = old_id;
     }
 

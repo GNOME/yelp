@@ -3,6 +3,18 @@
 	* src/yelp-db-pager.c:
 	* src/yelp-pager.c:
 	* src/yelp-pager.h:
+	- Change resolve_uri to return a non-const gchar *
+	- Remove sections event, as it's not necessary using the
+	  GtkTreeModel without all that threading crap.
+
+	* src/yelp-db-pager.c:
+	- Remove sections event.
+
+2003-11-15  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-db-pager.c:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
 	- Use a YelpPage struct rather than just a gchar, so a page can
 	  hold the id and title and well as the contents.
 

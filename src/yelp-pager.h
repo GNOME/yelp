@@ -59,7 +59,7 @@ struct _YelpPagerClass {
     /* Virtual Functions */
     gboolean             (*process)      (YelpPager    *pager);
     void                 (*cancel)       (YelpPager    *pager);
-    const gchar *        (*resolve_uri)  (YelpPager    *pager,
+    gchar *              (*resolve_uri)  (YelpPager    *pager,
 					  YelpURI      *uri);
     const GtkTreeModel * (*get_sections) (YelpPager *pager);
 };
