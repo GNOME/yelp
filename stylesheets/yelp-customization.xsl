@@ -132,8 +132,10 @@
      <xsl:text>
        BODY {font-size: 10pt}
        LI {margin-left: 3em}
-       LI {margin-bottom: 0}
        LI P {margin-bottom: 0}
+       LI P {margin-top: 0}
+       DD P {margin-top: 0}
+       DD P {margin-bottom: 0}
        OL {margin-top: 0}
        OL {margin-bottom: 0}
        UL {margin-top: 0}
@@ -165,7 +167,7 @@
          <xsl:with-param name="object" select="$object"/>
       </xsl:call-template>
    </xsl:attribute>
-   <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+   <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
    </a></td>
 </xsl:template>
 
@@ -234,13 +236,10 @@
       <xsl:when test="$node=/article/sect1[1]">
         <td><a accesskey="p">
           <xsl:call-template name="article.toc.ref"/>
-          <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+          <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
         </a></td>
       </xsl:when>
 
-      <xsl:otherwise>
-        <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
-      </xsl:otherwise>
     </xsl:choose>
   </td>
 </xsl:template>
@@ -255,7 +254,7 @@
        <xsl:when test="local-name($node)='sect1' or local-name($node)='sect2'">
          <a accesskey="u">
            <xsl:call-template name="article.toc.ref"/>
-             <xsl:text>TOC</xsl:text>
+             <xsl:text>Contents</xsl:text>
          </a>
        </xsl:when>
      </xsl:choose>
@@ -305,6 +304,12 @@
   </tr>
 </xsl:template>
 
+<xsl:template name="titlepage.ref">
+  <xsl:text>ghelp:</xsl:text>
+  <xsl:value-of select="$gdb_docname"/>
+  <xsl:text>?title-page</xsl:text>
+</xsl:template>
+
 <xsl:template name="article.render.chunk">
 <xsl:param name="node" select="."/>
   <p align="center"><xsl:value-of select="/article/articleinfo/title"/></p>
@@ -329,11 +334,9 @@
     <tr>
       <td><a accesskey="p">
         <xsl:attribute name="href">
-          <xsl:text>ghelp:</xsl:text>
-          <xsl:value-of select="$gdb_docname"/>
-          <xsl:text>?title-page</xsl:text>
+          <xsl:call-template name="titlepage.ref"/>
         </xsl:attribute>
-        <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+        <xsl:text>&lt;&lt;&lt; Previous</xsl:text>
       </a></td>
       <td></td>
       <xsl:call-template name="next.link.cell">
@@ -346,10 +349,6 @@
 <xsl:template name="make.titlep.navbar">
   <table width="100%">
     <tr>
-      <td>
-        <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
-      </td>
-      <td align="center"><xsl:text>Up</xsl:text></td>
       <td align="right"><a accesskey="n">
         <xsl:call-template name="article.toc.ref"/>
           <xsl:text>Next &gt;&gt;&gt;</xsl:text>
@@ -370,7 +369,15 @@
     <xsl:when test="string-length($gdb_rootid) &lt; 1">
       <p align="center"><xsl:value-of select="/article/articleinfo/title"/></p>
       <xsl:call-template name="make.toc.navbar"/>
+      <xsl:element name="hr"/>
+      <p><a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="titlepage.ref"/>
+        </xsl:attribute>
+	<xsl:text>About This Document</xsl:text>
+      </a></p>
       <xsl:call-template name="component.toc"/>
+      <xsl:element name="hr"/>
       <xsl:call-template name="make.toc.navbar"/>
     </xsl:when>
     <xsl:otherwise>
