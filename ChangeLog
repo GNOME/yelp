@@ -1,3 +1,9 @@
+2002-08-23  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/yelp-view-content.c:
+	(yelp_view_content_show_uri): Applied patch from Padraig to fix
+	focus handling. Fixes #90010.
+
 2002-08-22  Kristian Rietveld  <kris@gtk.org>
  
 	* src/yelp-man.c:

@@ -505,6 +505,7 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 	YelpViewContentPriv *priv;
 	GNode               *node;
 	GdkCursor           *cursor;
+	gboolean 	     reset_focus = FALSE;
 	
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
 	g_return_if_fail (uri != NULL);
@@ -512,10 +513,6 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 	priv = content->priv;
 
 	if (yelp_uri_get_type (uri) == YELP_URI_TYPE_DOCBOOK_XML) {
-		/* ghelp uri-scheme /usr/share/gnome/help... */
-/* 		const gchar *docpath; */
-
-/*  		docpath = yelp_uri_get_path (uri); */
 
 		if (!priv->current_uri || 
 		    !yelp_uri_equal_path (uri, priv->current_uri)) {
@@ -528,12 +525,25 @@ yelp_view_content_show_uri (YelpViewContent  *content,
 				yelp_view_content_set_tree (content, node);
 				
 			} else {
+				if (gtk_widget_is_focus (priv->tree_sw)) {
+					reset_focus = TRUE;
+				}
+
 				gtk_widget_hide (priv->tree_sw);
 			}
 		}
 	} else {
+		if (gtk_widget_is_focus (priv->tree_sw)) {
+			reset_focus = TRUE;
+		}
+
 		gtk_widget_hide (priv->tree_sw);
 		
+	}
+
+	if (reset_focus) {
+		gtk_widget_child_focus (GTK_WIDGET (content), 
+					GTK_DIR_TAB_FORWARD);
 	}
 	
 	priv->first = TRUE;
