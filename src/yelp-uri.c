@@ -70,28 +70,34 @@ uri_get_doc_path (const gchar *str_uri)
 	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "info:", 5)) {
 		ret_val = g_strdup (no_anchor_uri + 5);
-	} 
+	}
+	else if (!g_ascii_strncasecmp (no_anchor_uri, "toc:", 4)) {
+		ret_val = g_strdup (no_anchor_uri + 4);
+	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "ghelp:", 6)) {
 		ret_val = uri_get_path_from_ghelp_uri (no_anchor_uri + 6);
 	}
 	
 	g_free (no_anchor_uri);
 
-	return ret_val;
+ 	return ret_val;
 }
 
 static YelpURIType
 uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
 {
-        YelpURIType ret_val = YELP_URI_TYPE_UNKNOWN;
+	YelpURIType ret_val = YELP_URI_TYPE_UNKNOWN;
 
-     	if (!strncmp (str_uri, "man:", 4)) {
+     	if (!g_ascii_strncasecmp (str_uri, "man:", 4)) {
                 ret_val = YELP_URI_TYPE_MAN;
 	}
-	else if (!strncmp (str_uri, "info:", 5)) {
+	else if (!g_ascii_strncasecmp (str_uri, "info:", 5)) {
                 ret_val = YELP_URI_TYPE_INFO;
-	} 
-        else if (!strncmp (str_uri, "ghelp:", 6)) {
+	}
+	else if (!g_ascii_strncasecmp (str_uri, "toc:", 4)) {
+		ret_val = YELP_URI_TYPE_TOC;
+	}
+        else if (!g_ascii_strncasecmp (str_uri, "ghelp:", 6)) {
 		gchar *mime_type = NULL;
 		gchar *docpath;
 
@@ -328,7 +334,11 @@ yelp_uri_exists (YelpURI *uri)
 		return FALSE;
 	}
 
-	return g_file_test (uri->path, G_FILE_TEST_EXISTS);
+	if (uri->type == YELP_URI_TYPE_NON_EXISTENT) {
+		return FALSE;
+	}
+	
+	return TRUE;
 }
 
 YelpURIType

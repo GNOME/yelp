@@ -34,7 +34,8 @@ typedef enum {
 	YELP_URI_TYPE_DOCBOOK_SGML,
         YELP_URI_TYPE_HTML,
         YELP_URI_TYPE_MAN,
-        YELP_URI_TYPE_INFO
+        YELP_URI_TYPE_INFO,
+	YELP_URI_TYPE_TOC
 } YelpURIType;
 
 typedef struct _YelpURI YelpURI;

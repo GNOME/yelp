@@ -1,6 +1,9 @@
 2002-05-05  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-uri.c (uri_get_doc_type): 
+	- Also handle toc:-uri's
+	(yelp_uri_exists): return correct answer :)
+
 	- Now implements jrb's ghelp-uri scheme.
 	- added doc_path-argument so that it doesn't have to be calculated
 	  twice when creating a YelpURI.
