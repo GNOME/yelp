@@ -91,7 +91,7 @@ yelp_info_init (GtkTreeStore *store)
 
 	root = yelp_util_contents_add_section (store, NULL, 
 					       yelp_section_new (YELP_SECTION_CATEGORY,
-								 _("Info Pages"), NULL, 
+								 _("info"), NULL, 
 								  NULL, NULL));
 
 	

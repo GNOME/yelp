@@ -438,7 +438,7 @@ struct TreeData root_children[] = {
 
 
 struct TreeData root_data = {
-	N_("Manual Pages"),
+	N_("man"),
 	root_children,
 	NULL
 };

@@ -142,7 +142,7 @@ ys_parse_books (ParseData *data, xmlDoc *doc)
 	
 	root = yelp_util_contents_add_section (data->store, NULL, 
  					       yelp_section_new (YELP_SECTION_CATEGORY,
-								 "Scrollkeeper", NULL,
+								 "scrollkeeper", NULL,
 								 NULL, NULL));
 
 	for (node = node->xmlChildrenNode; node; node = node->next) {

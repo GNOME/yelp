@@ -1,3 +1,14 @@
+2002-01-15  Alex Larsson  <alexl@redhat.com>
+
+	* src/yelp-view-toc.c:
+	Initial work on sane html generation, including some
+	man index work.
+
+	* yelp-info.c:
+	* yelp-man.c:
+	* yelp-scrollkeeper.c:
+	Rename the toplevel nodes to "man", "info" and "scrollkeeper".
+	
 Tue Jan 15 23:27:44 2002  Kristian Rietveld  <kris@gtk.org>
 
 	* src/gtktreemodelfilter.[ch]: update
