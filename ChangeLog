@@ -1,3 +1,8 @@
+2004-04-19  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-toc-pager.c:
+	- s/g_free/g_strfreev/ on **paths, fixes #140524 (Morten Welinder)
+
 2004-04-16  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-window.c:
