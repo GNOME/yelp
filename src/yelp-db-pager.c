@@ -575,8 +575,8 @@ walker_walk_xml (DBWalker *walker)
 
 	    gtk_tree_store_set (GTK_TREE_STORE (priv->sects),
 				&iter,
-				0, g_strdup (id),
-				1, g_strdup (title),
+				0, id,
+				1, title,
 				-1);
 
 	    old_id          = walker->page_id;
