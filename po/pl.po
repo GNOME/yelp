@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2002-01-30 23:26+0100\n"
-"PO-Revision-Date: 2002-01-30 23:30+0100\n"
+"POT-Creation-Date: 2002-02-18 19:48+0100\n"
+"PO-Revision-Date: 2002-02-18 19:45+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,12 +27,12 @@ msgstr "Generator Yelpa"
 
 #: src/yelp-info.c:1
 msgid "info"
-msgstr ""
+msgstr "info"
 
 #: src/yelp-main.c:1
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr ""
+msgstr "Nie można uaktywnić Yelpa: \"%s\""
 
 #: src/yelp-main.c:1
 msgid "Could not open new window."
@@ -77,7 +77,7 @@ msgstr "Funkcje biblioteczne"
 
 #: src/yelp-man.c:1
 msgid "Kernel Routines"
-msgstr ""
+msgstr "Funkcje jądra"
 
 #: src/yelp-man.c:1
 msgid "Applications"
@@ -85,11 +85,11 @@ msgstr "Aplikacje"
 
 #: src/yelp-man.c:1
 msgid "Development"
-msgstr ""
+msgstr "Programowanie"
 
 #: src/yelp-man.c:1
 msgid "Hardware Devices"
-msgstr ""
+msgstr "Urządzenia sprzętowe"
 
 #: src/yelp-man.c:1
 msgid "Configuration Files"
@@ -101,7 +101,7 @@ msgstr "Gry"
 
 #: src/yelp-man.c:1
 msgid "Overviews"
-msgstr ""
+msgstr "Podsumowania"
 
 #: src/yelp-man.c:1
 msgid "System Administration"
@@ -109,11 +109,39 @@ msgstr "Administracja systemem"
 
 #: src/yelp-man.c:1
 msgid "man"
-msgstr ""
+msgstr "man"
 
 #: src/yelp-view-content.c:1 src/yelp-view-index.c:1
 msgid "Section"
-msgstr ""
+msgstr "Sekcja"
+
+#: src/yelp-view-toc.c:1
+msgid "Other document systems"
+msgstr "Inne systemy dokumentacji"
+
+#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
+msgid "Manual pages"
+msgstr "Strony podręcznikowe"
+
+#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
+msgid "Info pages"
+msgstr "Strony info"
+
+#: src/yelp-view-toc.c:1
+msgid "Installed documents"
+msgstr "Zainstalowane dokumenty"
+
+#: src/yelp-view-toc.c:1
+msgid "Start page"
+msgstr "Strona początkowa"
+
+#: src/yelp-view-toc.c:1 src/yelp-view-toc.c:1
+msgid "Manual page sections"
+msgstr "Sekcje stron podręcznikowych"
+
+#: src/yelp-view-toc.c:1
+msgid "Scrollkeeper docs for category"
+msgstr "Dokumentacja Scrollkeepera dla kategorii"
 
 #: src/yelp-window.c:1
 msgid "/_File"
@@ -149,23 +177,23 @@ msgstr "Przeglądarka pomocy dla GNOME 2.0"
 
 #: src/yelp-window.c:1
 msgid "Go back in the history list"
-msgstr ""
+msgstr "Przechodzi o pozycję wstecz na liście historii"
 
 #: src/yelp-window.c:1
 msgid "Go forth in the history list"
-msgstr ""
+msgstr "Przechodzi o pozycję naprzód na liście historii"
 
 #: src/yelp-window.c:1
 msgid "Overview of contents"
-msgstr ""
+msgstr "Podsumowanie zawartości"
 
 #: src/yelp-window.c:1
 msgid "Search in the index"
-msgstr ""
+msgstr "Wyszukuje w indeksie"
 
 #: src/yelp-window.c:1
 msgid "Search for a phrase in the document"
-msgstr ""
+msgstr "Wyszukuje zwrotu w dokumencie"
 
 #: src/yelp-window.c:1
 msgid "Help on "
@@ -173,11 +201,11 @@ msgstr "Pomoc na temat "
 
 #: src/yelp-window.c:1
 msgid "Enter phrase to search for in all documents"
-msgstr ""
+msgstr "Wpisz zwrot, który chcesz wyszukać we wszystkich dokumentach"
 
 #: yelp.desktop.in.h:1
 msgid "Get help with GNOME"
-msgstr ""
+msgstr "Pomoc GNOME"
 
 #: yelp.desktop.in.h:1
 msgid "Help"
