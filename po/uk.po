@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"POT-Creation-Date: 2001-12-10 12:27+0200\n"
+"POT-Creation-Date: 2001-12-18 11:46+0200\n"
 "PO-Revision-Date: 2001-12-03 10:34+0200\n"
 "Last-Translator: Yuriy Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -20,10 +20,12 @@ msgid ""
 "to be a help browser for GNOME 2.0 written by Mikael "
 "Hallendal.<br><br>Please read the README and TODO<br></body></html>"
 msgstr ""
-"<html><head><title>Це Yelp, програма перегляду довідки для GNOME "
-"2.0</title></head><body bgcolor=\"white\"><h3>Ласкаво просимо у Yelp!</h3>Це "
-"програма перегляду довідки для GNOME 2.0, ща написана Мікелем "
-"Галлендалем.<br><br>Будь ласка, перечитайте файли README та "
+"<html><head><title>Це Yelp, програма перегляду "
+"довідки для GNOME 2.0</title></head><body "
+"bgcolor=\"white\"><h3>Ласкаво просимо у Yelp!</h3>Це "
+"програма перегляду довідки для GNOME 2.0, ща "
+"написана Мікелем Галлендалем.<br><br>Будь "
+"ласка, перечитайте файли README та "
 "TODO<br></body></html>"
 
 #: src/yelp-view-content.c:159 src/yelp-view-index.c:172
@@ -54,13 +56,39 @@ msgstr "/Довідка/_Про"
 msgid "Help Browser"
 msgstr "Перегляд довідки"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:362
 msgid "Help Browser for GNOME 2.0"
 msgstr "Перегляд довідки для GNOME 2.0"
 
-#: src/yelp-window.c:443
+#: src/yelp-window.c:386
+msgid "Go back in the history list"
+msgstr "Перейти назад у списку історії"
+
+#: src/yelp-window.c:401
+msgid "Go forth in the history list"
+msgstr "Перейти вперед у списку історії"
+
+#: src/yelp-window.c:416
+msgid "Overview of contents"
+msgstr "Огляд вмісту"
+
+#: src/yelp-window.c:427
+msgid "Search in the index"
+msgstr "Пошук в показнику"
+
+#: src/yelp-window.c:438
+msgid "Search for a phrase in the document"
+msgstr "Введіть фразу для пошуку в документі"
+
+#: src/yelp-window.c:444
 msgid "Help on "
 msgstr "Довідка про "
+
+#: src/yelp-window.c:449
+msgid "Enter phrase to search for in all documents"
+msgstr ""
+"Введіть фразу для пошуку в усіх "
+"документах"
 
 #: yelp.desktop.in.h:1
 msgid "GNOME Helpbrowser"
