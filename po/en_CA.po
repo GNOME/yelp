@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 23:57-0500\n"
-"PO-Revision-Date: 2005-01-13 22:18-0400\n"
+"POT-Creation-Date: 2005-01-18 00:52-0500\n"
+"PO-Revision-Date: 2005-01-18 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -149,28 +149,28 @@ msgid "KDE"
 msgstr "KDE"
 
 #: data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: data/toc.xml.in.h:13
 msgid "Office"
 msgstr "Office"
 
-#: data/toc.xml.in.h:13
+#: data/toc.xml.in.h:14
 msgid "Other"
 msgstr "Other"
 
-#: data/toc.xml.in.h:14
+#: data/toc.xml.in.h:15
 msgid "Other Documentation"
 msgstr "Other Documentation"
 
-#: data/toc.xml.in.h:15
+#: data/toc.xml.in.h:16
 msgid "Programming"
 msgstr "Programming"
 
-#: data/toc.xml.in.h:16
+#: data/toc.xml.in.h:17
 msgid "Scientific"
 msgstr "Scientific"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr "Sound &amp; Video"
 
 #: data/toc.xml.in.h:18
 msgid "System Tools"
@@ -309,7 +309,7 @@ msgstr "A bookmark titled <b>%s</b> already exists for this page."
 msgid "Document Sections"
 msgstr "Document Sections"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:241
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -319,8 +319,8 @@ msgstr ""
 "not well-formed XML."
 
 #: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Unknown"
+msgid "Unknown Section"
+msgstr "Unknown Section"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
