@@ -1,3 +1,18 @@
+2002-01-18  Alex Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Add AM_PATH_GLIB_2_0 to get GLIB_GENMARSHAL
+
+	* src/yelp-marshal.list
+	* src/Makefile.am:
+	Generate marshaller files
+	
+	* src/yelp-view-toc.[ch]:
+	New url_selected signal.
+
+	* src/yelp-scrollkeeper.c:
+	Fix leak
+	
 2002-01-17  Alex Larsson  <alexl@redhat.com>
 
 	* src/yelp-window.c (yw_populate):
