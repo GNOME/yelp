@@ -13,9 +13,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <popt.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include <limits.h>
 
 #include "data.h"
@@ -44,11 +44,11 @@ static struct poptOption options[] = {
 static int
 file_exists(const char *fn)
 {
+        struct stat sbuf;
+
 	if (g_file_test(fn, G_FILE_TEST_IS_DIR)) {
 		return FALSE;
 	}
-
-        struct stat sbuf;
 
 	if (g_file_test(fn, G_FILE_TEST_IS_DIR)) {
 		return FALSE;
