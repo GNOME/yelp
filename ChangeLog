@@ -1,3 +1,9 @@
+2002-04-18  Sander Vesik <sander.vesik@sun.com>
+	* stylesheets/yelp-customization.xsl: include yelp-custom.xsl
+	  instead of gnome-custom.xsl, "fix" whitespace, collect link
+	  cell drawing into their own templates, fix alignment of
+	  links in the navbars
+
 2002-04-18  Changwoo Ryu  <cwryu@debian.org>
 
 	* configure.in (ALL_LINGUAS): Added ko (Korean).
@@ -20,7 +26,6 @@
 	(yelp_html_do_maninf): added. This will soon be rewritten to use
 	  g_spawn_async_with_pipes.
 	
-
 2002-04-16  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: Added "zh_TW" to ALL_LINGUAS.

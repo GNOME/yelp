@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/1.48/html/docbook.xsl"/>
-<xsl:include href="gnome-custom.xsl"/>
+<xsl:include href="yelp-custom.xsl"/>
 
 <xsl:param name="gdb_docname" />
 
@@ -114,191 +114,198 @@
     </xsl:if>
   </xsl:element>
 </xsl:template>
+
 <!-- we are cheating here - but there isn't another way-->
 
 <xsl:template name="href.target">
-<xsl:param name="object" select="."/>
-      <xsl:text>ghelp:</xsl:text>
-      <xsl:value-of select="$gdb_docname"/>
-      <xsl:text>?</xsl:text>
-      <xsl:value-of select="$object/@id"/>
+   <xsl:param name="object" select="."/>
+   <xsl:text>ghelp:</xsl:text>
+   <xsl:value-of select="$gdb_docname"/>
+   <xsl:text>?</xsl:text>
+   <xsl:value-of select="$object/@id"/>
 </xsl:template>
 
+<xsl:template name="next.link.cell">
+<xsl:param name="object" select="."/>
+   <td align="right"><a accesskey="n">
+   <xsl:attribute name="href">
+      <xsl:call-template name="href.target">
+         <xsl:with-param name="object" select="$object"/>
+      </xsl:call-template>
+   </xsl:attribute>
+   <xsl:text>Next &gt;&gt;&gt;</xsl:text>
+   </a></td>
+</xsl:template>
+
+<xsl:template name="prev.link.cell">
+<xsl:param name="object" select="."/>
+   <td align="left"><a accesskey="p">
+   <xsl:attribute name="href">
+      <xsl:call-template name="href.target">
+         <xsl:with-param name="object" select="$object"/>
+      </xsl:call-template>
+   </xsl:attribute>
+   <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+   </a></td>
+</xsl:template>
+
+<xsl:template name="article.toc.ref">
+<xsl:attribute name="href">
+  <xsl:text>ghelp:</xsl:text>
+  <xsl:value-of select="$gdb_docname"/>
+</xsl:attribute>
+</xsl:template>
 
 <!--
-      article.chunk.prev and article.chunk.next need to be augumented
-      to take parents siblings children into account
+  article.chunk.prev and article.chunk.next need to be augumented
+  to take parents siblings children into account
 -->
 
 <xsl:template name="article.chunk.prev">
 <xsl:param name="node" select="."/>
-      <td>
-      <xsl:choose>
-              <!-- trouble - we need to treat the first sect1 specially -->
-              <xsl:when test="$node=/article/sect1[1]">
-                      <td><a accesskey="p">
-                              <xsl:attribute name="href">
-                                      <xsl:text>ghelp:</xsl:text>
-                                      <xsl:value-of select="$gdb_docname"/>
-                              </xsl:attribute>
-                              <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
-                      </a></td>
-              </xsl:when>
-              <xsl:when test="count($node/preceding-sibling::*) > 1">
-                      <td><a accesskey="p">
-                              <xsl:attribute name="href">
-                                      <xsl:call-template name="href.target">
-                                              <xsl:with-param name="object" select="$node/preceding-sibling::*[1]"/>
-                                      </xsl:call-template>
-                              </xsl:attribute>
-                              <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
-                      </a></td>
-              </xsl:when>
-              <xsl:otherwise>
-                      <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
-              </xsl:otherwise>
-      </xsl:choose>
-      </td>
+  <td>
+    <xsl:choose>
+      <xsl:when test="count($node/preceding-sibling::*) > 1">
+        <xsl:call-template name="prev.link.cell">
+          <xsl:with-param name="object" select="$node/preceding-sibling::*[1]"/>
+        </xsl:call-template>
+      </xsl:when>
+
+      <!-- we need to treat the first sect1 specially -->
+      <xsl:when test="$node=/article/sect1[1]">
+        <td><a accesskey="p">
+          <xsl:call-template name="article.toc.ref"/>
+          <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+        </a></td>
+      </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+        </xsl:otherwise>
+    </xsl:choose>
+  </td>
 </xsl:template>
 
 <xsl:template name="article.chunk.up">
 <xsl:param name="node" select="."/>
-      <td>
-      <xsl:choose>
-              <xsl:when test="local-name($node)='sect1' or local-name($node)='sect2'">
-                      <a accesskey="u">
-                              <xsl:attribute name="href">
-                                      <xsl:text>ghelp:</xsl:text>
-                                      <xsl:value-of select="$gdb_docname"/>
-                              </xsl:attribute>
-                      <xsl:text>Up</xsl:text>
-                      </a>
-              </xsl:when>
-      </xsl:choose>
-      </td>
+  <td align="center">
+    <xsl:choose>
+      <xsl:when test="local-name($node)='sect1' or local-name($node)='sect2'">
+        <a accesskey="u">
+          <xsl:call-template name="article.toc.ref"/>
+            <xsl:text>Up</xsl:text>
+        </a>
+      </xsl:when>
+    </xsl:choose>
+  </td>
 </xsl:template>
 
 <xsl:template name="article.chunk.next">
 <xsl:param name="node" select="."/>
-      <td>
-      <xsl:choose>
-              <xsl:when test="count($node/following-sibling::*) > 0"> 
-                      <td><a accesskey="n">
-                              <xsl:attribute name="href">
-                                      <xsl:call-template name="href.target">
-                                              <xsl:with-param name="object" select="$node/following-sibling::*[1]"/>
-                                      </xsl:call-template>
-                              </xsl:attribute>
-                              <xsl:text>Next &gt;&gt;&gt;</xsl:text>
-                      </a></td>
-              </xsl:when>
-              <xsl:otherwise>
-                      <xsl:text>Next &gt;&gt;&gt;</xsl:text>
-              </xsl:otherwise>
-      </xsl:choose>
-      </td>
+    <xsl:choose>
+      <xsl:when test="count($node/following-sibling::*) > 0"> 
+        <xsl:call-template name="next.link.cell">
+          <xsl:with-param name="object" select="$node/following-sibling::*[1]"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+	<td align="right">
+        <xsl:text>Next &gt;&gt;&gt;</xsl:text>
+	</td>
+      </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 <xsl:template name="article.chunk.navigate">
 <xsl:param name="node" select="."/>
-      <tr>
-      <xsl:call-template name="article.chunk.prev">
-              <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
-      <xsl:call-template name="article.chunk.up">
-              <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
-      <xsl:call-template name="article.chunk.next">
-              <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
-      </tr>
+  <tr>
+    <xsl:call-template name="article.chunk.prev">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:call-template name="article.chunk.up">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:call-template name="article.chunk.next">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </tr>
 </xsl:template>
 
 <xsl:template name="article.render.chunk">
 <xsl:param name="node" select="."/>
-      <table width="100%">
-      <xsl:call-template name="article.chunk.navigate">
-              <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
-      </table>
-      <xsl:apply-templates select="$node"/>
-      <table width="100%">
-      <xsl:call-template name="article.chunk.navigate">
-              <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
-      </table>
+  <table width="100%">
+    <xsl:call-template name="article.chunk.navigate">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </table>
+  <xsl:apply-templates select="$node"/>
+  <table width="100%">
+    <xsl:call-template name="article.chunk.navigate">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </table>
 </xsl:template>
 
 <xsl:template name="make.toc.navbar">
-      <table width="100%">
-      <tr>
-              <td><a accesskey="p">
-                      <xsl:attribute name="href">
-                              <xsl:text>ghelp:</xsl:text>
-                              <xsl:value-of select="$gdb_docname"/>
-                              <xsl:text>?title-page</xsl:text>
-                      </xsl:attribute>
-              <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
-              </a></td>
-              <td></td>
-              <td><a accesskey="n">
-                      <xsl:attribute name="href">
-                              <xsl:call-template name="href.target">
-                                      <xsl:with-param name="object" select="sect1[1]"/>
-                              </xsl:call-template>
-                      </xsl:attribute>
-              <xsl:text>Next &gt;&gt;&gt;</xsl:text>
-              </a></td>
-      </tr>
-      </table>
+  <table width="100%">
+    <tr>
+      <td><a accesskey="p">
+        <xsl:attribute name="href">
+          <xsl:text>ghelp:</xsl:text>
+          <xsl:value-of select="$gdb_docname"/>
+          <xsl:text>?title-page</xsl:text>
+        </xsl:attribute>
+        <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+      </a></td>
+      <td></td>
+      <xsl:call-template name="next.link.cell">
+        <xsl:with-param name="object" select="sect1[1]"/>
+      </xsl:call-template>
+    </tr>
+  </table>
 </xsl:template>
 
 <xsl:template name="make.titlep.navbar">
-        <table width="100%">
-        <tr>
-                <td>
-                <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
-                </td>
-                <td><xsl:text>Up</xsl:text></td>
-                <td><a accesskey="n">
-                        <xsl:attribute name="href">
-                              <xsl:text>ghelp:</xsl:text>
-                              <xsl:value-of select="$gdb_docname"/>
-                              <xsl:text>?title-page</xsl:text>
-                      </xsl:attribute>
-              <xsl:text>Next &gt;&gt;&gt;</xsl:text>
-              </a></td>
-      </tr>
-      </table>
+  <table width="100%">
+    <tr>
+      <td>
+        <xsl:text>&lt;&lt;&lt; Prev</xsl:text>
+      </td>
+      <td align="center"><xsl:text>Up</xsl:text></td>
+      <td align="right"><a accesskey="n">
+        <xsl:call-template name="article.toc.ref"/>
+          <xsl:text>Next &gt;&gt;&gt;</xsl:text>
+      </a></td>
+    </tr>
+  </table>
 </xsl:template>
 
 
 <xsl:template name="article.render.titlepage">
-      <xsl:call-template name="make.titlep.navbar"/>
-      <xsl:apply-templates select="/descendant::articleinfo/*" mode="titlepage.mode"/>
-      <xsl:call-template name="make.titlep.navbar"/>
+  <xsl:call-template name="make.titlep.navbar"/>
+  <xsl:apply-templates select="/descendant::articleinfo/*" mode="titlepage.mode"/>
+  <xsl:call-template name="make.titlep.navbar"/>
 </xsl:template>
 
 <xsl:template match="/article">
+  <xsl:choose>
+    <xsl:when test="string-length($gdb_rootid) &lt; 1">
+      <xsl:call-template name="make.toc.navbar"/>
+      <xsl:call-template name="component.toc"/>
+      <xsl:call-template name="make.toc.navbar"/>
+    </xsl:when>
+    <xsl:otherwise>
       <xsl:choose>
-      <xsl:when test="string-length($gdb_rootid) &lt; 1">
-              <xsl:call-template name="make.toc.navbar"/>
-              <xsl:call-template name="component.toc"/>
-              <xsl:call-template name="make.toc.navbar"/>
-      </xsl:when>
-      <xsl:otherwise>
-              <xsl:choose>
-                      <xsl:when test="$gdb_rootid='title-page'">
-                              <xsl:call-template name="article.render.titlepage"/>
-                      </xsl:when>
-                      <xsl:otherwise>
-                      <xsl:call-template name="article.render.chunk">
-                              <xsl:with-param name="node" select="descendant::*[attribute::id=$gdb_rootid]" />
-                      </xsl:call-template>
-                      </xsl:otherwise>
-              </xsl:choose>
-      </xsl:otherwise>
+        <xsl:when test="$gdb_rootid='title-page'">
+          <xsl:call-template name="article.render.titlepage"/>
+        </xsl:when>
+        <xsl:otherwise>
+         <xsl:call-template name="article.render.chunk">
+           <xsl:with-param name="node" select="descendant::*[attribute::id=$gdb_rootid]" />
+         </xsl:call-template>
+        </xsl:otherwise>
       </xsl:choose>
-  </xsl:template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 </xsl:stylesheet>
