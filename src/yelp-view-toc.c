@@ -358,6 +358,7 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 	YelpSection     *section;
 	gboolean         got_a_leaf;
 	char            *path, *url;
+	char            *tmp;
 	int              i;
 	gboolean         sub_started = FALSE;
 	gchar           *str_docs = _("Documents");
@@ -420,9 +421,11 @@ toc_man_emit (YelpViewTOC *view, GNode *first)
 			
 				section = node->data;
 				url = yelp_util_compose_path_url (node->parent, yelp_uri_get_path (section->uri));
-				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", yelp_uri_to_string (section->uri), 
+				tmp = yelp_uri_to_string (section->uri);
+				yelp_html_printf (priv->html_view, "<td valign=\"Top\"><a href=\"%s\">%s</a></td>\n", tmp, 
 						  section->name);
 				g_free (url);
+				g_free (tmp);
 				i++;
 			}
 		} while ((node = node->next) != NULL);

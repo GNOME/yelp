@@ -624,6 +624,8 @@ yelp_man_init (GNode *tree, GList **index)
 	g_hash_table_destroy (section_hash);
 
 	*index = g_list_concat (*index, man_index);
+
+	g_strfreev (manpathes);
 	
 	return TRUE;
 }

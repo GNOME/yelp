@@ -404,6 +404,7 @@ yelp_util_compose_path_url (GNode      *node,
 			    const char *embedded_url)
 {
 	char *path;
+	char *url;
 
 	path = yelp_util_node_to_string_path (node);
 
@@ -411,7 +412,11 @@ yelp_util_compose_path_url (GNode      *node,
 		return NULL;
 	}
 
-	return  g_strconcat ("path:", path, ";", embedded_url, NULL);
+	url = g_strconcat ("path:", path, ";", embedded_url, NULL);
+
+	g_free (path);
+
+	return url;
 }
  
 
