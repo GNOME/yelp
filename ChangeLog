@@ -1,5 +1,9 @@
 2002-05-18  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-info.c (yelp_info_init): 
+	- Fixes #80981 (hopefully)
+	- Thanks to Stéphane Démurget for notifying where the error was.
+
 	* src/yelp-view-toc.c (toc_info): fixed mem leak.
 
 	* configure.in (YELP_IDL_INCLUDES): readded bzip2 check, doh!

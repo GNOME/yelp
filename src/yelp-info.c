@@ -105,7 +105,6 @@ yelp_info_init (GNode *tree, GList **index)
 	struct stat   stat_dir2;
 	GSList       *info_list = NULL;
 	GSList       *node;
-	YelpSection  *section;
 	gchar       **infopathes;
 	gchar        *infopath;
 	gint          i;
@@ -141,7 +140,8 @@ yelp_info_init (GNode *tree, GList **index)
 
 	for (node = info_list; node; node = node->next) {
 		g_node_append_data (root, node->data);
-		*index = g_list_prepend (*index, section);
+
+		*index = g_list_prepend (*index, node->data);
 	}
 
 	g_slist_free (info_list);
