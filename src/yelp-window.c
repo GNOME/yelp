@@ -674,3 +674,10 @@ yelp_window_open_uri (YelpWindow  *window,
 	yw_handle_url (window, str_uri);
 }
 
+const gchar *
+yelp_window_get_current_uri (YelpWindow *window)
+{
+	g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
+	
+	return yelp_history_get_current (window->priv->history);
+}

@@ -312,8 +312,6 @@ yh_free_stream_data (StreamData *sdata, gboolean remove)
 		priv->connections = g_slist_remove (priv->connections, sdata);
 	}
 
-	g_print ("Out of stream_data\n");
-
 	if (sdata->anchor) {
 		g_free (sdata->anchor);
 	}

@@ -58,5 +58,6 @@ GtkWidget *      yelp_window_new             (GNode         *doc_tree,
 
 void             yelp_window_open_uri        (YelpWindow    *window,
 					      const gchar   *str_uri);
+const gchar *    yelp_window_get_current_uri (YelpWindow    *window);
 
 #endif /* __YELP_WINDOW_H__ */
