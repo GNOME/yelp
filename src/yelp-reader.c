@@ -93,8 +93,10 @@ static void      reader_q_data_free       (ReaderQueueData     *q_data);
 /* FIXME: Solve this so we don't leak */
 static void      reader_th_data_free      (ReaderThreadData    *th_data);
 #endif
-static gchar *   reader_get_chunk         (const gchar         *document,
-					   const gchar         *section);
+static gchar *   reader_get_chunk            (const gchar         *document,
+					      const gchar         *section);
+static gchar *   
+reader_look_for_cached_help_file             (const gchar         *url);
 
 enum {
 	START,
@@ -231,7 +233,6 @@ reader_convert_start (ReaderThreadData *th_data)
 	if (reader_check_cancelled (reader, th_data->stamp)) {
 		
 		STAMP_MUTEX_UNLOCK;
-		
 		return;
 	}
 
@@ -362,9 +363,7 @@ reader_file_start (ReaderThreadData *th_data)
 	STAMP_MUTEX_LOCK;
 	
 	if (reader_check_cancelled (reader, stamp)) {
-		
 		STAMP_MUTEX_UNLOCK;
-
 		return;
 	}
 
@@ -396,15 +395,14 @@ reader_file_start (ReaderThreadData *th_data)
 		STAMP_MUTEX_LOCK;
 		
 		if (reader_check_cancelled (reader, stamp)) {
-		
+			gnome_vfs_close (handle);
 			STAMP_MUTEX_UNLOCK;
-
 			return;
 		}
 		
 		STAMP_MUTEX_UNLOCK;
 	}
-
+	gnome_vfs_close (handle);
 	q_data = reader_q_data_new (reader, stamp, READER_QUEUE_TYPE_FINISHED);
 
 	g_async_queue_push (priv->thread_queue, q_data);
@@ -704,6 +702,76 @@ reader_get_chunk (const gchar *document, const gchar *section)
 	return ret_val;
 }
 
+/* Given an XML file, look if there is a cached HTML file. If the HTML is
+ * newer than XML, return it. Else return XML only.
+ */
+static gchar *
+reader_look_for_cached_help_file (const gchar *url)
+{
+	gchar *sect, *pos;
+	int len=0;
+	GString *path;
+	char    *html_url, *xml_url;
+	char    *scheme;
+	struct stat html_stat, xml_stat;
+
+	if (g_strrstr (url, ".xml") == NULL) {
+		return g_strdup (url);
+	}
+
+	path = g_string_new (url);
+	sect = g_strrstr (url, "?");
+
+	len = sect - url;
+	path = g_string_truncate (path, len);
+
+	scheme = g_strrstr (path->str, ":");
+
+	xml_url = g_strdup (scheme + 1);
+
+	pos = g_strrstr (path->str, ".xml");
+
+	if (pos == NULL) {
+		g_string_free (path, TRUE);
+		g_free (xml_url);
+
+		return g_strdup (url);
+	}
+
+	len = pos - path->str;
+
+	path = g_string_truncate (path, len);
+	path = g_string_append (path, ".html");
+
+	scheme = g_strrstr (path->str, ":");
+	html_url = g_strdup (scheme + 1);
+
+	if (g_file_test (html_url, G_FILE_TEST_EXISTS)) {
+		stat (html_url, &html_stat);
+		stat (xml_url, &xml_stat);
+
+		g_free (xml_url);
+		g_free (html_url);
+
+		if (html_stat.st_mtime >= xml_stat.st_mtime) {
+			if (sect) {
+				path = g_string_append (path, sect);
+			}
+
+			return g_string_free (path, FALSE);
+		} else {
+			g_string_free (path, TRUE);
+			return g_strdup (url);
+		}
+	} else {
+		g_free (xml_url);
+		g_free (html_url);
+		g_string_free (path, TRUE);
+
+		return g_strdup (url);
+	}
+}
+
 YelpReader *
 yelp_reader_new ()
 {
@@ -723,7 +791,8 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	YelpReaderPriv   *priv;
 	ReaderThreadData *th_data;
 	gint              stamp;
-	const gchar      *document = NULL;
+	const gchar      *cached_document = NULL;
+	gchar            *read_document = NULL;
 	gchar            *chunk = NULL;
 	gchar            *str_uri = NULL;
 	gchar             buffer[BUFFER_SIZE];
@@ -752,15 +821,15 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	th_data->stamp  = stamp;
 
 	str_uri = yelp_uri_to_string (uri);
-
 	if (str_uri && *str_uri) {
-		str_uri = look_for_html_help_file (str_uri);
-		new_uri = yelp_uri_new (str_uri);
+		gchar *tmp_str_uri;
+		tmp_str_uri = reader_look_for_cached_help_file (str_uri);	
+		new_uri = yelp_uri_new (tmp_str_uri);
+		g_free (str_uri);
+		g_free (tmp_str_uri);
 	} else {
 		new_uri = yelp_uri_copy (uri);
 	}
-
-	g_free (str_uri);
 
 	if (yelp_uri_get_type (new_uri) == YELP_URI_TYPE_FILE ||
 	    yelp_uri_get_type (new_uri) == YELP_URI_TYPE_UNKNOWN ||
@@ -778,7 +847,7 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 	    yelp_uri_get_type (new_uri) == YELP_URI_TYPE_DOCBOOK_SGML) {
 
 		/* check if there is HTML cache. If found, use the HTML cache. */
-		document = yelp_cache_lookup (yelp_uri_get_path (new_uri));
+		cached_document = yelp_cache_lookup (yelp_uri_get_path (new_uri));
 	}
 	else if (yelp_uri_get_type (new_uri) == YELP_URI_TYPE_HTML) {
 		GnomeVFSHandle   *handle;
@@ -799,29 +868,41 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 		html_buffer = NULL;
 
 		while (TRUE) {
+			gchar *temp_buffer;
+
 			result = gnome_vfs_read (handle, buffer,
 						 BUFFER_SIZE, &n);
-
+			
 			/* FIXME: Do some error checking */
 			if (result != GNOME_VFS_OK) {
 				break;
 			}
-
+			
+			temp_buffer = g_strndup (buffer, n);
+			
 			if (html_buffer == NULL) {
-				html_buffer = g_string_new (g_strndup (buffer,
-								       n));
+				html_buffer = g_string_new (temp_buffer);
 			} else {
 				html_buffer = g_string_append (html_buffer,
-							       g_strndup (buffer,
-									  n));
+							       temp_buffer);
 			}
-		}
 
-		document = html_buffer->str;
-		g_string_free (html_buffer, FALSE);
+			g_free (temp_buffer);
+		}
+		
+		gnome_vfs_close (handle);
+		read_document = g_string_free (html_buffer, FALSE);
 	}
 
-	if (document) {
+	if (cached_document || read_document) {
+		gchar *document;
+
+		if (cached_document) {
+			document = (gchar *) cached_document;
+		} else {
+			document = read_document;
+		}
+		
 		if (yelp_uri_get_section (new_uri) &&
 		    strcmp (yelp_uri_get_section (new_uri), "")) {
 			chunk = reader_get_chunk (document,
@@ -829,6 +910,9 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 		} else {
 			chunk = reader_get_chunk (document, "toc");
 		}
+
+		g_free (read_document);
+		yelp_uri_unref (new_uri);
 
 		if (chunk) {
 			ReaderQueueData *q_data;
@@ -853,11 +937,12 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 			g_idle_add ((GSourceFunc) reader_idle_check_queue,
 				    th_data);
 
-			yelp_uri_unref (new_uri);
 			return TRUE;
 		}
+	} else {
+		yelp_uri_unref (new_uri);
 	}
-
+	
 	g_timeout_add (100, (GSourceFunc) reader_idle_check_queue, th_data);
 
 	g_thread_create_full ((GThreadFunc) reader_start, th_data,
@@ -865,8 +950,6 @@ yelp_reader_start (YelpReader *reader, YelpURI *uri)
 			      TRUE,
 			      FALSE, G_THREAD_PRIORITY_NORMAL,
 			      NULL /* FIXME: check for errors */);
-
-	yelp_uri_unref (new_uri);
 
 	return FALSE;
 }
@@ -885,80 +968,4 @@ yelp_reader_cancel (YelpReader *reader)
 	reader_change_stamp (reader);
 
 	STAMP_MUTEX_UNLOCK;
-}
-
-
-/* Given an XML file, look if there is a cached HTML file. If the HTML is
- * newer than XML, return it. Else return XML only.
- */
-
-gchar *
-look_for_html_help_file (gchar *url)
-{
-	gchar *sect, *pos;
-	int len=0;
-	GString *path;
-	char    *html_url, *xml_url;
-	char    *scheme;
-	struct stat html_stat, xml_stat;
-
-	if (g_strrstr (url, ".xml") == NULL)
-		return url;
-
-	path = g_string_new (url);
-	sect = g_strrstr (url, "?");
-
-	len = sect - url;
-	path = g_string_truncate (path, len);
-
-	scheme = g_strrstr (path->str, ":");
-
-	xml_url = g_strdup (scheme + 1);
-
-	pos = g_strrstr (path->str, ".xml");
-
-	if (pos == NULL) {
-		g_string_free (path, TRUE);
-		g_free (xml_url);
-
-		return url;
-	}
-
-	len = pos - path->str;
-
-	path = g_string_truncate (path, len);
-
-	path = g_string_append (path, ".html");
-
-	scheme = g_strrstr (path->str, ":");
-
-	html_url = g_strdup (scheme + 1);
-
-	if (g_file_test (html_url, G_FILE_TEST_EXISTS)) {
-
-		stat (html_url, &html_stat);
-		stat (xml_url, &xml_stat);
-
-		g_free (xml_url);
-		g_free (html_url);
-
-		if (html_stat.st_mtime >= xml_stat.st_mtime) {
-
-			if (sect)
-				path = g_string_append (path, sect);
-
-			return g_string_free (path, FALSE);
-		}
-		else {
-			g_string_free (path, TRUE);
-			return url;
-		}
-	}
-	else {
-		g_free (xml_url);
-		g_free (html_url);
-		g_string_free (path, TRUE);
-
-		return url;
-	}
 }
