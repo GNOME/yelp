@@ -785,7 +785,7 @@ toc_scrollkeeper (YelpViewTOC *view, GNode *root)
 	}
 
 	if (sub_started) {
-		yelp_html_printf (priv->html_view, "<br>\n");
+		yelp_html_printf (priv->html_view, "</ul><br>\n");
 	}
 
 	if (got_a_leaf) {
