@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 23:42-0600\n"
-"PO-Revision-Date: 2004-12-31 19:51+0200\n"
+"POT-Creation-Date: 2005-01-03 21:39+0200\n"
+"PO-Revision-Date: 2005-01-03 21:58+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -189,14 +189,12 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Šriftai</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Title:</b>"
-msgstr "<b>Šriftai</b>"
+msgstr "<b>_Pavadinimas:</b>"
 
 #: data/ui/yelp.glade.h:4
-#, fuzzy
 msgid "Add Bookmark"
-msgstr "_Pridėti žymelę"
+msgstr "Pridėti žymelę"
 
 #: data/ui/yelp.glade.h:5
 msgid "Bookmarks"
@@ -294,12 +292,19 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp gamykla"
 
+#: src/yelp-bookmarks.c:248 src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
+
 #: src/yelp-db-pager.c:238
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
+"Nepavyko apdoroti bylos „%s“. Arba byla neegzistuoja, arba ji nėra tinkamai "
+"suformuota XML byla."
 
 #: src/yelp-db-pager.c:486
 msgid "Unknown"
@@ -307,37 +312,44 @@ msgstr "Nežinoma"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Įvyko nežinoma klaida"
 
 #: src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "Nepavyko įkelti dokumento"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Nepavyko atidaryti naujo lango."
+msgstr "Nepavyko įkelti skyriaus"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Nepavyko įkelti OMF bylos: '%s'"
+msgstr "Nepavyko perskaityti turinio"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Nepalaikomas formatas"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Nepavyko perskaityti dokumento"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Nepavyko apdoroti dokumento"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr "Nėra prieinamos informacijos apie šią klaidą."
+
+#: src/yelp-io-channel.c:98
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
+"Nepavyko perskaityti ir dekoduoti bylos „%s“. Ji gali būti suarchyvuota "
+"nepalaikomo formato archyve."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -362,6 +374,8 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
+"Nepavyko išnagrinėti bylos „%s“. Arba tokia byla neegzistuoja, arba ji "
+"suformuota neteisingai."
 
 #: src/yelp-pager.c:120
 msgid "Document Information"
@@ -416,6 +430,8 @@ msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
+"Nepavyko įkelti turinio. Arba trūksta bylos „%s“, arba ji yra blogai "
+"suformuota XML byla."
 
 #: src/yelp-toc-pager.c:873
 #, c-format
@@ -423,6 +439,8 @@ msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
+"Nepavyko apdoroti turinio. Arba trūksta bylos „%s“, arba ji nėra tinkama "
+"XSLT stiliaus byla."
 
 #: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
@@ -453,20 +471,18 @@ msgid "_Help"
 msgstr "_Pagalba"
 
 #: src/yelp-window.c:309
-#, fuzzy
 msgid "_New Window"
 msgstr "_Naujas langas"
 
 #: src/yelp-window.c:314
 msgid "About This Document"
-msgstr ""
+msgstr "Apie šį dokumentą"
 
 #: src/yelp-window.c:319
 msgid "Open _Location"
 msgstr "Atidaryti _vietą"
 
 #: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
 msgstr "_Uždaryti langą"
 
@@ -515,14 +531,12 @@ msgid "Go to home view"
 msgstr "Grįžti į pradinį puslapį"
 
 #: src/yelp-window.c:372
-#, fuzzy
 msgid "_Previous Section"
-msgstr "_Ankstesnis puslapis"
+msgstr "_Ankstesnis skyrius"
 
 #: src/yelp-window.c:377
-#, fuzzy
 msgid "_Next Section"
-msgstr "_Sekantis puslapis"
+msgstr "_Sekantis skyrius"
 
 #: src/yelp-window.c:382
 msgid "_Contents"
@@ -558,28 +572,30 @@ msgstr "Pagalbos naršyklė"
 
 #: src/yelp-window.c:697 src/yelp-window.c:830
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "Netinkamas bylos adresas."
 
 #: src/yelp-window.c:709 src/yelp-window.c:825
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "Adresas „%s“ yra netinkamas arba rodo ne į tą bylą."
 
 #: src/yelp-window.c:786 src/yelp-window.c:1124
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Šioje versijoje žinynų puslapiai yra nepalaikomi."
 
 #: src/yelp-window.c:796 src/yelp-window.c:1115
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Šioje versijoje GNU info puslapiai yra nepalaikomi"
 
 #: src/yelp-window.c:806
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
+"SGML dokumentai daugiau nebepalaikomi. Paprašykit dokumento autorių, kad "
+"ją paverstų į XML."
 
 #: src/yelp-window.c:1021
 msgid "Fin_d"
@@ -591,6 +607,8 @@ msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
+"Bylai „%s“ nepavyko sukurti transformacijos konteksto. Gali būti nepalaikomas "
+"formatas."
 
 #: src/yelp-window.c:1171 src/yelp-window.c:1585 src/yelp-window.c:1652
 #, c-format
@@ -599,6 +617,9 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
+"Skyrius „%s“ šiame dokumente neegzistuoja. Jeigu Jūs į šį skyrių buvote "
+"nukreipti paspaudę programos mygtuką „Pagalba“, praneškite apie tai šios "
+"programos prižiūrėtojams."
 
 #: src/yelp-window.c:1286
 #, c-format
@@ -606,6 +627,8 @@ msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
+"Nepavyko perskaityti bylos „%s“. Arba tokios bylos nėra, arba Jūs neturite "
+"reikiamų teisių jai perskaityti."
 
 #: src/yelp-window.c:1320
 msgid "Loading..."
@@ -632,6 +655,8 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
+"Nepavyko išnagrinėti bylos „%s“. Arba ši byla neegzistuoja, arba ji "
+"suformuota neteisingai."
 
 #: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
@@ -639,31 +664,9 @@ msgid ""
 "The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
 "is not a valid XSLT stylesheet."
 msgstr ""
+"Nepavyko apdoroti dokumento „%s“. Arba bylos „%s“ nėra, arba ji nėra "
+"tinkama XSLT stiliaus byla."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Gauti pagalbą dirbant su GNOME"
-
-#~ msgid "Titlepage"
-#~ msgstr "Antraštinis puslapis"
-
-#~ msgid "Contents"
-#~ msgstr "Turinys"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Pasirinktas dokumentas negali būti atidarytas"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Pasirinktas puslapis šiame dokumente nėrastas."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Turinio perskaityti nepavyko."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "DocBook SGML dokumentai daugiau nepalaikomi."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "Pasirinktos bylos perskaityti nepavyko."
-
-#~ msgid "The file could not be processed."
-#~ msgstr "Bylos nepavyko perskaityti."
