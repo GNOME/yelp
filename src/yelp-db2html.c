@@ -42,7 +42,6 @@
 #include <libgnomevfs/gnome-vfs-init.h>
 
 #include "yelp-error.h"
-#include "yelp-db2html.h"
 
 /* stylesheet location based on Linux Standard Base      *
  * http://www.linuxbase.org/spec/gLSB/gLSB/sgmlr002.html */

@@ -30,7 +30,6 @@
 #include <string.h>
 
 #include "yelp-cache.h"
-#include "yelp-db2html.h"
 #include "yelp-marshal.h"
 #include "yelp-reader.h"
 

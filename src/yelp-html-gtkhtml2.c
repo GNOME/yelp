@@ -34,7 +34,6 @@
 
 #include "yelp-util.h"
 #include "yelp-marshal.h"
-#include "yelp-db2html.h"
 #include "yelp-error.h"
 #include "yelp-uri.h"
 #include "yelp-reader.h"
