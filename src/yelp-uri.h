@@ -66,5 +66,6 @@ gchar *         yelp_uri_to_string        (YelpURI       *uri);
 
 YelpURI *       yelp_uri_to_index         (YelpURI       *uri);
 YelpURI *       yelp_uri_from_index       (YelpURI       *uri);
+gboolean        yelp_uri_no_path          (YelpURI       *uri);
 
 #endif /* __YELP_URI_H__ */

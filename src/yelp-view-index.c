@@ -404,6 +404,10 @@ index_show_uri (YelpView *view, YelpURI *index_uri, GError **error)
 
 	d(g_print ("Index show Uri: %s\n", yelp_uri_to_string (index_uri)));
 
+	if (yelp_uri_no_path (index_uri)) {
+		return;
+	}
+
 	uri = yelp_uri_from_index (index_uri);
 
 	priv->first = TRUE;

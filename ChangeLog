@@ -1,5 +1,13 @@
 2002-10-19  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-uri.c (yelp_uri_no_path): added, support to easy check
+	  if URI is of type 'index:' without any path.
+
+	* src/yelp-view-index.c (index_show_uri): Don't try loading if URI
+	  is just 'index:'. Fixes #95877
+
+2002-10-19  Mikael Hallendal  <micke@codefactory.se>
+
 	* src/yelp-reader.c:
 	(reader_start): no need to check for YELP_URI_TYPE_GHELP_OTHER
 	  since it will never get here with that URI type.
