@@ -1,3 +1,10 @@
+2002-08-22  Kristian Rietveld  <kris@gtk.org>
+ 
+	* src/yelp-man.c:
+	(yelp_man_free_initial_tree): also free the node itself
+	(yelp_man_cleaup_initial_tree): free the initial tree structure of
+	  the nodes we're freeing here. 
+
 2002-08-21  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/yelp-html-gtkhtml2.c (html_url_requested_cb): 
