@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2005-01-13 00:16+0100\n"
+"POT-Creation-Date: 2005-01-15 21:48+0100\n"
+"PO-Revision-Date: 2005-01-15 21:48+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -190,9 +190,8 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Typsnitt</b>"
 
 #: data/ui/yelp.glade.h:3
-#, fuzzy
 msgid "<b>_Bookmarks:</b>"
-msgstr "_Bokmärken"
+msgstr "<b>_Bokmärken:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
@@ -224,7 +223,7 @@ msgstr "Inställningar"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "_Byt namn"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
@@ -309,9 +308,8 @@ msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Det finns redan ett bokmärke med namnet <b>%s</b> för denna sida."
 
 #: src/yelp-bookmarks.c:341
-#, fuzzy
 msgid "Document Sections"
-msgstr "Dokumentinformation"
+msgstr "Dokumentavsnitt"
 
 #: src/yelp-db-pager.c:238
 #, c-format
@@ -731,6 +729,21 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjälp med GNOME"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "_Bokmärken:"
+
+#~ msgid "<b>_Bookmarks</b>"
+#~ msgstr "<b>_Bokmärken</b>"
+
+#~ msgid "<b>Bookmarks</b>"
+#~ msgstr "<b>Bokmärken</b>"
+
+#~ msgid "<b>Bookmarks:</b>"
+#~ msgstr "<b>Bokmärken:</b>"
+
+#~ msgid "Rename"
+#~ msgstr "Byt namn"
 
 #~ msgid "_Find:"
 #~ msgstr "_Sök:"
