@@ -2,14 +2,15 @@
 # Copyright © 2002 Free Software Foundation, Inc.
 # Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004, 2005
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002
+# Reinout van Schouwen <reinout@cs.vu.nl>, 2005 (small corrections)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-19 04:33+0100\n"
-"PO-Revision-Date: 2005-01-19 12:15+0100\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2005-02-03 14:19+0100\n"
+"PO-Revision-Date: 2005-02-03 19:29+0100\n"
+"Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +116,7 @@ msgstr "X11-overzicht"
 
 #: data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr "Toegangkelijkheid"
+msgstr "Toegankelijkheid"
 
 #: data/toc.xml.in.h:2
 msgid "Accessories"
@@ -137,9 +138,9 @@ msgstr "Educatieve toepassingen"
 msgid "Graphics"
 msgstr "Grafisch"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:362
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
-msgstr "Hulp-onverwerpen"
+msgstr "Hulp-onderwerpen"
 
 #: data/toc.xml.in.h:10
 msgid "Internet"
@@ -192,7 +193,7 @@ msgstr "<b>Lettertypes</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_Favorieten:</b>"
+msgstr "<b>Bl_adwijzers:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
@@ -200,11 +201,11 @@ msgstr "<b>_Titel:</b>"
 
 #: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
-msgstr "Favoriet toevoegen"
+msgstr "Bladwijzer toevoegen"
 
 #: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
-msgstr "Favorieten"
+msgstr "Bladwijzers"
 
 #: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
@@ -312,29 +313,29 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Yelp-fabriek"
 
-#: src/yelp-bookmarks.c:141
+#: src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
-msgstr "Favoriet openen in _nieuw venster"
+msgstr "Bladwijzer openen in nieuw venster"
 
-#: src/yelp-bookmarks.c:145
+#: src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
-msgstr "Favoriet hernoemen"
+msgstr "Bladwijzer hernoemen"
 
-#: src/yelp-bookmarks.c:149
+#: src/yelp-bookmarks.c:163
 msgid "Remove Bookmark"
-msgstr "Favoriet verwijderen"
+msgstr "Bladwijzer verwijderen"
 
-#: src/yelp-bookmarks.c:277 src/yelp-bookmarks.c:349
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "Een favoriet met titel <b>%s</b> bestaat al voor deze pagina."
+msgstr "Een bladwijzer met titel <b>%s</b> bestaat al voor deze pagina."
 
 # onderdelen/secties
-#: src/yelp-bookmarks.c:377
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Documentsecties"
 
-#: src/yelp-db-pager.c:241
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -344,7 +345,7 @@ msgstr ""
 "of het is niet-juist gevormde XML."
 
 # sectie/onderdeel
-#: src/yelp-db-pager.c:486
+#: src/yelp-db-pager.c:489
 msgid "Unknown Section"
 msgstr "Onbekende sectie"
 
@@ -447,7 +448,7 @@ msgstr "De YelpDocInfo struct van het document"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
@@ -494,7 +495,7 @@ msgstr "Geen geheugen meer"
 
 #: src/yelp-toc-pager.c:1079
 msgid "Help Contents"
-msgstr "Hulp Inhoudsopgave"
+msgstr "Hulp-inhoudsopgave"
 
 #: src/yelp-window.c:302
 msgid "_File"
@@ -510,7 +511,7 @@ msgstr "_Ga naar"
 
 #: src/yelp-window.c:305
 msgid "_Bookmarks"
-msgstr "_Favorieten"
+msgstr "Bl_adwijzers"
 
 #: src/yelp-window.c:306
 msgid "_Help"
@@ -591,11 +592,11 @@ msgstr "_Inhoudsopgave"
 
 #: src/yelp-window.c:388
 msgid "_Add Bookmark"
-msgstr "_Favoriet toevoegen"
+msgstr "Bladwijzer _toevoegen"
 
 #: src/yelp-window.c:393
 msgid "_Edit Bookmarks..."
-msgstr "Favorieten be_werken..."
+msgstr "Bladwijzers be_werken..."
 
 #: src/yelp-window.c:399
 msgid "_Open Link"
@@ -693,7 +694,7 @@ msgid "Loading..."
 msgstr "Bezig met laden..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
@@ -716,7 +717,7 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt. Ofwel het bestand bestaat niet, "
 "of het heeft niet de juiste opmaak."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -725,18 +726,16 @@ msgstr ""
 "Het document ‘%s’ kon niet worden verwerkt. Ofwel het bestand ‘%s’ "
 "ontbreekt, of het is geen geldige XSLT stylesheet."
 
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-"Het document ‘%s’ kon niet worden verwerkt. Ofwel het bestand ‘%s’ "
-"ontbreekt, of het is geen geldige XSLT stylesheet."
-
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Hulp bij GNOME"
+
+#~ msgid ""
+#~ "The document ‘%s’could not be processed. The file ‘%s’ is either missing "
+#~ "or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Het document ‘%s’ kon niet worden verwerkt. Ofwel het bestand ‘%s’ "
+#~ "ontbreekt, of het is geen geldige XSLT stylesheet."
 
 # geluid en video
 #~ msgid "Sound &amp; Video"
