@@ -1,23 +1,35 @@
+Changes in 0.6.1:
+-----------------
+
+* Docbook fixes                                 (John Fleck)
+* Handle HTML-pages better                      (Mikael Hallendal)
+* Stylesheet updates                            (Sander Vesik)
+* man/info-fix fixing a bug resulting in 
+  sometime man/info didn't get displayed at all (Mikael Hallendal)
+* Man-fixes when viewing man-pages with a .so 
+  in them.                                      (Mikael Hallendal)
+
+
 Changes in 0.6:
 ---------------
 
-* Made the TOC view look better                 (Me,
+* Made the TOC view look better                 (Mikael Hallendal,
 						 Tammy Fox)
-* Better error handling when viewing docbook    (Me)
-* Docbook speedups                              (Me)
+* Better error handling when viewing docbook    (Mikael Hallendal)
+* Docbook speedups                              (Mikael Hallendal)
 * Chunking stylesheet fixes                     (Sander Vesik)
-* Fixed a couple of Calum's usability issues    (Me)
-* Use toolbar settings from GConf               (Me)
+* Fixed a couple of Calum's usability issues    (Mikael Hallendal)
+* Use toolbar settings from GConf               (Mikael Hallendal)
 * Style fixes in the index view                 (Richard Hult)
 * Fixed memory leaks                            (Padraig O'Briain
-						 Me)
+						 Mikael Hallendal)
 
 Changes in 0.5:
 ---------------
 
-* Support for INFOPATH                          (Me)
-* Faster in-doc browsing .                      (Me)
-* Fixed bugs: #72637, #72965, #75081            (Me)
+* Support for INFOPATH                          (Mikael Hallendal)
+* Faster in-doc browsing .                      (Mikael Hallendal)
+* Fixed bugs: #72637, #72965, #75081            (Mikael Hallendal)
 * UTF8 Fix                                      (Zbigniew Chyla)
 * Accessibility fixes                           (Padraig O'Briain,
 						 Jagadeesh B. G)
@@ -31,11 +43,11 @@ Changes in 0.3:
 ---------------
 
 * gnome-help symlink                      	(Alex Larsson)
-* history fixes                           	(Me)
-* Added support for index search          	(Me)
-* Changed strings suggested by Calum      	(Me)
-* Added Go menu with toolbar alternatives 	(Me)
-* Lots of bugfixes                              (Me)
+* history fixes                           	(Mikael Hallendal)
+* Added support for index search          	(Mikael Hallendal)
+* Changed strings suggested by Calum      	(Mikael Hallendal)
+* Added Go menu with toolbar alternatives 	(Mikael Hallendal)
+* Lots of bugfixes                              (Mikael Hallendal)
 * Updated translations                          (Christian Rose,
 						 Ole Laursen,
 						 Tõivo Leedjärv,
