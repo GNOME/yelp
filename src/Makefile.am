@@ -22,7 +22,8 @@ INCLUDES =								\
 	-DLIBGNOME_MAN2HTML=\"$(LIBGNOME_MAN2HTML)\"			\
 	-DLIBGNOME_INFO2HTML=\"$(LIBGNOME_INFO2HTML)\"			\
 	-DSERVERDIR=\"$(libexecdir)\"					\
-	-DBINDIR=\""$(bindir)"\"
+	-DBINDIR=\""$(bindir)"\"					\
+	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""
 
 bin_PROGRAMS = yelp
 check_PROGRAMS = test-man-parser test-pager test-uri

@@ -37,6 +37,7 @@
 #include <libgnomeui/gnome-client.h>
 #include <string.h>
 #include <stdlib.h>
+#include <gtkmozembed.h>
 
 #include "GNOME_Yelp.h"
 #include "yelp-window.h"
@@ -332,6 +333,8 @@ main (int argc, char **argv)
 		 gdk_display_get_name (gdk_display_get_default ()) );
 
 	gnome_vfs_init ();
+
+	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
 	
 	/* Commandline parsing is done here */
 	g_object_get (G_OBJECT (program),
