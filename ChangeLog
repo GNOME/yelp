@@ -1,5 +1,13 @@
 2001-12-04  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-window.c (yelp_window_populate): connect to the correct
+	  button.
+	(yelp_window_section_selected_cb): notify the history that we are
+	  moving.
+	
+	* src/yelp-history.c (yelp_history_maybe_emit): no details when
+	  emitting.
+
 	* src/yelp-window.c: 
 	- added forward/back-buttons to priv struct.
 	- connect the buttons to forward/back-exists-toggled signals in

@@ -130,7 +130,6 @@ yelp_window_init (YelpWindow *window)
 				  G_CALLBACK (yelp_window_section_selected_cb),
 				  G_OBJECT (window));
 
-
 	priv->history = yelp_history_new ();
 	
         gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
@@ -194,7 +193,7 @@ yelp_window_populate (YelpWindow *window)
 
 	g_signal_connect_swapped (priv->history, "back_exists_changed",
 				  G_CALLBACK (yelp_window_toggle_history_buttons),
-				  G_OBJECT (priv->forward_button));
+				  G_OBJECT (priv->back_button));
 
 	priv->forward_button = gtk_toolbar_insert_stock (GTK_TOOLBAR (toolbar),
 							 "gtk-go-forward",
@@ -204,7 +203,7 @@ yelp_window_populate (YelpWindow *window)
 	gtk_widget_set_sensitive (priv->forward_button, FALSE);
 
 	g_signal_connect_swapped (priv->history, "forward_exists_changed",
-				  G_CALLBACK (yelp_window_toggle_history_buttons),
+ 				  G_CALLBACK (yelp_window_toggle_history_buttons),
 				  G_OBJECT (priv->forward_button));
 	
 	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
@@ -304,6 +303,8 @@ yelp_window_section_selected_cb (YelpWindow  *window,
 		return;
 	}
 
+	yelp_history_goto (priv->history, section);
+
 	yelp_view_open_uri (YELP_VIEW (window->priv->yelp_view), 
 			    section->uri, section->reference);
 }
@@ -336,6 +337,8 @@ yelp_window_toggle_history_buttons (GtkWidget   *button,
 {
 	g_return_if_fail (GTK_IS_BUTTON (button));
 	g_return_if_fail (YELP_IS_HISTORY (history));
+
+	g_print ("History button toggled\n");
 	
 	gtk_widget_set_sensitive (button, sensitive);
 }

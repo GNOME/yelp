@@ -167,13 +167,13 @@ yelp_history_maybe_emit (YelpHistory *history)
 	g_return_if_fail (YELP_IS_HISTORY (history));
 	
 	priv = history->priv;
-	
+
 	if (priv->last_emit_forward != yelp_history_exist_forward (history)) {
 		priv->last_emit_forward = yelp_history_exist_forward (history);
 		
 		g_signal_emit (history,
                                signals[FORWARD_EXISTS_CHANGED],
-                               priv->last_emit_forward);
+			       0, priv->last_emit_forward);
 	}
 
 	if (priv->last_emit_back != yelp_history_exist_back (history)) {
@@ -181,7 +181,7 @@ yelp_history_maybe_emit (YelpHistory *history)
 		
 		g_signal_emit (history,
                                signals[BACK_EXISTS_CHANGED],
-                               priv->last_emit_back);
+                               0, priv->last_emit_back);
 	}
 }
 
