@@ -23,7 +23,7 @@
 #ifndef __YELP_WINDOW_H__
 #define __YELP_WINDOW_H__
 
-#include <gtk/gtkwindow.h>
+#include <libgnomeui/gnome-app.h>
 #include <gtk/gtktreemodel.h>
 
 #include "yelp-base.h"
@@ -41,14 +41,14 @@ typedef struct _YelpWindowPriv   YelpWindowPriv;
 
 struct _YelpWindow
 {
-        GtkWindow       parent;
+        GnomeApp        parent;
         
         YelpWindowPriv *priv;
 };
 
 struct _YelpWindowClass
 {
-        GtkWindowClass  parent_class;
+        GnomeAppClass   parent_class;
 
         /* Signals */
 	void (*new_window_requested) (YelpWindow *window);

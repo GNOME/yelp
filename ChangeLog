@@ -1,3 +1,19 @@
+2002-10-08  Paolo Maggi <maggi@athena.polito.it>
+
+	* src/yelp-window.[ch]: YelpWindow is now inherited from GnomeApp.
+	The window title is now "title - Help Browser", instead of 
+	"Help Browser:title", in this way you can see in the tasklist applet
+	the name of the loaded page.
+	Removed the gconf stuff since is no more needed.
+	Note that Yelp still does not monitor menus_have_icons gconf key
+
+	* src/yelp-view-content.c (content_show_uri): set the loading page
+	title to "Loading...", instead of ".."
+
+	* src/yelp-view-index.c (index_show_uri): ditto
+	(set_relation): removed since no more needed
+	(yelp_view_index_new): add an accellerator to "Search for:"
+
 2002-10-04  Marius Andreiana <mandreiana@yahoo.com>
 
 	* stylesheets/yelp-customization.xsl: made translatable the

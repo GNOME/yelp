@@ -69,8 +69,7 @@ static gboolean
 index_filter_idle                             (YelpViewIndex       *view);
 static gchar * 
 index_complete_func                           (YelpSection         *section);
-static void  set_relation                     (GtkWidget           *widget,
-					       GtkLabel            *label);
+
 static void  index_reader_data_cb             (YelpReader          *reader,
 					       const gchar         *data,
 					       gint                 len,
@@ -342,43 +341,6 @@ index_complete_func (YelpSection *section)
 	return section->name;
 }
 
-/**
- * set_relation
- * @widget : The Gtk widget which is labelled by @label
- * @label : The label for the @widget.
- * Description : This function establishes atk relation
- * between a gtk widget and a label.
- */
-
-static void
-set_relation (GtkWidget *widget, GtkLabel *label)
-{
-	AtkObject      *aobject;
-	AtkRelationSet *relation_set;
-	AtkRelation    *relation;
-	AtkObject      *targets[1];
-
-	g_return_if_fail (GTK_IS_WIDGET (widget));
-	g_return_if_fail (GTK_IS_LABEL (label));
-
-	aobject = gtk_widget_get_accessible (widget);
-
-	/* Return if GAIL is not loaded */
-	if (! GTK_IS_ACCESSIBLE (aobject)) {
-		return;
-	}
-	
-	/* Set the ATK_RELATION_LABEL_FOR relation */
-	gtk_label_set_mnemonic_widget (label, widget);
-
-	targets[0] = gtk_widget_get_accessible (GTK_WIDGET (label));
-
-	relation_set = atk_object_ref_relation_set (aobject);
-
-	relation = atk_relation_new (targets, 1, ATK_RELATION_LABELLED_BY);
-	atk_relation_set_add (relation_set, relation);
-	g_object_unref (G_OBJECT (relation));
-}
 
 static void
 index_reader_data_cb (YelpReader    *reader,
@@ -452,10 +414,15 @@ index_show_uri (YelpView *view, YelpURI *index_uri, GError **error)
 		gchar     *loading = _("Loading...");
 
 		yelp_html_clear (priv->html_view);
-
+		
 		yelp_html_printf (priv->html_view, 
-				  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body><center>%s</center></body></html>", 
-				  loading);
+				  "<html><meta http-equiv=\"Content-Type\" "
+				  "content=\"text/html; charset=utf-8\">"
+				  "<title>%s</title>"
+				  "<body><center>%s</center></body>"
+				  "</html>", 
+				  loading, loading);
+
 		yelp_html_close (priv->html_view);
 	}
 
@@ -487,13 +454,13 @@ yelp_view_index_new (GList *index)
 
 	hbox = gtk_hbox_new (FALSE, 0);
 	
-	label = gtk_label_new (_("Search for:"));
+	label = gtk_label_new_with_mnemonic (_("_Search for:"));
 
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 4);
 
 	priv->entry = gtk_entry_new ();
 
-	set_relation (priv->entry, GTK_LABEL (label));
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->entry);
 
 	g_signal_connect (priv->entry, "changed", 
 			  G_CALLBACK (index_entry_changed_cb),

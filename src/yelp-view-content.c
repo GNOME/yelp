@@ -497,10 +497,15 @@ content_show_uri (YelpView *view, YelpURI *uri, GError **error)
 		gchar     *loading = _("Loading...");
 
 		yelp_html_clear (priv->html_view);
-
+		
 		yelp_html_printf (priv->html_view, 
-				  "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>..</title><body><center>%s</center></body></html>", 
-				  loading);
+				  "<html><meta http-equiv=\"Content-Type\" "
+				  "content=\"text/html; charset=utf-8\">"
+				  "<title>%s</title>"
+				  "<body><center>%s</center></body>"
+				  "</html>", 
+				  loading, loading);
+
 		yelp_html_close (priv->html_view);
 	}
 }

@@ -27,7 +27,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
-#include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnomeui/gnome-stock-icons.h>
@@ -52,12 +51,6 @@ typedef enum {
 	YELP_WINDOW_ACTION_FORWARD
 } YelpHistoryAction;
 
-static GConfEnumStringPair toolbar_styles[] = {
-        { GTK_TOOLBAR_TEXT, "text" },
-        { GTK_TOOLBAR_ICONS, "icons" },
-        { GTK_TOOLBAR_BOTH, "both" },
-	{ GTK_TOOLBAR_BOTH_HORIZ, "both_horiz" }
-};
 
 static void        window_init		          (YelpWindow        *window);
 static void        window_class_init	          (YelpWindowClass   *klass);
@@ -112,13 +105,6 @@ static void        window_about_cb                (gpointer           data,
 static GtkWidget * window_create_toolbar          (YelpWindow        *window);
 
 static GdkPixbuf * window_load_icon               (void);
-
-static void        
-window_toolbar_style_changed_cb                   (GConfClient      *client,
-						   guint             cnxn_id,
-						   GConfEntry       *entry,
-						   gpointer          data);
-
 
 
 
@@ -187,7 +173,7 @@ yelp_window_get_type (void)
                                 (GInstanceInitFunc) window_init,
                         };
                 
-                window_type = g_type_register_static (GTK_TYPE_WINDOW,
+                window_type = g_type_register_static (GNOME_TYPE_APP,
                                                       "YelpWindow", 
                                                       &window_info, 0);
         }
@@ -254,8 +240,8 @@ window_populate (YelpWindow *window)
 
 	main_box        = gtk_vbox_new (FALSE, 0);
 	
-	gtk_container_add (GTK_CONTAINER (window), main_box);
-
+	gnome_app_set_contents (GNOME_APP (window), main_box);
+	
 	accel_group  = gtk_accel_group_new ();
 	priv->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, 
 						   "<main>", accel_group);
@@ -279,13 +265,13 @@ window_populate (YelpWindow *window)
 							 YELP_WINDOW_ACTION_FORWARD);
 	gtk_widget_set_sensitive (menu_item, FALSE);
 
-	gtk_box_pack_start (GTK_BOX (main_box),
-			    gtk_item_factory_get_widget (priv->item_factory,
-							 "<main>"),
-			    FALSE, FALSE, 0);
+	gnome_app_set_menus (GNOME_APP (window), GTK_MENU_BAR (
+				gtk_item_factory_get_widget (priv->item_factory, "<main>")));
 
-	toolbar         = window_create_toolbar (window);
+	toolbar = window_create_toolbar (window);
 
+	gnome_app_set_toolbar (GNOME_APP (window), GTK_TOOLBAR (toolbar));
+			
 	priv->notebook  = gtk_notebook_new ();
 
 	gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
@@ -313,9 +299,10 @@ window_populate (YelpWindow *window)
 					  NULL, PAGE_INDEX_VIEW);
 	}
 	
-	gtk_box_pack_start (GTK_BOX (main_box), toolbar, FALSE, FALSE, 0);
 	gtk_box_pack_end (GTK_BOX (main_box), priv->notebook,
 			  TRUE, TRUE, 0);
+
+	gtk_widget_grab_focus (priv->content_view->widget);
 }
 
 static gboolean
@@ -422,7 +409,7 @@ window_title_changed_cb (gpointer view, const gchar *title, YelpWindow *window)
 	g_return_if_fail (title != NULL);
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	
-	new_title = g_strconcat (_("Help Browser"), ":", title, NULL);
+	new_title = g_strconcat (title, " - ", _("Help Browser"), NULL);
 
 	gtk_window_set_title (GTK_WINDOW (window), new_title);
 
@@ -612,40 +599,13 @@ window_create_toolbar (YelpWindow *window)
 	GtkWidget       *toolbar;
 	GtkWidget       *button;
 	GtkWidget       *icon;
-	GConfClient     *conf_client;
-	gchar           *str;
-	GtkToolbarStyle  style = GTK_TOOLBAR_BOTH;
 	
 	g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
 
 	priv = window->priv;
 
 	toolbar = gtk_toolbar_new ();
-
-	conf_client = gconf_client_get_default ();
 	
-	str = gconf_client_get_string (conf_client, 
-				       "/desktop/gnome/interface/toolbar_style",
-				       NULL);
-
-	if (str) {
-		gconf_string_to_enum (toolbar_styles,
-				      str,
-				      (gint*)&style);
-		g_free (str);
-	}
-
-	gconf_client_notify_add (conf_client, 
-				 "/desktop/gnome/interface/toolbar_style",
-				 window_toolbar_style_changed_cb,
-				 toolbar, NULL, NULL);
-	
-/* 	g_signal_connect(toolbar, "destroy", */
-/* 			 G_CALLBACK(window_remove_notify_cb), */
-/* 			 GINT_TO_POINTER(notify_id)); */
-
-	gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), style);
-
 	icon = gtk_image_new_from_stock ("gtk-go-back", 
 					 GTK_ICON_SIZE_LARGE_TOOLBAR);
 
@@ -722,29 +682,6 @@ window_load_icon (void)
 	return pixbuf;
 }
 
-static void
-window_toolbar_style_changed_cb (GConfClient *client,
-				 guint        cnxn_id,
-				 GConfEntry  *entry,
-				 gpointer     data)
-{
-        GtkToolbarStyle  style   = GTK_TOOLBAR_BOTH;
-        GtkToolbar      *toolbar = GTK_TOOLBAR(data);
-	GConfValue      *value;
-
-	value = gconf_entry_get_value (entry);
-
-        /* If no per-app setting use this new global setting */
-        if (value && 
-	    value->type == GCONF_VALUE_STRING &&
-            gconf_value_get_string (value) != NULL) {
-                gconf_string_to_enum(toolbar_styles,
-                                     gconf_value_get_string(value),
-                                     (gint*)&style);
-        }
-
-        gtk_toolbar_set_style(toolbar, style);
-}
 
 GtkWidget *
 yelp_window_new (GNode *doc_tree, GList *index)
@@ -752,7 +689,8 @@ yelp_window_new (GNode *doc_tree, GList *index)
 	YelpWindow     *window;
 	YelpWindowPriv *priv;
 	
-	window = g_object_new (YELP_TYPE_WINDOW, NULL);
+	window = g_object_new (YELP_TYPE_WINDOW, 
+			"app_id", PACKAGE, NULL);
 	priv   = window->priv;
 
 	priv->doc_tree = doc_tree;
