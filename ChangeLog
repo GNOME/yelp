@@ -1,5 +1,9 @@
 2002-06-02  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-uri.c:
+	(uri_get_doc_type): set info:dir to be toc:info
+	(uri_get_doc_path): same
+
 	* src/yelp-db2html.c (main): use the shipped catalog file.
 
 2002-06-01  Mikael Hallendal  <micke@codefactory.se>

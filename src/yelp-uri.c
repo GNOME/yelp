@@ -73,7 +73,11 @@ uri_get_doc_path (const gchar *str_uri)
 		ret_val = g_strdup (no_anchor_uri + 4);
 	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "info:", 5)) {
-		ret_val = g_strdup (no_anchor_uri + 5);
+		if (!g_ascii_strncasecmp (no_anchor_uri + 5, "dir", 3)) {
+			ret_val = g_strdup ("info");
+		} else {
+			ret_val = g_strdup (no_anchor_uri + 5);
+		}
 	}
 	else if (!g_ascii_strncasecmp (no_anchor_uri, "toc:", 4)) {
 		ret_val = g_strdup (no_anchor_uri + 4);
@@ -107,7 +111,11 @@ uri_get_doc_type (const gchar *str_uri, const gchar *doc_path)
                 ret_val = YELP_URI_TYPE_MAN;
 	}
 	else if (!g_ascii_strncasecmp (str_uri, "info:", 5)) {
-                ret_val = YELP_URI_TYPE_INFO;
+  		if (!g_ascii_strncasecmp (str_uri + 5, "dir", 3)) {
+			ret_val = YELP_URI_TYPE_TOC;
+		} else {
+			ret_val = YELP_URI_TYPE_INFO;
+		}
 	}
 	else if (!g_ascii_strncasecmp (str_uri, "toc:", 4)) {
 		ret_val = YELP_URI_TYPE_TOC;
