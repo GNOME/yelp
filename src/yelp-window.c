@@ -245,7 +245,7 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 	YelpWindowPriv *priv;
 	
 	priv = window->priv;
-	
+
 	if (strncmp (url, "toc:", 4) == 0) {
 		yelp_view_toc_open_url (YELP_VIEW_TOC (priv->toc_view),
 					url);
@@ -256,10 +256,10 @@ yw_handle_url (YelpWindow *window, const gchar *url)
 		   strncmp (url, "info:", 5) == 0 ||
 		   strncmp (url, "ghelp:", 6) == 0 ||
 		   strncmp (url, "path:", 5) == 0) {
-		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
-					    url);
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 					       PAGE_CONTENT_VIEW);
+		yelp_view_content_show_uri (YELP_VIEW_CONTENT (priv->content_view),
+					    url);
 		return TRUE;
 	} else {
 		g_warning ("Unhandled URL: %s\n", url);
@@ -530,6 +530,6 @@ yelp_window_open_uri (YelpWindow  *window,
 	
 	priv = window->priv;
 
-	/* FIXME: Select content-view and set root to str_uri */
+	yw_handle_url (window, str_uri);
 }
 

@@ -48,9 +48,12 @@ struct _YelpViewContentClass {
 
 	/* Signals */
 	void (*url_selected)   (YelpViewContent *view,
-				char            *url,
-				char            *base_url,
+				gchar           *url,
+				gchar           *base_url,
 				gboolean         handled);
+
+	void (*title_changed)  (YelpViewContent *view,
+				const gchar     *title);
 
         /* Signal when icon is clicked. */
 };

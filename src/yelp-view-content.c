@@ -29,8 +29,9 @@
 #include <string.h>
 #include "yelp-html.h"
 #include "yelp-marshal.h"
-#include "yelp-view-content.h"
+#include "yelp-scrollkeeper.h"
 #include "yelp-util.h"
+#include "yelp-view-content.h"
 
 static void yvc_init                      (YelpViewContent         *html);
 static void yvc_class_init                (YelpViewContentClass    *klass);
@@ -40,6 +41,7 @@ static void yvc_tree_selection_changed_cb (GtkTreeSelection        *selection,
 
 enum {
 	URL_SELECTED,
+	TITLE_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -133,6 +135,17 @@ yvc_class_init (YelpViewContentClass *klass)
 			      yelp_marshal_VOID__STRING_STRING_BOOLEAN,
 			      G_TYPE_NONE,
 			      3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+
+	signals[TITLE_CHANGED] = 
+		g_signal_new ("title_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (YelpViewContentClass,
+					       title_changed),
+			      NULL, NULL,
+			      yelp_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
 }
 
 static void
@@ -284,10 +297,11 @@ void
 yelp_view_content_show_uri (YelpViewContent *content,
 			    const gchar     *url)
 {
-	YelpSection *section;
-	char *content_url;
-	GNode *node;
 	YelpViewContentPriv *priv;
+	YelpSection         *section;
+	gchar               *content_url;
+	gchar               *title = NULL;
+	GNode               *node;
 	
 	g_return_if_fail (YELP_IS_VIEW_CONTENT (content));
 
@@ -297,14 +311,21 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		node = yelp_util_decompose_path_url (priv->doc_tree,
 						     url,
 						     &content_url);
+
+		title = ((YelpSection *) node->data)->name;
+		
 		yelp_view_content_set_tree (content, node);
 	} else if (strncmp (url, "ghelp:", 6) == 0) {
-		gchar *docpath;
+		const gchar *docpath;
+		GNode       *doc_node;
 		
 		docpath = url + 6;
 		
 		node = yelp_scrollkeeper_get_toc_tree_model (docpath);
-		
+
+		doc_node = yelp_util_find_node_from_uri (priv->doc_tree, 
+							 url);
+
 		if (node) {
 			yelp_view_content_set_tree (content, node);
 		}
@@ -312,13 +333,18 @@ yelp_view_content_show_uri (YelpViewContent *content,
 		content_url = (char *)url;
 	} else {
 	}
-	
+
+	if (title) {
+		g_signal_emit (content, signals[TITLE_CHANGED], 0, title);
+	}
 	
 	/* FIXME: This is a quite dubious way to load the url... */
 	section = yelp_section_new (YELP_SECTION_DOCUMENT,
 				    NULL, content_url, NULL, NULL);
+
 	yelp_html_open_section (YELP_HTML (content->priv->html_view), section);
 	yelp_section_free (section);
+
 	if (content_url != url) {
 		g_free (content_url);
 	}

@@ -453,3 +453,10 @@ yelp_util_find_toplevel (GNode *doc_tree,
 
 	return NULL;
 }
+
+GNode *
+yelp_util_find_node_from_uri (GNode *doc_tree, const gchar *uri)
+{
+	return NULL;
+}
+

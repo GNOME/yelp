@@ -44,7 +44,7 @@ static BonoboObject * yelp_base_factory       (BonoboGenericFactory *factory,
 					      const gchar           *iid,
 					      gpointer               closure);
 static CORBA_Object   yelp_main_activate_base (void);
-static gboolean       yelp_main_idle_start    (gpointer              data);
+static gboolean       yelp_main_idle_start    (gchar                *url);
 
 static BonoboObject *
 yelp_base_factory (BonoboGenericFactory *factory,
@@ -85,13 +85,13 @@ yelp_main_activate_base ()
 }
 
 static void
-yelp_main_open_new_window (CORBA_Object yelp_base)
+yelp_main_open_new_window (CORBA_Object yelp_base, const gchar *url)
 {
 	CORBA_Environment ev;
 	
 	CORBA_exception_init (&ev);
-	
-	GNOME_Yelp_newWindow (yelp_base, &ev);
+
+	GNOME_Yelp_newWindow (yelp_base, url, &ev);
 	
 	if (BONOBO_EX (&ev)) {
 		g_warning (_("Could not open new window."));
@@ -102,7 +102,7 @@ yelp_main_open_new_window (CORBA_Object yelp_base)
 }
 	
 static void
-yelp_main_start () 
+yelp_main_start (gchar *url) 
 {
 	CORBA_Object yelp_base;
 	
@@ -112,13 +112,17 @@ yelp_main_start ()
 		g_error ("Couldn't activate YelpBase");
 	}
 	
-	yelp_main_open_new_window (yelp_base);
+	yelp_main_open_new_window (yelp_base, url);
 	
 	bonobo_object_release_unref (yelp_base, NULL);
+
+	if (url) {
+		g_free (url);
+	}
 }
 
 static gboolean
-yelp_main_idle_start (gpointer null_data)
+yelp_main_idle_start (gchar *url)
 {
 	CORBA_Object yelp_base;
 	
@@ -128,7 +132,11 @@ yelp_main_idle_start (gpointer null_data)
 		g_error ("Couldn't activate YelpBase");
 	}
 
-	yelp_main_open_new_window (yelp_base);
+	yelp_main_open_new_window (yelp_base, url);
+
+	if (url) {
+		g_free (url);
+	}
 	
 	return FALSE;
 }
@@ -136,8 +144,9 @@ yelp_main_idle_start (gpointer null_data)
 int
 main (int argc, char **argv) 
 {
-	GnomeProgram      *program;
-	CORBA_Object       factory;
+	GnomeProgram *program;
+	CORBA_Object  factory;
+	gchar        *url = NULL;
 	
 #ifdef ENABLE_NLS
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
@@ -146,6 +155,10 @@ main (int argc, char **argv)
 #endif 
 	g_thread_init (NULL);
 	
+	if (argc >= 2) {
+		url = g_strdup (argv[1]);
+	}
+
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE,
 				      argc, argv, 
@@ -169,10 +182,10 @@ main (int argc, char **argv)
 						      NULL);
 
 		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
-		g_idle_add (yelp_main_idle_start, NULL);
+		g_idle_add ((GSourceFunc) yelp_main_idle_start, url);
 		bonobo_main ();
 	} else {
-		yelp_main_start ();
+		yelp_main_start (url);
 	}
 
         return 0;

@@ -54,8 +54,9 @@ static void           yelp_base_window_finalized_cb (YelpBase       *base,
 static BonoboObjectClass *parent_class;
 
 static void
-impl_Yelp_newWindow (PortableServer_Servant   servant,
-		     CORBA_Environment       *ev)
+impl_Yelp_newWindow (PortableServer_Servant  servant,
+		     const CORBA_char       *url,
+		     CORBA_Environment      *ev)
 {
 	YelpBase  *yelp_base;
 	GtkWidget *window;
@@ -63,13 +64,18 @@ impl_Yelp_newWindow (PortableServer_Servant   servant,
 	yelp_base = YELP_BASE (bonobo_object (servant));
 	
 	window = yelp_base_new_window (yelp_base);
+
 	gtk_widget_show_all (window);
+
+	if (url) {
+		yelp_window_open_uri (YELP_WINDOW (window), url);
+	}
 }
 
 static void
 yelp_base_init (YelpBase *base)
 {
-        YelpBasePriv   *priv;
+        YelpBasePriv *priv;
 
         priv = g_new0 (YelpBasePriv, 1);
         

@@ -1,5 +1,25 @@
 2002-01-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/yelp-view-content.c: added title-changed signal. Shouldn't
+	  perhaps be here. Will perhaps remove it and do it all from 
+	  YelpWindow.
+	
+	* src/yelp-util.[ch] (yelp_util_find_node_from_uri): added
+	  unimpl. 
+
+	* src/yelp-marshal.list: added VOID:STRING
+
+	* src/yelp-main.c (main): look if an extra argument was passed, if
+	  it was send it to yelp_main_start.
+	(yelp_main_idle_start): take url as argument
+	(yelp_main_start): dito
+	(yelp_main_open_new_window): send url to GNOME_Yelp_newWindow
+
+	* src/yelp-base.c (impl_Yelp_newWindow): take a url argument. If
+	  it's not NULL it will open the window with that URI showing.
+
+	* idl/GNOME_Yelp.idl (GNOME): newWindow now takes a url-argument.
+
 	* src/yelp-view-content.c (yelp_view_content_show_uri): 
 	- if uri starts with ghelp:, try to find the TOC for that document
 	  in scrollkeeper. If it's found, display it in the tree widget.
