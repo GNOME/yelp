@@ -1,5 +1,11 @@
 2003-12-02  Shaun McCance  <shaunm@gnome.org>
 
+	* data/.cvsignore:
+	* src/.cvsignore:
+	- Adding data/toc.xml and src/test-pager to .cvsignore
+
+2003-12-02  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-toc-pager.c:
 	- Change to the way toc pages are pruned so that we don't get orphaned
 	  Categories headers.
