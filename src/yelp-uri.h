@@ -1,6 +1,6 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2003 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,8 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@imendio.com>
+ * Author: Shaun McCance <shaunm@gnome.org>
+ *   Based on implementation by Mikael Hallendal <micke@imendio.com>
  */
 
 #ifndef __YELP_URI_H__
@@ -25,47 +26,71 @@
 
 #include <glib.h>
 
-#define YELP_URI(x) ((YelpURI *) x)
+#define YELP_TYPE_URI         (yelp_uri_get_type ())
+#define YELP_URI(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_URI, YelpURI))
+#define YELP_URI_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_URI, YelpURIClass))
+#define YELP_IS_URI(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), YELP_TYPE_URI))
+#define YELP_IS_URI_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_URI))
+#define YELP_URI_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_URI, YelpURIClass))
+
+typedef struct _YelpURI      YelpURI;
+typedef struct _YelpURIClass YelpURIClass;
+typedef struct _YelpURIPriv  YelpURIPriv;
 
 typedef enum {
-        YELP_URI_TYPE_UNKNOWN,
-        YELP_URI_TYPE_DOCBOOK_XML,
-	YELP_URI_TYPE_DOCBOOK_SGML,
-	YELP_URI_TYPE_GHELP_OTHER,
-        YELP_URI_TYPE_HTML,
-        YELP_URI_TYPE_MAN,
-        YELP_URI_TYPE_INFO,
-	YELP_URI_TYPE_TOC,
-	YELP_URI_TYPE_INDEX,
-	YELP_URI_TYPE_PATH,
-	YELP_URI_TYPE_FILE
+    YELP_URI_TYPE_UNKNOWN,
+    YELP_URI_TYPE_RELATIVE,
+    YELP_URI_TYPE_DOCBOOK_XML,
+    YELP_URI_TYPE_DOCBOOK_SGML,
+    YELP_URI_TYPE_HTML,
+    YELP_URI_TYPE_MAN,
+    YELP_URI_TYPE_INFO,
+
+    YELP_URI_TYPE_GHELP,
+    YELP_URI_TYPE_GHELP_OTHER,
+    YELP_URI_TYPE_TOC,
+    YELP_URI_TYPE_INDEX,
+    YELP_URI_TYPE_PATH,
+    YELP_URI_TYPE_FILE
 } YelpURIType;
 
-typedef struct _YelpURI YelpURI;
+struct _YelpURI {
+    GObject      parent;
 
-YelpURI *       yelp_uri_new              (const gchar   *str_uri);
-gboolean        yelp_uri_exists           (YelpURI       *uri);
+    YelpURIPriv *priv;
+};
 
-YelpURIType     yelp_uri_get_type         (YelpURI       *uri);
-const gchar *   yelp_uri_get_path         (YelpURI       *uri);
-const gchar *   yelp_uri_get_section      (YelpURI       *uri);
+struct _YelpURIClass {
+    GObjectClass parent_class;
+};
 
-YelpURI *       yelp_uri_ref              (YelpURI       *uri);
-void            yelp_uri_unref            (YelpURI       *uri);
 
+GType           yelp_uri_get_type          (void);
+
+YelpURI *       yelp_uri_new               (const gchar   *uri_str);
+gboolean        yelp_uri_exists            (YelpURI       *uri);
+
+YelpURIType     yelp_uri_get_resource_type (YelpURI       *uri);
+gchar *         yelp_uri_get_path          (YelpURI       *uri);
+gchar *         yelp_uri_get_fragment      (YelpURI       *uri);
+
+gchar *         yelp_uri_to_string         (YelpURI       *uri);
+
+gboolean        yelp_uri_equal             (YelpURI       *uri1,
+					    YelpURI       *uri2);
+gboolean        yelp_uri_equal_path        (YelpURI       *uri1,
+					    YelpURI       *uri2);
+gboolean        yelp_uri_equal_fragment    (YelpURI       *uri1,
+					    YelpURI       *uri2);
+
+/*
 YelpURI *       yelp_uri_copy             (YelpURI       *uri);
 YelpURI *       yelp_uri_get_relative     (YelpURI       *uri,
 					   const gchar   *link);
-gboolean        yelp_uri_equal            (YelpURI       *uri1,
-					   YelpURI       *uri2);
-gboolean        yelp_uri_equal_path       (YelpURI       *uri1,
-					   YelpURI       *uri2);
-gboolean        yelp_uri_equal_section    (YelpURI       *uri1,
-					   YelpURI       *uri2);
-gchar *         yelp_uri_to_string        (YelpURI       *uri);
 
 YelpURI *       yelp_uri_to_index         (YelpURI       *uri);
 YelpURI *       yelp_uri_from_index       (YelpURI       *uri);
 gboolean        yelp_uri_no_path          (YelpURI       *uri);
+*/
 
 #endif /* __YELP_URI_H__ */
