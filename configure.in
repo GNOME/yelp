@@ -136,6 +136,9 @@ AC_SUBST(MOZILLA_INCLUDE_ROOT)
 MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $MOZILLA-gtkmozembed`"
 AC_SUBST(MOZILLA_HOME)
 
+dnl Needed since gecko 1.8b2
+AC_DEFINE([MOZILLA_INTERNAL_API],[1],[Define to have access to internal Mozilla APIs])
+
 AC_ARG_ENABLE([cpp-rtti],
               AC_HELP_STRING([--enable-cpp-rtti],[Enable C++ RTTI]),[],
               [enable_cpp_rtti=no])

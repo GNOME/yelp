@@ -20,6 +20,8 @@
  * Author: Marco Pesenti Gritti <marco@gnome.org>
  */
 
+#include "config.h"
+
 #include <gtkmozembed.h>
 #include <gtkmozembed_internal.h>
 #include <nsIWebBrowser.h>

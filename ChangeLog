@@ -1,3 +1,10 @@
+2005-04-08  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in:  Define MOZILLA_INTERNAL_API, which is necessary since
+	mozilla 1.8b2, because Yelp uses internal strings.
+	* src/yelp-gecko-utils.cpp: Include config.h here.
+	Fixes bug #173053.
+
 2005-04-01  Adi Attar  <aattar@cvs.gnome.org>
 
 	* configure.in: Added "xh" to ALL_LINGUAS.
