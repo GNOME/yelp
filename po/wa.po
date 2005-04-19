@@ -1,18 +1,20 @@
 # Copyright (C) 2001,2002 Free Software Foundation, Inc.
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch>, 2001,2002.
-# Pablo Saratxaga <pablo@walon.org>, 2003.
+# Pablo Saratxaga <pablo@walon.org>, 2003, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0.6.99\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-12-04 21:39-0600\n"
-"Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
-"Language-Team: Walon <linux-wa@chanae.stben.be>\n"
+"POT-Creation-Date: 2005-04-01 21:01+0200\n"
+"PO-Revision-Date: 2005-04-19 16:37+0200\n"
+"Last-Translator: Pablo Saratxaga <pablo@walon.org>\n"
+"Language-Team: Walloon <linux-wa@walon.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #: data/man.xml.in.h:1 data/toc.xml.in.h:4
 msgid "Applications"
@@ -28,7 +30,7 @@ msgstr "Programaedje"
 
 #: data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "Fonccions FORTRAN"
 
 #: data/man.xml.in.h:5 data/toc.xml.in.h:7
 msgid "Games"
@@ -46,39 +48,33 @@ msgstr "Routenes do nawea"
 msgid "Library Functions"
 msgstr "Livreyes di fonccions"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-#, fuzzy
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
 msgid "Man Pages"
-msgstr "Pådjes di Manuel"
+msgstr "Pådjes di manuel"
 
 #: data/man.xml.in.h:10
-#, fuzzy
 msgid "OpenSSL Applications"
-msgstr "Programes"
+msgstr "Programes OpenSSL"
 
 #: data/man.xml.in.h:11
-#, fuzzy
 msgid "OpenSSL Configuration"
-msgstr "Fitchîs d' apontiaedje"
+msgstr "Apontiaedje d' OpenSSL"
 
 #: data/man.xml.in.h:12
-#, fuzzy
 msgid "OpenSSL Overviews"
-msgstr "Rascourtis"
+msgstr "Rascourtis OpenSSL"
 
 #: data/man.xml.in.h:13
 msgid "Overviews"
 msgstr "Rascourtis"
 
 #: data/man.xml.in.h:14
-#, fuzzy
 msgid "Perl Functions"
-msgstr "Livreyes di fonccions"
+msgstr "Fonccions perl"
 
 #: data/man.xml.in.h:15
-#, fuzzy
 msgid "Qt Functions"
-msgstr "Livreyes di fonccions"
+msgstr "Fonccions Qt"
 
 #: data/man.xml.in.h:16
 msgid "System Administration"
@@ -89,177 +85,164 @@ msgid "System Calls"
 msgstr "Houcaedjes sistinme"
 
 #: data/man.xml.in.h:18
-#, fuzzy
 msgid "Termcap Applications"
-msgstr "Programes"
+msgstr "Programes termcap"
 
 #: data/man.xml.in.h:19
-#, fuzzy
 msgid "X11 Applications"
-msgstr "Programes"
+msgstr "Programes X11"
 
 #: data/man.xml.in.h:20
-#, fuzzy
 msgid "X11 Configuration"
-msgstr "Fitchîs d' apontiaedje"
+msgstr "Apontiaedje X11"
 
 #: data/man.xml.in.h:21
 msgid "X11 Devices"
-msgstr ""
+msgstr "Éndjins X11"
 
 #: data/man.xml.in.h:22
-#, fuzzy
 msgid "X11 Functions"
-msgstr "Livreyes di fonccions"
+msgstr "Fonccions X11"
 
 #: data/man.xml.in.h:23
-#, fuzzy
 msgid "X11 Games"
-msgstr "Djeus"
+msgstr "Djeus X11"
 
 #: data/man.xml.in.h:24
-#, fuzzy
 msgid "X11 Overviews"
-msgstr "Rascourtis"
+msgstr "Rascourtis X11"
 
 #: data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "Accessibilité"
 
 #: data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "Accesweres"
 
 #: data/toc.xml.in.h:3
-#, fuzzy
-msgid "Applets"
-msgstr "Programes"
+msgid "Administration"
+msgstr "Manaedjmint"
 
 #: data/toc.xml.in.h:5
-#, fuzzy
 msgid "Desktop"
-msgstr "GNOME - Sicribanne"
+msgstr "Sicribanne"
 
 #: data/toc.xml.in.h:6
-#, fuzzy
 msgid "Education Applications"
-msgstr "Programes"
+msgstr "Acsegnmint"
 
 #: data/toc.xml.in.h:8
 msgid "Graphics"
-msgstr ""
+msgstr "Grafikes"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
+#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
 msgid "Help Topics"
-msgstr "Foyteuse di l' aidance"
+msgstr "Sudjets d' l' aidance"
 
 #: data/toc.xml.in.h:10
-#, fuzzy
 msgid "Internet"
-msgstr "Ådvins di l' aidance"
+msgstr "Daegntoele"
 
 #: data/toc.xml.in.h:11
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #: data/toc.xml.in.h:12
-msgid "Office"
-msgstr ""
+msgid "Multimedia"
+msgstr "Multimedia"
 
 #: data/toc.xml.in.h:13
-msgid "Other"
-msgstr ""
+msgid "Office"
+msgstr "Buro"
 
 #: data/toc.xml.in.h:14
-#, fuzzy
-msgid "Other Documentation"
-msgstr "Documints"
+msgid "Other"
+msgstr "Ôtes"
 
 #: data/toc.xml.in.h:15
-msgid "Programming"
-msgstr ""
+msgid "Other Documentation"
+msgstr "Ôtès documintåcions"
 
 #: data/toc.xml.in.h:16
-#, fuzzy
-msgid "Scientific"
-msgstr "Programes"
+msgid "Panel Applets"
+msgstr "Apliketes do scriftôr"
 
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr ""
+#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+msgid "Preferences"
+msgstr "Preferinces"
 
 #: data/toc.xml.in.h:18
-#, fuzzy
-msgid "System Tools"
-msgstr "Houcaedjes sistinme"
+msgid "Programming"
+msgstr "Programaedje"
 
 #: data/toc.xml.in.h:19
-#, fuzzy
+msgid "Scientific"
+msgstr "Syintifike"
+
+#: data/toc.xml.in.h:20
+msgid "System Tools"
+msgstr "Usteyes sistinme"
+
+#: data/toc.xml.in.h:21
 msgid "X Applications"
-msgstr "Programes"
+msgstr "Programes grafikes"
 
 #: data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Accessibilité</b>"
 
 #: data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Fontes</b>"
 
 #: data/ui/yelp.glade.h:3
 msgid "<b>_Bookmarks:</b>"
-msgstr ""
+msgstr "<b>_Rimåkes:</b>"
 
 #: data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
-msgstr ""
+msgstr "<b>_Tite:</b>"
 
 #: data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Radjouter ene rimåke"
 
 #: data/ui/yelp.glade.h:6
 msgid "Bookmarks"
-msgstr ""
+msgstr "Rimåkes"
 
 #: data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
-msgstr ""
+msgstr "Diferince pititès/grandès _letes"
 
 #: data/ui/yelp.glade.h:8
 msgid "Find"
-msgstr ""
+msgstr "Trover"
 
 #: data/ui/yelp.glade.h:9
-#, fuzzy
 msgid "Open Location"
-msgstr "Seccion"
-
-#: data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr ""
+msgstr "Drovi eplaeçmint"
 
 #: data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr ""
+msgstr "Ri_lomer"
 
 #: data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_Foyter avou l' cursoe"
 
 #: data/ui/yelp.glade.h:13
 msgid "_Find: "
-msgstr ""
+msgstr "_Trover: "
 
 #: data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
-msgstr ""
+msgstr "Espåçmint e_wal:"
 
 #: data/ui/yelp.glade.h:15
-#, fuzzy
 msgid "_Location:"
-msgstr "Seccion"
+msgstr "_Eplaeçmint:"
 
 #: data/ui/yelp.glade.h:16
 msgid "_Next"
@@ -271,47 +254,47 @@ msgstr "Di _dvant"
 
 #: data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Eployî les fontes do sistinme"
 
 #: data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "Espåçmint _variåve:"
 
 #: data/ui/yelp.glade.h:20
 msgid "_Wrap around"
-msgstr ""
+msgstr "Rivni å _cmince:"
 
 #: data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Fonte pol tecse a espåçmint ewal"
 
 #: data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Fonte pol tecse"
 
 #: data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Fonte pol tecse avou des letes a espåçmint ewal."
 
 #: data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Fonte pol tecse avou des letes a espåçmint variåve."
 
 #: data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Eployî on cursoe controlé avou l' taprece tot håynant les pådjes."
 
 #: data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Eployî cursoe"
 
 #: data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Eployî fontes sistinme"
 
 #: data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "Eployî les prémetowès fontes do sistinme."
 
 #: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
 msgid "Yelp"
@@ -321,61 +304,71 @@ msgstr "Yelp"
 msgid "Yelp Factory"
 msgstr "Oujhene Yelp"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: src/yelp-bookmarks.c:155
+msgid "Open Bookmark in New Window"
+msgstr "Drovi l' rimåke en on novea purnea"
+
+#: src/yelp-bookmarks.c:159
+msgid "Rename Bookmark"
+msgstr "Rilomer li rmåke"
+
+#: src/yelp-bookmarks.c:163
+msgid "Remove Bookmark"
+msgstr "Oister l' rimåke"
+
+#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "I gn a ddja ene rimåke lomêye <b>%s</b> po cisse pådje ci."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: src/yelp-bookmarks.c:406
 msgid "Document Sections"
-msgstr "Documints"
+msgstr "Seccions do documint"
 
-#: src/yelp-db-pager.c:238
+#: src/yelp-db-pager.c:242
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
+"Dji n' a nén savou analijhî l' fitchî «%s». Soeye-t i ki l' fitchî "
+"n' egzistêye nén, soeye-t i ki c' est nén do XML a môde di djin."
 
 #: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr ""
+msgid "Unknown Section"
+msgstr "Seccion nén cnoxhowe"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Aroke nén cnoxhowe"
 
 #: src/yelp-error.c:46
-#, fuzzy
 msgid "Could not load document"
-msgstr "Ôtes documints"
+msgstr "Dji n' a savou tcherdjî l' documint"
 
 #: src/yelp-error.c:48
-#, fuzzy
 msgid "Could not load section"
-msgstr "Dji n' a savou drovi on novea purnea."
+msgstr "Dji n' a savou tcherdjî l' seccion"
 
 #: src/yelp-error.c:50
-#, fuzzy
 msgid "Could not read the table of contents"
-msgstr "Dji n' a savou activer Yelp: «%s»"
+msgstr "Dji n' a savou lére l' ådvins"
 
 #: src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Cogne nén sopoirtêye"
 
 #: src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Dji n' a savou lére li documint"
 
 #: src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Dji n' a savou ovrer avou l' documint"
 
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "I n' a nole informåcion åd fwait d' ciste aroke la."
 
 #: src/yelp-io-channel.c:98
 #, c-format
@@ -383,6 +376,8 @@ msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
+"Dji n' a savou lére ey analijhî l' fitchî «%s». Motoit bén ki l' fitchî est "
+"strindou avou ene sôre di programe di strindaedje nén sopoirté."
 
 #: src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -397,7 +392,7 @@ msgstr "Dji n' a savou activer Yelp: «%s»"
 msgid "Could not open new window."
 msgstr "Dji n' a savou drovi on novea purnea."
 
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: src/yelp-main.c:325 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Aidance"
 
@@ -407,15 +402,16 @@ msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
+"Dji n' a nén savou analijhî l' fitchî «%s». Soeye-t i ki l' fitchî "
+"n' egzistêye nén, soeye-t i k' il est må formaté."
 
 #: src/yelp-pager.c:120
-#, fuzzy
 msgid "Document Information"
-msgstr "Documints"
+msgstr "Informåcion sol documint"
 
 #: src/yelp-pager.c:121
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "Li structeure YelpDocInfo do documint"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -438,259 +434,258 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: src/yelp-settings.c:153
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-00AB"
 
 #: src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: li conteu d' pådjes est negatif."
 
 #: src/yelp-toc-pager.c:491
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "Dji n' a savou activer Yelp: «%s»"
+msgstr "Dji n' a savou tcherdjî l' fitchî OMF «%s»."
 
-#: src/yelp-toc-pager.c:680
+#: src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "Lére li pådje di man po %s"
 
-#: src/yelp-toc-pager.c:765
+#: src/yelp-toc-pager.c:767
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
+"Dji n' a savou tcherdjî l' tåvlea d' l' ådvins. Soeye-t i ki l' fitchî «%s» "
+"n' est nén la, soeye-t i ki c' est nén do XML a môde di djin."
 
-#: src/yelp-toc-pager.c:873
+#: src/yelp-toc-pager.c:878
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
+"Dji n' a savou ovrer avou l' tåvlea d' l' ådvins.. Soeye-t i ki l' fitchî «%"
+"s» n' est nén la, soeye-t i ki c' est nén ene foye di stîle XSLT a môde di "
+"djin."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
+#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
-msgstr ""
+msgstr "Nol atribut «href» di trové e documint yelp"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
 msgid "Out of memory"
-msgstr ""
+msgstr "Pupont d' memwere"
 
-#: src/yelp-toc-pager.c:1079
+#: src/yelp-toc-pager.c:1084
 msgid "Help Contents"
 msgstr "Ådvins di l' aidance"
 
-#: src/yelp-window.c:302
-#, fuzzy
+#: src/yelp-window.c:292
 msgid "_File"
-msgstr "/_Fitchî"
+msgstr "_Fitchî"
 
-#: src/yelp-window.c:303
-#, fuzzy
+#: src/yelp-window.c:293
 msgid "_Edit"
-msgstr "/_Candjî"
+msgstr "_Candjî"
+
+#: src/yelp-window.c:294
+msgid "_Go"
+msgstr "_Potchî"
+
+#: src/yelp-window.c:295
+msgid "_Bookmarks"
+msgstr "_Rimåkes"
+
+#: src/yelp-window.c:296
+msgid "_Help"
+msgstr "_Aidance"
+
+#: src/yelp-window.c:299
+msgid "_New Window"
+msgstr "_Novea purnea"
 
 #: src/yelp-window.c:304
-#, fuzzy
-msgid "_Go"
-msgstr "/Po_tchî"
-
-#: src/yelp-window.c:305
-msgid "_Bookmarks"
-msgstr ""
-
-#: src/yelp-window.c:306
-#, fuzzy
-msgid "_Help"
-msgstr "/_Aidance"
+msgid "About This Document"
+msgstr "Åd fwait di ç' documint ci"
 
 #: src/yelp-window.c:309
-#, fuzzy
-msgid "_New Window"
-msgstr "/Fitchî/_Novea purnea"
+msgid "Open _Location"
+msgstr "Drovi _eplaeçmint"
 
 #: src/yelp-window.c:314
-msgid "About This Document"
-msgstr ""
-
-#: src/yelp-window.c:319
-msgid "Open _Location"
-msgstr ""
-
-#: src/yelp-window.c:324
-#, fuzzy
 msgid "_Close Window"
-msgstr "/Fitchî/_Clôre li purnea"
+msgstr "_Clôre purnea"
 
-#: src/yelp-window.c:330
+#: src/yelp-window.c:320
 msgid "_Copy"
-msgstr ""
+msgstr "_Copyî"
+
+#: src/yelp-window.c:326
+msgid "_Select All"
+msgstr "_Tchoezi ttafwait"
+
+#: src/yelp-window.c:331
+msgid "_Find..."
+msgstr "_Trover..."
 
 #: src/yelp-window.c:336
-msgid "_Select All"
-msgstr ""
+msgid "_Preferences"
+msgstr "_Preferinces"
 
 #: src/yelp-window.c:341
-#, fuzzy
-msgid "_Find..."
-msgstr "/Candjî/_Trover dins l' pådje..."
-
-#: src/yelp-window.c:346
-msgid "_Preferences"
-msgstr ""
-
-#: src/yelp-window.c:351
 msgid "_Reload"
-msgstr ""
+msgstr "_Ritcherdjî"
 
-#: src/yelp-window.c:357
-#, fuzzy
+#: src/yelp-window.c:347
 msgid "_Back"
-msgstr "En erî"
+msgstr "En _erî"
 
-#: src/yelp-window.c:359
+#: src/yelp-window.c:349
 msgid "Show previous page in history"
 msgstr "Mostrer li pådje di dvant el istwere des movmints"
 
-#: src/yelp-window.c:362
-#, fuzzy
+#: src/yelp-window.c:352
 msgid "_Forward"
-msgstr "En avant"
+msgstr "En _avant"
 
-#: src/yelp-window.c:364
+#: src/yelp-window.c:354
 msgid "Show next page in history"
 msgstr "Mostrer li pådje shuvante el istwere des movmints"
 
-#: src/yelp-window.c:367
+#: src/yelp-window.c:357
 msgid "_Help Topics"
-msgstr ""
+msgstr "Sudjets d' l' _aidance"
 
-#: src/yelp-window.c:369
+#: src/yelp-window.c:359
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Potchî al djivêye des sudjets d' l' aidance"
+
+#: src/yelp-window.c:362
+msgid "_Previous Section"
+msgstr "Seccion di _dvant"
+
+#: src/yelp-window.c:367
+msgid "_Next Section"
+msgstr "Seccion _shuvante"
 
 #: src/yelp-window.c:372
-#, fuzzy
-msgid "_Previous Section"
-msgstr "Di _dvant"
-
-#: src/yelp-window.c:377
-#, fuzzy
-msgid "_Next Section"
-msgstr "Seccion"
-
-#: src/yelp-window.c:382
-#, fuzzy
 msgid "_Contents"
-msgstr "Ådvins di l' aidance"
+msgstr "Å d_vins"
 
-#: src/yelp-window.c:388
+#: src/yelp-window.c:378
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "_Radjouter rmåke"
 
-#: src/yelp-window.c:393
+#: src/yelp-window.c:383
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "_Candjî les rmåkes..."
+
+#: src/yelp-window.c:389
+msgid "_Open Link"
+msgstr "_Drovi hårdêye"
+
+#: src/yelp-window.c:394
+msgid "Open Link in _New Window"
+msgstr "Drovi hårdêye en on _novea purnea"
 
 #: src/yelp-window.c:399
-msgid "_Open Link"
-msgstr ""
-
-#: src/yelp-window.c:404
-msgid "Open Link in _New Window"
-msgstr ""
-
-#: src/yelp-window.c:409
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Copyî l' adresse del hårdêye"
 
-#: src/yelp-window.c:415
-#, fuzzy
+#: src/yelp-window.c:405
 msgid "_About"
-msgstr "/Aidance/Å _dfait"
+msgstr "Å_d fwait"
 
-#: src/yelp-window.c:466
+#: src/yelp-window.c:456
 msgid "Help Browser"
 msgstr "Foyteuse di l' aidance"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
+#: src/yelp-window.c:687 src/yelp-window.c:820
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "L' idintifieu unifôme di rsoûce (URI) do fitchî n' est nén valide."
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: src/yelp-window.c:699 src/yelp-window.c:815
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr ""
+"L' idintifieu unifôme di rsoûce (URI) «%s» n' est nén valide, oudonbén i "
+"n' moenne nén a on fitchî."
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
+#: src/yelp-window.c:775 src/yelp-window.c:1130
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Les pådjes di man èn sont nén sopoirtêyes avou ç' modêye ci."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
+#: src/yelp-window.c:785 src/yelp-window.c:1121
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Les pådjes info GNU èn sont nén sopoirtêyes avou ç' modêye ci."
 
-#: src/yelp-window.c:806
+#: src/yelp-window.c:795
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
+"Les documints SGML èn sont pus sopoirtés. S' i vs plait dimandez a l' oteur "
+"do documint del kivierser viè cogne XML."
 
-#: src/yelp-window.c:1024
-#, fuzzy
+#: src/yelp-window.c:1014
 msgid "Find:"
-msgstr "/Candjî/_Trover dins l' pådje..."
+msgstr "Trover:"
 
-#: src/yelp-window.c:1040
-#, fuzzy
+#: src/yelp-window.c:1030
 msgid "Find _Next"
-msgstr "Trover tecse..."
+msgstr "Trover _shuvant"
 
-#: src/yelp-window.c:1052
-#, fuzzy
+#: src/yelp-window.c:1042
 msgid "Find _Previous"
-msgstr "Di _dvant"
+msgstr "Trover di _dvant"
 
-#: src/yelp-window.c:1157
+#: src/yelp-window.c:1147
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
+"Dji n' a nén savou fé on contecse di transformaedje pol fitchî «%s». Li sôre "
+"di fitchî n' est motoit nén sopoirtêye."
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
+#: src/yelp-window.c:1177 src/yelp-window.c:1601 src/yelp-window.c:1668
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
+"Li seccion «%s» n' egzistêye nén dins ç' documint ci. Si vos avoz stî "
+"amoenné chal pa on boton d' aidance d' on programe, rapoirtez ciste aroke "
+"åzès mintneus do programe s' i vs plait."
 
-#: src/yelp-window.c:1302
+#: src/yelp-window.c:1292
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
+"Dji n' a nén savou lére li fitchî «%s». Soeye-t i ki l' fitchî n' est nén "
+"la, soeye-t i ki vos n' avoz nén les permissions pol poleur lére."
 
 #: src/yelp-window.c:1336
 msgid "Loading..."
 msgstr "Dji tchedje..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
+#. * will show up in the "about" box
 #: src/yelp-window.c:2166
-#, fuzzy
 msgid "translator-credits"
 msgstr "Pablo Saratxaga <pablo@mandrakesoft.com>"
 
 #: src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "On foyteu eyet håyneu di documintåcion po l' evironmint Gnome."
 
 #: src/yelp-xslt-pager.c:194
 #, c-format
@@ -698,204 +693,18 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
+"Dji n' a nén savou analijhî l' fitchî «%s». Soeye-t i ki l' fitchî "
+"n' egzistêye nén, soeye-t i k' il est må formaté."
 
-#: src/yelp-xslt-pager.c:215
+#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
-
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
+"Dji n' a savou ovrer avou l' documint «%s». Soeye-t i ki l' fitchî «%s» "
+"n' est nén la, soeye-t i ki c' est nén ene foye di stîle XSLT a môde di djin."
 
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Houkî l' aidance di GNOME"
-
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Måjhon"
-
-#~ msgid "Go to home view"
-#~ msgstr "Potchî al pådje måjhon"
-
-#, fuzzy
-#~ msgid "Development Environments"
-#~ msgstr "Programaedje"
-
-#, fuzzy
-#~ msgid "Development Tools"
-#~ msgstr "Programaedje"
-
-#, fuzzy
-#~ msgid "Editors"
-#~ msgstr "/_Candjî"
-
-#, fuzzy
-#~ msgid "Internet Applications"
-#~ msgstr "Programes"
-
-#, fuzzy
-#~ msgid "Kernels"
-#~ msgstr "Routenes do nawea"
-
-#, fuzzy
-#~ msgid "Multimedia Applications"
-#~ msgstr "Programes"
-
-#, fuzzy
-#~ msgid "System"
-#~ msgstr "Houcaedjes sistinme"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#, fuzzy
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Li documint «%s» n' egzistêye nén"
-
-#, fuzzy
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Li documint «%s» n' egzistêye nén"
-
-#, fuzzy
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Li documint «%s» n' egzistêye nén"
-
-#, fuzzy
-#~ msgid "The selected file could not be read."
-#~ msgstr "Li documint «%s» n' egzistêye nén"
-
-#, fuzzy
-#~ msgid "The file could not be processed."
-#~ msgstr "Li documint «%s» n' egzistêye nén"
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Categoreyes"
-
-#~ msgid "Documents"
-#~ msgstr "Documints"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "/Potchî/_Indecse"
-
-#, fuzzy
-#~ msgid "Affiliation"
-#~ msgstr "Programes"
-
-#, fuzzy
-#~ msgid "Dedication"
-#~ msgstr "Seccion"
-
-#, fuzzy
-#~ msgid "Editor"
-#~ msgstr "/_Candjî"
-
-#~ msgid "Index"
-#~ msgstr "Indecse"
-
-#, fuzzy
-#~ msgid "Set Index"
-#~ msgstr "Indecse"
-
-#, fuzzy
-#~ msgid "Table of Contents"
-#~ msgstr "Ådvins di l' aidance"
-
-#, fuzzy
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Candjî/_Trover co ene feye"
-
-#, fuzzy
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Candjî/_Trover co ene feye"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Potchî/En _erî"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Potchî/En _avant"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Potchî/_Måjhon"
-
-#, fuzzy
-#~ msgid "/Go/"
-#~ msgstr "/Po_tchî"
-
-#, fuzzy
-#~ msgid "/Go/_Contents"
-#~ msgstr "Ådvins di l' aidance"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Ene foyteuse d' aidance po Gnome"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Li documint «%s» n' egzistêye nén"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b> Trover l' tecse dins l' documint</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "_Ricmincî otomaticmint al copete del pådje"
-
-#~ msgid "Match _entire word"
-#~ msgstr "Èn cweri ki des mots _etirs"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "Diferince pititès/grandès _letes"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Cweri après:"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - Sicribanne"
-
-#~ msgid "Info Pages"
-#~ msgstr "Pådjes d' info"
-
-#~ msgid "Manual pages"
-#~ msgstr "Pådjes di manuel"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOME est"
-
-#~ msgid "Free Software"
-#~ msgstr "on Libe Programe"
-
-#~ msgid "(C)"
-#~ msgstr "©"
-
-#, fuzzy
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Dji tchedje..."
-
-#~ msgid "Search in the index"
-#~ msgstr "Cweri el indecse"
