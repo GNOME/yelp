@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-04-28 22:00+0000\n"
-"PO-Revision-Date: 2005-04-29 10:08+0300\n"
+"PO-Revision-Date: 2005-04-29 12:47+0300\n"
 "Last-Translator: Priit Laes <amd@store20.com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Arendus"
 
 #: ../data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr "FORTRANi funktsioonid"
+msgstr "FORTRAN'i funktsioonid"
 
 #: ../data/man.xml.in.h:5
 #: ../data/toc.xml.in.h:7
@@ -58,7 +58,7 @@ msgstr "Teegifunktsioonid"
 #: ../data/man.xml.in.h:9
 #: ../src/yelp-toc-pager.c:787
 msgid "Man Pages"
-msgstr "Maanualilehed"
+msgstr "Käsiraamatud"
 
 #: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
@@ -66,7 +66,7 @@ msgstr "OpenSSL rakendused"
 
 #: ../data/man.xml.in.h:11
 msgid "OpenSSL Configuration"
-msgstr "OpenSSL seaded"
+msgstr "OpenSSL sätted"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Overviews"
@@ -94,7 +94,7 @@ msgstr "Süsteemipöördused"
 
 #: ../data/man.xml.in.h:18
 msgid "Termcap Applications"
-msgstr "Termcapi rakendused"
+msgstr "Termcap'i rakendused"
 
 #: ../data/man.xml.in.h:19
 msgid "X11 Applications"
@@ -102,7 +102,7 @@ msgstr "X11 rakendused"
 
 #: ../data/man.xml.in.h:20
 msgid "X11 Configuration"
-msgstr "X11 seaded"
+msgstr "X11 seadistus"
 
 #: ../data/man.xml.in.h:21
 msgid "X11 Devices"
@@ -188,7 +188,7 @@ msgstr "Programmeerimine"
 
 #: ../data/toc.xml.in.h:19
 msgid "Scientific"
-msgstr "Teadus"
+msgstr "Teadusrakendused"
 
 #: ../data/toc.xml.in.h:20
 msgid "System Tools"
@@ -340,7 +340,7 @@ msgstr "Dokumendi jaotised"
 #: ../src/yelp-db-pager.c:242
 #, c-format
 msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
-msgstr "Faili ‘%s’ ei saa analüüsida. Seda kas pole olema või on see valesti vormindatud XML vormingus."
+msgstr "Faili ‘%s’ ei ole võimalik analüüsida. Seda kas pole olemas või on tegemist valesti vormindatud XML'iga."
 
 #: ../src/yelp-db-pager.c:486
 msgid "Unknown Section"
@@ -382,7 +382,7 @@ msgstr "Vea kohta puudub teave."
 #: ../src/yelp-io-channel.c:98
 #, c-format
 msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
-msgstr "Faili ‘%s’ ei saa lugeda ja dekodeerida. Fail võib olla toetamata vormingus või pakitud."
+msgstr "Faili ‘%s’ ei ole võimalik lugeda ja dekodeerida. Arvatavasti on fail toetamata vormingus või pakitud kujul."
 
 #: ../src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -391,11 +391,11 @@ msgstr "Määra millist cache kausta kasutada."
 #: ../src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Ei saa Yelpi aktiveerida: '%s'"
+msgstr "Yelp'i ei suudeta aktiveerida: '%s'"
 
 #: ../src/yelp-main.c:148
 msgid "Could not open new window."
-msgstr "Ei saa uut akent avada."
+msgstr "Uut akent ei õnnestu avada."
 
 #: ../src/yelp-main.c:325
 #: ../yelp.desktop.in.in.h:2
@@ -405,7 +405,7 @@ msgstr "Abi"
 #: ../src/yelp-man-pager.c:164
 #, c-format
 msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
-msgstr "Faili ‘%s’ ei saa analüüsida.  Faili kas pole olemas või on see valesti vormindatud."
+msgstr "Faili ‘%s’ ei õnnestunud analüüsida.  Faili kas pole olemas või on see valesti vormindatud."
 
 #: ../src/yelp-pager.c:120
 msgid "Document Information"
@@ -452,17 +452,17 @@ msgstr "Tõrge OMF faili '%s' laadimisel."
 #: ../src/yelp-toc-pager.c:682
 #, c-format
 msgid "Read man page for %s"
-msgstr "Loen manuaalilehte %s jaoks"
+msgstr "Loe %s käsiraamatut"
 
 #: ../src/yelp-toc-pager.c:767
 #, c-format
 msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
-msgstr "Sisukorda ei saa laadida. Fail ‘%s’ on puudu või on see valesti vormindatud XML vormingus."
+msgstr "Sisukorda ei õnnestunud laadida. Fail ‘%s’ kas puudub või on valesti vormindatud XML'is."
 
 #: ../src/yelp-toc-pager.c:878
 #, c-format
 msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
-msgstr "Sisukorda ei saa töödelda. Faili ‘%s’ on puudu või pole see korrenktne XSLT laaditabel."
+msgstr "Sisukorda ei õnnestu töödelda. Faili ‘%s’ kas on puudu või pole tegemist korrenktse XSLT laaditabeliga."
 
 #: ../src/yelp-toc-pager.c:1029
 #: ../src/yelp-xslt-pager.c:365
@@ -612,7 +612,7 @@ msgstr "Ressursiidentifikaator (URI) ‘%s’ on vigane või ei viita see tegeli
 #: ../src/yelp-window.c:775
 #: ../src/yelp-window.c:1130
 msgid "Man pages are not supported in this version."
-msgstr "Käesolev versioon ei toeta manuaalilehti."
+msgstr "Käesolev versioon ei toeta käsiraamatuid"
 
 #: ../src/yelp-window.c:785
 #: ../src/yelp-window.c:1121
@@ -650,7 +650,7 @@ msgstr "Peatükki ‘%s’ pole selles dokumendis olemas. Kui sind suunati siia 
 #: ../src/yelp-window.c:1292
 #, c-format
 msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
-msgstr "Faili ‘%s’ ei saa lugeda.  See võib mitte olemas olla või pole sul õigust "
+msgstr "Faili ‘%s’ ei ole loetav.  Seda võib mitte olemas olla või pole sul piisavaid selle lugemiseks."
 
 #: ../src/yelp-window.c:1336
 msgid "Loading..."
@@ -673,13 +673,13 @@ msgstr "Dokumentatsioonisirvija Gnome töölaua jaoks."
 #: ../src/yelp-xslt-pager.c:194
 #, c-format
 msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
-msgstr "Faili ‘%s’ ei saa analüüsida. Seda kas pole olema või on see valesti vormindatud."
+msgstr "Faili ‘%s’ ei õnnestu analüüsida. Seda kas pole olema või on see valesti vormindatud."
 
 #: ../src/yelp-xslt-pager.c:215
 #: ../src/yelp-xslt-pager.c:228
 #, c-format
 msgid "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it is not a valid XSLT stylesheet."
-msgstr "Dokumenti ‘%s’ ei saa töödelda. Fail ‘%s’ on puudu või pole see korrektne XSLT laaditabel."
+msgstr "Dokumenti ‘%s’ ei õnnestu töödelda. Fail ‘%s’ on kas puudu või pole tegemist korrektse XSLT laaditabeliga."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
