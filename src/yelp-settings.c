@@ -50,7 +50,7 @@
 #define d(x)
 #endif
 
-static const gchar *color_params[YELP_NUM_COLORS] = {
+static const gchar * const color_params[YELP_NUM_COLORS] = {
     "yelp.color.text",
     "yelp.color.anchor",
     "yelp.color.background",
@@ -67,7 +67,7 @@ static const gchar *color_params[YELP_NUM_COLORS] = {
     "yelp.color.yellow.fg"
 };
 
-static const gchar *icon_params[YELP_NUM_ICONS] = {
+static const gchar * const icon_params[YELP_NUM_ICONS] = {
     "yelp.icon.blockquote",
     "yelp.icon.caution",
     "yelp.icon.important",

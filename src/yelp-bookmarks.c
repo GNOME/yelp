@@ -81,7 +81,7 @@ struct _YelpWindowData {
     GtkActionGroup *doc_actions;
 };
 
-static const char *ui_description =
+static const char ui_description[] =
     "<ui>"
     "  <popup>"
     "    <menuitem action='OpenName'/>"
@@ -150,7 +150,7 @@ static gboolean  bookmarks_configure_cb     (GtkWidget           *widget,
 static void      selection_changed_cb       (GtkTreeSelection    *selection,
 					     gpointer             data);
 
-static GtkActionEntry popup_entries[] = {
+static const GtkActionEntry popup_entries[] = {
     { "OpenName", GTK_STOCK_OPEN,
       N_("Open Bookmark in New Window"),
       NULL, NULL,

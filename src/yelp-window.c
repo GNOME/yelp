@@ -288,7 +288,7 @@ enum {
     TARGET_URI_LIST
 };
 
-static GtkActionEntry entries[] = {
+static const GtkActionEntry entries[] = {
     { "FileMenu",      NULL, N_("_File")      },
     { "EditMenu",      NULL, N_("_Edit")      },
     { "GoMenu",        NULL, N_("_Go")        },
