@@ -158,6 +158,8 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 					name);
 		gecko_prefs_set_int ("font.size.variable.x-western", 
 				     size);
+		gecko_prefs_set_int ("font.minimum-size.x-western", 
+				     8);
 		break;
 	case YELP_FONT_FIXED:
 		gecko_prefs_set_string ("font.name.monospace.x-western", 

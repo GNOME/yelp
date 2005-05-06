@@ -916,6 +916,7 @@ process_xslt (YelpTocPager *pager)
 				      priv->toc_doc,
 				      (const gchar **)params, NULL, NULL,
 				      priv->transformContext);
+    // Don't do this
     g_signal_emit_by_name (pager, "finish");
 
  done:
