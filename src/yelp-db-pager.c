@@ -321,6 +321,8 @@ db_pager_params (YelpPager *pager)
     params[params_i++] = g_strdup ("\"x-yelp-titlepage\"");
     params[params_i++] = "db.chunk.max_depth";
     params[params_i++] = g_strdup_printf ("%i", priv->max_depth);
+    params[params_i++] = "yelp.javascript";
+    params[params_i++] = g_strdup_printf ("\"%s\"", DATADIR "/yelp/yelp.js");
 
     params[params_i] = NULL;
 

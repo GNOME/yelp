@@ -7,6 +7,8 @@
 
 <xsl:import href="@DB2HTML@"/>
 
+<xsl:param name="yelp.javascript"/>
+
 <xsl:param name="yelp.icon.blockquote"/>
 <xsl:param name="yelp.icon.caution"/>
 <xsl:param name="yelp.icon.important"/>
@@ -109,6 +111,7 @@
 <!-- == db2html.css.custom == -->
 <xsl:template name="db2html.css.custom">
   <xsl:text>
+    div[class~="body"] { margin-top: 0px; }
     h1 { font-size: 1.4em; }
     h2 { font-size: 1.2em; }
     h1 + div h2[class~="title"] { margin-top: 2em; }
@@ -223,41 +226,51 @@
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:param>
-  <div class="linktrail">
-    <xsl:for-each select="($node/ancestor::*)">
-      <a class="linktrail">
-	<xsl:attribute name="href">
-	  <xsl:call-template name="db.xref.target">
-	    <xsl:with-param name="linkend" select="@id"/>
-	    <xsl:with-param name="target" select="."/>
-	    <xsl:with-param name="is_chunk" select="true()"/>
+  <xsl:if test="$depth_of_chunk != 0">
+    <div class="linktrail" id="linktrail">
+      <xsl:for-each select="($node/ancestor::*)">
+	<a class="linktrail">
+	  <xsl:attribute name="href">
+	    <xsl:call-template name="db.xref.target">
+	      <xsl:with-param name="linkend" select="@id"/>
+	      <xsl:with-param name="target" select="."/>
+	      <xsl:with-param name="is_chunk" select="true()"/>
+	    </xsl:call-template>
+	  </xsl:attribute>
+	  <xsl:attribute name="title">
+	    <xsl:call-template name="db.xref.tooltip">
+	      <xsl:with-param name="linkend" select="@id"/>
+	      <xsl:with-param name="target"  select="."/>
+	    </xsl:call-template>
+	  </xsl:attribute>
+	  <xsl:call-template name="db.titleabbrev">
+	    <xsl:with-param name="node" select="."/>
 	  </xsl:call-template>
-	</xsl:attribute>
-	<xsl:attribute name="title">
-	  <xsl:call-template name="db.xref.tooltip">
-	    <xsl:with-param name="linkend" select="@id"/>
-	    <xsl:with-param name="target"  select="."/>
-	  </xsl:call-template>
-	</xsl:attribute>
-	<xsl:call-template name="db.titleabbrev">
-	  <xsl:with-param name="node" select="."/>
-	</xsl:call-template>
-      </a>
-      <xsl:choose>
-	<xsl:when test="position() = last()">
-	  <!--
-	  <xsl:text> ▾</xsl:text>
-	  -->
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:text>&#x2003;/&#x2003;</xsl:text>
-	  <!--
-	  <xsl:text> ▸ </xsl:text>
-	  -->
-	</xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-  </div>
+	</a>
+	<xsl:choose>
+	  <xsl:when test="position() = last()">
+	    <!--
+	      <xsl:text> ▾</xsl:text>
+	    -->
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:text>&#x2003;/&#x2003;</xsl:text>
+	    <!--
+	      <xsl:text> ▸ </xsl:text>
+	    -->
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:for-each>
+    </div>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="db2html.division.head.extra">
+  <script type="text/javascript">
+    <xsl:attribute name="src">
+      <xsl:value-of select="concat('file://', $yelp.javascript)"/>
+    </xsl:attribute>
+  </script>
 </xsl:template>
 
 </xsl:stylesheet>
