@@ -1,3 +1,13 @@
+2005-05-09  Shaun McCance  <shaunm@gnome.org>
+
+	* data/yelp.js:
+	- Use an actual ellipsis character
+	- Do linktrail magic on DOMContentLoaded
+
+	* stylesheets/db2html.xsl.in:
+	- Don't wrap the linktrail while waiting for the resize to trigger
+	- Some linktrail and navbar visual improvements
+
 2005-05-07  Shaun McCance  <shaunm@gnome.org>
 
 	* data/Makefile.am:

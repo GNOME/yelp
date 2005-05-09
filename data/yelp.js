@@ -40,15 +40,15 @@ var slt = {
 
   removeLinktrailElement: function() {
     /* Walk through the link trail until we find a complete
-       link; when we do, change its displayed text to "...",
+       link; when we do, change its displayed text to "…",
        put its actual text in a tooltip, and return */
     var links = slt.lt.getElementsByTagName('a');
 
     for (var i=0;i<links.length;i++) {
       if (links[i].firstChild) {
-        if (links[i].firstChild.nodeValue != '...') {
+        if (links[i].firstChild.nodeValue != '…') {
           links[i].title = links[i].firstChild.nodeValue;
-          links[i].firstChild.nodeValue = '...';
+          links[i].firstChild.nodeValue = '…';
           return true;
         }
       }
@@ -60,14 +60,14 @@ var slt = {
   },
 
   addLinktrailElement: function() {
-    /* Walk through the link trail until we find a "..."
+    /* Walk through the link trail until we find a "…"
        link; when we do, change its displayed text back to
        what it should be and return */
     var links = slt.lt.getElementsByTagName('a');
 
     for (var i=0;i<links.length;i++) {
       if (links[i].firstChild) {
-        if (links[i].firstChild.nodeValue == '...') {
+        if (links[i].firstChild.nodeValue == '…') {
           links[i].firstChild.nodeValue = links[i].title;
           return true;
         }
@@ -82,4 +82,8 @@ var slt = {
 
 /* addEventListener() is Gecko-only, but so is yelp */
 window.addEventListener("load",slt.init,false);
+/* load doesn't seem to get fired in Yelp.  I might need to tell Gecko
+   that I'm finished or something.  DOMContentLoaded works though */
+window.addEventListener("DOMContentLoaded",slt.init,false);
 window.addEventListener("resize",slt.init,false);
+

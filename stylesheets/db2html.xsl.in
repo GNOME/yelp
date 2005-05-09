@@ -185,6 +185,7 @@
     }
     div[class~="linktrail"] {
       font-size: 0.8em;
+      white-space: nowrap;
       margin: 0px;
       padding: 3px;
       padding-left: 12px;
@@ -195,8 +196,13 @@
       border-bottom: solid 1px </xsl:text>
       <xsl:value-of select="$yelp.color.base1"/><xsl:text>;
     }
-    div[class~="linktrail"] a { text-decoration: none; }
-    div[class~="linktrail"] a:hover { text-decoration: underline; }
+    span[class~="linktrail"]:after {
+      content: '&#x2003;/&#x2003;';
+      color: </xsl:text>
+      <xsl:value-of select="$yelp.color.base2"/><xsl:text>;
+    }
+    a[class~="linktrail"] { text-decoration: none; }
+    a[class~="linktrail"]:hover { text-decoration: underline; }
     div[class~="navbar"] {
       font-size: 0.8em;
       margin: 0px;
@@ -209,12 +215,21 @@
       border-top: solid 1px </xsl:text>
       <xsl:value-of select="$yelp.color.base1"/><xsl:text>;
     }
-    div[class~="navbar"] a {
-      text-decoration: none;
-      white-space: nowrap;
-    }
+    div[class~="navbar"] span { white-space: nowrap; }
+    div[class~="navbar"] a { text-decoration: none; }
     div[class~="navbar"] a:hover { text-decoration: underline; }
-    div[class~="navbar"] img { border: none; vertical-align: middle; }
+    span[class~="navbar-prev"]:before {
+      content: '◀&#x2003;';
+      color: </xsl:text>
+      <xsl:value-of select="$yelp.color.base2"/><xsl:text>;
+      text-decoration: none;
+    }
+    span[class~="navbar-next"]:after {
+      content: '&#x2003;▶';
+      color: </xsl:text>
+      <xsl:value-of select="$yelp.color.base2"/><xsl:text>;
+      text-decoration: none;
+    }
   </xsl:text>
 </xsl:template>
 
@@ -229,24 +244,26 @@
   <xsl:if test="$depth_of_chunk != 0">
     <div class="linktrail" id="linktrail">
       <xsl:for-each select="($node/ancestor::*)">
-	<a class="linktrail">
-	  <xsl:attribute name="href">
-	    <xsl:call-template name="db.xref.target">
-	      <xsl:with-param name="linkend" select="@id"/>
-	      <xsl:with-param name="target" select="."/>
-	      <xsl:with-param name="is_chunk" select="true()"/>
+	<span class="linktrail">
+	  <a class="linktrail">
+	    <xsl:attribute name="href">
+	      <xsl:call-template name="db.xref.target">
+		<xsl:with-param name="linkend" select="@id"/>
+		<xsl:with-param name="target" select="."/>
+		<xsl:with-param name="is_chunk" select="true()"/>
+	      </xsl:call-template>
+	    </xsl:attribute>
+	    <xsl:attribute name="title">
+	      <xsl:call-template name="db.xref.tooltip">
+		<xsl:with-param name="linkend" select="@id"/>
+		<xsl:with-param name="target"  select="."/>
+	      </xsl:call-template>
+	    </xsl:attribute>
+	    <xsl:call-template name="db.titleabbrev">
+	      <xsl:with-param name="node" select="."/>
 	    </xsl:call-template>
-	  </xsl:attribute>
-	  <xsl:attribute name="title">
-	    <xsl:call-template name="db.xref.tooltip">
-	      <xsl:with-param name="linkend" select="@id"/>
-	      <xsl:with-param name="target"  select="."/>
-	    </xsl:call-template>
-	  </xsl:attribute>
-	  <xsl:call-template name="db.titleabbrev">
-	    <xsl:with-param name="node" select="."/>
-	  </xsl:call-template>
-	</a>
+	  </a>
+	</span>
 	<xsl:choose>
 	  <xsl:when test="position() = last()">
 	    <!--
@@ -254,7 +271,9 @@
 	    -->
 	  </xsl:when>
 	  <xsl:otherwise>
+	    <!--
 	    <xsl:text>&#x2003;/&#x2003;</xsl:text>
+	    -->
 	    <!--
 	      <xsl:text> ▸ </xsl:text>
 	    -->
