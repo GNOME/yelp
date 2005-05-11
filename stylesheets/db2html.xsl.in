@@ -12,40 +12,39 @@
 <xsl:param name="yelp.icon.blockquote"/>
 <xsl:param name="yelp.icon.caution"/>
 <xsl:param name="yelp.icon.important"/>
-<xsl:param name="yelp.icon.next"/>
 <xsl:param name="yelp.icon.note"/>
-<xsl:param name="yelp.icon.previous"/>
 <xsl:param name="yelp.icon.programlisting"/>
 <xsl:param name="yelp.icon.tip"/>
 <xsl:param name="yelp.icon.warning"/>
 
-<xsl:param name="yelp.color.text"/>
+<xsl:param name="yelp.color.fg"/>
+<xsl:param name="yelp.color.bg"/>
 <xsl:param name="yelp.color.anchor"/>
-<xsl:param name="yelp.color.background"/>
 <xsl:param name="yelp.color.rule"/>
-<xsl:param name="yelp.color.base0"/>
-<xsl:param name="yelp.color.base1"/>
-<xsl:param name="yelp.color.base2"/>
-<xsl:param name="yelp.color.base3"/>
-<xsl:param name="yelp.color.selected0"/>
-<xsl:param name="yelp.color.selected1"/>
-<xsl:param name="yelp.color.selected2"/>
-<xsl:param name="yelp.color.selected3"/>
-
-<xsl:param name="yelp.color.yellow.bg"/>
-<xsl:param name="yelp.color.yellow.fg"/>
-
-<xsl:param name="db2html.admon.border_color"
-           select="$yelp.color.selected0"/>
+<xsl:param name="yelp.color.gray.fg"/>
+<xsl:param name="yelp.color.gray.bg"/>
+<xsl:param name="yelp.color.gray.bg.dark1"/>
+<xsl:param name="yelp.color.gray.bg.dark2"/>
+<xsl:param name="yelp.color.gray.bg.dark3"/>
+<xsl:param name="yelp.color.selected.fg"/>
+<xsl:param name="yelp.color.selected.bg"/>
+<xsl:param name="yelp.color.selected.bg.dark1"/>
+<xsl:param name="yelp.color.selected.bg.dark2"/>
+<xsl:param name="yelp.color.selected.bg.dark3"/>
+<xsl:param name="yelp.color.admon.fg"/>
+<xsl:param name="yelp.color.admon.bg"/>
+<xsl:param name="yelp.color.admon.bg.dark1"/>
+<xsl:param name="yelp.color.admon.bg.dark2"/>
+<xsl:param name="yelp.color.admon.bg.dark3"/>
 
 <xsl:param name="db2html.programlisting.background_color"
-           select="$yelp.color.base0"/>
+           select="$yelp.color.gray.bg"/>
 <xsl:param name="db2html.programlisting.border_color"
-           select="$yelp.color.base1"/>
+           select="$yelp.color.gray.bg.dark1"/>
 <xsl:param name="db2html.screen.background_color"
-           select="$yelp.color.base0"/>
+           select="$yelp.color.gray.bg"/>
 <xsl:param name="db2html.screen.border_color"
-           select="$yelp.color.base1"/>
+           select="$yelp.color.gray.bg.dark1"/>
 
 <xsl:param name="db2html.table.rule_color"
 	   select="$yelp.color.rule"/>
@@ -116,7 +115,7 @@
     h2 { font-size: 1.2em; }
     h1 + div h2[class~="title"] { margin-top: 2em; }
     h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+    <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>; }
     h3 span[class~="title"] { border-bottom: none; }
     h4 span[class~="title"] { border-bottom: none; }
     h5 span[class~="title"] { border-bottom: none; }
@@ -125,13 +124,13 @@
 
     div[class~="admonition"] {
       color: </xsl:text>
-      <xsl:value-of select="$yelp.color.base3"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.admon.fg"/><xsl:text>;
       border-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.yellow.fg"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.admon.bg.dark1"/><xsl:text>;
       -moz-border-radius-topleft: 12px;
       -moz-border-radius-bottomleft: 12px;
       background-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.yellow.bg"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.admon.bg"/><xsl:text>;
     }
     div[class~="programlisting"] {
       background-image: url(</xsl:text>
@@ -164,24 +163,22 @@
       <xsl:value-of select="$yelp.icon.warning"/><xsl:text>");
     }
 
-    <!--
     /* Gecko seems to get selection color wrong on some themes */
     /* Add this when you can replace .background with the actual
        selection foreground color */
     ::-moz-selection {
       background-color:  </xsl:text>
-      <xsl:value-of select="$yelp.color.selected0"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
       color: </xsl:text>
-      <xsl:value-of select="$yelp.color.background"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.selected.fg"/><xsl:text>;
     }
-    -->
 
     html { min-height: 100%; }
     body {
       -moz-box-sizing: border-box;
       min-height: 100%;
       border: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.base1"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
     }
     div[class~="linktrail"] {
       font-size: 0.8em;
@@ -191,15 +188,15 @@
       padding-left: 12px;
       padding-right: 12px;
       background-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.base0"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.bg"/><xsl:text>;
       border: none;
       border-bottom: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.base1"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
     }
     span[class~="linktrail"]:after {
       content: '&#x2003;/&#x2003;';
       color: </xsl:text>
-      <xsl:value-of select="$yelp.color.base2"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>;
     }
     a[class~="linktrail"] { text-decoration: none; }
     a[class~="linktrail"]:hover { text-decoration: underline; }
@@ -210,10 +207,10 @@
       padding-left: 12px;
       padding-right: 12px;
       background-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.base0"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.bg"/><xsl:text>;
       border: none;
       border-top: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.base1"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
     }
     div[class~="navbar"] span { white-space: nowrap; }
     div[class~="navbar"] a { text-decoration: none; }
@@ -221,13 +218,13 @@
     span[class~="navbar-prev"]:before {
       content: '◀&#x2003;';
       color: </xsl:text>
-      <xsl:value-of select="$yelp.color.base2"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>;
       text-decoration: none;
     }
     span[class~="navbar-next"]:after {
       content: '&#x2003;▶';
       color: </xsl:text>
-      <xsl:value-of select="$yelp.color.base2"/><xsl:text>;
+      <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>;
       text-decoration: none;
     }
   </xsl:text>

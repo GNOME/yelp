@@ -338,14 +338,14 @@ html_set_colors (void)
 {
     gchar *color;
 
-    color = (gchar *) yelp_settings_get_color (YELP_COLOR_TEXT);
-    yelp_gecko_set_color (YELP_COLOR_TEXT, color);
+    color = (gchar *) yelp_settings_get_color (YELP_COLOR_FG);
+    yelp_gecko_set_color (YELP_COLOR_FG, color);
+
+    color = (gchar *) yelp_settings_get_color (YELP_COLOR_BG);
+    yelp_gecko_set_color (YELP_COLOR_BG, color);
 
     color = (gchar *) yelp_settings_get_color (YELP_COLOR_ANCHOR);
     yelp_gecko_set_color (YELP_COLOR_ANCHOR, color);
-
-    color = (gchar *) yelp_settings_get_color (YELP_COLOR_BACKGROUND);
-    yelp_gecko_set_color (YELP_COLOR_BACKGROUND, color);
 }
 
 static void

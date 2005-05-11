@@ -8,17 +8,25 @@
 <xsl:param name="help_icon"/>
 <xsl:param name="help_icon_size"/>
 
-<xsl:param name="yelp.color.text"/>
+<xsl:param name="yelp.color.fg"/>
+<xsl:param name="yelp.color.bg"/>
 <xsl:param name="yelp.color.anchor"/>
-<xsl:param name="yelp.color.background"/>
-<xsl:param name="yelp.color.base0"/>
-<xsl:param name="yelp.color.base1"/>
-<xsl:param name="yelp.color.base2"/>
-<xsl:param name="yelp.color.base3"/>
-<xsl:param name="yelp.color.selected0"/>
-<xsl:param name="yelp.color.selected1"/>
-<xsl:param name="yelp.color.selected2"/>
-<xsl:param name="yelp.color.selected3"/>
+<xsl:param name="yelp.color.rule"/>
+<xsl:param name="yelp.color.gray.fg"/>
+<xsl:param name="yelp.color.gray.bg"/>
+<xsl:param name="yelp.color.gray.bg.dark1"/>
+<xsl:param name="yelp.color.gray.bg.dark2"/>
+<xsl:param name="yelp.color.gray.bg.dark3"/>
+<xsl:param name="yelp.color.selected.fg"/>
+<xsl:param name="yelp.color.selected.bg"/>
+<xsl:param name="yelp.color.selected.bg.dark1"/>
+<xsl:param name="yelp.color.selected.bg.dark2"/>
+<xsl:param name="yelp.color.selected.bg.dark3"/>
+<xsl:param name="yelp.color.admon.fg"/>
+<xsl:param name="yelp.color.admon.bg"/>
+<xsl:param name="yelp.color.admon.bg.dark1"/>
+<xsl:param name="yelp.color.admon.bg.dark2"/>
+<xsl:param name="yelp.color.admon.bg.dark3"/>
 
 <xsl:template match="toc">
   <yelp:document href="{@id}">
@@ -43,11 +51,11 @@
           padding-bottom: 0.2em;
           -moz-border-radius: 6px;
           border: solid 1px </xsl:text>
-          <xsl:value-of select="$yelp.color.selected1"/><xsl:text>;
+          <xsl:value-of select="$yelp.color.selected.bg.dark1"/><xsl:text>;
           background-color: </xsl:text>
-          <xsl:value-of select="$yelp.color.selected0"/><xsl:text>;
+          <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
           color: </xsl:text>
-          <xsl:value-of select="$yelp.color.background"/><xsl:text>;
+          <xsl:value-of select="$yelp.color.selected.fg"/><xsl:text>;
         }
         h1 img {
           position: absolute;
@@ -79,7 +87,7 @@
         }
         div[class~="tocs"] + div[class~="docs"] {
           border-top: solid 1px </xsl:text>
-          <xsl:value-of select="$yelp.color.selected0"/><xsl:text>;
+          <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
         }
         ul { margin-left: 0em; padding-left: 0em; }
         li {

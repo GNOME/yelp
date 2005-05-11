@@ -123,16 +123,16 @@ yelp_gecko_set_color (YelpColorType type, const gchar *color)
 {
 	gecko_prefs_set_bool ("browser.display.use_system_colors", FALSE);
 	switch (type) {
-	case YELP_COLOR_TEXT:
+	case YELP_COLOR_FG:
 		gecko_prefs_set_string ("browser.display.foreground_color",
+					color);
+		break;
+	case YELP_COLOR_BG:
+		gecko_prefs_set_string ("browser.display.background_color",
 					color);
 		break;
 	case YELP_COLOR_ANCHOR:
 		gecko_prefs_set_string ("browser.anchor_color",
-					color);
-		break;
-	case YELP_COLOR_BACKGROUND:
-		gecko_prefs_set_string ("browser.display.background_color",
 					color);
 		break;
 	}

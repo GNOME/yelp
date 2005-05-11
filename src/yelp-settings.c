@@ -51,29 +51,32 @@
 #endif
 
 static const gchar * const color_params[YELP_NUM_COLORS] = {
-    "yelp.color.text",
+    "yelp.color.fg",
+    "yelp.color.bg",
     "yelp.color.anchor",
-    "yelp.color.background",
     "yelp.color.rule",
-    "yelp.color.base0",
-    "yelp.color.base1",
-    "yelp.color.base2",
-    "yelp.color.base3",
-    "yelp.color.selected0",
-    "yelp.color.selected1",
-    "yelp.color.selected2",
-    "yelp.color.selected3",
-    "yelp.color.yellow.bg",
-    "yelp.color.yellow.fg"
+    "yelp.color.gray.fg",
+    "yelp.color.gray.bg",
+    "yelp.color.gray.bg.dark1",
+    "yelp.color.gray.bg.dark2",
+    "yelp.color.gray.bg.dark3",
+    "yelp.color.selected.fg",
+    "yelp.color.selected.bg",
+    "yelp.color.selected.bg.dark1",
+    "yelp.color.selected.bg.dark2",
+    "yelp.color.selected.bg.dark3",
+    "yelp.color.admon.fg",
+    "yelp.color.admon.bg",
+    "yelp.color.admon.bg.dark1",
+    "yelp.color.admon.bg.dark2",
+    "yelp.color.admon.bg.dark3"
 };
 
 static const gchar * const icon_params[YELP_NUM_ICONS] = {
     "yelp.icon.blockquote",
     "yelp.icon.caution",
     "yelp.icon.important",
-    "yelp.icon.next",
     "yelp.icon.note",
-    "yelp.icon.previous",
     "yelp.icon.programlisting",
     "yelp.icon.tip",
     "yelp.icon.warning"
@@ -158,14 +161,8 @@ yelp_settings_init (void)
 	case YELP_ICON_IMPORTANT:
 	    icon_names[i] = "yelp-icon-important";
 	    break;
-	case YELP_ICON_NEXT:
-	    icon_names[i] = "stock_next-page";
-	    break;
 	case YELP_ICON_NOTE:
 	    icon_names[i] = "yelp-icon-note";
-	    break;
-	case YELP_ICON_PREVIOUS:
-	    icon_names[i] = "stock_previous-page";
 	    break;
 	case YELP_ICON_PROGRAMLISTING:
 	    icon_names[i] = "yelp-watermark-programlisting";
@@ -580,60 +577,20 @@ settings_update (YelpSettingsType type)
 		       MAX(style->base[GTK_STATE_NORMAL].green,
 			   style->base[GTK_STATE_NORMAL].blue   )) >> 8;
 
-	g_snprintf (colors[YELP_COLOR_TEXT], 8,
+	/* YELP_COLOR_FG */
+	g_snprintf (colors[YELP_COLOR_FG], 8,
 		    "#%02X%02X%02X",
 		    style->text[GTK_STATE_NORMAL].red >> 8,
 		    style->text[GTK_STATE_NORMAL].green >> 8,
 		    style->text[GTK_STATE_NORMAL].blue >> 8);
-	g_snprintf (colors[YELP_COLOR_BACKGROUND], 8,
+	/* YELP_COLOR_BG */
+	g_snprintf (colors[YELP_COLOR_BG], 8,
 		    "#%02X%02X%02X",
 		    style->base[GTK_STATE_NORMAL].red >> 8,
 		    style->base[GTK_STATE_NORMAL].green >> 8,
 		    style->base[GTK_STATE_NORMAL].blue >> 8);
 
-	g_snprintf (colors[YELP_COLOR_RULE], 8,
-		    "#%02X%02X%02X",
-		    ((style->base[GTK_STATE_NORMAL].red >> 8) + 
-		     (style->bg[GTK_STATE_NORMAL].red >> 8) ) / 2,
-		    ((style->base[GTK_STATE_NORMAL].green >> 8) + 
-		     (style->bg[GTK_STATE_NORMAL].green >> 8) ) / 2,
-		    ((style->base[GTK_STATE_NORMAL].blue >> 8) + 
-		     (style->bg[GTK_STATE_NORMAL].blue >> 8) ) / 2);
-
-	for (i = 0; i < 4; i++) {
-	    rval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
-		    i * max_text) / 4;
-	    gval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
-		    i * max_text) / 4;
-	    bval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
-		    i * max_text) / 4;
-	    g_snprintf (colors[YELP_COLOR_BASE0 + i], 8,
-			"#%02X%02X%02X", rval, gval, bval);
-	}
-	for (i = 0; i < 4; i++) {
-	    rval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].red   >> 8) +
-		    i * max_text) / 4;
-	    gval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].green >> 8) +
-		    i * max_text) / 4;
-	    bval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].blue  >> 8) +
-		    i * max_text) / 4;
-	    g_snprintf (colors[YELP_COLOR_SELECTED0 + i], 8,
-			"#%02X%02X%02X", rval, gval, bval);
-	}
-
-	for (i = 0; i < 2; i++) {
-	    gint mult = (i == 0) ? max_base : max_text;
-
-	    rval = ((255 * mult) / 255);
-	    gval = ((255 * mult) / 255);
-	    bval = ((220 * mult) / 255);
-
-	    g_snprintf (colors[YELP_COLOR_YELLOW_BG + i], 8,
-			"#%02X%02X%02X", rval, gval, bval);
-	}
-
-	g_object_unref (G_OBJECT (style));
-
+	/* YELP_COLOR_ANCHOR */
 	widget = gnome_href_new ("http://www.gnome.org/", "GNOME");
 	gtk_widget_style_get (widget, "link_color", &color, NULL);
 	if (!color)
@@ -646,6 +603,68 @@ settings_update (YelpSettingsType type)
 	if (color != &blue)
 	    gdk_color_free (color);
 	gtk_object_sink (GTK_OBJECT (widget));
+
+	/* YELP_COLOR_RULE */
+	g_snprintf (colors[YELP_COLOR_RULE], 8,
+		    "#%02X%02X%02X",
+		    ((style->base[GTK_STATE_NORMAL].red >> 8) + 
+		     (style->bg[GTK_STATE_NORMAL].red >> 8) ) / 2,
+		    ((style->base[GTK_STATE_NORMAL].green >> 8) + 
+		     (style->bg[GTK_STATE_NORMAL].green >> 8) ) / 2,
+		    ((style->base[GTK_STATE_NORMAL].blue >> 8) + 
+		     (style->bg[GTK_STATE_NORMAL].blue >> 8) ) / 2);
+
+	/* YELP_COLOR_GRAY_BG */
+	for (i = 0; i < 4; i++) {
+	    rval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
+		    i * max_text) / 4;
+	    gval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
+		    i * max_text) / 4;
+	    bval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
+		    i * max_text) / 4;
+	    g_snprintf (colors[YELP_COLOR_GRAY_BG + i], 8,
+			"#%02X%02X%02X", rval, gval, bval);
+	}
+
+	/* YELP_COLOR_GRAY_FG */
+	g_snprintf (colors[YELP_COLOR_GRAY_FG], 8, "%s",
+		    colors[YELP_COLOR_GRAY_BG_DARK3]);
+
+	/* YELP_COLOR_SELECTED_FG */
+	g_snprintf (colors[YELP_COLOR_SELECTED_FG], 8,
+		    "#%02X%02X%02X",
+		    style->text[GTK_STATE_SELECTED].red >> 8,
+		    style->text[GTK_STATE_SELECTED].green >> 8,
+		    style->text[GTK_STATE_SELECTED].blue >> 8);
+
+	/* YELP_COLOR_SELECTED_BG */
+	for (i = 0; i < 4; i++) {
+	    rval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].red   >> 8) +
+		    i * max_text) / 4;
+	    gval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].green >> 8) +
+		    i * max_text) / 4;
+	    bval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].blue  >> 8) +
+		    i * max_text) / 4;
+	    g_snprintf (colors[YELP_COLOR_SELECTED_BG + i], 8,
+			"#%02X%02X%02X", rval, gval, bval);
+	}
+
+	/* YELP_COLOR_ADMON_FG */
+	g_snprintf (colors[YELP_COLOR_ADMON_FG], 8, "%s",
+		    colors[YELP_COLOR_GRAY_BG_DARK3]);
+
+	/* YELP_COLOR_ADMON_BG */
+	for (i = 0; i < 4; i++) {
+	    gint mult = max_base + ((i * (max_base - max_text)) / 3);
+	    rval = ((255 * mult) / 255);
+	    gval = ((245 * mult) / 255);
+	    bval = ((207 * mult) / 255);
+
+	    g_snprintf (colors[YELP_COLOR_ADMON_BG + i], 8,
+			"#%02X%02X%02X", rval, gval, bval);
+	}
+
+	g_object_unref (G_OBJECT (style));
     }
 
     for (i = 0; i < YELP_SETTINGS_NUM_TYPES; i++)

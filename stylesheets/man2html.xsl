@@ -16,18 +16,25 @@
 <xsl:param name="yelp.icon.tip"/>
 <xsl:param name="yelp.icon.warning"/>
 
-<xsl:param name="yelp.color.text"/>
+<xsl:param name="yelp.color.fg"/>
+<xsl:param name="yelp.color.bg"/>
 <xsl:param name="yelp.color.anchor"/>
-<xsl:param name="yelp.color.background"/>
 <xsl:param name="yelp.color.rule"/>
-<xsl:param name="yelp.color.base0"/>
-<xsl:param name="yelp.color.base1"/>
-<xsl:param name="yelp.color.base2"/>
-<xsl:param name="yelp.color.base3"/>
-<xsl:param name="yelp.color.selected0"/>
-<xsl:param name="yelp.color.selected1"/>
-<xsl:param name="yelp.color.selected2"/>
-<xsl:param name="yelp.color.selected3"/>
+<xsl:param name="yelp.color.gray.fg"/>
+<xsl:param name="yelp.color.gray.bg"/>
+<xsl:param name="yelp.color.gray.bg.dark1"/>
+<xsl:param name="yelp.color.gray.bg.dark2"/>
+<xsl:param name="yelp.color.gray.bg.dark3"/>
+<xsl:param name="yelp.color.selected.fg"/>
+<xsl:param name="yelp.color.selected.bg"/>
+<xsl:param name="yelp.color.selected.bg.dark1"/>
+<xsl:param name="yelp.color.selected.bg.dark2"/>
+<xsl:param name="yelp.color.selected.bg.dark3"/>
+<xsl:param name="yelp.color.admon.fg"/>
+<xsl:param name="yelp.color.admon.bg"/>
+<xsl:param name="yelp.color.admon.bg.dark1"/>
+<xsl:param name="yelp.color.admon.bg.dark2"/>
+<xsl:param name="yelp.color.admon.bg.dark3"/>
 
 <xsl:template match="Man">
   <xsl:choose>
@@ -67,7 +74,7 @@ h2 { font-size: 1.4em; font-weight: bold; }
 h3 { font-size: 1.2em; font-weight: bold; }
 
 h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
-<xsl:value-of select="$yelp.color.selected1"/><xsl:text>; }
+<xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>; }
 
 div[class~="SH"] { margin-left: 1.2em; }
 div[class~="SS"] { margin-left: 1.6em; }
