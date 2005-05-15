@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10 gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-03 17:40+0200\n"
-"PO-Revision-Date: 2005-03-03 17:38+0200\n"
+"POT-Creation-Date: 2005-05-15 13:25+0300\n"
+"PO-Revision-Date: 2005-05-14 17:30+0300\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -216,7 +216,7 @@ msgstr "Отметки"
 
 #: ../data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
-msgstr "Чувствителност към малки или големи букви"
+msgstr "Малките и големи букви имат значение"
 
 #: ../data/ui/yelp.glade.h:8
 msgid "Find"
@@ -336,7 +336,7 @@ msgstr ""
 "Файлът \"%s\" не може да бъде прегледан. Или той не съществува, или е "
 "изграден чрез не добре написан XML."
 
-#: ../src/yelp-db-pager.c:486
+#: ../src/yelp-db-pager.c:488
 msgid "Unknown Section"
 msgstr "Неизвестен раздел"
 
@@ -394,7 +394,7 @@ msgstr "Yelp не може да бъде активиран: \"%s\""
 msgid "Could not open new window."
 msgstr "Прозорецът не може да бъде отворен."
 
-#: ../src/yelp-main.c:326 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Потребителско ръководство"
 
@@ -436,7 +436,7 @@ msgstr "Структурата YelpDocInfo на документа"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:153
+#: ../src/yelp-settings.c:156
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201E"
 
@@ -472,15 +472,15 @@ msgstr ""
 "Таблицата със съдържанието не може да бъде обработена. Или липсва файлът \"%s"
 "\", или таблицата е изградена чрез невалиден XSLT."
 
-#: ../src/yelp-toc-pager.c:1029 ../src/yelp-xslt-pager.c:365
+#: ../src/yelp-toc-pager.c:1030 ../src/yelp-xslt-pager.c:365
 msgid "No href attribute found on yelp:document"
 msgstr "Не е намерен атрибутът href в този документ на Yelp"
 
-#: ../src/yelp-toc-pager.c:1043 ../src/yelp-xslt-pager.c:381
+#: ../src/yelp-toc-pager.c:1044 ../src/yelp-xslt-pager.c:381
 msgid "Out of memory"
 msgstr "Няма достатъчно памет"
 
-#: ../src/yelp-toc-pager.c:1084
+#: ../src/yelp-toc-pager.c:1085
 msgid "Help Contents"
 msgstr "Съдържание"
 
@@ -686,8 +686,12 @@ msgstr "Зареждане..."
 #: ../src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
+"Владимир \"Kaladan\" Петков <vpetkov@i-space.org>\n"
 "Александър Шопов <ash@contact.bg>\n"
-"Владимир \"Kaladan\" Петков <vpetkov@i-space.org>"
+"\n"
+"Проектът за превод на GNOME има нужда от подкрепа.\n"
+"Научете повече за нас на http://gnome.cult.bg\n"
+"Докладвайте за грешки на https://gnome.cult.bg/bugs"
 
 #: ../src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
