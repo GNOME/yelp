@@ -7,6 +7,8 @@
 
 <xsl:import href="@DB2HTML@"/>
 
+<xsl:include href="yelp-common.xsl"/>
+
 <xsl:param name="yelp.javascript"/>
 
 <xsl:param name="yelp.icon.blockquote"/>
@@ -109,19 +111,8 @@
 
 <!-- == db2html.css.custom == -->
 <xsl:template name="db2html.css.custom">
+  <xsl:call-template name="yelp.common.css"/>
   <xsl:text>
-    div[class~="body"] { margin-top: 0px; }
-    h1 { font-size: 1.4em; }
-    h2 { font-size: 1.2em; }
-    h1 + div h2[class~="title"] { margin-top: 2em; }
-    h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
-    <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>; }
-    h3 span[class~="title"] { border-bottom: none; }
-    h4 span[class~="title"] { border-bottom: none; }
-    h5 span[class~="title"] { border-bottom: none; }
-    h6 span[class~="title"] { border-bottom: none; }
-    h7 span[class~="title"] { border-bottom: none; }
-
     div[class~="admonition"] {
       color: </xsl:text>
       <xsl:value-of select="$yelp.color.admon.fg"/><xsl:text>;
@@ -163,23 +154,6 @@
       <xsl:value-of select="$yelp.icon.warning"/><xsl:text>");
     }
 
-    /* Gecko seems to get selection color wrong on some themes */
-    /* Add this when you can replace .background with the actual
-       selection foreground color */
-    ::-moz-selection {
-      background-color:  </xsl:text>
-      <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
-      color: </xsl:text>
-      <xsl:value-of select="$yelp.color.selected.fg"/><xsl:text>;
-    }
-
-    html { min-height: 100%; }
-    body {
-      -moz-box-sizing: border-box;
-      min-height: 100%;
-      border: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
-    }
     div[class~="linktrail"] {
       font-size: 0.8em;
       white-space: nowrap;
@@ -201,6 +175,11 @@
     a[class~="linktrail"] { text-decoration: none; }
     a[class~="linktrail"]:hover { text-decoration: underline; }
     div[class~="navbar"] {
+      -moz-box-sizing: border-box;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
       font-size: 0.8em;
       margin: 0px;
       padding: 3px;
@@ -210,6 +189,8 @@
       <xsl:value-of select="$yelp.color.gray.bg"/><xsl:text>;
       border: none;
       border-top: solid 1px </xsl:text>
+      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
+      border-bottom: solid 1px </xsl:text>
       <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
     }
     div[class~="navbar"] span { white-space: nowrap; }
