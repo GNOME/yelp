@@ -20,25 +20,14 @@
  * Author: Marco Pesenti Gritti <marco@gnome.org>
  */
 
+#include "mozilla-config.h"
+
 #include "config.h"
 
-#include <gtkmozembed.h>
-#include <gtkmozembed_internal.h>
-#include <nsIWebBrowser.h>
-#include <nsIWebBrowserFind.h>
-#include <nsIClipboardCommands.h>
-#include <nsICommandManager.h>
 #include <nsCOMPtr.h>
 #include <nsIInterfaceRequestorUtils.h>
-#include <nsReadableUtils.h>
-#include <nsString.h>
-#include <nsIPrefService.h>
 #include <nsIServiceManager.h>
-#include <nsIDOMMouseEvent.h>
-#include <nsIDOMNSEvent.h>
-#include <nsIDOMEventTarget.h>
-#include <nsIDOMNode.h>
-#include <nsIDOMHTMLAnchorElement.h>
+#include <nsIPrefService.h>
 #include <stdlib.h>
 
 #include "yelp-gecko-utils.h"
@@ -46,22 +35,22 @@
 static gboolean
 yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 {
-	gchar *tmp_name, *ch;
-	
-	tmp_name = g_strdup (font_name);
+	PangoFontDescription *desc;
+	PangoFontMask mask = (PangoFontMask) (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
+	gboolean retval = FALSE;
 
-	ch = g_utf8_strrchr (tmp_name, -1, ' ');
-	if (!ch || ch == tmp_name) {
-		g_free (tmp_name);
-		return FALSE;
+	desc = pango_font_description_from_string (font_name);
+	if (!desc) return FALSE;
+
+	if ((pango_font_description_get_set_fields (desc) & mask) == mask) {
+		*size = PANGO_PIXELS (pango_font_description_get_size (desc));
+		*name = g_strdup (pango_font_description_get_family (desc));
+		retval = TRUE;
 	}
 
-	*ch = '\0';
+	pango_font_description_free (desc);
 
-	*name = g_strdup (tmp_name);
-	*size = strtol (ch + 1, (char **) NULL, 10);
-	
-	return TRUE;
+	return retval;
 }
 
 static gboolean
@@ -175,113 +164,3 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 
 	g_free (name);
 }		   
-
-extern "C" gboolean
-yelp_gecko_find (GtkMozEmbed  *embed,
-		 const gchar  *str,
-		 gboolean      match_case,
-		 gboolean      wrap,
-		 gboolean      forward)
-{
-    PRBool didFind;
-    nsCString matchString;
-
-    matchString.Assign (str);
-
-    nsCOMPtr<nsIWebBrowser> webBrowser;
-    gtk_moz_embed_get_nsIWebBrowser (embed, getter_AddRefs(webBrowser));
-
-    nsCOMPtr<nsIWebBrowserFind> finder (do_GetInterface(webBrowser));
-    NS_ENSURE_TRUE (finder, NS_ERROR_FAILURE);
-
-    finder->SetFindBackwards (!forward);
-    finder->SetSearchString (ToNewUnicode (matchString));
-    finder->SetMatchCase (match_case);
-    finder->SetWrapFind (wrap);
-
-    finder->FindNext (&didFind);
-
-    return didFind;
-}
-
-extern "C" gboolean
-yelp_gecko_copy_selection (GtkMozEmbed *embed)
-{
-	nsCOMPtr<nsIWebBrowser> webBrowser;
-	gtk_moz_embed_get_nsIWebBrowser (embed, getter_AddRefs(webBrowser));
-
-	nsCOMPtr<nsIClipboardCommands> clip (do_GetInterface(webBrowser));
-	NS_ENSURE_TRUE (clip, NS_ERROR_FAILURE);
-	
-	clip->CopySelection();
-}
-
-extern "C" gboolean
-yelp_gecko_select_all (GtkMozEmbed *embed)
-{
-	nsCOMPtr<nsIWebBrowser> webBrowser;
-	gtk_moz_embed_get_nsIWebBrowser (embed, getter_AddRefs(webBrowser));
-
-	nsCOMPtr<nsICommandManager> cmdManager;
-	cmdManager = do_GetInterface (webBrowser);
-	NS_ENSURE_TRUE (cmdManager, NS_ERROR_FAILURE);
-
-	cmdManager->DoCommand ("cmd_selectAll", nsnull, nsnull);
-}
-
-extern "C" gchar*
-yelp_gecko_mouse_event (GtkMozEmbed  *html, gpointer dom_event)
-{
-	PRUint16 buttonCode;
-
-	g_return_val_if_fail (dom_event != NULL, FALSE);
-
-	nsCOMPtr<nsIDOMMouseEvent> event (do_QueryInterface 
-					  ((nsIDOMEvent*) dom_event)); 
-
-	if (!event) {
-		return NULL;
-	}
-
-	event->GetButton (&buttonCode);
-
-	if(buttonCode == 2){ 
-		/*Mozilla uses 2 as its right mouse button code*/
-		nsresult result;
-		nsAutoString nodename;
-		gchar *uri;
-
-		nsCOMPtr<nsIDOMNSEvent> nsEvent = 
-			do_QueryInterface(event, &result);
-
-		if (NS_FAILED(result) || !nsEvent) 
-			return NULL;
-		
-		nsCOMPtr<nsIDOMEventTarget> OriginalTarget;
-		result = nsEvent->GetOriginalTarget(getter_AddRefs(OriginalTarget));
-		if (NS_FAILED(result) || !OriginalTarget) 
-			return NULL;
-		
-		nsCOMPtr<nsIDOMNode> OriginalNode = 
-			do_QueryInterface(OriginalTarget);
-
-		if (!OriginalNode) return NULL;
-		
-		OriginalNode->GetNodeName(nodename);
-		uri = g_new(char, 150);
-
-		if (nodename.EqualsIgnoreCase("a")){
-			
-			nsCOMPtr<nsIDOMNode> node = 
-				do_QueryInterface(OriginalTarget, &result);
-			if (NS_FAILED(result) || !node) return NULL;
-			
-			nsCOMPtr <nsIDOMHTMLAnchorElement> anchor =
-				do_QueryInterface(node);
-			anchor->GetHref (nodename);
-			uri = nodename.ToCString( uri, 150);
-			return uri;
-		}
-	}
-	return NULL;
-}

@@ -26,6 +26,8 @@
 #include <glib.h>
 #include <gtk/gtkicontheme.h>
 
+G_BEGIN_DECLS
+
 typedef enum {
     YELP_SETTINGS_INFO_COLOR = 1 << 0,
     YELP_SETTINGS_INFO_FONTS = 1 << 1,
@@ -101,5 +103,7 @@ gboolean              yelp_settings_get_caret            (void);
 void                  yelp_settings_params               (gchar         ***params,
 							  gint            *params_i,
 							  gint            *params_max);
+
+G_END_DECLS
 
 #endif /* __YELP_SETTINGS_H__ */

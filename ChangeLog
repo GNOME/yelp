@@ -1,3 +1,31 @@
+2005-05-16  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in:
+	- Check for toolkit's nsITypeAheadFind.
+
+	* src/Makefile.am:
+	* src/Yelper.cpp:
+	* src/Yelper.h:
+	* src/yelp-gecko-utils.cpp:
+	* src/yelp-gecko-utils.h:
+	* src/yelp-html-gecko.c:
+	* src/yelp-html.cpp:
+	* src/yelp-html.h:
+	- Refactor the Gecko backend, and add typeaheadfind
+	support, if available. Plug several mem leaks en passant.
+
+	* src/yelp-settings.h:
+	- Add header guards.
+
+	* src/yelp-toc-pager.c: (process_xslt):
+	- Don't use C++ comments in C code.
+
+	* src/yelp-window.c: (window_init), (window_finalize),
+	(window_class_init), (window_populate), (window_find_action),
+	(window_find_again), (window_find_clicked_cb),
+	(window_find_entry_changed_cb):
+	- Use typeaheadfind, if available. Bug #167536.
+
 2005-05-16  Shaun McCance  <shaunm@gnome.org>
 
 	* stylesheets/Makefile.am:

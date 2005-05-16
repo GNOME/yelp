@@ -2,13 +2,14 @@ bin_PROGRAMS = yelp
 
 yelp_SOURCES =							\
 	$(gnome_yelp_idl_sources)				\
+	Yelper.cpp		Yelper.h			\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
 	yelp-cache.c		yelp-cache.h			\
 	yelp-db-pager.c		yelp-db-pager.h			\
 	yelp-error.c		yelp-error.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
-	yelp-html-gecko.c	yelp-html.h			\
+	yelp-html.cpp		yelp-html.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-pager.c		yelp-pager.h			\
 	yelp-settings.c		yelp-settings.h			\
@@ -43,7 +44,9 @@ YELP_DEFINES =								\
 
 mozilla_include_subdirs =	\
 	.		\
+	docshell	\
 	dom		\
+	fastfind	\
 	find		\
 	gtkembedmoz	\
 	pref		\

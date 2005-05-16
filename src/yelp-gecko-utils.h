@@ -33,18 +33,6 @@ void            yelp_gecko_set_color   (YelpColorType  type,
 					const gchar   *color);
 void            yelp_gecko_set_font    (YelpFontType   font_type,
 				        const gchar   *fontname);
-gboolean        yelp_gecko_find        (GtkMozEmbed   *html,
-					const gchar   *str,
-					gboolean       match_case,
-					gboolean       wrap,
-					gboolean       forward);
-
-gboolean        yelp_gecko_copy_selection (GtkMozEmbed  *html);
-
-gboolean        yelp_gecko_select_all     (GtkMozEmbed  *html);
-
-gchar *         yelp_gecko_mouse_event    (GtkMozEmbed  *html,
-					   gpointer      dom_event);
 
 G_END_DECLS
 

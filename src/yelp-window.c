@@ -82,12 +82,6 @@ typedef struct {
     gchar *frag_title;
 } YelpHistoryEntry;
 
-typedef enum {
-    YELP_WINDOW_FIND_PREV = 1,
-    YELP_WINDOW_FIND_NEXT
-} YelpFindAction;
-
-
 static void        window_init		          (YelpWindow        *window);
 static void        window_class_init	          (YelpWindowClass   *klass);
 
@@ -197,8 +191,7 @@ static void               location_response_cb    (GtkDialog       *dialog,
 						   gint             id,
 						   YelpWindow      *window);
 
-static gboolean    window_find_action             (YelpWindow        *window, 
-						   YelpFindAction     action);
+static gboolean    window_find_action             (YelpWindow        *window);
 static void        window_find_entry_changed_cb   (GtkEditable       *editable,
 						   gpointer           data);
 static void        window_find_save_settings      (YelpWindow        *window);
@@ -210,13 +203,14 @@ static void        window_find_clicked_cb         (GtkWidget         *button,
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
 
-static GConfClient *gconf_client = NULL;
-
 enum {
     NEW_WINDOW_REQUESTED,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
+static GObjectClass *parent_class = NULL;
+
+#define YELP_WINDOW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_WINDOW, YelpWindowPriv))
 
 struct _YelpWindowPriv {
     /* Main Widgets */
@@ -437,11 +431,9 @@ yelp_window_get_type (void)
 static void
 window_init (YelpWindow *window)
 {
-    YelpWindowPriv *priv;
     gint width, height;
 
-    priv = g_new0 (YelpWindowPriv, 1);
-    window->priv = priv;
+    window->priv = YELP_WINDOW_GET_PRIVATE (window);
 
     width = gnome_config_get_int (YELP_CONFIG_WIDTH
 				  "=" YELP_CONFIG_WIDTH_DEFAULT);
@@ -457,10 +449,29 @@ window_init (YelpWindow *window)
 }
 
 static void
+window_finalize (GObject *object)
+{
+    YelpWindow *window = YELP_WINDOW (object);
+    YelpWindowPriv *priv = window->priv;
+
+    g_object_unref (priv->action_group);
+    g_object_unref (priv->ui_manager);
+
+    g_free (priv->find_string);
+    
+    /* FIXME there are many more things to free */
+
+    parent_class->finalize (object);
+}
+
+static void
 window_class_init (YelpWindowClass *klass)
 {
-    if (!gconf_client)
-	gconf_client = gconf_client_get_default ();
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    parent_class = (GObjectClass *) g_type_class_peek_parent (klass);
+
+    object_class->finalize = window_finalize;
 
     signals[NEW_WINDOW_REQUESTED] =
 	g_signal_new ("new_window_requested",
@@ -471,6 +482,8 @@ window_class_init (YelpWindowClass *klass)
 		      NULL, NULL,
 		      g_cclosure_marshal_VOID__STRING,
 		      G_TYPE_NONE, 1, G_TYPE_STRING);
+
+    g_type_class_add_private (klass, sizeof (YelpWindowPriv));
 }
 
 /** History Functions *********************************************************/
@@ -984,7 +997,7 @@ window_populate (YelpWindow *window)
 		      G_CALLBACK (html_popupmenu_requested_cb),
 		      window);
     gtk_box_pack_end (GTK_BOX (priv->html_pane),
-		      yelp_html_get_widget (priv->html_view),
+		      GTK_WIDGET (priv->html_view),
 		      TRUE, TRUE, 0);
 
     gtk_paned_add2     (GTK_PANED (priv->pane),
@@ -993,7 +1006,7 @@ window_populate (YelpWindow *window)
 			priv->pane,
 			TRUE, TRUE, 0);
 
-    gtk_widget_show_all (yelp_html_get_widget (priv->html_view));
+    gtk_widget_show (GTK_WIDGET (priv->html_view));
     gtk_widget_show (priv->html_pane);
     gtk_widget_show (priv->pane);
     gtk_widget_show (priv->main_box);
@@ -2217,18 +2230,29 @@ window_find_save_settings (YelpWindow *window)
 }
 
 static gboolean
-window_find_action (YelpWindow *window, YelpFindAction action)
+window_find_action (YelpWindow *window)
 {
-    YelpWindowPriv *priv;
-
-    priv = window->priv;
+    YelpWindowPriv *priv = window->priv;
 
     window_find_save_settings (window);
 
-    return yelp_html_find (priv->html_view,
-			   priv->find_string,
-			   FALSE, FALSE,
-			   (action == YELP_WINDOW_FIND_NEXT) ? TRUE: FALSE);
+    yelp_html_set_find_props (priv->html_view, priv->find_string, FALSE, FALSE);
+
+    return yelp_html_find (priv->html_view, priv->find_string);
+}
+
+static gboolean
+window_find_again (YelpWindow *window, gboolean forward)
+{
+    YelpWindowPriv *priv = window->priv;
+
+#ifndef TYPEAHEADFIND
+    window_find_save_settings (window);
+
+    yelp_html_set_find_props (priv->html_view, priv->find_string, FALSE, FALSE);
+#endif /* TYPEAHEADFIND */
+
+    return yelp_html_find_again (priv->html_view, forward);
 }
 
 static void
@@ -2242,7 +2266,7 @@ window_find_clicked_cb (GtkWidget  *widget,
     priv = window->priv;
 
     if (GTK_TOOL_ITEM (widget) == priv->find_next) {
-	if (!window_find_action (window, YELP_WINDOW_FIND_NEXT)) {
+	if (!window_find_again (window, TRUE)) {
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
 	} else {
@@ -2250,7 +2274,7 @@ window_find_clicked_cb (GtkWidget  *widget,
 	}
     }
     else if (GTK_TOOL_ITEM (widget) == priv->find_prev) {
-	if (!window_find_action (window, YELP_WINDOW_FIND_PREV)) {
+	if (!window_find_again (window, FALSE)) {
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), TRUE);
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), FALSE);
 	} else {
@@ -2268,6 +2292,7 @@ window_find_entry_changed_cb (GtkEditable *editable,
     YelpWindow     *window;
     YelpWindowPriv *priv;
     gchar          *text;
+    gboolean        found;
 
     g_return_if_fail (YELP_IS_WINDOW(data));
 	
@@ -2276,12 +2301,14 @@ window_find_entry_changed_cb (GtkEditable *editable,
 
     text = gtk_editable_get_chars (editable, 0, -1);
 
+    found = window_find_action (window);
+
     if (text == NULL || text[0] == '\0')
 	window_find_buttons_set_sensitive (window, FALSE);
     else
-	if (!window_find_action (window, YELP_WINDOW_FIND_NEXT)) {
-	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
-	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
+	if (found) {
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), TRUE);
+	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), FALSE);
 	} else {
 	    window_find_buttons_set_sensitive (window, TRUE);
 	}

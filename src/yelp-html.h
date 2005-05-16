@@ -26,6 +26,9 @@
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkmarshal.h>
+#include <gtkmozembed.h>
+
+G_BEGIN_DECLS
 
 #define YELP_TYPE_HTML         (yelp_html_get_type ())
 #define YELP_HTML(o)           (GTK_CHECK_CAST ((o), YELP_TYPE_HTML, YelpHtml))
@@ -39,13 +42,13 @@ typedef struct _YelpHtmlClass   YelpHtmlClass;
 typedef struct _YelpHtmlPriv    YelpHtmlPriv;
 
 struct _YelpHtml {
-	GObject       parent;
-	
+	GtkMozEmbed   parent;
+
 	YelpHtmlPriv *priv;
 };
 
 struct _YelpHtmlClass {
-        GObjectClass  parent_class;
+        GtkMozEmbedClass parent_class;
 
 	guint font_handler;
 	guint color_handler;
@@ -74,16 +77,20 @@ void            yelp_html_write          (YelpHtml    *html,
 					  gint         len);
 void            yelp_html_printf         (YelpHtml    *html, 
 					  char        *format, 
-					  ...);
+					  ...) G_GNUC_PRINTF (2,3);
 void            yelp_html_close          (YelpHtml    *html);
 
-GtkWidget *     yelp_html_get_widget     (YelpHtml    *html);
-
 gboolean        yelp_html_find           (YelpHtml    *html,
-					  const gchar *str,
-					  gboolean     match_case,
-					  gboolean     wrap,
+					  const gchar *str);
+
+gboolean	yelp_html_find_again	 (YelpHtml    *html,					  
 					  gboolean     forward);
+
+void		yelp_html_set_find_props (YelpHtml    *html,
+					  const char  *str,
+					  gboolean     match_case,
+					  gboolean     wrap);
+
 void            yelp_html_jump_to_anchor (YelpHtml    *html,
 					  gchar       *anchor);
 
@@ -91,5 +98,6 @@ void            yelp_html_copy_selection (YelpHtml    *html);
 
 void            yelp_html_select_all     (YelpHtml    *html);
 
-#endif /* __YELP_HTML_H__ */
+G_END_DECLS
 
+#endif /* __YELP_HTML_H__ */

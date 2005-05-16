@@ -147,6 +147,11 @@ if test "x$enable_cpp_rtti" = "xno"; then
   AM_CXXFLAGS="-fno-rtti $AM_CXXFLAGS"
 fi
 
+AC_CHECK_FILE([$MOZILLA_INCLUDE_ROOT/fastfind/nsITypeAheadFind.h],
+	[AC_DEFINE([TYPEAHEADFIND],[1],[Define if we have toolkit's nsITypeAheadFind])])
+
+AC_DEFINE([MOZILLA_INTERNAL_API],[1],[Define to have access to internal mozilla APIs])
+
 dnl Check for whereis
 case $host in
   *-linux-gnu | *-irix6*) AC_DEFINE(HAVE_MAN_WHEREIS, 1, [man(1)  understands -w option]);;

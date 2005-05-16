@@ -745,7 +745,7 @@ process_info_pending (YelpTocPager *pager)
 {
     return FALSE;
 }
-#endif // ENABLE_INFO
+#endif /* ENABLE_INFO */
 
 static gboolean
 process_read_menu (YelpTocPager *pager)
@@ -916,7 +916,7 @@ process_xslt (YelpTocPager *pager)
 				      priv->toc_doc,
 				      (const gchar **)params, NULL, NULL,
 				      priv->transformContext);
-    // Don't do this
+    /* Don't do this */
     g_signal_emit_by_name (pager, "finish");
 
  done:
