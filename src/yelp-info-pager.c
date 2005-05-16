@@ -44,6 +44,8 @@
 #define STYLESHEET_PATH DATADIR"/yelp/xslt/"
 #define INFO_STYLESHEET STYLESHEET_PATH"info2html.xsl"
 
+#define YELP_INFO_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_INFO_PAGER, YelpInfoPagerPriv))
+
 struct _YelpInfoPagerPriv {
     GtkTreeStore  *tree;
     GHashTable    *frags_hash;
@@ -109,6 +111,8 @@ info_pager_class_init (YelpInfoPagerClass *klass)
     xslt_class->params = info_pager_params;
 
     xslt_class->stylesheet = INFO_STYLESHEET;
+
+    g_type_class_add_private (klass, sizeof (YelpInfoPagerPriv));
 }
 
 static void
@@ -116,12 +120,10 @@ info_pager_init (YelpInfoPager *pager)
 {
     YelpInfoPagerPriv *priv;
 
-    priv = g_new0 (YelpInfoPagerPriv, 1);
+    pager->priv = priv = YELP_INFO_PAGER_GET_PRIVATE (pager);
 
     /* In this hash, key == value */
     priv->frags_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-
-    pager->priv = priv;
 }
 
 static void

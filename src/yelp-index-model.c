@@ -27,6 +27,8 @@
 #include "yelp-section.h"
 #include "yelp-index-model.h"
 
+#define YELP_INDEX_MODEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_INDEX_MODEL,YelpIndexModelPriv))
+
 struct _YelpIndexModelPriv {
 	GList *original_list;
 
@@ -123,6 +125,8 @@ yim_class_init (YelpIndexModelClass *class)
         object_class = (GObjectClass*) class;
 
         object_class->finalize = yim_finalize;
+
+	g_type_class_add_private (klass, sizeof (YelpIndexModelPriv));
 }
 
 static void
@@ -146,7 +150,7 @@ yim_init (YelpIndexModel *model)
 {
         YelpIndexModelPriv *priv;
         
-        priv = g_new0 (YelpIndexModelPriv, 1);
+        priv = YELP_INDEX_MODEL_GET_PRIVATE (model);
         
 	do {
 		priv->stamp = g_random_int ();

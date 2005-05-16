@@ -61,6 +61,8 @@ typedef gboolean      (*ProcessFunction)        (YelpTocPager      *pager);
 
 typedef struct _YelpListing YelpListing;
 
+#define YELP_TOC_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_TOC_PAGER, YelpTocPagerPriv))
+
 struct _YelpTocPagerPriv {
     gboolean      sk_docomf;
     GSList       *omf_pending;
@@ -191,6 +193,8 @@ toc_pager_class_init (YelpTocPagerClass *klass)
     pager_class->cancel       = toc_pager_cancel;
     pager_class->resolve_frag = toc_pager_resolve_frag;
     pager_class->get_sections = toc_pager_get_sections;
+
+    g_type_class_add_private (klass, sizeof (YelpTocPagerPriv));
 }
 
 static void
@@ -198,8 +202,7 @@ toc_pager_init (YelpTocPager *pager)
 {
     YelpTocPagerPriv *priv;
 
-    priv = g_new0 (YelpTocPagerPriv, 1);
-    pager->priv = priv;
+    pager->priv = priv = YELP_TOC_PAGER_GET_PRIVATE (pager);
 
     priv->parser = xmlNewParserCtxt ();
 

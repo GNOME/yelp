@@ -43,6 +43,8 @@
 #define STYLESHEET_PATH DATADIR"/yelp/xslt/"
 #define MAN_STYLESHEET  STYLESHEET_PATH"man2html.xsl"
 
+#define YELP_MAN_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MAN_PAGER, YelpManPagerPriv))
+
 struct _YelpManPagerPriv {
     gpointer unused;
 };
@@ -102,15 +104,14 @@ man_pager_class_init (YelpManPagerClass *klass)
     xslt_class->params = man_pager_params;
 
     xslt_class->stylesheet = MAN_STYLESHEET;
+
+    g_type_class_add_private (klass, sizeof (YelpManPagerPriv));
 }
 
 static void
 man_pager_init (YelpManPager *pager)
 {
-    YelpManPagerPriv *priv;
-
-    priv = g_new0 (YelpManPagerPriv, 1);
-    pager->priv = priv;
+    pager->priv = YELP_MAN_PAGER_GET_PRIVATE (pager);
 }
 
 static void

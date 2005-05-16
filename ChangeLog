@@ -1,5 +1,19 @@
 2005-05-16  Christian Persch  <chpe@cvs.gnome.org>
 
+	* src/yelp-base.c: (yelp_base_init), (yelp_base_class_init):
+	* src/yelp-db-pager.c: (db_pager_class_init), (db_pager_init):
+	* src/yelp-index-model.c: (yim_class_init), (yim_init):
+	* src/yelp-info-pager.c: (info_pager_class_init),
+	(info_pager_init):
+	* src/yelp-man-pager.c: (man_pager_class_init), (man_pager_init):
+	* src/yelp-pager.c: (pager_class_init), (pager_init):
+	* src/yelp-toc-pager.c: (toc_pager_class_init), (toc_pager_init):
+	* src/yelp-xslt-pager.c: (xslt_pager_class_init),
+	(xslt_pager_init):
+	- Use gobject private data, fixing bug #140632.
+
+2005-05-16  Christian Persch  <chpe@cvs.gnome.org>
+
 	* configure.in:
 	- Check for toolkit's nsITypeAheadFind.
 

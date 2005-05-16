@@ -37,6 +37,8 @@
 
 gboolean main_running;
 
+#define YELP_BASE_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_BASE, YelpBasePriv))
+
 struct _YelpBasePriv {
 	GNode  *toc_tree;
 
@@ -106,12 +108,11 @@ yelp_base_init (YelpBase *base)
 {
         YelpBasePriv *priv;
 
-        priv = g_new0 (YelpBasePriv, 1);
+        base->priv = priv = YELP_BASE_GET_PRIVATE (base);
         
 	priv->toc_tree = g_node_new (NULL);
 	priv->index    = NULL;
 	priv->windows  = NULL;
-        base->priv     = priv;
 
 	yelp_bookmarks_init ();
 	yelp_cache_init ();
@@ -129,6 +130,8 @@ yelp_base_class_init (YelpBaseClass *klass)
 	epv->getWindows = impl_Yelp_getWindows;
 
 	main_running = TRUE;
+
+	g_type_class_add_private (klass, sizeof (YelpBasePriv));
 }
 
 static void

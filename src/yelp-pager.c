@@ -38,6 +38,8 @@
 #define d(x)
 #endif
 
+#define YELP_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_PAGER, YelpPagerPriv))
+
 struct _YelpPagerPriv {
     YelpDocInfo     *doc_info;
     YelpPagerState   state;
@@ -169,6 +171,8 @@ pager_class_init (YelpPagerClass *klass)
 	 NULL, NULL,
 	 yelp_marshal_VOID__VOID,
 	 G_TYPE_NONE, 0);
+
+    g_type_class_add_private (klass, sizeof (YelpPagerPriv));
 }
 
 static void
@@ -176,8 +180,7 @@ pager_init (YelpPager *pager)
 {
     YelpPagerPriv *priv;
 
-    priv = g_new0 (YelpPagerPriv, 1);
-    pager->priv = priv;
+    pager->priv = priv = YELP_PAGER_GET_PRIVATE (pager);
 
     priv->doc_info = NULL;
     priv->state = YELP_PAGER_STATE_NEW;

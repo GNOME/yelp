@@ -59,6 +59,8 @@
 
 extern gboolean main_running;
 
+#define YELP_DB_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DB_PAGER, YelpDBPagerPriv))
+
 struct _YelpDBPagerPriv {
     GtkTreeModel   *sects;
     GHashTable     *frags_hash;
@@ -147,6 +149,8 @@ db_pager_class_init (YelpDBPagerClass *klass)
     xslt_class->params = db_pager_params;
 
     xslt_class->stylesheet = DB_STYLESHEET;
+
+    g_type_class_add_private (klass, sizeof (YelpDBPagerPriv));
 }
 
 static void
@@ -154,8 +158,7 @@ db_pager_init (YelpDBPager *pager)
 {
     YelpDBPagerPriv *priv;
 
-    priv = g_new0 (YelpDBPagerPriv, 1);
-    pager->priv = priv;
+    pager->priv = priv = YELP_DB_PAGER_GET_PRIVATE (pager);
 
     pager->priv->sects = NULL;
 

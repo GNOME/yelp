@@ -53,6 +53,8 @@
 
 extern gboolean main_running;
 
+#define YELP_XSLT_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_XSLT_PAGER, YelpXsltPagerPriv))
+
 struct _YelpXsltPagerPriv {
     xmlDocPtr               inputDoc;
     xmlDocPtr               outputDoc;
@@ -120,15 +122,14 @@ xslt_pager_class_init (YelpXsltPagerClass *klass)
     pager_class->finish       = xslt_pager_finish;
 
     pager_class->process      = xslt_pager_process;
+
+    g_type_class_add_private (klass, sizeof (YelpXsltPagerPriv));
 }
 
 static void
 xslt_pager_init (YelpXsltPager *pager)
 {
-    YelpXsltPagerPriv *priv;
-
-    priv = g_new0 (YelpXsltPagerPriv, 1);
-    pager->priv = priv;
+    pager->priv = YELP_XSLT_PAGER_GET_PRIVATE (pager);
 }
 
 static void
