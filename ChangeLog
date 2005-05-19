@@ -1,3 +1,14 @@
+2005-05-19  Shaun McCance  <shaunm@gnome.org>
+
+	* data/man.xml.in:
+	* src/yelp-man-pager.c:
+	* src/yelp-toc-pager.c:
+	* stylesheets/db2html.xsl.in:
+	* stylesheets/man2html.xsl:
+	* stylesheets/yelp-common.xsl:
+	- s/Man Pages/Manual Pages/
+	- Added a linktrail to man pages
+
 2005-05-16  Christian Persch  <chpe@cvs.gnome.org>
 
 	* src/yelp-base.c: (yelp_base_init), (yelp_base_class_init):

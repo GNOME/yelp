@@ -154,26 +154,6 @@
       <xsl:value-of select="$yelp.icon.warning"/><xsl:text>");
     }
 
-    div[class~="linktrail"] {
-      font-size: 0.8em;
-      white-space: nowrap;
-      margin: 0px;
-      padding: 3px;
-      padding-left: 12px;
-      padding-right: 12px;
-      background-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg"/><xsl:text>;
-      border: none;
-      border-bottom: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
-    }
-    span[class~="linktrail"]:after {
-      content: '&#x2003;/&#x2003;';
-      color: </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>;
-    }
-    a[class~="linktrail"] { text-decoration: none; }
-    a[class~="linktrail"]:hover { text-decoration: underline; }
     div[class~="navbar"] {
       -moz-box-sizing: border-box;
       position: absolute;
@@ -188,9 +168,7 @@
       background-color: </xsl:text>
       <xsl:value-of select="$yelp.color.gray.bg"/><xsl:text>;
       border: none;
-      border-top: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
-      border-bottom: solid 1px </xsl:text>
+      border: solid 1px </xsl:text>
       <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
     }
     div[class~="navbar"] span { white-space: nowrap; }

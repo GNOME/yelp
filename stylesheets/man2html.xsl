@@ -6,7 +6,12 @@
                 extension-element-prefixes="yelp"
                 version="1.0">
 
+<xsl:include href="yelp-common.xsl"/>
+
 <xsl:param name="stylesheet_path" select="''"/>
+<xsl:param name="linktrail"/>
+
+<xsl:param name="yelp.javascript"/>
 
 <xsl:param name="yelp.icon.blockquote"/>
 <xsl:param name="yelp.icon.caution"/>
@@ -58,8 +63,14 @@
       <style type="text/css">
         <xsl:call-template name="html.css"/>
       </style>
+      <script type="text/javascript">
+        <xsl:attribute name="src">
+          <xsl:value-of select="concat('file://', $yelp.javascript)"/>
+        </xsl:attribute>
+      </script>
     </head>
     <body>
+      <xsl:call-template name="html.linktrail"/>
       <div class="body">
         <xsl:apply-templates select="TH"/>
         <xsl:apply-templates select="SH"/>
@@ -68,40 +79,48 @@
   </html>
 </xsl:template>
 
-<xsl:template name="html.css"><xsl:text>
-h1 { font-size: 1.6em; font-weight: bold; }
-h2 { font-size: 1.4em; font-weight: bold; }
-h3 { font-size: 1.2em; font-weight: bold; }
+<xsl:template name="html.css">
+  <xsl:call-template name="yelp.common.css"/>
+  <xsl:text>
+    div[class~="SH"] { margin-left: 1.2em; }
+    div[class~="SS"] { margin-left: 1.6em; }
 
-h1, h2, h3, h4, h5, h6, h7 { color: </xsl:text>
-<xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>; }
+    span[class~="Section"] { margin-left: 0.4em; }
+  </xsl:text>
+</xsl:template>
 
-div[class~="SH"] { margin-left: 1.2em; }
-div[class~="SS"] { margin-left: 1.6em; }
+<xsl:template name="html.linktrail">
+  <div class="linktrail" id="linktrail">
+    <xsl:call-template name="html.linktrail.one">
+      <xsl:with-param name="str" select="$linktrail"/>
+    </xsl:call-template>
+  </div>
+</xsl:template>
 
-span[class~="Section"] {margin-left: 0.4em; }
+<xsl:template name="html.linktrail.one">
+  <xsl:param name="str"/>
+  <xsl:variable name="id" select="substring-before($str, '|')"/>
+  <xsl:variable name="post_id" select="substring-after($str, '|')"/>
 
-body { margin: 0em; padding: 0em; }
-div[class~="body"] {
-margin-left: 0.8em;
-margin-right: 0.8em;
-margin-bottom: 1.6em;
-}
+  <span class="linktrail">
+    <a class="linktrail" href="x-yelp-toc:{$id}">
+      <xsl:choose>
+        <xsl:when test="contains($post_id, '|')">
+          <xsl:value-of select="substring-before($post_id, '|')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$post_id"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </a>
+  </span>
 
-p, div { margin: 0em; }
-p + *, div + * { margin-top: 1em; }
-
-dl { margin: 0em; }
-dl dd + dt { margin-top: 1em; }
-dl dd {
-  margin-top: 0.5em;
-  margin-left: 2em;
-  margin-right: 1em;
-}
-ol { margin-left: 2em; }
-ul { margin-left: 2em; }
-ul li { margin-right: 1em; }
-</xsl:text></xsl:template>
+  <xsl:if test="contains($post_id, '|')">
+    <xsl:call-template name="html.linktrail.one">
+      <xsl:with-param name="str" select="substring-after($post_id, '|')"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
 
 <!-- ======================================================================= -->
 

@@ -26,18 +26,20 @@
 <!-- == yelp.common.css == -->
 <xsl:template name="yelp.common.css">
   <xsl:text>
-    html { height: 100%; }
+    html {
+      height: 100%;
+    }
     body {
+      -moz-box-sizing: border-box;
       position: relative;
       min-height: 100%;
-      border-left: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
-      border-right: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
+      margin: 0px;
     }
     div[class~="body"] {
+      -moz-box-sizing: border-box;
       position: relative;
       margin-top: 0px;
+      padding: 12px;
       padding-bottom: 3em;
     }
 
@@ -59,6 +61,28 @@
       color: </xsl:text>
       <xsl:value-of select="$yelp.color.selected.fg"/><xsl:text>;
     }
+
+    div[class~="linktrail"] {
+      -moz-box-sizing: border-box;
+      font-size: 0.8em;
+      white-space: nowrap;
+      margin: 0px;
+      padding: 3px;
+      padding-left: 12px;
+      padding-right: 12px;
+      background-color: </xsl:text>
+      <xsl:value-of select="$yelp.color.gray.bg"/><xsl:text>;
+      border: none;
+      border: solid 1px </xsl:text>
+      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
+    }
+    span[class~="linktrail"]:after {
+      content: '&#x2003;/&#x2003;';
+      color: </xsl:text>
+      <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>;
+    }
+    a[class~="linktrail"] { text-decoration: none; }
+    a[class~="linktrail"]:hover { text-decoration: underline; }
   </xsl:text>
 </xsl:template>
 

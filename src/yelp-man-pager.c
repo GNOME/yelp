@@ -24,6 +24,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <libxml/parser.h>
@@ -49,6 +50,21 @@ struct _YelpManPagerPriv {
     gpointer unused;
 };
 
+typedef struct _YelpManSect YelpManSect;
+struct _YelpManSect {
+    gchar  *title;
+    gchar  *id;
+    gchar  *sect;
+
+    YelpManSect *parent;
+    YelpManSect *child;
+    YelpManSect *prev;
+    YelpManSect *next;
+};
+
+static YelpManSect *man_section  = NULL;
+static GHashTable  *man_secthash = NULL;
+
 static void           man_pager_class_init   (YelpManPagerClass *klass);
 static void           man_pager_init         (YelpManPager      *pager);
 static void           man_pager_dispose      (GObject           *gobject);
@@ -59,6 +75,10 @@ static gchar **       man_pager_params       (YelpPager        *pager);
 static const gchar *  man_pager_resolve_frag (YelpPager        *pager,
 					      const gchar      *frag_id);
 static GtkTreeModel * man_pager_get_sections (YelpPager        *pager);
+static void           man_sections_init      (void);
+static YelpManSect *  man_section_process    (xmlNodePtr        node,
+					      YelpManSect      *parent,
+					      YelpManSect      *previous);
 
 static YelpPagerClass *parent_class;
 
@@ -176,12 +196,86 @@ man_pager_parse (YelpPager *pager)
 static gchar **
 man_pager_params (YelpPager *pager)
 {
+    YelpDocInfo *doc_info;
     gchar **params;
     gint params_i = 0;
-    gint params_max = 10;
+    gint params_max = 20;
+
+    gchar *uri, *file;
+    gchar *c1 = NULL, *c2 = NULL, *mansect = NULL;
+
+    gchar *linktrail = NULL;
+
+    if (man_section == NULL)
+	man_sections_init ();
+
+    doc_info = yelp_pager_get_doc_info (pager);
+    uri = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_MAN);
+    file = strrchr (uri, '/');
+    if (file)
+	file++;
+    else
+	file = uri;
+    c1 = g_strrstr (file, ".bz2");
+    if (c1 && strlen (c1) != 4)
+	c1 = NULL;
+
+    if (!c1) {
+	c1 = g_strrstr (file, ".gz");
+	if (c1 && strlen (c1) != 3)
+	    c1 = NULL;
+    }
+
+    if (c1)
+	c2 = g_strrstr_len (file, c1 - file, ".");
+    else
+	c2 = g_strrstr (file, ".");
+
+    if (c2) {
+	if (c1)
+	    mansect = g_strndup (c2 + 1, c1 - c2 - 1);
+	else
+	    mansect = g_strdup (c2 + 1);
+    }
+
+    if (mansect != NULL) {
+	YelpManSect *sectdata = g_hash_table_lookup (man_secthash, mansect);
+	while (sectdata != NULL) {
+	    if (linktrail) {
+		gchar *new = g_strdup_printf ("%s|%s|%s",
+					      sectdata->id,
+					      sectdata->title,
+					      linktrail);
+		g_free (linktrail);
+		linktrail = new;
+	    } else {
+		linktrail = g_strdup_printf ("%s|%s",
+					     sectdata->id,
+					     sectdata->title);
+	    }
+	    sectdata = sectdata->parent;
+	}
+    }
+    g_free (mansect);
+    g_free (uri);
 
     params = g_new0 (gchar *, params_max);
 
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 10;
+	params = g_renew (gchar *, params, params_max);
+    }
+
+    if (linktrail) {
+	params[params_i++] = "linktrail";
+	params[params_i++] = g_strdup_printf ("\"%s\"", linktrail);
+	g_free (linktrail);
+    }
+
+    params[params_i++] = "yelp.javascript";
+    params[params_i++] = g_strdup_printf ("\"%s\"", DATADIR "/yelp/yelp.js");
     params[params_i++] = "stylesheet_path";
     params[params_i++] = g_strdup_printf ("\"file://%s\"", STYLESHEET_PATH);
 
@@ -200,4 +294,102 @@ static GtkTreeModel *
 man_pager_get_sections (YelpPager *pager)
 {
     return NULL;
+}
+
+static void
+man_sections_init (void)
+{
+    xmlParserCtxtPtr parser;
+    xmlDocPtr doc;
+
+    man_secthash = g_hash_table_new (g_str_hash, g_str_equal);
+
+    parser = xmlNewParserCtxt ();
+    doc = xmlCtxtReadFile (parser, DATADIR "/yelp/man.xml", NULL,
+			   XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+			   XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+			   XML_PARSE_NONET    );
+
+    man_section = man_section_process (xmlDocGetRootElement (doc), NULL, NULL);
+
+    xmlFreeParserCtxt (parser);
+    xmlFreeDoc (doc);
+}
+
+static YelpManSect *
+man_section_process (xmlNodePtr    node,
+		     YelpManSect  *parent,
+		     YelpManSect  *previous)
+{
+    YelpManSect *this_sect, *psect;
+    xmlNodePtr cur, title_node;
+    xmlChar *title_lang, *title;
+    int j, title_pri;
+    xmlChar *sect;
+
+    const gchar * const * langs = g_get_language_names ();
+
+    title_node = NULL;
+    title_lang = NULL;
+    title_pri  = INT_MAX;
+    for (cur = node->children; cur; cur = cur->next) {
+	if (!xmlStrcmp (cur->name, BAD_CAST "title")) {
+	    xmlChar *cur_lang = NULL;
+	    int cur_pri = INT_MAX;
+	    cur_lang = xmlNodeGetLang (cur);
+	    if (cur_lang) {
+		for (j = 0; langs[j]; j++) {
+		    if (g_str_equal (cur_lang, langs[j])) {
+			cur_pri = j;
+			break;
+		    }
+		}
+	    } else {
+		cur_pri = INT_MAX - 1;
+	    }
+	    if (cur_pri <= title_pri) {
+		if (title_lang)
+		    xmlFree (title_lang);
+		title_lang = cur_lang;
+		title_pri  = cur_pri;
+		title_node = cur;
+	    } else {
+		if (cur_lang)
+		    xmlFree (cur_lang);
+	    }
+	}
+    }
+    title = xmlNodeGetContent (title_node);
+
+    this_sect = g_new0 (YelpManSect, 1);
+    this_sect->title = g_strdup (title);
+
+    this_sect->parent = parent;
+    if (previous != NULL) {
+	this_sect->prev = previous;
+	previous->next = this_sect;
+    } else if (parent != NULL) {
+	parent->child = this_sect;
+    }
+
+    this_sect->id = g_strdup (xmlGetProp (node, "id"));
+
+    sect = xmlGetProp (node, "sect");
+    if (sect) {
+	this_sect->sect = g_strdup (sect);
+	g_hash_table_insert (man_secthash, this_sect->sect, this_sect);
+    }
+
+    psect = NULL;
+    for (cur = node->children; cur; cur = cur->next) {
+	if (!xmlStrcmp (cur->name, BAD_CAST "toc")) {
+	    psect = man_section_process (cur, this_sect, psect);
+	}
+    }
+
+    if (title_lang)
+	xmlFree (title_lang);
+    xmlFree (title);
+
+    return this_sect;
 }

@@ -787,7 +787,7 @@ process_read_menu (YelpTocPager *pager)
 	if (!xmlStrcmp (id, "index")) {
 	    xmlNodePtr new = xmlNewChild (node, NULL, "toc", NULL);
 	    xmlNewNsProp (new, NULL, "id", "Man");
-	    xmlNewChild (new, NULL, "title", _("Man Pages"));
+	    xmlNewChild (new, NULL, "title", _("Manual Pages"));
 	}
 #endif
 
@@ -1151,7 +1151,8 @@ xml_trim_titles (xmlNodePtr node)
 		keep_pri = cur_pri;
 		keep = cur;
 	    } else {
-		xmlFree (cur_lang);
+		if (cur_lang)
+		    xmlFree (cur_lang);
 	    }
 	}
     }
