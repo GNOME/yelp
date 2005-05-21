@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-14 12:02+0200\n"
+"POT-Creation-Date: 2005-05-21 13:10+0200\n"
 "PO-Revision-Date: 2005-04-14 12:50+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <eu@li.org>\n"
@@ -50,8 +50,8 @@ msgstr "Nukleo-errutinak"
 msgid "Library Functions"
 msgstr "Liburutegi-funtzioak"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:787
-msgid "Man Pages"
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:790
+msgid "Manual Pages"
 msgstr "Eskuliburuko orriak"
 
 #: ../data/man.xml.in.h:10
@@ -284,7 +284,8 @@ msgstr "Zabalera aldakorreko testuaren letra-tipoa"
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Erabili teklatuarekin kontrola daitekeen kurtsorea orrialdeak ikusteko."
+msgstr ""
+"Erabili teklatuarekin kontrola daitekeen kurtsorea orrialdeak ikusteko."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -298,7 +299,7 @@ msgstr "Erabili sistemako letra-tipoak"
 msgid "Use the default fonts set for the system."
 msgstr "Erabili sistemako letra-tipo lehenetsiak."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2169
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2182
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -321,24 +322,22 @@ msgstr "Kendu laster-marka"
 #: ../src/yelp-bookmarks.c:306 ../src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
-"<b>%s</b> izeneko laster-marka jadanik existitzen da orrialde "
-"honetan."
+msgstr "<b>%s</b> izeneko laster-marka jadanik existitzen da orrialde honetan."
 
 #: ../src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "Dokumentuaren atalak"
 
-#: ../src/yelp-db-pager.c:242
+#: ../src/yelp-db-pager.c:245
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
-"'%s' fitxategia ezin da analizatu. Edo fitxategia ez da existitzen, edo "
-"ez dauka behar bezalako XML formatua."
+"'%s' fitxategia ezin da analizatu. Edo fitxategia ez da existitzen, edo ez "
+"dauka behar bezalako XML formatua."
 
-#: ../src/yelp-db-pager.c:486
+#: ../src/yelp-db-pager.c:491
 msgid "Unknown Section"
 msgstr "Atal ezezaguna"
 
@@ -380,8 +379,8 @@ msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
-"Ezin izan da '%s' fitxategia irakurri eta dekodetu. Baliteke "
-"fitxategia onartu gabeko formatu batean konprimatuta egotea."
+"Ezin izan da '%s' fitxategia irakurri eta dekodetu. Baliteke fitxategia "
+"onartu gabeko formatu batean konprimatuta egotea."
 
 #: ../src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -400,18 +399,20 @@ msgstr "Ezin izan da leiho berria ireki."
 msgid "Help"
 msgstr "Laguntza"
 
-#: ../src/yelp-man-pager.c:164
+#: ../src/yelp-man-pager.c:185
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr "Ezin izan da '%s' fitxategia analizatu. Edo fitxategiak ez du existitzen, edo formatu okerrekoa da."
+msgstr ""
+"Ezin izan da '%s' fitxategia analizatu. Edo fitxategiak ez du existitzen, "
+"edo formatu okerrekoa da."
 
-#: ../src/yelp-pager.c:120
+#: ../src/yelp-pager.c:122
 msgid "Document Information"
 msgstr "Dokumentuaren informazioa"
 
-#: ../src/yelp-pager.c:121
+#: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
 msgstr "Dokumentuaren YelpDocInfo egitura"
 
@@ -436,210 +437,214 @@ msgstr "Dokumentuaren YelpDocInfo egitura"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:153
+#: ../src/yelp-settings.c:156
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:268
+#: ../src/yelp-toc-pager.c:271
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: pausa-zenbaketa negatiboa da."
 
-#: ../src/yelp-toc-pager.c:491
+#: ../src/yelp-toc-pager.c:494
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Ezin izan da '%s' OMF fitxategia kargatu."
 
-#: ../src/yelp-toc-pager.c:682
+#: ../src/yelp-toc-pager.c:685
 #, c-format
 msgid "Read man page for %s"
 msgstr "Irakurri %s(r)en eskuliburuko orria"
 
-#: ../src/yelp-toc-pager.c:767
+#: ../src/yelp-toc-pager.c:770
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr "Ezin nizan da gaien aurkibidea kargatu. '%s' fitxategia falta da edo XML formatu okerra dauka."
+msgstr ""
+"Ezin nizan da gaien aurkibidea kargatu. '%s' fitxategia falta da edo XML "
+"formatu okerra dauka."
 
-#: ../src/yelp-toc-pager.c:878
+#: ../src/yelp-toc-pager.c:881
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
-"Ezin izan da gaien aurkibidea irakurri. '%s' fitxategia falta da edo "
-"ez da baliozko XSLT kalkulu-orria."
+"Ezin izan da gaien aurkibidea irakurri. '%s' fitxategia falta da edo ez da "
+"baliozko XSLT kalkulu-orria."
 
-#: ../src/yelp-toc-pager.c:1029 ../src/yelp-xslt-pager.c:365
+#: ../src/yelp-toc-pager.c:1033 ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "Ez da href atributurik aurkitu yelp:document-en"
 
-#: ../src/yelp-toc-pager.c:1043 ../src/yelp-xslt-pager.c:381
+#: ../src/yelp-toc-pager.c:1047 ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "Memoriarik ez"
 
-#: ../src/yelp-toc-pager.c:1084
+#: ../src/yelp-toc-pager.c:1088
 msgid "Help Contents"
 msgstr "Laguntzaren edukia"
 
-#: ../src/yelp-window.c:292
+#: ../src/yelp-window.c:286
 msgid "_File"
 msgstr "_Fitxategia"
 
-#: ../src/yelp-window.c:293
+#: ../src/yelp-window.c:287
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: ../src/yelp-window.c:294
+#: ../src/yelp-window.c:288
 msgid "_Go"
 msgstr "_Joan"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:289
 msgid "_Bookmarks"
 msgstr "Laster-_markak"
 
-#: ../src/yelp-window.c:296
+#: ../src/yelp-window.c:290
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:293
 msgid "_New Window"
 msgstr "_Leiho berria"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:298
 msgid "About This Document"
 msgstr "Dokumentu honi buruz"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:303
 msgid "Open _Location"
 msgstr "Ireki _helbidea"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:308
 msgid "_Close Window"
 msgstr "_Itxi leihoa"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:314
 msgid "_Copy"
 msgstr "_Kopiatu"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:320
 msgid "_Select All"
 msgstr "_Hautatu denak"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:325
 msgid "_Find..."
 msgstr "_Bilatu..."
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:330
 msgid "_Preferences"
 msgstr "_Hobespenak"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:335
 msgid "_Reload"
 msgstr "_Berritu"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:341
 msgid "_Back"
 msgstr "_Atzera"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:343
 msgid "Show previous page in history"
 msgstr "Erakutsi historiako aurreko orrialdea "
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:346
 msgid "_Forward"
 msgstr "A_urrera"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:348
 msgid "Show next page in history"
 msgstr "Erakutsi historiako hurrengo orrialdea "
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:351
 msgid "_Help Topics"
 msgstr "_Laguntzako gaiak"
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:353
 msgid "Go to the listing of help topics"
 msgstr "Joan lagunako gaien zerrendara"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:356
 msgid "_Previous Section"
 msgstr "_Aurreko atala"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:361
 msgid "_Next Section"
 msgstr "_Hurrengo atala"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:366
 msgid "_Contents"
 msgstr "_Edukia"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:372
 msgid "_Add Bookmark"
 msgstr "_Gehitu laster-marka"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:377
 msgid "_Edit Bookmarks..."
 msgstr "_Editatu laster-markak..."
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:383
 msgid "_Open Link"
 msgstr "_Ireki esteka"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:388
 msgid "Open Link in _New Window"
 msgstr "Ireki _esteka leiho berrian"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:393
 msgid "_Copy Link Address"
 msgstr "_Kopiatu estekaren helbidea"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:399
 msgid "_About"
 msgstr "Honi _buruz"
 
-#: ../src/yelp-window.c:456
+#: ../src/yelp-window.c:448
 msgid "Help Browser"
 msgstr "Laguntza-arakatzailea"
 
-#: ../src/yelp-window.c:687 ../src/yelp-window.c:820
+#: ../src/yelp-window.c:700 ../src/yelp-window.c:833
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Fitxategiaren URIa baliogabea da."
 
-#: ../src/yelp-window.c:699 ../src/yelp-window.c:815
+#: ../src/yelp-window.c:712 ../src/yelp-window.c:828
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "'%s'(r)en URIa baliogabea da, edo ez du uneko fitxategira bideratzen."
 
-#: ../src/yelp-window.c:775 ../src/yelp-window.c:1130
+#: ../src/yelp-window.c:788 ../src/yelp-window.c:1143
 msgid "Man pages are not supported in this version."
 msgstr "Eskuliburuko orriak ez daude bertsio honetan onartuta."
 
-#: ../src/yelp-window.c:785 ../src/yelp-window.c:1121
+#: ../src/yelp-window.c:798 ../src/yelp-window.c:1134
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU info orriak ez daude bertsio honetan onartuta."
 
-#: ../src/yelp-window.c:795
+#: ../src/yelp-window.c:808
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr "SGML dokumentuak ez dira gehiago onartuko. Eskatu egileari XML formatura bihurtzeko."
+msgstr ""
+"SGML dokumentuak ez dira gehiago onartuko. Eskatu egileari XML formatura "
+"bihurtzeko."
 
-#: ../src/yelp-window.c:1014
+#: ../src/yelp-window.c:1027
 msgid "Find:"
 msgstr "Bilatu:"
 
-#: ../src/yelp-window.c:1030
+#: ../src/yelp-window.c:1043
 msgid "Find _Next"
 msgstr "Bilatu _hurrengoa"
 
-#: ../src/yelp-window.c:1042
+#: ../src/yelp-window.c:1055
 msgid "Find _Previous"
 msgstr "Bilatu _aurrekoa"
 
-#: ../src/yelp-window.c:1147
+#: ../src/yelp-window.c:1160
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -648,8 +653,8 @@ msgstr ""
 "Ezin izan da '%s' fitxategiarentzako eraldaketarako testuingurua sortu. "
 "Baliteke formatua onartuta ez egotea."
 
-#: ../src/yelp-window.c:1177 ../src/yelp-window.c:1601
-#: ../src/yelp-window.c:1668
+#: ../src/yelp-window.c:1190 ../src/yelp-window.c:1614
+#: ../src/yelp-window.c:1681
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -657,32 +662,33 @@ msgid ""
 "maintainers of that application."
 msgstr ""
 "'%s' atala ez dago dokumentu honetan. Aplikazio bateko laguntza botoia "
-"erabili atal honetara joan bazara, honi buruzko berri bidal iezaziezu aplikazioaren mantentzaileei."
+"erabili atal honetara joan bazara, honi buruzko berri bidal iezaziezu "
+"aplikazioaren mantentzaileei."
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1305
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr "Ezin izan da '%s' fitxategia irakurri. Fitxategia falta da, edo ez daukazu nahikoa baimen hau irakurtzeko."
+msgstr ""
+"Ezin izan da '%s' fitxategia irakurri. Fitxategia falta da, edo ez daukazu "
+"nahikoa baimen hau irakurtzeko."
 
-#: ../src/yelp-window.c:1336
+#: ../src/yelp-window.c:1349
 msgid "Loading..."
 msgstr "Kargatzen..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2166
+#: ../src/yelp-window.c:2179
 msgid "translator-credits"
-msgstr ""
-"Hizkuntza Politikarako Sailburuordetza "
-"(<hizkpol@ej-gv.es>)"
+msgstr "Hizkuntza Politikarako Sailburuordetza (<hizkpol@ej-gv.es>)"
 
-#: ../src/yelp-window.c:2171
+#: ../src/yelp-window.c:2184
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentazio-arakatzaile eta -ikustaile bat GNOME Mahaigainerako."
 
-#: ../src/yelp-xslt-pager.c:194
+#: ../src/yelp-xslt-pager.c:195
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -691,16 +697,15 @@ msgstr ""
 "Ezin izan da '%s' fitxategia analizatu. Fitxategia ez da existitzen, edo "
 "formatu okerra du."
 
-#: ../src/yelp-xslt-pager.c:215 ../src/yelp-xslt-pager.c:228
+#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
-"Ezin izan da '%s' dokumentua prozesatu. '%s' Fitxategia falta da, edo "
-"ez da baliozko XSLT kalkulu-orria."
+"Ezin izan da '%s' dokumentua prozesatu. '%s' Fitxategia falta da, edo ez da "
+"baliozko XSLT kalkulu-orria."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Eskuratu GNOMEri buruzko laguntza "
-
