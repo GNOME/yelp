@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10 gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-03 17:40+0200\n"
-"PO-Revision-Date: 2005-03-03 17:38+0200\n"
+"POT-Creation-Date: 2005-06-07 18:34+0300\n"
+"PO-Revision-Date: 2005-06-07 18:34+0300\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Библиотечни функции"
 
 #: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:787
 msgid "Man Pages"
-msgstr "Страници на ръководствата"
+msgstr "Страници на ръководства"
 
 #: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
@@ -216,7 +216,7 @@ msgstr "Отметки"
 
 #: ../data/ui/yelp.glade.h:7
 msgid "C_ase sensitive"
-msgstr "Чувствителност към малки или големи букви"
+msgstr "Малките и големи букви имат значение"
 
 #: ../data/ui/yelp.glade.h:8
 msgid "Find"
@@ -394,7 +394,7 @@ msgstr "Yelp не може да бъде активиран: \"%s\""
 msgid "Could not open new window."
 msgstr "Прозорецът не може да бъде отворен."
 
-#: ../src/yelp-main.c:326 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Потребителско ръководство"
 
@@ -686,8 +686,12 @@ msgstr "Зареждане..."
 #: ../src/yelp-window.c:2166
 msgid "translator-credits"
 msgstr ""
+"Владимир \"Kaladan\" Петков <vpetkov@i-space.org>\n"
 "Александър Шопов <ash@contact.bg>\n"
-"Владимир \"Kaladan\" Петков <vpetkov@i-space.org>"
+"\n"
+"Проектът за превод на GNOME има нужда от подкрепа.\n"
+"Научете повече за нас на http://gnome.cult.bg\n"
+"Докладвайте за грешки на http://gnome.cult.bg/bugs"
 
 #: ../src/yelp-window.c:2171
 msgid "A documentation browser and viewer for the Gnome Desktop."
