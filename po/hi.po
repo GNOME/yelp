@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-11 05:59+0000\n"
-"PO-Revision-Date: 2005-05-11 18:24+0530\n"
+"POT-Creation-Date: 2005-06-10 06:46+0000\n"
+"PO-Revision-Date: 2005-06-10 16:35+0530\n"
 "Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
 "Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -49,9 +50,9 @@ msgstr "कर्नेल रूटीन्स"
 msgid "Library Functions"
 msgstr "लायब्रेरी फ़ंक्शन्स"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:787
-msgid "Man Pages"
-msgstr "सहायता पृष्ठ"
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:790
+msgid "Manual Pages"
+msgstr "मैनुअल पृष्ठ"
 
 #: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
@@ -275,29 +276,29 @@ msgstr "पाठ के लिये फंट"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "स्थिर चौड़ाई के साथ पाठ के लियें फंट"
 
 #: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "परिवर्तनशील चौड़ाई के साथ पाठ के लियें फंट"
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "पृष्ठ देखने के दौरान कुंजीपटल नियंत्रक हंसपद का प्रयोग करें."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "हंसपद का प्रयोग करें"
 
 #: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "सिस्टम फंट का प्रयोग करें"
 
 #: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "सिस्टम के लिये मूलभूत फंट सेट का प्रयोग करें"
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2169
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2182
 msgid "Yelp"
 msgstr "येल्प"
 
@@ -307,7 +308,7 @@ msgstr "येल्प फ़ैक्ट्री"
 
 #: ../src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
-msgstr ""
+msgstr "नये विंडो में पुस्तक चिह्न खोलें"
 
 #: ../src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
@@ -320,30 +321,30 @@ msgstr "पसंदीदा मिटाएँ"
 #: ../src/yelp-bookmarks.c:306 ../src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "<b>%s</b> शीर्षक का पुस्तक चिह्न इस पृष्ठ के लिये पहले से मौजूद है."
 
 #: ../src/yelp-bookmarks.c:406
 msgid "Document Sections"
 msgstr "दस्तावेज जानकारी"
 
-#: ../src/yelp-db-pager.c:242
+#: ../src/yelp-db-pager.c:245
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr ""
+msgstr "‘%s’ फाइल का विश्लेषण नहीं किया जा सकता. या तो फाइल मौजूद नहीं है, या यह सही XML नहीं है."
 
-#: ../src/yelp-db-pager.c:488
+#: ../src/yelp-db-pager.c:491
 msgid "Unknown Section"
 msgstr "अज्ञात खंड"
 
 #: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "एक अनजान त्रुटि उत्पन्न हुई"
 
 #: ../src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "दस्तावेज भारित नहीं कर सका"
 
 #: ../src/yelp-error.c:48
 msgid "Could not load section"
@@ -359,22 +360,22 @@ msgstr "असमर्थित फ़ॉर्मेट"
 
 #: ../src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "दस्तावेज नहीं पढ़ सका"
 
 #: ../src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "दस्तावेज प्रक्रियागत नहीं कर सका"
 
 #: ../src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "त्रुटि के संबंध में कोई सूचना उपलब्ध नहीं है."
 
 #: ../src/yelp-io-channel.c:98
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr ""
+msgstr "‘%s’ फाइल पढ़ी को विकूटित नहीं की जा सकी. फाइल को एक असमर्थित प्रारूप में संकुचित किया जा सकता है."
 
 #: ../src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -393,20 +394,20 @@ msgstr "नई विंडो खोल नहीं सका."
 msgid "Help"
 msgstr "मदद"
 
-#: ../src/yelp-man-pager.c:164
+#: ../src/yelp-man-pager.c:185
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
+msgstr "‘%s’ फाइल की व्याख्या नहीं की जा सकी.  या तो फाइल मौजूद नहीं है, या यह गलत ढ़ंग से संरूपित किया गया है."
 
-#: ../src/yelp-pager.c:120
+#: ../src/yelp-pager.c:122
 msgid "Document Information"
 msgstr "दस्तावेज़ जानकारी"
 
-#: ../src/yelp-pager.c:121
+#: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "दस्तावेज का YelpDocInfo struct"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -429,231 +430,231 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:153
+#: ../src/yelp-settings.c:156
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:268
+#: ../src/yelp-toc-pager.c:271
 msgid "YelpTocPager: Pause count is negative."
 msgstr "येल्प-टीओसी-पेज़र: पॉज़ गणन ऋणात्मक है."
 
-#: ../src/yelp-toc-pager.c:491
+#: ../src/yelp-toc-pager.c:494
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "ओएमएफ़ फ़ाइल '%s' लोड नहीं कर सका."
 
-#: ../src/yelp-toc-pager.c:682
+#: ../src/yelp-toc-pager.c:685
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "%s के लिये मैन पेज पढ़ें"
 
-#: ../src/yelp-toc-pager.c:767
+#: ../src/yelp-toc-pager.c:770
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
+msgstr "विषय वस्तु तालिका भारित नहीं किया जा सका. ‘%s’ फाइल या तो गुम हो गई है या उचित XML नहीं है."
 
-#: ../src/yelp-toc-pager.c:878
+#: ../src/yelp-toc-pager.c:881
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "विषय तालिका प्रक्रिया नहीं किया जा सकता. ‘%s’ फाइल या तो गुम है या एक मान्य XSLT स्टाइलशीट नहीं है."
 
-#: ../src/yelp-toc-pager.c:1030 ../src/yelp-xslt-pager.c:365
+#: ../src/yelp-toc-pager.c:1033 ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "येल्प:दस्तावेज़ में कोई href गुण नहीं मिला"
 
-#: ../src/yelp-toc-pager.c:1044 ../src/yelp-xslt-pager.c:381
+#: ../src/yelp-toc-pager.c:1047 ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "मेमोरी कम पड़ गई"
 
-#: ../src/yelp-toc-pager.c:1085
+#: ../src/yelp-toc-pager.c:1088
 msgid "Help Contents"
 msgstr "मदद विषय-सूची"
 
-#: ../src/yelp-window.c:292
+#: ../src/yelp-window.c:286
 msgid "_File"
 msgstr "फ़ाइल (_F)"
 
-#: ../src/yelp-window.c:293
+#: ../src/yelp-window.c:287
 msgid "_Edit"
 msgstr "संपादन (_E)"
 
-#: ../src/yelp-window.c:294
+#: ../src/yelp-window.c:288
 msgid "_Go"
 msgstr "जाएँ (_G)"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:289
 msgid "_Bookmarks"
 msgstr "पसंद (_B)"
 
-#: ../src/yelp-window.c:296
+#: ../src/yelp-window.c:290
 msgid "_Help"
 msgstr "मदद (_H)"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:293
 msgid "_New Window"
 msgstr "नया विंडो (_N)"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:298
 msgid "About This Document"
 msgstr "इस दस्तावेज के बारे में"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:303
 msgid "Open _Location"
-msgstr ""
+msgstr "अवस्थिति खोलें (_L)"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:308
 msgid "_Close Window"
 msgstr "विंडो बंद करें (_C)"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:314
 msgid "_Copy"
 msgstr "प्रतिलिपि (_C)"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:320
 msgid "_Select All"
 msgstr "सभी चुनें (_S)"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:325
 msgid "_Find..."
 msgstr "ढूंढें (_F)..."
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:330
 msgid "_Preferences"
 msgstr "वरीयताएँ (_P)"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:335
 msgid "_Reload"
 msgstr "पुनः लोड करें (_R)"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:341
 msgid "_Back"
 msgstr "पीछे (_B)"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:343
 msgid "Show previous page in history"
 msgstr "इतिहास में पिछला पृष्ठ दिखाएँ"
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:346
 msgid "_Forward"
 msgstr "आगे (_F)"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:348
 msgid "Show next page in history"
 msgstr "इतिहास में अगला पृष्ठ दिखाएँ"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:351
 msgid "_Help Topics"
-msgstr ""
+msgstr "सहायता विषय (_H)"
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:353
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "सहायता विषय की सूची के लिये जायें"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:356
 msgid "_Previous Section"
 msgstr "पिछला खंड (_P)"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:361
 msgid "_Next Section"
 msgstr "अगला खंड (_N)"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:366
 msgid "_Contents"
 msgstr "विषय सूची (_C)"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:372
 msgid "_Add Bookmark"
 msgstr "पसंद जोड़ें (_A)"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:377
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "पुस्तक चिह्न संपादित करें (_E)..."
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:383
 msgid "_Open Link"
 msgstr "लिंक खोलें (_O)"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:388
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "नये विंडो में लिंक खोलें (_N)"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:393
 msgid "_Copy Link Address"
 msgstr "लिंक पता प्रतिलिपि करें (_C)"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:399
 msgid "_About"
 msgstr "के बारे में (_A)"
 
-#: ../src/yelp-window.c:456
+#: ../src/yelp-window.c:448
 msgid "Help Browser"
 msgstr "मदद ब्राउज़र"
 
-#: ../src/yelp-window.c:687 ../src/yelp-window.c:820
+#: ../src/yelp-window.c:700 ../src/yelp-window.c:833
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "फाइल के लिये समान संसाधन पहचानकर्ता अमान्य है."
 
-#: ../src/yelp-window.c:699 ../src/yelp-window.c:815
+#: ../src/yelp-window.c:712 ../src/yelp-window.c:828
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "समान संसाधन पहचानकर्ता ‘%s’ अमान्य है या वास्तविक जिंदगी में इंगित नहीं करता है."
 
-#: ../src/yelp-window.c:775 ../src/yelp-window.c:1130
+#: ../src/yelp-window.c:788 ../src/yelp-window.c:1143
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "इस संस्करण में मैन पेज समर्थित नहीं है."
 
-#: ../src/yelp-window.c:785 ../src/yelp-window.c:1121
+#: ../src/yelp-window.c:798 ../src/yelp-window.c:1134
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "GNU इस संस्करण में समर्थित नहीं है"
 
-#: ../src/yelp-window.c:795
+#: ../src/yelp-window.c:808
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "SGML दस्तावेज अब समर्थित नहीं रह गई है. कृपया दस्तावेज के लेखक से XML में बदलने के लिये कहें."
 
-#: ../src/yelp-window.c:1014
+#: ../src/yelp-window.c:1027
 msgid "Find:"
 msgstr "ढूंढें:"
 
-#: ../src/yelp-window.c:1030
+#: ../src/yelp-window.c:1043
 msgid "Find _Next"
 msgstr "अगला ढूंढें (_N)"
 
-#: ../src/yelp-window.c:1042
+#: ../src/yelp-window.c:1055
 msgid "Find _Previous"
 msgstr "पिछला ढूंढें (_P)"
 
-#: ../src/yelp-window.c:1147
+#: ../src/yelp-window.c:1160
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr ""
+msgstr "रूपांतरण संदर्भ ‘%s’ के लिये बनायी नहीं जा सकी. प्रारूप समर्थित नहीं भी हो सकती है."
 
-#: ../src/yelp-window.c:1177 ../src/yelp-window.c:1601
-#: ../src/yelp-window.c:1668
+#: ../src/yelp-window.c:1190 ../src/yelp-window.c:1614
+#: ../src/yelp-window.c:1681
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr ""
+msgstr "‘%s’ खंड दस्तावेज में मौजूद नहीं है. अगर आप इस खंड के लिये निर्देशित किये जाते हैं अनुप्रयोग में सहायता बटन से, कृपया इसके बारे में देखरेख करने वाले को रिपोर्ट करें."
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1305
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr ""
+msgstr "‘%s’ फाइल पढ़ा नहीं जा सका.  यह फाइल गुम हुई हो सकती है, या आपके पास इसे पढ़ने की अनुमति नहीं हो सकता है."
 
-#: ../src/yelp-window.c:1336
+#: ../src/yelp-window.c:1349
 msgid "Loading..."
 msgstr "लोड कर रहे..."
 
@@ -661,29 +662,31 @@ msgstr "लोड कर रहे..."
 #  * will shop up in the "about" box
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2166
+#: ../src/yelp-window.c:2179
 msgid "translator-credits"
 msgstr ""
 "रविशंकर श्रीवास्तव (raviratlami@yahoo.com)\n"
 "राजेश रंजन (rajeshkajha@yahoo.com)"
 
-#: ../src/yelp-window.c:2171
+#: ../src/yelp-window.c:2184
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "Gnome डेस्कटॉप के लिये दस्तावेज ब्रॉउजर."
 
-#: ../src/yelp-xslt-pager.c:194
+#: ../src/yelp-xslt-pager.c:195
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr ""
+msgstr "‘%s’ फाइल विश्लेषित नहीं की जा सका. या तो फाइल मौजूद नहीं है, या यह अनुचित रूप से संरूपित किया गया है."
 
-#: ../src/yelp-xslt-pager.c:215 ../src/yelp-xslt-pager.c:228
+#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
+"‘%s’ दस्तावेज प्रक्रियागत नहीं किया जा सकता. ‘%s’ फाइल या तो गुम है, "
+"या एक मान्य XSLT स्टाइलशीट नहीं है."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
