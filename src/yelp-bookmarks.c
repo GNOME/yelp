@@ -523,9 +523,12 @@ bookmarks_key_event_cb (GtkWidget   *widget,
 	switch (event->keyval) {
 	case GDK_BackSpace:
 	case GDK_Delete:
-	    gtk_tree_store_remove (actions_store, &iter);
-	    bookmarks_ensure_valid ();
-	    bookmarks_rebuild_menus ();
+	    if (!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
+						&iter)) {
+		gtk_tree_store_remove (actions_store, &iter);
+		bookmarks_ensure_valid ();
+		bookmarks_rebuild_menus ();
+	    }
 	    break;
 	case GDK_Return:
 	case GDK_KP_Enter:
@@ -556,15 +559,17 @@ bookmarks_open_cb (GtkTreeView *view, GtkTreePath *path,
     YelpWindowData *data;
 
     gtk_tree_model_get_iter (GTK_TREE_MODEL (actions_store), &iter, path);
-    gtk_tree_model_get (GTK_TREE_MODEL (actions_store), &iter,
-			COL_NAME, &name,
-			COL_LABEL, &title, -1);
-
-    cur = windows;
-    data = cur->data;
-
-    g_signal_emit_by_name (data->window, "new_window_requested", name, NULL);
-
+    if (!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
+					&iter)) {
+	gtk_tree_model_get (GTK_TREE_MODEL (actions_store), &iter,
+			    COL_NAME, &name,
+			    COL_LABEL, &title, -1);
+	
+	cur = windows;
+	data = cur->data;
+	
+	g_signal_emit_by_name (data->window, "new_window_requested", name, NULL);
+    }
 }
 
 
@@ -681,7 +686,10 @@ bookmarks_configure_cb (GtkWidget *widget, GdkEventConfigure *event,
 static void
 selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
-    if (gtk_tree_selection_get_selected (selection, NULL, NULL)) {
+    GtkTreeIter iter;
+    if (gtk_tree_selection_get_selected (selection, NULL, &iter) &&
+	!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store), 
+					&iter)) {
 	/*A row is highlighted - sensitise the various widgets*/
 	gtk_widget_set_sensitive (GTK_WIDGET (edit_open_button), TRUE);
 	gtk_widget_set_sensitive (GTK_WIDGET (edit_rename_button), TRUE);
