@@ -707,10 +707,12 @@ process_mandir_pending (YelpTocPager *pager)
  done:
     g_free (dirname);
 
-    priv->manpaths_i++;
-    if (priv->manpaths[priv->manpaths_i] == NULL) {
-	priv->manpaths_i = 0;
-	priv->langs_i++;
+    if (priv->manpaths) {
+	priv->manpaths_i++;
+	if (priv->manpaths[priv->manpaths_i] == NULL) {
+	    priv->manpaths_i = 0;
+	    priv->langs_i++;
+	}
     }
     if (langs[priv->langs_i] == NULL) {
 	priv->langs_i = 0;
