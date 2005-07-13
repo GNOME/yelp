@@ -145,7 +145,7 @@ yelp_settings_init (void)
 	       If you need an image created, contact the maintainers.
 
 	       Phew, now some notes on which character to use.  Languages that
-	       use guillemets (angle quotations) should use either 00AB or AABB,
+	       use guillemets (angle quotations) should use either 00AB or 00BB,
 	       depending on whether the opening quotation is the left guillemet
 	       or the right guillemet.  Languages that use inverted comma style
 	       quotations should use 201C, 201D, or 201E.  Note that single

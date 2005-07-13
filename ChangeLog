@@ -1,3 +1,12 @@
+2005-07-13  Behdad Esfahbod  <gnome@behdad.org>
+
+	* .cvsignore:
+	- Added INSTALL.
+
+	* src/yelp-settings.c (yelp_settings_init):
+	- Fixed typo in character code in translator comment.
+	  (Bug 310240, Roozbeh Pournader)
+
 2005-07-12  Christian Persch  <chpe@cvs.gnome.org>
 
 	* configure.in:
