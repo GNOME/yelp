@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-03 11:09+0900\n"
-"PO-Revision-Date: 2005-03-03 11:09+0900\n"
+"POT-Creation-Date: 2005-07-16 17:29+0900\n"
+"PO-Revision-Date: 2005-07-16 17:27+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -49,9 +49,9 @@ msgstr "カーネル関数"
 msgid "Library Functions"
 msgstr "ライブラリの関数"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:787
-msgid "Man Pages"
-msgstr "man ページ"
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:792
+msgid "Manual Pages"
+msgstr "Man ページ"
 
 #: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
@@ -297,7 +297,7 @@ msgstr "システム・フォントを使用する"
 msgid "Use the default fonts set for the system."
 msgstr "システムのデフォルト・フォントを使用します。"
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2169
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2182
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -326,7 +326,7 @@ msgstr "<b>%s</b> というこのページのブックマークは既にあり�
 msgid "Document Sections"
 msgstr "ドキュメントのセクション"
 
-#: ../src/yelp-db-pager.c:242
+#: ../src/yelp-db-pager.c:245
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -335,7 +335,7 @@ msgstr ""
 "ファイル '%s' を解析できませんでした。ファイルが存在しないか、または well-"
 "formed XML ではないようです。"
 
-#: ../src/yelp-db-pager.c:486
+#: ../src/yelp-db-pager.c:491
 msgid "Unknown Section"
 msgstr "セクションが不明です"
 
@@ -393,11 +393,11 @@ msgstr "Yelp を活性化できませんでした: '%s'"
 msgid "Could not open new window."
 msgstr "新規にウィンドウを開くことができませんでした。"
 
-#: ../src/yelp-main.c:326 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "ヘルプ"
 
-#: ../src/yelp-man-pager.c:164
+#: ../src/yelp-man-pager.c:185
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
@@ -406,11 +406,11 @@ msgstr ""
 "ファイル '%s' を解析できませんでした。ファイルが存在しないか、またはフォー"
 "マットが正しくないようです。"
 
-#: ../src/yelp-pager.c:120
+#: ../src/yelp-pager.c:122
 msgid "Document Information"
 msgstr "ドキュメントの情報"
 
-#: ../src/yelp-pager.c:121
+#: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
 msgstr "ドキュメントの YelpDocInfo 構造体"
 
@@ -427,7 +427,7 @@ msgstr "ドキュメントの YelpDocInfo 構造体"
 #. If you need an image created, contact the maintainers.
 #.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. use guillemets (angle quotations) should use either 00AB or 00BB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
@@ -435,25 +435,25 @@ msgstr "ドキュメントの YelpDocInfo 構造体"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:153
+#: ../src/yelp-settings.c:156
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:268
+#: ../src/yelp-toc-pager.c:271
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: 一時停止のカウントが負です。"
 
-#: ../src/yelp-toc-pager.c:491
+#: ../src/yelp-toc-pager.c:494
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "OMF ファイル '%s' を読み込めませんでした。"
 
-#: ../src/yelp-toc-pager.c:682
+#: ../src/yelp-toc-pager.c:685
 #, c-format
 msgid "Read man page for %s"
 msgstr "%s の man ページを読み込みます"
 
-#: ../src/yelp-toc-pager.c:767
+#: ../src/yelp-toc-pager.c:772
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -462,7 +462,7 @@ msgstr ""
 "目次を読み込めませんでした。ファイル '%s' が存在しないか、または well-formed "
 "XML ではないようです。"
 
-#: ../src/yelp-toc-pager.c:878
+#: ../src/yelp-toc-pager.c:883
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -471,158 +471,158 @@ msgstr ""
 "目次を処理できませんでした。ファイル '%s' が存在しないか、または妥当な XSLT "
 "スタイルシートではないようです。"
 
-#: ../src/yelp-toc-pager.c:1029 ../src/yelp-xslt-pager.c:365
+#: ../src/yelp-toc-pager.c:1035 ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "yelp:document に HREF 属性がありませんでした"
 
-#: ../src/yelp-toc-pager.c:1043 ../src/yelp-xslt-pager.c:381
+#: ../src/yelp-toc-pager.c:1049 ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "メモリが足りません"
 
-#: ../src/yelp-toc-pager.c:1084
+#: ../src/yelp-toc-pager.c:1090
 msgid "Help Contents"
 msgstr "ヘルプの目次"
 
-#: ../src/yelp-window.c:292
+#: ../src/yelp-window.c:286
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/yelp-window.c:293
+#: ../src/yelp-window.c:287
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/yelp-window.c:294
+#: ../src/yelp-window.c:288
 msgid "_Go"
 msgstr "ジャンプ(_G)"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:289
 msgid "_Bookmarks"
 msgstr "ブックマーク(_B)"
 
-#: ../src/yelp-window.c:296
+#: ../src/yelp-window.c:290
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:293
 msgid "_New Window"
 msgstr "新しいウィンドウ(_N)"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:298
 msgid "About This Document"
 msgstr "このドキュメントについて"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:303
 msgid "Open _Location"
 msgstr "場所を開く(_L)"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:308
 msgid "_Close Window"
 msgstr "閉じる(_C)"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:314
 msgid "_Copy"
 msgstr "コピー(_C)"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:320
 msgid "_Select All"
 msgstr "全て選択(_S)"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:325
 msgid "_Find..."
 msgstr "検索(_F)..."
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:330
 msgid "_Preferences"
 msgstr "設定(_P)"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:335
 msgid "_Reload"
 msgstr "再読込み(_R)"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:341
 msgid "_Back"
 msgstr "戻る(_B)"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:343
 msgid "Show previous page in history"
 msgstr "履歴の中の前のページを表示します"
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:346
 msgid "_Forward"
 msgstr "進む(_F)"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:348
 msgid "Show next page in history"
 msgstr "履歴の中の次のページを表示します"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:351
 msgid "_Help Topics"
 msgstr "ヘルプトピック(_H)"
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:353
 msgid "Go to the listing of help topics"
 msgstr "ヘルプトピックのリストを表示"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:356
 msgid "_Previous Section"
 msgstr "前のセクション(_P)"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:361
 msgid "_Next Section"
 msgstr "次のセクション(_N)"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:366
 msgid "_Contents"
 msgstr "目次(_C)"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:372
 msgid "_Add Bookmark"
 msgstr "ブックマークの追加(_A)"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:377
 msgid "_Edit Bookmarks..."
 msgstr "ブックマークの編集(_E)..."
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:383
 msgid "_Open Link"
 msgstr "リンク先を開く(_O)"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:388
 msgid "Open Link in _New Window"
 msgstr "新しいウィンドウでリンク先を開く(_N)"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:393
 msgid "_Copy Link Address"
 msgstr "リンク先のアドレスのコピー(_C)"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:399
 msgid "_About"
 msgstr "情報(_A)"
 
-#: ../src/yelp-window.c:456
+#: ../src/yelp-window.c:448
 msgid "Help Browser"
 msgstr "ヘルプ・ブラウザ"
 
-#: ../src/yelp-window.c:687 ../src/yelp-window.c:820
+#: ../src/yelp-window.c:700 ../src/yelp-window.c:833
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "そのファイルを示す URI が正しくありません。"
 
-#: ../src/yelp-window.c:699 ../src/yelp-window.c:815
+#: ../src/yelp-window.c:712 ../src/yelp-window.c:828
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "URI '%s' が正しくないか、または実際のファイルを指していないようです。"
 
-#: ../src/yelp-window.c:775 ../src/yelp-window.c:1130
+#: ../src/yelp-window.c:788 ../src/yelp-window.c:1143
 msgid "Man pages are not supported in this version."
 msgstr "このバージョンでは man ページの閲覧をサポートしていません。"
 
-#: ../src/yelp-window.c:785 ../src/yelp-window.c:1121
+#: ../src/yelp-window.c:798 ../src/yelp-window.c:1134
 msgid "GNU info pages are not supported in this version"
 msgstr "このバージョンでは GNU info ページの閲覧をサポートしていません。"
 
-#: ../src/yelp-window.c:795
+#: ../src/yelp-window.c:808
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -630,19 +630,19 @@ msgstr ""
 "SGML ドキュメントはサポートしなくなりました。ドキュメントの作者に XML へ変換"
 "するよう問い合わせて下さい。"
 
-#: ../src/yelp-window.c:1014
+#: ../src/yelp-window.c:1027
 msgid "Find:"
 msgstr "検索:"
 
-#: ../src/yelp-window.c:1030
+#: ../src/yelp-window.c:1043
 msgid "Find _Next"
 msgstr "次の検索へ(_N)"
 
-#: ../src/yelp-window.c:1042
+#: ../src/yelp-window.c:1055
 msgid "Find _Previous"
 msgstr "前の検索へ(_P)"
 
-#: ../src/yelp-window.c:1147
+#: ../src/yelp-window.c:1160
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -651,8 +651,8 @@ msgstr ""
 "ファイル '%s' 向けの変換コンテキストを生成できませんでした。おそらくサポート"
 "していないフォーマットのようです。"
 
-#: ../src/yelp-window.c:1177 ../src/yelp-window.c:1601
-#: ../src/yelp-window.c:1668
+#: ../src/yelp-window.c:1190 ../src/yelp-window.c:1614
+#: ../src/yelp-window.c:1681
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -663,7 +663,7 @@ msgstr ""
 "ケーションのメニュー [ヘルプ] が直接指しているのであれば、そのアプリケーショ"
 "ンのメンテナにバグとして報告して下さい。"
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1305
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -672,13 +672,13 @@ msgstr ""
 "ファイル '%s' を読めませんでした。おそらくファイルが存在しないか、または読み"
 "込み権限をお持ちでないようです。"
 
-#: ../src/yelp-window.c:1336
+#: ../src/yelp-window.c:1349
 msgid "Loading..."
 msgstr "読み込み中..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2166
+#: ../src/yelp-window.c:2179
 msgid "translator-credits"
 msgstr ""
 "Satoru SATOH <ss@gnome.gr.jp>\n"
@@ -686,11 +686,11 @@ msgstr ""
 "KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
 
-#: ../src/yelp-window.c:2171
+#: ../src/yelp-window.c:2184
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "GNOME デスクトップ向けのドキュメント閲覧ブラウザです。"
 
-#: ../src/yelp-xslt-pager.c:194
+#: ../src/yelp-xslt-pager.c:195
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -699,7 +699,7 @@ msgstr ""
 "ファイル '%s' を解析できませんでした。おそらくファイルが存在しないか、または"
 "フォーマットが妥当ではないようです。"
 
-#: ../src/yelp-xslt-pager.c:215 ../src/yelp-xslt-pager.c:228
+#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
