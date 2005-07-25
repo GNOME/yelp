@@ -211,12 +211,12 @@ db_pager_parse (YelpPager *pager)
 {
     YelpDBPagerPriv *priv;
     YelpDocInfo     *doc_info;
-    gchar           *filename;
+    gchar           *filename = NULL;
 
-    xmlParserCtxtPtr parserCtxt;
-    xmlDocPtr doc;
+    xmlParserCtxtPtr parserCtxt = NULL;
+    xmlDocPtr doc = NULL;
 
-    DBWalker    *walker;
+    DBWalker    *walker = NULL;
     xmlChar     *id;
     GError      *error = NULL;
 
@@ -386,11 +386,11 @@ walker_walk_xml (DBWalker *walker)
 {
     xmlChar     *id    = NULL;
     xmlChar     *title = NULL;
-    gchar       *old_id;
+    gchar       *old_id = NULL;
     xmlNodePtr   cur;
     xmlNodePtr   old_cur;
     GtkTreeIter  iter;
-    GtkTreeIter *old_iter;
+    GtkTreeIter *old_iter = NULL;
     YelpDBPagerPriv *priv = walker->pager->priv;
 
     if (walker->depth == 0) {
