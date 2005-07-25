@@ -487,8 +487,8 @@ node_get_title (DBWalker *walker)
     doc = xsltApplyStylesheet (walker->titleStylesheet,
 			       walker->doc,
 			       (const char **)params);
-    if (xsltSaveResultToString (&outstr, &outlen, doc, walker->titleStylesheet) < 0)
-	title = _("Unknown Section");
+    if (doc == NULL || xsltSaveResultToString (&outstr, &outlen, doc, walker->titleStylesheet) < 0)
+	title = g_strdup (_("Unknown Section"));
     else {
 	title = g_strdup (outstr);
 	xmlFree (outstr);
