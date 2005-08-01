@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-06 14:46+0000\n"
+"POT-Creation-Date: 2005-08-01 06:51+0000\n"
 "PO-Revision-Date: 2005-06-06 20:56+0200\n"
 "Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -49,7 +49,7 @@ msgid "Library Functions"
 msgstr "Bibliotheekfuncties"
 
 # man-pagina's
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:790
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:792
 msgid "Manual Pages"
 msgstr "Handleiding-pagina's"
 
@@ -225,7 +225,7 @@ msgstr "Zoeken"
 
 #: ../data/ui/yelp.glade.h:9
 msgid "Open Location"
-msgstr "Lokatie openen"
+msgstr "Locatie openen"
 
 #: ../data/ui/yelp.glade.h:11
 msgid "Re_name"
@@ -245,7 +245,7 @@ msgstr "_Vaste breedte:"
 
 #: ../data/ui/yelp.glade.h:15
 msgid "_Location:"
-msgstr "_Lokatie:"
+msgstr "_Locatie:"
 
 #: ../data/ui/yelp.glade.h:16
 msgid "_Next"
@@ -444,7 +444,7 @@ msgstr "De YelpDocInfo struct van het document"
 #. If you need an image created, contact the maintainers.
 #.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. use guillemets (angle quotations) should use either 00AB or 00BB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
@@ -471,7 +471,7 @@ msgid "Read man page for %s"
 msgstr "Man-pagina's over %s lezen"
 
 # niet-juist gevormde/niet-juist opgemaakte
-#: ../src/yelp-toc-pager.c:770
+#: ../src/yelp-toc-pager.c:772
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -480,7 +480,7 @@ msgstr ""
 "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, "
 "of het is niet-juist gevormde XML."
 
-#: ../src/yelp-toc-pager.c:881
+#: ../src/yelp-toc-pager.c:883
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -489,15 +489,15 @@ msgstr ""
 "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, "
 "of het is geen geldige XSLT stylesheet."
 
-#: ../src/yelp-toc-pager.c:1033 ../src/yelp-xslt-pager.c:366
+#: ../src/yelp-toc-pager.c:1035 ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "Geen href attribuut gevonden op yelp:document"
 
-#: ../src/yelp-toc-pager.c:1047 ../src/yelp-xslt-pager.c:382
+#: ../src/yelp-toc-pager.c:1049 ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: ../src/yelp-toc-pager.c:1088
+#: ../src/yelp-toc-pager.c:1090
 msgid "Help Contents"
 msgstr "Hulp-inhoudsopgave"
 
@@ -531,7 +531,7 @@ msgstr "Over dit document"
 
 #: ../src/yelp-window.c:303
 msgid "Open _Location"
-msgstr "_Lokatie openen"
+msgstr "_Locatie openen"
 
 #: ../src/yelp-window.c:308
 msgid "_Close Window"
