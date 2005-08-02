@@ -3,18 +3,19 @@
 # Joe Man <trmetal@yahoo.com.hk>, 2002.
 # Roy Chan <roy.chan@linux.org.hk>, 2004.
 # Abel Cheung <abel@oaka.org>, 2002, 03, 05.
-#
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.9.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-23 22:10+0000\n"
-"PO-Revision-Date: 2005-06-24 11:02+0800\n"
+"POT-Creation-Date: 2005-08-01 22:45+0000\n"
+"PO-Revision-Date: 2005-08-02 20:13+0800\n"
 "Last-Translator: Abel Cheung <abel@oaka.org>\n"
 "Language-Team: Chinese (traditional) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -22,7 +23,7 @@ msgstr "應用程式"
 
 #: ../data/man.xml.in.h:2
 msgid "Configuration Files"
-msgstr "組態檔"
+msgstr "組態檔案"
 
 #: ../data/man.xml.in.h:3
 msgid "Development"
@@ -42,21 +43,20 @@ msgstr "硬體裝置"
 
 #: ../data/man.xml.in.h:7
 msgid "Kernel Routines"
-msgstr "內核"
+msgstr "核心"
 
 #: ../data/man.xml.in.h:8
 msgid "Library Functions"
 msgstr "函式庫"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:790
-#, fuzzy
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:792
 msgid "Manual Pages"
-msgstr "Man Page"
+msgstr "手冊"
 
 # (Abel) utilities 會好點，因為那些都是 OpenSSL 附帶的程式
 #: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
-msgstr "OpenSSL 公用程式"
+msgstr "OpenSSL 應用程式"
 
 #: ../data/man.xml.in.h:11
 msgid "OpenSSL Configuration"
@@ -88,11 +88,11 @@ msgstr "系統函式"
 
 #: ../data/man.xml.in.h:18
 msgid "Termcap Applications"
-msgstr "Termcap 公用程式"
+msgstr "Termcap 應用程式"
 
 #: ../data/man.xml.in.h:19
 msgid "X11 Applications"
-msgstr "X11 公用程式"
+msgstr "X11 應用程式"
 
 #: ../data/man.xml.in.h:20
 msgid "X11 Configuration"
@@ -178,11 +178,11 @@ msgstr "偏好設定"
 
 #: ../data/toc.xml.in.h:18
 msgid "Programming"
-msgstr "編程"
+msgstr "程式開發"
 
 #: ../data/toc.xml.in.h:19
 msgid "Scientific"
-msgstr "科研"
+msgstr "科學"
 
 #: ../data/toc.xml.in.h:20
 msgid "System Tools"
@@ -190,7 +190,7 @@ msgstr "系統工具"
 
 #: ../data/toc.xml.in.h:21
 msgid "X Applications"
-msgstr "X 程式"
+msgstr "X 應用程式"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -202,11 +202,11 @@ msgstr "<b>字型</b>"
 
 #: ../data/ui/yelp.glade.h:3
 msgid "<b>_Bookmarks:</b>"
-msgstr "<b>書籤(_B):</b>"
+msgstr "<b>書籤(_B)：</b>"
 
 #: ../data/ui/yelp.glade.h:4
 msgid "<b>_Title:</b>"
-msgstr "<b>標題(_T):</b>"
+msgstr "<b>標題(_T)：</b>"
 
 #: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
@@ -222,7 +222,7 @@ msgstr "區分大小寫(_A)"
 
 #: ../data/ui/yelp.glade.h:8
 msgid "Find"
-msgstr "搜尋"
+msgstr "尋找"
 
 #: ../data/ui/yelp.glade.h:9
 msgid "Open Location"
@@ -238,15 +238,15 @@ msgstr "在文件中顯示游標(_B)"
 
 #: ../data/ui/yelp.glade.h:13
 msgid "_Find: "
-msgstr "搜尋(_F)："
+msgstr "尋找(_F)："
 
 #: ../data/ui/yelp.glade.h:14
 msgid "_Fixed width:"
-msgstr "固定寬度(_F):"
+msgstr "固定寬度(_F)："
 
 #: ../data/ui/yelp.glade.h:15
 msgid "_Location:"
-msgstr "位置(_L):"
+msgstr "位置(_L)："
 
 #: ../data/ui/yelp.glade.h:16
 msgid "_Next"
@@ -262,7 +262,7 @@ msgstr "使用系統字型(_U)"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr "可變寬度(_V):"
+msgstr "可變寬度(_V)："
 
 #: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
@@ -278,11 +278,11 @@ msgstr "一般文字字型"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "在固定寬度的文字中使用的字型"
+msgstr "在固定寬度的文字中使用的字型。"
 
 #: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "在一般文字中使用的可變寬度字型"
+msgstr "在一般文字中使用的可變寬度字型。"
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
@@ -310,7 +310,7 @@ msgstr "Yelp 工廠"
 
 #: ../src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
-msgstr "在新的視窗開啟書籤所指定的位置"
+msgstr "在新的視窗中開啟書籤"
 
 #: ../src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
@@ -323,7 +323,7 @@ msgstr "移除書籤"
 #: ../src/yelp-bookmarks.c:306 ../src/yelp-bookmarks.c:378
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "這一頁已經有書籤存在，它的標題是 <b>%s</b>。"
+msgstr "本頁的書籤已經存在，它的標題是 <b>%s</b>。"
 
 #: ../src/yelp-bookmarks.c:406
 msgid "Document Sections"
@@ -335,15 +335,15 @@ msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
-"無法解析檔案‘%s’的內容，可能是檔案不見了，又或者它的 XML 內容格式不正確。"
+"無法解析檔案‘%s’的內容，可能是檔案不存在，或者它的 XML 內容格式不正確。"
 
 #: ../src/yelp-db-pager.c:491
 msgid "Unknown Section"
-msgstr "文件章節位置不明"
+msgstr "不明的章節"
 
 #: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr "發生原因不明的錯誤"
+msgstr "發生不明的錯誤"
 
 #: ../src/yelp-error.c:46
 msgid "Could not load document"
@@ -351,19 +351,19 @@ msgstr "無法載入文件"
 
 #: ../src/yelp-error.c:48
 msgid "Could not load section"
-msgstr "無法載入文件這一節"
+msgstr "無法載入章節"
 
 #: ../src/yelp-error.c:50
 msgid "Could not read the table of contents"
-msgstr "無法讀入文件目錄"
+msgstr "無法讀取文件目錄"
 
 #: ../src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr "格式不支援"
+msgstr "不支援的格式"
 
 #: ../src/yelp-error.c:54
 msgid "Could not read document"
-msgstr "無法讀入文件"
+msgstr "無法讀取文件"
 
 #: ../src/yelp-error.c:56
 msgid "Could not process document"
@@ -378,7 +378,8 @@ msgstr "無法提供錯誤出現的原因。"
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr "無法解碼和讀入‘%s’檔案，它可能被壓縮成為一種不支援的格式。"
+msgstr ""
+"無法解碼和讀取‘%s’檔案，它可能被壓縮成為一種不支援的格式。"
 
 #: ../src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -395,14 +396,15 @@ msgstr "無法開啟新視窗。"
 
 #: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
 msgid "Help"
-msgstr "說明文件瀏覽器"
+msgstr "說明"
 
 #: ../src/yelp-man-pager.c:185
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr "無法解析‘%s’檔案的內容，因為檔案可能根本不存在，或者它的格式不正確。"
+msgstr ""
+"無法解析‘%s’檔案的內容，可能檔案不存在，或是它的格式不正確。"
 
 #: ../src/yelp-pager.c:122
 msgid "Document Information"
@@ -425,7 +427,7 @@ msgstr "文件中的 YelpDocInfo 結構"
 #. If you need an image created, contact the maintainers.
 #.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. use guillemets (angle quotations) should use either 00AB or 00BB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
@@ -451,30 +453,31 @@ msgstr "無法載入 OMF 檔案‘%s’。"
 msgid "Read man page for %s"
 msgstr "閱讀 %s 的 man page"
 
-#: ../src/yelp-toc-pager.c:770
+#: ../src/yelp-toc-pager.c:772
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr "無法載入文件目錄。檔案‘%s’可能不見了，又或者它的 XML 內容格式不正確。"
+msgstr ""
+"無法載入文件目錄。可能檔案‘%s’不存在，或是它的 XML 內容格式不正確。"
 
-#: ../src/yelp-toc-pager.c:881
+#: ../src/yelp-toc-pager.c:883
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
-"無法處理文件目錄。檔案‘%s’可能不見了，又或者它不是正確的 XSLT stylesheet。"
+"無法處理文件目錄。可能檔案‘%s’不存在，或者它不是正確的 XSLT stylesheet。"
 
-#: ../src/yelp-toc-pager.c:1033 ../src/yelp-xslt-pager.c:366
+#: ../src/yelp-toc-pager.c:1035 ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中找不到 href 屬性"
 
-#: ../src/yelp-toc-pager.c:1047 ../src/yelp-xslt-pager.c:382
+#: ../src/yelp-toc-pager.c:1049 ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "記憶體不足"
 
-#: ../src/yelp-toc-pager.c:1088
+#: ../src/yelp-toc-pager.c:1090
 msgid "Help Contents"
 msgstr "說明文件"
 
@@ -524,7 +527,7 @@ msgstr "全部選取(_S)"
 
 #: ../src/yelp-window.c:325
 msgid "_Find..."
-msgstr "搜尋(_F)..."
+msgstr "尋找(_F)..."
 
 #: ../src/yelp-window.c:330
 msgid "_Preferences"
@@ -576,19 +579,19 @@ msgstr "加入書籤(_A)"
 
 #: ../src/yelp-window.c:377
 msgid "_Edit Bookmarks..."
-msgstr "修改書籤(_E)..."
+msgstr "編輯書籤(_E)..."
 
 #: ../src/yelp-window.c:383
 msgid "_Open Link"
-msgstr "開啟鏈結(_O)"
+msgstr "開啟連結(_O)"
 
 #: ../src/yelp-window.c:388
 msgid "Open Link in _New Window"
-msgstr "在新視窗中開啟鏈結(_N)"
+msgstr "在新視窗中開啟連結(_N)"
 
 #: ../src/yelp-window.c:393
 msgid "_Copy Link Address"
-msgstr "複製鏈結位址(_C)"
+msgstr "複製連結位址(_C)"
 
 #: ../src/yelp-window.c:399
 msgid "_About"
@@ -607,7 +610,8 @@ msgstr "檔案的 URI 無效。"
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr "檔案的 URI ‘%s’無效，或者根本不是指向實際存在的檔案。"
+msgstr ""
+"檔案的 URI ‘%s’無效，或者不是指向實際存在的檔案。"
 
 #: ../src/yelp-window.c:788 ../src/yelp-window.c:1143
 msgid "Man pages are not supported in this version."
@@ -621,11 +625,12 @@ msgstr "這個版本的程式不支援 GNU info page。"
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr "現在已不再支援 SGML 文件。請向程式的維護者要求將文件轉換為 XML 格式。"
+msgstr ""
+"現在已不再支援 SGML 文件。請向程式的維護者要求將文件轉換為 XML 格式。"
 
 #: ../src/yelp-window.c:1027
 msgid "Find:"
-msgstr "搜尋:"
+msgstr "尋找："
 
 #: ../src/yelp-window.c:1043
 msgid "Find _Next"
@@ -640,7 +645,8 @@ msgstr "找上一個(_P)"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr "無法産生檔案‘%s’的文件內容，可能是檔案格式無法支援。"
+msgstr ""
+"無法産生檔案‘%s’的文件內容，可能是檔案格式不受支援。"
 
 #: ../src/yelp-window.c:1190 ../src/yelp-window.c:1614
 #: ../src/yelp-window.c:1681
@@ -658,7 +664,8 @@ msgstr ""
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr "無法讀入檔案‘%s’，可能是不見了，或者您根本沒有適當的權限讀取內容。"
+msgstr ""
+"無法讀取檔案‘%s’，可能是檔案遺失了，或是您沒有讀取它的權限。"
 
 #: ../src/yelp-window.c:1349
 msgid "Loading..."
@@ -686,7 +693,8 @@ msgstr "GNOME 桌面環境的文件瀏覽器。"
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr "無法解析‘%s’檔案的內容，因為檔案可能根本不存在，或者它的格式不正確。"
+msgstr ""
+"無法解析‘%s’檔案的內容，因為檔案可能根本不存在，或者它的格式不正確。"
 
 #: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
 #, c-format
