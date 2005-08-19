@@ -871,7 +871,7 @@ process_xslt (YelpTocPager *pager)
     GError *error = NULL;
     xmlDocPtr outdoc;
     YelpTocPagerPriv *priv = pager->priv;
-    gchar **params;
+    gchar **params = NULL;
     gint  params_i = 0;
     gint  params_max = 10;
     GtkIconInfo *info;
@@ -925,9 +925,11 @@ process_xslt (YelpTocPager *pager)
     g_signal_emit_by_name (pager, "finish");
 
  done:
-    for (params_i = 0; params[params_i] != NULL; params_i++)
-	if (params_i % 2 == 1)
-	    g_free ((gchar *) params[params_i]);
+    if (params) {
+	for (params_i = 0; params[params_i] != NULL; params_i++)
+	    if (params_i % 2 == 1)
+		g_free ((gchar *) params[params_i]);
+    }
     if (outdoc)
 	xmlFreeDoc (outdoc);
     if (priv->toc_doc) {

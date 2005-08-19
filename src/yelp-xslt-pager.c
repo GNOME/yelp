@@ -161,9 +161,9 @@ xslt_pager_process (YelpPager *pager)
     YelpXsltPagerClass *klass;
 
     YelpDocInfo     *doc_info;
-    gchar           *filename;
+    gchar           *filename = NULL;
 
-    gchar **params;
+    gchar **params = NULL;
     gint    params_i = 0;
 
     GError *error = NULL;
@@ -257,10 +257,12 @@ xslt_pager_process (YelpPager *pager)
     g_signal_emit_by_name (pager, "finish");
 
  done:
-    for (params_i = 0; params[params_i] != NULL; params_i++)
-	if (params_i % 2 == 1)
-	    g_free (params[params_i]);
-    g_free (params);
+    if (params) {
+	for (params_i = 0; params[params_i] != NULL; params_i++)
+	    if (params_i % 2 == 1)
+		g_free (params[params_i]);
+	g_free (params);
+    }
     g_free (filename);
 
     if (priv->inputDoc) {

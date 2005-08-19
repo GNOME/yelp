@@ -584,6 +584,8 @@ history_step_back (YelpWindow *window)
 	priv->current_doc  = yelp_doc_info_ref (entry->doc_info);
 	priv->current_frag = g_strdup (entry->frag_id);
 	history_entry_free (entry);
+    } else {
+	yelp_window_load (window, "x-yelp-toc:");
     }
 }
 

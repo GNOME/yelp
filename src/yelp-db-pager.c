@@ -277,10 +277,13 @@ db_pager_parse (YelpPager *pager)
     walker_walk_xml (walker);
 
  done:
-    xsltFreeStylesheet (walker->titleStylesheet);
+    if (walker) {
+	if (walker->titleStylesheet)
+	    xsltFreeStylesheet (walker->titleStylesheet);
+	g_free (walker);
+    }
 
     g_free (filename);
-    g_free (walker);
 
     if (parserCtxt)
 	xmlFreeParserCtxt (parserCtxt);
