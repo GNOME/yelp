@@ -422,23 +422,26 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     page->contents = page_buf;
 
     cur = xmlDocGetRootElement (new_doc);
-    for (cur = cur->children; cur; cur = cur->next) {
-	if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
-	    for (cur = cur->children; cur; cur = cur->next) {
-		if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
-		    xmlChar *rel = xmlGetProp (cur, "rel");
 
-		    if (!xmlStrcmp (rel, (xmlChar *) "previous"))
-			page->prev_id = xmlGetProp (cur, "href");
-		    else if (!xmlStrcmp (rel, (xmlChar *) "next"))
-			page->next_id = xmlGetProp (cur, "href");
-		    else if (!xmlStrcmp (rel, (xmlChar *) "top"))
-			page->toc_id = xmlGetProp (cur, "href");
+    if (cur != NULL) {
+	for (cur = cur->children; cur; cur = cur->next) {
+	    if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
+		for (cur = cur->children; cur; cur = cur->next) {
+		    if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
+			xmlChar *rel = xmlGetProp (cur, "rel");
 
-		    xmlFree (rel);
+			if (!xmlStrcmp (rel, (xmlChar *) "previous"))
+			    page->prev_id = xmlGetProp (cur, "href");
+			else if (!xmlStrcmp (rel, (xmlChar *) "next"))
+			    page->next_id = xmlGetProp (cur, "href");
+			else if (!xmlStrcmp (rel, (xmlChar *) "top"))
+			    page->toc_id = xmlGetProp (cur, "href");
+
+			xmlFree (rel);
+		    }
 		}
+		break;
 	    }
-	    break;
 	}
     }
 
