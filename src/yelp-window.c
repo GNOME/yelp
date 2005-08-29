@@ -162,6 +162,7 @@ static void    window_select_all_cb     (GtkAction *action, YelpWindow *window);
 static void    window_find_cb           (GtkAction *action, YelpWindow *window);
 static void    window_preferences_cb    (GtkAction *action, YelpWindow *window);
 static void    window_reload_cb         (GtkAction *action, YelpWindow *window);
+static void    window_enable_cursor_cb  (GtkAction *action, YelpWindow *window);
 static void    window_go_back_cb        (GtkAction *action, YelpWindow *window);
 static void    window_go_forward_cb     (GtkAction *action, YelpWindow *window);
 static void    window_go_home_cb        (GtkAction *action, YelpWindow *window);
@@ -336,6 +337,12 @@ static const GtkActionEntry entries[] = {
       "<Control>R",
       NULL,
       G_CALLBACK (window_reload_cb) },
+
+    { "TextCursor", NULL,
+      NULL,
+      "F7",
+      NULL,
+      G_CALLBACK (window_enable_cursor_cb) },
 
     { "GoBack", GTK_STOCK_GO_BACK,
       N_("_Back"),
@@ -1982,6 +1989,21 @@ window_reload_cb (GtkAction *action, YelpWindow *window)
 	data->uri = uri;
 	g_idle_add ((GSourceFunc) window_load_async, data);
     }
+}
+
+static void
+window_enable_cursor_cb (GtkAction *action, YelpWindow *window)
+{
+    gboolean cursor;
+    GConfClient *gconf_client = gconf_client_get_default ();
+
+    cursor = gconf_client_get_bool (gconf_client,
+				    "/apps/yelp/use_caret",
+				    NULL);
+    gconf_client_set_bool (gconf_client,
+			   "/apps/yelp/use_caret",
+			   !cursor,
+			   NULL);
 }
 
 static gboolean
