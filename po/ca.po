@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: yelp 2.9.90\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-25 11:06+0200\n"
-"PO-Revision-Date: 2005-08-25 11:06+0200\n"
+"PO-Revision-Date: 2005-09-03 00:25+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "Administració del sistema"
 
 #: ../data/man.xml.in.h:17
 msgid "System Calls"
-msgstr "Cridades al sistema"
+msgstr "Crides al sistema"
 
 #: ../data/man.xml.in.h:18
 msgid "Termcap Applications"
@@ -225,7 +225,7 @@ msgstr "Obre una ubicació"
 
 #: ../data/ui/yelp.glade.h:11
 msgid "Re_name"
-msgstr "Rea_nomena"
+msgstr "Canvia el _nom"
 
 #: ../data/ui/yelp.glade.h:12
 msgid "_Browse with caret"
@@ -286,11 +286,11 @@ msgstr ""
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr "Utilizta un cursor"
+msgstr "Utilitza un cursor"
 
 #: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr "Utiliza els tipus de lletra del sistema"
+msgstr "Utilitza els tipus de lletra del sistema"
 
 #: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
@@ -302,7 +302,7 @@ msgstr "Yelp"
 
 #: ../src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Fàbrica de Yelp"
+msgstr "Fàbrica del Yelp"
 
 #: ../src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
@@ -387,7 +387,7 @@ msgstr "Defineix el directori de memòria cau a utilitzar"
 #: ../src/yelp-main.c:129
 #, c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "No s'ha pogut activar Yelp: «%s»"
+msgstr "No s'ha pogut activar el Yelp: «%s»"
 
 #: ../src/yelp-main.c:148
 msgid "Could not open new window."
@@ -473,7 +473,7 @@ msgstr ""
 
 #: ../src/yelp-toc-pager.c:1037 ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
-msgstr "No s'ha trobat cap atribut href en yelp:document"
+msgstr "No s'ha trobat cap atribut href a yelp:document"
 
 #: ../src/yelp-toc-pager.c:1051 ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
@@ -630,7 +630,7 @@ msgid ""
 "document to convert to XML."
 msgstr ""
 "Els documents SGML ja no estan implementats. Demaneu a l'autor del document "
-"que ho convertisca a XML."
+"que ho converteixi a XML."
 
 #: ../src/yelp-window.c:1029
 msgid "Find:"
@@ -650,8 +650,8 @@ msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
-"No s'ha pogut crear un context de transformació per al fitxer «%s». El "
-"format pot no estar implementat."
+"No s'ha pogut crear un context de transformació per al fitxer «%s». Potser "
+"que el format no estigui implementat."
 
 #: ../src/yelp-window.c:1192 ../src/yelp-window.c:1616
 #: ../src/yelp-window.c:1683
@@ -661,9 +661,9 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
-"La secció «%s» no existeix en aquest document. Si heu sigut dirigits a "
-"aquesta secció a través d'un botó d'ajuda d'una aplicació, informeu d'aquest "
-"error als mantenidors d'eixa aplicació."
+"La secció «%s» no existeix en aquest document. Si se us ha dirigit a aquesta "
+"secció a través d'un botó d'ajuda d'una aplicació, informeu d'aquest error "
+"als mantenidors de l'aplicació."
 
 #: ../src/yelp-window.c:1307
 #, c-format
@@ -672,7 +672,7 @@ msgid ""
 "not have permissions to read it."
 msgstr ""
 "No s'ha pogut llegir el fitxer «%s». Aquest fitxer pot faltar, o potser no "
-"teniu  permisos per a llegir-ho."
+"teniu  permís per a llegir-ho."
 
 #: ../src/yelp-window.c:1351
 msgid "Loading..."
@@ -706,9 +706,10 @@ msgstr ""
 "No s'ha pogut processar el document «%s». Falta el fitxer «%s» o no és un "
 "full d'estil XSLT vàlid."
 
+# ...sobre el GNOME? (josep)
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "Obteniu ajuda amb GNOME"
+msgstr "Obtingueu ajuda amb el GNOME"
 
 #~ msgid "Man Pages"
 #~ msgstr "Pàgines de manual"
