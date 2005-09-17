@@ -6,6 +6,8 @@
                 extension-element-prefixes="yelp"
                 version="1.0">
 
+<xsl:output method="html"/>
+
 <xsl:include href="yelp-common.xsl"/>
 
 <xsl:param name="stylesheet_path" select="''"/>
@@ -124,6 +126,13 @@
 
 <!-- ======================================================================= -->
 
+<xsl:template match="br">
+  <xsl:apply-templates/><br/>
+</xsl:template>
+
+<!-- ignore anything in the Indent element for now -->
+<xsl:template match="Indent" />
+
 <xsl:template match="B | fB">
   <b><xsl:apply-templates/></b>
 </xsl:template>
@@ -155,7 +164,7 @@
     <xsl:apply-templates select="Tag/following-sibling::node()"/>
   </dd>
   <xsl:apply-templates mode="IP.mode"
-                       select="following-sibling::*[self::IP][1]"/>
+                       select="following-sibling::*[1][self::IP]"/>
 </xsl:template>
 
 <xsl:template match="P">
@@ -168,35 +177,22 @@
 
 <xsl:template match="SS">
   <xsl:variable name="nextSH" select="following-sibling::SH[1]"/>
+  <xsl:variable name="nextSS"
+                select="following-sibling::SS[not($nextSH) or
+                                              following-sibling::SH[1] = $nextSH][1]"/>
   <h3><xsl:apply-templates/></h3>
   <div class="SS">
     <xsl:choose>
+      <xsl:when test="$nextSS">
+        <xsl:apply-templates
+         select="following-sibling::*[following-sibling::SS[1] = $nextSS]"/>
+      </xsl:when>
       <xsl:when test="$nextSH">
-        <xsl:variable
-         name="nextSS"
-         select="following-sibling::SS[following-sibling::SH = $nextSH][1]"/>
-        <xsl:choose>
-          <xsl:when test="$nextSS">
-            <xsl:apply-templates
-             select="following-sibling::*[following-sibling::SS = $nextSS]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates
-             select="following-sibling::*[following-sibling::SH = $nextSH]"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates
+         select="following-sibling::*[following-sibling::SH[1] = $nextSH]"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="nextSS" select="following-sibling::SS[1]"/>
-        <xsl:choose>
-          <xsl:when test="$nextSS">
-            <xsl:apply-templates
-             select="following-sibling::*[following-sibling::SS = $nextSS]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="following-sibling::*"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates select="following-sibling::*"/>
       </xsl:otherwise>
     </xsl:choose>
   </div>
@@ -204,30 +200,23 @@
 
 <xsl:template match="SH">
   <xsl:variable name="nextSH" select="following-sibling::SH[1]"/>
+  <xsl:variable name="nextSS"
+                select="following-sibling::SS[not($nextSH) or
+                                              following-sibling::SH[1] = $nextSH]"/>
   <h2><xsl:apply-templates/></h2>
   <div class="SH">
     <xsl:choose>
+      <xsl:when test="$nextSS">
+        <xsl:apply-templates
+         select="following-sibling::*[following-sibling::SS[1] = $nextSS[1]]"/>
+        <xsl:apply-templates select="$nextSS"/>
+      </xsl:when>
       <xsl:when test="$nextSH">
-        <xsl:choose>
-          <xsl:when test="following-sibling::SS[following-sibling::* = $nextSH]">
-            <xsl:apply-templates
-             select="following-sibling::SS[following-sibling::* = $nextSH]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates
-             select="following-sibling::*[following-sibling::* = $nextSH]"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates
+         select="following-sibling::*[following-sibling::SH[1] = $nextSH]"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:choose>
-          <xsl:when test="following-sibling::SS">
-            <xsl:apply-templates select="following-sibling::SS"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="following-sibling::*"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates select="following-sibling::*"/>
       </xsl:otherwise>
     </xsl:choose>
   </div>

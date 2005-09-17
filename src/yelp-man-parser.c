@@ -74,7 +74,11 @@ struct _YelpManParser {
     gchar        *cur;           /* Our current position in the document */
 
     gboolean      make_links;    /* Allow auto-generated hyperlinks to be disabled. */
-
+    gboolean      ignore;        /* when true, ignore stream until "token" is found  */
+    
+    gchar        *token;         /* see ignore flag; we ignore the parsing stream until
+				  * this string is found in the stream */
+	
     GSList       *nodeStack;
 };
 
@@ -97,7 +101,7 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 
     parser->doc = xmlNewDoc ("1.0");
     parser->ins = xmlNewNode (NULL, BAD_CAST "Man");
-    xmlDocSetRootElement (parser->doc, parser->ins);
+	xmlDocSetRootElement (parser->doc, parser->ins);
 
     parser->make_links = TRUE;
 
@@ -154,22 +158,41 @@ parser_parse_line (YelpManParser *parser) {
     parser->anc = parser->buffer;
     parser->cur = parser->buffer;
     
-    switch (*(parser->buffer)) {
-    case '.':
-	parser_handle_linetag (parser);
-	break;
-    case '\n':
-	parser->ins = xmlDocGetRootElement (parser->doc);
-	break;
-    case '\'':
-	parser->cur = parser->buffer + parser->length - 1;
-	parser->anc = parser->cur;
-    default:
-	break;
+    /* check to see if we are ignoring input */
+    if (parser->ignore) {
+	gchar *ptr;
+	ptr = strstr (parser->buffer, parser->token);
+    	if (ptr != NULL) {
+	    parser->cur = (ptr+2);
+	    parser->anc = parser->cur;
+	    g_free (parser->token);
+	    parser->ignore = FALSE;
+	} else {
+	    /* return to get another line of input  */
+	    return;
+	}
+    } else {
+	switch (*(parser->buffer)) {
+	case '.':
+	    parser_handle_linetag (parser);
+    	    /* we are ignoring everything until parser->token, 
+     	     * so return and get next line */
+    	    if (parser->ignore)
+	        return;
+	    break;
+	case '\n':
+	    parser->ins = xmlDocGetRootElement (parser->doc);
+	    break;
+	case '\'':
+	    parser->cur = parser->buffer + parser->length - 1;
+	    parser->anc = parser->cur;
+	default:
+	    break;
+	}
     }
     
     parser_read_until (parser, '\n');
-    
+     
     if (parser->cur != parser->anc)
 	parser_append_text (parser);
     
@@ -186,12 +209,14 @@ parser_handle_linetag (YelpManParser *parser) {
 
     while (PARSER_CUR
 	   && *(parser->cur) != ' '
+	   && ( (*parser->cur != '\\') || ((*parser->cur == '\\') && (*(parser->cur+1) == '\"')) )
 	   && *(parser->cur) != '\n')
 	parser->cur++;
 
     c = *(parser->cur);
     *(parser->cur) = '\0';
 
+    /* skip the '.' by adding 1 */
     str = g_strdup (parser->anc + 1);
     *(parser->cur) = c;
 
@@ -199,10 +224,12 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser->cur++;
     parser->anc = parser->cur;
 
+    /* \" denotes a comment, ignore it */
     if (g_str_equal (str, "\\\"")) {
 	while (PARSER_CUR)
 	    parser->anc = ++parser->cur;
     }
+    /* handle bold, italic, and small macros */
     else if (g_str_equal (str, "B") || g_str_equal (str, "I") ||
 	     g_str_equal (str, "SM")) {
 	parser_ensure_P (parser);
@@ -212,6 +239,7 @@ parser_handle_linetag (YelpManParser *parser) {
 	parser_append_token (parser);
 	parser->ins = parser->ins->parent;
     }
+    /* handle roman italic, bold italic, and roman bold macros */
     else if (g_str_equal (str, "IR") || g_str_equal (str, "RI") ||
 	     g_str_equal (str, "IB") || g_str_equal (str, "BI") ||
 	     g_str_equal (str, "RB") || g_str_equal (str, "BR") ) {
@@ -232,6 +260,7 @@ parser_handle_linetag (YelpManParser *parser) {
 	    } else break;
 	}
     }
+    /* all these are to start a new paragraph */
     else if (g_str_equal (str, "P") || g_str_equal (str, "PP") ||
 	     g_str_equal (str, "LP") || g_str_equal (str, "Pp")) {
 
@@ -245,6 +274,7 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser_ensure_P (parser);
     }
+    /* this should just be a line break */
     else if (g_str_equal (str, "br")) {
 	parser_append_node (parser, str);
     }
@@ -268,6 +298,7 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	while (PARSER_CUR && *(parser->cur) != '\n') {
 	    parser->ins = parser_append_node (parser, str);
+	    /* FIXME: man seems to take all arguments until the end of the line, -B.S. */
 	    parser_append_token (parser);
 	    parser->ins = parser->ins->parent;
 	}
@@ -303,6 +334,7 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser->ins = parser->ins->parent;
     }
+    /* Begin paragraph with hanging tag. */
     else if (g_str_equal (str, "TP")) {
 	tmpNode = parser_stack_pop_node (parser, "IP");
 
@@ -333,6 +365,7 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser_stack_push_node (parser, parser->ins);
     }
+    /* indented paragraph, with optional hanging indent */
     else if (g_str_equal (str, "IP")) {
 	tmpNode = parser_stack_pop_node (parser, "IP");
 
@@ -356,6 +389,7 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	parser_stack_push_node (parser, parser->ins);
     }
+    /* hanging paragraph */
     else if (g_str_equal (str, "HP")) {
 	parser_stack_pop_node (parser, "IP");
 
@@ -368,6 +402,9 @@ parser_handle_linetag (YelpManParser *parser) {
             parser->ins = parser->ins->parent;
         }
     }
+    /* relative margin indent; FIXME: this takes a parameter that tells
+     * how many indents to do, which needs to be implemented to fix 
+     * some man page formatting options */
     else if (g_str_equal (str, "RS")) {
 	parser->ins = parser_append_node (parser, str);
 	g_free (str);
@@ -380,6 +417,7 @@ parser_handle_linetag (YelpManParser *parser) {
             parser->ins = parser->ins->parent;
         }
     }
+    /* end relative indent */
     else if (g_str_equal (str, "RE")) {
 	parser_stack_pop_node (parser, "IP");
 
@@ -522,14 +560,90 @@ parser_handle_linetag (YelpManParser *parser) {
         g_free (str);
     }
 
+    /* this is a macro used for making index entries 
+     * in a table of contents; ignore it for now, and skip until 
+     * end of line; definition in /usr/share/groff/<version>/tmac/m.tmac */
+    else if (g_str_equal (str, "IX")) {
+	/* ignore the rest of the line */
+	while (PARSER_CUR)
+	    parser->anc = ++parser->cur;
+    }
+   
+    /* these are pod2man extensions which are usually defined early in
+     * the "preamble" of the man file.  They are usually defined 
+     * for verbatim text; ignore them for now */
+    else if (g_str_equal (str, "Vb") || g_str_equal (str, "Ve")) {
+	/* ignore the rest of the line */
+	while (PARSER_CUR)
+	    parser->anc = ++parser->cur;
+    }
+
+    /* "ie" and "if" are conditional macros in groff
+     * "ds" is to define a variable; see groff(7)
+     * ignore anything between the \{ \}, otherwise ignore until
+     * the end of the linee*/
+    else if (g_str_equal (str, "ds") || g_str_equal (str, "ie")
+	                             || g_str_equal (str, "if")) {
+	/* skip any remaining spaces */
+	while (PARSER_CUR && (*parser->cur == ' '))
+	    parser->anc = ++parser->cur;
+	
+	/* skip the "stringvar" or "cond"; see groff(7) */
+	while (PARSER_CUR && (*parser->cur != ' '))
+	    parser->anc = ++parser->cur;
+	
+	/* skip any remaining spaces */
+	while (PARSER_CUR && (*parser->cur == ' '))
+	    parser->anc = ++parser->cur;
+	
+	/* check to see if the next two characters are the
+	 * special "\{" sequence */
+	if (*parser->cur == '\\' && *(parser->cur+1) == '{') {
+	    parser->ignore = TRUE;
+	    parser->token = g_strdup ("\\}");
+	} else {
+	    /* otherwise just ignore till the end of the line */
+	    while (PARSER_CUR)
+	        parser->anc = ++parser->cur;
+	}
+    }
+    
+    /* else conditional macro */
+    else if (g_str_equal (str, "el")) {
+	/* check to see if the next two characters are the
+	 * special "\{" sequence */
+	parser->ignore = 0;
+	if (*parser->cur == '\\' && *(parser->cur+1) == '{') {
+	    parser->ignore = TRUE;
+	    parser->token = g_strdup ("\\}");
+	} else {
+	    /* otherwise just ignore till the end of the line */
+	    while (PARSER_CUR)
+	        parser->anc = ++parser->cur;
+	}
+    }
+
+    /* this is used to define or redefine a macro until ".." 
+     * is reached. */
+    else if (g_str_equal (str, "de")) {
+    	gchar *ptr = NULL;
+	ptr = strstr (parser->cur, "..");
+	if (ptr) {
+		parser->cur = (ptr+2);
+		parser->anc = parser->cur;
+	} else {
+		/* set the flag to ignore input until ".." */
+		parser->ignore = TRUE;
+		parser->token = g_strdup("..");
+	}
+    }
+
     /* 
      * From man(7): macros that many processors will simply ignore...
      * so lets do that for now.
      */
     else if (g_str_equal (str, "ad") || g_str_equal (str, "bp") 
-	     || g_str_equal (str, "ce") || g_str_equal (str, "de") 
-	     || g_str_equal (str, "ds") || g_str_equal (str, "el") 
-	     || g_str_equal (str, "ie") || g_str_equal (str, "if") 
+	                             || g_str_equal (str, "ce") 
 	     || g_str_equal (str, "fi") || g_str_equal (str, "ft") 
 	     || g_str_equal (str, "hy") || g_str_equal (str, "ig") 
 	     || g_str_equal (str, "in") || g_str_equal (str, "na") 
@@ -668,6 +782,8 @@ parser_handle_inline (YelpManParser *parser)
 	parser_escape_tags (parser, escape, 2);
 	g_free (escape);
 
+	/* the \f escape sequence changes the font - R is Roman, 
+	 * B is Bold, and I is italic */
 	if (g_str_equal (str, "fI") || g_str_equal (str, "fB"))
 	    parser->ins = parser_append_node (parser, str);
 	else if (!g_str_equal (str, "fR") && !g_str_equal (str, "fP"))
@@ -737,6 +853,20 @@ parser_handle_inline (YelpManParser *parser)
 	break;
     case '&':
 	parser->cur++;
+	parser->anc = parser->cur;
+	break;
+    case 's':
+    	/* this handles (actually ignores) the troff macros \s[+-][0-9] */
+    	parser->cur++;
+	if (*(parser->cur) == '+' || *(parser->cur) == '-') {
+		parser->cur++;
+		/* can I replace with isdigit() and add #include <ctype.h> */
+		if (*(parser->cur) >= 0x30 && *(parser->cur) <= 0x39) {
+			parser->cur++;
+		}
+	} else if (*(parser->cur) >= 0x30 && *(parser->cur) <= 0x39) {
+		parser->cur++;
+	}
 	parser->anc = parser->cur;
 	break;
     case '"':
@@ -1006,6 +1136,8 @@ parser_make_link (YelpManParser *parser)
 
     tmp_cur = parser->cur;
     parser->cur = space_pos;
+    
+    parser_ensure_P (parser);
     
     parser_append_text (parser);
     

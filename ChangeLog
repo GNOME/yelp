@@ -1,3 +1,14 @@
+2005-09-17  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-man-parser.c:
+	- Made the man parser ignore macros used by pod2man to reduce garbage (Brent Smith)
+	- Handle troff \s+-[N] macros (Brent Smith)
+	- Much-needed code comment (Brent Smith)
+
+	* stylesheets/man2html.xsl
+	- Handle <br> and <Indent> elements (Brent Smith)
+	- Fix the SH, SS, and IP sibling selectors
+
 ==================== 2.12.1 ====================
 
 2005-09-17  Shaun McCance  <shaunm@gnome.org>
