@@ -284,6 +284,9 @@ yelp_settings_open_preferences (void)
 
 	g_signal_connect (G_OBJECT (prefs_dialog), "response",
 			  G_CALLBACK (gtk_widget_hide), NULL);
+	
+	g_signal_connect (G_OBJECT (prefs_dialog), "delete_event",
+			  G_CALLBACK (gtk_widget_hide_on_delete), NULL);
 
 	g_object_unref (glade);
     }

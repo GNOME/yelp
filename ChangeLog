@@ -1,3 +1,8 @@
+2005-10-13  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-settings.c: (yelp_settings_open_preferences):
+	- Make the preferences dialog hide on the delete_event, fixes #318736
+
 ==================== 2.12.1 ====================
 
 2005-09-17  Shaun McCance  <shaunm@gnome.org>
