@@ -28,6 +28,7 @@
 
 #include <glib/gi18n.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -194,6 +195,9 @@ static void               location_response_cb    (GtkDialog       *dialog,
 
 static gboolean    window_find_action             (YelpWindow        *window);
 static void        window_find_entry_changed_cb   (GtkEditable       *editable,
+						   gpointer           data);
+static gboolean    window_find_entry_key_pressed_cb (GtkWidget       *widget,
+						   GdkEventKey		  *key,
 						   gpointer           data);
 static void        window_find_save_settings      (YelpWindow        *window);
 static void        window_find_buttons_set_sensitive (YelpWindow      *window,
@@ -1039,6 +1043,8 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
     priv->find_entry = gtk_entry_new ();
     g_signal_connect (G_OBJECT (priv->find_entry), "changed",
 		      G_CALLBACK (window_find_entry_changed_cb), window);
+    g_signal_connect (G_OBJECT (priv->find_entry), "key-press-event",
+		      G_CALLBACK (window_find_entry_key_pressed_cb), window);
     gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
 
     item = gtk_tool_item_new ();
@@ -2340,8 +2346,32 @@ window_find_entry_changed_cb (GtkEditable *editable,
     g_free (text);
 }
 
+static gboolean
+window_find_entry_key_pressed_cb (GtkWidget    *widget,
+				  GdkEventKey  *key,
+				  gpointer     data)
+{
+    YelpWindow     *window;
+    YelpWindowPriv *priv;
+
+    if (key->keyval == GDK_Escape) {
+	g_return_if_fail (YELP_IS_WINDOW(data));
+
+	window = YELP_WINDOW (data);
+	priv = window->priv;
+
+	d (g_print ("window_find_entry_key_pressed_cb\n"));
+
+	gtk_widget_hide_all (priv->find_bar);
+
+	return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void
-window_find_buttons_set_sensitive (YelpWindow *window,
+window_find_buttons_set_sensitive (YelpWindow  *window,
 				   gboolean    sensitive)
 {
     YelpWindowPriv *priv;
