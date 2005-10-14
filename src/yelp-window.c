@@ -196,9 +196,11 @@ static void               location_response_cb    (GtkDialog       *dialog,
 static gboolean    window_find_action             (YelpWindow        *window);
 static void        window_find_entry_changed_cb   (GtkEditable       *editable,
 						   gpointer           data);
+static void        window_find_entry_activate_cb   (GtkEditable       *editable,
+						    gpointer         data);
 static gboolean    window_find_entry_key_pressed_cb (GtkWidget       *widget,
-						   GdkEventKey		  *key,
-						   gpointer           data);
+						     GdkEventKey     *key,
+						     gpointer         data);
 static void        window_find_save_settings      (YelpWindow        *window);
 static void        window_find_buttons_set_sensitive (YelpWindow      *window,
 						      gboolean        sensitive);
@@ -1043,6 +1045,8 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
     priv->find_entry = gtk_entry_new ();
     g_signal_connect (G_OBJECT (priv->find_entry), "changed",
 		      G_CALLBACK (window_find_entry_changed_cb), window);
+    g_signal_connect (G_OBJECT (priv->find_entry), "activate",
+		      G_CALLBACK (window_find_entry_activate_cb), window);
     g_signal_connect (G_OBJECT (priv->find_entry), "key-press-event",
 		      G_CALLBACK (window_find_entry_key_pressed_cb), window);
     gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
@@ -2346,6 +2350,29 @@ window_find_entry_changed_cb (GtkEditable *editable,
     g_free (text);
 }
 
+static void
+window_find_entry_activate_cb (GtkEditable *editable,
+				gpointer data)
+{
+    YelpWindow *window;
+    YelpWindowPriv *priv;
+
+    g_return_if_fail (YELP_IS_WINDOW (data));
+
+    window = YELP_WINDOW (data);
+    priv = window->priv;
+
+    window_find_buttons_set_sensitive (window, FALSE);
+
+    /* search forward and update the buttons */
+    if (!window_find_again (window, TRUE)) {
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
+    } else {
+	window_find_buttons_set_sensitive (window, TRUE);
+    }
+}
+
 static gboolean
 window_find_entry_key_pressed_cb (GtkWidget    *widget,
 				  GdkEventKey  *key,
@@ -2355,7 +2382,7 @@ window_find_entry_key_pressed_cb (GtkWidget    *widget,
     YelpWindowPriv *priv;
 
     if (key->keyval == GDK_Escape) {
-	g_return_if_fail (YELP_IS_WINDOW(data));
+	g_return_val_if_fail (YELP_IS_WINDOW (data), FALSE);
 
 	window = YELP_WINDOW (data);
 	priv = window->priv;
