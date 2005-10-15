@@ -43,11 +43,14 @@
     <separator/>
     <toolitem action="GoHome"/>
   </toolbar>
-  <popup>
+  <popup name="main_popup">
     <menuitem action="OpenLink"/>
     <menuitem action="OpenLinkNewWindow"/>
     <separator/>
     <menuitem action="CopyLocation"/>
+  </popup>
+  <popup name="mail_popup">
+    <menuitem name="CpMail" action="CopyMail"/>
   </popup>
   <accelerator action="OpenLocation"/>
   <accelerator action="Reload"/>

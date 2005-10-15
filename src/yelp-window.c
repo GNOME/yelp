@@ -175,6 +175,7 @@ static void    window_about_cb          (GtkAction *action, YelpWindow *window);
 static void    window_copy_link_cb      (GtkAction *action, YelpWindow *window);
 static void    window_open_link_cb      (GtkAction *action, YelpWindow *window);
 static void    window_open_link_new_cb  (GtkAction *action, YelpWindow *window);
+static void    window_copy_mail_cb      (GtkAction *action, YelpWindow *window);
 
 static gboolean           window_load_async      (YelpLoadData *data);
 
@@ -241,6 +242,8 @@ struct _YelpWindowPriv {
 
     /* Popup menu*/
     GtkWidget      *popup;
+    gint            merge_id;
+    GtkWidget      *maillink;
     gchar          *uri;
 
     /* Location Information */
@@ -412,7 +415,12 @@ static const GtkActionEntry entries[] = {
       N_("_About"),
       NULL,
       NULL,
-      G_CALLBACK (window_about_cb) }
+      G_CALLBACK (window_about_cb) },
+    { "CopyMail", NULL,
+      N_("Copy _Email Address"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_copy_mail_cb) }
 };
 
 GType
@@ -944,7 +952,9 @@ window_populate (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
-    priv->popup = gtk_ui_manager_get_widget(priv->ui_manager, "ui/popup");
+    priv->popup = gtk_ui_manager_get_widget(priv->ui_manager, "ui/main_popup");
+    priv->maillink = gtk_ui_manager_get_widget(priv->ui_manager, "ui/mail_popup");
+    priv->merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
     priv->pane = gtk_hpaned_new ();
     gtk_widget_ref (priv->pane);
@@ -1740,6 +1750,20 @@ html_popupmenu_requested_cb (YelpHtml *html,
 {
     YelpWindow *window = YELP_WINDOW (user_data);
 
+    gtk_ui_manager_remove_ui (window->priv->ui_manager,
+			      window->priv->merge_id);
+
+
+    if (g_str_has_prefix(uri, "mailto:")) {
+	gtk_ui_manager_add_ui (window->priv->ui_manager,
+			       window->priv->merge_id,
+			       "/ui/main_popup",
+			       "CpMail",
+			       "CopyMail",
+			       GTK_UI_MANAGER_MENUITEM,
+			       FALSE);
+
+    }
     window->priv->uri = g_strdup (uri);
     gtk_menu_popup (GTK_MENU (window->priv->popup),
 		    NULL, NULL, NULL, NULL, 3, gtk_get_current_event_time());
@@ -2195,6 +2219,25 @@ window_open_link_new_cb (GtkAction *action, YelpWindow *window)
 		   window->priv->uri);
     g_free (window->priv->uri);
 };
+
+static void
+window_copy_mail_cb (GtkAction *action, YelpWindow *window)
+{
+    /*Do things the simple way.
+     * Split the string and remove any query bit then
+     * remove the first 7 chars as they should be mailto:
+     */
+    gchar **split_string = g_strsplit (window->priv->uri, "?", 2);
+    
+    gchar *mail_address = &split_string[0][7];
+    
+    gtk_clipboard_set_text (gtk_clipboard_get (gdk_atom_intern ("CLIPBOARD", 
+								TRUE)),
+			    mail_address,
+			    -1);
+    g_free (window->priv->uri);
+    g_strfreev(split_string);
+}
 
 static void
 window_about_cb (GtkAction *action, YelpWindow *window)
