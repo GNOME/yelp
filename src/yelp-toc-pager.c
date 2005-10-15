@@ -425,7 +425,7 @@ static gboolean
 process_read_scrollkeeper (YelpTocPager *pager)
 {
     gchar  *content_list;
-    gchar  *stderr;
+    gchar  *stderr_str;
     gchar  *lang;
     gchar  *command;
     static xmlSAXHandler sk_sax_handler = { 0, };
@@ -438,7 +438,7 @@ process_read_scrollkeeper (YelpTocPager *pager)
 
     command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
 
-    if (g_spawn_command_line_sync (command, &content_list, &stderr, NULL, NULL)) {
+    if (g_spawn_command_line_sync (command, &content_list, &stderr_str, NULL, NULL)) {
 	if (!sk_sax_handler.startElement) {
 	    sk_sax_handler.startElement = sk_startElement;
 	    sk_sax_handler.endElement   = sk_endElement;
@@ -450,7 +450,7 @@ process_read_scrollkeeper (YelpTocPager *pager)
     }
 
     g_free (content_list);
-    g_free (stderr);
+    g_free (stderr_str);
     g_free (command);
     return FALSE;
 }
