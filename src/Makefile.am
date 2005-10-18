@@ -1,7 +1,9 @@
 bin_PROGRAMS = yelp
 
+nodist_yelp_SOURCES =						\
+	$(gnome_yelp_idl_sources)
+
 yelp_SOURCES =							\
-	$(gnome_yelp_idl_sources)				\
 	Yelper.cpp		Yelper.h			\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
@@ -177,8 +179,7 @@ MAINTAINERCLEANFILES = stamp-yelp-marshal.h $(BUILT_SOURCES)
 
 EXTRA_DIST =								\
 	yelp-marshal.list						\
-	$(server_in_files)						\
-	$(server_DATA)
+	$(server_in_files)
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help
