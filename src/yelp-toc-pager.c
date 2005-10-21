@@ -971,11 +971,9 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
 
     text = (gchar *) yelp_doc_info_get_title (doc_info);
     xmlNewTextChild (new, NULL, "title", text);
-    g_free (text);
 
     text = (gchar *) yelp_doc_info_get_description (doc_info);
     xmlNewTextChild (new, NULL, "description", text);
-    g_free (text);
 }
 
 static void
