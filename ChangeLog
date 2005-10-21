@@ -1,3 +1,8 @@
+2005-10-20  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (toc_add_doc_info):
+	- applied patch from Matthias Clasen to fix incorrect free, fixes #319096
+
 2005-10-18  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* src/Makefile.am: don't ship generated files.
