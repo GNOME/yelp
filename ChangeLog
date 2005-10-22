@@ -1,3 +1,8 @@
+2005-10-22  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-bookmarks.c: (yelp_bookmarks_edit):
+	- Make the edit bookmarks dialog hide on the delete_event, fixes #319502
+
 2005-10-20  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-toc-pager.c: (toc_add_doc_info):
