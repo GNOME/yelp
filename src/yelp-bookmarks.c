@@ -618,6 +618,9 @@ yelp_bookmarks_edit (void)
 
 	g_signal_connect (G_OBJECT (bookmarks_dialog), "response",
 			  G_CALLBACK (gtk_widget_hide), NULL);
+	g_signal_connect (G_OBJECT (bookmarks_dialog), "delete_event",
+			  G_CALLBACK (gtk_widget_hide_on_delete), NULL);
+	
 	renderer = gtk_cell_renderer_text_new ();
     
 	gtk_tree_view_insert_column_with_attributes
