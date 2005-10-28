@@ -37,7 +37,8 @@ typedef enum {
     YELP_DOC_TYPE_MAN,
     YELP_DOC_TYPE_INFO,
     YELP_DOC_TYPE_TOC,
-    YELP_DOC_TYPE_EXTERNAL
+    YELP_DOC_TYPE_EXTERNAL,
+    YELP_DOC_TYPE_SEARCH
 } YelpDocType;
 
 static gchar *mandirs[] = {
@@ -65,20 +66,18 @@ typedef enum {
     YELP_URI_TYPE_INFO     = 1 << 3,
     YELP_URI_TYPE_TOC      = 1 << 4,
     YELP_URI_TYPE_EXTERNAL = 1 << 5,
+    YELP_URI_TYPE_SEARCH   = 1 << 6,
 
     YELP_URI_TYPE_NO_FILE =
-      YELP_URI_TYPE_GHELP   |
-      YELP_URI_TYPE_MAN     |
-      YELP_URI_TYPE_INFO    |
-      YELP_URI_TYPE_TOC     |
-      YELP_URI_TYPE_EXTERNAL,
+      YELP_URI_TYPE_GHELP    |
+      YELP_URI_TYPE_MAN      |
+      YELP_URI_TYPE_INFO     |
+      YELP_URI_TYPE_TOC      |
+      YELP_URI_TYPE_EXTERNAL |
+      YELP_URI_TYPE_SEARCH,
     YELP_URI_TYPE_ANY =
       YELP_URI_TYPE_FILE    |
-      YELP_URI_TYPE_GHELP   |
-      YELP_URI_TYPE_MAN     |
-      YELP_URI_TYPE_INFO    |
-      YELP_URI_TYPE_TOC     |
-      YELP_URI_TYPE_EXTERNAL
+      YELP_URI_TYPE_NO_FILE
 } YelpURIType;
 
 #include "yelp-pager.h"

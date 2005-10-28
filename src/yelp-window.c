@@ -55,6 +55,10 @@
 #ifdef ENABLE_INFO
 #include "yelp-info-pager.h"
 #endif
+#ifdef ENABLE_SEARCH
+#include "yelp-search-pager.h"
+#include "gtkentryaction.h"
+#endif
 
 #ifdef YELP_DEBUG
 #define d(x) x
@@ -826,6 +830,15 @@ window_do_load (YelpWindow  *window,
     case YELP_DOC_TYPE_TOC:
 	handled = window_do_load_pager (window, doc_info, frag_id);
 	break;
+    case YELP_DOC_TYPE_SEARCH:
+#ifdef ENABLE_SEARCH
+	handled = window_do_load_pager (window, doc_info, frag_id);
+	break;
+#else
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
+		     _("Search is not supported in this version."));
+	break;
+#endif
     case YELP_DOC_TYPE_DOCBOOK_SGML:
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
 		     _("SGML documents are no longer supported. Please ask "
@@ -905,6 +918,31 @@ window_error (YelpWindow *window, GError *error, gboolean pop)
     gtk_widget_destroy (dialog);
 }
 
+#ifdef ENABLE_SEARCH
+static char *
+encode_search_uri (const char *search_terms)
+{
+    return g_strdup_printf ("x-yelp-search:%s", search_terms);
+}
+
+static void
+search_activated (GtkAction *action,
+                 YelpWindow *window)
+{
+    const char *search_terms;
+    char *uri;
+
+    search_terms = gtk_entry_action_get_text (GTK_ENTRY_ACTION (action));
+
+    uri = encode_search_uri (search_terms);
+
+    yelp_window_load (window, uri);
+
+    g_free (uri);
+}
+#endif
+
+
 static void
 window_populate (YelpWindow *window)
 {
@@ -926,6 +964,17 @@ window_populate (YelpWindow *window)
     gtk_action_group_add_actions (priv->action_group,
 				  entries, G_N_ELEMENTS (entries),
 				  window);
+    
+#ifdef ENABLE_SEARCH
+    action =  gtk_entry_action_new ("Search",
+				    _("Search"),
+				    _("Search for other documentation"),
+				    NULL);
+    g_signal_connect (G_OBJECT (action), "activate",
+		      G_CALLBACK (search_activated), window);
+#endif
+    gtk_action_group_add_action (priv->action_group, action);
+
     priv->ui_manager = gtk_ui_manager_new ();
     gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
 
@@ -941,6 +990,14 @@ window_populate (YelpWindow *window)
 					  &error)) {
 	window_error (window, error, FALSE);
     }
+
+#ifdef ENABLE_SEARCH
+    if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
+					  DATADIR "/yelp/ui/yelp-search-ui.xml",
+					  &error)) {
+	window_error (window, error, FALSE);
+    }
+#endif
 
     yelp_bookmarks_register (window);
 
@@ -1176,6 +1233,15 @@ window_do_load_pager (YelpWindow  *window,
 	case YELP_DOC_TYPE_TOC:
 	    pager = YELP_PAGER (yelp_toc_pager_get ());
 	    break;
+	case YELP_DOC_TYPE_SEARCH:
+#ifdef ENABLE_SEARCH
+	    pager = yelp_search_pager_get (doc_info);
+	    break;
+#else
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
+			 _("Search is not supported in this version."));
+	    break;
+#endif
 	default:
 	    break;
 	}

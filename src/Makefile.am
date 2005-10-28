@@ -33,6 +33,12 @@ yelp_SOURCES +=					\
 	yelp-info-parser.c yelp-info-parser.h
 endif
 
+if ENABLE_SEARCH
+yelp_SOURCES +=						\
+	gtkentryaction.c	gtkentryaction.h	\
+	yelp-search-pager.c	yelp-search-pager.h
+endif
+
 YELP_DEFINES =								\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\
@@ -66,15 +72,18 @@ yelp_CPPFLAGS =									\
 
 yelp_CFLAGS =				\
 	$(YELP_CFLAGS)			\
+	$(YELP_SEARCH_CFLAGS)		\
 	$(AM_CFLAGS)
 
 yelp_CXXFLAGS =				\
 	$(YELP_CFLAGS)			\
+	$(YELP_SEARCH_CFLAGS)		\
 	$(MOZILLA_COMPONENT_CFLAGS)	\
 	$(AM_CXXFLAGS)
 
 yelp_LDADD =				\
 	$(YELP_LIBS)			\
+	$(YELP_SEARCH_LIBS)		\
 	$(POPT_LIBS)			\
 	$(Z_LIBS)			\
 	$(BZ_LIBS)			\

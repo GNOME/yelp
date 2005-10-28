@@ -87,3 +87,8 @@ window.addEventListener("load",slt.init,false);
 window.addEventListener("DOMContentLoaded",slt.init,false);
 window.addEventListener("resize",slt.init,false);
 
+function submit_search ()
+{
+    window.location = "x-yelp-search:" + document.getElementById ('search-entry').value;
+    return false;
+}

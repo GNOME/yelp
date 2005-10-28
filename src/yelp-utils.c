@@ -121,6 +121,11 @@ yelp_doc_info_new (const gchar *uri)
 	doc_type = YELP_DOC_TYPE_TOC;
 	uri_type = YELP_URI_TYPE_TOC;
     }
+    else if (g_str_has_prefix (full_uri, "x-yelp-search:")) {
+	doc_uri = g_strconcat ("file://" DATADIR "/yelp/xslt/search2html.xsl?", full_uri + strlen ("x-yelp-search:"), NULL);
+	doc_type = YELP_DOC_TYPE_SEARCH;
+	uri_type = YELP_URI_TYPE_SEARCH;
+    }
     else {
 	doc_uri = g_strdup (uri);
 	doc_type = YELP_DOC_TYPE_EXTERNAL;
