@@ -437,6 +437,7 @@ check_lang (const char *lang) {
 	    return TRUE;
 	}
     }
+    d(g_print ("%s not preferred\n", lang));
     return FALSE;
 }
 
@@ -503,6 +504,9 @@ finished_cb (BeagleQuery            *query,
 	property = beagle_hit_get_property (hit, "dc:title");
 	if (property)
 	    xmlSetProp (child, "title", property);
+	property = beagle_hit_get_property (hit, "fixme:base_title");
+	if (property)
+	    xmlSetProp (child, "base_title", property);
 
 	score = g_strdup_printf ("%f", beagle_hit_get_score (hit));
 	d(g_print ("%f\n", beagle_hit_get_score (hit)));
@@ -560,7 +564,7 @@ search_pager_process_idle (YelpSearchPager *pager)
     beagle_query_add_mime_type (query, "text/xml");
     beagle_query_add_mime_type (query, "application/xml");
     beagle_query_add_mime_type (query, "application/docbook+xml");
-    /* beagle_query_add_hit_type (query, "DocbookEntry"); */
+    beagle_query_add_mime_type (query, "text/x-docbook-entry");
 
     priv->hits = g_ptr_array_new ();
 
@@ -572,8 +576,7 @@ search_pager_process_idle (YelpSearchPager *pager)
 		      G_CALLBACK (finished_cb),
 		      pager);
 	
-    d(g_print ("Request: %s\n", beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query),
-				      &error) ? "true" : "false"));
+    beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query), &error);
 
     if (error) {
 	d(g_print ("error: %s\n", error->message));

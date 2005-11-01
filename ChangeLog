@@ -1,5 +1,14 @@
 2005-11-01  Christopher James Lahey  <clahey@ximian.com>
 
+	* src/yelp-search-pager.c: Set base_title property.  Added
+	text/x-docbook-entry to mime types.  Always send the search
+	request instead of only in debug mode.
+
+	* stylesheets/search2html.xsl: Use base_title property.  Don't
+	sort by score.  The C code handles that now (as well as language.)
+
+2005-11-01  Christopher James Lahey  <clahey@ximian.com>
+
 	* src/yelp-search-pager.c: Fix a crash.  Add language sorting.
 	Fix some warnings.
 

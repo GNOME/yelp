@@ -112,7 +112,8 @@
           </xsl:call-template>
           <dl>
             <xsl:for-each select="result[@uri != '']">
-              <xsl:sort order="descending" data-type="number" select="normalize-space(@score)"/>
+<!-- Don't sort.  Program deals with that. -->
+<!--              <xsl:sort order="descending" data-type="number" select="normalize-space(@score)"/> -->
               <xsl:apply-templates select="."/>
             </xsl:for-each>
           </dl>
@@ -134,7 +135,14 @@
         </xsl:otherwise>
       </xsl:choose>
     </a>
-    <xsl:if test="@parent_uri != ''"> from <xsl:value-of select="@parent_uri"/></xsl:if>
+    <xsl:choose>
+      <xsl:when test="@base_title != ''">
+        from <xsl:value-of select="@base_title"/>
+      </xsl:when>
+      <xsl:when test="@parent_uri != ''">
+        from <xsl:value-of select="@parent_uri"/>
+      </xsl:when>
+    </xsl:choose>
   </dt>
   <xsl:apply-templates/>
 </xsl:template>
