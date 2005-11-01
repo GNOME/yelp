@@ -121,7 +121,6 @@ sync_label (GtkAction *gaction,
   char *text;
 
   g_object_get (action, "label", &text, NULL);
-  g_print ("label: %s\n", text);
   gtk_label_set_text (label, text);
   if (text && *text)
     gtk_widget_show (GTK_WIDGET (label));

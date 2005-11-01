@@ -55,7 +55,7 @@
 #ifdef YELP_DEBUG
 #define d(x) x
 #else
-#define d(x) x
+#define d(x)
 #endif
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
@@ -301,6 +301,16 @@ search_pager_process (YelpPager *pager)
 {
     d (g_print ("search_pager_process\n"));
 
+    if (beagle_client == NULL) {
+	GError *error = NULL;
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
+		     _("Your search could not be processed. There "
+		       "is no connection to the beagle daemon."),
+		     SEARCH_STYLESHEET);
+	yelp_pager_error (YELP_PAGER (pager), error);
+	return FALSE;
+    }
+
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
     g_signal_emit_by_name (pager, "parse");
 
@@ -500,6 +510,7 @@ search_pager_process_idle (YelpSearchPager *pager)
 {
     BeagleQuery    *query;
     YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
+    GError *error = NULL;
 
     priv->search_doc = xmlNewDoc ("1.0");
     priv->root = xmlNewNode (NULL, "search");
@@ -527,8 +538,12 @@ search_pager_process_idle (YelpSearchPager *pager)
 		      G_CALLBACK (finished_cb),
 		      pager);
 	
-    beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query),
-				      NULL);
+    d(g_print ("Request: %s\n", beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query),
+								  &error) ? "true" : "false"));
+
+    if (error) {
+	g_print ("error: %s\n", error->message);
+    }
 
     return FALSE;
 }
@@ -550,7 +565,7 @@ process_xslt (YelpSearchPager *pager)
     priv->stylesheet = xsltParseStylesheetFile (SEARCH_STYLESHEET);
     if (!priv->stylesheet) {
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
-		     _("The table of contents could not be processed. The "
+		     _("Your search could not be processed. The "
 		       "file ‘%s’ is either missing or is not a valid XSLT "
 		       "stylesheet."),
 		     SEARCH_STYLESHEET);
@@ -628,7 +643,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 		    xmlNodePtr              inst,
 		    xsltStylePreCompPtr     comp)
 {
-    GError  *error;
+    GError  *error = NULL;
     YelpPage *page;
     xmlChar *page_id = NULL;
     xmlChar *page_title = NULL;

@@ -1,3 +1,11 @@
+2005-11-01  Christopher James Lahey  <clahey@ximian.com>
+
+	* src/gtkentryaction.c (sync_label): Remove extraneous print statement.
+
+	* src/yelp-search-pager.c (d): Remove extraneous print statements.
+	(search_pager_process): Check for a NULL beagle_client to handle
+	the case of no running beagle daemon.
+
 2005-10-28  Christopher James Lahey  <clahey@ximian.com>
 
 	* configure.in, data/yelp.js, data/ui/Makefile.am,
