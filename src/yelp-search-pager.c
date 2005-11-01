@@ -119,6 +119,7 @@ static gboolean      search_pager_process_idle (YelpSearchPager        *pager);
 static YelpPagerClass *parent_class;
 
 static BeagleClient   *beagle_client;
+static char const * const * langs;
 
 GType
 yelp_search_pager_get_type (void)
@@ -153,6 +154,9 @@ search_pager_class_init (YelpSearchPagerClass *klass)
     parent_class = g_type_class_peek_parent (klass);
 
     beagle_client = beagle_client_new (NULL);
+    d(g_print ("client: %p\n", beagle_client);)
+
+    langs = g_get_language_names ();
 
     object_class->dispose = search_pager_dispose;
 
@@ -305,8 +309,7 @@ search_pager_process (YelpPager *pager)
 	GError *error = NULL;
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
 		     _("Your search could not be processed. There "
-		       "is no connection to the beagle daemon."),
-		     SEARCH_STYLESHEET);
+		       "is no connection to the beagle daemon."));
 	yelp_pager_error (YELP_PAGER (pager), error);
 	return FALSE;
     }
@@ -425,12 +428,41 @@ hits_added_cb (BeagleQuery *query, BeagleHitsAddedResponse *response, YelpSearch
     }
 }
 
+static gboolean
+check_lang (const char *lang) {
+    int i;
+    for (i = 0; langs[i]; i++) {
+	if (!strncmp (lang, langs[i], 2)) {
+	    d(g_print ("%s preferred\n", lang));
+	    return TRUE;
+	}
+    }
+    return FALSE;
+}
+
 static gint
 compare_hits (gconstpointer  a,
 	      gconstpointer  b)
 {
     BeagleHit **hita = (BeagleHit **) a;
     BeagleHit **hitb = (BeagleHit **) b;
+    const char *langa, *langb;
+    gboolean a_preferred = TRUE, b_preferred = TRUE;
+
+    langa = beagle_hit_get_property (*hita, "fixme:language");
+    langb = beagle_hit_get_property (*hitb, "fixme:language");
+
+    if (langa)
+	a_preferred = check_lang(langa);
+    if (langb)
+	b_preferred = check_lang(langb);
+
+    if (a_preferred != b_preferred) {
+	if (a_preferred)
+	    return -1;
+	if (b_preferred)
+	    return 1;
+    }
 
     double scorea = beagle_hit_get_score (*hita);
     double scoreb = beagle_hit_get_score (*hitb);
@@ -456,7 +488,7 @@ finished_cb (BeagleQuery            *query,
 
     g_ptr_array_sort (priv->hits, compare_hits);
 
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 10 && i < priv->hits->len; i++) {
 	BeagleHit *hit = g_ptr_array_index (priv->hits, i);
 	xmlNode *child;
 	static float score_fake = 0;
@@ -503,6 +535,8 @@ finished_cb (BeagleQuery            *query,
     g_ptr_array_foreach (priv->hits, (GFunc) beagle_hit_unref, NULL);
     g_ptr_array_free (priv->hits, TRUE);
     priv->hits = NULL;
+
+    check_finished (pager);
 }
 
 static gboolean
@@ -526,7 +560,7 @@ search_pager_process_idle (YelpSearchPager *pager)
     beagle_query_add_mime_type (query, "text/xml");
     beagle_query_add_mime_type (query, "application/xml");
     beagle_query_add_mime_type (query, "application/docbook+xml");
-    /*    beagle_query_add_hit_type (query, "DocBookEntry");*/
+    /* beagle_query_add_hit_type (query, "DocbookEntry"); */
 
     priv->hits = g_ptr_array_new ();
 
@@ -539,11 +573,13 @@ search_pager_process_idle (YelpSearchPager *pager)
 		      pager);
 	
     d(g_print ("Request: %s\n", beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query),
-								  &error) ? "true" : "false"));
+				      &error) ? "true" : "false"));
 
     if (error) {
-	g_print ("error: %s\n", error->message);
+	d(g_print ("error: %s\n", error->message));
     }
+
+    g_clear_error (&error);
 
     return FALSE;
 }
@@ -756,55 +792,3 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     if (style)
 	xsltFreeStylesheet (style);
 }
-
-#ifdef ENABLE_SCROLLKEEPER
-static void
-xml_trim_titles (xmlNodePtr node)
-{
-    xmlNodePtr cur, keep = NULL;
-    xmlChar *keep_lang = NULL;
-    int j, keep_pri = INT_MAX;
-
-    const gchar * const * langs = g_get_language_names ();
-
-    for (cur = node->children; cur; cur = cur->next) {
-	if (!xmlStrcmp (cur->name, BAD_CAST "title")) {
-	    xmlChar *cur_lang = NULL;
-	    int cur_pri = INT_MAX;
-	    cur_lang = xmlNodeGetLang (cur);
-	    if (cur_lang) {
-		for (j = 0; langs[j]; j++) {
-		    if (g_str_equal (cur_lang, langs[j])) {
-			cur_pri = j;
-			break;
-		    }
-		}
-	    } else {
-		cur_pri = INT_MAX - 1;
-	    }
-	    if (cur_pri <= keep_pri) {
-		if (keep_lang)
-		    xmlFree (keep_lang);
-		keep_lang = cur_lang;
-		keep_pri = cur_pri;
-		keep = cur;
-	    } else {
-		if (cur_lang)
-		    xmlFree (cur_lang);
-	    }
-	}
-    }
-    cur = node->children;
-    while (cur) {
-	xmlNodePtr this = cur;
-	cur = cur->next;
-	if (!xmlStrcmp (this->name, BAD_CAST "title")) {
-	    if (this != keep) {
-		xmlUnlinkNode (this);
-		xmlFreeNode (this);
-	    }
-	}
-    }
-    xmlFree (keep_lang);
-}
-#endif

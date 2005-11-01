@@ -1,5 +1,10 @@
 2005-11-01  Christopher James Lahey  <clahey@ximian.com>
 
+	* src/yelp-search-pager.c: Fix a crash.  Add language sorting.
+	Fix some warnings.
+
+2005-11-01  Christopher James Lahey  <clahey@ximian.com>
+
 	* src/gtkentryaction.c (sync_label): Remove extraneous print statement.
 
 	* src/yelp-search-pager.c (d): Remove extraneous print statements.
