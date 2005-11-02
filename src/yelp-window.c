@@ -352,7 +352,7 @@ static const GtkActionEntry entries[] = {
       G_CALLBACK (window_reload_cb) },
 
     { "TextCursor", NULL,
-      NULL,
+      "TextCursor",
       "F7",
       NULL,
       G_CALLBACK (window_enable_cursor_cb) },
