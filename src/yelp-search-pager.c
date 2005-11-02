@@ -389,7 +389,7 @@ snippet_response (BeagleSnippetRequest *request, BeagleSnippetResponse *response
     d(g_print ("snippet_response: %s\n", xml));
 
     xmldoc = g_strdup_printf ("<snippet>%s</snippet>",  xml);
-    snippet_doc = xmlParseDoc (xmldoc);
+    snippet_doc = xmlParseDoc (BAD_CAST xmldoc);
     g_free (xmldoc);
     if (!snippet_doc)
 	goto done;
@@ -498,19 +498,20 @@ finished_cb (BeagleQuery            *query,
 	BeagleSnippetRequest *request;
 	SnippetLocation *snippet_location;
 
-	child = xmlNewTextChild (priv->root, NULL, "result", NULL);
-	xmlSetProp (child, "uri", beagle_hit_get_uri (hit));
-	xmlSetProp (child, "parent_uri", beagle_hit_get_parent_uri (hit));
+	child = xmlNewTextChild (priv->root, NULL, BAD_CAST "result", NULL);
+	xmlSetProp (child, BAD_CAST "uri", BAD_CAST beagle_hit_get_uri (hit));
+	xmlSetProp (child, BAD_CAST "parent_uri", 
+		    BAD_CAST beagle_hit_get_parent_uri (hit));
 	property = beagle_hit_get_property (hit, "dc:title");
 	if (property)
-	    xmlSetProp (child, "title", property);
+	    xmlSetProp (child, BAD_CAST "title", BAD_CAST property);
 	property = beagle_hit_get_property (hit, "fixme:base_title");
 	if (property)
-	    xmlSetProp (child, "base_title", property);
+	    xmlSetProp (child, BAD_CAST "base_title", BAD_CAST property);
 
 	score = g_strdup_printf ("%f", beagle_hit_get_score (hit));
 	d(g_print ("%f\n", beagle_hit_get_score (hit)));
-	xmlSetProp (child, "score", score);
+	xmlSetProp (child, BAD_CAST "score", BAD_CAST score);
 	g_free (score);
 
 	priv->snippet_request_count ++;
@@ -550,9 +551,9 @@ search_pager_process_idle (YelpSearchPager *pager)
     YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
     GError *error = NULL;
 
-    priv->search_doc = xmlNewDoc ("1.0");
-    priv->root = xmlNewNode (NULL, "search");
-    xmlSetProp (priv->root, "title", priv->search_terms);
+    priv->search_doc = xmlNewDoc (BAD_CAST "1.0");
+    priv->root = xmlNewNode (NULL, BAD_CAST "search");
+    xmlSetProp (priv->root, BAD_CAST "title", BAD_CAST priv->search_terms);
     xmlDocSetRootElement (priv->search_doc, priv->root);
 
     query = beagle_query_new ();
@@ -601,7 +602,7 @@ process_xslt (YelpSearchPager *pager)
 
     d(xmlDocFormatDump(stdout, priv->search_doc, 1));
 
-    priv->stylesheet = xsltParseStylesheetFile (SEARCH_STYLESHEET);
+    priv->stylesheet = xsltParseStylesheetFile (BAD_CAST SEARCH_STYLESHEET);
     if (!priv->stylesheet) {
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
 		     _("Your search could not be processed. The "
@@ -616,8 +617,8 @@ process_xslt (YelpSearchPager *pager)
 						      priv->search_doc);
     priv->transformContext->_private = pager;
     xsltRegisterExtElement (priv->transformContext,
-			    "document",
-			    YELP_NAMESPACE,
+			    BAD_CAST "document",
+			    BAD_CAST YELP_NAMESPACE,
 			    (xsltTransformFunction) xslt_yelp_document);
 
     params = g_new0 (gchar *, params_max);
@@ -728,7 +729,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     style->omitXmlDeclaration = TRUE;
 
-    new_doc = xmlNewDoc ("1.0");
+    new_doc = xmlNewDoc (BAD_CAST "1.0");
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
@@ -754,30 +755,30 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     page = g_new0 (YelpPage, 1);
 
     if (page_id) {
-	page->page_id = g_strdup (page_id);
+	page->page_id = g_strdup ((gchar *) page_id);
 	xmlFree (page_id);
     }
     if (page_title) {
-	page->title = g_strdup (page_title);
+	page->title = g_strdup ((gchar *) page_title);
 	xmlFree (page_title);
     } else {
 	page->title = g_strdup (_("Help Contents"));
     }
-    page->contents = page_buf;
+    page->contents = (gchar *) page_buf;
 
     cur = xmlDocGetRootElement (new_doc);
     for (cur = cur->children; cur; cur = cur->next) {
 	if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
 	    for (cur = cur->children; cur; cur = cur->next) {
 		if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
-		    xmlChar *rel = xmlGetProp (cur, "rel");
+		    xmlChar *rel = xmlGetProp (cur, BAD_CAST "rel");
 
 		    if (!xmlStrcmp (rel, (xmlChar *) "Previous"))
-			page->prev_id = xmlGetProp (cur, "href");
+			page->prev_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
 		    else if (!xmlStrcmp (rel, (xmlChar *) "Next"))
-			page->next_id = xmlGetProp (cur, "href");
+			page->next_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
 		    else if (!xmlStrcmp (rel, (xmlChar *) "Top"))
-			page->toc_id = xmlGetProp (cur, "href");
+			page->toc_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
 
 		    xmlFree (rel);
 		}

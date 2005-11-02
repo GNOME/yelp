@@ -1,5 +1,14 @@
 2005-11-02  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-bookmarks.c, src/yelp-db-pager.c, src/yelp-gecko-utils.cpp,
+	* src/yelp-info-pager.c, src/yelp-info-parser.c, 
+	* src/yelp-man-pager.c, src/yelp-man-parser.c, 
+	* src/yelp-search-pager.c, src/yelp-toc-pager.c, 
+	* src/yelp-utils.c, src/yelp-window.c, src/yelp-xslt-pager.c
+	Cleanup compiler warnings (casts)
+
+2005-11-02  Don Scorgie  <dscorgie@cvs.gnome.org>
+
 	* src/yelp-window.c: 
 	Remove warning about `stock_id != NULL' in new window
 

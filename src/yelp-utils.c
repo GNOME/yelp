@@ -78,7 +78,7 @@ yelp_doc_info_new (const gchar *uri)
     YelpDocInfo *doc;
     gchar       *doc_uri  = NULL;
     gchar       *full_uri = NULL;
-    YelpDocType  doc_type;
+    YelpDocType  doc_type = YELP_DOC_TYPE_ERROR;
     YelpURIType  uri_type;
     gchar *cur;
 
@@ -189,7 +189,7 @@ yelp_doc_info_get (const gchar *uri)
     if (!doc) {
 	doc = yelp_doc_info_new (doc_uri);
 	if (doc && doc->type != YELP_DOC_TYPE_EXTERNAL) {
-	    YelpDocInfo *old_doc;
+	    YelpDocInfo *old_doc = NULL;
 
 	    for (i = 0; i < doc->num_uris; i++) {
 		old_doc = g_hash_table_lookup (doc_info_table,

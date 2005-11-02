@@ -1235,7 +1235,7 @@ window_do_load_pager (YelpWindow  *window,
 	    break;
 	case YELP_DOC_TYPE_SEARCH:
 #ifdef ENABLE_SEARCH
-	    pager = yelp_search_pager_get (doc_info);
+	    pager = YELP_PAGER (yelp_search_pager_get (doc_info));
 	    break;
 #else
 	    g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
@@ -1873,7 +1873,7 @@ tree_drag_data_get_cb (GtkWidget         *widget,
     GtkTreeSelection *tree_selection;
     GtkTreeModel     *model;
     GtkTreeIter       iter;
-    gchar *id, *uri;
+    gchar *id, *uri = NULL;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
@@ -1900,7 +1900,7 @@ tree_drag_data_get_cb (GtkWidget         *widget,
     case TARGET_URI_LIST:
 	gtk_selection_data_set (selection,
 				selection->target,
-				8, uri, strlen (uri));
+				8, (const guchar *) uri, strlen (uri));
 	break;
     default:
 	g_assert_not_reached ();

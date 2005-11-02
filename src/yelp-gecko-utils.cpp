@@ -124,6 +124,8 @@ yelp_gecko_set_color (YelpColorType type, const gchar *color)
 		gecko_prefs_set_string ("browser.anchor_color",
 					color);
 		break;
+	default:
+		break;
 	}
 }
 
@@ -131,7 +133,7 @@ extern "C" void
 yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 {
 	gchar *name;
-	gint   size;
+	gint   size = 0;
 
 	name = NULL;
 	if (!yelp_util_split_font_string (fontname, &name, &size)) {
@@ -159,6 +161,8 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 					name);
 		gecko_prefs_set_int ("font.size.fixed.x-western", 
 				     size);
+		break;
+	default:
 		break;
 	}
 

@@ -362,7 +362,7 @@ man_section_process (xmlNodePtr    node,
     title = xmlNodeGetContent (title_node);
 
     this_sect = g_new0 (YelpManSect, 1);
-    this_sect->title = g_strdup (title);
+    this_sect->title = g_strdup ((gchar *) title);
 
     this_sect->parent = parent;
     if (previous != NULL) {
@@ -372,11 +372,11 @@ man_section_process (xmlNodePtr    node,
 	parent->child = this_sect;
     }
 
-    this_sect->id = g_strdup (xmlGetProp (node, "id"));
+    this_sect->id = g_strdup ((gchar *) xmlGetProp (node, BAD_CAST "id"));
 
-    sect = xmlGetProp (node, "sect");
+    sect = xmlGetProp (node, BAD_CAST "sect");
     if (sect) {
-	this_sect->sect = g_strdup (sect);
+	this_sect->sect = g_strdup ((gchar *) sect);
 	g_hash_table_insert (man_secthash, this_sect->sect, this_sect);
     }
 

@@ -925,11 +925,12 @@ yelp_bookmarks_write (void)
 				    COL_LABEL, &label,
 				    -1);
 		xmlTextWriterStartElement (file, BAD_CAST "bookmark");
- 		xmlTextWriterWriteAttribute (file, "href", name);
+ 		xmlTextWriterWriteAttribute (file, BAD_CAST "href", 
+					     BAD_CAST name);
 
 		rc = xmlTextWriterWriteElement (file,
 						BAD_CAST "title",
-						label);
+						BAD_CAST label);
 
 		rc = xmlTextWriterStartElement (file, BAD_CAST "info");
 		rc = xmlTextWriterStartElement (file, BAD_CAST "metadata");
@@ -986,19 +987,22 @@ bookmarks_read (void)
     }
 
     xpath = xmlXPathNewContext (doc);
-    obj = xmlXPathEvalExpression ("/xbel/bookmark", xpath);
+    obj = xmlXPathEvalExpression (BAD_CAST "/xbel/bookmark", xpath);
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	gchar *uri;
-	uri = xmlGetProp (node, "href");
+	uri = (gchar *) xmlGetProp (node, BAD_CAST "href");
 	if (uri) {
 	    xmlXPathObjectPtr title_obj;
 	    xpath->node = node;
-	    title_obj = xmlXPathEvalExpression ("string(title[1])", xpath);
+	    title_obj = xmlXPathEvalExpression (BAD_CAST "string(title[1])", 
+						xpath);
 	    xpath->node = NULL;
 
 	    if (title_obj->stringval)
-		bookmarks_add_bookmark (uri, title_obj->stringval, FALSE);
+		bookmarks_add_bookmark ((const gchar *) uri, 
+					(const gchar *) title_obj->stringval, 
+					FALSE);
 
 	    xmlXPathFreeObject (title_obj);
 	    xmlFree (uri);

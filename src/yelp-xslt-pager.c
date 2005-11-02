@@ -210,7 +210,7 @@ xslt_pager_process (YelpPager *pager)
 
     params = klass->params (pager);
 
-    priv->stylesheet = xsltParseStylesheetFile (klass->stylesheet);
+    priv->stylesheet = xsltParseStylesheetFile (BAD_CAST klass->stylesheet);
     if (!priv->stylesheet) {
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
 		     _("The document ‘%s’ could not be processed. The file "
@@ -237,12 +237,12 @@ xslt_pager_process (YelpPager *pager)
 
     priv->transformContext->_private = pager;
     xsltRegisterExtElement (priv->transformContext,
-			    "document",
-			    YELP_NAMESPACE,
+			    BAD_CAST "document",
+			    BAD_CAST YELP_NAMESPACE,
 			    (xsltTransformFunction) xslt_yelp_document);
     xsltRegisterExtElement (priv->transformContext,
-			    "cache",
-			    YELP_NAMESPACE,
+			    BAD_CAST "cache",
+			    BAD_CAST YELP_NAMESPACE,
 			    (xsltTransformFunction) xslt_yelp_cache);
 
     EVENTS_PENDING;
@@ -389,7 +389,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     style->omitXmlDeclaration = TRUE;
 
-    new_doc = xmlNewDoc ("1.0");
+    new_doc = xmlNewDoc (BAD_CAST "1.0");
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
@@ -410,16 +410,16 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     CANCEL_CHECK;
 
     if (!page_title)
-	page_title = g_strdup ("FIXME");
+	page_title = BAD_CAST g_strdup ("FIXME");
 
     page = g_new0 (YelpPage, 1);
 
-    page->page_id  = g_strdup (page_id);
+    page->page_id  = g_strdup ((gchar *) page_id);
     xmlFree (page_id);
     page_id = NULL;
 
-    page->title    = page_title;
-    page->contents = page_buf;
+    page->title    = (gchar *) page_title;
+    page->contents = (gchar *) page_buf;
 
     cur = xmlDocGetRootElement (new_doc);
 
@@ -428,14 +428,14 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	    if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
 		for (cur = cur->children; cur; cur = cur->next) {
 		    if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
-			xmlChar *rel = xmlGetProp (cur, "rel");
+			xmlChar *rel = xmlGetProp (cur, BAD_CAST "rel");
 
 			if (!xmlStrcmp (rel, (xmlChar *) "previous"))
-			    page->prev_id = xmlGetProp (cur, "href");
+			    page->prev_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
 			else if (!xmlStrcmp (rel, (xmlChar *) "next"))
-			    page->next_id = xmlGetProp (cur, "href");
+			    page->next_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
 			else if (!xmlStrcmp (rel, (xmlChar *) "top"))
-			    page->toc_id = xmlGetProp (cur, "href");
+			    page->toc_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
 
 			xmlFree (rel);
 		    }

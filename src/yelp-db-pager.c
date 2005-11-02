@@ -258,16 +258,16 @@ db_pager_parse (YelpPager *pager)
     walker->doc       = doc;
     walker->cur       = xmlDocGetRootElement (walker->doc);
 
-    walker->titleStylesheet = xsltParseStylesheetFile (DB_TITLE);
+    walker->titleStylesheet = xsltParseStylesheetFile (BAD_CAST DB_TITLE);
 
     if (!xmlStrcmp (xmlDocGetRootElement (doc)->name, BAD_CAST "book"))
 	priv->max_depth = walker->max_depth = BOOK_CHUNK_DEPTH;
     else
 	priv->max_depth = walker->max_depth = ARTICLE_CHUNK_DEPTH;
 
-    id = xmlGetProp (walker->cur, "id");
+    id = xmlGetProp (walker->cur, BAD_CAST "id");
     if (id)
-	priv->root_id = g_strdup (id);
+	priv->root_id = g_strdup ((gchar *) id);
     else
 	priv->root_id = g_strdup ("index");
 
@@ -402,20 +402,20 @@ walker_walk_xml (DBWalker *walker)
 	    if (cur->type == XML_PI_NODE)
 		if (!xmlStrcmp (cur->name,
 				(const xmlChar *) "yelp:chunk-depth")) {
-		    gint max = atoi (cur->content);
+		    gint max = atoi ((gchar *) cur->content);
 		    if (max)
 			priv->max_depth = walker->max_depth = max;
 		    break;
 		}
     }
 
-    id = xmlGetProp (walker->cur, "id");
+    id = xmlGetProp (walker->cur, BAD_CAST "id");
     if (!id && walker->cur->parent->type == XML_DOCUMENT_NODE) {
-	id = xmlStrdup ("__yelp_toc");
+	id = xmlStrdup (BAD_CAST "__yelp_toc");
     }
 
     if (node_is_chunk (walker)) {
-	title = node_get_title (walker);
+	title = BAD_CAST node_get_title (walker);
 
 	if (id) {
 	    gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
@@ -428,7 +428,7 @@ walker_walk_xml (DBWalker *walker)
 				-1);
 
 	    old_id          = walker->page_id;
-	    walker->page_id = id;
+	    walker->page_id = (gchar *) id;
 
 	    old_iter     = walker->iter;
 
@@ -446,7 +446,7 @@ walker_walk_xml (DBWalker *walker)
 
     if (id) {
 	g_hash_table_insert (priv->frags_hash,
-			     g_strdup (id),
+			     g_strdup ((gchar *) id),
 			     g_strdup (walker->page_id));
     }
 
@@ -483,7 +483,7 @@ node_get_title (DBWalker *walker)
     xmlChar *outstr;
     int outlen;
 
-    params[0] = "node";
+    params[0] = BAD_CAST "node";
     params[1] = xmlGetNodePath (walker->cur);
     params[2] = NULL;
 
@@ -493,7 +493,7 @@ node_get_title (DBWalker *walker)
     if (doc == NULL || xsltSaveResultToString (&outstr, &outlen, doc, walker->titleStylesheet) < 0)
 	title = g_strdup (_("Unknown Section"));
     else {
-	title = g_strdup (outstr);
+	title = g_strdup ((gchar *) outstr);
 	xmlFree (outstr);
     }
 

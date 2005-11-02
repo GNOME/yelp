@@ -394,7 +394,7 @@ sk_startElement (void           *pager,
 		 const xmlChar **attrs)
 {
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
-    if (xmlStrEqual((const xmlChar*) name, "docomf"))
+    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
 	priv->sk_docomf = TRUE;
 }
 
@@ -403,7 +403,7 @@ sk_endElement (void          *pager,
 	       const xmlChar *name)
 {
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
-    if (xmlStrEqual((const xmlChar*) name, "docomf"))
+    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
 	priv->sk_docomf = FALSE;
 }
 
@@ -416,7 +416,7 @@ sk_characters (void          *pager,
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
     if (priv->sk_docomf) {
-	omf = g_strndup (ch, len);
+	omf = g_strndup ((gchar *) ch, len);
 	priv->omf_pending = g_slist_prepend (priv->omf_pending, omf);
     }
 }
@@ -497,25 +497,25 @@ process_omf_pending (YelpTocPager *pager)
 
     omf_xpath = xmlXPathNewContext (omf_doc);
     omf_url =
-	xmlXPathEvalExpression ("string(/omf/resource/identifier/@url)", omf_xpath);
+	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/identifier/@url)", omf_xpath);
     omf_title =
-	xmlXPathEvalExpression ("string(/omf/resource/title)", omf_xpath);
+	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/title)", omf_xpath);
     omf_description =
-	xmlXPathEvalExpression ("string(/omf/resource/description)", omf_xpath);
+	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/description)", omf_xpath);
     omf_category =
-	xmlXPathEvalExpression ("string(/omf/resource/subject/@category)", omf_xpath);
+	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/subject/@category)", omf_xpath);
     omf_language =
-	xmlXPathEvalExpression ("string(/omf/resource/language/@code)", omf_xpath);
+	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/language/@code)", omf_xpath);
     omf_seriesid =
-	xmlXPathEvalExpression ("string(/omf/resource/relation/@seriesid)", omf_xpath);
+	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/relation/@seriesid)", omf_xpath);
 
-    doc_info = yelp_doc_info_get (omf_url->stringval);
+    doc_info = yelp_doc_info_get ((const gchar *) omf_url->stringval);
     if (!doc_info)
 	goto done;
-    yelp_doc_info_set_title (doc_info, omf_title->stringval);
-    yelp_doc_info_set_language (doc_info, omf_language->stringval);
-    yelp_doc_info_set_category (doc_info, omf_category->stringval);
-    yelp_doc_info_set_description (doc_info, omf_description->stringval);
+    yelp_doc_info_set_title (doc_info, (gchar *) omf_title->stringval);
+    yelp_doc_info_set_language (doc_info, (gchar *) omf_language->stringval);
+    yelp_doc_info_set_category (doc_info, (gchar *) omf_category->stringval);
+    yelp_doc_info_set_description (doc_info, (gchar *) omf_description->stringval);
 
     id = g_strconcat ("scrollkeeper.", (gchar *) omf_seriesid->stringval, NULL);
     yelp_doc_info_set_id (doc_info, id);
@@ -567,7 +567,8 @@ process_mandir_pending (YelpTocPager *pager)
     xmlNodePtr tmp;
     gchar *manpath;
 
-    gchar *dirname, *filename;
+    gchar *dirname = NULL; 
+    gchar *filename = NULL;
     GDir  *dir;
 
     const gchar * const * langs = g_get_language_names ();
@@ -585,10 +586,10 @@ process_mandir_pending (YelpTocPager *pager)
 	priv->man_secthash = g_hash_table_new (g_str_hash, g_str_equal);
 
 	xpath = xmlXPathNewContext (priv->toc_doc);
-	obj = xmlXPathEvalExpression ("//toc", xpath);
+	obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
 	for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	    xmlNodePtr node = obj->nodesetval->nodeTab[i];
-	    xmlChar *sect = xmlGetProp (node, "sect");
+	    xmlChar *sect = xmlGetProp (node, BAD_CAST "sect");
 	    if (sect)
 		g_hash_table_insert (priv->man_secthash, sect, node);
 
@@ -678,12 +679,15 @@ process_mandir_pending (YelpTocPager *pager)
 
 		    if (info) {
 			yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
-			tmp = xmlNewChild (tmp, NULL, "doc", NULL);
-			xmlNewNsProp (tmp, NULL, "href", url_full);
+			tmp = xmlNewChild (tmp, NULL, BAD_CAST "doc", NULL);
+			xmlNewNsProp (tmp, NULL, BAD_CAST "href", 
+				      BAD_CAST url_full);
 
-			xmlNewChild (tmp, NULL, "title", manname);
+			xmlNewChild (tmp, NULL, BAD_CAST "title", 
+				     BAD_CAST manname);
 			tooltip = g_strdup_printf (_("Read man page for %s"), manname);
-			xmlNewChild (tmp, NULL, "tooltip", tooltip);
+			xmlNewChild (tmp, NULL, BAD_CAST "tooltip", 
+				     BAD_CAST tooltip);
 			g_free (tooltip);
 		    }
 
@@ -778,32 +782,35 @@ process_read_menu (YelpTocPager *pager)
     }
 
     xpath = xmlXPathNewContext (priv->toc_doc);
-    obj = xmlXPathEvalExpression ("//toc", xpath);
+    obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	xmlChar *icon = NULL;
 
 #ifdef ENABLE_MAN
 	xmlChar *id = NULL;
-	id = xmlGetProp (node, "id");
-	if (!xmlStrcmp (id, "index")) {
-	    xmlNodePtr new = xmlNewChild (node, NULL, "toc", NULL);
-	    xmlNewNsProp (new, NULL, "id", "Man");
-	    xmlNewChild (new, NULL, "title", _("Manual Pages"));
+	id = xmlGetProp (node, BAD_CAST "id");
+	if (!xmlStrcmp (id, BAD_CAST "index")) {
+	    xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "toc", NULL);
+	    xmlNewNsProp (new, NULL, BAD_CAST "id", BAD_CAST "Man");
+	    xmlNewChild (new, NULL, BAD_CAST "title", 
+			 BAD_CAST _("Manual Pages"));
 	}
 #endif
 
 	xml_trim_titles (node);
 
-	icon = xmlGetProp (node, "icon");
+	icon = xmlGetProp (node, BAD_CAST "icon");
 	if (icon) {
 	    GtkIconInfo *info;
 	    GtkIconTheme *theme = 
 		(GtkIconTheme *) yelp_settings_get_icon_theme ();
-	    info = gtk_icon_theme_lookup_icon (theme, icon, 48, 0);
+	    info = gtk_icon_theme_lookup_icon (theme, (gchar *) icon, 48, 0);
 	    if (info) {
-		xmlNodePtr new = xmlNewChild (node, NULL, "icon", NULL);
-		xmlNewNsProp (new, NULL, "file", gtk_icon_info_get_filename (info));
+		xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "icon", 
+					      NULL);
+		xmlNewNsProp (new, NULL, BAD_CAST "file", 
+			      BAD_CAST gtk_icon_info_get_filename (info));
 		gtk_icon_info_free (info);
 	    }
 	}
@@ -820,7 +827,7 @@ process_read_menu (YelpTocPager *pager)
     while (ret == 1) {
 	if (!xmlStrcmp (xmlTextReaderConstLocalName (reader),
 			BAD_CAST "toc")) {
-	    xmlChar *id = xmlTextReaderGetAttribute (reader, "id");
+	    xmlChar *id = xmlTextReaderGetAttribute (reader, BAD_CAST "id");
 	    xmlNodePtr node;
 	    gchar *xpath_s;
 
@@ -830,7 +837,7 @@ process_read_menu (YelpTocPager *pager)
 	    }
 
 	    xpath_s = g_strdup_printf ("//toc[@id = '%s']", id);
-	    obj = xmlXPathEvalExpression (xpath_s, xpath);
+	    obj = xmlXPathEvalExpression (BAD_CAST xpath_s, xpath);
 	    g_free (xpath_s);
 
 	    node = obj->nodesetval->nodeTab[0];
@@ -840,9 +847,10 @@ process_read_menu (YelpTocPager *pager)
 	    while (ret == 1) {
 		if (!xmlStrcmp (xmlTextReaderConstLocalName (reader),
 				BAD_CAST "subject")) {
-		    xmlChar *cat = xmlTextReaderGetAttribute (reader, "category");
+		    xmlChar *cat = xmlTextReaderGetAttribute (reader, 
+							      BAD_CAST "category");
 		    g_hash_table_insert (priv->category_hash,
-					 g_strdup (cat),
+					 g_strdup ((gchar *) cat),
 					 node);
 		    xmlFree (cat);
 		}
@@ -869,7 +877,7 @@ static gboolean
 process_xslt (YelpTocPager *pager)
 {
     GError *error = NULL;
-    xmlDocPtr outdoc;
+    xmlDocPtr outdoc = NULL;
     YelpTocPagerPriv *priv = pager->priv;
     gchar **params = NULL;
     gint  params_i = 0;
@@ -877,7 +885,7 @@ process_xslt (YelpTocPager *pager)
     GtkIconInfo *info;
     GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
 
-    priv->stylesheet = xsltParseStylesheetFile (TOC_STYLESHEET);
+    priv->stylesheet = xsltParseStylesheetFile (BAD_CAST TOC_STYLESHEET);
     if (!priv->stylesheet) {
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
 		     _("The table of contents could not be processed. The "
@@ -892,8 +900,8 @@ process_xslt (YelpTocPager *pager)
 						      priv->toc_doc);
     priv->transformContext->_private = pager;
     xsltRegisterExtElement (priv->transformContext,
-			    "document",
-			    YELP_NAMESPACE,
+			    BAD_CAST "document",
+			    BAD_CAST YELP_NAMESPACE,
 			    (xsltTransformFunction) xslt_yelp_document);
 
     params = g_new0 (gchar *, params_max);
@@ -965,15 +973,15 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
 				yelp_doc_info_get_category (doc_info));
 
     text = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_FILE);
-    new = xmlNewChild (node, NULL, "doc", NULL);
-    xmlNewNsProp (new, NULL, "href", text);
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST text);
     g_free (text);
 
     text = (gchar *) yelp_doc_info_get_title (doc_info);
-    xmlNewTextChild (new, NULL, "title", text);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST text);
 
     text = (gchar *) yelp_doc_info_get_description (doc_info);
-    xmlNewTextChild (new, NULL, "description", text);
+    xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST text);
 }
 
 static void
@@ -1054,7 +1062,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     style->omitXmlDeclaration = TRUE;
 
-    new_doc = xmlNewDoc ("1.0");
+    new_doc = xmlNewDoc (BAD_CAST "1.0");
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
@@ -1080,30 +1088,33 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     page = g_new0 (YelpPage, 1);
 
     if (page_id) {
-	page->page_id = g_strdup (page_id);
+	page->page_id = g_strdup ((gchar *) page_id);
 	xmlFree (page_id);
     }
     if (page_title) {
-	page->title = g_strdup (page_title);
+	page->title = g_strdup ((gchar *) page_title);
 	xmlFree (page_title);
     } else {
 	page->title = g_strdup (_("Help Contents"));
     }
-    page->contents = page_buf;
+    page->contents = (gchar *) page_buf;
 
     cur = xmlDocGetRootElement (new_doc);
     for (cur = cur->children; cur; cur = cur->next) {
 	if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
 	    for (cur = cur->children; cur; cur = cur->next) {
 		if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
-		    xmlChar *rel = xmlGetProp (cur, "rel");
+		    xmlChar *rel = xmlGetProp (cur, BAD_CAST "rel");
 
 		    if (!xmlStrcmp (rel, (xmlChar *) "Previous"))
-			page->prev_id = xmlGetProp (cur, "href");
+			page->prev_id = (gchar *) xmlGetProp (cur, 
+							      BAD_CAST "href");
 		    else if (!xmlStrcmp (rel, (xmlChar *) "Next"))
-			page->next_id = xmlGetProp (cur, "href");
+			page->next_id = (gchar *) xmlGetProp (cur, 
+							      BAD_CAST "href");
 		    else if (!xmlStrcmp (rel, (xmlChar *) "Top"))
-			page->toc_id = xmlGetProp (cur, "href");
+			page->toc_id = (gchar *) xmlGetProp (cur, 
+							     BAD_CAST "href");
 
 		    xmlFree (rel);
 		}

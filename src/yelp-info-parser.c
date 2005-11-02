@@ -74,7 +74,7 @@ static char
 	g_print ("!! Opening %s...\n", file);
 	
 	channel = yelp_io_channel_new_file (file, NULL);
-	g_io_channel_read_to_end (channel, &str, &len, NULL);
+	g_io_channel_read_to_end (channel, &str, (gsize *) &len, NULL);
 	g_io_channel_shutdown (channel, FALSE, NULL);
 
 	for (i = 0; i < len - 1; i++)
@@ -350,7 +350,7 @@ GtkTreeStore
 	char **ptr;
 	int pages;
 	int offset;
-	GHashTable *nodes2offsets;
+	GHashTable *nodes2offsets = NULL;
 	GHashTable *offsets2pages;
 	GHashTable *nodes2iters;
 	int *processed_table;
@@ -477,14 +477,16 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 		g_print ("Got Section: %s\n", page_name);
 		newnode = xmlNewTextChild (*node, NULL,
 				BAD_CAST "Section",
-				page_content);
+				BAD_CAST page_content);
 		/* if we free the page content, now it's in the XML, we can
 		 * save some memory */
 		g_free (page_content);
 		page_content = NULL;
 
-		xmlNewProp (newnode, "id", g_strdup (page_no));
-		xmlNewProp (newnode, "name", g_strdup (page_name));
+		xmlNewProp (newnode, BAD_CAST "id", 
+			    BAD_CAST g_strdup (page_no));
+		xmlNewProp (newnode, BAD_CAST "name", 
+			    BAD_CAST g_strdup (page_name));
 		if (gtk_tree_model_iter_children (GTK_TREE_MODEL (tree),
 				&children,
 				&iter))
@@ -506,7 +508,7 @@ yelp_info_parser_parse_tree (GtkTreeStore *tree)
 	int bufsiz;
 	*/
 
-	doc = xmlNewDoc ("1.0");
+	doc = xmlNewDoc (BAD_CAST "1.0");
 	node = xmlNewNode (NULL, BAD_CAST "Info");
 	xmlDocSetRootElement (doc, node);
 

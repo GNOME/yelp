@@ -99,7 +99,7 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
     if (!parser->channel)
 	return NULL;
 
-    parser->doc = xmlNewDoc ("1.0");
+    parser->doc = xmlNewDoc (BAD_CAST "1.0");
     parser->ins = xmlNewNode (NULL, BAD_CAST "Man");
 	xmlDocSetRootElement (parser->doc, parser->ins);
 
@@ -107,7 +107,7 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 
     while (g_io_channel_read_line (parser->channel,
 				   &(parser->buffer),
-				   &(parser->length),
+				   (gsize *) &(parser->length),
 				   NULL, NULL)
 	   == G_IO_STATUS_NORMAL) {
 
@@ -126,7 +126,7 @@ yelp_man_parser_parse_doc (YelpManParser *parser,
 			   YelpDocInfo   *doc_info)
 {
     gchar     *file;
-    xmlDocPtr  doc;
+    xmlDocPtr  doc = NULL;
 
     g_return_val_if_fail (parser != NULL, NULL);
     g_return_val_if_fail (doc != NULL, NULL);
@@ -355,7 +355,7 @@ parser_handle_linetag (YelpManParser *parser) {
 
 	if (g_io_channel_read_line (parser->channel,
 				&(parser->buffer),
-				&(parser->length),
+				    (gsize *) &(parser->length),
 				NULL, NULL)
 	    == G_IO_STATUS_NORMAL) {
 	    parser->ins = parser_append_node (parser, "Tag");
@@ -938,7 +938,7 @@ parser_append_node (YelpManParser *parser,
 {
     xmlNodePtr node;
 
-    node = xmlNewChild (parser->ins, NULL, name, NULL);
+    node = xmlNewChild (parser->ins, NULL, BAD_CAST name, NULL);
 
     return node;
 }
@@ -1001,7 +1001,7 @@ parser_handle_row_options (YelpManParser *parser)
 
     } while (g_io_channel_read_line (parser->channel,
 				     &(parser->buffer),
-				     &(parser->length),
+				     (gsize *) &(parser->length),
 				     NULL, NULL)
 	     == G_IO_STATUS_NORMAL);
 }
@@ -1016,7 +1016,7 @@ parser_parse_table (YelpManParser *parser)
 
     if (g_io_channel_read_line (parser->channel,
 				&(parser->buffer),
-				&(parser->length),
+				(gsize *) &(parser->length),
 				NULL, NULL)
 	== G_IO_STATUS_NORMAL) {
 	parser->anc = parser->buffer;
@@ -1029,7 +1029,7 @@ parser_parse_table (YelpManParser *parser)
 
 	    if (g_io_channel_read_line (parser->channel,
 					&(parser->buffer),
-					&(parser->length),
+					(gsize *) &(parser->length),
 					NULL, NULL)
 		== G_IO_STATUS_NORMAL) {
 		parser->anc = parser->buffer;
@@ -1045,7 +1045,7 @@ parser_parse_table (YelpManParser *parser)
 	/* Now this is where we go through all the rows */
 	while (g_io_channel_read_line (parser->channel,
 				       &(parser->buffer),
-				       &(parser->length),
+				       (gsize *) &(parser->length),
 				       NULL, NULL)
 	       == G_IO_STATUS_NORMAL) {
 	    

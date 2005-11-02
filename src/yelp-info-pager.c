@@ -161,8 +161,8 @@ info_pager_parse (YelpPager *pager)
     YelpDocInfo   *doc_info;
     gchar         *filename;
     xmlDocPtr      doc;
-    xmlNodePtr     node;
-    GError        *error;
+    xmlNodePtr     node = NULL;
+    GError        *error = NULL;
     YelpInfoPagerPriv *priv;
 
     g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), FALSE);
@@ -222,7 +222,7 @@ info_pager_get_sections (YelpPager *pager)
 {
     g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), NULL);
 
-    return YELP_INFO_PAGER (pager)->priv->tree;
+    return GTK_TREE_MODEL (YELP_INFO_PAGER (pager)->priv->tree);
 }
 
 static gboolean
