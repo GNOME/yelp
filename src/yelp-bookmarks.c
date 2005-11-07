@@ -120,7 +120,7 @@ static void      bookmarks_rename_button_cb (GtkWidget         *widget,
 static void      bookmarks_remove_button_cb (GtkWidget         *widget,
 					     GtkTreeView       *view);
 static void      bookmarks_ensure_valid     (void);
-static gboolean  bookmarks_read             (void);
+static gboolean  bookmarks_read             (const gchar       *filename);
 
 static gboolean  bookmarks_dup_finder       (GtkTreeModel   *model,
 					     GtkTreePath    *path,
@@ -169,7 +169,8 @@ static const GtkActionEntry popup_entries[] = {
 void
 yelp_bookmarks_init (void)
 {
-    gboolean read;
+    gboolean read = FALSE;
+    gchar   *filename = NULL;
 
     windows = NULL;
     actions_store = gtk_tree_store_new (4,
@@ -178,7 +179,13 @@ yelp_bookmarks_init (void)
 					G_TYPE_BOOLEAN,
 					G_TYPE_BOOLEAN);
 
-    read = bookmarks_read ();
+    filename = g_build_filename (g_get_home_dir (), ".gnome2",
+				 "yelp-bookmarks.xbel", NULL);
+
+    if (g_file_test (filename, G_FILE_TEST_EXISTS))
+	read = bookmarks_read (filename);
+
+    g_free (filename);
 }
 
 void
@@ -959,7 +966,7 @@ yelp_bookmarks_write (void)
 }
 
 static gboolean
-bookmarks_read (void)
+bookmarks_read (const gchar *filename)
 {
     xmlParserCtxtPtr   parser;
     xmlXPathContextPtr xpath;
@@ -967,11 +974,7 @@ bookmarks_read (void)
     xmlDocPtr          doc;
 
     gboolean  ret = TRUE;
-    gchar    *filename;
     gint      i;
-
-    filename = g_build_filename (g_get_home_dir (), ".gnome2", 
-				 "yelp-bookmarks.xbel", NULL);
 
     parser = xmlNewParserCtxt ();
     doc = xmlCtxtReadFile (parser, filename, NULL,
@@ -980,7 +983,6 @@ bookmarks_read (void)
 			   XML_PARSE_NONET    );
 
     if (doc == NULL) {
-	g_free (filename);
 	if (parser)
 		xmlFreeParserCtxt (parser);
 	return FALSE;
@@ -1009,7 +1011,6 @@ bookmarks_read (void)
 	}
     }
     
-    g_free (filename);
     if (obj)
 	xmlXPathFreeObject (obj);
     if (xpath)
