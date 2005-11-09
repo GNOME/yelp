@@ -1572,7 +1572,7 @@ window_handle_page (YelpWindow   *window,
     context->length = strlen (page->contents);
 
     uri = yelp_doc_info_get_uri (priv->current_doc,
-				 page->page_id,
+				 priv->current_frag,
 				 YELP_URI_TYPE_FILE);
 
     d (g_print ("  uri            = %s\n", uri));
