@@ -109,7 +109,7 @@
       </body>
     </html>
   </yelp:document>
-  <xsl:apply-templates select="toc[.//doc]"/>
+  <xsl:apply-templates select="toc[.//doc[1]]"/>
 </xsl:template>
 
 <xsl:template mode="body.mode" match="toc">
