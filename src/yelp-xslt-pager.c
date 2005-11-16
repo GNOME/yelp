@@ -138,14 +138,14 @@ xslt_pager_dispose (GObject *object)
     YelpXsltPager *pager = YELP_XSLT_PAGER (object);
     YelpXsltPagerPriv *priv = pager->priv;
 
-    if (priv->inputDoc)
-	xmlFreeDoc (priv->inputDoc);
     if (priv->outputDoc)
 	xmlFreeDoc (priv->outputDoc);
     if (priv->stylesheet)
 	xsltFreeStylesheet (priv->stylesheet);
     if (priv->transformContext)
 	xsltFreeTransformContext (priv->transformContext);
+    if (priv->inputDoc)
+	xmlFreeDoc (priv->inputDoc);
 
     g_free (pager->priv);
 
@@ -265,10 +265,6 @@ xslt_pager_process (YelpPager *pager)
     }
     g_free (filename);
 
-    if (priv->inputDoc) {
-	xmlFreeDoc (priv->inputDoc);
-	priv->inputDoc = NULL;
-    }
     if (priv->outputDoc) {
 	xmlFreeDoc (priv->outputDoc);
 	priv->outputDoc = NULL;
@@ -280,6 +276,10 @@ xslt_pager_process (YelpPager *pager)
     if (priv->transformContext) {
 	xsltFreeTransformContext (priv->transformContext);
 	priv->transformContext = NULL;
+    }
+    if (priv->inputDoc) {
+	xmlFreeDoc (priv->inputDoc);
+	priv->inputDoc = NULL;
     }
 
     g_object_unref (pager);
@@ -303,10 +303,6 @@ xslt_pager_cancel (YelpPager *pager)
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 
-    if (priv->inputDoc) {
-	xmlFreeDoc (priv->inputDoc);
-	priv->inputDoc = NULL;
-    }
     if (priv->outputDoc) {
 	xmlFreeDoc (priv->outputDoc);
 	priv->outputDoc = NULL;
@@ -318,6 +314,10 @@ xslt_pager_cancel (YelpPager *pager)
     if (priv->transformContext) {
 	xsltFreeTransformContext (priv->transformContext);
 	priv->transformContext = NULL;
+    }
+    if (priv->inputDoc) {
+	xmlFreeDoc (priv->inputDoc);
+	priv->inputDoc = NULL;
     }
 }
 
