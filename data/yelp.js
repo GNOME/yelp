@@ -3,6 +3,7 @@ var slt = {
   beginning of it until it's no longer wider than the screen */
   init: function() {
     slt.lt = document.getElementById('linktrail');
+    if (!slt.lt) return;
 
     /* Try and add links, in case we've just resized the
        window to be bigger */

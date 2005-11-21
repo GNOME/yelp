@@ -86,7 +86,7 @@ margin-bottom: 1.6em;
 }
 
 p, div { margin: 0em; }
-p + *, div + *, { margin-top: 1em; }
+p + *, div + * { margin-top: 1em; }
 
 dl { margin: 0em; }
 dl dd + dt { margin-top: 1em; }

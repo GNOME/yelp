@@ -198,6 +198,13 @@ info_pager_params (YelpPager *pager)
 
     params = g_new0 (gchar *, params_max);
 
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 20;
+	params = g_renew (gchar *, params, params_max);
+    }
+
     params[params_i++] = "stylesheet_path";
     params[params_i++] = g_strdup_printf ("\"file://%s\"", STYLESHEET_PATH);
 

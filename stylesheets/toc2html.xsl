@@ -70,9 +70,8 @@
           width: 192px;
           min-height: 192px;
           text-align: center;
-          <!-- FIXME: this isn't working -->
           padding-top: </xsl:text>
-          <xsl:value-of select="$help_icon_size"/><xsl:text> px;
+          <xsl:value-of select="$help_icon_size"/><xsl:text>px;
           background-image: url("</xsl:text>
           <xsl:value-of select="$help_icon"/><xsl:text>");
           background-position: </xsl:text>
