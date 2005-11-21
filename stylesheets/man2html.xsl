@@ -60,7 +60,7 @@
   <html>
     <head>
       <title>
-        <xsl:value-of select="title"/>
+        <xsl:value-of select="//TH/Title"/>
       </title>
       <style type="text/css">
         <xsl:call-template name="html.css"/>
