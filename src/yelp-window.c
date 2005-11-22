@@ -211,7 +211,8 @@ static void        window_find_buttons_set_sensitive (YelpWindow      *window,
 						      gboolean        sensitive);
 static void        window_find_clicked_cb         (GtkWidget         *button,
 						   YelpWindow        *window);
-
+static void        window_find_next_cb            (GtkAction *action, 
+						   YelpWindow *window);
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
 
@@ -340,6 +341,11 @@ static const GtkActionEntry entries[] = {
       "<Control>F",
       NULL,
       G_CALLBACK (window_find_cb) },
+    { "FindNext", NULL,
+      N_("Find Ne_xt"),
+      "<Control>G",
+      NULL,
+      G_CALLBACK (window_find_next_cb) },
     { "Preferences", GTK_STOCK_PREFERENCES,
       N_("_Preferences"),
       NULL, NULL,
@@ -2396,6 +2402,20 @@ window_find_again (YelpWindow *window, gboolean forward)
 #endif /* TYPEAHEADFIND */
 
     return yelp_html_find_again (priv->html_view, forward);
+}
+
+static void
+window_find_next_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPriv * priv;
+
+    priv = window->priv;
+    if (!window_find_again (window, TRUE)) {
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
+    } else {
+	window_find_buttons_set_sensitive (window, TRUE);
+    }
 }
 
 static void
