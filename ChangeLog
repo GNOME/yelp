@@ -1,3 +1,16 @@
+2005-11-30  Christian Persch  <chpe@cvs.gnome.org>
+
+	* Makefile.am:
+	* autogen.sh:
+	* configure.in:
+	* data/Makefile.am:
+	* m4/gecko.m4:
+	* src/Makefile.am: Use gecko.m4 from Epiphany to detect
+	gecko and set the various compiler flags etc. Bug #322171.
+
+	* src/Yelper.cpp: Use nsIWebBrowserSetup to turn off the
+	global history.	Bug #322170.
+
 ==================== 2.13.1 ====================
 
 2005-11-27  Shaun McCance  <shaunm@gnome.org>

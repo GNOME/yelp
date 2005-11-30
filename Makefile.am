@@ -1,29 +1,30 @@
 SUBDIRS = src stylesheets po data
 
+ACLOCAL_AMFLAGS = -I m4
+
 @INTLTOOL_DESKTOP_RULE@
 
-DESKTOP_IN_FILES=yelp.desktop.in
-DESKTOP_FILES=$(DESKTOP_IN_FILES:.desktop.in=.desktop)
-
-Applicationsdir = $(datadir)/applications
-Applications_DATA = $(DESKTOP_FILES)
+desktopdir = $(datadir)/applications
+desktop_in_files=yelp.desktop.in.in
+desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 yelpdatadir = $(datadir)/yelp
 yelpdata_DATA = important_docs.xml
 
-
 EXTRA_DIST = 						\
+	autogen.sh					\
 	intltool-extract.in  				\
 	intltool-merge.in    				\
 	intltool-update.in				\
 	idl/GNOME_Yelp.idl				\
 	important_docs.xml				\
-	$(DESKTOP_IN_FILES)				\
-	$(DESKTOP_FILES)
+	$(desktop_in_files)
 
 DISTCLEANFILES = \
   intltool-extract \
   intltool-merge \
   intltool-update
 
-CLEANFILES = yelp.desktop
+CLEANFILES = $(desktop_DATA)
+
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper

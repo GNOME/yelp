@@ -22,13 +22,13 @@ EXTRA_DIST =					\
 	scrollkeeper.xml	default.css	\
 	yelp.js
 
+install-data-local: $(schemas_DATA)
 if GCONF_SCHEMAS_INSTALL
-install-data-local:
 	if test -z "$(DESTDIR)"; then \
-	  GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/yelp.schemas ; \
+	for p in $^ ; do \
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $$p >&1 > /dev/null; \
+	done \
 	fi
-else
-install-data-local:
 endif
 
-CLEANFILES = yelp.schemas toc.xml man.xml
+CLEANFILES = $(schemas_DATA) toc.xml man.xml

@@ -89,7 +89,7 @@ yelp_LDADD =				\
 	$(BZ_LIBS)			\
 	$(MOZILLA_COMPONENT_LIBS)
 
-yelp_LDFLAGS = -R$(MOZILLA_HOME)
+yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
 
 check_PROGRAMS = test-man-parser test-pager test-uri
 
@@ -109,6 +109,8 @@ test_man_parser_CFLAGS =	\
 	$(AM_CFLAGS)
 
 test_man_parser_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS)
+
+test_man_parser_LDFLAGS = $(AM_LDFLAGS)
 
 test_pager_SOURCES =						\
 	yelp-db-pager.c		yelp-db-pager.h			\
@@ -132,6 +134,8 @@ test_pager_CFLAGS =		\
 
 test_pager_LDADD = $(YELP_LIBS) $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
 
+test_pager_LDFLAGS = $(AM_LDFLAGS)
+
 test_uri_SOURCES =					\
 	yelp-utils.c	yelp-utils.h			\
 	test-uri.c
@@ -145,6 +149,8 @@ test_uri_CFLAGS =		\
 	$(AM_CFLAGS)
 
 test_uri_LDADD = $(YELP_LIBS)
+
+test_uri_LDFLAGS = $(AM_LDFLAGS)
 
 serverdir = $(libdir)/bonobo/servers
 server_in_files = GNOME_Yelp.server.in
@@ -191,8 +197,8 @@ EXTRA_DIST =								\
 	$(server_in_files)
 
 install-exec-local:
-	rm -f $(DESTDIR)$(bindir)/gnome-help
-	ln -s yelp $(DESTDIR)$(bindir)/gnome-help
+	rm -f $(DESTDIR)$(bindir)/gnome-help && \
+	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
 
 distclean-local:
 	if test $(srcdir) != .; then \

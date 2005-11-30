@@ -31,11 +31,13 @@
 #include "nsEmbedString.h"
 #define MOZILLA_INTERNAL_API 1
 
+#include <nsIWebBrowserSetup.h>
 #include <nsIClipboardCommands.h>
 #include <nsICommandManager.h>
 #include <nsIInterfaceRequestorUtils.h>
 #include <nsIPrefService.h>
 #include <nsIServiceManager.h>
+#include <nsIDOMDocument.h>
 #include <nsIDOMMouseEvent.h>
 #include <nsIDOMNSEvent.h>
 #include <nsIDOMEventTarget.h>
@@ -79,8 +81,13 @@ Yelper::Init ()
 					 getter_AddRefs (mWebBrowser));
 	NS_ENSURE_TRUE (mWebBrowser, rv);
 
-	mWebBrowser->GetContentDOMWindow (getter_AddRefs (mDOMWindow));
-	NS_ENSURE_TRUE (mDOMWindow, rv);
+	nsCOMPtr<nsIWebBrowserSetup> setup (do_QueryInterface (mWebBrowser, &rv));
+	NS_ENSURE_SUCCESS (rv, rv);
+
+	setup->SetProperty (nsIWebBrowserSetup::SETUP_USE_GLOBAL_HISTORY, PR_FALSE);
+
+	rv = mWebBrowser->GetContentDOMWindow (getter_AddRefs (mDOMWindow));
+	NS_ENSURE_SUCCESS (rv, rv);
 
 	/* This will instantiate an about:blank doc if necessary */
 	nsCOMPtr<nsIDOMDocument> domDocument;
