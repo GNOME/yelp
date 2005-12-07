@@ -978,8 +978,8 @@ window_populate (YelpWindow *window)
 				    NULL);
     g_signal_connect (G_OBJECT (action), "activate",
 		      G_CALLBACK (search_activated), window);
-#endif
     gtk_action_group_add_action (priv->action_group, action);
+#endif
 
     priv->ui_manager = gtk_ui_manager_new ();
     gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
