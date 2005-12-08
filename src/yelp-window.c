@@ -628,7 +628,8 @@ history_pop_back (YelpWindow *window)
     GtkAction        *action;
 
     g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
-    g_return_val_if_fail (window->priv->history_back != NULL, NULL);
+    if (!window->priv->history_back)
+	return NULL;
 
     priv = window->priv;
 
@@ -652,7 +653,8 @@ history_pop_forward (YelpWindow *window)
     GtkAction        *action;
 
     g_return_val_if_fail (YELP_IS_WINDOW (window), NULL);
-    g_return_val_if_fail (window->priv->history_forward != NULL, NULL);
+    if (!window->priv->history_forward)
+	return NULL;
 
     priv = window->priv;
 
