@@ -250,16 +250,18 @@ yelp_bookmarks_register (YelpWindow *window)
 static void
 bookmarks_ensure_valid (void)
 {
-	if (!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
+	if (have_toc &&
+	    !gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
 					    &toc_iter)) {
 	    gtk_tree_store_remove (actions_store, &toc_iter);
 	    have_toc = FALSE;
 	}
-	if (!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
+	if (have_doc &&
+	    !gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
 					    &doc_iter)) {
 	    gtk_tree_store_remove (actions_store, &doc_iter);
 	    have_doc = FALSE;
-	}
+	}	
 }
 
 static gboolean 
