@@ -477,7 +477,10 @@ yelp_uri_get_fragment (const gchar *uri)
 	if ((cur = strchr (uri, ':')))
 	    if (*(++cur) != '\0')
 		frag_id = g_strdup (cur);
-
+    if (g_str_has_prefix (uri, "info:"))
+	if ((cur = strchr (uri, ')')))
+	    if (*(++cur) != '\0')
+		frag_id = g_strdup (cur);
     if ((cur = strchr (uri, '#')))
 	if (*(++cur) != '\0') {
 	    if (frag_id)
@@ -820,6 +823,7 @@ convert_info_uri (gchar   *uri)
     const gchar *filename;
     gchar *pattern;
     GPatternSpec *pspec = NULL;
+    GPatternSpec *pspec1 = NULL;
 
     if ((path = strchr(uri, ':')))
 	path++;
@@ -874,6 +878,9 @@ convert_info_uri (gchar   *uri)
     pattern = g_strdup_printf ("%s.info.*", info_name);
     pspec = g_pattern_spec_new (pattern);
     g_free (pattern);
+    pattern = g_strdup_printf ("%s.?z*", info_name);
+    pspec1 = g_pattern_spec_new (pattern);
+    g_free (pattern);
 
     info_dot_info = g_strconcat (info_name, ".info", NULL);
 
@@ -882,7 +889,9 @@ convert_info_uri (gchar   *uri)
 	if (dir) {
 	    while ((filename = g_dir_read_name (dir))) {
 		if (g_str_equal (info_dot_info, filename)  ||
-		    g_pattern_match_string (pspec, filename) ) {
+		    g_pattern_match_string (pspec, filename) ||
+		    g_pattern_match_string (pspec1, filename) ||
+		    g_str_equal (info_name, filename)) {
 		    doc_uri = g_strconcat ("file://",
 					   infopath[i], "/",
 					   filename,
@@ -898,6 +907,8 @@ convert_info_uri (gchar   *uri)
  done:
     if (pspec)
 	g_pattern_spec_free (pspec);
+    if (pspec1)
+	g_pattern_spec_free (pspec1);
     g_free (info_dot_info);
     g_free (info_name);
     return doc_uri;

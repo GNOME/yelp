@@ -160,8 +160,7 @@ info_pager_parse (YelpPager *pager)
 {
     YelpDocInfo   *doc_info;
     gchar         *filename;
-    xmlDocPtr      doc;
-    xmlNodePtr     node = NULL;
+    xmlDocPtr      doc = NULL;
     GError        *error = NULL;
     YelpInfoPagerPriv *priv;
 
@@ -177,14 +176,25 @@ info_pager_parse (YelpPager *pager)
     /* parse into a GtkTreeStore */
     priv->tree = yelp_info_parser_parse_file (filename);
 
-    /* create the XML file */
-    doc = yelp_info_parser_parse_tree (priv->tree);
+    if (!priv->tree) {
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+		     _("The file  ‘%s’ could not be parsed. Either the file "
+		       "does not exist, or it is not a well-formed info page."),
+		     filename);
+	yelp_pager_error (pager, error);
 
-    gtk_tree_model_foreach (GTK_TREE_MODEL (priv->tree),
-			    (GtkTreeModelForeachFunc) tree_hash_id,
-			    pager);
-    
+    } else {
+
+	/* create the XML file */
+	doc = yelp_info_parser_parse_tree (priv->tree);
+	
+	gtk_tree_model_foreach (GTK_TREE_MODEL (priv->tree),
+				(GtkTreeModelForeachFunc) tree_hash_id,
+				pager);
+    }
+
     g_object_unref (pager);
+    g_free (filename);
 
     return doc;
 }

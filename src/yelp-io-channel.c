@@ -107,6 +107,8 @@ yelp_io_channel_new_file (gchar    *file,
     iochannel->is_writeable = FALSE;
 
     g_io_channel_init (iochannel);
+    g_io_channel_set_encoding (iochannel, NULL, NULL);
+
     iochannel->close_on_unref = TRUE;
     iochannel->funcs = &yelp_channel_funcs;
 

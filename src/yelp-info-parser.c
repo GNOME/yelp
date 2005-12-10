@@ -31,6 +31,30 @@
 #include "yelp-info-parser.h"
 #include "yelp-utils.h"
 
+#ifdef YELP_DEBUG
+#define d(x) x
+#else
+#define d(x)
+#endif
+
+GtkTreeIter *         find_real_top                      (GtkTreeModel *model, 
+							  GtkTreeIter *it);
+GtkTreeIter *         find_real_sibling                  (GtkTreeModel *model,
+							  GtkTreeIter *it, 
+							  GtkTreeIter *comp);
+xmlNodePtr            yelp_info_parse_menu               (GtkTreeStore *tree,
+							  xmlNodePtr *node,
+							  gchar *page_content);
+gboolean              get_menuoptions                    (gchar *line, 
+							  gchar **title, 
+							  gchar **ref, 
+							  gchar **desc, 
+							  gchar **xref);
+gboolean              resolve_frag_id                    (GtkTreeModel *model, 
+							  GtkTreePath *path, 
+							  GtkTreeIter *iter,
+							  gpointer data);
+
 /* Part 1: Parse File Into Tree Store */
 
 enum
@@ -53,14 +77,16 @@ enum
 static int
 page_type (char *page)
 {
-	if (strncmp (page, "Tag Table:\n", 11) == 0)
-		return PAGE_TAG_TABLE;
-	else if (strncmp (page, "Indirect:\n", 10) == 0)
-		return PAGE_INDIRECT;
-	else if (strncmp (page, "File: ", 6) == 0)
-		return PAGE_NODE;
-	else
-		return PAGE_OTHER;
+  if (g_ascii_strncasecmp (page, "Tag Table:\n", 11) == 0)
+    return PAGE_TAG_TABLE;
+  else if (g_ascii_strncasecmp (page, "Indirect:\n", 10) == 0)
+    return PAGE_INDIRECT;
+  else if (g_ascii_strncasecmp (page, "File:", 5) == 0 ||
+	   g_ascii_strncasecmp (page, "Node:", 5) == 0)
+    return PAGE_NODE;
+
+  else
+    return PAGE_OTHER;
 }
 
 static char
@@ -70,19 +96,25 @@ static char
 	int i;
 	int len;
 	char *str;
+	GError *error = NULL;
+	GIOStatus result = G_IO_STATUS_NORMAL;
 
-	g_print ("!! Opening %s...\n", file);
+	d (g_print ("!! Opening %s...\n", file));
 	
-	channel = yelp_io_channel_new_file (file, NULL);
-	g_io_channel_read_to_end (channel, &str, (gsize *) &len, NULL);
+	channel = yelp_io_channel_new_file (file, &error);
+	result = g_io_channel_read_to_end (channel, &str, (gsize *) &len, &error);
+	if (result != G_IO_STATUS_NORMAL) {
+	  g_error ("Error reading file: %s\n", error->message);
+	  exit (666);
+	}
 	g_io_channel_shutdown (channel, FALSE, NULL);
 
 	for (i = 0; i < len - 1; i++)
 	{
 		if (str[i] == '\0' && str[i+1] == '\b')
 		{
-			g_print ("=> got a NULL, replacing\n");
-			str[i] = ' '; str[i+1] = ' ';
+		  d (g_print ("=> got a NULL, replacing\n"));
+		  str[i] = ' '; str[i+1] = ' ';
 		}
 	}
 
@@ -109,7 +141,7 @@ static char
 		int offset;
 		int plength;
 
-		g_print ("Line: %s\n", *ptr);
+		d (g_print ("Line: %s\n", *ptr));
 		items = g_strsplit (*ptr, ": ", 2);
 
 		if (items[0])
@@ -125,9 +157,9 @@ static char
 			offset =  atoi(items[1]);
 			plength = strlen(pages[1]);
 			
-			g_print ("Need to make string %s+%i bytes = %i\n",
-					items[1], plength,
-					offset + plength);
+			d (g_print ("Need to make string %s+%i bytes = %i\n",
+				    items[1], plength,
+				    offset + plength));
 			
 			if (!composite) /* not yet created, malloc it */
 			{
@@ -172,8 +204,8 @@ static GHashTable
 		if (strncmp (*ptr, "Node: ", 6) == 0)
 		{
 			items = g_strsplit (*ptr, "", 2);
-			g_print ("Node: %s Offset: %s\n",
-					items[0] + 6, items[1]);
+			d (g_print ("Node: %s Offset: %s\n",
+				    items[0] + 6, items[1]));
 			g_hash_table_insert (table,
 					g_strdup (items[0] + 6),
 					g_strdup (items[1]));
@@ -196,8 +228,10 @@ static char
 	source_cp = g_strdup (source);
 	
 	ptr = g_strstr_len (source_cp, strlen (source_cp), required);
-	if (!ptr)
+	if (!ptr) {
+	  g_free (source_cp);
 		return NULL;
+	}
 	ret = ptr + strlen (required);
 	ptr = g_strstr_len (ret, strlen (ret), ",");
 	/* if there is no pointer, we're at the end of the string */
@@ -224,10 +258,67 @@ static GtkTreeIter
 *node2iter (GHashTable *nodes2iters, char *node)
 {
 	GtkTreeIter *iter;
-	
+
 	iter = g_hash_table_lookup (nodes2iters, node);
-	if (!iter) g_print ("Could not retrieve iter for node %s\n", node);
+	d (if (!iter) g_print ("Could not retrieve iter for node !%s!\n", node));
 	return iter;
+}
+
+GtkTreeIter 
+*find_real_top (GtkTreeModel *model, GtkTreeIter *it)
+{
+  GtkTreeIter *r = NULL;
+  GtkTreeIter *tmp = NULL;
+  
+  if (!it)
+    return NULL;
+
+  r = gtk_tree_iter_copy (it);
+  tmp = g_malloc0 (sizeof (GtkTreeIter));
+  while (gtk_tree_model_iter_parent (model, tmp, r)) {
+    r = gtk_tree_iter_copy (tmp);
+  }
+  g_free (tmp);
+
+  return r;
+}
+
+GtkTreeIter * find_real_sibling (GtkTreeModel *model,
+				 GtkTreeIter *it, GtkTreeIter *comp)
+{
+  GtkTreeIter *r;
+  GtkTreeIter *tmp = NULL;
+  gboolean result = FALSE;
+  gchar *title;
+  gchar *reftitle;
+
+  if (!it)
+    return NULL;
+
+  r = gtk_tree_iter_copy (it);
+  tmp = gtk_tree_iter_copy (it);
+
+  reftitle = gtk_tree_model_get_string_from_iter (model, comp);
+
+  result = gtk_tree_model_iter_parent (model, r, it);
+  if (!result)
+    return it;
+
+  title = gtk_tree_model_get_string_from_iter (model, r);
+
+  while (!g_str_equal (title, reftitle) && result) {
+    gtk_tree_iter_free (tmp);
+    tmp = gtk_tree_iter_copy (r);
+    result = gtk_tree_model_iter_parent (model, r, tmp);
+    if (result)
+      title = gtk_tree_model_get_string_from_iter (model, r);
+  }
+
+  g_free (r);
+  g_free (title);
+  g_free (reftitle);
+  return tmp;
+
 }
 
 static void
@@ -253,78 +344,108 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	prev = get_value_after (parts[0], "Prev: ");
 	next = get_value_after (parts[0], "Next: ");
 
+	if (next && g_str_equal (next, "Top")) {
+	  g_free (next);
+	  next = NULL;
+	}
+	if (g_str_equal (node, "Top") && prev != NULL) {
+	  g_free (prev);
+	  prev = NULL;
+	}
+
 	/* check to see if this page has been processed already */
 	page = node2page (nodes2offsets, offsets2pages, node);
 	if (processed_table[page])
 		return;
 	processed_table[page] = 1;
 	
-	g_print ("-- Processing Page %s\n\tParent: %s\n", node, up);
+	d (g_print ("-- Processing Page %s\n\tParent: %s\n", node, up));
 
 	iter = g_malloc0 (sizeof (GtkTreeIter));
 	/* check to see if we need to process our parent and siblings */
-	if (up && strcmp (up, "(dir)") && strcmp (up, "Top"))
+	if (up && g_ascii_strncasecmp (up, "(dir)", 5) && strcmp (up, "Top"))
 	{
 		page = node2page (nodes2offsets, offsets2pages, up);
 		if (!processed_table[page])
 		{
-			g_print ("%% Processing Node %s\n", up);
+		  d (g_print ("%% Processing Node %s\n", up));
 			process_page (tree, nodes2offsets, offsets2pages,
 				nodes2iters, processed_table, page_list,
 				page_list[page]);
 		}
 	}
-	if (prev && strcmp (prev, "(dir)"))
-	{
-		page = node2page (nodes2offsets, offsets2pages, prev);
-		if (!processed_table[page])
+	if (prev && g_ascii_strncasecmp (prev, "(dir)", 5))
+	  {
+	    if (strncmp (node, "Top", 3)) {
+	      /* Special case the Top node to always appear first */
+	    } else {
+	      page = node2page (nodes2offsets, offsets2pages, prev);
+	      if (!processed_table[page])
 		{
-			g_print ("%% Processing Node %s\n", prev);
-			process_page (tree, nodes2offsets, offsets2pages,
+		  d (g_print ("%% Processing Node %s\n", prev));
+		  process_page (tree, nodes2offsets, offsets2pages,
 				nodes2iters, processed_table, page_list,
 				page_list[page]);
 		}
-	}
+	    }
+	  }
 	
 	/* by this point our parent and older sibling should be processed */
-	if (!up || !strcmp (up, "(dir)") || !strcmp (up, "Top"))
+	if (!up || !g_ascii_strcasecmp (up, "(dir)") || !strcmp (up, "Top"))
 	{
-		g_print ("\t> no parent\n");
-		if (!prev || !strcmp (prev, "(dir)"))
+	  d (g_print ("\t> no parent\n"));
+		if (!prev || !g_ascii_strcasecmp (prev, "(dir)"))
 		{
-			g_print ("\t> no previous\n");
+		  d (g_print ("\t> no previous\n"));
 			gtk_tree_store_append (tree, iter, NULL);
 		}
-		else if (prev)
-			gtk_tree_store_insert_after (tree, iter, NULL,
-				node2iter (nodes2iters, prev));
+		else if (prev) {
+		  GtkTreeIter *real;
+		  real = find_real_top (GTK_TREE_MODEL (tree), 
+					node2iter (nodes2iters, prev));
+		  if (real) {
+		    gtk_tree_store_insert_after (tree, iter, NULL,
+						 real);
+		    g_free (real);
+		  }
+		  else 
+		    gtk_tree_store_append (tree, iter, NULL);
+		}
 	}
-	else if (!prev || !strcmp (prev, "(dir)") || !strcmp (prev, up))
+	else if (!prev || !g_ascii_strcasecmp (prev, "(dir)") || !strcmp (prev, up))
 	{
-		g_print ("\t> no previous\n");
+	  d (g_print ("\t> no previous\n"));
 		gtk_tree_store_append (tree, iter,
 			node2iter (nodes2iters, up));
 	}
 	else if (up && prev)
 	{
-		g_print ("+++ Parent: %s Previous: %s\n", up, prev);
-		if (node2iter (nodes2iters, up))
-			g_print ("++++ Have parent node!\n");
-		if (node2iter (nodes2iters, prev))
-			g_print ("++++ Have previous node!\n");
-			gtk_tree_store_insert_after (tree, iter,
-				node2iter (nodes2iters, up),
-				node2iter (nodes2iters, prev));
+	  GtkTreeIter *upit = node2iter (nodes2iters, up);
+	  GtkTreeIter *previt = node2iter (nodes2iters, prev);
+	  GtkTreeIter *nit;
+	  d (g_print ("+++ Parent: %s Previous: %s\n", up, prev));
+	  
+	  d (if (upit) g_print ("++++ Have parent node!\n"));
+	  d (if (previt) g_print ("++++ Have previous node!\n"));
+	  nit = find_real_sibling (GTK_TREE_MODEL (tree), previt, upit);
+	  if (nit) {
+	    gtk_tree_store_insert_after (tree, iter,
+					 upit,
+					 nit);
+	    g_free (nit);
+	  }
+	  else
+	    gtk_tree_store_append (tree, iter, upit);
 	}
 	else
 	{
-		g_print ("# node %s was not put in tree\n", node);
-		return;
+	  d (g_print ("# node %s was not put in tree\n", node));
+	  return;
 	}
 
-	if (iter) g_print ("Have a valid iter, storing for %s\n", node);
+	d (if (iter) g_print ("Have a valid iter, storing for %s\n", node));
 	g_hash_table_insert (nodes2iters, g_strdup (node), iter);
-	g_print ("size: %i\n", g_hash_table_size (nodes2iters));
+	d (g_print ("size: %i\n", g_hash_table_size (nodes2iters)));
 	gtk_tree_store_set (tree, iter,
 			COLUMN_PAGE_NO, g_strdup_printf ("%i",
 				node2page (nodes2offsets, offsets2pages, node)),
@@ -372,13 +493,12 @@ GtkTreeStore
 	
 	for (ptr = page_list; *ptr != NULL; ptr++)
 	{
-		g_print ("page %i at offset %i\n", pages, offset);
+	  d (g_print ("page %i at offset %i\n", pages, offset));
 /*		g_print ("page starts:\n%s...\n", *ptr); */
 
 		g_hash_table_insert (offsets2pages,
 				g_strdup_printf ("%i", offset), 
 				GINT_TO_POINTER (pages));
-		
 		
 		offset += strlen (*ptr);
 		if (pages) offset += 2;
@@ -386,14 +506,14 @@ GtkTreeStore
 		pt = page_type (*ptr);
 		if (pt == PAGE_TAG_TABLE)
 		{
-			g_print ("Have the Tag Table\n");
+		  d (g_print ("Have the Tag Table\n"));
 			/* this needs to be freed later too */
 			nodes2offsets = process_tag_table (*ptr);
 			break;
 		}
 		else if (pt == PAGE_INDIRECT)
 		{
-			g_print ("Have the indirect mapping table\n");
+		  d (g_print ("Have the indirect mapping table\n"));
 			chained_info = TRUE;
 			str = process_indirect_map (*ptr);
 		}
@@ -416,7 +536,7 @@ GtkTreeStore
 		
 		for (ptr = page_list; *ptr != NULL; ptr++)
 		{
-			g_print ("page %i at offset %i\n", pages, offset);
+		  d (g_print ("page %i at offset %i\n", pages, offset));
 			g_hash_table_insert (offsets2pages,
 					g_strdup_printf ("%i", offset),
 					 GINT_TO_POINTER (pages));
@@ -425,6 +545,8 @@ GtkTreeStore
 			pages++;
 		}
 	}
+	if (!nodes2offsets)
+	  return NULL;
 
 	/* at this point we have two dictionaries,
 	 * 	node names:offsets, and
@@ -439,9 +561,9 @@ GtkTreeStore
 	pages = 0;
 	for (ptr = page_list; *ptr != NULL; ptr++)
 	{
-		if (page_type (*ptr) != PAGE_NODE) continue;
-		process_page (tree, nodes2offsets, offsets2pages, nodes2iters,
-				processed_table, page_list, *ptr);
+	  if (page_type (*ptr) != PAGE_NODE) continue;
+	  process_page (tree, nodes2offsets, offsets2pages, nodes2iters,
+			processed_table, page_list, *ptr);
 	}
 
 	g_strfreev (page_list);
@@ -466,7 +588,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 	char *page_name;
 	char *page_content;
 	
-	g_print ("Decended\n");
+	d (g_print ("Decended\n"));
 	do
 	{
 		gtk_tree_model_get (GTK_TREE_MODEL (tree), &iter,
@@ -474,10 +596,18 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 				COLUMN_PAGE_NAME, &page_name,
 				COLUMN_PAGE_CONTENT, &page_content,
 				-1);
-		g_print ("Got Section: %s\n", page_name);
-		newnode = xmlNewTextChild (*node, NULL,
-				BAD_CAST "Section",
-				BAD_CAST page_content);
+		d (g_print ("Got Section: %s\n", page_name));
+		if (strstr (page_content, "\n* Menu:")) {
+		  newnode = yelp_info_parse_menu (tree, node, page_content);
+		} else {
+		  newnode = xmlNewTextChild (*node, NULL,
+					     BAD_CAST "Section",
+					     BAD_CAST page_content);
+		  xmlNewTextChild (newnode, NULL,
+				   BAD_CAST "para",
+				   BAD_CAST page_content);
+		  
+		}
 		/* if we free the page content, now it's in the XML, we can
 		 * save some memory */
 		g_free (page_content);
@@ -493,7 +623,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 			parse_tree_level (tree, &newnode, children);
 	}
 	while (gtk_tree_model_iter_next (GTK_TREE_MODEL (tree), &iter));
-	g_print ("Ascending\n");
+	d (g_print ("Ascending\n"));
 }
 
 xmlDocPtr
@@ -520,8 +650,7 @@ yelp_info_parser_parse_tree (GtkTreeStore *tree)
 
 	if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (tree), &iter))
 		parse_tree_level (tree, &node, iter);
-	else
-		g_print ("Empty tree?\n");
+	d (else g_print ("Empty tree?\n"));
 
 	/*
 	xmlDocDumpFormatMemory (doc, &xmlbuf, &bufsiz, 1);
@@ -529,4 +658,161 @@ yelp_info_parser_parse_tree (GtkTreeStore *tree)
 	*/
 
 	return doc;
+}
+
+static gchar *section_id;
+
+gboolean
+resolve_frag_id (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter,
+		 gpointer data)
+{
+  gchar *page_no;
+  gchar *page_name;
+
+  gtk_tree_model_get (GTK_TREE_MODEL (model), iter,
+		      COLUMN_PAGE_NO, &page_no,
+		      COLUMN_PAGE_NAME, &page_name,
+		      -1);
+
+  if (g_str_equal (page_name, data)) {
+    section_id = g_strdup (page_no);
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+gboolean
+get_menuoptions (gchar *line, gchar **title, gchar **ref, gchar **desc, 
+		 gchar **xref)
+{
+  /* Since info is actually braindead and allows .s in 
+   * its references, we gotta carefully extract things
+   * as .s can be in either the title or desc
+   */
+  gchar *tmp = line;
+  gchar *tfind = NULL;
+
+  if (!g_str_has_prefix (line, "* "))
+    return FALSE;
+
+  tfind = strchr (tmp, ':');
+
+  if (!tfind) /* No : on the line, bail out */
+    return FALSE;
+
+  (*title) = g_strndup (tmp, tfind-tmp);
+
+  if (tfind[1] == ':') { /* This happens if the title and ref are the same
+			 * Most menus are of this type 
+			 */
+
+    (*ref) = NULL; /* There is no second part.  The rest is description */
+
+    tmp++;
+    (*xref) = g_strndup (tmp, tfind-tmp);
+    g_strstrip (*xref);
+
+    tfind+=2;
+    (*desc) = g_strdup (tfind);
+
+  } else { /* The other type of menu option */
+    gchar *td = NULL;
+
+    tfind++;
+    td = strchr (tfind, '.');
+    if (!td)
+      return FALSE;
+    (*ref) = g_strndup (tfind, td-tfind);
+    (*xref) = g_strdup (*ref);
+    g_strstrip (*xref);
+    
+    td++;
+    (*desc) = g_strdup (td);
+  }
+  return TRUE;
+}
+
+xmlNodePtr
+yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node, 
+		      gchar *page_content)
+{
+  gchar **split;
+  gchar **menuitems;
+  xmlNodePtr newnode;
+  int i=0;
+
+  split = g_strsplit (page_content, "\n* Menu:", 2);
+
+  newnode = xmlNewChild (*node, NULL,
+			 BAD_CAST "Section", NULL);
+
+  xmlNewTextChild (newnode, NULL,
+	       BAD_CAST "para", BAD_CAST g_strconcat (split[0],
+						      "\n* Menu:",
+						      NULL));
+
+  menuitems = g_strsplit (split[1], "\n", -1);
+
+  while (menuitems[i] != NULL) {
+    gboolean menu = FALSE;
+    gchar *title = NULL;
+    gchar *ref = NULL;
+    gchar *desc = NULL;
+    gchar *xref = NULL;
+    xmlNodePtr mholder;
+    xmlNodePtr ref1;
+    xmlNodePtr ref2;
+
+    menu = get_menuoptions (menuitems[i], &title, &ref, &desc, &xref);
+ 
+    if (menu) {
+      mholder = xmlNewChild (newnode, NULL, BAD_CAST "menuholder", NULL);
+      gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, xref);
+      
+      if (ref == NULL) { /* A standard type menu */
+	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
+					BAD_CAST g_strconcat (title, "::", 
+							      NULL));
+	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST g_strconcat ("#", section_id, 
+							      NULL));
+      } else { /* Indexy type menu  - we gotta do a  little work to fix the
+		* spacing
+		*/
+	gchar *spacing = ref;
+	gint c=0;
+	gchar *sp = NULL;
+
+	while (*spacing ==' ') {
+	  c++;
+	  spacing++;
+	}
+	sp = g_strndup (ref, c);
+	
+	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
+					BAD_CAST title);
+	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST g_strconcat ("#", section_id, 
+							      NULL));
+	xmlNewTextChild (mholder, NULL, BAD_CAST "spacing",
+			 BAD_CAST sp);
+	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
+					 BAD_CAST g_strconcat (g_strstrip(ref), 
+							       ".", NULL));
+	xmlNewProp (ref2, BAD_CAST "href", BAD_CAST g_strconcat ("#", section_id, 
+							       NULL));
+	
+	g_free (sp);
+      }
+      xmlNewTextChild (mholder, NULL, BAD_CAST "para",
+		       BAD_CAST desc);
+    } else {
+      xmlNewTextChild (newnode, NULL, BAD_CAST "para",
+		       BAD_CAST menuitems[i]);
+      
+    }
+    i++;
+    
+  }
+  
+  return newnode;
 }

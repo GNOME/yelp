@@ -52,22 +52,34 @@
         </style>
       </head>
       <body>
-        <xsl:if test="Section">
-          <ul>
-            <xsl:for-each select="Section">
-              <li>
-                <xsl:value-of select="@name"/>
-              </li>
-            </xsl:for-each>
-          </ul>
-        </xsl:if>
         <pre class="body">
-          <xsl:value-of select="node()[not(self::Section)]"/>
+          <xsl:apply-templates select="node()[not(self::Section)]"/>
         </pre>
       </body>
     </html>
   </yelp:document>
   <xsl:apply-templates select="Section"/>
+</xsl:template>
+
+<xsl:template match="para">
+  <xsl:value-of select="node()"/>
+  <xsl:text>
+  </xsl:text>
+</xsl:template>
+
+<xsl:template match="spacing">
+  <xsl:value-of select="node()"/>
+</xsl:template>
+
+<xsl:template match="a">
+  <xsl:element name="a">
+    <xsl:attribute name="href"> <xsl:value-of select="@href"/></xsl:attribute>
+    <xsl:value-of select="node()"/>
+  </xsl:element>
+</xsl:template>
+
+<xsl:template match="menuholder">
+  <xsl:apply-templates select="node()[not(self::menuholder)]"/>
 </xsl:template>
 
 <xsl:template name="html.css"><xsl:text>

@@ -1,3 +1,16 @@
+2005-12-10  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+       * stylesheets/info2html.xsl:
+       * src/yelp-utils.c:
+       * src/yelp-io-channel.c:
+       * src/yelp-info-parser.c:
+       * src/yelp-info-pager.c:
+       Improve info page support
+       Support info menus
+       Only dump output in debug mode
+       Fix some leaks in info support
+
+
 2005-12-08  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-bookmarks.c:
