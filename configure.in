@@ -65,6 +65,8 @@ PKG_CHECK_MODULES(YELP,
 [
 	gconf-2.0
 	gnome-doc-utils >= 0.3.1
+        libgnomeprint-2.2
+        libgnomeprintui-2.2
 	gnome-vfs-2.0 >= 1.1
 	gtk+-2.0 >= 2.5.3
 	libbonobo-2.0 >= 1.108.0

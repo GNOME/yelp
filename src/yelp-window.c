@@ -42,12 +42,14 @@
 
 #include "yelp-bookmarks.h"
 #include "yelp-db-pager.h"
+#include "yelp-db-print-pager.h"
 #include "yelp-error.h"
 #include "yelp-html.h"
 #include "yelp-pager.h"
 #include "yelp-settings.h"
 #include "yelp-toc-pager.h"
 #include "yelp-window.h"
+#include "yelp-print.h"
 
 #ifdef ENABLE_MAN
 #include "yelp-man-pager.h"
@@ -160,6 +162,8 @@ static void    window_add_widget        (GtkUIManager *ui_manager,
 					 GtkWidget    *vbox);
 static void    window_new_window_cb     (GtkAction *action, YelpWindow *window);
 static void    window_about_document_cb (GtkAction *action, YelpWindow *window);
+static void    window_print_document_cb (GtkAction *action, YelpWindow *window);
+static void    window_print_page_cb    (GtkAction *action, YelpWindow *window);
 static void    window_open_location_cb  (GtkAction *action, YelpWindow *window);
 static void    window_close_window_cb   (GtkAction *action, YelpWindow *window);
 static void    window_copy_cb           (GtkAction *action, YelpWindow *window);
@@ -309,6 +313,16 @@ static const GtkActionEntry entries[] = {
       "<Control>N",
       NULL,
       G_CALLBACK (window_new_window_cb) },
+    { "PrintDocument", NULL,
+      N_("Print This Document"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_print_document_cb) },
+    { "PrintPage", NULL,
+      N_("Print This Page"),
+      NULL,
+      NULL,
+      G_CALLBACK (window_print_page_cb) },
     { "AboutDocument", NULL,
       N_("About This Document"),
       NULL,
@@ -723,6 +737,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     YelpWindowPriv *priv;
     YelpDocInfo    *doc_info;
     gchar          *frag_id;
+    GtkAction      *action;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
@@ -770,6 +785,11 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     if (priv->current_frag)
 	g_free (priv->current_frag);
 
+    action = gtk_action_group_get_action (priv->action_group, 
+						  "PrintDocument");
+    g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+
+
     priv->current_doc  = yelp_doc_info_ref (doc_info);
     priv->current_frag = g_strdup (frag_id);
 
@@ -801,6 +821,7 @@ window_do_load (YelpWindow  *window,
 		YelpDocInfo *doc_info,
 		gchar       *frag_id)
 {
+    GtkAction      *action;
     YelpWindowPriv *priv;
     GError         *error = NULL;
     gboolean        handled = FALSE;
@@ -813,6 +834,13 @@ window_do_load (YelpWindow  *window,
 
     priv = window->priv;
 
+    action = gtk_action_group_get_action (priv->action_group, 
+					  "PrintDocument");
+    g_object_set (G_OBJECT (action),
+		  "sensitive",
+		  FALSE,
+		  NULL);
+    
     switch (yelp_doc_info_get_type (doc_info)) {
     case YELP_DOC_TYPE_MAN:
 #ifdef ENABLE_MAN
@@ -835,6 +863,10 @@ window_do_load (YelpWindow  *window,
 #endif
 
     case YELP_DOC_TYPE_DOCBOOK_XML:
+	g_object_set (G_OBJECT (action),
+		      "sensitive",
+		      TRUE,
+		      NULL);
     case YELP_DOC_TYPE_TOC:
 	handled = window_do_load_pager (window, doc_info, frag_id);
 	break;
@@ -1017,6 +1049,11 @@ window_populate (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+
+    action = gtk_action_group_get_action (priv->action_group, 
+						  "PrintDocument");
+    g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+
     priv->popup = gtk_ui_manager_get_widget(priv->ui_manager, "ui/main_popup");
     priv->maillink = gtk_ui_manager_get_widget(priv->ui_manager, "ui/mail_popup");
     priv->merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
@@ -1933,6 +1970,254 @@ window_new_window_cb (GtkAction *action, YelpWindow *window)
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0, NULL);
+}
+
+typedef struct {
+    gulong page_handler;
+    gulong error_handler;
+    gulong cancel_handler;
+    gulong finish_handler;
+    YelpPager *pager;
+    YelpWindow *window;
+} PrintStruct;
+
+static void
+print_disconnect (PrintStruct *data)
+{
+    d(g_print ("print disconnect\n"));
+    if (data->page_handler) {
+	g_signal_handler_disconnect (data->pager,
+				     data->page_handler);
+	data->page_handler = 0;
+    }
+    if (data->error_handler) {
+	g_signal_handler_disconnect (data->pager,
+				     data->error_handler);
+	data->error_handler = 0;
+    }
+    if (data->cancel_handler) {
+	g_signal_handler_disconnect (data->pager,
+				     data->cancel_handler);
+	data->cancel_handler = 0;
+    }
+    if (data->finish_handler) {
+	g_signal_handler_disconnect (data->pager,
+				     data->finish_handler);
+	data->finish_handler = 0;
+    }
+    g_free (data);
+}
+
+static void
+print_pager_page_cb (YelpPager *pager,
+		     gchar     *page_id,
+		     gpointer   user_data)
+{
+    PrintStruct *data = user_data;
+    YelpPage    *page;
+    d (g_print ("print_pager_page_cb\n"));
+    d (g_print ("  page_id=\"%s\"\n", page_id));
+
+    page = (YelpPage *) yelp_pager_get_page (pager, page_id);
+
+    if (page) {
+	YelpHtml *html;
+	GtkWidget *gtk_window;
+	int length, offset;
+	char *uri;
+	GtkWidget *vbox = gtk_vbox_new (FALSE, FALSE);
+	d(g_print (page->contents));
+
+	gtk_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	html = yelp_html_new ();
+
+	gtk_container_add (GTK_CONTAINER (gtk_window), GTK_WIDGET (vbox));
+	gtk_box_pack_end (GTK_BOX (vbox), GTK_WIDGET (html), TRUE, TRUE, 0);
+
+	gtk_widget_show (gtk_window);
+	gtk_widget_show (GTK_WIDGET (html));
+	gtk_widget_show (vbox);
+	gtk_widget_hide (gtk_window);
+	uri = yelp_doc_info_get_uri (yelp_pager_get_doc_info (pager),
+				     page_id,
+				     YELP_URI_TYPE_FILE);
+
+	d (g_print ("  uri            = %s\n", uri));
+
+	yelp_html_set_base_uri (html, uri);
+	g_free (uri);
+
+	yelp_html_open_stream (html, "application/xhtml+xml");
+	for (length = strlen (page->contents), offset = 0; length > 0; length -= BUFFER_SIZE, offset += BUFFER_SIZE) {
+	    d(g_print ("data: %.*s\n", MIN (length, BUFFER_SIZE), page->contents + offset));
+	    yelp_html_write (html, page->contents + offset, MIN (length, BUFFER_SIZE));
+	}
+	yelp_html_close (html);
+
+	yelp_print_run (data->window, html, gtk_window, vbox);
+
+	print_disconnect (data);
+
+    }
+}
+
+static void
+print_pager_error_cb (YelpPager   *pager,
+		      gpointer     user_data)
+{
+    PrintStruct *data = user_data;
+    /*     GError *error = yelp_pager_get_error (pager);*/
+
+    d (g_print ("print_pager_error_cb\n"));
+
+    print_disconnect (data);
+}
+
+static void
+print_pager_cancel_cb (YelpPager   *pager,
+		       gpointer     user_data)
+{
+    PrintStruct *data = user_data;
+    d (g_print ("print_pager_cancel_cb\n"));
+
+    print_disconnect (data);
+}
+
+static void
+print_pager_finish_cb (YelpPager   *pager,
+		       gpointer     user_data)
+{
+    PrintStruct *data = user_data;
+
+    d (g_print ("print_pager_finish_cb\n"));
+
+    print_disconnect (data);
+}
+
+static void
+window_print_document_cb (GtkAction *action, YelpWindow *window)
+{
+    PrintStruct *data;
+    YelpPager *pager;
+
+    if (!window->priv->current_doc)
+	return;
+
+    pager = yelp_db_print_pager_new (window->priv->current_doc);
+
+    if (!pager) {
+	return;
+    }
+
+    data = g_new0 (PrintStruct, 1);
+    data->pager = pager;
+    data->window = window;
+
+    data->page_handler =
+	g_signal_connect (data->pager,
+			  "page",
+			  G_CALLBACK (print_pager_page_cb),
+			  data);
+    data->error_handler =
+	g_signal_connect (data->pager,
+			  "error",
+			  G_CALLBACK (print_pager_error_cb),
+			  data);
+    data->cancel_handler =
+	g_signal_connect (data->pager,
+			  "error",
+			  G_CALLBACK (print_pager_cancel_cb),
+			  data);
+    data->finish_handler =
+	g_signal_connect (data->pager,
+			  "finish",
+			  G_CALLBACK (print_pager_finish_cb),
+			  data);
+
+    /* handled = */ yelp_pager_start (data->pager);
+}
+
+static void
+window_print_page_cb (GtkAction *action, YelpWindow *window)
+{
+    GtkWidget *gtk_win;
+    YelpPager  *pager;
+    YelpPage   *page  = NULL;
+    YelpHtml *html;
+    int length, offset;
+    gchar *uri;
+    GtkWidget *vbox = gtk_vbox_new (FALSE, FALSE);
+
+    gtk_win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    html = yelp_html_new ();
+    
+    gtk_container_add (GTK_CONTAINER (gtk_win), GTK_WIDGET (vbox));
+    gtk_box_pack_end (GTK_BOX (vbox), GTK_WIDGET (html), TRUE, TRUE, 0);
+    gtk_widget_show (gtk_win);
+    gtk_widget_show (vbox);
+    gtk_widget_show (GTK_WIDGET (html));
+    gtk_widget_hide (gtk_win);
+
+    pager = yelp_doc_info_get_pager (window->priv->current_doc);
+
+    uri = yelp_doc_info_get_uri (window->priv->current_doc, NULL, YELP_URI_TYPE_FILE);
+    
+    yelp_html_set_base_uri (html, uri);
+
+    if (pager) {
+	page = (YelpPage *) yelp_pager_get_page (pager, window->priv->current_frag);
+	
+	yelp_html_open_stream (html, "application/xhtml+xml");
+	for (length = strlen (page->contents), offset = 0; length > 0; length -= BUFFER_SIZE, offset += BUFFER_SIZE) {
+	    d (g_print ("data: %.*s\n", MIN (length, BUFFER_SIZE), page->contents + offset));
+	    yelp_html_write (html, page->contents + offset, MIN (length, BUFFER_SIZE));
+	}
+	yelp_html_close (html);
+    } else { /*html file.  Dump file to window the easy way*/
+	GnomeVFSHandle  *handle;
+	GnomeVFSResult   result;
+	GnomeVFSFileSize n;
+	gchar            buffer[BUFFER_SIZE];	
+
+	result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
+	
+	if (result != GNOME_VFS_OK) {
+	    GError *error = NULL;
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
+			 _("The file ‘%s’ could not be read.  This file might "
+			   "be missing, or you might not have permissions to "
+			   "read it."),
+			 uri);
+	    window_error (window, error, TRUE);
+	    return;
+	}
+	/* Assuming the file exists.  If it doesn't how did we get this far?
+	 * There are more sinister forces at work...
+	 */
+
+	switch (yelp_doc_info_get_type (window->priv->current_doc)) {
+	case YELP_DOC_TYPE_HTML:
+	    yelp_html_open_stream (html, "text/html");
+	    break;
+	case YELP_DOC_TYPE_XHTML:
+	    yelp_html_open_stream (html, "application/xhtml+xml");
+	    break;
+	default:
+	    g_assert_not_reached ();
+	}
+	
+	while ((result = gnome_vfs_read
+		(handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
+	    yelp_html_write (html, buffer, n);
+	}
+	
+	yelp_html_close (html);
+
+	
+    
+    }
+    g_free (uri);
+    yelp_print_run (window, html, gtk_win, vbox);
 }
 
 static void

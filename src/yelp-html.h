@@ -28,6 +28,8 @@
 #include <gtk/gtkmarshal.h>
 #include <gtkmozembed.h>
 
+#include "yelp-print.h"
+
 G_BEGIN_DECLS
 
 #define YELP_TYPE_HTML         (yelp_html_get_type ())
@@ -97,6 +99,15 @@ void            yelp_html_jump_to_anchor (YelpHtml    *html,
 void            yelp_html_copy_selection (YelpHtml    *html);
 
 void            yelp_html_select_all     (YelpHtml    *html);
+
+void            yelp_html_print          (YelpHtml    *html,
+					  YelpPrintInfo *info,
+					  gboolean preview,
+					  gint *npages);
+void            yelp_html_preview_end    (YelpHtml    *html);
+void            yelp_html_preview_navigate (YelpHtml *html,
+					    gint page_no);
+void            yelp_html_initialize     (void);
 
 G_END_DECLS
 

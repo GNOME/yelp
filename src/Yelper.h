@@ -32,6 +32,8 @@
 #else
 #include <nsIWebBrowserFind.h>
 #endif
+#include <nsIPrintSettings.h>
+#include <yelp-print.h>
 
 class Yelper
 {
@@ -52,6 +54,12 @@ public:
 
 	void ProcessMouseEvent (void *aEvent);
 
+	nsresult Print (YelpPrintInfo *print_info, PRBool preview,
+			int *prev_pages);	
+	nsresult PrintPreviewNavigate (int page_no);
+	nsresult PrintPreviewEnd ();
+
+
 private:
 	PRBool mInitialised;
 	GtkMozEmbed *mEmbed;
@@ -62,6 +70,8 @@ private:
 #else
 	nsCOMPtr<nsIWebBrowserFind> mFinder;
 #endif
+
+	void SetPrintSettings (YelpPrintInfo *settings, nsIPrintSettings *target);
 };
 
 #endif /* !__YELPER_H__ */

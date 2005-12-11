@@ -37,11 +37,11 @@
 #include <libgnomeui/gnome-client.h>
 #include <string.h>
 #include <stdlib.h>
-#include <gtkmozembed.h>
 
 #include "GNOME_Yelp.h"
 #include "yelp-window.h"
 #include "yelp-base.h"
+#include "yelp-html.h"
 
 #define YELP_FACTORY_OAFIID "OAFIID:GNOME_Yelp_Factory"
 
@@ -333,8 +333,8 @@ main (int argc, char **argv)
 
 	gnome_vfs_init ();
 
-	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
-	
+	yelp_html_initialize ();
+
 	/* Commandline parsing is done here */
 	g_object_get (G_OBJECT (program),
 		      GNOME_PARAM_POPT_CONTEXT, &poptCon,
@@ -365,6 +365,7 @@ main (int argc, char **argv)
 	if (!factory) { /* Not started, start now */ 
 		BonoboGenericFactory *factory;
 		char                 *registration_id;
+
 
 		registration_id = bonobo_activation_make_registration_id (
 					YELP_FACTORY_OAFIID,

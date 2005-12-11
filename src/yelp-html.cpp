@@ -31,8 +31,11 @@
 #include "yelp-marshal.h"
 #include "yelp-gecko-utils.h"
 #include "yelp-settings.h"
+#include "yelp-gecko-services.h"
 
 #include "Yelper.h"
+
+#include <libgnome/gnome-init.h>
 
 #ifdef GNOME_ENABLE_DEBUG
 #define d(x) x
@@ -130,7 +133,6 @@ html_init (YelpHtml *html)
     priv->anchor = NULL;
 
     priv->yelper = new Yelper (GTK_MOZ_EMBED (html));
-
     klass = YELP_HTML_GET_CLASS (html);
     if (!klass->font_handler) {
 	klass->font_handler =
@@ -153,6 +155,7 @@ html_init (YelpHtml *html)
 				      NULL);
 	html_set_a11y ();
     }
+    yelp_register_printing ();
 }
 
 static void
@@ -384,6 +387,24 @@ yelp_html_select_all (YelpHtml *html)
     html->priv->yelper->DoCommand ("cmd_selectAll");
 }
 
+void
+yelp_html_print (YelpHtml *html, YelpPrintInfo *info, gboolean preview, gint *npages)
+{
+    html->priv->yelper->Print (info, preview, npages);
+}
+
+void
+yelp_html_preview_navigate (YelpHtml *html, gint page_no)
+{
+    html->priv->yelper->PrintPreviewNavigate (page_no);
+}
+
+void
+yelp_html_preview_end (YelpHtml *html)
+{
+    html->priv->yelper->PrintPreviewEnd ();
+}
+
 static void
 html_set_fonts (void)
 {
@@ -420,4 +441,17 @@ html_set_a11y (void)
 
     caret = yelp_settings_get_caret ();
     yelp_gecko_set_caret (caret);
+}
+
+void
+yelp_html_initialize (void)
+{
+    static gboolean initialized = FALSE;
+
+    if (initialized)
+	return;
+    initialized = TRUE;
+
+    gtk_moz_embed_set_comp_path (MOZILLA_HOME);
+
 }

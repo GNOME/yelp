@@ -43,6 +43,7 @@
 #include <nsIDOMEventTarget.h>
 #include <nsIDOMNode.h>
 #include <nsIDOMHTMLAnchorElement.h>
+#include <nsIWebBrowserPrint.h>
 
 #ifdef TYPEAHEADFIND
 #include <nsIDocShell.h>
@@ -50,8 +51,11 @@
 #endif /* TYPEAHEADFIND */
 
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <gtkmozembed_internal.h>
+
+#include <yelp-gecko-services.h>
 
 #ifdef GNOME_ENABLE_DEBUG
 #define d(x) x
@@ -253,4 +257,254 @@ Yelper::ProcessMouseEvent (void* aEvent)
 	if (!cHref.Length ()) return;
 
 	g_signal_emit_by_name (mEmbed, "popupmenu_requested", cHref.get());
+}
+
+nsresult 
+Yelper::Print (YelpPrintInfo *print_info, PRBool preview, int *prev_pages)
+{
+  nsresult rv;
+
+  nsCOMPtr<nsIWebBrowserPrint> print(do_GetInterface (mWebBrowser, &rv));
+  NS_ENSURE_SUCCESS (rv, rv);
+
+  nsCOMPtr<nsIPrintSettings> settings;
+
+  rv = print->GetGlobalPrintSettings (getter_AddRefs (settings));
+  NS_ENSURE_SUCCESS (rv, rv);
+
+  SetPrintSettings (print_info, settings);
+
+  nsCOMPtr<PrintListener> listener = new PrintListener (print_info, print);
+
+  if (!preview)
+    rv = print->Print (settings, listener);
+  else {
+    rv = print->PrintPreview (settings, mDOMWindow, nsnull);
+    rv |= print->GetPrintPreviewNumPages (prev_pages);
+  }
+  return rv;
+
+}
+
+nsresult
+Yelper::PrintPreviewNavigate (int page_no)
+{
+  nsresult rv;
+  nsCOMPtr<nsIWebBrowserPrint> print(do_GetInterface (mWebBrowser, &rv));
+  NS_ENSURE_SUCCESS (rv, rv);
+
+  return print->PrintPreviewNavigate (0, page_no);
+}
+
+
+
+nsresult 
+Yelper::PrintPreviewEnd ()
+{
+  nsresult rv;
+  nsCOMPtr<nsIWebBrowserPrint> print(do_GetInterface (mWebBrowser, &rv));
+  NS_ENSURE_SUCCESS (rv, rv);
+
+  return print->ExitPrintPreview ();
+
+}
+
+void
+Yelper::SetPrintSettings (YelpPrintInfo *settings, nsIPrintSettings * target)
+{
+    char *base;
+    const char *temp_dir;
+    int fd;
+    const GnomePrintUnit *unit, *inch, *mm;
+    double value;
+    nsEmbedString tmp;
+    
+    const static PRUnichar pName[] = { 'P', 'o', 's', 't', 'S', 'c', 'r', 'i', 'p', 't', '/', 'd', 'e', 'f', 'a', 'u', 'l', 't', '\0' };
+    target->SetPrinterName(nsEmbedString(pName).get());
+    
+    const static int frame_types[] = {
+	nsIPrintSettings::kFramesAsIs,
+	nsIPrintSettings::kSelectedFrame,
+	nsIPrintSettings::kEachFrameSep
+    };
+
+    switch (settings->range)
+	{
+	case GNOME_PRINT_RANGE_CURRENT:
+	case GNOME_PRINT_RANGE_SELECTION_UNSENSITIVE:
+	case GNOME_PRINT_RANGE_ALL:
+	    target->SetPrintRange (nsIPrintSettings::kRangeAllPages);
+	    break;
+	case GNOME_PRINT_RANGE_RANGE:
+	    target->SetPrintRange (nsIPrintSettings::kRangeSpecifiedPageRange);
+	    target->SetStartPageRange (settings->from_page);
+	    target->SetEndPageRange (settings->to_page);
+	    break;
+	case GNOME_PRINT_RANGE_SELECTION:
+	    target->SetPrintRange (nsIPrintSettings::kRangeSelection);
+	    break;
+	}
+    
+    mm = gnome_print_unit_get_by_abbreviation ((const guchar *) "mm");
+    inch = gnome_print_unit_get_by_abbreviation ((const guchar *) "in");
+    g_assert (mm != NULL && inch != NULL);
+    
+    /* top margin */
+    if (gnome_print_config_get_length (settings->config,
+				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_TOP,
+				       &value, &unit)
+	&& gnome_print_convert_distance (&value, unit, inch))
+	{
+	    target->SetMarginTop (value);
+	}
+    
+    /* bottom margin */
+    if (gnome_print_config_get_length (settings->config,
+				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_BOTTOM,
+				       &value, &unit)
+	&& gnome_print_convert_distance (&value, unit, inch))
+	{
+	    target->SetMarginBottom (value);
+	}
+    
+    /* left margin */
+    if (gnome_print_config_get_length (settings->config,
+				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_LEFT,
+				       &value, &unit)
+	&& gnome_print_convert_distance (&value, unit, inch))
+	{
+	    target->SetMarginLeft (value);
+	}
+    
+    /* right margin */
+    if (gnome_print_config_get_length (settings->config,
+				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_RIGHT,
+				       &value, &unit)
+	&& gnome_print_convert_distance (&value, unit, inch))
+	{
+	    target->SetMarginRight (value);
+	}
+    
+    
+    
+    NS_CStringToUTF16 (nsEmbedCString(settings->header_left_string),
+		       NS_CSTRING_ENCODING_UTF8, tmp);
+    target->SetHeaderStrLeft (tmp.get());
+    
+    NS_CStringToUTF16 (nsEmbedCString(settings->header_center_string),
+		       NS_CSTRING_ENCODING_UTF8, tmp);
+    target->SetHeaderStrCenter (tmp.get());
+    
+    NS_CStringToUTF16 (nsEmbedCString(settings->header_right_string),
+		       NS_CSTRING_ENCODING_UTF8, tmp);
+    target->SetHeaderStrRight (tmp.get());
+    
+    NS_CStringToUTF16 (nsEmbedCString(settings->footer_left_string),
+		       NS_CSTRING_ENCODING_UTF8, tmp); 
+    target->SetFooterStrLeft (tmp.get());
+    
+    NS_CStringToUTF16 (nsEmbedCString(settings->footer_center_string),
+		       NS_CSTRING_ENCODING_UTF8, tmp);
+    target->SetFooterStrCenter(tmp.get());
+    
+    NS_CStringToUTF16 (nsEmbedCString(settings->footer_right_string),
+		       NS_CSTRING_ENCODING_UTF8, tmp);
+    target->SetFooterStrRight(tmp.get());
+    
+    
+    
+    temp_dir = g_get_tmp_dir ();
+    base = g_build_filename (temp_dir, "printXXXXXX", NULL);
+    fd = g_mkstemp (base);
+    close(fd);
+    settings->tempfile = g_strdup (base);
+    
+    g_free (base);
+    
+    
+    NS_CStringToUTF16 (nsEmbedCString(settings->tempfile),
+		       NS_CSTRING_ENCODING_UTF8, tmp);
+    target->SetPrintToFile (PR_TRUE);
+    target->SetToFileName (tmp.get());
+    
+    
+    /* paper size */
+    target->SetPaperSize (nsIPrintSettings::kPaperSizeDefined);
+    target->SetPaperSizeUnit (nsIPrintSettings::kPaperSizeMillimeters);
+    
+    if (gnome_print_config_get_length (settings->config,
+				       (const guchar *) GNOME_PRINT_KEY_PAPER_WIDTH,
+				       &value, &unit)
+	&& gnome_print_convert_distance (&value, unit, mm))
+	{
+	    target->SetPaperWidth (value);	
+	}
+    
+    if (gnome_print_config_get_length (settings->config,
+				       (const guchar *) GNOME_PRINT_KEY_PAPER_HEIGHT,
+				       &value, &unit)
+	&& gnome_print_convert_distance (&value, unit, mm))
+	{
+	    target->SetPaperHeight (value);	
+	}
+    
+    /* Mozilla bug https://bugzilla.mozilla.org/show_bug.cgi?id=307404
+     * means that we cannot actually use any paper sizes except mozilla's
+     * builtin list, and we must refer to them *by name*!
+     */
+#ifndef HAVE_GECKO_1_9
+    /* Gnome-Print names some papers differently than what moz understands */
+    static const struct
+    {
+	const char *gppaper;
+	const char *mozpaper;
+    }
+    paper_table [] =
+	{
+	    { "USLetter", "Letter" },
+	    { "USLegal", "Legal" }
+	};
+#endif /* !HAVE_GECKO_1_9 */
+    
+    /* paper name */
+    char *string = (char *) gnome_print_config_get (settings->config,
+						    (const guchar *) GNOME_PRINT_KEY_PAPER_SIZE);
+    const char *paper = string;
+    
+#ifndef HAVE_GECKO_1_9
+    for (PRUint32 i = 0; i < G_N_ELEMENTS (paper_table); i++)
+	{
+	    if (string != NULL &&
+		g_ascii_strcasecmp (paper_table[i].gppaper, string) == 0)
+		{
+		    paper = paper_table[i].mozpaper;
+		    break;
+		}
+	}
+#endif /* !HAVE_GECKO_1_9 */
+    
+    NS_CStringToUTF16 (nsEmbedCString(paper),
+		       NS_CSTRING_ENCODING_UTF8, tmp);
+    target->SetPaperName (tmp.get());
+    g_free (string);
+    
+    /* paper orientation */
+    string = (char *) gnome_print_config_get (settings->config,
+					      (const guchar *) GNOME_PRINT_KEY_ORIENTATION);
+    if (string == NULL) string = g_strdup ("R0");
+    
+    if (strncmp (string, "R90", 3) == 0 || strncmp (string, "R270", 4) == 0)
+	{
+	    target->SetOrientation (nsIPrintSettings::kLandscapeOrientation);
+	}
+    else
+	{
+	    target->SetOrientation (nsIPrintSettings::kPortraitOrientation);
+	}
+    g_free (string);
+    
+    target->SetPrintInColor (TRUE);
+    target->SetPrintFrameType (frame_types[settings->frame_type]);
+
+
 }

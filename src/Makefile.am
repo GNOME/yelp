@@ -9,6 +9,7 @@ yelp_SOURCES =							\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
 	yelp-cache.c		yelp-cache.h			\
 	yelp-db-pager.c		yelp-db-pager.h			\
+	yelp-db-print-pager.c	yelp-db-print-pager.h		\
 	yelp-error.c		yelp-error.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
 	yelp-html.cpp		yelp-html.h			\
@@ -19,7 +20,9 @@ yelp_SOURCES =							\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-window.c 		yelp-window.h			\
 	yelp-xslt-pager.c	yelp-xslt-pager.h		\
-	yelp-marshal-main.c	yelp-main.c
+	yelp-marshal-main.c	yelp-main.c			\
+	yelp-print.c		yelp-print.h			\
+	yelp-gecko-services.h   yelp-gecko-services.cpp	
 
 if ENABLE_MAN
 yelp_SOURCES +=					\
@@ -61,7 +64,12 @@ mozilla_include_subdirs =	\
 	webbrwsr	\
 	string		\
 	webshell	\
-	commandhandler
+	commandhandler  \
+	layout		\
+	uriloader	\
+	content		\
+	gfx		\
+	necko
 
 yelp_CPPFLAGS =									\
 	-I$(top_srcdir)								\
@@ -114,6 +122,7 @@ test_man_parser_LDFLAGS = $(AM_LDFLAGS)
 
 test_pager_SOURCES =						\
 	yelp-db-pager.c		yelp-db-pager.h			\
+	yelp-db-print-pager.c	yelp-db-print-pager.h		\
 	yelp-error.c		yelp-error.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-man-pager.c	yelp-man-pager.h		\
