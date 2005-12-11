@@ -762,7 +762,6 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
     gchar *xref = NULL;
     xmlNodePtr mholder;
     xmlNodePtr ref1;
-    xmlNodePtr ref2;
 
     menu = get_menuoptions (menuitems[i], &title, &ref, &desc, &xref);
  
@@ -798,7 +797,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
 					 BAD_CAST g_strconcat (g_strstrip(ref), 
 							       ".", NULL));
-	xmlNewProp (ref2, BAD_CAST "href", BAD_CAST g_strconcat ("#", section_id, 
+	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST g_strconcat ("#", section_id, 
 							       NULL));
 	
 	g_free (sp);
