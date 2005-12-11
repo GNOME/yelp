@@ -1,3 +1,16 @@
+2005-12-11  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (yelp_toc_pager_init),
+	(process_omf_pending), (add_man_page_to_toc),
+	(create_manindex_file), (create_toc_from_index),
+	(process_mandir_pending):
+	* src/yelp-utils.c: (yelp_dot_dir), (yelp_doc_info_new),
+	(yelp_doc_info_get), (convert_man_uri):
+	* src/yelp-utils.h:
+	* src/yelp-window.c: (yelp_window_load):
+	Added support for an xml index file for man pages, which
+	greatly improves startup time when man pages are enabled.
+
 2005-12-11  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-html.cpp: 

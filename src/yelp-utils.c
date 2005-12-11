@@ -17,7 +17,8 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Shaun McCance  <shaunm@gnome.org>
+ * Authors: Shaun McCance  <shaunm@gnome.org>
+ *          Brent Smith  <gnome@nextreality.net>
  */
 
 #ifdef HAVE_CONFIG_H
@@ -29,6 +30,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnome/gnome-program.h>
+#include <libgnome/gnome-init.h>
 
 #include "yelp-utils.h"
 
@@ -69,11 +71,34 @@ struct _YelpDocInfo {
 static YelpDocType  get_doc_type       (gchar   *uri);
 static gchar *      convert_ghelp_uri  (gchar   *uri);
 
-static gchar *      convert_man_uri    (gchar   *uri);
+static gchar *      convert_man_uri    (gchar   *uri, gboolean trust_uri);
 static gchar *      convert_info_uri   (gchar   *uri);
 
+static gchar *dot_dir = NULL;
+
+const char *
+yelp_dot_dir (void)
+{
+    if (dot_dir == NULL) {
+	dot_dir = g_build_filename (g_get_home_dir(), GNOME_DOT_GNOME,
+	                            "yelp.d", NULL);
+	
+	if (!g_file_test (dot_dir, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
+	    mkdir (dot_dir, 0750);		
+    }
+
+    return dot_dir;
+}
+
+/* @uri:       the uri to interpret for the new YelpDocInfo struct 
+ * @trust_uri: if the uri is absolute and is known to exist,
+ *             then this should be set.  Only makes sense for local
+ *             files.  This is here for performance reasons, adding
+ *             40,000 man pages and accessing the disk for each one
+ *             can get pretty expensive.
+ */
 YelpDocInfo *
-yelp_doc_info_new (const gchar *uri)
+yelp_doc_info_new (const gchar *uri, gboolean trust_uri)
 {
     YelpDocInfo *doc;
     gchar       *doc_uri  = NULL;
@@ -87,10 +112,13 @@ yelp_doc_info_new (const gchar *uri)
     d (g_print ("yelp_doc_info_new\n"));
     d (g_print ("  uri      = \"%s\"\n", uri));
 
-    full_uri =
+    if (trust_uri)
+	full_uri = gnome_vfs_make_uri_from_input (uri);
+    else
+	full_uri =
 	gnome_vfs_make_uri_from_input_with_dirs	(uri,
 						 GNOME_VFS_MAKE_URI_DIR_CURRENT);
-
+    
     if (g_str_has_prefix (full_uri, "file:")) {
 	if ((cur = strchr (full_uri, '#')))
 	    doc_uri = g_strndup (full_uri, cur - full_uri);
@@ -107,7 +135,7 @@ yelp_doc_info_new (const gchar *uri)
 	uri_type = YELP_URI_TYPE_GHELP;
     }
     else if (g_str_has_prefix (full_uri, "man:")) {
-	doc_uri  = convert_man_uri (full_uri);
+	doc_uri  = convert_man_uri (full_uri, trust_uri);
 	doc_type = YELP_DOC_TYPE_MAN;
 	uri_type = YELP_URI_TYPE_MAN;
     }
@@ -157,7 +185,7 @@ yelp_doc_info_new (const gchar *uri)
 }
 
 YelpDocInfo *
-yelp_doc_info_get (const gchar *uri)
+yelp_doc_info_get (const gchar *uri, gboolean trust_uri)
 {
     YelpDocInfo *doc;
     gint i;
@@ -187,7 +215,7 @@ yelp_doc_info_get (const gchar *uri)
     doc = (YelpDocInfo *) g_hash_table_lookup (doc_info_table, doc_uri);
 
     if (!doc) {
-	doc = yelp_doc_info_new (doc_uri);
+	doc = yelp_doc_info_new (doc_uri, trust_uri);
 	if (doc && doc->type != YELP_DOC_TYPE_EXTERNAL) {
 	    YelpDocInfo *old_doc = NULL;
 
@@ -690,7 +718,7 @@ convert_ghelp_uri (gchar *uri)
 }
 
 static gchar *
-convert_man_uri (gchar *uri)
+convert_man_uri (gchar *uri, gboolean trust_uri)
 {
     gchar *path, *cur;
     gchar *doc_uri  = NULL;
@@ -716,7 +744,9 @@ convert_man_uri (gchar *uri)
 
     /* An absolute file path after man: */
     if (path[0] == '/') {
-	if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
+	if (trust_uri)
+	    doc_uri = g_strconcat ("file://", path, NULL);
+	else if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
 	    doc_uri = g_strconcat ("file://", path, NULL);
 	goto done;
     }

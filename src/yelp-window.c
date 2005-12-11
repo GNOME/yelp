@@ -740,7 +740,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 
     priv = window->priv;
 
-    doc_info = yelp_doc_info_get (uri);
+    doc_info = yelp_doc_info_get (uri, FALSE);
     if (!doc_info) {
 	GError *error = NULL;
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,

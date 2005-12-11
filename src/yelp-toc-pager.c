@@ -24,8 +24,13 @@
 #include <config.h>
 #endif
 
+#include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/time.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <glib/gi18n.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libxml/parser.h>
@@ -68,11 +73,13 @@ struct _YelpTocPagerPriv {
     GSList       *omf_pending;
 
 #ifdef ENABLE_MAN
-    gint    mandirs_i;
-    gint    langs_i;
-    gint    manpaths_i;
-    gchar **manpaths;
-
+    gint manpage_count;
+    xmlNodePtr root;
+    xmlNodePtr ins;
+    xmlDocPtr manindex_xml;
+    GSList *mandir_list;
+    GSList *mandir_ptr;          /* ptr to current entry in mandir_list */
+    GSList *mandir_langpath;     /* ptr to current entry in mandir_ptr */
     GHashTable *man_secthash;
     GHashTable *man_manhash;
 #endif
@@ -232,7 +239,7 @@ yelp_toc_pager_init (void)
 {
     YelpDocInfo *doc_info;
 
-    doc_info = yelp_doc_info_get ("x-yelp-toc:");
+    doc_info = yelp_doc_info_get ("x-yelp-toc:", FALSE);
     
     toc_pager = (YelpTocPager *) g_object_new (YELP_TYPE_TOC_PAGER,
 					       "document-info", doc_info,
@@ -509,7 +516,7 @@ process_omf_pending (YelpTocPager *pager)
     omf_seriesid =
 	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/relation/@seriesid)", omf_xpath);
 
-    doc_info = yelp_doc_info_get ((const gchar *) omf_url->stringval);
+    doc_info = yelp_doc_info_get ((const gchar *) omf_url->stringval, FALSE);
     if (!doc_info)
 	goto done;
     yelp_doc_info_set_title (doc_info, (gchar *) omf_title->stringval);
@@ -561,24 +568,266 @@ process_omf_pending (YelpTocPager *pager)
 }
 
 #ifdef ENABLE_MAN
+static void
+add_man_page_to_toc (YelpTocPager *pager, gchar *dirname, gchar *filename)
+{
+    xmlNodePtr tmp = NULL;
+    gchar *manname = NULL;
+    gchar *mansect = NULL;
+    gchar *manman = NULL;
+    gchar *c1 = NULL;
+    gchar *c2 = NULL;
+    
+    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
+		    
+    c1 = g_strrstr (filename, ".bz2");
+  
+    if (c1 && strlen (c1) != 4)
+	c1 = NULL;
+
+    if (!c1) {
+	c1 = g_strrstr (filename, ".gz");
+	if (c1 && strlen (c1) != 3)
+	    c1 = NULL;
+    }
+
+    if (c1)
+	c2 = g_strrstr_len (filename, c1 - filename, ".");
+    else
+	c2 = g_strrstr (filename, ".");
+
+    if (c2) {
+	manname = g_strndup (filename, c2 - filename);
+	if (c1)
+	    mansect = g_strndup (c2 + 1, c1 - c2 - 1);
+	else
+	    mansect = g_strdup (c2 + 1);
+    }
+
+    /* if filename has no period in it, we have no idea what man
+     * section to place it in.  So just ignore it. */
+    else return;
+
+    manman = g_strconcat (manname, ".", mansect, NULL);
+    
+    if (g_hash_table_lookup (priv->man_manhash, manman) == NULL) {
+	tmp = g_hash_table_lookup (priv->man_secthash, mansect);
+
+	if (tmp == NULL && strlen (mansect) > 1) {
+	    gchar *mansect0 = g_strndup (mansect, 1);
+	    tmp = g_hash_table_lookup (priv->man_secthash, mansect0);
+	    g_free (mansect0);
+	}
+
+	if (tmp) {
+	    gchar *tooltip, *url_full, *url_short;
+	    YelpDocInfo *info;
+
+	    url_full = g_strconcat ("man:", dirname, "/", filename, NULL);
+	    url_short = g_strconcat ("man:", manname, ".", mansect, NULL);
+	    info = yelp_doc_info_get (url_full, TRUE);
+
+	    if (info) {
+		yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
+		tmp = xmlNewChild (tmp, NULL, "doc", NULL);
+		xmlNewNsProp (tmp, NULL, "href", url_full);
+		xmlNewChild (tmp, NULL, "title", manname);
+		tooltip = g_strdup_printf (_("Read man page for %s"), manname);
+		xmlNewChild (tmp, NULL, "tooltip", tooltip);
+
+		g_free (tooltip);
+	    }
+
+	    g_free (url_full);
+	    g_free (url_short);
+	} else {
+	    d (g_warning ("Could not locate section %s for %s\n", mansect, manman));
+	}
+
+	g_hash_table_insert (priv->man_manhash, g_strdup (manman), priv);
+    }
+
+    g_free (manname);
+    g_free (mansect);
+    g_free (manman);
+}
+
+static void
+create_manindex_file (gchar *index_file, xmlDocPtr xmldoc)
+{
+    FILE *newindex = NULL;
+
+    /* check to see if the file already exists, if so rename it */
+    /* I only enable this for debugging */
+#if 0
+    if (g_file_test (index_file, G_FILE_TEST_EXISTS)) {
+	struct stat buff;
+	gchar *backup_file = NULL;
+
+	if (g_stat (index_file, &buff) < 0)
+	    g_warning ("Unable to stat file \"%s\"\n", index_file);
+
+	backup_file = g_strdup_printf ("%s.%d", index_file, (int) buff.st_mtime);
+	
+	if (g_rename (index_file, backup_file) < 0)
+	    g_warning ("Unable to rename \"%s\" to \"%s\"\n", index_file, backup_file);
+	
+	g_free (backup_file);
+    }
+#endif
+		
+    if (!(newindex = g_fopen (index_file, "w")))
+	g_warning ("Unable to create '%s'\n", index_file);
+    else {
+	xmlDocDump (newindex, xmldoc);
+	fclose (newindex);
+    }
+}
+
+/* returns 0 on error, 1 otherwise */
+static int
+create_toc_from_index (YelpTocPager *pager, gchar *index_file)
+{
+    xmlXPathContextPtr xpath = NULL;
+    xmlXPathObjectPtr objsect = NULL;
+    xmlDocPtr manindex_xml = NULL;
+    gint update_flag = 0;
+    gint i, j, k;
+    
+    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
+
+    manindex_xml = xmlReadFile (index_file, NULL, XML_PARSE_NOCDATA | 
+		                XML_PARSE_NOERROR | XML_PARSE_NONET);
+
+    if (manindex_xml == NULL) {
+	g_warning ("Unable to parse index file \"%s\"\n", index_file);
+	return 0;
+    }
+    
+    xpath = xmlXPathNewContext (manindex_xml);
+    objsect = xmlXPathEvalExpression ("/manindex/mansect", xpath);
+
+    for (i=0; i < objsect->nodesetval->nodeNr; i++) {
+	xmlXPathObjectPtr objdirs;
+
+	if (!priv->man_manhash)
+	    priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
+		                                       g_free, NULL);
+
+	xpath->node = objsect->nodesetval->nodeTab[i];
+	objdirs = xmlXPathEvalExpression ("dir", xpath);
+
+	for (j=0; j < objdirs->nodesetval->nodeNr; j++) {
+	    xmlXPathObjectPtr objdirname;
+	    xmlXPathObjectPtr objdirmtime;
+	    xmlXPathObjectPtr objmanpages;
+	    xmlNodePtr dirnode = objdirs->nodesetval->nodeTab[j];
+	    xmlNodePtr node = NULL;
+	    xmlChar *dirname = NULL;
+	    xmlChar *dirmtime = NULL;
+	    time_t mtime;
+	    struct stat buf;
+	    
+	    xpath->node = dirnode;
+	    objdirmtime = xmlXPathEvalExpression ("@mtime", xpath);
+	    
+	    node = objdirmtime->nodesetval->nodeTab[0];
+	    dirmtime = xmlNodeListGetString (manindex_xml, 
+	                                     node->xmlChildrenNode, 1);
+	    
+	    objdirname = xmlXPathEvalExpression ("name[1]", xpath);
+
+	    node = objdirname->nodesetval->nodeTab[0];
+	    dirname = xmlNodeListGetString (manindex_xml, 
+	                                    node->xmlChildrenNode, 1);
+	    
+	    if (g_stat (dirname, &buf) < 0)
+		g_warning ("Unable to stat dir: \"%s\"\n", dirname);
+	    
+	    /* FIXME: need some error checking */
+	    mtime = (time_t) atoi (dirmtime);
+	    
+	    /* see if directory mtime has changed - if so recreate
+	     * the directory node */
+	    if (buf.st_mtime > mtime) {
+		GDir *dir;
+		xmlNodePtr newNode = NULL;
+		gchar mtime_str[20];
+		gchar *filename = NULL;
+		
+		/* this means we will rewrite the cache file at the end */
+		update_flag = 1;
+		
+		if ((dir = g_dir_open (dirname, 0, NULL))) {
+		    g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
+
+		    newNode = xmlNewNode (NULL, "dir");
+		    xmlNewProp (newNode, "mtime", mtime_str);
+		    xmlAddChild (newNode, xmlNewText ("\n      "));
+		    xmlNewChild (newNode, NULL, "name", dirname);
+		    xmlAddChild (newNode, xmlNewText ("\n      "));
+
+		    while ((filename = (gchar *) g_dir_read_name (dir))) {
+
+			xmlNewChild (newNode, NULL, "page", filename);
+			xmlAddChild (newNode, xmlNewText ("\n      "));
+
+			add_man_page_to_toc (pager, dirname, filename);
+			priv->manpage_count++;
+		    }
+		}
+
+		/* we replace the node in the tree */
+		xmlReplaceNode (dirnode, newNode);
+
+		g_dir_close (dir);
+	    
+	    /* otherwise just read from the index file */
+	    } else {
+	    
+		objmanpages = xmlXPathEvalExpression ("page", xpath);
+
+		for (k=0; k < objmanpages->nodesetval->nodeNr; k++) {
+		    xmlNodePtr node = objmanpages->nodesetval->nodeTab[k];
+		    xmlChar *manpage = NULL;
+
+		    manpage = xmlNodeListGetString (manindex_xml,
+		                                    node->xmlChildrenNode, 1);
+
+		    add_man_page_to_toc (pager, dirname, manpage);
+		    priv->manpage_count++;
+	        }
+	    }
+	}
+
+	if (priv->man_manhash) {
+	    g_hash_table_destroy (priv->man_manhash);
+	    priv->man_manhash = NULL;
+	}
+    }
+
+    if (update_flag) {
+	create_manindex_file (index_file, manindex_xml);
+    }
+
+    return 1;
+}
+
 static gboolean
 process_mandir_pending (YelpTocPager *pager)
 {
-    xmlNodePtr tmp;
-    gchar *manpath;
-
-    gchar *dirname = NULL; 
+    static gchar *index_file = NULL;
     gchar *filename = NULL;
-    GDir  *dir;
-
-    const gchar * const * langs = g_get_language_names ();
+    gchar *dirname = NULL;
+    GDir  *dir = NULL; 
+    gint i, j, k;
 
     YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
 
     if (!priv->toc_doc) {
 	xmlXPathContextPtr xpath;
 	xmlXPathObjectPtr  obj;
-	gint i;
+
 	priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
 					 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 					 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
@@ -587,6 +836,7 @@ process_mandir_pending (YelpTocPager *pager)
 
 	xpath = xmlXPathNewContext (priv->toc_doc);
 	obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
+
 	for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	    xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	    xmlChar *sect = xmlGetProp (node, BAD_CAST "sect");
@@ -597,145 +847,151 @@ process_mandir_pending (YelpTocPager *pager)
 	}
     }
 
-    if (priv->langs_i == 0 && priv->manpaths_i == 0) {
-	if (priv->man_manhash)
-	    g_hash_table_destroy (priv->man_manhash);
-	priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
-						   g_free,     NULL);
-    }
+    if (!index_file)
+	index_file = g_build_filename (yelp_dot_dir(), "manindex.xml", NULL);
+  
+    /* On first call to this function, create a list of directories that we 
+     * need to process: we actually make a linked list (mandir_list) whose 
+     * members who are linked lists containing directories for a particular 
+     * man directory such as "man1", "man2", etc..  We do this because we 
+     * need a separate hash for every mandir */
+    if (!priv->mandir_list) {
+	const gchar * const * langs = g_get_language_names ();
+	gchar *manpath = NULL;
+	gchar **manpaths = NULL;
 
-    if (!priv->manpaths) {
-	if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
-	    manpath = g_strdup (g_getenv ("MANPATH"));
+	/* check for the existence of the xml cache file in ~/.gnome2/yelp.d/
+	 * if it exists, use it as the source for man pages instead of 
+	 * searching the hard disk for them - should make startup much faster */
+	if (g_file_test (index_file, G_FILE_TEST_EXISTS) &&
+	    create_toc_from_index (pager, index_file)) {
 
-	if (manpath) {
-	    g_strstrip (manpath);
-	    priv->manpaths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
-	    g_free (manpath);
+	    /* we are done.. */
+	    return FALSE;
 	} else {
-	    goto done;
-	}
-    }
+	    priv->manindex_xml = xmlNewDoc (BAD_CAST "1.0");
+	    priv->root = xmlNewNode (NULL, BAD_CAST "manindex");
+	    priv->ins  = priv->root;
 
-    if (g_str_equal (langs[priv->langs_i], "C"))
-	dirname = g_build_filename (priv->manpaths[priv->manpaths_i],
-				    mandirs[priv->mandirs_i],
-				    NULL);
-    else
-	dirname = g_build_filename (priv->manpaths[priv->manpaths_i],
-				    langs[priv->langs_i],
-				    mandirs[priv->mandirs_i],
-				    NULL);
-    dir = g_dir_open (dirname, 0, NULL);
-    if (dir) {
-	while ((filename = (gchar *) g_dir_read_name (dir))) {
-	    gchar *c1 = NULL, *c2 = NULL, *manname, *mansect, *manman;
+	    xmlDocSetRootElement (priv->manindex_xml, priv->root);
 
-	    c1 = g_strrstr (filename, ".bz2");
-	    if (c1 && strlen (c1) != 4)
-		c1 = NULL;
+	    xmlAddChild (priv->root, xmlNewText ("\n  "));
 
-	    if (!c1) {
-		c1 = g_strrstr (filename, ".gz");
-		if (c1 && strlen (c1) != 3)
-		    c1 = NULL;
+	    if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
+		manpath = g_strdup (g_getenv ("MANPATH"));
+
+	    if (!manpath) {
+		manpath = g_strdup ("/usr/share/man");
 	    }
 
-	    if (c1)
-		c2 = g_strrstr_len (filename, c1 - filename, ".");
-	    else
-		c2 = g_strrstr (filename, ".");
+	    g_strstrip (manpath);
+	    manpaths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
+	    g_free (manpath);
 
-	    if (c2) {
-		manname = g_strndup (filename, c2 - filename);
-		if (c1)
-		    mansect = g_strndup (c2 + 1, c1 - c2 - 1);
-		else
-		    mansect = g_strdup (c2 + 1);
-	    } else {
-		mansect = g_strdup (mandirs[priv->mandirs_i] + 3);
-		if (c1)
-		    manname = g_strndup (filename, c1 - filename);
-		else
-		    manname = g_strdup (filename);
-	    }
+	    for (i=0; mandirs[i] != NULL; i++) {
+		GSList *tmplist = NULL;
 
-	    manman = g_strconcat (manname, ".", mansect, NULL);
+		for (j=0; langs[j] != NULL; j++) {
+		    for (k=0; manpaths[k] != NULL; k++) { 
+			if (g_str_equal (langs[j], "C"))
+			    dirname = g_build_filename (manpaths[k], mandirs[i], NULL);
+			else
+			    dirname = g_build_filename (manpaths[k], langs[j], 
+			                                mandirs[i],
+			                                NULL);
 
-	    if (g_hash_table_lookup (priv->man_manhash, manman) == NULL) {
-		tmp = g_hash_table_lookup (priv->man_secthash, mansect);
-		if (tmp == NULL && strlen (mansect) > 1) {
-		    gchar *mansect0 = g_strndup (mansect, 1);
-		    tmp = g_hash_table_lookup (priv->man_secthash, mansect0);
-		}
-
-		if (tmp) {
-		    gchar *tooltip, *url_full, *url_short;
-		    YelpDocInfo *info;
-
-		    url_full = g_strconcat ("man:", dirname, "/", filename, NULL);
-		    url_short = g_strconcat ("man:", manname, ".", mansect, NULL);
-		    info = yelp_doc_info_get (url_full);
-
-		    if (info) {
-			yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
-			tmp = xmlNewChild (tmp, NULL, BAD_CAST "doc", NULL);
-			xmlNewNsProp (tmp, NULL, BAD_CAST "href", 
-				      BAD_CAST url_full);
-
-			xmlNewChild (tmp, NULL, BAD_CAST "title", 
-				     BAD_CAST manname);
-			tooltip = g_strdup_printf (_("Read man page for %s"), manname);
-			xmlNewChild (tmp, NULL, BAD_CAST "tooltip", 
-				     BAD_CAST tooltip);
-			g_free (tooltip);
+			tmplist = g_slist_prepend (tmplist, dirname);
 		    }
-
-		    g_free (url_full);
-		    g_free (url_short);
-		} else {
-		    g_warning ("Could not locate section %s for %s\n",
-			       mansect, manman);
 		}
 
-		g_hash_table_insert (priv->man_manhash, g_strdup (manman), priv);
+		priv->mandir_list = g_slist_prepend (priv->mandir_list, tmplist);
+	    }
+ 
+	    priv->mandir_ptr = priv->mandir_list;
+	    if (priv->mandir_list && priv->mandir_list->data) {
+		priv->mandir_langpath = priv->mandir_list->data;
+	    }
+	}
+    }
+    /* iterate through our previously created linked lists and create the
+     * table of contents from them */
+    else {
+	if (!priv->man_manhash) {
+	    priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
+	                                               g_free,     NULL);
+
+            priv->ins = xmlNewChild (priv->root, NULL, "mansect", NULL);
+	    xmlAddChild (priv->ins, xmlNewText ("\n    "));			    
+	}
+
+	if (priv->mandir_langpath && priv->mandir_langpath->data) {
+	    dirname = priv->mandir_langpath->data;
+
+	    if ((dir = g_dir_open (dirname, 0, NULL))) {
+		struct stat buf;
+		gchar mtime_str[20];
+
+		if (g_stat (dirname, &buf) < 0)
+		    g_warning ("Unable to stat dir: \"%s\"\n", dirname);
+
+		g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
+
+		priv->ins = xmlNewChild (priv->ins, NULL, "dir", NULL);
+		xmlNewProp (priv->ins, "mtime", mtime_str);
+		xmlAddChild (priv->ins, xmlNewText ("\n      "));
+		xmlNewChild (priv->ins, NULL, "name", dirname);
+		xmlAddChild (priv->ins, xmlNewText ("\n      "));
+		xmlAddChild (priv->ins->parent, xmlNewText ("\n    "));
+
+		while ((filename = (gchar *) g_dir_read_name (dir))) {
+
+		    xmlNewChild (priv->ins, NULL, "page", filename);
+		    xmlAddChild (priv->ins, xmlNewText ("\n      "));
+
+		    add_man_page_to_toc (pager, dirname, filename);
+		    priv->manpage_count++;
+		}
+
+		priv->ins = priv->ins->parent;
+
+		g_dir_close (dir);
 	    }
 
-	    g_free (manman);
-	    g_free (manname);
-	    g_free (mansect);
-	}
-	g_dir_close (dir);
-    }
+	    priv->mandir_langpath = g_slist_next (priv->mandir_langpath);
 
- done:
-    g_free (dirname);
+	} else {
+	    priv->mandir_ptr = g_slist_next (priv->mandir_ptr);
 
-    if (priv->manpaths) {
-	priv->manpaths_i++;
-	if (priv->manpaths[priv->manpaths_i] == NULL) {
-	    priv->manpaths_i = 0;
-	    priv->langs_i++;
+	    if (priv->mandir_ptr && priv->mandir_ptr->data) {
+		priv->mandir_langpath = priv->mandir_ptr->data;
+
+		if (priv->man_manhash) {
+		    g_hash_table_destroy (priv->man_manhash);
+		    priv->man_manhash = NULL;
+		}
+	    } else {   /* no more entries to prcoess, write file & cleanup */
+		GSList *listptr = priv->mandir_list;
+
+		while (listptr && listptr->data)  {
+		    GSList *langptr = listptr->data;
+
+		    while (langptr && langptr->data) {
+		    	g_free (langptr->data);
+			langptr = g_slist_next (langptr);
+		    }
+		    g_slist_free (listptr->data);
+		    
+		    listptr = g_slist_next (listptr);
+		}
+
+		g_slist_free (priv->mandir_list);
+
+		create_manindex_file (index_file, priv->manindex_xml);
+		
+		/* done processing */
+		return FALSE;
+	    }
 	}
-    }
-    if (langs[priv->langs_i] == NULL) {
-	priv->langs_i = 0;
-	priv->mandirs_i++;
-	if (priv->man_manhash) {
-	    g_hash_table_destroy (priv->man_manhash);
-	    priv->man_manhash = NULL;
-	}
-    }
-    if (mandirs[priv->mandirs_i] == NULL) {
-	if (priv->manpaths) {
-	    g_strfreev (priv->manpaths);
-	    priv->manpaths = NULL;
-	}
-	if (priv->man_secthash) {
-	    g_hash_table_destroy (priv->man_secthash);
-	    priv->man_secthash = NULL;
-	}
-	return FALSE;
     }
 
     return TRUE;

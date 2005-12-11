@@ -93,8 +93,11 @@ struct _YelpDocPage {
     gchar *toc_id;
 };
 
-YelpDocInfo *       yelp_doc_info_new           (const gchar   *uri);
-YelpDocInfo *       yelp_doc_info_get           (const gchar   *uri);
+const char *        yelp_dot_dir                (void);
+YelpDocInfo *       yelp_doc_info_new           (const gchar   *uri,
+                                                 gboolean trust_uri);
+YelpDocInfo *       yelp_doc_info_get           (const gchar   *uri,
+                                                 gboolean trust_uri);
 void                yelp_doc_info_add_uri       (YelpDocInfo   *doc_info,
 						 const gchar   *uri,
 						 YelpURIType    type);
