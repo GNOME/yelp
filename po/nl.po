@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-01 06:51+0000\n"
-"PO-Revision-Date: 2005-06-06 20:56+0200\n"
-"Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
+"POT-Creation-Date: 2005-12-09 15:05+0100\n"
+"PO-Revision-Date: 2005-12-09 21:36+0100\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgid "Library Functions"
 msgstr "Bibliotheekfuncties"
 
 # man-pagina's
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:792
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:797
 msgid "Manual Pages"
 msgstr "Handleiding-pagina's"
 
@@ -138,7 +138,7 @@ msgstr "Educatieve toepassingen"
 msgid "Graphics"
 msgstr "Grafisch"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:391
+#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:400
 msgid "Help Topics"
 msgstr "Hulp-onderwerpen"
 
@@ -309,7 +309,7 @@ msgstr "Systeemlettertypes gebruiken"
 msgid "Use the default fonts set for the system."
 msgstr "De standaard lettertypes gebruiken."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2182
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2333
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -329,13 +329,13 @@ msgstr "Bladwijzer hernoemen"
 msgid "Remove Bookmark"
 msgstr "Bladwijzer verwijderen"
 
-#: ../src/yelp-bookmarks.c:306 ../src/yelp-bookmarks.c:378
+#: ../src/yelp-bookmarks.c:315 ../src/yelp-bookmarks.c:387
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Een bladwijzer met titel <b>%s</b> bestaat al voor deze pagina."
 
 # onderdelen/secties
-#: ../src/yelp-bookmarks.c:406
+#: ../src/yelp-bookmarks.c:415
 msgid "Document Sections"
 msgstr "Documentsecties"
 
@@ -349,7 +349,7 @@ msgstr ""
 "of het is niet-juist gevormde XML."
 
 # sectie/onderdeel
-#: ../src/yelp-db-pager.c:491
+#: ../src/yelp-db-pager.c:494
 msgid "Unknown Section"
 msgstr "Onbekende sectie"
 
@@ -429,6 +429,33 @@ msgstr "Documentinformatie"
 msgid "The YelpDocInfo struct of the document"
 msgstr "De YelpDocInfo struct van het document"
 
+#: ../src/yelp-search-pager.c:311
+msgid ""
+"Your search could not be processed. There is no connection to the beagle "
+"daemon."
+msgstr "Uw zoekopdracht kon niet worden verwerkt. Er is geen verbinding met de beagle daemon."
+
+#: ../src/yelp-search-pager.c:608
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr "Uw zoekopdracht kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, of het is geen geldige XSLT stylesheet."
+
+#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1043
+#: ../src/yelp-xslt-pager.c:368
+msgid "No href attribute found on yelp:document"
+msgstr "Geen href attribuut gevonden op yelp:document"
+
+#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1057
+#: ../src/yelp-xslt-pager.c:384
+msgid "Out of memory"
+msgstr "Geen geheugen meer"
+
+#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1098
+msgid "Help Contents"
+msgstr "Hulp-inhoudsopgave"
+
 # Nederlands gebruikt dubbele aanhalingsteken voor een quotatie.
 # Enkele voor een aanhaling
 #. TRANSLATORS:
@@ -465,13 +492,13 @@ msgstr "YelpTocPager: Pauzerentelling is negatief."
 msgid "Could not load the OMF file '%s'."
 msgstr "Kon het OMF bestand niet laden: '%s'."
 
-#: ../src/yelp-toc-pager.c:685
+#: ../src/yelp-toc-pager.c:688
 #, c-format
 msgid "Read man page for %s"
 msgstr "Man-pagina's over %s lezen"
 
 # niet-juist gevormde/niet-juist opgemaakte
-#: ../src/yelp-toc-pager.c:772
+#: ../src/yelp-toc-pager.c:776
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -480,7 +507,7 @@ msgstr ""
 "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, "
 "of het is niet-juist gevormde XML."
 
-#: ../src/yelp-toc-pager.c:883
+#: ../src/yelp-toc-pager.c:891
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -489,145 +516,141 @@ msgstr ""
 "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, "
 "of het is geen geldige XSLT stylesheet."
 
-#: ../src/yelp-toc-pager.c:1035 ../src/yelp-xslt-pager.c:366
-msgid "No href attribute found on yelp:document"
-msgstr "Geen href attribuut gevonden op yelp:document"
-
-#: ../src/yelp-toc-pager.c:1049 ../src/yelp-xslt-pager.c:382
-msgid "Out of memory"
-msgstr "Geen geheugen meer"
-
-#: ../src/yelp-toc-pager.c:1090
-msgid "Help Contents"
-msgstr "Hulp-inhoudsopgave"
-
-#: ../src/yelp-window.c:286
+#: ../src/yelp-window.c:301
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../src/yelp-window.c:287
+#: ../src/yelp-window.c:302
 msgid "_Edit"
 msgstr "Be_werken"
 
-#: ../src/yelp-window.c:288
+#: ../src/yelp-window.c:303
 msgid "_Go"
 msgstr "_Ga naar"
 
-#: ../src/yelp-window.c:289
+#: ../src/yelp-window.c:304
 msgid "_Bookmarks"
 msgstr "Bl_adwijzers"
 
-#: ../src/yelp-window.c:290
+#: ../src/yelp-window.c:305
 msgid "_Help"
 msgstr "_Hulp"
 
-#: ../src/yelp-window.c:293
+#: ../src/yelp-window.c:308
 msgid "_New Window"
 msgstr "_Nieuw venster"
 
-#: ../src/yelp-window.c:298
+#: ../src/yelp-window.c:313
 msgid "About This Document"
 msgstr "Over dit document"
 
-#: ../src/yelp-window.c:303
+#: ../src/yelp-window.c:318
 msgid "Open _Location"
 msgstr "_Locatie openen"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:323
 msgid "_Close Window"
 msgstr "Venster sl_uiten"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:329
 msgid "_Copy"
 msgstr "_Kopiëren"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:335
 msgid "_Select All"
 msgstr "Alles _selecteren"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:340
 msgid "_Find..."
 msgstr "_Zoeken..."
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:345
+msgid "Find Ne_xt"
+msgstr "V_olgende zoeken"
+
+#: ../src/yelp-window.c:350
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
-#: ../src/yelp-window.c:335
+#: ../src/yelp-window.c:355
 msgid "_Reload"
 msgstr "_Herladen"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:367
 msgid "_Back"
 msgstr "_Terug"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:369
 msgid "Show previous page in history"
 msgstr "De vorige pagina tonen"
 
-#: ../src/yelp-window.c:346
+#: ../src/yelp-window.c:372
 msgid "_Forward"
 msgstr "_Volgende"
 
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:374
 msgid "Show next page in history"
 msgstr "De volgende pagina tonen"
 
-#: ../src/yelp-window.c:351
+#: ../src/yelp-window.c:377
 msgid "_Help Topics"
 msgstr "_Hulp-onderwerpen"
 
 # van/met
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:379
 msgid "Go to the listing of help topics"
 msgstr "Ga naar het overzicht van hulp-onderwerpen"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:382
 msgid "_Previous Section"
 msgstr "V_orige sectie"
 
-#: ../src/yelp-window.c:361
+#: ../src/yelp-window.c:387
 msgid "_Next Section"
 msgstr "_Volgende sectie"
 
-#: ../src/yelp-window.c:366
+#: ../src/yelp-window.c:392
 msgid "_Contents"
 msgstr "_Inhoudsopgave"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:398
 msgid "_Add Bookmark"
 msgstr "Bladwijzer _toevoegen"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:403
 msgid "_Edit Bookmarks..."
 msgstr "Bladwijzers be_werken..."
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:409
 msgid "_Open Link"
 msgstr "_Link openen"
 
-#: ../src/yelp-window.c:388
+#: ../src/yelp-window.c:414
 msgid "Open Link in _New Window"
 msgstr "Link openen in _nieuw venster"
 
-#: ../src/yelp-window.c:393
+#: ../src/yelp-window.c:419
 msgid "_Copy Link Address"
 msgstr "Linkadres _kopiëren"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:425
 msgid "_About"
 msgstr "In_fo"
 
-#: ../src/yelp-window.c:448
+#: ../src/yelp-window.c:430
+msgid "Copy _Email Address"
+msgstr "_E-mailadres kopiëren"
+
+#: ../src/yelp-window.c:479
 msgid "Help Browser"
 msgstr "Hulp-browser"
 
 # de URI
-#: ../src/yelp-window.c:700 ../src/yelp-window.c:833
+#: ../src/yelp-window.c:735 ../src/yelp-window.c:877
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "De Uniform Resource Identifier voor het bestand is ongeldig."
 
-#: ../src/yelp-window.c:712 ../src/yelp-window.c:828
+#: ../src/yelp-window.c:747 ../src/yelp-window.c:872
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -636,15 +659,20 @@ msgstr ""
 "De Uniform Resource Identifier ‘%s’ is ongeldig of wijst niet naar een "
 "bestaand bestand."
 
-#: ../src/yelp-window.c:788 ../src/yelp-window.c:1143
+#: ../src/yelp-window.c:823 ../src/yelp-window.c:1237
 msgid "Man pages are not supported in this version."
-msgstr "Man-pagina's zijn niet ondersteund in deze versie."
+msgstr "Man-pagina's kunnen in deze versie niet worden weergegeven."
 
-#: ../src/yelp-window.c:798 ../src/yelp-window.c:1134
+# kunnen niet worden weergegeven
+#: ../src/yelp-window.c:833 ../src/yelp-window.c:1228
 msgid "GNU info pages are not supported in this version"
-msgstr "GNU info-pagina's zijn niet ondersteund in deze versie"
+msgstr "GNU info-pagina's kunnen in deze versie niet worden weergegeven."
 
-#: ../src/yelp-window.c:808
+#: ../src/yelp-window.c:847 ../src/yelp-window.c:1250
+msgid "Search is not supported in this version."
+msgstr "Zoeken is in deze versie niet mogelijk."
+
+#: ../src/yelp-window.c:852
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -652,19 +680,27 @@ msgstr ""
 "SGML documenten zijn niet langer ondersteund. Vraag de auteur het document "
 "om te zetten naar XML."
 
-#: ../src/yelp-window.c:1027
+#: ../src/yelp-window.c:978
+msgid "Search"
+msgstr "Zoeken"
+
+#: ../src/yelp-window.c:979
+msgid "Search for other documentation"
+msgstr "Zoeken naar overige documentatie"
+
+#: ../src/yelp-window.c:1117
 msgid "Find:"
 msgstr "Zoeken:"
 
-#: ../src/yelp-window.c:1043
+#: ../src/yelp-window.c:1137
 msgid "Find _Next"
 msgstr "_Volgende zoeken..."
 
-#: ../src/yelp-window.c:1055
+#: ../src/yelp-window.c:1149
 msgid "Find _Previous"
 msgstr "V_orige zoeken"
 
-#: ../src/yelp-window.c:1160
+#: ../src/yelp-window.c:1263
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -673,8 +709,8 @@ msgstr ""
 "Een transformatiecontext kon niet worden aangemaakt voor het bestand ‘%s’. "
 "De opmaak wordt mogelijk niet ondersteund."
 
-#: ../src/yelp-window.c:1190 ../src/yelp-window.c:1614
-#: ../src/yelp-window.c:1681
+#: ../src/yelp-window.c:1293 ../src/yelp-window.c:1717
+#: ../src/yelp-window.c:1784
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -685,7 +721,7 @@ msgstr ""
 "de Hulp aan te klikken in een toepassing, rapporteert u dit dan alstublieft "
 "aan de beheerders van die toepassing."
 
-#: ../src/yelp-window.c:1305
+#: ../src/yelp-window.c:1408
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -694,13 +730,13 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden gelezen.  Ofwel het bestand ontbreekt, of u "
 "heeft geen toestemming het te lezen."
 
-#: ../src/yelp-window.c:1349
+#: ../src/yelp-window.c:1452
 msgid "Loading..."
 msgstr "Bezig met laden..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2179
+#: ../src/yelp-window.c:2330
 msgid "translator-credits"
 msgstr ""
 "Tino Meinen\n"
@@ -709,7 +745,7 @@ msgstr ""
 "Voor meer informatie: http://nl.gnome.org"
 
 # vrij vertaald.
-#: ../src/yelp-window.c:2184
+#: ../src/yelp-window.c:2335
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Een documentatieverkenner voor Gnome"
 
@@ -738,13 +774,6 @@ msgstr "Hulp bij GNOME"
 # handleiding-pagina's is te verwarrend en te algemeen.
 #~ msgid "Man Pages"
 #~ msgstr "Man-pagina's"
-
-#~ msgid ""
-#~ "The document ‘%s’could not be processed. The file ‘%s’ is either missing "
-#~ "or is not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Het document ‘%s’ kon niet worden verwerkt. Ofwel het bestand ‘%s’ "
-#~ "ontbreekt, of het is geen geldige XSLT stylesheet."
 
 # geluid en video
 #~ msgid "Sound &amp; Video"
@@ -1098,9 +1127,6 @@ msgstr "Hulp bij GNOME"
 
 #~ msgid "_Match upper/lower case"
 #~ msgstr "_Hoofdlettergevoelig"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Zoeken naar:"
 
 #~ msgid "GNOME - Desktop"
 #~ msgstr "GNOME - Bureaublad"
