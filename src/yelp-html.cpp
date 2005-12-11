@@ -95,8 +95,7 @@ html_open_uri (GtkMozEmbed *embed, const gchar *uri)
 
     g_return_val_if_fail (uri != NULL, FALSE);
 
-    d (g_print ("embed_open_uri_cb\n"));
-    g_print ("embed_open_uri_cb uri=%s\n", uri);
+    d (g_print ("embed_open_uri_cb uri=%s\n", uri));
     d (g_print ("  uri = \"%s\"\n", uri));
 
     g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
