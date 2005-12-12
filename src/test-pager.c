@@ -61,7 +61,7 @@ main (gint argc, gchar **argv)
     yelp_toc_pager_init ();
     yelp_settings_init ();
 
-    doc_info = yelp_doc_info_get (argv[1]);
+    doc_info = yelp_doc_info_get (argv[1], FALSE);
 
     if (!doc_info) {
 	printf ("Failed to load URI: %s\n", argv[1]);

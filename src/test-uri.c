@@ -112,7 +112,7 @@ main (int argc, char **argv)
     for (i = 1; i < argc; i++) {
 	if (i != 1)
 	    printf ("\n");
-	doc = yelp_doc_info_get (argv[i]);
+	doc = yelp_doc_info_get (argv[i], FALSE);
 	if (doc)
 	    print_doc_info (doc);
 	else

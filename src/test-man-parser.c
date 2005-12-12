@@ -35,7 +35,7 @@ main (gint argc, gchar **argv)
     }
 
     parser = yelp_man_parser_new ();
-    doc_info = yelp_doc_info_get (argv[1]);
+    doc_info = yelp_doc_info_get (argv[1], FALSE);
     if (!doc_info) {
 	printf ("Failed to load URI: %s\n", argv[1]);
 	return -1;

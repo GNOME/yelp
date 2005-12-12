@@ -1,3 +1,23 @@
+Changes in 2.13.2:
+------------------
+* Added printing support                   (Chris Lahey, Don Scorgie)
+* Cache man page index for faster startup times         (Brent Smith)
+* Info page improvements, info menu support             (Don Scorgie)
+* Fixed some critical warnings                          (Don Scorgie)
+* Correct a misplaced #endif                            (Matthias Clasen)
+* Use gecko.m4 from Epiphany to detect gecko            (Christian Persch)
+* Use nsIWebBrowserSetup to turn off the global history (Christian Persch)
+* Updated translations:
+  cs      (Miloslav Trmac)
+  en_CA   (Adam Weinberger)
+  gu      (Ankit Patel)
+  ja      (Takeshi AIHANA)
+  nb      (Kjartan Maraas)
+  nl      (Tino Meinen)
+  no      (Kjartan Maraas)
+  th      (Theppitak Karoonboonyanan)
+  zh_CN   (Funda Wang)
+
 Changes in 2.13.1:
 ------------------
 * Beagle-based search                                       (Chris Lahey)
