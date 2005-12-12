@@ -810,6 +810,8 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	create_manindex_file (index_file, manindex_xml);
     }
 
+    xmlFree (manindex_xml);
+    
     return 1;
 }
 
@@ -980,14 +982,16 @@ process_mandir_pending (YelpTocPager *pager)
 			langptr = g_slist_next (langptr);
 		    }
 		    g_slist_free (listptr->data);
-		    
+		   
 		    listptr = g_slist_next (listptr);
 		}
 
 		g_slist_free (priv->mandir_list);
 
 		create_manindex_file (index_file, priv->manindex_xml);
-		
+
+		xmlFree (priv->manindex_xml);
+
 		/* done processing */
 		return FALSE;
 	    }
