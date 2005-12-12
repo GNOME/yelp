@@ -629,11 +629,11 @@ add_man_page_to_toc (YelpTocPager *pager, gchar *dirname, gchar *filename)
 
 	    if (info) {
 		yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
-		tmp = xmlNewChild (tmp, NULL, "doc", NULL);
-		xmlNewNsProp (tmp, NULL, "href", url_full);
-		xmlNewChild (tmp, NULL, "title", manname);
+		tmp = xmlNewChild (tmp, NULL, BAD_CAST "doc", NULL);
+		xmlNewProp (tmp, BAD_CAST "href", BAD_CAST url_full);
+		xmlNewChild (tmp, NULL, BAD_CAST "title", BAD_CAST manname);
 		tooltip = g_strdup_printf (_("Read man page for %s"), manname);
-		xmlNewChild (tmp, NULL, "tooltip", tooltip);
+		xmlNewChild (tmp, NULL, BAD_CAST "tooltip", BAD_CAST tooltip);
 
 		g_free (tooltip);
 	    }
@@ -705,7 +705,7 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
     }
     
     xpath = xmlXPathNewContext (manindex_xml);
-    objsect = xmlXPathEvalExpression ("/manindex/mansect", xpath);
+    objsect = xmlXPathEvalExpression (BAD_CAST "/manindex/mansect", xpath);
 
     for (i=0; i < objsect->nodesetval->nodeNr; i++) {
 	xmlXPathObjectPtr objdirs;
@@ -715,7 +715,7 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 		                                       g_free, NULL);
 
 	xpath->node = objsect->nodesetval->nodeTab[i];
-	objdirs = xmlXPathEvalExpression ("dir", xpath);
+	objdirs = xmlXPathEvalExpression (BAD_CAST "dir", xpath);
 
 	for (j=0; j < objdirs->nodesetval->nodeNr; j++) {
 	    xmlXPathObjectPtr objdirname;
@@ -729,23 +729,23 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	    struct stat buf;
 	    
 	    xpath->node = dirnode;
-	    objdirmtime = xmlXPathEvalExpression ("@mtime", xpath);
+	    objdirmtime = xmlXPathEvalExpression (BAD_CAST "@mtime", xpath);
 	    
 	    node = objdirmtime->nodesetval->nodeTab[0];
 	    dirmtime = xmlNodeListGetString (manindex_xml, 
 	                                     node->xmlChildrenNode, 1);
 	    
-	    objdirname = xmlXPathEvalExpression ("name[1]", xpath);
+	    objdirname = xmlXPathEvalExpression (BAD_CAST "name[1]", xpath);
 
 	    node = objdirname->nodesetval->nodeTab[0];
 	    dirname = xmlNodeListGetString (manindex_xml, 
 	                                    node->xmlChildrenNode, 1);
 	    
-	    if (g_stat (dirname, &buf) < 0)
+	    if (g_stat ((gchar *)dirname, &buf) < 0)
 		g_warning ("Unable to stat dir: \"%s\"\n", dirname);
 	    
 	    /* FIXME: need some error checking */
-	    mtime = (time_t) atoi (dirmtime);
+	    mtime = (time_t) atoi ((gchar *)dirmtime);
 	    
 	    /* see if directory mtime has changed - if so recreate
 	     * the directory node */
@@ -758,21 +758,21 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 		/* this means we will rewrite the cache file at the end */
 		update_flag = 1;
 		
-		if ((dir = g_dir_open (dirname, 0, NULL))) {
+		if ((dir = g_dir_open ((gchar *)dirname, 0, NULL))) {
 		    g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
 
-		    newNode = xmlNewNode (NULL, "dir");
-		    xmlNewProp (newNode, "mtime", mtime_str);
-		    xmlAddChild (newNode, xmlNewText ("\n      "));
-		    xmlNewChild (newNode, NULL, "name", dirname);
-		    xmlAddChild (newNode, xmlNewText ("\n      "));
+		    newNode = xmlNewNode (NULL, BAD_CAST "dir");
+		    xmlNewProp (newNode, BAD_CAST "mtime", BAD_CAST mtime_str);
+		    xmlAddChild (newNode, xmlNewText (BAD_CAST "\n      "));
+		    xmlNewChild (newNode, NULL, BAD_CAST "name", dirname);
+		    xmlAddChild (newNode, xmlNewText (BAD_CAST "\n      "));
 
 		    while ((filename = (gchar *) g_dir_read_name (dir))) {
 
-			xmlNewChild (newNode, NULL, "page", filename);
-			xmlAddChild (newNode, xmlNewText ("\n      "));
+			xmlNewChild (newNode, NULL, BAD_CAST "page", BAD_CAST filename);
+			xmlAddChild (newNode, xmlNewText (BAD_CAST "\n      "));
 
-			add_man_page_to_toc (pager, dirname, filename);
+			add_man_page_to_toc (pager, (gchar *)dirname, filename);
 			priv->manpage_count++;
 		    }
 		}
@@ -785,7 +785,7 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	    /* otherwise just read from the index file */
 	    } else {
 	    
-		objmanpages = xmlXPathEvalExpression ("page", xpath);
+		objmanpages = xmlXPathEvalExpression (BAD_CAST "page", xpath);
 
 		for (k=0; k < objmanpages->nodesetval->nodeNr; k++) {
 		    xmlNodePtr node = objmanpages->nodesetval->nodeTab[k];
@@ -794,7 +794,7 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 		    manpage = xmlNodeListGetString (manindex_xml,
 		                                    node->xmlChildrenNode, 1);
 
-		    add_man_page_to_toc (pager, dirname, manpage);
+		    add_man_page_to_toc (pager, (gchar *)dirname, (gchar *)manpage);
 		    priv->manpage_count++;
 	        }
 	    }
@@ -877,7 +877,7 @@ process_mandir_pending (YelpTocPager *pager)
 
 	    xmlDocSetRootElement (priv->manindex_xml, priv->root);
 
-	    xmlAddChild (priv->root, xmlNewText ("\n  "));
+	    xmlAddChild (priv->root, xmlNewText (BAD_CAST "\n  "));
 
 	    if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
 		manpath = g_strdup (g_getenv ("MANPATH"));
@@ -922,8 +922,8 @@ process_mandir_pending (YelpTocPager *pager)
 	    priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
 	                                               g_free,     NULL);
 
-            priv->ins = xmlNewChild (priv->root, NULL, "mansect", NULL);
-	    xmlAddChild (priv->ins, xmlNewText ("\n    "));			    
+            priv->ins = xmlNewChild (priv->root, NULL, BAD_CAST "mansect", NULL);
+	    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n    "));			    
 	}
 
 	if (priv->mandir_langpath && priv->mandir_langpath->data) {
@@ -938,17 +938,17 @@ process_mandir_pending (YelpTocPager *pager)
 
 		g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
 
-		priv->ins = xmlNewChild (priv->ins, NULL, "dir", NULL);
-		xmlNewProp (priv->ins, "mtime", mtime_str);
-		xmlAddChild (priv->ins, xmlNewText ("\n      "));
-		xmlNewChild (priv->ins, NULL, "name", dirname);
-		xmlAddChild (priv->ins, xmlNewText ("\n      "));
-		xmlAddChild (priv->ins->parent, xmlNewText ("\n    "));
+		priv->ins = xmlNewChild (priv->ins, NULL, BAD_CAST "dir", NULL);
+		xmlNewProp (priv->ins, BAD_CAST "mtime", BAD_CAST mtime_str);
+		xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
+		xmlNewChild (priv->ins, NULL, BAD_CAST "name", BAD_CAST dirname);
+		xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
+		xmlAddChild (priv->ins->parent, xmlNewText (BAD_CAST "\n    "));
 
 		while ((filename = (gchar *) g_dir_read_name (dir))) {
 
-		    xmlNewChild (priv->ins, NULL, "page", filename);
-		    xmlAddChild (priv->ins, xmlNewText ("\n      "));
+		    xmlNewChild (priv->ins, NULL, BAD_CAST "page", BAD_CAST filename);
+		    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
 
 		    add_man_page_to_toc (pager, dirname, filename);
 		    priv->manpage_count++;
