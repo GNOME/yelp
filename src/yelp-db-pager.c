@@ -103,6 +103,9 @@ static gboolean        node_is_chunk        (DBWalker         *walker);
 static gboolean        node_is_division     (DBWalker         *walker);
 static gchar *         node_get_title       (DBWalker         *walker);
 
+xmlNodePtr             node_find_child      (xmlNodePtr parent, 
+					     gchar *child_name);
+
 static YelpPagerClass *parent_class;
 
 GType
@@ -474,31 +477,88 @@ walker_walk_xml (DBWalker *walker)
 	xmlFree (title);
 }
 
+xmlNodePtr
+node_find_child (xmlNodePtr parent, gchar *child_name)
+{
+    xmlNodePtr child = (xmlNodePtr) parent->children;
+    
+    while (child) {
+	if (!xmlStrcmp (child->name, BAD_CAST child_name))
+	    break;
+	child = child->next;
+    }
+    return child;
+}
+
+
 static gchar *
 node_get_title (DBWalker *walker)
 {
-    gchar *title;
-    xmlDocPtr doc;
-    xmlChar *params[3];
-    xmlChar *outstr;
-    int outlen;
+    gchar *title = NULL;
+    xmlChar *node_name = (xmlChar *) walker->cur->name;
+    xmlNodePtr child = NULL;
+    xmlNodePtr title_node = NULL;
 
-    params[0] = BAD_CAST "node";
-    params[1] = xmlGetNodePath (walker->cur);
-    params[2] = NULL;
+    if (xmlStrcmp (node_name, BAD_CAST "refentry")) {
+	/*refentry is special cased below */
+	title_node = node_find_child (walker->cur, "title");
+	if (!title_node) {
+	    /* Gotta look for some other way of getting the title */
+	    gchar *looking_for = g_strdup_printf ("%sinfo", node_name);
+	    
+	    child = node_find_child (walker->cur, looking_for);
+	    g_free (looking_for);
+	    
+	    if (child)
+		title_node = node_find_child (child, "title");		
+	}
+    } else {
+	/* Refentry */
+	xmlNodePtr refentry = NULL;
+	xmlNodePtr refmeta = NULL;
+	xmlNodePtr refnamediv = NULL;
+	xmlNodePtr child = walker->cur->children;
+	
+	while (child) {
+	    if (!xmlStrcmp (child->name, BAD_CAST "refmeta"))
+		refmeta = child;
+	    else if (!xmlStrcmp (child->name, BAD_CAST "refentryinfo"))
+		refentry = child;
+	    else if (!xmlStrcmp (child->name, BAD_CAST "refnamediv"))
+		refnamediv = child;
+	    else if (!xmlStrncmp (child->name, BAD_CAST "refsect", 7))
+		break;
+	    child = child->next;
+	    
+	}
+	if (refmeta) {
+	    xmlNodePtr tmp = node_find_child (refmeta, "refentrytitle");
+	    title_node = node_find_child (tmp, "title");
+	}
+	if (!title_node && refentry) {
+	    title_node = node_find_child (refentry, "title");
+	}
+	if (!title_node) {
+	    title_node = node_find_child (refnamediv, "refname");
+	}
 
-    doc = xsltApplyStylesheet (walker->titleStylesheet,
-			       walker->doc,
-			       (const char **)params);
-    if (doc == NULL || xsltSaveResultToString (&outstr, &outlen, doc, walker->titleStylesheet) < 0)
-	title = g_strdup (_("Unknown Section"));
-    else {
-	title = g_strdup ((gchar *) outstr);
-	xmlFree (outstr);
     }
-
-    xmlFreeDoc (doc);
-    xmlFree (params[1]);
+    /* Something pretty seriously screwy happened
+     * Try the fallback options
+     */
+    if (!title_node) {
+	xmlNodePtr block = node_find_child (walker->cur, "blockinfo");
+	if (block) {
+	    title_node = node_find_child (block, "title");
+	}
+	if (!title_node) {
+	    xmlNodePtr obj = node_find_child (walker->cur, "objectinfo");
+	    if (obj)
+		title_node = node_find_child (obj, "title");
+	}
+    }
+    
+    title = (gchar *) xmlNodeGetContent (title_node);
 
     return title;
 }
