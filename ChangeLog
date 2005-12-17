@@ -1,3 +1,10 @@
+2005-12-16  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-utils.c: (get_doc_type):
+	committed patch to make yelp accept mime-types application/xml
+	and application/docbook+xml, courtesy of Dave Malcom.  Fixes
+	critical issue, bug #324296
+
 2005-12-14  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-db-pager.c: 
