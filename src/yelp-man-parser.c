@@ -129,8 +129,8 @@ yelp_man_parser_parse_doc (YelpManParser *parser,
     xmlDocPtr  doc = NULL;
 
     g_return_val_if_fail (parser != NULL, NULL);
-    g_return_val_if_fail (doc != NULL, NULL);
-    g_return_val_if_fail (doc->type != YELP_DOC_TYPE_MAN, NULL);
+    g_return_val_if_fail (doc_info != NULL, NULL);
+    g_return_val_if_fail (yelp_doc_info_get_type (doc_info) != YELP_DOC_TYPE_MAN, NULL);
 
     file = yelp_doc_info_get_filename (doc_info);
 

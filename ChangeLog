@@ -1,3 +1,10 @@
+2005-12-20  Brent Smith  <gnome@nextreality.net>
+
+	* src/test-man-parser.c: (main):
+	* src/yelp-man-parser.c: (yelp_man_parser_parse_doc):
+	Fix some issues with critical warnings related to gnomevfs and
+	an incorrect expression in the man parser.
+
 2005-12-16  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-utils.c: (get_doc_type):

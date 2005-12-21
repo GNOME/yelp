@@ -19,6 +19,7 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
+#include <libgnomevfs/gnome-vfs.h>
 #include "yelp-man-parser.h"
 #include "yelp-utils.h"
 
@@ -34,6 +35,8 @@ main (gint argc, gchar **argv)
 	return 1;
     }
 
+    gnome_vfs_init ();
+
     parser = yelp_man_parser_new ();
     doc_info = yelp_doc_info_get (argv[1], FALSE);
     if (!doc_info) {
@@ -46,6 +49,8 @@ main (gint argc, gchar **argv)
 
     xmlDocDump (stdout, doc);
     xmlFreeDoc (doc);
+
+    gnome_vfs_shutdown ();
 
     return 0;
 }
