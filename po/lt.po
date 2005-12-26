@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-15 15:43+0200\n"
-"PO-Revision-Date: 2005-12-15 15:46+0200\n"
+"POT-Creation-Date: 2005-12-26 18:07+0200\n"
+"PO-Revision-Date: 2005-12-26 18:13+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr "Programos"
 
 #: ../data/man.xml.in.h:2
 msgid "Configuration Files"
-msgstr "Nustatymų bylos"
+msgstr "Konfigūracijos bylos"
 
 #: ../data/man.xml.in.h:3
 msgid "Development"
@@ -126,7 +126,7 @@ msgstr "Administravimas"
 
 #: ../data/toc.xml.in.h:5
 msgid "Desktop"
-msgstr "Darbastalis"
+msgstr "Darbo aplinka"
 
 #: ../data/toc.xml.in.h:6
 msgid "Education Applications"
@@ -138,7 +138,7 @@ msgstr "Grafika"
 
 #: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:400
 msgid "Help Topics"
-msgstr "Pagalbos temos"
+msgstr "Žinyno temos"
 
 #: ../data/toc.xml.in.h:10
 msgid "Internet"
@@ -150,7 +150,7 @@ msgstr "KDE"
 
 #: ../data/toc.xml.in.h:12
 msgid "Multimedia"
-msgstr "Daugialypė terpė"
+msgstr "Multimedija"
 
 #: ../data/toc.xml.in.h:13
 msgid "Office"
@@ -190,7 +190,7 @@ msgstr "X programos"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr "<b>Prieinamumas</b>"
+msgstr "<b>Pagalba neįgaliesiems</b>"
 
 #: ../data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
@@ -325,7 +325,7 @@ msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
 msgid "Document Sections"
 msgstr "Dokumento skyriai"
 
-#: ../src/yelp-db-pager.c:248
+#: ../src/yelp-db-pager.c:248 ../src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -365,6 +365,15 @@ msgstr "Nepavyko apdoroti dokumento"
 #: ../src/yelp-error.c:66
 msgid "No information is available about the error."
 msgstr "Nėra prieinamos informacijos apie šią klaidą."
+
+#: ../src/yelp-info-pager.c:181
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"Nepavyko apdoroti bylos „%s“. Arba byla neegzistuoja, arba tai nėra tinkamai "
+"suformuotas „info“ puslapis."
 
 #: ../src/yelp-io-channel.c:98
 #, c-format
@@ -409,12 +418,72 @@ msgstr "Dokumento informacija"
 msgid "The YelpDocInfo struct of the document"
 msgstr "YelpDocInfo dokumento struktūra"
 
+#: ../src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "Ruošiamasi spausdinti"
+
+#: ../src/yelp-print.c:275
+msgid "Pages"
+msgstr "Puslapiai"
+
+#: ../src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "PDF generavimas šiuo metu nepalaikomas"
+
+#: ../src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "Spausdinimas šiuo spausdintuvu nepalaikomas"
+
+#: ../src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
+msgstr ""
+"Bandėte spausdinti spausdintuvu naudodami tvarkyklę „%s“. Šiai programai "
+"reikia PostScript spausdintuvo tvarkyklės."
+
+#: ../src/yelp-print.c:402
+msgid "An error occured while printing"
+msgstr "Spausdinant įvyko klaida"
+
+#: ../src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "Buvo neįmanoma atspausdinti Jūsų dokumento"
+
+#: ../src/yelp-print.c:466
+msgid "Printing"
+msgstr "Spausdinima"
+
+#: ../src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>Spausdinimas</b>"
+
+#: ../src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "Laukiama spausdinimo"
+
+#: ../src/yelp-print.c:559
+msgid "_From:"
+msgstr "_Nuo:"
+
+#: ../src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "Nurodo spausdintinų puslapių intervalo pradžią"
+
+#: ../src/yelp-print.c:574
+msgid "_To:"
+msgstr "_Iki:"
+
+#: ../src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "Nurodo spausdintinų puslapių intervalo pabaigą"
+
 #: ../src/yelp-search-pager.c:311
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
-msgstr ""
-"Nepavyko apdoroti Jūsų paieškos. Nėra ryšio su Beagle demonu."
+msgstr "Nepavyko apdoroti Jūsų paieškos. Nėra ryšio su Beagle demonu."
 
 #: ../src/yelp-search-pager.c:608
 #, c-format
