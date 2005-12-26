@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-26 11:47+0200\n"
-"PO-Revision-Date: 2005-12-26 11:50+0200\n"
+"POT-Creation-Date: 2005-12-26 19:04+0200\n"
+"PO-Revision-Date: 2005-12-26 19:14+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -332,7 +332,7 @@ msgstr "Kirjanmerkki <b>%s</b> on jo tällä sivulla."
 msgid "Document Sections"
 msgstr "Asiakirjan luvut"
 
-#: ../src/yelp-db-pager.c:248
+#: ../src/yelp-db-pager.c:248 ../src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -372,6 +372,15 @@ msgstr "Asiakirjan käsittely epäonnistui"
 #: ../src/yelp-error.c:66
 msgid "No information is available about the error."
 msgstr "Tapahtuneesta virheestä ei ole tietoja."
+
+#: ../src/yelp-info-pager.c:181
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"Tiedoston \"%s\" jäsentäminen ei onnistunut. Joko tiedostoa ei ole olemassa, "
+"tai se ei ole oikeinmuotoiltu info-tiedosto."
 
 #: ../src/yelp-io-channel.c:98
 #, c-format
@@ -415,6 +424,67 @@ msgstr "Asiakirjan tiedot"
 #: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
 msgstr "Asiakirjan YelpDocInfo-struct"
+
+#: ../src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "Valmistellaan tulostusta"
+
+#: ../src/yelp-print.c:275
+msgid "Pages"
+msgstr "Sivut"
+
+#: ../src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "PDF-tulosteen luonti ei ole vielä tuettu"
+
+#: ../src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "Tälle tulostimelle ei voi tulostaa"
+
+#: ../src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
+msgstr ""
+"Yritit tulostaa tulostimelle \"%s\"-ajurilla. Tämä ohjelma vaatii kuitenkin "
+"PostScript-tulostinajurin."
+
+#: ../src/yelp-print.c:402
+msgid "An error occured while printing"
+msgstr "Virhe tulostettaessa"
+
+#: ../src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "Asiakirjaa ei voitu tulostaa"
+
+#: ../src/yelp-print.c:466
+msgid "Printing"
+msgstr "Tulostus"
+
+#: ../src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>Tulostus</b>"
+
+#: ../src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "Odotetaan tulostusta"
+
+#: ../src/yelp-print.c:559
+msgid "_From:"
+msgstr "_Alkaen:"
+
+#: ../src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "Aseta ensimmäinen tulostettava sivu"
+
+#: ../src/yelp-print.c:574
+msgid "_To:"
+msgstr "_Saakka:"
+
+#: ../src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "Aseta viimeinen tulostettava sivu"
 
 #: ../src/yelp-search-pager.c:311
 msgid ""
