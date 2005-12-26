@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-12 10:04+0700\n"
-"PO-Revision-Date: 2005-12-12 10:06+0700\n"
+"POT-Creation-Date: 2005-12-26 21:23+0700\n"
+"PO-Revision-Date: 2005-12-26 21:49+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "รูทีนเคอร์เนล"
 msgid "Library Functions"
 msgstr "ฟังก์ชันในไลบรารี"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1053
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1057
 msgid "Manual Pages"
 msgstr "Manual Pages"
 
@@ -327,16 +327,12 @@ msgstr "มีที่คั่นหน้าชื่อ <b>%s</b> อยู�
 msgid "Document Sections"
 msgstr "หัวข้อเอกสาร"
 
-#: src/yelp-db-pager.c:245
+#: src/yelp-db-pager.c:248 src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ แฟ้มดังกล่าวอาจไม่มีอยู่ หรือไม่ได้เป็น XML ที่ถูกรูปแบบ"
-
-#: src/yelp-db-pager.c:494
-msgid "Unknown Section"
-msgstr "หัวข้อไม่รู้จัก"
 
 #: src/yelp-error.c:42 src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -369,6 +365,15 @@ msgstr "ประมวลผลเอกสารไม่สำเร็จ"
 #: src/yelp-error.c:66
 msgid "No information is available about the error."
 msgstr "ไม่มีข้อมูลสำหรับข้อผิดพลาดนี้"
+
+#: src/yelp-info-pager.c:181
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"ไม่สามารถแจงแฟ้ม ‘%s’ ได้ แฟ้มดังกล่าวอาจไม่มีอยู่ หรือไม่ได้เป็น info page "
+"ที่ถูกรูปแบบ"
 
 #: src/yelp-io-channel.c:98
 #, c-format
@@ -410,6 +415,68 @@ msgstr "ข้อมูลเกี่ยวกับเอกสาร"
 msgid "The YelpDocInfo struct of the document"
 msgstr "โครงสร้าง YelpDocInfo สำหรับเอกสาร"
 
+#: src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "กำลังเตรียมพร้อมพิมพ์"
+
+#: src/yelp-print.c:275
+# 
+msgid "Pages"
+msgstr "หน้า"
+
+#: src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "ยังไม่สนับสนุนการสร้าง PDF"
+
+#: src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "ไม่สนับสนุนการพิมพ์กับเครื่องพิมพ์นี้"
+
+#: src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
+msgstr ""
+"คุณกำลังพยายามพิมพ์ไปยังเครื่องพิมพ์โดยใช้ไดรเวอร์ \"%s\"  "
+"โปรแกรมนี้ต้องการไดรเวอร์เครื่องพิมพ์โพสต์สคริปต์"
+
+#: src/yelp-print.c:402
+msgid "An error occured while printing"
+msgstr "เกิดข้อผิดพลาดขณะพิมพ์"
+
+#: src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "ไม่สามารถพิมพ์เอกสารของคุณได้"
+
+#: src/yelp-print.c:466
+msgid "Printing"
+msgstr "กำลังพิมพ์"
+
+#: src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>กำลังพิมพ์</b>"
+
+#: src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "กำลังรอพิมพ์"
+
+#: src/yelp-print.c:559
+msgid "_From:"
+msgstr "_จาก:"
+
+#: src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "กำหนดหน้าเริ่มต้นของช่วงที่จะพิมพ์"
+
+#: src/yelp-print.c:574
+msgid "_To:"
+msgstr "_ถึง:"
+
+#: src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "กำหนดหน้าสุดท้ายของช่วงที่จะพิมพ์"
+
 #: src/yelp-search-pager.c:311
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
@@ -423,17 +490,17 @@ msgid ""
 "not a valid XSLT stylesheet."
 msgstr "ไม่สามารถค้นหาได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ใช่ XSLT stylesheet ที่ถูกต้อง"
 
-#: src/yelp-search-pager.c:710 src/yelp-toc-pager.c:1299
+#: src/yelp-search-pager.c:710 src/yelp-toc-pager.c:1303
 #: src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "ไม่มีแอตทริบิวต์ href ใน yelp:document"
 
-#: src/yelp-search-pager.c:724 src/yelp-toc-pager.c:1313
+#: src/yelp-search-pager.c:724 src/yelp-toc-pager.c:1317
 #: src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "หน่วยความจำหมด"
 
-#: src/yelp-search-pager.c:765 src/yelp-toc-pager.c:1354
+#: src/yelp-search-pager.c:765 src/yelp-toc-pager.c:1358
 msgid "Help Contents"
 msgstr "สารบัญวิธีใช้"
 
@@ -476,14 +543,14 @@ msgstr "ไม่สามารถโหลดแฟ้ม OMF: '%s'"
 msgid "Read man page for %s"
 msgstr "อ่าน man page สำหรับ %s"
 
-#: src/yelp-toc-pager.c:1032
+#: src/yelp-toc-pager.c:1036
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr "ไม่สามารถโหลดสารบัญได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ก็ไม่ใช่รูปแบบ XML ที่ถูกต้อง"
 
-#: src/yelp-toc-pager.c:1147
+#: src/yelp-toc-pager.c:1151
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -742,10 +809,8 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "วิธีการใช้ GNOME"
 
-# This is Manual as in "man page"...shouldn't be translated
-#, fuzzy
-#~ msgid "Man Pages"
-#~ msgstr "Manual Pages"
+#~ msgid "Unknown Section"
+#~ msgstr "หัวข้อไม่รู้จัก"
 
 # This is not help's home, not user's home (~)
 #, fuzzy
@@ -1030,9 +1095,6 @@ msgstr "วิธีการใช้ GNOME"
 
 #~ msgid "Title"
 #~ msgstr "ชื่อเอกสาร"
-
-#~ msgid "Warning"
-#~ msgstr "คำเตือน"
 
 #~ msgid "Document URI"
 #~ msgstr "URI ของเอกสาร"
