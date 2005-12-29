@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-14 16:15+0100\n"
-"PO-Revision-Date: 2005-12-14 16:15+0100\n"
+"POT-Creation-Date: 2005-12-29 01:24+0100\n"
+"PO-Revision-Date: 2005-12-29 01:28+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -331,7 +331,7 @@ msgstr "Ya existe un marcador titulado <b>%s</b> para esta página."
 msgid "Document Sections"
 msgstr "Secciones del documento"
 
-#: ../src/yelp-db-pager.c:245
+#: ../src/yelp-db-pager.c:248 ../src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -339,10 +339,6 @@ msgid ""
 msgstr ""
 "El archivo «%s» no se pudo analizar. O el archivo no existe, o no es un XML "
 "bien formado."
-
-#: ../src/yelp-db-pager.c:494
-msgid "Unknown Section"
-msgstr "Sección desconocida"
 
 #: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -375,6 +371,13 @@ msgstr "No se pudo procesar el documento"
 #: ../src/yelp-error.c:66
 msgid "No information is available about the error."
 msgstr "No hay información disponible acerca del error."
+
+#: ../src/yelp-info-pager.c:181
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr "El archivo «%s» no se pudo analizar. O el archivo no existe, o no es una página info bien formada."
 
 #: ../src/yelp-io-channel.c:98
 #, c-format
@@ -418,6 +421,65 @@ msgstr "Información del documento"
 #: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
 msgstr "La estructura YelpDocInfo del documento"
+
+#: ../src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "Preparándose para imprimir"
+
+#: ../src/yelp-print.c:275
+msgid "Pages"
+msgstr "Páginas"
+
+#: ../src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "La generación de PDF actualmente no está soportada"
+
+#: ../src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "La impresión no se soporta en esta impresora"
+
+#: ../src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
+msgstr "Estaba intentando imprimir en una impresora usando el controlador «%s». Este programa requiere un controlador de impresora PostScript."
+
+#: ../src/yelp-print.c:402
+msgid "An error occured while printing"
+msgstr "Ocurrió un error al imprimir"
+
+#: ../src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "No fue posible imprimir su documento"
+
+#: ../src/yelp-print.c:466
+msgid "Printing"
+msgstr "Imprimiendo"
+
+#: ../src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>Impresión</b>"
+
+#: ../src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "Esperando para imprimir"
+
+#: ../src/yelp-print.c:559
+msgid "_From:"
+msgstr "_Desde:"
+
+#: ../src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "Establece el inicio del rango de páginas para ser impresas"
+
+#: ../src/yelp-print.c:574
+msgid "_To:"
+msgstr "_Hasta:"
+
+#: ../src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "Establece el final del rango de páginas para ser impresas"
 
 #: ../src/yelp-search-pager.c:311
 msgid ""
@@ -761,6 +823,9 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "Obtenga ayuda acerca de Gnome"
 
+#~ msgid "Unknown Section"
+#~ msgstr "Sección desconocida"
+
 #~ msgid "Sound &amp; Video"
 #~ msgstr "Sonido y vídeo"
 
@@ -1048,6 +1113,3 @@ msgstr "Obtenga ayuda acerca de Gnome"
 
 #~ msgid "Title"
 #~ msgstr "Título"
-
-#~ msgid "Warning"
-#~ msgstr "Atención"
