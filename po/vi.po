@@ -332,7 +332,7 @@ msgstr "Phần Tài liệu"
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr "Không thể phân tách tập tin «%s». Hoặc tập tin không tồn tại, hoặc nó không "
+msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không tồn tại, hoặc nó không "
 "đúng chuẩn XML."
 
 #:../src/yelp-error.c:42 ../src/yelp-error.c:58
@@ -379,7 +379,7 @@ msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không t�
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr "Không thể đọc và giải mã tập tin «%s». Tập tin có lẽ được nén bằng dạng thức "
+msgstr "Không thể đọc và giải mã tập tin « %s ». Tập tin có lẽ được nén bằng dạng thức "
 "không được hỗ trợ."
 
 #:../src/yelp-main.c:95
@@ -389,7 +389,7 @@ msgstr "Định nghĩa thư mục bộ nhớ tạm được dùng"
 #:../src/yelp-main.c:129
 #,c-format
 msgid "Could not activate Yelp: '%s'"
-msgstr "Không thể kích hoạt Yelp: «%s»"
+msgstr "Không thể kích hoạt Yelp: « %s »"
 
 #:../src/yelp-main.c:148
 msgid "Could not open new window."
@@ -404,7 +404,7 @@ msgstr "Trợ giúp"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr "Không thể phân tích tập tin «%s». Hoặc tập tin không tồn tại, hoặc không "
+msgstr "Không thể phân tích tập tin « %s ». Hoặc tập tin không tồn tại, hoặc không "
 "đúng chuẩn."
 
 #:../src/yelp-pager.c:122
@@ -534,19 +534,19 @@ msgstr "YelpTocPager: tổng số tạm ngừng là âm."
 #:../src/yelp-toc-pager.c:501
 #,c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "Không tải được tập tin OMF «%s»."
+msgstr "Không tải được tập tin OMF « %s »."
 
 #:../src/yelp-toc-pager.c:635
 #,c-format
 msgid "Read man page for %s"
-msgstr "Đọc trang hướng dẫn (man) cho «%s»"
+msgstr "Đọc trang hướng dẫn (man) cho « %s »"
 
 #:../src/yelp-toc-pager.c:1036
 #,c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr "Không tải được mục lục. Hoặc thiếu tập tin «%s», hoặc tập tin không đúng "
+msgstr "Không tải được mục lục. Hoặc thiếu tập tin « %s », hoặc tập tin không đúng "
 "chuẩn XML."
 
 #:../src/yelp-toc-pager.c:1151
@@ -554,7 +554,7 @@ msgstr "Không tải được mục lục. Hoặc thiếu tập tin «%s», ho�
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr "Không thể xử lý mục lục. Hoặc thiếu tập tin «%s», hoặc không phải là một tờ "
+msgstr "Không thể xử lý mục lục. Hoặc thiếu tập tin « %s », hoặc không phải là một tờ "
 "kiểu dáng XSLT hợp lệ."
 
 #:../src/yelp-window.c:305
@@ -702,7 +702,7 @@ msgstr "Điều nhận diện tài nguyên đồng dạng (URI) cho tập tin n�
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr "Điều nhận diện tài nguyên đồng dạng (URI) «%s» không hợp lệ hoặc không chỉ "
+msgstr "Điều nhận diện tài nguyên đồng dạng (URI) « %s » không hợp lệ hoặc không chỉ "
 "tới một tập tin thật."
 
 #:../src/yelp-window.c:851 ../src/yelp-window.c:1274
@@ -749,7 +749,7 @@ msgstr "Tìm _ngược"
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr "Không tạo được một ngữ cảnh biến đổi cho tập tin «%s». Có lẽ không hỗ trợ "
+msgstr "Không tạo được một ngữ cảnh biến đổi cho tập tin « %s ». Có lẽ không hỗ trợ "
 "định dạng của nó."
 
 #:../src/yelp-window.c:1330 ../src/yelp-window.c:1754
@@ -759,7 +759,7 @@ msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr "Không có phần «%s» trong tài liệu này. Nếu bạn được đưa đến phần này từ nút "
+msgstr "Không có phần « %s » trong tài liệu này. Nếu bạn được đưa đến phần này từ nút "
 "«Trợ giúp» trong ứng dụng, vui lòng báo lại cho người quản lý ứng dụng biết."
 
 #:../src/yelp-window.c:1445 ../src/yelp-window.c:2187
@@ -767,7 +767,7 @@ msgstr "Không có phần «%s» trong tài liệu này. Nếu bạn được đ
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr "Không đọc được tập tin «%s». Hoặc thiếu tập tin, hoặc không có quyền đọc tập "
+msgstr "Không đọc được tập tin « %s ». Hoặc thiếu tập tin, hoặc không có quyền đọc tập "
 "tin."
 
 #:../src/yelp-window.c:1489
@@ -789,7 +789,7 @@ msgstr "Bộ duyệt và xem tài liệu cho màn hình làm việc Gnome."
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr "Không thể phân tách tập tin «%s». Hoặc tập tin không tồn tại, hoặc không "
+msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không tồn tại, hoặc không "
 "đúng chuẩn."
 
 #:../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
@@ -797,7 +797,7 @@ msgstr "Không thể phân tách tập tin «%s». Hoặc tập tin không tồn
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-msgstr "Không thể xử lý tập tin «%s». Hoặc tập tin «%s» không tồn tại, hoặc không "
+msgstr "Không thể xử lý tập tin « %s ». Hoặc tập tin « %s » không tồn tại, hoặc không "
 "phải là một tờ kiểu dáng XSLT hợp lệ."
 
 #:../yelp.desktop.in.in.h:1
