@@ -49,7 +49,6 @@
 
 #define STYLESHEET_PATH DATADIR"/yelp/xslt/"
 #define DB_STYLESHEET   STYLESHEET_PATH"db2html.xsl"
-#define DB_TITLE        STYLESHEET_PATH"db-title.xsl"
 
 #define BOOK_CHUNK_DEPTH 2
 #define ARTICLE_CHUNK_DEPTH 1
@@ -82,7 +81,6 @@ struct _DBWalker {
     gint depth;
     gint max_depth;
 
-    xsltStylesheetPtr       titleStylesheet;
 };
 
 static void           db_pager_class_init   (YelpDBPagerClass *klass);
@@ -101,7 +99,8 @@ static void            walker_walk_xml      (DBWalker         *walker);
 
 static gboolean        node_is_chunk        (DBWalker         *walker);
 static gboolean        node_is_division     (DBWalker         *walker);
-static gchar *         node_get_title       (DBWalker         *walker);
+static gchar *         node_get_title       (DBWalker         *walker,
+					     gchar            *type);
 
 xmlNodePtr             node_find_child      (xmlNodePtr parent, 
 					     gchar *child_name);
@@ -261,7 +260,6 @@ db_pager_parse (YelpPager *pager)
     walker->doc       = doc;
     walker->cur       = xmlDocGetRootElement (walker->doc);
 
-    walker->titleStylesheet = xsltParseStylesheetFile (BAD_CAST DB_TITLE);
 
     if (!xmlStrcmp (xmlDocGetRootElement (doc)->name, BAD_CAST "book"))
 	priv->max_depth = walker->max_depth = BOOK_CHUNK_DEPTH;
@@ -280,11 +278,7 @@ db_pager_parse (YelpPager *pager)
     walker_walk_xml (walker);
 
  done:
-    if (walker) {
-	if (walker->titleStylesheet)
-	    xsltFreeStylesheet (walker->titleStylesheet);
-	g_free (walker);
-    }
+    g_free (walker);
 
     g_free (filename);
 
@@ -418,7 +412,9 @@ walker_walk_xml (DBWalker *walker)
     }
 
     if (node_is_chunk (walker)) {
-	title = BAD_CAST node_get_title (walker);
+	title = BAD_CAST node_get_title (walker, "titleabbrev");
+	if (!title)
+	    title = BAD_CAST node_get_title (walker, "title");
 
 	if (id) {
 	    gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
@@ -492,7 +488,7 @@ node_find_child (xmlNodePtr parent, gchar *child_name)
 
 
 static gchar *
-node_get_title (DBWalker *walker)
+node_get_title (DBWalker *walker, gchar *type)
 {
     gchar *title = NULL;
     xmlChar *node_name = (xmlChar *) walker->cur->name;
@@ -501,7 +497,7 @@ node_get_title (DBWalker *walker)
 
     if (xmlStrcmp (node_name, BAD_CAST "refentry")) {
 	/*refentry is special cased below */
-	title_node = node_find_child (walker->cur, "title");
+	title_node = node_find_child (walker->cur, type);
 	if (!title_node) {
 	    /* Gotta look for some other way of getting the title */
 	    gchar *looking_for = g_strdup_printf ("%sinfo", node_name);
@@ -510,7 +506,7 @@ node_get_title (DBWalker *walker)
 	    g_free (looking_for);
 	    
 	    if (child)
-		title_node = node_find_child (child, "title");		
+		title_node = node_find_child (child, type);		
 	}
     } else {
 	/* Refentry */
@@ -533,10 +529,10 @@ node_get_title (DBWalker *walker)
 	}
 	if (refmeta) {
 	    xmlNodePtr tmp = node_find_child (refmeta, "refentrytitle");
-	    title_node = node_find_child (tmp, "title");
+	    title_node = node_find_child (tmp, type);
 	}
 	if (!title_node && refentry) {
-	    title_node = node_find_child (refentry, "title");
+	    title_node = node_find_child (refentry, type);
 	}
 	if (!title_node) {
 	    title_node = node_find_child (refnamediv, "refname");
@@ -549,12 +545,12 @@ node_get_title (DBWalker *walker)
     if (!title_node) {
 	xmlNodePtr block = node_find_child (walker->cur, "blockinfo");
 	if (block) {
-	    title_node = node_find_child (block, "title");
+	    title_node = node_find_child (block, type);
 	}
 	if (!title_node) {
 	    xmlNodePtr obj = node_find_child (walker->cur, "objectinfo");
 	    if (obj)
-		title_node = node_find_child (obj, "title");
+		title_node = node_find_child (obj, type);
 	}
     }
     
