@@ -400,7 +400,7 @@ print_idle_cb (YelpPrintInfo *info)
 					      GTK_MESSAGE_WARNING,
 					      GTK_BUTTONS_OK,
 					      _("An error "
-						"occured while printing")
+						"occurred while printing")
 					      );
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 					      _("It was not possible to "
