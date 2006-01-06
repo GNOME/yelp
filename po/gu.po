@@ -1,12 +1,12 @@
 # translation of yelp.HEAD.gu.po to Gujarati
-# Ankit Patel <ankit644@yahoo.com>, 2005.
+# Ankit Patel <ankit644@yahoo.com>, 2005, 2006.
 # Ankit Patel <ankit@redhat.com>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-27 06:58+0100\n"
-"PO-Revision-Date: 2005-12-27 12:31+0530\n"
+"POT-Creation-Date: 2006-01-06 06:58+0100\n"
+"PO-Revision-Date: 2006-01-06 13:09+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -327,7 +328,7 @@ msgstr "આ પાનાં માટે <b>%s</b> શીર્ષકવાળ�
 msgid "Document Sections"
 msgstr "દસ્તાવેજ વિભાગો"
 
-#: ../src/yelp-db-pager.c:248 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:247 ../src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -373,7 +374,9 @@ msgstr "ભૂલ વિશે કોઈ જાણકારી ઉપલબ્�
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not a well-formed info page."
-msgstr "ફાઈલ  ‘%s’ નું પદચ્છેદ કરી શક્યા નહિં. ક્યાં તો ફાઈલ અસ્તિત્વમાં નથી, અથવા તે યોગ્ય-બંધારણીય જાણકારી પાનું નથી."
+msgstr ""
+"ફાઈલ  ‘%s’ નું પદચ્છેદ કરી શક્યા નહિં. ક્યાં તો ફાઈલ અસ્તિત્વમાં નથી, અથવા તે યોગ્ય-"
+"બંધારણીય જાણકારી પાનું નથી."
 
 #: ../src/yelp-io-channel.c:98
 #, c-format
@@ -439,10 +442,12 @@ msgstr "આ પ્રિન્ટર પર છાપવાનું આધા�
 msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
-msgstr "તમે \"%s\" ડ્રાઈવરની મદદથી પ્રિન્ટર પર છાપવાનો પ્રયત્ન કરી રહ્યા હતા. આ કાર્યક્રમ માટે PostScript પ્રિન્ટર ડ્રાઈવરની જરૂર છે."
+msgstr ""
+"તમે \"%s\" ડ્રાઈવરની મદદથી પ્રિન્ટર પર છાપવાનો પ્રયત્ન કરી રહ્યા હતા. આ કાર્યક્રમ માટે "
+"PostScript પ્રિન્ટર ડ્રાઈવરની જરૂર છે."
 
 #: ../src/yelp-print.c:402
-msgid "An error occured while printing"
+msgid "An error occurred while printing"
 msgstr "છાપતી વખતે ભૂલ ઉદ્દભવી"
 
 #: ../src/yelp-print.c:406
