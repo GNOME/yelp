@@ -523,7 +523,7 @@ finished_cb (BeagleQuery            *query,
 
 	request = beagle_snippet_request_new ();
 	beagle_snippet_request_set_hit (request, hit);
-	beagle_snippet_request_add_query_term (request, priv->search_terms);
+	beagle_snippet_request_set_query (request, query);
 
 	g_signal_connect (request, "response",
 			  G_CALLBACK (snippet_response), snippet_location);
