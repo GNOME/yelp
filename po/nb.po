@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-02 01:47+0100\n"
-"PO-Revision-Date: 2006-01-02 01:49+0100\n"
+"POT-Creation-Date: 2006-01-06 18:46+0100\n"
+"PO-Revision-Date: 2006-01-06 18:47+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -323,7 +323,7 @@ msgstr "Et bokmerke med navn <b>%s</b> eksisterer allerede for denne siden."
 msgid "Document Sections"
 msgstr "Dokumentdeler"
 
-#: ../src/yelp-db-pager.c:246 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -369,7 +369,9 @@ msgstr "Ingen informasjon er tilgjengelig for denne feilen."
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not a well-formed info page."
-msgstr "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den ikke velformet info-side."
+msgstr ""
+"Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den "
+"ikke velformet info-side."
 
 #: ../src/yelp-io-channel.c:98
 #, c-format
@@ -435,10 +437,10 @@ msgstr "Utskrift er ikke støttet med denne skriveren"
 msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
-msgstr ""
+msgstr "Du prøvde å skrive ut til en skriver med driveren «%s». Dette programmet krever en skriver som bruker en PostScript-driver."
 
 #: ../src/yelp-print.c:402
-msgid "An error occured while printing"
+msgid "An error occurred while printing"
 msgstr "Det oppsto en feil under utskrift"
 
 #: ../src/yelp-print.c:406
@@ -463,7 +465,7 @@ msgstr "_Fra:"
 
 #: ../src/yelp-print.c:572
 msgid "Sets the start of the range of pages to be printed"
-msgstr ""
+msgstr "Setter start på sideområdet som skal skrives ut"
 
 #: ../src/yelp-print.c:574
 msgid "_To:"
@@ -471,7 +473,7 @@ msgstr "_Til:"
 
 #: ../src/yelp-print.c:587
 msgid "Sets the end of the range of pages to be printed"
-msgstr ""
+msgstr "Setter slutt på sideområdet som skal skrives ut"
 
 #: ../src/yelp-search-pager.c:311
 msgid ""
