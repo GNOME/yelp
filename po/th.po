@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-26 21:23+0700\n"
-"PO-Revision-Date: 2005-12-27 21:03+0700\n"
+"POT-Creation-Date: 2006-01-07 12:52+0700\n"
+"PO-Revision-Date: 2006-01-07 12:55+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -327,7 +327,7 @@ msgstr "มีที่คั่นหน้าชื่อ <b>%s</b> อยู�
 msgid "Document Sections"
 msgstr "หัวข้อเอกสาร"
 
-#: src/yelp-db-pager.c:248 src/yelp-db-print-pager.c:198
+#: src/yelp-db-pager.c:247 src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -371,9 +371,7 @@ msgstr "ไม่มีข้อมูลสำหรับข้อผิดพ
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not a well-formed info page."
-msgstr ""
-"ไม่สามารถแจงแฟ้ม ‘%s’ ได้ แฟ้มดังกล่าวอาจไม่มีอยู่ หรือไม่ได้เป็น info page "
-"ที่ถูกรูปแบบ"
+msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ แฟ้มดังกล่าวอาจไม่มีอยู่ หรือไม่ได้เป็น info page ที่ถูกรูปแบบ"
 
 #: src/yelp-io-channel.c:98
 #, c-format
@@ -419,8 +417,8 @@ msgstr "โครงสร้าง YelpDocInfo สำหรับเอกส�
 msgid "Preparing to print"
 msgstr "กำลังเตรียมพร้อมพิมพ์"
 
-#: src/yelp-print.c:275
 # 
+#: src/yelp-print.c:275
 msgid "Pages"
 msgstr "หน้า"
 
@@ -442,7 +440,7 @@ msgstr ""
 "โปรแกรมนี้ต้องการไดรเวอร์เครื่องพิมพ์โพสต์สคริปต์"
 
 #: src/yelp-print.c:402
-msgid "An error occured while printing"
+msgid "An error occurred while printing"
 msgstr "เกิดข้อผิดพลาดขณะพิมพ์"
 
 #: src/yelp-print.c:406
