@@ -56,49 +56,49 @@ yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 static gboolean
 gecko_prefs_set_bool (const gchar *key, gboolean value)
 {
-	nsCOMPtr<nsIPrefService> prefService =
-		do_GetService (NS_PREFSERVICE_CONTRACTID);
-	nsCOMPtr<nsIPrefBranch> pref;
-	prefService->GetBranch ("", getter_AddRefs (pref));
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, FALSE);
 
-	if (pref) {
-		nsresult rv = pref->SetBoolPref (key, value);
-		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
-	}
-	
-	return FALSE;
+	nsCOMPtr<nsIPrefBranch> pref;
+	rv = prefService->GetBranch ("", getter_AddRefs (pref));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+
+	rv = pref->SetBoolPref (key, value);
+
+	return NS_SUCCEEDED (rv) != PR_FALSE;
 }
 
 static gboolean
 gecko_prefs_set_string (const gchar *key, const gchar *value)
 {
-	nsCOMPtr<nsIPrefService> prefService =
-		do_GetService (NS_PREFSERVICE_CONTRACTID);
-	nsCOMPtr<nsIPrefBranch> pref;
-	prefService->GetBranch ("", getter_AddRefs (pref));
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, FALSE);
 
-	if (pref) {
-		nsresult rv = pref->SetCharPref (key, value);
-		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
-	}
-	
-	return FALSE;
+	nsCOMPtr<nsIPrefBranch> pref;
+	rv = prefService->GetBranch ("", getter_AddRefs (pref));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+
+	rv = pref->SetCharPref (key, value);
+
+	return NS_SUCCEEDED (rv) != PR_FALSE;
 }
 
 static gboolean
 gecko_prefs_set_int (const gchar *key, gint value)
 {
-	nsCOMPtr<nsIPrefService> prefService =
-		do_GetService (NS_PREFSERVICE_CONTRACTID);
-	nsCOMPtr<nsIPrefBranch> pref;
-	prefService->GetBranch ("", getter_AddRefs (pref));
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, FALSE);
 
-	if (pref) {
-		nsresult rv = pref->SetIntPref (key, value);
-		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
-	}
-	
-	return FALSE;
+	nsCOMPtr<nsIPrefBranch> pref;
+	rv = prefService->GetBranch ("", getter_AddRefs (pref));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+
+	rv = pref->SetIntPref (key, value);
+
+	return NS_SUCCEEDED (rv) != PR_FALSE;
 }
 
 extern "C" void
