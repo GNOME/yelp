@@ -108,7 +108,6 @@ html_open_uri (GtkMozEmbed *embed, const gchar *uri)
 	g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
 	block_load = TRUE;
     } else {
-	gboolean do_load = FALSE;
 	g_signal_emit (html, signals[FRAME_SELECTED], 0, uri, FALSE, &block_load);
     }
     return block_load;
@@ -227,7 +226,7 @@ html_class_init (YelpHtmlClass *klass)
 		      G_SIGNAL_RUN_LAST,
 		      G_STRUCT_OFFSET (YelpHtmlClass,
 				       frame_selected),
-		      NULL, NULL,
+		      g_signal_accumulator_true_handled, NULL,
 		      yelp_marshal_BOOLEAN__POINTER_BOOLEAN,
 		      G_TYPE_BOOLEAN,
 		      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
