@@ -1,5 +1,11 @@
 2006-01-07  Brent Smith  <gnome@nextreality.net>
 
+	* src/yelp-bookmarks.c: (yelp_bookmarks_add):
+	committed a patch by Christian Neumair to remove
+	markup from a string, fixes #162807
+
+2006-01-07  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-gecko-utils.cpp:
 	committed patch from Christian Persch that should fix
 	a gecko crash due to a bad profile; fixes #164689

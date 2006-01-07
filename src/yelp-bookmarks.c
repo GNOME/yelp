@@ -307,15 +307,27 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 			    bookmarks_dup_finder, dup_uri);
     if (dup_title) {
 	GtkWidget *dialog;
+	char *escaped_title, *markup;
+
 	dialog = gtk_message_dialog_new_with_markup
 	    (GTK_WINDOW (window),
 	     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 	     GTK_MESSAGE_INFO,
 	     GTK_BUTTONS_OK,
-	     _("A bookmark titled <b>%s</b> already exists for this page."),
-	     dup_title);
+	     NULL);
+
+	escaped_title = g_markup_printf_escaped
+		("<b>%s</b>", dup_title);
+	markup = g_strdup_printf
+		(_("A bookmark titled %s already exists for this page."),
+		escaped_title);
+	gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog), markup);
+	g_free (markup);
+	g_free (escaped_title);
+
 	gtk_dialog_run (GTK_DIALOG (dialog));
 	gtk_widget_destroy (dialog);
+
 	g_free (dup_title);
 	dup_title = NULL;
 	return;
