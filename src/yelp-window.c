@@ -139,6 +139,10 @@ static void        html_uri_selected_cb           (YelpHtml          *html,
 						   gchar             *uri,
 						   gboolean           handled,
 						   gpointer           user_data);
+static gboolean    html_frame_selected_cb         (YelpHtml          *html,
+						   gchar             *uri,
+						   gboolean           handled,
+						   gpointer           user_data);
 static void        html_title_changed_cb          (YelpHtml          *html,
 						   gchar             *title,
 						   gpointer           user_data);
@@ -1116,6 +1120,10 @@ window_populate (YelpWindow *window)
 		      G_CALLBACK (html_uri_selected_cb),
 		      window);
     g_signal_connect (priv->html_view,
+		      "frame_selected",
+		      G_CALLBACK (html_frame_selected_cb),
+		      window);
+    g_signal_connect (priv->html_view,
 		      "title_changed",
 		      G_CALLBACK (html_title_changed_cb),
 		      window);
@@ -1466,6 +1474,13 @@ window_do_load_html (YelpWindow    *window,
 
     while ((result = gnome_vfs_read
 	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
+	gchar *tmp;
+
+	tmp = g_utf8_strup (buffer, n);
+	if (strstr (tmp, "<FRAMESET"))
+	    yelp_html_frames (priv->html_view, TRUE);
+	g_free (tmp);
+
 	yelp_html_write (priv->html_view, buffer, n);
     }
 
@@ -1844,6 +1859,30 @@ html_uri_selected_cb (YelpHtml  *html,
     if (!handled) {
 	yelp_window_load (window, uri);
     }
+}
+
+static gboolean
+html_frame_selected_cb (YelpHtml *html, gchar *uri, gboolean handled,
+			gpointer user_data)
+{
+    YelpWindow *window = YELP_WINDOW (user_data);
+    gboolean handle;
+    YelpDocInfo *info = yelp_doc_info_get (uri, FALSE);
+    switch (yelp_doc_info_get_type (info)) {
+    case YELP_DOC_TYPE_HTML:
+    case YELP_DOC_TYPE_XHTML:
+	handle = TRUE;
+	break;
+    default:
+	handle = FALSE;
+	break;
+    }
+    if (handle) {
+	return FALSE;
+    } else {
+	yelp_window_load (window, uri);
+    }
+    return TRUE;
 }
 
 static void

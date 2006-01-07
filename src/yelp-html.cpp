@@ -49,6 +49,7 @@ struct _YelpHtmlPriv {
     Yelper      *yelper;
     gchar       *base_uri;
     gchar       *anchor;
+    gboolean     frames_enabled;
 };
 
 static void      html_set_fonts          (void);
@@ -57,6 +58,7 @@ static void      html_set_a11y           (void);
 
 enum {
     URI_SELECTED,
+    FRAME_SELECTED,
     TITLE_CHANGED,
     POPUPMENU_REQUESTED,
     LAST_SIGNAL
@@ -95,15 +97,21 @@ static gint
 html_open_uri (GtkMozEmbed *embed, const gchar *uri)
 {
     YelpHtml *html = YELP_HTML (embed);
+    gboolean block_load;
 
     g_return_val_if_fail (uri != NULL, FALSE);
 
     d (g_print ("embed_open_uri_cb uri=%s\n", uri));
     d (g_print ("  uri = \"%s\"\n", uri));
 
-    g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
-
-    return TRUE;
+    if (!html->priv->frames_enabled) {
+	g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
+	block_load = TRUE;
+    } else {
+	gboolean do_load = FALSE;
+	g_signal_emit (html, signals[FRAME_SELECTED], 0, uri, FALSE, &block_load);
+    }
+    return block_load;
 }
 
 static void
@@ -212,7 +220,18 @@ html_class_init (YelpHtmlClass *klass)
 		      yelp_marshal_VOID__POINTER_BOOLEAN,
 		      G_TYPE_NONE,
 		      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
-
+    
+    signals[FRAME_SELECTED] =
+	g_signal_new ("frame_selected",
+		      G_TYPE_FROM_CLASS (klass),
+		      G_SIGNAL_RUN_LAST,
+		      G_STRUCT_OFFSET (YelpHtmlClass,
+				       frame_selected),
+		      NULL, NULL,
+		      yelp_marshal_BOOLEAN__POINTER_BOOLEAN,
+		      G_TYPE_BOOLEAN,
+		      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+    
     signals[TITLE_CHANGED] = 
 	g_signal_new ("title_changed",
 		      G_TYPE_FROM_CLASS (klass),
@@ -296,6 +315,8 @@ void
 yelp_html_open_stream (YelpHtml *html, const gchar *mime)
 {
     d (g_print ("yelp_html_open\n"));
+
+    html->priv->frames_enabled = FALSE;
     gtk_moz_embed_open_stream (GTK_MOZ_EMBED (html),
 			       html->priv->base_uri,
 			       mime);
@@ -312,6 +333,14 @@ yelp_html_write (YelpHtml *html, const gchar *data, gint len)
 
     gtk_moz_embed_append_data (GTK_MOZ_EMBED (html),
 			       data, len);
+}
+
+void
+yelp_html_frames (YelpHtml *html, gboolean enable)
+{
+    html->priv->frames_enabled = enable;
+
+
 }
 
 void

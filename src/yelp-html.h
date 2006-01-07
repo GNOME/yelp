@@ -60,6 +60,9 @@ struct _YelpHtmlClass {
 	void (*uri_selected)   (YelpHtml    *view,
 				gchar       *uri,
 				gboolean     handled);
+	gboolean (*frame_selected) (YelpHtml    *view,
+				gchar       *uri,
+				gboolean    handled);
 	void (*title_changed)  (YelpHtml    *view,
 				const gchar *new_title);
 	void (*popupmenu_requested) (YelpHtml *view,
@@ -81,6 +84,9 @@ void            yelp_html_printf         (YelpHtml    *html,
 					  char        *format, 
 					  ...) G_GNUC_PRINTF (2,3);
 void            yelp_html_close          (YelpHtml    *html);
+
+void            yelp_html_frames         (YelpHtml    *html,
+					  gboolean     enable);
 
 gboolean        yelp_html_find           (YelpHtml    *html,
 					  const gchar *str);
