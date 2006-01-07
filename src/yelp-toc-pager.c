@@ -50,6 +50,7 @@
 #include "yelp-settings.h"
 #include "yelp-toc-pager.h"
 #include "yelp-utils.h"
+#include "yelp-io-channel.h"
 
 #ifdef YELP_DEBUG
 #define d(x) x
@@ -82,11 +83,6 @@ struct _YelpTocPagerPriv {
     GSList *mandir_langpath;     /* ptr to current entry in mandir_ptr */
     GHashTable *man_secthash;
     GHashTable *man_manhash;
-#endif
-
-#ifdef ENABLE_INFO
-    GSList       *info_dir_pending;
-    GSList       *info_pending;
 #endif
 
     xmlDocPtr     toc_doc;
@@ -140,7 +136,6 @@ static gboolean      process_omf_pending       (YelpTocPager      *pager);
 static gboolean      process_mandir_pending    (YelpTocPager      *pager);
 #endif
 #ifdef ENABLE_INFO
-static gboolean      process_info_dir_pending  (YelpTocPager      *pager);
 static gboolean      process_info_pending      (YelpTocPager      *pager);
 #endif
 
@@ -367,8 +362,8 @@ toc_process_pending (YelpTocPager *pager)
 	process_xslt,
 #endif
 #ifdef ENABLE_INFO
-	process_info_dir_pending,
 	process_info_pending,
+	process_xslt,
 #endif
 	NULL
     };
@@ -1004,14 +999,151 @@ process_mandir_pending (YelpTocPager *pager)
 
 #ifdef ENABLE_INFO
 static gboolean
-process_info_dir_pending (YelpTocPager *pager)
-{
-    return FALSE;
-}
-
-static gboolean
 process_info_pending (YelpTocPager *pager)
 {
+    gchar ** info_paths = yelp_get_info_paths ();
+    int i = 0;
+    gchar *filename = NULL;
+
+    GHashTable *info_parsed = g_hash_table_new_full (g_str_hash, g_str_equal,
+						     g_free, g_free);
+    GHashTable *categories = g_hash_table_new_full (g_str_hash, g_str_equal,
+						    g_free, NULL);
+    
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+    xmlNodePtr node = NULL;
+    
+
+    for (i=0; info_paths[i]; i++) {
+	filename = g_strconcat (info_paths[i], "/dir", NULL);
+	
+	/* Search out the directory listing for info and follow that */
+	if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
+	    continue;
+	} else {
+	    GIOChannel *channel;
+	    gchar *str;
+	    int len;
+	    gchar ** files;
+	    gchar ** ptr;
+	    xmlNodePtr tmp;
+	    xmlNodePtr new_node = NULL;
+	    gboolean menufound = FALSE;
+	    
+	    if (!priv->toc_doc) {
+		xmlXPathContextPtr xpath;
+		xmlXPathObjectPtr  obj;
+		priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/info.xml", NULL,
+						 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+						 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+						 XML_PARSE_NONET    );
+		
+		xpath = xmlXPathNewContext (priv->toc_doc);
+		obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
+		node = obj->nodesetval->nodeTab[0];
+	    }
+	    
+	    channel = yelp_io_channel_new_file (filename, NULL);
+	    g_io_channel_read_to_end (channel, &str, (gsize *) &len, NULL);
+	    g_io_channel_shutdown (channel, FALSE, NULL);
+	    
+	    files = g_strsplit (str, "\n", -1);
+	    
+	    for (ptr = files; *ptr != NULL; ptr++) {
+		if (!menufound) {
+		    if (g_str_has_prefix (*ptr, "* Menu:")) {
+			menufound = TRUE;
+		    }
+		} else {
+		    if (g_str_has_prefix (*ptr, "*")) {
+			/* A menu item */
+			gchar *tooltip;
+			gchar *fname;
+			gchar *desc;
+			gchar *part1, *part2, *part3;
+			gchar * path = *ptr;
+			gchar **nextline = ptr;
+			nextline++;
+			/* Due to braindead info stuff, we gotta manually
+			 * split everything up...
+			 */
+			path++; 
+			part1 = strchr (path, ':');
+			part2 = g_strndup (path, part1-path);
+			tooltip = g_strdup (part2);
+			tooltip = g_strstrip (tooltip);
+			tooltip = g_strconcat (_("Read info page for "), tooltip, NULL);
+			path = part1+1;
+			part1 = strchr (path, ')');
+			part1 = strchr (part1, '.');
+			part3 = g_strndup (path, part1-path);
+			part1++;
+			desc = g_strdup (part1);
+			g_strstrip (desc);
+			
+			fname = g_strconcat ("info:", g_strstrip(part3), NULL);
+			
+			if (!g_hash_table_lookup (info_parsed, fname)) {
+			    g_hash_table_insert (info_parsed, 
+						 g_strdup (fname),
+						 g_strdup (part1));
+			    
+			    while (*nextline &&
+				   g_ascii_isspace (**nextline)) {
+				gchar *newbit = g_strdup (*nextline);
+				g_strstrip (newbit);
+				desc = g_strconcat (desc, " ",newbit, NULL);
+				nextline++;
+			    }
+			    ptr = --nextline;
+			    
+			    tmp = xmlNewChild (new_node, NULL, BAD_CAST "doc",
+					       NULL);
+			    xmlNewNsProp (tmp, NULL, BAD_CAST "href", BAD_CAST fname);
+			    
+			    xmlNewChild (tmp, NULL, BAD_CAST "title",
+					 BAD_CAST part2);
+			    xmlNewChild (tmp, NULL, BAD_CAST "tooltip",
+					 BAD_CAST tooltip);
+			    
+			    xmlNewChild (tmp, NULL, BAD_CAST "description",
+					 BAD_CAST desc);
+			}
+			g_free (part2);
+			g_free (part3);
+			g_free (tooltip);
+			g_free (desc);
+			g_free (fname);
+		    } else if (!g_ascii_isspace (**ptr) && g_ascii_isprint(**ptr)){
+			new_node = g_hash_table_lookup (categories, *ptr);
+			if (!new_node) {
+
+			    /* A new section */
+			    static int sectno = 1;
+			    new_node = xmlNewChild (node, NULL, BAD_CAST "toc",
+						    NULL);
+			    xmlNewNsProp (new_node, NULL, BAD_CAST "sect",
+					  BAD_CAST g_strdup_printf ("%d", sectno));
+			    xmlNewNsProp (new_node, NULL, BAD_CAST "id",
+					  BAD_CAST g_strdup_printf ("infosect%d", sectno));
+			    sectno++;
+			    xmlNewChild (new_node, NULL, BAD_CAST "title",
+					 BAD_CAST *ptr);
+			    g_hash_table_insert (categories, 
+						 g_strdup (*ptr),
+						 new_node);
+			}
+			
+		    }
+		}
+	    }
+	    g_free (filename);
+	    g_free (str);
+	    g_strfreev (files);
+	}
+    }
+    g_hash_table_destroy (info_parsed);
+    g_hash_table_destroy (categories);
     return FALSE;
 }
 #endif /* ENABLE_INFO */
@@ -1055,6 +1187,17 @@ process_read_menu (YelpTocPager *pager)
 	    xmlNewNsProp (new, NULL, BAD_CAST "id", BAD_CAST "Man");
 	    xmlNewChild (new, NULL, BAD_CAST "title", 
 			 BAD_CAST _("Manual Pages"));
+	}
+#endif
+
+#ifdef ENABLE_INFO
+	xmlChar *infoid = NULL;
+	infoid = xmlGetProp (node, BAD_CAST "id");
+	if (!xmlStrcmp (infoid, BAD_CAST "index")) {
+	    xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "toc", NULL);
+	    xmlNewNsProp (new, NULL, BAD_CAST "id", BAD_CAST "Info");
+	    xmlNewChild (new, NULL, BAD_CAST "title", 
+			 BAD_CAST _("GNU Info Pages"));
 	}
 #endif
 
@@ -1145,6 +1288,8 @@ process_xslt (YelpTocPager *pager)
     GtkIconInfo *info;
     GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
 
+    if (!priv->toc_doc)
+	return FALSE;
     priv->stylesheet = xsltParseStylesheetFile (BAD_CAST TOC_STYLESHEET);
     if (!priv->stylesheet) {
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,

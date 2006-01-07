@@ -51,6 +51,11 @@ struct _YelpInfoPagerPriv {
     GHashTable    *frags_hash;
 };
 
+typedef struct {
+    gchar *frag_id;
+    gchar *frag_name;
+} hash_lookup;
+
 static void           info_pager_class_init   (YelpInfoPagerClass *klass);
 static void           info_pager_init         (YelpInfoPager      *pager);
 static void           info_pager_dispose      (GObject           *gobject);
@@ -66,6 +71,10 @@ static gboolean       tree_hash_id            (GtkTreeModel     *model,
 					       GtkTreePath      *path,
 					       GtkTreeIter      *iter,
 					       YelpInfoPager    *pager);
+static gboolean       tree_find_id            (GtkTreeModel     *model,
+					       GtkTreePath      *path,
+					       GtkTreeIter      *iter,
+					       hash_lookup      *hash);
 
 static YelpPagerClass *parent_class;
 
@@ -227,10 +236,25 @@ static const gchar *
 info_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
     g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), NULL);
+    if (frag_id) {
+	gchar *id = g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash,
+					 frag_id);
+	if (!id) {
+	    hash_lookup *l = g_new0 (hash_lookup, 1);
+	    
+	    l->frag_name = g_strdup (frag_id);
 
-    if (frag_id)
-	return g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash, frag_id);
-    else
+	    gtk_tree_model_foreach (GTK_TREE_MODEL (YELP_INFO_PAGER (pager)->priv->tree),
+				    (GtkTreeModelForeachFunc) tree_find_id,
+				    l);
+	    id = g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash,
+				      l->frag_id);
+	    g_free (l->frag_name);
+	    g_free (l->frag_id);
+	    g_free (l);
+	}
+	return id;
+    } else
 	return g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash, "1");
 }
 
@@ -260,4 +284,22 @@ tree_hash_id (GtkTreeModel   *model,
 	g_hash_table_replace (priv->frags_hash, id, id);
 
     return FALSE;
+}
+
+static gboolean
+tree_find_id (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter,
+	      hash_lookup *hash)
+{
+    gchar *title;
+    gchar *id;
+    gtk_tree_model_get (model, iter,
+			YELP_PAGER_COLUMN_ID, &id,
+			YELP_PAGER_COLUMN_TITLE, &title,
+			-1);
+    if (g_str_equal (title, hash->frag_name)) {
+	hash->frag_id = g_strdup (id);
+	return TRUE;
+    }
+    return FALSE;
+
 }

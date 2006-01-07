@@ -76,6 +76,10 @@ static gchar *      convert_info_uri   (gchar   *uri);
 
 static gchar *dot_dir = NULL;
 
+static gchar **infopath = NULL;
+static gchar *infopath_d[] = {"/usr/info", "/usr/share/info", NULL};
+
+
 const char *
 yelp_dot_dir (void)
 {
@@ -836,6 +840,30 @@ convert_man_uri (gchar *uri, gboolean trust_uri)
     return doc_uri;
 }
 
+gchar **
+yelp_get_info_paths ( )
+{
+    /* Get the infopath, either from the INFOPATH envar,
+       or from the default infopath_d.
+    */
+    if (!infopath) {
+	gchar *infop;
+
+	infop = g_strdup (g_getenv ("INFOPATH"));
+	if (infop) {
+	    g_strstrip (infop);
+	    infopath = g_strsplit (infop, ":", -1);
+	    g_free (infop);
+	} else {
+	    infopath = infopath_d;
+	}
+    }
+
+
+    return infopath;
+}
+
+
 static gchar *
 convert_info_uri (gchar   *uri)
 {
@@ -843,9 +871,7 @@ convert_info_uri (gchar   *uri)
     gchar *doc_uri  = NULL;
     gchar *info_name = NULL;
     gchar *info_dot_info = NULL;
-
-    static gchar **infopath = NULL;
-    static gchar *infopath_d[] = {"/usr/info", "/usr/share/info", NULL};
+    gchar **infopaths = NULL;
 
     gint i;
 
@@ -867,21 +893,6 @@ convert_info_uri (gchar   *uri)
 	goto done;
     }
 
-    /* Get the infopath, either from the INFOPATH envar,
-       or from the default infopath_d.
-    */
-    if (!infopath) {
-	gchar *infop;
-
-	infop = g_strdup (g_getenv ("INFOPATH"));
-	if (infop) {
-	    g_strstrip (infop);
-	    infopath = g_strsplit (infop, ":", -1);
-	    g_free (infop);
-	} else {
-	    infopath = infopath_d;
-	}
-    }
 
     /* The URI is one of the following:
        info:info_name
@@ -914,7 +925,9 @@ convert_info_uri (gchar   *uri)
 
     info_dot_info = g_strconcat (info_name, ".info", NULL);
 
-    for (i = 0; infopath[i]; i++) {
+    infopaths = yelp_get_info_paths ();
+
+    for (i = 0; infopaths[i]; i++) {
 	dir = g_dir_open (infopath[i], 0, NULL);
 	if (dir) {
 	    while ((filename = g_dir_read_name (dir))) {

@@ -140,5 +140,6 @@ void                yelp_doc_page_free          (YelpDocPage   *page);
 gchar *             yelp_uri_get_fragment       (const gchar   *uri);
 gchar *             yelp_uri_get_relative       (gchar         *base,
 						 gchar         *ref);
+gchar **            yelp_get_info_paths         (void);
 
 #endif /* __YELP_UTILS_H__ */

@@ -742,13 +742,18 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     YelpDocInfo    *doc_info;
     gchar          *frag_id;
     GtkAction      *action;
-
+    gchar          *real_uri;
     g_return_if_fail (YELP_IS_WINDOW (window));
 
+    if (g_str_has_prefix (uri, "info:") && g_str_has_suffix (uri, "dir")) {
+	real_uri = g_strdup ("x-yelp-toc:#Info");
+    } else {
+	real_uri = g_strdup (uri);
+    }
     d (g_print ("yelp_window_load\n"));
     d (g_print ("  uri = \"%s\"\n", uri));
 
-    if (!uri) {
+    if (!real_uri) {
 	GError *error = NULL;
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
 		     _("The Uniform Resource Identifier for the file is "
@@ -759,17 +764,17 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 
     priv = window->priv;
 
-    doc_info = yelp_doc_info_get (uri, FALSE);
+    doc_info = yelp_doc_info_get (real_uri, FALSE);
     if (!doc_info) {
 	GError *error = NULL;
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
 		     _("The Uniform Resource Identifier ‘%s’ is invalid "
 		       "or does not point to an actual file."),
-		     uri);
+		     real_uri);
 	window_error (window, error, FALSE);
 	return;
     }
-    frag_id  = yelp_uri_get_fragment (uri);
+    frag_id  = yelp_uri_get_fragment (real_uri);
 
     if (priv->current_doc && yelp_doc_info_equal (priv->current_doc, doc_info)) {
 	if (priv->current_frag) {
@@ -802,6 +807,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 
     if (priv->current_frag != frag_id)
 	g_free (frag_id);
+    g_free (real_uri);
 }
 
 YelpDocInfo *
@@ -2676,14 +2682,14 @@ location_response_cb (GtkDialog *dialog, gint id, YelpWindow *window)
     d (g_print ("  id = %i\n", id));
 
     if (id == GTK_RESPONSE_OK) {
-	const gchar *uri =
+	const gchar *uri = 
 	    gtk_entry_get_text (GTK_ENTRY (window->priv->location_entry));
+    
 	yelp_window_load (window, uri);
     }
 
     window->priv->location_dialog = NULL;
     window->priv->location_entry  = NULL;
-
     gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
