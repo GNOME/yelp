@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-29 01:24+0100\n"
-"PO-Revision-Date: 2005-12-29 01:28+0100\n"
+"POT-Creation-Date: 2006-01-07 01:23+0100\n"
+"PO-Revision-Date: 2006-01-07 01:23+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -331,7 +331,7 @@ msgstr "Ya existe un marcador titulado <b>%s</b> para esta página."
 msgid "Document Sections"
 msgstr "Secciones del documento"
 
-#: ../src/yelp-db-pager.c:248 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:247 ../src/yelp-db-print-pager.c:198
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -377,7 +377,9 @@ msgstr "No hay información disponible acerca del error."
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not a well-formed info page."
-msgstr "El archivo «%s» no se pudo analizar. O el archivo no existe, o no es una página info bien formada."
+msgstr ""
+"El archivo «%s» no se pudo analizar. O el archivo no existe, o no es una "
+"página info bien formada."
 
 #: ../src/yelp-io-channel.c:98
 #, c-format
@@ -443,10 +445,12 @@ msgstr "La impresión no se soporta en esta impresora"
 msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
-msgstr "Estaba intentando imprimir en una impresora usando el controlador «%s». Este programa requiere un controlador de impresora PostScript."
+msgstr ""
+"Estaba intentando imprimir en una impresora usando el controlador «%s». Este "
+"programa requiere un controlador de impresora PostScript."
 
 #: ../src/yelp-print.c:402
-msgid "An error occured while printing"
+msgid "An error occurred while printing"
 msgstr "Ocurrió un error al imprimir"
 
 #: ../src/yelp-print.c:406
