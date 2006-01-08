@@ -115,8 +115,6 @@ static void        window_handle_page             (YelpWindow        *window,
 static void        window_disconnect              (YelpWindow        *window);
 
 /** Window Callbacks **/
-static void        yelp_window_destroyed          (GtkWidget         *window,
-						   gpointer           user_data);
 static gboolean    window_configure_cb            (GtkWidget         *widget,
 						   GdkEventConfigure *event,
 						   gpointer           data);
@@ -220,6 +218,8 @@ static void        window_find_buttons_set_sensitive (YelpWindow      *window,
 static void        window_find_clicked_cb         (GtkWidget         *button,
 						   YelpWindow        *window);
 static void        window_find_next_cb            (GtkAction *action, 
+						   YelpWindow *window);
+static void        window_find_previous_cb        (GtkAction *action, 
 						   YelpWindow *window);
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
@@ -359,10 +359,15 @@ static const GtkActionEntry entries[] = {
       "<Control>F",
       NULL,
       G_CALLBACK (window_find_cb) },
+    { "FindPrev", NULL,
+      N_("Find Pre_vious"),
+      "<Control><shift>G",
+      N_("Find previous occurrence of the word or phrase"),
+      G_CALLBACK (window_find_previous_cb) },
     { "FindNext", NULL,
       N_("Find Ne_xt"),
       "<Control>G",
-      NULL,
+      N_("Find next occurrence of the word or phrase"),
       G_CALLBACK (window_find_next_cb) },
     { "Preferences", GTK_STOCK_PREFERENCES,
       N_("_Preferences"),
@@ -495,6 +500,18 @@ window_init (YelpWindow *window)
 		      NULL);
 
     gtk_window_set_title (GTK_WINDOW (window), _("Help Browser"));
+   
+    window_populate (window);
+}
+
+static void
+window_dispose (GObject *object)
+{
+	YelpWindow *window = YELP_WINDOW (object);
+
+	window_disconnect (YELP_WINDOW (window));
+
+	parent_class->dispose (object);
 }
 
 static void
@@ -508,6 +525,10 @@ window_finalize (GObject *object)
 
     g_free (priv->find_string);
     
+    if (priv->current_doc)
+	    yelp_doc_info_unref (priv->current_doc);
+    g_free (priv->current_frag);
+
     /* FIXME there are many more things to free */
 
     parent_class->finalize (object);
@@ -520,6 +541,7 @@ window_class_init (YelpWindowClass *klass)
 
     parent_class = (GObjectClass *) g_type_class_peek_parent (klass);
 
+    object_class->dispose = window_dispose;
     object_class->finalize = window_finalize;
 
     signals[NEW_WINDOW_REQUESTED] =
@@ -717,22 +739,7 @@ load_data_free (YelpLoadData *data)
 GtkWidget *
 yelp_window_new (GNode *doc_tree, GList *index)
 {
-    YelpWindow     *window;
-    YelpWindowPriv *priv;
-
-    window = g_object_new (YELP_TYPE_WINDOW, NULL);
-
-    priv   = window->priv;
-
-    d (g_print ("yelp_window_new\n"));
-
-    window_populate (window);
-
-    g_signal_connect (G_OBJECT (window), "destroy",
-		      G_CALLBACK (yelp_window_destroyed),
-		      NULL);
-
-    return GTK_WIDGET (window);
+    return GTK_WIDGET (g_object_new (YELP_TYPE_WINDOW, NULL));
 }
 
 void
@@ -1069,12 +1076,10 @@ window_populate (YelpWindow *window)
     priv->merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
     priv->pane = gtk_hpaned_new ();
-    gtk_widget_ref (priv->pane);
     /* We should probably remember the last position and set to that. */
     gtk_paned_set_position (GTK_PANED (priv->pane), 180);
 
     priv->side_sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_widget_ref (priv->side_sw);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->side_sw),
 				    GTK_POLICY_AUTOMATIC,
 				    GTK_POLICY_AUTOMATIC);
@@ -1712,26 +1717,6 @@ window_disconnect (YelpWindow *window)
 }
 
 /** Window Callbacks **********************************************************/
-
-static void
-yelp_window_destroyed (GtkWidget *window,
-		       gpointer   user_data)
-{
-    YelpWindowPriv *priv;
-
-    g_return_if_fail (YELP_IS_WINDOW (window));
-
-    priv = YELP_WINDOW(window)->priv;
-
-    window_disconnect (YELP_WINDOW (window));
-
-    if (priv->current_doc)
-	yelp_doc_info_unref (priv->current_doc);
-    g_free (priv->current_frag);
-
-    g_object_unref (priv->pane);
-    g_object_unref (priv->side_sw);
-}
 
 static gboolean
 window_configure_cb (GtkWidget         *widget,
@@ -2734,6 +2719,20 @@ window_find_again (YelpWindow *window, gboolean forward)
 #endif /* TYPEAHEADFIND */
 
     return yelp_html_find_again (priv->html_view, forward);
+}
+
+static void
+window_find_previous_cb (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPriv * priv;
+
+    priv = window->priv;
+    if (!window_find_again (window, FALSE)) {
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), FALSE);
+    } else {
+	window_find_buttons_set_sensitive (window, TRUE);
+    }
 }
 
 static void
