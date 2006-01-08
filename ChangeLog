@@ -1,3 +1,9 @@
+2006-01-08  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-db-pager.c: (db_pager_parse), (walker_walk_xml):
+	Make yelp autogenerate ids when they are missing on 
+	chunkable elements, fixes #154934
+
 2006-01-07  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-html.cpp: 

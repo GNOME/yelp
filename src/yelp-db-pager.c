@@ -260,7 +260,6 @@ db_pager_parse (YelpPager *pager)
     walker->doc       = doc;
     walker->cur       = xmlDocGetRootElement (walker->doc);
 
-
     if (!xmlStrcmp (xmlDocGetRootElement (doc)->name, BAD_CAST "book"))
 	priv->max_depth = walker->max_depth = BOOK_CHUNK_DEPTH;
     else
@@ -269,8 +268,12 @@ db_pager_parse (YelpPager *pager)
     id = xmlGetProp (walker->cur, BAD_CAST "id");
     if (id)
 	priv->root_id = g_strdup ((gchar *) id);
-    else
+    else {
 	priv->root_id = g_strdup ("index");
+	/* add the id attribute to the root element with value "index"
+	 * so when we try to load the document later, it doesn't fail */
+	xmlNewProp (walker->cur, BAD_CAST "id", BAD_CAST "index");
+    }
 
     EVENTS_PENDING;
     CANCEL_CHECK;
@@ -384,7 +387,9 @@ db_pager_get_sections (YelpPager *pager)
 static void
 walker_walk_xml (DBWalker *walker)
 {
-    xmlChar     *id    = NULL;
+    static       gint autoid = 0;
+    gchar        autoidstr[20];
+    xmlChar     *id = NULL;
     xmlChar     *title = NULL;
     gchar       *old_id = NULL;
     xmlNodePtr   cur;
@@ -393,6 +398,8 @@ walker_walk_xml (DBWalker *walker)
     GtkTreeIter *old_iter = NULL;
     YelpDBPagerPriv *priv = walker->pager->priv;
 
+    /* check for the yelp:chunk-depth processing instruction and set 
+     * the max chunk depth accordingly */
     if (walker->depth == 0) {
 	cur = walker->cur;
 	for ( ; cur; cur = cur->prev)
@@ -416,6 +423,14 @@ walker_walk_xml (DBWalker *walker)
 	if (!title)
 	    title = BAD_CAST node_get_title (walker, "title");
 
+	/* if id attribute is not present, autogenerate a
+	 * unique value, and insert it into the in-memory tree */
+	if (!id) {
+	    g_snprintf (autoidstr, 20, "_auto-gen-id-%d", ++autoid);
+	    xmlNewProp (walker->cur, BAD_CAST "id", BAD_CAST autoidstr);
+	    id = xmlGetProp (walker->cur, BAD_CAST "id"); 
+	}
+	
 	if (id) {
 	    gtk_tree_store_append (GTK_TREE_STORE (priv->sects),
 				   &iter, walker->iter);
