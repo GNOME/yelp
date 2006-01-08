@@ -7,7 +7,6 @@ yelp_SOURCES =							\
 	Yelper.cpp		Yelper.h			\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
-	yelp-cache.c		yelp-cache.h			\
 	yelp-db-pager.c		yelp-db-pager.h			\
 	yelp-db-print-pager.c	yelp-db-print-pager.h		\
 	yelp-error.c		yelp-error.h			\

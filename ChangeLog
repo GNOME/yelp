@@ -1,5 +1,13 @@
 2006-01-08  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/Makefile.am: 
+	* src/yelp-base.c: 
+	* src/yelp-cache.c:
+	* src/yelp-cache.h:
+	Remove yelp-cache.{c,h}
+	
+2006-01-08  Don Scorgie  <dscorgie@cvs.gnome.org>
+
 	* src/yelp-window.c: 
 	* data/ui/yelp-ui.xml: 
 	Patch from Christian Persch to cleanup some code and add

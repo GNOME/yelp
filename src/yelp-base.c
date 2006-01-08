@@ -27,7 +27,6 @@
 
 #include <string.h>
 
-#include "yelp-cache.h"
 #include "yelp-window.h"
 #include "yelp-settings.h"
 #include "yelp-pager.h"
@@ -115,7 +114,6 @@ yelp_base_init (YelpBase *base)
 	priv->windows  = NULL;
 
 	yelp_bookmarks_init ();
-	yelp_cache_init ();
 	yelp_settings_init ();
 }
 
