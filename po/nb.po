@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-06 18:46+0100\n"
-"PO-Revision-Date: 2006-01-06 18:47+0100\n"
+"POT-Creation-Date: 2006-01-08 15:35+0100\n"
+"PO-Revision-Date: 2006-01-08 15:35+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Kjernerutiner"
 msgid "Library Functions"
 msgstr "Bibliotekfunksjoner"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1057
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1189
 msgid "Manual Pages"
 msgstr "Manualsider"
 
@@ -134,7 +134,7 @@ msgstr "Utdanningsprogrammer"
 msgid "Graphics"
 msgstr "Grafikk"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:398
+#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:411
 msgid "Help Topics"
 msgstr "Hjelpemner"
 
@@ -294,7 +294,7 @@ msgstr "Bruk systemets skrifter"
 msgid "Use the default fonts set for the system."
 msgstr "Bruk systemets forvalgte skrifter."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2613
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2658
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -314,12 +314,17 @@ msgstr "Endre navn på bokmerke"
 msgid "Remove Bookmark"
 msgstr "Fjern bokmerke"
 
-#: ../src/yelp-bookmarks.c:313 ../src/yelp-bookmarks.c:385
+#: ../src/yelp-bookmarks.c:321
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "Et bokmerke med navn %s eksisterer allerede for denne siden."
+
+#: ../src/yelp-bookmarks.c:398
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Et bokmerke med navn <b>%s</b> eksisterer allerede for denne siden."
 
-#: ../src/yelp-bookmarks.c:413
+#: ../src/yelp-bookmarks.c:426
 msgid "Document Sections"
 msgstr "Dokumentdeler"
 
@@ -364,7 +369,7 @@ msgstr "Kunne ikke prosessere dokumentet"
 msgid "No information is available about the error."
 msgstr "Ingen informasjon er tilgjengelig for denne feilen."
 
-#: ../src/yelp-info-pager.c:181
+#: ../src/yelp-info-pager.c:190
 #, c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -437,7 +442,9 @@ msgstr "Utskrift er ikke støttet med denne skriveren"
 msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
-msgstr "Du prøvde å skrive ut til en skriver med driveren «%s». Dette programmet krever en skriver som bruker en PostScript-driver."
+msgstr ""
+"Du prøvde å skrive ut til en skriver med driveren «%s». Dette programmet "
+"krever en skriver som bruker en PostScript-driver."
 
 #: ../src/yelp-print.c:402
 msgid "An error occurred while printing"
@@ -490,17 +497,17 @@ msgstr ""
 "Søket kunne ikke utføres. Filen «%s» mangler eller så er den ikke et gyldig "
 "XSLT-stilark."
 
-#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1303
+#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1448
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Ingen href-attributt funnet på yelp:document"
 
-#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1317
+#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1462
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Ikke mer minne"
 
-#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1358
+#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1503
 msgid "Help Contents"
 msgstr "Hjelpinnhold"
 
@@ -529,21 +536,25 @@ msgstr "Hjelpinnhold"
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:278
+#: ../src/yelp-toc-pager.c:273
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausetall er negativt."
 
-#: ../src/yelp-toc-pager.c:501
+#: ../src/yelp-toc-pager.c:496
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunne ikke laste OMF-fil «%s»."
 
-#: ../src/yelp-toc-pager.c:635
+#: ../src/yelp-toc-pager.c:630
 #, c-format
 msgid "Read man page for %s"
 msgstr "Les manualside for %s"
 
-#: ../src/yelp-toc-pager.c:1036
+#: ../src/yelp-toc-pager.c:1075
+msgid "Read info page for "
+msgstr "Leste infoside for "
+
+#: ../src/yelp-toc-pager.c:1168
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -552,7 +563,11 @@ msgstr ""
 "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den "
 "ikke velutformet XML."
 
-#: ../src/yelp-toc-pager.c:1151
+#: ../src/yelp-toc-pager.c:1200
+msgid "GNU Info Pages"
+msgstr "GNU Infosider"
+
+#: ../src/yelp-toc-pager.c:1296
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -561,166 +576,166 @@ msgstr ""
 "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den "
 "ikke et gyldig XSLT-stilark."
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:309
 msgid "_File"
 msgstr "_Fil"
 
-#: ../src/yelp-window.c:306
+#: ../src/yelp-window.c:310
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:311
 msgid "_Go"
 msgstr "_Naviger"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:312
 msgid "_Bookmarks"
 msgstr "_Bokmerker"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:313
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:316
 msgid "_New Window"
 msgstr "_Nytt vindu"
 
-#: ../src/yelp-window.c:317
+#: ../src/yelp-window.c:321
 msgid "Print This Document"
 msgstr "Skriv ut dette dokumentet"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:326
 msgid "Print This Page"
 msgstr "Skriv ut denne siden"
 
-#: ../src/yelp-window.c:327
+#: ../src/yelp-window.c:331
 msgid "About This Document"
 msgstr "Om dette dokumentet"
 
-#: ../src/yelp-window.c:332
+#: ../src/yelp-window.c:336
 msgid "Open _Location"
 msgstr "Åpne _lokasjon"
 
-#: ../src/yelp-window.c:337
+#: ../src/yelp-window.c:341
 msgid "_Close Window"
 msgstr "_Lukk vindu"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:347
 msgid "_Copy"
 msgstr "_Kopier"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:353
 msgid "_Select All"
 msgstr "_Velg alt"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:358
 msgid "_Find..."
 msgstr "_Finn..."
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr "Finn ne_ste"
 
-#: ../src/yelp-window.c:364
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "_Brukervalg"
 
-#: ../src/yelp-window.c:369
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "_Gjenles"
 
-#: ../src/yelp-window.c:381
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr "Vis forrige side i historikken"
 
-#: ../src/yelp-window.c:386
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "_Fremover"
 
-#: ../src/yelp-window.c:388
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr "Vis neste side i historikken"
 
-#: ../src/yelp-window.c:391
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
 msgstr "_Hjelpemner"
 
-#: ../src/yelp-window.c:393
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr "Gå til listen over hjelpemner"
 
-#: ../src/yelp-window.c:396
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "_Forrige del"
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "_Neste del"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:410
 msgid "_Contents"
 msgstr "_Innhold"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "_Legg til bokmerke"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "R_ediger bokmerker..."
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "Å_pne lenke"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "Åpne lenke i _nytt vindu"
 
-#: ../src/yelp-window.c:433
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "_Kopier lenkens adresse"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:443
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:448
 msgid "Copy _Email Address"
 msgstr "Kopier e-postadresse"
 
-#: ../src/yelp-window.c:493
+#: ../src/yelp-window.c:497
 msgid "Help Browser"
 msgstr "Hjelp leser"
 
-#: ../src/yelp-window.c:747 ../src/yelp-window.c:905
+#: ../src/yelp-window.c:756 ../src/yelp-window.c:915
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Ugyldig URI for denne filen."
 
-#: ../src/yelp-window.c:759 ../src/yelp-window.c:900
+#: ../src/yelp-window.c:768 ../src/yelp-window.c:910
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "URIen «%s» er ugyldig eller så peker den ikke til en fil."
 
-#: ../src/yelp-window.c:847 ../src/yelp-window.c:1270
+#: ../src/yelp-window.c:857 ../src/yelp-window.c:1284
 msgid "Man pages are not supported in this version."
 msgstr "Manualsider er ikke støttet i denne versjonen."
 
-#: ../src/yelp-window.c:857 ../src/yelp-window.c:1261
+#: ../src/yelp-window.c:867 ../src/yelp-window.c:1275
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU info-sider er ikke støttet i denne versjonen"
 
-#: ../src/yelp-window.c:875 ../src/yelp-window.c:1283
+#: ../src/yelp-window.c:885 ../src/yelp-window.c:1297
 msgid "Search is not supported in this version."
 msgstr "Søk er ikke støttet i denne versjonen."
 
-#: ../src/yelp-window.c:880
+#: ../src/yelp-window.c:890
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -728,27 +743,27 @@ msgstr ""
 "SGML-dokumenter er ikke støttet lengre. Vennligst spør forfatteren av "
 "dokumenet om å konvertere det tilXML."
 
-#: ../src/yelp-window.c:1006
+#: ../src/yelp-window.c:1016
 msgid "Search"
 msgstr "Søk"
 
-#: ../src/yelp-window.c:1007
+#: ../src/yelp-window.c:1017
 msgid "Search for other documentation"
 msgstr "Søk etter annen dokumentasjon"
 
-#: ../src/yelp-window.c:1150
+#: ../src/yelp-window.c:1164
 msgid "Find:"
 msgstr "Finn:"
 
-#: ../src/yelp-window.c:1170
+#: ../src/yelp-window.c:1184
 msgid "Find _Next"
 msgstr "Finn _neste"
 
-#: ../src/yelp-window.c:1182
+#: ../src/yelp-window.c:1196
 msgid "Find _Previous"
 msgstr "_Finn forrige"
 
-#: ../src/yelp-window.c:1296
+#: ../src/yelp-window.c:1310
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -757,8 +772,8 @@ msgstr ""
 "Kunne ikke opprette en transformeringskontekst for filen «%s». Formatet er "
 "kanskje ikke støttet."
 
-#: ../src/yelp-window.c:1325 ../src/yelp-window.c:1749
-#: ../src/yelp-window.c:1816
+#: ../src/yelp-window.c:1339 ../src/yelp-window.c:1770
+#: ../src/yelp-window.c:1837
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -769,7 +784,7 @@ msgstr ""
 "Hjelp-knapp i et program bør du rapportere dette til utviklerene av dette "
 "programmet."
 
-#: ../src/yelp-window.c:1440 ../src/yelp-window.c:2182
+#: ../src/yelp-window.c:1454 ../src/yelp-window.c:2227
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -778,17 +793,17 @@ msgstr ""
 "Filen «%s» kunne ikke leses. Filen kan mangle eller kanskje du ikke har "
 "rettigheter til å lese den."
 
-#: ../src/yelp-window.c:1484
+#: ../src/yelp-window.c:1505
 msgid "Loading..."
 msgstr "Laster..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2610
+#: ../src/yelp-window.c:2655
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/yelp-window.c:2615
+#: ../src/yelp-window.c:2660
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Program for å finne og lese dokumentasjon for GNOME skrivebordet."
 
