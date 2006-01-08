@@ -158,9 +158,7 @@ db_pager_class_init (YelpDBPagerClass *klass)
 static void
 db_pager_init (YelpDBPager *pager)
 {
-    YelpDBPagerPriv *priv;
-
-    pager->priv = priv = YELP_DB_PAGER_GET_PRIVATE (pager);
+    pager->priv = YELP_DB_PAGER_GET_PRIVATE (pager);
 
     pager->priv->sects = NULL;
 
@@ -297,14 +295,11 @@ static gchar **
 db_pager_params (YelpPager *pager)
 {
     YelpDBPagerPriv *priv;
-    YelpDocInfo     *doc_info;
     gchar **params;
     gint params_i = 0;
     gint params_max = 20;
 
     d (g_print ("db_pager_process\n"));
-
-    doc_info = yelp_pager_get_doc_info (pager);
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);

@@ -70,7 +70,7 @@ static void      xslt_pager_error        (YelpPager          *pager);
 static void      xslt_pager_cancel       (YelpPager          *pager);
 static void      xslt_pager_finish       (YelpPager          *pager);
 
-gboolean         xslt_pager_process      (YelpPager          *pager);
+static gboolean  xslt_pager_process      (YelpPager          *pager);
 
 static void      xslt_yelp_document    (xsltTransformContextPtr ctxt,
 					xmlNodePtr              node,
@@ -154,7 +154,7 @@ xslt_pager_dispose (GObject *object)
 
 /******************************************************************************/
 
-gboolean
+static gboolean
 xslt_pager_process (YelpPager *pager)
 {
     YelpXsltPagerPriv  *priv;

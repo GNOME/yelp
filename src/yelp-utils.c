@@ -42,7 +42,7 @@
 #define d(x)
 #endif
 
-GHashTable *doc_info_table;
+static GHashTable *doc_info_table;
 
 typedef struct {
     gchar       *uri;

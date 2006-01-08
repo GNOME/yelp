@@ -45,10 +45,10 @@
 
 #define YELP_FACTORY_OAFIID "OAFIID:GNOME_Yelp_Factory"
 
-poptContext  poptCon;
-gint         next_opt;
-gchar       *cache_dir;
-gchar       *open_urls;
+static poptContext  poptCon;
+/* static gint         next_opt; */
+static gchar       *cache_dir;
+static gchar       *open_urls;
 
 /*structure defining command line option.*/
 enum {
@@ -77,7 +77,7 @@ static void           main_client_die         (GnomeClient          *client,
 
 static gboolean	      main_restore_session    (void);
 
-struct poptOption options[] = {
+static struct poptOption options[] = {
 	{
 		"open-urls",
 		'\0',

@@ -839,9 +839,7 @@ window_do_load (YelpWindow  *window,
 		gchar       *frag_id)
 {
     GtkAction      *action;
-    YelpWindowPriv *priv;
     GError         *error = NULL;
-    gboolean        handled = FALSE;
     gchar          *uri;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
@@ -849,9 +847,7 @@ window_do_load (YelpWindow  *window,
 
     d (g_print ("window_do_laod\n"));
 
-    priv = window->priv;
-
-    action = gtk_action_group_get_action (priv->action_group, 
+    action = gtk_action_group_get_action (window->priv->action_group, 
 					  "PrintDocument");
     g_object_set (G_OBJECT (action),
 		  "sensitive",
@@ -861,7 +857,7 @@ window_do_load (YelpWindow  *window,
     switch (yelp_doc_info_get_type (doc_info)) {
     case YELP_DOC_TYPE_MAN:
 #ifdef ENABLE_MAN
-	handled = window_do_load_pager (window, doc_info, frag_id);
+	window_do_load_pager (window, doc_info, frag_id);
 	break;
 #else
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
@@ -871,7 +867,7 @@ window_do_load (YelpWindow  *window,
 
     case YELP_DOC_TYPE_INFO:
 #ifdef ENABLE_INFO
-	handled = window_do_load_pager (window, doc_info, frag_id);
+	window_do_load_pager (window, doc_info, frag_id);
 	break;
 #else
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
@@ -885,11 +881,11 @@ window_do_load (YelpWindow  *window,
 		      TRUE,
 		      NULL);
     case YELP_DOC_TYPE_TOC:
-	handled = window_do_load_pager (window, doc_info, frag_id);
+	window_do_load_pager (window, doc_info, frag_id);
 	break;
     case YELP_DOC_TYPE_SEARCH:
 #ifdef ENABLE_SEARCH
-	handled = window_do_load_pager (window, doc_info, frag_id);
+	window_do_load_pager (window, doc_info, frag_id);
 	break;
 #else
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_FORMAT,
@@ -903,7 +899,7 @@ window_do_load (YelpWindow  *window,
 	break;
     case YELP_DOC_TYPE_HTML:
     case YELP_DOC_TYPE_XHTML:
-	handled = window_do_load_html (window, doc_info, frag_id);
+	window_do_load_html (window, doc_info, frag_id);
 	break;
     case YELP_DOC_TYPE_EXTERNAL:
 	history_step_back (window);
@@ -1337,7 +1333,6 @@ window_do_load_pager (YelpWindow  *window,
 	    window_error (window, error, TRUE);
 	handled = FALSE;
 	goto done;
-	break;
     case YELP_PAGER_STATE_RUNNING:
     case YELP_PAGER_STATE_FINISHED:
 	/* Check if the page exists */
@@ -2592,14 +2587,14 @@ static void window_copy_link_cb (GtkAction *action, YelpWindow *window)
 			    window->priv->uri,
 			    -1);
     g_free (window->priv->uri);
-};
+}
 
 static void
 window_open_link_cb (GtkAction *action, YelpWindow *window)
 {
     yelp_window_load (window, window->priv->uri);
     g_free (window->priv->uri);
-};
+}
 
 static void
 window_open_link_new_cb (GtkAction *action, YelpWindow *window)
@@ -2607,7 +2602,7 @@ window_open_link_new_cb (GtkAction *action, YelpWindow *window)
     g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0,
 		   window->priv->uri);
     g_free (window->priv->uri);
-};
+}
 
 static void
 window_copy_mail_cb (GtkAction *action, YelpWindow *window)

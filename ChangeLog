@@ -1,7 +1,21 @@
 2006-01-08  Don Scorgie  <dscorgie@cvs.gnome.org>
 
-	* src/Makefile.am: 
+	* src/yelp-io-channel.c: 
+	* src/yelp-xslt-pager.c: 
+	* src/yelp-window.c: 
+	* src/yelp-utils.c: 
+	* src/yelp-toc-pager.c: 
+	* src/yelp-settings.c: 
+	* src/yelp-main.c: 
+	* src/yelp-db-pager.c: 
+	* src/yelp-bookmarks.c: 
 	* src/yelp-base.c: 
+	Various bits of cleanup from Kjartan Maraas (bug #323822)
+
+2006-01-08  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/Makefile.am: 
+	* src/yelp-base.c: 	
 	* src/yelp-cache.c:
 	* src/yelp-cache.h:
 	Remove yelp-cache.{c,h}

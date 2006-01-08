@@ -169,7 +169,6 @@ static const GtkActionEntry popup_entries[] = {
 void
 yelp_bookmarks_init (void)
 {
-    gboolean read = FALSE;
     gchar   *filename = NULL;
 
     windows = NULL;
@@ -183,7 +182,7 @@ yelp_bookmarks_init (void)
 				 "yelp-bookmarks.xbel", NULL);
 
     if (g_file_test (filename, G_FILE_TEST_EXISTS))
-	read = bookmarks_read (filename);
+	bookmarks_read (filename);
 
     g_free (filename);
 }
@@ -306,7 +305,6 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
     gtk_tree_model_foreach (GTK_TREE_MODEL (actions_store),
 			    bookmarks_dup_finder, dup_uri);
     if (dup_title) {
-	GtkWidget *dialog;
 	char *escaped_title, *markup;
 
 	dialog = gtk_message_dialog_new_with_markup
@@ -903,7 +901,6 @@ void
 yelp_bookmarks_write (void)
 {
     xmlTextWriterPtr file;
-    gint rc;
     GtkTreeIter top_iter, sub_iter;
     gboolean top_valid, sub_valid;
     gchar *filename;
@@ -918,14 +915,14 @@ yelp_bookmarks_write (void)
 	return;
     }
 
-    rc = xmlTextWriterStartDocument (file, NULL, NULL, NULL);
-    rc = xmlTextWriterStartElement (file, BAD_CAST "xbel");
-    rc = xmlTextWriterWriteAttribute(file, BAD_CAST "version",
+    xmlTextWriterStartDocument (file, NULL, NULL, NULL);
+    xmlTextWriterStartElement (file, BAD_CAST "xbel");
+    xmlTextWriterWriteAttribute(file, BAD_CAST "version",
                                      BAD_CAST "1.0");
 
-    rc = xmlTextWriterStartElement (file, BAD_CAST "info");
-    rc = xmlTextWriterStartElement (file, BAD_CAST "metadata");
-    rc = xmlTextWriterWriteAttribute(file, BAD_CAST "owner",
+    xmlTextWriterStartElement (file, BAD_CAST "info");
+    xmlTextWriterStartElement (file, BAD_CAST "metadata");
+    xmlTextWriterWriteAttribute(file, BAD_CAST "owner",
                                      BAD_CAST "http://live.gnome.org/Yelp");
     xmlTextWriterEndElement (file);
     xmlTextWriterEndElement (file);
@@ -949,13 +946,13 @@ yelp_bookmarks_write (void)
  		xmlTextWriterWriteAttribute (file, BAD_CAST "href", 
 					     BAD_CAST name);
 
-		rc = xmlTextWriterWriteElement (file,
-						BAD_CAST "title",
-						BAD_CAST label);
+		xmlTextWriterWriteElement (file,
+					   BAD_CAST "title",
+					   BAD_CAST label);
 
-		rc = xmlTextWriterStartElement (file, BAD_CAST "info");
-		rc = xmlTextWriterStartElement (file, BAD_CAST "metadata");
-		rc = xmlTextWriterWriteAttribute
+		xmlTextWriterStartElement (file, BAD_CAST "info");
+		xmlTextWriterStartElement (file, BAD_CAST "metadata");
+		xmlTextWriterWriteAttribute
 		    (file, BAD_CAST "owner",
 		     BAD_CAST "http://live.gnome.org/Yelp");
 		xmlTextWriterEndElement (file); /* metadata */
@@ -973,7 +970,7 @@ yelp_bookmarks_write (void)
 					      &top_iter);
     }
 
-    rc = xmlTextWriterEndDocument(file);
+    xmlTextWriterEndDocument(file);
     xmlFreeTextWriter(file);
     g_free (filename);
     return;

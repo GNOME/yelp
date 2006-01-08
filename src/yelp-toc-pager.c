@@ -116,14 +116,13 @@ static void          toc_pager_init            (YelpTocPager      *pager);
 static void          toc_pager_dispose         (GObject           *gobject);
 
 static void          toc_pager_error           (YelpPager        *pager);
-static void          toc_pager_cancel          (YelpPager        *pager);
 static void          toc_pager_finish          (YelpPager        *pager);
 
-gboolean             toc_pager_process         (YelpPager         *pager);
-void                 toc_pager_cancel          (YelpPager         *pager);
-const gchar *        toc_pager_resolve_frag    (YelpPager         *pager,
+static gboolean      toc_pager_process         (YelpPager         *pager);
+static void          toc_pager_cancel          (YelpPager         *pager);
+static const gchar * toc_pager_resolve_frag    (YelpPager         *pager,
 						const gchar       *frag_id);
-GtkTreeModel *       toc_pager_get_sections    (YelpPager         *pager);
+static GtkTreeModel * toc_pager_get_sections    (YelpPager         *pager);
 
 static gboolean      toc_process_pending       (YelpTocPager      *pager);
 
@@ -308,7 +307,7 @@ toc_pager_finish (YelpPager   *pager)
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
 }
 
-gboolean
+static gboolean
 toc_pager_process (YelpPager *pager)
 {
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
@@ -330,7 +329,7 @@ toc_pager_process (YelpPager *pager)
     return FALSE;
 }
 
-const gchar *
+static const gchar *
 toc_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
     if (!frag_id)
@@ -339,7 +338,7 @@ toc_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 	return frag_id;
 }
 
-GtkTreeModel *
+static GtkTreeModel *
 toc_pager_get_sections (YelpPager *pager)
 {
     return NULL;

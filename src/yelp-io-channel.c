@@ -122,18 +122,21 @@ yelp_io_read          (GIOChannel    *channel,
 		       gsize         *bytes_read,
 		       GError       **error)
 {
+    gssize bytes;
     YelpIOChannel *yelp_channel = (YelpIOChannel *) channel;
 
 #ifdef HAVE_LIBBZ2
     if (yelp_channel->bzin)
-	*bytes_read = bzread (yelp_channel->bzin, buffer, count);
+	bytes = bzread (yelp_channel->bzin, buffer, count);
     else
 #endif
-	*bytes_read = gzread (yelp_channel->gzin, buffer, count);
+	bytes = gzread (yelp_channel->gzin, buffer, count);
 
-    if (*bytes_read < 0)
+    *bytes_read = bytes;
+
+    if (bytes < 0)
 	return G_IO_STATUS_ERROR;
-    else if (*bytes_read == 0)
+    else if (bytes == 0)
 	return G_IO_STATUS_EOF;
     else
 	return G_IO_STATUS_NORMAL;

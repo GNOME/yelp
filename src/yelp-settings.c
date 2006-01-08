@@ -119,10 +119,10 @@ static GtkWidget    *font_table_widget    = NULL;
 static GtkWidget    *variable_font_widget = NULL;
 static GtkWidget    *fixed_font_widget    = NULL;
 static GtkWidget    *use_caret_widget     = NULL;
-gulong system_fonts_handler  = 0;
-gulong variable_font_handler = 0;
-gulong fixed_font_handler    = 0;
-gulong use_caret_handler     = 0;
+static gulong system_fonts_handler  = 0;
+static gulong variable_font_handler = 0;
+static gulong fixed_font_handler    = 0;
+static gulong use_caret_handler     = 0;
 
 void
 yelp_settings_init (void)
