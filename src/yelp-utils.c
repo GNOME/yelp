@@ -219,7 +219,7 @@ yelp_doc_info_get (const gchar *uri, gboolean trust_uri)
     doc = (YelpDocInfo *) g_hash_table_lookup (doc_info_table, doc_uri);
 
     if (!doc) {
-	doc = yelp_doc_info_new (doc_uri, trust_uri);
+	doc = yelp_doc_info_new (uri, trust_uri);
 	if (doc && doc->type != YELP_DOC_TYPE_EXTERNAL) {
 	    YelpDocInfo *old_doc = NULL;
 
