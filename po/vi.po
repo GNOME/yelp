@@ -1,21 +1,21 @@
 # Vietnamese translation for Yelp.
-# Copyright © 2005 Gnome i18n Project for Vietnamese.
-# pclouds <pclouds@vnlinux.org>, 2002-2004, 2005.
-# Clytie Siddall <clytie@riverland.net.au>, 2005.
+# Copyright © 2002-2006 Gnome i18n Project for Vietnamese.
+# Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>, 2002-2004, 2005.
+# Clytie Siddall <clytie@riverland.net.au>, 2005, 2006.
 # 
 msgid ""
 ""
 msgstr "Project-Id-Version: Yelp 2.11.92 GNOME HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-30 07:04+0100\n"
-"PO-Revision-Date: 2005-12-30 20:30+1030\n"
+"POT-Creation-Date: 2006-01-08 23:19+0100\n"
+"PO-Revision-Date: 2006-01-09 16:29+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: LocFactoryEditor 1.5.1b\n"
+"X-Generator: LocFactoryEditor 1.6b23\n"
 
 #:../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -49,7 +49,7 @@ msgstr "Các hàm hạt nhân"
 msgid "Library Functions"
 msgstr "Các hàm thư viện"
 
-#:../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1057
+#:../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1188
 msgid "Manual Pages"
 msgstr "Trang hướng dẫn (man)"
 
@@ -137,7 +137,7 @@ msgstr "Ứng dụng Giáo dục"
 msgid "Graphics"
 msgstr "Đồ họa"
 
-#:../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:400
+#:../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
 msgid "Help Topics"
 msgstr "Chủ đề trợ giúp"
 
@@ -298,7 +298,7 @@ msgid "Use the default fonts set for the system."
 msgstr "Dùng phông chữ mặc định của hệ thống."
 
 # Name: don't translate / Tên: đừng dịch
-#:../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2618
+#:../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2643
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -318,22 +318,27 @@ msgstr "Đổi tên Đánh dấu"
 msgid "Remove Bookmark"
 msgstr "Loại bỏ Đánh dấu"
 
-#:../src/yelp-bookmarks.c:315 ../src/yelp-bookmarks.c:387
+#:../src/yelp-bookmarks.c:320
+#,c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "Đánh dấu tên %s cho trang này đã có."
+
+#:../src/yelp-bookmarks.c:397
 #,c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Đánh dấu tên <b>%s</b> cho trang này đã có."
 
-#:../src/yelp-bookmarks.c:415
+#:../src/yelp-bookmarks.c:425
 msgid "Document Sections"
 msgstr "Phần Tài liệu"
 
-#:../src/yelp-db-pager.c:248 ../src/yelp-db-print-pager.c:198
+#:../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
 #,c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không tồn tại, hoặc nó không "
-"đúng chuẩn XML."
+msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không tồn tại, hoặc nó "
+"không đúng chuẩn XML."
 
 #:../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -367,20 +372,21 @@ msgstr "Không thể xử lý tài liệu"
 msgid "No information is available about the error."
 msgstr "Không có thông tin về lỗi này."
 
-#:../src/yelp-info-pager.c:181
+#:../src/yelp-info-pager.c:190
 #,c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not a well-formed info page."
-msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không tồn tại, hoặc nó không phải là trang thông tin dạng đúng."
+msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không tồn tại, hoặc nó "
+"không phải là trang thông tin dạng đúng."
 
 #:../src/yelp-io-channel.c:98
 #,c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr "Không thể đọc và giải mã tập tin « %s ». Tập tin có lẽ được nén bằng dạng thức "
-"không được hỗ trợ."
+msgstr "Không thể đọc và giải mã tập tin « %s ». Tập tin có lẽ được nén bằng dạng "
+"thức không được hỗ trợ."
 
 #:../src/yelp-main.c:95
 msgid "Define which cache directory to use"
@@ -436,10 +442,11 @@ msgstr "Không hỗ trợ khả năng in trên máy in này"
 msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
-msgstr "Bạn đã cố in vào một máy in bằng trình điều khiển « %s ». Chương trình này cần thiết một trình điều khiển kiểu PostScript."
+msgstr "Bạn đã cố in vào một máy in bằng trình điều khiển « %s ». Chương trình này "
+"cần thiết một trình điều khiển kiểu PostScript."
 
 #:../src/yelp-print.c:402
-msgid "An error occured while printing"
+msgid "An error occurred while printing"
 msgstr "Gặp lỗi khi in"
 
 #:../src/yelp-print.c:406
@@ -485,20 +492,20 @@ msgstr "Không thể xử lý việc tìm kiếm của bạn. Không có kết n
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
-msgstr "Không thể xử lý việc tìm kiếm của bạn. Hoặc thiếu tập tin « %s », hoặc nó không phải là một tờ "
-"kiểu dáng XSLT hợp lệ."
+msgstr "Không thể xử lý việc tìm kiếm của bạn. Hoặc thiếu tập tin « %s », hoặc nó "
+"không phải là một tờ kiểu dáng XSLT hợp lệ."
 
-#:../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1303
+#:../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1447
 #:../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Không tìm thấy thuộc tính «href» trên «yelp:document»."
 
-#:../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1317
+#:../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1461
 #:../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Hết bộ nhớ"
 
-#:../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1358
+#:../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1502
 msgid "Help Contents"
 msgstr "Nội dung trợ giúp"
 
@@ -527,21 +534,25 @@ msgstr "Nội dung trợ giúp"
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-00AB"
 
-#:../src/yelp-toc-pager.c:278
+#:../src/yelp-toc-pager.c:272
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: tổng số tạm ngừng là âm."
 
-#:../src/yelp-toc-pager.c:501
+#:../src/yelp-toc-pager.c:495
 #,c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Không tải được tập tin OMF « %s »."
 
-#:../src/yelp-toc-pager.c:635
+#:../src/yelp-toc-pager.c:629
 #,c-format
 msgid "Read man page for %s"
 msgstr "Đọc trang hướng dẫn (man) cho « %s »"
 
-#:../src/yelp-toc-pager.c:1036
+#:../src/yelp-toc-pager.c:1074
+msgid "Read info page for "
+msgstr "Đọc trang thông tin (info) cho "
+
+#:../src/yelp-toc-pager.c:1167
 #,c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -549,155 +560,171 @@ msgid ""
 msgstr "Không tải được mục lục. Hoặc thiếu tập tin « %s », hoặc tập tin không đúng "
 "chuẩn XML."
 
-#:../src/yelp-toc-pager.c:1151
+#:../src/yelp-toc-pager.c:1199
+msgid "GNU Info Pages"
+msgstr "Trang Thông Tin GNU"
+
+#:../src/yelp-toc-pager.c:1295
 #,c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr "Không thể xử lý mục lục. Hoặc thiếu tập tin « %s », hoặc không phải là một tờ "
-"kiểu dáng XSLT hợp lệ."
+msgstr "Không thể xử lý mục lục. Hoặc thiếu tập tin « %s », hoặc không phải là một "
+"tờ kiểu dáng XSLT hợp lệ."
 
-#:../src/yelp-window.c:305
+#:../src/yelp-window.c:309
 msgid "_File"
 msgstr "_Tập tin"
 
-#:../src/yelp-window.c:306
+#:../src/yelp-window.c:310
 msgid "_Edit"
 msgstr "_Hiệu chỉnh"
 
-#:../src/yelp-window.c:307
+#:../src/yelp-window.c:311
 msgid "_Go"
 msgstr "Đ_i"
 
-#:../src/yelp-window.c:308
+#:../src/yelp-window.c:312
 msgid "_Bookmarks"
 msgstr "Đánh _dấu"
 
-#:../src/yelp-window.c:309
+#:../src/yelp-window.c:313
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#:../src/yelp-window.c:312
+#:../src/yelp-window.c:316
 msgid "_New Window"
 msgstr "_Cửa sổ mới"
 
-#:../src/yelp-window.c:317
+#:../src/yelp-window.c:321
 msgid "Print This Document"
 msgstr "In tài liệu này"
 
-#:../src/yelp-window.c:322
+#:../src/yelp-window.c:326
 msgid "Print This Page"
 msgstr "In trang này"
 
-#:../src/yelp-window.c:327
+#:../src/yelp-window.c:331
 msgid "About This Document"
 msgstr "Về tài liệu này"
 
-#:../src/yelp-window.c:332
+#:../src/yelp-window.c:336
 msgid "Open _Location"
 msgstr "Mở _vị trí"
 
-#:../src/yelp-window.c:337
+#:../src/yelp-window.c:341
 msgid "_Close Window"
 msgstr "_Đóng cửa sổ"
 
-#:../src/yelp-window.c:343
+#:../src/yelp-window.c:347
 msgid "_Copy"
 msgstr "_Chép"
 
-#:../src/yelp-window.c:349
+#:../src/yelp-window.c:353
 msgid "_Select All"
 msgstr "_Chọn tất cả"
 
-#:../src/yelp-window.c:354
+#:../src/yelp-window.c:358
 msgid "_Find..."
 msgstr "_Tìm..."
 
-#:../src/yelp-window.c:359
+#:../src/yelp-window.c:363
+msgid "Find Pre_vious"
+msgstr "Tìm _ngược"
+
+#:../src/yelp-window.c:365
+msgid "Find previous occurrence of the word or phrase"
+msgstr "Tìm lần trước gặp từ hay cụm từ"
+
+#:../src/yelp-window.c:368
 msgid "Find Ne_xt"
 msgstr "Tìm t_iếp"
 
-#:../src/yelp-window.c:364
+#:../src/yelp-window.c:370
+msgid "Find next occurrence of the word or phrase"
+msgstr "Tìm lần sau gặp từ hay cụm từ"
+
+#:../src/yelp-window.c:373
 msgid "_Preferences"
 msgstr "_Tùy thích"
 
-#:../src/yelp-window.c:369
+#:../src/yelp-window.c:378
 msgid "_Reload"
 msgstr "Tải _lại"
 
-#:../src/yelp-window.c:381
+#:../src/yelp-window.c:390
 msgid "_Back"
 msgstr "_Lùi"
 
-#:../src/yelp-window.c:383
+#:../src/yelp-window.c:392
 msgid "Show previous page in history"
 msgstr "Xem trang trước đó"
 
-#:../src/yelp-window.c:386
+#:../src/yelp-window.c:395
 msgid "_Forward"
 msgstr "_Tới"
 
-#:../src/yelp-window.c:388
+#:../src/yelp-window.c:397
 msgid "Show next page in history"
 msgstr "Xem trang kế"
 
-#:../src/yelp-window.c:391
+#:../src/yelp-window.c:400
 msgid "_Help Topics"
 msgstr "_Chủ đề trợ giúp"
 
-#:../src/yelp-window.c:393
+#:../src/yelp-window.c:402
 msgid "Go to the listing of help topics"
 msgstr "Đến danh sách các chủ đề trợ giúp"
 
-#:../src/yelp-window.c:396
+#:../src/yelp-window.c:405
 msgid "_Previous Section"
 msgstr "Phần t_rước"
 
-#:../src/yelp-window.c:401
+#:../src/yelp-window.c:410
 msgid "_Next Section"
 msgstr "Phần _kế"
 
-#:../src/yelp-window.c:406
+#:../src/yelp-window.c:415
 msgid "_Contents"
 msgstr "_Nội dung"
 
-#:../src/yelp-window.c:412
+#:../src/yelp-window.c:421
 msgid "_Add Bookmark"
 msgstr "T_hêm đánh dấu"
 
-#:../src/yelp-window.c:417
+#:../src/yelp-window.c:426
 msgid "_Edit Bookmarks..."
 msgstr "_Sửa đánh dấu..."
 
-#:../src/yelp-window.c:423
+#:../src/yelp-window.c:432
 msgid "_Open Link"
 msgstr "Mở _liên kết"
 
-#:../src/yelp-window.c:428
+#:../src/yelp-window.c:437
 msgid "Open Link in _New Window"
 msgstr "Mở liên kết trong cửa sổ _mới"
 
-#:../src/yelp-window.c:433
+#:../src/yelp-window.c:442
 msgid "_Copy Link Address"
 msgstr "_Chép địa chỉ liên kết"
 
-#:../src/yelp-window.c:439
+#:../src/yelp-window.c:448
 msgid "_About"
 msgstr "_Giới thiệu"
 
-#:../src/yelp-window.c:444
+#:../src/yelp-window.c:453
 msgid "Copy _Email Address"
 msgstr "Chép địa chỉ th_ư"
 
-#:../src/yelp-window.c:493
+#:../src/yelp-window.c:502
 msgid "Help Browser"
 msgstr "Bộ trợ giúp"
 
-#:../src/yelp-window.c:750 ../src/yelp-window.c:909
+#:../src/yelp-window.c:766 ../src/yelp-window.c:922
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Điều nhận diện tài nguyên đồng dạng (URI) cho tập tin này không hợp lệ."
 
-#:../src/yelp-window.c:762 ../src/yelp-window.c:904
+#:../src/yelp-window.c:778 ../src/yelp-window.c:917
 #,c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -705,46 +732,46 @@ msgid ""
 msgstr "Điều nhận diện tài nguyên đồng dạng (URI) « %s » không hợp lệ hoặc không chỉ "
 "tới một tập tin thật."
 
-#:../src/yelp-window.c:851 ../src/yelp-window.c:1274
+#:../src/yelp-window.c:864 ../src/yelp-window.c:1289
 msgid "Man pages are not supported in this version."
 msgstr "Phiên bản này không hỗ trợ trang hướng dẫn loại «man»."
 
-#:../src/yelp-window.c:861 ../src/yelp-window.c:1265
+#:../src/yelp-window.c:874 ../src/yelp-window.c:1280
 msgid "GNU info pages are not supported in this version"
 msgstr "Phiên bản này không hỗ trợ trang hướng dẫn loại thông tin «info» GNU."
 
-#:../src/yelp-window.c:879 ../src/yelp-window.c:1287
+#:../src/yelp-window.c:892 ../src/yelp-window.c:1302
 msgid "Search is not supported in this version."
 msgstr "Phiên bản này không hỗ trợ khả năng tìm kiếm."
 
-#:../src/yelp-window.c:884
+#:../src/yelp-window.c:897
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr "Tài liệu SGML không còn được hỗ trợ nữa. Vui lòng đề nghị tác giả tài liệu "
 "chuyển sang XML."
 
-#:../src/yelp-window.c:1010
+#:../src/yelp-window.c:1023
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#:../src/yelp-window.c:1011
+#:../src/yelp-window.c:1024
 msgid "Search for other documentation"
 msgstr "Tìm kiếm tài liệu khác"
 
-#:../src/yelp-window.c:1154
+#:../src/yelp-window.c:1169
 msgid "Find:"
 msgstr "Tìm:"
 
-#:../src/yelp-window.c:1174
+#:../src/yelp-window.c:1189
 msgid "Find _Next"
 msgstr "Tìm t_iếp..."
 
-#:../src/yelp-window.c:1186
+#:../src/yelp-window.c:1201
 msgid "Find _Previous"
 msgstr "Tìm _ngược"
 
-#:../src/yelp-window.c:1300
+#:../src/yelp-window.c:1315
 #,c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -752,35 +779,36 @@ msgid ""
 msgstr "Không tạo được một ngữ cảnh biến đổi cho tập tin « %s ». Có lẽ không hỗ trợ "
 "định dạng của nó."
 
-#:../src/yelp-window.c:1330 ../src/yelp-window.c:1754
-#:../src/yelp-window.c:1821
+#:../src/yelp-window.c:1344 ../src/yelp-window.c:1755
+#:../src/yelp-window.c:1822
 #,c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr "Không có phần « %s » trong tài liệu này. Nếu bạn được đưa đến phần này từ nút "
-"«Trợ giúp» trong ứng dụng, vui lòng báo lại cho người quản lý ứng dụng biết."
+msgstr "Không có phần « %s » trong tài liệu này. Nếu bạn được đưa đến phần này từ "
+"nút «Trợ giúp» trong ứng dụng, vui lòng báo lại cho người quản lý ứng dụng "
+"biết."
 
-#:../src/yelp-window.c:1445 ../src/yelp-window.c:2187
+#:../src/yelp-window.c:1459 ../src/yelp-window.c:2212
 #,c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr "Không đọc được tập tin « %s ». Hoặc thiếu tập tin, hoặc không có quyền đọc tập "
-"tin."
+msgstr "Không đọc được tập tin « %s ». Hoặc thiếu tập tin, hoặc không có quyền đọc "
+"tập tin."
 
-#:../src/yelp-window.c:1489
+#:../src/yelp-window.c:1510
 msgid "Loading..."
 msgstr "Đang tải..."
 
 #.Note to translators: put here your name (and address) so it
 #.* will show up in the "about" box
-#:../src/yelp-window.c:2615
+#:../src/yelp-window.c:2640
 msgid "translator-credits"
 msgstr "Nhóm Việt hoá GNOME (http://gnomevi.sourceforge.net)"
 
-#:../src/yelp-window.c:2620
+#:../src/yelp-window.c:2645
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Bộ duyệt và xem tài liệu cho màn hình làm việc Gnome."
 
@@ -797,8 +825,8 @@ msgstr "Không thể phân tách tập tin « %s ». Hoặc tập tin không t�
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-msgstr "Không thể xử lý tập tin « %s ». Hoặc tập tin « %s » không tồn tại, hoặc không "
-"phải là một tờ kiểu dáng XSLT hợp lệ."
+msgstr "Không thể xử lý tập tin « %s ». Hoặc tập tin « %s » không tồn tại, hoặc "
+"không phải là một tờ kiểu dáng XSLT hợp lệ."
 
 #:../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
