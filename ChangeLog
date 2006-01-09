@@ -1,3 +1,26 @@
+2006-01-08  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-man-parser.c: (yelp_man_parser_parse_file),
+	(yelp_man_parser_free), (parser_parse_line), (args_concat_all),
+	(macro_ignore_handler), (macro_bold_small_italic_handler),
+	(macro_roman_bold_small_italic_handler),
+	(macro_new_paragraph_handler), (macro_insert_self_handler),
+	(macro_title_header_handler), (macro_section_header_handler),
+	(macro_spacing_handler), (macro_define_handler),
+	(macro_tp_handler), (macro_ip_handler),
+	(macro_hanging_paragraph_handler), (macro_mandoc_handler),
+	(macro_url_handler), (macro_rs_re_handler),
+	(macro_mandoc_list_handler), (macro_verbatim_handler),
+	(is_mandoc_manual_macro_parsed), (is_mandoc_manual_macro_callable),
+	(macro_mandoc_utility_handler), (macro_mandoc_listitem_handler),
+	(macro_template_handler), (parser_handle_linetag),
+	(parser_read_until), (parser_escape_tags),
+	(parser_append_given_text_handle_escapes), (parser_append_node),
+	(parser_append_node_attr), (parser_parse_table):
+	* stylesheets/man2html.xsl:
+	man page parser rework, fixes #163404, #321620, #321627, #324750,
+	#326058
+
 2006-01-08  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-utils.c:

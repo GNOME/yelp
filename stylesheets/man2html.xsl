@@ -87,7 +87,10 @@
     div[class~="SH"] { margin-left: 1.2em; }
     div[class~="SS"] { margin-left: 1.6em; }
 
+    span[class~="R"] { font-family: serif; }
     span[class~="Section"] { margin-left: 0.4em; }
+  
+    dd { padding-bottom: 10px; }
   </xsl:text>
 </xsl:template>
 
@@ -130,8 +133,10 @@
   <xsl:apply-templates/><br/>
 </xsl:template>
 
-<!-- ignore anything in the Indent element for now -->
+<!-- ignore anything in the Indent,Count,sp element for now -->
 <xsl:template match="Indent" />
+<xsl:template match="Count" />
+<xsl:template match="sp" />
 
 <xsl:template match="B | fB">
   <b><xsl:apply-templates/></b>
@@ -143,6 +148,33 @@
 
 <xsl:template match="I | fI">
   <i><xsl:apply-templates/></i>
+</xsl:template>
+
+<xsl:template match="R | fR">
+  <span class="R"><xsl:apply-templates/></span>
+</xsl:template>
+
+<xsl:template match="Verbatim">
+  <pre>
+    <xsl:choose>
+      <xsl:when test="node()[1]/self::text()">
+        <xsl:variable name="node" select="node()[1]"/>
+        <xsl:choose>
+          <xsl:when test="starts-with(string($node), '&#x000A;')">
+            <xsl:value-of select="substring-after(string($node), '&#x000A;')"/>
+            <xsl:apply-templates select="node()[position() != 1]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="string($node)"/>
+            <xsl:apply-templates select="node()[position() != 1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates />
+      </xsl:otherwise>
+    </xsl:choose>
+  </pre>
 </xsl:template>
 
 <xsl:template match="IP">
@@ -158,7 +190,14 @@
 
 <xsl:template mode="IP.mode" match="IP">
   <dt>
-    <xsl:apply-templates select="Tag"/>
+    <xsl:choose>
+      <xsl:when test="Tag">
+        <xsl:apply-templates select="Tag"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
   </dt>
   <dd>
     <xsl:apply-templates select="Tag/following-sibling::node()"/>
@@ -185,11 +224,13 @@
     <xsl:choose>
       <xsl:when test="$nextSS">
         <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SS[1] = $nextSS]"/>
+         select="following-sibling::*[following-sibling::SS[1] = $nextSS and 
+                                      following-sibling::SS[1]/@id = $nextSS/@id]"/>
       </xsl:when>
       <xsl:when test="$nextSH">
         <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SH[1] = $nextSH]"/>
+         select="following-sibling::*[following-sibling::SH[1] = $nextSH and
+                                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates select="following-sibling::*"/>
@@ -208,12 +249,14 @@
     <xsl:choose>
       <xsl:when test="$nextSS">
         <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SS[1] = $nextSS[1]]"/>
+         select="following-sibling::*[following-sibling::SS[1] = $nextSS[1] and
+                                      following-sibling::SS[1]/@id = $nextSS[1]/@id]"/>  
         <xsl:apply-templates select="$nextSS"/>
       </xsl:when>
       <xsl:when test="$nextSH">
         <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SH[1] = $nextSH]"/>
+         select="following-sibling::*[following-sibling::SH[1] = $nextSH and
+                                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates select="following-sibling::*"/>
@@ -253,6 +296,108 @@
 </xsl:template>
 
 <xsl:template match="URI"/>
+
+<xsl:template match="UN">
+  <a name="text()" id="text()"/>
+</xsl:template>
+
+<!-- these are all for mdoc (BSD) man page support -->
+
+<!-- these are just printed out -->
+<xsl:template match="An | Dv | Er | Ev | Ic | Li | St">
+  <xsl:text>
+</xsl:text>
+  <xsl:apply-templates/>
+</xsl:template>
+
+<!-- these are italicized -->
+<xsl:template match="Ad | Ar | Fa | Ot | Pa | Va | Vt">
+  <i><xsl:apply-templates/></i>
+</xsl:template>
+
+<!-- these are bold -->
+<xsl:template match="Cd | Cm | Fd | Ic | Nm">
+  <b><xsl:apply-templates/></b>
+</xsl:template>
+
+<!-- Function call - TODO need to do the ( , ) here -->
+<xsl:template match="Fn | Fo | Fc">
+  <i><xsl:apply-templates/></i>
+</xsl:template>
+
+<!-- Cross reference -->
+<xsl:template match="Xr">
+  <xsl:variable name="manpage" select="substring-before(string(.), ' ')"/>
+  <xsl:variable name="section" select="substring-before(substring-after(string(.), ' '), ' ')"/>
+  <xsl:variable name="extra"   select="substring-after(substring-after(string(.), ' '), ' ')"/>
+  <a>
+    <xsl:attribute name="href">
+      <xsl:text>man:</xsl:text>
+      <xsl:value-of select="$manpage"/>
+      <xsl:text>(</xsl:text>
+      <xsl:value-of select="$section"/>
+      <xsl:text>)</xsl:text>
+    </xsl:attribute>
+    <xsl:value-of select="$manpage"/>
+    <xsl:text>(</xsl:text>
+    <xsl:value-of select="$section"/>
+    <xsl:text>)</xsl:text>
+  </a>
+  <xsl:value-of select="$extra"/>
+</xsl:template>
+
+<!-- Option -->
+<xsl:template match="Op | Oo | Oc">
+  <xsl:text> [</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>]</xsl:text>
+</xsl:template>
+
+<!-- Trade or type name (small Caps). -->
+<xsl:template match="Tn">
+  <xsl:variable name="txt" select="string(child::text())"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="translate($txt, 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
+  <xsl:apply-templates select="*"/>
+</xsl:template>
+
+<xsl:template match="Nd">
+  <xsl:text> - </xsl:text>
+  <xsl:apply-templates />
+</xsl:template>
+
+<xsl:template match="Fl">
+  <xsl:text>-</xsl:text>
+  <b><xsl:apply-templates select="child::text()"/></b>
+  <xsl:apply-templates select="*"/>
+</xsl:template>
+
+<xsl:template match="Bl">
+  <dl>
+    <xsl:for-each select="It">
+      <xsl:choose>
+        <xsl:when test="ItTag">
+          <dt><xsl:apply-templates select="ItTag"/></dt>
+          <dd>
+            <xsl:apply-templates select="ItTag/following-sibling::node()"/>
+          </dd>
+        </xsl:when>
+        <xsl:otherwise>
+          <dt>
+            <xsl:text>•</xsl:text>
+          </dt>
+          <dd>
+            <xsl:apply-templates />
+          </dd>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </dl>
+</xsl:template>
+
+<xsl:template match="ItTag">
+  <xsl:apply-templates/>
+</xsl:template>
 
 <xsl:template match="*">
   <xsl:message>
