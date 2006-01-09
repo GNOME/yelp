@@ -248,6 +248,8 @@ struct _YelpWindowPriv {
     GtkToolItem    *find_prev;
     GtkToolItem    *find_next;
     gchar          *find_string;
+    GtkAction      *find_next_menu;
+    GtkAction      *find_prev_menu;
 
     /* Open Location */
     GtkWidget      *location_dialog;
@@ -1063,13 +1065,14 @@ window_populate (YelpWindow *window)
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
 
-    action = gtk_action_group_get_action (priv->action_group, 
-						  "PrintDocument");
-    g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
-
     priv->popup = gtk_ui_manager_get_widget(priv->ui_manager, "ui/main_popup");
     priv->maillink = gtk_ui_manager_get_widget(priv->ui_manager, "ui/mail_popup");
     priv->merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
+
+    priv->find_next_menu = gtk_action_group_get_action (priv->action_group, 
+							"FindNext");
+    priv->find_prev_menu = gtk_action_group_get_action (priv->action_group, 
+						      "FindPrev");
 
     priv->pane = gtk_hpaned_new ();
     /* We should probably remember the last position and set to that. */
@@ -2725,6 +2728,10 @@ window_find_previous_cb (GtkAction *action, YelpWindow *window)
     if (!window_find_again (window, FALSE)) {
 	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), TRUE);
 	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), FALSE);
+	g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", TRUE, 
+		      NULL);
+	g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", FALSE, 
+		      NULL);
     } else {
 	window_find_buttons_set_sensitive (window, TRUE);
     }
@@ -2739,6 +2746,10 @@ window_find_next_cb (GtkAction *action, YelpWindow *window)
     if (!window_find_again (window, TRUE)) {
 	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
+	g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", FALSE, 
+		      NULL);
+	g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", TRUE, 
+		      NULL);
     } else {
 	window_find_buttons_set_sensitive (window, TRUE);
     }
@@ -2758,6 +2769,10 @@ window_find_clicked_cb (GtkWidget  *widget,
 	if (!window_find_again (window, TRUE)) {
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
+	    g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", FALSE, 
+			  NULL);
+	    g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", TRUE, 
+			  NULL);
 	} else {
 	    window_find_buttons_set_sensitive (window, TRUE);
 	}
@@ -2766,6 +2781,10 @@ window_find_clicked_cb (GtkWidget  *widget,
 	if (!window_find_again (window, FALSE)) {
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), TRUE);
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), FALSE);
+	    g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", TRUE, 
+			  NULL);
+	    g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", FALSE, 
+			  NULL);
 	} else {
 	    window_find_buttons_set_sensitive (window, TRUE);
 	}
@@ -2798,6 +2817,10 @@ window_find_entry_changed_cb (GtkEditable *editable,
 	if (found) {
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), TRUE);
 	    gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), FALSE);
+	    g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", TRUE, 
+			  NULL);
+	    g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", FALSE, 
+			  NULL);
 	} else {
 	    window_find_buttons_set_sensitive (window, TRUE);
 	}
@@ -2823,6 +2846,10 @@ window_find_entry_activate_cb (GtkEditable *editable,
     if (!window_find_again (window, TRUE)) {
 	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), TRUE);
+	g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", FALSE, 
+		      NULL);
+	g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", TRUE, 
+		      NULL);
     } else {
 	window_find_buttons_set_sensitive (window, TRUE);
     }
@@ -2862,6 +2889,10 @@ window_find_buttons_set_sensitive (YelpWindow  *window,
 
     gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), sensitive);
     gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), sensitive);
+    g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", sensitive, 
+		  NULL);
+    g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", sensitive, 
+		  NULL);
 }
 
 static gboolean
