@@ -167,10 +167,10 @@ YelpBase *
 yelp_base_new (void)
 {
         YelpBase     *base;
-	YelpBasePriv *priv;
+	/* YelpBasePriv *priv; */
 	
         base = g_object_new (YELP_TYPE_BASE, NULL);
-	priv = base->priv;
+	/* priv = base->priv; */
 	
 	yelp_toc_pager_init ();
 
