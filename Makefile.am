@@ -13,6 +13,7 @@ yelpdata_DATA = important_docs.xml
 
 EXTRA_DIST = 						\
 	autogen.sh					\
+	MAINTAINERS					\
 	intltool-extract.in  				\
 	intltool-merge.in    				\
 	intltool-update.in				\
