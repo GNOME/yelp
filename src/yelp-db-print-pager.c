@@ -170,7 +170,6 @@ db_print_pager_parse (YelpPager *pager)
     xmlParserCtxtPtr parserCtxt = NULL;
     xmlDocPtr doc = NULL;
 
-    xmlChar     *id;
     GError      *error = NULL;
 
     d (g_print ("db_print_pager_parse\n"));

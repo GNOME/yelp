@@ -247,14 +247,9 @@ args_concat_all (GSList *args)
 static void
 macro_ignore_handler (YelpManParser *parser, gchar *macro, GSList *args)
 { 
-    //g_print ("ignoring...");
-	
     while (PARSER_CUR) {
 	parser->anc = ++parser->cur;
-        //g_print ("-");
     }
-    
-    //g_print ("\n");
 }
 
 static void
@@ -1123,12 +1118,12 @@ get_argument:
 	    *(parser->cur) = c;
 	    parser->anc = parser->cur;
 	} else
-	    ;//g_warning ("FIXME: need to take into account this case...\n");
+	    ; /* FIXME: do we need to handle this case? */
 
 	arglist = g_slist_append (arglist, arg);
     }
     
-    /* g_print ("handling macro (%s)\n", str);
+    /*g_print ("handling macro (%s)\n", str);
     
     listptr = arglist;
     while (listptr && listptr->data) {
@@ -1512,7 +1507,7 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 	    ptr++;
 	}	
 
-    } // end while
+    } /* end while */
 
     c = *(ptr);
     *(ptr) = '\0';

@@ -1,3 +1,10 @@
+2006-01-13  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-db-print-pager.c: (db_print_pager_parse):
+	* src/yelp-man-parser.c: (macro_ignore_handler),
+	(parser_handle_linetag), (parser_append_given_text_handle_escapes):
+	fix some silly compiler errors with debug enabled
+
 2006-01-12  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* Makefile.am: 
