@@ -42,7 +42,9 @@
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
 
+#ifdef ENABLE_BEAGLE
 #include <beagle/beagle.h>
+#endif /* ENABLE_BEAGLE */
 
 #include "yelp-error.h"
 #include "yelp-settings.h"
@@ -66,6 +68,8 @@
 typedef gboolean      (*ProcessFunction)        (YelpSearchPager      *pager);
 
 typedef struct _YelpListing YelpListing;
+
+typedef struct _SearchContainer SearchContainer;
 
 #define YELP_SEARCH_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SEARCH_PAGER, YelpSearchPagerPriv))
 
@@ -94,6 +98,30 @@ struct _YelpListing {
     gboolean     has_listings;
 };
 
+enum {
+    NOT_SEARCHING = 0,
+    SEARCH_1,
+    SEARCH_CHILD,
+    SEARCH_DOC = 99
+};
+
+struct _SearchContainer {
+    gboolean     result_found;
+    gchar *      current_subsection;
+    gchar *      result_subsection;
+    gchar *      doc_title;
+    gchar *      base_path;
+    gchar *      base_filename;
+    gchar *      snippet;
+    GSList *     components;
+    GHashTable  *entities;
+    gchar **      search_term;
+    gchar *      top_element;
+    gint         search_status;
+    gchar *      elem_type;
+    GSList *     elem_stack;
+};
+
 static void          search_pager_class_init      (YelpSearchPagerClass *klass);
 static void          search_pager_init            (YelpSearchPager      *pager);
 static void          search_pager_dispose         (GObject           *gobject);
@@ -118,8 +146,46 @@ static gboolean      search_pager_process_idle (YelpSearchPager        *pager);
 
 static YelpPagerClass *parent_class;
 
+static void          s_startElement            (void       *data,
+						const xmlChar         *name,
+						const xmlChar        **attrs);
+static void          s_endElement              (void       *data,
+						const xmlChar         *name);
+static void          s_characters              (void       *data,
+						const xmlChar         *ch,
+						int                    len);
+static void          s_declEntity              (void       *data, 
+						const xmlChar         *name, 
+						int                    type,
+						const xmlChar         *pID, 
+						const xmlChar         *sID,
+						xmlChar              *content);
+static xmlEntityPtr  s_getEntity               (void      *data, 
+						const xmlChar        *name);
+static gboolean      slow_search_setup         (YelpSearchPager       *pager);
+static gboolean      slow_search_process       (YelpSearchPager       *pager);
+static void          search_parse_result       (YelpSearchPager       *pager,
+						SearchContainer       *c);
+static gchar *       search_clean_snippet      (gchar                 *snippet,
+						gchar                **terms);
+static void          search_process_man        (YelpSearchPager       *pager,
+						gchar                **terms);
+static void          search_process_info       (YelpSearchPager        *pager,
+						gchar                **terms);
+static void          process_man_result        (YelpSearchPager       *pager, 
+						gchar                 *result, 
+						gchar                **terms);
+void                 process_info_result       (YelpSearchPager       *pager, 
+						gchar                 *result,
+						gchar                **terms);
+
+
+#ifdef ENABLE_BEAGLE
 static BeagleClient   *beagle_client;
+#endif /* ENABLE_BEAGLE */
 static char const * const * langs;
+
+static GSList * pending_searches = NULL;
 
 GType
 yelp_search_pager_get_type (void)
@@ -153,8 +219,10 @@ search_pager_class_init (YelpSearchPagerClass *klass)
 
     parent_class = g_type_class_peek_parent (klass);
 
+#ifdef ENABLE_BEAGLE
     beagle_client = beagle_client_new (NULL);
     d(g_print ("client: %p\n", beagle_client);)
+#endif /* ENABLE_BEAGLE */
 
     langs = g_get_language_names ();
 
@@ -305,6 +373,7 @@ search_pager_process (YelpPager *pager)
 {
     d (g_print ("search_pager_process\n"));
 
+#ifdef ENABLE_BEAGLE
     if (beagle_client == NULL) {
 	GError *error = NULL;
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
@@ -313,6 +382,7 @@ search_pager_process (YelpPager *pager)
 	yelp_pager_error (YELP_PAGER (pager), error);
 	return FALSE;
     }
+#endif /* ENABLE_BEAGLE */
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
     g_signal_emit_by_name (pager, "parse");
@@ -343,7 +413,7 @@ search_pager_get_sections (YelpPager *pager)
 }
 
 /******************************************************************************/
-
+#ifdef ENABLE_BEAGLE
 static void
 check_finished (YelpSearchPager *pager)
 {
@@ -543,19 +613,23 @@ finished_cb (BeagleQuery            *query,
 
     check_finished (pager);
 }
+#endif /* ENABLE_BEAGLE */
 
 static gboolean
 search_pager_process_idle (YelpSearchPager *pager)
 {
+#ifdef ENABLE_BEAGLE
     BeagleQuery    *query;
-    YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
     GError *error = NULL;
+#endif /* ENABLE_BEAGLE */
+    YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
 
     priv->search_doc = xmlNewDoc (BAD_CAST "1.0");
     priv->root = xmlNewNode (NULL, BAD_CAST "search");
     xmlSetProp (priv->root, BAD_CAST "title", BAD_CAST priv->search_terms);
     xmlDocSetRootElement (priv->search_doc, priv->root);
 
+#ifdef ENABLE_BEAGLE
     query = beagle_query_new ();
 
     beagle_query_set_max_hits (query, 10000);
@@ -584,6 +658,12 @@ search_pager_process_idle (YelpSearchPager *pager)
     }
 
     g_clear_error (&error);
+#endif /* ENABLE_BEAGLE */
+
+#ifndef ENABLE_BEAGLE
+    gtk_idle_add ((GtkFunction) slow_search_setup,
+		  pager);
+#endif
 
     return FALSE;
 }
@@ -600,7 +680,7 @@ process_xslt (YelpSearchPager *pager)
     GtkIconInfo *info;
     GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
 
-    d(xmlDocFormatDump(stdout, priv->search_doc, 1));
+    d (xmlDocFormatDump(stdout, priv->search_doc, 1));
 
     priv->stylesheet = xsltParseStylesheetFile (BAD_CAST SEARCH_STYLESHEET);
     if (!priv->stylesheet) {
@@ -795,4 +875,649 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	xmlFreeDoc (new_doc);
     if (style)
 	xsltFreeStylesheet (style);
+}
+
+static gboolean sk_docomf = FALSE;
+static GSList *omf_pending = NULL;
+
+static void
+sk_startElement (void *empty, const xmlChar  *name,
+		 const xmlChar **attrs)
+{
+    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
+	sk_docomf = TRUE;
+}
+
+static void
+sk_endElement (void *empty, const xmlChar *name)
+{
+    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
+	sk_docomf = FALSE;
+}
+
+static void
+sk_characters (void *empty, const xmlChar *ch,
+	       int            len)
+{
+    gchar *omf;
+    
+    if (sk_docomf) {
+	omf = g_strndup ((gchar *) ch, len);
+	omf_pending = g_slist_prepend (omf_pending, omf);
+    }
+}
+
+void s_startElement(void *data,
+		  const xmlChar * name,
+		  const xmlChar ** attrs)
+{
+    SearchContainer *c = (SearchContainer *) data;
+
+    if (g_str_equal (name, "xi:include")) {
+	gint i=0;
+	while (attrs[i]) {
+	    if (g_str_equal (attrs[i], "href")) {
+		c->components = g_slist_append (c->components,
+						g_strconcat (c->base_path,
+							     "/",
+							     attrs[i+1], 
+							     NULL));
+		break;
+	    }
+	    i+=2;
+	}
+    }
+	
+    if (attrs) {
+	gint i=0;
+	while (attrs[i]) {
+	    if (g_str_equal (attrs[i], "id")) {
+		g_free (c->current_subsection);
+		c->current_subsection = g_strdup ((gchar *) attrs[i+1]);
+	    }
+	    i+=2;
+	}
+    }
+    /* Are we allowed to search this element? */
+    if (c->search_status == NOT_SEARCHING) {
+	if (g_str_equal (name, "title"))
+	    c->search_status = SEARCH_1;
+	else if (g_str_equal (name, "indexterm"))
+	    c->search_status = SEARCH_1;
+	else if (g_str_equal (name, "sect1") ||
+		 g_str_equal (name, "section") ||
+		 g_str_equal (name, "chapter") ||
+		 g_str_equal (name, "body"))
+	    c->search_status = SEARCH_DOC;
+    } else if (c->search_status == SEARCH_1) {
+	c->search_status = SEARCH_CHILD;
+    }
+
+    if (c->elem_type) {
+	c->elem_stack = g_slist_prepend (c->elem_stack, 
+					 g_strdup (c->elem_type));
+	g_free (c->elem_type);	
+    }
+
+    c->elem_type = g_strdup ((gchar *) name);
+
+    return;
+}
+
+void s_endElement(void * data,
+		const xmlChar * name)
+{
+    SearchContainer *c = (SearchContainer *) data;
+    
+    if (c->search_status == SEARCH_CHILD) {
+	c->search_status = SEARCH_1;
+    } else if (c->search_status == SEARCH_1) {
+	c->search_status = NOT_SEARCHING;
+    }
+
+    g_free (c->elem_type);    
+    c->elem_type = NULL;
+
+    if (c->elem_stack) {
+	GSList *top = c->elem_stack;
+	c->elem_type = g_strdup ((gchar *) top->data);
+	c->elem_stack = g_slist_delete_link (c->elem_stack, top);
+    }
+    return;
+}
+
+void s_characters(void * data,
+		  const xmlChar * ch,
+		  int len)
+{
+    SearchContainer *c = (SearchContainer *) data;
+    if (c->search_status != NOT_SEARCHING && !c->result_found) {
+	gchar *tmp = g_utf8_casefold ((gchar *) ch, len);
+	gint i = 0;
+	gchar *s_term = c->search_term[i];
+	while (s_term && !c->result_found) {
+	    if (strstr (tmp, s_term)) {
+		c->result_found = TRUE;
+		c->snippet = g_strndup (g_utf8_casefold ((gchar *) ch, len), 
+					len);
+		c->result_subsection = g_strdup (c->current_subsection);
+		
+	    }
+	    i++;
+	    s_term = c->search_term[i];
+	}
+	g_free (tmp);
+    }
+    return;
+}
+
+void s_declEntity (void *data, const xmlChar *name, int type,
+		  const xmlChar *pID, const xmlChar *sID,
+		  xmlChar *content)
+{
+    SearchContainer *c = (SearchContainer *) data;
+    if (type == 2) {
+	g_hash_table_insert (c->entities, 
+			     g_strdup ((gchar *) name), 
+			     g_strdup ((gchar *) sID));
+
+    }
+    return;
+}
+
+xmlEntityPtr s_getEntity (void *data, const xmlChar *name)
+{
+    SearchContainer *c = (SearchContainer *) data;
+    xmlEntityPtr t = xmlGetPredefinedEntity(name);
+
+    if (!t) {
+	gchar * lookup = g_hash_table_lookup (c->entities, name);
+	if (lookup) {
+	    c->components = g_slist_append (c->components,
+					    g_strconcat (c->base_path,
+							     "/",
+							     lookup, NULL));
+	}
+    }
+
+    return t;
+
+}
+
+
+
+
+
+static xmlSAXHandler handlers = {
+    NULL, NULL, NULL, NULL, NULL,
+    s_getEntity,
+    s_declEntity, NULL, 
+    NULL, NULL, NULL, NULL, NULL, NULL,
+    s_startElement, s_endElement, NULL, s_characters,
+    NULL, NULL, NULL, NULL, NULL, NULL
+};
+
+
+/* Parse the omfs and build the list of files to be searched */
+
+static gboolean
+slow_search_setup (YelpSearchPager *pager)
+{
+    gchar  *content_list;
+    gchar  *stderr_str;
+    gchar  *lang;
+    gchar  *command;
+    static xmlSAXHandler sk_sax_handler = { 0, };
+    xmlParserCtxtPtr parser;
+    if (langs && langs[0])
+	lang = (gchar *) langs[0];
+    else
+	lang = "C";
+    
+    command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
+    
+    if (g_spawn_command_line_sync (command, &content_list, &stderr_str, NULL, NULL)) {
+	if (!sk_sax_handler.startElement) {
+	    sk_sax_handler.startElement = sk_startElement;
+	    sk_sax_handler.endElement   = sk_endElement;
+	    sk_sax_handler.characters   = sk_characters;
+	    sk_sax_handler.initialized  = TRUE;
+	}
+	content_list = g_strstrip (content_list);
+	xmlSAXUserParseFile (&sk_sax_handler, NULL, content_list);
+    }
+    
+    parser = xmlNewParserCtxt ();
+
+    g_free (content_list);
+    g_free (stderr_str);
+    g_free (command);
+
+    while (omf_pending) {
+	GSList  *first = NULL;
+	gchar   *file  = NULL;
+	xmlDocPtr          omf_doc    = NULL;
+	xmlXPathContextPtr omf_xpath  = NULL;
+	xmlXPathObjectPtr  omf_url    = NULL;
+	xmlXPathObjectPtr  omf_title  = NULL;
+
+	SearchContainer *container;
+	gchar *ptr;
+	gchar *path;
+	gchar *fname;
+	gchar *realfname;
+
+	first = omf_pending;
+	omf_pending = g_slist_remove_link (omf_pending, first);
+	file = (gchar *) first->data;
+
+
+	omf_doc = xmlCtxtReadFile (parser, (const char *) file, NULL,
+			       XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+			       XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+			       XML_PARSE_NONET    );
+
+	if (!omf_doc) {
+	    g_warning (_("Could not load the OMF file '%s'."), file);
+	    continue;
+	}
+
+	omf_xpath = xmlXPathNewContext (omf_doc);
+	omf_url =
+	    xmlXPathEvalExpression (BAD_CAST 
+				    "string(/omf/resource/identifier/@url)", 
+				    omf_xpath);
+	omf_title =
+	    xmlXPathEvalExpression (BAD_CAST 
+				    "string(/omf/resource/title)", 
+				    omf_xpath);
+	
+	fname = g_strdup ((gchar *) omf_url->stringval);
+	if (g_str_has_prefix (fname, "file:")) {
+	    realfname = &fname[5];
+	} else {
+	    realfname = fname;
+	}    
+
+	if (!g_file_test (realfname, G_FILE_TEST_EXISTS)) {
+	    continue;
+	}
+
+	container = g_new0 (SearchContainer, 1);
+	
+	container->result_found = FALSE;
+	container->base_filename = g_strdup (realfname);
+	container->entities = g_hash_table_new (g_str_hash, g_str_equal);
+	container->doc_title = g_strdup ((gchar *) omf_title->stringval);
+
+
+	ptr = g_strrstr (container->base_filename, "/");
+
+	path = g_strndup (container->base_filename, 
+			    ptr - container->base_filename);
+	container->base_path = g_strdup (path);
+	container->search_term = 
+	    g_strsplit (g_utf8_casefold (pager->priv->search_terms, -1),
+			" ", -1);
+	container->search_status = NOT_SEARCHING;
+
+	pending_searches = g_slist_prepend (pending_searches, container);
+	
+	g_free (fname);
+	g_free (path);
+	if (omf_url)
+	    xmlXPathFreeObject (omf_url);
+	if (omf_title)
+	    xmlXPathFreeObject (omf_title);
+	if (omf_xpath)
+	    xmlXPathFreeContext (omf_xpath);
+	if (omf_doc)
+	    xmlFreeDoc (omf_doc);
+
+    }
+
+    gtk_idle_add ((GtkFunction) slow_search_process,
+		  pager);
+    if (parser)
+	xmlFreeParserCtxt (parser);
+
+    return FALSE;
+
+}
+
+static gboolean 
+slow_search_process (YelpSearchPager *pager)
+{
+    SearchContainer *c;
+    GSList *first = pending_searches;
+
+    pending_searches = g_slist_remove_link (pending_searches, first);
+
+    c = (SearchContainer *) first->data;
+
+    xmlSAXUserParseFile (&handlers, c, c->base_filename);
+
+    if (c->result_found) {
+	search_parse_result (pager, c);
+    } else while (c->components) {
+	GSList *next = c->components;
+	c->components = g_slist_remove_link (c->components, next);
+	c->search_status = NOT_SEARCHING;
+	xmlSAXUserParseFile (&handlers, c, (gchar *) next->data);
+	if (c->result_found) {
+	    search_parse_result (pager, c);
+	    break;
+	}
+    }
+
+    /* Cleanup the container and delete it */
+    g_free (c->current_subsection);
+    g_free (c->result_subsection);
+    g_free (c->doc_title);
+    g_free (c->base_path);
+    g_free (c->base_filename);
+    g_free (c->snippet);
+    g_hash_table_destroy (c->entities);
+
+
+    if (pending_searches) {
+	g_strfreev (c->search_term);
+	g_free (c);
+	return TRUE;
+    }
+    else {
+#ifdef ENABLE_MAN
+	search_process_man (pager, c->search_term);
+#endif
+#ifdef ENABLE_INFO
+	search_process_info (pager, c->search_term);
+#endif
+	g_strfreev (c->search_term);
+	g_free (c);
+
+	gtk_idle_add_priority (G_PRIORITY_LOW,
+			       (GtkFunction) process_xslt,
+			       pager);
+	return FALSE;
+    }
+}
+
+gchar *
+search_clean_snippet (gchar *snippet, gchar **terms)
+{
+    /* This is probably what you want to change */
+    gint len_before_term = 47;
+    gint len_after_term = 37;
+
+    gchar *result = NULL;
+    gchar **before = NULL;
+    gchar *after = NULL;
+    gchar *tmp = NULL;
+    gchar * before_string;
+    gchar * after_string;
+    gchar *t;
+    gint blen, alen;
+    gchar *break_term = NULL;
+
+    for (blen=0; terms[blen]; blen++) {
+	break_term = terms[blen];
+	if (strstr (snippet, break_term))
+	    break;
+    }
+    
+    before = g_strsplit (snippet, break_term, 2);
+    if (g_strv_length (before) !=2) {
+	/* The portion before or after the snippet is missing
+ 	 * so we make it up as ''
+	 */
+	gchar *tmp = g_strdup (before[0]);
+	g_strfreev (before);
+	before = g_new0 (gchar *, 2);	
+
+	if (g_str_has_prefix (snippet, break_term)) {
+	    before[0] = g_strdup ("");
+	    before[1] = g_strdup (tmp);
+	} else {
+	    before[0] = g_strdup (tmp);
+	    before[1] = g_strdup ("");
+
+	}
+	g_free (tmp);
+    }
+    
+    /* Now, strip the shite from the begining and end */
+    after = before[0];
+    tmp = before[1]+strlen(before[1])-1;
+    
+    while (!g_ascii_isalnum (*after) && after != before[0]+strlen (before[0]))
+	after++;
+    while (!g_ascii_isalnum (*tmp) && tmp !=before[1]) {
+	tmp--;
+    }
+    tmp++;
+    before_string = g_strdup (after);
+    if (tmp-before[1] > 0) {
+	after_string = g_strndup (before[1], tmp-before[1]);
+    } else {
+	after_string = g_strdup (before[1]);
+    }
+    
+    /* Now, reduce it to a managable size */    
+    blen = strlen (before_string);
+    alen = strlen (after_string);
+
+    if (blen > len_before_term) {
+	gchar *tmp = before_string + strlen(before_string) - len_before_term;
+	t = g_strndup (tmp, len_before_term);
+	g_free (before_string);
+	before_string = g_strconcat ("...", t, NULL);
+	g_free (t);
+    }
+    if (alen > len_after_term) {
+	t = g_strndup (after_string, len_after_term);
+	g_free (after_string);
+	after_string = g_strconcat (t, "...", NULL);
+	g_free (t);
+    }
+    /* Finally, piece all these together into a complete snippet 
+     * with markup and everything
+     */
+    result = g_strconcat (before_string, "<em>", break_term, "</em>", 
+			  after_string, NULL);
+    g_free (before_string);
+    g_free (after_string);
+    g_strfreev (before);
+
+    return result;
+}
+
+void
+search_parse_result (YelpSearchPager *pager, SearchContainer *c)
+{    
+    xmlNode *child;
+    gchar *new_uri;
+    xmlDoc *snippet_doc;
+    xmlNode *node;
+    char *xmldoc;
+    
+    new_uri = g_strconcat (c->base_filename, "#", c->result_subsection, 
+			   NULL);
+    child = xmlNewTextChild (pager->priv->root, NULL, 
+			     BAD_CAST "result", NULL);
+    xmlSetProp (child, BAD_CAST "uri", BAD_CAST new_uri);
+    xmlSetProp (child, BAD_CAST "title", BAD_CAST g_strstrip (c->doc_title));
+
+    /* Fix up the snippet to show the break_term in bold */
+    xmldoc = g_strdup_printf ("<snippet>%s</snippet>",  
+			search_clean_snippet (c->snippet, c->search_term));
+    snippet_doc = xmlParseDoc (BAD_CAST xmldoc);
+    g_free (xmldoc);
+
+    if (!snippet_doc)
+	return;
+
+    node = xmlDocGetRootElement (snippet_doc);
+    xmlUnlinkNode (node);
+    xmlAddChild (child, node);
+    xmlFreeDoc (snippet_doc);
+
+}
+
+void
+process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
+{
+    gchar ** split = g_strsplit (result, "\n", -1);
+    gint i;
+
+    for (i=0;split[i];i++) {
+	gchar ** line = g_strsplit (split[i], "-", 3); 
+	gchar *filename = NULL;
+	gchar *desc = NULL;
+	xmlNode *child;
+	gchar *tmp = NULL;
+	gchar *after = NULL;
+	gchar *before = NULL;
+	gchar *title = NULL;
+
+	if (g_strv_length (line) != 2) {
+	    g_strfreev (line);
+	    continue;
+	}
+
+	/* First is the filename */
+	before = g_strdup (g_strchomp (line[0]));
+	after = strstr (before, "(");
+	tmp = after;
+	tmp--;
+
+	title = g_strndup (before, tmp-before);
+
+	filename = g_strconcat ("man:", title, after, NULL);
+
+	/* Then the description */
+	desc = g_strdup (g_strchug (line[1]));
+
+	/* Now we add the result to the page */
+	child = xmlNewTextChild (pager->priv->root, NULL, 
+				 BAD_CAST "result", NULL);
+	xmlSetProp (child, BAD_CAST "uri", BAD_CAST filename);
+	xmlSetProp (child, BAD_CAST "title", 
+		    BAD_CAST g_strconcat (title, 
+					  " manual page", NULL));
+	
+	xmlNewChild (child, NULL, BAD_CAST "snippet",
+		     BAD_CAST desc);
+	g_strfreev (line);
+	g_free (before);
+    }
+
+}
+
+void
+process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
+{
+    gchar ** split = g_strsplit (result, "\n", -1);
+    gint i;
+
+    for (i=0;split[i];i++) {
+	gchar ** line = g_strsplit (split[i], "--", 3); 
+	gchar *filename = NULL;
+	gchar *desc = NULL;
+	gchar *title = NULL;
+	xmlNode *child;
+	gchar *tmp;
+	gchar *tmp1;
+	gchar *file_name;
+
+	if (g_strv_length (line) != 2) {
+	    g_strfreev (line);
+	    continue;
+	}
+
+	/* First is the filename
+	 * We gotta do some fiddling to get the actual filename
+	 * we can use
+	*/
+	tmp = g_strdup (g_strchomp (line[0]));
+	tmp++;
+	tmp1 = strstr (tmp, " ");
+	if (!tmp1)
+	    tmp1 = strstr (tmp, "\"");
+	file_name = g_strndup (tmp, tmp1-tmp);
+	tmp++;
+	tmp1 = strstr (tmp, ")");
+	if (tmp1)
+	    title = g_strndup (tmp, tmp1-tmp);
+	else {
+	    title = g_strdup (++file_name);
+	    --file_name;
+	}
+	tmp--;
+	tmp--;
+	filename = g_strconcat ("info:", file_name, NULL);
+	g_free (tmp);
+	g_free (file_name);
+
+	/* Then the description */
+	desc = g_strdup (g_strchug (line[1]));
+
+	/* Now we add the result to the page */
+	child = xmlNewTextChild (pager->priv->root, NULL, 
+				 BAD_CAST "result", NULL);
+	xmlSetProp (child, BAD_CAST "uri", BAD_CAST filename);
+	xmlSetProp (child, BAD_CAST "title", 
+		    BAD_CAST g_strconcat (title, 
+					  " info page", NULL));
+	
+	xmlNewChild (child, NULL, BAD_CAST "snippet",
+		     BAD_CAST desc);
+	g_strfreev (line);
+	g_free (title);
+    }
+
+}
+
+void
+search_process_man (YelpSearchPager *pager, gchar **terms)
+{
+    gint i=0;
+    for (i=0; terms[i]; i++) {
+	gchar *command;
+	gchar *stdout_str;
+	gint exit_code;
+	command = g_strconcat("apropos ", terms[i], NULL);
+    
+	if (g_spawn_command_line_sync (command, &stdout_str, NULL, 
+				       &exit_code, NULL) && exit_code == 0) {
+	    process_man_result (pager, stdout_str, terms);
+
+	}
+	g_free (stdout_str);
+	g_free (command);
+    }
+
+    return;
+}
+
+void
+search_process_info (YelpSearchPager *pager, gchar **terms)
+{
+    gint i=0;
+    for (i=0; terms[i]; i++) {
+	gchar *command;
+	gchar *stdout_str;
+	gchar *stderr_str;
+	gint exit_code;
+	command = g_strconcat("info --apropos ", terms[i], NULL);
+    
+	if (g_spawn_command_line_sync (command, &stdout_str, &stderr_str, 
+				       &exit_code, NULL) && exit_code == 0) {
+	    process_info_result (pager, stdout_str, terms);	    
+	}
+	g_free (stdout_str);
+	g_free (stderr_str);
+	g_free (command);
+    }
+
+    return;
 }

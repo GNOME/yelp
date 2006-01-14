@@ -160,4 +160,10 @@
 <xsl:template match="b">
   <xsl:apply-templates/>
 </xsl:template>
+
+<xsl:template match="em">
+  <strong>
+    <xsl:apply-templates/>
+  </strong>
+</xsl:template>
 </xsl:stylesheet>

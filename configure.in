@@ -96,11 +96,11 @@ AC_SUBST(DB2HTML)
 
 AC_ARG_ENABLE([man],
 	[AC_HELP_STRING([--enable-man],
-			[turn on man page support [default=no]])],,
+			[turn on man page support [default=yes]])],,
 	enable_man=yes)
 AC_ARG_ENABLE([info],
 	[AC_HELP_STRING([--enable-info],
-			[turn on GNU info support [default=no]])],,
+			[turn on GNU info support [default=yes]])],,
 	enable_info=yes)
 if test "x$enable_man" = "xyes"; then
     AC_DEFINE(ENABLE_MAN, 1, [turn on man page support])
@@ -120,29 +120,49 @@ dnl ******
 dnl beagle
 dnl ******
 
-BEAGLE_MODULES="libbeagle-0.0 >= 0.0.14"
+BEAGLE_MODULES="libbeagle-0.0 >= 0.1.4"
 
-AC_ARG_ENABLE([search],
-	[AC_HELP_STRING([--enable-search],
-			[turn on beagle search support [default=auto]])],,
-	enable_search=auto)
+AC_ARG_WITH([search],
+	[AC_HELP_STRING([--with-search=basic|beagle|auto|no],
+			[turn on search support [default=auto]])], ,
+	with_search=auto)
 
-if test "x$enable_search" = "xyes"; then
+if test "x$with_search" = "xauto"; then
+    PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES, have_beagle=yes, have_beagle=no)
+fi
+
+AM_CONDITIONAL(ENABLE_SEARCH, test x"$with_search" != xno)
+AM_CONDITIONAL(ENABLE_BEAGLE, test x"$with_search" = xbeagle)
+
+if test "x$with_search" = "xbeagle"; then
     PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES)
-elif test "x$enable_search" = "xno"; then
+else
     YELP_SEARCH_CFLAGS=""
     YELP_SEARCH_LIBS=""
-else
-    PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES,
-	enable_search=yes,enable_search=no)
 fi
 
-if test "x$enable_search" = "xyes"; then
-    AC_DEFINE(ENABLE_SEARCH, 1, [turn on beagle search support])
-    AM_CONDITIONAL(ENABLE_SEARCH, true)
-else
-    AM_CONDITIONAL(ENABLE_SEARCH, false)
-fi
+
+case "x$with_search" in
+  "xbasic")
+    AC_DEFINE(ENABLE_SEARCH, 1, [Define if you want any search])
+    ;;
+  "xbeagle")
+    AC_DEFINE(ENABLE_SEARCH, 1, [Define if you any search])
+    AC_DEFINE(ENABLE_BEAGLE, 1, [Define if you want the power of Beagle])
+    ;;
+  "xno")
+    ;;
+  "xauto")
+    AC_DEFINE(ENABLE_SEARCH, 1)
+    if test x$have_beagle = xyes; then
+      AC_DEFINE(ENABLE_BEAGLE, 1)
+    fi
+    ;;
+  *)
+    AC_MSG_ERROR([Unknown search type selected - Please use --with-search=auto|basic|beagle|no])
+    ;;
+esac
+
 
 AC_SUBST([YELP_SEARCH_CFLAGS])
 AC_SUBST([YELP_SEARCH_LIBS])
