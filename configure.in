@@ -147,7 +147,7 @@ case "x$with_search" in
     AC_DEFINE(ENABLE_SEARCH, 1, [Define if you want any search])
     ;;
   "xbeagle")
-    AC_DEFINE(ENABLE_SEARCH, 1, [Define if you any search])
+    AC_DEFINE(ENABLE_SEARCH, 1, [Define if you want any search])
     AC_DEFINE(ENABLE_BEAGLE, 1, [Define if you want the power of Beagle])
     ;;
   "xno")
@@ -266,3 +266,19 @@ yelp.desktop.in
 ])
 
 AC_OUTPUT
+
+dnl ==========================================================================
+echo "
+yelp-$VERSION:
+
+	prefix:                   ${prefix}
+	source code location:	  ${srcdir}
+	compiler:		  ${CC}
+
+	Debug enabled:            ${enable_debug}
+	Man Pages enabled:        ${enable_man}
+	Info Pages enabled:       ${enable_info}
+	Beagle available:         ${have_beagle}
+	Search backend:           ${with_search}
+	Mozilla version:          ${MOZILLA}
+"

@@ -873,11 +873,6 @@ macro_mandoc_listitem_handler (YelpManParser *parser, gchar *macro, GSList *args
     parser_stack_push_node (parser, parser->ins);
 }
 
-static void
-macro_template_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-}
-
 /* the handler functions for each macro all have this form:
  *   - the calling function, parser_handle_linetag owns the "macro", and "args"
  *     parameters, so do not free them.

@@ -351,7 +351,7 @@ toc_process_pending (YelpTocPager *pager)
 {
     gboolean readd;
     YelpTocPagerPriv *priv = pager->priv;
-    static gpointer process_funcs[] = {
+    static ProcessFunction process_funcs[] = {
 	process_read_menu,
 	process_read_scrollkeeper,
 	process_omf_pending,

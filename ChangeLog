@@ -1,3 +1,14 @@
+2006-01-14  Brent Smith  <gnome@nextreality.net>
+
+	* configure.in:
+	* src/yelp-man-parser.c:
+	* src/yelp-toc-pager.c: (toc_process_pending):
+	fixed some more compiler warnings, and added a summary of
+	configuration parameters at the end of configure.in;
+	Hopefully this will help us track down problems with search
+	if people are reporting bugs, but don't know whether they
+	are using Beagle or the basic search support.
+
 2006-01-13  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-db-print-pager.c: (db_print_pager_parse):
