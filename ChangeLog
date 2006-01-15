@@ -1,3 +1,12 @@
+2006-01-15  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-info-parser.c: 
+	* src/yelp-info-pager.c: 
+	* src/yelp-search-pager.c: 
+	Fix info search results (basic) to go to correct section of info doc
+	Stop info pages repeating twice
+	Fix crash if info section doesn't exist
+	
 2006-01-14  Brent Smith  <gnome@nextreality.net>
 
 	* configure.in:

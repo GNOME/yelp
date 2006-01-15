@@ -602,7 +602,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 		} else {
 		  newnode = xmlNewTextChild (*node, NULL,
 					     BAD_CAST "Section",
-					     BAD_CAST page_content);
+					     NULL);
 		  xmlNewTextChild (newnode, NULL,
 				   BAD_CAST "para",
 				   BAD_CAST page_content);

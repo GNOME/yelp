@@ -1440,9 +1440,7 @@ process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	*/
 	tmp = g_strdup (g_strchomp (line[0]));
 	tmp++;
-	tmp1 = strstr (tmp, " ");
-	if (!tmp1)
-	    tmp1 = strstr (tmp, "\"");
+	tmp1 = strstr (tmp, "\"");
 	file_name = g_strndup (tmp, tmp1-tmp);
 	tmp++;
 	tmp1 = strstr (tmp, ")");

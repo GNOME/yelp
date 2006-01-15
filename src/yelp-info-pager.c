@@ -247,8 +247,9 @@ info_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 	    gtk_tree_model_foreach (GTK_TREE_MODEL (YELP_INFO_PAGER (pager)->priv->tree),
 				    (GtkTreeModelForeachFunc) tree_find_id,
 				    l);
-	    id = g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash,
-				      l->frag_id);
+	    if (l->frag_id)
+		id = g_hash_table_lookup (YELP_INFO_PAGER (pager)->priv->frags_hash,
+					  l->frag_id);
 	    g_free (l->frag_name);
 	    g_free (l->frag_id);
 	    g_free (l);
