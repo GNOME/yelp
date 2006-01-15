@@ -90,6 +90,7 @@ gtk_entry_action_create_tool_item (GtkAction *action)
   box = gtk_hbox_new (FALSE, 6);
   label = gtk_label_new ("");
   entry = gtk_entry_new ();
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
   gtk_container_add (GTK_CONTAINER (tool_item), box);
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (box), entry, FALSE, FALSE, 0);
@@ -121,7 +122,7 @@ sync_label (GtkAction *gaction,
   char *text;
 
   g_object_get (action, "label", &text, NULL);
-  gtk_label_set_text (label, text);
+  gtk_label_set_text_with_mnemonic (label, text);
   if (text && *text)
     gtk_widget_show (GTK_WIDGET (label));
   else

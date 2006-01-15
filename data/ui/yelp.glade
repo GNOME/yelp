@@ -5,7 +5,7 @@
 <requires lib="gnome"/>
 
 <widget class="GtkDialog" id="find_dialog">
-  <property name="border_width">6</property>
+  <property name="border_width">5</property>
   <property name="height_request">150</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Find</property>
@@ -25,7 +25,7 @@
     <widget class="GtkVBox" id="dialog-vbox5">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area5">
@@ -197,11 +197,12 @@
 
       <child>
 	<widget class="GtkAlignment" id="alignment10">
+	  <property name="border_width">5</property>
 	  <property name="visible">True</property>
 	  <property name="xalign">0.5</property>
-	  <property name="yalign">1</property>
-	  <property name="xscale">0.9</property>
-	  <property name="yscale">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xscale">1</property>
+	  <property name="yscale">1</property>
 	  <property name="top_padding">0</property>
 	  <property name="bottom_padding">0</property>
 	  <property name="left_padding">0</property>
@@ -211,18 +212,18 @@
 	    <widget class="GtkVBox" id="vbox132">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
-	      <property name="spacing">8</property>
+	      <property name="spacing">6</property>
 
 	      <child>
 		<widget class="GtkHBox" id="hbox88">
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
-		  <property name="spacing">0</property>
+		  <property name="spacing">12</property>
 
 		  <child>
 		    <widget class="GtkLabel" id="label1225">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Find: </property>
+		      <property name="label" translatable="yes">_Find:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -235,7 +236,7 @@
 		      <property name="mnemonic_widget">find_entry</property>
 		    </widget>
 		    <packing>
-		      <property name="padding">3</property>
+		      <property name="padding">0</property>
 		      <property name="expand">False</property>
 		      <property name="fill">False</property>
 		    </packing>
@@ -263,7 +264,7 @@
 		      </child>
 		    </widget>
 		    <packing>
-		      <property name="padding">3</property>
+		      <property name="padding">0</property>
 		      <property name="expand">True</property>
 		      <property name="fill">True</property>
 		    </packing>
@@ -327,7 +328,7 @@
 </widget>
 
 <widget class="GtkDialog" id="location_dialog">
-  <property name="border_width">6</property>
+  <property name="border_width">5</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Open Location</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -346,7 +347,7 @@
     <widget class="GtkVBox" id="dialog-vbox6">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area6">
@@ -390,7 +391,7 @@
 
       <child>
 	<widget class="GtkHBox" id="hbox89">
-	  <property name="border_width">6</property>
+	  <property name="border_width">5</property>
 	  <property name="visible">True</property>
 	  <property name="homogeneous">False</property>
 	  <property name="spacing">12</property>
@@ -448,7 +449,7 @@
 </widget>
 
 <widget class="GtkDialog" id="prefs_dialog">
-  <property name="border_width">6</property>
+  <property name="border_width">5</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Preferences</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -467,7 +468,7 @@
     <widget class="GtkVBox" id="dialog-vbox7">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area7">
@@ -497,10 +498,10 @@
 
       <child>
 	<widget class="GtkVBox" id="vbox133">
-	  <property name="border_width">6</property>
+	  <property name="border_width">5</property>
 	  <property name="visible">True</property>
 	  <property name="homogeneous">False</property>
-	  <property name="spacing">12</property>
+	  <property name="spacing">18</property>
 
 	  <child>
 	    <widget class="GtkVBox" id="vbox133">
@@ -765,7 +766,7 @@
 </widget>
 
 <widget class="GtkDialog" id="bookmarks_dialog">
-  <property name="border_width">6</property>
+  <property name="border_width">5</property>
   <property name="title" translatable="yes">Bookmarks</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -785,7 +786,7 @@
     <widget class="GtkVBox" id="dialog-vbox8">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area8">
@@ -815,7 +816,7 @@
 
       <child>
 	<widget class="GtkTable" id="table1">
-	  <property name="border_width">6</property>
+	  <property name="border_width">5</property>
 	  <property name="visible">True</property>
 	  <property name="n_rows">2</property>
 	  <property name="n_columns">2</property>
@@ -826,9 +827,9 @@
 	  <child>
 	    <widget class="GtkLabel" id="label1231">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;b&gt;_Bookmarks:&lt;/b&gt;</property>
+	      <property name="label" translatable="yes">_Bookmarks:</property>
 	      <property name="use_underline">True</property>
-	      <property name="use_markup">True</property>
+	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
 	      <property name="selectable">False</property>
@@ -852,7 +853,7 @@
 	    <widget class="GtkVButtonBox" id="vbuttonbox1">
 	      <property name="visible">True</property>
 	      <property name="layout_style">GTK_BUTTONBOX_START</property>
-	      <property name="spacing">0</property>
+	      <property name="spacing">6</property>
 
 	      <child>
 		<widget class="GtkButton" id="open_button">
@@ -942,7 +943,7 @@
 </widget>
 
 <widget class="GtkDialog" id="add_bookmark_dialog">
-  <property name="border_width">6</property>
+  <property name="border_width">5</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Add Bookmark</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -961,7 +962,7 @@
     <widget class="GtkVBox" id="dialog-vbox9">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area9">
@@ -1017,7 +1018,7 @@
 
 	  <child>
 	    <widget class="GtkHBox" id="hbox90">
-	      <property name="border_width">6</property>
+	      <property name="border_width">5</property>
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">12</property>
@@ -1025,9 +1026,9 @@
 	      <child>
 		<widget class="GtkLabel" id="label1230">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;_Title:&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">_Title:</property>
 		  <property name="use_underline">True</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>

@@ -1022,7 +1022,7 @@ window_populate (YelpWindow *window)
     
 #ifdef ENABLE_SEARCH
     action =  gtk_entry_action_new ("Search",
-				    _("Search"),
+				    _("_Search:"),
 				    _("Search for other documentation"),
 				    NULL);
     g_signal_connect (G_OBJECT (action), "activate",
@@ -1169,7 +1169,7 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
     g_return_if_fail (GTK_IS_TOOLBAR (find_bar));
 
     box = gtk_hbox_new (FALSE, 0);
-    label = gtk_label_new_with_mnemonic (_("Find:"));
+    label = gtk_label_new_with_mnemonic (_("Fin_d:"));
     gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 6);
 
     priv->find_entry = gtk_entry_new ();

@@ -1,5 +1,11 @@
 2006-01-15  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* data/ui/yelp.glade: 
+	* src/yelp-window.c: 
+	* src/gtkentryaction.c: 
+	Patch from Dennis Cranston for several HIG issues
+	Add mnemonics to find and search labels Fixes #326134
+	
 	* src/yelp-utils.c: 
 	Add /usr/local/info and /usr/local/share/info to default infopaths
 
