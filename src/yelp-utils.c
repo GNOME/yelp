@@ -77,7 +77,9 @@ static gchar *      convert_info_uri   (gchar   *uri);
 static gchar *dot_dir = NULL;
 
 static gchar **infopath = NULL;
-static gchar *infopath_d[] = {"/usr/info", "/usr/share/info", NULL};
+static gchar *infopath_d[] = {"/usr/info", "/usr/share/info", 
+			      "/usr/local/info", "/usr/local/share/info", 
+			      NULL};
 
 
 const char *
