@@ -8,13 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-09 22:05-0500\n"
+"POT-Creation-Date: 2006-01-15 23:37-0500\n"
 "PO-Revision-Date: 2005-05-23 22:18-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1199
+msgid "GNU Info Pages"
+msgstr "GNU Info Pages"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -168,7 +172,7 @@ msgstr "Other Documentation"
 msgid "Panel Applets"
 msgstr "Panel Applets"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "Preferences"
 
@@ -197,60 +201,60 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Fonts</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_Bookmarks:</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Title:</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Add Bookmark"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "Bookmarks"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "C_ase sensitive"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Find"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Open Location"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "Re_name"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "_Bookmarks:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "_Browse with caret"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Find: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_Find:"
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "_Fixed width:"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "_Location:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Next"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_Previous"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Title:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -330,7 +334,7 @@ msgstr "A bookmark titled <b>%s</b> already exists for this page."
 msgid "Document Sections"
 msgstr "Document Sections"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -484,7 +488,7 @@ msgstr "_To:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Sets the end of the range of pages to be printed"
 
-#: ../src/yelp-search-pager.c:311
+#: ../src/yelp-search-pager.c:380
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
@@ -492,7 +496,7 @@ msgstr ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
 
-#: ../src/yelp-search-pager.c:608
+#: ../src/yelp-search-pager.c:688
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -501,19 +505,24 @@ msgstr ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 
-#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1447
+#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1447
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "No href attribute found on yelp:document"
 
-#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1461
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Out of memory"
 
-#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1502
+#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1502
 msgid "Help Contents"
 msgstr "Help Contents"
+
+#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Could not load the OMF file '%s'."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -544,11 +553,6 @@ msgstr "yelp-watermark-blockquote-201C"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pause count is negative."
 
-#: ../src/yelp-toc-pager.c:495
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Could not load the OMF file '%s'."
-
 #: ../src/yelp-toc-pager.c:629
 #, c-format
 msgid "Read man page for %s"
@@ -566,10 +570,6 @@ msgid ""
 msgstr ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-
-#: ../src/yelp-toc-pager.c:1199
-msgid "GNU Info Pages"
-msgstr "GNU Info Pages"
 
 #: ../src/yelp-toc-pager.c:1295
 #, c-format
@@ -762,16 +762,16 @@ msgstr ""
 "document to convert to XML."
 
 #: ../src/yelp-window.c:1025
-msgid "Search"
-msgstr "Search"
+msgid "_Search:"
+msgstr "_Search:"
 
 #: ../src/yelp-window.c:1026
 msgid "Search for other documentation"
 msgstr "Search for other documentation"
 
 #: ../src/yelp-window.c:1172
-msgid "Find:"
-msgstr "Find:"
+msgid "Fin_d:"
+msgstr "Fin_d:"
 
 #: ../src/yelp-window.c:1192
 msgid "Find _Next"
