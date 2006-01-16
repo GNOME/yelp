@@ -27,6 +27,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtkmain.h>
 #include <gtk/gtkwidget.h>
+#include <gdk/gdkx.h>
 #include <bonobo/bonobo-context.h>
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-generic-factory.h>
@@ -49,6 +50,7 @@ static poptContext  poptCon;
 /* static gint         next_opt; */
 static gchar       *cache_dir;
 static gchar       *open_urls;
+static gchar       *startup_id;
 
 /*structure defining command line option.*/
 enum {
@@ -76,6 +78,8 @@ static void           main_client_die         (GnomeClient          *client,
 					       gpointer              cdata);
 
 static gboolean	      main_restore_session    (void);
+static Time slowly_and_stupidly_obtain_timestamp (Display *xdisplay);
+
 
 static struct poptOption options[] = {
 	{
@@ -142,12 +146,13 @@ main_open_new_window (CORBA_Object yelp_base, const gchar *url)
 	
 	CORBA_exception_init (&ev);
 
-	GNOME_Yelp_newWindow (yelp_base, url, &ev);
+	GNOME_Yelp_newWindow (yelp_base, url, startup_id, &ev);
 
 	if (BONOBO_EX (&ev)) {
 		g_error (_("Could not open new window."));
 	}
 
+	g_free (startup_id);
 	CORBA_exception_free (&ev);
 }
 	
@@ -303,6 +308,57 @@ main_restore_session (void)
 	return FALSE;
 }
 
+/* Copied from libnautilus/nautilus-program-choosing.c; Needed in case
+ * we have no DESKTOP_STARTUP_ID (with its accompanying timestamp).
+ */
+static Time
+slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
+{
+	Window xwindow;
+	XEvent event;
+	
+	{
+		XSetWindowAttributes attrs;
+		Atom atom_name;
+		Atom atom_type;
+		gchar* name;
+		
+		attrs.override_redirect = True;
+		attrs.event_mask = PropertyChangeMask | StructureNotifyMask;
+		
+		xwindow =
+			XCreateWindow (xdisplay,
+				       RootWindow (xdisplay, 0),
+				       -100, -100, 1, 1,
+				       0,
+				       CopyFromParent,
+				       CopyFromParent,
+				       CopyFromParent,
+				       CWOverrideRedirect | CWEventMask,
+				       &attrs);
+		
+		atom_name = XInternAtom (xdisplay, "WM_NAME", TRUE);
+		g_assert (atom_name != None);
+		atom_type = XInternAtom (xdisplay, "STRING", TRUE);
+		g_assert (atom_type != None);
+		
+		name = "Fake Window";
+		XChangeProperty (xdisplay, 
+				 xwindow, atom_name,
+				 atom_type,
+				 8, PropModeReplace, name, strlen (name));
+	}
+	
+	XWindowEvent (xdisplay,
+		      xwindow,
+		      PropertyChangeMask,
+		      &event);
+	
+	XDestroyWindow(xdisplay, xwindow);
+	
+	return event.xproperty.time;
+}
+
 int
 main (int argc, char **argv) 
 {
@@ -312,16 +368,31 @@ main (int argc, char **argv)
 	GnomeClient   *client;
 	gboolean       session_started = FALSE;
 	const gchar  **args;
+	gchar *startup_id;
 
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
+
+	startup_id = (gchar *) g_getenv ("DESKTOP_STARTUP_ID");
+
+	if (startup_id != NULL && *startup_id != '\0') {
+		startup_id = g_strdup (startup_id);
+		putenv ("DESKTOP_STARTUP_ID=");
+	}
+
+	gtk_window_set_auto_startup_notification(FALSE);
 
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE, argc, argv,
 				      GNOME_PARAM_POPT_TABLE, options,
 				      GNOME_PROGRAM_STANDARD_PROPERTIES,
 				      NULL);
+	if (!startup_id) {
+		Time tmp;
+		tmp = slowly_and_stupidly_obtain_timestamp (gdk_display);
+		startup_id = g_strdup_printf ("_TIME%lu", tmp);
+	}
 	g_set_application_name (_("Help"));
 	gtk_window_set_default_icon_name ("gnome-help");
 

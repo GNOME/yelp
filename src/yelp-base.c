@@ -24,6 +24,9 @@
 
 #include <bonobo/bonobo-main.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include <gdk/gdkx.h>
+#define SN_API_NOT_YET_FROZEN
+#include <libsn/sn-launchee.h>
 
 #include <string.h>
 
@@ -60,13 +63,13 @@ static BonoboObjectClass *parent_class;
 static void
 impl_Yelp_newWindow (PortableServer_Servant  servant,
 		     const CORBA_char       *url,
+		     const CORBA_char       *time,
 		     CORBA_Environment      *ev)
 {
 	YelpBase  *yelp_base;
-	
-	yelp_base = YELP_BASE (bonobo_object (servant));
 
-	yelp_base_new_window (yelp_base, url);
+	yelp_base = YELP_BASE (bonobo_object (servant));
+	yelp_base_new_window (yelp_base, url, time);
 }
 
 static GNOME_Yelp_WindowList *
@@ -141,8 +144,8 @@ yelp_base_new_window_cb (YelpWindow *window, const gchar *uri,
 	g_return_if_fail (YELP_IS_WINDOW (window));
 	g_return_if_fail (YELP_IS_BASE (base));
 	
-	new_window = yelp_base_new_window (base, uri);
-	
+	new_window = yelp_base_new_window (base, uri, NULL);
+
 	gtk_widget_show (new_window);
 }
 
@@ -185,18 +188,60 @@ yelp_base_new (void)
         return base;
 }
 
+static void
+sn_error_trap_push (SnDisplay *display,
+		    Display *xdisplay)
+{
+	gdk_error_trap_push ();
+}
+
+static void
+sn_error_trap_pop (SnDisplay *display,
+		   Display *xdisplay)
+{
+	gdk_error_trap_pop ();
+}
+
 GtkWidget *
-yelp_base_new_window (YelpBase *base, const gchar *uri)
+yelp_base_new_window (YelpBase *base, const gchar *uri, const gchar *startup_id)
 {
 	YelpBasePriv *priv;
 	GtkWidget    *window;
-        
+	SnDisplay *sn_display = NULL;
+	GdkScreen *screen = NULL;
+	GdkDisplay *display = NULL;
+	SnLauncheeContext *context = NULL;
+
         g_return_val_if_fail (YELP_IS_BASE (base), NULL);
 
 	priv = base->priv;
         
         window = yelp_window_new (priv->toc_tree, priv->index);
-        
+	gtk_widget_realize (GTK_WIDGET (window));
+
+	if (startup_id) {
+		screen = gtk_window_get_screen (GTK_WINDOW (window));
+		display = gdk_screen_get_display (screen);
+		
+		sn_display = 
+			sn_display_new (gdk_x11_display_get_xdisplay (display),
+					sn_error_trap_push, sn_error_trap_pop);
+		context = sn_launchee_context_new (sn_display,
+					   gdk_screen_get_number (screen),
+						   startup_id);
+		if (strncmp (sn_launchee_context_get_startup_id (context), 
+			     "_TIME", 5) != 0)
+			sn_launchee_context_setup_window (context,
+					 GDK_WINDOW_XWINDOW (window->window));
+
+		if (sn_launchee_context_get_id_has_timestamp (context)) {
+			gulong time;
+
+			time = sn_launchee_context_get_timestamp (context);
+			gdk_x11_window_set_user_time (window->window, time);
+		}		
+	}
+	        
 	priv->windows = g_slist_prepend (priv->windows, window);
 
 	g_object_weak_ref (G_OBJECT (window),
@@ -213,6 +258,12 @@ yelp_base_new_window (YelpBase *base, const gchar *uri)
 		yelp_window_load (YELP_WINDOW (window), uri);
 	else
 		yelp_window_load (YELP_WINDOW (window), "x-yelp-toc:");
+
+	if (context) {
+		sn_launchee_context_complete (context);
+		sn_launchee_context_unref (context);
+		sn_display_unref (sn_display);		
+	}
 
 	return window;
 }

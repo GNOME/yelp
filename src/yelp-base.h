@@ -54,6 +54,7 @@ GType            yelp_base_get_type       (void);
 YelpBase *       yelp_base_new            (void);
 
 GtkWidget *      yelp_base_new_window     (YelpBase    *base,
-					   const gchar *uri);
+					   const gchar *uri,
+					   const gchar *timestamp);
 
 #endif /* __YELP_BASE_H__ */
