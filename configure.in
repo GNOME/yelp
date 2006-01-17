@@ -141,6 +141,8 @@ AM_CONDITIONAL(ENABLE_BEAGLE, test x"$with_search" = xbeagle)
 
 if test "x$with_search" = "xbeagle"; then
     PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES)
+elif test "x$have_beagle" = "xyes"; then
+    PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES)
 else
     YELP_SEARCH_CFLAGS=""
     YELP_SEARCH_LIBS=""
@@ -167,7 +169,6 @@ case "x$with_search" in
     AC_MSG_ERROR([Unknown search type selected - Please use --with-search=auto|basic|beagle|no])
     ;;
 esac
-
 
 AC_SUBST([YELP_SEARCH_CFLAGS])
 AC_SUBST([YELP_SEARCH_LIBS])
