@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-15 20:06+0100\n"
-"PO-Revision-Date: 2006-01-15 20:06+0100\n"
+"POT-Creation-Date: 2006-01-17 23:15+0100\n"
+"PO-Revision-Date: 2006-01-17 23:16+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1199
+msgid "GNU Info Pages"
+msgstr "Páginas info de GNU"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -173,7 +177,7 @@ msgstr "Otra documentación"
 msgid "Panel Applets"
 msgstr "Miniaplicaciones del panel"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -202,60 +206,60 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Tipografías</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_Marcadores:</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Título:</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Añadir marcador"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "Distinguir _capitalización"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Buscar"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Abrir dirección"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "Re_nombrar"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "_Marcadores:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "_Examinar con cursor"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Buscar: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_Buscar:"
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "Anchura _fija:"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "_Dirección:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Siguiente"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_Anterior"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Título:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -394,20 +398,20 @@ msgstr ""
 "El archivo «%s» no se pudo leer y decodificar. El archivo podría estar "
 "comprimido en un formato no soportado."
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Define qué directorio de caché utilizar"
 
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "No se pudo activar Yelp: «%s»"
 
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "No se pudo abrir una ventana nueva."
 
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ayuda"
 
@@ -569,10 +573,6 @@ msgid ""
 msgstr ""
 "La tabla de contenidos no se pudo cargar. El archivo «%s» falta o no es un "
 "archivo XML bien formado."
-
-#: ../src/yelp-toc-pager.c:1199
-msgid "GNU Info Pages"
-msgstr "Páginas info de GNU"
 
 #: ../src/yelp-toc-pager.c:1295
 #, c-format
@@ -766,16 +766,16 @@ msgstr ""
 "documento que lo convierta a XML."
 
 #: ../src/yelp-window.c:1025
-msgid "Search"
-msgstr "Búsqueda"
+msgid "_Search:"
+msgstr "_Buscar:"
 
 #: ../src/yelp-window.c:1026
 msgid "Search for other documentation"
 msgstr "Buscar otra documentación"
 
 #: ../src/yelp-window.c:1172
-msgid "Find:"
-msgstr "Buscar:"
+msgid "Fin_d:"
+msgstr "_Buscar:"
 
 #: ../src/yelp-window.c:1192
 msgid "Find _Next"
@@ -850,6 +850,12 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtenga ayuda acerca de Gnome"
+
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>_Marcadores:</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Título:</b>"
 
 #~ msgid "Unknown Section"
 #~ msgstr "Sección desconocida"
@@ -1138,6 +1144,3 @@ msgstr "Obtenga ayuda acerca de Gnome"
 
 #~ msgid "Tip"
 #~ msgstr "Consejo"
-
-#~ msgid "Title"
-#~ msgstr "Título"
