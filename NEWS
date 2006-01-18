@@ -1,3 +1,49 @@
+Changes in 2.13.3:
+------------------
+* Enable info and man support by default
+* Add non-Beagle search fallback                        (Don Scorgie)
+* Make TOC pages XHTML strict compliant                 (Don Scorgie)
+* Fix compilation on Sun Studio                         (Glynn Foster)
+* Fix startup notification                              (Don Scorgie)
+* Update gecko detection                                (Christian Persch)
+* HIG work, #326134                                     (Dennis Cranston)
+* Search /usr/local for info files, #130245             (Don Scorgie)
+* Fix several more info page issues                     (Don Scorgie)
+* Fix some compiler warnings in debug mode              (Brent Smith)
+* Make find menu items insensitive when unavailable     (Don Scorgie)
+* Massive man page parser rework, fixing lots of bugs   (Brent Smith)
+* Fix stripping of query strings, #301741               (Shaun McCance)
+* Various bits of code cleanup                          (Kjartan Maraas,
+                                                         Christian Persch)
+* Add a find previous menu item                         (Christian Persch)
+* Autogenerate ids when unavailable, #154934            (Brent Smith)
+* Fix a crash due to bad mozilla profile, #164689       (Christian Persch)
+* Remove markup from string, #162807                    (Christian Neumair)
+* Add info pages table-of-contents                      (Don Scorgie)
+* Make HTML docs with frames work                       (Don Scorgie)
+* Cleanup of legacy files                               (Brent Smith)
+* Fix more critical issues                              (Brent Smith, Dave Malcom)
+* Don't use xslt to get title nodes                     (Don Scorgie)
+* Updated translations:
+  bg     (Vladimir Petkov)
+  ca     (Josep Puigdemont i Casamajó)
+  en_CA  (Adam Weinberger)
+  es     (Francisco Javier F. Serrador)
+  fi     (Ilkka Tuohela)
+  gl     (Ignacio Casal Quinteiro)
+  gu     (Ankit Patel)
+  ja     (Takeshi AIHANA)
+  lt     (Žygimantas Beručka)
+  nb     (Kjartan Maraas)
+  nl     (Tino Meinen)
+  no     (Kjartan Maraas)
+  sr     (Slobodan D. Sredojevic)
+  th     (Theppitak Karoonboonyanan)
+  vi     (Clytie Siddall)
+  zh_HK  (Chao-Hsiung Liao)
+  zh_TW  (Chao-Hsiung Liao)
+
+
 Changes in 2.13.2:
 ------------------
 * Added printing support                   (Chris Lahey, Don Scorgie)
