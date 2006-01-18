@@ -12,13 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-10 23:33+0100\n"
-"PO-Revision-Date: 2006-01-12 10:28+0100\n"
+"POT-Creation-Date: 2006-01-18 03:09+0100\n"
+"PO-Revision-Date: 2006-01-18 03:18+0100\n"
 "Last-Translator: Slobodan D. Sredojević <slobo@akrep.be>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1199
+msgid "GNU Info Pages"
+msgstr "GNU info strane"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -175,7 +179,7 @@ msgstr "Ostala dokumentacija"
 msgid "Panel Applets"
 msgstr "Programčići panela"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "Postavke"
 
@@ -203,25 +207,17 @@ msgstr "<b>Pristupačnost</b>"
 msgid "<b>Fonts</b>"
 msgstr "<b>Slovni lik</b>"
 
-#: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>O_beleživači:</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Naslov:</b>"
-
 # note(slobo): U pitanju je naslov prozorčeta i poštujemo dogovor o davanju
 # imena naslovima — glagolske imenice.
-#: ../data/ui/yelp.glade.h:5
+#: ../data/ui/yelp.glade.h:3
 msgid "Add Bookmark"
 msgstr "Dodavanje obeleživača"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "Obeleživači"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "Bitna je _veličina slova"
 
@@ -229,42 +225,50 @@ msgstr "Bitna je _veličina slova"
 # uz razlikovanje malih i velikih slova, pretragu u krug i slično. Prozorče
 # omogućava ove funkcije tako da dati naslov pokriva upotrebu a i dogovor je
 # da naslovi budu glagolske imenice.
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Pretraga teksta"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Otvori mesto"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "Pre_imenuj"
 
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "_Obeleživači:"
+
 # bug(slobo): Predlog: Spusti kurzor u tekst
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "_Razgledaj sa kurzorom"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "Tr_aži: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "Tr_aži:"
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "_Utvrđene širine:"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "_Mesto:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Naredno"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_Prethodno"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "Nas_lov:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -333,6 +337,7 @@ msgid "Remove Bookmark"
 msgstr "Ukloni obeleživač"
 
 #: ../src/yelp-bookmarks.c:320
+#, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Obeleživač za ovu stranu sa naslovom %s već postoji."
 
@@ -345,7 +350,7 @@ msgstr "Obeleživač za ovu stranu sa naslovom <b>%s</b> već postoji."
 msgid "Document Sections"
 msgstr "Odeljci dokumenta"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -389,6 +394,7 @@ msgid "No information is available about the error."
 msgstr "Za ovu grešku opis nije dostupan."
 
 #: ../src/yelp-info-pager.c:190
+#, c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not a well-formed info page."
@@ -406,21 +412,21 @@ msgstr ""
 "nepodržani način."
 
 # bug(slobo): Lice
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Definiši koji direktorijum da koristi za privremeni smeštaj"
 
 # bug(slobo): Imena programa...
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Nisam mogao da aktiviram Jelp: „%s“"
 
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "Nisam mogao da otvorim prozor."
 
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pomoć"
 
@@ -503,7 +509,7 @@ msgstr "_Do:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Postavlja kraj opsega strana za štampu"
 
-#: ../src/yelp-search-pager.c:311
+#: ../src/yelp-search-pager.c:380
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
@@ -511,27 +517,33 @@ msgstr ""
 "Ne mogu da obavim pretragu koju ste zatražili. Ne postoji veza ka beagle "
 "pozadinskom procesu"
 
-#: ../src/yelp-search-pager.c:608
+#: ../src/yelp-search-pager.c:688
+#, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 msgstr ""
-"Ne mogu izvršiti vašu pretragu. Datoteka „%s“ ili nedostaje ili ne predstavlja "
-"ispravnu XSLT stilsku stranicu."
+"Ne mogu izvršiti vašu pretragu. Datoteka „%s“ ili nedostaje ili ne "
+"predstavlja ispravnu XSLT stilsku stranicu."
 
-#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1447
+#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1447
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Nisam našao href atribut u yelp:document-u"
 
-#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1461
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Ponestalo memorije"
 
-#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1502
+#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1502
 msgid "Help Contents"
 msgstr "Sadržaj pomoći"
+
+#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Nisam mogao da učitam OMF datoteku „%s“."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -562,11 +574,6 @@ msgstr "yelp-watermark-blockquote-201E"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: brojač pauza je negativan."
 
-#: ../src/yelp-toc-pager.c:495
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Nisam mogao da učitam OMF datoteku „%s“."
-
 #: ../src/yelp-toc-pager.c:629
 #, c-format
 msgid "Read man page for %s"
@@ -584,10 +591,6 @@ msgid ""
 msgstr ""
 "Ne mogu učitati sadržaj. Datoteka „%s“ ili nedostaje ili ne predstavlja "
 "ispravno oblikovan XML."
-
-#: ../src/yelp-toc-pager.c:1199
-msgid "GNU Info Pages"
-msgstr "GNU info strane"
 
 #: ../src/yelp-toc-pager.c:1295
 #, c-format
@@ -785,16 +788,16 @@ msgstr ""
 "pretvori u  XML."
 
 #: ../src/yelp-window.c:1025
-msgid "Search"
-msgstr "Pretraga"
+msgid "_Search:"
+msgstr "Pretr_aga:"
 
 #: ../src/yelp-window.c:1026
 msgid "Search for other documentation"
 msgstr "Traži u ostaloj dokumentaciji"
 
 #: ../src/yelp-window.c:1172
-msgid "Find:"
-msgstr "Traži:"
+msgid "Fin_d:"
+msgstr "T_raži:"
 
 #: ../src/yelp-window.c:1192
 msgid "Find _Next"
@@ -874,6 +877,12 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Zatraži Gnomovu pomoć"
+
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>O_beleživači:</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Naslov:</b>"
 
 #~ msgid "Unknown Section"
 #~ msgstr "Nepoznati odeljak"
@@ -1151,9 +1160,6 @@ msgstr "Zatraži Gnomovu pomoć"
 
 #~ msgid "Tip"
 #~ msgstr "Savet"
-
-#~ msgid "Title"
-#~ msgstr "Naslov"
 
 #~ msgid "Document URI"
 #~ msgstr "Adresa dokumenta"
