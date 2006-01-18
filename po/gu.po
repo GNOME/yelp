@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-08 23:19+0100\n"
-"PO-Revision-Date: 2006-01-09 10:44+0530\n"
+"POT-Creation-Date: 2006-01-17 23:59+0100\n"
+"PO-Revision-Date: 2006-01-18 13:18+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,11 @@ msgstr ""
 "\n"
 "\n"
 "\n"
+"\n"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1199
+msgid "GNU Info Pages"
+msgstr "GNU જાણકારી પાનાંઓ"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -172,7 +177,7 @@ msgstr "અન્ય દસ્તાવેજીકરણો"
 msgid "Panel Applets"
 msgstr "પેનલ એપ્લેટો"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "પસંદગીઓ"
 
@@ -201,60 +206,60 @@ msgid "<b>Fonts</b>"
 msgstr "<b>ફોન્ટ</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>બુકમાર્કો (_B):</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>શીર્ષક (_T):</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "બુકમાર્ક ઉમેરો"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "બુકમાર્કો"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "કેસ સંવેદનશીલ"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "શોધો"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "જગ્યા ખોલો"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "નામ બદલો (_n)"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "બુકમાર્કો (_B):"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "કેરેટ સાથે શોધો (_B)"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "શોધો (_F): "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "શોધો (_F):"
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "ચોક્કસ પહોળાઈ (_F):"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "જગ્યા (_L):"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "પછીનું"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "પહેલાનું"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "શીર્ષક (_T):"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -300,7 +305,7 @@ msgstr "સિસ્ટમ ફોન્ટ વાપરો"
 msgid "Use the default fonts set for the system."
 msgstr "સિસ્ટમ માટે મૂળભૂત ફોન્ટ સમૂહ વાપરો."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2643
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2646
 msgid "Yelp"
 msgstr "યેલ્પ"
 
@@ -334,7 +339,7 @@ msgstr "આ પાનાં માટે <b>%s</b> શીર્ષકવાળ�
 msgid "Document Sections"
 msgstr "દસ્તાવેજ વિભાગો"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -393,20 +398,20 @@ msgstr ""
 "ફાઈલ ‘%s’ વાંચી શકાઈ નહિં અને ડીકોડ થઈ શકી નહિં. ફાઈલ બિનઆધારભૂત બંધારણમાં સંકુચિત થઈ "
 "જશે."
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "કઇ કેશ ડિરેક્ટરી વાપરવી તે વ્યાખ્યાયિત કરો"
 
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "યેલ્પને સક્રિય કરી શકાતું નથી: '%s'"
 
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "નવી વિન્ડો ખોલી શકાતી નથી."
 
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "મદદ"
 
@@ -488,13 +493,13 @@ msgstr "પ્રતિ (_T):"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "છાપવા માટેના પાનાંઓના વિસ્તારનો અંત સુયોજિત કરે છે"
 
-#: ../src/yelp-search-pager.c:311
+#: ../src/yelp-search-pager.c:380
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
 msgstr "તમારી શોધ પર પ્રક્રિયા કરી શકાઈ નહિં. બીગલ ડિમનમાં ત્યાં કોઈ જોડાણ નથી."
 
-#: ../src/yelp-search-pager.c:608
+#: ../src/yelp-search-pager.c:688
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -503,19 +508,24 @@ msgstr ""
 "તમારી શોધ પર પ્રક્રિયા કરી શકાઈ નહિં. ફાઈલ ‘%s’ એ ક્યાં તો ગુમ થયેલ છે અથવા એ માન્ય "
 "XSLT સ્ટાઈલશીટ નથી."
 
-#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1447
+#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1447
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "yelp:document પર કોઈ href લક્ષણ મળ્યો નહિં"
 
-#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1461
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "મેમરી ની બહાર"
 
-#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1502
+#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1502
 msgid "Help Contents"
 msgstr "મદદની વિષયસૂચી"
+
+#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "OMF ફાઈલ '%s' લાવી શક્યા નહિં."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -546,11 +556,6 @@ msgstr "yelp-watermark-blockquote-201C"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: રોકવાનો ક્રમ ઋણ છે."
 
-#: ../src/yelp-toc-pager.c:495
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "OMF ફાઈલ '%s' લાવી શક્યા નહિં."
-
 #: ../src/yelp-toc-pager.c:629
 #, c-format
 msgid "Read man page for %s"
@@ -569,10 +574,6 @@ msgstr ""
 "વિષયસૂચી કોષ્ટક લાવી શકાયું નહિં. ફાઈલ ‘%s’ એ ક્યાં તો ખોવાયેલ છે અથવા તે યોગ્ય-બંધારણીય "
 "XML નથી."
 
-#: ../src/yelp-toc-pager.c:1199
-msgid "GNU Info Pages"
-msgstr "GNU જાણકારી પાનાંઓ"
-
 #: ../src/yelp-toc-pager.c:1295
 #, c-format
 msgid ""
@@ -582,178 +583,178 @@ msgstr ""
 "વિષયસૂચી કોષ્ટકનું પદચ્છેદ કરી શકાયું નહિં. ફાઈલ ‘%s’ એ ક્યાં તો ખોવાયેલ છે અથવા તે માન્ય "
 "XSLT સ્ટાઈલશીટ નથી."
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:311
 msgid "_File"
 msgstr "ફાઈલ (_F)"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:312
 msgid "_Edit"
 msgstr "ફેરફાર (_E)"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:313
 msgid "_Go"
 msgstr "જાઓ (_G)"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:314
 msgid "_Bookmarks"
 msgstr "બુકમાર્કો (_B)"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:315
 msgid "_Help"
 msgstr "મદદ (_H)"
 
-#: ../src/yelp-window.c:316
+#: ../src/yelp-window.c:318
 msgid "_New Window"
 msgstr "નવી વિન્ડો (_N)"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:323
 msgid "Print This Document"
 msgstr "આ દસ્તાવેજ છાપો"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:328
 msgid "Print This Page"
 msgstr "આ પાનું છાપો"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:333
 msgid "About This Document"
 msgstr "આ દસ્તાવેજ વિશે"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:338
 msgid "Open _Location"
 msgstr "જગ્યા ખોલો (_L)"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:343
 msgid "_Close Window"
 msgstr "વિન્ડો બંધ કરો (_C)"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:349
 msgid "_Copy"
 msgstr "નકલ કરો (_C)"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:355
 msgid "_Select All"
 msgstr "બધું પસંદ કરો (_S)"
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:360
 msgid "_Find..."
 msgstr "શોધો (_F)..."
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:365
 msgid "Find Pre_vious"
 msgstr "પહેલાંનું શોધો (_v)"
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:367
 msgid "Find previous occurrence of the word or phrase"
 msgstr "શબ્દ અથવા મહાવરાનો પહેલાંનો વારો શોધો"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:370
 msgid "Find Ne_xt"
 msgstr "આગળનું શોધો (_x)"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:372
 msgid "Find next occurrence of the word or phrase"
 msgstr "શબ્દ અથવા મહાવરાનો આગળનો વારો શોધો"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:375
 msgid "_Preferences"
 msgstr "પસંદગીઓ (_P)"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:380
 msgid "_Reload"
 msgstr "પાછું લાવો (_R)"
 
-#: ../src/yelp-window.c:390
+#: ../src/yelp-window.c:392
 msgid "_Back"
 msgstr "પાછળ (_B)"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:394
 msgid "Show previous page in history"
 msgstr "ઇતિહાસનું આગળનું પાનું બતાવો"
 
-#: ../src/yelp-window.c:395
+#: ../src/yelp-window.c:397
 msgid "_Forward"
 msgstr "આગળ (_F)"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:399
 msgid "Show next page in history"
 msgstr "ઇતિહાસનું આગળનું પાનું બતાવો"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:402
 msgid "_Help Topics"
 msgstr "મદદ મુદ્દાઓ (_H)"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:404
 msgid "Go to the listing of help topics"
 msgstr "મદદ મુદ્દાઓની યાદી પર જાઓ"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:407
 msgid "_Previous Section"
 msgstr "પહેલાનો વિભાગ (_P)"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:412
 msgid "_Next Section"
 msgstr "આગળનો વિભાગ (_N)"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:417
 msgid "_Contents"
 msgstr "સમાવિષ્ટો (_C)"
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:423
 msgid "_Add Bookmark"
 msgstr "બુકમાર્ક ઉમેરો (_A)"
 
-#: ../src/yelp-window.c:426
+#: ../src/yelp-window.c:428
 msgid "_Edit Bookmarks..."
 msgstr "બુકમાર્કોમાં ફેરફાર કરો (_E)..."
 
-#: ../src/yelp-window.c:432
+#: ../src/yelp-window.c:434
 msgid "_Open Link"
 msgstr "કડી ખોલો (_O)"
 
-#: ../src/yelp-window.c:437
+#: ../src/yelp-window.c:439
 msgid "Open Link in _New Window"
 msgstr "કડીને નવી વિન્ડોમાં ખોલો (_N)"
 
-#: ../src/yelp-window.c:442
+#: ../src/yelp-window.c:444
 msgid "_Copy Link Address"
 msgstr "કડી સરનામાની નકલ કરો (_C)"
 
-#: ../src/yelp-window.c:448
+#: ../src/yelp-window.c:450
 msgid "_About"
 msgstr "વિશે (_A)"
 
-#: ../src/yelp-window.c:453
+#: ../src/yelp-window.c:455
 msgid "Copy _Email Address"
 msgstr "ઈમેઈલ સરનામાની નકલ કરો (_E)"
 
-#: ../src/yelp-window.c:502
+#: ../src/yelp-window.c:504
 msgid "Help Browser"
 msgstr "મદદ માટેનું બ્રાઉઝર"
 
-#: ../src/yelp-window.c:766 ../src/yelp-window.c:922
+#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "અયોગ્ય ફાઈલ માટે અનન્ય સ્રોત સૂચક."
 
-#: ../src/yelp-window.c:778 ../src/yelp-window.c:917
+#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "અનન્ય સ્રોત સૂચક ‘%s’ એ અમાન્ય છે અથવા વાસ્તવિક ફાઈલનો નિર્દેશ કરતું નથી."
 
-#: ../src/yelp-window.c:864 ../src/yelp-window.c:1289
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1292
 msgid "Man pages are not supported in this version."
 msgstr "આ આવૃત્તિમાં મદદ પાનાંઓને આધાર નથી."
 
-#: ../src/yelp-window.c:874 ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1283
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU જાણકારી પાનાંઓ આ આવૃત્તિમાં આધારભૂત નથી"
 
-#: ../src/yelp-window.c:892 ../src/yelp-window.c:1302
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1305
 msgid "Search is not supported in this version."
 msgstr "આ આવૃત્તિમાં શોધને આધાર નથી."
 
-#: ../src/yelp-window.c:897
+#: ../src/yelp-window.c:899
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -761,35 +762,35 @@ msgstr ""
 "SGML દસ્તાવેજો લાંબા સમય સુધી આધારભૂત નથી. મહેરબાની કરીને દસ્તાવેજના લેખકને તેને XML માં "
 "રૂપાંતરિત કરવા માટે પૂછો."
 
-#: ../src/yelp-window.c:1023
-msgid "Search"
-msgstr "શોધ"
+#: ../src/yelp-window.c:1025
+msgid "_Search:"
+msgstr "શોધ (_S):"
 
-#: ../src/yelp-window.c:1024
+#: ../src/yelp-window.c:1026
 msgid "Search for other documentation"
 msgstr "અન્ય દસ્તાવેજીકરણ માટે શોધ"
 
-#: ../src/yelp-window.c:1169
-msgid "Find:"
-msgstr "શોધો:"
+#: ../src/yelp-window.c:1172
+msgid "Fin_d:"
+msgstr "શોધો (_d):"
 
-#: ../src/yelp-window.c:1189
+#: ../src/yelp-window.c:1192
 msgid "Find _Next"
 msgstr "આગળનું શોધો (_N)"
 
-#: ../src/yelp-window.c:1201
+#: ../src/yelp-window.c:1204
 msgid "Find _Previous"
 msgstr "પહેલાનું શોધો (_P)"
 
-#: ../src/yelp-window.c:1315
+#: ../src/yelp-window.c:1318
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr "પરિવહન સંદર્ભ ફાઈલ ‘%s’ માટે બનાવી શકાયો નહિં. બંધારણ આધારભૂત નથી."
 
-#: ../src/yelp-window.c:1344 ../src/yelp-window.c:1755
-#: ../src/yelp-window.c:1822
+#: ../src/yelp-window.c:1347 ../src/yelp-window.c:1758
+#: ../src/yelp-window.c:1825
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -799,7 +800,7 @@ msgstr ""
 "આ દસ્તાવેજમાં વિભાગ ‘%s’ અસ્તિત્વમાં નથી. જો તમે કાર્યક્રમમાં મદદ બટનમાંથી આ દસ્તાવેજમાં "
 "દિશામાન થયા હોય, તો મહેરબાની કરીને આને કાર્યક્રમના જાળકોને અહેવાલ આપો."
 
-#: ../src/yelp-window.c:1459 ../src/yelp-window.c:2212
+#: ../src/yelp-window.c:1462 ../src/yelp-window.c:2215
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -808,17 +809,17 @@ msgstr ""
 "ફાઈલ ‘%s’ વાંચી શકાઈ નહિં.  આ ફાઈલ કદાચ ખોવાયેલ હશે, અથવા તમારી પાસે એને વાંચવા "
 "માટેની પરવાનગી નહિં હોય."
 
-#: ../src/yelp-window.c:1510
+#: ../src/yelp-window.c:1513
 msgid "Loading..."
 msgstr "લાવી રહ્યા છે..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2640
+#: ../src/yelp-window.c:2643
 msgid "translator-credits"
 msgstr "અંકિત પટેલ <ankit644@yahoo.com>"
 
-#: ../src/yelp-window.c:2645
+#: ../src/yelp-window.c:2648
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "જીનોમ ડેસ્કટોપ માટે દસ્તાવેજીકરણ બ્રાઉઝર અને દર્શક."
 
