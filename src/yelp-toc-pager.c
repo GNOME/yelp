@@ -1433,6 +1433,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     xmlDocPtr   old_doc;
     xmlNodePtr  old_insert;
     xmlNodePtr  cur;
+    xmlDtdPtr dtd;
 
     if (!ctxt || !node || !inst || !comp)
 	return;
@@ -1464,10 +1465,19 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	goto done;
     }
 
-    style->omitXmlDeclaration = TRUE;
+    style->omitXmlDeclaration = FALSE;
 
     new_doc = xmlNewDoc (BAD_CAST "1.0");
+    dtd = xmlCreateIntSubset (new_doc,
+			      BAD_CAST "html",
+			      BAD_CAST "-//W3C//DTD XHTML 1.0 "
+			      "Strict//EN",
+			      BAD_CAST "http://www.w3.org/TR/"
+			      "xhtml1/DTD/xhtml1-strict.dtd");
+    new_doc->intSubset = dtd;
+    new_doc->extSubset = dtd;
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
+    new_doc->encoding = g_strdup ("utf-8");
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
 

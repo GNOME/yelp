@@ -35,7 +35,7 @@
         <title>
           <xsl:value-of select="title[1]"/>
         </title>
-        <style><xsl:text>
+        <style type="text/css"><xsl:text>
         body {
           margin: 0px;
           padding: 0px;
