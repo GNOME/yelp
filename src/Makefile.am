@@ -94,6 +94,7 @@ yelp_LDADD =				\
 	$(POPT_LIBS)			\
 	$(Z_LIBS)			\
 	$(BZ_LIBS)			\
+	$(X_LIBS)			\
 	$(MOZILLA_COMPONENT_LIBS)
 
 yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
