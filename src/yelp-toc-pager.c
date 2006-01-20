@@ -1056,10 +1056,10 @@ process_info_pending (YelpTocPager *pager)
 		} else {
 		    if (g_str_has_prefix (*ptr, "*")) {
 			/* A menu item */
-			gchar *tooltip;
-			gchar *fname;
-			gchar *desc;
-			gchar *part1, *part2, *part3;
+			gchar *tooltip = NULL;
+			gchar *fname = NULL;
+			gchar *desc = NULL;
+			gchar *part1 = NULL, *part2 = NULL, *part3 = NULL;
 			gchar * path = *ptr;
 			gchar **nextline = ptr;
 			nextline++;
@@ -1067,14 +1067,22 @@ process_info_pending (YelpTocPager *pager)
 			 * split everything up...
 			 */
 			path++; 
+			if (!path)
+			    goto done;
 			part1 = strchr (path, ':');
+			if (!part1)
+			    goto done;
 			part2 = g_strndup (path, part1-path);
 			tooltip = g_strdup (part2);
 			tooltip = g_strstrip (tooltip);
 			tooltip = g_strconcat (_("Read info page for "), tooltip, NULL);
 			path = part1+1;
 			part1 = strchr (path, ')');
+			if (!part1)
+			    goto done;
 			part1 = strchr (part1, '.');
+			if (!part1)
+			    goto done;
 			part3 = g_strndup (path, part1-path);
 			part1++;
 			desc = g_strdup (part1);
@@ -1108,6 +1116,7 @@ process_info_pending (YelpTocPager *pager)
 			    xmlNewChild (tmp, NULL, BAD_CAST "description",
 					 BAD_CAST desc);
 			}
+		    done:
 			g_free (part2);
 			g_free (part3);
 			g_free (tooltip);
