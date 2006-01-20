@@ -8,13 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-12 07:05+0100\n"
-"PO-Revision-Date: 2006-01-12 12:56+0100\n"
+"POT-Creation-Date: 2006-01-19 07:29+0100\n"
+"PO-Revision-Date: 2006-01-19 12:40+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1199
+msgid "GNU Info Pages"
+msgstr "GNU info-pagina's"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -170,7 +174,7 @@ msgstr "Overige documentatie"
 msgid "Panel Applets"
 msgstr "Paneel-applets"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "Voorkeuren"
 
@@ -200,62 +204,61 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Lettertypes</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>Bl_adwijzers:</b>"
-
-# Naam. Niet 'titel' Het is nl de naam van de bladwijzer en de 
-# sneltoets T wordt gebruikt voor _Toevoegen
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Naam:</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Bladwijzer toevoegen"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "Bladwijzers"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "_Hoofdlettergevoelig"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Zoeken"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Locatie openen"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "_Hernoemen"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "Bl_adwijzers:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "_Met caret verkennen"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Zoeken: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_Zoeken:"
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "_Vaste breedte:"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "_Locatie:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "V_olgende"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "Vo_rige"
+
+# naam/titel
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Titel:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -346,7 +349,7 @@ msgstr "Een bladwijzer genaamd <b>%s</b> bestaat al voor deze pagina."
 msgid "Document Sections"
 msgstr "Documentsecties"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -405,20 +408,20 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden gelezen en gedecodeerd. Het bestand is "
 "mogelijk gecomprimeerd in een onbekend formaat."
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Aangeven welke map moet worden gebruikt voor tijdelijke opslag"
 
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kon Yelp niet opstarten: '%s'"
 
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "Kon geen nieuw venster openen."
 
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hulp"
 
@@ -505,7 +508,7 @@ msgstr "_tot:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Geeft de laatste pagina die moet worden afgedrukt"
 
-#: ../src/yelp-search-pager.c:311
+#: ../src/yelp-search-pager.c:380
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
@@ -513,7 +516,7 @@ msgstr ""
 "Uw zoekopdracht kon niet worden verwerkt. Er is geen verbinding met de "
 "beagle daemon."
 
-#: ../src/yelp-search-pager.c:608
+#: ../src/yelp-search-pager.c:688
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -522,19 +525,24 @@ msgstr ""
 "Uw zoekopdracht kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, "
 "of het is geen geldige XSLT stylesheet."
 
-#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1447
+#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1448
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Geen href attribuut gevonden op yelp:document"
 
-#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1462
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1502
+#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1512
 msgid "Help Contents"
 msgstr "Hulp-inhoudsopgave"
+
+#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Kon het OMF bestand niet laden: '%s'."
 
 # Nederlands gebruikt dubbele aanhalingsteken voor een quotatie.
 # Enkele voor een aanhaling
@@ -567,11 +575,6 @@ msgstr "yelp-watermark-blockquote-201C"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauzerentelling is negatief."
 
-#: ../src/yelp-toc-pager.c:495
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Kon het OMF bestand niet laden: '%s'."
-
 #: ../src/yelp-toc-pager.c:629
 #, c-format
 msgid "Read man page for %s"
@@ -590,10 +593,6 @@ msgid ""
 msgstr ""
 "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, "
 "of het is niet-juist gevormde XML."
-
-#: ../src/yelp-toc-pager.c:1199
-msgid "GNU Info Pages"
-msgstr "GNU info-pagina's"
 
 #: ../src/yelp-toc-pager.c:1295
 #, c-format
@@ -789,16 +788,16 @@ msgstr ""
 "om te zetten naar XML."
 
 #: ../src/yelp-window.c:1025
-msgid "Search"
-msgstr "Zoeken"
+msgid "_Search:"
+msgstr "_Zoeken:"
 
 #: ../src/yelp-window.c:1026
 msgid "Search for other documentation"
 msgstr "Zoeken naar overige documentatie"
 
 #: ../src/yelp-window.c:1172
-msgid "Find:"
-msgstr "Zoeken:"
+msgid "Fin_d:"
+msgstr "_Zoeken:"
 
 #: ../src/yelp-window.c:1192
 msgid "Find _Next"
@@ -879,6 +878,17 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "Hulp bij GNOME"
 
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>Bl_adwijzers:</b>"
+
+# Naam. Niet 'titel' Het is nl de naam van de bladwijzer en de 
+# sneltoets T wordt gebruikt voor _Toevoegen
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Naam:</b>"
+
+#~ msgid "Find:"
+#~ msgstr "Zoeken:"
+
 # sectie/onderdeel
 #~ msgid "Unknown Section"
 #~ msgstr "Onbekende sectie"
@@ -892,9 +902,6 @@ msgstr "Hulp bij GNOME"
 
 #~ msgid "Go to home view"
 #~ msgstr "De startpagina tonen"
-
-#~ msgid "Fin_d"
-#~ msgstr "_Zoeken"
 
 #~ msgid "Titlepage"
 #~ msgstr "Titelpagina"
@@ -1180,9 +1187,6 @@ msgstr "Hulp bij GNOME"
 
 #~ msgid "Tip"
 #~ msgstr "Tip"
-
-#~ msgid "Title"
-#~ msgstr "Titel"
 
 # Een Hulp voor GNOME, een Hulp-programma voor GNOME
 #~ msgid "A Help Browser for GNOME"
