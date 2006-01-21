@@ -121,6 +121,48 @@ static char
 	return str;
 }
 
+static gchar *
+find_info_part (gchar *part_name)
+{
+  gchar ** paths = yelp_get_info_paths ();
+  gint i;
+  gchar *filename = NULL;
+  gchar *uri = NULL;
+  GDir *dir;
+  gchar *bzfname, *gzfname;
+
+  bzfname = g_strconcat (part_name, ".bz2", NULL);
+  gzfname = g_strconcat (part_name, ".gz", NULL);
+
+  for (i=0; paths[i]; i++) {
+    dir = g_dir_open (paths[i], 0, NULL);
+
+    while ((filename = (gchar *) g_dir_read_name (dir))) {
+      if (g_str_equal (filename, bzfname)) {
+	uri = g_strconcat (paths[i], "/", bzfname, NULL);
+	g_dir_close (dir);
+	goto done;
+      } else if (g_str_equal (filename, gzfname)) {
+	uri = g_strconcat (paths[i], "/", gzfname, NULL);
+	g_dir_close (dir);
+	goto done;
+      } else if (g_str_equal (filename, part_name)) {
+	uri = g_strconcat (paths[i], "/", part_name, NULL);
+	g_dir_close (dir);
+	goto done;
+
+      }
+    }
+    g_dir_close (dir);
+  }
+
+ done:
+  g_free (gzfname);
+  g_free (bzfname);
+  return uri;
+
+}
+
 static char
 *process_indirect_map (char *page)
 {
@@ -146,9 +188,7 @@ static char
 
 		if (items[0])
 		{
-			filename = g_strdup_printf (
-					/* FIXME */
-					"/usr/share/info/%s.gz", items[0]);
+		        filename = find_info_part (items[0]);
 			str = open_info_file (filename);
 	
 			pages = g_strsplit (str, "", 2);

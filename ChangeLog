@@ -1,5 +1,10 @@
 2006-01-21  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-io-channel.c: 
+	* src/yelp-info-parser.c: 
+	Look for multi-part info files in INFOPATH
+	Make loading from non-compressed {info,man} files work
+	
 	* src/yelp-toc-pager.c:
 	Change g_str_concat to g_strdup_printf in translated string
 	Fixes #327953
