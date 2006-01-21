@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 21:52+0700\n"
-"PO-Revision-Date: 2006-01-16 22:16+0700\n"
+"POT-Creation-Date: 2006-01-21 20:16+0700\n"
+"PO-Revision-Date: 2006-01-21 20:17+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit"
 
 # Info as in "Emacs info page"
-#: data/info.xml.in.h:1 src/yelp-toc-pager.c:1199
+#: data/info.xml.in.h:1 src/yelp-toc-pager.c:1208
 msgid "GNU Info Pages"
 msgstr "GNU Info Pages"
 
@@ -53,7 +53,7 @@ msgstr "รูทีนเคอร์เนล"
 msgid "Library Functions"
 msgstr "ฟังก์ชันในไลบรารี"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1188
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1197
 msgid "Manual Pages"
 msgstr "Manual Pages"
 
@@ -390,20 +390,20 @@ msgid ""
 "an unsupported format."
 msgstr "ไม่สามารถอ่านและแปลงรหัสแฟ้ม ‘%s’ ได้ แฟ้มดังกล่าวอาจถูกบีบอัดไว้ด้วยรูปแบบที่ไม่สนับสนุน"
 
-#: src/yelp-main.c:95
+#: src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "ตั้งโฟลเดอร์สำหรับเก็บข้อมูลชั่วคราว"
 
-#: src/yelp-main.c:129
+#: src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "เรียกใช้ Yelp ไม่สำเร็จ: '%s'"
 
-#: src/yelp-main.c:148
+#: src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "เปิดหน้าต่างใหม่ไม่สำเร็จ"
 
-#: src/yelp-main.c:325 yelp.desktop.in.in.h:2
+#: src/yelp-main.c:396 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "วิธีใช้"
 
@@ -498,17 +498,17 @@ msgid ""
 "not a valid XSLT stylesheet."
 msgstr "ไม่สามารถค้นหาได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ใช่ XSLT stylesheet ที่ถูกต้อง"
 
-#: src/yelp-search-pager.c:790 src/yelp-toc-pager.c:1447
+#: src/yelp-search-pager.c:790 src/yelp-toc-pager.c:1457
 #: src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "ไม่มีแอตทริบิวต์ href ใน yelp:document"
 
-#: src/yelp-search-pager.c:804 src/yelp-toc-pager.c:1461
+#: src/yelp-search-pager.c:804 src/yelp-toc-pager.c:1471
 #: src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "หน่วยความจำหมด"
 
-#: src/yelp-search-pager.c:845 src/yelp-toc-pager.c:1502
+#: src/yelp-search-pager.c:845 src/yelp-toc-pager.c:1521
 msgid "Help Contents"
 msgstr "สารบัญวิธีใช้"
 
@@ -551,18 +551,19 @@ msgstr "YelpTocPager: จำนวนหน้าเป็นลบ"
 msgid "Read man page for %s"
 msgstr "อ่าน man page สำหรับ %s"
 
-#: src/yelp-toc-pager.c:1074
-msgid "Read info page for "
-msgstr "อ่าน info page สำหรับ "
+#: src/yelp-toc-pager.c:1078
+#, c-format
+msgid "Read info page for %s"
+msgstr "อ่าน info page สำหรับ %s"
 
-#: src/yelp-toc-pager.c:1167
+#: src/yelp-toc-pager.c:1176
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr "ไม่สามารถโหลดสารบัญได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ก็ไม่ใช่รูปแบบ XML ที่ถูกต้อง"
 
-#: src/yelp-toc-pager.c:1295
+#: src/yelp-toc-pager.c:1304
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
