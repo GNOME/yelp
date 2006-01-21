@@ -1,3 +1,9 @@
+2006-01-21  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc-pager.c:
+	Change g_str_concat to g_strdup_printf in translated string
+	Fixes #327953
+
 2006-01-20  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-toc-pager.c: 

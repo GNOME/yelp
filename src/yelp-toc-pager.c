@@ -1075,7 +1075,7 @@ process_info_pending (YelpTocPager *pager)
 			part2 = g_strndup (path, part1-path);
 			tooltip = g_strdup (part2);
 			tooltip = g_strstrip (tooltip);
-			tooltip = g_strconcat (_("Read info page for "), tooltip, NULL);
+			tooltip = g_strdup_printf (_("Read info page for %s"), tooltip);
 			path = part1+1;
 			part1 = strchr (path, ')');
 			if (!part1)
