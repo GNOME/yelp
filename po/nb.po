@@ -6,13 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-13 11:24+0100\n"
-"PO-Revision-Date: 2006-01-13 11:25+0100\n"
+"POT-Creation-Date: 2006-01-22 19:03+0100\n"
+"PO-Revision-Date: 2006-01-22 19:04+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1208
+msgid "GNU Info Pages"
+msgstr "GNU Infosider"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -46,7 +50,7 @@ msgstr "Kjernerutiner"
 msgid "Library Functions"
 msgstr "Bibliotekfunksjoner"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1188
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1197
 msgid "Manual Pages"
 msgstr "Manualsider"
 
@@ -166,7 +170,7 @@ msgstr "Annen dokumentasjon"
 msgid "Panel Applets"
 msgstr "Panelprogrammer"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "Brukervalg"
 
@@ -195,60 +199,60 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Skrifter</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_Bokmerker:</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Tittel:</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Legg til bokmerke"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "Bokmerke"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "_Skill mellom små/store bokstaver"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Finn"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Åpne lokasjon"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "E_ndre navn"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "_Bokmerker:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "_Bruk markør"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Finn: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_Finn:"
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "_Fast bredde:"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "_Lokasjon:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Neste"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_Forrige"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Tittel:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -328,7 +332,7 @@ msgstr "Et bokmerke med navn <b>%s</b> eksisterer allerede for denne siden."
 msgid "Document Sections"
 msgstr "Dokumentdeler"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -378,7 +382,7 @@ msgstr ""
 "Filen «%s» kunne ikke tolkes. Enten eksisterer ikke filen eller så er den "
 "ikke velformet info-side."
 
-#: ../src/yelp-io-channel.c:98
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -387,20 +391,20 @@ msgstr ""
 "Filen «%s» kunne ikke leses og dekodes. Filen kan være komprimert i et "
 "format som ikke støttes."
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Definer hvilken bufferkatalog som skal brukes"
 
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Kunne ikke aktivere Yelp: «%s»"
 
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "Kunne ikke åpne nytt vindu."
 
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjelp"
 
@@ -482,13 +486,13 @@ msgstr "_Til:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Setter slutt på sideområdet som skal skrives ut"
 
-#: ../src/yelp-search-pager.c:311
+#: ../src/yelp-search-pager.c:380
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
 msgstr "Søket kunne ikke utføres. Ingen tilkobling til beagle-tjenesten."
 
-#: ../src/yelp-search-pager.c:608
+#: ../src/yelp-search-pager.c:688
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -497,19 +501,24 @@ msgstr ""
 "Søket kunne ikke utføres. Filen «%s» mangler eller så er den ikke et gyldig "
 "XSLT-stilark."
 
-#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1447
+#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1457
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Ingen href-attributt funnet på yelp:document"
 
-#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1471
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Ikke mer minne"
 
-#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1502
+#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1521
 msgid "Help Contents"
 msgstr "Hjelpinnhold"
+
+#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Kunne ikke laste OMF-fil «%s»."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -540,21 +549,17 @@ msgstr "yelp-watermark-blockquote-201C"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausetall er negativt."
 
-#: ../src/yelp-toc-pager.c:495
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Kunne ikke laste OMF-fil «%s»."
-
 #: ../src/yelp-toc-pager.c:629
 #, c-format
 msgid "Read man page for %s"
 msgstr "Les manualside for %s"
 
-#: ../src/yelp-toc-pager.c:1074
-msgid "Read info page for "
-msgstr "Leste infoside for "
+#: ../src/yelp-toc-pager.c:1078
+#, c-format
+msgid "Read info page for %s"
+msgstr "Les infoside for %s"
 
-#: ../src/yelp-toc-pager.c:1167
+#: ../src/yelp-toc-pager.c:1176
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -563,11 +568,7 @@ msgstr ""
 "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den "
 "ikke velutformet XML."
 
-#: ../src/yelp-toc-pager.c:1199
-msgid "GNU Info Pages"
-msgstr "GNU Infosider"
-
-#: ../src/yelp-toc-pager.c:1295
+#: ../src/yelp-toc-pager.c:1304
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -756,16 +757,16 @@ msgstr ""
 "dokumenet om å konvertere det tilXML."
 
 #: ../src/yelp-window.c:1025
-msgid "Search"
-msgstr "Søk"
+msgid "_Search:"
+msgstr "_Søk:"
 
 #: ../src/yelp-window.c:1026
 msgid "Search for other documentation"
 msgstr "Søk etter annen dokumentasjon"
 
 #: ../src/yelp-window.c:1172
-msgid "Find:"
-msgstr "Finn:"
+msgid "Fin_d:"
+msgstr "_Finn:"
 
 #: ../src/yelp-window.c:1192
 msgid "Find _Next"
