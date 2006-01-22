@@ -7,13 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.9.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-09 03:47+0100\n"
-"PO-Revision-Date: 2006-01-09 03:49+0100\n"
+"POT-Creation-Date: 2006-01-22 15:17+0100\n"
+"PO-Revision-Date: 2006-01-22 15:18+0100\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1208
+msgid "GNU Info Pages"
+msgstr "Pàgines info de GNU"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -47,7 +51,7 @@ msgstr "Rutines del nucli"
 msgid "Library Functions"
 msgstr "Funcions de biblioteques"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1188
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1197
 msgid "Manual Pages"
 msgstr "Pàgines de manual"
 
@@ -167,7 +171,7 @@ msgstr "Altra documentació"
 msgid "Panel Applets"
 msgstr "Miniaplicacions del quadre"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "Preferències"
 
@@ -196,60 +200,60 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Tipus de lletra</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_Adreces d'interès:</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Títol:</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Afegeix una adreça d'interès"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "Adreces d'interès"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "Diferènci_a entre majúscules i minúscules"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Cerca"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Obre una ubicació"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "Canvia el _nom"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "A_dreces d'interès:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "_Navega amb un cursor"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Cerca: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_Cerca:"
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "Amplada _fixa:"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "_Ubicació:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Següent"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_Anterior"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Títol:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -296,7 +300,7 @@ msgstr "Utilitza els tipus de lletra del sistema"
 msgid "Use the default fonts set for the system."
 msgstr "Utilitza els tipus de lletra per defecte del sistema."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2643
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2646
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -331,7 +335,7 @@ msgstr ""
 msgid "Document Sections"
 msgstr "Seccions del document"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:198
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -381,7 +385,7 @@ msgstr ""
 "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és una "
 "pàgina d'informació correctament formatada."
 
-#: ../src/yelp-io-channel.c:98
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -390,20 +394,20 @@ msgstr ""
 "No s'ha pogut llegir i decodificar el fitxer «%s». El sistema pot estar "
 "comprimit en un format no implementat."
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Defineix el directori de memòria cau a utilitzar"
 
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "No s'ha pogut activar el Yelp: «%s»"
 
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "No s'ha pogut obrir una nova finestra"
 
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajuda"
 
@@ -485,13 +489,13 @@ msgstr "_A:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Estableix el final del rang de pàgines a imprimir"
 
-#: ../src/yelp-search-pager.c:311
+#: ../src/yelp-search-pager.c:380
 msgid ""
 "Your search could not be processed. There is no connection to the beagle "
 "daemon."
 msgstr "No s'ha pogut processar la cerca. No hi ha connexció al dimoni beagle."
 
-#: ../src/yelp-search-pager.c:608
+#: ../src/yelp-search-pager.c:688
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -500,19 +504,24 @@ msgstr ""
 "No s'ha pogut processar la cerca. Falta el fitxer «%s», o no és un full "
 "d'estil XSLT vàlid."
 
-#: ../src/yelp-search-pager.c:710 ../src/yelp-toc-pager.c:1447
+#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1457
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "No s'ha trobat cap atribut href a yelp:document"
 
-#: ../src/yelp-search-pager.c:724 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1471
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "S'ha exhaurit la memòria"
 
-#: ../src/yelp-search-pager.c:765 ../src/yelp-toc-pager.c:1502
+#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1521
 msgid "Help Contents"
 msgstr "Continguts de l'ajuda"
+
+#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "No s'ha pogut carregar el fitxer OMF «%s»."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -543,21 +552,17 @@ msgstr "yelp-watermark-blockquote-00AB"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: el compte de pausa és negatiu."
 
-#: ../src/yelp-toc-pager.c:495
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "No s'ha pogut carregar el fitxer OMF «%s»."
-
 #: ../src/yelp-toc-pager.c:629
 #, c-format
 msgid "Read man page for %s"
 msgstr "S'ha llegit la pàgina de manual per a %s"
 
-#: ../src/yelp-toc-pager.c:1074
-msgid "Read info page for "
-msgstr "Llegiu la pàgina d'informació de "
+#: ../src/yelp-toc-pager.c:1078
+#, c-format
+msgid "Read info page for %s"
+msgstr "Llegiu la pàgina d'informació de %s"
 
-#: ../src/yelp-toc-pager.c:1167
+#: ../src/yelp-toc-pager.c:1176
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -566,11 +571,7 @@ msgstr ""
 "No s'ha pogut carregar la taula de continguts. Falta el fitxer «%s», o no és "
 "XML vàlid."
 
-#: ../src/yelp-toc-pager.c:1199
-msgid "GNU Info Pages"
-msgstr "Pàgines info de GNU"
-
-#: ../src/yelp-toc-pager.c:1295
+#: ../src/yelp-toc-pager.c:1304
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -579,160 +580,160 @@ msgstr ""
 "No s'ha pogut processar la taula de continguts. Falta el fitxer «%s», o no "
 "és XML vàlid."
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:311
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:312
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:313
 msgid "_Go"
 msgstr "_Vés"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:314
 msgid "_Bookmarks"
 msgstr "A_dreces d'interès"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:315
 msgid "_Help"
 msgstr "A_juda"
 
-#: ../src/yelp-window.c:316
+#: ../src/yelp-window.c:318
 msgid "_New Window"
 msgstr "_Nova finestra"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:323
 msgid "Print This Document"
 msgstr "Imprimeix aquest document"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:328
 msgid "Print This Page"
 msgstr "Imprimeix aquesta pàgina"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:333
 msgid "About This Document"
 msgstr "Quant a aquest document"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:338
 msgid "Open _Location"
 msgstr "Obre una _ubicació"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:343
 msgid "_Close Window"
 msgstr "_Tanca la finestra"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:349
 msgid "_Copy"
 msgstr "_Copia"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:355
 msgid "_Select All"
 msgstr "_Selecciona-ho tot"
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:360
 msgid "_Find..."
 msgstr "_Cerca..."
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:365
 msgid "Find Pre_vious"
 msgstr "Cerca l'an_terior"
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:367
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Cerca l'anterior coincidència d'aquesta paraula o frase"
 
 # "la" paraula/frase (josep)
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:370
 msgid "Find Ne_xt"
 msgstr "Cerca la següe_nt"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:372
 msgid "Find next occurrence of the word or phrase"
 msgstr "Cerca la següent coincidència d'aquesta paraula o frase"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:375
 msgid "_Preferences"
 msgstr "_Preferències"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:380
 msgid "_Reload"
 msgstr "To_rna a carregar"
 
-#: ../src/yelp-window.c:390
+#: ../src/yelp-window.c:392
 msgid "_Back"
 msgstr "_Endarrere"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:394
 msgid "Show previous page in history"
 msgstr "Mostra la pàgina anterior en la història"
 
-#: ../src/yelp-window.c:395
+#: ../src/yelp-window.c:397
 msgid "_Forward"
 msgstr "E_ndavant"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:399
 msgid "Show next page in history"
 msgstr "Mostra la pàgina següent en la història"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:402
 msgid "_Help Topics"
 msgstr "Temes d'a_juda"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:404
 msgid "Go to the listing of help topics"
 msgstr "Vés al llistat de temes d'ajuda"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:407
 msgid "_Previous Section"
 msgstr "Secció an_terior"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:412
 msgid "_Next Section"
 msgstr "Secció següe_nt"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:417
 msgid "_Contents"
 msgstr "_Continguts"
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:423
 msgid "_Add Bookmark"
 msgstr "_Afegeix una adreça d'interès"
 
-#: ../src/yelp-window.c:426
+#: ../src/yelp-window.c:428
 msgid "_Edit Bookmarks..."
 msgstr "_Edita les adreces d'interès..."
 
-#: ../src/yelp-window.c:432
+#: ../src/yelp-window.c:434
 msgid "_Open Link"
 msgstr "_Obre l'enllaç"
 
-#: ../src/yelp-window.c:437
+#: ../src/yelp-window.c:439
 msgid "Open Link in _New Window"
 msgstr "Obre l'enllaç a una _nova finestra"
 
-#: ../src/yelp-window.c:442
+#: ../src/yelp-window.c:444
 msgid "_Copy Link Address"
 msgstr "_Copia l'adreça de l'enllaç"
 
-#: ../src/yelp-window.c:448
+#: ../src/yelp-window.c:450
 msgid "_About"
 msgstr "_Quant a"
 
-#: ../src/yelp-window.c:453
+#: ../src/yelp-window.c:455
 msgid "Copy _Email Address"
 msgstr "_Copia l'adreça de correu"
 
-#: ../src/yelp-window.c:502
+#: ../src/yelp-window.c:504
 msgid "Help Browser"
 msgstr "Navegador d'ajuda"
 
-#: ../src/yelp-window.c:766 ../src/yelp-window.c:922
+#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "L'Indentificador Uniforme del Recurs per a aquest fitxer és invàlid."
 
-#: ../src/yelp-window.c:778 ../src/yelp-window.c:917
+#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -741,19 +742,19 @@ msgstr ""
 "L'Identificador Uniforme del Recurs «%s» és invàlid o no apunta a un fitxer "
 "existent."
 
-#: ../src/yelp-window.c:864 ../src/yelp-window.c:1289
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1292
 msgid "Man pages are not supported in this version."
 msgstr "Les pàgines de manual no estan implementades en aquesta versió."
 
-#: ../src/yelp-window.c:874 ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1283
 msgid "GNU info pages are not supported in this version"
 msgstr "Les pàgines d'info GNU no estan implementades en aquesta versió"
 
-#: ../src/yelp-window.c:892 ../src/yelp-window.c:1302
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1305
 msgid "Search is not supported in this version."
 msgstr "Aquesta versió no implementa cerques."
 
-#: ../src/yelp-window.c:897
+#: ../src/yelp-window.c:899
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -761,27 +762,27 @@ msgstr ""
 "Els documents SGML ja no estan implementats. Demaneu a l'autor del document "
 "que ho converteixi a XML."
 
-#: ../src/yelp-window.c:1023
-msgid "Search"
-msgstr "Cerca"
+#: ../src/yelp-window.c:1025
+msgid "_Search:"
+msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1024
+#: ../src/yelp-window.c:1026
 msgid "Search for other documentation"
 msgstr "Cerca altra documentació"
 
-#: ../src/yelp-window.c:1169
-msgid "Find:"
-msgstr "Cerca:"
+#: ../src/yelp-window.c:1172
+msgid "Fin_d:"
+msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1189
+#: ../src/yelp-window.c:1192
 msgid "Find _Next"
 msgstr "Cerca el següe_nt"
 
-#: ../src/yelp-window.c:1201
+#: ../src/yelp-window.c:1204
 msgid "Find _Previous"
 msgstr "Cerca l'an_terior"
 
-#: ../src/yelp-window.c:1315
+#: ../src/yelp-window.c:1318
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -790,8 +791,8 @@ msgstr ""
 "No s'ha pogut crear un context de transformació per al fitxer «%s». Potser "
 "que el format no estigui implementat."
 
-#: ../src/yelp-window.c:1344 ../src/yelp-window.c:1755
-#: ../src/yelp-window.c:1822
+#: ../src/yelp-window.c:1347 ../src/yelp-window.c:1758
+#: ../src/yelp-window.c:1825
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -802,7 +803,7 @@ msgstr ""
 "secció a través d'un botó d'ajuda d'una aplicació, informeu d'aquest error "
 "als mantenidors de l'aplicació."
 
-#: ../src/yelp-window.c:1459 ../src/yelp-window.c:2212
+#: ../src/yelp-window.c:1462 ../src/yelp-window.c:2215
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -811,17 +812,17 @@ msgstr ""
 "No s'ha pogut llegir el fitxer «%s». Aquest fitxer pot faltar, o potser no "
 "teniu  permís per a llegir-ho."
 
-#: ../src/yelp-window.c:1510
+#: ../src/yelp-window.c:1513
 msgid "Loading..."
 msgstr "S'està carregant..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2640
+#: ../src/yelp-window.c:2643
 msgid "translator-credits"
 msgstr "Jordi Mallach <jordi@sindominio.net>"
 
-#: ../src/yelp-window.c:2645
+#: ../src/yelp-window.c:2648
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navegador i visualitzador de documentació per a l'escriptori GNOME."
 
@@ -847,6 +848,12 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtingueu ajuda amb el GNOME"
+
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>_Adreces d'interès:</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Títol:</b>"
 
 #~ msgid "Unknown Section"
 #~ msgstr "Secció desconeguda"
@@ -1114,9 +1121,6 @@ msgstr "Obtingueu ajuda amb el GNOME"
 
 #~ msgid "Tip"
 #~ msgstr "Suggeriment"
-
-#~ msgid "Title"
-#~ msgstr "Títol"
 
 #~ msgid "Document URI"
 #~ msgstr "URI del document"
