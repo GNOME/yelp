@@ -135,6 +135,8 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 	gchar *name;
 	gint   size = 0;
 
+	g_return_if_fail (fontname != NULL);
+
 	name = NULL;
 	if (!yelp_util_split_font_string (fontname, &name, &size)) {
 		g_free (name);

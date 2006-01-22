@@ -350,11 +350,24 @@ gchar *
 yelp_settings_get_font (YelpFontType font)
 {
     gchar *key;
+    gchar *retval = NULL;
+    GError *err = NULL;
     gboolean use;
 
     use = gconf_client_get_bool (gconf_client,
 				 KEY_YELP_SYSTEM_FONTS,
-				 NULL);
+				 &err);
+
+    /* check for some kind of gconf error here; if error exists, then
+     * default to using system fonts since the yelp font settings might
+     * be messed up in gconf as well */
+    if (err != NULL) {
+	g_warning ("An error occurred getting the gconf value %s: %s\n",
+	           KEY_YELP_SYSTEM_FONTS, err->message);
+	g_error_free (err);
+	err = NULL;
+	use = FALSE;
+    }
 
     switch (font) {
     case YELP_FONT_VARIABLE:
@@ -367,7 +380,44 @@ yelp_settings_get_font (YelpFontType font)
 	g_assert_not_reached ();
     }
 
-    return gconf_client_get_string (gconf_client, key, NULL);
+    retval = gconf_client_get_string (gconf_client, key, &err);
+
+    if (err != NULL || retval == NULL) {
+	g_warning ("An error occurred getting the gconf value '%s'\n", key);
+	if (err) {
+	    g_error_free (err);
+	    err = NULL;
+	}
+
+	/* ok, if we were looking at the gnome system wide font setting
+	 * and it failed, then look at the yelp font setting - and vice
+	 * versa */
+	if (font == YELP_FONT_VARIABLE)
+	    key = (use ? KEY_YELP_VARIABLE_FONT : KEY_GNOME_VARIABLE_FONT);
+	else if (font == YELP_FONT_FIXED)
+	    key = (use ? KEY_YELP_FIXED_FONT : KEY_GNOME_FIXED_FONT);
+	else g_assert_not_reached ();
+
+	retval = gconf_client_get_string (gconf_client, key, &err);
+
+	/* if we still have an error, something seriously went wrong, and
+	 * well just hardcode the values */
+	if (err != NULL || retval == NULL) {
+	    g_warning ("An error occurred getting the gconf value '%s'\n", key);
+	    if (err) {
+		g_error_free (err);
+		err = NULL;
+	    }
+
+	    if (font == YELP_FONT_VARIABLE)
+		retval = g_strdup ("Sans 10");
+	    else if (font == YELP_FONT_FIXED)
+		retval = g_strdup ("Monospace 10");
+	    else g_assert_not_reached ();
+	}
+    }
+
+    return retval;
 }
 
 const gchar *
