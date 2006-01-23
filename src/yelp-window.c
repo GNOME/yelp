@@ -1155,6 +1155,9 @@ window_populate (YelpWindow *window)
     gtk_widget_show (priv->html_pane);
     gtk_widget_show (priv->pane);
     gtk_widget_show (priv->main_box);
+    gtk_container_set_focus_child (GTK_CONTAINER (window),
+				   GTK_WIDGET (priv->html_view));
+
 }
 
 static void

@@ -1,5 +1,8 @@
 2006-01-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-window.c: 
+	Set initial focus to html widget, fixes #324190
+
 	* src/yelp-search-pager.c: 
 	* configure.in: 
 	Make compilation with Beagle search with newer Beagle
