@@ -520,12 +520,9 @@ compare_hits (gconstpointer  a,
     const char *langa, *langb;
     gboolean a_preferred = TRUE, b_preferred = TRUE;
 
-    langa = beagle_hit_get_property (*hita, "fixme:language");
-    langb = beagle_hit_get_property (*hitb, "fixme:language");
-
-    if (langa)
+    if (beagle_hit_get_one_property (*hita, "fixme:language", &langa))
 	a_preferred = check_lang(langa);
-    if (langb)
+    if (beagle_hit_get_one_property (*hitb, "fixme:language", &langb))
 	b_preferred = check_lang(langb);
 
     if (a_preferred != b_preferred) {
@@ -562,7 +559,7 @@ finished_cb (BeagleQuery            *query,
     for (i = 0; i < 10 && i < priv->hits->len; i++) {
 	BeagleHit *hit = g_ptr_array_index (priv->hits, i);
 	xmlNode *child;
-	static float score_fake = 0;
+	/* static float score_fake = 0; */
 	char *score;
 	const char *property;
 	BeagleSnippetRequest *request;
@@ -572,11 +569,9 @@ finished_cb (BeagleQuery            *query,
 	xmlSetProp (child, BAD_CAST "uri", BAD_CAST beagle_hit_get_uri (hit));
 	xmlSetProp (child, BAD_CAST "parent_uri", 
 		    BAD_CAST beagle_hit_get_parent_uri (hit));
-	property = beagle_hit_get_property (hit, "dc:title");
-	if (property)
+	if (beagle_hit_get_one_property (hit, "dc:title", &property))
 	    xmlSetProp (child, BAD_CAST "title", BAD_CAST property);
-	property = beagle_hit_get_property (hit, "fixme:base_title");
-	if (property)
+	if (beagle_hit_get_one_property (hit, "fixme:base_title", &property))
 	    xmlSetProp (child, BAD_CAST "base_title", BAD_CAST property);
 
 	score = g_strdup_printf ("%f", beagle_hit_get_score (hit));
