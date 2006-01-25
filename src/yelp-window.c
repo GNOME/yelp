@@ -509,11 +509,11 @@ window_init (YelpWindow *window)
 static void
 window_dispose (GObject *object)
 {
-	YelpWindow *window = YELP_WINDOW (object);
+    YelpWindow *window = YELP_WINDOW (object);
 
-	window_disconnect (YELP_WINDOW (window));
+    window_disconnect (YELP_WINDOW (window));
 
-	parent_class->dispose (object);
+    parent_class->dispose (object);
 }
 
 static void
@@ -1674,17 +1674,20 @@ window_disconnect (YelpWindow *window)
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
-    pager = yelp_doc_info_get_pager (priv->current_doc);
+    
+    if (priv && priv->current_doc) {
+	pager = yelp_doc_info_get_pager (priv->current_doc);
+    }
 
     if (GTK_WIDGET (window)->window)
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
-    if (window->priv->toc_pause > 0) {
-	window->priv->toc_pause--;
+    if (priv && priv->toc_pause > 0) {
+	priv->toc_pause--;
 	yelp_toc_pager_unpause (yelp_toc_pager_get ());
     }
 
-    if (window->priv->current_doc) {
+    if (priv && priv->current_doc) {
 	if (priv->start_handler) {
 	    g_signal_handler_disconnect (pager,
 					 priv->start_handler);
@@ -1711,7 +1714,7 @@ window_disconnect (YelpWindow *window)
 	    priv->finish_handler = 0;
 	}
     }
-    if (priv->idle_write) {
+    if (priv && priv->idle_write) {
 	gtk_idle_remove (priv->idle_write);
 	priv->idle_write = 0;
     }

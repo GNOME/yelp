@@ -1,3 +1,9 @@
+2006-01-24  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-window.c: (window_dispose), (window_disconnect):
+	fixed a critical warning which is triggered when a document
+	open fails, and then the user quits yelp
+
 2006-01-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-window.c: 
