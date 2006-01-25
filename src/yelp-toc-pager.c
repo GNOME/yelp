@@ -1186,9 +1186,14 @@ process_read_menu (YelpTocPager *pager)
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	xmlChar *icon = NULL;
-
 #ifdef ENABLE_MAN
 	xmlChar *id = NULL;
+#endif
+#ifdef ENABLE_INFO
+	xmlChar *infoid = NULL;
+#endif
+
+#ifdef ENABLE_MAN
 	id = xmlGetProp (node, BAD_CAST "id");
 	if (!xmlStrcmp (id, BAD_CAST "index")) {
 	    xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "toc", NULL);
@@ -1199,7 +1204,6 @@ process_read_menu (YelpTocPager *pager)
 #endif
 
 #ifdef ENABLE_INFO
-	xmlChar *infoid = NULL;
 	infoid = xmlGetProp (node, BAD_CAST "id");
 	if (!xmlStrcmp (infoid, BAD_CAST "index")) {
 	    xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "toc", NULL);

@@ -1,5 +1,10 @@
 2006-01-25  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-print.c: 
+	* src/yelp-toc-pager.c: 
+	Patch from Jens Granseuer to fix some C99 initialisations
+	bug #328261
+	
 	* src/yelp-main.c: 
 	Fix crash on opening 2nd instance, #328517
 

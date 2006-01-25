@@ -598,8 +598,10 @@ yelp_print_preview (YelpPrintInfo *info)
      * have to actually show it now :(
      */
     if (!info->previewed) {
+	GtkWidget *box;
+
 	info->previewed = TRUE;
-	GtkWidget *box = gtk_toolbar_new ();
+	box = gtk_toolbar_new ();
 	
 	gtk_box_pack_start (GTK_BOX (info->content_box), box, FALSE, FALSE, 0);
 	info->GoFirst = GTK_WIDGET (gtk_tool_button_new_from_stock (GTK_STOCK_GOTO_FIRST));
