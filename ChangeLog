@@ -1,3 +1,16 @@
+2006-01-24  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-utils.c: (get_doc_type):
+	* src/yelp-window.c: (window_disconnect):
+	backported some fixes from HEAD.
+	
+	- Brent: fixed a critical warning which is triggered when a document
+	open fails, and then the user quits yelp
+	- Don: Remove warning about `stock_id != NULL' in new window
+	- Brent: committed patch to make yelp accept mime-types application/xml
+	and application/docbook+xml, courtesy of Dave Malcom.  Fixes
+	critical issue, bug #324296
+
 ==================== 2.12.2 ====================
 
 2005-11-27  Shaun McCance  <shaunm@gnome.org>

@@ -515,7 +515,7 @@ get_doc_type (gchar *uri)
     if (mime_type == NULL)
 	return YELP_DOC_TYPE_ERROR;
 
-    if (g_str_equal (mime_type, "text/xml"))
+    if (g_str_equal (mime_type, "text/xml") || g_str_equal (mime_type, "application/docbook+xml") || g_str_equal (mime_type, "application/xml"))
 	type = YELP_DOC_TYPE_DOCBOOK_XML;
     else if (g_str_equal (mime_type, "text/sgml"))
 	type = YELP_DOC_TYPE_DOCBOOK_SGML;
