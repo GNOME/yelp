@@ -1,3 +1,8 @@
+2006-01-25  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-main.c: 
+	Fix crash on opening 2nd instance, #328517
+
 2006-01-24  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-window.c: (window_dispose), (window_disconnect):

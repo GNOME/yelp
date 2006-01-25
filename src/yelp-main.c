@@ -368,16 +368,16 @@ main (int argc, char **argv)
 	GnomeClient   *client;
 	gboolean       session_started = FALSE;
 	const gchar  **args;
-	gchar *startup_id;
+	gchar *local_id;
 
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	startup_id = (gchar *) g_getenv ("DESKTOP_STARTUP_ID");
+	local_id = (gchar *) g_getenv ("DESKTOP_STARTUP_ID");
 
-	if (startup_id != NULL && *startup_id != '\0') {
-		startup_id = g_strdup (startup_id);
+	if (local_id != NULL && *local_id != '\0') {
+		startup_id = g_strdup (local_id);
 		putenv ("DESKTOP_STARTUP_ID=");
 	}
 
