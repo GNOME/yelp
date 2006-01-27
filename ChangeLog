@@ -1,3 +1,9 @@
+2006-01-26  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-settings.c:
+	Use the /desktop/gnome/interface/document_font_name gconf key
+	for the default font, instead of font_name
+
 2006-01-25  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-print.c: 

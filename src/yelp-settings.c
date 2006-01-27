@@ -34,7 +34,7 @@
 #include "yelp-settings.h"
 
 #define KEY_GNOME_DIR           "/desktop/gnome/interface"
-#define KEY_GNOME_VARIABLE_FONT KEY_GNOME_DIR "/font_name"
+#define KEY_GNOME_VARIABLE_FONT KEY_GNOME_DIR "/document_font_name"
 #define KEY_GNOME_FIXED_FONT    KEY_GNOME_DIR "/monospace_font_name"
 #define KEY_GNOME_GTK_THEME     KEY_GNOME_DIR "/gtk_theme"
 
