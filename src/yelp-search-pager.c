@@ -1189,7 +1189,7 @@ slow_search_process (YelpSearchPager *pager)
     pending_searches = g_slist_remove_link (pending_searches, first);
 
     if (first == NULL)
-	goto done;
+	return FALSE;
 
     c = (SearchContainer *) first->data;
 
@@ -1217,7 +1217,6 @@ slow_search_process (YelpSearchPager *pager)
     g_free (c->snippet);
     g_hash_table_destroy (c->entities);
 
- done:
     if (pending_searches) {
 	g_strfreev (c->search_term);
 	g_free (c);
