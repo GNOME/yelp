@@ -735,9 +735,13 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	    dirname = xmlNodeListGetString (manindex_xml, 
 	                                    node->xmlChildrenNode, 1);
 	    
-	    if (g_stat ((gchar *)dirname, &buf) < 0)
+	    /* if we can't stat the dirname for some reason, then skip adding
+	     * this directory to the TOC */
+	    if (g_stat ((gchar *)dirname, &buf) < 0) {
 		g_warning ("Unable to stat dir: \"%s\"\n", dirname);
-	    
+	    	continue;
+	    }
+
 	    /* FIXME: need some error checking */
 	    mtime = (time_t) atoi ((gchar *)dirmtime);
 	    
@@ -769,12 +773,12 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 			add_man_page_to_toc (pager, (gchar *)dirname, filename);
 			priv->manpage_count++;
 		    }
+
+		    g_dir_close (dir);
 		}
 
 		/* we replace the node in the tree */
 		xmlReplaceNode (dirnode, newNode);
-
-		g_dir_close (dir);
 	    
 	    /* otherwise just read from the index file */
 	    } else {

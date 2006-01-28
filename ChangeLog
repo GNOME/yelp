@@ -1,3 +1,10 @@
+2006-01-28  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (create_toc_from_index):
+	Don't call g_dir_close() unless we successfully opened the dir;
+	Also, skip adding a directory to the man page TOC if we can't stat()
+	it, fixes #328953
+
 2006-01-26  Brent Smith  <gnome@nextreality.net>
 
 	* README:
