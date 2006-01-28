@@ -1188,8 +1188,12 @@ slow_search_process (YelpSearchPager *pager)
 
     pending_searches = g_slist_remove_link (pending_searches, first);
 
-    if (first == NULL)
+    if (first == NULL) {
+	gtk_idle_add_priority (G_PRIORITY_LOW,
+			       (GtkFunction) process_xslt,
+			       pager);
 	return FALSE;
+    }
 
     c = (SearchContainer *) first->data;
 
