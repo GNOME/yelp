@@ -1188,6 +1188,9 @@ slow_search_process (YelpSearchPager *pager)
 
     pending_searches = g_slist_remove_link (pending_searches, first);
 
+    if (first == NULL)
+	goto done;
+
     c = (SearchContainer *) first->data;
 
     xmlSAXUserParseFile (&handlers, c, c->base_filename);
@@ -1214,7 +1217,7 @@ slow_search_process (YelpSearchPager *pager)
     g_free (c->snippet);
     g_hash_table_destroy (c->entities);
 
-
+ done:
     if (pending_searches) {
 	g_strfreev (c->search_term);
 	g_free (c);
@@ -1411,11 +1414,15 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 void
 process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 {
-    gchar ** split = g_strsplit (result, "\n", -1);
+    gchar ** split = NULL;
     gint i;
 
+    split = g_strsplit (result, "\n", -1);
+    if (split == NULL)
+	return;
+
     for (i=0;split[i];i++) {
-	gchar ** line = g_strsplit (split[i], "--", 3); 
+	gchar ** line = NULL;
 	gchar *filename = NULL;
 	gchar *desc = NULL;
 	gchar *title = NULL;
@@ -1423,7 +1430,8 @@ process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	gchar *tmp;
 	gchar *tmp1;
 	gchar *file_name;
-
+	
+	line = g_strsplit (split[i], "--", 3); 
 	if (g_strv_length (line) != 2) {
 	    g_strfreev (line);
 	    continue;
@@ -1436,6 +1444,11 @@ process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	tmp = g_strdup (g_strchomp (line[0]));
 	tmp++;
 	tmp1 = strstr (tmp, "\"");
+	if (!tmp1) {
+	    g_strfreev (line);
+	    g_free (tmp);
+	    continue;
+	}	    
 	file_name = g_strndup (tmp, tmp1-tmp);
 	tmp++;
 	tmp1 = strstr (tmp, ")");
@@ -1504,7 +1517,8 @@ search_process_info (YelpSearchPager *pager, gchar **terms)
 	command = g_strconcat("info --apropos ", terms[i], NULL);
     
 	if (g_spawn_command_line_sync (command, &stdout_str, &stderr_str, 
-				       &exit_code, NULL) && exit_code == 0) {
+				       &exit_code, NULL) && 
+	    stdout_str != NULL) {
 	    process_info_result (pager, stdout_str, terms);	    
 	}
 	g_free (stdout_str);
