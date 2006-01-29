@@ -744,7 +744,8 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 
 	    /* FIXME: need some error checking */
 	    mtime = (time_t) atoi ((gchar *)dirmtime);
-	    
+
+	    xmlFree (dirmtime);
 	    /* see if directory mtime has changed - if so recreate
 	     * the directory node */
 	    if (buf.st_mtime > mtime) {
@@ -794,8 +795,12 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 
 		    add_man_page_to_toc (pager, (gchar *)dirname, (gchar *)manpage);
 		    priv->manpage_count++;
+		    xmlFree (manpage);
 	        }
+	    xmlXPathFreeObject (objmanpages);
 	    }
+	    xmlFree (dirname);
+	    xmlXPathFreeObject (objdirmtime);
 	}
 
 	if (priv->man_manhash) {
@@ -808,6 +813,8 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	create_manindex_file (index_file, manindex_xml);
     }
 
+    xmlXPathFreeContext (xpath);
+    xmlXPathFreeObject (objsect);
     xmlFree (manindex_xml);
     
     return 1;
@@ -845,6 +852,7 @@ process_mandir_pending (YelpTocPager *pager)
 
 	    xml_trim_titles (node);
 	}
+	xmlXPathFreeContext (xpath);
     }
 
     if (!index_file)
@@ -1205,6 +1213,7 @@ process_read_menu (YelpTocPager *pager)
 	    xmlNewChild (new, NULL, BAD_CAST "title", 
 			 BAD_CAST _("Manual Pages"));
 	}
+	xmlFree (id);
 #endif
 
 #ifdef ENABLE_INFO
@@ -1215,6 +1224,7 @@ process_read_menu (YelpTocPager *pager)
 	    xmlNewChild (new, NULL, BAD_CAST "title", 
 			 BAD_CAST _("GNU Info Pages"));
 	}
+	xmlFree (infoid);
 #endif
 
 	xml_trim_titles (node);
