@@ -54,7 +54,7 @@ typedef struct _YelpManSect YelpManSect;
 struct _YelpManSect {
     gchar  *title;
     gchar  *id;
-    gchar  *sect;
+    gchar  **sects;
 
     YelpManSect *parent;
     YelpManSect *child;
@@ -324,7 +324,7 @@ man_section_process (xmlNodePtr    node,
     YelpManSect *this_sect, *psect;
     xmlNodePtr cur, title_node;
     xmlChar *title_lang, *title;
-    int j, title_pri;
+    int i, j, title_pri;
     xmlChar *sect;
 
     const gchar * const * langs = g_get_language_names ();
@@ -376,8 +376,11 @@ man_section_process (xmlNodePtr    node,
 
     sect = xmlGetProp (node, BAD_CAST "sect");
     if (sect) {
-	this_sect->sect = g_strdup ((gchar *) sect);
-	g_hash_table_insert (man_secthash, this_sect->sect, this_sect);
+	this_sect->sects = g_strsplit ((gchar *) sect, " ", 0);
+	if (this_sect->sects) {
+	    for (i=0; this_sect->sects[i] != NULL; i++)
+		g_hash_table_insert (man_secthash, this_sect->sects[i], this_sect);
+	}
     }
 
     psect = NULL;

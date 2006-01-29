@@ -1,3 +1,14 @@
+2006-01-29  Brent Smith  <gnome@nextreality.net>
+
+	* data/man.xml.in:
+	* src/yelp-man-pager.c: (man_section_process):
+	* src/yelp-toc-pager.c: (add_man_page_to_toc),
+	(process_mandir_pending):
+	add support for mapping several man sections, such as 1,
+	1p, etc. to a single TOC section in data/man.xml.in, fixes #328172
+	Also added two new sections to data/man.xml.in that need translated,
+	"POSIX Headers" and "POSIX Functions"
+
 2006-01-29  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-toc-pager.c: 

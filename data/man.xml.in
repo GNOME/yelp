@@ -3,7 +3,7 @@
 <toc id="Man">
   <_title>Manual Pages</_title>
 
-  <toc id="Man-man1" sect="1">
+  <toc id="Man-man1" sect="1 1p 1g 1t">
     <_title>Applications</_title>
     <toc id="Man-man1x" sect="1x">
       <_title>X11 Applications</_title>
@@ -18,11 +18,17 @@
 
   <toc id="Man-development">
     <_title>Development</_title>
+    <toc id="Man-man0p" sect="0p">
+      <_title>POSIX Headers</_title>
+    </toc>
     <toc id="Man-man2" sect="2">
       <_title>System Calls</_title>
     </toc>
-    <toc id="Man-man3" sect="3">
+    <toc id="Man-man3" sect="3 3o 3t 3readline 3blt 3form 3ncurses 3menu 3curses 3ssl 3nas 3tiff">
       <_title>Library Functions</_title>
+      <toc id="Man-man3p" sect="3p">
+        <_title>POSIX Functions</_title>
+      </toc>
       <toc id="Man-man3f" sect="3f">
         <_title>FORTRAN Functions</_title>
       </toc>
@@ -32,7 +38,7 @@
       <toc id="Man-man3qt" sect="3qt">
         <_title>Qt Functions</_title>
       </toc>
-      <toc id="Man-man3x" sect="3x">
+      <toc id="Man-man3x" sect="3x 3X11">
         <_title>X11 Functions</_title>
       </toc>
     </toc>
@@ -48,7 +54,7 @@
     </toc>
   </toc>
 
-  <toc id="Man-man5" sect="5">
+  <toc id="Man-man5" sect="5 5snmp">
     <_title>Configuration Files</_title>
     <toc id="Man-man5x" sect="5x">
       <_title>X11 Configuration</_title>
@@ -65,7 +71,7 @@
     </toc>
   </toc>
 
-  <toc id="Man-man7" sect="7">
+  <toc id="Man-man7" sect="7 7gcc">
     <_title>Overviews</_title>
     <toc id="Man-man7x" sect="7x">
       <_title>X11 Overviews</_title>
@@ -75,7 +81,7 @@
     </toc>
   </toc>
 
-  <toc id="Man-man8" sect="8">
+  <toc id="Man-man8" sect="8 8l">
     <_title>System Administration</_title>
   </toc>
 

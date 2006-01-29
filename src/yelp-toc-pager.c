@@ -585,11 +585,15 @@ add_man_page_to_toc (YelpTocPager *pager, gchar *dirname, gchar *filename)
 	    c1 = NULL;
     }
 
+    /* c1 points to the file extension, either .gz or .bz2 at this point 
+     * or is NULL if the filename does not have either extension */
     if (c1)
 	c2 = g_strrstr_len (filename, c1 - filename, ".");
     else
 	c2 = g_strrstr (filename, ".");
 
+    /* c2 points to the period preceding the man page section in the 
+     * filename at this point */
     if (c2) {
 	manname = g_strndup (filename, c2 - filename);
 	if (c1)
@@ -847,8 +851,13 @@ process_mandir_pending (YelpTocPager *pager)
 	for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	    xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	    xmlChar *sect = xmlGetProp (node, BAD_CAST "sect");
-	    if (sect)
-		g_hash_table_insert (priv->man_secthash, sect, node);
+
+	    if (sect) {
+		gchar **sects = g_strsplit ((gchar *)sect, " ", 0);
+
+		for (j = 0; sects[j] != NULL; j++)
+		    g_hash_table_insert (priv->man_secthash, sects[j], node);
+	    }
 
 	    xml_trim_titles (node);
 	}
