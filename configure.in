@@ -150,6 +150,13 @@ else
     AM_CONDITIONAL(ENABLE_INFO, false)
 fi
 
+if test "x$enable_man" = "xyes" -o "x$enable_info" = "xyes"; then
+   AC_DEFINE(ENABLE_MAN_OR_INFO, 1, [turn of man page or GNU info support])
+   AM_CONDITIONAL(ENABLE_MAN_OR_INFO, true)
+else
+   AM_CONDITIONAL(ENABLE_MAN_OR_INFO, false)
+fi
+
 
 dnl ******
 dnl beagle

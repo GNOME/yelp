@@ -108,7 +108,7 @@
       </body>
     </html>
   </yelp:document>
-  <xsl:apply-templates select="toc[.//doc[1]]"/>
+  <xsl:apply-templates select="toc[(.//doc[1]) or (@id = 'ManInfoHolder')]"/>
 </xsl:template>
 
 <xsl:template mode="body.mode" match="toc">
@@ -122,10 +122,10 @@
     <div class="leftbar">
     </div>
     <div class="rightbar">
-      <xsl:if test="toc[.//doc]">
+      <xsl:if test="toc[.//doc] or @id = 'ManInfoHolder'">
         <div class="tocs">
           <ul>
-            <xsl:for-each select="toc[../@id = 'index' or .//doc]">
+            <xsl:for-each select="toc[../@id = 'index' or ../@id = 'ManInfoHolder' or .//doc]">
               <xsl:sort select="number(../@id = 'index') * position()"/>
               <xsl:sort select="normalize-space(title)"/>
               <li class="toc">

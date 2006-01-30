@@ -1207,34 +1207,31 @@ process_read_menu (YelpTocPager *pager)
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	xmlChar *icon = NULL;
-#ifdef ENABLE_MAN
+#ifdef ENABLE_MAN_OR_INFO
 	xmlChar *id = NULL;
-#endif
-#ifdef ENABLE_INFO
-	xmlChar *infoid = NULL;
-#endif
-
-#ifdef ENABLE_MAN
+	xmlNodePtr cmdhelp;
+	xmlNodePtr newnode;
 	id = xmlGetProp (node, BAD_CAST "id");
 	if (!xmlStrcmp (id, BAD_CAST "index")) {
-	    xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "toc", NULL);
-	    xmlNewNsProp (new, NULL, BAD_CAST "id", BAD_CAST "Man");
-	    xmlNewChild (new, NULL, BAD_CAST "title", 
-			 BAD_CAST _("Manual Pages"));
+	    cmdhelp = xmlNewChild (node, NULL, BAD_CAST "toc", NULL);
+	    xmlNewNsProp (cmdhelp, NULL, BAD_CAST "id", BAD_CAST "ManInfoHolder");
+	    xmlNewChild (cmdhelp, NULL, BAD_CAST "title", 
+			 BAD_CAST _("Command Line Help"));
+#ifdef ENABLE_MAN
+	newnode = xmlNewChild (cmdhelp, NULL, BAD_CAST "toc", NULL);
+	xmlNewNsProp (newnode, NULL, BAD_CAST "id", BAD_CAST "Man");
+	xmlNewChild (newnode, NULL, BAD_CAST "title", 
+		     BAD_CAST _("Manual Pages"));
+#endif // ENABLE_MAN
+#ifdef ENABLE_INFO
+	newnode = xmlNewChild (cmdhelp, NULL, BAD_CAST "toc", NULL);
+	xmlNewNsProp (newnode, NULL, BAD_CAST "id", BAD_CAST "Info");
+	xmlNewChild (newnode, NULL, BAD_CAST "title", 
+		     BAD_CAST _("GNU Info Pages"));
+#endif //ENABLE_INFO
 	}
 	xmlFree (id);
-#endif
-
-#ifdef ENABLE_INFO
-	infoid = xmlGetProp (node, BAD_CAST "id");
-	if (!xmlStrcmp (infoid, BAD_CAST "index")) {
-	    xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "toc", NULL);
-	    xmlNewNsProp (new, NULL, BAD_CAST "id", BAD_CAST "Info");
-	    xmlNewChild (new, NULL, BAD_CAST "title", 
-			 BAD_CAST _("GNU Info Pages"));
-	}
-	xmlFree (infoid);
-#endif
+#endif //ENABLE_MAN_OR_INFO
 
 	xml_trim_titles (node);
 
