@@ -1,5 +1,5 @@
 # Serbian translation of yelp
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005, 2006.
 #
 # This file is distributed under the same license as the yelp package.
 #
@@ -12,15 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-18 03:09+0100\n"
-"PO-Revision-Date: 2006-01-18 03:18+0100\n"
+"POT-Creation-Date: 2006-01-31 04:35+0100\n"
+"PO-Revision-Date: 2006-01-31 04:48+0100\n"
 "Last-Translator: Slobodan D. Sredojević <slobo@akrep.be>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1199
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "GNU info strane"
 
@@ -59,7 +59,7 @@ msgid "Library Functions"
 msgstr "Funkcije biblioteka"
 
 # bug(slobo): Proveri ovo
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1188
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "Man uputstva"
 
@@ -80,46 +80,54 @@ msgid "Overviews"
 msgstr "Pregledi"
 
 #: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "POSIX funkcije"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "POSIX zaglavlja"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
 msgstr "Perl funkcije"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
 msgstr "Qt funkcije"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "Administracija sistema"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "Sistemski pozivi"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
 msgstr "Termcap programi"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
 msgstr "Iks programi"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
 msgstr "Podešavanje Iksa"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
 msgstr "Uređaji Iksa"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
 msgstr "Funkcije Iksa"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
 msgstr "Igre Iksa"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
 msgstr "Pregledi Iksa"
 
@@ -315,7 +323,7 @@ msgid "Use the default fonts set for the system."
 msgstr "Koristi podrazumevani slovni lik postavljen na sistem."
 
 # bug(slobo): imena programa...
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2646
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2652
 msgid "Yelp"
 msgstr "Jelp"
 
@@ -402,7 +410,7 @@ msgstr ""
 "Ne mogu raščlaniti datoteku „%s“. Ili datoteka ne postoji, ili ne predstavlja "
 "ispravno oblikovanu info stranu."
 
-#: ../src/yelp-io-channel.c:98
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -517,7 +525,7 @@ msgstr ""
 "Ne mogu da obavim pretragu koju ste zatražili. Ne postoji veza ka beagle "
 "pozadinskom procesu"
 
-#: ../src/yelp-search-pager.c:688
+#: ../src/yelp-search-pager.c:683
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -526,21 +534,21 @@ msgstr ""
 "Ne mogu izvršiti vašu pretragu. Datoteka „%s“ ili nedostaje ili ne "
 "predstavlja ispravnu XSLT stilsku stranicu."
 
-#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1447
+#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Nisam našao href atribut u yelp:document-u"
 
-#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Ponestalo memorije"
 
-#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1502
+#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "Sadržaj pomoći"
 
-#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#: ../src/yelp-search-pager.c:1116 ../src/yelp-toc-pager.c:495
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nisam mogao da učitam OMF datoteku „%s“."
@@ -574,16 +582,16 @@ msgstr "yelp-watermark-blockquote-201E"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: brojač pauza je negativan."
 
-#: ../src/yelp-toc-pager.c:629
+#: ../src/yelp-toc-pager.c:633
 #, c-format
 msgid "Read man page for %s"
 msgstr "Pročitaj man stranu za %s"
 
-#: ../src/yelp-toc-pager.c:1074
-msgid "Read info page for "
-msgstr "Pročitaj info stranu za "
+#: ../src/yelp-toc-pager.c:1099
+msgid "Read info page for %s"
+msgstr "Pročitaj info stranu za %s"
 
-#: ../src/yelp-toc-pager.c:1167
+#: ../src/yelp-toc-pager.c:1197
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -592,7 +600,11 @@ msgstr ""
 "Ne mogu učitati sadržaj. Datoteka „%s“ ili nedostaje ili ne predstavlja "
 "ispravno oblikovan XML."
 
-#: ../src/yelp-toc-pager.c:1295
+#: ../src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "Pomoć koju daje linija naredbi"
+
+#: ../src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -767,15 +779,15 @@ msgstr ""
 "Jednoobrazni identifikator resursa (URI) „%s“ je neispravan ili ne pokazuje "
 "na postojeću datoteku."
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
 msgid "Man pages are not supported in this version."
 msgstr "Man strane nisu podržane u ovom izdanju."
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1283
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU info stranice nisu podržane u ovom izdanju."
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1305
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
 msgid "Search is not supported in this version."
 msgstr "Pretraga nije podržana u ovoj verziji"
 
@@ -795,19 +807,19 @@ msgstr "Pretr_aga:"
 msgid "Search for other documentation"
 msgstr "Traži u ostaloj dokumentaciji"
 
-#: ../src/yelp-window.c:1172
+#: ../src/yelp-window.c:1175
 msgid "Fin_d:"
 msgstr "T_raži:"
 
-#: ../src/yelp-window.c:1192
+#: ../src/yelp-window.c:1195
 msgid "Find _Next"
 msgstr "Traži u_napred"
 
-#: ../src/yelp-window.c:1204
+#: ../src/yelp-window.c:1207
 msgid "Find _Previous"
 msgstr "Traži un_azad"
 
-#: ../src/yelp-window.c:1318
+#: ../src/yelp-window.c:1321
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -816,8 +828,8 @@ msgstr ""
 "Ne mogu da odredim smisao transformacija za datoteku „%s“. Možda zapis nije "
 "podržan."
 
-#: ../src/yelp-window.c:1347 ../src/yelp-window.c:1758
-#: ../src/yelp-window.c:1825
+#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
+#: ../src/yelp-window.c:1831
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -827,7 +839,7 @@ msgstr ""
 "Odeljak „%s“ ne postoji u ovom dokumentu. Ukoliko ste na ovaj odeljak upućeni "
 "iz dugmeta za pomoć u nekom programu, prijavite ovo autorima tog programa."
 
-#: ../src/yelp-window.c:1462 ../src/yelp-window.c:2215
+#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2221
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -836,13 +848,13 @@ msgstr ""
 "Ne mogu da pročitam datoteku „%s“.  Ova datoteka možda ne postoji ili niste "
 "ovlašćeni da je čitate."
 
-#: ../src/yelp-window.c:1513
+#: ../src/yelp-window.c:1516
 msgid "Loading..."
 msgstr "Učitavanje je u toku..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2643
+#: ../src/yelp-window.c:2649
 msgid "translator-credits"
 msgstr ""
 "Goran Rakić <gox@devbase.net>\n"
@@ -851,7 +863,7 @@ msgstr ""
 "\n"
 "http://prevod.org — prevodi na srpski jezik"
 
-#: ../src/yelp-window.c:2648
+#: ../src/yelp-window.c:2654
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Razgledač dokumentacije za okruženje Gnom."
 
