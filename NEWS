@@ -1,3 +1,41 @@
+Changes in 2.13.4:
+------------------
+* Bury man and info under 'Command Line Help'             (Shaun McCance)
+* Workaround for a11y issues.  Should fix bug #157941     (Don Scorgie)
+* Added support for mapping severl man sections, #328172  (Brent Smith)
+* Fixed some memory leaks                                 (Don Scorgie)
+* More robust handling for basic search, #328464          (Don Scorgie)
+* Fixed in TOC handling, #328953                          (Brent Smith)
+* Use the new document font setting by default            (Brent Smith)
+* Fixed some C99 initializations, #328261                 (Jens Granseuer)
+* Fixed a critical warning                                (Brent Smith)
+* Use a newer Beagle for Beagle search                    (Don Scorgie)
+* More robus GConf error handling, #327826                (Brent Smith)
+* Added GTK to the desktop file categories                (Brent Smith)
+* Fixed loading of non-compressed man and info            (Don Scorgie)
+* Fixed crashes on malformed info:dir files               (Don Scorgie)
+* Fixed compilation issues on Solaris                     (Glynn Foster)
+* Updated translations:
+  bg      (Vladimir Petkov)
+  ca      (Josep Puigdemont i Casamajó)
+  da      (Lasse Bang Mikkelsen)
+  da      (Lasse Bang Mikkelsen)
+  en_CA   (Adam Weinberger)
+  es      (Francisco Javier F. Serrador)
+  fi      (Ilkka Tuohela)
+  gl      (Ignacio Casal Quinteiro)
+  gu      (Ankit Patel)
+  hu      (Gabor Kelemen)
+  lt      (Žygimantas Beručka)
+  nb      (Kjartan Maraas)
+  nl      (Tino Meinen)
+  no      (Kjartan Maraas)
+  pt_BR   (Evandro Fernandes Giovanini)
+  ru      (razi)
+  th      (Theppitak Karoonboonyanan)
+  vi      (Clytie Siddall)
+  zh_CN   (Funda Wang)
+
 Changes in 2.13.3:
 ------------------
 * Enable info and man support by default
