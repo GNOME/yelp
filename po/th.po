@@ -1,15 +1,15 @@
 # Thai translation for yelp.
-# Copyright (C) 2003 Free Software Foundation, Inc.
+# Copyright (C) 2003-2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2003, 2004.
-# Theppitak Karoonboonyanan <Thep@linux.thai.net>, 2005.
+# Theppitak Karoonboonyanan <Thep@linux.thai.net>, 2005-2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 08:16+0700\n"
-"PO-Revision-Date: 2006-01-30 08:19+0700\n"
+"POT-Creation-Date: 2006-01-31 10:29+0700\n"
+"PO-Revision-Date: 2006-01-31 10:31+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit"
 
 # Info as in "Emacs info page"
-#: data/info.xml.in.h:1 src/yelp-toc-pager.c:1234
+#: data/info.xml.in.h:1 src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "GNU Info Pages"
 
@@ -53,7 +53,7 @@ msgstr "รูทีนเคอร์เนล"
 msgid "Library Functions"
 msgstr "ฟังก์ชันในไลบรารี"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1223
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "Manual Pages"
 
@@ -506,17 +506,17 @@ msgid ""
 "not a valid XSLT stylesheet."
 msgstr "ไม่สามารถค้นหาได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ใช่ XSLT stylesheet ที่ถูกต้อง"
 
-#: src/yelp-search-pager.c:785 src/yelp-toc-pager.c:1484
+#: src/yelp-search-pager.c:785 src/yelp-toc-pager.c:1481
 #: src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "ไม่มีแอตทริบิวต์ href ใน yelp:document"
 
-#: src/yelp-search-pager.c:799 src/yelp-toc-pager.c:1498
+#: src/yelp-search-pager.c:799 src/yelp-toc-pager.c:1495
 #: src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "หน่วยความจำหมด"
 
-#: src/yelp-search-pager.c:840 src/yelp-toc-pager.c:1548
+#: src/yelp-search-pager.c:840 src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "สารบัญวิธีใช้"
 
@@ -571,7 +571,11 @@ msgid ""
 "or is not well-formed XML."
 msgstr "ไม่สามารถโหลดสารบัญได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ก็ไม่ใช่รูปแบบ XML ที่ถูกต้อง"
 
-#: src/yelp-toc-pager.c:1331
+#: src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "วิธีใช้บรรทัดคำสั่ง"
+
+#: src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
