@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 20:52+0100\n"
-"PO-Revision-Date: 2006-01-30 20:53+0100\n"
+"POT-Creation-Date: 2006-02-01 16:18+0100\n"
+"PO-Revision-Date: 2006-02-01 16:18+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
 "X-Generator: KBabel 1.11.1\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1234
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "Páxinas de información GNU"
 
@@ -59,7 +59,7 @@ msgstr "Rotinas do núcleo"
 msgid "Library Functions"
 msgstr "Funcións de biblioteca"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1223
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "Páxinas do manual"
 
@@ -518,17 +518,17 @@ msgstr ""
 "A túa busca non puido ser procesada. O ficheiro '%s' falta ou non é unha "
 "folla de estilos XSLT válida."
 
-#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1484
+#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Non se atopou o atributo href en yelp:document"
 
-#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1498
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Memoria insuficiente"
 
-#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1548
+#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "Contidos da axuda"
 
@@ -585,7 +585,11 @@ msgstr ""
 "A tabla de contidos non se puido cargar. O ficheiro '%s' falta ou non é un "
 "ficheiro XML ben formado."
 
-#: ../src/yelp-toc-pager.c:1331
+#: ../src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "Axuda de liña de comandos"
+
+#: ../src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
