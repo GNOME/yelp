@@ -160,16 +160,20 @@ static void
 main_start (gchar *url) 
 {
 	CORBA_Object yelp_base;
-	
+	gchar *new_url;
+
+	new_url = gnome_vfs_make_uri_from_input_with_dirs (url, 
+				GNOME_VFS_MAKE_URI_DIR_CURRENT);
+
 	yelp_base = main_activate_base ();
 
 	if (!yelp_base) {
 		g_error ("Couldn't activate YelpBase");
 	}
-	
-	main_open_new_window (yelp_base, url);
+
+	main_open_new_window (yelp_base, new_url);
 	gdk_notify_startup_complete ();
-	
+
 	bonobo_object_release_unref (yelp_base, NULL);
 
 	if (url) {

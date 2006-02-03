@@ -1,5 +1,11 @@
 2006-02-02  Brent Smith  <gnome@nextreality.net>
 
+	* src/yelp-main.c: (main_start):
+	call gnome_vfs_make_uri_from_input_with_dirs() to check for a relative
+	path and make a absolute uri to pass to an existing yelp process.
+
+2006-02-02  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-base.c: (yelp_base_new):
 	Remove some references to functions (in comments) that no longer exist.
 
