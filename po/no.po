@@ -1,20 +1,20 @@
 # Norwegian (bokmål) translation of yelp.
 # Copyright © 2001-2004 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 2001-2005.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2006.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-22 19:03+0100\n"
-"PO-Revision-Date: 2006-01-22 19:04+0100\n"
+"POT-Creation-Date: 2006-02-03 18:40+0100\n"
+"PO-Revision-Date: 2006-02-03 18:41+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1208
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "GNU Infosider"
 
@@ -50,7 +50,7 @@ msgstr "Kjernerutiner"
 msgid "Library Functions"
 msgstr "Bibliotekfunksjoner"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1197
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "Manualsider"
 
@@ -71,46 +71,54 @@ msgid "Overviews"
 msgstr "Oversikter"
 
 #: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "POSIX-funksjoner"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "POSIX-headere"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
 msgstr "Perl-funksjoner"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
 msgstr "Qt-funksjoner"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "Systemadministrasjon"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "Systemkall"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
 msgstr "Termcap-programmer"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
 msgstr "X11-programmer"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
 msgstr "X11-konfigurasjon"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
 msgstr "X11-enheter"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
 msgstr "X11-funksjoner"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
 msgstr "X11-spill"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
 msgstr "X11-oversikter"
 
@@ -298,7 +306,7 @@ msgstr "Bruk systemets skrifter"
 msgid "Use the default fonts set for the system."
 msgstr "Bruk systemets forvalgte skrifter."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2646
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2652
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -404,7 +412,7 @@ msgstr "Kunne ikke aktivere Yelp: «%s»"
 msgid "Could not open new window."
 msgstr "Kunne ikke åpne nytt vindu."
 
-#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjelp"
 
@@ -492,7 +500,7 @@ msgid ""
 "daemon."
 msgstr "Søket kunne ikke utføres. Ingen tilkobling til beagle-tjenesten."
 
-#: ../src/yelp-search-pager.c:688
+#: ../src/yelp-search-pager.c:683
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -501,21 +509,21 @@ msgstr ""
 "Søket kunne ikke utføres. Filen «%s» mangler eller så er den ikke et gyldig "
 "XSLT-stilark."
 
-#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1457
+#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Ingen href-attributt funnet på yelp:document"
 
-#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1471
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Ikke mer minne"
 
-#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1521
+#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "Hjelpinnhold"
 
-#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#: ../src/yelp-search-pager.c:1116 ../src/yelp-toc-pager.c:495
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunne ikke laste OMF-fil «%s»."
@@ -549,17 +557,17 @@ msgstr "yelp-watermark-blockquote-201C"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausetall er negativt."
 
-#: ../src/yelp-toc-pager.c:629
+#: ../src/yelp-toc-pager.c:633
 #, c-format
 msgid "Read man page for %s"
 msgstr "Les manualside for %s"
 
-#: ../src/yelp-toc-pager.c:1078
+#: ../src/yelp-toc-pager.c:1099
 #, c-format
 msgid "Read info page for %s"
 msgstr "Les infoside for %s"
 
-#: ../src/yelp-toc-pager.c:1176
+#: ../src/yelp-toc-pager.c:1197
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -568,7 +576,11 @@ msgstr ""
 "Innholdsfortegnelsen kunne ikke lastes. Filen «%s» mangler eller så er den "
 "ikke velutformet XML."
 
-#: ../src/yelp-toc-pager.c:1304
+#: ../src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "Hjelp for kommandolinjen"
+
+#: ../src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -736,15 +748,15 @@ msgid ""
 "actual file."
 msgstr "URIen «%s» er ugyldig eller så peker den ikke til en fil."
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
 msgid "Man pages are not supported in this version."
 msgstr "Manualsider er ikke støttet i denne versjonen."
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1283
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU info-sider er ikke støttet i denne versjonen"
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1305
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
 msgid "Search is not supported in this version."
 msgstr "Søk er ikke støttet i denne versjonen."
 
@@ -764,19 +776,19 @@ msgstr "_Søk:"
 msgid "Search for other documentation"
 msgstr "Søk etter annen dokumentasjon"
 
-#: ../src/yelp-window.c:1172
+#: ../src/yelp-window.c:1175
 msgid "Fin_d:"
 msgstr "_Finn:"
 
-#: ../src/yelp-window.c:1192
+#: ../src/yelp-window.c:1195
 msgid "Find _Next"
 msgstr "Finn _neste"
 
-#: ../src/yelp-window.c:1204
+#: ../src/yelp-window.c:1207
 msgid "Find _Previous"
 msgstr "_Finn forrige"
 
-#: ../src/yelp-window.c:1318
+#: ../src/yelp-window.c:1321
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -785,8 +797,8 @@ msgstr ""
 "Kunne ikke opprette en transformeringskontekst for filen «%s». Formatet er "
 "kanskje ikke støttet."
 
-#: ../src/yelp-window.c:1347 ../src/yelp-window.c:1758
-#: ../src/yelp-window.c:1825
+#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
+#: ../src/yelp-window.c:1831
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -797,7 +809,7 @@ msgstr ""
 "Hjelp-knapp i et program bør du rapportere dette til utviklerene av dette "
 "programmet."
 
-#: ../src/yelp-window.c:1462 ../src/yelp-window.c:2215
+#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2221
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -806,17 +818,17 @@ msgstr ""
 "Filen «%s» kunne ikke leses. Filen kan mangle eller kanskje du ikke har "
 "rettigheter til å lese den."
 
-#: ../src/yelp-window.c:1513
+#: ../src/yelp-window.c:1516
 msgid "Loading..."
 msgstr "Laster..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2643
+#: ../src/yelp-window.c:2649
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/yelp-window.c:2648
+#: ../src/yelp-window.c:2654
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Program for å finne og lese dokumentasjon for GNOME skrivebordet."
 
