@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 18:08+0100\n"
-"PO-Revision-Date: 2006-01-30 18:08+0100\n"
+"POT-Creation-Date: 2006-02-04 15:24+0100\n"
+"PO-Revision-Date: 2006-02-04 15:25+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1234
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "Páginas info de GNU"
 
@@ -57,7 +57,7 @@ msgstr "Rutinas del núcleo"
 msgid "Library Functions"
 msgstr "Biblioteca de funciones"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1223
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "Páginas del manual"
 
@@ -419,7 +419,7 @@ msgstr "No se pudo activar Yelp: «%s»"
 msgid "Could not open new window."
 msgstr "No se pudo abrir una ventana nueva."
 
-#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ayuda"
 
@@ -516,17 +516,17 @@ msgstr ""
 "Su búsqueda no se pudo procesar. El archivo  «%s» falta o no es una hoja de "
 "estilo XSLT válida."
 
-#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1484
+#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "No se encontró atributo href en yelp:document"
 
-#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1498
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Se agotó la memoria"
 
-#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1548
+#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "Contenido de la ayuda"
 
@@ -583,7 +583,11 @@ msgstr ""
 "La tabla de contenidos no se pudo cargar. El archivo «%s» falta o no es un "
 "archivo XML bien formado."
 
-#: ../src/yelp-toc-pager.c:1331
+#: ../src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "Ayuda de la línea de comandos"
+
+#: ../src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
