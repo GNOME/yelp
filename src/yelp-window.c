@@ -1784,10 +1784,19 @@ pager_page_cb (YelpPager *pager,
     if (yelp_pager_page_contains_frag (pager,
 				       page_id,
 				       window->priv->current_frag)) {
-	window_disconnect (window);
-
 	page = (YelpPage *) yelp_pager_get_page (pager, page_id);
-	window_handle_page (window, page);
+
+	/* now that yelp automatically inserts the id="index" attribute
+	 * on the root element of a document, the _contains_frag function
+	 * is no longer a good indication of whether a section exists.
+	 * Therefore if the returned page is NULL, then the stylesheets
+	 * were not able to create a "page" from this document through the
+	 * exsl:document extension (see yelp_xslt_document())
+	 * -Brent Smith, 1/4/2006 */
+	if (page) {
+	    window_disconnect (window);
+	    window_handle_page (window, page);
+	}
     }
 }
 
