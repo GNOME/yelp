@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.9.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-22 15:17+0100\n"
-"PO-Revision-Date: 2006-01-22 15:18+0100\n"
+"POT-Creation-Date: 2006-02-05 18:13+0100\n"
+"PO-Revision-Date: 2006-02-05 18:14+0100\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1208
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "Pàgines info de GNU"
 
@@ -51,7 +51,7 @@ msgstr "Rutines del nucli"
 msgid "Library Functions"
 msgstr "Funcions de biblioteques"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1197
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "Pàgines de manual"
 
@@ -72,46 +72,54 @@ msgid "Overviews"
 msgstr "Resums"
 
 #: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "Funcions POSIX"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "Capçaleres POSIX"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
 msgstr "Funcions de Perl"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
 msgstr "Funcions de Qt"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "Administració del sistema"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "Crides al sistema"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
 msgstr "Aplicacions per a Termcap"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
 msgstr "Aplicacions per a X11"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
 msgstr "Configuració d'X11"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
 msgstr "Dispositius d'X11"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
 msgstr "Funcions d'X11"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
 msgstr "Jocs per a X11"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
 msgstr "Resums d'X11"
 
@@ -300,7 +308,7 @@ msgstr "Utilitza els tipus de lletra del sistema"
 msgid "Use the default fonts set for the system."
 msgstr "Utilitza els tipus de lletra per defecte del sistema."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2646
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -407,7 +415,7 @@ msgstr "No s'ha pogut activar el Yelp: «%s»"
 msgid "Could not open new window."
 msgstr "No s'ha pogut obrir una nova finestra"
 
-#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajuda"
 
@@ -495,7 +503,7 @@ msgid ""
 "daemon."
 msgstr "No s'ha pogut processar la cerca. No hi ha connexció al dimoni beagle."
 
-#: ../src/yelp-search-pager.c:688
+#: ../src/yelp-search-pager.c:683
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -504,21 +512,21 @@ msgstr ""
 "No s'ha pogut processar la cerca. Falta el fitxer «%s», o no és un full "
 "d'estil XSLT vàlid."
 
-#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1457
+#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "No s'ha trobat cap atribut href a yelp:document"
 
-#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1471
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "S'ha exhaurit la memòria"
 
-#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1521
+#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "Continguts de l'ajuda"
 
-#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#: ../src/yelp-search-pager.c:1116 ../src/yelp-toc-pager.c:495
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "No s'ha pogut carregar el fitxer OMF «%s»."
@@ -552,17 +560,17 @@ msgstr "yelp-watermark-blockquote-00AB"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: el compte de pausa és negatiu."
 
-#: ../src/yelp-toc-pager.c:629
+#: ../src/yelp-toc-pager.c:633
 #, c-format
 msgid "Read man page for %s"
 msgstr "S'ha llegit la pàgina de manual per a %s"
 
-#: ../src/yelp-toc-pager.c:1078
+#: ../src/yelp-toc-pager.c:1099
 #, c-format
 msgid "Read info page for %s"
 msgstr "Llegiu la pàgina d'informació de %s"
 
-#: ../src/yelp-toc-pager.c:1176
+#: ../src/yelp-toc-pager.c:1197
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -571,7 +579,11 @@ msgstr ""
 "No s'ha pogut carregar la taula de continguts. Falta el fitxer «%s», o no és "
 "XML vàlid."
 
-#: ../src/yelp-toc-pager.c:1304
+#: ../src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "Ajuda de la línia d'ordres"
+
+#: ../src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -742,15 +754,15 @@ msgstr ""
 "L'Identificador Uniforme del Recurs «%s» és invàlid o no apunta a un fitxer "
 "existent."
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
 msgid "Man pages are not supported in this version."
 msgstr "Les pàgines de manual no estan implementades en aquesta versió."
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1283
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
 msgid "GNU info pages are not supported in this version"
 msgstr "Les pàgines d'info GNU no estan implementades en aquesta versió"
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1305
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
 msgid "Search is not supported in this version."
 msgstr "Aquesta versió no implementa cerques."
 
@@ -770,19 +782,19 @@ msgstr "_Cerca:"
 msgid "Search for other documentation"
 msgstr "Cerca altra documentació"
 
-#: ../src/yelp-window.c:1172
+#: ../src/yelp-window.c:1175
 msgid "Fin_d:"
 msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1192
+#: ../src/yelp-window.c:1195
 msgid "Find _Next"
 msgstr "Cerca el següe_nt"
 
-#: ../src/yelp-window.c:1204
+#: ../src/yelp-window.c:1207
 msgid "Find _Previous"
 msgstr "Cerca l'an_terior"
 
-#: ../src/yelp-window.c:1318
+#: ../src/yelp-window.c:1321
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -791,8 +803,8 @@ msgstr ""
 "No s'ha pogut crear un context de transformació per al fitxer «%s». Potser "
 "que el format no estigui implementat."
 
-#: ../src/yelp-window.c:1347 ../src/yelp-window.c:1758
-#: ../src/yelp-window.c:1825
+#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
+#: ../src/yelp-window.c:1840
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -803,7 +815,7 @@ msgstr ""
 "secció a través d'un botó d'ajuda d'una aplicació, informeu d'aquest error "
 "als mantenidors de l'aplicació."
 
-#: ../src/yelp-window.c:1462 ../src/yelp-window.c:2215
+#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -812,17 +824,17 @@ msgstr ""
 "No s'ha pogut llegir el fitxer «%s». Aquest fitxer pot faltar, o potser no "
 "teniu  permís per a llegir-ho."
 
-#: ../src/yelp-window.c:1513
+#: ../src/yelp-window.c:1516
 msgid "Loading..."
 msgstr "S'està carregant..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2643
+#: ../src/yelp-window.c:2658
 msgid "translator-credits"
 msgstr "Jordi Mallach <jordi@sindominio.net>"
 
-#: ../src/yelp-window.c:2648
+#: ../src/yelp-window.c:2663
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navegador i visualitzador de documentació per a l'escriptori GNOME."
 
