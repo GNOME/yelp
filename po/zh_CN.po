@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-21 07:41+0100\n"
-"PO-Revision-Date: 2005-12-04 14:58+0800\n"
+"POT-Creation-Date: 2006-02-04 23:41+0100\n"
+"PO-Revision-Date: 2006-02-05 11:48+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1208
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "GNU 信息页"
 
@@ -52,7 +52,7 @@ msgstr "内核例程"
 msgid "Library Functions"
 msgstr "库函数"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1197
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "手册页"
 
@@ -73,46 +73,54 @@ msgid "Overviews"
 msgstr "简介"
 
 #: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "POSIX 函数"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "POSIX 头"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
 msgstr "Perl 函数"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
 msgstr "Qt 函数"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "系统管理"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "系统调用"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
 msgstr "Termcap 应用程序"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
 msgstr "X11 应用程序"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
-msgstr "X11 配置文件"
+msgstr "X11 配置"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
 msgstr "X11 设备"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
 msgstr "X11 函数"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
 msgstr "X11 游戏"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
 msgstr "X11 简介"
 
@@ -300,7 +308,7 @@ msgstr "使用系统字体"
 msgid "Use the default fonts set for the system."
 msgstr "使用系统默认字体设置。"
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2646
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -380,7 +388,7 @@ msgid ""
 "not a well-formed info page."
 msgstr "无法分析文件“%s”。可能文件不存在，或者不是有效的信息页。"
 
-#: ../src/yelp-io-channel.c:98
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -400,7 +408,7 @@ msgstr "无法激活 Yelp：“%s”"
 msgid "Could not open new window."
 msgstr "无法打开新窗口。"
 
-#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "帮助"
 
@@ -440,7 +448,8 @@ msgstr "此打印机上目前不支持打印"
 msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
-msgstr "您试图使用“%s”驱动程序打印到打印机。此程序需要 PostScript 打印机驱动程序。"
+msgstr ""
+"您试图使用“%s”驱动程序打印到打印机。此程序需要 PostScript 打印机驱动程序。"
 
 #: ../src/yelp-print.c:402
 msgid "An error occurred while printing"
@@ -484,28 +493,28 @@ msgid ""
 "daemon."
 msgstr "您的搜索无法进行。无法连接到 beagle 守护程序。"
 
-#: ../src/yelp-search-pager.c:688
+#: ../src/yelp-search-pager.c:683
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 msgstr "您的搜索无法进行。文件“%s”可能已经丢失，或者不是有效的 XSLT 样式表。"
 
-#: ../src/yelp-search-pager.c:790 ../src/yelp-toc-pager.c:1457
+#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中未发现 href 属性"
 
-#: ../src/yelp-search-pager.c:804 ../src/yelp-toc-pager.c:1471
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "内存不足"
 
-#: ../src/yelp-search-pager.c:845 ../src/yelp-toc-pager.c:1521
+#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "帮助目录"
 
-#: ../src/yelp-search-pager.c:1121 ../src/yelp-toc-pager.c:495
+#: ../src/yelp-search-pager.c:1116 ../src/yelp-toc-pager.c:495
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "无法载入 OMF 文件“%s”。"
@@ -539,24 +548,28 @@ msgstr "yelp-watermark-blockquote-201C"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: 暂停数为负数。"
 
-#: ../src/yelp-toc-pager.c:629
+#: ../src/yelp-toc-pager.c:633
 #, c-format
 msgid "Read man page for %s"
 msgstr "读取 %s 的 man page"
 
-#: ../src/yelp-toc-pager.c:1078
-#, fuzzy
-msgid "Read info page for "
-msgstr "读取 %s 的 man page"
+#: ../src/yelp-toc-pager.c:1099
+#, c-format
+msgid "Read info page for %s"
+msgstr "读取 %s 的 info page"
 
-#: ../src/yelp-toc-pager.c:1176
+#: ../src/yelp-toc-pager.c:1197
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr "无法装入目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
 
-#: ../src/yelp-toc-pager.c:1304
+#: ../src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "命令行帮助"
+
+#: ../src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -722,15 +735,15 @@ msgid ""
 "actual file."
 msgstr "统一资源定位符“%s”无效或者不指向实际的文件。"
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
 msgid "Man pages are not supported in this version."
 msgstr "此版本不支持 Man page。"
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1283
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
 msgid "GNU info pages are not supported in this version"
 msgstr "此版本不支持 GNU 信息页。"
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1305
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
 msgid "Search is not supported in this version."
 msgstr "此版本不支持搜索。"
 
@@ -748,27 +761,27 @@ msgstr "搜索(_S)："
 msgid "Search for other documentation"
 msgstr "搜索其它文档"
 
-#: ../src/yelp-window.c:1172
+#: ../src/yelp-window.c:1175
 msgid "Fin_d:"
 msgstr "查找(_D)："
 
-#: ../src/yelp-window.c:1192
+#: ../src/yelp-window.c:1195
 msgid "Find _Next"
 msgstr "查找下一个(_N)"
 
-#: ../src/yelp-window.c:1204
+#: ../src/yelp-window.c:1207
 msgid "Find _Previous"
 msgstr "查找上一个(_P)"
 
-#: ../src/yelp-window.c:1318
+#: ../src/yelp-window.c:1321
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr "无法创建文件“%s”的转换环境。格式可能不支持。"
 
-#: ../src/yelp-window.c:1347 ../src/yelp-window.c:1758
-#: ../src/yelp-window.c:1825
+#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
+#: ../src/yelp-window.c:1840
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -778,20 +791,20 @@ msgstr ""
 "此文档中不存在节“%s”。如果您是从应用程序中的帮助按钮转到此节，请报告给应用程"
 "序的维护者。"
 
-#: ../src/yelp-window.c:1462 ../src/yelp-window.c:2215
+#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr "无法读取文件“%s”。文件可能已经损坏，或者您没有权限读取该文件。"
 
-#: ../src/yelp-window.c:1513
+#: ../src/yelp-window.c:1516
 msgid "Loading..."
 msgstr "正在载入..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2643
+#: ../src/yelp-window.c:2658
 msgid "translator-credits"
 msgstr ""
 "开源软件国际化简体中文组(http://i18n.linux.net.cn)\n"
@@ -799,7 +812,7 @@ msgstr ""
 "Funda Wang <fundawang@linux.net.cn>, 2003, 2005\n"
 "Jan2xue <75jan@163.com>, 2003-2004"
 
-#: ../src/yelp-window.c:2648
+#: ../src/yelp-window.c:2663
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Gnome 桌面的文档浏览器和查看器。"
 
@@ -821,11 +834,3 @@ msgstr "无法处理文档“%s”。文件“%s”可能已经丢失，或者�
 msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
 
-#~ msgid "<b>_Bookmarks:</b>"
-#~ msgstr "<b>书签(_B)：</b>"
-
-#~ msgid "<b>_Title:</b>"
-#~ msgstr "<b>标题(_T)：</b>"
-
-#~ msgid "Unknown Section"
-#~ msgstr "未知节"
