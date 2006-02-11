@@ -1042,8 +1042,8 @@ process_info_pending (YelpTocPager *pager)
 	    continue;
 	} else {
 	    GIOChannel *channel;
-	    gchar *str;
-	    int len;
+	    gchar *str = NULL;
+	    gsize len;
 	    gchar ** files;
 	    gchar ** ptr;
 	    xmlNodePtr tmp;
@@ -1064,7 +1064,7 @@ process_info_pending (YelpTocPager *pager)
 	    }
 	    
 	    channel = yelp_io_channel_new_file (filename, NULL);
-	    g_io_channel_read_to_end (channel, &str, (gsize *) &len, NULL);
+	    g_io_channel_read_to_end (channel, &str, &len, NULL);
 	    g_io_channel_shutdown (channel, FALSE, NULL);
 	    
 	    files = g_strsplit (str, "\n", -1);
