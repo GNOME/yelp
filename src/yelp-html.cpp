@@ -359,26 +359,11 @@ yelp_html_printf (YelpHtml *html, char *format, ...)
     g_free (string);
 }
 
-/* Fire "children_changed::add" event to refresh "UI-Grab" window of GOK,
- * this event is not fired when using gtk_moz_embed_xxx_stream,
- * see Mozilla bug #293670.  Done in a timeout to allow mozilla to
- * actually draw to the screen */
-
-static gboolean
-timeout_update_gok (YelpHtml *html)
-{
-    g_signal_emit_by_name (gtk_widget_get_accessible (GTK_WIDGET (html)),
-			   "children_changed::add", -1, NULL, NULL);
-    return FALSE;
-}
-
 void
 yelp_html_close (YelpHtml *html)
 {
     d (g_print ("yelp_html_close\n"));
     gtk_moz_embed_close_stream (GTK_MOZ_EMBED (html));
-    g_timeout_add (2000, (GSourceFunc) timeout_update_gok,
-		   html);
 }
 
 gboolean
@@ -498,4 +483,3 @@ yelp_html_initialize (void)
     gtk_moz_embed_set_comp_path (MOZILLA_HOME);
 
 }
-

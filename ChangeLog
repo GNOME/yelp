@@ -1,3 +1,9 @@
+2006-02-12  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-html.cpp:
+	Reverting DonS' a11y patch as it causes an abort in some cases when it
+	can't find the a11y registry.
+
 2006-02-11  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-info-parser.c: (open_info_file):
