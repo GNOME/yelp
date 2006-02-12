@@ -74,7 +74,7 @@ struct _YelpManParser {
     GIOChannel   *channel;       /* GIOChannel for the entire document */
 
     gchar        *buffer;        /* The buffer, line at a time */
-    gint          length;        /* The buffer length */
+    gsize         length;        /* The buffer length */
 
     gchar        *anc;           /* The anchor point in the document */
     gchar        *cur;           /* Our current position in the document */
@@ -114,7 +114,7 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 
     while (g_io_channel_read_line (parser->channel,
 				   &(parser->buffer),
-				   (gsize *) &(parser->length),
+				   &(parser->length),
 				   NULL, errormsg)
 	   == G_IO_STATUS_NORMAL) {
 
@@ -426,7 +426,7 @@ macro_tp_handler (YelpManParser *parser, gchar *macro, GSList *args)
 
     if (g_io_channel_read_line (parser->channel,
                                 &(parser->buffer), 
-				(gsize *)&(parser->length), 
+				&(parser->length), 
 				NULL, errormsg)
             == G_IO_STATUS_NORMAL) {
 	parser->ins = parser_append_node (parser, "Tag");
@@ -1633,7 +1633,7 @@ parser_handle_row_options (YelpManParser *parser)
 
     } while (g_io_channel_read_line (parser->channel,
 				     &(parser->buffer),
-				     (gsize *) &(parser->length),
+				     &(parser->length),
 				     NULL, NULL)
 	     == G_IO_STATUS_NORMAL);
 }
@@ -1648,7 +1648,7 @@ parser_parse_table (YelpManParser *parser)
 
     if (g_io_channel_read_line (parser->channel,
 				&(parser->buffer),
-				(gsize *) &(parser->length),
+				&(parser->length),
 				NULL, NULL)
 	== G_IO_STATUS_NORMAL) {
 	parser->anc = parser->buffer;
@@ -1661,7 +1661,7 @@ parser_parse_table (YelpManParser *parser)
 
 	    if (g_io_channel_read_line (parser->channel,
 					&(parser->buffer),
-					(gsize *) &(parser->length),
+					&(parser->length),
 					NULL, NULL)
 		== G_IO_STATUS_NORMAL) {
 		parser->anc = parser->buffer;
@@ -1677,7 +1677,7 @@ parser_parse_table (YelpManParser *parser)
 	/* Now this is where we go through all the rows */
 	while (g_io_channel_read_line (parser->channel,
 				       &(parser->buffer),
-				       (gsize *) &(parser->length),
+				       &(parser->length),
 				       NULL, NULL)
 	       == G_IO_STATUS_NORMAL) {
 	    

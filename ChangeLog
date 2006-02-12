@@ -1,5 +1,13 @@
 2006-02-11  Brent Smith  <gnome@nextreality.net>
 
+	* src/yelp-info-parser.c: (open_info_file):
+	* src/yelp-man-parser.c: (yelp_man_parser_parse_file),
+	(macro_tp_handler), (parser_handle_row_options),
+	(parser_parse_table):
+	More 64-bit cleanups with gsize
+
+2006-02-11  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-toc-pager.c: (toc_process_pending), (process_xslt),
 	(process_cleanup):
 	Small speedup achieved by only reading the TOC stylesheet once
@@ -27,7 +35,7 @@
 	* src/yelp-base.c: (yelp_base_new):
 	Remove some references to functions (in comments) that no longer exist.
 
-==================== 2.13.3 ====================
+==================== 2.13.4 ====================
 
 2006-01-30  Shaun McCance  <shaunm@gnome.org>
 

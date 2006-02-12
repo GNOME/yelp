@@ -94,7 +94,7 @@ static char
 {
 	GIOChannel *channel;
 	int i;
-	int len;
+	gsize len;
 	char *str;
 	GError *error = NULL;
 	GIOStatus result = G_IO_STATUS_NORMAL;
@@ -102,14 +102,14 @@ static char
 	d (g_print ("!! Opening %s...\n", file));
 	
 	channel = yelp_io_channel_new_file (file, &error);
-	result = g_io_channel_read_to_end (channel, &str, (gsize *) &len, &error);
+	result = g_io_channel_read_to_end (channel, &str, &len, &error);
 	if (result != G_IO_STATUS_NORMAL) {
 	  g_error ("Error reading file: %s\n", error->message);
 	  exit (666);
 	}
 	g_io_channel_shutdown (channel, FALSE, NULL);
 
-	for (i = 0; i < len - 1; i++)
+	for (i = 0; i < (len - 1); i++)
 	{
 		if (str[i] == '\0' && str[i+1] == '\b')
 		{
