@@ -1,5 +1,13 @@
 2006-02-11  Brent Smith  <gnome@nextreality.net>
 
+	* src/yelp-toc-pager.c: (toc_process_pending), (process_xslt),
+	(process_cleanup):
+	Small speedup achieved by only reading the TOC stylesheet once
+	* stylesheets/toc2html.xsl:
+	small speedups
+
+2006-02-11  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-toc-pager.c: (process_info_pending):
 	Committed a patch from Robert Harris to fix a crash.
 

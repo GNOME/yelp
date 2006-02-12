@@ -122,7 +122,7 @@
     <div class="leftbar">
     </div>
     <div class="rightbar">
-      <xsl:if test="toc[.//doc] or @id = 'ManInfoHolder'">
+      <xsl:if test="toc[.//doc[1]] or @id = 'ManInfoHolder'">
         <div class="tocs">
           <ul>
             <xsl:for-each select="toc[../@id = 'index' or ../@id = 'ManInfoHolder' or .//doc]">
@@ -137,7 +137,7 @@
           </ul>
         </div>
       </xsl:if>
-      <xsl:if test="doc">
+      <xsl:if test="doc[1]">
         <div class="docs">
           <dl>
             <xsl:for-each select="doc">

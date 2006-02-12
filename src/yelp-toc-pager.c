@@ -137,6 +137,7 @@ static gboolean      process_mandir_pending    (YelpTocPager      *pager);
 #ifdef ENABLE_INFO
 static gboolean      process_info_pending      (YelpTocPager      *pager);
 #endif
+static gboolean      process_cleanup           (YelpTocPager      *pager);
 
 static void          toc_add_doc_info          (YelpTocPager      *pager,
 						YelpDocInfo       *doc_info);
@@ -364,6 +365,7 @@ toc_process_pending (YelpTocPager *pager)
 	process_info_pending,
 	process_xslt,
 #endif
+	process_cleanup,
 	NULL
     };
     static gint process_i = 0;
@@ -375,6 +377,8 @@ toc_process_pending (YelpTocPager *pager)
 
     readd = priv->pending_func(pager);
 
+    /* if the pending function returned FALSE, then we move on to
+     * calling the next function */
     if (!readd)
 	priv->pending_func = process_funcs[++process_i];
 
@@ -1322,7 +1326,12 @@ process_xslt (YelpTocPager *pager)
 
     if (!priv->toc_doc)
 	return FALSE;
-    priv->stylesheet = xsltParseStylesheetFile (BAD_CAST TOC_STYLESHEET);
+
+    /* only create and parse the stylesheet on the first call to this function */
+    if (!priv->stylesheet) {
+	priv->stylesheet = xsltParseStylesheetFile (BAD_CAST TOC_STYLESHEET);
+    }
+
     if (!priv->stylesheet) {
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
 		     _("The table of contents could not be processed. The "
@@ -1381,15 +1390,26 @@ process_xslt (YelpTocPager *pager)
 	xmlFreeDoc (priv->toc_doc);
 	priv->toc_doc = NULL;
     }
-    if (priv->stylesheet) {
-	xsltFreeStylesheet (priv->stylesheet);
-	priv->stylesheet = NULL;
-    }
     if (priv->transformContext) {
 	xsltFreeTransformContext (priv->transformContext);
 	priv->transformContext = NULL;
     }
 
+    return FALSE;
+}
+
+static gboolean
+process_cleanup (YelpTocPager *pager)
+{
+    YelpTocPagerPriv *priv = pager->priv;
+
+    /* cleanup the stylesheet used to process the toc */
+    if (priv->stylesheet) {
+	xsltFreeStylesheet (priv->stylesheet);
+	priv->stylesheet = NULL;
+    }
+
+    /* we only ever want to run this function once, so always return false */
     return FALSE;
 }
 
