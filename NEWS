@@ -1,3 +1,30 @@
+Changes in 2.13.5:
+------------------
+* Reverted a11y patch due to issues finding registry      (Brent Smith)
+* 64-bit cleanups related to gsize                        (Robert Harris)
+* Small speedups in TOC processing                        (Brent Smith)
+* Fixed crash with malformed documents                    (Brent Smith)
+* Make relative paths work with second instance of yelp   (Brent Smith)
+* Remove references functions that no longer exist        (Brent Smith)
+* Updated translatations:
+  ca      (Josep Puigdemont i Casamajó)
+  da      (Lasse Bang Mikkelsen)
+  el      (Kostas Papadimas)
+  en_CA   (Adam Weinberger)
+  es      (Francisco Javier F. Serrador)
+  et      (Priit Laes)
+  fi      (Ilkka Tuohela)
+  gl      (Ignacio Casal Quinteiro)
+  gu      (Ankit Patel)
+  nb      (Kjartan Maraas)
+  nl      (Tino Meinen)
+  no      (Kjartan Maraas)
+  sq      (Laurent Dhima)
+  sr      (Slobodan D. Sredojevic)
+  th      (Theppitak Karoonboonyanan)
+  vi      (Clytie Siddall)
+  zh_CN   (Funda Wang)
+
 Changes in 2.13.4:
 ------------------
 * Bury man and info under 'Command Line Help'             (Shaun McCance)
