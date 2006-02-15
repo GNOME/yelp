@@ -659,6 +659,9 @@ yelp_print_preview (YelpPrintInfo *info)
     gtk_window_get_size (GTK_WINDOW (info->owner), &width, &height);
     gtk_window_resize (GTK_WINDOW (info->fake_win), width, height);
 
+    gtk_container_set_focus_child (GTK_CONTAINER (info->fake_win),
+				   GTK_WIDGET (info->html_frame));
+
     gtk_widget_show (GTK_WIDGET (info->fake_win));
 
     return FALSE;
