@@ -1,27 +1,28 @@
 # Hungarian translation of yelp.
-# Copyright (C) 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 # Szabolcs Ban <shooby@gnome.hu>, 2002.
 # Emese Kovacs <emese@gnome.hu>, 2002.
 # Andras Timar <timar@gnome.hu>, 2002, 2003, 2004.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
 # Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005.
+# Mate ORY <orymate at gmail d0t com>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD.hu\n"
+"Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-28 07:36+0100\n"
-"PO-Revision-Date: 2005-08-23 21:10+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@gnome.hu>\n"
+"POT-Creation-Date: 2006-02-01 07:32+0100\n"
+"PO-Revision-Date: 2006-02-02 15:09+0100\n"
+"Last-Translator: Mate ORY <orymate at gmail d0t com>\n"
+"Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
 "Plural-Forms:  nplurals=1; plural=0;\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1212
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
 msgid "GNU Info Pages"
 msgstr "GNU Info oldalak"
 
@@ -57,7 +58,7 @@ msgstr "Rendszermagrutinok"
 msgid "Library Functions"
 msgstr "Programkönyvtári függvények"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1202
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
 msgid "Manual Pages"
 msgstr "Kézikönyvoldalak"
 
@@ -78,46 +79,54 @@ msgid "Overviews"
 msgstr "Áttekintő leírások"
 
 #: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "POSIX függvények"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "POSIX fejlécek"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
 msgstr "Perl függvények"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
 msgstr "Qt függvények"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "Rendszeradminisztráció"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "Rendszerhívások"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
 msgstr "Termcap alkalmazások"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
 msgstr "X11-alkalmazások"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
 msgstr "X11 beállítása"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
 msgstr "X11 eszközök"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
 msgstr "X11 függvények"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
 msgstr "X11 játékok"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
 msgstr "X11 áttekintő leírások"
 
@@ -455,7 +464,9 @@ msgstr "A nyomtatás nem támogatott ezen a nyomtatón"
 msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
-msgstr "A(z) \"%s\" illesztőprogram használatával próbált nyomtatni. Ez a program PostScript nyomtatóillesztőt igényel."
+msgstr ""
+"A(z) \"%s\" illesztőprogram használatával próbált nyomtatni. Ez a program "
+"PostScript nyomtatóillesztőt igényel."
 
 #: ../src/yelp-print.c:402
 msgid "An error occurred while printing"
@@ -505,20 +516,20 @@ msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 msgstr ""
-"A keresés nem dolgozható fel. A(z) \"%s\" fájl vagy hiányzik, vagy "
-"nem egy érvényes XSLT-stíluslap."
+"A keresés nem dolgozható fel. A(z) \"%s\" fájl vagy hiányzik, vagy nem egy "
+"érvényes XSLT-stíluslap."
 
-#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1461
+#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
 #: ../src/yelp-xslt-pager.c:368
 msgid "No href attribute found on yelp:document"
 msgstr "Nem található href attribútum a yelp:dokumentumon"
 
-#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1475
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
 #: ../src/yelp-xslt-pager.c:384
 msgid "Out of memory"
 msgstr "Nincs több memória"
 
-#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1525
+#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
 msgid "Help Contents"
 msgstr "Súgó tartalomjegyzéke"
 
@@ -550,23 +561,23 @@ msgstr "A(z) \"%s\" OMF-fájl nem tölthető be."
 #.
 #: ../src/yelp-settings.c:156
 msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201C"
+msgstr "yelp-watermark-blockquote-00AB"
 
 #: ../src/yelp-toc-pager.c:272
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Szünetek száma negatív."
 
-#: ../src/yelp-toc-pager.c:629
+#: ../src/yelp-toc-pager.c:633
 #, c-format
 msgid "Read man page for %s"
 msgstr "%s man oldalának olvasása"
 
-#: ../src/yelp-toc-pager.c:1078
+#: ../src/yelp-toc-pager.c:1099
 #, c-format
 msgid "Read info page for %s"
 msgstr "%s info oldalának olvasása"
 
-#: ../src/yelp-toc-pager.c:1176
+#: ../src/yelp-toc-pager.c:1197
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -575,7 +586,11 @@ msgstr ""
 "A tartalomjegyzék nem tölthető be. A(z) \"%s\" fájl vagy hiányzik, vagy nem "
 "megfelelően formázott XML."
 
-#: ../src/yelp-toc-pager.c:1308
+#: ../src/yelp-toc-pager.c:1219
+msgid "Command Line Help"
+msgstr "Parancssori súgó"
+
+#: ../src/yelp-toc-pager.c:1328
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
