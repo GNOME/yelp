@@ -1494,13 +1494,16 @@ search_process_man (YelpSearchPager *pager, gchar **terms)
 	gchar *command;
 	gchar *stdout_str;
 	gint exit_code;
-	command = g_strconcat("apropos ", terms[i], NULL);
+	gchar *tmp;
+	tmp = g_strescape (terms[i], NULL);
+	command = g_strconcat("apropos ", tmp, NULL);
     
 	if (g_spawn_command_line_sync (command, &stdout_str, NULL, 
 				       &exit_code, NULL) && exit_code == 0) {
 	    process_man_result (pager, stdout_str, terms);
 
 	}
+	g_free (tmp);
 	g_free (stdout_str);
 	g_free (command);
     }
@@ -1516,14 +1519,18 @@ search_process_info (YelpSearchPager *pager, gchar **terms)
 	gchar *command;
 	gchar *stdout_str;
 	gchar *stderr_str;
+	gchar *tmp;
 	gint exit_code;
-	command = g_strconcat("info --apropos ", terms[i], NULL);
+	
+	tmp = g_strescape (terms[i], NULL);
+	command = g_strconcat("info --apropos ", tmp, NULL);
     
 	if (g_spawn_command_line_sync (command, &stdout_str, &stderr_str, 
 				       &exit_code, NULL) && 
 	    stdout_str != NULL) {
 	    process_info_result (pager, stdout_str, terms);	    
 	}
+	g_free (tmp);
 	g_free (stdout_str);
 	g_free (stderr_str);
 	g_free (command);
