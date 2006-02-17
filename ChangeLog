@@ -1,5 +1,10 @@
 2006-02-16  Brent Smith  <gnome@nextreality.net>
 
+	* src/yelp-html.cpp:
+	re-applied DonS' a11y patch, see bug #329407, comment #9
+
+2006-02-16  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-main.c: (main):
 	set MOZ_DISABLE_PANGO in the environment to fix broken rendering of
 	certain characters, fixes #329461
