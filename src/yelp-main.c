@@ -440,7 +440,17 @@ main (int argc, char **argv)
 	if (!factory) { /* Not started, start now */ 
 		BonoboGenericFactory *factory;
 		char                 *registration_id;
+		const gchar          *env;
 
+		/* workaround for bug #329461 */
+		env = g_getenv ("MOZ_ENABLE_PANGO");
+
+		if (env == NULL ||
+		    *env == '\0' ||
+		    g_str_equal(env, "0")) 
+		{
+			g_setenv ("MOZ_DISABLE_PANGO", "1", TRUE);
+		}
 
 		registration_id = bonobo_activation_make_registration_id (
 					YELP_FACTORY_OAFIID,
