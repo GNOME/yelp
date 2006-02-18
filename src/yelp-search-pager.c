@@ -1211,7 +1211,6 @@ slow_search_process (YelpSearchPager *pager)
 	    break;
 	}
     }
-
     /* Cleanup the container and delete it */
     g_free (c->current_subsection);
     g_free (c->result_subsection);
@@ -1492,12 +1491,14 @@ search_process_man (YelpSearchPager *pager, gchar **terms)
     gint i=0;
     for (i=0; terms[i]; i++) {
 	gchar *command;
-	gchar *stdout_str;
+	gchar *stdout_str = NULL;
 	gint exit_code;
-	gchar *tmp;
+	gchar *tmp = NULL;
+
 	tmp = g_strescape (terms[i], NULL);
+	tmp = g_strdelimit (tmp, "\'", '\'');
 	command = g_strconcat("apropos ", tmp, NULL);
-    
+
 	if (g_spawn_command_line_sync (command, &stdout_str, NULL, 
 				       &exit_code, NULL) && exit_code == 0) {
 	    process_man_result (pager, stdout_str, terms);
@@ -1507,7 +1508,6 @@ search_process_man (YelpSearchPager *pager, gchar **terms)
 	g_free (stdout_str);
 	g_free (command);
     }
-
     return;
 }
 
@@ -1517,12 +1517,13 @@ search_process_info (YelpSearchPager *pager, gchar **terms)
     gint i=0;
     for (i=0; terms[i]; i++) {
 	gchar *command;
-	gchar *stdout_str;
-	gchar *stderr_str;
+	gchar *stdout_str = NULL;
+	gchar *stderr_str = NULL;
 	gchar *tmp;
 	gint exit_code;
 	
 	tmp = g_strescape (terms[i], NULL);
+	tmp = g_strdelimit (tmp, "\'", '\'');
 	command = g_strconcat("info --apropos ", tmp, NULL);
     
 	if (g_spawn_command_line_sync (command, &stdout_str, &stderr_str, 

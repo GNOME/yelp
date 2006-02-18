@@ -1,3 +1,8 @@
+2006-02-18  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-search-pager.c: 
+	Escape ' characters when searching
+	
 2006-02-16  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-html.cpp:
@@ -9,7 +14,7 @@
 	set MOZ_DISABLE_PANGO in the environment to fix broken rendering of
 	certain characters, fixes #329461
 
-2006-02-16  Don Scorgie  <don@Madaline>
+2006-02-16  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-search-pager.c: 
 	Escape characters when searching, fixes #331422
