@@ -753,7 +753,6 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	    /* FIXME: need some error checking */
 	    mtime = (time_t) atoi ((gchar *)dirmtime);
 
-	    xmlFree (dirmtime);
 	    /* see if directory mtime has changed - if so recreate
 	     * the directory node */
 	    if (buf.st_mtime > mtime) {
@@ -805,11 +804,16 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 		    priv->manpage_count++;
 		    xmlFree (manpage);
 	        }
-	    xmlXPathFreeObject (objmanpages);
+		xmlXPathFreeObject (objmanpages);
 	    }
+	    xmlFree (dirmtime);
 	    xmlFree (dirname);
 	    xmlXPathFreeObject (objdirmtime);
+	    xmlXPathFreeObject (objdirname);
 	}
+
+	/* cleanup */
+	xmlXPathFreeObject (objdirs);
 
 	if (priv->man_manhash) {
 	    g_hash_table_destroy (priv->man_manhash);
@@ -843,6 +847,7 @@ process_mandir_pending (YelpTocPager *pager)
 	xmlXPathContextPtr xpath;
 	xmlXPathObjectPtr  obj;
 
+	/* NOTE: this document is free()'d at the end of the process_xslt function */
 	priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
 					 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 					 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |

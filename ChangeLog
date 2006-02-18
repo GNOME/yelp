@@ -1,3 +1,9 @@
+2006-02-18  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (create_toc_from_index),
+	(process_mandir_pending):
+	Fix a few more memory leaks.
+
 2006-02-18  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-search-pager.c: 
