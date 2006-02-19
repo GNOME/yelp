@@ -1,5 +1,12 @@
 2006-02-18  Brent Smith  <gnome@nextreality.net>
 
+	* stylesheets/search-header.xsl:
+	* stylesheets/search2html.xsl:
+	Removed redundant search text entry; search-header.xsl no longer
+	needed and removed from CVS.  Fixes #331604
+
+2006-02-18  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-toc-pager.c: (create_toc_from_index),
 	(process_mandir_pending):
 	Fix a few more memory leaks.

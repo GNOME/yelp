@@ -5,7 +5,6 @@
                 extension-element-prefixes="yelp"
                 version="1.0">
 
-<xsl:import href="search-header.xsl"/>
 <xsl:param name="help_icon"/>
 <xsl:param name="help_icon_size"/>
 
@@ -107,9 +106,6 @@
       </head>
       <body>
         <div class="content">
-          <xsl:call-template name="search-header">
-            <xsl:with-param name="search-term" select="@title"/>
-          </xsl:call-template>
           <dl>
             <xsl:for-each select="result[@uri != '']">
 <!-- Don't sort.  Program deals with that. -->
