@@ -8,7 +8,6 @@ xsl_DATA =		\
 	info2html.xsl	\
 	man2html.xsl	\
 	search2html.xsl	\
-	search-header.xsl	\
 	toc2html.xsl	\
 	yelp-common.xsl
 
