@@ -1,3 +1,11 @@
+2006-02-19  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-search-pager.c: (search_pager_process),
+	(search_pager_process_idle):
+	If the beagle daemon is not running, fall back to basic search support
+	and print a warning on the console to the user; Patch from Joe Shaw,
+	fixes #331598
+
 2006-02-19  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* stylesheets/Makefile.am: 

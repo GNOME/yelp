@@ -373,17 +373,6 @@ search_pager_process (YelpPager *pager)
 {
     d (g_print ("search_pager_process\n"));
 
-#ifdef ENABLE_BEAGLE
-    if (beagle_client == NULL) {
-	GError *error = NULL;
-	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
-		     _("Your search could not be processed. There "
-		       "is no connection to the beagle daemon."));
-	yelp_pager_error (YELP_PAGER (pager), error);
-	return FALSE;
-    }
-#endif /* ENABLE_BEAGLE */
-
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
     g_signal_emit_by_name (pager, "parse");
 
@@ -625,39 +614,42 @@ search_pager_process_idle (YelpSearchPager *pager)
     xmlDocSetRootElement (priv->search_doc, priv->root);
 
 #ifdef ENABLE_BEAGLE
-    query = beagle_query_new ();
+    if (beagle_client != NULL) {
+	query = beagle_query_new ();
 
-    beagle_query_set_max_hits (query, 10000);
-    beagle_query_add_text (query, priv->search_terms);
-    beagle_query_add_mime_type (query, "text/html");
-    beagle_query_add_mime_type (query, "application/xhtml+xml");
-    beagle_query_add_mime_type (query, "text/xml");
-    beagle_query_add_mime_type (query, "application/xml");
-    beagle_query_add_mime_type (query, "application/docbook+xml");
-    beagle_query_add_mime_type (query, "text/x-docbook-entry");
+	beagle_query_set_max_hits (query, 10000);
+	beagle_query_add_text (query, priv->search_terms);
+	beagle_query_add_source (query, "documentation");
 
-    priv->hits = g_ptr_array_new ();
+	priv->hits = g_ptr_array_new ();
 
-    g_signal_connect (query, "hits-added",
-		      G_CALLBACK (hits_added_cb),
-		      pager);
+	g_signal_connect (query, "hits-added",
+			  G_CALLBACK (hits_added_cb),
+			  pager);
     
-    g_signal_connect (query, "finished",
-		      G_CALLBACK (finished_cb),
-		      pager);
+	g_signal_connect (query, "finished",
+			  G_CALLBACK (finished_cb),
+			  pager);
 	
-    beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query), &error);
+	beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query), &error);
 
-    if (error) {
-	d(g_print ("error: %s\n", error->message));
+	if (error) {
+	    d(g_print ("error: %s\n", error->message));
+	}
+
+	g_clear_error (&error);
+    } else {
+	g_warning ("beagled not running, using basic search support.");
     }
-
-    g_clear_error (&error);
 #endif /* ENABLE_BEAGLE */
 
-#ifndef ENABLE_BEAGLE
-    gtk_idle_add ((GtkFunction) slow_search_setup,
-		  pager);
+#ifdef ENABLE_BEAGLE
+    if (beagle_client == NULL) {
+#endif
+	gtk_idle_add ((GtkFunction) slow_search_setup,
+		      pager);
+#ifdef ENABLE_BEAGLE
+    }
 #endif
 
     return FALSE;
