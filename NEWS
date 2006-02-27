@@ -1,3 +1,25 @@
+Changes in 2.13.6:
+------------------
+* If beagle daemon is not running fall back to basic search  (Joe Shaw)
+* Removed redundant search text entry                        (Joe Shaw)
+* Fix some memory leaks                                      (Brent Smith)
+* Re-applied a11y patch                                      (Brent Smith)
+* set MOZ_DISABLE_PANGO in environ to fix broken characters  (Brent Smith)
+* Escape characters when searching                           (Don Scorgie)
+* Fix resizing issues by focus print preview on html widget  (Don Scorgie)
+* Updated translations:
+  Miloslav Trmac (cs)
+  Rhys Jones (cy)
+  Hendrik Richter (de)
+  Ivar Smolin (et)
+  Iñaki Larrañaga (eu)
+  Mate ORY (hu)
+  Luca Ferretti (it)
+  Takeshi AIHANA (ja)
+  Duarte Loreto (pt)
+  Abel Cheung (zh_HK)
+  Abel Cheung (zh_TW)
+
 Changes in 2.13.5:
 ------------------
 * Reverted a11y patch due to issues finding registry      (Brent Smith)
