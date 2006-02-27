@@ -1,3 +1,9 @@
+2006-02-27  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-search-pager.c: 
+	Look for spaces when processing man page search results
+	This stops (at least) FreeBSD off-by-1 errors (bug #331828)
+
 ==================== 2.13.6 ====================
 
 2006-02-26  Brent Smith  <gnome@nextreality.net>

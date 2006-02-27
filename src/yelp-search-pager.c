@@ -1362,7 +1362,7 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
     gint i;
 
     for (i=0;split[i];i++) {
-	gchar ** line = g_strsplit (split[i], "-", 3); 
+	gchar ** line = g_strsplit (split[i], "-", 3);
 	gchar *filename = NULL;
 	gchar *desc = NULL;
 	xmlNode *child;
@@ -1379,8 +1379,10 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	/* First is the filename */
 	before = g_strdup (g_strchomp (line[0]));
 	after = strstr (before, "(");
-	tmp = after;
-	tmp--;
+	tmp = after;	
+
+	while (!g_ascii_isspace(*tmp))
+	    tmp--;
 
 	title = g_strndup (before, tmp-before);
 
