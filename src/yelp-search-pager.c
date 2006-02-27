@@ -120,6 +120,7 @@ struct _SearchContainer {
     gint         search_status;
     gchar *      elem_type;
     GSList *     elem_stack;
+    gfloat       score;
 };
 
 static void          search_pager_class_init      (YelpSearchPagerClass *klass);
@@ -988,7 +989,17 @@ void s_characters(void * data,
 		c->snippet = g_strndup (g_utf8_casefold ((gchar *) ch, len), 
 					len);
 		c->result_subsection = g_strdup (c->current_subsection);
-		
+
+		if (g_str_equal(c->elem_type, "primary")) {
+		    c->score = 1.0;
+		} else if (g_str_equal (c->elem_type, "secondary")) {
+		    c->score = 0.9;
+		} else if (g_str_equal (c->elem_type, "title") || 
+			   g_str_equal (c->elem_type, "titleabbrev")) {
+		    c->score = 0.8;
+		} else {
+		    c->score = 0.5;
+		}
 	    }
 	    i++;
 	    s_term = c->search_term[i];
@@ -1136,7 +1147,7 @@ slow_search_setup (YelpSearchPager *pager)
 	container->base_filename = g_strdup (realfname);
 	container->entities = g_hash_table_new (g_str_hash, g_str_equal);
 	container->doc_title = g_strdup ((gchar *) omf_title->stringval);
-
+	container->score=-1;
 
 	ptr = g_strrstr (container->base_filename, "/");
 
@@ -1338,7 +1349,8 @@ search_parse_result (YelpSearchPager *pager, SearchContainer *c)
 			     BAD_CAST "result", NULL);
     xmlSetProp (child, BAD_CAST "uri", BAD_CAST new_uri);
     xmlSetProp (child, BAD_CAST "title", BAD_CAST g_strstrip (c->doc_title));
-
+    xmlSetProp (child, BAD_CAST "score", 
+		BAD_CAST g_strdup_printf ("%f", c->score));
     /* Fix up the snippet to show the break_term in bold */
     xmldoc = g_strdup_printf ("<snippet>%s</snippet>",  
 			search_clean_snippet (c->snippet, c->search_term));
@@ -1401,6 +1413,8 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	
 	xmlNewChild (child, NULL, BAD_CAST "snippet",
 		     BAD_CAST desc);
+	xmlNewChild (child, NULL, BAD_CAST "score",
+		     BAD_CAST "0.1");
 	g_strfreev (line);
 	g_free (before);
     }
@@ -1473,6 +1487,8 @@ process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	
 	xmlNewChild (child, NULL, BAD_CAST "snippet",
 		     BAD_CAST desc);
+	xmlNewChild (child, NULL, BAD_CAST "score",
+		     BAD_CAST "0.05");
 	g_strfreev (line);
 	g_free (title);
     }

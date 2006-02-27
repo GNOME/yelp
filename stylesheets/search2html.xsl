@@ -108,8 +108,9 @@
         <div class="content">
           <dl>
             <xsl:for-each select="result[@uri != '']">
-<!-- Don't sort.  Program deals with that. -->
-<!--              <xsl:sort order="descending" data-type="number" select="normalize-space(@score)"/> -->
+              <!-- Don't sort.  Program deals with that. We do however 
+                   need it for slow search-->
+                <xsl:sort order="descending" data-type="number" select="normalize-space(@score)"/>
               <xsl:apply-templates select="."/>
             </xsl:for-each>
           </dl>

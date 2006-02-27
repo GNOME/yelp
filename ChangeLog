@@ -1,5 +1,9 @@
 2006-02-27  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* stylesheets/search2html.xsl: 
+	* src/yelp-search-pager.c: 
+	While slow searching, sort the results to provide some sanity
+	
 	* src/yelp-search-pager.c: 
 	Look for spaces when processing man page search results
 	This stops (at least) FreeBSD off-by-1 errors (bug #331828)
