@@ -566,7 +566,7 @@ finished_cb (BeagleQuery            *query,
 
 	score = g_strdup_printf ("%f", beagle_hit_get_score (hit));
 	d(g_print ("%f\n", beagle_hit_get_score (hit)));
-	xmlSetProp (child, BAD_CAST "score", BAD_CAST score);
+	/*xmlSetProp (child, BAD_CAST "score", BAD_CAST score);*/
 	g_free (score);
 
 	priv->snippet_request_count ++;
