@@ -1,419 +1,518 @@
+# translation of yelp.HEAD.po to Georgian
 # Georgian translation of yelp.
-# Copyright (C) 2004 Aiet Kolkhi
 # This file is distributed under the same license as the yelp package.
-# Aiet Kolkhi <aiet@qartuli.net>, 2004.
-#
+# Malkhaz Barkalaya მალხაზ ბარკალაია <maxo127@mail.ru>
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1\n"
+"Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-04-23 01:15+0400\n"
-"Last-Translator: Aiet Kolkhi <aiet@qartuli.net>\n"
-"Language-Team: Georgian <aiet@qartuli.net>\n"
+"POT-Creation-Date: 2006-02-22 09:23+0100\n"
+"PO-Revision-Date: 2006-03-01 13:00+0100\n"
+"Last-Translator: Vladimer Sichinava <alinux@siena.linux.it>\n"
+"Language-Team: Georgian <gnome@inet.ge>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1239
+msgid "GNU Info Pages"
+msgstr "GNU -ს საინფორმაციო გვერდები"
+
+#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "პროგრამები"
 
-#: data/man.xml.in.h:2
+#: ../data/man.xml.in.h:2
 msgid "Configuration Files"
 msgstr "კონფიგურაციის ფაილები"
 
-#: data/man.xml.in.h:3
+#: ../data/man.xml.in.h:3
 msgid "Development"
 msgstr "პროგრამირება"
 
-#: data/man.xml.in.h:4
+#: ../data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "FORTRAN-ფუნქციები"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
 msgid "Games"
 msgstr "თამაშები"
 
-#: data/man.xml.in.h:6
+#: ../data/man.xml.in.h:6
 msgid "Hardware Devices"
 msgstr "აპარატურული მოწყობილობები"
 
-#: data/man.xml.in.h:7
+#: ../data/man.xml.in.h:7
 msgid "Kernel Routines"
-msgstr "Kernel Routines"
+msgstr "კერნელის რუტინები "
 
-#: data/man.xml.in.h:8
+#: ../data/man.xml.in.h:8
 msgid "Library Functions"
 msgstr "ბიბლიოთეკის ფუნქციები"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-msgid "Man Pages"
-msgstr ""
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1233
+msgid "Manual Pages"
+msgstr "სახელმძღვანელო"
 
-#: data/man.xml.in.h:10
-#, fuzzy
+#: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
-msgstr "X-ის პროგრამები"
+msgstr "OpenSSL პროგრამები"
 
-#: data/man.xml.in.h:11
-#, fuzzy
+#: ../data/man.xml.in.h:11
 msgid "OpenSSL Configuration"
-msgstr "კონფიგურაციის ფაილები"
+msgstr "OpenSSL·კონფიგურაციის ფაილები"
 
-#: data/man.xml.in.h:12
-#, fuzzy
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Overviews"
-msgstr "განხილვები"
+msgstr "OpenSSL·მიმოხილვები"
 
-#: data/man.xml.in.h:13
+#: ../data/man.xml.in.h:13
 msgid "Overviews"
 msgstr "განხილვები"
 
-#: data/man.xml.in.h:14
-#, fuzzy
+#: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "POSIX-ბიბლიოთეკის ფუნქციები"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "POSIX თავსართი"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
-msgstr "ბიბლიოთეკის ფუნქციები"
+msgstr "Perl-ბიბლიოთეკის ფუნქციები"
 
-#: data/man.xml.in.h:15
-#, fuzzy
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
-msgstr "ბიბლიოთეკის ფუნქციები"
+msgstr "Qt-ბიბლიოთეკის ფუნქციები"
 
-#: data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "სისტემის ადმინისტრირება"
 
-#: data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "სისტემური ბრძანებები"
 
-#: data/man.xml.in.h:18
-#, fuzzy
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
-msgstr "X-ის პროგრამები"
+msgstr "Termcap პროგრამები"
 
-#: data/man.xml.in.h:19
-#, fuzzy
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
-msgstr "X-ის პროგრამები"
+msgstr "X11 პროგრამები"
 
-#: data/man.xml.in.h:20
-#, fuzzy
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
-msgstr "კონფიგურაციის ფაილები"
+msgstr "X11 კონფიგურაციის ფაილები"
 
-#: data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
-msgstr ""
+msgstr "X11 მოწყობილობები"
 
-#: data/man.xml.in.h:22
-#, fuzzy
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
-msgstr "ბიბლიოთეკის ფუნქციები"
+msgstr "X11 ფუნქციები"
 
-#: data/man.xml.in.h:23
-#, fuzzy
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
-msgstr "თამაშები"
+msgstr "X11·თამაშები"
 
-#: data/man.xml.in.h:24
-#, fuzzy
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
-msgstr "განხილვები"
+msgstr "X11·მიმოხილვები"
 
-#: data/toc.xml.in.h:1
+#: ../data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "დამხმარე საშუალებები"
 
-#: data/toc.xml.in.h:2
+#: ../data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "აქსესუარები"
 
-#: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "აპლეტები"
+#: ../data/toc.xml.in.h:3
+msgid "Administration"
+msgstr "ადმინისტრირება"
 
-#: data/toc.xml.in.h:5
+#: ../data/toc.xml.in.h:5
 msgid "Desktop"
-msgstr "დესკტოპი"
+msgstr "სამუშაო მაგიდა"
 
-#: data/toc.xml.in.h:6
+#: ../data/toc.xml.in.h:6
 msgid "Education Applications"
 msgstr "განმანათლებელი პროგრამები"
 
-#: data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:8
 msgid "Graphics"
-msgstr ""
+msgstr "გრაფიკა"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
+#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
 msgid "Help Topics"
-msgstr "დახმარების მნახველი"
+msgstr "დახმარების თემები"
 
-#: data/toc.xml.in.h:10
-#, fuzzy
+#: ../data/toc.xml.in.h:10
 msgid "Internet"
-msgstr "შინაარსი"
+msgstr "ინტერნეტი"
 
-#: data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
-#: data/toc.xml.in.h:12
+#: ../data/toc.xml.in.h:12
+msgid "Multimedia"
+msgstr ""
+"მულტიმედიური პროგრამები"
+"მულტიმედიის·პროგრამები"
+
+#: ../data/toc.xml.in.h:13
 msgid "Office"
-msgstr ""
+msgstr "ოფისი"
 
-#: data/toc.xml.in.h:13
+#: ../data/toc.xml.in.h:14
 msgid "Other"
-msgstr ""
+msgstr "სხვა"
 
-#: data/toc.xml.in.h:14
-#, fuzzy
+#: ../data/toc.xml.in.h:15
 msgid "Other Documentation"
-msgstr "ინფორმაცია გამოქვეყნების შესახებ"
+msgstr "სხვა დოკუმენტაცია"
 
-#: data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:16
+msgid "Panel Applets"
+msgstr "პანელის აპლეტები"
+
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
+msgid "Preferences"
+msgstr "პარამეტრები"
+
+#: ../data/toc.xml.in.h:18
 msgid "Programming"
-msgstr ""
+msgstr "პროგრამირება"
 
-#: data/toc.xml.in.h:16
-#, fuzzy
+#: ../data/toc.xml.in.h:19
 msgid "Scientific"
-msgstr "მეცნიერული პროგრამები"
+msgstr "სამეცნიერო"
 
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr ""
-
-#: data/toc.xml.in.h:18
-#, fuzzy
+#: ../data/toc.xml.in.h:20
 msgid "System Tools"
-msgstr "სისტემური ბრძანებები"
+msgstr "სისტემური ინსტრუმენტები"
 
-#: data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:21
 msgid "X Applications"
-msgstr "X-ის პროგრამები"
+msgstr "X პროგრამები"
 
-#: data/ui/yelp.glade.h:1
+#: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>დამხმარე საშუალებები</b>"
 
-#: data/ui/yelp.glade.h:2
+#: ../data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>ფონტები</b>"
 
-#: data/ui/yelp.glade.h:3
-#, fuzzy
-msgid "<b>_Bookmarks:</b>"
-msgstr "წიგნი"
-
-#: data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:5
+#: ../data/ui/yelp.glade.h:3
 msgid "Add Bookmark"
-msgstr ""
+msgstr "სანიშნის დამატება"
 
-#: data/ui/yelp.glade.h:6
-#, fuzzy
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
-msgstr "წიგნი"
+msgstr "სანიშნები"
 
-#: data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "გ_ანასხვავე დიდი/პატარა ასოები"
 
-#: data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "მოძებნა"
 
-#: data/ui/yelp.glade.h:9
-#, fuzzy
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
-msgstr "დახმარება"
+msgstr "მდებარეობის გახსნა"
 
-#: data/ui/yelp.glade.h:10
-#, fuzzy
-msgid "Preferences"
-msgstr "მოხსენიება"
-
-#: data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
-msgstr ""
+msgstr "_სახელის შეცვლა"
 
-#: data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "_სანიშნები"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
-msgstr ""
+msgstr "_ნუსხის სახით"
 
-#: data/ui/yelp.glade.h:13
-msgid "_Find: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
 msgstr "_მოძებნე:"
 
-#: data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_ფიქსირებული სიგანე"
 
-#: data/ui/yelp.glade.h:15
-#, fuzzy
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
-msgstr "დახმარება"
+msgstr "_მდებარეობა:"
 
-#: data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "შ_ემდეგი"
 
-#: data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_წინა"
 
-#: data/ui/yelp.glade.h:18
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_სათაური"
+
+#: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_სისტემური ფონტით"
 
-#: data/ui/yelp.glade.h:19
+#: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "_ცვლადი სიგანე"
 
-#: data/ui/yelp.glade.h:20
+#: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_გადატანა"
 
-#: data/yelp.schemas.in.h:1
+#: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "ფიქსირებული ტექსტის ფონტი"
 
-#: data/yelp.schemas.in.h:2
+#: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "ტექსტის ფონტი"
 
-#: data/yelp.schemas.in.h:3
+#: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "ფიქსირებული სიგანის ტექსტის ფონტი"
 
-#: data/yelp.schemas.in.h:4
+#: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "ცვლადი სიგანის ტექსტის ფონტი"
 
-#: data/yelp.schemas.in.h:5
+#: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "დათვალიერებისას გამოიყენეთ კლავიატურით-მმართვადი კურსორის ადგილსამყოფელის მიმანიშნებელი მოციმციმე ხაზი."
 
-#: data/yelp.schemas.in.h:6
+#: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "კურსორის გამოყენება"
 
-#: data/yelp.schemas.in.h:7
+#: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "სისტემური ფონტით"
 
-#: data/yelp.schemas.in.h:8
+#: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "ნაგულისხმები.ფონტის გამოყენება სისტემისათვის"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
 msgid "Yelp"
 msgstr "Yelp"
 
-#: src/GNOME_Yelp.server.in.h:2
+#: ../src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Yelp-ის ქარხანა"
+msgstr "Yelp ქარხანა"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: ../src/yelp-bookmarks.c:155
+msgid "Open Bookmark in New Window"
+msgstr "სანიშნის გახსნა ახალ ფანჯარაში"
+
+#: ../src/yelp-bookmarks.c:159
+msgid "Rename Bookmark"
+msgstr "სანიშნის სახელის შეცვალა"
+
+#: ../src/yelp-bookmarks.c:163
+msgid "Remove Bookmark"
+msgstr "სანიშნის წაშლა"
+
+#: ../src/yelp-bookmarks.c:320
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "სანიშნე %s უკვე არის ამ გვერდზე"
+
+#: ../src/yelp-bookmarks.c:397
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "სანიშნე·<b>%s</b>·უკვე·არის·ამ·გვერდზე"
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: ../src/yelp-bookmarks.c:425
 msgid "Document Sections"
-msgstr "ინფორმაცია გამოქვეყნების შესახებ"
+msgstr "დოკუმენტის სექცია"
 
-#: src/yelp-db-pager.c:238
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr ""
+msgstr "ფაილი ·‘%s’ ან არ არსებობს, ან XML ფორმატში არ არის. ანალიზი შეუძლებელია"
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "უცნობი"
-
-#: src/yelp-error.c:42 src/yelp-error.c:58
+#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "უცნობი შეცდომა"
 
-#: src/yelp-error.c:46
+#: ../src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "დოკუმენტი არ იტვირთება"
 
-#: src/yelp-error.c:48
-#, fuzzy
+#: ../src/yelp-error.c:48
 msgid "Could not load section"
-msgstr "ახალი სარკმელი ვერ გავხსენი."
+msgstr "სექცია არ იტვირთება"
 
-#: src/yelp-error.c:50
-#, fuzzy
+#: ../src/yelp-error.c:50
 msgid "Could not read the table of contents"
-msgstr "ვერ გამოვიძახე OMF ფაილი «%s»."
+msgstr "სარჩევი არ იკითხება"
 
-#: src/yelp-error.c:52
+#: ../src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "ფორმატი უცნობია"
 
-#: src/yelp-error.c:54
+#: ../src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "დოკუმენტი არ იკითხება"
 
-#: src/yelp-error.c:56
+#: ../src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "დოკუმენტის დამუშავება შეუძლებელია"
 
-#: src/yelp-error.c:66
+#: ../src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "შეცდომის შესახებ იფორმაცია არ არსებობს"
 
-#: src/yelp-io-channel.c:98
+#: ../src/yelp-info-pager.c:190
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr "ფაილი· ‘%s’·ან·არ·არსებობს,·ან·საინფორმაციო გვერდის ფორმატში·არ·არის.·ანალიზი·შეუძლებელია"
+
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr ""
+msgstr "ფაილი· ‘%s’·არ·დეკოდირდება. ფაილი შეიძლება შეკუმშულია უცნობი ფორმატით."
 
-#: src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "განსაზღვრეთ თუ რომელი კეშის დიექტორიის გამოყენება გნებავთ"
 
-#: src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "ვერ გავააქტიურე Yelp: '%s'"
 
-#: src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "ახალი სარკმელი ვერ გავხსენი."
 
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "დახმარება"
 
-#: src/yelp-man-pager.c:164
+#: ../src/yelp-man-pager.c:185
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
+msgstr "ფაილი· ‘%s’·ან·არ·არსებობს,·ან·XML·ფორმატში·არ·არის.·ანალიზი·შეუძლებელია"
 
-#: src/yelp-pager.c:120
-#, fuzzy
+#: ../src/yelp-pager.c:122
 msgid "Document Information"
-msgstr "ინფორმაცია გამოქვეყნების შესახებ"
+msgstr "ინფორმაცია დოკუმენტის შესახებ"
 
-#: src/yelp-pager.c:121
+#: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "YelpDocInfo დოკუმენტის სტრუქტურა"
+
+#: ../src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "მიმდინარეობს ბეჭდვისათვის მზადება"
+
+#: ../src/yelp-print.c:275
+msgid "Pages"
+msgstr "გვერდები"
+
+#: ../src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "ამჟამად PDF -ის გენერირების ფუნქციას არ გააჩნია მხარდაჭერა"
+
+#: ../src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "ამ პრინტერზე ბეჭდვა შეუძლებელია"
+
+#: ../src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
+msgstr "\"%s\" დრაივერით ბეჭდვა შეუძლებელია. ამ პროგრამისთვის საჭიროა პოსტსკრიპტ-პრინტერი."
+
+#: ../src/yelp-print.c:402
+msgid "An error occurred while printing"
+msgstr "შეცდომა ბეჭდვისას"
+
+#: ../src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "თქვენი დოკუმენტის დაბეჭდვა შეუძლებელია"
+
+#: ../src/yelp-print.c:466
+msgid "Printing"
+msgstr "ბეჭდვა"
+
+#: ../src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>ბეჭდვა</b>"
+
+#: ../src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "დაელოდეთ, მიმდინარეობს ბეჭდვა"
+
+#: ../src/yelp-print.c:559
+msgid "_From:"
+msgstr "_საიდან:"
+
+#: ../src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "პირველი დასაბეჭდი გვერდი:"
+
+#: ../src/yelp-print.c:574
+msgid "_To:"
+msgstr "_სანამდე:"
+
+#: ../src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "ბოლო დასაბეჭდი გვერდი:"
+"(აქ შეიძლება ორწერტილი არ უნდოდეს, და წინა ამნაირზეც. პროგის ინტერფეისის მიხედვით ნახავ)"
+
+#: ../src/yelp-search-pager.c:675
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr "ძიება შეუძლებელია. ფაილი ‘%s’ ან არ არსებობს, ან არასწორი XSLT ფორმატია."
+
+#: ../src/yelp-search-pager.c:777 ../src/yelp-toc-pager.c:1506
+#: ../src/yelp-xslt-pager.c:368
+msgid "No href attribute found on yelp:document"
+msgstr "ვერ ვპოულობ yelp:document-ზე ბმულის (href-ის) ატრიბუტს"
+
+#: ../src/yelp-search-pager.c:791 ../src/yelp-toc-pager.c:1520
+#: ../src/yelp-xslt-pager.c:384
+msgid "Out of memory"
+msgstr "მეხსიერება არ მყოფნის"
+
+#: ../src/yelp-search-pager.c:832 ../src/yelp-toc-pager.c:1570
+msgid "Help Contents"
+msgstr "დახმარების შინაარსი"
+
+#: ../src/yelp-search-pager.c:1108 ../src/yelp-toc-pager.c:499
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "ვერ გამოვიძახე OMF ფაილი «%s»."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -428,7 +527,7 @@ msgstr ""
 #. If you need an image created, contact the maintainers.
 #.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. use guillemets (angle quotations) should use either 00AB or 00BB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
@@ -436,606 +535,299 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: ../src/yelp-settings.c:156
 msgid "yelp-watermark-blockquote-201C"
 msgstr ""
 
-#: src/yelp-toc-pager.c:268
+#: ../src/yelp-toc-pager.c:273
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: გვერდების რაოდენობა უარყოფითია."
 
-#: src/yelp-toc-pager.c:491
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "ვერ გამოვიძახე OMF ფაილი «%s»."
-
-#: src/yelp-toc-pager.c:680
+#: ../src/yelp-toc-pager.c:637
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "%s -ის დოკუმენტაციის გვერდი"
 
-#: src/yelp-toc-pager.c:765
+#: ../src/yelp-toc-pager.c:1108
+#, c-format
+msgid "Read info page for %s"
+msgstr "%s -ის ინფო-გვერდის კითხვა"
+
+#: ../src/yelp-toc-pager.c:1206
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
+msgstr "სარჩევი არ ჩაიტვირთა. ფაილი '%s' ან არ არსებობს, ან არასწორ XML ფორმატშია..·"
 
-#: src/yelp-toc-pager.c:873
+#: ../src/yelp-toc-pager.c:1228
+msgid "Command Line Help"
+msgstr "კონსოლის დახმარება"
+
+#: ../src/yelp-toc-pager.c:1342
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "სარჩევის დამუშავება შეუძლებელია. ფაილი·‘%s’·ან·არ·არსებობს,·ან·არასწორი·XSLT·ფორმატია."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
-msgid "No href attribute found on yelp:document"
-msgstr "yelp:document-ზე ბმულის (href-ის) ატრიბუტი ვერ ვიპოვე"
-
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
-msgid "Out of memory"
-msgstr "მეხსიერება არ მყოფნის"
-
-#: src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "დახმარების შინაარსი"
-
-#: src/yelp-window.c:302
-#, fuzzy
+#: ../src/yelp-window.c:311
 msgid "_File"
-msgstr "/_ფაილი"
+msgstr "_ფაილი"
 
-#: src/yelp-window.c:303
-#, fuzzy
+#: ../src/yelp-window.c:312
 msgid "_Edit"
-msgstr "/_შეცვლა"
+msgstr "_შეცვლა"
 
-#: src/yelp-window.c:304
-#, fuzzy
+#: ../src/yelp-window.c:313
 msgid "_Go"
-msgstr "/_ჰეი!"
+msgstr "_გადასვლა"
 
-#: src/yelp-window.c:305
+#: ../src/yelp-window.c:314
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_სანიშნე"
 
-#: src/yelp-window.c:306
-#, fuzzy
+#: ../src/yelp-window.c:315
 msgid "_Help"
-msgstr "/_დახმარება"
+msgstr "_დახმარება"
 
-#: src/yelp-window.c:309
-#, fuzzy
+#: ../src/yelp-window.c:318
 msgid "_New Window"
-msgstr "/ფაილი/_ახალ ფანჯარა"
+msgstr "_ახალი ფანჯარა"
 
-#: src/yelp-window.c:314
-#, fuzzy
+#: ../src/yelp-window.c:323
+msgid "Print This Document"
+msgstr "დოკუმენტის ბეჭდვა"
+
+#: ../src/yelp-window.c:328
+msgid "Print This Page"
+msgstr "მიმდინარე გვერდის ბეჭდვა"
+
+#: ../src/yelp-window.c:333
 msgid "About This Document"
-msgstr "ამ რიგის შესახებ"
+msgstr "დოკუმენტის შესახებ"
 
-#: src/yelp-window.c:319
+#: ../src/yelp-window.c:338
 msgid "Open _Location"
-msgstr ""
+msgstr "_მდებარეობის გახსნა"
 
-#: src/yelp-window.c:324
-#, fuzzy
+#: ../src/yelp-window.c:343
 msgid "_Close Window"
-msgstr "/ფაილი/_დაკეტე ფანჯარა"
+msgstr "_ფანჯრის დახურვა"
 
-#: src/yelp-window.c:330
+#: ../src/yelp-window.c:349
 msgid "_Copy"
-msgstr ""
+msgstr "_კოპირება"
 
-#: src/yelp-window.c:336
-#, fuzzy
+#: ../src/yelp-window.c:355
 msgid "_Select All"
-msgstr "იხ. ასევე"
+msgstr "_მთლიანად მონიშვნა"
 
-#: src/yelp-window.c:341
-#, fuzzy
+#: ../src/yelp-window.c:360
 msgid "_Find..."
-msgstr "/შეცვლა/_მოძებნა..."
+msgstr "_ძებნა..."
 
-#: src/yelp-window.c:346
-#, fuzzy
+#: ../src/yelp-window.c:365
+msgid "Find Pre_vious"
+msgstr "_წინას მოძებნა"
+
+#: ../src/yelp-window.c:367
+msgid "Find previous occurrence of the word or phrase"
+msgstr "წინა ნაწილში სიტყვის ან ფრაზის ძებნა"
+
+#: ../src/yelp-window.c:370
+msgid "Find Ne_xt"
+msgstr "შე_მდეგის ძებნა"
+
+#: ../src/yelp-window.c:372
+msgid "Find next occurrence of the word or phrase"
+msgstr "გ"
+
+#: ../src/yelp-window.c:375
 msgid "_Preferences"
-msgstr "მოხსენიება"
+msgstr "_პარამეტრები"
 
-#: src/yelp-window.c:351
+#: ../src/yelp-window.c:380
 msgid "_Reload"
-msgstr ""
+msgstr "_გადატვირთვა"
 
-#: src/yelp-window.c:357
-#, fuzzy
+#: ../src/yelp-window.c:392
 msgid "_Back"
-msgstr "უკან"
+msgstr "_უკან"
 
-#: src/yelp-window.c:359
+#: ../src/yelp-window.c:394
 msgid "Show previous page in history"
 msgstr "აჩვენე ისტორიის წინა გვერდი"
 
-#: src/yelp-window.c:362
-#, fuzzy
+#: ../src/yelp-window.c:397
 msgid "_Forward"
-msgstr "წინ"
+msgstr "_წინ"
 
-#: src/yelp-window.c:364
+#: ../src/yelp-window.c:399
 msgid "Show next page in history"
 msgstr "აჩვენე ისტორიის მომდევნო გვერდი"
 
-#: src/yelp-window.c:367
+#: ../src/yelp-window.c:402
 msgid "_Help Topics"
-msgstr ""
+msgstr "_თემები"
 
-#: src/yelp-window.c:369
+#: ../src/yelp-window.c:404
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "თემებზე გადასვლა"
 
-#: src/yelp-window.c:372
-#, fuzzy
+#: ../src/yelp-window.c:407
 msgid "_Previous Section"
-msgstr "/ჰეი!/_წინა გვერდზე"
+msgstr "_წინა სექცია"
 
-#: src/yelp-window.c:377
-#, fuzzy
+#: ../src/yelp-window.c:412
 msgid "_Next Section"
-msgstr "განყოფილება"
+msgstr "_შემდეგი სექცია"
 
-#: src/yelp-window.c:382
-#, fuzzy
+#: ../src/yelp-window.c:417
 msgid "_Contents"
-msgstr "შინაარსი"
+msgstr ""
+"_შინაარსი"
+""
 
-#: src/yelp-window.c:388
+#: ../src/yelp-window.c:423
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "_სანიშნის დამატება"
 
-#: src/yelp-window.c:393
+#: ../src/yelp-window.c:428
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "_სანიშნეების რედაქტირება..."
 
-#: src/yelp-window.c:399
+#: ../src/yelp-window.c:434
 msgid "_Open Link"
-msgstr ""
+msgstr "_ბმულზე გადასვლა"
 
-#: src/yelp-window.c:404
+#: ../src/yelp-window.c:439
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "_ბმულზე·გადასვლა ახალ ფანჯარაში"
 
-#: src/yelp-window.c:409
+#: ../src/yelp-window.c:444
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "ბმულის _კოპირება"
 
-#: src/yelp-window.c:415
-#, fuzzy
+#: ../src/yelp-window.c:450
 msgid "_About"
-msgstr "/დახმარება/_შესახებ"
+msgstr "_პროგრამის შესახებ"
 
-#: src/yelp-window.c:466
+#: ../src/yelp-window.c:455
+msgid "Copy _Email Address"
+msgstr "_ელფოსტის მისამართის კოპირება"
+
+#: ../src/yelp-window.c:504
 msgid "Help Browser"
 msgstr "დახმარების მნახველი"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
+#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "ფაილის URL არასწორია."
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "‘%s’ ფაილის·URL·არასწორია ან უთითებს არარსებულ ფაილზე"
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "ამ ვერსიაში არ არის Man-გვერდის მხარდაჭერა."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "მიმდინარე ვერსიაში არ არსებობს GNU-ს ინფო-გვერდების მხარდაჭერა"
 
-#: src/yelp-window.c:806
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
+msgid "Search is not supported in this version."
+msgstr "მიმდინარე ვერსიაში ძებნის ფუნქციას არ აქვს მხარდაჭერა."
+
+#: ../src/yelp-window.c:899
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "SGML დოკუმენტები აღარ მუშავდება. მიმართეთ დოკუმენტის ავტორს XML-ში კონვერტირებისათვის."
 
-#: src/yelp-window.c:1024
-#, fuzzy
-msgid "Find:"
-msgstr "მოძებნა"
+#: ../src/yelp-window.c:1025
+msgid "_Search:"
+msgstr "_ძიება:"
 
-#: src/yelp-window.c:1040
-#, fuzzy
+#: ../src/yelp-window.c:1026
+msgid "Search for other documentation"
+msgstr "დამატებითი დოკუმენტაციის ძებნა"
+
+#: ../src/yelp-window.c:1175
+msgid "Fin_d:"
+msgstr "_ნაპოვნი:"
+
+#: ../src/yelp-window.c:1195
 msgid "Find _Next"
-msgstr "/შეცვლა/მოძებნა შე_მდეგი"
+msgstr "შე_მდეგის ძებნა"
 
-#: src/yelp-window.c:1052
-#, fuzzy
+#: ../src/yelp-window.c:1207
 msgid "Find _Previous"
-msgstr "_წინა"
+msgstr "_წინას მოძებნა"
 
-#: src/yelp-window.c:1157
+#: ../src/yelp-window.c:1321
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
+"შეუძლებელია გადარქმნის კონტექსტის ფაილ ‘%s’ -თვის შექმნა. უცნობი "
+"ფაილის ფორმატი."
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
+#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
+#: ../src/yelp-window.c:1840
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
-msgstr ""
+msgstr "სექცია ‘%s’ დოკუმენტში არ არის. თუ თქვენი ამ სექციაში გადაგზავნა მოხდა პროგრამის მიერ დახმარების ღილაკზე დაჭერით, გთხოვთ შეატყობინოთ პროგრამის მხარდაჭერის ჯგუფს."
 
-#: src/yelp-window.c:1302
+#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr ""
+msgstr "ფაილი ‘%s’ არ იკითხება. ფაილი ან არ არსებობს, ან თქვენ არა გაქვთ მისი წაკითხვის უფლება."
 
-#: src/yelp-window.c:1336
+#: ../src/yelp-window.c:1516
 msgid "Loading..."
-msgstr "ვიძახებ..."
+msgstr "ვტვირთავ..."
 
 #  Note to translators: put here your name (and address) so it
 #  * will shop up in the "about" box
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:2166
-#, fuzzy
+#. * will show up in the "about" box
+#: ../src/yelp-window.c:2658
 msgid "translator-credits"
-msgstr ""
-"ქართული თარგმანი: აიეტ კოლხი <aiet@qartuli.com>   http://aiet.qartuli.net"
+msgstr "მალხაზ ბარკალაია Malkhaz Barkalaya <malxaz@gmail.com>"
 
-#: src/yelp-window.c:2171
+#: ../src/yelp-window.c:2663
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "გნომის სამუშაო გარემოს დოკუმენტაციის ბრაუზერი."
 
-#: src/yelp-xslt-pager.c:194
+#: ../src/yelp-xslt-pager.c:195
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr ""
+msgstr "ფაილი ·‘%s’ ან არ არსებობს, ან არასწორ ფორმატშია. ანალიზი შეუძლებელია"
 
-#: src/yelp-xslt-pager.c:215
+#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
+"ფაილ ‘%s’ დამუშავება შეუძლებელია. ფაილი ‘%s’ არ არსებობს, "
+"ან არასწორ XSLT ფორმატშია მოცემული."
 
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-
-#: yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "დახმარება GNOME-ში"
+msgstr "დახმარების მიღება გნომში"
 
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "სახლი"
-
-#~ msgid "Go to home view"
-#~ msgstr "წადი სახლის ხედზე"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "მოძებნა"
-
-#~ msgid "Development Environments"
-#~ msgstr "პროგრამირების გარსები"
-
-#~ msgid "Development Tools"
-#~ msgstr "პროგრამირების ხელსაწყოები"
-
-#~ msgid "Editors"
-#~ msgstr "რედაქტორები"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "თამაშები და გართობა"
-
-#~ msgid "General"
-#~ msgstr "ძირითადი"
-
-#~ msgid "Internet Applications"
-#~ msgstr "შიდა პროგრამები"
-
-#~ msgid "Kernels"
-#~ msgstr "კერნელები"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "მულტიმედია პროგრამები"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "საოფისე პროგრამები"
-
-#~ msgid "Securities"
-#~ msgstr "უსაფრთხოება"
-
-#~ msgid "System"
-#~ msgstr "სისტემა"
-
-#~ msgid "Utilities"
-#~ msgstr "ხელსაწყოები"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Titlepage"
-#~ msgstr "სათაო გვერდი"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "ამორჩეულ დოკუმენტს ვერ ვხსნი"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "ამორჩეულ გვერდს ვერ ვპოულობ ამ დოკუმენტში."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "სარჩევს ვერ ვკითხულობ."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "DocBook SGML ტიპის დოკუმენტების მხარდაჭერა აღარ არსებობს."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "ამორჩეულ ფაილს ვერ ვკითხულობ."
-
-#, fuzzy
-#~ msgid "The file could not be processed."
-#~ msgstr "ამორჩეულ ფაილს ვერ ვკითხულობ."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt ბიბლიოთეკა"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "კატეგორიები"
-
-#~ msgid "Documents"
-#~ msgstr "დოკუმენტები"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "/ჰეი!/_მომდევნო გვერდი"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#0171;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#0187;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8222;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8220;"
-
-#~ msgid "About This Article"
-#~ msgstr "ამ სტატიის შესახებ"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "ამ ბიბლიოგრაფიის შესახებ"
-
-#~ msgid "About This Book"
-#~ msgstr "ამ წიგნის შესახებ"
-
-#~ msgid "About This Chapter"
-#~ msgstr "ამ გვერდის შესახებ"
-
-#~ msgid "About This Entry"
-#~ msgstr "ამ შენატანის შესახებ"
-
-#~ msgid "About This Glossary"
-#~ msgstr "ამ სიტყვარის შესახებ"
-
-#~ msgid "About This Index"
-#~ msgstr "ამ სარჩევის შესახებ"
-
-#~ msgid "About This Part"
-#~ msgstr "ამ ნაწილის შესახებ"
-
-#~ msgid "About This Preface"
-#~ msgstr "ამ შესავლის შესახებ"
-
-#~ msgid "About This Reference"
-#~ msgstr "ამ მოხსენიების შესახებ"
-
-#~ msgid "About This Section"
-#~ msgstr "ამ განყოფილების შესახებ"
-
-#~ msgid "Affiliation"
-#~ msgstr "კავშირი"
-
-#~ msgid "Appendix"
-#~ msgstr "დამატება"
-
-#~ msgid "Article"
-#~ msgstr "სტატია"
-
-#~ msgid "Audience"
-#~ msgstr "აუდიენცია"
-
-#~ msgid "Author"
-#~ msgstr "ავტორი"
-
-#~ msgid "Authors"
-#~ msgstr "ავტორები"
-
-#~ msgid "Bibliography"
-#~ msgstr "ბიბლიოგრაფია"
-
-#~ msgid "Caution"
-#~ msgstr "გაფრთხილება"
-
-#~ msgid "Chapter"
-#~ msgstr "თავი"
-
-#~ msgid "Collaborator"
-#~ msgstr "თანამშრომელი"
-
-#~ msgid "Collaborators"
-#~ msgstr "თანამშრომლები"
-
-#~ msgid "Colophon"
-#~ msgstr "კოლოფონი"
-
-#~ msgid "Copyright"
-#~ msgstr "საავტორო უფლებები"
-
-#~ msgid "Copyrights"
-#~ msgstr "საავტორო უფლებები"
-
-#~ msgid "Date"
-#~ msgstr "თარიღი"
-
-#~ msgid "Dedication"
-#~ msgstr "დახმარება"
-
-#~ msgid "Editor"
-#~ msgstr "რედაქტორი"
-
-#~ msgid "Email"
-#~ msgstr "ელფოსტა"
-
-#~ msgid "Example"
-#~ msgstr "მაგალითი"
-
-#~ msgid "Figure"
-#~ msgstr "ციფრი/ფიგურა"
-
-#~ msgid "Glossary"
-#~ msgstr "სიტყვარი"
-
-#~ msgid "Important"
-#~ msgstr "მნიშვნელოვანი"
-
-#~ msgid "Index"
-#~ msgstr "სარჩევი"
-
-#~ msgid "Legal Notice"
-#~ msgstr "იურიდიული გაფრთხილება"
-
-#~ msgid "Level"
-#~ msgstr "დონე"
-
-#~ msgid "Message Audience"
-#~ msgstr "წერილის აუდიენცია"
-
-#~ msgid "Message Level"
-#~ msgstr "წერილის დონე"
-
-#~ msgid "Message Origin"
-#~ msgstr "წერილის წარმომავლობა"
-
-#~ msgid "Note"
-#~ msgstr "შენიშვნა"
-
-#~ msgid "Origin"
-#~ msgstr "წარმომავლობა"
-
-#~ msgid "Other Contributor"
-#~ msgstr "სხვა მხარდამჭერი"
-
-#~ msgid "Other Contributors"
-#~ msgstr "სხვა მხარდამჭერები"
-
-#~ msgid "Part"
-#~ msgstr "ნაწილი"
-
-#~ msgid "Preface"
-#~ msgstr "წინასიტყვაობა"
-
-#~ msgid "Publisher"
-#~ msgstr "გამომცემელი"
-
-#~ msgid "Publishers"
-#~ msgstr "გამომცემლები"
-
-#~ msgid "Reference"
-#~ msgstr "მოხსენიება"
-
-#~ msgid "Reference Entry"
-#~ msgstr "მოხსენიების შენატანი"
-
-#~ msgid "Reference Section"
-#~ msgstr "მოხსენიებიებს განყოფილება"
-
-#~ msgid "Release Information"
-#~ msgstr "ინფორმაცია გამოქვეყნების შესახებ"
-
-#~ msgid "Revision History"
-#~ msgstr "ცვლილებების ისტორია"
-
-#~ msgid "See"
-#~ msgstr "იხ."
-
-#~ msgid "Set Index"
-#~ msgstr "სარჩევის დაყენება"
-
-#~ msgid "Table"
-#~ msgstr "ცხრილი"
-
-#~ msgid "Table of Contents"
-#~ msgstr "სარჩევი"
-
-#~ msgid "Tip"
-#~ msgstr "რჩევა"
-
-#~ msgid "Title"
-#~ msgstr "სათაური"
-
-#~ msgid "Warning"
-#~ msgstr "გაფრთხილება"
-
-#~ msgid "Document URI"
-#~ msgstr "დოკუმენტის იდენტიფიკატორი (URI)"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "დასამუშავებელი დოკუმენტის იდენტიფიკატორი (URI)"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/შეცვლა/მოძებნა წ_ინა"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/ჰეი!/_უკან"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/ჰეი!/_წინ"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/ჰეი!/_სახლში"
-
-#~ msgid "/Go/"
-#~ msgstr "/ჰეი!/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/ჰეი!/_შინაარსი"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "GNOME-ს დახმარების დამთვალიერებელი"
