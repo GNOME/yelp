@@ -7,13 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-01 06:06+0200\n"
+"POT-Creation-Date: 2006-03-13 07:20+0100\n"
 "PO-Revision-Date: 2004-03-16 11:02+0530\n"
 "Last-Translator: Khandakar Mujahidul Islam <suzan@bengalinux.org>\n"
 "Language-Team: Bengali - Ankur Group <gnome-translation@bengalinux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+# msgstr "ম্যানুয়াল পেজ"
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1239
+msgid "GNU Info Pages"
+msgstr "GNU তথ্য পাতা"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -50,9 +55,9 @@ msgid "Library Functions"
 msgstr "লাইব্রেরী ফাংশন"
 
 # msgstr "ক্যাটেগরি"
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:792
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1233
 msgid "Manual Pages"
-msgstr "ম্যানুয়াল পেজ"
+msgstr "ম্যানুয়াল পাতা"
 
 #: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
@@ -72,47 +77,55 @@ msgid "Overviews"
 msgstr "সারাংশ"
 
 #: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "POSIX ফাংশন"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "POSIX হেডার"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
 msgstr "পার্ল ফাংশন"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
 msgstr "কিউ.টি ফাংশন"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "সিস্টেমের অ্যাডমিনিস্ট্রেশন"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "সিস্টেম কল"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
 msgstr "টার্মক্যাপ সম্বন্ধীয় অ্যাপ্লিকেশন"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
 msgstr "X11 সম্বন্ধীয় অ্যাপ্লিকেশন"
 
 # msgstr "হার্ডওয়্যার যন্ত্র"
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
 msgstr "X11 কনফিগারেশন"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
 msgstr "X11 ডিভাইস"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
 msgstr "X11 ফাংশন"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
 msgstr "X11 খেলা"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
 msgstr "X11 সারাংশ"
 
@@ -142,7 +155,7 @@ msgid "Graphics"
 msgstr "গ্রাফিক্স"
 
 # msgstr "/_সহায়তা/_সম্বন্ধে"
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:391
+#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
 msgid "Help Topics"
 msgstr "সহায়ক বিষয়বস্তু"
 
@@ -175,7 +188,7 @@ msgstr "অন্যান্য ডকুমেন্টেশন"
 msgid "Panel Applets"
 msgstr "প্যানেল অ্যাপ্লেটসমূহ"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "প্রেফারেন্স"
 
@@ -204,71 +217,71 @@ msgid "<b>Fonts</b>"
 msgstr "<b>ফন্ট</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>বুকমার্ক (_ব):</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>শিরোনাম (_শ):</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "বুকমার্কে যোগ কর"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "বুকমার্ক"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
-msgstr "ছোট/বড় হাত মিলিয়ে (_ছ)"
+msgstr "ছোট/বড় হাত মিলিয়ে (_a)"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "খোঁজো"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "খোলার অবস্থান"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
-msgstr "নতুন নামকরণ (_ত)"
+msgstr "নতুন নামকরণ (_n)"
+
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "বুকমার্ক (_B)"
+
+#: ../data/ui/yelp.glade.h:11
+msgid "_Browse with caret"
+msgstr "caret সহ ব্রাউজ (_B)"
 
 #: ../data/ui/yelp.glade.h:12
-msgid "_Browse with caret"
-msgstr "caret দিয়ে ব্রাউজ (_জ)"
+msgid "_Find:"
+msgstr "খোঁজো (_F):"
 
 #: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "খোঁজো (_খ):"
+msgid "_Fixed width:"
+msgstr "নির্দিষ্ট প্রস্থ (_F)"
 
 #: ../data/ui/yelp.glade.h:14
-msgid "_Fixed width:"
-msgstr "নির্দিষ্ট প্রস্থ (_হ)"
-
-#: ../data/ui/yelp.glade.h:15
 msgid "_Location:"
-msgstr "স্থান (_ল):"
+msgstr "স্থান (_L):"
 
 # msgstr "উচ্চতর/নিম্নতর ক্ষেত্রে  _তুলনা কর"
 # msgstr "উচ্চতর/নিম্নতর ক্ষেত্রে  _তুলনা করুন"
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
-msgstr "পরবর্তী (_র)"
+msgstr "পরবর্তী (_N)"
 
 # msgstr "_পরেরটা"
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
-msgstr "পূর্ববর্তী (_ঊ)"
+msgstr "পূর্ববর্তী (_P)"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "শিরোনাম: (_T)"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr "সিস্টেম ফন্ট ব্যবহার কর (_ট)"
+msgstr "সিস্টেম ফন্ট ব্যবহার কর (_U)"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr "পরিবর্তনযোগ্য প্রস্থ (_য)"
+msgstr "পরিবর্তনযোগ্য প্রস্থ (_V)"
 
 #: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
@@ -307,7 +320,7 @@ msgid "Use the default fonts set for the system."
 msgstr "সিস্টেমের জন্য ডিফল্ট ফন্ট ব্যবহার কর।"
 
 # msgstr "_আগেরটা"
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2206
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
 msgid "Yelp"
 msgstr "ইয়েল্প"
 
@@ -318,7 +331,7 @@ msgstr "ইয়েল্প কারখানা"
 
 #: ../src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
-msgstr "বুকমার্ক নতুন উইন্ডোতে খোল "
+msgstr "বুকমার্ক নতুন উইন্ডোতে খোলো "
 
 #: ../src/yelp-bookmarks.c:159
 msgid "Rename Bookmark"
@@ -328,16 +341,21 @@ msgstr "বুকমার্ক নতুন নামে"
 msgid "Remove Bookmark"
 msgstr "বুকমার্ক মুছে ফেল"
 
-#: ../src/yelp-bookmarks.c:306 ../src/yelp-bookmarks.c:378
+#: ../src/yelp-bookmarks.c:320
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "একটি বুকমার্ক শিরোনাম <b>%s</b> ইতিমধ্যেই এই পাতায় উপস্থিত আছে।"
+
+#: ../src/yelp-bookmarks.c:397
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "একটি বুকমার্ক শিরোনাম <b>%s</b> ইতিমধ্যেই এই পাতায় উপস্থিত আছে।"
 
-#: ../src/yelp-bookmarks.c:406
+#: ../src/yelp-bookmarks.c:425
 msgid "Document Sections"
 msgstr "ডকুমেন্ট সেকশন"
 
-#: ../src/yelp-db-pager.c:245
+#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -345,10 +363,6 @@ msgid ""
 msgstr ""
 "'%s' ফাইলটি parse করা যায়নি। হয় এটি উপস্থিত নেই, অথবা এটি সঠিকভাবে গঠিত XML "
 "নয়।"
-
-#: ../src/yelp-db-pager.c:494
-msgid "Unknown Section"
-msgstr "অজানা সেকশন"
 
 #: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -386,7 +400,16 @@ msgstr "ডকুমেন্টটি প্রসেস করতে পার
 msgid "No information is available about the error."
 msgstr "ভুলটি সম্বন্ধে কোন তথ্য পাওয়া যায়নি।"
 
-#: ../src/yelp-io-channel.c:98
+#: ../src/yelp-info-pager.c:190
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"'%s' ফাইলটি parse করা যায়নি। হয় এটি উপস্থিত নেই, অথবা এটি সঠিকভাবে গঠিত XML "
+"নয়।"
+
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -395,24 +418,24 @@ msgstr ""
 "'%s' ফাইলটি পড়া এবং ডিকোড করা যায়নি। ফাইলটি সম্ভবত অসমর্থিত ফরম্যাটে সংকুচিতকরা "
 "হয়েছে।"
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "কোন ক্যাশ ব্যবহৃত হবে তা নির্ধারণ করুন"
 
 # msgstr "Yelp কারখানা"
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "ইয়েল্পকে চালু করা যায়নি: '%s'"
 
 # msgstr "Yelp কে চালু করা যায়নিঃ '%s'"
 # msgstr "Yelp কে স্বয়ংক্রিয় করতে পারছে নাঃ '%s'"
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "নতুন উইন্ডো খুলতে পারা যায়নি।"
 
 # msgstr "জিনোমের মধ্যে দেয়া সহায়ক তথ্য গ্ড়গ্রহণ করুন"
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "সহায়িকা"
 
@@ -432,6 +455,97 @@ msgstr "ডকুমেন্ট সম্বন্ধীয় তথ্য"
 #: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
 msgstr "ডকুমেন্টে YelpDocInfo struct"
+
+#: ../src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "প্রিন্ট করার প্রস্তুতি"
+
+#: ../src/yelp-print.c:275
+msgid "Pages"
+msgstr "ম্যানুয়াল পাতা"
+
+#: ../src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "পিডিএফ তৈরি করা এখনো সমর্থিত নয়"
+
+#: ../src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "এই প্রিন্টারে প্রিন্ট করা  সমর্থিত নয়।"
+
+#: ../src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
+msgstr ""
+"আপনি \"%s\" ড্রাইভার ব্যবহার করে প্রিন্টার থেকে প্রিন্ট করার চেষ্টা করেছিলেন। এই "
+"প্রোগ্রামের প্রয়োজন একটি পোস্টস্ক্রিপ্ট প্রিন্টার ড্রাইভার।"
+
+#: ../src/yelp-print.c:402
+msgid "An error occurred while printing"
+msgstr "প্রিন্ট করার সময় একটি ভুল হয়েছে"
+
+#: ../src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "আপনার ডকুমেন্টটি প্রিন্ট করা সম্ভব ছিল না"
+
+#: ../src/yelp-print.c:466
+msgid "Printing"
+msgstr "প্রিন্টিং"
+
+#: ../src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>প্রিন্টিং</b>"
+
+#: ../src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "প্রিন্ট এর জন্য অপেক্ষা"
+
+#: ../src/yelp-print.c:559
+msgid "_From:"
+msgstr "প্রেরক: (_F)"
+
+#: ../src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "প্রিন্টের জন্য পেজগুলোর শুরুর রেন্ঞ্জ সেট করুন"
+
+#: ../src/yelp-print.c:574
+msgid "_To:"
+msgstr "প্রাপক: (_T)"
+
+#: ../src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "প্রিন্টের জন্য পেজগুলোর শেষ রেন্ঞ্জ সেট করুন"
+
+#: ../src/yelp-search-pager.c:676
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr ""
+"সূচীপত্রটি প্রসেস করা যায়নি। হয় '%s' ফাইলটি হারিয়ে গেছে, অথবা এটি সঠিক XSLT "
+"স্টাইলশীট নয়।"
+
+#: ../src/yelp-search-pager.c:778 ../src/yelp-toc-pager.c:1506
+#: ../src/yelp-xslt-pager.c:368
+msgid "No href attribute found on yelp:document"
+msgstr "yelp:document-এ কোন href নথী খুঁজে পাওয়া যায়নি"
+
+#: ../src/yelp-search-pager.c:792 ../src/yelp-toc-pager.c:1520
+#: ../src/yelp-xslt-pager.c:384
+msgid "Out of memory"
+msgstr "মেমরি ফুরিয়ে গেছে"
+
+# msgstr "_অনুসন্ধান হচ্ছেঃ "
+#: ../src/yelp-search-pager.c:833 ../src/yelp-toc-pager.c:1570
+msgid "Help Contents"
+msgstr "সহায়িকা সূচী"
+
+# msgstr "Yelp কারখানা"
+#: ../src/yelp-search-pager.c:1119 ../src/yelp-toc-pager.c:499
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "OMF ফাইল পড়া গেল না '%s'"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -458,22 +572,21 @@ msgstr "ডকুমেন্টে YelpDocInfo struct"
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:271
+#: ../src/yelp-toc-pager.c:273
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: পৃষ্ঠাসংখ্যা শূন্যের থেকে কম"
 
-# msgstr "Yelp কারখানা"
-#: ../src/yelp-toc-pager.c:494
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "OMF ফাইল পড়া গেল না '%s'"
-
-#: ../src/yelp-toc-pager.c:685
+#: ../src/yelp-toc-pager.c:637
 #, c-format
 msgid "Read man page for %s"
 msgstr "%s এর ম্যান পেজ পড়ুন"
 
-#: ../src/yelp-toc-pager.c:772
+#: ../src/yelp-toc-pager.c:1108
+#, c-format
+msgid "Read info page for %s"
+msgstr "%s এর ম্যান পেজ পড়ুন"
+
+#: ../src/yelp-toc-pager.c:1206
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -482,7 +595,11 @@ msgstr ""
 "সূচীপত্রটি লোড করা যায়নি। হয় '%s' ফাইলটি উপস্থিত নেই, অথবা এটি সঠিকভাবে গঠিত "
 "XML নয়।"
 
-#: ../src/yelp-toc-pager.c:883
+#: ../src/yelp-toc-pager.c:1228
+msgid "Command Line Help"
+msgstr "কমান্ড লাইন সহায়িকা"
+
+#: ../src/yelp-toc-pager.c:1342
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -491,155 +608,172 @@ msgstr ""
 "সূচীপত্রটি প্রসেস করা যায়নি। হয় '%s' ফাইলটি হারিয়ে গেছে, অথবা এটি সঠিক XSLT "
 "স্টাইলশীট নয়।"
 
-#: ../src/yelp-toc-pager.c:1037 ../src/yelp-xslt-pager.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "yelp:document-এ কোন href নথী খুঁজে পাওয়া যায়নি"
-
-#: ../src/yelp-toc-pager.c:1051 ../src/yelp-xslt-pager.c:384
-msgid "Out of memory"
-msgstr "মেমরি ফুরিয়ে গেছে"
-
-# msgstr "_অনুসন্ধান হচ্ছেঃ "
-#: ../src/yelp-toc-pager.c:1092
-msgid "Help Contents"
-msgstr "সহায়িকা সূচী"
-
-#: ../src/yelp-window.c:287
+#: ../src/yelp-window.c:311
 msgid "_File"
-msgstr "ফাইল (_প)"
+msgstr "ফাইল (_F)"
 
 # msgstr "/ফাইল/_বন্ধ উইন্ডো"
-#: ../src/yelp-window.c:288
+#: ../src/yelp-window.c:312
 msgid "_Edit"
-msgstr "সম্পাদন (_ম)"
+msgstr "সম্পাদন (_E)"
 
 # msgstr "/_সম্পাদনা/_আবার খুঁজুন"
 # msgstr "/_সম্পাদনা/_আবার অনুসন্ধান করুন"
-#: ../src/yelp-window.c:289
+#: ../src/yelp-window.c:313
 msgid "_Go"
-msgstr "গন্তব্য (_গ)"
+msgstr "গন্তব্য (_G)"
 
-#: ../src/yelp-window.c:290
+#: ../src/yelp-window.c:314
 msgid "_Bookmarks"
-msgstr "বুকমার্ক (_ব)"
+msgstr "বুকমার্ক (_B)"
 
 # msgstr "/যাও/_সূচি"
-#: ../src/yelp-window.c:291
+#: ../src/yelp-window.c:315
 msgid "_Help"
-msgstr "সহায়িকা (_য়)"
+msgstr "সহায়িকা (_H)"
 
-#: ../src/yelp-window.c:294
+#: ../src/yelp-window.c:318
 msgid "_New Window"
-msgstr "নতুন উইন্ডো (_উ)"
+msgstr "নতুন উইন্ডো (_N)"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:323
+msgid "Print This Document"
+msgstr "এই ডকুমেন্ট প্রিন্ট করো"
+
+#: ../src/yelp-window.c:328
+msgid "Print This Page"
+msgstr "এই পেজ প্রিন্ট করো"
+
+#: ../src/yelp-window.c:333
 msgid "About This Document"
 msgstr "এই ডকুমেন্টের পরিচিতি"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:338
 msgid "Open _Location"
-msgstr "অবস্থান খোল (_আ)"
+msgstr "অবস্থান খোল (_L)"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:343
 msgid "_Close Window"
-msgstr "উইন্ডো বন্ধ কর (_ধ)"
+msgstr "উইন্ডো বন্ধ কর (_C)"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:349
 msgid "_Copy"
-msgstr "কপি (_ক)"
+msgstr "কপি (_C)"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:355
 msgid "_Select All"
-msgstr "সবগুলো নির্বাচন কর (_চ)"
+msgstr "সবগুলো নির্বাচন কর (_S)"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:360
 msgid "_Find..."
 msgstr "_খোঁজো..."
 
-#: ../src/yelp-window.c:331
-msgid "_Preferences"
-msgstr "প্রেফারেন্স (_ফ)"
+# msgstr "_পরেরটা"
+#: ../src/yelp-window.c:365
+msgid "Find Pre_vious"
+msgstr "পূর্বে খোঁজ (_v)"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:367
+msgid "Find previous occurrence of the word or phrase"
+msgstr "শব্দটি পূর্বের জায়গাগুলোতে খোঁজো"
+
+# msgstr "স্বয়ংক্রিয়ভাবে _চারদিক থেকে জড়িয়ে ফেলে"
+#: ../src/yelp-window.c:370
+msgid "Find Ne_xt"
+msgstr "পরে খোঁজ (_x)"
+
+#: ../src/yelp-window.c:372
+msgid "Find next occurrence of the word or phrase"
+msgstr "শব্দটি পরের জায়গাগুলোতে খোঁজো"
+
+#: ../src/yelp-window.c:375
+msgid "_Preferences"
+msgstr "প্রেফারেন্স (_P)"
+
+#: ../src/yelp-window.c:380
 msgid "_Reload"
-msgstr "রিলোড (_ড)"
+msgstr "রিলোড (_R)"
 
 # msgstr "জিনোম ২.০ সহায়ক তথ্য  প্রদর্শনকারী ব্রাউজার"
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:392
 msgid "_Back"
-msgstr "পূর্ববর্তী (_ভ)"
+msgstr "পূর্ববর্তী (_B)"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:394
 msgid "Show previous page in history"
 msgstr "ইতিহাসে পূর্ববর্তী পাতাটি দেখাও"
 
 # msgstr "হিস্টোরি থেকে পূর্ববর্তী পাতাটি দেখানো হোক"
 # msgstr "পূর্বে ব্যবহৃত পাতার তালিকা থেকে শেষ পাতাটি দেখানো হোক"
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:397
 msgid "_Forward"
 msgstr "পরবর্তী (_ও)"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:399
 msgid "Show next page in history"
 msgstr "ইতিহাসে পরবর্তী পাতাটি দেখাও"
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:402
 msgid "_Help Topics"
-msgstr "সহায়ক বিষয়বস্তু (_ষ)"
+msgstr "সহায়ক বিষয়বস্তু (_H)"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:404
 msgid "Go to the listing of help topics"
 msgstr "সহায়ক বিষয়বস্তুর তালিকায় যাও"
 
 # msgstr "_পরেরটা"
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:407
 msgid "_Previous Section"
-msgstr "পূর্ববর্তী সেকশন (_প)"
+msgstr "পূর্ববর্তী সেকশন (_P)"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:412
 msgid "_Next Section"
-msgstr "পরবর্তী সেকশন (_প)"
+msgstr "পরবর্তী সেকশন (_N)"
 
 # msgstr "_অনুসন্ধান হচ্ছেঃ "
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:417
 msgid "_Contents"
-msgstr "সূচী (_স)"
+msgstr "সূচী (_C)"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:423
 msgid "_Add Bookmark"
-msgstr "বুকমার্ক যোগ কর (_য)"
+msgstr "বুকমার্ক যোগ কর (_A)"
 
-#: ../src/yelp-window.c:384
+#: ../src/yelp-window.c:428
 msgid "_Edit Bookmarks..."
-msgstr "বুকমার্ক সম্পাদন... (_দ)"
+msgstr "বুকমার্ক সম্পাদন... (_E)"
 
-#: ../src/yelp-window.c:390
+#: ../src/yelp-window.c:434
 msgid "_Open Link"
-msgstr "লিংক খোল (_ং)"
+msgstr "লিংক খোল (_O)"
 
-#: ../src/yelp-window.c:395
+#: ../src/yelp-window.c:439
 msgid "Open Link in _New Window"
-msgstr "নতুন উইন্ডোতে লিংক খোল (_ঔ)"
+msgstr "নতুন উইন্ডোতে লিংক খোল (_N)"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:444
 msgid "_Copy Link Address"
-msgstr "লিংক ঠিকানা কপি কর (_ঠ)"
+msgstr "লিংক ঠিকানা কপি কর (_C)"
 
 # msgstr "/_সহায়তা"
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:450
 msgid "_About"
-msgstr "সম্বন্ধে (_ধ)"
+msgstr "পরিচিতি (_A)"
+
+#: ../src/yelp-window.c:455
+msgid "Copy _Email Address"
+msgstr "লিংক ঠিকানা কপি কর (_E)"
 
 # msgstr "/_সহায়তা/_সম্বন্ধে"
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:504
 msgid "Help Browser"
 msgstr "সহায়ক তথ্য প্রদর্শনকারী ব্রাউজার"
 
-#: ../src/yelp-window.c:709 ../src/yelp-window.c:842
+#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "ফাইলটির ইউনিফর্ম রিসোর্স আইডেন্টিফায়ার সঠিক নয়।"
 
-#: ../src/yelp-window.c:721 ../src/yelp-window.c:837
+#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -648,15 +782,19 @@ msgstr ""
 "'%s' ইউনিফর্ম রিসোর্স আইডেন্টিফায়ারটি সঠিক নয় অথবা কোন সঠিক ফাইলকে নির্দেশ করে "
 "না।"
 
-#: ../src/yelp-window.c:797 ../src/yelp-window.c:1152
+#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
 msgid "Man pages are not supported in this version."
 msgstr "এই সংস্করণটি ম্যান পেজ সমর্থিত নয়।"
 
-#: ../src/yelp-window.c:807 ../src/yelp-window.c:1143
+#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
 msgid "GNU info pages are not supported in this version"
 msgstr "এই সংস্করণটি জি-এন-ইউ ইনফো পেজ সমর্থিত নয়"
 
-#: ../src/yelp-window.c:817
+#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
+msgid "Search is not supported in this version."
+msgstr "এই সংস্করণটি ম্যান পেজ সমর্থিত নয়।"
+
+#: ../src/yelp-window.c:899
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -664,21 +802,30 @@ msgstr ""
 "SGML ডকুমেন্টের সমর্থন এখন আর নেই। দয়া করে লেখককে বলুন ডকুমেন্টটি XML এ পরিবর্তন "
 "করে দিতে।"
 
-#: ../src/yelp-window.c:1036
-msgid "Find:"
-msgstr "খোঁজো:"
+# msgstr "সেকশন"
+#: ../src/yelp-window.c:1025
+msgid "_Search:"
+msgstr "খোঁজ: (_S)"
+
+#: ../src/yelp-window.c:1026
+msgid "Search for other documentation"
+msgstr "অন্যান্য ডকুমেন্টেশন"
+
+#: ../src/yelp-window.c:1175
+msgid "Fin_d:"
+msgstr "খোঁজো (_d)"
 
 # msgstr "স্বয়ংক্রিয়ভাবে _চারদিক থেকে জড়িয়ে ফেলে"
-#: ../src/yelp-window.c:1052
+#: ../src/yelp-window.c:1195
 msgid "Find _Next"
-msgstr "পরবর্তীতে খোঁজ (_র)"
+msgstr "পরবর্তীতে খোঁজ (_N)"
 
 # msgstr "_পরেরটা"
-#: ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1207
 msgid "Find _Previous"
 msgstr "পূর্ববর্তীতে খোঁজ (_ন)"
 
-#: ../src/yelp-window.c:1169
+#: ../src/yelp-window.c:1321
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -687,8 +834,8 @@ msgstr ""
 "'%s' ফাইলটির জন্য পরিবর্তনযোগ্য কনটেক্সট তৈরী করা যায়নি। এই ফরম্যাটটি সমর্থন নাও "
 "করতে পারে।"
 
-#: ../src/yelp-window.c:1199 ../src/yelp-window.c:1623
-#: ../src/yelp-window.c:1690
+#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
+#: ../src/yelp-window.c:1840
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -699,7 +846,7 @@ msgstr ""
 "বাটন থেকে এই সেকশনে চলে এসে থাকেন, তাহলে সেই অ্যাপ্লিকেশনের রক্ষণাবেক্ষণকারীর "
 "কাছে রিপোর্ট করুন।"
 
-#: ../src/yelp-window.c:1314
+#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -710,19 +857,19 @@ msgstr ""
 
 # msgstr "সিস্টেমের ব্যবস্থাপনা"
 # msgstr "সিস্টেমের পরিচালনা"
-#: ../src/yelp-window.c:1358
+#: ../src/yelp-window.c:1516
 msgid "Loading..."
 msgstr "আসিতেছে..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2203
+#: ../src/yelp-window.c:2658
 msgid "translator-credits"
 msgstr ""
 "খন্দকার মুজাহিদুল ইসলাম সুজন <suzan@bengalinux.org>\n"
 "অঙ্কুর গ্রুপের পক্ষ থেকে"
 
-#: ../src/yelp-window.c:2208
+#: ../src/yelp-window.c:2663
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "গনোম ডেস্কটপের জন্য একটি ডকুমেন্টেশন ব্রাউজার এবং প্রদর্শক।"
 
@@ -749,9 +896,17 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "গনোমের মাধ্যমে সহায়তা নিন"
 
-#, fuzzy
-#~ msgid "Man Pages"
-#~ msgstr "ম্যানুয়াল পাতাগুলো"
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>বুকমার্ক (_ব):</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>শিরোনাম (_শ):</b>"
+
+#~ msgid "Unknown Section"
+#~ msgstr "অজানা সেকশন"
+
+#~ msgid "Find:"
+#~ msgstr "খোঁজো:"
 
 # msgstr "হিস্টোরি থেকে পরবর্তী পাতাটি দেখানো হোক"
 # msgstr "হিস্টোরির পরের পাতাটি দেখাও"
@@ -763,10 +918,6 @@ msgstr "গনোমের মাধ্যমে সহায়তা নিন
 # msgstr "হোম"
 #~ msgid "Go to home view"
 #~ msgstr "প্রথম পৃষ্ঠায় যাও"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "খোঁজো"
 
 #~ msgid "Development Environments"
 #~ msgstr "ডেভেলপমেন্ট এনভায়রনমেন্ট"
@@ -901,9 +1052,6 @@ msgstr "গনোমের মাধ্যমে সহায়তা নিন
 
 #~ msgid "About This Part"
 #~ msgstr "এই অংশটির পরিচিতি"
-
-#~ msgid "About This Preface"
-#~ msgstr "এই মুখবন্ধটির পরিচিতি"
 
 #~ msgid "About This Reference"
 #~ msgstr "এই রেফারেন্সের পরিচিতি"
@@ -1053,12 +1201,6 @@ msgstr "গনোমের মাধ্যমে সহায়তা নিন
 #~ msgid "Tip"
 #~ msgstr "টিপ্পনী"
 
-#~ msgid "Title"
-#~ msgstr "শিরোনাম"
-
-#~ msgid "Warning"
-#~ msgstr "সতর্কবার্তা"
-
 # msgstr "তথ্য পেজ"
 #~ msgid "Document URI"
 #~ msgstr "ডকুমেন্ট ইউ-আর-আই"
@@ -1120,17 +1262,9 @@ msgstr "গনোমের মাধ্যমে সহায়তা নিন
 #~ msgid "_Match upper/lower case"
 #~ msgstr "ছোট/বড় হাতের অক্ষর _মিলতে হবে"
 
-# msgstr "সেকশন"
-#~ msgid "_Search for:"
-#~ msgstr "_খোঁজ:"
-
 # msgstr "সাহায্যের পরিমাণ"
 #~ msgid "GNOME - Desktop"
 #~ msgstr "গুহ্‌নোম - ডেস্কটপ"
-
-# msgstr "ম্যানুয়াল পেজ"
-#~ msgid "Info Pages"
-#~ msgstr "তথ্য পাতাগুলো"
 
 # msgstr "ম্যানুয়াল পেজ"
 #~ msgid "GNOME is"
