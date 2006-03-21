@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: yelp 2.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-09 09:15+0100\n"
-"PO-Revision-Date: 2006-02-28 08:53+0200\n"
+"PO-Revision-Date: 2006-03-20 20:43+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -221,7 +221,7 @@ msgstr "<b>Kirjatüübid</b>"
 
 #: ../data/ui/yelp.glade.h:3
 msgid "Add Bookmark"
-msgstr "Lisa järjehoidja"
+msgstr "Järjehoidja lisamine"
 
 #: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
@@ -436,7 +436,7 @@ msgstr "Dokumendi YelpDocInfo struktuur"
 
 #: ../src/yelp-print.c:138
 msgid "Preparing to print"
-msgstr "Trükkimise ettevalmistamine"
+msgstr "Printimise ettevalmistamine"
 
 #: ../src/yelp-print.c:275
 msgid "Pages"
@@ -448,32 +448,32 @@ msgstr "PDF-ide tekitamine ei ole hetkel toetatud"
 
 #: ../src/yelp-print.c:356
 msgid "Printing is not supported on this printer"
-msgstr "Selle printeriga ei ole trükkimine toetatud"
+msgstr "Selle printeriga ei ole printimine toetatud"
 
 #: ../src/yelp-print.c:359
 #, c-format
 msgid "You were trying to print to a printer using the \"%s\" driver.  This program requires a PostScript printer driver."
-msgstr "Sa proovisid trükkida \"%s\" printeri draiverit kasutades. See programm vajab PostScript-i toetavat printeridraiverit."
+msgstr "Sa proovisid printida \"%s\" printeridraiveri abil. See programm vajab PostScript-i toetavat printeridraiverit."
 
 #: ../src/yelp-print.c:402
 msgid "An error occurred while printing"
-msgstr "Trükkimisel tekkis viga"
+msgstr "Printimisel tekkis viga"
 
 #: ../src/yelp-print.c:406
 msgid "It was not possible to print your document"
-msgstr "Sinu dokumenti ei olnud võimalik trükkida"
+msgstr "Sinu dokumenti ei olnud võimalik printida"
 
 #: ../src/yelp-print.c:466
 msgid "Printing"
-msgstr "Trükin"
+msgstr "Printimine"
 
 #: ../src/yelp-print.c:493
 msgid "<b>Printing</b>"
-msgstr "<b>Trükin</b>"
+msgstr "<b>Printimine</b>"
 
 #: ../src/yelp-print.c:495
 msgid "Waiting to print"
-msgstr "Trükkimise ootamine"
+msgstr "Printimise ootamine"
 
 #: ../src/yelp-print.c:559
 msgid "_From:"
@@ -481,7 +481,7 @@ msgstr "_Alates:"
 
 #: ../src/yelp-print.c:572
 msgid "Sets the start of the range of pages to be printed"
-msgstr "Määrab trükitavate lehtede vahemiku alguse"
+msgstr "Prinditavate lehtede vahemiku alguse määramine"
 
 #: ../src/yelp-print.c:574
 msgid "_To:"
@@ -489,7 +489,7 @@ msgstr "_kuni:"
 
 #: ../src/yelp-print.c:587
 msgid "Sets the end of the range of pages to be printed"
-msgstr "Määrab trükitavate lehtede vahemiku lõpu"
+msgstr "Prinditavate lehtede vahemiku lõpu määramine"
 
 #: ../src/yelp-search-pager.c:380
 msgid "Your search could not be processed. There is no connection to the beagle daemon."
@@ -586,7 +586,7 @@ msgstr "_Redaktor"
 
 #: ../src/yelp-window.c:313
 msgid "_Go"
-msgstr "_Liigu"
+msgstr "_Liikumine"
 
 #: ../src/yelp-window.c:314
 msgid "_Bookmarks"
@@ -602,11 +602,11 @@ msgstr "_Uus aken"
 
 #: ../src/yelp-window.c:323
 msgid "Print This Document"
-msgstr "Trüki see dokument"
+msgstr "Prindi see dokument"
 
 #: ../src/yelp-window.c:328
 msgid "Print This Page"
-msgstr "Trüki see leht"
+msgstr "Prindi see leht"
 
 #: ../src/yelp-window.c:333
 msgid "About This Document"
