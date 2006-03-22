@@ -177,7 +177,6 @@ db_pager_dispose (GObject *object)
     g_hash_table_destroy (pager->priv->frags_hash);
 
     g_free (pager->priv->root_id);
-    g_free (pager->priv);
 
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }

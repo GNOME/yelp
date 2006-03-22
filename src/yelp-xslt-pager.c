@@ -147,8 +147,6 @@ xslt_pager_dispose (GObject *object)
     if (priv->inputDoc)
 	xmlFreeDoc (priv->inputDoc);
 
-    g_free (pager->priv);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

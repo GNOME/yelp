@@ -261,8 +261,6 @@ search_pager_dispose (GObject *object)
 {
     YelpSearchPager *pager = YELP_SEARCH_PAGER (object);
 
-    g_free (pager->priv);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

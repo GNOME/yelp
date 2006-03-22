@@ -260,7 +260,6 @@ gtk_entry_action_finalize (GObject *object)
   GtkEntryActionPrivate *priv = action->priv;
 
   g_free (priv->text);
-  g_free (priv);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
