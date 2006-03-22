@@ -50,6 +50,7 @@ struct _YelpHtmlPriv {
     gchar       *base_uri;
     gchar       *anchor;
     gboolean     frames_enabled;
+    guint        timeout;
 };
 
 static void      html_set_fonts          (void);
@@ -138,6 +139,7 @@ html_init (YelpHtml *html)
 
     priv->base_uri = NULL;
     priv->anchor = NULL;
+    priv->timeout = 0;
 
     priv->yelper = new Yelper (GTK_MOZ_EMBED (html));
     klass = YELP_HTML_GET_CLASS (html);
@@ -183,6 +185,8 @@ html_finalize (GObject *object)
 
     delete priv->yelper;
 
+    if (priv->timeout)
+	g_source_remove (priv->timeout);
     g_free (priv->base_uri);
     g_free (priv->anchor);
 
@@ -369,6 +373,7 @@ timeout_update_gok (YelpHtml *html)
 {
     g_signal_emit_by_name (gtk_widget_get_accessible (GTK_WIDGET (html)),
 			   "children_changed::add", -1, NULL, NULL);
+    html->priv->timeout = 0;
     return FALSE;
 }
 
@@ -377,8 +382,9 @@ yelp_html_close (YelpHtml *html)
 {
     d (g_print ("yelp_html_close\n"));
     gtk_moz_embed_close_stream (GTK_MOZ_EMBED (html));
-    g_timeout_add (2000, (GSourceFunc) timeout_update_gok,
-		   html);
+    html->priv->timeout = g_timeout_add (2000, 
+					 (GSourceFunc) timeout_update_gok,
+					 html);
 }
 
 gboolean
