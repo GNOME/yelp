@@ -61,11 +61,11 @@
           margin-top: 36px;
           padding-left: 38px;
         }
-        div.searchform {
+        div.header {
           font-size: 24px;
           font-weight: bold;
           color: #000000;
-          border-bottom: 2px dotted #999999;
+          border-bottom: 2px solid #999999;
           margin-bottom: 0px;
           padding-bottom: 0px;
         }
@@ -106,6 +106,9 @@
       </head>
       <body>
         <div class="content">
+          <div class="header">
+            <xsl:value-of select="count(result[@uri != ''])"/> result(s) returned.
+          </div>
           <dl>
             <xsl:for-each select="result[@uri != '']">
               <!-- Don't sort.  Program deals with that. We do however 
