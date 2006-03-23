@@ -222,8 +222,6 @@ toc_pager_dispose (GObject *object)
 {
     YelpTocPager *pager = YELP_TOC_PAGER (object);
 
-    g_free (pager->priv);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

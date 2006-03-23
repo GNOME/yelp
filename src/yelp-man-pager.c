@@ -139,8 +139,6 @@ man_pager_dispose (GObject *object)
 {
     YelpManPager *pager = YELP_MAN_PAGER (object);
 
-    g_free (pager->priv);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

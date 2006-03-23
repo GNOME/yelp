@@ -244,8 +244,6 @@ pager_dispose (GObject *object)
 
     g_hash_table_destroy (pager->priv->page_hash);
 
-    g_free (pager->priv);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

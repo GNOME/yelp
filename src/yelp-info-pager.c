@@ -143,8 +143,6 @@ info_pager_dispose (GObject *object)
     g_object_unref (pager->priv->tree);
     g_hash_table_destroy (pager->priv->frags_hash);
 
-    g_free (pager->priv);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 
