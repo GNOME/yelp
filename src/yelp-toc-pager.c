@@ -1046,6 +1046,7 @@ process_info_pending (YelpTocPager *pager)
 	
 	/* Search out the directory listing for info and follow that */
 	if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
+	    g_free (filename);
 	    continue;
 	} else {
 	    GIOChannel *channel;
@@ -1088,8 +1089,9 @@ process_info_pending (YelpTocPager *pager)
 			gchar *fname = NULL;
 			gchar *desc = NULL;
 			gchar *part1 = NULL, *part2 = NULL, *part3 = NULL;
-			gchar * path = *ptr;
+			gchar *path = *ptr;
 			gchar **nextline = ptr;
+			gchar *p = NULL;
 			nextline++;
 			/* Due to braindead info stuff, we gotta manually
 			 * split everything up...
@@ -1101,9 +1103,9 @@ process_info_pending (YelpTocPager *pager)
 			if (!part1)
 			    goto done;
 			part2 = g_strndup (path, part1-path);
-			tooltip = g_strdup (part2);
-			tooltip = g_strstrip (tooltip);
-			tooltip = g_strdup_printf (_("Read info page for %s"), tooltip);
+			p = g_strdup (part2);
+			p = g_strstrip (p);
+			tooltip = g_strdup_printf (_("Read info page for %s"), p);
 			path = part1+1;
 			part1 = strchr (path, ')');
 			if (!part1)
@@ -1126,9 +1128,12 @@ process_info_pending (YelpTocPager *pager)
 			    while (*nextline &&
 				   g_ascii_isspace (**nextline)) {
 				gchar *newbit = g_strdup (*nextline);
+				gchar *olddesc = desc;
 				g_strstrip (newbit);
 				desc = g_strconcat (desc, " ",newbit, NULL);
 				nextline++;
+				g_free (newbit);
+				g_free (olddesc);
 			    }
 			    ptr = --nextline;
 			    
