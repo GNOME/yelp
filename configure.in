@@ -245,15 +245,6 @@ case $host in
   *-solaris*) AC_DEFINE(HAVE_MAN_DEBUG, 1, [man(1) has a -d debug option]);;
 esac
 
-dnl ===================================================
-dnl = Check for popt, reported to be needed on AIX
-dnl ===================================================
-AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],
-		   [AC_MSG_ERROR([popt is required to build yelp])])
-
-AC_SUBST(POPT_LIBS)
-
-
 dnl ====================================
 dnl = zlib for help converters
 dnl ====================================

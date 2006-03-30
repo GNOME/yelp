@@ -46,11 +46,10 @@
 
 #define YELP_FACTORY_OAFIID "OAFIID:GNOME_Yelp_Factory"
 
-static poptContext  poptCon;
-/* static gint         next_opt; */
 static gchar       *cache_dir;
 static gchar       *open_urls;
 static gchar       *startup_id;
+static gchar       **files;
 
 /*structure defining command line option.*/
 enum {
@@ -81,25 +80,28 @@ static gboolean	      main_restore_session    (void);
 static Time slowly_and_stupidly_obtain_timestamp (Display *xdisplay);
 
 
-static struct poptOption options[] = {
+static const GOptionEntry options[] = {
 	{
 		"open-urls",
 		'\0',
-		POPT_ARG_STRING | POPT_ARGFLAG_DOC_HIDDEN,
+		G_OPTION_FLAG_HIDDEN,
+		G_OPTION_ARG_STRING,
 		&open_urls,
-		OPTION_OPEN_URLS,
 		NULL, NULL,
 	},
 	{
 		"with-cache-dir",
 		'\0',
-		POPT_ARG_STRING,
+		0, 
+		G_OPTION_ARG_STRING,
 		&cache_dir,
-		OPTION_CACHE_DIR,
 		N_("Define which cache directory to use"),
 		NULL,
 	},
-	POPT_TABLEEND
+	{ G_OPTION_REMAINING, 
+	  0, 0, G_OPTION_ARG_FILENAME_ARRAY, 
+	  &files, NULL,  NULL },
+	{ NULL}
 };
 
 static BonoboObject *
@@ -371,8 +373,8 @@ main (int argc, char **argv)
 	gchar         *url = NULL;
 	GnomeClient   *client;
 	gboolean       session_started = FALSE;
-	const gchar  **args;
 	gchar *local_id;
+	GOptionContext *context;
 
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -385,13 +387,17 @@ main (int argc, char **argv)
 		putenv ("DESKTOP_STARTUP_ID=");
 	}
 
+	/* Commandline parsing is done here */
+	context = g_option_context_new (_(" GNOME Help Browser"));
+
+	g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
+
 	gtk_window_set_auto_startup_notification(FALSE);
 
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE, argc, argv,
-				      GNOME_PARAM_POPT_TABLE, options,
-				      GNOME_PROGRAM_STANDARD_PROPERTIES,
-				      NULL);
+				      GNOME_PARAM_GOPTION_CONTEXT, context,
+				      GNOME_PARAM_NONE);
 	if (!startup_id) {
 		Time tmp;
 		tmp = slowly_and_stupidly_obtain_timestamp (gdk_display);
@@ -410,16 +416,9 @@ main (int argc, char **argv)
 
 	yelp_html_initialize ();
 
-	/* Commandline parsing is done here */
-	g_object_get (G_OBJECT (program),
-		      GNOME_PARAM_POPT_CONTEXT, &poptCon,
-		      NULL);
-
-	args = poptGetArgs (poptCon);
-	if (args) {
-		url = g_strdup (*args);
-	} else {
-		url = g_strdup ("");
+	if (files != NULL && files[0] != NULL) {
+		url = g_strdup (files[0]);
+		g_strfreev (files);
 	}
 
 	client = gnome_master_client ();
@@ -474,5 +473,6 @@ main (int argc, char **argv)
 		main_start (url);
 	}
 
+	g_object_unref (program);
         return 0;
 }
