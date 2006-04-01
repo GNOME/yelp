@@ -1,3 +1,13 @@
+2006-04-01  Brent Smith  <gnome@nextreality.net>
+
+	* data/ui/yelp-ui.xml:
+	Add "Contents" entry to the Help menu
+	* src/yelp-main.c: (main):
+	Called gnome_program_init with GNOME_PROGRAM_STANDARD_PROPERTIES
+	* src/yelp-window.c: (window_help_contents_cb), (window_about_cb):
+	Update the author/copyright lists.  Also provide a callback for
+	viewing the yelp documentation in the user guide.
+
 2006-03-30  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* configure.in: 
