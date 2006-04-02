@@ -1,3 +1,12 @@
+2006-04-02  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (toc_process_pending), (sk_characters),
+	(process_read_scrollkeeper), (files_are_equivalent),
+	(get_omf_attributes), (create_toc_from_omf_cache_file),
+	(process_omf_pending), (process_read_menu), (xslt_yelp_document):
+	Cache information from OMF files to ~/.gnome2/yelp.d/omfindex.xml;
+	Please see bug #336699.
+
 2006-04-01  Gora Mohanty  <gmohanty@cvs.gnome.org>
 
 	* configure.in: Added 'or' (Oriya) to ALL_LINGUAS.

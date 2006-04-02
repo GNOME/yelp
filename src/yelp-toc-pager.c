@@ -71,7 +71,13 @@ typedef struct _YelpListing YelpListing;
 
 struct _YelpTocPagerPriv {
     gboolean      sk_docomf;
-    GSList       *omf_pending;
+    GSList       *omf_pending;   /* list of directories which contain omf files
+				  * to process */
+    GHashTable   *omf_dirhash;   /* key   = directory name; 
+				    value = GSList of omf files to process */
+    xmlDocPtr     omfindex_xml;  /* in memory cache file for omf files */
+    xmlNodePtr    omf_root;
+    xmlNodePtr    omf_ins;
 
 #ifdef ENABLE_MAN
     gint manpage_count;
@@ -129,7 +135,8 @@ static gboolean      toc_process_pending       (YelpTocPager      *pager);
 
 static gboolean      process_read_menu         (YelpTocPager      *pager);
 static gboolean      process_xslt              (YelpTocPager      *pager);
-static gboolean      process_read_scrollkeeper (YelpTocPager      *pager);
+static gboolean      process_read_scrollkeeper (YelpTocPager      *pager,
+                                                gchar             *content_list);
 static gboolean      process_omf_pending       (YelpTocPager      *pager);
 #ifdef ENABLE_MAN
 static gboolean      process_mandir_pending    (YelpTocPager      *pager);
@@ -352,7 +359,6 @@ toc_process_pending (YelpTocPager *pager)
     YelpTocPagerPriv *priv = pager->priv;
     static ProcessFunction process_funcs[] = {
 	process_read_menu,
-	process_read_scrollkeeper,
 	process_omf_pending,
 	process_xslt,
 #ifdef ENABLE_MAN
@@ -419,43 +425,271 @@ sk_characters (void          *pager,
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
     if (priv->sk_docomf) {
+	GSList *filelist = NULL;
+	GSList *ptr = NULL;
+	gchar *dirname = NULL;
+	    
 	omf = g_strndup ((gchar *) ch, len);
-	priv->omf_pending = g_slist_prepend (priv->omf_pending, omf);
+	/* since the directory that the omf file is in can be in any
+	 * order, we use a hash to aggregrate the files by directory.
+	 * We end up with a hash whose key is the dirname, and whose
+	 * values are GSLists of filenames. */
+	if (!priv->omf_dirhash)
+	    priv->omf_dirhash = g_hash_table_new_full (g_str_hash, g_str_equal,
+	                                               g_free, NULL);
+
+	dirname = g_path_get_dirname (omf);
+	
+	ptr = g_hash_table_lookup (priv->omf_dirhash, dirname);
+	
+	if (!ptr) {
+	    /* this directory is not in the hash; create an entry for it */
+	    filelist = g_slist_append (filelist, omf);
+	    g_hash_table_insert (priv->omf_dirhash, dirname, filelist);
+	
+	    /* add the directory name to a list so we can iterate through
+	     * the hash later */
+	    priv->omf_pending = g_slist_prepend (priv->omf_pending, 
+	                                         g_path_get_dirname(omf));
+	} else {
+	    /* prepend to the existing file list for this directory entry */
+	    ptr = g_slist_prepend (ptr, omf);
+	    /* writes over old value */
+	    g_hash_table_insert (priv->omf_dirhash, dirname, ptr);
+	}
+	
     }
 }
 
 static gboolean
-process_read_scrollkeeper (YelpTocPager *pager)
+process_read_scrollkeeper (YelpTocPager *pager, gchar *content_list)
 {
-    gchar  *content_list;
-    gchar  *stderr_str;
-    gchar  *lang;
-    gchar  *command;
+    YelpTocPagerPriv *priv = pager->priv;
+    GSList *ptr;
+    GSList *ptr2;
     static xmlSAXHandler sk_sax_handler = { 0, };
 
-    const gchar * const * langs = g_get_language_names ();
-    if (langs && langs[0])
-	lang = (gchar *) langs[0];
-    else
-	lang = "C";
-
-    command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
-
-    if (g_spawn_command_line_sync (command, &content_list, &stderr_str, NULL, NULL)) {
-	if (!sk_sax_handler.startElement) {
-	    sk_sax_handler.startElement = sk_startElement;
-	    sk_sax_handler.endElement   = sk_endElement;
-	    sk_sax_handler.characters   = sk_characters;
-	    sk_sax_handler.initialized  = TRUE;
-	}
-	content_list = g_strstrip (content_list);
-	xmlSAXUserParseFile (&sk_sax_handler, pager, content_list);
+    if (!sk_sax_handler.startElement) {
+	sk_sax_handler.startElement = sk_startElement;
+	sk_sax_handler.endElement   = sk_endElement;
+	sk_sax_handler.characters   = sk_characters;
+	sk_sax_handler.initialized  = TRUE;
     }
 
-    g_free (content_list);
-    g_free (stderr_str);
-    g_free (command);
+    xmlSAXUserParseFile (&sk_sax_handler, pager, content_list);
+
+    /* debugging - iterates through our hash and prints out all the directories and
+     * files */
+    ptr = priv->omf_pending;
+    while (ptr && ptr->data) {
+	g_print ("dir=%s\n", (gchar *)ptr->data); 
+	ptr2 = g_hash_table_lookup (priv->omf_dirhash, ptr->data);
+	while (ptr2 && ptr2->data) {
+	    g_print ("  file=%s\n", (gchar *)ptr2->data);
+	    ptr2 = g_slist_next (ptr2);
+	}
+	ptr = g_slist_next (ptr);
+    }
+    
     return FALSE;
+}
+
+static gboolean
+files_are_equivalent (gchar *file1, gchar *file2)
+{
+    FILE *f1;
+    FILE *f2;
+    guint data1;
+    guint data2;
+
+    f1 = fopen (file1, "r");
+    if (!f1)
+	return FALSE;
+
+    f2 = fopen (file2, "r");
+    if (!f2)
+	return FALSE;
+
+    while (fread (&data1, sizeof (gint), 1, f1)) {
+	fread (&data2, sizeof (gint), 1, f2);
+	if (data1 != data2) {
+	    g_print ("Files do not match.. aborting\n");
+	    return FALSE;
+	}
+    }
+
+    fclose (f1);
+    fclose (f2);
+
+    return TRUE;
+}
+
+/* returns a newly created hash table with the following keys:
+ * url, title, description, category, language, seriesid
+ * caller must free the hash table with g_hash_table_destroy()
+ * returns NULL on failure */
+static GHashTable *
+get_omf_attributes (YelpTocPager *pager, gchar *omffile)
+{
+    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
+    GHashTable *hash = NULL;
+    xmlXPathContextPtr xpath   = NULL;
+    xmlXPathObjectPtr  object  = NULL;
+    xmlDocPtr          omf_doc = NULL;
+
+    omf_doc = xmlCtxtReadFile (priv->parser, (const char *) omffile, NULL,
+                               XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+                               XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+                               XML_PARSE_NONET    );
+
+    if (!omf_doc) {
+	g_warning (_("Could not load the OMF file '%s'."), omffile);
+	return NULL;
+    }
+
+    hash = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, g_free);
+    xpath = xmlXPathNewContext (omf_doc);
+
+    object = 
+       xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/identifier/@url)", 
+    		               xpath);
+    g_hash_table_insert (hash, "url", g_strdup ((gchar *) object->stringval));
+    xmlXPathFreeObject (object);
+
+    object =
+       xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/title)", 
+                               xpath);
+    g_hash_table_insert (hash, "title", g_strdup ((gchar *) object->stringval));
+    xmlXPathFreeObject (object);
+
+    object =
+       xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/description)", 
+                               xpath);
+    g_hash_table_insert (hash, "description", g_strdup ((gchar *) object->stringval));
+    xmlXPathFreeObject (object);
+
+    object =
+       xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/subject/@category)", 
+                               xpath);
+    g_hash_table_insert (hash, "category", g_strdup ((gchar *) object->stringval));
+    xmlXPathFreeObject (object);
+
+    object =
+       xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/language/@code)", 
+                               xpath);
+    g_hash_table_insert (hash, "language", g_strdup ((gchar *) object->stringval));
+    xmlXPathFreeObject (object);
+
+    object =
+       xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/relation/@seriesid)", 
+                               xpath);
+    g_hash_table_insert (hash, "seriesid", g_strdup ((gchar *) object->stringval));
+    xmlXPathFreeObject (object);
+
+    xmlXPathFreeContext (xpath);
+    xmlFreeDoc (omf_doc);
+
+    return hash;
+}
+
+static void
+create_toc_from_omf_cache_file (YelpTocPager *pager, const gchar *index_file)
+{
+    xmlXPathContextPtr xpath = NULL;
+    xmlXPathObjectPtr objfiles = NULL;
+    xmlDocPtr omfindex_xml = NULL;
+    gint i;
+    
+    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
+
+    omfindex_xml = xmlReadFile (index_file, NULL, XML_PARSE_NOCDATA | 
+		                XML_PARSE_NOERROR | XML_PARSE_NONET);
+
+    if (omfindex_xml == NULL) {
+	g_warning ("Unable to parse index file \"%s\"\n" 
+		   "try deleting this file and running yelp again.\n", index_file);
+	return; 
+    }
+    
+    xpath = xmlXPathNewContext (omfindex_xml);
+    
+    objfiles = xmlXPathEvalExpression (BAD_CAST "/omfindex/dir/omffile", xpath);
+
+    for (i=0; i < objfiles->nodesetval->nodeNr; i++) {
+	YelpDocInfo *doc_info = NULL;
+	YelpDocInfo *doc_old = NULL;
+	xmlXPathObjectPtr objattr = NULL;
+	xmlNodePtr node = NULL;
+	xmlChar *attr = NULL;
+	gchar *id = NULL;
+	
+	xpath->node = objfiles->nodesetval->nodeTab[i];
+	
+	objattr = xmlXPathEvalExpression (BAD_CAST "url", xpath);
+	node = objattr->nodesetval->nodeTab[0];
+	attr = xmlNodeListGetString (omfindex_xml, node->xmlChildrenNode, 1);
+	xmlXPathFreeObject (objattr);
+
+	doc_info = yelp_doc_info_get ((const gchar *) attr, TRUE);
+	xmlFree (attr);
+
+	if (!doc_info)
+	    return;
+	
+	objattr = xmlXPathEvalExpression (BAD_CAST "title", xpath);
+	node = objattr->nodesetval->nodeTab[0];
+	attr = xmlNodeListGetString (omfindex_xml, node->xmlChildrenNode, 1);
+	yelp_doc_info_set_title (doc_info, (gchar *)attr);
+	xmlXPathFreeObject (objattr);
+	xmlFree (attr);
+
+	objattr = xmlXPathEvalExpression (BAD_CAST "description", xpath);
+	node = objattr->nodesetval->nodeTab[0];
+	attr = xmlNodeListGetString (omfindex_xml, node->xmlChildrenNode, 1);
+	yelp_doc_info_set_description (doc_info, (gchar *)attr);
+	xmlXPathFreeObject (objattr);
+	xmlFree (attr);
+
+	objattr = xmlXPathEvalExpression (BAD_CAST "category", xpath);
+	node = objattr->nodesetval->nodeTab[0];
+	attr = xmlNodeListGetString (omfindex_xml, node->xmlChildrenNode, 1);
+	yelp_doc_info_set_category (doc_info, (gchar *)attr);
+	xmlXPathFreeObject (objattr);
+	xmlFree (attr);
+
+	objattr = xmlXPathEvalExpression (BAD_CAST "language", xpath);
+	node = objattr->nodesetval->nodeTab[0];
+	attr = xmlNodeListGetString (omfindex_xml, node->xmlChildrenNode, 1);
+	yelp_doc_info_set_language (doc_info, (gchar *)attr);
+	xmlXPathFreeObject (objattr);
+	xmlFree (attr);
+
+	objattr = xmlXPathEvalExpression (BAD_CAST "seriesid", xpath);
+	node = objattr->nodesetval->nodeTab[0];
+	attr = xmlNodeListGetString (omfindex_xml, node->xmlChildrenNode, 1);
+	id = g_strconcat ("scrollkeeper.", (gchar *) attr, NULL);
+	yelp_doc_info_set_id (doc_info, (gchar *)id);
+	xmlXPathFreeObject (objattr);
+	xmlFree (attr);
+
+	doc_old = g_hash_table_lookup (priv->unique_hash, id);
+	g_free (id);
+
+	if (doc_old) {
+	    if (yelp_doc_info_cmp_language (doc_info, doc_old) < 0) {
+		toc_remove_doc_info (YELP_TOC_PAGER (pager), doc_old);
+		toc_add_doc_info (YELP_TOC_PAGER (pager), doc_info);
+	    }
+	} else
+	    toc_add_doc_info (YELP_TOC_PAGER (pager), doc_info);
+	
+    }
+
+    xmlXPathFreeContext (xpath);
+    xmlXPathFreeObject (objfiles);
+    xmlFreeDoc (omfindex_xml);
+	    
+    return;
 }
 
 /** process_omf_pending *******************************************************/
@@ -463,104 +697,237 @@ process_read_scrollkeeper (YelpTocPager *pager)
 static gboolean
 process_omf_pending (YelpTocPager *pager)
 {
-    GSList  *first = NULL;
-    gchar   *file  = NULL;
-    gchar   *id    = NULL;
-
-    xmlDocPtr          omf_doc    = NULL;
-    xmlXPathContextPtr omf_xpath  = NULL;
-    xmlXPathObjectPtr  omf_url    = NULL;
-    xmlXPathObjectPtr  omf_title  = NULL;
-    xmlXPathObjectPtr  omf_description = NULL;
-    xmlXPathObjectPtr  omf_category    = NULL;
-    xmlXPathObjectPtr  omf_language    = NULL;
-    xmlXPathObjectPtr  omf_seriesid    = NULL;
-
+    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
     YelpDocInfo *doc_info;
     YelpDocInfo *doc_old;
+    static gboolean first_call = TRUE;
+    static gchar *index_file = NULL;
+    static gchar *content_list = NULL;
+    static gchar *sk_file = NULL;
+    GHashTable *omf_hash = NULL;
+    GSList  *filelist    = NULL;
+    GSList  *firstfile   = NULL;
+    GSList  *first = NULL;
+    gchar   *dir   = NULL;
+    gchar   *file  = NULL;
+    gchar   *id    = NULL;
+    gchar   *lang  = NULL;
+    gchar   *stderr_str = NULL;
+    gchar   *command    = NULL;
+    FILE    *newindex   = NULL;
 
-    YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
+    if (!index_file)
+	index_file = g_build_filename (yelp_dot_dir(), "omfindex.xml", NULL);
+    
+    /* on first call to this function, we check for the existence of a
+     * cache file.  If it exists, we get our information from there.  If 
+     * it doesn't exist, then we create a list of omf files to process
+     * with the process_read_scrollkeeper() function */
+    if (first_call) {
+	first_call = FALSE;
 
-    first = priv->omf_pending;
-    if (!first)
-	goto done;
-    priv->omf_pending = g_slist_remove_link (priv->omf_pending, first);
-    file = (gchar *) first->data;
-    if (!file || !g_str_has_suffix (file, ".omf"))
-	goto done;
+	sk_file = g_build_filename (yelp_dot_dir(), "sk-content-list.last", NULL);
+	    
+	/* get current language */
+	const gchar * const * langs = g_get_language_names ();
+	if (langs && langs[0])
+	    lang = (gchar *) langs[0];
+	else
+	    lang = "C";
+	    
+	command = g_strconcat ("scrollkeeper-get-content-list ", lang, NULL);
 
-    omf_doc = xmlCtxtReadFile (priv->parser, (const char *) file, NULL,
-			       XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
-			       XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
-			       XML_PARSE_NONET    );
-    if (!omf_doc) {
-	g_warning (_("Could not load the OMF file '%s'."), file);
-	goto done;
-    }
-
-    omf_xpath = xmlXPathNewContext (omf_doc);
-    omf_url =
-	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/identifier/@url)", omf_xpath);
-    omf_title =
-	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/title)", omf_xpath);
-    omf_description =
-	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/description)", omf_xpath);
-    omf_category =
-	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/subject/@category)", omf_xpath);
-    omf_language =
-	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/language/@code)", omf_xpath);
-    omf_seriesid =
-	xmlXPathEvalExpression (BAD_CAST "string(/omf/resource/relation/@seriesid)", omf_xpath);
-
-    doc_info = yelp_doc_info_get ((const gchar *) omf_url->stringval, FALSE);
-    if (!doc_info)
-	goto done;
-    yelp_doc_info_set_title (doc_info, (gchar *) omf_title->stringval);
-    yelp_doc_info_set_language (doc_info, (gchar *) omf_language->stringval);
-    yelp_doc_info_set_category (doc_info, (gchar *) omf_category->stringval);
-    yelp_doc_info_set_description (doc_info, (gchar *) omf_description->stringval);
-
-    id = g_strconcat ("scrollkeeper.", (gchar *) omf_seriesid->stringval, NULL);
-    yelp_doc_info_set_id (doc_info, id);
-
-    doc_old = g_hash_table_lookup (priv->unique_hash, id);
-
-    if (doc_old) {
-	if (yelp_doc_info_cmp_language (doc_info, doc_old) < 0) {
-	    toc_remove_doc_info (YELP_TOC_PAGER (pager), doc_old);
-	    toc_add_doc_info (YELP_TOC_PAGER (pager), doc_info);
+	if (!g_spawn_command_line_sync (command, &content_list, 
+	                                &stderr_str, NULL, NULL)) {
+	    g_critical ("scrollkeeper-get-content-list failed: %s", stderr_str);
+	    return FALSE;
 	}
-    } else {
-	toc_add_doc_info (YELP_TOC_PAGER (pager), doc_info);
+
+	/* required to remove LFs and extra whitespace from the filename */
+	g_strstrip (content_list);
+	
+	g_free (stderr_str);
+	g_free (command);
+	
+	if (g_file_test (index_file, G_FILE_TEST_IS_REGULAR) &&
+	    g_file_test (sk_file, G_FILE_TEST_IS_REGULAR)) {
+	    /* the presence of a cache file is not enough.  The cache file
+	     * could be outdated since the scrollkeeper database could have
+	     * been rebuilt since the last time the cache file was created.
+	     * We solve this by copying the scrollkeeper content list file
+	     * to ~/.gnome/yelp.d/sk-content-list.last when the
+	     * cache file is originally created.  On subsequent runs, we then
+	     * do a byte by byte comparison between the generated content 
+	     * list and the old one at ~/.gnome2/yelp.d/ - If they are exactly
+	     * the same, then we use the cache file; otherwise the cache file
+	     * will get rebuilt. Of course this operates under the assumption
+	     * that the contents list generated by scrollkeeper is always the
+	     * same if the scrollkeeper database has not been rebuilt.  If that 
+	     * ever fails to be the case then we end up rebuilding the cache
+	     * file everytime, so there's no regression of functionality */
+	    
+	    if (!files_are_equivalent (sk_file, content_list)) {
+		g_print ("files are the not the same!\n");
+	    	process_read_scrollkeeper (pager, content_list);
+		return TRUE;
+	    }
+
+	    create_toc_from_omf_cache_file (pager, index_file);
+	    
+	    /* done processing, don't call this function again */
+	    return FALSE;
+	}
+	    
+	process_read_scrollkeeper (pager, content_list);
+	
+	/* return true, so that this function is called again to continue 
+	 * processing */
+	return TRUE;
+    } 
+
+    /* if we've made it to here, that means we need to regenerate the cache
+     * file, so allocate an in memory XML document here */
+    if (!priv->omfindex_xml) {
+        priv->omfindex_xml = xmlNewDoc (BAD_CAST "1.0");
+        priv->omf_root = xmlNewNode (NULL, BAD_CAST "omfindex");
+
+        xmlDocSetRootElement (priv->omfindex_xml, priv->omf_root);
+
+        xmlAddChild (priv->omf_root, xmlNewText (BAD_CAST "\n  "));
+    }
+    
+    /* get the "first" directory in the GSList "omf_pending" */
+    first = priv->omf_pending;
+    
+    /* if this is NULL, then we are done processing */
+    /* FIXME: cleanup any leftover stuff here */
+    if (!first) {
+	GnomeVFSURI *fromfile = gnome_vfs_uri_new (content_list);
+	GnomeVFSURI *tofile = gnome_vfs_uri_new (sk_file);
+	gint result = 0;
+
+	/* create the new cache file */
+	if (!(newindex = g_fopen (index_file, "w")))
+	    g_warning ("Unable to create '%s'\n", index_file);
+	else {
+	    xmlDocDump (newindex, priv->omfindex_xml);
+	    fclose (newindex);
+	}
+
+	/* copy the newly created file to ~/.gnome2/yelp.d/omfindex.xml,
+	 * overwriting the old one if necessary */
+	result = gnome_vfs_xfer_uri (fromfile, tofile, 
+	                             GNOME_VFS_XFER_DEFAULT,
+			             GNOME_VFS_XFER_ERROR_MODE_ABORT,
+			             GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE,
+			             NULL, NULL);
+
+	gnome_vfs_uri_unref (fromfile);
+	gnome_vfs_uri_unref (tofile);
+
+	if (result != GNOME_VFS_OK) 
+	    g_critical ("Unable to copy %s to %s\n", content_list, sk_file);
+
+	if (priv->omf_dirhash)
+	    g_hash_table_destroy (priv->omf_dirhash);
+
+	xmlFreeDoc (priv->omfindex_xml);
+
+	return FALSE;
     }
 
- done:
-    if (omf_url)
-	xmlXPathFreeObject (omf_url);
-    if (omf_title)
-	xmlXPathFreeObject (omf_title);
-    if (omf_description)
-	xmlXPathFreeObject (omf_description);
-    if (omf_category)
-	xmlXPathFreeObject (omf_category);
-    if (omf_language)
-	xmlXPathFreeObject (omf_language);
-    if (omf_seriesid)
-	xmlXPathFreeObject (omf_seriesid);
+    /* remove this "first" directory from our list */
+    priv->omf_pending = g_slist_remove_link (priv->omf_pending, first);
+    dir = (gchar *) first->data;
 
-    if (omf_doc)
-	xmlFreeDoc (omf_doc);
-    if (omf_xpath)
-	xmlXPathFreeContext (omf_xpath);
+    g_print ("processing directory %s\n", dir);
+    priv->omf_ins = xmlNewChild (priv->omf_root, NULL, BAD_CAST "dir", NULL);
+    xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n    "));
+    xmlNewChild (priv->omf_ins, NULL, BAD_CAST "name", BAD_CAST dir);
+    xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n    "));
+    
+    filelist = g_hash_table_lookup (priv->omf_dirhash, dir);
 
-    g_free (id);
-    g_free (file);
+    while (filelist && filelist->data) {
+	firstfile = filelist;
+	filelist = g_slist_remove_link (filelist, firstfile);
+
+	file = (gchar *) firstfile->data;
+
+	if (!file || !g_str_has_suffix (file, ".omf"))
+	    goto done;
+
+	omf_hash = get_omf_attributes (pager, file);
+
+	/* this add all the omf information to the xml cache file */
+	priv->omf_ins = xmlNewChild (priv->omf_ins, NULL, 
+			             BAD_CAST "omffile", NULL);
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n      "));
+	xmlNewChild (priv->omf_ins, NULL, BAD_CAST "path", BAD_CAST file);
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n      "));
+	xmlNewChild (priv->omf_ins, NULL, BAD_CAST "url", 
+	             BAD_CAST g_hash_table_lookup (omf_hash, "url"));
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n      "));
+	xmlNewChild (priv->omf_ins, NULL, BAD_CAST "title", 
+	             BAD_CAST g_hash_table_lookup (omf_hash, "title"));
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n      "));
+	xmlNewChild (priv->omf_ins, NULL, BAD_CAST "language", 
+	             BAD_CAST g_hash_table_lookup (omf_hash, "language"));
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n      "));
+	xmlNewChild (priv->omf_ins, NULL, BAD_CAST "category", 
+	             BAD_CAST g_hash_table_lookup (omf_hash, "category"));
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n      "));
+	xmlNewChild (priv->omf_ins, NULL, BAD_CAST "description", 
+	             BAD_CAST g_hash_table_lookup (omf_hash, "description"));
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n      "));
+	xmlNewChild (priv->omf_ins, NULL, BAD_CAST "seriesid", 
+	             BAD_CAST g_hash_table_lookup (omf_hash, "seriesid"));
+	xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n    "));
+	priv->omf_ins = priv->omf_ins->parent;
+
+	doc_info = 
+	    yelp_doc_info_get ((const gchar *) g_hash_table_lookup (omf_hash, "url"), 
+	                       FALSE);
+
+	if (!doc_info)
+	    goto done;
+
+	yelp_doc_info_set_title       (doc_info, g_hash_table_lookup (omf_hash, "title"));
+	yelp_doc_info_set_language    (doc_info, g_hash_table_lookup (omf_hash, "language"));
+	yelp_doc_info_set_category    (doc_info, g_hash_table_lookup (omf_hash, "category"));
+	yelp_doc_info_set_description (doc_info, g_hash_table_lookup (omf_hash, "description"));
+
+	id = g_strconcat ("scrollkeeper.", 
+	                  (gchar *) g_hash_table_lookup (omf_hash, "seriesid"), 
+			  NULL);
+
+	yelp_doc_info_set_id (doc_info, id);
+
+	doc_old = g_hash_table_lookup (priv->unique_hash, id);
+
+	if (doc_old) {
+	    if (yelp_doc_info_cmp_language (doc_info, doc_old) < 0) {
+		toc_remove_doc_info (YELP_TOC_PAGER (pager), doc_old);
+		toc_add_doc_info (YELP_TOC_PAGER (pager), doc_info);
+	    }
+	} else
+	    toc_add_doc_info (YELP_TOC_PAGER (pager), doc_info);
+
+done:
+	g_hash_table_destroy (omf_hash);
+	g_free (file);
+	g_slist_free_1 (firstfile);
+	g_free (id);
+	
+    } /* end while */
+
+    xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n  "));
+
+    g_free (dir);
     g_slist_free_1 (first);
 
-    if (priv->omf_pending)
-	return TRUE;
-    else
-	return FALSE;
+    /* continue processing */
+    return TRUE;
 }
 
 #ifdef ENABLE_MAN
@@ -1266,6 +1633,10 @@ process_read_menu (YelpTocPager *pager)
     }
     xmlXPathFreeObject (obj);
 
+    /* here we populate the category_hash structure of the YelpTocPager's
+     * private data.  The hash key is a scrollkeeper category defined in the 
+     * scrollkeeper.xml file and the value is a pointer to the parent node.
+     */
     reader = xmlReaderForFile (DATADIR "/yelp/scrollkeeper.xml", NULL,
 			       XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 			       XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
@@ -1538,7 +1909,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     new_doc->intSubset = dtd;
     new_doc->extSubset = dtd;
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
-    new_doc->encoding = g_strdup ("utf-8");
+    new_doc->encoding = BAD_CAST g_strdup ("utf-8");
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
 
