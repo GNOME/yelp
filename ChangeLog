@@ -1,5 +1,15 @@
 2006-04-02  Brent Smith  <gnome@nextreality.net>
 
+	* configure.in:
+	Remove "or" from ALL_LINGUAS since this breaks the build.
+	* src/yelp-toc-pager.c: (toc_pager_dispose),
+	(process_read_scrollkeeper), (files_are_equivalent),
+	(process_omf_pending):
+	oops, delete some debugging messages and clean up some compile
+	warnings
+
+2006-04-02  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-toc-pager.c: (toc_process_pending), (sk_characters),
 	(process_read_scrollkeeper), (files_are_equivalent),
 	(get_omf_attributes), (create_toc_from_omf_cache_file),

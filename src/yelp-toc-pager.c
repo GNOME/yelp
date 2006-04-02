@@ -227,8 +227,6 @@ toc_pager_init (YelpTocPager *pager)
 static void
 toc_pager_dispose (GObject *object)
 {
-    YelpTocPager *pager = YELP_TOC_PAGER (object);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 
@@ -464,9 +462,6 @@ sk_characters (void          *pager,
 static gboolean
 process_read_scrollkeeper (YelpTocPager *pager, gchar *content_list)
 {
-    YelpTocPagerPriv *priv = pager->priv;
-    GSList *ptr;
-    GSList *ptr2;
     static xmlSAXHandler sk_sax_handler = { 0, };
 
     if (!sk_sax_handler.startElement) {
@@ -478,19 +473,6 @@ process_read_scrollkeeper (YelpTocPager *pager, gchar *content_list)
 
     xmlSAXUserParseFile (&sk_sax_handler, pager, content_list);
 
-    /* debugging - iterates through our hash and prints out all the directories and
-     * files */
-    ptr = priv->omf_pending;
-    while (ptr && ptr->data) {
-	g_print ("dir=%s\n", (gchar *)ptr->data); 
-	ptr2 = g_hash_table_lookup (priv->omf_dirhash, ptr->data);
-	while (ptr2 && ptr2->data) {
-	    g_print ("  file=%s\n", (gchar *)ptr2->data);
-	    ptr2 = g_slist_next (ptr2);
-	}
-	ptr = g_slist_next (ptr);
-    }
-    
     return FALSE;
 }
 
@@ -512,10 +494,8 @@ files_are_equivalent (gchar *file1, gchar *file2)
 
     while (fread (&data1, sizeof (gint), 1, f1)) {
 	fread (&data2, sizeof (gint), 1, f2);
-	if (data1 != data2) {
-	    g_print ("Files do not match.. aborting\n");
+	if (data1 != data2)
 	    return FALSE;
-	}
     }
 
     fclose (f1);
@@ -767,7 +747,6 @@ process_omf_pending (YelpTocPager *pager)
 	     * file everytime, so there's no regression of functionality */
 	    
 	    if (!files_are_equivalent (sk_file, content_list)) {
-		g_print ("files are the not the same!\n");
 	    	process_read_scrollkeeper (pager, content_list);
 		return TRUE;
 	    }
@@ -840,7 +819,6 @@ process_omf_pending (YelpTocPager *pager)
     priv->omf_pending = g_slist_remove_link (priv->omf_pending, first);
     dir = (gchar *) first->data;
 
-    g_print ("processing directory %s\n", dir);
     priv->omf_ins = xmlNewChild (priv->omf_root, NULL, BAD_CAST "dir", NULL);
     xmlAddChild (priv->omf_ins, xmlNewText (BAD_CAST "\n    "));
     xmlNewChild (priv->omf_ins, NULL, BAD_CAST "name", BAD_CAST dir);
