@@ -1175,7 +1175,7 @@ slow_search_setup (YelpSearchPager *pager)
 			    ptr - container->base_filename);
 	container->base_path = g_strdup (path);
 	container->search_term = 
-	    g_strsplit (g_utf8_casefold (pager->priv->search_terms, -1),
+	    g_strsplit (g_utf8_casefold (g_strstrip(pager->priv->search_terms), -1),
 			" ", -1);
 	container->search_status = NOT_SEARCHING;
 
