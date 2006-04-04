@@ -41,23 +41,6 @@ typedef enum {
     YELP_DOC_TYPE_SEARCH
 } YelpDocType;
 
-static gchar *mandirs[] = {
-    "man0p",
-    "man1",
-    "man1p",
-    "man2",
-    "man3",
-    "man3p",
-    "man4",
-    "man5",
-    "man6",
-    "man7",
-    "man8",
-    "man9",
-    "mann",
-    NULL
-};
-
 typedef enum {
     YELP_URI_TYPE_ERROR    = 0,
     YELP_URI_TYPE_FILE     = 1 << 0,
@@ -141,5 +124,7 @@ gchar *             yelp_uri_get_fragment       (const gchar   *uri);
 gchar *             yelp_uri_get_relative       (gchar         *base,
 						 gchar         *ref);
 gchar **            yelp_get_info_paths         (void);
+
+gchar **            yelp_get_man_paths       (void);
 
 #endif /* __YELP_UTILS_H__ */

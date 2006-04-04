@@ -137,8 +137,6 @@ man_pager_init (YelpManPager *pager)
 static void
 man_pager_dispose (GObject *object)
 {
-    YelpManPager *pager = YELP_MAN_PAGER (object);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

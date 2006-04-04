@@ -1228,6 +1228,7 @@ process_mandir_pending (YelpTocPager *pager)
 	const gchar * const * langs = g_get_language_names ();
 	gchar *manpath = NULL;
 	gchar **manpaths = NULL;
+	gchar **mandirs = NULL;
 
 	/* check for the existence of the xml cache file in ~/.gnome2/yelp.d/
 	 * if it exists, use it as the source for man pages instead of 
@@ -1238,6 +1239,7 @@ process_mandir_pending (YelpTocPager *pager)
 	    /* we are done.. */
 	    return FALSE;
 	} else {
+	    mandirs = yelp_get_man_paths ();
 	    priv->manindex_xml = xmlNewDoc (BAD_CAST "1.0");
 	    priv->root = xmlNewNode (NULL, BAD_CAST "manindex");
 	    priv->ins  = priv->root;
@@ -1887,7 +1889,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     new_doc->intSubset = dtd;
     new_doc->extSubset = dtd;
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
-    new_doc->encoding = BAD_CAST g_strdup ("utf-8");
+    new_doc->encoding = xmlStrdup (BAD_CAST "utf-8");
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
 

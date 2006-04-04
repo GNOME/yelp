@@ -68,6 +68,23 @@ struct _YelpDocInfo {
     gint ref_count;
 };
 
+static gchar *mandirs[] = {
+    "man0p",
+    "man1",
+    "man1p",
+    "man2",
+    "man3",
+    "man3p",
+    "man4",
+    "man5",
+    "man6",
+    "man7",
+    "man8",
+    "man9",
+    "mann",
+    NULL
+};
+
 static YelpDocType  get_doc_type       (gchar   *uri);
 static gchar *      convert_ghelp_uri  (gchar   *uri);
 
@@ -865,6 +882,12 @@ yelp_get_info_paths ( )
     return infopath;
 }
 
+
+gchar **
+yelp_get_man_paths ()
+{
+	return mandirs;
+}
 
 static gchar *
 convert_info_uri (gchar   *uri)

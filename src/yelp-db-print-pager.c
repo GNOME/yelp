@@ -75,7 +75,7 @@ static gchar **       db_print_pager_params       (YelpPager        *pager);
 
 static const gchar *  db_print_pager_resolve_frag (YelpPager        *pager,
 					     const gchar      *frag_id);
-static GtkTreeModel * db_print_pager_get_sections (YelpPager        *pager);
+/*static GtkTreeModel * db_print_pager_get_sections (YelpPager        *pager);*/
 
 static YelpPagerClass *parent_class;
 
@@ -139,8 +139,6 @@ db_print_pager_init (YelpDBPrintPager *pager)
 static void
 db_print_pager_dispose (GObject *object)
 {
-    YelpDBPrintPager *pager = YELP_DB_PRINT_PAGER (object);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

@@ -575,7 +575,7 @@ macro_url_handler (YelpManParser *parser, gchar *macro, GSList *args)
 /* relative margin indent; FIXME: this takes a parameter that tells
  * how many indents to do, which needs to be implemented to fix 
  * some man page formatting options */
-static void
+/*static void
 macro_rs_re_handler (YelpManParser *parser, gchar *macro, GSList *args)
 {
     xmlNodePtr tmpNode;
@@ -601,7 +601,7 @@ macro_rs_re_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	else
 	    parser->ins = tmpNode->parent;
     }
-}
+}*/
 
 static void
 macro_mandoc_list_handler (YelpManParser *parser, gchar *macro, GSList *args)

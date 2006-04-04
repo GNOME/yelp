@@ -259,8 +259,6 @@ search_pager_init (YelpSearchPager *pager)
 static void
 search_pager_dispose (GObject *object)
 {
-    YelpSearchPager *pager = YELP_SEARCH_PAGER (object);
-
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 

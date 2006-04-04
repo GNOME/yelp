@@ -1,5 +1,16 @@
 2006-04-03  Brent Smith  <gnome@nextreality.net>
 
+	* src/yelp-db-print-pager.c: (db_print_pager_dispose):
+	* src/yelp-main.c: (slowly_and_stupidly_obtain_timestamp):
+	* src/yelp-man-parser.c:
+	* src/yelp-toc-pager.c: (process_mandir_pending),
+	(xslt_yelp_document):
+	* src/yelp-utils.c: (yelp_get_man_paths):
+	* src/yelp-utils.h:
+	Fix various compiler warnings, patch by Don Scorgie.  Fixes #326290
+
+2006-04-03  Brent Smith  <gnome@nextreality.net>
+
 	* data/man.xml.in: Add 3perl to the Perl Functions section
 
 2006-04-03  Brent Smith  <gnome@nextreality.net>
