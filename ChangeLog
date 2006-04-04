@@ -1,3 +1,9 @@
+2006-04-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-search-pager.c: (snippet_closed), (snippet_response),
+	(snippet_error), (finished_cb): various beagle signal and refcount
+	fixes, patch from Joe Shaw.  Fixes #334938
+
 2006-03-23  Brent Smith  <gnome@nextreality.net>
 
 	* stylesheets/search2html.xsl:

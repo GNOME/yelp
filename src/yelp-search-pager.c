@@ -418,6 +418,15 @@ typedef struct
     xmlNode *node;
 } SnippetLocation;
 
+static void snippet_closed   (BeagleSnippetRequest  *request,
+			      SnippetLocation       *snippet_location);
+static void snippet_response (BeagleSnippetRequest  *request,
+			      BeagleSnippetResponse *response,
+			      SnippetLocation       *snippet_location);
+static void snippet_error    (BeagleSnippetRequest  *request,
+			      GError                *error,
+			      SnippetLocation       *snippet_location);
+
 static void
 snippet_closed (BeagleSnippetRequest *request, SnippetLocation *snippet_location)
 {
@@ -427,6 +436,17 @@ snippet_closed (BeagleSnippetRequest *request, SnippetLocation *snippet_location
 
     pager->priv->snippet_request_count --;
     check_finished (pager);
+
+    g_signal_handlers_disconnect_by_func (request,
+					  G_CALLBACK (snippet_response),
+					  snippet_location);
+    g_signal_handlers_disconnect_by_func (request,
+					  G_CALLBACK (snippet_error),
+					  snippet_location);
+    g_signal_handlers_disconnect_by_func (request,
+					  G_CALLBACK (snippet_closed),
+					  snippet_location);
+
     g_free (snippet_location);
     g_object_unref (request);
 }
@@ -442,7 +462,7 @@ snippet_response (BeagleSnippetRequest *request, BeagleSnippetResponse *response
 
     if (xml == NULL) {
 	d(g_print ("snippet_response empty\n"));
-	goto done;
+	return;
     }
     d(g_print ("snippet_response: %s\n", xml));
 
@@ -450,20 +470,17 @@ snippet_response (BeagleSnippetRequest *request, BeagleSnippetResponse *response
     snippet_doc = xmlParseDoc (BAD_CAST xmldoc);
     g_free (xmldoc);
     if (!snippet_doc)
-	goto done;
+	return;
     node = xmlDocGetRootElement (snippet_doc);
     xmlUnlinkNode (node);
     xmlAddChild (snippet_location->node, node);
     xmlFreeDoc (snippet_doc);
-    done:
-    snippet_closed (request, snippet_location);
 }
 
 static void
 snippet_error (BeagleSnippetRequest *request, GError *error, SnippetLocation *snippet_location)
 {
     d(g_print ("snippet_error\n"));
-    snippet_closed (request, snippet_location);
 }
 
 
@@ -540,7 +557,6 @@ finished_cb (BeagleQuery            *query,
     YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
 
     d(g_print ("finished_cb\n"));
-    g_object_unref (query);
 
     g_ptr_array_sort (priv->hits, compare_hits);
 
@@ -589,6 +605,14 @@ finished_cb (BeagleQuery            *query,
 	beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (request),
 					  NULL);
     }
+
+    g_signal_handlers_disconnect_by_func (query,
+					  G_CALLBACK (hits_added_cb),
+					  pager);
+    g_signal_handlers_disconnect_by_func (query,
+					  G_CALLBACK (finished_cb),
+					  pager);
+    g_object_unref (query);
 
     g_ptr_array_foreach (priv->hits, (GFunc) beagle_hit_unref, NULL);
     g_ptr_array_free (priv->hits, TRUE);
