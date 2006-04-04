@@ -1,3 +1,9 @@
+2006-04-04  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-search-pager.c: 
+	Strip leading and training spaces from search terms
+	Fixes #334568
+	
 2006-04-04  Pema Geyleg  <pema.geyleg@gmail.com>
 
 	* configure.in: Added dz (Dzongkha) to ALL_LINGUA
