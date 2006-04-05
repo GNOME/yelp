@@ -1,6 +1,12 @@
+2006-04-04  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-window.c: (window_do_load):
+	Make the "About this Document" menu entry available after loading a
+	DocBook XML file, since that is the only time it is relevant.
+
 2006-04-04  Gora Mohanty  <gmohanty@cvs.gnome.org>
 
-        * configure.in: Added 'or' (Oriya) to ALL_LINGUAS.
+	* configure.in: Added 'or' (Oriya) to ALL_LINGUAS.
 
 2006-04-04  Don Scorgie  <dscorgie@cvs.gnome.org>
 
