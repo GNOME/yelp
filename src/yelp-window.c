@@ -844,6 +844,7 @@ window_do_load (YelpWindow  *window,
 		gchar       *frag_id)
 {
     GtkAction      *action;
+    GtkAction      *about;
     GError         *error = NULL;
     gchar          *uri;
 
@@ -854,10 +855,11 @@ window_do_load (YelpWindow  *window,
 
     action = gtk_action_group_get_action (window->priv->action_group, 
 					  "PrintDocument");
-    g_object_set (G_OBJECT (action),
-		  "sensitive",
-		  FALSE,
-		  NULL);
+    g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+
+    about  = gtk_action_group_get_action (window->priv->action_group,
+                                          "AboutDocument");
+    g_object_set (G_OBJECT (about),  "sensitive", FALSE, NULL);
     
     switch (yelp_doc_info_get_type (doc_info)) {
     case YELP_DOC_TYPE_MAN:
@@ -881,10 +883,8 @@ window_do_load (YelpWindow  *window,
 #endif
 
     case YELP_DOC_TYPE_DOCBOOK_XML:
-	g_object_set (G_OBJECT (action),
-		      "sensitive",
-		      TRUE,
-		      NULL);
+	g_object_set (G_OBJECT (action), "sensitive", TRUE, NULL);
+	g_object_set (G_OBJECT (about),  "sensitive", TRUE, NULL);
     case YELP_DOC_TYPE_TOC:
 	window_do_load_pager (window, doc_info, frag_id);
 	break;

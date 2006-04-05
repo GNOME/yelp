@@ -1870,8 +1870,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     style = xsltNewStylesheet ();
     if (style == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("Out of memory"));
+	xsltTransformError (ctxt, NULL, inst, _("Out of memory"));
 	error = NULL;
 	yelp_pager_error (pager, error);
 	goto done;
@@ -1882,8 +1881,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     new_doc = xmlNewDoc (BAD_CAST "1.0");
     dtd = xmlCreateIntSubset (new_doc,
 			      BAD_CAST "html",
-			      BAD_CAST "-//W3C//DTD XHTML 1.0 "
-			      "Strict//EN",
+			      BAD_CAST "-//W3C//DTD XHTML 1.0 Strict//EN",
 			      BAD_CAST "http://www.w3.org/TR/"
 			      "xhtml1/DTD/xhtml1-strict.dtd");
     new_doc->intSubset = dtd;

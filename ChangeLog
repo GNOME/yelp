@@ -1,3 +1,11 @@
+2006-04-04  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (xslt_yelp_document):
+	cosmetic changes (put statements on one line where possible)
+	* src/yelp-window.c: (window_do_load):
+	Make the "About this Document" menu entry available after loading a
+	DocBook XML file, since that is the only time it is relevant.
+
 2006-04-04  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-search-pager.c: 
