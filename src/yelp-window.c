@@ -33,9 +33,7 @@
 #include <bonobo/bonobo-main.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-stock-icons.h>
-#include <libgnome/gnome-url.h>
-#include <libgnome/gnome-program.h>
-#include <libgnome/gnome-config.h>
+#include <libgnome/libgnome.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
 #include <string.h>
@@ -181,6 +179,7 @@ static void    window_go_previous_cb    (GtkAction *action, YelpWindow *window);
 static void    window_go_next_cb        (GtkAction *action, YelpWindow *window);
 static void    window_go_toc_cb         (GtkAction *action, YelpWindow *window);
 static void    window_add_bookmark_cb   (GtkAction *action, YelpWindow *window);
+static void    window_help_contents_cb  (GtkAction *action, YelpWindow *window);
 static void    window_about_cb          (GtkAction *action, YelpWindow *window);
 static void    window_copy_link_cb      (GtkAction *action, YelpWindow *window);
 static void    window_open_link_cb      (GtkAction *action, YelpWindow *window);
@@ -445,7 +444,11 @@ static const GtkActionEntry entries[] = {
       NULL,
       NULL,
       G_CALLBACK (window_copy_link_cb) },
-
+    { "Contents", GTK_STOCK_HELP,  
+      N_("_Contents"), 
+      "F1", 
+      N_("Help On this application"),
+      G_CALLBACK (window_help_contents_cb) },
     { "About", GNOME_STOCK_ABOUT,
       N_("_About"),
       NULL,
@@ -2642,15 +2645,50 @@ window_copy_mail_cb (GtkAction *action, YelpWindow *window)
 }
 
 static void
+window_help_contents_cb (GtkAction *action, YelpWindow *window)
+{
+    GnomeProgram *program = gnome_program_get ();
+    GError *error = NULL;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    gnome_help_display_desktop (program, "user-guide", 
+                                "user-guide", "yelp", &error);
+
+    if (error) {
+	GtkWidget *dialog;
+
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+ 	                                 0,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_CLOSE,
+	                                 _("Could not display help for Yelp.\n"
+	                                 "%s"),
+	                                 error->message);
+
+	g_signal_connect_swapped (dialog, "response",
+	                          G_CALLBACK (gtk_widget_destroy),
+	                          dialog);
+	gtk_widget_show (dialog);
+
+	g_error_free (error);
+    }
+}
+
+static void
 window_about_cb (GtkAction *action, YelpWindow *window)
 {
     const gchar *copyright =
 	"Copyright © 2001-2003 Mikael Hallendal\n"
-	"Copyright © 2003-2005 Shaun McCance";
+	"Copyright © 2003-2005 Shaun McCance\n"
+	"Copyright © 2005-2006 Don Scorgie\n"
+	"Copyright © 2005-2006 Brent Smith";
     const gchar *authors[] = { 
 	"Mikael Hallendal <micke@imendio.com>",
 	"Alexander Larsson <alexl@redhat.com>",
 	"Shaun McCance <shaunm@gnome.org>",
+	"Don Scorgie <DonScorgie@Blueyonder.co.uk>",
+	"Brent Smith <gnome@nextreality.net>",
 	NULL
     };
     /* Note to translators: put here your name (and address) so it

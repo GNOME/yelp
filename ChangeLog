@@ -1,3 +1,10 @@
+2006-04-09  Brent Smith  <gnome@nextreality.net>
+
+	* data/ui/yelp-ui.xml: Add "Contents" entry to the Help menu
+	* src/yelp-window.c: (window_help_contents_cb), (window_about_cb):
+	Update the author/copyright lists.  Also provide a callback for
+	viewing the yelp documentation in the user guide.
+
 2006-04-04  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-window.c: (window_do_load):
