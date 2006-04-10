@@ -1,3 +1,22 @@
+Changes in 2.14.1:
+------------------
+* Add "Contents" entry to the Help menu                      (Brent Smith)
+* fix "About this Document" sensitivity                      (Brent Smith)
+* Strip leading/trailing spaces from search terms, #334568   (Don Scorgie)
+* Add 3perl to the Perl Functions section                    (Brent Smith)
+* various beagle signal and refcount fixes, #334938          (Joe Shaw)
+* Display a header on the search results, #334923            (Brent Smith)
+* Don't free an object's private data                        (Brent Smith)
+* Keep track of timeout and remove when not needed, #335306  (Don Scorgie)
+* Updated translations:
+Ales Nyakhaychyk (be)
+Jérémy Le Floc'h (br)
+Mindu Dorji (dz)
+Ivar Smolin (et)
+Laurent Richard (fr)
+Gora Mohanty (or)
+
+
 Changes in 2.14.0:
 ------------------
 * Sort search results to provide some sanity                 (Don Scorgie)
