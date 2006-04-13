@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-15 22:50+0200\n"
-"PO-Revision-Date: 2006-03-06 13:48+0100\n"
+"POT-Creation-Date: 2006-04-13 21:46+0200\n"
+"PO-Revision-Date: 2006-04-13 21:56+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../data/info.xml.in.h:1
-#: ../src/yelp-toc-pager.c:1239
+#: ../src/yelp-toc-pager.c:1237
 msgid "GNU Info Pages"
 msgstr "GNU-infosidor"
 
@@ -58,7 +58,7 @@ msgid "Library Functions"
 msgstr "Biblioteksfunktioner"
 
 #: ../data/man.xml.in.h:9
-#: ../src/yelp-toc-pager.c:1233
+#: ../src/yelp-toc-pager.c:1231
 msgid "Manual Pages"
 msgstr "Manualsidor"
 
@@ -317,7 +317,7 @@ msgid "Use the default fonts set for the system."
 msgstr "Använd standardtypsnitten som angivits för systemet."
 
 #: ../src/GNOME_Yelp.server.in.h:1
-#: ../src/yelp-window.c:2661
+#: ../src/yelp-window.c:2699
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -351,7 +351,7 @@ msgstr "Det finns redan ett bokmärke med namnet <b>%s</b> för denna sida."
 msgid "Document Sections"
 msgstr "Dokumentavsnitt"
 
-#: ../src/yelp-db-pager.c:245
+#: ../src/yelp-db-pager.c:244
 #: ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
@@ -390,7 +390,7 @@ msgstr "Kunde inte behandla dokument"
 msgid "No information is available about the error."
 msgstr "Ingen information om felet är tillgänglig."
 
-#: ../src/yelp-info-pager.c:190
+#: ../src/yelp-info-pager.c:188
 #, c-format
 msgid "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is not a well-formed info page."
 msgstr "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den inte en korrekt formaterad infosida."
@@ -418,7 +418,7 @@ msgstr "Kunde inte öppna nytt fönster."
 msgid "Help"
 msgstr "Hjälp"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man-pager.c:183
 #, c-format
 msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
 msgstr "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den felaktigt formaterad."
@@ -488,30 +488,30 @@ msgstr "_Till:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Anger slutet av sidintervallet som ska skrivas ut"
 
-#: ../src/yelp-search-pager.c:676
+#: ../src/yelp-search-pager.c:698
 #, c-format
 msgid "Your search could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
 msgstr "Din sökning kunde inte behandlas. Filen \"%s\" antingen saknas eller är inte en giltig XSLT-stilmall."
 
-#: ../src/yelp-search-pager.c:778
-#: ../src/yelp-toc-pager.c:1506
-#: ../src/yelp-xslt-pager.c:368
+#: ../src/yelp-search-pager.c:800
+#: ../src/yelp-toc-pager.c:1504
+#: ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "Inget href-attribut hittat på yelp:document"
 
-#: ../src/yelp-search-pager.c:792
-#: ../src/yelp-toc-pager.c:1520
-#: ../src/yelp-xslt-pager.c:384
+#: ../src/yelp-search-pager.c:814
+#: ../src/yelp-toc-pager.c:1518
+#: ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: ../src/yelp-search-pager.c:833
-#: ../src/yelp-toc-pager.c:1570
+#: ../src/yelp-search-pager.c:855
+#: ../src/yelp-toc-pager.c:1568
 msgid "Help Contents"
 msgstr "Hjälpinnehåll"
 
-#: ../src/yelp-search-pager.c:1119
-#: ../src/yelp-toc-pager.c:499
+#: ../src/yelp-search-pager.c:1141
+#: ../src/yelp-toc-pager.c:497
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Kunde inte läsa in OMF-filen \"%s\"."
@@ -567,257 +567,271 @@ msgstr "Kunde inte läsa in OMF-filen \"%s\"."
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201D"
 
-#: ../src/yelp-toc-pager.c:273
+#: ../src/yelp-toc-pager.c:271
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pausräknaren är negativ."
 
-#: ../src/yelp-toc-pager.c:637
+#: ../src/yelp-toc-pager.c:635
 #, c-format
 msgid "Read man page for %s"
 msgstr "Läs manualsida för %s"
 
-#: ../src/yelp-toc-pager.c:1108
+#: ../src/yelp-toc-pager.c:1106
 #, c-format
 msgid "Read info page for %s"
 msgstr "Läs infosida för %s"
 
-#: ../src/yelp-toc-pager.c:1206
+#: ../src/yelp-toc-pager.c:1204
 #, c-format
 msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
 msgstr "Innehållsförteckningen kunde inte läsas in. Antingen saknas filen \"%s\" eller så är den inte korrekt XML."
 
-#: ../src/yelp-toc-pager.c:1228
+#: ../src/yelp-toc-pager.c:1226
 msgid "Command Line Help"
 msgstr "Hjälp för kommandorad"
 
-#: ../src/yelp-toc-pager.c:1342
+#: ../src/yelp-toc-pager.c:1340
 #, c-format
 msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
 msgstr "Innehållsförteckningen kunde inte behandlas. Antingen saknas filen \"%s\" eller så är den inte en giltig XSLT-stilmall."
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:310
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:311
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:312
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:313
 msgid "_Bookmarks"
 msgstr "_Bokmärken"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:314
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:317
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:322
 msgid "Print This Document"
 msgstr "Skriv ut det här dokumentet"
 
-#: ../src/yelp-window.c:328
+#: ../src/yelp-window.c:327
 msgid "Print This Page"
 msgstr "Skriv ut den här sidan"
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:332
 msgid "About This Document"
 msgstr "Om detta dokument"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:337
 msgid "Open _Location"
 msgstr "Öppna _plats"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:342
 msgid "_Close Window"
 msgstr "_Stäng fönster"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:348
 msgid "_Copy"
 msgstr "_Kopiera"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:354
 msgid "_Select All"
 msgstr "_Markera allt"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:359
 msgid "_Find..."
 msgstr "_Sök..."
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:364
 msgid "Find Pre_vious"
 msgstr "Sök _föregående"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:366
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Sök föregående förekomst av ordet eller frasen"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:369
 msgid "Find Ne_xt"
 msgstr "Sök _nästa"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:371
 msgid "Find next occurrence of the word or phrase"
 msgstr "Sök nästa förekomst av ordet eller frasen"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:374
 msgid "_Preferences"
 msgstr "_Inställningar"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:379
 msgid "_Reload"
 msgstr "_Läs om"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:391
 msgid "_Back"
 msgstr "_Bakåt"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:393
 msgid "Show previous page in history"
 msgstr "Visa föregående sida i historiken"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:396
 msgid "_Forward"
 msgstr "_Framåt"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:398
 msgid "Show next page in history"
 msgstr "Visa nästa sida i historiken"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:401
 msgid "_Help Topics"
 msgstr "_Hjälprubriker"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:403
 msgid "Go to the listing of help topics"
 msgstr "Gå till listan med hjälprubriker"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:406
 msgid "_Previous Section"
 msgstr "_Föregående avsnitt"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:411
 msgid "_Next Section"
 msgstr "_Nästa avsnitt"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:416
+#: ../src/yelp-window.c:448
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:422
 msgid "_Add Bookmark"
 msgstr "_Lägg till bokmärke"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:427
 msgid "_Edit Bookmarks..."
 msgstr "_Redigera bokmärken..."
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:433
 msgid "_Open Link"
 msgstr "_Öppna länk"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:438
 msgid "Open Link in _New Window"
 msgstr "Öppna länk i _nytt fönster"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:443
 msgid "_Copy Link Address"
 msgstr "_Kopiera länkadress"
 
 #: ../src/yelp-window.c:450
+msgid "Help On this application"
+msgstr "Hjälp för detta program"
+
+#: ../src/yelp-window.c:453
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:458
 msgid "Copy _Email Address"
 msgstr "Kopiera _e-postadress"
 
-#: ../src/yelp-window.c:504
+#: ../src/yelp-window.c:507
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: ../src/yelp-window.c:768
-#: ../src/yelp-window.c:924
+#: ../src/yelp-window.c:771
+#: ../src/yelp-window.c:927
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "URI:n för filen är ogiltig."
 
-#: ../src/yelp-window.c:780
-#: ../src/yelp-window.c:919
+#: ../src/yelp-window.c:783
+#: ../src/yelp-window.c:922
 #, c-format
 msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
 msgstr "URI:n \"%s\" är ogiltig eller pekar inte till en verklig fil."
 
-#: ../src/yelp-window.c:866
-#: ../src/yelp-window.c:1295
+#: ../src/yelp-window.c:871
+#: ../src/yelp-window.c:1298
 msgid "Man pages are not supported in this version."
 msgstr "Manualsidor stöds inte i denna version."
 
-#: ../src/yelp-window.c:876
-#: ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:881
+#: ../src/yelp-window.c:1289
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU-infosidor stöds inte i denna version"
 
-#: ../src/yelp-window.c:894
-#: ../src/yelp-window.c:1308
+#: ../src/yelp-window.c:897
+#: ../src/yelp-window.c:1311
 msgid "Search is not supported in this version."
 msgstr "Sökning stöds inte i denna version."
 
-#: ../src/yelp-window.c:899
+#: ../src/yelp-window.c:902
 msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
 msgstr "SGML-dokument stöds inte längre. Be författaren av dokumentet att konvertera det till XML."
 
-#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1028
 msgid "_Search:"
 msgstr "_Sök efter:"
 
-#: ../src/yelp-window.c:1026
+#: ../src/yelp-window.c:1029
 msgid "Search for other documentation"
 msgstr "Sök efter annan dokumentation"
 
-#: ../src/yelp-window.c:1175
+#: ../src/yelp-window.c:1178
 msgid "Fin_d:"
 msgstr "Sö_k:"
 
-#: ../src/yelp-window.c:1195
+#: ../src/yelp-window.c:1198
 msgid "Find _Next"
 msgstr "Sök _nästa"
 
-#: ../src/yelp-window.c:1207
+#: ../src/yelp-window.c:1210
 msgid "Find _Previous"
 msgstr "Sök _föregående"
 
-#: ../src/yelp-window.c:1321
+#: ../src/yelp-window.c:1324
 #, c-format
 msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
 msgstr "Ett omvandlingssammanhang kunde inte skapas för filen \"%s\". Formatet kanske inte stöds."
 
-#: ../src/yelp-window.c:1350
-#: ../src/yelp-window.c:1764
-#: ../src/yelp-window.c:1840
+#: ../src/yelp-window.c:1353
+#: ../src/yelp-window.c:1767
+#: ../src/yelp-window.c:1843
 #, c-format
 msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
 msgstr "Avsnittet \"%s\" finns inte i detta dokument. Om du hänvisades till detta avsnitt från en hjälpknapp i ett program bör du rapportera detta till de som underhåller det programmet."
 
-#: ../src/yelp-window.c:1465
-#: ../src/yelp-window.c:2230
+#: ../src/yelp-window.c:1468
+#: ../src/yelp-window.c:2233
 #, c-format
 msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
 msgstr "Filen \"%s\" kunde inte läsas. Filen kanske saknas eller så har du inte rättigheter att läsa den."
 
-#: ../src/yelp-window.c:1516
+#: ../src/yelp-window.c:1519
 msgid "Loading..."
 msgstr "Läser in..."
 
+#: ../src/yelp-window.c:2665
+#, c-format
+msgid ""
+"Could not display help for Yelp.\n"
+"%s"
+msgstr ""
+"Kunde inte visa hjälp för Yelp.\n"
+"%s"
+
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2658
+#: ../src/yelp-window.c:2696
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -825,17 +839,17 @@ msgstr ""
 "Richard Hult\n"
 "Skicka synpunkter på översättningen till tp-sv@listor.tp-sv.se"
 
-#: ../src/yelp-window.c:2663
+#: ../src/yelp-window.c:2701
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
 
-#: ../src/yelp-xslt-pager.c:195
+#: ../src/yelp-xslt-pager.c:193
 #, c-format
 msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
 msgstr "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den felaktigt formaterad."
 
-#: ../src/yelp-xslt-pager.c:216
-#: ../src/yelp-xslt-pager.c:229
+#: ../src/yelp-xslt-pager.c:214
+#: ../src/yelp-xslt-pager.c:227
 #, c-format
 msgid "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it is not a valid XSLT stylesheet."
 msgstr "Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte eller så är den inte en giltig XSLT-stilmall."
@@ -844,273 +858,183 @@ msgstr "Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte
 msgid "Get help with GNOME"
 msgstr "Få hjälp med GNOME"
 
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_Bokmärken:</b>"
-
-msgid "<b>_Title:</b>"
-msgstr "<b>_Titel:</b>"
-
-msgid "_Find: "
-msgstr "_Sök: "
-
-msgid "Unknown Section"
-msgstr "Okänt avsnitt"
-
-msgid "Find:"
-msgstr "Sök:"
-
-msgid "Manual pages"
-msgstr "Manualsidor"
-
-msgid "Applets"
-msgstr "Panelprogram"
-
-msgid "Multimedia Applications"
-msgstr "Multimediaprogram"
-
-msgid "Multimedia applications"
-msgstr "Multimediaprogram"
-
-msgid "Bookmark"
-msgstr "Bokmärke"
-
-msgid "Open Bookmark in _New Window"
-msgstr "Öppna bokmärke i _nytt fönster"
-
-msgid "Delete Bookmark"
-msgstr "Ta bort bokmärke"
-
-msgid "Unknown"
-msgstr "Okänd"
-
-msgid "Sound &amp; Video"
-msgstr "Ljud och video"
-
-msgid "<b>_Bookmarks</b>"
-msgstr "<b>_Bokmärken</b>"
-
-msgid "<b>Bookmarks</b>"
-msgstr "<b>Bokmärken</b>"
-
-msgid "<b>Bookmarks:</b>"
-msgstr "<b>Bokmärken:</b>"
-
-msgid "Rename"
-msgstr "Byt namn"
-
-msgid "Use the systems default fonts."
-msgstr "Använd systemen standardtypsnitt."
-
-msgid "_Home"
-msgstr "_Hem"
-
-msgid "Go to home view"
-msgstr "Gå till hemvyn"
-
-msgid "_Title"
-msgstr "_Titel"
-
-msgid "_New window"
-msgstr "_Nytt fönster"
-
-msgid "_Close window"
-msgstr "_Stäng fönster"
-
-msgid "GNU info pages are not supported in this version."
-msgstr "GNU-infosidor stöds inte i denna version."
-
-msgid "Titlepage"
-msgstr "Titelsida"
-
-msgid "Contents"
-msgstr "Innehåll"
-
-msgid "The selected document could not be opened"
-msgstr "Det valda dokumentet kunde inte öppnas"
-
-msgid "The selected page could not be found in this document."
-msgstr "Den valda sidan kunde inte hittas i detta dokument."
-
-msgid "The table of contents could not be read."
-msgstr "Innehållsförteckningen kunde inte läsas."
-
-msgid "DocBook SGML documents are no longer supported."
-msgstr "DocBook SGML-dokument stöds inte längre."
-
-msgid "The selected file could not be read."
-msgstr "Den valda filen kunde inte läsas."
-
-msgid "The file could not be processed."
-msgstr "Filen kunde inte behandlas."
-
-msgid "X11"
-msgstr "X11"
-
-msgid "OpenSSL"
-msgstr "OpenSSL"
-
-msgid "Termcap"
-msgstr "Termcap"
-
-msgid "Perl"
-msgstr "Perl"
-
-msgid "Qt"
-msgstr "Qt"
-
-msgid "TIFF"
-msgstr "TIFF"
-
-msgid "PThreads"
-msgstr "PThreads"
-
-msgid "_Next Page"
-msgstr "_Nästa sida"
-
-msgid "Man pages"
-msgstr "Manualsidor"
-
-msgid "Manpages"
-msgstr "Manualsidor"
-
-msgid "Sound & Video"
-msgstr "Ljud och video"
-
-msgid "Sound and Video"
-msgstr "Ljud och video"
-
-msgid "Fonts"
-msgstr "Typsnitt"
-
-msgid "Use the system's default fonts."
-msgstr "Använd systemets standardtypsnitt."
-
-msgid "Information"
-msgstr "Information"
-
-msgid "_Find"
-msgstr "_Sök"
-
-msgid "Back"
-msgstr "Bakåt"
-
-msgid "Forward"
-msgstr "Framåt"
-
-msgid "Home"
-msgstr "Hem"
-
-msgid "translator_credits"
-msgstr ""
-"Christian Rose\n"
-"Richard Hult\n"
-"Skicka synpunkter på översättningen till sv@li.org"
-
-msgid "A documentation browser and viewer for the GNOME Desktop."
-msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
-
-msgid "Development Environments"
-msgstr "Utvecklingsmiljöer"
-
-msgid "Development Tools"
-msgstr "Utvecklingsverktyg"
-
-msgid "Editors"
-msgstr "Redigerare"
-
-msgid "Games and Entertainment"
-msgstr "Spel och underhållning"
-
-msgid "General"
-msgstr "Allmänt"
-
-msgid "Internet Applications"
-msgstr "Internetprogram"
-
-msgid "Kernels"
-msgstr "Kärnor"
-
-msgid "Office and Productivity Applications"
-msgstr "Kontors- och produktivitetsprogram"
-
-msgid "Securities"
-msgstr "Säkerheter"
-
-msgid "System"
-msgstr "System"
-
-msgid "Utilities"
-msgstr "Verktyg"
-
-msgid "*"
-msgstr "*"
-
-msgid "Categories"
-msgstr "Kategorier"
-
-msgid "Documents"
-msgstr "Dokument"
-
-msgid "&#8216;"
-msgstr "&#8216;"
-
-msgid "&#8217;"
-msgstr "&#8217;"
-
-msgid "&#8220;"
-msgstr "&#8220;"
-
-msgid "&#8221;"
-msgstr "&#8221;"
-
-msgid "About This Article"
-msgstr "Om denna artikel"
-
-msgid "About This Bibliography"
-msgstr "Om denna bibliografi"
-
-msgid "About This Book"
-msgstr "Om denna bok"
-
-msgid "About This Chapter"
-msgstr "Om detta kapitel"
-
-msgid "About This Entry"
-msgstr "Om denna post"
-
-msgid "About This Glossary"
-msgstr "Om denna ordlista"
-
-msgid "About This Index"
-msgstr "Om detta index"
-
-msgid "About This Part"
-msgstr "Om denna del"
-
-msgid "About This Reference"
-msgstr "Om denna referens"
-
-msgid "About This Section"
-msgstr "Om detta avsnitt"
-
-msgid "Affiliation"
-msgstr "Anknytning"
-
-msgid "Appendix"
-msgstr "Appendix"
-
-msgid "Article"
-msgstr "Artikel"
-
-msgid "Audience"
-msgstr "Målgrupp"
-
-msgid "Author"
-msgstr "Författare"
-
-msgid "Authors"
-msgstr "Författare"
-
-msgid "Bibliography"
-msgstr "Bibliografi"
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>_Bokmärken:</b>"
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Titel:</b>"
+#~ msgid "_Find: "
+#~ msgstr "_Sök: "
+#~ msgid "Unknown Section"
+#~ msgstr "Okänt avsnitt"
+#~ msgid "Find:"
+#~ msgstr "Sök:"
+#~ msgid "Manual pages"
+#~ msgstr "Manualsidor"
+#~ msgid "Applets"
+#~ msgstr "Panelprogram"
+#~ msgid "Multimedia Applications"
+#~ msgstr "Multimediaprogram"
+#~ msgid "Bookmark"
+#~ msgstr "Bokmärke"
+#~ msgid "Open Bookmark in _New Window"
+#~ msgstr "Öppna bokmärke i _nytt fönster"
+#~ msgid "Delete Bookmark"
+#~ msgstr "Ta bort bokmärke"
+#~ msgid "Unknown"
+#~ msgstr "Okänd"
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Ljud och video"
+#~ msgid "<b>_Bookmarks</b>"
+#~ msgstr "<b>_Bokmärken</b>"
+#~ msgid "<b>Bookmarks</b>"
+#~ msgstr "<b>Bokmärken</b>"
+#~ msgid "<b>Bookmarks:</b>"
+#~ msgstr "<b>Bokmärken:</b>"
+#~ msgid "Rename"
+#~ msgstr "Byt namn"
+#~ msgid "Use the systems default fonts."
+#~ msgstr "Använd systemen standardtypsnitt."
+#~ msgid "_Home"
+#~ msgstr "_Hem"
+#~ msgid "Go to home view"
+#~ msgstr "Gå till hemvyn"
+#~ msgid "_Title"
+#~ msgstr "_Titel"
+#~ msgid "_New window"
+#~ msgstr "_Nytt fönster"
+#~ msgid "_Close window"
+#~ msgstr "_Stäng fönster"
+#~ msgid "GNU info pages are not supported in this version."
+#~ msgstr "GNU-infosidor stöds inte i denna version."
+#~ msgid "Titlepage"
+#~ msgstr "Titelsida"
+#~ msgid "Contents"
+#~ msgstr "Innehåll"
+#~ msgid "The selected document could not be opened"
+#~ msgstr "Det valda dokumentet kunde inte öppnas"
+#~ msgid "The selected page could not be found in this document."
+#~ msgstr "Den valda sidan kunde inte hittas i detta dokument."
+#~ msgid "The table of contents could not be read."
+#~ msgstr "Innehållsförteckningen kunde inte läsas."
+#~ msgid "DocBook SGML documents are no longer supported."
+#~ msgstr "DocBook SGML-dokument stöds inte längre."
+#~ msgid "The selected file could not be read."
+#~ msgstr "Den valda filen kunde inte läsas."
+#~ msgid "The file could not be processed."
+#~ msgstr "Filen kunde inte behandlas."
+#~ msgid "X11"
+#~ msgstr "X11"
+#~ msgid "OpenSSL"
+#~ msgstr "OpenSSL"
+#~ msgid "Termcap"
+#~ msgstr "Termcap"
+#~ msgid "Perl"
+#~ msgstr "Perl"
+#~ msgid "Qt"
+#~ msgstr "Qt"
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+#~ msgid "PThreads"
+#~ msgstr "PThreads"
+#~ msgid "_Next Page"
+#~ msgstr "_Nästa sida"
+#~ msgid "Man pages"
+#~ msgstr "Manualsidor"
+#~ msgid "Manpages"
+#~ msgstr "Manualsidor"
+#~ msgid "Sound & Video"
+#~ msgstr "Ljud och video"
+#~ msgid "Sound and Video"
+#~ msgstr "Ljud och video"
+#~ msgid "Fonts"
+#~ msgstr "Typsnitt"
+#~ msgid "Use the system's default fonts."
+#~ msgstr "Använd systemets standardtypsnitt."
+#~ msgid "Information"
+#~ msgstr "Information"
+#~ msgid "_Find"
+#~ msgstr "_Sök"
+#~ msgid "Back"
+#~ msgstr "Bakåt"
+#~ msgid "Forward"
+#~ msgstr "Framåt"
+#~ msgid "Home"
+#~ msgstr "Hem"
+#~ msgid "translator_credits"
+#~ msgstr ""
+#~ "Christian Rose\n"
+#~ "Richard Hult\n"
+#~ "Skicka synpunkter på översättningen till sv@li.org"
+#~ msgid "A documentation browser and viewer for the GNOME Desktop."
+#~ msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
+#~ msgid "Development Environments"
+#~ msgstr "Utvecklingsmiljöer"
+#~ msgid "Development Tools"
+#~ msgstr "Utvecklingsverktyg"
+#~ msgid "Editors"
+#~ msgstr "Redigerare"
+#~ msgid "Games and Entertainment"
+#~ msgstr "Spel och underhållning"
+#~ msgid "General"
+#~ msgstr "Allmänt"
+#~ msgid "Internet Applications"
+#~ msgstr "Internetprogram"
+#~ msgid "Kernels"
+#~ msgstr "Kärnor"
+#~ msgid "Office and Productivity Applications"
+#~ msgstr "Kontors- och produktivitetsprogram"
+#~ msgid "Securities"
+#~ msgstr "Säkerheter"
+#~ msgid "System"
+#~ msgstr "System"
+#~ msgid "Utilities"
+#~ msgstr "Verktyg"
+#~ msgid "*"
+#~ msgstr "*"
+#~ msgid "Categories"
+#~ msgstr "Kategorier"
+#~ msgid "Documents"
+#~ msgstr "Dokument"
+#~ msgid "&#8216;"
+#~ msgstr "&#8216;"
+#~ msgid "&#8217;"
+#~ msgstr "&#8217;"
+#~ msgid "&#8220;"
+#~ msgstr "&#8220;"
+#~ msgid "&#8221;"
+#~ msgstr "&#8221;"
+#~ msgid "About This Article"
+#~ msgstr "Om denna artikel"
+#~ msgid "About This Bibliography"
+#~ msgstr "Om denna bibliografi"
+#~ msgid "About This Book"
+#~ msgstr "Om denna bok"
+#~ msgid "About This Chapter"
+#~ msgstr "Om detta kapitel"
+#~ msgid "About This Entry"
+#~ msgstr "Om denna post"
+#~ msgid "About This Glossary"
+#~ msgstr "Om denna ordlista"
+#~ msgid "About This Index"
+#~ msgstr "Om detta index"
+#~ msgid "About This Part"
+#~ msgstr "Om denna del"
+#~ msgid "About This Reference"
+#~ msgstr "Om denna referens"
+#~ msgid "About This Section"
+#~ msgstr "Om detta avsnitt"
+#~ msgid "Affiliation"
+#~ msgstr "Anknytning"
+#~ msgid "Appendix"
+#~ msgstr "Appendix"
+#~ msgid "Article"
+#~ msgstr "Artikel"
+#~ msgid "Audience"
+#~ msgstr "Målgrupp"
+#~ msgid "Author"
+#~ msgstr "Författare"
+#~ msgid "Authors"
+#~ msgstr "Författare"
+#~ msgid "Bibliography"
+#~ msgstr "Bibliografi"
 
