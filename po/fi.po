@@ -15,15 +15,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-31 23:27+0200\n"
-"PO-Revision-Date: 2006-01-31 23:28+0200\n"
+"POT-Creation-Date: 2006-04-15 08:19+0300\n"
+"PO-Revision-Date: 2006-04-14 16:15+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1230
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1237
 msgid "GNU Info Pages"
 msgstr "GNU info-sivut"
 
@@ -59,7 +59,7 @@ msgstr "Kernelrutiinit"
 msgid "Library Functions"
 msgstr "Kirjastofunktiot"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1224
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1231
 msgid "Manual Pages"
 msgstr "Manuaalisivut"
 
@@ -315,7 +315,7 @@ msgstr "Käytä järjestelmän kirjasimia"
 msgid "Use the default fonts set for the system."
 msgstr "Käytä järjestelmän oletusarvoisia kirjasimia."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2652
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2699
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -349,7 +349,7 @@ msgstr "Kirjanmerkki nimeltään <b>%s</b> on jo tälle sivulle."
 msgid "Document Sections"
 msgstr "Asiakirjan luvut"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
+#: ../src/yelp-db-pager.c:244 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -390,7 +390,7 @@ msgstr "Asiakirjan käsittely epäonnistui"
 msgid "No information is available about the error."
 msgstr "Tapahtuneesta virheestä ei ole tietoja."
 
-#: ../src/yelp-info-pager.c:190
+#: ../src/yelp-info-pager.c:188
 #, c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -421,11 +421,11 @@ msgstr "Yelpin aktivointi epäonnistui: \"%s\""
 msgid "Could not open new window."
 msgstr "Uuden ikkunan avaaminen epäonnistui."
 
-#: ../src/yelp-main.c:396 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ohje"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man-pager.c:183
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
@@ -503,13 +503,7 @@ msgstr "_Saakka:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Aseta viimeinen tulostettava sivu"
 
-#: ../src/yelp-search-pager.c:380
-msgid ""
-"Your search could not be processed. There is no connection to the beagle "
-"daemon."
-msgstr "Hakua ei voitu käsitellä. Beagle-palvelimeen ei saada yhteyttä."
-
-#: ../src/yelp-search-pager.c:683
+#: ../src/yelp-search-pager.c:698
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -518,21 +512,21 @@ msgstr ""
 "Hakuasi ei voitu käsitellä. Tiedosto \"%s\" puuttuu tai ei ole kelvollinen "
 "XSLT-tyylisivu."
 
-#: ../src/yelp-search-pager.c:785 ../src/yelp-toc-pager.c:1481
-#: ../src/yelp-xslt-pager.c:368
+#: ../src/yelp-search-pager.c:800 ../src/yelp-toc-pager.c:1504
+#: ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "href-määrettä ei löytynyt kohteesta yelp:document"
 
-#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1495
-#: ../src/yelp-xslt-pager.c:384
+#: ../src/yelp-search-pager.c:814 ../src/yelp-toc-pager.c:1518
+#: ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "Muisti lopussa"
 
-#: ../src/yelp-search-pager.c:840 ../src/yelp-toc-pager.c:1545
+#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:1568
 msgid "Help Contents"
 msgstr "Ohjeen sisältö"
 
-#: ../src/yelp-search-pager.c:1116 ../src/yelp-toc-pager.c:495
+#: ../src/yelp-search-pager.c:1141 ../src/yelp-toc-pager.c:497
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "OMF-tiedostoa \"%s\" ei voitu ladata."
@@ -562,21 +556,21 @@ msgstr "OMF-tiedostoa \"%s\" ei voitu ladata."
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201D"
 
-#: ../src/yelp-toc-pager.c:272
+#: ../src/yelp-toc-pager.c:271
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Taukomäärä on negatiivinen."
 
-#: ../src/yelp-toc-pager.c:633
+#: ../src/yelp-toc-pager.c:635
 #, c-format
 msgid "Read man page for %s"
 msgstr "Lue manuaalisivu %s"
 
-#: ../src/yelp-toc-pager.c:1099
+#: ../src/yelp-toc-pager.c:1106
 #, c-format
 msgid "Read info page for %s"
 msgstr "Lue info-sivu %s"
 
-#: ../src/yelp-toc-pager.c:1197
+#: ../src/yelp-toc-pager.c:1204
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -585,11 +579,11 @@ msgstr ""
 "Sisällysluettelon lataaminen epäonnistui. Tiedosto \"%s\" joko puuttuu tai "
 "ei ole hyvämuotoista XML:ää."
 
-#: ../src/yelp-toc-pager.c:1219
+#: ../src/yelp-toc-pager.c:1226
 msgid "Command Line Help"
 msgstr "Komentorivin ohjeet"
 
-#: ../src/yelp-toc-pager.c:1328
+#: ../src/yelp-toc-pager.c:1340
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -598,178 +592,182 @@ msgstr ""
 "Sisällysluettelon käsittely epäonnistui. Tiedosto \"%s\" joko puuttuu tai ei "
 "ole kelvollinen XSLT-tyylisivu."
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:310
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:311
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:312
 msgid "_Go"
 msgstr "_Siirry"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:313
 msgid "_Bookmarks"
 msgstr "_Kirjanmerkit"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:314
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:317
 msgid "_New Window"
 msgstr "_Uusi ikkuna"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:322
 msgid "Print This Document"
 msgstr "Tulosta tämä asiakirja"
 
-#: ../src/yelp-window.c:328
+#: ../src/yelp-window.c:327
 msgid "Print This Page"
 msgstr "Tulosta tämä sivu"
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:332
 msgid "About This Document"
 msgstr "Tietoja tästä asiakirjasta"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:337
 msgid "Open _Location"
 msgstr "Avaa si_jainti"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:342
 msgid "_Close Window"
 msgstr "_Sulje ikkuna"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:348
 msgid "_Copy"
 msgstr "_Kopioi"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:354
 msgid "_Select All"
 msgstr "Valitse k_aikki"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:359
 msgid "_Find..."
 msgstr "_Etsi..."
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:364
 msgid "Find Pre_vious"
 msgstr "Etsi _edellinen"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:366
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Etsi sanan tai lauseen edellinen esiintymä"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:369
 msgid "Find Ne_xt"
 msgstr "Etsi _seuraava"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:371
 msgid "Find next occurrence of the word or phrase"
 msgstr "Etsi sanan tai lauseen seuraava esiintymä"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:374
 msgid "_Preferences"
 msgstr "As_etukset"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:379
 msgid "_Reload"
 msgstr "_Päivitä"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:391
 msgid "_Back"
 msgstr "E_dellinen"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:393
 msgid "Show previous page in history"
 msgstr "Näytä edellinen sivu"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:396
 msgid "_Forward"
 msgstr "S_euraava"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:398
 msgid "Show next page in history"
 msgstr "Näytä seuraava sivu"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:401
 msgid "_Help Topics"
 msgstr "_Ohjeen aiheet"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:403
 msgid "Go to the listing of help topics"
 msgstr "Siirry ohjeen aiheiden luetteloon"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:406
 msgid "_Previous Section"
 msgstr "_Edellinen luku"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:411
 msgid "_Next Section"
 msgstr "_Seuraava luku"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:416 ../src/yelp-window.c:448
 msgid "_Contents"
 msgstr "_Sisältö"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:422
 msgid "_Add Bookmark"
 msgstr "_Lisää kirjanmerkki"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:427
 msgid "_Edit Bookmarks..."
 msgstr "_Muokkaa kirjanmerkkejä..."
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:433
 msgid "_Open Link"
 msgstr "_Avaa linkki"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:438
 msgid "Open Link in _New Window"
 msgstr "Avaa linkki _uudessa ikkunassa"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:443
 msgid "_Copy Link Address"
 msgstr "K_opioi linkin osoite"
 
 #: ../src/yelp-window.c:450
+msgid "Help On this application"
+msgstr "Apua tämän ohjelman käytössä"
+
+#: ../src/yelp-window.c:453
 msgid "_About"
 msgstr "_Tietoja"
 
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:458
 msgid "Copy _Email Address"
 msgstr "Kopioi _sähköpostiosoite"
 
-#: ../src/yelp-window.c:504
+#: ../src/yelp-window.c:507
 msgid "Help Browser"
 msgstr "Ohjeselain"
 
-#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
+#: ../src/yelp-window.c:771 ../src/yelp-window.c:927
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Tiedoston sijainti (URL) on virheellinen."
 
-#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
+#: ../src/yelp-window.c:783 ../src/yelp-window.c:922
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "URL \"%s\" on virheellinen eikä osoita tiedostoon."
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
+#: ../src/yelp-window.c:871 ../src/yelp-window.c:1298
 msgid "Man pages are not supported in this version."
 msgstr "Manuaalisivuja ei voi lukea tällä versiolla."
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:881 ../src/yelp-window.c:1289
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU info-sivuja ei voi lukea tällä versiolla."
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
+#: ../src/yelp-window.c:897 ../src/yelp-window.c:1311
 msgid "Search is not supported in this version."
 msgstr "Tämä versio ei tue hakua."
 
-#: ../src/yelp-window.c:899
+#: ../src/yelp-window.c:902
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -777,27 +775,27 @@ msgstr ""
 "SGML-asiakirjoja ei voi enää lukea tällä ohjelmalla. Kehota asiakirjan "
 "tekijää muuntamaan se XML-muotoon."
 
-#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1028
 msgid "_Search:"
 msgstr "_Hae:"
 
-#: ../src/yelp-window.c:1026
+#: ../src/yelp-window.c:1029
 msgid "Search for other documentation"
 msgstr "Hae muita ohjeita"
 
-#: ../src/yelp-window.c:1175
+#: ../src/yelp-window.c:1178
 msgid "Fin_d:"
 msgstr "_Etsi:"
 
-#: ../src/yelp-window.c:1195
+#: ../src/yelp-window.c:1198
 msgid "Find _Next"
 msgstr "Etsi _seuraava"
 
-#: ../src/yelp-window.c:1207
+#: ../src/yelp-window.c:1210
 msgid "Find _Previous"
 msgstr "Etsi _edellinen"
 
-#: ../src/yelp-window.c:1321
+#: ../src/yelp-window.c:1324
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -806,8 +804,8 @@ msgstr ""
 "Muunnoskontekstin luonti tiedostoa \"%s\" varten epäonnistui. Tiedostomuoto "
 "ei välttämättä ole tuettu."
 
-#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
-#: ../src/yelp-window.c:1831
+#: ../src/yelp-window.c:1353 ../src/yelp-window.c:1767
+#: ../src/yelp-window.c:1843
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -818,7 +816,7 @@ msgstr ""
 "painiketta, ja tämä luku avautui, ilmoita tästä kyseisen ohjelman "
 "ylläpitäjille."
 
-#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2221
+#: ../src/yelp-window.c:1468 ../src/yelp-window.c:2233
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -827,13 +825,22 @@ msgstr ""
 "Tiedoston \"%s\" lukeminen ei onnistunut. Tiedosto voi puuttua, tai sinulla "
 "ei ole oikeuksia sen lukemiseen."
 
-#: ../src/yelp-window.c:1516
+#: ../src/yelp-window.c:1519
 msgid "Loading..."
 msgstr "Latautuu..."
 
+#: ../src/yelp-window.c:2665
+#, c-format
+msgid ""
+"Could not display help for Yelp.\n"
+"%s"
+msgstr ""
+"Yelpin ohjetta ei voi näyttää.\n"
+"%s"
+
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2649
+#: ../src/yelp-window.c:2696
 msgid "translator-credits"
 msgstr ""
 "Ilkka Tuohela, 2004-2005\n"
@@ -843,11 +850,11 @@ msgstr ""
 "\n"
 "http://gnome.fi/"
 
-#: ../src/yelp-window.c:2654
+#: ../src/yelp-window.c:2701
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Ohjeiden selaus- ja katseluohjelma Gnome-työpöytää varten."
 
-#: ../src/yelp-xslt-pager.c:195
+#: ../src/yelp-xslt-pager.c:193
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -856,7 +863,7 @@ msgstr ""
 "Tiedoston \"%s\" jäsennys epäonnistui. Tiedosto ei joko ole olemassa, tai se "
 "on väärin muotoiltu."
 
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
+#: ../src/yelp-xslt-pager.c:214 ../src/yelp-xslt-pager.c:227
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -868,6 +875,14 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Hae apua Gnomen käytössä"
+
+#~ msgid " GNOME Help Browser"
+#~ msgstr "Gnomen ohjeselain"
+
+#~ msgid ""
+#~ "Your search could not be processed. There is no connection to the beagle "
+#~ "daemon."
+#~ msgstr "Hakua ei voitu käsitellä. Beagle-palvelimeen ei saada yhteyttä."
 
 #~ msgid "<b>_Bookmarks:</b>"
 #~ msgstr "<b>_Kirjanmerkit:</b>"
