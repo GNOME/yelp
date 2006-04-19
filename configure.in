@@ -178,8 +178,6 @@ AM_CONDITIONAL(ENABLE_BEAGLE, test x"$with_search" = xbeagle)
 
 if test "x$with_search" = "xbeagle"; then
     PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES)
-elif test "x$have_beagle" = "xyes"; then
-    PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES)
 else
     YELP_SEARCH_CFLAGS=""
     YELP_SEARCH_LIBS=""
@@ -188,18 +186,23 @@ fi
 
 case "x$with_search" in
   "xbasic")
+    search_backend="basic"
     AC_DEFINE(ENABLE_SEARCH, 1, [Define if you want any search])
     ;;
   "xbeagle")
+    search_backend="beagle"
     AC_DEFINE(ENABLE_SEARCH, 1, [Define if you want any search])
     AC_DEFINE(ENABLE_BEAGLE, 1, [Define if you want the power of Beagle])
     ;;
   "xno")
+    search_backend="none"
     ;;
   "xauto")
     AC_DEFINE(ENABLE_SEARCH, 1)
+    search_backend="auto - basic"
     if test x$have_beagle = xyes; then
       AC_DEFINE(ENABLE_BEAGLE, 1)
+      search_backend="auto - beagle"
     fi
     ;;
   *)
@@ -235,15 +238,6 @@ AC_DEFINE([MOZILLA_INTERNAL_API],[1],[Define to have access to internal Mozilla 
 
 AC_CHECK_FILE([$MOZILLA_INCLUDE_ROOT/fastfind/nsITypeAheadFind.h],
 	[AC_DEFINE([TYPEAHEADFIND],[1],[Define if we have toolkit's nsITypeAheadFind])])
-
-dnl =================
-dnl Check for whereis
-dnl =================
-
-case $host in
-  *-linux-gnu | *-irix6*) AC_DEFINE(HAVE_MAN_WHEREIS, 1, [man(1)  understands -w option]);;
-  *-solaris*) AC_DEFINE(HAVE_MAN_DEBUG, 1, [man(1) has a -d debug option]);;
-esac
 
 dnl ====================================
 dnl = zlib for help converters
@@ -313,6 +307,6 @@ yelp-$VERSION:
 	Man Pages enabled:        ${enable_man}
 	Info Pages enabled:       ${enable_info}
 	Beagle available:         ${have_beagle}
-	Search backend:           ${with_search}
+	Search backend:           ${search_backend}
 	Mozilla version:          ${MOZILLA}
 "
