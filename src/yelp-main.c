@@ -415,7 +415,10 @@ main (int argc, char **argv)
 
 	gnome_vfs_init ();
 
-	yelp_html_initialize ();
+	if (!yelp_html_initialize ()) {
+		g_print ("Could not initialize gecko!");
+		exit (2);
+	}
 
 	if (files != NULL && files[0] != NULL) {
 		url = g_strdup (files[0]);
@@ -473,6 +476,8 @@ main (int argc, char **argv)
 	} else {
 		main_start (url);
 	}
+
+	yelp_html_shutdown ();
 
 	g_object_unref (program);
         return 0;

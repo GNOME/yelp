@@ -31,6 +31,41 @@
 #include <stdlib.h>
 
 #include "yelp-gecko-utils.h"
+#include "yelp-gecko-services.h"
+
+static nsIPrefBranch* gPrefBranch;
+
+static const char *font_languages[] = {
+	"x-western"
+#ifdef HAVE_GECKO_1_8
+	,
+	"ar",
+	"el",
+	"he",
+	"ja",
+	"ko",
+	"th",
+	"tr",
+	"x-armn",
+	"x-baltic",
+	"x-beng",
+	"x-cans",
+	"x-central-euro",
+	"x-cyrillic",
+	"x-devanagari",
+	"x-ethi",
+	"x-geor",
+	"x-gujr",
+	"x-guru",
+	"x-khmr",
+	"x-mlym",
+	"x-tamil",
+	"x-unicode",
+	"zh-CN",
+	"zh-HK",
+	"zh-TW"
+#endif /* HAVE_GECKO_1_8 */
+};
 
 static gboolean
 yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
@@ -38,6 +73,8 @@ yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 	PangoFontDescription *desc;
 	PangoFontMask mask = (PangoFontMask) (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
 	gboolean retval = FALSE;
+
+	if (!font_name) return FALSE;
 
 	desc = pango_font_description_from_string (font_name);
 	if (!desc) return FALSE;
@@ -56,49 +93,25 @@ yelp_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 static gboolean
 gecko_prefs_set_bool (const gchar *key, gboolean value)
 {
-	nsresult rv;
-	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
-	NS_ENSURE_SUCCESS (rv, FALSE);
+	NS_ENSURE_TRUE (gPrefBranch, FALSE);
 
-	nsCOMPtr<nsIPrefBranch> pref;
-	rv = prefService->GetBranch ("", getter_AddRefs (pref));
-	NS_ENSURE_SUCCESS (rv, FALSE);
-
-	rv = pref->SetBoolPref (key, value);
-
-	return NS_SUCCEEDED (rv) != PR_FALSE;
+	return NS_SUCCEEDED(gPrefBranch->SetBoolPref (key, value));
 }
 
 static gboolean
 gecko_prefs_set_string (const gchar *key, const gchar *value)
 {
-	nsresult rv;
-	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
-	NS_ENSURE_SUCCESS (rv, FALSE);
+	NS_ENSURE_TRUE (gPrefBranch, FALSE);
 
-	nsCOMPtr<nsIPrefBranch> pref;
-	rv = prefService->GetBranch ("", getter_AddRefs (pref));
-	NS_ENSURE_SUCCESS (rv, FALSE);
-
-	rv = pref->SetCharPref (key, value);
-
-	return NS_SUCCEEDED (rv) != PR_FALSE;
+	return NS_SUCCEEDED(gPrefBranch->SetCharPref (key, value));
 }
 
 static gboolean
 gecko_prefs_set_int (const gchar *key, gint value)
 {
-	nsresult rv;
-	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
-	NS_ENSURE_SUCCESS (rv, FALSE);
+	NS_ENSURE_TRUE (gPrefBranch, FALSE);
 
-	nsCOMPtr<nsIPrefBranch> pref;
-	rv = prefService->GetBranch ("", getter_AddRefs (pref));
-	NS_ENSURE_SUCCESS (rv, FALSE);
-
-	rv = pref->SetIntPref (key, value);
-
-	return NS_SUCCEEDED (rv) != PR_FALSE;
+	return NS_SUCCEEDED(gPrefBranch->SetIntPref (key, value));
 }
 
 extern "C" void
@@ -132,12 +145,11 @@ yelp_gecko_set_color (YelpColorType type, const gchar *color)
 extern "C" void
 yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 {
-	gchar *name;
-	gint   size = 0;
+	char *name = NULL;
+	char pref[128];
+	int size = 0;
+	guint i;
 
-	g_return_if_fail (fontname != NULL);
-
-	name = NULL;
 	if (!yelp_util_split_font_string (fontname, &name, &size)) {
 		g_free (name);
 		return;
@@ -147,22 +159,36 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 
 	switch (font_type) {
 	case YELP_FONT_VARIABLE:
-		gecko_prefs_set_string ("font.name.variable.x-western", 
-					name);
-		gecko_prefs_set_int ("font.size.variable.x-western", 
-				     size);
-		gecko_prefs_set_int ("font.minimum-size.x-western", 
-				     8);
+		for (i = 0; i < G_N_ELEMENTS (font_languages); ++i) {
+			g_snprintf (pref, sizeof (pref), 
+				    "font.name.variable.%s",
+				    font_languages[i]);
+			gecko_prefs_set_string (pref, name);
+			
+			g_snprintf (pref, sizeof (pref), 
+				    "font.size.variable.%s",
+				    font_languages[i]);
+			gecko_prefs_set_int (pref, size);
+			
+			g_snprintf (pref, sizeof (pref), 
+				    "font.minimum-size.%s",
+				    font_languages[i]);
+			gecko_prefs_set_int (pref, 8);
+		}
 		break;
 	case YELP_FONT_FIXED:
-		gecko_prefs_set_string ("font.name.monospace.x-western", 
-					name);
-		gecko_prefs_set_int ("font.size.monospace.x-western", 
-				     size);
-		gecko_prefs_set_string ("font.name.fixed.x-western", 
-					name);
-		gecko_prefs_set_int ("font.size.fixed.x-western", 
-				     size);
+		for (i = 0; i < G_N_ELEMENTS (font_languages); ++i) {
+			g_snprintf (pref, sizeof (pref), 
+				    "font.name.monospace.%s",
+				    font_languages[i]);
+			gecko_prefs_set_string (pref, name);
+			
+			g_snprintf (pref, sizeof (pref), 
+				    "font.size.monospace.%s",
+				    font_languages[i]);
+			gecko_prefs_set_int (pref, size);
+		}
+		
 		break;
 	default:
 		break;
@@ -170,3 +196,31 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 
 	g_free (name);
 }		   
+
+extern "C" gboolean
+yelp_gecko_init (void)
+{
+	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
+	
+	gtk_moz_embed_push_startup ();
+	
+	yelp_register_printing ();
+	
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+	
+	rv = CallQueryInterface (prefService, &gPrefBranch);
+	NS_ENSURE_SUCCESS (rv, FALSE);
+	
+	return TRUE;
+}
+
+extern "C" void
+yelp_gecko_shutdown (void)
+{
+	NS_IF_RELEASE (gPrefBranch);
+	gPrefBranch = nsnull;
+	
+	gtk_moz_embed_pop_startup ();
+}

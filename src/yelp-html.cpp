@@ -164,7 +164,6 @@ html_init (YelpHtml *html)
 				      NULL);
 	html_set_a11y ();
     }
-    yelp_register_printing ();
 }
 
 static void
@@ -492,16 +491,14 @@ html_set_a11y (void)
     yelp_gecko_set_caret (caret);
 }
 
-void
+gboolean
 yelp_html_initialize (void)
 {
-    static gboolean initialized = FALSE;
-
-    if (initialized)
-	return;
-    initialized = TRUE;
-
-    gtk_moz_embed_set_comp_path (MOZILLA_HOME);
-
+    return yelp_gecko_init ();
 }
 
+void
+yelp_html_shutdown (void)
+{
+    yelp_gecko_shutdown ();
+}

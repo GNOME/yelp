@@ -113,7 +113,8 @@ void            yelp_html_print          (YelpHtml    *html,
 void            yelp_html_preview_end    (YelpHtml    *html);
 void            yelp_html_preview_navigate (YelpHtml *html,
 					    gint page_no);
-void            yelp_html_initialize     (void);
+gboolean        yelp_html_initialize     (void);
+void            yelp_html_shutdown       (void); 
 
 G_END_DECLS
 

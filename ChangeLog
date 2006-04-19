@@ -1,5 +1,14 @@
 2006-04-19  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/Makefile.am: 
+	* src/yelp-html.h: 
+	* src/yelp-html.cpp: 
+	* src/yelp-gecko-utils.cpp: 
+	* src/yelp-gecko-utils.h: 
+	* src/yelp-main.c: 
+	Change font size for all locales (from Christian Persch)
+	Fixes #165678
+	
 	* configure.in: 
 	Clean up configure.in a bit
 	Fixes #337437

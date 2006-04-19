@@ -33,6 +33,8 @@ void            yelp_gecko_set_color   (YelpColorType  type,
 					const gchar   *color);
 void            yelp_gecko_set_font    (YelpFontType   font_type,
 				        const gchar   *fontname);
+gboolean       yelp_gecko_init         (void);
+void           yelp_gecko_shutdown     (void);
 
 G_END_DECLS
 

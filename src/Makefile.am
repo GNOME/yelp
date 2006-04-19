@@ -50,6 +50,7 @@ YELP_DEFINES =								\
 	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
 	-DSERVERDIR=\"$(libexecdir)\"					\
 	-DBINDIR=\""$(bindir)"\"					\
+	-DSHAREDIR=\""$(pkgdatadir)"\"                                  \
 	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""
 
 mozilla_include_subdirs =	\
