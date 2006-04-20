@@ -55,21 +55,22 @@ YELP_DEFINES =								\
 
 mozilla_include_subdirs =	\
 	.		\
+	commandhandler  \
+	content		\
 	docshell	\
 	dom		\
 	fastfind	\
 	find		\
 	gtkembedmoz	\
-	pref		\
-	webbrwsr	\
-	string		\
-	webshell	\
-	commandhandler  \
-	layout		\
-	uriloader	\
-	content		\
 	gfx		\
-	necko
+	layout		\
+	necko		\
+	pref		\
+	string		\
+	uriloader	\
+	webbrwsr	\
+	webshell	\
+	widget
 
 yelp_CPPFLAGS =									\
 	-I$(top_srcdir)								\
@@ -96,7 +97,8 @@ yelp_LDADD =				\
 	$(Z_LIBS)			\
 	$(BZ_LIBS)			\
 	$(X_LIBS)			\
-	$(MOZILLA_COMPONENT_LIBS)
+	$(MOZILLA_COMPONENT_LIBS)	\
+	$(MOZILLA_EXTRA_LIBS)
 
 yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
 

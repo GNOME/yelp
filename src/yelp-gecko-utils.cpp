@@ -200,19 +200,27 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 extern "C" gboolean
 yelp_gecko_init (void)
 {
+#ifdef HAVE_GECKO_1_9
+	NS_LogInit ();
+#endif
+	
+#ifdef HAVE_GECKO_1_9
+	gtk_moz_embed_set_path (MOZILLA_HOME);
+#else
 	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
-	
+#endif
+
 	gtk_moz_embed_push_startup ();
-	
+
 	yelp_register_printing ();
-	
+
 	nsresult rv;
 	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
 	NS_ENSURE_SUCCESS (rv, FALSE);
-	
+
 	rv = CallQueryInterface (prefService, &gPrefBranch);
 	NS_ENSURE_SUCCESS (rv, FALSE);
-	
+
 	return TRUE;
 }
 
@@ -221,6 +229,10 @@ yelp_gecko_shutdown (void)
 {
 	NS_IF_RELEASE (gPrefBranch);
 	gPrefBranch = nsnull;
-	
+
 	gtk_moz_embed_pop_startup ();
+
+#ifdef HAVE_GECKO_1_9
+        NS_LogTerm ();
+#endif
 }

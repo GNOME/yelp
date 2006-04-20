@@ -220,8 +220,11 @@ AC_SUBST([YELP_SEARCH_LIBS])
 GECKO_INIT([MOZILLA])
 
 AC_SUBST([MOZILLA])
+AC_SUBST([MOZILLA_FLAVOUR])
 AC_SUBST([MOZILLA_INCLUDE_ROOT])
 AC_SUBST([MOZILLA_HOME])
+AC_SUBST([MOZILLA_PREFIX])
+AC_SUBST([MOZILLA_EXTRA_LIBS])
 
 case "$MOZILLA" in
 mozilla) gecko_min_version=1.7 ;;
@@ -231,13 +234,14 @@ seamonkey) gecko_min_version=1.0 ;;
 xulrunner) gecko_min_version=1.8 ;;
 esac
 
-PKG_CHECK_MODULES([MOZILLA_COMPONENT],[$MOZILLA-gtkmozembed >= $gecko_min_version $MOZILLA-xpcom >= $gecko_min_version])
+PKG_CHECK_MODULES([MOZILLA_COMPONENT],[${gecko_cv_gecko}-xpcom >= $gecko_min_version $gecko_cv_extra_pkg_dependencies])
+
+if test "$gecko_cv_gecko_flavour" = "toolkit"; then
+	AC_DEFINE([TYPEAHEADFIND],[1],[Define if we have toolkit's typeaheadfind])
+fi
 
 dnl Needed since gecko 1.8b2
 AC_DEFINE([MOZILLA_INTERNAL_API],[1],[Define to have access to internal Mozilla APIs])
-
-AC_CHECK_FILE([$MOZILLA_INCLUDE_ROOT/fastfind/nsITypeAheadFind.h],
-	[AC_DEFINE([TYPEAHEADFIND],[1],[Define if we have toolkit's nsITypeAheadFind])])
 
 dnl ====================================
 dnl = zlib for help converters
