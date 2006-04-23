@@ -1097,9 +1097,13 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	                                    node->xmlChildrenNode, 1);
 	    
 	    /* if we can't stat the dirname for some reason, then skip adding
-	     * this directory to the TOC */
+	     * this directory to the TOC, remove the dirnode, and set the flag
+	     * to rewrite the cache file */
 	    if (g_stat ((gchar *)dirname, &buf) < 0) {
-		g_warning ("Unable to stat dir: \"%s\"\n", dirname);
+		g_warning ("Unable to stat dir \"%s\", removing from cache file.\n", dirname);
+		xmlUnlinkNode (dirnode);
+		xmlFreeNode (dirnode);
+		update_flag = 1;
 	    	continue;
 	    }
 

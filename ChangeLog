@@ -1,3 +1,12 @@
+2006-04-23  Brent Smith  <gnome@nextreality.net>
+
+	* configure.in:
+	Don't print out whether or not beagle is available in the summary
+	since there are instances where we don't even check, i.e.
+	--with-search=no|basic
+	* src/yelp-toc-pager.c: (create_toc_from_index):
+	If we are unable to stat a directory in the cache file, remove it.
+
 2006-04-22  Brent Smith  <gnome@nextreality.net>
 
 	* configure.in:
