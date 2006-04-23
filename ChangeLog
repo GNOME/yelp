@@ -1,3 +1,17 @@
+2006-04-22  Brent Smith  <gnome@nextreality.net>
+
+	* configure.in:
+	Fix an issue with auto detect search not setting YELP_SEARCH_CFLAGS
+	and YELP_SEARCH_LIBS correctly.
+	* src/yelp-toc-pager.c: (get_omf_attributes),
+	(create_toc_from_omf_cache_file), (process_omf_pending),
+	(process_mandir_pending):
+	Fix a crash in create_toc_from_omf_cache_file() when the url element 
+	is not present in the omfindex.xml file.
+	Fix a crash in process_omf_pending() when the omf file is unable to be 
+	opened in get_omf_attributes()
+	Refactor some of the man page cache code to reduce nesting
+
 2006-04-20  Christian Persch  <chpe@cvs.gnome.org>
 
 	* configure.in:

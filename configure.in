@@ -178,9 +178,6 @@ AM_CONDITIONAL(ENABLE_BEAGLE, test x"$with_search" = xbeagle)
 
 if test "x$with_search" = "xbeagle"; then
     PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES)
-else
-    YELP_SEARCH_CFLAGS=""
-    YELP_SEARCH_LIBS=""
 fi
 
 

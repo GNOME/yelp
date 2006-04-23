@@ -509,7 +509,7 @@ files_are_equivalent (gchar *file1, gchar *file2)
  * caller must free the hash table with g_hash_table_destroy()
  * returns NULL on failure */
 static GHashTable *
-get_omf_attributes (YelpTocPager *pager, gchar *omffile)
+get_omf_attributes (YelpTocPager *pager, const gchar *omffile)
 {
     YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
     GHashTable *hash = NULL;
@@ -517,7 +517,7 @@ get_omf_attributes (YelpTocPager *pager, gchar *omffile)
     xmlXPathObjectPtr  object  = NULL;
     xmlDocPtr          omf_doc = NULL;
 
-    omf_doc = xmlCtxtReadFile (priv->parser, (const char *) omffile, NULL,
+    omf_doc = xmlCtxtReadFile (priv->parser, omffile, NULL,
                                XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
                                XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
                                XML_PARSE_NONET    );
@@ -610,6 +610,11 @@ create_toc_from_omf_cache_file (YelpTocPager *pager, const gchar *index_file)
 	attr = xmlNodeListGetString (omfindex_xml, node->xmlChildrenNode, 1);
 	xmlXPathFreeObject (objattr);
 
+	if (!attr) {
+	    g_warning ("missing required \"url\" element in omf cache file\n");
+	    continue;
+	}
+
 	doc_info = yelp_doc_info_get ((const gchar *) attr, TRUE);
 	xmlFree (attr);
 
@@ -690,7 +695,6 @@ process_omf_pending (YelpTocPager *pager)
     GSList  *first = NULL;
     gchar   *dir   = NULL;
     gchar   *file  = NULL;
-    gchar   *id    = NULL;
     gchar   *lang  = NULL;
     gchar   *stderr_str = NULL;
     gchar   *command    = NULL;
@@ -827,6 +831,8 @@ process_omf_pending (YelpTocPager *pager)
     filelist = g_hash_table_lookup (priv->omf_dirhash, dir);
 
     while (filelist && filelist->data) {
+	gchar *id = NULL;
+
 	firstfile = filelist;
 	filelist = g_slist_remove_link (filelist, firstfile);
 
@@ -836,6 +842,9 @@ process_omf_pending (YelpTocPager *pager)
 	    goto done;
 
 	omf_hash = get_omf_attributes (pager, file);
+
+	if (!omf_hash)
+	    goto done;
 
 	/* this add all the omf information to the xml cache file */
 	priv->omf_ins = xmlNewChild (priv->omf_ins, NULL, 
@@ -892,7 +901,8 @@ process_omf_pending (YelpTocPager *pager)
 	    toc_add_doc_info (YELP_TOC_PAGER (pager), doc_info);
 
 done:
-	g_hash_table_destroy (omf_hash);
+	if (omf_hash)
+	    g_hash_table_destroy (omf_hash);
 	g_free (file);
 	g_slist_free_1 (firstfile);
 	g_free (id);
@@ -1236,134 +1246,138 @@ process_mandir_pending (YelpTocPager *pager)
 	if (g_file_test (index_file, G_FILE_TEST_EXISTS) &&
 	    create_toc_from_index (pager, index_file)) {
 
-	    /* we are done.. */
+	    /* we are done processing, return FALSE so we don't call this 
+	     * function again. */
 	    return FALSE;
-	} else {
-	    mandirs = yelp_get_man_paths ();
-	    priv->manindex_xml = xmlNewDoc (BAD_CAST "1.0");
-	    priv->root = xmlNewNode (NULL, BAD_CAST "manindex");
-	    priv->ins  = priv->root;
-
-	    xmlDocSetRootElement (priv->manindex_xml, priv->root);
-
-	    xmlAddChild (priv->root, xmlNewText (BAD_CAST "\n  "));
-
-	    if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
-		manpath = g_strdup (g_getenv ("MANPATH"));
-
-	    if (!manpath) {
-		manpath = g_strdup ("/usr/share/man");
-	    }
-
-	    g_strstrip (manpath);
-	    manpaths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
-	    g_free (manpath);
-
-	    for (i=0; mandirs[i] != NULL; i++) {
-		GSList *tmplist = NULL;
-
-		for (j=0; langs[j] != NULL; j++) {
-		    for (k=0; manpaths[k] != NULL; k++) { 
-			if (g_str_equal (langs[j], "C"))
-			    dirname = g_build_filename (manpaths[k], mandirs[i], NULL);
-			else
-			    dirname = g_build_filename (manpaths[k], langs[j], 
-			                                mandirs[i],
-			                                NULL);
-
-			tmplist = g_slist_prepend (tmplist, dirname);
-		    }
-		}
-
-		priv->mandir_list = g_slist_prepend (priv->mandir_list, tmplist);
-	    }
- 
-	    priv->mandir_ptr = priv->mandir_list;
-	    if (priv->mandir_list && priv->mandir_list->data) {
-		priv->mandir_langpath = priv->mandir_list->data;
-	    }
 	}
+	
+	mandirs = yelp_get_man_paths ();
+	priv->manindex_xml = xmlNewDoc (BAD_CAST "1.0");
+	priv->root = xmlNewNode (NULL, BAD_CAST "manindex");
+	priv->ins  = priv->root;
+
+	xmlDocSetRootElement (priv->manindex_xml, priv->root);
+
+	xmlAddChild (priv->root, xmlNewText (BAD_CAST "\n  "));
+
+	if (!g_spawn_command_line_sync ("manpath", &manpath, NULL, NULL, NULL))
+	    manpath = g_strdup (g_getenv ("MANPATH"));
+
+	if (!manpath) {
+	    manpath = g_strdup ("/usr/share/man");
+	}
+
+	g_strstrip (manpath);
+	manpaths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
+	g_free (manpath);
+
+	for (i=0; mandirs[i] != NULL; i++) {
+	    GSList *tmplist = NULL;
+
+	    for (j=0; langs[j] != NULL; j++) {
+		for (k=0; manpaths[k] != NULL; k++) { 
+		    if (g_str_equal (langs[j], "C"))
+			dirname = g_build_filename (manpaths[k], mandirs[i], NULL);
+		    else
+			dirname = g_build_filename (manpaths[k], langs[j], 
+			                            mandirs[i],
+			                            NULL);
+
+		    tmplist = g_slist_prepend (tmplist, dirname);
+		}
+	    }
+
+	    priv->mandir_list = g_slist_prepend (priv->mandir_list, tmplist);
+	}
+ 
+	priv->mandir_ptr = priv->mandir_list;
+	if (priv->mandir_list && priv->mandir_list->data) {
+	    priv->mandir_langpath = priv->mandir_list->data;
+	}
+
+	/* return TRUE, so that this function is called again.*/
+	return TRUE;
     }
+    
     /* iterate through our previously created linked lists and create the
      * table of contents from them */
-    else {
-	if (!priv->man_manhash) {
-	    priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
-	                                               g_free,     NULL);
+    if (!priv->man_manhash) {
+	priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
+	                                           g_free,     NULL);
 
-            priv->ins = xmlNewChild (priv->root, NULL, BAD_CAST "mansect", NULL);
-	    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n    "));			    
+        priv->ins = xmlNewChild (priv->root, NULL, BAD_CAST "mansect", NULL);
+	xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n    "));			    
+    }
+
+    if (priv->mandir_langpath && priv->mandir_langpath->data) {
+	dirname = priv->mandir_langpath->data;
+
+	if ((dir = g_dir_open (dirname, 0, NULL))) {
+	    struct stat buf;
+	    gchar mtime_str[20];
+
+	    if (g_stat (dirname, &buf) < 0)
+		g_warning ("Unable to stat dir: \"%s\"\n", dirname);
+
+	    g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
+
+	    priv->ins = xmlNewChild (priv->ins, NULL, BAD_CAST "dir", NULL);
+	    xmlNewProp (priv->ins, BAD_CAST "mtime", BAD_CAST mtime_str);
+	    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
+	    xmlNewChild (priv->ins, NULL, BAD_CAST "name", BAD_CAST dirname);
+	    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
+	    xmlAddChild (priv->ins->parent, xmlNewText (BAD_CAST "\n    "));
+
+	    while ((filename = (gchar *) g_dir_read_name (dir))) {
+
+		xmlNewChild (priv->ins, NULL, BAD_CAST "page", BAD_CAST filename);
+		xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
+
+		add_man_page_to_toc (pager, dirname, filename);
+		priv->manpage_count++;
+	    }
+
+	    priv->ins = priv->ins->parent;
+
+	    g_dir_close (dir);
 	}
 
-	if (priv->mandir_langpath && priv->mandir_langpath->data) {
-	    dirname = priv->mandir_langpath->data;
+	priv->mandir_langpath = g_slist_next (priv->mandir_langpath);
 
-	    if ((dir = g_dir_open (dirname, 0, NULL))) {
-		struct stat buf;
-		gchar mtime_str[20];
+    } else {
+	priv->mandir_ptr = g_slist_next (priv->mandir_ptr);
 
-		if (g_stat (dirname, &buf) < 0)
-		    g_warning ("Unable to stat dir: \"%s\"\n", dirname);
+	if (priv->mandir_ptr && priv->mandir_ptr->data) {
+	    priv->mandir_langpath = priv->mandir_ptr->data;
 
-		g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
-
-		priv->ins = xmlNewChild (priv->ins, NULL, BAD_CAST "dir", NULL);
-		xmlNewProp (priv->ins, BAD_CAST "mtime", BAD_CAST mtime_str);
-		xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
-		xmlNewChild (priv->ins, NULL, BAD_CAST "name", BAD_CAST dirname);
-		xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
-		xmlAddChild (priv->ins->parent, xmlNewText (BAD_CAST "\n    "));
-
-		while ((filename = (gchar *) g_dir_read_name (dir))) {
-
-		    xmlNewChild (priv->ins, NULL, BAD_CAST "page", BAD_CAST filename);
-		    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
-
-		    add_man_page_to_toc (pager, dirname, filename);
-		    priv->manpage_count++;
-		}
-
-		priv->ins = priv->ins->parent;
-
-		g_dir_close (dir);
+	    if (priv->man_manhash) {
+		g_hash_table_destroy (priv->man_manhash);
+		priv->man_manhash = NULL;
 	    }
+	} else {   /* no more entries to prcoess, write file & cleanup */
+	    GSList *listptr = priv->mandir_list;
 
-	    priv->mandir_langpath = g_slist_next (priv->mandir_langpath);
+	    while (listptr && listptr->data)  {
+		GSList *langptr = listptr->data;
 
-	} else {
-	    priv->mandir_ptr = g_slist_next (priv->mandir_ptr);
-
-	    if (priv->mandir_ptr && priv->mandir_ptr->data) {
-		priv->mandir_langpath = priv->mandir_ptr->data;
-
-		if (priv->man_manhash) {
-		    g_hash_table_destroy (priv->man_manhash);
-		    priv->man_manhash = NULL;
+		while (langptr && langptr->data) {
+		    g_free (langptr->data);
+		    langptr = g_slist_next (langptr);
 		}
-	    } else {   /* no more entries to prcoess, write file & cleanup */
-		GSList *listptr = priv->mandir_list;
-
-		while (listptr && listptr->data)  {
-		    GSList *langptr = listptr->data;
-
-		    while (langptr && langptr->data) {
-		    	g_free (langptr->data);
-			langptr = g_slist_next (langptr);
-		    }
-		    g_slist_free (listptr->data);
+		
+		g_slist_free (listptr->data);
 		   
-		    listptr = g_slist_next (listptr);
-		}
-
-		g_slist_free (priv->mandir_list);
-
-		create_manindex_file (index_file, priv->manindex_xml);
-
-		xmlFree (priv->manindex_xml);
-
-		/* done processing */
-		return FALSE;
+		listptr = g_slist_next (listptr);
 	    }
+
+	    g_slist_free (priv->mandir_list);
+
+	    create_manindex_file (index_file, priv->manindex_xml);
+
+	    xmlFree (priv->manindex_xml);
+
+	    /* done processing */
+	    return FALSE;
 	}
     }
 
