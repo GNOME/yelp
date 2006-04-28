@@ -11,7 +11,7 @@ AM_MAINTAINER_MODE
 
 AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
 
-AC_PROG_INTLTOOL
+IT_PROG_INTLTOOL([0.34.90])
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 
 AM_GCONF_SOURCE_2
@@ -60,7 +60,6 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",
                    [The gettext translation domain])
 
-ALL_LINGUAS="af am ar az be bg bn br bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja ka kn ko ku ky li lt lv mk ml mn mr ms nb ne nl nn nso or pa pl pt pt_BR ro ru rw sk sl sq sr sr@Latn sv ta tg th tr ug uk vi wa xh zh_CN zh_HK zh_TW zu"
 AM_GLIB_GNU_GETTEXT
 
 AM_GLIB_DEFINE_LOCALEDIR([GNOMELOCALEDIR])
