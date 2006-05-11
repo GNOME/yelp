@@ -136,6 +136,8 @@ find_info_part (gchar *part_name)
 
   for (i=0; paths[i]; i++) {
     dir = g_dir_open (paths[i], 0, NULL);
+    if (!dir)
+      continue;
 
     while ((filename = (gchar *) g_dir_read_name (dir))) {
       if (g_str_equal (filename, bzfname)) {

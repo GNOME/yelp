@@ -1,5 +1,8 @@
 2006-05-11  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-info-parser.c: 
+	Actually check a directory exists before reading it (bug #339978)
+
 	* stylesheets/search2html.xsl: 
 	* src/yelp-window.c: 
 	* src/yelp-search-pager.c: 
