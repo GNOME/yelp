@@ -291,9 +291,31 @@ static int
 node2page (GHashTable *nodes2offsets, GHashTable *offsets2pages, char *node)
 {
 	char *offset;
+	gint int_offset;
+	gint page;
 
 	offset = g_hash_table_lookup (nodes2offsets, node);
-	return GPOINTER_TO_INT (g_hash_table_lookup (offsets2pages, offset));
+	page = GPOINTER_TO_INT (g_hash_table_lookup (offsets2pages, offset));
+	if (!page) {
+	  /* We got a badly formed tag table.  Most probably bash info page :(
+	   * Have to find the correct page.
+	   * The bash info file assumess 3 bytes more per node than reality
+	   * hence we check backwards in steps of 3
+	   * The first one we come across should be the correct node
+	   * (fingers crossed at least)
+	   */
+	  gchar *new_offset = NULL;
+	  int_offset = atoi (offset);
+
+	  while (!page && int_offset > 0) {
+	    int_offset-=3;
+	    g_free (new_offset);
+	    new_offset = g_strdup_printf ("%d", int_offset);
+	    page = GPOINTER_TO_INT (g_hash_table_lookup (offsets2pages, new_offset));	    
+	  }
+	  g_free (new_offset);
+	}
+	return page;
 }
 
 static GtkTreeIter
