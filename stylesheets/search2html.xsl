@@ -166,4 +166,8 @@
     <xsl:apply-templates/>
   </strong>
 </xsl:template>
+<xsl:template match="score">
+  <!--Empty to kill score result-->
+</xsl:template>
 </xsl:stylesheet>
+

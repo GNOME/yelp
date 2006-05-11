@@ -993,7 +993,21 @@ search_activated (GtkAction *action,
 
     search_terms = gtk_entry_action_get_text (GTK_ENTRY_ACTION (action));
 
-    uri = encode_search_uri (search_terms);
+    /* Do some basic checking here - if someones looking for a man
+     * or info page, save doing the search and just bring them directly to
+     * the relevant page
+     * Trigger it using "man:<foo>", "man <foo>" or "info:<foo>"
+     */
+    if (g_str_has_prefix (search_terms, "man:") || 
+	g_str_has_prefix (search_terms, "info:")) {
+	uri = g_strdup (search_terms);
+    } else if (g_str_has_prefix (search_terms, "man ") && 
+	       !strstr (&(search_terms[4])," ")) {
+	uri = g_strdup (search_terms);
+	uri[3]=':';
+    } else {
+	uri = encode_search_uri (search_terms);
+    }
 
     yelp_window_load (window, uri);
 

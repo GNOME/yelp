@@ -1,8 +1,23 @@
 2006-05-11  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* stylesheets/search2html.xsl: 
+	* src/yelp-window.c: 
+	* src/yelp-search-pager.c: 
+	Improving basic search.  Does several things:
+	- Make search box respond to "man <foo>", "man:<foo>" and "info:<foo>"
+	by going directly to man / info page (both backends)
+	- Only match whole words (basic)
+	- when > 1 search term, reduce number of man / info results drastically
+	- Tweaked result scoring
+	 - Results matching > 1 term are given precedence
+	- Allow > 1 search at a time (different windows)
+	- Fix various bugs
+	- New man page result parser that collects more results (bug #331831)
+	Closes bug #339595
+	
 	* src/yelp-window.c: 
 	Move all find code into a single function reducing
-	lots of duplicate code
+	lots of duplicate code	
 
 2006-04-27  Brian Pepple  <bdpepple@gmail.com>
 
