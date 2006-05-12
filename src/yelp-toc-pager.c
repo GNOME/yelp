@@ -832,6 +832,7 @@ process_omf_pending (YelpTocPager *pager)
 
     while (filelist && filelist->data) {
 	gchar *id = NULL;
+	gchar *url = NULL;
 
 	firstfile = filelist;
 	filelist = g_slist_remove_link (filelist, firstfile);
@@ -844,6 +845,12 @@ process_omf_pending (YelpTocPager *pager)
 	omf_hash = get_omf_attributes (pager, file);
 
 	if (!omf_hash)
+	    goto done;
+
+	/* url is required, if it's not present don't even add the
+	 * entry to the cache file */
+	url = g_hash_table_lookup (omf_hash, "url");
+	if (url == NULL || *url == '\0')
 	    goto done;
 
 	/* this add all the omf information to the xml cache file */

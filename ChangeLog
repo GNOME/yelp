@@ -1,3 +1,13 @@
+2006-05-11  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-man-parser.c: (macro_reference_handler):
+	When a man page uses the .so macro to include another file, just
+	provide a link to the file;  Only works for man pages that have
+	.so as the first and only macro; sort of fixes #340173
+	* src/yelp-toc-pager.c: (process_omf_pending):
+	Don't add OMF entries to the cache file that are missing a url 
+	attribute on the identifier element
+
 2006-05-11  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-info-parser.c: 
@@ -16,7 +26,7 @@
 	- Only match whole words (basic)
 	- when > 1 search term, reduce number of man / info results drastically
 	- Tweaked result scoring
-	 - Results matching > 1 term are given precedence
+	- Results matching > 1 term are given precedence
 	- Allow > 1 search at a time (different windows)
 	- Fix various bugs
 	- New man page result parser that collects more results (bug #331831)

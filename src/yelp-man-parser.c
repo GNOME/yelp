@@ -676,6 +676,48 @@ macro_verbatim_handler (YelpManParser *parser, gchar *macro, GSList *args)
     }
 }
 
+static void
+macro_reference_handler (YelpManParser *parser, gchar *macro, GSList *args)
+{
+    if (g_str_equal (macro, "so")) {
+	gchar *basename = NULL;
+	gchar *link = NULL;
+	
+	if (args && args->data) {
+	    basename = g_strrstr((const gchar *)args->data, "/");
+
+	    basename++;
+	    
+	    if (basename)
+		link = g_strdup_printf ("man:%s", basename);
+	    else {
+		link = g_strdup_printf ("man:%s", (const gchar *)args->data);
+		basename = (gchar *)args->data;
+	    }
+	    
+	    parser->ins = parser_append_node (parser, "TH");
+	    parser->ins = parser_append_node (parser, "Title");
+	    parser_append_given_text (parser, "REFERENCE");
+	    parser->ins = parser->ins->parent;
+	    parser->ins = parser->ins->parent;
+		
+	    parser->ins = parser_append_node_attr (parser, "SH", "id", "9999");
+	    parser_append_given_text (parser, "REFERENCE");
+	    parser->ins = parser->ins->parent;
+	    
+	    parser_append_given_text (parser, "See ");
+	    parser->ins = parser_append_node (parser, "UR");
+	    parser->ins = parser_append_node (parser, "URI");
+	    parser_append_given_text (parser, link);
+	    parser->ins = parser->ins->parent;
+	    parser_append_given_text (parser, basename);
+	    parser->ins = parser->ins->parent;
+
+	    g_free (link);
+	}
+    }
+}
+	
 /* many mandoc macros have their arguments parsed so that other
  * macros can be called to operate on their arguments.  This table
  * indicates which macros are _parsed_ for other callable macros, 
@@ -961,7 +1003,7 @@ struct MacroHandler macro_handlers[] = {
     { "SH", macro_section_header_handler },          /* man: unnumbered section heading */
     { "Sh", macro_section_header_handler },          /* man: unnumbered section heading */
     { "SM", macro_bold_small_italic_handler },       /* man: set font size one SMaller */
-    { "so", macro_ignore_handler },                  /* groff: include file */
+    { "so", macro_reference_handler },               /* groff: include file */
     { "sp", macro_spacing_handler },                 /* groff: */
     { "SS", macro_section_header_handler },          /* man: unnumbered subsection heading */
     { "Ss", macro_section_header_handler },          /* man: unnumbered subsection heading */
