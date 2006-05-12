@@ -7,15 +7,19 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp HEAD\n"
+"Project-Id-Version: yelp gnome-2-14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-14 10:29+0300\n"
-"PO-Revision-Date: 2005-08-14 11:06+0300\n"
+"POT-Creation-Date: 2006-05-11 21:57+0200\n"
+"PO-Revision-Date: 2006-05-12 10:12+0700\n"
 "Last-Translator: Ahmad Riza H Nst <ari@160c.afraid.org>\n"
-"Language-Team: Indonesia <sukarelawan@gnome.linux.or.id>\n"
+"Language-Team: Indonesia <kontak@id.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit"
+
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1237
+msgid "GNU Info Pages"
+msgstr "Halaman Info GNU"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -49,7 +53,7 @@ msgstr "Rutin Kernel"
 msgid "Library Functions"
 msgstr "Fungsi Pustaka"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:792
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1231
 msgid "Manual Pages"
 msgstr "Berkas Manual"
 
@@ -70,46 +74,54 @@ msgid "Overviews"
 msgstr "Ringkasan"
 
 #: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "Fungsi POSIX"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "Judul POSIX"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
 msgstr "Fungsi Perl"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
 msgstr "Fungsi Qt"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
 msgstr "Administrasi Sistem"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
 msgstr "Panggilan Sistem"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
 msgstr "Aplikasi Termcap"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
 msgstr "Aplikasi X11"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
 msgstr "Konfigurasi X11"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
 msgstr "Perangkat X11"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
 msgstr "Fungsi X11"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
 msgstr "Permainan X11"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
 msgstr "Ringkasan X11"
 
@@ -137,7 +149,7 @@ msgstr "Aplikasi Pendidikan"
 msgid "Graphics"
 msgstr "Grafis"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:391
+#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
 msgid "Help Topics"
 msgstr "Topik Tersedia"
 
@@ -169,7 +181,7 @@ msgstr "Dokumen Lainnya"
 msgid "Panel Applets"
 msgstr "Aplet Panel"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "Pengaturan"
 
@@ -198,60 +210,60 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Fonta</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>Pem_batas Buku:</b>"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Judul:</b>"
-
-#: ../data/ui/yelp.glade.h:5
 msgid "Add Bookmark"
 msgstr "Tambah Pembatas"
 
-#: ../data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "Pembatas"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "Bed_akan huruf besar/kecil"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Cari"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Buka Lokasi"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "Ubah _nama"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "Pem_batas:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
 msgstr "_Rambah dengan caret"
 
-#: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Cari: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_Temukan: "
 
-#: ../data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "_Lebar yang pas:"
 
-#: ../data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "_Lokasi:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Maju"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "M_undur"
+
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Judul:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -299,7 +311,7 @@ msgstr "Gunakan jenis huruf sistem"
 msgid "Use the default fonts set for the system."
 msgstr "Gunakan ketetapan jenis huruf standar untuk sistem."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2182
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2699
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -319,27 +331,28 @@ msgstr "Ubah Nama Pembatas"
 msgid "Remove Bookmark"
 msgstr "Buang Pembatas"
 
-#: ../src/yelp-bookmarks.c:306 ../src/yelp-bookmarks.c:378
+#: ../src/yelp-bookmarks.c:320
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "Sebuah pembatas %s sudah ada untuk halaman ini."
+
+#: ../src/yelp-bookmarks.c:397
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Judul sebuah pembatas buku <b>%s</b> sudah ada untuk halaman ini."
 
-#: ../src/yelp-bookmarks.c:406
+#: ../src/yelp-bookmarks.c:425
 msgid "Document Sections"
 msgstr "Bagian Dokumen"
 
-#: ../src/yelp-db-pager.c:245
+#: ../src/yelp-db-pager.c:244 ../src/yelp-db-print-pager.c:197
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
-"Berkas ‘%s’ tidak dapat diuraikan. Apakah berkas tidak ada atau tidak berbentuk "
-"XML yang baik."
-
-#: ../src/yelp-db-pager.c:491
-msgid "Unknown Section"
-msgstr "Bagian Tidak Diketahui"
+"Berkas ‘%s’ tidak dapat diuraikan. Apakah berkas tidak ada atau tidak "
+"berbentuk XML yang baik."
 
 #: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
@@ -373,7 +386,16 @@ msgstr "Tidak dapat memproses dokumen"
 msgid "No information is available about the error."
 msgstr "Tidak ada informasi tersedia tentang kesalahan."
 
-#: ../src/yelp-io-channel.c:98
+#: ../src/yelp-info-pager.c:188
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"Berkas ‘%s’ tidak dapat diuraikan. Apakah berkas tidak ada atau tidak "
+"berbentuk halaman info yang baik."
+
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -382,31 +404,31 @@ msgstr ""
 "Berkas ‘%s’ tidak dapat dibaca dan diuraikan. Berkas ini mungkin dipadatkan "
 "dalam bentuk yang tidak didukung."
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Tentukan direktori cache yang digunakan"
 
-#: ../src/yelp-main.c:129
+#: ../src/yelp-main.c:133
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Tidak dapat mengaktifkan Yelp: '%s'"
 
-#: ../src/yelp-main.c:148
+#: ../src/yelp-main.c:152
 msgid "Could not open new window."
 msgstr "TIdak dapat membuka jendela baru."
 
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Bantuan"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man-pager.c:183
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
-"Berkas ‘%s’ tidak dapat diuraikan.  Apakah berkas tidak ada atau tidak dibentuk "
-"dengan benar."
+"Berkas ‘%s’ tidak dapat diuraikan.  Apakah berkas tidak ada atau tidak "
+"dibentuk dengan benar."
 
 #: ../src/yelp-pager.c:122
 msgid "Document Information"
@@ -415,6 +437,95 @@ msgstr "Informasi Dokumen"
 #: ../src/yelp-pager.c:123
 msgid "The YelpDocInfo struct of the document"
 msgstr "Susunan YelpDocInfo dari dokumen"
+
+#: ../src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "Persiapan mencetak"
+
+#: ../src/yelp-print.c:275
+msgid "Pages"
+msgstr "Halaman"
+
+#: ../src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "Menghasilkan PDF belum lagi tersedia"
+
+#: ../src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "Pencetakan tidak didukung pada pencetak ini."
+
+#: ../src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
+msgstr ""
+"Anda mencoba mencetak menggunakan driver \"%s\".  Program ini memerlukan "
+"driver cetak PostScript."
+
+#: ../src/yelp-print.c:402
+msgid "An error occurred while printing"
+msgstr "Kesalahan terjadi ketika mencetak"
+
+#: ../src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "Tidak memungkinkan untuk mencetak dokumen anda"
+
+#: ../src/yelp-print.c:466
+msgid "Printing"
+msgstr "Pencetakan"
+
+#: ../src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>Pencetakan</b>"
+
+#: ../src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "Menunggu mencetak"
+
+#: ../src/yelp-print.c:559
+msgid "_From:"
+msgstr "_Dari:"
+
+#: ../src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "Tentukan awal dari halaman yang mau dicetak"
+
+#: ../src/yelp-print.c:574
+msgid "_To:"
+msgstr "_Ke:"
+
+#: ../src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "Tentukan akhir dari halaman yang mau dicetak"
+
+#: ../src/yelp-search-pager.c:698
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr ""
+"Pencarian anda tidak dapat diproses. Berkas '%s' hilang atau bukan merupkan "
+"lembar kerja XSLT yang benar."
+
+#: ../src/yelp-search-pager.c:800 ../src/yelp-toc-pager.c:1504
+#: ../src/yelp-xslt-pager.c:366
+msgid "No href attribute found on yelp:document"
+msgstr "Tidak menemukan atribut href pada dokumen yelp"
+
+#: ../src/yelp-search-pager.c:814 ../src/yelp-toc-pager.c:1518
+#: ../src/yelp-xslt-pager.c:382
+msgid "Out of memory"
+msgstr "Memori habis"
+
+#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:1568
+msgid "Help Contents"
+msgstr "Daftar Isi"
+
+#: ../src/yelp-search-pager.c:1141 ../src/yelp-toc-pager.c:497
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Tidak dapat membaca berkas OMF '%s'."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -445,17 +556,17 @@ msgstr "yelp-watermark-blockquote-201C"
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Perhitungan istirahat bernilai negatif."
 
-#: ../src/yelp-toc-pager.c:494
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Tidak dapat membaca berkas OMF '%s'."
-
-#: ../src/yelp-toc-pager.c:685
+#: ../src/yelp-toc-pager.c:635
 #, c-format
 msgid "Read man page for %s"
 msgstr "Baca halaman manual untuk %s"
 
-#: ../src/yelp-toc-pager.c:772
+#: ../src/yelp-toc-pager.c:1106
+#, c-format
+msgid "Read info page for %s"
+msgstr "Baca halaman info untuk %s"
+
+#: ../src/yelp-toc-pager.c:1204
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -464,7 +575,11 @@ msgstr ""
 "Daftar isi tidak dapat dibaca. Berkas ‘%s’ apakah hilang atau tidak berada "
 "pada bentuk XML yang benar."
 
-#: ../src/yelp-toc-pager.c:883
+#: ../src/yelp-toc-pager.c:1226
+msgid "Command Line Help"
+msgstr "Bantuan Perintah Baris"
+
+#: ../src/yelp-toc-pager.c:1340
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -473,143 +588,163 @@ msgstr ""
 "Daftar Isi tidak dapat diproses. Berkas ‘%s’ apakah hilang atau bukan gaya "
 "XSLT yang benar."
 
-#: ../src/yelp-toc-pager.c:1035 ../src/yelp-xslt-pager.c:366
-msgid "No href attribute found on yelp:document"
-msgstr "Tidak menemukan atribut href pada dokumen yelp"
-
-#: ../src/yelp-toc-pager.c:1049 ../src/yelp-xslt-pager.c:382
-msgid "Out of memory"
-msgstr "Memori habis"
-
-#: ../src/yelp-toc-pager.c:1090
-msgid "Help Contents"
-msgstr "Daftar Isi"
-
-#: ../src/yelp-window.c:286
+#: ../src/yelp-window.c:310
 msgid "_File"
 msgstr "_Berkas"
 
-#: ../src/yelp-window.c:287
+#: ../src/yelp-window.c:311
 msgid "_Edit"
 msgstr "_Ubah"
 
-#: ../src/yelp-window.c:288
+#: ../src/yelp-window.c:312
 msgid "_Go"
 msgstr "B_uka"
 
-#: ../src/yelp-window.c:289
+#: ../src/yelp-window.c:313
 msgid "_Bookmarks"
 msgstr "Pem_batas"
 
-#: ../src/yelp-window.c:290
+#: ../src/yelp-window.c:314
 msgid "_Help"
 msgstr "Ba_ntuan"
 
-#: ../src/yelp-window.c:293
+#: ../src/yelp-window.c:317
 msgid "_New Window"
 msgstr "_Jendela Baru"
 
-#: ../src/yelp-window.c:298
+#: ../src/yelp-window.c:322
+msgid "Print This Document"
+msgstr "Cetak Dokumen Ini"
+
+#: ../src/yelp-window.c:327
+msgid "Print This Page"
+msgstr "Cetak Halaman Ini"
+
+#: ../src/yelp-window.c:332
 msgid "About This Document"
 msgstr "Tentang Dokumen Ini"
 
-#: ../src/yelp-window.c:303
+#: ../src/yelp-window.c:337
 msgid "Open _Location"
 msgstr "Buka _Lokasi"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:342
 msgid "_Close Window"
 msgstr "_Tutup Jendela"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:348
 msgid "_Copy"
 msgstr "_Salin"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:354
 msgid "_Select All"
 msgstr "_Pilih Semua"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:359
 msgid "_Find..."
 msgstr "_Cari..."
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:364
+msgid "Find Pre_vious"
+msgstr "Temukan Seb_elumnya"
+
+#: ../src/yelp-window.c:366
+msgid "Find previous occurrence of the word or phrase"
+msgstr "Temukan kata atau frasa sebelumnya"
+
+#: ../src/yelp-window.c:369
+msgid "Find Ne_xt"
+msgstr "Temukan Sel_anjutnya"
+
+#: ../src/yelp-window.c:371
+msgid "Find next occurrence of the word or phrase"
+msgstr "Temukan kata atau frasa selanjutnya"
+
+#: ../src/yelp-window.c:374
 msgid "_Preferences"
 msgstr "_Pengaturan"
 
-#: ../src/yelp-window.c:335
+#: ../src/yelp-window.c:379
 msgid "_Reload"
 msgstr "_Baca ulang"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:391
 msgid "_Back"
 msgstr "Kem_bali"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:393
 msgid "Show previous page in history"
 msgstr "Tampilkan layar sebelumnya dalam catatan"
 
-#: ../src/yelp-window.c:346
+#: ../src/yelp-window.c:396
 msgid "_Forward"
 msgstr "_Maju"
 
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:398
 msgid "Show next page in history"
 msgstr "Tampilkan layar berikutnya dalam catatan"
 
-#: ../src/yelp-window.c:351
+#: ../src/yelp-window.c:401
 msgid "_Help Topics"
 msgstr "Topik _Bantuan"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:403
 msgid "Go to the listing of help topics"
 msgstr "Buka daftar topik bantuan"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:406
 msgid "_Previous Section"
 msgstr "Bagian Se_belumnya"
 
-#: ../src/yelp-window.c:361
+#: ../src/yelp-window.c:411
 msgid "_Next Section"
 msgstr "Bagian Selanjut_nya"
 
-#: ../src/yelp-window.c:366
+#: ../src/yelp-window.c:416 ../src/yelp-window.c:448
 msgid "_Contents"
 msgstr "Daftar _Isi"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:422
 msgid "_Add Bookmark"
 msgstr "T_ambah Pembatas"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:427
 msgid "_Edit Bookmarks..."
 msgstr "_Ubah Pembatas..."
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:433
 msgid "_Open Link"
 msgstr "_Buka Taut"
 
-#: ../src/yelp-window.c:388
+#: ../src/yelp-window.c:438
 msgid "Open Link in _New Window"
 msgstr "Buka Taut pada Jendela _Baru"
 
-#: ../src/yelp-window.c:393
+#: ../src/yelp-window.c:443
 msgid "_Copy Link Address"
 msgstr "_Salin Alamat Taut"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:450
+msgid "Help On this application"
+msgstr "Bantuan Pada Aplikasi ini"
+
+#: ../src/yelp-window.c:453
 msgid "_About"
 msgstr "Keter_angan Program"
 
-#: ../src/yelp-window.c:448
+#: ../src/yelp-window.c:458
+msgid "Copy _Email Address"
+msgstr "_Salin Alamat Surat"
+
+#: ../src/yelp-window.c:507
 msgid "Help Browser"
 msgstr "Perambah Bantuan"
 
-#: ../src/yelp-window.c:700 ../src/yelp-window.c:833
+#: ../src/yelp-window.c:771 ../src/yelp-window.c:927
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Penanda Seragam Sumber untuk berkas ini tidak benar."
 
-#: ../src/yelp-window.c:712 ../src/yelp-window.c:828
+#: ../src/yelp-window.c:783 ../src/yelp-window.c:922
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -618,15 +753,19 @@ msgstr ""
 "Penanda Seragam Sumber ‘%s’ adalah salah atau tidak menunjuk ke berkas yang "
 "ada."
 
-#: ../src/yelp-window.c:788 ../src/yelp-window.c:1143
+#: ../src/yelp-window.c:871 ../src/yelp-window.c:1298
 msgid "Man pages are not supported in this version."
 msgstr "Halaman man tidak didukung pada versi ini."
 
-#: ../src/yelp-window.c:798 ../src/yelp-window.c:1134
+#: ../src/yelp-window.c:881 ../src/yelp-window.c:1289
 msgid "GNU info pages are not supported in this version"
 msgstr "Halaman info GNU tidak didukung pada versi ini"
 
-#: ../src/yelp-window.c:808
+#: ../src/yelp-window.c:897 ../src/yelp-window.c:1311
+msgid "Search is not supported in this version."
+msgstr "Pencarian tidak didukung pada versi ini."
+
+#: ../src/yelp-window.c:902
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -634,19 +773,27 @@ msgstr ""
 "Dokumen SGML tidak lagi didukung. Silahkan tanya penulis dokumen untuk "
 "merubah ke XML."
 
-#: ../src/yelp-window.c:1027
-msgid "Find:"
-msgstr "Cari:"
+#: ../src/yelp-window.c:1028
+msgid "_Search:"
+msgstr "_Cari:"
 
-#: ../src/yelp-window.c:1043
+#: ../src/yelp-window.c:1029
+msgid "Search for other documentation"
+msgstr "Cari Dokumen Lainnya"
+
+#: ../src/yelp-window.c:1178
+msgid "Fin_d:"
+msgstr "Temu_kan:"
+
+#: ../src/yelp-window.c:1198
 msgid "Find _Next"
 msgstr "Cari _Lagi"
 
-#: ../src/yelp-window.c:1055
+#: ../src/yelp-window.c:1210
 msgid "Find _Previous"
 msgstr "Cari ke _Belakang"
 
-#: ../src/yelp-window.c:1160
+#: ../src/yelp-window.c:1324
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -655,8 +802,8 @@ msgstr ""
 "Perubahan isi tidak dapat dibuat untuk berkas ‘%s’. Bentuknya mungkin tidak "
 "didukung."
 
-#: ../src/yelp-window.c:1190 ../src/yelp-window.c:1614
-#: ../src/yelp-window.c:1681
+#: ../src/yelp-window.c:1353 ../src/yelp-window.c:1767
+#: ../src/yelp-window.c:1843
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -667,7 +814,7 @@ msgstr ""
 "dari tombol bantuan pada sebuah aplikasi, silahkan laporkan hal ini ke "
 "pemelihara dari aplikasi tersebut."
 
-#: ../src/yelp-window.c:1305
+#: ../src/yelp-window.c:1468 ../src/yelp-window.c:2233
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -676,33 +823,42 @@ msgstr ""
 "Tidak dapat membaca berkas ‘%s’. Berkas ini mungkin hilang atau anda tidak "
 "memiliki hak untuk membacanya."
 
-#: ../src/yelp-window.c:1349
+#: ../src/yelp-window.c:1519
 msgid "Loading..."
 msgstr "Sedang membuka..."
 
+#: ../src/yelp-window.c:2665
+#, c-format
+msgid ""
+"Could not display help for Yelp.\n"
+"%s"
+msgstr ""
+"Tidak dapat menampilkan bantuan untuk Yelp.\n"
+"%s"
+
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2179
+#: ../src/yelp-window.c:2696
 msgid "translator-credits"
 msgstr ""
 "Ahmad Riza H Nst  <ari@160c.afraid.org>\n"
 "Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "http://id.gnome.org/"
 
-#: ../src/yelp-window.c:2184
+#: ../src/yelp-window.c:2701
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Perambah dokumentasi untuk Desktop Gnome."
 
-#: ../src/yelp-xslt-pager.c:195
+#: ../src/yelp-xslt-pager.c:193
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
-"Berkas ‘%s’ tidak dapat diuraikan. Entah berkas ini tidak ada, atau tidak dibentuk "
-"dengan benar."
+"Berkas ‘%s’ tidak dapat diuraikan. Entah berkas ini tidak ada, atau tidak "
+"dibentuk dengan benar."
 
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
+#: ../src/yelp-xslt-pager.c:214 ../src/yelp-xslt-pager.c:227
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -715,8 +871,17 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "Buka bantuan GNOME"
 
-#~ msgid "Man Pages"
-#~ msgstr "Halaman Manual"
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>Pem_batas Buku:</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Judul:</b>"
+
+#~ msgid "Unknown Section"
+#~ msgstr "Bagian Tidak Diketahui"
+
+#~ msgid "Find:"
+#~ msgstr "Cari:"
 
 #, fuzzy
 #~ msgid "_Home"
@@ -724,10 +889,6 @@ msgstr "Buka bantuan GNOME"
 
 #~ msgid "Go to home view"
 #~ msgstr "Tampilkan halaman awal"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "Find"
 
 #, fuzzy
 #~ msgid "Development Environments"
@@ -746,10 +907,6 @@ msgstr "Buka bantuan GNOME"
 
 #~ msgid "General"
 #~ msgstr "Static Gray"
-
-#, fuzzy
-#~ msgid "Internet Applications"
-#~ msgstr "Aplikasi"
 
 #, fuzzy
 #~ msgid "Kernels"
@@ -861,9 +1018,6 @@ msgstr "Buka bantuan GNOME"
 #~ msgid "About This Part"
 #~ msgstr "Informasi Bagian Ini"
 
-#~ msgid "About This Preface"
-#~ msgstr "Informasi Kata Pengantar"
-
 #~ msgid "About This Reference"
 #~ msgstr "Informasi Referensi"
 
@@ -950,12 +1104,6 @@ msgstr "Buka bantuan GNOME"
 #~ msgid "Table of Contents"
 #~ msgstr "Isi Bantuan"
 
-#~ msgid "Title"
-#~ msgstr "Judul"
-
-#~ msgid "Warning"
-#~ msgstr "Peringatan"
-
 #, fuzzy
 #~ msgid "/Edit/Find Ne_xt"
 #~ msgstr "/Edit/C_ari lagi"
@@ -1000,14 +1148,8 @@ msgstr "Buka bantuan GNOME"
 #~ msgid "_Match upper/lower case"
 #~ msgstr "C_ocokkan sesuai huruf besar/kecil"
 
-#~ msgid "_Search for:"
-#~ msgstr "_Cari:"
-
 #~ msgid "GNOME - Desktop"
 #~ msgstr "GNOME - Desktop"
-
-#~ msgid "Info Pages"
-#~ msgstr "Halaman Info"
 
 #~ msgid "GNOME is"
 #~ msgstr "GNOME adalah"
