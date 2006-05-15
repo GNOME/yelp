@@ -1,3 +1,21 @@
+Changes in 2.15.2:
+------------------
+* fix the applyto element for the use_caret gconf key       (Brent Smith)
+* Workaround for manual page inclusion, fixes #340173       (Brent Smith)
+* fix to OMF cache file logic for entries with empty urls   (Brent Smith)
+* fixes for info page parsing, fixes #336838 and #339978    (Don Scorgie)
+* Many fixes for how basic search works, #331831 #339595    (Don Scorgie)
+* move find code into single function for better code reuse (Don Scorgie)
+* use po/LINGUAS                                            (Brian Pebble)
+* Updated translations:
+Hendrik Richter (de)
+Francisco Javier F. Serrador (es)
+Raivis Dejus (lv)
+Kjartan Maraas (nb)
+Tino Meinen (nl)
+Woodman Tuen (zh_HK)
+Woodman Tuen (zh_TW)
+
 Changes in 2.15.1:
 ------------------
 * Fix for man cache logic and mansect elements              (Brent Smith)
