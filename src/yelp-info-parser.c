@@ -661,7 +661,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 				COLUMN_PAGE_CONTENT, &page_content,
 				-1);
 		d (g_print ("Got Section: %s\n", page_name));
-		if (strstr (page_content, "\n* Menu:")) {
+		if (strstr (page_content, "* Menu:")) {
 		  newnode = yelp_info_parse_menu (tree, node, page_content);
 		} else {
 		  newnode = xmlNewTextChild (*node, NULL,
@@ -806,7 +806,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
   xmlNodePtr newnode;
   int i=0;
 
-  split = g_strsplit (page_content, "\n* Menu:", 2);
+  split = g_strsplit (page_content, "* Menu:", 2);
 
   newnode = xmlNewChild (*node, NULL,
 			 BAD_CAST "Section", NULL);
