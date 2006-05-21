@@ -1,31 +1,28 @@
 # translation of mk.po to Macedonian
-# translation of yelp.gnome-2.6.mk.po to Macedonian
-# translation of yelp.HEAD.mk.po to
-# translation of yelp.HEAD.mk.po to Macedonian
-# translation of yelp.HEAD.po to Macedonian
-# Yelp translated on Macedonian
-# Copyright (C) 2002,2003, 2004, 2005, 2006 Free Software Foundation, Inc.
-# Stojcev Darko <atom1c@linux.net.mk
-# http://www.linux.net.mk
 # Ivan Stojmirov <stojmir@linux.net.mk>, 2002.
 # Igor Popovski <igor@popovski.com.mk>, 2003.
 # Aleksandar Savic <savica@mt.net.mk>, 2004.
 # Arangel Angov <ufo@linux.net.mk>, 2004, 2005, 2006.
 # Арангел Ангов <ufo@linux.net.mk>, 2005.
+# translation of yelp.HEAD.mk.po to
+# Yelp translated on Macedonian
+# Copyright (C) 2002,2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+# Stojcev Darko <atom1c@linux.net.mk
+# http://www.linux.net.mk
 msgid ""
 msgstr ""
 "Project-Id-Version: mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-02 07:26+0100\n"
-"PO-Revision-Date: 2006-03-02 15:03+0100\n"
+"POT-Creation-Date: 2006-05-21 07:26+0200\n"
+"PO-Revision-Date: 2006-05-21 09:10+0200\n"
 "Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.2\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1239
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1616
 msgid "GNU Info Pages"
 msgstr "GNU инфо страници"
 
@@ -61,7 +58,7 @@ msgstr "Рутини на кернелот"
 msgid "Library Functions"
 msgstr "Функции од библиотеките"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1233
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1610
 msgid "Manual Pages"
 msgstr "Страници со упатства"
 
@@ -317,7 +314,7 @@ msgstr "Користи системски фонтови"
 msgid "Use the default fonts set for the system."
 msgstr "Користи ги стандардните фонтови за овој систем."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
+#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2714
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -351,7 +348,7 @@ msgstr "Обележувач со името <b>%s</b> веќе постои з�
 msgid "Document Sections"
 msgstr "Оддели за документи"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
+#: ../src/yelp-db-pager.c:244 ../src/yelp-db-print-pager.c:195
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -392,7 +389,7 @@ msgstr "Не можам да го обработам документот"
 msgid "No information is available about the error."
 msgstr "Нема информации за грешката."
 
-#: ../src/yelp-info-pager.c:190
+#: ../src/yelp-info-pager.c:188
 #, c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -410,24 +407,29 @@ msgstr ""
 "Датотеката ‘%s’ не може да биде прочитана и декодирана. Можеби датотеката е "
 "компресирана во неподдржан формат."
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:98
 msgid "Define which cache directory to use"
 msgstr "Дефинира кој кеш директориум да се користи"
 
-#: ../src/yelp-main.c:133
+#: ../src/yelp-main.c:135
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "Не можам да го активирам Yelp:  '%s'"
 
-#: ../src/yelp-main.c:152
+#: ../src/yelp-main.c:154
 msgid "Could not open new window."
 msgstr "Не можам да отворам нов прозорец."
 
-#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:391
+msgid " GNOME Help Browser"
+msgstr " Прелистувач за помош "
+
+#: ../src/yelp-main.c:407 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Помош"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man-pager.c:181
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
@@ -466,8 +468,8 @@ msgid ""
 "You were trying to print to a printer using the \"%s\" driver.  This program "
 "requires a PostScript printer driver."
 msgstr ""
-"Се обидувавте да печатите на печатачот користејќи го драјверот \"%s\".  Оваа програма "
-"има потреба од драјвер за PostScript печатач."
+"Се обидувавте да печатите на печатачот користејќи го драјверот \"%s\".  Оваа "
+"програма има потреба од драјвер за PostScript печатач."
 
 #: ../src/yelp-print.c:402
 msgid "An error occurred while printing"
@@ -505,7 +507,7 @@ msgstr "_До:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Го поставува крајот на опсегот на страници за печатење"
 
-#: ../src/yelp-search-pager.c:676
+#: ../src/yelp-search-pager.c:697
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -514,21 +516,21 @@ msgstr ""
 "Вашето барање не може да биде обработено. Датотеката ‘%s’ недостастува или "
 "пак не е валиден XSLT."
 
-#: ../src/yelp-search-pager.c:778 ../src/yelp-toc-pager.c:1506
-#: ../src/yelp-xslt-pager.c:368
+#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1887
+#: ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "Не е пронајден href атрибут на yelp:document"
 
-#: ../src/yelp-search-pager.c:792 ../src/yelp-toc-pager.c:1520
-#: ../src/yelp-xslt-pager.c:384
+#: ../src/yelp-search-pager.c:813 ../src/yelp-toc-pager.c:1900
+#: ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "Нема повеќе меморија"
 
-#: ../src/yelp-search-pager.c:833 ../src/yelp-toc-pager.c:1570
+#: ../src/yelp-search-pager.c:854 ../src/yelp-toc-pager.c:1949
 msgid "Help Contents"
 msgstr "Содржина на помош"
 
-#: ../src/yelp-search-pager.c:1119 ../src/yelp-toc-pager.c:499
+#: ../src/yelp-search-pager.c:1156 ../src/yelp-toc-pager.c:526
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Не можам да ја вчитам OMF датотеката: '%s'."
@@ -558,21 +560,21 @@ msgstr "Не можам да ја вчитам OMF датотеката: '%s'."
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:273
+#: ../src/yelp-toc-pager.c:276
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Броењето на паузата е негативно."
 
-#: ../src/yelp-toc-pager.c:637
+#: ../src/yelp-toc-pager.c:997
 #, c-format
 msgid "Read man page for %s"
 msgstr "Прочитајте ја man страницата за %s"
 
-#: ../src/yelp-toc-pager.c:1108
+#: ../src/yelp-toc-pager.c:1482
 #, c-format
 msgid "Read info page for %s"
 msgstr "Прочитајте ја info страницата за %s"
 
-#: ../src/yelp-toc-pager.c:1206
+#: ../src/yelp-toc-pager.c:1583
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -581,11 +583,11 @@ msgstr ""
 "Содржината не може да се вчита. Датотеката ‘%s’ недостастува или пак не е "
 "добро формиран XML."
 
-#: ../src/yelp-toc-pager.c:1228
+#: ../src/yelp-toc-pager.c:1605
 msgid "Command Line Help"
 msgstr "Помош за командната линија"
 
-#: ../src/yelp-toc-pager.c:1342
+#: ../src/yelp-toc-pager.c:1723
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -706,7 +708,7 @@ msgstr "_Претходен оддел"
 msgid "_Next Section"
 msgstr "_Нареден оддел"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:417 ../src/yelp-window.c:449
 msgid "_Contents"
 msgstr "_Содржини"
 
@@ -730,23 +732,27 @@ msgstr "Отвори ја врската во _нов прозорец"
 msgid "_Copy Link Address"
 msgstr "_Копирај адреса на врската"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:451
+msgid "Help On this application"
+msgstr "Помош за оваа апликација"
+
+#: ../src/yelp-window.c:454
 msgid "_About"
 msgstr "_За"
 
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:459
 msgid "Copy _Email Address"
 msgstr "Копирај _адреса на врската"
 
-#: ../src/yelp-window.c:504
+#: ../src/yelp-window.c:508
 msgid "Help Browser"
 msgstr "Прелистувач на документи за помош"
 
-#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
+#: ../src/yelp-window.c:772 ../src/yelp-window.c:928
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Идентификаторот за униформниот ресурс за датотеката е невалиден."
 
-#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
+#: ../src/yelp-window.c:784 ../src/yelp-window.c:923
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -755,19 +761,19 @@ msgstr ""
 "Идентификаторот за униформниот ресурс ‘%s’ е невалиден или пак не водидо "
 "датотеката."
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
+#: ../src/yelp-window.c:872 ../src/yelp-window.c:1313
 msgid "Man pages are not supported in this version."
 msgstr "Упатствата не се поддржани во оваа верзија."
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:882 ../src/yelp-window.c:1304
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU страниците со информации не се поддржани во оваа верзија."
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
+#: ../src/yelp-window.c:898 ../src/yelp-window.c:1326
 msgid "Search is not supported in this version."
 msgstr "Пребарувањето не се поддржано во оваа верзија."
 
-#: ../src/yelp-window.c:899
+#: ../src/yelp-window.c:903
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -775,27 +781,27 @@ msgstr ""
 "SGML документи повеќе не се поддржани. Ве молам прашајте го авторот на "
 "документот да конвертира во XML."
 
-#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1043
 msgid "_Search:"
 msgstr "_Пребарување:"
 
-#: ../src/yelp-window.c:1026
+#: ../src/yelp-window.c:1044
 msgid "Search for other documentation"
 msgstr "Барај друга документација"
 
-#: ../src/yelp-window.c:1175
+#: ../src/yelp-window.c:1193
 msgid "Fin_d:"
 msgstr "Бара_ј:"
 
-#: ../src/yelp-window.c:1195
+#: ../src/yelp-window.c:1213
 msgid "Find _Next"
 msgstr "Најди _следно"
 
-#: ../src/yelp-window.c:1207
+#: ../src/yelp-window.c:1225
 msgid "Find _Previous"
 msgstr "Најди _претходно"
 
-#: ../src/yelp-window.c:1321
+#: ../src/yelp-window.c:1339
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -804,8 +810,8 @@ msgstr ""
 "Трансформираната содржината не може да биде креирана за '%s'. Форматот не е "
 "поддржан."
 
-#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
-#: ../src/yelp-window.c:1840
+#: ../src/yelp-window.c:1368 ../src/yelp-window.c:1782
+#: ../src/yelp-window.c:1858
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -816,7 +822,7 @@ msgstr ""
 "во некоја апликација, Ве молам пријавете го ова на оддржувачот на "
 "апликацијата."
 
-#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
+#: ../src/yelp-window.c:1483 ../src/yelp-window.c:2248
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -825,21 +831,30 @@ msgstr ""
 "Датотеката ‘%s’ не може да биде прочитана.  Оваа датотека можеби недостасува "
 "или пак немате пермисии да ја прочитате."
 
-#: ../src/yelp-window.c:1516
+#: ../src/yelp-window.c:1534
 msgid "Loading..."
 msgstr "Се вчитува..."
 
+#: ../src/yelp-window.c:2680
+#, c-format
+msgid ""
+"Could not display help for Yelp.\n"
+"%s"
+msgstr ""
+"Не можам да прикажам помош за Yelp.\n"
+"%s"
+
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2658
+#: ../src/yelp-window.c:2711
 msgid "translator-credits"
 msgstr "Арангел Ангов (ufo@linux.net.mk)"
 
-#: ../src/yelp-window.c:2663
+#: ../src/yelp-window.c:2716
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Разгледувач за документација и прегледувач за околината Гном."
 
-#: ../src/yelp-xslt-pager.c:195
+#: ../src/yelp-xslt-pager.c:193
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -848,7 +863,7 @@ msgstr ""
 "Датотеката ‘%s’ не може да биде парсирана. Или датотеката не постои или пак "
 "е погрешно форматирана."
 
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
+#: ../src/yelp-xslt-pager.c:214 ../src/yelp-xslt-pager.c:227
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
