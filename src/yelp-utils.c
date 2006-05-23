@@ -905,6 +905,7 @@ convert_info_uri (gchar   *uri)
     gchar *pattern;
     GPatternSpec *pspec = NULL;
     GPatternSpec *pspec1 = NULL;
+    gchar *subdir = NULL;
 
     if ((path = strchr(uri, ':')))
 	path++;
@@ -941,6 +942,19 @@ convert_info_uri (gchar   *uri)
     else
 	info_name = g_strdup (path);
 
+    if (strstr (info_name, "/")) {
+	gchar *tmp = NULL;
+	gchar *real_name = NULL;
+	tmp = strstr (info_name, "/");
+	tmp++;
+	real_name = g_strdup (tmp);
+	subdir = g_strndup (info_name, (strstr (info_name, "/") - info_name));
+	g_free (info_name);
+	info_name = g_strdup (real_name);
+	g_free (real_name);
+    }
+
+
     pattern = g_strdup_printf ("%s.info.*", info_name);
     pspec = g_pattern_spec_new (pattern);
     g_free (pattern);
@@ -956,14 +970,30 @@ convert_info_uri (gchar   *uri)
 	dir = g_dir_open (infopath[i], 0, NULL);
 	if (dir) {
 	    while ((filename = g_dir_read_name (dir))) {
-		if (g_str_equal (info_dot_info, filename)  ||
-		    g_pattern_match_string (pspec, filename) ||
-		    g_pattern_match_string (pspec1, filename) ||
-		    g_str_equal (info_name, filename)) {
-		    doc_uri = g_strconcat ("file://",
-					   infopath[i], "/",
-					   filename,
-					   NULL);
+		if (subdir && g_str_equal (filename, subdir)) {
+		    gchar *dirname = NULL;
+		    g_dir_close (dir);
+		    dirname = g_strconcat (infopath[i], "/", subdir, NULL);
+		    dir = g_dir_open (dirname, 0, NULL);
+		    g_free (dirname);
+		    filename = g_dir_read_name (dir);
+		}
+		else if (g_str_equal (info_dot_info, filename)  ||
+			 g_pattern_match_string (pspec, filename) ||
+			 g_pattern_match_string (pspec1, filename) ||
+			 g_str_equal (info_name, filename)) {
+		    if (subdir) {
+			doc_uri = g_strconcat ("file://",
+					       infopath[i], "/", subdir, "/",
+					       filename,
+					       NULL);
+		    } else {
+			doc_uri = g_strconcat ("file://",
+					       infopath[i], "/",
+					       filename,
+					       NULL);
+
+		    }
 		    g_dir_close (dir);
 		    goto done;
 		}
@@ -977,6 +1007,7 @@ convert_info_uri (gchar   *uri)
 	g_pattern_spec_free (pspec);
     if (pspec1)
 	g_pattern_spec_free (pspec1);
+    g_free (subdir);
     g_free (info_dot_info);
     g_free (info_name);
     return doc_uri;

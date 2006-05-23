@@ -92,7 +92,7 @@ page_type (char *page)
 static char
 *open_info_file (char *file)
 {
-	GIOChannel *channel;
+	GIOChannel *channel = NULL;
 	int i;
 	gsize len;
 	char *str;
@@ -102,9 +102,19 @@ static char
 	d (g_print ("!! Opening %s...\n", file));
 	
 	channel = yelp_io_channel_new_file (file, &error);
+	/* TODO: Actually handle the errors sanely.  Don't crash */
+	if (!channel) {
+	  g_error ("Error opening file %s: %s\n", file, error->message);
+	  g_error_free (error);
+	  error = NULL;
+	  exit (655);
+	}
 	result = g_io_channel_read_to_end (channel, &str, &len, &error);
+	/* TODO: Ditto above */
 	if (result != G_IO_STATUS_NORMAL) {
 	  g_error ("Error reading file: %s\n", error->message);
+	  g_error_free (error);
+	  error = NULL;
 	  exit (666);
 	}
 	g_io_channel_shutdown (channel, FALSE, NULL);
@@ -122,51 +132,36 @@ static char
 }
 
 static gchar *
-find_info_part (gchar *part_name)
+find_info_part (gchar *part_name, gchar *base)
 {
-  gchar ** paths = yelp_get_info_paths ();
-  gint i;
-  gchar *filename = NULL;
-  gchar *uri = NULL;
-  GDir *dir;
+  /* New and improved.  We now assume that all parts are
+   * in the same subdirectory as the base file.  Makes
+   * life much simpler and is (afaict) always true
+   */
+  gchar *path;
+  gchar *tmp;
   gchar *bzfname, *gzfname;
+  gchar *uri = NULL;
+  tmp = g_strrstr (base, "/");
+  path = g_strndup (base, tmp-base);
 
-  bzfname = g_strconcat (part_name, ".bz2", NULL);
-  gzfname = g_strconcat (part_name, ".gz", NULL);
+  bzfname = g_strconcat (path, "/", part_name, ".bz2", NULL);
+  gzfname = g_strconcat (path, "/", part_name, ".gz", NULL);
+  
+  if (g_file_test (bzfname, G_FILE_TEST_EXISTS))
+    uri = g_strdup (bzfname);
+  else if (g_file_test (gzfname, G_FILE_TEST_EXISTS))
+    uri = g_strdup (gzfname);
 
-  for (i=0; paths[i]; i++) {
-    dir = g_dir_open (paths[i], 0, NULL);
-    if (!dir)
-      continue;
-
-    while ((filename = (gchar *) g_dir_read_name (dir))) {
-      if (g_str_equal (filename, bzfname)) {
-	uri = g_strconcat (paths[i], "/", bzfname, NULL);
-	g_dir_close (dir);
-	goto done;
-      } else if (g_str_equal (filename, gzfname)) {
-	uri = g_strconcat (paths[i], "/", gzfname, NULL);
-	g_dir_close (dir);
-	goto done;
-      } else if (g_str_equal (filename, part_name)) {
-	uri = g_strconcat (paths[i], "/", part_name, NULL);
-	g_dir_close (dir);
-	goto done;
-
-      }
-    }
-    g_dir_close (dir);
-  }
-
- done:
-  g_free (gzfname);
   g_free (bzfname);
+  g_free (gzfname);
+  g_free (path);
   return uri;
 
 }
 
 static char
-*process_indirect_map (char *page)
+*process_indirect_map (char *page, gchar * file)
 {
 	char **lines;
 	char **ptr;
@@ -190,9 +185,9 @@ static char
 
 		if (items[0])
 		{
-		        filename = find_info_part (items[0]);
-			str = open_info_file (filename);
-	
+		  filename = find_info_part (items[0], file);
+		  str = open_info_file (filename);
+		  
 			pages = g_strsplit (str, "", 2);
 			g_free (str);
 
@@ -548,6 +543,7 @@ GtkTreeStore
 	page_list = g_strsplit (str, "\n", 0);
 
 	g_free (str);
+	str = NULL;
 	
 	pages = 0;
 	offset = 0;
@@ -579,7 +575,7 @@ GtkTreeStore
 		{
 		  d (g_print ("Have the indirect mapping table\n"));
 			chained_info = TRUE;
-			str = process_indirect_map (*ptr);
+			str = process_indirect_map (*ptr, file);
 		}
 	}
 
@@ -592,7 +588,7 @@ GtkTreeStore
 		
 		pages = 0;
 		offset = 0;
-		
+
 		page_list = g_strsplit (str, "\n", 0);
 		offsets2pages = g_hash_table_new (g_str_hash, g_str_equal);
 		
@@ -648,9 +644,9 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 	GtkTreeIter children;
 	xmlNodePtr newnode;
 
-	char *page_no;
-	char *page_name;
-	char *page_content;
+	char *page_no = NULL;
+	char *page_name = NULL;
+	char *page_content = NULL;
 	
 	d (g_print ("Decended\n"));
 	do
@@ -817,6 +813,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 						      NULL));
 
   menuitems = g_strsplit (split[1], "\n", -1);
+  g_strfreev (split);
 
   while (menuitems[i] != NULL) {
     gboolean menu = FALSE;
@@ -876,6 +873,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
     i++;
     
   }
+  g_free (section_id);
   
   return newnode;
 }

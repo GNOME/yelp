@@ -1,5 +1,10 @@
 2006-05-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-utils.c: 
+	* src/yelp-info-parser.c:
+	Fix loading of info pages from subdirectories (emacs).
+	(Stupid info page workaround #3)
+
 	* src/yelp-toc-pager.c: 
 	Don't free the newly created doc while still in use
 	(should fix bug #342151)
