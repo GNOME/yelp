@@ -1,6 +1,9 @@
 2006-05-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-utils.c: 
+	If an info file doesn't exist, default to showing the man page
+	Fixes bug #341627
+	
 	* src/yelp-info-parser.c:
 	Fix loading of info pages from subdirectories (emacs).
 	(Stupid info page workaround #3)

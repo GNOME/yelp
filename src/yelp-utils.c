@@ -164,8 +164,14 @@ yelp_doc_info_new (const gchar *uri, gboolean trust_uri)
     }
     else if (g_str_has_prefix (full_uri, "info:")) {
 	doc_uri  = convert_info_uri (full_uri);
-	doc_type = YELP_DOC_TYPE_INFO;
-	uri_type = YELP_URI_TYPE_INFO;
+	if (!g_str_has_prefix (doc_uri, "man:")) {
+	    doc_type = YELP_DOC_TYPE_INFO;
+	    uri_type = YELP_URI_TYPE_INFO;
+	} else {
+	    doc_uri = convert_man_uri (doc_uri, trust_uri);
+	    doc_type = YELP_DOC_TYPE_MAN;
+	    uri_type = YELP_URI_TYPE_MAN;	    
+	}
     }
     else if (g_str_has_prefix (full_uri, "x-yelp-toc:")) {
 	doc_uri = g_strdup ("file://" DATADIR "/yelp/toc.xml");
@@ -1002,6 +1008,15 @@ convert_info_uri (gchar   *uri)
 	}
     }
 
+    /* If we got this far and doc_uri is still NULL, we resort to looking
+     * for a man page.  Let above handle that.  We just let it know that 
+     * somethings gotta be done */
+    if (doc_uri == NULL) {
+	gchar *tmp;
+	tmp = strchr (uri, ':');
+	doc_uri = g_strconcat ("man",tmp,NULL);
+    }
+
  done:
     if (pspec)
 	g_pattern_spec_free (pspec);
@@ -1010,5 +1025,6 @@ convert_info_uri (gchar   *uri)
     g_free (subdir);
     g_free (info_dot_info);
     g_free (info_name);
+    
     return doc_uri;
 }
