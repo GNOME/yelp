@@ -1,3 +1,9 @@
+2006-05-23  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc-pager.c: 
+	Don't free the newly created doc while still in use
+	(should fix bug #342151)
+	
 2006-05-21  Brent Smith  <gnome@nextreality.net>
 
 	* configure.in: Update intltool requirement to 0.35.0

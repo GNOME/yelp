@@ -1978,8 +1978,6 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     g_signal_emit_by_name (pager, "page", page->page_id);
 
  done:
-    if (new_doc)
-	xmlFreeDoc (new_doc);
     if (style)
 	xsltFreeStylesheet (style);
 }
