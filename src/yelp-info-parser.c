@@ -351,7 +351,7 @@ GtkTreeIter * find_real_sibling (GtkTreeModel *model,
   gchar *title;
   gchar *reftitle;
 
-  if (!it)
+  if (!it || !comp)
     return NULL;
 
   r = gtk_tree_iter_copy (it);

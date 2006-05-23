@@ -1,5 +1,8 @@
 2006-05-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-info-parser.c: 
+	NULL checking.  Suppresses critical warnings on some info pages
+	
 	* src/yelp-utils.c: 
 	If an info file doesn't exist, default to showing the man page
 	Fixes bug #341627
