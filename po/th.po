@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-31 10:29+0700\n"
-"PO-Revision-Date: 2006-01-31 10:31+0700\n"
+"POT-Creation-Date: 2006-05-23 21:23+0700\n"
+"PO-Revision-Date: 2006-05-23 21:54+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit"
 
 # Info as in "Emacs info page"
-#: data/info.xml.in.h:1 src/yelp-toc-pager.c:1230
+#: data/info.xml.in.h:1 src/yelp-toc-pager.c:1616
 msgid "GNU Info Pages"
 msgstr "GNU Info Pages"
 
@@ -53,7 +53,7 @@ msgstr "รูทีนเคอร์เนล"
 msgid "Library Functions"
 msgstr "ฟังก์ชันในไลบรารี"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1224
+#: data/man.xml.in.h:9 src/yelp-toc-pager.c:1610
 msgid "Manual Pages"
 msgstr "Manual Pages"
 
@@ -310,7 +310,7 @@ msgstr "ใช้แบบอักษรของระบบ"
 msgid "Use the default fonts set for the system."
 msgstr "ใช้แบบอักษรปริยายที่กำหนดไว้ในระบบ"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2652
+#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2714
 msgid "Yelp"
 msgstr "Yelp"
 
@@ -345,7 +345,7 @@ msgstr "มีที่คั่นหน้าชื่อ <b>%s</b> อยู�
 msgid "Document Sections"
 msgstr "หัวข้อเอกสาร"
 
-#: src/yelp-db-pager.c:245 src/yelp-db-print-pager.c:197
+#: src/yelp-db-pager.c:244 src/yelp-db-print-pager.c:195
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -384,7 +384,7 @@ msgstr "ประมวลผลเอกสารไม่สำเร็จ"
 msgid "No information is available about the error."
 msgstr "ไม่มีข้อมูลสำหรับข้อผิดพลาดนี้"
 
-#: src/yelp-info-pager.c:190
+#: src/yelp-info-pager.c:188
 #, c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -398,24 +398,29 @@ msgid ""
 "an unsupported format."
 msgstr "ไม่สามารถอ่านและแปลงรหัสแฟ้ม ‘%s’ ได้ แฟ้มดังกล่าวอาจถูกบีบอัดไว้ด้วยรูปแบบที่ไม่สนับสนุน"
 
-#: src/yelp-main.c:99
+#: src/yelp-main.c:98
 msgid "Define which cache directory to use"
 msgstr "ตั้งโฟลเดอร์สำหรับเก็บข้อมูลชั่วคราว"
 
-#: src/yelp-main.c:133
+#: src/yelp-main.c:135
 #, c-format
 msgid "Could not activate Yelp: '%s'"
 msgstr "เรียกใช้ Yelp ไม่สำเร็จ: '%s'"
 
-#: src/yelp-main.c:152
+#: src/yelp-main.c:154
 msgid "Could not open new window."
 msgstr "เปิดหน้าต่างใหม่ไม่สำเร็จ"
 
-#: src/yelp-main.c:396 yelp.desktop.in.in.h:2
+#. Commandline parsing is done here
+#: src/yelp-main.c:391
+msgid " GNOME Help Browser"
+msgstr "โปรแกรมอ่านวิธีใช้ของ GNOME"
+
+#: src/yelp-main.c:407 yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "วิธีใช้"
 
-#: src/yelp-man-pager.c:185
+#: src/yelp-man-pager.c:181
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
@@ -493,34 +498,28 @@ msgstr "_ถึง:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "กำหนดหน้าสุดท้ายของช่วงที่จะพิมพ์"
 
-#: src/yelp-search-pager.c:380
-msgid ""
-"Your search could not be processed. There is no connection to the beagle "
-"daemon."
-msgstr "ไม่สามารถค้นหาได้ เพราะไม่มีการเชื่อมต่อไปยัง beagle daemon"
-
-#: src/yelp-search-pager.c:683
+#: src/yelp-search-pager.c:697
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 msgstr "ไม่สามารถค้นหาได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ใช่ XSLT stylesheet ที่ถูกต้อง"
 
-#: src/yelp-search-pager.c:785 src/yelp-toc-pager.c:1481
-#: src/yelp-xslt-pager.c:368
+#: src/yelp-search-pager.c:799 src/yelp-toc-pager.c:1887
+#: src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "ไม่มีแอตทริบิวต์ href ใน yelp:document"
 
-#: src/yelp-search-pager.c:799 src/yelp-toc-pager.c:1495
-#: src/yelp-xslt-pager.c:384
+#: src/yelp-search-pager.c:813 src/yelp-toc-pager.c:1900
+#: src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "หน่วยความจำหมด"
 
-#: src/yelp-search-pager.c:840 src/yelp-toc-pager.c:1545
+#: src/yelp-search-pager.c:854 src/yelp-toc-pager.c:1949
 msgid "Help Contents"
 msgstr "สารบัญวิธีใช้"
 
-#: src/yelp-search-pager.c:1116 src/yelp-toc-pager.c:495
+#: src/yelp-search-pager.c:1156 src/yelp-toc-pager.c:526
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "ไม่สามารถโหลดแฟ้ม OMF: '%s'"
@@ -550,32 +549,32 @@ msgstr "ไม่สามารถโหลดแฟ้ม OMF: '%s'"
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: src/yelp-toc-pager.c:272
+#: src/yelp-toc-pager.c:276
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: จำนวนหน้าเป็นลบ"
 
-#: src/yelp-toc-pager.c:633
+#: src/yelp-toc-pager.c:997
 #, c-format
 msgid "Read man page for %s"
 msgstr "อ่าน man page สำหรับ %s"
 
-#: src/yelp-toc-pager.c:1099
+#: src/yelp-toc-pager.c:1482
 #, c-format
 msgid "Read info page for %s"
 msgstr "อ่าน info page สำหรับ %s"
 
-#: src/yelp-toc-pager.c:1197
+#: src/yelp-toc-pager.c:1583
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr "ไม่สามารถโหลดสารบัญได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ก็ไม่ใช่รูปแบบ XML ที่ถูกต้อง"
 
-#: src/yelp-toc-pager.c:1219
+#: src/yelp-toc-pager.c:1605
 msgid "Command Line Help"
 msgstr "วิธีใช้บรรทัดคำสั่ง"
 
-#: src/yelp-toc-pager.c:1328
+#: src/yelp-toc-pager.c:1723
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -695,7 +694,7 @@ msgstr "หัวข้อ_ก่อน"
 msgid "_Next Section"
 msgstr "หัวข้อ_ถัดไป"
 
-#: src/yelp-window.c:417
+#: src/yelp-window.c:417 src/yelp-window.c:449
 msgid "_Contents"
 msgstr "_สารบัญ"
 
@@ -719,69 +718,73 @@ msgstr "เปิดลิงก์ในหน้าต่างใ_หม่"
 msgid "_Copy Link Address"
 msgstr "_คัดลอกลิงก์"
 
-#: src/yelp-window.c:450
+#: src/yelp-window.c:451
+msgid "Help On this application"
+msgstr "วิธีใช้โปรแกรมนี้"
+
+#: src/yelp-window.c:454
 msgid "_About"
 msgstr "เ_กี่ยวกับ"
 
-#: src/yelp-window.c:455
+#: src/yelp-window.c:459
 msgid "Copy _Email Address"
 msgstr "คัดลอกที่อยู่_อีเมล"
 
-#: src/yelp-window.c:504
+#: src/yelp-window.c:508
 msgid "Help Browser"
 msgstr "โปรแกรมอ่านวิธีใช้"
 
-#: src/yelp-window.c:768 src/yelp-window.c:924
+#: src/yelp-window.c:772 src/yelp-window.c:928
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "URI สำหรับแฟ้มนี้ใช้ไม่ได้"
 
-#: src/yelp-window.c:780 src/yelp-window.c:919
+#: src/yelp-window.c:784 src/yelp-window.c:923
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "URI ‘%s’ ใช้ไม่ได้ หรือไม่ได้ชี้ไปยังแฟ้มจริง"
 
-#: src/yelp-window.c:866 src/yelp-window.c:1295
+#: src/yelp-window.c:872 src/yelp-window.c:1313
 msgid "Man pages are not supported in this version."
 msgstr "ไม่สนับสนุน man page ในรุ่นนี้"
 
-#: src/yelp-window.c:876 src/yelp-window.c:1286
+#: src/yelp-window.c:882 src/yelp-window.c:1304
 msgid "GNU info pages are not supported in this version"
 msgstr "ไม่สนับสนุน GNU info page ในรุ่นนี้"
 
-#: src/yelp-window.c:894 src/yelp-window.c:1308
+#: src/yelp-window.c:898 src/yelp-window.c:1326
 msgid "Search is not supported in this version."
 msgstr "ไม่สนับสนุนการค้นหาในรุ่นนี้"
 
-#: src/yelp-window.c:899
+#: src/yelp-window.c:903
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr "ไม่สนับสนุนเอกสาร SGML อีกต่อไป กรุณาขอให้ผู้เขียนเอกสารเปลี่ยนมาใช้ XML"
 
-#: src/yelp-window.c:1025
+#: src/yelp-window.c:1043
 msgid "_Search:"
 msgstr "_ค้นหา:"
 
 # There should be a better translation.
-#: src/yelp-window.c:1026
+#: src/yelp-window.c:1044
 msgid "Search for other documentation"
 msgstr "ค้นหาเอกสารอื่นๆ"
 
-#: src/yelp-window.c:1175
+#: src/yelp-window.c:1193
 msgid "Fin_d:"
 msgstr "_หา:"
 
-#: src/yelp-window.c:1195
+#: src/yelp-window.c:1213
 msgid "Find _Next"
 msgstr "หา_ต่อ"
 
-#: src/yelp-window.c:1207
+#: src/yelp-window.c:1225
 msgid "Find _Previous"
 msgstr "หา_ย้อน"
 
-#: src/yelp-window.c:1321
+#: src/yelp-window.c:1339
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -789,8 +792,8 @@ msgid ""
 msgstr ""
 "ไม่สามารถสร้าง context สำหรับแปลงข้อมูลให้กับแฟ้ม ‘%s’ ได้ แฟ้มอาจอยู่ในฟอร์แมตที่ไม่สนับสนุน"
 
-#: src/yelp-window.c:1350 src/yelp-window.c:1764
-#: src/yelp-window.c:1831
+#: src/yelp-window.c:1368 src/yelp-window.c:1782
+#: src/yelp-window.c:1858
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -800,20 +803,29 @@ msgstr ""
 "ไม่มีหัวข้อ ‘%s’ ในเอกสารนี้ ถ้าคุณมาถึงหัวข้อนี้จากปุ่ม \"วิธีใช้\" ในโปรแกรม "
 "กรุณารายงานปัญหาไปยังผู้ดูแลโปรแกรมนั้นๆ"
 
-#: src/yelp-window.c:1465 src/yelp-window.c:2221
+#: src/yelp-window.c:1483 src/yelp-window.c:2248
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr "ไม่สามารถอ่านแฟ้ม ‘%s’ ได้ แฟ้มนี้อาจจะหายไป หรือคุณอาจไม่มีสิทธิ์อ่าน"
 
-#: src/yelp-window.c:1516
+#: src/yelp-window.c:1534
 msgid "Loading..."
 msgstr "กำลังโหลด..."
 
+#: src/yelp-window.c:2680
+#, c-format
+msgid ""
+"Could not display help for Yelp.\n"
+"%s"
+msgstr ""
+"แสดงวิธีใช้ของ Yelp ไม่สำเร็จ\n"
+"%s"
+
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: src/yelp-window.c:2649
+#: src/yelp-window.c:2711
 msgid "translator-credits"
 msgstr ""
 "ไพศาข์ สีเหลืองสวัสดิ์\n"
@@ -822,18 +834,18 @@ msgstr ""
 "ถ้ามีเวลาโปรดมาช่วยกันแปล ;-)\n"
 "http://gnome-th.sf.net"
 
-#: src/yelp-window.c:2654
+#: src/yelp-window.c:2716
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "โปรแกรมเรียกดูและอ่านเอกสารสำหรับเดสก์ท็อป GNOME"
 
-#: src/yelp-xslt-pager.c:195
+#: src/yelp-xslt-pager.c:193
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ แฟ้มดังกล่าวอาจไม่มีอยู่ หรือฟอร์แมตไม่ถูกต้อง"
 
-#: src/yelp-xslt-pager.c:216 src/yelp-xslt-pager.c:229
+#: src/yelp-xslt-pager.c:214 src/yelp-xslt-pager.c:227
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -845,6 +857,11 @@ msgstr ""
 #: yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "วิธีการใช้ GNOME"
+
+#~ msgid ""
+#~ "Your search could not be processed. There is no connection to the beagle "
+#~ "daemon."
+#~ msgstr "ไม่สามารถค้นหาได้ เพราะไม่มีการเชื่อมต่อไปยัง beagle daemon"
 
 #~ msgid "<b>_Bookmarks:</b>"
 #~ msgstr "<b>_ที่คั่นหน้า:</b>"
@@ -880,9 +897,6 @@ msgstr "วิธีการใช้ GNOME"
 
 #~ msgid "General"
 #~ msgstr "ทั่วไป"
-
-#~ msgid "Internet Applications"
-#~ msgstr "โปรแกรมอินเทอร์เน็ต"
 
 #~ msgid "Kernels"
 #~ msgstr "เคอร์เนล"
