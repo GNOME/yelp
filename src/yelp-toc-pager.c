@@ -1229,11 +1229,14 @@ process_mandir_pending (YelpTocPager *pager)
 		gchar **sects = g_strsplit ((gchar *)sect, " ", 0);
 
 		for (j = 0; sects[j] != NULL; j++)
-		    g_hash_table_insert (priv->man_secthash, sects[j], node);
+		    g_hash_table_insert (priv->man_secthash, 
+					 g_strdup (sects[j]), node);
+		g_strfreev (sects);
 	    }
-
+	    xmlFree (sect);
 	    xml_trim_titles (node);
 	}
+	xmlXPathFreeObject (obj);
 	xmlXPathFreeContext (xpath);
     }
 
@@ -1443,11 +1446,14 @@ process_info_pending (YelpTocPager *pager)
 		xpath = xmlXPathNewContext (priv->toc_doc);
 		obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
 		node = obj->nodesetval->nodeTab[0];
+		xmlXPathFreeObject (obj);
+		xmlXPathFreeContext (xpath);
 	    }
 	    
 	    channel = yelp_io_channel_new_file (filename, NULL);
 	    g_io_channel_read_to_end (channel, &str, &len, NULL);
 	    g_io_channel_shutdown (channel, FALSE, NULL);
+	    g_io_channel_unref (channel);
 	    
 	    files = g_strsplit (str, "\n", -1);
 	    
@@ -1480,6 +1486,7 @@ process_info_pending (YelpTocPager *pager)
 			p = g_strdup (part2);
 			p = g_strstrip (p);
 			tooltip = g_strdup_printf (_("Read info page for %s"), p);
+			g_free (p);
 			path = part1+1;
 			part1 = strchr (path, ')');
 			if (!part1)
@@ -1532,15 +1539,20 @@ process_info_pending (YelpTocPager *pager)
 		    } else if (!g_ascii_isspace (**ptr) && g_ascii_isprint(**ptr)){
 			new_node = g_hash_table_lookup (categories, *ptr);
 			if (!new_node) {
+			    gchar *tmp;
 
 			    /* A new section */
 			    static int sectno = 1;
 			    new_node = xmlNewChild (node, NULL, BAD_CAST "toc",
 						    NULL);
+			    tmp = g_strdup_printf ("%d", sectno);
 			    xmlNewNsProp (new_node, NULL, BAD_CAST "sect",
-					  BAD_CAST g_strdup_printf ("%d", sectno));
+					  BAD_CAST tmp);
+			    g_free (tmp);
+			    tmp = g_strdup_printf ("infosect%d", sectno);
 			    xmlNewNsProp (new_node, NULL, BAD_CAST "id",
-					  BAD_CAST g_strdup_printf ("infosect%d", sectno));
+					  BAD_CAST tmp);
+			    g_free (tmp);
 			    sectno++;
 			    xmlNewChild (new_node, NULL, BAD_CAST "title",
 					 BAD_CAST *ptr);
@@ -1914,7 +1926,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     new_doc->intSubset = dtd;
     new_doc->extSubset = dtd;
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
-    new_doc->encoding = xmlStrdup (BAD_CAST "utf-8");
+    new_doc->encoding = BAD_CAST "utf-8";
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
 
@@ -1978,6 +1990,8 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     g_signal_emit_by_name (pager, "page", page->page_id);
 
  done:
+    if (new_doc)
+	xmlFreeDoc (new_doc);
     if (style)
 	xsltFreeStylesheet (style);
 }

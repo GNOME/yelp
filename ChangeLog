@@ -1,3 +1,13 @@
+2006-05-26  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc-pager.c:
+	Free newly created doc when finished (revert of previous change)
+	Fix some other memory leaks
+	
+	* src/yelp-info-parser.c: 
+	Fix an invalid write (fix bug #342151, again)
+	Fix a bucket-load more memory leaks
+	
 2006-05-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-info-parser.c: 
