@@ -1442,7 +1442,7 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 		    g_free (str);
 	        }
 	    
-	        anc = ++ptr;
+	        anc = ptr;
 	        break;
 	    case 'e':
 	        anc = ++ptr;

@@ -67,8 +67,6 @@
 
 typedef gboolean      (*ProcessFunction)        (YelpSearchPager      *pager);
 
-typedef struct _YelpListing YelpListing;
-
 typedef struct _SearchContainer SearchContainer;
 
 #define YELP_SEARCH_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SEARCH_PAGER, YelpSearchPagerPriv))
@@ -87,16 +85,6 @@ struct _YelpSearchPagerPriv {
     GPtrArray *hits;
     int   snippet_request_count;
     GSList * pending_searches;
-};
-
-struct _YelpListing {
-    gchar       *id;
-    gchar       *title;
-
-    GSList      *listings;
-    GSList      *documents;
-
-    gboolean     has_listings;
 };
 
 enum {

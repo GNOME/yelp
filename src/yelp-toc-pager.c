@@ -65,8 +65,6 @@
 
 typedef gboolean      (*ProcessFunction)        (YelpTocPager      *pager);
 
-typedef struct _YelpListing YelpListing;
-
 #define YELP_TOC_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_TOC_PAGER, YelpTocPagerPriv))
 
 struct _YelpTocPagerPriv {
@@ -105,16 +103,6 @@ struct _YelpTocPagerPriv {
 
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr transformContext;
-};
-
-struct _YelpListing {
-    gchar       *id;
-    gchar       *title;
-
-    GSList      *listings;
-    GSList      *documents;
-
-    gboolean     has_listings;
 };
 
 static void          toc_pager_class_init      (YelpTocPagerClass *klass);
@@ -1216,7 +1204,7 @@ process_mandir_pending (YelpTocPager *pager)
 					 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 					 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
 					 XML_PARSE_NONET    );
-	priv->man_secthash = g_hash_table_new (g_str_hash, g_str_equal);
+	priv->man_secthash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
 	xpath = xmlXPathNewContext (priv->toc_doc);
 	obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
@@ -1801,6 +1789,12 @@ process_cleanup (YelpTocPager *pager)
 {
     YelpTocPagerPriv *priv = pager->priv;
 
+    /* clean up the man page section hash table */
+    if (priv->man_secthash) {
+	g_hash_table_destroy (priv->man_secthash);
+	priv->man_secthash = NULL;
+    }
+
     /* cleanup the stylesheet used to process the toc */
     if (priv->stylesheet) {
 	xsltFreeStylesheet (priv->stylesheet);
@@ -1926,7 +1920,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     new_doc->intSubset = dtd;
     new_doc->extSubset = dtd;
     new_doc->charset = XML_CHAR_ENCODING_UTF8;
-    new_doc->encoding = BAD_CAST "utf-8";
+    new_doc->encoding = xmlStrdup (BAD_CAST "utf-8");
     new_doc->dict = ctxt->dict;
     xmlDictReference (new_doc->dict);
 
