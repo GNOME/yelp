@@ -1,3 +1,11 @@
+2006-06-28  Frederic Peters <fpeters@0d.be>
+
+	* src/yelp-search-pager.c:
+	* stylesheets/search2html.xsl:
+	more helpful message when there are no search results (fixes #341798)
+	search results message can be translated (fixes #341689)
+	limit search results to 20 items (fixes #341434)
+
 2006-05-26  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-man-parser.c: (parser_append_given_text_handle_escapes):

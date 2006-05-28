@@ -676,6 +676,10 @@ process_xslt (YelpSearchPager *pager)
     gint  params_max = 12;
     GtkIconInfo *info;
     GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
+    xmlXPathContextPtr results_xpath_ctx = NULL;
+    xmlXPathObjectPtr results_xpath = NULL;
+    int number_of_results;
+    gchar *title = NULL, *text = NULL;
 
     d (xmlDocFormatDump(stdout, priv->search_doc, 1));
 
@@ -723,6 +727,30 @@ process_xslt (YelpSearchPager *pager)
     params[params_i++] = g_strdup_printf ("\"%s\"", DATADIR "/yelp/icons/help-title.png");
 
     params[params_i++] = NULL;
+
+    results_xpath_ctx = xmlXPathNewContext(priv->search_doc);
+    results_xpath = xmlXPathEvalExpression(BAD_CAST "/search/result", results_xpath_ctx);
+    if (results_xpath && results_xpath->nodesetval && results_xpath->nodesetval->nodeNr) {
+    	number_of_results = results_xpath->nodesetval->nodeNr;
+    } else {
+    	number_of_results = 0;
+    }
+    xmlXPathFreeObject(results_xpath);
+    xmlXPathFreeContext(results_xpath_ctx);
+    if (number_of_results == 0) {
+    	title = g_strdup_printf( _("No results for \"%s\""), priv->search_terms);
+	text = g_strdup(_("Try using different words to describe the problem "
+			  "you're having or the topic you want help with."));
+    } else {
+    	title = g_strdup_printf( _("Search results for \"%s\""), priv->search_terms);
+    }
+    xmlNewTextChild (priv->root, NULL, BAD_CAST "title", BAD_CAST title);
+    g_free(title);
+
+    if (text) {
+      xmlNewTextChild (priv->root, NULL, BAD_CAST "text", BAD_CAST text);
+      g_free(text);
+    }
 
     outdoc = xsltApplyStylesheetUser (priv->stylesheet,
 				      priv->search_doc,

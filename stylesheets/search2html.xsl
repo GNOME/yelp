@@ -107,10 +107,15 @@
       <body>
         <div class="content">
           <div class="header">
-            <xsl:value-of select="count(result[@uri != ''])"/> result(s) returned.
+            <xsl:value-of select="title" />
           </div>
+          <xsl:if test="text">
+            <p>
+              <xsl:value-of select="text" />
+            </p>
+          </xsl:if>
           <dl>
-            <xsl:for-each select="result[@uri != '']">
+            <xsl:for-each select="result[@uri != '' and position() &lt; 21]">
               <!-- Don't sort.  Program deals with that. We do however 
                    need it for slow search-->
                 <xsl:sort order="descending" data-type="number" select="normalize-space(@score)"/>
