@@ -1,3 +1,13 @@
+2006-05-29  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/gtkentryaction.c: 
+	Free text after use
+
+	* src/yelp-info-parser.c: 
+	Assume the tag tables given in info files are wrong.  They mostly are.
+	Instead, we set the tag tables to the correct offsets ourselves
+	Also, fix a problem loading certain info sections from menus
+	
 2006-06-28  Frederic Peters <fpeters@0d.be>
 
 	* src/yelp-search-pager.c:

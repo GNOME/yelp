@@ -119,7 +119,7 @@ sync_label (GtkAction *gaction,
   GtkEntryAction *action = GTK_ENTRY_ACTION (gaction);
   GtkToolItem *item = GTK_TOOL_ITEM (proxy);
   GtkLabel *label = GTK_LABEL (g_object_get_data (G_OBJECT (item), "label"));
-  char *text;
+  char *text = NULL;
 
   g_object_get (action, "label", &text, NULL);
   gtk_label_set_text_with_mnemonic (label, text);
@@ -127,6 +127,7 @@ sync_label (GtkAction *gaction,
     gtk_widget_show (GTK_WIDGET (label));
   else
     gtk_widget_hide (GTK_WIDGET (label));
+  g_free (text);
 }
 
 static void
