@@ -1,3 +1,19 @@
+2006-05-29  Brent Smith  <gnome@nextreality.net>
+
+	* data/yelp.schemas.in: fix the applyto element for the use_caret
+	gconf key
+	* src/yelp-man-parser.c: (macro_reference_handler),
+	(parser_append_given_text_handle_escapes):
+	When a man page uses the .so macro to include another file, just
+	provide a link to the file;  Only works for man pages that have
+	.so as the first and only macro; sort of fixes #340173
+	* src/yelp-toc-pager.c: (process_mandir_pending):
+	Only write a mansect element when we have a non empty linked list of
+	directories
+	(Backports from HEAD)
+
+==================== 2.14.1 ====================
+
 2006-04-09  Brent Smith  <gnome@nextreality.net>
 
 	* NEWS:

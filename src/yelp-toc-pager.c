@@ -887,7 +887,7 @@ process_mandir_pending (YelpTocPager *pager)
 	/* check for the existence of the xml cache file in ~/.gnome2/yelp.d/
 	 * if it exists, use it as the source for man pages instead of 
 	 * searching the hard disk for them - should make startup much faster */
-	if (g_file_test (index_file, G_FILE_TEST_EXISTS) &&
+	if (g_file_test (index_file, G_FILE_TEST_IS_REGULAR) &&
 	    create_toc_from_index (pager, index_file)) {
 
 	    /* we are done.. */
@@ -940,13 +940,6 @@ process_mandir_pending (YelpTocPager *pager)
     /* iterate through our previously created linked lists and create the
      * table of contents from them */
     else {
-	if (!priv->man_manhash) {
-	    priv->man_manhash = g_hash_table_new_full (g_str_hash, g_str_equal,
-	                                               g_free,     NULL);
-
-            priv->ins = xmlNewChild (priv->root, NULL, BAD_CAST "mansect", NULL);
-	    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n    "));			    
-	}
 
 	if (priv->mandir_langpath && priv->mandir_langpath->data) {
 	    dirname = priv->mandir_langpath->data;
@@ -957,6 +950,16 @@ process_mandir_pending (YelpTocPager *pager)
 
 		if (g_stat (dirname, &buf) < 0)
 		    g_warning ("Unable to stat dir: \"%s\"\n", dirname);
+
+		/* check to see if we need create a new hash table */
+		if (!priv->man_manhash) {
+		    priv->man_manhash =
+		        g_hash_table_new_full (g_str_hash, g_str_equal,
+		                               g_free,     NULL);
+
+		    priv->ins = xmlNewChild (priv->root, NULL, BAD_CAST "mansect", NULL);
+		    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n    "));
+		}
 
 		g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
 
