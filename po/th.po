@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-23 21:23+0700\n"
-"PO-Revision-Date: 2006-05-23 21:54+0700\n"
+"POT-Creation-Date: 2006-05-29 20:08+0700\n"
+"PO-Revision-Date: 2006-05-29 20:16+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -498,28 +498,45 @@ msgstr "_ถึง:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "กำหนดหน้าสุดท้ายของช่วงที่จะพิมพ์"
 
-#: src/yelp-search-pager.c:697
+#: src/yelp-search-pager.c:689
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 msgstr "ไม่สามารถค้นหาได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ใช่ XSLT stylesheet ที่ถูกต้อง"
 
-#: src/yelp-search-pager.c:799 src/yelp-toc-pager.c:1887
+#: src/yelp-search-pager.c:741
+#, c-format
+msgid "No results for \"%s\""
+msgstr "ไม่มีผลลัพธ์การค้นหาสำหรับ \"%s\""
+
+#: src/yelp-search-pager.c:742
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+"กรุณาลองใช้คำอื่นเพื่อบรรยายปัญหาที่คุณกำลังพบ หรือหัวข้อที่คุณต้องการค้นหาวิธีใช้"
+
+#: src/yelp-search-pager.c:745
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "ผลการค้นหาสำหรับ \"%s\""
+
+#: src/yelp-search-pager.c:815 src/yelp-toc-pager.c:1893
 #: src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "ไม่มีแอตทริบิวต์ href ใน yelp:document"
 
-#: src/yelp-search-pager.c:813 src/yelp-toc-pager.c:1900
+#: src/yelp-search-pager.c:829 src/yelp-toc-pager.c:1906
 #: src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "หน่วยความจำหมด"
 
-#: src/yelp-search-pager.c:854 src/yelp-toc-pager.c:1949
+#: src/yelp-search-pager.c:870 src/yelp-toc-pager.c:1955
 msgid "Help Contents"
 msgstr "สารบัญวิธีใช้"
 
-#: src/yelp-search-pager.c:1156 src/yelp-toc-pager.c:526
+#: src/yelp-search-pager.c:1172 src/yelp-toc-pager.c:514
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "ไม่สามารถโหลดแฟ้ม OMF: '%s'"
@@ -549,16 +566,16 @@ msgstr "ไม่สามารถโหลดแฟ้ม OMF: '%s'"
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: src/yelp-toc-pager.c:276
+#: src/yelp-toc-pager.c:264
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: จำนวนหน้าเป็นลบ"
 
-#: src/yelp-toc-pager.c:997
+#: src/yelp-toc-pager.c:985
 #, c-format
 msgid "Read man page for %s"
 msgstr "อ่าน man page สำหรับ %s"
 
-#: src/yelp-toc-pager.c:1482
+#: src/yelp-toc-pager.c:1476
 #, c-format
 msgid "Read info page for %s"
 msgstr "อ่าน info page สำหรับ %s"
