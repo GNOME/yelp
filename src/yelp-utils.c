@@ -903,6 +903,7 @@ convert_info_uri (gchar   *uri)
     gchar *info_name = NULL;
     gchar *info_dot_info = NULL;
     gchar **infopaths = NULL;
+    gboolean need_subdir = FALSE;
 
     gint i;
 
@@ -958,6 +959,7 @@ convert_info_uri (gchar   *uri)
 	g_free (info_name);
 	info_name = g_strdup (real_name);
 	g_free (real_name);
+	need_subdir = TRUE;
     }
 
 
@@ -976,18 +978,20 @@ convert_info_uri (gchar   *uri)
 	dir = g_dir_open (infopath[i], 0, NULL);
 	if (dir) {
 	    while ((filename = g_dir_read_name (dir))) {
-		if (subdir && g_str_equal (filename, subdir)) {
+		if (need_subdir && g_str_equal (filename, subdir)) {
 		    gchar *dirname = NULL;
 		    g_dir_close (dir);
 		    dirname = g_strconcat (infopath[i], "/", subdir, NULL);
 		    dir = g_dir_open (dirname, 0, NULL);
 		    g_free (dirname);
 		    filename = g_dir_read_name (dir);
+		    need_subdir = FALSE;
 		}
-		else if (g_str_equal (info_dot_info, filename)  ||
-			 g_pattern_match_string (pspec, filename) ||
-			 g_pattern_match_string (pspec1, filename) ||
-			 g_str_equal (info_name, filename)) {
+		else if (!need_subdir && 
+			 (g_str_equal (info_dot_info, filename)  ||
+			  g_pattern_match_string (pspec, filename) ||
+			  g_pattern_match_string (pspec1, filename) ||
+			  g_str_equal (info_name, filename))) {
 		    if (subdir) {
 			doc_uri = g_strconcat ("file://",
 					       infopath[i], "/", subdir, "/",
