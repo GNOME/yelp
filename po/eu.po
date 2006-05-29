@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-24 18:29+0000\n"
-"PO-Revision-Date: 2006-05-24 18:32+0000\n"
+"POT-Creation-Date: 2006-05-29 10:36+0000\n"
+"PO-Revision-Date: 2006-05-29 10:40+0000\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -501,7 +501,7 @@ msgstr "N_ora:"
 msgid "Sets the end of the range of pages to be printed"
 msgstr "Inprimatuko diren orrialdeen barrutiaren amaiera ezartzen du"
 
-#: ../src/yelp-search-pager.c:697
+#: ../src/yelp-search-pager.c:689
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -510,21 +510,37 @@ msgstr ""
 "Ezin izan da bilaketa prozesatu. '%s' fitxategia falta da edo ez da baliozko "
 "XSLT kalkulu-orria."
 
-#: ../src/yelp-search-pager.c:799 ../src/yelp-toc-pager.c:1887
+#: ../src/yelp-search-pager.c:741
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Ez da \"%s\" aurkitu"
+
+#: ../src/yelp-search-pager.c:742
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr "Erabili beste hitz batzuk zein arazo duzun edo laguntza behar duzun gaia azaltzeko."
+
+#: ../src/yelp-search-pager.c:745
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "\"%s\" bilaketaren emaitzak"
+
+#: ../src/yelp-search-pager.c:815 ../src/yelp-toc-pager.c:1893
 #: ../src/yelp-xslt-pager.c:366
 msgid "No href attribute found on yelp:document"
 msgstr "Ez da href atributurik aurkitu yelp:document-en"
 
-#: ../src/yelp-search-pager.c:813 ../src/yelp-toc-pager.c:1900
+#: ../src/yelp-search-pager.c:829 ../src/yelp-toc-pager.c:1906
 #: ../src/yelp-xslt-pager.c:382
 msgid "Out of memory"
 msgstr "Memoriarik ez"
 
-#: ../src/yelp-search-pager.c:854 ../src/yelp-toc-pager.c:1949
+#: ../src/yelp-search-pager.c:870 ../src/yelp-toc-pager.c:1955
 msgid "Help Contents"
 msgstr "Laguntzaren edukia"
 
-#: ../src/yelp-search-pager.c:1156 ../src/yelp-toc-pager.c:526
+#: ../src/yelp-search-pager.c:1172 ../src/yelp-toc-pager.c:514
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Ezin izan da '%s' OMF fitxategia kargatu."
@@ -554,16 +570,16 @@ msgstr "Ezin izan da '%s' OMF fitxategia kargatu."
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:276
+#: ../src/yelp-toc-pager.c:264
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: pausa-zenbaketa negatiboa da."
 
-#: ../src/yelp-toc-pager.c:997
+#: ../src/yelp-toc-pager.c:985
 #, c-format
 msgid "Read man page for %s"
 msgstr "Irakurri %s(r)en eskuliburuko orria"
 
-#: ../src/yelp-toc-pager.c:1482
+#: ../src/yelp-toc-pager.c:1476
 #, c-format
 msgid "Read info page for %s"
 msgstr "Irakurri %s(r)en info orria"
