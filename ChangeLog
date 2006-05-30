@@ -1,5 +1,8 @@
 2006-05-30  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-utils.c: 
+	Fix man page fallback for info pages again
+	
         * src/yelp-toc-pager.c:
         Escape & characters when encountered in info processing (fixes #343372)
 
