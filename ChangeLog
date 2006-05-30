@@ -1,3 +1,9 @@
+2006-05-29  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (process_mandir_pending):
+	* src/yelp-utils.c: (yelp_doc_info_new):
+	fix two small memory leaks.
+
 2006-05-29  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-utils.c: 

@@ -168,6 +168,7 @@ yelp_doc_info_new (const gchar *uri, gboolean trust_uri)
 	    doc_type = YELP_DOC_TYPE_INFO;
 	    uri_type = YELP_URI_TYPE_INFO;
 	} else {
+	    g_free (doc_uri);
 	    doc_uri = convert_man_uri (doc_uri, trust_uri);
 	    doc_type = YELP_DOC_TYPE_MAN;
 	    uri_type = YELP_URI_TYPE_MAN;	    

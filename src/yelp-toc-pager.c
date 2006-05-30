@@ -1291,6 +1291,8 @@ process_mandir_pending (YelpTocPager *pager)
 
 	    priv->mandir_list = g_slist_prepend (priv->mandir_list, tmplist);
 	}
+
+	g_strfreev (manpaths);
  
 	priv->mandir_ptr = priv->mandir_list;
 	if (priv->mandir_list && priv->mandir_list->data) {
