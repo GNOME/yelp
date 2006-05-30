@@ -1424,7 +1424,8 @@ process_info_pending (YelpTocPager *pager)
 	    xmlNodePtr tmp;
 	    xmlNodePtr new_node = NULL;
 	    gboolean menufound = FALSE;
-	    
+	    gchar ** amp;
+
 	    if (!priv->toc_doc) {
 		xmlXPathContextPtr xpath;
 		xmlXPathObjectPtr  obj;
@@ -1444,7 +1445,14 @@ process_info_pending (YelpTocPager *pager)
 	    g_io_channel_read_to_end (channel, &str, &len, NULL);
 	    g_io_channel_shutdown (channel, FALSE, NULL);
 	    g_io_channel_unref (channel);
-	    
+	    /* Check the string for the special character '&' which
+	     * screws up the xml.  If its there, it needs escaping
+	     */
+	    amp = g_strsplit (str, "&", -1);
+	    g_free (str);
+	    str = g_strjoinv ("&amp;", amp);
+	    g_strfreev (amp);
+
 	    files = g_strsplit (str, "\n", -1);
 	    
 	    for (ptr = files; *ptr != NULL; ptr++) {
