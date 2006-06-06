@@ -179,12 +179,12 @@ yelp_gecko_set_font (YelpFontType font_type, const gchar *fontname)
 	case YELP_FONT_FIXED:
 		for (i = 0; i < G_N_ELEMENTS (font_languages); ++i) {
 			g_snprintf (pref, sizeof (pref), 
-				    "font.name.monospace.%s",
+				    "font.name.fixed.%s",
 				    font_languages[i]);
 			gecko_prefs_set_string (pref, name);
 			
 			g_snprintf (pref, sizeof (pref), 
-				    "font.size.monospace.%s",
+				    "font.size.fixed.%s",
 				    font_languages[i]);
 			gecko_prefs_set_int (pref, size);
 		}
