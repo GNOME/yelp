@@ -67,6 +67,10 @@
   </xsl:text>
 </xsl:template>
 
+<xsl:template match="para1">
+  <xsl:value-of select="node()"/>
+</xsl:template>
+
 <xsl:template match="spacing">
   <xsl:value-of select="node()"/>
 </xsl:template>
@@ -80,6 +84,10 @@
 
 <xsl:template match="menuholder">
   <xsl:apply-templates select="node()[not(self::menuholder)]"/>
+</xsl:template>
+
+<xsl:template match="noteholder">
+  <xsl:apply-templates select="node()[not(self::noteholder)]"/>
 </xsl:template>
 
 <xsl:template name="html.css"><xsl:text>

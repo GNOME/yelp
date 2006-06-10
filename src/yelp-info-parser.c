@@ -46,7 +46,8 @@ GtkTreeIter *         find_real_sibling                  (GtkTreeModel *model,
 							  GtkTreeIter *comp);
 xmlNodePtr            yelp_info_parse_menu               (GtkTreeStore *tree,
 							  xmlNodePtr *node,
-							  gchar *page_content);
+							  gchar *page_content,
+							  gboolean notes);
 gboolean              get_menuoptions                    (gchar *line, 
 							  gchar **title, 
 							  gchar **ref, 
@@ -59,7 +60,9 @@ gboolean              resolve_frag_id                    (GtkTreeModel *model,
 void                  fix_tag_table                      (gchar *offset, 
 							  gpointer page, 
 							  TagTableFix *a);
-
+void   		      info_process_text_notes            (xmlNodePtr *node, 
+							  gchar *content,
+							  GtkTreeStore *tree);
 /* Part 1: Parse File Into Tree Store */
 
 enum
@@ -687,7 +690,8 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 	char *page_no = NULL;
 	char *page_name = NULL;
 	char *page_content = NULL;
-	
+	gboolean notes = FALSE;
+
 	d (g_print ("Decended\n"));
 	do
 	{
@@ -697,16 +701,25 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 				COLUMN_PAGE_CONTENT, &page_content,
 				-1);
 		d (g_print ("Got Section: %s\n", page_name));
+		if (strstr (page_content, "*Note") || 
+		    strstr (page_content, "*note")) {
+		  notes = TRUE;
+		}
 		if (strstr (page_content, "* Menu:")) {
-		  newnode = yelp_info_parse_menu (tree, node, page_content);
+		  newnode = yelp_info_parse_menu (tree, node, page_content, notes);
 		} else {
 		  newnode = xmlNewTextChild (*node, NULL,
 					     BAD_CAST "Section",
 					     NULL);
-		  xmlNewTextChild (newnode, NULL,
-				   BAD_CAST "para",
-				   BAD_CAST page_content);
+		  if (!notes)
+		    xmlNewTextChild (newnode, NULL,
+				     BAD_CAST "para",
+				     BAD_CAST page_content);
 		  
+		  else {
+		    /* Handle notes here */
+		    info_process_text_notes (&newnode, page_content, tree);
+		  }
 		}
 		/* if we free the page content, now it's in the XML, we can
 		 * save some memory */
@@ -839,7 +852,7 @@ get_menuoptions (gchar *line, gchar **title, gchar **ref, gchar **desc,
 
 xmlNodePtr
 yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node, 
-		      gchar *page_content)
+		      gchar *page_content, gboolean notes)
 {
   gchar **split;
   gchar **menuitems;
@@ -848,13 +861,18 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
   int i=0;
 
   split = g_strsplit (page_content, "* Menu:", 2);
-
+  
   newnode = xmlNewChild (*node, NULL,
 			 BAD_CAST "Section", NULL);
+    
 
   tmp = g_strconcat (split[0], "\n* Menu:", NULL);
-  xmlNewTextChild (newnode, NULL,
-		   BAD_CAST "para", BAD_CAST tmp);
+  if (!notes)
+    xmlNewTextChild (newnode, NULL,
+		     BAD_CAST "para", BAD_CAST tmp);
+  else {
+    info_process_text_notes (&newnode, tmp, tree);
+  }
   g_free (tmp);
 
   menuitems = g_strsplit (split[1], "\n", -1);
@@ -930,4 +948,185 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
   g_strfreev (menuitems);
   
   return newnode;
+}
+
+void
+info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
+{
+  gchar **notes;
+  gchar **current;
+  xmlNodePtr holder;
+  xmlNodePtr ref1;
+  gboolean first = TRUE;
+
+  notes = g_strsplit (content, "*Note", -1);
+  holder = xmlNewChild (*node, NULL, BAD_CAST "noteholder", NULL);
+
+  for (current = notes; *current != NULL; current++) {
+    /* Since the notes can be either *Note or *note, we handle the second 
+     * variety here
+     */
+    gchar **subnotes;
+    gchar **current_real;
+
+    subnotes = g_strsplit (*current, "*note", -1);
+    for (current_real = subnotes; *current_real != NULL; current_real++) {
+      gchar *url, **urls, **ulink;
+      gchar *append;
+      gchar *alt_append, *alt_append1;
+      gchar *link_text;
+      gchar *href = NULL;
+      gchar *break_point = NULL;
+      if (first) {
+	/* The first node is special.  It doesn't have a note ref at the 
+	 * start, so we can just add it and forget about it.
+	 */
+	first = FALSE;
+	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
+			 BAD_CAST (*current_real));
+	continue;
+      }
+      /* If we got to here, we now gotta parse the note reference */
+
+      append = strchr (*current_real, ':');
+      if (!append) {
+      xmlNewTextChild (holder, NULL, BAD_CAST "para1",
+		       BAD_CAST *current_real);
+      continue;
+      }
+      append++;
+      alt_append = append;
+      alt_append1 = alt_append;
+      append = strchr (append, ':');
+      alt_append = strchr (alt_append, '.');
+      alt_append1 = strchr (alt_append1, ',');
+      if (!append && !alt_append && !alt_append1) {
+	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
+			 BAD_CAST *current_real);
+	continue;
+      }
+      if (!append || alt_append || alt_append1) {
+	if (!append) {
+	  if (alt_append) append = alt_append;
+	  else append = alt_append1;
+	}
+	if (alt_append && alt_append < append)
+	  append = alt_append;
+	if (alt_append1 && alt_append1 < append)
+	  append = alt_append1;
+      }
+      append++;
+
+      url = g_strndup (*current_real, append - (*current_real));
+      /* By now, we got 2 things.  First, is append which is the (hopefully)
+       * non-link text.  Second, we got a url.
+       * The url can be in several forms:
+       * 1. linkend::
+       * 2. linkend:(infofile)Linkend.
+       * 3. linkend: infofile Linkend.
+       * 4. linkend: (infofile)Linkend, (pretty sure this is just broken)
+       * All possibilities should have been picked up.
+       * Here:
+       * Clean up the split.  Should be left with a real url and
+       * a list of fragments that should be linked
+       * Also goes through and removes extra spaces, leaving only one 
+       * space in place of many
+       */
+      urls = g_strsplit (url, "\n", -1);
+      break_point = strchr (url, '\n');
+      while (break_point) {
+	*break_point = ' ';
+	break_point = strchr (++break_point, '\n');
+      }
+      break_point = strchr (url, ' ');
+      while (break_point) {
+	if (*(break_point+1) == ' ') {
+	  /* Massive space.  Fix. */
+	  gchar *next = break_point;
+	  gchar *url_copy;
+	  while (*next == ' ')
+	    next++;
+	  next--;
+	  url_copy = g_strndup (url, break_point-url);
+	  g_free (url);
+	  url = g_strconcat (url_copy, next, NULL);
+	  break_point = strchr (url, ' ');
+	  g_free (url_copy);
+	} else {
+	  break_point++;
+	  break_point = strchr (break_point, ' ');
+	}
+      }
+      if (url[strlen(url)-1] == '.') { /* The 2nd or 3rd sort of link */ 
+	gchar *stop = NULL;
+	gchar *lurl = NULL;
+	gchar *zloc = NULL;
+	stop = strchr (url, ':');
+	lurl = strchr (stop, '(');
+	if (!lurl) { /* 3rd type of link */
+	  gchar **t;
+	  stop++;
+	  t = g_strsplit (stop, " ", 3);
+	  zloc = &(t[2][strlen(t[2])-1]);
+	  *zloc = '\0';
+	  href = g_strconcat ("info:", t[1], "#", t[2], NULL);
+	  *zloc = 'a';
+	  g_strfreev (t);
+	} else { /* 2nd type of link.  Easy. */
+	  zloc = &(lurl[strlen(lurl)-1]);
+	  *zloc = '\0';
+	  href = g_strconcat ("info:", lurl, NULL);
+	  *zloc = 'a';
+	}
+      } else { /* First kind of link */
+	gchar *tmp1;
+	gchar *frag;
+
+	tmp1 = strchr (url, ':');
+	frag = g_strndup (url, tmp1 - url);
+	g_strstrip (frag);
+	gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, &frag);
+	href = g_strconcat ("#", frag, NULL);
+	g_free (frag);
+      }
+      for (ulink = urls; *ulink != NULL; ulink++) {
+	if (ulink == urls)
+	  link_text = g_strconcat ("*Note", *ulink, NULL);
+	else {
+	  gchar *spacing = *ulink;
+	  gchar *tmp;
+	  while (*spacing == ' ') {
+	    spacing++;
+	  }
+	  if (spacing != *ulink) {
+	    spacing-=2;
+	    tmp = g_strndup (*ulink, spacing-*ulink);
+	    spacing+=2;
+	    xmlNewTextChild (holder, NULL, BAD_CAST "spacing",
+			     BAD_CAST tmp);
+	    g_free (tmp);
+	    link_text = g_strdup (spacing);
+	  } else {
+	    link_text = g_strdup (*ulink);
+	  }
+	}
+	ref1 = xmlNewTextChild (holder, NULL, BAD_CAST "a",
+				BAD_CAST link_text);
+	if (*(ulink+1) != NULL)
+	  xmlNewTextChild (holder, NULL, BAD_CAST "para",
+			   BAD_CAST "");
+
+	g_free (link_text);
+	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST href);
+      }
+      g_strfreev (urls);
+      /* Finally, we can add the text as required */
+      xmlNewTextChild (holder, NULL, BAD_CAST "para1",
+		       BAD_CAST append);
+      g_free (url);
+      g_free (href);
+    }
+    g_strfreev (subnotes);
+  }
+  g_strfreev (notes);
 }
