@@ -23,17 +23,13 @@
 #define __YELPER_H__
 
 #include <gtkmozembed.h>
-
 #include <nsCOMPtr.h>
-#include <nsIWebBrowser.h>
-#include <nsIDOMWindow.h>
-#ifdef TYPEAHEADFIND
-#include <nsITypeAheadFind.h>
-#else
-#include <nsIWebBrowserFind.h>
-#endif
-#include <nsIPrintSettings.h>
-#include <yelp-print.h>
+
+#include "yelp-print.h"
+
+class nsIDOMWindow;
+class nsITypeAheadFind;
+class nsIWebBrowser;
 
 class Yelper
 {
@@ -65,13 +61,7 @@ private:
 	GtkMozEmbed *mEmbed;
 	nsCOMPtr<nsIWebBrowser> mWebBrowser;
 	nsCOMPtr<nsIDOMWindow> mDOMWindow;
-#ifdef TYPEAHEADFIND
 	nsCOMPtr<nsITypeAheadFind> mFinder;
-#else
-	nsCOMPtr<nsIWebBrowserFind> mFinder;
-#endif
-
-	void SetPrintSettings (YelpPrintInfo *settings, nsIPrintSettings *target);
 };
 
 #endif /* !__YELPER_H__ */

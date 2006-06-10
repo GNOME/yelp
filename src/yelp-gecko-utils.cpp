@@ -21,24 +21,27 @@
  */
 
 #include "mozilla-config.h"
-
 #include "config.h"
 
-#include <nsCOMPtr.h>
-#include <nsIInterfaceRequestorUtils.h>
-#include <nsIServiceManager.h>
-#include <nsIPrefService.h>
 #include <stdlib.h>
 
-#include "yelp-gecko-utils.h"
+#include <nsStringAPI.h>
+
+#include <gtkmozembed.h>
+#include <gtkmozembed_internal.h>
+#include <nsCOMPtr.h>
+#include <nsIPrefService.h>
+#include <nsIServiceManager.h>
+#include <nsServiceManagerUtils.h>
+
 #include "yelp-gecko-services.h"
+
+#include "yelp-gecko-utils.h"
 
 static nsIPrefBranch* gPrefBranch;
 
 static const char *font_languages[] = {
-	"x-western"
-#ifdef HAVE_GECKO_1_8
-	,
+	"x-western",
 	"ar",
 	"el",
 	"he",
@@ -64,7 +67,6 @@ static const char *font_languages[] = {
 	"zh-CN",
 	"zh-HK",
 	"zh-TW"
-#endif /* HAVE_GECKO_1_8 */
 };
 
 static gboolean

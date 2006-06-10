@@ -1,3 +1,22 @@
+2006-06-11  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in:
+	* src/Makefile.am:
+	* src/Yelper.cpp:
+	* src/Yelper.h:
+	* src/yelp-gecko-services.cpp:
+	* src/yelp-gecko-services.h:
+	* src/yelp-gecko-utils.cpp:
+	* src/yelp-gecko-utils.h:
+	* src/yelp-html.cpp:
+	* src/yelp-html.h:
+	* src/yelp-window.c: (window_find_again):
+	Don't use mozilla's internal string API, and drop support for gecko 1.7
+	and non-toolkit geckos. Bug #343950.
+
+	* m4/gecko.m4:
+	Updated from Epiphany.
+
 2006-06-10  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* data/ui/yelp-search-ui.xml: 

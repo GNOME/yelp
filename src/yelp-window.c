@@ -2964,12 +2964,6 @@ window_find_again (YelpWindow *window, gboolean forward)
 {
     YelpWindowPriv *priv = window->priv;
 
-#ifndef TYPEAHEADFIND
-    window_find_save_settings (window);
-
-    yelp_html_set_find_props (priv->html_view, priv->find_string, FALSE, FALSE);
-#endif /* TYPEAHEADFIND */
-
     return yelp_html_find_again (priv->html_view, forward);
 }
 

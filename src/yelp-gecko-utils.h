@@ -23,7 +23,6 @@
 #ifndef __YELP_GECKO_UTILS_H__
 #define __YELP_GECKO_UTILS_H__
 
-#include <gtkmozembed.h>
 #include "yelp-settings.h"
 
 G_BEGIN_DECLS

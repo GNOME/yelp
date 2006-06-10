@@ -22,8 +22,9 @@
 #define __YELP_GECKO_SERVICES_H
 
 #include <nsIPrintingPromptService.h>
-#include <nsIWebProgressListener.h>
 #include <nsIPrintProgressParams.h>
+#include <nsIWebProgressListener.h>
+
 #include "yelp-print.h"
 
 #define G_PRINTINGPROMPTSERVICE_CID \
@@ -64,17 +65,15 @@ public:
   virtual ~PrintListener ();
 
   NS_DECL_ISUPPORTS
-    NS_DECL_NSIWEBPROGRESSLISTENER
+  NS_DECL_NSIWEBPROGRESSLISTENER
     
-    protected:
+  static void SetPrintSettings (YelpPrintInfo *settings, nsIPrintSettings *target);
+
+protected:
   YelpPrintInfo *info;
   nsIWebBrowserPrint *print;
   gboolean cancel_happened;
   gboolean called_finish;
 };
-
-
-
-
 
 #endif

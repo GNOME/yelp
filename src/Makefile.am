@@ -19,7 +19,8 @@ yelp_SOURCES =							\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-window.c 		yelp-window.h			\
 	yelp-xslt-pager.c	yelp-xslt-pager.h		\
-	yelp-marshal-main.c	yelp-main.c			\
+	yelp-marshal.c		yelp-marshal.h			\
+	yelp-main.c						\
 	yelp-print.c		yelp-print.h			\
 	yelp-gecko-services.h   yelp-gecko-services.cpp	
 
@@ -74,8 +75,8 @@ mozilla_include_subdirs =	\
 
 yelp_CPPFLAGS =									\
 	-I$(top_srcdir)								\
+	-I$(top_builddir)/src							\
 	$(addprefix -I$(MOZILLA_INCLUDE_ROOT)/,$(mozilla_include_subdirs))      \
-	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h			\
 	$(YELP_DEFINES)								\
 	$(AM_CPPFLAGS)
 
@@ -134,7 +135,8 @@ test_pager_SOURCES =						\
 	yelp-toc-pager.c	yelp-toc-pager.h		\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-xslt-pager.c	yelp-xslt-pager.h		\
-	yelp-marshal-main.c	test-pager.c
+	yelp-marshal.c		yelp-marshal.h			\
+	test-pager.c
 
 test_pager_CPPFLAGS =		\
 	$(YELP_DEFINES)		\

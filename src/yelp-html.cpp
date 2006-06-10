@@ -22,20 +22,18 @@
  */
 
 #include <mozilla-config.h>
-
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include "yelp-html.h"
-#include "yelp-marshal.h"
-#include "yelp-gecko-utils.h"
-#include "yelp-settings.h"
+#include <libgnome/gnome-init.h>
+
 #include "yelp-gecko-services.h"
+#include "yelp-gecko-utils.h"
+#include "yelp-marshal.h"
+#include "yelp-settings.h"
 
 #include "Yelper.h"
 
-#include <libgnome/gnome-init.h>
+#include "yelp-html.h"
 
 #ifdef GNOME_ENABLE_DEBUG
 #define d(x) x
@@ -211,6 +209,8 @@ html_class_init (YelpHtmlClass *klass)
     moz_embed_class->open_uri = html_open_uri;
 
     klass->font_handler = 0;
+    klass->color_handler = 0;
+    klass->a11y_handler = 0;
 
     signals[URI_SELECTED] = 
 	g_signal_new ("uri_selected",

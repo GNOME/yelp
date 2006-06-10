@@ -23,9 +23,6 @@
 #ifndef __YELP_HTML_H__
 #define __YELP_HTML_H__
 
-#include <gtk/gtkobject.h>
-#include <gtk/gtktypeutils.h>
-#include <gtk/gtkmarshal.h>
 #include <gtkmozembed.h>
 
 #include "yelp-print.h"
