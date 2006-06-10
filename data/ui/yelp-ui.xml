@@ -43,9 +43,8 @@
       <menuitem action="About"/>
     </menu>
   </menubar>
-  <toolbar>
-    <toolitem action="GoBack"/>
-    <toolitem action="GoForward"/>
+  <toolbar name="tools">
+    <toolitem action="GoForward" name="GoFor"/>
     <separator/>
     <toolitem action="GoHome"/>
     <placeholder/>

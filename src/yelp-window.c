@@ -82,6 +82,9 @@ typedef struct {
     YelpDocInfo *doc_info;
 
     gchar *frag_id;
+    GtkWidget *menu_entry;
+    YelpWindow *window;
+    gint callback;
 
     gchar *page_title;
     gchar *frag_title;
@@ -196,6 +199,10 @@ static void               history_step_back      (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_back       (YelpWindow       *window);
 static YelpHistoryEntry * history_pop_forward    (YelpWindow       *window);
 static void               history_entry_free     (YelpHistoryEntry *entry);
+static void               history_back_to        (GtkMenuItem      *menuitem,
+						  YelpHistoryEntry *entry);
+static void               history_forward_to     (GtkMenuItem      *menuitem,
+						  YelpHistoryEntry *entry);
 
 static void               load_data_free         (YelpLoadData     *data);
 
@@ -266,6 +273,8 @@ struct _YelpWindowPriv {
     gchar          *current_frag;
     GSList         *history_back;
     GSList         *history_forward;
+    GtkWidget      *back_menu;
+    GtkWidget      *forward_menu;
 
     /* Callbacks and Idles */
     gulong          start_handler;
@@ -571,6 +580,7 @@ history_push_back (YelpWindow *window)
     YelpWindowPriv   *priv;
     YelpHistoryEntry *entry;
     GtkAction        *action;
+    gchar            *title;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc != NULL);
@@ -587,6 +597,26 @@ history_push_back (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoBack");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", TRUE, NULL);
+    title = gtk_window_get_title (window);
+
+    if (g_str_equal (title, "Loading..."))
+	entry->page_title = g_strdup ("Unknown Page");
+    else
+	entry->page_title = g_strdup (title);
+
+    entry->window = window;
+    
+    entry->menu_entry = gtk_menu_item_new_with_label (entry->page_title);
+    g_object_ref (entry->menu_entry);
+
+    entry->callback = g_signal_connect (G_OBJECT (entry->menu_entry), 
+		      "activate", 
+		      G_CALLBACK (history_back_to),
+		      entry);
+		      
+
+    gtk_menu_shell_prepend (window->priv->back_menu, entry->menu_entry);
+    gtk_widget_show (entry->menu_entry);
 }
 
 static void
@@ -595,6 +625,7 @@ history_push_forward (YelpWindow *window)
     YelpWindowPriv   *priv;
     YelpHistoryEntry *entry;
     GtkAction        *action;
+    gchar            *title;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc != NULL);
@@ -611,6 +642,26 @@ history_push_forward (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", TRUE, NULL);
+
+    title = gtk_window_get_title (window);
+
+    if (g_str_equal (title, "Loading..."))
+	entry->page_title = g_strdup ("Unknown Page");
+    else
+	entry->page_title = g_strdup (title);
+
+    entry->window = window;
+    entry->menu_entry = gtk_menu_item_new_with_label (entry->page_title);
+    g_object_ref (entry->menu_entry);
+
+    entry->callback = g_signal_connect (G_OBJECT (entry->menu_entry), 
+		      "activate", 
+		      G_CALLBACK (history_forward_to),
+		      entry);
+		      
+
+    gtk_menu_shell_prepend (window->priv->forward_menu, entry->menu_entry);
+    gtk_widget_show (entry->menu_entry);
 }
 
 static void
@@ -726,7 +777,106 @@ history_entry_free (YelpHistoryEntry *entry)
     g_free (entry->page_title);
     g_free (entry->frag_title);
 
+    if (entry->menu_entry) {
+	gtk_widget_destroy (entry->menu_entry);
+    }
+
     g_free (entry);
+}
+
+static void 
+history_back_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
+{
+    YelpWindow       *window;
+    YelpWindowPriv   *priv;
+    YelpHistoryEntry *latest;
+
+    window = entry->window;
+
+    priv = window->priv;
+
+    latest = history_pop_back (window);
+    history_push_forward (window);
+
+    while (!g_str_equal (latest->page_title, entry->page_title)) {
+	priv->history_forward = g_slist_prepend (priv->history_forward, latest);
+	gtk_container_remove (priv->back_menu, latest->menu_entry);
+	
+	g_signal_handler_disconnect (latest->menu_entry, latest->callback);
+	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry), 
+					     "activate", 
+					     G_CALLBACK (history_forward_to),
+					     latest);
+	
+	
+	gtk_menu_shell_prepend (window->priv->forward_menu, latest->menu_entry);
+	gtk_widget_show (latest->menu_entry);
+
+	
+	latest = history_pop_back (window);
+    }
+    if (latest->menu_entry) {
+	gtk_widget_destroy (latest->menu_entry);
+	latest->menu_entry = NULL;
+    }
+
+    if (priv->current_doc)
+	yelp_doc_info_unref (priv->current_doc);
+    if (priv->current_frag)
+	g_free (priv->current_frag);
+
+    priv->current_doc  = yelp_doc_info_ref (entry->doc_info);
+    priv->current_frag = g_strdup (entry->frag_id);
+
+    window_do_load (window, entry->doc_info, entry->frag_id);
+
+}
+
+static void
+history_forward_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
+{
+    YelpWindow       *window;
+    YelpWindowPriv   *priv;
+    YelpHistoryEntry *latest;
+
+    window = entry->window;
+
+    priv = window->priv;
+
+    latest = history_pop_forward (window);
+    history_push_back (window);
+
+    while (!g_str_equal (latest->page_title, entry->page_title)) {
+	priv->history_back = g_slist_prepend (priv->history_back, latest);
+	gtk_container_remove (priv->forward_menu, latest->menu_entry);
+	
+	g_signal_handler_disconnect (latest->menu_entry, latest->callback);
+	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry), 
+					     "activate", 
+					     G_CALLBACK (history_back_to),
+					     latest);
+
+	gtk_menu_shell_prepend (window->priv->back_menu, latest->menu_entry);
+	gtk_widget_show (latest->menu_entry);
+
+	
+	latest = history_pop_forward (window);
+    }
+    if (latest->menu_entry) {
+	gtk_widget_destroy (latest->menu_entry);
+	latest->menu_entry = NULL;
+    }
+
+    if (priv->current_doc)
+	yelp_doc_info_unref (priv->current_doc);
+    if (priv->current_frag)
+	g_free (priv->current_frag);
+
+    priv->current_doc  = yelp_doc_info_ref (entry->doc_info);
+    priv->current_frag = g_strdup (entry->frag_id);
+
+    window_do_load (window, entry->doc_info, entry->frag_id);
+
 }
 
 static void
@@ -1024,6 +1174,11 @@ window_populate (YelpWindow *window)
     GError            *error = NULL;
     GtkAction         *action;
     GtkTreeSelection  *selection;
+    GtkWidget         *toolbar;
+    GtkWidget         *toolitem;
+    GtkWidget         *b_proxy;
+    GtkWidget         *f_proxy;
+
 
     priv = window->priv;
 
@@ -1037,6 +1192,27 @@ window_populate (YelpWindow *window)
     gtk_action_group_add_actions (priv->action_group,
 				  entries, G_N_ELEMENTS (entries),
 				  window);
+
+    b_proxy = GTK_WIDGET (gtk_menu_tool_button_new (NULL, NULL));
+
+    priv->back_menu = gtk_menu_new ();
+
+    priv->forward_menu = gtk_menu_new ();
+
+    f_proxy = GTK_WIDGET (gtk_menu_tool_button_new (NULL, NULL));
+
+    gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (b_proxy), 
+				   priv->back_menu);
+
+    action = gtk_action_group_get_action(priv->action_group, "GoBack");
+
+    gtk_action_connect_proxy (action, b_proxy);
+
+    action = gtk_action_group_get_action (priv->action_group, "GoForward");
+    gtk_action_connect_proxy (action, f_proxy);
+
+    gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (f_proxy), 
+				   priv->forward_menu);
     
 #ifdef ENABLE_SEARCH
     action =  gtk_entry_action_new ("Search",
@@ -1074,14 +1250,24 @@ window_populate (YelpWindow *window)
 
     yelp_bookmarks_register (window);
 
-    gtk_ui_manager_ensure_update (priv->ui_manager);
-
     action = gtk_action_group_get_action (priv->action_group, "GoBack");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+
+    gtk_ui_manager_ensure_update (priv->ui_manager);
+
+    toolbar = gtk_ui_manager_get_widget(priv->ui_manager, "ui/tools");
+
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), f_proxy, 0);
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), b_proxy, 0);
+
+    /*To keep the seperator but get rid of the extra widget*/
+    toolitem = gtk_ui_manager_get_widget(priv->ui_manager, "ui/tools/GoFor");
+
+    gtk_container_remove (toolbar, toolitem);
 
     priv->popup = gtk_ui_manager_get_widget(priv->ui_manager, "ui/main_popup");
     priv->maillink = gtk_ui_manager_get_widget(priv->ui_manager, "ui/mail_popup");
