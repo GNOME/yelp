@@ -1799,12 +1799,17 @@ window_handle_page (YelpWindow   *window,
 	    if (yelp_pager_page_contains_frag (pager,
 					       id,
 					       priv->current_frag)) {
-		GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
-
-		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
-					      path);
+		GtkTreePath *path = NULL;
+		GtkTreeIter parent;
+		if (gtk_tree_model_iter_parent (model, &parent, &iter)) {
+		    path = gtk_tree_model_get_path (model, &parent);
+		    gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
+						  path);
+		    gtk_tree_path_free(path);
+		}
+		path = gtk_tree_model_get_path (model, &iter);
 		gtk_tree_selection_select_path (selection, path);
-
+		
 		gtk_tree_path_free (path);
 		g_free (id);
 		break;
