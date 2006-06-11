@@ -23,8 +23,8 @@
 #ifndef __YELP_BASE_H__
 #define __YELP_BASE_H__
 
-#include <bonobo/bonobo-object.h>
-#include "GNOME_Yelp.h"
+#include <dbus/dbus-glib.h>
+
 
 typedef struct _YelpBase      YelpBase;
 typedef struct _YelpBaseClass YelpBaseClass;
@@ -39,22 +39,29 @@ typedef struct _YelpBasePriv  YelpBasePriv;
 
 
 struct _YelpBase {
-        BonoboObject  parent;
+        GObject  parent;
         
         YelpBasePriv  *priv;
 };
 
 struct _YelpBaseClass {
-        BonoboObjectClass       parent_class;
+        GObjectClass       parent_class;
 
-	POA_GNOME_Yelp__epv epv;
+	DBusGConnection *connection;
 };
 
 GType            yelp_base_get_type       (void);
-YelpBase *       yelp_base_new            (void);
+YelpBase *       yelp_base_new            (gboolean priv);
 
 GtkWidget *      yelp_base_new_window     (YelpBase    *base,
 					   const gchar *uri,
 					   const gchar *timestamp);
+gboolean         server_new_window   (YelpBase *server,
+                                           gchar *url,
+					   gchar *timestamp,
+                                           GError **error);
+gboolean         server_get_url_list      (YelpBase *server,
+					   gchar **urls,
+					   GError **error);
 
 #endif /* __YELP_BASE_H__ */

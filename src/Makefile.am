@@ -1,8 +1,5 @@
 bin_PROGRAMS = yelp
 
-nodist_yelp_SOURCES =						\
-	$(gnome_yelp_idl_sources)
-
 yelp_SOURCES =							\
 	Yelper.cpp		Yelper.h			\
 	yelp-base.c		yelp-base.h			\
@@ -166,16 +163,22 @@ test_uri_LDADD = $(YELP_LIBS)
 
 test_uri_LDFLAGS = $(AM_LDFLAGS)
 
-serverdir = $(libdir)/bonobo/servers
-server_in_files = GNOME_Yelp.server.in
-server_DATA = $(server_in_files:.server.in=.server)
-
 @INTLTOOL_SERVER_RULE@
 
-BUILT_SOURCES = yelp-marshal.h yelp-marshal.c $(gnome_yelp_idl_sources)
+BUILT_SOURCES = yelp-marshal.h yelp-marshal.c server-bindings.h \
+		client-bindings.h
+
+noinst_HEADERS = $(BUILT_SOURCES)
+
+server-bindings.h:  yelp-infos.xml
+	dbus-binding-tool --prefix=server_object --mode=glib-server $< > $@
+
+client-bindings.h:  yelp-infos.xml
+	dbus-binding-tool --prefix=server_object --mode=glib-client $< > $@
 
 yelp-marshal.h: stamp-yelp-marshal.h
 	@true
+
 stamp-yelp-marshal.h: yelp-marshal.list
 	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
 	&& (cmp -s xgen-ymh yelp-marshal.h || cp xgen-ymh yelp-marshal.h) \
@@ -189,26 +192,11 @@ yelp-marshal.c: yelp-marshal.list
 
 yelp-marshal-main.c: yelp-marshal.c
 
-gnome_yelp_idl_sources =						\
-	GNOME_Yelp-stubs.c						\
-	GNOME_Yelp-skels.c						\
-	GNOME_Yelp-common.c						\
-	GNOME_Yelp.h
+CLEANFILES = xgen-ymh xgen-ymc
 
-$(gnome_yelp_idl_sources): $(top_srcdir)/idl/GNOME_Yelp.idl $(ORBIT_IDL)
-	$(ORBIT_IDL) $(YELP_IDL_INCLUDES) -I$(top_srcdir) $<
+MAINTAINERCLEANFILES = $(BUILT_SOURCES)
 
-CLEANFILES =								\
-	$(gnome_yelp_idl_sources)					\
-	gnome_yelp_idl_stamp						\
-	GNOME_Yelp.server						\
-	xgen-ymh xgen-ymc
-
-MAINTAINERCLEANFILES = stamp-yelp-marshal.h $(BUILT_SOURCES)
-
-EXTRA_DIST =								\
-	yelp-marshal.list						\
-	$(server_in_files)
+EXTRA_DIST = yelp-marshal.list
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \

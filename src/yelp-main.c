@@ -28,28 +28,26 @@
 #include <gtk/gtkmain.h>
 #include <gtk/gtkwidget.h>
 #include <gdk/gdkx.h>
-#include <bonobo/bonobo-context.h>
-#include <bonobo/bonobo-exception.h>
-#include <bonobo/bonobo-generic-factory.h>
-#include <bonobo/bonobo-main.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-client.h>
+#include <dbus/dbus-glib-bindings.h>
 #include <string.h>
 #include <stdlib.h>
 
-#include "GNOME_Yelp.h"
+#include "client-bindings.h"
 #include "yelp-window.h"
 #include "yelp-base.h"
 #include "yelp-html.h"
-
-#define YELP_FACTORY_OAFIID "OAFIID:GNOME_Yelp_Factory"
 
 static gchar       *cache_dir;
 static gchar       *open_urls;
 static gchar       *startup_id;
 static gchar       **files;
+static gboolean     private = FALSE;
+
+static DBusGConnection *connection;
 
 /*structure defining command line option.*/
 enum {
@@ -57,14 +55,10 @@ enum {
 	OPTION_CACHE_DIR
 };
 
-static BonoboObject * main_base_factory       (BonoboGenericFactory *factory,
-					       const gchar          *iid,
-					       gpointer              closure);
-static CORBA_Object   main_activate_base      (void);
-static void           main_open_new_window    (CORBA_Object          yelp_base,
-					       const gchar          *url);
-static void           main_start              (gchar                *url);
-static gboolean       main_idle_start         (gchar                *url);
+static void           main_start              (const gchar *url);
+static DBusGProxy *   main_dbus_get_proxy     (void);
+static gboolean       main_is_running         (void);
+static gboolean       main_slave_start         (gchar                *url);
 static int            main_save_session       (GnomeClient          *client,
 					       gint                  phase,
 					       GnomeRestartStyle     rstyle,
@@ -90,6 +84,14 @@ static const GOptionEntry options[] = {
 		NULL, NULL,
 	},
 	{
+		"private-session",
+		'p',
+		0, G_OPTION_ARG_NONE,
+		&private,
+		N_("Use a private session"),
+		NULL,
+	},
+	{
 		"with-cache-dir",
 		'\0',
 		0, 
@@ -104,102 +106,36 @@ static const GOptionEntry options[] = {
 	{ NULL}
 };
 
-static BonoboObject *
-main_base_factory (BonoboGenericFactory *factory,
-		   const gchar          *iid,
-		   gpointer              closure)
-{
-	static YelpBase *yelp_base = NULL;
-
-	if (!yelp_base) {
-		yelp_base = yelp_base_new ();
-	} else { 
-		bonobo_object_ref (BONOBO_OBJECT (yelp_base));
-	}
-
-	return BONOBO_OBJECT (yelp_base);
-}
-
-static CORBA_Object
-main_activate_base (void)
-{
-	CORBA_Environment ev;
-	CORBA_Object      yelp_base;
-	
-	CORBA_exception_init (&ev);
-	
-	yelp_base = bonobo_activation_activate_from_id ("OAFIID:GNOME_Yelp",
-							0, NULL, &ev);
-	
-	if (BONOBO_EX (&ev) || yelp_base == CORBA_OBJECT_NIL) {
-		g_error (_("Could not activate Yelp: '%s'"),
-			   bonobo_exception_get_text (&ev));
-	}
-
-	CORBA_exception_free (&ev);
-	
-	return yelp_base;
-}
-
 static void
-main_open_new_window (CORBA_Object yelp_base, const gchar *url)
+main_start (const gchar *url)
 {
-	CORBA_Environment ev;
+	YelpBase *base;
+	GError *error = NULL;
+
+	base = yelp_base_new (private);
+	server_new_window (base, (gchar *) url, startup_id, &error);
 	
-	CORBA_exception_init (&ev);
-
-	GNOME_Yelp_newWindow (yelp_base, url, startup_id, &ev);
-
-	if (BONOBO_EX (&ev)) {
-		g_error (_("Could not open new window."));
-	}
-
-	g_free (startup_id);
-	CORBA_exception_free (&ev);
-}
+	gtk_main ();
 	
-static void
-main_start (gchar *url) 
-{
-	CORBA_Object yelp_base;
-	gchar *new_url;
-
-	new_url = gnome_vfs_make_uri_from_input_with_dirs (url, 
-				GNOME_VFS_MAKE_URI_DIR_CURRENT);
-
-	yelp_base = main_activate_base ();
-
-	if (!yelp_base) {
-		g_error ("Couldn't activate YelpBase");
-	}
-
-	main_open_new_window (yelp_base, new_url);
-	gdk_notify_startup_complete ();
-
-	bonobo_object_release_unref (yelp_base, NULL);
-
-	if (url) {
-		g_free (url);
-	}
+	return;
 }
 
+	
 static gboolean
-main_idle_start (gchar *url)
+main_slave_start (gchar *url)
 {
-	CORBA_Object yelp_base;
-	
-	yelp_base = main_activate_base ();
+	DBusGProxy *proxy = NULL;
+	GError *error = NULL;
 
-	if (!yelp_base) {
-		g_error ("Couldn't activate YelpBase");
-	}
+	proxy = main_dbus_get_proxy ();
 
-	main_open_new_window (yelp_base, url);
+	if (!proxy)
+		g_error ("Cannot connect to dbus\n");
 
-	if (url) {
-		g_free (url);
-	}
-	
+	if (!org_gnome_YelpService_new_window (proxy, url, startup_id, 
+						    &error))
+		g_error ("%s\n", error->message);
+
 	return FALSE;
 }
 
@@ -213,32 +149,32 @@ main_save_session (GnomeClient        *client,
                    gint                fast,
                    gpointer            cdata) 
 {
-	
-	GNOME_Yelp_WindowList  *list;
-	CORBA_Environment       ev;
-	CORBA_Object            yelp_base;
 	gchar                 **argv;
+	gchar                 *open_windows = NULL;
 	gint                    i=1;
 	gint                    arg_len = 1;
 	gboolean                store_open_urls = FALSE;
+	DBusGProxy             *proxy = NULL;
+	GError                 *error = NULL;
 
-	CORBA_exception_init (&ev);
+	proxy = main_dbus_get_proxy ();
+	if (!proxy)
+		g_error ("Unable to connect to bus again\n");
 
-	yelp_base = main_activate_base ();
 
-	list = GNOME_Yelp_getWindows (yelp_base, &ev);
+	if (!org_gnome_YelpService_get_url_list (proxy, &open_windows, 
+						 &error))
+		g_error ("Cannot recieve window list - %s\n", error->message);
 
-	bonobo_object_release_unref (yelp_base, NULL);
+	if (open_windows != NULL) {
+		store_open_urls = TRUE;
+		arg_len++;
+	}
 
 	if (cache_dir) {
 		arg_len++;
 	}
 
-	if (list->_length > 0) {
-		store_open_urls = TRUE;
-		arg_len++;
-	}
-	
 	argv = g_malloc0 (sizeof (gchar *) * arg_len);
 
 	/* Program name */
@@ -250,21 +186,8 @@ main_save_session (GnomeClient        *client,
 	}
 
 	if (store_open_urls) {
-		gchar *urls;
-		
-		/* Get the URI of each window */
-		urls = g_strdup_printf ("--open-urls=\"%s", list->_buffer[0]);
-		
-		for (i=1; i < list->_length; i++) {
-			gchar *tmp;
-			
-			tmp = g_strconcat (urls, ";", list->_buffer[i], NULL);
-			g_free (urls);
-			urls = tmp;
-		}
-
-		argv[arg_len - 1] = g_strconcat (urls, "\"", NULL);
-		g_free (urls);
+		argv[arg_len - 1] = g_strdup_printf ("--open-urls=\"%s\"", 
+						     open_windows);
 	}
 
 	gnome_client_set_clone_command (client, arg_len, argv);
@@ -272,8 +195,7 @@ main_save_session (GnomeClient        *client,
 
 	for (i = 0; i < arg_len; ++i) {
 		g_free (argv[i]);
-	}
-	
+	}	
 	g_free (argv);
 
 	return TRUE;
@@ -283,35 +205,38 @@ static void
 main_client_die (GnomeClient *client, 
 		 gpointer     cdata)
 {
-	bonobo_main_quit ();
+	gtk_main_quit ();
 }
 
 static gboolean
 main_restore_session (void)
 {
-	CORBA_Object yelp_base;
+	YelpBase *yelp_base;
 
-	yelp_base = main_activate_base ();
+	yelp_base = yelp_base_new (private);
 
         if (!yelp_base) {
                 g_error ("Couldn't activate YelpBase");
         }
-
+	g_print ("restoring session\n");
 	if (open_urls) {
 		gchar **urls = g_strsplit_set (open_urls, ";\"", -1);
 		gchar *url;
 		gint   i = 0;
-		
+		GError *error = NULL;
+
 		while ((url = urls[i]) != NULL) {
 			if (*url != '\0')
-				main_open_new_window (yelp_base, url);
+				server_new_window (yelp_base, url, 
+							startup_id, &error);
 			++i;
 		}
 		
 		g_strfreev (urls);
 	}
-
+	gtk_main ();
 	return FALSE;
+
 }
 
 /* Copied from libnautilus/nautilus-program-choosing.c; Needed in case
@@ -365,11 +290,49 @@ slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
 	return event.xproperty.time;
 }
 
+DBusGProxy *
+main_dbus_get_proxy (void)
+{
+	if (!connection)
+		return NULL;
+	
+	return dbus_g_proxy_new_for_name (connection,
+					  "org.gnome.YelpService",
+					  "/org/gnome/YelpService",
+					  "org.gnome.YelpService");
+}
+
+gboolean
+main_is_running (void)
+{
+	DBusGProxy *proxy = NULL;
+	gboolean instance = TRUE;
+	GError * error = NULL;
+	
+	if (!connection)
+		return TRUE;
+	
+	proxy = dbus_g_proxy_new_for_name (connection,
+					   DBUS_SERVICE_DBUS,
+                                           DBUS_PATH_DBUS,
+                                           DBUS_INTERFACE_DBUS);
+	
+        if (!dbus_g_proxy_call (proxy, "NameHasOwner", &error,
+				G_TYPE_STRING, "org.gnome.YelpService",
+				G_TYPE_INVALID,
+				G_TYPE_BOOLEAN, &instance,
+				G_TYPE_INVALID)) {
+		g_error ("Cannot connect to DBus - %s\n", error->message);
+		exit (2);
+	}
+	return instance;
+}
+
+
 int
 main (int argc, char **argv) 
 {
 	GnomeProgram  *program;
-	CORBA_Object   factory;
 	gchar         *url = NULL;
 	GnomeClient   *client;
 	gboolean       session_started = FALSE;
@@ -407,17 +370,18 @@ main (int argc, char **argv)
 	g_set_application_name (_("Help"));
 	gtk_window_set_default_icon_name ("gnome-help");
 
-	/* Need to set this to the canonical DISPLAY value, since
-	   that's where we're registering per-display components */
-	bonobo_activation_set_activation_env_value
-		("DISPLAY",
-		 gdk_display_get_name (gdk_display_get_default ()) );
-
 	gnome_vfs_init ();
 
+	if (!private) {
+		connection = dbus_g_bus_get (DBUS_BUS_SESSION, NULL);
+		if (!connection) {
+			g_warning ("Cannot find dbus bus\n");
+			private = TRUE;
+		}
+	}
+
 	if (!yelp_html_initialize ()) {
-		g_print ("Could not initialize gecko!");
-		exit (2);
+		g_error ("Could not initialize gecko!");
 	}
 
 	if (files != NULL && files[0] != NULL) {
@@ -431,50 +395,31 @@ main (int argc, char **argv)
         g_signal_connect (client, "die",
                           G_CALLBACK (main_client_die), NULL);
 
-	factory = bonobo_activation_activate_from_id (YELP_FACTORY_OAFIID,
-						      Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, 
-						      NULL, NULL);
-	
 	/* Check for previous session to restore. */
 	if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
 		session_started = TRUE;
         }
 
-	if (!factory) { /* Not started, start now */ 
-		BonoboGenericFactory *factory;
-		char                 *registration_id;
+	if (private || !main_is_running ()) {
 		const gchar          *env;
 
 		/* workaround for bug #329461 */
 		env = g_getenv ("MOZ_ENABLE_PANGO");
-
+		
 		if (env == NULL ||
 		    *env == '\0' ||
 		    g_str_equal(env, "0")) 
-		{
-			g_setenv ("MOZ_DISABLE_PANGO", "1", TRUE);
-		}
-
-		registration_id = bonobo_activation_make_registration_id (
-					YELP_FACTORY_OAFIID,
-					gdk_display_get_name (gdk_display_get_default ()));
-		factory = bonobo_generic_factory_new (registration_id,
-						      main_base_factory,
-						      NULL);
-		g_free (registration_id);
-
-		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
-        
-	        /* If started by session, restore from last session */
+			{
+				g_setenv ("MOZ_DISABLE_PANGO", "1", TRUE);
+			}
+		
 		if (session_started) {
-			g_idle_add ((GSourceFunc) main_restore_session, NULL);
+			main_restore_session ();
 		} else {
-			g_idle_add ((GSourceFunc) main_idle_start, url);
+			main_start (url);
 		}
-
-		bonobo_main ();
 	} else {
-		main_start (url);
+		main_slave_start (url);
 	}
 
 	yelp_html_shutdown ();

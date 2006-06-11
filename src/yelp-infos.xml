@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<node name="/org/gnome/YelpService">
+        <interface name="org.gnome.YelpService">
+                <annotation name="org.freedesktop.DBus.GLib.CSymbol" value="server"/>
+                <method name="new_window">
+                        <arg type="s" name="url" direction="in" />
+                        <arg type="s" name="timestamp" direction="in" />
+                </method>
+                <method name="get_url_list">
+                        <arg type="s" name="urls" direction="out" />
+                </method>
+                <!-- Add more methods/signals if you want -->
+        </interface>
+</node>

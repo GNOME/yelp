@@ -22,7 +22,7 @@
 
 #include <config.h>
 
-#include <bonobo/bonobo-main.h>
+#include <dbus/dbus-glib-bindings.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <gdk/gdkx.h>
 #define SN_API_NOT_YET_FROZEN
@@ -36,6 +36,7 @@
 #include "yelp-toc-pager.h"
 #include "yelp-base.h"
 #include "yelp-bookmarks.h"
+#include "server-bindings.h"
 
 gboolean main_running;
 
@@ -43,6 +44,7 @@ gboolean main_running;
 
 struct _YelpBasePriv {
 	GNode  *toc_tree;
+	gboolean private_session;
 
 	GList  *index;
 	GSList *windows;
@@ -50,6 +52,7 @@ struct _YelpBasePriv {
 
 static void           yelp_base_init                (YelpBase       *base);
 static void           yelp_base_class_init          (YelpBaseClass  *klass);
+static void           yelp_base_register_dbus       (YelpBase       *base);
 static void           yelp_base_new_window_cb       (YelpWindow     *window,
 						     const gchar    *uri,
 						     YelpBase       *base);
@@ -57,52 +60,33 @@ static void           yelp_base_window_finalized_cb (YelpBase       *base,
 						     YelpWindow     *window);
 
 
-#define PARENT_TYPE BONOBO_OBJECT_TYPE
-static BonoboObjectClass *parent_class;
+#define PARENT_TYPE G_TYPE_OBJECT
+static GObjectClass *parent_class;
 
-static void
-impl_Yelp_newWindow (PortableServer_Servant  servant,
-		     const CORBA_char       *url,
-		     const CORBA_char       *time,
-		     CORBA_Environment      *ev)
+GType
+yelp_base_get_type (void)
 {
-	YelpBase  *yelp_base;
+    static GType base_type = 0;
 
-	yelp_base = YELP_BASE (bonobo_object (servant));
-	yelp_base_new_window (yelp_base, url, time);
-}
+    if (!base_type) {
+        static const GTypeInfo base_info = {
+            sizeof (YelpBaseClass),
+            NULL,
+            NULL,
+            (GClassInitFunc) yelp_base_class_init,
+            NULL,
+            NULL,
+            sizeof (YelpBase),
+            0,
+            (GInstanceInitFunc) yelp_base_init,
+        };
 
-static GNOME_Yelp_WindowList *
-impl_Yelp_getWindows (PortableServer_Servant  servant,
-		      CORBA_Environment      *ev)
-{
-	YelpBase              *base;
-	YelpBasePriv          *priv;
-	GNOME_Yelp_WindowList *list;
-	gint                   len, i;
-	GSList                *node;
-	YelpDocInfo           *doc_info;
-	gchar                 *uri;
-	
-	base = YELP_BASE (bonobo_object (servant));
-	priv = base->priv;
+        base_type = g_type_register_static (G_TYPE_OBJECT,
+                                              "YelpBase",
+                                              &base_info, 0);
+    }
 
-	len  = g_slist_length (priv->windows);
-	
-	list = GNOME_Yelp_WindowList__alloc ();
-	list->_buffer = CORBA_sequence_CORBA_string_allocbuf (len);
-	list->_length = len;
-	list->_maximum = len;
-	CORBA_sequence_set_release (list, CORBA_TRUE);
-	
-	for (node = priv->windows, i = 0; node; node = node->next, i++) {
-		doc_info = yelp_window_get_doc_info (YELP_WINDOW (node->data));
-		uri = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_ANY);
-		list->_buffer[i] = CORBA_string_dup (uri);
-		g_free (uri);
-	}
-	
-	return list;
+    return base_type;
 }
 
 static void
@@ -111,7 +95,6 @@ yelp_base_init (YelpBase *base)
         YelpBasePriv *priv;
 
         base->priv = priv = YELP_BASE_GET_PRIVATE (base);
-        
 	priv->toc_tree = g_node_new (NULL);
 	priv->index    = NULL;
 	priv->windows  = NULL;
@@ -123,20 +106,62 @@ yelp_base_init (YelpBase *base)
 static void
 yelp_base_class_init (YelpBaseClass *klass)
 {
-	POA_GNOME_Yelp__epv *epv = &klass->epv;
-
 	parent_class = gtk_type_class (PARENT_TYPE);
-
-	epv->newWindow  = impl_Yelp_newWindow;
-	epv->getWindows = impl_Yelp_getWindows;
 
 	main_running = TRUE;
 
 	g_type_class_add_private (klass, sizeof (YelpBasePriv));
 }
 
+gboolean
+server_new_window (YelpBase *base, gchar *url, gchar *timestamp, 
+			GError **error)
+{
+	GtkWidget *new_window;
+
+	new_window = yelp_base_new_window (base, url, timestamp);
+	gtk_widget_show (new_window);
+	return TRUE;
+}
+
+gboolean
+server_get_url_list (YelpBase *server, gchar **urls, GError **error)
+{
+	gint len,  i;
+	GSList *node;
+	YelpDocInfo *doc_info;
+	gchar *uri;
+	YelpBasePriv *priv;
+
+	priv = server->priv;
+
+	len  = g_slist_length (priv->windows);
+
+	node = priv->windows;
+
+	doc_info = yelp_window_get_doc_info (YELP_WINDOW (node->data));
+	uri = yelp_doc_info_get_uri (doc_info, NULL, 
+				     YELP_URI_TYPE_ANY);
+	*urls = g_strdup (uri);
+	g_free (uri);
+	node = node->next;
+
+	for (i = 0; node; node = node->next, i++) {
+		gchar *list;
+		doc_info = yelp_window_get_doc_info (YELP_WINDOW (node->data));
+		uri = yelp_doc_info_get_uri (doc_info, NULL, 
+					     YELP_URI_TYPE_ANY);
+		list = g_strconcat (*urls, ";", uri, NULL);
+		g_free (*urls);
+		*urls = g_strdup (list);
+		g_free (list);
+		g_free (uri);
+	}
+	return TRUE;
+}
+
 static void
-yelp_base_new_window_cb (YelpWindow *window, const gchar *uri,
+yelp_base_new_window_cb (YelpWindow *window, const gchar *uri, 
 			 YelpBase *base)
 {
 	GtkWidget *new_window;
@@ -162,17 +187,19 @@ yelp_base_window_finalized_cb (YelpBase *base, YelpWindow *window)
 
 	if (g_slist_length (priv->windows) == 0) {
 		main_running = FALSE;
-		bonobo_main_quit ();
+		gtk_main_quit ();
 	}
 }
 
 YelpBase *
-yelp_base_new (void)
+yelp_base_new (gboolean priv)
 {
         YelpBase     *base;
 	
         base = g_object_new (YELP_TYPE_BASE, NULL);
-	
+	if (!priv)
+		yelp_base_register_dbus (base);
+	base->priv->private_session = priv;
 	yelp_toc_pager_init ();
 
         return base;
@@ -258,4 +285,43 @@ yelp_base_new_window (YelpBase *base, const gchar *uri, const gchar *startup_id)
 	return window;
 }
 
-BONOBO_TYPE_FUNC_FULL (YelpBase, GNOME_Yelp, PARENT_TYPE, yelp_base)
+static void
+yelp_base_register_dbus (YelpBase *base)
+{
+	GError *error = NULL;
+        DBusGProxy *driver_proxy;
+	YelpBaseClass *klass = YELP_BASE_GET_CLASS (base);
+        guint request_ret;
+	YelpBasePriv *priv;
+
+	priv = base->priv;
+	
+        klass->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        if (klass->connection == NULL) {
+		g_warning("Unable to connect to dbus: %s", error->message);
+		g_error_free (error);
+		return;
+	}
+
+        dbus_g_object_type_install_info (YELP_TYPE_BASE,
+                                         &dbus_glib_server_object_object_info);
+	
+	dbus_g_connection_register_g_object (klass->connection,
+                                             "/org/gnome/YelpService",
+                                             G_OBJECT (base));
+
+        driver_proxy = dbus_g_proxy_new_for_name (klass->connection,
+                                                  DBUS_SERVICE_DBUS,
+                                                  DBUS_PATH_DBUS,
+                                                  DBUS_INTERFACE_DBUS);
+	
+        if(!org_freedesktop_DBus_request_name (driver_proxy,
+                                               "org.gnome.YelpService",
+                                               0, &request_ret,
+                                               &error)) {
+		g_warning("Unable to register service: %s", error->message);
+		g_error_free (error);
+	}
+        g_object_unref (driver_proxy);
+
+}

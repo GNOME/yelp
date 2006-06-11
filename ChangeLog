@@ -1,5 +1,17 @@
 2006-06-11  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-main.c: 
+	* src/yelp-infos.xml: 
+	* src/yelp-base.h: 
+	* src/yelp-base.c: 
+	* src/Makefile.am: 
+	* Makefile.am: 
+	* configure.in: 
+	Move from bonobo activation to dbus activation
+	Add {-p,--private-session} flag to stop from activating
+	If dbus isn't running, fallback to private session
+	Bug #337540
+	
 	* data/toc.xml.in: 
 	Change 'Multimedia' category to 'Sound & Vision' for consistancy 
 	(bug #332182)

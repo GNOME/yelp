@@ -23,7 +23,6 @@ AM_PROG_CC_STDC
 AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
-AM_PATH_ORBIT2
 AM_PATH_GLIB_2_0
 
 GNOME_DEBUG_CHECK
@@ -72,7 +71,6 @@ PKG_CHECK_MODULES(YELP,
         libgnomeprintui-2.2
 	gnome-vfs-2.0 >= 1.1
 	gtk+-2.0 >= 2.5.3
-	libbonobo-2.0 >= 1.108.0
 	libglade-2.0 >= 2.0.0
 	libgnome-2.0 >= 2.0.2
 	libgnomeui-2.0 >= 1.103.0
@@ -80,16 +78,14 @@ PKG_CHECK_MODULES(YELP,
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
 	libstartup-notification-1.0 >= 0.8
+	dbus-glib-1
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
 
 YELP_MODULES="gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"
 
-idl_dirs="`$PKG_CONFIG --variable=idldir gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0 bonobo-activation-2.0`"
 AC_PATH_PROGS(SED, gsed sed)
-YELP_IDL_INCLUDES="`echo ${idl_dirs} | ${SED} -e 's/^/ /' -e 's/  *$//' -e 's/  */ -I /g' -e 's/^  *//'`"
-AC_SUBST(YELP_IDL_INCLUDES)
 
 XSLT_PATH="`$PKG_CONFIG --variable=xsltdir gnome-doc-utils`"
 DB_TITLE="$XSLT_PATH""/docbook/common/db-title.xsl"
