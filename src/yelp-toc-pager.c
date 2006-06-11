@@ -87,6 +87,7 @@ struct _YelpTocPagerPriv {
     GSList *mandir_langpath;     /* ptr to current entry in mandir_ptr */
     GHashTable *man_secthash;
     GHashTable *man_manhash;
+    GHashTable *man_dirlang;     /* key = man page directory, value = language */
 #endif
 
     xmlDocPtr     toc_doc;
@@ -978,6 +979,14 @@ add_man_page_to_toc (YelpTocPager *pager, gchar *dirname, gchar *filename)
 	    info = yelp_doc_info_get (url_full, TRUE);
 
 	    if (info) {
+		gchar *lang = NULL;
+
+		if (priv->man_dirlang)
+		    lang = g_hash_table_lookup (priv->man_dirlang, dirname);
+
+		if (lang)
+		    yelp_doc_info_set_language (info, lang);
+
 		yelp_doc_info_add_uri (info, url_short, YELP_URI_TYPE_MAN);
 		tmp = xmlNewChild (tmp, NULL, BAD_CAST "doc", NULL);
 		xmlNewProp (tmp, BAD_CAST "href", BAD_CAST url_full);
@@ -1038,11 +1047,14 @@ create_manindex_file (gchar *index_file, xmlDocPtr xmldoc)
 static int
 create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 {
+    const gchar * const * langs = g_get_language_names ();
     xmlXPathContextPtr xpath = NULL;
     xmlXPathObjectPtr objsect = NULL;
     xmlDocPtr manindex_xml = NULL;
+    xmlNodePtr root = NULL;
+    xmlChar *language = NULL;
     gint update_flag = 0;
-    gint i, j, k;
+    gint i, j;
     
     YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
 
@@ -1053,6 +1065,22 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	g_warning ("Unable to parse index file \"%s\"\n", index_file);
 	return 0;
     }
+    
+    /* check the language that this index file was generated for */
+    root = xmlDocGetRootElement (manindex_xml);
+    language = xmlGetProp (root, BAD_CAST "lang");
+    
+    /* if the language is not the same as the current language (specified
+     * by the LANGUAGE environment variable) then return so that the index 
+     * is recreated */
+    if (language == NULL || !g_str_equal (BAD_CAST language, langs[0])) {
+	g_print (_("Current language and index file language do not match.\n"
+		   "The index file will be recreated.\n"));
+	xmlFreeDoc (manindex_xml);
+	return 0;
+    }
+
+    xmlFree (language);
     
     xpath = xmlXPathNewContext (manindex_xml);
     objsect = xmlXPathEvalExpression (BAD_CAST "/manindex/mansect", xpath);
@@ -1068,28 +1096,29 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	objdirs = xmlXPathEvalExpression (BAD_CAST "dir", xpath);
 
 	for (j=0; j < objdirs->nodesetval->nodeNr; j++) {
-	    xmlXPathObjectPtr objdirname;
-	    xmlXPathObjectPtr objdirmtime;
-	    xmlXPathObjectPtr objmanpages;
 	    xmlNodePtr dirnode = objdirs->nodesetval->nodeTab[j];
 	    xmlNodePtr node = NULL;
 	    xmlChar *dirname = NULL;
 	    xmlChar *dirmtime = NULL;
+	    xmlChar *lang = NULL;
 	    time_t mtime;
 	    struct stat buf;
 	    
-	    xpath->node = dirnode;
-	    objdirmtime = xmlXPathEvalExpression (BAD_CAST "@mtime", xpath);
-	    
-	    node = objdirmtime->nodesetval->nodeTab[0];
-	    dirmtime = xmlNodeListGetString (manindex_xml, 
-	                                     node->xmlChildrenNode, 1);
-	    
-	    objdirname = xmlXPathEvalExpression (BAD_CAST "name[1]", xpath);
+            lang     = xmlGetProp (dirnode, BAD_CAST "lang");
+	    dirmtime = xmlGetProp (dirnode, BAD_CAST "mtime");
 
-	    node = objdirname->nodesetval->nodeTab[0];
-	    dirname = xmlNodeListGetString (manindex_xml, 
-	                                    node->xmlChildrenNode, 1);
+	    if (lang == NULL)
+		lang = xmlStrdup (BAD_CAST "C");
+
+	    for (node = dirnode->children; node != NULL; node = node->next) {
+		if (node->type == XML_ELEMENT_NODE && 
+		    g_str_equal ((gchar *)node->name, "name")) {
+		    dirname = xmlNodeGetContent (node);
+		}
+	    }
+
+	    g_hash_table_insert (priv->man_dirlang, g_strdup ((gchar *)dirname), 
+	                         g_strdup ((gchar *)lang));
 	    
 	    /* if we can't stat the dirname for some reason, then skip adding
 	     * this directory to the TOC, remove the dirnode, and set the flag
@@ -1143,25 +1172,22 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 	    /* otherwise just read from the index file */
 	    } else {
 	    
-		objmanpages = xmlXPathEvalExpression (BAD_CAST "page", xpath);
-
-		for (k=0; k < objmanpages->nodesetval->nodeNr; k++) {
-		    xmlNodePtr node = objmanpages->nodesetval->nodeTab[k];
+		for (node = dirnode->children; node != NULL; node = node->next) {
 		    xmlChar *manpage = NULL;
 
-		    manpage = xmlNodeListGetString (manindex_xml,
-		                                    node->xmlChildrenNode, 1);
-
-		    add_man_page_to_toc (pager, (gchar *)dirname, (gchar *)manpage);
-		    priv->manpage_count++;
-		    xmlFree (manpage);
-	        }
-		xmlXPathFreeObject (objmanpages);
+		    if (node->type == XML_ELEMENT_NODE && 
+		        g_str_equal ((gchar *)node->name, "page")) {
+			manpage = xmlNodeGetContent (node);
+			add_man_page_to_toc (pager, (gchar *)dirname, (gchar *)manpage);
+			priv->manpage_count++;
+			xmlFree (manpage);
+		    }
+		}
+	    
 	    }
+	    xmlFree (lang);
 	    xmlFree (dirmtime);
 	    xmlFree (dirname);
-	    xmlXPathFreeObject (objdirmtime);
-	    xmlXPathFreeObject (objdirname);
 	}
 
 	/* cleanup */
@@ -1242,6 +1268,10 @@ process_mandir_pending (YelpTocPager *pager)
 	gchar **manpaths = NULL;
 	gchar **mandirs = NULL;
 
+	if (!priv->man_dirlang)
+	    priv->man_dirlang = g_hash_table_new_full (g_str_hash, g_str_equal,
+	                                               g_free,     g_free);
+
 	/* check for the existence of the xml cache file in ~/.gnome2/yelp.d/
 	 * if it exists, use it as the source for man pages instead of 
 	 * searching the hard disk for them - should make startup much faster */
@@ -1256,6 +1286,7 @@ process_mandir_pending (YelpTocPager *pager)
 	mandirs = yelp_get_man_paths ();
 	priv->manindex_xml = xmlNewDoc (BAD_CAST "1.0");
 	priv->root = xmlNewNode (NULL, BAD_CAST "manindex");
+	xmlNewProp (priv->root, BAD_CAST "lang", BAD_CAST langs[0]);
 	priv->ins  = priv->root;
 
 	xmlDocSetRootElement (priv->manindex_xml, priv->root);
@@ -1273,6 +1304,33 @@ process_mandir_pending (YelpTocPager *pager)
 	manpaths = g_strsplit (manpath, G_SEARCHPATH_SEPARATOR_S, -1);
 	g_free (manpath);
 
+	/* order is important here, since we may encounter collisions when adding 
+	 * a man page to the hash table "man_manhash".
+	 *
+	 * We want the resulting list to be sorted in order of priority:
+	 * 1) Highest priority is given to the base directory name returned 
+	 *    from $MANPATH or the manpath program.  So if that is 
+	 *    /usr/local/share:/usr/share then the man page 
+	 *    /usr/local/share/man/man1/python.1.gz would have precedence over
+	 *    /usr/share/man/man1/python.1.gz 
+	 * 2) Next highest priority is given to the language.
+	 * 3) Lowest priority is given to the section name, i.e. "man0p" "man1"
+	 *    since a man page from one section should never conflict with a man page
+	 *    from another section (because of the .0p or .1 section in the filename)
+	 *
+	 * Here is an example of how it should be sorted when 
+	 *   $MANPATH=/usr/local/share:/usr/share and LANGUAGE="es"
+	 *   
+	 * Adding /usr/local/share/man/es/man0p
+	 * Adding /usr/share/man/es/man0p
+	 * Adding /usr/local/share/man/man0p
+	 * Adding /usr/share/man/man0p
+	 * Adding /usr/local/share/man/es/man1
+	 * Adding /usr/share/man/es/man1
+	 * Adding /usr/local/share/man/man1
+	 * Adding /usr/share/man/man1 
+	 */
+	
 	for (i=0; mandirs[i] != NULL; i++) {
 	    GSList *tmplist = NULL;
 
@@ -1285,12 +1343,31 @@ process_mandir_pending (YelpTocPager *pager)
 			                            mandirs[i],
 			                            NULL);
 
+		    g_hash_table_insert (priv->man_dirlang, g_strdup (dirname),
+		                         g_strdup (langs[j]));
+
+		    /* prepend to list for speed, reverse it at the end */
 		    tmplist = g_slist_prepend (tmplist, dirname);
 		}
 	    }
+	    tmplist = g_slist_reverse (tmplist);
 
 	    priv->mandir_list = g_slist_prepend (priv->mandir_list, tmplist);
 	}
+	priv->mandir_list = g_slist_reverse (priv->mandir_list);
+
+	/* debugging: print out lists in order */
+	/*GSList *list1 = priv->mandir_list;
+	GSList *list2 = NULL;
+
+	while (list1 != NULL) {
+	    list2 = list1->data;
+	    while (list2 && list2->data) {
+	        g_print ("Dir=%s\n", (gchar *)list2->data);
+	        list2 = g_slist_next (list2);
+	    }
+	    list1 = g_slist_next (list1);
+	}*/
 
 	g_strfreev (manpaths);
  
@@ -1311,6 +1388,7 @@ process_mandir_pending (YelpTocPager *pager)
 	if ((dir = g_dir_open (dirname, 0, NULL))) {
 	    struct stat buf;
 	    gchar mtime_str[20];
+	    gchar *lang = NULL;
 
 	    if (g_stat (dirname, &buf) < 0)
 		g_warning ("Unable to stat dir: \"%s\"\n", dirname);
@@ -1327,7 +1405,17 @@ process_mandir_pending (YelpTocPager *pager)
 
 	    g_snprintf (mtime_str, 20, "%u", (guint) buf.st_mtime);
 
+	    lang = g_hash_table_lookup (priv->man_dirlang, dirname);
+
 	    priv->ins = xmlNewChild (priv->ins, NULL, BAD_CAST "dir", NULL);
+
+	    if (lang == NULL) {
+		g_print ("dir %s is null\n", dirname);
+		lang = "C";
+	    }
+	    
+	    xmlNewProp (priv->ins, BAD_CAST "lang", BAD_CAST lang);
+
 	    xmlNewProp (priv->ins, BAD_CAST "mtime", BAD_CAST mtime_str);
 	    xmlAddChild (priv->ins, xmlNewText (BAD_CAST "\n      "));
 	    xmlNewChild (priv->ins, NULL, BAD_CAST "name", BAD_CAST dirname);
@@ -1799,16 +1887,30 @@ process_cleanup (YelpTocPager *pager)
 {
     YelpTocPagerPriv *priv = pager->priv;
 
+#ifdef ENABLE_MAN
+    /* clean up the man directory language hash table */
+    if (priv->man_dirlang) {
+        g_hash_table_destroy (priv->man_dirlang);
+        priv->man_dirlang = NULL;
+    }
+
     /* clean up the man page section hash table */
     if (priv->man_secthash) {
 	g_hash_table_destroy (priv->man_secthash);
 	priv->man_secthash = NULL;
     }
+#endif
 
     /* cleanup the stylesheet used to process the toc */
     if (priv->stylesheet) {
 	xsltFreeStylesheet (priv->stylesheet);
 	priv->stylesheet = NULL;
+    }
+
+    /* cleanup the parser context */
+    if (priv->parser) {
+	xmlFreeParserCtxt (priv->parser);
+	priv->parser = NULL;
     }
 
     /* we only ever want to run this function once, so always return false */

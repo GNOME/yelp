@@ -36,7 +36,7 @@
 
 #define d(x)
 
-#define PARSER_CUR (*(parser->cur) != '\0' \
+#define PARSER_CUR (g_utf8_get_char (parser->cur) != '\0' \
     && (parser->cur - parser->buffer < parser->length))
 
 static void        parser_parse_line        (YelpManParser *parser);
@@ -97,9 +97,15 @@ yelp_man_parser_new (void)
 
 xmlDocPtr
 yelp_man_parser_parse_file (YelpManParser   *parser,
-			    gchar           *file)
+			    gchar           *file,
+			    const gchar     *encoding)
 {
-    GError **errormsg = NULL;
+    GError *errormsg = NULL;
+    /*gchar *ptr = NULL;*/
+
+    g_return_val_if_fail (parser != NULL, NULL);
+    g_return_val_if_fail (file != NULL, NULL);
+    g_return_val_if_fail (encoding != NULL, NULL);
 	
     parser->channel = yelp_io_channel_new_file (file, NULL);
 
@@ -115,16 +121,51 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
     while (g_io_channel_read_line (parser->channel,
 				   &(parser->buffer),
 				   &(parser->length),
-				   NULL, errormsg)
+				   NULL, &errormsg)
 	   == G_IO_STATUS_NORMAL) {
 
+	/* convert this line from the encoding indicated to UTF-8 */
+	if (!g_str_equal (encoding, "UTF-8")) {
+	    GError *converr = NULL;
+	    gchar *new_buffer = NULL;
+	    gsize bytes_written = 0;
+
+	    /* since our encoding is binary (NULL) in g_io_channel, then
+	     * our returned lined should end with \n.  Therefore we are making the
+	     * assumption that there are no partial characters at the end of this
+	     * string, and therefore can use calls like g_convert() which do not
+	     * preserve state - someone tell me if I'm wrong here */
+	    new_buffer = g_convert (parser->buffer, parser->length, "UTF-8", 
+	                            encoding, NULL, &bytes_written, &converr);
+	    if (converr != NULL) {
+		g_print ("Error occurred converting %s to UTF-8: %s\n", 
+		         encoding, converr->message);
+		g_error_free (converr);
+		break;
+	    } else if (parser->buffer == NULL) {
+		g_print ("parser->buffer == NULL\n");
+		break;
+	    }
+
+	    g_free (parser->buffer);
+	    parser->buffer = new_buffer;
+	    parser->length = bytes_written;
+	}
+	    
+	/* for debugging, make sure line is valid UTF-8 */
+	/*if (!g_utf8_validate (parser->buffer, (gssize)parser->length, &ptr)) {
+	    g_print ("str = %s\n", parser->buffer);
+	    g_print ("str ptr = %p\n", parser->buffer);
+	    g_print ("invalid char = %p (%c)\n", ptr, *ptr);
+	}*/
+	    
 	parser_parse_line (parser);
 
 	g_free (parser->buffer);
     }
 
     if (errormsg)
-	    g_print ("Error in g_io_channel_read_line()\n");
+	g_print ("Error in g_io_channel_read_line()\n");
 
     g_io_channel_shutdown (parser->channel, FALSE, NULL);
 
@@ -136,6 +177,7 @@ yelp_man_parser_parse_doc (YelpManParser *parser,
 			   YelpDocInfo   *doc_info)
 {
     gchar     *file;
+    gchar     *encoding = NULL;
     xmlDocPtr  doc = NULL;
 
     g_return_val_if_fail (parser != NULL, NULL);
@@ -147,7 +189,11 @@ yelp_man_parser_parse_doc (YelpManParser *parser,
     if (!file)
 	return NULL;
 
-    doc = yelp_man_parser_parse_file (parser, file);
+    encoding = (gchar *)g_getenv("MAN_ENCODING");
+    if (encoding == NULL)
+	encoding = "ISO-8859-1";
+
+    doc = yelp_man_parser_parse_file (parser, file, encoding);
 
     g_free (file);
 
@@ -173,10 +219,13 @@ parser_parse_line (YelpManParser *parser) {
     /* check to see if we are ignoring input */
     if (parser->ignore) {
 	gchar *ptr;
+	/* needs to be utf-8 compatible */
 	ptr = strstr (parser->buffer, parser->token);
     	if (ptr != NULL) {
-	    while (PARSER_CUR)
-		parser->anc = ++parser->cur;
+	    while (PARSER_CUR) {
+		parser->cur = g_utf8_next_char (parser->cur);
+		parser->anc = parser->cur;
+	    }
 	    g_free (parser->token);
 	    parser->ignore = FALSE;
 	} else {
@@ -209,7 +258,7 @@ parser_parse_line (YelpManParser *parser) {
 	parser_append_text (parser);
     
     if (PARSER_CUR) {
-	parser->cur++;
+	parser->cur = g_utf8_next_char (parser->cur);
 	parser_append_text (parser);
     }
 }
@@ -248,7 +297,8 @@ static void
 macro_ignore_handler (YelpManParser *parser, gchar *macro, GSList *args)
 { 
     while (PARSER_CUR) {
-	parser->anc = ++parser->cur;
+	parser->cur = g_utf8_next_char (parser->cur);
+	parser->anc = parser->cur;
     }
 }
 
@@ -364,6 +414,7 @@ macro_section_header_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	str = args_concat_all (args);
 
     for (ptr = macro_uc; *ptr != '\0'; ptr++)
+	/* FIXME: utf-8 */
     	*ptr = g_ascii_toupper (*ptr);
     
     parser_stack_pop_node (parser, "IP");
@@ -734,7 +785,7 @@ struct MandocMacro {
     gint flags;
 };
 
-struct MandocMacro manual_macros[] = {
+static struct MandocMacro manual_macros[] = {
     { "Ad", MANDOC_PARSED | MANDOC_CALLABLE },
     { "An", MANDOC_PARSED | MANDOC_CALLABLE },
     { "Ar", MANDOC_PARSED | MANDOC_CALLABLE },
@@ -933,7 +984,7 @@ struct MacroHandler {
  * A great resource to figure out what each of these does is the groff
  * info page.  Also groff(7), man(7), and mdoc(7) are useful as well.
  */
-struct MacroHandler macro_handlers[] = {
+static struct MacroHandler macro_handlers[] = {
     { "\\\"", macro_ignore_handler },                /* groff: comment */ 
     { "ad", macro_ignore_handler },                  /* groff: set adjusting mode */ 
     { "Ad", macro_mandoc_utility_handler },          /* mandoc: Address */ 
@@ -1050,31 +1101,42 @@ parser_handle_linetag (YelpManParser *parser) {
 
     /* FIXME: figure out a better way to handle these cases */
     /* special case, if the line is simply ".\n" then return */
-    if (*(parser->cur+1) == '\n') {
-    	++parser->cur;
-	parser->anc = ++parser->cur;
+    if (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\n') {
+    	parser->cur = g_utf8_next_char (parser->cur);
+    	parser->cur = g_utf8_next_char (parser->cur);
+	parser->anc = parser->cur;
 	return;
     } 
     /* special case, if the line is simply "..\n" then return */
-    else if (*(parser->cur+1) == '.' && *(parser->cur+2) == '\n') {
-    	++parser->cur;
-    	++parser->cur;
-    	parser->anc = ++parser->cur;
+    else if (g_utf8_get_char (g_utf8_next_char(parser->cur)) == '.' && 
+	     g_utf8_get_char (g_utf8_next_char (g_utf8_next_char (parser->cur+2))) == '\n') {
+    	parser->cur = g_utf8_next_char (parser->cur);
+    	parser->cur = g_utf8_next_char (parser->cur);
+    	parser->cur = g_utf8_next_char (parser->cur);
+    	parser->anc = parser->cur;
     }
     
     /* skip any spaces after the control character . */
-    while (PARSER_CUR && *(parser->cur) == ' ')
-	    parser->cur++;
+    while (PARSER_CUR && g_utf8_get_char (parser->cur) == ' ')
+	    parser->cur = g_utf8_next_char (parser->cur);
     
     while (PARSER_CUR
-	   && *(parser->cur) != ' '
-	   && ( (*parser->cur != '\\') || ((*parser->cur == '\\') && (*(parser->cur+1) == '\"')) )
-	   && *(parser->cur) != '\n') {    
-	if ((*parser->cur == '\\') && (*(parser->cur+1) == '\"')) {
-	    parser->cur += 2;
+	   && g_utf8_get_char (parser->cur) != ' '
+	   && ( (g_utf8_get_char (parser->cur) != '\\') || 
+	        (
+		 (g_utf8_get_char(parser->cur) == '\\') && 
+		 (g_utf8_get_char(g_utf8_next_char (parser->cur)) == '\"')
+		) 
+	      )
+	   && g_utf8_get_char (parser->cur) != '\n') {    
+	if (
+	    (g_utf8_get_char (parser->cur) == '\\') && 
+	    (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\"')
+	   ) {
+	    parser->cur = g_utf8_next_char (g_utf8_next_char (parser->cur));
 	    break;
 	}
-	parser->cur++;
+	parser->cur = g_utf8_next_char (parser->cur);
     }
 
     /* copy the macro/request into str */
@@ -1086,36 +1148,39 @@ parser_handle_linetag (YelpManParser *parser) {
     
     /* FIXME: need to handle escaped characters */
     /* perform argument parsing and store argument in a singly linked list */
-    while (PARSER_CUR && *(parser->cur) != '\n') { 
+    while (PARSER_CUR && g_utf8_get_char (parser->cur) != '\n') { 
 	ptr = NULL;
 	arg = NULL;
 	    
 	/* skip any whitespace */
-	while (PARSER_CUR && *(parser->cur) == ' ')
-	    parser->anc = ++parser->cur;
+	while (PARSER_CUR && g_utf8_get_char (parser->cur) == ' ') {
+	    parser->cur = g_utf8_next_char (parser->cur);
+	    parser->anc = parser->cur;
+	}
 	
 get_argument:
 	/* search until we hit whitespace or an " */
 	while (PARSER_CUR && 
-               *(parser->cur) != '\n' &&
-	       *(parser->cur) != ' ' &&
-	       *(parser->cur) != '\"')
-		parser->cur++;
+               g_utf8_get_char (parser->cur) != '\n' &&
+	       g_utf8_get_char (parser->cur) != ' ' &&
+	       g_utf8_get_char (parser->cur) != '\"')
+		parser->cur = g_utf8_next_char (parser->cur);
 
 	/* this checks for escaped spaces */
 	if (PARSER_CUR && 
 	    ((parser->cur - parser->buffer) > 0) &&
-	    *(parser->cur) == ' ' &&
-	    *(parser->cur-1) == '\\') {
-		parser->cur++;
+	    g_utf8_get_char (parser->cur) == ' ' &&
+	    g_utf8_get_char (g_utf8_prev_char (parser->cur)) == '\\') {
+		parser->cur = g_utf8_next_char (parser->cur);
 		goto get_argument;
 	}
 	
-	if (*(parser->cur) == '\n' && (parser->cur == parser->anc)) {
+	if (g_utf8_get_char (parser->cur) == '\n' && 
+	    (parser->cur == parser->anc))
 	    break;
-	}
 	
-	if (*(parser->cur) == '\"' && *(parser->cur-1) == ' ') {
+	if (g_utf8_get_char (parser->cur) == '\"' && 
+	    g_utf8_get_char (g_utf8_prev_char (parser->cur)) == ' ') {
 	    /* quoted argument */
 	    ptr = strchr (parser->cur+1, '\"');
 	    if (ptr != NULL) {
@@ -1266,9 +1331,9 @@ parser_read_until (YelpManParser *parser,
     gchar c;
     
     while (PARSER_CUR
-	   && *(parser->cur) != '\n'
-	   && *(parser->cur) != delim) {
-	    parser->cur++;
+	   && g_utf8_get_char (parser->cur) != '\n'
+	   && g_utf8_get_char (parser->cur) != delim) {
+	    parser->cur = g_utf8_next_char (parser->cur);
     }
 
     if (parser->anc == parser->cur)
@@ -1566,7 +1631,7 @@ parser_append_text (YelpManParser *parser)
     c = *(parser->cur);
     *(parser->cur) = '\0';
 
-    if (*(parser->anc) != '\n')
+    if (g_utf8_get_char (parser->anc) != '\n')
 	parser_ensure_P (parser);
 
     node = xmlNewText (BAD_CAST parser->anc);

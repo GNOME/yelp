@@ -6,7 +6,7 @@
                 extension-element-prefixes="yelp"
                 version="1.0">
 
-<xsl:output method="html"/>
+<xsl:output method="html" encoding="UTF-8"/>
 
 <xsl:include href="yelp-common.xsl"/>
 
