@@ -31,7 +31,9 @@
 #include <gconf/gconf-client.h>
 #include <libgnomeui/gnome-href.h>
 #include <string.h>
+
 #include "yelp-settings.h"
+#include "yelp-debug.h"
 
 #define KEY_GNOME_DIR           "/desktop/gnome/interface"
 #define KEY_GNOME_VARIABLE_FONT KEY_GNOME_DIR "/document_font_name"
@@ -43,12 +45,6 @@
 #define KEY_YELP_SYSTEM_FONTS   KEY_YELP_DIR "/use_system_fonts"
 #define KEY_YELP_VARIABLE_FONT  KEY_YELP_DIR "/variable_font"
 #define KEY_YELP_FIXED_FONT     KEY_YELP_DIR "/fixed_font"
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
 
 static const gchar * const color_params[YELP_NUM_COLORS] = {
     "yelp.color.fg",
@@ -518,7 +514,7 @@ gconf_system_fonts_cb (GConfClient   *client,
 {
     gboolean use;
 
-    d (g_print ("gconf_system_fonts_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     use = gconf_value_get_bool (gconf_entry_get_value (entry));
 
@@ -541,7 +537,7 @@ gconf_font_cb (GConfClient   *client,
     gulong handler;
     const gchar *font;
 
-    d (g_print ("gconf_font_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     font = gconf_value_get_string (gconf_entry_get_value (entry));
 
@@ -590,7 +586,7 @@ gconf_use_caret_cb (GConfClient  *client,
 static void
 gtk_theme_changed (GtkSettings *settings, gpointer user_data)
 {
-    d (g_print ("gtk_theme_changed\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     settings_update (YELP_SETTINGS_INFO_COLOR);
 }
@@ -612,7 +608,7 @@ settings_update (YelpSettingsType type)
     guint16    rval, gval, bval;
     gint i;
 
-    d (g_print ("settings_update\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     if (type & YELP_SETTINGS_INFO_COLOR) {
 	style = gtk_rc_get_style_by_paths (gtk_settings,

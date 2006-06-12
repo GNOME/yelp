@@ -21,6 +21,8 @@
 #ifndef __YELP_DEBUG_H__
 #define __YELP_DEBUG_H__
 
+G_BEGIN_DECLS
+
 #include <config.h>
 #include <glib.h>
 
@@ -64,5 +66,7 @@ typedef enum {
 
 void yelp_debug (const gchar *file, guint line, 
                  const gchar *function, guint flags, const gchar *format, ...);
+
+G_END_DECLS
 
 #endif /* __YELP_DEBUG_H__ */

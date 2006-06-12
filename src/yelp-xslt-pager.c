@@ -39,12 +39,7 @@
 #include "yelp-error.h"
 #include "yelp-settings.h"
 #include "yelp-xslt-pager.h"
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
+#include "yelp-debug.h"
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
@@ -166,7 +161,7 @@ xslt_pager_process (YelpPager *pager)
 
     GError *error = NULL;
 
-    d (g_print ("xslt_pager_process\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_XSLT_PAGER (pager), FALSE);
@@ -288,7 +283,7 @@ xslt_pager_process (YelpPager *pager)
 static void
 xslt_pager_error (YelpPager *pager)
 {
-    d (g_print ("xslt_pager_error\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
 }
 
@@ -297,7 +292,7 @@ xslt_pager_cancel (YelpPager *pager)
 {
     YelpXsltPagerPriv *priv = YELP_XSLT_PAGER (pager)->priv;
 
-    d (g_print ("xslt_pager_cancel\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 
@@ -322,7 +317,7 @@ xslt_pager_cancel (YelpPager *pager)
 static void
 xslt_pager_finish (YelpPager *pager)
 {
-    d (g_print ("xslt_pager_finish\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
 }
 
@@ -356,7 +351,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     EVENTS_PENDING;
     CANCEL_CHECK;
 
-    d (g_print ("xslt_yelp_document\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     page_id = xsltEvalAttrValueTemplate (ctxt, inst,
 					 (const xmlChar *) "href",
@@ -369,7 +364,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	yelp_pager_error (pager, error);
 	goto done;
     }
-    d (g_print ("  page_id = \"%s\"\n", page_id));
+    debug_print (DB_FUNCTION, "  page_id = \"%s\"\n", page_id);
 
     old_outfile = ctxt->outputFile;
     old_doc     = ctxt->output;

@@ -48,6 +48,7 @@
 #include "yelp-toc-pager.h"
 #include "yelp-window.h"
 #include "yelp-print.h"
+#include "yelp-debug.h"
 
 #ifdef ENABLE_MAN
 #include "yelp-man-pager.h"
@@ -58,12 +59,6 @@
 #ifdef ENABLE_SEARCH
 #include "yelp-search-pager.h"
 #include "gtkentryaction.h"
-#endif
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
 #endif
 
 #define YELP_CONFIG_WIDTH          "/yelp/Geometry/width"
@@ -913,8 +908,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     } else {
 	real_uri = g_strdup (uri);
     }
-    d (g_print ("yelp_window_load\n"));
-    d (g_print ("  uri = \"%s\"\n", uri));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
 
     if (!real_uri) {
 	GError *error = NULL;
@@ -1002,7 +997,7 @@ window_do_load (YelpWindow  *window,
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (doc_info != NULL);
 
-    d (g_print ("window_do_laod\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     action = gtk_action_group_get_action (window->priv->action_group, 
 					  "PrintDocument");
@@ -1775,10 +1770,10 @@ window_handle_page (YelpWindow   *window,
     priv = window->priv;
     window_disconnect (window);
 
-    d (g_print ("window_handle_page\n"));
-    d (g_print ("  page->page_id  = \"%s\"\n", page->page_id));
-    d (g_print ("  page->title    = \"%s\"\n", page->title));
-    d (g_print ("  page->contents = %i bytes\n", strlen (page->contents)));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  page->page_id  = \"%s\"\n", page->page_id);
+    debug_print (DB_ARG, "  page->title    = \"%s\"\n", page->title);
+    debug_print (DB_ARG, "  page->contents = %i bytes\n", strlen (page->contents));
 
     model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
     pager = yelp_doc_info_get_pager (priv->current_doc);
@@ -1856,7 +1851,7 @@ window_handle_page (YelpWindow   *window,
 				 priv->current_frag,
 				 YELP_URI_TYPE_FILE);
 
-    d (g_print ("  uri            = %s\n", uri));
+    debug_print (DB_ARG, "  uri            = %s\n", uri);
 
     yelp_html_set_base_uri (priv->html_view, uri);
     yelp_html_open_stream (priv->html_view, "application/xhtml+xml");
@@ -1958,8 +1953,8 @@ pager_start_cb (YelpPager   *pager,
     page_id = yelp_pager_resolve_frag (pager,
 				       window->priv->current_frag);
 
-    d (g_print ("pager_start_cb\n"));
-    d (g_print ("  page_id=\"%s\"\n", page_id));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  page_id=\"%s\"\n", page_id);
 
     window_set_sections (window,
 			 yelp_pager_get_sections (pager));
@@ -1987,8 +1982,8 @@ pager_page_cb (YelpPager *pager,
     YelpWindow  *window = YELP_WINDOW (user_data);
     YelpPage    *page;
 
-    d (g_print ("pager_page_cb\n"));
-    d (g_print ("  page_id=\"%s\"\n", page_id));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  page_id=\"%s\"\n", page_id);
 
     if (yelp_pager_page_contains_frag (pager,
 				       page_id,
@@ -2016,7 +2011,7 @@ pager_error_cb (YelpPager   *pager,
     YelpWindow *window = YELP_WINDOW (user_data);
     GError *error = yelp_pager_get_error (pager);
 
-    d (g_print ("pager_error_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     window_disconnect (window);
     window_error (window, error, TRUE);
@@ -2029,7 +2024,7 @@ pager_cancel_cb (YelpPager   *pager,
 		gpointer     user_data)
 {
     YelpWindow *window = YELP_WINDOW (user_data);
-    d (g_print ("pager_cancel_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     window_disconnect (window);
 }
@@ -2041,7 +2036,7 @@ pager_finish_cb (YelpPager   *pager,
     GError *error = NULL;
     YelpWindow  *window = YELP_WINDOW (user_data);
 
-    d (g_print ("pager_finish_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     window_disconnect (window);
 
@@ -2066,8 +2061,8 @@ html_uri_selected_cb (YelpHtml  *html,
 {
     YelpWindow *window = YELP_WINDOW (user_data);
 
-    d (g_print ("html_uri_selected_cb\n"));
-    d (g_print ("  uri = \"%s\"\n", uri));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
 
     if (!handled) {
 	yelp_window_load (window, uri);
@@ -2174,7 +2169,7 @@ tree_drag_data_get_cb (GtkWidget         *widget,
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    d (g_print ("tree_drag_data_get_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     priv = window->priv;
 
@@ -2236,7 +2231,7 @@ typedef struct {
 static void
 print_disconnect (PrintStruct *data)
 {
-    d(g_print ("print disconnect\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     if (data->page_handler) {
 	g_signal_handler_disconnect (data->pager,
 				     data->page_handler);
@@ -2267,8 +2262,8 @@ print_pager_page_cb (YelpPager *pager,
 {
     PrintStruct *data = user_data;
     YelpPage    *page;
-    d (g_print ("print_pager_page_cb\n"));
-    d (g_print ("  page_id=\"%s\"\n", page_id));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  page_id=\"%s\"\n", page_id);
 
     page = (YelpPage *) yelp_pager_get_page (pager, page_id);
 
@@ -2278,7 +2273,7 @@ print_pager_page_cb (YelpPager *pager,
 	int length, offset;
 	char *uri;
 	GtkWidget *vbox = gtk_vbox_new (FALSE, FALSE);
-	d(g_print (page->contents));
+	debug_print (DB_DEBUG, page->contents);
 
 	gtk_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	html = yelp_html_new ();
@@ -2294,14 +2289,14 @@ print_pager_page_cb (YelpPager *pager,
 				     page_id,
 				     YELP_URI_TYPE_FILE);
 
-	d (g_print ("  uri            = %s\n", uri));
+	debug_print (DB_ARG, "  uri            = %s\n", uri);
 
 	yelp_html_set_base_uri (html, uri);
 	g_free (uri);
 
 	yelp_html_open_stream (html, "application/xhtml+xml");
 	for (length = strlen (page->contents), offset = 0; length > 0; length -= BUFFER_SIZE, offset += BUFFER_SIZE) {
-	    d(g_print ("data: %.*s\n", MIN (length, BUFFER_SIZE), page->contents + offset));
+	    debug_print (DB_DEBUG, "data: %.*s\n", MIN (length, BUFFER_SIZE), page->contents + offset);
 	    yelp_html_write (html, page->contents + offset, MIN (length, BUFFER_SIZE));
 	}
 	yelp_html_close (html);
@@ -2320,7 +2315,7 @@ print_pager_error_cb (YelpPager   *pager,
     PrintStruct *data = user_data;
     /*     GError *error = yelp_pager_get_error (pager);*/
 
-    d (g_print ("print_pager_error_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     print_disconnect (data);
 }
@@ -2330,7 +2325,7 @@ print_pager_cancel_cb (YelpPager   *pager,
 		       gpointer     user_data)
 {
     PrintStruct *data = user_data;
-    d (g_print ("print_pager_cancel_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     print_disconnect (data);
 }
@@ -2341,7 +2336,7 @@ print_pager_finish_cb (YelpPager   *pager,
 {
     PrintStruct *data = user_data;
 
-    d (g_print ("print_pager_finish_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     print_disconnect (data);
 }
@@ -2421,7 +2416,7 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	
 	yelp_html_open_stream (html, "application/xhtml+xml");
 	for (length = strlen (page->contents), offset = 0; length > 0; length -= BUFFER_SIZE, offset += BUFFER_SIZE) {
-	    d (g_print ("data: %.*s\n", MIN (length, BUFFER_SIZE), page->contents + offset));
+	    debug_print (DB_DEBUG, "data: %.*s\n", MIN (length, BUFFER_SIZE), page->contents + offset);
 	    yelp_html_write (html, page->contents + offset, MIN (length, BUFFER_SIZE));
 	}
 	yelp_html_close (html);
@@ -2592,7 +2587,7 @@ window_find_cb (GtkAction *action, YelpWindow *window)
 
     priv = window->priv;
 
-    d (g_print ("window_find_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     gtk_widget_show_all (priv->find_bar);
     gtk_widget_grab_focus (priv->find_entry);
@@ -2614,7 +2609,7 @@ window_reload_cb (GtkAction *action, YelpWindow *window)
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    d (g_print ("window_reload_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     if (window->priv->current_doc) {
 	YelpLoadData *data;
@@ -2720,7 +2715,7 @@ window_go_forward_cb (GtkAction *action, YelpWindow *window)
 static void
 window_go_home_cb (GtkAction *action, YelpWindow *window)
 {
-    d (g_print ("window_go_home_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     g_return_if_fail (YELP_IS_WINDOW (window));
     yelp_window_load (window, "x-yelp-toc:");
 }
@@ -2731,7 +2726,7 @@ window_go_previous_cb (GtkAction *action, YelpWindow *window)
     YelpWindowPriv *priv;
     gchar *base, *uri;
 
-    d (g_print ("window_go_previous_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
@@ -2751,7 +2746,7 @@ window_go_next_cb (GtkAction *action, YelpWindow *window)
     YelpWindowPriv *priv;
     gchar *base, *uri;
 
-    d (g_print ("window_go_next_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
@@ -2771,7 +2766,7 @@ window_go_toc_cb (GtkAction *action, YelpWindow *window)
     YelpWindowPriv *priv;
     gchar *base, *uri;
 
-    d (g_print ("window_go_toc_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     g_return_if_fail (YELP_IS_WINDOW (window));
     g_return_if_fail (window->priv->current_doc);
     priv = window->priv;
@@ -2791,7 +2786,7 @@ window_add_bookmark_cb (GtkAction *action, YelpWindow *window)
     gchar *uri;
     YelpWindowPriv *priv = window->priv;
 
-    d (g_print ("window_add_bookmark\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     uri = yelp_doc_info_get_uri (priv->current_doc, priv->current_frag,
 				 YELP_URI_TYPE_NO_FILE);
@@ -2920,8 +2915,8 @@ location_response_cb (GtkDialog *dialog, gint id, YelpWindow *window)
 {
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    d (g_print ("location_response_cb\n"));
-    d (g_print ("  id = %i\n", id));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  id = %i\n", id);
 
     if (id == GTK_RESPONSE_OK) {
 	const gchar *uri = 
@@ -3084,13 +3079,13 @@ window_find_entry_key_pressed_cb (GtkWidget    *widget,
     YelpWindow     *window;
     YelpWindowPriv *priv;
 
+    debug_print (DB_FUNCTION, "entering\n");
+
     if (key->keyval == GDK_Escape) {
 	g_return_val_if_fail (YELP_IS_WINDOW (data), FALSE);
 
 	window = YELP_WINDOW (data);
 	priv = window->priv;
-
-	d (g_print ("window_find_entry_key_pressed_cb\n"));
 
 	gtk_widget_hide_all (priv->find_bar);
 
@@ -3167,15 +3162,15 @@ idle_write (IdleWriterContext *context)
     g_return_val_if_fail (context != NULL, FALSE);
     g_return_val_if_fail (context->window != NULL, FALSE);
 
-    d (g_print ("idle_write\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     priv = context->window->priv;
 
     switch (context->type) {
     case IDLE_WRITER_MEMORY:
-	d (g_print ("  context->buffer = %i bytes\n", strlen (context->buffer)));
-	d (g_print ("  context->cur    = %i\n", context->cur));
-	d (g_print ("  context->length = %i\n", context->length));
+	debug_print (DB_DEBUG, "  context->buffer = %i bytes\n", strlen (context->buffer));
+	debug_print (DB_DEBUG, "  context->cur    = %i\n", context->cur);
+	debug_print (DB_DEBUG, "  context->length = %i\n", context->length);
 
 	if (context->cur + BUFFER_SIZE < context->length) {
 	    yelp_html_write (priv->html_view,

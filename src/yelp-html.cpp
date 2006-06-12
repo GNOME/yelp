@@ -34,12 +34,8 @@
 #include "Yelper.h"
 
 #include "yelp-html.h"
+#include "yelp-debug.h"
 
-#ifdef GNOME_ENABLE_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
 
 #define YELP_HTML_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_HTML, YelpHtmlPriv))
 
@@ -100,8 +96,8 @@ html_open_uri (GtkMozEmbed *embed, const gchar *uri)
 
     g_return_val_if_fail (uri != NULL, FALSE);
 
-    d (g_print ("embed_open_uri_cb uri=%s\n", uri));
-    d (g_print ("  uri = \"%s\"\n", uri));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
 
     if (!html->priv->frames_enabled) {
 	g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
@@ -302,8 +298,8 @@ yelp_html_set_base_uri (YelpHtml *html, const gchar *uri)
 
     g_return_if_fail (YELP_IS_HTML (html));
 
-    d (g_print ("yelp_html_set_base_uri\n"));
-    d (g_print ("  uri = \"%s\"\n", uri));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
 
     priv = html->priv;
 
@@ -316,7 +312,7 @@ yelp_html_set_base_uri (YelpHtml *html, const gchar *uri)
 void
 yelp_html_open_stream (YelpHtml *html, const gchar *mime)
 {
-    d (g_print ("yelp_html_open\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     html->priv->frames_enabled = FALSE;
     gtk_moz_embed_open_stream (GTK_MOZ_EMBED (html),
@@ -329,9 +325,9 @@ yelp_html_write (YelpHtml *html, const gchar *data, gint len)
 {
      if (len == -1) len = strlen (data);
 
-    d (g_print ("yelp_html_write\n"));
-    d (g_print ("  data = %i bytes\n", strlen (data)));
-    d (g_print ("  len  = %i\n", len));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  data = %i bytes\n", strlen (data));
+    debug_print (DB_ARG, "  len  = %i\n", len);
 
     gtk_moz_embed_append_data (GTK_MOZ_EMBED (html),
 			       data, len);
@@ -379,7 +375,7 @@ timeout_update_gok (YelpHtml *html)
 void
 yelp_html_close (YelpHtml *html)
 {
-    d (g_print ("yelp_html_close\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     gtk_moz_embed_close_stream (GTK_MOZ_EMBED (html));
     html->priv->timeout = g_timeout_add (2000, 
 					 (GSourceFunc) timeout_update_gok,

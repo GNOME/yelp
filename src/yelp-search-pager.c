@@ -50,15 +50,10 @@
 #include "yelp-settings.h"
 #include "yelp-search-pager.h"
 #include "yelp-utils.h"
+#include "yelp-debug.h"
 
 #define DESKTOP_ENTRY_GROUP     "Desktop Entry"
 #define KDE_DESKTOP_ENTRY_GROUP "KDE Desktop Entry"
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
@@ -211,7 +206,7 @@ search_pager_class_init (YelpSearchPagerClass *klass)
 
 #ifdef ENABLE_BEAGLE
     beagle_client = beagle_client_new (NULL);
-    d(g_print ("client: %p\n", beagle_client);)
+    debug_print (DB_DEBUG, "client: %p\n", beagle_client);
 #endif /* ENABLE_BEAGLE */
 
     langs = g_get_language_names ();
@@ -332,7 +327,7 @@ yelp_search_pager_get (YelpDocInfo *doc_info)
 static void
 search_pager_error (YelpPager *pager)
 {
-    d (g_print ("search_pager_error\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
 }
 
@@ -341,7 +336,7 @@ search_pager_cancel (YelpPager *pager)
 {
     YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
 
-    d (g_print ("search_pager_cancel\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 
     priv->cancel = TRUE;
@@ -350,14 +345,14 @@ search_pager_cancel (YelpPager *pager)
 static void
 search_pager_finish (YelpPager   *pager)
 {
-    d (g_print ("search_pager_finish\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
 }
 
 gboolean
 search_pager_process (YelpPager *pager)
 {
-    d (g_print ("search_pager_process\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
     g_signal_emit_by_name (pager, "parse");
@@ -419,7 +414,7 @@ snippet_closed (BeagleSnippetRequest *request, SnippetLocation *snippet_location
 {
     YelpSearchPager *pager = snippet_location->pager;
     
-    d(g_print ("snippet_closed\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     pager->priv->snippet_request_count --;
     check_finished (pager);
@@ -448,10 +443,10 @@ snippet_response (BeagleSnippetRequest *request, BeagleSnippetResponse *response
     const char *xml = beagle_snippet_response_get_snippet (response);
 
     if (xml == NULL) {
-	d(g_print ("snippet_response empty\n"));
+	debug_print (DB_DEBUG, "snippet_response empty\n");
 	return;
     }
-    d(g_print ("snippet_response: %s\n", xml));
+    debug_print (DB_DEBUG, "snippet_response: %s\n", xml);
 
     xmldoc = g_strdup_printf ("<snippet>%s</snippet>",  xml);
     snippet_doc = xmlParseDoc (BAD_CAST xmldoc);
@@ -467,7 +462,7 @@ snippet_response (BeagleSnippetRequest *request, BeagleSnippetResponse *response
 static void
 snippet_error (BeagleSnippetRequest *request, GError *error, SnippetLocation *snippet_location)
 {
-    d(g_print ("snippet_error\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 }
 
 
@@ -478,14 +473,14 @@ hits_added_cb (BeagleQuery *query, BeagleHitsAddedResponse *response, YelpSearch
 
     GSList *hits, *l;
 
-    d(g_print ("hits_added\n"));
+    debug_print (DB_FUNCTION, "hits_added\n");
 
     hits = beagle_hits_added_response_get_hits (response);
 
     for (l = hits; l; l = l->next) {
 	BeagleHit *hit = l->data;
 	beagle_hit_ref (hit);
-	d(g_print ("%f\n", beagle_hit_get_score (hit)));
+	debug_print (DB_DEBUG, "%f\n", beagle_hit_get_score (hit));
 	g_ptr_array_add (priv->hits, hit);
     }
 }
@@ -495,11 +490,11 @@ check_lang (const char *lang) {
     int i;
     for (i = 0; langs[i]; i++) {
 	if (!strncmp (lang, langs[i], 2)) {
-	    d(g_print ("%s preferred\n", lang));
+	    debug_print (DB_DEBUG, "%s preferred\n", lang);
 	    return TRUE;
 	}
     }
-    d(g_print ("%s not preferred\n", lang));
+    debug_print (DB_DEBUG, "%s not preferred\n", lang);
     return FALSE;
 }
 
@@ -543,7 +538,7 @@ finished_cb (BeagleQuery            *query,
     int i;
     YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
 
-    d(g_print ("finished_cb\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     g_ptr_array_sort (priv->hits, compare_hits);
 
@@ -566,7 +561,7 @@ finished_cb (BeagleQuery            *query,
 	    xmlSetProp (child, BAD_CAST "base_title", BAD_CAST property);
 
 	score = g_strdup_printf ("%f", beagle_hit_get_score (hit));
-	d(g_print ("%f\n", beagle_hit_get_score (hit)));
+	debug_print (DB_DEBUG, "%f\n", beagle_hit_get_score (hit));
 	/*xmlSetProp (child, BAD_CAST "score", BAD_CAST score);*/
 	g_free (score);
 
@@ -588,7 +583,7 @@ finished_cb (BeagleQuery            *query,
 	g_signal_connect (request, "closed",
 			  G_CALLBACK (snippet_closed), snippet_location);
 
-	d(g_print ("Requesting snippet\n"));
+	debug_print (DB_DEBUG, "Requesting snippet\n");
 	beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (request),
 					  NULL);
     }
@@ -644,7 +639,7 @@ search_pager_process_idle (YelpSearchPager *pager)
 	beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query), &error);
 
 	if (error) {
-	    d(g_print ("error: %s\n", error->message));
+	    debug_print (DB_DEBUG, "error: %s\n", error->message);
 	}
 
 	g_clear_error (&error);

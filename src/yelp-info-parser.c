@@ -30,12 +30,8 @@
 #include "yelp-io-channel.h"
 #include "yelp-info-parser.h"
 #include "yelp-utils.h"
+#include "yelp-debug.h"
 
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
 
 typedef struct _TagTableFix TagTableFix;
 
@@ -107,7 +103,7 @@ static char
 	GError *error = NULL;
 	GIOStatus result = G_IO_STATUS_NORMAL;
 
-	d (g_print ("!! Opening %s...\n", file));
+	debug_print (DB_DEBUG, "!! Opening %s...\n", file);
 	
 	channel = yelp_io_channel_new_file (file, &error);
 	/* TODO: Actually handle the errors sanely.  Don't crash */
@@ -132,7 +128,7 @@ static char
 	{
 		if (str[i] == '\0' && str[i+1] == '\b')
 		{
-		  d (g_print ("=> got a NULL, replacing\n"));
+		  debug_print (DB_WARN, "=> got a NULL, replacing\n");
 		  str[i] = ' '; str[i+1] = ' ';
 		}
 	}
@@ -188,7 +184,7 @@ static char
 		int offset;
 		int plength;
 
-		d (g_print ("Line: %s\n", *ptr));
+		debug_print (DB_DEBUG, "Line: %s\n", *ptr);
 		items = g_strsplit (*ptr, ": ", 2);
 
 		if (items[0])
@@ -202,9 +198,9 @@ static char
 			offset =  atoi(items[1]);
 			plength = strlen(pages[1]);
 			
-			d (g_print ("Need to make string %s+%i bytes = %i\n",
+			debug_print (DB_DEBUG, "Need to make string %s+%i bytes = %i\n",
 				    items[1], plength,
-				    offset + plength));
+				    offset + plength);
 			
 			if (!composite) /* not yet created, malloc it */
 			{
@@ -249,8 +245,8 @@ static GHashTable
 		if (strncmp (*ptr, "Node: ", 6) == 0)
 		{
 			items = g_strsplit (*ptr, "", 2);
-			d (g_print ("Node: %s Offset: %s\n",
-				    items[0] + 6, items[1]));
+			debug_print (DB_DEBUG, "Node: %s Offset: %s\n",
+				    items[0] + 6, items[1]);
 			g_hash_table_insert (table,
 					g_strdup (items[0] + 6),
 					g_strdup (items[1]));
@@ -308,7 +304,7 @@ static GtkTreeIter
 	GtkTreeIter *iter;
 
 	iter = g_hash_table_lookup (nodes2iters, node);
-	d (if (!iter) g_print ("Could not retrieve iter for node !%s!\n", node));
+	d (if (!iter) debug_print (DB_WARN, "Could not retrieve iter for node !%s!\n", node));
 	return iter;
 }
 
@@ -411,7 +407,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	}
 	processed_table[page] = 1;
 	
-	d (g_print ("-- Processing Page %s\n\tParent: %s\n", node, up));
+	debug_print (DB_DEBUG, "-- Processing Page %s\n\tParent: %s\n", node, up);
 
 	iter = g_malloc0 (sizeof (GtkTreeIter));
 	/* check to see if we need to process our parent and siblings */
@@ -420,7 +416,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 		page = node2page (nodes2offsets, offsets2pages, up);
 		if (!processed_table[page])
 		{
-		  d (g_print ("%% Processing Node %s\n", up));
+		  debug_print (DB_DEBUG, "%% Processing Node %s\n", up);
 			process_page (tree, nodes2offsets, offsets2pages,
 				nodes2iters, processed_table, page_list,
 				page_list[page]);
@@ -434,7 +430,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	      page = node2page (nodes2offsets, offsets2pages, prev);
 	      if (!processed_table[page])
 		{
-		  d (g_print ("%% Processing Node %s\n", prev));
+		  debug_print (DB_DEBUG, "%% Processing Node %s\n", prev);
 		  process_page (tree, nodes2offsets, offsets2pages,
 				nodes2iters, processed_table, page_list,
 				page_list[page]);
@@ -445,10 +441,10 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	/* by this point our parent and older sibling should be processed */
 	if (!up || !g_ascii_strcasecmp (up, "(dir)") || !strcmp (up, "Top"))
 	{
-	  d (g_print ("\t> no parent\n"));
+	  debug_print (DB_DEBUG, "\t> no parent\n");
 		if (!prev || !g_ascii_strcasecmp (prev, "(dir)"))
 		{
-		  d (g_print ("\t> no previous\n"));
+		  debug_print (DB_DEBUG, "\t> no previous\n");
 			gtk_tree_store_append (tree, iter, NULL);
 		}
 		else if (prev) {
@@ -466,7 +462,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	}
 	else if (!prev || !g_ascii_strcasecmp (prev, "(dir)") || !strcmp (prev, up))
 	{
-	  d (g_print ("\t> no previous\n"));
+	  debug_print (DB_DEBUG, "\t> no previous\n");
 		gtk_tree_store_append (tree, iter,
 			node2iter (nodes2iters, up));
 	}
@@ -475,10 +471,10 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	  GtkTreeIter *upit = node2iter (nodes2iters, up);
 	  GtkTreeIter *previt = node2iter (nodes2iters, prev);
 	  GtkTreeIter *nit = NULL;
-	  d (g_print ("+++ Parent: %s Previous: %s\n", up, prev));
+	  debug_print (DB_DEBUG, "+++ Parent: %s Previous: %s\n", up, prev);
 	  
-	  d (if (upit) g_print ("++++ Have parent node!\n"));
-	  d (if (previt) g_print ("++++ Have previous node!\n"));
+	  d (if (upit) debug_print (DB_DEBUG, "++++ Have parent node!\n"));
+	  d (if (previt) debug_print (DB_DEBUG, "++++ Have previous node!\n"));
 	  nit = find_real_sibling (GTK_TREE_MODEL (tree), previt, upit);
 	  if (nit) {
 	    gtk_tree_store_insert_after (tree, iter,
@@ -491,13 +487,13 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	}
 	else
 	{
-	  d (g_print ("# node %s was not put in tree\n", node));
+	  debug_print (DB_DEBUG, "# node %s was not put in tree\n", node);
 	  return;
 	}
 
-	d (if (iter) g_print ("Have a valid iter, storing for %s\n", node));
+	d (if (iter) debug_print (DB_DEBUG, "Have a valid iter, storing for %s\n", node));
 	g_hash_table_insert (nodes2iters, g_strdup (node), iter);
-	d (g_print ("size: %i\n", g_hash_table_size (nodes2iters)));
+	debug_print (DB_DEBUG, "size: %i\n", g_hash_table_size (nodes2iters));
 
 	tmp = g_strdup_printf ("%i",
 			       node2page (nodes2offsets, offsets2pages, node));
@@ -580,7 +576,7 @@ GtkTreeStore
 	for (ptr = page_list; *ptr != NULL; ptr++)
 	{
 	  gchar *name = NULL;
-	  d (g_print ("page %i at offset %i\n", pages, offset));
+	  debug_print (DB_DEBUG, "page %i at offset %i\n", pages, offset);
 
 		g_hash_table_insert (offsets2pages,
 				g_strdup_printf ("%i", offset), 
@@ -596,14 +592,14 @@ GtkTreeStore
 		pt = page_type (*ptr);
 		if (pt == PAGE_TAG_TABLE)
 		{
-		  d (g_print ("Have the Tag Table\n"));
+		  debug_print (DB_DEBUG, "Have the Tag Table\n");
 			/* this needs to be freed later too */
 			nodes2offsets = process_tag_table (*ptr);
 			break;
 		}
 		else if (pt == PAGE_INDIRECT)
 		{
-		  d (g_print ("Have the indirect mapping table\n"));
+		  debug_print (DB_DEBUG, "Have the indirect mapping table\n");
 			chained_info = TRUE;
 			str = process_indirect_map (*ptr, file);
 		}
@@ -628,7 +624,7 @@ GtkTreeStore
 		
 		for (ptr = page_list; *ptr != NULL; ptr++)
 		{
-		  d (g_print ("page %i at offset %i\n", pages, offset));
+		  debug_print (DB_DEBUG, "page %i at offset %i\n", pages, offset);
 			g_hash_table_insert (offsets2pages,
 					g_strdup_printf ("%i", offset),
 					 GINT_TO_POINTER (pages));
@@ -692,7 +688,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 	char *page_content = NULL;
 	gboolean notes = FALSE;
 
-	d (g_print ("Decended\n"));
+	debug_print (DB_DEBUG, "Decended\n");
 	do
 	{
 		gtk_tree_model_get (GTK_TREE_MODEL (tree), &iter,
@@ -700,7 +696,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 				COLUMN_PAGE_NAME, &page_name,
 				COLUMN_PAGE_CONTENT, &page_content,
 				-1);
-		d (g_print ("Got Section: %s\n", page_name));
+		debug_print (DB_DEBUG, "Got Section: %s\n", page_name);
 		if (strstr (page_content, "*Note") || 
 		    strstr (page_content, "*note")) {
 		  notes = TRUE;
@@ -738,7 +734,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 		g_free (page_name);
 	}
 	while (gtk_tree_model_iter_next (GTK_TREE_MODEL (tree), &iter));
-	d (g_print ("Ascending\n"));
+	debug_print (DB_DEBUG, "Ascending\n");
 }
 
 xmlDocPtr
@@ -765,7 +761,7 @@ yelp_info_parser_parse_tree (GtkTreeStore *tree)
 
 	if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (tree), &iter))
 		parse_tree_level (tree, &node, iter);
-	d (else g_print ("Empty tree?\n"));
+	d (else debug_print (DB_DEBUG, "Empty tree?\n"));
 
 	/*
 	xmlDocDumpFormatMemory (doc, &xmlbuf, &bufsiz, 1);

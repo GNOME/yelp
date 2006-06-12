@@ -49,27 +49,22 @@
 #include <nsServiceManagerUtils.h>
 
 #include "yelp-gecko-services.h"
+#include "yelp-debug.h"
 
 #include "Yelper.h"
 
 #define NS_TYPEAHEADFIND_CONTRACTID "@mozilla.org/typeaheadfind;1"
 
-#ifdef GNOME_ENABLE_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
-
 Yelper::Yelper (GtkMozEmbed *aEmbed)
 : mInitialised(PR_FALSE)
 , mEmbed(aEmbed)
 {
-	d (g_print ("Yelper ctor [%p]\n", this));
+	debug_print (DB_DEBUG, "Yelper ctor [%p]\n", this);
 }
 
 Yelper::~Yelper ()
 {
-	d (g_print ("Yelper dtor [%p]\n", this));
+	debug_print (DB_DEBUG, "Yelper dtor [%p]\n", this);
 }
 
 nsresult

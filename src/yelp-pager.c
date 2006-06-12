@@ -26,17 +26,11 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <string.h>
 
 #include "yelp-pager.h"
 #include "yelp-marshal.h"
-
-#include <string.h>
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
+#include "yelp-debug.h"
 
 #define YELP_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_PAGER, YelpPagerPriv))
 
@@ -271,7 +265,7 @@ yelp_pager_cancel (YelpPager *pager)
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
 
-    d (g_print ("yelp_pager_cancel\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 
@@ -323,7 +317,7 @@ yelp_pager_get_error (YelpPager *pager)
 void
 yelp_pager_error (YelpPager *pager, GError *error)
 {
-    d (g_print ("yelp_pager_error\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     if (pager->priv->error)
 	g_error_free (pager->priv->error);

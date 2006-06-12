@@ -110,8 +110,6 @@ void yelp_debug (const gchar *file,     guint line,
 		else if (debug_flags & DB_WARN)
 			debug_flags |= (DB_ERROR);
 
-		g_print ("debug_flags = %x\n", debug_flags);
-		
 		debugenv = g_getenv ("YELP_DEBUG_FILTER");
 
 		if (debugenv != NULL && *debugenv != '\0')

@@ -40,12 +40,7 @@
 #include "yelp-db-pager.h"
 #include "yelp-toc-pager.h"
 #include "yelp-settings.h"
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
+#include "yelp-debug.h"
 
 #define STYLESHEET_PATH DATADIR"/yelp/xslt/"
 #define DB_STYLESHEET   STYLESHEET_PATH"db2html.xsl"
@@ -219,7 +214,7 @@ db_pager_parse (YelpPager *pager)
     xmlChar     *id;
     GError      *error = NULL;
 
-    d (g_print ("db_pager_parse\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     doc_info = yelp_pager_get_doc_info (pager);
 
@@ -298,7 +293,7 @@ db_pager_params (YelpPager *pager)
     gint params_i = 0;
     gint params_max = 20;
 
-    d (g_print ("db_pager_process\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
@@ -334,7 +329,7 @@ db_pager_cancel (YelpPager *pager)
 {
     YelpDBPagerPriv *priv = YELP_DB_PAGER (pager)->priv;
 
-    d (g_print ("db_pager_cancel\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 

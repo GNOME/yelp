@@ -27,6 +27,7 @@
 #include "yelp-bookmarks.h"
 #include "yelp-utils.h"
 #include "yelp-window.h"
+#include "yelp-debug.h"
 
 #include <string.h>
 #include <gtk/gtkuimanager.h>
@@ -40,12 +41,6 @@
 #include <libxml/xpathInternals.h>
 #include <libxml/xmlwriter.h>
 #include <libgnome/gnome-config.h>
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
 
 #define COL_NAME   0
 #define COL_LABEL  1

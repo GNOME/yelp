@@ -1,5 +1,45 @@
 2006-06-11  Brent Smith  <gnome@nextreality.net>
 
+	* configure.in:
+	* src/Yelper.cpp:
+	* src/yelp-bookmarks.c:
+	* src/yelp-db-pager.c: (db_pager_parse), (db_pager_params),
+	(db_pager_cancel):
+	* src/yelp-db-print-pager.c: (db_print_pager_parse),
+	(db_print_pager_params), (db_print_pager_cancel):
+	* src/yelp-debug.c: (yelp_debug):
+	* src/yelp-debug.h:
+	* src/yelp-html.cpp:
+	* src/yelp-info-parser.c: (open_info_file), (process_indirect_map),
+	(process_tag_table), (node2iter), (process_page),
+	(yelp_info_parser_parse_file), (parse_tree_level),
+	(yelp_info_parser_parse_tree):
+	* src/yelp-pager.c: (yelp_pager_cancel), (yelp_pager_error):
+	* src/yelp-search-pager.c: (search_pager_class_init),
+	(search_pager_error), (search_pager_cancel), (search_pager_finish),
+	(search_pager_process), (snippet_closed), (snippet_response),
+	(snippet_error), (hits_added_cb), (check_lang), (finished_cb),
+	(search_pager_process_idle):
+	* src/yelp-settings.c: (gconf_system_fonts_cb), (gconf_font_cb),
+	(gtk_theme_changed), (settings_update):
+	* src/yelp-window.c: (yelp_window_load), (window_do_load),
+	(window_handle_page), (pager_start_cb), (pager_page_cb),
+	(pager_error_cb), (pager_cancel_cb), (pager_finish_cb),
+	(html_uri_selected_cb), (tree_drag_data_get_cb),
+	(print_disconnect), (print_pager_page_cb), (print_pager_error_cb),
+	(print_pager_cancel_cb), (print_pager_finish_cb),
+	(window_print_page_cb), (window_find_cb), (window_reload_cb),
+	(window_go_home_cb), (window_go_previous_cb), (window_go_next_cb),
+	(window_go_toc_cb), (window_add_bookmark_cb),
+	(location_response_cb), (window_find_entry_key_pressed_cb),
+	(idle_write):
+	* src/yelp-xslt-pager.c: (xslt_pager_process), (xslt_pager_error),
+	(xslt_pager_cancel), (xslt_pager_finish), (xslt_yelp_document):
+	Ported everything (that I could find) to the new debug infrastructure,
+	see #343788
+
+2006-06-11  Brent Smith  <gnome@nextreality.net>
+
 	* src/Makefile.am: 
 	add yelp-debug.[ch]
 	* src/yelp-debug.c: (yelp_debug):
@@ -13,7 +53,7 @@
 	(process_mandir_pending):
 	* src/yelp-utils.c: (yelp_doc_info_new), (yelp_doc_info_get),
 	(yelp_doc_info_free), (yelp_doc_info_add_uri):
-	Modified to use new debug infrastructure
+	Modified to use new debug infrastructure, see #343788
 
 2006-06-11  Brent Smith  <gnome@nextreality.net>
 
