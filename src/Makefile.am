@@ -166,7 +166,7 @@ test_uri_LDFLAGS = $(AM_LDFLAGS)
 
 @INTLTOOL_SERVER_RULE@
 
-BUILT_SOURCES = yelp-marshal.h yelp-marshal.c server-bindings.h \
+BUILT_SOURCES = yelp-marshal.h stamp-yelp-marshal.h yelp-marshal.c server-bindings.h \
 		client-bindings.h
 
 noinst_HEADERS = $(BUILT_SOURCES)
@@ -197,7 +197,7 @@ CLEANFILES = xgen-ymh xgen-ymc
 
 MAINTAINERCLEANFILES = $(BUILT_SOURCES)
 
-EXTRA_DIST = yelp-marshal.list
+EXTRA_DIST = yelp-marshal.list yelp-infos.xml
 
 install-exec-local:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \
