@@ -6,6 +6,7 @@ yelp_SOURCES =							\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
 	yelp-db-pager.c		yelp-db-pager.h			\
 	yelp-db-print-pager.c	yelp-db-print-pager.h		\
+	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
 	yelp-html.cpp		yelp-html.h			\

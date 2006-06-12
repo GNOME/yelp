@@ -33,14 +33,9 @@
 #include <libgnome/gnome-init.h>
 
 #include "yelp-utils.h"
+#include "yelp-debug.h"
 
 #include <string.h>
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
 
 static GHashTable *doc_info_table;
 
@@ -132,8 +127,8 @@ yelp_doc_info_new (const gchar *uri, gboolean trust_uri)
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    d (g_print ("yelp_doc_info_new\n"));
-    d (g_print ("  uri      = \"%s\"\n", uri));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri      = \"%s\"\n", uri);
 
     if (trust_uri)
 	full_uri = gnome_vfs_make_uri_from_input (uri);
@@ -192,9 +187,9 @@ yelp_doc_info_new (const gchar *uri, gboolean trust_uri)
 	doc_type = YELP_DOC_TYPE_EXTERNAL;
 	uri_type = YELP_URI_TYPE_EXTERNAL;
     }
-
-    d (g_print ("  full_uri = \"%s\"\n", full_uri));
-    d (g_print ("  doc_uri  = \"%s\"\n", doc_uri));
+    
+    debug_print (DB_ARG, "  full_uri = \"%s\"\n", full_uri);
+    debug_print (DB_ARG, "  doc_uri  = \"%s\"\n", doc_uri);
 
     g_free (full_uri);
 
@@ -226,8 +221,8 @@ yelp_doc_info_get (const gchar *uri, gboolean trust_uri)
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    d (g_print ("yelp_doc_info_get\n"));
-    d (g_print ("  uri     = \"%s\"\n", uri));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri     = \"%s\"\n", uri);
 
     if (!doc_info_table)
 	doc_info_table =
@@ -306,8 +301,8 @@ yelp_doc_info_free (YelpDocInfo *doc)
 {
     gint i;
 
-    d (g_print ("yelp_doc_info_free\n"));
-    d (g_print ("  uri = \"%s\"\n", doc->uris->uri));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri = \"%s\"\n", doc->uris->uri);
 
     if (!doc)
 	return;
@@ -606,7 +601,7 @@ yelp_doc_info_add_uri (YelpDocInfo *doc_info,
 {
     DocInfoURI *info_uri;
 
-    d (g_print ("yelp_doc_add_uri\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (doc_info->num_uris <= doc_info->max_uris);
 
@@ -624,9 +619,9 @@ yelp_doc_info_add_uri (YelpDocInfo *doc_info,
 
     doc_info->num_uris++;
 
-    d (g_print ("  uri      = \"%s\"\n", uri));
-    d (g_print ("  num_uris = %i\n", doc_info->num_uris));
-    d (g_print ("  max_uris = %i\n", doc_info->max_uris));
+    debug_print (DB_ARG, "  uri      = \"%s\"\n", uri);
+    debug_print (DB_ARG, "  num_uris = %i\n", doc_info->num_uris);
+    debug_print (DB_ARG, "  max_uris = %i\n", doc_info->max_uris);
 }
 
 /******************************************************************************/

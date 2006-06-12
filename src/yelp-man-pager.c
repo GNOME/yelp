@@ -40,6 +40,7 @@
 #include "yelp-man-pager.h"
 #include "yelp-man-parser.h"
 #include "yelp-settings.h"
+#include "yelp-debug.h"
 
 #define STYLESHEET_PATH DATADIR"/yelp/xslt/"
 #define MAN_STYLESHEET  STYLESHEET_PATH"man2html.xsl"
@@ -237,7 +238,7 @@ man_pager_parse (YelpPager *pager)
     /* We use the language to determine which encoding the manual
      * page is in */ 
     language = yelp_doc_info_get_language (doc_info);
-    g_print ("The language of the man page is %s\n", language);
+    debug_print (DB_INFO, "The language of the man page is %s\n", language);
 
     /* default encoding if the language doesn't match below */
     encoding = g_getenv("MAN_ENCODING");

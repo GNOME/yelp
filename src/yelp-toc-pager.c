@@ -46,17 +46,12 @@
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
 
+#include "yelp-debug.h"
 #include "yelp-error.h"
 #include "yelp-settings.h"
 #include "yelp-toc-pager.h"
 #include "yelp-utils.h"
 #include "yelp-io-channel.h"
-
-#ifdef YELP_DEBUG
-#define d(x) x
-#else
-#define d(x)
-#endif
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
@@ -246,10 +241,12 @@ yelp_toc_pager_pause (YelpTocPager *pager)
 {
     g_return_if_fail (pager != NULL);
 
-    d (g_print ("yelp_toc_pager_pause\n"));
-    d (g_print ("  pause_caunt = %i\n", pager->priv->pause_count + 1));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  pause_count = %i\n", pager->priv->pause_count + 1);
 
     pager->priv->pause_count = pager->priv->pause_count + 1;
+
+    debug_print (DB_FUNCTION, "exiting\n");
 }
 
 void
@@ -257,8 +254,8 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 {
     g_return_if_fail (pager != NULL);
 
-    d (g_print ("yelp_toc_pager_unpause\n"));
-    d (g_print ("  pause_caunt = %i\n", pager->priv->pause_count - 1));
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  pause_count = %i\n", pager->priv->pause_count - 1);
 
     pager->priv->pause_count = pager->priv->pause_count - 1;
     if (pager->priv->pause_count < 0) {
@@ -271,6 +268,8 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 			       (GtkFunction) toc_process_pending,
 			       pager);
     }
+    
+    debug_print (DB_FUNCTION, "exiting\n");
 }
 
 /******************************************************************************/
@@ -278,7 +277,7 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
 static void
 toc_pager_error (YelpPager *pager)
 {
-    d (g_print ("toc_pager_error\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
 }
 
@@ -287,7 +286,7 @@ toc_pager_cancel (YelpPager *pager)
 {
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
-    d (g_print ("toc_pager_cancel\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 
     priv->cancel = TRUE;
@@ -296,7 +295,7 @@ toc_pager_cancel (YelpPager *pager)
 static void
 toc_pager_finish (YelpPager   *pager)
 {
-    d (g_print ("toc_pager_finish\n"));
+    debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
 }
 
@@ -305,7 +304,7 @@ toc_pager_process (YelpPager *pager)
 {
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
 
-    d (g_print ("toc_pager_process\n"));
+    debug_print (DB_FUNCTION, "entering\n");
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
     g_signal_emit_by_name (pager, "parse");
@@ -1074,8 +1073,9 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
      * by the LANGUAGE environment variable) then return so that the index 
      * is recreated */
     if (language == NULL || !g_str_equal (BAD_CAST language, langs[0])) {
-	g_print (_("Current language and index file language do not match.\n"
-		   "The index file will be recreated.\n"));
+	debug_print (DB_INFO, 
+	             "LANGUAGE and index file language do not match, "
+		     "index file will be recreated.\n");
 	xmlFreeDoc (manindex_xml);
 	return 0;
     }
@@ -1356,18 +1356,20 @@ process_mandir_pending (YelpTocPager *pager)
 	}
 	priv->mandir_list = g_slist_reverse (priv->mandir_list);
 
+#ifdef YELP_DEBUG
 	/* debugging: print out lists in order */
-	/*GSList *list1 = priv->mandir_list;
+	GSList *list1 = priv->mandir_list;
 	GSList *list2 = NULL;
 
 	while (list1 != NULL) {
 	    list2 = list1->data;
 	    while (list2 && list2->data) {
-	        g_print ("Dir=%s\n", (gchar *)list2->data);
+	        debug_print (DB_INFO, "Dir=%s\n", (gchar *)list2->data);
 	        list2 = g_slist_next (list2);
 	    }
 	    list1 = g_slist_next (list1);
-	}*/
+	}
+#endif
 
 	g_strfreev (manpaths);
  
@@ -1391,7 +1393,7 @@ process_mandir_pending (YelpTocPager *pager)
 	    gchar *lang = NULL;
 
 	    if (g_stat (dirname, &buf) < 0)
-		g_warning ("Unable to stat dir: \"%s\"\n", dirname);
+		debug_print (DB_WARN, "Unable to stat dir: \"%s\"\n", dirname);
 
 	    /* check to see if we need create a new hash table */
 	    if (!priv->man_manhash) {

@@ -1,5 +1,22 @@
 2006-06-11  Brent Smith  <gnome@nextreality.net>
 
+	* src/Makefile.am: 
+	add yelp-debug.[ch]
+	* src/yelp-debug.c: (yelp_debug):
+	* src/yelp-debug.h:
+	New debug functions that enable printing of debug statements 
+	at runtime when compiled with --enable-debug
+	* src/yelp-man-pager.c: (man_pager_parse):
+	* src/yelp-toc-pager.c: (yelp_toc_pager_pause),
+	(yelp_toc_pager_unpause), (toc_pager_error), (toc_pager_cancel),
+	(toc_pager_finish), (toc_pager_process), (create_toc_from_index),
+	(process_mandir_pending):
+	* src/yelp-utils.c: (yelp_doc_info_new), (yelp_doc_info_get),
+	(yelp_doc_info_free), (yelp_doc_info_add_uri):
+	Modified to use new debug infrastructure
+
+2006-06-11  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-man-pager.c: (man_pager_parse):
 	* src/yelp-man-parser.c: (yelp_man_parser_parse_file),
 	(yelp_man_parser_parse_doc), (parser_parse_line),
