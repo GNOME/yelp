@@ -1,3 +1,50 @@
+Changes in 2.15.3:
+------------------
+* New debugging infrastructure                              (Brent Smith)
+* Add support for translated man pages, fixes #343275       (Brent Smith)
+* Support private instances with -p (Bug #337540)           (Don Scorgie)
+* Switch from Bonobo to DBUS Activation                     (Don Scorgie)
+* Change 'Multimedia' category to 'Sound & Vision' for      (Don Scorgie)
+  consistency (bug #332182)
+* Don't auto-expand sections in left pane (bug #167070)     (Don Scorgie)
+* Don't use mozilla's internal string API, and drop         (Christian Persch)
+  support for gecko 1.7 and non-toolkit geckos. 
+  Bug #343950.
+* Add a deep history framework (bug #67966)                 (Don Scorgie)
+* Make *Notes into hyperlinks (bug #343524)                 (Don Scorgie)
+* Make monospace fonts change size when asked               (Don Scorgie)
+  (bug #344003)
+* Escape & characters when encountered in info              (Don Scorgie)
+  processing (fixes #343372)
+* more helpful message when there are no search results     (Frederic Peters)
+  (fixes #341798)
+* search results message can be translated                  (Frederic Peters)
+  (fixes #341689)
+* limit search results to 20 items (fixes #341434)          (Frederic Peters)
+* cleanup the man_secthash hash table when finished         (Brent Smith)
+* don't increment ptr, fixes #341827                        (Don Scorgie)
+* Fix a bunch of memory leaks                               (Don Scorgie)
+* Fix an invalid write, #342151                             (Don Scorgie)
+* NULL checking.  Suppresses critical warnings on some      (Don Scorgie)
+  info pages
+* If an info file doesn't exist, default to showing         (Don Scorgie)
+  the man page, fixes #341627
+* Fix loading of info pages from subdirectories (emacs)     (Don Scorgie)
+* Update intltool requirement to 0.35.0                     (Brent Smith)
+* Reduce strictness of searching for menus in info pages    (Don Scorgie)
+* Updated translations:
+Jakub Friedl (cs)
+Mindu Dorji (dz)
+Francisco Javier F. Serrador (es)
+Priit Laes (et)
+Iñaki Larrañaga Murgoitio (eu)
+Ankit Patel (gu)
+Raivis Dejus (lv)
+Kjartan Maraas (nb)
+Theppitak Karoonboonyanan (th)
+Pablo Saratxaga (wa)
+
+
 Changes in 2.15.2:
 ------------------
 * fix the applyto element for the use_caret gconf key       (Brent Smith)
