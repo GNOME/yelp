@@ -973,6 +973,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
       gchar *link_text;
       gchar *href = NULL;
       gchar *break_point = NULL;
+      gboolean broken = FALSE;
       if (first) {
 	/* The first node is special.  It doesn't have a note ref at the 
 	 * start, so we can just add it and forget about it.
@@ -986,15 +987,20 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 
       append = strchr (*current_real, ':');
       if (!append) {
-      xmlNewTextChild (holder, NULL, BAD_CAST "para1",
-		       BAD_CAST *current_real);
-      continue;
+	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
+			 BAD_CAST *current_real);
+	continue;
       }
       append++;
       alt_append = append;
       alt_append1 = alt_append;
       append = strchr (append, ':');
       alt_append = strchr (alt_append, '.');
+      if (alt_append && g_str_has_prefix (alt_append, ".info")) {
+	broken = TRUE;
+	alt_append++;
+	alt_append = strchr (alt_append, '.');
+      }
       alt_append1 = strchr (alt_append1, ',');
       if (!append && !alt_append && !alt_append1) {
 	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
@@ -1006,7 +1012,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	  if (alt_append) append = alt_append;
 	  else append = alt_append1;
 	}
-	if (alt_append && alt_append < append)
+	if ((alt_append && alt_append < append) || broken)
 	  append = alt_append;
 	if (alt_append1 && alt_append1 < append)
 	  append = alt_append1;
@@ -1014,13 +1020,15 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
       append++;
 
       url = g_strndup (*current_real, append - (*current_real));
+
       /* By now, we got 2 things.  First, is append which is the (hopefully)
        * non-link text.  Second, we got a url.
        * The url can be in several forms:
        * 1. linkend::
        * 2. linkend:(infofile)Linkend.
-       * 3. linkend: infofile Linkend.
-       * 4. linkend: (infofile)Linkend, (pretty sure this is just broken)
+       * 3. Title: Linkend.
+       * 4. Title: Linkend, (pretty sure this is just broken)
+       * 5. Title: (infofile.info)Linkend.
        * All possibilities should have been picked up.
        * Here:
        * Clean up the split.  Should be left with a real url and
@@ -1060,15 +1068,33 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	stop = strchr (url, ':');
 	lurl = strchr (stop, '(');
 	if (!lurl) { /* 3rd type of link */
-	  gchar **t;
+	  gchar *link;
+	  gint length;
 	  stop++;
-	  t = g_strsplit (stop, " ", 3);
-	  zloc = &(t[2][strlen(t[2])-1]);
-	  *zloc = '\0';
-	  href = g_strconcat ("info:", t[1], "#", t[2], NULL);
-	  *zloc = 'a';
-	  g_strfreev (t);
-	} else { /* 2nd type of link.  Easy. */
+	  link = g_strdup (stop);
+	  link = g_strstrip (link);
+	  length = strlen (link) - 1;
+	  link[length] = '\0';	  
+	  href = g_strconcat ("#", link, NULL);
+	  link[length] = 'a';
+	  g_free (link);
+
+
+	} else { /* 2nd type of link.  Easy. Provided .info is neglected ;) */
+	  if (broken) {
+	    gchar *new_url;
+	    gchar *info;
+	    gchar *stripped;
+
+	    new_url = g_strdup (lurl);
+	    info = strstr (new_url, ".info)");
+	    g_free (lurl);
+	    stripped = g_strndup (new_url, info-new_url);
+	    info +=5;
+	    lurl = g_strconcat (stripped, info, NULL);
+	    g_free (stripped);
+	    g_free (new_url);
+	  }
 	  zloc = &(lurl[strlen(lurl)-1]);
 	  *zloc = '\0';
 	  href = g_strconcat ("info:", lurl, NULL);
