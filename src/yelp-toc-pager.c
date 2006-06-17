@@ -1642,8 +1642,8 @@ process_info_pending (YelpTocPager *pager)
 					  BAD_CAST tmp);
 			    g_free (tmp);
 			    sectno++;
-			    xmlNewChild (new_node, NULL, BAD_CAST "title",
-					 BAD_CAST *ptr);
+			    xmlNewTextChild (new_node, NULL, BAD_CAST "title",
+					     BAD_CAST *ptr);
 			    g_hash_table_insert (categories, 
 						 g_strdup (*ptr),
 						 new_node);
