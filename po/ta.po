@@ -1,420 +1,528 @@
+# translation of yelp.HEAD.ta.po to Tamil
 # Tamil translation of Yelp.
 # Copyright (C) 2003 Yelp's Dinesh Nadarajah
 # This file is distributed under the same license as the Yelp package.
 # Dinesh Nadarajah <n_dinesh@yahoo.com>, 2003.
 # Dinesh Nadarajah <dinesh_list@sbcglobal.net>, 2004.
-# 
+# Felix <ifelix@redhat.com>, 2006.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Tamil Version of Yelp 2.6\n"
+"Project-Id-Version: yelp.HEAD.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-03-08 21:03-0600\n"
-"Last-Translator: Dinesh Nadarajah <dinesh_list@sbcglobal.net>\n"
-"Language-Team: Tamil <tamillinux-users@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2006-06-22 07:38+0200\n"
+"PO-Revision-Date: 2006-06-23 13:27+0530\n"
+"Last-Translator: Felix <ifelix@redhat.com>\n"
+"Language-Team: Tamil <ta@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1716
+msgid "GNU Info Pages"
+msgstr "GNU தகவல் பக்கங்கள்"
+
+#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
 msgstr "செயல்பாடுகள்"
 
-#: data/man.xml.in.h:2
+#: ../data/man.xml.in.h:2
 msgid "Configuration Files"
 msgstr "அமைவடிவ கோப்புகள்"
 
-#: data/man.xml.in.h:3
+#: ../data/man.xml.in.h:3
 msgid "Development"
 msgstr "உருவாக்கம்"
 
-#: data/man.xml.in.h:4
+#: ../data/man.xml.in.h:4
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "FORTRAN செயல்பாடுகள்"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
 msgid "Games"
 msgstr "விளையாட்டுகள்"
 
-#: data/man.xml.in.h:6
+#: ../data/man.xml.in.h:6
 msgid "Hardware Devices"
 msgstr "வன்பொருள் சாதனங்கள்"
 
-#: data/man.xml.in.h:7
+#: ../data/man.xml.in.h:7
 msgid "Kernel Routines"
 msgstr "கரு நடைமுறைகள்"
 
-#: data/man.xml.in.h:8
+#: ../data/man.xml.in.h:8
 msgid "Library Functions"
 msgstr "நூலகச் செயல்கள்"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-msgid "Man Pages"
-msgstr ""
+#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1710
+msgid "Manual Pages"
+msgstr "கையேடு பக்கங்கள்"
 
-#: data/man.xml.in.h:10
-#, fuzzy
+#: ../data/man.xml.in.h:10
 msgid "OpenSSL Applications"
-msgstr "X செயல்பாடுகள்"
+msgstr "OpenSSL பயன்பாடுகள்"
 
-#: data/man.xml.in.h:11
-#, fuzzy
+#: ../data/man.xml.in.h:11
 msgid "OpenSSL Configuration"
-msgstr "அமைவடிவ கோப்புகள்"
+msgstr "OpenSSL கட்டமைப்பு"
 
-#: data/man.xml.in.h:12
-#, fuzzy
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Overviews"
-msgstr "பொதுமையானவை"
+msgstr "OpenSSL முழுப்பார்வைகள்"
 
-#: data/man.xml.in.h:13
+#: ../data/man.xml.in.h:13
 msgid "Overviews"
-msgstr "பொதுமையானவை"
+msgstr "முழுப்பார்வைகள்"
 
-#: data/man.xml.in.h:14
-#, fuzzy
+#: ../data/man.xml.in.h:14
+msgid "POSIX Functions"
+msgstr "POSIX செயல்பாடுகள்"
+
+#: ../data/man.xml.in.h:15
+msgid "POSIX Headers"
+msgstr "POSIX தலைப்புகள்"
+
+#: ../data/man.xml.in.h:16
 msgid "Perl Functions"
-msgstr "நூலகச் செயல்கள்"
+msgstr "Perl செயல்பாடுகள்"
 
-#: data/man.xml.in.h:15
-#, fuzzy
+#: ../data/man.xml.in.h:17
 msgid "Qt Functions"
-msgstr "நூலகச் செயல்கள்"
+msgstr "Qt செயல்பாடுகள்"
 
-#: data/man.xml.in.h:16
+#: ../data/man.xml.in.h:18
 msgid "System Administration"
-msgstr "அமைப்பு நிர்வாகம்"
+msgstr "கணினி நிர்வாகம்"
 
-#: data/man.xml.in.h:17
+#: ../data/man.xml.in.h:19
 msgid "System Calls"
-msgstr "அமைப்பு அழைப்புகள்"
+msgstr "கணினி அழைப்புகள்"
 
-#: data/man.xml.in.h:18
-#, fuzzy
+#: ../data/man.xml.in.h:20
 msgid "Termcap Applications"
-msgstr "X செயல்பாடுகள்"
+msgstr "Termcap செயல்பாடுகள்"
 
-#: data/man.xml.in.h:19
-#, fuzzy
+#: ../data/man.xml.in.h:21
 msgid "X11 Applications"
-msgstr "X செயல்பாடுகள்"
+msgstr "X11 செயல்பாடுகள்"
 
-#: data/man.xml.in.h:20
-#, fuzzy
+#: ../data/man.xml.in.h:22
 msgid "X11 Configuration"
-msgstr "அமைவடிவ கோப்புகள்"
+msgstr "X11 கட்டமைப்பு"
 
-#: data/man.xml.in.h:21
+#: ../data/man.xml.in.h:23
 msgid "X11 Devices"
-msgstr ""
+msgstr "X11 சாதனங்கள்"
 
-#: data/man.xml.in.h:22
-#, fuzzy
+#: ../data/man.xml.in.h:24
 msgid "X11 Functions"
-msgstr "நூலகச் செயல்கள்"
+msgstr "X11 செயல்பாடுகள்"
 
-#: data/man.xml.in.h:23
-#, fuzzy
+#: ../data/man.xml.in.h:25
 msgid "X11 Games"
-msgstr "விளையாட்டுகள்"
+msgstr "X11 விளையாட்டுகள்"
 
-#: data/man.xml.in.h:24
-#, fuzzy
+#: ../data/man.xml.in.h:26
 msgid "X11 Overviews"
-msgstr "பொதுமையானவை"
+msgstr "X11 முழுப்பார்வைகள்"
 
-#: data/toc.xml.in.h:1
+#: ../data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "அணுகல்"
 
-#: data/toc.xml.in.h:2
+#: ../data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "துணைப்பொருட்கள்"
 
-#: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "குறும்பயன்கள்"
+#: ../data/toc.xml.in.h:3
+msgid "Administration"
+msgstr "நிர்வாகம்"
 
-#: data/toc.xml.in.h:5
+#: ../data/toc.xml.in.h:5
 msgid "Desktop"
-msgstr "கணிமேசை"
+msgstr "பணிமேடை"
 
-#: data/toc.xml.in.h:6
+#: ../data/toc.xml.in.h:6
 msgid "Education Applications"
-msgstr "கல்வி சார்ந்த செயல்பாடுகள்"
+msgstr "கல்வி சார்ந்த பயன்பாடுகள்"
 
-#: data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:8
 msgid "Graphics"
-msgstr ""
+msgstr "வரைகலைகள்"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
+#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:405
 msgid "Help Topics"
-msgstr "உதவி மேலோடி"
+msgstr "உதவி தலைப்புகள்"
 
-#: data/toc.xml.in.h:10
-#, fuzzy
+#: ../data/toc.xml.in.h:10
 msgid "Internet"
-msgstr "உள்ளடக்கங்கள்"
+msgstr "இணையம்"
 
-#: data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:11
 msgid "KDE"
 msgstr "KDE"
 
-#: data/toc.xml.in.h:12
+#: ../data/toc.xml.in.h:12
 msgid "Office"
-msgstr ""
+msgstr "அலுவலகம்"
 
-#: data/toc.xml.in.h:13
+#: ../data/toc.xml.in.h:13
 msgid "Other"
-msgstr ""
+msgstr "பிற"
 
-#: data/toc.xml.in.h:14
-#, fuzzy
+#: ../data/toc.xml.in.h:14
 msgid "Other Documentation"
-msgstr "வெளியீட்பு தகவல்"
+msgstr "பிற ஆவணம்"
 
-#: data/toc.xml.in.h:15
-msgid "Programming"
-msgstr ""
+#: ../data/toc.xml.in.h:15
+msgid "Panel Applets"
+msgstr "பலகை குறுநிரல்கள்"
 
-#: data/toc.xml.in.h:16
-#, fuzzy
-msgid "Scientific"
-msgstr "விஞ்ஞானம் செயல்பாடுகள்"
-
-#: data/toc.xml.in.h:17
-msgid "Sound &amp; Video"
-msgstr ""
-
-#: data/toc.xml.in.h:18
-#, fuzzy
-msgid "System Tools"
-msgstr "அமைப்பு அழைப்புகள்"
-
-#: data/toc.xml.in.h:19
-msgid "X Applications"
-msgstr "X செயல்பாடுகள்"
-
-#: data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:3
-#, fuzzy
-msgid "<b>_Bookmarks:</b>"
-msgstr "புத்தகம்"
-
-#: data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:5
-msgid "Add Bookmark"
-msgstr ""
-
-#: data/ui/yelp.glade.h:6
-#, fuzzy
-msgid "Bookmarks"
-msgstr "புத்தகம்"
-
-#: data/ui/yelp.glade.h:7
-msgid "C_ase sensitive"
-msgstr "வகை_யுணர்வுள்ள"
-
-#: data/ui/yelp.glade.h:8
-msgid "Find"
-msgstr "கண்டுபிடி"
-
-#: data/ui/yelp.glade.h:9
-#, fuzzy
-msgid "Open Location"
-msgstr "அர்ப்பணம்"
-
-#: data/ui/yelp.glade.h:10
-#, fuzzy
+#: ../data/toc.xml.in.h:16 ../data/ui/yelp.glade.h:8
 msgid "Preferences"
-msgstr "குறிப்பு"
+msgstr "முன்னுரிமைகள்"
 
-#: data/ui/yelp.glade.h:11
+#: ../data/toc.xml.in.h:17
+msgid "Programming"
+msgstr "நிரலாக்கம்"
+
+#: ../data/toc.xml.in.h:18
+msgid "Scientific"
+msgstr "அறிவியல்"
+
+#: ../data/toc.xml.in.h:19
+msgid "Sound &amp; Vision"
+msgstr "ஒலி &amp; பார்வை"
+
+#: ../data/toc.xml.in.h:20
+msgid "System Tools"
+msgstr "கணினி கருவிகள்"
+
+#: ../data/toc.xml.in.h:21
+msgid "X Applications"
+msgstr "X பயன்பாடுகள்"
+
+#: ../data/ui/yelp.glade.h:1
+msgid "<b>Accessibility</b>"
+msgstr "<b>அணுகல்</b>"
+
+#: ../data/ui/yelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>எழுத்துருக்கள்</b>"
+
+#: ../data/ui/yelp.glade.h:3
+msgid "Add Bookmark"
+msgstr "புத்தகக்குறி சேர்"
+
+#: ../data/ui/yelp.glade.h:4
+msgid "Bookmarks"
+msgstr "புத்தகக்குறிகள்"
+
+#: ../data/ui/yelp.glade.h:5
+msgid "C_ase sensitive"
+msgstr "எழுத்துணர்வு (_a)"
+
+#: ../data/ui/yelp.glade.h:6
+msgid "Find"
+msgstr "தேடு"
+
+#: ../data/ui/yelp.glade.h:7
+msgid "Open Location"
+msgstr "இடத்தை திற"
+
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
-msgstr ""
+msgstr "மறுபெயர் (_n)"
 
-#: data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "புத்தகக்குறிகள்: (_B)"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
-msgstr ""
+msgstr "காரட்டுடன் உலாவு (_B)"
 
-#: data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_கண்டுபிடி:"
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "தேடு: (_F)"
 
-#: data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
-msgstr ""
+msgstr "நிலையான அகலம்: (_F)"
 
-#: data/ui/yelp.glade.h:15
-#, fuzzy
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
-msgstr "அர்ப்பணம்"
+msgstr "இடம்: (_L)"
 
-#: data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
-msgstr "_அடுத்து"
+msgstr "அடுத்து (_N)"
 
-#: data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_முன்"
 
-#: data/ui/yelp.glade.h:18
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "தலைப்பு: (_T)"
+
+#: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "கணினி எழுத்துருக்களை பயன்படுத்து (_U)"
 
-#: data/ui/yelp.glade.h:19
+#: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "மாறி எண்ணிக்கை: (_V)"
 
-#: data/ui/yelp.glade.h:20
+#: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "மடிந்து _வருதல்"
 
-#: data/yelp.schemas.in.h:1
+#: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "நிலையான உரைக்கான எழுத்துரு"
 
-#: data/yelp.schemas.in.h:2
+#: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "உரைக்கான எழுத்துரு"
 
-#: data/yelp.schemas.in.h:3
+#: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "நிலையான அகலத்தில் உரைக்கான எழுத்துரு."
 
-#: data/yelp.schemas.in.h:4
+#: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "மாறும் அகலத்தில் உரைக்கான எழுத்துரு."
 
-#: data/yelp.schemas.in.h:5
+#: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
 msgstr ""
 
-#: data/yelp.schemas.in.h:6
+#: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "காரட்டை பயன்படுத்து"
 
-#: data/yelp.schemas.in.h:7
+#: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "கணினி எழுத்துருக்களை பயன்படுத்து"
 
-#: data/yelp.schemas.in.h:8
+#: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "கணினிக்கு முன்னிருப்பு எழுத்துரு அமைவினை பயன்படுத்து"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
-msgid "Yelp"
-msgstr "யெல்ப்"
+#: ../src/yelp-bookmarks.c:150
+msgid "Open Bookmark in New Window"
+msgstr "புத்தகக்குறியை புதிய சாளரத்தில் திறக்கவும்"
 
-#: src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "யெல்ப் தொழிற்சாலை"
+#: ../src/yelp-bookmarks.c:154
+msgid "Rename Bookmark"
+msgstr "புத்தகக்குறிக்கு மறுபெயரிடு"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: ../src/yelp-bookmarks.c:158
+msgid "Remove Bookmark"
+msgstr "புத்தகக்குறியை நீக்கு"
+
+#: ../src/yelp-bookmarks.c:315
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "ஒரு புத்தகக்குறி தலைப்பு %s ஏற்கனவே இந்த பக்கத்தில் உள்ளது."
+
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "ஒரு புத்தகக்குறி தலைப்பு <b>%s</b> ஏற்கனவே இந்த பக்கத்தில் உள்ளது."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
-msgstr "வெளியீட்பு தகவல்"
+msgstr "ஆவண பிரிவுகள்"
 
-#: src/yelp-db-pager.c:238
+#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "தெரியாதது"
-
-#: src/yelp-error.c:42 src/yelp-error.c:58
+#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "ஒரு தெரியாத பிழை ஏற்பட்டுள்ளது"
 
-#: src/yelp-error.c:46
+#: ../src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "ஆவணத்தை ஏற்ற முடியவில்லை"
 
-#: src/yelp-error.c:48
-#, fuzzy
+#: ../src/yelp-error.c:48
 msgid "Could not load section"
-msgstr "புதிய சாளரத்தை திறக்கமுடியவில்லை."
+msgstr "பிரிவினை ஏற்ற முடியவில்லை"
 
-#: src/yelp-error.c:50
-#, fuzzy
+#: ../src/yelp-error.c:50
 msgid "Could not read the table of contents"
-msgstr "OMF கோப்பு '%s' எற்ற முடியவில்லை. "
+msgstr "அட்டவணை உள்ளடக்கத்தை படிக்க முடியவில்லை"
 
-#: src/yelp-error.c:52
+#: ../src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "துணை தராத வடிவம்"
 
-#: src/yelp-error.c:54
+#: ../src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "ஆவணத்தை படிக்க முடியவில்லை"
 
-#: src/yelp-error.c:56
+#: ../src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "ஆவணத்தை செயல்படுத்த முடியவில்லை"
 
-#: src/yelp-error.c:66
+#: ../src/yelp-error.c:66
 msgid "No information is available about the error."
+msgstr "பிழையை பற்றிய தகவல் ஒன்றுமில்லை."
+
+#: ../src/yelp-info-pager.c:188
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
 msgstr ""
 
-#: src/yelp-io-channel.c:98
+#: ../src/yelp-io-channel.c:101
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
 
-#: src/yelp-main.c:95
+#: ../src/yelp-main.c:91
+msgid "Use a private session"
+msgstr "தனிப்பட்ட அமர்வினை பயன்படுத்து"
+
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "எந்த தற்காலிக சேமிப்பு அடைவு பயன்படுத்துவது என அறுதியிடுக"
 
-#: src/yelp-main.c:129
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "யெல்ப் செயற்படுத்த முடியவில்லை: '%s'"
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:354
+msgid " GNOME Help Browser"
+msgstr " GNOME உதவி உலாவி"
 
-#: src/yelp-main.c:148
-msgid "Could not open new window."
-msgstr "புதிய சாளரத்தை திறக்கமுடியவில்லை."
-
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "உதவி"
 
-#: src/yelp-man-pager.c:164
+#: ../src/yelp-man-pager.c:263
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
 
-#: src/yelp-pager.c:120
-#, fuzzy
+#: ../src/yelp-pager.c:116
 msgid "Document Information"
-msgstr "வெளியீட்பு தகவல்"
+msgstr "ஆவண தகவல்"
 
-#: src/yelp-pager.c:121
+#: ../src/yelp-pager.c:117
 msgid "The YelpDocInfo struct of the document"
+msgstr "ஆவணத்தின் YelpDocInfo அமைப்பு"
+
+#: ../src/yelp-print.c:138
+msgid "Preparing to print"
+msgstr "அச்சிட தயாராகிறது"
+
+#: ../src/yelp-print.c:275
+msgid "Pages"
+msgstr "பக்கங்கள்"
+
+#: ../src/yelp-print.c:348
+msgid "Generating PDF is not currently supported"
+msgstr "உருவாக்கும் PDFக்கு தற்போது துணையில்லை"
+
+#: ../src/yelp-print.c:356
+msgid "Printing is not supported on this printer"
+msgstr "இந்த அச்சடிப்பியில் அச்சடி முடியவில்லை"
+
+#: ../src/yelp-print.c:359
+#, c-format
+msgid ""
+"You were trying to print to a printer using the \"%s\" driver.  This program "
+"requires a PostScript printer driver."
 msgstr ""
+
+#: ../src/yelp-print.c:402
+msgid "An error occurred while printing"
+msgstr "அச்சிடும் போது பிழை ஏற்பட்டுள்ளது"
+
+#: ../src/yelp-print.c:406
+msgid "It was not possible to print your document"
+msgstr "உங்கள் ஆவணத்தை அச்சிட சாத்தியமில்லை"
+
+#: ../src/yelp-print.c:466
+msgid "Printing"
+msgstr "அச்சிடுகிறது"
+
+#: ../src/yelp-print.c:493
+msgid "<b>Printing</b>"
+msgstr "<b>அச்சிடுகிறது</b>"
+
+#: ../src/yelp-print.c:495
+msgid "Waiting to print"
+msgstr "அச்சிட காத்திருக்கிறது"
+
+#: ../src/yelp-print.c:559
+msgid "_From:"
+msgstr "ஆரம்பம்: (_F)"
+
+#: ../src/yelp-print.c:572
+msgid "Sets the start of the range of pages to be printed"
+msgstr "அச்சிட வேண்டிய பக்கங்களை ஆரம்ப வரையறையை அமைக்கிறது"
+
+#: ../src/yelp-print.c:574
+msgid "_To:"
+msgstr "முடிவு: (_T)"
+
+#: ../src/yelp-print.c:587
+msgid "Sets the end of the range of pages to be printed"
+msgstr "அச்சிட வேண்டிய பக்கங்களை முடிவு வரையறையை அமைக்கிறது"
+
+#: ../src/yelp-search-pager.c:684
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr ""
+
+#: ../src/yelp-search-pager.c:736
+#, c-format
+msgid "No results for \"%s\""
+msgstr "\"%s\"க்கு தீர்வு இல்லை"
+
+#: ../src/yelp-search-pager.c:737
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+
+#: ../src/yelp-search-pager.c:740
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "\"%s\"க்கான தேடும் முடிவு"
+
+#: ../src/yelp-search-pager.c:810 ../src/yelp-toc-pager.c:2007
+#: ../src/yelp-xslt-pager.c:361
+msgid "No href attribute found on yelp:document"
+msgstr "யெல்ப்:ஆவணத்தில் href பண்பு இல்லை"
+
+#: ../src/yelp-search-pager.c:824 ../src/yelp-toc-pager.c:2020
+#: ../src/yelp-xslt-pager.c:377
+msgid "Out of memory"
+msgstr "நினைவகம் போதாது"
+
+#: ../src/yelp-search-pager.c:865 ../src/yelp-toc-pager.c:2069
+msgid "Help Contents"
+msgstr "உதவி உள்ளடக்கங்கள்"
+
+#: ../src/yelp-search-pager.c:1167 ../src/yelp-toc-pager.c:514
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "OMF கோப்பு '%s' எற்ற முடியவில்லை. "
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -429,7 +537,7 @@ msgstr ""
 #. If you need an image created, contact the maintainers.
 #.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. use guillemets (angle quotations) should use either 00AB or 00BB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
@@ -437,234 +545,252 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: ../src/yelp-settings.c:152
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
-#: src/yelp-toc-pager.c:268
+#: ../src/yelp-toc-pager.c:262
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: நிறுத்தம் எதிராக எண்ணப்படுகிறது."
 
-#: src/yelp-toc-pager.c:491
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "OMF கோப்பு '%s' எற்ற முடியவில்லை. "
-
-#: src/yelp-toc-pager.c:680
+#: ../src/yelp-toc-pager.c:993
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "%sக்கு கையேடு பக்கத்தை படி"
 
-#: src/yelp-toc-pager.c:765
+#: ../src/yelp-toc-pager.c:1576
+#, c-format
+msgid "Read info page for %s"
+msgstr "%sக்கு தகவல் பக்கத்தை படி"
+
+#: ../src/yelp-toc-pager.c:1683
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr ""
 
-#: src/yelp-toc-pager.c:873
+#: ../src/yelp-toc-pager.c:1705
+msgid "Command Line Help"
+msgstr "கட்டளை வரி உதவி"
+
+#: ../src/yelp-toc-pager.c:1823
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
-msgid "No href attribute found on yelp:document"
-msgstr "யெல்ப்:ஆவணத்தில் href பண்பு இல்லை"
-
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
-msgid "Out of memory"
-msgstr "நினைவகம் போதாது"
-
-#: src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "உதவி உள்ளடக்கங்கள்"
-
-#: src/yelp-window.c:302
-#, fuzzy
+#: ../src/yelp-window.c:315
 msgid "_File"
-msgstr "/_கோப்பு"
+msgstr "கோப்பு (_F)"
 
-#: src/yelp-window.c:303
-#, fuzzy
+#: ../src/yelp-window.c:316
 msgid "_Edit"
-msgstr "/_தொகு"
+msgstr "தொகு (_E)"
 
-#: src/yelp-window.c:304
-#, fuzzy
+#: ../src/yelp-window.c:317
 msgid "_Go"
-msgstr "/_போ"
+msgstr "செல் (_G)"
 
-#: src/yelp-window.c:305
+#: ../src/yelp-window.c:318
 msgid "_Bookmarks"
-msgstr ""
+msgstr "புத்தகக்குறிகள் (_B)"
 
-#: src/yelp-window.c:306
-#, fuzzy
+#: ../src/yelp-window.c:319
 msgid "_Help"
-msgstr "/_உதவி"
+msgstr "உதவி (_H)"
 
-#: src/yelp-window.c:309
-#, fuzzy
+#: ../src/yelp-window.c:322
 msgid "_New Window"
-msgstr "/கோப்பு/புதிய சாளரம்"
+msgstr "புதிய சாளரம் (_N)"
 
-#: src/yelp-window.c:314
-#, fuzzy
+#: ../src/yelp-window.c:327
+msgid "Print This Document"
+msgstr "இந்த ஆவணத்தை அச்சிடு"
+
+#: ../src/yelp-window.c:332
+msgid "Print This Page"
+msgstr "இந்த பக்கத்தை அச்சிடு"
+
+#: ../src/yelp-window.c:337
 msgid "About This Document"
-msgstr "ீந்த உள்ளீடு பர்றி"
+msgstr "இந்த ஆவணத்தை பற்றி"
 
-#: src/yelp-window.c:319
+#: ../src/yelp-window.c:342
 msgid "Open _Location"
-msgstr ""
+msgstr "இடத்தைத் திற (_L)"
 
-#: src/yelp-window.c:324
-#, fuzzy
+#: ../src/yelp-window.c:347
 msgid "_Close Window"
-msgstr "/கோப்பு/சாளரத்தை மூடுக"
+msgstr "சாளரத்தை மூடு (_C)"
 
-#: src/yelp-window.c:330
+#: ../src/yelp-window.c:353
 msgid "_Copy"
-msgstr ""
+msgstr "நகல் (_C)"
 
-#: src/yelp-window.c:336
-#, fuzzy
+#: ../src/yelp-window.c:359
 msgid "_Select All"
-msgstr "இதையும் பார்க்கவும்"
+msgstr "அனைத்தையும் தேர்ந்தெடு (_S)"
 
-#: src/yelp-window.c:341
-#, fuzzy
+#: ../src/yelp-window.c:364
 msgid "_Find..."
-msgstr "/தொகு/_கண்டுபிடி..."
+msgstr "தேடு... (_F)"
 
-#: src/yelp-window.c:346
-#, fuzzy
-msgid "_Preferences"
-msgstr "குறிப்பு"
+#: ../src/yelp-window.c:369
+msgid "Find Pre_vious"
+msgstr "முந்தையதை தேடு (_v)"
 
-#: src/yelp-window.c:351
-msgid "_Reload"
+#: ../src/yelp-window.c:371
+msgid "Find previous occurrence of the word or phrase"
 msgstr ""
 
-#: src/yelp-window.c:357
-#, fuzzy
-msgid "_Back"
-msgstr "பின்"
+#: ../src/yelp-window.c:374
+msgid "Find Ne_xt"
+msgstr "அடுத்ததை தேடு (_x)"
 
-#: src/yelp-window.c:359
+#: ../src/yelp-window.c:376
+msgid "Find next occurrence of the word or phrase"
+msgstr ""
+
+#: ../src/yelp-window.c:379
+msgid "_Preferences"
+msgstr "முன்னுரிமைகள் (_P)"
+
+#: ../src/yelp-window.c:384
+msgid "_Reload"
+msgstr "மீளேற்று (_R)"
+
+#: ../src/yelp-window.c:396
+msgid "_Back"
+msgstr "பின்னோக்கு (_B)"
+
+#: ../src/yelp-window.c:398
 msgid "Show previous page in history"
 msgstr "வரலாறில் முன் காண்பித்த பக்கத்திற்குப் போகவும்"
 
-#: src/yelp-window.c:362
-#, fuzzy
+#: ../src/yelp-window.c:401
 msgid "_Forward"
-msgstr "முன்"
+msgstr "முன்னோக்கு (_F)"
 
-#: src/yelp-window.c:364
+#: ../src/yelp-window.c:403
 msgid "Show next page in history"
 msgstr "வரலாறில் அடுத்த பக்கத்திற்குப் போகவும்"
 
-#: src/yelp-window.c:367
+#: ../src/yelp-window.c:406
 msgid "_Help Topics"
-msgstr ""
+msgstr "உதவி தலைப்புகள் (_H)"
 
-#: src/yelp-window.c:369
+#: ../src/yelp-window.c:408
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "உதவி தலைப்புகள் பட்டியலுக்கு செல்லவும்"
 
-#: src/yelp-window.c:372
-#, fuzzy
+#: ../src/yelp-window.c:411
 msgid "_Previous Section"
-msgstr "/முன்/முந்திய _பக்கம்"
+msgstr "முந்தைய பிரிவு (_P)"
 
-#: src/yelp-window.c:377
-#, fuzzy
+#: ../src/yelp-window.c:416
 msgid "_Next Section"
-msgstr "பிரிவு"
+msgstr "அடுத்த பிரிவு (_N)"
 
-#: src/yelp-window.c:382
-#, fuzzy
+#: ../src/yelp-window.c:421 ../src/yelp-window.c:453
 msgid "_Contents"
-msgstr "உள்ளடக்கங்கள்"
+msgstr "உள்ளடக்கங்கள் (_C)"
 
-#: src/yelp-window.c:388
+#: ../src/yelp-window.c:427
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "புத்தகக்குறியை சேர் (_A)"
 
-#: src/yelp-window.c:393
+#: ../src/yelp-window.c:432
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "புத்தகக்குறிகளை தொகு... (_E)"
 
-#: src/yelp-window.c:399
+#: ../src/yelp-window.c:438
 msgid "_Open Link"
-msgstr ""
+msgstr "இணைப்பினை திற (_O)"
 
-#: src/yelp-window.c:404
+#: ../src/yelp-window.c:443
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "புதிய சாளரத்தில் இணைப்பினை திற (_N)"
 
-#: src/yelp-window.c:409
+#: ../src/yelp-window.c:448
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "இணைப்பு முகவரியை நகலெடு (_C)"
 
-#: src/yelp-window.c:415
-#, fuzzy
+#: ../src/yelp-window.c:455
+msgid "Help On this application"
+msgstr "இந்த பயன்பாடுக்கான உதவி"
+
+#: ../src/yelp-window.c:458
 msgid "_About"
-msgstr "/உதவி/_பற்றி"
+msgstr "இதனைப் பற்றி (_A)"
 
-#: src/yelp-window.c:466
+#: ../src/yelp-window.c:463
+msgid "Copy _Email Address"
+msgstr "மின்னஞ்சல் முகவரியை நகலெடு (_E)"
+
+#: ../src/yelp-window.c:512
 msgid "Help Browser"
-msgstr "உதவி மேலோடி"
+msgstr "உதவி உலாவி"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
+#: ../src/yelp-window.c:917 ../src/yelp-window.c:1073
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "கோப்பின் Uniform Resource Identifier தவறாக உள்ளது."
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: ../src/yelp-window.c:929 ../src/yelp-window.c:1068
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
+#: ../src/yelp-window.c:1017 ../src/yelp-window.c:1494
 msgid "Man pages are not supported in this version."
 msgstr ""
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
+#: ../src/yelp-window.c:1027 ../src/yelp-window.c:1485
 msgid "GNU info pages are not supported in this version"
 msgstr ""
 
-#: src/yelp-window.c:806
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1507
+msgid "Search is not supported in this version."
+msgstr ""
+
+#: ../src/yelp-window.c:1048
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr ""
 
-#: src/yelp-window.c:1024
-#, fuzzy
-msgid "Find:"
-msgstr "கண்டுபிடி"
+#: ../src/yelp-window.c:1214
+msgid "_Search:"
+msgstr "தேடு: (_S)"
 
-#: src/yelp-window.c:1040
-#, fuzzy
+#: ../src/yelp-window.c:1215
+msgid "Search for other documentation"
+msgstr "வேறு ஆவணங்களை தேடு"
+
+#: ../src/yelp-window.c:1374
+msgid "Fin_d:"
+msgstr "தேடு: (_d)"
+
+#: ../src/yelp-window.c:1394
 msgid "Find _Next"
-msgstr "/தொகு/அடுத்ததை கண்டு_பிடி"
+msgstr "அடுத்ததை தேடு (_N)"
 
-#: src/yelp-window.c:1052
-#, fuzzy
+#: ../src/yelp-window.c:1406
 msgid "Find _Previous"
-msgstr "_முன்"
+msgstr "முந்தையதை தேடு (_P)"
 
-#: src/yelp-window.c:1157
+#: ../src/yelp-window.c:1520
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr ""
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
+#: ../src/yelp-window.c:1549 ../src/yelp-window.c:1968
+#: ../src/yelp-window.c:2044
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -672,332 +798,55 @@ msgid ""
 "maintainers of that application."
 msgstr ""
 
-#: src/yelp-window.c:1302
+#: ../src/yelp-window.c:1664 ../src/yelp-window.c:2434
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 
-#: src/yelp-window.c:1336
+#: ../src/yelp-window.c:1715
 msgid "Loading..."
 msgstr "ஏற்றப்படுகின்றது..."
 
-#. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:2166
-#, fuzzy
-msgid "translator-credits"
-msgstr "மொழிபெயர்ப்பர் பற்று"
+#: ../src/yelp-window.c:2866
+#, c-format
+msgid ""
+"Could not display help for Yelp.\n"
+"%s"
+msgstr ""
+"Yelpக்கு உதவியை காட்ட முடியவில்லை.\n"
+"%s"
 
-#: src/yelp-window.c:2171
+#. Note to translators: put here your name (and address) so it
+#. * will show up in the "about" box
+#: ../src/yelp-window.c:2897
+msgid "translator-credits"
+msgstr "மொழிபெயர்ப்பாளர்-சன்மானம்"
+
+#: ../src/yelp-window.c:2900
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2902
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:194
+#: ../src/yelp-xslt-pager.c:188
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:215
+#: ../src/yelp-xslt-pager.c:209 ../src/yelp-xslt-pager.c:222
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
 
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-
-#: yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "கனோமைப் பற்றி உதவி பெறு"
 
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "இல்லம்"
-
-#~ msgid "Go to home view"
-#~ msgstr "இல்லம் காட்சிக்கு போ"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "கண்டுபிடி"
-
-#~ msgid "Development Environments"
-#~ msgstr "மென்பொருள் உருவாக்கும் சூழல்"
-
-#~ msgid "Development Tools"
-#~ msgstr "மென்பொருள் உருவாக்குவதற்கான கருவிகள்"
-
-#~ msgid "Editors"
-#~ msgstr "பதிப்பாலர்"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "விளையாட்டுகளும் பொழுதுபோக்குகளும்"
-
-#~ msgid "General"
-#~ msgstr "¦À¡ÐÅ¡É¨Å"
-
-#~ msgid "Internet Applications"
-#~ msgstr "வலை சார்ந்த செயல்பாடுகள்"
-
-#~ msgid "Kernels"
-#~ msgstr "கருகள்"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "பல் ஊடகம் செயல்பாடுகள்"
-
-#~ msgid "Securities"
-#~ msgstr "பாதுகாப்புகள்"
-
-#~ msgid "System"
-#~ msgstr "அமைப்பு"
-
-#~ msgid "Utilities"
-#~ msgstr "பயனமைகள்"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Titlepage"
-#~ msgstr "தலைப்பு பக்கம்"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "தெரிவுசெய்த ஆவணம் திறக்க முடியவில்லை"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "தெரிவுவெய்த பக்கம் இந்த ஆவணத்தில் கன்டுபிடிக்க முடியவில்லை."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "உள்ளடக்கங்களை வாசிக்க முடியவில்லை."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "DocBook SGML ஆவணங்களுக்கு இனிமேல் ஆதரவு கிடையாது."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "தெரிவுசெய்த கோப்பை வாசிக்க முடியவில்லை."
-
-#, fuzzy
-#~ msgid "The file could not be processed."
-#~ msgstr "தெரிவுசெய்த கோப்பை வாசிக்க முடியவில்லை."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "வகையினங்கள்"
-
-#~ msgid "Documents"
-#~ msgstr "ஆவணங்கள்"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "/போ/_அடுத்த பக்கம்"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
-
-#~ msgid "About This Article"
-#~ msgstr "இக்கட்டுரையாப் பற்றி"
-
-#~ msgid "About This Book"
-#~ msgstr "இப்புத்தகதைப் பற்றி"
-
-#~ msgid "About This Chapter"
-#~ msgstr "ீந்த அத்தியாயத்தைப் பற்றி"
-
-#~ msgid "About This Glossary"
-#~ msgstr "இந்த அறிகுறியைப் பற்றி"
-
-#~ msgid "About This Index"
-#~ msgstr "இந்த சுட்டு பற்றி"
-
-#~ msgid "About This Part"
-#~ msgstr "இந்த உறுப்பு பற்றி"
-
-#~ msgid "About This Section"
-#~ msgstr "இந்த பகுதியைப் பற்றி"
-
-#~ msgid "Affiliation"
-#~ msgstr "இணைப்பு கொண்டது"
-
-#~ msgid "Appendix"
-#~ msgstr "அனுபந்தம்"
-
-#~ msgid "Article"
-#~ msgstr "கட்டுரை"
-
-#~ msgid "Author"
-#~ msgstr "¬º¢Ã¢Â÷"
-
-#~ msgid "Authors"
-#~ msgstr "ஆசி¡¢யர்கள்"
-
-#~ msgid "Caution"
-#~ msgstr "கவனம்"
-
-#~ msgid "Chapter"
-#~ msgstr "அத்தியாயம்"
-
-#~ msgid "Copyright"
-#~ msgstr "படியுரிமை"
-
-#~ msgid "Copyrights"
-#~ msgstr "படியுரிமைகள்"
-
-#~ msgid "Date"
-#~ msgstr "திகதி"
-
-#~ msgid "Dedication"
-#~ msgstr "அர்ப்பணம்"
-
-#~ msgid "Editor"
-#~ msgstr "பதிப்பான்"
-
-#~ msgid "Email"
-#~ msgstr "மின்அஞ்சல்"
-
-#~ msgid "Example"
-#~ msgstr "உதாரணம்"
-
-#~ msgid "Figure"
-#~ msgstr "ஓவியம்"
-
-#~ msgid "Glossary"
-#~ msgstr "அறிகுறி"
-
-#~ msgid "Important"
-#~ msgstr "முக்கியம்"
-
-#~ msgid "Index"
-#~ msgstr "சுட்டு"
-
-#~ msgid "Legal Notice"
-#~ msgstr "சட்டபூர்வமான அறிவிப்பு"
-
-#~ msgid "Level"
-#~ msgstr "மட்டம்"
-
-#~ msgid "Message Level"
-#~ msgstr "தகவல் மட்டம்"
-
-#~ msgid "Message Origin"
-#~ msgstr "தகவல் தொடக்கம்"
-
-#~ msgid "Note"
-#~ msgstr "குறிப்பு"
-
-#~ msgid "Origin"
-#~ msgstr "தொடக்கம்"
-
-#~ msgid "Other Contributor"
-#~ msgstr "மற்ற பங்கு அளிப்பவர்"
-
-#~ msgid "Other Contributors"
-#~ msgstr "மற்ற பங்கு அளிப்பவர்கள்"
-
-#~ msgid "Part"
-#~ msgstr "உறுப்பு"
-
-#~ msgid "Preface"
-#~ msgstr "முன்னுரை"
-
-#~ msgid "Publisher"
-#~ msgstr "பதிப்பாளர்"
-
-#~ msgid "Publishers"
-#~ msgstr "பதிப்பாளர்கள்"
-
-#~ msgid "Reference"
-#~ msgstr "குறிப்பு"
-
-#~ msgid "Reference Entry"
-#~ msgstr "குறிப்பு உள்ளிட்பு"
-
-#~ msgid "Reference Section"
-#~ msgstr "குறிப்பு பகுதி"
-
-#~ msgid "Release Information"
-#~ msgstr "வெளியீட்பு தகவல்"
-
-#~ msgid "Revision History"
-#~ msgstr "மாற்றம் வரலாறு"
-
-#~ msgid "See"
-#~ msgstr "பார்க்கவும்"
-
-#~ msgid "Set Index"
-#~ msgstr "சுட்டு அமைக்கவும்"
-
-#~ msgid "Table"
-#~ msgstr "அட்டவணை"
-
-#~ msgid "Table of Contents"
-#~ msgstr "உள்ளடக்கங்கள்"
-
-#~ msgid "Tip"
-#~ msgstr "தகவல்"
-
-#~ msgid "Title"
-#~ msgstr "தலைப்பு"
-
-#~ msgid "Warning"
-#~ msgstr "எச்சரிக்கை"
-
-#~ msgid "Document URI"
-#~ msgstr "ஆவணம் URI"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/தொகு/முந்தியதைக் _கண்டுபிடி"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/போ/பின்செல்"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/போ/முன்செல்"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/போ/_இல்லம்"
-
-#~ msgid "/Go/"
-#~ msgstr "/_போ/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/போ/_உள்ளடக்கங்கள்"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "கனோமுக்கான உதவி மேலோடி"
