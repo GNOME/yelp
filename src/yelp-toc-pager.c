@@ -1205,7 +1205,7 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
 
     xmlXPathFreeContext (xpath);
     xmlXPathFreeObject (objsect);
-    xmlFree (manindex_xml);
+    xmlFreeDoc (manindex_xml);
     
     return 1;
 }
