@@ -1,3 +1,8 @@
+2006-06-25  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (create_toc_from_index): fix the biggest
+	memory leak known to man; was using xmlFree() instead of xmlFreeDoc()
+
 2006-06-17  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-toc-pager.c:
