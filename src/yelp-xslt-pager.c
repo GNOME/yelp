@@ -162,6 +162,7 @@ xslt_pager_process (YelpPager *pager)
     GError *error = NULL;
 
     debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_PROFILE, "entering %s", __FUNCTION__);
 
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_XSLT_PAGER (pager), FALSE);
@@ -276,6 +277,8 @@ xslt_pager_process (YelpPager *pager)
     }
 
     g_object_unref (pager);
+    
+    debug_print (DB_PROFILE, "leaving %s", __FUNCTION__);
 
     return FALSE;
 }
@@ -459,9 +462,114 @@ xslt_yelp_cache (xsltTransformContextPtr ctxt,
 		 xmlNodePtr              inst,
 		 xsltStylePreCompPtr     comp)
 {
+    static GHashTable *keyhash = NULL;
+    xmlXPathObjectPtr nodeexpr = NULL;
+    xsltStylesheetPtr style = NULL;
+    xmlNodePtr  nodeptr;
+    xmlNodePtr  tmpnode;
+    xmlNodePtr  tmpnode2;
+    xmlChar    *keyprop = NULL;
+    xmlChar    *nodeprop = NULL;
+    const char *old_outfile;
+    xmlDocPtr   old_output;
+    xmlNodePtr  old_insert;
+    xmlDocPtr   new_doc = NULL;
+    gchar      *key;
+    
+    if (!ctxt || !node || !inst || !comp)
+	return;
+
+    keyprop = xmlGetProp (inst, BAD_CAST "key");
+    if (!keyprop)
+	return;
+    
+    nodeprop = xmlGetProp (inst, BAD_CAST "node");
+    if (!nodeprop) {
+	xmlFree (keyprop);
+        return;
+    }
+
+    nodeexpr = xmlXPathEvalExpression (nodeprop, ctxt->xpathCtxt);
+    if (!nodeexpr)
+	goto done;
+    
+    /* if we haven't initialized the hash yet, do so */
+    if (!keyhash)
+	keyhash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, xmlFree);
+
+    if (nodeexpr->type != XPATH_NODESET) {
+	debug_print (DB_WARN, "node attribute [%s] did not evaluate to a nodeset\n", 
+	             nodeprop);
+	goto done;
+    }
+
+    nodeptr = nodeexpr->nodesetval->nodeTab[0];
+    if (!nodeptr)
+	goto done;
+
+    debug_print (DB_DEBUG, "key=%s node=%s ptr=%p\n", 
+                 (gchar *)keyprop, (gchar *)nodeprop, (void *)nodeptr);
+
+    key = g_strdup_printf ("%s%p", keyprop, (void *)nodeptr);
+    tmpnode = g_hash_table_lookup (keyhash, key);
+    
+    if (tmpnode) {
+	debug_print (DB_DEBUG, "found cached result\n");
+        tmpnode2 = xmlDocCopyNode (tmpnode, tmpnode->doc, 1); 
+	xmlAddChild (ctxt->insert, tmpnode2);
+	g_free (key);
+	goto done;
+    }
+
+    old_outfile = ctxt->outputFile;
+    old_output  = ctxt->output;
+    old_insert  = ctxt->insert;
+    ctxt->outputFile = "test";
+    
+    style = xsltNewStylesheet ();
+    if (style == NULL) {
+	xsltTransformError (ctxt, NULL, inst, _("Out of memory"));
+	g_free (key);
+	goto done;
+    }
+
+    style->omitXmlDeclaration = TRUE;
+
+    new_doc = xmlNewDoc (BAD_CAST "1.0");
+    new_doc->charset = XML_CHAR_ENCODING_UTF8;
+    new_doc->dict = ctxt->dict;
+    xmlDictReference (new_doc->dict);
+
+    ctxt->output = new_doc;
+    ctxt->insert = (xmlNodePtr) new_doc;
+
     xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
+    
+    ctxt->outputFile = old_outfile;
+    ctxt->output     = old_output;
+    ctxt->insert     = old_insert;
+
+    /* this copy of the node we put in the cache */
+    tmpnode = xmlCopyNode (new_doc->children, 1); 
+    g_hash_table_insert (keyhash, key, tmpnode);
+
+    /* this copy of the node gets attached to the result tree */
+    tmpnode2 = xmlDocCopyNode (tmpnode, tmpnode->doc, 1); 
+    xmlAddChild (ctxt->insert, tmpnode2);
 
     while (gtk_events_pending ())
 	gtk_main_iteration ();
     /* FIXME : check for cancel */
+
+done:
+    if (keyprop)
+	xmlFree (keyprop);
+    if (nodeprop)
+	xmlFree (nodeprop);
+    if (nodeexpr)
+	xmlXPathFreeObject (nodeexpr);
+    if (new_doc)
+	xmlFreeDoc (new_doc);
+    if (style)
+	xsltFreeStylesheet (style);
 }

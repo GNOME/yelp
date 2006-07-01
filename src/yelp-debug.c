@@ -23,6 +23,7 @@
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "yelp-debug.h"
 
@@ -160,7 +161,17 @@ void yelp_debug (const gchar *file,     guint line,
 	}
 
 	if (flags & DB_PROFILE) {
+		time_t t;
+		struct tm *tmp;
+		gchar timestamp[20];
+
+		t = time (NULL);
+		tmp = localtime(&t);
+
+		strftime (timestamp, 20, "%H:%M:%S", tmp);
 		formatted = g_strdup_vprintf (format, args);
+
+		g_fprintf (stdout, "PROFILE [%s]: %s\n", timestamp, formatted);
 		str = g_strdup_printf ("MARK: %s: %s", g_get_prgname(), formatted);
 		access (str, F_OK);
 		g_free (formatted);

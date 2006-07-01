@@ -1,3 +1,13 @@
+2006-06-30  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-debug.c: (yelp_debug): Print DB_PROFILE message to the
+	screen
+	* src/yelp-xslt-pager.c: (xslt_pager_process), (xslt_yelp_cache):
+	Add support for the yelp:cache extension element; speeds up docbook
+	processing for large documents (like gnumeric manual)
+	* stylesheets/db2html.xsl.in: Use the yelp:cache extension element in
+	the db.number template (overrides the one from gnome-doc-utils)
+
 2006-06-25  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-toc-pager.c: (create_toc_from_index): fix the biggest

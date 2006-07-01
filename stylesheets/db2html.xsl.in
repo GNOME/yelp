@@ -58,6 +58,13 @@
 <xsl:param name="db.chunk.index_basename" select="'__yelp_index'"/>
 <xsl:param name="db.chunk.toc_basename"   select="'__yelp_toc'"/>
 
+<xsl:template name="db.number">
+  <xsl:param name="node" select="."/>
+  <yelp:cache key="db.number" node="$node">
+    <xsl:apply-templates mode="db.number.mode" select="$node"/>
+  </yelp:cache>
+</xsl:template>
+
 <!-- == db.chunk == -->
 <xsl:template name="db.chunk">
   <xsl:param name="node" select="."/>
