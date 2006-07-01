@@ -1,3 +1,9 @@
+2006-07-01  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (process_info_pending): Fix to properly escape
+	ampersand characters by using xmlNewTextChild, patch from Daniel
+	Drake.  Fixes #343372
+
 2006-06-30  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-debug.c: (yelp_debug): Print DB_PROFILE message to the

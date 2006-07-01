@@ -1535,13 +1535,6 @@ process_info_pending (YelpTocPager *pager)
 	    g_io_channel_read_to_end (channel, &str, &len, NULL);
 	    g_io_channel_shutdown (channel, FALSE, NULL);
 	    g_io_channel_unref (channel);
-	    /* Check the string for the special character '&' which
-	     * screws up the xml.  If its there, it needs escaping
-	     */
-	    amp = g_strsplit (str, "&", -1);
-	    g_free (str);
-	    str = g_strjoinv ("&amp;", amp);
-	    g_strfreev (amp);
 
 	    files = g_strsplit (str, "\n", -1);
 	    
@@ -1610,12 +1603,12 @@ process_info_pending (YelpTocPager *pager)
 					       NULL);
 			    xmlNewNsProp (tmp, NULL, BAD_CAST "href", BAD_CAST fname);
 			    
-			    xmlNewChild (tmp, NULL, BAD_CAST "title",
+			    xmlNewTextChild (tmp, NULL, BAD_CAST "title",
 					 BAD_CAST part2);
-			    xmlNewChild (tmp, NULL, BAD_CAST "tooltip",
+			    xmlNewTextChild (tmp, NULL, BAD_CAST "tooltip",
 					 BAD_CAST tooltip);
 			    
-			    xmlNewChild (tmp, NULL, BAD_CAST "description",
+			    xmlNewTextChild (tmp, NULL, BAD_CAST "description",
 					 BAD_CAST desc);
 			}
 		    done:
