@@ -26,7 +26,6 @@
 #include <glib/gi18n.h>
 
 typedef struct _YelpDocInfo YelpDocInfo;
-typedef struct _YelpDocPage YelpDocPage;
 
 typedef enum {
     YELP_DOC_TYPE_ERROR = 0,
@@ -64,17 +63,6 @@ typedef enum {
 } YelpURIType;
 
 #include "yelp-pager.h"
-
-struct _YelpDocPage {
-    YelpDocInfo *document;
-    gchar *page_id;
-    gchar *title;
-    gchar *contents;
-
-    gchar *prev_id;
-    gchar *next_id;
-    gchar *toc_id;
-};
 
 const char *        yelp_dot_dir                (void);
 YelpDocInfo *       yelp_doc_info_new           (const gchar   *uri,
@@ -117,8 +105,6 @@ gchar *             yelp_doc_info_get_uri       (YelpDocInfo   *doc,
 gchar *             yelp_doc_info_get_filename  (YelpDocInfo   *doc);
 gboolean            yelp_doc_info_equal         (YelpDocInfo   *doc1,
 						 YelpDocInfo   *doc2);
-
-void                yelp_doc_page_free          (YelpDocPage   *page);
 
 gchar *             yelp_uri_get_fragment       (const gchar   *uri);
 gchar *             yelp_uri_get_relative       (gchar         *base,

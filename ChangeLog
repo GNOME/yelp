@@ -1,3 +1,28 @@
+2006-07-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-debug.h: Put an #ifdef around HAVE_CONFIG_H
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	- Get rid of the unused YelpDocPage type and related function(s)
+	- created branch "yelp-document", branchpoint
+	YELP_DOCUMENT_BRANCHPOINT for working on the new YelpDocument API; see
+	http://live.gnome.org/Yelp
+	* yelp-document.c: (yelp_document_dispose),
+	(yelp_document_finalize), (yelp_document_class_init),
+	(yelp_document_init), (document_set_property),
+	(document_get_property), (yelp_document_get_page),
+	(yelp_document_cancel_get), (yelp_document_get_sections),
+	(yelp_document_add_page):
+	* yelp-document.h:
+	* yelp-page.c: (yelp_page_new), (yelp_page_set_id),
+	(yelp_page_get_id), (yelp_page_set_title), (yelp_page_get_title),
+	(yelp_page_set_contents), (yelp_page_get_contents),
+	(yelp_page_set_prev_id), (yelp_page_get_prev_id),
+	(yelp_page_set_next_id), (yelp_page_get_next_id),
+	(yelp_page_set_toc_id), (yelp_page_get_toc_id), (yelp_page_free):
+	* yelp-page.h:
+	New files yelp-document.[ch] and yelp-page.[ch] for the new API
+
 2006-07-03  Shaun McCance  <shaunm@gnome.org>
 
 	* src/Makefile.am:

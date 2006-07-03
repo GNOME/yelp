@@ -499,23 +499,6 @@ yelp_doc_info_equal (YelpDocInfo *doc1, YelpDocInfo *doc2)
     return equal;
 }
 
-void
-yelp_doc_page_free (YelpDocPage *page)
-{
-    if (!page)
-	return;
-
-    g_free (page->page_id);
-    g_free (page->title);
-    g_free (page->contents);
-
-    g_free (page->prev_id);
-    g_free (page->next_id);
-    g_free (page->toc_id);
-
-    g_free (page);
-}
-
 gchar *
 yelp_uri_get_fragment (const gchar *uri)
 {
