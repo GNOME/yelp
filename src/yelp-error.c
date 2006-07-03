@@ -67,3 +67,27 @@ yelp_error_get_secondary (GError  *error)
     else
 	return error->message;
 }
+
+YelpError *
+yelp_error_new (gchar *title, gchar *format, ...)
+{
+    YelpError *error;
+    va_list args;
+
+    error = g_new0 (YelpError, 1);
+    error->title = g_strdup (title);
+
+    va_start (args, format);
+    error->text = g_strdup_vprintf (format, args);
+    va_end (args);
+
+    return error;
+}
+
+void
+yelp_error_free (YelpError *error)
+{
+    g_free (error->title);
+    g_free (error->text);
+    g_free (error);
+}

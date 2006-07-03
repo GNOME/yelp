@@ -1,3 +1,13 @@
+2006-07-03  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Glorious threaded XSLT transformation
+
 2006-07-01  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-toc-pager.c: (process_info_pending): Fix to properly escape

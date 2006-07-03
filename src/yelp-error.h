@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  *
@@ -32,11 +32,22 @@ typedef enum {
 	YELP_ERROR_FORMAT,        /* Format is not supported       */
 	YELP_ERROR_IO,            /* Error in IO                   */
 	YELP_ERROR_PROC           /* Error processing the document */
-} YelpError;
+} YelpErrorCode;
 
 GQuark           yelp_error_quark         (void) G_GNUC_CONST;
 
 const gchar *    yelp_error_get_primary   (GError      *error);
 const gchar *    yelp_error_get_secondary (GError      *error);
+
+typedef struct _YelpError YelpError;
+struct _YelpError {
+    gchar *title;
+    gchar *text;
+};
+
+YelpError *       yelp_error_new          (gchar       *title,
+					   gchar       *format,
+					   ...);
+void              yelp_error_free         (YelpError   *error);
 
 #endif /* __YELP_ERROR_H__ */
