@@ -153,6 +153,10 @@ static void        tree_drag_data_get_cb          (GtkWidget         *widget,
 						   guint              info,
 						   guint32            time,
 						   YelpWindow        *window);
+static void        tree_row_expand_cb             (GtkTreeView       *view,
+						   GtkTreePath       *path,
+						   GtkTreeViewColumn *column,
+						   YelpWindow        *window);
 
 /** UIManager Callbacks **/
 static void    window_add_widget        (GtkUIManager *ui_manager,
@@ -1307,6 +1311,9 @@ window_populate (YelpWindow *window)
     g_signal_connect (selection, "changed",
 		      G_CALLBACK (tree_selection_changed_cb),
 		      window);
+    g_signal_connect (priv->side_sects, "row-activated",
+		      G_CALLBACK (tree_row_expand_cb),
+		      window);
     g_signal_connect (priv->side_sects, "drag_data_get",
 		      G_CALLBACK (tree_drag_data_get_cb),
 		      window);
@@ -2200,6 +2207,15 @@ tree_drag_data_get_cb (GtkWidget         *widget,
 
     g_free (uri);
 }
+
+void
+tree_row_expand_cb (GtkTreeView *view, GtkTreePath *path,
+		    GtkTreeViewColumn *column, YelpWindow *window)
+{
+    gtk_tree_view_expand_to_path (view, path);
+
+}
+
 
 /** UIManager Callbacks *******************************************************/
 
