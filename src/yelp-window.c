@@ -2212,7 +2212,11 @@ void
 tree_row_expand_cb (GtkTreeView *view, GtkTreePath *path,
 		    GtkTreeViewColumn *column, YelpWindow *window)
 {
-    gtk_tree_view_expand_to_path (view, path);
+	if (gtk_tree_view_row_expanded (view, path)) {
+		gtk_tree_view_collapse_row (view, path);
+	} else {
+		gtk_tree_view_expand_to_path (view, path);
+	}
 
 }
 

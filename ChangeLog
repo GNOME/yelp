@@ -1,3 +1,9 @@
+2006-07-07  Wouter Bolsterlee  <uws+gnome@xs4all.nl>
+
+	* src/yelp-window.c: (tree_row_expand_cb):
+	Expand/collapse on double-click. Really fixes bug
+	#346871.
+
 2006-07-07  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-window.c: 
