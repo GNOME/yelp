@@ -86,6 +86,8 @@ struct _YelpTocPagerPriv {
 #endif
 
     xmlDocPtr     toc_doc;
+    xmlDocPtr     man_doc;
+    xmlDocPtr     info_doc;
 
     GHashTable   *unique_hash;
     GHashTable   *category_hash;
@@ -321,13 +323,118 @@ toc_pager_process (YelpPager *pager)
     return FALSE;
 }
 
+/* we take advantage of the resolve_frag function to do lazy
+ * loading of each page the TOC.  frag_id is the id attribute 
+ * of the toc element that we want. 
+ *
+ * yes, this kind of a hack */
 static const gchar *
 toc_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 {
-    if (!frag_id)
-	return "index";
-    else
+    YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
+    YelpPage *page = NULL;
+    GError *error = NULL;
+    xmlDocPtr outdoc = NULL;
+    gchar **params = NULL;
+    gint  params_i = 0;
+    gint  params_max = 10;
+    GtkIconInfo *info;
+    GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
+
+    if (priv->toc_doc == NULL)
+	return NULL;
+
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "frag_id = %s\n", frag_id);
+
+    /* if frag_id is NULL, we assume we are loading the top level TOC page */
+    if (frag_id == NULL)
+	frag_id = "index";
+
+    /* we use the "frag_id" as the page_id here */
+    page = yelp_pager_get_page_from_id (pager, frag_id);
+
+    /* if we found the page just return */
+    if (page != NULL) {
+	debug_print (DB_DEBUG, "found the frag_id=%s\n", frag_id);
 	return frag_id;
+    }
+
+    /* only create and parse the stylesheet on the first call to this function */
+    if (!priv->stylesheet) {
+	priv->stylesheet = xsltParseStylesheetFile (BAD_CAST TOC_STYLESHEET);
+    }
+
+    if (!priv->stylesheet) {
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
+		     _("The table of contents could not be processed. The "
+		       "file ‘%s’ is either missing or is not a valid XSLT "
+		       "stylesheet."),
+		     TOC_STYLESHEET);
+	yelp_pager_error (YELP_PAGER (pager), error);
+	goto done;
+    }
+
+    priv->transformContext = xsltNewTransformContext (priv->stylesheet,
+						      priv->toc_doc);
+    priv->transformContext->_private = pager;
+    xsltRegisterExtElement (priv->transformContext,
+			    BAD_CAST "document",
+			    BAD_CAST YELP_NAMESPACE,
+			    (xsltTransformFunction) xslt_yelp_document);
+
+    params = g_new0 (gchar *, params_max);
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 10;
+	params = g_renew (gchar *, params, params_max);
+    }
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-icon-big", 192, 0);
+    if (info) {
+	params[params_i++] = "help_icon";
+	params[params_i++] = g_strdup_printf ("\"%s\"",
+					      gtk_icon_info_get_filename (info));
+	params[params_i++] = "help_icon_size";
+	params[params_i++] = g_strdup_printf ("%i",
+					      gtk_icon_info_get_base_size (info));
+	gtk_icon_info_free (info);
+    }
+
+    /* we specify the id attribute of the toc element that we want to process to
+     * the stylesheet */
+    params[params_i++] = "yelp.toc.id";
+    params[params_i++] = g_strdup_printf ("\'%s\'", frag_id);
+
+    params[params_i++] = NULL;
+
+    outdoc = xsltApplyStylesheetUser (priv->stylesheet,
+				      priv->toc_doc,
+				      (const gchar **)params, NULL, NULL,
+				      priv->transformContext);
+    /* Don't do this */
+    g_signal_emit_by_name (pager, "finish");
+
+ done:
+    if (params) {
+	for (params_i = 0; params[params_i] != NULL; params_i++)
+	    if (params_i % 2 == 1)
+		g_free ((gchar *) params[params_i]);
+    }
+    if (outdoc)
+	xmlFreeDoc (outdoc);
+    /* with this hack (this function) we can't free the toc_doc */
+    /*if (priv->toc_doc) {
+	xmlFreeDoc (priv->toc_doc);
+	priv->toc_doc = NULL;
+    }*/
+    if (priv->transformContext) {
+	xsltFreeTransformContext (priv->transformContext);
+	priv->transformContext = NULL;
+    }
+
+    return frag_id;
 }
 
 static GtkTreeModel *
@@ -346,15 +453,13 @@ toc_process_pending (YelpTocPager *pager)
     static ProcessFunction process_funcs[] = {
 	process_read_menu,
 	process_omf_pending,
-	process_xslt,
 #ifdef ENABLE_MAN
 	process_mandir_pending,
-	process_xslt,
 #endif
 #ifdef ENABLE_INFO
 	process_info_pending,
-	process_xslt,
 #endif
+	/* process_xslt, */
 	process_cleanup,
 	NULL
     };
@@ -1221,18 +1326,18 @@ process_mandir_pending (YelpTocPager *pager)
 
     YelpTocPagerPriv *priv  = YELP_TOC_PAGER (pager)->priv;
 
-    if (!priv->toc_doc) {
+    if (!priv->man_doc) {
 	xmlXPathContextPtr xpath;
 	xmlXPathObjectPtr  obj;
 
 	/* NOTE: this document is free()'d at the end of the process_xslt function */
-	priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
+	priv->man_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
 					 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 					 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
 					 XML_PARSE_NONET    );
 	priv->man_secthash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
-	xpath = xmlXPathNewContext (priv->toc_doc);
+	xpath = xmlXPathNewContext (priv->man_doc);
 	obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
 
 	for (i = 0; i < obj->nodesetval->nodeNr; i++) {
@@ -1277,6 +1382,12 @@ process_mandir_pending (YelpTocPager *pager)
 	 * searching the hard disk for them - should make startup much faster */
 	if (g_file_test (index_file, G_FILE_TEST_IS_REGULAR) &&
 	    create_toc_from_index (pager, index_file)) {
+	    xmlNodePtr mynode;
+
+            mynode = xmlCopyNode (xmlDocGetRootElement (priv->man_doc), 1);
+	    xmlAddChild (xmlDocGetRootElement(priv->toc_doc), mynode);
+
+	    xmlFreeDoc (priv->man_doc);
 
 	    /* we are done processing, return FALSE so we don't call this 
 	     * function again. */
@@ -1452,6 +1563,7 @@ process_mandir_pending (YelpTocPager *pager)
 	    }
 	} else {   /* no more entries to prcoess, write file & cleanup */
 	    GSList *listptr = priv->mandir_list;
+	    xmlNodePtr copynode;
 
 	    while (listptr && listptr->data)  {
 		GSList *langptr = listptr->data;
@@ -1472,6 +1584,11 @@ process_mandir_pending (YelpTocPager *pager)
 
 	    xmlFree (priv->manindex_xml);
 
+            copynode = xmlCopyNode (xmlDocGetRootElement (priv->man_doc), 1);
+	    xmlAddChild (xmlDocGetRootElement(priv->toc_doc), copynode);
+
+	    xmlFreeDoc (priv->man_doc);
+
 	    /* done processing */
 	    return FALSE;
 	}
@@ -1488,6 +1605,7 @@ process_info_pending (YelpTocPager *pager)
     gchar ** info_paths = yelp_get_info_paths ();
     int i = 0;
     gchar *filename = NULL;
+    xmlNodePtr mynode = NULL;
 
     GHashTable *info_parsed = g_hash_table_new_full (g_str_hash, g_str_equal,
 						     g_free, g_free);
@@ -1496,7 +1614,6 @@ process_info_pending (YelpTocPager *pager)
     
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
     xmlNodePtr node = NULL;
-    
 
     for (i=0; info_paths[i]; i++) {
 	filename = g_strconcat (info_paths[i], "/dir", NULL);
@@ -1516,17 +1633,21 @@ process_info_pending (YelpTocPager *pager)
 	    gboolean menufound = FALSE;
 	    gchar ** amp;
 
-	    if (!priv->toc_doc) {
+	    if (!priv->info_doc) {
 		xmlXPathContextPtr xpath;
 		xmlXPathObjectPtr  obj;
-		priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/info.xml", NULL,
+		priv->info_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/info.xml", NULL,
 						 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 						 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
 						 XML_PARSE_NONET    );
 		
-		xpath = xmlXPathNewContext (priv->toc_doc);
+		xpath = xmlXPathNewContext (priv->info_doc);
 		obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
 		node = obj->nodesetval->nodeTab[0];
+		for (i=0; i < obj->nodesetval->nodeNr; i++) {
+		    xmlNodePtr tmpnode = obj->nodesetval->nodeTab[i];
+		    xml_trim_titles (tmpnode);
+		}
 		xmlXPathFreeObject (obj);
 		xmlXPathFreeContext (xpath);
 	    }
@@ -1652,6 +1773,12 @@ process_info_pending (YelpTocPager *pager)
     }
     g_hash_table_destroy (info_parsed);
     g_hash_table_destroy (categories);
+    
+    mynode = xmlCopyNode (xmlDocGetRootElement (priv->info_doc), 1);
+    xmlAddChild (xmlDocGetRootElement (priv->toc_doc), mynode);
+    
+    xmlFreeDoc (priv->info_doc);
+    
     return FALSE;
 }
 #endif /* ENABLE_INFO */
@@ -1686,7 +1813,7 @@ process_read_menu (YelpTocPager *pager)
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	xmlChar *icon = NULL;
-#ifdef ENABLE_MAN_OR_INFO
+#if 0
 	xmlChar *id = NULL;
 	xmlNodePtr cmdhelp;
 	xmlNodePtr newnode;
@@ -1881,6 +2008,9 @@ static gboolean
 process_cleanup (YelpTocPager *pager)
 {
     YelpTocPagerPriv *priv = pager->priv;
+
+    /* dump the toc_doc if we are debugging */
+    /*d (xmlDocDump (stdout, priv->toc_doc)); */
 
 #ifdef ENABLE_MAN
     /* clean up the man directory language hash table */

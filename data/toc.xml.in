@@ -1,69 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="toc.xml.in.content/toc.css" type="text/css"?>
 <toc id="index">
-  <_title>Help Topics</_title>
+  <_title>Desktop</_title>
+  <_description>Welcome to the GNOME Help Browser</_description>
 
-  <toc id="Desktop">
-    <_title>Desktop</_title>
-    <toc id="DesktopApplets">
-      <_title>Panel Applets</_title>
-    </toc>
-    <toc id="DesktopAdministration">
-      <_title>Administration</_title>
-    </toc>
-    <toc id="DesktopPreferences">
-      <_title>Preferences</_title>
-    </toc>
-    <toc id="KDE">
-      <_title>KDE</_title>
-    </toc>
+  <toc id="ApplicationsAccessibility" icon="accessibility-directory">
+    <_title>Accessibility</_title>
+    <_description>Applications that support assistive technologies</_description>
   </toc>
-
-  <toc id="Applications">
-    <_title>Applications</_title>
-
-    <toc id="ApplicationsAccessibility" icon="accessibility-directory">
-      <_title>Accessibility</_title>
-    </toc>
-    <toc id="ApplicationsAccessories" icon="gnome-util">
-      <_title>Accessories</_title>
-    </toc>
-    <toc id="ApplicationsEducation">
-      <_title>Education Applications</_title>
-    </toc>
-    <toc id="ApplicationsGames" icon="gnome-joystick">
-      <_title>Games</_title>
-    </toc>
-    <toc id="ApplicationsGraphics" icon="gnome-graphics">
-      <_title>Graphics</_title>
-    </toc>
-    <toc id="ApplicationsInternet" icon="gnome-globe">
-      <_title>Internet</_title>
-    </toc>
-    <toc id="ApplicationsMultimedia" icon="gnome-multimedia">
-      <_title>Sound &amp; Vision</_title>
-    </toc>
-    <toc id="ApplicationsOffice" icon="gnome-applications">
-      <_title>Office</_title>
-    </toc>
-    <toc id="ApplicationsOther" icon="gnome-other">
-      <_title>Other</_title>
-    </toc>
-    <toc id="ApplicationsProgramming" icon="gnome-devel">
-      <_title>Programming</_title>
-    </toc>
-    <toc id="ApplicationsScientific">
-      <_title>Scientific</_title>
-    </toc>
-    <toc id="ApplicationsSystem" icon="gnome-system">
-      <_title>System Tools</_title>
-    </toc>
-    <toc id="ApplicationsX">
-      <_title>X Applications</_title>
-    </toc>
+  <toc id="ApplicationsAccessories" icon="gnome-util">
+    <_title>Accessories</_title>
+    <_description>Utility applications</_description>
   </toc>
-
+  <toc id="ApplicationsEducation">
+    <_title>Education</_title>
+    <_description>Learning applications</_description>
+  </toc>
+  <toc id="ApplicationsGames" icon="gnome-joystick">
+    <_title>Games</_title>
+    <_description>Applications for fun</_description>
+  </toc>
+  <toc id="ApplicationsGraphics" icon="gnome-graphics">
+    <_title>Graphics</_title>
+    <_description>Applications for manipulating or viewing graphics</_description>
+  </toc>
+  <toc id="ApplicationsInternet" icon="gnome-globe">
+    <_title>Internet</_title>
+    <_description>Applications related to the internet</_description>
+  </toc>
+  <toc id="KDE">
+    <_title>KDE</_title>
+    <_description>Documents specific to the KDE Desktop Environment</_description>
+  </toc>
+  <toc id="ApplicationsOffice" icon="gnome-applications">
+    <_title>Office</_title>
+    <_description>Applications for word processing and other office tasks</_description>
+  </toc>
+  <toc id="ApplicationsOther" icon="gnome-other">
+    <_title>Other Applications</_title>
+    <_description>Variety of other applications</_description>
+  </toc>
+  <toc id="DesktopApplets">
+    <_title>Panel Applets</_title>
+    <_description>Applications specific to the panel</_description>
+  </toc>
+  <toc id="ApplicationsProgramming" icon="gnome-devel">
+    <_title>Programming</_title>
+    <_description>Applications related to software development</_description>
+  </toc>
+  <toc id="ApplicationsScientific">
+    <_title>Scientific</_title>
+    <_description>Scientific Applications.</_description>
+  </toc>
+  <toc id="ApplicationsMultimedia" icon="gnome-multimedia">
+    <_title>Sound &amp; Vision</_title>
+    <_description>Applications related to multimedia</_description>
+  </toc>
+  <toc id="ApplicationsSystem" icon="gnome-system">
+    <_title>System Tools</_title>
+    <_description>Utilities to manage your computer</_description>
+  </toc>
+  <toc id="ApplicationsX">
+    <_title>X Applications</_title>
+    <_description>Applications related to X Windows</_description>
+  </toc>
   <toc id="Other">
     <_title>Other Documentation</_title>
+    <_description>Miscellaneous documents</_description>
   </toc>
 </toc>

@@ -110,6 +110,8 @@ const gchar *        yelp_pager_resolve_frag       (YelpPager      *pager,
 gboolean             yelp_pager_page_contains_frag (YelpPager      *pager,
 						    const gchar    *page_id,
 						    const gchar    *frag_id);
+const YelpPage *     yelp_pager_get_page_from_id   (YelpPager      *pager,
+						    const gchar    *page_id);
 const YelpPage *     yelp_pager_get_page           (YelpPager      *pager,
 						    const gchar    *frag_id);
 void                 yelp_pager_add_page           (YelpPager      *pager,

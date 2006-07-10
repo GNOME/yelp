@@ -1538,6 +1538,7 @@ window_do_load_pager (YelpWindow  *window,
     startnow = FALSE;
 
     state = yelp_pager_get_state (pager);
+    debug_print (DB_DEBUG, "pager state=%d\n", state);
     switch (state) {
     case YELP_PAGER_STATE_ERROR:
 	error = yelp_pager_get_error (pager);
@@ -2042,18 +2043,26 @@ pager_finish_cb (YelpPager   *pager,
 {
     GError *error = NULL;
     YelpWindow  *window = YELP_WINDOW (user_data);
+    const gchar *page_id;
+    
+    page_id = yelp_pager_resolve_frag (pager,
+				       window->priv->current_frag);
 
     debug_print (DB_FUNCTION, "entering\n");
+    
+    if (!page_id && window->priv->current_frag &&
+	strcmp (window->priv->current_frag, "")) {
 
-    window_disconnect (window);
+	window_disconnect (window);
 
-    g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_PAGE,
-		 _("The section ‘%s’ does not exist in this document. "
-		   "If you were directed to this section from a Help "
-		   "button in an application, please report this to "
-		   "the maintainers of that application."),
-		 window->priv->current_frag);
-    window_error (window, error, TRUE);
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_PAGE,
+		     _("The section ‘%s’ does not exist in this document. "
+		       "If you were directed to this section from a Help "
+		       "button in an application, please report this to "
+		       "the maintainers of that application."),
+		     window->priv->current_frag);
+	window_error (window, error, TRUE);
+    }
 
     /* FIXME: Remove the URI from the history and go back */
 }

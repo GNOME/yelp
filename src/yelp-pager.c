@@ -355,6 +355,15 @@ yelp_pager_page_contains_frag (YelpPager   *pager,
 }
 
 const YelpPage *
+yelp_pager_get_page_from_id (YelpPager *pager, const gchar *page_id)
+{
+    if (page_id == NULL)
+	return NULL;
+
+    return (const YelpPage *) g_hash_table_lookup (pager->priv->page_hash, page_id);
+}
+
+const YelpPage *
 yelp_pager_get_page (YelpPager *pager, const gchar *frag_id)
 {
     YelpPage    *page;

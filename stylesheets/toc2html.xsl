@@ -28,6 +28,8 @@
 <xsl:param name="yelp.color.admon.bg.dark2"/>
 <xsl:param name="yelp.color.admon.bg.dark3"/>
 
+<xsl:param name="yelp.toc.id" select="'Man-man6'"/>
+
 <xsl:template match="toc">
   <yelp:document href="{@id}">
     <html>
@@ -62,6 +64,9 @@
           top: 6px;
           right: 18px;
         }
+	h2 h3 {
+          color: </xsl:text><xsl:value-of select="$yelp.color.fg"/><xsl:text>;
+	}
         div[class~="body"] { }
         div[class~="leftbar"] {
           position: absolute;
@@ -69,37 +74,69 @@
           left: 12px;
           width: 192px;
           min-height: 192px;
-          text-align: center;
-          padding-top: </xsl:text>
+          text-align: left;
+          /* padding-top: </xsl:text>
           <xsl:value-of select="$help_icon_size"/><xsl:text>px;
           background-image: url("</xsl:text>
           <xsl:value-of select="$help_icon"/><xsl:text>");
           background-position: </xsl:text>
           <xsl:value-of select="(192 - $help_icon_size) div 2"/><xsl:text>px 0px;
           background-repeat: no-repeat;
-          opacity: .3;
+          opacity: .3; */
+        }
+        div[class~="leftbackground"] {
+          position: absolute;
+          top: 4em;
+          left: 1px;
+          width: 210px;
+          min-height: 192px;
+          text-align: center;
+          padding-top: 0px;
+          background-image:url("</xsl:text>
+          <xsl:value-of select="$help_icon"/><xsl:text>");
+          background-position: </xsl:text>
+          <xsl:value-of select="(192 - $help_icon_size) div 2"/><xsl:text>px 0px;
+ 
+          background-repeat: no-repeat;
+          opacity: .1;          
         }
         div[class~="rightbar"] {
           margin-left: 216px;
           padding-bottom: 1em;
+          padding-top: 1em;
+          padding-left: 1em;
+          padding-right: 1em;
           margin-right: 12px;
-        }
-        div[class~="tocs"] + div[class~="docs"] {
-          border-top: solid 1px </xsl:text>
-          <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
+          background-color: </xsl:text><xsl:value-of select="$yelp.color.bg"/><xsl:text>;
+          color: </xsl:text><xsl:value-of select="$yelp.color.fg"/><xsl:text>;
+          -moz-border-radius: 8px;
         }
         ul { margin-left: 0em; padding-left: 0em; }
-        li {
-          margin-top: 0.5em;
+        li[class~="toclist"] {
+          margin-top: 0.3em;
           margin-left: 0em;
           padding-left: 0em;
           font-size: 1.2em;
           list-style-type: none;
         }
+	li li[class~="toclist"] {
+	  padding-left: 0.8em;
+	  font-size: 0.8em;
+        }
+	li li li[class~="toclist"] {
+	  padding-left: 0.8em;
+	  font-size: 0.6em;
+        }
+        li[class~="toc"] {
+          margin-left: 0em;
+          font-size: 1.2em;
+          padding-top: 0.5em;
+          list-style-type: none;
+        }
         dl { margin-left: 0em; padding-left: 0em; }
         dt { font-size: 1.2em; margin-top: 1em; }
         dd { margin-left: 1em; margin-top: 0.5em; }
-        a { text-decoration: none; }
+        a { text-decoration: none; color: </xsl:text><xsl:value-of select="$yelp.color.anchor"/><xsl:text>; }
         a:hover { text-decoration: underline; }
         </xsl:text></style>
       </head>
@@ -108,59 +145,122 @@
       </body>
     </html>
   </yelp:document>
-  <xsl:apply-templates select="toc[(.//doc[1]) or (@id = 'ManInfoHolder')]"/>
+</xsl:template>
+
+<xsl:template name="print.documents">
+  <div class="docs">
+    <dl>
+      <xsl:for-each select="doc">
+        <xsl:sort select="normalize-space(title)"/>
+        <dt class="doc">
+          <a href="{@href}" title="{@href}">
+            <xsl:if test="tooltip">
+              <xsl:attribute name="title">
+                <xsl:value-of select="tooltip"/>
+              </xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="title"/>
+          </a>
+        </dt>
+        <dd>
+          <xsl:value-of select="description"/>
+        </dd>
+      </xsl:for-each>
+    </dl>
+  </div>
+</xsl:template>
+
+<xsl:template name="print.subsections">
+  <div class="tocs">
+    <ul>
+      <xsl:for-each select="toc[../@id = 'index' or .//doc]">
+        <xsl:sort select="number(../@id = 'index') * position()"/>
+        <xsl:sort select="normalize-space(title)"/>
+        <li class="toc">
+          <a href="x-yelp-toc:{@id}">
+            <xsl:apply-templates select="title[1]/node()"/>
+          </a>
+        </li>
+      </xsl:for-each>
+    </ul>
+  </div>
 </xsl:template>
 
 <xsl:template mode="body.mode" match="toc">
+  <div class="leftbackground">
+  </div>
   <div class="body">
     <h1>
       <xsl:if test="icon">
         <img src="{icon/@file}"/>
       </xsl:if>
-      <xsl:apply-templates select="title[1]/node()"/>
+      <xsl:apply-templates select="title"/>
     </h1>
     <div class="leftbar">
+      <xsl:choose>
+      <xsl:when test="@id= 'index'">
+        <h2><xsl:value-of select="/toc/title"/></h2>
+      </xsl:when>
+      <xsl:otherwise>
+        <a href="x-yelp-toc:index"><h2><xsl:value-of select="/toc/title"/>
+      </h2></a>
+      </xsl:otherwise>        
+      </xsl:choose>
+      <xsl:apply-templates mode="leftbar.mode" select="/toc">
+        <xsl:with-param name="curid" select="@id"/>
+      </xsl:apply-templates>
     </div>
     <div class="rightbar">
-      <xsl:if test="toc[.//doc[1]] or @id = 'ManInfoHolder'">
-        <div class="tocs">
-          <ul>
-            <xsl:for-each select="toc[../@id = 'index' or ../@id = 'ManInfoHolder' or .//doc]">
-              <xsl:sort select="number(../@id = 'index') * position()"/>
-              <xsl:sort select="normalize-space(title)"/>
-              <li class="toc">
-                <a href="x-yelp-toc:{@id}">
-                  <xsl:apply-templates select="title[1]/node()"/>
-                </a>
-              </li>
-            </xsl:for-each>
-          </ul>
-        </div>
-      </xsl:if>
-      <xsl:if test="doc[1]">
-        <div class="docs">
-          <dl>
-            <xsl:for-each select="doc">
-              <xsl:sort select="normalize-space(title)"/>
-              <dt class="doc">
-                <a href="{@href}" title="{@href}">
-                  <xsl:if test="tooltip">
-                    <xsl:attribute name="title">
-                      <xsl:value-of select="tooltip"/>
-                    </xsl:attribute>
-                  </xsl:if>
-                  <xsl:value-of select="title"/>
-                </a>
-              </dt>
-              <dd>
-                <xsl:value-of select="description"/>
-              </dd>
-            </xsl:for-each>
-          </dl>
-        </div>
-      </xsl:if>
+      <h3><xsl:apply-templates select="description/node()"/></h3>
+      <xsl:choose>
+        <!-- if there are documents and subsections, only print documents -->
+        <xsl:when test="doc[1] and toc[.//doc[1]]">
+          <xsl:call-template name="print.documents"/>
+        </xsl:when>
+        <!-- if there are documents, print them -->
+        <xsl:when test="doc[1]">
+          <xsl:call-template name="print.documents"/>
+        </xsl:when>
+        <!-- if there are subsections, print them -->
+        <xsl:when test="toc[.//doc[1]]">
+          <xsl:call-template name="print.subsections"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <h3>No documents or subcategories found.</h3>
+        </xsl:otherwise>
+      </xsl:choose>
     </div>
   </div>
+</xsl:template>
+
+<!-- tricky recursive xslt -->
+<xsl:template mode="leftbar.mode" match="toc">
+  <xsl:param name="curid" select="0"/>
+    <ul>
+      <xsl:for-each select="toc[.//doc[1]]">
+        <li class="toclist">
+          <xsl:choose>
+            <xsl:when test="@id != $curid">
+              <a href="x-yelp-toc:{@id}">
+                <xsl:value-of select="title[1]/node()"/>
+              </a>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="title[1]/node()"/>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:if test="@id = $curid or .//toc[@id = $curid]">
+            <xsl:apply-templates mode="leftbar.mode" select=".">
+              <xsl:with-param name="curid" select="$curid"/>
+            </xsl:apply-templates>
+          </xsl:if>
+        </li>
+      </xsl:for-each>
+    </ul>
+</xsl:template>
+
+<xsl:template match="/">
+  <xsl:apply-templates select="//toc[@id = $yelp.toc.id]" />
 </xsl:template>
 
 </xsl:stylesheet>

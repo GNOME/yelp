@@ -1,3 +1,29 @@
+2006-07-10  Brent Smith  <gnome@nextreality.net>
+
+	* data/info.xml.in:
+	* data/man.xml.in:
+	* data/scrollkeeper.xml:
+	* data/toc.xml.in:
+	- Restructure the table of contents to make most documentation 
+	accessible via a single click (except for man pages and info pages)
+	- Put descriptions for each section at the top in the right side 
+	above the document listing
+	- Rename the top level category to 'Desktop' and include the 
+	User guide, System Administration Guide, and Accessibility Guide 
+	in this section
+	* src/yelp-pager.c: (yelp_pager_get_page_from_id):
+	* src/yelp-pager.h:
+	* src/yelp-toc-pager.c: (toc_pager_resolve_frag),
+	(toc_process_pending), (process_mandir_pending),
+	(process_info_pending), (process_read_menu), (process_cleanup):
+	* src/yelp-window.c: (window_do_load_pager), (pager_finish_cb):
+	Load each table of contents page on demand instead of 
+	creating all pages at once.
+	* stylesheets/toc2html.xsl:
+	Maintain a list of categories on the left hand side in the 
+	table of contents, that expands subcategories for the currently
+	selected category
+
 2006-07-07  Wouter Bolsterlee  <uws+gnome@xs4all.nl>
 
 	* src/yelp-window.c: (tree_row_expand_cb):

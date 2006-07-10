@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><!-- -*- indent-tabs-mode: nil -*- -->
 <toc>
-  <toc id="Desktop">
+  <toc id="index">
     <subject category="GNOME"/>
     <subject category="GNOME|Core Desktop"/>
     <subject category="GNOME|Desktop"/>
     <subject category="GNOME|Desktop|User Guides"/>
     <subject category="GNOME|Other"/>
+    <subject category="GNOME|Settings"/>
+    <subject category="GNOME|Applications|Desktop Preferences"/>
+    <subject category="GNOME|Preferences"/>
   </toc>
   <toc id="DesktopApplets">
     <subject category="GNOME|Applets"/>
@@ -18,22 +21,12 @@
     <subject category="GNOME|Applets|Network"/>
     <subject category="GNOME|Applets|Utility"/>
   </toc>
-  <toc id="DesktopAdministration">
-    <subject category="GNOME|Settings"/>
-  </toc>
-  <toc id="DesktopPreferences">
-    <subject category="GNOME|Applications|Desktop Preferences"/>
-    <subject category="GNOME|Preferences"/>
-  </toc>
   <toc id="KDE">
     <subject category="KDE"/>
     <subject category="KDE|Settings"/>
-  </toc>
-  <toc id="Applications">
-    <subject category="Applications"/>
-    <subject category="GNOME|Applications"/>
     <subject category="KDE|Applications"/>
     <subject category="KDE|Programs"/>
+    <subject category="KDE|Other"/>
   </toc>
   <toc id="ApplicationsAccessibility">
     <subject category="GNOME|Accessibility"/>
@@ -153,12 +146,6 @@
     <subject category="Applications|Office|Other"/>
     <subject category="GNOME|Applications|Office"/>
   </toc>
-  <toc id="ApplicationsOther">
-    <subject category="Applications|Security"/>
-    <subject category="Applications|Security|Cryptography"/>
-    <subject category="Applications|Security|Other"/>
-    <subject category="KDE|Other"/>
-  </toc>
   <toc id="ApplicationsProgramming">
     <subject category="Applications|Text Editors"/>
     <subject category="Applications|Text Editors|CLI"/>
@@ -224,6 +211,9 @@
   <toc id="ApplicationsSystem">
     <subject category="Applications|Utilities|Monitors"/>
     <subject category="Applications|Utilities|Terminals"/>
+    <subject category="Applications|Security"/>
+    <subject category="Applications|Security|Cryptography"/>
+    <subject category="Applications|Security|Other"/>
     <subject category="GNOME|Applications|System Tools"/>
     <subject category="GNOME|System"/>
     <subject category="GNOME|System Administration"/>
@@ -240,6 +230,8 @@
     <subject category="CDE"/>
   </toc>
   <toc id="Other">
+    <subject category="Applications"/>
+    <subject category="GNOME|Applications"/>
     <subject category="General"/>
     <subject category="General|Licenses"/>
     <subject category="General|Linux"/>
