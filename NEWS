@@ -1,3 +1,37 @@
+Changes in 2.15.4:
+------------------
+* Many TOC structure changes                                (Brent Smith)
+* On demands page loads for TOC                             (Brent Smith)
+* Expand/collapse on double-click.                          (Wouter Bolsterlee)
+* Fix to properly escape ampersand characters, fixes 343372 (Daniel Drake)
+* Add support for the yelp:cache extension element          (Brent Smith)
+* fix big memory leak (use xmlFreeDoc, not xmlFree)         (Brent Smith)
+* Fix 'unknown gecko' error output.                         (Christian Persch)
+* Remove Bonobo server file from CVS                        (Shaun McCance)
+* Use xmlNewTextChild so ampersands aren't treated as       (Shaun McCance)
+  entities                                                  
+* Don't crash on certian *Note types, fixes #344730         (Don Scorgie)
+* Updated translations:
+Vladimir Petkov (bg)
+Khandakar Mujahidul Islam (bn_IN)
+Jakub Friedl (cs)
+Hendrik Richter (de)
+"Last-Translator: Mindu Dorji\n" (dz)
+Francisco Javier F. Serrador (es)
+Priit Laes (et)
+Iñaki Larrañaga Murgoitio (eu)
+Ilkka Tuohela (fi)
+Robert-André Mauchin (fr)
+Ankit Patel (gu)
+Rajesh Ranjan (hi)
+Changwoo Ryu (ko)
+Kjartan Maraas (nb)
+Tino Meinen (nl)
+Felix (ta)
+Theppitak Karoonboonyanan (th)
+Woodman Tuen (zh_HK)
+Woodman Tuen (zh_TW)
+
 Changes in 2.15.3:
 ------------------
 * New debugging infrastructure                              (Brent Smith)
