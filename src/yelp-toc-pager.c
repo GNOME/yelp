@@ -136,7 +136,8 @@ static void          toc_add_doc_info          (YelpTocPager      *pager,
 						YelpDocInfo       *doc_info);
 static void          toc_remove_doc_info       (YelpTocPager      *pager,
 						YelpDocInfo       *doc_info);
-static void          xml_trim_titles           (xmlNodePtr         node);
+static void          xml_trim_titles           (xmlNodePtr         node,
+						xmlChar           *nodetype);
 static void          xslt_yelp_document        (xsltTransformContextPtr ctxt,
 						xmlNodePtr              node,
 						xmlNodePtr              inst,
@@ -352,7 +353,7 @@ toc_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
 	frag_id = "index";
 
     /* we use the "frag_id" as the page_id here */
-    page = yelp_pager_get_page_from_id (pager, frag_id);
+    page = (YelpPage *) yelp_pager_get_page_from_id (pager, frag_id);
 
     /* if we found the page just return */
     if (page != NULL) {
@@ -1353,7 +1354,8 @@ process_mandir_pending (YelpTocPager *pager)
 		g_strfreev (sects);
 	    }
 	    xmlFree (sect);
-	    xml_trim_titles (node);
+	    xml_trim_titles (node, BAD_CAST "title");
+	    xml_trim_titles (node, BAD_CAST "description");
 	}
 	xmlXPathFreeObject (obj);
 	xmlXPathFreeContext (xpath);
@@ -1631,7 +1633,6 @@ process_info_pending (YelpTocPager *pager)
 	    xmlNodePtr tmp;
 	    xmlNodePtr new_node = NULL;
 	    gboolean menufound = FALSE;
-	    gchar ** amp;
 
 	    if (!priv->info_doc) {
 		xmlXPathContextPtr xpath;
@@ -1646,7 +1647,8 @@ process_info_pending (YelpTocPager *pager)
 		node = obj->nodesetval->nodeTab[0];
 		for (i=0; i < obj->nodesetval->nodeNr; i++) {
 		    xmlNodePtr tmpnode = obj->nodesetval->nodeTab[i];
-		    xml_trim_titles (tmpnode);
+		    xml_trim_titles (tmpnode, BAD_CAST "title");
+		    xml_trim_titles (tmpnode, BAD_CAST "description");
 		}
 		xmlXPathFreeObject (obj);
 		xmlXPathFreeContext (xpath);
@@ -1839,7 +1841,8 @@ process_read_menu (YelpTocPager *pager)
 	xmlFree (id);
 #endif //ENABLE_MAN_OR_INFO
 
-	xml_trim_titles (node);
+	xml_trim_titles (node, BAD_CAST "title");
+	xml_trim_titles (node, BAD_CAST "description");
 
 	icon = xmlGetProp (node, BAD_CAST "icon");
 	if (icon) {
@@ -2228,7 +2231,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 }
 
 static void
-xml_trim_titles (xmlNodePtr node)
+xml_trim_titles (xmlNodePtr node, xmlChar * nodetype)
 {
     xmlNodePtr cur, keep = NULL;
     xmlChar *keep_lang = NULL;
@@ -2237,7 +2240,7 @@ xml_trim_titles (xmlNodePtr node)
     const gchar * const * langs = g_get_language_names ();
 
     for (cur = node->children; cur; cur = cur->next) {
-	if (!xmlStrcmp (cur->name, BAD_CAST "title")) {
+	if (!xmlStrcmp (cur->name, nodetype)) {
 	    xmlChar *cur_lang = NULL;
 	    int cur_pri = INT_MAX;
 	    cur_lang = xmlNodeGetLang (cur);
@@ -2267,7 +2270,7 @@ xml_trim_titles (xmlNodePtr node)
     while (cur) {
 	xmlNodePtr this = cur;
 	cur = cur->next;
-	if (!xmlStrcmp (this->name, BAD_CAST "title")) {
+	if (!xmlStrcmp (this->name, nodetype)) {
 	    if (this != keep) {
 		xmlUnlinkNode (this);
 		xmlFreeNode (this);
