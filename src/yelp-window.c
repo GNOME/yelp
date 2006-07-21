@@ -596,7 +596,7 @@ history_push_back (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoBack");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", TRUE, NULL);
-    title = gtk_window_get_title (window);
+    title = (gchar *) gtk_window_get_title (GTK_WINDOW (window));
 
     if (g_str_equal (title, "Loading..."))
 	entry->page_title = g_strdup ("Unknown Page");
@@ -614,7 +614,8 @@ history_push_back (YelpWindow *window)
 		      entry);
 		      
 
-    gtk_menu_shell_prepend (window->priv->back_menu, entry->menu_entry);
+    gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->back_menu), 
+			    entry->menu_entry);
     gtk_widget_show (entry->menu_entry);
 }
 
@@ -642,7 +643,7 @@ history_push_forward (YelpWindow *window)
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", TRUE, NULL);
 
-    title = gtk_window_get_title (window);
+    title = (gchar *) gtk_window_get_title (GTK_WINDOW (window));
 
     if (g_str_equal (title, "Loading..."))
 	entry->page_title = g_strdup ("Unknown Page");
@@ -659,7 +660,8 @@ history_push_forward (YelpWindow *window)
 		      entry);
 		      
 
-    gtk_menu_shell_prepend (window->priv->forward_menu, entry->menu_entry);
+    gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->forward_menu), 
+			    entry->menu_entry);
     gtk_widget_show (entry->menu_entry);
 }
 
@@ -799,7 +801,8 @@ history_back_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 
     while (!g_str_equal (latest->page_title, entry->page_title)) {
 	priv->history_forward = g_slist_prepend (priv->history_forward, latest);
-	gtk_container_remove (priv->back_menu, latest->menu_entry);
+	gtk_container_remove (GTK_CONTAINER (priv->back_menu), 
+			      latest->menu_entry);
 	
 	g_signal_handler_disconnect (latest->menu_entry, latest->callback);
 	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry), 
@@ -808,7 +811,8 @@ history_back_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 					     latest);
 	
 	
-	gtk_menu_shell_prepend (window->priv->forward_menu, latest->menu_entry);
+	gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->forward_menu), 
+				latest->menu_entry);
 	gtk_widget_show (latest->menu_entry);
 
 	
@@ -847,7 +851,8 @@ history_forward_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 
     while (!g_str_equal (latest->page_title, entry->page_title)) {
 	priv->history_back = g_slist_prepend (priv->history_back, latest);
-	gtk_container_remove (priv->forward_menu, latest->menu_entry);
+	gtk_container_remove (GTK_CONTAINER (priv->forward_menu), 
+			      latest->menu_entry);
 	
 	g_signal_handler_disconnect (latest->menu_entry, latest->callback);
 	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry), 
@@ -855,7 +860,8 @@ history_forward_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 					     G_CALLBACK (history_back_to),
 					     latest);
 
-	gtk_menu_shell_prepend (window->priv->back_menu, latest->menu_entry);
+	gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->back_menu), 
+				latest->menu_entry);
 	gtk_widget_show (latest->menu_entry);
 
 	
@@ -1260,13 +1266,13 @@ window_populate (YelpWindow *window)
 
     toolbar = gtk_ui_manager_get_widget(priv->ui_manager, "ui/tools");
 
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), f_proxy, 0);
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), b_proxy, 0);
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (f_proxy), 0);
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (b_proxy), 0);
 
     /*To keep the seperator but get rid of the extra widget*/
     toolitem = gtk_ui_manager_get_widget(priv->ui_manager, "ui/tools/GoFor");
 
-    gtk_container_remove (toolbar, toolitem);
+    gtk_container_remove (GTK_CONTAINER (toolbar), toolitem);
 
     priv->popup = gtk_ui_manager_get_widget(priv->ui_manager, "ui/main_popup");
     priv->maillink = gtk_ui_manager_get_widget(priv->ui_manager, "ui/mail_popup");
@@ -1881,7 +1887,7 @@ static void
 window_disconnect (YelpWindow *window)
 {
     YelpWindowPriv *priv;
-    YelpPager      *pager;
+    YelpPager      *pager = NULL;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 

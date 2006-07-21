@@ -1438,9 +1438,9 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	xmlNode *child;
 	gchar *tmp = NULL;
 	gchar *after = NULL;
-	gchar *before = NULL;
+	/*gchar *before = NULL;*/
 	gchar *title = NULL;
-	gint i;
+	/*gint i;*/
 
 	if (line == NULL || line[0] == NULL)
 	    continue;
