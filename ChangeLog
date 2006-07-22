@@ -1,5 +1,12 @@
 2006-07-22  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-window.c: 
+	Remove a couple of headers that shouldn't be here
+	Remove call to gnome_help_display_desktop and
+	replace with a much simpler call to create a new window
+	and show the relevant section of the user guide, making it 
+	much quicker to display help->Contents
+	
 	* src/yelp-html.cpp: 
 	* src/yelp-window.c: 
 	Remove libgnomeui dependancy from both.

@@ -30,12 +30,12 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <bonobo/bonobo-main.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnome/libgnome.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
 #include <string.h>
+#include <libgnome/gnome-config.h>
+#include <libgnome/gnome-url.h>
 
 #include "yelp-bookmarks.h"
 #include "yelp-db-pager.h"
@@ -2882,32 +2882,12 @@ window_copy_mail_cb (GtkAction *action, YelpWindow *window)
 static void
 window_help_contents_cb (GtkAction *action, YelpWindow *window)
 {
-    GnomeProgram *program = gnome_program_get ();
-    GError *error = NULL;
-
-    g_return_if_fail (YELP_IS_WINDOW (window));
-
-    gnome_help_display_desktop (program, "user-guide", 
-                                "user-guide", "yelp", &error);
-
-    if (error) {
-	GtkWidget *dialog;
-
-	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
- 	                                 0,
-	                                 GTK_MESSAGE_ERROR,
-	                                 GTK_BUTTONS_CLOSE,
-	                                 _("Could not display help for Yelp.\n"
-	                                 "%s"),
-	                                 error->message);
-
-	g_signal_connect_swapped (dialog, "response",
-	                          G_CALLBACK (gtk_widget_destroy),
-	                          dialog);
-	gtk_widget_show (dialog);
-
-	g_error_free (error);
-    }
+    /* Since we are already running, and are calling ourselves,
+     * we can make this function easy by just creating a new window
+     * and avoiding calling gnome_help_display_desktop
+     */
+    g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0, 
+		   "ghelp:user-guide#yelp");
 }
 
 static void
