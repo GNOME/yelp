@@ -8,119 +8,282 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-16 05:43+0200\n"
-"PO-Revision-Date: 2006-04-16 12:46+0800\n"
+"POT-Creation-Date: 2006-07-22 00:17+0200\n"
+"PO-Revision-Date: 2006-07-22 10:47+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1237
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1838
 msgid "GNU Info Pages"
 msgstr "GNU 信息页"
 
-#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "传统命令行帮助(info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "应用程序"
 
 #: ../data/man.xml.in.h:2
+msgid "BLT Functions"
+msgstr "BLT 函数"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "配置文件"
 
-#: ../data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Curses 函数"
+
+#: ../data/man.xml.in.h:5
 msgid "Development"
 msgstr "开发"
 
-#: ../data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
 msgstr "FORTRAN 函数"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "游戏"
 
-#: ../data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "硬件设备"
 
-#: ../data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr "内核例程"
 
-#: ../data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "库函数"
-
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1231
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1832
 msgid "Manual Pages"
 msgstr "手册页"
 
-#: ../data/man.xml.in.h:10
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "网络音频声音函数"
+
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
 msgstr "OpenSSL 应用程序"
 
-#: ../data/man.xml.in.h:11
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
 msgstr "OpenSSL 配置"
 
-#: ../data/man.xml.in.h:12
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "OpenSSL 函数"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
 msgstr "OpenSSL 简介"
 
-#: ../data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "简介"
 
-#: ../data/man.xml.in.h:14
+#: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
 msgstr "POSIX 函数"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
 msgstr "POSIX 头"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
 msgstr "Perl 函数"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
 msgstr "Qt 函数"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Readline 函数"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "0p 节"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "1m 节"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "1ssl 节"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "1x 节"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "2 节"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "3blt 节"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "3f 节"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "3nas 节"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "3p 节"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "3qt 节"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "3readline 节"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "3ssl 节"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "3tiff 节"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:36
+#, fuzzy
+msgid "Section 4x"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:37
+#, fuzzy
+msgid "Section 5"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr ""
+
+#: ../data/man.xml.in.h:39
+#, fuzzy
+msgid "Section 5x"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:40
+#, fuzzy
+msgid "Section 6"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:41
+#, fuzzy
+msgid "Section 6x"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr ""
+
+#: ../data/man.xml.in.h:43
+#, fuzzy
+msgid "Section 7x"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:44
+#, fuzzy
+msgid "Section 9"
+msgstr "下一节(_N)"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr ""
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr ""
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr ""
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr ""
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr ""
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr ""
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr ""
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr ""
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "系统管理"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "系统调用"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "System V 表格/菜单函数"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "TIFF 函数"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
 msgstr "Termcap 应用程序"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "传统命令行帮助(man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
 msgstr "X11 应用程序"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "X11 配置"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
 msgstr "X11 设备"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
 msgstr "X11 函数"
 
-#: ../data/man.xml.in.h:25
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
 msgstr "X11 游戏"
 
-#: ../data/man.xml.in.h:26
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
 msgstr "X11 简介"
 
@@ -133,70 +296,126 @@ msgid "Accessories"
 msgstr "附件"
 
 #: ../data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "系统管理"
+msgid "Applications for fun"
+msgstr "娱乐相关的应用程序"
+
+#: ../data/toc.xml.in.h:4
+msgid "Applications for manipulating or viewing graphics"
+msgstr "操纵或查看图形的应用成程序"
 
 #: ../data/toc.xml.in.h:5
+msgid "Applications for word processing and other office tasks"
+msgstr "进行字处理和其它办公任务的应用程序"
+
+#: ../data/toc.xml.in.h:6
+msgid "Applications related to X Windows"
+msgstr "与 X Window 相关的应用程序"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications related to multimedia"
+msgstr "与多媒体相关的应用程序"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to software development"
+msgstr "与软件开发相关的应用程序"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications related to the internet"
+msgstr "与互联网相关的应用程序"
+
+#: ../data/toc.xml.in.h:10
+msgid "Applications specific to the panel"
+msgstr "与面板相关的应用程序"
+
+#: ../data/toc.xml.in.h:11
+msgid "Applications that support assistive technologies"
+msgstr "支持辅助功能的应用程序"
+
+#: ../data/toc.xml.in.h:12
 msgid "Desktop"
 msgstr "桌面"
 
-#: ../data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "教育应用程序"
+#: ../data/toc.xml.in.h:13
+msgid "Documents specific to the KDE Desktop Environment"
+msgstr "KDE 桌面环境特定的文档"
 
-#: ../data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:14
+msgid "Education"
+msgstr "教育"
+
+#: ../data/toc.xml.in.h:16
 msgid "Graphics"
 msgstr "图形"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
-msgid "Help Topics"
-msgstr "帮助主题"
-
-#: ../data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:17
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:18
 msgid "KDE"
 msgstr "KDE"
 
-#: ../data/toc.xml.in.h:12
-msgid "Multimedia"
-msgstr "多媒体"
+#: ../data/toc.xml.in.h:19
+msgid "Learning applications"
+msgstr "教育应用程序"
 
-#: ../data/toc.xml.in.h:13
+#: ../data/toc.xml.in.h:20
+msgid "Miscellaneous documents"
+msgstr "杂类文档"
+
+#: ../data/toc.xml.in.h:21
 msgid "Office"
 msgstr "办公"
 
-#: ../data/toc.xml.in.h:14
-msgid "Other"
-msgstr "其它"
+#: ../data/toc.xml.in.h:22
+msgid "Other Applications"
+msgstr "其它应用程序"
 
-#: ../data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
 msgstr "其它文档"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:24
 msgid "Panel Applets"
 msgstr "面板小程序"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "首选项"
-
-#: ../data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:25
 msgid "Programming"
 msgstr "编程"
 
-#: ../data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:26
 msgid "Scientific"
 msgstr "科学"
 
-#: ../data/toc.xml.in.h:20
+#: ../data/toc.xml.in.h:27
+msgid "Scientific Applications."
+msgstr "科学应用程序。"
+
+#: ../data/toc.xml.in.h:28
+msgid "Sound &amp; Vision"
+msgstr "影音"
+
+#: ../data/toc.xml.in.h:29
 msgid "System Tools"
 msgstr "系统工具"
 
-#: ../data/toc.xml.in.h:21
+#: ../data/toc.xml.in.h:30
+msgid "Utilities to manage your computer"
+msgstr "管理计算机的工具"
+
+#: ../data/toc.xml.in.h:31
+msgid "Utility applications"
+msgstr "实用程序"
+
+#: ../data/toc.xml.in.h:32
+msgid "Variety of other applications"
+msgstr "各种其它应用程序"
+
+#: ../data/toc.xml.in.h:33
+msgid "Welcome to the GNOME Help Browser"
+msgstr "欢迎使用 GNOME 帮助浏览器"
+
+#: ../data/toc.xml.in.h:34
 msgid "X Applications"
 msgstr "X 应用程序"
 
@@ -227,6 +446,10 @@ msgstr "查找"
 #: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "打开位置"
+
+#: ../data/ui/yelp.glade.h:8
+msgid "Preferences"
+msgstr "首选项"
 
 #: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
@@ -308,41 +531,37 @@ msgstr "使用系统字体"
 msgid "Use the default fonts set for the system."
 msgstr "使用系统默认字体设置。"
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2699
-msgid "Yelp"
-msgstr "Yelp"
-
-#: ../src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Yelp 工厂"
-
-#: ../src/yelp-bookmarks.c:155
+#: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
 msgstr "在新窗口打开书签"
 
-#: ../src/yelp-bookmarks.c:159
+#: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
 msgstr "重命名书签"
 
-#: ../src/yelp-bookmarks.c:163
+#: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
 msgstr "删除书签"
 
-#: ../src/yelp-bookmarks.c:320
+#: ../src/yelp-bookmarks.c:315
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "此页面已经存在标题为 %s 的书签。"
 
-#: ../src/yelp-bookmarks.c:397
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "此页面已经存在标题为 <b>%s</b> 的书签。"
 
-#: ../src/yelp-bookmarks.c:425
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "帮助主题"
+
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
 msgstr "文档节"
 
-#: ../src/yelp-db-pager.c:244 ../src/yelp-db-print-pager.c:197
+#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -395,35 +614,35 @@ msgid ""
 "an unsupported format."
 msgstr "无法读取并解码文件“%s”。文件可能以不支持的格式压缩。"
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:91
+msgid "Use a private session"
+msgstr "使用私有会话"
+
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "定义要使用哪个缓存目录"
 
-#: ../src/yelp-main.c:133
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "无法激活 Yelp：“%s”"
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:354
+msgid " GNOME Help Browser"
+msgstr " GNOME 帮助浏览器"
 
-#: ../src/yelp-main.c:152
-msgid "Could not open new window."
-msgstr "无法打开新窗口。"
-
-#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/yelp-man-pager.c:183
+#: ../src/yelp-man-pager.c:263
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr "无法分析文件“%s”。可能文件不存在，或者不是格式不正确。"
 
-#: ../src/yelp-pager.c:122
+#: ../src/yelp-pager.c:116
 msgid "Document Information"
 msgstr "文档信息"
 
-#: ../src/yelp-pager.c:123
+#: ../src/yelp-pager.c:117
 msgid "The YelpDocInfo struct of the document"
 msgstr "文档的 YelpDocInfo 结构"
 
@@ -487,28 +706,44 @@ msgstr "到(_T)："
 msgid "Sets the end of the range of pages to be printed"
 msgstr "设定要打印的页面终止范围"
 
-#: ../src/yelp-search-pager.c:698
+#: ../src/yelp-search-pager.c:684
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 msgstr "您的搜索无法进行。文件“%s”可能已经丢失，或者不是有效的 XSLT 样式表。"
 
-#: ../src/yelp-search-pager.c:800 ../src/yelp-toc-pager.c:1504
-#: ../src/yelp-xslt-pager.c:366
+#: ../src/yelp-search-pager.c:736
+#, c-format
+msgid "No results for \"%s\""
+msgstr "“%s”没有结果"
+
+#: ../src/yelp-search-pager.c:737
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr "请试着使用不同的内容来描述您所遇到的问题，或者您想要获得帮助的主题。"
+
+#: ../src/yelp-search-pager.c:740
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "“%s”的搜索结果"
+
+#: ../src/yelp-search-pager.c:810 ../src/yelp-toc-pager.c:2133
+#: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中未发现 href 属性"
 
-#: ../src/yelp-search-pager.c:814 ../src/yelp-toc-pager.c:1518
-#: ../src/yelp-xslt-pager.c:382
+#: ../src/yelp-search-pager.c:824 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "内存不足"
 
-#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:1568
+#: ../src/yelp-search-pager.c:865 ../src/yelp-toc-pager.c:2195
 msgid "Help Contents"
 msgstr "帮助目录"
 
-#: ../src/yelp-search-pager.c:1141 ../src/yelp-toc-pager.c:497
+#: ../src/yelp-search-pager.c:1167 ../src/yelp-toc-pager.c:620
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "无法载入 OMF 文件“%s”。"
@@ -534,252 +769,252 @@ msgstr "无法载入 OMF 文件“%s”。"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:156
+#: ../src/yelp-settings.c:152
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:271
+#: ../src/yelp-toc-pager.c:265
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: 暂停数为负数。"
 
-#: ../src/yelp-toc-pager.c:635
-#, c-format
-msgid "Read man page for %s"
-msgstr "读取 %s 的 man page"
-
-#: ../src/yelp-toc-pager.c:1106
-#, c-format
-msgid "Read info page for %s"
-msgstr "读取 %s 的 info page"
-
-#: ../src/yelp-toc-pager.c:1204
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr "无法装入目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
-
-#: ../src/yelp-toc-pager.c:1226
-msgid "Command Line Help"
-msgstr "命令行帮助"
-
-#: ../src/yelp-toc-pager.c:1340
+#: ../src/yelp-toc-pager.c:371 ../src/yelp-toc-pager.c:1946
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr "无法处理目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-toc-pager.c:1099
+#, c-format
+msgid "Read man page for %s"
+msgstr "读取 %s 的 man page"
+
+#: ../src/yelp-toc-pager.c:1692
+#, c-format
+msgid "Read info page for %s"
+msgstr "读取 %s 的 info page"
+
+#: ../src/yelp-toc-pager.c:1805
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr "无法装入目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
+
+#: ../src/yelp-toc-pager.c:1827
+msgid "Command Line Help"
+msgstr "命令行帮助"
+
+#: ../src/yelp-window.c:319
 msgid "_File"
 msgstr "文件(_F)"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:320
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:321
 msgid "_Go"
 msgstr "转到(_G)"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:322
 msgid "_Bookmarks"
 msgstr "书签(_B)"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:323
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/yelp-window.c:317
+#: ../src/yelp-window.c:326
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:331
 msgid "Print This Document"
 msgstr "打印此文档"
 
-#: ../src/yelp-window.c:327
+#: ../src/yelp-window.c:336
 msgid "Print This Page"
 msgstr "打印此页"
 
-#: ../src/yelp-window.c:332
+#: ../src/yelp-window.c:341
 msgid "About This Document"
 msgstr "关于此文档"
 
-#: ../src/yelp-window.c:337
+#: ../src/yelp-window.c:346
 msgid "Open _Location"
 msgstr "打开位置(_L)"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:351
 msgid "_Close Window"
 msgstr "关闭窗口(_C)"
 
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:357
 msgid "_Copy"
 msgstr "复制(_C)"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:363
 msgid "_Select All"
 msgstr "全选(_S)"
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:368
 msgid "_Find..."
 msgstr "查找(_F)..."
 
-#: ../src/yelp-window.c:364
+#: ../src/yelp-window.c:373
 msgid "Find Pre_vious"
 msgstr "查找上一个(_V)"
 
-#: ../src/yelp-window.c:366
+#: ../src/yelp-window.c:375
 msgid "Find previous occurrence of the word or phrase"
 msgstr "查找单词或短语的上次出现"
 
-#: ../src/yelp-window.c:369
+#: ../src/yelp-window.c:378
 msgid "Find Ne_xt"
 msgstr "查找下一个(_X)"
 
-#: ../src/yelp-window.c:371
+#: ../src/yelp-window.c:380
 msgid "Find next occurrence of the word or phrase"
 msgstr "查找单词或短语的下次出现"
 
-#: ../src/yelp-window.c:374
+#: ../src/yelp-window.c:383
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:388
 msgid "_Reload"
 msgstr "重新装入(_R)"
 
-#: ../src/yelp-window.c:391
+#: ../src/yelp-window.c:400
 msgid "_Back"
 msgstr "后退(_B)"
 
-#: ../src/yelp-window.c:393
+#: ../src/yelp-window.c:402
 msgid "Show previous page in history"
 msgstr "显示历史中的上一页"
 
-#: ../src/yelp-window.c:396
+#: ../src/yelp-window.c:405
 msgid "_Forward"
 msgstr "前进(_F)"
 
-#: ../src/yelp-window.c:398
+#: ../src/yelp-window.c:407
 msgid "Show next page in history"
 msgstr "显示历史中的下一页"
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:410
 msgid "_Help Topics"
 msgstr "帮助主题(_H)"
 
-#: ../src/yelp-window.c:403
+#: ../src/yelp-window.c:412
 msgid "Go to the listing of help topics"
 msgstr "转到帮助主题列表"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:415
 msgid "_Previous Section"
 msgstr "上一节(_P)"
 
-#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:420
 msgid "_Next Section"
 msgstr "下一节(_N)"
 
-#: ../src/yelp-window.c:416 ../src/yelp-window.c:448
+#: ../src/yelp-window.c:425 ../src/yelp-window.c:457
 msgid "_Contents"
 msgstr "目录(_C)"
 
-#: ../src/yelp-window.c:422
+#: ../src/yelp-window.c:431
 msgid "_Add Bookmark"
 msgstr "添加书签(_A)"
 
-#: ../src/yelp-window.c:427
+#: ../src/yelp-window.c:436
 msgid "_Edit Bookmarks..."
 msgstr "编辑书签(_E)..."
 
-#: ../src/yelp-window.c:433
+#: ../src/yelp-window.c:442
 msgid "_Open Link"
 msgstr "打开链接(_O)"
 
-#: ../src/yelp-window.c:438
+#: ../src/yelp-window.c:447
 msgid "Open Link in _New Window"
 msgstr "在新窗口打开链接(_N)"
 
-#: ../src/yelp-window.c:443
+#: ../src/yelp-window.c:452
 msgid "_Copy Link Address"
 msgstr "复制链接地址(_C)"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:459
 msgid "Help On this application"
 msgstr "关于此应用程序的帮助"
 
-#: ../src/yelp-window.c:453
+#: ../src/yelp-window.c:462
 msgid "_About"
 msgstr "关于(_A)"
 
-#: ../src/yelp-window.c:458
+#: ../src/yelp-window.c:467
 msgid "Copy _Email Address"
 msgstr "复制电子邮件地址(_E)"
 
-#: ../src/yelp-window.c:507
+#: ../src/yelp-window.c:516
 msgid "Help Browser"
 msgstr "帮助浏览器"
 
-#: ../src/yelp-window.c:771 ../src/yelp-window.c:927
+#: ../src/yelp-window.c:927 ../src/yelp-window.c:1083
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "文件的统一资源定位符无效。"
 
-#: ../src/yelp-window.c:783 ../src/yelp-window.c:922
+#: ../src/yelp-window.c:939 ../src/yelp-window.c:1078
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "统一资源定位符“%s”无效或者不指向实际的文件。"
 
-#: ../src/yelp-window.c:871 ../src/yelp-window.c:1298
+#: ../src/yelp-window.c:1027 ../src/yelp-window.c:1507
 msgid "Man pages are not supported in this version."
 msgstr "此版本不支持 Man page。"
 
-#: ../src/yelp-window.c:881 ../src/yelp-window.c:1289
+#: ../src/yelp-window.c:1037 ../src/yelp-window.c:1498
 msgid "GNU info pages are not supported in this version"
 msgstr "此版本不支持 GNU 信息页。"
 
-#: ../src/yelp-window.c:897 ../src/yelp-window.c:1311
+#: ../src/yelp-window.c:1053 ../src/yelp-window.c:1520
 msgid "Search is not supported in this version."
 msgstr "此版本不支持搜索。"
 
-#: ../src/yelp-window.c:902
+#: ../src/yelp-window.c:1058
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr "不再支持 SGML 文档。请要求作者将文档转换为 XML。"
 
-#: ../src/yelp-window.c:1028
+#: ../src/yelp-window.c:1224
 msgid "_Search:"
 msgstr "搜索(_S)："
 
-#: ../src/yelp-window.c:1029
+#: ../src/yelp-window.c:1225
 msgid "Search for other documentation"
 msgstr "搜索其它文档"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1387
 msgid "Fin_d:"
 msgstr "查找(_D)："
 
-#: ../src/yelp-window.c:1198
+#: ../src/yelp-window.c:1407
 msgid "Find _Next"
 msgstr "查找下一个(_N)"
 
-#: ../src/yelp-window.c:1210
+#: ../src/yelp-window.c:1419
 msgid "Find _Previous"
 msgstr "查找上一个(_P)"
 
-#: ../src/yelp-window.c:1324
+#: ../src/yelp-window.c:1533
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr "无法创建文件“%s”的转换环境。格式可能不支持。"
 
-#: ../src/yelp-window.c:1353 ../src/yelp-window.c:1767
-#: ../src/yelp-window.c:1843
+#: ../src/yelp-window.c:1563 ../src/yelp-window.c:1982
+#: ../src/yelp-window.c:2065
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -789,27 +1024,29 @@ msgstr ""
 "此文档中不存在节“%s”。如果您是从应用程序中的帮助按钮转到此节，请报告给应用程"
 "序的维护者。"
 
-#: ../src/yelp-window.c:1468 ../src/yelp-window.c:2233
+#: ../src/yelp-window.c:1678 ../src/yelp-window.c:2469
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr "无法读取文件“%s”。文件可能已经损坏，或者您没有权限读取该文件。"
 
-#: ../src/yelp-window.c:1519
+#: ../src/yelp-window.c:1729
 msgid "Loading..."
 msgstr "正在载入..."
 
-#: ../src/yelp-window.c:2665
+#: ../src/yelp-window.c:2901
 #, c-format
 msgid ""
 "Could not display help for Yelp.\n"
 "%s"
-msgstr "无法显示 Yelp 的帮助。\n%s"
+msgstr ""
+"无法显示 Yelp 的帮助。\n"
+"%s"
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2696
+#: ../src/yelp-window.c:2932
 msgid "translator-credits"
 msgstr ""
 "开源软件国际化简体中文组(http://i18n.linux.net.cn)\n"
@@ -817,18 +1054,22 @@ msgstr ""
 "Funda Wang <fundawang@linux.net.cn>, 2003, 2005\n"
 "Jan2xue <75jan@163.com>, 2003-2004"
 
-#: ../src/yelp-window.c:2701
+#: ../src/yelp-window.c:2935
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2937
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Gnome 桌面的文档浏览器和查看器。"
 
-#: ../src/yelp-xslt-pager.c:193
+#: ../src/yelp-xslt-pager.c:189
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr "无法分析文件“%s”。可能文件不存在，或者格式不正确。"
 
-#: ../src/yelp-xslt-pager.c:214 ../src/yelp-xslt-pager.c:227
+#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -839,7 +1080,3 @@ msgstr "无法处理文档“%s”。文件“%s”可能已经丢失，或者�
 msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
 
-#~ msgid ""
-#~ "Your search could not be processed. There is no connection to the beagle "
-#~ "daemon."
-#~ msgstr "您的搜索无法进行。无法连接到 beagle 守护程序。"
