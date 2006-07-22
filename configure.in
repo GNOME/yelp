@@ -83,8 +83,6 @@ PKG_CHECK_MODULES(YELP,
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
 
-YELP_MODULES="gnome-vfs-2.0 libgnomeui-2.0 libbonobo-2.0"
-
 AC_PATH_PROGS(SED, gsed sed)
 
 XSLT_PATH="`$PKG_CONFIG --variable=xsltdir gnome-doc-utils`"

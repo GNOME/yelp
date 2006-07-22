@@ -1,5 +1,8 @@
 2006-07-22  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* configure.in: 
+	Remove additional but not run pkg-config check
+
 	* src/yelp-window.c: 
 	Remove a couple of headers that shouldn't be here
 	Remove call to gnome_help_display_desktop and
