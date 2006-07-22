@@ -1,3 +1,10 @@
+2006-07-22  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-html.cpp: 
+	* src/yelp-window.c: 
+	Remove libgnomeui dependancy from both.
+	Switch to GTK_STOCK_ABOUT instead of libgnome equivalent
+	
 2006-07-21  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-window.c: 

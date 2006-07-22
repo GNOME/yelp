@@ -32,7 +32,6 @@
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-main.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnomeui/gnome-stock-icons.h>
 #include <libgnome/libgnome.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
@@ -458,7 +457,7 @@ static const GtkActionEntry entries[] = {
       "F1", 
       N_("Help On this application"),
       G_CALLBACK (window_help_contents_cb) },
-    { "About", GNOME_STOCK_ABOUT,
+    { "About", GTK_STOCK_ABOUT,
       N_("_About"),
       NULL,
       NULL,

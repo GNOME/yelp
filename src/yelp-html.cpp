@@ -24,8 +24,6 @@
 #include <mozilla-config.h>
 #include <config.h>
 
-#include <libgnome/gnome-init.h>
-
 #include "yelp-gecko-services.h"
 #include "yelp-gecko-utils.h"
 #include "yelp-marshal.h"
