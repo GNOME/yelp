@@ -216,8 +216,12 @@ search_pager_class_init (YelpSearchPagerClass *klass)
     parent_class = g_type_class_peek_parent (klass);
 
 #ifdef ENABLE_BEAGLE
-    beagle_client = beagle_client_new (NULL);
-    debug_print (DB_DEBUG, "client: %p\n", beagle_client);
+    if (beagle_util_daemon_is_running()) {
+	beagle_client = beagle_client_new (NULL);
+	debug_print (DB_DEBUG, "client: %p\n", beagle_client);
+    } else {
+	beagle_client = NULL;
+    }
 #endif /* ENABLE_BEAGLE */
 
     langs = g_get_language_names ();

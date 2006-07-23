@@ -1,3 +1,12 @@
+2006-07-23  Brent Smith  <gnome@nextreality.net>
+
+	* configure.in: Depend on beagle 0.2.4 since that is the first version
+	with the beagle_util_daemon_is_running() function.
+	* src/yelp-search-pager.c: (search_pager_class_init):
+	Use beagle_util_daemon_is_running() to make sure that the daemon is
+	actually running, and the socket at ~/.beagle/socket is not stale.
+	Fixes #348362
+
 2006-07-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-search-pager.c: 
@@ -50,13 +59,15 @@
 	* src/yelp-search-pager.c: 
 	Clean up some compiler warnings
 	(Casts and unused variables)
-	
+
 2006-07-19  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-toc-pager.c:
 	Select the correct translation of the description of sections
 	Fixes bug #347816
 	Clean up a couple of compiler warnings
+
+==================== 2.15.4 ====================
 
 2006-07-10  Brent Smith  <gnome@nextreality.net>
 

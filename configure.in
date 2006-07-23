@@ -154,7 +154,7 @@ dnl ******
 dnl beagle
 dnl ******
 
-BEAGLE_MODULES="libbeagle-0.0 >= 0.2.0"
+BEAGLE_MODULES="libbeagle-0.0 >= 0.2.4"
 
 AC_ARG_WITH([search],
 	[AC_HELP_STRING([--with-search=basic|beagle|auto|no],
