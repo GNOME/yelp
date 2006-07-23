@@ -29,7 +29,6 @@
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
-#include <libgnomeui/gnome-href.h>
 #include <string.h>
 
 #include "yelp-settings.h"
@@ -640,8 +639,8 @@ settings_update (YelpSettingsType type)
 		    style->base[GTK_STATE_NORMAL].blue >> 8);
 
 	/* YELP_COLOR_ANCHOR */
-	widget = gnome_href_new ("http://www.gnome.org/", "GNOME");
-	gtk_widget_style_get (widget, "link_color", &color, NULL);
+	widget = gtk_link_button_new ("http://www.gnome.org");
+	gtk_widget_style_get (widget, "link-color", &color, NULL);
 	if (!color)
 	    color = &blue;
 	g_snprintf (colors[YELP_COLOR_ANCHOR], 8,
