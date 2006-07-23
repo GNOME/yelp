@@ -1,5 +1,19 @@
 2006-07-23  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-search-pager.c: 
+	Large basic search update:
+	 - Common words are ignored (how, do etc.)
+	 - Common suffixes and prefixes are checked
+	 - Fix problems with searching in some docbook docs
+	 - Better scoring mechanism
+	 - Slightly improved matching algorithm
+	 - Fix searching HTML docs
+	 - Better snippet highlighting
+	 - Clean sections of code slightly
+	Bugs fixed: #341797, #341800, #347819 (work around)
+	Partially fixed: #335962
+	
+
 	* src/yelp-settings.c: 
 	Use a gtk_link_button instead of gnome_href
 

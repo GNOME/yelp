@@ -90,7 +90,6 @@ enum {
 };
 
 struct _SearchContainer {
-    gboolean     result_found;
     gchar *      current_subsection;
     gchar *      result_subsection;
     gchar *      doc_title;
@@ -100,12 +99,21 @@ struct _SearchContainer {
     GSList *     components;
     GHashTable  *entities;
     gchar **     search_term;
+    gint         required_words;
+    gint *       dup_of;
     gboolean *   found_terms;
+    gboolean *   stop_word;
+    gfloat *     score_per_word;
     gchar *      top_element;
     gint         search_status;
     gchar *      elem_type;
     GSList *     elem_stack;
     gfloat       score;
+    gfloat       snippet_score;
+    gboolean     html;
+    gchar *      sect_name;
+    gboolean     grab_text;
+    gchar *      default_snippet;
 };
 
 static void          search_pager_class_init      (YelpSearchPagerClass *klass);
@@ -164,6 +172,9 @@ static void          process_man_result        (YelpSearchPager       *pager,
 void                 process_info_result       (YelpSearchPager       *pager, 
 						gchar                 *result,
 						gchar                **terms);
+gchar *              string_append             (gchar                 *current,
+						gchar                 *new, 
+						gchar                 *suffix);
 
 
 #ifdef ENABLE_BEAGLE
@@ -932,11 +943,12 @@ void s_startElement(void *data,
 		  const xmlChar ** attrs)
 {
     SearchContainer *c = (SearchContainer *) data;
-
-    if (g_str_equal (name, "xi:include")) {
+    
+    if (g_str_equal (name, "xi:include") || g_str_equal (name, "include")) {
 	gint i=0;
 	while (attrs[i]) {
 	    if (g_str_equal (attrs[i], "href")) {
+
 		c->components = g_slist_append (c->components,
 						g_strconcat (c->base_path,
 							     "/",
@@ -958,10 +970,23 @@ void s_startElement(void *data,
 	    i+=2;
 	}
     }
+    /* Do we need to grab the title of the document?
+     * used in snippets when displaying results from an indexterm etc.
+     */
+    if (c->search_status != NOT_SEARCHING && g_str_equal (name, "title")) {
+	c->grab_text = TRUE;
+    }
+
     /* Are we allowed to search this element? */
     if (c->search_status == NOT_SEARCHING) {
-	if (g_str_equal (name, "title"))
+	if (c->html && g_str_equal (name, "html")) {
+	    c->search_status = SEARCH_DOC;
+	    return;
+	}
+
+	if (g_str_equal (name, "title")) {
 	    c->search_status = SEARCH_1;
+	}
 	else if (g_str_equal (name, "indexterm"))
 	    c->search_status = SEARCH_1;
 	else if (g_str_equal (name, "sect1") ||
@@ -1003,6 +1028,7 @@ void s_endElement(void * data,
 	c->elem_type = g_strdup ((gchar *) top->data);
 	c->elem_stack = g_slist_delete_link (c->elem_stack, top);
     }
+    c->grab_text = FALSE;
     return;
 }
 
@@ -1011,15 +1037,34 @@ void s_characters(void * data,
 		  int len)
 {
     SearchContainer *c = (SearchContainer *) data;
+    if (c->grab_text) {
+	g_free (c->sect_name);
+	c->sect_name = g_strndup ((gchar *) ch, len);
+    }
+
+    /* Sometimes html docs don't trigger the "startElement" method
+     * I don't know why.  Instead, we just search the entire
+     * html file, hoping to find something.
+     */
+    if (c->html && c->search_status != SEARCH_DOC)
+	c->search_status = SEARCH_DOC;
     if (c->search_status != NOT_SEARCHING) {
 	gchar *tmp = g_utf8_casefold ((gchar *) ch, len);
 	gint i = 0;
 	gchar *s_term = c->search_term[i];
-	while (s_term && !c->found_terms[i]) {
-	    gchar *location = strstr (tmp, s_term);
+	while (s_term && c->score_per_word[i] < 1.0) {
+	    if (c->stop_word[i] || c->score_per_word[c->dup_of[i]] == 1.0) {
+		i++;
+		s_term = c->search_term[i];
+		continue;
+	    }
+
+	    gchar *location = strstr (tmp, s_term);	    
 	    if (location) {
 		gchar before = *(location-1);
 		gchar after = *(location+strlen(s_term));
+		gfloat local_score = 0.0;
+		gboolean use_text = TRUE;
 		if (location == tmp)
 		    before = ' ';
 		if (strlen(location) == strlen(s_term))
@@ -1027,24 +1072,35 @@ void s_characters(void * data,
 
 		if ((g_ascii_ispunct (before) || g_ascii_isspace (before)) 
 		    && (g_ascii_ispunct (after) || g_ascii_isspace (after))) {
-
-		    c->result_found = TRUE;
-		    if (!c->snippet) {
-			c->snippet = g_strndup (g_utf8_casefold ((gchar *) ch,
-								 len), 
-						len);
-			c->result_subsection = g_strdup (c->current_subsection);
-		    }
-		    c->found_terms[i] = TRUE;
-		    if (g_str_equal(c->elem_type, "primary")) {
-			c->score += 1.0;
+		    if (!c->elem_type) {
+			/* Stupid HTML. Treat like its a normal tag */
+			local_score = 0.1;
+		    } else if (g_str_equal(c->elem_type, "primary")) {
+			local_score = 1.0;
+			use_text = FALSE;
 		    } else if (g_str_equal (c->elem_type, "secondary")) {
-			c->score += 0.9;
+			local_score = 0.9;
+			use_text = FALSE;
 		    } else if (g_str_equal (c->elem_type, "title") || 
 			       g_str_equal (c->elem_type, "titleabbrev")) {
-			c->score += 0.8;
+			local_score = 0.8;
 		    } else {
-			c->score += 0.5;
+			local_score = 0.1;
+		    }
+		    c->score += local_score;
+		    c->found_terms[c->dup_of[i]] = TRUE;
+		    if (local_score > c->snippet_score) {
+			g_free (c->snippet);
+			if (use_text) {
+			    c->snippet = g_strndup (g_utf8_casefold ((gchar *) ch,
+								     len), 
+						    len);
+			} else {
+			    c->snippet = g_strdup (c->sect_name);
+			}
+			c->result_subsection = g_strdup (c->current_subsection);
+			c->snippet_score = local_score;
+			c->score_per_word[c->dup_of[i]] = local_score;
 		    }
 		}
 	    }
@@ -1105,6 +1161,188 @@ static xmlSAXHandler handlers = {
 
 /* Parse the omfs and build the list of files to be searched */
 
+/* A common bit of code used below.  Chucked in a function for easy */
+gchar *
+string_append (gchar *current, gchar *new, gchar *suffix)
+{
+    gchar *ret;
+    
+    if (suffix) {
+	ret = g_strconcat (current, ":", new, suffix, NULL);
+    } else {
+	ret = g_strconcat (current, ":", new, NULL);
+    }
+    g_free (current);
+    return ret;
+}
+
+static gint
+build_lists (gchar *search_terms, gchar ***terms, gint **dups, 
+	     gboolean ** stops, gint *req)
+{
+    gchar *ignore_words, *common_prefixes, *common_suffixes;
+    gchar **prefixes, **suffixes, **ignore;
+    gchar **list_copy;
+    gchar **iter, **iter1 = NULL;
+    gchar *term_str = NULL;
+    gchar *dup_str = NULL;
+    gint n_terms = 0, i=-1;
+    gint orig_term = 0;
+    gint non_stop = 0;
+
+
+    /* Translators: Do not translate this list exactly.  These are 
+     * colon-separated words that aren't useful for choosing search 
+     * results; they will be different for each language. Include 
+     * pronouns, articles, very common verbs and prepositions, 
+     * words from question structures like "tell me about" and 
+     * "how do I", and words for functional states like "not", 
+     * "work", and "broken".
+    */
+    ignore_words = g_strdup (_("a:about:an:are:as:at:be:broke:broken:by"
+			       ":can:can't:dialog:dialogue:do:doesn't"
+			       ":doesnt:don't:dont:explain:for:from:get"
+			       ":gets:got:make:makes:not:when:has"
+			       ":have:help:how:i:in:is:it:item:me:my:of"
+			       ":on:or:tell:that:the:thing:this:to:what"
+			       ":where:who:will:with:won't:wont:why:work"
+			       ":working:works"));
+    /* Translators: This is a list of common prefixes for words.
+     * Do not translate this directly.  Instead, use a colon
+     * seperated list of word-starts.  In English, an example
+     * is re-.  If there is none, please use the term NULL
+     * If there is only one, please put a colon after.
+     * E.g. if the common prefix is re then the string would be
+     * "re:"
+     */
+    common_prefixes = g_strdup (_("re"));
+
+    /* Translators: This is a list of (guess what?) common suffixes 
+     * to words.  Things that may be put at ends of words to slightly 
+     * alter their meaning (like -ing and -s in English).  This is a
+     * colon seperated list (I like colons).  If there are none,
+     * please use the strig NULL.  If there is only 1, please
+     * add a colon at the end of the list
+     */
+    common_suffixes = g_strdup (_("ers:er:ing:es:s:'s"));
+
+    ignore = g_strsplit (ignore_words, ":", -1);
+    if (strchr (common_prefixes, ':')) {
+	prefixes = g_strsplit (common_prefixes, ":", -1);
+    } else {
+	prefixes = NULL;
+    }
+    if (strchr (common_suffixes, ':')) {
+	suffixes = g_strsplit (common_suffixes, ":", -1);
+    } else {
+	suffixes = NULL;
+    }
+
+    list_copy = g_strsplit (g_utf8_casefold (g_strstrip (
+					  search_terms), -1),
+			    " ", -1);
+    
+    for (iter = list_copy; *iter != NULL; iter++) {
+	gboolean ignoring = FALSE;
+	
+	if (g_str_has_suffix (*iter, "?")) {
+	    gchar *tmp;
+	    tmp = g_strndup (*iter, strlen (*iter) - 1);
+	    g_free (*iter);
+	    *iter = g_strdup (tmp);
+	    g_free (tmp);
+	}
+	if (!term_str) {
+	    term_str = g_strdup (*iter);
+	} else {
+	    term_str = string_append (term_str, *iter, NULL);
+	}
+	
+	for (iter1 = ignore; *iter1; iter1++) {
+	    if (g_str_equal (*iter, *iter1)) {
+		ignoring = TRUE;
+		break;
+	    }
+	}
+	if (ignoring) {
+	    if (!dup_str) {
+		dup_str = g_strdup ("I");
+	    } else {
+		dup_str = string_append (dup_str, "I", NULL);
+	    }
+	    continue;
+	}
+	non_stop++;
+
+	if (!dup_str) {
+	    dup_str = g_strdup ("O");
+	} else {
+	    dup_str = string_append (dup_str, "O", NULL);
+	}
+	(*req)++;
+	if (prefixes) {
+	    for (iter1 = prefixes; *iter1; iter1++) {
+		if (g_str_has_prefix (*iter, *iter1)) {
+		    term_str = string_append (term_str, 
+					      (*iter+strlen(*iter1)), NULL);
+		} else {
+		    term_str = string_append (term_str, *iter, *iter1);
+		}
+		dup_str = string_append (dup_str, "D", NULL);
+	    }
+	}
+	if (suffixes) {
+	    for (iter1 = suffixes; *iter1; iter1++) {
+		if (g_str_has_suffix (*iter, *iter1)) {
+		    gchar *tmp;
+		    tmp = g_strndup (*iter, (strlen(*iter)-strlen(*iter1)));
+		    term_str = string_append (term_str, tmp, NULL);
+		    g_free (tmp);
+		} else {
+		    term_str = string_append (term_str, *iter, *iter1);   
+		}
+		dup_str = string_append (dup_str, "D", NULL);
+	    }
+	}
+    }
+    g_strfreev (list_copy);
+    *terms = g_strsplit (term_str, ":", -1);
+    n_terms = g_strv_length (*terms);
+    (*dups) = g_new0 (gint, n_terms);
+    (*stops) = g_new0 (gboolean, n_terms);
+    list_copy = g_strsplit (dup_str, ":", -1);
+    
+    for (iter = *terms; *iter; iter++) {
+	i++;
+	if (g_str_equal (list_copy[i], "O")) {
+	    orig_term = i;
+	}
+	(*dups)[i] = orig_term;
+	
+	for (iter1 = ignore; *iter1; iter1++) {
+	    if (non_stop > 0 && g_str_equal (*iter, *iter1)) {
+		(*stops)[i] = TRUE;
+		(*dups)[i] = -2;
+		break;
+	    }
+	}
+    }
+
+    /* Clean up all those pesky strings */
+    g_free (ignore_words);
+    g_free (common_prefixes);
+    g_free (common_suffixes);
+    g_free (term_str);
+    g_free (dup_str);
+    g_strfreev (prefixes);
+    g_strfreev (suffixes);
+    g_strfreev (ignore);
+    g_strfreev (list_copy);
+
+    return n_terms;
+}
+
+
 static gboolean
 slow_search_setup (YelpSearchPager *pager)
 {
@@ -1112,6 +1350,13 @@ slow_search_setup (YelpSearchPager *pager)
     gchar  *stderr_str;
     gchar  *lang;
     gchar  *command;
+
+    gchar **terms_list = NULL;
+    gint   *dup_list = NULL;
+    gboolean *stop_list = NULL;
+    gint      terms_number = 0;
+    gint required_no = 0;
+
     static xmlSAXHandler sk_sax_handler = { 0, };
     xmlParserCtxtPtr parser;
     if (langs && langs[0])
@@ -1138,6 +1383,12 @@ slow_search_setup (YelpSearchPager *pager)
     g_free (stderr_str);
     g_free (command);
 
+
+    terms_number = build_lists (pager->priv->search_terms,&terms_list, 
+				&dup_list, &stop_list, 
+				&required_no);
+
+
     while (omf_pending) {
 	GSList  *first = NULL;
 	gchar   *file  = NULL;
@@ -1145,13 +1396,16 @@ slow_search_setup (YelpSearchPager *pager)
 	xmlXPathContextPtr omf_xpath  = NULL;
 	xmlXPathObjectPtr  omf_url    = NULL;
 	xmlXPathObjectPtr  omf_title  = NULL;
+	xmlXPathObjectPtr  omf_mime   = NULL;
+	xmlXPathObjectPtr  omf_desc   = NULL;
 
 	SearchContainer *container;
 	gchar *ptr;
 	gchar *path;
 	gchar *fname;
 	gchar *realfname;
-	gint nsearchterms;
+	gchar *mime_type;
+	int i = 0;
 
 	first = omf_pending;
 	omf_pending = g_slist_remove_link (omf_pending, first);
@@ -1177,7 +1431,17 @@ slow_search_setup (YelpSearchPager *pager)
 	    xmlXPathEvalExpression (BAD_CAST 
 				    "string(/omf/resource/title)", 
 				    omf_xpath);
-	
+	omf_mime = 
+	    xmlXPathEvalExpression (BAD_CAST
+				    "string(/omf/resource/format/@mime)",
+				    omf_xpath);
+	omf_desc = 
+	    xmlXPathEvalExpression (BAD_CAST
+				    "string(/omf/resource/description)",
+				    omf_xpath);
+
+	mime_type = g_strdup ((gchar *) omf_mime->stringval);
+
 	fname = g_strdup ((gchar *) omf_url->stringval);
 	if (g_str_has_prefix (fname, "file:")) {
 	    realfname = &fname[5];
@@ -1191,23 +1455,61 @@ slow_search_setup (YelpSearchPager *pager)
 
 	container = g_new0 (SearchContainer, 1);
 	
-	container->result_found = FALSE;
 	container->base_filename = g_strdup (realfname);
 	container->entities = g_hash_table_new (g_str_hash, g_str_equal);
 	container->doc_title = g_strdup ((gchar *) omf_title->stringval);
 	container->score=0;
+	container->html = FALSE;
+	container->default_snippet = g_strdup ((gchar *) omf_desc->stringval);
 
 	ptr = g_strrstr (container->base_filename, "/");
 
 	path = g_strndup (container->base_filename, 
 			    ptr - container->base_filename);
+
+	/* BEGIN HTML special block */
+	if (g_str_equal (mime_type, "text/html")) {
+	    GDir *dir;
+	    gchar *filename;
+	    container->html = TRUE;
+	    ptr++;
+	    
+	    dir = g_dir_open (path, 0, NULL);
+       
+	    while ((filename = (gchar *) g_dir_read_name (dir))) {
+		if ((g_str_has_suffix (filename, ".html") ||
+		     g_str_has_suffix (filename, ".htm")) &&
+		     !g_str_equal (filename, ptr)) {
+		    container->components = 
+			g_slist_append (container->components,
+					g_strconcat (path, "/", filename,
+						     NULL));
+
+		}
+	    }
+	    /* END HTML special blcok */
+	}
+
 	container->base_path = g_strdup (path);
-	container->search_term = 
-	    g_strsplit (g_utf8_casefold (g_strstrip(pager->priv->search_terms), -1),
-			" ", -1);
-	nsearchterms = g_strv_length (container->search_term);
-	container->found_terms = g_new0 (gboolean, nsearchterms);
+
+	container->required_words = required_no;
+	container->grab_text = FALSE;
+	container->sect_name = NULL;
+
+	container->search_term = g_strdupv (terms_list);
+	container->stop_word = g_new0 (gboolean, terms_number);
+	container->dup_of = g_new0 (gint, terms_number);
+	container->found_terms = g_new0 (gboolean, terms_number);
+	container->score_per_word = g_new0 (gfloat, terms_number);
+	container->found_terms = g_new0 (gboolean, terms_number);
+
 	container->search_status = NOT_SEARCHING;
+	container->snippet_score = 0;
+
+	for (i=0; i< terms_number; i++) {
+	    container->stop_word[i] = stop_list[i];
+	    container->dup_of[i] = dup_list[i];
+	}
 
 	pager->priv->pending_searches = 
 	    g_slist_prepend (pager->priv->pending_searches, container);
@@ -1234,11 +1536,35 @@ slow_search_setup (YelpSearchPager *pager)
 
 }
 
+static void
+search_free_container (SearchContainer *c)
+{
+    g_strfreev (c->search_term);
+    g_free (c->dup_of);
+    g_free (c->found_terms);
+    g_free (c->stop_word);
+    g_free (c->score_per_word);
+    g_free (c->top_element);
+    g_free (c->elem_type);
+    g_free (c->sect_name);
+    g_free (c->default_snippet);
+    g_free (c->current_subsection);
+    g_free (c->result_subsection);
+    g_free (c->doc_title);
+    g_free (c->base_path);
+    g_free (c->base_filename);
+    g_free (c->snippet);
+    g_hash_table_destroy (c->entities);
+    g_free (c);
+}
+
+
 static gboolean 
 slow_search_process (YelpSearchPager *pager)
 {
     SearchContainer *c;
     GSList *first = pager->priv->pending_searches;
+    gint i, j=0;
 
     pager->priv->pending_searches = 
 	g_slist_remove_link (pager->priv->pending_searches, first);
@@ -1253,31 +1579,31 @@ slow_search_process (YelpSearchPager *pager)
     c = (SearchContainer *) first->data;
 
     xmlSAXUserParseFile (&handlers, c, c->base_filename);
-
-    if (c->result_found) {
+    for (i=0; i< g_strv_length (c->search_term); ++i) {
+	if (c->found_terms[i]) {
+	    j++;
+	}
+    }
+    if (j >= c->required_words) {
 	search_parse_result (pager, c);
     } else while (c->components) {
 	GSList *next = c->components;
 	c->components = g_slist_remove_link (c->components, next);
 	c->search_status = NOT_SEARCHING;
 	xmlSAXUserParseFile (&handlers, c, (gchar *) next->data);
-	if (c->result_found) {
+	j = 0;
+	for (i=0; i< g_strv_length (c->search_term); ++i) {
+	    if (c->found_terms[i])
+		j++;
+	}
+	if (j >= c->required_words) {
 	    search_parse_result (pager, c);
 	    break;
 	}
     }
-    /* Cleanup the container and delete it */
-    g_free (c->current_subsection);
-    g_free (c->result_subsection);
-    g_free (c->doc_title);
-    g_free (c->base_path);
-    g_free (c->base_filename);
-    g_free (c->snippet);
-    g_hash_table_destroy (c->entities);
 
     if (pager->priv->pending_searches) {
-	g_strfreev (c->search_term);
-	g_free (c);
+	search_free_container (c);
 	return TRUE;
     }
     else {
@@ -1287,8 +1613,7 @@ slow_search_process (YelpSearchPager *pager)
 #ifdef ENABLE_INFO
 	search_process_info (pager, c->search_term);
 #endif
-	g_strfreev (c->search_term);
-	g_free (c);
+	search_free_container (c);
 
 	gtk_idle_add_priority (G_PRIORITY_LOW,
 			       (GtkFunction) process_xslt,
@@ -1299,90 +1624,95 @@ slow_search_process (YelpSearchPager *pager)
 
 gchar *
 search_clean_snippet (gchar *snippet, gchar **terms)
-{
+{    
     /* This is probably what you want to change */
     gint len_before_term = 47;
-    gint len_after_term = 37;
-
+    gint len_after_term = 47;
+    gchar **iteration;
+    gboolean am_cutting = FALSE;
     gchar *result = NULL;
-    gchar **before = NULL;
-    gchar *after = NULL;
-    gchar *tmp = NULL;
-    gchar * before_string;
-    gchar * after_string;
-    gchar *t;
-    gint blen, alen;
-    gchar *break_term = NULL;
+    gboolean found_terms = FALSE;
 
-    for (blen=0; terms[blen]; blen++) {
-	break_term = terms[blen];
-	if (strstr (snippet, break_term))
-	    break;
+
+    if (!snippet)
+	return NULL;
+
+    if (strlen(snippet) > (len_before_term+len_after_term)) {
+	am_cutting = TRUE;
     }
-    
-    before = g_strsplit (snippet, break_term, 2);
-    if (g_strv_length (before) !=2) {
-	/* The portion before or after the snippet is missing
- 	 * so we make it up as ''
-	 */
-	gchar *tmp = g_strdup (before[0]);
-	g_strfreev (before);
-	before = g_new0 (gchar *, 2);	
+    result = g_strdup (snippet);
 
-	if (g_str_has_prefix (snippet, break_term)) {
-	    before[0] = g_strdup ("");
-	    before[1] = g_strdup (tmp);
-	} else {
-	    before[0] = g_strdup (tmp);
-	    before[1] = g_strdup ("");
+    for (iteration = terms; *iteration; iteration++) {
+	gchar *before, *after, *tmp;
+	gchar *str;
+	gchar before_c, after_c;
+	gint count = 0;
 
+	while ((str = strstr (result, (*iteration)))) {
+	    gboolean breaking = FALSE;
+	    gint i;
+	    for (i=0; i< count; i++) {
+		str++;
+		str = strstr (str, (*iteration));
+		if (!str) {
+		    breaking = TRUE;
+		    break;
+		}
+	    }
+	    count++;
+	    if (breaking)
+		break;
+
+	    before_c = *(str-1);
+	    after_c = *(str+strlen(*iteration));
+
+	    if (g_ascii_isalpha (before_c) || g_ascii_isalpha (after_c)) {
+		continue;
+	    }
+	    
+	    tmp = g_strndup (result, (str-result));
+	    /* If we have to chop the snippet down to size, here is the
+	     * place to do it.  Only the first time through though
+	     */
+	    if (am_cutting && !found_terms && strlen (tmp) > len_before_term) {
+		gchar *tmp1;
+		gchar *tmp2;
+		gint cut_by;
+
+		tmp1 = tmp;
+		cut_by = strlen(tmp) - len_before_term;
+
+		tmp1 += cut_by;
+		tmp2 = g_strdup (tmp1);
+		g_free (tmp);
+		tmp = g_strconcat ("...",tmp2, NULL);
+		g_free (tmp2);		
+	    }
+
+	    before = g_strconcat (tmp, "<em>", NULL);
+	    g_free (tmp);
+	    
+	    str += strlen (*iteration);
+
+	    if (am_cutting && !found_terms && strlen (str) > len_after_term) {
+		gchar *tmp1;
+
+		tmp1 = g_strndup (str, len_after_term);
+		tmp = g_strconcat (tmp1, "...", NULL);
+		g_free (tmp1);
+	    } else {
+		tmp = g_strdup (str);
+	    }
+	    
+	    after = g_strconcat ((*iteration), "</em>", tmp, NULL);
+
+
+	    
+	    g_free (result);
+	    result = g_strconcat (before, after, NULL);
+	    found_terms = TRUE;
 	}
-	g_free (tmp);
-    }
-    
-    /* Now, strip the shite from the begining and end */
-    after = before[0];
-    tmp = before[1]+strlen(before[1])-1;
-    
-    while (!g_ascii_isalnum (*after) && after != before[0]+strlen (before[0]))
-	after++;
-    while (!g_ascii_isalnum (*tmp) && tmp !=before[1]) {
-	tmp--;
-    }
-    tmp++;
-    before_string = g_strdup (after);
-    if (tmp-before[1] > 0) {
-	after_string = g_strndup (before[1], tmp-before[1]);
-    } else {
-	after_string = g_strdup (before[1]);
-    }
-    
-    /* Now, reduce it to a managable size */    
-    blen = strlen (before_string);
-    alen = strlen (after_string);
-
-    if (blen > len_before_term) {
-	gchar *tmp = before_string + strlen(before_string) - len_before_term;
-	t = g_strndup (tmp, len_before_term);
-	g_free (before_string);
-	before_string = g_strconcat ("...", t, NULL);
-	g_free (t);
-    }
-    if (alen > len_after_term) {
-	t = g_strndup (after_string, len_after_term);
-	g_free (after_string);
-	after_string = g_strconcat (t, "...", NULL);
-	g_free (t);
-    }
-    /* Finally, piece all these together into a complete snippet 
-     * with markup and everything
-     */
-    result = g_strconcat (before_string, "<em>", break_term, "</em>", 
-			  after_string, NULL);
-    g_free (before_string);
-    g_free (after_string);
-    g_strfreev (before);
-
+    }    
     return result;
 }
 
@@ -1394,13 +1724,6 @@ search_parse_result (YelpSearchPager *pager, SearchContainer *c)
     xmlDoc *snippet_doc;
     xmlNode *node;
     char *xmldoc;
-    int i;
-    int nterms = 0;
-
-    for (i=0; i<g_strv_length (c->search_term); i++) {
-	if (c->found_terms[i])
-	    nterms++;
-    }
 
     new_uri = g_strconcat (c->base_filename, "#", c->result_subsection, 
 			   NULL);
@@ -1409,8 +1732,10 @@ search_parse_result (YelpSearchPager *pager, SearchContainer *c)
     xmlSetProp (child, BAD_CAST "uri", BAD_CAST new_uri);
     xmlSetProp (child, BAD_CAST "title", BAD_CAST g_strstrip (c->doc_title));
     xmlSetProp (child, BAD_CAST "score", 
-		BAD_CAST g_strdup_printf ("%f", c->score*nterms));
+		BAD_CAST g_strdup_printf ("%f", c->score));
     /* Fix up the snippet to show the break_term in bold */
+    if (!c->snippet)
+	c->snippet = g_strdup (c->default_snippet);
     xmldoc = g_strdup_printf ("<snippet>%s</snippet>",  
 			      search_clean_snippet (c->snippet, c->search_term));
     snippet_doc = xmlParseDoc (BAD_CAST xmldoc);
