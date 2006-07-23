@@ -30,9 +30,10 @@
 #include "yelp-print.h"
 #include "yelp-html.h"
 #include "yelp-utils.h"
+#include <gtk/gtkprintunixdialog.h>
 
-static GnomePrintConfig * yelp_print_load_config_from_file ( void );
-static void               yelp_print_save_config_to_file   (GnomePrintConfig *config);
+static GtkPrintSettings * yelp_print_load_config_from_file ( void );
+static void               yelp_print_save_config_to_file   (GtkPrintSettings *config);
 static void               cancel_print_cb                  (GtkDialog *dialog, 
 							    gint arg1, 
 							    YelpPrintInfo *info);
@@ -41,18 +42,11 @@ static void               parent_destroyed_cb              (GtkWindow *window,
 static gboolean           print_jobs_run                   ( void );
 void                      print_present_config_dialog      (YelpPrintInfo *info);
 static YelpPrintInfo    * yelp_print_get_print_info        ( void );
-GtkWidget               * yelp_print_dialog_new            (YelpPrintInfo *info);
 void                      yelp_print_info_free             (YelpPrintInfo *info);
-gboolean                  yelp_print_verify_postscript     (GnomePrintDialog *print_dialog);
+gboolean                  yelp_print_verify_postscript     (GtkPrinter *printer,
+							    GtkWidget *print_dialog);
 void                      yelp_print_present_status_dialog (YelpWindow *window,
 							    YelpPrintInfo *info);
-void                      yelp_print_dialog_response_cb    (GtkDialog *dialog,
-							    int response,
-							    YelpPrintInfo *info);
-static void               print_construct_range_page       (GnomePrintDialog *gpd, 
-							    gint flags,
-							    const guchar *currentlabel, 
-							    const guchar *rangelabel);
 gboolean                 yelp_print_preview                (YelpPrintInfo *info);
 
 gboolean                 print_preview_finished_cb         (GtkWindow     *win,
@@ -69,6 +63,9 @@ void                     preview_go_last                   (GtkToolButton *b,
 void                     preview_close                     (GtkToolButton *b,
 							    YelpPrintInfo *info);
 gboolean                 print_free_idle_cb                (YelpPrintInfo *info);
+void                     yelp_finish_printing              (GtkPrintJob *job,
+							   YelpPrintInfo *info,
+							    GError *error);
 
 static GSList * current_jobs = NULL;
 
@@ -85,6 +82,7 @@ yelp_print_run (YelpWindow *window, gpointer html, gpointer fake_win,
     info->html_frame = html;
     info->fake_win = fake_win;
     info->content_box = content_box;
+    info->previewed = FALSE;
 
     print_present_config_dialog (info);
     
@@ -93,32 +91,63 @@ yelp_print_run (YelpWindow *window, gpointer html, gpointer fake_win,
 void
 print_present_config_dialog (YelpPrintInfo *info)
 {
-    GtkWidget *dialog;
     int ret;
 
-    dialog = yelp_print_dialog_new (info);
-    while (TRUE) {
-	ret = gtk_dialog_run (GTK_DIALOG (dialog));
-	
-	if (ret != GNOME_PRINT_DIALOG_RESPONSE_PRINT)
-	    break;
-	if (yelp_print_verify_postscript (GNOME_PRINT_DIALOG (dialog)))
-	    break;
+    if (!info->print_dialog) {
+	info->print_dialog = gtk_print_unix_dialog_new ("Print Dialog", 
+							GTK_WINDOW (info->owner));
+	gtk_print_unix_dialog_set_settings (
+				  GTK_PRINT_UNIX_DIALOG (info->print_dialog), 
+				  info->config);
+	gtk_print_unix_dialog_set_page_setup (
+					GTK_PRINT_UNIX_DIALOG (info->print_dialog),
+					info->setup);
+	gtk_print_unix_dialog_set_manual_capabilities (
+				       GTK_PRINT_UNIX_DIALOG (info->print_dialog), 
+				       GTK_PRINT_CAPABILITY_PAGE_SET |
+				       GTK_PRINT_CAPABILITY_COPIES   |
+				       GTK_PRINT_CAPABILITY_COLLATE  |
+				       GTK_PRINT_CAPABILITY_REVERSE  |
+				       GTK_PRINT_CAPABILITY_SCALE |
+				       GTK_PRINT_CAPABILITY_GENERATE_PS |
+				       GTK_PRINT_CAPABILITY_PREVIEW);
     }
-    gtk_widget_destroy (dialog);
-    if (ret == GNOME_PRINT_DIALOG_RESPONSE_PREVIEW) {
+    while (1) {
+	
+	ret = gtk_dialog_run (GTK_DIALOG (info->print_dialog));
+	info->config = 
+	   gtk_print_unix_dialog_get_settings (
+				   GTK_PRINT_UNIX_DIALOG (info->print_dialog));
+	info->setup = 
+	    gtk_print_unix_dialog_get_page_setup (GTK_PRINT_UNIX_DIALOG 
+						  (info->print_dialog));
+	info->printer = 
+	    gtk_print_unix_dialog_get_selected_printer (GTK_PRINT_UNIX_DIALOG 
+							(info->print_dialog));
+	g_object_ref (info->printer);
+	if (ret != GTK_RESPONSE_OK)
+	    break;
+	if (yelp_print_verify_postscript (info->printer, info->print_dialog)) 
+	    break;
+
+    }
+
+    gtk_widget_hide (info->print_dialog);
+    if (ret == GTK_RESPONSE_APPLY) {
 	g_idle_add ((GSourceFunc) yelp_print_preview, info);
 	return;
     }
-    if (ret != GNOME_PRINT_DIALOG_RESPONSE_PRINT) {
+    if (ret != GTK_RESPONSE_OK) {
 	yelp_print_info_free (info);
 	return;
     }
+    yelp_print_save_config_to_file (info->config);
     yelp_print_present_status_dialog (info->owner, info);
     info->cancel_print_id = g_signal_connect (info->owner, "destroy",
 					      G_CALLBACK (parent_destroyed_cb), 
 					      info);
-    
+
+
     current_jobs = g_slist_append (current_jobs, info);
 
     if (!currently_running) {
@@ -142,40 +171,22 @@ print_jobs_run ()
     return FALSE;
 }
 
-static GnomePrintConfig * 
+static GtkPrintSettings * 
 yelp_print_load_config_from_file ()
 {
-  GnomePrintConfig *config = NULL;
-  gchar *filename, *contents = NULL;
+    GtkPrintSettings *settings;
 
-  filename = g_build_filename (yelp_dot_dir(), "yelp-printing.xml", NULL);
-  if (g_file_get_contents (filename, &contents, NULL, NULL)) {
-      config = gnome_print_config_from_string (contents, 0);
-      g_free (contents);
-  } else {
-      config = gnome_print_config_default ();
-      
-  }
-  
-  g_free (filename);
-  
-  return config;
+    settings = gtk_print_settings_new ();
+    
+    /* TODO: Load settings from a file somehow */
+    return settings;
 }
 
 static void
-yelp_print_save_config_to_file (GnomePrintConfig *config)
+yelp_print_save_config_to_file (GtkPrintSettings *config)
 {
-  gchar *filename, *str;
-
-  str = gnome_print_config_to_string (config, 0);
-  if (str == NULL) return;
-
-  filename = g_build_filename ( yelp_dot_dir (), "yelp-printing.xml", NULL);
-  g_file_set_contents (filename, str, -1, NULL);
-
-  g_free (str);
-  g_free (filename);
-
+    /* TODO: Save settings to a file somehow */
+    return;
 }
 
 void
@@ -183,10 +194,14 @@ yelp_print_info_free (YelpPrintInfo *info)
 {
     if (info) {
 	g_object_unref (info->config);
+	g_object_unref (info->setup);
+	g_object_unref (info->printer);
+	gtk_widget_destroy (info->print_dialog);
 	if (info->tempfile) {
 	    g_unlink (info->tempfile);
 	    g_free (info->tempfile);
 	}
+
 	g_free (info->header_left_string);
 	g_free (info->header_center_string);
 	g_free (info->header_right_string);
@@ -216,17 +231,13 @@ yelp_print_get_print_info ()
 
   info->config = yelp_print_load_config_from_file ();
 
-  info->range = GNOME_PRINT_RANGE_ALL;
-  info->from_page = 1;
-  info->to_page = 1;
-
-  info->frame_type = 0;
-  info->print_color = FALSE;
+  info->setup = gtk_page_setup_new ();
 
   info->cancelled = FALSE;
   info->moz_finished = FALSE;
 
   info->dialog = NULL;
+  info->print_dialog = NULL;
 
   info->header_left_string = g_strdup ("&T");
   info->header_center_string = g_strdup ("");
@@ -235,189 +246,49 @@ yelp_print_get_print_info ()
   info->footer_center_string = g_strdup ("&PT");
   info->footer_right_string = g_strdup ("");
 
-
   return info;
 }
 
-void
-yelp_print_dialog_response_cb (GtkDialog *dialog,
-			       int response,
-			       YelpPrintInfo *info)
-{
-  if (response == GNOME_PRINT_DIALOG_RESPONSE_PRINT ||
-      response == GNOME_PRINT_DIALOG_RESPONSE_PREVIEW) {
-      info->range = gnome_print_dialog_get_range_page (GNOME_PRINT_DIALOG (dialog),
-						       &info->from_page,
-						       &info->to_page);
-      yelp_print_save_config_to_file (info->config);
-  }
-
-}
-
-
-GtkWidget *
-yelp_print_dialog_new (YelpPrintInfo *info)
-{
-  GtkWidget *dialog;
-
-  dialog= g_object_new (GNOME_TYPE_PRINT_DIALOG, "print_config",
-			info->config, NULL);
-
-  gnome_print_dialog_construct (GNOME_PRINT_DIALOG (dialog),
-				(const guchar *) "Print",
-				GNOME_PRINT_DIALOG_RANGE |
-				GNOME_PRINT_DIALOG_COPIES);
-
-  print_construct_range_page (GNOME_PRINT_DIALOG (dialog),
-			      GNOME_PRINT_RANGE_ALL |
-			      GNOME_PRINT_RANGE_RANGE |
-			      GNOME_PRINT_RANGE_SELECTION,
-			      NULL, (const guchar *) _("Pages"));
-
-  g_signal_connect (G_OBJECT (dialog), "response",
-		    G_CALLBACK (yelp_print_dialog_response_cb), info);
-
-  return dialog;
-
-}
-
-static gboolean
-using_pdf_printer (GnomePrintConfig *config)
-{
-  const gchar *driver;
-  
-  driver = (gchar *) gnome_print_config_get (config,
-					     (const guchar *) 
-					     "Settings.Engine.Backend.Driver");
-
-  if (driver) {
-    if (!strcmp ((const gchar *)driver, "gnome-print-pdf"))
-      return TRUE;
-    else
-      return FALSE; 
-  }
-  return FALSE;
-
-}
-
-static gboolean
-using_postscript_printer (GnomePrintConfig *config)
-{
-  const guchar *driver;
-  const guchar *transport;
-
-  driver = gnome_print_config_get ( config,
-				    (const guchar *) "Settings.Engine.Backend.Driver");
-
-  transport = gnome_print_config_get ( config,
-				       (const guchar *) "Settings.Transport.Backend");
-
-  if (driver) {
-    if (strcmp ((const gchar *) driver, "gnome-print-ps") == 0)
-      return TRUE;
-    else
-      return FALSE;
-
-  } else if (transport) {
-    if (strcmp ((const gchar *) transport, "CUPS") == 0)
-      return TRUE;
-    else if (strcmp ((const gchar *) transport, "LPD") == 0)
-      return TRUE;
-
-  }
-  return FALSE;
-
-}
-
 gboolean
-yelp_print_verify_postscript (GnomePrintDialog *print_dialog)
+yelp_print_verify_postscript (GtkPrinter *printer, GtkWidget *print_dialog)
 {
-  GnomePrintConfig *config;
-  GtkWidget *dialog;
+    if (!gtk_printer_accepts_ps (printer)) {
+	GtkDialog *dialog;
+	dialog = gtk_message_dialog_new ( GTK_WINDOW (print_dialog),
+					  GTK_DIALOG_MODAL,
+					  GTK_MESSAGE_ERROR,
+					  GTK_BUTTONS_OK,
+					  _("Printing is not supported on this"
+					    " printer"));
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+						  _("Printer %s does not"
+						    " support postscript "
+						    "printing."), 
+						  gtk_printer_get_description (printer));
+	  gtk_dialog_run (GTK_DIALOG (dialog));
+	  gtk_widget_destroy (GTK_WIDGET (dialog));
+	  
+	  return FALSE;
+    }
 
-  config = gnome_print_dialog_get_config (print_dialog);
-
-  if (using_postscript_printer (config))
     return TRUE;
-
-  if (using_pdf_printer (config)) {
-    dialog = gtk_message_dialog_new ( GTK_WINDOW (print_dialog),
-				      GTK_DIALOG_MODAL,
-				      GTK_MESSAGE_ERROR,
-				      GTK_BUTTONS_OK,
-				      _("Generating PDF is not "
-					"currently supported"));
-
-  } else {
-    dialog = gtk_message_dialog_new ( GTK_WINDOW (print_dialog),
-				      GTK_DIALOG_MODAL,
-				      GTK_MESSAGE_ERROR,
-				      GTK_BUTTONS_OK,
-				      _("Printing is not supported on this "
-					"printer"));
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-					      _("You were trying to print "
-						"to a printer using the \""
-						"%s\" driver.  This program "
-						"requires a PostScript "
-						"printer driver."),
-					      gnome_print_config_get (config,
-								      (guchar *) "Settings.Engine.Backend.Driver"));
-
-  }
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-
-  return FALSE;
 }
 
 static gboolean
 print_idle_cb (YelpPrintInfo *info)
 {
-  GnomePrintJob *job;
-  gint result;
+    GtkPrintJob *job;
+    
+    if (g_file_test (info->tempfile, G_FILE_TEST_EXISTS) == FALSE) 
+	return FALSE;
+    job = gtk_print_job_new (gtk_window_get_title (GTK_WINDOW (info->owner)), 
+			     info->printer,
+			     info->config, info->setup);
+    gtk_print_job_set_source_file (job, info->tempfile, NULL);
+    gtk_print_job_send (job, (GtkPrintJobCompleteFunc) yelp_finish_printing,
+			info, NULL);
 
-  if (g_file_test (info->tempfile, G_FILE_TEST_EXISTS) == FALSE) return FALSE;
-  
-  /* FIXME: is this actually necessary? libc docs say all streams
-   * are flushed when reading from any stream.
-   */
-  fflush(NULL);
-  
-  job = gnome_print_job_new (info->config);
-  
-  gnome_print_job_set_file (job, info->tempfile);
-  result = gnome_print_job_print (job);
-  g_object_unref (job);
-
-  if (result != GNOME_PRINT_OK) {
-    /*There was an error printing.  Panic.*/
-    GtkWidget *dialog;
-
-    dialog = gtk_message_dialog_new          (NULL,
-					      GTK_DIALOG_MODAL |
-					      GTK_DIALOG_DESTROY_WITH_PARENT,
-					      GTK_MESSAGE_WARNING,
-					      GTK_BUTTONS_OK,
-					      _("An error "
-						"occurred while printing")
-					      );
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-					      _("It was not possible to "
-						"print your document"));
-    gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_hide (dialog);
-    gtk_widget_destroy (dialog);
-  }
-  
-  yelp_print_info_free (info);
-
-  if (g_slist_length (current_jobs) > 0)
-      g_idle_add ((GSourceFunc) print_jobs_run, NULL);
-  else
-      currently_running = FALSE;
-
-  return FALSE;
+    return FALSE;
 
 }
 
@@ -536,60 +407,6 @@ yelp_print_update_progress (YelpPrintInfo *info, gdouble percentage)
 
 }
 
-/* Ranges page when we don't actually know the length of the
- * document
- */
-static void
-print_construct_range_page (GnomePrintDialog *gpd, gint flags,
-			    const guchar *currentlabel, 
-			    const guchar *rangelabel)
-{
-	GtkWidget *hbox;
-
-	hbox = NULL;
-
-	if (flags & GNOME_PRINT_RANGE_RANGE) {
-		GtkWidget *l, *sb;
-		GtkObject *a;
-		AtkObject *atko;
-
-		hbox = gtk_hbox_new (FALSE, 3);
-		gtk_widget_show (hbox);
-
-		l = gtk_label_new_with_mnemonic (_("_From:"));
-		gtk_widget_show (l);
-		gtk_box_pack_start (GTK_BOX (hbox), l, FALSE, FALSE, 0);
-
-		a = gtk_adjustment_new (1, 1, 9999, 1, 10, 10);
-		g_object_set_data (G_OBJECT (hbox), "from", a);
-		sb = gtk_spin_button_new (GTK_ADJUSTMENT (a), 1, 0.0);
-		gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (sb), TRUE);
-		gtk_widget_show (sb);
-		gtk_box_pack_start (GTK_BOX (hbox), sb, FALSE, FALSE, 0);
-		gtk_label_set_mnemonic_widget ((GtkLabel *) l, sb);
-
-		atko = gtk_widget_get_accessible (sb);
-		atk_object_set_description (atko, _("Sets the start of the range of pages to be printed"));
-
-		l = gtk_label_new_with_mnemonic (_("_To:"));
-		gtk_widget_show (l);
-		gtk_box_pack_start (GTK_BOX (hbox), l, FALSE, FALSE, 0);
-
-		a = gtk_adjustment_new (1, 1, 9999, 1, 10, 10);
-		g_object_set_data (G_OBJECT (hbox), "to", a);
-		sb = gtk_spin_button_new (GTK_ADJUSTMENT (a), 1, 0.0);
-		gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (sb), TRUE);
-		gtk_widget_show (sb);
-		gtk_box_pack_start (GTK_BOX (hbox), sb, FALSE, FALSE, 0);
-		gtk_label_set_mnemonic_widget ((GtkLabel *) l, sb);
-
-		atko = gtk_widget_get_accessible (sb);
-		atk_object_set_description (atko, _("Sets the end of the range of pages to be printed"));
-	}
-
-	gnome_print_dialog_construct_range_any (gpd, flags, hbox, currentlabel, rangelabel);
-}
-
 gboolean
 yelp_print_preview (YelpPrintInfo *info)
 {
@@ -599,7 +416,6 @@ yelp_print_preview (YelpPrintInfo *info)
      */
     if (!info->previewed) {
 	GtkWidget *box;
-
 	info->previewed = TRUE;
 	box = gtk_toolbar_new ();
 	
@@ -745,4 +561,37 @@ print_free_idle_cb (YelpPrintInfo *info)
 {
     yelp_print_info_free (info);
     return FALSE;
+}
+
+void
+yelp_finish_printing (GtkPrintJob *job, YelpPrintInfo *info, GError *error)
+{
+    if (error) {
+	/*There was an error printing.  Panic.*/
+	GtkWidget *dialog;
+
+	dialog = gtk_message_dialog_new          (NULL,
+						  GTK_DIALOG_MODAL |
+						  GTK_DIALOG_DESTROY_WITH_PARENT,
+						  GTK_MESSAGE_WARNING,
+						  GTK_BUTTONS_OK,
+						  _("An error "
+						    "occurred while printing")
+						  );
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+						  _("It was not possible to "
+						    "print your document: %s"),
+						  error->message);
+	gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_hide (dialog);
+	gtk_widget_destroy (dialog);
+    }
+    
+    yelp_print_info_free (info);
+    
+    if (g_slist_length (current_jobs) > 0)
+	g_idle_add ((GSourceFunc) print_jobs_run, NULL);
+    else
+	currently_running = FALSE;
+    
 }

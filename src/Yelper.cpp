@@ -224,7 +224,9 @@ Yelper::Print (YelpPrintInfo *print_info, PRBool preview, int *prev_pages)
   rv = print->GetGlobalPrintSettings (getter_AddRefs (settings));
   NS_ENSURE_SUCCESS (rv, rv);
 
-  PrintListener::SetPrintSettings (print_info, settings);
+  rv = PrintListener::SetPrintSettings (print_info, preview, settings);
+
+  NS_ENSURE_SUCCESS (rv, rv);
 
   nsCOMPtr<PrintListener> listener = new PrintListener (print_info, print);
 

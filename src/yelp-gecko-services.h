@@ -67,7 +67,8 @@ public:
   NS_DECL_ISUPPORTS
   NS_DECL_NSIWEBPROGRESSLISTENER
     
-  static void SetPrintSettings (YelpPrintInfo *settings, nsIPrintSettings *target);
+    static nsresult SetPrintSettings (YelpPrintInfo *settings, PRBool preview, 
+				      nsIPrintSettings *target);
 
 protected:
   YelpPrintInfo *info;

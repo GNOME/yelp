@@ -24,9 +24,10 @@
 #define YELP_PRINT_H
 
 #include <glib.h>
-#define GNOME_PRINT_UNSTABLE_API
-#include <libgnomeprint/gnome-print-config.h>
-#include <libgnomeprintui/gnome-print-dialog.h>
+
+/* Needed to fill the struct */
+#include <gtk/gtkprinter.h>
+#include <gtk/gtkprintsettings.h>
 
 #include "yelp-window.h"
 
@@ -35,17 +36,15 @@ G_BEGIN_DECLS
 
 typedef struct _YelpPrintInfo
 {
-    GnomePrintConfig *config;
-    
+    GtkPrintSettings *config;
+    GtkPageSetup     *setup;
+    GtkPrinter       *printer;
+    GtkWidget        *print_dialog;
+
     char *tempfile;
     guint print_idle_id;
     guint cancel_print_id;
 
-    GnomePrintDialogRangeFlags range;
-    int from_page;
-    int to_page;
-    int frame_type;
-    gboolean print_color;
     gboolean cancelled;
     gboolean moz_finished;
     gboolean started;

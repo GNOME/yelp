@@ -42,23 +42,23 @@
 /* Implementation file */
 NS_IMPL_ISUPPORTS3(GPrintingPromptService, nsIPrintingPromptService, nsIWebProgressListener, nsIPrintProgressParams)
 
-GPrintingPromptService::GPrintingPromptService()
+  GPrintingPromptService::GPrintingPromptService()
 {
-	mPrintInfo = NULL;
+  mPrintInfo = NULL;
 }
 
 GPrintingPromptService::~GPrintingPromptService()
 {
-	if (mPrintInfo != NULL)
-	{
-		yelp_print_info_free (mPrintInfo);
-	}
+  if (mPrintInfo != NULL)
+    {
+      yelp_print_info_free (mPrintInfo);
+    }
 }
 
 /* void showPrintDialog (in nsIDOMWindow parent, in nsIWebBrowserPrint webBrowserPrint, in nsIPrintSettings printSettings); */
 NS_IMETHODIMP GPrintingPromptService::ShowPrintDialog(nsIDOMWindow *parent, nsIWebBrowserPrint *webBrowserPrint, nsIPrintSettings *printSettings)
 {
-	return NS_OK;
+  return NS_OK;
   
 }
 
@@ -78,58 +78,58 @@ NS_IMETHODIMP GPrintingPromptService::ShowPageSetup(nsIDOMWindow *parent, nsIPri
 /* void showPrinterProperties (in nsIDOMWindow parent, in wstring printerName, in nsIPrintSettings printSettings); */
 NS_IMETHODIMP GPrintingPromptService::ShowPrinterProperties(nsIDOMWindow *parent, const PRUnichar *printerName, nsIPrintSettings *printSettings)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 
 /* void onStateChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in unsigned long aStateFlags, in nsresult aStatus); */
 NS_IMETHODIMP GPrintingPromptService::OnStateChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, PRUint32 aStateFlags, nsresult aStatus)
 {
-	return NS_OK;
+  return NS_OK;
 }
 
 /* void onProgressChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in long aCurSelfProgress, in long aMaxSelfProgress, in long aCurTotalProgress, in long aMaxTotalProgress); */
 NS_IMETHODIMP GPrintingPromptService::OnProgressChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, PRInt32 aCurSelfProgress, PRInt32 aMaxSelfProgress, PRInt32 aCurTotalProgress, PRInt32 aMaxTotalProgress)
 {
-    return NS_OK;
+  return NS_OK;
 }
 
 /* void onLocationChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in nsIURI location); */
 NS_IMETHODIMP GPrintingPromptService::OnLocationChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, nsIURI *location)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* void onStatusChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in nsresult aStatus, in wstring aMessage); */
 NS_IMETHODIMP GPrintingPromptService::OnStatusChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, nsresult aStatus, const PRUnichar *aMessage)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* void onSecurityChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in unsigned long state); */
 NS_IMETHODIMP GPrintingPromptService::OnSecurityChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, PRUint32 state)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* attribute wstring docTitle; */
 NS_IMETHODIMP GPrintingPromptService::GetDocTitle(PRUnichar * *aDocTitle)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 NS_IMETHODIMP GPrintingPromptService::SetDocTitle(const PRUnichar * aDocTitle)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* attribute wstring docURL; */
 NS_IMETHODIMP GPrintingPromptService::GetDocURL(PRUnichar * *aDocURL)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 NS_IMETHODIMP GPrintingPromptService::SetDocURL(const PRUnichar * aDocURL)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 NS_IMPL_ISUPPORTS1(PrintListener, nsIWebProgressListener)
@@ -151,14 +151,14 @@ PrintListener::~PrintListener ()
 /* void onStateChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in unsigned long aStateFlags, in nsresult aStatus); */
 NS_IMETHODIMP PrintListener::OnStateChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, PRUint32 aStateFlags, nsresult aStatus)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* void onProgressChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in long aCurSelfProgress, in long aMaxSelfProgress, in long aCurTotalProgress, in long aMaxTotalProgress); */
 NS_IMETHODIMP PrintListener::OnProgressChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, PRInt32 aCurSelfProgress, PRInt32 aMaxSelfProgress, PRInt32 aCurTotalProgress, PRInt32 aMaxTotalProgress)
 {
   yelp_print_update_progress (info, 
-		      (1.0 * aCurTotalProgress) / (aMaxTotalProgress * 1.0));
+			      (1.0 * aCurTotalProgress) / (aMaxTotalProgress * 1.0));
 
   if (info->cancelled && !cancel_happened) {
     /* This doesn't seem to actually cancel anything.
@@ -177,127 +177,60 @@ NS_IMETHODIMP PrintListener::OnProgressChange(nsIWebProgress *aWebProgress, nsIR
 /* void onLocationChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in nsIURI location); */
 NS_IMETHODIMP PrintListener::OnLocationChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, nsIURI *location)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* void onStatusChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in nsresult aStatus, in wstring aMessage); */
 NS_IMETHODIMP PrintListener::OnStatusChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, nsresult aStatus, const PRUnichar *aMessage)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* void onSecurityChange (in nsIWebProgress aWebProgress, in nsIRequest aRequest, in unsigned long state); */
 NS_IMETHODIMP PrintListener::OnSecurityChange(nsIWebProgress *aWebProgress, nsIRequest *aRequest, PRUint32 state)
 {
-    return NS_ERROR_NOT_IMPLEMENTED;
+  return NS_ERROR_NOT_IMPLEMENTED;
 }
 
 /* static functions */
 
-/* static */void
+/* static */nsresult
 PrintListener::SetPrintSettings (YelpPrintInfo *settings,
+				 PRBool preview,
 				 nsIPrintSettings * target)
 {
-    char *base;
-    const char *temp_dir;
-    int fd;
-    const GnomePrintUnit *unit, *inch, *mm;
-    double value;
-    nsString tmp;
-    
-    target->SetPrinterName(NS_LITERAL_STRING("PostScript/default").get());
-    
-    const static int frame_types[] = {
-	nsIPrintSettings::kFramesAsIs,
-	nsIPrintSettings::kSelectedFrame,
-	nsIPrintSettings::kEachFrameSep
-    };
+  nsString tmp;
 
-    switch (settings->range)
-	{
-	case GNOME_PRINT_RANGE_CURRENT:
-	case GNOME_PRINT_RANGE_SELECTION_UNSENSITIVE:
-	case GNOME_PRINT_RANGE_ALL:
-	    target->SetPrintRange (nsIPrintSettings::kRangeAllPages);
-	    break;
-	case GNOME_PRINT_RANGE_RANGE:
-	    target->SetPrintRange (nsIPrintSettings::kRangeSpecifiedPageRange);
-	    target->SetStartPageRange (settings->from_page);
-	    target->SetEndPageRange (settings->to_page);
-	    break;
-	case GNOME_PRINT_RANGE_SELECTION:
-	    target->SetPrintRange (nsIPrintSettings::kRangeSelection);
-	    break;
-	}
-    
-    mm = gnome_print_unit_get_by_abbreviation ((const guchar *) "mm");
-    inch = gnome_print_unit_get_by_abbreviation ((const guchar *) "in");
-    g_assert (mm != NULL && inch != NULL);
-    
-    /* top margin */
-    if (gnome_print_config_get_length (settings->config,
-				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_TOP,
-				       &value, &unit)
-	&& gnome_print_convert_distance (&value, unit, inch))
-	{
-	    target->SetMarginTop (value);
-	}
-    
-    /* bottom margin */
-    if (gnome_print_config_get_length (settings->config,
-				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_BOTTOM,
-				       &value, &unit)
-	&& gnome_print_convert_distance (&value, unit, inch))
-	{
-	    target->SetMarginBottom (value);
-	}
-    
-    /* left margin */
-    if (gnome_print_config_get_length (settings->config,
-				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_LEFT,
-				       &value, &unit)
-	&& gnome_print_convert_distance (&value, unit, inch))
-	{
-	    target->SetMarginLeft (value);
-	}
-    
-    /* right margin */
-    if (gnome_print_config_get_length (settings->config,
-				       (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_RIGHT,
-				       &value, &unit)
-	&& gnome_print_convert_distance (&value, unit, inch))
-	{
-	    target->SetMarginRight (value);
-	}
-    
-    
-    
-    NS_CStringToUTF16 (nsDependentCString(settings->header_left_string),
-		       NS_CSTRING_ENCODING_UTF8, tmp);
-    target->SetHeaderStrLeft (tmp.get());
-    
-    NS_CStringToUTF16 (nsDependentCString(settings->header_center_string),
-		       NS_CSTRING_ENCODING_UTF8, tmp);
-    target->SetHeaderStrCenter (tmp.get());
-    
-    NS_CStringToUTF16 (nsDependentCString(settings->header_right_string),
-		       NS_CSTRING_ENCODING_UTF8, tmp);
-    target->SetHeaderStrRight (tmp.get());
-    
-    NS_CStringToUTF16 (nsDependentCString(settings->footer_left_string),
-		       NS_CSTRING_ENCODING_UTF8, tmp); 
-    target->SetFooterStrLeft (tmp.get());
-    
-    NS_CStringToUTF16 (nsDependentCString(settings->footer_center_string),
-		       NS_CSTRING_ENCODING_UTF8, tmp);
-    target->SetFooterStrCenter(tmp.get());
-    
-    NS_CStringToUTF16 (nsDependentCString(settings->footer_right_string),
-		       NS_CSTRING_ENCODING_UTF8, tmp);
-    target->SetFooterStrRight(tmp.get());
-    
-    
-    
+  /* This is a bastard mix of old Yelp stuff, old epiphany stuff
+   * and new epiphany stuff.  It does work though.
+   */
+  /* Initialisation */
+  target->SetIsInitializedFromPrinter (PR_FALSE);
+  target->SetIsInitializedFromPrefs (PR_FALSE);
+  target->SetPrintSilent (PR_FALSE);
+  target->SetShowPrintProgress (PR_TRUE);
+  target->SetNumCopies (1);
+
+  /* We always print PS to a file and then hand that off to gtk-print */
+  target->SetPrinterName (NS_LITERAL_STRING ("PostScript/default").get());
+  target->SetPrintToFile (PR_FALSE);
+
+  /* This is the time between printing each page, in ms.
+   * It 'gives the user more time to press cancel' !
+   * We don't want any of this nonsense, so set this to a low value,
+   * just enough to update the print dialogue.
+   */
+  target->SetPrintPageDelay (50);
+
+  if (!preview) {
+    gchar *base;
+    const gchar *temp_dir;
+    gint fd;
+    GtkPageSet pageSet;
+    GtkPrintPages printPages;
+
+    target->SetPrintToFile (PR_TRUE);
+
     temp_dir = g_get_tmp_dir ();
     base = g_build_filename (temp_dir, "printXXXXXX", NULL);
     fd = g_mkstemp (base);
@@ -311,86 +244,172 @@ PrintListener::SetPrintSettings (YelpPrintInfo *settings,
 		       NS_CSTRING_ENCODING_UTF8, tmp);
     target->SetPrintToFile (PR_TRUE);
     target->SetToFileName (tmp.get());
-    
-    
-    /* paper size */
-    target->SetPaperSize (nsIPrintSettings::kPaperSizeDefined);
-    target->SetPaperSizeUnit (nsIPrintSettings::kPaperSizeMillimeters);
-    
-    if (gnome_print_config_get_length (settings->config,
-				       (const guchar *) GNOME_PRINT_KEY_PAPER_WIDTH,
-				       &value, &unit)
-	&& gnome_print_convert_distance (&value, unit, mm))
-	{
-	    target->SetPaperWidth (value);	
-	}
-    
-    if (gnome_print_config_get_length (settings->config,
-				       (const guchar *) GNOME_PRINT_KEY_PAPER_HEIGHT,
-				       &value, &unit)
-	&& gnome_print_convert_distance (&value, unit, mm))
-	{
-	    target->SetPaperHeight (value);	
-	}
-    
+
+    pageSet = gtk_print_settings_get_page_set (settings->config);
+    target->SetPrintOptions (nsIPrintSettings::kPrintEvenPages,
+			     pageSet != GTK_PAGE_SET_ODD);
+    target->SetPrintOptions (nsIPrintSettings::kPrintEvenPages,
+			     pageSet != GTK_PAGE_SET_EVEN);
+
+    target->SetPrintReversed (gtk_print_settings_get_reverse (settings->config));
+
+    printPages = gtk_print_settings_get_print_pages (settings->config);
+    switch (printPages) {
+    case GTK_PRINT_PAGES_RANGES: {
+      int numRanges = 0;
+      GtkPageRange *pageRanges = gtk_print_settings_get_page_ranges (settings->config, &numRanges);
+      if (numRanges > 0) {
+	/* FIXME: We can only support one range, 
+	 * For now, ignore more ranges */
+	target->SetPrintRange (nsIPrintSettings::kRangeSpecifiedPageRange);
+	target->SetStartPageRange (pageRanges[0].start);
+	target->SetEndPageRange (pageRanges[1].end);
+
+	g_free (pageRanges);
+      }
+      break;
+    }
+    case GTK_PRINT_PAGES_CURRENT:
+      /* not supported, fall through */
+    case GTK_PRINT_PAGES_ALL:
+      target->SetPrintRange (nsIPrintSettings::kRangeAllPages);
+      break;
+      /* FIXME: we need some custom ranges here, "Selection" and 
+       * "Focused Frame" */
+    }
+  } else {
+    target->SetPrintOptions (nsIPrintSettings::kPrintEvenPages, PR_TRUE);
+    target->SetPrintOptions (nsIPrintSettings::kPrintEvenPages, PR_TRUE);
+    target->SetPrintReversed (PR_FALSE);
+    target->SetPrintRange (nsIPrintSettings::kRangeAllPages);
+  }
+
+  switch (gtk_print_settings_get_orientation (settings->config)) {
+  case GTK_PAGE_ORIENTATION_PORTRAIT:
+  case GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT: /* not supported */
+    target->SetOrientation (nsIPrintSettings::kPortraitOrientation);
+    break;
+  case GTK_PAGE_ORIENTATION_LANDSCAPE:
+  case GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE: /* not supported */
+    target->SetOrientation (nsIPrintSettings::kLandscapeOrientation);
+    break;
+  }
+
+  target->SetPrintInColor (gtk_print_settings_get_use_color (settings->config));
+
+  target->SetPaperSizeUnit(nsIPrintSettings::kPaperSizeMillimeters);
+  target->SetPaperSize (nsIPrintSettings::kPaperSizeDefined);
+
+  GtkPaperSize *paperSize = gtk_page_setup_get_paper_size (settings->setup);
+  if (!paperSize) {
+    g_warning ("Paper size not set.  Aborting!\n");
+    return NS_ERROR_FAILURE;
+  }
+
+  target->SetPaperSizeType (nsIPrintSettings::kPaperSizeDefined);
+  target->SetPaperWidth (gtk_paper_size_get_width (paperSize, GTK_UNIT_MM));
+  target->SetPaperHeight (gtk_paper_size_get_height (paperSize, GTK_UNIT_MM));
+
+#ifdef HAVE_GECKO_1_9
+  target->SetPaperName (NS_ConvertUTF8toUTF16 (gtk_paper_size_get_name (paperSize)).get ());
+#else
+  {
     /* Mozilla bug https://bugzilla.mozilla.org/show_bug.cgi?id=307404
      * means that we cannot actually use any paper sizes except mozilla's
      * builtin list, and we must refer to them *by name*!
      */
-#ifndef HAVE_GECKO_1_9
-    /* Gnome-Print names some papers differently than what moz understands */
-    static const struct
-    {
-	const char *gppaper;
-	const char *mozpaper;
+    static const struct {
+      const char gtkPaperName[13];
+      const char mozPaperName[10];
+    } paperTable [] = {
+      { GTK_PAPER_NAME_A5, "A5" },
+      { GTK_PAPER_NAME_A4, "A4" },
+      { GTK_PAPER_NAME_A3, "A3" },
+      { GTK_PAPER_NAME_LETTER, "Letter" },
+      { GTK_PAPER_NAME_LEGAL, "Legal" },
+      { GTK_PAPER_NAME_EXECUTIVE, "Executive" },
+    };
+  
+    const char *paperName = gtk_paper_size_get_name (paperSize);
+  
+    PRUint32 i;
+    for (i = 0; i < G_N_ELEMENTS (paperTable); i++) {
+      if (g_ascii_strcasecmp (paperTable[i].gtkPaperName, paperName) == 0) {
+	paperName = paperTable[i].mozPaperName;
+	break;
+      }
     }
-    paper_table [] =
-	{
-	    { "USLetter", "Letter" },
-	    { "USLegal", "Legal" }
-	};
+    if (i == G_N_ELEMENTS (paperTable)) {
+      /* Not in table, fall back to A4 */
+      g_warning ("Unknown paper name '%s', falling back to A4", 
+		 gtk_paper_size_get_name (paperSize));
+      paperName = paperTable[1].mozPaperName;
+    }
+  
+    target->SetPaperName (NS_ConvertUTF8toUTF16 (paperName).get ());
+  }
 #endif /* !HAVE_GECKO_1_9 */
+ 
+  /* Sucky mozilla wants margins in inch! */
+  target->SetMarginTop (gtk_page_setup_get_top_margin (settings->setup, GTK_UNIT_INCH));
+  target->SetMarginBottom (gtk_page_setup_get_bottom_margin (settings->setup, GTK_UNIT_INCH));
+  target->SetMarginLeft (gtk_page_setup_get_left_margin (settings->setup, GTK_UNIT_INCH));
+  target->SetMarginRight (gtk_page_setup_get_right_margin (settings->setup, GTK_UNIT_INCH));
+
+  
+  NS_CStringToUTF16 (nsDependentCString(settings->header_left_string),
+		     NS_CSTRING_ENCODING_UTF8, tmp);
+  target->SetHeaderStrLeft (tmp.get());
     
-    /* paper name */
-    char *string = (char *) gnome_print_config_get (settings->config,
-						    (const guchar *) GNOME_PRINT_KEY_PAPER_SIZE);
-    const char *paper = string;
+  NS_CStringToUTF16 (nsDependentCString(settings->header_center_string),
+		     NS_CSTRING_ENCODING_UTF8, tmp);
+  target->SetHeaderStrCenter (tmp.get());
     
-#ifndef HAVE_GECKO_1_9
-    for (PRUint32 i = 0; i < G_N_ELEMENTS (paper_table); i++)
-	{
-	    if (string != NULL &&
-		g_ascii_strcasecmp (paper_table[i].gppaper, string) == 0)
-		{
-		    paper = paper_table[i].mozpaper;
-		    break;
-		}
-	}
-#endif /* !HAVE_GECKO_1_9 */
+  NS_CStringToUTF16 (nsDependentCString(settings->header_right_string),
+		     NS_CSTRING_ENCODING_UTF8, tmp);
+  target->SetHeaderStrRight (tmp.get());
     
-    NS_CStringToUTF16 (nsDependentCString(paper),
-		       NS_CSTRING_ENCODING_UTF8, tmp);
-    target->SetPaperName (tmp.get());
-    g_free (string);
+  NS_CStringToUTF16 (nsDependentCString(settings->footer_left_string),
+		     NS_CSTRING_ENCODING_UTF8, tmp); 
+  target->SetFooterStrLeft (tmp.get());
     
-    /* paper orientation */
-    string = (char *) gnome_print_config_get (settings->config,
-					      (const guchar *) GNOME_PRINT_KEY_ORIENTATION);
-    if (string == NULL) string = g_strdup ("R0");
+  NS_CStringToUTF16 (nsDependentCString(settings->footer_center_string),
+		     NS_CSTRING_ENCODING_UTF8, tmp);
+  target->SetFooterStrCenter(tmp.get());
     
-    if (strncmp (string, "R90", 3) == 0 || strncmp (string, "R270", 4) == 0)
-	{
-	    target->SetOrientation (nsIPrintSettings::kLandscapeOrientation);
-	}
-    else
-	{
-	    target->SetOrientation (nsIPrintSettings::kPortraitOrientation);
-	}
-    g_free (string);
+  NS_CStringToUTF16 (nsDependentCString(settings->footer_right_string),
+		     NS_CSTRING_ENCODING_UTF8, tmp);
+  target->SetFooterStrRight(tmp.get());
+
+  /* FIXME I think this is the right default, but this prevents the user
+   * from cancelling the print immediately, see the stupid comment in 
+   * nsPrintEngine:
+   *  "DO NOT allow the print job to be cancelled if it is Print FrameAsIs
+   *   because it is only printing one page."
+   * We work around this by just not sending the job to the printer then.
+   */
+  target->SetPrintFrameType(nsIPrintSettings::kFramesAsIs); /* FIXME setting */
+  target->SetPrintFrameTypeUsage (nsIPrintSettings::kUseSettingWhenPossible);
+
+  target->SetScaling (gtk_print_settings_get_scale (settings->config) / 100.0);
+
+  /* FIXME: What do these do?  Need to learn to fix them properly
+   * For now, leave at Epiphany type defaults 
+   */
+
+  target->SetShrinkToFit (PR_FALSE); /* FIXME setting */
     
-    target->SetPrintInColor (TRUE);
-    target->SetPrintFrameType (frame_types[settings->frame_type]);
-}
+  target->SetPrintBGColors (PR_FALSE); /* FIXME setting */
+  target->SetPrintBGImages (PR_FALSE); /* FIXME setting */
+
+  /* target->SetPlexName (LITERAL ("default")); */
+  /* target->SetColorspace (LITERAL ("default")); */
+  /* target->SetResolutionName (LITERAL ("default")); */
+  /* target->SetDownloadFonts (PR_TRUE); */
+
+  return NS_OK;
+
+};
 
 /* component registration */
 
@@ -398,44 +417,42 @@ NS_GENERIC_FACTORY_CONSTRUCTOR(GPrintingPromptService)
 
 static const nsModuleComponentInfo sAppComps[] = {
     {
-	G_PRINTINGPROMPTSERVICE_CLASSNAME,
-	G_PRINTINGPROMPTSERVICE_CID,
-	G_PRINTINGPROMPTSERVICE_CONTRACTID,
-	GPrintingPromptServiceConstructor
+        G_PRINTINGPROMPTSERVICE_CLASSNAME,
+        G_PRINTINGPROMPTSERVICE_CID,
+        G_PRINTINGPROMPTSERVICE_CONTRACTID,
+        GPrintingPromptServiceConstructor
     },
 };
-
-
 
 void
 yelp_register_printing ()
 {
-    nsresult rv;
-    nsCOMPtr<nsIComponentRegistrar> cr;
-    rv = NS_GetComponentRegistrar(getter_AddRefs(cr));
-    NS_ENSURE_SUCCESS (rv, );
+  nsresult rv;
+  nsCOMPtr<nsIComponentRegistrar> cr;
+  rv = NS_GetComponentRegistrar(getter_AddRefs(cr));
+  NS_ENSURE_SUCCESS (rv, );
 
-    nsCOMPtr<nsIComponentManager> cm;
-    rv = NS_GetComponentManager (getter_AddRefs (cm));
-    NS_ENSURE_SUCCESS (rv, );
+  nsCOMPtr<nsIComponentManager> cm;
+  rv = NS_GetComponentManager (getter_AddRefs (cm));
+  NS_ENSURE_SUCCESS (rv, );
 
-    nsCOMPtr<nsIGenericFactory> componentFactory;
-    rv = NS_NewGenericFactory(getter_AddRefs(componentFactory),
-			      &(sAppComps[0]));
+  nsCOMPtr<nsIGenericFactory> componentFactory;
+  rv = NS_NewGenericFactory(getter_AddRefs(componentFactory),
+			    &(sAppComps[0]));
     
-    if (NS_FAILED(rv) || !componentFactory)
-	{
-	    g_warning ("Failed to make a factory for %s\n", sAppComps[0].mDescription);
-	    return;
-	}
+  if (NS_FAILED(rv) || !componentFactory)
+    {
+      g_warning ("Failed to make a factory for %s\n", sAppComps[0].mDescription);
+      return;
+    }
    
-    rv = cr->RegisterFactory(sAppComps[0].mCID,
-			     sAppComps[0].mDescription,
-			     sAppComps[0].mContractID,
-			     componentFactory);
-    if (NS_FAILED(rv))
-	{
-	    g_warning ("Failed to register %s\n", sAppComps[0].mDescription);
-	}
+  rv = cr->RegisterFactory(sAppComps[0].mCID,
+			   sAppComps[0].mDescription,
+			   sAppComps[0].mContractID,
+			   componentFactory);
+  if (NS_FAILED(rv))
+    {
+      g_warning ("Failed to register %s\n", sAppComps[0].mDescription);
+    }
     
 }

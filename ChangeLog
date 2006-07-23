@@ -1,3 +1,15 @@
+2006-07-23  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-print.c: 
+	* src/yelp-print.h: 
+	* src/yelp-gecko-services.cpp: 
+	* src/yelp-gecko-services.h: 
+	* src/Yelper.cpp: 
+	* configure.in: 
+	Move to GtkPrinting.
+	Bump min gtk version to 2.10
+	Remove libgnomeprint dependency
+	
 2006-07-22  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* configure.in: 
