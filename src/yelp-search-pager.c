@@ -66,9 +66,12 @@ typedef struct _SearchContainer SearchContainer;
 
 #define YELP_SEARCH_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SEARCH_PAGER, YelpSearchPagerPriv))
 
-#define ONLINE_CHECK_BEFORE "http://gnomesupport.org/forums/search.php?search_keywords="
+/* TRANSLATORS:  If you know of a forum in your own language, please 
+ * change this URL to the type required for a search of the site.
+ * The %s argument is the search terms
+ */
+#define ONLINE_URL N_("http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1")
 
-#define ONLINE_CHECK_AFTER "&search_cat=1"
 #define ONLINE_NAME N_("the GNOME Support Forums")
 
 struct _YelpSearchPagerPriv {
@@ -770,8 +773,7 @@ process_xslt (YelpSearchPager *pager)
       g_free(text);
     }
     
-    check = g_strconcat (ONLINE_CHECK_BEFORE, priv->search_terms, ONLINE_CHECK_AFTER,
-			 NULL);
+    check = g_strdup_printf (ONLINE_URL, priv->search_terms);
 
     /* TRANSLATORS: Please don't do anything funny with the
      * format arguement.  It isn't really going through a printf
