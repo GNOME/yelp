@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-24 00:41+0200\n"
-"PO-Revision-Date: 2006-07-24 00:48+0200\n"
+"POT-Creation-Date: 2006-07-24 19:45+0200\n"
+"PO-Revision-Date: 2006-07-24 19:45+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -686,7 +686,7 @@ msgstr "Ocurrió un error al imprimir"
 msgid "It was not possible to print your document: %s"
 msgstr "No es posible imprimir su documento: %s"
 
-#: ../src/yelp-search-pager.c:699
+#: ../src/yelp-search-pager.c:706
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -695,12 +695,12 @@ msgstr ""
 "Su búsqueda no se pudo procesar. El archivo  «%s» falta o no es una hoja de "
 "estilo XSLT válida."
 
-#: ../src/yelp-search-pager.c:751
+#: ../src/yelp-search-pager.c:758
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Sin resultados para «%s»"
 
-#: ../src/yelp-search-pager.c:752
+#: ../src/yelp-search-pager.c:759
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -708,22 +708,26 @@ msgstr ""
 "Intente usar palabras diferentes para describir el problema que está "
 "teniendo o el asunto del que quiere ayuda."
 
-#: ../src/yelp-search-pager.c:755
+#: ../src/yelp-search-pager.c:762
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Buscar resultados para «%s»"
 
-#: ../src/yelp-search-pager.c:825 ../src/yelp-toc-pager.c:2133
+#: ../src/yelp-search-pager.c:775
+msgid "Repeat the search online at "
+msgstr "Repetir la búsqueda en línea en "
+
+#: ../src/yelp-search-pager.c:846 ../src/yelp-toc-pager.c:2133
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "No se encontró atributo href en yelp:document"
 
-#: ../src/yelp-search-pager.c:839 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-search-pager.c:860 ../src/yelp-toc-pager.c:2146
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Se agotó la memoria"
 
-#: ../src/yelp-search-pager.c:880 ../src/yelp-toc-pager.c:2195
+#: ../src/yelp-search-pager.c:901 ../src/yelp-toc-pager.c:2195
 msgid "Help Contents"
 msgstr "Contenido de la ayuda"
 
@@ -735,13 +739,14 @@ msgstr "Contenido de la ayuda"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1206
+#: ../src/yelp-search-pager.c:1227
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
-msgstr "acerca de:con:contra:de:desde:elemento:es:hace:mi:por:que:según:sin:sobre:son"
+msgstr ""
+"acerca de:con:contra:de:desde:elemento:es:hace:mi:por:que:según:sin:sobre:son"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -751,7 +756,7 @@ msgstr "acerca de:con:contra:de:desde:elemento:es:hace:mi:por:que:según:sin:sob
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1222
+#: ../src/yelp-search-pager.c:1243
 msgid "re"
 msgstr "auto:re:"
 
@@ -762,11 +767,11 @@ msgstr "auto:re:"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1231
+#: ../src/yelp-search-pager.c:1252
 msgid "ers:er:ing:es:s:'s"
 msgstr "ando:mente:"
 
-#: ../src/yelp-search-pager.c:1425 ../src/yelp-toc-pager.c:620
+#: ../src/yelp-search-pager.c:1446 ../src/yelp-toc-pager.c:620
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "No se pudo cargar el archivo OMF «%s»."
@@ -986,7 +991,8 @@ msgstr "Navegador de ayuda"
 
 #: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "El Identificador Uniforme de Recurso (URI) para el archivo es inválido."
+msgstr ""
+"El Identificador Uniforme de Recurso (URI) para el archivo es inválido."
 
 #: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
 #, c-format
@@ -1106,4 +1112,3 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtenga ayuda acerca de GNOME"
-
