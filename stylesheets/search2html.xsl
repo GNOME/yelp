@@ -122,7 +122,7 @@
               <xsl:apply-templates select="."/>
             </xsl:for-each>
             <br/>
-            <xsl:apply-templates select="online"/>
+            <xsl:apply-templates select="online"/><xsl:apply-templates select="online1"/>
           </dl>
         </div>
       </body>
@@ -180,10 +180,13 @@
 <xsl:template match="online">
   <hr/>
   <br/>
-  <xsl:value-of select="."/>
+  <xsl:apply-templates/>
   <a href="{@href}">
     <xsl:value-of select="@name"/>
   </a>
+</xsl:template>
+<xsl:template match="online1">
+  <xsl:apply-templates/>
 </xsl:template>
 
 </xsl:stylesheet>

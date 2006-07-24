@@ -69,7 +69,7 @@ typedef struct _SearchContainer SearchContainer;
 #define ONLINE_CHECK_BEFORE "http://gnomesupport.org/forums/search.php?search_keywords="
 
 #define ONLINE_CHECK_AFTER "&search_cat=1"
-#define ONLINE_NAME "GNOME Support Forums"
+#define ONLINE_NAME N_("the GNOME Support Forums")
 
 struct _YelpSearchPagerPriv {
     xmlDocPtr     search_doc;
@@ -696,6 +696,7 @@ process_xslt (YelpSearchPager *pager)
     int number_of_results;
     gchar *title = NULL, *text = NULL;
     gchar *tmp = NULL, *check = NULL;
+    gchar **split = NULL;
     xmlNodePtr online = NULL;
 
     d (xmlDocFormatDump(stdout, priv->search_doc, 1));
@@ -772,16 +773,22 @@ process_xslt (YelpSearchPager *pager)
     check = g_strconcat (ONLINE_CHECK_BEFORE, priv->search_terms, ONLINE_CHECK_AFTER,
 			 NULL);
 
-    tmp = g_strdup (_("Repeat the search online at "));
+    /* TRANSLATORS: Please don't do anything funny with the
+     * format arguement.  It isn't really going through a printf
+     * The %s is used to indicate where the name of the site (linked)
+     * should be.  This is done in the XSLT
+     */
+    tmp = g_strdup (_("Repeat the search online at %s"));
+    split = g_strsplit (tmp, "%s", 2);
 
-    online = xmlNewTextChild (priv->root, NULL, BAD_CAST "online", BAD_CAST tmp);
+    online = xmlNewTextChild (priv->root, NULL, BAD_CAST "online", BAD_CAST split[0]);
     g_free (tmp);
     xmlNewProp (online, BAD_CAST "name",
 		BAD_CAST ONLINE_NAME);
     xmlNewProp (online, BAD_CAST "href",
 		BAD_CAST check);
     g_free (check);
-    
+    xmlNewTextChild (priv->root, NULL, BAD_CAST "online1", BAD_CAST split[1]);
 
     outdoc = xsltApplyStylesheetUser (priv->stylesheet,
 				      priv->search_doc,
