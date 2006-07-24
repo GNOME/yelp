@@ -121,6 +121,8 @@
                 <xsl:sort order="descending" data-type="number" select="normalize-space(@score)"/>
               <xsl:apply-templates select="."/>
             </xsl:for-each>
+            <br/>
+            <xsl:apply-templates select="online"/>
           </dl>
         </div>
       </body>
@@ -174,5 +176,14 @@
 <xsl:template match="score">
   <!--Empty to kill score result-->
 </xsl:template>
-</xsl:stylesheet>
 
+<xsl:template match="online">
+  <hr/>
+  <br/>
+  <xsl:value-of select="."/>
+  <a href="{@href}">
+    <xsl:value-of select="@name"/>
+  </a>
+</xsl:template>
+
+</xsl:stylesheet>

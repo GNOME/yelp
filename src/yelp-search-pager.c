@@ -66,6 +66,11 @@ typedef struct _SearchContainer SearchContainer;
 
 #define YELP_SEARCH_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SEARCH_PAGER, YelpSearchPagerPriv))
 
+#define ONLINE_CHECK_BEFORE "http://gnomesupport.org/forums/search.php?search_keywords="
+
+#define ONLINE_CHECK_AFTER "&search_cat=1"
+#define ONLINE_NAME "GNOME Support Forums"
+
 struct _YelpSearchPagerPriv {
     xmlDocPtr     search_doc;
     xmlNodePtr    root;
@@ -690,6 +695,8 @@ process_xslt (YelpSearchPager *pager)
     xmlXPathObjectPtr results_xpath = NULL;
     int number_of_results;
     gchar *title = NULL, *text = NULL;
+    gchar *tmp = NULL, *check = NULL;
+    xmlNodePtr online = NULL;
 
     d (xmlDocFormatDump(stdout, priv->search_doc, 1));
 
@@ -761,6 +768,20 @@ process_xslt (YelpSearchPager *pager)
       xmlNewTextChild (priv->root, NULL, BAD_CAST "text", BAD_CAST text);
       g_free(text);
     }
+    
+    check = g_strconcat (ONLINE_CHECK_BEFORE, priv->search_terms, ONLINE_CHECK_AFTER,
+			 NULL);
+
+    tmp = g_strdup (_("Repeat the search online at "));
+
+    online = xmlNewTextChild (priv->root, NULL, BAD_CAST "online", BAD_CAST tmp);
+    g_free (tmp);
+    xmlNewProp (online, BAD_CAST "name",
+		BAD_CAST ONLINE_NAME);
+    xmlNewProp (online, BAD_CAST "href",
+		BAD_CAST check);
+    g_free (check);
+    
 
     outdoc = xsltApplyStylesheetUser (priv->stylesheet,
 				      priv->search_doc,
