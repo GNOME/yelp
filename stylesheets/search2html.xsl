@@ -47,13 +47,10 @@
         body {
           margin: 0px;
           padding: 0px;
-          background: white;
           background-image: url("file://</xsl:text>
           <xsl:value-of select="$yelp.topimage"/><xsl:text>");
           background-position: 0px 0px;
           background-repeat: no-repeat;
-          font-family: Segoe, Sans;
-          font-size: 11px;
           position: absolute;
           width: 100%;
         }
@@ -62,52 +59,32 @@
           padding-left: 38px;
         }
         div.header {
-          font-size: 24px;
           font-weight: bold;
-          color: #000000;
-          border-bottom: 2px solid #999999;
+          border-bottom: 2px solid </xsl:text>
+          <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
           margin-bottom: 0px;
           padding-bottom: 0px;
         }
-        form {
-          margin: 0px;
-          padding: 12px;
+        div.footer {
+          padding-left: 38px;
         }
-        input {
-          background: #ffffff;
-          border: 1px solid #cccccc;
-          padding: 4px;
-          vertical-align: bottom;
-        }
-        input.button {
-          font-weight: bold;
-          padding: 3px;
-          -moz-border-radius: 4px;
-        }
-        ul { font-size: 1em; margin-left: 0em; padding-left: 0em; }
+        ul { margin-left: 0em; padding-left: 0em; }
         li {
           margin-left: 1em;
           padding-left: 0em;
           list-style-type: none;
         }
         dl { margin-left: 36px; padding-left: 0em; }
-        dt { font-size: 1.2em; margin-top: 1em; }
+        dt { margin-top: 1em; }
         dd { margin-left: 1em; margin-top: 0.5em; }
         a { text-decoration: none; }
         a:hover { text-decoration: underline; }
-        .match {
-          padding-left: 3px;
-          padding-right: 3px;
-          -moz-border-radius: 3px;
-          background: #eeeeee;
-          font-weight: bold;
-        }
         </xsl:text></style>
       </head>
       <body>
         <div class="content">
           <div class="header">
-            <xsl:value-of select="title" />
+            <h1><xsl:value-of select="title" /></h1>
           </div>
           <xsl:if test="text">
             <p>
@@ -121,10 +98,12 @@
                 <xsl:sort order="descending" data-type="number" select="normalize-space(@score)"/>
               <xsl:apply-templates select="."/>
             </xsl:for-each>
-            <br/>
-            <xsl:apply-templates select="online"/><xsl:apply-templates select="online1"/>
           </dl>
         </div>
+        <div class="footer">
+            <br/>
+            <xsl:apply-templates select="online"/><xsl:apply-templates select="online1"/>
+          </div>
       </body>
     </html>
   </yelp:document>
