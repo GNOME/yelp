@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-24 06:59+0200\n"
-"PO-Revision-Date: 2006-07-24 18:11+0530\n"
+"POT-Creation-Date: 2006-07-25 02:23+0200\n"
+"PO-Revision-Date: 2006-07-25 10:49+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -694,7 +695,20 @@ msgstr "છાપતી વખતે ભૂલ ઉદ્દભવી"
 msgid "It was not possible to print your document: %s"
 msgstr "તમારું દસ્તાવેજ છાપવાનું શક્ય ન હતું: %s"
 
-#: ../src/yelp-search-pager.c:699
+#. TRANSLATORS:  If you know of a forum in your own language, please
+#. * change this URL to the type required for a search of the site.
+#. * The %s argument is the search terms
+#.
+#: ../src/yelp-search-pager.c:73
+#, c-format
+msgid "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+msgstr "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+
+#: ../src/yelp-search-pager.c:75
+msgid "the GNOME Support Forums"
+msgstr "જીનોમ આધાર ચર્ચાઓ"
+
+#: ../src/yelp-search-pager.c:710
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -703,12 +717,12 @@ msgstr ""
 "તમારી શોધ પર પ્રક્રિયા કરી શકાઈ નહિં. ફાઈલ ‘%s’ એ ક્યાં તો ગુમ થયેલ છે અથવા એ માન્ય "
 "XSLT સ્ટાઈલશીટ નથી."
 
-#: ../src/yelp-search-pager.c:751
+#: ../src/yelp-search-pager.c:762
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\" માટે કોઈ પરિણામો નથી"
 
-#: ../src/yelp-search-pager.c:752
+#: ../src/yelp-search-pager.c:763
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -716,22 +730,32 @@ msgstr ""
 "તમને જો કોઈ સમસ્યા હોય તો અથવા તમે જે મુદ્દા સાથે મદદ કરવા માંગો તો વર્ણન કરવા માટે "
 "અલગ શબ્દો વાપરવાનો પ્રયત્ન કરો."
 
-#: ../src/yelp-search-pager.c:755
+#: ../src/yelp-search-pager.c:766
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\" માટેના શોધ પરિણામો"
 
-#: ../src/yelp-search-pager.c:825 ../src/yelp-toc-pager.c:2133
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:783
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "%s આગળ ઓનલાઈન શોધનું પુનરાવર્તન કરો"
+
+#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:2133
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "yelp:document પર કોઈ href લક્ષણ મળ્યો નહિં"
 
-#: ../src/yelp-search-pager.c:839 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-search-pager.c:869 ../src/yelp-toc-pager.c:2146
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "મેમરી ની બહાર"
 
-#: ../src/yelp-search-pager.c:880 ../src/yelp-toc-pager.c:2195
+#: ../src/yelp-search-pager.c:910 ../src/yelp-toc-pager.c:2195
 msgid "Help Contents"
 msgstr "મદદની વિષયસૂચી"
 
@@ -743,7 +767,7 @@ msgstr "મદદની વિષયસૂચી"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1206
+#: ../src/yelp-search-pager.c:1236
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -763,7 +787,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1222
+#: ../src/yelp-search-pager.c:1252
 msgid "re"
 msgstr "re"
 
@@ -774,11 +798,11 @@ msgstr "re"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1231
+#: ../src/yelp-search-pager.c:1261
 msgid "ers:er:ing:es:s:'s"
 msgstr "ers:er:ing:es:s:'s"
 
-#: ../src/yelp-search-pager.c:1425 ../src/yelp-toc-pager.c:620
+#: ../src/yelp-search-pager.c:1455 ../src/yelp-toc-pager.c:620
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "OMF ફાઈલ '%s' લાવી શક્યા નહિં."
