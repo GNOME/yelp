@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-24 14:56+0200\n"
-"PO-Revision-Date: 2006-07-24 14:55+0200\n"
+"POT-Creation-Date: 2006-07-25 11:55+0200\n"
+"PO-Revision-Date: 2006-07-25 11:57+0200\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -643,8 +643,7 @@ msgstr "Nápověda"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr ""
-"Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje, nebo nemá správný formát."
+msgstr "Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje, nebo nemá správný formát."
 
 #: ../src/yelp-pager.c:116
 msgid "Document Information"
@@ -688,7 +687,20 @@ msgstr "Při tisku došlo k chybě"
 msgid "It was not possible to print your document: %s"
 msgstr "Nebylo možné vytisknout váš dokument: %s"
 
-#: ../src/yelp-search-pager.c:699
+#. TRANSLATORS:  If you know of a forum in your own language, please
+#. * change this URL to the type required for a search of the site.
+#. * The %s argument is the search terms
+#.
+#: ../src/yelp-search-pager.c:73
+#, c-format
+msgid "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+msgstr "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+
+#: ../src/yelp-search-pager.c:75
+msgid "the GNOME Support Forums"
+msgstr "Fóra pro podporu GNOME"
+
+#: ../src/yelp-search-pager.c:710
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -697,12 +709,12 @@ msgstr ""
 "Vaše hledání nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný "
 "stylesheet XSLT."
 
-#: ../src/yelp-search-pager.c:751
+#: ../src/yelp-search-pager.c:762
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Žádné výsledky pro \"%s\""
 
-#: ../src/yelp-search-pager.c:752
+#: ../src/yelp-search-pager.c:763
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -710,22 +722,32 @@ msgstr ""
 "Pokuste se svůj problém či téma, ke kterému chcete získat nápovědu, popsat "
 "jinými slovy."
 
-#: ../src/yelp-search-pager.c:755
+#: ../src/yelp-search-pager.c:766
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Výsledky hledání \"%s\""
 
-#: ../src/yelp-search-pager.c:825 ../src/yelp-toc-pager.c:2133
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:783
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Zopakovat hledání online na %s"
+
+#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:2133
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "V yelp:document nenalezen atribut href"
 
-#: ../src/yelp-search-pager.c:839 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-search-pager.c:869 ../src/yelp-toc-pager.c:2146
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Nedostatek paměti"
 
-#: ../src/yelp-search-pager.c:880 ../src/yelp-toc-pager.c:2195
+#: ../src/yelp-search-pager.c:910 ../src/yelp-toc-pager.c:2195
 msgid "Help Contents"
 msgstr "Obsah nápovědy"
 
@@ -737,7 +759,7 @@ msgstr "Obsah nápovědy"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1206
+#: ../src/yelp-search-pager.c:1236
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -753,7 +775,7 @@ msgstr "a:s:o:u:je:jsou:jak:proč:kde:pomoc:nevím:funguje:nefunguje:rozbitý"
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1222
+#: ../src/yelp-search-pager.c:1252
 msgid "re"
 msgstr "vy:"
 
@@ -764,11 +786,11 @@ msgstr "vy:"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1231
+#: ../src/yelp-search-pager.c:1261
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
-#: ../src/yelp-search-pager.c:1425 ../src/yelp-toc-pager.c:620
+#: ../src/yelp-search-pager.c:1455 ../src/yelp-toc-pager.c:620
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nemohu načíst soubor OMF '%s'."
@@ -826,8 +848,7 @@ msgstr "Číst stránku info pro %s"
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr ""
-"Obsah nelze načíst. Soubor ‘%s’ buď chybí, nebo to není správně utvořené XML."
+msgstr "Obsah nelze načíst. Soubor ‘%s’ buď chybí, nebo to není správně utvořené XML."
 
 #: ../src/yelp-toc-pager.c:1827
 msgid "Command Line Help"
@@ -1109,3 +1130,4 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Získat nápovědu o GNOME"
+
