@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-24 12:16+0300\n"
-"PO-Revision-Date: 2006-07-24 12:16+0300\n"
+"POT-Creation-Date: 2006-07-29 08:28+0300\n"
+"PO-Revision-Date: 2006-07-29 08:31+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -392,7 +392,7 @@ msgid "Scientific Applications."
 msgstr "Tieteelliset sovellukset"
 
 #: ../data/toc.xml.in.h:28
-msgid "Sound &amp; Vision"
+msgid "Sound &amp; Video"
 msgstr "Ääni ja kuva"
 
 #: ../data/toc.xml.in.h:29
@@ -688,7 +688,22 @@ msgstr "Tapahtui virhe tulostettaessa"
 msgid "It was not possible to print your document: %s"
 msgstr "Asiakirjaa ei voitu tulostaa: %s"
 
-#: ../src/yelp-search-pager.c:699
+#. TRANSLATORS:  If you know of a forum in your own language, please
+#. * change this URL to the type required for a search of the site.
+#. * The %s argument is the search terms
+#.
+#: ../src/yelp-search-pager.c:73
+#, c-format
+msgid ""
+"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+msgstr ""
+"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+
+#: ../src/yelp-search-pager.c:75
+msgid "the GNOME Support Forums"
+msgstr "Gnomen tukifoorumit"
+
+#: ../src/yelp-search-pager.c:710
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -697,34 +712,44 @@ msgstr ""
 "Hakuasi ei voitu käsitellä. Tiedosto \"%s\" puuttuu tai ei ole kelvollinen "
 "XSLT-tyylisivu."
 
-#: ../src/yelp-search-pager.c:751
+#: ../src/yelp-search-pager.c:762
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Ei tuloksia haulle \"%s\""
 
-#: ../src/yelp-search-pager.c:752
+#: ../src/yelp-search-pager.c:763
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 "Yritä käyttää eri sanoja kuvaamaan ongelmaa, johon haluat etsiä ohjeita."
 
-#: ../src/yelp-search-pager.c:755
+#: ../src/yelp-search-pager.c:766
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Haun \"%s\" tulokset"
 
-#: ../src/yelp-search-pager.c:825 ../src/yelp-toc-pager.c:2133
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:783
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Toista verkkohaku sivustolla %s"
+
+#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:2133
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "href-määrettä ei löytynyt kohteesta yelp:document"
 
-#: ../src/yelp-search-pager.c:839 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-search-pager.c:869 ../src/yelp-toc-pager.c:2146
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Muisti lopussa"
 
-#: ../src/yelp-search-pager.c:880 ../src/yelp-toc-pager.c:2195
+#: ../src/yelp-search-pager.c:910 ../src/yelp-toc-pager.c:2195
 msgid "Help Contents"
 msgstr "Ohjeen sisältö"
 
@@ -736,7 +761,7 @@ msgstr "Ohjeen sisältö"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1206
+#: ../src/yelp-search-pager.c:1236
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -752,7 +777,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1222
+#: ../src/yelp-search-pager.c:1252
 msgid "re"
 msgstr ""
 
@@ -763,11 +788,11 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1231
+#: ../src/yelp-search-pager.c:1261
 msgid "ers:er:ing:es:s:'s"
 msgstr ""
 
-#: ../src/yelp-search-pager.c:1425 ../src/yelp-toc-pager.c:620
+#: ../src/yelp-search-pager.c:1455 ../src/yelp-toc-pager.c:620
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "OMF-tiedostoa \"%s\" ei voitu ladata."
