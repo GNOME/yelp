@@ -13,16 +13,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-14 16:49+0200\n"
-"PO-Revision-Date: 2006-07-16 19:15+0300\n"
+"POT-Creation-Date: 2006-07-29 21:14+0200\n"
+"PO-Revision-Date: 2006-07-30 00:56+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1
-#: ../src/yelp-toc-pager.c:1836
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1838
 msgid "GNU Info Pages"
 msgstr "GNU teabelehed"
 
@@ -54,8 +53,7 @@ msgstr "Arendus"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN'i funktsioonid"
 
-#: ../data/man.xml.in.h:7
-#: ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "Mängud"
 
@@ -67,8 +65,7 @@ msgstr "Riistvaraseadmed"
 msgid "Kernel Routines"
 msgstr "Kernelitoimingud"
 
-#: ../data/man.xml.in.h:10
-#: ../src/yelp-toc-pager.c:1830
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1832
 msgid "Manual Pages"
 msgstr "Käsiraamatud"
 
@@ -393,8 +390,8 @@ msgid "Scientific Applications."
 msgstr "Teadusrakendused"
 
 #: ../data/toc.xml.in.h:28
-msgid "Sound &amp; Vision"
-msgstr "Audio &amp; Visioon"
+msgid "Sound &amp; Video"
+msgstr "Heli ja Video"
 
 #: ../data/toc.xml.in.h:29
 msgid "System Tools"
@@ -562,14 +559,16 @@ msgstr "Abiteabe teemad"
 msgid "Document Sections"
 msgstr "Dokumendi jaotised"
 
-#: ../src/yelp-db-pager.c:239
-#: ../src/yelp-db-print-pager.c:190
+#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
 #, c-format
-msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
-msgstr "Faili ‘%s’ ei ole võimalik analüüsida. Seda kas pole olemas või on tegemist valesti vormindatud XML'iga."
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not well-formed XML."
+msgstr ""
+"Faili ‘%s’ ei ole võimalik analüüsida. Seda kas pole olemas või on tegemist "
+"valesti vormindatud XML'iga."
 
-#: ../src/yelp-error.c:42
-#: ../src/yelp-error.c:58
+#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
 msgstr "Tundmatu viga"
 
@@ -603,13 +602,21 @@ msgstr "Vea kohta puuduvad andmed."
 
 #: ../src/yelp-info-pager.c:188
 #, c-format
-msgid "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is not a well-formed info page."
-msgstr "Faili ‘%s’ ei ole võimalik analüüsida. Seda faili kas pole olemas või on tegemist valesti vormindatud failiga."
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"Faili ‘%s’ ei ole võimalik analüüsida. Seda faili kas pole olemas või on "
+"tegemist valesti vormindatud failiga."
 
 #: ../src/yelp-io-channel.c:101
 #, c-format
-msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
-msgstr "Faili ‘%s’ ei ole võimalik lugeda ja dekodeerida. Arvatavasti on fail pakitud toetamata vorminguga."
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
+msgstr ""
+"Faili ‘%s’ ei ole võimalik lugeda ja dekodeerida. Arvatavasti on fail "
+"pakitud toetamata vorminguga."
 
 #: ../src/yelp-main.c:91
 msgid "Use a private session"
@@ -624,15 +631,18 @@ msgstr "Kasutatava puhverkataloogi määramine"
 msgid " GNOME Help Browser"
 msgstr " GNOME Abiteabe sirvija"
 
-#: ../src/yelp-main.c:370
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Abi"
 
 #: ../src/yelp-man-pager.c:263
 #, c-format
-msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
-msgstr "Faili ‘%s’ pole võimalik analüüsida.  Faili kas pole olemas või on see valesti vormindatud."
+msgid ""
+"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
+"formatted incorrectly."
+msgstr ""
+"Faili ‘%s’ pole võimalik analüüsida.  Faili kas pole olemas või on see "
+"valesti vormindatud."
 
 #: ../src/yelp-pager.c:116
 msgid "Document Information"
@@ -642,102 +652,146 @@ msgstr "Dokumendi teave"
 msgid "The YelpDocInfo struct of the document"
 msgstr "Dokumendi YelpDocInfo struktuur"
 
-#: ../src/yelp-print.c:138
+#: ../src/yelp-print.c:167
 msgid "Preparing to print"
 msgstr "Printimise ettevalmistamine"
 
-#: ../src/yelp-print.c:275
-msgid "Pages"
-msgstr "Lehed"
-
-#: ../src/yelp-print.c:348
-msgid "Generating PDF is not currently supported"
-msgstr "PDF-ide tekitamine ei ole hetkel toetatud"
-
-#: ../src/yelp-print.c:356
+#: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
 msgstr "Selle printeriga ei ole printimine toetatud"
 
-#: ../src/yelp-print.c:359
+#: ../src/yelp-print.c:264
 #, c-format
-msgid "You were trying to print to a printer using the \"%s\" driver.  This program requires a PostScript printer driver."
-msgstr "Sa proovisid printida \"%s\" printeridraiveri abil. See programm vajab PostScript-i toetavat printeridraiverit."
+msgid "Printer %s does not support postscript printing."
+msgstr "Printer %s ei toeta postscript-printimist."
 
-#: ../src/yelp-print.c:402
-msgid "An error occurred while printing"
-msgstr "Printimisel tekkis viga"
-
-#: ../src/yelp-print.c:406
-msgid "It was not possible to print your document"
-msgstr "Sinu dokumenti ei olnud võimalik printida"
-
-#: ../src/yelp-print.c:466
+#: ../src/yelp-print.c:337
 msgid "Printing"
 msgstr "Printimine"
 
-#: ../src/yelp-print.c:493
+#: ../src/yelp-print.c:364
 msgid "<b>Printing</b>"
 msgstr "<b>Printimine</b>"
 
-#: ../src/yelp-print.c:495
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Printimise ootamine"
 
-#: ../src/yelp-print.c:559
-msgid "_From:"
-msgstr "_Alates:"
+#: ../src/yelp-print.c:578
+msgid "An error occurred while printing"
+msgstr "Printimisel tekkis viga"
 
-#: ../src/yelp-print.c:572
-msgid "Sets the start of the range of pages to be printed"
-msgstr "Prinditavate lehtede vahemiku alguse määramine"
-
-#: ../src/yelp-print.c:574
-msgid "_To:"
-msgstr "_kuni:"
-
-#: ../src/yelp-print.c:587
-msgid "Sets the end of the range of pages to be printed"
-msgstr "Prinditavate lehtede vahemiku lõpu määramine"
-
-#: ../src/yelp-search-pager.c:684
+#: ../src/yelp-print.c:582
 #, c-format
-msgid "Your search could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
-msgstr "Sinu otsingut pole võimalik töödelda. Faili ‘%s’ kas on puudu või pole tegemist korrektse XSLT laaditabeliga."
+msgid "It was not possible to print your document: %s"
+msgstr "Sinu dokumenti ei olnud võimalik printida: %s"
 
-#: ../src/yelp-search-pager.c:736
+#. TRANSLATORS:  If you know of a forum in your own language, please
+#. * change this URL to the type required for a search of the site.
+#. * The %s argument is the search terms
+#.
+#: ../src/yelp-search-pager.c:73
+#, c-format
+msgid ""
+"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+msgstr ""
+"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+
+#: ../src/yelp-search-pager.c:75
+msgid "the GNOME Support Forums"
+msgstr "GNOME kasutajatoe foorumid"
+
+#: ../src/yelp-search-pager.c:710
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr ""
+"Sinu otsingut pole võimalik töödelda. Faili ‘%s’ kas on puudu või pole "
+"tegemist korrektse XSLT laaditabeliga."
+
+#: ../src/yelp-search-pager.c:762
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Tulemusi otsingule \"%s\" ei leitud"
 
-#: ../src/yelp-search-pager.c:737
-msgid "Try using different words to describe the problem you're having or the topic you want help with."
-msgstr "Proovi oma probleemi kirjeldamiseks või abiteabe otsimiseks kasutada veidi teistsuguseid sõnu."
+#: ../src/yelp-search-pager.c:763
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+"Proovi oma probleemi kirjeldamiseks või abiteabe otsimiseks kasutada veidi "
+"teistsuguseid sõnu."
 
-#: ../src/yelp-search-pager.c:740
+#: ../src/yelp-search-pager.c:766
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Otsingu \"%s\" tulemused"
 
-#: ../src/yelp-search-pager.c:810
-#: ../src/yelp-toc-pager.c:2130
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:783
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Võrgust otsimise kordamine asukohas %s"
+
+#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:2133
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "Ei leia href-atribuuti yelp:document pealt"
 
-#: ../src/yelp-search-pager.c:824
-#: ../src/yelp-toc-pager.c:2143
-#: ../src/yelp-xslt-pager.c:380
-#: ../src/yelp-xslt-pager.c:531
+#: ../src/yelp-search-pager.c:869 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Mälu otsas"
 
-#: ../src/yelp-search-pager.c:865
-#: ../src/yelp-toc-pager.c:2192
+#: ../src/yelp-search-pager.c:910 ../src/yelp-toc-pager.c:2195
 msgid "Help Contents"
 msgstr "Abiteabe sisukord"
 
-#: ../src/yelp-search-pager.c:1167
-#: ../src/yelp-toc-pager.c:619
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1236
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr ""
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1252
+msgid "re"
+msgstr ""
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1261
+msgid "ers:er:ing:es:s:'s"
+msgstr ""
+
+#: ../src/yelp-search-pager.c:1455 ../src/yelp-toc-pager.c:620
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Tõrge OMF faili '%s' laadimisel."
@@ -763,276 +817,287 @@ msgstr "Tõrge OMF faili '%s' laadimisel."
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:152
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:264
+#: ../src/yelp-toc-pager.c:265
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: Pauside arv on negatiivne."
 
-#: ../src/yelp-toc-pager.c:370
-#: ../src/yelp-toc-pager.c:1943
+#: ../src/yelp-toc-pager.c:371 ../src/yelp-toc-pager.c:1946
 #, c-format
-msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
-msgstr "Sisukorda pole võimalik töödelda. Faili ‘%s’ kas on puudu või pole tegemist korrektse XSLT laaditabeliga."
+msgid ""
+"The table of contents could not be processed. The file ‘%s’ is either "
+"missing or is not a valid XSLT stylesheet."
+msgstr ""
+"Sisukorda pole võimalik töödelda. Faili ‘%s’ kas on puudu või pole tegemist "
+"korrektse XSLT laaditabeliga."
 
-#: ../src/yelp-toc-pager.c:1098
+#: ../src/yelp-toc-pager.c:1099
 #, c-format
 msgid "Read man page for %s"
 msgstr "Loe %s käsiraamatut"
 
-#: ../src/yelp-toc-pager.c:1690
+#: ../src/yelp-toc-pager.c:1692
 #, c-format
 msgid "Read info page for %s"
 msgstr "Loe %s-i infolehte"
 
-#: ../src/yelp-toc-pager.c:1803
+#: ../src/yelp-toc-pager.c:1805
 #, c-format
-msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
-msgstr "Sisukorda pole võimalik laadida. Fail ‘%s’ kas puudub või on valesti vormindatud XML'is."
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
+"Sisukorda pole võimalik laadida. Fail ‘%s’ kas puudub või on valesti "
+"vormindatud XML'is."
 
-#: ../src/yelp-toc-pager.c:1825
+#: ../src/yelp-toc-pager.c:1827
 msgid "Command Line Help"
 msgstr "Käsurea abi"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:318
 msgid "_File"
 msgstr "_Fail"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:319
 msgid "_Edit"
 msgstr "_Redaktor"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:320
 msgid "_Go"
 msgstr "_Liikumine"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:321
 msgid "_Bookmarks"
 msgstr "_Järjehoidjad"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:322
 msgid "_Help"
 msgstr "_Abi"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:325
 msgid "_New Window"
 msgstr "_Uus aken"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:330
 msgid "Print This Document"
 msgstr "Prindi see dokument"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:335
 msgid "Print This Page"
 msgstr "Prindi see leht"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:340
 msgid "About This Document"
 msgstr "Dokumendist"
 
-#: ../src/yelp-window.c:346
+#: ../src/yelp-window.c:345
 msgid "Open _Location"
 msgstr "_Ava asukoht"
 
-#: ../src/yelp-window.c:351
+#: ../src/yelp-window.c:350
 msgid "_Close Window"
 msgstr "_Sulge aken"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:356
 msgid "_Copy"
 msgstr "_Kopeeri"
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:362
 msgid "_Select All"
 msgstr "_Vali kõik"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:367
 msgid "_Find..."
 msgstr "_Otsing..."
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:372
 msgid "Find Pre_vious"
 msgstr "Otsi _eelmist"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:374
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Leia selle sõna või fraasi järgmine esinemine"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:377
 msgid "Find Ne_xt"
 msgstr "Otsi _järgmist"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:379
 msgid "Find next occurrence of the word or phrase"
 msgstr "Leia selle sõna või fraasi eelmine esinemine"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:382
 msgid "_Preferences"
 msgstr "_Eelistused"
 
-#: ../src/yelp-window.c:388
+#: ../src/yelp-window.c:387
 msgid "_Reload"
 msgstr "_Lae uuesti"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:399
 msgid "_Back"
 msgstr "_Tagasi"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:401
 msgid "Show previous page in history"
 msgstr "Ajaloos eelmise lehe näitamine"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:404
 msgid "_Forward"
 msgstr "_Edasi"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:406
 msgid "Show next page in history"
 msgstr "Ajaloos järgmise lehe näitamine"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:409
 msgid "_Help Topics"
 msgstr "_Abiteabe teemad"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:411
 msgid "Go to the listing of help topics"
 msgstr "Liikumine abiteabe teemade loendisse"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:414
 msgid "_Previous Section"
 msgstr "_Eelmine peatükk"
 
-#: ../src/yelp-window.c:420
+#: ../src/yelp-window.c:419
 msgid "_Next Section"
 msgstr "_Järgmine peatükk"
 
-#: ../src/yelp-window.c:425
-#: ../src/yelp-window.c:457
+#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
 msgid "_Contents"
 msgstr "_Sisukord"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:430
 msgid "_Add Bookmark"
 msgstr "_Lisa järjehoidja"
 
-#: ../src/yelp-window.c:436
+#: ../src/yelp-window.c:435
 msgid "_Edit Bookmarks..."
 msgstr "_Järjehoidjate redigeerimine..."
 
-#: ../src/yelp-window.c:442
+#: ../src/yelp-window.c:441
 msgid "_Open Link"
 msgstr "_Ava viit"
 
-#: ../src/yelp-window.c:447
+#: ../src/yelp-window.c:446
 msgid "Open Link in _New Window"
 msgstr "Ava viit _uues aknas"
 
-#: ../src/yelp-window.c:452
+#: ../src/yelp-window.c:451
 msgid "_Copy Link Address"
 msgstr "_Kopeeri viida aadress"
 
-#: ../src/yelp-window.c:459
+#: ../src/yelp-window.c:458
 msgid "Help On this application"
 msgstr "Selle rakenduse abiteave"
 
-#: ../src/yelp-window.c:462
+#: ../src/yelp-window.c:461
 msgid "_About"
 msgstr "_Programmist lähemalt"
 
-#: ../src/yelp-window.c:467
+#: ../src/yelp-window.c:466
 msgid "Copy _Email Address"
 msgstr "Kopeeri _e-posti aadress"
 
-#: ../src/yelp-window.c:516
+#: ../src/yelp-window.c:515
 msgid "Help Browser"
 msgstr "Abiteabe sirvija"
 
-#: ../src/yelp-window.c:921
-#: ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Faili ressursiidentifikaator (URI) on vigane."
 
-#: ../src/yelp-window.c:933
-#: ../src/yelp-window.c:1072
+#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
 #, c-format
-msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
-msgstr "Ressursiidentifikaator (URI) ‘%s’ on vigane või ei viita see tegelikult failile."
+msgid ""
+"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+"actual file."
+msgstr ""
+"Ressursiidentifikaator (URI) ‘%s’ on vigane või ei viita see tegelikult "
+"failile."
 
-#: ../src/yelp-window.c:1021
-#: ../src/yelp-window.c:1501
+#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
 msgid "Man pages are not supported in this version."
 msgstr "Käesolev versioon ei toeta käsiraamatuid"
 
-#: ../src/yelp-window.c:1031
-#: ../src/yelp-window.c:1492
+#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
 msgid "GNU info pages are not supported in this version"
 msgstr "Käesolev versioon ei toeta GNU infolehti"
 
-#: ../src/yelp-window.c:1047
-#: ../src/yelp-window.c:1514
+#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
 msgid "Search is not supported in this version."
 msgstr "Otsing ei ole käesolevas versioonis toetatud."
 
-#: ../src/yelp-window.c:1052
-msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
-msgstr "SGML dokumendid ei ole enam toetatud. Palu dokumendi autoril see dokument XML vormingusse ümber teisendada."
+#: ../src/yelp-window.c:1057
+msgid ""
+"SGML documents are no longer supported. Please ask the author of the "
+"document to convert to XML."
+msgstr ""
+"SGML dokumendid ei ole enam toetatud. Palu dokumendi autoril see dokument "
+"XML vormingusse ümber teisendada."
 
-#: ../src/yelp-window.c:1218
+#: ../src/yelp-window.c:1223
 msgid "_Search:"
 msgstr "_Otsing:"
 
-#: ../src/yelp-window.c:1219
+#: ../src/yelp-window.c:1224
 msgid "Search for other documentation"
 msgstr "Otsi muud dokumentatsiooni"
 
-#: ../src/yelp-window.c:1381
+#: ../src/yelp-window.c:1386
 msgid "Fin_d:"
 msgstr "_Otsing:"
 
-#: ../src/yelp-window.c:1401
+#: ../src/yelp-window.c:1406
 msgid "Find _Next"
 msgstr "Otsi _järgmist"
 
-#: ../src/yelp-window.c:1413
+#: ../src/yelp-window.c:1418
 msgid "Find _Previous"
 msgstr "Otsi _eelmist"
 
-#: ../src/yelp-window.c:1527
+#: ../src/yelp-window.c:1532
 #, c-format
-msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
-msgstr "Ümberkujunduskonteksti faili '%s' jaoks pole võimalik luua. Võimalik, et vorming ei ole toetatud."
+msgid ""
+"A transformation context could not be created for the file ‘%s’. The format "
+"may not be supported."
+msgstr ""
+"Ümberkujunduskonteksti faili '%s' jaoks pole võimalik luua. Võimalik, et "
+"vorming ei ole toetatud."
 
-#: ../src/yelp-window.c:1557
-#: ../src/yelp-window.c:1976
-#: ../src/yelp-window.c:2059
+#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
+#: ../src/yelp-window.c:2064
 #, c-format
-msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
-msgstr "Peatükki ‘%s’ pole selles dokumendis olemas. Kui sind suunati siia rakenduse Abiteabe nupult, siis palun teata sellest veast rakenduse hooldajatele."
+msgid ""
+"The section ‘%s’ does not exist in this document. If you were directed to "
+"this section from a Help button in an application, please report this to the "
+"maintainers of that application."
+msgstr ""
+"Peatükki ‘%s’ pole selles dokumendis olemas. Kui sind suunati siia rakenduse "
+"Abiteabe nupult, siis palun teata sellest veast rakenduse hooldajatele."
 
-#: ../src/yelp-window.c:1672
-#: ../src/yelp-window.c:2463
+#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
 #, c-format
-msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
-msgstr "Faili ‘%s’ ei ole loetav.  Seda võib mitte olemas olla või pole sul piisavaid selle lugemiseks."
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+"Faili ‘%s’ ei ole loetav.  Seda võib mitte olemas olla või pole sul "
+"piisavaid selle lugemiseks."
 
-#: ../src/yelp-window.c:1723
+#: ../src/yelp-window.c:1728
 msgid "Loading..."
 msgstr "Laadimine..."
 
-#: ../src/yelp-window.c:2895
-#, c-format
-msgid ""
-"Could not display help for Yelp.\n"
-"%s"
-msgstr ""
-"Yelp'i kohta pole abiteavet võimalik kuvada.\n"
-"%s"
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2926
+#: ../src/yelp-window.c:2911
 msgid "translator-credits"
 msgstr ""
 "Tõivo Leedjärv <toivo@linux.ee>, 2002-2004.\n"
@@ -1040,47 +1105,92 @@ msgstr ""
 "Priit Laes <amd@store20.com>, 2005, 2006.\n"
 "Ivar Smolin <okul@linux.ee>, 2005, 2006."
 
-#: ../src/yelp-window.c:2929
+#: ../src/yelp-window.c:2914
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2931
+#: ../src/yelp-window.c:2916
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentatsioonisirvija Gnome töölaua jaoks."
 
 #: ../src/yelp-xslt-pager.c:189
 #, c-format
-msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
-msgstr "Faili ‘%s’ pole võimalik analüüsida. Seda kas pole olema või on see valesti vormindatud."
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"improperly formatted."
+msgstr ""
+"Faili ‘%s’ pole võimalik analüüsida. Seda kas pole olema või on see valesti "
+"vormindatud."
 
-#: ../src/yelp-xslt-pager.c:210
-#: ../src/yelp-xslt-pager.c:223
+#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
 #, c-format
-msgid "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it is not a valid XSLT stylesheet."
-msgstr "Dokumenti ‘%s’ pole võimalik töödelda. Fail ‘%s’ on kas puudu või pole tegemist korrektse XSLT laaditabeliga."
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+"Dokumenti ‘%s’ pole võimalik töödelda. Fail ‘%s’ on kas puudu või pole "
+"tegemist korrektse XSLT laaditabeliga."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Abistab GNOMEi kasutamisel"
 
+#~ msgid "Pages"
+#~ msgstr "Lehed"
+
+#~ msgid "Generating PDF is not currently supported"
+#~ msgstr "PDF-ide tekitamine ei ole hetkel toetatud"
+
+#~ msgid ""
+#~ "You were trying to print to a printer using the \"%s\" driver.  This "
+#~ "program requires a PostScript printer driver."
+#~ msgstr ""
+#~ "Sa proovisid printida \"%s\" printeridraiveri abil. See programm vajab "
+#~ "PostScript-i toetavat printeridraiverit."
+
+#~ msgid "_From:"
+#~ msgstr "_Alates:"
+
+#~ msgid "Sets the start of the range of pages to be printed"
+#~ msgstr "Prinditavate lehtede vahemiku alguse määramine"
+
+#~ msgid "_To:"
+#~ msgstr "_kuni:"
+
+#~ msgid "Sets the end of the range of pages to be printed"
+#~ msgstr "Prinditavate lehtede vahemiku lõpu määramine"
+
+#~ msgid ""
+#~ "Could not display help for Yelp.\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Yelp'i kohta pole abiteavet võimalik kuvada.\n"
+#~ "%s"
+
 #~ msgid "Library Functions"
 #~ msgstr "Teegifunktsioonid"
+
 #~ msgid "Administration"
 #~ msgstr "Haldus"
+
 #~ msgid "Other"
 #~ msgstr "Muud"
+
 #~ msgid "Multimedia"
 #~ msgstr "Multimeedia"
+
 #~ msgid "Yelp Factory"
 #~ msgstr "Yelp Factory"
+
 #~ msgid "Could not activate Yelp: '%s'"
 #~ msgstr "Yelp'i pole võimalik aktiveerida: '%s'"
+
 #~ msgid "Could not open new window."
 #~ msgstr "Uut akent pole võimalik avada."
+
 #~ msgid ""
 #~ "Your search could not be processed. There is no connection to the beagle "
 #~ "daemon."
 #~ msgstr ""
 #~ "Sinu otsingut pole võimalik töödelda. Beagle'i deemoniga ei ole ühendust "
 #~ "loodud."
-
