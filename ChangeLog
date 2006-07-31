@@ -1,3 +1,16 @@
+2006-07-30  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (process_info_pending): Fix to properly escape
+	ampersand characters by using xmlNewTextChild, patch from Daniel
+	Drake.  Fixes #343372 (backport from HEAD)
+
+	* src/yelp-window.c: (window_help_contents_cb):
+	Remove a couple of headers that shouldn't be here
+	Remove call to gnome_help_display_desktop and
+	replace with a much simpler call to create a new window
+	and show the relevant section of the user guide, making it
+	much quicker to display help->Contents (backport from HEAD)
+
 2006-06-25  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-toc-pager.c: (create_toc_from_index): fix the biggest
@@ -7,6 +20,8 @@
 
 	* src/yelp-toc-pager.c:
 	- Use xmlNewTextChild so ampersands don't screw us up
+
+==================== 2.14.2 ====================
 
 2006-05-29  Brent Smith  <gnome@nextreality.net>
 

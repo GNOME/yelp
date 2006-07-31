@@ -1139,12 +1139,12 @@ process_info_pending (YelpTocPager *pager)
 					       NULL);
 			    xmlNewNsProp (tmp, NULL, BAD_CAST "href", BAD_CAST fname);
 			    
-			    xmlNewChild (tmp, NULL, BAD_CAST "title",
+			    xmlNewTextChild (tmp, NULL, BAD_CAST "title",
 					 BAD_CAST part2);
-			    xmlNewChild (tmp, NULL, BAD_CAST "tooltip",
+			    xmlNewTextChild (tmp, NULL, BAD_CAST "tooltip",
 					 BAD_CAST tooltip);
 			    
-			    xmlNewChild (tmp, NULL, BAD_CAST "description",
+			    xmlNewTextChild (tmp, NULL, BAD_CAST "description",
 					 BAD_CAST desc);
 			}
 		    done:
