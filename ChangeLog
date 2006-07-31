@@ -1,5 +1,11 @@
 2006-07-30  Brent Smith  <gnome@nextreality.net>
 
+	* NEWS:
+	* configure.in:
+	- Version 2.14.3
+
+2006-07-30  Brent Smith  <gnome@nextreality.net>
+
 	* src/yelp-toc-pager.c: (process_info_pending): Fix to properly escape
 	ampersand characters by using xmlNewTextChild, patch from Daniel
 	Drake.  Fixes #343372 (backport from HEAD)

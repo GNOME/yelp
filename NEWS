@@ -1,3 +1,11 @@
+Changes in 2.14.3:
+------------------
+* Don't use gnome_help_display(), instead use internal func (Don Scorgie)
+* Fix to properly escape ampersand characters, fixes 343372 (Daniel Drake)
+* fix big memory leak (use xmlFreeDoc, not xmlFree)         (Brent Smith)
+* Use xmlNewTextChild so ampersands aren't treated as       (Shaun McCance)
+  entities
+
 Changes in 2.14.2:
 ------------------
 * fix the applyto element for the use_caret gconf key        (Brent Smith)
