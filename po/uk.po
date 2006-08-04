@@ -1,125 +1,281 @@
 # Ukrainian translation of Yelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Yuriy Syrota <rasta@renome.rovno.ua>, 2001.
-# Maxim Dzumanenko <mvd@mylinux.ua>, 2004-2006
+# Maxim Dzumanenko <dziumanenko@gmail.com>, 2004-2006
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-03 13:39+0200\n"
-"PO-Revision-Date: 2006-03-03 18:34+0200\n"
-"Last-Translator: Maxim Dzumanenko <mvd@mylinux.ua>\n"
+"POT-Creation-Date: 2006-08-04 09:06+0300\n"
+"PO-Revision-Date: 2006-08-04 18:34+0200\n"
+"Last-Translator: Maxim Dzumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1239
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1838
 msgid "GNU Info Pages"
 msgstr "Сторінки інформації GNU"
 
-#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "Традиційна довідка командного рядка (info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "Програми"
 
 #: ../data/man.xml.in.h:2
+msgid "BLT Functions"
+msgstr "Функції BLT"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "Конфігураційні файли"
 
-#: ../data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Функції Curses"
+
+#: ../data/man.xml.in.h:5
 msgid "Development"
 msgstr "Розробка"
 
-#: ../data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
 msgstr "Функції FORTRAN"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "Ігри"
 
-#: ../data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "Апаратні пристрої"
 
-#: ../data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr "Робота з ядром"
 
-#: ../data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "Бібліотечні функції"
-
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1233
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1832
 msgid "Manual Pages"
 msgstr "Сторінки керівництв"
 
-#: ../data/man.xml.in.h:10
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "Функції мережного сервера звуку (NAS)"
+
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
 msgstr "Програми OpenSSL"
 
-#: ../data/man.xml.in.h:11
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
 msgstr "Налаштовування OpenSSL"
 
-#: ../data/man.xml.in.h:12
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "Функції OpenSSL"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
 msgstr "Огляди OpenSSL"
 
-#: ../data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "Огляди"
 
-#: ../data/man.xml.in.h:14
+#: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
 msgstr "Функції POSIX"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
 msgstr "Заголовки POSIX"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
 msgstr "Функції Perl"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
 msgstr "Функції Qt"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Функції Readline"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "Розділ 0p"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "Розділ 1m"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "Розділ 1ssl"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "Розділ 1x"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "Розділ 2"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "Розділ 3blt"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "Розділ 3f"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "Розділ 3nas"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "Розділ 3p"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "Розділ 3qt"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "Розділ 3readline"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "Розділ 3ssl"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "Розділ 3tiff"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "Розділ 4"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "Розділ 4x"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "Розділ 5"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "Розділ 5ssl"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "Розділ 5x"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "Розділ 6"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "Розділ 6x"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "Розділ 7ssl"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "Розділ 7x"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "Розділ 9"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "Розділи 1, 1p, 1g та 1t"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "Розділи 3, 3o, та 3t"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "Розділи 3form та 3menu"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "Розділи 3ncurses та 3curses"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "Розділи 3pm та 3perl"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "Розділи 3x та 3X11"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "Розділи 7 та 7gcc"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "Розділи 8 та 8l"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "Системне адміністрування"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "Системні виклики"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "Функції System V Form/Menu"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "Функції TIFF"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
 msgstr "Програми Termcap"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "Традиційна довідка командного рядка (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
 msgstr "Програми X11"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "Налаштовування X11"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
 msgstr "Пристрої X11"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
 msgstr "Функції X11"
 
-#: ../data/man.xml.in.h:25
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
 msgstr "Ігри X11"
 
-#: ../data/man.xml.in.h:26
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
 msgstr "Огляди X11"
 
@@ -132,70 +288,126 @@ msgid "Accessories"
 msgstr "Стандартні"
 
 #: ../data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "Адміністрування"
+msgid "Applications for fun"
+msgstr "Програми для розваг"
+
+#: ../data/toc.xml.in.h:4
+msgid "Applications for manipulating or viewing graphics"
+msgstr "Програми для маніпулювання чи перегляду графіки"
 
 #: ../data/toc.xml.in.h:5
-msgid "Desktop"
-msgstr "Стільниця"
+msgid "Applications for word processing and other office tasks"
+msgstr "Програми для обробки тексту та інших офісних завдань"
 
 #: ../data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "Навчальні програми"
+msgid "Applications related to X Windows"
+msgstr "Програми, що відносяться до X Windows"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications related to multimedia"
+msgstr "Програми, що відносяться до мультимедія"
 
 #: ../data/toc.xml.in.h:8
+msgid "Applications related to software development"
+msgstr "Програми, що відносяться до розробки програм"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications related to the internet"
+msgstr "Програми, що відносяться до Інтернет"
+
+#: ../data/toc.xml.in.h:10
+msgid "Applications specific to the panel"
+msgstr "Програми, специфічні до панелі"
+
+#: ../data/toc.xml.in.h:11
+msgid "Applications that support assistive technologies"
+msgstr "Програми, що підтримують допоміжні технології"
+
+#: ../data/toc.xml.in.h:12
+msgid "Desktop"
+msgstr "Робочий стіл"
+
+#: ../data/toc.xml.in.h:13
+msgid "Documents specific to the KDE Desktop Environment"
+msgstr "Документи, специфічні для середовища KDE"
+
+#: ../data/toc.xml.in.h:14
+msgid "Education"
+msgstr "Освіта"
+
+#: ../data/toc.xml.in.h:16
 msgid "Graphics"
 msgstr "Графіка"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
-msgid "Help Topics"
-msgstr "Теми довідки"
-
-#: ../data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:17
 msgid "Internet"
 msgstr "Інтернет"
 
-#: ../data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:18
 msgid "KDE"
 msgstr "KDE"
 
-#: ../data/toc.xml.in.h:12
-msgid "Multimedia"
-msgstr "Мультимедія"
+#: ../data/toc.xml.in.h:19
+msgid "Learning applications"
+msgstr "Навчальні програми"
 
-#: ../data/toc.xml.in.h:13
+#: ../data/toc.xml.in.h:20
+msgid "Miscellaneous documents"
+msgstr "Різні документи"
+
+#: ../data/toc.xml.in.h:21
 msgid "Office"
 msgstr "Офіс"
 
-#: ../data/toc.xml.in.h:14
-msgid "Other"
-msgstr "Інші"
+#: ../data/toc.xml.in.h:22
+msgid "Other Applications"
+msgstr "Інші програми"
 
-#: ../data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
 msgstr "Інша документація"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:24
 msgid "Panel Applets"
 msgstr "Аплети панелі"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Параметри"
-
-#: ../data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:25
 msgid "Programming"
 msgstr "Розробка ПЗ"
 
-#: ../data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:26
 msgid "Scientific"
 msgstr "Наукові"
 
-#: ../data/toc.xml.in.h:20
+#: ../data/toc.xml.in.h:27
+msgid "Scientific Applications."
+msgstr "Наукові програми."
+
+#: ../data/toc.xml.in.h:28
+msgid "Sound &amp; Video"
+msgstr "Звук та відео"
+
+#: ../data/toc.xml.in.h:29
 msgid "System Tools"
 msgstr "Системні засоби"
 
-#: ../data/toc.xml.in.h:21
+#: ../data/toc.xml.in.h:30
+msgid "Utilities to manage your computer"
+msgstr "Програми керування комп'ютером"
+
+#: ../data/toc.xml.in.h:31
+msgid "Utility applications"
+msgstr "Службові програми"
+
+#: ../data/toc.xml.in.h:32
+msgid "Variety of other applications"
+msgstr "Різноманітні інші програми"
+
+#: ../data/toc.xml.in.h:33
+msgid "Welcome to the GNOME Help Browser"
+msgstr "Ласкаво просимо до довідки GNOME"
+
+#: ../data/toc.xml.in.h:34
 msgid "X Applications"
 msgstr "Програми для системи X"
 
@@ -226,6 +438,10 @@ msgstr "Знайти"
 #: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Відкрити адресу"
+
+#: ../data/ui/yelp.glade.h:8
+msgid "Preferences"
+msgstr "Параметри"
 
 #: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
@@ -308,41 +524,37 @@ msgstr "Використовувати системні шрифти"
 msgid "Use the default fonts set for the system."
 msgstr "Використовувати типовий системний набір шрифтів."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
-msgid "Yelp"
-msgstr "Довідка"
-
-#: ../src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Фабрика програми довідки"
-
-#: ../src/yelp-bookmarks.c:155
+#: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
 msgstr "Відкрити закладку у новому вікні"
 
-#: ../src/yelp-bookmarks.c:159
+#: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
 msgstr "Перейменувати закладку"
 
-#: ../src/yelp-bookmarks.c:163
+#: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
 msgstr "Видалити закладку"
 
-#: ../src/yelp-bookmarks.c:320
+#: ../src/yelp-bookmarks.c:315
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "На цій сторінці вже є закладка з назвою %s."
 
-#: ../src/yelp-bookmarks.c:397
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "На цій сторінці вже є закладка з назвою <b>%s</b>."
 
-#: ../src/yelp-bookmarks.c:425
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "Теми довідки"
+
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
 msgstr "Розділи документу"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
+#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -383,7 +595,7 @@ msgstr "Не вдається обробити запит"
 msgid "No information is available about the error."
 msgstr "Відомості про помилку недоступні."
 
-#: ../src/yelp-info-pager.c:190
+#: ../src/yelp-info-pager.c:188
 #, c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -401,24 +613,24 @@ msgstr ""
 "Не вдається прочитати та розкодувати файл ‘%s’. Можливо, файл стиснений з "
 "використанням невідомого алгоритму."
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:91
+msgid "Use a private session"
+msgstr "Використовувати приватний сеанс"
+
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "Визначити, яку категорію використовувати"
 
-#: ../src/yelp-main.c:133
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "Не вдається активувати довідку: \"%s\""
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:354
+msgid " GNOME Help Browser"
+msgstr "Програма перегляду довідки GNOME"
 
-#: ../src/yelp-main.c:152
-msgid "Could not open new window."
-msgstr "Не вдається відкрити нове вікно."
-
-#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Довідка"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man-pager.c:263
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
@@ -427,76 +639,64 @@ msgstr ""
 "Не вдається розібрати файл ‘%s’.  Або файл не існує, або має неправильний "
 "формат."
 
-#: ../src/yelp-pager.c:122
+#: ../src/yelp-pager.c:116
 msgid "Document Information"
 msgstr "Інформація про документ"
 
-#: ../src/yelp-pager.c:123
+#: ../src/yelp-pager.c:117
 msgid "The YelpDocInfo struct of the document"
 msgstr "Структура YelpDocInfo документа"
 
-#: ../src/yelp-print.c:138
+#: ../src/yelp-print.c:167
 msgid "Preparing to print"
 msgstr "Підготовка до друку"
 
-#: ../src/yelp-print.c:275
-msgid "Pages"
-msgstr "Сторінки"
-
-#: ../src/yelp-print.c:348
-msgid "Generating PDF is not currently supported"
-msgstr "Створення PDF наразі не підтримується"
-
-#: ../src/yelp-print.c:356
+#: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
 msgstr "Друк на цьому принтері не підтримується"
 
-#: ../src/yelp-print.c:359
+#: ../src/yelp-print.c:264
 #, c-format
-msgid ""
-"You were trying to print to a printer using the \"%s\" driver.  This program "
-"requires a PostScript printer driver."
-msgstr ""
-"Ви намагаєтесь надрукувати документ на принтері, що використовує драйвер \"%s"
-"\".цій програмі потрібен драйвер PostScript."
+msgid "Printer %s does not support postscript printing."
+msgstr "Принтер %s не підтримує друк формату postscript."
 
-#: ../src/yelp-print.c:402
-msgid "An error occurred while printing"
-msgstr "Помилка під час друку"
-
-#: ../src/yelp-print.c:406
-msgid "It was not possible to print your document"
-msgstr "Ваш документ було неможливо надрукувати"
-
-#: ../src/yelp-print.c:466
+#: ../src/yelp-print.c:337
 msgid "Printing"
 msgstr "Друк"
 
-#: ../src/yelp-print.c:493
+#: ../src/yelp-print.c:364
 msgid "<b>Printing</b>"
 msgstr "<b>Друк</b>"
 
-#: ../src/yelp-print.c:495
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Очікування друку"
 
-#: ../src/yelp-print.c:559
-msgid "_From:"
-msgstr "_Від:"
+#: ../src/yelp-print.c:578
+msgid "An error occurred while printing"
+msgstr "Помилка під час друку"
 
-#: ../src/yelp-print.c:572
-msgid "Sets the start of the range of pages to be printed"
-msgstr "Початок діапазону сторінок, що друкуються."
+#: ../src/yelp-print.c:582
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "Ваш документ надрукувати неможливо: %s"
 
-#: ../src/yelp-print.c:574
-msgid "_To:"
-msgstr "_До:"
+#. TRANSLATORS:  If you know of a forum in your own language, please
+#. * change this URL to the type required for a search of the site.
+#. * The %s argument is the search terms
+#.
+#: ../src/yelp-search-pager.c:73
+#, c-format
+msgid ""
+"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+msgstr ""
+"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
 
-#: ../src/yelp-print.c:587
-msgid "Sets the end of the range of pages to be printed"
-msgstr "Кінець діапазону сторінок, що друкуються."
+#: ../src/yelp-search-pager.c:75
+msgid "the GNOME Support Forums"
+msgstr "команда підтримки GNOME"
 
-#: ../src/yelp-search-pager.c:676
+#: ../src/yelp-search-pager.c:710
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -505,21 +705,88 @@ msgstr ""
 "Не вдається обробити запит. Файл ‘%s’ або не існує, або не є правильною "
 "таблицею стилів XSLT."
 
-#: ../src/yelp-search-pager.c:778 ../src/yelp-toc-pager.c:1506
-#: ../src/yelp-xslt-pager.c:368
+#: ../src/yelp-search-pager.c:762
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Немає результату для \"%s\""
+
+#: ../src/yelp-search-pager.c:763
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+"Спробуйте використати інші слова для опису вашої проблеми або теми, з якої вам потрібна допомога."
+
+#: ../src/yelp-search-pager.c:766
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "Результат пошуку \"%s\""
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:783
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Повторити пошук онлайн на %s"
+
+#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:2133
+#: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "Відсутній атрибут посилання href у yelp:document"
 
-#: ../src/yelp-search-pager.c:792 ../src/yelp-toc-pager.c:1520
-#: ../src/yelp-xslt-pager.c:384
+#: ../src/yelp-search-pager.c:869 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Недостатньо пам'яті"
 
-#: ../src/yelp-search-pager.c:833 ../src/yelp-toc-pager.c:1570
+#: ../src/yelp-search-pager.c:910 ../src/yelp-toc-pager.c:2195
 msgid "Help Contents"
 msgstr "Зміст довідки"
 
-#: ../src/yelp-search-pager.c:1119 ../src/yelp-toc-pager.c:499
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1236
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr ""
+"та:про:але:і:на:у:в:є:або:з:буде:де:як:їх:мене:те:той:це:що:де:хто:не"
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1252
+msgid "re"
+msgstr "пере"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1261
+msgid "ers:er:ing:es:s:'s"
+msgstr "ий:а:ому:ій:ими:их"
+
+#: ../src/yelp-search-pager.c:1455 ../src/yelp-toc-pager.c:620
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Не вдається завантажити файл у форматі OMF: \"%s\""
@@ -545,38 +812,15 @@ msgstr "Не вдається завантажити файл у форматі 
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:156
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-00AB"
 
-#: ../src/yelp-toc-pager.c:273
+#: ../src/yelp-toc-pager.c:265
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: від'ємна кількість зупинок."
 
-#: ../src/yelp-toc-pager.c:637
-#, c-format
-msgid "Read man page for %s"
-msgstr "Переглянути файл керівництва для %s"
-
-#: ../src/yelp-toc-pager.c:1108
-#, c-format
-msgid "Read info page for %s"
-msgstr "Переглянути файл керівництва для %s"
-
-#: ../src/yelp-toc-pager.c:1206
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-"Не вдається завантажити зміст. Файл ‘%s’ або відсутній, або містить "
-"неправильно XML неправильного формату."
-
-#: ../src/yelp-toc-pager.c:1228
-msgid "Command Line Help"
-msgstr "Параметри командного рядка"
-
-#: ../src/yelp-toc-pager.c:1342
+#: ../src/yelp-toc-pager.c:371 ../src/yelp-toc-pager.c:1946
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -585,178 +829,205 @@ msgstr ""
 "Не вдається обробити зміст. Файл ‘%s’ або не існує, або не є правильною "
 "таблицею стилів XSLT."
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-toc-pager.c:1099
+#, c-format
+msgid "Read man page for %s"
+msgstr "Переглянути файл керівництва для %s"
+
+#: ../src/yelp-toc-pager.c:1692
+#, c-format
+msgid "Read info page for %s"
+msgstr "Переглянути файл керівництва для %s"
+
+#: ../src/yelp-toc-pager.c:1805
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
+"Не вдається завантажити зміст. Файл ‘%s’ або відсутній, або містить "
+"неправильно XML неправильного формату."
+
+#: ../src/yelp-toc-pager.c:1827
+msgid "Command Line Help"
+msgstr "Параметри командного рядка"
+
+#: ../src/yelp-window.c:318
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:319
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:320
 msgid "_Go"
 msgstr "Пере_йти"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:321
 msgid "_Bookmarks"
 msgstr "_Закладки"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:322
 msgid "_Help"
 msgstr "_Довідка"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:325
 msgid "_New Window"
 msgstr "_Створити вікно"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:330
 msgid "Print This Document"
 msgstr "Друкувати цей документ"
 
-#: ../src/yelp-window.c:328
+#: ../src/yelp-window.c:335
 msgid "Print This Page"
 msgstr "Друкувати цю сторінку"
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:340
 msgid "About This Document"
 msgstr "Про цей документ"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:345
 msgid "Open _Location"
 msgstr "Відкрити _адресу"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:350
 msgid "_Close Window"
 msgstr "_Закрити вікно"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:356
 msgid "_Copy"
 msgstr "_Копіювати"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:362
 msgid "_Select All"
 msgstr "Виді_лити все"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:367
 msgid "_Find..."
 msgstr "З_найти..."
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:372
 msgid "Find Pre_vious"
 msgstr "Знайти п_опереднє"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:374
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Знайти попередню відповідність слову чи фразі"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:377
 msgid "Find Ne_xt"
 msgstr "Знайти д_алі"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:379
 msgid "Find next occurrence of the word or phrase"
 msgstr "Знайти наступну відповідність слову чи фразі"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:382
 msgid "_Preferences"
 msgstr "П_араметри"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:387
 msgid "_Reload"
 msgstr "_Перечитати"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:399
 msgid "_Back"
 msgstr "_Назад"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:401
 msgid "Show previous page in history"
 msgstr "Показати попередню сторінку"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:404
 msgid "_Forward"
 msgstr "_Вперед"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:406
 msgid "Show next page in history"
 msgstr "Показати наступну сторінку"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:409
 msgid "_Help Topics"
 msgstr "_Теми довідки"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:411
 msgid "Go to the listing of help topics"
 msgstr "Перейти до переліку тем довідки"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:414
 msgid "_Previous Section"
 msgstr "_Попередня сторінка"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:419
 msgid "_Next Section"
 msgstr "Н_аступний розділ"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
 msgid "_Contents"
 msgstr "_Зміст"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:430
 msgid "_Add Bookmark"
 msgstr "_Додати закладку"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:435
 msgid "_Edit Bookmarks..."
 msgstr "_Правка закладки..."
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:441
 msgid "_Open Link"
 msgstr "_Відкрити посилання"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:446
 msgid "Open Link in _New Window"
 msgstr "Відкрити посилання у _новому вікні"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:451
 msgid "_Copy Link Address"
 msgstr "_Копіювати адресу посилання"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:458
+msgid "Help On this application"
+msgstr "Довідка з цієї програми"
+
+#: ../src/yelp-window.c:461
 msgid "_About"
 msgstr "_Про програму"
 
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:466
 msgid "Copy _Email Address"
 msgstr "_Копіювати адресу пошти"
 
-#: ../src/yelp-window.c:504
+#: ../src/yelp-window.c:515
 msgid "Help Browser"
 msgstr "Програма перегляду довідки"
 
-#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
+#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Посилання (URI) цього документу є неправильною."
 
-#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
+#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "Посилання ‘%s’ неправильне або вказує не недійсний файл."
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
+#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
 msgid "Man pages are not supported in this version."
 msgstr "Ця версія не підтримує перегляд сторінок керівництв (man pages)"
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
 msgid "GNU info pages are not supported in this version"
 msgstr "Ця версія не підтримує перегляд сторінок GNU info"
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
+#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
 msgid "Search is not supported in this version."
 msgstr "Ця версія не підтримує пошук."
 
-#: ../src/yelp-window.c:899
+#: ../src/yelp-window.c:1057
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -764,27 +1035,27 @@ msgstr ""
 "Документи у форматі SGML вже не підтримуються. Зверніться до автора "
 "документа, щоб він перетворив його у XML."
 
-#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1223
 msgid "_Search:"
 msgstr "По_шук:"
 
-#: ../src/yelp-window.c:1026
+#: ../src/yelp-window.c:1224
 msgid "Search for other documentation"
 msgstr "Пошук іншої документації"
 
-#: ../src/yelp-window.c:1175
+#: ../src/yelp-window.c:1386
 msgid "Fin_d:"
 msgstr "З_найти:"
 
-#: ../src/yelp-window.c:1195
+#: ../src/yelp-window.c:1406
 msgid "Find _Next"
 msgstr "Знайти д_алі"
 
-#: ../src/yelp-window.c:1207
+#: ../src/yelp-window.c:1418
 msgid "Find _Previous"
 msgstr "Знайти п_опереднє"
 
-#: ../src/yelp-window.c:1321
+#: ../src/yelp-window.c:1532
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -793,8 +1064,8 @@ msgstr ""
 "Не вдається створити контекст перетворень для файлу ‘%s’. Можливо, формат не "
 "підтримується."
 
-#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
-#: ../src/yelp-window.c:1840
+#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
+#: ../src/yelp-window.c:2064
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -804,7 +1075,7 @@ msgstr ""
 "Розділ ‘%s’ відсутній у цьому документі. Якщо ви попали у цей розділ з "
 "кнопки \"Довідка\" у програмі, повідомте про це розробникам цієї програми."
 
-#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
+#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -813,23 +1084,27 @@ msgstr ""
 "Не вдається прочитати файл ‘%s’. Файл або відсутній, або у вас недостатньо "
 "прав для читання цього файлу."
 
-#: ../src/yelp-window.c:1516
+#: ../src/yelp-window.c:1728
 msgid "Loading..."
 msgstr "Завантаження..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2658
+#: ../src/yelp-window.c:2911
 msgid "translator-credits"
 msgstr ""
 "Юрій Сирота <yuriy@beer.com>\n"
-"Максим Дзюманенко <mvd@mylinux.com.ua>"
+"Максим Дзюманенко <dziumanenko@gmail.com>"
 
-#: ../src/yelp-window.c:2663
+#: ../src/yelp-window.c:2914
+msgid "Yelp"
+msgstr "Довідка"
+
+#: ../src/yelp-window.c:2916
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Програма перегляду документації для середовища GNOME."
 
-#: ../src/yelp-xslt-pager.c:195
+#: ../src/yelp-xslt-pager.c:189
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
@@ -838,7 +1113,7 @@ msgstr ""
 "Не вдається розібрати файл ‘%s’. Файл або не існує, або має неправильний "
 "формат."
 
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
+#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
@@ -850,3 +1125,49 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Отримання довідки у середовищі GNOME"
+
+#~ msgid "Library Functions"
+#~ msgstr "Бібліотечні функції"
+
+#~ msgid "Administration"
+#~ msgstr "Адміністрування"
+
+#~ msgid "Multimedia"
+#~ msgstr "Мультимедія"
+
+#~ msgid "Other"
+#~ msgstr "Інші"
+
+#~ msgid "Yelp Factory"
+#~ msgstr "Фабрика програми довідки"
+
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "Не вдається активувати довідку: \"%s\""
+
+#~ msgid "Could not open new window."
+#~ msgstr "Не вдається відкрити нове вікно."
+
+#~ msgid "Pages"
+#~ msgstr "Сторінки"
+
+#~ msgid "Generating PDF is not currently supported"
+#~ msgstr "Створення PDF наразі не підтримується"
+
+#~ msgid ""
+#~ "You were trying to print to a printer using the \"%s\" driver.  This "
+#~ "program requires a PostScript printer driver."
+#~ msgstr ""
+#~ "Ви намагаєтесь надрукувати документ на принтері, що використовує драйвер "
+#~ "\"%s\".цій програмі потрібен драйвер PostScript."
+
+#~ msgid "_From:"
+#~ msgstr "_Від:"
+
+#~ msgid "Sets the start of the range of pages to be printed"
+#~ msgstr "Початок діапазону сторінок, що друкуються."
+
+#~ msgid "_To:"
+#~ msgstr "_До:"
+
+#~ msgid "Sets the end of the range of pages to be printed"
+#~ msgstr "Кінець діапазону сторінок, що друкуються."
