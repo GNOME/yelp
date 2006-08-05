@@ -1,5 +1,14 @@
 2006-08-05  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-pager.c: 
+	* src/yelp-toc-pager.c: 
+	* src/yelp-window.c: 
+	* src/yelp-search-pager.c: 
+	Various misc. cleanups.
+	- Keep track of idle functions and callbacks
+	- don't use depreciated gtk_idle_add function
+	Based on patch from Christian Persch
+	
 	* src/yelp-main.c: 
 	Initialise dbus threading before gnome-vfs.  Bug #350079
 	

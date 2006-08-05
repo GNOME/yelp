@@ -41,6 +41,7 @@ struct _YelpPagerPriv {
     GError          *error;
 
     GHashTable      *page_hash;
+    guint            process_id;
 };
 
 enum {
@@ -178,6 +179,7 @@ pager_init (YelpPager *pager)
 
     priv->doc_info = NULL;
     priv->state = YELP_PAGER_STATE_NEW;
+    priv->process_id = 0;
 
     priv->error = NULL;
     priv->page_hash =
@@ -194,14 +196,14 @@ pager_set_property (GObject      *object,
 		    GParamSpec   *pspec)
 {
     YelpPager *pager = YELP_PAGER (object);
+    YelpPagerPriv *priv = pager->priv;
 
     switch (prop_id) {
     case PROP_DOCINFO:
-	if (pager->priv->doc_info)
-	    yelp_doc_info_unref (pager->priv->doc_info);
-	pager->priv->doc_info =
-	    (YelpDocInfo *) g_value_get_pointer (value);
-	yelp_doc_info_ref (pager->priv->doc_info);
+	if (priv->doc_info)
+	    yelp_doc_info_unref (priv->doc_info);
+	priv->doc_info = (YelpDocInfo *) g_value_get_pointer (value);
+	yelp_doc_info_ref (priv->doc_info);
 	break;
     default:
 	break;
@@ -229,32 +231,64 @@ static void
 pager_dispose (GObject *object)
 {
     YelpPager *pager = YELP_PAGER (object);
+    YelpPagerPriv *priv = pager->priv;
 
-    if (pager->priv->doc_info)
-	yelp_doc_info_unref (pager->priv->doc_info);
-
-    if (pager->priv->error)
-	g_error_free (pager->priv->error);
-
-    g_hash_table_destroy (pager->priv->page_hash);
+    if (priv->doc_info) {
+	yelp_doc_info_unref (priv->doc_info);
+        priv->doc_info = NULL;
+    }
+    
+    if (priv->error) {
+	g_error_free (priv->error);
+	priv->error = NULL;
+    }
+    
+    if (priv->process_id != 0) {
+	g_source_remove (priv->process_id);
+	priv->process_id = 0;
+    }
+    
+    if (priv->page_hash) {
+	g_hash_table_destroy (priv->page_hash);
+	priv->page_hash = NULL;
+    }
 
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 
 /******************************************************************************/
 
+static gboolean
+process_cb (YelpPager *pager)
+{
+    YelpPagerPriv *priv = pager->priv;
+    YelpPagerClass *klass = YELP_PAGER_GET_CLASS (pager);
+    gboolean retval;
+    
+    retval = klass->process (pager);
+    
+    if (!retval) {
+        priv->process_id = 0;
+    }
+    
+    return retval;
+}
+
 gboolean
 yelp_pager_start (YelpPager *pager)
 {
+    YelpPagerPriv *priv;
+
     g_return_val_if_fail (pager != NULL, FALSE);
     g_return_val_if_fail (YELP_IS_PAGER (pager), FALSE);
-    g_return_val_if_fail (pager->priv->state == YELP_PAGER_STATE_NEW ||
-			  pager->priv->state == YELP_PAGER_STATE_INVALID,
+
+    priv = pager->priv;
+    g_return_val_if_fail (priv->state == YELP_PAGER_STATE_NEW ||
+			  priv->state == YELP_PAGER_STATE_INVALID,
 			  FALSE);
 
-    pager->priv->state = YELP_PAGER_STATE_STARTED;
-    gtk_idle_add ((GtkFunction) (YELP_PAGER_GET_CLASS (pager)->process),
-		  pager);
+    priv->state = YELP_PAGER_STATE_STARTED;
+    priv->process_id = gtk_idle_add ((GSourceFunc) process_cb, pager);
 
     return TRUE;
 }
@@ -262,10 +296,18 @@ yelp_pager_start (YelpPager *pager)
 void
 yelp_pager_cancel (YelpPager *pager)
 {
+    YelpPagerPriv *priv;
+
     g_return_if_fail (pager != NULL);
     g_return_if_fail (YELP_IS_PAGER (pager));
+    priv = pager->priv;
 
     debug_print (DB_FUNCTION, "entering\n");
+
+    if (priv->process_id != 0) {
+	g_source_remove (priv->process_id);
+	priv->process_id = 0;
+    }
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
 

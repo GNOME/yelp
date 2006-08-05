@@ -1869,7 +1869,7 @@ window_handle_page (YelpWindow   *window,
     yelp_html_set_base_uri (priv->html_view, uri);
     yelp_html_open_stream (priv->html_view, "application/xhtml+xml");
 
-    priv->idle_write = gtk_idle_add ((GtkFunction) idle_write, context);
+    priv->idle_write = g_idle_add ((GtkFunction) idle_write, context);
 
     /*
     if (gnome_vfs_uri_get_fragment_identifier (uri->uri)) {
@@ -1932,7 +1932,7 @@ window_disconnect (YelpWindow *window)
 	}
     }
     if (priv && priv->idle_write) {
-	gtk_idle_remove (priv->idle_write);
+	g_source_remove (priv->idle_write);
 	priv->idle_write = 0;
     }
 }
@@ -3207,7 +3207,7 @@ idle_write (IdleWriterContext *context)
     default:
 	g_assert_not_reached ();
     }
-
+    priv->idle_write = 0;
     return FALSE;
 }
 

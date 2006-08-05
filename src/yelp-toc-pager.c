@@ -101,6 +101,8 @@ struct _YelpTocPagerPriv {
 
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr transformContext;
+    
+    guint process_id;
 };
 
 static void          toc_pager_class_init      (YelpTocPagerClass *klass);
@@ -209,6 +211,7 @@ toc_pager_init (YelpTocPager *pager)
     priv->cancel       = 0;
     priv->pause_count  = 0;
     priv->pending_func = NULL;
+    priv->process_id   = 0;
 }
 
 static void
@@ -247,7 +250,7 @@ yelp_toc_pager_pause (YelpTocPager *pager)
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  pause_count = %i\n", pager->priv->pause_count + 1);
 
-    pager->priv->pause_count = pager->priv->pause_count + 1;
+    pager->priv->pause_count ++;
 
     debug_print (DB_FUNCTION, "exiting\n");
 }
@@ -260,16 +263,18 @@ yelp_toc_pager_unpause (YelpTocPager *pager)
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  pause_count = %i\n", pager->priv->pause_count - 1);
 
-    pager->priv->pause_count = pager->priv->pause_count - 1;
+    pager->priv->pause_count--;
     if (pager->priv->pause_count < 0) {
 	g_warning (_("YelpTocPager: Pause count is negative."));
 	pager->priv->pause_count = 0;
     }
 
-    if (pager->priv->pause_count < 1) {
-	gtk_idle_add_priority (G_PRIORITY_LOW,
-			       (GtkFunction) toc_process_pending,
-			       pager);
+    if (pager->priv->pause_count < 1 &&
+	pager->priv->process_id == 0) {
+	pager->priv->process_id = 
+	    gtk_idle_add_priority (G_PRIORITY_LOW,
+				   (GtkFunction) toc_process_pending,
+				   pager);
     }
     
     debug_print (DB_FUNCTION, "exiting\n");
@@ -318,9 +323,12 @@ toc_pager_process (YelpPager *pager)
 
     priv->pending_func = (ProcessFunction) process_read_menu;
 
-    gtk_idle_add_priority (G_PRIORITY_LOW,
-			   (GtkFunction) toc_process_pending,
-			   pager);
+    if (priv->process_id == 0) {
+	priv->process_id = 
+	    gtk_idle_add_priority (G_PRIORITY_LOW,
+				   (GtkFunction) toc_process_pending,
+				   pager);
+    }
     return FALSE;
 }
 
@@ -468,6 +476,7 @@ toc_process_pending (YelpTocPager *pager)
 
     if (priv->cancel || !priv->pending_func) {
 	/* FIXME: clean stuff up. */
+	priv->process_id = 0;
 	return FALSE;
     }
 
@@ -483,8 +492,10 @@ toc_process_pending (YelpTocPager *pager)
 
     if ((priv->pending_func != NULL) && (priv->pause_count < 1))
 	return TRUE;
-    else
+    else {
+	priv->process_id = 0;
 	return FALSE;
+    }
 }
 
 /** process_read_scrollkeeper *************************************************/

@@ -88,6 +88,11 @@ struct _YelpSearchPagerPriv {
     GPtrArray *hits;
     int   snippet_request_count;
     GSList * pending_searches;
+
+    guint search_process_id;
+    guint slow_search_setup_process_id;
+    guint slow_search_process_id;
+    guint xslt_process_id;
 };
 
 enum {
@@ -261,11 +266,39 @@ search_pager_init (YelpSearchPager *pager)
     priv->search_terms          = NULL;
     priv->hits                  = NULL;
     priv->snippet_request_count = 0;
+    priv->search_process_id = 0;
+    priv->slow_search_setup_process_id = 0;
+    priv->slow_search_process_id = 0;
+    priv->xslt_process_id = 0;
+
 }
 
 static void
 search_pager_dispose (GObject *object)
-{
+{     
+    YelpSearchPager *pager = YELP_SEARCH_PAGER (object);
+    YelpSearchPagerPriv *priv = pager->priv;
+ 
+    if (priv->search_process_id != 0) {
+        g_source_remove (priv->search_process_id);
+	priv->search_process_id = 0;
+    }
+
+    if (priv->xslt_process_id != 0) {
+        g_source_remove (priv->xslt_process_id);
+	priv->xslt_process_id = 0;
+    }
+
+    if (priv->slow_search_process_id != 0) {
+        g_source_remove (priv->slow_search_process_id);
+	priv->slow_search_process_id = 0;
+    }
+ 
+    if (priv->slow_search_setup_process_id != 0) {
+       g_source_remove (priv->slow_search_setup_process_id);
+	priv->slow_search_setup_process_id = 0;
+    }
+
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
 
@@ -368,6 +401,10 @@ search_pager_cancel (YelpPager *pager)
 static void
 search_pager_finish (YelpPager   *pager)
 {
+    YelpSearchPager *spager = YELP_SEARCH_PAGER (pager);
+    YelpSearchPagerPriv *priv = spager->priv;
+
+    g_return_if_fail (priv->search_process_id == 0);
     debug_print (DB_FUNCTION, "entering\n");
     yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
 }
@@ -375,6 +412,7 @@ search_pager_finish (YelpPager   *pager)
 gboolean
 search_pager_process (YelpPager *pager)
 {
+    YelpSearchPagerPriv *priv = (YELP_SEARCH_PAGER (pager))->priv;
     debug_print (DB_FUNCTION, "entering\n");
 
     yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
@@ -384,9 +422,10 @@ search_pager_process (YelpPager *pager)
     yelp_pager_set_state (pager, YELP_PAGER_STATE_RUNNING);
     g_signal_emit_by_name (pager, "start");
 
-    gtk_idle_add_priority (G_PRIORITY_LOW,
-			   (GtkFunction) search_pager_process_idle,
-			   pager);
+    priv->search_process_id = 
+	g_idle_add_full (G_PRIORITY_LOW,
+			 (GSourceFunc) search_pager_process_idle,
+			 pager, NULL);
     return FALSE;
 }
 
@@ -410,10 +449,14 @@ search_pager_get_sections (YelpPager *pager)
 static void
 check_finished (YelpSearchPager *pager)
 {
-    if (pager->priv->snippet_request_count == 0) {
-	gtk_idle_add_priority (G_PRIORITY_LOW,
-			       (GtkFunction) process_xslt,
-			       pager);
+    YelpSearchPagerPriv *priv = pager->priv;
+
+    if (priv->snippet_request_count == 0 &&
+        priv->xslt_process_id == 0) {
+	priv->xslt_process_id = 
+	    g_idle_add_full (G_PRIORITY_LOW,
+			     (GSourceFunc) process_xslt,
+			     pager, NULL);
     }
 }
 
@@ -674,12 +717,18 @@ search_pager_process_idle (YelpSearchPager *pager)
 #ifdef ENABLE_BEAGLE
     if (beagle_client == NULL) {
 #endif
-	gtk_idle_add ((GtkFunction) slow_search_setup,
-		      pager);
+	g_return_val_if_fail (priv->slow_search_setup_process_id == 0, FALSE);
+
+	priv->slow_search_setup_process_id = 
+	    g_idle_add ((GSourceFunc) slow_search_setup,
+		        pager);
 #ifdef ENABLE_BEAGLE
     }
 #endif
 
+    /* returning false removes this idle function from the main loop; 
+     * we also set our search process id to zero */
+    priv->search_process_id = 0; 
     return FALSE;
 }
 
@@ -819,6 +868,11 @@ process_xslt (YelpSearchPager *pager)
     }
 
     g_signal_emit_by_name (pager, "finish");
+    
+    /* returning false removes this idle function from the main loop; 
+     * we also set our xslt process id to zero to indicate it has been
+     * removed */
+    priv->xslt_process_id = 0; 
     return FALSE;
 }
 
@@ -1380,6 +1434,7 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
 static gboolean
 slow_search_setup (YelpSearchPager *pager)
 {
+    YelpSearchPagerPriv *priv = pager->priv;
     gchar  *content_list;
     gchar  *stderr_str;
     gchar  *lang;
@@ -1561,11 +1616,17 @@ slow_search_setup (YelpSearchPager *pager)
 
     }
 
-    gtk_idle_add ((GtkFunction) slow_search_process,
-		  pager);
+    g_return_val_if_fail (priv->slow_search_process_id == 0, FALSE);
+    priv->slow_search_process_id =
+        g_idle_add ((GSourceFunc) slow_search_process, pager);
+
     if (parser)
 	xmlFreeParserCtxt (parser);
 
+    /* returning false removes this idle function from the main loop; 
+     * we also set our slow search _setup_ process id to zero to 
+     * indicate it has been removed */
+    priv->slow_search_setup_process_id = 0;
     return FALSE;
 
 }
@@ -1596,6 +1657,7 @@ search_free_container (SearchContainer *c)
 static gboolean 
 slow_search_process (YelpSearchPager *pager)
 {
+    YelpSearchPagerPriv *priv = pager->priv;
     SearchContainer *c;
     GSList *first = pager->priv->pending_searches;
     gint i, j=0;
@@ -1604,9 +1666,12 @@ slow_search_process (YelpSearchPager *pager)
 	g_slist_remove_link (pager->priv->pending_searches, first);
 
     if (first == NULL) {
-	gtk_idle_add_priority (G_PRIORITY_LOW,
-			       (GtkFunction) process_xslt,
-			       pager);
+	g_return_val_if_fail (priv->xslt_process_id == 0, FALSE);
+	priv->xslt_process_id = 
+	    gtk_idle_add_priority (G_PRIORITY_LOW,
+				   (GtkFunction) process_xslt,
+				   pager);
+	priv->slow_search_process_id = 0;
 	return FALSE;
     }
 
@@ -1649,9 +1714,17 @@ slow_search_process (YelpSearchPager *pager)
 #endif
 	search_free_container (c);
 
-	gtk_idle_add_priority (G_PRIORITY_LOW,
-			       (GtkFunction) process_xslt,
-			       pager);
+	g_return_val_if_fail (priv->xslt_process_id == 0, FALSE);
+
+	priv->xslt_process_id =
+	    g_idle_add_full (G_PRIORITY_LOW,
+			     (GSourceFunc) process_xslt,
+			     pager, NULL);
+	
+	/* returning false removes this idle function from the main loop; 
+     	 * we also set our slow search process id to zero to 
+     	 * indicate it has been removed */
+    	priv->slow_search_process_id = 0;
 	return FALSE;
     }
 }
