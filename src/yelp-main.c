@@ -362,6 +362,8 @@ main (int argc, char **argv)
 				      GNOME_PROGRAM_STANDARD_PROPERTIES, 
 				      GNOME_PARAM_GOPTION_CONTEXT, context,
 				      GNOME_PARAM_NONE);
+	dbus_g_thread_init();
+
 	if (!startup_id) {
 		Time tmp;
 		tmp = slowly_and_stupidly_obtain_timestamp (gdk_display);

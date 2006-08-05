@@ -1,3 +1,8 @@
+2006-08-05  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-main.c: 
+	Initialise dbus threading before gnome-vfs.  Bug #350079
+	
 2006-07-25  Shaun McCance  <shaunm@gnome.org>
 
 	* data/toc.xml.in:
