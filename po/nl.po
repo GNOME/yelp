@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-08 01:30+0200\n"
+"POT-Creation-Date: 2006-08-08 10:17+0200\n"
 "PO-Revision-Date: 2006-08-08 01:30+0200\n"
 "Last-Translator: Wouter Bolsterlee <uws+gnome@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -710,22 +710,11 @@ msgstr "Er is een fout opgetreden bij het afdrukken"
 msgid "It was not possible to print your document: %s"
 msgstr "Het bleek niet mogelijk om uw document af te drukken: %s"
 
-#. TRANSLATORS:  If you know of a forum in your own language, please
-#. * change this URL to the type required for a search of the site.
-#. * The %s argument is the search terms
-#.
-#: ../src/yelp-search-pager.c:73
-#, c-format
-msgid ""
-"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-msgstr ""
-"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-
-#: ../src/yelp-search-pager.c:75
+#: ../src/yelp-search-pager.c:71
 msgid "the GNOME Support Forums"
 msgstr "De GNOME support-forums"
 
-#: ../src/yelp-search-pager.c:759
+#: ../src/yelp-search-pager.c:755
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -735,12 +724,12 @@ msgstr ""
 "of het is geen geldige XSLT stylesheet."
 
 # zoekresultaten/resultaten op/Niets gevonden op
-#: ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-pager.c:807
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Geen resultaten op ‘%s’"
 
-#: ../src/yelp-search-pager.c:812
+#: ../src/yelp-search-pager.c:808
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -749,7 +738,7 @@ msgstr ""
 "bij zoekt."
 
 # op/voor
-#: ../src/yelp-search-pager.c:815
+#: ../src/yelp-search-pager.c:811
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Zoekresultaten voor ‘%s’"
@@ -759,22 +748,22 @@ msgstr "Zoekresultaten voor ‘%s’"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:832
+#: ../src/yelp-search-pager.c:828
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "De zoekopdracht online herhalen op %s"
 
-#: ../src/yelp-search-pager.c:909 ../src/yelp-toc-pager.c:2144
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "Geen href attribuut gevonden op yelp:document"
 
-#: ../src/yelp-search-pager.c:923 ../src/yelp-toc-pager.c:2157
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: ../src/yelp-search-pager.c:964 ../src/yelp-toc-pager.c:2206
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
 msgid "Help Contents"
 msgstr "Hulp-inhoudsopgave"
 
@@ -786,7 +775,7 @@ msgstr "Hulp-inhoudsopgave"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1290
+#: ../src/yelp-search-pager.c:1286
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -804,7 +793,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1306
+#: ../src/yelp-search-pager.c:1302
 msgid "re"
 msgstr "her:ont:on:ge:ver:be"
 
@@ -815,11 +804,11 @@ msgstr "her:ont:on:ge:ver:be"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1315
+#: ../src/yelp-search-pager.c:1311
 msgid "ers:er:ing:es:s:'s"
 msgstr "en:ig:pje:tje:je"
 
-#: ../src/yelp-search-pager.c:1510 ../src/yelp-toc-pager.c:631
+#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Kon het OMF bestand niet laden: '%s'."
@@ -1170,6 +1159,11 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Hulp bij GNOME"
+
+#~ msgid ""
+#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+#~ msgstr ""
+#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
 
 # handleiding-pagina's is te verwarrend en te algemeen.
 #~ msgid "Pages"
