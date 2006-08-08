@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-03 08:23+0200\n"
+"POT-Creation-Date: 2006-08-09 00:29+0200\n"
 "PO-Revision-Date: 2006-08-03 17:25+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1838
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
 msgid "GNU Info Pages"
 msgstr "GNU 信息页"
 
@@ -60,7 +60,7 @@ msgstr "硬件设备"
 msgid "Kernel Routines"
 msgstr "内核例程"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1832
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
 msgid "Manual Pages"
 msgstr "手册页"
 
@@ -620,7 +620,7 @@ msgstr "定义要使用哪个缓存目录"
 msgid " GNOME Help Browser"
 msgstr " GNOME 帮助浏览器"
 
-#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "帮助"
 
@@ -629,13 +629,13 @@ msgstr "帮助"
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr "无法分析文件“%s”。可能文件不存在，或者不是格式不正确。"
+msgstr "无法分析文件“%s”。可能文件不存在，或者格式不正确。"
 
-#: ../src/yelp-pager.c:116
+#: ../src/yelp-pager.c:117
 msgid "Document Information"
 msgstr "文档信息"
 
-#: ../src/yelp-pager.c:117
+#: ../src/yelp-pager.c:118
 msgid "The YelpDocInfo struct of the document"
 msgstr "文档的 YelpDocInfo 结构"
 
@@ -673,40 +673,29 @@ msgstr "打印时发生了错误"
 msgid "It was not possible to print your document: %s"
 msgstr "无法打印您的文档：%s"
 
-#. TRANSLATORS:  If you know of a forum in your own language, please
-#. * change this URL to the type required for a search of the site.
-#. * The %s argument is the search terms
-#.
-#: ../src/yelp-search-pager.c:73
-#, c-format
-msgid ""
-"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-msgstr ""
-"http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-
-#: ../src/yelp-search-pager.c:75
+#: ../src/yelp-search-pager.c:71
 msgid "the GNOME Support Forums"
 msgstr "GNOME 支持论坛"
 
-#: ../src/yelp-search-pager.c:710
+#: ../src/yelp-search-pager.c:755
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
 "not a valid XSLT stylesheet."
 msgstr "您的搜索无法进行。文件“%s”可能已经丢失，或者不是有效的 XSLT 样式表。"
 
-#: ../src/yelp-search-pager.c:762
+#: ../src/yelp-search-pager.c:807
 #, c-format
 msgid "No results for \"%s\""
 msgstr "“%s”没有结果"
 
-#: ../src/yelp-search-pager.c:763
+#: ../src/yelp-search-pager.c:808
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr "请试着使用不同的内容来描述您所遇到的问题，或者您想要获得帮助的主题。"
 
-#: ../src/yelp-search-pager.c:766
+#: ../src/yelp-search-pager.c:811
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "“%s”的搜索结果"
@@ -716,22 +705,22 @@ msgstr "“%s”的搜索结果"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:783
+#: ../src/yelp-search-pager.c:828
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "在 %s 再搜索一次"
 
-#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:2133
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中未发现 href 属性"
 
-#: ../src/yelp-search-pager.c:869 ../src/yelp-toc-pager.c:2146
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "内存不足"
 
-#: ../src/yelp-search-pager.c:910 ../src/yelp-toc-pager.c:2195
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
 msgid "Help Contents"
 msgstr "帮助目录"
 
@@ -743,14 +732,13 @@ msgstr "帮助目录"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1236
+#: ../src/yelp-search-pager.c:1286
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
-msgstr ""
-"的:地:得:怎么:跪:求:大人:达人:帮忙:怎样:个:顶:为什么"
+msgstr "的:地:得:怎么:跪:求:大人:达人:帮忙:怎样:个:顶:为什么"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -760,7 +748,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1252
+#: ../src/yelp-search-pager.c:1302
 msgid "re"
 msgstr "答复:回:回复"
 
@@ -771,14 +759,14 @@ msgstr "答复:回:回复"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1261
+#: ../src/yelp-search-pager.c:1311
 msgid "ers:er:ing:es:s:'s"
 msgstr "啊:阿:哪:吧:呢:么:撒"
 
-#: ../src/yelp-search-pager.c:1455 ../src/yelp-toc-pager.c:620
+#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
 #, c-format
 msgid "Could not load the OMF file '%s'."
-msgstr "无法载入 OMF 文件“%s”。"
+msgstr "无法装入 OMF 文件“%s”。"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -805,35 +793,35 @@ msgstr "无法载入 OMF 文件“%s”。"
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:265
+#: ../src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: 暂停数为负数。"
 
-#: ../src/yelp-toc-pager.c:371 ../src/yelp-toc-pager.c:1946
+#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr "无法处理目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
+msgstr "无法处理目录。文件“%s”可能已经丢失，或者不是有效的 XSLT 样式表。"
 
-#: ../src/yelp-toc-pager.c:1099
+#: ../src/yelp-toc-pager.c:1110
 #, c-format
 msgid "Read man page for %s"
 msgstr "读取 %s 的 man page"
 
-#: ../src/yelp-toc-pager.c:1692
+#: ../src/yelp-toc-pager.c:1703
 #, c-format
 msgid "Read info page for %s"
 msgstr "读取 %s 的 info page"
 
-#: ../src/yelp-toc-pager.c:1805
+#: ../src/yelp-toc-pager.c:1816
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
 msgstr "无法装入目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
 
-#: ../src/yelp-toc-pager.c:1827
+#: ../src/yelp-toc-pager.c:1838
 msgid "Command Line Help"
 msgstr "命令行帮助"
 
@@ -1053,8 +1041,8 @@ msgid ""
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
-"此文档中不存在节“%s”。如果您是从应用程序中的帮助按钮转到此节，请报告给应用程"
-"序的维护者。"
+"此文档中不存在节“%s”。如果您是从应用程序中的帮助按钮转到此节，请向应用程"
+"序的维护者报告。"
 
 #: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
 #, c-format
@@ -1065,7 +1053,7 @@ msgstr "无法读取文件“%s”。文件可能已经损坏，或者您没有�
 
 #: ../src/yelp-window.c:1728
 msgid "Loading..."
-msgstr "正在载入..."
+msgstr "正在装入..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
