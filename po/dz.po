@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.dz\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-18 22:54+0530\n"
-"PO-Revision-Date: 2006-07-18 16:58+0530\n"
+"POT-Creation-Date: 2006-08-10 01:59+0530\n"
+"PO-Revision-Date: 2006-08-09 12:19+0530\n"
 "Last-Translator: Mindu Dorji\n"
 "Language-Team: DZONGKHA <pgeyleg@dit.gov.bt>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Country: BHUTAN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1836
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
 msgid "GNU Info Pages"
 msgstr "ཇི་ཨེན་ཡུ་ བརྡ་དོན་ཤོག་ལེབ།"
 
@@ -62,7 +62,7 @@ msgstr "སྲ་ཆས་ཐབས་འཕྲུལ་ཚུ།"
 msgid "Kernel Routines"
 msgstr "ཀར་ནེལ་ རྒྱུན་ལས་ཚུ།"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1830
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
 msgid "Manual Pages"
 msgstr "ལག་དེབ་ཤོག་ལེབ་ཚུ།"
 
@@ -387,8 +387,8 @@ msgid "Scientific Applications."
 msgstr "ཚད་རིག་གློག་རིམ་ཚུ།"
 
 #: ../data/toc.xml.in.h:28
-msgid "Sound &amp; Vision"
-msgstr "སྒྲ་སྐད་དང་ ཨེ་ཨེམ་པི་ འཆར་སྣང་།"
+msgid "Sound &amp; Video"
+msgstr "སྒྲ་སྐད་དང་ ཨེ་ཨེམ་པི་བི་ཌིའོ།"
 
 #: ../data/toc.xml.in.h:29
 msgid "System Tools"
@@ -628,7 +628,7 @@ msgstr "འདྲ་མཛོད་སྣོད་ཐོ་ ག་དེ་ལ�
 msgid " GNOME Help Browser"
 msgstr "ཇི་ནོམ་གྲོགས་རམ་བརའུ་ཟར།"
 
-#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "གྲོགས་རམ།"
 
@@ -641,76 +641,53 @@ msgstr ""
 "ཡིག་སྣོད་ ‘%s’ དེ་མིང་དཔྱད་འབད་མ་ཚུགས། ཡིག་སྣོད་དེ་མེདཔ་འོང་ནི་དང་ ཡང་ཅིན་ ངེས་བདེན་མེན་པའི་ཐོག་"
 "ལས་ རྩ་སྒྲིག་འབད་འབདཝ་འོང་ནི་མས།"
 
-#: ../src/yelp-pager.c:116
+#: ../src/yelp-pager.c:117
 msgid "Document Information"
 msgstr "ཡིག་ཆའི་བརྡ་དོན།"
 
-#: ../src/yelp-pager.c:117
+#: ../src/yelp-pager.c:118
 msgid "The YelpDocInfo struct of the document"
 msgstr "ཡིག་ཆ་དེ་གི་ ཡེལཔ་ཡིག་ཆའི་ བརྡ་དོན་གཞི་བཀོད།"
 
-#: ../src/yelp-print.c:138
+#: ../src/yelp-print.c:167
 msgid "Preparing to print"
 msgstr "དཔར་བསྐྲུན་གྱི་སྒྲ་སྒྲིག་འབད་དོ།"
 
-#: ../src/yelp-print.c:275
-msgid "Pages"
-msgstr "ཤོག་ལེབ་ཚུ།"
-
-#: ../src/yelp-print.c:348
-msgid "Generating PDF is not currently supported"
-msgstr "པི་ཌི་ཨེཕ་བཟོ་བཏོན་འབད་ནི་ལུ་ ད་ལྟོ་རྒྱབ་སྐྱོར་མིན་འདུག"
-
-#: ../src/yelp-print.c:356
+#: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
 msgstr "དཔར་འཕྲུལ་འདི་གུ་ དཔར་བསྐྲུན་གྱི་རྒྱབ་སྐྱོར་མིན་འདུག"
 
-#: ../src/yelp-print.c:359
+#: ../src/yelp-print.c:264
 #, c-format
-msgid ""
-"You were trying to print to a printer using the \"%s\" driver.  This program "
-"requires a PostScript printer driver."
-msgstr ""
-"ཁྱོད་ཀྱིས་\"%s\"ལགལེན་འཐབ་ཐོག་ལས་ དཔར་བསྐྲུན་འབད་ནིའི་དཔའ་བཅམ་དོ། ལས་རིམ་འདི་གི་དོན་ལུ་ པོསིཊི་སི་"
-"ཀིརིཔ་དཔར་འཕྲུལ་འདྲེན་བྱེད་ཅིག་དགོ"
+msgid "Printer %s does not support postscript printing."
+msgstr "དཔར་འཕྲུལ་%sའདི་གིས་ པོསིཊི་སིཀིརིཔཊི་ དཔར་བསྐྲུན་ལུ་ རྒྱབ་སྐྱོར་མི་འབད་བས།"
 
-#: ../src/yelp-print.c:402
-msgid "An error occurred while printing"
-msgstr "དཔར་བསྐྲུན་སྐབས་ལུ་འཛོལ་བ་ཅིག་བྱུང་ཡི།"
-
-#: ../src/yelp-print.c:406
-msgid "It was not possible to print your document"
-msgstr "ཁྱོད་ཀྱི་ཡིག་ཆ་དེ་ དཔར་བསྐྲུན་འབད་མ་ཚུགས།"
-
-#: ../src/yelp-print.c:466
+#: ../src/yelp-print.c:337
 msgid "Printing"
 msgstr "དཔར་བསྐྲུན་འབད་དོ།"
 
-#: ../src/yelp-print.c:493
+#: ../src/yelp-print.c:364
 msgid "<b>Printing</b>"
 msgstr "<b> དཔར་བསྐྲུན་འབད་དོ་</b>"
 
-#: ../src/yelp-print.c:495
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "དཔར་བསྐྲུན་འབད་ནི་ལུ་བསྒུག་སྟེ་ཡོད།"
 
-#: ../src/yelp-print.c:559
-msgid "_From:"
-msgstr "ལས་:(_F)"
+#: ../src/yelp-print.c:578
+msgid "An error occurred while printing"
+msgstr "དཔར་བསྐྲུན་སྐབས་ལུ་འཛོལ་བ་ཅིག་བྱུང་ཡི།"
 
-#: ../src/yelp-print.c:572
-msgid "Sets the start of the range of pages to be printed"
-msgstr "དཔར་བསྐྲུན་འབད་ནིའི་ཤོག་ལེབ་ཚུ་གི་འགོ་བཙུགས་ཁྱབ་ཚད་ གཞི་སྒྲིག་འབདཝ་ཨིན།"
+#: ../src/yelp-print.c:582
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "ཁྱོད་ཀྱི་ཡིག་ཆ་:%s དེ་ དཔར་བསྐྲུན་འབད་མ་ཚུགས།"
 
-#: ../src/yelp-print.c:574
-msgid "_To:"
-msgstr "ཚུན:(_T)"
+#: ../src/yelp-search-pager.c:71
+msgid "the GNOME Support Forums"
+msgstr "ཇི་ནོམ་ལུ་རྒྱབ་སྐྱོར་འབད་མི་གྲོས་གནས།"
 
-#: ../src/yelp-print.c:587
-msgid "Sets the end of the range of pages to be printed"
-msgstr "དཔར་བསྐྲུན་འབད་ནིའི་ཤོག་ལེབ་ཀྱི་མཇུག་གི་ཁྱབ་ཚད་ གཞི་སྒྲིག་འབདཝ་ཨིན།"
-
-#: ../src/yelp-search-pager.c:684
+#: ../src/yelp-search-pager.c:755
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -719,12 +696,12 @@ msgstr ""
 "ཁྱོད་ཀྱི་འཚོལ་ཞིབ་དེ་ ལས་སྦྱོར་འབད་མ་ཚུགས། ཡིག་སྣོད་ ‘%s’ དེ་ མེདཔ་འོང་ནི་དང་ ཡང་ཅིན་ ནུས་ཅན་གྱི་"
 "ཨེགསི་ཨེསི་ཨེལ་ཊི་ སི་ཊཡེལ་ཤིཊི་ཅིག་ མེནམ་འོང་ནི་མས།"
 
-#: ../src/yelp-search-pager.c:736
+#: ../src/yelp-search-pager.c:807
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\"གི་དོན་ལུ་གྲུབ་འབྲས་མིན་འདུག"
 
-#: ../src/yelp-search-pager.c:737
+#: ../src/yelp-search-pager.c:808
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -732,26 +709,75 @@ msgstr ""
 "ཁྱོད་ལུ་བྱུང་བཞིན་ཡོད་པའི་དཀའ་ངལ་དེ་གི་སྐོར་ལས་ ཡང་ན་ ཁྱོད་ཀྱིས་གྲོགས་རམ་འབད་དགོ་མནོ་མི་དོན་ཚན་གྱི་"
 "སྐོར་ལས་ འགྲེལ་བཤད་བརྐྱབ་ནི་ལུ་ མིང་ཚིག་མ་འདྲཝ་ཚུ་ ལག་ལེན་འཐབ་ཐབས་འབད།"
 
-#: ../src/yelp-search-pager.c:740
+#: ../src/yelp-search-pager.c:811
 #, c-format
 msgid "Search results for \"%s\""
 msgstr " \"%s\"གི་དོན་ལུ་འཚོལ་ཞིབ་གྲུབ་འབྲས།"
 
-#: ../src/yelp-search-pager.c:810 ../src/yelp-toc-pager.c:2130
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:828
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "%s ལུ་ གློག་ཐོག་འཚོལ་ཞིབ་ཡང་བསྐྱར་འབད།"
+
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "ཡེལཔ་:ཡིག་ཆའི་གུ་ ཨེཆ་ཨར་ཨི་ཨེཕ་ ཁྱད་ཆོས་འཚོལ་མ་ཐོབ།"
 
-#: ../src/yelp-search-pager.c:824 ../src/yelp-toc-pager.c:2143
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "དྲན་ཚད་ཀྱིས་བདའ་མ་ཟུནམ།"
 
-#: ../src/yelp-search-pager.c:865 ../src/yelp-toc-pager.c:2192
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
 msgid "Help Contents"
 msgstr "གྲོགས་རམ་ནང་དོན་ཚུ།"
 
-#: ../src/yelp-search-pager.c:1167 ../src/yelp-toc-pager.c:619
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1286
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr "---"
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1302
+msgid "re"
+msgstr "སྟོང་ཆ།"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1311
+msgid "ers:er:ing:es:s:'s"
+msgstr "སྟོང་ཆ།"
+
+#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "ཨོ་ཨེམ་ཨེཕ་ཡིག་སྣོད་ '%s' དེ་ མངོན་གསལ་འབད་མ་ཚུགས།"
@@ -777,15 +803,15 @@ msgstr "ཨོ་ཨེམ་ཨེཕ་ཡིག་སྣོད་ '%s' དེ
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:152
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "ཡེལཔ་-ཆུ་རྟགས་-བོ་ལོཀ་ཀོཊི་- ༢༠༡ སི།"
 
-#: ../src/yelp-toc-pager.c:264
+#: ../src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "ཡེལཔ་ཊོཀ་པེ་ཇར་: ཐེམ་ནིའི་བརྩིས་གྲངས་དེ་ མེད་ཆ་ཨིན་པས།"
 
-#: ../src/yelp-toc-pager.c:370 ../src/yelp-toc-pager.c:1943
+#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -794,17 +820,17 @@ msgstr ""
 "དཀར་ཆག་ཐིག་ཁྲམ་དེ་ ལས་སྦྱོར་འབད་མ་ཚུགས། ཡིག་སྣོད་ ‘%s’ དེ་ མེདཔ་འོང་ནི་དང་ ཡང་ཅིན་ ནུས་མེད་"
 "ཨེགསི་ཨེསི་ཨེལ་ཊི་ སི་ཊ་ཡེལ་ཤིཊི་ཅིག་ མེནམ་འོང་ནི་མས།"
 
-#: ../src/yelp-toc-pager.c:1098
+#: ../src/yelp-toc-pager.c:1110
 #, c-format
 msgid "Read man page for %s"
 msgstr "%s གི་དོན་ལུ་ ལག་ཐོག་་ཤོག་ལེབ་ལྷག"
 
-#: ../src/yelp-toc-pager.c:1690
+#: ../src/yelp-toc-pager.c:1703
 #, c-format
 msgid "Read info page for %s"
 msgstr "%s གི་དོན་ལུ་བརྡ་དོན་ཤོག་ལེབ་ལྷག"
 
-#: ../src/yelp-toc-pager.c:1803
+#: ../src/yelp-toc-pager.c:1816
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
@@ -813,167 +839,167 @@ msgstr ""
 "དཀར་ཆག་ཐིག་ཁྲམ་དེ་ མངོན་གསལ་འབད་མ་ཚུགས། ཡིག་སྣོད་ ‘%s’ དེ་ མེདཔ་འོང་ནི་དང་ ཡང་ཅིན་ ལེགས་"
 "བསྒྲིགས་མ་འབད་བའི་ ཨེགསི་ཨེམ་ཨེལ་འོང་ནི་མས།"
 
-#: ../src/yelp-toc-pager.c:1825
+#: ../src/yelp-toc-pager.c:1838
 msgid "Command Line Help"
 msgstr "བཀོད་ལམ་གྲོགས་རམ།"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:318
 msgid "_File"
 msgstr "ཡིག་སྣོད།(_F)"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:319
 msgid "_Edit"
 msgstr "ཞུན་དག(_E)"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:320
 msgid "_Go"
 msgstr "འགྱོ།(_G)"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:321
 msgid "_Bookmarks"
 msgstr "དེབ་རྟགས།(_B)"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:322
 msgid "_Help"
 msgstr "གྲོགས་རམ།(_H)"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:325
 msgid "_New Window"
 msgstr "སྒོ་སྒྲིག་གསརཔ།(_N)"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:330
 msgid "Print This Document"
 msgstr "ཡིག་ཆ་འདི་དཔར་བསྐྲུན་འབད།"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:335
 msgid "Print This Page"
 msgstr "ཤོག་ལེབ་འདི་དཔར་བསྐྲུན་འབད།"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:340
 msgid "About This Document"
 msgstr "ཡིག་ཆ་འདི་གི་སྐོར།"
 
-#: ../src/yelp-window.c:346
+#: ../src/yelp-window.c:345
 msgid "Open _Location"
 msgstr "གནས་ཁོངས་ཁ་ཕྱེ།(_L)"
 
-#: ../src/yelp-window.c:351
+#: ../src/yelp-window.c:350
 msgid "_Close Window"
 msgstr "སྒོ་སྒྲིག་ཁ་བསྡམས།(_C)"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:356
 msgid "_Copy"
 msgstr "འདྲ་བཤུས།(_C)"
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:362
 msgid "_Select All"
 msgstr "ཆ་མཉམ་སེལ་འཐུ་འབད།(_S)"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:367
 msgid "_Find..."
 msgstr "འཚོལ་...(_F)"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:372
 msgid "Find Pre_vious"
 msgstr "ཧེ་མམ་འཚོལ།(_v)"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:374
 msgid "Find previous occurrence of the word or phrase"
 msgstr "མིང་ཚིག་ ཡང་ན་ ཚིག་ཚན་གྱི་ཧེ་མའི་བྱུང་བ་འཚོལ།"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:377
 msgid "Find Ne_xt"
 msgstr "ཤུལ་མམ་འཚོལ།(_x)"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:379
 msgid "Find next occurrence of the word or phrase"
 msgstr "མིང་ཚིག་ ཡང་ན་ ཚིག་ཚན་གྱི་ཤུལ་མའི་བྱུང་བ་འཚོལ།"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:382
 msgid "_Preferences"
 msgstr "དགའ་གདམ་ཚུ།(_P)"
 
-#: ../src/yelp-window.c:388
+#: ../src/yelp-window.c:387
 msgid "_Reload"
 msgstr "སླར་མངོན་གསལ།(_R)"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:399
 msgid "_Back"
 msgstr "རྒྱབ་བསྐྱོད།(_B)"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:401
 msgid "Show previous page in history"
 msgstr "ལོ་རྒྱུས་ནང་ ཤོག་ལེབ་ཧེ་མམ་སྟོན།"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:404
 msgid "_Forward"
 msgstr "གདོང་བསྐྱོད།(_F)"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:406
 msgid "Show next page in history"
 msgstr "ལོ་རྒྱུས་ནང་ ཤོག་ལེབ་ཤུལ་མམ་སྟོན།"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:409
 msgid "_Help Topics"
 msgstr "གྲོགས་རམ་གནད་དོན་ཚུ།(_H)"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:411
 msgid "Go to the listing of help topics"
 msgstr "གྲོགས་རམ་གནད་དོན་ཚུ་གི་ ཐོ་བཀོད་ལུ་འགྱོ།"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:414
 msgid "_Previous Section"
 msgstr "ཧེ་མའི་དབྱེ་ཚན།(_P)"
 
-#: ../src/yelp-window.c:420
+#: ../src/yelp-window.c:419
 msgid "_Next Section"
 msgstr "ཤུལ་མའི་དབྱེ་ཚན།(_N)"
 
-#: ../src/yelp-window.c:425 ../src/yelp-window.c:457
+#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
 msgid "_Contents"
 msgstr "ནང་དོན་ཚུ།(_C)"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:430
 msgid "_Add Bookmark"
 msgstr "དེབ་རྟགས་ཁ་སྐོང་རྐྱབས།(_A)"
 
-#: ../src/yelp-window.c:436
+#: ../src/yelp-window.c:435
 msgid "_Edit Bookmarks..."
 msgstr "དེབ་རྟགས་ཞུན་དག་རྐྱབས་...(_E)"
 
-#: ../src/yelp-window.c:442
+#: ../src/yelp-window.c:441
 msgid "_Open Link"
 msgstr "འབྲེལ་ལམ་ཁ་ཕྱེ།(_O)"
 
-#: ../src/yelp-window.c:447
+#: ../src/yelp-window.c:446
 msgid "Open Link in _New Window"
 msgstr "སྒོ་སྒྲིག་གསར་པའི་ནང་འབྲེལ་ལམ ཁ་ཕྱེ།(_N)"
 
-#: ../src/yelp-window.c:452
+#: ../src/yelp-window.c:451
 msgid "_Copy Link Address"
 msgstr "འབྲེལ་ལམ་ཁ་བྱང་ འདྲ་བཤུས་རྐྱབས།(_C)"
 
-#: ../src/yelp-window.c:459
+#: ../src/yelp-window.c:458
 msgid "Help On this application"
 msgstr "གློག་རལིམ་འདི་ལུ་གྲོགས་རམ་འབད།"
 
-#: ../src/yelp-window.c:462
+#: ../src/yelp-window.c:461
 msgid "_About"
 msgstr "སྐོར་ལས།(_A)"
 
-#: ../src/yelp-window.c:467
+#: ../src/yelp-window.c:466
 msgid "Copy _Email Address"
 msgstr "གློག་འཕྲིན་ཁ་བྱང་འདྲ་བཤུས་རྐྱབས།(_E)"
 
-#: ../src/yelp-window.c:516
+#: ../src/yelp-window.c:515
 msgid "Help Browser"
 msgstr "གྲོགས་རམ་བརའུ་ཟར།"
 
-#: ../src/yelp-window.c:921 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "ཡིག་སྣོད་དེ་གི་ གཅིག་མཚུངས་ཐོན་ཁུངས་ངོས་འཛིན་པ་དེ་ ནུས་མེད་ཨིན་པས།"
 
-#: ../src/yelp-window.c:933 ../src/yelp-window.c:1072
+#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -982,19 +1008,19 @@ msgstr ""
 "ཡིག་སྣོད་དེ་གི་ གཅིག་མཚུངས་ཐོན་ཁུངས་ངོས་འཛིན་པ་ ‘%s’ དེ་ ནུས་མེད་འོང་ནིའམ་ ཡིག་སྣོད་ངོ་མ་ལུ་ རྩེ་"
 "དཔག་མི་འབདཝ་འོང་ནི་མས།"
 
-#: ../src/yelp-window.c:1021 ../src/yelp-window.c:1501
+#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
 msgid "Man pages are not supported in this version."
 msgstr "ཐོན་རིམ་འདི་ནང་ ལག་ཐོག་ཤོག་ལེབ་ཚུ་ལུ་ རྒྱབ་སྐྱོར་མིན་འདུག"
 
-#: ../src/yelp-window.c:1031 ../src/yelp-window.c:1492
+#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
 msgid "GNU info pages are not supported in this version"
 msgstr "ཐོན་རིམ་འདི་ནང་ ཇི་ཨེན་ཡུ་ བརྡ་དོན་ཤོག་ལེབ་ཚུ་ལུ་ རྒྱབ་སྐྱོར་མིན་འདུག"
 
-#: ../src/yelp-window.c:1047 ../src/yelp-window.c:1514
+#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
 msgid "Search is not supported in this version."
 msgstr "ཐོན་རིམ་འདི་ནང་འཚོལ་ཞིབ་ལུ་ རྒྱབ་སྐྱོར་མིན་འདུག"
 
-#: ../src/yelp-window.c:1052
+#: ../src/yelp-window.c:1057
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -1002,27 +1028,27 @@ msgstr ""
 "ཨེསི་ཇི་ཨེམ་ཨེལ་ ཡིག་ཆ་ཚུ་ལུ་ ད་ལས་ཕར་ རྒྱབ་སྐྱོར་མེད། ཡིག་ཆ་རྩོམ་པ་པོ་ལུ་ ཨེགསི་ཨེམ་ཨེལ་ལུ་ གཞི་བསྒྱུར་"
 "འབད་གནང་ཟེར་སླབ་གནང་།"
 
-#: ../src/yelp-window.c:1218
+#: ../src/yelp-window.c:1223
 msgid "_Search:"
 msgstr "འཚོལ་ཞིབ་:(_S)"
 
-#: ../src/yelp-window.c:1219
+#: ../src/yelp-window.c:1224
 msgid "Search for other documentation"
 msgstr "ཡིག་བཀོད་གཞན་གྱི་དོན་ལུ་འཚོལ་ཞིབ་འབད།"
 
-#: ../src/yelp-window.c:1381
+#: ../src/yelp-window.c:1386
 msgid "Fin_d:"
 msgstr "འཚོལ:(_d)"
 
-#: ../src/yelp-window.c:1401
+#: ../src/yelp-window.c:1406
 msgid "Find _Next"
 msgstr "ཤུལ་མམ་འཚོལ།(_N)"
 
-#: ../src/yelp-window.c:1413
+#: ../src/yelp-window.c:1418
 msgid "Find _Previous"
 msgstr "ཧེ་མམ་འཚོལ།(_P)"
 
-#: ../src/yelp-window.c:1527
+#: ../src/yelp-window.c:1532
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -1031,8 +1057,8 @@ msgstr ""
 "ཡིག་སྣོད་ ‘%s’ གི་དོན་ལས་ བཟོ་བསྒྱུར་སྐབས་དོན་ གསར་བསྐྲུན་འབད་མ་ཚུགས། རྩ་སྒྲིག་དེ་ལུ་ རྒྱབ་སྐྱོར་མེདཔ་"
 "འོང་ནི་མས།"
 
-#: ../src/yelp-window.c:1557 ../src/yelp-window.c:1976
-#: ../src/yelp-window.c:2059
+#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
+#: ../src/yelp-window.c:2064
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -1042,7 +1068,7 @@ msgstr ""
 "དབྱེ་ཚན་ ‘%s’ དེ་ ཡིག་ཆ་འདི་ནང་མིན་འདུག ཁྱོད་ཀྱིས་གློག་རིམ་ཅིག་ནང་གི་ གྲོགས་རམ་ཨེབ་རྟ་ཅིག་ནང་ལས་ "
 "དབྱེ་ཚན་འདི་ནང་གཏང་པ་ཅིན་ འདི་གི་སྐོར་ལས་ གློག་རིམ་དེ་གི་ རྒྱུན་སྐྱོང་པ་ཚུ་ལུ་ སྙན་ཞུ་འབད་གནང་།"
 
-#: ../src/yelp-window.c:1672 ../src/yelp-window.c:2463
+#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1051,32 +1077,23 @@ msgstr ""
 "ཡིག་སྣོད་ %s’ དེ་ལྷག་མ་ཚུགས། ཡིག་སྣོད་དེ་ བརླག་སྟོར་ཤོར་བའམ་ ཡང་ཅིན་ ཁྱོད་ལུ་འདི་ལྷག་ནིའི་ གནང་བ་"
 "མེདཔ་འོང་ནི་མས།"
 
-#: ../src/yelp-window.c:1723
+#: ../src/yelp-window.c:1728
 msgid "Loading..."
 msgstr "མངོན་གསལ་འབད་དོ།"
 
-#: ../src/yelp-window.c:2895
-#, c-format
-msgid ""
-"Could not display help for Yelp.\n"
-"%s"
-msgstr ""
-"ཡེལཔ་གི་དོན་ལུ་གྲོགས་རམ་བཀྲམ་སྟོནའ་བད་མ་ཚུགས།\n"
-"%s"
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2926
+#: ../src/yelp-window.c:2911
 msgid "translator-credits"
 msgstr ""
 "ཨའི་ཌི་ཨར་སི་གི་མ་དངུལ་རྒྱབ་སྐྱོར་ཐོག་ལས་ བརྡ་དོན་འཕྲུལ་རིག་ལས་ཁུངས་ནང་ སྐད་བསྒྱུར་འབད་ཡི། ཁ་གསལ་གྱི་"
 "དོན་ལུ་ འབྲེལ་བ་འཐབ་ས་: <pema_geyleg@druknet.bt>/<pgeyleg@dit.gov.bt>"
 
-#: ../src/yelp-window.c:2929
+#: ../src/yelp-window.c:2914
 msgid "Yelp"
 msgstr "ཡེལཔ།"
 
-#: ../src/yelp-window.c:2931
+#: ../src/yelp-window.c:2916
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "ཇི་ནོམ་ ཌེཀསི་ཊོཔ་གི་དོན་ལུ་ ཡིག་བཀོད་བརའུ་ཟར་དང་ མཐོང་བྱེད།"
 
@@ -1101,6 +1118,43 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "ཇི་ནོམ་ལས་ གྲོགས་རམ་ལེན།"
+
+#~ msgid ""
+#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+#~ msgstr ""
+#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+
+#~ msgid "Pages"
+#~ msgstr "ཤོག་ལེབ་ཚུ།"
+
+#~ msgid "Generating PDF is not currently supported"
+#~ msgstr "པི་ཌི་ཨེཕ་བཟོ་བཏོན་འབད་ནི་ལུ་ ད་ལྟོ་རྒྱབ་སྐྱོར་མིན་འདུག"
+
+#~ msgid ""
+#~ "You were trying to print to a printer using the \"%s\" driver.  This "
+#~ "program requires a PostScript printer driver."
+#~ msgstr ""
+#~ "ཁྱོད་ཀྱིས་\"%s\"ལགལེན་འཐབ་ཐོག་ལས་ དཔར་བསྐྲུན་འབད་ནིའི་དཔའ་བཅམ་དོ། ལས་རིམ་འདི་གི་དོན་ལུ་ "
+#~ "པོསིཊི་སི་ཀིརིཔ་དཔར་འཕྲུལ་འདྲེན་བྱེད་ཅིག་དགོ"
+
+#~ msgid "_From:"
+#~ msgstr "ལས་:(_F)"
+
+#~ msgid "Sets the start of the range of pages to be printed"
+#~ msgstr "དཔར་བསྐྲུན་འབད་ནིའི་ཤོག་ལེབ་ཚུ་གི་འགོ་བཙུགས་ཁྱབ་ཚད་ གཞི་སྒྲིག་འབདཝ་ཨིན།"
+
+#~ msgid "_To:"
+#~ msgstr "ཚུན:(_T)"
+
+#~ msgid "Sets the end of the range of pages to be printed"
+#~ msgstr "དཔར་བསྐྲུན་འབད་ནིའི་ཤོག་ལེབ་ཀྱི་མཇུག་གི་ཁྱབ་ཚད་ གཞི་སྒྲིག་འབདཝ་ཨིན།"
+
+#~ msgid ""
+#~ "Could not display help for Yelp.\n"
+#~ "%s"
+#~ msgstr ""
+#~ "ཡེལཔ་གི་དོན་ལུ་གྲོགས་རམ་བཀྲམ་སྟོནའ་བད་མ་ཚུགས།\n"
+#~ "%s"
 
 #~ msgid "Library Functions"
 #~ msgstr "དཔེ་མཛོད་ཀྱི་ལས་འགན་ཚུ།"
