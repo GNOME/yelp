@@ -985,6 +985,14 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
       }
       /* If we got to here, we now gotta parse the note reference */
 
+      if (*current_real[0] == '_') {
+	/* Special type of note that isn't really a note, but pretends
+	 * it is
+	 */
+	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
+			 BAD_CAST g_strconcat ("*Note", *current_real, NULL));
+	continue;
+      }
       append = strchr (*current_real, ':');
       if (!append) {
 	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
@@ -1105,7 +1113,10 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	gchar *frag;
 
 	tmp1 = strchr (url, ':');
-	frag = g_strndup (url, tmp1 - url);
+	if (!tmp1)
+	  frag = g_strdup (url);
+	else 
+	  frag = g_strndup (url, tmp1 - url);
 	g_strstrip (frag);
 	gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, &frag);
 	href = g_strconcat ("#", frag, NULL);

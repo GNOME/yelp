@@ -1,3 +1,10 @@
+2006-08-10  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-info-parser.c: 
+	Fix stupid crash on CVS info file caused by
+	fake *Notes, trying to trick yelp into making 
+	them hyperlinks when they shouldn't be
+	
 ==================== 2.15.91 ====================
 2006-08-07  Don Scorgie  <dscorgie@cvs.gnome.org>
 
