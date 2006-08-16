@@ -1870,7 +1870,7 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	gchar *title = NULL;
 	/*gint i;*/
 
-	if (line == NULL || line[0] == NULL)
+	if (line == NULL || line[0] == NULL || line[1] == NULL)
 	    continue;
 
 	title = g_strdup (g_strstrip (line[0]));
