@@ -96,14 +96,16 @@ yelp_io_channel_new_file (gchar    *file,
 	yelp_io_free (iochannel);
 	channel = (YelpIOChannel *) g_io_channel_new_file (file, "r", error);
 
-	if (error)
-	    g_set_error (error, YELP_ERROR, YELP_ERROR_IO,
-			 _("The file ‘%s’ could not be read and decoded. "
-			   "The file may be compressed in an unsupported "
-			   "format."),
-			 file);
-	return NULL;
-
+	if (!channel) {
+	    if (error) {
+		    g_set_error (error, YELP_ERROR, YELP_ERROR_IO,
+				 _("The file ‘%s’ could not be read and decoded. "
+				   "The file may be compressed in an unsupported "
+				   "format."),
+				 file);
+	    }
+	    return NULL;
+	}
     }
 
     iochannel->is_readable  = TRUE;

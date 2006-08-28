@@ -106,20 +106,12 @@ static char
 	debug_print (DB_DEBUG, "!! Opening %s...\n", file);
 	
 	channel = yelp_io_channel_new_file (file, &error);
-	/* TODO: Actually handle the errors sanely.  Don't crash */
 	if (!channel) {
-	  g_error ("Error opening file %s: %s\n", file, error->message);
-	  g_error_free (error);
-	  error = NULL;
-	  exit (655);
+	  return NULL;
 	}
 	result = g_io_channel_read_to_end (channel, &str, &len, &error);
-	/* TODO: Ditto above */
 	if (result != G_IO_STATUS_NORMAL) {
-	  g_error ("Error reading file: %s\n", error->message);
-	  g_error_free (error);
-	  error = NULL;
-	  exit (666);
+	  return NULL;
 	}
 	g_io_channel_shutdown (channel, FALSE, NULL);
 	g_io_channel_unref (channel);
@@ -191,7 +183,9 @@ static char
 		{
 		  filename = find_info_part (items[0], file);
 		  str = open_info_file (filename);
-		  
+		  if (!str) {
+		  	return NULL;
+		  }
 			pages = g_strsplit (str, "", 2);
 			g_free (str);
 
@@ -559,6 +553,9 @@ GtkTreeStore
 	TagTableFix *ttf;
 	
 	str = open_info_file (file);
+	if (!str) {
+		return NULL;
+	}	
 	page_list = g_strsplit (str, "\n", 0);
 
 	g_free (str);
@@ -602,6 +599,9 @@ GtkTreeStore
 		  debug_print (DB_DEBUG, "Have the indirect mapping table\n");
 			chained_info = TRUE;
 			str = process_indirect_map (*ptr, file);
+			if (!str) {
+				return NULL;
+			}
 		}
 	}
 
