@@ -76,7 +76,8 @@ yelp_io_channel_new_file (gchar    *file,
     YelpIOChannel *channel;
     GIOChannel    *iochannel;
 
-    g_return_val_if_fail (file != NULL, NULL);
+    if (!file)
+    	return NULL;
 
     channel = g_new0(YelpIOChannel, 1);
     iochannel = (GIOChannel *) channel;

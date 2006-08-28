@@ -1,5 +1,9 @@
 2006-08-28  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-io-channel.c:
+	Supress critical warning when it isn't actually 
+	critical
+
 	* src/yelp-info-parser.c:
 	* src/yelp-io-channel.c:
 	Don't fall over when part of the info file
