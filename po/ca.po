@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.9.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-10 02:04+0200\n"
-"PO-Revision-Date: 2006-08-10 02:27+0200\n"
+"POT-Creation-Date: 2006-08-30 18:27+0200\n"
+"PO-Revision-Date: 2006-08-26 12:43+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -605,7 +605,7 @@ msgstr ""
 "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és una "
 "pàgina d'informació correctament formatada."
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-io-channel.c:103
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -684,7 +684,7 @@ msgstr "No s'ha pogut imprimir el vostre document: %s"
 
 #: ../src/yelp-search-pager.c:71
 msgid "the GNOME Support Forums"
-msgstr ""
+msgstr "els fòrums de suport al GNOME"
 
 #: ../src/yelp-search-pager.c:755
 #, c-format
@@ -721,7 +721,7 @@ msgstr "Resultats de la cerca «%s»"
 #: ../src/yelp-search-pager.c:828
 #, c-format
 msgid "Repeat the search online at %s"
-msgstr ""
+msgstr "Repeteix la cerca en línia a %s"
 
 #: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
 #: ../src/yelp-xslt-pager.c:364
@@ -752,6 +752,9 @@ msgid ""
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
 msgstr ""
+"a:això:allò:amb:aquest:aquesta:cap:com:de:del:dels:el:els:en:es:fer:fes:ha:"
+"han:has:i:la:les:na:no:o:on:per:quan:què:qui:sa:si:sí:tenir:un:una:unes:uns:"
+"va"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -763,8 +766,9 @@ msgstr ""
 #.
 #: ../src/yelp-search-pager.c:1302
 msgid "re"
-msgstr ""
+msgstr "a:anti:bi:ex:in:pre:pro:re:sub"
 
+# FIXME
 #. Translators: This is a list of (guess what?) common suffixes
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
@@ -774,7 +778,7 @@ msgstr ""
 #.
 #: ../src/yelp-search-pager.c:1311
 msgid "ers:er:ing:es:s:'s"
-msgstr ""
+msgstr "NULL"
 
 #: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
 #, c-format
