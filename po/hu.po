@@ -1,26 +1,26 @@
 # Hungarian translation of yelp.
 # Copyright (C) 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
+#
 # Szabolcs Ban <shooby@gnome.hu>, 2002.
 # Emese Kovacs <emese@gnome.hu>, 2002.
 # Andras Timar <timar@gnome.hu>, 2002, 2003, 2004.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006.
 # Mate ORY <orymate at gmail d0t com>, 2006.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-15 12:38+0200\n"
-"PO-Revision-Date: 2006-02-02 15:09+0100\n"
-"Last-Translator: Mate ORY <orymate at gmail d0t com>\n"
-"Language-Team: Hungarian <gnome@fsf.hu>\n"
+"POT-Creation-Date: 2006-08-26 12:39+0200\n"
+"PO-Revision-Date: 2006-08-29 00:15+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
+"Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:   nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
 msgid "GNU Info Pages"
@@ -28,25 +28,23 @@ msgstr "GNU Info oldalak"
 
 #: ../data/info.xml.in.h:2
 msgid "Traditional command line help (info)"
-msgstr ""
+msgstr "Hagyományos parancssori súgó (info)"
 
 #: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "Alkalmazások"
 
 #: ../data/man.xml.in.h:2
-#, fuzzy
 msgid "BLT Functions"
-msgstr "Qt függvények"
+msgstr "BLT függvények"
 
 #: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "Konfigurációs fájlok"
 
 #: ../data/man.xml.in.h:4
-#, fuzzy
 msgid "Curses Functions"
-msgstr "Perl függvények"
+msgstr "Curses függvények"
 
 #: ../data/man.xml.in.h:5
 msgid "Development"
@@ -74,7 +72,7 @@ msgstr "Kézikönyvoldalak"
 
 #: ../data/man.xml.in.h:11
 msgid "Network Audio Sound Functions"
-msgstr ""
+msgstr "Hálózati hang (NAS) függvények"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
@@ -85,9 +83,8 @@ msgid "OpenSSL Configuration"
 msgstr "OpenSSL beállítása"
 
 #: ../data/man.xml.in.h:14
-#, fuzzy
 msgid "OpenSSL Functions"
-msgstr "OpenSSL alkalmazások"
+msgstr "OpenSSL függvények"
 
 #: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
@@ -114,148 +111,132 @@ msgid "Qt Functions"
 msgstr "Qt függvények"
 
 #: ../data/man.xml.in.h:21
-#, fuzzy
 msgid "Readline Functions"
-msgstr "Perl függvények"
+msgstr "Readline függvények"
 
 #: ../data/man.xml.in.h:22
-#, fuzzy
 msgid "Section 0p"
-msgstr "_Következő szakasz"
+msgstr "0p szakasz"
 
 #: ../data/man.xml.in.h:23
-#, fuzzy
 msgid "Section 1m"
-msgstr "_Következő szakasz"
+msgstr "1m szakasz"
 
 #: ../data/man.xml.in.h:24
 msgid "Section 1ssl"
-msgstr ""
+msgstr "1ssl szakasz"
 
 #: ../data/man.xml.in.h:25
-#, fuzzy
 msgid "Section 1x"
-msgstr "_Következő szakasz"
+msgstr "1x szakasz"
 
 #: ../data/man.xml.in.h:26
-#, fuzzy
 msgid "Section 2"
-msgstr "_Következő szakasz"
+msgstr "2. szakasz"
 
 #: ../data/man.xml.in.h:27
 msgid "Section 3blt"
-msgstr ""
+msgstr "3blt szakasz"
 
 #: ../data/man.xml.in.h:28
-#, fuzzy
 msgid "Section 3f"
-msgstr "_Következő szakasz"
+msgstr "3f szakasz"
 
 #: ../data/man.xml.in.h:29
 msgid "Section 3nas"
-msgstr ""
+msgstr "3nas szakasz"
 
 #: ../data/man.xml.in.h:30
-#, fuzzy
 msgid "Section 3p"
-msgstr "_Következő szakasz"
+msgstr "3p szakasz"
 
 #: ../data/man.xml.in.h:31
 msgid "Section 3qt"
-msgstr ""
+msgstr "3qt szakasz"
 
 #: ../data/man.xml.in.h:32
 msgid "Section 3readline"
-msgstr ""
+msgstr "3readline szakasz"
 
 #: ../data/man.xml.in.h:33
 msgid "Section 3ssl"
-msgstr ""
+msgstr "3ssl szakasz"
 
 #: ../data/man.xml.in.h:34
-#, fuzzy
 msgid "Section 3tiff"
-msgstr "Tudományos"
+msgstr "3tiff szakasz"
 
 #: ../data/man.xml.in.h:35
-#, fuzzy
 msgid "Section 4"
-msgstr "_Következő szakasz"
+msgstr "4. szakasz"
 
 #: ../data/man.xml.in.h:36
-#, fuzzy
 msgid "Section 4x"
-msgstr "_Következő szakasz"
+msgstr "4x szakasz"
 
 #: ../data/man.xml.in.h:37
-#, fuzzy
 msgid "Section 5"
-msgstr "_Következő szakasz"
+msgstr "5. szakasz"
 
 #: ../data/man.xml.in.h:38
 msgid "Section 5ssl"
-msgstr ""
+msgstr "5ssl szakasz"
 
 #: ../data/man.xml.in.h:39
-#, fuzzy
 msgid "Section 5x"
-msgstr "_Következő szakasz"
+msgstr "5x. szakasz"
 
 #: ../data/man.xml.in.h:40
-#, fuzzy
 msgid "Section 6"
-msgstr "_Következő szakasz"
+msgstr "6. szakasz"
 
 #: ../data/man.xml.in.h:41
-#, fuzzy
 msgid "Section 6x"
-msgstr "_Következő szakasz"
+msgstr "6x szakasz"
 
 #: ../data/man.xml.in.h:42
 msgid "Section 7ssl"
-msgstr ""
+msgstr "7ssl szakasz"
 
 #: ../data/man.xml.in.h:43
-#, fuzzy
 msgid "Section 7x"
-msgstr "_Következő szakasz"
+msgstr "7x szakasz"
 
 #: ../data/man.xml.in.h:44
-#, fuzzy
 msgid "Section 9"
-msgstr "_Következő szakasz"
+msgstr "9. szakasz"
 
 #: ../data/man.xml.in.h:45
 msgid "Sections 1, 1p, 1g and 1t"
-msgstr ""
+msgstr "1., 1p, 1g és 1t szakaszok"
 
 #: ../data/man.xml.in.h:46
 msgid "Sections 3, 3o, and 3t"
-msgstr ""
+msgstr "3., 3o, és 3t szakaszok"
 
 #: ../data/man.xml.in.h:47
 msgid "Sections 3form and 3menu"
-msgstr ""
+msgstr "3form és 3menu szakaszok"
 
 #: ../data/man.xml.in.h:48
 msgid "Sections 3ncurses and 3curses"
-msgstr ""
+msgstr "3ncurses és 3curses szakaszok"
 
 #: ../data/man.xml.in.h:49
 msgid "Sections 3pm and 3perl"
-msgstr ""
+msgstr "3pm és 3perl szakaszok"
 
 #: ../data/man.xml.in.h:50
 msgid "Sections 3x and 3X11"
-msgstr ""
+msgstr "3x és 3X11 szakaszok"
 
 #: ../data/man.xml.in.h:51
 msgid "Sections 7 and 7gcc"
-msgstr ""
+msgstr "7 és 7gcc szakaszok"
 
 #: ../data/man.xml.in.h:52
 msgid "Sections 8 and 8l"
-msgstr ""
+msgstr "8. és 8l szakaszok"
 
 #: ../data/man.xml.in.h:53
 msgid "System Administration"
@@ -267,12 +248,11 @@ msgstr "Rendszerhívások"
 
 #: ../data/man.xml.in.h:55
 msgid "System V Form/Menu Functions"
-msgstr ""
+msgstr "System V űrlap/menü függvények"
 
 #: ../data/man.xml.in.h:56
-#, fuzzy
 msgid "TIFF Functions"
-msgstr "Qt függvények"
+msgstr "TIFF függvények"
 
 #: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
@@ -280,7 +260,7 @@ msgstr "Termcap alkalmazások"
 
 #: ../data/man.xml.in.h:58
 msgid "Traditional command line help (man)"
-msgstr ""
+msgstr "Hagyományos parancssori súgó (man)"
 
 #: ../data/man.xml.in.h:59
 msgid "X11 Applications"
@@ -315,41 +295,40 @@ msgid "Accessories"
 msgstr "Kellékek"
 
 #: ../data/toc.xml.in.h:3
-#, fuzzy
 msgid "Applications for fun"
-msgstr "Alkalmazások"
+msgstr "Szórakoztató alkalmazások"
 
 #: ../data/toc.xml.in.h:4
 msgid "Applications for manipulating or viewing graphics"
-msgstr ""
+msgstr "Grafikamegjelenítő vagy -kezelő alkalmazások"
 
 #: ../data/toc.xml.in.h:5
 msgid "Applications for word processing and other office tasks"
-msgstr ""
+msgstr "Alkalmazások szövegszerkesztésre és egyéb irodai feladatokra"
 
 #: ../data/toc.xml.in.h:6
 msgid "Applications related to X Windows"
-msgstr ""
+msgstr "Az X grafikus felülettel kapcsolatos alkalmazások"
 
 #: ../data/toc.xml.in.h:7
 msgid "Applications related to multimedia"
-msgstr ""
+msgstr "Multimédiával kapcsolatos alkalmazások"
 
 #: ../data/toc.xml.in.h:8
 msgid "Applications related to software development"
-msgstr ""
+msgstr "Szoftverfejlesztéssel kapcsolatos alkalmazások"
 
 #: ../data/toc.xml.in.h:9
 msgid "Applications related to the internet"
-msgstr ""
+msgstr "Az internettel kapcsolatos alkalmazások"
 
 #: ../data/toc.xml.in.h:10
 msgid "Applications specific to the panel"
-msgstr ""
+msgstr "A panelra jellemző alkalmazások"
 
 #: ../data/toc.xml.in.h:11
 msgid "Applications that support assistive technologies"
-msgstr ""
+msgstr "Akadálymentesítési technológiákat támogató alkalmazások"
 
 #: ../data/toc.xml.in.h:12
 msgid "Desktop"
@@ -357,12 +336,11 @@ msgstr "Munkaasztal"
 
 #: ../data/toc.xml.in.h:13
 msgid "Documents specific to the KDE Desktop Environment"
-msgstr ""
+msgstr "A KDE asztali környezetre jellemző alkalmazások"
 
 #: ../data/toc.xml.in.h:14
-#, fuzzy
 msgid "Education"
-msgstr "He_ly:"
+msgstr "Oktatás"
 
 #: ../data/toc.xml.in.h:16
 msgid "Graphics"
@@ -377,22 +355,20 @@ msgid "KDE"
 msgstr "KDE"
 
 #: ../data/toc.xml.in.h:19
-#, fuzzy
 msgid "Learning applications"
 msgstr "Oktatóprogramok"
 
 #: ../data/toc.xml.in.h:20
 msgid "Miscellaneous documents"
-msgstr ""
+msgstr "Egyéb dokumentumok"
 
 #: ../data/toc.xml.in.h:21
 msgid "Office"
 msgstr "Iroda"
 
 #: ../data/toc.xml.in.h:22
-#, fuzzy
 msgid "Other Applications"
-msgstr "X-alkalmazások"
+msgstr "Egyéb alkalmazások"
 
 #: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
@@ -411,13 +387,12 @@ msgid "Scientific"
 msgstr "Tudományos"
 
 #: ../data/toc.xml.in.h:27
-#, fuzzy
 msgid "Scientific Applications."
-msgstr "Oktatóprogramok"
+msgstr "Tudományos alkalmazások"
 
 #: ../data/toc.xml.in.h:28
 msgid "Sound &amp; Video"
-msgstr ""
+msgstr "Hang és videó"
 
 #: ../data/toc.xml.in.h:29
 msgid "System Tools"
@@ -425,20 +400,19 @@ msgstr "Rendszereszközök"
 
 #: ../data/toc.xml.in.h:30
 msgid "Utilities to manage your computer"
-msgstr ""
+msgstr "Segédprogramok a számítógép kezelésére"
 
 #: ../data/toc.xml.in.h:31
-#, fuzzy
 msgid "Utility applications"
-msgstr "X-alkalmazások"
+msgstr "Segédprogramok"
 
 #: ../data/toc.xml.in.h:32
 msgid "Variety of other applications"
-msgstr ""
+msgstr "Változatos egyéb alkalmazások"
 
 #: ../data/toc.xml.in.h:33
 msgid "Welcome to the GNOME Help Browser"
-msgstr ""
+msgstr "Üdvözli a GNOME súgóböngésző"
 
 #: ../data/toc.xml.in.h:34
 msgid "X Applications"
@@ -649,7 +623,7 @@ msgstr ""
 
 #: ../src/yelp-main.c:91
 msgid "Use a private session"
-msgstr ""
+msgstr "Saját munkamenet használata"
 
 #: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
@@ -657,9 +631,8 @@ msgstr "A gyorsítótár könyvtárának megadása"
 
 #. Commandline parsing is done here
 #: ../src/yelp-main.c:354
-#, fuzzy
 msgid " GNOME Help Browser"
-msgstr "Súgóböngésző"
+msgstr " GNOME súgóböngésző"
 
 #: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
 msgid "Help"
@@ -691,9 +664,9 @@ msgid "Printing is not supported on this printer"
 msgstr "A nyomtatás nem támogatott ezen a nyomtatón"
 
 #: ../src/yelp-print.c:264
-#, fuzzy, c-format
+#, c-format
 msgid "Printer %s does not support postscript printing."
-msgstr "A nyomtatás nem támogatott ezen a nyomtatón"
+msgstr "A(z) %s nyomtató nem támogatja a postscript nyomtatást."
 
 #: ../src/yelp-print.c:337
 msgid "Printing"
@@ -712,13 +685,13 @@ msgid "An error occurred while printing"
 msgstr "Hiba történt a nyomtatás közben"
 
 #: ../src/yelp-print.c:582
-#, fuzzy, c-format
+#, c-format
 msgid "It was not possible to print your document: %s"
-msgstr "Nem volt lehetséges a dokumentum nyomtatása"
+msgstr "Nem volt lehetséges a dokumentum nyomtatása: %s"
 
 #: ../src/yelp-search-pager.c:71
 msgid "the GNOME Support Forums"
-msgstr ""
+msgstr "a GNOME támogató fórumok"
 
 #: ../src/yelp-search-pager.c:755
 #, c-format
@@ -732,18 +705,18 @@ msgstr ""
 #: ../src/yelp-search-pager.c:807
 #, c-format
 msgid "No results for \"%s\""
-msgstr ""
+msgstr "Nincs találat a következőre: \"%s\""
 
 #: ../src/yelp-search-pager.c:808
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
-msgstr ""
+msgstr "Próbálja más szavakkal leírni a problémát, vagy a témakört, amelyhez segítséget vár."
 
 #: ../src/yelp-search-pager.c:811
 #, c-format
 msgid "Search results for \"%s\""
-msgstr ""
+msgstr "Eredmények a következőre: \"%s\""
 
 #. TRANSLATORS: Please don't do anything funny with the
 #. * format arguement.  It isn't really going through a printf
@@ -753,7 +726,7 @@ msgstr ""
 #: ../src/yelp-search-pager.c:828
 #, c-format
 msgid "Repeat the search online at %s"
-msgstr ""
+msgstr "A keresés megismétlése online a következő címen: %s"
 
 #: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
 #: ../src/yelp-xslt-pager.c:364
@@ -777,13 +750,14 @@ msgstr "Súgó tartalomjegyzéke"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
+#fixme: még ilyet
 #: ../src/yelp-search-pager.c:1286
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
-msgstr ""
+msgstr "a:az:azt:annak:ahhoz:ez:ezt:ennek:ehhez:mit:lehet:mivel:hogyan:hogy:minek:nem:ne:miért:ide:oda"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -793,9 +767,10 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
+# fixme: van ilyen?
 #: ../src/yelp-search-pager.c:1302
 msgid "re"
-msgstr ""
+msgstr "NULL"
 
 #. Translators: This is a list of (guess what?) common suffixes
 #. * to words.  Things that may be put at ends of words to slightly
@@ -804,9 +779,10 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
+# fixme: még ilyet
 #: ../src/yelp-search-pager.c:1311
 msgid "ers:er:ing:es:s:'s"
-msgstr ""
+msgstr "a:e:i:k:ok"
 
 #: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
 #, c-format
@@ -1012,7 +988,7 @@ msgstr "Hivatkozás cí_mének másolása"
 
 #: ../src/yelp-window.c:458
 msgid "Help On this application"
-msgstr ""
+msgstr "Az alkalmazás súgója"
 
 #: ../src/yelp-window.c:461
 msgid "_About"
@@ -1035,8 +1011,7 @@ msgstr "A fájlhoz tartozó URI érvénytelen."
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
-"A fájlhoz tartozó \"%s\" URI érvénytelen vagy nem egy jelenlegi fájlra mutat."
+msgstr "A fájlhoz tartozó \"%s\" URI érvénytelen vagy nem egy jelenlegi fájlra mutat."
 
 #: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
 msgid "Man pages are not supported in this version."
@@ -1153,53 +1128,3 @@ msgstr ""
 msgid "Get help with GNOME"
 msgstr "A GNOME súgója"
 
-#~ msgid "Library Functions"
-#~ msgstr "Programkönyvtári függvények"
-
-#~ msgid "Administration"
-#~ msgstr "Rendszeradminisztráció"
-
-#~ msgid "Multimedia"
-#~ msgstr "Multimédia"
-
-#~ msgid "Other"
-#~ msgstr "Egyéb"
-
-#~ msgid "Yelp Factory"
-#~ msgstr "Yelp Factory"
-
-#~ msgid "Could not activate Yelp: '%s'"
-#~ msgstr "A Yelp nem aktiválható: \"%s\""
-
-#~ msgid "Could not open new window."
-#~ msgstr "Nem nyitható új ablak."
-
-#~ msgid "Pages"
-#~ msgstr "Oldal"
-
-#~ msgid "Generating PDF is not currently supported"
-#~ msgstr "A PDF előállítása jelenleg nem támogatott"
-
-#~ msgid ""
-#~ "You were trying to print to a printer using the \"%s\" driver.  This "
-#~ "program requires a PostScript printer driver."
-#~ msgstr ""
-#~ "A(z) \"%s\" illesztőprogram használatával próbált nyomtatni. Ez a program "
-#~ "PostScript nyomtatóillesztőt igényel."
-
-#~ msgid "_From:"
-#~ msgstr "_Ettől:"
-
-#~ msgid "Sets the start of the range of pages to be printed"
-#~ msgstr "Beállítja a nyomtatási tartomány kezdőoldalát"
-
-#~ msgid "_To:"
-#~ msgstr "E_ddig:"
-
-#~ msgid "Sets the end of the range of pages to be printed"
-#~ msgstr "Beállítja a nyomtatási tartomány utolsó oldalát"
-
-#~ msgid ""
-#~ "Your search could not be processed. There is no connection to the beagle "
-#~ "daemon."
-#~ msgstr "A keresés nem dolgozható fel. Nincs kapcsolat a beagle démonnal."
