@@ -66,7 +66,7 @@ typedef struct _SearchContainer SearchContainer;
 
 #define YELP_SEARCH_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SEARCH_PAGER, YelpSearchPagerPriv))
 
-#define ONLINE_URL "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+#define ONLINE_URL "http://api.gnome.org/yelp/forums?query=%s"
 
 #define ONLINE_NAME N_("the GNOME Support Forums")
 
