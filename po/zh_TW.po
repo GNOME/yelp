@@ -7,123 +7,280 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.15.3\n"
+"Project-Id-Version: yelp 2.16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-09 13:46+0800\n"
-"PO-Revision-Date: 2006-07-04 17:46+0800\n"
+"POT-Creation-Date: 2006-08-28 18:34+0200\n"
+"PO-Revision-Date: 2006-08-14 15:26+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) <zh-l10n@linux.org.tw>\n"
+"Language-Team: Chinese (Taiwan) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1709
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
 msgid "GNU Info Pages"
 msgstr "GNU Info Pages"
 
-#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "傳統命令列說明 (info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "應用程式"
 
 #: ../data/man.xml.in.h:2
+msgid "BLT Functions"
+msgstr "BLT 函式"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "設定檔案"
 
-#: ../data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Curses 函式"
+
+#: ../data/man.xml.in.h:5
 msgid "Development"
 msgstr "開發"
 
-#: ../data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
 msgstr "FORTRAN 函式"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "遊戲"
 
-#: ../data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "硬體裝置"
 
-#: ../data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr "核心"
 
-#: ../data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "函式庫"
-
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1703
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
 msgid "Manual Pages"
 msgstr "手冊"
 
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "網路音效函式"
+
 # (Abel) utilities 會好點，因為那些都是 OpenSSL 附帶的程式
-#: ../data/man.xml.in.h:10
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
 msgstr "OpenSSL 應用程式"
 
-#: ../data/man.xml.in.h:11
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
 msgstr "OpenSSL 設定"
 
-#: ../data/man.xml.in.h:12
+# (Abel) utilities 會好點，因為那些都是 OpenSSL 附帶的程式
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "OpenSSL 函式"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
 msgstr "OpenSSL 概覽"
 
-#: ../data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "概覽"
 
-#: ../data/man.xml.in.h:14
+#: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
 msgstr "POSIX 函式"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
 msgstr "POSIX 標頭"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
 msgstr "Perl 函式"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
 msgstr "Qt 函式"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Readline 函式"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "第 0p 節"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "第 1m 節"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "第 1ssl 節"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "第 1x 節"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "第 2 節"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "第 3blt 節"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "第 3f 節"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "第 3nas 節"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "第 3p 節"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "第 3qt 節"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "第 3readline 節"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "第 3ssl 節"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "第 3tiff 節"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "第 4 節"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "第 4x 節"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "第 5 節"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "第 5ssl 節"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "第 5x 節"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "第 6 節"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "第 6x 節"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "第 7ssl 節"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "第 7x 節"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "第 9 節"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "第 1，1p，1g 及 1t 節"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "第 3，3o，及 3t 節"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "第 3form 及 3menu 節"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "第 3ncurses 及 3curses 節"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "第 3pm 及 3perl 節"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "第 3x 及 3X11 節"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "第 7 及 7gcc 節"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "第 8 及 8I 節"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "系統管理"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "系統函式"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "SystemV 表單/選單函式"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "TIFF 函式"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
 msgstr "Termcap 應用程式"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "傳統命令列說明 (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
 msgstr "X11 應用程式"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "X11 設定"
 
 # (Abel) 這裡指 MGA, i810, wacom 等等 X 支援的硬體
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
 msgstr "X11 硬體裝置"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
 msgstr "X11 函式"
 
-#: ../data/man.xml.in.h:25
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
 msgstr "X11 遊戲"
 
-#: ../data/man.xml.in.h:26
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
 msgstr "X11 概覽"
 
@@ -136,71 +293,126 @@ msgid "Accessories"
 msgstr "附屬應用程式"
 
 #: ../data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "系統管理"
+msgid "Applications for fun"
+msgstr "休閒程式"
+
+#: ../data/toc.xml.in.h:4
+msgid "Applications for manipulating or viewing graphics"
+msgstr "圖像處理及顯示程式"
 
 #: ../data/toc.xml.in.h:5
+msgid "Applications for word processing and other office tasks"
+msgstr "文字處理及辦公程式"
+
+#: ../data/toc.xml.in.h:6
+msgid "Applications related to X Windows"
+msgstr "X Windows 相關的程式"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications related to multimedia"
+msgstr "多媒體相關的程式"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to software development"
+msgstr "軟體開發相關程式"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications related to the internet"
+msgstr "網際網路相關的程式"
+
+#: ../data/toc.xml.in.h:10
+msgid "Applications specific to the panel"
+msgstr "專為面板的使用程式"
+
+#: ../data/toc.xml.in.h:11
+msgid "Applications that support assistive technologies"
+msgstr "支援協助技術的程式"
+
+#: ../data/toc.xml.in.h:12
 msgid "Desktop"
 msgstr "桌面"
 
-#: ../data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "教育程式"
+#: ../data/toc.xml.in.h:13
+msgid "Documents specific to the KDE Desktop Environment"
+msgstr "專為 KDE 桌面環境編寫的文件"
 
-#: ../data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:14
+msgid "Education"
+msgstr "教育"
+
+#: ../data/toc.xml.in.h:16
 msgid "Graphics"
 msgstr "美工繪圖"
 
-# (Abel) 介面最初的標題; 這裡如果直譯會不切題
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:405
-msgid "Help Topics"
-msgstr "說明文件分類"
-
-#: ../data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:17
 msgid "Internet"
 msgstr "網際網路"
 
-#: ../data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:18
 msgid "KDE"
 msgstr "KDE"
 
-#: ../data/toc.xml.in.h:12
+#: ../data/toc.xml.in.h:19
+msgid "Learning applications"
+msgstr "學習程式"
+
+#: ../data/toc.xml.in.h:20
+msgid "Miscellaneous documents"
+msgstr "其它文件"
+
+#: ../data/toc.xml.in.h:21
 msgid "Office"
 msgstr "辦公軟體"
 
-#: ../data/toc.xml.in.h:13
-msgid "Other"
-msgstr "其它"
+#: ../data/toc.xml.in.h:22
+msgid "Other Applications"
+msgstr "其它程式"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
 msgstr "其它文件"
 
-#: ../data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:24
 msgid "Panel Applets"
 msgstr "面板程式"
 
-#: ../data/toc.xml.in.h:16 ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "偏好設定"
-
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:25
 msgid "Programming"
 msgstr "程式開發"
 
-#: ../data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:26
 msgid "Scientific"
 msgstr "科學"
 
-#: ../data/toc.xml.in.h:19
-msgid "Sound &amp; Vision"
-msgstr "聲音及視覺"
+#: ../data/toc.xml.in.h:27
+msgid "Scientific Applications."
+msgstr "科學程式。"
 
-#: ../data/toc.xml.in.h:20
+#: ../data/toc.xml.in.h:28
+msgid "Sound &amp; Video"
+msgstr "聲音及視訊"
+
+#: ../data/toc.xml.in.h:29
 msgid "System Tools"
 msgstr "系統工具"
 
-#: ../data/toc.xml.in.h:21
+#: ../data/toc.xml.in.h:30
+msgid "Utilities to manage your computer"
+msgstr "管理電腦的工具程式"
+
+#: ../data/toc.xml.in.h:31
+msgid "Utility applications"
+msgstr "工具程式"
+
+#: ../data/toc.xml.in.h:32
+msgid "Variety of other applications"
+msgstr "多種不同程式"
+
+#: ../data/toc.xml.in.h:33
+msgid "Welcome to the GNOME Help Browser"
+msgstr "歡迎使用 GNOME 說明文件瀏覽程式"
+
+#: ../data/toc.xml.in.h:34
 msgid "X Applications"
 msgstr "X 應用程式"
 
@@ -231,6 +443,10 @@ msgstr "尋找"
 #: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "開啟位置"
+
+#: ../data/ui/yelp.glade.h:8
+msgid "Preferences"
+msgstr "偏好設定"
 
 #: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
@@ -334,6 +550,11 @@ msgstr "本頁的書籤已經存在，它的標題是 %s。"
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "本頁的書籤已經存在，它的標題是 <b>%s</b>。"
 
+# (Abel) 介面最初的標題; 這裡如果直譯會不切題
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "說明文件分類"
+
 #: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
 msgstr "文件章節"
@@ -395,7 +616,7 @@ msgstr "無法解碼和讀取‘%s’檔案，它可能被壓縮成為一種不�
 
 #: ../src/yelp-main.c:91
 msgid "Use a private session"
-msgstr ""
+msgstr "使用獨立作業階段"
 
 #: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
@@ -406,7 +627,7 @@ msgstr "指定使用哪個目錄作為快取目錄"
 msgid " GNOME Help Browser"
 msgstr " GNOME 說明文件瀏覽程式"
 
-#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "說明"
 
@@ -417,76 +638,53 @@ msgid ""
 "formatted incorrectly."
 msgstr "無法解析‘%s’檔案的內容，可能檔案不存在，或是它的格式不正確。"
 
-#: ../src/yelp-pager.c:116
+#: ../src/yelp-pager.c:117
 msgid "Document Information"
 msgstr "文件資訊"
 
-#: ../src/yelp-pager.c:117
+#: ../src/yelp-pager.c:118
 msgid "The YelpDocInfo struct of the document"
 msgstr "文件中的 YelpDocInfo 結構"
 
-#: ../src/yelp-print.c:138
+#: ../src/yelp-print.c:167
 msgid "Preparing to print"
 msgstr "準備列印"
 
-#: ../src/yelp-print.c:275
-msgid "Pages"
-msgstr "頁"
-
-#: ../src/yelp-print.c:348
-msgid "Generating PDF is not currently supported"
-msgstr "目前不支援建立 PDF 文件"
-
-#: ../src/yelp-print.c:356
+#: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
 msgstr "這印表機不支援列印"
 
-#: ../src/yelp-print.c:359
+#: ../src/yelp-print.c:264
 #, c-format
-msgid ""
-"You were trying to print to a printer using the \"%s\" driver.  This program "
-"requires a PostScript printer driver."
-msgstr ""
-"您嘗試以使用“%s”驅動程式的印表機列印。此程式需要有一個 PostScript 的印表機驅"
-"動程式。"
+msgid "Printer %s does not support postscript printing."
+msgstr "印表機 %s 不支援 postscript 列印。"
 
-#: ../src/yelp-print.c:402
-msgid "An error occurred while printing"
-msgstr "列印時發生錯誤"
-
-#: ../src/yelp-print.c:406
-msgid "It was not possible to print your document"
-msgstr "您的文件不能列印"
-
-#: ../src/yelp-print.c:466
+#: ../src/yelp-print.c:337
 msgid "Printing"
 msgstr "列印"
 
-#: ../src/yelp-print.c:493
+#: ../src/yelp-print.c:364
 msgid "<b>Printing</b>"
 msgstr "<b>列印</b>"
 
-#: ../src/yelp-print.c:495
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "等待列印"
 
-#: ../src/yelp-print.c:559
-msgid "_From:"
-msgstr "至(_F)："
+#: ../src/yelp-print.c:578
+msgid "An error occurred while printing"
+msgstr "列印時發生錯誤"
 
-#: ../src/yelp-print.c:572
-msgid "Sets the start of the range of pages to be printed"
-msgstr "設定列印範圍的第一頁"
+#: ../src/yelp-print.c:582
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "您的文件不能列印：%s"
 
-#: ../src/yelp-print.c:574
-msgid "_To:"
-msgstr "由(_T)："
+#: ../src/yelp-search-pager.c:71
+msgid "the GNOME Support Forums"
+msgstr "GNOME 支援討論區"
 
-#: ../src/yelp-print.c:587
-msgid "Sets the end of the range of pages to be printed"
-msgstr "設定列印範圍的最後一頁"
-
-#: ../src/yelp-search-pager.c:684
+#: ../src/yelp-search-pager.c:755
 #, c-format
 msgid ""
 "Your search could not be processed. The file ‘%s’ is either missing or is "
@@ -494,37 +692,86 @@ msgid ""
 msgstr ""
 "無法處理您的搜尋。可能檔案‘%s’不存在，或者它不是正確的 XSLT stylesheet。"
 
-#: ../src/yelp-search-pager.c:736
+#: ../src/yelp-search-pager.c:807
 #, c-format
 msgid "No results for \"%s\""
 msgstr "找不到“%s”"
 
-#: ../src/yelp-search-pager.c:737
+#: ../src/yelp-search-pager.c:808
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
-msgstr ""
+msgstr "嘗試以其它字詞來描述您的問題或說明文件的題目"
 
-#: ../src/yelp-search-pager.c:740
+#: ../src/yelp-search-pager.c:811
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "搜尋“%s”"
 
-#: ../src/yelp-search-pager.c:810 ../src/yelp-toc-pager.c:2000
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:828
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "在 %s 再作一次線上搜尋"
+
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "在 yelp:document 中找不到 href 屬性"
 
-#: ../src/yelp-search-pager.c:824 ../src/yelp-toc-pager.c:2013
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "記憶體不足"
 
-#: ../src/yelp-search-pager.c:865 ../src/yelp-toc-pager.c:2062
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
 msgid "Help Contents"
 msgstr "說明文件"
 
-#: ../src/yelp-search-pager.c:1167 ../src/yelp-toc-pager.c:514
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1286
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr "howto:如何:怎樣:關於:無法:損壞:"
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1302
+msgid "re"
+msgstr "NULL"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1311
+msgid "ers:er:ing:es:s:'s"
+msgstr "NULL"
+
+#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "無法載入 OMF 檔案‘%s’。"
@@ -550,36 +797,15 @@ msgstr "無法載入 OMF 檔案‘%s’。"
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:152
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:262
+#: ../src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: 暫停計數器值為負數。"
 
-#: ../src/yelp-toc-pager.c:993
-#, c-format
-msgid "Read man page for %s"
-msgstr "閱讀 %s 的 man page"
-
-#: ../src/yelp-toc-pager.c:1569
-#, c-format
-msgid "Read info page for %s"
-msgstr "閱讀 %s 的 info page"
-
-#: ../src/yelp-toc-pager.c:1676
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr "無法載入文件目錄。可能檔案‘%s’不存在，或是它的 XML 內容格式不正確。"
-
-#: ../src/yelp-toc-pager.c:1698
-msgid "Command Line Help"
-msgstr "命令列說明"
-
-#: ../src/yelp-toc-pager.c:1816
+#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
@@ -587,216 +813,237 @@ msgid ""
 msgstr ""
 "無法處理文件目錄。可能檔案‘%s’不存在，或者它不是正確的 XSLT stylesheet。"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-toc-pager.c:1110
+#, c-format
+msgid "Read man page for %s"
+msgstr "閱讀 %s 的 man page"
+
+#: ../src/yelp-toc-pager.c:1703
+#, c-format
+msgid "Read info page for %s"
+msgstr "閱讀 %s 的 info page"
+
+#: ../src/yelp-toc-pager.c:1816
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr "無法載入文件目錄。可能檔案‘%s’不存在，或是它的 XML 內容格式不正確。"
+
+#: ../src/yelp-toc-pager.c:1838
+msgid "Command Line Help"
+msgstr "命令列說明"
+
+#: ../src/yelp-window.c:318
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:319
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:320
 msgid "_Go"
 msgstr "前往(_G)"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:321
 msgid "_Bookmarks"
 msgstr "書籤(_B)"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:322
 msgid "_Help"
 msgstr "求助(_H)"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:325
 msgid "_New Window"
 msgstr "新增視窗(_N)"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:330
 msgid "Print This Document"
 msgstr "列印本文件"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:335
 msgid "Print This Page"
 msgstr "列印本頁"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:340
 msgid "About This Document"
 msgstr "關於本文件"
 
-#: ../src/yelp-window.c:346
+#: ../src/yelp-window.c:345
 msgid "Open _Location"
 msgstr "開啟位置(_L)"
 
-#: ../src/yelp-window.c:351
+#: ../src/yelp-window.c:350
 msgid "_Close Window"
 msgstr "關閉視窗(_C)"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:356
 msgid "_Copy"
 msgstr "複製(_C)"
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:362
 msgid "_Select All"
 msgstr "全部選取(_S)"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:367
 msgid "_Find..."
 msgstr "尋找(_F)..."
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:372
 msgid "Find Pre_vious"
 msgstr "找上一個(_V)"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:374
 msgid "Find previous occurrence of the word or phrase"
 msgstr "尋找上一個出現的字詞或片語"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:377
 msgid "Find Ne_xt"
 msgstr "找下一個(_X)"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:379
 msgid "Find next occurrence of the word or phrase"
 msgstr "尋找下一個出現的字詞或片語"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:382
 msgid "_Preferences"
 msgstr "偏好設定(_P)"
 
-#: ../src/yelp-window.c:388
+#: ../src/yelp-window.c:387
 msgid "_Reload"
 msgstr "重新載入(_R)"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:399
 msgid "_Back"
 msgstr "上一頁(_B)"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:401
 msgid "Show previous page in history"
 msgstr "顯示紀錄中的上一頁"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:404
 msgid "_Forward"
 msgstr "下一頁(_F)"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:406
 msgid "Show next page in history"
 msgstr "顯示紀錄中的下一頁"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:409
 msgid "_Help Topics"
 msgstr "說明文件分類(_H)"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:411
 msgid "Go to the listing of help topics"
 msgstr "顯示系統中的說明文件清單"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:414
 msgid "_Previous Section"
 msgstr "上一節(_P)"
 
-#: ../src/yelp-window.c:420
+#: ../src/yelp-window.c:419
 msgid "_Next Section"
 msgstr "下一節(_N)"
 
-#: ../src/yelp-window.c:425 ../src/yelp-window.c:457
+#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
 msgid "_Contents"
 msgstr "內容(_C)"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:430
 msgid "_Add Bookmark"
 msgstr "加入書籤(_A)"
 
-#: ../src/yelp-window.c:436
+#: ../src/yelp-window.c:435
 msgid "_Edit Bookmarks..."
 msgstr "編輯書籤(_E)..."
 
-#: ../src/yelp-window.c:442
+#: ../src/yelp-window.c:441
 msgid "_Open Link"
 msgstr "開啟連結(_O)"
 
-#: ../src/yelp-window.c:447
+#: ../src/yelp-window.c:446
 msgid "Open Link in _New Window"
 msgstr "在新視窗中開啟連結(_N)"
 
-#: ../src/yelp-window.c:452
+#: ../src/yelp-window.c:451
 msgid "_Copy Link Address"
 msgstr "複製連結位址(_C)"
 
-#: ../src/yelp-window.c:459
+#: ../src/yelp-window.c:458
 msgid "Help On this application"
 msgstr "本程式的說明文件"
 
-#: ../src/yelp-window.c:462
+#: ../src/yelp-window.c:461
 msgid "_About"
 msgstr "關於(_A)"
 
-#: ../src/yelp-window.c:467
+#: ../src/yelp-window.c:466
 msgid "Copy _Email Address"
 msgstr "複製電子郵件位址(_E)"
 
-#: ../src/yelp-window.c:516
+#: ../src/yelp-window.c:515
 msgid "Help Browser"
 msgstr "說明文件瀏覽程式"
 
-#: ../src/yelp-window.c:921 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "檔案的 URI 無效。"
 
-#: ../src/yelp-window.c:933 ../src/yelp-window.c:1072
+#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
 msgstr "檔案的 URI ‘%s’無效，或者不是指向實際存在的檔案。"
 
-#: ../src/yelp-window.c:1021 ../src/yelp-window.c:1501
+#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
 msgid "Man pages are not supported in this version."
 msgstr "這個版本的程式不支援 man page。"
 
-#: ../src/yelp-window.c:1031 ../src/yelp-window.c:1492
+#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
 msgid "GNU info pages are not supported in this version"
 msgstr "這個版本的程式不支援 GNU info page。"
 
-#: ../src/yelp-window.c:1047 ../src/yelp-window.c:1514
+#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
 msgid "Search is not supported in this version."
 msgstr "這個版本的程式不支援搜尋。"
 
-#: ../src/yelp-window.c:1052
+#: ../src/yelp-window.c:1057
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
 msgstr "現在已不再支援 SGML 文件。請向程式的維護者要求將文件轉換為 XML 格式。"
 
-#: ../src/yelp-window.c:1218
+#: ../src/yelp-window.c:1223
 msgid "_Search:"
 msgstr "搜尋(_S)："
 
-#: ../src/yelp-window.c:1219
+#: ../src/yelp-window.c:1224
 msgid "Search for other documentation"
 msgstr "搜尋其它文件"
 
-#: ../src/yelp-window.c:1381
+#: ../src/yelp-window.c:1386
 msgid "Fin_d:"
 msgstr "尋找(_D)："
 
-#: ../src/yelp-window.c:1401
+#: ../src/yelp-window.c:1406
 msgid "Find _Next"
 msgstr "找下一個(_N)"
 
-#: ../src/yelp-window.c:1413
+#: ../src/yelp-window.c:1418
 msgid "Find _Previous"
 msgstr "找上一個(_P)"
 
-#: ../src/yelp-window.c:1527
+#: ../src/yelp-window.c:1532
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
 msgstr "無法産生檔案‘%s’的文件內容，可能是檔案格式不受支援。"
 
-#: ../src/yelp-window.c:1556 ../src/yelp-window.c:1975
-#: ../src/yelp-window.c:2051
+#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
+#: ../src/yelp-window.c:2064
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -806,29 +1053,20 @@ msgstr ""
 "文件中沒有‘%s’這一節。如果這一節是由某個程式的「求助」按鈕引導過來，請向程式"
 "的維護者報告問題。"
 
-#: ../src/yelp-window.c:1671 ../src/yelp-window.c:2454
+#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr "無法讀取檔案‘%s’，可能是檔案遺失了，或是您沒有讀取它的權限。"
 
-#: ../src/yelp-window.c:1722
+#: ../src/yelp-window.c:1728
 msgid "Loading..."
 msgstr "載入..."
 
-#: ../src/yelp-window.c:2886
-#, c-format
-msgid ""
-"Could not display help for Yelp.\n"
-"%s"
-msgstr ""
-"無法顯示 Yelp 的說明文件。\n"
-"%s"
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2917
+#: ../src/yelp-window.c:2911
 msgid "translator-credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
@@ -839,11 +1077,11 @@ msgstr ""
 "Roy Chan <roy.chan@linux.org.hk>, 2004\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2002"
 
-#: ../src/yelp-window.c:2920
+#: ../src/yelp-window.c:2914
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2922
+#: ../src/yelp-window.c:2916
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "GNOME 桌面環境的文件瀏覽器。"
 
@@ -865,6 +1103,47 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "顯示 GNOME 說明文件"
+
+#~ msgid "Library Functions"
+#~ msgstr "函式庫"
+
+#~ msgid "Administration"
+#~ msgstr "系統管理"
+
+#~ msgid "Other"
+#~ msgstr "其它"
+
+#~ msgid "Pages"
+#~ msgstr "頁"
+
+#~ msgid "Generating PDF is not currently supported"
+#~ msgstr "目前不支援建立 PDF 文件"
+
+#~ msgid ""
+#~ "You were trying to print to a printer using the \"%s\" driver.  This "
+#~ "program requires a PostScript printer driver."
+#~ msgstr ""
+#~ "您嘗試以使用“%s”驅動程式的印表機列印。此程式需要有一個 PostScript 的印表機"
+#~ "驅動程式。"
+
+#~ msgid "_From:"
+#~ msgstr "至(_F)："
+
+#~ msgid "Sets the start of the range of pages to be printed"
+#~ msgstr "設定列印範圍的第一頁"
+
+#~ msgid "_To:"
+#~ msgstr "由(_T)："
+
+#~ msgid "Sets the end of the range of pages to be printed"
+#~ msgstr "設定列印範圍的最後一頁"
+
+#~ msgid ""
+#~ "Could not display help for Yelp.\n"
+#~ "%s"
+#~ msgstr ""
+#~ "無法顯示 Yelp 的說明文件。\n"
+#~ "%s"
 
 #~ msgid "Multimedia"
 #~ msgstr "多媒體"
@@ -1020,9 +1299,6 @@ msgstr "顯示 GNOME 說明文件"
 
 #~ msgid "Date"
 #~ msgstr "日期"
-
-#~ msgid "Dedication"
-#~ msgstr "呈獻"
 
 #~ msgid "Editor"
 #~ msgstr "編者"
