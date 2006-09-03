@@ -1,3 +1,8 @@
+2006-09-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (toc_add_doc_info): check if the document
+	category exists, and return if it does not should fix 353554
+
 2006-08-30  Don Scorgie  <don@Madaline>
 
 	* src/yelp-io-channel.c: 

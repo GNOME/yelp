@@ -2062,6 +2062,20 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
     xmlNodePtr node;
     xmlNodePtr new;
     gchar     *text;
+    gchar     *category;
+
+    g_return_if_fail (pager != NULL);
+    if (doc_info == NULL)
+	return;
+
+    /* check if the document category exists, and return if it does not 
+     * should fix 353554 */
+    category = yelp_doc_info_get_category (doc_info);
+    if (category == NULL) {
+	debug_print (DB_DEBUG, "Missing category for %s\n", 
+	             yelp_doc_info_get_title (doc_info));
+	return;
+    }
 
     YelpTocPagerPriv *priv = pager->priv;
 
@@ -2069,8 +2083,7 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
 			 (gchar *) yelp_doc_info_get_id (doc_info),
 			 doc_info);
 
-    node = g_hash_table_lookup (priv->category_hash,
-				yelp_doc_info_get_category (doc_info));
+    node = g_hash_table_lookup (priv->category_hash, category);
 
     text = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_FILE);
     new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
