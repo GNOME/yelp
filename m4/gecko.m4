@@ -1,5 +1,5 @@
-# Copyright (C) 2000-2004 Marco Pesenti Gritti
-# Copyright (C) 2003, 2004, 2005, 2006 Christian Persch
+# Copyright © 2000-2004 Marco Pesenti Gritti
+# Copyright © 2003, 2004, 2005, 2006 Christian Persch
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the
@@ -60,7 +60,7 @@ AC_ARG_WITH([mozilla],[],[with_gecko=$withval],[])
 gecko_cv_gecko=$with_gecko
 
 # Autodetect gecko
-_geckos="firefox mozilla-firefox seamonkey mozilla xulrunner"
+_geckos="xulrunner firefox mozilla-firefox seamonkey mozilla"
 if test -z "$gecko_cv_gecko"; then
 	for lizard in $_geckos; do
 		if $PKG_CONFIG --exists $lizard-xpcom; then
@@ -284,7 +284,7 @@ CPPFLAGS="$_SAVE_CPPFLAGS"
 
 AC_LANG_POP([C++])
 
-gecko_cv_gecko_version_int="$(echo "$gecko_cv_gecko_version" | $AWK -F\. '{print [$]1 * 1000000 + [$]2 * 1000 + [$]3}')"
+gecko_cv_gecko_version_int="$(echo "$gecko_cv_gecko_version" | $AWK -F . '{print [$]1 * 1000000 + [$]2 * 1000 + [$]3}')"
 
 if test "$gecko_cv_gecko_version_int" -lt "1007000" -o "$gecko_cv_gecko_version_int" -gt "1009000"; then
 	AC_MSG_ERROR([Gecko version $gecko_cv_gecko_version is not supported!])
