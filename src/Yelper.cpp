@@ -1,6 +1,6 @@
 /*
  *  Copyright (C) 2000-2004 Marco Pesenti Gritti
- *  Copyright (C) 2003-2005 Christian Persch
+ *  Copyright (C) 2003-2006 Christian Persch
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -42,14 +42,23 @@
 #include <nsIInterfaceRequestorUtils.h>
 #include <nsIPrefService.h>
 #include <nsIPrintSettings.h>
+#include <nsISelectionController.h>
 #include <nsITypeAheadFind.h>
 #include <nsIWebBrowser.h>
 #include <nsIWebBrowserPrint.h>
 #include <nsIWebBrowserSetup.h>
 #include <nsServiceManagerUtils.h>
 
-#include "yelp-gecko-services.h"
+#ifndef HAVE_GECKO_1_9
+#include <nsIDocShell.h>
+#include <nsIDocShellTreeItem.h>
+#include <nsISelectionDisplay.h>
+#include <nsISimpleEnumerator.h>
+#include <nsITypeAheadFind.h>
+#endif /* !HAVE_GECKO_1_9 */
+
 #include "yelp-debug.h"
+#include "yelp-gecko-services.h"
 
 #include "Yelper.h"
 
@@ -57,6 +66,8 @@
 
 Yelper::Yelper (GtkMozEmbed *aEmbed)
 : mInitialised(PR_FALSE)
+, mSelectionAttention(PR_FALSE)
+, mHasFocus(PR_FALSE)
 , mEmbed(aEmbed)
 {
 	debug_print (DB_DEBUG, "Yelper ctor [%p]\n", this);
@@ -99,7 +110,11 @@ Yelper::Init ()
 	rv = mFinder->Init (docShell);
 	NS_ENSURE_SUCCESS (rv, rv);
 
+#ifdef HAVE_GECKO_1_9
+//	mFinder->SetSelectionModeAndRepaint (nsISelectionController::SELECTION_ON);
+#else
 	mFinder->SetFocusLinks (PR_TRUE);
+#endif
 
 	mInitialised = PR_TRUE;
 
@@ -144,15 +159,24 @@ Yelper::SetFindProperties (const char *aSearchString,
 PRBool
 Yelper::Find (const char *aSearchString)
 {
+	NS_ENSURE_TRUE (aSearchString, PR_FALSE);
+
 	if (!mInitialised) return PR_FALSE;
 
-	nsString uSearchString;
-	NS_CStringToUTF16 (nsCString (aSearchString ? aSearchString : ""),
-			   NS_CSTRING_ENCODING_UTF8, uSearchString);
+	SetSelectionAttention (PR_TRUE);
 
 	nsresult rv;
 	PRUint16 found = nsITypeAheadFind::FIND_NOTFOUND;
-	rv = mFinder->Find (uSearchString, PR_FALSE /* links only? */, &found);
+#ifdef HAVE_GECKO_1_9
+	rv = mFinder->Find (NS_ConvertUTF8toUTF16 (aSearchString),
+			    PR_FALSE /* links only? */,
+			    mHasFocus,
+			    &found);
+#else
+	rv = mFinder->Find (NS_ConvertUTF8toUTF16 (aSearchString),
+			    PR_FALSE /* links only? */,
+			    &found);
+#endif
 
 	return NS_SUCCEEDED (rv) && (found == nsITypeAheadFind::FIND_FOUND || found == nsITypeAheadFind::FIND_WRAPPED);
 }
@@ -162,16 +186,74 @@ Yelper::FindAgain (PRBool aForward)
 {
 	if (!mInitialised) return PR_FALSE;
 
+	SetSelectionAttention (PR_TRUE);
+
 	nsresult rv;
 	PRUint16 found = nsITypeAheadFind::FIND_NOTFOUND;
+#ifdef HAVE_GECKO_1_9
+	rv = mFinder->FindAgain (!aForward, mHasFocus, &found);
+#else
 	if (aForward) {
 		rv = mFinder->FindNext (&found);
 	}
 	else {
 		rv = mFinder->FindPrevious (&found);
 	}
+#endif /* HAVE_GECKO_1_9 */
 
 	return NS_SUCCEEDED (rv) && (found == nsITypeAheadFind::FIND_FOUND || found == nsITypeAheadFind::FIND_WRAPPED);
+}
+
+void
+Yelper::SetSelectionAttention (PRBool aAttention)
+{
+#if 0
+	if (aAttention == mSelectionAttention) return;
+	
+	mSelectionAttention = aAttention;
+	
+	NS_ENSURE_TRUE (mFinder, );
+
+	PRInt16 display;
+	if (aAttention) {
+		display = nsISelectionController::SELECTION_ATTENTION;
+	}
+	else {
+		display = nsISelectionController::SELECTION_ON;
+	}
+
+#ifdef HAVE_GECKO_1_9
+	mFinder->SetSelectionModeAndRepaint (display);
+#else
+	nsresult rv;
+	nsCOMPtr<nsIDocShell> shell (do_GetInterface (mWebBrowser, &rv));
+	/* It's okay for this to fail, if the tab is closing, or if
+	* we weren't attached to any tab yet
+	*/
+	if (NS_FAILED (rv) || !shell) return;
+	
+	nsCOMPtr<nsISimpleEnumerator> enumerator;
+	rv = shell->GetDocShellEnumerator (nsIDocShellTreeItem::typeContent,
+					   nsIDocShell::ENUMERATE_FORWARDS,
+					   getter_AddRefs (enumerator));
+	NS_ENSURE_SUCCESS (rv, );
+
+	PRBool hasMore = PR_FALSE;
+	while (NS_SUCCEEDED (enumerator->HasMoreElements (&hasMore)) && hasMore) {
+		nsCOMPtr<nsISupports> element;
+		enumerator->GetNext (getter_AddRefs (element));
+		if (!element) continue;
+	
+		nsCOMPtr<nsISelectionDisplay> sd (do_GetInterface (element));
+		if (!sd) continue;
+	
+		nsCOMPtr<nsISelectionController> controller (do_QueryInterface (sd));
+		if (!controller) continue;
+	
+		controller->SetDisplaySelection (display);
+	}
+#endif /* HAVE_GECKO_1_9 */
+#endif /* 0 */
 }
 
 void
@@ -204,11 +286,8 @@ Yelper::ProcessMouseEvent (void* aEvent)
 	rv = anchor->GetHref (href);
 	if (NS_FAILED (rv) || !href.Length ()) return;
 
-	nsCString cHref;
-	NS_UTF16ToCString (href, NS_CSTRING_ENCODING_UTF8, cHref);
-	if (!cHref.Length ()) return;
-
-	g_signal_emit_by_name (mEmbed, "popupmenu_requested", cHref.get());
+	g_signal_emit_by_name (mEmbed, "popupmenu_requested",
+			       NS_ConvertUTF16toUTF8 (href).get());
 }
 
 nsresult 

@@ -47,6 +47,7 @@ public:
 				PRBool aWrap);
 	PRBool Find (const char *aSearchString);
 	PRBool FindAgain (PRBool aForward);
+	void SetSelectionAttention (PRBool aSelectionAttention);
 
 	void ProcessMouseEvent (void *aEvent);
 
@@ -55,9 +56,11 @@ public:
 	nsresult PrintPreviewNavigate (int page_no);
 	nsresult PrintPreviewEnd ();
 
-
 private:
-	PRBool mInitialised;
+	PRPackedBool mInitialised;
+	PRPackedBool mSelectionAttention;
+	PRPackedBool mHasFocus;
+
 	GtkMozEmbed *mEmbed;
 	nsCOMPtr<nsIWebBrowser> mWebBrowser;
 	nsCOMPtr<nsIDOMWindow> mDOMWindow;
