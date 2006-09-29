@@ -261,6 +261,9 @@ yelp_settings_open_preferences (void)
 	gtk_font_button_set_font_name (GTK_FONT_BUTTON (fixed_font_widget), font);
 	g_free (font);
 
+	use = gconf_client_get_bool (gconf_client, KEY_YELP_USE_CARET, NULL);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (use_caret_widget), use);
+
 	use_caret_handler =
 	    g_signal_connect (G_OBJECT (use_caret_widget), "toggled",
 			      G_CALLBACK (prefs_use_caret_cb), NULL);
@@ -318,6 +321,18 @@ yelp_settings_notify_remove (YelpSettingsType type, guint id)
     for (i = 0; i < YELP_SETTINGS_NUM_TYPES; i++)
 	if (type & (1 << i))
 	    g_hook_destroy (hook_lists[i], id);
+}
+
+
+void
+yelp_settings_toggle_caret (void)
+{
+    gboolean caret;
+
+    caret = gconf_client_get_bool (gconf_client, KEY_YELP_USE_CARET, NULL);
+    gconf_client_set_bool (gconf_client,
+			   KEY_YELP_USE_CARET,
+			   !caret, NULL);
 }
 
 /** Getters *******************************************************************/

@@ -99,7 +99,7 @@ gchar *               yelp_settings_get_font             (YelpFontType     font)
 const gchar *         yelp_settings_get_color            (YelpColorType    color);
 const gchar *         yelp_settings_get_css_file         (void);
 gboolean              yelp_settings_get_caret            (void);
-
+void                  yelp_settings_toggle_caret         (void);
 void                  yelp_settings_params               (gchar         ***params,
 							  gint            *params_i,
 							  gint            *params_max);

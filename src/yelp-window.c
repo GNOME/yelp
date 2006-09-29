@@ -32,7 +32,6 @@
 #include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <glade/glade.h>
-#include <gconf/gconf-client.h>
 #include <string.h>
 #include <libgnome/gnome-config.h>
 #include <libgnome/gnome-url.h>
@@ -2668,16 +2667,7 @@ window_reload_cb (GtkAction *action, YelpWindow *window)
 static void
 window_enable_cursor_cb (GtkAction *action, YelpWindow *window)
 {
-    gboolean cursor;
-    GConfClient *gconf_client = gconf_client_get_default ();
-
-    cursor = gconf_client_get_bool (gconf_client,
-				    "/apps/yelp/use_caret",
-				    NULL);
-    gconf_client_set_bool (gconf_client,
-			   "/apps/yelp/use_caret",
-			   !cursor,
-			   NULL);
+    yelp_settings_toggle_caret ();
 }
 
 static gboolean
