@@ -1,3 +1,9 @@
+2006-10-05  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-utils.c: 
+	Don't crash when manpath (prog) || MANPATH (env.)
+	is available
+	
 ==================== 2.16.1 ====================
 2006-10-02  Don Scorgie  <dscorgie@cvs.gnome.org>
 

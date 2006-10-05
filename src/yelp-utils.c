@@ -788,7 +788,9 @@ convert_man_uri (gchar *uri, gboolean trust_uri)
 
 	if (!g_spawn_command_line_sync ("manpath", &manp, NULL, NULL, NULL))
 	    manp = g_strdup (g_getenv ("MANPATH"));
-
+	if (!manp) {
+	    return NULL;
+	}
 	g_strstrip (manp);
 	manpath = g_strsplit (manp, ":", -1);
 
