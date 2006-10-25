@@ -1,5 +1,9 @@
 2006-10-25  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-info-parser.c:
+	Fix double free in stupid link types only used by gdb
+	info page (apparently).  Bug #364850
+	
 	* src/yelp-search-pager.c: 
 	Don't crash when searching for empty term.  Bug #363949
 	

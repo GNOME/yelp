@@ -1096,7 +1096,6 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 
 	    new_url = g_strdup (lurl);
 	    info = strstr (new_url, ".info)");
-	    g_free (lurl);
 	    stripped = g_strndup (new_url, info-new_url);
 	    info +=5;
 	    lurl = g_strconcat (stripped, info, NULL);
