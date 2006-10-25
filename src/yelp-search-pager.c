@@ -1449,6 +1449,15 @@ slow_search_setup (YelpSearchPager *pager)
     else
 	lang = "C";
     
+    if (!strcmp (pager->priv->search_terms, "")) {
+	pager->priv->slow_search_setup_process_id = 0;
+	priv->xslt_process_id =
+	    g_idle_add_full (G_PRIORITY_LOW,
+			     (GSourceFunc) process_xslt,
+			     pager, NULL);
+	return FALSE;
+    }
+
     command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
     
     if (g_spawn_command_line_sync (command, &content_list, &stderr_str, NULL, NULL)) {
