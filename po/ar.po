@@ -6,406 +6,775 @@
 # Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>, 2002.
 # Isam Bayazidi <bayazidi@arabeyes.org>, 2002.
 # Arafat Medini <lumina@silverpen.de>, 2003, 2005.
-# 
-# 
+# Djihed Afifi <djihed@gmail.com>, 2006.
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-30 14:11+0100\n"
-"PO-Revision-Date: 2005-02-04 22:33+0100\n"
-"Last-Translator:  <kinryu@silverpen.de>\n"
+"POT-Creation-Date: 2006-10-30 00:54+0000\n"
+"PO-Revision-Date: 2006-10-05 21:07-0000\n"
+"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
+msgid "GNU Info Pages"
+msgstr " صفحات المعلومات لجنو"
+
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "مساعدة سطر الأوامر التقليدية (info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "تطبيقات"
 
-#: data/man.xml.in.h:2
+#: ../data/man.xml.in.h:2
+msgid "BLT Functions"
+msgstr "وظائف BLT"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "ملفّات الإعدادات"
 
-#: data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "وظائف Curses"
+
+#: ../data/man.xml.in.h:5
 msgid "Development"
 msgstr "تطوير"
 
-#: data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
 msgstr "دالّات فورتران"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "ألعاب"
 
-#: data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "ادوات اﻻجهزة"
 
-#: data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr "روتين النواة"
 
-#: data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "وظائف المكتبة"
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
+msgid "Manual Pages"
+msgstr "صفحات المساعدة"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-msgid "Man Pages"
-msgstr "صفحات الدليل"
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "وظائف الصوت الشبكية"
 
-#: data/man.xml.in.h:10
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
 msgstr "تطبيقات OpenSSL"
 
-#: data/man.xml.in.h:11
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
 msgstr "إعدادات OpenSSL"
 
-#: data/man.xml.in.h:12
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "وظائف OpenSSL"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
 msgstr "معاينات OpenSSL"
 
-#: data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "معاينات"
 
-#: data/man.xml.in.h:14
+#: ../data/man.xml.in.h:17
+msgid "POSIX Functions"
+msgstr "وظائف POSIX "
+
+#: ../data/man.xml.in.h:18
+msgid "POSIX Headers"
+msgstr "مقدمات POSIX "
+
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
 msgstr "دالّات بارل"
 
-#: data/man.xml.in.h:15
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
 msgstr "دالّات Qt"
 
-#: data/man.xml.in.h:16
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "وظائف Readline "
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "الفصل 0p"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "الفصل 1m"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "الفصل 1ssl"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "الفصل 1x"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "الفصل 2"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "الفصل 3blt"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "الفصل 3f"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "الفصل 3nas"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "الفصل 3p"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "الفصل 3qt"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "الفصل 3readline"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "الفصل 3ssl"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "الفصل 3tiff"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "الفصل 4"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "الفصل 4x"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "الفصل 5"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "الفصل 5ssl"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "الفصل 5x"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "الفصل 6"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "الفصل 6x"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "الفصل 7ssl"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "الفصل 7x"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "الفصل 9"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "الفصل 1, 1p, 1g  و 1t"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "الفصل 3, 3o, و 3t"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "الفصل 3form و 3menu"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "الفصل 3ncurses و 3curses "
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "الفصل 3pm و 3perl"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "الفصل 3x و 3X11"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "الفصل 7 و 7gcc"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "الفصل 8 و 8l"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "مدير النظام"
 
-#: data/man.xml.in.h:17
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "نداءات النظام"
 
-#: data/man.xml.in.h:18
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "الوضع V للنظام/وظائف القائمة"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "وظائف TIFF"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
 msgstr "تطبيقات Termcap"
 
-#: data/man.xml.in.h:19
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "مساعدة سطر الأوامر التقليدية (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
 msgstr "تطبيقات X11"
 
-#: data/man.xml.in.h:20
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "إعدادات X11"
 
-#: data/man.xml.in.h:21
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
 msgstr "أجهزة X11"
 
-#: data/man.xml.in.h:22
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
 msgstr "دالّات X11"
 
-#: data/man.xml.in.h:23
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
 msgstr "ألعاب X11"
 
-#: data/man.xml.in.h:24
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
 msgstr "معاينات X11"
 
-#: data/toc.xml.in.h:1
+#: ../data/toc.xml.in.h:1
 msgid "Accessibility"
 msgstr "الإعانة"
 
-#: data/toc.xml.in.h:2
+#: ../data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "ملحقات"
 
-#: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "بريمجات"
+#: ../data/toc.xml.in.h:3
+msgid "Applications for fun"
+msgstr "تطبيقات للتسلية"
 
-#: data/toc.xml.in.h:5
+#: ../data/toc.xml.in.h:4
+msgid "Applications for manipulating or viewing graphics"
+msgstr "تطبيقات لعرض و تغيير الرسومات"
+
+#: ../data/toc.xml.in.h:5
+msgid "Applications for word processing and other office tasks"
+msgstr "تطبيقات لمعالجة النصوص و أعمال المكتب الأخرى"
+
+#: ../data/toc.xml.in.h:6
+msgid "Applications related to X Windows"
+msgstr "تطبيقا متعلقة بنوافذ X "
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications related to multimedia"
+msgstr "تطبيقات متعلقة بالوسائط المتعددة"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to software development"
+msgstr "تطبيقات متعلقة بتطوير البرامج"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications related to the internet"
+msgstr "تطبيقات متعلقة بالإنترنت"
+
+#: ../data/toc.xml.in.h:10
+msgid "Applications specific to the panel"
+msgstr "تطبيقات متعلقة بالشريط"
+
+#: ../data/toc.xml.in.h:11
+msgid "Applications that support assistive technologies"
+msgstr "تطبيقات تساعد فى تكنولوجيا الإعانة"
+
+#: ../data/toc.xml.in.h:12
 msgid "Desktop"
 msgstr "المكتب"
 
-#: data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "تطبيقات التعليم"
+#: ../data/toc.xml.in.h:13
+msgid "Documents specific to the KDE Desktop Environment"
+msgstr "مستندات خاصة بسطح المكتب كاي دي إي KDE"
 
-#: data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:14
+msgid "Education"
+msgstr "تعليميّة"
+
+#: ../data/toc.xml.in.h:16
 msgid "Graphics"
 msgstr "رسوم"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:386
-msgid "Help Topics"
-msgstr "مواضيع المساعدة"
-
-#: data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:17
 msgid "Internet"
 msgstr "الإنترنت"
 
-#: data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:18
 msgid "KDE"
 msgstr "كيدي"
 
-#: data/toc.xml.in.h:12
-msgid "Multimedia"
-msgstr "الوسائط المتعدّدة"
+#: ../data/toc.xml.in.h:19
+msgid "Learning applications"
+msgstr "التطبيقات التعليمية"
 
-#: data/toc.xml.in.h:13
+#: ../data/toc.xml.in.h:20
+msgid "Miscellaneous documents"
+msgstr "مستندات مختلفة"
+
+#: ../data/toc.xml.in.h:21
 msgid "Office"
 msgstr "المكتب"
 
-#: data/toc.xml.in.h:14
-msgid "Other"
-msgstr "أخرى"
+#: ../data/toc.xml.in.h:22
+msgid "Other Applications"
+msgstr "تطبيقات أخرى"
 
-#: data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
 msgstr "توثيقات أخرى"
 
-#: data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:24
+msgid "Panel Applets"
+msgstr "بريمجات الشريط"
+
+#: ../data/toc.xml.in.h:25
 msgid "Programming"
 msgstr "برمجة"
 
-#: data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:26
 msgid "Scientific"
 msgstr "علميّ"
 
-#: data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:27
+msgid "Scientific Applications."
+msgstr "تطبيقات علمية"
+
+#: ../data/toc.xml.in.h:28
+msgid "Sound &amp; Video"
+msgstr "صوت و صورة"
+
+#: ../data/toc.xml.in.h:29
 msgid "System Tools"
 msgstr "أداوت النّظام"
 
-#: data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:30
+msgid "Utilities to manage your computer"
+msgstr "أدوات لإدارة الحاسوب"
+
+#: ../data/toc.xml.in.h:31
+msgid "Utility applications"
+msgstr "أدوات"
+
+#: ../data/toc.xml.in.h:32
+msgid "Variety of other applications"
+msgstr "تطبيقات أخرى مختلفة"
+
+#: ../data/toc.xml.in.h:33
+msgid "Welcome to the GNOME Help Browser"
+msgstr "أهلا في متصفح المساعدة لجنوم"
+
+#: ../data/toc.xml.in.h:34
 msgid "X Applications"
 msgstr "تطبيقات X"
 
-#: data/ui/yelp.glade.h:1
+#: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
 msgstr "<b>إعانة</b>"
 
-#: data/ui/yelp.glade.h:2
+#: ../data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>الخطوط</b>"
 
-#: data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_علامات موقع:</b>"
-
-#: data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>ال_عنوان:</b>"
-
-#: data/ui/yelp.glade.h:5
+#: ../data/ui/yelp.glade.h:3
 msgid "Add Bookmark"
 msgstr "إضافة علامة موقع"
 
-#: data/ui/yelp.glade.h:6
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
 msgstr "علامات المواقع"
 
-#: data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "حساس لل_حالة"
 
-#: data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "بحث"
 
-#: data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "فتح موقع"
 
-#: data/ui/yelp.glade.h:10
+#: ../data/ui/yelp.glade.h:8
 msgid "Preferences"
 msgstr "التفضيلات"
 
-#: data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "إعادة ال_تسمية"
 
-#: data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "_علامات المواقع:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
-msgstr ""
+msgstr "ت_صفح بالمؤشر"
 
-#: data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_بحث: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_بحث:"
 
-#: data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
 msgstr "عرض _ثابت:"
 
-#: data/ui/yelp.glade.h:15
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
 msgstr "ال_موقع:"
 
-#: data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_التالي"
 
-#: data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_السابق"
 
-#: data/ui/yelp.glade.h:18
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "ال_عنوان:"
+
+#: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
 msgstr "ا_ستخدام خطوط النّظام"
 
-#: data/ui/yelp.glade.h:19
+#: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
 msgstr "عرض _قابل للتغيير:"
 
-#: data/ui/yelp.glade.h:20
+#: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "_كسر"
 
-#: data/yelp.schemas.in.h:1
+#: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr "خطّ النّص الثّابت"
 
-#: data/yelp.schemas.in.h:2
+#: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "خطّ النّصّ"
 
-#: data/yelp.schemas.in.h:3
+#: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr "خطّ نص ذي عرض ثابت."
 
-#: data/yelp.schemas.in.h:4
+#: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "خطّ نصّ ذي عرض متغيّر."
 
-#: data/yelp.schemas.in.h:5
+#: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "استعمل مؤشر متحكم من لوحة المفاتيح عند عرض الصفحات."
 
-#: data/yelp.schemas.in.h:6
+#: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "استعمل المؤشر"
 
-#: data/yelp.schemas.in.h:7
+#: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
 msgstr "استخدام خطوط النّظام"
 
-#: data/yelp.schemas.in.h:8
+#: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
 msgstr "استخدام الخطوط الإفتراضيّة المحدّد للنّظام."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
-msgid "Yelp"
-msgstr "يالب"
-
-#: src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "مصنع يالب"
-
-#: src/yelp-bookmarks.c:150
+#: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
 msgstr "فتح علامة الموقع في نافذة جديدة"
 
-#: src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
 msgstr "إعادة تسمية علامة الموقع"
 
-#: src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
 msgstr "حذف علامة الموقع"
 
-#: src/yelp-bookmarks.c:301 src/yelp-bookmarks.c:373
+#: ../src/yelp-bookmarks.c:315
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "علامة موقع بعنوان %s لهذه الصفحة موجودة سابقا. "
+
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "علامة موقع بعنوان <b>%s</b> لهذه الصفحة موجودة سابقا. "
 
-#: src/yelp-bookmarks.c:401
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "مواضيع المساعدة"
+
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
 msgstr "قسم المستند"
 
-#: src/yelp-db-pager.c:242
+#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
 msgstr ""
+"لم يمكن فهم الملف ‘%s’. من الممكن أن الملف غير موجود, أو أنه ملف XML غير "
+"سليم."
 
-#: src/yelp-db-pager.c:489
-msgid "Unknown Section"
-msgstr "قسم مجهول"
-
-#: src/yelp-error.c:42 src/yelp-error.c:58
+#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
 msgid "An unknown error occured"
 msgstr "حدث خطأ مجهول"
 
-#: src/yelp-error.c:46
+#: ../src/yelp-error.c:46
 msgid "Could not load document"
 msgstr "لم يمكن تحميل المستند"
 
-#: src/yelp-error.c:48
+#: ../src/yelp-error.c:48
 msgid "Could not load section"
 msgstr "لم يمكن تحميل القسم"
 
-#: src/yelp-error.c:50
+#: ../src/yelp-error.c:50
 msgid "Could not read the table of contents"
 msgstr "لم يمكن قراءة جدول المحتويات"
 
-#: src/yelp-error.c:52
+#: ../src/yelp-error.c:52
 msgid "Unsupported Format"
 msgstr "تهيئة غير مدعومة"
 
-#: src/yelp-error.c:54
+#: ../src/yelp-error.c:54
 msgid "Could not read document"
 msgstr "لم يمكن قراءة المستند"
 
-#: src/yelp-error.c:56
+#: ../src/yelp-error.c:56
 msgid "Could not process document"
 msgstr "لم يمكن معالجة المستند"
 
-#: src/yelp-error.c:66
+#: ../src/yelp-error.c:66
 msgid "No information is available about the error."
 msgstr "لا معلومات متوفّرة حول الخطأ."
 
-#: src/yelp-io-channel.c:98
+#: ../src/yelp-info-pager.c:188
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"لم يمكن فهم الملف ‘%s’. من الممكن أن الملف غير موجود, أو أنه ملف info غير "
+"سليم."
+
+#: ../src/yelp-io-channel.c:103
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr ""
+msgstr "لم يمكن قراءة الملف ‘%s’. من الممكن أنه مضغوط بصورة غير معروفة."
 
-#: src/yelp-main.c:95
+#: ../src/yelp-main.c:91
+msgid "Use a private session"
+msgstr "استعمل جلسة خاصة"
+
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "تحديد أي دليل خزن مؤقت سيستخدم"
 
-#: src/yelp-main.c:129
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "لم يمكن تنشيط يالب: '%s'"
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:354
+msgid " GNOME Help Browser"
+msgstr "متصفّح المساعدة لجنوم"
 
-#: src/yelp-main.c:148
-msgid "Could not open new window."
-msgstr "لم يمكن فتح نافذة جديدة."
-
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "مساعدة"
 
-#: src/yelp-man-pager.c:164
+#: ../src/yelp-man-pager.c:263
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
 msgstr ""
+"لم يمكن فهم الملف ‘%s’. من الممكن أن الملف غير موجود, أو أنه منظم بصورة غير "
+"صحيحة."
 
-#: src/yelp-pager.c:120
+#: ../src/yelp-pager.c:117
 msgid "Document Information"
 msgstr "معلومات المستند"
 
-#: src/yelp-pager.c:121
+#: ../src/yelp-pager.c:118
 msgid "The YelpDocInfo struct of the document"
+msgstr "تركيب YelpDocInfo للمستند"
+
+#: ../src/yelp-print.c:167
+msgid "Preparing to print"
+msgstr "تحضير للطباعة"
+
+#: ../src/yelp-print.c:261
+msgid "Printing is not supported on this printer"
+msgstr "لا يمكن الطباعة من خلال هذه الطابعة"
+
+#: ../src/yelp-print.c:264
+#, c-format
+msgid "Printer %s does not support postscript printing."
+msgstr "لا يمكن الطباعة من خلال الطابعة %s لأنها لا تحتمل بوستسكريبت"
+
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:365
+msgid "Printing"
+msgstr "طباعة"
+
+#: ../src/yelp-print.c:367
+msgid "Waiting to print"
+msgstr "الإنتظار للطباعة"
+
+#: ../src/yelp-print.c:579
+msgid "An error occurred while printing"
+msgstr "حدث خطأ عند الطبع."
+
+#: ../src/yelp-print.c:583
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "لم يمكن طباعة مستندك: %s"
+
+#: ../src/yelp-search-pager.c:71
+msgid "the GNOME Support Forums"
+msgstr "منتديات المساعدة لجنوم"
+
+#: ../src/yelp-search-pager.c:755
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr "لم يمكن إتمام البحث. الملف ‘%s’ غير موجود أو ليس ملف XSLT صحيح."
+
+#: ../src/yelp-search-pager.c:807
+#, c-format
+msgid "No results for \"%s\""
+msgstr "لا نتائج ل \"%s\""
+
+#: ../src/yelp-search-pager.c:808
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
 msgstr ""
+"جرب استعمال كلمات مغايرة لوصف المشكلة أو الموضوع الذي تريد المساعدة حوله."
+
+#: ../src/yelp-search-pager.c:811
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "نتائج البحث عن \"%s\""
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:828
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "أعد البحث على الأنترنت على %s"
+
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2157
+#: ../src/yelp-xslt-pager.c:364
+msgid "No href attribute found on yelp:document"
+msgstr "لم يوجد إسناد href عند مستند:يالب"
+
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2170
+#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
+msgid "Out of memory"
+msgstr "الذاكرة غير كافية"
+
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2219
+msgid "Help Contents"
+msgstr "محتويات المساعدة"
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1286
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr "و"
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1302
+msgid "re"
+msgstr "NULL"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1311
+msgid "ers:er:ing:es:s:'s"
+msgstr "NULL"
+
+#: ../src/yelp-search-pager.c:1515 ../src/yelp-toc-pager.c:631
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "لم يمكن تحميل ملف OMF '%s'."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -420,7 +789,7 @@ msgstr ""
 #. If you need an image created, contact the maintainers.
 #.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. use guillemets (angle quotations) should use either 00AB or 00BB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
@@ -428,259 +797,365 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
-msgstr ""
+msgstr "yelp-watermark-blockquote-201C"
 
-#: src/yelp-toc-pager.c:268
+#: ../src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: تعداد الإيقاف المؤقت سلبي."
 
-#: src/yelp-toc-pager.c:491
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "لم يمكن تحميل ملف OMF '%s'."
-
-#: src/yelp-toc-pager.c:680
-#, c-format
-msgid "Read man page for %s"
-msgstr "قراءة صفحة الدّليل لـ %s"
-
-#: src/yelp-toc-pager.c:765
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-
-#: src/yelp-toc-pager.c:873
+#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
 msgstr ""
+"لم يمكن فهم جدول المحتويات.  الملف ‘%s’ غير موجود أو ليس ملف XSLT صحيح."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
-msgid "No href attribute found on yelp:document"
-msgstr "لم يوجد إسناد href عند مستند:يالب"
+#: ../src/yelp-toc-pager.c:1110
+#, c-format
+msgid "Read man page for %s"
+msgstr "قراءة صفحة الدّليل لـ %s"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
-msgid "Out of memory"
-msgstr "الذاكرة غير كافية"
+#: ../src/yelp-toc-pager.c:1703
+#, c-format
+msgid "Read info page for %s"
+msgstr "قراءة صفحات info عن %s"
 
-#: src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "محتويات المساعدة"
+#: ../src/yelp-toc-pager.c:1816
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
+"لم يمكن تحميل جدول المحتويات.  الملف ‘%s’ غير موجود أو ليس ملف XML صحيح."
 
-#: src/yelp-window.c:302
+#: ../src/yelp-toc-pager.c:1838
+msgid "Command Line Help"
+msgstr "مساعدة سطر الأوامر"
+
+#: ../src/yelp-window.c:317
 msgid "_File"
 msgstr "م_لفّ"
 
-#: src/yelp-window.c:303
+#: ../src/yelp-window.c:318
 msgid "_Edit"
 msgstr "_تحرير"
 
-#: src/yelp-window.c:304
+#: ../src/yelp-window.c:319
 msgid "_Go"
 msgstr "ذ_هاب"
 
-#: src/yelp-window.c:305
+#: ../src/yelp-window.c:320
 msgid "_Bookmarks"
 msgstr "_علامات المواقع"
 
-#: src/yelp-window.c:306
+#: ../src/yelp-window.c:321
 msgid "_Help"
 msgstr "_مساعدة"
 
-#: src/yelp-window.c:309
+#: ../src/yelp-window.c:324
 msgid "_New Window"
 msgstr "نافذة جد_يدة"
 
-#: src/yelp-window.c:314
+#: ../src/yelp-window.c:329
+msgid "Print This Document"
+msgstr "طباعة المستند"
+
+#: ../src/yelp-window.c:334
+msgid "Print This Page"
+msgstr "طبع الصفحة الحالية"
+
+#: ../src/yelp-window.c:339
 msgid "About This Document"
 msgstr "حول هذا المستند"
 
-#: src/yelp-window.c:319
+#: ../src/yelp-window.c:344
 msgid "Open _Location"
 msgstr "فتح ال_موقع"
 
-#: src/yelp-window.c:324
+#: ../src/yelp-window.c:349
 msgid "_Close Window"
 msgstr "_غلق النّافذة"
 
-#: src/yelp-window.c:330
+#: ../src/yelp-window.c:355
 msgid "_Copy"
 msgstr "_نسخ"
 
-#: src/yelp-window.c:336
+#: ../src/yelp-window.c:361
 msgid "_Select All"
 msgstr "إ_نتقاء الكلّ"
 
-#: src/yelp-window.c:341
+#: ../src/yelp-window.c:366
 msgid "_Find..."
 msgstr "_بحث..."
 
-#: src/yelp-window.c:346
+#: ../src/yelp-window.c:371
+msgid "Find Pre_vious"
+msgstr "إيجاد ال_سابق"
+
+#: ../src/yelp-window.c:373
+msgid "Find previous occurrence of the word or phrase"
+msgstr "ايجاد الحدث السابق للكلمة أو الجملة"
+
+#: ../src/yelp-window.c:376
+msgid "Find Ne_xt"
+msgstr "إيجاد الت_الي"
+
+#: ../src/yelp-window.c:378
+msgid "Find next occurrence of the word or phrase"
+msgstr "ايجاد الحدث التالي للكلمة أو الجملة"
+
+#: ../src/yelp-window.c:381
 msgid "_Preferences"
 msgstr "ال_تفضيلات"
 
-#: src/yelp-window.c:351
+#: ../src/yelp-window.c:386
 msgid "_Reload"
 msgstr "إ_عادة التحميل"
 
-#: src/yelp-window.c:357
+#: ../src/yelp-window.c:398
 msgid "_Back"
 msgstr "ت_راجع"
 
-#: src/yelp-window.c:359
+#: ../src/yelp-window.c:400
 msgid "Show previous page in history"
 msgstr "اظهر الصفحة السابقة في التاريخ"
 
-#: src/yelp-window.c:362
+#: ../src/yelp-window.c:403
 msgid "_Forward"
 msgstr "ت_قدّم"
 
-#: src/yelp-window.c:364
+#: ../src/yelp-window.c:405
 msgid "Show next page in history"
 msgstr "اظهر الصفحة التالية في التاريخ"
 
-#: src/yelp-window.c:367
+#: ../src/yelp-window.c:408
 msgid "_Help Topics"
 msgstr "_مواضيع المساعدة"
 
-#: src/yelp-window.c:369
+#: ../src/yelp-window.c:410
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "اذهب إلى قائمة مواضيع المساعدة"
 
-#: src/yelp-window.c:372
+#: ../src/yelp-window.c:413
 msgid "_Previous Section"
 msgstr "القسم ال_سّابق"
 
-#: src/yelp-window.c:377
+#: ../src/yelp-window.c:418
 msgid "_Next Section"
 msgstr "الفصل التّالي"
 
-#: src/yelp-window.c:382
+#: ../src/yelp-window.c:423 ../src/yelp-window.c:455
 msgid "_Contents"
 msgstr "ال_محتويات"
 
-#: src/yelp-window.c:388
+#: ../src/yelp-window.c:429
 msgid "_Add Bookmark"
 msgstr "إ_ضافة مؤشّر"
 
-#: src/yelp-window.c:393
+#: ../src/yelp-window.c:434
 msgid "_Edit Bookmarks..."
 msgstr "تحرير علامات المواقع..."
 
-#: src/yelp-window.c:399
+#: ../src/yelp-window.c:440
 msgid "_Open Link"
 msgstr "_فتح الوصلة"
 
-#: src/yelp-window.c:404
+#: ../src/yelp-window.c:445
 msgid "Open Link in _New Window"
 msgstr "فتح الوصلة في نافذة _جديدة"
 
-#: src/yelp-window.c:409
+#: ../src/yelp-window.c:450
 msgid "_Copy Link Address"
 msgstr "_نسخ عنوان الوصلة"
 
-#: src/yelp-window.c:415
+#: ../src/yelp-window.c:457
+msgid "Help On this application"
+msgstr "مساعدة حول هذا التّطبيق"
+
+#: ../src/yelp-window.c:460
 msgid "_About"
 msgstr "_حول"
 
-#: src/yelp-window.c:466
+#: ../src/yelp-window.c:465
+msgid "Copy _Email Address"
+msgstr "نسخ البريد الالكتروني"
+
+#: ../src/yelp-window.c:514
 msgid "Help Browser"
 msgstr "متصفح المساعدة"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
+#: ../src/yelp-window.c:925 ../src/yelp-window.c:1081
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "عنوان الملف غير صحيح."
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: ../src/yelp-window.c:937 ../src/yelp-window.c:1076
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 "actual file."
-msgstr ""
+msgstr "عنوان ‘%s’ غير صحيح أو ليس عنوانا لملف صحيح."
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
+#: ../src/yelp-window.c:1025 ../src/yelp-window.c:1505
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "صفحات الدّليل غير مدعومة في هذا الإصدار."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
+#: ../src/yelp-window.c:1035 ../src/yelp-window.c:1496
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "صفحات المعلومات GNU غير مدعومة في هذا الإصدار."
 
-#: src/yelp-window.c:806
+#: ../src/yelp-window.c:1051 ../src/yelp-window.c:1518
+msgid "Search is not supported in this version."
+msgstr "البحث غير مدعوم في هذا الإصدار."
+
+#: ../src/yelp-window.c:1056
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
-msgstr ""
+msgstr "مستندات SGML غير مدعومة. الرجاء سؤال كاتب هذا المستند لتغييره إلى XML."
 
-#: src/yelp-window.c:1024
-msgid "Find:"
-msgstr "بحث:"
+#: ../src/yelp-window.c:1222
+msgid "_Search:"
+msgstr "_بحث:"
 
-#: src/yelp-window.c:1040
+#: ../src/yelp-window.c:1223
+msgid "Search for other documentation"
+msgstr "بحث عن مساعدة أخرى"
+
+#: ../src/yelp-window.c:1385
+msgid "Fin_d:"
+msgstr "بح_ث:"
+
+#: ../src/yelp-window.c:1405
 msgid "Find _Next"
 msgstr "بحث عن ال_تّالي"
 
-#: src/yelp-window.c:1052
+#: ../src/yelp-window.c:1417
 msgid "Find _Previous"
 msgstr "بحث عن _السّابق"
 
-#: src/yelp-window.c:1157
+#: ../src/yelp-window.c:1531
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
 "may not be supported."
-msgstr ""
+msgstr "لم يمكن إنشاء مجال تحويل للملف ‘%s’. من الممكن أن النوع غير مدعوم."
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
+#: ../src/yelp-window.c:1561 ../src/yelp-window.c:1980
+#: ../src/yelp-window.c:2063
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
 "this section from a Help button in an application, please report this to the "
 "maintainers of that application."
 msgstr ""
+"الفصل ‘%s’ غير موجود في هذا المستند. إذا وجهت لهذا القسم من زر مساعدة في "
+"تطبيق, الرجاء إعلام مسيري هذا البرنامج."
 
-#: src/yelp-window.c:1302
+#: ../src/yelp-window.c:1676 ../src/yelp-window.c:2467
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
+"لم يمكن قراءة الملف ‘%s’. يمكن أن يكون الملف غير موجودا أو أنك لا تملك "
+"التصاريح لقراءته."
 
-#: src/yelp-window.c:1336
+#: ../src/yelp-window.c:1727
 msgid "Loading..."
 msgstr "جاري التحميل..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: src/yelp-window.c:2166
+#: ../src/yelp-window.c:2901
 msgid "translator-credits"
 msgstr ""
-"عرفات المديني، تونس <kinryu at silverpen dot de>"
+"جهاد عفيفي (Djihed Afifi) <djihed@gmail.com> \n"
+"عرفات المديني، تونس <lumina@silverpen.de>\n"
+"تحت إشراف عربآيز (http://www.arabeyes.org)"
 
-#: src/yelp-window.c:2171
+#: ../src/yelp-window.c:2904
+msgid "Yelp"
+msgstr "يالب"
+
+#: ../src/yelp-window.c:2906
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "متصفح و عارض مستندات لجنوم."
 
-#: src/yelp-xslt-pager.c:194
+#: ../src/yelp-xslt-pager.c:189
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
 msgstr ""
+"لم يمكن فهم الملف ‘%s’. من الممكن أن الملف غير موجود, أو أنه ملف غير سليم."
 
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
+#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
 msgstr ""
+"لم يمكن فهم المستند ‘%s’. من الممكن أن الملف ‘%s’ غير موجود, أو أنه ملف XSLT "
+"غير سليم."
 
-#: yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "احصل على مساعدة مع جُنوم"
 
+#~ msgid "<b>Printing</b>"
+#~ msgstr "<b>طباعة</b>"
+
+#~ msgid "Pages"
+#~ msgstr "صفحات"
+
+#~ msgid "Generating PDF is not currently supported"
+#~ msgstr "تحرير PDF غير مدعوم حاليل."
+
+#~ msgid ""
+#~ "You were trying to print to a printer using the \"%s\" driver.  This "
+#~ "program requires a PostScript printer driver."
+#~ msgstr ""
+#~ "محاولة طباعة باستخدام درايفر الطابعة \"%s\". هذه الطابعة تحتاج إلى درايفر "
+#~ "طابعة من نوع PostScript"
+
+#~ msgid "_From:"
+#~ msgstr "_من:"
+
+#~ msgid "Sets the start of the range of pages to be printed"
+#~ msgstr "يضبط بداية نطاق الصفحات لطباعتها"
+
+#~ msgid "_To:"
+#~ msgstr "إ_لى:"
+
+#~ msgid "Sets the end of the range of pages to be printed"
+#~ msgstr "يضبط نهاية نطاق الصفحات التي سيتم طبعها"
+
+#~ msgid "Library Functions"
+#~ msgstr "وظائف المكتبة"
+
+#~ msgid "Multimedia"
+#~ msgstr "الوسائط المتعدّدة"
+
+#~ msgid "Other"
+#~ msgstr "أخرى"
+
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>_علامات موقع:</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>ال_عنوان:</b>"
+
+#~ msgid "Yelp Factory"
+#~ msgstr "مصنع يالب"
+
+#~ msgid "Unknown Section"
+#~ msgstr "قسم مجهول"
+
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "لم يمكن تنشيط يالب: '%s'"
+
+#~ msgid "Could not open new window."
+#~ msgstr "لم يمكن فتح نافذة جديدة."
