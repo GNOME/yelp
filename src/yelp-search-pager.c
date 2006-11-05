@@ -1321,14 +1321,16 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
     } else {
 	suffixes = NULL;
     }
-
+    search_terms = g_strdelimit (search_terms, ":", ' ');
     list_copy = g_strsplit (g_utf8_casefold (g_strstrip (
 					  search_terms), -1),
 			    " ", -1);
     
     for (iter = list_copy; *iter != NULL; iter++) {
 	gboolean ignoring = FALSE;
-	
+	if (strlen (*iter) == 0) {
+	    continue;
+	}
 	if (g_str_has_suffix (*iter, "?")) {
 	    gchar *tmp;
 	    tmp = g_strndup (*iter, strlen (*iter) - 1);
@@ -1482,7 +1484,6 @@ slow_search_setup (YelpSearchPager *pager)
 				&dup_list, &stop_list, 
 				&required_no);
 
-
     while (omf_pending) {
 	GSList  *first = NULL;
 	gchar   *file  = NULL;
@@ -1620,7 +1621,6 @@ slow_search_setup (YelpSearchPager *pager)
 	    xmlFreeDoc (omf_doc);
 
     }
-
     g_return_val_if_fail (priv->slow_search_process_id == 0, FALSE);
     priv->slow_search_process_id =
         g_idle_add ((GSourceFunc) slow_search_process, pager);
