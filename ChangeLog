@@ -1,5 +1,8 @@
 2006-11-05  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-main.c:
+	Don't crash when saving session (bug #364790)
+	
 	* src/yelp-search-pager.c: 
 	Replace ':' chars in search strings with ' '
 	Stops from crashing (bug #364768)

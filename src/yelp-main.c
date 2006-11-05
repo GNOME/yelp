@@ -46,6 +46,7 @@ static gchar       *open_urls;
 static gchar       *startup_id;
 static gchar       **files;
 static gboolean     private = FALSE;
+static YelpBase    *priv_base = NULL;
 
 static DBusGConnection *connection;
 
@@ -113,7 +114,9 @@ main_start (const gchar *url)
 	GError *error = NULL;
 
 	base = yelp_base_new (private);
+	
 	server_new_window (base, (gchar *) url, startup_id, &error);
+	priv_base = base;
 	
 	gtk_main ();
 	
@@ -157,14 +160,14 @@ main_save_session (GnomeClient        *client,
 	DBusGProxy             *proxy = NULL;
 	GError                 *error = NULL;
 
-	proxy = main_dbus_get_proxy ();
-	if (!proxy)
-		g_error ("Unable to connect to bus again\n");
+	/*proxy = main_dbus_get_proxy ();
+	if (!proxy) {
+	g_warning ("Unable to connect to bus again\n");*/
+	
 
-
-	if (!org_gnome_YelpService_get_url_list (proxy, &open_windows, 
-						 &error))
-		g_error ("Cannot recieve window list - %s\n", error->message);
+	if (!server_get_url_list (priv_base, &open_windows, 
+				  &error))
+		g_warning ("Cannot recieve window list - %s\n", error->message);
 
 	if (open_windows != NULL) {
 		store_open_urls = TRUE;
@@ -214,6 +217,7 @@ main_restore_session (void)
 	YelpBase *yelp_base;
 
 	yelp_base = yelp_base_new (private);
+	priv_base = yelp_base;
 
         if (!yelp_base) {
                 g_error ("Couldn't activate YelpBase");
