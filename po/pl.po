@@ -15,120 +15,279 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-05 21:24+0100\n"
-"PO-Revision-Date: 2005-02-28 14:12+0100\n"
-"Last-Translator: Bartosz Kosiorek <translators@gnomepl.org>\n"
+"POT-Creation-Date: 2006-11-12 16:38+0100\n"
+"PO-Revision-Date: 2006-11-17 21:31+0100\n"
+"Last-Translator: Marek Stepien <marcoos@aviary.pl>\n"
 "Language-Team: Polish <translators@gnomepl.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1239
+#: ../data/info.xml.in.h:1
+#: ../src/yelp-toc-pager.c:1849
 msgid "GNU Info Pages"
 msgstr "Strony GNU info"
 
-#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "Tradycyjna pomoc linii poleceń (info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "Aplikacje"
 
 #: ../data/man.xml.in.h:2
+msgid "BLT Functions"
+msgstr "Funkcje BLT"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "Pliki konfiguracyjne"
 
-#: ../data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Funkcje Curses"
+
+#: ../data/man.xml.in.h:5
 msgid "Development"
 msgstr "Programowanie"
 
-#: ../data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
 msgstr "Funkcje FORTRAN"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7
+#: ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "Gry"
 
-#: ../data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "Urządzenia sprzętowe"
 
-#: ../data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr "Funkcje jądra"
 
-#: ../data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "Funkcje biblioteczne"
-
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1233
+#: ../data/man.xml.in.h:10
+#: ../src/yelp-toc-pager.c:1843
 msgid "Manual Pages"
 msgstr "Strony podręcznika"
 
-#: ../data/man.xml.in.h:10
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "Funkcje dźwięku sieciowego"
+
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
 msgstr "Aplikacje OpenSSL"
 
-#: ../data/man.xml.in.h:11
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
 msgstr "Konfiguracja OpenSSL"
 
-#: ../data/man.xml.in.h:12
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "Funkcje OpenSSL"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
 msgstr "Zestawienia OpenSSL"
 
-#: ../data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "Zestawienia"
 
-#: ../data/man.xml.in.h:14
+#: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
 msgstr "Funkcje POSIX"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
 msgstr "Nagłówki POSIX"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
 msgstr "Funkcje Perl"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
 msgstr "Funkcje Qt"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Funkcje Readline"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "Rozdział 0p"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "Rozdział 1m"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "Rozdział 1ssl"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "Rozdział 1x"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "Rozdział 2"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "Rozdział 3blt"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "Rozdział 3f"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "Rozdział 3nas"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "Rozdział 3p"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "Rozdział 3qt"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "Rozdział 3readline"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "Rozdział 3ssl"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "Rozdział 3tiff"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "Rozdział 4"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "Rozdział 4x"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "Rozdział 5"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "Rozdział 5ssl"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "Rozdział 5x"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "Rozdział 6"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "Rozdział 6x"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "Rozdział 7ssl"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "Rozdział 7x"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "Rozdział 9"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "Rozdziały 1, 1p, 1g i 1t"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "Rozdziały 3, 3o i 3t"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "Rozdziały 3form i 3menu"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "Rozdziały 3ncurses i 3curses"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "Rozdziały 3pm i 3perl"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "Rozdziały 3x i 3X11"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "Rozdziały 7 i 7gcc"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "Rozdziały 8 i 8l"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "Administracja systemem"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "Wywołania systemowe"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "Funkcje formularzy/menu Systemu V"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "Funkcje TIFF"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
 msgstr "Aplikacje Termcap"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "Tradycyjna pomoc linii poleceń (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
 msgstr "Aplikacje X11"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "Konfiguracja X11"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
 msgstr "Urządzenia X11"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
 msgstr "Funkcje X11"
 
-#: ../data/man.xml.in.h:25
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
 msgstr "Gry X11"
 
-#: ../data/man.xml.in.h:26
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
 msgstr "Zestawienia X11"
 
@@ -141,70 +300,126 @@ msgid "Accessories"
 msgstr "Akcesoria"
 
 #: ../data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "Administracja"
+msgid "Applications for fun"
+msgstr "Aplikacje rozrywkowe"
+
+#: ../data/toc.xml.in.h:4
+msgid "Applications for manipulating or viewing graphics"
+msgstr "Aplikacje do obróbki i przeglądania grafiki"
 
 #: ../data/toc.xml.in.h:5
+msgid "Applications for word processing and other office tasks"
+msgstr "Aplikacje związane z przetwarzaniem tekstu i innymi zadaniami biurowymi"
+
+#: ../data/toc.xml.in.h:6
+msgid "Applications related to X Windows"
+msgstr "Aplikacje związane z X Windows"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications related to multimedia"
+msgstr "Aplikacje związane z multimediami"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to software development"
+msgstr "Aplikacje związane z tworzeniem oprogramowania"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications related to the internet"
+msgstr "Aplikacje związane z Internetem"
+
+#: ../data/toc.xml.in.h:10
+msgid "Applications specific to the panel"
+msgstr "Aplikacje związane z panelem"
+
+#: ../data/toc.xml.in.h:11
+msgid "Applications that support assistive technologies"
+msgstr "Aplikacje wspierające ułatwienia dostępu"
+
+#: ../data/toc.xml.in.h:12
 msgid "Desktop"
 msgstr "Pulpit"
 
-#: ../data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "Aplikacje edukacyjne"
+#: ../data/toc.xml.in.h:13
+msgid "Documents specific to the KDE Desktop Environment"
+msgstr "Dokumenty dotyczące środowiska KDE"
 
-#: ../data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:14
+msgid "Education"
+msgstr "Edukacja"
+
+#: ../data/toc.xml.in.h:16
 msgid "Graphics"
 msgstr "Grafika"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
-msgid "Help Topics"
-msgstr "Tematy pomocy"
-
-#: ../data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:17
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:18
 msgid "KDE"
 msgstr "KDE"
 
-#: ../data/toc.xml.in.h:12
-msgid "Multimedia"
-msgstr "Multimedia"
+#: ../data/toc.xml.in.h:19
+msgid "Learning applications"
+msgstr "Aplikacje oświatowe"
 
-#: ../data/toc.xml.in.h:13
+#: ../data/toc.xml.in.h:20
+msgid "Miscellaneous documents"
+msgstr "Pozostałe dokumenty"
+
+#: ../data/toc.xml.in.h:21
 msgid "Office"
 msgstr "Biuro"
 
-#: ../data/toc.xml.in.h:14
-msgid "Other"
-msgstr "Inne"
+#: ../data/toc.xml.in.h:22
+msgid "Other Applications"
+msgstr "Inne aplikacje"
 
-#: ../data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
 msgstr "Inna dokumentacja"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:24
 msgid "Panel Applets"
 msgstr "Aplety panelu"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Preferencje"
-
-#: ../data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:25
 msgid "Programming"
 msgstr "Programowanie"
 
-#: ../data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:26
 msgid "Scientific"
 msgstr "Naukowe"
 
-#: ../data/toc.xml.in.h:20
+#: ../data/toc.xml.in.h:27
+msgid "Scientific Applications."
+msgstr "Aplikacje naukowe"
+
+#: ../data/toc.xml.in.h:28
+msgid "Sound &amp; Video"
+msgstr "Dźwięk i obraz"
+
+#: ../data/toc.xml.in.h:29
 msgid "System Tools"
 msgstr "Narzędzia systemowe"
 
-#: ../data/toc.xml.in.h:21
+#: ../data/toc.xml.in.h:30
+msgid "Utilities to manage your computer"
+msgstr "Narzędzia do zarządzania komputerem"
+
+#: ../data/toc.xml.in.h:31
+msgid "Utility applications"
+msgstr "Aplikacje narzędziowe"
+
+#: ../data/toc.xml.in.h:32
+msgid "Variety of other applications"
+msgstr "Szereg innych aplikacji"
+
+#: ../data/toc.xml.in.h:33
+msgid "Welcome to the GNOME Help Browser"
+msgstr "Witamy w przeglądarce pomocy GNOME"
+
+#: ../data/toc.xml.in.h:34
 msgid "X Applications"
 msgstr "Aplikacje X"
 
@@ -235,6 +450,10 @@ msgstr "Znajdź"
 #: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Otwarcie położenia"
+
+#: ../data/ui/yelp.glade.h:8
+msgid "Preferences"
+msgstr "Preferencje"
 
 #: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
@@ -316,50 +535,44 @@ msgstr "Użycie czcionek systemowych"
 msgid "Use the default fonts set for the system."
 msgstr "Użycie domyślnych czcionek systemowych."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
-msgid "Yelp"
-msgstr "Yelp"
-
-#: ../src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Generator Yelpa"
-
-#: ../src/yelp-bookmarks.c:155
+#: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
 msgstr "Otwiera zakładkę w nowym oknie"
 
-#: ../src/yelp-bookmarks.c:159
+#: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
 msgstr "Zmienia nazwę zakładki"
 
-#: ../src/yelp-bookmarks.c:163
+#: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
 msgstr "Usuwa zakładkę"
 
-#: ../src/yelp-bookmarks.c:320
+#: ../src/yelp-bookmarks.c:315
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Zakładka %s już istnieje dla tej strony."
 
-#: ../src/yelp-bookmarks.c:397
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Zakładka <b>%s</b> już istnieje dla tej strony."
 
-#: ../src/yelp-bookmarks.c:425
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "Tematy pomocy"
+
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
 msgstr "Sekcje dokumentów"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
+#: ../src/yelp-db-pager.c:239
+#: ../src/yelp-db-print-pager.c:190
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
-msgstr ""
-"Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub "
-"nie został prawidłowo sformatowany w XML-u."
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
+msgstr "Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub nie został prawidłowo sformatowany w XML-u."
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
+#: ../src/yelp-error.c:42
+#: ../src/yelp-error.c:58
 msgid "An unknown error occured"
 msgstr "Wystąpił nieznany błąd"
 
@@ -391,143 +604,166 @@ msgstr "Nie można przetworzyć dokumentu"
 msgid "No information is available about the error."
 msgstr "Brak informacji o błędzie."
 
-#: ../src/yelp-info-pager.c:190
+#: ../src/yelp-info-pager.c:188
 #, c-format
-msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
-msgstr ""
-"Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub "
-"nie jest prawidłowo sformatowaną stroną info."
+msgid "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is not a well-formed info page."
+msgstr "Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub nie jest prawidłowo sformatowaną stroną info."
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-io-channel.c:103
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"Nie można odczytać i odkodować pliku \"%s\". Plik może być skompresowany w "
-"nieobsługiwanym formacie."
+msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+msgstr "Nie można odczytać i odkodować pliku \"%s\". Plik może być skompresowany w nieobsługiwanym formacie."
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:92
+msgid "Use a private session"
+msgstr "Użyj prywatnej sesji"
+
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
 msgstr "Określ katalog z tymczasowymi plikami"
 
-#: ../src/yelp-main.c:133
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "Nie można uaktywnić Yelpa: \"%s\""
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:358
+msgid " GNOME Help Browser"
+msgstr " Przeglądarka pomocy GNOME"
 
-#: ../src/yelp-main.c:152
-msgid "Could not open new window."
-msgstr "Nie można otworzyć nowego okna."
-
-#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376
+#: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pomoc"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man-pager.c:263
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
-msgstr ""
-"Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub "
-"jest nieprawidłowo sformatowany."
+msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
+msgstr "Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub jest nieprawidłowo sformatowany."
 
-#: ../src/yelp-pager.c:122
+#: ../src/yelp-pager.c:117
 msgid "Document Information"
 msgstr "Informacje o dokumencie"
 
-#: ../src/yelp-pager.c:123
+#: ../src/yelp-pager.c:118
 msgid "The YelpDocInfo struct of the document"
 msgstr "Struktura dokumentu YelpDocInfo"
 
-#: ../src/yelp-print.c:138
+#: ../src/yelp-print.c:167
 msgid "Preparing to print"
 msgstr "Przygotowanie do wydruku"
 
-#: ../src/yelp-print.c:275
-msgid "Pages"
-msgstr "Strony"
-
-#: ../src/yelp-print.c:348
-msgid "Generating PDF is not currently supported"
-msgstr "Tworzenie PDF nie jest obecnie obsługiwane"
-
-#: ../src/yelp-print.c:356
+#: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
 msgstr "Drukowanie nie jest obsługiwane przez drukarkę"
 
-#: ../src/yelp-print.c:359
+#: ../src/yelp-print.c:264
 #, c-format
-msgid ""
-"You were trying to print to a printer using the \"%s\" driver.  This program "
-"requires a PostScript printer driver."
-msgstr ""
-"Nastąpiła próba wydruku na drukarce używającej sterownika \"%s\". Ten "
-"program wymaga sterownika PostScript."
+msgid "Printer %s does not support postscript printing."
+msgstr "Drukarka %s nie obsługuje formatu PostScript."
 
-#: ../src/yelp-print.c:402
-msgid "An error occurred while printing"
-msgstr "Wystąpił błąd podczas drukowania"
-
-#: ../src/yelp-print.c:406
-msgid "It was not possible to print your document"
-msgstr "Nie można było wydrukować dokumentu"
-
-#: ../src/yelp-print.c:466
+#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:365
 msgid "Printing"
 msgstr "Drukowanie"
 
-#: ../src/yelp-print.c:493
-msgid "<b>Printing</b>"
-msgstr "<b>Drukowanie</b>"
-
-#: ../src/yelp-print.c:495
+#: ../src/yelp-print.c:367
 msgid "Waiting to print"
 msgstr "Czekanie na wydruk"
 
-#: ../src/yelp-print.c:559
-msgid "_From:"
-msgstr "_Od:"
+#: ../src/yelp-print.c:579
+msgid "An error occurred while printing"
+msgstr "Wystąpił błąd podczas drukowania"
 
-#: ../src/yelp-print.c:572
-msgid "Sets the start of the range of pages to be printed"
-msgstr "Ustawia początek zakresu stron do wydruku"
-
-#: ../src/yelp-print.c:574
-msgid "_To:"
-msgstr "_Do:"
-
-#: ../src/yelp-print.c:587
-msgid "Sets the end of the range of pages to be printed"
-msgstr "Ustawia koniec zakresu stron do wydruku"
-
-#: ../src/yelp-search-pager.c:676
+#: ../src/yelp-print.c:583
 #, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-"Nie można przetworzyć wyszukania. Brakuje pliku \"%s\" lub nie jest "
-"poprawnym arkuszem stylów XSLT."
+msgid "It was not possible to print your document: %s"
+msgstr "Nie udało się wydrukować dokumentu %s"
 
-#: ../src/yelp-search-pager.c:778 ../src/yelp-toc-pager.c:1506
-#: ../src/yelp-xslt-pager.c:368
+#: ../src/yelp-search-pager.c:71
+msgid "the GNOME Support Forums"
+msgstr "Fora wsparcia GNOME"
+
+#: ../src/yelp-search-pager.c:755
+#, c-format
+msgid "Your search could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+msgstr "Nie można przetworzyć wyszukania. Brakuje pliku \"%s\" lub nie jest poprawnym arkuszem stylów XSLT."
+
+#: ../src/yelp-search-pager.c:807
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Brak wyników dla \"%s\""
+
+#: ../src/yelp-search-pager.c:808
+msgid "Try using different words to describe the problem you're having or the topic you want help with."
+msgstr "Prosimy spróbować innych słów opisujących zaistniały problem lub żądany temat pomocy."
+
+#: ../src/yelp-search-pager.c:811
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "Wyniki wyszukiwania dla \"%s\""
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:828
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Powtórz wyszukiwanie w Internecie w serwisie %s"
+
+#: ../src/yelp-search-pager.c:905
+#: ../src/yelp-toc-pager.c:2157
+#: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "Nie znaleziono atrybutu href w dokumencie yelp"
 
-#: ../src/yelp-search-pager.c:792 ../src/yelp-toc-pager.c:1520
-#: ../src/yelp-xslt-pager.c:384
+#: ../src/yelp-search-pager.c:919
+#: ../src/yelp-toc-pager.c:2170
+#: ../src/yelp-xslt-pager.c:380
+#: ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Brak pamięci"
 
-#: ../src/yelp-search-pager.c:833 ../src/yelp-toc-pager.c:1570
+#: ../src/yelp-search-pager.c:960
+#: ../src/yelp-toc-pager.c:2219
 msgid "Help Contents"
 msgstr "Zawartość pomocy"
 
-#: ../src/yelp-search-pager.c:1119 ../src/yelp-toc-pager.c:499
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1286
+msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+msgstr "a:dla:dlaczego:dialog:do:działa:gdzie:i:kto:jak:jaki:jest:mój:moja:moje:nie:popsuty:popsuta:popsute:robić:o:są:skąd:sposób:to:w:z:za:zrobić"
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1302
+msgid "re"
+msgstr "NULL"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1311
+msgid "ers:er:ing:es:s:'s"
+msgstr "NULL"
+
+#: ../src/yelp-search-pager.c:1516
+#: ../src/yelp-toc-pager.c:631
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nie można wczytać pliku OMF \"%s\"."
@@ -553,310 +789,328 @@ msgstr "Nie można wczytać pliku OMF \"%s\"."
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: ../src/yelp-settings.c:156
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201E"
 
-#: ../src/yelp-toc-pager.c:273
+#: ../src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: licznik przerw jest ujemny."
 
-#: ../src/yelp-toc-pager.c:637
+#: ../src/yelp-toc-pager.c:379
+#: ../src/yelp-toc-pager.c:1957
+#, c-format
+msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+msgstr "Nie można przetworzyć spisu treści. Brakuje pliku \"%s\" lub nie jest zgodny z arkuszem stylów XSLT."
+
+#: ../src/yelp-toc-pager.c:1110
 #, c-format
 msgid "Read man page for %s"
 msgstr "Wczytuje stronę man %s"
 
-#: ../src/yelp-toc-pager.c:1108
+#: ../src/yelp-toc-pager.c:1703
 #, c-format
 msgid "Read info page for %s"
 msgstr "Wczytuje stronę info %s"
 
-#: ../src/yelp-toc-pager.c:1206
+#: ../src/yelp-toc-pager.c:1816
 #, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-"Nie można wczytać spisu treści. Brakuje pliku \"%s\" lub nie jest prawidłowo "
-"sformatowany w XML-u."
+msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
+msgstr "Nie można wczytać spisu treści. Brakuje pliku \"%s\" lub nie jest prawidłowo sformatowany w XML-u."
 
-#: ../src/yelp-toc-pager.c:1228
+#: ../src/yelp-toc-pager.c:1838
 msgid "Command Line Help"
 msgstr "Pomoc wiersza poleceń"
 
-#: ../src/yelp-toc-pager.c:1342
-#, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
-msgstr ""
-"Nie można przetworzyć spisu treści. Brakuje pliku \"%s\" lub nie jest zgodny "
-"z arkuszem stylów XSLT."
-
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:317
 msgid "_File"
 msgstr "_Plik"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:318
 msgid "_Edit"
 msgstr "_Edycja"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:319
 msgid "_Go"
 msgstr "_Przejście"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:320
 msgid "_Bookmarks"
 msgstr "_Zakładki"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:321
 msgid "_Help"
 msgstr "Pomo_c"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:324
 msgid "_New Window"
 msgstr "_Nowe okno"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:329
 msgid "Print This Document"
 msgstr "Wydruk dokumentu"
 
-#: ../src/yelp-window.c:328
+#: ../src/yelp-window.c:334
 msgid "Print This Page"
 msgstr "Wydruk strony"
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:339
 msgid "About This Document"
 msgstr "Informacje o dokumencie"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:344
 msgid "Open _Location"
 msgstr "Otwórz _położenie"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:349
 msgid "_Close Window"
 msgstr "Za_mknij okno"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:355
 msgid "_Copy"
 msgstr "_Skopiuj"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:361
 msgid "_Select All"
 msgstr "_Zaznacz wszystko"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:366
 msgid "_Find..."
 msgstr "_Znajdź..."
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:371
 msgid "Find Pre_vious"
 msgstr "Znajdź p_oprzednie"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:373
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Wyszukuje poprzednie wystąpienie słowa lub frazy"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:376
 msgid "Find Ne_xt"
 msgstr "Znajdź _następne"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:378
 msgid "Find next occurrence of the word or phrase"
 msgstr "Wyszukuje następne wystąpienie słowa lub frazy"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:381
 msgid "_Preferences"
 msgstr "_Preferencje"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:386
 msgid "_Reload"
 msgstr "_Odśwież"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:398
 msgid "_Back"
 msgstr "_Wstecz"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:400
 msgid "Show previous page in history"
 msgstr "Wyświetla poprzednią stronę z historii"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:403
 msgid "_Forward"
 msgstr "_Naprzód"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:405
 msgid "Show next page in history"
 msgstr "Wyświetla następną stronę z historii"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:408
 msgid "_Help Topics"
 msgstr "_Tematy pomocy"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:410
 msgid "Go to the listing of help topics"
 msgstr "Przechodzi do spisu tematów pomocy"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:413
 msgid "_Previous Section"
 msgstr "_Poprzedna strona"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:418
 msgid "_Next Section"
 msgstr "_Następna Strona"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:455
 msgid "_Contents"
 msgstr "_Zawartość"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:429
 msgid "_Add Bookmark"
 msgstr "_Dodaj zakładkę"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:434
 msgid "_Edit Bookmarks..."
 msgstr "_Edytuj zakładki.."
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:440
 msgid "_Open Link"
 msgstr "_Otwórz odnośnik"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:445
 msgid "Open Link in _New Window"
 msgstr "Otwórz odnośnik w _nowym oknie"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:450
 msgid "_Copy Link Address"
 msgstr "_Skopiuj adres odnośnika"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:457
+msgid "Help On this application"
+msgstr "Pomoc na temat tej aplikacji"
+
+#: ../src/yelp-window.c:460
 msgid "_About"
 msgstr "_Informacje o"
 
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:465
 msgid "Copy _Email Address"
 msgstr "Skopiuj adres _e-mail"
 
-#: ../src/yelp-window.c:504
+#: ../src/yelp-window.c:514
 msgid "Help Browser"
 msgstr "Przeglądarka pomocy"
 
-#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
+#: ../src/yelp-window.c:925
+#: ../src/yelp-window.c:1081
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Nieprawidłowy adres URI pliku."
 
-#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
+#: ../src/yelp-window.c:937
+#: ../src/yelp-window.c:1076
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
-"Ujednolicony identyfikator zasobu (Uniform Resource Identifier) \"%s\" jest "
-"nieprawidłowy lub nie wskazuje do istniejącego pliku."
+msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
+msgstr "Ujednolicony identyfikator zasobu (Uniform Resource Identifier) \"%s\" jest nieprawidłowy lub nie wskazuje do istniejącego pliku."
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
+#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1505
 msgid "Man pages are not supported in this version."
 msgstr "W tej wersji, strony man nie są obsługiwane."
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:1035
+#: ../src/yelp-window.c:1496
 msgid "GNU info pages are not supported in this version"
 msgstr "W tej wersji strony GNU info nie są obsługiwane"
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
+#: ../src/yelp-window.c:1051
+#: ../src/yelp-window.c:1518
 msgid "Search is not supported in this version."
 msgstr "W tej wersji, wyszukiwanie nie jest obsługiwane."
 
-#: ../src/yelp-window.c:899
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-"Dokumenty SGML nie są już obsługiwane. Skontaktuj się z autorem dokumentu "
-"aby skonwertował dokument do formatu XML."
+#: ../src/yelp-window.c:1056
+msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
+msgstr "Dokumenty SGML nie są już obsługiwane. Skontaktuj się z autorem dokumentu aby skonwertował dokument do formatu XML."
 
-#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1222
 msgid "_Search:"
 msgstr "_Wyszukaj:"
 
-#: ../src/yelp-window.c:1026
+#: ../src/yelp-window.c:1223
 msgid "Search for other documentation"
 msgstr "Wyszukiwanie innej dokumentacji"
 
-#: ../src/yelp-window.c:1175
+#: ../src/yelp-window.c:1385
 msgid "Fin_d:"
 msgstr "_Znajdź:"
 
-#: ../src/yelp-window.c:1195
+#: ../src/yelp-window.c:1405
 msgid "Find _Next"
 msgstr "Znajdź _następne"
 
-#: ../src/yelp-window.c:1207
+#: ../src/yelp-window.c:1417
 msgid "Find _Previous"
 msgstr "Znajdź _poprzednie"
 
-#: ../src/yelp-window.c:1321
+#: ../src/yelp-window.c:1531
 #, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
-"Nie można utworzyć kontekstu przekształcenia dla pliku \"%s\". Format może "
-"nie być obsługiwany."
+msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
+msgstr "Nie można utworzyć kontekstu przekształcenia dla pliku \"%s\". Format może nie być obsługiwany."
 
-#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
-#: ../src/yelp-window.c:1840
+#: ../src/yelp-window.c:1561
+#: ../src/yelp-window.c:1980
+#: ../src/yelp-window.c:2063
 #, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-"Sekcja \"%s\" nie istnieje w tym dokumencie. Jeżeli nastąpiło przekierowanie "
-"do tej strony przyciskiem Pomoc w programie, zgłoś to do twórców aplikacji."
+msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
+msgstr "Sekcja \"%s\" nie istnieje w tym dokumencie. Jeżeli nastąpiło przekierowanie do tej strony przyciskiem Pomoc w programie, zgłoś to do twórców aplikacji."
 
-#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
+#: ../src/yelp-window.c:1676
+#: ../src/yelp-window.c:2467
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
-msgstr ""
-"Nie można odczytać pliku \"%s\". Prawdopodobnie plik nie istnieje, lub brak "
-"uprawnień do jego odczytu."
+msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
+msgstr "Nie można odczytać pliku \"%s\". Prawdopodobnie plik nie istnieje, lub brak uprawnień do jego odczytu."
 
-#: ../src/yelp-window.c:1516
+#: ../src/yelp-window.c:1727
 msgid "Loading..."
 msgstr "Wczytywanie..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2658
+#: ../src/yelp-window.c:2901
 msgid "translator-credits"
 msgstr ""
-"GNOME PL Team <translators@gnomepl.org>\n"
-"Bartosz Kosiorek"
+"Aviary.pl & GNOME PL Team <gnome-l10n@aviary.pl>\n"
+"Bartosz Kosiorek\n"
+"Marek Stępień"
 
-#: ../src/yelp-window.c:2663
+#: ../src/yelp-window.c:2904
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2906
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Przeglądarka dokumentacji Gnome Desktop."
+msgstr "Przeglądarka dokumentacji środowiska Gnome."
 
-#: ../src/yelp-xslt-pager.c:195
+#: ../src/yelp-xslt-pager.c:189
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub "
-"jest nieprawidłowo sformatowany."
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
+msgstr "Nie można przeanalizować pliku \"%s\". Prawdopodobnie plik nie istnieje lub jest nieprawidłowo sformatowany."
 
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
+#: ../src/yelp-xslt-pager.c:210
+#: ../src/yelp-xslt-pager.c:223
 #, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-"Nie można przetworzyć dokumentu \"%s\". Może brakować pliku \"%s\" lub nie "
-"jest on poprawnym arkuszem stylów XSLT."
+msgid "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it is not a valid XSLT stylesheet."
+msgstr "Nie można przetworzyć dokumentu \"%s\". Może brakować pliku \"%s\" lub nie jest on poprawnym arkuszem stylów XSLT."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Pomoc GNOME"
+
+#~ msgid "Library Functions"
+#~ msgstr "Funkcje biblioteczne"
+#~ msgid "Administration"
+#~ msgstr "Administracja"
+#~ msgid "Multimedia"
+#~ msgstr "Multimedia"
+#~ msgid "Other"
+#~ msgstr "Inne"
+#~ msgid "Yelp Factory"
+#~ msgstr "Generator Yelpa"
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "Nie można uaktywnić Yelpa: \"%s\""
+#~ msgid "Could not open new window."
+#~ msgstr "Nie można otworzyć nowego okna."
+#~ msgid "Pages"
+#~ msgstr "Strony"
+#~ msgid "Generating PDF is not currently supported"
+#~ msgstr "Tworzenie PDF nie jest obecnie obsługiwane"
+#~ msgid ""
+#~ "You were trying to print to a printer using the \"%s\" driver.  This "
+#~ "program requires a PostScript printer driver."
+#~ msgstr ""
+#~ "Nastąpiła próba wydruku na drukarce używającej sterownika \"%s\". Ten "
+#~ "program wymaga sterownika PostScript."
+#~ msgid "<b>Printing</b>"
+#~ msgstr "<b>Drukowanie</b>"
+#~ msgid "_From:"
+#~ msgstr "_Od:"
+#~ msgid "Sets the start of the range of pages to be printed"
+#~ msgstr "Ustawia początek zakresu stron do wydruku"
+#~ msgid "_To:"
+#~ msgstr "_Do:"
+#~ msgid "Sets the end of the range of pages to be printed"
+#~ msgstr "Ustawia koniec zakresu stron do wydruku"
+
