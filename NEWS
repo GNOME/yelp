@@ -1,3 +1,21 @@
+Changed in 2.16.2:
+------------------
+* Don't crash when manpath is unavailable		    (Don Scorgie)
+* Remove markup from translated messages (#360450)	    (Elijah Newren)
+* Fix info links (#364850)		 		    (Don Scorgie)
+* Fix various search crashes (#363949, #364768)		    (Don Scorgie)
+* Don't crash when session-saving (#364790)		    (Don Scorgie)
+* More info page crash fixes (#367410, 376861, 371680)	    (Don Scorgie,
+       	    	       	     	       	       		     Matthias Clasen)
+* Fix print ranges (#370618)				    (Don Scorgie,
+      	    	   					     Christian Persch)
+* Updated Translations:
+ar.po: Djihed Afifi
+de.po: Hendrik Richter
+es.po: Francisco Javier F. Serrador
+nb.po: Kjartan Maraas
+pl.po: Marek Stepien
+
 Changed in 2.16.1:
 ------------------
 * Set initial caret state properly in prefs                 (Don Scorgie)
