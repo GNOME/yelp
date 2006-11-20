@@ -79,6 +79,10 @@ yelp_io_channel_new_file (gchar    *file,
     if (!file)
     	return NULL;
 
+    if (!g_file_test (file, G_FILE_TEST_EXISTS) ||
+	g_file_test (file, G_FILE_TEST_IS_DIR))
+	return NULL;
+
     channel = g_new0(YelpIOChannel, 1);
     iochannel = (GIOChannel *) channel;
 
