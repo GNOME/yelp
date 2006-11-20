@@ -1020,13 +1020,12 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	  if (alt_append) append = alt_append;
 	  else append = alt_append1;
 	}
-	if ((alt_append && alt_append < append) || broken)
+	if ((alt_append && alt_append < append))
 	  append = alt_append;
 	if (alt_append1 && alt_append1 < append)
 	  append = alt_append1;
       }
       append++;
-
       url = g_strndup (*current_real, append - (*current_real));
 
       /* By now, we got 2 things.  First, is append which is the (hopefully)
@@ -1127,13 +1126,17 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	else {
 	  gchar *spacing = *ulink;
 	  gchar *tmp;
+	  gint count = 0;
 	  while (*spacing == ' ') {
 	    spacing++;
+	    count++;
 	  }
 	  if (spacing != *ulink) {
-	    spacing-=2;
+	    if (count > 1)
+	      spacing-=2;
 	    tmp = g_strndup (*ulink, spacing-*ulink);
-	    spacing+=2;
+	    if (count > 1)
+	      spacing+=2;
 	    xmlNewTextChild (holder, NULL, BAD_CAST "spacing",
 			     BAD_CAST tmp);
 	    g_free (tmp);
