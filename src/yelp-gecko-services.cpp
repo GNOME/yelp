@@ -262,8 +262,8 @@ PrintListener::SetPrintSettings (YelpPrintInfo *settings,
 	/* FIXME: We can only support one range, 
 	 * For now, ignore more ranges */
 	target->SetPrintRange (nsIPrintSettings::kRangeSpecifiedPageRange);
-	target->SetStartPageRange (pageRanges[0].start);
-	target->SetEndPageRange (pageRanges[1].end);
+	target->SetStartPageRange (pageRanges[0].start+1);
+	target->SetEndPageRange (pageRanges[0].end+1);
 
 	g_free (pageRanges);
       }

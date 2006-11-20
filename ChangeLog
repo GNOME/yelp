@@ -1,5 +1,8 @@
 2006-11-20  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-gecko-services.cpp: 
+	Fix printing ranges (bug #370618, Christian Persch)
+	
 	* src/yelp-info-parser.c: 
 	When whitespace on new line of a note is < 2,
 	don't crash (bug #376861)
