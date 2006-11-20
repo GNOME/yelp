@@ -905,6 +905,7 @@ convert_info_uri (gchar   *uri)
     gchar *info_dot_info = NULL;
     gchar **infopaths = NULL;
     gboolean need_subdir = FALSE;
+    gchar *test_filename = NULL;
 
     gint i;
 
@@ -979,6 +980,8 @@ convert_info_uri (gchar   *uri)
 	dir = g_dir_open (infopath[i], 0, NULL);
 	if (dir) {
 	    while ((filename = g_dir_read_name (dir))) {
+		g_free (test_filename);
+		test_filename =  g_strconcat (infopath[i], "/", filename, NULL);
 		if (need_subdir && g_str_equal (filename, subdir)) {
 		    gchar *dirname = NULL;
 		    g_dir_close (dir);
@@ -987,6 +990,31 @@ convert_info_uri (gchar   *uri)
 		    g_free (dirname);
 		    filename = g_dir_read_name (dir);
 		    need_subdir = FALSE;
+		}
+		else if (g_str_equal (filename,info_name) && 
+			 g_file_test (test_filename, G_FILE_TEST_IS_DIR)) {
+		    /* In dir, they've specified the subdir but not the
+		     * info file name.  Here, do some work to get the name
+		     *  ...*/
+		    gchar *real_filename;
+
+		    g_dir_close (dir);
+		    dir = g_dir_open (test_filename, 0, NULL);
+
+		     while ((real_filename = g_dir_read_name (dir))) {
+			 if ((g_str_equal (info_dot_info, real_filename)  ||
+			  g_pattern_match_string (pspec, real_filename) ||
+			  g_pattern_match_string (pspec1, real_filename) ||
+			      g_str_equal (info_name, real_filename))) {
+			     doc_uri = g_strconcat ("file://",
+						    test_filename, "/",
+						    real_filename,
+						    NULL);
+			     g_dir_close (dir);
+			     goto done;
+			 }
+		     }
+
 		}
 		else if (!need_subdir && 
 			 (g_str_equal (info_dot_info, filename)  ||
@@ -1027,6 +1055,7 @@ convert_info_uri (gchar   *uri)
 	g_pattern_spec_free (pspec);
     if (pspec1)
 	g_pattern_spec_free (pspec1);
+    g_free (test_filename);
     g_free (subdir);
     g_free (info_dot_info);
     g_free (info_name);

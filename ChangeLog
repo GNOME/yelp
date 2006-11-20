@@ -1,5 +1,10 @@
 2006-11-20  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* src/yelp-utils.c:
+	When info:dir contains a link to a subdir,
+	but not an info name, work as expected
+	 (Really fixes bug #371680)
+	
 	* src/yelp-io-channel.c: 
 	Check the file exists and is valid before trying
 	to read it (fixes bug #371680)
