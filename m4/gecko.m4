@@ -96,6 +96,7 @@ xulrunner) gecko_cv_gecko_flavour=toolkit ;;
 esac
 
 _GECKO_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir ${gecko_cv_gecko}-xpcom`"
+_GECKO_LIBDIR="`$PKG_CONFIG --variable=libdir ${gecko_cv_gecko}-xpcom`"
 _GECKO_HOME="`$PKG_CONFIG --variable=libdir ${gecko_cv_gecko}-xpcom`"
 _GECKO_PREFIX="`$PKG_CONFIG --variable=prefix ${gecko_cv_gecko}-xpcom`"
 
@@ -110,6 +111,7 @@ AM_CONDITIONAL([HAVE_MOZILLA_TOOLKIT],[test "$gecko_cv_gecko_flavour" = "toolkit
 $1[]=$gecko_cv_gecko
 $1[]_FLAVOUR=$gecko_cv_gecko_flavour
 $1[]_INCLUDE_ROOT=$_GECKO_INCLUDE_ROOT
+$1[]_LIBDIR=$_GECKO_LIBDIR
 $1[]_HOME=$_GECKO_HOME
 $1[]_PREFIX=$_GECKO_PREFIX
 
@@ -322,16 +324,19 @@ $1[]_VERSION_INT=$gecko_cv_gecko_version_int
 # **************************************************
 
 gecko_cv_extra_libs=
+gecko_cv_glue_libs=
 gecko_cv_extra_pkg_dependencies=
 
 if test "$gecko_cv_gecko_version_int" -ge "1009000"; then
-	gecko_cv_extra_libs="-lxul"
+	gecko_cv_extra_libs="-L$_GECKO_LIBDIR -lxul"
+	gecko_cv_glue_libs="-L$_GECKO_LIBDIR -lxpcomglue_s"
 else
 	gecko_cv_extra_pkg_dependencies="${gecko_cv_gecko}-gtkmozembed"
 fi
 
 $1[]_EXTRA_PKG_DEPENDENCIES="$gecko_cv_extra_pkg_dependencies"
 $1[]_EXTRA_LIBS="$gecko_cv_extra_libs"
+$1[]_GLUE_LIBS="$gecko_cv_glue_libs"
 
 ])
 

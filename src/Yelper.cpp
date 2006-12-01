@@ -191,7 +191,10 @@ Yelper::FindAgain (PRBool aForward)
 	nsresult rv;
 	PRUint16 found = nsITypeAheadFind::FIND_NOTFOUND;
 #ifdef HAVE_GECKO_1_9
-	rv = mFinder->FindAgain (!aForward, mHasFocus, &found);
+	rv = mFinder->FindAgain (!aForward,
+				 PR_FALSE /* links only? */,
+				 mHasFocus,
+				 &found);
 #else
 	if (aForward) {
 		rv = mFinder->FindNext (&found);
