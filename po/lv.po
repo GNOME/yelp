@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-24 16:27+0300\n"
-"PO-Revision-Date: 2006-08-24 16:46+0300\n"
+"POT-Creation-Date: 2006-12-07 19:45+0200\n"
+"PO-Revision-Date: 2006-12-07 19:45+0200\n"
 "Last-Translator: Raivis Dejus <orvils@gmail.com>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"Language-Team: Latvian <locale@lakalv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
@@ -605,7 +605,7 @@ msgstr ""
 "Failu ar nosaukumu '%s' nevar parsēt. Vai nu šis fails neeksistē vai arī tas "
 "nav korekti noformēta info lapa."
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-io-channel.c:107
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -614,20 +614,20 @@ msgstr ""
 "Failu ar nosaukumu '%s' nevar nolasīt un atšifrēt. Iespējams, ka fails ir "
 "kompresēts neatbalstītā formātā."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:92
 msgid "Use a private session"
 msgstr "Izmantot privātu sesiju"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
 msgstr "Norrādiet vēlamo kešatmiņas direktoriju"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:354
+#: ../src/yelp-main.c:358
 msgid " GNOME Help Browser"
 msgstr "GNOME Palīdzības Pārlūks"
 
-#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Palīdzība"
 
@@ -661,23 +661,19 @@ msgstr "Šim printerim drukāšana nav atbalstīta"
 msgid "Printer %s does not support postscript printing."
 msgstr "Printerim %s nav postscript drukāšanas atbalstīta."
 
-#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:365
 msgid "Printing"
 msgstr "Drukāju"
 
-#: ../src/yelp-print.c:364
-msgid "<b>Printing</b>"
-msgstr "<b>Drukāju</b>"
-
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:367
 msgid "Waiting to print"
 msgstr "Gaidu, lai drukātu"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:579
 msgid "An error occurred while printing"
 msgstr "Drukāšanas laikā nkusi nezkļūda"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:583
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "Jūsu dokumentu nav iespējams izdrukāt: %s"
@@ -704,7 +700,9 @@ msgstr "Meklējot \"%s\" nekasnav atrasts"
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
-msgstr "Mēģiniet izmantot citus vārdus, lai aprakstītu savu problēmu vai tēmu, kuru vēlaties atrast."
+msgstr ""
+"Mēģiniet izmantot citus vārdus, lai aprakstītu savu problēmu vai tēmu, kuru "
+"vēlaties atrast."
 
 #: ../src/yelp-search-pager.c:811
 #, c-format
@@ -721,17 +719,17 @@ msgstr "Meklēšanas rezultāti meklējot \"%s\""
 msgid "Repeat the search online at %s"
 msgstr "Atkārtot meklēšanu tiešsaitē %s"
 
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2157
 #: ../src/yelp-xslt-pager.c:364
 msgid "No href attribute found on yelp:document"
 msgstr "yelp:document nesatur href atribūtu"
 
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2170
 #: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
 msgid "Out of memory"
 msgstr "Nepietiek atmiņas"
 
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2219
 msgid "Help Contents"
 msgstr "Palīdzības Saturs"
 
@@ -774,7 +772,7 @@ msgstr "NULL"
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
-#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
+#: ../src/yelp-search-pager.c:1516 ../src/yelp-toc-pager.c:631
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "Nevar ielādēt OMF failu '%s'."
@@ -840,163 +838,163 @@ msgstr ""
 msgid "Command Line Help"
 msgstr "Komandrindas palīdzība"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:317
 msgid "_File"
 msgstr "_Fails"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:318
 msgid "_Edit"
 msgstr "R_ediģēt"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:319
 msgid "_Go"
-msgstr "_Pāit"
+msgstr "_Pāriet"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:320
 msgid "_Bookmarks"
 msgstr "_Grāmatzīmes"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:321
 msgid "_Help"
 msgstr "_Palīdzība"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:324
 msgid "_New Window"
 msgstr "Jau_ns logs"
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:329
 msgid "Print This Document"
 msgstr "Drukāt šo dokumentu"
 
-#: ../src/yelp-window.c:335
+#: ../src/yelp-window.c:334
 msgid "Print This Page"
 msgstr "Drukāt šo lapu"
 
-#: ../src/yelp-window.c:340
+#: ../src/yelp-window.c:339
 msgid "About This Document"
 msgstr "Par šo dokumentu"
 
-#: ../src/yelp-window.c:345
+#: ../src/yelp-window.c:344
 msgid "Open _Location"
 msgstr "Atvērt _lokāciju"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:349
 msgid "_Close Window"
 msgstr "_Aizvērt logu"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:355
 msgid "_Copy"
 msgstr "_Kopēt"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:361
 msgid "_Select All"
 msgstr "Aizzīmēt vi_su"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:366
 msgid "_Find..."
 msgstr "_Atrast lapā..."
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:371
 msgid "Find Pre_vious"
 msgstr "_Atrast iepriekšējo"
 
-#: ../src/yelp-window.c:374
+#: ../src/yelp-window.c:373
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Atrast vārda vai frāzes iepriekšējo parādīšanos"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:376
 msgid "Find Ne_xt"
 msgstr "Atrast _nākamo"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:378
 msgid "Find next occurrence of the word or phrase"
 msgstr "Atrast vārda vai frāzes nākamoparādīšanos"
 
-#: ../src/yelp-window.c:382
+#: ../src/yelp-window.c:381
 msgid "_Preferences"
 msgstr "_Preferences"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:386
 msgid "_Reload"
 msgstr "Pā_rlādēt"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:398
 msgid "_Back"
 msgstr "_Atpakaļ"
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:400
 msgid "Show previous page in history"
 msgstr "Parādīt iepriekšējo lapu vēsturē"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:403
 msgid "_Forward"
 msgstr "_Uz priekšu"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:405
 msgid "Show next page in history"
 msgstr "Parādīt nākošo lapu vēsturē"
 
-#: ../src/yelp-window.c:409
+#: ../src/yelp-window.c:408
 msgid "_Help Topics"
 msgstr "_Palīdzības tēmas"
 
-#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:410
 msgid "Go to the listing of help topics"
 msgstr "Iet uz palīdzības tēmu sarakstu"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:413
 msgid "_Previous Section"
 msgstr "_Iepriekšējā sadaļas"
 
-#: ../src/yelp-window.c:419
+#: ../src/yelp-window.c:418
 msgid "_Next Section"
 msgstr "_Nākamā sadaļa"
 
-#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
+#: ../src/yelp-window.c:423 ../src/yelp-window.c:455
 msgid "_Contents"
 msgstr "_Saturs"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:429
 msgid "_Add Bookmark"
 msgstr "Pievienot grām_atzīmi"
 
-#: ../src/yelp-window.c:435
+#: ../src/yelp-window.c:434
 msgid "_Edit Bookmarks..."
 msgstr "_Labot grāmatzīmes..."
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:440
 msgid "_Open Link"
 msgstr "_Atvērt saiti"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:445
 msgid "Open Link in _New Window"
 msgstr "Atvērt saiti jau_nā logā"
 
-#: ../src/yelp-window.c:451
+#: ../src/yelp-window.c:450
 msgid "_Copy Link Address"
 msgstr "_Kopēt saites adresi"
 
-#: ../src/yelp-window.c:458
+#: ../src/yelp-window.c:457
 msgid "Help On this application"
 msgstr "Palīdzēt ar šo akācijasu"
 
-#: ../src/yelp-window.c:461
+#: ../src/yelp-window.c:460
 msgid "_About"
 msgstr "_Par"
 
-#: ../src/yelp-window.c:466
+#: ../src/yelp-window.c:465
 msgid "Copy _Email Address"
 msgstr "Kopēt _e-pasta adresi"
 
-#: ../src/yelp-window.c:515
+#: ../src/yelp-window.c:514
 msgid "Help Browser"
 msgstr "Palīdzības Pārlūks"
 
-#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
+#: ../src/yelp-window.c:925 ../src/yelp-window.c:1081
 msgid "The Uniform Resource Identifier for the file is invalid."
 msgstr "Vienotais resursu inentifikators (URI) atklāja, ka fails nav derīgs."
 
-#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:937 ../src/yelp-window.c:1076
 #, c-format
 msgid ""
 "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
@@ -1005,19 +1003,19 @@ msgstr ""
 "Vienotais resursu inentifikators (URI) ‘%s’ nav derīgs vai arī nenorāda uz "
 "vajadzīgo failu."
 
-#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
+#: ../src/yelp-window.c:1025 ../src/yelp-window.c:1505
 msgid "Man pages are not supported in this version."
 msgstr "Pamācības lapas šajā versijā netiek nodrošinātas."
 
-#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
+#: ../src/yelp-window.c:1035 ../src/yelp-window.c:1496
 msgid "GNU info pages are not supported in this version"
 msgstr "GNU info lapas šajā versijā netiek nodrošinātas"
 
-#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
+#: ../src/yelp-window.c:1051 ../src/yelp-window.c:1518
 msgid "Search is not supported in this version."
 msgstr "Šajā versijā meklēšana netiek nodrošināta."
 
-#: ../src/yelp-window.c:1057
+#: ../src/yelp-window.c:1056
 msgid ""
 "SGML documents are no longer supported. Please ask the author of the "
 "document to convert to XML."
@@ -1025,27 +1023,27 @@ msgstr ""
 "SGML dokumenti vairs netiek nodrošināti. Palūdziet dokumenta autoram "
 "pārveidot to XML formātā."
 
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1222
 msgid "_Search:"
 msgstr "_Meklēt:"
 
-#: ../src/yelp-window.c:1224
+#: ../src/yelp-window.c:1223
 msgid "Search for other documentation"
 msgstr "Meklēt citus dkumentius"
 
-#: ../src/yelp-window.c:1386
+#: ../src/yelp-window.c:1385
 msgid "Fin_d:"
 msgstr "_Atrast:"
 
-#: ../src/yelp-window.c:1406
+#: ../src/yelp-window.c:1405
 msgid "Find _Next"
 msgstr "Atrast _nākamo"
 
-#: ../src/yelp-window.c:1418
+#: ../src/yelp-window.c:1417
 msgid "Find _Previous"
 msgstr "Atrast ie_priekšējo"
 
-#: ../src/yelp-window.c:1532
+#: ../src/yelp-window.c:1531
 #, c-format
 msgid ""
 "A transformation context could not be created for the file ‘%s’. The format "
@@ -1054,8 +1052,8 @@ msgstr ""
 "Nav iespējams izveidot faila ‘%s’ transformācijas kontekstu. Faila formāts "
 "varētu būt neatbalstīts."
 
-#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
-#: ../src/yelp-window.c:2064
+#: ../src/yelp-window.c:1561 ../src/yelp-window.c:1980
+#: ../src/yelp-window.c:2063
 #, c-format
 msgid ""
 "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -1066,7 +1064,7 @@ msgstr ""
 "palīdības pogu kādā programmā, ziņojiet par šo kļūdu programmas "
 "izstrādātājiem."
 
-#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
+#: ../src/yelp-window.c:1676 ../src/yelp-window.c:2467
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1075,24 +1073,24 @@ msgstr ""
 "Nevar nolasīt failu '%s'. Iespējams, ka šis fails neeksistē vai arī jums nav "
 "atļaujas to lasīt."
 
-#: ../src/yelp-window.c:1728
+#: ../src/yelp-window.c:1727
 msgid "Loading..."
 msgstr "Ielādēju..."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2911
+#: ../src/yelp-window.c:2901
 msgid "translator-credits"
 msgstr ""
 "Tulkojis:Artis Trops <hornet@navigator.lv>\n"
 "Peteris Krisjanis <peteris.krisjanis@os.lv>\n"
 "Kaspars Krampis <kaspars.krampis@gmail.com>"
 
-#: ../src/yelp-window.c:2914
+#: ../src/yelp-window.c:2904
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2916
+#: ../src/yelp-window.c:2906
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentu pārlūks Gnome videi."
 
