@@ -7,416 +7,758 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-03-13 14:38+0200\n"
-"Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
+"POT-Creation-Date: 2006-11-24 22:13+0100\n"
+"PO-Revision-Date: 2006-12-12 03:39+0300\n"
+"Last-Translator: Alexander Nyakhaychyk <nyakhaychyk@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:1
+#: ../src/yelp-toc-pager.c:1849
+msgid "GNU Info Pages"
+msgstr "Старонкі GNU Info"
+
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "Традыцыяная даведка для загаднага радка (info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "Дастасаваньні"
 
-#: data/man.xml.in.h:2
+#: ../data/man.xml.in.h:2
+msgid "BLT Functions"
+msgstr "Функцыі BLT"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "Канфігурацыйныя файлы"
 
-#: data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Функцыі Curses"
+
+#: ../data/man.xml.in.h:5
 msgid "Development"
 msgstr "Распрацоўка"
 
-#: data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "Функцыі FORTRAN"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7
+#: ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "Гульні"
 
-#: data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "Апаратныя сродкі"
 
-#: data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr "Функцыі ядра"
 
-#: data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "Бібліятэчныя функцыі"
-
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-#, fuzzy
-msgid "Man Pages"
+#: ../data/man.xml.in.h:10
+#: ../src/yelp-toc-pager.c:1843
+msgid "Manual Pages"
 msgstr "Старонкі кіраўніцтва"
 
-#: data/man.xml.in.h:10
-#, fuzzy
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "Функцыі працы з гукам праз інтэрнэт"
+
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
-msgstr "Дастасаваньні для X"
+msgstr "Дастасаваньні OpensSSL"
 
-#: data/man.xml.in.h:11
-#, fuzzy
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
-msgstr "Канфігурацыйныя файлы"
+msgstr "Наладка OpenSSL"
 
-#: data/man.xml.in.h:12
-#, fuzzy
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "Функцыі OpenSSL"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
-msgstr "Агляды"
+msgstr "Агляд OpenSSL"
 
-#: data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "Агляды"
 
-#: data/man.xml.in.h:14
-#, fuzzy
+#: ../data/man.xml.in.h:17
+msgid "POSIX Functions"
+msgstr "Функцыі POSIX"
+
+#: ../data/man.xml.in.h:18
+msgid "POSIX Headers"
+msgstr "Загалоўкі POSIX"
+
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
-msgstr "Бібліятэчныя функцыі"
+msgstr "Функцыі Perl"
 
-#: data/man.xml.in.h:15
-#, fuzzy
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
-msgstr "Бібліятэчныя функцыі"
+msgstr "Функцыі Qt"
 
-#: data/man.xml.in.h:16
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Функцыі readline"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "Разьдзел 0p"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "Разьдзел 1m"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "Разьдзел 1ssl"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "Разьдзел 1x"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "Разьдзел 2"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "Разьдзел 3blt"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "Разьдзел 3f"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "Разьдзел 3nas"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "Разьдзел 3p"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "Разьдзел 3qt"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "Разьдзел 3readline"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "Разьдзел 3ssl"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "Разьдзел 3tiff"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "Разьдзел 4"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "Разьдзел 4x"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "Разьдзел 5"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "Разьдзел 5ssl"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "Разьдзел 5x"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "Разьдзел 6"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "Разьдзел 6x"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "Разьдзел 7ssl"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "Разьдзел 7x"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "Разьдзел 9"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "Разьдзелы 1, 1p, 1g і 1t"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "Разьдзелы 3, 3o і 3t"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "Разьдзелы 3form і 3menu"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "Разьдзелы 3ncurses і 3curses"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "Разьдзелы 3pm і 3perl"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "Разьдзелы 3x і 3X11"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "Разьдзелы 7 і 7 gcc"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "Разьдзелы 8 і 8l"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "Сыстэмнае адміністраваньне"
 
-#: data/man.xml.in.h:17
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "Сыстэмныя выклікі"
 
-#: data/man.xml.in.h:18
-#, fuzzy
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "Функцыі формаў/мэню System V"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "Функцыі TIFF"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
-msgstr "Дастасаваньні для X"
+msgstr "Дастасаваньні Termcap"
 
-#: data/man.xml.in.h:19
-#, fuzzy
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "Традыцыйная даведка для загаднага радка (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
-msgstr "Дастасаваньні для X"
+msgstr "Дастасаваньні X11"
 
-#: data/man.xml.in.h:20
-#, fuzzy
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
-msgstr "Канфігурацыйныя файлы"
+msgstr "Файлы наладак для X11"
 
-#: data/man.xml.in.h:21
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
-msgstr ""
+msgstr "Прылады X11"
 
-#: data/man.xml.in.h:22
-#, fuzzy
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
-msgstr "Бібліятэчныя функцыі"
+msgstr "Функцыі X11"
 
-#: data/man.xml.in.h:23
-#, fuzzy
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
-msgstr "Гульні"
+msgstr "Гульні X11"
 
-#: data/man.xml.in.h:24
-#, fuzzy
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
-msgstr "Агляды"
+msgstr "Агляд X11"
 
-#: data/toc.xml.in.h:1
+#: ../data/toc.xml.in.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "Даступнасьць"
 
-#: data/toc.xml.in.h:2
+#: ../data/toc.xml.in.h:2
 msgid "Accessories"
-msgstr ""
+msgstr "Аксэсуары"
 
-#: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Аплеты"
+#: ../data/toc.xml.in.h:3
+msgid "Applications for fun"
+msgstr "Забаўляльныя дастасаваньні"
 
-#: data/toc.xml.in.h:5
+#: ../data/toc.xml.in.h:4
+msgid "Applications for manipulating or viewing graphics"
+msgstr "Дастасаваньні для маніпуляцыяў і прагляду графікі"
+
+#: ../data/toc.xml.in.h:5
+msgid "Applications for word processing and other office tasks"
+msgstr "Дастасаваньні для працы над тэкстамі і іншымі офіснымі задачамі"
+
+#: ../data/toc.xml.in.h:6
+msgid "Applications related to X Windows"
+msgstr "Дастасаваньні да X Window"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications related to multimedia"
+msgstr "Дастасаваньні, якія маюць дачыненьне да мультымэдыі"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to software development"
+msgstr "Дастасаваньні, якія маюць дачыненьне да распрацоўкі праграмаў"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications related to the internet"
+msgstr "Дастасаваньні, якія маюць дачыненьне да інтэрнэту"
+
+#: ../data/toc.xml.in.h:10
+msgid "Applications specific to the panel"
+msgstr "Дастасаваньні, якія маюць дачыненьне да панэлі"
+
+#: ../data/toc.xml.in.h:11
+msgid "Applications that support assistive technologies"
+msgstr "Дастасаваньні, якія маюць дачыненьне да тэхналёгіі судзеяньня"
+
+#: ../data/toc.xml.in.h:12
 msgid "Desktop"
 msgstr "Сталец"
 
-#: data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "Адукацыйныя дастасаваньні"
+#: ../data/toc.xml.in.h:13
+msgid "Documents specific to the KDE Desktop Environment"
+msgstr "Дакумэнтацыя спэцыфічная для асяродзьдзя KDE"
 
-#: data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:14
+msgid "Education"
+msgstr "Адукацыя"
+
+#: ../data/toc.xml.in.h:16
 msgid "Graphics"
-msgstr ""
+msgstr "Графіка"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
-msgid "Help Topics"
-msgstr "Вандроўнік па даведке"
-
-#: data/toc.xml.in.h:10
-#, fuzzy
+#: ../data/toc.xml.in.h:17
 msgid "Internet"
-msgstr "Зьмест"
+msgstr "Інтэрнэт"
 
-#: data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:18
 msgid "KDE"
 msgstr "KDE"
 
-#: data/toc.xml.in.h:12
+#: ../data/toc.xml.in.h:19
+msgid "Learning applications"
+msgstr "Адукацыйныя дастасаваньні"
+
+#: ../data/toc.xml.in.h:20
+msgid "Miscellaneous documents"
+msgstr "Разнастайныя дакумэнты"
+
+#: ../data/toc.xml.in.h:21
 msgid "Office"
-msgstr ""
+msgstr "Офіс"
 
-#: data/toc.xml.in.h:13
-msgid "Other"
-msgstr ""
+#: ../data/toc.xml.in.h:22
+msgid "Other Applications"
+msgstr "Іншыя дастасаваньні"
 
-#: data/toc.xml.in.h:14
-#, fuzzy
+#: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
-msgstr "Зьвесткі выпуска"
+msgstr "Іншая дакумэнтацыя"
 
-#: data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:24
+msgid "Panel Applets"
+msgstr "Аплеты панэлі"
+
+#: ../data/toc.xml.in.h:25
 msgid "Programming"
-msgstr ""
+msgstr "Праграмаваньне"
 
-#: data/toc.xml.in.h:16
-#, fuzzy
+#: ../data/toc.xml.in.h:26
 msgid "Scientific"
-msgstr "Навуковыя дастасаваньні"
+msgstr "Навука"
 
-#: data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:27
+msgid "Scientific Applications."
+msgstr "Навуковыя дастасаваньні."
+
+#: ../data/toc.xml.in.h:28
 msgid "Sound &amp; Video"
-msgstr ""
+msgstr "Аўдыё і відэа"
 
-#: data/toc.xml.in.h:18
-#, fuzzy
+#: ../data/toc.xml.in.h:29
 msgid "System Tools"
-msgstr "Сыстэмныя выклікі"
+msgstr "Сыстэмныя сродкі"
 
-#: data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:30
+msgid "Utilities to manage your computer"
+msgstr "Праграмы для кіраваньня кампутарам"
+
+#: ../data/toc.xml.in.h:31
+msgid "Utility applications"
+msgstr "Разнастайныя дастасаваньні"
+
+#: ../data/toc.xml.in.h:32
+msgid "Variety of other applications"
+msgstr "Разнастайныя іншыя дастасаваньні"
+
+#: ../data/toc.xml.in.h:33
+msgid "Welcome to the GNOME Help Browser"
+msgstr "Вітаем у Гартачы даведкі GNOME"
+
+#: ../data/toc.xml.in.h:34
 msgid "X Applications"
 msgstr "Дастасаваньні для X"
 
-#: data/ui/yelp.glade.h:1
+#: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>Даступнасьць</b>"
 
-#: data/ui/yelp.glade.h:2
+#: ../data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Шрыфты</b>"
 
-#: data/ui/yelp.glade.h:3
-#, fuzzy
-msgid "<b>_Bookmarks:</b>"
-msgstr "Кніга"
-
-#: data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:5
+#: ../data/ui/yelp.glade.h:3
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Дадаць закладку"
 
-#: data/ui/yelp.glade.h:6
-#, fuzzy
+#: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
-msgstr "Кніга"
+msgstr "Закладкі"
 
-#: data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
 msgstr "Адрозьніваць рэ_гістры"
 
-#: data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Пошук"
 
-#: data/ui/yelp.glade.h:9
-#, fuzzy
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
-msgstr "Прысьвячэньне"
+msgstr "Адчыніць знаходжаньне"
 
-#: data/ui/yelp.glade.h:10
-#, fuzzy
+#: ../data/ui/yelp.glade.h:8
 msgid "Preferences"
-msgstr "Даведнік"
+msgstr "Перавагі"
 
-#: data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
-msgstr ""
+msgstr "Перай_менаваць"
 
-#: data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "За_кладкі:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
-msgstr ""
+msgstr "Зад_зейнічаць карэтку"
 
-#: data/ui/yelp.glade.h:13
-msgid "_Find: "
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
 msgstr "По_шук:"
 
-#: data/ui/yelp.glade.h:14
+#: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Монашырынёвы:"
 
-#: data/ui/yelp.glade.h:15
-#, fuzzy
+#: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
-msgstr "Прысьвячэньне"
+msgstr "_Знаходжаньне:"
 
-#: data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Наступнае"
 
-#: data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_Папярэдняе"
 
-#: data/ui/yelp.glade.h:18
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Назва:"
+
+#: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "Вы_карыстоўваць сыстэмныя шрыфты"
 
-#: data/ui/yelp.glade.h:19
+#: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "Р_азнашырынёвы:"
 
-#: data/ui/yelp.glade.h:20
+#: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
 msgstr "Загортваць наў_кола"
 
-#: data/yelp.schemas.in.h:1
+#: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Шрыфт монашырынёвага тэксту"
 
-#: data/yelp.schemas.in.h:2
+#: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Шрыфт тэксту"
 
-#: data/yelp.schemas.in.h:3
+#: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Шрыфт для тэксту адной шырыні."
 
-#: data/yelp.schemas.in.h:4
+#: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Шрыфт для тэксту зь пераменнай шырынёй."
 
-#: data/yelp.schemas.in.h:5
+#: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Выкарыстоўваць карэтку, якой можна кіраваць з клявіятуры, у час прагляду старонак."
 
-#: data/yelp.schemas.in.h:6
+#: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Выкарыстоўваць карэтку"
 
-#: data/yelp.schemas.in.h:7
+#: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "Выкарыстоўваць сістэмныя шрыфты"
 
-#: data/yelp.schemas.in.h:8
+#: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "Выкарыстоўваць набор шрыфтоў, прадвызначаны для сыстэмы."
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
-msgid "Yelp"
-msgstr "Yelp"
+#: ../src/yelp-bookmarks.c:150
+msgid "Open Bookmark in New Window"
+msgstr "Адчыніць закладку ў новым акне"
 
-#: src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Вытворчасьць Yelp"
+#: ../src/yelp-bookmarks.c:154
+msgid "Rename Bookmark"
+msgstr "Перайменаваць закладку"
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: ../src/yelp-bookmarks.c:158
+msgid "Remove Bookmark"
+msgstr "Выдаліць закладку"
+
+#: ../src/yelp-bookmarks.c:315
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "Закладка пад назвай %s ужо існуе для гэтае старонкі."
+
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "Закладка пад назвай <b>%s</b> ужо існуе для гэтае старонкі."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "Тэмы даведкі"
+
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
-msgstr "Зьвесткі выпуска"
+msgstr "Падзелы дакумэнта"
 
-#: src/yelp-db-pager.c:238
+#: ../src/yelp-db-pager.c:239
+#: ../src/yelp-db-print-pager.c:190
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
+msgstr "Немагчыма зрабіць разбор файла \"%s\". Альбо файл не існуе, альбо гэта кепска складзены XML."
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown"
-msgstr "Невядома"
-
-#: src/yelp-error.c:42 src/yelp-error.c:58
+#: ../src/yelp-error.c:42
+#: ../src/yelp-error.c:58
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Узьнікла невядомая памылка"
 
-#: src/yelp-error.c:46
-#, fuzzy
+#: ../src/yelp-error.c:46
 msgid "Could not load document"
-msgstr "Дадатковыя дакумэнты"
+msgstr "Немагчыма загрузіць дакумэнт"
 
-#: src/yelp-error.c:48
-#, fuzzy
+#: ../src/yelp-error.c:48
 msgid "Could not load section"
-msgstr "Ня атрымалася адчыніць новае акно"
+msgstr "Немагчыма загрузіць падзел"
 
-#: src/yelp-error.c:50
-#, fuzzy
+#: ../src/yelp-error.c:50
 msgid "Could not read the table of contents"
-msgstr "Немагчыма загрузіць OMF-файл \"%s\"."
+msgstr "Немагчыма загрузіць зьмест"
 
-#: src/yelp-error.c:52
+#: ../src/yelp-error.c:52
 msgid "Unsupported Format"
-msgstr ""
+msgstr "Фармат не падтрымліваецца"
 
-#: src/yelp-error.c:54
+#: ../src/yelp-error.c:54
 msgid "Could not read document"
-msgstr ""
+msgstr "Немагчыма прачытаць дакумэнт"
 
-#: src/yelp-error.c:56
+#: ../src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Немагчыма апрацаваць дакумэнт"
 
-#: src/yelp-error.c:66
+#: ../src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "Зьвесткі пра гэтую памылку недаступныя."
 
-#: src/yelp-io-channel.c:98
+#: ../src/yelp-info-pager.c:188
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
+msgid "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is not a well-formed info page."
+msgstr "Немагчыма зрабіць разбор файла \"%s\". Альбо файл не існуе, альбо гэта кепска складзеная info-старонка."
 
-#: src/yelp-main.c:95
+#: ../src/yelp-io-channel.c:107
+#, c-format
+msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+msgstr "Немагчыма дэкадаваць файл \"%s\". Альбо файл сьціснуты, альбо мае фармат, які не падтрымліваецца."
+
+#: ../src/yelp-main.c:92
+msgid "Use a private session"
+msgstr "Выкарыстоўваць прыватны сэанс"
+
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
 msgstr "Вызначае якую тэчку кэшу выкарыстоўваць"
 
-#: src/yelp-main.c:129
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "Ня атрымалася актывізаваць Yelp: \"%s\""
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:358
+msgid " GNOME Help Browser"
+msgstr "Гартач даведкі GNOME"
 
-#: src/yelp-main.c:148
-msgid "Could not open new window."
-msgstr "Ня атрымалася адчыніць новае акно"
-
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376
+#: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Даведка"
 
-#: src/yelp-man-pager.c:164
+#: ../src/yelp-man-pager.c:263
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
+msgstr "Немагчыма зрабіць разбор файла \"%s\". Альбо файл не існуе, альбо гэта кепска складзены."
 
-#: src/yelp-pager.c:120
-#, fuzzy
+#: ../src/yelp-pager.c:117
 msgid "Document Information"
-msgstr "Зьвесткі выпуска"
+msgstr "Зьвесткі пра дакумэнт"
 
-#: src/yelp-pager.c:121
+#: ../src/yelp-pager.c:118
 msgid "The YelpDocInfo struct of the document"
+msgstr "Структура YelpDocInfo дакумэнта"
+
+#: ../src/yelp-print.c:167
+msgid "Preparing to print"
+msgstr "Падрыхтоўка да друку"
+
+#: ../src/yelp-print.c:261
+msgid "Printing is not supported on this printer"
+msgstr "Для гэтае друкаркі друк не падтрымліваецца"
+
+#: ../src/yelp-print.c:264
+#, c-format
+msgid "Printer %s does not support postscript printing."
+msgstr "Друкаркі %s не падтрымлівае друк postscript."
+
+#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:365
+msgid "Printing"
+msgstr "Друк"
+
+#: ../src/yelp-print.c:367
+msgid "Waiting to print"
+msgstr "Чаканьне друку"
+
+#: ../src/yelp-print.c:579
+msgid "An error occurred while printing"
+msgstr "Узьнікла памылка цягам друку"
+
+#: ../src/yelp-print.c:583
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "Ваш дакумэнт немагчыма раздрукаваць: %s"
+
+#: ../src/yelp-search-pager.c:71
+msgid "the GNOME Support Forums"
+msgstr "Форум падтрымкі GNOME"
+
+#: ../src/yelp-search-pager.c:755
+#, c-format
+msgid "Your search could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+msgstr "Ваш пошук немагчыма ажыцьцявіць. Файл \"%s\" альбо прапушчаны, альбо не зьяўляецца рэчаісным XSLT."
+
+#: ../src/yelp-search-pager.c:807
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Няма вынікаў для \"%s\""
+
+#: ../src/yelp-search-pager.c:808
+msgid "Try using different words to describe the problem you're having or the topic you want help with."
+msgstr "Паспрабуйце ўжыць іншыя словы, каб апісаць вашую праблему альбо тэму, па якой вы шукаеце дапамогу."
+
+#: ../src/yelp-search-pager.c:811
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "Вынікі пошуку для \"%s\""
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:828
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Паўтарыць пошук у сеціве праз %s"
+
+#: ../src/yelp-search-pager.c:905
+#: ../src/yelp-toc-pager.c:2157
+#: ../src/yelp-xslt-pager.c:364
+msgid "No href attribute found on yelp:document"
+msgstr "Рыса href ня знойдзена ў yelp:document"
+
+#: ../src/yelp-search-pager.c:919
+#: ../src/yelp-toc-pager.c:2170
+#: ../src/yelp-xslt-pager.c:380
+#: ../src/yelp-xslt-pager.c:531
+msgid "Out of memory"
+msgstr "Бракуе памяці"
+
+#: ../src/yelp-search-pager.c:960
+#: ../src/yelp-toc-pager.c:2219
+msgid "Help Contents"
+msgstr "Зьмест даведкі"
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1286
+msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 msgstr ""
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1302
+msgid "re"
+msgstr "не:пры:за:пера:пад:ня:са:дэ:анты"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1311
+msgid "ers:er:ing:es:s:'s"
+msgstr ""
+
+#: ../src/yelp-search-pager.c:1516
+#: ../src/yelp-toc-pager.c:631
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Немагчыма загрузіць OMF-файл \"%s\"."
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -431,7 +773,7 @@ msgstr ""
 #. If you need an image created, contact the maintainers.
 #.
 #. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
+#. use guillemets (angle quotations) should use either 00AB or 00BB,
 #. depending on whether the opening quotation is the left guillemet
 #. or the right guillemet.  Languages that use inverted comma style
 #. quotations should use 201C, 201D, or 201E.  Note that single
@@ -439,653 +781,547 @@ msgstr ""
 #. single quotes as your primary (outer) quotation marks, you should
 #. just use the corresponding double quote watermark.
 #.
-#: src/yelp-settings.c:151
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr ""
 
-#: src/yelp-toc-pager.c:268
+#: ../src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: колькасьць прыпыненьняў - адмоўная."
 
-#: src/yelp-toc-pager.c:491
+#: ../src/yelp-toc-pager.c:379
+#: ../src/yelp-toc-pager.c:1957
 #, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Немагчыма загрузіць OMF-файл \"%s\"."
+msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+msgstr "Немагчыма апрацаваць табліцу зьместу. Альбо файл \"%s\" прапушчаны, альбо гэта не рэчаісны XSLT/"
 
-#: src/yelp-toc-pager.c:680
+#: ../src/yelp-toc-pager.c:1110
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "Чытаньне man-старонкі для %s"
 
-#: src/yelp-toc-pager.c:765
+#: ../src/yelp-toc-pager.c:1703
 #, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
+msgid "Read info page for %s"
+msgstr "Чытаньне info-старонкі для %s"
 
-#: src/yelp-toc-pager.c:873
+#: ../src/yelp-toc-pager.c:1816
 #, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
+msgstr "Немагчыма загрузіць табліцу зьместу. Альбо файл \"%s\" адсутнічае, альбо гэта кепска складзены XML."
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
-msgid "No href attribute found on yelp:document"
-msgstr "Рыса href ня знойдзена ў yelp:document"
+#: ../src/yelp-toc-pager.c:1838
+msgid "Command Line Help"
+msgstr "Даведка па загадным радку"
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
-msgid "Out of memory"
-msgstr "Бракуе памяці"
-
-#: src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Зьмест даведкі"
-
-#: src/yelp-window.c:302
-#, fuzzy
+#: ../src/yelp-window.c:317
 msgid "_File"
-msgstr "/_Файл"
+msgstr "_Файл"
 
-#: src/yelp-window.c:303
-#, fuzzy
+#: ../src/yelp-window.c:318
 msgid "_Edit"
-msgstr "/_Рэдагаваньне"
+msgstr "_Рэдагаваньне"
 
-#: src/yelp-window.c:304
-#, fuzzy
+#: ../src/yelp-window.c:319
 msgid "_Go"
-msgstr "/Пера_ход"
+msgstr "Пера_ход"
 
-#: src/yelp-window.c:305
+#: ../src/yelp-window.c:320
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_Закладкі"
 
-#: src/yelp-window.c:306
-#, fuzzy
+#: ../src/yelp-window.c:321
 msgid "_Help"
-msgstr "/_Даведка"
+msgstr "_Даведка"
 
-#: src/yelp-window.c:309
-#, fuzzy
+#: ../src/yelp-window.c:324
 msgid "_New Window"
-msgstr "/Файл/_Стварыць акно"
+msgstr "_Стварыць акно"
 
-#: src/yelp-window.c:314
-#, fuzzy
+#: ../src/yelp-window.c:329
+msgid "Print This Document"
+msgstr "Надрукаваць гэты дакумэнт"
+
+#: ../src/yelp-window.c:334
+msgid "Print This Page"
+msgstr "Надрукаваць гэтую старонку"
+
+#: ../src/yelp-window.c:339
 msgid "About This Document"
-msgstr "Пра гэты збор"
+msgstr "Пра гэты дакумэнт"
 
-#: src/yelp-window.c:319
+#: ../src/yelp-window.c:344
 msgid "Open _Location"
-msgstr ""
+msgstr "Адчыніць _знаходжаньне"
 
-#: src/yelp-window.c:324
-#, fuzzy
+#: ../src/yelp-window.c:349
 msgid "_Close Window"
-msgstr "/Файл/_Закрыць акно"
+msgstr "За_чыніць акно"
 
-#: src/yelp-window.c:330
+#: ../src/yelp-window.c:355
 msgid "_Copy"
-msgstr ""
+msgstr "С_капіяваць"
 
-#: src/yelp-window.c:336
-#, fuzzy
+#: ../src/yelp-window.c:361
 msgid "_Select All"
-msgstr "Глядзіце так сама"
+msgstr "Вылучыць _усё"
 
-#: src/yelp-window.c:341
-#, fuzzy
+#: ../src/yelp-window.c:366
 msgid "_Find..."
-msgstr "/Рэдагаваньне/По_шук..."
+msgstr "По_шук..."
 
-#: src/yelp-window.c:346
-#, fuzzy
+#: ../src/yelp-window.c:371
+msgid "Find Pre_vious"
+msgstr "Шукаць _раней"
+
+#: ../src/yelp-window.c:373
+msgid "Find previous occurrence of the word or phrase"
+msgstr "Пошук папярэдняга ўваходжаньня слова ці выраза"
+
+#: ../src/yelp-window.c:376
+msgid "Find Ne_xt"
+msgstr "Шукаць да_лей"
+
+#: ../src/yelp-window.c:378
+msgid "Find next occurrence of the word or phrase"
+msgstr "Пошук наступнага ўваходжаньня слова ці выраза"
+
+#: ../src/yelp-window.c:381
 msgid "_Preferences"
-msgstr "Даведнік"
+msgstr "_Перавагі"
 
-#: src/yelp-window.c:351
+#: ../src/yelp-window.c:386
 msgid "_Reload"
-msgstr ""
+msgstr "_Перачытаць"
 
-#: src/yelp-window.c:357
-#, fuzzy
+#: ../src/yelp-window.c:398
 msgid "_Back"
-msgstr "Назад"
+msgstr "На_зад"
 
-#: src/yelp-window.c:359
+#: ../src/yelp-window.c:400
 msgid "Show previous page in history"
 msgstr "Паказаць папярэднюю старонку з гісторыі"
 
-#: src/yelp-window.c:362
-#, fuzzy
+#: ../src/yelp-window.c:403
 msgid "_Forward"
-msgstr "Наперад"
+msgstr "На_перад"
 
-#: src/yelp-window.c:364
+#: ../src/yelp-window.c:405
 msgid "Show next page in history"
 msgstr "Паказаць наступную старонку з гісторыі"
 
-#: src/yelp-window.c:367
+#: ../src/yelp-window.c:408
 msgid "_Help Topics"
-msgstr ""
+msgstr "_Тэмы даведкі"
 
-#: src/yelp-window.c:369
+#: ../src/yelp-window.c:410
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Пераход да сьпісу тэмаў даведкі"
 
-#: src/yelp-window.c:372
-#, fuzzy
+#: ../src/yelp-window.c:413
 msgid "_Previous Section"
-msgstr "/Пераход/Да _папярэдняй старонкі"
+msgstr "Папяр_эдні разьдзел"
 
-#: src/yelp-window.c:377
-#, fuzzy
+#: ../src/yelp-window.c:418
 msgid "_Next Section"
-msgstr "Параграфы"
+msgstr "Наст_упны разьдзел"
 
-#: src/yelp-window.c:382
-#, fuzzy
+#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:455
 msgid "_Contents"
-msgstr "Зьмест"
+msgstr "_Зьмест"
 
-#: src/yelp-window.c:388
+#: ../src/yelp-window.c:429
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "_Дадаць закладку"
 
-#: src/yelp-window.c:393
+#: ../src/yelp-window.c:434
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "_Рэдагаваць закладкі..."
 
-#: src/yelp-window.c:399
+#: ../src/yelp-window.c:440
 msgid "_Open Link"
-msgstr ""
+msgstr "Ад_чыніць спасылку"
 
-#: src/yelp-window.c:404
+#: ../src/yelp-window.c:445
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Адчыніць спасылку ў н_овым акне"
 
-#: src/yelp-window.c:409
+#: ../src/yelp-window.c:450
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "С_капіяваць адрас спасылкі"
 
-#: src/yelp-window.c:415
-#, fuzzy
+#: ../src/yelp-window.c:457
+msgid "Help On this application"
+msgstr "Даведка для гэтага дастасаваньня"
+
+#: ../src/yelp-window.c:460
 msgid "_About"
-msgstr "/Даведка/_Пра праграму"
+msgstr "_Пра праграму"
 
-#: src/yelp-window.c:466
+#: ../src/yelp-window.c:465
+msgid "Copy _Email Address"
+msgstr "Скапіяваць _паштовы адрас"
+
+#: ../src/yelp-window.c:514
 msgid "Help Browser"
 msgstr "Вандроўнік па даведке"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
+#: ../src/yelp-window.c:925
+#: ../src/yelp-window.c:1081
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "Нерэчаісны URI для файла."
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: ../src/yelp-window.c:937
+#: ../src/yelp-window.c:1076
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
+msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
+msgstr "Нерэчаісны URI \"%s\" , альбо не спасылаецца на актуальны файл."
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
+#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1505
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Man-старонкі не падтрымліваюцца гэтай вэсріяй."
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
+#: ../src/yelp-window.c:1035
+#: ../src/yelp-window.c:1496
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Старонкі GNU info не падтрымліваюцца гэтай вэрсіяй"
 
-#: src/yelp-window.c:806
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
+#: ../src/yelp-window.c:1051
+#: ../src/yelp-window.c:1518
+msgid "Search is not supported in this version."
+msgstr "Пошук не падтрымліваецца гэтай вэрсіяй"
 
-#: src/yelp-window.c:1024
-#, fuzzy
-msgid "Find:"
-msgstr "Пошук"
+#: ../src/yelp-window.c:1056
+msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
+msgstr "SGML-дакумэнты больш не падтрымліваюцца. Калі ласка, папрасіце аўтара пераўтварыць дакумэнт у XML."
 
-#: src/yelp-window.c:1040
-#, fuzzy
+#: ../src/yelp-window.c:1222
+msgid "_Search:"
+msgstr "По_шук:"
+
+#: ../src/yelp-window.c:1223
+msgid "Search for other documentation"
+msgstr "Пошук іншых дакумэнтаў"
+
+#: ../src/yelp-window.c:1385
+msgid "Fin_d:"
+msgstr "По_шук:"
+
+#: ../src/yelp-window.c:1405
 msgid "Find _Next"
-msgstr "Пошук тэкста..."
+msgstr "Шукаць да_лей"
 
-#: src/yelp-window.c:1052
-#, fuzzy
+#: ../src/yelp-window.c:1417
 msgid "Find _Previous"
-msgstr "_Папярэдняе"
+msgstr "Шукаць ра_ней"
 
-#: src/yelp-window.c:1157
+#: ../src/yelp-window.c:1531
 #, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
+msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
+msgstr "Немагчыма стварыць кантэкст пераўтварэньня для файла \"%s\". Фармат можа не падтрымлівацца."
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
+#: ../src/yelp-window.c:1561
+#: ../src/yelp-window.c:1980
+#: ../src/yelp-window.c:2063
 #, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
+msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
+msgstr "Разьдзел \"%s\" не існуе ў гэтым дакумэнце. Калі вы накіраваны ў гэты разьдзел кнопкай Даведка нейкага дастасаваньня, калі ласка, паведаміце пра гэта суправаджальнікам гэтага дастасаваньня."
 
-#: src/yelp-window.c:1302
+#: ../src/yelp-window.c:1676
+#: ../src/yelp-window.c:2467
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
-msgstr ""
+msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
+msgstr "Немагчыма прачытаць файл \"%s\". Альбо файл адсутнічае, альбо вы ня маеце правоў на яго чытаньне."
 
-#: src/yelp-window.c:1336
+#: ../src/yelp-window.c:1727
 msgid "Loading..."
 msgstr "Загрузка..."
 
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:2166
-#, fuzzy
+#. * will show up in the "about" box
+#: ../src/yelp-window.c:2901
 msgid "translator-credits"
 msgstr ""
-"Алесь Няхайчык <nab@mail.by>\n"
+"Аляксандар Няхайчык <nyakhaychyk@gmail.com>\n"
 "Віталь Хілько <dojlid@mova.org>"
 
-#: src/yelp-window.c:2171
+#: ../src/yelp-window.c:2904
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2906
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "Гартач і глядач дакумэнтацыі для асяродзьдзя GNOME."
 
-#: src/yelp-xslt-pager.c:194
+#: ../src/yelp-xslt-pager.c:189
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
+msgstr "Немагчыма зрабіць разбор файла \"%s\". Альбо файл не існуе, альбо ён ня правільна складзены."
 
-#: src/yelp-xslt-pager.c:215
+#: ../src/yelp-xslt-pager.c:210
+#: ../src/yelp-xslt-pager.c:223
 #, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
+msgid "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it is not a valid XSLT stylesheet."
+msgstr "Немагчыма апрацаваць дакумэнт \"%s\". Альбо файл \"%s\" адсутнічае, альбо гэта нерэчаісны XSLT."
 
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-
-#: yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Атрымаць даведку ў асяродьдзі GNOME"
+
+#~ msgid "Library Functions"
+#~ msgstr "Бібліятэчныя функцыі"
+
+#, fuzzy
+#~ msgid "Man Pages"
+#~ msgstr "Старонкі кіраўніцтва"
+#~ msgid "Education Applications"
+#~ msgstr "Адукацыйныя дастасаваньні"
+
+#, fuzzy
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "Кніга"
+#~ msgid "Yelp Factory"
+#~ msgstr "Вытворчасьць Yelp"
+#~ msgid "Unknown"
+#~ msgstr "Невядома"
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "Ня атрымалася актывізаваць Yelp: \"%s\""
+#~ msgid "Could not open new window."
+#~ msgstr "Ня атрымалася адчыніць новае акно"
 
 #, fuzzy
 #~ msgid "_Home"
 #~ msgstr "У пачатак"
-
 #~ msgid "Go to home view"
 #~ msgstr "Перайсьці ў пачатак прагляду"
 
 #, fuzzy
 #~ msgid "Fin_d"
 #~ msgstr "Пошук"
-
 #~ msgid "Development Environments"
 #~ msgstr "Асяродзьдзі распрацоўкі"
-
 #~ msgid "Development Tools"
 #~ msgstr "Сродкі распрацоўкі"
-
 #~ msgid "Editors"
 #~ msgstr "Рэдагавальнікі"
-
 #~ msgid "Games and Entertainment"
 #~ msgstr "Гульні й забавы"
-
 #~ msgid "General"
 #~ msgstr "Агульныя"
-
-#~ msgid "Internet Applications"
-#~ msgstr "Дастасаваньні для Інтарнэта"
-
 #~ msgid "Kernels"
 #~ msgstr "Ядры"
-
 #~ msgid "Multimedia Applications"
 #~ msgstr "Мультымэдыйныя дастасаваньні"
-
 #~ msgid "Office and Productivity Applications"
 #~ msgstr "Дастасаваньні для канцылярыі й вытворчасьці"
-
 #~ msgid "Securities"
 #~ msgstr "Бясьпека"
-
 #~ msgid "System"
 #~ msgstr "Сыстэма"
-
 #~ msgid "Utilities"
 #~ msgstr "Карыснасьці"
-
 #~ msgid "*"
 #~ msgstr "*"
-
 #~ msgid "Titlepage"
 #~ msgstr "Тытульная старонка"
-
 #~ msgid "The selected document could not be opened"
 #~ msgstr "Немагчыма адчыніць вылучаны дакумэнт"
-
 #~ msgid "The selected page could not be found in this document."
 #~ msgstr "Немагчыма адшукаць вылучаную старонку ў гэтым дакумэнце."
-
 #~ msgid "The table of contents could not be read."
 #~ msgstr "Немагчыма прачытаць табліцу зьместу."
-
 #~ msgid "DocBook SGML documents are no longer supported."
 #~ msgstr "Дакумэнты DocBook SGML больш не падтрымліваюцца."
-
 #~ msgid "The selected file could not be read."
 #~ msgstr "Немагчыма прачытаць вылучаны файл."
 
 #, fuzzy
 #~ msgid "The file could not be processed."
 #~ msgstr "Немагчыма прачытаць вылучаны файл."
-
 #~ msgid "X11"
 #~ msgstr "X11"
-
 #~ msgid "OpenSSL"
 #~ msgstr "OpenSSL"
-
 #~ msgid "Termcap"
 #~ msgstr "Termcap"
-
 #~ msgid "Perl"
 #~ msgstr "Perl"
-
 #~ msgid "Qt"
 #~ msgstr "Qt"
-
 #~ msgid "TIFF"
 #~ msgstr "TIFF"
-
 #~ msgid "PThreads"
 #~ msgstr "PThreads"
-
 #~ msgid "Categories"
 #~ msgstr "Катэгорыі"
-
 #~ msgid "Documents"
 #~ msgstr "Дакумэнты"
 
 #, fuzzy
 #~ msgid "_Next Page"
 #~ msgstr "/Пераход/Да _наступнай старонкі"
-
 #~ msgid "&#8216;"
 #~ msgstr "&#8216;"
-
 #~ msgid "&#8217;"
 #~ msgstr "&#8217;"
-
 #~ msgid "&#8220;"
 #~ msgstr "&#8220;"
-
 #~ msgid "&#8221;"
 #~ msgstr "&#8221;"
-
 #~ msgid "About This Article"
 #~ msgstr "Пра гэты артыкул"
-
 #~ msgid "About This Bibliography"
 #~ msgstr "Пра гэтую крыніцу"
-
 #~ msgid "About This Book"
 #~ msgstr "Пра гэтую кнігу"
-
 #~ msgid "About This Chapter"
 #~ msgstr "Пра гэтую падзел"
-
 #~ msgid "About This Entry"
 #~ msgstr "Пра гэты запіс"
-
 #~ msgid "About This Glossary"
 #~ msgstr "Пра гэты сьпіс тэрмінаў"
-
 #~ msgid "About This Index"
 #~ msgstr "Пра гэтыя ключавыя словы"
-
 #~ msgid "About This Part"
 #~ msgstr "Пра гэтую частку"
-
-#~ msgid "About This Preface"
-#~ msgstr "Пра гэтую прадмову"
-
 #~ msgid "About This Reference"
 #~ msgstr "Пра гэты даведнік"
-
 #~ msgid "About This Section"
 #~ msgstr "Пра гэты падзел"
-
 #~ msgid "Affiliation"
 #~ msgstr "Бацькоўства"
-
 #~ msgid "Appendix"
 #~ msgstr "Дадаткі"
-
 #~ msgid "Article"
 #~ msgstr "Артыкул"
-
 #~ msgid "Audience"
 #~ msgstr "Слухачы"
-
 #~ msgid "Author"
 #~ msgstr "Аўтар"
-
 #~ msgid "Authors"
 #~ msgstr "Аўтары"
-
 #~ msgid "Bibliography"
 #~ msgstr "Бібліяграфія"
-
 #~ msgid "Caution"
 #~ msgstr "Перасьцярога"
-
 #~ msgid "Chapter"
 #~ msgstr "Падзел"
-
 #~ msgid "Collaborator"
 #~ msgstr "Супрацоўнік"
-
 #~ msgid "Collaborators"
 #~ msgstr "Супрацоўнік"
-
 #~ msgid "Colophon"
 #~ msgstr "Выходныя зьвесткі"
-
 #~ msgid "Copyright"
 #~ msgstr "Аўтарскае права"
-
 #~ msgid "Copyrights"
 #~ msgstr "Аўтарскія правы"
-
 #~ msgid "Date"
 #~ msgstr "Дата"
-
-#~ msgid "Dedication"
-#~ msgstr "Прысьвячэньне"
-
 #~ msgid "Editor"
 #~ msgstr "Рэдактар"
-
 #~ msgid "Email"
 #~ msgstr "Адрас"
-
 #~ msgid "Example"
 #~ msgstr "Прыклад"
-
 #~ msgid "Figure"
 #~ msgstr "Малюнак"
-
 #~ msgid "Glossary"
 #~ msgstr "Сьпіс тэрмінаў"
-
 #~ msgid "Important"
 #~ msgstr "Важна"
-
 #~ msgid "Index"
 #~ msgstr "Ключавыя словы"
-
 #~ msgid "Legal Notice"
 #~ msgstr "Прававы стан"
-
 #~ msgid "Level"
 #~ msgstr "Узровень"
-
 #~ msgid "Message Audience"
 #~ msgstr "Слухачы паведамленьня"
-
 #~ msgid "Message Level"
 #~ msgstr "Узровень паведамленьня"
-
 #~ msgid "Message Origin"
 #~ msgstr "Першакрыніца паведамленьня"
-
 #~ msgid "Note"
 #~ msgstr "Нататка"
-
 #~ msgid "Origin"
 #~ msgstr "Першакрыніца"
-
 #~ msgid "Other Contributor"
 #~ msgstr "Іншы ўкладальнік"
-
 #~ msgid "Other Contributors"
 #~ msgstr "Іншыя ўкладальнікі"
-
 #~ msgid "Part"
 #~ msgstr "Частка"
-
 #~ msgid "Preface"
 #~ msgstr "Прадмова"
-
 #~ msgid "Publisher"
 #~ msgstr "Выдавец"
-
 #~ msgid "Publishers"
 #~ msgstr "Выдаўцы"
-
 #~ msgid "Reference"
 #~ msgstr "Даведнік"
-
 #~ msgid "Reference Entry"
 #~ msgstr "Запіс з даведніка"
-
 #~ msgid "Reference Section"
 #~ msgstr "Частка даведніка"
-
 #~ msgid "Release Information"
 #~ msgstr "Зьвесткі выпуска"
-
 #~ msgid "Revision History"
 #~ msgstr "Гісторыя выданьняў"
-
 #~ msgid "See"
 #~ msgstr "Глядзіце"
-
 #~ msgid "Set Index"
 #~ msgstr "Усталяваць індакс"
-
 #~ msgid "Table"
 #~ msgstr "Табліца"
-
 #~ msgid "Table of Contents"
 #~ msgstr "Зьмест"
-
 #~ msgid "Tip"
 #~ msgstr "Парада"
-
-#~ msgid "Title"
-#~ msgstr "Назва"
-
-#~ msgid "Warning"
-#~ msgstr "Увага"
-
 #~ msgid "Document URI"
 #~ msgstr "URI думэнта"
-
 #~ msgid "The URI of the document to be processed"
 #~ msgstr "URI дакумэнта для апрацоўкі"
-
 #~ msgid "/Edit/Find Ne_xt"
 #~ msgstr "/Рэдагаваньне/Шукаць _далей"
-
 #~ msgid "/Edit/Find Pre_vious"
 #~ msgstr "/Рэдагаваньне/Шукаць _раней"
-
 #~ msgid "/Go/_Back"
 #~ msgstr "/Пераход/На_зад"
-
 #~ msgid "/Go/_Forward"
 #~ msgstr "/Пераход/На_перад"
-
 #~ msgid "/Go/_Home"
 #~ msgstr "/Пераход/У _пачатак"
-
 #~ msgid "/Go/"
 #~ msgstr "/Пераход"
-
 #~ msgid "/Go/_Contents"
 #~ msgstr "/Пераход/Да _зьместу"
-
 #~ msgid "A Help Browser for GNOME"
 #~ msgstr "Вандроўнік па даведке для GNOME"
-
 #~ msgid "The document '%s' does not exist"
 #~ msgstr "Дакумэнт \"%s\" ня існуе"
-
 #~ msgid "<b>Find text in the document:</b>"
 #~ msgstr "<b>Пошук тэкста у дакумэнце:</b>"
-
 #~ msgid "Automatically _wrap around"
 #~ msgstr "Аўтаматычна _пераносіць"
-
 #~ msgid "Match _entire word"
 #~ msgstr "Поўнае _супадзеньне"
-
 #~ msgid "_Match upper/lower case"
 #~ msgstr "_У верхнім/ніжнім рэгістрах"
-
-#~ msgid "_Search for:"
-#~ msgstr "Ад_шукаць па:"
-
 #~ msgid "GNOME - Desktop"
 #~ msgstr "Асяродзьдзе GNOME - Сталец"
-
-#~ msgid "Info Pages"
-#~ msgstr "Старонкі info"
-
-#~ msgid "Manual pages"
-#~ msgstr "Старонкі кіраўніцтва"
-
 #~ msgid "GNOME is"
 #~ msgstr "Асяродзьдзе GNOME зьяўляецца"
-
 #~ msgid "Free Software"
 #~ msgstr "Вольным праграмным забясьпячэньнем"
-
 #~ msgid "(C)"
 #~ msgstr "(C)"
-
 #~ msgid "Loading&nbsp;&nbsp;&nbsp;"
 #~ msgstr "Загрузка&nbsp;&nbsp;&nbsp;"
-
 #~ msgid "Loading.&nbsp;&nbsp;"
 #~ msgstr "Загрузка.&nbsp;&nbsp;"
-
 #~ msgid "Loading..&nbsp;"
 #~ msgstr "Загрузка..&nbsp;"
+
