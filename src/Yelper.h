@@ -59,7 +59,6 @@ public:
 private:
 	PRPackedBool mInitialised;
 	PRPackedBool mSelectionAttention;
-	PRPackedBool mHasFocus;
 
 	GtkMozEmbed *mEmbed;
 	nsCOMPtr<nsIWebBrowser> mWebBrowser;

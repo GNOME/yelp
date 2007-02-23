@@ -67,7 +67,6 @@
 Yelper::Yelper (GtkMozEmbed *aEmbed)
 : mInitialised(PR_FALSE)
 , mSelectionAttention(PR_FALSE)
-, mHasFocus(PR_FALSE)
 , mEmbed(aEmbed)
 {
 	debug_print (DB_DEBUG, "Yelper ctor [%p]\n", this);
@@ -167,16 +166,9 @@ Yelper::Find (const char *aSearchString)
 
 	nsresult rv;
 	PRUint16 found = nsITypeAheadFind::FIND_NOTFOUND;
-#ifdef HAVE_GECKO_1_9
-	rv = mFinder->Find (NS_ConvertUTF8toUTF16 (aSearchString),
-			    PR_FALSE /* links only? */,
-			    mHasFocus,
-			    &found);
-#else
 	rv = mFinder->Find (NS_ConvertUTF8toUTF16 (aSearchString),
 			    PR_FALSE /* links only? */,
 			    &found);
-#endif
 
 	return NS_SUCCEEDED (rv) && (found == nsITypeAheadFind::FIND_FOUND || found == nsITypeAheadFind::FIND_WRAPPED);
 }
@@ -193,7 +185,6 @@ Yelper::FindAgain (PRBool aForward)
 #ifdef HAVE_GECKO_1_9
 	rv = mFinder->FindAgain (!aForward,
 				 PR_FALSE /* links only? */,
-				 mHasFocus,
 				 &found);
 #else
 	if (aForward) {
