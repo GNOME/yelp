@@ -9,190 +9,416 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2005-07-07 20:01:06.928031+00:00\n"
-"PO-Revision-Date: 2005-09-16 15:53+0200\n"
-"Last-Translator: Erdal Ronahi <erdal.ronahi@gmail.com, pckurd@hotmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-03-04 23:50+0100\n"
+"PO-Revision-Date: 2007-03-04 23:56+0100\n"
+"Last-Translator: Erdal Ronahi <erdal.ronahi@gmail.com>\n"
 "Language-Team: Kurdish <gnu-ku-wergerandin@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Rosetta-Version: 0.1\n"
-"Plural-Forms: nplurals=2; plural= n != 1\n"
 "X-Generator: KBabel 1.10\n"
+"X-Rosetta-Export-Date: 2006-12-08 11:48+0000\n"
 
-#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:1
+#: ../src/yelp-toc-pager.c:1849
+msgid "GNU Info Pages"
+msgstr "Rûpelên Agahiyan yên GNU"
+
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "Alîkariya (agahî) rêzika fermana kevneşopî"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
-msgstr "Bikaranîn"
+msgstr "Sepan"
 
 #: ../data/man.xml.in.h:2
-msgid "Configuration Files"
-msgstr "Belgedankên Konfigûrasyonê"
+msgid "BLT Functions"
+msgstr "Peywirên BLT"
 
 #: ../data/man.xml.in.h:3
+msgid "Configuration Files"
+msgstr "Pelên Veavakirinê"
+
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Nîşanderên Fonksiyonan"
+
+#: ../data/man.xml.in.h:5
 msgid "Development"
 msgstr "Pêşxistin"
 
-#: ../data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr "Fonksiyonê Fortran"
+msgstr "Fonksiyonên FORTRAN"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7
+#: ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "Lîstik"
 
-#: ../data/man.xml.in.h:6
-msgid "Hardware Devices"
-msgstr "Hacetên Tesisatî"
-
-#: ../data/man.xml.in.h:7
-msgid "Kernel Routines"
-msgstr "Rûtinin Dendık"
-
 #: ../data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "Fonksiyonên Pirtûkxane"
+msgid "Hardware Devices"
+msgstr "Cîhazên Reqalavî"
 
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:792
+#: ../data/man.xml.in.h:9
+msgid "Kernel Routines"
+msgstr "Rûtinên Kernelê"
+
+#: ../data/man.xml.in.h:10
+#: ../src/yelp-toc-pager.c:1843
 msgid "Manual Pages"
 msgstr "Rûpelên Alikarî"
 
-#: ../data/man.xml.in.h:10
-msgid "OpenSSL Applications"
-msgstr "Peyikanên OpenSSL"
-
 #: ../data/man.xml.in.h:11
-msgid "OpenSSL Configuration"
-msgstr ""
+msgid "Network Audio Sound Functions"
+msgstr "Fonksiyonên Dengê Audio yê Torê"
 
 #: ../data/man.xml.in.h:12
-msgid "OpenSSL Overviews"
-msgstr ""
+msgid "OpenSSL Applications"
+msgstr "Sepanên OpenSSL"
 
 #: ../data/man.xml.in.h:13
-msgid "Overviews"
-msgstr ""
+msgid "OpenSSL Configuration"
+msgstr "Veavakirina OpenSSL"
 
 #: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "Fonksiyonên OpenSSL"
+
+#: ../data/man.xml.in.h:15
+msgid "OpenSSL Overviews"
+msgstr "Çavdêriyên OpenSSL"
+
+#: ../data/man.xml.in.h:16
+msgid "Overviews"
+msgstr "Çavdêrî"
+
+#: ../data/man.xml.in.h:17
+msgid "POSIX Functions"
+msgstr "Fonksiyonên POSIX"
+
+#: ../data/man.xml.in.h:18
+msgid "POSIX Headers"
+msgstr "Sernavên POSIX"
+
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
 msgstr "Fonksyionên Perl"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
 msgstr "Fonksyionên Qt"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Fonksiyonên Rêzika Xwendinê"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "Beşa 0p"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "Beşa 1m"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "Beşa 1ssl"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "Beşa 1x"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "Beşa 2"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "Beşa 3blt"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "Beşa 3f"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "Beşa 3nas"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "Beşa 3p"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "Beşa 3qt"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "Beşa 3readline"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "Beşa 3ssl"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "Beşa 3tiff"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "Beşa 4"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "Beşa 4x"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "Beşa 5"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "Beşa 5ssl"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "Beşa 5x"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "Beşa 6"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "Beşa 6x"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "Beşa 7ssl"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "Beşa 7x"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "Beşa 9"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "Beşên 1, 1p, 1g û 1t"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "Beşên 3, 3o û 3t"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "Beşên 3form û 3menu"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "Beşa 3ncurses û 3curses"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "Beşên 3pm û 3perl"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "Beşên 3x û 3x11"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "Beşên 7 û 7gcc"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "Beşên 8 û 8l"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "Rêveberiya Pergalê"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
-msgstr ""
+msgstr "Gazîkirinên Pergalê"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "Forma Pergala V/Fonksiyonên Pêşekê"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "Pêwirên TIFF"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
-msgstr ""
+msgstr "Sepanên Termcap"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "Alîkariya rêzika fermana kevneşopî"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
-msgstr ""
+msgstr "Sepanên X11"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "Mîhengên X11"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
-msgstr ""
+msgstr "Cîhazên X11"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
-msgstr ""
+msgstr "Bikêrhatinên X11"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
-msgstr ""
+msgstr "Lîstikên X11"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
-msgstr ""
+msgstr "Çavdêriyên X11"
 
 #: ../data/toc.xml.in.h:1
 msgid "Accessibility"
 msgstr "Gihîştin"
 
 #: ../data/toc.xml.in.h:2
-#, fuzzy
 msgid "Accessories"
-msgstr "Gihîştin"
+msgstr "Bernameyên alîkar"
 
 #: ../data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "Rêveberî"
+msgid "Applications for fun"
+msgstr "Sepan"
+
+#: ../data/toc.xml.in.h:4
+msgid "Applications for manipulating or viewing graphics"
+msgstr "Sepanên ji bo guhartin an jî nîşandana wêneyan"
 
 #: ../data/toc.xml.in.h:5
+msgid "Applications for word processing and other office tasks"
+msgstr "Sepanên ji bo karên nivîsandin û karên din ên ofîsê"
+
+#: ../data/toc.xml.in.h:6
+msgid "Applications related to X Windows"
+msgstr "Sepanên girêdayî X Windows"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications related to multimedia"
+msgstr "Sepanên girêdayî multimedia"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to software development"
+msgstr "Sepanên girêdayî pêşdebirê reqalavê"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications related to the internet"
+msgstr "Sepanên girêdayî internetê"
+
+#: ../data/toc.xml.in.h:10
+msgid "Applications specific to the panel"
+msgstr "Sepandinên taybet ji bo panelê"
+
+#: ../data/toc.xml.in.h:11
+msgid "Applications that support assistive technologies"
+msgstr "Sepanên ku alîkariya teknolojiyan destek dikin"
+
+#: ../data/toc.xml.in.h:12
 msgid "Desktop"
 msgstr "Sermasê"
 
-#: ../data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr ""
+#: ../data/toc.xml.in.h:13
+msgid "Documents specific to the KDE Desktop Environment"
+msgstr "Dokumentên spesîfîk ên ji bo Sermaseya KDE"
 
-#: ../data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:14
+msgid "Education"
+msgstr "Perwerdehî"
+
+#: ../data/toc.xml.in.h:16
 msgid "Graphics"
 msgstr "Grafîk"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:391
-msgid "Help Topics"
-msgstr "Mijarên Alîkariyê"
-
-#: ../data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:17
 msgid "Internet"
 msgstr "Înternet"
 
-#: ../data/toc.xml.in.h:11
+#: ../data/toc.xml.in.h:18
 msgid "KDE"
 msgstr "KDE"
 
-#: ../data/toc.xml.in.h:12
-msgid "Multimedia"
-msgstr "Multîmedya"
+#: ../data/toc.xml.in.h:19
+msgid "Learning applications"
+msgstr "Hîdekariya sepandinan"
 
-#: ../data/toc.xml.in.h:13
+#: ../data/toc.xml.in.h:20
+msgid "Miscellaneous documents"
+msgstr "Dokumentên cur be cur"
+
+#: ../data/toc.xml.in.h:21
 msgid "Office"
 msgstr "Ofîs"
 
-#: ../data/toc.xml.in.h:14
-msgid "Other"
-msgstr "Wekî din"
+#: ../data/toc.xml.in.h:22
+msgid "Other Applications"
+msgstr "Bernameyên Din"
 
-#: ../data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:23
 msgid "Other Documentation"
-msgstr "Pelgeyên din"
+msgstr "Belgeyên din"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:24
 msgid "Panel Applets"
-msgstr ""
+msgstr "Sepanokên Panelê"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
-msgid "Preferences"
-msgstr "Vebijêrk"
-
-#: ../data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:25
 msgid "Programming"
 msgstr "Bernamekirin"
 
-#: ../data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:26
 msgid "Scientific"
 msgstr "Zanyarî"
 
-#: ../data/toc.xml.in.h:20
+#: ../data/toc.xml.in.h:27
+msgid "Scientific Applications."
+msgstr "Sepanên Zanistî."
+
+#: ../data/toc.xml.in.h:28
+msgid "Sound &amp; Video"
+msgstr "Deng &amp; Vîdeo"
+
+#: ../data/toc.xml.in.h:29
 msgid "System Tools"
 msgstr "Amûrên Pergalê"
 
-#: ../data/toc.xml.in.h:21
+#: ../data/toc.xml.in.h:30
+msgid "Utilities to manage your computer"
+msgstr "Bikêrhatinên rêvebirina komputerê"
+
+#: ../data/toc.xml.in.h:31
+msgid "Utility applications"
+msgstr "Sepanên alîkar"
+
+#: ../data/toc.xml.in.h:32
+msgid "Variety of other applications"
+msgstr "Sepanên din yên curebecur"
+
+#: ../data/toc.xml.in.h:33
+msgid "Welcome to the GNOME Help Browser"
+msgstr "Bi Xêr Hatî Geroka Alîkariyê ya GNOME'yê"
+
+#: ../data/toc.xml.in.h:34
 msgid "X Applications"
-msgstr ""
+msgstr "Bernameyên X"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -203,92 +429,96 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Cureyên nivîsê</b>"
 
 #: ../data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>_Bijare:</b>"
+msgid "Add Bookmark"
+msgstr "Bijareyê zêde bike"
 
 #: ../data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>_Sernivîs:</b>"
-
-#: ../data/ui/yelp.glade.h:5
-msgid "Add Bookmark"
-msgstr ""
-
-#: ../data/ui/yelp.glade.h:6
 msgid "Bookmarks"
 msgstr "Bijare"
 
-#: ../data/ui/yelp.glade.h:7
+#: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
-msgstr ""
+msgstr "Bihîstyarî tîpên girdek û hûrdek e"
 
-#: ../data/ui/yelp.glade.h:8
+#: ../data/ui/yelp.glade.h:6
 msgid "Find"
 msgstr "Bibîne"
 
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
 msgstr "Cihê veke"
 
-#: ../data/ui/yelp.glade.h:11
+#: ../data/ui/yelp.glade.h:8
+msgid "Preferences"
+msgstr "Vebijêrk"
+
+#: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
 msgstr "Ji nû ve binavbike"
 
-#: ../data/ui/yelp.glade.h:12
+#: ../data/ui/yelp.glade.h:10
+msgid "_Bookmarks:"
+msgstr "_Bijare:"
+
+#: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
-msgstr ""
+msgstr "Bi nîşanderê _lê bigere"
+
+#: ../data/ui/yelp.glade.h:12
+msgid "_Find:"
+msgstr "_Bibîne"
 
 #: ../data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Bibîne: "
+msgid "_Fixed width:"
+msgstr "Firehiya _sabît:"
 
 #: ../data/ui/yelp.glade.h:14
-msgid "_Fixed width:"
-msgstr ""
-
-#: ../data/ui/yelp.glade.h:15
 msgid "_Location:"
 msgstr "_Cih:"
 
-#: ../data/ui/yelp.glade.h:16
+#: ../data/ui/yelp.glade.h:15
 msgid "_Next"
 msgstr "_Pêş"
 
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
 msgstr "_Paş"
 
+#: ../data/ui/yelp.glade.h:17
+msgid "_Title:"
+msgstr "_Sernav:"
+
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "Curenivîsên sîstemê bi kar _bîne"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "Firehiya _guhêrbar:"
 
 #: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
-msgstr ""
+msgstr "Rûerdê _şeffaf"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Ji bo teksta sabît curetîp"
 
 #: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Ji bo nivîsê curetîp"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Ji bo nivîsa firehiya wê sabît e curetîp"
 
 #: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Ji bo nivîsa firehiya wê guhêrbar e curetîp."
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "Dema şopandina rûpelan nîşandera di bin kontroliya klavyeyê de ye bikar bîne."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -300,63 +530,60 @@ msgstr "Fontên pergalê bi kar bîne"
 
 #: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "Ji bo pergalê curetîpên pêşdanasînî bikar bîne."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2187
-msgid "Yelp"
-msgstr "Yelp"
-
-#: ../src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Kargehê Yelp"
-
-#: ../src/yelp-bookmarks.c:155
+#: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
-msgstr ""
+msgstr "Bijareyê Di Paceya Nû de Veke"
 
-#: ../src/yelp-bookmarks.c:159
+#: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
-msgstr ""
+msgstr "Bijareyê Ji Nû Ve Binavîne"
 
-#: ../src/yelp-bookmarks.c:163
+#: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
-msgstr ""
+msgstr "Bijareyê Rake"
 
-#: ../src/yelp-bookmarks.c:306 ../src/yelp-bookmarks.c:378
+#: ../src/yelp-bookmarks.c:315
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "Bijareya sernavê wê %s ye di vî rûpelî de heye."
+
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "Ji bo vî rûpelî bijareya bi navê <b>%s</b>  jixwe heye."
 
-#: ../src/yelp-bookmarks.c:406
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "Mijarên Alîkariyê"
+
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
-msgstr ""
+msgstr "Beşên Belgeyê"
 
-#: ../src/yelp-db-pager.c:245
+#: ../src/yelp-db-pager.c:239
+#: ../src/yelp-db-print-pager.c:190
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is not well-formed XML."
+msgstr "Pelê '%s' nayê xebitandin. Yan pel ne mevcûd e yan jî XML'ya wê rast nehatiye teşekirin."
 
-#: ../src/yelp-db-pager.c:494
-msgid "Unknown Section"
-msgstr "Beşa nenas"
-
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
+#: ../src/yelp-error.c:42
+#: ../src/yelp-error.c:58
 msgid "An unknown error occured"
 msgstr "Çewtiya nediyar derket holê"
 
 #: ../src/yelp-error.c:46
 msgid "Could not load document"
-msgstr ""
+msgstr "Barkirina belgeyê bisernekeft"
 
 #: ../src/yelp-error.c:48
 msgid "Could not load section"
-msgstr ""
+msgstr "Beş nayê barkirin"
 
 #: ../src/yelp-error.c:50
 msgid "Could not read the table of contents"
-msgstr ""
+msgstr "Naverok nayê xwendin"
 
 #: ../src/yelp-error.c:52
 msgid "Unsupported Format"
@@ -364,54 +591,179 @@ msgstr "Format nayê destekirin"
 
 #: ../src/yelp-error.c:54
 msgid "Could not read document"
-msgstr "Nikarî pelge bixwîne"
+msgstr "Nikarî belge bixwîne"
 
 #: ../src/yelp-error.c:56
 msgid "Could not process document"
-msgstr ""
+msgstr "Belge nayê xebitîn"
 
 #: ../src/yelp-error.c:66
 msgid "No information is available about the error."
-msgstr ""
+msgstr "Der barê çewtiyan de tu agahî tuneye."
 
-#: ../src/yelp-io-channel.c:98
+#: ../src/yelp-info-pager.c:188
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
+msgid "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is not a well-formed info page."
+msgstr "Pelê '%s' nehate veçirandin. Dosye ya ne rûpelekî agahiyên kêm e yan jî ne rûpelekî agahiyan ya rast hatiye çêkirin e."
 
-#: ../src/yelp-main.c:95
+#: ../src/yelp-io-channel.c:107
+#, c-format
+msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+msgstr "Pelê '%s' nayê xwendin û nayê veçirandin. Dibe ku pel bi awayekî nayê destekkirin hatibe tengkirin."
+
+#: ../src/yelp-main.c:92
+msgid "Use a private session"
+msgstr "Danişîneke taybet bi kar bîne"
+
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
-msgstr ""
+msgstr "Wê kîjan pelrêça pêş were bikaranîn, diyar bike"
 
-#: ../src/yelp-main.c:129
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr ""
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:358
+msgid " GNOME Help Browser"
+msgstr " Geroka Alîkariyê ya GNOME"
 
-#: ../src/yelp-main.c:148
-msgid "Could not open new window."
-msgstr ""
-
-#: ../src/yelp-main.c:325 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376
+#: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Alîkarî"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man-pager.c:263
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
+msgstr "Pelê '%s' ji hev nayê veçirandin. Pel nehate dîtin yan jî şaş hatiye teşekirin."
 
-#: ../src/yelp-pager.c:122
+#: ../src/yelp-pager.c:117
 msgid "Document Information"
-msgstr "Agahiya Pelgeyê"
+msgstr "Agahiya Belgeyê"
 
-#: ../src/yelp-pager.c:123
+#: ../src/yelp-pager.c:118
 msgid "The YelpDocInfo struct of the document"
-msgstr ""
+msgstr "Binyada YelpDocInfo ya belgeyê"
+
+#: ../src/yelp-print.c:167
+msgid "Preparing to print"
+msgstr "Bo çapkirinê tê amadekirin"
+
+#: ../src/yelp-print.c:261
+msgid "Printing is not supported on this printer"
+msgstr "Li ser vê çaperê çapkirin nayê destekkirin"
+
+#: ../src/yelp-print.c:264
+#, c-format
+msgid "Printer %s does not support postscript printing."
+msgstr "Çapera %s 'yê nivîsandina skrîpta postê destek nake."
+
+#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:365
+msgid "Printing"
+msgstr "Çapkirin"
+
+#: ../src/yelp-print.c:367
+msgid "Waiting to print"
+msgstr "Ji bo çapkirinê re rawestiyaye"
+
+#: ../src/yelp-print.c:579
+msgid "An error occurred while printing"
+msgstr "Dema çap dikir çewtiyek derket"
+
+#: ../src/yelp-print.c:583
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "Nikarî belgeya te çap bike: %s"
+
+#: ../src/yelp-search-pager.c:71
+msgid "the GNOME Support Forums"
+msgstr "forumên destekê yên GNOME'yê"
+
+#: ../src/yelp-search-pager.c:755
+#, c-format
+msgid "Your search could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+msgstr "Lêgerîna ye qediya. Pelê '%s'  yan kêm e yan jî ne rûpelekî şêwazan yên XSLT ye"
+
+#: ../src/yelp-search-pager.c:807
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Ti encam tune ne bo \"%s\""
+
+#: ../src/yelp-search-pager.c:808
+msgid "Try using different words to describe the problem you're having or the topic you want help with."
+msgstr "Ji bo tarîfkirina pirsgirêkê an jî sermijara ku dixwazî alîkariya te bike, peyvên cuda biceribîne."
+
+#: ../src/yelp-search-pager.c:811
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "Li encamên \"%s\" bigere"
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-pager.c:828
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Lêgerîna girêdayî ya li ser %s 'ê dubare bike"
+
+#: ../src/yelp-search-pager.c:905
+#: ../src/yelp-toc-pager.c:2157
+#: ../src/yelp-xslt-pager.c:364
+msgid "No href attribute found on yelp:document"
+msgstr "Di belgeya yelp de tu çawaniya hur ya href nehate dîtin"
+
+#: ../src/yelp-search-pager.c:919
+#: ../src/yelp-toc-pager.c:2170
+#: ../src/yelp-xslt-pager.c:380
+#: ../src/yelp-xslt-pager.c:531
+msgid "Out of memory"
+msgstr "Bîr têrê nake"
+
+#: ../src/yelp-search-pager.c:960
+#: ../src/yelp-toc-pager.c:2219
+msgid "Help Contents"
+msgstr "Naveroka Alîkariyê"
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-pager.c:1286
+msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+msgstr "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-pager.c:1302
+msgid "re"
+msgstr "re"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the strig NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-pager.c:1311
+msgid "ers:er:ing:es:s:'s"
+msgstr "ers:er:ing:es:s:'s"
+
+#: ../src/yelp-search-pager.c:1516
+#: ../src/yelp-toc-pager.c:631
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "Pelê '%s' OMF nehate barkirin"
 
 #. TRANSLATORS:
 #. This is an image of the opening quote character used to watermark
@@ -432,258 +784,321 @@ msgstr ""
 #. quotations should use 201C, 201D, or 201E.  Note that single
 #. quotation marks don't make very nice watermarks.  So if you use
 #. single quotes as your primary (outer) quotation marks, you should
-#: ../src/yelp-settings.c:156
+#. just use the corresponding double quote watermark.
+#.
+#: ../src/yelp-settings.c:151
 msgid "yelp-watermark-blockquote-201C"
 msgstr "yelp-watermark-blockquote-201C"
 
-#: ../src/yelp-toc-pager.c:271
+#: ../src/yelp-toc-pager.c:268
 msgid "YelpTocPager: Pause count is negative."
-msgstr ""
+msgstr "YelpTocPager: Jimartina rawestandinê negatîf e."
 
-#: ../src/yelp-toc-pager.c:494
+#: ../src/yelp-toc-pager.c:379
+#: ../src/yelp-toc-pager.c:1957
 #, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr ""
+msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+msgstr "Naverok nayê xebitîn. Pelê '%s' nayê dîtin yan jî pel ne di teşeya derbasdar ya XSLT de ye."
 
-#: ../src/yelp-toc-pager.c:685
+#: ../src/yelp-toc-pager.c:1110
 #, c-format
 msgid "Read man page for %s"
-msgstr ""
+msgstr "Ji bo %s rûpelê rêber bixwîne"
 
-#: ../src/yelp-toc-pager.c:772
+#: ../src/yelp-toc-pager.c:1703
 #, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
+msgid "Read info page for %s"
+msgstr "Rûpelê agahiyan ya %s nayê xwendin"
 
-#: ../src/yelp-toc-pager.c:883
+#: ../src/yelp-toc-pager.c:1816
 #, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
-msgstr ""
+msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
+msgstr "Yên di hundirê wê de nayên barkirin. Pelê '%s' nayê dîtin yan jî ne XMLya ku rast hatiye teşekirin e."
 
-#: ../src/yelp-toc-pager.c:1035 ../src/yelp-xslt-pager.c:368
-msgid "No href attribute found on yelp:document"
-msgstr ""
+#: ../src/yelp-toc-pager.c:1838
+msgid "Command Line Help"
+msgstr "Alîkariya Rêzika Fermanan"
 
-#: ../src/yelp-toc-pager.c:1049 ../src/yelp-xslt-pager.c:384
-msgid "Out of memory"
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:1090
-msgid "Help Contents"
-msgstr "Naveroka Alîkariyê"
-
-#: ../src/yelp-window.c:287
+#: ../src/yelp-window.c:317
 msgid "_File"
-msgstr "_Dosiya"
+msgstr "_Pel"
 
-#: ../src/yelp-window.c:288
+#: ../src/yelp-window.c:318
 msgid "_Edit"
 msgstr "_Biguherîne"
 
-#: ../src/yelp-window.c:289
+#: ../src/yelp-window.c:319
 msgid "_Go"
 msgstr "_Here"
 
-#: ../src/yelp-window.c:290
+#: ../src/yelp-window.c:320
 msgid "_Bookmarks"
 msgstr "_Bijare"
 
-#: ../src/yelp-window.c:291
+#: ../src/yelp-window.c:321
 msgid "_Help"
 msgstr "_Alîkarî"
 
-#: ../src/yelp-window.c:294
+#: ../src/yelp-window.c:324
 msgid "_New Window"
 msgstr "Paceya _Nû"
 
-#: ../src/yelp-window.c:299
-msgid "About This Document"
-msgstr "Der Barê Vê Pelgeyê"
+#: ../src/yelp-window.c:329
+msgid "Print This Document"
+msgstr "Vê Belgeyê Çap Bike"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:334
+msgid "Print This Page"
+msgstr "Vî Rûpelî Çap Bike"
+
+#: ../src/yelp-window.c:339
+msgid "About This Document"
+msgstr "Der Barê Vê Belgeyê"
+
+#: ../src/yelp-window.c:344
 msgid "Open _Location"
 msgstr "Cihî _veke"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:349
 msgid "_Close Window"
 msgstr "_Paceyê Bigire"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:355
 msgid "_Copy"
 msgstr "Ji ber _bigire"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:361
 msgid "_Select All"
-msgstr ""
+msgstr "_Hemuyî Hilbijêre"
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:366
 msgid "_Find..."
 msgstr "_Bibîne..."
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:371
+msgid "Find Pre_vious"
+msgstr "Ya _berê bibîne"
+
+#: ../src/yelp-window.c:373
+msgid "Find previous occurrence of the word or phrase"
+msgstr "Cihê ku peyv yan jî îfade lê hatiye dîtin bibîne"
+
+#: ../src/yelp-window.c:376
+msgid "Find Ne_xt"
+msgstr "Ya _piştre bibîne"
+
+#: ../src/yelp-window.c:378
+msgid "Find next occurrence of the word or phrase"
+msgstr "Peyv an jî îfadeya dû re bibîne"
+
+#: ../src/yelp-window.c:381
 msgid "_Preferences"
 msgstr "_Vebijêrk"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:386
 msgid "_Reload"
 msgstr "_Dîsa bar bike"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:398
 msgid "_Back"
 msgstr "P_aş"
 
-#: ../src/yelp-window.c:344
+#: ../src/yelp-window.c:400
 msgid "Show previous page in history"
-msgstr ""
+msgstr "Wî rûpelê ku berê hatibû dîtin nîşan bide"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:403
 msgid "_Forward"
 msgstr "_Pêş"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:405
 msgid "Show next page in history"
-msgstr ""
+msgstr "Rûpelê dûre yê di raboriyê de hate dîtin nîşan bide"
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:408
 msgid "_Help Topics"
 msgstr "_Mijarên Alîkariyê"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:410
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "Biçe lîsteya mijarên alîkariyê"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:413
 msgid "_Previous Section"
-msgstr ""
+msgstr "Beşa _berê"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:418
 msgid "_Next Section"
-msgstr ""
+msgstr "Beşa _pêşî"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:455
 msgid "_Contents"
 msgstr "_Naverok"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:429
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "Bijareyê _Lê Zêde Bike"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:434
 msgid "_Edit Bookmarks..."
 msgstr "Bijareyan _biguherîne..."
 
-#: ../src/yelp-window.c:384
+#: ../src/yelp-window.c:440
 msgid "_Open Link"
 msgstr "Girêdanê _Veke"
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:445
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Girêdanê di paceyeke _nû de veke"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:450
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "Navnîşana girêdanê ji ber _bigire"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:457
+msgid "Help On this application"
+msgstr "Alîkariya ji bo vê bernameyê"
+
+#: ../src/yelp-window.c:460
 msgid "_About"
 msgstr "_Der barê"
 
-#: ../src/yelp-window.c:449
+#: ../src/yelp-window.c:465
+msgid "Copy _Email Address"
+msgstr "Navnîşana _E-peyamê Ji Ber Bigire"
+
+#: ../src/yelp-window.c:514
 msgid "Help Browser"
 msgstr "Geroka Alîkariyê"
 
-#: ../src/yelp-window.c:703 ../src/yelp-window.c:836
+#: ../src/yelp-window.c:925
+#: ../src/yelp-window.c:1081
 msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+msgstr "URI'ya pel nederbasdar e."
 
-#: ../src/yelp-window.c:715 ../src/yelp-window.c:831
+#: ../src/yelp-window.c:937
+#: ../src/yelp-window.c:1076
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
+msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
+msgstr "URIya '%s' ne derbasdar e yan jî pelekî heyî diyar nake."
 
-#: ../src/yelp-window.c:791 ../src/yelp-window.c:1148
+#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1505
 msgid "Man pages are not supported in this version."
-msgstr ""
+msgstr "Di vê guhertoyê de rûpelên rêber nayê destekkirin."
 
-#: ../src/yelp-window.c:801 ../src/yelp-window.c:1139
+#: ../src/yelp-window.c:1035
+#: ../src/yelp-window.c:1496
 msgid "GNU info pages are not supported in this version"
-msgstr ""
+msgstr "Di vê guhertoyê de rûpelên agahiyan yên GNU nayê destekkirin"
 
-#: ../src/yelp-window.c:811
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
+#: ../src/yelp-window.c:1051
+#: ../src/yelp-window.c:1518
+msgid "Search is not supported in this version."
+msgstr "Di vê guhertoyê de lêgerîn nayê destekkirin."
 
-#: ../src/yelp-window.c:1032
-msgid "Find:"
-msgstr "Bibîne:"
+#: ../src/yelp-window.c:1056
+msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
+msgstr "Belgeyên SGML êdî nayê destekkirin. Ji kerema xwe re ji nivîskarê belgeyê bixwaze, bila belgeya xwe veguherîne XMLê."
 
-#: ../src/yelp-window.c:1048
+#: ../src/yelp-window.c:1222
+msgid "_Search:"
+msgstr "_Lê bigere:"
+
+#: ../src/yelp-window.c:1223
+msgid "Search for other documentation"
+msgstr "Li belgeyên din bigere"
+
+#: ../src/yelp-window.c:1385
+msgid "Fin_d:"
+msgstr "Bibî_ne:"
+
+#: ../src/yelp-window.c:1405
 msgid "Find _Next"
 msgstr "Ya _Piştre Bibîne"
 
-#: ../src/yelp-window.c:1060
+#: ../src/yelp-window.c:1417
 msgid "Find _Previous"
 msgstr "Ya _Berê Bibîne"
 
-#: ../src/yelp-window.c:1165
+#: ../src/yelp-window.c:1531
 #, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
+msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
+msgstr "Ji bo pelê '%s' tu nêvenga veguherandinê pêk nehat. Dibe ku celeb nayê destekkirin."
 
-#: ../src/yelp-window.c:1195 ../src/yelp-window.c:1619
-#: ../src/yelp-window.c:1686
+#: ../src/yelp-window.c:1561
+#: ../src/yelp-window.c:1980
+#: ../src/yelp-window.c:2063
 #, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
+msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
+msgstr "Beşa '%s' di belgeyê de nayê dîtin. Heke tu bi xêra bişkokeke Alîkariyê ya di sepanê de hatibe vê beşê, ji kerema xwe vê çewtiyê ragihîne pêşvebirên sepanê re."
 
-#: ../src/yelp-window.c:1310
+#: ../src/yelp-window.c:1676
+#: ../src/yelp-window.c:2467
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
-msgstr ""
+msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
+msgstr "Pelê '%s' nayê xwendin. Pel nayê dîtin yan jî ji bo xwendina pelî destûra te tuneye."
 
-#: ../src/yelp-window.c:1354
+#: ../src/yelp-window.c:1727
 msgid "Loading..."
 msgstr "Bar dike..."
 
 #. Note to translators: put here your name (and address) so it
-#: ../src/yelp-window.c:2184
+#. * will show up in the "about" box
+#: ../src/yelp-window.c:2901
 msgid "translator-credits"
-msgstr "Spasiya wergêran"
+msgstr "Rizo, Amed, Elîxan, Erdal, Koma PCKurd"
 
-#: ../src/yelp-window.c:2189
+#: ../src/yelp-window.c:2904
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2906
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "Ji bo Sermaseya Gnome geroka belgekirinê û nîşandera wê."
 
-#: ../src/yelp-xslt-pager.c:195
+#: ../src/yelp-xslt-pager.c:189
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
+msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
+msgstr "Pelê '%s' ji hev nayê veqetandin. Pel nayê dîtin yan jî çewt hatiye teşekirin."
 
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
+#: ../src/yelp-xslt-pager.c:210
+#: ../src/yelp-xslt-pager.c:223
 #, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
+msgid "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it is not a valid XSLT stylesheet."
+msgstr "Belgeya '%s' nayê xebitîn. Pelê '%s' nayê dîtin yan jî pel ne di teşeya derbasdar ya XSLT de ye."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "Ji GNOMEyê alîkarî bigire"
+msgstr "Bi GNOME'yê alîkariyê bistîne"
+
+#~ msgid "Help for specific applications"
+#~ msgstr "Alîkarî ji bo sepanên taybet"
+#~ msgid "Learn the basics of the GNOME desktop environment"
+#~ msgstr "Bingehên dorhêla sermaseya GNOME'yê hîn bibe"
+#~ msgid "Ubuntu Help Centre"
+#~ msgstr "Navenda Alîkariya Ubuntu"
+#~ msgid "Welcome to the Ubuntu Help Centre"
+#~ msgstr "Bi xêr hatî Navenda Alîkariya Ubuntuyê"
+#~ msgid "<b>Printing</b>"
+#~ msgstr "<b>Tê Çapkirin</b>"
+#~ msgid "the Ubuntu Help Pages"
+#~ msgstr "Rûpelên Alîkariya Ubuntu"
+#~ msgid "Library Functions"
+#~ msgstr "Fonksiyonên Pirtûkxane"
+#~ msgid "Administration"
+#~ msgstr "Rêveberî"
+#~ msgid "Education Applications"
+#~ msgstr "Sepanên perwerdehiyê"
+#~ msgid "Multimedia"
+#~ msgstr "Multîmedya"
+#~ msgid "Other"
+#~ msgstr "Wekî din"
+#~ msgid "Yelp Factory"
+#~ msgstr "Kargehê Yelp"
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "Çalakkrina Yel serneket: '%s'"
+#~ msgid "Could not open new window."
+#~ msgstr "Vekirina paceya nû serneket."
 
