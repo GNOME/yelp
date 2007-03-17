@@ -31,16 +31,17 @@
 #include "yelp-error.h"
 
 typedef struct _YelpTransform YelpTransform;
-typedef struct _YelpTransformChunk YelpTransformChunk;
 
-typedef void  (*YelpTransformChunkFunc)  (YelpTransform           *transform,
-					  YelpTransformChunk      *chunk,
-					  gpointer                 user_data);
-typedef void  (*YelpTransformErrorFunc)  (YelpTransform           *transform,
-					  YelpError               *error,
-					  gpointer                 user_data);
-typedef void  (*YelpTransformFinalFunc)  (YelpTransform           *transform,
-					  gpointer                 user_data);
+typedef enum {
+    YELP_TRANSFORM_CHUNK,
+    YELP_TRANSFORM_ERROR,
+    YELP_TRANSFORM_FINAL
+} YelpTransformSignal;
+
+typedef void  (*YelpTransformFunc)  (YelpTransform       *transform,
+				     YelpTransformSignal  signal,
+				     gpointer             func_data,
+				     gpointer             user_data);
 
 struct _YelpTransform {
     xmlDocPtr               inputDoc;
@@ -48,40 +49,31 @@ struct _YelpTransform {
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr context;
 
-    YelpTransformChunkFunc  chunk_func;
-    YelpTransformErrorFunc  error_func;
-    YelpTransformFinalFunc  final_func;
+    YelpTransformFunc       func;
 
     gchar                 **params;
 
     GThread                *thread;
     GMutex                 *mutex;
     GAsyncQueue            *queue;
+    GHashTable             *chunks;
 
     gboolean                running;
-    gboolean                freeme;
+    gboolean                released;
 
     gpointer                user_data;
 
     YelpError              *error;
 };
 
-struct _YelpTransformChunk {
-    gchar *id;
-    gchar *title;
-    gchar *contents;
-};
-
-YelpTransform  *yelp_transform_new       (gchar                   *stylesheet,
-					  YelpTransformChunkFunc   chunk_func,
-					  YelpTransformErrorFunc   error_func,
-					  YelpTransformFinalFunc   final_func,
-					  gpointer                 user_data);
-void            yelp_transform_start     (YelpTransform           *transform,
-					  xmlDocPtr                document,
-					  gchar                  **params);
-void            yelp_transform_release   (YelpTransform           *transform);
-
-void            yelp_transform_chunk_free  (YelpTransformChunk  *chunk);
+YelpTransform  *yelp_transform_new         (gchar               *stylesheet,
+					    YelpTransformFunc    func,
+					    gpointer             user_data);
+void            yelp_transform_start       (YelpTransform       *transform,
+					    xmlDocPtr            document,
+					    gchar              **params);
+gchar *         yelp_transform_eat_chunk   (YelpTransform       *transform,
+					    gchar               *chunk_id);
+void            yelp_transform_release     (YelpTransform       *transform);
 
 #endif /* __YELP_TRANSFORM_H__ */

@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2002 Shaun McCance
+ * Copyright (C) 2006 Shaun McCance
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,46 +20,55 @@
  */
 
 #include <glib.h>
+#include <libxml/parser.h>
+#include <libxml/xinclude.h>
 
 #include "yelp-error.h"
 #include "yelp-transform.h"
 
-static void   chunk_func (YelpTransform      *transform,
-			  YelpTransformChunk *chunk,
-			  gpointer            user_data);
-static void   error_func (YelpTransform      *transform,
-			  YelpError          *error,
-			  gpointer            user_data);
-static void   final_func (YelpTransform      *transform,
-			  gpointer            user_data);
+static void   transform_func (YelpTransform       *transform,
+			      YelpTransformSignal  signal,
+			      gpointer            *func_data,
+			      gpointer             user_data);
 
 GMainLoop *loop;
 
 static void
-chunk_func (YelpTransform      *transform,
-	    YelpTransformChunk *chunk,
-	    gpointer            user_data)
+transform_func (YelpTransform       *transform,
+		YelpTransformSignal  signal,
+		gpointer            *func_data,
+		gpointer             user_data)
 {
-  printf ("CHUNK: %s\n", chunk->id);
-  printf ("  %s\n", chunk->title);
-}
+    gchar *chunk_id;
+    gchar *chunk_data;
+    gchar *chunk_short;
+    YelpError *error;
 
-static void
-error_func (YelpTransform *transform,
-	    YelpError     *error,
-	    gpointer       user_data)
-{
-  printf ("ERROR: %s\n", error->title);
-}
+    switch (signal) {
+    case YELP_TRANSFORM_CHUNK:
+	chunk_id = (gchar *) func_data;
+	printf ("\nCHUNK: %s\n", chunk_id);
 
-static void
-final_func (YelpTransform *transform,
-	    gpointer       user_data)
-{
-  printf ("FINAL\n");
-  g_main_loop_quit (loop);
-}
+	chunk_data = yelp_transform_eat_chunk (transform, chunk_id);
+	chunk_short = g_strndup (chunk_data, 300);
+	printf ("%s\n", chunk_short);
 
+	g_free (chunk_short);
+	g_free (chunk_data);
+	g_free (chunk_id);
+	break;
+    case YELP_TRANSFORM_ERROR:
+	error = (YelpError *) func_data;
+	printf ("\nERROR: %s\n", error->title);
+	yelp_error_free (error);
+	break;
+    case YELP_TRANSFORM_FINAL:
+	printf ("\nFINAL\n");
+	yelp_transform_release (transform);
+	g_main_loop_quit (loop);
+	break;
+    }
+}
 
 gint 
 main (gint argc, gchar **argv) 
@@ -86,9 +95,7 @@ main (gint argc, gchar **argv)
   params[6] = NULL;
 
   transform = yelp_transform_new (DATADIR"/yelp/xslt/db2html.xsl",
-				  chunk_func,
-				  error_func,
-				  final_func,
+				  (YelpTransformFunc) transform_func,
 				  NULL);
   parser = xmlNewParserCtxt ();
   doc = xmlCtxtReadFile (parser,
@@ -96,6 +103,7 @@ main (gint argc, gchar **argv)
 			 NULL,
 			 XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			 XML_PARSE_NOENT   | XML_PARSE_NONET   );
+  xmlFreeParserCtxt (parser);
   xmlXIncludeProcessFlags (doc,
 			   XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			   XML_PARSE_NOENT   | XML_PARSE_NONET   );

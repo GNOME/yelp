@@ -63,11 +63,9 @@ static void      xslt_yelp_cache       (xsltTransformContextPtr ctxt,
 /******************************************************************************/
 
 YelpTransform
-*yelp_transform_new (gchar                   *stylesheet,
-		     YelpTransformChunkFunc   chunk_func,
-		     YelpTransformErrorFunc   error_func,
-		     YelpTransformFinalFunc   final_func,
-		     gpointer                 user_data)
+*yelp_transform_new (gchar             *stylesheet,
+		     YelpTransformFunc  func,
+		     gpointer           user_data)
 {
     YelpTransform *transform;
     
@@ -84,11 +82,13 @@ YelpTransform
 	return NULL;
     }
 
-    transform->chunk_func = chunk_func;
-    transform->error_func = error_func;
-    transform->final_func = final_func;
+    transform->func = func;
 
     transform->queue = g_async_queue_new ();
+    transform->chunks = g_hash_table_new_full (g_str_hash,
+					       g_str_equal,
+					       g_free,
+					       NULL);
 
     transform->user_data = user_data;
 
@@ -133,27 +133,38 @@ yelp_transform_start (YelpTransform *transform,
     g_mutex_unlock (transform->mutex);
 }
 
+gchar *
+yelp_transform_eat_chunk (YelpTransform *transform, gchar *chunk_id)
+{
+    gchar *buf;
+
+    g_mutex_lock (transform->mutex);
+
+    buf = g_hash_table_lookup (transform->chunks, chunk_id);
+    if (buf)
+	g_hash_table_remove (transform->chunks, chunk_id);
+
+    g_mutex_unlock (transform->mutex);
+
+    /* The caller assumes ownership of this memory. */
+    return buf;
+}
+
 void
 yelp_transform_release (YelpTransform *transform)
 {
     g_mutex_lock (transform->mutex);
     if (transform->running) {
-	transform->freeme = TRUE;
+	/* We can't free it just now, because the thread is running.
+	 * Instead, we'll tell libxslt to stop and mark the transform
+	 * as released.
+	 */
+	transform->released = TRUE;
 	transform->context->state = XSLT_STATE_STOPPED;
 	g_mutex_unlock (transform->mutex);
     } else {
 	transform_free (transform);
     }
-}
-
-void
-yelp_transform_chunk_free (YelpTransformChunk *chunk)
-{
-    g_free (chunk->id);
-    g_free (chunk->title);
-    g_free (chunk->contents);
-
-    g_free (chunk);
 }
 
 /******************************************************************************/
@@ -166,15 +177,19 @@ transform_run (YelpTransform *transform)
 						    (const char **) transform->params,
 						    NULL, NULL,
 						    transform->context);
-    // FIXME: do something with outputDoc?
-    // FIXME: check for anything remaining on the queue
+    /* FIXME: do something with outputDoc? */
+    /* FIXME: check for anything remaining on the queue */
     g_idle_add ((GSourceFunc) transform_final, transform);
 
     g_mutex_lock (transform->mutex);
-    if (transform->freeme) {
+    transform->running = FALSE;
+    if (transform->released) {
+	/* The transform was released by its owner, but it couldn't
+	 * be freed because this thread was running.  Nobody cares
+	 * about this transform anymore, so free it now.
+	 */
 	transform_free (transform);
     } else {
-	transform->running = FALSE;
 	g_mutex_unlock (transform->mutex);
     }
 }
@@ -213,15 +228,18 @@ transform_set_error (YelpTransform *transform,
 static gboolean
 transform_chunk (YelpTransform *transform)
 {
-    YelpTransformChunk *chunk;
+    gchar *chunk_id;
 
-    chunk = (YelpTransformChunk *) g_async_queue_try_pop (transform->queue);
+    chunk_id = (gchar *) g_async_queue_try_pop (transform->queue);
 
-    if (chunk) {
-	if (transform->chunk_func)
-	    transform->chunk_func (transform, chunk, transform->user_data);
+    if (chunk_id) {
+	if (transform->func)
+	    transform->func (transform,
+			     YELP_TRANSFORM_CHUNK,
+			     chunk_id,
+			     transform->user_data);
 	else
-	    yelp_transform_chunk_free (chunk);
+	    g_free (chunk_id);
     }
 
     return FALSE;
@@ -235,8 +253,10 @@ transform_error (YelpTransform *transform)
     error = transform->error;
     transform->error = NULL;
 
-    if (transform->error_func)
-	transform->error_func (transform, error, transform->user_data);
+    if (transform->func)
+	transform->func (transform,
+			 YELP_TRANSFORM_ERROR,
+			 error, transform->user_data);
     else
 	yelp_error_free (error);
 
@@ -246,8 +266,10 @@ transform_error (YelpTransform *transform)
 static gboolean
 transform_final (YelpTransform *transform)
 {
-    if (transform->final_func)
-	transform->final_func (transform, transform->user_data);
+    if (transform->func)
+	transform->func (transform,
+			 YELP_TRANSFORM_FINAL,
+			 NULL, transform->user_data);
 
     return FALSE;
 }
@@ -261,9 +283,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 		    xsltStylePreCompPtr     comp)
 {
     YelpTransform *transform;
-    YelpTransformChunk *chunk;
     xmlChar *page_id = NULL;
-    xmlChar *page_title = NULL;
     xmlChar *page_buf;
     gint     buf_size;
     xsltStylesheetPtr style = NULL;
@@ -271,7 +291,8 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     xmlDocPtr   new_doc = NULL;
     xmlDocPtr   old_doc;
     xmlNodePtr  old_insert;
-    xmlNodePtr  cur;
+
+    /* FIXME: check cancelled state, thread safety? */
 
     if (!ctxt || !node || !inst || !comp)
 	return;
@@ -320,17 +341,11 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     ctxt->output     = old_doc;
     ctxt->insert     = old_insert;
 
-    if (!page_title)
-	page_title = BAD_CAST g_strdup (_("Unknown Page"));
-
-    chunk = g_new0 (YelpTransformChunk, 1);
-
-    chunk->id = (gchar *) page_id;
-    chunk->title = (gchar *) page_title;
-    chunk->contents = (gchar *) page_buf;
-
-    g_async_queue_push (transform->queue, chunk);
+    g_mutex_lock (transform->mutex);
+    g_hash_table_insert (transform->chunks, page_id, page_buf);
+    g_async_queue_push (transform->queue, g_strdup (page_id));
     g_idle_add ((GSourceFunc) transform_chunk, transform);
+    g_mutex_unlock (transform->mutex);
 
  done:
     if (new_doc)
