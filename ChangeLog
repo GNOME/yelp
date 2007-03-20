@@ -1,6 +1,23 @@
 2007-03-20  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-transform.c:
+	- Added some locks
+
+	* src/Makefile.am:
+	* src/test-page.c:
+	- Adding a test application for YelpPage
+
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Fairly complete YelpPage for strings
+
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Big not-yet-done changes, but needed for test-page
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-transform.c:
 	- Fixed concurrency issues when freeing
 
 	* src/test-transform.c:

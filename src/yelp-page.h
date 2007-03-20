@@ -27,11 +27,13 @@
 
 #include <glib.h>
 
-#include "yelp-document.h"
+#include "yelp-error.h"
 
 G_BEGIN_DECLS
 
 typedef struct _YelpPage YelpPage;
+
+#include "yelp-document.h"
 
 YelpPage *    yelp_page_new_string   (YelpDocument  *document,
 				      gchar         *id,

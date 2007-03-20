@@ -101,7 +101,7 @@ yelp_LDADD =				\
 
 yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
 
-check_PROGRAMS = test-man-parser test-pager test-uri test-transform
+check_PROGRAMS = test-man-parser test-pager test-uri test-page test-transform
 
 test_man_parser_SOURCES =					\
 	yelp-error.c		yelp-error.h			\
@@ -163,6 +163,16 @@ test_uri_CFLAGS =		\
 test_uri_LDADD = $(YELP_LIBS)
 
 test_uri_LDFLAGS = $(AM_LDFLAGS)
+
+test_page_SOURCES =					\
+	yelp-debug.c		yelp-debug.h		\
+	yelp-document.c		yelp-document.h		\
+	yelp-error.c		yelp-error.h		\
+	yelp-page.c		yelp-page.h		\
+	test-page.c
+test_page_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_page_LDADD = $(YELP_LIBS)
+test_page_LDFLAGS = $(AM_LDFLAGS)
 
 test_transform_SOURCES =				\
 	yelp-debug.c		yelp-debug.h		\

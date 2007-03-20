@@ -180,8 +180,8 @@ transform_run (YelpTransform *transform)
 						    (const char **) transform->params,
 						    NULL, NULL,
 						    transform->context);
+
     /* FIXME: do something with outputDoc? */
-    /* FIXME: check for anything remaining on the queue */
     g_idle_add ((GSourceFunc) transform_final, transform);
 
     g_mutex_lock (transform->mutex);
@@ -216,6 +216,7 @@ transform_free (YelpTransform *transform)
 	}
     }
 
+    g_mutex_lock (transform->mutex);
     if (transform->outputDoc)
 	xmlFreeDoc (transform->outputDoc);
     if (transform->stylesheet)
@@ -226,6 +227,7 @@ transform_free (YelpTransform *transform)
     g_strfreev (transform->params);
 
     g_async_queue_unref (transform->queue);
+    g_mutex_unlock (transform->mutex);
     g_mutex_free (transform->mutex);
 
     if (transform->error)
@@ -239,10 +241,12 @@ static void
 transform_set_error (YelpTransform *transform,
 		     YelpError     *error)
 {
+    g_mutex_lock (transform->mutex);
     if (transform->error)
 	yelp_error_free (transform->error);
     transform->error = error;
     g_idle_add ((GSourceFunc) transform_error, transform);
+    g_mutex_unlock (transform->mutex);
 }
 
 static gboolean
@@ -270,8 +274,12 @@ transform_error (YelpTransform *transform)
 {
     YelpError *error;
 
+    g_mutex_lock (transform->mutex);
+
     error = transform->error;
     transform->error = NULL;
+
+    g_mutex_unlock (transform->mutex);
 
     if (transform->func)
 	transform->func (transform,
@@ -286,6 +294,7 @@ transform_error (YelpTransform *transform)
 static gboolean
 transform_final (YelpTransform *transform)
 {
+    /* FIXME: check for anything remaining on the queue */
     if (transform->func)
 	transform->func (transform,
 			 YELP_TRANSFORM_FINAL,
@@ -312,7 +321,8 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     xmlDocPtr   old_doc;
     xmlNodePtr  old_insert;
 
-    /* FIXME: check cancelled state, thread safety? */
+    if (ctxt->state == XSLT_STATE_STOPPED)
+	return;
 
     if (!ctxt || !node || !inst || !comp)
 	return;

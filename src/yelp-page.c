@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2006 Brent Smith  <gnome@nextreality.net>
+ * Copyright (C) 2007 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,6 +25,7 @@
 #include "yelp-page.h"
 
 #include <glib.h>
+#include <string.h>
 
 typedef enum {
     PAGE_SOURCE_STRING,
@@ -66,11 +68,12 @@ yelp_page_new_string (YelpDocument  *document,
 
     page = g_slice_new0 (YelpPage);
 
-    page->document = g_object_ref (document);
+    if (document)
+	page->document = g_object_ref (document);
     page->source = PAGE_SOURCE_STRING;
     page->id = g_strdup (id);
 
-    page->content = content;
+    page->content = (gchar *) content;
     page->content_len = strlen (content);
 
     return page;
@@ -83,7 +86,7 @@ yelp_page_read (YelpPage    *page,
 		gsize       *bytes_read,
 		YelpError  **error)
 {
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
 
     if (page->source == PAGE_SOURCE_STRING)
 	return page_read_string (page, buffer, count, bytes_read, error);
@@ -98,9 +101,7 @@ page_read_string (YelpPage    *page,
 		  gsize       *bytes_read,
 		  YelpError  **error)
 {
-    gsize *bytes;
-
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
 
     if (page->content_offset == page->content_len) {
 	return G_IO_STATUS_EOF;
@@ -109,11 +110,18 @@ page_read_string (YelpPage    *page,
 	// FIXME: set the error
 	return G_IO_STATUS_ERROR;
     }
-
-    strncpy (buffer, page->content + page->content_offset, bytes);
-    page->content_offset += strlen (buffer);
-
-    return G_IO_STATUS_NORMAL;
+    else if (page->content_offset + count <= page->content_len) {
+	strncpy (buffer, page->content + page->content_offset, count);
+	page->content_offset += count;
+	*bytes_read = count;
+	return G_IO_STATUS_NORMAL;
+    }
+    else {
+	strcpy (buffer, page->content + page->content_offset);
+	*bytes_read = strlen (buffer);
+	page->content_offset += *bytes_read;
+	return G_IO_STATUS_NORMAL;
+    }
 }
 
 static GIOStatus
@@ -123,6 +131,7 @@ page_read_file (YelpPage    *page,
 		gsize       *bytes_read,
 		YelpError  **error)
 {
+    g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
     //FIXME: just use yelp-io-channel?
 }
 
@@ -130,42 +139,42 @@ page_read_file (YelpPage    *page,
 const gchar *
 yelp_page_get_id (YelpPage *page)
 {
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, NULL);
     return (const gchar *) page->id;
 }
 
 const gchar *
 yelp_page_get_title (YelpPage *page)
 {
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, NULL);
     return (const gchar *) page->title;
 }
 
 const gchar *
 yelp_page_get_prev_id (YelpPage *page)
 {
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, NULL);
     return (const gchar *) page->prev_id;
 }
 
 const gchar *
 yelp_page_get_next_id (YelpPage *page)
 {
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, NULL);
     return (const gchar *) page->next_id;
 }
 
 const gchar *
 yelp_page_get_up_id (YelpPage *page)
 {
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, NULL);
     return (const gchar *) page->up_id;
 }
 
 const gchar *
 yelp_page_get_toc_id   (YelpPage      *page)
 {
-    g_return_if_fail (page != NULL);
+    g_return_val_if_fail (page != NULL, NULL);
     return (const gchar *) page->toc_id;
 }
 
@@ -220,7 +229,7 @@ yelp_page_free (YelpPage *page)
     g_return_if_fail (page != NULL);
 
     if (page->document) {
-	yelp_document_release_page (document);
+	yelp_document_release_page (page->document, page);
 	g_object_unref (page->document);
     }
 

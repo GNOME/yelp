@@ -1,5 +1,6 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2006 Brent Smith  <gnome@nextreality.net>
+ * Copyright (C) 2003-2006 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,22 +17,13 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Brent Smith  <gnome@nextreality.net>
+ * Author: Shaun McCance  <shaunm@gnome.org>
  */
 
 #ifndef __YELP_DOCUMENT_H__
 #define __YELP_DOCUMENT_H__
 
 #include <glib-object.h>
-#include <gtk/gtk.h>
-
-#include "yelp-page.h"
-
-G_BEGIN_DECLS
-
-typedef struct _YelpDocument      YelpDocument;
-typedef struct _YelpDocumentClass YelpDocumentClass;
-typedef struct _YelpDocumentPriv  YelpDocumentPriv;
 
 #define YELP_TYPE_DOCUMENT         (yelp_document_get_type ())
 #define YELP_DOCUMENT(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_DOCUMENT, YelpDocument))
@@ -40,63 +32,51 @@ typedef struct _YelpDocumentPriv  YelpDocumentPriv;
 #define YELP_IS_DOCUMENT_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_DOCUMENT))
 #define YELP_DOCUMENT_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_DOCUMENT, YelpDocumentClass))
 
-struct _YelpDocument {
-	GObject            parent;
+typedef struct _YelpDocument      YelpDocument;
+typedef struct _YelpDocumentClass YelpDocumentClass;
+typedef struct _YelpDocumentPriv  YelpDocumentPriv;
 
-	YelpDocumentPriv  *priv;
+#include "yelp-page.h"
+
+typedef enum {
+    YELP_DOCUMENT_SIGNAL_PAGE,
+    YELP_DOCUMENT_SIGNAL_TITLE,
+    YELP_DOCUMENT_SIGNAL_ERROR
+} YelpDocumentSignal;
+
+typedef void         (*YelpDocumentFunc)     (YelpDocument       *document,
+					      YelpDocumentSignal  signal,
+					      gint                req_id,
+					      gpointer            func_data,
+					      gpointer            user_data);
+
+struct _YelpDocument {
+    GObject           parent;
+    YelpDocumentPriv *priv;
 };
 
 struct _YelpDocumentClass {
-	GObjectClass       parent_class;
+    GObjectClass    parent_class;
 
-	/* virtual functions - must be implemented by derived classes */
-	/* initiates a page request */
-	gboolean          (*get_page)     (YelpDocument *document);
-
-	/* cancels a page request */
-	gboolean          (*cancel)       (YelpDocument *document);
-
-	/* gets a #GtkTreeModel which represents all the sections in the
-	 * document */
-	GtkTreeModel *    (*get_sections) (YelpDocument *document);
+    /* Virtual Functions */
+    gint             (*get_page)             (YelpDocument     *document,
+					      gchar            *page_id,
+					      YelpDocumentFunc  func,
+					      gpointer          user_data);
+    void             (*cancel)               (YelpDocument     *document,
+					      gint              req_id);
 };
 
-/* callback function definitions */
-typedef void (*YelpPageLoadFunc)  (YelpDocument *document,
-                                   gint          req_id,
-                                   const gchar  *page_id,
-                                   YelpPage     *page,
-                                   gpointer      user_data);
 
-typedef void (*YelpPageTitleFunc) (YelpDocument *document,
-                                   gint          req_id,
-                                   const gchar  *page_id,
-                                   const gchar  *title,
-                                   gpointer      user_data);
+GType                yelp_document_get_type  (void);
 
-typedef void (*YelpPageErrorFunc) (YelpDocument *document,
-                                   gint          req_id,
-                                   const gchar  *page_id,
-                                   const GError *error,
-                                   gpointer      user_data);
+gint                 yelp_document_get_page  (YelpDocument       *document,
+					      gchar              *page_id,
+					      YelpDocumentFunc    func,
+					      gpointer           *user_data);
+void                 yelp_document_release_page (YelpDocument    *document,
+						 YelpPage        *page);
+void                 yelp_document_cancel    (YelpDocument       *document,
+					      gint                req_id);
 
-/* public methods for YelpDocument Class */
-gint           yelp_document_get_page (YelpDocument     *document,
-                                       const gchar      *page_id,
-                                       YelpPageLoadFunc  page_func,
-                                       YelpPageTitleFunc title_func,
-                                       YelpPageErrorFunc error_func,
-                                       gpointer          user_data);
-
-gboolean       yelp_document_cancel_get (YelpDocument   *document,
-                                         gint            source_id);
-
-GtkTreeModel  *yelp_document_get_sections (YelpDocument *document);
-
-void           yelp_document_add_page (YelpDocument *document,
-                                       YelpPage     *page);
-
-
-G_END_DECLS
-
-#endif
+#endif /* __YELP_DOCUMENT_H__ */
