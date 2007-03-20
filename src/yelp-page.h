@@ -1,5 +1,7 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2006 Brent Smith  <gnome@nextreality.net>
+ * Copyright (C) 2007 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,7 +18,8 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Brent Smith  <gnome@nextreality.net>
+ * Authors: Brent Smith  <gnome@nextreality.net>
+ *          Shaun McCance  <shaunm@gnome.org>
  */
 
 #ifndef __YELP_PAGE_H__
@@ -24,24 +27,41 @@
 
 #include <glib.h>
 
+#include "yelp-document.h"
+
 G_BEGIN_DECLS
 
 typedef struct _YelpPage YelpPage;
 
-YelpPage     *yelp_page_new          (void);
-void          yelp_page_set_id       (YelpPage *page, const gchar *page_id);
-const gchar  *yelp_page_get_id       (YelpPage *page);
-void          yelp_page_set_title    (YelpPage *page, const gchar *title);
-const gchar  *yelp_page_get_title    (YelpPage *page);
-void          yelp_page_set_contents (YelpPage *page, const gchar *contents);
-const gchar  *yelp_page_get_contents (YelpPage *page);
-void          yelp_page_set_prev_id  (YelpPage *page, const gchar *prev_id);
-const gchar  *yelp_page_get_prev_id  (YelpPage *page);
-void          yelp_page_set_next_id  (YelpPage *page, const gchar *next_id);
-const gchar  *yelp_page_get_next_id  (YelpPage *page);
-void          yelp_page_set_toc_id   (YelpPage *page, const gchar *toc_id);
-const gchar  *yelp_page_get_toc_id   (YelpPage *page);
-void          yelp_page_free         (YelpPage *page);
+YelpPage *    yelp_page_new_string   (YelpDocument  *document,
+				      gchar         *id,
+				      const gchar   *content);
+
+GIOStatus     yelp_page_read         (YelpPage      *page,
+				      gchar         *buffer,
+				      gsize          count,
+				      gsize         *bytes_read,
+				      YelpError    **error);
+
+const gchar  *yelp_page_get_id       (YelpPage      *page);
+const gchar  *yelp_page_get_title    (YelpPage      *page);
+const gchar  *yelp_page_get_prev_id  (YelpPage      *page);
+const gchar  *yelp_page_get_next_id  (YelpPage      *page);
+const gchar  *yelp_page_get_up_id    (YelpPage      *page);
+const gchar  *yelp_page_get_toc_id   (YelpPage      *page);
+
+void          yelp_page_set_title    (YelpPage      *page,
+				      gchar         *title);
+void          yelp_page_set_prev_id  (YelpPage      *page,
+				      gchar         *prev_id);
+void          yelp_page_set_next_id  (YelpPage      *page,
+				      gchar         *next_id);
+void          yelp_page_set_up_id    (YelpPage      *page,
+				      gchar         *up_id);
+void          yelp_page_set_toc_id   (YelpPage      *page,
+				      gchar         *toc_id);
+
+void          yelp_page_free         (YelpPage      *page);
 
 G_END_DECLS
 

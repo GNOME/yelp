@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2007 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,52 +21,25 @@
 
 #include <config.h>
 
-#include <glib/gi18n.h>
+#include <glib.h>
 
 #include "yelp-error.h"
 
-GQuark
-yelp_error_quark (void)
+struct _YelpError {
+    gchar *title;
+    gchar *message;
+};
+
+static YelpError *
+yelp_error_new_valist (gchar *title, gchar *format, va_list args)
 {
-    static GQuark q = 0;
+    YelpError *error;
 
-    if (q == 0)
-	q = g_quark_from_static_string ("yelp-error-quark");
+    error = g_slice_new (YelpError);
+    error->title = g_strdup (title);
+    error->message = g_strdup_vprintf (format, args);
 
-    return q;
-}
-
-const gchar *
-yelp_error_get_primary (GError  *error)
-{
-    if (!error || error->domain != YELP_ERROR)
-	return _("An unknown error occured");
-
-    switch (error->code) {
-    case YELP_ERROR_NO_DOC:
-	return _("Could not load document");
-    case YELP_ERROR_NO_PAGE:
-	return _("Could not load section");
-    case YELP_ERROR_NO_TOC:
-	return _("Could not read the table of contents");
-    case YELP_ERROR_FORMAT:
-	return _("Unsupported Format");
-    case YELP_ERROR_IO:
-	return _("Could not read document");
-    case YELP_ERROR_PROC:
-	return _("Could not process document");
-    default:
-	return _("An unknown error occured");
-    }
-}
-
-const gchar *
-yelp_error_get_secondary (GError  *error)
-{
-    if (!error || !error->message)
-	return _("No information is available about the error.");
-    else
-	return error->message;
+    return error;
 }
 
 YelpError *
@@ -74,20 +48,53 @@ yelp_error_new (gchar *title, gchar *format, ...)
     YelpError *error;
     va_list args;
 
-    error = g_new0 (YelpError, 1);
-    error->title = g_strdup (title);
-
     va_start (args, format);
-    error->text = g_strdup_vprintf (format, args);
+    error = yelp_error_new_valist (title, format, args);
     va_end (args);
 
     return error;
 }
 
 void
+yelp_error_set (YelpError **error, gchar *title, gchar *format, ...)
+{
+    YelpError *new;
+    va_list args;
+
+    va_start (args, format);
+    new = yelp_error_new_valist (title, format, args);
+    va_end (args);
+
+    if (*error == NULL)
+	*error = new;
+    else
+	g_warning
+	    ("YelpError set over the top of a previous YelpError or uninitialized\n"
+	     "memory. This indicates a bug in someone's code. You must ensure an\n"
+	     "error is NULL before it's set. The overwriting error message was:\n"
+	     "%s",
+	     new->message);
+}
+
+const gchar *
+yelp_error_get_title (YelpError *error)
+{
+    g_return_val_if_fail (error != NULL, NULL);
+    return error->title;
+}
+
+const gchar *
+yelp_error_get_message (YelpError *error)
+{
+    g_return_val_if_fail (error != NULL, NULL);
+    return error->message;
+}
+
+void
 yelp_error_free (YelpError *error)
 {
+    g_return_if_fail (error != NULL);
     g_free (error->title);
-    g_free (error->text);
-    g_free (error);
+    g_free (error->message);
+    g_slice_free (YelpError, error);
 }

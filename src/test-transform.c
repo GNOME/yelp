@@ -59,7 +59,7 @@ transform_func (YelpTransform       *transform,
 	break;
     case YELP_TRANSFORM_ERROR:
 	error = (YelpError *) func_data;
-	printf ("\nERROR: %s\n", error->title);
+	printf ("\nERROR: %s\n", yelp_error_get_title (error));
 	yelp_error_free (error);
 	break;
     case YELP_TRANSFORM_FINAL:

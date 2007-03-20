@@ -1,3 +1,21 @@
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Making YelpError cleaner and more usable for our purposes
+
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Copyright in 2007 too
+
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- The beginnings of the new read()-able YelpPage
+
+	* src/Makefile.am:
+	- yelp-error.h != yelp-transform.h
+
 2007-03-17  Shaun McCance  <shaunm@gnome.org>
 
 	* src/test-transform.c:

@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2006 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2007 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as

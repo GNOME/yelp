@@ -166,7 +166,7 @@ test_uri_LDFLAGS = $(AM_LDFLAGS)
 
 test_transform_SOURCES =				\
 	yelp-debug.c		yelp-debug.h		\
-	yelp-error.c		yelp-transform.h	\
+	yelp-error.c		yelp-error.h		\
 	yelp-transform.c	yelp-transform.h	\
 	test-transform.c
 test_transform_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
