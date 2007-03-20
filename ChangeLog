@@ -1,5 +1,14 @@
 2007-03-20  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-transform.c:
+	- Fixed concurrency issues when freeing
+
+	* src/test-transform.c:
+	- Using GOption to get a --timeout option
+	- Don't release a transform twice
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
 	* src/test-transform.c:
 	* src/yelp-error.c:
 	* src/yelp-error.h:

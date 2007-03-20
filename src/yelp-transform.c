@@ -43,7 +43,7 @@
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
 static void      transform_run         (YelpTransform  *transform);
-static void      transform_free        (YelpTransform  *transform);
+static gboolean  transform_free        (YelpTransform  *transform);
 static void      transform_set_error   (YelpTransform  *transform,
 					YelpError      *error);
 
@@ -161,10 +161,13 @@ yelp_transform_release (YelpTransform *transform)
 	 */
 	transform->released = TRUE;
 	transform->context->state = XSLT_STATE_STOPPED;
-	g_mutex_unlock (transform->mutex);
     } else {
-	transform_free (transform);
+	/* We might still have pending pops from the queue, so just
+	 * schedule transform_free.
+	 */
+	g_idle_add ((GSourceFunc) transform_free, transform);
     }
+    g_mutex_unlock (transform->mutex);
 }
 
 /******************************************************************************/
@@ -185,18 +188,34 @@ transform_run (YelpTransform *transform)
     transform->running = FALSE;
     if (transform->released) {
 	/* The transform was released by its owner, but it couldn't
-	 * be freed because this thread was running.  Nobody cares
-	 * about this transform anymore, so free it now.
+	 * be freed because this thread was running.  But we're in
+	 * a thread, and the main thread might still be popping stuff
+	 * off the asynchronous queue.  Schedule this for freeing.
 	 */
-	transform_free (transform);
-    } else {
-	g_mutex_unlock (transform->mutex);
+	g_idle_add ((GSourceFunc) transform_free, transform);
     }
+    g_mutex_unlock (transform->mutex);
 }
 
-static void
+static gboolean
 transform_free (YelpTransform *transform)
 {
+    static gint free_attempts = 0;
+
+    /* If the queue isn't empty yet, try again later.  But because
+     * threads scare me and I don't want runaway code, stop trying
+     * after an insane number of attempts and just leak.
+     */
+    if (g_async_queue_length (transform->queue) != 0) {
+	free_attempts++;
+	if (free_attempts < 1000) {
+	    return TRUE;
+	} else {
+	    g_warning ("Runaway free attempt detected.  Memory is about to leak.\n");
+	    return FALSE;
+	}
+    }
+
     if (transform->outputDoc)
 	xmlFreeDoc (transform->outputDoc);
     if (transform->stylesheet)
@@ -213,6 +232,7 @@ transform_free (YelpTransform *transform)
 	yelp_error_free (transform->error);
 
     g_free (transform);
+    return FALSE;
 }
 
 static void

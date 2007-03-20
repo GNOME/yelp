@@ -26,12 +26,33 @@
 #include "yelp-error.h"
 #include "yelp-transform.h"
 
-static void   transform_func (YelpTransform       *transform,
-			      YelpTransformSignal  signal,
-			      gpointer            *func_data,
-			      gpointer             user_data);
+static gint timeout = -1;
+static gchar **files = NULL;
+static const GOptionEntry options[] = {
+    { "timeout", 't',
+      0, G_OPTION_ARG_INT,
+      &timeout,
+      "Time out after N milliseconds", "N"
+    },
+    { G_OPTION_REMAINING, 
+      0, 0, G_OPTION_ARG_FILENAME_ARRAY, 
+      &files, NULL, NULL },
+    { NULL }
+};
 
 GMainLoop *loop;
+
+static void
+transform_release (YelpTransform *transform)
+{
+    static gboolean released = FALSE;
+
+    if (!released) {
+	printf ("\nRELEASE\n");
+	yelp_transform_release (transform);
+	released = TRUE;
+    }
+}
 
 static void
 transform_func (YelpTransform       *transform,
@@ -64,7 +85,7 @@ transform_func (YelpTransform       *transform,
 	break;
     case YELP_TRANSFORM_FINAL:
 	printf ("\nFINAL\n");
-	yelp_transform_release (transform);
+	transform_release (transform);
 	g_main_loop_quit (loop);
 	break;
     }
@@ -73,46 +94,62 @@ transform_func (YelpTransform       *transform,
 gint 
 main (gint argc, gchar **argv) 
 {
-  xmlParserCtxtPtr parser;
-  xmlDocPtr doc;
-  YelpTransform *transform;
-  gchar **params;
+    GOptionContext *context;
+    xmlParserCtxtPtr parser;
+    xmlDocPtr doc;
+    YelpTransform *transform;
+    gchar **params;
+    gchar *stylesheet;
+    gchar *file;
 
-  g_thread_init (NULL);
+    g_thread_init (NULL);
 
-  if (argc < 2) {
-    g_error ("Usage: test-transform file\n");
-    return 1;
-  }
+    context = g_option_context_new ("[STYLESHEET] FILE");
+    g_option_context_add_main_entries (context, options, NULL);
+    g_option_context_parse (context, &argc, &argv, NULL);
 
-  params = g_new0 (gchar *, 7);
-  params[0] = "db.chunk.extension";
-  params[1] = "\"\"";
-  params[2] = "db.chunk.info_basename";
-  params[3] = "\"x-yelp-titlepage\"";
-  params[4] = "db.chunk.max_depth";
-  params[5] = "2";
-  params[6] = NULL;
+    if (files == NULL || files[0] == NULL) {
+	g_printerr ("Usage: test-transform [OPTION...] [STYLESHEET] FILE\n");
+	return 1;
+    }
 
-  transform = yelp_transform_new (DATADIR"/yelp/xslt/db2html.xsl",
-				  (YelpTransformFunc) transform_func,
-				  NULL);
-  parser = xmlNewParserCtxt ();
-  doc = xmlCtxtReadFile (parser,
-			 argv[1],
-			 NULL,
-			 XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
-			 XML_PARSE_NOENT   | XML_PARSE_NONET   );
-  xmlFreeParserCtxt (parser);
-  xmlXIncludeProcessFlags (doc,
+    if (files[1] == NULL) {
+	stylesheet = DATADIR"/yelp/xslt/db2html.xsl";
+	file = files[0];
+    } else {
+	stylesheet = files[0];
+	file = files[1];
+    }
+
+    params = g_new0 (gchar *, 7);
+    params[0] = "db.chunk.extension";
+    params[1] = "\"\"";
+    params[2] = "db.chunk.info_basename";
+    params[3] = "\"x-yelp-titlepage\"";
+    params[4] = "db.chunk.max_depth";
+    params[5] = "2";
+    params[6] = NULL;
+
+    transform = yelp_transform_new (stylesheet,
+				    (YelpTransformFunc) transform_func,
+				    NULL);
+    parser = xmlNewParserCtxt ();
+    doc = xmlCtxtReadFile (parser,
+			   file,
+			   NULL,
 			   XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			   XML_PARSE_NOENT   | XML_PARSE_NONET   );
-  yelp_transform_start (transform, doc, params);
+    xmlFreeParserCtxt (parser);
+    xmlXIncludeProcessFlags (doc,
+			     XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
+			     XML_PARSE_NOENT   | XML_PARSE_NONET   );
+    yelp_transform_start (transform, doc, params);
 
-  g_timeout_add (400, (GSourceFunc) yelp_transform_release, transform);
+    if (timeout >= 0)
+	g_timeout_add (timeout, (GSourceFunc) transform_release, transform);
 
-  loop = g_main_loop_new (NULL, FALSE);
-  g_main_loop_run (loop);
+    loop = g_main_loop_new (NULL, FALSE);
+    g_main_loop_run (loop);
 
-  return 0;
+    return 0;
 }
