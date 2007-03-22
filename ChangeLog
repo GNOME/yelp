@@ -1,3 +1,20 @@
+2007-03-22  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Do not do callbacks if released
+
+	* src/yelp-page.h:
+	- Added a comment
+
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Filled out the abstract functions
+
+	* src/Makefile.am:
+	- Some changes to the test programs we build
+
 2007-03-20  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-transform.c:

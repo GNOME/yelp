@@ -45,13 +45,12 @@ GMainLoop *loop;
 static void
 transform_release (YelpTransform *transform)
 {
-    static gboolean released = FALSE;
-
-    if (!released) {
-	printf ("\nRELEASE\n");
-	yelp_transform_release (transform);
-	released = TRUE;
-    }
+    printf ("\nRELEASE\n");
+    yelp_transform_release (transform);
+    /* Quit after pending things are done.  This helps test
+     * whether YelpTransform takes its release seriously.
+     */
+    g_idle_add ((GSourceFunc) g_main_loop_quit, loop);
 }
 
 static void
@@ -86,7 +85,6 @@ transform_func (YelpTransform       *transform,
     case YELP_TRANSFORM_FINAL:
 	printf ("\nFINAL\n");
 	transform_release (transform);
-	g_main_loop_quit (loop);
 	break;
     }
 }

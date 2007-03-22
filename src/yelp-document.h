@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2006 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2007 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -36,6 +36,7 @@ typedef struct _YelpDocument      YelpDocument;
 typedef struct _YelpDocumentClass YelpDocumentClass;
 typedef struct _YelpDocumentPriv  YelpDocumentPriv;
 
+/* This needs to be after the typedefs. */
 #include "yelp-page.h"
 
 typedef enum {
@@ -59,24 +60,26 @@ struct _YelpDocumentClass {
     GObjectClass    parent_class;
 
     /* Virtual Functions */
-    gint             (*get_page)             (YelpDocument     *document,
+    gint          (*get_page)                (YelpDocument     *document,
 					      gchar            *page_id,
 					      YelpDocumentFunc  func,
 					      gpointer          user_data);
-    void             (*cancel)               (YelpDocument     *document,
+    void          (*release_page)            (YelpDocument     *document,
+					      YelpPage         *page);
+    void          (*cancel_page)             (YelpDocument     *document,
 					      gint              req_id);
 };
 
 
-GType                yelp_document_get_type  (void);
+GType             yelp_document_get_type     (void);
 
-gint                 yelp_document_get_page  (YelpDocument       *document,
+gint              yelp_document_get_page     (YelpDocument       *document,
 					      gchar              *page_id,
 					      YelpDocumentFunc    func,
 					      gpointer           *user_data);
-void                 yelp_document_release_page (YelpDocument    *document,
-						 YelpPage        *page);
-void                 yelp_document_cancel    (YelpDocument       *document,
+void              yelp_document_release_page (YelpDocument       *document,
+					      YelpPage           *page);
+void              yelp_document_cancel_page  (YelpDocument       *document,
 					      gint                req_id);
 
 #endif /* __YELP_DOCUMENT_H__ */

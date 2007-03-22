@@ -33,6 +33,7 @@ G_BEGIN_DECLS
 
 typedef struct _YelpPage YelpPage;
 
+/* This needs to be after the typedefs. */
 #include "yelp-document.h"
 
 YelpPage *    yelp_page_new_string   (YelpDocument  *document,

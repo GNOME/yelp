@@ -60,6 +60,8 @@ struct _YelpTransform {
 
     gboolean                running;
     gboolean                released;
+    gint                    idle_funcs;
+    gint                    free_attempts;
 
     gpointer                user_data;
 

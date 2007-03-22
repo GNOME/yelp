@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2006 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2007 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -33,7 +33,7 @@
 #define YELP_DOCUMENT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCUMENT, YelpDocumentPriv))
 
 struct _YelpDocumentPriv {
-    gpointer FIXME;
+    gpointer reserved;
 };
 
 static void    document_class_init        (YelpDocumentClass  *klass);
@@ -99,6 +99,7 @@ yelp_document_get_page (YelpDocument     *document,
 			YelpDocumentFunc  func,
 			gpointer         *user_data)
 {
+    g_return_val_if_fail (YELP_IS_DOCUMENT (document), -1);
     YELP_DOCUMENT_GET_CLASS (document)->get_page (document,
 						  page_id,
 						  func,
@@ -108,12 +109,13 @@ yelp_document_get_page (YelpDocument     *document,
 void
 yelp_document_release_page (YelpDocument *document, YelpPage *page)
 {
-    // FIXME
+    g_return_if_fail (YELP_IS_DOCUMENT (document));
+    YELP_DOCUMENT_GET_CLASS (document)->release_page (document, page);
 }
 
 void
-yelp_document_cancel (YelpDocument *document,
-		      gint          req_id)
+yelp_document_cancel_page (YelpDocument *document, gint req_id)
 {
-    YELP_DOCUMENT_GET_CLASS (document)->cancel (document, req_id);
+    g_return_if_fail (YELP_IS_DOCUMENT (document));
+    YELP_DOCUMENT_GET_CLASS (document)->cancel_page (document, req_id);
 }

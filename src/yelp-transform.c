@@ -182,6 +182,7 @@ transform_run (YelpTransform *transform)
 						    transform->context);
 
     /* FIXME: do something with outputDoc? */
+    transform->idle_funcs++;
     g_idle_add ((GSourceFunc) transform_final, transform);
 
     g_mutex_lock (transform->mutex);
@@ -200,15 +201,15 @@ transform_run (YelpTransform *transform)
 static gboolean
 transform_free (YelpTransform *transform)
 {
-    static gint free_attempts = 0;
+    gchar *chunk_id;
 
     /* If the queue isn't empty yet, try again later.  But because
      * threads scare me and I don't want runaway code, stop trying
      * after an insane number of attempts and just leak.
      */
-    if (g_async_queue_length (transform->queue) != 0) {
-	free_attempts++;
-	if (free_attempts < 1000) {
+    if (transform->idle_funcs > 0) {
+	transform->free_attempts++;
+	if (transform->free_attempts < 1000) {
 	    return TRUE;
 	} else {
 	    g_warning ("Runaway free attempt detected.  Memory is about to leak.\n");
@@ -226,6 +227,9 @@ transform_free (YelpTransform *transform)
 
     g_strfreev (transform->params);
 
+    /* FIXME: destroy data */
+    while ((chunk_id = (gchar *) g_async_queue_try_pop (transform->queue)))
+	g_free (chunk_id);
     g_async_queue_unref (transform->queue);
     g_mutex_unlock (transform->mutex);
     g_mutex_free (transform->mutex);
@@ -242,9 +246,15 @@ transform_set_error (YelpTransform *transform,
 		     YelpError     *error)
 {
     g_mutex_lock (transform->mutex);
+    if (transform->released) {
+	yelp_error_free (error);
+	g_mutex_unlock (transform->mutex);
+	return;
+    }
     if (transform->error)
 	yelp_error_free (transform->error);
     transform->error = error;
+    transform->idle_funcs++;
     g_idle_add ((GSourceFunc) transform_error, transform);
     g_mutex_unlock (transform->mutex);
 }
@@ -253,6 +263,10 @@ static gboolean
 transform_chunk (YelpTransform *transform)
 {
     gchar *chunk_id;
+
+    transform->idle_funcs--;
+    if (transform->released)
+	return FALSE;
 
     chunk_id = (gchar *) g_async_queue_try_pop (transform->queue);
 
@@ -274,6 +288,10 @@ transform_error (YelpTransform *transform)
 {
     YelpError *error;
 
+    transform->idle_funcs--;
+    if (transform->released)
+	return FALSE;
+
     g_mutex_lock (transform->mutex);
 
     error = transform->error;
@@ -294,6 +312,10 @@ transform_error (YelpTransform *transform)
 static gboolean
 transform_final (YelpTransform *transform)
 {
+    transform->idle_funcs--;
+    if (transform->released)
+	return FALSE;
+
     /* FIXME: check for anything remaining on the queue */
     if (transform->func)
 	transform->func (transform,
@@ -374,6 +396,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     g_mutex_lock (transform->mutex);
     g_hash_table_insert (transform->chunks, page_id, page_buf);
     g_async_queue_push (transform->queue, g_strdup (page_id));
+    transform->idle_funcs++;
     g_idle_add ((GSourceFunc) transform_chunk, transform);
     g_mutex_unlock (transform->mutex);
 
