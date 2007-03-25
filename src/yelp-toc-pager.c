@@ -463,7 +463,7 @@ toc_process_pending (YelpTocPager *pager)
     YelpTocPagerPriv *priv = pager->priv;
     static ProcessFunction process_funcs[] = {
 	process_read_menu,
-	process_omf_pending,
+	/*process_omf_pending,*/
 #ifdef ENABLE_MAN
 	process_mandir_pending,
 #endif
@@ -1799,13 +1799,20 @@ process_info_pending (YelpTocPager *pager)
 #endif /* ENABLE_INFO */
 
 static int
-SpoonPrint( void *reg, void * data)
+spoon_add_document (void *reg, void * user_data)
 {
+    xmlNodePtr node = (xmlNodePtr) user_data;
     SpoonReg *r = (SpoonReg *) reg;
-  
-    g_print ("Name: %s\n", r->name);
+    xmlNodePtr new;
+    gchar tmp[10];
 
-    return TRUE;
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST r->uri);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST r->name);
+    xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST r->comment);
+    g_sprintf (&tmp, "%d", r->weight);
+    xmlNewNsProp (new, NULL, BAD_CAST "weight", BAD_CAST tmp);
+    return FALSE;
 }
 
 static gboolean
@@ -1818,9 +1825,7 @@ process_read_menu (YelpTocPager *pager)
     gint i, ret;
 
     YelpTocPagerPriv *priv = pager->priv;
-    g_print ("for_eaching\n");
-    spoon_for_each (SpoonPrint, NULL);
-    g_print ("Ended\n");
+
     priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/toc.xml", NULL,
 				     XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 				     XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
@@ -1922,9 +1927,12 @@ process_read_menu (YelpTocPager *pager)
 				BAD_CAST "subject")) {
 		    xmlChar *cat = xmlTextReaderGetAttribute (reader, 
 							      BAD_CAST "category");
-		    g_hash_table_insert (priv->category_hash,
+		    /*g_hash_table_insert (priv->category_hash,
 					 g_strdup ((gchar *) cat),
-					 node);
+					 node);*/
+		    spoon_for_each_in_category (spoon_add_document,
+						(char *) cat,
+						(void *) node);
 		    xmlFree (cat);
 		}
 		else if (!xmlStrcmp (xmlTextReaderConstLocalName (reader),

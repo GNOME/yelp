@@ -1,5 +1,11 @@
 2007-03-25  Don Scorgie  <dscorgie@cvs.gnome.org>
 
+	* stylesheets/toc2html.xsl: 
+	* src/yelp-toc-pager.c:
+	First pass at spoon integration
+	TOC correctly displayed, replacing all sk code
+	with spoon_for_each_in_category()
+
 	* src/yelp-toc-pager.c:
 	* configure.in:
 	First work on Spoon integration

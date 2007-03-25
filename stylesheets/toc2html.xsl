@@ -151,6 +151,8 @@
   <div class="docs">
     <dl>
       <xsl:for-each select="doc">
+        <xsl:sort order="ascending" data-type="number"
+          select="normalize-space(@weight)"/>
         <xsl:sort select="normalize-space(title)"/>
         <dt class="doc">
           <a href="{@href}" title="{@href}">
