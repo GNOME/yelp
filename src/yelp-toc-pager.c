@@ -45,6 +45,8 @@
 #include <libxslt/extensions.h>
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
+#include <spoon.h>
+#include <spoon-reg-utils.h>
 
 #include "yelp-debug.h"
 #include "yelp-error.h"
@@ -1796,6 +1798,16 @@ process_info_pending (YelpTocPager *pager)
 }
 #endif /* ENABLE_INFO */
 
+static int
+SpoonPrint( void *reg, void * data)
+{
+    SpoonReg *r = (SpoonReg *) reg;
+  
+    g_print ("Name: %s\n", r->name);
+
+    return TRUE;
+}
+
 static gboolean
 process_read_menu (YelpTocPager *pager)
 {
@@ -1806,7 +1818,9 @@ process_read_menu (YelpTocPager *pager)
     gint i, ret;
 
     YelpTocPagerPriv *priv = pager->priv;
-
+    g_print ("for_eaching\n");
+    spoon_for_each (SpoonPrint, NULL);
+    g_print ("Ended\n");
     priv->toc_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/toc.xml", NULL,
 				     XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 				     XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
