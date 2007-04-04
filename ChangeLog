@@ -1,3 +1,28 @@
+2007-04-04  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Added yelp_error_copy
+
+	* src/yelp-transform.c:
+	- Added a few debug statements
+
+	* src/test-transform.c:
+	- Added the --random-timeout option
+
+	* src/yelp-page.c:
+	- Don't use g_free with memory slicese.
+
+	* src/yelp-docbook.c:
+	* src/yelp-docbook.h:
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Added a more-or-less complete YelpDocument implementation for DocBook
+
+	* src/test-document.c:
+	* src/Makefile.am:
+	- Added a test program for YelpDocument, currently only using DocBook
+
 2007-03-22  Shaun McCance  <shaunm@gnome.org>
 
 	* src/test-transform.c:

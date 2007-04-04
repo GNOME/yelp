@@ -45,6 +45,12 @@ typedef enum {
     YELP_DOCUMENT_SIGNAL_ERROR
 } YelpDocumentSignal;
 
+enum {
+    YELP_DOCUMENT_COLUMN_ID = 0,
+    YELP_DOCUMENT_COLUMN_TITLE,
+    YELP_DOCUMENT_NUM_COLUMNS
+};
+
 typedef void         (*YelpDocumentFunc)     (YelpDocument       *document,
 					      YelpDocumentSignal  signal,
 					      gint                req_id,

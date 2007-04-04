@@ -27,13 +27,17 @@
 #include "yelp-transform.h"
 
 static gint timeout = -1;
+static gboolean random_timeout = FALSE;
 static gchar **files = NULL;
 static const GOptionEntry options[] = {
+    { "random-timeout", 'r',
+      0, G_OPTION_ARG_NONE,
+      &random_timeout,
+      "Time out after a random amount of time", NULL },
     { "timeout", 't',
       0, G_OPTION_ARG_INT,
       &timeout,
-      "Time out after N milliseconds", "N"
-    },
+      "Time out after N milliseconds", "N" },
     { G_OPTION_REMAINING, 
       0, 0, G_OPTION_ARG_FILENAME_ARRAY, 
       &files, NULL, NULL },
@@ -142,6 +146,12 @@ main (gint argc, gchar **argv)
 			     XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			     XML_PARSE_NOENT   | XML_PARSE_NONET   );
     yelp_transform_start (transform, doc, params);
+
+    if (random_timeout) {
+	GRand *rand = g_rand_new ();
+	timeout = g_rand_int_range (rand, 80, 280);
+	g_rand_free (rand);
+    }
 
     if (timeout >= 0)
 	g_timeout_add (timeout, (GSourceFunc) transform_release, transform);

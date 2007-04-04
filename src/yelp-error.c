@@ -76,6 +76,18 @@ yelp_error_set (YelpError **error, gchar *title, gchar *format, ...)
 	     new->message);
 }
 
+YelpError *
+yelp_error_copy (YelpError *error)
+{
+    YelpError *new;
+
+    new = g_slice_new (YelpError);
+    new->title = g_strdup (error->title);
+    new->message = g_strdup (error->message);
+
+    return error;
+}
+
 const gchar *
 yelp_error_get_title (YelpError *error)
 {

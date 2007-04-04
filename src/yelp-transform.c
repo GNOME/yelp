@@ -343,6 +343,8 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     xmlDocPtr   old_doc;
     xmlNodePtr  old_insert;
 
+    debug_print (DB_FUNCTION, "entering\n");
+
     if (ctxt->state == XSLT_STATE_STOPPED)
 	return;
 
@@ -350,8 +352,6 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	return;
 
     transform = (YelpTransform *) ctxt->_private;
-
-    debug_print (DB_FUNCTION, "entering\n");
 
     page_id = xsltEvalAttrValueTemplate (ctxt, inst,
 					 (const xmlChar *) "href",
@@ -362,7 +362,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	/* FIXME: put a real error here */
 	goto done;
     }
-    debug_print (DB_FUNCTION, "  page_id = \"%s\"\n", page_id);
+    debug_print (DB_ARG, "  page_id = \"%s\"\n", page_id);
 
     old_outfile = ctxt->outputFile;
     old_doc     = ctxt->output;

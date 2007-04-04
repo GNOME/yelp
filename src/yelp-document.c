@@ -86,8 +86,6 @@ document_init (YelpDocument *document)
 static void
 document_dispose (GObject *object)
 {
-    YelpDocument *document = YELP_DOCUMENT (object);
-
     parent_class->dispose (object);
 }
 
@@ -100,10 +98,10 @@ yelp_document_get_page (YelpDocument     *document,
 			gpointer         *user_data)
 {
     g_return_val_if_fail (YELP_IS_DOCUMENT (document), -1);
-    YELP_DOCUMENT_GET_CLASS (document)->get_page (document,
-						  page_id,
-						  func,
-						  user_data);
+    return YELP_DOCUMENT_GET_CLASS (document)->get_page (document,
+							 page_id,
+							 func,
+							 user_data);
 }
 
 void

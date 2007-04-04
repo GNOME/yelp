@@ -86,6 +86,7 @@ yelp_page_read (YelpPage    *page,
 		gsize       *bytes_read,
 		YelpError  **error)
 {
+    /* FIXME: set error */
     g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
 
     if (page->source == PAGE_SOURCE_STRING)
@@ -107,7 +108,7 @@ page_read_string (YelpPage    *page,
 	return G_IO_STATUS_EOF;
     }
     else if (page->content_offset > page->content_len) {
-	// FIXME: set the error
+	/* FIXME: set the error */
 	return G_IO_STATUS_ERROR;
     }
     else if (page->content_offset + count <= page->content_len) {
@@ -132,7 +133,7 @@ page_read_file (YelpPage    *page,
 		YelpError  **error)
 {
     g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
-    //FIXME: just use yelp-io-channel?
+    /* FIXME: just use yelp-io-channel? */
 }
 
 
@@ -247,5 +248,5 @@ yelp_page_free (YelpPage *page)
     if (page->toc_id)
 	g_free (page->toc_id);
 
-    g_free (page);
+    g_slice_free (YelpPage, page);
 }

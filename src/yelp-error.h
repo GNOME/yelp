@@ -33,6 +33,7 @@ void              yelp_error_set          (YelpError  **error,
 					   gchar       *title,
 					   gchar       *format,
 					   ...);
+YelpError *       yelp_error_copy         (YelpError   *error);
 
 const gchar *     yelp_error_get_title    (YelpError   *error);
 const gchar *     yelp_error_get_message  (YelpError   *error);

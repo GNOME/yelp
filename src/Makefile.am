@@ -102,21 +102,22 @@ yelp_LDADD =				\
 yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
 
 check_PROGRAMS =		\
-	test-docbook		\
+	test-document		\
 	test-man-parser		\
 	test-page		\
 	test-transform
 
-test_docbook_SOURCES =					\
+test_document_SOURCES =					\
 	yelp-debug.c		yelp-debug.h		\
 	yelp-docbook.c		yelp-docbook.h		\
 	yelp-document.c		yelp-document.h		\
 	yelp-error.c		yelp-error.h		\
+	yelp-page.c		yelp-page.h		\
 	yelp-transform.c	yelp-transform.h	\
-	test-transform.c
-test_docbook_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
-test_docbook_LDADD = $(YELP_LIBS)
-test_docbook_LDFLAGS = $(AM_LDFLAGS)
+	test-document.c
+test_document_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_document_LDADD = $(YELP_LIBS)
+test_document_LDFLAGS = $(AM_LDFLAGS)
 
 test_man_parser_SOURCES =					\
 	yelp-error.c		yelp-error.h			\
