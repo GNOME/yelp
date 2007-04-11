@@ -31,10 +31,37 @@
 
 G_BEGIN_DECLS
 
+typedef enum {
+    YELP_PAGE_SOURCE_STRING,
+    YELP_PAGE_SOURCE_FILE
+} YelpPageSource;
+
 typedef struct _YelpPage YelpPage;
 
-/* This needs to be after the typedefs. */
+/* This needs to be right here to compile. */
 #include "yelp-document.h"
+
+struct _YelpPage {
+    YelpDocument   *document;
+    YelpPageSource  source;
+
+    gchar  *title;
+
+    /* Do not free content.  The string is owned by the YelpDocument,
+     * and it does some internal reference counting to make sure it's
+     * only reed when it's no longer referenced.  These strings are
+     * just too big to strdup all over the place.
+     */
+    gchar  *content;
+    gsize   content_len;
+    gsize   content_offset;
+
+    gchar  *id;
+    gchar  *prev_id;
+    gchar  *next_id;
+    gchar  *up_id;
+    gchar  *root_id;
+};
 
 YelpPage *    yelp_page_new_string   (YelpDocument  *document,
 				      gchar         *id,
@@ -45,24 +72,6 @@ GIOStatus     yelp_page_read         (YelpPage      *page,
 				      gsize          count,
 				      gsize         *bytes_read,
 				      YelpError    **error);
-
-const gchar  *yelp_page_get_id       (YelpPage      *page);
-const gchar  *yelp_page_get_title    (YelpPage      *page);
-const gchar  *yelp_page_get_prev_id  (YelpPage      *page);
-const gchar  *yelp_page_get_next_id  (YelpPage      *page);
-const gchar  *yelp_page_get_up_id    (YelpPage      *page);
-const gchar  *yelp_page_get_toc_id   (YelpPage      *page);
-
-void          yelp_page_set_title    (YelpPage      *page,
-				      gchar         *title);
-void          yelp_page_set_prev_id  (YelpPage      *page,
-				      gchar         *prev_id);
-void          yelp_page_set_next_id  (YelpPage      *page,
-				      gchar         *next_id);
-void          yelp_page_set_up_id    (YelpPage      *page,
-				      gchar         *up_id);
-void          yelp_page_set_toc_id   (YelpPage      *page,
-				      gchar         *toc_id);
 
 void          yelp_page_free         (YelpPage      *page);
 

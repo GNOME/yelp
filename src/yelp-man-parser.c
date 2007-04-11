@@ -26,15 +26,11 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <glib/gprintf.h>
 #include <libxml/tree.h>
 #include <string.h>
 
 #include "yelp-io-channel.h"
 #include "yelp-man-parser.h"
-#include "yelp-utils.h"
-
-#define d(x)
 
 #define PARSER_CUR (g_utf8_get_char (parser->cur) != '\0' \
     && (parser->cur - parser->buffer < parser->length))
@@ -170,34 +166,6 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
     g_io_channel_shutdown (parser->channel, FALSE, NULL);
 
     return parser->doc;
-}
-
-xmlDocPtr
-yelp_man_parser_parse_doc (YelpManParser *parser,
-			   YelpDocInfo   *doc_info)
-{
-    gchar     *file;
-    gchar     *encoding = NULL;
-    xmlDocPtr  doc = NULL;
-
-    g_return_val_if_fail (parser != NULL, NULL);
-    g_return_val_if_fail (doc_info != NULL, NULL);
-    g_return_val_if_fail (yelp_doc_info_get_type (doc_info) != YELP_DOC_TYPE_MAN, NULL);
-
-    file = yelp_doc_info_get_filename (doc_info);
-
-    if (!file)
-	return NULL;
-
-    encoding = (gchar *)g_getenv("MAN_ENCODING");
-    if (encoding == NULL)
-	encoding = "ISO-8859-1";
-
-    doc = yelp_man_parser_parse_file (parser, file, encoding);
-
-    g_free (file);
-
-    return doc;
 }
 
 void

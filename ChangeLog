@@ -1,3 +1,27 @@
+2007-04-11  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-io-channel.c:
+	- Added back the GError convenience functions
+
+	* src/Makefile.am:
+	* src/test-man-parser.c:
+	* src/yelp-man-parser.c:
+	* src/yelp-man-parser.h:
+	- Getting the man stuff to work in the new world order
+
+	* src/yelp-transform.c:
+	- Added a cast to shut gcc up
+
+	* src/test-document.c:
+	* src/yelp-document.h:
+	* src/yelp-docbook.c:
+	* src/yelp-docbook.h:
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Moving much of the request-handling to YelpDocument
+
 2007-04-04  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-error.c:

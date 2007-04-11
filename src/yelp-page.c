@@ -22,31 +22,10 @@
  *          Shaun McCance  <shaunm@gnome.org>
  */
 
-#include "yelp-page.h"
-
 #include <glib.h>
 #include <string.h>
 
-typedef enum {
-    PAGE_SOURCE_STRING,
-    PAGE_SOURCE_FILE
-} PageSource;
-
-struct _YelpPage {
-    YelpDocument *document;
-    PageSource    source;
-
-    gchar  *title;
-    gchar  *content;
-    gsize   content_len;
-    gsize   content_offset;
-
-    gchar  *id;
-    gchar  *prev_id;
-    gchar  *next_id;
-    gchar  *up_id;
-    gchar  *toc_id;
-};
+#include "yelp-page.h"
 
 static GIOStatus   page_read_string  (YelpPage    *page,
 				      gchar       *buffer,
@@ -70,7 +49,7 @@ yelp_page_new_string (YelpDocument  *document,
 
     if (document)
 	page->document = g_object_ref (document);
-    page->source = PAGE_SOURCE_STRING;
+    page->source = YELP_PAGE_SOURCE_STRING;
     page->id = g_strdup (id);
 
     page->content = (gchar *) content;
@@ -89,7 +68,7 @@ yelp_page_read (YelpPage    *page,
     /* FIXME: set error */
     g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
 
-    if (page->source == PAGE_SOURCE_STRING)
+    if (page->source == YELP_PAGE_SOURCE_STRING)
 	return page_read_string (page, buffer, count, bytes_read, error);
     else
 	return page_read_file (page, buffer, count, bytes_read, error);
@@ -134,94 +113,7 @@ page_read_file (YelpPage    *page,
 {
     g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
     /* FIXME: just use yelp-io-channel? */
-}
-
-
-const gchar *
-yelp_page_get_id (YelpPage *page)
-{
-    g_return_val_if_fail (page != NULL, NULL);
-    return (const gchar *) page->id;
-}
-
-const gchar *
-yelp_page_get_title (YelpPage *page)
-{
-    g_return_val_if_fail (page != NULL, NULL);
-    return (const gchar *) page->title;
-}
-
-const gchar *
-yelp_page_get_prev_id (YelpPage *page)
-{
-    g_return_val_if_fail (page != NULL, NULL);
-    return (const gchar *) page->prev_id;
-}
-
-const gchar *
-yelp_page_get_next_id (YelpPage *page)
-{
-    g_return_val_if_fail (page != NULL, NULL);
-    return (const gchar *) page->next_id;
-}
-
-const gchar *
-yelp_page_get_up_id (YelpPage *page)
-{
-    g_return_val_if_fail (page != NULL, NULL);
-    return (const gchar *) page->up_id;
-}
-
-const gchar *
-yelp_page_get_toc_id   (YelpPage      *page)
-{
-    g_return_val_if_fail (page != NULL, NULL);
-    return (const gchar *) page->toc_id;
-}
-
-void
-yelp_page_set_title (YelpPage *page, gchar *title)
-{
-    g_return_if_fail (page != NULL);
-    if (page->title)
-	g_free (page->title);
-    page->title = g_strdup (title);
-}
-
-void
-yelp_page_set_prev_id (YelpPage *page, gchar *prev_id)
-{
-    g_return_if_fail (page != NULL);
-    if (page->prev_id)
-	g_free (page->prev_id);
-    page->prev_id = g_strdup (prev_id);
-}
-
-void
-yelp_page_set_next_id (YelpPage *page, gchar *next_id)
-{
-    g_return_if_fail (page != NULL);
-    if (page->next_id)
-	g_free (page->next_id);
-    page->next_id = g_strdup (next_id);
-}
-
-void
-yelp_page_set_up_id (YelpPage *page, gchar *up_id)
-{
-    g_return_if_fail (page != NULL);
-    if (page->up_id)
-	g_free (page->up_id);
-    page->up_id = g_strdup (up_id);
-}
-
-void
-yelp_page_set_toc_id (YelpPage *page, gchar *toc_id)
-{
-    g_return_if_fail (page != NULL);
-    if (page->toc_id)
-	g_free (page->toc_id);
-    page->toc_id = g_strdup (toc_id);
+    return G_IO_STATUS_ERROR;
 }
 
 void
@@ -245,8 +137,8 @@ yelp_page_free (YelpPage *page)
 	g_free (page->next_id);
     if (page->up_id)
 	g_free (page->up_id);
-    if (page->toc_id)
-	g_free (page->toc_id);
+    if (page->root_id)
+	g_free (page->root_id);
 
     g_slice_free (YelpPage, page);
 }

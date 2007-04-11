@@ -66,14 +66,20 @@ struct _YelpDocumentClass {
     GObjectClass    parent_class;
 
     /* Virtual Functions */
-    gint          (*get_page)                (YelpDocument     *document,
+    void          (*request)                 (YelpDocument     *document,
+					      gint              req_id,
+					      gboolean          handled,
 					      gchar            *page_id,
 					      YelpDocumentFunc  func,
 					      gpointer          user_data);
+    void          (*cancel)                  (YelpDocument     *document,
+					      gint              req_id);
+
+    gint          (*get_page)                (YelpDocument     *document,
+					      gchar            *page_id,
+					      gpointer          user_data);
     void          (*release_page)            (YelpDocument     *document,
 					      YelpPage         *page);
-    void          (*cancel_page)             (YelpDocument     *document,
-					      gint              req_id);
 };
 
 
@@ -82,10 +88,39 @@ GType             yelp_document_get_type     (void);
 gint              yelp_document_get_page     (YelpDocument       *document,
 					      gchar              *page_id,
 					      YelpDocumentFunc    func,
-					      gpointer           *user_data);
-void              yelp_document_release_page (YelpDocument       *document,
-					      YelpPage           *page);
+					      gpointer            user_data);
 void              yelp_document_cancel_page  (YelpDocument       *document,
 					      gint                req_id);
+
+/* Only called by yelp_page_free */
+void              yelp_document_release_page   (YelpDocument       *document,
+					       YelpPage           *page);
+
+/* Only called by subclasses */
+void              yelp_document_set_root_id    (YelpDocument       *document,
+						gchar              *root_id);
+void              yelp_document_add_page_id    (YelpDocument       *document,
+						gchar              *id,
+						gchar              *page_id);
+void              yelp_document_add_prev_id    (YelpDocument       *document,
+						gchar              *page_id,
+						gchar              *prev_id);
+void              yelp_document_add_next_id    (YelpDocument       *document,
+						gchar              *page_id,
+						gchar              *next_id);
+void              yelp_document_add_up_id      (YelpDocument       *document,
+						gchar              *page_id,
+						gchar              *up_id);
+void              yelp_document_add_title      (YelpDocument       *document,
+						gchar              *page_id,
+						gchar              *title);
+void              yelp_document_add_page       (YelpDocument       *document,
+						gchar              *page_id,
+						const gchar        *contents);
+void              yelp_document_error_request  (YelpDocument       *document,
+						gint                req_id,
+						YelpError          *error);
+void              yelp_document_error_pending  (YelpDocument       *document,
+						YelpError          *error);
 
 #endif /* __YELP_DOCUMENT_H__ */

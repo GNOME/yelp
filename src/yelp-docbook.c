@@ -62,41 +62,24 @@ typedef enum {
 } DocbookState;
 
 struct _YelpDocbookPriv {
-    gchar        *filename;
-    DocbookState  state;
+    gchar         *filename;
+    DocbookState   state;
 
-    GMutex     *mutex;
-    GThread    *thread;
+    GMutex        *mutex;
+    GThread       *thread;
 
-    gboolean    process_running;
-    gboolean    transform_running;
+    gboolean       process_running;
+    gboolean       transform_running;
 
     YelpTransform *transform;
 
     GtkTreeModel  *sections;
+    GtkTreeIter   *sections_iter; /* On the stack, do not free */
 
-    GSList     *reqs_pending;     /* List of requests that need a page */
-    GHashTable *reqs_by_req_id;   /* Indexed by the request ID */
-    GHashTable *reqs_by_page_id;  /* Indexed by page ID, contains GSList */
-
-    /* Real page IDs map to themselves, so this list doubles
-     * as a list of all valid page IDs.
-     */
-    GHashTable   *page_ids;      /* Mapping of fragment IDs to real page IDs */
-    GHashTable   *titles;        /* Mapping of page IDs to titles */
-    GHashTable   *contents;      /* Mapping of page IDs to string content */
-    GHashTable   *pages;         /* Mapping of page IDs to open YelpPages */
-
-    GHashTable   *prev_ids;
-    GHashTable   *next_ids;
-    GHashTable   *up_ids;
-
-    gchar        *root_id;
-    gint          max_depth;
     xmlDocPtr     xmldoc;
     xmlNodePtr    xmlcur;
+    gint          max_depth;
     gint          cur_depth;
-    GtkTreeIter  *sections_iter; /* On the stack, do not free */
     gchar        *cur_page_id;
     gchar        *cur_prev_id;
 };
@@ -108,14 +91,12 @@ static void           docbook_try_dispose     (GObject             *object);
 static void           docbook_dispose         (GObject             *object);
 
 /* YelpDocument */
-static gint           docbook_get_page        (YelpDocument        *document,
+static void           docbook_request         (YelpDocument        *document,
+					       gint                 req_id,
+					       gboolean             handled,
 					       gchar               *page_id,
 					       YelpDocumentFunc     func,
 					       gpointer             user_data);
-static void           docbook_cancel_page     (YelpDocument        *document,
-					       gint                 req_id);
-static void           docbook_release_page    (YelpDocument        *document,
-					       YelpPage            *page);
 
 /* YelpTransform */
 static void           transform_func          (YelpTransform       *transform,
@@ -130,24 +111,6 @@ static void           transform_final_func    (YelpTransform       *transform,
 
 /* Threaded */
 static void           docbook_process         (YelpDocbook         *docbook);
-static void           docbook_map_id          (YelpDocbook         *docbook,
-					       gchar               *source,
-					       gchar               *target);
-static void           docbook_add_title       (YelpDocbook         *docbook,
-					       gchar               *page_id,
-					       gchar               *title);
-
-/* Request */
-static gboolean       request_idle_title      (Request             *request);
-static gboolean       request_idle_page       (Request             *request);
-static gboolean       request_try_title       (Request             *request);
-static gboolean       request_try_page        (Request             *request);
-static void           request_error           (Request             *request,
-					       YelpError           *error);
-static void           docbook_error_all       (YelpDocbook         *docbook,
-					       YelpError           *error);
-static void           request_try_free        (Request             *request);
-static void           request_free            (Request             *request);
 
 /* Walker */
 static void           docbook_walk            (YelpDocbook         *docbook);
@@ -155,12 +118,6 @@ static gboolean       docbook_walk_chunkQ     (YelpDocbook         *docbook);
 static gboolean       docbook_walk_divisionQ  (YelpDocbook         *docbook);
 static gchar *        docbook_walk_get_title  (YelpDocbook         *docbook);
 
-static void           hash_slist_insert       (GHashTable          *hash,
-					       const gchar         *key,
-					       gpointer             value);
-static void           hash_slist_remove       (GHashTable          *hash,
-					       const gchar         *key,
-					       gpointer             value);
 
 static YelpDocumentClass *parent_class;
 
@@ -195,9 +152,8 @@ docbook_class_init (YelpDocbookClass *klass)
 
     object_class->dispose = docbook_try_dispose;
 
-    document_class->get_page = docbook_get_page;
-    document_class->cancel_page = docbook_cancel_page;
-    document_class->release_page = docbook_release_page;
+    document_class->request = docbook_request;
+    document_class->cancel = NULL;
 
     g_type_class_add_private (klass, sizeof (YelpDocbookPriv));
 }
@@ -210,29 +166,6 @@ docbook_init (YelpDocbook *docbook)
 
     priv->sections = NULL;
 
-    priv->reqs_pending = NULL;
-
-    priv->reqs_by_req_id =
-	g_hash_table_new_full (g_direct_hash, g_direct_equal,
-			       NULL,
-			       (GDestroyNotify) request_try_free);
-    priv->reqs_by_page_id =
-	g_hash_table_new_full (g_str_hash, g_str_equal,
-			       g_free,
-			       (GDestroyNotify) g_slist_free);
-
-    priv->page_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-    priv->titles = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-
-    priv->contents = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-    priv->pages = g_hash_table_new_full (g_str_hash, g_str_equal,
-					 g_free,
-					 (GDestroyNotify) g_slist_free);
-
-    priv->prev_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-    priv->next_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-    priv->up_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-
     priv->state = DOCBOOK_STATE_BLANK;
 
     priv->mutex = g_mutex_new ();
@@ -244,6 +177,7 @@ docbook_try_dispose (GObject *object)
     YelpDocbookPriv *priv;
 
     g_assert (object != NULL && YELP_IS_DOCBOOK (object));
+
     priv = YELP_DOCBOOK (object)->priv;
 
     g_mutex_lock (priv->mutex);
@@ -264,30 +198,15 @@ docbook_dispose (GObject *object)
 
     g_free (docbook->priv->filename);
 
-    g_slist_free (docbook->priv->reqs_pending);
-
-    g_hash_table_destroy (docbook->priv->reqs_by_page_id);
-    /* This one destroys the actual requests */
-    g_hash_table_destroy (docbook->priv->reqs_by_req_id);
-
     g_object_unref (docbook->priv->sections);
-    g_hash_table_destroy (docbook->priv->page_ids);
-    g_hash_table_destroy (docbook->priv->titles);
-
-    g_hash_table_destroy (docbook->priv->contents);
-    g_hash_table_destroy (docbook->priv->pages);
-
-    g_hash_table_destroy (docbook->priv->prev_ids);
-    g_hash_table_destroy (docbook->priv->next_ids);
-    g_hash_table_destroy (docbook->priv->up_ids);
-
-    g_free (docbook->priv->root_id);
 
     if (docbook->priv->xmldoc)
 	xmlFreeDoc (docbook->priv->xmldoc);
 
     g_free (docbook->priv->cur_page_id);
     g_free (docbook->priv->cur_prev_id);
+
+    g_mutex_free (docbook->priv->mutex);
 
     G_OBJECT_CLASS (parent_class)->dispose (object);
 }
@@ -301,15 +220,13 @@ yelp_docbook_new (gchar *filename)
 
     g_return_val_if_fail (filename != NULL, NULL);
 
-    docbook = (YelpDocbook *) g_object_new (YELP_TYPE_DOCBOOK, NULL);
-    docbook->priv->filename = g_strdup (filename);
-
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  filename = \"%s\"\n", filename);
 
-    g_hash_table_insert (docbook->priv->page_ids,
-			 g_strdup ("x-yelp-titlepage"),
-			 g_strdup ("x-yelp-titlepage"));
+    docbook = (YelpDocbook *) g_object_new (YELP_TYPE_DOCBOOK, NULL);
+    docbook->priv->filename = g_strdup (filename);
+
+    yelp_document_add_page_id (YELP_DOCUMENT (docbook), "x-yelp-titlepage", "x-yelp-titlepage");
 
     docbook->priv->sections =
 	GTK_TREE_MODEL (gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING));
@@ -321,136 +238,52 @@ yelp_docbook_new (gchar *filename)
 /******************************************************************************/
 /** YelpDocument **************************************************************/
 
-static gint
-docbook_get_page (YelpDocument     *document,
-		  gchar            *page_id,
-		  YelpDocumentFunc  func,
-		  gpointer          user_data)
+static void
+docbook_request (YelpDocument     *document,
+		 gint              req_id,
+		 gboolean          handled,
+		 gchar            *page_id,
+		 YelpDocumentFunc  func,
+		 gpointer          user_data)
 {
-    Request *request;
-    gchar *real_id;
-    gboolean needs_parse = FALSE;
-    static gint request_id = 0;
-    YelpDocbook *docbook = YELP_DOCBOOK (document);
-    YelpDocbookPriv *priv = docbook->priv;
+    YelpDocbook *docbook;
+    YelpDocbookPriv *priv;
+    YelpError *error;
 
     debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  req_id  = %i\n", req_id);
     debug_print (DB_ARG, "  page_id = \"%s\"\n", page_id);
 
-    request = g_new0 (Request, 1);
-    request->document = docbook;
-    request->func = func;
-    request->user_data = user_data;
-    request->req_id = ++request_id;
+    g_assert (document != NULL && YELP_IS_DOCBOOK (document));
 
-    real_id = g_hash_table_lookup (priv->page_ids, page_id);
-    if (real_id)
-	request->page_id = g_strdup (real_id);
-    else
-	request->page_id = g_strdup (page_id);
+    if (handled)
+	return;
+
+    docbook = YELP_DOCBOOK (document);
+    priv = docbook->priv;
 
     g_mutex_lock (priv->mutex);
-    g_hash_table_insert (priv->reqs_by_req_id,
-			 GINT_TO_POINTER (request->req_id),
-			 request);
-    hash_slist_insert (priv->reqs_by_page_id,
-		       request->page_id,
-		       request);
-    g_mutex_unlock (priv->mutex);
 
-    if (!request_try_title (request))
-	switch (priv->state) {
-	case DOCBOOK_STATE_BLANK:
-	    needs_parse = TRUE;
-	case DOCBOOK_STATE_PARSING:
-	    g_mutex_lock (priv->mutex);
-	    priv->reqs_pending = g_slist_prepend (priv->reqs_pending, request);
-	    g_mutex_unlock (priv->mutex);
-	    break;
-	case DOCBOOK_STATE_PARSED:
-	    /* FIXME: error out */
-	    goto done;
-	case DOCBOOK_STATE_STOP:
-	    goto done;
-	}
-    else if (!request_try_page (request))
-	switch (priv->state) {
-	case DOCBOOK_STATE_BLANK:
-	    needs_parse = TRUE;
-	case DOCBOOK_STATE_PARSING:
-	    g_mutex_lock (priv->mutex);
-	    priv->reqs_pending = g_slist_prepend (priv->reqs_pending, request);
-	    g_mutex_unlock (priv->mutex);
-	    break;
-	case DOCBOOK_STATE_PARSED:
-	    /* FIXME: error out */
-	    goto done;
-	case DOCBOOK_STATE_STOP:
-	    goto done;
-	}
-
-    debug_print (DB_DEBUG, "  needs_parse = %i\n", needs_parse);
-    if (needs_parse) {
-	g_mutex_lock (priv->mutex);
-
+    switch (priv->state) {
+    case DOCBOOK_STATE_BLANK:
 	priv->state = DOCBOOK_STATE_PARSING;
-
 	priv->process_running = TRUE;
 	priv->thread = g_thread_create ((GThreadFunc) docbook_process,
 					docbook, FALSE, NULL);
-
-	g_mutex_unlock (priv->mutex);
+	break;
+    case DOCBOOK_STATE_PARSING:
+	break;
+    case DOCBOOK_STATE_PARSED:
+    case DOCBOOK_STATE_STOP:
+	error = yelp_error_new (_("Page not found"),
+				_("The page %s was not found in the document %s."),
+				page_id, priv->filename);
+	yelp_document_error_request (document, req_id, error);
+	break;
     }
 
- done:
-    return request->req_id;
-}
-
-static void
-docbook_cancel_page (YelpDocument *document, gint req_id)
-{
-    YelpDocbookPriv *priv;
-    Request *request;
-
-    debug_print (DB_FUNCTION, "entering\n");
-    g_assert (document != NULL && YELP_IS_DOCBOOK (document));
-    priv = YELP_DOCBOOK (document)->priv;
-
-    g_mutex_lock (priv->mutex);
-    request = g_hash_table_lookup (priv->reqs_by_req_id,
-				   GINT_TO_POINTER (req_id));
-    if (request) {
-	priv->reqs_pending = g_slist_remove (priv->reqs_pending,
-					     (gconstpointer) request);
-	hash_slist_remove (priv->reqs_by_page_id,
-			   request->page_id,
-			   request);
-	g_hash_table_remove (priv->reqs_by_req_id,
-			     GINT_TO_POINTER (req_id));
-    } else {
-	g_warning ("YelpDocbook: Attempted to remove request %i,"
-		   " but no such request exists.",
-		   req_id);
-    }
     g_mutex_unlock (priv->mutex);
 }
-
-static void
-docbook_release_page (YelpDocument *document, YelpPage *page)
-{
-    YelpDocbookPriv *priv;
-
-    debug_print (DB_FUNCTION, "entering\n");
-    g_assert (document != NULL && YELP_IS_DOCBOOK (document));
-    priv = YELP_DOCBOOK (document)->priv;
-
-    g_mutex_lock (priv->mutex);
-    hash_slist_remove (priv->pages,
-		       yelp_page_get_id (page),
-		       page);
-    g_mutex_unlock (priv->mutex);
-}
-
 
 /******************************************************************************/
 /** YelpTransform *************************************************************/
@@ -464,8 +297,11 @@ transform_func (YelpTransform       *transform,
     YelpDocbookPriv *priv;
 
     debug_print (DB_FUNCTION, "entering\n");
+
     g_assert (docbook != NULL && YELP_IS_DOCBOOK (docbook));
+
     priv = docbook->priv;
+
     g_assert (transform == priv->transform);
 
     if (priv->state == DOCBOOK_STATE_STOP) {
@@ -490,7 +326,7 @@ transform_func (YelpTransform       *transform,
 	transform_page_func (transform, (gchar *) func_data, docbook);
 	break;
     case YELP_TRANSFORM_ERROR:
-	docbook_error_all (docbook, (YelpError *) func_data);
+	yelp_document_error_pending (YELP_DOCUMENT (docbook), (YelpError *) func_data);
 	yelp_transform_release (transform);
 	priv->transform = NULL;
 	priv->transform_running = FALSE;
@@ -506,37 +342,18 @@ transform_page_func (YelpTransform *transform,
 		     gchar         *page_id,
 		     YelpDocbook   *docbook)
 {
-    YelpDocbookPriv *priv = docbook->priv;
-    GSList *reqs, *cur;
+    YelpDocbookPriv *priv;
     gchar *content;
-    Request *request;
 
     debug_print (DB_FUNCTION, "entering\n");
+
     priv = docbook->priv;
 
     content = yelp_transform_eat_chunk (transform, page_id);
 
-    g_mutex_lock (priv->mutex);
-    if (g_hash_table_lookup (priv->contents, page_id)) {
-	g_warning ("YelpDocbook: Attempted to add a page contents for"
-		   " page %s, but contents already exist",
-		   page_id);
-	g_mutex_unlock (priv->mutex);
-	g_free (page_id);
-	g_free (content);
-	return;
-    }
+    yelp_document_add_page (YELP_DOCUMENT (docbook), page_id, content);
 
-    g_hash_table_insert (priv->contents, page_id, content);
-
-    reqs = g_hash_table_lookup (priv->reqs_by_page_id, page_id);
-    for (cur = reqs; cur != NULL; cur = cur->next) {
-	if (cur->data) {
-	    request = (Request *) cur->data;
-	    request->idle_funcs++;
-	    g_idle_add ((GSourceFunc) request_idle_page, request);
-	}
-    }
+    g_free (page_id);
 
     g_mutex_unlock (priv->mutex);
 }
@@ -545,25 +362,16 @@ static void
 transform_final_func (YelpTransform *transform, YelpDocbook *docbook)
 {
     YelpError *error;
-    Request *request;
     YelpDocbookPriv *priv = docbook->priv;
 
     debug_print (DB_FUNCTION, "entering\n");
 
     g_mutex_lock (priv->mutex);
 
-    while (priv->reqs_pending) {
-	request = (Request *) priv->reqs_pending->data;
-
-	error = yelp_error_new (_("Page not found"),
-				_("The page %s was not found in the"
-				  " document %s."),
-				request->page_id,
-				priv->filename);
-	priv->reqs_pending = g_slist_delete_link (priv->reqs_pending,
-						  priv->reqs_pending);
-	request_error (request, error);
-    }
+    error = yelp_error_new (_("Page not found"),
+			    _("The requested page was not found in the document %s."),
+			    priv->filename);
+    yelp_document_error_pending (YELP_DOCUMENT (docbook), error);
 
     yelp_transform_release (transform);
     priv->transform = NULL;
@@ -588,18 +396,20 @@ docbook_process (YelpDocbook *docbook)
     xmlChar *id = NULL;
     YelpError *error = NULL;
     xmlParserCtxtPtr parserCtxt = NULL;
+    YelpDocument *document;
 
     debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (docbook != NULL && YELP_IS_DOCBOOK (docbook));
     g_object_ref (docbook);
     priv = docbook->priv;
+    document = YELP_DOCUMENT (docbook);
 
     if (!g_file_test (priv->filename, G_FILE_TEST_IS_REGULAR)) {
 	error = yelp_error_new (_("File not found"),
 				_("The file ‘%s’ does not exist."),
 				priv->filename);
-	docbook_error_all (docbook, error);
+	yelp_document_error_pending (document, error);
 	goto done;
     }
 
@@ -614,7 +424,7 @@ docbook_process (YelpDocbook *docbook)
 				_("The file ‘%s’ could not be parsed because it is"
 				  " not a well-formed XML document."),
 				priv->filename);
-	docbook_error_all (docbook, error);
+	yelp_document_error_pending (document, error);
 	goto done;
     }
 
@@ -627,7 +437,7 @@ docbook_process (YelpDocbook *docbook)
 				  " one or more of its included files is not"
 				  " a well-formed XML document."),
 				priv->filename);
-	docbook_error_all (docbook, error);
+	yelp_document_error_pending (document, error);
 	goto done;
     }
 
@@ -642,9 +452,9 @@ docbook_process (YelpDocbook *docbook)
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
     if (id)
-	priv->root_id = g_strdup ((gchar *) id);
+	yelp_document_set_root_id (document, (gchar *) id);
     else {
-	priv->root_id = g_strdup ("index");
+	yelp_document_set_root_id (document, "index");
 	/* add the id attribute to the root element with value "index"
 	 * so when we try to load the document later, it doesn't fail */
 	xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "index");
@@ -673,238 +483,12 @@ docbook_process (YelpDocbook *docbook)
     g_mutex_unlock (priv->mutex);
 
  done:
+    if (id)
+	xmlFree (id);
     if (parserCtxt)
 	xmlFreeParserCtxt (parserCtxt);
 
     priv->process_running = FALSE;
-}
-
-static void
-docbook_map_id (YelpDocbook *docbook, gchar *source, gchar *target)
-{
-    GSList *reqs, *cur;
-    Request *request;
-    YelpDocbookPriv *priv = docbook->priv;
-
-    g_mutex_lock (priv->mutex);
-    if (g_hash_table_lookup (priv->page_ids, source)) {
-	g_warning ("YelpDocbook: Attempted to add an ID mapping from"
-		   " %1$s to %2$s, but %1$s is already mapped.",
-		   source, target);
-	g_mutex_unlock (priv->mutex);
-	return;
-    }
-
-    g_hash_table_insert (priv->page_ids,
-			 g_strdup (source),
-			 g_strdup (target));
-
-    if (!g_str_equal (source, target)) {
-	reqs = g_hash_table_lookup (priv->reqs_by_page_id, source);
-	for (cur = reqs; cur != NULL; cur = cur->next) {
-	    if (cur->data) {
-		request = (Request *) cur->data;
-		g_free (request->page_id);
-		request->page_id = g_strdup (target);
-		hash_slist_insert (priv->reqs_by_page_id, target, request);
-	    }
-	}
-	if (reqs)
-	    g_hash_table_remove (priv->reqs_by_page_id, source);
-    }
-
-    g_mutex_unlock (priv->mutex);
-}
-
-static void
-docbook_add_title (YelpDocbook *docbook, gchar *page_id, gchar *title)
-{
-    GSList *reqs, *cur;
-    Request *request;
-    YelpDocbookPriv *priv = docbook->priv;
-
-    g_mutex_lock (priv->mutex);
-    if (g_hash_table_lookup (priv->titles, page_id)) {
-	g_warning ("YelpDocbook: Attempted to add the title '%1$s' for"
-		   " page %2$s, but page %2$s already has a title.",
-		   title, page_id);
-	g_mutex_unlock (priv->mutex);
-	return;
-    }
-
-    g_hash_table_insert (priv->titles, g_strdup (page_id), g_strdup (title));
-
-    reqs = g_hash_table_lookup (priv->reqs_by_page_id, page_id);
-    for (cur = reqs; cur != NULL; cur = cur->next) {
-	if (cur->data) {
-	    request = (Request *) cur->data;
-	    request->idle_funcs++;
-	    g_idle_add ((GSourceFunc) request_idle_title, request);
-	}
-    }
-    g_mutex_unlock (priv->mutex);
-}
-
-
-/******************************************************************************/
-/** Request *******************************************************************/
-
-static gboolean
-request_idle_title (Request *request)
-{
-    debug_print (DB_FUNCTION, "entering\n");
-
-    if (request->cancel) {
-	request->idle_funcs--;
-	return FALSE;
-    }
-
-    request_try_title (request);
-    request->idle_funcs--;
-
-    return FALSE;
-}
-
-static gboolean
-request_idle_page (Request *request)
-{
-    debug_print (DB_FUNCTION, "entering\n");
-
-    if (request->cancel) {
-	request->idle_funcs--;
-	return FALSE;
-    }
-
-    request_try_page (request);
-    request->idle_funcs--;
-
-    return FALSE;
-}
-
-static gboolean
-request_try_title (Request *request)
-{
-    YelpDocbookPriv *priv;
-    gchar *title;
-    gboolean retval = FALSE;
-
-    debug_print (DB_FUNCTION, "entering\n");
-    g_assert (request != NULL && YELP_IS_DOCBOOK (request->document));
-    g_object_ref (request->document);
-    priv = request->document->priv;
-
-    title = g_hash_table_lookup (priv->titles, request->page_id);
-    if (title) {
-	request->func (YELP_DOCUMENT (request->document),
-		       YELP_DOCUMENT_SIGNAL_TITLE,
-		       request->req_id,
-		       g_strdup (title),
-		       request->user_data);
-	retval = TRUE;
-    }
-
-    g_object_unref (request->document);
-    return retval;
-}
-
-static gboolean
-request_try_page (Request *request)
-{
-    YelpDocbookPriv *priv;
-    YelpPage *page;
-    gchar *content;
-    gboolean retval = FALSE;
-
-    debug_print (DB_FUNCTION, "entering\n");
-    g_assert (request != NULL && YELP_IS_DOCBOOK (request->document));
-    priv = request->document->priv;
-
-    g_mutex_lock (priv->mutex);
-
-    content = g_hash_table_lookup (priv->contents, request->page_id);
-    if (content) {
-	page = yelp_page_new_string (YELP_DOCUMENT (request->document),
-				     request->page_id,
-				     content);
-	hash_slist_insert (priv->pages, request->page_id, page);
-	yelp_page_set_prev_id (page, g_hash_table_lookup (priv->prev_ids, request->page_id));
-	yelp_page_set_next_id (page, g_hash_table_lookup (priv->next_ids, request->page_id));
-	yelp_page_set_up_id (page, g_hash_table_lookup (priv->up_ids, request->page_id));
-	yelp_page_set_toc_id (page, priv->root_id);
-	g_mutex_unlock (priv->mutex);
-	request->func (YELP_DOCUMENT (request->document),
-		       YELP_DOCUMENT_SIGNAL_PAGE,
-		       request->req_id,
-		       page,
-		       request->user_data);
-	g_mutex_lock (priv->mutex);
-	priv->reqs_pending = g_slist_remove (priv->reqs_pending, request);
-	retval = TRUE;
-    }
-
-    g_mutex_unlock (priv->mutex);
-    return retval;
-}
-
-static void
-request_error (Request *request, YelpError *error)
-{
-    YelpDocbookPriv *priv;
-
-    debug_print (DB_FUNCTION, "entering\n");
-    g_assert (request != NULL && YELP_IS_DOCBOOK (request->document));
-    g_object_ref (request->document);
-    priv = request->document->priv;
-
-    request->func (YELP_DOCUMENT (request->document),
-		   YELP_DOCUMENT_SIGNAL_ERROR,
-		   request->req_id,
-		   error,
-		   request->user_data);
-    g_object_ref (request->document);
-}
-
-static void
-error_one (gpointer key, Request *request, YelpError *error)
-{
-    YelpError *new = yelp_error_copy (error);
-    request_error (request, new);
-}
-
-static void
-docbook_error_all (YelpDocbook *docbook, YelpError *error)
-{
-    YelpDocbookPriv *priv;
-
-    debug_print (DB_FUNCTION, "entering\n");
-    g_assert (docbook != NULL && YELP_IS_DOCBOOK (docbook));
-    g_object_ref (docbook);
-    priv = docbook->priv;
-
-    g_hash_table_foreach (priv->reqs_by_req_id,
-			  (GHFunc) error_one,
-			  error);
-    yelp_error_free (error);
-    g_object_unref (docbook);
-}
-
-static void
-request_try_free (Request *request) {
-    debug_print (DB_FUNCTION, "entering\n");
-    request->cancel = TRUE;
-
-    if (request->idle_funcs == 0)
-	request_free (request);
-    else
-	g_idle_add ((GSourceFunc) request_try_free, request);
-}
-
-static void
-request_free (Request *request)
-{
-    debug_print (DB_FUNCTION, "entering\n");
-    g_free (request->page_id);
-    g_free (request);
 }
 
 
@@ -923,6 +507,7 @@ docbook_walk (YelpDocbook *docbook)
     GtkTreeIter  iter;
     GtkTreeIter *old_iter = NULL;
     YelpDocbookPriv *priv = docbook->priv;
+    YelpDocument *document = YELP_DOCUMENT (docbook);
 
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_DEBUG, "  priv->xmlcur->name: %s\n", priv->xmlcur->name);
@@ -957,7 +542,7 @@ docbook_walk (YelpDocbook *docbook)
 	debug_print (DB_DEBUG, "  id: \"%s\"\n", id);
 	debug_print (DB_DEBUG, "  title: \"%s\"\n", title);
 
-	docbook_add_title (docbook, (gchar *) id, (gchar *) title);
+	yelp_document_add_title (document, (gchar *) id, (gchar *) title);
 
 	gdk_threads_enter ();
 	gtk_tree_store_append (GTK_TREE_STORE (priv->sections),
@@ -971,20 +556,14 @@ docbook_walk (YelpDocbook *docbook)
 	gdk_threads_leave ();
 
 	if (priv->cur_prev_id) {
-	    g_hash_table_insert (priv->prev_ids,
-				 g_strdup ((gchar *) id),
-				 g_strdup ((gchar *) priv->cur_prev_id));
-	    g_hash_table_insert (priv->next_ids,
-				 g_strdup ((gchar *) priv->cur_prev_id),
-				 g_strdup ((gchar *) id));
+	    yelp_document_add_prev_id (document, (gchar *) id, priv->cur_prev_id);
+	    yelp_document_add_next_id (document, priv->cur_prev_id, (gchar *) id);
 	    g_free (priv->cur_prev_id);
 	}
 	priv->cur_prev_id = g_strdup ((gchar *) id);
 
 	if (priv->cur_page_id)
-	    g_hash_table_insert (priv->up_ids,
-				 g_strdup ((gchar *) id),
-				 g_strdup ((gchar *) priv->cur_page_id));
+	    yelp_document_add_up_id (document, (gchar *) id, priv->cur_page_id);
 	old_page_id = priv->cur_page_id;
 	priv->cur_page_id = g_strdup ((gchar *) id);
 
@@ -997,7 +576,7 @@ docbook_walk (YelpDocbook *docbook)
     priv->cur_depth++;
 
     if (id)
-	docbook_map_id (docbook, (gchar *) id, (gchar *) priv->cur_page_id);
+	yelp_document_add_page_id (document, (gchar *) id, priv->cur_page_id);
 
     for (cur = priv->xmlcur->children; cur; cur = cur->next) {
 	if (cur->type == XML_ELEMENT_NODE) {
@@ -1182,36 +761,4 @@ docbook_walk_get_title (YelpDocbook *docbook)
 	return (gchar *) xmlNodeGetContent (title);
     else
 	return g_strdup (_("Unknown"));
-}
-
-/******************************************************************************/
-
-static void
-hash_slist_insert (GHashTable  *hash,
-		   const gchar *key,
-		   gpointer     value)
-{
-    GSList *list;
-    list = g_hash_table_lookup (hash, key);
-    if (list) {
-	list->next = g_slist_prepend (list->next, value);
-    } else {
-	list = g_slist_prepend (NULL, value);
-	list = g_slist_prepend (list, NULL);
-	g_hash_table_insert (hash, g_strdup (key), list);
-    }
-}
-
-static void
-hash_slist_remove (GHashTable  *hash,
-		   const gchar *key,
-		   gpointer     value)
-{
-    GSList *list;
-    list = g_hash_table_lookup (hash, key);
-    if (list) {
-	list = g_slist_remove (list, value);
-	if (list->next == NULL)
-	    g_hash_table_remove (hash, key);
-    }
 }

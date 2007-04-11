@@ -22,6 +22,7 @@
 #include <config.h>
 
 #include <glib.h>
+#include <glib/gi18n.h>
 
 #include "yelp-error.h"
 
@@ -109,4 +110,40 @@ yelp_error_free (YelpError *error)
     g_free (error->title);
     g_free (error->message);
     g_slice_free (YelpError, error);
+}
+
+/******************************************************************************/
+
+GQuark
+yelp_gerror_quark (void)
+{
+    static GQuark q = 0;
+
+    if (q == 0)
+	q = g_quark_from_static_string ("yelp-error-quark");
+
+    return q;
+}
+
+const gchar *
+yelp_gerror_get_title (GError *error)
+{
+    if (!error || error->domain != YELP_GERROR)
+	return _("Unknown Error");
+
+    switch (error->code) {
+    case YELP_GERROR_IO:
+	return _("Could Not Read File");
+    }
+
+    return _("Unknown Error");
+}
+
+const gchar *
+yelp_gerror_get_message (GError *error)
+{
+    if (!error || !error->message)
+	return _("No information is available about this error.");
+    else
+	return error->message;
 }

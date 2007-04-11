@@ -123,7 +123,6 @@ test_man_parser_SOURCES =					\
 	yelp-error.c		yelp-error.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-man-parser.c	yelp-man-parser.h		\
-	yelp-utils.c		yelp-utils.h			\
 	test-man-parser.c
 test_man_parser_CPPFLAGS = $(YELP_DEFINES) $(AM_CPPFLAGS)
 test_man_parser_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS)

@@ -20,6 +20,7 @@
  */
 
 #include <glib.h>
+#include <gtk/gtk.h>
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
 
@@ -57,11 +58,11 @@ document_func (YelpDocument       *document,
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
 	page = (YelpPage *) func_data;
-	printf ("PAGE: %s (%i)\n", yelp_page_get_id (page), req_id);
-	printf ("  PREV: %s\n", yelp_page_get_prev_id (page));
-	printf ("  NEXT: %s\n", yelp_page_get_next_id (page));
-	printf ("  UP:   %s\n", yelp_page_get_up_id (page));
-	printf ("  TOC:  %s\n", yelp_page_get_toc_id (page));
+	printf ("PAGE: %s (%i)\n", page->id, req_id);
+	printf ("  PREV: %s\n", page->prev_id);
+	printf ("  NEXT: %s\n", page->next_id);
+	printf ("  UP:   %s\n", page->up_id);
+	printf ("  ROOT: %s\n", page->root_id);
 	yelp_page_read (page, contents, 60, &read, NULL);
 	/* contents isn't \0-terminated */
 	contents_ = g_strndup (contents, read);
@@ -70,7 +71,7 @@ document_func (YelpDocument       *document,
 	yelp_page_free (page);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
-	printf ("TITLE: %s (%i)\n", func_data, req_id);
+	printf ("TITLE: %s (%i)\n", (gchar *) func_data, req_id);
 	g_free (func_data);
 	break;
     case YELP_DOCUMENT_SIGNAL_ERROR:

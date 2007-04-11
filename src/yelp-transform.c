@@ -395,7 +395,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     g_mutex_lock (transform->mutex);
     g_hash_table_insert (transform->chunks, page_id, page_buf);
-    g_async_queue_push (transform->queue, g_strdup (page_id));
+    g_async_queue_push (transform->queue, g_strdup ((gchar *) page_id));
     transform->idle_funcs++;
     g_idle_add ((GSourceFunc) transform_chunk, transform);
     g_mutex_unlock (transform->mutex);

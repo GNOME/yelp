@@ -40,4 +40,15 @@ const gchar *     yelp_error_get_message  (YelpError   *error);
 
 void              yelp_error_free         (YelpError   *error);
 
+
+#define YELP_GERROR yelp_gerror_quark ()
+
+enum {
+    YELP_GERROR_IO
+};
+
+GQuark            yelp_gerror_quark       (void) G_GNUC_CONST;
+const gchar *     yelp_gerror_get_title   (GError      *error);
+const gchar *     yelp_gerror_get_message (GError      *error);
+
 #endif /* __YELP_ERROR_H__ */
