@@ -120,6 +120,7 @@ test_document_LDADD = $(YELP_LIBS)
 test_document_LDFLAGS = $(AM_LDFLAGS)
 
 test_man_parser_SOURCES =					\
+	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-man-parser.c	yelp-man-parser.h		\

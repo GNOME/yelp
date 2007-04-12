@@ -29,6 +29,7 @@
 #include <libxml/tree.h>
 #include <string.h>
 
+#include "yelp-debug.h"
 #include "yelp-io-channel.h"
 #include "yelp-man-parser.h"
 
@@ -573,7 +574,7 @@ macro_url_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	    tmpNode = parser_stack_pop_node (parser, "UR");
 
 	    if (tmpNode == NULL)
-		d (g_warning ("Found unexpected tag: '%s'\n", macro));
+		debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
 	    else
 		parser->ins = tmpNode->parent;
 	} else
@@ -670,7 +671,7 @@ macro_mandoc_list_handler (YelpManParser *parser, gchar *macro, GSList *args)
         tmpNode = parser_stack_pop_node (parser, "Bl");
 
         if (tmpNode == NULL)
-            d (g_warning ("Found unexpected tag: '%s'\n", macro));
+	    debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
         else
             parser->ins = tmpNode->parent;
     }
@@ -689,7 +690,7 @@ macro_verbatim_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	tmpNode = parser_stack_pop_node (parser, "Verbatim");
 
 	if (tmpNode == NULL)
-	    d (g_warning ("Found unexpected tag: '%s'\n", macro));
+	    debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
 	else
 	    parser->ins = tmpNode->parent;
     }
@@ -1234,7 +1235,7 @@ get_argument:
     }
     else if (g_str_equal (str, "TE")) {
 	/* We should only see this from within parser_parse_table */
-	d (g_warning ("Found unexpected tag: '%s'\n", str));
+	debug_print (DB_WARN, "Found unexpected tag: '%s'\n", str);
         g_free (str);
     }
     /* "ie" and "if" are conditional macros in groff
@@ -1419,7 +1420,7 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 	        if (g_str_equal (str, "fI") || g_str_equal (str, "fB"))
 		    parser->ins = parser_append_node (parser, str);
 	        else if (!g_str_equal (str, "fR") && !g_str_equal (str, "fP"))
-		    d (g_warning ("No rule matching the tag '%s'\n", str));
+		    debug_print (DB_WARN, "No rule matching the tag '%s'\n", str);
 
 	        g_free (str);
 	        anc = ptr;
@@ -1766,7 +1767,7 @@ parser_parse_table (YelpManParser *parser)
 		if (*(parser->buffer + 1) == 'T'
 		    && *(parser->buffer + 2) == 'E') {
 		    if (parser_stack_pop_node (parser, "TABLE") == NULL)
-			d (g_warning ("Found unexpected tag: 'TE'\n"));
+			debug_print (DB_WARN, "Found unexpected tag: 'TE'\n");
 		    else {
 			parser->ins = table_start;
 			
