@@ -27,8 +27,13 @@
 #include "yelp-error.h"
 #include "yelp-docbook.h"
 
+static gchar *mode = NULL;
 static gchar **files = NULL;
 static const GOptionEntry options[] = {
+    { "mode", 'm',
+      0, G_OPTION_ARG_STRING,
+      &mode,
+      "One of man or docbook", "MODE" },
     { G_OPTION_REMAINING,
       0, 0, G_OPTION_ARG_FILENAME_ARRAY,
       &files, NULL, NULL },
@@ -77,6 +82,7 @@ document_func (YelpDocument       *document,
     case YELP_DOCUMENT_SIGNAL_ERROR:
 	error = (YelpError *) func_data;
 	printf ("ERROR: %s\n", yelp_error_get_title (error));
+	printf ("  %s\n", yelp_error_get_message (error));
 	yelp_error_free (error);
 	break;
     }
@@ -99,15 +105,21 @@ main (gint argc, gchar **argv)
     g_option_context_add_main_entries (context, options, NULL);
     g_option_context_parse (context, &argc, &argv, NULL);
 
-    if (files == NULL || files[0] == NULL || files[1] == NULL) {
+    if (files == NULL || files[0] == NULL) {
 	g_printerr ("Usage: test-docbook FILE PAGE_IDS...\n");
 	return 1;
     }
 
-    document = yelp_docbook_new (files[0]);
+    if (g_str_equal (mode, "man"))
+	document = yelp_man_new (files[0]);
+    else
+	document = yelp_docbook_new (files[0]);
 
-    for (i = 1; files[i]; i++)
-	yelp_document_get_page (document, files[i], (YelpDocumentFunc) document_func, NULL);
+    if (files[1] == NULL)
+	yelp_document_get_page (document, "x-yelp-index", (YelpDocumentFunc) document_func, NULL);
+    else
+	for (i = 1; files[i]; i++)
+	    yelp_document_get_page (document, files[i], (YelpDocumentFunc) document_func, NULL);
 
     loop = g_main_loop_new (NULL, FALSE);
     g_main_loop_run (loop);

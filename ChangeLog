@@ -1,5 +1,17 @@
 2007-04-12  Shaun McCance  <shaunm@gnome.org>
 
+	* src/Makefile.am:
+	* src/yelp-man.c:
+	* src/yelp-man.h:
+	* src/test-document.c:
+	- Made man pages work with YelpDocument
+
+	* src/yelp-docbook.c:
+	* src/yelp-document.c:
+	- General clean up
+
+2007-04-12  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-document.c:
 	* src/yelp-page.c:
 	* src/yelp-page.h:

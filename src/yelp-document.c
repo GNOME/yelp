@@ -439,6 +439,7 @@ yelp_document_add_page (YelpDocument *document, gchar *page_id, const gchar *con
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
     debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  page_id = \"%s\"\n", page_id);
     priv = document->priv;
 
     g_mutex_lock (priv->mutex);

@@ -41,19 +41,6 @@
 
 #define YELP_DOCBOOK_GET_PRIVATE(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCBOOK, YelpDocbookPriv))
 
-typedef struct _Request Request;
-struct _Request {
-    YelpDocbook      *document;
-    YelpDocumentFunc  func;
-    gpointer          user_data;
-
-    gint    req_id;
-    gchar  *page_id;
-
-    gint     idle_funcs;
-    gboolean cancel;
-};
-
 typedef enum {
     DOCBOOK_STATE_BLANK,   /* Brand new, run transform as needed */
     DOCBOOK_STATE_PARSING, /* Parsing/transforming document, please wait */
@@ -348,6 +335,7 @@ transform_page_func (YelpTransform *transform,
     debug_print (DB_FUNCTION, "entering\n");
 
     priv = docbook->priv;
+    g_mutex_lock (priv->mutex);
 
     content = yelp_transform_eat_chunk (transform, page_id);
 
@@ -451,26 +439,36 @@ docbook_process (YelpDocbook *docbook)
     priv->xmlcur = xmlDocGetRootElement (xmldoc);
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
-    if (id)
+    if (id) {
 	yelp_document_set_root_id (document, (gchar *) id);
+	yelp_document_add_page_id (document, "x-yelp-index", (gchar *) id);
+	yelp_document_add_prev_id (document, (gchar *) id, "x-yelp-titlepage");
+	yelp_document_add_next_id (document, "x-yelp-titlepage", (gchar *) id);
+    }
     else {
-	yelp_document_set_root_id (document, "index");
+	yelp_document_set_root_id (document, "x-yelp-index");
+	yelp_document_add_page_id (document, "x-yelp-index", "x-yelp-index");
+	yelp_document_add_prev_id (document, "x-yelp-index", "x-yelp-titlepage");
+	yelp_document_add_next_id (document, "x-yelp-titlepage", "x-yelp-index");
 	/* add the id attribute to the root element with value "index"
 	 * so when we try to load the document later, it doesn't fail */
-	xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "index");
+	xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "x-yelp-index");
     }
     g_mutex_unlock (priv->mutex);
 
     g_mutex_lock (priv->mutex);
-    if (priv->state == DOCBOOK_STATE_STOP)
+    if (priv->state == DOCBOOK_STATE_STOP) {
+	g_mutex_unlock (priv->mutex);
 	goto done;
-    g_mutex_unlock (priv->mutex);
+    }
 
     docbook_walk (docbook);
 
     g_mutex_lock (priv->mutex);
-    if (priv->state == DOCBOOK_STATE_STOP)
+    if (priv->state == DOCBOOK_STATE_STOP) {
+	g_mutex_unlock (priv->mutex);
 	goto done;
+    }
 
     priv->transform = yelp_transform_new (STYLESHEET,
 					  (YelpTransformFunc) transform_func,
@@ -489,6 +487,7 @@ docbook_process (YelpDocbook *docbook)
 	xmlFreeParserCtxt (parserCtxt);
 
     priv->process_running = FALSE;
+    g_object_unref (docbook);
 }
 
 

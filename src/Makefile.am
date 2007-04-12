@@ -112,11 +112,14 @@ test_document_SOURCES =					\
 	yelp-docbook.c		yelp-docbook.h		\
 	yelp-document.c		yelp-document.h		\
 	yelp-error.c		yelp-error.h		\
+	yelp-io-channel.c	yelp-io-channel.h	\
+	yelp-man.c		yelp-man.h		\
+	yelp-man-parser.c	yelp-man-parser.h	\
 	yelp-page.c		yelp-page.h		\
 	yelp-transform.c	yelp-transform.h	\
 	test-document.c
 test_document_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
-test_document_LDADD = $(YELP_LIBS)
+test_document_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS)
 test_document_LDFLAGS = $(AM_LDFLAGS)
 
 test_man_parser_SOURCES =					\
