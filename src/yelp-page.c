@@ -41,11 +41,14 @@ static GIOStatus   page_read_file    (YelpPage    *page,
 YelpPage *
 yelp_page_new_string (YelpDocument  *document,
 		      gchar         *id,
-		      const gchar   *content)
+		      const gchar   *content,
+		      YelpPageMime   mime)
 {
     YelpPage *page;
 
     page = g_slice_new0 (YelpPage);
+
+    page->mime = mime;
 
     if (document)
 	page->document = g_object_ref (document);

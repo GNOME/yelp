@@ -598,9 +598,11 @@ request_idle_page (Request *request)
 	req_id = request->req_id;
 	user_data = request->user_data;
 
+	/* FIXME: there will come a day when we can't just assume XHTML */
 	page = yelp_page_new_string (YELP_DOCUMENT (request->document),
 				     request->page_id,
-				     str_ref (contents));
+				     str_ref (contents),
+				     YELP_PAGE_MIME_XHTML);
 	tmp = g_hash_table_lookup (priv->prev_ids, request->page_id);
 	if (tmp)
 	    page->prev_id = g_strdup (tmp);

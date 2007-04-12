@@ -32,6 +32,11 @@
 G_BEGIN_DECLS
 
 typedef enum {
+    YELP_PAGE_MIME_HTML,
+    YELP_PAGE_MIME_XHTML
+} YelpPageMime;
+
+typedef enum {
     YELP_PAGE_SOURCE_STRING,
     YELP_PAGE_SOURCE_FILE
 } YelpPageSource;
@@ -44,6 +49,7 @@ typedef struct _YelpPage YelpPage;
 struct _YelpPage {
     YelpDocument   *document;
     YelpPageSource  source;
+    YelpPageMime    mime;
 
     gchar  *title;
 
@@ -65,7 +71,8 @@ struct _YelpPage {
 
 YelpPage *    yelp_page_new_string   (YelpDocument  *document,
 				      gchar         *id,
-				      const gchar   *content);
+				      const gchar   *content,
+				      YelpPageMime   mime);
 
 GIOStatus     yelp_page_read         (YelpPage      *page,
 				      gchar         *buffer,
