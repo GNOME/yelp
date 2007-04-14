@@ -48,6 +48,7 @@
 #include <spoon.h>
 #include <spoon-reg-utils.h>
 #include <spoon-info.h>
+#include <spoon-man.h>
 
 #include "yelp-debug.h"
 #include "yelp-error.h"
@@ -1330,9 +1331,65 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
     return 1;
 }
 
+static int
+spoon_add_man_document (SpoonManEntry *entry, void *user_data)
+{
+    xmlNodePtr node = (xmlNodePtr) user_data;
+    xmlNodePtr new;
+    gchar tmp[255];
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    g_sprintf (&tmp, "man:%s", entry->path);
+
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST tmp);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
+    if (entry->comment)
+	xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
+    return TRUE;
+}
+
 static gboolean
 process_mandir_pending (YelpTocPager *pager)
 {
+    xmlNodePtr node = NULL;
+    xmlNodePtr cat_node = NULL;
+    xmlNodePtr mynode = NULL;
+    char **categories = NULL;
+    char **cat_iter = NULL;
+    int sectno = 0;
+    YelpTocPagerPriv * priv = pager->priv;
+    int i, j;
+    xmlXPathContextPtr xpath;
+    xmlXPathObjectPtr  obj;
+
+    priv->man_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
+				     XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+				     XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+				     XML_PARSE_NONET    );
+
+    xpath = xmlXPathNewContext (priv->man_doc);
+    obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
+
+    for (i = 0; i < obj->nodesetval->nodeNr; i++) {
+	xmlNodePtr node = obj->nodesetval->nodeTab[i];
+	xmlChar *sect = xmlGetProp (node, BAD_CAST "sect");
+	
+	if (sect) {
+	    gchar **sects = g_strsplit ((gchar *)sect, " ", 0);
+
+	    cat_node = xmlNewChild (node, NULL, BAD_CAST "toc",
+				    NULL);
+	    for (j = 0; sects[j] != NULL; j++)
+		spoon_man_for_each_in_category (sects[j], spoon_add_man_document, node);
+	    g_strfreev (sects);
+	}
+	xmlFree (sect);
+	xml_trim_titles (node, BAD_CAST "title");
+	xml_trim_titles (node, BAD_CAST "description");
+    }
+    xmlXPathFreeObject (obj);
+    xmlXPathFreeContext (xpath);
+
+#if 0
     static gchar *index_file = NULL;
     gchar *filename = NULL;
     gchar *dirname = NULL;
@@ -1611,6 +1668,14 @@ process_mandir_pending (YelpTocPager *pager)
     }
 
     return TRUE;
+#endif
+
+    mynode = xmlCopyNode (xmlDocGetRootElement (priv->man_doc), 1);
+    xmlAddChild (xmlDocGetRootElement (priv->toc_doc), mynode);
+    
+    xmlFreeDoc (priv->man_doc);
+
+    return FALSE;
 }
 #endif // ENABLE_MAN
 
@@ -1622,7 +1687,6 @@ spoon_info_add_document (SpoonInfoEntry *entry, void *user_data)
     xmlNodePtr node = (xmlNodePtr) user_data;
     xmlNodePtr new;
     gchar tmp[255];
-    printf ("adding %s\n", entry->name);
     new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
     if (entry->section)
 	g_sprintf(&tmp, "info:%s#%s", entry->name, entry->section);
