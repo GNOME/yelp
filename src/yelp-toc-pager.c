@@ -47,6 +47,7 @@
 #include <libxslt/xsltutils.h>
 #include <spoon.h>
 #include <spoon-reg-utils.h>
+#include <spoon-info.h>
 
 #include "yelp-debug.h"
 #include "yelp-error.h"
@@ -1614,9 +1615,92 @@ process_mandir_pending (YelpTocPager *pager)
 #endif // ENABLE_MAN
 
 #ifdef ENABLE_INFO
+
+static int
+spoon_info_add_document (SpoonInfoEntry *entry, void *user_data)
+{
+    xmlNodePtr node = (xmlNodePtr) user_data;
+    xmlNodePtr new;
+    gchar tmp[255];
+    printf ("adding %s\n", entry->name);
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    if (entry->section)
+	g_sprintf(&tmp, "info:%s#%s", entry->name, entry->section);
+    else
+	g_sprintf(&tmp, "info:%s", entry->name);
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST tmp);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
+    xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
+    return TRUE;
+
+}
+
+
 static gboolean
 process_info_pending (YelpTocPager *pager)
 {
+    xmlNodePtr node = NULL;
+    xmlNodePtr cat_node = NULL;
+    xmlNodePtr mynode = NULL;
+    char **categories = NULL;
+    char **cat_iter = NULL;
+    int sectno = 0;
+    YelpTocPagerPriv * priv = pager->priv;
+    int i;
+    xmlXPathContextPtr xpath;
+    xmlXPathObjectPtr  obj;
+    
+    priv->info_doc = xmlCtxtReadFile (priv->parser, 
+				      DATADIR "/yelp/info.xml", NULL,
+				      XML_PARSE_NOBLANKS | 
+				      XML_PARSE_NOCDATA  |
+				      XML_PARSE_NOENT    | 
+				      XML_PARSE_NOERROR  |
+				      XML_PARSE_NONET    );
+    
+    xpath = xmlXPathNewContext (priv->info_doc);
+    obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
+    node = obj->nodesetval->nodeTab[0];
+    for (i=0; i < obj->nodesetval->nodeNr; i++) {
+	xmlNodePtr tmpnode = obj->nodesetval->nodeTab[i];
+	xml_trim_titles (tmpnode, BAD_CAST "title");
+	xml_trim_titles (tmpnode, BAD_CAST "description");
+    }
+    xmlXPathFreeObject (obj);
+    xmlXPathFreeContext (xpath);
+
+    categories = spoon_info_get_categories ();
+    cat_iter = categories;
+
+    while (cat_iter && *cat_iter) {
+	char *tmp;
+	
+	cat_node = xmlNewChild (node, NULL, BAD_CAST "toc",
+				NULL);
+	tmp = g_strdup_printf ("%d", sectno);
+	xmlNewNsProp (cat_node, NULL, BAD_CAST "sect",
+		      BAD_CAST tmp);
+	g_free (tmp);
+	tmp = g_strdup_printf ("infosect%d", sectno);
+	xmlNewNsProp (cat_node, NULL, BAD_CAST "id",
+		      BAD_CAST tmp);
+	g_free (tmp);
+	sectno++;
+	xmlNewTextChild (cat_node, NULL, BAD_CAST "title",
+			 BAD_CAST *cat_iter);
+	
+	spoon_info_for_each_in_category (*cat_iter, spoon_info_add_document, 
+					 cat_node);
+	cat_iter++;
+    }
+
+    mynode = xmlCopyNode (xmlDocGetRootElement (priv->info_doc), 1);
+    xmlAddChild (xmlDocGetRootElement (priv->toc_doc), mynode);
+    
+    xmlFreeDoc (priv->info_doc);
+
+
+#if 0
     gchar ** info_paths = yelp_get_info_paths ();
     int i = 0;
     gchar *filename = NULL;
@@ -1629,7 +1713,7 @@ process_info_pending (YelpTocPager *pager)
     
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
     xmlNodePtr node = NULL;
-
+    printf ("Info parsing\n");
     for (i=0; info_paths[i]; i++) {
 	filename = g_strconcat (info_paths[i], "/dir", NULL);
 	
@@ -1794,6 +1878,7 @@ process_info_pending (YelpTocPager *pager)
     
     xmlFreeDoc (priv->info_doc);
     
+#endif
     return FALSE;
 }
 #endif /* ENABLE_INFO */
