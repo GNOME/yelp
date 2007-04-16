@@ -228,8 +228,8 @@ db_print_pager_params (YelpPager *pager)
 
     doc_info = yelp_pager_get_doc_info (pager);
 
-    g_return_val_if_fail (pager != NULL, FALSE);
-    g_return_val_if_fail (YELP_IS_DB_PRINT_PAGER (pager), FALSE);
+    g_return_val_if_fail (pager != NULL, NULL);
+    g_return_val_if_fail (YELP_IS_DB_PRINT_PAGER (pager), NULL);
     priv = YELP_DB_PRINT_PAGER (pager)->priv;
 
     if (yelp_pager_get_state (pager) >= YELP_PAGER_STATE_ERROR)

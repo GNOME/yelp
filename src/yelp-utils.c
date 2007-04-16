@@ -867,7 +867,7 @@ convert_man_uri (gchar *uri, gboolean trust_uri)
 }
 
 gchar **
-yelp_get_info_paths ( )
+yelp_get_info_paths (void)
 {
     /* Get the infopath, either from the INFOPATH envar,
        or from the default infopath_d.
@@ -891,7 +891,7 @@ yelp_get_info_paths ( )
 
 
 gchar **
-yelp_get_man_paths ()
+yelp_get_man_paths (void)
 {
 	return mandirs;
 }
@@ -996,7 +996,7 @@ convert_info_uri (gchar   *uri)
 		    /* In dir, they've specified the subdir but not the
 		     * info file name.  Here, do some work to get the name
 		     *  ...*/
-		    gchar *real_filename;
+		    const gchar *real_filename;
 
 		    g_dir_close (dir);
 		    dir = g_dir_open (test_filename, 0, NULL);

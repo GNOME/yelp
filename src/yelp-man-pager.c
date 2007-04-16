@@ -228,7 +228,7 @@ man_pager_parse (YelpPager *pager)
     GError        *error = NULL;
     gint           i;
 
-    g_return_val_if_fail (YELP_IS_MAN_PAGER (pager), FALSE);
+    g_return_val_if_fail (YELP_IS_MAN_PAGER (pager), NULL);
 
     doc_info = yelp_pager_get_doc_info (pager);
     filename = yelp_doc_info_get_filename (doc_info);

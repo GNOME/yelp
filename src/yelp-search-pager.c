@@ -1022,7 +1022,7 @@ sk_characters (void *empty, const xmlChar *ch,
     }
 }
 
-void s_startElement(void *data,
+static void s_startElement(void *data,
 		  const xmlChar * name,
 		  const xmlChar ** attrs)
 {
@@ -1093,7 +1093,7 @@ void s_startElement(void *data,
     return;
 }
 
-void s_endElement(void * data,
+static void s_endElement(void * data,
 		const xmlChar * name)
 {
     SearchContainer *c = (SearchContainer *) data;
@@ -1116,7 +1116,7 @@ void s_endElement(void * data,
     return;
 }
 
-void s_characters(void * data,
+static void s_characters(void * data,
 		  const xmlChar * ch,
 		  int len)
 {
@@ -1133,6 +1133,7 @@ void s_characters(void * data,
     if (c->html && c->search_status != SEARCH_DOC)
 	c->search_status = SEARCH_DOC;
     if (c->search_status != NOT_SEARCHING) {
+	gchar *location;
 	gchar *tmp = g_utf8_casefold ((gchar *) ch, len);
 	gint i = 0;
 	gchar *s_term = c->search_term[i];
@@ -1143,7 +1144,7 @@ void s_characters(void * data,
 		continue;
 	    }
 
-	    gchar *location = strstr (tmp, s_term);	    
+	    location = strstr (tmp, s_term);	    
 	    if (location) {
 		gchar before = *(location-1);
 		gchar after = *(location+strlen(s_term));
@@ -1196,7 +1197,7 @@ void s_characters(void * data,
     return;
 }
 
-void s_declEntity (void *data, const xmlChar *name, int type,
+static void s_declEntity (void *data, const xmlChar *name, int type,
 		  const xmlChar *pID, const xmlChar *sID,
 		  xmlChar *content)
 {
@@ -1210,7 +1211,8 @@ void s_declEntity (void *data, const xmlChar *name, int type,
     return;
 }
 
-xmlEntityPtr s_getEntity (void *data, const xmlChar *name)
+static xmlEntityPtr
+s_getEntity (void *data, const xmlChar *name)
 {
     SearchContainer *c = (SearchContainer *) data;
     xmlEntityPtr t = xmlGetPredefinedEntity(name);
@@ -1444,7 +1446,7 @@ slow_search_setup (YelpSearchPager *pager)
     gint      terms_number = 0;
     gint required_no = 0;
 
-    static xmlSAXHandler sk_sax_handler = { 0, };
+    static xmlSAXHandler sk_sax_handler = { NULL, };
     xmlParserCtxtPtr parser;
     if (langs && langs[0])
 	lang = (gchar *) langs[0];
@@ -1734,7 +1736,7 @@ slow_search_process (YelpSearchPager *pager)
     }
 }
 
-gchar *
+static gchar *
 search_clean_snippet (gchar *snippet, gchar **terms)
 {    
     /* This is probably what you want to change */
@@ -1828,7 +1830,7 @@ search_clean_snippet (gchar *snippet, gchar **terms)
     return result;
 }
 
-void
+static void
 search_parse_result (YelpSearchPager *pager, SearchContainer *c)
 {    
     xmlNode *child;
@@ -1862,7 +1864,7 @@ search_parse_result (YelpSearchPager *pager, SearchContainer *c)
     xmlFreeDoc (snippet_doc);
 }
 
-void
+static void
 process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 {
     gchar ** split = g_strsplit (result, "\n", -1);
@@ -1987,7 +1989,7 @@ process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 
 }
 
-void
+static void
 search_process_man (YelpSearchPager *pager, gchar **terms)
 {
     gchar *command;
@@ -2015,7 +2017,7 @@ search_process_man (YelpSearchPager *pager, gchar **terms)
     return;
 }
 
-void
+static void
 search_process_info (YelpSearchPager *pager, gchar **terms)
 {
     gchar *command;

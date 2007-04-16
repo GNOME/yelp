@@ -27,7 +27,7 @@
 
 #include "yelp-debug.h"
 
-GDebugKey debug_keys[] = {
+static const GDebugKey debug_keys[] = {
 	{ "function-calls",   DB_FUNCTION },
 	{ "function-args",    DB_ARG }, 
 	{ "enable-profiling", DB_PROFILE },

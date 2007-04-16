@@ -93,8 +93,8 @@ page_type (char *page)
     return PAGE_OTHER;
 }
 
-static char
-*open_info_file (char *file)
+static char *
+open_info_file (char *file)
 {
 	GIOChannel *channel = NULL;
 	int i;
@@ -157,8 +157,8 @@ find_info_part (gchar *part_name, gchar *base)
 
 }
 
-static char
-*process_indirect_map (char *page, gchar * file)
+static char *
+process_indirect_map (char *page, gchar * file)
 {
 	char **lines;
 	char **ptr;
@@ -253,8 +253,8 @@ static GHashTable
 	return table;
 }
 
-static char
-*get_value_after (char *source, char *required)
+static char *
+get_value_after (char *source, char *required)
 {
 	char *ret, *ret_cp;
 	char *source_cp;

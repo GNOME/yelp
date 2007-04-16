@@ -159,7 +159,7 @@ print_present_config_dialog (YelpPrintInfo *info)
 }
 
 static gboolean 
-print_jobs_run ()
+print_jobs_run (void)
 {
     YelpPrintInfo * info = current_jobs->data;
     info->started = TRUE;
@@ -172,7 +172,7 @@ print_jobs_run ()
 }
 
 static GtkPrintSettings * 
-yelp_print_load_config_from_file ()
+yelp_print_load_config_from_file (void)
 {
     GtkPrintSettings *settings;
 
@@ -222,8 +222,8 @@ yelp_print_info_free (YelpPrintInfo *info)
     
 }
 
-YelpPrintInfo *
-yelp_print_get_print_info ()
+static YelpPrintInfo *
+yelp_print_get_print_info (void)
 {
   YelpPrintInfo *info;
   

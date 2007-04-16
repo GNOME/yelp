@@ -2221,7 +2221,7 @@ tree_drag_data_get_cb (GtkWidget         *widget,
     g_free (uri);
 }
 
-void
+static void
 tree_row_expand_cb (GtkTreeView *view, GtkTreePath *path,
 		    GtkTreeViewColumn *column, YelpWindow *window)
 {

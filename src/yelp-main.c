@@ -157,7 +157,7 @@ main_save_session (GnomeClient        *client,
 	gint                    i=1;
 	gint                    arg_len = 1;
 	gboolean                store_open_urls = FALSE;
-	DBusGProxy             *proxy = NULL;
+	/* DBusGProxy             *proxy = NULL; */
 	GError                 *error = NULL;
 
 	/*proxy = main_dbus_get_proxy ();
@@ -268,7 +268,7 @@ slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
 				       0,
 				       CopyFromParent,
 				       CopyFromParent,
-				       CopyFromParent,
+				       (Visual *)CopyFromParent,
 				       CWOverrideRedirect | CWEventMask,
 				       &attrs);
 		
@@ -294,7 +294,7 @@ slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
 	return event.xproperty.time;
 }
 
-DBusGProxy *
+static DBusGProxy *
 main_dbus_get_proxy (void)
 {
 	if (!connection)
@@ -306,7 +306,7 @@ main_dbus_get_proxy (void)
 					  "org.gnome.YelpService");
 }
 
-gboolean
+static gboolean
 main_is_running (void)
 {
 	DBusGProxy *proxy = NULL;

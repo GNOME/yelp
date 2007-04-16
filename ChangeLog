@@ -1,3 +1,33 @@
+2007-04-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/yelp-db-pager.c: (db_pager_params), (node_get_title):
+	* src/yelp-db-print-pager.c: (db_print_pager_params):
+	* src/yelp-debug.c:
+	* src/yelp-info-pager.c: (info_pager_parse):
+	* src/yelp-info-parser.c: (open_info_file), (process_indirect_map),
+	(get_value_after):
+	* src/yelp-main.c: (main_save_session),
+	(slowly_and_stupidly_obtain_timestamp):
+	* src/yelp-man-pager.c: (man_pager_parse):
+	* src/yelp-print.c: (print_jobs_run),
+	(yelp_print_load_config_from_file), (yelp_print_get_print_info):
+	* src/yelp-search-pager.c: (s_startElement), (s_endElement),
+	(s_characters), (s_declEntity), (s_getEntity), (slow_search_setup):
+	* src/yelp-toc-pager.c: (toc_process_pending),
+	(process_read_scrollkeeper), (process_omf_pending),
+	(process_mandir_pending), (toc_add_doc_info):
+	* src/yelp-utils.c: (yelp_get_info_paths), (yelp_get_man_paths),
+	(convert_info_uri):
+	* src/yelp-window.c:
+	* src/yelp-xslt-pager.c:
+	Cleanups of the following types:
+	- correct return values from g_return_*()
+	- mark som functions static
+	- fix shadowing variables
+	- NULL vs. 0
+	- ANSIfication of function declarations
+	- Constification
+
 ==================== 2.18.1 ====================
 2007-04-09  Shaun McCance  <shaunm@gnome.org>
 
