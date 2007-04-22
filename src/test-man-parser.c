@@ -19,39 +19,50 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
-#include <libgnomevfs/gnome-vfs.h>
+#include <glib.h>
+#include <libxml/tree.h>
+
 #include "yelp-man-parser.h"
-#include "yelp-utils.h"
+
+static gchar **files = NULL;
+static const GOptionEntry options[] = {
+    { G_OPTION_REMAINING, 
+      0, 0, G_OPTION_ARG_FILENAME_ARRAY, 
+      &files, NULL, NULL },
+    { NULL }
+};
 
 gint 
 main (gint argc, gchar **argv) 
 {
+    GOptionContext *context;
     YelpManParser *parser;
-    YelpDocInfo   *doc_info;
-    xmlDocPtr      doc;
+    xmlDocPtr doc;
+    gchar *encoding;
+    gint i;
 
-    if (argc < 2) {
-	g_error ("Usage: test-man-parser file\n");
+    context = g_option_context_new ("FILES...");
+    g_option_context_add_main_entries (context, options, NULL);
+    g_option_context_parse (context, &argc, &argv, NULL);
+
+    if (files == NULL || files[0] == NULL) {
+	g_printerr ("Usage: test-man-parser [OPTION...] FILES...\n");
 	return 1;
     }
 
-    gnome_vfs_init ();
-
     parser = yelp_man_parser_new ();
-    doc_info = yelp_doc_info_get (argv[1], FALSE);
-    if (!doc_info) {
-	printf ("Failed to load URI: %s\n", argv[1]);
-	return -1;
+
+    encoding = (gchar *) g_getenv("MAN_ENCODING");
+    if (encoding == NULL)
+	encoding = "ISO-8859-1";
+
+    for (i = 0; files[i]; i++) {
+	doc = yelp_man_parser_parse_file (parser, files[i], encoding);
+	xmlDocDump (stdout, doc);
+	xmlFreeDoc (doc);
     }
-    doc = yelp_man_parser_parse_doc (parser, doc_info);
 
     yelp_man_parser_free (parser);
 
-    xmlDocDump (stdout, doc);
-    xmlFreeDoc (doc);
-
-    gnome_vfs_shutdown ();
-
     return 0;
 }
-

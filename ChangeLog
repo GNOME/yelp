@@ -1,3 +1,18 @@
+2007-04-22  Shaun McCance  <shaunm@gnome.org>
+
+	* ChangeLog
+	* src/Makefile.am:
+	* src/test-man-parser.c:
+	* src/yelp-debug.h:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-io-channel.c:
+	* src/yelp-man-parser.c:
+	* src/yelp-man-parser.h:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	- Merging yelp-document into yelp-spoon
+
 2007-04-14  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-toc-pager.c: 
@@ -18,7 +33,6 @@
 	Search for pkg-config Spoon file
 	Run a spoon-for-each, printing doc names
 
-==================== 2.16.2 ====================
 2007-03-12  Shaun McCance  <shaunm@gnome.org>
 
 	* configure.in:
@@ -39,7 +53,6 @@
 	* src/Yelper.cpp:
 	Fix for mozilla API change on trunk.
 
-==================== 2.16.2 ====================
 2006-11-20  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* NEWS:
@@ -344,6 +357,208 @@
 	* src/yelp-window.c: 
 	Expand sections on double-click (bug #346871)
 
+=======
+2007-04-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-man.c:
+	* src/yelp-man.h:
+	* src/test-document.c:
+	- Made man pages work with YelpDocument
+
+	* src/yelp-docbook.c:
+	* src/yelp-document.c:
+	- General clean up
+
+2007-04-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-document.c:
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Added preliminary support for mime types in yelp-page
+
+2007-04-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-man-parser.c:
+	* src/Makefile.am:
+	- Made yelp-man-parser use yelp-debug
+
+2007-04-11  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-io-channel.c:
+	- Added back the GError convenience functions
+
+	* src/Makefile.am:
+	* src/test-man-parser.c:
+	* src/yelp-man-parser.c:
+	* src/yelp-man-parser.h:
+	- Getting the man stuff to work in the new world order
+
+	* src/yelp-transform.c:
+	- Added a cast to shut gcc up
+
+	* src/test-document.c:
+	* src/yelp-document.h:
+	* src/yelp-docbook.c:
+	* src/yelp-docbook.h:
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Moving much of the request-handling to YelpDocument
+
+2007-04-04  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Added yelp_error_copy
+
+	* src/yelp-transform.c:
+	- Added a few debug statements
+
+	* src/test-transform.c:
+	- Added the --random-timeout option
+
+	* src/yelp-page.c:
+	- Don't use g_free with memory slicese.
+
+	* src/yelp-docbook.c:
+	* src/yelp-docbook.h:
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Added a more-or-less complete YelpDocument implementation for DocBook
+
+	* src/test-document.c:
+	* src/Makefile.am:
+	- Added a test program for YelpDocument, currently only using DocBook
+
+2007-03-22  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Do not do callbacks if released
+
+	* src/yelp-page.h:
+	- Added a comment
+
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Filled out the abstract functions
+
+	* src/Makefile.am:
+	- Some changes to the test programs we build
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-transform.c:
+	- Added some locks
+
+	* src/Makefile.am:
+	* src/test-page.c:
+	- Adding a test application for YelpPage
+
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Fairly complete YelpPage for strings
+
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Big not-yet-done changes, but needed for test-page
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-transform.c:
+	- Fixed concurrency issues when freeing
+
+	* src/test-transform.c:
+	- Using GOption to get a --timeout option
+	- Don't release a transform twice
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Making YelpError cleaner and more usable for our purposes
+
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Copyright in 2007 too
+
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- The beginnings of the new read()-able YelpPage
+
+	* src/Makefile.am:
+	- yelp-error.h != yelp-transform.h
+
+2007-03-17  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Changed the callback API a bit, basically ready
+
+2006-07-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-document.c: (yelp_document_dispose),
+	(yelp_document_finalize), (yelp_document_class_init),
+	(yelp_document_init), (document_set_property),
+	(document_get_property), (yelp_document_get_page),
+	(yelp_document_cancel_get), (yelp_document_get_sections),
+	(yelp_document_add_page):
+	* src/yelp-document.h:
+	* src/yelp-page.c: (yelp_page_new), (yelp_page_set_id),
+	(yelp_page_get_id), (yelp_page_set_title), (yelp_page_get_title),
+	(yelp_page_set_contents), (yelp_page_get_contents),
+	(yelp_page_set_prev_id), (yelp_page_get_prev_id),
+	(yelp_page_set_next_id), (yelp_page_get_next_id),
+	(yelp_page_set_toc_id), (yelp_page_get_toc_id), (yelp_page_free):
+	* src/yelp-page.h:
+	- Add these to the correct directory
+	* yelp-document.c:
+	* yelp-document.h:
+	* yelp-page.c:
+	* yelp-page.h:
+	- Remove these (I put them in the wrong directory in the last commit)
+
+2006-07-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-debug.h: Put an #ifdef around HAVE_CONFIG_H
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	- Get rid of the unused YelpDocPage type and related function(s)
+	- created branch "yelp-document", branchpoint
+	YELP_DOCUMENT_BRANCHPOINT for working on the new YelpDocument API; see
+	http://live.gnome.org/Yelp
+	* yelp-document.c: (yelp_document_dispose),
+	(yelp_document_finalize), (yelp_document_class_init),
+	(yelp_document_init), (document_set_property),
+	(document_get_property), (yelp_document_get_page),
+	(yelp_document_cancel_get), (yelp_document_get_sections),
+	(yelp_document_add_page):
+	* yelp-document.h:
+	* yelp-page.c: (yelp_page_new), (yelp_page_set_id),
+	(yelp_page_get_id), (yelp_page_set_title), (yelp_page_get_title),
+	(yelp_page_set_contents), (yelp_page_get_contents),
+	(yelp_page_set_prev_id), (yelp_page_get_prev_id),
+	(yelp_page_set_next_id), (yelp_page_get_next_id),
+	(yelp_page_set_toc_id), (yelp_page_get_toc_id), (yelp_page_free):
+	* yelp-page.h:
+	New files yelp-document.[ch] and yelp-page.[ch] for the new API
+
+2006-07-03  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Glorious threaded XSLT transformation
+
+>>>>>>> .merge-right.r2807
 2006-07-01  Brent Smith  <gnome@nextreality.net>
 
 	* src/yelp-toc-pager.c: (process_info_pending): Fix to properly escape
