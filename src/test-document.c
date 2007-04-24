@@ -26,6 +26,7 @@
 
 #include "yelp-error.h"
 #include "yelp-docbook.h"
+#include "yelp-man.h"
 
 static gchar *mode = NULL;
 static gchar **files = NULL;
@@ -105,17 +106,26 @@ main (gint argc, gchar **argv)
     g_option_context_add_main_entries (context, options, NULL);
     g_option_context_parse (context, &argc, &argv, NULL);
 
-    if (files == NULL || files[0] == NULL) {
+    if (!mode)
+	mode = g_strdup ("docbook");
+
+    if ((files == NULL || files[0] == NULL) && !g_str_equal (mode, "toc")) {
 	g_printerr ("Usage: test-docbook FILE PAGE_IDS...\n");
 	return 1;
     }
 
     if (g_str_equal (mode, "man"))
 	document = yelp_man_new (files[0]);
-    else
+    else if (g_str_equal (mode, "toc"))
+	document = yelp_toc_new ();
+    else if (g_str_equal (mode, "docbook"))
 	document = yelp_docbook_new (files[0]);
+    else {
+	g_error ("Unknown test.  Please try again later\n");
+	return 3;
+    }
 
-    if (files[1] == NULL)
+    if (files == NULL || files[1] == NULL)
 	yelp_document_get_page (document, "x-yelp-index", (YelpDocumentFunc) document_func, NULL);
     else
 	for (i = 1; files[i]; i++)

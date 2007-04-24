@@ -117,6 +117,7 @@ test_document_SOURCES =					\
 	yelp-man.c		yelp-man.h		\
 	yelp-man-parser.c	yelp-man-parser.h	\
 	yelp-page.c		yelp-page.h		\
+	yelp-toc.c		yelp-toc.h		\
 	yelp-transform.c	yelp-transform.h	\
 	test-document.c
 test_document_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)

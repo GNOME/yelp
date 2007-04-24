@@ -235,7 +235,7 @@ db_pager_parse (YelpPager *pager)
 			   XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			   XML_PARSE_NOENT   | XML_PARSE_NONET   );
     if (doc == NULL) {
-	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+	g_set_error (&error, YELP_GERROR, YELP_ERROR_NO_DOC,
 		     _("The file ‘%s’ could not be parsed. Either the file "
 		       "does not exist, or it is not well-formed XML."),
 		     filename);
