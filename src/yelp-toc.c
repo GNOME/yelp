@@ -32,6 +32,9 @@
 #include <libxml/xinclude.h>
 #include <libxml/xmlreader.h>
 #include <spoon.h>
+#ifdef ENABLE_INFO
+#include <spoon-info.h>
+#endif /* ENABLE_INFO */
 
 #include "yelp-error.h"
 #include "yelp-toc.h"
@@ -94,6 +97,9 @@ static void           transform_final_func    (YelpTransform       *transform,
 
 /* Threaded */
 static void           toc_process         (YelpToc         *toc);
+#ifdef ENABLE_INFO
+static void           toc_process_info    (YelpToc         *toc);
+#endif /* ENABLE_INFO */
 static void           xml_trim_titles     (xmlNodePtr       node, 
 					   xmlChar * nodetype);
 
@@ -189,7 +195,6 @@ YelpDocument *
 yelp_toc_new (void)
 {
     YelpToc *toc;
-
     debug_print (DB_FUNCTION, "entering\n");
 
     toc = (YelpToc *) g_object_new (YELP_TYPE_TOC, NULL);
@@ -313,6 +318,12 @@ transform_page_func (YelpTransform *transform,
     g_mutex_lock (priv->mutex);
 
     content = yelp_transform_eat_chunk (transform, page_id);
+
+#if 0 /* Used for debugging */
+    gchar * filename = NULL;
+    filename = g_strdup_printf ("out/%s.html", page_id);
+    g_file_set_contents (filename, content, -1, NULL);
+#endif
 
     yelp_document_add_page (YELP_DOCUMENT (toc), page_id, content);
 
@@ -487,12 +498,15 @@ toc_process (YelpToc *toc)
     xmlFreeTextReader (reader);
     xmlXPathFreeContext (xpath);
 
+    g_mutex_lock (priv->mutex);
+    priv->xmldoc = xmldoc;
+    g_mutex_unlock (priv->mutex);
 
-
+#ifdef ENABLE_INFO
+    toc_process_info (toc);
+#endif /* ENABLE_INFO */
 
     g_mutex_lock (priv->mutex);
-
-    priv->xmldoc = xmldoc;
 
     priv->transform = yelp_transform_new (STYLESHEET,
 					  (YelpTransformFunc) transform_func,
@@ -563,3 +577,115 @@ xml_trim_titles (xmlNodePtr node, xmlChar * nodetype)
     }
     xmlFree (keep_lang);
 }
+
+#ifdef ENABLE_INFO
+static int
+spoon_info_add_document (SpoonInfoEntry *entry, void *user_data)
+{
+    xmlNodePtr node = (xmlNodePtr) user_data;
+    xmlNodePtr new;
+    gchar *tmp;
+
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    if (entry->section)
+	tmp = g_strdup_printf("info:%s#%s", entry->name, entry->section);
+    else
+	tmp = g_strdup_printf("info:%s", entry->name);
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST tmp);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
+    xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
+    return TRUE;
+
+}
+
+static void
+toc_process_info (YelpToc *toc)
+{
+    xmlNodePtr node = NULL;
+    xmlNodePtr cat_node = NULL;
+    xmlNodePtr mynode = NULL;
+    char **categories = NULL;
+    char **cat_iter = NULL;
+    int sectno = 0;
+    YelpTocPriv * priv = toc->priv;
+    int i;
+    xmlXPathContextPtr xpath;
+    xmlXPathObjectPtr  obj;
+    xmlDocPtr info_doc;    
+    xmlParserCtxtPtr parserCtxt = NULL;
+
+    debug_print (DB_FUNCTION, "entering\n");
+
+    parserCtxt = xmlNewParserCtxt ();
+    
+    info_doc = xmlCtxtReadFile (parserCtxt, 
+				      DATADIR "/yelp/info.xml", NULL,
+				      XML_PARSE_NOBLANKS | 
+				      XML_PARSE_NOCDATA  |
+				      XML_PARSE_NOENT    | 
+				      XML_PARSE_NOERROR  |
+				      XML_PARSE_NONET    );
+
+    if (!info_doc) {
+	g_warning ("Could not process info TOC");
+	goto done;
+    }
+
+    g_mutex_lock (priv->mutex);
+    yelp_document_add_page_id (YELP_DOCUMENT (toc), (gchar *) "Info", (gchar *) "Info");
+    g_mutex_unlock (priv->mutex);
+
+    xpath = xmlXPathNewContext (info_doc);
+    obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
+    node = obj->nodesetval->nodeTab[0];
+    for (i=0; i < obj->nodesetval->nodeNr; i++) {
+	xmlNodePtr tmpnode = obj->nodesetval->nodeTab[i];
+	xml_trim_titles (tmpnode, BAD_CAST "title");
+	xml_trim_titles (tmpnode, BAD_CAST "description");
+    }
+    xmlXPathFreeObject (obj);
+    xmlXPathFreeContext (xpath);
+
+    categories = spoon_info_get_categories ();
+    cat_iter = categories;
+
+    while (cat_iter && *cat_iter) {
+	char *tmp;
+	
+	cat_node = xmlNewChild (node, NULL, BAD_CAST "toc",
+				NULL);
+	tmp = g_strdup_printf ("%d", sectno);
+	xmlNewNsProp (cat_node, NULL, BAD_CAST "sect",
+		      BAD_CAST tmp);
+	g_free (tmp);
+	tmp = g_strdup_printf ("infosect%d", sectno);
+	g_mutex_lock (priv->mutex);
+	yelp_document_add_page_id (YELP_DOCUMENT (toc), (gchar *) tmp, (gchar *) tmp);
+	g_mutex_unlock (priv->mutex);
+
+	xmlNewNsProp (cat_node, NULL, BAD_CAST "id",
+		      BAD_CAST tmp);
+	g_free (tmp);
+	sectno++;
+	xmlNewTextChild (cat_node, NULL, BAD_CAST "title",
+			 BAD_CAST *cat_iter);
+	
+	spoon_info_for_each_in_category (*cat_iter, (SpoonInfoForeachFunc) spoon_info_add_document, 
+					 cat_node);
+	cat_iter++;
+    }
+
+    mynode = xmlCopyNode (xmlDocGetRootElement (info_doc), 1);
+
+    g_mutex_lock (priv->mutex);
+    xmlAddChild (xmlDocGetRootElement (priv->xmldoc), mynode);
+    g_mutex_unlock (priv->mutex);
+
+    xmlFreeDoc (info_doc);
+
+ done:
+    if (parserCtxt)
+	xmlFreeParserCtxt (parserCtxt);
+
+}
+#endif /* ENABLE_INFO */
