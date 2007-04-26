@@ -240,11 +240,11 @@ docbook_request (YelpDocument     *document,
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  req_id  = %i\n", req_id);
     debug_print (DB_ARG, "  page_id = \"%s\"\n", page_id);
-
     g_assert (document != NULL && YELP_IS_DOCBOOK (document));
 
-    if (handled)
+    if (handled) {
 	return;
+    }
 
     docbook = YELP_DOCBOOK (document);
     priv = docbook->priv;
@@ -282,7 +282,6 @@ transform_func (YelpTransform       *transform,
 		YelpDocbook         *docbook)
 {
     YelpDocbookPriv *priv;
-
     debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (docbook != NULL && YELP_IS_DOCBOOK (docbook));
@@ -338,7 +337,6 @@ transform_page_func (YelpTransform *transform,
     g_mutex_lock (priv->mutex);
 
     content = yelp_transform_eat_chunk (transform, page_id);
-
     yelp_document_add_page (YELP_DOCUMENT (docbook), page_id, content);
 
     g_free (page_id);
@@ -461,6 +459,7 @@ docbook_process (YelpDocbook *docbook)
 	g_mutex_unlock (priv->mutex);
 	goto done;
     }
+    g_mutex_unlock (priv->mutex);
 
     docbook_walk (docbook);
 
@@ -469,7 +468,6 @@ docbook_process (YelpDocbook *docbook)
 	g_mutex_unlock (priv->mutex);
 	goto done;
     }
-
     priv->transform = yelp_transform_new (STYLESHEET,
 					  (YelpTransformFunc) transform_func,
 					  docbook);
@@ -583,7 +581,6 @@ docbook_walk (YelpDocbook *docbook)
 	    docbook_walk (docbook);
 	}
     }
-
     priv->cur_depth--;
     priv->xmlcur = old_cur;
 

@@ -27,6 +27,7 @@
 #include "yelp-error.h"
 #include "yelp-docbook.h"
 #include "yelp-man.h"
+#include "yelp-toc.h"
 
 static gchar *mode = NULL;
 static gchar **files = NULL;
@@ -34,7 +35,7 @@ static const GOptionEntry options[] = {
     { "mode", 'm',
       0, G_OPTION_ARG_STRING,
       &mode,
-      "One of man or docbook", "MODE" },
+      "One of man, docbook or toc", "MODE" },
     { G_OPTION_REMAINING,
       0, 0, G_OPTION_ARG_FILENAME_ARRAY,
       &files, NULL, NULL },
@@ -125,12 +126,19 @@ main (gint argc, gchar **argv)
 	return 3;
     }
 
-    if (files == NULL || files[1] == NULL)
+    if ((files == NULL || files[1] == NULL) && (!g_str_equal (mode, "toc")))
 	yelp_document_get_page (document, "x-yelp-index", (YelpDocumentFunc) document_func, NULL);
-    else
+    else if (!g_str_equal (mode, "toc")) {
 	for (i = 1; files[i]; i++)
 	    yelp_document_get_page (document, files[i], (YelpDocumentFunc) document_func, NULL);
-
+    } else {
+	if (files) {
+	    for (i = 0; files[i]; i++)
+		yelp_document_get_page (document, files[i], (YelpDocumentFunc) document_func, NULL);
+	} else {
+	    yelp_document_get_page (document, "index", (YelpDocumentFunc) document_func, NULL);
+	}
+    }
     loop = g_main_loop_new (NULL, FALSE);
     g_main_loop_run (loop);
 

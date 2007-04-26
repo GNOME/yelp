@@ -86,7 +86,9 @@ page_read_string (YelpPage    *page,
 {
     g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
 
+
     if (page->content_offset == page->content_len) {
+	/* FIXME: set the error */
 	return G_IO_STATUS_EOF;
     }
     else if (page->content_offset > page->content_len) {

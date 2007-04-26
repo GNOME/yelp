@@ -307,7 +307,6 @@ transform_page_func (YelpTransform *transform,
 {
     YelpTocPriv *priv;
     gchar *content;
-
     debug_print (DB_FUNCTION, "entering\n");
 
     priv = toc->priv;
@@ -357,13 +356,12 @@ spoon_add_document (void *reg, void * user_data)
     xmlNodePtr node = (xmlNodePtr) user_data;
     SpoonReg *r = (SpoonReg *) reg;
     xmlNodePtr new;
-    gchar tmp[10];
-
+    gchar *tmp;
     new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
     xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST r->uri);
     xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST r->name);
     xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST r->comment);
-    g_sprintf (&tmp, "%d", r->weight);
+    tmp = g_strdup_printf ("%d", r->weight);
     xmlNewNsProp (new, NULL, BAD_CAST "weight", BAD_CAST tmp);
     return FALSE;
 }
@@ -381,7 +379,6 @@ toc_process (YelpToc *toc)
     xmlXPathContextPtr xpath;
     xmlXPathObjectPtr  obj;
     gint i, ret;
-
     debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (toc != NULL && YELP_IS_TOC (toc));
@@ -414,7 +411,10 @@ toc_process (YelpToc *toc)
 	xml_trim_titles (node, BAD_CAST "title");
 	xml_trim_titles (node, BAD_CAST "description");
 
-	icon = xmlGetProp (node, BAD_CAST "icon");
+	/* FIXME: Once hooked up properly into yelp, uncomment
+	 * to make the nice shiny icon appear
+	 */
+	/*icon = xmlGetProp (node, BAD_CAST "icon");*/
 	if (icon) {
 	    GtkIconInfo *info;
 	    GtkIconTheme *theme = 
@@ -444,12 +444,15 @@ toc_process (YelpToc *toc)
 	    xmlChar *id = xmlTextReaderGetAttribute (reader, BAD_CAST "id");
 	    xmlNodePtr node;
 	    gchar *xpath_s;
-
 	    if (!id) {
 		ret = xmlTextReaderRead (reader);
 		continue;
 	    }
 
+	    g_mutex_lock (priv->mutex);
+
+	    yelp_document_add_page_id (YELP_DOCUMENT (toc), (gchar *) id, (gchar *) id);
+	    g_mutex_unlock (priv->mutex);
 	    xpath_s = g_strdup_printf ("//toc[@id = '%s']", id);
 	    obj = xmlXPathEvalExpression (BAD_CAST xpath_s, xpath);
 	    g_free (xpath_s);
@@ -496,6 +499,7 @@ toc_process (YelpToc *toc)
 					  toc);
     priv->transform_running = TRUE;
     /* FIXME: we probably need to set our own params */
+
     yelp_transform_start (priv->transform,
 			  priv->xmldoc,
 			  NULL);

@@ -28,8 +28,6 @@
 <xsl:param name="yelp.color.admon.bg.dark2"/>
 <xsl:param name="yelp.color.admon.bg.dark3"/>
 
-<xsl:param name="yelp.toc.id" select="'Man-man6'"/>
-
 <xsl:template match="toc">
   <yelp:document href="{@id}">
     <html>
@@ -262,7 +260,7 @@
 </xsl:template>
 
 <xsl:template match="/">
-  <xsl:apply-templates select="//toc[@id = $yelp.toc.id]" />
+  <xsl:apply-templates select="//toc" />
 </xsl:template>
 
 </xsl:stylesheet>
