@@ -117,6 +117,8 @@ void              yelp_document_add_title      (YelpDocument       *document,
 void              yelp_document_add_page       (YelpDocument       *document,
 						gchar              *page_id,
 						const gchar        *contents);
+gboolean          yelp_document_has_page       (YelpDocument       *document,
+						gchar              *page_id);
 void              yelp_document_error_request  (YelpDocument       *document,
 						gint                req_id,
 						YelpError          *error);

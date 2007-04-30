@@ -1,3 +1,16 @@
+2007-04-30  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc.c: 
+	Add in man pages
+	Do an interesting use of the new stuff to 
+	run 3 transforms - main, info and man so
+	we quickly get the main page, then get man and info when ready
+
+	* src/yelp-document.h:
+	* src/yelp-document.c:
+	Add yelp_document_has_page that's used
+	in yelp-toc
+	
 2007-04-26  Don Scorgie  <dscorgie@cvs.gnome.org>
 
 	* src/yelp-toc.c:

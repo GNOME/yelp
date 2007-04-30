@@ -460,6 +460,15 @@ yelp_document_add_page (YelpDocument *document, gchar *page_id, const gchar *con
     g_mutex_unlock (priv->mutex);
 }
 
+gboolean
+yelp_document_has_page (YelpDocument *document, gchar *page_id)
+{
+    gchar *content;
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+    content = g_hash_table_lookup (document->priv->contents, page_id);
+    return !(content == NULL);
+}
+
 void
 yelp_document_error_request (YelpDocument *document, gint req_id, YelpError *error)
 {
