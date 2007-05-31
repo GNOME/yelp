@@ -36,7 +36,7 @@
 #include "yelp-debug.h"
 
 #include <string.h>
-
+#ifndef DON_UTIL
 static GHashTable *doc_info_table;
 
 typedef struct {
@@ -1045,3 +1045,10 @@ convert_info_uri (gchar   *uri)
     
     return doc_uri;
 }
+#else
+gchar *
+yelp_uri_resolve (char *uri)
+{
+    printf ("Resolving %s\n", uri);
+}
+#endif

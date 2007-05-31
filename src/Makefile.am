@@ -106,7 +106,8 @@ check_PROGRAMS =		\
 	test-document		\
 	test-man-parser		\
 	test-page		\
-	test-transform
+	test-transform		\
+	test-resolver
 
 test_document_SOURCES =					\
 	yelp-debug.c		yelp-debug.h		\
@@ -154,6 +155,14 @@ test_transform_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
 test_transform_LDADD = $(YELP_LIBS)
 test_transform_LDFLAGS = $(AM_LDFLAGS)
 
+test_resolver_SOURCES =				\
+	yelp-debug.c		yelp-debug.h		\
+	yelp-error.c		yelp-error.h		\
+	yelp-utils.c		yelp-utils.h		\
+	test-resolver.c
+test_resolver_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES) -DDON_UTIL
+test_resolver_LDADD = $(YELP_LIBS)
+test_resolver_LDFLAGS = $(AM_LDFLAGS)
 
 @INTLTOOL_SERVER_RULE@
 

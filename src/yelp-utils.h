@@ -24,7 +24,7 @@
 #define __YELP_UTILS_H__
 
 #include <glib/gi18n.h>
-
+#ifndef DON_UTIL
 typedef struct _YelpDocInfo YelpDocInfo;
 
 typedef enum {
@@ -112,5 +112,9 @@ gchar *             yelp_uri_get_relative       (gchar         *base,
 gchar **            yelp_get_info_paths         (void);
 
 gchar **            yelp_get_man_paths       (void);
+
+#else
+gchar *             yelp_uri_resolve (char *uri);
+#endif
 
 #endif /* __YELP_UTILS_H__ */
