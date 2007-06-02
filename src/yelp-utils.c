@@ -1047,8 +1047,54 @@ convert_info_uri (gchar   *uri)
 }
 #else
 gchar *
-yelp_uri_resolve (char *uri)
+resolve_process_ghelp (char *uri)
 {
-    printf ("Resolving %s\n", uri);
+
+}
+
+YelpSpoonType
+yelp_uri_resolve (gchar *uri, gchar **result)
+{
+    YelpSpoonType ret = YELP_TYPE_ERROR;
+    g_assert (result != NULL);
+    if (*result != NULL) {
+	g_warning ("Warning: result is not empty: %s.  Not searching.", *result);
+	return ret;
+    }
+
+    if (!strncmp (uri, "ghelp:", 6) || !strncmp (uri, "gnome-help:", 11)) {
+	printf ("ghelp\n");
+	*result = resolve_process_ghelp (uri);
+	if (*result) {
+	    ret = YELP_TYPE_DOC;
+	}
+    } else if (!strncmp (uri, "man:", 4)) {
+	printf ("man\n");
+	/* Man page */
+    } else if (!strncmp (uri, "info:", 5)) {
+	printf ("info\n");
+	/* info page */
+    } else if (!strncmp (uri, "file:", 5)) {
+	printf ("file\n");
+	/* full file path.  Ensure file exists and determine type */
+    } else if (!strncmp (uri, "x-yelp-toc:", 11)) {
+	printf("toc\n");
+	/* TOC page */
+    } else if (!strncmp (uri, "x-yelp-search:", 14)) {
+	printf ("search\n");
+	/* Search pager request */
+    } else if (g_file_test (uri, G_FILE_TEST_EXISTS)) {
+	printf ("Full path\n");
+	/* Probably full path */
+    } else {
+	/* We really don't care what it is.  It's not ours.  Let
+	 * someone else handle it 
+	 */
+	printf ("Ext\n");
+	ret = YELP_TYPE_EXTERNAL;
+	*result = g_strdup (uri);
+    }
+
+    return ret;
 }
 #endif

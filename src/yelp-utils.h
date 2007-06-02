@@ -114,7 +114,19 @@ gchar **            yelp_get_info_paths         (void);
 gchar **            yelp_get_man_paths       (void);
 
 #else
-gchar *             yelp_uri_resolve (char *uri);
+typedef enum {
+    YELP_TYPE_DOC = 0,
+    YELP_TYPE_MAN,
+    YELP_TYPE_INFO,
+    YELP_TYPE_HTML,
+    YELP_TYPE_TOC,
+    YELP_TYPE_SEARCH,
+    YELP_TYPE_NOT_FOUND,
+    YELP_TYPE_EXTERNAL,
+    YELP_TYPE_ERROR
+} YelpSpoonType;
+
+YelpSpoonType             yelp_uri_resolve (gchar *uri, gchar **result);
 #endif
 
 #endif /* __YELP_UTILS_H__ */

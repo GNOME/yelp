@@ -1,3 +1,14 @@
+2007-06-02  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/test-resolver.c: 
+	Bit more framework
+
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	Beginnings of testing (sort-of recognises different types)
+	Add enum for different types
+	Add lots of printfs that should be removed at some point
+	
 2007-05-31  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-utils.h:
