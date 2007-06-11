@@ -1045,56 +1045,246 @@ convert_info_uri (gchar   *uri)
     
     return doc_uri;
 }
-#else
+#else /*DON_UTIL*/
+
+#include <spoon-info.h>
+
 gchar *
 resolve_process_ghelp (char *uri)
 {
+    return NULL;
+}
 
+gchar *
+resolve_get_section (const gchar *uri)
+{
+    gchar *sect_delimit;
+    gchar *sect;
+
+    sect_delimit = strrchr (uri, '#');
+    if (!sect_delimit) {
+	sect_delimit = strrchr (uri, '?');
+    }
+    if (!sect_delimit) {
+	return NULL;
+    }
+    sect = g_strdup (sect_delimit+1);
+
+    return sect;
+}
+
+gboolean
+resolve_is_man_path (const gchar *path, const gchar *encoding)
+{
+    gchar **cats;
+    gchar **iter;
+
+    cats = spoon_man_get_categories ();
+
+    iter = cats;
+
+    if (encoding && *encoding) {
+	while (iter) {
+	    gchar *ending = g_strdup_printf ("%s.%s", *iter, encoding);
+	    if (g_str_has_suffix (path, ending)) {
+		free (ending);
+		return TRUE;
+	    }
+	    g_free (ending);
+	    iter++;
+	}
+    } else {
+	while (iter) {
+	    if (g_str_has_suffix (path, *iter)) {
+		return TRUE;
+	    }
+	    iter++;
+	}
+    }
+    return FALSE;
 }
 
 YelpSpoonType
-yelp_uri_resolve (gchar *uri, gchar **result)
+resolve_full_file (const gchar *path)
 {
-    YelpSpoonType ret = YELP_TYPE_ERROR;
-    g_assert (result != NULL);
-    if (*result != NULL) {
-	g_warning ("Warning: result is not empty: %s.  Not searching.", *result);
-	return ret;
+    gchar *mime_type;
+    YelpSpoonType type;
+
+    if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
+	return YELP_TYPE_ERROR;
     }
 
+    mime_type = gnome_vfs_get_mime_type (path);
+    if (mime_type == NULL)
+	return YELP_TYPE_ERROR;
+
+    if (g_str_equal (mime_type, "text/xml") || g_str_equal (mime_type, "application/docbook+xml") || g_str_equal (mime_type, "application/xml"))
+	type = YELP_TYPE_DOC;
+    else if (g_str_equal (mime_type, "text/html") ||
+	     g_str_equal (mime_type, "application/xhtml+xml"))
+	type = YELP_TYPE_HTML;
+    /* No distinction between HTML and XHTML now.  They're handled the same way */
+    else if (g_str_equal (mime_type, "application/x-gzip")) {
+	if (g_str_has_suffix (path, ".info.gz")) {
+	    type = YELP_TYPE_INFO;
+	} else if (resolve_is_man_path (path, "gz")) {
+	    type = YELP_TYPE_MAN;
+	}
+
+    } else if (g_str_equal (mime_type, "application/x-bzip")) {
+	if (g_str_has_suffix (path, ".info.bz2")) {
+	    type = YELP_TYPE_INFO;
+	} else if (resolve_is_man_path (path, "bz2")) {
+	    type = YELP_TYPE_MAN;
+	}
+    } else if (g_str_equal (mime_type, "text/plain")) {
+	if (g_str_has_suffix (path, ".info")) {
+	    type = YELP_TYPE_INFO;
+	} else if (resolve_is_man_path (path, NULL)) {
+	    type = YELP_TYPE_MAN;
+	}
+    } else {
+	type = YELP_TYPE_EXTERNAL;
+    }
+
+    g_free (mime_type);
+    return type;
+
+}
+
+gchar *
+resolve_remove_section (const gchar *uri, const gchar *sect)
+{
+    if (sect && *sect)
+	return (g_strndup (uri, (strlen(uri) - strlen(sect) - 1 /*for the delimiter char */)));
+    else
+	return (g_strdup (uri));
+}
+
+YelpSpoonType
+yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
+{
+    YelpSpoonType ret = YELP_TYPE_ERROR;
+    gchar *intern_section = NULL;
+    gchar *intern_uri = NULL;
+    g_assert (result != NULL);
+    if (*result != NULL) {
+	g_warning ("result is not empty: %s.", *result);
+	return ret;
+    }
+    g_assert (section != NULL);
+    if (*section != NULL) {
+	g_warning ("section is not empty: %s.", *section);
+	return ret;
+    }
+    if (uri == NULL) {
+	g_warning ("URI is NULL");
+	return ret;
+    }
+    intern_section = resolve_get_section(uri);
+    intern_uri = resolve_remove_section (uri, intern_section);
     if (!strncmp (uri, "ghelp:", 6) || !strncmp (uri, "gnome-help:", 11)) {
 	printf ("ghelp\n");
 	*result = resolve_process_ghelp (uri);
 	if (*result) {
 	    ret = YELP_TYPE_DOC;
+	    *section = intern_section;
 	}
     } else if (!strncmp (uri, "man:", 4)) {
 	printf ("man\n");
 	/* Man page */
     } else if (!strncmp (uri, "info:", 5)) {
-	printf ("info\n");
 	/* info page */
+
+	gchar *info_name = intern_uri;
+	gchar *info_sect = intern_section;
+	gboolean free_stuff = FALSE;
+	SpoonInfoEntry *entry = NULL;
+	
+	if (!intern_section) {
+	    gchar *lbrace = NULL;
+	    gchar *rbrace = NULL;
+	    lbrace = strchr (info_name, '(');
+	    rbrace = strchr (info_name, ')');
+	    if (lbrace && rbrace) {
+		info_name = g_strndup (lbrace+1, (rbrace-lbrace-1));
+		info_sect = g_strdup (rbrace+1);
+		free_stuff = TRUE;
+	    } else {
+		info_name += 5;
+	    }
+	} else {
+	    info_name += 5;
+	}
+
+	entry = spoon_info_find_from_uri (info_name, info_sect);
+	if (entry) {
+	    ret = YELP_TYPE_INFO;
+	    *section = g_strdup (entry->section);
+	    *result = g_strdup (entry->base_filename);
+	} else {
+	    ret = YELP_TYPE_ERROR;
+	    *section = NULL;
+	    *result = NULL;
+	}
+	if (free_stuff) {
+	    g_free (info_name);
+	    g_free (info_sect);
+	}
     } else if (!strncmp (uri, "file:", 5)) {
-	printf ("file\n");
+	ret = resolve_full_file (&intern_uri[5]);
+	if (ret == YELP_TYPE_EXTERNAL) {
+	    *section = NULL;
+	    *result = g_strdup (uri);
+	}
+	else if (ret == YELP_TYPE_ERROR) {
+	    *section = NULL;
+	    *result = NULL;
+	} else {
+	    *result = g_strdup (&intern_uri[5]);
+	    *section = intern_section;
+	}
 	/* full file path.  Ensure file exists and determine type */
     } else if (!strncmp (uri, "x-yelp-toc:", 11)) {
-	printf("toc\n");
+	ret = YELP_TYPE_TOC;
+	*section = intern_section;
+	*result = NULL;
 	/* TOC page */
     } else if (!strncmp (uri, "x-yelp-search:", 14)) {
-	printf ("search\n");
-	/* Search pager request */
+	/* Search pager request.  *result contains the search terms */
+	*result = g_strdup (uri+14);
+	*section = NULL;
+	ret = YELP_TYPE_SEARCH;
     } else if (g_file_test (uri, G_FILE_TEST_EXISTS)) {
-	printf ("Full path\n");
-	/* Probably full path */
+	/* Full path */
+	ret = resolve_full_file (&intern_uri[5]);
+	if (ret == YELP_TYPE_EXTERNAL) {
+	    *section = NULL;
+	    *result = g_strdup (uri);
+	}
+	else if (ret == YELP_TYPE_ERROR) {
+	    *section = NULL;
+	    *result = NULL;
+	} else {
+	    *result = g_strdup (&intern_uri[5]);
+	    *section = intern_section;
+	}
+    } else if (*uri == '/' || g_str_has_suffix (uri, ".xml")) {
+	/* Quite probable it was supposed to be ours, but
+	 * the file doesn't exist.  Hence, we should bin it
+	 */
+	ret = YELP_TYPE_ERROR;
+	*result = NULL;
+	*section = NULL;
     } else {
 	/* We really don't care what it is.  It's not ours.  Let
 	 * someone else handle it 
 	 */
-	printf ("Ext\n");
 	ret = YELP_TYPE_EXTERNAL;
 	*result = g_strdup (uri);
+	*section = NULL;
     }
 
     return ret;
 }
-#endif
+#endif /*DON_UTIL*/

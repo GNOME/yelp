@@ -126,7 +126,20 @@ typedef enum {
     YELP_TYPE_ERROR
 } YelpSpoonType;
 
-YelpSpoonType             yelp_uri_resolve (gchar *uri, gchar **result);
+
+/* Generic resolver function.  Takes in the uri (which can be
+ * anything) and returns the type (enum above)
+ * The result is filled with a new string that the callee
+ * must free, except when returning YELP_TYPE_ERROR, when it will
+ * be NULL.  The result is the base filename for the document.
+ * The section will be filled when the requested uri has a section
+ * otherwise, it will be NULL
+ * Both *result and *section must be NULL when calling (otherwise
+ * we throw an error
+ */
+YelpSpoonType             yelp_uri_resolve        (gchar *uri, 
+						   gchar **result,
+						   gchar **section);
 #endif
 
 #endif /* __YELP_UTILS_H__ */

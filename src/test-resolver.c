@@ -33,6 +33,9 @@ main (int argc, char *argv[])
 {
   int i=1;
 
+  /* Used within yelp-utils */
+  gnome_vfs_init ();
+
   if (argc % 2 != 1) {
     printf ("Usage: %s [<test-uri> <type> <test-uri> <type> ... ]\n", argv[0]);
     printf ("type can be one of:\n");
@@ -49,33 +52,38 @@ main (int argc, char *argv[])
     char *uri = argv[i];
     char *type = argv[i+1];
     char *result = NULL;
+    char *section = NULL;
     YelpSpoonType restype = YELP_TYPE_ERROR;
 
 
     printf ("uri: %s type: %s\n", argv[i], argv[i+1]);
-    restype = yelp_uri_resolve (argv[i], &result);
 
     if (g_str_equal (type, "doc")) {
+      restype = yelp_uri_resolve (argv[i], &result, &section);
       if (restype != YELP_TYPE_DOC || !TestFile (result)) {
 	printf ("Failed doc test %s.  Aborting.\n", uri);
 	return 2;
       }
     } else if (g_str_equal (type, "info")) {
+      restype = yelp_uri_resolve (argv[i], &result, &section);
       if (restype != YELP_TYPE_INFO || !TestFile (result)) {
 	printf ("Failed doc test %s.  Aborting.\n", uri);
 	return 3;
       }
     } else if (g_str_equal (type, "man")) {
+      restype = yelp_uri_resolve (argv[i], &result, &section);
       if (restype != YELP_TYPE_MAN || !TestFile (result)) {
 	printf ("Failed doc test %s.  Aborting.\n", uri);
 	return 4;
       }
     } else if (g_str_equal (type, "external")) {
+      restype = yelp_uri_resolve (argv[i], &result, &section);
       if (restype != YELP_TYPE_EXTERNAL || !TestFile (result)) {
 	printf ("Failed doc test %s.  Aborting.\n", uri, restype, YELP_TYPE_EXTERNAL);
 	return 5;
       }
     } else if (g_str_equal (type, "error")) {
+      restype = yelp_uri_resolve (argv[i], &result, &section);
       if (restype != YELP_TYPE_ERROR || result != NULL) {
 	printf ("Failed doc test %s.  Aborting.\n", uri);
 	return 6;
