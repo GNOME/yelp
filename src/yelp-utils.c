@@ -1048,6 +1048,7 @@ convert_info_uri (gchar   *uri)
 #else /*DON_UTIL*/
 
 #include <spoon-info.h>
+#include <spoon-man.h>
 
 gchar *
 resolve_process_ghelp (char *uri)
@@ -1087,7 +1088,7 @@ resolve_is_man_path (const gchar *path, const gchar *encoding)
 	while (iter) {
 	    gchar *ending = g_strdup_printf ("%s.%s", *iter, encoding);
 	    if (g_str_has_suffix (path, ending)) {
-		free (ending);
+		g_free (ending);
 		return TRUE;
 	    }
 	    g_free (ending);
@@ -1108,7 +1109,7 @@ YelpSpoonType
 resolve_full_file (const gchar *path)
 {
     gchar *mime_type;
-    YelpSpoonType type;
+    YelpSpoonType type = YELP_TYPE_ERROR;
 
     if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
 	return YELP_TYPE_ERROR;
@@ -1151,6 +1152,67 @@ resolve_full_file (const gchar *path)
     return type;
 
 }
+YelpSpoonType
+resolve_man_page (const gchar *name, gchar **result, gchar **section)
+{
+    /* Various ways the path could be presented:
+     * name(section) - resolve to a particular section
+     * name.section - ditto.  This must be tested twice.  Once for full filename and
+     *                once for section
+     * name#section - ditto, though this is never used, just added for completeness
+     * name - resolve to the first one found
+     */
+    gchar *lbrace = NULL;
+    gchar *rbrace = NULL;
+    gchar *sect = NULL;
+    gchar *real_name = NULL;
+    gboolean repeat = FALSE;
+    SpoonManEntry *entry = NULL;
+
+    lbrace = strrchr (name, '(');
+    if (lbrace) {
+	rbrace = strrchr (name, ')');
+	if (rbrace) {
+	    sect = g_strndup (lbrace+1, rbrace - lbrace - 1);
+	    real_name = g_strndup (name, lbrace - name);
+	} else {
+	    sect = NULL;
+	    real_name = strdup (name);
+	}
+    } else {
+	lbrace = strrchr (name, '.');
+	if (lbrace) {
+	    repeat = TRUE;
+	    sect = strdup (lbrace+1);
+	    real_name = g_strndup (name, lbrace - name);
+	} else {
+	    lbrace = strrchr (name, '#');
+	    if (lbrace) {
+		sect = strdup (lbrace+1);
+		real_name = g_strndup (name, lbrace - name);
+	    } else {
+		real_name = strdup (name);
+		sect = NULL;
+	    }
+	}
+    }
+    entry = spoon_man_find_from_name (real_name, sect);
+
+    if (entry) {
+	*result = strdup (entry->path);
+	*section = strdup (entry->section);
+	return YELP_TYPE_MAN;
+    } else if (repeat) {
+	entry = spoon_man_find_from_name (name, NULL);
+	if (entry) {
+	    *result = strdup (entry->path);
+	    *section = strdup (entry->section);
+	    return YELP_TYPE_MAN;
+	}
+    }
+    return YELP_TYPE_ERROR;
+}
+
 
 gchar *
 resolve_remove_section (const gchar *uri, const gchar *sect)
@@ -1191,7 +1253,11 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    *section = intern_section;
 	}
     } else if (!strncmp (uri, "man:", 4)) {
-	printf ("man\n");
+	ret = resolve_man_page (&uri[4], result, section);
+	if (ret == YELP_TYPE_ERROR) {
+	    *result = NULL;
+	    *section = NULL;
+	}
 	/* Man page */
     } else if (!strncmp (uri, "info:", 5)) {
 	/* info page */
@@ -1223,9 +1289,12 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    *section = g_strdup (entry->section);
 	    *result = g_strdup (entry->base_filename);
 	} else {
-	    ret = YELP_TYPE_ERROR;
-	    *section = NULL;
-	    *result = NULL;
+	    ret = resolve_man_page (&uri[5], result, section);
+	    if (!ret) {
+		ret = YELP_TYPE_ERROR;
+		*section = NULL;
+		*result = NULL;
+	    }
 	}
 	if (free_stuff) {
 	    g_free (info_name);
