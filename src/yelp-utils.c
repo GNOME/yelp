@@ -1049,11 +1049,39 @@ convert_info_uri (gchar   *uri)
 
 #include <spoon-info.h>
 #include <spoon-man.h>
+#include <spoon.h>
 
-gchar *
-resolve_process_ghelp (char *uri)
+
+YelpSpoonType
+resolve_process_ghelp (char *uri, gchar **result)
 {
-    return NULL;
+    SpoonReg *reg = spoon_find_from_ghelp (&uri[6]);
+    YelpSpoonType type = YELP_TYPE_ERROR;
+
+    if (reg) {
+	gchar *mime = NULL;
+	if (g_str_has_prefix (reg->uri, "file:"))
+	    *result = g_strdup (&reg->uri[5]);
+	else
+	    *result = g_strdup (reg->uri);
+
+	/* mime types are horrible in omf-translated files */
+	if (reg->type && *(reg->type))
+	    mime = g_strdup (reg->type);
+	else 
+	    mime = gnome_vfs_get_mime_type (*result);
+	
+	if (g_str_equal (mime, "text/xml") || 
+	    g_str_equal (mime, "application/docbook+xml") || 
+	    g_str_equal (mime, "application/xml"))
+	    type = YELP_TYPE_DOC;
+	else if (g_str_equal (mime, "text/html") ||
+		 g_str_equal (mime, "application/xhtml+xml"))
+	    type = YELP_TYPE_HTML;
+
+    }
+
+    return type;
 }
 
 gchar *
@@ -1245,11 +1273,10 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
     }
     intern_section = resolve_get_section(uri);
     intern_uri = resolve_remove_section (uri, intern_section);
+
     if (!strncmp (uri, "ghelp:", 6) || !strncmp (uri, "gnome-help:", 11)) {
-	printf ("ghelp\n");
-	*result = resolve_process_ghelp (uri);
+	ret = resolve_process_ghelp (intern_uri, result);
 	if (*result) {
-	    ret = YELP_TYPE_DOC;
 	    *section = intern_section;
 	}
     } else if (!strncmp (uri, "man:", 4)) {
@@ -1286,7 +1313,10 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	entry = spoon_info_find_from_uri (info_name, info_sect);
 	if (entry) {
 	    ret = YELP_TYPE_INFO;
-	    *section = g_strdup (entry->section);
+	    if (entry->section)
+		*section = g_strdup (entry->section);
+	    else
+		*section = g_strdup (intern_section);
 	    *result = g_strdup (entry->base_filename);
 	} else {
 	    ret = resolve_man_page (&uri[5], result, section);
@@ -1324,9 +1354,9 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	*result = g_strdup (uri+14);
 	*section = NULL;
 	ret = YELP_TYPE_SEARCH;
-    } else if (g_file_test (uri, G_FILE_TEST_EXISTS)) {
+    } else if (g_file_test (intern_uri, G_FILE_TEST_EXISTS)) {
 	/* Full path */
-	ret = resolve_full_file (&intern_uri[5]);
+	ret = resolve_full_file (intern_uri);
 	if (ret == YELP_TYPE_EXTERNAL) {
 	    *section = NULL;
 	    *result = g_strdup (uri);
@@ -1335,8 +1365,8 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    *section = NULL;
 	    *result = NULL;
 	} else {
-	    *result = g_strdup (&intern_uri[5]);
-	    *section = intern_section;
+	    *result = g_strdup (intern_uri);
+	    *section = g_strdup (intern_section);
 	}
     } else if (*uri == '/' || g_str_has_suffix (uri, ".xml")) {
 	/* Quite probable it was supposed to be ours, but
