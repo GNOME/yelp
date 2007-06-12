@@ -32,8 +32,8 @@
 
 #include "yelp-window.h"
 #include "yelp-settings.h"
-#include "yelp-pager.h"
-#include "yelp-toc-pager.h"
+//#include "yelp-pager.h"
+/*#include "yelp-toc-pager.h"*/
 #include "yelp-base.h"
 #include "yelp-bookmarks.h"
 #include "server-bindings.h"
@@ -127,6 +127,7 @@ server_new_window (YelpBase *base, gchar *url, gchar *timestamp,
 gboolean
 server_get_url_list (YelpBase *server, gchar **urls, GError **error)
 {
+#if 0
 	gint len,  i;
 	GSList *node;
 	YelpDocInfo *doc_info;
@@ -158,6 +159,7 @@ server_get_url_list (YelpBase *server, gchar **urls, GError **error)
 		g_free (uri);
 	}
 	return TRUE;
+#endif
 }
 
 static void
@@ -200,7 +202,7 @@ yelp_base_new (gboolean priv)
 	if (!priv)
 		yelp_base_register_dbus (base);
 	base->priv->private_session = priv;
-	yelp_toc_pager_init ();
+	//yelp_toc_pager_init ();
 
         return base;
 }

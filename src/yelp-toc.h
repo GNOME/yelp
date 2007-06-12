@@ -49,5 +49,6 @@ struct _YelpTocClass {
 
 GType           yelp_toc_get_type     (void);
 YelpDocument *  yelp_toc_new          (void);
+YelpDocument *  yelp_toc_get          (void);
 
 #endif /* __YELP_TOC_H__ */

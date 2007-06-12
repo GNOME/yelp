@@ -4,41 +4,40 @@ yelp_SOURCES =							\
 	Yelper.cpp		Yelper.h			\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
-	yelp-db-pager.c		yelp-db-pager.h			\
-	yelp-db-print-pager.c	yelp-db-print-pager.h		\
 	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
 	yelp-html.cpp		yelp-html.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
-	yelp-pager.c		yelp-pager.h			\
 	yelp-settings.c		yelp-settings.h			\
-	yelp-toc-pager.c	yelp-toc-pager.h		\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-window.c 		yelp-window.h			\
-	yelp-xslt-pager.c	yelp-xslt-pager.h		\
 	yelp-marshal.c		yelp-marshal.h			\
 	yelp-main.c						\
 	yelp-print.c		yelp-print.h			\
-	yelp-gecko-services.h   yelp-gecko-services.cpp	
+	yelp-page.c		yelp-page.h			\
+	yelp-transform.c	yelp-transform.h		\
+	yelp-gecko-services.h   yelp-gecko-services.cpp	        \
+	yelp-document.h		yelp-document.c			\
+	yelp-toc.h		yelp-toc.c
 
-if ENABLE_MAN
-yelp_SOURCES +=					\
-	yelp-man-parser.c yelp-man-parser.h	\
-	yelp-man-pager.c yelp-man-pager.h
-endif
+#if ENABLE_MAN
+#yelp_SOURCES +=					\
+#	yelp-man-parser.c yelp-man-parser.h	\
+#	yelp-man-pager.c yelp-man-pager.h
+#endif
 
-if ENABLE_INFO
-yelp_SOURCES +=					\
-	yelp-info-pager.c yelp-info-pager.h	\
-	yelp-info-parser.c yelp-info-parser.h
-endif
+#if ENABLE_INFO
+#yelp_SOURCES +=					\
+#	yelp-info-pager.c yelp-info-pager.h	\
+#	yelp-info-parser.c yelp-info-parser.h
+#endif
 
-if ENABLE_SEARCH
-yelp_SOURCES +=						\
-	gtkentryaction.c	gtkentryaction.h	\
-	yelp-search-pager.c	yelp-search-pager.h
-endif
+#if ENABLE_SEARCH
+#yelp_SOURCES +=						\
+#	gtkentryaction.c	gtkentryaction.h	\
+#	yelp-search-pager.c	yelp-search-pager.h
+#endif
 
 YELP_DEFINES =								\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
@@ -81,13 +80,15 @@ yelp_CPPFLAGS =									\
 yelp_CFLAGS =				\
 	$(YELP_CFLAGS)			\
 	$(YELP_SEARCH_CFLAGS)		\
-	$(AM_CFLAGS)
+	$(AM_CFLAGS)			\
+	-DDON_UTIL
 
 yelp_CXXFLAGS =				\
 	$(YELP_CFLAGS)			\
 	$(YELP_SEARCH_CFLAGS)		\
 	$(MOZILLA_COMPONENT_CFLAGS)	\
-	$(AM_CXXFLAGS)
+	$(AM_CXXFLAGS)			\
+	-DDON_UTIL
 
 yelp_LDADD =				\
 	$(YELP_LIBS)			\

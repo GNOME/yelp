@@ -237,7 +237,7 @@
 <xsl:template mode="leftbar.mode" match="toc">
   <xsl:param name="curid" select="0"/>
     <ul>
-      <xsl:for-each select="toc[.//doc[1]]">
+      <xsl:for-each select="toc[.//doc[1] or @protected]">
         <li class="toclist">
           <xsl:choose>
             <xsl:when test="@id != $curid">

@@ -83,6 +83,8 @@ struct _YelpTocPriv {
 };
 
 
+static YelpDocument *toc_doc = NULL;
+
 static void           toc_class_init      (YelpTocClass    *klass);
 static void           toc_init            (YelpToc         *toc);
 static void           toc_try_dispose     (GObject             *object);
@@ -212,12 +214,25 @@ toc_dispose (GObject *object)
 YelpDocument *
 yelp_toc_new (void)
 {
-    YelpToc *toc;
     debug_print (DB_FUNCTION, "entering\n");
 
-    toc = (YelpToc *) g_object_new (YELP_TYPE_TOC, NULL);
+    if (toc_doc == NULL) {
+	toc_doc = (YelpToc *) g_object_new (YELP_TYPE_TOC, NULL);
+    }
 
-    return (YelpDocument *) toc;
+    return (YelpDocument *) toc_doc;
+}
+
+YelpDocument *
+yelp_toc_get (void)
+{
+    debug_print (DB_FUNCTION, "entering\n");
+
+    if (toc_doc == NULL) {
+	toc_doc = (YelpToc *) g_object_new (YELP_TYPE_TOC, NULL);
+    }
+
+    return (YelpDocument *) toc_doc;
 }
 
 

@@ -1056,7 +1056,7 @@ YelpSpoonType
 resolve_process_ghelp (char *uri, gchar **result)
 {
     SpoonReg *reg = spoon_find_from_ghelp (&uri[6]);
-    YelpSpoonType type = YELP_TYPE_ERROR;
+    YelpSpoonType type = YELP_SPOON_TYPE_ERROR;
 
     if (reg) {
 	gchar *mime = NULL;
@@ -1074,10 +1074,10 @@ resolve_process_ghelp (char *uri, gchar **result)
 	if (g_str_equal (mime, "text/xml") || 
 	    g_str_equal (mime, "application/docbook+xml") || 
 	    g_str_equal (mime, "application/xml"))
-	    type = YELP_TYPE_DOC;
+	    type = YELP_SPOON_TYPE_DOC;
 	else if (g_str_equal (mime, "text/html") ||
 		 g_str_equal (mime, "application/xhtml+xml"))
-	    type = YELP_TYPE_HTML;
+	    type = YELP_SPOON_TYPE_HTML;
 
     }
 
@@ -1137,43 +1137,43 @@ YelpSpoonType
 resolve_full_file (const gchar *path)
 {
     gchar *mime_type;
-    YelpSpoonType type = YELP_TYPE_ERROR;
+    YelpSpoonType type = YELP_SPOON_TYPE_ERROR;
 
     if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
-	return YELP_TYPE_ERROR;
+	return YELP_SPOON_TYPE_ERROR;
     }
 
     mime_type = gnome_vfs_get_mime_type (path);
     if (mime_type == NULL)
-	return YELP_TYPE_ERROR;
+	return YELP_SPOON_TYPE_ERROR;
 
     if (g_str_equal (mime_type, "text/xml") || g_str_equal (mime_type, "application/docbook+xml") || g_str_equal (mime_type, "application/xml"))
-	type = YELP_TYPE_DOC;
+	type = YELP_SPOON_TYPE_DOC;
     else if (g_str_equal (mime_type, "text/html") ||
 	     g_str_equal (mime_type, "application/xhtml+xml"))
-	type = YELP_TYPE_HTML;
+	type = YELP_SPOON_TYPE_HTML;
     /* No distinction between HTML and XHTML now.  They're handled the same way */
     else if (g_str_equal (mime_type, "application/x-gzip")) {
 	if (g_str_has_suffix (path, ".info.gz")) {
-	    type = YELP_TYPE_INFO;
+	    type = YELP_SPOON_TYPE_INFO;
 	} else if (resolve_is_man_path (path, "gz")) {
-	    type = YELP_TYPE_MAN;
+	    type = YELP_SPOON_TYPE_MAN;
 	}
 
     } else if (g_str_equal (mime_type, "application/x-bzip")) {
 	if (g_str_has_suffix (path, ".info.bz2")) {
-	    type = YELP_TYPE_INFO;
+	    type = YELP_SPOON_TYPE_INFO;
 	} else if (resolve_is_man_path (path, "bz2")) {
-	    type = YELP_TYPE_MAN;
+	    type = YELP_SPOON_TYPE_MAN;
 	}
     } else if (g_str_equal (mime_type, "text/plain")) {
 	if (g_str_has_suffix (path, ".info")) {
-	    type = YELP_TYPE_INFO;
+	    type = YELP_SPOON_TYPE_INFO;
 	} else if (resolve_is_man_path (path, NULL)) {
-	    type = YELP_TYPE_MAN;
+	    type = YELP_SPOON_TYPE_MAN;
 	}
     } else {
-	type = YELP_TYPE_EXTERNAL;
+	type = YELP_SPOON_TYPE_EXTERNAL;
     }
 
     g_free (mime_type);
@@ -1229,16 +1229,16 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
     if (entry) {
 	*result = strdup (entry->path);
 	*section = strdup (entry->section);
-	return YELP_TYPE_MAN;
+	return YELP_SPOON_TYPE_MAN;
     } else if (repeat) {
 	entry = spoon_man_find_from_name (name, NULL);
 	if (entry) {
 	    *result = strdup (entry->path);
 	    *section = strdup (entry->section);
-	    return YELP_TYPE_MAN;
+	    return YELP_SPOON_TYPE_MAN;
 	}
     }
-    return YELP_TYPE_ERROR;
+    return YELP_SPOON_TYPE_ERROR;
 }
 
 
@@ -1254,7 +1254,7 @@ resolve_remove_section (const gchar *uri, const gchar *sect)
 YelpSpoonType
 yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 {
-    YelpSpoonType ret = YELP_TYPE_ERROR;
+    YelpSpoonType ret = YELP_SPOON_TYPE_ERROR;
     gchar *intern_section = NULL;
     gchar *intern_uri = NULL;
     g_assert (result != NULL);
@@ -1281,7 +1281,7 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	}
     } else if (!strncmp (uri, "man:", 4)) {
 	ret = resolve_man_page (&uri[4], result, section);
-	if (ret == YELP_TYPE_ERROR) {
+	if (ret == YELP_SPOON_TYPE_ERROR) {
 	    *result = NULL;
 	    *section = NULL;
 	}
@@ -1293,6 +1293,13 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	gchar *info_sect = intern_section;
 	gboolean free_stuff = FALSE;
 	SpoonInfoEntry *entry = NULL;
+
+	if (g_str_equal (&uri[5], "dir")) {
+	    *section = g_strdup ("info");
+	    *result = NULL;
+	    ret = YELP_SPOON_TYPE_TOC;
+	    return ret;
+	}
 	
 	if (!intern_section) {
 	    gchar *lbrace = NULL;
@@ -1312,7 +1319,7 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 
 	entry = spoon_info_find_from_uri (info_name, info_sect);
 	if (entry) {
-	    ret = YELP_TYPE_INFO;
+	    ret = YELP_SPOON_TYPE_INFO;
 	    if (entry->section)
 		*section = g_strdup (entry->section);
 	    else
@@ -1321,7 +1328,7 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	} else {
 	    ret = resolve_man_page (&uri[5], result, section);
 	    if (!ret) {
-		ret = YELP_TYPE_ERROR;
+		ret = YELP_SPOON_TYPE_ERROR;
 		*section = NULL;
 		*result = NULL;
 	    }
@@ -1332,11 +1339,11 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	}
     } else if (!strncmp (uri, "file:", 5)) {
 	ret = resolve_full_file (&intern_uri[5]);
-	if (ret == YELP_TYPE_EXTERNAL) {
+	if (ret == YELP_SPOON_TYPE_EXTERNAL) {
 	    *section = NULL;
 	    *result = g_strdup (uri);
 	}
-	else if (ret == YELP_TYPE_ERROR) {
+	else if (ret == YELP_SPOON_TYPE_ERROR) {
 	    *section = NULL;
 	    *result = NULL;
 	} else {
@@ -1345,23 +1352,27 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	}
 	/* full file path.  Ensure file exists and determine type */
     } else if (!strncmp (uri, "x-yelp-toc:", 11)) {
-	ret = YELP_TYPE_TOC;
-	*section = intern_section;
+	ret = YELP_SPOON_TYPE_TOC;
+	if (strlen (uri) > 11) {
+	    *section = g_strdup (&uri[11]);
+	} else {
+	    *section = g_strdup("index");
+	}
 	*result = NULL;
 	/* TOC page */
     } else if (!strncmp (uri, "x-yelp-search:", 14)) {
 	/* Search pager request.  *result contains the search terms */
 	*result = g_strdup (uri+14);
 	*section = NULL;
-	ret = YELP_TYPE_SEARCH;
+	ret = YELP_SPOON_TYPE_SEARCH;
     } else if (g_file_test (intern_uri, G_FILE_TEST_EXISTS)) {
 	/* Full path */
 	ret = resolve_full_file (intern_uri);
-	if (ret == YELP_TYPE_EXTERNAL) {
+	if (ret == YELP_SPOON_TYPE_EXTERNAL) {
 	    *section = NULL;
 	    *result = g_strdup (uri);
 	}
-	else if (ret == YELP_TYPE_ERROR) {
+	else if (ret == YELP_SPOON_TYPE_ERROR) {
 	    *section = NULL;
 	    *result = NULL;
 	} else {
@@ -1372,14 +1383,14 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	/* Quite probable it was supposed to be ours, but
 	 * the file doesn't exist.  Hence, we should bin it
 	 */
-	ret = YELP_TYPE_ERROR;
+	ret = YELP_SPOON_TYPE_ERROR;
 	*result = NULL;
 	*section = NULL;
     } else {
 	/* We really don't care what it is.  It's not ours.  Let
 	 * someone else handle it 
 	 */
-	ret = YELP_TYPE_EXTERNAL;
+	ret = YELP_SPOON_TYPE_EXTERNAL;
 	*result = g_strdup (uri);
 	*section = NULL;
     }

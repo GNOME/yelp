@@ -1,5 +1,26 @@
 2007-06-12  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-window.c: 
+	* src/yelp-base.c:
+	* src/yelp-window.h:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* src/Makefile.am:
+	* stylesheets/toc2html.xsl:
+	First pass at making yelp work again
+	Very, very broken, but TOC shows up (and is navigatable)
+	Thought, nothing else works and is 
+	liable to crash if used
+	rename YELP_TYPE_* to YELP_SPOON_TYPE_*
+	to stop conflict when compiling
+	Oh, and introduce hundreds of compiler warnings
+	
+	* src/yelp-toc.c:
+	* src/yelp-toc.h:
+	Make TOC doc singleton
+	
+2007-06-12  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/yelp-utils.c: 
 	Add ghelp resolve support
 	Many minor fixes to pass default test suite
