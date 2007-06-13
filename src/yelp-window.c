@@ -2985,25 +2985,15 @@ window_go_toc_cb (GtkAction *action, YelpWindow *window)
 static void
 window_add_bookmark_cb (GtkAction *action, YelpWindow *window)
 {
-#if 0
-    gchar *uri;
     YelpWindowPriv *priv = window->priv;
 
     debug_print (DB_FUNCTION, "entering\n");
 
-    uri = yelp_doc_info_get_uri (priv->current_doc, priv->current_frag,
-				 YELP_URI_TYPE_NO_FILE);
-    if (!uri)
-	uri = yelp_doc_info_get_uri (priv->current_doc, priv->current_frag,
-				     YELP_URI_TYPE_FILE);
-
-    if (!uri)
+    if (!priv->req_uri)
 	return;
 
-    yelp_bookmarks_add (uri, window);
+    yelp_bookmarks_add (priv->req_uri, window);
 
-    g_free (uri);
-#endif
 }
 
 static void window_copy_link_cb (GtkAction *action, YelpWindow *window) 
