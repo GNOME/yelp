@@ -32,7 +32,7 @@
 
 #include "yelp-window.h"
 #include "yelp-settings.h"
-//#include "yelp-pager.h"
+#include "yelp-toc.h"
 /*#include "yelp-toc-pager.h"*/
 #include "yelp-base.h"
 #include "yelp-bookmarks.h"
@@ -98,6 +98,9 @@ yelp_base_init (YelpBase *base)
 	priv->toc_tree = g_node_new (NULL);
 	priv->index    = NULL;
 	priv->windows  = NULL;
+	/* Init here to start processing before 
+	 * we even start the window */
+	yelp_toc_new();
 
 	yelp_bookmarks_init ();
 	yelp_settings_init ();

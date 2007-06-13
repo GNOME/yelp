@@ -1,3 +1,25 @@
+2007-06-13  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-base.c:
+	start loading yelp-toc at start of
+	base to take advantage of threading
+	and make the toc load even quicker
+	(except man pages of course)
+	
+	* src/yelp-toc.c:
+	Make icon work (when the rest of the
+	customisations are plumbed in)
+	
+	* src/yelp-utils.c:
+	Fix result for TOC pages
+	
+	* src/yelp-document.c:
+	Fix crash when canceling page request
+	
+	* src/yelp-window.c: 
+	Implement canceling of requests
+	Implement location dialog
+
 2007-06-12  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-window.c: 

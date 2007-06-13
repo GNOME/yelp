@@ -268,10 +268,12 @@ struct _YelpWindowPriv {
     GtkWidget      *popup;
     gint            merge_id;
     GtkWidget      *maillink;
-    gchar          *uri;
 
     /* Location Information */
-    /*YelpDocInfo    *current_doc;*/
+    gchar          *uri;
+    gchar          *req_uri;
+    gint            current_request;
+    YelpDocument   *current_document;
     gchar          *current_frag;
     GSList         *history_back;
     GSList         *history_forward;
@@ -911,8 +913,9 @@ document_func (YelpDocument       *document,
 	       YelpDocumentSignal  signal,
 	       gint                req_id,
 	       gpointer           *func_data,
-	       YelpHtml           *html)
+	       YelpWindow         *window)
 {
+    YelpHtml *html = window->priv->html_view;
     gchar contents[BUFFER_SIZE];
     gsize read;
     YelpPage *page;
@@ -927,9 +930,8 @@ document_func (YelpDocument       *document,
 	    yelp_html_write (html, contents, read);
 	} while (read == BUFFER_SIZE);
 	yelp_html_close (html);
-	/* contents isn't \0-terminated */
-	//printf ("  DATA: %s\n", contents_);
-	//g_free (contents_);
+
+	window->priv->current_request = -1;
 	yelp_page_free (page);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
@@ -950,7 +952,6 @@ void
 yelp_window_load (YelpWindow *window, const gchar *uri)
 {
     YelpWindowPriv *priv;
-    //YelpDocInfo    *doc_info;
     gchar          *frag_id = NULL;
     GtkAction      *action;
     gchar          *real_uri = NULL;
@@ -960,17 +961,44 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
+    priv = window->priv;
+
+    if (priv->current_request != -1) {
+	yelp_document_cancel_page (priv->current_document, priv->current_request);
+	priv->current_request = -1;
+    }
+
 
     type = yelp_uri_resolve (uri, &real_uri, &frag_id);
  
-    switch (type) {
-    case YELP_SPOON_TYPE_TOC:
-	doc = yelp_toc_get ();
+    /* TODO: handle type errors here first */
+
+    if (priv->uri && g_str_equal (real_uri, priv->uri)) {
+	doc = priv->current_document;
+    } else {
+	switch (type) {
+	case YELP_SPOON_TYPE_TOC:
+	    doc = yelp_toc_get ();
+	    break;
+	case YELP_SPOON_TYPE_DOC:
+	    break;
+	case YELP_SPOON_TYPE_HTML:
+	    break;
+	default:
+	    break;
+	}
     }
 
     if (doc) {
-	yelp_document_get_page (doc, frag_id, document_func, (void *) window->priv->html_view);
+	priv->uri = real_uri;
+	priv->current_frag = frag_id;
+	priv->req_uri = g_strdup (uri);
+	priv->current_request = yelp_document_get_page (doc, 
+								frag_id, 
+								document_func, 
+								(void *) window);
     }
+    priv->current_document = doc;
 
 	/*
     case YELP_DOC_TYPE_MAN:
@@ -1316,6 +1344,8 @@ window_populate (YelpWindow *window)
 
 
     priv = window->priv;
+
+    priv->current_request = -1;
 
     priv->main_box = gtk_vbox_new (FALSE, 0);
 
@@ -2675,23 +2705,11 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
     GladeXML       *glade;
     GtkWidget      *dialog;
     GtkWidget      *entry;
-    gchar          *uri;
+    gchar          *uri = NULL;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
-
-    /*if (priv->current_doc) {
-	uri = yelp_doc_info_get_uri (priv->current_doc,
-				     priv->current_frag,
-				     YELP_URI_TYPE_NO_FILE);
-	if (!uri)
-	    uri = yelp_doc_info_get_uri (priv->current_doc,
-					 priv->current_frag,
-					 YELP_URI_TYPE_FILE);
-    } else {
-	uri = NULL;
-	}*/
 
     glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
 			   "location_dialog",
@@ -2708,6 +2726,7 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
     priv->location_dialog = dialog;
     priv->location_entry  = entry;
 
+    uri = priv->req_uri;
     if (uri) {
 	gtk_entry_set_text (GTK_ENTRY (entry), uri);
 	gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);

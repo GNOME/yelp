@@ -273,8 +273,6 @@ yelp_document_cancel_page (YelpDocument *document, gint req_id)
 	hash_slist_remove (priv->reqs_by_page_id,
 			   request->page_id,
 			   request);
-	g_hash_table_remove (priv->reqs_by_req_id,
-			     GINT_TO_POINTER (req_id));
     } else {
 	g_warning ("YelpDocument: Attempted to remove request %i,"
 		   " but no such request exists.",

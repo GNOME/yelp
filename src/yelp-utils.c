@@ -1358,12 +1358,12 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	} else {
 	    *section = g_strdup("index");
 	}
-	*result = NULL;
+	*result = g_strdup ("x-yelp-toc:");
 	/* TOC page */
     } else if (!strncmp (uri, "x-yelp-search:", 14)) {
 	/* Search pager request.  *result contains the search terms */
-	*result = g_strdup (uri+14);
-	*section = NULL;
+	*result = g_strdup (uri);
+	*section = g_strdup (uri+14);
 	ret = YELP_SPOON_TYPE_SEARCH;
     } else if (g_file_test (intern_uri, G_FILE_TEST_EXISTS)) {
 	/* Full path */

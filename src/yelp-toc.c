@@ -483,7 +483,7 @@ toc_process (YelpToc *toc)
 	/* FIXME: Once hooked up properly into yelp, uncomment
 	 * to make the nice shiny icon appear
 	 */
-	/*icon = xmlGetProp (node, BAD_CAST "icon");*/
+	icon = xmlGetProp (node, BAD_CAST "icon");
 	if (icon) {
 	    GtkIconInfo *info;
 	    GtkIconTheme *theme = 
