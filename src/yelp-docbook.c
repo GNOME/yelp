@@ -84,6 +84,7 @@ static void           docbook_request         (YelpDocument        *document,
 					       gchar               *page_id,
 					       YelpDocumentFunc     func,
 					       gpointer             user_data);
+static gpointer       docbook_get_sections    (YelpDocument        *document);
 
 /* YelpTransform */
 static void           transform_func          (YelpTransform       *transform,
@@ -141,6 +142,7 @@ docbook_class_init (YelpDocbookClass *klass)
 
     document_class->request = docbook_request;
     document_class->cancel = NULL;
+    document_class->get_sections = docbook_get_sections;
 
     g_type_class_add_private (klass, sizeof (YelpDocbookPriv));
 }
@@ -224,6 +226,14 @@ yelp_docbook_new (gchar *filename)
 
 /******************************************************************************/
 /** YelpDocument **************************************************************/
+
+static gpointer
+docbook_get_sections (YelpDocument *document)
+{
+    YelpDocbook *db = (YelpDocbook *) document;
+    
+    return (gpointer) (db->priv->sections);
+}
 
 static void
 docbook_request (YelpDocument     *document,

@@ -19,13 +19,14 @@ yelp_SOURCES =							\
 	yelp-transform.c	yelp-transform.h		\
 	yelp-gecko-services.h   yelp-gecko-services.cpp	        \
 	yelp-document.h		yelp-document.c			\
-	yelp-toc.h		yelp-toc.c
+	yelp-toc.h		yelp-toc.c			\
+	yelp-docbook.h		yelp-docbook.c
 
-#if ENABLE_MAN
-#yelp_SOURCES +=					\
-#	yelp-man-parser.c yelp-man-parser.h	\
-#	yelp-man-pager.c yelp-man-pager.h
-#endif
+if ENABLE_MAN
+yelp_SOURCES +=					\
+	yelp-man-parser.c yelp-man-parser.h	\
+	yelp-man.c yelp-man.h
+endif
 
 #if ENABLE_INFO
 #yelp_SOURCES +=					\

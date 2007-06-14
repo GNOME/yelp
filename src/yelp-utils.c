@@ -1184,6 +1184,7 @@ YelpSpoonType
 resolve_man_page (const gchar *name, gchar **result, gchar **section)
 {
     /* Various ways the path could be presented:
+     * filename - full filename after man:
      * name(section) - resolve to a particular section
      * name.section - ditto.  This must be tested twice.  Once for full filename and
      *                once for section
@@ -1201,7 +1202,7 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
     if (lbrace) {
 	rbrace = strrchr (name, ')');
 	if (rbrace) {
-	    sect = g_strndup (lbrace+1, rbrace - lbrace - 1);
+	    /*sect = g_strndup (lbrace+1, rbrace - lbrace - 1);*/
 	    real_name = g_strndup (name, lbrace - name);
 	} else {
 	    sect = NULL;
@@ -1211,12 +1212,12 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
 	lbrace = strrchr (name, '.');
 	if (lbrace) {
 	    repeat = TRUE;
-	    sect = strdup (lbrace+1);
+	    /*sect = strdup (lbrace+1);*/
 	    real_name = g_strndup (name, lbrace - name);
 	} else {
 	    lbrace = strrchr (name, '#');
 	    if (lbrace) {
-		sect = strdup (lbrace+1);
+		/*sect = strdup (lbrace+1);*/
 		real_name = g_strndup (name, lbrace - name);
 	    } else {
 		real_name = strdup (name);
@@ -1224,17 +1225,30 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
 	    }
 	}
     }
+    printf ("Checking %s\n", real_name);
+    if (g_file_test (real_name, G_FILE_TEST_EXISTS)) {
+	/* Full filename */
+	printf ("Exists\n");
+	*result = g_strdup (real_name);
+	return YELP_SPOON_TYPE_MAN;
+    } else if (g_file_test (name, G_FILE_TEST_EXISTS)) {
+	/* Full filename */
+	printf ("Exists\n");
+	*result = g_strdup (name);
+	return YELP_SPOON_TYPE_MAN;
+    }
+
     entry = spoon_man_find_from_name (real_name, sect);
 
     if (entry) {
 	*result = strdup (entry->path);
-	*section = strdup (entry->section);
+	/**section = strdup (entry->section);*/
 	return YELP_SPOON_TYPE_MAN;
     } else if (repeat) {
 	entry = spoon_man_find_from_name (name, NULL);
 	if (entry) {
 	    *result = strdup (entry->path);
-	    *section = strdup (entry->section);
+	    /**section = strdup (entry->section);*/
 	    return YELP_SPOON_TYPE_MAN;
 	}
     }

@@ -48,6 +48,8 @@
 #include "yelp-settings.h"
 //#include "yelp-toc-pager.h"
 #include "yelp-toc.h"
+#include "yelp-man.h"
+#include "yelp-docbook.h"
 #include "yelp-window.h"
 #include "yelp-print.h"
 #include "yelp-debug.h"
@@ -99,6 +101,9 @@ static void        window_populate_find           (YelpWindow        *window,
 						   GtkWidget         *find_bar);
 static void        window_set_sections            (YelpWindow        *window,
 						   GtkTreeModel      *sections);
+static void        window_set_section_cursor      (YelpWindow        *window,
+						   GtkTreeModel      *model);
+
 /*static void        window_do_load                 (YelpWindow        *window,
 						   YelpDocInfo       *doc_info,
 						   gchar             *frag_id);*/
@@ -232,6 +237,8 @@ static void        window_find_previous_cb        (GtkAction *action,
 						   YelpWindow *window);
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
+static void        window_write_html              (YelpWindow        *window, 
+						   YelpPage          *page);
 
 enum {
     NEW_WINDOW_REQUESTED,
@@ -272,6 +279,7 @@ struct _YelpWindowPriv {
     /* Location Information */
     gchar          *uri;
     gchar          *req_uri;
+    gchar          *base_uri;
     gint            current_request;
     YelpDocument   *current_document;
     gchar          *current_frag;
@@ -279,6 +287,7 @@ struct _YelpWindowPriv {
     GSList         *history_forward;
     GtkWidget      *back_menu;
     GtkWidget      *forward_menu;
+    GtkTreeModel   *current_sidebar;
 
     /* Callbacks and Idles */
     gulong          start_handler;
@@ -909,30 +918,24 @@ yelp_window_new (GNode *doc_tree, GList *index)
 }
 
 static void
-document_func (YelpDocument       *document,
+page_request_cb (YelpDocument       *document,
 	       YelpDocumentSignal  signal,
 	       gint                req_id,
 	       gpointer           *func_data,
 	       YelpWindow         *window)
 {
-    YelpHtml *html = window->priv->html_view;
-    gchar contents[BUFFER_SIZE];
-    gsize read;
+    gchar *contents;
     YelpPage *page;
     YelpError *error;
+    
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
-	yelp_html_set_base_uri (html, "file:///tmp/blah.html");
-	yelp_html_open_stream (html, "application/xhtml+xml");
-	page = (YelpPage *) func_data;
-	do {
-	    yelp_page_read (page, contents, BUFFER_SIZE, &read, NULL);
-	    yelp_html_write (html, contents, read);
-	} while (read == BUFFER_SIZE);
-	yelp_html_close (html);
+	window_set_sections (window, yelp_document_get_sections (document));
+
+	window_write_html (window, (YelpPage *) func_data);
 
 	window->priv->current_request = -1;
-	yelp_page_free (page);
+	yelp_page_free ((YelpPage *) func_data);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
 	printf ("TITLE: %s (%i)\n", (gchar *) func_data, req_id);
@@ -958,7 +961,6 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     YelpSpoonType  type = YELP_SPOON_TYPE_ERROR;
     YelpDocument   *doc = NULL;
 
-
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
@@ -967,7 +969,6 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	yelp_document_cancel_page (priv->current_document, priv->current_request);
 	priv->current_request = -1;
     }
-
 
     type = yelp_uri_resolve (uri, &real_uri, &frag_id);
  
@@ -979,8 +980,16 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	switch (type) {
 	case YELP_SPOON_TYPE_TOC:
 	    doc = yelp_toc_get ();
+	    priv->base_uri = g_strdup ("file:///fakefile");
+	    break;
+	case YELP_SPOON_TYPE_MAN:
+	    priv->base_uri = g_strdup ("file:///fakefile");
+	    doc = yelp_man_new (real_uri);
+	    priv->uri = "";
 	    break;
 	case YELP_SPOON_TYPE_DOC:
+	    priv->base_uri = g_strdup (uri);
+	    doc = yelp_docbook_new (real_uri);
 	    break;
 	case YELP_SPOON_TYPE_HTML:
 	    break;
@@ -990,12 +999,14 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     }
 
     if (doc) {
+	if (!frag_id)
+	    frag_id = g_strdup ("index");
 	priv->uri = real_uri;
 	priv->current_frag = frag_id;
 	priv->req_uri = g_strdup (uri);
 	priv->current_request = yelp_document_get_page (doc, 
 								frag_id, 
-								document_func, 
+								page_request_cb, 
 								(void *) window);
     }
     priv->current_document = doc;
@@ -1458,11 +1469,11 @@ window_populate (YelpWindow *window)
     g_object_set (priv->side_sects,
 		  "headers-visible",   FALSE,
 		  NULL);
-    /*gtk_tree_view_insert_column_with_attributes
+    gtk_tree_view_insert_column_with_attributes
 	(GTK_TREE_VIEW (priv->side_sects), -1,
 	 NULL, gtk_cell_renderer_text_new (),
-	 "text", YELP_PAGER_COLUMN_TITLE,
-	 NULL);*/
+	 "text", YELP_DOCUMENT_COLUMN_TITLE,
+	 NULL);
 
     /* DISABLE FOR NOW
     gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (priv->side_sects),
@@ -1609,13 +1620,101 @@ window_set_sections (YelpWindow   *window,
     g_return_if_fail (YELP_IS_WINDOW (window));
     priv = window->priv;
 
-    gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
+	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
+	
+	if (sections) {
+	    gtk_widget_show_all (priv->side_sw);
+	    window_set_section_cursor (window, sections);
+	} else
+	    gtk_widget_hide (priv->side_sw);
 
-    if (sections)
-	gtk_widget_show_all (priv->side_sw);
-    else
-	gtk_widget_hide (priv->side_sw);
 }
+
+static void
+window_set_section_cursor (YelpWindow * window, GtkTreeModel *model)
+{
+    gboolean    valid;
+    gchar *id = NULL;
+    GtkTreeIter     iter;
+    YelpWindowPriv *priv = window->priv;
+    GtkTreeSelection *selection =
+	gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
+    g_signal_handlers_block_by_func (selection,
+				     tree_selection_changed_cb,
+				     window);
+    gtk_tree_selection_unselect_all (selection);
+    
+    valid = gtk_tree_model_get_iter_first (model, &iter);
+    while (valid) {
+	gtk_tree_model_get (model, &iter,
+			    YELP_DOCUMENT_COLUMN_ID, &id,
+			    -1);
+	if (g_str_equal (id, priv->current_frag)) {
+	    GtkTreePath *path = NULL;
+	    GtkTreeIter parent;
+	    if (gtk_tree_model_iter_parent (model, &parent, &iter)) {
+		path = gtk_tree_model_get_path (model, &parent);
+		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
+					      path);
+		gtk_tree_path_free(path);
+	    }
+	    path = gtk_tree_model_get_path (model, &iter);
+	    gtk_tree_selection_select_path (selection, path);
+	    
+	    gtk_tree_path_free (path);
+	    g_free (id);
+	    break;
+	}
+	
+	g_free (id);
+	
+	valid = tree_model_iter_following (model, &iter);
+    }
+    g_signal_handlers_unblock_by_func (selection,
+				       tree_selection_changed_cb,
+				       window);
+}
+
+/*    if (model) {
+	GtkTreeSelection *selection =
+	    gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->side_sects));
+	g_signal_handlers_block_by_func (selection,
+					 tree_selection_changed_cb,
+					 window);
+	gtk_tree_selection_unselect_all (selection);
+
+	valid = gtk_tree_model_get_iter_first (model, &iter);
+	while (valid) {
+	    gtk_tree_model_get (model, &iter,
+				YELP_PAGER_COLUMN_ID, &id,
+				-1);
+	    if (yelp_pager_page_contains_frag (pager,
+					       id,
+					       priv->current_frag)) {
+		GtkTreePath *path = NULL;
+		GtkTreeIter parent;
+		if (gtk_tree_model_iter_parent (model, &parent, &iter)) {
+		    path = gtk_tree_model_get_path (model, &parent);
+		    gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->side_sects),
+						  path);
+		    gtk_tree_path_free(path);
+		}
+		path = gtk_tree_model_get_path (model, &iter);
+		gtk_tree_selection_select_path (selection, path);
+		
+		gtk_tree_path_free (path);
+		g_free (id);
+		break;
+	    }
+
+	    g_free (id);
+
+	    valid = tree_model_iter_following (model, &iter);
+	}
+	g_signal_handlers_unblock_by_func (selection,
+					   tree_selection_changed_cb,
+					   window);
+    }*/
 
 #if 0
 static gboolean
@@ -2251,7 +2350,6 @@ html_uri_selected_cb (YelpHtml  *html,
 
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
-
     if (!handled) {
 	yelp_window_load (window, uri);
     }
@@ -2323,7 +2421,6 @@ static void
 tree_selection_changed_cb (GtkTreeSelection *selection,
 			   YelpWindow       *window)
 {
-#if 0
     YelpWindowPriv *priv;
     GtkTreeModel   *model;
     GtkTreeIter     iter;
@@ -2336,13 +2433,12 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
     if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
 	model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->side_sects));
 	gtk_tree_model_get (model, &iter,
-			    YELP_PAGER_COLUMN_ID, &id,
+			    YELP_DOCUMENT_COLUMN_ID, &id,
 			    -1);
-	uri = yelp_doc_info_get_uri (priv->current_doc, id, YELP_URI_TYPE_ANY);
+	uri = g_strdup_printf ("%s#%s", priv->base_uri, id);
 	yelp_window_load (window, uri);
 	g_free (uri);
     }
-#endif
 }
 
 static void
@@ -3062,7 +3158,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 	"Mikael Hallendal <micke@imendio.com>",
 	"Alexander Larsson <alexl@redhat.com>",
 	"Shaun McCance <shaunm@gnome.org>",
-	"Don Scorgie <DonScorgie@Blueyonder.co.uk>",
+	"Don Scorgie <Don@Scorgie.org>",
 	"Brent Smith <gnome@nextreality.net>",
 	NULL
     };
@@ -3371,3 +3467,20 @@ idle_write (IdleWriterContext *context)
     return FALSE;
 }
 
+static void
+window_write_html (YelpWindow *window, YelpPage *page)
+{
+    gsize read;
+    YelpHtml *html = window->priv->html_view;
+    gchar contents[BUFFER_SIZE];
+    
+    /* Use a silly fake URI to stop gecko doing silly things */
+    yelp_html_set_base_uri (html, window->priv->base_uri);
+    yelp_html_open_stream (html, "application/xhtml+xml");
+    
+    do {
+	yelp_page_read (page, contents, BUFFER_SIZE, &read, NULL);
+	yelp_html_write (html, contents, read);
+    } while (read == BUFFER_SIZE);
+    yelp_html_close (html);
+}

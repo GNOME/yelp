@@ -70,6 +70,7 @@ document_func (YelpDocument       *document,
 	printf ("  NEXT: %s\n", page->next_id);
 	printf ("  UP:   %s\n", page->up_id);
 	printf ("  ROOT: %s\n", page->root_id);
+	printf ("  SECTIONS: %s\n", yelp_document_get_sections (document) ? "yep": "nah");
 	yelp_page_read (page, contents, 60, &read, NULL);
 	/* contents isn't \0-terminated */
 	contents_ = g_strndup (contents, read);

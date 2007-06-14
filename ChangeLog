@@ -1,3 +1,29 @@
+2007-06-14  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c:
+	Minor fix to recognise man:<filepath>
+	
+	* src/Makefile.am:
+	* src/yelp-window.c: 
+	Add support for docbook (yay!) and
+	man pages
+	Rename silly function names to something slightly
+	more sensible
+	Update my email address in help dialog (minor)
+	
+	* src/test-document.c:
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	* src/yelp-docbook.c:
+	Add support for getting the sections GtkTreeModel
+	out
+	
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	Add functions to get the length (remaining)
+	of page
+	
+	
 2007-06-13  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-window.c:

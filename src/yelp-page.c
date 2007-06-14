@@ -61,6 +61,14 @@ yelp_page_new_string (YelpDocument  *document,
     return page;
 }
 
+gsize
+yelp_page_get_length (YelpPage      *page)
+{
+    g_return_val_if_fail (page != NULL, 0);
+
+    return page->content_len;
+}
+
 GIOStatus
 yelp_page_read (YelpPage    *page,
 		gchar       *buffer,
@@ -84,7 +92,14 @@ page_read_string (YelpPage    *page,
 		  gsize       *bytes_read,
 		  YelpError  **error)
 {
+    gint real_count = 0;
     g_return_val_if_fail (page != NULL, G_IO_STATUS_ERROR);
+
+    if (count < 0) {
+	real_count = (page->content_len - page->content_offset) + 1;
+    } else {
+	real_count = count;
+    }
 
 
     if (page->content_offset == page->content_len) {
@@ -95,7 +110,7 @@ page_read_string (YelpPage    *page,
 	/* FIXME: set the error */
 	return G_IO_STATUS_ERROR;
     }
-    else if (page->content_offset + count <= page->content_len) {
+    else if (page->content_offset + real_count <= page->content_len) {
 	strncpy (buffer, page->content + page->content_offset, count);
 	page->content_offset += count;
 	*bytes_read = count;

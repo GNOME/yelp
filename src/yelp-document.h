@@ -24,6 +24,7 @@
 #define __YELP_DOCUMENT_H__
 
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 #define YELP_TYPE_DOCUMENT         (yelp_document_get_type ())
 #define YELP_DOCUMENT(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_DOCUMENT, YelpDocument))
@@ -80,6 +81,7 @@ struct _YelpDocumentClass {
 					      gpointer          user_data);
     void          (*release_page)            (YelpDocument     *document,
 					      YelpPage         *page);
+    gpointer      (*get_sections)           (YelpDocument     *document);
 };
 
 
@@ -124,5 +126,7 @@ void              yelp_document_error_request  (YelpDocument       *document,
 						YelpError          *error);
 void              yelp_document_error_pending  (YelpDocument       *document,
 						YelpError          *error);
+GtkTreeModel     *yelp_document_get_sections   (YelpDocument       *document);
+
 
 #endif /* __YELP_DOCUMENT_H__ */

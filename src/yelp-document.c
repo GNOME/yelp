@@ -56,6 +56,7 @@ struct _YelpDocumentPriv {
     GHashTable   *reqs_by_page_id;  /* Indexed by page ID, contains GSList */
     GSList       *reqs_pending;     /* List of requests that need a page */
 
+    GtkTreeModel *sections;         /* Sections of the document, for display */
     /* Real page IDs map to themselves, so this list doubles
      * as a list of all valid page IDs.
      */
@@ -72,6 +73,7 @@ struct _YelpDocumentPriv {
 static void           document_class_init     (YelpDocumentClass   *klass);
 static void           document_init           (YelpDocument        *document);
 static void           document_dispose        (GObject             *object);
+static gpointer       document_get_sections   (YelpDocument        *document);
 
 static gboolean       request_idle_title      (Request             *request);
 static gboolean       request_idle_page       (Request             *request);
@@ -123,6 +125,8 @@ document_class_init (YelpDocumentClass *klass)
 
     object_class->dispose      = document_dispose;
 
+    klass->get_sections        = document_get_sections;
+
     g_type_class_add_private (klass, sizeof (YelpDocumentPriv));
 }
 
@@ -145,6 +149,7 @@ document_init (YelpDocument *document)
 			       (GDestroyNotify) g_slist_free);
     priv->reqs_pending = NULL;
 
+    priv->sections = NULL;
     priv->page_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
     priv->titles = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
     priv->contents = g_hash_table_new_full (g_str_hash, g_str_equal,
@@ -157,6 +162,13 @@ document_init (YelpDocument *document)
     priv->next_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
     priv->up_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 }
+
+static gpointer
+document_get_sections (YelpDocument *document)
+{
+    return NULL;
+}
+
 
 static void
 document_dispose (GObject *object)
@@ -465,6 +477,12 @@ yelp_document_has_page (YelpDocument *document, gchar *page_id)
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
     content = g_hash_table_lookup (document->priv->contents, page_id);
     return !(content == NULL);
+}
+
+GtkTreeModel *
+yelp_document_get_sections (YelpDocument *document)
+{
+    return (YELP_DOCUMENT_GET_CLASS (document)->get_sections(document));
 }
 
 void

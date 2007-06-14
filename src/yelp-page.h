@@ -79,6 +79,7 @@ GIOStatus     yelp_page_read         (YelpPage      *page,
 				      gsize          count,
 				      gsize         *bytes_read,
 				      YelpError    **error);
+gsize        yelp_page_get_length    (YelpPage      *page);				      
 
 void          yelp_page_free         (YelpPage      *page);
 
