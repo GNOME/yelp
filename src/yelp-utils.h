@@ -115,16 +115,16 @@ gchar **            yelp_get_man_paths       (void);
 
 #else
 typedef enum {
-    YELP_SPOON_TYPE_DOC = 0,
-    YELP_SPOON_TYPE_MAN,
-    YELP_SPOON_TYPE_INFO,
-    YELP_SPOON_TYPE_HTML,
-    YELP_SPOON_TYPE_TOC,
-    YELP_SPOON_TYPE_SEARCH,
-    YELP_SPOON_TYPE_NOT_FOUND,
-    YELP_SPOON_TYPE_EXTERNAL,
-    YELP_SPOON_TYPE_ERROR
-} YelpSpoonType;
+    YELP_RRN_TYPE_DOC = 0,
+    YELP_RRN_TYPE_MAN,
+    YELP_RRN_TYPE_INFO,
+    YELP_RRN_TYPE_HTML,
+    YELP_RRN_TYPE_TOC,
+    YELP_RRN_TYPE_SEARCH,
+    YELP_RRN_TYPE_NOT_FOUND,
+    YELP_RRN_TYPE_EXTERNAL,
+    YELP_RRN_TYPE_ERROR
+} YelpRrnType;
 
 
 /* Generic resolver function.  Takes in the uri (which can be
@@ -137,7 +137,7 @@ typedef enum {
  * Both *result and *section must be NULL when calling (otherwise
  * we throw an error
  */
-YelpSpoonType             yelp_uri_resolve        (gchar *uri, 
+YelpRrnType             yelp_uri_resolve        (gchar *uri, 
 						   gchar **result,
 						   gchar **section);
 #endif

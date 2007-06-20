@@ -26,9 +26,9 @@ DefaultTests (void)
 {
   gchar *result = NULL;
   gchar *section = NULL;
-  YelpSpoonType restype = YELP_TYPE_ERROR;
+  YelpRrnType restype = YELP_TYPE_ERROR;
 
-  /* First, normal docs - these will only work with spoon XDG_DATA_DIRS set correctly */
+  /* First, normal docs - these will only work with rrn XDG_DATA_DIRS set correctly */
   /* Normal doc, no section */
   restype = yelp_uri_resolve ("ghelp:user-guide", &result, &section);
   if (restype != YELP_TYPE_DOC || !TestFile (result) ||
@@ -223,7 +223,7 @@ main (int argc, char *argv[])
     char *type = argv[i+1];
     char *result = NULL;
     char *section = NULL;
-    YelpSpoonType restype = YELP_TYPE_ERROR;
+    YelpRrnType restype = YELP_TYPE_ERROR;
 
 
     printf ("uri: %s type: %s\n", argv[i], argv[i+1]);

@@ -43,22 +43,18 @@
 #include "yelp-error.h"
 */
 #include "yelp-html.h"
-/*
-#include "yelp-pager.h"*/
 #include "yelp-settings.h"
-//#include "yelp-toc-pager.h"
 #include "yelp-toc.h"
-#include "yelp-man.h"
 #include "yelp-docbook.h"
 #include "yelp-window.h"
 #include "yelp-print.h"
 #include "yelp-debug.h"
 
 
-/*#ifdef ENABLE_MAN
-#include "yelp-man-pager.h"
+#ifdef ENABLE_MAN
+#include "yelp-man.h"
 #endif
-#ifdef ENABLE_INFO
+/*#ifdef ENABLE_INFO
 #include "yelp-info-pager.h"
 #endif
 #ifdef ENABLE_SEARCH
@@ -958,7 +954,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     gchar          *frag_id = NULL;
     GtkAction      *action;
     gchar          *real_uri = NULL;
-    YelpSpoonType  type = YELP_SPOON_TYPE_ERROR;
+    YelpRrnType  type = YELP_RRN_TYPE_ERROR;
     YelpDocument   *doc = NULL;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
@@ -978,20 +974,20 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	doc = priv->current_document;
     } else {
 	switch (type) {
-	case YELP_SPOON_TYPE_TOC:
+	case YELP_RRN_TYPE_TOC:
 	    doc = yelp_toc_get ();
 	    priv->base_uri = g_strdup ("file:///fakefile");
 	    break;
-	case YELP_SPOON_TYPE_MAN:
+	case YELP_RRN_TYPE_MAN:
 	    priv->base_uri = g_strdup ("file:///fakefile");
 	    doc = yelp_man_new (real_uri);
 	    priv->uri = "";
 	    break;
-	case YELP_SPOON_TYPE_DOC:
+	case YELP_RRN_TYPE_DOC:
 	    priv->base_uri = g_strdup (uri);
 	    doc = yelp_docbook_new (real_uri);
 	    break;
-	case YELP_SPOON_TYPE_HTML:
+	case YELP_RRN_TYPE_HTML:
 	    break;
 	default:
 	    break;
@@ -2904,32 +2900,14 @@ window_preferences_cb (GtkAction *action, YelpWindow *window)
 static void
 window_reload_cb (GtkAction *action, YelpWindow *window)
 {
-#if 0
-    YelpPager *pager;
-
-    g_return_if_fail (YELP_IS_WINDOW (window));
-
-    debug_print (DB_FUNCTION, "entering\n");
-
-    if (window->priv->current_doc) {
-	YelpLoadData *data;
-	gchar *uri;
-	pager = yelp_doc_info_get_pager (window->priv->current_doc);
-
-	if (!pager)
-	    return;
-
-	yelp_pager_cancel (pager);
-
-	uri = yelp_doc_info_get_uri (window->priv->current_doc,
-				     window->priv->current_frag,
-				     YELP_URI_TYPE_ANY);
-	data = g_new0 (YelpLoadData, 1);
-	data->window = g_object_ref (window);
-	data->uri = uri;
-	g_idle_add ((GSourceFunc) window_load_async, data);
+    if (window->priv->current_document) {
+	if (window->priv->current_request > -1) {
+	    yelp_document_cancel_page (window->priv->current_document, window->priv->current_request);
+	}
+	g_object_unref (window->priv->current_document);
+	window->priv->current_document = NULL;
+	yelp_window_load (window, window->priv->req_uri);
     }
-#endif
 }
 
 static void

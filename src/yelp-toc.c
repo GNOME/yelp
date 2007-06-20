@@ -33,13 +33,13 @@
 #include <libxml/parserInternals.h>
 #include <libxml/xinclude.h>
 #include <libxml/xmlreader.h>
-#include <spoon.h>
+#include <rarian.h>
 #ifdef ENABLE_INFO
-#include <spoon-info.h>
+#include <rarian-info.h>
 #endif /* ENABLE_INFO */
 
 #ifdef ENABLE_MAN
-#include <spoon-man.h>
+#include <rarian-man.h>
 #endif /* ENABLE_MAN */
 
 #include "yelp-error.h"
@@ -419,10 +419,10 @@ transform_final_func (YelpTransform *transform, YelpToc *toc)
 /** Threaded ******************************************************************/
 
 static int
-spoon_add_document (void *reg, void * user_data)
+rrn_add_document (void *reg, void * user_data)
 {
     xmlNodePtr node = (xmlNodePtr) user_data;
-    SpoonReg *r = (SpoonReg *) reg;
+    RrnReg *r = (RrnReg *) reg;
     xmlNodePtr new;
     gchar *tmp;
     new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
@@ -535,7 +535,7 @@ toc_process (YelpToc *toc)
 				BAD_CAST "subject")) {
 		    xmlChar *cat = xmlTextReaderGetAttribute (reader, 
 							      BAD_CAST "category");
-		    spoon_for_each_in_category (spoon_add_document,
+		    rrn_for_each_in_category (rrn_add_document,
 						(char *) cat,
 						(void *) node);
 		    xmlFree (cat);
@@ -668,7 +668,7 @@ xml_trim_titles (xmlNodePtr node, xmlChar * nodetype)
 
 #ifdef ENABLE_INFO
 static int
-spoon_info_add_document (SpoonInfoEntry *entry, void *user_data)
+rrn_info_add_document (RrnInfoEntry *entry, void *user_data)
 {
     xmlNodePtr node = (xmlNodePtr) user_data;
     xmlNodePtr new;
@@ -734,7 +734,7 @@ toc_process_info (YelpToc *toc)
     xmlXPathFreeObject (obj);
     xmlXPathFreeContext (xpath);
 
-    categories = spoon_info_get_categories ();
+    categories = rrn_info_get_categories ();
     cat_iter = categories;
 
     while (cat_iter && *cat_iter) {
@@ -758,7 +758,7 @@ toc_process_info (YelpToc *toc)
 	xmlNewTextChild (cat_node, NULL, BAD_CAST "title",
 			 BAD_CAST *cat_iter);
 	
-	spoon_info_for_each_in_category (*cat_iter, (SpoonInfoForeachFunc) spoon_info_add_document, 
+	rrn_info_for_each_in_category (*cat_iter, (RrnInfoForeachFunc) rrn_info_add_document, 
 					 cat_node);
 	cat_iter++;
     }
@@ -794,7 +794,7 @@ toc_process_info (YelpToc *toc)
 #ifdef ENABLE_MAN
 
 static int
-spoon_add_man_document (SpoonManEntry *entry, void *user_data)
+rrn_add_man_document (RrnManEntry *entry, void *user_data)
 {
     xmlNodePtr node = (xmlNodePtr) user_data;
     xmlNodePtr new;
@@ -852,7 +852,7 @@ toc_process_man (YelpToc *toc)
 	    cat_node = xmlNewChild (node, NULL, BAD_CAST "toc",
 				    NULL);
 	    for (j = 0; sects[j] != NULL; j++)
-		spoon_man_for_each_in_category (sects[j], (SpoonManForeachFunc) spoon_add_man_document, node);
+		rrn_man_for_each_in_category (sects[j], (RrnManForeachFunc) rrn_add_man_document, node);
 	    g_strfreev (sects);
 	}
 	xmlFree (sect);
