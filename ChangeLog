@@ -1,3 +1,13 @@
+2007-07-01  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-toc.c: 
+	Now Rarian is fast, don't split out man and info pages.
+	Add in params so the TOC looks nice and shiny
+	Fix a couple of silly warnings
+	
+	* src/yelp-base.c:
+	Move initialisation of bookmarks and settings to before TOC
+
 2007-06-20  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* configure.in: 

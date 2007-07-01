@@ -98,12 +98,12 @@ yelp_base_init (YelpBase *base)
 	priv->toc_tree = g_node_new (NULL);
 	priv->index    = NULL;
 	priv->windows  = NULL;
+	yelp_bookmarks_init ();
+	yelp_settings_init ();
 	/* Init here to start processing before 
 	 * we even start the window */
 	yelp_toc_new();
 
-	yelp_bookmarks_init ();
-	yelp_settings_init ();
 }
 
 static void

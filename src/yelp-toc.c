@@ -71,13 +71,9 @@ struct _YelpTocPriv {
     gboolean       info_processed;
 
     YelpTransform *transform;
-    YelpTransform *info_transform;
-    YelpTransform *man_transform;
 
     xmlDocPtr     xmldoc;
     xmlNodePtr    xmlcur;
-    xmlNodePtr    fake_info;
-    xmlNodePtr    fake_man;
     gchar        *cur_page_id;
     gchar        *cur_prev_id;
 };
@@ -217,7 +213,7 @@ yelp_toc_new (void)
     debug_print (DB_FUNCTION, "entering\n");
 
     if (toc_doc == NULL) {
-	toc_doc = (YelpToc *) g_object_new (YELP_TYPE_TOC, NULL);
+	toc_doc = (YelpDocument *) g_object_new (YELP_TYPE_TOC, NULL);
     }
 
     return (YelpDocument *) toc_doc;
@@ -229,7 +225,7 @@ yelp_toc_get (void)
     debug_print (DB_FUNCTION, "entering\n");
 
     if (toc_doc == NULL) {
-	toc_doc = (YelpToc *) g_object_new (YELP_TYPE_TOC, NULL);
+	toc_doc = (YelpDocument *) g_object_new (YELP_TYPE_TOC, NULL);
     }
 
     return (YelpDocument *) toc_doc;
@@ -303,9 +299,7 @@ transform_func (YelpTransform       *transform,
 
     priv = toc->priv;
 
-    g_assert (transform == priv->transform ||
-	      transform == priv->info_transform ||
-	      transform == priv->man_transform);
+    g_assert (transform == priv->transform);
 
     if (priv->state == TOC_STATE_STOP) {
 	switch (signal) {
@@ -335,8 +329,7 @@ transform_func (YelpTransform       *transform,
 	priv->transform_running = FALSE;
 	break;
     case YELP_TRANSFORM_FINAL:
-	if (priv->man_processed && priv->info_processed)
-	    transform_final_func (transform, toc);
+	transform_final_func (transform, toc);
 	break;
     }
 }
@@ -361,25 +354,8 @@ transform_page_func (YelpTransform *transform,
     g_file_set_contents (filename, content, -1, NULL);
 #endif
 
-    /* We only want to add "Info" and "Man" if they're the
-     * "true" versions as otherwise they'll be empty
-     * and people will complain.
-     * This is a horrific abuse of the wonderful
-     * system used for generating the TOC
-     */
+    yelp_document_add_page (YELP_DOCUMENT (toc), page_id, content);
 
-    if ((transform != priv->man_transform &&
-	 g_str_equal (page_id, "Man")) ||
-	(transform != priv->info_transform &&
-	 g_str_equal (page_id, "Info"))) {
-	goto done;
-    }
-
-    if (!yelp_document_has_page (YELP_DOCUMENT (toc), page_id)) {
-	yelp_document_add_page (YELP_DOCUMENT (toc), page_id, content);
-    }
-
- done:
     g_free (page_id);
 
     g_mutex_unlock (priv->mutex);
@@ -400,15 +376,12 @@ transform_final_func (YelpTransform *transform, YelpToc *toc)
 
     yelp_transform_release (priv->transform);
     priv->transform = NULL;
-    yelp_transform_release (priv->info_transform);
-    priv->info_transform = NULL;
-    yelp_transform_release (priv->man_transform);
-    priv->man_transform = NULL;
 
     priv->transform_running = FALSE;
 
-    if (priv->xmldoc)
+    if (priv->xmldoc) {
 	xmlFreeDoc (priv->xmldoc);
+    }
     priv->xmldoc = NULL;
 
     g_mutex_unlock (priv->mutex);
@@ -431,6 +404,7 @@ rrn_add_document (void *reg, void * user_data)
     xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST r->comment);
     tmp = g_strdup_printf ("%d", r->weight);
     xmlNewNsProp (new, NULL, BAD_CAST "weight", BAD_CAST tmp);
+    g_free (tmp);
     return FALSE;
 }
 
@@ -441,6 +415,11 @@ toc_process (YelpToc *toc)
     YelpError *error = NULL;
     xmlParserCtxtPtr parserCtxt = NULL;
     YelpDocument *document;
+    gint  params_i = 0;
+    gint  params_max = 10;
+    gchar **params = NULL;
+    GtkIconInfo *info = NULL ;
+    GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
 
     GThread *info_thread;
     GThread *man_thread;
@@ -480,14 +459,8 @@ toc_process (YelpToc *toc)
 	xml_trim_titles (node, BAD_CAST "title");
 	xml_trim_titles (node, BAD_CAST "description");
 
-	/* FIXME: Once hooked up properly into yelp, uncomment
-	 * to make the nice shiny icon appear
-	 */
 	icon = xmlGetProp (node, BAD_CAST "icon");
 	if (icon) {
-	    GtkIconInfo *info;
-	    GtkIconTheme *theme = 
-		(GtkIconTheme *) gtk_icon_theme_get_default ();
 	    info = gtk_icon_theme_lookup_icon (theme, (gchar *) icon, 48, 0);
 	    if (info) {
 		xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "icon", 
@@ -556,25 +529,6 @@ toc_process (YelpToc *toc)
     xmlFreeTextReader (reader);
     xmlXPathFreeContext (xpath);
 
-    /*    g_mutex_lock (priv->mutex);
-    priv->xmldoc = xmldoc;
-    g_mutex_unlock (priv->mutex);
-    */
-
-#ifdef ENABLE_MAN
-    priv->fake_man = xmlNewChild (xmlDocGetRootElement (priv->xmldoc), NULL, BAD_CAST "toc", NULL);
-    xmlNewNsProp (priv->fake_man, NULL, BAD_CAST "id", BAD_CAST "Man");
-    xmlNewChild (priv->fake_man, NULL, BAD_CAST "title", 
-		 BAD_CAST _("Manual Pages"));
-    xmlNewNsProp (priv->fake_man, NULL, BAD_CAST "protected", BAD_CAST "1");
-#endif // ENABLE_MAN
-#ifdef ENABLE_INFO
-    priv->fake_info = xmlNewChild (xmlDocGetRootElement (priv->xmldoc), NULL, BAD_CAST "toc", NULL);
-    xmlNewNsProp (priv->fake_info, NULL, BAD_CAST "id", BAD_CAST "Info");
-    xmlNewChild (priv->fake_info, NULL, BAD_CAST "title", 
-		 BAD_CAST _("GNU Info Pages"));
-    xmlNewNsProp (priv->fake_info, NULL, BAD_CAST "protected", BAD_CAST "1");
-#endif //ENABLE_INFO
 
 #ifdef ENABLE_MAN
     man_thread = g_thread_create ((GThreadFunc) toc_process_man, toc, TRUE, NULL);
@@ -595,17 +549,40 @@ toc_process (YelpToc *toc)
     priv->info_processed = TRUE;
 #endif /* ENABLE_INFO */
 
+    params = g_new0 (gchar *, params_max);
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 10;
+	params = g_renew (gchar *, params, params_max);
+    }
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-icon-big", 192, 0);
+    if (info) {
+	params[params_i++] = "help_icon";
+	params[params_i++] = g_strdup_printf ("\"%s\"",
+				      gtk_icon_info_get_filename (info));
+	params[params_i++] = "help_icon_size";
+	params[params_i++] = g_strdup_printf ("%i",
+					      gtk_icon_info_get_base_size (info));
+	gtk_icon_info_free (info);
+    }
+
+
+    while (!priv->info_processed || !priv->man_processed) {
+	g_thread_yield ();
+    }
+
     g_mutex_lock (priv->mutex);
 
     priv->transform = yelp_transform_new (STYLESHEET,
 					  (YelpTransformFunc) transform_func,
 					  toc);
     priv->transform_running = TRUE;
-    /* FIXME: we probably need to set our own params */
 
     yelp_transform_start (priv->transform,
 			  priv->xmldoc,
-			  NULL);
+			  params);
     g_mutex_unlock (priv->mutex);
 
  done:
@@ -682,6 +659,7 @@ rrn_info_add_document (RrnInfoEntry *entry, void *user_data)
     xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST tmp);
     xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
     xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
+    g_free(tmp);
     return TRUE;
 
 }
@@ -766,17 +744,7 @@ toc_process_info (YelpToc *toc)
     mynode = xmlCopyNode (xmlDocGetRootElement (info_doc), 1);
 
     g_mutex_lock (priv->mutex);
-    xmlReplaceNode (priv->fake_info, mynode);
-
-    priv->info_transform = yelp_transform_new (STYLESHEET,
-					       (YelpTransformFunc) transform_func,
-					       toc);
-	
-    priv->transform_running = TRUE;
-    /* FIXME: we probably need to set our own params */
-    yelp_transform_start (priv->info_transform,
-			  priv->xmldoc,
-			  NULL);
+    xmlAddChild (xmlDocGetRootElement (priv->xmldoc), mynode);
     g_mutex_unlock (priv->mutex);
 
     xmlFreeDoc (info_doc);
@@ -799,6 +767,7 @@ rrn_add_man_document (RrnManEntry *entry, void *user_data)
     xmlNodePtr node = (xmlNodePtr) user_data;
     xmlNodePtr new;
     gchar *tmp;
+
     new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
     tmp = g_strdup_printf ("man:%s", entry->path);
 
@@ -806,6 +775,8 @@ rrn_add_man_document (RrnManEntry *entry, void *user_data)
     xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
     if (entry->comment)
 	xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
+    g_free(tmp);
+
     return TRUE;
 }
 
@@ -851,8 +822,9 @@ toc_process_man (YelpToc *toc)
 	    
 	    cat_node = xmlNewChild (node, NULL, BAD_CAST "toc",
 				    NULL);
-	    for (j = 0; sects[j] != NULL; j++)
+	    for (j = 0; sects[j] != NULL; j++) {
 		rrn_man_for_each_in_category (sects[j], (RrnManForeachFunc) rrn_add_man_document, node);
+	    }
 	    g_strfreev (sects);
 	}
 	xmlFree (sect);
@@ -866,17 +838,7 @@ toc_process_man (YelpToc *toc)
     mynode = xmlCopyNode (xmlDocGetRootElement (man_doc), 1);
 
     g_mutex_lock (priv->mutex);
-    xmlReplaceNode (priv->fake_man, mynode);
-
-    priv->man_transform = yelp_transform_new (STYLESHEET,
-					      (YelpTransformFunc) transform_func,
-					      toc);
-	
-    priv->transform_running = TRUE;
-    /* FIXME: we probably need to set our own params */
-    yelp_transform_start (priv->man_transform,
-			  priv->xmldoc,
-			  NULL);
+    xmlAddChild (xmlDocGetRootElement (priv->xmldoc), mynode);
     g_mutex_unlock (priv->mutex);
 
     xmlFreeDoc (man_doc);
