@@ -28,11 +28,11 @@ yelp_SOURCES +=					\
 	yelp-man.c yelp-man.h
 endif
 
-#if ENABLE_INFO
-#yelp_SOURCES +=					\
-#	yelp-info-pager.c yelp-info-pager.h	\
-#	yelp-info-parser.c yelp-info-parser.h
-#endif
+if ENABLE_INFO
+yelp_SOURCES +=					\
+	yelp-info.c yelp-info.h	\
+	yelp-info-parser.c yelp-info-parser.h
+endif
 
 #if ENABLE_SEARCH
 #yelp_SOURCES +=						\

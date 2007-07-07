@@ -1142,10 +1142,10 @@ resolve_full_file (const gchar *path)
     if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
 	return YELP_RRN_TYPE_ERROR;
     }
-
     mime_type = gnome_vfs_get_mime_type (path);
-    if (mime_type == NULL)
+    if (mime_type == NULL) {
 	return YELP_RRN_TYPE_ERROR;
+    }
 
     if (g_str_equal (mime_type, "text/xml") || g_str_equal (mime_type, "application/docbook+xml") || g_str_equal (mime_type, "application/xml"))
 	type = YELP_RRN_TYPE_DOC;
@@ -1352,7 +1352,10 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    g_free (info_sect);
 	}
     } else if (!strncmp (uri, "file:", 5)) {
-	ret = resolve_full_file (&intern_uri[5]);
+	int file_cut = 5;
+	while (uri[file_cut+1] == '/')
+	    file_cut++;
+	ret = resolve_full_file (&intern_uri[file_cut]);
 	if (ret == YELP_RRN_TYPE_EXTERNAL) {
 	    *section = NULL;
 	    *result = g_strdup (uri);
@@ -1361,7 +1364,7 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    *section = NULL;
 	    *result = NULL;
 	} else {
-	    *result = g_strdup (&intern_uri[5]);
+	    *result = g_strdup (&intern_uri[file_cut]);
 	    *section = intern_section;
 	}
 	/* full file path.  Ensure file exists and determine type */

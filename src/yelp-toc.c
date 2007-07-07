@@ -658,7 +658,7 @@ rrn_info_add_document (RrnInfoEntry *entry, void *user_data)
     else
 	tmp = g_strdup_printf("info:%s", entry->name);
     xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST tmp);
-    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->doc_name);
     xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
     g_free(tmp);
     return TRUE;

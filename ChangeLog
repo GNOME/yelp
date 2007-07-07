@@ -1,5 +1,20 @@
 2007-07-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-utils.c: 
+	* src/yelp-toc.c:
+	Fix info page titles in TOC
+	Fix file:// uri's when with too many /'s
+	
+	* src/Makefile.am:
+	* src/yelp-info-parser.c:
+	* src/yelp-info.c:
+	* src/yelp-info.h:
+	* src/yelp-window.c:
+	Convert info pages across to new pager system
+	Hook up info pages into yelp, new style
+	Fix various things in the parser to cope with
+	having less available info for resolving frags
+	
 	* src/yelp-toc.c: 
 	Fix the most annoying error message in the world EVER
 	Unexpected async xlib errors generally mean threading issues

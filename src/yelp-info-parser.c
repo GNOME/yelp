@@ -486,11 +486,14 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	}
 
 	d (if (iter) debug_print (DB_DEBUG, "Have a valid iter, storing for %s\n", node));
+
 	g_hash_table_insert (nodes2iters, g_strdup (node), iter);
 	debug_print (DB_DEBUG, "size: %i\n", g_hash_table_size (nodes2iters));
 
-	tmp = g_strdup_printf ("%i",
-			       node2page (nodes2offsets, offsets2pages, node));
+	/*tmp = g_strdup_printf ("%i",
+	  node2page (nodes2offsets, offsets2pages, node));*/
+	tmp = g_strdup (node);
+	tmp = g_strdelimit (tmp, " ", '_');
 	gtk_tree_store_set (tree, iter,
 			    COLUMN_PAGE_NO, tmp,
 			    COLUMN_PAGE_NAME, node,
@@ -554,6 +557,7 @@ GtkTreeStore
 	
 	str = open_info_file (file);
 	if (!str) {
+	  printf ("NULL return");
 		return NULL;
 	}	
 	page_list = g_strsplit (str, "\n", 0);
@@ -785,7 +789,9 @@ resolve_frag_id (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter,
 		      -1);
   if (g_str_equal (page_name, *xref)) {
     g_free (*xref);
-    *xref = g_strdup (page_no);
+    *xref = g_strdup (page_name);
+    *xref = g_strdelimit (*xref, " ", '_');
+
     g_free (page_name);
     g_free (page_no);
     return TRUE;

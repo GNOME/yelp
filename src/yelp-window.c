@@ -54,10 +54,10 @@
 #ifdef ENABLE_MAN
 #include "yelp-man.h"
 #endif
-/*#ifdef ENABLE_INFO
-#include "yelp-info-pager.h"
+#ifdef ENABLE_INFO
+#include "yelp-info.h"
 #endif
-#ifdef ENABLE_SEARCH
+/*#ifdef ENABLE_SEARCH
 #include "yelp-search-pager.h"
 #include "gtkentryaction.h"
 #endif*/
@@ -967,7 +967,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     }
 
     type = yelp_uri_resolve (uri, &real_uri, &frag_id);
- 
+
     /* TODO: handle type errors here first */
 
     if (priv->uri && g_str_equal (real_uri, priv->uri)) {
@@ -979,9 +979,18 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    priv->base_uri = g_strdup ("file:///fakefile");
 	    break;
 	case YELP_RRN_TYPE_MAN:
-	    priv->base_uri = g_strdup ("file:///fakefile");
+	    priv->base_uri = g_strdup (real_uri);
 	    doc = yelp_man_new (real_uri);
 	    priv->uri = "";
+	    break;
+	case YELP_RRN_TYPE_INFO:
+	    priv->base_uri = g_strdup_printf ("file:/%s", real_uri);
+	    if (!frag_id) {
+		frag_id = g_strdup ("Top");
+	    } else {
+		g_strdelimit (frag_id, " ", '_');
+	    }
+	    doc = yelp_info_new (real_uri);
 	    break;
 	case YELP_RRN_TYPE_DOC:
 	    priv->base_uri = g_strdup (uri);
@@ -997,6 +1006,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     if (doc) {
 	if (!frag_id)
 	    frag_id = g_strdup ("index");
+
 	priv->uri = real_uri;
 	priv->current_frag = frag_id;
 	priv->req_uri = g_strdup (uri);
