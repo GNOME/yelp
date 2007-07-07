@@ -1,3 +1,15 @@
+2007-07-07  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-toc.c: 
+	Fix the most annoying error message in the world EVER
+	Unexpected async xlib errors generally mean threading issues
+	except, apparently, when you're trying to parse using libxml
+	in which case, they could mean anything.  In this case, it
+	meant the params passed in was not NULL terminating.
+	Why this resulted in an unexpected xlib async reply is
+	left as an exercise to the reader.  I spent 7 days trying to 
+	figure it out.
+	
 2007-07-01  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-toc.c: 

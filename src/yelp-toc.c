@@ -568,6 +568,7 @@ toc_process (YelpToc *toc)
 	gtk_icon_info_free (info);
     }
 
+    params[params_i] = NULL;
 
     while (!priv->info_processed || !priv->man_processed) {
 	g_thread_yield ();
