@@ -142,7 +142,7 @@ docbook_class_init (YelpDocbookClass *klass)
 
     document_class->request = docbook_request;
     document_class->cancel = NULL;
-    document_class->get_sections = docbook_get_sections;
+    /*document_class->get_sections = docbook_get_sections;*/
 
     g_type_class_add_private (klass, sizeof (YelpDocbookPriv));
 }

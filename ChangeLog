@@ -1,5 +1,18 @@
 2007-07-08  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* configure.in: 
+	Temporarily work around breakage in gnome-doc-utils
+
+	* src/yelp-window.c:
+	Add back (empty) print menu items to stop errors
+	Add the "Loading..." and watch cursor when we are loading
+	Correctly set the sensitivity of relevant menu items for DocBooks
+	Make "About this document" work again
+
+	* src/yelp-docbook.c:
+	Since the new g-d-u currently has a list of topics on the
+	right, don't display the sections pane
+	
 	* src/yelp-window.c: 
 	Make history work again
 	Make loading HTML docs work

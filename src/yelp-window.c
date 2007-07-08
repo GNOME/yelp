@@ -173,8 +173,8 @@ static void    window_add_widget        (GtkUIManager *ui_manager,
 					 GtkWidget    *vbox);
 static void    window_new_window_cb     (GtkAction *action, YelpWindow *window);
 static void    window_about_document_cb (GtkAction *action, YelpWindow *window);
-/*static void    window_print_document_cb (GtkAction *action, YelpWindow *window);
-  static void    window_print_page_cb    (GtkAction *action, YelpWindow *window);*/
+static void    window_print_document_cb (GtkAction *action, YelpWindow *window);
+static void    window_print_page_cb    (GtkAction *action, YelpWindow *window);
 static void    window_open_location_cb  (GtkAction *action, YelpWindow *window);
 static void    window_close_window_cb   (GtkAction *action, YelpWindow *window);
 static void    window_copy_cb           (GtkAction *action, YelpWindow *window);
@@ -345,7 +345,7 @@ static const GtkActionEntry entries[] = {
       "<Control>N",
       NULL,
       G_CALLBACK (window_new_window_cb) },
-    /*{ "PrintDocument", NULL,
+    { "PrintDocument", NULL,
       N_("Print This Document"),
       NULL,
       NULL,
@@ -354,7 +354,7 @@ static const GtkActionEntry entries[] = {
       N_("Print This Page"),
       NULL,
       NULL,
-      G_CALLBACK (window_print_page_cb) },*/
+      G_CALLBACK (window_print_page_cb) },
     { "AboutDocument", NULL,
       N_("About This Document"),
       NULL,
@@ -924,7 +924,7 @@ page_request_cb (YelpDocument       *document,
     gchar *contents;
     YelpPage *page;
     YelpError *error;
-    
+
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
 	window_set_sections (window, yelp_document_get_sections (document));
@@ -933,9 +933,13 @@ page_request_cb (YelpDocument       *document,
 
 	window->priv->current_request = -1;
 	yelp_page_free ((YelpPage *) func_data);
+	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
-	printf ("TITLE: %s (%i)\n", (gchar *) func_data, req_id);
+	/*printf ("TITLE: %s (%i)\n", (gchar *) func_data, req_id);*/
+	/* We don't need to actually handle title signals as gecko
+	 * is wise enough to not annoy me by not handling it
+	 */
 	g_free (func_data);
 	break;
     case YELP_DOCUMENT_SIGNAL_ERROR:
@@ -943,7 +947,10 @@ page_request_cb (YelpDocument       *document,
 	printf ("ERROR: %s\n", yelp_error_get_title (error));
 	printf ("  %s\n", yelp_error_get_message (error));
 	yelp_error_free (error);
+	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 	break;
+    default:
+	g_assert_not_reached();
     }
 }
 
@@ -960,10 +967,13 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
      * so they must be set BEFORE calling this.
      */
     YelpWindowPriv *priv;
-
+    GtkAction      *action;
+ 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
+
+    window_set_loading (window);
 
     if (priv->current_request != -1) {
 	yelp_document_cancel_page (priv->current_document, priv->current_request);
@@ -979,14 +989,27 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
     priv->current_frag = g_strdup (frag);
     priv->req_uri = g_strdup (req_uri);
     
-    
     switch (priv->current_type) {
     case YELP_RRN_TYPE_DOC:
+	action = gtk_action_group_get_action (window->priv->action_group, 
+					      "PrintDocument");
+	g_object_set (G_OBJECT (action), "sensitive", TRUE, NULL);
+	
+	action  = gtk_action_group_get_action (window->priv->action_group,
+					       "AboutDocument");
+	g_object_set (G_OBJECT (action),  "sensitive", TRUE, NULL);
 	/* TODO: set up the menu items for print
 	 * and "about this document"
 	 */
 	break;
     default:
+	action = gtk_action_group_get_action (window->priv->action_group, 
+					      "PrintDocument");
+	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+	
+	action  = gtk_action_group_get_action (window->priv->action_group,
+					       "AboutDocument");
+	g_object_set (G_OBJECT (action),  "sensitive", FALSE, NULL);
 	break;
 	
     }
@@ -1023,7 +1046,6 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     history_clear_forward (window);
 
     type = yelp_uri_resolve (trace_uri, &real_uri, &frag_id);
-
     /* TODO: handle type errors here first */
 
     if (priv->uri && g_str_equal (real_uri, priv->uri)) {
@@ -1070,6 +1092,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    need_hist = TRUE;
 	window_setup_window (window, type, real_uri, frag_id,
 			     uri, need_hist);
+
 	priv->current_request = yelp_document_get_page (doc, 
 								frag_id, 
 								page_request_cb, 
@@ -1986,7 +2009,7 @@ window_do_load_html (YelpWindow    *window,
 
     window_set_sections (window, NULL);
 
-    /*action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
+    action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
     action = gtk_action_group_get_action (priv->action_group, "GoNext");
@@ -1995,7 +2018,7 @@ window_do_load_html (YelpWindow    *window,
     action = gtk_action_group_get_action (priv->action_group, "GoContents");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
-    */
+    
     window_setup_window (window, type, uri, frag_id, uri, need_history);
 
     result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
@@ -2048,6 +2071,7 @@ window_do_load_html (YelpWindow    *window,
     if (handle)
 	gnome_vfs_close (handle);
     g_free (real_uri);
+    gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
     return handled;
 }
@@ -2604,10 +2628,10 @@ typedef struct {
     YelpWindow *window;
 } PrintStruct;
 
+#if 0
 static void
 print_disconnect (PrintStruct *data)
 {
-#if 0
     debug_print (DB_FUNCTION, "entering\n");
     if (data->page_handler) {
 	g_signal_handler_disconnect (data->pager,
@@ -2630,10 +2654,8 @@ print_disconnect (PrintStruct *data)
 	data->finish_handler = 0;
     }
     g_free (data);
-#endif
 }
 
-#if 0
 static void
 print_pager_page_cb (YelpPager *pager,
 		     gchar     *page_id,
@@ -2719,10 +2741,12 @@ print_pager_finish_cb (YelpPager   *pager,
 
     print_disconnect (data);
 }
+#endif
 
 static void
 window_print_document_cb (GtkAction *action, YelpWindow *window)
 {
+#if 0
     PrintStruct *data;
     YelpPager *pager;
 
@@ -2761,11 +2785,13 @@ window_print_document_cb (GtkAction *action, YelpWindow *window)
 			  data);
 
     /* handled = */ yelp_pager_start (data->pager);
+#endif
 }
 
 static void
 window_print_page_cb (GtkAction *action, YelpWindow *window)
 {
+#if 0
     GtkWidget *gtk_win;
     YelpPager  *pager;
     YelpPage   *page  = NULL;
@@ -2844,13 +2870,12 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
     }
     g_free (uri);
     yelp_print_run (window, html, gtk_win, vbox);
-}
 #endif
+}
 
 static void
 window_about_document_cb (GtkAction *action, YelpWindow *window)
 {
-#if 0
     YelpWindowPriv *priv;
     gchar *uri;
 
@@ -2858,12 +2883,10 @@ window_about_document_cb (GtkAction *action, YelpWindow *window)
 
     priv = window->priv;
 
-    uri = yelp_doc_info_get_uri (priv->current_doc,
-				 "x-yelp-titlepage",
-				 YELP_URI_TYPE_ANY);
+    uri = g_strdup_printf("%s#__yelp_info", priv->uri);
+
     yelp_window_load (window, uri);
     g_free (uri);
-#endif
 }
 
 static void

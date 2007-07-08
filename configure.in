@@ -89,7 +89,9 @@ XSLT_PATH="`$PKG_CONFIG --variable=xsltdir gnome-doc-utils`"
 DB_TITLE="$XSLT_PATH""/docbook/common/db-title.xsl"
 AC_SUBST(DB_TITLE)
 
-DB2HTML="`$PKG_CONFIG --variable=db2html gnome-doc-utils`"
+# TODO: Temporary bodge around g-d-u breakage
+DB2HTMLDIR="`$PKG_CONFIG --variable=xsltdir gnome-doc-utils`"
+DB2HTML=$DB2HTMLDIR/docbook/html/db2xhtml.xsl
 AC_SUBST(DB2HTML)
 
 #
