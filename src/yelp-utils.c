@@ -1226,15 +1226,12 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
 	    }
 	}
     }
-    printf ("Checking %s\n", real_name);
     if (g_file_test (real_name, G_FILE_TEST_EXISTS)) {
 	/* Full filename */
-	printf ("Exists\n");
 	*result = g_strdup (real_name);
 	return YELP_RRN_TYPE_MAN;
     } else if (g_file_test (name, G_FILE_TEST_EXISTS)) {
 	/* Full filename */
-	printf ("Exists\n");
 	*result = g_strdup (name);
 	return YELP_RRN_TYPE_MAN;
     }
@@ -1260,7 +1257,7 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
 gchar *
 resolve_remove_section (const gchar *uri, const gchar *sect)
 {
-    if (sect && *sect)
+    if (sect)
 	return (g_strndup (uri, (strlen(uri) - strlen(sect) - 1 /*for the delimiter char */)));
     else
 	return (g_strdup (uri));
@@ -1288,6 +1285,10 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
     }
     intern_section = resolve_get_section(uri);
     intern_uri = resolve_remove_section (uri, intern_section);
+
+    if (intern_section && g_str_equal (intern_section, "")) {
+	intern_section = NULL;
+    }
 
     if (!strncmp (uri, "ghelp:", 6) || !strncmp (uri, "gnome-help:", 11)) {
 	ret = resolve_process_ghelp (intern_uri, result);
@@ -1381,7 +1382,7 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
     } else if (!strncmp (uri, "x-yelp-search:", 14)) {
 	/* Search pager request.  *result contains the search terms */
 	*result = g_strdup (uri);
-	*section = g_strdup (uri+14);
+	*section = g_strdup ("results");
 	ret = YELP_RRN_TYPE_SEARCH;
     } else if (g_file_test (intern_uri, G_FILE_TEST_EXISTS)) {
 	/* Full path */

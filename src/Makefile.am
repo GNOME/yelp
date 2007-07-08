@@ -35,11 +35,12 @@ yelp_SOURCES +=					\
 	yelp-info-parser.c yelp-info-parser.h
 endif
 
-#if ENABLE_SEARCH
-#yelp_SOURCES +=						\
-#	gtkentryaction.c	gtkentryaction.h	\
-#	yelp-search-pager.c	yelp-search-pager.h
-#endif
+if ENABLE_SEARCH
+yelp_SOURCES +=						\
+	gtkentryaction.c	gtkentryaction.h	\
+	yelp-search.c		yelp-search.h		\
+	yelp-search-parser.c 	yelp-search-parser.h
+endif
 
 YELP_DEFINES =								\
 	-DG_LOG_DOMAIN=\"Yelp\"						\

@@ -57,10 +57,10 @@
 #ifdef ENABLE_INFO
 #include "yelp-info.h"
 #endif
-/*#ifdef ENABLE_SEARCH
-#include "yelp-search-pager.h"
+#ifdef ENABLE_SEARCH
+#include "yelp-search.h"
 #include "gtkentryaction.h"
-#endif*/
+#endif
 
 #define YELP_CONFIG_WIDTH          "/yelp/Geometry/width"
 #define YELP_CONFIG_HEIGHT         "/yelp/Geometry/height"
@@ -975,16 +975,14 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
 
     priv = window->priv;
 
-    window_set_loading (window);
-
     if (priv->current_request != -1) {
 	yelp_document_cancel_page (priv->current_document, priv->current_request);
 	priv->current_request = -1;
-    }
-
-    if (add_history) {
+    } else if (add_history) {
 	history_push_back(window);
     }
+
+    window_set_loading (window);
 
     priv->current_type = type;
     priv->uri = loading_uri;
@@ -1074,6 +1072,9 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	case YELP_RRN_TYPE_DOC:
 	    priv->base_uri = g_strdup (uri);
 	    doc = yelp_docbook_new (real_uri);
+	    break;
+	case YELP_RRN_TYPE_SEARCH:
+	    doc = yelp_search_new (&real_uri[14]); //remove x-yelp-search:
 	    break;
 	case YELP_RRN_TYPE_HTML:
 	case YELP_RRN_TYPE_XHTML:
@@ -1423,7 +1424,6 @@ search_activated (GtkAction *action,
     } else {
 	uri = encode_search_uri (search_terms);
     }
-
     yelp_window_load (window, uri);
 
     g_free (uri);
@@ -1481,7 +1481,7 @@ window_populate (YelpWindow *window)
     gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (f_proxy), 
 				   priv->forward_menu);
     
-#if 0//def ENABLE_SEARCH
+#ifdef ENABLE_SEARCH
     action =  gtk_entry_action_new ("Search",
 				    _("_Search:"),
 				    _("Search for other documentation"),
@@ -1507,7 +1507,7 @@ window_populate (YelpWindow *window)
 	window_error (window, error, FALSE);
     }
 
-#if 0//def ENABLE_SEARCH
+#ifdef ENABLE_SEARCH
     if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
 					  DATADIR "/yelp/ui/yelp-search-ui.xml",
 					  &error)) {

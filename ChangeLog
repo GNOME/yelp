@@ -1,6 +1,16 @@
 2007-07-08  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-window.c: 
+	* src/yelp-search.c:
+	* src/yelp-search.h:
+	* src/yelp-search-parser.c:
+	* src/yelp-search-parser.h:
+	* src/yelp-utils.c:
+	* src/Makefile.am:
+	First pass at searching.
+	Search still relies on scrollkeeper.  Other
+	than that, it seems to all work (with basic search at least)
+	
 	* src/yelp-db-print.c:
 	* src/yelp-db-print.h:
 	* src/Makefile.am:
