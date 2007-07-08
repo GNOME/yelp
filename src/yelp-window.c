@@ -76,7 +76,10 @@ typedef struct {
 
 typedef struct {
     YelpDocument *doc;
+    YelpRrnType type;
 
+    gchar *uri;
+    gchar *req_uri;
     gchar *frag_id;
     GtkWidget *menu_entry;
     YelpWindow *window;
@@ -105,10 +108,12 @@ static void        window_set_section_cursor      (YelpWindow        *window,
 						   gchar             *frag_id);*/
 /*static gboolean    window_do_load_pager           (YelpWindow        *window,
 						   YelpDocInfo       *doc_info,
-						   gchar             *frag_id);
-static gboolean    window_do_load_html            (YelpWindow        *window,
-						   YelpDocInfo       *doc_info,
 						   gchar             *frag_id);*/
+static gboolean    window_do_load_html            (YelpWindow        *window,
+						   gchar             *uri,
+						   gchar             *frag_id,
+						   YelpRrnType        type,
+						   gboolean           need_history);
 static void        window_set_loading             (YelpWindow        *window);
 static void        window_handle_page             (YelpWindow        *window,
 						   YelpPage          *page);
@@ -206,6 +211,8 @@ static void               history_back_to        (GtkMenuItem      *menuitem,
 						  YelpHistoryEntry *entry);
 static void               history_forward_to     (GtkMenuItem      *menuitem,
 						  YelpHistoryEntry *entry);
+static void               history_load_entry     (YelpWindow       *window,
+						  YelpHistoryEntry *entry);
 
 static void               load_data_free         (YelpLoadData     *data);
 
@@ -274,6 +281,7 @@ struct _YelpWindowPriv {
 
     /* Location Information */
     gchar          *uri;
+    YelpRrnType     current_type;
     gchar          *req_uri;
     gchar          *base_uri;
     gint            current_request;
@@ -597,8 +605,13 @@ history_push_back (YelpWindow *window)
     priv = window->priv;
 
     entry = g_new0 (YelpHistoryEntry, 1);
-    /*entry->doc_info = yelp_doc_info_ref (priv->current_doc);*/
+
     entry->frag_id  = g_strdup (priv->current_frag);
+    entry->uri = g_strdup (priv->uri);
+    entry->req_uri = priv->req_uri;
+    entry->doc = priv->current_document;
+    entry->type = priv->current_type;
+    
     /* page_title, frag_title */
 
     priv->history_back = g_slist_prepend (priv->history_back, entry);
@@ -643,9 +656,14 @@ history_push_forward (YelpWindow *window)
     priv = window->priv;
 
     entry = g_new0 (YelpHistoryEntry, 1);
-    /*entry->doc_info = yelp_doc_info_ref (priv->current_doc);*/
+
     entry->frag_id  = g_strdup (priv->current_frag);
-    /* page_title, frag_title */
+    entry->uri = g_strdup (priv->uri);
+    entry->req_uri = priv->req_uri;
+    entry->doc = priv->current_document;
+    entry->type = priv->current_type;
+
+   /* page_title, frag_title */
 
     priv->history_forward = g_slist_prepend (priv->history_forward, entry);
 
@@ -833,16 +851,7 @@ history_back_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 	latest->menu_entry = NULL;
     }
 
-    /*if (priv->current_doc)
-      yelp_doc_info_unref (priv->current_doc);*/
-    if (priv->current_frag)
-	g_free (priv->current_frag);
-
-    /*priv->current_doc  = yelp_doc_info_ref (entry->doc_info);*/
-    priv->current_frag = g_strdup (entry->frag_id);
-
-    /*window_do_load (window, entry->doc_info, entry->frag_id);*/
-
+    history_load_entry (window, entry);
 }
 
 static void
@@ -882,15 +891,7 @@ history_forward_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 	latest->menu_entry = NULL;
     }
 
-    /*if (priv->current_doc)
-      yelp_doc_info_unref (priv->current_doc);*/
-    if (priv->current_frag)
-	g_free (priv->current_frag);
-
-    /*priv->current_doc  = yelp_doc_info_ref (entry->doc_info);*/
-    priv->current_frag = g_strdup (entry->frag_id);
-
-    /*window_do_load (window, entry->doc_info, entry->frag_id);*/
+    history_load_entry (window, entry);
 
 }
 
@@ -946,16 +947,19 @@ page_request_cb (YelpDocument       *document,
     }
 }
 
-
 void
-yelp_window_load (YelpWindow *window, const gchar *uri)
+window_setup_window (YelpWindow *window, YelpRrnType type,
+		     gchar *loading_uri, gchar *frag, gchar *req_uri,
+		     gboolean add_history)
 {
+    /* Before asking the YelpDocument to find
+     * a page, this should be called to set up various
+     * things (such as fixing history, setting
+     * menu items to sensitive etc.)
+     * These are all read from the YelpWindow struct
+     * so they must be set BEFORE calling this.
+     */
     YelpWindowPriv *priv;
-    gchar          *frag_id = NULL;
-    GtkAction      *action;
-    gchar          *real_uri = NULL;
-    YelpRrnType  type = YELP_RRN_TYPE_ERROR;
-    YelpDocument   *doc = NULL;
 
     g_return_if_fail (YELP_IS_WINDOW (window));
 
@@ -966,7 +970,59 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	priv->current_request = -1;
     }
 
-    type = yelp_uri_resolve (uri, &real_uri, &frag_id);
+    if (add_history) {
+	history_push_back(window);
+    }
+
+    priv->current_type = type;
+    priv->uri = loading_uri;
+    priv->current_frag = g_strdup (frag);
+    priv->req_uri = g_strdup (req_uri);
+    
+    
+    switch (priv->current_type) {
+    case YELP_RRN_TYPE_DOC:
+	/* TODO: set up the menu items for print
+	 * and "about this document"
+	 */
+	break;
+    default:
+	break;
+	
+    }
+}
+
+
+void
+yelp_window_load (YelpWindow *window, const gchar *uri)
+{
+    YelpWindowPriv *priv;
+    gchar          *frag_id = NULL;
+    GtkAction      *action;
+    gchar          *real_uri = NULL;
+    gchar          *trace_uri = NULL;
+    YelpRrnType  type = YELP_RRN_TYPE_ERROR;
+    YelpDocument   *doc = NULL;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = window->priv;
+
+    /* If someone asks for info:dir, they WILL get redirected to
+     * our index.  Tough.
+     */
+    if (g_str_has_prefix (uri, "info:") && g_str_has_suffix (uri, "dir")) {
+	trace_uri = g_strdup ("x-yelp-toc:#Info");
+    } else {
+	trace_uri = g_strdup (uri);
+    }
+
+    /* The way this route was taken, we need to clear the
+     * forward history now
+     */
+    history_clear_forward (window);
+
+    type = yelp_uri_resolve (trace_uri, &real_uri, &frag_id);
 
     /* TODO: handle type errors here first */
 
@@ -979,9 +1035,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    priv->base_uri = g_strdup ("file:///fakefile");
 	    break;
 	case YELP_RRN_TYPE_MAN:
-	    priv->base_uri = g_strdup (real_uri);
+	    priv->base_uri = g_strdup_printf ("file:/%s", real_uri);
 	    doc = yelp_man_new (real_uri);
-	    priv->uri = "";
 	    break;
 	case YELP_RRN_TYPE_INFO:
 	    priv->base_uri = g_strdup_printf ("file:/%s", real_uri);
@@ -997,6 +1052,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    doc = yelp_docbook_new (real_uri);
 	    break;
 	case YELP_RRN_TYPE_HTML:
+	case YELP_RRN_TYPE_XHTML:
+	    window_do_load_html (window, real_uri, frag_id, type, TRUE);
 	    break;
 	default:
 	    break;
@@ -1004,12 +1061,15 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     }
 
     if (doc) {
+	gboolean need_hist = FALSE;
 	if (!frag_id)
 	    frag_id = g_strdup ("index");
 
-	priv->uri = real_uri;
-	priv->current_frag = frag_id;
-	priv->req_uri = g_strdup (uri);
+	if (priv->current_document || (priv->current_type == YELP_RRN_TYPE_HTML ||
+				       priv->current_type == YELP_RRN_TYPE_XHTML))
+	    need_hist = TRUE;
+	window_setup_window (window, type, real_uri, frag_id,
+			     uri, need_hist);
 	priv->current_request = yelp_document_get_page (doc, 
 								frag_id, 
 								page_request_cb, 
@@ -1901,11 +1961,14 @@ window_do_load_pager (YelpWindow  *window,
 
     return handled;
 }
+#endif
 
 static gboolean
 window_do_load_html (YelpWindow    *window,
-		     YelpDocInfo   *doc_info,
-		     gchar         *frag_id)
+		     gchar         *uri,
+		     gchar         *frag_id,
+		     YelpRrnType    type,
+		     gboolean       need_history)
 {
     YelpWindowPriv  *priv;
     GnomeVFSHandle  *handle;
@@ -1913,20 +1976,17 @@ window_do_load_html (YelpWindow    *window,
     GnomeVFSFileSize n;
     gchar            buffer[BUFFER_SIZE];
     GtkAction       *action;
+    gchar *real_uri = NULL;
 
     gboolean  handled = TRUE;
-    gchar    *uri;
 
     g_return_val_if_fail (YELP_IS_WINDOW (window), FALSE);
-    g_return_val_if_fail (doc_info != NULL, FALSE);
 
     priv = window->priv;
 
-    uri = yelp_doc_info_get_uri (doc_info, frag_id, YELP_URI_TYPE_FILE);
-
     window_set_sections (window, NULL);
 
-    action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
+    /*action = gtk_action_group_get_action (priv->action_group, "GoPrevious");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
     action = gtk_action_group_get_action (priv->action_group, "GoNext");
@@ -1935,11 +1995,13 @@ window_do_load_html (YelpWindow    *window,
     action = gtk_action_group_get_action (priv->action_group, "GoContents");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
+    */
+    window_setup_window (window, type, uri, frag_id, uri, need_history);
 
     result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
 
     if (result != GNOME_VFS_OK) {
-	GError *error = NULL;
+	/*GError *error = NULL;
 	g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
 		     _("The file ‘%s’ could not be read.  This file might "
 		       "be missing, or you might not have permissions to "
@@ -1947,16 +2009,22 @@ window_do_load_html (YelpWindow    *window,
 		     uri);
 	window_error (window, error, TRUE);
 	handled = FALSE;
-	goto done;
+	goto done;*/
+	/* TODO: Fix error stuff as previously */
+	printf ("erroring");
     }
 
-    yelp_html_set_base_uri (priv->html_view, uri);
+    if (frag_id)
+	real_uri = g_strdup_printf ("file:/%s#%s", uri, frag_id);
+    else
+	real_uri = g_strdup_printf ("file:/%s", uri);
+    yelp_html_set_base_uri (priv->html_view, real_uri);
 
-    switch (yelp_doc_info_get_type (doc_info)) {
-    case YELP_DOC_TYPE_HTML:
+    switch (type) {
+    case YELP_RRN_TYPE_HTML:
 	yelp_html_open_stream (priv->html_view, "text/html");
 	break;
-    case YELP_DOC_TYPE_XHTML:
+    case YELP_RRN_TYPE_XHTML:
 	yelp_html_open_stream (priv->html_view, "application/xhtml+xml");
 	break;
     default:
@@ -1966,26 +2034,23 @@ window_do_load_html (YelpWindow    *window,
     while ((result = gnome_vfs_read
 	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
 	gchar *tmp;
-
 	tmp = g_utf8_strup (buffer, n);
-	if (strstr (tmp, "<FRAMESET"))
+	if (strstr (tmp, "<FRAMESET")) {
 	    yelp_html_frames (priv->html_view, TRUE);
+	}
 	g_free (tmp);
 
 	yelp_html_write (priv->html_view, buffer, n);
     }
-
     yelp_html_close (priv->html_view);
 
  done:
     if (handle)
 	gnome_vfs_close (handle);
-
-    g_free (uri);
+    g_free (real_uri);
 
     return handled;
 }
-#endif
 
 static void
 window_set_loading (YelpWindow *window)
@@ -2356,6 +2421,7 @@ html_uri_selected_cb (YelpHtml  *html,
 
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
+
     if (!handled) {
 	yelp_window_load (window, uri);
     }
@@ -2937,6 +3003,28 @@ window_load_async (YelpLoadData *data)
 }
 
 static void
+history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
+{
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    if (entry->type == YELP_RRN_TYPE_HTML || entry->type == YELP_RRN_TYPE_XHTML) {
+	window_do_load_html (window, entry->uri, entry->frag_id, entry->type, FALSE);
+	/* HTML TODO */
+    } else {
+	g_assert (entry->doc != NULL);
+	window_setup_window (window, entry->type, entry->uri, entry->frag_id, entry->req_uri,
+			     FALSE);
+	window->priv->current_document = entry->doc;
+	window->priv->current_request = yelp_document_get_page (entry->doc, 
+							entry->frag_id, 
+							page_request_cb, 
+							(void *) window);
+    }
+
+}
+
+
+static void
 window_go_back_cb (GtkAction *action, YelpWindow *window)
 {
     YelpWindowPriv   *priv;
@@ -2951,15 +3039,7 @@ window_go_back_cb (GtkAction *action, YelpWindow *window)
 
     entry = history_pop_back (window);
 
-    /*if (priv->current_doc)
-      yelp_doc_info_unref (priv->current_doc);*/
-    if (priv->current_frag)
-	g_free (priv->current_frag);
-
-    /*priv->current_doc  = yelp_doc_info_ref (entry->doc_info);*/
-    priv->current_frag = g_strdup (entry->frag_id);
-
-    /*window_do_load (window, entry->doc_info, entry->frag_id);*/
+    history_load_entry (window, entry);
 
     history_entry_free (entry);
 }
@@ -2979,15 +3059,7 @@ window_go_forward_cb (GtkAction *action, YelpWindow *window)
 
     entry = history_pop_forward (window);
 
-    /*if (priv->current_doc)
-      yelp_doc_info_unref (priv->current_doc);*/
-    if (priv->current_frag)
-	g_free (priv->current_frag);
-
-    /*priv->current_doc  = yelp_doc_info_ref (entry->doc_info);*/
-    priv->current_frag = g_strdup (entry->frag_id);
-
-    /*window_do_load (window, entry->doc_info, entry->frag_id);*/
+    history_load_entry (window, entry);
 
     history_entry_free (entry);
 }

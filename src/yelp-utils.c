@@ -1075,9 +1075,10 @@ resolve_process_ghelp (char *uri, gchar **result)
 	    g_str_equal (mime, "application/docbook+xml") || 
 	    g_str_equal (mime, "application/xml"))
 	    type = YELP_RRN_TYPE_DOC;
-	else if (g_str_equal (mime, "text/html") ||
-		 g_str_equal (mime, "application/xhtml+xml"))
+	else if (g_str_equal (mime, "text/html"))
 	    type = YELP_RRN_TYPE_HTML;
+	else if (g_str_equal (mime, "application/xhtml+xml"))
+	    type = YELP_RRN_TYPE_XHTML;
 
     }
 
@@ -1149,10 +1150,10 @@ resolve_full_file (const gchar *path)
 
     if (g_str_equal (mime_type, "text/xml") || g_str_equal (mime_type, "application/docbook+xml") || g_str_equal (mime_type, "application/xml"))
 	type = YELP_RRN_TYPE_DOC;
-    else if (g_str_equal (mime_type, "text/html") ||
-	     g_str_equal (mime_type, "application/xhtml+xml"))
+    else if (g_str_equal (mime_type, "text/html"))
 	type = YELP_RRN_TYPE_HTML;
-    /* No distinction between HTML and XHTML now.  They're handled the same way */
+    else if (g_str_equal (mime_type, "application/xhtml+xml"))
+	type = YELP_RRN_TYPE_XHTML;
     else if (g_str_equal (mime_type, "application/x-gzip")) {
 	if (g_str_has_suffix (path, ".info.gz")) {
 	    type = YELP_RRN_TYPE_INFO;

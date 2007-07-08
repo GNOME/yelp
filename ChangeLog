@@ -1,3 +1,14 @@
+2007-07-08  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	Make history work again
+	Make loading HTML docs work
+
+	* src/yelp-utils.h:
+	* src/yelp-utils.c:
+	Make a distinction between html and xhtml
+	to keep gecko happy
+	
 2007-07-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-utils.c: 
