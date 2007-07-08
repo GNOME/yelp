@@ -1,5 +1,13 @@
 2007-07-08  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-window.c: 
+	* src/yelp-db-print.c:
+	* src/yelp-db-print.h:
+	* src/Makefile.am:
+	Make printing (pages and documents) work again.
+	Although, the calling xslt needs somewhat cleaned
+	up, it doesn't look particularly appealing atm.
+	
 	* configure.in: 
 	Temporarily work around breakage in gnome-doc-utils
 

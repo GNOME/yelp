@@ -20,7 +20,8 @@ yelp_SOURCES =							\
 	yelp-gecko-services.h   yelp-gecko-services.cpp	        \
 	yelp-document.h		yelp-document.c			\
 	yelp-toc.h		yelp-toc.c			\
-	yelp-docbook.h		yelp-docbook.c
+	yelp-docbook.h		yelp-docbook.c			\
+	yelp-db-print.c		yelp-db-print.h
 
 if ENABLE_MAN
 yelp_SOURCES +=					\

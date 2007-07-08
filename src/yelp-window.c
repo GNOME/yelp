@@ -242,6 +242,8 @@ static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
 static void        window_write_html              (YelpWindow        *window, 
 						   YelpPage          *page);
+static void        window_write_print_html        (YelpHtml          *html, 
+						   YelpPage          *page);
 
 enum {
     NEW_WINDOW_REQUESTED,
@@ -2620,12 +2622,10 @@ window_new_window_cb (GtkAction *action, YelpWindow *window)
 
 
 typedef struct {
-    gulong page_handler;
-    gulong error_handler;
-    gulong cancel_handler;
-    gulong finish_handler;
-    /*YelpPager *pager;*/
     YelpWindow *window;
+    GtkWindow *gtk_win;
+    GtkVBox   *vbox;
+    YelpHtml  *html;
 } PrintStruct;
 
 #if 0
@@ -2744,8 +2744,90 @@ print_pager_finish_cb (YelpPager   *pager,
 #endif
 
 static void
+window_print_signal (YelpDocument       *document,
+		     YelpDocumentSignal  signal,
+		     gint                req_id,
+		     gpointer           *func_data,
+		     PrintStruct        *print)
+{
+    gchar *contents;
+    YelpPage *page;
+    YelpError *error;
+
+    switch (signal) {
+    case YELP_DOCUMENT_SIGNAL_PAGE:
+	window_write_print_html (print->html, (YelpPage *) func_data);
+
+	yelp_page_free ((YelpPage *) func_data);
+
+	yelp_print_run (print->window, print->html, print->gtk_win, print->vbox);
+	break;
+    case YELP_DOCUMENT_SIGNAL_TITLE:
+	/*printf ("TITLE: %s (%i)\n", (gchar *) func_data, req_id);*/
+	/* We don't need to actually handle title signals as gecko
+	 * is wise enough to not annoy me by not handling it
+	 */
+	g_free (func_data);
+	break;
+    case YELP_DOCUMENT_SIGNAL_ERROR:
+	error = (YelpError *) func_data;
+	printf ("ERROR: %s\n", yelp_error_get_title (error));
+	printf ("  %s\n", yelp_error_get_message (error));
+	yelp_error_free (error);
+	break;
+    default:
+	g_assert_not_reached();
+    }
+
+}
+
+
+static void
 window_print_document_cb (GtkAction *action, YelpWindow *window)
 {
+    YelpWindowPriv *priv;
+    GtkWidget *gtk_win;
+    YelpHtml *html;
+    int length, offset;
+    gchar *uri;
+    GtkWidget *vbox = gtk_vbox_new (FALSE, FALSE);
+    PrintStruct *print;
+    YelpDocument *doc = NULL;
+    
+    priv = window->priv;
+
+    switch (priv->current_type) {
+    case YELP_RRN_TYPE_DOC:
+	doc = yelp_dbprint_new (priv->uri);
+	break;
+    defualt:
+	printf ("Error...\n");
+	return;
+    }
+
+
+    gtk_win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    html = yelp_html_new ();
+    
+    gtk_container_add (GTK_CONTAINER (gtk_win), GTK_WIDGET (vbox));
+    gtk_box_pack_end (GTK_BOX (vbox), GTK_WIDGET (html), TRUE, TRUE, 0);
+    gtk_widget_show (gtk_win);
+    gtk_widget_show (vbox);
+    gtk_widget_show (GTK_WIDGET (html));
+    gtk_widget_hide (gtk_win);
+
+    print = g_new0 (PrintStruct, 1);
+    
+    print->window = window;
+    print->gtk_win = gtk_win;
+    print->vbox = vbox;
+    print->html = html;
+
+    yelp_document_get_page (doc,
+			    "index",
+			    window_print_signal, 
+			    (void *) print);
+
 #if 0
     PrintStruct *data;
     YelpPager *pager;
@@ -2791,14 +2873,15 @@ window_print_document_cb (GtkAction *action, YelpWindow *window)
 static void
 window_print_page_cb (GtkAction *action, YelpWindow *window)
 {
-#if 0
+    YelpWindowPriv *priv;
     GtkWidget *gtk_win;
-    YelpPager  *pager;
-    YelpPage   *page  = NULL;
     YelpHtml *html;
     int length, offset;
     gchar *uri;
     GtkWidget *vbox = gtk_vbox_new (FALSE, FALSE);
+    PrintStruct *print;
+    
+    priv = window->priv;
 
     gtk_win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     html = yelp_html_new ();
@@ -2810,6 +2893,71 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
     gtk_widget_show (GTK_WIDGET (html));
     gtk_widget_hide (gtk_win);
 
+    print = g_new0 (PrintStruct, 1);
+    
+    print->window = window;
+    print->gtk_win = gtk_win;
+    print->vbox = vbox;
+    print->html = html;
+
+
+    if (priv->current_document) {
+	/* Need to go through the paging system */
+	yelp_document_get_page (priv->current_document, 
+				priv->current_frag, 
+				window_print_signal, 
+				(void *) print);
+
+    } else {
+	/* HTML file */
+
+	GnomeVFSHandle  *handle;
+	GnomeVFSResult   result;
+	GnomeVFSFileSize n;
+	gchar            buffer[BUFFER_SIZE];	
+	
+	result = gnome_vfs_open (&handle, priv->uri, GNOME_VFS_OPEN_READ);
+	
+	if (result != GNOME_VFS_OK) {
+	    /*GError *error = NULL;
+	    g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
+			 _("The file ‘%s’ could not be read.  This file might "
+			   "be missing, or you might not have permissions to "
+			   "read it."),
+			 uri);
+			 window_error (window, error, TRUE);*/
+	    /* TODO: Proper errors */
+	    printf ("ERRORING OUT.  BAD.");
+	    return;
+	}
+	/* Assuming the file exists.  If it doesn't how did we get this far?
+	 * There are more sinister forces at work...
+	 */
+
+	switch (priv->current_type) {
+	case YELP_RRN_TYPE_HTML:
+	    yelp_html_open_stream (html, "text/html");
+	    break;
+	case YELP_RRN_TYPE_XHTML:
+	    yelp_html_open_stream (html, "application/xhtml+xml");
+	    break;
+	default:
+	    g_assert_not_reached ();
+	}
+	
+	while ((result = gnome_vfs_read
+		(handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
+	    yelp_html_write (html, buffer, n);
+	}
+	
+	yelp_html_close (html);
+	
+	yelp_print_run (window, html, gtk_win, vbox);
+	
+    }
+
+
+#if 0
     pager = yelp_doc_info_get_pager (window->priv->current_doc);
 
     uri = yelp_doc_info_get_uri (window->priv->current_doc, NULL, YELP_URI_TYPE_FILE);
@@ -2864,13 +3012,13 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	}
 	
 	yelp_html_close (html);
-
 	
     
     }
     g_free (uri);
     yelp_print_run (window, html, gtk_win, vbox);
 #endif
+
 }
 
 static void
@@ -3559,6 +3707,23 @@ window_write_html (YelpWindow *window, YelpPage *page)
     
     /* Use a silly fake URI to stop gecko doing silly things */
     yelp_html_set_base_uri (html, window->priv->base_uri);
+    yelp_html_open_stream (html, "application/xhtml+xml");
+    
+    do {
+	yelp_page_read (page, contents, BUFFER_SIZE, &read, NULL);
+	yelp_html_write (html, contents, read);
+    } while (read == BUFFER_SIZE);
+    yelp_html_close (html);
+}
+
+static void
+window_write_print_html (YelpHtml *html, YelpPage * page)
+{
+    gsize read;
+    gchar contents[BUFFER_SIZE];
+    
+    /* Use a silly fake URI to stop gecko doing silly things */
+    yelp_html_set_base_uri (html, "file:///foobar");
     yelp_html_open_stream (html, "application/xhtml+xml");
     
     do {
