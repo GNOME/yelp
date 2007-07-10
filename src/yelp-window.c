@@ -93,7 +93,8 @@ static void        window_init		          (YelpWindow        *window);
 static void        window_class_init	          (YelpWindowClass   *klass);
 
 static void        window_error                   (YelpWindow        *window,
-						   GError            *error,
+						   gchar             *title,
+						   gchar             *message,
 						   gboolean           pop);
 static void        window_populate                (YelpWindow        *window);
 static void        window_populate_find           (YelpWindow        *window,
@@ -1046,6 +1047,13 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     history_clear_forward (window);
 
     type = yelp_uri_resolve (trace_uri, &real_uri, &frag_id);
+    if (type == YELP_RRN_TYPE_ERROR) {
+	gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
+	window_error (window, _("Unable to load page"), message, FALSE);
+	g_free (message);
+	return;
+    }
+
     /* TODO: handle type errors here first */
 
     if (priv->uri && g_str_equal (real_uri, priv->uri)) {
@@ -1080,6 +1088,31 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	case YELP_RRN_TYPE_XHTML:
 	    window_do_load_html (window, real_uri, frag_id, type, TRUE);
 	    break;
+	case YELP_RRN_TYPE_EXTERNAL:
+	    {
+		gchar *stdout = NULL;
+		gchar *stderr = NULL;
+		gchar *cmd = NULL;
+		gint status = 0;
+		GError *error = NULL;
+		cmd = g_strdup_printf ("gnome-open %s", uri);
+		if (!g_spawn_command_line_sync (cmd, &stdout, &stderr, &status, &error)) {
+		    g_free (error);
+		    error = NULL;
+		    g_free (cmd);
+		    cmd = g_strdup_printf ("xdg-open %s", uri);
+		    if (!g_spawn_command_line_sync (cmd, &stdout, &stderr, &status, &error)) {
+			window_error(window, _("Error executing \"gnome-open\""), error->message, FALSE);
+			return;
+		    }
+		}
+		if (status) {
+		    gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
+		    window_error (window, _("Unable to load page"), message, FALSE);
+		    return;
+		}
+	    }
+
 	default:
 	    break;
 	}
@@ -1357,7 +1390,7 @@ window_do_load (YelpWindow  *window,
 /******************************************************************************/
 
 static void
-window_error (YelpWindow *window, GError *error, gboolean pop)
+window_error (YelpWindow *window, gchar *title, gchar *message, gboolean pop)
 {
     YelpWindowPriv *priv;
     GtkWidget *dialog;
@@ -1378,18 +1411,16 @@ window_error (YelpWindow *window, GError *error, gboolean pop)
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
 
-    /*dialog = gtk_message_dialog_new
+    dialog = gtk_message_dialog_new
 	(GTK_WINDOW (window),
 	 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 	 GTK_MESSAGE_ERROR,
 	 GTK_BUTTONS_OK,
-	 "%s", yelp_error_get_primary (error));
+	 title);
     gtk_message_dialog_format_secondary_markup
-	(GTK_MESSAGE_DIALOG (dialog), "%s",
-	 yelp_error_get_secondary (error));
-	 gtk_dialog_run (GTK_DIALOG (dialog));*/
+	(GTK_MESSAGE_DIALOG (dialog), message);
+	 gtk_dialog_run (GTK_DIALOG (dialog));
 
-    g_error_free (error);
     gtk_widget_destroy (dialog);
 }
 
@@ -1504,14 +1535,14 @@ window_populate (YelpWindow *window)
     if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
 					  DATADIR "/yelp/ui/yelp-ui.xml",
 					  &error)) {
-	window_error (window, error, FALSE);
+	/*window_error (window, error, FALSE);*/
     }
 
 #ifdef ENABLE_SEARCH
     if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
 					  DATADIR "/yelp/ui/yelp-search-ui.xml",
 					  &error)) {
-	window_error (window, error, FALSE);
+	/*window_error (window, error, FALSE);*/
     }
 #endif
 
