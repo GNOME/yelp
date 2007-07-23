@@ -221,7 +221,7 @@ yelp_search_parser_process (YelpSearchParser *parser, gchar *search_terms)
 {
     debug_print (DB_FUNCTION, "entering\n");
 
-    parser->search_terms = search_terms;
+    parser->search_terms = decode_uri (search_terms);
 
     parser->search_process_id = 
 	g_idle_add_full (G_PRIORITY_LOW,

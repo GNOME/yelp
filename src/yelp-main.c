@@ -157,7 +157,7 @@ main_save_session (GnomeClient        *client,
 	gint                    i=1;
 	gint                    arg_len = 1;
 	gboolean                store_open_urls = FALSE;
-	DBusGProxy             *proxy = NULL;
+	/* DBusGProxy             *proxy = NULL; */
 	GError                 *error = NULL;
 
 	/*proxy = main_dbus_get_proxy ();

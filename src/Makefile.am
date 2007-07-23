@@ -71,15 +71,13 @@ yelp_CPPFLAGS =									\
 yelp_CFLAGS =				\
 	$(YELP_CFLAGS)			\
 	$(YELP_SEARCH_CFLAGS)		\
-	$(AM_CFLAGS)			\
-	-DDON_UTIL
+	$(AM_CFLAGS)
 
 yelp_CXXFLAGS =				\
 	$(YELP_CFLAGS)			\
 	$(YELP_SEARCH_CFLAGS)		\
 	$(MOZILLA_COMPONENT_CFLAGS)	\
-	$(AM_CXXFLAGS)			\
-	-DDON_UTIL
+	$(AM_CXXFLAGS)
 
 yelp_LDADD =				\
 	$(YELP_LIBS)			\
@@ -152,7 +150,7 @@ test_resolver_SOURCES =				\
 	yelp-error.c		yelp-error.h		\
 	yelp-utils.c		yelp-utils.h		\
 	test-resolver.c
-test_resolver_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES) -DDON_UTIL
+test_resolver_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
 test_resolver_LDADD = $(YELP_LIBS)
 test_resolver_LDFLAGS = $(AM_LDFLAGS)
 

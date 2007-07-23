@@ -322,16 +322,11 @@ transform_page_func (YelpTransform *transform,
 static void
 transform_final_func (YelpTransform *transform, YelpSearch *search)
 {
-    YelpError *error;
     YelpSearchPriv *priv = search->priv;
 
     debug_print (DB_FUNCTION, "entering\n");
 
     g_mutex_lock (priv->mutex);
-
-    /*error = yelp_error_new (_("Page not found"),
-			    _("There are big problems afoot"));
-			    yelp_document_error_pending (YELP_DOCUMENT (search), error);*/
 
     yelp_transform_release (transform);
     priv->transform = NULL;
@@ -355,7 +350,6 @@ search_process (YelpSearch *search)
     YelpSearchParser *parser;
     YelpError *error = NULL;
     YelpDocument *document;
-    gint i;
 
     debug_print (DB_FUNCTION, "entering\n");
 

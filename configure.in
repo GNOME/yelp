@@ -92,6 +92,9 @@ AC_SUBST(DB_TITLE)
 DB2HTML="`$PKG_CONFIG --variable=db2xhtml gnome-doc-utils`"
 AC_SUBST(DB2HTML)
 
+GLIB_GENMARSHAL="`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`"
+AC_SUBST(GLIB_GENMARSHAL)
+
 #
 # If Pango included the shared library dependencies from X11 in
 # the pkg-config output, then we use that (to avoid duplicates).

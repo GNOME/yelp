@@ -540,6 +540,13 @@ window_class_init (YelpWindowClass *klass)
     g_type_class_add_private (klass, sizeof (YelpWindowPriv));
 }
 
+const gchar *
+yelp_window_get_uri (YelpWindow *window)
+{
+
+    return ((const gchar *) window->priv->uri);
+}
+
 /** History Functions *********************************************************/
 
 static void

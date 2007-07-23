@@ -33,7 +33,6 @@
 #include "yelp-window.h"
 #include "yelp-settings.h"
 #include "yelp-toc.h"
-/*#include "yelp-toc-pager.h"*/
 #include "yelp-base.h"
 #include "yelp-bookmarks.h"
 #include "server-bindings.h"
@@ -130,11 +129,9 @@ server_new_window (YelpBase *base, gchar *url, gchar *timestamp,
 gboolean
 server_get_url_list (YelpBase *server, gchar **urls, GError **error)
 {
-#if 0
 	gint len,  i;
 	GSList *node;
-	YelpDocInfo *doc_info;
-	gchar *uri;
+	const gchar *uri;
 	YelpBasePriv *priv;
 
 	priv = server->priv;
@@ -143,26 +140,20 @@ server_get_url_list (YelpBase *server, gchar **urls, GError **error)
 
 	node = priv->windows;
 
-	doc_info = yelp_window_get_doc_info (YELP_WINDOW (node->data));
-	uri = yelp_doc_info_get_uri (doc_info, NULL, 
-				     YELP_URI_TYPE_ANY);
+	uri = yelp_window_get_uri ((YelpWindow *) node->data);
 	*urls = g_strdup (uri);
-	g_free (uri);
 	node = node->next;
 
 	for (i = 0; node; node = node->next, i++) {
 		gchar *list;
-		doc_info = yelp_window_get_doc_info (YELP_WINDOW (node->data));
-		uri = yelp_doc_info_get_uri (doc_info, NULL, 
-					     YELP_URI_TYPE_ANY);
-		list = g_strconcat (*urls, ";", uri, NULL);
+		uri = yelp_window_get_uri ((YelpWindow *) node->data);
+
+		list = g_strconcat (uri, ";", *urls, NULL);
 		g_free (*urls);
 		*urls = g_strdup (list);
 		g_free (list);
-		g_free (uri);
 	}
 	return TRUE;
-#endif
 }
 
 static void

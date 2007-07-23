@@ -1,5 +1,24 @@
 2007-07-23  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* configure.ac:
+	* src/yelp-base.c:
+	* src/yelp-search-parser.c:
+	* src/yelp-search.c:
+	* src/yelp-window.c:
+	* src/yelp-window.h:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* src/Makefile.am:
+	* src/yelp-main.c:
+	Massive cleanup
+	Remove old code from yelp-utils
+	Fix shutdown requests from sessions (hopefully)
+	Remove as many warnings as possible (the rest are
+	mostly mozilla errors)
+	Make sure we get and set GLIB_GENMARSHAL as, apparently,
+	we have never done this which seems to result in badness
+	making the marshal.list
+	
 	* src/Makefile.am: 
 	* configure.ac:
 	* src/yelp-toc.c:
