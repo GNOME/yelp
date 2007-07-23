@@ -34,13 +34,8 @@
 #include <libxml/xinclude.h>
 #include <libxml/xmlreader.h>
 #include <rarian.h>
-#ifdef ENABLE_INFO
 #include <rarian-info.h>
-#endif /* ENABLE_INFO */
-
-#ifdef ENABLE_MAN
 #include <rarian-man.h>
-#endif /* ENABLE_MAN */
 
 #include "yelp-error.h"
 #include "yelp-toc.h"
@@ -107,12 +102,8 @@ static void           transform_final_func    (YelpTransform       *transform,
 
 /* Threaded */
 static void           toc_process         (YelpToc         *toc);
-#ifdef ENABLE_INFO
 static void           toc_process_info    (YelpToc         *toc);
-#endif /* ENABLE_INFO */
-#ifdef ENABLE_MAN
 static void           toc_process_man     (YelpToc         *toc);
-#endif /*ENABLE_MAN */
 static void           xml_trim_titles     (xmlNodePtr       node, 
 					   xmlChar * nodetype);
 
@@ -530,24 +521,17 @@ toc_process (YelpToc *toc)
     xmlXPathFreeContext (xpath);
 
 
-#ifdef ENABLE_MAN
     man_thread = g_thread_create ((GThreadFunc) toc_process_man, toc, TRUE, NULL);
     if (!man_thread) {
 	g_warning ("Could not create Man page thread");
 	priv->man_processed = TRUE;
     }
-#else
-    priv->man_processed = TRUE;
-#endif /* ENABLE_INFO */
-#ifdef ENABLE_INFO
+
     info_thread = g_thread_create ((GThreadFunc) toc_process_info, toc, TRUE, NULL);
     if (!info_thread) {
 	g_warning ("Could not create Info page thread");
 	priv->info_processed = TRUE;
     }
-#else
-    priv->info_processed = TRUE;
-#endif /* ENABLE_INFO */
 
     params = g_new0 (gchar *, params_max);
     yelp_settings_params (&params, &params_i, &params_max);
@@ -644,7 +628,6 @@ xml_trim_titles (xmlNodePtr node, xmlChar * nodetype)
     xmlFree (keep_lang);
 }
 
-#ifdef ENABLE_INFO
 static int
 rrn_info_add_document (RrnInfoEntry *entry, void *user_data)
 {
@@ -758,9 +741,6 @@ toc_process_info (YelpToc *toc)
     priv->info_processed = TRUE;
     g_mutex_unlock (priv->mutex);
 }
-#endif /* ENABLE_INFO */
-
-#ifdef ENABLE_MAN
 
 static int
 rrn_add_man_document (RrnManEntry *entry, void *user_data)
@@ -851,4 +831,3 @@ toc_process_man (YelpToc *toc)
     priv->man_processed = TRUE;
     g_mutex_unlock (priv->mutex);
 }
-#endif /* ENABLE_MAN */

@@ -1272,12 +1272,8 @@ slow_search_process (YelpSearchParser *parser)
 	return TRUE;
     }
     else {
-#ifdef ENABLE_MAN
 	search_process_man (parser, c->search_term);
-#endif
-#ifdef ENABLE_INFO
 	search_process_info (parser, c->search_term);
-#endif
 	search_free_container (c);
 
 	check_finished (parser);

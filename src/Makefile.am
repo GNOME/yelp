@@ -21,26 +21,14 @@ yelp_SOURCES =							\
 	yelp-document.h		yelp-document.c			\
 	yelp-toc.h		yelp-toc.c			\
 	yelp-docbook.h		yelp-docbook.c			\
-	yelp-db-print.c		yelp-db-print.h
-
-if ENABLE_MAN
-yelp_SOURCES +=					\
-	yelp-man-parser.c yelp-man-parser.h	\
-	yelp-man.c yelp-man.h
-endif
-
-if ENABLE_INFO
-yelp_SOURCES +=					\
-	yelp-info.c yelp-info.h	\
-	yelp-info-parser.c yelp-info-parser.h
-endif
-
-if ENABLE_SEARCH
-yelp_SOURCES +=						\
-	gtkentryaction.c	gtkentryaction.h	\
-	yelp-search.c		yelp-search.h		\
+	yelp-db-print.c		yelp-db-print.h			\
+	yelp-man-parser.c 	yelp-man-parser.h		\
+	yelp-man.c 		yelp-man.h			\
+	yelp-info.c 		yelp-info.h			\
+	yelp-info-parser.c 	yelp-info-parser.h		\
+	gtkentryaction.c	gtkentryaction.h		\
+	yelp-search.c		yelp-search.h			\
 	yelp-search-parser.c 	yelp-search-parser.h
-endif
 
 YELP_DEFINES =								\
 	-DG_LOG_DOMAIN=\"Yelp\"						\

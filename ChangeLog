@@ -1,3 +1,19 @@
+2007-07-23  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/Makefile.am: 
+	* configure.ac:
+	* src/yelp-toc.c:
+	* src/yelp-search-parser.c:
+	* src/yelp-window.c:
+	* src/yelp-info-parser.c:
+	Lots of fun updates...
+	Clean up yelp-window.c a LOT
+	Remove old, obsolete code
+	Make search, man and info mandatory
+	Bump g-d-u min version to include new db2xhtml
+	code
+	Remove extra printf I'd forgotten
+	
 2007-07-10  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-window.c: 

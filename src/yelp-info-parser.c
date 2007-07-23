@@ -557,7 +557,6 @@ GtkTreeStore
 	
 	str = open_info_file (file);
 	if (!str) {
-	  printf ("NULL return");
 		return NULL;
 	}	
 	page_list = g_strsplit (str, "\n", 0);
