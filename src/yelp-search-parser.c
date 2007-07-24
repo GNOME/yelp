@@ -41,6 +41,7 @@
 #include <libxslt/extensions.h>
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
+#include <rarian.h>
 
 #ifdef ENABLE_BEAGLE
 #include <beagle/beagle.h>
@@ -99,6 +100,17 @@ struct _SearchContainer {
     gchar *      default_snippet;
 };
 
+typedef struct {
+    YelpSearchParser *parser;
+    gint required_no;
+    gint terms_number;
+    gboolean *stop_list;
+    gint *dup_list;
+    gchar **terms_list;
+    SearchContainer *container;
+} SearchDocData;
+
+
 struct _YelpSearchParser {
     gchar *search_terms;
     xmlDocPtr     search_doc;
@@ -136,7 +148,8 @@ static void          s_declEntity              (void       *data,
 static xmlEntityPtr  s_getEntity               (void      *data, 
 						const xmlChar        *name);
 static gboolean      slow_search_setup         (YelpSearchParser       *parser);
-static gboolean      slow_search_process       (YelpSearchParser       *parser);
+static gboolean      slow_search_process       (RrnReg                *reg, 
+						SearchDocData         *data);
 static void          search_parse_result       (YelpSearchParser       *parser,
 						SearchContainer       *c);
 static gchar *       search_clean_snippet      (gchar                 *snippet,
@@ -154,13 +167,12 @@ void                 process_info_result       (YelpSearchParser       *parser,
 gchar *              string_append             (gchar                 *current,
 						gchar                 *new, 
 						gchar                 *suffix);
+static void          search_free_container     (SearchContainer       *c);
 
 
 #ifdef ENABLE_BEAGLE
 static BeagleClient   *beagle_client;
 #endif /* ENABLE_BEAGLE */
-static char const * const * langs;
-
 
 YelpSearchParser *
 yelp_search_parser_new (void)
@@ -560,36 +572,6 @@ search_parser_process_idle (YelpSearchParser *parser)
      * we also set our search process id to zero */
     parser->search_process_id = 0; 
     return FALSE;
-}
-
-static gboolean sk_docomf = FALSE;
-static GSList *omf_pending = NULL;
-
-static void
-sk_startElement (void *empty, const xmlChar  *name,
-		 const xmlChar **attrs)
-{
-    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
-	sk_docomf = TRUE;
-}
-
-static void
-sk_endElement (void *empty, const xmlChar *name)
-{
-    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
-	sk_docomf = FALSE;
-}
-
-static void
-sk_characters (void *empty, const xmlChar *ch,
-	       int            len)
-{
-    gchar *omf;
-    
-    if (sk_docomf) {
-	omf = g_strndup ((gchar *) ch, len);
-	omf_pending = g_slist_prepend (omf_pending, omf);
-    }
 }
 
 void s_startElement(void *data,
@@ -998,207 +980,150 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
     return n_terms;
 }
 
-
 static gboolean
 slow_search_setup (YelpSearchParser *parser)
 {
-    gchar  *content_list;
-    gchar  *stderr_str;
-    gchar  *lang;
-    gchar  *command;
-
     gchar **terms_list = NULL;
     gint   *dup_list = NULL;
     gboolean *stop_list = NULL;
     gint      terms_number = 0;
     gint required_no = 0;
-
-    static xmlSAXHandler sk_sax_handler = { 0, };
-    xmlParserCtxtPtr xmlparser;
-    if (langs && langs[0])
-	lang = (gchar *) langs[0];
-    else
-	lang = "C";
+    SearchDocData *data;
     
-    if (!strcmp (parser->search_terms, "")) {
-	parser->slow_search_setup_process_id = 0;
-	check_finished (parser);
-	return FALSE;
-    }
 
-    command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
-    
-    if (g_spawn_command_line_sync (command, &content_list, &stderr_str, NULL, NULL)) {
-	if (!sk_sax_handler.startElement) {
-	    sk_sax_handler.startElement = sk_startElement;
-	    sk_sax_handler.endElement   = sk_endElement;
-	    sk_sax_handler.characters   = sk_characters;
-	    sk_sax_handler.initialized  = TRUE;
-	}
-	content_list = g_strstrip (content_list);
-	xmlSAXUserParseFile (&sk_sax_handler, NULL, content_list);
-    }
-    
-    xmlparser = xmlNewParserCtxt ();
-
-    g_free (content_list);
-    g_free (stderr_str);
-    g_free (command);
-
-
-    terms_number = build_lists (parser->search_terms,&terms_list, 
+   terms_number = build_lists (parser->search_terms,&terms_list, 
 				&dup_list, &stop_list, 
 				&required_no);
+   data = g_new0 (SearchDocData, 1);
+   data->container = g_new0 (SearchContainer, 1);
+   data->parser = parser;
+   data->required_no = required_no;
+   data->terms_number = terms_number;
+   data->stop_list = stop_list;
+   data->dup_list = dup_list;
+   data->terms_list = terms_list;
+   data->terms_number = terms_number;
 
-    while (omf_pending) {
-	GSList  *first = NULL;
-	gchar   *file  = NULL;
-	xmlDocPtr          omf_doc    = NULL;
-	xmlXPathContextPtr omf_xpath  = NULL;
-	xmlXPathObjectPtr  omf_url    = NULL;
-	xmlXPathObjectPtr  omf_title  = NULL;
-	xmlXPathObjectPtr  omf_mime   = NULL;
-	xmlXPathObjectPtr  omf_desc   = NULL;
+   rrn_for_each ((RrnForeachFunc) slow_search_process, data);
 
-	SearchContainer *container;
-	gchar *ptr;
-	gchar *path;
-	gchar *fname;
-	gchar *realfname;
-	gchar *mime_type;
-	int i = 0;
+   search_process_man (parser, terms_list);
+   search_process_info (parser, terms_list);
+ 
+   check_finished (parser);
 
-	first = omf_pending;
-	omf_pending = g_slist_remove_link (omf_pending, first);
-	file = (gchar *) first->data;
+   return FALSE;
+}
 
 
-	omf_doc = xmlCtxtReadFile (xmlparser, (const char *) file, NULL,
-			       XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
-			       XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
-			       XML_PARSE_NONET    );
+static gboolean 
+slow_search_process (RrnReg *reg, SearchDocData *data)
+{
+    gint i, j=0;
+    SearchContainer *container = data->container;
+    gchar *ptr, *path;
+    gchar *fname;
 
-	if (!omf_doc) {
-	    g_warning (_("Could not load the OMF file '%s'."), file);
-	    continue;
-	}
-
-	omf_xpath = xmlXPathNewContext (omf_doc);
-	omf_url =
-	    xmlXPathEvalExpression (BAD_CAST 
-				    "string(/omf/resource/identifier/@url)", 
-				    omf_xpath);
-	omf_title =
-	    xmlXPathEvalExpression (BAD_CAST 
-				    "string(/omf/resource/title)", 
-				    omf_xpath);
-	omf_mime = 
-	    xmlXPathEvalExpression (BAD_CAST
-				    "string(/omf/resource/format/@mime)",
-				    omf_xpath);
-	omf_desc = 
-	    xmlXPathEvalExpression (BAD_CAST
-				    "string(/omf/resource/description)",
-				    omf_xpath);
-
-	mime_type = g_strdup ((gchar *) omf_mime->stringval);
-
-	fname = g_strdup ((gchar *) omf_url->stringval);
-	if (g_str_has_prefix (fname, "file:")) {
-	    realfname = &fname[5];
-	} else {
-	    realfname = fname;
-	}    
-
-	if (!g_file_test (realfname, G_FILE_TEST_EXISTS)) {
-	    continue;
-	}
-
-	container = g_new0 (SearchContainer, 1);
-	
-	container->base_filename = g_strdup (realfname);
-	container->entities = g_hash_table_new (g_str_hash, g_str_equal);
-	container->doc_title = g_strdup ((gchar *) omf_title->stringval);
-	container->score=0;
-	container->html = FALSE;
-	container->default_snippet = g_strdup ((gchar *) omf_desc->stringval);
-
-	ptr = g_strrstr (container->base_filename, "/");
-
-	path = g_strndup (container->base_filename, 
-			    ptr - container->base_filename);
-
-	/* BEGIN HTML special block */
-	if (g_str_equal (mime_type, "text/html")) {
-	    GDir *dir;
-	    gchar *filename;
-	    container->html = TRUE;
-	    ptr++;
-	    
-	    dir = g_dir_open (path, 0, NULL);
-       
-	    while ((filename = (gchar *) g_dir_read_name (dir))) {
-		if ((g_str_has_suffix (filename, ".html") ||
-		     g_str_has_suffix (filename, ".htm")) &&
-		     !g_str_equal (filename, ptr)) {
-		    container->components = 
-			g_slist_append (container->components,
-					g_strconcat (path, "/", filename,
-						     NULL));
-
-		}
-	    }
-	    /* END HTML special blcok */
-	}
-
-	container->base_path = g_strdup (path);
-
-	container->required_words = required_no;
-	container->grab_text = FALSE;
-	container->sect_name = NULL;
-
-	container->search_term = g_strdupv (terms_list);
-	container->stop_word = g_new0 (gboolean, terms_number);
-	container->dup_of = g_new0 (gint, terms_number);
-	container->found_terms = g_new0 (gboolean, terms_number);
-	container->score_per_word = g_new0 (gfloat, terms_number);
-	container->found_terms = g_new0 (gboolean, terms_number);
-
-	container->search_status = NOT_SEARCHING;
-	container->snippet_score = 0;
-
-	for (i=0; i< terms_number; i++) {
-	    container->stop_word[i] = stop_list[i];
-	    container->dup_of[i] = dup_list[i];
-	}
-
-	parser->pending_searches = 
-	    g_slist_prepend (parser->pending_searches, container);
-	
-	g_free (fname);
-	g_free (path);
-	if (omf_url)
-	    xmlXPathFreeObject (omf_url);
-	if (omf_title)
-	    xmlXPathFreeObject (omf_title);
-	if (omf_xpath)
-	    xmlXPathFreeContext (omf_xpath);
-	if (omf_doc)
-	    xmlFreeDoc (omf_doc);
-
+    /* Set up the container with the new data */
+    if (g_str_has_prefix (reg->uri, "file:")) {
+	fname = &(reg->uri[5]);
+    } else {
+	fname = reg->uri;
     }
-    g_return_val_if_fail (parser->slow_search_process_id == 0, FALSE);
-    parser->slow_search_process_id =
-        g_idle_add ((GSourceFunc) slow_search_process, parser);
 
-    if (xmlparser)
-	xmlFreeParserCtxt (xmlparser);
+    while (fname[0] == '/' && fname[1] == '/') {
+	fname++;
+    }
 
-    /* returning false removes this idle function from the main loop; 
-     * we also set our slow search _setup_ process id to zero to 
-     * indicate it has been removed */
-    parser->slow_search_setup_process_id = 0;
-    return FALSE;
+    container->base_filename = g_strdup (fname);
+    fname = g_strdup (container->base_filename);
+
+    container->entities = g_hash_table_new (g_str_hash, g_str_equal);
+    container->doc_title = g_strdup ((gchar *) reg->name);
+    container->score=0;
+    container->html = FALSE;
+    container->default_snippet = g_strdup ((gchar *) reg->comment);
+    container->current_subsection = NULL;
+    container->elem_type = NULL;
+
+    ptr = g_strrstr (container->base_filename, "/");
+    
+    path = g_strndup (container->base_filename, 
+		      ptr - container->base_filename);
+    
+    /* BEGIN HTML special block */
+    if (g_str_equal (reg->type, "text/html") ||
+	g_str_has_suffix (fname, "html")) {
+	GDir *dir;
+	gchar *filename;
+	container->html = TRUE;
+	ptr++;
+	
+	dir = g_dir_open (path, 0, NULL);
+	
+	while ((filename = (gchar *) g_dir_read_name (dir))) {
+	    if ((g_str_has_suffix (filename, ".html") ||
+		 g_str_has_suffix (filename, ".htm")) &&
+		!g_str_equal (filename, ptr)) {
+		container->components = 
+		    g_slist_append (container->components,
+				    g_strconcat (path, "/", filename,
+						 NULL));
+		
+	    }
+	}
+	/* END HTML special blcok */
+    }
+
+    container->base_path = g_strdup (path);
+    
+    container->required_words = data->required_no;
+    container->grab_text = FALSE;
+    container->sect_name = NULL;
+    
+    container->search_term = g_strdupv (data->terms_list);
+    container->stop_word = g_new0 (gboolean, data->terms_number);
+    container->dup_of = g_new0 (gint, data->terms_number);
+    container->found_terms = g_new0 (gboolean, data->terms_number);
+    container->score_per_word = g_new0 (gfloat, data->terms_number);
+    container->found_terms = g_new0 (gboolean, data->terms_number);
+    container->result_subsection = NULL;
+    container->search_status = NOT_SEARCHING;
+    container->snippet_score = 0;
+    container->snippet = NULL;
+
+    for (i=0; i< data->terms_number; i++) {
+	container->stop_word[i] = data->stop_list[i];
+	container->dup_of[i] = data->dup_list[i];
+    }
+
+
+    xmlSAXUserParseFile (&handlers, container, fname);
+    for (i=0; i< g_strv_length (container->search_term); ++i) {
+	if (container->found_terms[i]) {
+	    j++;
+	}
+    }
+    if (j >= container->required_words) {
+	search_parse_result (data->parser, container);
+    } else while (container->components) {
+	GSList *next = container->components;
+	container->components = g_slist_remove_link (container->components, next);
+	container->search_status = NOT_SEARCHING;
+	xmlSAXUserParseFile (&handlers, container, (gchar *) next->data);
+	j = 0;
+	for (i=0; i< g_strv_length (container->search_term); ++i) {
+	    if (container->found_terms[i])
+		j++;
+	}
+	if (j >= container->required_words) {
+	    search_parse_result (data->parser, container);
+	    break;
+	}
+    }
+
+    search_free_container (container);
+    g_free (path);
+    return TRUE;
 
 }
 
@@ -1221,68 +1146,6 @@ search_free_container (SearchContainer *c)
     g_free (c->base_filename);
     g_free (c->snippet);
     g_hash_table_destroy (c->entities);
-    g_free (c);
-}
-
-
-static gboolean 
-slow_search_process (YelpSearchParser *parser)
-{
-    SearchContainer *c;
-    GSList *first = parser->pending_searches;
-    gint i, j=0;
-
-    parser->pending_searches = 
-	g_slist_remove_link (parser->pending_searches, first);
-
-    if (first == NULL) {
-	parser->slow_search_process_id = 0;
-	check_finished (parser);
-	return FALSE;
-    }
-
-    c = (SearchContainer *) first->data;
-
-    xmlSAXUserParseFile (&handlers, c, c->base_filename);
-    for (i=0; i< g_strv_length (c->search_term); ++i) {
-	if (c->found_terms[i]) {
-	    j++;
-	}
-    }
-    if (j >= c->required_words) {
-	search_parse_result (parser, c);
-    } else while (c->components) {
-	GSList *next = c->components;
-	c->components = g_slist_remove_link (c->components, next);
-	c->search_status = NOT_SEARCHING;
-	xmlSAXUserParseFile (&handlers, c, (gchar *) next->data);
-	j = 0;
-	for (i=0; i< g_strv_length (c->search_term); ++i) {
-	    if (c->found_terms[i])
-		j++;
-	}
-	if (j >= c->required_words) {
-	    search_parse_result (parser, c);
-	    break;
-	}
-    }
-
-    if (parser->pending_searches) {
-	search_free_container (c);
-	return TRUE;
-    }
-    else {
-	search_process_man (parser, c->search_term);
-	search_process_info (parser, c->search_term);
-	search_free_container (c);
-
-	check_finished (parser);
-	/* returning false removes this idle function from the main loop; 
-     	 * we also set our slow search process id to zero to 
-     	 * indicate it has been removed */
-    	parser->slow_search_process_id = 0;
-	return FALSE;
-    }
 }
 
 gchar *
