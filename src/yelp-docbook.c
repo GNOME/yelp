@@ -394,6 +394,10 @@ docbook_process (YelpDocbook *docbook)
     xmlParserCtxtPtr parserCtxt = NULL;
     YelpDocument *document;
 
+    gint  params_i = 0;
+    gint  params_max = 10;
+    gchar **params = NULL;
+
     debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (docbook != NULL && YELP_IS_DOCBOOK (docbook));
@@ -482,10 +486,21 @@ docbook_process (YelpDocbook *docbook)
 					  (YelpTransformFunc) transform_func,
 					  docbook);
     priv->transform_running = TRUE;
-    /* FIXME: we probably need to set our own params */
+
+    params = g_new0 (gchar *, params_max);
+    yelp_settings_params (&params, &params_i, &params_max);
+
+
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 20;
+	params = g_renew (gchar *, params, params_max);
+    }
+
+    params[params_i] = NULL;
+
     yelp_transform_start (priv->transform,
 			  priv->xmldoc,
-			  NULL);
+			  params);
     g_mutex_unlock (priv->mutex);
 
  done:

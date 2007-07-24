@@ -415,6 +415,10 @@ man_process (YelpMan *man)
     YelpDocument *document;
     gint i;
 
+    gint  params_i = 0;
+    gint  params_max = 10;
+    gchar **params = NULL;
+
     debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (man != NULL && YELP_IS_MAN (man));
@@ -469,10 +473,15 @@ man_process (YelpMan *man)
 					  (YelpTransformFunc) transform_func,
 					  man);
     priv->transform_running = TRUE;
-    /* FIXME: we probably need to set our own params */
+
+    params = g_new0 (gchar *, params_max);
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    params[params_i] = NULL;
+
     yelp_transform_start (priv->transform,
 			  priv->xmldoc,
-			  NULL);
+			  params);
     g_mutex_unlock (priv->mutex);
 
  done:

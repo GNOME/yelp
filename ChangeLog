@@ -1,5 +1,14 @@
 2007-07-24  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-info.c: 
+	* src/yelp-man.c:
+	* src/yelp-docbook.c:
+	Add in some pretty parameters
+
+	* src/yelp-db-print.c:
+	Fix parameters to make printed docs *slightly*
+	prettier
+	
 	* src/yelp-search-parser.c: 
 	Convert search across to use Rarian
 	and clean up lots of crud from the file

@@ -482,7 +482,13 @@ dbprint_process (YelpDbprint *dbprint)
     params[params_i++] = "db.chunk.info_basename";
     params[params_i++] = g_strdup ("\"index\"");
     params[params_i++] = "db.chunk.max_depth";
-    params[params_i++] = g_strdup_printf ("0");
+    params[params_i++] = g_strdup ("0");
+    params[params_i++] = "db2html.navbar.top";
+    params[params_i++] = g_strdup ("0");
+    params[params_i++] = "db2html.navbar.bottom";
+    params[params_i++] = g_strdup ("0");
+    params[params_i++] = "db2html.sidenav";
+    params[params_i++] = g_strdup ("0");
 
     params[params_i] = NULL;
 

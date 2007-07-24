@@ -362,6 +362,11 @@ info_process (YelpInfo *info)
     YelpDocument *document;
     GtkTreeModel *model;
 
+    gint  params_i = 0;
+    gint  params_max = 10;
+    gchar **params = NULL;
+
+
     debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (info != NULL && YELP_IS_INFO (info));
@@ -402,11 +407,16 @@ info_process (YelpInfo *info)
 					  (YelpTransformFunc) transform_func,
 					  info);
     priv->transform_running = TRUE;
-    /* FIXME: we probably need to set our own params */
+    
+    params = g_new0 (gchar *, params_max);
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    params[params_i] = NULL;
+
 
     yelp_transform_start (priv->transform,
 			  priv->xmldoc,
-			  NULL);
+			  params);
     g_mutex_unlock (priv->mutex);
 
  done:
