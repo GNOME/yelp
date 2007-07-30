@@ -93,12 +93,12 @@ yelp_LDADD =				\
 
 yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
 
-check_PROGRAMS =		\
-	test-document		\
-	test-man-parser		\
-	test-page		\
-	test-transform		\
-	test-resolver
+#check_PROGRAMS =		\
+#	test-document		\
+#	test-man-parser		\
+#	test-page		\
+#	test-transform		\
+#	test-resolver
 
 test_document_SOURCES =					\
 	yelp-debug.c		yelp-debug.h		\
