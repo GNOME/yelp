@@ -40,7 +40,8 @@ YELP_DEFINES =								\
 	-DSERVERDIR=\"$(libexecdir)\"					\
 	-DBINDIR=\""$(bindir)"\"					\
 	-DSHAREDIR=\""$(pkgdatadir)"\"                                  \
-	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""
+	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""				\
+	-DGDU_ICON_PATH=\"$(GDU_ICON_PATH)\"
 
 mozilla_include_subdirs =	\
 	.		\
