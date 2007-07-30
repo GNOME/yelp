@@ -1,5 +1,20 @@
 2007-07-30  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	Merge of yelp rework branch:
+	- Depreciate yelp-*-pager in favour of
+	  yelp-document and such.
+	  Gives us on-demand loading of pages
+	- Switch to using rarian instead of scrollkeeper
+	- Update to using shiny newness of gnome-doc-utils
+	- Make printing docbook pretty
+	- Clean up lots of errors and general cleanup
+	  of other source files
+	- Make our resolver much, much better
+	  - and remove reliance on libgnome there
+	
+
+2007-07-30  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/yelp-settings.c: 
 	* configure.in:
 	* src/yelp-settings.h:
