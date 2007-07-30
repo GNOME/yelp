@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2007 Don Scorgie <Don@Scorgie.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Shaun McCance  <shaunm@gnome.org>
+ * Author: Don Scorgie <Don@Scorgie.org>
  */
 
 #ifdef HAVE_CONFIG_H
@@ -41,6 +41,7 @@
 #include <libxslt/extensions.h>
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
+#include <rarian.h>
 
 #ifdef ENABLE_BEAGLE
 #include <beagle/beagle.h>
@@ -48,7 +49,7 @@
 
 #include "yelp-error.h"
 #include "yelp-settings.h"
-#include "yelp-search-pager.h"
+#include "yelp-search-parser.h"
 #include "yelp-utils.h"
 #include "yelp-debug.h"
 
@@ -57,39 +58,13 @@
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
-#define STYLESHEET_PATH DATADIR"/yelp/xslt/"
-#define SEARCH_STYLESHEET  STYLESHEET_PATH"search2html.xsl"
-
-typedef gboolean      (*ProcessFunction)        (YelpSearchPager      *pager);
+typedef gboolean      (*ProcessFunction)        (YelpSearchParser      *parser);
 
 typedef struct _SearchContainer SearchContainer;
-
-#define YELP_SEARCH_PAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SEARCH_PAGER, YelpSearchPagerPriv))
 
 #define ONLINE_URL "http://api.gnome.org/yelp/forums?query=%s"
 
 #define ONLINE_NAME N_("the GNOME Support Forums")
-
-struct _YelpSearchPagerPriv {
-    xmlDocPtr     search_doc;
-    xmlNodePtr    root;
-
-    xmlParserCtxtPtr  parser;
-
-    gboolean      cancel;
-
-    xsltStylesheetPtr       stylesheet;
-    xsltTransformContextPtr transformContext;
-    char *search_terms;
-    GPtrArray *hits;
-    int   snippet_request_count;
-    GSList * pending_searches;
-
-    guint search_process_id;
-    guint slow_search_setup_process_id;
-    guint slow_search_process_id;
-    guint xslt_process_id;
-};
 
 enum {
     NOT_SEARCHING = 0,
@@ -125,29 +100,36 @@ struct _SearchContainer {
     gchar *      default_snippet;
 };
 
-static void          search_pager_class_init      (YelpSearchPagerClass *klass);
-static void          search_pager_init            (YelpSearchPager      *pager);
-static void          search_pager_dispose         (GObject           *gobject);
+typedef struct {
+    YelpSearchParser *parser;
+    gint required_no;
+    gint terms_number;
+    gboolean *stop_list;
+    gint *dup_list;
+    gchar **terms_list;
+    SearchContainer *container;
+} SearchDocData;
 
-static void          search_pager_error           (YelpPager        *pager);
-static void          search_pager_cancel          (YelpPager        *pager);
-static void          search_pager_finish          (YelpPager        *pager);
 
-gboolean             search_pager_process         (YelpPager         *pager);
-void                 search_pager_cancel          (YelpPager         *pager);
-const gchar *        search_pager_resolve_frag    (YelpPager         *pager,
-						const gchar       *frag_id);
-GtkTreeModel *       search_pager_get_sections    (YelpPager         *pager);
+struct _YelpSearchParser {
+    gchar *search_terms;
+    xmlDocPtr     search_doc;
+    xmlNodePtr    root;
 
-static gboolean      process_xslt              (YelpSearchPager      *pager);
+    GPtrArray *hits;
+    int   snippet_request_count;
+    GSList * pending_searches;
 
-static void          xslt_yelp_document        (xsltTransformContextPtr ctxt,
-						xmlNodePtr              node,
-						xmlNodePtr              inst,
-						xsltStylePreCompPtr     comp);
-static gboolean      search_pager_process_idle (YelpSearchPager        *pager);
+    guint search_process_id;
+    guint slow_search_setup_process_id;
+    guint slow_search_process_id;
 
-static YelpPagerClass *parent_class;
+    gboolean finished;
+
+};
+
+
+static gboolean      search_parser_process_idle (YelpSearchParser        *parser);
 
 static void          s_startElement            (void       *data,
 						const xmlChar         *name,
@@ -165,140 +147,46 @@ static void          s_declEntity              (void       *data,
 						xmlChar              *content);
 static xmlEntityPtr  s_getEntity               (void      *data, 
 						const xmlChar        *name);
-static gboolean      slow_search_setup         (YelpSearchPager       *pager);
-static gboolean      slow_search_process       (YelpSearchPager       *pager);
-static void          search_parse_result       (YelpSearchPager       *pager,
+static gboolean      slow_search_setup         (YelpSearchParser       *parser);
+static gboolean      slow_search_process       (RrnReg                *reg, 
+						SearchDocData         *data);
+static void          search_parse_result       (YelpSearchParser       *parser,
 						SearchContainer       *c);
 static gchar *       search_clean_snippet      (gchar                 *snippet,
 						gchar                **terms);
-static void          search_process_man        (YelpSearchPager       *pager,
+static void          search_process_man        (YelpSearchParser       *parser,
 						gchar                **terms);
-static void          search_process_info       (YelpSearchPager        *pager,
+static void          search_process_info       (YelpSearchParser        *parser,
 						gchar                **terms);
-static void          process_man_result        (YelpSearchPager       *pager, 
+static void          process_man_result        (YelpSearchParser       *parser, 
 						gchar                 *result, 
 						gchar                **terms);
-void                 process_info_result       (YelpSearchPager       *pager, 
+void                 process_info_result       (YelpSearchParser       *parser, 
 						gchar                 *result,
 						gchar                **terms);
 gchar *              string_append             (gchar                 *current,
 						gchar                 *new, 
 						gchar                 *suffix);
+static void          search_free_container     (SearchContainer       *c);
 
 
 #ifdef ENABLE_BEAGLE
 static BeagleClient   *beagle_client;
 #endif /* ENABLE_BEAGLE */
-static char const * const * langs;
 
-
-GType
-yelp_search_pager_get_type (void)
+YelpSearchParser *
+yelp_search_parser_new (void)
 {
-    static GType type = 0;
+    YelpSearchParser *parser = g_new0 (YelpSearchParser, 1);
 
-    if (!type) {
-	static const GTypeInfo info = {
-	    sizeof (YelpSearchPagerClass),
-	    NULL,
-	    NULL,
-	    (GClassInitFunc) search_pager_class_init,
-	    NULL,
-	    NULL,
-	    sizeof (YelpSearchPager),
-	    0,
-	    (GInstanceInitFunc) search_pager_init,
-	};
-	type = g_type_register_static (YELP_TYPE_PAGER,
-				       "YelpSearchPager", 
-				       &info, 0);
-    }
-    return type;
+    return parser;
 }
 
-static void
-search_pager_class_init (YelpSearchPagerClass *klass)
-{
-    GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-    YelpPagerClass *pager_class  = YELP_PAGER_CLASS (klass);
-
-    parent_class = g_type_class_peek_parent (klass);
-
-#ifdef ENABLE_BEAGLE
-    if (beagle_util_daemon_is_running()) {
-	beagle_client = beagle_client_new (NULL);
-	debug_print (DB_DEBUG, "client: %p\n", beagle_client);
-    } else {
-	beagle_client = NULL;
-    }
-#endif /* ENABLE_BEAGLE */
-
-    langs = g_get_language_names ();
-
-    object_class->dispose = search_pager_dispose;
-
-    pager_class->error        = search_pager_error;
-    pager_class->cancel       = search_pager_cancel;
-    pager_class->finish       = search_pager_finish;
-
-    pager_class->process      = search_pager_process;
-    pager_class->cancel       = search_pager_cancel;
-    pager_class->resolve_frag = search_pager_resolve_frag;
-    pager_class->get_sections = search_pager_get_sections;
-
-    g_type_class_add_private (klass, sizeof (YelpSearchPagerPriv));
+void
+yelp_search_parser_free (YelpSearchParser *parser)
+{    
+    g_free (parser);
 }
-
-static void
-search_pager_init (YelpSearchPager *pager)
-{
-    YelpSearchPagerPriv *priv;
-
-    pager->priv = priv = YELP_SEARCH_PAGER_GET_PRIVATE (pager);
-
-    priv->parser = xmlNewParserCtxt ();
-
-    priv->cancel                = 0;
-    priv->search_terms          = NULL;
-    priv->hits                  = NULL;
-    priv->snippet_request_count = 0;
-    priv->search_process_id = 0;
-    priv->slow_search_setup_process_id = 0;
-    priv->slow_search_process_id = 0;
-    priv->xslt_process_id = 0;
-
-}
-
-static void
-search_pager_dispose (GObject *object)
-{     
-    YelpSearchPager *pager = YELP_SEARCH_PAGER (object);
-    YelpSearchPagerPriv *priv = pager->priv;
- 
-    if (priv->search_process_id != 0) {
-        g_source_remove (priv->search_process_id);
-	priv->search_process_id = 0;
-    }
-
-    if (priv->xslt_process_id != 0) {
-        g_source_remove (priv->xslt_process_id);
-	priv->xslt_process_id = 0;
-    }
-
-    if (priv->slow_search_process_id != 0) {
-        g_source_remove (priv->slow_search_process_id);
-	priv->slow_search_process_id = 0;
-    }
- 
-    if (priv->slow_search_setup_process_id != 0) {
-       g_source_remove (priv->slow_search_setup_process_id);
-	priv->slow_search_setup_process_id = 0;
-    }
-
-    G_OBJECT_CLASS (parent_class)->dispose (object);
-}
-
-/******************************************************************************/
 
 static gboolean
 check_hex (char check)
@@ -340,125 +228,87 @@ decode_uri (const char *uri)
     return decoded;
 }
 
-YelpSearchPager *
-yelp_search_pager_get (YelpDocInfo *doc_info)
-{
-    static GHashTable *search_hash;
-    YelpSearchPager *search_pager;
-    char *uri;
-    char *search_terms;
-
-    if (search_hash == NULL) {
-	search_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
-					     NULL,       g_object_unref);
-    }
-
-    uri = yelp_doc_info_get_uri (doc_info, NULL, YELP_URI_TYPE_SEARCH);
-    search_terms = decode_uri (uri + strlen ("x-yelp-search:"));
-    g_free (uri);
-
-    search_pager = g_hash_table_lookup (search_hash, search_terms);
-
-    if (search_pager == NULL) {
-	search_pager = (YelpSearchPager *) g_object_new (YELP_TYPE_SEARCH_PAGER,
-							 "document-info", doc_info,
-							 NULL);
-	search_pager->priv->search_terms = search_terms;
-	g_hash_table_insert (search_hash, search_terms, search_pager);
-	yelp_pager_start (YELP_PAGER (search_pager));
-    } else {
-	g_free (search_terms);
-    }
-
-    g_object_ref (search_pager);
-    return search_pager;
-}
-
-/******************************************************************************/
-
-static void
-search_pager_error (YelpPager *pager)
+xmlDocPtr
+yelp_search_parser_process (YelpSearchParser *parser, gchar *search_terms)
 {
     debug_print (DB_FUNCTION, "entering\n");
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_ERROR);
-}
 
-static void
-search_pager_cancel (YelpPager *pager)
-{
-    YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
+    parser->search_terms = decode_uri (search_terms);
 
-    debug_print (DB_FUNCTION, "entering\n");
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_INVALID);
-
-    priv->cancel = TRUE;
-}
-
-static void
-search_pager_finish (YelpPager   *pager)
-{
-    YelpSearchPager *spager = YELP_SEARCH_PAGER (pager);
-    YelpSearchPagerPriv *priv = spager->priv;
-
-    g_return_if_fail (priv->search_process_id == 0);
-    debug_print (DB_FUNCTION, "entering\n");
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_FINISHED);
-}
-
-gboolean
-search_pager_process (YelpPager *pager)
-{
-    YelpSearchPagerPriv *priv = (YELP_SEARCH_PAGER (pager))->priv;
-    debug_print (DB_FUNCTION, "entering\n");
-
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_PARSING);
-    g_signal_emit_by_name (pager, "parse");
-
-    /* Set it running */
-    yelp_pager_set_state (pager, YELP_PAGER_STATE_RUNNING);
-    g_signal_emit_by_name (pager, "start");
-
-    priv->search_process_id = 
+    parser->search_process_id = 
 	g_idle_add_full (G_PRIORITY_LOW,
-			 (GSourceFunc) search_pager_process_idle,
-			 pager, NULL);
-    return FALSE;
-}
+			 (GSourceFunc) search_parser_process_idle,
+			 parser, NULL);
 
-const gchar *
-search_pager_resolve_frag (YelpPager *pager, const gchar *frag_id)
-{
-    if (!frag_id)
-	return "results";
-    else
-	return frag_id;
-}
-
-GtkTreeModel *
-search_pager_get_sections (YelpPager *pager)
-{
-    return NULL;
+    while (!parser->finished)
+	g_thread_yield ();
+    return parser->search_doc;
 }
 
 /******************************************************************************/
-#ifdef ENABLE_BEAGLE
 static void
-check_finished (YelpSearchPager *pager)
+check_finished (YelpSearchParser *parser)
 {
-    YelpSearchPagerPriv *priv = pager->priv;
+    gchar *tmp;
+    gchar **split;
+    xmlNodePtr online = NULL;
+    gchar *check;
+    gchar *title;
+    gchar *text = NULL;
+    xmlXPathContextPtr results_xpath_ctx = NULL;
+    xmlXPathObjectPtr results_xpath = NULL;
+    gint number_of_results = 0;
 
-    if (priv->snippet_request_count == 0 &&
-        priv->xslt_process_id == 0) {
-	priv->xslt_process_id = 
-	    g_idle_add_full (G_PRIORITY_LOW,
-			     (GSourceFunc) process_xslt,
-			     pager, NULL);
+    results_xpath_ctx = xmlXPathNewContext(parser->search_doc);
+    results_xpath = xmlXPathEvalExpression(BAD_CAST "/search/result", results_xpath_ctx);
+    if (results_xpath && results_xpath->nodesetval && results_xpath->nodesetval->nodeNr) {
+    	number_of_results = results_xpath->nodesetval->nodeNr;
+    } else {
+    	number_of_results = 0;
     }
+    xmlXPathFreeObject(results_xpath);
+    xmlXPathFreeContext(results_xpath_ctx);
+
+    if (number_of_results == 0) {
+    	title = g_strdup_printf( _("No results for \"%s\""), parser->search_terms);
+	text = g_strdup(_("Try using different words to describe the problem "
+			  "you're having or the topic you want help with."));
+    } else {
+    	title = g_strdup_printf( _("Search results for \"%s\""), parser->search_terms);
+    }
+    xmlNewTextChild (parser->root, NULL, BAD_CAST "title", BAD_CAST title);
+
+    if (text) {
+      xmlNewTextChild (parser->root, NULL, BAD_CAST "text", BAD_CAST text);
+      g_free(text);
+    }
+
+    /* TRANSLATORS: Please don't do anything funny with the
+     * format arguement.  It isn't really going through a printf
+     * The %s is used to indicate where the name of the site (linked)
+     * should be.  This is done in the XSLT
+     */
+    tmp = g_strdup (_("Repeat the search online at %s"));
+    split = g_strsplit (tmp, "%s", 2);
+    check = g_strdup_printf (ONLINE_URL, parser->search_terms);
+
+    online = xmlNewTextChild (parser->root, NULL, BAD_CAST "online", BAD_CAST split[0]);
+    g_free (tmp);
+    xmlNewProp (online, BAD_CAST "name",
+		BAD_CAST ONLINE_NAME);
+    xmlNewProp (online, BAD_CAST "href",
+		BAD_CAST check);
+    g_free (check);
+    xmlNewTextChild (parser->root, NULL, BAD_CAST "online1", BAD_CAST split[1]);
+
+    parser->finished = TRUE;
+
 }
 
+#ifdef ENABLE_BEAGLE
 typedef struct
 {
-    YelpSearchPager *pager;
+    YelpSearchParser *parser;
     xmlNode *node;
 } SnippetLocation;
 
@@ -474,12 +324,12 @@ static void snippet_error    (BeagleSnippetRequest  *request,
 static void
 snippet_closed (BeagleSnippetRequest *request, SnippetLocation *snippet_location)
 {
-    YelpSearchPager *pager = snippet_location->pager;
+    YelpSearchParser *parser = snippet_location->parser;
     
     debug_print (DB_FUNCTION, "entering\n");
 
-    pager->priv->snippet_request_count --;
-    check_finished (pager);
+    parser->snippet_request_count --;
+    check_finished (parser);
 
     g_signal_handlers_disconnect_by_func (request,
 					  G_CALLBACK (snippet_response),
@@ -529,10 +379,8 @@ snippet_error (BeagleSnippetRequest *request, GError *error, SnippetLocation *sn
 
 
 static void
-hits_added_cb (BeagleQuery *query, BeagleHitsAddedResponse *response, YelpSearchPager *pager)
+hits_added_cb (BeagleQuery *query, BeagleHitsAddedResponse *response, YelpSearchParser *parser)
 {
-    YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
-
     GSList *hits, *l;
 
     debug_print (DB_FUNCTION, "hits_added\n");
@@ -543,7 +391,7 @@ hits_added_cb (BeagleQuery *query, BeagleHitsAddedResponse *response, YelpSearch
 	BeagleHit *hit = l->data;
 	beagle_hit_ref (hit);
 	debug_print (DB_DEBUG, "%f\n", beagle_hit_get_score (hit));
-	g_ptr_array_add (priv->hits, hit);
+	g_ptr_array_add (parser->hits, hit);
     }
 }
 
@@ -595,17 +443,16 @@ compare_hits (gconstpointer  a,
 static void
 finished_cb (BeagleQuery            *query,
 	     BeagleFinishedResponse *response, 
-	     YelpSearchPager        *pager)
+	     YelpSearchParser        *parser)
 {
     int i;
-    YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
 
     debug_print (DB_FUNCTION, "entering\n");
 
-    g_ptr_array_sort (priv->hits, compare_hits);
+    g_ptr_array_sort (parser->hits, compare_hits);
 
-    for (i = 0; i < 10 && i < priv->hits->len; i++) {
-	BeagleHit *hit = g_ptr_array_index (priv->hits, i);
+    for (i = 0; i < 10 && i < parser->hits->len; i++) {
+	BeagleHit *hit = g_ptr_array_index (parser->hits, i);
 	xmlNode *child;
 	/* static float score_fake = 0; */
 	char *score;
@@ -613,7 +460,7 @@ finished_cb (BeagleQuery            *query,
 	BeagleSnippetRequest *request;
 	SnippetLocation *snippet_location;
 
-	child = xmlNewTextChild (priv->root, NULL, BAD_CAST "result", NULL);
+	child = xmlNewTextChild (parser->root, NULL, BAD_CAST "result", NULL);
 	xmlSetProp (child, BAD_CAST "uri", BAD_CAST beagle_hit_get_uri (hit));
 	xmlSetProp (child, BAD_CAST "parent_uri", 
 		    BAD_CAST beagle_hit_get_parent_uri (hit));
@@ -627,11 +474,11 @@ finished_cb (BeagleQuery            *query,
 	/*xmlSetProp (child, BAD_CAST "score", BAD_CAST score);*/
 	g_free (score);
 
-	priv->snippet_request_count ++;
+	parser->snippet_request_count ++;
 
 	snippet_location = g_new (SnippetLocation, 1);
 
-	snippet_location->pager = pager;
+	snippet_location->parser = parser;
 	snippet_location->node = child;
 
 	request = beagle_snippet_request_new ();
@@ -652,51 +499,50 @@ finished_cb (BeagleQuery            *query,
 
     g_signal_handlers_disconnect_by_func (query,
 					  G_CALLBACK (hits_added_cb),
-					  pager);
+					  parser);
     g_signal_handlers_disconnect_by_func (query,
 					  G_CALLBACK (finished_cb),
-					  pager);
+					  parser);
     g_object_unref (query);
 
-    g_ptr_array_foreach (priv->hits, (GFunc) beagle_hit_unref, NULL);
-    g_ptr_array_free (priv->hits, TRUE);
-    priv->hits = NULL;
+    g_ptr_array_foreach (parser->hits, (GFunc) beagle_hit_unref, NULL);
+    g_ptr_array_free (parser->hits, TRUE);
+    parser->hits = NULL;
 
-    check_finished (pager);
+    check_finished (parser);
 }
 #endif /* ENABLE_BEAGLE */
 
 static gboolean
-search_pager_process_idle (YelpSearchPager *pager)
+search_parser_process_idle (YelpSearchParser *parser)
 {
 #ifdef ENABLE_BEAGLE
     BeagleQuery    *query;
     GError *error = NULL;
 #endif /* ENABLE_BEAGLE */
-    YelpSearchPagerPriv *priv = YELP_SEARCH_PAGER (pager)->priv;
 
-    priv->search_doc = xmlNewDoc (BAD_CAST "1.0");
-    priv->root = xmlNewNode (NULL, BAD_CAST "search");
-    xmlSetProp (priv->root, BAD_CAST "title", BAD_CAST priv->search_terms);
-    xmlDocSetRootElement (priv->search_doc, priv->root);
+    parser->search_doc = xmlNewDoc (BAD_CAST "1.0");
+    parser->root = xmlNewNode (NULL, BAD_CAST "search");
+    xmlSetProp (parser->root, BAD_CAST "title", BAD_CAST parser->search_terms);
+    xmlDocSetRootElement (parser->search_doc, parser->root);
 
 #ifdef ENABLE_BEAGLE
     if (beagle_client != NULL) {
 	query = beagle_query_new ();
 
 	beagle_query_set_max_hits (query, 10000);
-	beagle_query_add_text (query, priv->search_terms);
+	beagle_query_add_text (query, parser->search_terms);
 	beagle_query_add_source (query, "documentation");
 
-	priv->hits = g_ptr_array_new ();
+	parser->hits = g_ptr_array_new ();
 
 	g_signal_connect (query, "hits-added",
 			  G_CALLBACK (hits_added_cb),
-			  pager);
+			  parser);
     
 	g_signal_connect (query, "finished",
 			  G_CALLBACK (finished_cb),
-			  pager);
+			  parser);
 	
 	beagle_client_send_request_async (beagle_client, BEAGLE_REQUEST (query), &error);
 
@@ -713,313 +559,19 @@ search_pager_process_idle (YelpSearchPager *pager)
 #ifdef ENABLE_BEAGLE
     if (beagle_client == NULL) {
 #endif
-	g_return_val_if_fail (priv->slow_search_setup_process_id == 0, FALSE);
+	g_return_val_if_fail (parser->slow_search_setup_process_id == 0, FALSE);
 
-	priv->slow_search_setup_process_id = 
+	parser->slow_search_setup_process_id = 
 	    g_idle_add ((GSourceFunc) slow_search_setup,
-		        pager);
+		        parser);
 #ifdef ENABLE_BEAGLE
     }
 #endif
 
     /* returning false removes this idle function from the main loop; 
      * we also set our search process id to zero */
-    priv->search_process_id = 0; 
+    parser->search_process_id = 0; 
     return FALSE;
-}
-
-static gboolean
-process_xslt (YelpSearchPager *pager)
-{
-    GError *error = NULL;
-    xmlDocPtr outdoc = NULL;
-    YelpSearchPagerPriv *priv = pager->priv;
-    gchar **params;
-    gint  params_i = 0;
-    gint  params_max = 12;
-    GtkIconInfo *info;
-    GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
-    xmlXPathContextPtr results_xpath_ctx = NULL;
-    xmlXPathObjectPtr results_xpath = NULL;
-    int number_of_results;
-    gchar *title = NULL, *text = NULL;
-    gchar *tmp = NULL, *check = NULL;
-    gchar **split = NULL;
-    xmlNodePtr online = NULL;
-
-    d (xmlDocFormatDump(stdout, priv->search_doc, 1));
-
-    priv->stylesheet = xsltParseStylesheetFile (BAD_CAST SEARCH_STYLESHEET);
-    if (!priv->stylesheet) {
-	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
-		     _("Your search could not be processed. The "
-		       "file ‘%s’ is either missing or is not a valid XSLT "
-		       "stylesheet."),
-		     SEARCH_STYLESHEET);
-	yelp_pager_error (YELP_PAGER (pager), error);
-	goto done;
-    }
-
-    priv->transformContext = xsltNewTransformContext (priv->stylesheet,
-						      priv->search_doc);
-    priv->transformContext->_private = pager;
-    xsltRegisterExtElement (priv->transformContext,
-			    BAD_CAST "document",
-			    BAD_CAST YELP_NAMESPACE,
-			    (xsltTransformFunction) xslt_yelp_document);
-
-    params = g_new0 (gchar *, params_max);
-    yelp_settings_params (&params, &params_i, &params_max);
-
-    if ((params_i + 14) >= params_max - 1) {
-	params_max += 14;
-	params = g_renew (gchar *, params, params_max);
-    }
-
-    info = gtk_icon_theme_lookup_icon (theme, "yelp-icon-big", 192, 0);
-    if (info) {
-	params[params_i++] = "help_icon";
-	params[params_i++] = g_strdup_printf ("\"%s\"",
-					      gtk_icon_info_get_filename (info));
-	params[params_i++] = "help_icon_size";
-	params[params_i++] = g_strdup_printf ("%i",
-					      gtk_icon_info_get_base_size (info));
-	gtk_icon_info_free (info);
-    }
-
-    params[params_i++] = "yelp.javascript";
-    params[params_i++] = g_strdup_printf ("\"%s\"", DATADIR "/yelp/yelp.js");
-    params[params_i++] = "yelp.topimage";
-    params[params_i++] = g_strdup_printf ("\"%s\"", DATADIR "/yelp/icons/help-title.png");
-
-    params[params_i++] = NULL;
-
-    results_xpath_ctx = xmlXPathNewContext(priv->search_doc);
-    results_xpath = xmlXPathEvalExpression(BAD_CAST "/search/result", results_xpath_ctx);
-    if (results_xpath && results_xpath->nodesetval && results_xpath->nodesetval->nodeNr) {
-    	number_of_results = results_xpath->nodesetval->nodeNr;
-    } else {
-    	number_of_results = 0;
-    }
-    xmlXPathFreeObject(results_xpath);
-    xmlXPathFreeContext(results_xpath_ctx);
-    if (number_of_results == 0) {
-    	title = g_strdup_printf( _("No results for \"%s\""), priv->search_terms);
-	text = g_strdup(_("Try using different words to describe the problem "
-			  "you're having or the topic you want help with."));
-    } else {
-    	title = g_strdup_printf( _("Search results for \"%s\""), priv->search_terms);
-    }
-    xmlNewTextChild (priv->root, NULL, BAD_CAST "title", BAD_CAST title);
-    g_free(title);
-
-    if (text) {
-      xmlNewTextChild (priv->root, NULL, BAD_CAST "text", BAD_CAST text);
-      g_free(text);
-    }
-    
-    check = g_strdup_printf (ONLINE_URL, priv->search_terms);
-
-    /* TRANSLATORS: Please don't do anything funny with the
-     * format arguement.  It isn't really going through a printf
-     * The %s is used to indicate where the name of the site (linked)
-     * should be.  This is done in the XSLT
-     */
-    tmp = g_strdup (_("Repeat the search online at %s"));
-    split = g_strsplit (tmp, "%s", 2);
-
-    online = xmlNewTextChild (priv->root, NULL, BAD_CAST "online", BAD_CAST split[0]);
-    g_free (tmp);
-    xmlNewProp (online, BAD_CAST "name",
-		BAD_CAST ONLINE_NAME);
-    xmlNewProp (online, BAD_CAST "href",
-		BAD_CAST check);
-    g_free (check);
-    xmlNewTextChild (priv->root, NULL, BAD_CAST "online1", BAD_CAST split[1]);
-
-    outdoc = xsltApplyStylesheetUser (priv->stylesheet,
-				      priv->search_doc,
-				      (const gchar **)params, NULL, NULL,
-				      priv->transformContext);
-    /* Don't do this */
-    /*    g_signal_emit_by_name (pager, "finish");*/
-
- done:
-    for (params_i = 0; params[params_i] != NULL; params_i++)
-	if (params_i % 2 == 1)
-	    g_free ((gchar *) params[params_i]);
-    if (outdoc)
-	xmlFreeDoc (outdoc);
-    if (priv->search_doc) {
-	xmlFreeDoc (priv->search_doc);
-	priv->search_doc = NULL;
-    }
-    if (priv->stylesheet) {
-	xsltFreeStylesheet (priv->stylesheet);
-	priv->stylesheet = NULL;
-    }
-    if (priv->transformContext) {
-	xsltFreeTransformContext (priv->transformContext);
-	priv->transformContext = NULL;
-    }
-
-    g_signal_emit_by_name (pager, "finish");
-    
-    /* returning false removes this idle function from the main loop; 
-     * we also set our xslt process id to zero to indicate it has been
-     * removed */
-    priv->xslt_process_id = 0; 
-    return FALSE;
-}
-
-static void
-xslt_yelp_document (xsltTransformContextPtr ctxt,
-		    xmlNodePtr              node,
-		    xmlNodePtr              inst,
-		    xsltStylePreCompPtr     comp)
-{
-    GError  *error = NULL;
-    YelpPage *page;
-    xmlChar *page_id = NULL;
-    xmlChar *page_title = NULL;
-    xmlChar *page_buf;
-    gint     buf_size;
-    YelpPager *pager;
-    xsltStylesheetPtr style = NULL;
-    const char *old_outfile;
-    xmlDocPtr   new_doc = NULL;
-    xmlDocPtr   old_doc;
-    xmlNodePtr  old_insert;
-    xmlNodePtr  cur;
-
-    if (!ctxt || !node || !inst || !comp)
-	return;
-
-    pager = (YelpPager *) ctxt->_private;
-
-    page_id = xsltEvalAttrValueTemplate (ctxt, inst,
-					 (const xmlChar *) "href",
-					 NULL);
-    if (page_id == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("No href attribute found on yelp:document"));
-	error = NULL;
-	yelp_pager_error (pager, error);
-	goto done;
-    }
-
-    old_outfile = ctxt->outputFile;
-    old_doc     = ctxt->output;
-    old_insert  = ctxt->insert;
-    ctxt->outputFile = (const char *) page_id;
-
-    style = xsltNewStylesheet ();
-    if (style == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("Out of memory"));
-	error = NULL;
-	yelp_pager_error (pager, error);
-	goto done;
-    }
-
-    style->omitXmlDeclaration = TRUE;
-
-    new_doc = xmlNewDoc (BAD_CAST "1.0");
-    new_doc->charset = XML_CHAR_ENCODING_UTF8;
-    new_doc->dict = ctxt->dict;
-    xmlDictReference (new_doc->dict);
-
-    ctxt->output = new_doc;
-    ctxt->insert = (xmlNodePtr) new_doc;
-
-    xsltApplyOneTemplate (ctxt, node, inst->children, NULL, NULL);
-
-    xsltSaveResultToString (&page_buf, &buf_size, new_doc, style);
-
-    ctxt->outputFile = old_outfile;
-    ctxt->output     = old_doc;
-    ctxt->insert     = old_insert;
-
-    for (cur = node->children; cur; cur = cur->next) {
-	if (!xmlStrcmp (cur->name, BAD_CAST "title")) {
-	    page_title = xmlNodeGetContent (cur);
-	    break;
-	}
-    }
-
-    page = g_new0 (YelpPage, 1);
-
-    if (page_id) {
-	page->page_id = g_strdup ((gchar *) page_id);
-	xmlFree (page_id);
-    }
-    if (page_title) {
-	page->title = g_strdup ((gchar *) page_title);
-	xmlFree (page_title);
-    } else {
-	page->title = g_strdup (_("Help Contents"));
-    }
-    page->contents = (gchar *) page_buf;
-
-    cur = xmlDocGetRootElement (new_doc);
-    for (cur = cur->children; cur; cur = cur->next) {
-	if (!xmlStrcmp (cur->name, (xmlChar *) "head")) {
-	    for (cur = cur->children; cur; cur = cur->next) {
-		if (!xmlStrcmp (cur->name, (xmlChar *) "link")) {
-		    xmlChar *rel = xmlGetProp (cur, BAD_CAST "rel");
-
-		    if (!xmlStrcmp (rel, (xmlChar *) "Previous"))
-			page->prev_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
-		    else if (!xmlStrcmp (rel, (xmlChar *) "Next"))
-			page->next_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
-		    else if (!xmlStrcmp (rel, (xmlChar *) "Top"))
-			page->toc_id = (gchar *) xmlGetProp (cur, BAD_CAST "href");
-
-		    xmlFree (rel);
-		}
-	    }
-	    break;
-	}
-    }
-
-    yelp_pager_add_page (pager, page);
-    g_signal_emit_by_name (pager, "page", page->page_id);
-
- done:
-    if (new_doc)
-	xmlFreeDoc (new_doc);
-    if (style)
-	xsltFreeStylesheet (style);
-}
-
-static gboolean sk_docomf = FALSE;
-static GSList *omf_pending = NULL;
-
-static void
-sk_startElement (void *empty, const xmlChar  *name,
-		 const xmlChar **attrs)
-{
-    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
-	sk_docomf = TRUE;
-}
-
-static void
-sk_endElement (void *empty, const xmlChar *name)
-{
-    if (xmlStrEqual((const xmlChar*) name, BAD_CAST "docomf"))
-	sk_docomf = FALSE;
-}
-
-static void
-sk_characters (void *empty, const xmlChar *ch,
-	       int            len)
-{
-    gchar *omf;
-    
-    if (sk_docomf) {
-	omf = g_strndup ((gchar *) ch, len);
-	omf_pending = g_slist_prepend (omf_pending, omf);
-    }
 }
 
 void s_startElement(void *data,
@@ -1428,211 +980,150 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
     return n_terms;
 }
 
-
 static gboolean
-slow_search_setup (YelpSearchPager *pager)
+slow_search_setup (YelpSearchParser *parser)
 {
-    YelpSearchPagerPriv *priv = pager->priv;
-    gchar  *content_list;
-    gchar  *stderr_str;
-    gchar  *lang;
-    gchar  *command;
-
     gchar **terms_list = NULL;
     gint   *dup_list = NULL;
     gboolean *stop_list = NULL;
     gint      terms_number = 0;
     gint required_no = 0;
-
-    static xmlSAXHandler sk_sax_handler = { 0, };
-    xmlParserCtxtPtr parser;
-    if (langs && langs[0])
-	lang = (gchar *) langs[0];
-    else
-	lang = "C";
+    SearchDocData *data;
     
-    if (!strcmp (pager->priv->search_terms, "")) {
-	pager->priv->slow_search_setup_process_id = 0;
-	priv->xslt_process_id =
-	    g_idle_add_full (G_PRIORITY_LOW,
-			     (GSourceFunc) process_xslt,
-			     pager, NULL);
-	return FALSE;
-    }
 
-    command = g_strconcat("scrollkeeper-get-content-list ", lang, NULL);
-    
-    if (g_spawn_command_line_sync (command, &content_list, &stderr_str, NULL, NULL)) {
-	if (!sk_sax_handler.startElement) {
-	    sk_sax_handler.startElement = sk_startElement;
-	    sk_sax_handler.endElement   = sk_endElement;
-	    sk_sax_handler.characters   = sk_characters;
-	    sk_sax_handler.initialized  = TRUE;
-	}
-	content_list = g_strstrip (content_list);
-	xmlSAXUserParseFile (&sk_sax_handler, NULL, content_list);
-    }
-    
-    parser = xmlNewParserCtxt ();
-
-    g_free (content_list);
-    g_free (stderr_str);
-    g_free (command);
-
-
-    terms_number = build_lists (pager->priv->search_terms,&terms_list, 
+   terms_number = build_lists (parser->search_terms,&terms_list, 
 				&dup_list, &stop_list, 
 				&required_no);
+   data = g_new0 (SearchDocData, 1);
+   data->container = g_new0 (SearchContainer, 1);
+   data->parser = parser;
+   data->required_no = required_no;
+   data->terms_number = terms_number;
+   data->stop_list = stop_list;
+   data->dup_list = dup_list;
+   data->terms_list = terms_list;
+   data->terms_number = terms_number;
 
-    while (omf_pending) {
-	GSList  *first = NULL;
-	gchar   *file  = NULL;
-	xmlDocPtr          omf_doc    = NULL;
-	xmlXPathContextPtr omf_xpath  = NULL;
-	xmlXPathObjectPtr  omf_url    = NULL;
-	xmlXPathObjectPtr  omf_title  = NULL;
-	xmlXPathObjectPtr  omf_mime   = NULL;
-	xmlXPathObjectPtr  omf_desc   = NULL;
+   rrn_for_each ((RrnForeachFunc) slow_search_process, data);
 
-	SearchContainer *container;
-	gchar *ptr;
-	gchar *path;
-	gchar *fname;
-	gchar *realfname;
-	gchar *mime_type;
-	int i = 0;
+   search_process_man (parser, terms_list);
+   search_process_info (parser, terms_list);
+ 
+   check_finished (parser);
 
-	first = omf_pending;
-	omf_pending = g_slist_remove_link (omf_pending, first);
-	file = (gchar *) first->data;
+   return FALSE;
+}
 
 
-	omf_doc = xmlCtxtReadFile (parser, (const char *) file, NULL,
-			       XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
-			       XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
-			       XML_PARSE_NONET    );
+static gboolean 
+slow_search_process (RrnReg *reg, SearchDocData *data)
+{
+    gint i, j=0;
+    SearchContainer *container = data->container;
+    gchar *ptr, *path;
+    gchar *fname;
 
-	if (!omf_doc) {
-	    g_warning (_("Could not load the OMF file '%s'."), file);
-	    continue;
-	}
-
-	omf_xpath = xmlXPathNewContext (omf_doc);
-	omf_url =
-	    xmlXPathEvalExpression (BAD_CAST 
-				    "string(/omf/resource/identifier/@url)", 
-				    omf_xpath);
-	omf_title =
-	    xmlXPathEvalExpression (BAD_CAST 
-				    "string(/omf/resource/title)", 
-				    omf_xpath);
-	omf_mime = 
-	    xmlXPathEvalExpression (BAD_CAST
-				    "string(/omf/resource/format/@mime)",
-				    omf_xpath);
-	omf_desc = 
-	    xmlXPathEvalExpression (BAD_CAST
-				    "string(/omf/resource/description)",
-				    omf_xpath);
-
-	mime_type = g_strdup ((gchar *) omf_mime->stringval);
-
-	fname = g_strdup ((gchar *) omf_url->stringval);
-	if (g_str_has_prefix (fname, "file:")) {
-	    realfname = &fname[5];
-	} else {
-	    realfname = fname;
-	}    
-
-	if (!g_file_test (realfname, G_FILE_TEST_EXISTS)) {
-	    continue;
-	}
-
-	container = g_new0 (SearchContainer, 1);
-	
-	container->base_filename = g_strdup (realfname);
-	container->entities = g_hash_table_new (g_str_hash, g_str_equal);
-	container->doc_title = g_strdup ((gchar *) omf_title->stringval);
-	container->score=0;
-	container->html = FALSE;
-	container->default_snippet = g_strdup ((gchar *) omf_desc->stringval);
-
-	ptr = g_strrstr (container->base_filename, "/");
-
-	path = g_strndup (container->base_filename, 
-			    ptr - container->base_filename);
-
-	/* BEGIN HTML special block */
-	if (g_str_equal (mime_type, "text/html")) {
-	    GDir *dir;
-	    gchar *filename;
-	    container->html = TRUE;
-	    ptr++;
-	    
-	    dir = g_dir_open (path, 0, NULL);
-       
-	    while ((filename = (gchar *) g_dir_read_name (dir))) {
-		if ((g_str_has_suffix (filename, ".html") ||
-		     g_str_has_suffix (filename, ".htm")) &&
-		     !g_str_equal (filename, ptr)) {
-		    container->components = 
-			g_slist_append (container->components,
-					g_strconcat (path, "/", filename,
-						     NULL));
-
-		}
-	    }
-	    /* END HTML special blcok */
-	}
-
-	container->base_path = g_strdup (path);
-
-	container->required_words = required_no;
-	container->grab_text = FALSE;
-	container->sect_name = NULL;
-
-	container->search_term = g_strdupv (terms_list);
-	container->stop_word = g_new0 (gboolean, terms_number);
-	container->dup_of = g_new0 (gint, terms_number);
-	container->found_terms = g_new0 (gboolean, terms_number);
-	container->score_per_word = g_new0 (gfloat, terms_number);
-	container->found_terms = g_new0 (gboolean, terms_number);
-
-	container->search_status = NOT_SEARCHING;
-	container->snippet_score = 0;
-
-	for (i=0; i< terms_number; i++) {
-	    container->stop_word[i] = stop_list[i];
-	    container->dup_of[i] = dup_list[i];
-	}
-
-	pager->priv->pending_searches = 
-	    g_slist_prepend (pager->priv->pending_searches, container);
-	
-	g_free (fname);
-	g_free (path);
-	if (omf_url)
-	    xmlXPathFreeObject (omf_url);
-	if (omf_title)
-	    xmlXPathFreeObject (omf_title);
-	if (omf_xpath)
-	    xmlXPathFreeContext (omf_xpath);
-	if (omf_doc)
-	    xmlFreeDoc (omf_doc);
-
+    /* Set up the container with the new data */
+    if (g_str_has_prefix (reg->uri, "file:")) {
+	fname = &(reg->uri[5]);
+    } else {
+	fname = reg->uri;
     }
-    g_return_val_if_fail (priv->slow_search_process_id == 0, FALSE);
-    priv->slow_search_process_id =
-        g_idle_add ((GSourceFunc) slow_search_process, pager);
 
-    if (parser)
-	xmlFreeParserCtxt (parser);
+    while (fname[0] == '/' && fname[1] == '/') {
+	fname++;
+    }
 
-    /* returning false removes this idle function from the main loop; 
-     * we also set our slow search _setup_ process id to zero to 
-     * indicate it has been removed */
-    priv->slow_search_setup_process_id = 0;
-    return FALSE;
+    container->base_filename = g_strdup (fname);
+    fname = g_strdup (container->base_filename);
+
+    container->entities = g_hash_table_new (g_str_hash, g_str_equal);
+    container->doc_title = g_strdup ((gchar *) reg->name);
+    container->score=0;
+    container->html = FALSE;
+    container->default_snippet = g_strdup ((gchar *) reg->comment);
+    container->current_subsection = NULL;
+    container->elem_type = NULL;
+
+    ptr = g_strrstr (container->base_filename, "/");
+    
+    path = g_strndup (container->base_filename, 
+		      ptr - container->base_filename);
+    
+    /* BEGIN HTML special block */
+    if (g_str_equal (reg->type, "text/html") ||
+	g_str_has_suffix (fname, "html")) {
+	GDir *dir;
+	gchar *filename;
+	container->html = TRUE;
+	ptr++;
+	
+	dir = g_dir_open (path, 0, NULL);
+	
+	while ((filename = (gchar *) g_dir_read_name (dir))) {
+	    if ((g_str_has_suffix (filename, ".html") ||
+		 g_str_has_suffix (filename, ".htm")) &&
+		!g_str_equal (filename, ptr)) {
+		container->components = 
+		    g_slist_append (container->components,
+				    g_strconcat (path, "/", filename,
+						 NULL));
+		
+	    }
+	}
+	/* END HTML special blcok */
+    }
+
+    container->base_path = g_strdup (path);
+    
+    container->required_words = data->required_no;
+    container->grab_text = FALSE;
+    container->sect_name = NULL;
+    
+    container->search_term = g_strdupv (data->terms_list);
+    container->stop_word = g_new0 (gboolean, data->terms_number);
+    container->dup_of = g_new0 (gint, data->terms_number);
+    container->found_terms = g_new0 (gboolean, data->terms_number);
+    container->score_per_word = g_new0 (gfloat, data->terms_number);
+    container->found_terms = g_new0 (gboolean, data->terms_number);
+    container->result_subsection = NULL;
+    container->search_status = NOT_SEARCHING;
+    container->snippet_score = 0;
+    container->snippet = NULL;
+
+    for (i=0; i< data->terms_number; i++) {
+	container->stop_word[i] = data->stop_list[i];
+	container->dup_of[i] = data->dup_list[i];
+    }
+
+
+    xmlSAXUserParseFile (&handlers, container, fname);
+    for (i=0; i< g_strv_length (container->search_term); ++i) {
+	if (container->found_terms[i]) {
+	    j++;
+	}
+    }
+    if (j >= container->required_words) {
+	search_parse_result (data->parser, container);
+    } else while (container->components) {
+	GSList *next = container->components;
+	container->components = g_slist_remove_link (container->components, next);
+	container->search_status = NOT_SEARCHING;
+	xmlSAXUserParseFile (&handlers, container, (gchar *) next->data);
+	j = 0;
+	for (i=0; i< g_strv_length (container->search_term); ++i) {
+	    if (container->found_terms[i])
+		j++;
+	}
+	if (j >= container->required_words) {
+	    search_parse_result (data->parser, container);
+	    break;
+	}
+    }
+
+    search_free_container (container);
+    g_free (path);
+    return TRUE;
 
 }
 
@@ -1655,83 +1146,6 @@ search_free_container (SearchContainer *c)
     g_free (c->base_filename);
     g_free (c->snippet);
     g_hash_table_destroy (c->entities);
-    g_free (c);
-}
-
-
-static gboolean 
-slow_search_process (YelpSearchPager *pager)
-{
-    YelpSearchPagerPriv *priv = pager->priv;
-    SearchContainer *c;
-    GSList *first = pager->priv->pending_searches;
-    gint i, j=0;
-
-    pager->priv->pending_searches = 
-	g_slist_remove_link (pager->priv->pending_searches, first);
-
-    if (first == NULL) {
-	g_return_val_if_fail (priv->xslt_process_id == 0, FALSE);
-	priv->xslt_process_id = 
-	    gtk_idle_add_priority (G_PRIORITY_LOW,
-				   (GtkFunction) process_xslt,
-				   pager);
-	priv->slow_search_process_id = 0;
-	return FALSE;
-    }
-
-    c = (SearchContainer *) first->data;
-
-    xmlSAXUserParseFile (&handlers, c, c->base_filename);
-    for (i=0; i< g_strv_length (c->search_term); ++i) {
-	if (c->found_terms[i]) {
-	    j++;
-	}
-    }
-    if (j >= c->required_words) {
-	search_parse_result (pager, c);
-    } else while (c->components) {
-	GSList *next = c->components;
-	c->components = g_slist_remove_link (c->components, next);
-	c->search_status = NOT_SEARCHING;
-	xmlSAXUserParseFile (&handlers, c, (gchar *) next->data);
-	j = 0;
-	for (i=0; i< g_strv_length (c->search_term); ++i) {
-	    if (c->found_terms[i])
-		j++;
-	}
-	if (j >= c->required_words) {
-	    search_parse_result (pager, c);
-	    break;
-	}
-    }
-
-    if (pager->priv->pending_searches) {
-	search_free_container (c);
-	return TRUE;
-    }
-    else {
-#ifdef ENABLE_MAN
-	search_process_man (pager, c->search_term);
-#endif
-#ifdef ENABLE_INFO
-	search_process_info (pager, c->search_term);
-#endif
-	search_free_container (c);
-
-	g_return_val_if_fail (priv->xslt_process_id == 0, FALSE);
-
-	priv->xslt_process_id =
-	    g_idle_add_full (G_PRIORITY_LOW,
-			     (GSourceFunc) process_xslt,
-			     pager, NULL);
-	
-	/* returning false removes this idle function from the main loop; 
-     	 * we also set our slow search process id to zero to 
-     	 * indicate it has been removed */
-    	priv->slow_search_process_id = 0;
-	return FALSE;
-    }
 }
 
 gchar *
@@ -1829,7 +1243,7 @@ search_clean_snippet (gchar *snippet, gchar **terms)
 }
 
 void
-search_parse_result (YelpSearchPager *pager, SearchContainer *c)
+search_parse_result (YelpSearchParser *parser, SearchContainer *c)
 {    
     xmlNode *child;
     gchar *new_uri;
@@ -1839,7 +1253,7 @@ search_parse_result (YelpSearchPager *pager, SearchContainer *c)
 
     new_uri = g_strconcat (c->base_filename, "#", c->result_subsection, 
 			   NULL);
-    child = xmlNewTextChild (pager->priv->root, NULL, 
+    child = xmlNewTextChild (parser->root, NULL, 
 			     BAD_CAST "result", NULL);
     xmlSetProp (child, BAD_CAST "uri", BAD_CAST new_uri);
     xmlSetProp (child, BAD_CAST "title", BAD_CAST g_strstrip (c->doc_title));
@@ -1863,7 +1277,7 @@ search_parse_result (YelpSearchPager *pager, SearchContainer *c)
 }
 
 void
-process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
+process_man_result (YelpSearchParser *parser, gchar *result, gchar **terms)
 {
     gchar ** split = g_strsplit (result, "\n", -1);
     gint i;
@@ -1896,7 +1310,7 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	after = tmp; after++;
 	desc = g_strdup (g_strchug (after));
 
-	child = xmlNewTextChild (pager->priv->root, NULL, 
+	child = xmlNewTextChild (parser->root, NULL, 
 				 BAD_CAST "result", NULL);
 	xmlSetProp (child, BAD_CAST "uri", BAD_CAST filename);
 	xmlSetProp (child, BAD_CAST "title", 
@@ -1914,7 +1328,7 @@ process_man_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 }
 
 void
-process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
+process_info_result (YelpSearchParser *parser, gchar *result, gchar **terms)
 {
     gchar ** split = NULL;
     gint i;
@@ -1970,7 +1384,7 @@ process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 	desc = g_strdup (g_strchug (line[1]));
 
 	/* Now we add the result to the page */
-	child = xmlNewTextChild (pager->priv->root, NULL, 
+	child = xmlNewTextChild (parser->root, NULL, 
 				 BAD_CAST "result", NULL);
 	xmlSetProp (child, BAD_CAST "uri", BAD_CAST filename);
 	xmlSetProp (child, BAD_CAST "title", 
@@ -1988,7 +1402,7 @@ process_info_result (YelpSearchPager *pager, gchar *result, gchar **terms)
 }
 
 void
-search_process_man (YelpSearchPager *pager, gchar **terms)
+search_process_man (YelpSearchParser *parser, gchar **terms)
 {
     gchar *command;
     gchar *stdout_str = NULL;
@@ -1996,7 +1410,7 @@ search_process_man (YelpSearchPager *pager, gchar **terms)
     gchar *tmp = NULL;
     gchar *search = NULL;
 
-    tmp = g_strescape (pager->priv->search_terms, NULL);
+    tmp = g_strescape (parser->search_terms, NULL);
     tmp = g_strdelimit (tmp, "\'", '\'');
     search = g_strconcat ("\"",tmp,"\"", NULL);
 
@@ -2004,7 +1418,7 @@ search_process_man (YelpSearchPager *pager, gchar **terms)
     
     if (g_spawn_command_line_sync (command, &stdout_str, NULL, 
 				   &exit_code, NULL) && exit_code == 0) {
-	process_man_result (pager, stdout_str, terms);
+	process_man_result (parser, stdout_str, terms);
 	
     }
     g_free (tmp);
@@ -2016,7 +1430,7 @@ search_process_man (YelpSearchPager *pager, gchar **terms)
 }
 
 void
-search_process_info (YelpSearchPager *pager, gchar **terms)
+search_process_info (YelpSearchParser *parser, gchar **terms)
 {
     gchar *command;
     gchar *stdout_str = NULL;
@@ -2026,7 +1440,7 @@ search_process_info (YelpSearchPager *pager, gchar **terms)
     
     gchar *search = NULL;
 
-    tmp = g_strescape (pager->priv->search_terms, NULL);
+    tmp = g_strescape (parser->search_terms, NULL);
     tmp = g_strdelimit (tmp, "\'", '\'');
     search = g_strconcat ("\"",tmp,"\"", NULL);
     command = g_strconcat("info --apropos ", search, NULL);
@@ -2034,7 +1448,7 @@ search_process_info (YelpSearchPager *pager, gchar **terms)
     if (g_spawn_command_line_sync (command, &stdout_str, &stderr_str, 
 				   &exit_code, NULL) && 
 	stdout_str != NULL) {
-	process_info_result (pager, stdout_str, terms);	    
+	process_info_result (parser, stdout_str, terms);	    
     }
     g_free (tmp);
     g_free (stdout_str);

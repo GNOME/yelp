@@ -26,15 +26,12 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <glib/gprintf.h>
 #include <libxml/tree.h>
 #include <string.h>
 
+#include "yelp-debug.h"
 #include "yelp-io-channel.h"
 #include "yelp-man-parser.h"
-#include "yelp-utils.h"
-
-#define d(x)
 
 #define PARSER_CUR (g_utf8_get_char (parser->cur) != '\0' \
     && (parser->cur - parser->buffer < parser->length))
@@ -170,34 +167,6 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
     g_io_channel_shutdown (parser->channel, FALSE, NULL);
 
     return parser->doc;
-}
-
-xmlDocPtr
-yelp_man_parser_parse_doc (YelpManParser *parser,
-			   YelpDocInfo   *doc_info)
-{
-    gchar     *file;
-    gchar     *encoding = NULL;
-    xmlDocPtr  doc = NULL;
-
-    g_return_val_if_fail (parser != NULL, NULL);
-    g_return_val_if_fail (doc_info != NULL, NULL);
-    g_return_val_if_fail (yelp_doc_info_get_type (doc_info) != YELP_DOC_TYPE_MAN, NULL);
-
-    file = yelp_doc_info_get_filename (doc_info);
-
-    if (!file)
-	return NULL;
-
-    encoding = (gchar *)g_getenv("MAN_ENCODING");
-    if (encoding == NULL)
-	encoding = "ISO-8859-1";
-
-    doc = yelp_man_parser_parse_file (parser, file, encoding);
-
-    g_free (file);
-
-    return doc;
 }
 
 void
@@ -605,7 +574,7 @@ macro_url_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	    tmpNode = parser_stack_pop_node (parser, "UR");
 
 	    if (tmpNode == NULL)
-		d (g_warning ("Found unexpected tag: '%s'\n", macro));
+		debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
 	    else
 		parser->ins = tmpNode->parent;
 	} else
@@ -702,7 +671,7 @@ macro_mandoc_list_handler (YelpManParser *parser, gchar *macro, GSList *args)
         tmpNode = parser_stack_pop_node (parser, "Bl");
 
         if (tmpNode == NULL)
-            d (g_warning ("Found unexpected tag: '%s'\n", macro));
+	    debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
         else
             parser->ins = tmpNode->parent;
     }
@@ -721,7 +690,7 @@ macro_verbatim_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	tmpNode = parser_stack_pop_node (parser, "Verbatim");
 
 	if (tmpNode == NULL)
-	    d (g_warning ("Found unexpected tag: '%s'\n", macro));
+	    debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
 	else
 	    parser->ins = tmpNode->parent;
     }
@@ -1266,7 +1235,7 @@ get_argument:
     }
     else if (g_str_equal (str, "TE")) {
 	/* We should only see this from within parser_parse_table */
-	d (g_warning ("Found unexpected tag: '%s'\n", str));
+	debug_print (DB_WARN, "Found unexpected tag: '%s'\n", str);
         g_free (str);
     }
     /* "ie" and "if" are conditional macros in groff
@@ -1451,7 +1420,7 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 	        if (g_str_equal (str, "fI") || g_str_equal (str, "fB"))
 		    parser->ins = parser_append_node (parser, str);
 	        else if (!g_str_equal (str, "fR") && !g_str_equal (str, "fP"))
-		    d (g_warning ("No rule matching the tag '%s'\n", str));
+		    debug_print (DB_WARN, "No rule matching the tag '%s'\n", str);
 
 	        g_free (str);
 	        anc = ptr;
@@ -1798,7 +1767,7 @@ parser_parse_table (YelpManParser *parser)
 		if (*(parser->buffer + 1) == 'T'
 		    && *(parser->buffer + 2) == 'E') {
 		    if (parser_stack_pop_node (parser, "TABLE") == NULL)
-			d (g_warning ("Found unexpected tag: 'TE'\n"));
+			debug_print (DB_WARN, "Found unexpected tag: 'TE'\n");
 		    else {
 			parser->ins = table_start;
 			

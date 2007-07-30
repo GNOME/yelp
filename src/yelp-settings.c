@@ -46,35 +46,24 @@
 #define KEY_YELP_FIXED_FONT     KEY_YELP_DIR "/fixed_font"
 
 static const gchar * const color_params[YELP_NUM_COLORS] = {
-    "yelp.color.fg",
-    "yelp.color.bg",
-    "yelp.color.anchor",
-    "yelp.color.rule",
-    "yelp.color.gray.fg",
-    "yelp.color.gray.bg",
-    "yelp.color.gray.bg.dark1",
-    "yelp.color.gray.bg.dark2",
-    "yelp.color.gray.bg.dark3",
-    "yelp.color.selected.fg",
-    "yelp.color.selected.bg",
-    "yelp.color.selected.bg.dark1",
-    "yelp.color.selected.bg.dark2",
-    "yelp.color.selected.bg.dark3",
-    "yelp.color.admon.fg",
-    "yelp.color.admon.bg",
-    "yelp.color.admon.bg.dark1",
-    "yelp.color.admon.bg.dark2",
-    "yelp.color.admon.bg.dark3"
+    "yelp.color.text",
+    "yelp.color.background",
+    "yelp.color.text_light",
+    "yelp.color.link",
+    "yelp.color.link_visited",
+    "yelp.color.gray_background",
+    "yelp.color.gray_border",
+    "theme.color.blue_background",
+    "theme.color.blue_border",
+    "theme.color.red_background",
+    "theme.color.red_border",
+    "theme.color.yellow_background",
+    "theme.color.yelllow_border"
 };
 
 static const gchar * const icon_params[YELP_NUM_ICONS] = {
-    "yelp.icon.blockquote",
-    "yelp.icon.caution",
-    "yelp.icon.important",
-    "yelp.icon.note",
-    "yelp.icon.programlisting",
-    "yelp.icon.tip",
-    "yelp.icon.warning"
+    "theme.icon.admon.path",
+    "theme.icon.admon.size"
 };
 
 static void           settings_update         (YelpSettingsType  type);
@@ -106,7 +95,6 @@ static GHookList    *hook_lists[YELP_SETTINGS_NUM_TYPES];
 static GtkSettings  *gtk_settings;
 static GtkIconTheme *icon_theme;
 static gchar colors[YELP_NUM_COLORS][10];
-static gchar *icon_names[YELP_NUM_ICONS] = {NULL,};
 
 static GtkWidget    *prefs_dialog = NULL;
 static GtkWidget    *system_fonts_widget  = NULL;
@@ -123,55 +111,6 @@ void
 yelp_settings_init (void)
 {
     gint i;
-
-    for (i = 0; i < YELP_NUM_ICONS; i++) {
-	switch (i) {
-	case YELP_ICON_BLOCKQUOTE:
-	    /* TRANSLATORS:
-	       This is an image of the opening quote character used to watermark
-	       blockquote elements.  Different languages use different opening
-	       quote characters, so the icon name is translatable.  The name of
-	       the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-	       is the Unicode code point of the opening quote character.   For
-	       example, some languages use the double angle quotation mark, so
-	       those would use "yelp-watermark-blockquote-00AB".  However, the
-	       image is not automagically created.  Do not translate this to a
-	       value if there isn't a corresponding icon in yelp/data/icons.
-	       If you need an image created, contact the maintainers.
-
-	       Phew, now some notes on which character to use.  Languages that
-	       use guillemets (angle quotations) should use either 00AB or 00BB,
-	       depending on whether the opening quotation is the left guillemet
-	       or the right guillemet.  Languages that use inverted comma style
-	       quotations should use 201C, 201D, or 201E.  Note that single
-	       quotation marks don't make very nice watermarks.  So if you use
-	       single quotes as your primary (outer) quotation marks, you should
-	       just use the corresponding double quote watermark.
-	    */
-	    icon_names[i] = _("yelp-watermark-blockquote-201C");
-	    break;
-	case YELP_ICON_CAUTION:
-	    icon_names[i] = "yelp-icon-caution";
-	    break;
-	case YELP_ICON_IMPORTANT:
-	    icon_names[i] = "yelp-icon-important";
-	    break;
-	case YELP_ICON_NOTE:
-	    icon_names[i] = "yelp-icon-note";
-	    break;
-	case YELP_ICON_PROGRAMLISTING:
-	    icon_names[i] = "yelp-watermark-programlisting";
-	    break;
-	case YELP_ICON_TIP:
-	    icon_names[i] = "yelp-icon-tip";
-	    break;
-	case YELP_ICON_WARNING:
-	    icon_names[i] = "yelp-icon-warning";
-	    break;
-	default:
-	    g_assert_not_reached ();
-	}
-    }
 
     gconf_client = gconf_client_get_default ();
     gconf_client_add_dir (gconf_client, KEY_GNOME_DIR,
@@ -350,9 +289,9 @@ yelp_settings_get_icon (YelpIconType icon)
 
     g_return_val_if_fail (icon < YELP_NUM_ICONS, NULL);
 
-    info = gtk_icon_theme_lookup_icon (icon_theme,
+    /*info = gtk_icon_theme_lookup_icon (icon_theme,
 				       icon_names[icon],
-				       36, 0);
+				       36, 0);*/
     return info;
 }
 
@@ -665,67 +604,70 @@ settings_update (YelpSettingsType type)
 		    color->blue >> 8);
 	if (color != &blue)
 	    gdk_color_free (color);
+	
+	color = NULL;
+	gtk_widget_style_get (widget, "visited-link-color", &color, NULL);
+	if (color) {
+	    g_snprintf (colors[YELP_COLOR_ANCHOR], 8,
+			"#%02X%02X%02X",
+			color->red >> 8,
+			color->green >> 8,
+			color->blue >> 8);
+	    gdk_color_free (color);
+	}
+
 	gtk_object_sink (GTK_OBJECT (widget));
 
-	/* YELP_COLOR_RULE */
-	g_snprintf (colors[YELP_COLOR_RULE], 8,
+	/* YELP_COLOR_FG_LIGHT */
+	g_snprintf (colors[YELP_COLOR_FG_LIGHT], 8,
 		    "#%02X%02X%02X",
-		    ((style->base[GTK_STATE_NORMAL].red >> 8) + 
-		     (style->bg[GTK_STATE_NORMAL].red >> 8) ) / 2,
-		    ((style->base[GTK_STATE_NORMAL].green >> 8) + 
-		     (style->bg[GTK_STATE_NORMAL].green >> 8) ) / 2,
-		    ((style->base[GTK_STATE_NORMAL].blue >> 8) + 
-		     (style->bg[GTK_STATE_NORMAL].blue >> 8) ) / 2);
+		    style->text[GTK_STATE_PRELIGHT].red >> 8,
+		    style->text[GTK_STATE_PRELIGHT].green >> 8,
+		    style->text[GTK_STATE_PRELIGHT].blue >> 8);
 
-	/* YELP_COLOR_GRAY_BG */
-	for (i = 0; i < 4; i++) {
-	    rval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
-		    i * max_text) / 4;
-	    gval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
-		    i * max_text) / 4;
-	    bval = ((4 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
-		    i * max_text) / 4;
+	/* YELP_COLOR_GRAY_BG and border */
+	for (i = 0; i < 2; i++) {
+	    rval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
+		    i * max_text) / 2;
+	    gval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
+		    i * max_text) / 2;
+	    bval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
+		    i * max_text) / 2;
 	    g_snprintf (colors[YELP_COLOR_GRAY_BG + i], 8,
 			"#%02X%02X%02X", rval, gval, bval);
 	}
 
-	/* YELP_COLOR_GRAY_FG */
-	g_snprintf (colors[YELP_COLOR_GRAY_FG], 8, "%s",
-		    colors[YELP_COLOR_GRAY_BG_DARK3]);
-
-	/* YELP_COLOR_SELECTED_FG */
-	g_snprintf (colors[YELP_COLOR_SELECTED_FG], 8,
-		    "#%02X%02X%02X",
-		    style->text[GTK_STATE_SELECTED].red >> 8,
-		    style->text[GTK_STATE_SELECTED].green >> 8,
-		    style->text[GTK_STATE_SELECTED].blue >> 8);
-
-	/* YELP_COLOR_SELECTED_BG */
-	for (i = 0; i < 4; i++) {
-	    rval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].red   >> 8) +
-		    i * max_text) / 4;
-	    gval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].green >> 8) +
-		    i * max_text) / 4;
-	    bval = ((4 - i) * (style->bg[GTK_STATE_SELECTED].blue  >> 8) +
-		    i * max_text) / 4;
-	    g_snprintf (colors[YELP_COLOR_SELECTED_BG + i], 8,
+	/* YELP_COLOR_BLUE_BG and border */
+	for (i = 0; i < 2; i++) {
+	    rval = (i * max_base) / 2;
+	    gval = (i * max_base) / 2;
+	    bval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
+		    i * max_base) / 2;
+	    g_snprintf (colors[YELP_COLOR_BLUE_BG + (2 - i)], 8,
 			"#%02X%02X%02X", rval, gval, bval);
 	}
 
-	/* YELP_COLOR_ADMON_FG */
-	g_snprintf (colors[YELP_COLOR_ADMON_FG], 8, "%s",
-		    colors[YELP_COLOR_GRAY_BG_DARK3]);
-
-	/* YELP_COLOR_ADMON_BG */
-	for (i = 0; i < 4; i++) {
-	    gint mult = max_base + ((i * (max_base - max_text)) / 3);
-	    rval = ((255 * mult) / 255);
-	    gval = ((245 * mult) / 255);
-	    bval = ((207 * mult) / 255);
-
-	    g_snprintf (colors[YELP_COLOR_ADMON_BG + i], 8,
+	/* YELP_COLOR_RED_BG and border */
+	for (i = 0; i < 2; i++) {
+	    rval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
+		    i * max_base) / 2;
+	    gval = (i * max_base) / 2;
+	    bval = (i * max_base) / 2;
+	    g_snprintf (colors[YELP_COLOR_RED_BG + (2 - i)], 8,
 			"#%02X%02X%02X", rval, gval, bval);
 	}
+
+	/* YELP_COLOR_YELLOW_BG and border */
+	for (i = 0; i < 2; i++) {
+	    rval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
+		    i * max_base) / 2;
+	    gval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
+		    i * max_base) / 2;
+	    bval = (i * max_base) / 2;
+	    g_snprintf (colors[YELP_COLOR_YELLOW_BG + (2 - i)], 8,
+			"#%02X%02X%02X", rval, gval, bval);
+	}
+
 
 	g_object_unref (G_OBJECT (style));
     }
@@ -740,34 +682,27 @@ yelp_settings_params (gchar ***params,
 		      gint    *params_i,
 		      gint    *params_max)
 {
-    GtkIconInfo *icon_info;
-    gchar *icon_file;
-    gint colors_i, icons_i;
+    /*GtkIconInfo *icon_info;
+      gchar *icon_file;*/
+    gint colors_i /*, icons_i*/;
 
     if ((*params_i + 2 * (YELP_NUM_COLORS + YELP_NUM_ICONS)) >= *params_max) {
 	*params_max += 2 * (YELP_NUM_COLORS + YELP_NUM_ICONS);
 	*params = g_renew (gchar *, *params, *params_max);
     }
 
-    for (colors_i = 0; colors_i < YELP_NUM_COLORS; colors_i++) {
+    for (colors_i = 0; colors_i < YELP_NUM_COLORS - 1; colors_i++) {
 	(*params)[(*params_i)++] = (gchar *) color_params[colors_i];
 	(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"",
 						yelp_settings_get_color (colors_i));
     }
 
-    for (icons_i = 0; icons_i < YELP_NUM_ICONS; icons_i++) {
-	(*params)[(*params_i)++] = (gchar *) icon_params[icons_i];
-
-	icon_info = yelp_settings_get_icon (icons_i);
-	if (icon_info) {
-	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
-	    if (icon_file)
-		(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"", icon_file);
-	    else 
-		(*params)[(*params_i)++] = g_strdup ("\"\"");
-	    gtk_icon_info_free (icon_info);
-	} else {
-	    (*params)[(*params_i)++] = g_strdup ("\"\"");
-	}
-    }
+    /* Icon Path */
+    (*params)[(*params_i)++] = (gchar *) icon_params[0];
+    (*params)[(*params_i)++] = (gchar *) g_strdup_printf ("\"%s\"", GDU_ICON_PATH);
+    
+    /* Icon Size */
+    (*params)[(*params_i)++] = (gchar *) icon_params[1];
+    (*params)[(*params_i)++] = (gchar *) g_strdup_printf ("\"%d\"", 48);
+    
 }

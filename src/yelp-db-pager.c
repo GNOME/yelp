@@ -235,7 +235,7 @@ db_pager_parse (YelpPager *pager)
 			   XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			   XML_PARSE_NOENT   | XML_PARSE_NONET   );
     if (doc == NULL) {
-	g_set_error (&error, YELP_ERROR, YELP_ERROR_NO_DOC,
+	g_set_error (&error, YELP_GERROR, YELP_ERROR_NO_DOC,
 		     _("The file ‘%s’ could not be parsed. Either the file "
 		       "does not exist, or it is not well-formed XML."),
 		     filename);
@@ -295,8 +295,8 @@ db_pager_params (YelpPager *pager)
 
     debug_print (DB_FUNCTION, "entering\n");
 
-    g_return_val_if_fail (pager != NULL, NULL);
-    g_return_val_if_fail (YELP_IS_DB_PAGER (pager), NULL);
+    g_return_val_if_fail (pager != NULL, FALSE);
+    g_return_val_if_fail (YELP_IS_DB_PAGER (pager), FALSE);
     priv = YELP_DB_PAGER (pager)->priv;
 
     if (yelp_pager_get_state (pager) >= YELP_PAGER_STATE_ERROR)
@@ -496,12 +496,10 @@ node_get_title (DBWalker *walker, gchar *type)
 {
     gchar *title = NULL;
     xmlChar *node_name = (xmlChar *) walker->cur->name;
+    xmlNodePtr child = NULL;
     xmlNodePtr title_node = NULL;
 
     if (xmlStrcmp (node_name, BAD_CAST "refentry")) {
-
-    	xmlNodePtr child = NULL;
-
 	/*refentry is special cased below */
 	title_node = node_find_child (walker->cur, type);
 	if (!title_node) {

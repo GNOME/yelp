@@ -268,7 +268,7 @@ slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
 				       0,
 				       CopyFromParent,
 				       CopyFromParent,
-				       (Visual *)CopyFromParent,
+				       CopyFromParent,
 				       CWOverrideRedirect | CWEventMask,
 				       &attrs);
 		
@@ -294,7 +294,7 @@ slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
 	return event.xproperty.time;
 }
 
-static DBusGProxy *
+DBusGProxy *
 main_dbus_get_proxy (void)
 {
 	if (!connection)
@@ -306,7 +306,7 @@ main_dbus_get_proxy (void)
 					  "org.gnome.YelpService");
 }
 
-static gboolean
+gboolean
 main_is_running (void)
 {
 	DBusGProxy *proxy = NULL;

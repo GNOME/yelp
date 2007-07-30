@@ -171,7 +171,7 @@ info_pager_parse (YelpPager *pager)
     GError        *error = NULL;
     YelpInfoPagerPriv *priv;
 
-    g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), NULL);
+    g_return_val_if_fail (YELP_IS_INFO_PAGER (pager), FALSE);
     priv = YELP_INFO_PAGER (pager)->priv;
 
     doc_info = yelp_pager_get_doc_info (pager);

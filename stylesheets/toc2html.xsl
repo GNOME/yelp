@@ -28,8 +28,6 @@
 <xsl:param name="yelp.color.admon.bg.dark2"/>
 <xsl:param name="yelp.color.admon.bg.dark3"/>
 
-<xsl:param name="yelp.toc.id" select="'Man-man6'"/>
-
 <xsl:template match="toc">
   <yelp:document href="{@id}">
     <html>
@@ -151,6 +149,8 @@
   <div class="docs">
     <dl>
       <xsl:for-each select="doc">
+        <xsl:sort order="ascending" data-type="number"
+          select="normalize-space(@weight)"/>
         <xsl:sort select="normalize-space(title)"/>
         <dt class="doc">
           <a href="{@href}" title="{@href}">
@@ -237,7 +237,7 @@
 <xsl:template mode="leftbar.mode" match="toc">
   <xsl:param name="curid" select="0"/>
     <ul>
-      <xsl:for-each select="toc[.//doc[1]]">
+      <xsl:for-each select="toc[.//doc[1] or @protected]">
         <li class="toclist">
           <xsl:choose>
             <xsl:when test="@id != $curid">
@@ -260,7 +260,7 @@
 </xsl:template>
 
 <xsl:template match="/">
-  <xsl:apply-templates select="//toc[@id = $yelp.toc.id]" />
+  <xsl:apply-templates select="//toc" />
 </xsl:template>
 
 </xsl:stylesheet>

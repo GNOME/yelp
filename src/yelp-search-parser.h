@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2007 Don Scorgie  <Don@Scorgie.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,21 +17,20 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Shaun McCance  <shaunm@gnome.org>
+ * Author: Don Scorgie <Don@Scorgie.org>
  */
 
-#ifndef __YELP_MAN_PARSER_H__
-#define __YELP_MAN_PARSER_H__
+#ifndef __YELP_SEARCH_PARSER_H__
+#define __YELP_SEARCH_PARSER_H__
 
 #include <glib.h>
 #include <libxml/tree.h>
 
-typedef struct _YelpManParser YelpManParser;
+typedef struct _YelpSearchParser YelpSearchParser;
 
-YelpManParser *     yelp_man_parser_new         (void);
-xmlDocPtr           yelp_man_parser_parse_file  (YelpManParser   *parser,
-						 gchar           *file,
-						 const gchar     *encoding);
-void                yelp_man_parser_free        (YelpManParser   *parser);
+YelpSearchParser *     yelp_search_parser_new         (void);
+xmlDocPtr           yelp_search_parser_process  (YelpSearchParser   *parser,
+						 gchar           *terms);
+void                yelp_search_parser_free        (YelpSearchParser   *parser);
 
-#endif /* __YELP_MAN_PARSER_H__ */
+#endif /* __YELP_SEARCH_PARSER_H__ */

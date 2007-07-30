@@ -326,7 +326,7 @@ xslt_pager_finish (YelpPager *pager)
 
 /** XSLT Extension Elements ***************************************************/
 
-static void
+void
 xslt_yelp_document (xsltTransformContextPtr ctxt,
 		    xmlNodePtr              node,
 		    xmlNodePtr              inst,
@@ -456,7 +456,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 	xsltFreeStylesheet (style);
 }
 
-static void
+void
 xslt_yelp_cache (xsltTransformContextPtr ctxt,
 		 xmlNodePtr              node,
 		 xmlNodePtr              inst,

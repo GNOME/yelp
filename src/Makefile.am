@@ -4,41 +4,31 @@ yelp_SOURCES =							\
 	Yelper.cpp		Yelper.h			\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
-	yelp-db-pager.c		yelp-db-pager.h			\
-	yelp-db-print-pager.c	yelp-db-print-pager.h		\
 	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
 	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
 	yelp-html.cpp		yelp-html.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
-	yelp-pager.c		yelp-pager.h			\
 	yelp-settings.c		yelp-settings.h			\
-	yelp-toc-pager.c	yelp-toc-pager.h		\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-window.c 		yelp-window.h			\
-	yelp-xslt-pager.c	yelp-xslt-pager.h		\
 	yelp-marshal.c		yelp-marshal.h			\
 	yelp-main.c						\
 	yelp-print.c		yelp-print.h			\
-	yelp-gecko-services.h   yelp-gecko-services.cpp	
-
-if ENABLE_MAN
-yelp_SOURCES +=					\
-	yelp-man-parser.c yelp-man-parser.h	\
-	yelp-man-pager.c yelp-man-pager.h
-endif
-
-if ENABLE_INFO
-yelp_SOURCES +=					\
-	yelp-info-pager.c yelp-info-pager.h	\
-	yelp-info-parser.c yelp-info-parser.h
-endif
-
-if ENABLE_SEARCH
-yelp_SOURCES +=						\
-	gtkentryaction.c	gtkentryaction.h	\
-	yelp-search-pager.c	yelp-search-pager.h
-endif
+	yelp-page.c		yelp-page.h			\
+	yelp-transform.c	yelp-transform.h		\
+	yelp-gecko-services.h   yelp-gecko-services.cpp	        \
+	yelp-document.h		yelp-document.c			\
+	yelp-toc.h		yelp-toc.c			\
+	yelp-docbook.h		yelp-docbook.c			\
+	yelp-db-print.c		yelp-db-print.h			\
+	yelp-man-parser.c 	yelp-man-parser.h		\
+	yelp-man.c 		yelp-man.h			\
+	yelp-info.c 		yelp-info.h			\
+	yelp-info-parser.c 	yelp-info-parser.h		\
+	gtkentryaction.c	gtkentryaction.h		\
+	yelp-search.c		yelp-search.h			\
+	yelp-search-parser.c 	yelp-search-parser.h
 
 YELP_DEFINES =								\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
@@ -50,7 +40,8 @@ YELP_DEFINES =								\
 	-DSERVERDIR=\"$(libexecdir)\"					\
 	-DBINDIR=\""$(bindir)"\"					\
 	-DSHAREDIR=\""$(pkgdatadir)"\"                                  \
-	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""
+	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""				\
+	-DGDU_ICON_PATH=\"$(GDU_ICON_PATH)\"
 
 mozilla_include_subdirs =	\
 	.		\
@@ -102,68 +93,67 @@ yelp_LDADD =				\
 
 yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
 
-check_PROGRAMS = test-man-parser test-pager test-uri
+check_PROGRAMS =		\
+	test-document		\
+	test-man-parser		\
+	test-page		\
+	test-transform		\
+	test-resolver
+
+test_document_SOURCES =					\
+	yelp-debug.c		yelp-debug.h		\
+	yelp-docbook.c		yelp-docbook.h		\
+	yelp-document.c		yelp-document.h		\
+	yelp-error.c		yelp-error.h		\
+	yelp-io-channel.c	yelp-io-channel.h	\
+	yelp-man.c		yelp-man.h		\
+	yelp-man-parser.c	yelp-man-parser.h	\
+	yelp-page.c		yelp-page.h		\
+	yelp-toc.c		yelp-toc.h		\
+	yelp-transform.c	yelp-transform.h	\
+	test-document.c
+test_document_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_document_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS)
+test_document_LDFLAGS = $(AM_LDFLAGS)
 
 test_man_parser_SOURCES =					\
+	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-man-parser.c	yelp-man-parser.h		\
-	yelp-utils.c		yelp-utils.h			\
 	test-man-parser.c
-
-test_man_parser_CPPFLAGS =	\
-	$(YELP_DEFINES)		\
-	$(AM_CPPFLAGS)
-
-test_man_parser_CFLAGS =	\
-	$(YELP_CFLAGS)		\
-	$(AM_CFLAGS)
-
+test_man_parser_CPPFLAGS = $(YELP_DEFINES) $(AM_CPPFLAGS)
+test_man_parser_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS)
 test_man_parser_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS)
-
 test_man_parser_LDFLAGS = $(AM_LDFLAGS)
 
-test_pager_SOURCES =						\
-	yelp-db-pager.c		yelp-db-pager.h			\
-	yelp-db-print-pager.c	yelp-db-print-pager.h		\
-	yelp-error.c		yelp-error.h			\
-	yelp-io-channel.c	yelp-io-channel.h		\
-	yelp-man-pager.c	yelp-man-pager.h		\
-	yelp-man-parser.c	yelp-man-parser.h		\
-	yelp-pager.c		yelp-pager.h			\
-	yelp-toc-pager.c	yelp-toc-pager.h		\
-	yelp-utils.c		yelp-utils.h			\
-	yelp-xslt-pager.c	yelp-xslt-pager.h		\
-	yelp-marshal.c		yelp-marshal.h			\
-	test-pager.c
+test_page_SOURCES =					\
+	yelp-debug.c		yelp-debug.h		\
+	yelp-document.c		yelp-document.h		\
+	yelp-error.c		yelp-error.h		\
+	yelp-page.c		yelp-page.h		\
+	test-page.c
+test_page_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_page_LDADD = $(YELP_LIBS)
+test_page_LDFLAGS = $(AM_LDFLAGS)
 
-test_pager_CPPFLAGS =		\
-	$(YELP_DEFINES)		\
-	$(AM_CPPFLAGS)
+test_transform_SOURCES =				\
+	yelp-debug.c		yelp-debug.h		\
+	yelp-error.c		yelp-error.h		\
+	yelp-transform.c	yelp-transform.h	\
+	test-transform.c
+test_transform_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_transform_LDADD = $(YELP_LIBS)
+test_transform_LDFLAGS = $(AM_LDFLAGS)
 
-test_pager_CFLAGS =		\
-	$(YELP_CFLAGS)		\
-	$(AM_CFLAGS)
-
-test_pager_LDADD = $(YELP_LIBS) $(POPT_LIBS) $(Z_LIBS) $(BZ_LIBS)
-
-test_pager_LDFLAGS = $(AM_LDFLAGS)
-
-test_uri_SOURCES =					\
-	yelp-utils.c	yelp-utils.h			\
-	test-uri.c
-
-test_uri_CPPFLAGS =		\
-	$(YELP_DEFINES)		\
-	$(AM_CPPFLAGS)
-
-test_uri_CFLAGS =		\
-	$(YELP_CFLAGS)		\
-	$(AM_CFLAGS)
-
-test_uri_LDADD = $(YELP_LIBS)
-
-test_uri_LDFLAGS = $(AM_LDFLAGS)
+test_resolver_SOURCES =				\
+	yelp-debug.c		yelp-debug.h		\
+	yelp-error.c		yelp-error.h		\
+	yelp-utils.c		yelp-utils.h		\
+	test-resolver.c
+test_resolver_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_resolver_LDADD = $(YELP_LIBS)
+test_resolver_LDFLAGS = $(AM_LDFLAGS)
 
 @INTLTOOL_SERVER_RULE@
 

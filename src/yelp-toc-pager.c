@@ -45,6 +45,10 @@
 #include <libxslt/extensions.h>
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
+#include <spoon.h>
+#include <spoon-reg-utils.h>
+#include <spoon-info.h>
+#include <spoon-man.h>
 
 #include "yelp-debug.h"
 #include "yelp-error.h"
@@ -122,6 +126,7 @@ static gboolean      toc_process_pending       (YelpTocPager      *pager);
 
 
 static gboolean      process_read_menu         (YelpTocPager      *pager);
+static gboolean      process_xslt              (YelpTocPager      *pager);
 static gboolean      process_read_scrollkeeper (YelpTocPager      *pager,
                                                 gchar             *content_list);
 static gboolean      process_omf_pending       (YelpTocPager      *pager);
@@ -460,13 +465,14 @@ toc_process_pending (YelpTocPager *pager)
     YelpTocPagerPriv *priv = pager->priv;
     static ProcessFunction process_funcs[] = {
 	process_read_menu,
-	process_omf_pending,
+	/*process_omf_pending,*/
 #ifdef ENABLE_MAN
 	process_mandir_pending,
 #endif
 #ifdef ENABLE_INFO
 	process_info_pending,
 #endif
+	/* process_xslt, */
 	process_cleanup,
 	NULL
     };
@@ -565,7 +571,7 @@ sk_characters (void          *pager,
 static gboolean
 process_read_scrollkeeper (YelpTocPager *pager, gchar *content_list)
 {
-    static xmlSAXHandler sk_sax_handler = { NULL, };
+    static xmlSAXHandler sk_sax_handler = { 0, };
 
     if (!sk_sax_handler.startElement) {
 	sk_sax_handler.startElement = sk_startElement;
@@ -811,13 +817,12 @@ process_omf_pending (YelpTocPager *pager)
      * it doesn't exist, then we create a list of omf files to process
      * with the process_read_scrollkeeper() function */
     if (first_call) {
-	const gchar * const * langs = g_get_language_names ();
-
 	first_call = FALSE;
 
 	sk_file = g_build_filename (yelp_dot_dir(), "sk-content-list.last", NULL);
 	    
 	/* get current language */
+	const gchar * const * langs = g_get_language_names ();
 	if (langs && langs[0])
 	    lang = (gchar *) langs[0];
 	else
@@ -1326,9 +1331,65 @@ create_toc_from_index (YelpTocPager *pager, gchar *index_file)
     return 1;
 }
 
+static int
+spoon_add_man_document (SpoonManEntry *entry, void *user_data)
+{
+    xmlNodePtr node = (xmlNodePtr) user_data;
+    xmlNodePtr new;
+    gchar tmp[255];
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    g_sprintf (&tmp, "man:%s", entry->path);
+
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST tmp);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
+    if (entry->comment)
+	xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
+    return TRUE;
+}
+
 static gboolean
 process_mandir_pending (YelpTocPager *pager)
 {
+    xmlNodePtr node = NULL;
+    xmlNodePtr cat_node = NULL;
+    xmlNodePtr mynode = NULL;
+    char **categories = NULL;
+    char **cat_iter = NULL;
+    int sectno = 0;
+    YelpTocPagerPriv * priv = pager->priv;
+    int i, j;
+    xmlXPathContextPtr xpath;
+    xmlXPathObjectPtr  obj;
+
+    priv->man_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
+				     XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
+				     XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
+				     XML_PARSE_NONET    );
+
+    xpath = xmlXPathNewContext (priv->man_doc);
+    obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
+
+    for (i = 0; i < obj->nodesetval->nodeNr; i++) {
+	xmlNodePtr node = obj->nodesetval->nodeTab[i];
+	xmlChar *sect = xmlGetProp (node, BAD_CAST "sect");
+	
+	if (sect) {
+	    gchar **sects = g_strsplit ((gchar *)sect, " ", 0);
+
+	    cat_node = xmlNewChild (node, NULL, BAD_CAST "toc",
+				    NULL);
+	    for (j = 0; sects[j] != NULL; j++)
+		spoon_man_for_each_in_category (sects[j], spoon_add_man_document, node);
+	    g_strfreev (sects);
+	}
+	xmlFree (sect);
+	xml_trim_titles (node, BAD_CAST "title");
+	xml_trim_titles (node, BAD_CAST "description");
+    }
+    xmlXPathFreeObject (obj);
+    xmlXPathFreeContext (xpath);
+
+#if 0
     static gchar *index_file = NULL;
     gchar *filename = NULL;
     gchar *dirname = NULL;
@@ -1341,6 +1402,7 @@ process_mandir_pending (YelpTocPager *pager)
 	xmlXPathContextPtr xpath;
 	xmlXPathObjectPtr  obj;
 
+	/* NOTE: this document is free()'d at the end of the process_xslt function */
 	priv->man_doc = xmlCtxtReadFile (priv->parser, DATADIR "/yelp/man.xml", NULL,
 					 XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
 					 XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
@@ -1606,13 +1668,103 @@ process_mandir_pending (YelpTocPager *pager)
     }
 
     return TRUE;
+#endif
+
+    mynode = xmlCopyNode (xmlDocGetRootElement (priv->man_doc), 1);
+    xmlAddChild (xmlDocGetRootElement (priv->toc_doc), mynode);
+    
+    xmlFreeDoc (priv->man_doc);
+
+    return FALSE;
 }
 #endif // ENABLE_MAN
 
 #ifdef ENABLE_INFO
+
+static int
+spoon_info_add_document (SpoonInfoEntry *entry, void *user_data)
+{
+    xmlNodePtr node = (xmlNodePtr) user_data;
+    xmlNodePtr new;
+    gchar tmp[255];
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    if (entry->section)
+	g_sprintf(&tmp, "info:%s#%s", entry->name, entry->section);
+    else
+	g_sprintf(&tmp, "info:%s", entry->name);
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST tmp);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST entry->name);
+    xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST entry->comment);
+    return TRUE;
+
+}
+
+
 static gboolean
 process_info_pending (YelpTocPager *pager)
 {
+    xmlNodePtr node = NULL;
+    xmlNodePtr cat_node = NULL;
+    xmlNodePtr mynode = NULL;
+    char **categories = NULL;
+    char **cat_iter = NULL;
+    int sectno = 0;
+    YelpTocPagerPriv * priv = pager->priv;
+    int i;
+    xmlXPathContextPtr xpath;
+    xmlXPathObjectPtr  obj;
+    
+    priv->info_doc = xmlCtxtReadFile (priv->parser, 
+				      DATADIR "/yelp/info.xml", NULL,
+				      XML_PARSE_NOBLANKS | 
+				      XML_PARSE_NOCDATA  |
+				      XML_PARSE_NOENT    | 
+				      XML_PARSE_NOERROR  |
+				      XML_PARSE_NONET    );
+    
+    xpath = xmlXPathNewContext (priv->info_doc);
+    obj = xmlXPathEvalExpression (BAD_CAST "//toc", xpath);
+    node = obj->nodesetval->nodeTab[0];
+    for (i=0; i < obj->nodesetval->nodeNr; i++) {
+	xmlNodePtr tmpnode = obj->nodesetval->nodeTab[i];
+	xml_trim_titles (tmpnode, BAD_CAST "title");
+	xml_trim_titles (tmpnode, BAD_CAST "description");
+    }
+    xmlXPathFreeObject (obj);
+    xmlXPathFreeContext (xpath);
+
+    categories = spoon_info_get_categories ();
+    cat_iter = categories;
+
+    while (cat_iter && *cat_iter) {
+	char *tmp;
+	
+	cat_node = xmlNewChild (node, NULL, BAD_CAST "toc",
+				NULL);
+	tmp = g_strdup_printf ("%d", sectno);
+	xmlNewNsProp (cat_node, NULL, BAD_CAST "sect",
+		      BAD_CAST tmp);
+	g_free (tmp);
+	tmp = g_strdup_printf ("infosect%d", sectno);
+	xmlNewNsProp (cat_node, NULL, BAD_CAST "id",
+		      BAD_CAST tmp);
+	g_free (tmp);
+	sectno++;
+	xmlNewTextChild (cat_node, NULL, BAD_CAST "title",
+			 BAD_CAST *cat_iter);
+	
+	spoon_info_for_each_in_category (*cat_iter, spoon_info_add_document, 
+					 cat_node);
+	cat_iter++;
+    }
+
+    mynode = xmlCopyNode (xmlDocGetRootElement (priv->info_doc), 1);
+    xmlAddChild (xmlDocGetRootElement (priv->toc_doc), mynode);
+    
+    xmlFreeDoc (priv->info_doc);
+
+
+#if 0
     gchar ** info_paths = yelp_get_info_paths ();
     int i = 0;
     gchar *filename = NULL;
@@ -1625,7 +1777,7 @@ process_info_pending (YelpTocPager *pager)
     
     YelpTocPagerPriv *priv = YELP_TOC_PAGER (pager)->priv;
     xmlNodePtr node = NULL;
-
+    printf ("Info parsing\n");
     for (i=0; info_paths[i]; i++) {
 	filename = g_strconcat (info_paths[i], "/dir", NULL);
 	
@@ -1790,9 +1942,27 @@ process_info_pending (YelpTocPager *pager)
     
     xmlFreeDoc (priv->info_doc);
     
+#endif
     return FALSE;
 }
 #endif /* ENABLE_INFO */
+
+static int
+spoon_add_document (void *reg, void * user_data)
+{
+    xmlNodePtr node = (xmlNodePtr) user_data;
+    SpoonReg *r = (SpoonReg *) reg;
+    xmlNodePtr new;
+    gchar tmp[10];
+
+    new = xmlNewChild (node, NULL, BAD_CAST "doc", NULL);
+    xmlNewNsProp (new, NULL, BAD_CAST "href", BAD_CAST r->uri);
+    xmlNewTextChild (new, NULL, BAD_CAST "title", BAD_CAST r->name);
+    xmlNewTextChild (new, NULL, BAD_CAST "description", BAD_CAST r->comment);
+    g_sprintf (&tmp, "%d", r->weight);
+    xmlNewNsProp (new, NULL, BAD_CAST "weight", BAD_CAST tmp);
+    return FALSE;
+}
 
 static gboolean
 process_read_menu (YelpTocPager *pager)
@@ -1906,9 +2076,12 @@ process_read_menu (YelpTocPager *pager)
 				BAD_CAST "subject")) {
 		    xmlChar *cat = xmlTextReaderGetAttribute (reader, 
 							      BAD_CAST "category");
-		    g_hash_table_insert (priv->category_hash,
+		    /*g_hash_table_insert (priv->category_hash,
 					 g_strdup ((gchar *) cat),
-					 node);
+					 node);*/
+		    spoon_for_each_in_category (spoon_add_document,
+						(char *) cat,
+						(void *) node);
 		    xmlFree (cat);
 		}
 		else if (!xmlStrcmp (xmlTextReaderConstLocalName (reader),
@@ -1926,6 +2099,92 @@ process_read_menu (YelpTocPager *pager)
     }
     xmlFreeTextReader (reader);
     xmlXPathFreeContext (xpath);
+
+    return FALSE;
+}
+
+static gboolean
+process_xslt (YelpTocPager *pager)
+{
+    GError *error = NULL;
+    xmlDocPtr outdoc = NULL;
+    YelpTocPagerPriv *priv = pager->priv;
+    gchar **params = NULL;
+    gint  params_i = 0;
+    gint  params_max = 10;
+    GtkIconInfo *info;
+    GtkIconTheme *theme = (GtkIconTheme *) yelp_settings_get_icon_theme ();
+
+    if (!priv->toc_doc)
+	return FALSE;
+
+    /* only create and parse the stylesheet on the first call to this function */
+    if (!priv->stylesheet) {
+	priv->stylesheet = xsltParseStylesheetFile (BAD_CAST TOC_STYLESHEET);
+    }
+
+    if (!priv->stylesheet) {
+	g_set_error (&error, YELP_ERROR, YELP_ERROR_PROC,
+		     _("The table of contents could not be processed. The "
+		       "file ‘%s’ is either missing or is not a valid XSLT "
+		       "stylesheet."),
+		     TOC_STYLESHEET);
+	yelp_pager_error (YELP_PAGER (pager), error);
+	goto done;
+    }
+
+    priv->transformContext = xsltNewTransformContext (priv->stylesheet,
+						      priv->toc_doc);
+    priv->transformContext->_private = pager;
+    xsltRegisterExtElement (priv->transformContext,
+			    BAD_CAST "document",
+			    BAD_CAST YELP_NAMESPACE,
+			    (xsltTransformFunction) xslt_yelp_document);
+
+    params = g_new0 (gchar *, params_max);
+    yelp_settings_params (&params, &params_i, &params_max);
+
+    if ((params_i + 10) >= params_max - 1) {
+	params_max += 10;
+	params = g_renew (gchar *, params, params_max);
+    }
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-icon-big", 192, 0);
+    if (info) {
+	params[params_i++] = "help_icon";
+	params[params_i++] = g_strdup_printf ("\"%s\"",
+					      gtk_icon_info_get_filename (info));
+	params[params_i++] = "help_icon_size";
+	params[params_i++] = g_strdup_printf ("%i",
+					      gtk_icon_info_get_base_size (info));
+	gtk_icon_info_free (info);
+    }
+
+    params[params_i++] = NULL;
+
+    outdoc = xsltApplyStylesheetUser (priv->stylesheet,
+				      priv->toc_doc,
+				      (const gchar **)params, NULL, NULL,
+				      priv->transformContext);
+    /* Don't do this */
+    g_signal_emit_by_name (pager, "finish");
+
+ done:
+    if (params) {
+	for (params_i = 0; params[params_i] != NULL; params_i++)
+	    if (params_i % 2 == 1)
+		g_free ((gchar *) params[params_i]);
+    }
+    if (outdoc)
+	xmlFreeDoc (outdoc);
+    if (priv->toc_doc) {
+	xmlFreeDoc (priv->toc_doc);
+	priv->toc_doc = NULL;
+    }
+    if (priv->transformContext) {
+	xsltFreeTransformContext (priv->transformContext);
+	priv->transformContext = NULL;
+    }
 
     return FALSE;
 }
@@ -1974,8 +2233,7 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
     xmlNodePtr node;
     xmlNodePtr new;
     gchar     *text;
-    const gchar *category;
-    YelpTocPagerPriv *priv = pager->priv;
+    gchar     *category;
 
     g_return_if_fail (pager != NULL);
     if (doc_info == NULL)
@@ -1989,6 +2247,8 @@ toc_add_doc_info (YelpTocPager *pager, YelpDocInfo *doc_info)
 	             yelp_doc_info_get_title (doc_info));
 	return;
     }
+
+    YelpTocPagerPriv *priv = pager->priv;
 
     g_hash_table_insert (priv->unique_hash,
 			 (gchar *) yelp_doc_info_get_id (doc_info),

@@ -1,6 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2007 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,20 +24,31 @@
 
 #include <glib.h>
 
-#define YELP_ERROR yelp_error_quark ()
+typedef struct _YelpError YelpError;
 
-typedef enum {
-	YELP_ERROR_NO_DOC,        /* Selected document not found   */
-	YELP_ERROR_NO_PAGE,       /* Selected page not found       */
-	YELP_ERROR_NO_TOC,        /* Could not read the TOC        */
-	YELP_ERROR_FORMAT,        /* Format is not supported       */
-	YELP_ERROR_IO,            /* Error in IO                   */
-	YELP_ERROR_PROC           /* Error processing the document */
-} YelpError;
+YelpError *       yelp_error_new          (gchar       *title,
+					   gchar       *format,
+					   ...);
+void              yelp_error_set          (YelpError  **error,
+					   gchar       *title,
+					   gchar       *format,
+					   ...);
+YelpError *       yelp_error_copy         (YelpError   *error);
 
-GQuark           yelp_error_quark         (void) G_GNUC_CONST;
+const gchar *     yelp_error_get_title    (YelpError   *error);
+const gchar *     yelp_error_get_message  (YelpError   *error);
 
-const gchar *    yelp_error_get_primary   (GError      *error);
-const gchar *    yelp_error_get_secondary (GError      *error);
+void              yelp_error_free         (YelpError   *error);
+
+
+#define YELP_GERROR yelp_gerror_quark ()
+
+enum {
+    YELP_GERROR_IO
+};
+
+GQuark            yelp_gerror_quark       (void) G_GNUC_CONST;
+const gchar *     yelp_gerror_get_title   (GError      *error);
+const gchar *     yelp_gerror_get_message (GError      *error);
 
 #endif /* __YELP_ERROR_H__ */

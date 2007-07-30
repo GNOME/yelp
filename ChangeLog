@@ -1,3 +1,904 @@
+
+== REWORK CHANGES ==
+
+2007-07-30  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	Merge of yelp rework branch:
+	- Depreciate yelp-*-pager in favour of
+	  yelp-document and such.
+	  Gives us on-demand loading of pages
+	- Switch to using rarian instead of scrollkeeper
+	- Update to using shiny newness of gnome-doc-utils
+	- Make printing docbook pretty
+	- Clean up lots of errors and general cleanup
+	  of other source files
+	- Make our resolver much, much better
+	  - and remove reliance on libgnome there
+	
+
+2007-07-30  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-settings.c: 
+	* configure.in:
+	* src/yelp-settings.h:
+	* src/Makefile.am:
+	* stylesheets/yelp-common.xsl:
+	Make themes sort-of work.  Good enough for
+	a release, anyway.
+
+2007-07-29  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	Make loading of files directly work again
+	
+2007-07-24  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-info.c: 
+	* src/yelp-man.c:
+	* src/yelp-docbook.c:
+	Add in some pretty parameters
+
+	* src/yelp-db-print.c:
+	Fix parameters to make printed docs *slightly*
+	prettier
+	
+	* src/yelp-search-parser.c: 
+	Convert search across to use Rarian
+	and clean up lots of crud from the file
+	
+2007-07-23  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* configure.ac:
+	* src/yelp-base.c:
+	* src/yelp-search-parser.c:
+	* src/yelp-search.c:
+	* src/yelp-window.c:
+	* src/yelp-window.h:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* src/Makefile.am:
+	* src/yelp-main.c:
+	Massive cleanup
+	Remove old code from yelp-utils
+	Fix shutdown requests from sessions (hopefully)
+	Remove as many warnings as possible (the rest are
+	mostly mozilla errors)
+	Make sure we get and set GLIB_GENMARSHAL as, apparently,
+	we have never done this which seems to result in badness
+	making the marshal.list
+	
+	* src/Makefile.am: 
+	* configure.ac:
+	* src/yelp-toc.c:
+	* src/yelp-search-parser.c:
+	* src/yelp-window.c:
+	* src/yelp-info-parser.c:
+	Lots of fun updates...
+	Clean up yelp-window.c a LOT
+	Remove old, obsolete code
+	Make search, man and info mandatory
+	Bump g-d-u min version to include new db2xhtml
+	code
+	Remove extra printf I'd forgotten
+	
+2007-07-10  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	Handle external URI's
+	Beginnings of error support (not complete)
+	
+2007-07-08  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-search.c:
+	* src/yelp-search.h:
+	* src/yelp-search-parser.c:
+	* src/yelp-search-parser.h:
+	* src/yelp-utils.c:
+	* src/Makefile.am:
+	First pass at searching.
+	Search still relies on scrollkeeper.  Other
+	than that, it seems to all work (with basic search at least)
+	
+	* src/yelp-db-print.c:
+	* src/yelp-db-print.h:
+	* src/Makefile.am:
+	Make printing (pages and documents) work again.
+	Although, the calling xslt needs somewhat cleaned
+	up, it doesn't look particularly appealing atm.
+	
+	* configure.in: 
+	Temporarily work around breakage in gnome-doc-utils
+
+	* src/yelp-window.c:
+	Add back (empty) print menu items to stop errors
+	Add the "Loading..." and watch cursor when we are loading
+	Correctly set the sensitivity of relevant menu items for DocBooks
+	Make "About this document" work again
+
+	* src/yelp-docbook.c:
+	Since the new g-d-u currently has a list of topics on the
+	right, don't display the sections pane
+	
+	* src/yelp-window.c: 
+	Make history work again
+	Make loading HTML docs work
+
+	* src/yelp-utils.h:
+	* src/yelp-utils.c:
+	Make a distinction between html and xhtml
+	to keep gecko happy
+	
+2007-07-07  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c: 
+	* src/yelp-toc.c:
+	Fix info page titles in TOC
+	Fix file:// uri's when with too many /'s
+	
+	* src/Makefile.am:
+	* src/yelp-info-parser.c:
+	* src/yelp-info.c:
+	* src/yelp-info.h:
+	* src/yelp-window.c:
+	Convert info pages across to new pager system
+	Hook up info pages into yelp, new style
+	Fix various things in the parser to cope with
+	having less available info for resolving frags
+	
+	* src/yelp-toc.c: 
+	Fix the most annoying error message in the world EVER
+	Unexpected async xlib errors generally mean threading issues
+	except, apparently, when you're trying to parse using libxml
+	in which case, they could mean anything.  In this case, it
+	meant the params passed in was not NULL terminating.
+	Why this resulted in an unexpected xlib async reply is
+	left as an exercise to the reader.  I spent 7 days trying to 
+	figure it out.
+	
+2007-07-01  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-toc.c: 
+	Now Rarian is fast, don't split out man and info pages.
+	Add in params so the TOC looks nice and shiny
+	Fix a couple of silly warnings
+	
+	* src/yelp-base.c:
+	Move initialisation of bookmarks and settings to before TOC
+
+2007-06-20  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* configure.in: 
+	* src/test-resolver.c:
+	* src/yelp-toc.c:
+	* src/yelp-window.c:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	Spoon is now Rarian.  Bump min version to 0.5.0
+
+2007-06-14  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c:
+	Minor fix to recognise man:<filepath>
+	
+	* src/Makefile.am:
+	* src/yelp-window.c: 
+	Add support for docbook (yay!) and
+	man pages
+	Rename silly function names to something slightly
+	more sensible
+	Update my email address in help dialog (minor)
+	
+	* src/test-document.c:
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	* src/yelp-docbook.c:
+	Add support for getting the sections GtkTreeModel
+	out
+	
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	Add functions to get the length (remaining)
+	of page
+	
+	
+2007-06-13  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c:
+	Make bookmarks work in the New World Order
+
+	* src/yelp-base.c:
+	start loading yelp-toc at start of
+	base to take advantage of threading
+	and make the toc load even quicker
+	(except man pages of course)
+	
+	* src/yelp-toc.c:
+	Make icon work (when the rest of the
+	customisations are plumbed in)
+	
+	* src/yelp-utils.c:
+	Fix result for TOC pages
+	
+	* src/yelp-document.c:
+	Fix crash when canceling page request
+	
+	* src/yelp-window.c: 
+	Implement canceling of requests
+	Implement location dialog
+
+2007-06-12  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-base.c:
+	* src/yelp-window.h:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	* src/Makefile.am:
+	* stylesheets/toc2html.xsl:
+	First pass at making yelp work again
+	Very, very broken, but TOC shows up (and is navigatable)
+	Thought, nothing else works and is 
+	liable to crash if used
+	rename YELP_TYPE_* to YELP_SPOON_TYPE_*
+	to stop conflict when compiling
+	Oh, and introduce hundreds of compiler warnings
+	
+	* src/yelp-toc.c:
+	* src/yelp-toc.h:
+	Make TOC doc singleton
+	
+2007-06-12  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c: 
+	Add ghelp resolve support
+	Many minor fixes to pass default test suite
+
+	* src/test-resolver.c: 
+	Add default tests
+
+	
+2007-06-11  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c: 
+	Add man page resolver support.  Make info fall back
+	to man pages when not found
+
+2007-06-11  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/test-resolver.c:
+	Add gnome-vfs-init() and section (for results section)
+	
+	* src/yelp-utils.c: 
+	Add support for resolving info and full path uri's.
+
+	* src/yelp-utils.h:
+	Add long description of resolver function
+	
+2007-06-02  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/test-resolver.c: 
+	Bit more framework
+
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	Beginnings of testing (sort-of recognises different types)
+	Add enum for different types
+	Add lots of printfs that should be removed at some point
+	
+2007-05-31  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.h:
+	* src/yelp-utils.c:
+	Beginning (empty) of new utils resolver (masked by DON_UTILS define)
+	
+	* src/test-resolver.c: 
+	* src/Makefile.am:
+	Beginnings of resolver test
+	
+	
+2007-04-30  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc.c: 
+	Add in man pages
+	Do an interesting use of the new stuff to 
+	run 3 transforms - main, info and man so
+	we quickly get the main page, then get man and info when ready
+
+	* src/yelp-document.h:
+	* src/yelp-document.c:
+	Add yelp_document_has_page that's used
+	in yelp-toc
+	
+2007-04-26  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc.c:
+	Add info page support
+	
+	* stylesheets/toc2html.xsl: 
+	* src/test-document.c:
+	* src/yelp-toc.c:
+	Make TOC work properly with new document structure	
+
+	* src/yelp-page.c:
+	* src/yelp-docbook.c:
+	Various misc. changes to make docbook work properly
+	Add TODO's
+
+2007-04-24  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc.c:
+	* src/yelp-toc.h:
+	* src/yelp-db-pager.c:
+	* src/test-document.c:
+	* src/Makefile.am:
+	Initial commit of new yelp-toc (broken)
+	Add toc option to test-document (broken)
+
+
+2007-04-22  Shaun McCance  <shaunm@gnome.org>
+
+	* ChangeLog
+	* src/Makefile.am:
+	* src/test-man-parser.c:
+	* src/yelp-debug.h:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-io-channel.c:
+	* src/yelp-man-parser.c:
+	* src/yelp-man-parser.h:
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	- Merging yelp-document into yelp-spoon
+
+2007-04-14  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc-pager.c: 
+	Convert info TOC to use new spoon work
+	(slightly later) Convert man TOC to use new spoon work as well
+
+2007-03-25  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* stylesheets/toc2html.xsl: 
+	* src/yelp-toc-pager.c:
+	First pass at spoon integration
+	TOC correctly displayed, replacing all sk code
+	with spoon_for_each_in_category()
+
+	* src/yelp-toc-pager.c:
+	* configure.in:
+	First work on Spoon integration
+	Search for pkg-config Spoon file
+	Run a spoon-for-each, printing doc names
+
+2007-03-12  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* NEWS:
+	- Version 2.18.0
+
+2007-02-23  Christian Persch  <chpe@svn.gnome.org>
+
+	* src/Yelper.cpp:
+	* src/Yelper.h:
+	Fix for mozilla API change on trunk.
+
+2006-12-01  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in:
+	* m4/gecko.m4:
+	* src/Makefile.am:
+	* src/Yelper.cpp:
+	Fix for mozilla API change on trunk.
+
+2006-11-20  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* NEWS:
+	* configure.in:
+	- Version 2.16.2
+
+2006-11-20  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-utils.c:
+	When info:dir contains a link to a subdir,
+	but not an info name, work as expected
+	 (Really fixes bug #371680)
+	
+	* src/yelp-io-channel.c: 
+	Check the file exists and is valid before trying
+	to read it (fixes bug #371680)
+	
+	* src/yelp-gecko-services.cpp: 
+	Fix printing ranges (bug #370618, Christian Persch)
+	
+	* src/yelp-info-parser.c: 
+	When whitespace on new line of a note is < 2,
+	don't crash (bug #376861)
+	Fix crash on libc info page (bug #367410, Matthias Clasen)
+	
+2006-11-05  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-main.c:
+	Don't crash when saving session (bug #364790)
+	
+	* src/yelp-search-pager.c: 
+	Replace ':' chars in search strings with ' '
+	Stops from crashing (bug #364768)
+	Don't chew memory when search string contains
+	2 consecutive spaces
+
+2006-10-25  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-info-parser.c:
+	Fix double free in stupid link types only used by gdb
+	info page (apparently).  Bug #364850
+	
+	* src/yelp-search-pager.c: 
+	Don't crash when searching for empty term.  Bug #363949
+	
+2006-10-07  Elijah Newren  <newren gmail com>
+
+	* src/yelp-print.c (yelp_print_present_status_dialog): Remove
+	markup from translatable messages.  #360450
+
+2006-10-05  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-utils.c: 
+	Don't crash when manpath (prog) || MANPATH (env.)
+	is available
+	
+==================== 2.16.1 ====================
+2006-10-02  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* NEWS:
+	* configure.in:
+	- Version 2.16.1
+	
+2006-09-29  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-settings.c: 
+	* src/yelp-settings.h:
+	* src/yelp-window.c:
+	Make F7 toggle caret properly
+	Set initial state of caret in prefs window
+
+2006-09-17  Christian Persch  <chpe@cvs.gnome.org>
+
+	* src/Yelper.cpp:
+	* src/Yelper.h:
+
+	Fix the build with gecko trunk.
+
+2006-09-12  Christian Persch  <chpe@cvs.gnome.org>
+
+	* m4/gecko.m4:
+
+	Prefer xulrunner over mozilla.
+
+==================== 2.16.0 ====================
+2006-09-04  Brent Smith  <gnome@nextreality.net>
+
+	* NEWS:
+	* configure.in:
+	- Version 2.16.0
+
+2006-09-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-toc-pager.c: (toc_add_doc_info): check if the document
+	category exists, and return if it does not should fix 353554
+
+2006-08-30  Don Scorgie  <don@Madaline>
+
+	* src/yelp-io-channel.c: 
+	Don't double free bzip streams
+	
+2006-08-30  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-search-pager.c: 
+	Move online url to perminant address at gnome.org
+
+2006-08-28  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-io-channel.c:
+	Supress critical warning when it isn't actually 
+	critical
+
+	* src/yelp-info-parser.c:
+	* src/yelp-io-channel.c:
+	Don't fall over when part of the info file
+	goes missing (bug #353209)
+
+2006-08-16  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-search-pager.c: 
+	Fix crash when apropos goes nuts (bug #347467)
+	Patch from Priit Laes
+
+2006-08-10  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-info-parser.c: 
+	Fix stupid crash on CVS info file caused by
+	fake *Notes, trying to trick yelp into making 
+	them hyperlinks when they shouldn't be
+	
+==================== 2.15.91 ====================
+2006-08-07  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* NEWS:
+	* configure.in:
+	- Version 2.15.91
+
+	* src/yelp-search-pager.c: 
+	Remove translation of online URL in anticipation of a
+	new script to do the redirection
+
+2006-08-05  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-pager.c: 
+	* src/yelp-toc-pager.c: 
+	* src/yelp-window.c: 
+	* src/yelp-search-pager.c: 
+	Various misc. cleanups.
+	- Keep track of idle functions and callbacks
+	- don't use depreciated gtk_idle_add function
+	Based on patch from Christian Persch
+	
+	* src/yelp-main.c: 
+	Initialise dbus threading before gnome-vfs.  Bug #350079
+	
+2006-07-25  Shaun McCance  <shaunm@gnome.org>
+
+	* data/toc.xml.in:
+	- Changed "Sound & Vision" to "Sound & Video"
+
+2006-07-25  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* stylesheets/search2html.xsl: 
+        Remove fixed font sizes from search results
+        Remove fixed colours from search results
+	Fixes bug #348563 and makes page respect
+	theme setting
+	
+
+==================== 2.15.5 ====================
+
+2006-07-24  Don Scorgie <dscorgie@cvs.gnome.org>
+
+	* NEWS:
+	* configure.in:
+	- Version 2.15.5
+
+2006-07-24  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-search-pager.c: 
+	* stylesheets/search2html.xsl: 
+	Add a new link to the search results to allow
+	repeating the search online at the GNOME support forums
+	Additionally: Allow better translation of the message
+		      Allow translation of the site name
+	Additionally (2): Allow online search locations to be
+			  translated to point to support sites
+			  in a native language
+	
+	
+2006-07-23  Brent Smith  <gnome@nextreality.net>
+
+	* configure.in: Depend on beagle 0.2.4 since that is the first version
+	with the beagle_util_daemon_is_running() function.
+	* src/yelp-search-pager.c: (search_pager_class_init):
+	Use beagle_util_daemon_is_running() to make sure that the daemon is
+	actually running, and the socket at ~/.beagle/socket is not stale.
+	Fixes #348362
+
+2006-07-23  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-search-pager.c: 
+	Large basic search update:
+	 - Common words are ignored (how, do etc.)
+	 - Common suffixes and prefixes are checked
+	 - Fix problems with searching in some docbook docs
+	 - Better scoring mechanism
+	 - Slightly improved matching algorithm
+	 - Fix searching HTML docs
+	 - Better snippet highlighting
+	 - Clean sections of code slightly
+	Bugs fixed: #341797, #341800, #347819 (work around)
+	Partially fixed: #335962
+	
+
+	* src/yelp-settings.c: 
+	Use a gtk_link_button instead of gnome_href
+
+	* src/yelp-print.c: 
+	* src/yelp-print.h: 
+	* src/yelp-gecko-services.cpp: 
+	* src/yelp-gecko-services.h: 
+	* src/Yelper.cpp: 
+	* configure.in: 
+	Move to GtkPrinting.
+	Bump min gtk version to 2.10
+	Remove libgnomeprint dependency
+	
+2006-07-22  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* configure.in: 
+	Remove additional but not run pkg-config check
+
+	* src/yelp-window.c: 
+	Remove a couple of headers that shouldn't be here
+	Remove call to gnome_help_display_desktop and
+	replace with a much simpler call to create a new window
+	and show the relevant section of the user guide, making it 
+	much quicker to display help->Contents
+	
+	* src/yelp-html.cpp: 
+	* src/yelp-window.c: 
+	Remove libgnomeui dependancy from both.
+	Switch to GTK_STOCK_ABOUT instead of libgnome equivalent
+	
+2006-07-21  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-search-pager.c: 
+	Clean up some compiler warnings
+	(Casts and unused variables)
+
+2006-07-19  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-toc-pager.c:
+	Select the correct translation of the description of sections
+	Fixes bug #347816
+	Clean up a couple of compiler warnings
+
+==================== 2.15.4 ====================
+
+2006-07-10  Brent Smith  <gnome@nextreality.net>
+
+	* NEWS:
+	* configure.in:
+	- Version 2.15.4
+
+2006-07-10  Brent Smith  <gnome@nextreality.net>
+
+	* data/info.xml.in:
+	* data/man.xml.in:
+	* data/scrollkeeper.xml:
+	* data/toc.xml.in:
+	- Restructure the table of contents to make most documentation 
+	accessible via a single click (except for man pages and info pages)
+	- Put descriptions for each section at the top in the right side 
+	above the document listing
+	- Rename the top level category to 'Desktop' and include the 
+	User guide, System Administration Guide, and Accessibility Guide 
+	in this section
+	* src/yelp-pager.c: (yelp_pager_get_page_from_id):
+	* src/yelp-pager.h:
+	* src/yelp-toc-pager.c: (toc_pager_resolve_frag),
+	(toc_process_pending), (process_mandir_pending),
+	(process_info_pending), (process_read_menu), (process_cleanup):
+	* src/yelp-window.c: (window_do_load_pager), (pager_finish_cb):
+	Load each table of contents page on demand instead of 
+	creating all pages at once.
+	* stylesheets/toc2html.xsl:
+	Maintain a list of categories on the left hand side in the 
+	table of contents, that expands subcategories for the currently
+	selected category
+
+2006-07-07  Wouter Bolsterlee  <uws+gnome@xs4all.nl>
+
+	* src/yelp-window.c: (tree_row_expand_cb):
+	Expand/collapse on double-click. Really fixes bug
+	#346871.
+
+2006-07-07  Don Scorgie  <dscorgie@cvs.gnome.org>
+
+	* src/yelp-window.c: 
+	Expand sections on double-click (bug #346871)
+
+=======
+2007-04-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/yelp-man.c:
+	* src/yelp-man.h:
+	* src/test-document.c:
+	- Made man pages work with YelpDocument
+
+	* src/yelp-docbook.c:
+	* src/yelp-document.c:
+	- General clean up
+
+2007-04-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-document.c:
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Added preliminary support for mime types in yelp-page
+
+2007-04-12  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-man-parser.c:
+	* src/Makefile.am:
+	- Made yelp-man-parser use yelp-debug
+
+2007-04-11  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	* src/yelp-io-channel.c:
+	- Added back the GError convenience functions
+
+	* src/Makefile.am:
+	* src/test-man-parser.c:
+	* src/yelp-man-parser.c:
+	* src/yelp-man-parser.h:
+	- Getting the man stuff to work in the new world order
+
+	* src/yelp-transform.c:
+	- Added a cast to shut gcc up
+
+	* src/test-document.c:
+	* src/yelp-document.h:
+	* src/yelp-docbook.c:
+	* src/yelp-docbook.h:
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Moving much of the request-handling to YelpDocument
+
+2007-04-04  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Added yelp_error_copy
+
+	* src/yelp-transform.c:
+	- Added a few debug statements
+
+	* src/test-transform.c:
+	- Added the --random-timeout option
+
+	* src/yelp-page.c:
+	- Don't use g_free with memory slicese.
+
+	* src/yelp-docbook.c:
+	* src/yelp-docbook.h:
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Added a more-or-less complete YelpDocument implementation for DocBook
+
+	* src/test-document.c:
+	* src/Makefile.am:
+	- Added a test program for YelpDocument, currently only using DocBook
+
+2007-03-22  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Do not do callbacks if released
+
+	* src/yelp-page.h:
+	- Added a comment
+
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Filled out the abstract functions
+
+	* src/Makefile.am:
+	- Some changes to the test programs we build
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-transform.c:
+	- Added some locks
+
+	* src/Makefile.am:
+	* src/test-page.c:
+	- Adding a test application for YelpPage
+
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- Fairly complete YelpPage for strings
+
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	- Big not-yet-done changes, but needed for test-page
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-transform.c:
+	- Fixed concurrency issues when freeing
+
+	* src/test-transform.c:
+	- Using GOption to get a --timeout option
+	- Don't release a transform twice
+
+2007-03-20  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Making YelpError cleaner and more usable for our purposes
+
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Copyright in 2007 too
+
+	* src/yelp-page.c:
+	* src/yelp-page.h:
+	- The beginnings of the new read()-able YelpPage
+
+	* src/Makefile.am:
+	- yelp-error.h != yelp-transform.h
+
+2007-03-17  Shaun McCance  <shaunm@gnome.org>
+
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	- Changed the callback API a bit, basically ready
+
+2006-07-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-document.c: (yelp_document_dispose),
+	(yelp_document_finalize), (yelp_document_class_init),
+	(yelp_document_init), (document_set_property),
+	(document_get_property), (yelp_document_get_page),
+	(yelp_document_cancel_get), (yelp_document_get_sections),
+	(yelp_document_add_page):
+	* src/yelp-document.h:
+	* src/yelp-page.c: (yelp_page_new), (yelp_page_set_id),
+	(yelp_page_get_id), (yelp_page_set_title), (yelp_page_get_title),
+	(yelp_page_set_contents), (yelp_page_get_contents),
+	(yelp_page_set_prev_id), (yelp_page_get_prev_id),
+	(yelp_page_set_next_id), (yelp_page_get_next_id),
+	(yelp_page_set_toc_id), (yelp_page_get_toc_id), (yelp_page_free):
+	* src/yelp-page.h:
+	- Add these to the correct directory
+	* yelp-document.c:
+	* yelp-document.h:
+	* yelp-page.c:
+	* yelp-page.h:
+	- Remove these (I put them in the wrong directory in the last commit)
+
+2006-07-03  Brent Smith  <gnome@nextreality.net>
+
+	* src/yelp-debug.h: Put an #ifdef around HAVE_CONFIG_H
+	* src/yelp-utils.c:
+	* src/yelp-utils.h:
+	- Get rid of the unused YelpDocPage type and related function(s)
+	- created branch "yelp-document", branchpoint
+	YELP_DOCUMENT_BRANCHPOINT for working on the new YelpDocument API; see
+	http://live.gnome.org/Yelp
+	* yelp-document.c: (yelp_document_dispose),
+	(yelp_document_finalize), (yelp_document_class_init),
+	(yelp_document_init), (document_set_property),
+	(document_get_property), (yelp_document_get_page),
+	(yelp_document_cancel_get), (yelp_document_get_sections),
+	(yelp_document_add_page):
+	* yelp-document.h:
+	* yelp-page.c: (yelp_page_new), (yelp_page_set_id),
+	(yelp_page_get_id), (yelp_page_set_title), (yelp_page_get_title),
+	(yelp_page_set_contents), (yelp_page_get_contents),
+	(yelp_page_set_prev_id), (yelp_page_get_prev_id),
+	(yelp_page_set_next_id), (yelp_page_get_next_id),
+	(yelp_page_set_toc_id), (yelp_page_get_toc_id), (yelp_page_free):
+	* yelp-page.h:
+	New files yelp-document.[ch] and yelp-page.[ch] for the new API
+
+2006-07-03  Shaun McCance  <shaunm@gnome.org>
+
+	* src/Makefile.am:
+	* src/test-transform.c:
+	* src/yelp-transform.c:
+	* src/yelp-transform.h:
+	* src/yelp-error.c:
+	* src/yelp-error.h:
+	- Glorious threaded XSLT transformation
+
+== END OF REWORK CHANGES ==
+
+
 2007-04-20  Christian Kirbach  <Christian.Kirbach@googlemail.com>
 
 	* yelp.desktop.in.in:

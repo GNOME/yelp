@@ -54,13 +54,13 @@
     h6 span[class~="title"] { border-bottom: none; }
     h7 span[class~="title"] { border-bottom: none; }
 
-    /* Gecko seems to get selection color wrong on some themes */
+    <!--/* Gecko seems to get selection color wrong on some themes */
     ::-moz-selection {
       background-color:  </xsl:text>
       <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
       color: </xsl:text>
       <xsl:value-of select="$yelp.color.selected.fg"/><xsl:text>;
-    }
+    } -->
 
     div[class~="linktrail"] {
       -moz-box-sizing: border-box;
