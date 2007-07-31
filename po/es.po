@@ -1,19 +1,15 @@
-# traducción de es.po al Spanish
-# Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2001-2002,2003.
+# Spanish translation for yelp
+# Copyright (C) 2001,2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+#
+# Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2001, 2002, 2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2005, 2006.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007.
-# translation of es.po to
-# translation of es.po to
-# translation of es.po to
-# translation of es.po to Spanish
-# yelp spanish .po file.
-# Copyright (C) 2001,2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-31 04:05+0100\n"
-"PO-Revision-Date: 2007-07-31 21:37+0200\n"
+"POT-Creation-Date: 2007-07-31 20:44+0100\n"
+"PO-Revision-Date: 2007-07-31 22:03+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +18,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../data/info.xml.in.h:1
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:2017
 msgid "GNU Info Pages"
 msgstr "Páginas de información de GNU"
 
@@ -66,7 +62,7 @@ msgstr "Dispositivos de hardware"
 msgid "Kernel Routines"
 msgstr "Rutinas del núcleo"
 
-#: ../data/man.xml.in.h:10
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:2011
 msgid "Manual Pages"
 msgstr "Páginas del manual"
 
@@ -602,18 +598,31 @@ msgstr "No se pudo analizar el archivo"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "El archivo «%s» no se pudo analizar porque no es un documento XML bien formado."
+msgstr ""
+"El archivo «%s» no se pudo analizar porque no es un documento XML bien "
+"formado."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
-msgstr "El archivo «%s» no se pudo analizar porque uno o más de sus archivos incluidos no son documentos XML bien formados."
+msgstr ""
+"El archivo «%s» no se pudo analizar porque uno o más de sus archivos "
+"incluidos no son documentos XML bien formados."
 
 #: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
 msgid "Unknown"
 msgstr "Desconocido"
+
+#: ../src/yelp-db-print-pager.c:190
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not well-formed XML."
+msgstr ""
+"El archivo «%s» no se pudo analizar. El archivo no existe o no es un "
+"archivo XML bien formado."
 
 #: ../src/yelp-error.c:132 ../src/yelp-error.c:139
 msgid "Unknown Error"
@@ -630,7 +639,18 @@ msgstr "No hay información disponible acerca de este error."
 #: ../src/yelp-info.c:394
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "El archivo «%s» no se pudo analizar porque no es una página de información bien formada."
+msgstr ""
+"El archivo «%s» no se pudo analizar porque no es una página de información "
+"bien formada."
+
+#: ../src/yelp-info-pager.c:188
+#, c-format
+msgid ""
+"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"not a well-formed info page."
+msgstr ""
+"El archivo «%s» no se pudo analizar. El archivo no existe o no "
+"es una página de información bien formada."
 
 #: ../src/yelp-io-channel.c:107
 #, c-format
@@ -663,6 +683,23 @@ msgstr "Ayuda"
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "El archivo «%s» no se pudo analizar porque no es una página man bien formada."
 
+#: ../src/yelp-man-pager.c:263
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
+"formatted incorrectly."
+msgstr ""
+"El archivo «%s» no se pudo analizar. El archivo no existe o no "
+"está bien formateado."
+
+#: ../src/yelp-pager.c:117
+msgid "Document Information"
+msgstr "Información del documento"
+
+#: ../src/yelp-pager.c:118
+msgid "The YelpDocInfo struct of the document"
+msgstr "La estructura YelpDocInfo del documento"
+
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
 msgstr "Preparándose para imprimir"
@@ -693,16 +730,16 @@ msgstr "Ocurrió un error al imprimir"
 msgid "It was not possible to print your document: %s"
 msgstr "No es posible imprimir su documento: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:67 ../src/yelp-search-pager.c:71
 msgid "the GNOME Support Forums"
 msgstr "Los fórums de asistencia de GNOME"
 
-#: ../src/yelp-search-parser.c:273
+#: ../src/yelp-search-parser.c:273 ../src/yelp-search-pager.c:807
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Sin resultados para «%s»"
 
-#: ../src/yelp-search-parser.c:274
+#: ../src/yelp-search-parser.c:274 ../src/yelp-search-pager.c:808
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -710,7 +747,7 @@ msgstr ""
 "Intente usar palabras diferentes para describir el problema que está "
 "teniendo o el asunto del que quiere ayuda."
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:277 ../src/yelp-search-pager.c:811
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Buscar resultados para «%s»"
@@ -720,7 +757,7 @@ msgstr "Buscar resultados para «%s»"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:291
+#: ../src/yelp-search-parser.c:291 ../src/yelp-search-pager.c:828
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Repetir la búsqueda en línea en %s"
@@ -733,7 +770,7 @@ msgstr "Repetir la búsqueda en línea en %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:838
+#: ../src/yelp-search-parser.c:838 ../src/yelp-search-pager.c:1286
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -749,7 +786,7 @@ msgstr "acerca de:con:contra:de:desde:elemento:es:hace:mi:por:que:según:sin:sob
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:854
+#: ../src/yelp-search-parser.c:854 ../src/yelp-search-pager.c:1302
 msgid "re"
 msgstr "auto:re:"
 
@@ -760,7 +797,7 @@ msgstr "auto:re:"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:863
+#: ../src/yelp-search-parser.c:863 ../src/yelp-search-pager.c:1311
 msgid "ers:er:ing:es:s:'s"
 msgstr "ando:mente:"
 
@@ -771,6 +808,35 @@ msgstr "No se pudo procesar la búsqueda"
 #: ../src/yelp-search.c:367
 msgid "Bigger problems still"
 msgstr "Aún hay graves problemas"
+
+#: ../src/yelp-search-pager.c:755
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr ""
+"No se pudo procesar su búsqueda. El archivo «%s» falta o no es una hoja "
+"de estilo XSLT válida."
+
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2328
+#: ../src/yelp-transform.c:368 ../src/yelp-xslt-pager.c:364
+msgid "No href attribute found on yelp:document"
+msgstr "No se encontró atributo href en yelp:document"
+
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2341
+#: ../src/yelp-transform.c:382 ../src/yelp-xslt-pager.c:380
+#: ../src/yelp-xslt-pager.c:531
+msgid "Out of memory"
+msgstr "Se agotó la memoria"
+
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2390
+msgid "Help Contents"
+msgstr "Contenido de la ayuda"
+
+#: ../src/yelp-search-pager.c:1516 ../src/yelp-toc-pager.c:635
+#, c-format
+msgid "Could not load the OMF file '%s'."
+msgstr "No se pudo cargar el archivo OMF «%s»."
 
 #: ../src/yelp-toc.c:267
 #, c-format
@@ -785,7 +851,45 @@ msgstr "No se encontró la página requerida en el TOC."
 msgid ""
 "The ‘TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "El archivo «TOC» no se pudo analizar porque no es un documento XML bien formado."
+msgstr ""
+"El archivo «TOC» no se pudo analizar porque no es un documento XML bien "
+"formado."
+
+#: ../src/yelp-toc-pager.c:272
+msgid "YelpTocPager: Pause count is negative."
+msgstr "YelpTocPager: La cuenta de pausas es negativa."
+
+#: ../src/yelp-toc-pager.c:383 ../src/yelp-toc-pager.c:2128
+#, c-format
+msgid ""
+"The table of contents could not be processed. The file ‘%s’ is either "
+"missing or is not a valid XSLT stylesheet."
+msgstr ""
+"No se ha podido procesar la tabla de contenidos. El archivo «%s» falta "
+"o no es una hoja de estilo XSLT válida."
+
+#: ../src/yelp-toc-pager.c:1114
+#, c-format
+msgid "Read man page for %s"
+msgstr "Leer la página man de %s"
+
+#: ../src/yelp-toc-pager.c:1853
+#, c-format
+msgid "Read info page for %s"
+msgstr "Leer la página de información de %s"
+
+#: ../src/yelp-toc-pager.c:1984
+#, c-format
+msgid ""
+"The table of contents could not be loaded. The file ‘%s’ is either missing "
+"or is not well-formed XML."
+msgstr ""
+"No se pudo cargar la tabla de contenidos. El archivo «%s» falta o no "
+"es un archivo XML bien formado."
+
+#: ../src/yelp-toc-pager.c:2006
+msgid "Command Line Help"
+msgstr "Ayuda de la línea de comandos"
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -803,14 +907,6 @@ msgstr "Transformación rota"
 #: ../src/yelp-transform.c:113
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Ocurrió un error desconocido al intentar transformar el documento."
-
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "No se encontró atributo href en yelp:document"
-
-#: ../src/yelp-transform.c:382
-msgid "Out of memory"
-msgstr "Se agotó la memoria"
 
 #: ../src/yelp-window.c:297
 msgid "_File"
@@ -1037,6 +1133,24 @@ msgstr "Yelp"
 #: ../src/yelp-window.c:2380
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un visor y explorador de documentación para el escritorio GNOME."
+
+#: ../src/yelp-xslt-pager.c:189
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
+"improperly formatted."
+msgstr ""
+"El archivo «%s» no se pudo analizar. El archivo no existe o "
+"no está bien formateado."
+
+#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
+#, c-format
+msgid ""
+"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+"or it is not a valid XSLT stylesheet."
+msgstr ""
+"No se pudo procesar el documento «%s». El archivo «%s» falta "
+"o no es una hoja de estilo XSLT válida."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
