@@ -30,6 +30,7 @@
 #include <libxml/parserInternals.h>
 #include <libxml/xinclude.h>
 #include <libxslt/xslt.h>
+#include <libexslt/exslt.h>
 #include <libxslt/templates.h>
 #include <libxslt/transform.h>
 #include <libxslt/extensions.h>
@@ -41,6 +42,8 @@
 #include "yelp-transform.h"
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
+
+static exslt_registered = FALSE;
 
 static void      transform_run         (YelpTransform  *transform);
 static gboolean  transform_free        (YelpTransform  *transform);
@@ -116,6 +119,10 @@ yelp_transform_start (YelpTransform *transform,
     transform->params = g_strdupv (params);
 
     transform->context->_private = transform;
+    if (!exslt_registered) {
+	exsltRegisterAll ();
+	exslt_registered = TRUE;
+    }
     xsltRegisterExtElement (transform->context,
 			    BAD_CAST "document",
 			    BAD_CAST YELP_NAMESPACE,
