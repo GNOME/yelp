@@ -1,6 +1,10 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-man-parser.c: 
+	Handle malformed .so tags better
+	(bug #447107 - Matt Keenan)
+	
+	* src/yelp-man-parser.c: 
 	Better handling of cross links in man pages
 	(bug #431078 - Matthias Clasen)
 

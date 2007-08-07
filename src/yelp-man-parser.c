@@ -720,11 +720,10 @@ macro_reference_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	if (args && args->data) {
 	    basename = g_strrstr((const gchar *)args->data, "/");
 
-	    basename++;
-	    
-	    if (basename)
+	    if (basename) {
+		basename++;
 		link = g_strdup_printf ("man:%s", basename);
-	    else {
+	    } else {
 		link = g_strdup_printf ("man:%s", (const gchar *)args->data);
 		basename = (gchar *)args->data;
 	    }
