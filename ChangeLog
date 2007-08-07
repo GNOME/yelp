@@ -1,5 +1,11 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-search-parser.c: 
+	Fix apropos handling on Fedora
+	Fix possible memleak
+	Handle results with spaces
+	(bug #370167 - Matthias Clasen)
+
 	* src/yelp-man-parser.c:
 	Handle '\*=' escape sequence correctly
 	(bug #358825 - Björn Lindqvist)

@@ -1298,7 +1298,16 @@ process_man_result (YelpSearchParser *parser, gchar *result, gchar **terms)
 	/*gint i;*/
 
 	if (line == NULL || line[0] == NULL || line[1] == NULL)
-	    continue;
+	    goto done;
+
+	/* RH man inserts rpm references into the whatis database */
+	if (g_str_has_prefix (line[1], "rpm)"))
+            goto done;
+
+        tmp = strchr (line[0], ' ');
+        if (tmp)
+            *tmp = '\0';
+
 
 	title = g_strdup (g_strstrip (line[0]));
 	after = strstr (line[1], ")");
@@ -1326,6 +1335,7 @@ process_man_result (YelpSearchParser *parser, gchar *result, gchar **terms)
 	xmlNewChild (child, NULL, BAD_CAST "score",
 		     BAD_CAST "0.1");
 	g_free (tmp);
+    done:
 	g_strfreev (line);
     }
 
