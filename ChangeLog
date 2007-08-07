@@ -1,8 +1,12 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-window.c:
-	Fix "info <page>" in search bar
+	Add a "Phrase not found" message to
+	the search bar when the term isn't found.
 	
+	* src/yelp-window.c:
+	Fix "info <page>" in search bar
+
 	* src/yelp-man-parser.c: 
 	Handle malformed .so tags better
 	(bug #447107 - Matt Keenan)

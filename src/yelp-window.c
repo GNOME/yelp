@@ -245,6 +245,8 @@ struct _YelpWindowPriv {
     gchar          *find_string;
     GtkAction      *find_next_menu;
     GtkAction      *find_prev_menu;
+    GtkToolItem    *find_sep;
+    GtkToolItem    *find_not_found;
 
     /* Open Location */
     GtkWidget      *location_dialog;
@@ -1438,6 +1440,18 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
 		      window);
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_prev, -1);
 
+    priv->find_sep = gtk_separator_tool_item_new ();
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_sep, -1);
+
+    label = gtk_label_new (_("Phrase not found"));
+    priv->find_not_found = gtk_tool_item_new ();
+
+    gtk_tool_item_set_expand (priv->find_not_found, TRUE);
+    gtk_container_add (GTK_CONTAINER (priv->find_not_found), label);
+    gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+    gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_not_found, -1);    
+
     item = gtk_separator_tool_item_new ();
     gtk_tool_item_set_expand (item, TRUE);
     gtk_separator_tool_item_set_draw (GTK_SEPARATOR_TOOL_ITEM (item), FALSE);
@@ -2116,6 +2130,8 @@ window_find_cb (GtkAction *action, YelpWindow *window)
     debug_print (DB_FUNCTION, "entering\n");
 
     gtk_widget_show_all (priv->find_bar);
+    gtk_widget_hide (GTK_WIDGET (priv->find_not_found));
+    gtk_widget_hide (GTK_WIDGET (priv->find_sep));
     gtk_widget_grab_focus (priv->find_entry);
     window_find_entry_changed_cb (GTK_EDITABLE (priv->find_entry), window);
 }
@@ -2523,8 +2539,12 @@ window_find_entry_changed_cb (GtkEditable *editable,
 	window_find_buttons_set_sensitive (window, FALSE, FALSE);
     else
 	if (found) {
+	    gtk_widget_hide (GTK_WIDGET (priv->find_sep));
+	    gtk_widget_hide (GTK_WIDGET (priv->find_not_found));
 	    window_find_buttons_set_sensitive (window, FALSE, TRUE);
 	} else {
+	    gtk_widget_show_all (GTK_WIDGET (priv->find_sep));
+	    gtk_widget_show_all (GTK_WIDGET (priv->find_not_found));
 	    window_find_buttons_set_sensitive (window, TRUE, TRUE);
 	}
  
