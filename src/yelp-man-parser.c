@@ -1454,6 +1454,9 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 	        if (*(ptr) == 'R') {
 		    parser_append_given_text (parser, "®");
 		    ptr++;
+		} else if (*(ptr) == '=') {
+		    parser_append_given_text (parser, "--");
+		    ptr++;
 	        } else if (*(ptr) == '(') {
 		    ptr++;
 		    if ((ptr - baseptr) > len || *ptr == '\0') break;
