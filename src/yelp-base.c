@@ -196,7 +196,6 @@ yelp_base_new (gboolean priv)
 	if (!priv)
 		yelp_base_register_dbus (base);
 	base->priv->private_session = priv;
-	//yelp_toc_pager_init ();
 
         return base;
 }
