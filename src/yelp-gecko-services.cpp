@@ -415,18 +415,18 @@ PrintListener::SetPrintSettings (YelpPrintInfo *settings,
 
 NS_GENERIC_FACTORY_CONSTRUCTOR(GPrintingPromptService)
 
-static const nsModuleComponentInfo sAppComps[] = {
-    {
-        G_PRINTINGPROMPTSERVICE_CLASSNAME,
-        G_PRINTINGPROMPTSERVICE_CID,
-        G_PRINTINGPROMPTSERVICE_CONTRACTID,
-        GPrintingPromptServiceConstructor
-    },
-};
-
 void
 yelp_register_printing ()
 {
+  const nsModuleComponentInfo sAppComps[] = {
+    {
+      G_PRINTINGPROMPTSERVICE_CLASSNAME,
+      G_PRINTINGPROMPTSERVICE_CID,
+      G_PRINTINGPROMPTSERVICE_CONTRACTID,
+      GPrintingPromptServiceConstructor
+    },
+  };
+
   nsresult rv;
   nsCOMPtr<nsIComponentRegistrar> cr;
   rv = NS_GetComponentRegistrar(getter_AddRefs(cr));

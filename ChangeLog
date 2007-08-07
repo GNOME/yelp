@@ -1,5 +1,11 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-gecko-services.cpp:
+	* src/yelp-debug.c:
+	reduce relocations by removing unnecessarily 
+	static data, and non-const data.
+	(bug #457082 - Christian Persch)
+
 	* src/yelp-window.c: 
 	s/std{out,err}/str_std{out,err}/g
 	Fixes build on Solaris - bug #462440

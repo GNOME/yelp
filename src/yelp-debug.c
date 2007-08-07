@@ -27,18 +27,6 @@
 
 #include "yelp-debug.h"
 
-GDebugKey debug_keys[] = {
-	{ "function-calls",   DB_FUNCTION },
-	{ "function-args",    DB_ARG }, 
-	{ "enable-profiling", DB_PROFILE },
-	{ "log",              DB_LOG },
-	{ "info",             DB_INFO },
-	{ "debug",            DB_DEBUG },
-	{ "warn",             DB_WARN },
-	{ "error",            DB_ERROR },
-	{ "all",              DB_ALL }
-};
-
 /**
  * @file:     you should pass the __FILE__ constant as this parameter
  * @line:     you should pass the __LINE__ constant as this parameter
@@ -83,6 +71,18 @@ void yelp_debug (const gchar *file,     guint line,
 	gchar           *formatted = NULL;
 	gchar           *str = NULL;
 	gint             i;
+
+	const GDebugKey debug_keys[] = {
+	    { "function-calls",   DB_FUNCTION },
+	    { "function-args",    DB_ARG }, 
+	    { "enable-profiling", DB_PROFILE },
+	    { "log",              DB_LOG },
+	    { "info",             DB_INFO },
+	    { "debug",            DB_DEBUG },
+	    { "warn",             DB_WARN },
+	    { "error",            DB_ERROR },
+	    { "all",              DB_ALL }
+	};
 
 	/* figure out which debug flags were set in the environment on the first
 	 * call to this function */
