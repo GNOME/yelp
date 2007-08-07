@@ -94,7 +94,7 @@ print_present_config_dialog (YelpPrintInfo *info)
     int ret;
 
     if (!info->print_dialog) {
-	info->print_dialog = gtk_print_unix_dialog_new ("Print Dialog", 
+	info->print_dialog = gtk_print_unix_dialog_new (_("Print"), 
 							GTK_WINDOW (info->owner));
 	gtk_print_unix_dialog_set_settings (
 				  GTK_PRINT_UNIX_DIALOG (info->print_dialog), 

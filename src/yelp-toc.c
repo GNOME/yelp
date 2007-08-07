@@ -433,7 +433,7 @@ toc_process (YelpToc *toc)
 
     if (priv->xmldoc == NULL) {
 	error = yelp_error_new (_("Could not parse file"),
-				_("The â€˜âTOC file€™ "
+				_("The TOC file "
 				  "could not be parsed because it is"
 				  " not a well-formed XML document."));
 	yelp_document_error_pending (document, error);

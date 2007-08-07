@@ -235,8 +235,8 @@ search_request (YelpDocument     *document,
     case SEARCH_STATE_PARSED:
     case SEARCH_STATE_STOP:
 	/* Much bigger problems */
-	error = yelp_error_new (_("Page not found"),
-				_("Could not process search"));
+	error = yelp_error_new (_("Search could not be processed"),
+				_("The requested search could not be processed."));
 	yelp_document_error_request (document, req_id, error);
 	break;
     }
@@ -363,8 +363,8 @@ search_process (YelpSearch *search)
     yelp_search_parser_free (parser);
 
     if (priv->xmldoc == NULL) {
-	error = yelp_error_new (_("Could not parse file"),
-				_("Bigger problems still"));
+	error = yelp_error_new (_("Cannot process the search"),
+				_("The search processor returned invalid results"));
 	yelp_document_error_pending (document, error);
     }
 

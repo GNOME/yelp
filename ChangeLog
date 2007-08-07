@@ -1,5 +1,15 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-toc.c:
+	* src/yelp-search.c:
+	Make error messages somewhat less cryptic
+	Remove strange markup that resulted from emacs
+	and unicode characters not mixing.
+	
+	* src/yelp-print.c:
+	Mark title as translatable (bug #458693 -
+	Gabor Kelemen)
+	
 	* src/yelp-search-parser.c: 
 	* src/yelp-window.c:
 	Redefine langs to allow compilation with
