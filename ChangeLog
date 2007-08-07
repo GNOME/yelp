@@ -1,5 +1,13 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-main.c: 
+	Mark -help contents for translation
+	(bug #450168 - Gabor Kelemen)
+	
+	* yelp.desktop.in.in: 
+	Remove suffix from icon
+	(bug #463281 - Sven Arvidsson)
+	
 	* src/yelp-toc.c:
 	* src/yelp-search.c:
 	Make error messages somewhat less cryptic
