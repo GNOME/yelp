@@ -2,7 +2,7 @@
  *  Copyright (C) 2002 Philip Langdale
  *  Copyright (C) 2003-2004 Christian Persch
  *  Copyright (C) 2005 Juerg Billeter
- *  Copyright (C) 2005 Don Scorgie <DonScorgie@Blueyonder.co.uk>
+ *  Copyright (C) 2005 Don Scorgie <Don@Scorgie.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

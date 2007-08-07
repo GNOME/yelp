@@ -1,6 +1,6 @@
 /*
  *  Copyright (C) 2000 Marco Pesenti Gritti
- *  Copyright (C) 2005 Don Scorgie <DonScorgie@Blueyonder.co.uk>
+ *  Copyright (C) 2005 Don Scorgie <Don@Scorgie.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
