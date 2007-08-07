@@ -82,6 +82,15 @@ resolve_process_ghelp (char *uri, gchar **result)
 	else if (g_str_equal (mime, "application/xhtml+xml"))
 	    type = YELP_RRN_TYPE_XHTML;
 
+    } else {
+	gint file_cut = 6;
+	/* If a full file path after ghelp:, see if the file
+	 * exists and return type if it does 
+	 */
+	while (uri[file_cut] == '/' && uri[file_cut+1] == '/')
+	    file_cut++;
+	type = resolve_full_file (&uri[file_cut]);
+	*result = g_strdup (&uri[file_cut]);
     }
 
     return type;

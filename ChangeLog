@@ -1,5 +1,9 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-utils.c: 
+	Resolve a full path within a ghelp uri
+	correctly (bug #464295)
+	
 	* src/yelp-gecko-services.cpp:
 	* src/yelp-debug.c:
 	reduce relocations by removing unnecessarily 
