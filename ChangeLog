@@ -1,6 +1,10 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-search-parser.c: 
+	When slow searching for ':'
+	(Bug #364768 again)
+	
+	* src/yelp-search-parser.c: 
 	Fix apropos handling on Fedora
 	Fix possible memleak
 	Handle results with spaces

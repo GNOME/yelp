@@ -565,9 +565,13 @@ search_parser_process_idle (YelpSearchParser *parser)
 #endif
 	g_return_val_if_fail (parser->slow_search_setup_process_id == 0, FALSE);
 
-	parser->slow_search_setup_process_id = 
-	    g_idle_add ((GSourceFunc) slow_search_setup,
-		        parser);
+	if (g_str_equal (parser->search_terms, ":"))
+	    check_finished(parser);
+	else {
+	    parser->slow_search_setup_process_id = 
+		g_idle_add ((GSourceFunc) slow_search_setup,
+			    parser);
+	}
 #ifdef ENABLE_BEAGLE
     }
 #endif
@@ -877,6 +881,7 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
     } else {
 	suffixes = NULL;
     }
+
     search_terms = g_strdelimit (search_terms, ":", ' ');
     list_copy = g_strsplit (g_utf8_casefold (g_strstrip (
 					  search_terms), -1),
