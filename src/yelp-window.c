@@ -1043,18 +1043,18 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    break;
 	case YELP_RRN_TYPE_EXTERNAL:
 	    {
-		gchar *stdout = NULL;
-		gchar *stderr = NULL;
+		gchar *str_stdout = NULL;
+		gchar *str_stderr = NULL;
 		gchar *cmd = NULL;
 		gint status = 0;
 		GError *error = NULL;
 		cmd = g_strdup_printf ("gnome-open %s", uri);
-		if (!g_spawn_command_line_sync (cmd, &stdout, &stderr, &status, &error)) {
+		if (!g_spawn_command_line_sync (cmd, &str_stdout, &str_stderr, &status, &error)) {
 		    g_free (error);
 		    error = NULL;
 		    g_free (cmd);
 		    cmd = g_strdup_printf ("xdg-open %s", uri);
-		    if (!g_spawn_command_line_sync (cmd, &stdout, &stderr, &status, &error)) {
+		    if (!g_spawn_command_line_sync (cmd, &str_stdout, &str_stderr, &status, &error)) {
 			window_error(window, _("Error executing \"gnome-open\""), error->message, FALSE);
 			return;
 		    }

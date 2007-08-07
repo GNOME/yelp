@@ -1,5 +1,9 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-window.c: 
+	s/std{out,err}/str_std{out,err}/g
+	Fixes build on Solaris - bug #462440
+	
 	* src/yelp-base.c: 
 	Remove forgotten c++ comment
 	(bug #462813, hopefully)
