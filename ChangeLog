@@ -1,3 +1,11 @@
+2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-search-parser.c: 
+	* src/yelp-window.c:
+	Redefine langs to allow compilation with
+	Beagle (bug #462056)
+	Make results page show again (where did it go, I wonder?)
+	
 2007-07-30  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-transform.c:

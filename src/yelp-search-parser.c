@@ -173,6 +173,7 @@ static void          search_free_container     (SearchContainer       *c);
 #ifdef ENABLE_BEAGLE
 static BeagleClient   *beagle_client;
 #endif /* ENABLE_BEAGLE */
+static char const * const * langs;
 
 YelpSearchParser *
 yelp_search_parser_new (void)
@@ -232,6 +233,8 @@ xmlDocPtr
 yelp_search_parser_process (YelpSearchParser *parser, gchar *search_terms)
 {
     debug_print (DB_FUNCTION, "entering\n");
+
+    langs = g_get_language_names ();
 
     parser->search_terms = decode_uri (search_terms);
 
@@ -396,7 +399,8 @@ hits_added_cb (BeagleQuery *query, BeagleHitsAddedResponse *response, YelpSearch
 }
 
 static gboolean
-check_lang (const char *lang) {
+check_lang (const char *lang) 
+{
     int i;
     for (i = 0; langs[i]; i++) {
 	if (!strncmp (lang, langs[i], 2)) {
@@ -1051,8 +1055,8 @@ slow_search_process (RrnReg *reg, SearchDocData *data)
 		      ptr - container->base_filename);
     
     /* BEGIN HTML special block */
-    if (g_str_equal (reg->type, "text/html") ||
-	g_str_has_suffix (fname, "html")) {
+    if (reg->type && (g_str_equal (reg->type, "text/html") ||
+		      g_str_has_suffix (fname, "html"))) {
 	GDir *dir;
 	gchar *filename;
 	container->html = TRUE;

@@ -1034,6 +1034,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    break;
 	case YELP_RRN_TYPE_SEARCH:
 	    doc = yelp_search_new (&real_uri[14]); /* to remove x-yelp-search:*/
+	    priv->base_uri = g_strdup ("file:///fakefile");
+
 	    break;
 	case YELP_RRN_TYPE_HTML:
 	case YELP_RRN_TYPE_XHTML:
