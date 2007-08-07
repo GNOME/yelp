@@ -184,10 +184,16 @@ static char
 		  filename = find_info_part (items[0], file);
 		  str = open_info_file (filename);
 		  if (!str) {
-		  	return NULL;
+			g_strfreev (items);
+		  	continue;
 		  }
 			pages = g_strsplit (str, "", 2);
 			g_free (str);
+			if (!pages[1]) {
+				g_strfreev (items);
+				g_strfreev (pages);
+		  		continue;
+			}
 
 			offset =  atoi(items[1]);
 			plength = strlen(pages[1]);
@@ -353,6 +359,12 @@ GtkTreeIter * find_real_sibling (GtkTreeModel *model,
     if (result)
       title = gtk_tree_model_get_string_from_iter (model, r);
   }
+
+  if (!g_str_equal (title, reftitle))
+    {
+      gtk_tree_iter_free (tmp);
+      tmp = NULL;
+    }
 
   gtk_tree_iter_free (r);
   g_free (title);
