@@ -530,6 +530,22 @@ search_parser_process_idle (YelpSearchParser *parser)
     xmlSetProp (parser->root, BAD_CAST "title", BAD_CAST parser->search_terms);
     xmlDocSetRootElement (parser->search_doc, parser->root);
 
+
+    /* Easter egg.  Do not translate.  Oh, and congratulations on
+     * finding it ;)
+     */
+    if (g_str_equal (parser->search_terms, "Easter Egg")) {
+	xmlNode *child;
+	child = xmlNewTextChild (parser->root, NULL,
+				 BAD_CAST "result", NULL);
+	xmlSetProp (child, BAD_CAST "uri", BAD_CAST "http://www.gnome.org");
+	xmlSetProp (child, BAD_CAST "title", BAD_CAST "Congratulations!");
+	xmlNewChild (child, NULL, BAD_CAST "snippet",
+		     BAD_CAST "It's widely known GNOME rocks.  Welcome to the party.");
+	xmlNewChild (child, NULL, BAD_CAST "score",
+		     BAD_CAST "1000.0");
+    }
+
 #ifdef ENABLE_BEAGLE
     if (beagle_client != NULL) {
 	query = beagle_query_new ();

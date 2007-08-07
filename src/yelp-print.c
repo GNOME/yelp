@@ -357,12 +357,11 @@ yelp_print_present_status_dialog (YelpWindow *window, YelpPrintInfo *info)
     if (info->dialog != NULL)
 	return;
     
-    info->dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window), 
-						       GTK_DIALOG_DESTROY_WITH_PARENT,
-						       GTK_MESSAGE_INFO,
-						       GTK_BUTTONS_CANCEL,
-						       "<b>%s</b>",
-						       _("Printing"));
+    info->dialog = gtk_message_dialog_new (GTK_WINDOW (window), 
+					   GTK_DIALOG_DESTROY_WITH_PARENT,
+					   GTK_MESSAGE_INFO,
+					   GTK_BUTTONS_CANCEL,
+					   "%s", _("Printing"));
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (info->dialog),
 					      _("Waiting to print"));
     info->progress = gtk_progress_bar_new ();
