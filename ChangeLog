@@ -1,5 +1,13 @@
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-man-parser.c: 
+	Better handling of cross links in man pages
+	(bug #431078 - Matthias Clasen)
+
+	* src/yelp-info-parser.c: 
+	Fix crash in bc, automake16 and gnutls info pages
+	(bug #430365 - Matthias Clasen)
+	
 	* src/yelp-print.c:
 	Remove extra markup from message dialog
 	(bug #381431 - Christian Persch)

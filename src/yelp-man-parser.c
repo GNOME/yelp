@@ -308,6 +308,20 @@ macro_roman_bold_small_italic_handler (YelpManParser *parser, gchar *macro, GSLi
 	else
 	    parser->ins = parser_append_node (parser, b);
 	
+	if (ptr->next) {
+	    gchar *tmp = ptr->next->data;
+	    
+	    if (tmp[0] == '(' && g_ascii_isdigit (tmp[1]) &&
+		(tmp[2] == ')' || (g_ascii_isalpha (tmp[2]) && tmp[3] == ')'))) {
+		tmp = g_strconcat (ptr->data, " ", tmp, NULL);
+		parser_append_given_text_handle_escapes (parser, tmp, TRUE);
+		g_free (tmp);
+		parser->ins = parser->ins->parent;
+		ptr = ptr->next->next;
+		continue;
+	    }  
+	}
+
 	parser_append_given_text_handle_escapes (parser, ptr->data, TRUE);
 	parser->ins = parser->ins->parent;
 	
@@ -1526,25 +1540,33 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 	}
         else if ((make_links) && (*ptr == '(')) {
 	    gchar *space_pos;
-	    gchar *tmp_cur;
 	    gchar *url;
 	    gchar  c;
+	    gchar *name_end;
+            gchar *num_start;
+            gchar *num_end;
+
 	   
 	    space_pos = ptr;
 	    
 	    while (space_pos != anc && *(space_pos - 1) != ' ') {
 		space_pos--;
 	    }
+	    name_end = space_pos;
 	    
 	    if (space_pos != ptr &&
 	        g_ascii_isdigit(*(ptr+1)) &&
-		*(ptr+2) == ')') {
+		(*(ptr+2) == ')' || (g_ascii_isalpha (*(ptr+2)) && *(ptr+3) == ')'))) {
+                num_start = ptr;
+		if (*(ptr+2) == ')')
+		    num_end = ptr + 2;
+                else
+		    num_end = ptr + 3;
 	    
 		ptr+=3;
 	    
 		parser_ensure_P (parser);
 	    
-		tmp_cur = ptr;
 		ptr = space_pos;
 	    
 		c = (*ptr);
@@ -1552,12 +1574,13 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 		parser_append_given_text (parser, anc);
 		*ptr = c;
 		anc = ptr;
-	    
-		ptr = tmp_cur;
-	    
-		c = *(ptr);
-		*(ptr) = '\0';
-		url = g_strdup_printf ("man:%s", anc);
+		ptr = num_start;
+
+		c = *name_end;
+		*name_end = '\0';
+                *num_end = '\0';
+		url = g_strdup_printf ("man:%s(%s)", anc, num_start + 1);
+
 	    
 		parser->ins = parser_append_node (parser, "UR");
 	
@@ -1568,7 +1591,8 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 		parser_append_given_text (parser, anc);
 		parser->ins = parser->ins->parent;
 	    
-		*(ptr) = c;
+		*name_end = c;
+                *num_end = ')';
 		anc = ptr;
 	    
 		g_free (url);
