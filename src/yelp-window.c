@@ -1169,7 +1169,7 @@ search_activated (GtkAction *action,
 	spaces = strchr (search_terms, ' ');
 	while (spaces) {
 	    count++;
-	    spaces = strchr (search_terms, ' ');
+	    spaces = strchr (spaces+1, ' ');
 	}
 	if (count == 1) {
 	    uri = g_strdup (search_terms);
