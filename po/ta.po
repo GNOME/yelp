@@ -1,4 +1,4 @@
-# translation of yelp.HEAD.ta.po to tamil
+# translation of yelp.HEAD.po to TAMIL
 # Tamil translation of Yelp.
 # Copyright (C) 2003 Yelp's Dinesh Nadarajah
 # This file is distributed under the same license as the Yelp package.
@@ -7,22 +7,23 @@
 # Dinesh Nadarajah <dinesh_list@sbcglobal.net>, 2004.
 # Felix <ifelix@redhat.com>, 2006.
 # drtvasudevan <agnihot3@gmail.com>, 2006.
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD.ta\n"
+"Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-24 01:25+0200\n"
-"PO-Revision-Date: 2006-08-24 20:52+0530\n"
-"Last-Translator: drtvasudevan <agnihot3@gmail.com>\n"
-"Language-Team: tamil <en@li.org>\n"
+"POT-Creation-Date: 2007-07-31 20:44+0100\n"
+"PO-Revision-Date: 2007-08-07 17:35+0530\n"
+"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
+"Language-Team: TAMIL <ubuntu-l10n-tam@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
+#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:2017
 msgid "GNU Info Pages"
 msgstr "ஜிஎன்யு தகவல் பக்கங்கள்"
 
@@ -66,7 +67,7 @@ msgstr "வன்பொருள் சாதனங்கள்"
 msgid "Kernel Routines"
 msgstr "கெர்னல் வழக்கமான நடைமுறைகள்"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
+#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:2011
 msgid "Manual Pages"
 msgstr "கையேடு பக்கங்கள்"
 
@@ -560,82 +561,141 @@ msgstr "உதவி தலைப்புகள்"
 msgid "Document Sections"
 msgstr "ஆவண பிரிவுகள்"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
+#. Much bigger problems
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
+#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
+#: ../src/yelp-search.c:238 ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+msgid "Page not found"
+msgstr "பக்கம் காணப்படவில்லை"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "கேட்ட %s பக்கம் ஆவணம் %s இல் இல்லை"
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
+#: ../src/yelp-man.c:388
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "கேட்ட பக்கம் ஆவணம் %s இல் இல்லை"
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
+#: ../src/yelp-man.c:430
+msgid "File not found"
+msgstr "கோப்பு காணவில்லை"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
+#: ../src/yelp-man.c:431
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "கோப்பு  ‘%s’ இருப்பில் இல்லை"
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
+#: ../src/yelp-man.c:459 ../src/yelp-search.c:366 ../src/yelp-toc.c:435
+msgid "Could not parse file"
+msgstr "கோப்பை பகுக்க முடியவில்லை"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஏனெனில் அது சரியாக "
+"உருவாகாத எக்ஸ்எம்எல் ஆவணம்"
+
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஏனெனில் அதில் ஒன்றோ மேற்பட்டோ சரியாக உருவாகாத எக்ஸ்எம்எல் ஆவணம் உள்ளது"
+
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+msgid "Unknown"
+msgstr "தெரியாத"
+
+#: ../src/yelp-db-print-pager.c:190
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not well-formed XML."
-msgstr "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று அந்த கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக உருவாகாத எக்ஸ்எம்எல்"
+msgstr ""
+"கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று அந்த கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக "
+"உருவாகாத எக்ஸ்எம்எல்"
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "ஒரு தெரியாத பிழை ஏற்பட்டுள்ளது"
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "தெரியாத பிழை"
 
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "ஆவணத்தை ஏற்ற முடியவில்லை"
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1560
+msgid "Could Not Read File"
+msgstr "கோப்பை படிக்க முடியவில்லை"
 
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "பிரிவினை ஏற்ற முடியவில்லை"
-
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr "அட்டவணை உள்ளடக்கத்தை படிக்க முடியவில்லை"
-
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "ஆதரவு இல்லாத வடிவமைப்பு"
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "ஆவணத்தை படிக்க முடியவில்லை"
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "ஆவணத்தை செயல்படுத்த முடியவில்லை"
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
 msgstr "பிழையை பற்றிய தகவல் ஒன்றுமில்லை."
+
+#: ../src/yelp-info.c:394
+#, c-format
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஏனெனில் அது சரியாக "
+"உருவாகாத விவரணப் பக்கம்"
 
 #: ../src/yelp-info-pager.c:188
 #, c-format
 msgid ""
 "The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "not a well-formed info page."
-msgstr "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று அந்த கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக உருவாகாத விவரணப் பக்கம்"
+msgstr ""
+"கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று அந்த கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக "
+"உருவாகாத விவரணப் பக்கம்"
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-io-channel.c:107
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr "கோப்பு ‘%s’ ஐ படிக்கவோ குறியீட்டை புரிந்து கொள்ளவோ இயலவில்லை. அந்த கோப்பு அது ஆதரவில்லாத வடிவமைப்பில் சுருக்கப் பட்டு இருக்கலாம்."
+msgstr ""
+"கோப்பு ‘%s’ ஐ படிக்கவோ குறியீட்டை புரிந்து கொள்ளவோ இயலவில்லை. அந்த கோப்பு அது "
+"ஆதரவில்லாத வடிவமைப்பில் சுருக்கப் பட்டு இருக்கலாம்."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:92
 msgid "Use a private session"
 msgstr "தனிப்பட்ட அமர்வினை பயன்படுத்து"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
 msgstr "எந்த தற்காலிக சேமிப்பு அடைவு பயன்படுத்துவது என அறுதியிடுக"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:354
+#: ../src/yelp-main.c:358
 msgid " GNOME Help Browser"
 msgstr "நோம் உதவி உலாவி"
 
-#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "உதவி"
+
+#: ../src/yelp-man.c:460
+#, c-format
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr ""
+"கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஏனெனில் அது சரியாக "
+"உருவாகாத விவரணப் பக்கம்"
 
 #: ../src/yelp-man-pager.c:263
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 "formatted incorrectly."
-msgstr "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று அந்த கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக உருவாக்கப் படவில்லை."
+msgstr ""
+"கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று அந்த கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக "
+"உருவாக்கப் படவில்லை."
 
 #: ../src/yelp-pager.c:117
 msgid "Document Information"
@@ -658,50 +718,39 @@ msgstr "இந்த அச்சு இயந்திரத்தில் அ
 msgid "Printer %s does not support postscript printing."
 msgstr "இந்த %s அச்சு இயந்திரத்தில் போஸ்ட் ஸ்கிரிப்ட் அச்சடிக்க ஆதரவில்லை"
 
-#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:365
 msgid "Printing"
 msgstr "அச்சிடுகிறது"
 
-#: ../src/yelp-print.c:364
-msgid "<b>Printing</b>"
-msgstr "<b>அச்சிடுகிறது</b>"
-
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:367
 msgid "Waiting to print"
 msgstr "அச்சிட காத்திருக்கிறது"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:579
 msgid "An error occurred while printing"
 msgstr "அச்சிடும் போது பிழை ஏற்பட்டுள்ளது"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:583
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "இந்த உங்கள் ஆவணத்தை அச்சிட இயலவில்லை: %s"
 
-#: ../src/yelp-search-pager.c:71
+#: ../src/yelp-search-parser.c:67 ../src/yelp-search-pager.c:71
 msgid "the GNOME Support Forums"
 msgstr "க்னோம் ஆதரவு விவாத மன்றம்"
 
-#: ../src/yelp-search-pager.c:755
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr "உங்கள் தேடலை செயல் படுத்த இயலவில்லை. கோப்பு ‘%s’ காணவில்லை அல்லது செல்லுபடியாகும் எக்ஸ்எஸ்எல்டி பாணிசீட்டு அல்ல"
-
-#: ../src/yelp-search-pager.c:807
+#: ../src/yelp-search-parser.c:273 ../src/yelp-search-pager.c:807
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\"க்கு முடிவுகள இல்லை"
 
-#: ../src/yelp-search-pager.c:808
+#: ../src/yelp-search-parser.c:274 ../src/yelp-search-pager.c:808
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr "உதவி தேவையான உங்கள் பிரச்சினை அல்லது தலைப்பை வேறு சொற்களில் விவரித்து முயற்சி செய்."
 
-#: ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-parser.c:277 ../src/yelp-search-pager.c:811
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\"க்கான தேடுதல் முடிவு"
@@ -711,24 +760,10 @@ msgstr "\"%s\"க்கான தேடுதல் முடிவு"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:828
+#: ../src/yelp-search-parser.c:291 ../src/yelp-search-pager.c:828
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "தேடுதலை %s இணையத்தில் திரும்பச் செய்."
-
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
-#: ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr "யெல்ப்:ஆவணத்தில் href பண்பு இல்லை"
-
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
-#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "நினைவகம் போதாது"
-
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
-msgid "Help Contents"
-msgstr "உதவி உள்ளடக்கங்கள்"
 
 #. Translators: Do not translate this list exactly.  These are
 #. * colon-separated words that aren't useful for choosing search
@@ -738,13 +773,16 @@ msgstr "உதவி உள்ளடக்கங்கள்"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1286
+#: ../src/yelp-search-parser.c:838 ../src/yelp-search-pager.c:1286
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
-msgstr "பற்றி:அதில்:உரையாட:க்கு:க்குசெய்:அல்ல:உதவி:உள்ளே:உருப்படி:இக்கு:அல்ல:அல்லது:பெறுவது:இல்:இயலவில்ல:இயலாது:முடியாது:இந்த:அந்த:யார்:வரி:இது:அது:எது:ஏன்:எப்படி:இருக்கிறது:செய்வது:எல்லா:எல்லாம்:வேலை"
+msgstr ""
+"பற்றி:அதில்:உரையாட:க்கு:க்குசெய்:அல்ல:உதவி:உள்ளே:உருப்படி:இக்கு:அல்ல:அல்லது:பெறுவது:இல்:"
+"இயலவில்ல:இயலாது:முடியாது:இந்த:அந்த:யார்:வரி:இது:அது:எது:ஏன்:எப்படி:இருக்கிறது:"
+"செய்வது:எல்லா:எல்லாம்:வேலை"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -754,7 +792,7 @@ msgstr "பற்றி:அதில்:உரையாட:க்கு:க்�
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1302
+#: ../src/yelp-search-parser.c:854 ../src/yelp-search-pager.c:1302
 msgid "re"
 msgstr "NULL"
 
@@ -765,314 +803,340 @@ msgstr "NULL"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1311
+#: ../src/yelp-search-parser.c:863 ../src/yelp-search-pager.c:1311
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
-#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
+#: ../src/yelp-search.c:239
+msgid "Could not process search"
+msgstr "தேடலை செயல்படுத்த முடியவில்லை"
+
+#: ../src/yelp-search.c:367
+msgid "Bigger problems still"
+msgstr "இன்னும் பெரிய பிரச்சினை"
+
+#: ../src/yelp-search-pager.c:755
+#, c-format
+msgid ""
+"Your search could not be processed. The file ‘%s’ is either missing or is "
+"not a valid XSLT stylesheet."
+msgstr ""
+"உங்கள் தேடலை செயல் படுத்த இயலவில்லை. கோப்பு ‘%s’ காணவில்லை அல்லது செல்லுபடியாகும் "
+"எக்ஸ்எஸ்எல்டி பாணிசீட்டு அல்ல"
+
+#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2328
+#: ../src/yelp-transform.c:368 ../src/yelp-xslt-pager.c:364
+msgid "No href attribute found on yelp:document"
+msgstr "யெல்ப்:ஆவணத்தில் href பண்பு இல்லை"
+
+#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2341
+#: ../src/yelp-transform.c:382 ../src/yelp-xslt-pager.c:380
+#: ../src/yelp-xslt-pager.c:531
+msgid "Out of memory"
+msgstr "நினைவகம் போதாது"
+
+#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2390
+msgid "Help Contents"
+msgstr "உதவி உள்ளடக்கங்கள்"
+
+#: ../src/yelp-search-pager.c:1516 ../src/yelp-toc-pager.c:635
 #, c-format
 msgid "Could not load the OMF file '%s'."
 msgstr "OMF கோப்பு '%s' ஐ ஏற்ற முடியவில்லை. "
 
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201C"
+#: ../src/yelp-toc.c:267
+#, c-format
+msgid "The page %s was not found in the TOC."
+msgstr "டிஓசி யில் பக்கம்  ‘%s’ காணப்படவில்லை"
 
-#: ../src/yelp-toc-pager.c:268
+#: ../src/yelp-toc.c:365
+msgid "The requested page was not found in the TOC."
+msgstr "டிஓசி யில் கேட்கப்பட்ட பக்கம் காணப்படவில்லை"
+
+#: ../src/yelp-toc.c:436
+msgid ""
+"The ‘TOC file could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"டிஓசி கோப்பு ஐ அலகிட இயலவில்லை. ஏனெனில் அது சரியாக "
+"உருவாகாத எக்ஸ்எம்எல் ஆவணம்"
+
+#: ../src/yelp-toc-pager.c:272
 msgid "YelpTocPager: Pause count is negative."
 msgstr "YelpTocPager: தாமதிப்பு எதிராக எண்ணப்படுகிறது."
 
-#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
+#: ../src/yelp-toc-pager.c:383 ../src/yelp-toc-pager.c:2128
 #, c-format
 msgid ""
 "The table of contents could not be processed. The file ‘%s’ is either "
 "missing or is not a valid XSLT stylesheet."
-msgstr "இந்த உள்ளடக்க அட்டவணையை செயலாக்க இயலவில்லை. கோப்பு ‘%s’ காணவில்லை அல்லது செல்லுபடியாகும் எக்ஸ்எஸ்எல்டி பாணிசீட்டு அல்ல."
+msgstr ""
+"இந்த உள்ளடக்க அட்டவணையை செயலாக்க இயலவில்லை. கோப்பு ‘%s’ காணவில்லை அல்லது "
+"செல்லுபடியாகும் எக்ஸ்எஸ்எல்டி பாணிசீட்டு அல்ல."
 
-#: ../src/yelp-toc-pager.c:1110
+#: ../src/yelp-toc-pager.c:1114
 #, c-format
 msgid "Read man page for %s"
 msgstr "%sக்கு கையேடு பக்கத்தை படி"
 
-#: ../src/yelp-toc-pager.c:1703
+#: ../src/yelp-toc-pager.c:1853
 #, c-format
 msgid "Read info page for %s"
 msgstr "%sக்கு தகவல் பக்கத்தை படி"
 
-#: ../src/yelp-toc-pager.c:1816
+#: ../src/yelp-toc-pager.c:1984
 #, c-format
 msgid ""
 "The table of contents could not be loaded. The file ‘%s’ is either missing "
 "or is not well-formed XML."
-msgstr "இந்த உள்ளடக்க அட்டவணையை செயலாக்க இயலவில்லை. கோப்பு ‘%s’ காணவில்லை அல்லது நன்கு அமைத்த எக்ஸ்எம்எல் அல்ல."
+msgstr ""
+"இந்த உள்ளடக்க அட்டவணையை செயலாக்க இயலவில்லை. கோப்பு ‘%s’ காணவில்லை அல்லது நன்கு அமைத்த "
+"எக்ஸ்எம்எல் அல்ல."
 
-#: ../src/yelp-toc-pager.c:1838
+#: ../src/yelp-toc-pager.c:2006
 msgid "Command Line Help"
 msgstr "கட்டளை வரி உதவி"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
+msgstr "செல்லுபடியாகாத பாணிசீட்டு"
+
+#: ../src/yelp-transform.c:81
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "எக்ஸ்எஸ்எல்டி பாணிசீட்டு ‘%s’ ஐ அலகிட இயலவில்லை. கோப்பு இருப்பில் இல்லை அல்லது செல்லுபடியாகாதது."
+
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr "சிதைந்த மாறுதல்"
+
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "ஆவணத்தை மாற்ற முயன்றபோது தெரியாத தவறு நேர்ந்தது"
+
+#: ../src/yelp-window.c:297
 msgid "_File"
 msgstr "_க கோப்பு"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:298
 msgid "_Edit"
 msgstr "_த தொகு (_E)"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:299
 msgid "_Go"
 msgstr "_ச செல் "
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:300
 msgid "_Bookmarks"
 msgstr "_ப புத்தகக்குறிகள் (_B)"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:301
 msgid "_Help"
 msgstr "_உதவி"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:304
 msgid "_New Window"
 msgstr "புதிய _சாளரம்"
 
-#: ../src/yelp-window.c:330
-msgid "Print This Document"
-msgstr "இந்த ஆவணத்தை அச்சிடு"
+#: ../src/yelp-window.c:309
+msgid "Print This Document ..."
+msgstr "இந்த ஆவணத்தை அச்சிடு..."
 
-#: ../src/yelp-window.c:335
-msgid "Print This Page"
-msgstr "இந்த பக்கத்தை அச்சிடு"
+#: ../src/yelp-window.c:314
+msgid "Print This Page ..."
+msgstr "இந்த பக்கத்தை அச்சிடு..."
 
-#: ../src/yelp-window.c:340
+#: ../src/yelp-window.c:319
 msgid "About This Document"
 msgstr "இந்த ஆவணத்தை பற்றி"
 
-#: ../src/yelp-window.c:345
+#: ../src/yelp-window.c:324
 msgid "Open _Location"
 msgstr "_இடத்தைத் திற"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:329
 msgid "_Close Window"
 msgstr "சாளரத்தை _மூடு"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:335
 msgid "_Copy"
 msgstr "_நகல்"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:341
 msgid "_Select All"
 msgstr "_அனைத்தையும் தேர்ந்தெடு"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:346
 msgid "_Find..."
 msgstr "_த தேடு..."
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:351
 msgid "Find Pre_vious"
 msgstr "_ம முந்தையதை தேடு"
 
-#: ../src/yelp-window.c:374
+#: ../src/yelp-window.c:353
 msgid "Find previous occurrence of the word or phrase"
 msgstr "சொல் அல்லது சொற்றொடரின் முந்தைய தோன்றலை தேடு"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:356
 msgid "Find Ne_xt"
 msgstr "_அடுத்ததை தேடு"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:358
 msgid "Find next occurrence of the word or phrase"
 msgstr "சொல் அல்லது சொற்றொடரின் அடுத்த நிகழ்வை தேடு"
 
-#: ../src/yelp-window.c:382
+#: ../src/yelp-window.c:361
 msgid "_Preferences"
 msgstr "_ம முன்னுரிமைகள்"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:366
 msgid "_Reload"
 msgstr "_மீளேற்று"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:378
 msgid "_Back"
 msgstr "_ப பின்னோக்கு "
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:380
 msgid "Show previous page in history"
 msgstr "வரலாறில் முன் காண்பித்த பக்கத்திற்குப் போகவும்"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:383
 msgid "_Forward"
 msgstr "_ம முன்னோக்கு"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:385
 msgid "Show next page in history"
 msgstr "வரலாறில் அடுத்த பக்கத்திற்குப் போகவும்"
 
-#: ../src/yelp-window.c:409
+#: ../src/yelp-window.c:388
 msgid "_Help Topics"
 msgstr "_உதவி தலைப்புகள்"
 
-#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:390
 msgid "Go to the listing of help topics"
 msgstr "உதவி தலைப்புகள் பட்டியலுக்கு செல்லவும்"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:393
 msgid "_Previous Section"
 msgstr "_ப முந்தைய பிரிவு"
 
-#: ../src/yelp-window.c:419
+#: ../src/yelp-window.c:398
 msgid "_Next Section"
 msgstr "_அடுத்த பிரிவு "
 
-#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
+#: ../src/yelp-window.c:403 ../src/yelp-window.c:435
 msgid "_Contents"
 msgstr "_உள்ளடக்கங்கள்"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:409
 msgid "_Add Bookmark"
 msgstr "_ச புத்தகக்குறியை சேர்"
 
-#: ../src/yelp-window.c:435
+#: ../src/yelp-window.c:414
 msgid "_Edit Bookmarks..."
 msgstr "_த புத்தகக்குறிகளை திருத்து..."
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:420
 msgid "_Open Link"
 msgstr "_த இணைப்பினை திற"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:425
 msgid "Open Link in _New Window"
 msgstr "_ப புதிய சாளரத்தில் இணைப்பினை திற "
 
-#: ../src/yelp-window.c:451
+#: ../src/yelp-window.c:430
 msgid "_Copy Link Address"
 msgstr "_ந இணைப்பு முகவரியை நகலெடு"
 
-#: ../src/yelp-window.c:458
+#: ../src/yelp-window.c:437
 msgid "Help On this application"
 msgstr "இந்த பயன்பாடுக்கான உதவி"
 
-#: ../src/yelp-window.c:461
+#: ../src/yelp-window.c:440
 msgid "_About"
 msgstr "இதனைப் _பற்றி"
 
-#: ../src/yelp-window.c:466
+#: ../src/yelp-window.c:445
 msgid "Copy _Email Address"
 msgstr "_ம மின்னஞ்சல் முகவரியை நகலெடு"
 
-#: ../src/yelp-window.c:515
+#: ../src/yelp-window.c:494
 msgid "Help Browser"
 msgstr "உதவி உலாவி"
 
-#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "கோப்பின் Uniform Resource Identifier தவறாக உள்ளது."
+#: ../src/yelp-window.c:585 ../src/yelp-window.c:637 ../src/yelp-window.c:1611
+msgid "Loading..."
+msgstr "ஏற்றப்படுகின்றது..."
 
-#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638
+msgid "Unknown Page"
+msgstr "தெரியாத பக்கம்"
+
+#: ../src/yelp-window.c:1003 ../src/yelp-window.c:1061
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr "யுஆர்ஐ ‘%s’ செல்லுபடியற்றது அல்லது உண்மையில் கோப்பை சுட்டிக் காட்டவில்லை."
+msgid "The requested URI \"%s\" is invalid"
+msgstr "வேண்டிய யூஆர்ஐ \"%s\"  செல்லாது"
 
-#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
-msgid "Man pages are not supported in this version."
-msgstr "இந்த பதிப்பில் கையேடு (man) பக்கங்களுக்கு ஆதரவு இல்லை"
+#: ../src/yelp-window.c:1004 ../src/yelp-window.c:1062
+msgid "Unable to load page"
+msgstr "பக்கத்தை ஏற்ற முடியவில்லை"
 
-#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
-msgid "GNU info pages are not supported in this version"
-msgstr "இந்த பதிப்பில் கையேடு ஜிஎன்யு தகவல் (GNU info) பக்கங்களுக்கு ஆதரவு இல்லை"
+#: ../src/yelp-window.c:1056
+msgid "Error executing \"gnome-open\""
+msgstr "\"gnome-open\" ஐ செயல்படுத்துவதில் பிழை"
 
-#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
-msgid "Search is not supported in this version."
-msgstr "இந்த பதிப்பில் தேடுதலுக்கு ஆதரவு இல்லை"
-
-#: ../src/yelp-window.c:1057
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr "SGML ஆவணங்களுக்கு ஆதரவு இல்லை. ஆவண ஆசிரியரை அதை எக்ஸ்எம்எல் ஆக மபற்றித் தரச் சொல்.்"
-
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1238
 msgid "_Search:"
 msgstr "_த தேடு:"
 
-#: ../src/yelp-window.c:1224
+#: ../src/yelp-window.c:1239
 msgid "Search for other documentation"
 msgstr "வேறு ஆவணங்களை தேடு"
 
-#: ../src/yelp-window.c:1386
+#: ../src/yelp-window.c:1258
+msgid "Cannot create window"
+msgstr "சாளரத்தை உருவாக்க முடியாது"
+
+#: ../src/yelp-window.c:1264
+msgid "Cannot create search component"
+msgstr "தேடுதல் கூறை உருவாக்க முடியாது"
+
+#: ../src/yelp-window.c:1397
 msgid "Fin_d:"
 msgstr "_கண்டு பிடி:"
 
-#: ../src/yelp-window.c:1406
+#: ../src/yelp-window.c:1417
 msgid "Find _Next"
 msgstr "_அடுத்ததை தேடு"
 
-#: ../src/yelp-window.c:1418
+#: ../src/yelp-window.c:1429
 msgid "Find _Previous"
 msgstr "_ம முந்தையதை தேடு"
 
-#: ../src/yelp-window.c:1532
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr " கோப்பு ‘%s’ க்கு உருமாற்ற சூழ் நிலையை உருவாக்க இயலவில்லை. ஆதரவில்லாத வடிவமைப்பாக இருக்கலாம்."
-
-#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
-#: ../src/yelp-window.c:2064
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr "பிரிவு ‘%s’ இந்த ஆவணத்தில் இல்லை. நீங்கள் இந்த பிரிவிற்கு நிரலின் உதவி விசையை அழுத்தியதால் வந்திருந்தால் இந்த நிரலின் பராமரிப்பாளருக்கு தகவல் தெரிவிக்கவும்."
-
-#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
+#: ../src/yelp-window.c:1557
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
-msgstr "கோப்பு ‘%s’ ஐ படிக்க இயலவில்லை. கோப்பு காணாமல் போயிருக்கலாம் அல்லது உங்களுக்கு அதை படிக்க அனுமதி இல்லாதிருக்கலாம்."
-
-#: ../src/yelp-window.c:1728
-msgid "Loading..."
-msgstr "ஏற்றப்படுகின்றது..."
+msgstr ""
+"கோப்பு ‘%s’ ஐ படிக்க இயலவில்லை. கோப்பு காணாமல் போயிருக்கலாம் அல்லது உங்களுக்கு அதை "
+"படிக்க அனுமதி இல்லாதிருக்கலாம்."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2911
+#: ../src/yelp-window.c:2375
 msgid "translator-credits"
-msgstr "மொழிபெயர்ப்பாளர்-சன்மானம்"
-"Dinesh Nadarajah <dinesh_list@sbcglobal.net>, 2004."
-"Felix <ifelix@redhat.com>, 2006."
-"drtvasudevan <agnihot3@gmail.com>, 2006."
+msgstr ""
+"மொழிபெயர்ப்பாளர்-சன்மானம்Dinesh Nadarajah <dinesh_list@sbcglobal.net>, 2004.Felix "
+"<ifelix@redhat.com>, 2006.drtvasudevan <agnihot3@gmail.com>, 2006."
 
-#: ../src/yelp-window.c:2914
+#: ../src/yelp-window.c:2378
 msgid "Yelp"
 msgstr "யெல்ப்"
 
-#: ../src/yelp-window.c:2916
+#: ../src/yelp-window.c:2380
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "ஆவணங்கள் உலாவி மற்றும் நோம் மேல்மேசைக்கு காட்சியாளன்."
 
@@ -1081,14 +1145,18 @@ msgstr "ஆவணங்கள் உலாவி மற்றும் நோம
 msgid ""
 "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 "improperly formatted."
-msgstr "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக உருவாக்கப் படவில்லை."
+msgstr ""
+"கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று கோப்பு இருப்பில் இல்லை அல்லது அது சரியாக "
+"உருவாக்கப் படவில்லை."
 
 #: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
 #, c-format
 msgid ""
 "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
 "or it is not a valid XSLT stylesheet."
-msgstr "ஆவணம் ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று ‘%s’ கோப்பு இருப்பில் இல்லை அல்லது அது செல்லுபடியாகாத எக்ஸ்எஸ்எல்டி பாணிசீட்டு"
+msgstr ""
+"ஆவணம் ‘%s’ ஐ அலகிட இயலவில்லை. ஒன்று ‘%s’ கோப்பு இருப்பில் இல்லை அல்லது அது "
+"செல்லுபடியாகாத எக்ஸ்எஸ்எல்டி பாணிசீட்டு"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
