@@ -1,3 +1,12 @@
+2007-08-12  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	When no frag specified, use x-yelp-index instead
+	of index as this breaks some documents
+
+	Don't idle-write to gecko as this (apparently) breaks
+	about eleventy billion info pages
+
 2007-08-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-geck-services.h:

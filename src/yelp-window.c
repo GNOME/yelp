@@ -279,7 +279,6 @@ struct _YelpWindowPriv {
     gulong          finish_handler;
 
     gint            toc_pause;
-    guint           html_idle_handle;
 
     GtkActionGroup *action_group;
     GtkUIManager   *ui_manager;
@@ -880,7 +879,7 @@ page_request_cb (YelpDocument       *document,
 	data->window = window;
 	data->page = (YelpPage *) func_data;
 
-	window->priv->html_idle_handle = g_idle_add ((GSourceFunc)window_write_html, data);
+	window_write_html (data);
 
 	window->priv->current_request = -1;
 	yelp_page_free ((YelpPage *) func_data);
@@ -933,10 +932,6 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
 	window->priv->base_uri = tmp;
     }
 
-    if (window->priv->html_idle_handle) {
-	g_source_remove (window->priv->html_idle_handle);
-	window->priv->html_idle_handle = 0;
-    }
 
     window_set_loading (window);
 
@@ -1001,6 +996,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     history_clear_forward (window);
 
     type = yelp_uri_resolve (trace_uri, &real_uri, &frag_id);
+
     if (type == YELP_RRN_TYPE_ERROR) {
 	gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
 	window_error (window, _("Unable to load page"), message, FALSE);
@@ -1076,7 +1072,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     if (doc) {
 	gboolean need_hist = FALSE;
 	if (!frag_id)
-	    frag_id = g_strdup ("index");
+	  frag_id = g_strdup ("x-yelp-index");
 
 	if (priv->current_document || (priv->current_type == YELP_RRN_TYPE_HTML ||
 				       priv->current_type == YELP_RRN_TYPE_XHTML))
@@ -2663,7 +2659,6 @@ window_write_html (YelpLoadData *data)
 	yelp_html_write (html, contents, read);
     } while (read == BUFFER_SIZE);
     yelp_html_close (html);
-    data->window->priv->html_idle_handle = 0;
     return FALSE;
 }
 
