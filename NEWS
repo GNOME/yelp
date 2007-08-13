@@ -1,3 +1,64 @@
+Changed in 2.19.90:
+-------------------
+
+ * Fix distcheck (Rodney Dawes)
+ * Use x-yelp-index instead of index, which unbreaks
+   some docbook files
+ * Write html on command instead of in idle, which
+   fixes info pages
+ * Update some copyrights on files
+ * Make MAINTAINERS meet bkor's high expectations
+ * Add a "phrase not found" message to the find bar
+ * Fix "info <page>" in search bar
+ * Handle malformed .so tags (Matt Keenan - bug #447107)
+ * Better handling of cross links in man pages
+   - Matthias Clasen (bug #431078)
+ * Fix crashes in various info pages
+   - Matthias Clasen (bug #430365)
+ * Remove extra markup from print dialog
+   - Christian Persch (bug #381431)
+ * Fix searching of single ':' using basic search
+   (bug #364768)
+ * Various fixes to basic search
+   - Matthias Clasen (bug #370167)
+ * Handle '\*=' escape sequence in man pages
+   - Björn Lindqvist (bug #358825)
+ * Resolve full paths given with ghelp: uri
+   (bug #464295)
+ * Reduce static data and relocations
+   - Christian Persch (bug #457082)
+ * Fix build on Solaris
+   (bug #462440)
+ * Remove c++ comment
+   (bug #462813)
+ * Mark -help contents as translatable
+   - Gabor Kelemen (bug #450168)
+ * Remove suffix from icon
+   - Sven Arvidsson (bug #463281)
+ * Make error messages less cryptic
+ * Mark print dialog title as translatable
+   - Gabor Kelemen (bug #458693)
+ * Fix building with Beagle again
+   - bug #462056
+ * Register EXSLT extensions
+   - Fixes docbook pages again
+   - Shaun McCance
+ * Updated translations:
+   * be@latin	     (Ihar Hrachyshka)
+   * bn_IN (Runa Bhattacharjee)
+   * es	   (Jorge Gonzalez)
+   * et	   (Priit Laes)
+   * eu	   (Inaki Laranaga Murgoitio)
+   * fi	   (Ilkka Tuohela)
+   * gu    (Ankit Patel)
+   * ja	   (Takeshi AIHANA)
+   * nb	   (Kjartan Maraas)
+   * pt_BR (Leonardo Ferreira Fontenelle)
+   * si	   (Danishka Navin)
+   * sv	   (Daniel Nylander)
+   * ta	   (I. Felix)
+   * th	   (Theppitak Karoonboonyanan)
+	
 Changed in 2.19.1:
 ------------------
 * Merge of yelp-spoon (rework) branch
