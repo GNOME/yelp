@@ -1,3 +1,10 @@
+2007-08-13  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* Makefile.am: 
+	s/yelp.desktop.in/yelp.desktop.in.in/
+	Fixes distcheck (1) - other is in po/ChangeLog
+	(Rodney Dawes)
+	
 2007-08-12  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-window.c: 
