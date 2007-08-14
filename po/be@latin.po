@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-01 17:37+0300\n"
+"POT-Creation-Date: 2007-08-12 18:35+0300\n"
 "PO-Revision-Date: 2007-08-03 21:23+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <be-latin.open-tran.eu>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:2017
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "Staronki GNU Info"
 
@@ -61,7 +61,7 @@ msgstr "Aparatura"
 msgid "Kernel Routines"
 msgstr "Funkcyi jadra"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:2011
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "Staronki kiraŭnictva"
 
@@ -557,20 +557,10 @@ msgstr "Temy daviedki"
 msgid "Document Sections"
 msgstr "Padzieły dakumentu"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
-msgstr ""
-"Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo heta "
-"kiepska składzieny XML."
-
-#. Much bigger problems
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-search.c:238 ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
 msgid "Page not found"
 msgstr "Staronka nia znojdzienaja"
 
@@ -599,7 +589,7 @@ msgstr "Fajł \"%s\" nie isnuje."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-search.c:366 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
 msgid "Could not parse file"
 msgstr "Niemahčyma razabrać fajł"
 
@@ -627,7 +617,7 @@ msgstr "Nieviadoma"
 msgid "Unknown Error"
 msgstr "Nieviadomaja pamyłka"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1560
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
 msgid "Could Not Read File"
 msgstr "Niemahčyma pračytać fajł"
 
@@ -642,15 +632,6 @@ msgid ""
 msgstr ""
 "Niemahčyma zrabić razbor fajłu \"%s\". bo heta kiepska składzienaja info-"
 "staronka."
-
-#: ../src/yelp-info-pager.c:188
-#, c-format
-msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
-msgstr ""
-"Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo heta "
-"kiepska składzienaja info-staronka."
 
 #: ../src/yelp-io-channel.c:107
 #, c-format
@@ -674,7 +655,7 @@ msgstr "Vyznačaje, jaki kataloh dla cacha vykarystoŭvać"
 msgid " GNOME Help Browser"
 msgstr "Hartač daviedki GNOME"
 
-#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Dapamoha"
 
@@ -686,22 +667,9 @@ msgstr ""
 "Niemahčyma zrabić razbor fajłu \"%s\", bo heta kiepska składzienaja man-"
 "staronka."
 
-#: ../src/yelp-man-pager.c:263
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
-msgstr ""
-"Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo jahony "
-"farmat kiepska składzieny."
-
-#: ../src/yelp-pager.c:117
-msgid "Document Information"
-msgstr "Źviestki pra dakument"
-
-#: ../src/yelp-pager.c:118
-msgid "The YelpDocInfo struct of the document"
-msgstr "Struktura YelpDocInfo hetaha dakumentu"
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "Drukuj"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
@@ -716,33 +684,33 @@ msgstr "Hetaja drukarka nie padtrymlivaje druk"
 msgid "Printer %s does not support postscript printing."
 msgstr "Drukarka %s nie padtrymlivaje druk postscript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:365
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Druk"
 
-#: ../src/yelp-print.c:367
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Čakańnie druku"
 
-#: ../src/yelp-print.c:579
+#: ../src/yelp-print.c:578
 msgid "An error occurred while printing"
 msgstr "Uźnikła pamyłka ciaham druku"
 
-#: ../src/yelp-print.c:583
+#: ../src/yelp-print.c:582
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "Tvoj dakument niemahčyma razdrukavać: %s"
 
-#: ../src/yelp-search-parser.c:67 ../src/yelp-search-pager.c:71
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "Forum padtrymki GNOME"
 
-#: ../src/yelp-search-parser.c:273 ../src/yelp-search-pager.c:807
+#: ../src/yelp-search-parser.c:276
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Niama vynikaŭ dla \"%s\""
 
-#: ../src/yelp-search-parser.c:274 ../src/yelp-search-pager.c:808
+#: ../src/yelp-search-parser.c:277
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -750,7 +718,7 @@ msgstr ""
 "Pasprabuj užyć inšyja słovy, kab apisać svaju prablemu albo temu, pa jakoj "
 "ty šukaješ dapamohi."
 
-#: ../src/yelp-search-parser.c:277 ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-parser.c:280
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Vyniki pošuku dla \"%s\""
@@ -760,7 +728,7 @@ msgstr "Vyniki pošuku dla \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:291 ../src/yelp-search-pager.c:828
+#: ../src/yelp-search-parser.c:294
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Paŭtary pošuk u siecivie na %s"
@@ -773,7 +741,7 @@ msgstr "Paŭtary pošuk u siecivie na %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:838 ../src/yelp-search-pager.c:1286
+#: ../src/yelp-search-parser.c:862
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -789,7 +757,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:854 ../src/yelp-search-pager.c:1302
+#: ../src/yelp-search-parser.c:878
 msgid "re"
 msgstr ""
 
@@ -800,46 +768,26 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:863 ../src/yelp-search-pager.c:1311
+#: ../src/yelp-search-parser.c:887
 msgid "ers:er:ing:es:s:'s"
 msgstr ""
 
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "Pošuk nia moža być vykanany"
+
 #: ../src/yelp-search.c:239
-msgid "Could not process search"
+msgid "The requested search could not be processed."
+msgstr "Vymahany pošuk nia moh być vykanany."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
 msgstr "Niemahčyma vykanać pošuk"
 
 #: ../src/yelp-search.c:367
-msgid "Bigger problems still"
-msgstr "Zastalisia bolšyja prablemy"
-
-#: ../src/yelp-search-pager.c:755
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-"Tvoj pošuk niemahčyma ažyćciavić. Fajł \"%s\" albo prapuščany, albo nie "
-"źjaŭlajecca rečaisnym apisańniem stylaŭ XSLT."
-
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2328
-#: ../src/yelp-transform.c:368 ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr "Rysa href nia znojdzienaja ŭ yelp:document"
-
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2341
-#: ../src/yelp-transform.c:382 ../src/yelp-xslt-pager.c:380
-#: ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "Nie staje pamiaci"
-
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2390
-msgid "Help Contents"
-msgstr "Źmieściva daviedki"
-
-#: ../src/yelp-search-pager.c:1516 ../src/yelp-toc-pager.c:635
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Niemahčyma zahruzić OMF-fajł \"%s\"."
+msgid "The search processor returned invalid results"
+msgstr "Pošukavik viarnuŭ niapravilnyja vyniki"
 
 #: ../src/yelp-toc.c:267
 #, c-format
@@ -852,45 +800,10 @@ msgstr "Vymahanaja staronka nia znojdzienaja ŭ TOC."
 
 #: ../src/yelp-toc.c:436
 msgid ""
-"The ‘TOC file could not be parsed because it is not a well-formed XML "
+"The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "Niemahčyma razabrać TOC-fajł, bo heta kiepska składzieny XML-dakument."
-
-#: ../src/yelp-toc-pager.c:272
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: kolkaść paŭzaŭ admoŭnaja."
-
-#: ../src/yelp-toc-pager.c:383 ../src/yelp-toc-pager.c:2128
-#, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
 msgstr ""
-"Niemahčyma apracavać tablicu źmieściva. Albo fajł \"%s\" prapuščany, albo "
-"heta kiepskaje apisańnie stylaŭ XSLT."
-
-#: ../src/yelp-toc-pager.c:1114
-#, c-format
-msgid "Read man page for %s"
-msgstr "Čytaj man-staronku dla %s"
-
-#: ../src/yelp-toc-pager.c:1853
-#, c-format
-msgid "Read info page for %s"
-msgstr "Čytaj info-staronku dla %s"
-
-#: ../src/yelp-toc-pager.c:1984
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-"Niemahčyma zahruzić tablicu źmieściva. Albo fajł \"%s\" adsutničaje, albo "
-"heta kiepska składzieny XML."
-
-#: ../src/yelp-toc-pager.c:2006
-msgid "Command Line Help"
-msgstr "Daviedka pa zahadnym radku"
+"Niemahčyma było razabrać TOC-fajł, bo heta kiepska składzieny XML-dakument."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -910,172 +823,180 @@ msgstr "Niaŭdałaja transfarmacyja"
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "U časie sproby transfarmavać dakument adbyłasia nieviadomaja pamyłka."
 
-#: ../src/yelp-window.c:297
+#: ../src/yelp-transform.c:368
+msgid "No href attribute found on yelp:document"
+msgstr "Rysa href nia znojdzienaja ŭ yelp:document"
+
+#: ../src/yelp-transform.c:382
+msgid "Out of memory"
+msgstr "Nie staje pamiaci"
+
+#: ../src/yelp-window.c:298
 msgid "_File"
 msgstr "_Fajł"
 
-#: ../src/yelp-window.c:298
+#: ../src/yelp-window.c:299
 msgid "_Edit"
 msgstr "_Redahuj"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:300
 msgid "_Go"
 msgstr "_Idzi"
 
-#: ../src/yelp-window.c:300
+#: ../src/yelp-window.c:301
 msgid "_Bookmarks"
 msgstr "_Zakładki"
 
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:302
 msgid "_Help"
 msgstr "_Dapamoha"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:305
 msgid "_New Window"
 msgstr "_Novaje vakno"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:310
 msgid "Print This Document ..."
 msgstr "Nadrukuj hety dakument..."
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:315
 msgid "Print This Page ..."
 msgstr "Nadrukuj hetuju staronku..."
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:320
 msgid "About This Document"
 msgstr "Pra hety dakument"
 
-#: ../src/yelp-window.c:324
+#: ../src/yelp-window.c:325
 msgid "Open _Location"
 msgstr "Adčyni _pałažeńnie"
 
-#: ../src/yelp-window.c:329
+#: ../src/yelp-window.c:330
 msgid "_Close Window"
 msgstr "_Začyni vakno"
 
-#: ../src/yelp-window.c:335
+#: ../src/yelp-window.c:336
 msgid "_Copy"
 msgstr "S_kapijuj"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:342
 msgid "_Select All"
 msgstr "_Abiary ŭsio"
 
-#: ../src/yelp-window.c:346
+#: ../src/yelp-window.c:347
 msgid "_Find..."
 msgstr "Š_ukaj..."
 
-#: ../src/yelp-window.c:351
+#: ../src/yelp-window.c:352
 msgid "Find Pre_vious"
 msgstr "Znajdzi _raniej"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:354
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Znajdzi papiaredniaje supadzieńnie sa słovam ci vyrazam"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:357
 msgid "Find Ne_xt"
 msgstr "Znajdzi da_lej"
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:359
 msgid "Find next occurrence of the word or phrase"
 msgstr "Znajdzi nastupnaje supadzieńnie sa słovam ci vyrazam"
 
-#: ../src/yelp-window.c:361
+#: ../src/yelp-window.c:362
 msgid "_Preferences"
 msgstr "_Pieravahi"
 
-#: ../src/yelp-window.c:366
+#: ../src/yelp-window.c:367
 msgid "_Reload"
 msgstr "_Pieračytaj"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:379
 msgid "_Back"
 msgstr "Na_zad"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:381
 msgid "Show previous page in history"
 msgstr "Pakažy papiaredniuju staronku z historyi"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:384
 msgid "_Forward"
 msgstr "Na_pierad"
 
-#: ../src/yelp-window.c:385
+#: ../src/yelp-window.c:386
 msgid "Show next page in history"
 msgstr "Pakažy nastupnuju staronku z historyi"
 
-#: ../src/yelp-window.c:388
+#: ../src/yelp-window.c:389
 msgid "_Help Topics"
 msgstr "_Temy daviedki"
 
-#: ../src/yelp-window.c:390
+#: ../src/yelp-window.c:391
 msgid "Go to the listing of help topics"
 msgstr "Idzi da śpisu temaŭ daviedki"
 
-#: ../src/yelp-window.c:393
+#: ../src/yelp-window.c:394
 msgid "_Previous Section"
 msgstr "Papiar_edni raździeł"
 
-#: ../src/yelp-window.c:398
+#: ../src/yelp-window.c:399
 msgid "_Next Section"
 msgstr "Nast_upny raździeł"
 
-#: ../src/yelp-window.c:403 ../src/yelp-window.c:435
+#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
 msgid "_Contents"
 msgstr "_Źmieściva"
 
-#: ../src/yelp-window.c:409
+#: ../src/yelp-window.c:410
 msgid "_Add Bookmark"
 msgstr "_Dadaj zakładku"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:415
 msgid "_Edit Bookmarks..."
 msgstr "_Redahuj zakładki..."
 
-#: ../src/yelp-window.c:420
+#: ../src/yelp-window.c:421
 msgid "_Open Link"
 msgstr "Ad_čyni spasyłku"
 
-#: ../src/yelp-window.c:425
+#: ../src/yelp-window.c:426
 msgid "Open Link in _New Window"
 msgstr "Adčyni spasyłku ŭ n_ovym aknie"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:431
 msgid "_Copy Link Address"
 msgstr "S_kapijuj adras spasyłki"
 
-#: ../src/yelp-window.c:437
+#: ../src/yelp-window.c:438
 msgid "Help On this application"
 msgstr "Dapamoha dla hetaj aplikacyi"
 
-#: ../src/yelp-window.c:440
+#: ../src/yelp-window.c:441
 msgid "_About"
 msgstr "_Ab prahramie"
 
-#: ../src/yelp-window.c:445
+#: ../src/yelp-window.c:446
 msgid "Copy _Email Address"
 msgstr "Skapijuj _Email-adras"
 
-#: ../src/yelp-window.c:494
+#: ../src/yelp-window.c:495
 msgid "Help Browser"
 msgstr "Ahladalnik daviedki"
 
-#: ../src/yelp-window.c:585 ../src/yelp-window.c:637 ../src/yelp-window.c:1611
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
 msgid "Loading..."
 msgstr "Zahruzka..."
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638
+#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
 msgid "Unknown Page"
 msgstr "Nieviadomaja staronka"
 
-#: ../src/yelp-window.c:1003 ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Vymahany URI \"%s\" niapravilny"
 
-#: ../src/yelp-window.c:1004 ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
 msgid "Unable to load page"
 msgstr "Niemahčyma zahruzić staronku"
 
@@ -1111,7 +1032,11 @@ msgstr "Znajdzi da_lej"
 msgid "Find _Previous"
 msgstr "Znajdzi ra_niej"
 
-#: ../src/yelp-window.c:1557
+#: ../src/yelp-window.c:1442
+msgid "Phrase not found"
+msgstr "Vyraz nia znojdzieny"
+
+#: ../src/yelp-window.c:1569
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1122,39 +1047,104 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2375
+#: ../src/yelp-window.c:2389
 msgid "translator-credits"
 msgstr ""
 "Alaksandar Niachajčyk <nyakhaychyk@gmail.com>\n"
 "Vital Chilko <dojlid@mova.org>\n"
 "Ihar Hrachyshka <ihar.hrachyshka@gmail.com>"
 
-#: ../src/yelp-window.c:2378
+#: ../src/yelp-window.c:2392
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2380
+#: ../src/yelp-window.c:2394
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Hartač i ahladalnik dakumentacyi dla asiarodździa Gnome."
-
-#: ../src/yelp-xslt-pager.c:189
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo jon "
-"niapravilna adfarmatavany."
-
-#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-"Niemahčyma apracavać dakument \"%s\". Albo fajł \"%s\" adsutničaje, albo "
-"heta niapravilnaje apisańnie stylaŭ XSLT."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Atrymaj dapamohu ad GNOME"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is not well-formed XML."
+#~ msgstr ""
+#~ "Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo heta "
+#~ "kiepska składzieny XML."
+
+#~ msgid ""
+#~ "The file  ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is not a well-formed info page."
+#~ msgstr ""
+#~ "Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo heta "
+#~ "kiepska składzienaja info-staronka."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+#~ msgstr ""
+#~ "Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo jahony "
+#~ "farmat kiepska składzieny."
+
+#~ msgid "Document Information"
+#~ msgstr "Źviestki pra dakument"
+
+#~ msgid "The YelpDocInfo struct of the document"
+#~ msgstr "Struktura YelpDocInfo hetaha dakumentu"
+
+#~ msgid "Bigger problems still"
+#~ msgstr "Zastalisia bolšyja prablemy"
+
+#~ msgid ""
+#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
+#~ "not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Tvoj pošuk niemahčyma ažyćciavić. Fajł \"%s\" albo prapuščany, albo nie "
+#~ "źjaŭlajecca rečaisnym apisańniem stylaŭ XSLT."
+
+#~ msgid "Help Contents"
+#~ msgstr "Źmieściva daviedki"
+
+#~ msgid "Could not load the OMF file '%s'."
+#~ msgstr "Niemahčyma zahruzić OMF-fajł \"%s\"."
+
+#~ msgid "YelpTocPager: Pause count is negative."
+#~ msgstr "YelpTocPager: kolkaść paŭzaŭ admoŭnaja."
+
+#~ msgid ""
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Niemahčyma apracavać tablicu źmieściva. Albo fajł \"%s\" prapuščany, albo "
+#~ "heta kiepskaje apisańnie stylaŭ XSLT."
+
+#~ msgid "Read man page for %s"
+#~ msgstr "Čytaj man-staronku dla %s"
+
+#~ msgid "Read info page for %s"
+#~ msgstr "Čytaj info-staronku dla %s"
+
+#~ msgid ""
+#~ "The table of contents could not be loaded. The file ‘%s’ is either "
+#~ "missing or is not well-formed XML."
+#~ msgstr ""
+#~ "Niemahčyma zahruzić tablicu źmieściva. Albo fajł \"%s\" adsutničaje, albo "
+#~ "heta kiepska składzieny XML."
+
+#~ msgid "Command Line Help"
+#~ msgstr "Daviedka pa zahadnym radku"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+#~ msgstr ""
+#~ "Niemahčyma zrabić razbor fajłu \"%s\". Albo fajł nie isnuje, albo jon "
+#~ "niapravilna adfarmatavany."
+
+#~ msgid ""
+#~ "The document ‘%s’ could not be processed. The file ‘%s’ is either "
+#~ "missing, or it is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Niemahčyma apracavać dakument \"%s\". Albo fajł \"%s\" adsutničaje, albo "
+#~ "heta niapravilnaje apisańnie stylaŭ XSLT."
