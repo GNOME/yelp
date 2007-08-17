@@ -11,59 +11,23 @@
 
 <xsl:param name="yelp.javascript"/>
 
-<xsl:param name="yelp.icon.blockquote"/>
-<xsl:param name="yelp.icon.caution"/>
-<xsl:param name="yelp.icon.important"/>
-<xsl:param name="yelp.icon.note"/>
-<xsl:param name="yelp.icon.programlisting"/>
-<xsl:param name="yelp.icon.tip"/>
-<xsl:param name="yelp.icon.warning"/>
-
-<xsl:param name="yelp.color.fg"/>
-<xsl:param name="yelp.color.bg"/>
-<xsl:param name="yelp.color.anchor"/>
-<xsl:param name="yelp.color.rule"/>
-<xsl:param name="yelp.color.gray.fg"/>
-<xsl:param name="yelp.color.gray.bg"/>
-<xsl:param name="yelp.color.gray.bg.dark1"/>
-<xsl:param name="yelp.color.gray.bg.dark2"/>
-<xsl:param name="yelp.color.gray.bg.dark3"/>
-<xsl:param name="yelp.color.selected.fg"/>
-<xsl:param name="yelp.color.selected.bg"/>
-<xsl:param name="yelp.color.selected.bg.dark1"/>
-<xsl:param name="yelp.color.selected.bg.dark2"/>
-<xsl:param name="yelp.color.selected.bg.dark3"/>
-<xsl:param name="yelp.color.admon.fg"/>
-<xsl:param name="yelp.color.admon.bg"/>
-<xsl:param name="yelp.color.admon.bg.dark1"/>
-<xsl:param name="yelp.color.admon.bg.dark2"/>
-<xsl:param name="yelp.color.admon.bg.dark3"/>
-
-<xsl:param name="db2html.programlisting.background_color"
-           select="$yelp.color.gray.bg"/>
-<xsl:param name="db2html.programlisting.border_color"
-           select="$yelp.color.gray.bg.dark1"/>
-<xsl:param name="db2html.screen.background_color"
-           select="$yelp.color.gray.bg"/>
-<xsl:param name="db2html.screen.border_color"
-           select="$yelp.color.gray.bg.dark1"/>
-
-<xsl:param name="db2html.table.rule_color"
-	   select="$yelp.color.rule"/>
 
 <xsl:param name="db.chunk.chunk_top" select="true()"/>
 <xsl:param name="db.chunk.extension" select="''"/>
-<xsl:param name="db.chunk.cover_basename" select="'__yelp_cover'"/>
 <xsl:param name="db.chunk.info_basename"  select="'__yelp_info'"/>
-<xsl:param name="db.chunk.index_basename" select="'__yelp_index'"/>
-<xsl:param name="db.chunk.toc_basename"   select="'__yelp_toc'"/>
 
+<xsl:param name="db2html.navbar.top" select="false()"/>
+
+<!-- == db.number == -->
+<!--
+FIXME: yelp:cache no longer works
 <xsl:template name="db.number">
   <xsl:param name="node" select="."/>
   <yelp:cache key="db.number" node="$node">
     <xsl:apply-templates mode="db.number.mode" select="$node"/>
   </yelp:cache>
 </xsl:template>
+-->
 
 <!-- == db.chunk == -->
 <xsl:template name="db.chunk">
@@ -72,17 +36,8 @@
   <xsl:param name="template"/>
   <xsl:param name="href">
     <xsl:choose>
-      <xsl:when test="$template = 'cover'">
-        <xsl:value-of select="$db.chunk.cover_basename"/>
-      </xsl:when>
       <xsl:when test="$template = 'info'">
         <xsl:value-of select="$db.chunk.info_basename"/>
-      </xsl:when>
-      <xsl:when test="$template = 'index'">
-        <xsl:value-of select="$db.chunk.index_basename"/>
-      </xsl:when>
-      <xsl:when test="$template = 'toc'">
-        <xsl:value-of select="$db.chunk.toc_basename"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$node/@id"/>
@@ -119,134 +74,9 @@
 <!-- == db2html.css.custom == -->
 <xsl:template name="db2html.css.custom">
   <xsl:call-template name="yelp.common.css"/>
-  <xsl:text>
-    div[class~="admonition"] {
-      color: </xsl:text>
-      <xsl:value-of select="$yelp.color.admon.fg"/><xsl:text>;
-      border-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.admon.bg.dark1"/><xsl:text>;
-      -moz-border-radius-topleft: 12px;
-      -moz-border-radius-bottomleft: 12px;
-      background-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.admon.bg"/><xsl:text>;
-    }
-    div[class~="programlisting"] {
-      background-image: url(</xsl:text>
-      <xsl:value-of select="$yelp.icon.programlisting"/><xsl:text>);
-      background-repeat: no-repeat;
-    }
-   div[class~="blockquote"] {
-      background-image: url("</xsl:text>
-      <xsl:value-of select="$yelp.icon.blockquote"/><xsl:text>");
-      background-repeat: no-repeat;
-    }
-    div[class~="caution"] {
-      background-image: url("</xsl:text>
-      <xsl:value-of select="$yelp.icon.caution"/><xsl:text>");
-    }
-    div[class~="important"] {
-      background-image: url("</xsl:text>
-      <xsl:value-of select="$yelp.icon.important"/><xsl:text>");
-    }
-    div[class~="note"] {
-      background-image: url("</xsl:text>
-      <xsl:value-of select="$yelp.icon.note"/><xsl:text>");
-    }
-    div[class~="tip"] {
-      background-image: url("</xsl:text>
-      <xsl:value-of select="$yelp.icon.tip"/><xsl:text>");
-    }
-    div[class~="warning"] {
-      background-image: url("</xsl:text>
-      <xsl:value-of select="$yelp.icon.warning"/><xsl:text>");
-    }
-
-    div[class~="navbar"] {
-      -moz-box-sizing: border-box;
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      width: 100%;
-      font-size: 0.8em;
-      margin: 0px;
-      padding: 3px;
-      padding-left: 12px;
-      padding-right: 12px;
-      background-color: </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg"/><xsl:text>;
-      border: none;
-      border: solid 1px </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.bg.dark1"/><xsl:text>;
-    }
-    div[class~="navbar"] span { white-space: nowrap; }
-    div[class~="navbar"] a { text-decoration: none; }
-    div[class~="navbar"] a:hover { text-decoration: underline; }
-    span[class~="navbar-prev"]:before {
-      content: '◀&#x2003;';
-      color: </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>;
-      text-decoration: none;
-    }
-    span[class~="navbar-next"]:after {
-      content: '&#x2003;▶';
-      color: </xsl:text>
-      <xsl:value-of select="$yelp.color.gray.fg"/><xsl:text>;
-      text-decoration: none;
-    }
-  </xsl:text>
 </xsl:template>
 
-<xsl:template name="db2html.division.top">
-  <xsl:param name="node"/>
-  <xsl:param name="info"/>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:if test="$depth_of_chunk != 0">
-    <div class="linktrail" id="linktrail">
-      <xsl:for-each select="($node/ancestor::*)">
-	<span class="linktrail">
-	  <a class="linktrail">
-	    <xsl:attribute name="href">
-	      <xsl:call-template name="db.xref.target">
-		<xsl:with-param name="linkend" select="@id"/>
-		<xsl:with-param name="target" select="."/>
-		<xsl:with-param name="is_chunk" select="true()"/>
-	      </xsl:call-template>
-	    </xsl:attribute>
-	    <xsl:attribute name="title">
-	      <xsl:call-template name="db.xref.tooltip">
-		<xsl:with-param name="linkend" select="@id"/>
-		<xsl:with-param name="target"  select="."/>
-	      </xsl:call-template>
-	    </xsl:attribute>
-	    <xsl:call-template name="db.titleabbrev">
-	      <xsl:with-param name="node" select="."/>
-	    </xsl:call-template>
-	  </a>
-	</span>
-	<xsl:choose>
-	  <xsl:when test="position() = last()">
-	    <!--
-	      <xsl:text> ▾</xsl:text>
-	    -->
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <!--
-	    <xsl:text>&#x2003;/&#x2003;</xsl:text>
-	    -->
-	    <!--
-	      <xsl:text> ▸ </xsl:text>
-	    -->
-	  </xsl:otherwise>
-	</xsl:choose>
-      </xsl:for-each>
-    </div>
-  </xsl:if>
-</xsl:template>
-
+<!-- == db2html.division.head.extra == -->
 <xsl:template name="db2html.division.head.extra">
   <script type="text/javascript">
     <xsl:attribute name="src">

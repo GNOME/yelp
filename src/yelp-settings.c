@@ -46,19 +46,19 @@
 #define KEY_YELP_FIXED_FONT     KEY_YELP_DIR "/fixed_font"
 
 static const gchar * const color_params[YELP_NUM_COLORS] = {
-    "yelp.color.text",
-    "yelp.color.background",
-    "yelp.color.text_light",
-    "yelp.color.link",
-    "yelp.color.link_visited",
-    "yelp.color.gray_background",
-    "yelp.color.gray_border",
+    "theme.color.text",
+    "theme.color.background",
+    "theme.color.text_light",
+    "theme.color.link",
+    "theme.color.link_visited",
+    "theme.color.gray_background",
+    "theme.color.gray_border",
     "theme.color.blue_background",
     "theme.color.blue_border",
     "theme.color.red_background",
     "theme.color.red_border",
     "theme.color.yellow_background",
-    "theme.color.yelllow_border"
+    "theme.color.yellow_border"
 };
 
 static const gchar * const icon_params[YELP_NUM_ICONS] = {
@@ -551,13 +551,134 @@ icon_theme_changed (GtkIconTheme *theme, gpointer user_data)
 }
 
 static void
+rgb_to_hls (gdouble r, gdouble g, gdouble b, gdouble *h, gdouble *l, gdouble *s)
+{
+    gdouble min, max, delta;
+
+    if (r > g) {
+	if (r > b)
+	    max = r;
+	else
+	    max = b;
+	if (g < b)
+	    min = g;
+	else
+	    min = b;
+    }
+    else {
+	if (g > b)
+	    max = g;
+	else
+	    max = b;
+	if (r < b)
+	    min = r;
+	else
+	    min = b;
+    }
+
+    *l = (max + min) / 2;
+    *s = 0;
+    *h = 0;
+
+    if (max != min) {
+	if (*l <= 0.5)
+	    *s = (max - min) / (max + min);
+	else
+	    *s = (max - min) / (2 - max - min);
+
+	delta = max - min;
+	if (r == max)
+	    *h = (g - b) / delta;
+	else if (g == max)
+	    *h = 2 + (b - r) / delta;
+	else if (b == max)
+	    *h = 4 + (r - g) / delta;
+
+	*h *= 60;
+	if (*h < 0.0)
+	    *h += 360;
+    }
+}
+
+static void
+hls_to_hex (gdouble h, gdouble l, gdouble s, YelpColorType color)
+{
+    gdouble hue;
+    gdouble m1, m2;
+    gdouble r, g, b;
+    guint8 red, green, blue;
+
+    if (l <= 0.5)
+	m2 = l * (1 + s);
+    else
+	m2 = l + s - l * s;
+    m1 = 2 * l - m2;
+
+    if (s == 0) {
+	r = g = b = l;
+    }
+    else {
+	hue = h + 120;
+	while (hue > 360)
+	    hue -= 360;
+	while (hue < 0)
+	    hue += 360;
+
+	if (hue < 60)
+	    r = m1 + (m2 - m1) * hue / 60;
+	else if (hue < 180)
+	    r = m2;
+	else if (hue < 240)
+	    r = m1 + (m2 - m1) * (240 - hue) / 60;
+	else
+	    r = m1;
+
+	hue = h;
+	while (hue > 360)
+	    hue -= 360;
+	while (hue < 0)
+	    hue += 360;
+
+	if (hue < 60)
+	    g = m1 + (m2 - m1) * hue / 60;
+	else if (hue < 180)
+	    g = m2;
+	else if (hue < 240)
+	    g = m1 + (m2 - m1) * (240 - hue) / 60;
+	else
+	    g = m1;
+
+	hue = h - 120;
+	while (hue > 360)
+	    hue -= 360;
+	while (hue < 0)
+	    hue += 360;
+
+	if (hue < 60)
+	    b = m1 + (m2 - m1) * hue / 60;
+	else if (hue < 180)
+	    b = m2;
+	else if (hue < 240)
+	    b = m1 + (m2 - m1) * (240 - hue) / 60;
+	else
+	    b = m1;
+    }
+
+    red = r * 255;
+    green = g * 255;
+    blue = b * 255;
+    g_snprintf (colors[color], 8, "#%02X%02X%02X", red, green, blue);
+}
+
+static void
 settings_update (YelpSettingsType type)
 {
     GtkWidget *widget;
     GtkStyle  *style;
     GdkColor  *color;
     GdkColor   blue = { 0, 0x1E1E, 0x3E3E, 0xE7E7 };
-    guint8     max_text, max_base;
+    gdouble    base_h, base_l, base_s;
+    gdouble    text_h, text_l, text_s;
     guint16    rval, gval, bval;
     gint i;
 
@@ -572,12 +693,14 @@ settings_update (YelpSettingsType type)
 	else
 	    style = gtk_style_new ();
 
-	max_text = MAX(style->text[GTK_STATE_NORMAL].red,
-		       MAX(style->text[GTK_STATE_NORMAL].green,
-			   style->text[GTK_STATE_NORMAL].blue   )) >> 8;
-	max_base = MAX(style->base[GTK_STATE_NORMAL].red,
-		       MAX(style->base[GTK_STATE_NORMAL].green,
-			   style->base[GTK_STATE_NORMAL].blue   )) >> 8;
+	rgb_to_hls (style->text[GTK_STATE_NORMAL].red / 65535.0,
+		    style->text[GTK_STATE_NORMAL].green / 65535.0,
+		    style->text[GTK_STATE_NORMAL].blue / 65535.0,
+		    &text_h, &text_l, &text_s);
+	rgb_to_hls (style->base[GTK_STATE_NORMAL].red / 65535.0,
+		    style->base[GTK_STATE_NORMAL].green / 65535.0,
+		    style->base[GTK_STATE_NORMAL].blue / 65535.0,
+		    &base_h, &base_l, &base_s);
 
 	/* YELP_COLOR_FG */
 	g_snprintf (colors[YELP_COLOR_FG], 8,
@@ -618,56 +741,46 @@ settings_update (YelpSettingsType type)
 
 	gtk_object_sink (GTK_OBJECT (widget));
 
-	/* YELP_COLOR_FG_LIGHT */
-	g_snprintf (colors[YELP_COLOR_FG_LIGHT], 8,
-		    "#%02X%02X%02X",
-		    style->text[GTK_STATE_PRELIGHT].red >> 8,
-		    style->text[GTK_STATE_PRELIGHT].green >> 8,
-		    style->text[GTK_STATE_PRELIGHT].blue >> 8);
+	hls_to_hex (text_h, 
+		    text_l - ((text_l - base_l) * 0.4),
+		    text_s,
+		    YELP_COLOR_FG_LIGHT);
 
-	/* YELP_COLOR_GRAY_BG and border */
-	for (i = 0; i < 2; i++) {
-	    rval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
-		    i * max_text) / 2;
-	    gval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
-		    i * max_text) / 2;
-	    bval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
-		    i * max_text) / 2;
-	    g_snprintf (colors[YELP_COLOR_GRAY_BG + i], 8,
-			"#%02X%02X%02X", rval, gval, bval);
-	}
+	hls_to_hex (base_h, 
+		    base_l - ((base_l - text_l) * 0.05),
+		    base_s,
+		    YELP_COLOR_GRAY_BG);
+	hls_to_hex (base_h, 
+		    base_l - ((base_l - text_l) * 0.1),
+		    base_s,
+		    YELP_COLOR_GRAY_BORDER);
 
-	/* YELP_COLOR_BLUE_BG and border */
-	for (i = 0; i < 2; i++) {
-	    rval = (i * max_base) / 2;
-	    gval = (i * max_base) / 2;
-	    bval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].blue  >> 8) +
-		    i * max_base) / 2;
-	    g_snprintf (colors[YELP_COLOR_BLUE_BG + (2 - i)], 8,
-			"#%02X%02X%02X", rval, gval, bval);
-	}
+	hls_to_hex (240,
+		    base_l - ((base_l - text_l) * 0.05),
+		    0.6,
+		    YELP_COLOR_BLUE_BG);
+	hls_to_hex (240, 
+		    base_l - ((base_l - text_l) * 0.1),
+		    0.6,
+		    YELP_COLOR_BLUE_BORDER);
 
-	/* YELP_COLOR_RED_BG and border */
-	for (i = 0; i < 2; i++) {
-	    rval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
-		    i * max_base) / 2;
-	    gval = (i * max_base) / 2;
-	    bval = (i * max_base) / 2;
-	    g_snprintf (colors[YELP_COLOR_RED_BG + (2 - i)], 8,
-			"#%02X%02X%02X", rval, gval, bval);
-	}
+	hls_to_hex (0,
+		    base_l - ((base_l - text_l) * 0.05),
+		    0.6,
+		    YELP_COLOR_RED_BG);
+	hls_to_hex (0,
+		    base_l - ((base_l - text_l) * 0.1),
+		    0.6,
+		    YELP_COLOR_RED_BORDER);
 
-	/* YELP_COLOR_YELLOW_BG and border */
-	for (i = 0; i < 2; i++) {
-	    rval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].red   >> 8) +
-		    i * max_base) / 2;
-	    gval = ((2 - i) * (style->bg[GTK_STATE_NORMAL].green >> 8) +
-		    i * max_base) / 2;
-	    bval = (i * max_base) / 2;
-	    g_snprintf (colors[YELP_COLOR_YELLOW_BG + (2 - i)], 8,
-			"#%02X%02X%02X", rval, gval, bval);
-	}
-
+	hls_to_hex (60,
+		    base_l - ((base_l - text_l) * 0.05),
+		    0.6,
+		    YELP_COLOR_YELLOW_BG);
+	hls_to_hex (60,
+		    base_l - ((base_l - text_l) * 0.1),
+		    0.6,
+		    YELP_COLOR_YELLOW_BORDER);
 
 	g_object_unref (G_OBJECT (style));
     }
