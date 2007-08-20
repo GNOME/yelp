@@ -62,8 +62,12 @@ static const gchar * const color_params[YELP_NUM_COLORS] = {
 };
 
 static const gchar * const icon_params[YELP_NUM_ICONS] = {
-    "theme.icon.admon.path",
-    "theme.icon.admon.size"
+    "theme.icon.admon.bug",
+    "theme.icon.admon.caution",
+    "theme.icon.admon.important",
+    "theme.icon.admon.note",
+    "theme.icon.admon.tip",
+    "theme.icon.admon.warning"
 };
 
 static void           settings_update         (YelpSettingsType  type);
@@ -95,6 +99,7 @@ static GHookList    *hook_lists[YELP_SETTINGS_NUM_TYPES];
 static GtkSettings  *gtk_settings;
 static GtkIconTheme *icon_theme;
 static gchar colors[YELP_NUM_COLORS][10];
+static gchar *icon_names[YELP_NUM_ICONS] = {NULL,};
 
 static GtkWidget    *prefs_dialog = NULL;
 static GtkWidget    *system_fonts_widget  = NULL;
@@ -154,12 +159,44 @@ yelp_settings_init (void)
 		      NULL);
 
     icon_theme = gtk_icon_theme_get_default ();
+    /* This should work with a newer GTK+ */
+    gtk_icon_theme_append_search_path (icon_theme,
+				       GDU_ICON_PATH);
+    /* But if it doesn't, this will work */
+    gtk_icon_theme_append_search_path (icon_theme,
+				       GDU_ICON_PATH"/hicolor/48x48");
+    /* And what they hey, for sentimental reasons */
     gtk_icon_theme_append_search_path (icon_theme,
 				       DATADIR "/yelp/icons");
     g_signal_connect (icon_theme,
 		      "changed",
 		      (GCallback) icon_theme_changed,
 		      NULL);
+
+    for (i = 0; i < YELP_NUM_ICONS; i++) {
+	switch (i) {
+	case YELP_ICON_ADMON_BUG:
+	    icon_names[i] = "admon-bug";
+	    break;
+	case YELP_ICON_ADMON_CAUTION:
+	    icon_names[i] = "admon-caution";
+	    break;
+	case YELP_ICON_ADMON_IMPORTANT:
+	    icon_names[i] = "admon-important";
+	    break;
+	case YELP_ICON_ADMON_NOTE:
+	    icon_names[i] = "admon-note";
+	    break;
+	case YELP_ICON_ADMON_TIP:
+	    icon_names[i] = "admon-tip";
+	    break;
+	case YELP_ICON_ADMON_WARNING:
+	    icon_names[i] = "admon-warning";
+	    break;
+	default:
+	    g_assert_not_reached ();
+	}
+    }
 
     settings_update (YELP_SETTINGS_INFO_ALL);
 }
@@ -289,9 +326,9 @@ yelp_settings_get_icon (YelpIconType icon)
 
     g_return_val_if_fail (icon < YELP_NUM_ICONS, NULL);
 
-    /*info = gtk_icon_theme_lookup_icon (icon_theme,
+    info = gtk_icon_theme_lookup_icon (icon_theme,
 				       icon_names[icon],
-				       36, 0);*/
+				       48, 0);
     return info;
 }
 
@@ -795,27 +832,34 @@ yelp_settings_params (gchar ***params,
 		      gint    *params_i,
 		      gint    *params_max)
 {
-    /*GtkIconInfo *icon_info;
-      gchar *icon_file;*/
-    gint colors_i /*, icons_i*/;
+    GtkIconInfo *icon_info;
+    gchar *icon_file;
+    gint colors_i , icons_i;
 
     if ((*params_i + 2 * (YELP_NUM_COLORS + YELP_NUM_ICONS)) >= *params_max) {
 	*params_max += 2 * (YELP_NUM_COLORS + YELP_NUM_ICONS);
 	*params = g_renew (gchar *, *params, *params_max);
     }
 
-    for (colors_i = 0; colors_i < YELP_NUM_COLORS - 1; colors_i++) {
+    for (colors_i = 0; colors_i < YELP_NUM_COLORS; colors_i++) {
 	(*params)[(*params_i)++] = (gchar *) color_params[colors_i];
 	(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"",
 						yelp_settings_get_color (colors_i));
     }
 
-    /* Icon Path */
-    (*params)[(*params_i)++] = (gchar *) icon_params[0];
-    (*params)[(*params_i)++] = (gchar *) g_strdup_printf ("\"%s\"", GDU_ICON_PATH);
-    
-    /* Icon Size */
-    (*params)[(*params_i)++] = (gchar *) icon_params[1];
-    (*params)[(*params_i)++] = (gchar *) g_strdup_printf ("\"%d\"", 48);
-    
+    for (icons_i = 0; icons_i < YELP_NUM_ICONS; icons_i++) {
+	(*params)[(*params_i)++] = (gchar *) icon_params[icons_i];
+
+	icon_info = yelp_settings_get_icon (icons_i);
+	if (icon_info) {
+	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
+	    if (icon_file)
+		(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"", icon_file);
+	    else
+		(*params)[(*params_i)++] = g_strdup ("\"\"");
+	    gtk_icon_info_free (icon_info);
+	} else {
+	    (*params)[(*params_i)++] = g_strdup ("\"\"");
+	}
+    }
 }

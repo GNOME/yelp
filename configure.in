@@ -92,7 +92,7 @@ AC_SUBST(DB_TITLE)
 DB2HTML="`$PKG_CONFIG --variable=db2xhtml gnome-doc-utils`"
 AC_SUBST(DB2HTML)
 
-GDU_ICON_PATH="`$PKG_CONFIG --variable=icondir gnome-doc-utils`/hicolor/48x48/"
+GDU_ICON_PATH="`$PKG_CONFIG --variable=icondir gnome-doc-utils`"
 AC_SUBST(GDU_ICON_PATH)
 
 GLIB_GENMARSHAL="`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`"
