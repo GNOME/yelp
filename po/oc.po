@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: or\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-29 15:14+0100\n"
-"PO-Revision-Date: 2007-05-13 13:26+0200\n"
+"POT-Creation-Date: 2007-08-14 04:06+0100\n"
+"PO-Revision-Date: 2007-08-21 12:03+0200\n"
 "Last-Translator: Yannig MARCHEGAY <yannig@marchegay.org>\n"
 "Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1847
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "Paginas d'informacions GNU"
 
@@ -61,7 +61,7 @@ msgstr "Periferics materials"
 msgid "Kernel Routines"
 msgstr ""
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1841
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "Paginas del manual"
 
@@ -435,7 +435,7 @@ msgstr ""
 
 #: ../data/ui/yelp.glade.h:6
 msgid "Find"
-msgstr "Recèrcar"
+msgstr "Recercar"
 
 #: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
@@ -459,7 +459,7 @@ msgstr ""
 
 #: ../data/ui/yelp.glade.h:12
 msgid "_Find:"
-msgstr "_Recèrcar :"
+msgstr "_Recercar :"
 
 #: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
@@ -471,11 +471,11 @@ msgstr "_Emplaçament :"
 
 #: ../data/ui/yelp.glade.h:15
 msgid "_Next"
-msgstr "_Seguent"
+msgstr "Seguent"
 
 #: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
-msgstr "_Precedent"
+msgstr "Precedent"
 
 #: ../data/ui/yelp.glade.h:17
 msgid "_Title:"
@@ -483,7 +483,7 @@ msgstr "_Títol :"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr "_Utilisar las poliças del sistèma"
+msgstr "_Utilizar las poliças del sistèma"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
@@ -555,55 +555,77 @@ msgstr "Somari de l'ajuda"
 msgid "Document Sections"
 msgstr "Seccions del document"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
+#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+msgid "Page not found"
+msgstr ""
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr ""
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
+#: ../src/yelp-man.c:388
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr ""
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
+#: ../src/yelp-man.c:430
+msgid "File not found"
+msgstr "Impossible trobar lo fichièr"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
+#: ../src/yelp-man.c:431
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr ""
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+msgid "Could not parse file"
+msgstr ""
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
-msgstr ""
-"Impossible d'analizar '%s'. Ja lo fichièr existís pas, ja es pas un fichièr "
-"XML corrècte."
-
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "I a agut una error desconeguda"
-
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "Impossible de cargar lo document"
-
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "Impossible de cargar la seccion"
-
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
 
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "Format pas gerit"
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "Impossible de legir lo document"
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "Impossible de tractar lo document"
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
-msgstr "Pas cap d'informacion a prepaus d'aquesta error."
-
-#: ../src/yelp-info-pager.c:188
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
 msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr ""
-"Impossible d'analizar '%s'. Ja lo fichièr existís pas, ja es pas una pagina "
-"XML corrècta."
+
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+msgid "Unknown"
+msgstr "Desconegut"
+
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Error desconeguda"
+
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+msgid "Could Not Read File"
+msgstr ""
+
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr ""
+
+#: ../src/yelp-info.c:394
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
 
 #: ../src/yelp-io-channel.c:107
 #, c-format
@@ -627,26 +649,19 @@ msgstr "Definís lo repertòri d'escondedor d'utilizar"
 msgid " GNOME Help Browser"
 msgstr " Navegador d'ajuda GNOME"
 
-#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../src/yelp-man-pager.c:263
+#: ../src/yelp-man.c:460
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
-"Impossible d'analizar lo fichièr '%s'. Ja lo fichièr existís pas, ja es pas "
-"plan format."
 
-#: ../src/yelp-pager.c:117
-msgid "Document Information"
-msgstr "Informacions sul document"
-
-#: ../src/yelp-pager.c:118
-msgid "The YelpDocInfo struct of the document"
-msgstr "L'estructura YelpDocInfo del document"
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "Estampar"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
@@ -661,46 +676,39 @@ msgstr "Aquesta estampadoira gerís pas l'estampatge"
 msgid "Printer %s does not support postscript printing."
 msgstr "L'estampadoira %s gerís pas l'estampatge PostScript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:365
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Estampatge"
 
-#: ../src/yelp-print.c:367
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr ""
 
-#: ../src/yelp-print.c:579
+#: ../src/yelp-print.c:578
 msgid "An error occurred while printing"
 msgstr "I a agut una error al moment d'estampar"
 
-#: ../src/yelp-print.c:583
+#: ../src/yelp-print.c:582
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "Impossible d'estampar vòstre document : %s"
 
-#: ../src/yelp-search-pager.c:71
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr ""
 
-#: ../src/yelp-search-pager.c:755
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-
-#: ../src/yelp-search-pager.c:807
+#: ../src/yelp-search-parser.c:276
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Pas cap de resultat per \"%s\""
 
-#: ../src/yelp-search-pager.c:808
+#: ../src/yelp-search-parser.c:277
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 
-#: ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-parser.c:280
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Resultas de la recèrca per \"%s\""
@@ -710,24 +718,10 @@ msgstr "Resultas de la recèrca per \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:828
+#: ../src/yelp-search-parser.c:294
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr ""
-
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2068
-#: ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr ""
-
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2081
-#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "Pas pro de memòria"
-
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2130
-msgid "Help Contents"
-msgstr "Somari de l'ajuda"
 
 #. Translators: Do not translate this list exactly.  These are
 #. * colon-separated words that aren't useful for choosing search
@@ -737,7 +731,7 @@ msgstr "Somari de l'ajuda"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1288
+#: ../src/yelp-search-parser.c:862
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -753,7 +747,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1304
+#: ../src/yelp-search-parser.c:878
 msgid "re"
 msgstr ""
 
@@ -764,332 +758,349 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1313
+#: ../src/yelp-search-parser.c:887
 msgid "ers:er:ing:es:s:'s"
 msgstr ""
 
-#: ../src/yelp-search-pager.c:1518 ../src/yelp-toc-pager.c:629
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Impossible de cargar lo fichièr OMF '%s'."
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-00AB"
-
-#: ../src/yelp-toc-pager.c:267
-msgid "YelpTocPager: Pause count is negative."
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
 msgstr ""
 
-#: ../src/yelp-toc-pager.c:378
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr ""
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr ""
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr ""
+
+#: ../src/yelp-toc.c:267
 #, c-format
+msgid "The page %s was not found in the TOC."
+msgstr ""
+
+#: ../src/yelp-toc.c:365
+msgid "The requested page was not found in the TOC."
+msgstr ""
+
+#: ../src/yelp-toc.c:436
 msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
 
-#: ../src/yelp-toc-pager.c:1109
-#, c-format
-msgid "Read man page for %s"
-msgstr "Legir la pagina man per %s"
-
-#: ../src/yelp-toc-pager.c:1701
-#, c-format
-msgid "Read info page for %s"
-msgstr "Legir la pagina info per %s"
-
-#: ../src/yelp-toc-pager.c:1814
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
 msgstr ""
 
-#: ../src/yelp-toc-pager.c:1836
-msgid "Command Line Help"
-msgstr "Ajuda per la linha de comanda"
+#: ../src/yelp-transform.c:81
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr ""
 
-#: ../src/yelp-window.c:317
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr ""
+
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr ""
+
+#: ../src/yelp-transform.c:368
+msgid "No href attribute found on yelp:document"
+msgstr ""
+
+#: ../src/yelp-transform.c:382
+msgid "Out of memory"
+msgstr "Pas pro de memòria"
+
+#: ../src/yelp-window.c:298
 msgid "_File"
 msgstr "_Fichièr"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:299
 msgid "_Edit"
 msgstr "_Edicion"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:300
 msgid "_Go"
 msgstr "_Anar"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:301
 msgid "_Bookmarks"
 msgstr "_Favorits"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:302
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: ../src/yelp-window.c:324
+#: ../src/yelp-window.c:305
 msgid "_New Window"
-msgstr "Fenèstra _nòva"
+msgstr "Fenèstra _novèla"
 
-#: ../src/yelp-window.c:329
-msgid "Print This Document"
-msgstr "Estampar aqueste document"
+#: ../src/yelp-window.c:310
+msgid "Print This Document ..."
+msgstr ""
 
-#: ../src/yelp-window.c:334
-msgid "Print This Page"
-msgstr "Estampar aquesta pagina"
+#: ../src/yelp-window.c:315
+msgid "Print This Page ..."
+msgstr ""
 
-#: ../src/yelp-window.c:339
+#: ../src/yelp-window.c:320
 msgid "About This Document"
 msgstr "A prepaus del document"
 
-#: ../src/yelp-window.c:344
+#: ../src/yelp-window.c:325
 msgid "Open _Location"
 msgstr "Dobrir un _emplaçament"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:330
 msgid "_Close Window"
 msgstr "_Tampar la fenèstra"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:336
 msgid "_Copy"
 msgstr "_Copiar"
 
-#: ../src/yelp-window.c:361
+#: ../src/yelp-window.c:342
 msgid "_Select All"
 msgstr "Tot _seleccionar"
 
-#: ../src/yelp-window.c:366
+#: ../src/yelp-window.c:347
 msgid "_Find..."
-msgstr "_Recèrcar"
+msgstr "_Recercar"
 
-#: ../src/yelp-window.c:371
+#: ../src/yelp-window.c:352
 msgid "Find Pre_vious"
-msgstr "Recèrcar lo _precedent"
+msgstr "Recercar lo _precedent"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:354
 msgid "Find previous occurrence of the word or phrase"
 msgstr ""
 
-#: ../src/yelp-window.c:376
+#: ../src/yelp-window.c:357
 msgid "Find Ne_xt"
-msgstr "Recèrcar lo seguent"
+msgstr "Recercar lo seguent"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:359
 msgid "Find next occurrence of the word or phrase"
 msgstr ""
 
-#: ../src/yelp-window.c:381
+#: ../src/yelp-window.c:362
 msgid "_Preferences"
 msgstr "_Preferéncias"
 
-#: ../src/yelp-window.c:386
+#: ../src/yelp-window.c:367
 msgid "_Reload"
 msgstr "_Tornar cargar"
 
-#: ../src/yelp-window.c:398
+#: ../src/yelp-window.c:379
 msgid "_Back"
 msgstr "_Tornar"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:381
 msgid "Show previous page in history"
 msgstr "Visualizar la pagina precedenta de l'istoric"
 
-#: ../src/yelp-window.c:403
+#: ../src/yelp-window.c:384
 msgid "_Forward"
 msgstr "_Seguent"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:386
 msgid "Show next page in history"
 msgstr "Visualizar la pagina seguenta de l'istoric"
 
-#: ../src/yelp-window.c:408
+#: ../src/yelp-window.c:389
 msgid "_Help Topics"
 msgstr "Somari de l'_ajuda"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:391
 msgid "Go to the listing of help topics"
 msgstr ""
 
-#: ../src/yelp-window.c:413
+#: ../src/yelp-window.c:394
 msgid "_Previous Section"
 msgstr "Seccion _precedenta"
 
-#: ../src/yelp-window.c:418
+#: ../src/yelp-window.c:399
 msgid "_Next Section"
 msgstr "Seccion _seguenta"
 
-#: ../src/yelp-window.c:423 ../src/yelp-window.c:455
+#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
 msgid "_Contents"
 msgstr "_Somari"
 
-#: ../src/yelp-window.c:429
+#: ../src/yelp-window.c:410
 msgid "_Add Bookmark"
 msgstr "_Apondre un favorit"
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:415
 msgid "_Edit Bookmarks..."
 msgstr "_Editar los favorits..."
 
-#: ../src/yelp-window.c:440
+#: ../src/yelp-window.c:421
 msgid "_Open Link"
-msgstr "_Dubrir lo ligam"
+msgstr "_Dobrir lo ligam"
 
-#: ../src/yelp-window.c:445
+#: ../src/yelp-window.c:426
 msgid "Open Link in _New Window"
 msgstr "Dobrir lo ligam dins una fenèstra _nòva"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:431
 msgid "_Copy Link Address"
 msgstr "_Copiar l'adreça del ligam"
 
-#: ../src/yelp-window.c:457
+#: ../src/yelp-window.c:438
 msgid "Help On this application"
-msgstr "Ajuda sus l'aplicacion"
+msgstr "A prepaus del logicial"
 
-#: ../src/yelp-window.c:460
+#: ../src/yelp-window.c:441
 msgid "_About"
 msgstr "_A prepaus"
 
-#: ../src/yelp-window.c:465
+#: ../src/yelp-window.c:446
 msgid "Copy _Email Address"
 msgstr "Copiar l'adreça _electronica"
 
-#: ../src/yelp-window.c:514
+#: ../src/yelp-window.c:495
 msgid "Help Browser"
 msgstr "Navegador d'ajuda"
 
-#: ../src/yelp-window.c:925 ../src/yelp-window.c:1081
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "L'URI del fichièr es pas valid."
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+msgid "Loading..."
+msgstr "Cargament..."
 
-#: ../src/yelp-window.c:937 ../src/yelp-window.c:1076
-#, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
+#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+msgid "Unknown Page"
 msgstr ""
 
-#: ../src/yelp-window.c:1025 ../src/yelp-window.c:1505
-msgid "Man pages are not supported in this version."
-msgstr "Las paginas de manual son pas geridas dins aquesta version."
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
+#, c-format
+msgid "The requested URI \"%s\" is invalid"
+msgstr ""
 
-#: ../src/yelp-window.c:1035 ../src/yelp-window.c:1496
-msgid "GNU info pages are not supported in this version"
-msgstr "Las paginas GNU info son pas geridas dins aquesta version"
-
-#: ../src/yelp-window.c:1051 ../src/yelp-window.c:1518
-msgid "Search is not supported in this version."
-msgstr "La foncion de recèrca es pas gerida dins aquesta version."
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+msgid "Unable to load page"
+msgstr ""
 
 #: ../src/yelp-window.c:1056
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
+msgid "Error executing \"gnome-open\""
 msgstr ""
 
-#: ../src/yelp-window.c:1222
+#: ../src/yelp-window.c:1238
 msgid "_Search:"
-msgstr "_Recèrcar :"
+msgstr "_Recercar :"
 
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1239
 msgid "Search for other documentation"
 msgstr "Recercar d'autras documentacions"
 
-#: ../src/yelp-window.c:1385
-msgid "Fin_d:"
-msgstr "_Recèrcar :"
+#: ../src/yelp-window.c:1258
+msgid "Cannot create window"
+msgstr ""
 
-#: ../src/yelp-window.c:1405
-msgid "Find _Next"
-msgstr "Recèrcar lo seguent"
+#: ../src/yelp-window.c:1264
+msgid "Cannot create search component"
+msgstr ""
+
+#: ../src/yelp-window.c:1397
+msgid "Fin_d:"
+msgstr "_Recercar :"
 
 #: ../src/yelp-window.c:1417
+msgid "Find _Next"
+msgstr "Recercar lo seguent"
+
+#: ../src/yelp-window.c:1429
 msgid "Find _Previous"
-msgstr "Recèrcar lo _precedent"
+msgstr "Recercar lo _precedent"
 
-#: ../src/yelp-window.c:1531
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
+#: ../src/yelp-window.c:1442
+msgid "Phrase not found"
 msgstr ""
 
-#: ../src/yelp-window.c:1561 ../src/yelp-window.c:1980
-#: ../src/yelp-window.c:2063
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-
-#: ../src/yelp-window.c:1676 ../src/yelp-window.c:2467
+#: ../src/yelp-window.c:1569
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 
-#: ../src/yelp-window.c:1727
-msgid "Loading..."
-msgstr "Cargament..."
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2901
+#: ../src/yelp-window.c:2389
 msgid "translator-credits"
-msgstr ""
-"La còla occitana de revirada d'Ubuntu, 2007 - ubuntu-l10n-oci@lists.ubuntu."
-"com"
+msgstr "La còla occitana de revirada d'Ubuntu, 2007 - ubuntu-l10n-oci@lists.ubuntu.com"
 
-#: ../src/yelp-window.c:2904
+#: ../src/yelp-window.c:2392
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2906
+#: ../src/yelp-window.c:2394
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navegador e legidor de documentacion pel burèu GNOME."
-
-#: ../src/yelp-xslt-pager.c:189
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"Impossible d'analizar lo fichièr '%s'. Ja lo fichièr existís pas, ja es pas "
-"plan formatat."
-
-#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr ""
+
+#~ msgid "An unknown error occured"
+#~ msgstr "I a agut una error desconeguda"
+
+#~ msgid "Could not load document"
+#~ msgstr "Impossible de cargar lo document"
+
+#~ msgid "Unsupported Format"
+#~ msgstr "Format pas gerit"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+#~ msgstr ""
+#~ "Impossible d'analizar lo fichièr '%s'. Ja lo fichièr existís pas, ja es "
+#~ "pas plan format."
+
+#~ msgid "The YelpDocInfo struct of the document"
+#~ msgstr "L'estructura YelpDocInfo del document"
+
+#~ msgid "Help Contents"
+#~ msgstr "Somari de l'ajuda"
+
+#~ msgid "Could not load the OMF file '%s'."
+#~ msgstr "Impossible de cargar lo fichièr OMF '%s'."
+
+#~ msgid "yelp-watermark-blockquote-201C"
+#~ msgstr "yelp-watermark-blockquote-00AB"
+
+#~ msgid "Read man page for %s"
+#~ msgstr "Legir la pagina man per %s"
+
+#~ msgid "Read info page for %s"
+#~ msgstr "Legir la pagina info per %s"
+
+#~ msgid "Command Line Help"
+#~ msgstr "Ajuda per la linha de comanda"
+
+#~ msgid "The Uniform Resource Identifier for the file is invalid."
+#~ msgstr "L'URI del fichièr es pas valid."
+
+#~ msgid "Man pages are not supported in this version."
+#~ msgstr "Las paginas de manual son pas geridas dins aquesta version."
+
+#~ msgid "GNU info pages are not supported in this version"
+#~ msgstr "Las paginas GNU info son pas geridas dins aquesta version"
+
+#~ msgid "Search is not supported in this version."
+#~ msgstr "La foncion de recèrca es pas gerida dins aquesta version."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+#~ msgstr ""
+#~ "Impossible d'analizar lo fichièr '%s'. Ja lo fichièr existís pas, ja es "
+#~ "pas plan formatat."
