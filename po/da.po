@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 04:18+0000\n"
-"PO-Revision-Date: 2007-04-10 01:16+0200\n"
+"POT-Creation-Date: 2007-08-23 18:44+0200\n"
+"PO-Revision-Date: 2007-08-23 15:24+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "GNU informationssider"
 
@@ -71,7 +71,7 @@ msgstr "Hardwareenheder"
 msgid "Kernel Routines"
 msgstr "Kernerutiner"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "Manual-sider"
 
@@ -568,55 +568,81 @@ msgstr "Emner i hjælp"
 msgid "Document Sections"
 msgstr "Dokumentafsnit"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
+#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+msgid "Page not found"
+msgstr "Siden ikke fundet"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "Siden %s blev ikke fundet i dokumentet %s."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
+#: ../src/yelp-man.c:388
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "Den forespurgte side blev ikke fundet i dokumentet %s."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
+#: ../src/yelp-man.c:430
+msgid "File not found"
+msgstr "Filen ikke fundet"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
+#: ../src/yelp-man.c:431
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Filen \"%s\" eksisterer ikke."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+msgid "Could not parse file"
+msgstr "Kunne ikke fortolke filen"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"Filen \"%s\" kunne ikke læses. Enten eksisterede filen ikke, eller den "
-"består ikke af gyldigt XML."
+"Filen \"%s\" kunne ikke fortolkes fordi den ikke er et korrekt XML-dokument."
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "En ukendt fejl opstod"
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Filen \"%s\" kunne ikke fortolkes fordi en eller flere af dens inkluderede "
+"filer ikke er et korrekt XML-dokument."
 
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "Kunne ikke indlæse dokument"
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+msgid "Unknown"
+msgstr "Ukendt"
 
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "Kunne ikke indlæse afsnit"
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Ukendt fejl"
 
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr "Kunne ikke læse indholdsfortegnelsen"
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+msgid "Could Not Read File"
+msgstr "Kunne ikke læse filen"
 
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "Ikke-understøttet format"
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "Kunne ikke læse dokument"
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "Kunne ikke behandle dokument"
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
 msgstr "Ingen oplysninger tilgængelige om fejlen."
 
-#: ../src/yelp-info-pager.c:188
+#: ../src/yelp-info.c:394
 #, c-format
 msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Filen ‘%s’ kunne ikke fortolkes. Enten eksisterer filen ikke eller også er "
-"den ikke en gyldig info-side."
+"Filen \"%s\" kunne ikke fortolkes fordi den ikke er en korrekt info-side."
 
 #: ../src/yelp-io-channel.c:107
 #, c-format
@@ -640,26 +666,20 @@ msgstr "Definér hvilken mellemlagermappe der skal benyttes"
 msgid " GNOME Help Browser"
 msgstr " GNOME-Hjælpebrowser"
 
-#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjælp"
 
-#: ../src/yelp-man-pager.c:263
+#: ../src/yelp-man.c:460
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
-"Filen \"%s\" kunne ikke læses. Enten eksisterede filen ikke, eller den er "
-"formateret forkert."
+"Filen \"%s\" kunne ikke fortolkes fordi den ikke er en korrekt man-side."
 
-#: ../src/yelp-pager.c:117
-msgid "Document Information"
-msgstr "Dokumentinformation"
-
-#: ../src/yelp-pager.c:118
-msgid "The YelpDocInfo struct of the document"
-msgstr "Dokumentets YelpDocInfo-struktur"
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "Udskriv"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
@@ -674,48 +694,41 @@ msgstr "Udskrivning til denne printer er ikke understøttet"
 msgid "Printer %s does not support postscript printing."
 msgstr "Printeren %s understøtter ikke postscript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:365
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Udskriver"
 
-#: ../src/yelp-print.c:367
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Venter på udskrift"
 
-#: ../src/yelp-print.c:579
+#: ../src/yelp-print.c:578
 msgid "An error occurred while printing"
 msgstr "Der opstod en fejl under udskrivning"
 
-#: ../src/yelp-print.c:583
+#: ../src/yelp-print.c:582
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "Det var ikke muligt at udskrive dit dokument: %s"
 
-#: ../src/yelp-search-pager.c:71
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "GNOME hjælpeforaene"
 
-#: ../src/yelp-search-pager.c:755
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-"Din søgning kunne ikke gennemføres. Filen ‘%s’ enten mangler eller er ikke "
-"et gyldigt XSLT-stilark."
-
-#: ../src/yelp-search-pager.c:807
+#: ../src/yelp-search-parser.c:276
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Ingen resultater for \"%s\""
 
-#: ../src/yelp-search-pager.c:808
+#: ../src/yelp-search-parser.c:277
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
-msgstr "Prøv at bruge forskellige ord til at beskrive det problem du har eller emnet du ønsker hjælp til."
+msgstr ""
+"Prøv at bruge forskellige ord til at beskrive det problem du har eller emnet "
+"du ønsker hjælp til."
 
-#: ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-parser.c:280
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Søgeresultater for \"%s\""
@@ -725,24 +738,10 @@ msgstr "Søgeresultater for \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:828
+#: ../src/yelp-search-parser.c:294
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Gentag søgningen på nettet på %s"
-
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2157
-#: ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr "Ingen \"href\"-egenskab fundet i \"yelp:document\""
-
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2170
-#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "Løbet tør for hukommelse"
-
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2219
-msgid "Help Contents"
-msgstr "Indhold i hjælp"
 
 # Man kunne oversætte disse, men da GNOME dokumentationen ikke bliver oversat til dansk foreløbig, vil søgningerne alligevel foregå på engelsk. Derfor lader jeg denne streng stå i dens engelske form
 #. Translators: Do not translate this list exactly.  These are
@@ -753,13 +752,17 @@ msgstr "Indhold i hjælp"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1286
+#: ../src/yelp-search-parser.c:862
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
-msgstr "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+msgstr ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -769,7 +772,7 @@ msgstr "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doe
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1302
+#: ../src/yelp-search-parser.c:878
 msgid "re"
 msgstr "re"
 
@@ -780,301 +783,276 @@ msgstr "re"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1311
+#: ../src/yelp-search-parser.c:887
 msgid "ers:er:ing:es:s:'s"
 msgstr "ers:er:ing:es:s:'s"
 
-#: ../src/yelp-search-pager.c:1516 ../src/yelp-toc-pager.c:631
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "Søgningen kunne ikke behandles"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "Den forespurgte søgning kunne ikke behandles."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "Kan ikke behandle søgningen"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "Søgeprocessoren returnerede ugyldige resultater"
+
+#: ../src/yelp-toc.c:267
 #, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Kunne ikke indlæse OMF-filen \"%s\"."
+msgid "The page %s was not found in the TOC."
+msgstr "Siden %s blev ikke fundet i indholdsfortegnelsen."
 
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201C"
+#: ../src/yelp-toc.c:365
+msgid "The requested page was not found in the TOC."
+msgstr "Den forespurgte side blev ikke fundet i indholdsfortegnelsen."
 
-#: ../src/yelp-toc-pager.c:268
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: Pausetal er negativt."
-
-#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
-#, c-format
+#: ../src/yelp-toc.c:436
 msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"Indholdsfortegnelsen kunne ikke behandles. Filen \"%s\" enten mangler eller "
-"er ikke et gyldigt XSLT-stilark."
+"Indholdsfortegnelsesfilen kunne ikke fortolkes fordi den ikke er et korrekt "
+"XML-dokument."
 
-#: ../src/yelp-toc-pager.c:1110
+# måske vil det være bedre at beholde style sheet, eftersom det er en meget accepteret betegnelse; diskuter gerne
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
+msgstr "Ugyldigt stilark"
+
+#: ../src/yelp-transform.c:81
 #, c-format
-msgid "Read man page for %s"
-msgstr "Læs man-side for %s"
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "XSLT-stilarket \"%s\" enten mangler eller er ugyldigt."
 
-#: ../src/yelp-toc-pager.c:1703
-#, c-format
-msgid "Read info page for %s"
-msgstr "Læs informationsside for %s"
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr "Forfejlet transformation"
 
-#: ../src/yelp-toc-pager.c:1816
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-"Indholdsfortegnelsen kunne ikke indlæses. Filen \"%s\" enten mangler eller "
-"består ikke af gyldigt XML."
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "En ukendt fejl opstod under forsøget på at transformere dokumentet."
 
-#: ../src/yelp-toc-pager.c:1838
-msgid "Command Line Help"
-msgstr "Hjælp til kommandolinje"
+#: ../src/yelp-transform.c:368
+msgid "No href attribute found on yelp:document"
+msgstr "Ingen \"href\"-egenskab fundet i \"yelp:document\""
 
-#: ../src/yelp-window.c:317
+#: ../src/yelp-transform.c:382
+msgid "Out of memory"
+msgstr "Løbet tør for hukommelse"
+
+#: ../src/yelp-window.c:298
 msgid "_File"
 msgstr "_Fil"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:299
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:300
 msgid "_Go"
 msgstr "_Navigering"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:301
 msgid "_Bookmarks"
 msgstr "_Bogmærker"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:302
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: ../src/yelp-window.c:324
+#: ../src/yelp-window.c:305
 msgid "_New Window"
 msgstr "_Nyt vindue"
 
-#: ../src/yelp-window.c:329
-msgid "Print This Document"
-msgstr "Udskriv dette dokument"
+#: ../src/yelp-window.c:310
+msgid "Print This Document ..."
+msgstr "Udskriv dette dokument ..."
 
-#: ../src/yelp-window.c:334
-msgid "Print This Page"
-msgstr "Udskriv denne side"
+#: ../src/yelp-window.c:315
+msgid "Print This Page ..."
+msgstr "Udskriv denne side ..."
 
-#: ../src/yelp-window.c:339
+#: ../src/yelp-window.c:320
 msgid "About This Document"
 msgstr "Om dette dokument"
 
-#: ../src/yelp-window.c:344
+#: ../src/yelp-window.c:325
 msgid "Open _Location"
 msgstr "Åbn _sted"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:330
 msgid "_Close Window"
 msgstr "_Luk vindue"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:336
 msgid "_Copy"
 msgstr "_Kopiér"
 
-#: ../src/yelp-window.c:361
+#: ../src/yelp-window.c:342
 msgid "_Select All"
 msgstr "_Markér alt"
 
-#: ../src/yelp-window.c:366
+#: ../src/yelp-window.c:347
 msgid "_Find..."
 msgstr "_Søg..."
 
-#: ../src/yelp-window.c:371
+#: ../src/yelp-window.c:352
 msgid "Find Pre_vious"
 msgstr "Find fo_rrige"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:354
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Find forrige forekomst af ordet eller sætningen"
 
-#: ../src/yelp-window.c:376
+#: ../src/yelp-window.c:357
 msgid "Find Ne_xt"
 msgstr "Find næ_ste"
 
-#: ../src/yelp-window.c:378
+#: ../src/yelp-window.c:359
 msgid "Find next occurrence of the word or phrase"
 msgstr "Find næste forekomst af ordet eller sætningen"
 
-#: ../src/yelp-window.c:381
+#: ../src/yelp-window.c:362
 msgid "_Preferences"
 msgstr "_Indstillinger"
 
-#: ../src/yelp-window.c:386
+#: ../src/yelp-window.c:367
 msgid "_Reload"
 msgstr "_Genindlæs"
 
-#: ../src/yelp-window.c:398
+#: ../src/yelp-window.c:379
 msgid "_Back"
 msgstr "_Tilbage"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:381
 msgid "Show previous page in history"
 msgstr "Vis foregående side i historikken"
 
-#: ../src/yelp-window.c:403
+#: ../src/yelp-window.c:384
 msgid "_Forward"
 msgstr "F_remad"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:386
 msgid "Show next page in history"
 msgstr "Vis næste side i historikken"
 
-#: ../src/yelp-window.c:408
+#: ../src/yelp-window.c:389
 msgid "_Help Topics"
 msgstr "_Emner i hjælp"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:391
 msgid "Go to the listing of help topics"
 msgstr "Gå til listen med emner i hjælp"
 
-#: ../src/yelp-window.c:413
+#: ../src/yelp-window.c:394
 msgid "_Previous Section"
 msgstr "_Forrige afsnit"
 
-#: ../src/yelp-window.c:418
+#: ../src/yelp-window.c:399
 msgid "_Next Section"
 msgstr "_Næste afsnit"
 
-#: ../src/yelp-window.c:423 ../src/yelp-window.c:455
+#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
 msgid "_Contents"
 msgstr "_Indhold"
 
-#: ../src/yelp-window.c:429
+#: ../src/yelp-window.c:410
 msgid "_Add Bookmark"
 msgstr "_Tilføj bogmærke"
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:415
 msgid "_Edit Bookmarks..."
 msgstr "_Redigér bogmærker..."
 
-#: ../src/yelp-window.c:440
+#: ../src/yelp-window.c:421
 msgid "_Open Link"
 msgstr "_Åbn link"
 
-#: ../src/yelp-window.c:445
+#: ../src/yelp-window.c:426
 msgid "Open Link in _New Window"
 msgstr "Åbn link i _nyt vindue"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:431
 msgid "_Copy Link Address"
 msgstr "_Kopiér link-adresse"
 
-#: ../src/yelp-window.c:457
+#: ../src/yelp-window.c:438
 msgid "Help On this application"
 msgstr "Hjælp til dette program"
 
-#: ../src/yelp-window.c:460
+#: ../src/yelp-window.c:441
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/yelp-window.c:465
+#: ../src/yelp-window.c:446
 msgid "Copy _Email Address"
 msgstr "Kopiér _e-post-adresse"
 
-#: ../src/yelp-window.c:514
+#: ../src/yelp-window.c:495
 msgid "Help Browser"
 msgstr "Hjælpelæser"
 
-#: ../src/yelp-window.c:925 ../src/yelp-window.c:1081
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "Adressen på filen er ugyldig."
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+msgid "Loading..."
+msgstr "Indlæser..."
 
-#: ../src/yelp-window.c:937 ../src/yelp-window.c:1076
+#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+msgid "Unknown Page"
+msgstr "Ukendt side"
+
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr "Adressen \"%s\" er ugyldig eller peger ikke på en fil."
+msgid "The requested URI \"%s\" is invalid"
+msgstr "Den forespurgte URI \"%s\" er ugyldig"
 
-#: ../src/yelp-window.c:1025 ../src/yelp-window.c:1505
-msgid "Man pages are not supported in this version."
-msgstr "Man-sider understøttes ikke i denne version."
-
-#: ../src/yelp-window.c:1035 ../src/yelp-window.c:1496
-msgid "GNU info pages are not supported in this version"
-msgstr "GNU-info-sider understøttes ikke i denne version"
-
-#: ../src/yelp-window.c:1051 ../src/yelp-window.c:1518
-msgid "Search is not supported in this version."
-msgstr "Søgning understøttes ikke i denne version."
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+msgid "Unable to load page"
+msgstr "Kunne ikke hente siden"
 
 #: ../src/yelp-window.c:1056
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-"SGML-dokumenter understøttes ikke længere. Bed venligst forfatteren af "
-"dokumentet om at konvertere det til XML."
+msgid "Error executing \"gnome-open\""
+msgstr "Fejl ved eksekvering af \"gnome-open\""
 
-#: ../src/yelp-window.c:1222
+#: ../src/yelp-window.c:1238
 msgid "_Search:"
 msgstr "_Søg efter:"
 
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1239
 msgid "Search for other documentation"
 msgstr "Søg efter anden dokumentation"
 
-#: ../src/yelp-window.c:1385
+#: ../src/yelp-window.c:1258
+msgid "Cannot create window"
+msgstr "Kun ikke danne vinduet"
+
+#: ../src/yelp-window.c:1264
+msgid "Cannot create search component"
+msgstr "Kan ikke danne søgekomponenten"
+
+#: ../src/yelp-window.c:1397
 msgid "Fin_d:"
 msgstr "Sø_g:"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1417
 msgid "Find _Next"
 msgstr "Find _næste"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1429
 msgid "Find _Previous"
 msgstr "Find _forrige"
 
-#: ../src/yelp-window.c:1531
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
-"En transformationskontekst kunne ikke oprettes for filen \"%s\". Formatet "
-"understøttes muligvis ikke."
+#: ../src/yelp-window.c:1442
+msgid "Phrase not found"
+msgstr "Udtrykket blev ikke fundet"
 
-#: ../src/yelp-window.c:1561 ../src/yelp-window.c:1980
-#: ../src/yelp-window.c:2063
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-"Afsnittet \"%s\" eksisterer ikke i dette dokument. Hvis du blev dirigeret "
-"til dette afsnit fra en \"Hjælp\"-knap i et program, så rapportér venligst "
-"dette til vedligeholderne af det program."
-
-#: ../src/yelp-window.c:1676 ../src/yelp-window.c:2467
+#: ../src/yelp-window.c:1569
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1083,13 +1061,9 @@ msgstr ""
 "Filen \"%s\" kunne ikke læses. Filen kan mangle, eller du har måske ikke "
 "rettigheder til at læse den."
 
-#: ../src/yelp-window.c:1727
-msgid "Loading..."
-msgstr "Indlæser..."
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2901
+#: ../src/yelp-window.c:2389
 msgid "translator-credits"
 msgstr ""
 "Ole Laursen\n"
@@ -1100,36 +1074,129 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/yelp-window.c:2904
+#: ../src/yelp-window.c:2392
 msgid "Yelp"
 msgstr "Yelp"
 
 # skidt med "browser"-delen
-#: ../src/yelp-window.c:2906
+#: ../src/yelp-window.c:2394
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "En dokumentationsfremviser til Gnome."
-
-#: ../src/yelp-xslt-pager.c:189
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"Filen \"%s\" kunne ikke læses. Enten eksisterer filen ikke, eller den er "
-"formateret forkert."
-
-#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-"Dokumentet \"%s\"  kunne ikke behandles. Filen \"%s\" enten mangler eller er "
-"ikke et gyldigt XSLT-stilark."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjælp til Gnome"
+
+#~ msgid "An unknown error occured"
+#~ msgstr "En ukendt fejl opstod"
+
+#~ msgid "Could not load document"
+#~ msgstr "Kunne ikke indlæse dokument"
+
+#~ msgid "Could not read the table of contents"
+#~ msgstr "Kunne ikke læse indholdsfortegnelsen"
+
+#~ msgid "Unsupported Format"
+#~ msgstr "Ikke-understøttet format"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+#~ msgstr ""
+#~ "Filen \"%s\" kunne ikke læses. Enten eksisterede filen ikke, eller den er "
+#~ "formateret forkert."
+
+#~ msgid "The YelpDocInfo struct of the document"
+#~ msgstr "Dokumentets YelpDocInfo-struktur"
+
+#~ msgid ""
+#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
+#~ "not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Din søgning kunne ikke gennemføres. Filen ‘%s’ enten mangler eller er "
+#~ "ikke et gyldigt XSLT-stilark."
+
+#~ msgid "Help Contents"
+#~ msgstr "Indhold i hjælp"
+
+#~ msgid "Could not load the OMF file '%s'."
+#~ msgstr "Kunne ikke indlæse OMF-filen \"%s\"."
+
+#~ msgid "yelp-watermark-blockquote-201C"
+#~ msgstr "yelp-watermark-blockquote-201C"
+
+#~ msgid "YelpTocPager: Pause count is negative."
+#~ msgstr "YelpTocPager: Pausetal er negativt."
+
+#~ msgid ""
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Indholdsfortegnelsen kunne ikke behandles. Filen \"%s\" enten mangler "
+#~ "eller er ikke et gyldigt XSLT-stilark."
+
+#~ msgid "Read man page for %s"
+#~ msgstr "Læs man-side for %s"
+
+#~ msgid "Read info page for %s"
+#~ msgstr "Læs informationsside for %s"
+
+#~ msgid ""
+#~ "The table of contents could not be loaded. The file ‘%s’ is either "
+#~ "missing or is not well-formed XML."
+#~ msgstr ""
+#~ "Indholdsfortegnelsen kunne ikke indlæses. Filen \"%s\" enten mangler "
+#~ "eller består ikke af gyldigt XML."
+
+#~ msgid "Command Line Help"
+#~ msgstr "Hjælp til kommandolinje"
+
+#~ msgid "The Uniform Resource Identifier for the file is invalid."
+#~ msgstr "Adressen på filen er ugyldig."
+
+#~ msgid ""
+#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+#~ "actual file."
+#~ msgstr "Adressen \"%s\" er ugyldig eller peger ikke på en fil."
+
+#~ msgid "Man pages are not supported in this version."
+#~ msgstr "Man-sider understøttes ikke i denne version."
+
+#~ msgid "GNU info pages are not supported in this version"
+#~ msgstr "GNU-info-sider understøttes ikke i denne version"
+
+#~ msgid "Search is not supported in this version."
+#~ msgstr "Søgning understøttes ikke i denne version."
+
+#~ msgid ""
+#~ "SGML documents are no longer supported. Please ask the author of the "
+#~ "document to convert to XML."
+#~ msgstr ""
+#~ "SGML-dokumenter understøttes ikke længere. Bed venligst forfatteren af "
+#~ "dokumentet om at konvertere det til XML."
+
+#~ msgid ""
+#~ "A transformation context could not be created for the file ‘%s’. The "
+#~ "format may not be supported."
+#~ msgstr ""
+#~ "En transformationskontekst kunne ikke oprettes for filen \"%s\". Formatet "
+#~ "understøttes muligvis ikke."
+
+#~ msgid ""
+#~ "The section ‘%s’ does not exist in this document. If you were directed to "
+#~ "this section from a Help button in an application, please report this to "
+#~ "the maintainers of that application."
+#~ msgstr ""
+#~ "Afsnittet \"%s\" eksisterer ikke i dette dokument. Hvis du blev dirigeret "
+#~ "til dette afsnit fra en \"Hjælp\"-knap i et program, så rapportér "
+#~ "venligst dette til vedligeholderne af det program."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+#~ msgstr ""
+#~ "Filen \"%s\" kunne ikke læses. Enten eksisterer filen ikke, eller den er "
+#~ "formateret forkert."
 
 #~ msgid "Library Functions"
 #~ msgstr "Biblioteksfunktioner"
@@ -1148,9 +1215,6 @@ msgstr "Få hjælp til Gnome"
 
 #~ msgid "Could not activate Yelp: '%s'"
 #~ msgstr "Kunne ikke aktivere Yelp: '%s'"
-
-#~ msgid "Could not open new window."
-#~ msgstr "Kunne ikke åbne nyt vindue."
 
 #~ msgid "Pages"
 #~ msgstr "Sider"
@@ -1192,9 +1256,6 @@ msgstr "Få hjælp til Gnome"
 
 #~ msgid "<b>_Title:</b>"
 #~ msgstr "<b>_Titel:</b>"
-
-#~ msgid "Unknown Section"
-#~ msgstr "Ukendt afsnit"
 
 #~ msgid "Caution"
 #~ msgstr "Advarsel"
@@ -1342,9 +1403,6 @@ msgstr "Få hjælp til Gnome"
 
 #~ msgid "A Help Browser for GNOME"
 #~ msgstr "En hjælpelæser til Gnome"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Dokumentet '%s' eksisterer ikke"
 
 #~ msgid "<b>Find text in the document:</b>"
 #~ msgstr "<b>Find tekst i dokumentet:</b>"
