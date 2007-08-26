@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.15.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-12 21:31+0900\n"
-"PO-Revision-Date: 2006-08-12 21:36+0900\n"
-"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"POT-Creation-Date: 2007-08-18 13:55+0900\n"
+"PO-Revision-Date: 2007-08-18 14:09+0900\n"
+"Last-Translator: Young-Ho Cha <ganadist@gmail.com>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "GNU 정보 페이지"
 
@@ -59,7 +59,7 @@ msgstr "하드웨어 장치"
 msgid "Kernel Routines"
 msgstr "커널 루틴"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "설명서 페이지"
 
@@ -553,55 +553,83 @@ msgstr "도움말 주제"
 msgid "Document Sections"
 msgstr "문서 섹션"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
+#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+msgid "Page not found"
+msgstr "페이지가 없습니다"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "%s 페이지를 %s 문서에서 찾을 수 없습니다."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
+#: ../src/yelp-man.c:388
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "요청한 페이지를 %s 문서에서 찾을 수 없습니다."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
+#: ../src/yelp-man.c:430
+msgid "File not found"
+msgstr "문서가 없습니다"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
+#: ../src/yelp-man.c:431
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "파일 ‘%s’ d(이)가 없습니다."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+msgid "Could not parse file"
+msgstr "파일을 분석할 수 없습니다"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"'%s' 파일을 파싱할 수 없습니다. 파일이 없거나 올바른 형식의 XML이 아닙니다."
+"'%s' 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "알 수 없는 오류가 발생했습니다"
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"'%s' 파일을 분석할 수 없습니다. 포함된 하나이상의 파일이 올바른 형식의 "
+"XML문서가 아닙니다."
 
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "문서를 읽어들일 수 없습니다"
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+msgid "Unknown"
+msgstr "알 수 없음"
 
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "섹션을 읽어들일 수 없습니다"
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "알 수 없는 오류"
 
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr "차례를 읽을 수 없습니다"
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+msgid "Could Not Read File"
+msgstr "파일을 읽을 수 없습니다"
 
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "이 형식을 지원하지 않습니다"
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "문서를 읽을 수 없습니다"
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "문서를 처리할 수 없습니다"
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
 msgstr "오류에 관한 정보가 없습니다."
 
-#: ../src/yelp-info-pager.c:188
+#: ../src/yelp-info.c:394
 #, c-format
 msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"‘%s’ 파일을 분석할 수 없습니다. 파일이 없거나 올바른 형식의 XML이 아닙니다."
+"‘%s’ 파일을 분석할 수 없습니다.  올바른 형식의 정보 페이지가 아닙니다."
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-io-channel.c:107
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -610,38 +638,33 @@ msgstr ""
 "‘%s’ 파일을 읽고 디코딩할 수 없습니다. 파일이 지원하지 않는 형식으로 압축되었"
 "을 것입니다."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:92
 msgid "Use a private session"
 msgstr "개인 세션을 엽니다"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
 msgstr "사용할 캐쉬 디렉토리를 정의합니다"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:354
+#: ../src/yelp-main.c:358
 msgid " GNOME Help Browser"
 msgstr " 그놈 도움말 브라우저"
 
-#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "도움말"
 
-#: ../src/yelp-man-pager.c:263
+#: ../src/yelp-man.c:460
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
-"‘%s’ 파일을 분석할 수 없습니다.  파일이 없거나 파일 형식이 틀렸을 것입니다."
+"‘%s’ 파일을 분석할 수 없습니다. 파올바른 형식의 설명서 페이지가 아닙니다."
 
-#: ../src/yelp-pager.c:117
-msgid "Document Information"
-msgstr "문서 정보"
-
-#: ../src/yelp-pager.c:118
-msgid "The YelpDocInfo struct of the document"
-msgstr "문서의 YelpDocInfo 구조"
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "인쇄"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
@@ -656,13 +679,9 @@ msgstr "이 프린터가 인쇄를 지원하지 않습니다."
 msgid "Printer %s does not support postscript printing."
 msgstr "%s 프린터가 포스트스크립트를 지원하지 않습니다."
 
-#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "인쇄중"
-
-#: ../src/yelp-print.c:364
-msgid "<b>Printing</b>"
-msgstr "<b>인쇄중</b>"
 
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
@@ -677,32 +696,23 @@ msgstr "인쇄중 오류가 생겼습니다"
 msgid "It was not possible to print your document: %s"
 msgstr "문서를 인쇄할 수 없습니다: %s"
 
-#: ../src/yelp-search-pager.c:71
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "그놈 지원 포럼"
 
-#: ../src/yelp-search-pager.c:755
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-"찾기를 처리할 수 없습니다. '%s' 파일이 없거나 올바른 XSLT 스타일시트가 아닙니"
-"다."
-
-#: ../src/yelp-search-pager.c:807
+#: ../src/yelp-search-parser.c:276
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\"에 대한 결과가 없습니다"
 
-#: ../src/yelp-search-pager.c:808
+#: ../src/yelp-search-parser.c:277
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 "문제가 되는 사항이나 도움이 필요한 주제에 대해 다른 단어를 사용해 보십시오."
 
-#: ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-parser.c:280
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\"에 대한 찾기 결과"
@@ -712,24 +722,10 @@ msgstr "\"%s\"에 대한 찾기 결과"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:828
+#: ../src/yelp-search-parser.c:294
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "온라인으로 %s 사이트에서 다시 찾기"
-
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
-#: ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr "yelp:document에 href 속성이 없습니다"
-
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
-#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "메모리가 부족합니다"
-
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
-msgid "Help Contents"
-msgstr "도움말 차례"
 
 # FIXME: 생각해 봐야...
 #. Translators: Do not translate this list exactly.  These are
@@ -740,7 +736,7 @@ msgstr "도움말 차례"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1286
+#: ../src/yelp-search-parser.c:862
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -757,7 +753,7 @@ msgstr "NULL"
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1302
+#: ../src/yelp-search-parser.c:878
 msgid "re"
 msgstr "NULL"
 
@@ -769,299 +765,275 @@ msgstr "NULL"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1311
+#: ../src/yelp-search-parser.c:887
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
-#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "검색을 할 수 없습니다."
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "요청한 검색을 할 수 없습니다."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "검색을 진행할 수 없습니다"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "검색 프로세서가 잘못된 결과값은 반환하였습니다"
+
+#: ../src/yelp-toc.c:267
 #, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "'%s' OMF 파일을 읽어들일 수 없습니다."
+msgid "The page %s was not found in the TOC."
+msgstr "페이지 %s를 차례에서 찾을 수 없습니다."
 
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201C"
+#: ../src/yelp-toc.c:365
+msgid "The requested page was not found in the TOC."
+msgstr "요청한 페이지를 차례에서 찾을 수 없습니다."
 
-#: ../src/yelp-toc-pager.c:268
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: 쉬기 회수가 음수입니다."
-
-#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
-#, c-format
+#: ../src/yelp-toc.c:436
 msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"차례를 처리할 수 없습니다. '%s' 파일이 없거나 올바른 XSLT 스타일시트가 아닙니"
-"다."
+"차례 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
 
-#: ../src/yelp-toc-pager.c:1110
-#, c-format
-msgid "Read man page for %s"
-msgstr "%s에 관한 man 페이지를 읽습니다"
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
+msgstr "잘못된 스타일시트"
 
-#: ../src/yelp-toc-pager.c:1703
+#: ../src/yelp-transform.c:81
 #, c-format
-msgid "Read info page for %s"
-msgstr "%s에 관한 정보 페이지를 읽습니다"
-
-#: ../src/yelp-toc-pager.c:1816
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr ""
-"차례를 읽어들일 수 없습니다. '%s' 파일이 없거나 올바른 형식의 XML이 아닙니다."
+"XSLT 스타일시트 '%s' 파일이 없거나, 올바르지 않습니다."
 
-#: ../src/yelp-toc-pager.c:1838
-msgid "Command Line Help"
-msgstr "명령행 도움말"
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr "변환 깨짐"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "문서를 변환하는 중 알 수 없는 오류가 생겼습니다."
+
+#: ../src/yelp-transform.c:368
+msgid "No href attribute found on yelp:document"
+msgstr "yelp:document에 href 속성이 없습니다"
+
+#: ../src/yelp-transform.c:382
+msgid "Out of memory"
+msgstr "메모리가 부족합니다"
+
+#: ../src/yelp-window.c:298
 msgid "_File"
 msgstr "파일(_F)"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:299
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:300
 msgid "_Go"
 msgstr "이동(_G)"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:301
 msgid "_Bookmarks"
 msgstr "책갈피(_B)"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:302
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:305
 msgid "_New Window"
 msgstr "새 창(_N)"
 
-#: ../src/yelp-window.c:330
-msgid "Print This Document"
-msgstr "이 문서를 인쇄합니다"
+#: ../src/yelp-window.c:310
+msgid "Print This Document ..."
+msgstr "이 문서를 인쇄합니다..."
 
-#: ../src/yelp-window.c:335
-msgid "Print This Page"
-msgstr "이 페이지를 인쇄합니다"
+#: ../src/yelp-window.c:315
+msgid "Print This Page ..."
+msgstr "이 페이지를 인쇄합니다..."
 
-#: ../src/yelp-window.c:340
+#: ../src/yelp-window.c:320
 msgid "About This Document"
 msgstr "이 문서 정보"
 
-#: ../src/yelp-window.c:345
+#: ../src/yelp-window.c:325
 msgid "Open _Location"
 msgstr "위치 열기(_L)"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:330
 msgid "_Close Window"
 msgstr "창 닫기(_C)"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:336
 msgid "_Copy"
 msgstr "복사(_C)"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:342
 msgid "_Select All"
 msgstr "전부 선택(_S)"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:347
 msgid "_Find..."
 msgstr "찾기(_F)..."
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:352
 msgid "Find Pre_vious"
 msgstr "이전 찾기(_V)"
 
-#: ../src/yelp-window.c:374
+#: ../src/yelp-window.c:354
 msgid "Find previous occurrence of the word or phrase"
 msgstr "이전에 나타난 단어나 문장을 찾습니다"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:357
 msgid "Find Ne_xt"
 msgstr "다음 찾기(_X)"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:359
 msgid "Find next occurrence of the word or phrase"
 msgstr "다음에 나타나는 단어나 문장을 찾습니다"
 
-#: ../src/yelp-window.c:382
+#: ../src/yelp-window.c:362
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:367
 msgid "_Reload"
 msgstr "다시 읽기(_R)"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:379
 msgid "_Back"
 msgstr "뒤로(_B)"
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:381
 msgid "Show previous page in history"
 msgstr "방문 기록의 이전 페이지를 봅니다"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:384
 msgid "_Forward"
 msgstr "앞으로(_F)"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:386
 msgid "Show next page in history"
 msgstr "방문 기록의 다음 페이지를 봅니다"
 
-#: ../src/yelp-window.c:409
+#: ../src/yelp-window.c:389
 msgid "_Help Topics"
 msgstr "도움말 주제(_H)"
 
-#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:391
 msgid "Go to the listing of help topics"
 msgstr "도움말 주제 목록으로 갑니다"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:394
 msgid "_Previous Section"
 msgstr "이전 섹션(_P)"
 
-#: ../src/yelp-window.c:419
+#: ../src/yelp-window.c:399
 msgid "_Next Section"
 msgstr "다음 섹션(_N)"
 
-#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
+#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
 msgid "_Contents"
 msgstr "차례(_C)"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:410
 msgid "_Add Bookmark"
 msgstr "책갈피 더하기(_A)"
 
-#: ../src/yelp-window.c:435
+#: ../src/yelp-window.c:415
 msgid "_Edit Bookmarks..."
 msgstr "책갈피 편집(_E)..."
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:421
 msgid "_Open Link"
 msgstr "바로 가기 열기(_O)"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:426
 msgid "Open Link in _New Window"
 msgstr "바로 가기 새 창에서 열기(_N)"
 
-#: ../src/yelp-window.c:451
+#: ../src/yelp-window.c:431
 msgid "_Copy Link Address"
 msgstr "바로 가기 주소 복사(_C)"
 
-#: ../src/yelp-window.c:458
+#: ../src/yelp-window.c:438
 msgid "Help On this application"
 msgstr "이 프로그램에 대한 도움말"
 
-#: ../src/yelp-window.c:461
+#: ../src/yelp-window.c:441
 msgid "_About"
 msgstr "정보(_A)"
 
-#: ../src/yelp-window.c:466
+#: ../src/yelp-window.c:446
 msgid "Copy _Email Address"
 msgstr "바로 가기 주소 복사(_E)"
 
-#: ../src/yelp-window.c:515
+#: ../src/yelp-window.c:495
 msgid "Help Browser"
 msgstr "도움말 브라우저"
 
-#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "파일에 대한 URI가 잘못되었습니다."
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+msgid "Loading..."
+msgstr "읽고 있습니다..."
 
-#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+msgid "Unknown Page"
+msgstr "알 수 없는 페이지"
+
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr "'%s' URI가 잘못되었거나 실제 파일을 가리키는 URI가 아닙니다."
+msgid "The requested URI \"%s\" is invalid"
+msgstr "요청한 URI \"%s\"(은)는 올바르지 않습니다"
 
-#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
-msgid "Man pages are not supported in this version."
-msgstr "이 버전은 Man 페이지를 지원하지 않습니다."
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+msgid "Unable to load page"
+msgstr "페이지를 읽을 수 없습니다"
 
-#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
-msgid "GNU info pages are not supported in this version"
-msgstr "이 버전은 GNU info 페이지를 지원하지 않습니다"
+#: ../src/yelp-window.c:1056
+msgid "Error executing \"gnome-open\""
+msgstr "\"gnome-open\"실행하는데 오류"
 
-#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
-msgid "Search is not supported in this version."
-msgstr "이 버전은 찾기를 지원하지 않습니다."
-
-#: ../src/yelp-window.c:1057
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-"SGML 문서는 더 이상 지원하지 않습니다. 문서 작성자에게 XML로 변환하라고 요청"
-"하십시오."
-
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1238
 msgid "_Search:"
 msgstr "찾기(_S):"
 
-#: ../src/yelp-window.c:1224
+#: ../src/yelp-window.c:1239
 msgid "Search for other documentation"
 msgstr "다른 문서에서 찾습니다"
 
-#: ../src/yelp-window.c:1386
+#: ../src/yelp-window.c:1258
+msgid "Cannot create window"
+msgstr "새 창을 열 수 없습니다"
+
+#: ../src/yelp-window.c:1264
+msgid "Cannot create search component"
+msgstr "검색 컴포넌트를 만들 수 없습니다"
+
+#: ../src/yelp-window.c:1397
 msgid "Fin_d:"
 msgstr "찾기(_D):"
 
-#: ../src/yelp-window.c:1406
+#: ../src/yelp-window.c:1417
 msgid "Find _Next"
 msgstr "다음 찾기(_N)"
 
-#: ../src/yelp-window.c:1418
+#: ../src/yelp-window.c:1429
 msgid "Find _Previous"
 msgstr "이전 찾기(_P)"
 
-#: ../src/yelp-window.c:1532
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
-"'%s' 파일에 필요한 변환 컨텍스트를 만들 수 없습니다. 이 형식을 지원하지 않을 "
-"것입니다."
+#: ../src/yelp-window.c:1442
+msgid "Phrase not found"
+msgstr "어구를 찾을 수 없습니다"
 
-#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
-#: ../src/yelp-window.c:2064
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-"이 문서에는 '%s' 섹션이 없습니다. 프로그램의 도움말 단추를 통해 이 섹션에 들"
-"어왔다면, 프로그램의 관리자에게 알려 주십시오."
-
-#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
+#: ../src/yelp-window.c:1569
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1069,360 +1041,20 @@ msgid ""
 msgstr ""
 "'%s' 파일을 읽을 수 없습니다.  파일이 없거나, 파일을 읽을 권한이 없습니다."
 
-#: ../src/yelp-window.c:1728
-msgid "Loading..."
-msgstr "읽고 있습니다..."
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2911
+#: ../src/yelp-window.c:2389
 msgid "translator-credits"
 msgstr "차영호 <ganadist@gmail.com>"
 
-#: ../src/yelp-window.c:2914
+#: ../src/yelp-window.c:2392
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2916
+#: ../src/yelp-window.c:2394
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "그놈 데스크탑 문서 보기 프로그램."
-
-#: ../src/yelp-xslt-pager.c:189
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr "'%s' 파일을 파싱할 수 없습니다. 파일이 없거나, 형식이 틀렸습니다."
-
-#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-"'%s' 문서를 처리할 수 없습니다. '%s' 파일이 없거나, 올바른 XSLT 스타일시트가 "
-"아닙니다."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "그놈에서 도움말을 봅니다"
-
-#~ msgid "Pages"
-#~ msgstr "쪽"
-
-#~ msgid "Generating PDF is not currently supported"
-#~ msgstr "PDF 생선은 현재 지원하지 않습니다"
-
-#~ msgid ""
-#~ "You were trying to print to a printer using the \"%s\" driver.  This "
-#~ "program requires a PostScript printer driver."
-#~ msgstr ""
-#~ "\"%s\" 드라이버로 인쇄하려 했습니다. 이 프로그램은 포스트스크립트 프린터 "
-#~ "드라이버가 필요합니다."
-
-#~ msgid "_From:"
-#~ msgstr "시작(_F):"
-
-#~ msgid "Sets the start of the range of pages to be printed"
-#~ msgstr "인쇄를 시작할 쪽을 설정합니다"
-
-#~ msgid "_To:"
-#~ msgstr "끝(_T):"
-
-#~ msgid "Sets the end of the range of pages to be printed"
-#~ msgstr "인쇄를 마칠 쪽을 설정합니다"
-
-#~ msgid ""
-#~ "Could not display help for Yelp.\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Yelp의 도움말을 표시할 수 없습니다.\n"
-#~ "%s"
-
-#~ msgid "Library Functions"
-#~ msgstr "라이브러리 함수"
-
-#~ msgid "Administration"
-#~ msgstr "시스템 관리"
-
-#~ msgid "Other"
-#~ msgstr "기타"
-
-#~ msgid "Multimedia"
-#~ msgstr "멀티미디어"
-
-#~ msgid "Yelp Factory"
-#~ msgstr "Yelp 팩토리"
-
-#~ msgid "Could not open new window."
-#~ msgstr "새 창을 열 수 없습니다."
-
-#~ msgid "<b>_Bookmarks:</b>"
-#~ msgstr "<b>북마크(_B):</b>"
-
-#~ msgid "<b>_Title:</b>"
-#~ msgstr "<b>제목(_T):</b>"
-
-#~ msgid "Unknown Section"
-#~ msgstr "알 수 없는 섹션"
-
-#~ msgid "Find:"
-#~ msgstr "찾기:"
-
-#~ msgid "_Home"
-#~ msgstr "홈"
-
-#~ msgid "Go to home view"
-#~ msgstr "홈 보기로 가기"
-
-#~ msgid "Development Environments"
-#~ msgstr "개발 환경"
-
-#~ msgid "Development Tools"
-#~ msgstr "개발 도구"
-
-#~ msgid "Editors"
-#~ msgstr "편집기"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "게임 및 오락"
-
-#~ msgid "General"
-#~ msgstr "일반"
-
-#~ msgid "Kernels"
-#~ msgstr "커널"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "사무 업무용 프로그램"
-
-#~ msgid "Securities"
-#~ msgstr "보안"
-
-#~ msgid "System"
-#~ msgstr "시스템"
-
-#~ msgid "Utilities"
-#~ msgstr "유틸리티"
-
-#~ msgid "Titlepage"
-#~ msgstr "제목 페이지"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "선택한 문서를 열 수 없습니다"
-
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "선택한 페이지를 이 문서에서 찾을 수 없습니다."
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "차례를 읽을 수 없습니다."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "DocBook SGML 문서는 더 이상 지원하지 않습니다."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "선택한 파일을 읽을 수 없습니다."
-
-#~ msgid "The file could not be processed."
-#~ msgstr "선택한 파일을 읽을 수 없습니다."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "분류"
-
-#~ msgid "Documents"
-#~ msgstr "문서"
-
-#~ msgid "About This Article"
-#~ msgstr "이 글에 대한 정보"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "이 참고목록에 대한 정보"
-
-#~ msgid "About This Book"
-#~ msgstr "이 책에 대한 정보"
-
-#~ msgid "About This Chapter"
-#~ msgstr "이 장에 대한 정보"
-
-#~ msgid "About This Entry"
-#~ msgstr "이 항목에 대한 정보"
-
-#~ msgid "About This Glossary"
-#~ msgstr "이 용어해설에 대한 정보"
-
-#~ msgid "About This Index"
-#~ msgstr "이 찾아보기에 대한 정보"
-
-#~ msgid "About This Part"
-#~ msgstr "이 부에 대한 정보"
-
-#~ msgid "About This Reference"
-#~ msgstr "이 참고문헌에 대한 정보"
-
-#~ msgid "About This Section"
-#~ msgstr "이 절에 대한 정보"
-
-#~ msgid "Affiliation"
-#~ msgstr "추천의 글"
-
-#~ msgid "Appendix"
-#~ msgstr "부록"
-
-#~ msgid "Article"
-#~ msgstr "논설"
-
-#~ msgid "Audience"
-#~ msgstr "독자"
-
-#~ msgid "Author"
-#~ msgstr "저자"
-
-#~ msgid "Authors"
-#~ msgstr "저자"
-
-#~ msgid "Bibliography"
-#~ msgstr "참고목록"
-
-#~ msgid "Caution"
-#~ msgstr "주의"
-
-#~ msgid "Chapter"
-#~ msgstr "장"
-
-#~ msgid "Collaborator"
-#~ msgstr "공동 저자"
-
-#~ msgid "Collaborators"
-#~ msgstr "공동 저자"
-
-#~ msgid "Colophon"
-#~ msgstr "판권"
-
-#~ msgid "Copyright"
-#~ msgstr "저작권"
-
-#~ msgid "Copyrights"
-#~ msgstr "저작권"
-
-#~ msgid "Date"
-#~ msgstr "날짜"
-
-#~ msgid "Editor"
-#~ msgstr "편집"
-
-#~ msgid "Email"
-#~ msgstr "전자메일"
-
-#~ msgid "Example"
-#~ msgstr "예제"
-
-#~ msgid "Figure"
-#~ msgstr "그림"
-
-#~ msgid "Glossary"
-#~ msgstr "용어해설"
-
-#~ msgid "Important"
-#~ msgstr "중요"
-
-#~ msgid "Index"
-#~ msgstr "찾아보기"
-
-#~ msgid "Legal Notice"
-#~ msgstr "법적 고지"
-
-#~ msgid "Level"
-#~ msgstr "중요도"
-
-#~ msgid "Message Audience"
-#~ msgstr "읽는 사람"
-
-#~ msgid "Message Level"
-#~ msgstr "중요도"
-
-#~ msgid "Message Origin"
-#~ msgstr "보내는 사람"
-
-#~ msgid "Note"
-#~ msgstr "참고"
-
-#~ msgid "Origin"
-#~ msgstr "보냄"
-
-#~ msgid "Other Contributor"
-#~ msgstr "그 외 도와주신 분"
-
-#~ msgid "Other Contributors"
-#~ msgstr "그 외 도와주신 분"
-
-#~ msgid "Part"
-#~ msgstr "부"
-
-#~ msgid "Preface"
-#~ msgstr "서문"
-
-#~ msgid "Publisher"
-#~ msgstr "펴냄"
-
-#~ msgid "Publishers"
-#~ msgstr "펴냄"
-
-#~ msgid "Reference"
-#~ msgstr "참고문헌"
-
-#~ msgid "Reference Entry"
-#~ msgstr "참고문헌 항목"
-
-#~ msgid "Reference Section"
-#~ msgstr "참고문헌 절"
-
-#~ msgid "Release Information"
-#~ msgstr "릴리즈 정보"
-
-#~ msgid "Revision History"
-#~ msgstr "개정판 내역"
-
-#~ msgid "See"
-#~ msgstr "살펴볼 내용"
-
-#~ msgid "Set Index"
-#~ msgstr "전집 찾아보기"
-
-#~ msgid "Table"
-#~ msgstr "표"
-
-#~ msgid "Table of Contents"
-#~ msgstr "차례"
-
-#~ msgid "Tip"
-#~ msgstr "설명"
-
-#~ msgid "Document URI"
-#~ msgstr "문서 URI"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "처리할 문서의 URI"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "그놈용 도움말 브라우저"
