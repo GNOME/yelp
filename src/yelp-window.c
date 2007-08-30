@@ -1014,11 +1014,11 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    priv->base_uri = g_strdup ("file:///fakefile");
 	    break;
 	case YELP_RRN_TYPE_MAN:
-	    priv->base_uri = g_strdup_printf ("file:/%s", real_uri);
+	    priv->base_uri = g_filename_to_uri (real_uri, NULL, NULL);
 	    doc = yelp_man_new (real_uri);
 	    break;
 	case YELP_RRN_TYPE_INFO:
-	    priv->base_uri = g_strdup_printf ("file:/%s", real_uri);
+	    priv->base_uri = g_filename_to_uri (real_uri, NULL, NULL);
 	    if (!frag_id) {
 		frag_id = g_strdup ("Top");
 	    } else {
@@ -1027,7 +1027,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    doc = yelp_info_new (real_uri);
 	    break;
 	case YELP_RRN_TYPE_DOC:
-	    priv->base_uri = g_strdup_printf ("file:/%s", real_uri);
+	    priv->base_uri = g_filename_to_uri (real_uri, NULL, NULL);
 	    doc = yelp_docbook_new (real_uri);
 	    break;
 	case YELP_RRN_TYPE_SEARCH:
@@ -1540,6 +1540,7 @@ window_do_load_html (YelpWindow    *window,
     gchar            buffer[BUFFER_SIZE];
     GtkAction       *action;
     gchar *real_uri = NULL;
+    gchar *base_uri = NULL;
 
     gboolean  handled = TRUE;
 
@@ -1575,10 +1576,13 @@ window_do_load_html (YelpWindow    *window,
 	goto done;
     }
 
-    if (frag_id)
-	real_uri = g_strdup_printf ("file:/%s#%s", uri, frag_id);
-    else
-	real_uri = g_strdup_printf ("file:/%s", uri);
+    base_uri = g_filename_to_uri (real_uri, NULL, NULL);
+    if (frag_id) {
+	real_uri = g_strconcat (base_uri, "#", frag_id);
+	g_free (base_uri);
+    } else {
+	real_uri = base_uri;
+    }
     yelp_html_set_base_uri (priv->html_view, real_uri);
 
     switch (type) {
@@ -2651,6 +2655,7 @@ window_write_html (YelpLoadData *data)
     gchar contents[BUFFER_SIZE];
     
     /* Use a silly fake URI to stop gecko doing silly things */
+    printf ("URI: %s\n", data->window->priv->base_uri);
     yelp_html_set_base_uri (html, data->window->priv->base_uri);
     yelp_html_open_stream (html, "application/xhtml+xml");
     
