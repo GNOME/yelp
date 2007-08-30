@@ -2655,7 +2655,6 @@ window_write_html (YelpLoadData *data)
     gchar contents[BUFFER_SIZE];
     
     /* Use a silly fake URI to stop gecko doing silly things */
-    printf ("URI: %s\n", data->window->priv->base_uri);
     yelp_html_set_base_uri (html, data->window->priv->base_uri);
     yelp_html_open_stream (html, "application/xhtml+xml");
     

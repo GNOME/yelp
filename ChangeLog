@@ -1,6 +1,11 @@
 2007-08-30  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-window.c:
+	- Removing a debugging printf I'd accidentally left in
+
+2007-08-30  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-window.c:
 	- Use g_filename_to_uri to ensure file URIs are right, fixed broken figures
 
 2007-08-20  Shaun McCance  <shaunm@gnome.org>
