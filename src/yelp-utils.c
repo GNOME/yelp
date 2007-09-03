@@ -73,7 +73,9 @@ resolve_process_ghelp (char *uri, gchar **result)
 	else 
 	    mime = gnome_vfs_get_mime_type (*result);
 	
-	if (g_str_equal (mime, "text/xml") || 
+	if (!mime) {
+	    type = YELP_RRN_TYPE_ERROR;
+	} else if (g_str_equal (mime, "text/xml") || 
 	    g_str_equal (mime, "application/docbook+xml") || 
 	    g_str_equal (mime, "application/xml"))
 	    type = YELP_RRN_TYPE_DOC;
