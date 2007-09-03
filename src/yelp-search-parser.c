@@ -713,13 +713,15 @@ void s_characters(void * data,
 	gint i = 0;
 	gchar *s_term = c->search_term[i];
 	while (s_term && c->score_per_word[i] < 1.0) {
+	    gchar *location;
+
 	    if (c->stop_word[i] || c->score_per_word[c->dup_of[i]] == 1.0) {
 		i++;
 		s_term = c->search_term[i];
 		continue;
 	    }
 
-	    gchar *location = strstr (tmp, s_term);	    
+	    location = strstr (tmp, s_term);	    
 	    if (location) {
 		gchar before = *(location-1);
 		gchar after = *(location+strlen(s_term));

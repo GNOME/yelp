@@ -58,7 +58,11 @@ typedef enum {
 #  define debug_print(format, ...) yelp_debug (__FILE__, __LINE__, __func__, format, __VA_ARGS__)
 # endif
 #else
-# define debug_print(format, ...)
+# if __STDC_VERSION__ < 199901L
+#  define debug_print(format, args...)
+# else
+#  define debug_print(format, ...)
+# endif
 #endif
 
 #ifdef YELP_DEBUG
