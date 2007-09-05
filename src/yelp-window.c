@@ -1008,6 +1008,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	doc = priv->current_document;
     } else {
 	g_free (priv->base_uri);
+	priv->base_uri = NULL;
+
 	switch (type) {
 	case YELP_RRN_TYPE_TOC:
 	    doc = yelp_toc_get ();
@@ -1037,6 +1039,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    break;
 	case YELP_RRN_TYPE_HTML:
 	case YELP_RRN_TYPE_XHTML:
+	    priv->base_uri = g_strdup ("file:///fakefile");
 	    window_do_load_html (window, real_uri, frag_id, type, TRUE);
 	    break;
 	case YELP_RRN_TYPE_EXTERNAL:
@@ -1046,6 +1049,9 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		gchar *cmd = NULL;
 		gint status = 0;
 		GError *error = NULL;
+
+		priv->base_uri = g_strdup ("file:///fakefile");
+
 		cmd = g_strdup_printf ("gnome-open %s", uri);
 		if (!g_spawn_command_line_sync (cmd, &str_stdout, &str_stderr, &status, &error)) {
 		    g_free (error);
@@ -1063,8 +1069,10 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		    return;
 		}
 	    }
+	    break;
 
 	default:
+	    priv->base_uri = g_strdup ("file:///fakefile");
 	    break;
 	}
     }

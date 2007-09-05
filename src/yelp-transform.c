@@ -342,6 +342,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 {
     YelpTransform *transform;
     xmlChar *page_id = NULL;
+    gchar   *temp;
     xmlChar *page_buf;
     gint     buf_size;
     xsltStylesheetPtr style = NULL;
@@ -363,9 +364,13 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     page_id = xsltEvalAttrValueTemplate (ctxt, inst,
 					 (const xmlChar *) "href",
 					 NULL);
-    if (page_id == NULL) {
-	xsltTransformError (ctxt, NULL, inst,
-			    _("No href attribute found on yelp:document"));
+    if (page_id == NULL || *page_id == '\0') {
+	if (page_id)
+	    xmlFree (page_id);
+	else
+	    xsltTransformError (ctxt, NULL, inst,
+				_("No href attribute found on "
+				  "yelp:document\n"));
 	/* FIXME: put a real error here */
 	goto done;
     }
@@ -401,10 +406,15 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     ctxt->insert     = old_insert;
 
     g_mutex_lock (transform->mutex);
-    g_hash_table_insert (transform->chunks, page_id, page_buf);
-    g_async_queue_push (transform->queue, g_strdup ((gchar *) page_id));
+
+    temp = g_strdup (page_id);
+    xmlFree (page_id);
+
+    g_async_queue_push (transform->queue, g_strdup ((gchar *) temp));
+    g_hash_table_insert (transform->chunks, temp, page_buf);
     transform->idle_funcs++;
     g_idle_add ((GSourceFunc) transform_chunk, transform);
+
     g_mutex_unlock (transform->mutex);
 
  done:

@@ -1,5 +1,14 @@
 2007-09-05  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-transform.c: 
+	Fix potential crasher in transform + various
+	other minor fixes
+	(based on patch from Hans Petter Jansson - bug #469436)
+
+	* src/yelp-window.c:
+	Fix potential abuse of freed strings
+	(patch from Hans Petter Jansson - bug #469438)
+	
 	* data/icons/yelp-icon-big.png:
 	New tango-ified version
 
