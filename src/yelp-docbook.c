@@ -552,16 +552,16 @@ docbook_walk (YelpDocbook *docbook)
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
 
-    if (docbook_walk_chunkQ (docbook)) {
-	title = BAD_CAST docbook_walk_get_title (docbook);
-
+    if (docbook_walk_divisionQ (docbook) && !id) {
 	/* if id attribute is not present, autogenerate a
 	 * unique value, and insert it into the in-memory tree */
-	if (!id) {
-	    g_snprintf (autoidstr, 20, "_auto-gen-id-%d", ++autoid);
-	    xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST autoidstr);
-	    id = xmlGetProp (priv->xmlcur, BAD_CAST "id"); 
-	}
+	g_snprintf (autoidstr, 20, "_auto-gen-id-%d", ++autoid);
+	xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST autoidstr);
+	id = xmlGetProp (priv->xmlcur, BAD_CAST "id"); 
+    }
+
+    if (docbook_walk_chunkQ (docbook)) {
+	title = BAD_CAST docbook_walk_get_title (docbook);
 
 	debug_print (DB_DEBUG, "  id: \"%s\"\n", id);
 	debug_print (DB_DEBUG, "  title: \"%s\"\n", title);

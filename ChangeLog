@@ -1,5 +1,13 @@
 2007-09-06  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-window.c:
+	- Make sure we jump to anchors (Don)
+
+	* src/yelp-docbook.c:
+	- Set automatic IDs on all divisions, not just chunks
+
+2007-09-06  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-docbook.c:
 	- Pass the computed chunk depth to the stylesheets
 

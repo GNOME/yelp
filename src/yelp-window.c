@@ -2658,12 +2658,20 @@ tree_model_iter_following (GtkTreeModel  *model,
 static gboolean
 window_write_html (YelpLoadData *data)
 {
+    gchar *uri = NULL;
     gsize read;
     YelpHtml *html = data->window->priv->html_view;
     gchar contents[BUFFER_SIZE];
     
     /* Use a silly fake URI to stop gecko doing silly things */
-    yelp_html_set_base_uri (html, data->window->priv->base_uri);
+    if (data->window->priv->current_frag)
+	uri = g_strdup_printf ("%s#%s", data->window->priv->base_uri, 
+			       data->window->priv->current_frag);
+    else
+	uri = g_strdup (data->window->priv->base_uri);
+    
+    yelp_html_set_base_uri (html, uri);
+    g_free (uri);
     yelp_html_open_stream (html, "application/xhtml+xml");
     
     do {
