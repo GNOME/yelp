@@ -8,25 +8,19 @@
 <xsl:param name="help_icon"/>
 <xsl:param name="help_icon_size"/>
 
-<xsl:param name="yelp.color.fg"/>
-<xsl:param name="yelp.color.bg"/>
-<xsl:param name="yelp.color.anchor"/>
-<xsl:param name="yelp.color.rule"/>
-<xsl:param name="yelp.color.gray.fg"/>
-<xsl:param name="yelp.color.gray.bg"/>
-<xsl:param name="yelp.color.gray.bg.dark1"/>
-<xsl:param name="yelp.color.gray.bg.dark2"/>
-<xsl:param name="yelp.color.gray.bg.dark3"/>
-<xsl:param name="yelp.color.selected.fg"/>
-<xsl:param name="yelp.color.selected.bg"/>
-<xsl:param name="yelp.color.selected.bg.dark1"/>
-<xsl:param name="yelp.color.selected.bg.dark2"/>
-<xsl:param name="yelp.color.selected.bg.dark3"/>
-<xsl:param name="yelp.color.admon.fg"/>
-<xsl:param name="yelp.color.admon.bg"/>
-<xsl:param name="yelp.color.admon.bg.dark1"/>
-<xsl:param name="yelp.color.admon.bg.dark2"/>
-<xsl:param name="yelp.color.admon.bg.dark3"/>
+<xsl:param name="theme.color.text"/>
+<xsl:param name="theme.color.background"/>
+<xsl:param name="theme.color.text_light"/>
+<xsl:param name="theme.color.link"/>
+<xsl:param name="theme.color.link_visited"/>
+<xsl:param name="theme.color.gray_background"/>
+<xsl:param name="theme.color.gray_border"/>
+<xsl:param name="theme.color.blue_background"/>
+<xsl:param name="theme.color.blue_border"/>
+<xsl:param name="theme.color.red_background"/>
+<xsl:param name="theme.color.red_border"/>
+<xsl:param name="theme.color.yellow_background"/>
+<xsl:param name="theme.color.yellow_border"/>
 
 <xsl:template match="toc">
   <yelp:document href="{@id}">
@@ -51,11 +45,11 @@
           padding-bottom: 0.2em;
           -moz-border-radius: 6px;
           border: solid 1px </xsl:text>
-          <xsl:value-of select="$yelp.color.selected.bg.dark1"/><xsl:text>;
+          <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
           background-color: </xsl:text>
-          <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
+          <xsl:value-of select="$theme.color.blue_background"/><xsl:text>;
           color: </xsl:text>
-          <xsl:value-of select="$yelp.color.selected.fg"/><xsl:text>;
+          <xsl:value-of select="$theme.color.text"/><xsl:text>;
         }
         h1 img {
           position: absolute;
@@ -63,7 +57,7 @@
           right: 18px;
         }
 	h2 h3 {
-          color: </xsl:text><xsl:value-of select="$yelp.color.fg"/><xsl:text>;
+          color: </xsl:text><xsl:value-of select="$theme.color.text"/><xsl:text>;
 	}
         div[class~="body"] { }
         div[class~="leftbar"] {
@@ -105,8 +99,8 @@
           padding-left: 1em;
           padding-right: 1em;
           margin-right: 12px;
-          background-color: </xsl:text><xsl:value-of select="$yelp.color.bg"/><xsl:text>;
-          color: </xsl:text><xsl:value-of select="$yelp.color.fg"/><xsl:text>;
+          background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
+          color: </xsl:text><xsl:value-of select="$theme.color.text"/><xsl:text>;
           -moz-border-radius: 8px;
         }
         ul { margin-left: 0em; padding-left: 0em; }
@@ -134,7 +128,7 @@
         dl { margin-left: 0em; padding-left: 0em; }
         dt { font-size: 1.2em; margin-top: 1em; }
         dd { margin-left: 1em; margin-top: 0.5em; }
-        a { text-decoration: none; color: </xsl:text><xsl:value-of select="$yelp.color.anchor"/><xsl:text>; }
+        a { text-decoration: none; color: </xsl:text><xsl:value-of select="$theme.color.link"/><xsl:text>; }
         a:hover { text-decoration: underline; }
         </xsl:text></style>
       </head>
