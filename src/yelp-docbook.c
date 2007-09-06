@@ -495,6 +495,8 @@ docbook_process (YelpDocbook *docbook)
 	params_max += 20;
 	params = g_renew (gchar *, params, params_max);
     }
+    params[params_i++] = "db.chunk.max_depth";
+    params[params_i++] = g_strdup_printf ("%i", docbook->priv->max_depth);
 
     params[params_i] = NULL;
 
