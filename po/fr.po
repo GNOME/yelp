@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-17 15:44+0200\n"
-"PO-Revision-Date: 2007-08-17 15:53+0200\n"
+"POT-Creation-Date: 2007-09-06 11:35+0200\n"
+"PO-Revision-Date: 2007-09-06 11:35+0200\n"
 "Last-Translator: Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -608,7 +608,9 @@ msgstr "Impossible d'analyser le fichier"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "Le fichier « %s » n'a pas pu être analysé, car ce n'est pas un document XML correctement formé."
+msgstr ""
+"Le fichier « %s » n'a pas pu être analysé, car ce n'est pas un document XML "
+"correctement formé."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
@@ -627,7 +629,7 @@ msgstr "Inconnu"
 msgid "Unknown Error"
 msgstr "Erreur inconnue"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr "Impossible de lire le fichier"
 
@@ -673,7 +675,9 @@ msgstr "Aide"
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "Le fichier « %s » n'a pas pu être analysé, car ce n'est pas une page de manuel correctement formée."
+msgstr ""
+"Le fichier « %s » n'a pas pu être analysé, car ce n'est pas une page de "
+"manuel correctement formée."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -749,7 +753,7 @@ msgstr "Répéter la recherche en ligne à %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:862
+#: ../src/yelp-search-parser.c:864
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -767,7 +771,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:878
+#: ../src/yelp-search-parser.c:880
 msgid "re"
 msgstr ""
 "a:ab:anté:anti:archéo:contre:cyber:déci:derm:dermato:dermo:dys:dé:déca:dés:"
@@ -780,7 +784,7 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:887
+#: ../src/yelp-search-parser.c:889
 msgid "ers:er:ing:es:s:'s"
 msgstr ""
 "ation:ace:ade:age:ain:ais:al:algie:algique:anthrope:anthropique:archie:arque:"
@@ -819,7 +823,9 @@ msgstr "La page demandée ne se trouve pas dans la table des matières."
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "Le fichier de table des matières ne peut pas être analysé car ce n'est pas un document XML correctement formé."
+msgstr ""
+"Le fichier de table des matières ne peut pas être analysé car ce n'est pas "
+"un document XML correctement formé."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -840,11 +846,11 @@ msgstr ""
 "Une erreur inconnue est survenue lors du processus de transformation du "
 "document."
 
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "Aucun attribut href trouvé dans yelp:document"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "Aucun attribut href trouvé dans yelp:document\n"
 
-#: ../src/yelp-transform.c:382
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "À court de mémoire"
 
@@ -1000,7 +1006,7 @@ msgstr "_Copier l'adresse électronique"
 msgid "Help Browser"
 msgstr "Navigateur d'aide"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "Chargement..."
 
@@ -1008,52 +1014,52 @@ msgstr "Chargement..."
 msgid "Unknown Page"
 msgstr "Page inconnue"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "L'URI demandé « %s » n'est pas valide"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "Impossible de charger la page"
 
-#: ../src/yelp-window.c:1056
+#: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
 msgstr "Erreur lors de l'exécution de « gnome-open »"
 
-#: ../src/yelp-window.c:1238
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "_Rechercher :"
 
-#: ../src/yelp-window.c:1239
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "Recherche d'autres documentations"
 
-#: ../src/yelp-window.c:1258
+#: ../src/yelp-window.c:1266
 msgid "Cannot create window"
 msgstr "Impossible de créer une fenêtre"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1272
 msgid "Cannot create search component"
 msgstr "Impossible de créer un composant de recherche"
 
-#: ../src/yelp-window.c:1397
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "_Rechercher :"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "Rechercher le _suivant"
 
-#: ../src/yelp-window.c:1429
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "Rechercher le _précédent"
 
-#: ../src/yelp-window.c:1442
+#: ../src/yelp-window.c:1450
 msgid "Phrase not found"
 msgstr "Page introuvable"
 
-#: ../src/yelp-window.c:1569
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1064,7 +1070,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2389
+#: ../src/yelp-window.c:2401
 msgid "translator-credits"
 msgstr ""
 "Jean-Michel Ardantz <jmardantz@ifrance.com>\n"
@@ -1077,11 +1083,11 @@ msgstr ""
 "Claude Paroz <claude@2xlibre.net>\n"
 "Stéphane Raimbault <stephane.raimbault@gmail.com>"
 
-#: ../src/yelp-window.c:2392
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2394
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navigateur et lecteur de documentation pour le bureau GNOME."
 
