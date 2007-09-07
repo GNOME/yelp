@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp 2.11.92 GNOME HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-14 04:06+0100\n"
-"PO-Revision-Date: 2007-09-03 22:16+0930\n"
+"POT-Creation-Date: 2007-09-06 04:00+0100\n"
+"PO-Revision-Date: 2007-09-07 22:31+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -616,8 +616,7 @@ msgstr "Không thể phân tách tập tin"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr ""
-"Không thể phân tách tập tin « %s » vì nó chứa XML dạng sai."
+msgstr "Không thể phân tách tập tin « %s » vì nó chứa XML dạng sai."
 
 #: ../src/yelp-db-print.c:419
 #: ../src/yelp-docbook.c:436
@@ -626,7 +625,8 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"Không thể phân tách tập tin « %s » vì một hay nhiều của các tập tin đã bao gồm chứa XML dạng sai."
+"Không thể phân tách tập tin « %s » vì một hay nhiều của các tập tin đã bao "
+"gồm chứa XML dạng sai."
 
 #: ../src/yelp-db-print.c:765
 #: ../src/yelp-docbook.c:784
@@ -639,7 +639,7 @@ msgid "Unknown Error"
 msgstr "Lỗi không rõ"
 
 #: ../src/yelp-error.c:136
-#: ../src/yelp-window.c:1572
+#: ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr "Không thể đọc tập tin"
 
@@ -753,7 +753,7 @@ msgstr "Kết quả khi tìm kiếm « %s »"
 msgid "Repeat the search online at %s"
 msgstr "Tìm kiếm lại trực tuyến tại %s"
 
-#: ../src/yelp-search-parser.c:862
+#: ../src/yelp-search-parser.c:864
 #. Translators: Do not translate this list exactly.  These are
 #. * colon-separated words that aren't useful for choosing search
 #. * results; they will be different for each language. Include
@@ -773,7 +773,7 @@ msgstr ""
 "khi:lúc:tôi:của:mục:vào:nói:rằng:là:cái:thứ:gì:này:đó:kia:đâu:ai:với:diễn:tả:"
 "ngắt:hỏng"
 
-#: ../src/yelp-search-parser.c:878
+#: ../src/yelp-search-parser.c:880
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
 #. * seperated list of word-starts.  In English, an example
@@ -785,7 +785,7 @@ msgstr ""
 msgid "re"
 msgstr "về:"
 
-#: ../src/yelp-search-parser.c:887
+#: ../src/yelp-search-parser.c:889
 #. Translators: This is a list of (guess what?) common suffixes
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
@@ -826,8 +826,7 @@ msgstr "Trang đã yêu cầu không được tìm trong Mục Lục."
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr ""
-"Không thể phân tách tập tin Mục Lục vì nó chứa mã XML dạng sai."
+msgstr "Không thể phân tách tập tin Mục Lục vì nó chứa mã XML dạng sai."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -836,8 +835,7 @@ msgstr "Bảng kiểu dáng không hợp lệ"
 #: ../src/yelp-transform.c:81
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr ""
-"Bảng kiểu dáng XSLT « %s » hoặc bị thiếu hoặc không hợp lệ."
+msgstr "Bảng kiểu dáng XSLT « %s » hoặc bị thiếu hoặc không hợp lệ."
 
 #: ../src/yelp-transform.c:112
 msgid "Broken Transformation"
@@ -847,11 +845,11 @@ msgstr "Tiến trình chuyển dạng bị hỏng"
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Gặp lỗi không rõ khi thử chuyển dạng tài liệu."
 
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "Không tìm thấy thuộc tính « href » trên « yelp:document »"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "Không tìm thấy thuộc tính « href » trên « yelp:document »\n"
 
-#: ../src/yelp-transform.c:382
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "Hết bộ nhớ"
 
@@ -1010,7 +1008,7 @@ msgstr "Bộ duyệt trợ giúp"
 
 #: ../src/yelp-window.c:586
 #: ../src/yelp-window.c:638
-#: ../src/yelp-window.c:1623
+#: ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "Đang tải..."
 
@@ -1020,53 +1018,53 @@ msgid "Unknown Page"
 msgstr "Trang không rõ"
 
 #: ../src/yelp-window.c:1001
-#: ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "URI « %s » đã yêu cầu không phải là hợp lệ"
 
 #: ../src/yelp-window.c:1002
-#: ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "Không thể nạp trang"
 
-#: ../src/yelp-window.c:1056
+#: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
 msgstr "Gặp lỗi khi thực hiện « gnome-open » (mở)"
 
-#: ../src/yelp-window.c:1238
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "Tìm _kiếm:"
 
-#: ../src/yelp-window.c:1239
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "Tìm kiếm tài liệu khác"
 
-#: ../src/yelp-window.c:1258
+#: ../src/yelp-window.c:1266
 msgid "Cannot create window"
 msgstr "Không thể tạo cửa sổ"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1272
 msgid "Cannot create search component"
 msgstr "Không thể tạo thành phần tìm kiếm"
 
-#: ../src/yelp-window.c:1397
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "Tì_m:"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "Tìm _kế"
 
-#: ../src/yelp-window.c:1429
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "Tìm _lùi"
 
-#: ../src/yelp-window.c:1442
+#: ../src/yelp-window.c:1450
 msgid "Phrase not found"
 msgstr "Không tìm thấy cụm từ"
 
-#: ../src/yelp-window.c:1569
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1075,18 +1073,18 @@ msgstr ""
 "Không thể đọc tập tin « %s ». Hoặc tập tin còn thiếu, hoặc bạn không có "
 "quyền đọc nó."
 
-#: ../src/yelp-window.c:2389
+#: ../src/yelp-window.c:2401
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
 msgid "translator-credits"
 msgstr "Nhóm Việt hoá GNOME (http://gnomevi.sourceforge.net)"
 
 # Name: don't translate / Tên: đừng dịch
-#: ../src/yelp-window.c:2392
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2394
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Bộ duyệt và xem tài liệu cho màn hình làm việc GNOME."
 
