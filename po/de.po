@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-17 16:41+0200\n"
+"POT-Creation-Date: 2007-09-10 15:29+0200\n"
 "PO-Revision-Date: 2007-08-17 16:46+0200\n"
 "Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -613,7 +613,7 @@ msgstr ""
 "Die Datei »%s« konnte nicht analysiert werden, da eine oder mehrere der "
 "enthaltenen Dateien kein gültiges XML-Dokument ist."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -621,7 +621,7 @@ msgstr "Unbekannt"
 msgid "Unknown Error"
 msgstr "Unbekannter Fehler"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr "Datei konnte nicht gelesen werden"
 
@@ -745,7 +745,7 @@ msgstr "Die Suche online bei %s wiederholen"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:862
+#: ../src/yelp-search-parser.c:864
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -764,7 +764,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:878
+#: ../src/yelp-search-parser.c:880
 msgid "re"
 msgstr ""
 "ab:an:auf:be:bei:ein:ent:er:ge:hin:nach:nieder:über:um:un:unter:ver:vor:zer:"
@@ -777,7 +777,7 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:887
+#: ../src/yelp-search-parser.c:889
 msgid "ers:er:ing:es:s:'s"
 msgstr "e:n:en:s:lich:in:hei:keit:ung:nis:lein:chen"
 
@@ -836,11 +836,11 @@ msgid "An unknown error occurred while attempting to transform the document."
 msgstr ""
 "Ein unbekannter Fehler trat auf beim Versuch, das Dokument umzuwandeln."
 
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "Kein href-Attribut im yelp:-Dokument gefunden"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "Kein href-Attribut im yelp:-Dokument gefunden\n"
 
-#: ../src/yelp-transform.c:382
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "Speichermangel"
 
@@ -996,7 +996,7 @@ msgstr "_E-Mail-Adresse kopieren"
 msgid "Help Browser"
 msgstr "Hilfe-Browser"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "Ladevorgang …"
 
@@ -1004,52 +1004,52 @@ msgstr "Ladevorgang …"
 msgid "Unknown Page"
 msgstr "Unbekannte Seite"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Die angeforderte URI-Adresse »%s« ist ungültig"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "Laden der Seite nicht möglich"
 
-#: ../src/yelp-window.c:1056
+#: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
 msgstr "Fehler beim Ausführen von »gnome-open«"
 
-#: ../src/yelp-window.c:1238
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "_Suchen:"
 
-#: ../src/yelp-window.c:1239
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "Nach sonstiger Dokumentation suchen"
 
-#: ../src/yelp-window.c:1258
+#: ../src/yelp-window.c:1266
 msgid "Cannot create window"
 msgstr "Fenster konnte nicht erzeugt werden"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1272
 msgid "Cannot create search component"
 msgstr "Suchkomponente konnte nicht erzeugt werden"
 
-#: ../src/yelp-window.c:1397
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "_Suchen:"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "_Weitersuchen"
 
-#: ../src/yelp-window.c:1429
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "_Rückwärts suchen"
 
-#: ../src/yelp-window.c:1442
+#: ../src/yelp-window.c:1450
 msgid "Phrase not found"
 msgstr "Ausdruck nicht gefunden"
 
-#: ../src/yelp-window.c:1569
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1060,7 +1060,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2389
+#: ../src/yelp-window.c:2401
 msgid "translator-credits"
 msgstr ""
 "Christian Meyer <chrisime@gnome.org>\n"
@@ -1069,11 +1069,11 @@ msgstr ""
 "Hendrik Brandt <heb@gnome-de.org>\n"
 "Andre Klapper <ak-47@gmx.net>"
 
-#: ../src/yelp-window.c:2392
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2394
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Ein zentraler Sammelpunkt für Hilfedokumente des Gnome-Desktops."
 
