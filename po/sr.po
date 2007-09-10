@@ -12,15 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-03 18:30+0200\n"
-"PO-Revision-Date: 2006-09-01 00:10+0200\n"
-"Last-Translator: Горан Ракић <grakic@devbase.net>\n"
+"POT-Creation-Date: 2007-09-10 21:42+0200\n"
+"PO-Revision-Date: 2007-09-10 21:51+0200\n"
+"Last-Translator: Данило Шеган <danilo@gnome.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "ГНУ инфо стране"
 
@@ -67,7 +67,7 @@ msgid "Kernel Routines"
 msgstr "Потпрограми језгра"
 
 # bug(slobo): Провери ово
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "Ман упутства"
 
@@ -567,59 +567,79 @@ msgstr "Полазне теме"
 msgid "Document Sections"
 msgstr "Одељци документа"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
+#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+msgid "Page not found"
+msgstr "Страница није нађена"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "Није нађена страница %s у документу %s."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
+#: ../src/yelp-man.c:388
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "Није нађена тражена страница у документу %s."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
+#: ../src/yelp-man.c:430
+msgid "File not found"
+msgstr "Датотека није нађена"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
+#: ../src/yelp-man.c:431
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Датотека „%s“ не постоји."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+msgid "Could not parse file"
+msgstr "Не могу да обрадим датотеку"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
-msgstr ""
-"Не могу рашчланити датотеку „%s“. Или датотека не постоји, или не представља "
-"исправно обликован XML."
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr "Не могу рашчланити датотеку „%s“ зато што не представља исправно обликован XML документ."
 
-# note(slobo): одличан превод (догодила се (нека) грешка);прегледај друге 
-# преводе и уклони све преводе типа: догодила се непозната грешка и слично
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "Догодила се грешка"
-
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "Не могу да учитам документ"
-
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "Не могу да учитам одељак"
-
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr "Не могу да учитам садржај"
-
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "Неподржани запис"
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "Не могу да учитам документ"
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "Не могу да обрадим документ"
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
-msgstr "За ову грешку опис није доступан."
-
-#: ../src/yelp-info-pager.c:188
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
 msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
-msgstr ""
-"Не могу рашчланити датотеку „%s“. Или датотека не постоји, или не представља "
-"исправно обликовану info страну."
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr "Не могу рашчланити датотеку „%s“ зато што једна или више у њу укључених датотека не представља исправно обликован XML документ."
 
-#: ../src/yelp-io-channel.c:103
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+msgid "Unknown"
+msgstr "Непознато"
+
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Непозната грешка"
+
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+msgid "Could Not Read File"
+msgstr "Не могу да учитам датотеку"
+
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr "Нису доступни подаци о овој грешци."
+
+#: ../src/yelp-info.c:394
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Не могу рашчланити датотеку „%s“ зато што не представља исправно обликовану info страну."
+
+#: ../src/yelp-io-channel.c:107
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -628,43 +648,36 @@ msgstr ""
 "Датотека „%s“ се не може прочитати и разумети. Можда је датотека сажета на "
 "неподржани начин."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:92
 msgid "Use a private session"
 msgstr "Користи приватну сесију"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
 msgstr "Дефинишите директоријум који се користи за привремени смештај"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:354
+#: ../src/yelp-main.c:358
 msgid " GNOME Help Browser"
 msgstr "Гномов прегледач помоћи"
 
-#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Помоћ"
 
-#: ../src/yelp-man-pager.c:263
+#: ../src/yelp-man.c:460
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
-msgstr ""
-"Не могу рашчланити датотеку „%s“.  Или датотека не постоји, или је "
-"неисправно записана."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr "Не могу рашчланити датотеку „%s“ зато што не представља исправно обликовану man страну."
 
-#: ../src/yelp-pager.c:117
-msgid "Document Information"
-msgstr "Подаци о документу"
-
-#: ../src/yelp-pager.c:118
-msgid "The YelpDocInfo struct of the document"
-msgstr "Структура YelpDocInfo за документ"
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "Штампај"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
-msgstr "Припремам штампу"
+msgstr "Припремам за штампу"
 
 #: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
@@ -675,13 +688,9 @@ msgstr "На овом штампачу штампање није подржан�
 msgid "Printer %s does not support postscript printing."
 msgstr "Штампач %s не подржава постскрипт излаз."
 
-#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Штампање"
-
-#: ../src/yelp-print.c:364
-msgid "<b>Printing</b>"
-msgstr "<b>Штампање</b>"
 
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
@@ -696,25 +705,16 @@ msgstr "Догодила се грешка приликом штампања"
 msgid "It was not possible to print your document: %s"
 msgstr "Није било могуће одштампати ваш документ: %s"
 
-#: ../src/yelp-search-pager.c:71
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "Форум за подршку око Гнома (енг.)"
 
-#: ../src/yelp-search-pager.c:755
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-"Не могу извршити вашу претрагу. Датотека „%s“ или недостаје или не "
-"представља исправну XSLT стилску страницу."
-
-#: ../src/yelp-search-pager.c:807
+#: ../src/yelp-search-parser.c:276
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Нема резултата за „%s“"
 
-#: ../src/yelp-search-pager.c:808
+#: ../src/yelp-search-parser.c:277
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -722,7 +722,7 @@ msgstr ""
 "Покушајте да користите другачије речи да опишете проблем који имате или тему "
 "о којој тражите помоћ."
 
-#: ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-parser.c:280
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Резултати претраге за „%s“"
@@ -732,24 +732,10 @@ msgstr "Резултати претраге за „%s“"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:828
+#: ../src/yelp-search-parser.c:294
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Тражи на интернету, на локацији %s"
-
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2157
-#: ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr "Нисам нашао href атрибут у yelp:document-у"
-
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2170
-#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "Понестало меморије"
-
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2219
-msgid "Help Contents"
-msgstr "Садржај помоћи"
 
 #. Translators: Do not translate this list exactly.  These are
 #. * colon-separated words that aren't useful for choosing search
@@ -759,7 +745,7 @@ msgstr "Садржај помоћи"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1286
+#: ../src/yelp-search-parser.c:864
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -775,7 +761,7 @@ msgstr "и:када:онда:тада:нешто:не:како:да:шта:од:
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1302
+#: ../src/yelp-search-parser.c:880
 msgid "re"
 msgstr "не"
 
@@ -786,304 +772,275 @@ msgstr "не"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1311
+#: ../src/yelp-search-parser.c:889
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
-#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "Претрага се не може извести"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "Жељена претрага се не може извести."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "Не могу да изведем претрагу"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "Извођење претраге је вратило неисправне резултате"
+
+#: ../src/yelp-toc.c:267
 #, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Нисам могао да учитам ОМФ датотеку „%s“."
+msgid "The page %s was not found in the TOC."
+msgstr "Страница %s није нађена у садржају."
 
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201Е"
+#: ../src/yelp-toc.c:365
+msgid "The requested page was not found in the TOC."
+msgstr "Жељена страница није нађена у садржају."
 
-#: ../src/yelp-toc-pager.c:268
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: бројач пауза је негативан."
-
-#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
-#, c-format
+#: ../src/yelp-toc.c:436
 msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
-msgstr ""
-"Не могу обрадити садржај. Датотека „%s“ или недостаје или не представља "
-"исправну XSLT стилску страницу."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
+msgstr "Не могу рашчланити датотеку садржаја зато што не представља исправно обликован XML документ."
 
-#: ../src/yelp-toc-pager.c:1110
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
+msgstr "Неисправна страна са стиловима"
+
+#: ../src/yelp-transform.c:81
 #, c-format
-msgid "Read man page for %s"
-msgstr "Прочитај man страну за %s"
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "XSLT стилска страница „%s“ недостаје или је неисправна."
 
-#: ../src/yelp-toc-pager.c:1703
-#, c-format
-msgid "Read info page for %s"
-msgstr "Прочитај info страну за %s"
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr "Покварена трансформација"
 
-#: ../src/yelp-toc-pager.c:1816
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-"Не могу учитати садржај. Датотека „%s“ или недостаје или не представља "
-"исправно обликован XML."
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "Дошло је до непознате грешке при покушају трансформације документа."
 
-#: ../src/yelp-toc-pager.c:1838
-msgid "Command Line Help"
-msgstr "Помоћ коју даје линија наредби"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "Нисам нашао href атрибут у yelp:document-у\n"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-transform.c:387
+msgid "Out of memory"
+msgstr "Понестало меморије"
+
+#: ../src/yelp-window.c:298
 msgid "_File"
 msgstr "_Датотека"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:299
 msgid "_Edit"
 msgstr "_Уређивање"
 
 # note(slobo): Ради се о кретању кроз књигу,упутство,чланак (стране); напред, 
 # назад, садржај и слично
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:300
 msgid "_Go"
 msgstr "_Страна"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:301
 msgid "_Bookmarks"
 msgstr "_Обележивачи"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:302
 msgid "_Help"
 msgstr "_Помоћ"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:305
 msgid "_New Window"
 msgstr "_Нови прозор"
 
-#: ../src/yelp-window.c:330
-msgid "Print This Document"
-msgstr "Одштампај овај документ"
+#: ../src/yelp-window.c:310
+msgid "Print This Document ..."
+msgstr "Штампај овај документ..."
 
-#: ../src/yelp-window.c:335
-msgid "Print This Page"
-msgstr "Одштампај ову страну"
+#: ../src/yelp-window.c:315
+msgid "Print This Page ..."
+msgstr "Штампај ову страну..."
 
-#: ../src/yelp-window.c:340
+#: ../src/yelp-window.c:320
 msgid "About This Document"
 msgstr "О овом документу"
 
-#: ../src/yelp-window.c:345
+#: ../src/yelp-window.c:325
 msgid "Open _Location"
 msgstr "Отвори _путању"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:330
 msgid "_Close Window"
 msgstr "_Затвори прозор"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:336
 msgid "_Copy"
 msgstr "_Умножи"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:342
 msgid "_Select All"
 msgstr "_Изабери све"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:347
 msgid "_Find..."
 msgstr "_Тражи..."
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:352
 msgid "Find Pre_vious"
 msgstr "Тражи ун_азад"
 
-#: ../src/yelp-window.c:374
+#: ../src/yelp-window.c:354
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Тражи претходну појаву речи или фразе"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:357
 msgid "Find Ne_xt"
 msgstr "Тражи у_напред"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:359
 msgid "Find next occurrence of the word or phrase"
 msgstr "Тражи следећу појаву речи или фразе"
 
-#: ../src/yelp-window.c:382
+#: ../src/yelp-window.c:362
 msgid "_Preferences"
 msgstr "_Поставке"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:367
 msgid "_Reload"
 msgstr "_Освежи"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:379
 msgid "_Back"
 msgstr "На_зад"
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:381
 msgid "Show previous page in history"
 msgstr "Прикажи претходну страницу из историјата"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:384
 msgid "_Forward"
 msgstr "На_пред"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:386
 msgid "Show next page in history"
 msgstr "Прикажи наредну страницу из историјата"
 
-#: ../src/yelp-window.c:409
+#: ../src/yelp-window.c:389
 msgid "_Help Topics"
 msgstr "Полазне _теме"
 
-#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:391
 msgid "Go to the listing of help topics"
 msgstr "Иди на полазни садржај помоћи"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:394
 msgid "_Previous Section"
 msgstr "_Претходни одељак"
 
-#: ../src/yelp-window.c:419
+#: ../src/yelp-window.c:399
 msgid "_Next Section"
 msgstr "_Наредни одељак"
 
-#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
+#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
 msgid "_Contents"
 msgstr "_Садржај"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:410
 msgid "_Add Bookmark"
 msgstr "_Додај обележивач"
 
-#: ../src/yelp-window.c:435
+#: ../src/yelp-window.c:415
 msgid "_Edit Bookmarks..."
 msgstr "_Уреди обележиваче..."
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:421
 msgid "_Open Link"
 msgstr "_Отвори везу"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:426
 msgid "Open Link in _New Window"
 msgstr "Отвори везу у _новом прозору"
 
-#: ../src/yelp-window.c:451
+#: ../src/yelp-window.c:431
 msgid "_Copy Link Address"
 msgstr "_Умножи адресу везе"
 
-#: ../src/yelp-window.c:458
+#: ../src/yelp-window.c:438
 msgid "Help On this application"
 msgstr "Помоћ за овај програм"
 
-#: ../src/yelp-window.c:461
+#: ../src/yelp-window.c:441
 msgid "_About"
 msgstr "_О програму"
 
-#: ../src/yelp-window.c:466
+#: ../src/yelp-window.c:446
 msgid "Copy _Email Address"
 msgstr "Умножи адресу _електронске поште"
 
-#: ../src/yelp-window.c:515
+#: ../src/yelp-window.c:495
 msgid "Help Browser"
 msgstr "Прегледач помоћи"
 
-#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "Једнообразни идентификатор ресурса (URI) датотеке је неисправан."
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+msgid "Loading..."
+msgstr "Учитавање је у току..."
 
-#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+msgid "Unknown Page"
+msgstr "Непозната страница"
+
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
-"Једнообразни идентификатор ресурса (URI) „%s“ је неисправан или не показује "
-"на постојећу датотеку."
+msgid "The requested URI \"%s\" is invalid"
+msgstr "Тражена путања „%s“ је неисправна"
 
-#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
-msgid "Man pages are not supported in this version."
-msgstr "Ман стране нису подржане у овом издању."
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
+msgid "Unable to load page"
+msgstr "Не могу да учитам страницу"
 
-#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
-msgid "GNU info pages are not supported in this version"
-msgstr "ГНУ инфо странице нису подржане у овом издању."
+#: ../src/yelp-window.c:1062
+msgid "Error executing \"gnome-open\""
+msgstr "Грешка при извршавању „gnome-open“"
 
-#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
-msgid "Search is not supported in this version."
-msgstr "Претрага није подржана у овој верзији"
-
-#: ../src/yelp-window.c:1057
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-"SGML документи нису више подржани. Тражите од аутора документа да га "
-"претвори у  XML."
-
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "Претр_ага:"
 
-#: ../src/yelp-window.c:1224
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "Тражи у осталој документацији"
 
-#: ../src/yelp-window.c:1386
+#: ../src/yelp-window.c:1266
+msgid "Cannot create window"
+msgstr "Не могу да отворим прозор."
+
+#: ../src/yelp-window.c:1272
+msgid "Cannot create search component"
+msgstr "Не могу да отворим део за претрагу"
+
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "Т_ражи:"
 
-#: ../src/yelp-window.c:1406
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "Тражи у_напред"
 
-#: ../src/yelp-window.c:1418
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "Тражи ун_азад"
 
-#: ../src/yelp-window.c:1532
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
-"Не могу да одредим смисао трансформација за датотеку „%s“. Можда запис није "
-"подржан."
+#: ../src/yelp-window.c:1450
+msgid "Phrase not found"
+msgstr "Израз није нађен"
 
-#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
-#: ../src/yelp-window.c:2064
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-"Одељак „%s“ не постоји у овом документу. Уколико сте на овај одељак упућени "
-"из дугмета за помоћ у неком програму, пријавите ово ауторима тог програма."
-
-#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1092,13 +1049,9 @@ msgstr ""
 "Не могу да прочитам датотеку „%s“.  Ова датотека можда не постоји или нисте "
 "овлашћени да је читате."
 
-#: ../src/yelp-window.c:1728
-msgid "Loading..."
-msgstr "Учитавање је у току..."
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2911
+#: ../src/yelp-window.c:2401
 msgid "translator-credits"
 msgstr ""
 "Горан Ракић <grakic@devbase.net>\n"
@@ -1108,36 +1061,139 @@ msgstr ""
 "http://prevod.org — преводи на српски језик"
 
 # bug(slobo): имена програма...
-#: ../src/yelp-window.c:2914
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Јелп"
 
-#: ../src/yelp-window.c:2916
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Разгледач документације за окружење Гном."
-
-#: ../src/yelp-xslt-pager.c:189
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"Не могу рашчланити датотеку „%s“. Или датотека не постоји или је неисправно "
-"обликована."
-
-#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-"Не могу обрадити документ „%s“. Датотека „%s“ не постоји или није исправна "
-"XSLT стилска страница."
 
 # note(slobo): тражимо помоћ од вилењака
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Затражи Гномову помоћ"
+
+# note(slobo): одличан превод (догодила се (нека) грешка);прегледај друге 
+# преводе и уклони све преводе типа: догодила се непозната грешка и слично
+#~ msgid "An unknown error occured"
+#~ msgstr "Догодила се грешка"
+
+#~ msgid "Could not load document"
+#~ msgstr "Не могу да учитам документ"
+
+#~ msgid "Could not read the table of contents"
+#~ msgstr "Не могу да учитам садржај"
+
+#~ msgid "Unsupported Format"
+#~ msgstr "Неподржани запис"
+
+#~ msgid "Could not process document"
+#~ msgstr "Не могу да обрадим документ"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+#~ msgstr ""
+#~ "Не могу рашчланити датотеку „%s“.  Или датотека не постоји, или је "
+#~ "неисправно записана."
+
+#~ msgid "The YelpDocInfo struct of the document"
+#~ msgstr "Структура YelpDocInfo за документ"
+
+#~ msgid "<b>Printing</b>"
+#~ msgstr "<b>Штампање</b>"
+
+#~ msgid ""
+#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
+#~ "not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Не могу извршити вашу претрагу. Датотека „%s“ или недостаје или не "
+#~ "представља исправну XSLT стилску страницу."
+
+#~ msgid "Help Contents"
+#~ msgstr "Садржај помоћи"
+
+#~ msgid "Could not load the OMF file '%s'."
+#~ msgstr "Нисам могао да учитам ОМФ датотеку „%s“."
+
+#~ msgid "yelp-watermark-blockquote-201C"
+#~ msgstr "yelp-watermark-blockquote-201Е"
+
+#~ msgid "YelpTocPager: Pause count is negative."
+#~ msgstr "YelpTocPager: бројач пауза је негативан."
+
+#~ msgid ""
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Не могу обрадити садржај. Датотека „%s“ или недостаје или не представља "
+#~ "исправну XSLT стилску страницу."
+
+#~ msgid "Read man page for %s"
+#~ msgstr "Прочитај man страну за %s"
+
+#~ msgid "Read info page for %s"
+#~ msgstr "Прочитај info страну за %s"
+
+#~ msgid ""
+#~ "The table of contents could not be loaded. The file ‘%s’ is either "
+#~ "missing or is not well-formed XML."
+#~ msgstr ""
+#~ "Не могу учитати садржај. Датотека „%s“ или недостаје или не представља "
+#~ "исправно обликован XML."
+
+#~ msgid "Command Line Help"
+#~ msgstr "Помоћ коју даје линија наредби"
+
+#~ msgid "The Uniform Resource Identifier for the file is invalid."
+#~ msgstr "Једнообразни идентификатор ресурса (URI) датотеке је неисправан."
+
+#~ msgid ""
+#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+#~ "actual file."
+#~ msgstr ""
+#~ "Једнообразни идентификатор ресурса (URI) „%s“ је неисправан или не "
+#~ "показује на постојећу датотеку."
+
+#~ msgid "Man pages are not supported in this version."
+#~ msgstr "Ман стране нису подржане у овом издању."
+
+#~ msgid "GNU info pages are not supported in this version"
+#~ msgstr "ГНУ инфо странице нису подржане у овом издању."
+
+#~ msgid "Search is not supported in this version."
+#~ msgstr "Претрага није подржана у овој верзији"
+
+#~ msgid ""
+#~ "SGML documents are no longer supported. Please ask the author of the "
+#~ "document to convert to XML."
+#~ msgstr ""
+#~ "SGML документи нису више подржани. Тражите од аутора документа да га "
+#~ "претвори у  XML."
+
+#~ msgid ""
+#~ "A transformation context could not be created for the file ‘%s’. The "
+#~ "format may not be supported."
+#~ msgstr ""
+#~ "Не могу да одредим смисао трансформација за датотеку „%s“. Можда запис "
+#~ "није подржан."
+
+#~ msgid ""
+#~ "The section ‘%s’ does not exist in this document. If you were directed to "
+#~ "this section from a Help button in an application, please report this to "
+#~ "the maintainers of that application."
+#~ msgstr ""
+#~ "Одељак „%s“ не постоји у овом документу. Уколико сте на овај одељак "
+#~ "упућени из дугмета за помоћ у неком програму, пријавите ово ауторима тог "
+#~ "програма."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+#~ msgstr ""
+#~ "Не могу рашчланити датотеку „%s“. Или датотека не постоји или је "
+#~ "неисправно обликована."
 
 #~ msgid "Library Functions"
 #~ msgstr "Функције библиотека"
@@ -1161,9 +1217,6 @@ msgstr "Затражи Гномову помоћ"
 # bug(slobo): Имена програма...
 #~ msgid "Could not activate Yelp: '%s'"
 #~ msgstr "Нисам могао да активирам Јелп: „%s“"
-
-#~ msgid "Could not open new window."
-#~ msgstr "Нисам могао да отворим прозор."
 
 # bug(slobo): plural-forms
 #~ msgid "Pages"
@@ -1203,9 +1256,6 @@ msgstr "Затражи Гномову помоћ"
 
 #~ msgid "<b>_Title:</b>"
 #~ msgstr "<b>_Наслов:</b>"
-
-#~ msgid "Unknown Section"
-#~ msgstr "Непознати одељак"
 
 #~ msgid "_Home"
 #~ msgstr "?Полазна страница"
@@ -1252,9 +1302,6 @@ msgstr "Затражи Гномову помоћ"
 #~ msgid "The selected document could not be opened"
 #~ msgstr "Изабрани документ није могао бити отворен"
 
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Не може се наћи изабрана страница у овом документу."
-
 #~ msgid "The table of contents could not be read."
 #~ msgstr "Не могу да прочитам садржај."
 
@@ -1263,9 +1310,6 @@ msgstr "Затражи Гномову помоћ"
 
 #~ msgid "The selected file could not be read."
 #~ msgstr "Не може се прочитати изабрана датотека."
-
-#~ msgid "The file could not be processed."
-#~ msgstr "Датотека се не може обрадити."
 
 #~ msgid "X11"
 #~ msgstr "Икс11"
@@ -1504,9 +1548,6 @@ msgstr "Затражи Гномову помоћ"
 
 #~ msgid "A Help Browser for GNOME"
 #~ msgstr "Прегледник помоћи за Гном"
-
-#~ msgid "The document '%s' does not exist"
-#~ msgstr "Документ „%s“ не постоји"
 
 #~ msgid "Could not obtain a GtkStyle."
 #~ msgstr "Не могу да прибавим GtkStyle."
