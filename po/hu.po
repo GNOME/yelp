@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-14 04:06+0100\n"
-"PO-Revision-Date: 2007-08-26 14:27+0200\n"
+"POT-Creation-Date: 2007-09-06 04:00+0100\n"
+"PO-Revision-Date: 2007-09-14 00:26+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -604,14 +604,18 @@ msgstr "A fájl nem dolgozható fel"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott XML dokumentum."
+msgstr ""
+"A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott XML "
+"dokumentum."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
-msgstr "A(z) \"%s\" fájl nem dolgozható fel, mivel az általa tartalmazott fájlok közül néhány nem megfelelően formázott XML dokumentum."
+msgstr ""
+"A(z) \"%s\" fájl nem dolgozható fel, mivel az általa tartalmazott fájlok "
+"közül néhány nem megfelelően formázott XML dokumentum."
 
 #: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
 msgid "Unknown"
@@ -621,7 +625,7 @@ msgstr "Ismeretlen"
 msgid "Unknown Error"
 msgstr "Ismeretlen hiba"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr "A fájl nem olvasható"
 
@@ -632,7 +636,9 @@ msgstr "Nem áll rendelkezésre információ a hibáról."
 #: ../src/yelp-info.c:394
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott info oldal."
+msgstr ""
+"A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott info "
+"oldal."
 
 #: ../src/yelp-io-channel.c:107
 #, c-format
@@ -663,7 +669,9 @@ msgstr "Súgó"
 #: ../src/yelp-man.c:460
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott info oldal."
+msgstr ""
+"A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott info "
+"oldal."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -740,7 +748,7 @@ msgstr "A keresés megismétlése online a következő címen: %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:862
+#: ../src/yelp-search-parser.c:864
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -759,7 +767,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:878
+#: ../src/yelp-search-parser.c:880
 msgid "re"
 msgstr "NULL"
 
@@ -771,7 +779,7 @@ msgstr "NULL"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:887
+#: ../src/yelp-search-parser.c:889
 msgid "ers:er:ing:es:s:'s"
 msgstr "a:e:i:k:ok"
 
@@ -805,7 +813,9 @@ msgstr "A kért oldal nem található a tartalomjegyzékben."
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "A tartalomjegyzékfájl nem dolgozható fel, mivel nem megfelelően formázott XML dokumentum."
+msgstr ""
+"A tartalomjegyzékfájl nem dolgozható fel, mivel nem megfelelően formázott "
+"XML dokumentum."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -824,11 +834,11 @@ msgstr "Sérült átalakítás"
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Ismeretlen hiba történt a dokumentum átalakítására tett kísérlet során."
 
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "Nem található href attribútum a yelp:dokumentumon"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "Nem található href attribútum a yelp:dokumentumon\n"
 
-#: ../src/yelp-transform.c:382
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "Nincs több memória"
 
@@ -984,7 +994,7 @@ msgstr "E-mail _cím másolása"
 msgid "Help Browser"
 msgstr "Súgóböngésző"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "Betöltés..."
 
@@ -992,52 +1002,52 @@ msgstr "Betöltés..."
 msgid "Unknown Page"
 msgstr "Ismeretlen oldal"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "A kért \"%s\" URI érvénytelen"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "Az oldal nem tölthető be"
 
-#: ../src/yelp-window.c:1056
+#: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
 msgstr "Hiba a \"gnome-open\" végrehajtásakor"
 
-#: ../src/yelp-window.c:1238
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "_Keresés:"
 
-#: ../src/yelp-window.c:1239
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "Egyéb dokumentációk keresése"
 
-#: ../src/yelp-window.c:1258
+#: ../src/yelp-window.c:1266
 msgid "Cannot create window"
 msgstr "Nem hozható létre ablak"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1272
 msgid "Cannot create search component"
 msgstr "Nem hozható létre keresőkomponens"
 
-#: ../src/yelp-window.c:1397
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "Kere_sés:"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "_Következő találat"
 
-#: ../src/yelp-window.c:1429
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "_Előző találat"
 
-#: ../src/yelp-window.c:1442
+#: ../src/yelp-window.c:1450
 msgid "Phrase not found"
 msgstr "A kifejezés nem található"
 
-#: ../src/yelp-window.c:1569
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1048,7 +1058,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2389
+#: ../src/yelp-window.c:2401
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -1057,11 +1067,11 @@ msgstr ""
 "Kovács Emese <emese@gnome.hu>\n"
 "Tímár András <timar@gnome.hu>"
 
-#: ../src/yelp-window.c:2392
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2394
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentációböngésző és -megjelenítő a Gnome asztalhoz."
 
