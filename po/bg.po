@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-05 11:15+0300\n"
-"PO-Revision-Date: 2007-09-05 07:19+0300\n"
+"POT-Creation-Date: 2007-09-16 14:50+0300\n"
+"PO-Revision-Date: 2007-09-11 11:52+0300\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -610,7 +610,7 @@ msgstr ""
 "Файлът „%s“ не може да бъде анализиран, защото поне един от файловете "
 "включени в него е лошо формиран като документ на XML."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Без заглавие"
 
@@ -618,7 +618,7 @@ msgstr "Без заглавие"
 msgid "Unknown Error"
 msgstr "Непозната грешка"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1573
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr "Файлът не може да бъде прочетен"
 
@@ -828,11 +828,11 @@ msgstr "Неуспешна трансформация"
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Възникна непозната грешка при опита за трансформиране на документа."
 
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "Не е намерен атрибутът href в този документ на Yelp"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "Атрибутът href не е открит в yelp:document\n"
 
-#: ../src/yelp-transform.c:382
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "Няма достатъчно памет"
 
@@ -988,7 +988,7 @@ msgstr "Копиране адреса за _е-поща"
 msgid "Help Browser"
 msgstr "Навигатор на помощта"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "Зареждане..."
 
@@ -996,52 +996,52 @@ msgstr "Зареждане..."
 msgid "Unknown Page"
 msgstr "Непозната страница"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Адресът „%s“ е неправилен"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "Страницата не може да бъде заредена"
 
-#: ../src/yelp-window.c:1056
+#: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
 msgstr "Грешка при изпълнение на командата „gnome-open“"
 
-#: ../src/yelp-window.c:1238
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "Тър_сене:"
 
-#: ../src/yelp-window.c:1239
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "Търсене за друга документация"
 
-#: ../src/yelp-window.c:1258
+#: ../src/yelp-window.c:1266
 msgid "Cannot create window"
 msgstr "Не може да бъде създаден прозорец"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1272
 msgid "Cannot create search component"
 msgstr "Не може да бъде създаден търсещ компонент"
 
-#: ../src/yelp-window.c:1397
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "_Търсене:"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "_Следващо търсене"
 
-#: ../src/yelp-window.c:1429
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "_Предишно търсене"
 
-#: ../src/yelp-window.c:1442
+#: ../src/yelp-window.c:1450
 msgid "Phrase not found"
 msgstr "Фразата не е открита"
 
-#: ../src/yelp-window.c:1570
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1052,7 +1052,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2393
+#: ../src/yelp-window.c:2401
 msgid "translator-credits"
 msgstr ""
 "Владимир „Kaladan“ Петков <vpetkov@i-space.org>\n"
@@ -1062,11 +1062,11 @@ msgstr ""
 "Научете повече за нас на http://gnome.cult.bg\n"
 "Докладвайте за грешки на http://gnome.cult.bg/bugs"
 
-#: ../src/yelp-window.c:2396
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2398
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr ""
 "Програма за преглед на потребителските ръководства за работната среда GNOME."
