@@ -1,14 +1,14 @@
 # yelp ko.po
-# Young-Ho, Cha <ganadist@chollian.net>, 2002, 2005
-# Changwoo Ryu <cwryu@debian.org>, 2004, 2005, 2006
+# Young-Ho, Cha <ganadist@chollian.net>, 2002, 2005, 2007
+# Changwoo Ryu <cwryu@debian.org>, 2004, 2005, 2006, 2007
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.15.4\n"
+"Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-18 13:55+0900\n"
-"PO-Revision-Date: 2007-08-18 14:09+0900\n"
-"Last-Translator: Young-Ho Cha <ganadist@gmail.com>\n"
+"POT-Creation-Date: 2007-09-22 16:24+0900\n"
+"PO-Revision-Date: 2007-09-22 16:26+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -594,8 +594,7 @@ msgstr "파일을 분석할 수 없습니다"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr ""
-"'%s' 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
+msgstr "'%s' 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
@@ -603,10 +602,10 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"'%s' 파일을 분석할 수 없습니다. 포함된 하나이상의 파일이 올바른 형식의 "
-"XML문서가 아닙니다."
+"'%s' 파일을 분석할 수 없습니다. 포함된 하나이상의 파일이 올바른 형식의 XML문"
+"서가 아닙니다."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -614,7 +613,7 @@ msgstr "알 수 없음"
 msgid "Unknown Error"
 msgstr "알 수 없는 오류"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr "파일을 읽을 수 없습니다"
 
@@ -626,8 +625,7 @@ msgstr "오류에 관한 정보가 없습니다."
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"‘%s’ 파일을 분석할 수 없습니다.  올바른 형식의 정보 페이지가 아닙니다."
+msgstr "‘%s’ 파일을 분석할 수 없습니다.  올바른 형식의 정보 페이지가 아닙니다."
 
 #: ../src/yelp-io-channel.c:107
 #, c-format
@@ -736,7 +734,7 @@ msgstr "온라인으로 %s 사이트에서 다시 찾기"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:862
+#: ../src/yelp-search-parser.c:864
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -753,7 +751,7 @@ msgstr "NULL"
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:878
+#: ../src/yelp-search-parser.c:880
 msgid "re"
 msgstr "NULL"
 
@@ -765,7 +763,7 @@ msgstr "NULL"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:887
+#: ../src/yelp-search-parser.c:889
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
@@ -789,7 +787,7 @@ msgstr "검색 프로세서가 잘못된 결과값은 반환하였습니다"
 #: ../src/yelp-toc.c:267
 #, c-format
 msgid "The page %s was not found in the TOC."
-msgstr "페이지 %s를 차례에서 찾을 수 없습니다."
+msgstr "%s 페이지를 차례에서 찾을 수 없습니다."
 
 #: ../src/yelp-toc.c:365
 msgid "The requested page was not found in the TOC."
@@ -799,8 +797,7 @@ msgstr "요청한 페이지를 차례에서 찾을 수 없습니다."
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr ""
-"차례 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
+msgstr "차례 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -809,8 +806,7 @@ msgstr "잘못된 스타일시트"
 #: ../src/yelp-transform.c:81
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr ""
-"XSLT 스타일시트 '%s' 파일이 없거나, 올바르지 않습니다."
+msgstr "XSLT 스타일시트 '%s' 파일이 없거나, 올바르지 않습니다."
 
 #: ../src/yelp-transform.c:112
 msgid "Broken Transformation"
@@ -820,11 +816,11 @@ msgstr "변환 깨짐"
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "문서를 변환하는 중 알 수 없는 오류가 생겼습니다."
 
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "yelp:document에 href 속성이 없습니다"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "yelp:document에 href 속성이 없습니다\n"
 
-#: ../src/yelp-transform.c:382
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "메모리가 부족합니다"
 
@@ -954,15 +950,15 @@ msgstr "책갈피 편집(_E)..."
 
 #: ../src/yelp-window.c:421
 msgid "_Open Link"
-msgstr "바로 가기 열기(_O)"
+msgstr "링크 열기(_O)"
 
 #: ../src/yelp-window.c:426
 msgid "Open Link in _New Window"
-msgstr "바로 가기 새 창에서 열기(_N)"
+msgstr "링크 새 창에서 열기(_N)"
 
 #: ../src/yelp-window.c:431
 msgid "_Copy Link Address"
-msgstr "바로 가기 주소 복사(_C)"
+msgstr "링크 주소 복사(_C)"
 
 #: ../src/yelp-window.c:438
 msgid "Help On this application"
@@ -980,7 +976,7 @@ msgstr "바로 가기 주소 복사(_E)"
 msgid "Help Browser"
 msgstr "도움말 브라우저"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "읽고 있습니다..."
 
@@ -988,52 +984,52 @@ msgstr "읽고 있습니다..."
 msgid "Unknown Page"
 msgstr "알 수 없는 페이지"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "요청한 URI \"%s\"(은)는 올바르지 않습니다"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "페이지를 읽을 수 없습니다"
 
-#: ../src/yelp-window.c:1056
+#: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
 msgstr "\"gnome-open\"실행하는데 오류"
 
-#: ../src/yelp-window.c:1238
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "찾기(_S):"
 
-#: ../src/yelp-window.c:1239
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "다른 문서에서 찾습니다"
 
-#: ../src/yelp-window.c:1258
+#: ../src/yelp-window.c:1266
 msgid "Cannot create window"
 msgstr "새 창을 열 수 없습니다"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1272
 msgid "Cannot create search component"
 msgstr "검색 컴포넌트를 만들 수 없습니다"
 
-#: ../src/yelp-window.c:1397
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "찾기(_D):"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "다음 찾기(_N)"
 
-#: ../src/yelp-window.c:1429
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "이전 찾기(_P)"
 
-#: ../src/yelp-window.c:1442
+#: ../src/yelp-window.c:1450
 msgid "Phrase not found"
 msgstr "어구를 찾을 수 없습니다"
 
-#: ../src/yelp-window.c:1569
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1043,15 +1039,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2389
+#: ../src/yelp-window.c:2401
 msgid "translator-credits"
 msgstr "차영호 <ganadist@gmail.com>"
 
-#: ../src/yelp-window.c:2392
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2394
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "그놈 데스크탑 문서 보기 프로그램."
 
