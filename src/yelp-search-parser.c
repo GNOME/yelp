@@ -1050,6 +1050,9 @@ slow_search_process (RrnReg *reg, SearchDocData *data)
     gchar *ptr, *path;
     gchar *fname;
 
+    if (!reg->uri || g_str_equal (reg->uri, ""))
+	return TRUE;
+
     /* Set up the container with the new data */
     if (g_str_has_prefix (reg->uri, "file:")) {
 	fname = &(reg->uri[5]);
@@ -1074,8 +1077,12 @@ slow_search_process (RrnReg *reg, SearchDocData *data)
 
     ptr = g_strrstr (container->base_filename, "/");
     
-    path = g_strndup (container->base_filename, 
-		      ptr - container->base_filename);
+    if (ptr) {
+	path = g_strndup (container->base_filename, 
+			  ptr - container->base_filename);
+    } else {
+	path = g_strdup (container->base_filename);
+    }
     
     /* BEGIN HTML special block */
     if (reg->type && (g_str_equal (reg->type, "text/html") ||
