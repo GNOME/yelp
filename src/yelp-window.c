@@ -2159,7 +2159,7 @@ window_reload_cb (GtkAction *action, YelpWindow *window)
 	if (window->priv->current_request > -1) {
 	    yelp_document_cancel_page (window->priv->current_document, window->priv->current_request);
 	}
-	//g_object_unref (window->priv->current_document);
+	/*g_object_unref (window->priv->current_document);*/
 	window->priv->current_document = NULL;
 	yelp_window_load (window, window->priv->req_uri);
     }
