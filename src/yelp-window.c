@@ -1584,9 +1584,9 @@ window_do_load_html (YelpWindow    *window,
 	goto done;
     }
 
-    base_uri = g_filename_to_uri (real_uri, NULL, NULL);
+    base_uri = g_filename_to_uri (uri, NULL, NULL);
     if (frag_id) {
-	real_uri = g_strconcat (base_uri, "#", frag_id);
+	real_uri = g_strconcat (base_uri, "#", frag_id, NULL);
 	g_free (base_uri);
     } else {
 	real_uri = base_uri;
