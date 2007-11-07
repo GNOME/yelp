@@ -387,7 +387,10 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
     } else if (!strncmp (uri, "x-yelp-toc:", 11)) {
 	ret = YELP_RRN_TYPE_TOC;
 	if (strlen (uri) > 11) {
-	    *section = g_strdup (&uri[11]);
+	    gint frag = 11;
+	    while (uri[frag] == '#' || uri[frag] == '?')
+		frag++;
+	    *section = g_strdup (&uri[frag]);
 	} else {
 	    *section = g_strdup("index");
 	}
