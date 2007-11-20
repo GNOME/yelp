@@ -1,21 +1,24 @@
+# translation of oc.po to Occitan
 # Occitan translation of yelp.HEAD.pot.
 # This file is distributed under the same license as the yelp package.
 # Copyright (C) 2005 Free Software Foundation,Inc.
 #
 # Yannig MARCHEGAY (yannig@marchegay.org) - 2006-2007
 #
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: or\n"
+"Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-21 12:19+0100\n"
-"PO-Revision-Date: 2007-09-01 12:27+0200\n"
-"Last-Translator: Yannig MARCHEGAY <yannig@marchegay.org>\n"
-"Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"POT-Creation-Date: 2007-10-16 14:07+0200\n"
+"PO-Revision-Date: 2007-11-20 14:32+0100\n"
+"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
+"Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -605,7 +608,7 @@ msgid ""
 "is not a well-formed XML document."
 msgstr ""
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Desconegut"
 
@@ -613,7 +616,7 @@ msgstr "Desconegut"
 msgid "Unknown Error"
 msgstr "Error desconeguda"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1572
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr ""
 
@@ -623,8 +626,7 @@ msgstr ""
 
 #: ../src/yelp-info.c:394
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 
 #: ../src/yelp-io-channel.c:107
@@ -655,8 +657,7 @@ msgstr "Ajuda"
 
 #: ../src/yelp-man.c:460
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
 
 #: ../src/yelp-print.c:97
@@ -678,7 +679,7 @@ msgstr "L'estampadoira %s gerís pas l'estampatge PostScript."
 
 #: ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
-msgstr "Estampatge"
+msgstr "Estampatge..."
 
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
@@ -731,7 +732,7 @@ msgstr ""
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:862
+#: ../src/yelp-search-parser.c:864
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -747,7 +748,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:878
+#: ../src/yelp-search-parser.c:880
 msgid "re"
 msgstr ""
 
@@ -758,7 +759,7 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:887
+#: ../src/yelp-search-parser.c:889
 msgid "ers:er:ing:es:s:'s"
 msgstr ""
 
@@ -811,11 +812,11 @@ msgstr ""
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr ""
 
-#: ../src/yelp-transform.c:368
-msgid "No href attribute found on yelp:document"
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
 msgstr ""
 
-#: ../src/yelp-transform.c:382
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "Pas pro de memòria"
 
@@ -971,7 +972,7 @@ msgstr "Copiar l'adreça _electronica"
 msgid "Help Browser"
 msgstr "Navegador d'ajuda"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1623
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "Cargament..."
 
@@ -979,52 +980,52 @@ msgstr "Cargament..."
 msgid "Unknown Page"
 msgstr "Pagina desconeguda"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1061
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr ""
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "Impossible de cargar la pagina"
 
-#: ../src/yelp-window.c:1056
+#: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
 msgstr ""
 
-#: ../src/yelp-window.c:1238
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
 msgstr "_Recercar :"
 
-#: ../src/yelp-window.c:1239
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
 msgstr "Recercar d'autras documentacions"
 
-#: ../src/yelp-window.c:1258
+#: ../src/yelp-window.c:1266
 msgid "Cannot create window"
-msgstr ""
+msgstr "Impossible de crear una fenèstra"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1272
 msgid "Cannot create search component"
 msgstr ""
 
-#: ../src/yelp-window.c:1397
+#: ../src/yelp-window.c:1405
 msgid "Fin_d:"
 msgstr "_Recercar :"
 
-#: ../src/yelp-window.c:1417
+#: ../src/yelp-window.c:1425
 msgid "Find _Next"
 msgstr "Recercar lo seguent"
 
-#: ../src/yelp-window.c:1429
+#: ../src/yelp-window.c:1437
 msgid "Find _Previous"
 msgstr "Recercar lo _precedent"
 
-#: ../src/yelp-window.c:1442
+#: ../src/yelp-window.c:1450
 msgid "Phrase not found"
 msgstr "Impossible de trobar la frasa"
 
-#: ../src/yelp-window.c:1569
+#: ../src/yelp-window.c:1578
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1033,15 +1034,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2389
+#: ../src/yelp-window.c:2401
 msgid "translator-credits"
 msgstr "Yannig Marchegay (Kokoyaya) <yannig@marchegay.org)"
 
-#: ../src/yelp-window.c:2392
+#: ../src/yelp-window.c:2404
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2394
+#: ../src/yelp-window.c:2406
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navegador e legidor de documentacion pel burèu GNOME."
 
@@ -1049,58 +1050,3 @@ msgstr "Un navegador e legidor de documentacion pel burèu GNOME."
 msgid "Get help with GNOME"
 msgstr "Obténer d'ajuda amb GNOME"
 
-#~ msgid "An unknown error occured"
-#~ msgstr "I a agut una error desconeguda"
-
-#~ msgid "Could not load document"
-#~ msgstr "Impossible de cargar lo document"
-
-#~ msgid "Unsupported Format"
-#~ msgstr "Format pas gerit"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
-#~ "is formatted incorrectly."
-#~ msgstr ""
-#~ "Impossible d'analizar lo fichièr '%s'. Ja lo fichièr existís pas, ja es "
-#~ "pas plan format."
-
-#~ msgid "The YelpDocInfo struct of the document"
-#~ msgstr "L'estructura YelpDocInfo del document"
-
-#~ msgid "Help Contents"
-#~ msgstr "Somari de l'ajuda"
-
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "Impossible de cargar lo fichièr OMF '%s'."
-
-#~ msgid "yelp-watermark-blockquote-201C"
-#~ msgstr "yelp-watermark-blockquote-00AB"
-
-#~ msgid "Read man page for %s"
-#~ msgstr "Legir la pagina man per %s"
-
-#~ msgid "Read info page for %s"
-#~ msgstr "Legir la pagina info per %s"
-
-#~ msgid "Command Line Help"
-#~ msgstr "Ajuda per la linha de comanda"
-
-#~ msgid "The Uniform Resource Identifier for the file is invalid."
-#~ msgstr "L'URI del fichièr es pas valid."
-
-#~ msgid "Man pages are not supported in this version."
-#~ msgstr "Las paginas de manual son pas geridas dins aquesta version."
-
-#~ msgid "GNU info pages are not supported in this version"
-#~ msgstr "Las paginas GNU info son pas geridas dins aquesta version"
-
-#~ msgid "Search is not supported in this version."
-#~ msgstr "La foncion de recèrca es pas gerida dins aquesta version."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#~ "is improperly formatted."
-#~ msgstr ""
-#~ "Impossible d'analizar lo fichièr '%s'. Ja lo fichièr existís pas, ja es "
-#~ "pas plan formatat."
