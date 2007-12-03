@@ -1,71 +1,411 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="toc.xml.in.content/toc.css" type="text/css"?>
-<toc id="index">
+<toc id="Core">
   <_title>Desktop</_title>
   <_description>Welcome to the GNOME Help Browser</_description>
-
-  <toc id="ApplicationsAccessibility" icon="accessibility-directory">
+  <toc id="Accessibility" icon="accessibility-directory">
     <_title>Accessibility</_title>
-    <_description>Applications that support assistive technologies</_description>
+    <_description>Learn more about making you're system more accessible for a 
+    range of disabilities</_description>
   </toc>
-  <toc id="ApplicationsAccessories" icon="gnome-util">
-    <_title>Accessories</_title>
-    <_description>Utility applications</_description>
-  </toc>
-  <toc id="ApplicationsEducation">
-    <_title>Education</_title>
-    <_description>Learning applications</_description>
-  </toc>
-  <toc id="ApplicationsGames" icon="gnome-joystick">
-    <_title>Games</_title>
-    <_description>Applications for fun</_description>
-  </toc>
-  <toc id="ApplicationsGraphics" icon="gnome-graphics">
-    <_title>Graphics</_title>
-    <_description>Applications for manipulating or viewing graphics</_description>
-  </toc>
-  <toc id="ApplicationsInternet" icon="gnome-globe">
-    <_title>Internet</_title>
-    <_description>Applications related to the internet</_description>
+  <toc id="GNOME">
+    <_title>GNOME Applications</_title>
+    <_description>Generic applications for the GNOME environment</_description>
   </toc>
   <toc id="KDE">
-    <_title>KDE</_title>
-    <_description>Documents specific to the KDE Desktop Environment</_description>
+    <_title>KDE Applications</_title>
+    <_description>Generic applications for the KDE environment</_description>
   </toc>
-  <toc id="ApplicationsOffice" icon="gnome-applications">
-    <_title>Office</_title>
-    <_description>Applications for word processing and other office tasks</_description>
-  </toc>
-  <toc id="ApplicationsOther" icon="gnome-other">
-    <_title>Other Applications</_title>
-    <_description>Variety of other applications</_description>
-  </toc>
-  <toc id="DesktopApplets">
-    <_title>Panel Applets</_title>
-    <_description>Applications specific to the panel</_description>
-  </toc>
-  <toc id="ApplicationsProgramming" icon="gnome-devel">
-    <_title>Programming</_title>
-    <_description>Applications related to software development</_description>
-  </toc>
-  <toc id="ApplicationsScientific">
-    <_title>Scientific</_title>
-    <_description>Scientific Applications.</_description>
-  </toc>
-  <toc id="ApplicationsMultimedia" icon="gnome-multimedia">
+  <toc id="AudioVideo" icon="gnome-multimedia">
     <_title>Sound &amp; Video</_title>
-    <_description>Applications related to multimedia</_description>
+    <_description>Applications related to audio and video</_description>
+    <toc id="Video">
+      <_title>Video</_title>
+      <toc id="TV">
+	<_title>TV</_title>
+      </toc>
+    </toc>
+    <toc id="Audio">
+      <_title>Sound</_title>
+      <toc id="Midi">
+	<_title>Midi</_title>
+      </toc>
+      <toc id="Mixer">
+	<_title>Mixer</_title>
+      </toc>
+      <toc id="Sequencer">
+	<_title>Sequencer</_title>
+      </toc>
+      <toc id="Tuner">
+	<_title>Tuner</_title>
+      </toc>
+    </toc>
+    <toc id="AudioVideoEditing">
+      <_title>AudioVideoEditing</_title>
+    </toc>
+    <toc id="Player">
+      <_title>Player</_title>
+    </toc>
+    <toc id="Recorder">
+      <_title>Recorder</_title>
+    </toc>
+    <toc id="DiscBurning">
+      <_title>DiscBurning</_title>
+    </toc>
   </toc>
-  <toc id="ApplicationsSystem" icon="gnome-system">
-    <_title>System Tools</_title>
-    <_description>Utilities to manage your computer</_description>
+  <toc id="Development" icon="gnome-devel">
+    <_title>Development</_title>
+    <_description>Guides for getting involved in development</_description>
+    <toc id="Building">
+      <_title>Building</_title>
+    </toc>
+    <toc id="Debugger">
+      <_title>Debugger</_title>
+    </toc>
+    <toc id="IDE">
+      <_title>IDE</_title>
+    </toc>
+    <toc id="GUIDesigner">
+      <_title>GUIDesigner</_title>
+    </toc>
+    <toc id="Profiling">
+      <_title>Profiling</_title>
+    </toc>
+    <toc id="RevisionControl">
+      <_title>RevisionControl</_title>
+    </toc>
+    <toc id="Translation">
+      <_title>Translation</_title>
+    </toc>
   </toc>
-  <toc id="ApplicationsX">
-    <_title>X Applications</_title>
-    <_description>Applications related to X Windows</_description>
+  <toc id="Education">
+    <_title>Education</_title>
+    <_description>Applications that teach or aid in learning</_description>
+    <toc id="Art">
+      <_title>Art</_title>
+    </toc>
+    <toc id="Construction">
+      <_title>Construction</_title>
+    </toc>
+    <toc id="Music">
+      <_title>Music</_title>
+    </toc>
+    <toc id="Science">
+      <_title>Science</_title>
+    </toc>
+    <toc id="ArtificialIntelligence">
+      <_title>ArtificialIntelligence</_title>
+    </toc>
+    <toc id="Astronomy">
+      <_title>Astronomy</_title>
+    </toc>
+    <toc id="Biology">
+      <_title>Biology</_title>
+    </toc>
+    <toc id="Chemistry">
+      <_title>Chemistry</_title>
+    </toc>
+    <toc id="ComputerScience">
+      <_title>ComputerScience</_title>
+    </toc>
+    <toc id="DataVisualization">
+      <_title>DataVisualization</_title>
+    </toc>
+    <toc id="Economy">
+      <_title>Economy</_title>
+    </toc>
+    <toc id="Electricity">
+      <_title>Electricity</_title>
+    </toc>
+    <toc id="Geography">
+      <_title>Geography</_title>
+    </toc>
+    <toc id="Geology">
+      <_title>Geology</_title>
+    </toc>
+    <toc id="Geoscience">
+      <_title>Geoscience</_title>
+    </toc>
+    <toc id="History">
+      <_title>History</_title>
+    </toc>
+    <toc id="ImageProcessing">
+      <_title>ImageProcessing</_title>
+    </toc>
+    <toc id="Literature">
+      <_title>Literature</_title>
+    </toc>
+    <toc id="Math">
+      <_title>Math</_title>
+    </toc>
+    <toc id="NumericalAnalysis">
+      <_title>NumericalAnalysis</_title>
+    </toc>
+    <toc id="MedicalSoftware">
+      <_title>MedicalSoftware</_title>
+    </toc>
+    <toc id="Physics">
+      <_title>Physics</_title>
+    </toc>
+    <toc id="Robotics">
+      <_title>Robotics</_title>
+    </toc>
+    <toc id="Sports">
+      <_title>Sports</_title>
+    </toc>
+    <toc id="ParallelComputing">
+      <_title>ParallelComputing</_title>
+    </toc>
   </toc>
-  <toc id="Other">
+  <toc id="Games" icon="gnome-joystick">
+    <_title>Games</_title>
+    <_description>Have some fun</_description>
+    <toc id="ActionGame">
+      <_title>Action Games</_title>
+    </toc>
+    <toc id="AdventureGame">
+      <_title>Adventure Games</_title>
+    </toc>
+    <toc id="ArcadeGame">
+      <_title>Arcade Games</_title>
+    </toc>
+    <toc id="BoardGame">
+      <_title>Board Games</_title>
+    </toc>
+    <toc id="BlocksGame">
+      <_title>Blocks Games</_title>
+    </toc>
+    <toc id="CardGame">
+      <_title>Card Games</_title>
+    </toc>
+    <toc id="KidsGame">
+      <_title>Kids Games</_title>
+    </toc>
+    <toc id="LogicGame">
+      <_title>Logic Games</_title>
+    </toc>
+    <toc id="RolePlaying">
+      <_title>Role Playing Games</_title>
+    </toc>
+    <toc id="Simulation">
+      <_title>Simulation Games</_title>
+    </toc>
+    <toc id="SportsGame">
+      <_title>Sports Games</_title>
+    </toc>
+    <toc id="StrategyGame">
+      <_title>Strategy Games</_title>
+    </toc>
+    <toc id="Amusement">
+      <_title>Amusement</_title>
+    </toc>
+  </toc>
+  <toc id="Graphics" icon="gnome-graphics">
+    <_title>Graphics</_title>
+    <_description>Applications for viewing and manipulating graphics</_description>
+    <toc id="2DGraphics">
+      <_title>2DGraphics</_title>
+    </toc>
+    <toc id="VectorGraphics">
+      <_title>VectorGraphics</_title>
+    </toc>
+    <toc id="RasterGraphics">
+      <_title>RasterGraphics</_title>
+    </toc>
+    <toc id="3DGraphics">
+      <_title>3DGraphics</_title>
+    </toc>
+    <toc id="Scanning">
+      <_title>Scanning</_title>
+    </toc>
+    <toc id="OCR">
+      <_title>OCR</_title>
+    </toc>
+    <toc id="Photography">
+      <_title>Photography</_title>
+    </toc>
+    <toc id="Publishing">
+      <_title>Publishing</_title>
+    </toc>
+    <toc id="Viewer">
+      <_title>Viewer</_title>
+    </toc>
+  </toc>
+  <toc id="Network">
+    <_title>Internet</_title>
+    <_description>Guides and manuals for applications that connect to the outside world</_description>
+    <toc id="Dialup">
+      <_title>Dialup</_title>
+    </toc>
+    <toc id="InstantMessaging">
+      <_title>InstantMessaging</_title>
+    </toc>
+    <toc id="Chat">
+      <_title>Chat</_title>
+    </toc>
+    <toc id="IRCClient">
+      <_title>IRCClient</_title>
+    </toc>
+    <toc id="FileTransfer">
+      <_title>FileTransfer</_title>
+    </toc>
+    <toc id="HamRadio">
+      <_title>HamRadio</_title>
+    </toc>
+    <toc id="News">
+      <_title>News</_title>
+    </toc>
+    <toc id="P2P">
+      <_title>P2P</_title>
+    </toc>
+    <toc id="RemoteAccess">
+      <_title>RemoteAccess</_title>
+    </toc>
+    <toc id="Telephony">
+      <_title>Telephony</_title>
+    </toc>
+    <toc id="VideoConference">
+      <_title>VideoConference</_title>
+    </toc>
+    <toc id="WebBrowser">
+      <_title>WebBrowser</_title>
+    </toc>
+    <toc id="WebDevelopment">
+      <_title>WebDevelopment</_title>
+    </toc>
+  </toc>
+  <toc id="Office" icon="gnome-applications">
+    <_title>Office Applications</_title>
+    <_description>Office applications</_description>
+    <toc id="Calendar">
+      <_title>Calendar</_title>
+    </toc>
+    <toc id="ContactManagement">
+      <_title>ContactManagement</_title>
+    </toc>
+    <toc id="Database">
+      <_title>Database</_title>
+    </toc>
+    <toc id="Dictionary">
+      <_title>Dictionary</_title>
+    </toc>
+    <toc id="Chart">
+      <_title>Chart</_title>
+    </toc>
+    <toc id="Email">
+      <_title>Email</_title>
+    </toc>
+    <toc id="Finance">
+      <_title>Finance</_title>
+    </toc>
+    <toc id="FlowChart">
+      <_title>FlowChart</_title>
+    </toc>
+    <toc id="PDA">
+      <_title>PDA</_title>
+    </toc>
+    <toc id="ProjectManagement">
+      <_title>ProjectManagement</_title>
+    </toc>
+    <toc id="Presentation">
+      <_title>Presentation</_title>
+    </toc>
+    <toc id="Spreadsheet">
+      <_title>Spreadsheet</_title>
+    </toc>
+    <toc id="WordProcessor">
+      <_title>WordProcessor</_title>
+    </toc>
+  </toc>
+  <toc id="Settings" icon="gnome-system">
+    <_title>Settings</_title>
+    <_description>Settings users can manipulate to make their environment more pleasent</_description>
+    <toc id="DesktopSettings">
+      <_title>DesktopSettings</_title>
+    </toc>
+    <toc id="Printing">
+      <_title>Printing</_title>
+    </toc>
+    <toc id="TerminalEmulator">
+      <_title>TerminalEmulator</_title>
+    </toc>
+  </toc>
+  <toc id="System" icon="gnome-system">
+    <_title>System</_title>
+    <_description>Tools to help you manage you're computer</_description>
+    <toc id="Emulator">
+      <_title>Emulator</_title>
+    </toc>
+    <toc id="Engineering">
+      <_title>Engineering</_title>
+    </toc>
+    <toc id="PackageManager">
+      <_title>PackageManager</_title>
+    </toc>
+    <toc id="FileTools">
+      <_title>FileTools</_title>
+    </toc>
+    <toc id="FileManager">
+      <_title>FileManager</_title>
+    </toc>
+    <toc id="HardwareSettings">
+      <_title>HardwareSettings</_title>
+    </toc>
+    <toc id="Filesystem">
+      <_title>Filesystem</_title>
+    </toc>
+    <toc id="Monitor">
+      <_title>Monitor</_title>
+    </toc>
+    <toc id="Security">
+      <_title>Security</_title>
+    </toc>
+  </toc>
+  <toc id="Utility" icon="gnome-util">
+    <_title>Utilities</_title>
+    <_description>Utilities to help you get work done</_description>
+    <toc id="Calculator">
+      <_title>Calculator</_title>
+    </toc>
+    <toc id="Clock">
+      <_title>Clock</_title>
+    </toc>
+    <toc id="TextEditor">
+      <_title>TextEditor</_title>
+    </toc>
+    <toc id="TelephonyTools">
+      <_title>TelephonyTools</_title>
+    </toc>
+    <toc id="Archiving">
+      <_title>Archiving</_title>
+    </toc>
+    <toc id="Compression">
+      <_title>Compression</_title>
+    </toc>
+    <toc id="Electronics">
+      <_title>Electronics</_title>
+    </toc>
+  </toc>
+  <toc id="Other" icon="gnome-other">
     <_title>Other Documentation</_title>
-    <_description>Miscellaneous documents</_description>
+    <_description>Miscellaneous Documentation</_description>
+    <toc id="TextTools">
+      <_title>Text Tools</_title>
+    </toc>
+    <toc id="Documentation">
+      <_title>Licences</_title>
+    </toc>
+    <toc id="GTK">
+      <_title>GTK</_title>
+    </toc>
+    <toc id="Qt">
+      <_title>Qt</_title>
+    </toc>
+    <toc id="Motif">
+      <_title>Motif</_title>
+    </toc>
+    <toc id="Java">
+      <_title>Java</_title>
+    </toc>
   </toc>
 </toc>

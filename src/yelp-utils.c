@@ -31,8 +31,7 @@
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 
 #include <string.h>
-#include <rarian-info.h>
-#include <rarian-man.h>
+#define I_KNOW_RARIAN_0_8_IS_UNSTABLE
 #include <rarian.h>
 
 #include "yelp-utils.h"

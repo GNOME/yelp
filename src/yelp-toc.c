@@ -33,9 +33,8 @@
 #include <libxml/parserInternals.h>
 #include <libxml/xinclude.h>
 #include <libxml/xmlreader.h>
+#define I_KNOW_RARIAN_0_8_IS_UNSTABLE
 #include <rarian.h>
-#include <rarian-info.h>
-#include <rarian-man.h>
 
 #include "yelp-error.h"
 #include "yelp-toc.h"
@@ -414,10 +413,9 @@ toc_process (YelpToc *toc)
 
     GThread *info_thread;
     GThread *man_thread;
-    xmlTextReaderPtr   reader;
     xmlXPathContextPtr xpath;
     xmlXPathObjectPtr  obj;
-    gint i, ret;
+    gint i;
     debug_print (DB_FUNCTION, "entering\n");
 
     g_assert (toc != NULL && YELP_IS_TOC (toc));
@@ -446,13 +444,15 @@ toc_process (YelpToc *toc)
     for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 	xmlNodePtr node = obj->nodesetval->nodeTab[i];
 	xmlChar *icon = NULL;
+	xmlChar *id = NULL;
 
 	xml_trim_titles (node, BAD_CAST "title");
 	xml_trim_titles (node, BAD_CAST "description");
 
 	icon = xmlGetProp (node, BAD_CAST "icon");
 	if (icon) {
-	    info = gtk_icon_theme_lookup_icon (theme, (gchar *) icon, 48, 0);
+	    info = gtk_icon_theme_lookup_icon (theme, (gchar *) icon, 48, 
+					       GTK_ICON_LOOKUP_NO_SVG);
 	    if (info) {
 		xmlNodePtr new = xmlNewChild (node, NULL, BAD_CAST "icon", 
 					      NULL);
@@ -462,64 +462,19 @@ toc_process (YelpToc *toc)
 	    }
 	}
 	xmlFree (icon);
+	id = xmlGetProp (node, BAD_CAST "id");
+
+	if (id) {
+	    if (g_str_equal (id, "Core"))
+		xmlSetProp (node, BAD_CAST "id", BAD_CAST "index");
+	    rrn_for_each_in_category (rrn_add_document,
+				      (char *) id,
+				      (void *) node);
+	    xmlFree (id);
+	}
 
     }
     xmlXPathFreeObject (obj);
-
-    reader = xmlReaderForFile (DATADIR "/yelp/scrollkeeper.xml", NULL,
-			       XML_PARSE_NOBLANKS | XML_PARSE_NOCDATA  |
-			       XML_PARSE_NOENT    | XML_PARSE_NOERROR  |
-			       XML_PARSE_NONET    );
-    ret = xmlTextReaderRead (reader);
-    while (ret == 1) {
-	if (!xmlStrcmp (xmlTextReaderConstLocalName (reader),
-			BAD_CAST "toc")) {
-	    xmlChar *id = xmlTextReaderGetAttribute (reader, BAD_CAST "id");
-	    xmlNodePtr node;
-	    gchar *xpath_s;
-	    if (!id) {
-		ret = xmlTextReaderRead (reader);
-		continue;
-	    }
-
-	    g_mutex_lock (priv->mutex);
-
-	    yelp_document_add_page_id (YELP_DOCUMENT (toc), (gchar *) id, (gchar *) id);
-	    g_mutex_unlock (priv->mutex);
-	    xpath_s = g_strdup_printf ("//toc[@id = '%s']", id);
-	    obj = xmlXPathEvalExpression (BAD_CAST xpath_s, xpath);
-	    g_free (xpath_s);
-
-	    node = obj->nodesetval->nodeTab[0];
-	    xmlXPathFreeObject (obj);
-
-	    ret = xmlTextReaderRead (reader);
-	    while (ret == 1) {
-		if (!xmlStrcmp (xmlTextReaderConstLocalName (reader),
-				BAD_CAST "subject")) {
-		    xmlChar *cat = xmlTextReaderGetAttribute (reader, 
-							      BAD_CAST "category");
-		    rrn_for_each_in_category (rrn_add_document,
-						(char *) cat,
-						(void *) node);
-		    xmlFree (cat);
-		}
-		else if (!xmlStrcmp (xmlTextReaderConstLocalName (reader),
-				     BAD_CAST "toc")) {
-		    break;
-		}
-		ret = xmlTextReaderRead (reader);
-	    }
-
-	    xmlFree (id);
-	    ret = xmlTextReaderRead (reader);
-	} else {
-	    ret = xmlTextReaderRead (reader);
-	}
-    }
-    xmlFreeTextReader (reader);
-    xmlXPathFreeContext (xpath);
-
 
     man_thread = g_thread_create ((GThreadFunc) toc_process_man, toc, TRUE, NULL);
     if (!man_thread) {

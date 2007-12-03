@@ -41,6 +41,7 @@
 #include <libxslt/extensions.h>
 #include <libxslt/xsltInternals.h>
 #include <libxslt/xsltutils.h>
+#define I_KNOW_RARIAN_0_8_IS_UNSTABLE
 #include <rarian.h>
 
 #ifdef ENABLE_BEAGLE

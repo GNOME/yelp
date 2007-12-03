@@ -78,7 +78,7 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 	libstartup-notification-1.0 >= 0.8
 	dbus-glib-1
-	rarian >= 0.5.0
+	rarian >= 0.7.0
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])

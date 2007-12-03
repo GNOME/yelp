@@ -53,7 +53,7 @@
         }
         h1 img {
           position: absolute;
-          top: 6px;
+          top: 15px;
           right: 18px;
         }
 	h2 h3 {
