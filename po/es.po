@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
-"PO-Revision-Date: 2007-09-06 09:39+0200\n"
+"POT-Creation-Date: 2007-12-04 04:07+0000\n"
+"PO-Revision-Date: 2007-12-06 17:58+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Archivos de configuración"
 msgid "Curses Functions"
 msgstr "Funciones Curses"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:36
 msgid "Development"
 msgstr "Desarrollo"
 
@@ -50,7 +50,7 @@ msgstr "Desarrollo"
 msgid "FORTRAN Functions"
 msgstr "Funciones FORTRAN"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Juegos"
 
@@ -283,136 +283,584 @@ msgid "X11 Overviews"
 msgstr "Vistas generales X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2DGraphics"
+msgstr "Gráficos 2D"
+
+#: ../data/toc.xml.in.h:2
+msgid "3DGraphics"
+msgstr "Gráficos 3D"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Accesibilidad"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Accesorios"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Aplicaciones para distraerse"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Aplicaciones para manipular o ver gráficos"
+msgid "Action Games"
+msgstr "Juegos de acción"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Aplicaciones para procesar texto y otras tareas de ofimática"
+msgid "Adventure Games"
+msgstr "Juegos de aventuras"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "Aplicaciones relativas a X Window"
+msgid "Amusement"
+msgstr "Entretenimiento"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Aplicaciones relativas a multimedios"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Aplicaciones para ver y manipular gráficos"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Aplicaciones relativas al desarrollo de software"
+msgid "Applications related to audio and video"
+msgstr "Aplicaciones relativas con sonido y vídeo"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Aplicaciones relativas a Internet"
+msgid "Applications that teach or aid in learning"
+msgstr "Aplicaciones que enseñan o ayudan a aprender"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Aplicaciones específicas al panel"
+msgid "Arcade Games"
+msgstr "Juegos arcade"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Aplicaciones que soportan tecnologías de asistencia"
+msgid "Archiving"
+msgstr "Archivado"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Arte"
+
+#: ../data/toc.xml.in.h:13
+msgid "ArtificialIntelligence"
+msgstr "Inteligencia artificial"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Astronomía"
+
+#: ../data/toc.xml.in.h:15
+msgid "AudioVideoEditing"
+msgstr "Edición de sonido y vídeo"
+
+#: ../data/toc.xml.in.h:16
+msgid "Biology"
+msgstr "Biología"
+
+#: ../data/toc.xml.in.h:17
+msgid "Blocks Games"
+msgstr "Juegos de bloques"
+
+#: ../data/toc.xml.in.h:18
+msgid "Board Games"
+msgstr "Juegos de tablero"
+
+#: ../data/toc.xml.in.h:19
+msgid "Building"
+msgstr "Construcción"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calculator"
+msgstr "Calculadora"
+
+#: ../data/toc.xml.in.h:21
+msgid "Calendar"
+msgstr "Calendario"
+
+#: ../data/toc.xml.in.h:22
+msgid "Card Games"
+msgstr "Juegos de cartas"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chart"
+msgstr "Gráficos"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chat"
+msgstr "Chat"
+
+#: ../data/toc.xml.in.h:25
+msgid "Chemistry"
+msgstr "Química"
+
+#: ../data/toc.xml.in.h:26
+msgid "Clock"
+msgstr "Reloj"
+
+#: ../data/toc.xml.in.h:27
+msgid "Compression"
+msgstr "Compresión"
+
+#: ../data/toc.xml.in.h:28
+msgid "ComputerScience"
+msgstr "Informática (ciencias computacionales)"
+
+#: ../data/toc.xml.in.h:29
+msgid "Construction"
+msgstr "Construcción"
+
+#: ../data/toc.xml.in.h:30
+msgid "ContactManagement"
+msgstr "Gestión de contactos"
+
+#: ../data/toc.xml.in.h:31
+msgid "DataVisualization"
+msgstr "Visualización de datos"
+
+#: ../data/toc.xml.in.h:32
+msgid "Database"
+msgstr "Base de datos"
+
+#: ../data/toc.xml.in.h:33
+msgid "Debugger"
+msgstr "Depurador"
+
+#: ../data/toc.xml.in.h:34
 msgid "Desktop"
 msgstr "Escritorio"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "Documentos específicos al entorno de escritorio KDE"
+#: ../data/toc.xml.in.h:35
+msgid "DesktopSettings"
+msgstr "Ajustes del escritorio"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:37
+msgid "Dialup"
+msgstr "Marcado telefónico"
+
+#: ../data/toc.xml.in.h:38
+msgid "Dictionary"
+msgstr "Diccionario"
+
+#: ../data/toc.xml.in.h:39
+msgid "DiscBurning"
+msgstr "Grabado de discos"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Economía"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Educación"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Electricidad"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Electrónica"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email"
+msgstr "Correo-e"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulardor"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Ingeniería"
+
+#: ../data/toc.xml.in.h:47
+msgid "FileManager"
+msgstr "Gestor de archivos"
+
+#: ../data/toc.xml.in.h:48
+msgid "FileTools"
+msgstr "Herramientas de archivos"
+
+#: ../data/toc.xml.in.h:49
+msgid "FileTransfer"
+msgstr "Transferencia de archivos"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Sistema de archivos"
+
+#: ../data/toc.xml.in.h:51
+msgid "Finance"
+msgstr "Finanzas"
+
+#: ../data/toc.xml.in.h:52
+msgid "FlowChart"
+msgstr "Gráficos de flujo"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "Aplicaciones de GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUIDesigner"
+msgstr "Diseñador de IGU"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Aplicaciones genéricas para el entorno GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Aplicaciones específicas para el entorno KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Geografía"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Geología"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Geociencia"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Guías y manuales para aplicaciones que le conectan con el mundo exterior"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Guías para involucrarse en el desarrollo"
+
+#: ../data/toc.xml.in.h:65
+msgid "HamRadio"
+msgstr "Radio Ham"
+
+#: ../data/toc.xml.in.h:66
+msgid "HardwareSettings"
+msgstr "Ajustes del hardware"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Entreténgase"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Historia"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDE"
+msgstr "EID"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRCClient"
+msgstr "Cliente de IRC"
+
+#: ../data/toc.xml.in.h:71
+msgid "ImageProcessing"
+msgstr "Procesado de imágenes"
+
+#: ../data/toc.xml.in.h:72
+msgid "InstantMessaging"
+msgstr "Mensajería instantánea"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Aplicaciones educativas"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "Aplicaciones de KDE"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Juegos de niños"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making you're system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Aprenda más acerca de cómo hacer su sistema más accesible para cierto número de "
+"discapacidades"
+
+#: ../data/toc.xml.in.h:78
+msgid "Licences"
+msgstr "Licencias"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Literatura"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Juegos de lógica"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matemáticas"
+
+#: ../data/toc.xml.in.h:82
+msgid "MedicalSoftware"
+msgstr "Software médico"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
 msgstr "Documentos misceláneos"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Oficina"
+#: ../data/toc.xml.in.h:85
+msgid "Mixer"
+msgstr "Mezclador"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Otras aplicaciones"
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Monitor"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Música"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Noticias"
+
+#: ../data/toc.xml.in.h:90
+msgid "NumericalAnalysis"
+msgstr "Análisis numérico"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Aplicaciones de ofimática"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Aplicaciones de ofimática"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Otra documentación"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Miniaplicaciones del panel"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Programación"
+#: ../data/toc.xml.in.h:96
+msgid "PDA"
+msgstr "PDA"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
+#: ../data/toc.xml.in.h:97
+msgid "PackageManager"
+msgstr "Gestor de paquetes"
+
+#: ../data/toc.xml.in.h:98
+msgid "ParallelComputing"
+msgstr "Computación en paralelo"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotografía"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Física"
+
+#: ../data/toc.xml.in.h:101
+msgid "Player"
+msgstr "Jugador"
+
+#: ../data/toc.xml.in.h:102
+msgid "Presentation"
+msgstr "Presentación"
+
+#: ../data/toc.xml.in.h:103 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Imprimir"
+
+#: ../data/toc.xml.in.h:104
+msgid "Profiling"
+msgstr "Perfilador"
+
+#: ../data/toc.xml.in.h:105
+msgid "ProjectManagement"
+msgstr "Gestión de proyectos"
+
+#: ../data/toc.xml.in.h:106
+msgid "Publishing"
+msgstr "Publicaciones"
+
+#: ../data/toc.xml.in.h:107
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:108
+msgid "RasterGraphics"
+msgstr "Gráficos raster"
+
+#: ../data/toc.xml.in.h:109
+msgid "Recorder"
+msgstr "Grabador"
+
+#: ../data/toc.xml.in.h:110
+msgid "RemoteAccess"
+msgstr "Acceso remoto"
+
+#: ../data/toc.xml.in.h:111
+msgid "RevisionControl"
+msgstr "Control de revisiones"
+
+#: ../data/toc.xml.in.h:112
+msgid "Robotics"
+msgstr "Robótica"
+
+#: ../data/toc.xml.in.h:113
+msgid "Role Playing Games"
+msgstr "Juegos de rol"
+
+#: ../data/toc.xml.in.h:114
+msgid "Scanning"
+msgstr "Escáner"
+
+#: ../data/toc.xml.in.h:115
+msgid "Science"
 msgstr "Científicas"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Aplicaciones científicas"
+#: ../data/toc.xml.in.h:116
+msgid "Security"
+msgstr "Seguridad"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:117
+msgid "Sequencer"
+msgstr "Secuenciador"
+
+#: ../data/toc.xml.in.h:118
+msgid "Settings"
+msgstr "Ajustes"
+
+#: ../data/toc.xml.in.h:119
+msgid "Settings users can manipulate to make their environment more pleasent"
+msgstr "Ajustes que los usuarios pueden manipular para hacer su entorno más agradable"
+
+#: ../data/toc.xml.in.h:120
+msgid "Simulation Games"
+msgstr "Juegos de simulación"
+
+#: ../data/toc.xml.in.h:121
+msgid "Sound"
+msgstr "Sonido"
+
+#: ../data/toc.xml.in.h:122
 msgid "Sound &amp; Video"
 msgstr "Sonido y vídeo"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Herramientas del sistema"
+#: ../data/toc.xml.in.h:123
+msgid "Sports"
+msgstr "Deportes"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Utilidades para la gestión del equipo"
+#: ../data/toc.xml.in.h:124
+msgid "Sports Games"
+msgstr "Juegos de deportes"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Aplicaciones útiles"
+#: ../data/toc.xml.in.h:125
+msgid "Spreadsheet"
+msgstr "Hoja de cálculo"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Variedad de otras aplicaciones"
+#: ../data/toc.xml.in.h:126
+msgid "Strategy Games"
+msgstr "Juegos de estrategia"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:127
+msgid "System"
+msgstr "Sistema"
+
+#: ../data/toc.xml.in.h:128
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:129
+msgid "Telephony"
+msgstr "Telefonía"
+
+#: ../data/toc.xml.in.h:130
+msgid "TelephonyTools"
+msgstr "Herramientas de telefonía"
+
+#: ../data/toc.xml.in.h:131
+msgid "TerminalEmulator"
+msgstr "Emulación de terminales"
+
+#: ../data/toc.xml.in.h:132
+msgid "Text Tools"
+msgstr "Herramientas de texto"
+
+#: ../data/toc.xml.in.h:133
+msgid "TextEditor"
+msgstr "Editor de textos"
+
+#: ../data/toc.xml.in.h:134
+msgid "Tools to help you manage you're computer"
+msgstr "Utilidades para ayudarle a gestionar su equipo"
+
+#: ../data/toc.xml.in.h:135
+msgid "Translation"
+msgstr "Traducción"
+
+#: ../data/toc.xml.in.h:136
+msgid "Tuner"
+msgstr "Sintonizador"
+
+#: ../data/toc.xml.in.h:137
+msgid "Utilities"
+msgstr "Utilidades"
+
+#: ../data/toc.xml.in.h:138
+msgid "Utilities to help you get work done"
+msgstr "Utilidades para ayudarle a realizar su trabajo"
+
+#: ../data/toc.xml.in.h:139
+msgid "VectorGraphics"
+msgstr "Gráficos vectoriales"
+
+#: ../data/toc.xml.in.h:140
+msgid "Video"
+msgstr "Vídeo"
+
+#: ../data/toc.xml.in.h:141
+msgid "VideoConference"
+msgstr "Videoconferencia"
+
+#: ../data/toc.xml.in.h:142
+msgid "Viewer"
+msgstr "Visor"
+
+#: ../data/toc.xml.in.h:143
+msgid "WebBrowser"
+msgstr "Navegador web"
+
+#: ../data/toc.xml.in.h:144
+msgid "WebDevelopment"
+msgstr "Desarrollo web"
+
+#: ../data/toc.xml.in.h:145
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Bienvenido al visor de ayuda de GNOME"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "Aplicaciones X"
+#: ../data/toc.xml.in.h:146
+msgid "WordProcessor"
+msgstr "Procesador de textos"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -559,7 +1007,7 @@ msgstr "Secciones del documento"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "Página no encontrada"
 
@@ -588,7 +1036,7 @@ msgstr "El archivo «%s» no existe."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "No se pudo analizar el archivo"
 
@@ -610,7 +1058,7 @@ msgstr ""
 "El archivo «%s» no se pudo analizar porque uno o más de sus archivos "
 "incluidos no son documentos XML bien formados."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -681,10 +1129,6 @@ msgstr "La impresión no se soporta en esta impresora"
 msgid "Printer %s does not support postscript printing."
 msgstr "La impresora %s soporta la impresión PostScript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "Imprimiendo"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Esperando para imprimir"
@@ -698,16 +1142,16 @@ msgstr "Ocurrió un error al imprimir"
 msgid "It was not possible to print your document: %s"
 msgstr "No es posible imprimir su documento: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "Los fórums de asistencia de GNOME"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:277
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Sin resultados para «%s»"
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:278
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -715,7 +1159,7 @@ msgstr ""
 "Intente usar palabras diferentes para describir el problema que está "
 "teniendo o el asunto del que quiere ayuda."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:281
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Buscar resultados para «%s»"
@@ -725,7 +1169,7 @@ msgstr "Buscar resultados para «%s»"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:295
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Repetir la búsqueda en línea en %s"
@@ -738,7 +1182,7 @@ msgstr "Repetir la búsqueda en línea en %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:865
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -754,7 +1198,7 @@ msgstr "acerca de:con:contra:de:desde:elemento:es:hace:mi:por:que:según:sin:sob
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:881
 msgid "re"
 msgstr "auto:re:"
 
@@ -765,7 +1209,7 @@ msgstr "auto:re:"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:890
 msgid "ers:er:ing:es:s:'s"
 msgstr "ando:mente:"
 
@@ -786,16 +1230,16 @@ msgstr "No se puede procesar la búsqueda"
 msgid "The search processor returned invalid results"
 msgstr "El procesador de búsqueda devolvió resultados no válidos"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "No se encontró la página %s en el TOC."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "No se encontró la página requerida en el TOC."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
