@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-08 21:39+0200\n"
-"PO-Revision-Date: 2007-09-13 02:12+0300\n"
+"POT-Creation-Date: 2007-12-08 01:36+0200\n"
+"PO-Revision-Date: 2007-12-08 01:58+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <be-latin.open-tran.eu>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Kanfihuracyjnyja fajły"
 msgid "Curses Functions"
 msgstr "Funkcyi Curses"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:36
 msgid "Development"
 msgstr "Raspracoŭka"
 
@@ -49,7 +49,7 @@ msgstr "Raspracoŭka"
 msgid "FORTRAN Functions"
 msgstr "Funkcyi FORTRAN"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Hulni"
 
@@ -282,136 +282,583 @@ msgid "X11 Overviews"
 msgstr "Ahlady X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2DGraphics"
+msgstr "2D Hrafika"
+
+#: ../data/toc.xml.in.h:2
+msgid "3DGraphics"
+msgstr "3D Hrafika"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Dastupnaść"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Aksesuary"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Zabaŭlalnyja aplikacyi"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Aplikacyi dla manipulacyjaŭ i prahladu hrafiki"
+msgid "Action Games"
+msgstr "Hulni action"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Aplikacyi dla pracy z tekstami i inšymi ofisnymi zadačami"
+msgid "Adventure Games"
+msgstr "Pryhodnickija hulni"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "Aplikacyi, jakija datyčacca X Windows"
+msgid "Amusement"
+msgstr "Zabaŭki"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Aplikacyi, jakija datyčacca multymedyi"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Aplikacyi dla prahladu j manipulacyjaŭ z hrafikaj"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Aplikacyi, jakija datyčacca raspracoŭki prahramaŭ"
+msgid "Applications related to audio and video"
+msgstr "Aplikacyi, jakija datyčacca huku j videa"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Aplikacyi, jakija datyčacca internetu"
+msgid "Applications that teach or aid in learning"
+msgstr "Navučalnyja aplikacyi"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Aplikacyi dziela paneli"
+msgid "Arcade Games"
+msgstr "Arkadnyja hulni"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Aplikacyi z padtrymkaj technalohij dastupnaści"
+msgid "Archiving"
+msgstr "Archivacyja"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Mastactva"
+
+#: ../data/toc.xml.in.h:13
+msgid "ArtificialIntelligence"
+msgstr "Štučny intelekt"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Astranomija"
+
+#: ../data/toc.xml.in.h:15
+msgid "AudioVideoEditing"
+msgstr "Redahavańnie huku j videa"
+
+#: ../data/toc.xml.in.h:16
+msgid "Biology"
+msgstr "Bijalohija"
+
+#: ../data/toc.xml.in.h:17
+msgid "Blocks Games"
+msgstr "Blokavyja hulni"
+
+#: ../data/toc.xml.in.h:18
+msgid "Board Games"
+msgstr "Nastolnyja hulni"
+
+#: ../data/toc.xml.in.h:19
+msgid "Building"
+msgstr "Budoŭla"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calculator"
+msgstr "Kalkulatar"
+
+#: ../data/toc.xml.in.h:21
+msgid "Calendar"
+msgstr "Kalandar"
+
+#: ../data/toc.xml.in.h:22
+msgid "Card Games"
+msgstr "Hulni ŭ karty"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chart"
+msgstr "Dyjahrama"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chat"
+msgstr "Hutarka"
+
+#: ../data/toc.xml.in.h:25
+msgid "Chemistry"
+msgstr "Chimija"
+
+#: ../data/toc.xml.in.h:26
+msgid "Clock"
+msgstr "Hadzińnik"
+
+#: ../data/toc.xml.in.h:27
+msgid "Compression"
+msgstr "Kampresija"
+
+#: ../data/toc.xml.in.h:28
+msgid "ComputerScience"
+msgstr "Kamputarnaja navuka"
+
+#: ../data/toc.xml.in.h:29
+msgid "Construction"
+msgstr "Kanstrujavańnie"
+
+#: ../data/toc.xml.in.h:30
+msgid "ContactManagement"
+msgstr "Kiravańnie kantaktami"
+
+#: ../data/toc.xml.in.h:31
+msgid "DataVisualization"
+msgstr "Vizualizacyja źviestak"
+
+#: ../data/toc.xml.in.h:32
+msgid "Database"
+msgstr "Baza źviestak"
+
+#: ../data/toc.xml.in.h:33
+msgid "Debugger"
+msgstr "Debugger"
+
+#: ../data/toc.xml.in.h:34
 msgid "Desktop"
 msgstr "Stoł"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "Dakumentacyja dziela asiarodździa KDE"
+#: ../data/toc.xml.in.h:35
+msgid "DesktopSettings"
+msgstr "Nałady Stała"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:37
+msgid "Dialup"
+msgstr "Dialup"
+
+#: ../data/toc.xml.in.h:38
+msgid "Dictionary"
+msgstr "Słoŭnik"
+
+#: ../data/toc.xml.in.h:39
+msgid "DiscBurning"
+msgstr "Zapis dyskaŭ"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Ekanomika"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Adukacyja"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Elektryčnaść"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Elektronika"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email"
+msgstr "Email"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulatar"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Engineravańnie"
+
+#: ../data/toc.xml.in.h:47
+msgid "FileManager"
+msgstr "Kiraŭnik fajłaŭ"
+
+#: ../data/toc.xml.in.h:48
+msgid "FileTools"
+msgstr "Fajłavyja pryłady"
+
+#: ../data/toc.xml.in.h:49
+msgid "FileTransfer"
+msgstr "Pieradača fajłaŭ"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Fajłavaja systema"
+
+#: ../data/toc.xml.in.h:51
+msgid "Finance"
+msgstr "Finansy"
+
+#: ../data/toc.xml.in.h:52
+msgid "FlowChart"
+msgstr "Dyjahrama dziejnaści"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "Aplikacyi GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUIDesigner"
+msgstr "Designer GUI"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Zvyčajnyja aplikacyi dziela asiarodździa GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Zvyčajnyja aplikacyi dziela asiarodździa KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Hieahrafija"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Hiealohija"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Naavuka ab Ziamli"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Hrafika"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Padručniki dy daviedniki dla aplikacyj, jakija spałučajucca z vonkavym asiarodździem"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Padručniki, kab pačać udzielničać u raspracoŭcy"
+
+#: ../data/toc.xml.in.h:65
+msgid "HamRadio"
+msgstr "HamRadio"
+
+#: ../data/toc.xml.in.h:66
+msgid "HardwareSettings"
+msgstr "Nałady aparatury"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Krychu pazabaŭlajsia"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Historyja"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDE"
+msgstr "IDE"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRCClient"
+msgstr "Klijent IRC"
+
+#: ../data/toc.xml.in.h:71
+msgid "ImageProcessing"
+msgstr "Praca z vyjavami"
+
+#: ../data/toc.xml.in.h:72
+msgid "InstantMessaging"
+msgstr "Imhniennyja paviedamleńni"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Adukacyjnyja aplikacyi"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "Aplikacyi KDE"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Dziciačyja hulni"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making you're system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Daviedajsia bolš pra toje, jak zrabić svaju systemu bolej dastupnaj dla ludziej ź niekatorymi peŭnymi fizyčnymi abmiežavańniami"
+
+#: ../data/toc.xml.in.h:78
+msgid "Licences"
+msgstr "Licenzii"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Litaratura"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Lahičnyja hulni"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matematyka"
+
+#: ../data/toc.xml.in.h:82
+msgid "MedicalSoftware"
+msgstr "Medycynskija prahramy"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
 msgstr "Raznastajnaja dakumentacyja"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Ofis"
+#: ../data/toc.xml.in.h:85
+msgid "Mixer"
+msgstr "Mikser"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Inšyja aplikacyi"
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Manitor"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Muzyka"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Naviny"
+
+#: ../data/toc.xml.in.h:90
+msgid "NumericalAnalysis"
+msgstr "Likavy analiz"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Ofisnyja aplikacyi"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Ofisnyja aplikacyi"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Inšaja dakumentacyja"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Aplety paneli"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Prahramavańnie"
+#: ../data/toc.xml.in.h:96
+msgid "PDA"
+msgstr "PDA"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
+#: ../data/toc.xml.in.h:97
+msgid "PackageManager"
+msgstr "Kiraŭnik pakunkaŭ"
+
+#: ../data/toc.xml.in.h:98
+msgid "ParallelComputing"
+msgstr "Paralelnaje vyličeńnie"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fatahrafija"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Fizyka"
+
+#: ../data/toc.xml.in.h:101
+msgid "Player"
+msgstr "Player"
+
+#: ../data/toc.xml.in.h:102
+msgid "Presentation"
+msgstr "Prezentacyja"
+
+#: ../data/toc.xml.in.h:103 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Druk"
+
+#: ../data/toc.xml.in.h:104
+msgid "Profiling"
+msgstr "Prafilavańnie"
+
+#: ../data/toc.xml.in.h:105
+msgid "ProjectManagement"
+msgstr "Kiravańnie prajktami"
+
+#: ../data/toc.xml.in.h:106
+msgid "Publishing"
+msgstr "Publikacyja"
+
+#: ../data/toc.xml.in.h:107
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:108
+msgid "RasterGraphics"
+msgstr "Rastravaja hrafika"
+
+#: ../data/toc.xml.in.h:109
+msgid "Recorder"
+msgstr "Zapis"
+
+#: ../data/toc.xml.in.h:110
+msgid "RemoteAccess"
+msgstr "Addaleny dostup"
+
+#: ../data/toc.xml.in.h:111
+msgid "RevisionControl"
+msgstr "Kiravańnie revizijami"
+
+#: ../data/toc.xml.in.h:112
+msgid "Robotics"
+msgstr "Robaty"
+
+#: ../data/toc.xml.in.h:113
+msgid "Role Playing Games"
+msgstr "Rolevyja hulni"
+
+#: ../data/toc.xml.in.h:114
+msgid "Scanning"
+msgstr "Skanavańnie"
+
+#: ../data/toc.xml.in.h:115
+msgid "Science"
 msgstr "Navuka"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Navukovyja aplikacyi."
+#: ../data/toc.xml.in.h:116
+msgid "Security"
+msgstr "Biaśpieka"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:117
+msgid "Sequencer"
+msgstr "Sequencer"
+
+#: ../data/toc.xml.in.h:118
+msgid "Settings"
+msgstr "Nałady"
+
+#: ../data/toc.xml.in.h:119
+msgid "Settings users can manipulate to make their environment more pleasent"
+msgstr "Nałady, jakimi moža kiravać karystalnik, kab zrabić asiarodździe zručniejšym"
+
+#: ../data/toc.xml.in.h:120
+msgid "Simulation Games"
+msgstr "Simulacyjnyja hulni"
+
+#: ../data/toc.xml.in.h:121
+msgid "Sound"
+msgstr "Huk"
+
+#: ../data/toc.xml.in.h:122
 msgid "Sound &amp; Video"
 msgstr "Aŭdyjo i videa"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Systemnyja srodki"
+#: ../data/toc.xml.in.h:123
+msgid "Sports"
+msgstr "Sport"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Prahramy dla kiravańnia kamputaram"
+#: ../data/toc.xml.in.h:124
+msgid "Sports Games"
+msgstr "Spartovyja hulni"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Słužbovyja aplikacyi"
+#: ../data/toc.xml.in.h:125
+msgid "Spreadsheet"
+msgstr "Raźlikovy arkuš"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Raznastajnyja inšyja aplikacyi"
+#: ../data/toc.xml.in.h:126
+msgid "Strategy Games"
+msgstr "Stratehičnyja hulni"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:127
+msgid "System"
+msgstr "Systema"
+
+#: ../data/toc.xml.in.h:128
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:129
+msgid "Telephony"
+msgstr "Telefonija"
+
+#: ../data/toc.xml.in.h:130
+msgid "TelephonyTools"
+msgstr "Pryłady dla telefonii"
+
+#: ../data/toc.xml.in.h:131
+msgid "TerminalEmulator"
+msgstr "Emulatar terminału"
+
+#: ../data/toc.xml.in.h:132
+msgid "Text Tools"
+msgstr "Tekstavyja pryłady"
+
+#: ../data/toc.xml.in.h:133
+msgid "TextEditor"
+msgstr "Tekstavy redaktar"
+
+#: ../data/toc.xml.in.h:134
+msgid "Tools to help you manage you're computer"
+msgstr "Pryłady, jakija dapamahajuć kiravać svaim kamputaram"
+
+#: ../data/toc.xml.in.h:135
+msgid "Translation"
+msgstr "Pierakład"
+
+#: ../data/toc.xml.in.h:136
+msgid "Tuner"
+msgstr "Tuner"
+
+#: ../data/toc.xml.in.h:137
+msgid "Utilities"
+msgstr "Słužbovyja prahramy"
+
+#: ../data/toc.xml.in.h:138
+msgid "Utilities to help you get work done"
+msgstr "Prahramy, jakija dapamahajuć rabić roznyja spravy"
+
+#: ../data/toc.xml.in.h:139
+msgid "VectorGraphics"
+msgstr "Vektarnaja hrafika"
+
+#: ../data/toc.xml.in.h:140
+msgid "Video"
+msgstr "Videa"
+
+#: ../data/toc.xml.in.h:141
+msgid "VideoConference"
+msgstr "Videakanferencyja"
+
+#: ../data/toc.xml.in.h:142
+msgid "Viewer"
+msgstr "Prahladalnik"
+
+#: ../data/toc.xml.in.h:143
+msgid "WebBrowser"
+msgstr "Hartač sieciva"
+
+#: ../data/toc.xml.in.h:144
+msgid "WebDevelopment"
+msgstr "Sieciŭnaja raspracoŭka"
+
+#: ../data/toc.xml.in.h:145
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Vitajem u Hartačy daviedki GNOME"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "Aplikacyi X"
+#: ../data/toc.xml.in.h:146
+msgid "WordProcessor"
+msgstr "Tekstavy pracesar"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -560,7 +1007,7 @@ msgstr "Padzieły dakumentu"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "Staronka nia znojdzienaja"
 
@@ -589,7 +1036,7 @@ msgstr "Fajł \"%s\" nie isnuje."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "Niemahčyma razabrać fajł"
 
@@ -684,10 +1131,6 @@ msgstr "Hetaja drukarka nie padtrymlivaje druk"
 msgid "Printer %s does not support postscript printing."
 msgstr "Drukarka %s nie padtrymlivaje druk postscript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "Druk"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Čakańnie druku"
@@ -701,16 +1144,16 @@ msgstr "Uźnikła pamyłka ciaham druku"
 msgid "It was not possible to print your document: %s"
 msgstr "Tvoj dakument niemahčyma razdrukavać: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "Forum padtrymki GNOME"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:277
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Niama vynikaŭ dla \"%s\""
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:278
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -718,7 +1161,7 @@ msgstr ""
 "Pasprabuj užyć inšyja słovy, kab apisać svaju prablemu albo temu, pa jakoj "
 "ty šukaješ dapamohi."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:281
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Vyniki pošuku dla \"%s\""
@@ -728,7 +1171,7 @@ msgstr "Vyniki pošuku dla \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:295
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Paŭtary pošuk u siecivie na %s"
@@ -741,7 +1184,7 @@ msgstr "Paŭtary pošuk u siecivie na %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:865
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -757,7 +1200,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:881
 msgid "re"
 msgstr ""
 
@@ -768,7 +1211,7 @@ msgstr ""
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:890
 msgid "ers:er:ing:es:s:'s"
 msgstr ""
 
@@ -789,16 +1232,16 @@ msgstr "Niemahčyma vykanać pošuk"
 msgid "The search processor returned invalid results"
 msgstr "Pošukavik viarnuŭ niapravilnyja vyniki"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "Staronka %s nia znojdzienaja ŭ TOC."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "Vymahanaja staronka nia znojdzienaja ŭ TOC."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -1065,6 +1508,48 @@ msgstr "Hartač i ahladalnik dakumentacyi dla asiarodździa Gnome."
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Atrymaj dapamohu ad GNOME"
+
+#~ msgid "Accessories"
+#~ msgstr "Aksesuary"
+
+#~ msgid "Applications for fun"
+#~ msgstr "Zabaŭlalnyja aplikacyi"
+
+#~ msgid "Applications for word processing and other office tasks"
+#~ msgstr "Aplikacyi dla pracy z tekstami i inšymi ofisnymi zadačami"
+
+#~ msgid "Applications related to multimedia"
+#~ msgstr "Aplikacyi, jakija datyčacca multymedyi"
+
+#~ msgid "Applications related to software development"
+#~ msgstr "Aplikacyi, jakija datyčacca raspracoŭki prahramaŭ"
+
+#~ msgid "Applications specific to the panel"
+#~ msgstr "Aplikacyi dziela paneli"
+
+#~ msgid "Applications that support assistive technologies"
+#~ msgstr "Aplikacyi z padtrymkaj technalohij dastupnaści"
+
+#~ msgid "Learning applications"
+#~ msgstr "Adukacyjnyja aplikacyi"
+
+#~ msgid "Office"
+#~ msgstr "Ofis"
+
+#~ msgid "Panel Applets"
+#~ msgstr "Aplety paneli"
+
+#~ msgid "Programming"
+#~ msgstr "Prahramavańnie"
+
+#~ msgid "Scientific Applications."
+#~ msgstr "Navukovyja aplikacyi."
+
+#~ msgid "Utility applications"
+#~ msgstr "Słužbovyja aplikacyi"
+
+#~ msgid "Variety of other applications"
+#~ msgstr "Raznastajnyja inšyja aplikacyi"
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
