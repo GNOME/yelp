@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
-"PO-Revision-Date: 2007-09-06 16:31+0300\n"
+"POT-Creation-Date: 2007-12-04 04:07+0000\n"
+"PO-Revision-Date: 2007-12-17 16:48+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Seadistusfailid"
 msgid "Curses Functions"
 msgstr "Curses funktsioonid"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:36
 msgid "Development"
 msgstr "Arendus"
 
@@ -54,7 +54,7 @@ msgstr "Arendus"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN'i funktsioonid"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Mängud"
 
@@ -287,136 +287,582 @@ msgid "X11 Overviews"
 msgstr "X11 ülevaated"
 
 #: ../data/toc.xml.in.h:1
+msgid "2DGraphics"
+msgstr "Kahemõõtmeline graafika"
+
+#: ../data/toc.xml.in.h:2
+msgid "3DGraphics"
+msgstr "Kolmemõõtmeline graafika"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Hõlbustused"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Tarvikud"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Rakendused lõbustuseks"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Graafika töötlemise ja vaatamise rakendused"
+msgid "Action Games"
+msgstr ""
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Tekstitöötluseks ja muude kontoriülesanneteks mõeldud rakendused"
+msgid "Adventure Games"
+msgstr "Seiklusmängud"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "X Windowsiga seotud rakendused"
+msgid "Amusement"
+msgstr "Meelelahutus"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Multimeediaga seotud rakendused"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Graafika vaatamise ja töötlemise rakendused"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Tarkvaraarendusega seotud rakendused"
+msgid "Applications related to audio and video"
+msgstr "Audio ja videoga seotud rakendused"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Internetiga seotud rakendused"
+msgid "Applications that teach or aid in learning"
+msgstr ""
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Paneeliga seotud rakendused"
+msgid "Arcade Games"
+msgstr ""
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Abistavaid tehnoloogiaid toetavad rakendused"
+msgid "Archiving"
+msgstr "Arhiveerimine"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Kunst"
+
+#: ../data/toc.xml.in.h:13
+msgid "ArtificialIntelligence"
+msgstr ""
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Astronoomia"
+
+#: ../data/toc.xml.in.h:15
+msgid "AudioVideoEditing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:16
+msgid "Biology"
+msgstr "Bioloogia"
+
+#: ../data/toc.xml.in.h:17
+msgid "Blocks Games"
+msgstr "Klotsimängud"
+
+#: ../data/toc.xml.in.h:18
+msgid "Board Games"
+msgstr "Lauamängud"
+
+#: ../data/toc.xml.in.h:19
+msgid "Building"
+msgstr ""
+
+#: ../data/toc.xml.in.h:20
+msgid "Calculator"
+msgstr "Kalkulaator"
+
+#: ../data/toc.xml.in.h:21
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../data/toc.xml.in.h:22
+msgid "Card Games"
+msgstr "Kaardimängud"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chart"
+msgstr ""
+
+#: ../data/toc.xml.in.h:24
+msgid "Chat"
+msgstr "Vestlus"
+
+#: ../data/toc.xml.in.h:25
+msgid "Chemistry"
+msgstr "Keemia"
+
+#: ../data/toc.xml.in.h:26
+msgid "Clock"
+msgstr "Kell"
+
+#: ../data/toc.xml.in.h:27
+msgid "Compression"
+msgstr "Pakkimine"
+
+#: ../data/toc.xml.in.h:28
+msgid "ComputerScience"
+msgstr "Arvutiteadus"
+
+#: ../data/toc.xml.in.h:29
+msgid "Construction"
+msgstr ""
+
+#: ../data/toc.xml.in.h:30
+msgid "ContactManagement"
+msgstr "Kontaktihaldus"
+
+#: ../data/toc.xml.in.h:31
+msgid "DataVisualization"
+msgstr "Andmtete visualiseerimine"
+
+#: ../data/toc.xml.in.h:32
+msgid "Database"
+msgstr "Andmebaas"
+
+#: ../data/toc.xml.in.h:33
+msgid "Debugger"
+msgstr "Silur"
+
+#: ../data/toc.xml.in.h:34
 msgid "Desktop"
 msgstr "Töölaud"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "KDE Töökeskkonnaga seotud rakendused"
+#: ../data/toc.xml.in.h:35
+msgid "DesktopSettings"
+msgstr "Töölaua sätted"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:37
+msgid "Dialup"
+msgstr ""
+
+#: ../data/toc.xml.in.h:38
+msgid "Dictionary"
+msgstr "Sõnastik"
+
+#: ../data/toc.xml.in.h:39
+msgid "DiscBurning"
+msgstr "Plaadikirjutamine"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr ""
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Haridus"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr ""
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Elektroonika"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email"
+msgstr "E-post"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulaator"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr ""
+
+#: ../data/toc.xml.in.h:47
+msgid "FileManager"
+msgstr "Failihaldur"
+
+#: ../data/toc.xml.in.h:48
+msgid "FileTools"
+msgstr "Failitööriistad"
+
+#: ../data/toc.xml.in.h:49
+msgid "FileTransfer"
+msgstr "Failiülekanne"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Failisüsteem"
+
+#: ../data/toc.xml.in.h:51
+msgid "Finance"
+msgstr "Rahandus"
+
+#: ../data/toc.xml.in.h:52
+msgid "FlowChart"
+msgstr ""
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "GNOME rakendused"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUIDesigner"
+msgstr ""
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "GNOME töökeskkonna üldised rakendused"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "KDE töökeskkonna üldised rakendused"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Geograafia"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Geoloogia"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr ""
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Graafika"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr ""
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr ""
+
+#: ../data/toc.xml.in.h:65
+msgid "HamRadio"
+msgstr ""
+
+#: ../data/toc.xml.in.h:66
+msgid "HardwareSettings"
+msgstr "Riistvara sätted"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr ""
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Ajalugu"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDE"
+msgstr ""
+
+#: ../data/toc.xml.in.h:70
+msgid "IRCClient"
+msgstr "IRC klient"
+
+#: ../data/toc.xml.in.h:71
+msgid "ImageProcessing"
+msgstr "Pilditöötlus"
+
+#: ../data/toc.xml.in.h:72
+msgid "InstantMessaging"
+msgstr "Välksõnumivahetus"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Õpperakendused"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE rakendused"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "Mitmesugused dokumendid"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Lastemängud"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Kontoritarkvara"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making you're system more accessible for a range of "
+"disabilities"
+msgstr ""
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Muud rakendused"
+#: ../data/toc.xml.in.h:78
+msgid "Licences"
+msgstr "Litsentsid"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Kirjandus"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Loogikamängud"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matemaatika"
+
+#: ../data/toc.xml.in.h:82
+msgid "MedicalSoftware"
+msgstr "Meditsiinitarkvara"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr ""
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "Mitmesugune dokumentatsioon"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr ""
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Muusika"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Uudised"
+
+#: ../data/toc.xml.in.h:90
+msgid "NumericalAnalysis"
+msgstr ""
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr ""
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Kontorirakendused"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Kontorirakendused"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Muu dokumentatsioon"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Paneeli rakendid"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr ""
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Programmeerimine"
+#: ../data/toc.xml.in.h:96
+msgid "PDA"
+msgstr ""
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "Teadusrakendused"
+#: ../data/toc.xml.in.h:97
+msgid "PackageManager"
+msgstr ""
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Teadusrakendused"
+#: ../data/toc.xml.in.h:98
+msgid "ParallelComputing"
+msgstr ""
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotograafia"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Füüsika"
+
+#: ../data/toc.xml.in.h:101
+msgid "Player"
+msgstr ""
+
+#: ../data/toc.xml.in.h:102
+msgid "Presentation"
+msgstr "Esitlus"
+
+#: ../data/toc.xml.in.h:103 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Printimine"
+
+#: ../data/toc.xml.in.h:104
+msgid "Profiling"
+msgstr "Profileerimine"
+
+#: ../data/toc.xml.in.h:105
+msgid "ProjectManagement"
+msgstr "Projektihaldus"
+
+#: ../data/toc.xml.in.h:106
+msgid "Publishing"
+msgstr "Publitseerimine"
+
+#: ../data/toc.xml.in.h:107
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:108
+msgid "RasterGraphics"
+msgstr "Rastergraafika"
+
+#: ../data/toc.xml.in.h:109
+msgid "Recorder"
+msgstr "Salvesti"
+
+#: ../data/toc.xml.in.h:110
+msgid "RemoteAccess"
+msgstr ""
+
+#: ../data/toc.xml.in.h:111
+msgid "RevisionControl"
+msgstr ""
+
+#: ../data/toc.xml.in.h:112
+msgid "Robotics"
+msgstr ""
+
+#: ../data/toc.xml.in.h:113
+msgid "Role Playing Games"
+msgstr "Rollimängud"
+
+#: ../data/toc.xml.in.h:114
+msgid "Scanning"
+msgstr "Skannimine"
+
+#: ../data/toc.xml.in.h:115
+msgid "Science"
+msgstr "Teadus"
+
+#: ../data/toc.xml.in.h:116
+msgid "Security"
+msgstr "Turvalisus"
+
+#: ../data/toc.xml.in.h:117
+msgid "Sequencer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:118
+msgid "Settings"
+msgstr "Sätted"
+
+#: ../data/toc.xml.in.h:119
+msgid "Settings users can manipulate to make their environment more pleasent"
+msgstr ""
+
+#: ../data/toc.xml.in.h:120
+msgid "Simulation Games"
+msgstr "Simulatsioonimängud"
+
+#: ../data/toc.xml.in.h:121
+msgid "Sound"
+msgstr ""
+
+#: ../data/toc.xml.in.h:122
 msgid "Sound &amp; Video"
 msgstr "Heli ja Video"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Süsteemsed tööriistad"
+#: ../data/toc.xml.in.h:123
+msgid "Sports"
+msgstr "Sport"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Arvuti haldusvahendid"
+#: ../data/toc.xml.in.h:124
+msgid "Sports Games"
+msgstr "Spordi mängud"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Kasulikud rakendused"
+#: ../data/toc.xml.in.h:125
+msgid "Spreadsheet"
+msgstr "Tabelarvutus"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Valik muid rakendusi"
+#: ../data/toc.xml.in.h:126
+msgid "Strategy Games"
+msgstr "Strateegiamängud"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:127
+msgid "System"
+msgstr "Süsteem"
+
+#: ../data/toc.xml.in.h:128
+msgid "TV"
+msgstr ""
+
+#: ../data/toc.xml.in.h:129
+msgid "Telephony"
+msgstr ""
+
+#: ../data/toc.xml.in.h:130
+msgid "TelephonyTools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:131
+msgid "TerminalEmulator"
+msgstr "Terminaliemulaator"
+
+#: ../data/toc.xml.in.h:132
+msgid "Text Tools"
+msgstr "Tekstitööriistad"
+
+#: ../data/toc.xml.in.h:133
+msgid "TextEditor"
+msgstr "Tekstiredaktor"
+
+#: ../data/toc.xml.in.h:134
+msgid "Tools to help you manage you're computer"
+msgstr "Sinu arvuti haldamise tööriistad"
+
+#: ../data/toc.xml.in.h:135
+msgid "Translation"
+msgstr "Tõlkimine"
+
+#: ../data/toc.xml.in.h:136
+msgid "Tuner"
+msgstr ""
+
+#: ../data/toc.xml.in.h:137
+msgid "Utilities"
+msgstr ""
+
+#: ../data/toc.xml.in.h:138
+msgid "Utilities to help you get work done"
+msgstr ""
+
+#: ../data/toc.xml.in.h:139
+msgid "VectorGraphics"
+msgstr "Vektorgraafika"
+
+#: ../data/toc.xml.in.h:140
+msgid "Video"
+msgstr "Video"
+
+#: ../data/toc.xml.in.h:141
+msgid "VideoConference"
+msgstr "Videokonverents"
+
+#: ../data/toc.xml.in.h:142
+msgid "Viewer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:143
+msgid "WebBrowser"
+msgstr "Veebisirvija"
+
+#: ../data/toc.xml.in.h:144
+msgid "WebDevelopment"
+msgstr "Veebiarendus"
+
+#: ../data/toc.xml.in.h:145
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Tere tulemast GNOME'i Abiteabe sirvijasse"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "X'i rakendused"
+#: ../data/toc.xml.in.h:146
+msgid "WordProcessor"
+msgstr "Tekstitoimeti"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -563,7 +1009,7 @@ msgstr "Dokumendi jaotised"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "Lehekülge ei leitud"
 
@@ -592,7 +1038,7 @@ msgstr "Faili „%s” pole olemas."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "Faili pole võimalik analüüsida"
 
@@ -614,7 +1060,7 @@ msgstr ""
 "Faili „%s” pole võimalik analüüsida kuna üks või rohkem selle poolt kaasatud "
 "faili pole korrektselt vormindatud XML-dokumendid."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Tundmatu"
 
@@ -689,10 +1135,6 @@ msgstr "Selle printeriga ei ole printimine toetatud"
 msgid "Printer %s does not support postscript printing."
 msgstr "Printer %s ei toeta postscript-printimist."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "Printimine"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Printimise ootamine"
@@ -706,16 +1148,16 @@ msgstr "Printimisel tekkis viga"
 msgid "It was not possible to print your document: %s"
 msgstr "Sinu dokumenti ei olnud võimalik printida: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "GNOME kasutajatoe foorumid"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:277
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Tulemusi otsingule \"%s\" ei leitud"
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:278
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -723,7 +1165,7 @@ msgstr ""
 "Proovi oma probleemi kirjeldamiseks või abiteabe otsimiseks kasutada veidi "
 "teistsuguseid sõnu."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:281
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Otsingu \"%s\" tulemused"
@@ -733,7 +1175,7 @@ msgstr "Otsingu \"%s\" tulemused"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:295
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Võrgust otsimise kordamine asukohas %s"
@@ -746,7 +1188,7 @@ msgstr "Võrgust otsimise kordamine asukohas %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:865
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -764,7 +1206,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:881
 msgid "re"
 msgstr "eba"
 
@@ -775,7 +1217,7 @@ msgstr "eba"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:890
 msgid "ers:er:ing:es:s:'s"
 msgstr ""
 "am:ard:e:el:gil:gile:i:ik:is:istu:ja:jas:k:kas:ke:kene:kesi:kil:kile:kond:"
@@ -800,16 +1242,16 @@ msgstr "Otsingut pole võimalik töödelda"
 msgid "The search processor returned invalid results"
 msgstr "Otsingutöötleja tagastas vigase tulemuse"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "Lehekülg %s puudub sisukorras."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "Küsitud lehekülge sisukorras ei leitud."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -1077,3 +1519,45 @@ msgstr "Dokumentatsioonisirvija Gnome töölaua jaoks."
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Abistab GNOMEi kasutamisel"
+
+#~ msgid "Accessories"
+#~ msgstr "Tarvikud"
+
+#~ msgid "Applications for fun"
+#~ msgstr "Rakendused lõbustuseks"
+
+#~ msgid "Applications for word processing and other office tasks"
+#~ msgstr "Tekstitöötluseks ja muude kontoriülesanneteks mõeldud rakendused"
+
+#~ msgid "Applications related to multimedia"
+#~ msgstr "Multimeediaga seotud rakendused"
+
+#~ msgid "Applications related to software development"
+#~ msgstr "Tarkvaraarendusega seotud rakendused"
+
+#~ msgid "Applications specific to the panel"
+#~ msgstr "Paneeliga seotud rakendused"
+
+#~ msgid "Applications that support assistive technologies"
+#~ msgstr "Abistavaid tehnoloogiaid toetavad rakendused"
+
+#~ msgid "Learning applications"
+#~ msgstr "Õpperakendused"
+
+#~ msgid "Office"
+#~ msgstr "Kontoritarkvara"
+
+#~ msgid "Panel Applets"
+#~ msgstr "Paneeli rakendid"
+
+#~ msgid "Programming"
+#~ msgstr "Programmeerimine"
+
+#~ msgid "Scientific Applications."
+#~ msgstr "Teadusrakendused"
+
+#~ msgid "Utility applications"
+#~ msgstr "Kasulikud rakendused"
+
+#~ msgid "Variety of other applications"
+#~ msgstr "Valik muid rakendusi"
