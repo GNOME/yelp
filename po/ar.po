@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
-"PO-Revision-Date: 2007-09-17 13:53+0100\n"
+"POT-Creation-Date: 2007-12-23 12:24+0000\n"
+"PO-Revision-Date: 2007-12-24 00:42+0100\n"
 "Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,6 +49,7 @@ msgid "Curses Functions"
 msgstr "دالّات Curses"
 
 #: ../data/man.xml.in.h:5
+#: ../data/toc.xml.in.h:36
 msgid "Development"
 msgstr "تطوير"
 
@@ -57,7 +58,7 @@ msgid "FORTRAN Functions"
 msgstr "دالّات فورتران"
 
 #: ../data/man.xml.in.h:7
-#: ../data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "ألعاب"
 
@@ -290,136 +291,609 @@ msgid "X11 Overviews"
 msgstr "معاينات X11"
 
 #: ../data/toc.xml.in.h:1
+#, fuzzy
+msgid "2DGraphics"
+msgstr "رسوم"
+
+#: ../data/toc.xml.in.h:2
+#, fuzzy
+msgid "3DGraphics"
+msgstr "رسوم"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "الإعانة"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "ملحقات"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "تطبيقات للتسلية"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "تطبيقات لعرض الرسوم والتعامل معها"
+#, fuzzy
+msgid "Action Games"
+msgstr "ألعاب الورق:"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "تطبيقات لمعالجة النصوص و أعمال المكتب الأخرى"
+msgid "Adventure Games"
+msgstr "ألعاب مغامرة"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "تطبيقا متعلقة بنوافذ X "
+msgid "Amusement"
+msgstr "المتعة"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "تطبيقات متعلقة بالوسائط المتعددة"
+#, fuzzy
+msgid "Applications for viewing and manipulating graphics"
+msgstr "تطبيقات لعرض الرسوم والتعامل معها"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "تطبيقات متعلقة بتطوير البرامج"
+#, fuzzy
+msgid "Applications related to audio and video"
+msgstr "تطبيقا متعلقة بنوافذ X "
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
+#, fuzzy
+msgid "Applications that teach or aid in learning"
 msgstr "تطبيقات متعلقة بالإنترنت"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "تطبيقات متعلقة بالشريط"
+msgid "Arcade Games"
+msgstr "ألعاب مغامرة"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "تطبيقات تدعم تقانة الإعانة"
+msgid "Archiving"
+msgstr "حفظ بالأرشيف"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "فن"
+
+#: ../data/toc.xml.in.h:13
+msgid "ArtificialIntelligence"
+msgstr ""
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "علم الفلك"
+
+#: ../data/toc.xml.in.h:15
+msgid "AudioVideoEditing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:16
+msgid "Biology"
+msgstr "علم الأحياء"
+
+#: ../data/toc.xml.in.h:17
+#, fuzzy
+msgid "Blocks Games"
+msgstr "ألعاب الورق:"
+
+#: ../data/toc.xml.in.h:18
+#, fuzzy
+msgid "Board Games"
+msgstr "ألعاب الورق:"
+
+#: ../data/toc.xml.in.h:19
+msgid "Building"
+msgstr "صناعة البناء"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calculator"
+msgstr "آلة حاسبة"
+
+#: ../data/toc.xml.in.h:21
+msgid "Calendar"
+msgstr "التقويم"
+
+#: ../data/toc.xml.in.h:22
+msgid "Card Games"
+msgstr "ألعاب الورق"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chart"
+msgstr "مخطط"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chat"
+msgstr "محادثة"
+
+#: ../data/toc.xml.in.h:25
+msgid "Chemistry"
+msgstr "الكيمياء"
+
+#: ../data/toc.xml.in.h:26
+msgid "Clock"
+msgstr "ساعة"
+
+#: ../data/toc.xml.in.h:27
+msgid "Compression"
+msgstr "الضغط"
+
+#: ../data/toc.xml.in.h:28
+msgid "ComputerScience"
+msgstr ""
+
+#: ../data/toc.xml.in.h:29
+msgid "Construction"
+msgstr "البناء"
+
+#: ../data/toc.xml.in.h:30
+msgid "ContactManagement"
+msgstr ""
+
+#: ../data/toc.xml.in.h:31
+msgid "DataVisualization"
+msgstr ""
+
+#: ../data/toc.xml.in.h:32
+msgid "Database"
+msgstr "قاعدة بيانات"
+
+#: ../data/toc.xml.in.h:33
+msgid "Debugger"
+msgstr "منقّح"
+
+#: ../data/toc.xml.in.h:34
 msgid "Desktop"
 msgstr "سطح المكتب"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "مستندات خاصة بسطح المكتب KDE"
+#: ../data/toc.xml.in.h:35
+msgid "DesktopSettings"
+msgstr "خصائص سطح المكتب"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:37
+#, fuzzy
+msgid "Dialup"
+msgstr "الطلب الهاتفي"
+
+#: ../data/toc.xml.in.h:38
+msgid "Dictionary"
+msgstr "قاموس"
+
+#: ../data/toc.xml.in.h:39
+msgid "DiscBurning"
+msgstr ""
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "الإقتصاد"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "تعليميّة"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "الكهرباء"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "الإلكترونيات"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "المحاكي"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "الهندسة"
+
+#: ../data/toc.xml.in.h:47
+msgid "FileManager"
+msgstr ""
+
+#: ../data/toc.xml.in.h:48
+msgid "FileTools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:49
+msgid "FileTransfer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "نظام الملفات"
+
+#: ../data/toc.xml.in.h:51
+msgid "Finance"
+msgstr "المالية"
+
+#: ../data/toc.xml.in.h:52
+#, fuzzy
+msgid "FlowChart"
+msgstr "قائمة التدفق"
+
+#: ../data/toc.xml.in.h:53
+#, fuzzy
+msgid "GNOME Applications"
+msgstr "التطبيقات ال_حديثة:"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUIDesigner"
+msgstr ""
+
+#: ../data/toc.xml.in.h:57
+#, fuzzy
+msgid "Generic applications for the GNOME environment"
+msgstr "التّطبيقات الشّبكية لبيئة سطح مكتب كي."
+
+#: ../data/toc.xml.in.h:58
+#, fuzzy
+msgid "Generic applications for the KDE environment"
+msgstr "تطبيقات الوسائط المتعددة لبيئة سطح مكتب كي (KDE)."
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "الجغرافيا"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "علم الأرض"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr ""
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "رسوم"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr ""
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr ""
+
+#: ../data/toc.xml.in.h:65
+msgid "HamRadio"
+msgstr ""
+
+#: ../data/toc.xml.in.h:66
+#, fuzzy
+msgid "HardwareSettings"
+msgstr "أدوات العتاد"
+
+#: ../data/toc.xml.in.h:67
+#, fuzzy
+msgid "Have some fun"
+msgstr "المرح الصنع"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "التاريخ"
+
+#: ../data/toc.xml.in.h:69
+#, fuzzy
+msgid "IDE"
+msgstr "بيئة تطوير متكاملة"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRCClient"
+msgstr ""
+
+#: ../data/toc.xml.in.h:71
+msgid "ImageProcessing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:72
+msgid "InstantMessaging"
+msgstr ""
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "الإنترنت"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "كيدي"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "جافا"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "التطبيقات التعليمية"
+#: ../data/toc.xml.in.h:75
+#, fuzzy
+msgid "KDE Applications"
+msgstr "التطبيقات ال_حديثة:"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "مستندات مختلفة"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "ألعاب الأطفال"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "المكتب"
+#: ../data/toc.xml.in.h:77
+msgid "Learn more about making you're system more accessible for a range of disabilities"
+msgstr ""
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "تطبيقات أخرى"
+#: ../data/toc.xml.in.h:78
+msgid "Licences"
+msgstr "الرخص"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:79
+#, fuzzy
+msgid "Literature"
+msgstr "الأدب"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "ألعاب المنطق"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "الرياضيات"
+
+#: ../data/toc.xml.in.h:82
+msgid "MedicalSoftware"
+msgstr ""
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "ميدي"
+
+#: ../data/toc.xml.in.h:84
+#, fuzzy
+msgid "Miscellaneous Documentation"
+msgstr "وثائق المطور"
+
+#: ../data/toc.xml.in.h:85
+#, fuzzy
+msgid "Mixer"
+msgstr "الخلاطة"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "مراقب"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "موتيف"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "موسيقى"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "أخبار"
+
+#: ../data/toc.xml.in.h:90
+msgid "NumericalAnalysis"
+msgstr ""
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "التّعرّف على الأحرف عن طريق المسح الضّوئي"
+
+#: ../data/toc.xml.in.h:92
+#, fuzzy
+msgid "Office Applications"
+msgstr "تطبيقات مكتبيّة"
+
+#: ../data/toc.xml.in.h:93
+#, fuzzy
+msgid "Office applications"
+msgstr "تطبيقات مكتبيّة"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "وثائق أخرى"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "بريمجات الشريط"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr ""
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "برمجة"
+#: ../data/toc.xml.in.h:96
+msgid "PDA"
+msgstr "PDA"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "علميّ"
+#: ../data/toc.xml.in.h:97
+msgid "PackageManager"
+msgstr ""
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "تطبيقات علمية"
+#: ../data/toc.xml.in.h:98
+msgid "ParallelComputing"
+msgstr ""
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "التصوير الفوتوغرافي"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "الفيزياء"
+
+#: ../data/toc.xml.in.h:101
+msgid "Player"
+msgstr "لاعب"
+
+#: ../data/toc.xml.in.h:102
+msgid "Presentation"
+msgstr "تقديم"
+
+#: ../data/toc.xml.in.h:103
+#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "طباعة"
+
+#: ../data/toc.xml.in.h:104
+msgid "Profiling"
+msgstr "تشخيص"
+
+#: ../data/toc.xml.in.h:105
+msgid "ProjectManagement"
+msgstr ""
+
+#: ../data/toc.xml.in.h:106
+msgid "Publishing"
+msgstr "نشر"
+
+#: ../data/toc.xml.in.h:107
+msgid "Qt"
+msgstr "كيو تي"
+
+#: ../data/toc.xml.in.h:108
+#, fuzzy
+msgid "RasterGraphics"
+msgstr "رسوم"
+
+#: ../data/toc.xml.in.h:109
+#, fuzzy
+msgid "Recorder"
+msgstr "المسجّلة"
+
+#: ../data/toc.xml.in.h:110
+msgid "RemoteAccess"
+msgstr ""
+
+#: ../data/toc.xml.in.h:111
+msgid "RevisionControl"
+msgstr ""
+
+#: ../data/toc.xml.in.h:112
+msgid "Robotics"
+msgstr "الأليات"
+
+#: ../data/toc.xml.in.h:113
+#, fuzzy
+msgid "Role Playing Games"
+msgstr "إحصائيّات اللّعب الملعوبة"
+
+#: ../data/toc.xml.in.h:114
+msgid "Scanning"
+msgstr "المسح"
+
+#: ../data/toc.xml.in.h:115
+msgid "Science"
+msgstr "العلم"
+
+#: ../data/toc.xml.in.h:116
+msgid "Security"
+msgstr "الأمن"
+
+#: ../data/toc.xml.in.h:117
+msgid "Sequencer"
+msgstr "المرتِّب"
+
+#: ../data/toc.xml.in.h:118
+msgid "Settings"
+msgstr "التعيينات"
+
+#: ../data/toc.xml.in.h:119
+msgid "Settings users can manipulate to make their environment more pleasent"
+msgstr ""
+
+#: ../data/toc.xml.in.h:120
+msgid "Simulation Games"
+msgstr "ألعاب المحاكاة"
+
+#: ../data/toc.xml.in.h:121
+msgid "Sound"
+msgstr "الصوت"
+
+#: ../data/toc.xml.in.h:122
 msgid "Sound &amp; Video"
 msgstr "صوت و صورة"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "أداوت النّظام"
+#: ../data/toc.xml.in.h:123
+msgid "Sports"
+msgstr "الرياضة"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
+#: ../data/toc.xml.in.h:124
+msgid "Sports Games"
+msgstr "ألعاب الرياضة"
+
+#: ../data/toc.xml.in.h:125
+msgid "Spreadsheet"
+msgstr "جدولة"
+
+#: ../data/toc.xml.in.h:126
+msgid "Strategy Games"
+msgstr "الألعاب الإستراتيجية"
+
+#: ../data/toc.xml.in.h:127
+msgid "System"
+msgstr "نظام"
+
+#: ../data/toc.xml.in.h:128
+msgid "TV"
+msgstr "التلفزة"
+
+#: ../data/toc.xml.in.h:129
+msgid "Telephony"
+msgstr "الهاتف"
+
+#: ../data/toc.xml.in.h:130
+msgid "TelephonyTools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:131
+msgid "TerminalEmulator"
+msgstr ""
+
+#: ../data/toc.xml.in.h:132
+msgid "Text Tools"
+msgstr "أدوات النص"
+
+#: ../data/toc.xml.in.h:133
+msgid "TextEditor"
+msgstr ""
+
+#: ../data/toc.xml.in.h:134
+msgid "Tools to help you manage you're computer"
 msgstr "أدوات لإدارة الحاسوب"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
+#: ../data/toc.xml.in.h:135
+msgid "Translation"
+msgstr "ترجمة"
+
+#: ../data/toc.xml.in.h:136
+msgid "Tuner"
+msgstr "الضابط"
+
+#: ../data/toc.xml.in.h:137
+msgid "Utilities"
 msgstr "أدوات"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "تطبيقات أخرى مختلفة"
+#: ../data/toc.xml.in.h:138
+#, fuzzy
+msgid "Utilities to help you get work done"
+msgstr "أدوات لإدارة الحاسوب"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:139
+msgid "VectorGraphics"
+msgstr "رسوم خطية"
+
+#: ../data/toc.xml.in.h:140
+msgid "Video"
+msgstr "الفيديو"
+
+#: ../data/toc.xml.in.h:141
+#, fuzzy
+msgid "VideoConference"
+msgstr "التفضيلات"
+
+#: ../data/toc.xml.in.h:142
+msgid "Viewer"
+msgstr "المستعرض"
+
+#: ../data/toc.xml.in.h:143
+msgid "WebBrowser"
+msgstr "متصفح الإنترنت"
+
+#: ../data/toc.xml.in.h:144
+msgid "WebDevelopment"
+msgstr "تطوير الويب"
+
+#: ../data/toc.xml.in.h:145
 msgid "Welcome to the GNOME Help Browser"
 msgstr "أهلا في متصفح مساعدة جنوم"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "تطبيقات X"
+#: ../data/toc.xml.in.h:146
+msgid "WordProcessor"
+msgstr "معالج النّصوص"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -571,8 +1045,8 @@ msgstr "أقسام المستند"
 #: ../src/yelp-info.c:337
 #: ../src/yelp-man.c:292
 #: ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266
-#: ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265
+#: ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "الصفحة غير موجودة"
 
@@ -613,7 +1087,7 @@ msgstr "الملف ‘%s’ غير موجود."
 #: ../src/yelp-docbook.c:435
 #: ../src/yelp-info.c:393
 #: ../src/yelp-man.c:459
-#: ../src/yelp-toc.c:435
+#: ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "لم يمكن تحليل الملف"
 
@@ -630,7 +1104,7 @@ msgid "The file ‘%s’ could not be parsed because one or more of its included
 msgstr "لم يمكن فهم الملف ‘%s’. لأنه بعض الملفات المحتواة من طرفه غير سليمة."
 
 #: ../src/yelp-db-print.c:765
-#: ../src/yelp-docbook.c:784
+#: ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "مجهول"
 
@@ -698,11 +1172,6 @@ msgstr "لا يمكن الطباعة من خلال هذه الطابعة"
 msgid "Printer %s does not support postscript printing."
 msgstr "لا يمكن الطباعة من خلال الطابعة %s لأنها لا تحتمل بوستسكريبت"
 
-#: ../src/yelp-print.c:337
-#: ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "طباعة"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "الإنتظار للطباعة"
@@ -716,20 +1185,20 @@ msgstr "حدث خطأ عند الطبع"
 msgid "It was not possible to print your document: %s"
 msgstr "لم يمكن طباعة مستندك: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "منتديات المساعدة لجنوم"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:277
 #, c-format
 msgid "No results for \"%s\""
 msgstr "لا نتائج ل \"%s\""
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:278
 msgid "Try using different words to describe the problem you're having or the topic you want help with."
 msgstr "جرب استعمال كلمات مغايرة لوصف المشكلة أو الموضوع الذي تريد المساعدة حوله."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:281
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "نتائج البحث عن \"%s\""
@@ -739,7 +1208,7 @@ msgstr "نتائج البحث عن \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:295
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "أعد البحث على الأنترنت على %s"
@@ -752,7 +1221,7 @@ msgstr "أعد البحث على الأنترنت على %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:865
 msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 msgstr "و:لا:حول:مع:في:على:هل:كيف:لم"
 
@@ -764,7 +1233,7 @@ msgstr "و:لا:حول:مع:في:على:هل:كيف:لم"
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:881
 msgid "re"
 msgstr "NULL"
 
@@ -775,7 +1244,7 @@ msgstr "NULL"
 #. * please use the strig NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:890
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
@@ -796,16 +1265,16 @@ msgstr "لا يمكن اجراء البحث"
 msgid "The search processor returned invalid results"
 msgstr "ارجع مجري البحث نتائج غير غير صحيحة"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "لم يمكن ايجاد الصفحة %s في الـ TOC."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "لم يمكن ايجاد الصفحة المطلوبة في الـ TOC."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid "The TOC file could not be parsed because it is not a well-formed XML document."
 msgstr "لم يمكن فهم ملف اجراء البحث لأنه ملف XML غير سليم."
 
@@ -1072,6 +1541,34 @@ msgstr "متصفح و عارض وثائق لمكتب جنوم."
 msgid "Get help with GNOME"
 msgstr "احصل على المساعدة في جُنوم"
 
+#~ msgid "Accessories"
+#~ msgstr "ملحقات"
+#~ msgid "Applications for fun"
+#~ msgstr "تطبيقات للتسلية"
+#~ msgid "Applications for word processing and other office tasks"
+#~ msgstr "تطبيقات لمعالجة النصوص و أعمال المكتب الأخرى"
+#~ msgid "Applications related to multimedia"
+#~ msgstr "تطبيقات متعلقة بالوسائط المتعددة"
+#~ msgid "Applications related to software development"
+#~ msgstr "تطبيقات متعلقة بتطوير البرامج"
+#~ msgid "Applications specific to the panel"
+#~ msgstr "تطبيقات متعلقة بالشريط"
+#~ msgid "Applications that support assistive technologies"
+#~ msgstr "تطبيقات تدعم تقانة الإعانة"
+#~ msgid "Learning applications"
+#~ msgstr "التطبيقات التعليمية"
+#~ msgid "Office"
+#~ msgstr "المكتب"
+#~ msgid "Panel Applets"
+#~ msgstr "بريمجات الشريط"
+#~ msgid "Programming"
+#~ msgstr "برمجة"
+#~ msgid "Scientific Applications."
+#~ msgstr "تطبيقات علمية"
+#~ msgid "Utility applications"
+#~ msgstr "أدوات"
+#~ msgid "Variety of other applications"
+#~ msgstr "تطبيقات أخرى مختلفة"
 #~ msgid "An unknown error occured"
 #~ msgstr "حدث خطأ مجهول"
 #~ msgid "Could not load document"
