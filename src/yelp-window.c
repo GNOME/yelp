@@ -1350,6 +1350,7 @@ window_populate (YelpWindow *window)
 
     priv->find_bar = gtk_toolbar_new ();
     gtk_toolbar_set_style (GTK_TOOLBAR (priv->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
+    gtk_toolbar_set_icon_size (GTK_TOOLBAR (priv->find_bar), GTK_ICON_SIZE_MENU);
     window_populate_find (window, priv->find_bar);
     gtk_box_pack_end (GTK_BOX (priv->html_pane),
 		      priv->find_bar,
@@ -1421,6 +1422,18 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->find_entry);
 
     box = gtk_hbox_new (FALSE, 0);
+    arrow = gtk_arrow_new (GTK_ARROW_LEFT, GTK_SHADOW_NONE);
+    label = gtk_label_new_with_mnemonic (_("Find _Previous"));
+    gtk_box_pack_start (GTK_BOX (box), arrow, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
+    priv->find_prev = gtk_tool_button_new (box, NULL);
+    g_signal_connect (priv->find_prev,
+                      "clicked",
+                      G_CALLBACK (window_find_clicked_cb),
+                      window);
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_prev, -1);
+
+    box = gtk_hbox_new (FALSE, 0);
     arrow = gtk_arrow_new (GTK_ARROW_RIGHT, GTK_SHADOW_NONE);
     label = gtk_label_new_with_mnemonic (_("Find _Next"));
     gtk_box_pack_start (GTK_BOX (box), arrow, FALSE, FALSE, 0);
@@ -1431,18 +1444,6 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
 		      G_CALLBACK (window_find_clicked_cb),
 		      window);
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_next, -1);
-
-    box = gtk_hbox_new (FALSE, 0);
-    arrow = gtk_arrow_new (GTK_ARROW_LEFT, GTK_SHADOW_NONE);
-    label = gtk_label_new_with_mnemonic (_("Find _Previous"));
-    gtk_box_pack_start (GTK_BOX (box), arrow, FALSE, FALSE, 0);
-    gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
-    priv->find_prev = gtk_tool_button_new (box, NULL);
-    g_signal_connect (priv->find_prev,
-		      "clicked",
-		      G_CALLBACK (window_find_clicked_cb),
-		      window);
-    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_prev, -1);
 
     priv->find_sep = gtk_separator_tool_item_new ();
     gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_sep, -1);
