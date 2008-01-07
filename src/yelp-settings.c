@@ -734,9 +734,9 @@ settings_update (YelpSettingsType type)
 		    style->text[GTK_STATE_NORMAL].green / 65535.0,
 		    style->text[GTK_STATE_NORMAL].blue / 65535.0,
 		    &text_h, &text_l, &text_s);
-	rgb_to_hls (style->base[GTK_STATE_NORMAL].red / 65535.0,
-		    style->base[GTK_STATE_NORMAL].green / 65535.0,
-		    style->base[GTK_STATE_NORMAL].blue / 65535.0,
+	rgb_to_hls (style->bg[GTK_STATE_NORMAL].red / 65535.0,
+		    style->bg[GTK_STATE_NORMAL].green / 65535.0,
+		    style->bg[GTK_STATE_NORMAL].blue / 65535.0,
 		    &base_h, &base_l, &base_s);
 
 	/* YELP_COLOR_FG */
@@ -792,11 +792,11 @@ settings_update (YelpSettingsType type)
 		    base_s,
 		    YELP_COLOR_GRAY_BORDER);
 
-	hls_to_hex (240,
+	hls_to_hex (base_h,
 		    base_l - ((base_l - text_l) * 0.05),
 		    0.6,
 		    YELP_COLOR_BLUE_BG);
-	hls_to_hex (240, 
+	hls_to_hex (base_h,
 		    base_l - ((base_l - text_l) * 0.1),
 		    0.6,
 		    YELP_COLOR_BLUE_BORDER);

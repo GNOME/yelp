@@ -884,7 +884,7 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
      * to words.  Things that may be put at ends of words to slightly 
      * alter their meaning (like -ing and -s in English).  This is a
      * colon seperated list (I like colons).  If there are none,
-     * please use the strig NULL.  If there is only 1, please
+     * please use the string NULL.  If there is only 1, please
      * add a colon at the end of the list
      */
     common_suffixes = g_strdup (_("ers:er:ing:es:s:'s"));
@@ -977,7 +977,10 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
     (*dups) = g_new0 (gint, n_terms);
     (*stops) = g_new0 (gboolean, n_terms);
     list_copy = g_strsplit (dup_str, ":", -1);
-    
+
+    if (n_terms == 0)
+	goto done;
+	
     for (iter = *terms; *iter; iter++) {
 	i++;
 	if (g_str_equal (list_copy[i], "O")) {
@@ -994,6 +997,7 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
 	}
     }
 
+ done:
     /* Clean up all those pesky strings */
     g_free (ignore_words);
     g_free (common_prefixes);
@@ -1022,6 +1026,9 @@ slow_search_setup (YelpSearchParser *parser)
    terms_number = build_lists (parser->search_terms,&terms_list, 
 				&dup_list, &stop_list, 
 				&required_no);
+   if (terms_number < 1)
+       goto done;
+       
    data = g_new0 (SearchDocData, 1);
    data->container = g_new0 (SearchContainer, 1);
    data->parser = parser;
@@ -1036,7 +1043,8 @@ slow_search_setup (YelpSearchParser *parser)
 
    search_process_man (parser, terms_list);
    search_process_info (parser, terms_list);
- 
+
+ done: 
    check_finished (parser);
 
    return FALSE;
