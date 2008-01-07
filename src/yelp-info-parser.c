@@ -137,21 +137,25 @@ find_info_part (gchar *part_name, gchar *base)
    */
   gchar *path;
   gchar *tmp;
-  gchar *bzfname, *gzfname;
+  gchar *bzfname, *gzfname, *lzfd;
   gchar *uri = NULL;
   tmp = g_strrstr (base, "/");
   path = g_strndup (base, tmp-base);
 
   bzfname = g_strconcat (path, "/", part_name, ".bz2", NULL);
   gzfname = g_strconcat (path, "/", part_name, ".gz", NULL);
+  lzfd = g_strconcat (path, "/", part_name, ".lzma", NULL);
   
   if (g_file_test (bzfname, G_FILE_TEST_EXISTS))
     uri = g_strdup (bzfname);
   else if (g_file_test (gzfname, G_FILE_TEST_EXISTS))
     uri = g_strdup (gzfname);
+  else if (g_file_test (lzfd, G_FILE_TEST_EXISTS))
+    uri = g_strdup (lzfd);
 
   g_free (bzfname);
   g_free (gzfname);
+  g_free (lzfd);
   g_free (path);
   return uri;
 

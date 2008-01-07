@@ -31,6 +31,9 @@
 #ifdef HAVE_LIBBZ2
 #include <bzlib.h>
 #endif
+#ifdef HAVE_LIBLZMADEC
+#include <lzmadec.h>
+#endif
 #include <string.h>
 
 #include "yelp-error.h"
@@ -43,6 +46,9 @@ struct _YelpIOChannel {
     BZFILE     *bzin;
 #endif
     gzFile      gzin;
+#ifdef HAVE_LIBLZMADEC
+    lzmadec_FILE *lzin;
+#endif
 };
 
 static GIOStatus    yelp_io_read          (GIOChannel    *channel,
@@ -91,13 +97,23 @@ yelp_io_channel_new_file (gchar    *file,
 	channel->bzin = bzopen (file, "r");
     else
 #endif
+#ifdef HAVE_LIBLZMADEC
+    if (g_str_has_suffix (file, ".lzma"))
+    	channel->lzin = lzmadec_open(file);
+    else
+#endif
+
 	channel->gzin = gzopen (file, "r");
 
+    if(
 #ifdef HAVE_LIBBZ2
-    if (!channel->bzin && !channel->gzin) {
-#else
-    if (!channel->gzin) {
+    !channel->bzin &&
 #endif
+#ifdef HAVE_LIBLZMADEC
+    !channel->lzin &&
+#endif
+    !channel->gzin) {
+
 	yelp_io_free (iochannel);
 	channel = (YelpIOChannel *) g_io_channel_new_file (file, "r", error);
 
@@ -141,6 +157,11 @@ yelp_io_read          (GIOChannel    *channel,
 	bytes = bzread (yelp_channel->bzin, buffer, count);
     else
 #endif
+#if HAVE_LIBLZMADEC
+    if (yelp_channel->lzin)
+ 	bytes = lzmadec_read (yelp_channel->lzin, buffer, count);
+    else
+#endif
 	bytes = gzread (yelp_channel->gzin, buffer, count);
 
     *bytes_read = bytes;
@@ -162,6 +183,10 @@ yelp_io_close         (GIOChannel    *channel,
 #ifdef HAVE_LIBBZ2
     if (yelp_channel->bzin)
 	bzclose (yelp_channel->bzin);
+#endif
+#ifdef HAVE_LIBLZMADEC
+    if (yelp_channel->lzin)
+        lzmadec_close (yelp_channel->lzin);
 #endif
     if (yelp_channel->gzin)
 	gzclose (yelp_channel->gzin);

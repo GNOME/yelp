@@ -1,5 +1,13 @@
 2008-01-07  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* configure.in: 
+	* src/yelp-io-channel.c:
+	* src/yelp-info-parser.c:
+	* src/yelp-utils.c:
+	* src/Makefile.am:
+	Add LZMA support
+	bug #470990 - Per Øyvind Karlsen
+
 	* src/yelp-window.c: 
 	Fix find bar up to look more like epiphany
 	Bug #483305 - Michael Monreal

@@ -203,6 +203,14 @@ AC_CHECK_LIB(z, gzopen, [Z_LIBS=-lz
 AC_SUBST(Z_LIBS)], AC_MSG_ERROR([*** zlib is required]))
 
 dnl ====================================
+dnl = lzmadec for help converters
+dnl ====================================
+LZMADEC_LIBS=
+AC_CHECK_LIB(lzmadec, lzmadec_open, [LZMADEC_LIBS=-llzmadec 
+				     AC_DEFINE(HAVE_LIBLZMADEC, 1, [Compile with liblzmadec support])])
+AC_SUBST(LZMADEC_LIBS)
+
+dnl ====================================
 dnl = Bzip2, for the help converters
 dnl ====================================
 BZ_LIBS=

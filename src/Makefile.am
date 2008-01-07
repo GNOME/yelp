@@ -86,6 +86,7 @@ yelp_LDADD =				\
 	$(POPT_LIBS)			\
 	$(Z_LIBS)			\
 	$(BZ_LIBS)			\
+	$(LZMADEC_LIBS)			\
 	$(X_LIBS)			\
 	$(MOZILLA_COMPONENT_LIBS)	\
 	$(MOZILLA_EXTRA_LIBS)		\
@@ -113,7 +114,7 @@ test_document_SOURCES =					\
 	yelp-transform.c	yelp-transform.h	\
 	test-document.c
 test_document_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
-test_document_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS)
+test_document_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS) $(LZMADEC_LIBS)
 test_document_LDFLAGS = $(AM_LDFLAGS)
 
 test_man_parser_SOURCES =					\
@@ -124,7 +125,7 @@ test_man_parser_SOURCES =					\
 	test-man-parser.c
 test_man_parser_CPPFLAGS = $(YELP_DEFINES) $(AM_CPPFLAGS)
 test_man_parser_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS)
-test_man_parser_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS)
+test_man_parser_LDADD = $(YELP_LIBS) $(Z_LIBS) $(BZ_LIBS) $(LZMADEC_LIBS)
 test_man_parser_LDFLAGS = $(AM_LDFLAGS)
 
 test_page_SOURCES =					\
