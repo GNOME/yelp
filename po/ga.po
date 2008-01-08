@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 14:47-0700\n"
-"PO-Revision-Date: 2007-12-26 14:47-0700\n"
+"POT-Creation-Date: 2008-01-08 01:34-0700\n"
+"PO-Revision-Date: 2008-01-08 01:34-0700\n"
 "Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -578,12 +578,12 @@ msgstr "Cluichí Páistí"
 
 #: ../data/toc.xml.in.h:77
 msgid ""
-"Learn more about making you're system more accessible for a range of "
+"Learn more about making your system more accessible for a range of "
 "disabilities"
 msgstr ""
 
 #: ../data/toc.xml.in.h:78
-msgid "Licences"
+msgid "Licenses"
 msgstr "Ceadúnais"
 
 #: ../data/toc.xml.in.h:79
@@ -747,7 +747,7 @@ msgid "Settings"
 msgstr "Socruithe"
 
 #: ../data/toc.xml.in.h:119
-msgid "Settings users can manipulate to make their environment more pleasent"
+msgid "Settings users can manipulate to make their environment more pleasant"
 msgstr ""
 
 #: ../data/toc.xml.in.h:120
@@ -807,7 +807,7 @@ msgid "TextEditor"
 msgstr "EagarthóirTéacs"
 
 #: ../data/toc.xml.in.h:134
-msgid "Tools to help you manage you're computer"
+msgid "Tools to help you manage your computer"
 msgstr ""
 
 #: ../data/toc.xml.in.h:135
@@ -944,7 +944,7 @@ msgstr ""
 
 #: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Cló téacs"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
@@ -972,15 +972,15 @@ msgstr ""
 
 #: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
-msgstr ""
+msgstr "Oscail Leabharmharc i bhFuinneog Nua"
 
 #: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
-msgstr ""
+msgstr "Athainmnigh Leabharmharc"
 
 #: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
-msgstr ""
+msgstr "Bain Leabharmharc"
 
 #: ../src/yelp-bookmarks.c:315
 #, c-format
@@ -1058,7 +1058,7 @@ msgstr "Anaithnid"
 msgid "Unknown Error"
 msgstr "Earráid Anaithnid"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
 msgid "Could Not Read File"
 msgstr "Níorbh Fhéidir Comhad a Léamh"
 
@@ -1072,7 +1072,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1194,7 +1194,7 @@ msgstr ""
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
 #: ../src/yelp-search-parser.c:890
@@ -1410,7 +1410,7 @@ msgstr "Cóipeáil Seoladh _Ríomhphoist"
 msgid "Help Browser"
 msgstr "Brabhsálaí Cabhrach"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
 msgid "Loading..."
 msgstr "Á Luchtú..."
 
@@ -1447,23 +1447,23 @@ msgstr "Ní féidir fuinneog a chruthú"
 msgid "Cannot create search component"
 msgstr ""
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
 msgstr "Aimsi_gh:"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "Aimsigh an Chéad Cheann _Eile"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
 msgstr "Aimsigh _Roimhe Seo"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "Aimsigh an Chéad Cheann _Eile"
+
+#: ../src/yelp-window.c:1451
 msgid "Phrase not found"
 msgstr ""
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1472,144 +1472,21 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
 msgstr ""
 "Paul Duffy <dubhthach@frink.nuigalway.ie>\n"
 "Alastair McKinstry <mckinstry@computer.org>\n"
 "Seán de Búrca <leftmostcat@gmail.com>"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2405
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Brabhsálaí agus amharcán doiciméadaithe leis an Deasc GNOME."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Faigh cabhair le GNOME"
-
-#, fuzzy
-#~ msgid "Could not load document"
-#~ msgstr "Doiciméadí eile"
-
-#~ msgid "Help Contents"
-#~ msgstr "ábhar Cabhair"
-
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Abhaile"
-
-#~ msgid "Go to home view"
-#~ msgstr "Téigh go dtí radharc baile"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "Cuardaigh"
-
-#~ msgid "Development Tools"
-#~ msgstr "Uirlísí Forbairt"
-
-#~ msgid "Editors"
-#~ msgstr "Eagarthóirenna"
-
-#~ msgid "General"
-#~ msgstr "Gineréal"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "SnáthannaPosix"
-
-#~ msgid "Categories"
-#~ msgstr "Ranganna"
-
-#~ msgid "Documents"
-#~ msgstr "Doiciméadí"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "/Téigh/Innéacs"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
-
-#~ msgid "Example"
-#~ msgstr "Sampla"
-
-#~ msgid "Figure"
-#~ msgstr "Tarraingt"
-
-#~ msgid "Index"
-#~ msgstr "Innéacs"
-
-#~ msgid "Note"
-#~ msgstr "Nota"
-
-#~ msgid "Table"
-#~ msgstr "Tabla"
-
-#~ msgid "Tip"
-#~ msgstr "Leathfhocal"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Eagar/_Cuardaigh arís"
-
-#, fuzzy
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Eagar/_Cuardaigh arís"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Téigh/ar _Ais"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Téigh/chun Tosaigh"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "Téigh/_Abhaile"
-
-#~ msgid "/Go/"
-#~ msgstr "/_Téigh/"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Líonléitheoir Cabhair le haighaidh GNOME"
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Cuardaigh téasc seo doiciméad:</b>"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - Deasc"
-
-#~ msgid "GNOME is"
-#~ msgstr "Tá GNOME"
-
-#~ msgid "(C)"
-#~ msgstr "(C)"
-
-#, fuzzy
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "ag Lódáil..."
-
-#~ msgid "Search in the index"
-#~ msgstr "Cuardaigh sa Innéacs"
