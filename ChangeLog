@@ -1,5 +1,9 @@
 2008-01-10  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-gecko-services.cpp: 
+	Fix crash on shutdown using xulrunner 1.8.x
+	(bug #503317 -  Markus Kanet)
+	
 	* src/yelp-search-parser.c: 
 	Get a beagle client if it's available
 	allowing beagle to be used again
