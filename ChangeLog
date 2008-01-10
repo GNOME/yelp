@@ -2,6 +2,7 @@
 
 	* src/yelp-search-parser.c: 
 	Fix potential crash when comment is NULL
+	(bug #501559 - Matt Keenan)
 	
 	* src/yelp-gecko-services.cpp: 
 	Fix crash on shutdown using xulrunner 1.8.x
