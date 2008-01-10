@@ -239,6 +239,15 @@ yelp_search_parser_process (YelpSearchParser *parser, gchar *search_terms)
 
     parser->search_terms = decode_uri (search_terms);
 
+#ifdef ENABLE_BEAGLE
+    if (beagle_util_daemon_is_running()) {
+	beagle_client = beagle_client_new (NULL);
+	debug_print (DB_DEBUG, "client: %p\n", beagle_client);
+    } else {
+	beagle_client = NULL;
+    }
+#endif /* ENABLE_BEAGLE */
+
     parser->search_process_id = 
 	g_idle_add_full (G_PRIORITY_LOW,
 			 (GSourceFunc) search_parser_process_idle,
