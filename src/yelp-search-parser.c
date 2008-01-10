@@ -1089,7 +1089,10 @@ slow_search_process (RrnReg *reg, SearchDocData *data)
     container->doc_title = g_strdup ((gchar *) reg->name);
     container->score=0;
     container->html = FALSE;
-    container->default_snippet = g_strdup ((gchar *) reg->comment);
+    if (reg->comment)
+    	container->default_snippet = g_strdup ((gchar *) reg->comment);
+    else
+    	container->default_snippet = g_strdup (_("No Comment"));
     container->current_subsection = NULL;
     container->elem_type = NULL;
 

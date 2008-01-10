@@ -1,5 +1,8 @@
 2008-01-10  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-search-parser.c: 
+	Fix potential crash when comment is NULL
+	
 	* src/yelp-gecko-services.cpp: 
 	Fix crash on shutdown using xulrunner 1.8.x
 	(bug #503317 -  Markus Kanet)
