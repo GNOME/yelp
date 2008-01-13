@@ -131,7 +131,9 @@ static void        html_title_changed_cb          (YelpHtml          *html,
 static void        html_popupmenu_requested_cb    (YelpHtml *html,
 						   gchar *uri,
 						   gpointer user_data);
-
+static gboolean    window_key_event_cb            (GtkWidget   *widget,
+						   GdkEventKey *event,
+						   YelpWindow  *window);
 /** GtkTreeView Callbacks **/
 static void        tree_selection_changed_cb      (GtkTreeSelection  *selection,
 						   YelpWindow        *window);
@@ -209,6 +211,9 @@ static void        window_find_buttons_set_sensitive (YelpWindow      *window,
 						      gboolean        next);
 static void        window_find_clicked_cb         (GtkWidget         *button,
 						   YelpWindow        *window);
+static gboolean    window_find_hide_cb            (GtkWidget *widget,
+						   GdkEventFocus *event,
+						   YelpWindow *window);
 static void        window_find_next_cb            (GtkAction *action, 
 						   YelpWindow *window);
 static void        window_find_previous_cb        (GtkAction *action, 
@@ -238,6 +243,7 @@ struct _YelpWindowPriv {
     GtkWidget      *find_entry;
     YelpHtml       *html_view;
     GtkWidget      *side_sw;
+    GtkWidget      *search_action;
 
     /* Find in Page */
     GtkToolItem    *find_prev;
@@ -1242,13 +1248,13 @@ window_populate (YelpWindow *window)
     gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (f_proxy), 
 				   priv->forward_menu);
     
-    action =  gtk_entry_action_new ("Search",
+    priv->search_action =  gtk_entry_action_new ("Search",
 				    _("_Search:"),
 				    _("Search for other documentation"),
 				    NULL);
-    g_signal_connect (G_OBJECT (action), "activate",
+    g_signal_connect (G_OBJECT (priv->search_action), "activate",
 		      G_CALLBACK (search_activated), window);
-    gtk_action_group_add_action (priv->action_group, action);
+    gtk_action_group_add_action (priv->action_group, priv->search_action);
 
     priv->ui_manager = gtk_ui_manager_new ();
     gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
@@ -1284,6 +1290,8 @@ window_populate (YelpWindow *window)
     gtk_ui_manager_ensure_update (priv->ui_manager);
 
     toolbar = gtk_ui_manager_get_widget(priv->ui_manager, "ui/tools");
+
+    printf ("SE is %p\n", priv->search_action);
 
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (f_proxy), 0);
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (b_proxy), 0);
@@ -1373,6 +1381,11 @@ window_populate (YelpWindow *window)
 		      "popupmenu_requested",
 		      G_CALLBACK (html_popupmenu_requested_cb),
 		      window);
+    /* Connect to look for /'s */
+    g_signal_connect (window,
+		      "key-press-event",
+		      G_CALLBACK (window_key_event_cb),
+		      window);
     gtk_box_pack_end (GTK_BOX (priv->html_pane),
 		      GTK_WIDGET (priv->html_view),
 		      TRUE, TRUE, 0);
@@ -1391,8 +1404,41 @@ window_populate (YelpWindow *window)
 				   GTK_WIDGET (priv->html_view));
 }
 
+static gboolean
+window_key_event_cb (GtkWidget *widget, GdkEventKey *event,
+		     YelpWindow *window)
+{
+    if ((window->priv->search_action && 
+	gtk_entry_action_has_focus (window->priv->search_action)) ||
+	GTK_WIDGET_HAS_FOCUS (window->priv->find_entry))
+	return FALSE;
+
+    if (event->keyval == GDK_slash) {
+	window_find_cb (NULL, window);
+	return TRUE;
+    }
+
+    return FALSE;
+}
+
+static gboolean
+window_find_hide_cb (GtkWidget *widget, GdkEventFocus *event, 
+		     YelpWindow *window)
+{
+    YelpWindowPriv *priv;
+
+    g_return_if_fail (YELP_IS_WINDOW (window));
+
+    priv = window->priv;
+
+    gtk_widget_hide ((GtkWidget *) priv->find_bar);
+    return FALSE;
+}
+
+
 static void
-window_populate_find (YelpWindow *window, GtkWidget *find_bar)
+window_populate_find (YelpWindow *window,
+		      GtkWidget *find_bar)
 {
     GtkWidget *box;
     GtkWidget *label;
@@ -1413,6 +1459,8 @@ window_populate_find (YelpWindow *window, GtkWidget *find_bar)
 		      G_CALLBACK (window_find_entry_activate_cb), window);
     g_signal_connect (G_OBJECT (priv->find_entry), "key-press-event",
 		      G_CALLBACK (window_find_entry_key_pressed_cb), window);
+    g_signal_connect (G_OBJECT (priv->find_entry), "focus-out-event",
+		      G_CALLBACK (window_find_hide_cb), window);
     gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
 
     item = gtk_tool_item_new ();

@@ -61,6 +61,7 @@ const char *gtk_entry_action_get_text  (GtkEntryAction *action);
 void        gtk_entry_action_set_text  (GtkEntryAction *action,
 					const char     *text);
 
+gboolean    gtk_entry_action_has_focus (GtkEntryAction *action);
 G_END_DECLS
 
 #endif

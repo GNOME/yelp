@@ -34,6 +34,7 @@ struct _GtkEntryActionPrivate
 {
   char *text;
   gboolean editable;
+  GtkWidget *entry_widget;
 };
 
 static void  gtk_entry_action_init        (GtkEntryAction      *action);
@@ -85,11 +86,13 @@ gtk_entry_action_create_tool_item (GtkAction *action)
   GtkWidget *entry;
   GtkWidget *box;
   GtkWidget *label;
+  GtkEntryAction *action_cast = (GtkEntryAction *)action;
 
   tool_item = gtk_tool_item_new ();
   box = gtk_hbox_new (FALSE, 6);
   label = gtk_label_new ("");
   entry = gtk_entry_new ();
+  action_cast->priv->entry_widget = entry;
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
   gtk_container_add (GTK_CONTAINER (tool_item), box);
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
@@ -345,4 +348,13 @@ gtk_entry_action_set_text (GtkEntryAction *action,
   action->priv->text = g_strdup (text);
   g_free (old_text);
   g_object_notify (G_OBJECT (action), "text");
+}
+
+gboolean
+gtk_entry_action_has_focus (GtkEntryAction *action)
+{
+  g_return_val_if_fail (GTK_IS_ENTRY_ACTION (action), FALSE);
+  
+  return (GTK_WIDGET_HAS_FOCUS (action->priv->entry_widget));
+  
 }
