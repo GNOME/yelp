@@ -1092,8 +1092,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 							frag_id, 
 							(YelpDocumentFunc) page_request_cb, 
 							(void *) window);
+	priv->current_document = doc;
     }
-    priv->current_document = doc;
 }
 
 GtkUIManager *

@@ -1,5 +1,9 @@
 2008-01-13  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-window.c: 
+	Fix crash on going backward then forward after
+	an external link (bug #487849)
+	
 	* data/toc.xml.in: 
 	Fix Games category
 	
