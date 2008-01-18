@@ -942,7 +942,8 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
     window_set_loading (window);
 
     priv->current_type = type;
-    priv->uri = loading_uri;
+    g_free (priv->uri);
+    priv->uri = g_strdup (loading_uri);
     priv->current_frag = g_strdup (frag);
     priv->req_uri = g_strdup (req_uri);
     
@@ -1793,6 +1794,7 @@ html_popupmenu_requested_cb (YelpHtml *html,
 			       FALSE);
 
     }
+    g_free (window->priv->uri);
     window->priv->uri = g_strdup (uri);
     gtk_menu_popup (GTK_MENU (window->priv->popup),
 		    NULL, NULL, NULL, NULL, 3, gtk_get_current_event_time());
@@ -2208,7 +2210,9 @@ window_reload_cb (GtkAction *action, YelpWindow *window)
 	if (window->priv->current_request > -1) {
 	    yelp_document_cancel_page (window->priv->current_document, window->priv->current_request);
 	}
-	/*g_object_unref (window->priv->current_document);*/
+	g_free (window->priv->uri);
+	window->priv->uri = NULL;
+	g_object_unref (window->priv->current_document);
 	window->priv->current_document = NULL;
 	yelp_window_load (window, window->priv->req_uri);
     }

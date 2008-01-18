@@ -723,7 +723,7 @@ request_free (Request *request)
 {
     debug_print (DB_FUNCTION, "entering\n");
     g_free (request->page_id);
-    g_free (request);
+    g_slice_free (Request, request);
 }
 
 /******************************************************************************/

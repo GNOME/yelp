@@ -1,3 +1,11 @@
+2008-01-18  Davyd Madeley  <davyd@madeley.id.au>
+
+	* src/yelp-window.c:
+	- fix Ctrl-R reload
+	- plug leak of priv->uri
+	* src/yelp-document.c:
+	- fix YelpDocument->dispose
+
 2008-01-13  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/gtkentryaction.c: 
