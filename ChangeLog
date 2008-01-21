@@ -1,3 +1,24 @@
+2008-01-21  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-info.c: 
+	* src/yelp-transform.c:
+	* src/yelp-man.c:
+	* src/yelp-settings.c:
+	* src/yelp-docbook.c:
+	* src/yelp-print.c:
+	Fix various compiler warnings
+
+	* src/yelp-window.c:
+	Fix compiler warnings
+	Remove additional debug printf
+	
+	* src/yelp-utils.c:
+	Fix man sectioning stuff
+
+	* src/yelp-toc.c:
+	Fix reloading on TOC pages
+	
+	
 2008-01-18  Davyd Madeley  <davyd@madeley.id.au>
 
 	* src/yelp-window.c:

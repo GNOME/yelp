@@ -34,6 +34,7 @@
 #include "yelp-info-parser.h"
 #include "yelp-transform.h"
 #include "yelp-debug.h"
+#include "yelp-settings.h"
 
 #define STYLESHEET DATADIR"/yelp/xslt/info2html.xsl"
 

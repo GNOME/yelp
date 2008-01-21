@@ -1249,13 +1249,14 @@ window_populate (YelpWindow *window)
     gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (f_proxy), 
 				   priv->forward_menu);
     
-    priv->search_action =  gtk_entry_action_new ("Search",
+    priv->search_action =  (GtkWidget * )gtk_entry_action_new ("Search",
 				    _("_Search:"),
 				    _("Search for other documentation"),
 				    NULL);
     g_signal_connect (G_OBJECT (priv->search_action), "activate",
 		      G_CALLBACK (search_activated), window);
-    gtk_action_group_add_action (priv->action_group, priv->search_action);
+    gtk_action_group_add_action (priv->action_group, 
+				 (GtkAction *) priv->search_action);
 
     priv->ui_manager = gtk_ui_manager_new ();
     gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
@@ -1291,8 +1292,6 @@ window_populate (YelpWindow *window)
     gtk_ui_manager_ensure_update (priv->ui_manager);
 
     toolbar = gtk_ui_manager_get_widget(priv->ui_manager, "ui/tools");
-
-    printf ("SE is %p\n", priv->search_action);
 
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (f_proxy), 0);
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (b_proxy), 0);
@@ -1410,7 +1409,7 @@ window_key_event_cb (GtkWidget *widget, GdkEventKey *event,
 		     YelpWindow *window)
 {
     if ((window->priv->search_action && 
-	gtk_entry_action_has_focus (window->priv->search_action)) ||
+	 gtk_entry_action_has_focus ((GtkEntryAction *) window->priv->search_action)) ||
 	GTK_WIDGET_HAS_FOCUS (window->priv->find_entry))
 	return FALSE;
 
@@ -1428,7 +1427,7 @@ window_find_hide_cb (GtkWidget *widget, GdkEventFocus *event,
 {
     YelpWindowPriv *priv;
 
-    g_return_if_fail (YELP_IS_WINDOW (window));
+    g_return_val_if_fail (YELP_IS_WINDOW (window), FALSE);
 
     priv = window->priv;
 

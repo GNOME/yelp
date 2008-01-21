@@ -43,7 +43,7 @@
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
-static exslt_registered = FALSE;
+static gboolean exslt_registered = FALSE;
 
 static void      transform_run         (YelpTransform  *transform);
 static gboolean  transform_free        (YelpTransform  *transform);
@@ -407,7 +407,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     g_mutex_lock (transform->mutex);
 
-    temp = g_strdup (page_id);
+    temp = g_strdup ((gchar *) page_id);
     xmlFree (page_id);
 
     g_async_queue_push (transform->queue, g_strdup ((gchar *) temp));

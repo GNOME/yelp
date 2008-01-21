@@ -184,6 +184,7 @@ toc_dispose (GObject *object)
 {
     YelpToc *toc = YELP_TOC (object);
 
+    toc_doc = NULL;
     if (toc->priv->xmldoc)
 	xmlFreeDoc (toc->priv->xmldoc);
 
@@ -288,7 +289,6 @@ transform_func (YelpTransform       *transform,
     g_assert (toc != NULL && YELP_IS_TOC (toc));
 
     priv = toc->priv;
-
     g_assert (transform == priv->transform);
 
     if (priv->state == TOC_STATE_STOP) {
@@ -305,6 +305,7 @@ transform_func (YelpTransform       *transform,
 	yelp_transform_release (transform);
 	priv->transform = NULL;
 	priv->transform_running = FALSE;
+	priv->process_running = FALSE;
 	return;
     }
 
@@ -317,6 +318,7 @@ transform_func (YelpTransform       *transform,
 	yelp_transform_release (transform);
 	priv->transform = NULL;
 	priv->transform_running = FALSE;
+	priv->process_running = FALSE;
 	break;
     case YELP_TRANSFORM_FINAL:
 	transform_final_func (transform, toc);
@@ -368,6 +370,7 @@ transform_final_func (YelpTransform *transform, YelpToc *toc)
     priv->transform = NULL;
 
     priv->transform_running = FALSE;
+    priv->process_running = FALSE;
 
     if (priv->xmldoc) {
 	xmlFreeDoc (priv->xmldoc);

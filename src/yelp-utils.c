@@ -223,7 +223,7 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
     if (lbrace) {
 	rbrace = strrchr (name, ')');
 	if (rbrace) {
-	    /*sect = g_strndup (lbrace+1, rbrace - lbrace - 1);*/
+	    sect = g_strndup (lbrace+1, rbrace - lbrace - 1);
 	    real_name = g_strndup (name, lbrace - name);
 	} else {
 	    sect = NULL;
@@ -233,12 +233,12 @@ resolve_man_page (const gchar *name, gchar **result, gchar **section)
 	lbrace = strrchr (name, '.');
 	if (lbrace) {
 	    repeat = TRUE;
-	    /*sect = strdup (lbrace+1);*/
+	    sect = strdup (lbrace+1);
 	    real_name = g_strndup (name, lbrace - name);
 	} else {
 	    lbrace = strrchr (name, '#');
 	    if (lbrace) {
-		/*sect = strdup (lbrace+1);*/
+		sect = strdup (lbrace+1);
 		real_name = g_strndup (name, lbrace - name);
 	    } else {
 		real_name = strdup (name);

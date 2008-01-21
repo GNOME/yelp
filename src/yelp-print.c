@@ -254,7 +254,7 @@ yelp_print_verify_postscript (GtkPrinter *printer, GtkWidget *print_dialog)
 {
     if (!gtk_printer_accepts_ps (printer)) {
 	GtkDialog *dialog;
-	dialog = gtk_message_dialog_new ( GTK_WINDOW (print_dialog),
+	dialog = (GtkDialog *) gtk_message_dialog_new ( GTK_WINDOW (print_dialog),
 					  GTK_DIALOG_MODAL,
 					  GTK_MESSAGE_ERROR,
 					  GTK_BUTTONS_OK,

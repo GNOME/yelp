@@ -716,7 +716,7 @@ settings_update (YelpSettingsType type)
     GdkColor   blue = { 0, 0x1E1E, 0x3E3E, 0xE7E7 };
     gdouble    base_h, base_l, base_s;
     gdouble    text_h, text_l, text_s;
-    guint16    rval, gval, bval;
+    /* guint16    rval, gval, bval; */
     gint i;
 
     debug_print (DB_FUNCTION, "entering\n");
