@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.21.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-14 18:40+0100\n"
-"PO-Revision-Date: 2008-01-14 18:53+0100\n"
+"POT-Creation-Date: 2008-01-21 21:52+0100\n"
+"PO-Revision-Date: 2008-01-21 21:53+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -517,7 +517,8 @@ msgstr "Grafikk"
 
 #: ../data/toc.xml.in.h:63
 msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Veiledninger og håndbøker for programmer for kommunikasjon med omverdenen"
+msgstr ""
+"Veiledninger og håndbøker for programmer for kommunikasjon med omverdenen"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
@@ -575,7 +576,7 @@ msgstr "Barnespill"
 msgid ""
 "Learn more about making your system more accessible for a range of "
 "disabilities"
-msgstr ""
+msgstr "Lær mer om å gjøre systemet tilgjengelig for forskjellige typer funksjonshemming"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
@@ -631,7 +632,7 @@ msgstr "Numerisk analyse"
 
 #: ../data/toc.xml.in.h:91
 msgid "OCR"
-msgstr ""
+msgstr "OCR"
 
 #: ../data/toc.xml.in.h:92
 msgid "Office Applications"
@@ -659,7 +660,7 @@ msgstr "Pakkehåndterer"
 
 #: ../data/toc.xml.in.h:98
 msgid "Parallel Computing"
-msgstr ""
+msgstr "Parallelle beregninger"
 
 #: ../data/toc.xml.in.h:99
 msgid "Photography"
@@ -745,7 +746,8 @@ msgstr "Innstillinger"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Innstillinger brukere kan endre for å tilpasse datamaskinen til sine behov"
+msgstr ""
+"Innstillinger brukere kan endre for å tilpasse datamaskinen til sine behov"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -1003,38 +1005,38 @@ msgid "Document Sections"
 msgstr "Dokumentdeler"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
-#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:293 ../src/yelp-man.c:388
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Side ikke funnet"
 
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
-#: ../src/yelp-man.c:293
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-man.c:294
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Siden %s ble ikke funnet i dokument %s."
 
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
-#: ../src/yelp-man.c:388
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:389
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "Etterspurt side ble ikke funnet i dokument %s."
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
-#: ../src/yelp-man.c:430
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:379
+#: ../src/yelp-man.c:431
 msgid "File not found"
 msgstr "Fil ikke funnet"
 
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:432
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Filen «%s» eksisterer ikke."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:394
+#: ../src/yelp-man.c:460 ../src/yelp-toc.c:436
 msgid "Could not parse file"
 msgstr "Kunne ikke lese fil"
 
@@ -1072,7 +1074,7 @@ msgstr "Kunne ikke lese filen"
 msgid "No information is available about this error."
 msgstr "Ingen informasjon er tilgjengelig om denne feilen."
 
-#: ../src/yelp-info.c:394
+#: ../src/yelp-info.c:395
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -1104,7 +1106,7 @@ msgstr "GNOME hjelpleser"
 msgid "Help"
 msgstr "Hjelp"
 
-#: ../src/yelp-man.c:460
+#: ../src/yelp-man.c:461
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -1236,16 +1238,16 @@ msgstr "Kunne ikke prosessere søket"
 msgid "The search processor returned invalid results"
 msgstr "Søkeprosessoren returnerte ugyldige resultater"
 
-#: ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:267
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "%s-siden ble ikke funnet i innholdsfortegnelsen."
 
-#: ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
 msgstr "Etterspurt side ble ikke funnet i innholdsfortegnelsen."
 
-#: ../src/yelp-toc.c:434
+#: ../src/yelp-toc.c:437
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -1438,32 +1440,32 @@ msgstr "Laster..."
 msgid "Unknown Page"
 msgstr "Ukjent side"
 
-#: ../src/yelp-window.c:1007 ../src/yelp-window.c:1073
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Etterspurt URI «%s» er ugyldig"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
 msgid "Unable to load page"
 msgstr "Kan ikke laste siden"
 
-#: ../src/yelp-window.c:1068
+#: ../src/yelp-window.c:1069
 msgid "Error executing \"gnome-open\""
 msgstr "Feil ved kjøring av «gnome-open»"
 
-#: ../src/yelp-window.c:1252
+#: ../src/yelp-window.c:1253
 msgid "_Search:"
 msgstr "_Søk:"
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1254
 msgid "Search for other documentation"
 msgstr "Søk etter annen dokumentasjon"
 
-#: ../src/yelp-window.c:1272
+#: ../src/yelp-window.c:1274
 msgid "Cannot create window"
 msgstr "Kan ikke opprette vindu"
 
-#: ../src/yelp-window.c:1278
+#: ../src/yelp-window.c:1280
 msgid "Cannot create search component"
 msgstr "Kan ikke opprette søkekomponent"
 
@@ -1494,15 +1496,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2450
+#: ../src/yelp-window.c:2453
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2456
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2455
+#: ../src/yelp-window.c:2458
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Program for å finne og lese dokumentasjon for GNOME skrivebordet."
 
