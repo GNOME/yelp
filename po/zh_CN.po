@@ -1,20 +1,23 @@
+# translation of yelp.HEAD.po to 简体中文
 # Translation of yelp.po to Simplified Chinese.
 # This file is distributed under the same license as the yelp package.
+#
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
 # Funda Wang <fundawang@linux.net.cn>, 2003 ,2004, 2005.
 # Jan2xue <75jan@163.com>, 2003-2004.
-#
+# Shaodong Di <gnuyhlfh@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.13\n"
+"Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
-"PO-Revision-Date: 2007-09-08 17:06+0800\n"
-"Last-Translator: YangZhang <zyangmath@gmail.com>\n"
+"POT-Creation-Date: 2008-01-13 16:16+0000\n"
+"PO-Revision-Date: 2008-01-22 13:23+0800\n"
+"Last-Translator: Shaodong Di <gnuyhlfh@gmail.com>\n"
 "Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -40,7 +43,7 @@ msgstr "配置文件"
 msgid "Curses Functions"
 msgstr "Curses 函数"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "开发"
 
@@ -48,7 +51,7 @@ msgstr "开发"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN 函数"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "游戏"
 
@@ -281,136 +284,593 @@ msgid "X11 Overviews"
 msgstr "X11 简介"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "2D 图形"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "3D 图形"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "辅助功能"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "附件"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "娱乐相关的应用程序"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "操纵或查看图形的应用成程序"
+msgid "Action Games"
+msgstr "动作游戏"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "进行字处理和其它办公任务的应用程序"
+msgid "Adventure Games"
+msgstr "冒险游戏"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "与 X Window 相关的应用程序"
+msgid "Amusement"
+msgstr "娱乐"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "与多媒体相关的应用程序"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "用于查看和处理图形的应用程序"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "与软件开发相关的应用程序"
+msgid "Applications related to audio and video"
+msgstr "视音频相关应用程序"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "与互联网相关的应用程序"
+msgid "Applications that teach or aid in learning"
+msgstr "教学及辅助应用程序"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "与面板相关的应用程序"
+msgid "Arcade Games"
+msgstr "街机游戏"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "支持辅助功能的应用程序"
+msgid "Archiving Tools"
+msgstr "归档工具"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "美工"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "人工智能"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "天文学"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "生物学"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "方块游戏"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "棋盘游戏"
+
+#: ../data/toc.xml.in.h:18
+#, fuzzy
+msgid "Building"
+msgstr "构建"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "计算器"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "日历"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "纸牌游戏"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "图表工具"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "聊天"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "化学"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "时钟"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "压缩工具"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "计算机科学"
+
+#: ../data/toc.xml.in.h:28
+#, fuzzy
+msgid "Construction"
+msgstr "构造"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "联系人管理"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "数据可视化"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "数据库"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "调试器"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "桌面"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "KDE 桌面环境特定的文档"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "桌面设置"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "拨号"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "词典"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "光盘烧录"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "经济"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "教育"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "电学"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "电子学"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "邮件工具"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "仿真器"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "工程"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "文件管理"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "文件工具"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "文件传输"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "文件系统"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "财务工具"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "流程图工具"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "GNOME 应用程序"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "用户界面设计器"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "GNOME 桌面环境的一般应用程序"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "KDE 桌面环境的一般应用程序"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "地理"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "地质学"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "地球科学"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "图形"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+#, fuzzy
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "与外界相连的应用程序手册与指南"
+
+#: ../data/toc.xml.in.h:64
+#, fuzzy
+msgid "Guides for getting involved in development"
+msgstr "参与开发指南"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "火腿电台"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "硬件设置"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "玩得开心"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "历史"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "集成开发环境"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "IRC 客户端"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "图象处理"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "即时通讯"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "教育应用程序"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE 应用程序"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "儿童游戏"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr "了解更多关于如何使你的系统对于残疾人更具可用性的知识"
+
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "许可"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "文学"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "逻辑游戏"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "数学"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "医学软件"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi 音乐"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
 msgstr "杂类文档"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "办公"
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "混音器"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "其它应用程序"
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "监视器"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "音乐"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "新闻"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "数字分析"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "办公应用程序"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "办公应用程序"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "其它文档"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "面板小程序"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "编程"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "PDA 通信"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "软件包管理器"
+
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "并行计算"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "摄影"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "物理"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "播放器"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "演示文稿工具"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "打印"
+
+#: ../data/toc.xml.in.h:105
+#, fuzzy
+msgid "Profiling Tools"
+msgstr "性能评测工具"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "项目管理工具"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "出版"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "QT"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "光栅图形"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "录音机"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "远程访问"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "修订控制"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "机器人技术"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "角色扮演游戏"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "扫描"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
 msgstr "科学"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "科学应用程序。"
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "安全"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:119
+#, fuzzy
+msgid "Sequencers"
+msgstr "音序器"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "设置"
+
+#: ../data/toc.xml.in.h:121
+#, fuzzy
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "用户可调整以使他们工作环境更舒适的设置"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "模拟游戏"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "声音"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "影音"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "系统工具"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "影音编辑"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "管理计算机的工具"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "运动"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "实用程序"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "运动游戏"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "各种其它应用程序"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "电子表格工具"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "策略游戏"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "系统"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "电视"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "电话"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "电话工具"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "终端模拟器"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "文本编辑器"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "文本工具"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "辅助计算机管理工具"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "翻译工具"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "调谐器"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "实用工具"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "有助于你完成工作的实用工具"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "矢量图形"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "视频"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "视频会议"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "阅读器"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Web 浏览器"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Web 开发"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "欢迎使用 GNOME 帮助浏览器"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "X 应用程序"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "文字处理器"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -430,7 +890,7 @@ msgstr "书签"
 
 #: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
-msgstr "区分大小写(_A)"
+msgstr "大小写敏感(_A)"
 
 #: ../data/ui/yelp.glade.h:6
 msgid "Find"
@@ -486,7 +946,7 @@ msgstr "使用系统字体(_U)"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr "变宽字体(_V)："
+msgstr "非等宽字体(_V)："
 
 #: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
@@ -506,7 +966,7 @@ msgstr "等宽文本字体。"
 
 #: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "变宽文本字体。"
+msgstr "非等宽文本字体。"
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
@@ -552,12 +1012,12 @@ msgstr "帮助主题"
 
 #: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
-msgstr "文档节"
+msgstr "文档章节"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "页面未找到"
 
@@ -586,7 +1046,7 @@ msgstr "文件“%s”不存在。"
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "无法解析文件"
 
@@ -604,7 +1064,7 @@ msgid ""
 "is not a well-formed XML document."
 msgstr "无法解析文件“%s”，因为它的一个或多个包含文件不是有效的 XML 文档。"
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "未知"
 
@@ -612,7 +1072,7 @@ msgstr "未知"
 msgid "Unknown Error"
 msgstr "未知错误"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
 msgid "Could Not Read File"
 msgstr "无法读取文档"
 
@@ -622,11 +1082,10 @@ msgstr "没有关于此错误的信息。"
 
 #: ../src/yelp-info.c:394
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "无法解析文件“%s”，因为它不是有效的信息页。"
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -652,8 +1111,7 @@ msgstr "帮助"
 
 #: ../src/yelp-man.c:460
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "无法解析文件“%s”，因为它不是有效的手册页。"
 
 #: ../src/yelp-print.c:97
@@ -673,10 +1131,6 @@ msgstr "此打印机上目前不支持打印"
 msgid "Printer %s does not support postscript printing."
 msgstr "打印机 %s 不支持 PostScript 打印。"
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "打印"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "等候打印"
@@ -690,22 +1144,22 @@ msgstr "打印时发生了错误"
 msgid "It was not possible to print your document: %s"
 msgstr "无法打印您的文档：%s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "GNOME 支持论坛"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "“%s”没有结果"
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr "请试着使用不同的内容来描述您所遇到的问题，或者您想要获得帮助的主题。"
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "“%s”的搜索结果"
@@ -715,7 +1169,7 @@ msgstr "“%s”的搜索结果"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "在 %s 再搜索一次"
@@ -728,7 +1182,7 @@ msgstr "在 %s 再搜索一次"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -744,7 +1198,7 @@ msgstr "的:地:得:怎么:跪:求:大人:达人:帮忙:怎样:个:顶:为什么
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "答复:回:回复"
 
@@ -752,12 +1206,16 @@ msgstr "答复:回:回复"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "啊:阿:哪:吧:呢:么:撒"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "没有评论"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -776,16 +1234,16 @@ msgstr "无法处理搜索"
 msgid "The search processor returned invalid results"
 msgstr "搜索处理器返回无效的搜索结果"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "TOC 中未找到页面 %s 。"
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "TOC 中未找到请求的页面。"
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -968,7 +1426,7 @@ msgstr "复制电子邮件地址(_E)"
 msgid "Help Browser"
 msgstr "帮助浏览器"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
 msgid "Loading..."
 msgstr "正在装入..."
 
@@ -1005,23 +1463,23 @@ msgstr "无法创建窗口"
 msgid "Cannot create search component"
 msgstr "无法创建搜索组件"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
 msgstr "查找(_D)："
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "查找下一个(_N)"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
 msgstr "查找上一个(_P)"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "查找下一个(_N)"
+
+#: ../src/yelp-window.c:1451
 msgid "Phrase not found"
 msgstr "未找到词组"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1030,7 +1488,7 @@ msgstr "无法读取文件“%s”。文件可能已经损坏，或者您没有�
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
 msgstr ""
 "开源软件国际化简体中文组(http://i18n.linux.net.cn)\n"
@@ -1038,114 +1496,15 @@ msgstr ""
 "Funda Wang <fundawang@linux.net.cn>, 2003, 2005\n"
 "Jan2xue <75jan@163.com>, 2003-2004"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2405
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Gnome 桌面的文档浏览器和查看器。"
+msgstr "Gnome 桌面的文档浏览器和阅读器。"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
 
-#~ msgid "An unknown error occured"
-#~ msgstr "发生了未知错误"
-
-#~ msgid "Could not load document"
-#~ msgstr "无法装入文档"
-
-#~ msgid "Could not read the table of contents"
-#~ msgstr "无法读取目录"
-
-#~ msgid "Unsupported Format"
-#~ msgstr "不支持的格式"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
-#~ "is formatted incorrectly."
-#~ msgstr "无法分析文件“%s”。可能文件不存在，或者格式不正确。"
-
-#~ msgid "The YelpDocInfo struct of the document"
-#~ msgstr "文档的 YelpDocInfo 结构"
-
-#~ msgid "<b>Printing</b>"
-#~ msgstr "<b>打印</b>"
-
-#~ msgid ""
-#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
-#~ "not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "您的搜索无法进行。文件“%s”可能已经丢失，或者不是有效的 XSLT 样式表。"
-
-#~ msgid "Help Contents"
-#~ msgstr "帮助目录"
-
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "无法装入 OMF 文件“%s”。"
-
-#~ msgid "yelp-watermark-blockquote-201C"
-#~ msgstr "yelp-watermark-blockquote-201C"
-
-#~ msgid "YelpTocPager: Pause count is negative."
-#~ msgstr "YelpTocPager: 暂停数为负数。"
-
-#~ msgid ""
-#~ "The table of contents could not be processed. The file ‘%s’ is either "
-#~ "missing or is not a valid XSLT stylesheet."
-#~ msgstr "无法处理目录。文件“%s”可能已经丢失，或者不是有效的 XSLT 样式表。"
-
-#~ msgid "Read man page for %s"
-#~ msgstr "读取 %s 的 man page"
-
-#~ msgid "Read info page for %s"
-#~ msgstr "读取 %s 的 info page"
-
-#~ msgid ""
-#~ "The table of contents could not be loaded. The file ‘%s’ is either "
-#~ "missing or is not well-formed XML."
-#~ msgstr "无法装入目录。文件“%s”可能已经丢失，或者不是有效的 XML。"
-
-#~ msgid "Command Line Help"
-#~ msgstr "命令行帮助"
-
-#~ msgid "The Uniform Resource Identifier for the file is invalid."
-#~ msgstr "文件的统一资源定位符无效。"
-
-#~ msgid ""
-#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#~ "actual file."
-#~ msgstr "统一资源定位符“%s”无效或者不指向实际的文件。"
-
-#~ msgid "Man pages are not supported in this version."
-#~ msgstr "此版本不支持 Man page。"
-
-#~ msgid "GNU info pages are not supported in this version"
-#~ msgstr "此版本不支持 GNU 信息页。"
-
-#~ msgid "Search is not supported in this version."
-#~ msgstr "此版本不支持搜索。"
-
-#~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the "
-#~ "document to convert to XML."
-#~ msgstr "不再支持 SGML 文档。请要求作者将文档转换为 XML。"
-
-#~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The "
-#~ "format may not be supported."
-#~ msgstr "无法创建文件“%s”的转换环境。格式可能不支持。"
-
-#~ msgid ""
-#~ "The section ‘%s’ does not exist in this document. If you were directed to "
-#~ "this section from a Help button in an application, please report this to "
-#~ "the maintainers of that application."
-#~ msgstr ""
-#~ "此文档中不存在节“%s”。如果您是从应用程序中的帮助按钮转到此节，请向应用程序"
-#~ "的维护者报告。"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#~ "is improperly formatted."
-#~ msgstr "无法分析文件“%s”。可能文件不存在，或者格式不正确。"
