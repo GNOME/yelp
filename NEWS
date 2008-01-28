@@ -1,3 +1,32 @@
+Changed in 2.21.90:
+-------------------
+
+* Fix various compiler warnings
+* Remove additional debug printf
+* Fix man sectioning stuff
+* Fix reloading (Davyd Madeley)
+* Make / activate find
+* Make find go away on focus-out
+* Readd games category
+* Fix some menu titles in TOC
+Bugs fixed:
+ * Crash on backward and then 
+   forward on external links (bug #487849)
+ * Depreciated items in yelp.desktop (bug #500483)
+ * Potential crash in search (bug #501559 - Matt Keenan
+ * Crash on shutdown using XULRunner 1.8 
+   (bug #503317 - Markus Kanet)
+ * Initialise Beagle, allowing its use again
+   (bug #504163)
+* Updated translations:
+  * es (Jorge Gonzalez)
+  * et (Ivar Smolin)
+  * eu (Inaki Larranaga Murgoitio)
+  * fr (Valentin Gatien-Baron and Stéphane Raimbault)
+  * ga (Seán de Búrca)
+  * nb (Kjartan Maraas)
+  * sv (Daniel Nylande)
+
 Changed in 2.21.2:
 ------------------
 
