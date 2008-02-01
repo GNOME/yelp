@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
+"POT-Creation-Date: 2008-01-13 16:16+0000\n"
 "PO-Revision-Date: 2005-07-31 15:56+0300\n"
 "Last-Translator: Yair Hershkovitz <yairhr@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -45,7 +45,7 @@ msgstr "קבצי הגדרות"
 msgid "Curses Functions"
 msgstr "פונקציות Curses"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "פיתוח"
 
@@ -53,7 +53,7 @@ msgstr "פיתוח"
 msgid "FORTRAN Functions"
 msgstr "פונקציות FORTRAN"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "משחקים"
 
@@ -286,136 +286,596 @@ msgid "X11 Overviews"
 msgstr "סקירות של X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "גרפיקה דו ממדית"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "גרפיקה תלת ממדית"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "נגישות"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "עזרים"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "יישומים לכיף"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "יישומים למניפולציות ותצוגת גרפיקה"
+msgid "Action Games"
+msgstr "משחקי פעולה"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "יישומים לעיבוד תמלילים ומטלות משרד טחרות"
+msgid "Adventure Games"
+msgstr "משחקי הרפתקאות"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "יישומים הקשורים לחלונות X"
+msgid "Amusement"
+msgstr "בידור"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "יישומים הקשורים למולטימדיה"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "יישומים למניפולציות ותצוגת גרפיקה"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "יישומים הקשורים לפיתוח תוכנה"
+msgid "Applications related to audio and video"
+msgstr "יישומים הקשורים לאודיו ווידאו"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "יישומים הקשורים לטינטרנט"
+msgid "Applications that teach or aid in learning"
+msgstr "יישומים שמלמדים או עוזרים בלימוד"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "יישומים הקשואים ללוח"
+msgid "Arcade Games"
+msgstr "משחקי Arcade"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "יישומים הקשואים לתמיכת טכנולוגיות מסייעות"
+msgid "Archiving Tools"
+msgstr "כלי ארכיון"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "אומנות"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "בינה מלאכותית"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "אסטרונומיה"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "ביולוגיה"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "משחקי לוח"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr ""
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "מחשבון"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "יומן"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "משחקי קלפים"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "שיחה"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "כימיה"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "שעונים"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "כלי כיווץ"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "מדעי המחשב"
+
+#: ../data/toc.xml.in.h:28
+#, fuzzy
+msgid "Construction"
+msgstr "ניהול מערכת"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr ""
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr ""
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "בסיסי נתונים"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "שולחן עבודה"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "מסמכים המיוחדים לסביבת העבודה KDE"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "הגדרות שולחן עבודה"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr ""
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "מילונים"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "צריבת דיסקים"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "כלכלה"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "חינוך"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "חשמל"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "אלקטרוניקה"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "כלי דוא\"ל"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr ""
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "הנדסה"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "מנהל קבצים"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "כלי קבצים"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "העברת קבצים"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "מערכת קבצים"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "יישומי GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "מעצבי GUI"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "יישומים המיוחדים לסביבת העבודה GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "יישומים המיוחדים לסביבת העבודה KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "גאוגרפיה"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "גאולוגיה"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr ""
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "גרפיקה"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr ""
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr ""
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr ""
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "הגדרות חומרה"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr ""
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "היסטוריה"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr ""
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "לקוחות IRC"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "עיבוד תמונה"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "הודעות מידיות"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "אינטרנט"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "יישומי למידה"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "יישומי KDE"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "יישומים כלליים"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "משחקי ילדים"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "משרד"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "רשיונות"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "ספרות"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "משחקי לוגיקה"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "מתמטיקה"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "תוכנה רפואית"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr ""
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "תיעוד כללי"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr ""
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr ""
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr ""
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "חדשות"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "אנליזה נומרית"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+#, fuzzy
+msgid "Office Applications"
 msgstr "יישומים אחרים"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:93
+#, fuzzy
+msgid "Office applications"
+msgstr "יישומים אחרים"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "תיעוד נוסף"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "יישומוני לוח"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr ""
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "תכנות"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr ""
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "מנל חבילות"
+
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "חישוב מקבילי"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "צילום"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "פיזיקה"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+#, fuzzy
+msgid "Players"
+msgstr "דפים"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "כלי מצגת"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "מדפיס"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "כלי ניהול פרוייקט"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+#, fuzzy
+msgid "Raster Graphics"
+msgstr "גרפיקה"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr ""
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "גישה מרחוק"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "בקרת גירסה"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "רובוטיקה"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "משחקי תפקידים"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "סורק"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
 msgstr "מדע"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "יישומים מדעיים"
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "אבטחה"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "הגדרות"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr ""
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "משחקי סימולציה"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "קול"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "קול &amp; וידאו"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
+#: ../data/toc.xml.in.h:125
+#, fuzzy
+msgid "Sound &amp; Video Editing"
+msgstr "קול &amp; וידאו"
+
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "ספורט"
+
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "משחקי ספורט"
+
+#: ../data/toc.xml.in.h:128
+#, fuzzy
+msgid "Spreadsheet Tools"
 msgstr "כלי מערכת"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "משחקי אסטרטגיה"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "מערכת"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "טלוויזיה"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr ""
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "מדמה מסוף"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "עורכי טקסט"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "כלי טקסט"
+
+#: ../data/toc.xml.in.h:137
+#, fuzzy
+msgid "Tools to help you manage your computer"
 msgstr "תוכניות שירות לניהול המחשב שלך"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "יישומי שירות"
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "כלי תרגום"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "מבחר יישומים אחרים"
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr ""
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr ""
+
+#: ../data/toc.xml.in.h:141
+#, fuzzy
+msgid "Utilities to help you get work done"
+msgstr "תוכניות שירות לניהול המחשב שלך"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "גרפיקה ווקטורית"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "וידאו"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr ""
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "דפדפן אינטרנט"
+
+#: ../data/toc.xml.in.h:148
+#, fuzzy
+msgid "Web Development"
+msgstr "פיתוח"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "ברוכים הבאים לדפדפן העזרה של GNOME"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "יישומי X"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "מעבדי תמלילים"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -562,9 +1022,9 @@ msgstr "אזורי מסמך"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
-msgstr ""
+msgstr "עמוד לא נמצא"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
 #: ../src/yelp-man.c:293
@@ -581,7 +1041,7 @@ msgstr ""
 #: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
 #: ../src/yelp-man.c:430
 msgid "File not found"
-msgstr ""
+msgstr "קובץ לא נמצא"
 
 #: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
 #: ../src/yelp-man.c:431
@@ -591,7 +1051,7 @@ msgstr ""
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "לא ניתן לעבד את הקובץ"
 
@@ -600,8 +1060,7 @@ msgstr "לא ניתן לעבד את הקובץ"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr ""
-"הקובץ '%s' לא ניתן לעיבוד. מכיון שאינו קובץ XML תקני."
+msgstr "הקובץ '%s' לא ניתן לעיבוד. מכיון שאינו קובץ XML תקני."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
@@ -609,9 +1068,10 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"הקובץ '%s' לא ניתן לעיבוד. מכיון שאחד או יותר מהקבצים שהוא מכיל אינם קובצי XML תקניים."
+"הקובץ '%s' לא ניתן לעיבוד. מכיון שאחד או יותר מהקבצים שהוא מכיל אינם קובצי "
+"XML תקניים."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "לא ידוע"
 
@@ -619,7 +1079,7 @@ msgstr "לא ידוע"
 msgid "Unknown Error"
 msgstr "שגיאה לא ידועה"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
 msgid "Could Not Read File"
 msgstr "לא ניתן לקרוא קובץ"
 
@@ -633,7 +1093,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "הקובץ '%s' לא ניתן לעיבוד. הקובץ לא קיים או שאינו קובץ מידע תקני."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -680,10 +1140,6 @@ msgstr "הדפסה לא נתמכת עבור מדפסת זו"
 msgid "Printer %s does not support postscript printing."
 msgstr "מדפסת %s לא תומכת בהדפסת postscript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "מדפיס"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "ממתין להדפסה"
@@ -697,22 +1153,22 @@ msgstr "ארעה שגיה בזמן ההדפסה"
 msgid "It was not possible to print your document: %s"
 msgstr "לא תאפשר להדפיס את המסמך שלך: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "פורומי התמיכה של GNOME"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "אין תוצאות עבור \"%s\""
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr "נסה להשתמש במילים אחרות לתיאור הבעיה או הנושא בהם אתה מחפש עזרה."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "תוצאות חיפוש עבור \"%s\""
@@ -722,7 +1178,7 @@ msgstr "תוצאות חיפוש עבור \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "חזור על החיפוש כמקוון ב-%s"
@@ -735,7 +1191,7 @@ msgstr "חזור על החיפוש כמקוון ב-%s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -751,7 +1207,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "NULL"
 
@@ -759,12 +1215,16 @@ msgstr "NULL"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "ים:ות"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "אין הערה"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -783,21 +1243,20 @@ msgstr ""
 msgid "The search processor returned invalid results"
 msgstr ""
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr ""
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr ""
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr ""
-"קובץ ה-TOC לא ניתן לעיבוד מכיון שאינו קובץ XML תקני."
+msgstr "קובץ ה-TOC לא ניתן לעיבוד מכיון שאינו קובץ XML תקני."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -979,7 +1438,7 @@ msgstr "העתק כתובת _דוא\"ל"
 msgid "Help Browser"
 msgstr "דפדפן עזרה"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
 msgid "Loading..."
 msgstr "טוען..."
 
@@ -1016,23 +1475,23 @@ msgstr "לא ניתן ליצור חלון"
 msgid "Cannot create search component"
 msgstr "לא ניתן ליצור רכיב חיפוש."
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
 msgstr "ח_פש:"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "מצא _הבא"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
 msgstr "מצא הקודם"
 
-#: ../src/yelp-window.c:1450
-msgid "Phrase not found"
-msgstr ""
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "מצא _הבא"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1451
+msgid "Phrase not found"
+msgstr "ביטוי לא נמצא"
+
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1042,7 +1501,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
 msgstr ""
 "גיל אשר <dolfin@rpg.org.il>\n"
@@ -1052,17 +1511,62 @@ msgstr ""
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2405
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "דפדפן העזרה של שולחן העבודה GNOME"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "קבל עזרה עם GNOME"
+
+#~ msgid "Accessories"
+#~ msgstr "עזרים"
+
+#~ msgid "Applications for fun"
+#~ msgstr "יישומים לכיף"
+
+#~ msgid "Applications for word processing and other office tasks"
+#~ msgstr "יישומים לעיבוד תמלילים ומטלות משרד טחרות"
+
+#~ msgid "Applications related to multimedia"
+#~ msgstr "יישומים הקשורים למולטימדיה"
+
+#~ msgid "Applications related to software development"
+#~ msgstr "יישומים הקשורים לפיתוח תוכנה"
+
+#~ msgid "Applications specific to the panel"
+#~ msgstr "יישומים הקשואים ללוח"
+
+#~ msgid "Applications that support assistive technologies"
+#~ msgstr "יישומים הקשואים לתמיכת טכנולוגיות מסייעות"
+
+#~ msgid "KDE"
+#~ msgstr "KDE"
+
+#~ msgid "Learning applications"
+#~ msgstr "יישומי למידה"
+
+#~ msgid "Office"
+#~ msgstr "משרד"
+
+#~ msgid "Panel Applets"
+#~ msgstr "יישומוני לוח"
+
+#~ msgid "Programming"
+#~ msgstr "תכנות"
+
+#~ msgid "Scientific Applications."
+#~ msgstr "יישומים מדעיים"
+
+#~ msgid "Utility applications"
+#~ msgstr "יישומי שירות"
+
+#~ msgid "Variety of other applications"
+#~ msgstr "מבחר יישומים אחרים"
 
 #~ msgid "An unknown error occured"
 #~ msgstr "ארעה שגיאה לא ידועה"
@@ -1167,9 +1671,6 @@ msgstr "קבל עזרה עם GNOME"
 #~ msgid "Library Functions"
 #~ msgstr "פונקציות ספרייה"
 
-#~ msgid "Administration"
-#~ msgstr "ניהול מערכת"
-
 #~ msgid "Multimedia"
 #~ msgstr "מולטימדיה"
 
@@ -1181,9 +1682,6 @@ msgstr "קבל עזרה עם GNOME"
 
 #~ msgid "Could not activate Yelp: '%s'"
 #~ msgstr "לא ניתן להפעיל את Yelp: '%s'"
-
-#~ msgid "Pages"
-#~ msgstr "דפים"
 
 #~ msgid "Generating PDF is not currently supported"
 #~ msgstr "ייצור PDF אימו נתמך"
