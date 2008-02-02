@@ -338,11 +338,12 @@ transform_final_func (YelpTransform *transform, YelpInfo *info)
     error = yelp_error_new (_("Page not found"),
 			    _("The requested page was not found in the document %s."),
 			    priv->filename);
-    yelp_document_error_pending (YELP_DOCUMENT (info), error);
+    yelp_document_final_pending (YELP_DOCUMENT (info), error);
 
     yelp_transform_release (transform);
     priv->transform = NULL;
     priv->transform_running = FALSE;
+    priv->state = INFO_STATE_PARSED;
 
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);

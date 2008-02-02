@@ -51,6 +51,8 @@ struct _YelpDocumentPriv {
     GMutex       *mutex;
 
     gchar        *root_id;
+    YelpError    *final_error;
+
 
     GHashTable   *reqs_by_req_id;   /* Indexed by the request ID */
     GHashTable   *reqs_by_page_id;  /* Indexed by page ID, contains GSList */
@@ -78,6 +80,7 @@ static gpointer       document_get_sections   (YelpDocument        *document);
 static gboolean       request_idle_title      (Request             *request);
 static gboolean       request_idle_page       (Request             *request);
 static gboolean       request_idle_error      (Request             *request);
+static gboolean       request_idle_final      (YelpDocument        *document);
 static void           request_try_free        (Request             *request);
 static void           request_free            (Request             *request);
 
@@ -545,6 +548,28 @@ yelp_document_error_pending (YelpDocument *document, YelpError *error)
     g_mutex_unlock (priv->mutex);
 }
 
+void
+yelp_document_final_pending (YelpDocument *document, YelpError *error)
+{
+    YelpDocumentPriv *priv;
+
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    debug_print (DB_FUNCTION, "entering\n");
+    priv = document->priv;
+
+    g_mutex_lock (priv->mutex);
+    if (priv->reqs_pending) {
+	priv->final_error = error;
+	g_idle_add ((GSourceFunc) request_idle_final, document);
+    } else {
+	yelp_error_free (error);
+    }
+
+    g_mutex_unlock (priv->mutex);
+}
+
+
 /******************************************************************************/
 
 static gboolean
@@ -610,7 +635,6 @@ request_idle_page (Request *request)
 	request->idle_funcs--;
 	return FALSE;
     }
-
     debug_print (DB_FUNCTION, "entering\n");
 
     document = g_object_ref (request->document);
@@ -703,6 +727,69 @@ request_idle_error (Request *request)
 	      error,
 	      user_data);
 
+    g_object_unref (document);
+    return FALSE;
+}
+
+
+static gboolean
+request_idle_final (YelpDocument *document)
+{
+    YelpDocumentPriv *priv;
+    YelpDocumentFunc  func = NULL;
+    YelpError *error = NULL;
+    gint req_id = 0;
+    gpointer user_data = user_data;
+    Request *request = NULL;
+    GSList *cur = NULL;
+
+    debug_print (DB_FUNCTION, "entering\n");
+
+    priv = document->priv;
+
+    g_mutex_lock (priv->mutex);
+    
+    for (cur = priv->reqs_pending; cur; cur = cur->next) {
+	request = cur->data;
+	if (request->idle_funcs != 0) {
+	    /* 
+	       While there are outstanding requests, we should wait for them
+	       to complete before signalling the error
+	    */
+	    request->idle_funcs++;
+	    g_mutex_unlock (priv->mutex);
+	    return TRUE;
+	}
+    }
+
+    for (cur = priv->reqs_pending; cur; cur = cur->next) {
+	request = cur->data;
+	
+	if (cur->next)
+	    request->error = yelp_error_copy (priv->final_error);
+	else
+	    request->error = error;
+	
+	if (request->error) {
+	    func = request->func;
+	    req_id = request->req_id;
+	    user_data = request->user_data;
+	    error = request->error;
+	    request->error = NULL;
+	    
+	    priv->reqs_pending = g_slist_remove (priv->reqs_pending, request);
+	}
+	
+	
+	if (func)
+	    func (document,
+		  YELP_DOCUMENT_SIGNAL_ERROR,
+		  req_id,
+		  error,
+		  user_data);
+    }
+    g_mutex_unlock (priv->mutex);
+    
     g_object_unref (document);
     return FALSE;
 }

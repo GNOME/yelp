@@ -203,7 +203,6 @@ man_try_dispose (GObject *object)
 
     g_assert (object != NULL && YELP_IS_MAN (object));
     priv = YELP_MAN (object)->priv;
-
     g_mutex_lock (priv->mutex);
     if (priv->process_running || priv->transform_running) {
 	priv->state = MAN_STATE_STOP;
@@ -382,17 +381,16 @@ transform_final_func (YelpTransform *transform, YelpMan *man)
     YelpManPriv *priv = man->priv;
 
     debug_print (DB_FUNCTION, "entering\n");
-
     g_mutex_lock (priv->mutex);
-
     error = yelp_error_new (_("Page not found"),
 			    _("The requested page was not found in the document %s."),
 			    priv->filename);
-    yelp_document_error_pending (YELP_DOCUMENT (man), error);
+    yelp_document_final_pending (YELP_DOCUMENT (man), error);
 
     yelp_transform_release (transform);
     priv->transform = NULL;
     priv->transform_running = FALSE;
+    priv->state = MAN_STATE_PARSED;
 
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);

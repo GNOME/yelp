@@ -1,3 +1,24 @@
+2008-02-02  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-man.c:
+	* src/yelp-transform.c:
+	* src/yelp-toc.c:
+	* src/yelp-info.c:
+	* src/yelp-window.c:
+	* src/yelp-docbook.c:
+	* src/yelp-document.c:
+	* src/yelp-document.h:
+	Only propagate final signals
+	once we have really finished
+	processing documents
+	Fixes bug #476498, hopefully
+	+
+	Fix looking for non-existant
+	IDs once the document loading is complete
+	+
+	Remove debug spew when trying to
+	add specifically defined x-yelp-index
+	
 === 2.21.90 ===
 2008-01-28  Don Scorgie  <dscorgie@svn.gnome.org>
 

@@ -128,5 +128,7 @@ void              yelp_document_error_pending  (YelpDocument       *document,
 						YelpError          *error);
 GtkTreeModel     *yelp_document_get_sections   (YelpDocument       *document);
 
+void              yelp_document_final_pending  (YelpDocument       *document,
+						YelpError          *error);
 
 #endif /* __YELP_DOCUMENT_H__ */

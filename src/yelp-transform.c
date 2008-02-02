@@ -320,6 +320,7 @@ static gboolean
 transform_final (YelpTransform *transform)
 {
     transform->idle_funcs--;
+
     if (transform->released)
 	return FALSE;
 

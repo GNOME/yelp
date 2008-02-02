@@ -987,7 +987,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     priv = window->priv;
 
     current_base = g_strdup (priv->base_uri);
-    
+
     /* If someone asks for info:dir, they WILL get redirected to
      * our index.  Tough.
      */

@@ -367,11 +367,12 @@ transform_final_func (YelpTransform *transform, YelpDocbook *docbook)
     error = yelp_error_new (_("Page not found"),
 			    _("The requested page was not found in the document %s."),
 			    priv->filename);
-    yelp_document_error_pending (YELP_DOCUMENT (docbook), error);
+    yelp_document_final_pending (YELP_DOCUMENT (docbook), error);
 
     yelp_transform_release (transform);
     priv->transform = NULL;
     priv->transform_running = FALSE;
+    priv->state = DOCBOOK_STATE_PARSED;
 
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);
@@ -598,8 +599,7 @@ docbook_walk (YelpDocbook *docbook)
 
     old_cur = priv->xmlcur;
     priv->cur_depth++;
-
-    if (id)
+    if (id && !g_str_equal (id, "x-yelp-index"))
 	yelp_document_add_page_id (document, (gchar *) id, priv->cur_page_id);
 
     for (cur = priv->xmlcur->children; cur; cur = cur->next) {

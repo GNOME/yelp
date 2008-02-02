@@ -167,7 +167,7 @@ toc_try_dispose (GObject *object)
     g_assert (object != NULL && YELP_IS_TOC (object));
 
     priv = YELP_TOC (object)->priv;
-
+    
     g_mutex_lock (priv->mutex);
     if (priv->process_running || priv->transform_running) {
 	priv->state = TOC_STATE_STOP;
@@ -364,13 +364,14 @@ transform_final_func (YelpTransform *transform, YelpToc *toc)
 
     error = yelp_error_new (_("Page not found"),
 			    _("The requested page was not found in the TOC."));
-    yelp_document_error_pending (YELP_DOCUMENT (toc), error);
+    yelp_document_final_pending (YELP_DOCUMENT (toc), error);
 
     yelp_transform_release (priv->transform);
     priv->transform = NULL;
 
     priv->transform_running = FALSE;
     priv->process_running = FALSE;
+    priv->state = TOC_STATE_PARSED;
 
     if (priv->xmldoc) {
 	xmlFreeDoc (priv->xmldoc);
