@@ -4,21 +4,21 @@
 # Aleksandar Savic <savica@mt.net.mk>, 2004.
 # Arangel Angov <ufo@linux.net.mk>, 2004, 2005, 2006.
 # Арангел Ангов <ufo@linux.net.mk>, 2005.
-# Jovan Naumovski <jovan@lugola.net>, 2006, 2007.
+# Jovan Naumovski <jovan@lugola.net>, 2006, 2007, 2008.
 # Arangel Angov <arangel@linux.net.mk>, 2007.
 # translation of yelp.HEAD.mk.po to
 # Yelp translated on Macedonian
-# Copyright (C) 2002,2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2002,2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 # Stojcev Darko <atom1c@linux.net.mk
 # http://www.linux.net.mk
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
-"PO-Revision-Date: 2007-09-06 18:29+0200\n"
+"POT-Creation-Date: 2008-01-13 16:16+0000\n"
+"PO-Revision-Date: 2008-02-12 03:06+0100\n"
 "Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
-"Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
+"Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,7 +48,7 @@ msgstr "Конфигурациски датотеки"
 msgid "Curses Functions"
 msgstr "Функции за Curses"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Развој"
 
@@ -56,7 +56,7 @@ msgstr "Развој"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN функции"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Игри"
 
@@ -289,136 +289,586 @@ msgid "X11 Overviews"
 msgstr "Прегледи на X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "2D графика"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "3D графика"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Пристапност"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Алатки"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Апликации за забава"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Апликации за манипулација или преглед на графика"
+msgid "Action Games"
+msgstr "Игри со акција"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Апликации за обработка на текст и други канцелариски задачи"
+msgid "Adventure Games"
+msgstr "Игри со авантури"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "Апликации поврзани со X Windows"
+msgid "Amusement"
+msgstr "Забава"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Апликации поврзани со мултимедија"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Апликации за гледање и манипулирање со графика"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Апликации поврзани со развој на софтвер"
+msgid "Applications related to audio and video"
+msgstr "Апликации поврзани со звук и видео"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Апликации кои се однесуваат на интернетот"
+msgid "Applications that teach or aid in learning"
+msgstr "Апликации кои служат за учење и за помош при учењето"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Апликации наменети за панелот"
+msgid "Arcade Games"
+msgstr "Аркадни игри"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Апликации кои поддржуваат технологии за помош"
+msgid "Archiving Tools"
+msgstr "Алатки за архивирање"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Уметност"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "Вештачка интелигенција"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Астрономија"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Биологија"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Игри со коцки"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Игри на табла"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "Градење"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Калкулатор"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Календар"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Игри со карти"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Алатки за графикони"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Интернет разговори"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Хемија"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Часовници"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Алатки за компресија"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Информатика"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "Градежништво"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Менаџмент на контакти"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Визуелизација на податоци"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Бази на податоци"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Дебагери"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "Работна површина"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "Документи наменети за KDE работната околина"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Поставувања на работната површина"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "Dialup"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Речници"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Снимање на дискови"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Економија"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Едукација"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Електрицитет"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Електроника"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "Алатки за е-пошта"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Емулатор"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Инженерство"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Менаџер на датотеки"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Алатки за работа со датотеки"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Алатки за пренос на датотеки"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Датотечен систем"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Финансиски алатки"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Алатки за цртање на тек на алгоритми"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "Апликации од GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "Дизајнери на графички интерфејс"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Општи апликации од работната околина GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Општи апликации од работната околина KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Географија"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Геологија"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Рударство"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Графика"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Водичи и упатства за апликации кои служат за поврзување со светот"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Водичи за вклучување во развој"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "Ham радио"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Хардверски поставувања"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Забавувајте се"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Историја"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "Интегрирани развојни околини"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "IRC клиенти"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Обработка на слики"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Инстант пораки"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Интернет"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "КДЕ"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Апликации за учење"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE апликации"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Игри за деца"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr "Научете како да го направите Вашиот систем попристапен за луѓе со инвалидитет"
+
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Лиценци"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Литература"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Логички игри"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Математика"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Медицински софтвер"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
 msgstr "Разни документи"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Канцелариски"
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "Миксери"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Други апликации"
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Надгледување"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Музика"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Вести"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Нумеричка анализа"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "Оптичко препознавање на знаци"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Канцелариски апликации"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Канцелариски апликации"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Друга документација"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Аплети за панелот"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Програмирање"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "Комуникација со PDA"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "Нучни"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Менаџер на пакети"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Научни апликации."
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Паралелно процесирање"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Фотографија"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Физика"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Пуштачи"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Алатки за презентации"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Печатење"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "Алатки за профилирање"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Алатки за менаџмент на проекти"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "Издаваштво"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Растерска графика"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Снимачи"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Оддалечен пристап"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Контрола на ревизии"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Роботика"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "RPG"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Скенирање"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Наука"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Безбедност"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "Секвенцери"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Поставувања"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "Поставувања кои корисниците можат да ги менуваат за да ги направат нивните околини попријатни"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Симулациски игри"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Звук"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "Звук и видео"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Системски алатки"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Уредување на звук и видео"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Алатки за управување на Вашиот компјутер"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Спорт"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Услужни апликации"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Спортски игри"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Други разни апликации"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "Алатки за табеларни пресметки"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Стратегиски игри"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Систем"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "Телевизија"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "Телефонија"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "Алатки за телефонија"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Емулатор на терминал"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Уредувачи на текст"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Алатки за текст"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Алатки кои ќе ви помогнат да управувате со Вашиот компјутер"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Алатки за превод"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "Тјунери"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "Услужни алатки"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "Услужни алатки"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Векторска графика"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Видео"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Видео конференција"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "Прегледувач"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Веб прелистувач "
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Развој на веб апликации"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Добредојдовте во прелистувачот за помош на GNOME"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "Апликации за X"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Обработувачи на текст"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -565,7 +1015,7 @@ msgstr "Оддели за документи"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "Страницата не е "
 
@@ -594,7 +1044,7 @@ msgstr "Датотеката %s не постои."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "Не можам да ја испарсирам датотеката."
 
@@ -616,7 +1066,7 @@ msgstr ""
 "Датотеката %s не може да биде парсирана. Или датотеката не постои или пак не "
 "е  добро форматирана како XML документ."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Непознато"
 
@@ -624,7 +1074,7 @@ msgstr "Непознато"
 msgid "Unknown Error"
 msgstr "Непозната грешка"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
 msgid "Could Not Read File"
 msgstr "Не можам да ја прочитам датотеката"
 
@@ -639,7 +1089,7 @@ msgstr ""
 "Датотеката %s не може да биде парсирана бидејќи не е добро формирана info "
 "страница."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -689,10 +1139,6 @@ msgstr "Печатењето не е поддржано на овој печат
 msgid "Printer %s does not support postscript printing."
 msgstr "Печатачот %s не поддржува postscript печатење."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "Печатам"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Чекам за печатење"
@@ -706,16 +1152,16 @@ msgstr "Се појави грешка при печатењето"
 msgid "It was not possible to print your document: %s"
 msgstr "Не беше возможно да се испечати Вашиот документ: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "Форумите за поддршка на GNOME"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Нема резултати за \"%s\""
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -723,7 +1169,7 @@ msgstr ""
 "Пробајте да користите разни зборови за да го опишете проблемот кој го имате "
 "или насловот за кој што барате помош."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Резултати од барањето за \"%s\""
@@ -733,7 +1179,7 @@ msgstr "Резултати од барањето за \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Повтори го барањето онлајн на %s"
@@ -746,7 +1192,7 @@ msgstr "Повтори го барањето онлајн на %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -764,7 +1210,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "NULL"
 
@@ -772,12 +1218,16 @@ msgstr "NULL"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Без коментар"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -796,16 +1246,16 @@ msgstr "Не можам да го процесирам барањето"
 msgid "The search processor returned invalid results"
 msgstr "Процесорот за пребарување врати невалидни резултати"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "Страницата %s не беше најдена во TOC."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "Бараната страница не беше најдена во TOC."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -990,7 +1440,7 @@ msgstr "Копирај _адреса на врската"
 msgid "Help Browser"
 msgstr "Прелистувач на документи за помош"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
 msgid "Loading..."
 msgstr "Се вчитува..."
 
@@ -1027,23 +1477,23 @@ msgstr "Не можам да креирам прозорец"
 msgid "Cannot create search component"
 msgstr "Не можам да креирам компонента за пребарување"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
 msgstr "Бара_ј:"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "Најди _следно"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
 msgstr "Најди _претходно"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "Најди _следно"
+
+#: ../src/yelp-window.c:1451
 msgid "Phrase not found"
 msgstr "Фазата не е најдена"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1054,15 +1504,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
 msgstr "Арангел Ангов (ufo@linux.net.mk)"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2405
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Разгледувач за документација и прегледувач за околината GNOME."
 
