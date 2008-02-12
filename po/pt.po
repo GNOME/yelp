@@ -1,14 +1,14 @@
 # yelp's Portuguese Translation
-# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007 yelp
+# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 yelp
 # Distributed under the same licence as yelp package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.20\n"
+"Project-Id-Version: 2.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-09 02:00+0100\n"
-"PO-Revision-Date: 2007-09-09 02:10+0000\n"
+"POT-Creation-Date: 2008-02-12 22:45+0000\n"
+"PO-Revision-Date: 2008-02-12 23:00+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Ficheiros de Configuração"
 msgid "Curses Functions"
 msgstr "Funções de Curses"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Desenvolvimento"
 
@@ -47,7 +47,7 @@ msgstr "Desenvolvimento"
 msgid "FORTRAN Functions"
 msgstr "Funções de FORTRAN"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Jogos"
 
@@ -280,136 +280,588 @@ msgid "X11 Overviews"
 msgstr "Resumos sobre o X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "Gráficos 2D"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "Gráficos 3D"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Acessibilidade"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Acessórios"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Aplicações para divertimento"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Aplicações para manipular ou visualizar gráficos"
+msgid "Action Games"
+msgstr "Jogos de Acção"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Aplicações para processamento de texto e outras tarefas de escritório"
+msgid "Adventure Games"
+msgstr "Jogos de Aventura"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "Aplicações relacionadas com o X Windows"
+msgid "Amusement"
+msgstr "Divertimento"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Aplicações relacionadas com multimedia"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Aplicações para visualizar e manipular gráficos"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Aplicações relacionadas com o desenvolvimento de aplicações"
+msgid "Applications related to audio and video"
+msgstr "Aplicações relacionadas com audio e vídeo"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Aplicações relacionadas com a internet"
+msgid "Applications that teach or aid in learning"
+msgstr "Aplicações que ensinam ou apoiam a aprendizagem"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Aplicações específicas do painel"
+msgid "Arcade Games"
+msgstr "Jogos de Arcada"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Aplicações que suportam tecnologias assistivas"
+msgid "Archiving Tools"
+msgstr "Ferramentas de Arquivação"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Arte"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "Inteligência Artificial"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Astronomia"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Biologia"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Jogos de Blocos"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Jogos de Tabuleiro"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "Compilar"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Calculadora"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Calendário"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Jogos de Cartas"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Ferramentas de Desenho Técnico"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Diálogos/Chat"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Química"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Relógios"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Ferramentas de Compressão"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Ciência Informática"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "Construção"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Gestão de Contactos"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Visualização de Dados"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Bases de Dados"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Depuradores"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "Ambiente de Trabalho"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "Documentos específicos do Ambiente de Trabalho KDE"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Definições do Ambiente de Trabalho"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "Ligação por Modem"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Dicionários"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Gravação de Discos"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Economia"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Educação"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Electricidade"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Electrónica"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "Ferramentas de Email"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulação"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Engenharia"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Gestão de Ficheiros"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Ferramentas de Ficheiros"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Transferência de Ficheiros"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Sistema de Ficheiros"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Ferramentas Financeiras"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Ferramentas de Gráficos de Fluxos"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "Aplicações GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "Desenho de Interfaces Gráficos"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Aplicações genéricas para o ambiente de trabalho GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Aplicações genéricas para o ambiente de trabalho KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Geografia"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Geologia"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Geo-ciência"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Guias e manuais para aplicações que se ligam ao mundo exterior"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Guias para se envolver no desenvolvimento aplicacional"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "Rádio-Amador"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Definições de Hardware"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Divertimento"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "História"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "Ambientes Integrados de Desenvolvimento"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "Clientes de IRC"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Processamento de Imagem"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Mensagens Instantâneas"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Aplicações didáticas"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "Aplicações KDE"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "Documentos vários"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Jogos Infantis"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Produtividade"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Saiba mais sobre como tornar o seu sistema mais acessível para um conjunto "
+"de necessidades especiais"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Outras Aplicações"
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Licenças"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Literatura"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Jogos de Lógica"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matemática"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Aplicações Médicas"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "Documentação Vária"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "Misturadores"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Monitorização"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Música"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Notícias"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Análise Numérica"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Aplicações de Produtividade"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Aplicações de produtividade"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Outra Documentação"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Applets de Painel"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Programação"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "Comunicação com PDA"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "Científicas"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Gestor de Pacotes"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Aplicações Científicas."
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Computação Paralela"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotografia"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Física"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Reprodutores"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Ferramentas de Apresentação"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "A Imprimir"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "Ferramentas de Optimização"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Ferramentas de Gestão de Projectos"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "Edição"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Gráficos \"Raster\""
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Gravadores"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Acesso Remoto"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Controlo de Revisões"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Robótica"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "Jogos de \"Role Play\""
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Utilização de \"Scanners\""
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Ciência"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Segurança"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "Sequenciadores"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Definições"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "Definições que os utilizadores podem manipular para tornar o seu ambiente de trabalho mais agradável"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Jogos de Simulação"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Som"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "Som &amp; Vídeo"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Ferramentas de Sistema"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Edição de Som &amp; Vídeo"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Utilitários para gerir o seu computador"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Desportos"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Aplicações Utilitárias"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Jogos de Desporto"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Uma variedade de outras aplicações"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "Ferramentas de Folha de Cálculo"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Jogos de Estratégia"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Sistema"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "Telefonia"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "Ferramentas de Telefonia"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Emulador de Consola"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Editores de Texto"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Ferramentas de Texto"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Ferramentas para o apoiar na gestão do seu computador"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Ferramentas de Tradução"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "Sintonizadores"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "Utilitários"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "Utilitários para o ajudar nas suas tarefas"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Gráficos de Vectores"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Vídeo"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Vídeo-Conferência"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "Visualizadores"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Navegador Web"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Desenvolvimento Web"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Bem Vindo ao Navegador de Ajuda do GNOME"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "Aplicações X"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Processadores de Texto"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -554,42 +1006,42 @@ msgid "Document Sections"
 msgstr "Secções do Documento"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
-#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Página não foi encontrada"
 
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "A página %s não foi encontrada no documento %s."
 
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
-#: ../src/yelp-man.c:388
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "A página pedida não foi encontrada no documento %s."
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
-#: ../src/yelp-man.c:430
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "Ficheiro não foi encontrado"
 
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "O ficheiro ‘%s’ não existe."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "Incapaz de parsear o ficheiro"
 
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -598,7 +1050,7 @@ msgstr ""
 "Incapaz de parsear o ficheiro ‘%s’ porque não é um documento XML "
 "correctamente formado."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -615,7 +1067,7 @@ msgstr "Desconhecido"
 msgid "Unknown Error"
 msgstr "Erro Desconhecido"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
 msgid "Could Not Read File"
 msgstr "Incapaz de Ler o Ficheiro"
 
@@ -623,7 +1075,7 @@ msgstr "Incapaz de Ler o Ficheiro"
 msgid "No information is available about this error."
 msgstr "Não existe nenhuma informação disponível sobre este erro."
 
-#: ../src/yelp-info.c:394
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -631,7 +1083,7 @@ msgstr ""
 "Incapaz de parsear o ficheiro ‘%s’ porque não é uma página de info "
 "correctamente formada."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -657,7 +1109,7 @@ msgstr " Navegador de Ajuda do GNOME"
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../src/yelp-man.c:460
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -682,10 +1134,6 @@ msgstr "Imprimir não é suportado nesta impressora"
 msgid "Printer %s does not support postscript printing."
 msgstr "A impressora %s não suporta impressão em postscript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "A Imprimir"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "A aguardar para imprimir"
@@ -699,16 +1147,16 @@ msgstr "Ocorreu um erro ao imprimir"
 msgid "It was not possible to print your document: %s"
 msgstr "Não foi possível imprimir o seu documento: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "os Foruns de Apoio do GNOME"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Nenhum resultado para \"%s\""
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -716,7 +1164,7 @@ msgstr ""
 "Tente utilizar palavras diferentes para descrever o problema que está a ter "
 "ou o tópico para o qual deseja ajuda."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Procurar resultados para \"%s\""
@@ -726,7 +1174,7 @@ msgstr "Procurar resultados para \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Repetir a procura online em %s"
@@ -739,7 +1187,7 @@ msgstr "Repetir a procura online em %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -757,7 +1205,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "re:in:des:sub"
 
@@ -765,12 +1213,16 @@ msgstr "re:in:des:sub"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "s:"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Nenhum Comentário"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -794,11 +1246,11 @@ msgstr "O processador de procura devolveu resultados inválidos"
 msgid "The page %s was not found in the TOC."
 msgstr "A página %s não foi encontrada no índice."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
 msgstr "A página pedida não foi encontrada no índice."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:438
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -823,220 +1275,220 @@ msgstr "Transformação Falhada"
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Ocorreu um erro desconhecido ao tentar transformar o documento."
 
-#: ../src/yelp-transform.c:372
+#: ../src/yelp-transform.c:373
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nenhum atributo href encontrado em yelp:document\n"
 
-#: ../src/yelp-transform.c:387
+#: ../src/yelp-transform.c:388
 msgid "Out of memory"
 msgstr "Sem memória livre"
 
-#: ../src/yelp-window.c:298
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/yelp-window.c:300
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "_Nova Janela"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:316
 msgid "Print This Document ..."
 msgstr "Imprimir Este Documento ..."
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:321
 msgid "Print This Page ..."
 msgstr "Imprimir Esta Página ..."
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:326
 msgid "About This Document"
 msgstr "Sobre Este Documento"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
 msgstr "Abrir a _Localização"
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "_Fechar a janela"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:342
 msgid "_Copy"
 msgstr "_Copiar"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "_Seleccionar Tudo"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:353
 msgid "_Find..."
 msgstr "_Procurar..."
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr "Procurar _Anterior"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Procurar a ocorrência anterior da palavra ou frase"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr "Procurar _Seguinte"
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
 msgstr "Procurar a ocorrência seguinte da palavra ou frase"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "_Reler"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "_Retroceder"
 
-#: ../src/yelp-window.c:381
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr "Apresentar a página anterior no histórico"
 
-#: ../src/yelp-window.c:384
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "_Avançar"
 
-#: ../src/yelp-window.c:386
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr "Apresentar a página seguinte no histórico"
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
 msgstr "_Tópicos de Ajuda"
 
-#: ../src/yelp-window.c:391
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr "Ir para a lista de tópicos de ajuda"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "Secção _Anterior"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "Secção _Seguinte"
 
-#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "_Conteúdo"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "_Adicionar Marcador"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "_Editar Marcadores..."
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "_Abrir Link"
 
-#: ../src/yelp-window.c:426
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "Abrir Link numa _Nova Janela"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "_Copiar Endereço do Link"
 
-#: ../src/yelp-window.c:438
+#: ../src/yelp-window.c:444
 msgid "Help On this application"
 msgstr "Ajuda sobre esta aplicações"
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "_Sobre"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
 msgstr "Copiar o Endereço de _Email"
 
-#: ../src/yelp-window.c:495
+#: ../src/yelp-window.c:501
 msgid "Help Browser"
 msgstr "Navegador de Ajuda"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
 msgid "Loading..."
 msgstr "A Ler..."
 
-#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
 msgid "Unknown Page"
 msgstr "Página Desconhecida"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "O URI pedido \"%s\" é inválido"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
 msgid "Unable to load page"
 msgstr "Incapaz de ler a página"
 
-#: ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1069
 msgid "Error executing \"gnome-open\""
 msgstr "Erro ao executar o \"gnome-open\""
 
-#: ../src/yelp-window.c:1246
+#: ../src/yelp-window.c:1253
 msgid "_Search:"
 msgstr "_Procurar:"
 
-#: ../src/yelp-window.c:1247
+#: ../src/yelp-window.c:1254
 msgid "Search for other documentation"
 msgstr "Procurar por outra documentação relacionada"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1274
 msgid "Cannot create window"
 msgstr "Incapaz de criar uma janela"
 
-#: ../src/yelp-window.c:1272
+#: ../src/yelp-window.c:1280
 msgid "Cannot create search component"
 msgstr "Incapaz de criar o componente de procura"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1452
 msgid "Fin_d:"
 msgstr "Pr_ocurar:"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "Procurar _Seguinte"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1474
 msgid "Find _Previous"
 msgstr "Procurar _Anterior"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1486
+msgid "Find _Next"
+msgstr "Procurar _Seguinte"
+
+#: ../src/yelp-window.c:1499
 msgid "Phrase not found"
 msgstr "Frase não foi encontrada"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1627
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1047,21 +1499,67 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2453
 msgid "translator-credits"
 msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2456
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2458
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Um navegador e visualizador de documentação para o Ambiente Gnome."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtenha ajuda com o GNOME"
+
+#~ msgid "Accessories"
+#~ msgstr "Acessórios"
+
+#~ msgid "Applications for fun"
+#~ msgstr "Aplicações para divertimento"
+
+#~ msgid "Applications for word processing and other office tasks"
+#~ msgstr ""
+#~ "Aplicações para processamento de texto e outras tarefas de escritório"
+
+#~ msgid "Applications related to multimedia"
+#~ msgstr "Aplicações relacionadas com multimedia"
+
+#~ msgid "Applications related to software development"
+#~ msgstr "Aplicações relacionadas com o desenvolvimento de aplicações"
+
+#~ msgid "Applications specific to the panel"
+#~ msgstr "Aplicações específicas do painel"
+
+#~ msgid "Applications that support assistive technologies"
+#~ msgstr "Aplicações que suportam tecnologias assistivas"
+
+#~ msgid "KDE"
+#~ msgstr "KDE"
+
+#~ msgid "Learning applications"
+#~ msgstr "Aplicações didáticas"
+
+#~ msgid "Office"
+#~ msgstr "Produtividade"
+
+#~ msgid "Panel Applets"
+#~ msgstr "Applets de Painel"
+
+#~ msgid "Programming"
+#~ msgstr "Programação"
+
+#~ msgid "Scientific Applications."
+#~ msgstr "Aplicações Científicas."
+
+#~ msgid "Utility applications"
+#~ msgstr "Aplicações Utilitárias"
+
+#~ msgid "Variety of other applications"
+#~ msgstr "Uma variedade de outras aplicações"
 
 #~ msgid "An unknown error occured"
 #~ msgstr "Ocorreu um erro desconhecido"
@@ -1204,9 +1702,6 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgid "Could not activate Yelp: '%s'"
 #~ msgstr "Incapaz de activar o Yelp: '%s'"
 
-#~ msgid "Pages"
-#~ msgstr "Páginas"
-
 #~ msgid "Generating PDF is not currently supported"
 #~ msgstr "A geração de PDF não é suportada nesta versão"
 
@@ -1247,12 +1742,6 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgid "Development Environments"
 #~ msgstr "Ambientes de Desenvolvimento"
 
-#~ msgid "Development Tools"
-#~ msgstr "Ferramentas de Desenvolvimento"
-
-#~ msgid "Editors"
-#~ msgstr "Editores"
-
 #~ msgid "Games and Entertainment"
 #~ msgstr "Jogos e Entretenimento"
 
@@ -1264,15 +1753,6 @@ msgstr "Obtenha ajuda com o GNOME"
 
 #~ msgid "Office and Productivity Applications"
 #~ msgstr "Aplicações de Escritório e Produtividade"
-
-#~ msgid "Securities"
-#~ msgstr "Segurança"
-
-#~ msgid "System"
-#~ msgstr "Sistema"
-
-#~ msgid "Utilities"
-#~ msgstr "Utilitários"
 
 #~ msgid "*"
 #~ msgstr "*"
@@ -1303,9 +1783,6 @@ msgstr "Obtenha ajuda com o GNOME"
 
 #~ msgid "Perl"
 #~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
 
 #~ msgid "TIFF"
 #~ msgstr "TIFF"
@@ -1370,9 +1847,6 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgid "Appendix"
 #~ msgstr "Apêndice"
 
-#~ msgid "Article"
-#~ msgstr "Artigo"
-
 #~ msgid "Audience"
 #~ msgstr "Audiência"
 
@@ -1381,18 +1855,6 @@ msgstr "Obtenha ajuda com o GNOME"
 
 #~ msgid "Authors"
 #~ msgstr "Autores"
-
-#~ msgid "Bibliography"
-#~ msgstr "Bibliografia"
-
-#~ msgid "Caution"
-#~ msgstr "Cuidado"
-
-#~ msgid "Chapter"
-#~ msgstr "Capítulo"
-
-#~ msgid "Collaborator"
-#~ msgstr "Colaborador"
 
 #~ msgid "Collaborators"
 #~ msgstr "Colaboradores"
@@ -1405,15 +1867,6 @@ msgstr "Obtenha ajuda com o GNOME"
 
 #~ msgid "Copyrights"
 #~ msgstr "Copyrights"
-
-#~ msgid "Date"
-#~ msgstr "Data"
-
-#~ msgid "Editor"
-#~ msgstr "Editor"
-
-#~ msgid "Email"
-#~ msgstr "Email"
 
 #~ msgid "Example"
 #~ msgstr "Exemplo"
@@ -1463,14 +1916,8 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgid "Preface"
 #~ msgstr "Prefácio"
 
-#~ msgid "Publisher"
-#~ msgstr "Editor"
-
 #~ msgid "Publishers"
 #~ msgstr "Editores"
-
-#~ msgid "Reference"
-#~ msgstr "Referência"
 
 #~ msgid "Reference Entry"
 #~ msgstr "Entrada de Referência"
@@ -1480,9 +1927,6 @@ msgstr "Obtenha ajuda com o GNOME"
 
 #~ msgid "Release Information"
 #~ msgstr "Informação de Distribuição"
-
-#~ msgid "Revision History"
-#~ msgstr "Histórico de Revisões"
 
 #~ msgid "See"
 #~ msgstr "Consulte"
