@@ -1,13 +1,15 @@
 # yelp ko.po
-# Young-Ho, Cha <ganadist@chollian.net>, 2002, 2005, 2007
-# Changwoo Ryu <cwryu@debian.org>, 2004, 2005, 2006, 2007
+# Young-Ho, Cha <ganadist@chollian.net>, 2002, 2005, 2007.
+# Changwoo Ryu <cwryu@debian.org>, 2004, 2005, 2006, 2007, 2008.
+#
+# 새로 번역하신 분은 아래 "translator-credits"에 추가하세요.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-06 16:18+0900\n"
-"PO-Revision-Date: 2007-12-06 16:50+0900\n"
+"POT-Creation-Date: 2008-02-18 01:49+0900\n"
+"PO-Revision-Date: 2008-02-18 01:58+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +19,7 @@ msgstr ""
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
-msgstr "GNU 정보 페이지"
+msgstr "GNU 인포 페이지"
 
 #: ../data/info.xml.in.h:2
 msgid "Traditional command line help (info)"
@@ -39,7 +41,7 @@ msgstr "설정 파일"
 msgid "Curses Functions"
 msgstr "curses 함수"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:36
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "개발"
 
@@ -61,7 +63,7 @@ msgstr "커널 루틴"
 
 #: ../data/man.xml.in.h:10
 msgid "Manual Pages"
-msgstr "설명서 페이지"
+msgstr "매뉴얼 페이지"
 
 #: ../data/man.xml.in.h:11
 msgid "Network Audio Sound Functions"
@@ -249,7 +251,7 @@ msgstr "TIFF 함수"
 
 #: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
-msgstr "Termcap 프로그램"
+msgstr "termcap 프로그램"
 
 #: ../data/man.xml.in.h:58
 msgid "Traditional command line help (man)"
@@ -280,11 +282,11 @@ msgid "X11 Overviews"
 msgstr "X11 전체"
 
 #: ../data/toc.xml.in.h:1
-msgid "2DGraphics"
+msgid "2D Graphics"
 msgstr "2D 그래픽"
 
 #: ../data/toc.xml.in.h:2
-msgid "3DGraphics"
+msgid "3D Graphics"
 msgstr "3D 그래픽"
 
 #: ../data/toc.xml.in.h:3
@@ -320,15 +322,15 @@ msgid "Arcade Games"
 msgstr "아케이드 게임"
 
 #: ../data/toc.xml.in.h:11
-msgid "Archiving"
-msgstr "압축 파일"
+msgid "Archiving Tools"
+msgstr "파일 압축 도구"
 
 #: ../data/toc.xml.in.h:12
 msgid "Art"
 msgstr "예술"
 
 #: ../data/toc.xml.in.h:13
-msgid "ArtificialIntelligence"
+msgid "Artificial Intelligence"
 msgstr "인공지능"
 
 #: ../data/toc.xml.in.h:14
@@ -336,99 +338,96 @@ msgid "Astronomy"
 msgstr "천문학"
 
 #: ../data/toc.xml.in.h:15
-msgid "AudioVideoEditing"
-msgstr "오디오 비디오 편집"
-
-#: ../data/toc.xml.in.h:16
 msgid "Biology"
 msgstr "생물학"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:16
 msgid "Blocks Games"
 msgstr "블록 게임"
 
-#: ../data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:17
 msgid "Board Games"
 msgstr "보드 게임"
 
-#: ../data/toc.xml.in.h:19
+#: ../data/toc.xml.in.h:18
 msgid "Building"
 msgstr "건축"
 
-#: ../data/toc.xml.in.h:20
+#: ../data/toc.xml.in.h:19
 msgid "Calculator"
 msgstr "계산기"
 
-#: ../data/toc.xml.in.h:21
+#: ../data/toc.xml.in.h:20
 msgid "Calendar"
 msgstr "달력"
 
-#: ../data/toc.xml.in.h:22
+#: ../data/toc.xml.in.h:21
 msgid "Card Games"
 msgstr "카드 게임"
 
-#: ../data/toc.xml.in.h:23
-msgid "Chart"
-msgstr "차트"
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "표 그리기 도구"
 
-#: ../data/toc.xml.in.h:24
+#: ../data/toc.xml.in.h:23
 msgid "Chat"
 msgstr "대화"
 
-#: ../data/toc.xml.in.h:25
+#: ../data/toc.xml.in.h:24
 msgid "Chemistry"
 msgstr "화학"
 
-#: ../data/toc.xml.in.h:26
-msgid "Clock"
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
 msgstr "시계"
 
-#: ../data/toc.xml.in.h:27
-msgid "Compression"
-msgstr "압축"
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "압축 도구"
 
-#: ../data/toc.xml.in.h:28
-msgid "ComputerScience"
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
 msgstr "컴퓨터과학"
 
-#: ../data/toc.xml.in.h:29
+#: ../data/toc.xml.in.h:28
 msgid "Construction"
 msgstr "건설"
 
-#: ../data/toc.xml.in.h:30
-msgid "ContactManagement"
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
 msgstr "연락처 관리"
 
-#: ../data/toc.xml.in.h:31
-msgid "DataVisualization"
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
 msgstr "데이터 시각화"
 
-#: ../data/toc.xml.in.h:32
-msgid "Database"
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
 msgstr "데이터베이스"
 
-#: ../data/toc.xml.in.h:33
-msgid "Debugger"
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
 msgstr "디버거"
 
-#: ../data/toc.xml.in.h:34
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "데스크탑"
 
-#: ../data/toc.xml.in.h:35
-msgid "DesktopSettings"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
 msgstr "데스크탑 설정"
 
-#: ../data/toc.xml.in.h:37
+#: ../data/toc.xml.in.h:36
 msgid "Dialup"
 msgstr "전화접속"
 
-#: ../data/toc.xml.in.h:38
-msgid "Dictionary"
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
 msgstr "사전"
 
+#. Translators: this is a menu title for burning audio and video to dics
 #: ../data/toc.xml.in.h:39
-msgid "DiscBurning"
+msgid "Disc Burning"
 msgstr "디스크 굽기"
 
 #: ../data/toc.xml.in.h:40
@@ -448,8 +447,8 @@ msgid "Electronics"
 msgstr "전자"
 
 #: ../data/toc.xml.in.h:44
-msgid "Email"
-msgstr "전자메일"
+msgid "Email Tools"
+msgstr "전자메일 도구"
 
 #: ../data/toc.xml.in.h:45
 msgid "Emulator"
@@ -460,15 +459,15 @@ msgid "Engineering"
 msgstr "공학"
 
 #: ../data/toc.xml.in.h:47
-msgid "FileManager"
+msgid "File Manager"
 msgstr "파일 관리자"
 
 #: ../data/toc.xml.in.h:48
-msgid "FileTools"
+msgid "File Tools"
 msgstr "파일 도구"
 
 #: ../data/toc.xml.in.h:49
-msgid "FileTransfer"
+msgid "File Transfer"
 msgstr "파일 전송"
 
 #: ../data/toc.xml.in.h:50
@@ -476,12 +475,12 @@ msgid "Filesystem"
 msgstr "파일 시스템"
 
 #: ../data/toc.xml.in.h:51
-msgid "Finance"
-msgstr "재무"
+msgid "Financial Tools"
+msgstr "재무 도구"
 
 #: ../data/toc.xml.in.h:52
-msgid "FlowChart"
-msgstr "플로우 차트"
+msgid "Flow Charting Tools"
+msgstr "플로우 차트 도구"
 
 #: ../data/toc.xml.in.h:53
 msgid "GNOME Applications"
@@ -492,7 +491,7 @@ msgid "GTK"
 msgstr "GTK"
 
 #: ../data/toc.xml.in.h:55
-msgid "GUIDesigner"
+msgid "GUI Designers"
 msgstr "GUI 설계"
 
 #: ../data/toc.xml.in.h:57
@@ -528,11 +527,11 @@ msgid "Guides for getting involved in development"
 msgstr "개발 작업 참여에 대한 안내서"
 
 #: ../data/toc.xml.in.h:65
-msgid "HamRadio"
+msgid "Ham Radio"
 msgstr "햄 라디오"
 
 #: ../data/toc.xml.in.h:66
-msgid "HardwareSettings"
+msgid "Hardware Settings"
 msgstr "하드웨어 설정"
 
 #: ../data/toc.xml.in.h:67
@@ -544,20 +543,20 @@ msgid "History"
 msgstr "역사"
 
 #: ../data/toc.xml.in.h:69
-msgid "IDE"
+msgid "IDEs"
 msgstr "IDE"
 
 #: ../data/toc.xml.in.h:70
-msgid "IRCClient"
+msgid "IRC Clients"
 msgstr "IRC 클라이언트"
 
 #: ../data/toc.xml.in.h:71
-msgid "ImageProcessing"
+msgid "Image Processing"
 msgstr "이미지 처리"
 
 #: ../data/toc.xml.in.h:72
-msgid "InstantMessaging"
-msgstr "인스턴스 메세지"
+msgid "Instant Messaging"
+msgstr "인스턴트 메세지"
 
 #: ../data/toc.xml.in.h:73
 msgid "Internet"
@@ -577,12 +576,12 @@ msgstr "어린이 게임"
 
 #: ../data/toc.xml.in.h:77
 msgid ""
-"Learn more about making you're system more accessible for a range of "
+"Learn more about making your system more accessible for a range of "
 "disabilities"
 msgstr "여러가지 장애에 대해 접근성을 높이는 방법 배우기"
 
 #: ../data/toc.xml.in.h:78
-msgid "Licences"
+msgid "Licenses"
 msgstr "라이센스"
 
 #: ../data/toc.xml.in.h:79
@@ -598,7 +597,7 @@ msgid "Math"
 msgstr "수학"
 
 #: ../data/toc.xml.in.h:82
-msgid "MedicalSoftware"
+msgid "Medical Software"
 msgstr "의학 소프트웨어"
 
 #: ../data/toc.xml.in.h:83
@@ -610,7 +609,7 @@ msgid "Miscellaneous Documentation"
 msgstr "잡다한 문서"
 
 #: ../data/toc.xml.in.h:85
-msgid "Mixer"
+msgid "Mixers"
 msgstr "믹서"
 
 #: ../data/toc.xml.in.h:86
@@ -630,7 +629,7 @@ msgid "News"
 msgstr "뉴스"
 
 #: ../data/toc.xml.in.h:90
-msgid "NumericalAnalysis"
+msgid "Numerical Analysis"
 msgstr "수치해석"
 
 #: ../data/toc.xml.in.h:91
@@ -654,15 +653,15 @@ msgid "P2P"
 msgstr "P2P"
 
 #: ../data/toc.xml.in.h:96
-msgid "PDA"
-msgstr "PDA"
+msgid "PDA Communication"
+msgstr "PDA 통신"
 
 #: ../data/toc.xml.in.h:97
-msgid "PackageManager"
+msgid "Package Manager"
 msgstr "패키지 관리자"
 
 #: ../data/toc.xml.in.h:98
-msgid "ParallelComputing"
+msgid "Parallel Computing"
 msgstr "병렬 컴퓨팅"
 
 #: ../data/toc.xml.in.h:99
@@ -673,188 +672,195 @@ msgstr "사진 촬영"
 msgid "Physics"
 msgstr "물리학"
 
-#: ../data/toc.xml.in.h:101
-msgid "Player"
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
 msgstr "플레이어"
 
-#: ../data/toc.xml.in.h:102
-msgid "Presentation"
-msgstr "프리젠테이션"
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "프리젠테이션 도구"
 
-#: ../data/toc.xml.in.h:103 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
-msgstr "인쇄중"
-
-#: ../data/toc.xml.in.h:104
-msgid "Profiling"
-msgstr "프로파일"
+msgstr "인쇄"
 
 #: ../data/toc.xml.in.h:105
-msgid "ProjectManagement"
-msgstr "프로젝트 관리"
+msgid "Profiling Tools"
+msgstr "프로파일 도구"
 
 #: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "프로젝트 관리 도구"
+
+#: ../data/toc.xml.in.h:107
 msgid "Publishing"
 msgstr "출판"
 
-#: ../data/toc.xml.in.h:107
+#: ../data/toc.xml.in.h:108
 msgid "Qt"
 msgstr "Qt"
 
-#: ../data/toc.xml.in.h:108
-msgid "RasterGraphics"
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
 msgstr "래스터 그래픽"
 
-#: ../data/toc.xml.in.h:109
-msgid "Recorder"
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
 msgstr "레코더"
 
-#: ../data/toc.xml.in.h:110
-msgid "RemoteAccess"
-msgstr "원격 연결"
-
-#: ../data/toc.xml.in.h:111
-msgid "RevisionControl"
-msgstr "리비전 관리"
-
 #: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "원격 접근"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "버전 관리"
+
+#: ../data/toc.xml.in.h:114
 msgid "Robotics"
 msgstr "로보틱스"
 
-#: ../data/toc.xml.in.h:113
+#: ../data/toc.xml.in.h:115
 msgid "Role Playing Games"
 msgstr "롤플레잉 게임"
 
-#: ../data/toc.xml.in.h:114
+#: ../data/toc.xml.in.h:116
 msgid "Scanning"
 msgstr "스캔"
 
-#: ../data/toc.xml.in.h:115
+#: ../data/toc.xml.in.h:117
 msgid "Science"
 msgstr "과학"
 
-#: ../data/toc.xml.in.h:116
+#: ../data/toc.xml.in.h:118
 msgid "Security"
 msgstr "보안"
 
-#: ../data/toc.xml.in.h:117
-msgid "Sequencer"
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
 msgstr "시퀀서"
 
-#: ../data/toc.xml.in.h:118
+#: ../data/toc.xml.in.h:120
 msgid "Settings"
 msgstr "설정"
 
-#: ../data/toc.xml.in.h:119
-msgid "Settings users can manipulate to make their environment more pleasent"
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
 msgstr "자기에 맞는 환경으로 사용자가 조작할 수 있는 설정"
 
-#: ../data/toc.xml.in.h:120
+#: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
 msgstr "시뮬레이션 게임"
 
-#: ../data/toc.xml.in.h:121
+#: ../data/toc.xml.in.h:123
 msgid "Sound"
 msgstr "사운드"
 
-#: ../data/toc.xml.in.h:122
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
-msgstr "사운드와 비디오"
+msgstr "사운드 및 비디오"
 
-#: ../data/toc.xml.in.h:123
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "사운드 및 비디오 편집"
+
+#: ../data/toc.xml.in.h:126
 msgid "Sports"
 msgstr "스포츠"
 
-#: ../data/toc.xml.in.h:124
+#: ../data/toc.xml.in.h:127
 msgid "Sports Games"
 msgstr "스포츠 게임"
 
-#: ../data/toc.xml.in.h:125
-msgid "Spreadsheet"
-msgstr "스프레드시트"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "스프레드시트 도구"
 
-#: ../data/toc.xml.in.h:126
+#: ../data/toc.xml.in.h:129
 msgid "Strategy Games"
 msgstr "전략 게임"
 
-#: ../data/toc.xml.in.h:127
+#: ../data/toc.xml.in.h:130
 msgid "System"
 msgstr "시스템"
 
-#: ../data/toc.xml.in.h:128
+#: ../data/toc.xml.in.h:131
 msgid "TV"
 msgstr "TV"
 
-#: ../data/toc.xml.in.h:129
+#: ../data/toc.xml.in.h:132
 msgid "Telephony"
 msgstr "전화"
 
-#: ../data/toc.xml.in.h:130
-msgid "TelephonyTools"
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
 msgstr "전화 도구"
 
-#: ../data/toc.xml.in.h:131
-msgid "TerminalEmulator"
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
 msgstr "터미널 에뮬레이터"
 
-#: ../data/toc.xml.in.h:132
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "텍스트 편집기"
+
+#: ../data/toc.xml.in.h:136
 msgid "Text Tools"
 msgstr "텍스트 도구"
 
-#: ../data/toc.xml.in.h:133
-msgid "TextEditor"
-msgstr "텍스트 편집기"
-
-#: ../data/toc.xml.in.h:134
-msgid "Tools to help you manage you're computer"
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
 msgstr "컴퓨터를 관리하는 데 도움이 되는 도구"
 
-#: ../data/toc.xml.in.h:135
-msgid "Translation"
-msgstr "번역"
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "번역 도구"
 
-#: ../data/toc.xml.in.h:136
-msgid "Tuner"
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
 msgstr "튜너"
 
-#: ../data/toc.xml.in.h:137
+#: ../data/toc.xml.in.h:140
 msgid "Utilities"
 msgstr "유틸리티"
 
-#: ../data/toc.xml.in.h:138
+#: ../data/toc.xml.in.h:141
 msgid "Utilities to help you get work done"
 msgstr "각종 작업을 하는 데 도움이 되는 유틸리티"
 
-#: ../data/toc.xml.in.h:139
-msgid "VectorGraphics"
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
 msgstr "벡터 그래픽"
 
-#: ../data/toc.xml.in.h:140
+#: ../data/toc.xml.in.h:143
 msgid "Video"
 msgstr "비디오"
 
-#: ../data/toc.xml.in.h:141
-msgid "VideoConference"
-msgstr "비디오 회의"
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "화상 회의"
 
-#: ../data/toc.xml.in.h:142
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
 msgid "Viewer"
 msgstr "보기 프로그램"
 
-#: ../data/toc.xml.in.h:143
-msgid "WebBrowser"
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
 msgstr "웹 브라우저"
 
-#: ../data/toc.xml.in.h:144
-msgid "WebDevelopment"
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
 msgstr "웹 개발"
 
-#: ../data/toc.xml.in.h:145
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "그놈 도움말 브라우저입니다"
 
-#: ../data/toc.xml.in.h:146
-msgid "WordProcessor"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
 msgstr "워드 프로세서"
 
 #: ../data/ui/yelp.glade.h:1
@@ -1000,49 +1006,49 @@ msgid "Document Sections"
 msgstr "문서 섹션"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
-#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "페이지가 없습니다"
 
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "%s 페이지를 %s 문서에서 찾을 수 없습니다."
 
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
-#: ../src/yelp-man.c:388
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "요청한 페이지를 %s 문서에서 찾을 수 없습니다."
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
-#: ../src/yelp-man.c:430
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "문서가 없습니다"
 
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "파일 ‘%s’ d(이)가 없습니다."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "파일을 분석할 수 없습니다"
 
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "'%s' 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -1059,7 +1065,7 @@ msgstr "알 수 없음"
 msgid "Unknown Error"
 msgstr "알 수 없는 오류"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
 msgid "Could Not Read File"
 msgstr "파일을 읽을 수 없습니다"
 
@@ -1067,13 +1073,13 @@ msgstr "파일을 읽을 수 없습니다"
 msgid "No information is available about this error."
 msgstr "오류에 관한 정보가 없습니다."
 
-#: ../src/yelp-info.c:394
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "‘%s’ 파일을 분석할 수 없습니다.  올바른 형식의 정보 페이지가 아닙니다."
+msgstr "‘%s’ 파일을 분석할 수 없습니다.  올바른 형식의 인포 페이지가 아닙니다."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1099,12 +1105,11 @@ msgstr " 그놈 도움말 브라우저"
 msgid "Help"
 msgstr "도움말"
 
-#: ../src/yelp-man.c:460
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr ""
-"‘%s’ 파일을 분석할 수 없습니다. 파올바른 형식의 설명서 페이지가 아닙니다."
+msgstr "‘%s’ 파일을 분석할 수 없습니다. 파일이 올바른 형식의 맨 페이지가 아닙니다."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -1140,19 +1145,19 @@ msgstr "문서를 인쇄할 수 없습니다: %s"
 msgid "the GNOME Support Forums"
 msgstr "그놈 지원 포럼"
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\"에 대한 결과가 없습니다"
 
-#: ../src/yelp-search-parser.c:278
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 "문제가 되는 사항이나 도움이 필요한 주제에 대해 다른 단어를 사용해 보십시오."
 
-#: ../src/yelp-search-parser.c:281
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\"에 대한 찾기 결과"
@@ -1162,7 +1167,7 @@ msgstr "\"%s\"에 대한 찾기 결과"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:295
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "온라인으로 %s 사이트에서 다시 찾기"
@@ -1176,7 +1181,7 @@ msgstr "온라인으로 %s 사이트에서 다시 찾기"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:865
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -1193,7 +1198,7 @@ msgstr "NULL"
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:881
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "NULL"
 
@@ -1202,12 +1207,16 @@ msgstr "NULL"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:890
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "설명 없음"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -1226,16 +1235,16 @@ msgstr "검색을 진행할 수 없습니다"
 msgid "The search processor returned invalid results"
 msgstr "검색 프로세서가 잘못된 결과값은 반환하였습니다"
 
-#: ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:267
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "%s 페이지를 차례에서 찾을 수 없습니다."
 
-#: ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
 msgstr "요청한 페이지를 차례에서 찾을 수 없습니다."
 
-#: ../src/yelp-toc.c:434
+#: ../src/yelp-toc.c:438
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -1258,220 +1267,220 @@ msgstr "변환 깨짐"
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "문서를 변환하는 중 알 수 없는 오류가 생겼습니다."
 
-#: ../src/yelp-transform.c:372
+#: ../src/yelp-transform.c:373
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document에 href 속성이 없습니다\n"
 
-#: ../src/yelp-transform.c:387
+#: ../src/yelp-transform.c:388
 msgid "Out of memory"
 msgstr "메모리가 부족합니다"
 
-#: ../src/yelp-window.c:298
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "파일(_F)"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../src/yelp-window.c:300
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "이동(_G)"
 
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "책갈피(_B)"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "새 창(_N)"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:316
 msgid "Print This Document ..."
 msgstr "이 문서 인쇄..."
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:321
 msgid "Print This Page ..."
 msgstr "이 페이지 인쇄..."
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:326
 msgid "About This Document"
 msgstr "이 문서 정보"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
 msgstr "위치 열기(_L)"
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "창 닫기(_C)"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:342
 msgid "_Copy"
 msgstr "복사(_C)"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "전부 선택(_S)"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:353
 msgid "_Find..."
 msgstr "찾기(_F)..."
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr "이전 찾기(_V)"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
 msgstr "이전에 나타난 단어나 문장을 찾습니다"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr "다음 찾기(_X)"
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
 msgstr "다음에 나타나는 단어나 문장을 찾습니다"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "다시 읽기(_R)"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "뒤로(_B)"
 
-#: ../src/yelp-window.c:381
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr "방문 기록의 이전 페이지를 봅니다"
 
-#: ../src/yelp-window.c:384
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "앞으로(_F)"
 
-#: ../src/yelp-window.c:386
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr "방문 기록의 다음 페이지를 봅니다"
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
 msgstr "도움말 주제(_H)"
 
-#: ../src/yelp-window.c:391
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr "도움말 주제 목록으로 갑니다"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "이전 섹션(_P)"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "다음 섹션(_N)"
 
-#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "차례(_C)"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "책갈피 더하기(_A)"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "책갈피 편집(_E)..."
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "링크 열기(_O)"
 
-#: ../src/yelp-window.c:426
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "링크 새 창에서 열기(_N)"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "링크 주소 복사(_C)"
 
-#: ../src/yelp-window.c:438
+#: ../src/yelp-window.c:444
 msgid "Help On this application"
 msgstr "이 프로그램에 대한 도움말"
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "정보(_A)"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
 msgstr "전자메일 주소 복사(_E)"
 
-#: ../src/yelp-window.c:495
+#: ../src/yelp-window.c:501
 msgid "Help Browser"
 msgstr "도움말 브라우저"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
 msgid "Loading..."
 msgstr "읽고 있습니다..."
 
-#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
 msgid "Unknown Page"
 msgstr "알 수 없는 페이지"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "요청한 URI \"%s\"(은)는 올바르지 않습니다"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
 msgid "Unable to load page"
 msgstr "페이지를 읽을 수 없습니다"
 
-#: ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1069
 msgid "Error executing \"gnome-open\""
 msgstr "\"gnome-open\"실행하는데 오류"
 
-#: ../src/yelp-window.c:1246
+#: ../src/yelp-window.c:1253
 msgid "_Search:"
 msgstr "찾기(_S):"
 
-#: ../src/yelp-window.c:1247
+#: ../src/yelp-window.c:1254
 msgid "Search for other documentation"
 msgstr "다른 문서에서 찾습니다"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1274
 msgid "Cannot create window"
 msgstr "새 창을 열 수 없습니다"
 
-#: ../src/yelp-window.c:1272
+#: ../src/yelp-window.c:1280
 msgid "Cannot create search component"
 msgstr "검색 컴포넌트를 만들 수 없습니다"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1452
 msgid "Fin_d:"
 msgstr "찾기(_D):"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "다음 찾기(_N)"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1474
 msgid "Find _Previous"
 msgstr "이전 찾기(_P)"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1486
+msgid "Find _Next"
+msgstr "다음 찾기(_N)"
+
+#: ../src/yelp-window.c:1499
 msgid "Phrase not found"
 msgstr "어구를 찾을 수 없습니다"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1627
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1481,21 +1490,36 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2453
 msgid "translator-credits"
 msgstr "차영호 <ganadist@gmail.com>"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2456
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2458
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "그놈 데스크탑 문서 보기 프로그램."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "그놈에서 도움말을 봅니다"
+
+#~ msgid "AudioVideoEditing"
+#~ msgstr "오디오 비디오 편집"
+
+#~ msgid "Chart"
+#~ msgstr "차트"
+
+#~ msgid "Email"
+#~ msgstr "전자메일"
+
+#~ msgid "Finance"
+#~ msgstr "재무"
+
+#~ msgid "PDA"
+#~ msgstr "PDA"
 
 #~ msgid "Accessories"
 #~ msgstr "보조 프로그램"
