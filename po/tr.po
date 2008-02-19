@@ -1,25 +1,27 @@
 # translation of yelp.HEAD.tr.po to Turkish
 # Turkish translation of yelp.
-# Copyright (C) 2002-2003, 2004, 2005, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2002-2003, 2004, 2005, 2007, 2008 Free Software Foundation, Inc.
+#
 # Görkem Çetin <gorkem@gelecek.com.tr>, 2002.
 # Arman Aksoy <armish@linux-sevenler.de>, 2003.
-# Baris Cicek <baris@teamforce.name.tr>, 2004, 2005, 2007.
+# Baris Cicek <baris@teamforce.name.tr>, 2004, 2005, 2007, 2008.
 # Serkan Kenar <serkan@ieee.metu.edu.tr>, 2005, 2006.
 # Serdar ÇİÇEK <serdar@nerd.com.tr>, 2007.
 # Fatih Ergüven <fatih@erguven.org>, 2007.
-# 
+# Serdar CICEK <serdar@nerd.com.tr>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp\n"
+"Project-Id-Version: yelp.HEAD.tr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-17 21:57+0300\n"
-"PO-Revision-Date: 2007-09-09 00:05+0300\n"
-"Last-Translator: Fatih Ergüven <fatih@erguven.org>\n"
+"POT-Creation-Date: 2008-02-19 18:04+0200\n"
+"PO-Revision-Date: 2008-02-19 18:02+0200\n"
+"Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=1; plural=0;\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -45,7 +47,7 @@ msgstr "Yapılandırma Dosyaları"
 msgid "Curses Functions"
 msgstr "Curses İşlevleri"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Geliştirme"
 
@@ -53,7 +55,7 @@ msgstr "Geliştirme"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN İşlevleri"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Oyunlar"
 
@@ -247,7 +249,7 @@ msgstr "Sistem Çağrıları"
 
 #: ../data/man.xml.in.h:55
 msgid "System V Form/Menu Functions"
-msgstr "Sistem V From/Menu İşlevleri"
+msgstr "Sistem V From/Menü İşlevleri"
 
 #: ../data/man.xml.in.h:56
 msgid "TIFF Functions"
@@ -286,136 +288,590 @@ msgid "X11 Overviews"
 msgstr "X11 İzlenimleri"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "2B Grafikler"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "3B Grafikler"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Erişilebilirlik"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Donatılar"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Eğlence için uygulamalar"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Grafik görüntülemesi ve idare edilmesi için uygulamalar"
+msgid "Action Games"
+msgstr "Aksiyon Oyunları"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Kelime işlemci ve diğer ofis görevleri için uygulamalar"
+msgid "Adventure Games"
+msgstr "Macera Oyunları"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "X Windows'la ilgili uygulamalar"
+msgid "Amusement"
+msgstr "Eğlence"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Çoklu ortamla ilgili uygulamalar"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Grafik görüntülemesi ve yönetimi için uygulamalar"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Yazılım geliştirmeyle ilgili uygulamalar"
+msgid "Applications related to audio and video"
+msgstr "Ses ve video ile ilgili uygulamalar"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "İnternet ile ilgili uygulamalar"
+msgid "Applications that teach or aid in learning"
+msgstr "Öğreten ya da öğrenmeye yardım eden uygulamalar"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Panele özgü uygulamalar"
+msgid "Arcade Games"
+msgstr "Atari Oyunları"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Yardımcı teknolojileri destekleyen uygulamalar"
+msgid "Archiving Tools"
+msgstr "Arşivleme Araçları"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Sanat"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "Yapay Zeka"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Astronomi"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Biyoloji"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Blok Oyunları"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Tahta Oyunları"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "İnşa"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Hesap Makinesi"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Takvim"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Kağıt Oyunları"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Grafik Araçları"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Sohbet"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Kimya"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Saatler"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Sıkıştırma Araçları"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Bilgisayar Bilimi"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "İnşaat"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Bağlantı Yönetimi"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Veri Görselleştirme"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Veritabanları"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Hata Ayıklayıcılar"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "Masaüstü"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "KDE Masaüstü Ortamı'na özgü belgeler"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Masaüstü Ayarları"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "Çevirmeli"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Sözlükler"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Disk Yazma"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Ekonomi"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Eğitim"
 
-#: ../data/toc.xml.in.h:16
-msgid "Graphics"
-msgstr "Grafikler"
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Elektrik"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Elektronik"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "E-posta Araçları"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emülatör"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Mühendislik"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Dosya Yöneticisi"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Dosya Araçları"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Dosya Transferi"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Dosya Sistemi"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Finansal Araçlar"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Akışı Şeması Araçları"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "GNOME Uygulamaları"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "Arayüz Tasarımcıları"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "GNOME ortamı için genel uygulamalar"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "KDE Masaüstü Ortamı'na özgü uygulamalar"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Coğrafya"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Jeoloji"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Yerbilimi"
+
+#: ../data/toc.xml.in.h:62
+msgid "Graphics"
+msgstr "Grafik"
+
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Dış dünyaya bağlanma uygulamaları için kılavuzlar ve el kitapları"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Geliştirici olmak için kılavuzlar"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "Ham Radyo"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Donanım Ayarları"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Biraz eğlen"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Tarih"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDE'ler"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "IRC İstemcileri"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Görüntü İşlem"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Anında Mesajlaşma"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "İnternet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Uygulamaların öğrenimi"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE Uygulamaları"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "Çok yönlü belgeler"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Çocuk Oyunları"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Ofis"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Sisteminizi bir takım engeller için daha erişebilir yapabilme hakkında daha "
+"fazla bilgi öğrenin"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Diğer Uygulamalar"
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Lisanslar"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Edebiyat"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Mantık Oyunları"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matematik"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Medikal Yazılım"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "Çeşitli Belgeler"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "Karıştırıcılar"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Ekran"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Müzik"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Haberler"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Sayısal Analiz"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Ofis Uygulamaları"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Ofis uygulamaları"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Diğer Belgelendirmeler"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Panel Uygulamacıkları"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Programlama"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "PDA İletişimi"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "Bilimsel"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Paket Yöneticisi"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Bilimsel Uygulamalar."
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Paralel Bilişim"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotoğrafçılık"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Fizik"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Oyuncular"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Sunum Araçları"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Yazdırma"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "Profil Çıkarma Araçları"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Proje Yönetim Araçları"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "Yayımcılık"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Taramalı Grafikler"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Kaydediciler"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Uzaktan Erişim"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Sürüm Kontrolü"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Robot Bilimi"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "Rol Oynama Oyunları"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Tarama"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Bilim"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Güvenlik"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "Diziciler"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr ""
+"Ortamlarını daha çekici yapabillmek için kullanıcıların değiştirebilecekleri "
+"ayarlar"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Simülasyon Oyunları"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Ses"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "Ses ve Video"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Sistem Araçları"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Ses &amp; Video Düzenleme"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Bilgisayarınızı yönetmek için yardımcı uygulamalar"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Spor"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Faydalı uygulamalar"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Spor Oyunları"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Çeşitli diğer uygulamalar"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "Çizelge Araçları"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Strateji Oyunları"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Sistem"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "Telefon"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "Telefon Araçları"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Uçbirim Emülatörü"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Metin Düzenleyici"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Metin Araçları"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Bilgisayarınızı yönetmeye yardımcı araçlar"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Çeviri Araçları"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "Ayarlayıcılar"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "Araçlar"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "İşinizi tamamlamak için yardımcı araçlar"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Vektörel Grafikler"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Video"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Video Konferans"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "İzleyici"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Web Tarayıcı"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Web Geliştirme"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
-msgstr "Gnome Yardım Tarayıcısı'na Hoşgeldiniz"
+msgstr "GNOME Yardım Tarayıcısı'na Hoşgeldiniz"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "X Uygulamaları"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Kelime İşlemci"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -560,42 +1016,42 @@ msgid "Document Sections"
 msgstr "Belge Bölümleri"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
-#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Sayfa bulunamadı"
 
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "%s sayfası %s belgesinde bulunamadı."
 
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
-#: ../src/yelp-man.c:388
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "İstenen sayfa %s belgesi içinde bulunamadı."
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
-#: ../src/yelp-man.c:430
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "Dosya bulunamadı"
 
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "'%s' dosyası mevcut değil."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "Dosya ayrıştırılamıyor"
 
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -604,7 +1060,7 @@ msgstr ""
 "'%s' dosyası ayrıştırılamıyor çünkü düzgün biçimlendirilmiş bir XML belgesi "
 "değil."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -621,15 +1077,15 @@ msgstr "Bilinmeyen"
 msgid "Unknown Error"
 msgstr "Bilinmeyen Hata"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
 msgid "Could Not Read File"
-msgstr "Dosya Okunamıyor"
+msgstr "Dosya Okunamadı"
 
 #: ../src/yelp-error.c:146
 msgid "No information is available about this error."
 msgstr "Bu hata hakkında hiçbir bilgi elde edilemiyor."
 
-#: ../src/yelp-info.c:394
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -637,7 +1093,7 @@ msgstr ""
 "'%s' dosyası ayrıştırılamıyor çünkü düzgün biçimlendirilmiş bir bilgi "
 "sayfası değil."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -657,13 +1113,13 @@ msgstr "Hangi ön bellek dizinin kullanılacağını belirleyin"
 #. Commandline parsing is done here
 #: ../src/yelp-main.c:358
 msgid " GNOME Help Browser"
-msgstr "GNOME Yardım Tarayıcısı"
+msgstr " GNOME Yardım Tarayıcısı"
 
 #: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Yardım"
 
-#: ../src/yelp-man.c:460
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -688,10 +1144,6 @@ msgstr "Bu yazıcıda yazdırma desteklenmiyor"
 msgid "Printer %s does not support postscript printing."
 msgstr "%s yazıcısı postscript yazdırmayı desteklemiyor."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "Yazdırılıyor"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Yazdırma bekleniyor"
@@ -703,18 +1155,18 @@ msgstr "Yazdırılırken bir hata oluştu"
 #: ../src/yelp-print.c:582
 #, c-format
 msgid "It was not possible to print your document: %s"
-msgstr "Belgeyi yazdırmak mümkün değildir: %s"
+msgstr "Belgeyi yazdırmak mümkün değil: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "GNOME Destek Forumları"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\" için sonuç yok"
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -722,17 +1174,17 @@ msgstr ""
 "Yaşadığınız sorunu tanımlayan farklı kelimeleri, ya da yardım edinmek "
 "istediğiniz konuyu deneyin."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
-msgstr " \"%s\" için sonuç ara"
+msgstr " \"%s\" için arama sonuçları"
 
 #. TRANSLATORS: Please don't do anything funny with the
 #. * format arguement.  It isn't really going through a printf
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "%s üzerinde tekrar çevrimiçi ara"
@@ -745,13 +1197,13 @@ msgstr "%s üzerinde tekrar çevrimiçi ara"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
-msgstr "NULL"
+msgstr "nasıl:ne:mı:ve:için:ya da:değil:ben:içinde:tarafından"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -761,7 +1213,7 @@ msgstr "NULL"
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "NULL"
 
@@ -769,12 +1221,16 @@ msgstr "NULL"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "ler:lar"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Yorumsuz"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -798,11 +1254,11 @@ msgstr "Arama işlemcisi geçersiz sonuçlar döndürdü"
 msgid "The page %s was not found in the TOC."
 msgstr "%s sayfası içindekilerde bulunamadı."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
 msgstr "İstenen sayfa içindekilerde bulunamadı."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:438
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -817,366 +1273,255 @@ msgstr "Geçersiz Biçem Sayfası"
 #: ../src/yelp-transform.c:81
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "'%s' ya bulunmuyor ya da geçerli bir XSLT biçeminde değil."
+msgstr "XSLT biçem sayfası '%s' ya bulunmuyor ya da geçerli değil."
 
 #: ../src/yelp-transform.c:112
 msgid "Broken Transformation"
-msgstr "Kırık Dönüşüm"
+msgstr "Bozuk Dönüşüm"
 
 #: ../src/yelp-transform.c:113
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Belge dönüştürülmeye çalışılırken bilinmeyen bir hata oluştu."
 
-#: ../src/yelp-transform.c:372
+#: ../src/yelp-transform.c:373
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document üzerinde hiçbir href özniteliği bulunamadı\n"
 
-#: ../src/yelp-transform.c:387
+#: ../src/yelp-transform.c:388
 msgid "Out of memory"
 msgstr "Bellek yetersiz"
 
-#: ../src/yelp-window.c:298
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "_Dosya"
 
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "Dü_zenle"
 
-#: ../src/yelp-window.c:300
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "_Git"
 
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "_Yer İmleri"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "_Yeni Pencere"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:316
 msgid "Print This Document ..."
 msgstr "Bu Belgeyi Yazdır ..."
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:321
 msgid "Print This Page ..."
 msgstr "Bu Sayfayı Yazdır ..."
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:326
 msgid "About This Document"
 msgstr "Bu Belge Hakkında"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
 msgstr "_Konumu Aç"
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "_Pencereyi Kapat"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:342
 msgid "_Copy"
 msgstr "_Kopyala"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "_Hepsini Seç"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:353
 msgid "_Find..."
 msgstr "_Bul..."
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr "Ö_ncekini Bul"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Kelime veya ifadenin önceki yerini bul"
 
-#: ../src/yelp-window.c:357
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr "Sonrakini B_ul"
 
-#: ../src/yelp-window.c:359
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
 msgstr "Kelime veya ifadenin sonraki yerini bul"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "_Tekrar Yükle"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "_Geri"
 
-#: ../src/yelp-window.c:381
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr "Geçmişte bulunan önceki sayfayı göster"
 
-#: ../src/yelp-window.c:384
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "İ_leri"
 
-#: ../src/yelp-window.c:386
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr "Geçmişte bulunan sonraki sayfayı göster"
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
 msgstr "_Yardım Konuları"
 
-#: ../src/yelp-window.c:391
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr "Yardım konuları listesine git"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "Ö_nceki Bölüm"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "_Sonraki Bölüm"
 
-#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "İçi_ndekiler"
 
-#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "Yer İmi _Ekle"
 
-#: ../src/yelp-window.c:415
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "Yer İmlerini _Düzenle..."
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "Bağlantı _Aç"
 
-#: ../src/yelp-window.c:426
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "Yeni Pencerede Bağlantı _Aç"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "Bağlantı Adresini _Kopyala"
 
-#: ../src/yelp-window.c:438
+#: ../src/yelp-window.c:444
 msgid "Help On this application"
 msgstr "Bu uygulama hakkında yardım"
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "_Hakkında"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
 msgstr "_E-Posta Adresini Kopyala"
 
-#: ../src/yelp-window.c:495
+#: ../src/yelp-window.c:501
 msgid "Help Browser"
 msgstr "Yardım Tarayıcısı"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
 msgid "Loading..."
 msgstr "Yükleniyor..."
 
-#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
 msgid "Unknown Page"
 msgstr "Bilinmeyen Sayfa"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
-msgstr "İstenen \"%s\" URI'si geçersiz"
+msgstr "İstenen URI \"%s\" geçersiz"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
 msgid "Unable to load page"
-msgstr "Sayfa yüklenemiyor"
+msgstr "Sayfa yüklenemedi"
 
-#: ../src/yelp-window.c:1062
+#: ../src/yelp-window.c:1069
 msgid "Error executing \"gnome-open\""
-msgstr "\"gnome-open\" çalıştırılırken hata oluştu."
+msgstr "\"gnome-open\" çalıştırılırken hata oluştu"
 
-#: ../src/yelp-window.c:1246
+#: ../src/yelp-window.c:1253
 msgid "_Search:"
 msgstr "_Ara:"
 
-#: ../src/yelp-window.c:1247
+#: ../src/yelp-window.c:1254
 msgid "Search for other documentation"
 msgstr "Diğer belgeleri ara"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1274
 msgid "Cannot create window"
 msgstr "Pencere oluşturulamıyor"
 
-#: ../src/yelp-window.c:1272
+#: ../src/yelp-window.c:1280
 msgid "Cannot create search component"
 msgstr "Arama bileşeni oluşturulamıyor"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1452
 msgid "Fin_d:"
 msgstr "_Bul:"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "Sonrakini B_ul"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1474
 msgid "Find _Previous"
 msgstr "Ö_ncekini Bul"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1486
+msgid "Find _Next"
+msgstr "Sonrakini B_ul"
+
+#: ../src/yelp-window.c:1499
 msgid "Phrase not found"
 msgstr "İfade bulunamadı"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1627
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"'%s' dosyası okunamıyor.  Dosya bulunmuyor ya da dosyayı okumak için izniniz "
+"'%s' dosyası okunamadı.  Dosya bulunmuyor ya da dosyayı okumak için izniniz "
 "yok."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2453
 msgid "translator-credits"
 msgstr ""
 "Serdar Çiçek <serdar@nerd.com.tr>\n"
 "Serkan Kenar <serkan@ieee.metu.edu.tr>\n"
 "Fatih Ergüven <fatih@erguven.org>"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2456
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2458
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Gnome Masaüstü için bir belgelendirme tarayıcısı ve göstericisi."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "GNOME ile yardım alın"
-
-#~ msgid "An unknown error occured"
-#~ msgstr "Bilinmeyen bir hata oluştu"
-
-#~ msgid "Could not load document"
-#~ msgstr "Belge yüklenemiyor"
-
-#~ msgid "Could not read the table of contents"
-#~ msgstr "İçindekiler okunamıyor"
-
-#~ msgid "Unsupported Format"
-#~ msgstr "Desteklenmeyen Biçim"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
-#~ "is formatted incorrectly."
-#~ msgstr ""
-#~ "'%s' dosyası ayrıştırılamıyor.  Dosya bulunamadı ya da hatalı "
-#~ "biçimlendirilmiş."
-
-#~ msgid "The YelpDocInfo struct of the document"
-#~ msgstr "Belgenin YelpDocInfo yapısı"
-
-#~ msgid ""
-#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
-#~ "not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Aramanız işlenemiyor. '%s' dosyası bulunmuyor ya da dosya geçerli bir "
-#~ "XSLT biçiminde değil."
-
-#~ msgid "Help Contents"
-#~ msgstr "Yardım İçeriği"
-
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "OMF dosyası '%s' yüklenemedi."
-
-#~ msgid "yelp-watermark-blockquote-201C"
-#~ msgstr "yelp-watermark-blockquote-201C"
-
-#~ msgid "YelpTocPager: Pause count is negative."
-#~ msgstr "YelpTocPager: Bekletme sayımı negatif."
-
-#~ msgid ""
-#~ "The table of contents could not be processed. The file ‘%s’ is either "
-#~ "missing or is not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "İçindekiler işlenemiyor. '%s' dosyası bulunmuyor ya da dosya geçerli bir "
-#~ "XSLT biçiminde değil."
-
-#~ msgid "Read man page for %s"
-#~ msgstr "%s için kılavuz sayfasını okuyun"
-
-#~ msgid "Read info page for %s"
-#~ msgstr "%s için bilgi sayfasını okuyun"
-
-#~ msgid ""
-#~ "The table of contents could not be loaded. The file ‘%s’ is either "
-#~ "missing or is not well-formed XML."
-#~ msgstr ""
-#~ "İçindekiler yüklenemiyor. '%s' dosyası bulunmuyor ya da doğru "
-#~ "biçimlendirilmiş XML değil."
-
-#~ msgid "Command Line Help"
-#~ msgstr "Komut Satırı Yardımı"
-
-#~ msgid "The Uniform Resource Identifier for the file is invalid."
-#~ msgstr "Dosya URI'si geçersiz."
-
-#~ msgid ""
-#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#~ "actual file."
-#~ msgstr "'%s' URI'si geçersiz ya da mevcut bir dosyayı belirtmiyor."
-
-#~ msgid "Man pages are not supported in this version."
-#~ msgstr "Bu sürümde kılavuz sayfaları desteklenmemektedir."
-
-#~ msgid "GNU info pages are not supported in this version"
-#~ msgstr "Bu sürümde GNU info sayfaları desteklenmemektedir"
-
-#~ msgid "Search is not supported in this version."
-#~ msgstr "Bu sürümde Arama desteklenmemektedir."
-
-#~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the "
-#~ "document to convert to XML."
-#~ msgstr ""
-#~ "SGML belgeleri artık desteklenmiyor. Lütfen bu belgenin yazarından "
-#~ "belgeyi XML'e dönüştürmesini isteyin."
-
-#~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The "
-#~ "format may not be supported."
-#~ msgstr ""
-#~ "'%s' dosyası için dönüştürme ortamı oluşturulamadı. Biçim desteklenmiyor "
-#~ "olabilir."
-
-#~ msgid ""
-#~ "The section ‘%s’ does not exist in this document. If you were directed to "
-#~ "this section from a Help button in an application, please report this to "
-#~ "the maintainers of that application."
-#~ msgstr ""
-#~ "'%s' bölümü belgede bulunmuyor. Bu bölüme uygulama içindeki bir Yardım "
-#~ "düğmesiyle ulaştıysanız, lütfen bu hatayı uygulama geliştiricilerine "
-#~ "bildiriniz."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#~ "is improperly formatted."
-#~ msgstr ""
-#~ "'%s' dosyası ayrıştırılamıyor. Dosya bulunmuyor ya da hatalı "
-#~ "biçimlendirilmiş."
