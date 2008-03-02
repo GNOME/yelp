@@ -1,30 +1,28 @@
-# translation of cs.po to Czech
-# Czech translation of Yelp
-# Copyright (C) 2002 Free Software Foundation
-# Copyright (C) 2003, 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>
-# Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>
-# This file is distributed under the same license as the Yelp package.
+# Czech translation of Yelp.
+# Copyright (C) 2002, 2008 Free Software Foundation.
+# Copyright (C) 2003, 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
+# Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
+# This file is distributed under the same license as the yelp package.
 # Michal Bukovjan <bukm@centrum.cz>, 2002.
-# Miloslav Trmac <mitr@volny.cz>, 2003 - 2006.
+# Miloslav Trmac <mitr@volny.cz>, 2003, 2004, 2005, 2006.
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
 # Jakub Friedl <jfriedl@suse.cz>, 2006.
-#
+# Petr Kovar <pknbe@volny.cz>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cs\n"
+"Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-27 10:54+0200\n"
-"PO-Revision-Date: 2006-07-27 10:54+0200\n"
-"Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
+"POT-Creation-Date: 2008-03-02 20:39+0100\n"
+"PO-Revision-Date: 2008-03-02 20:25+0100\n"
+"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1838
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "Stránky GNU info"
 
@@ -48,15 +46,15 @@ msgstr "Soubory s nastavením"
 msgid "Curses Functions"
 msgstr "Funkce curses"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Vývoj"
 
 #: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr "Funkce FORTRANu"
+msgstr "Funkce FORTRAN"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Hry"
 
@@ -68,7 +66,7 @@ msgstr "Hardwarová zařízení"
 msgid "Kernel Routines"
 msgstr "Rutiny jádra"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1832
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "Manuálové stránky"
 
@@ -98,11 +96,11 @@ msgstr "Přehledy"
 
 #: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
-msgstr "Funkce POSIXu"
+msgstr "Funkce POSIX"
 
 #: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
-msgstr "Hlavičky POSIXu"
+msgstr "Záhlaví POSIX"
 
 #: ../data/man.xml.in.h:19
 msgid "Perl Functions"
@@ -289,136 +287,586 @@ msgid "X11 Overviews"
 msgstr "Přehledy X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "Grafika 2D"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "Grafika 3D"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Zpřístupnění"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Příslušenství"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Zábavné aplikace"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Aplikace pro prohlížení a úpravy grafiky"
+msgid "Action Games"
+msgstr "Akční hry"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Aplikace pro zpracování textu a další kancelářské činnosti"
+msgid "Adventure Games"
+msgstr "Dobrodružné hry"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "Aplikace související s X Windows"
+msgid "Amusement"
+msgstr "Zábava"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Aplikace související s multimédii"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Aplikace k prohlížení a úpravě grafiky"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Aplikace související s vývojem softwaru"
+msgid "Applications related to audio and video"
+msgstr "Aplikace související se zvukem a videem"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Aplikace související s internetem"
+msgid "Applications that teach or aid in learning"
+msgstr "Aplikace k výuce a učení"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Aplikace specifické pro panel"
+msgid "Arcade Games"
+msgstr "Arkádové hry"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Aplikace podporující technologie usnadnění"
+msgid "Archiving Tools"
+msgstr "Archivační nástroje"
 
 #: ../data/toc.xml.in.h:12
-msgid "Desktop"
-msgstr "Prostředí pracovní plochy"
+msgid "Art"
+msgstr "Umění"
 
 #: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "Dokumenty specifické pro prostředí KDE"
+msgid "Artificial Intelligence"
+msgstr "Umělá inteligence"
 
 #: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Astronomie"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Biologie"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Hry s kostkami"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Deskové hry"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "Stavebnictví"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Kalkulačka"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Kalendář"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Karetní hry"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Kreslící nástroje"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Chat"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Chemie"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Hodiny"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Komprimační nástroje"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Informatika"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "Konstrukce"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Správa kontraktů"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Datová vizualizace"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Databáze"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Ladicí programy"
+
+#: ../data/toc.xml.in.h:33
+msgid "Desktop"
+msgstr "Pracovní prostředí"
+
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Nastavení pracovního prostředí"
+
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "Vytáčené připojení"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Slovníky"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Vypalování disků"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Ekonomika"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Vzdělávání"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Elektrotechnika"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Elektronika"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "E-mailové nástroje"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulátor"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Strojírenství"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Správce souborů"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Souborové nástroje"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Přenos souborů"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Systém souborů"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Finanční nástroje"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Nástroje vývojových diagramů"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "Aplikace GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "Návrh GUI"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Obecné aplikace prostředí GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Obecné aplikace prostředí KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Geografie"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Geologie"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Vědy o Zemi"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Grafika"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Průvodci a příručky k aplikacím spojujícím se s okolním světem"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Průvodci zapojením se do vývoje"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "Radioamatérství"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Hardwarová nastavení"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Bavte se"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Historie"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDE"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "Klienti IRC"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Zpracování obrázků"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Rychlé zasílání zpráv"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Výukové aplikace"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "Aplikace KDE"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "Různé dokumenty"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Dětské hry"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Kancelář"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr "Dozvědět se více o zpřístupnění počítače hendikepovaným"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Ostatní aplikace"
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Licence"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Literatura"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Logické hry"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matematika"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Zdravotnický software"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "Různá dokumentace"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "Směšovače"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Sledování"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Hudba"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Zprávy"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Numerická analýza"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Kancelářské aplikace"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Kancelářské aplikace"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Ostatní dokumentace"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Aplety na panelu"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "Sdílení"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Programování"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "Komunikace PDA"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "Vědecké"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Správce balíčků"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Vědecké aplikace."
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Paralelní výpočty"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotografie"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Fyzika"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Přehrávače"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Prezentační nástroje"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Tiskne se"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "Profilovací nástroje"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Nástroje na správu projektů"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "Publikování"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Rastrová grafika"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Záznam"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Vzdálený přístup"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Správa zdrojových kódů"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Robotika"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "Hry na hrdiny"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Skenování"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Věda"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Bezpečnost"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "Řadiče"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Nastavení"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "Uživatelem upravitelná nastavení ke zpříjemnění prostředí"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Simulátory"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Zvuk"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "Zvuk a obraz"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Systémové nástroje"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Úprava zvuku a videa"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Pomůcky pro správu počítače"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Sporty"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Pomocné aplikace"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Sportovní hry"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Různé další aplikace"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "Tabulkové nástroje"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Strategické hry"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Systém"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "Telefonie"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "Nástroje telefonie"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Emulátor terminálu"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Textové editory"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Textové nástroje"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Nástroje na správu počítače"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Překladatelské nástroje"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "Tunery"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "Nástroje"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "Nástroje pomáhající s řešením úkolů"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Vektorová grafika"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Video"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Videokonference"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "Prohlížeč"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Webový prohlížeč"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Vývoj webu"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Vítá vás prohlížeč nápovědy GNOME"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "Aplikace pro X"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Textové procesory"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -502,19 +950,19 @@ msgstr "_Přecházet přes okraj"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr "Písmo pro neproporcionální text"
+msgstr "Písmo neproporcionálního textu"
 
 #: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr "Písmo pro text"
+msgstr "Písmo textu"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "Písmo pro text s pevnou šířkou."
+msgstr "Písmo textu s pevnou šířkou."
 
 #: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "Písmo pro text s proměnlivou šířkou."
+msgstr "Písmo textu s proměnlivou šířkou."
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
@@ -562,100 +1010,122 @@ msgstr "Témata nápovědy"
 msgid "Document Sections"
 msgstr "Oddíly dokumentu"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+msgid "Page not found"
+msgstr "Stránka nenalezena"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "Stránka %s nebyla v dokumentu %s nalezena."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "Požadovaná stránka nebyla v dokumentu %s nalezena."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
+msgid "File not found"
+msgstr "Soubor nenalezen"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Soubor \"%s\" neexistuje."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
+msgid "Could not parse file"
+msgstr "Nelze analyzovat soubor"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje nebo to není správně "
-"utvořené XML."
+"Soubor \"%s\" nelze analyzovat, neboť není správně utvořeným dokumentem XML."
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "Došlo k neznámé chybě"
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Soubor \"%s\" nelze analyzovat, neboť jeden (nebo více) zahrnutý soubor není "
+"správně utvořeným dokumentem XML."
 
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "Nemohu načíst dokument"
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+msgid "Unknown"
+msgstr "Neznámé"
 
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "Nemohu načíst oddíl"
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Neznámá chyba"
 
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr "Nemohu načíst obsah"
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+msgid "Could Not Read File"
+msgstr "Nelze přečíst soubor"
 
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "Nepodporovaný formát"
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "Nemohu číst dokument"
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "Nemohu zpracovat dokument"
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
 msgstr "O chybě nejsou k dispozici žádné informace."
 
-#: ../src/yelp-info-pager.c:188
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje nebo to není správně "
-"utvořená stránka info."
+"Soubor \"%s\" nelze analyzovat, neboť není správně utvořenou stránkou info."
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
-"Soubor ‘%s’ nelze prečíst a dekódovat. Soubor je možná komprimován v "
+"Soubor \"%s\" nelze přečíst a dekódovat. Soubor je možná komprimován v "
 "nepodporovaném formátu."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:92
 msgid "Use a private session"
 msgstr "Použít soukromé sezení"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
-msgstr "Definovat, který adresář cache používat"
+msgstr "Definovat, který adresář vyrovnávací paměti se má používat"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:354
+#: ../src/yelp-main.c:358
 msgid " GNOME Help Browser"
 msgstr " Prohlížeč nápovědy GNOME"
 
-#: ../src/yelp-main.c:370 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Nápověda"
 
-#: ../src/yelp-man-pager.c:263
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
-msgstr "Soubor ‘%s’ nelze zpracovat. Soubor buď neexistuje, nebo nemá správný formát."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr ""
+"Soubor \"%s\" nelze analyzovat, neboť není správně utvořenou stránkou info."
 
-#: ../src/yelp-pager.c:116
-msgid "Document Information"
-msgstr "Informace o dokumentu"
-
-#: ../src/yelp-pager.c:117
-msgid "The YelpDocInfo struct of the document"
-msgstr "Struktura YelpDocInfo dokumentu"
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "Tisk"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
-msgstr "Připravuji se tisknout"
+msgstr "Příprava k tisku"
 
 #: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
@@ -666,17 +1136,9 @@ msgstr "Tisk na této tiskárně není podporován"
 msgid "Printer %s does not support postscript printing."
 msgstr "Tiskárna %s nepodporuje postskriptový tisk."
 
-#: ../src/yelp-print.c:337
-msgid "Printing"
-msgstr "Tisknu"
-
-#: ../src/yelp-print.c:364
-msgid "<b>Printing</b>"
-msgstr "<b>Tisknu</b>"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
-msgstr "Čekám na tisk"
+msgstr "Čeká se na tisk"
 
 #: ../src/yelp-print.c:578
 msgid "An error occurred while printing"
@@ -687,34 +1149,16 @@ msgstr "Při tisku došlo k chybě"
 msgid "It was not possible to print your document: %s"
 msgstr "Nebylo možné vytisknout váš dokument: %s"
 
-#. TRANSLATORS:  If you know of a forum in your own language, please
-#. * change this URL to the type required for a search of the site.
-#. * The %s argument is the search terms
-#.
-#: ../src/yelp-search-pager.c:73
-#, c-format
-msgid "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-msgstr "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-
-#: ../src/yelp-search-pager.c:75
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
-msgstr "Fóra pro podporu GNOME"
+msgstr "Fóra podpory GNOME"
 
-#: ../src/yelp-search-pager.c:710
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-"Vaše hledání nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný "
-"stylesheet XSLT."
-
-#: ../src/yelp-search-pager.c:762
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Žádné výsledky pro \"%s\""
 
-#: ../src/yelp-search-pager.c:763
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -722,7 +1166,7 @@ msgstr ""
 "Pokuste se svůj problém či téma, ke kterému chcete získat nápovědu, popsat "
 "jinými slovy."
 
-#: ../src/yelp-search-pager.c:766
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Výsledky hledání \"%s\""
@@ -732,24 +1176,10 @@ msgstr "Výsledky hledání \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:783
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Zopakovat hledání online na %s"
-
-#: ../src/yelp-search-pager.c:855 ../src/yelp-toc-pager.c:2133
-#: ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr "V yelp:document nenalezen atribut href"
-
-#: ../src/yelp-search-pager.c:869 ../src/yelp-toc-pager.c:2146
-#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "Nedostatek paměti"
-
-#: ../src/yelp-search-pager.c:910 ../src/yelp-toc-pager.c:2195
-msgid "Help Contents"
-msgstr "Obsah nápovědy"
 
 #. Translators: Do not translate this list exactly.  These are
 #. * colon-separated words that aren't useful for choosing search
@@ -759,7 +1189,7 @@ msgstr "Obsah nápovědy"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1236
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -775,7 +1205,7 @@ msgstr "a:s:o:u:je:jsou:jak:proč:kde:pomoc:nevím:funguje:nefunguje:rozbitý"
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1252
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "vy:"
 
@@ -783,351 +1213,308 @@ msgstr "vy:"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1261
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "NULL"
 
-#: ../src/yelp-search-pager.c:1455 ../src/yelp-toc-pager.c:620
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Žádný komentář"
+
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "Nelze zpracovat hledání"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "Požadované hledání nemohlo být zpracováno."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "Nelze zpracovat hledání"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "Zpracovatel hledání navrátil neplatné výsledky"
+
+#: ../src/yelp-toc.c:267
 #, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Nemohu načíst soubor OMF '%s'."
+msgid "The page %s was not found in the TOC."
+msgstr "Stránka %s nebyla nalezena v TOC."
 
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201E"
+#: ../src/yelp-toc.c:366
+msgid "The requested page was not found in the TOC."
+msgstr "Požadovaná stránka nebyla v TOC nalezena."
 
-#: ../src/yelp-toc-pager.c:265
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: Počet stran je záporný."
-
-#: ../src/yelp-toc-pager.c:371 ../src/yelp-toc-pager.c:1946
-#, c-format
+#: ../src/yelp-toc.c:438
 msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"Obsah nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný stylesheet "
-"XSLT."
+"Soubor TOC nelze analyzovat, neboť není správně utvořeným dokumentem XML."
 
-#: ../src/yelp-toc-pager.c:1099
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
+msgstr "Neplatný styl"
+
+#: ../src/yelp-transform.c:81
 #, c-format
-msgid "Read man page for %s"
-msgstr "Číst stránku man pro %s"
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "Styl XSLT \"%s\" buď schází, nebo je neplatný."
 
-#: ../src/yelp-toc-pager.c:1692
-#, c-format
-msgid "Read info page for %s"
-msgstr "Číst stránku info pro %s"
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr "Chybná transformace"
 
-#: ../src/yelp-toc-pager.c:1805
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr "Obsah nelze načíst. Soubor ‘%s’ buď chybí, nebo to není správně utvořené XML."
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "Při pokusu o transformaci dokumentu došlo k neznámé chybě."
 
-#: ../src/yelp-toc-pager.c:1827
-msgid "Command Line Help"
-msgstr "Nápověda pro příkazový řádek"
+#: ../src/yelp-transform.c:373
+msgid "No href attribute found on yelp:document\n"
+msgstr "Schází atribut href v yelp:document\n"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-transform.c:388
+msgid "Out of memory"
+msgstr "Nedostatek paměti"
+
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "Pře_jít"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "_Záložky"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: ../src/yelp-window.c:330
-msgid "Print This Document"
-msgstr "Vytisknout tento dokument"
+#: ../src/yelp-window.c:316
+msgid "Print This Document ..."
+msgstr "Vytisknout tento dokument..."
 
-#: ../src/yelp-window.c:335
-msgid "Print This Page"
-msgstr "Vytisknout tuto stranu"
+#: ../src/yelp-window.c:321
+msgid "Print This Page ..."
+msgstr "Vytisknout tuto stránku..."
 
-#: ../src/yelp-window.c:340
+#: ../src/yelp-window.c:326
 msgid "About This Document"
 msgstr "O tomto dokumentu"
 
-#: ../src/yelp-window.c:345
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
 msgstr "Otevřít _umístění"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "_Zavřít okno"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:342
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "Vybrat vš_e"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:353
 msgid "_Find..."
 msgstr "_Hledat..."
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr "Hledat _předchozí"
 
-#: ../src/yelp-window.c:374
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Hledat předchozí výskyt slova nebo fráze"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr "Hledat _následující"
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
 msgstr "Hledat následující výskyt slova nebo fráze"
 
-#: ../src/yelp-window.c:382
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "_Nastavení"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "_Obnovit"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "_Zpět"
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr "Zobrazí předchozí stránku v historii"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "_Vpřed"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr "Zobrazí následující stránku v historii"
 
-#: ../src/yelp-window.c:409
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
 msgstr "_Témata nápovědy"
 
-#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
-msgstr "Jít na seznam témat nápovědy"
+msgstr "Přejít na seznam témat nápovědy"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "_Předchozí oddíl"
 
-#: ../src/yelp-window.c:419
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "_Následující oddíl"
 
-#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "_Přidat záložku"
 
-#: ../src/yelp-window.c:435
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "_Upravit záložky..."
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "_Otevřít odkaz"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "Otevřít odkaz v _novém okně"
 
-#: ../src/yelp-window.c:451
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "_Kopírovat adresu odkazu"
 
-#: ../src/yelp-window.c:458
+#: ../src/yelp-window.c:444
 msgid "Help On this application"
 msgstr "Nápověda pro tuto aplikaci"
 
-#: ../src/yelp-window.c:461
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "O _aplikaci"
 
-#: ../src/yelp-window.c:466
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
 msgstr "Kopírovat _e-mailovou adresu"
 
-#: ../src/yelp-window.c:515
+#: ../src/yelp-window.c:501
 msgid "Help Browser"
 msgstr "Prohlížeč nápovědy"
 
-#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "Uniform Resource Identifier souboru není platný."
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+msgid "Loading..."
+msgstr "Načítání..."
 
-#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+msgid "Unknown Page"
+msgstr "Neznámá stránka"
+
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
-"Uniform Resource Identifier ‘%s’ není platný nebo neukazuje na skutečný "
-"soubor."
+msgid "The requested URI \"%s\" is invalid"
+msgstr "Požadované URI \"%s\" je neplatné"
 
-#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
-msgid "Man pages are not supported in this version."
-msgstr "Stránky man nejsou v této verzi podporovány."
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+msgid "Unable to load page"
+msgstr "Nelze načíst stránku"
 
-#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
-msgid "GNU info pages are not supported in this version"
-msgstr "Stránky GNU info nejsou v této verzi podporovány."
+#: ../src/yelp-window.c:1069
+msgid "Error executing \"gnome-open\""
+msgstr "Chyba při vykonávání \"gnome-open\""
 
-#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
-msgid "Search is not supported in this version."
-msgstr "Hledání není v této verzi podporováno."
-
-#: ../src/yelp-window.c:1057
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-"Dokumenty SGML už nejsou podporovány. Požádejte prosím autora dokumentu, aby "
-"jej převedl do XML."
-
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1253
 msgid "_Search:"
 msgstr "_Hledat:"
 
-#: ../src/yelp-window.c:1224
+#: ../src/yelp-window.c:1254
 msgid "Search for other documentation"
 msgstr "Hledat jinou dokumentaci"
 
-#: ../src/yelp-window.c:1386
+#: ../src/yelp-window.c:1274
+msgid "Cannot create window"
+msgstr "Nelze vytvořit okno"
+
+#: ../src/yelp-window.c:1280
+msgid "Cannot create search component"
+msgstr "Nelze vytvořit vyhledávací součást"
+
+#: ../src/yelp-window.c:1452
 msgid "Fin_d:"
 msgstr "_Hledat:"
 
-#: ../src/yelp-window.c:1406
-msgid "Find _Next"
-msgstr "Hledat _následující"
-
-#: ../src/yelp-window.c:1418
+#: ../src/yelp-window.c:1474
 msgid "Find _Previous"
 msgstr "Hledat _předchozí"
 
-#: ../src/yelp-window.c:1532
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
-"Pro soubor ‘%s’ nelze vytvořit kontext transformace. Formát možná není "
-"podporován."
+#: ../src/yelp-window.c:1486
+msgid "Find _Next"
+msgstr "Hledat _následující"
 
-#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
-#: ../src/yelp-window.c:2064
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-"Oddíl ‘%s’ v tomto dokumentu neexistuje. Pokud vás k tomuto oddílu dovedlo "
-"tlačítko Nápověda v aplikaci, ohlaste to prosím správcům této aplikace."
+#: ../src/yelp-window.c:1499
+msgid "Phrase not found"
+msgstr "Fráze nenalezena"
 
-#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
+#: ../src/yelp-window.c:1627
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"Soubor ‘%s’ nelze číst. Tento soubor možná chybí, nebo nemáte oprávnění jej "
-"číst."
-
-#: ../src/yelp-window.c:1728
-msgid "Loading..."
-msgstr "Načítám..."
+"Soubor \"%s\" nelze číst. Tento soubor možná chybí, nebo nemáte oprávnění "
+"jej číst."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2911
+#: ../src/yelp-window.c:2453
 msgid "translator-credits"
 msgstr ""
 "Michal Bukovjan\n"
 "Miloslav Trmač <mitr@volny.cz>\n"
-"Jakub Friedl <jfriedl@suse.cz>"
+"Lukáš Novotný <lukasnov@cvs.gnome.org>\n"
+"Jakub Friedl <jfriedl@suse.cz>\n"
+"Petr Kovář <pknbe@volny.cz>"
 
-#: ../src/yelp-window.c:2914
+#: ../src/yelp-window.c:2456
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2916
+#: ../src/yelp-window.c:2458
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Prohlížeč dokumentace pro prostředí pracovní plochy Gnome."
-
-#: ../src/yelp-xslt-pager.c:189
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"Soubor ‘%s’ nelze zpracovat. Tento soubor buď neexistuje, nebo nemá správný "
-"formát."
-
-#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-"Dokument ‘%s’ nelze zpracovat. Soubor ‘%s’ buď chybí, nebo to není platný "
-"stylesheet XSLT."
+msgstr "Prohlížeč dokumentace pracovního prostředí GNOME."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "Získat nápovědu o GNOME"
-
+msgstr "Získat nápovědu k GNOME"
