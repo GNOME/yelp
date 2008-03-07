@@ -3,7 +3,7 @@
 # Christian Meyer <chrisime@gnome.org>, 2001, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
 # Hendrik Brandt <heb@gnome-de.org>, 2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2006.
+# Hendrik Richter <hendrikr@gnome.org>, 2006, 2008.
 # Andre Klapper <ak-47@gmx.net>, 2007.
 # Jochen Skulj <jochen@jochenskulj.de>, 2008.
 #
@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 23:06+0100\n"
+"POT-Creation-Date: 2008-03-07 17:41+0100\n"
 "PO-Revision-Date: 2008-02-19 19:14+0100\n"
 "Last-Translator: Jochen Skulj <jochen@jochenskulj.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -43,8 +43,7 @@ msgstr "Konfigurationsdateien"
 msgid "Curses Functions"
 msgstr "Curses-Funktionen"
 
-#: ../data/man.xml.in.h:5
-#: ../data/toc.xml.in.h:35
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Entwicklung"
 
@@ -52,8 +51,7 @@ msgstr "Entwicklung"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN Funktionen"
 
-#: ../data/man.xml.in.h:7
-#: ../data/toc.xml.in.h:56
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Spiele"
 
@@ -503,7 +501,6 @@ msgid "Generic applications for the GNOME environment"
 msgstr "Allgemeine Anwendungen für die GNOME-Umgebung"
 
 #: ../data/toc.xml.in.h:58
-#, fuzzy
 msgid "Generic applications for the KDE environment"
 msgstr "Allgemeine Anwendungen für die KDE-Umgebung"
 
@@ -525,7 +522,9 @@ msgstr "Grafik"
 
 #: ../data/toc.xml.in.h:63
 msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Anleitungen und Handbücher für Anwendungen, die Verbindung mit der Außenwelt aufbauen"
+msgstr ""
+"Anleitungen und Handbücher für Anwendungen, die Verbindung mit der Außenwelt "
+"aufbauen"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
@@ -580,8 +579,12 @@ msgid "Kids Games"
 msgstr "Kinderspiele"
 
 #: ../data/toc.xml.in.h:77
-msgid "Learn more about making your system more accessible for a range of disabilities"
-msgstr "Mehr darüber lernen, wie man sein System für Benutzer mit den unterschiedlichsten Behinderungen zugänglicher macht"
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Mehr darüber lernen, wie man sein System für Benutzer mit den "
+"unterschiedlichsten Behinderungen zugänglicher macht"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
@@ -684,9 +687,7 @@ msgstr "Wiedergabe"
 msgid "Presentation Tools"
 msgstr "Präsentationswerkzeuge"
 
-#: ../data/toc.xml.in.h:104
-#: ../src/yelp-print.c:337
-#: ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Drucken"
 
@@ -753,7 +754,9 @@ msgstr "Einstellungen"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Einstellungen, die der Benutzer verändern kann, um dessen Umgebung ansprechender zu gestalten"
+msgstr ""
+"Einstellungen, die der Benutzer verändern kann, um dessen Umgebung "
+"ansprechender zu gestalten"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -966,7 +969,9 @@ msgstr "Schrift für Buchstaben mit variabler Breite"
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Einen über die Tastatur kontrolliebaren Rahmen verwenden, wenn Seiten betrachtet werden."
+msgstr ""
+"Einen über die Tastatur kontrolliebaren Rahmen verwenden, wenn Seiten "
+"betrachtet werden."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -1000,7 +1005,8 @@ msgstr "Ein Lesezeichen mit dem Namen %s existiert bereits für diese Seite."
 #: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "Ein Lesezeichen mit dem Namen <b>%s</b> existiert bereits für diese Seite."
+msgstr ""
+"Ein Lesezeichen mit dem Namen <b>%s</b> existiert bereits für diese Seite."
 
 #: ../src/yelp-bookmarks.c:405
 msgid "Help Topics"
@@ -1010,84 +1016,69 @@ msgstr "Hilfe-Themen"
 msgid "Document Sections"
 msgstr "Dokumentabschnitte"
 
-#: ../src/yelp-db-print.c:258
-#: ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275
-#: ../src/yelp-docbook.c:367
-#: ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338
-#: ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Seite konnte nicht gefunden werden"
 
-#: ../src/yelp-db-print.c:259
-#: ../src/yelp-docbook.c:276
-#: ../src/yelp-info.c:244
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Die Seite %s konnte nicht im Dokument %s gefunden werden."
 
-#: ../src/yelp-db-print.c:351
-#: ../src/yelp-docbook.c:368
-#: ../src/yelp-info.c:339
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
 #: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "Die angeforderte Seite konnte nicht im Dokument %s gefunden werden."
 
-#: ../src/yelp-db-print.c:392
-#: ../src/yelp-docbook.c:410
-#: ../src/yelp-info.c:380
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
 #: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "Datei nicht gefunden"
 
-#: ../src/yelp-db-print.c:393
-#: ../src/yelp-docbook.c:411
-#: ../src/yelp-info.c:381
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
 #: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Die Datei »%s« existiert nicht."
 
-#: ../src/yelp-db-print.c:406
-#: ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:424
-#: ../src/yelp-docbook.c:436
-#: ../src/yelp-info.c:395
-#: ../src/yelp-man.c:458
-#: ../src/yelp-toc.c:437
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "Datei konnte nicht analysiert werden"
 
-#: ../src/yelp-db-print.c:407
-#: ../src/yelp-docbook.c:425
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
-msgstr "Die Datei »%s« konnte nicht analysiert werden, da der Inhalt kein gültiges XML-Dokument ist."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Die Datei »%s« konnte nicht analysiert werden, da der Inhalt kein gültiges "
+"XML-Dokument ist."
 
-#: ../src/yelp-db-print.c:419
-#: ../src/yelp-docbook.c:437
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
-msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
-msgstr "Die Datei »%s« konnte nicht analysiert werden, da eine oder mehrere der enthaltenen Dateien kein gültiges XML-Dokument ist."
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Die Datei »%s« konnte nicht analysiert werden, da eine oder mehrere der "
+"enthaltenen Dateien kein gültiges XML-Dokument ist."
 
-#: ../src/yelp-db-print.c:765
-#: ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../src/yelp-error.c:132
-#: ../src/yelp-error.c:139
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
 msgid "Unknown Error"
 msgstr "Unbekannter Fehler"
 
-#: ../src/yelp-error.c:136
-#: ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
 msgid "Could Not Read File"
 msgstr "Datei konnte nicht gelesen werden"
 
@@ -1097,13 +1088,20 @@ msgstr "Über diesen Fehler stehen keine weiteren Informationen zur Verfügung."
 
 #: ../src/yelp-info.c:396
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Die Datei »%s« konnte nicht analysiert werden, da sie keine gültige Info-Seite ist."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Die Datei »%s« konnte nicht analysiert werden, da sie keine gültige Info-"
+"Seite ist."
 
 #: ../src/yelp-io-channel.c:123
 #, c-format
-msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
-msgstr "Die Datei »%s« konnte nicht gelesen und dekodiert werden. Eventuell ist die Datei in einem nicht unterstützen Format komprimiert."
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
+msgstr ""
+"Die Datei »%s« konnte nicht gelesen und dekodiert werden. Eventuell ist die "
+"Datei in einem nicht unterstützen Format komprimiert."
 
 #: ../src/yelp-main.c:92
 msgid "Use a private session"
@@ -1118,15 +1116,17 @@ msgstr "Den Ordner für den Zwischenspeicher festlegen"
 msgid " GNOME Help Browser"
 msgstr " GNOME-Hilfe-Browser"
 
-#: ../src/yelp-main.c:378
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hilfe"
 
 #: ../src/yelp-man.c:459
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "Die Datei »%s« konnte nicht analysiert werden, da sie keine gültige Handbuch-Datei ist."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr ""
+"Die Datei »%s« konnte nicht analysiert werden, da sie keine gültige Handbuch-"
+"Datei ist."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -1168,8 +1168,12 @@ msgid "No results for \"%s\""
 msgstr "Keine Ergebnisse für »%s«"
 
 #: ../src/yelp-search-parser.c:287
-msgid "Try using different words to describe the problem you're having or the topic you want help with."
-msgstr "Versuchen Sie, Ihr Problem oder das Thema zu dem Sie Hilfe möchten mit anderen Worten zu beschreiben."
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+"Versuchen Sie, Ihr Problem oder das Thema zu dem Sie Hilfe möchten mit "
+"anderen Worten zu beschreiben."
 
 #: ../src/yelp-search-parser.c:290
 #, c-format
@@ -1195,8 +1199,15 @@ msgstr "Die Suche online bei %s wiederholen"
 #. * "work", and "broken".
 #.
 #: ../src/yelp-search-parser.c:874
-msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-msgstr "ein:eine:der:die:das:ich:du:er:sie:es:wir:ihr:so:zu:um:kann:dialog:tun:tut:erklären:für:von:bis:nicht:hat:haben:hilfe:wie:wo:was:wieso:weshalb:warum:kaputt:defekt:funktioniert:funktionieren:läuft:laufen"
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr ""
+"ein:eine:der:die:das:ich:du:er:sie:es:wir:ihr:so:zu:um:kann:dialog:tun:tut:"
+"erklären:für:von:bis:nicht:hat:haben:hilfe:wie:wo:was:wieso:weshalb:warum:"
+"kaputt:defekt:funktioniert:funktionieren:läuft:laufen"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -1208,7 +1219,9 @@ msgstr "ein:eine:der:die:das:ich:du:er:sie:es:wir:ihr:so:zu:um:kann:dialog:tun:t
 #.
 #: ../src/yelp-search-parser.c:890
 msgid "re"
-msgstr "ab:an:auf:be:bei:ein:ent:er:ge:hin:nach:nieder:über:um:un:unter:ver:vor:zer:zu"
+msgstr ""
+"ab:an:auf:be:bei:ein:ent:er:ge:hin:nach:nieder:über:um:un:unter:ver:vor:zer:"
+"zu"
 
 #. Translators: This is a list of (guess what?) common suffixes
 #. * to words.  Things that may be put at ends of words to slightly
@@ -1249,11 +1262,16 @@ msgstr "Die Seite %s konnte nicht im Inhaltsverzeichnis gefunden werden."
 
 #: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
-msgstr "Die angeforderte Seite konnte nicht im Inhaltsverzeichnis gefunden werden."
+msgstr ""
+"Die angeforderte Seite konnte nicht im Inhaltsverzeichnis gefunden werden."
 
 #: ../src/yelp-toc.c:438
-msgid "The TOC file could not be parsed because it is not a well-formed XML document."
-msgstr "Die Inhaltsverzeichnis-Datei »%s« konnte nicht analysiert werden, da sie kein gültiges XML-Dokument ist."
+msgid ""
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Die Inhaltsverzeichnis-Datei »%s« konnte nicht analysiert werden, da sie kein "
+"gültiges XML-Dokument ist."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -1262,7 +1280,9 @@ msgstr "Ungültige Stilvorlage"
 #: ../src/yelp-transform.c:81
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "Entweder existiert die XSLT-Stilvorlage »%s« nicht, oder es ist keine gültige XSLT-Stilvorlage."
+msgstr ""
+"Entweder existiert die XSLT-Stilvorlage »%s« nicht, oder es ist keine gültige "
+"XSLT-Stilvorlage."
 
 #: ../src/yelp-transform.c:112
 msgid "Broken Transformation"
@@ -1270,7 +1290,8 @@ msgstr "Defekte Umwandlung"
 
 #: ../src/yelp-transform.c:113
 msgid "An unknown error occurred while attempting to transform the document."
-msgstr "Ein unbekannter Fehler trat auf beim Versuch, das Dokument umzuwandeln."
+msgstr ""
+"Ein unbekannter Fehler trat auf beim Versuch, das Dokument umzuwandeln."
 
 #: ../src/yelp-transform.c:373
 msgid "No href attribute found on yelp:document\n"
@@ -1392,8 +1413,7 @@ msgstr "V_orheriger Abschnitt"
 msgid "_Next Section"
 msgstr "_Nächster Abschnitt"
 
-#: ../src/yelp-window.c:410
-#: ../src/yelp-window.c:442
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "_Inhalte"
 
@@ -1433,25 +1453,20 @@ msgstr "_E-Mail-Adresse kopieren"
 msgid "Help Browser"
 msgstr "Hilfe-Browser"
 
-#: ../src/yelp-window.c:592
-#: ../src/yelp-window.c:644
-#: ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
 msgid "Loading..."
 msgstr "Ladevorgang …"
 
-#: ../src/yelp-window.c:593
-#: ../src/yelp-window.c:645
+#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
 msgid "Unknown Page"
 msgstr "Unbekannte Seite"
 
-#: ../src/yelp-window.c:1008
-#: ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Die angeforderte URI-Adresse »%s« ist ungültig"
 
-#: ../src/yelp-window.c:1009
-#: ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
 msgid "Unable to load page"
 msgstr "Laden der Seite nicht möglich"
 
@@ -1493,8 +1508,12 @@ msgstr "Ausdruck nicht gefunden"
 
 #: ../src/yelp-window.c:1627
 #, c-format
-msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
-msgstr "Die Datei »%s« konnte nicht gelesen werden. Eventuell gibt es sie nicht oder Sie haben nicht die notwendigen Zugriffsrechte um diese zu lesen."
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+"Die Datei »%s« konnte nicht gelesen werden. Eventuell gibt es sie nicht oder "
+"Sie haben nicht die notwendigen Zugriffsrechte um diese zu lesen."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
@@ -1521,110 +1540,148 @@ msgstr "Hilfe zu GNOME erhalten"
 
 #~ msgid "Accessories"
 #~ msgstr "Zubehör"
+
 #~ msgid "Applications for fun"
 #~ msgstr "Anwendungen zur Unterhaltung"
+
 #~ msgid "Applications for word processing and other office tasks"
 #~ msgstr "Anwendungen für Textverarbeitung und andere Büroaufgaben"
+
 #~ msgid "Applications related to multimedia"
 #~ msgstr "Anwendungen für Multimedia"
+
 #~ msgid "Applications related to software development"
 #~ msgstr "Anwendungen für Software-Entwicklung"
+
 #~ msgid "Applications specific to the panel"
 #~ msgstr "Anwendungen für das Panel"
+
 #~ msgid "Applications that support assistive technologies"
 #~ msgstr "Anwendungen mit Unterstützung für Barrierefreiheit"
+
 #~ msgid "KDE"
 #~ msgstr "KDE"
+
 #~ msgid "Learning applications"
 #~ msgstr "Lernprogramme"
+
 #~ msgid "Office"
 #~ msgstr "Büro"
+
 #~ msgid "Panel Applets"
 #~ msgstr "Panel-Applets"
+
 #~ msgid "Programming"
 #~ msgstr "Entwicklung"
+
 #~ msgid "Scientific Applications."
 #~ msgstr "Wissenschaftliche Programme"
+
 #~ msgid "Utility applications"
 #~ msgstr "Zubehör"
+
 #~ msgid "Variety of other applications"
 #~ msgstr "Eine Sammlung sonstiger Programme"
+
 #~ msgid "An unknown error occured"
 #~ msgstr "Es ist ein unbekannter Fehler aufgetreten"
+
 #~ msgid "Could not load document"
 #~ msgstr "Dokument konnte nicht geladen werden"
+
 #~ msgid "Could not read the table of contents"
 #~ msgstr "Das Inhaltsverzeichnis konnte nicht gelesen werden"
+
 #~ msgid "Unsupported Format"
 #~ msgstr "Nicht unterstütztes Format"
+
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
 #~ "is formatted incorrectly."
 #~ msgstr ""
 #~ "Die Datei »%s« konnte nicht analysiert werden. Entweder existiert die "
 #~ "Datei nicht oder der Inhalt hat das falsche Format."
+
 #~ msgid "The YelpDocInfo struct of the document"
 #~ msgstr "Die YelpDocInfo-Struktur dieses Dokuments"
+
 #~ msgid ""
 #~ "Your search could not be processed. The file ‘%s’ is either missing or is "
 #~ "not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "Ihre Suchanfrage konnte nicht bearbeitet werden.Entweder existiert die "
 #~ "Datei »%s« nicht oder der Inhalt ist kein gültiges XSLT-Stylesheet."
+
 #~ msgid "Help Contents"
 #~ msgstr "Hilfe-Inhalt"
+
 #~ msgid "Could not load the OMF file '%s'."
 #~ msgstr "Die OMF-Datei »%s« konnte nicht geladen werden."
+
 #~ msgid "yelp-watermark-blockquote-201C"
 #~ msgstr "yelp-watermark-blockquote-201C"
+
 #~ msgid "YelpTocPager: Pause count is negative."
 #~ msgstr "YelpTocPager: Pausen-Zähler ist negativ"
+
 #~ msgid ""
 #~ "The table of contents could not be processed. The file ‘%s’ is either "
 #~ "missing or is not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "Das Inhaltsverzeichnis konnte nicht geladen werden. Entweder existiert "
 #~ "die Datei »%s« nicht oder der Inhalt ist kein gültiges XSLT-Stylesheet."
+
 #~ msgid "Read man page for %s"
 #~ msgstr "Handbuch für %s lesen"
+
 #~ msgid "Read info page for %s"
 #~ msgstr "Info-Seite für %s lesen"
+
 #~ msgid ""
 #~ "The table of contents could not be loaded. The file ‘%s’ is either "
 #~ "missing or is not well-formed XML."
 #~ msgstr ""
 #~ "Das Inhaltsverzeichnis konnte nicht geladen werden. Entweder existiert "
 #~ "die Datei »%s« nicht oder der Inhalt ist kein gültiges XML."
+
 #~ msgid "Command Line Help"
 #~ msgstr "Befehlszeilen-Hilfe"
+
 #~ msgid "The Uniform Resource Identifier for the file is invalid."
 #~ msgstr ""
 #~ "Der Uniform-Ressource-Identifier (URI-Adresse) für diese Datei ist "
 #~ "ungültig."
+
 #~ msgid ""
 #~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 #~ "actual file."
 #~ msgstr ""
 #~ "Der Uniform-Ressource-Identifier (URI-Adresse) »%s« ist ungültig oder "
 #~ "zeigt nicht auf eine existierende Datei."
+
 #~ msgid "Man pages are not supported in this version."
 #~ msgstr "Man-Pages werden in dieser Version nicht unterstützt."
+
 #~ msgid "GNU info pages are not supported in this version"
 #~ msgstr "GNU-Info-Pages werden in dieser Version nicht unterstützt"
+
 #~ msgid "Search is not supported in this version."
 #~ msgstr "Die Suchfunktion wird in dieser Version nicht unterstützt."
+
 #~ msgid ""
 #~ "SGML documents are no longer supported. Please ask the author of the "
 #~ "document to convert to XML."
 #~ msgstr ""
 #~ "SGML-Dokumente werden nicht länger unterstützt. Bitten Sie den Verfasser "
 #~ "darum, das Dokument in XML umzuwandeln."
+
 #~ msgid ""
 #~ "A transformation context could not be created for the file ‘%s’. The "
 #~ "format may not be supported."
 #~ msgstr ""
 #~ "Es konnte kein Übersetzungskontext für die Datei »%s« erzeugt werden. "
 #~ "Eventuell wird das Format nicht unterstützt."
+
 #~ msgid ""
 #~ "The section ‘%s’ does not exist in this document. If you were directed to "
 #~ "this section from a Help button in an application, please report this to "
@@ -1633,58 +1690,75 @@ msgstr "Hilfe zu GNOME erhalten"
 #~ "Den Abschnitt »%s« gibt es in diesem Dokument nicht. Wenn Sie von einem "
 #~ "Hilfeschalter aus einer Anwendung hierher weitergeleitet wurden, melden "
 #~ "Sie dies bitte dem Projektleiter der Anwendung."
+
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
 #~ "is improperly formatted."
 #~ msgstr ""
 #~ "Die Datei »%s« konnte nicht analysiert werden. Entweder existiert die "
 #~ "Datei nicht oder sie ist falsch formatiert."
+
 #~ msgid "<b>Printing</b>"
 #~ msgstr "<b>Drucken</b>"
+
 #~ msgid ""
 #~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
 #~ msgstr ""
 #~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+
 #~ msgid "Generating PDF is not currently supported"
 #~ msgstr "Erstellen von PDF-Dateien wird momentan nicht unterstützt"
+
 #~ msgid ""
 #~ "You were trying to print to a printer using the \"%s\" driver.  This "
 #~ "program requires a PostScript printer driver."
 #~ msgstr ""
 #~ "Sie versuchten mittels des Treibers »%s« auf einem Drucker zu drucken. "
 #~ "Dieses Programm benötigt einen PostScript-Drucktertreiber."
+
 #~ msgid "_From:"
 #~ msgstr "_Von:"
+
 #~ msgid "Sets the start of the range of pages to be printed"
 #~ msgstr "Legt die erste Seite des zu druckenden Druckbereichs fest"
+
 #~ msgid "_To:"
 #~ msgstr "_Bis:"
+
 #~ msgid "Sets the end of the range of pages to be printed"
 #~ msgstr "Legt die letzte Seite des zu druckenden Druckbereichs fest"
+
 #~ msgid ""
 #~ "Could not display help for Yelp.\n"
 #~ "%s"
 #~ msgstr ""
 #~ "Hilfe für Yelp konnte nicht angezeigt werden.\n"
 #~ "%s"
+
 #~ msgid "Library Functions"
 #~ msgstr "Bibliotheksfunktionen"
+
 #~ msgid "Multimedia"
 #~ msgstr "Multimedia"
+
 #~ msgid "Other"
 #~ msgstr "Sonstige"
+
 #~ msgid "Yelp Factory"
 #~ msgstr "Yelp-Fabrik"
+
 #~ msgid "Could not activate Yelp: '%s'"
 #~ msgstr "Yelp konnte nicht aktiviert werden: »%s«"
+
 #~ msgid ""
 #~ "Your search could not be processed. There is no connection to the beagle "
 #~ "daemon."
 #~ msgstr ""
 #~ "Ihre Suchanfrage konnte nicht bearbeitet werden. Es konnte keine "
 #~ "Verbindung zum Beagle-Dienst hergestellt werden."
+
 #~ msgid "<b>_Bookmarks:</b>"
 #~ msgstr "<b>_Lesezeichen:</b>"
+
 #~ msgid "<b>_Title:</b>"
 #~ msgstr "<b>_Titel:</b>"
-
