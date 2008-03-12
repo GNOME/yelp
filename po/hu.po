@@ -1,22 +1,22 @@
 # translation of yelp.HEAD.hu.po to Hungarian
 # Hungarian translation of yelp.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 #
 # Szabolcs Ban <shooby@gnome.hu>, 2002.
 # Emese Kovacs <emese@gnome.hu>, 2002.
 # Andras Timar <timar@gnome.hu>, 2002, 2003, 2004.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007, 2008.
 # Mate ORY <orymate at gmail d0t com>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
-"PO-Revision-Date: 2007-09-14 00:26+0200\n"
+"POT-Creation-Date: 2008-01-13 16:16+0000\n"
+"PO-Revision-Date: 2008-03-12 03:57+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@gnome.hu>\n"
+"Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,7 +47,7 @@ msgstr "Konfigurációs fájlok"
 msgid "Curses Functions"
 msgstr "Curses függvények"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Fejlesztés"
 
@@ -55,7 +55,7 @@ msgstr "Fejlesztés"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN függvények"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Játékok"
 
@@ -288,136 +288,588 @@ msgid "X11 Overviews"
 msgstr "X11 áttekintő leírások"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "2D grafika"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "3D grafika"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Akadálymentesítés"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Kellékek"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Szórakoztató alkalmazások"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Grafikamegjelenítő vagy -kezelő alkalmazások"
+msgid "Action Games"
+msgstr "Akciójátékok"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Alkalmazások szövegszerkesztésre és egyéb irodai feladatokra"
+msgid "Adventure Games"
+msgstr "Kalandjátékok"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "Az X grafikus felülettel kapcsolatos alkalmazások"
+msgid "Amusement"
+msgstr "Szórakozás"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Multimédiával kapcsolatos alkalmazások"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Grafikamegjelenítő vagy -kezelő alkalmazások"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Szoftverfejlesztéssel kapcsolatos alkalmazások"
+msgid "Applications related to audio and video"
+msgstr "Hanggal és videóval kapcsolatos alkalmazások"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Az internettel kapcsolatos alkalmazások"
+msgid "Applications that teach or aid in learning"
+msgstr "Oktató vagy tanulást segítő alkalmazások"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "A panelra jellemző alkalmazások"
+msgid "Arcade Games"
+msgstr "Ügyességi játékok"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Akadálymentesítési technológiákat támogató alkalmazások"
+msgid "Archiving Tools"
+msgstr "Archiválóeszközök"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Grafika"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "Mesterséges intelligencia"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Csillagászat"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Biológia"
+
+# Fixme valami értelmesebbet
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Téglajátékok"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Táblajátékok"
+
+# programé
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "Összeállítás"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Számológép"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Naptár"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Kártyajátékok"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Diagramkezelő eszközök"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Csevegés"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Kémia"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Órák"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Tömörítőeszközök"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Számítástechnika"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "Építészet"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Névjegykezelés"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Adatmegjelenítés"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Adatbázisok"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Hibakeresők"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "Munkaasztal"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "A KDE asztali környezetre jellemző alkalmazások"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Asztal beállításai"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "Betárcsázós kapcsolat"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Szótárak"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Lemezírás"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Közgazdaság"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "Oktatás"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Elektromosság"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Elektronika"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "E-mail eszközök"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulátor"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Műszaki számítások"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Fájlkezelő"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Fájleszközök"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Fájlátvitel"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Fájlrendszer"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Pénzügyi eszközök"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Folyamatábra-eszközök"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "GNOME alkalmazások"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "GUI tervezők"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Általános alkalmazások a GNOME környezethez"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Általános alkalmazások a KDE környezethez"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Földrajz"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Földtan"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Földtudomány"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Grafika"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "A külvilág felé kapcsolatot biztosító alkalmazások útmutatói és kézikönyvei"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Útmutatók a részvételhez a fejlesztésben"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "Ham rádió"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Hardverbeállítások"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Szórakozás"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Történelem"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDE-k"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "IRC kliensek"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Képfeldolgozás"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Azonnali üzenetek"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Oktatóprogramok"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE alkalmazások"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "Egyéb dokumentumok"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Gyerekjátékok"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Iroda"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr "Ismerje meg a rendszer fogyatékkal élők számára történő akadálymentesítésének lehetőségeit"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Egyéb alkalmazások"
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Licencek"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Irodalom"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Logikai játékok"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matematika"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Egészségügyi szoftver"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "Egyéb dokumentációk"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "Keverők"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Monitor"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Zene"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Hírek"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Numerikus analízis"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Irodai alkalmazások"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Irodai alkalmazások"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Egyéb dokumentációk"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Panel-kisalkalmazások"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Fejlesztés"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "PDA kommunikáció"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "Tudományos"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Csomagkezelő"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Tudományos alkalmazások"
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Párhuzamos számítástechnika"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fényképészet"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Fizika"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Lejátszók"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Bemutatóeszközök"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Nyomtatás"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "Profilozóeszközök"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Projektvezetési eszközök"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "Közzététel"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Rasztergrafika"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Felvevők"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Távoli elérés"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Verziókövetés"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Robotika"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "Szerepjátékok"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Képolvasás"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Tudomány"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Biztonság"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "Szekvenszerek"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Beállítások"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "A felhasználók által a környezet kellemesebbé tétele érdekében módosítható beállítások"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Szimulátor játékok"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Hang"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "Hang és videó"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Rendszereszközök"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Hang- és videószerkesztés"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Segédprogramok a számítógép kezelésére"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Sport"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Sportjátékok"
+
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "Táblázatkezelő eszközök"
+
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Stratégiai játékok"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Rendszer"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "Telefon"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "Telefoneszközök"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Terminálemulátor"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Szövegszerkesztők"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Szövegeszközök"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Segédprogramok a számítógép kezeléséhez"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Fordítóeszközök"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "Tunerek"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
 msgstr "Segédprogramok"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Változatos egyéb alkalmazások"
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "Segédprogramok a munkájának elvégzéséhez"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Vektorgrafika"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Videó"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Videokonferencia"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "Megjelenítő"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Webböngésző"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Webfejlesztés"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Üdvözli a GNOME súgóböngésző"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "X-alkalmazások"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Szövegszerkesztők"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -566,7 +1018,7 @@ msgstr "Dokumentum szakaszai"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "Az oldal nem található"
 
@@ -591,11 +1043,11 @@ msgstr "A fájl nem található"
 #: ../src/yelp-man.c:431
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "A(z) \"%s\" fájl nem létezik."
+msgstr "A(z) „%s” fájl nem létezik."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "A fájl nem dolgozható fel"
 
@@ -605,7 +1057,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott XML "
+"A(z) „%s” fájl nem dolgozható fel, mivel nem megfelelően formázott XML "
 "dokumentum."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
@@ -614,10 +1066,10 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"A(z) \"%s\" fájl nem dolgozható fel, mivel az általa tartalmazott fájlok "
+"A(z) „%s” fájl nem dolgozható fel, mivel az általa tartalmazott fájlok "
 "közül néhány nem megfelelően formázott XML dokumentum."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -625,7 +1077,7 @@ msgstr "Ismeretlen"
 msgid "Unknown Error"
 msgstr "Ismeretlen hiba"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
 msgid "Could Not Read File"
 msgstr "A fájl nem olvasható"
 
@@ -637,16 +1089,16 @@ msgstr "Nem áll rendelkezésre információ a hibáról."
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott info "
+"A(z) „%s” fájl nem dolgozható fel, mivel nem megfelelően formázott info "
 "oldal."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
-"A(z) \"%s\" fájl nem olvasható és dekódolható. Lehet, hogy fájl tömörítve "
+"A(z) „%s” fájl nem olvasható és dekódolható. Lehet, hogy fájl tömörítve "
 "van egy nem támogatott formátumba."
 
 #: ../src/yelp-main.c:92
@@ -670,7 +1122,7 @@ msgstr "Súgó"
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
-"A(z) \"%s\" fájl nem dolgozható fel, mivel nem megfelelően formázott info "
+"A(z) „%s” fájl nem dolgozható fel, mivel nem megfelelően formázott info "
 "oldal."
 
 #: ../src/yelp-print.c:97
@@ -690,10 +1142,6 @@ msgstr "A nyomtatás nem támogatott ezen a nyomtatón"
 msgid "Printer %s does not support postscript printing."
 msgstr "A(z) %s nyomtató nem támogatja a postscript nyomtatást."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "Nyomtatás"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Várakozás nyomtatásra"
@@ -707,16 +1155,16 @@ msgstr "Hiba történt a nyomtatás közben"
 msgid "It was not possible to print your document: %s"
 msgstr "Nem volt lehetséges a dokumentum nyomtatása: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "a GNOME támogató fórumok"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
-msgstr "Nincs találat a következőre: \"%s\""
+msgstr "Nincs találat a következőre: „%s”"
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -724,17 +1172,17 @@ msgstr ""
 "Próbálja más szavakkal leírni a problémát, vagy a témakört, amelyhez "
 "segítséget vár."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
-msgstr "Eredmények a következőre: \"%s\""
+msgstr "Eredmények a következőre: „%s”"
 
 #. TRANSLATORS: Please don't do anything funny with the
 #. * format arguement.  It isn't really going through a printf
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "A keresés megismétlése online a következő címen: %s"
@@ -748,7 +1196,7 @@ msgstr "A keresés megismétlése online a következő címen: %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -767,7 +1215,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "NULL"
 
@@ -776,12 +1224,16 @@ msgstr "NULL"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "a:e:i:k:ok"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Nincs megjegyzés"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -800,16 +1252,16 @@ msgstr "A keresés nem dolgozható fel"
 msgid "The search processor returned invalid results"
 msgstr "A keresésfeldolgozó érvénytelen eredményt adott vissza"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "A(z) %s oldal nem található a tartalomjegyzékben."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "A kért oldal nem található a tartalomjegyzékben."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -824,7 +1276,7 @@ msgstr "Érvénytelen stíluslap"
 #: ../src/yelp-transform.c:81
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "A(z) \"%s\" XSLT stíluslap hiányzik vagy nem érvényes."
+msgstr "A(z) „%s” XSLT stíluslap hiányzik vagy nem érvényes."
 
 #: ../src/yelp-transform.c:112
 msgid "Broken Transformation"
@@ -994,7 +1446,7 @@ msgstr "E-mail _cím másolása"
 msgid "Help Browser"
 msgstr "Súgóböngésző"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
 msgid "Loading..."
 msgstr "Betöltés..."
 
@@ -1005,7 +1457,7 @@ msgstr "Ismeretlen oldal"
 #: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
-msgstr "A kért \"%s\" URI érvénytelen"
+msgstr "A kért „%s” URI érvénytelen"
 
 #: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
@@ -1013,7 +1465,7 @@ msgstr "Az oldal nem tölthető be"
 
 #: ../src/yelp-window.c:1062
 msgid "Error executing \"gnome-open\""
-msgstr "Hiba a \"gnome-open\" végrehajtásakor"
+msgstr "Hiba a „gnome-open” végrehajtásakor"
 
 #: ../src/yelp-window.c:1246
 msgid "_Search:"
@@ -1031,34 +1483,34 @@ msgstr "Nem hozható létre ablak"
 msgid "Cannot create search component"
 msgstr "Nem hozható létre keresőkomponens"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
 msgstr "Kere_sés:"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "_Következő találat"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
 msgstr "_Előző találat"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "_Következő találat"
+
+#: ../src/yelp-window.c:1451
 msgid "Phrase not found"
 msgstr "A kifejezés nem található"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"A(z) \"%s\" fájl nem olvasható. Lehet, hogy a fájl nem létezik vagy nincs "
+"A(z) „%s” fájl nem olvasható. Lehet, hogy a fájl nem létezik vagy nincs "
 "joga olvasni azt."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -1067,11 +1519,11 @@ msgstr ""
 "Kovács Emese <emese@gnome.hu>\n"
 "Tímár András <timar@gnome.hu>"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2405
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentációböngésző és -megjelenítő a Gnome asztalhoz."
 
