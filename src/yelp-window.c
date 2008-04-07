@@ -1014,7 +1014,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     if (priv->uri && g_str_equal (real_uri, priv->uri)) {
 	doc = priv->current_document;
     } else {
-	g_free (priv->base_uri);
+	gchar *old_base_uri = priv->base_uri;
 	priv->base_uri = NULL;
 
 	switch (type) {
@@ -1057,7 +1057,17 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		gint status = 0;
 		GError *error = NULL;
 
-		priv->base_uri = g_strdup ("file:///fakefile");
+		priv->base_uri = old_base_uri;
+
+		/* disallow external links when running in the GDM greeter session */
+		if (g_getenv ("RUNNING_UNDER_GDM") != NULL) {
+		    gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
+
+		    window_error (window, _("Unable to load page"), message, FALSE);
+		    g_free (message);
+
+		    return;
+		}
 
 		cmd = g_strdup_printf ("gnome-open %s", uri);
 		if (!g_spawn_command_line_sync (cmd, &str_stdout, &str_stderr, &status, &error)) {
@@ -1079,9 +1089,11 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    break;
 
 	default:
-	    priv->base_uri = g_strdup ("file:///fakefile");
+	    priv->base_uri = old_base_uri;
 	    break;
 	}
+	if (old_base_uri != priv->base_uri)
+	    g_free (old_base_uri);
     }
 
     if (doc) {
