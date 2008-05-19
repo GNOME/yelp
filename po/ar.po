@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-10 13:20+0000\n"
+"POT-Creation-Date: 2008-02-26 16:30+0000\n"
 "PO-Revision-Date: 2008-02-26 16:25+0100\n"
 "Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -23,7 +23,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
+"n<=10 ? 2 : 3\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -49,8 +50,7 @@ msgstr "ملفّات الإعدادات"
 msgid "Curses Functions"
 msgstr "دالّات Curses"
 
-#: ../data/man.xml.in.h:5
-#: ../data/toc.xml.in.h:35
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "تطوير"
 
@@ -58,8 +58,7 @@ msgstr "تطوير"
 msgid "FORTRAN Functions"
 msgstr "دالّات فورتران"
 
-#: ../data/man.xml.in.h:7
-#: ../data/toc.xml.in.h:56
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "ألعاب"
 
@@ -585,7 +584,9 @@ msgid "Kids Games"
 msgstr "ألعاب الأطفال"
 
 #: ../data/toc.xml.in.h:77
-msgid "Learn more about making your system more accessible for a range of disabilities"
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
 msgstr "تعلم اكثر عن جعل نظامك متاحا لمجموعة من الإعاقات"
 
 #: ../data/toc.xml.in.h:78
@@ -689,9 +690,7 @@ msgstr "مشغلات"
 msgid "Presentation Tools"
 msgstr "أدوات تقديم"
 
-#: ../data/toc.xml.in.h:104
-#: ../src/yelp-print.c:337
-#: ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "طباعة"
 
@@ -1015,84 +1014,65 @@ msgstr "مواضيع المساعدة"
 msgid "Document Sections"
 msgstr "أقسام المستند"
 
-#: ../src/yelp-db-print.c:258
-#: ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275
-#: ../src/yelp-docbook.c:367
-#: ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338
-#: ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "الصفحة غير موجودة"
 
-#: ../src/yelp-db-print.c:259
-#: ../src/yelp-docbook.c:276
-#: ../src/yelp-info.c:244
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "لم يمكن ايجاد الصفحة %s في المستند %s "
 
-#: ../src/yelp-db-print.c:351
-#: ../src/yelp-docbook.c:368
-#: ../src/yelp-info.c:339
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
 #: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "لم يمكن ايجاد الصصفحة المطلوبة في المستند %s"
 
-#: ../src/yelp-db-print.c:392
-#: ../src/yelp-docbook.c:410
-#: ../src/yelp-info.c:380
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
 #: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "الملفّ غير موجود"
 
-#: ../src/yelp-db-print.c:393
-#: ../src/yelp-docbook.c:411
-#: ../src/yelp-info.c:381
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
 #: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "الملف ‘%s’ غير موجود."
 
-#: ../src/yelp-db-print.c:406
-#: ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:424
-#: ../src/yelp-docbook.c:436
-#: ../src/yelp-info.c:395
-#: ../src/yelp-man.c:458
-#: ../src/yelp-toc.c:437
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "لم يمكن تحليل الملف"
 
-#: ../src/yelp-db-print.c:407
-#: ../src/yelp-docbook.c:425
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr "لم يمكن فهم الملف ‘%s’. لأنه ملف XML غير سليم."
 
-#: ../src/yelp-db-print.c:419
-#: ../src/yelp-docbook.c:437
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
-msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr "لم يمكن فهم الملف ‘%s’. لأنه بعض الملفات المحتواة من طرفه غير سليمة."
 
-#: ../src/yelp-db-print.c:765
-#: ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../src/yelp-error.c:132
-#: ../src/yelp-error.c:139
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
 msgid "Unknown Error"
 msgstr "خطأ مجهول"
 
-#: ../src/yelp-error.c:136
-#: ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
 msgid "Could Not Read File"
 msgstr "لم أستطع قراءة الملف"
 
@@ -1102,12 +1082,15 @@ msgstr "لا معلومات متوفّرة حول هذا الخطأ."
 
 #: ../src/yelp-info.c:396
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "لم يمكن فهم الملف ‘%s’ لأنه ملف info غير سليم."
 
 #: ../src/yelp-io-channel.c:123
 #, c-format
-msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr "لم يمكن قراءة الملف ‘%s’. من الممكن أنه مضغوط بصورة غير معروفة."
 
 #: ../src/yelp-main.c:92
@@ -1123,14 +1106,14 @@ msgstr "عرّف أي دليل خزن مؤقت سيستخدم"
 msgid " GNOME Help Browser"
 msgstr "متصفّح مساعدة جنوم"
 
-#: ../src/yelp-main.c:378
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "مساعدة"
 
 #: ../src/yelp-man.c:459
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "لم يمكن فهم الملف ‘%s’ لأنه ملف man غير سليم."
 
 #: ../src/yelp-print.c:97
@@ -1173,8 +1156,11 @@ msgid "No results for \"%s\""
 msgstr "لا نتائج ل \"%s\""
 
 #: ../src/yelp-search-parser.c:287
-msgid "Try using different words to describe the problem you're having or the topic you want help with."
-msgstr "جرب استعمال كلمات مغايرة لوصف المشكلة أو الموضوع الذي تريد المساعدة حوله."
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+"جرب استعمال كلمات مغايرة لوصف المشكلة أو الموضوع الذي تريد المساعدة حوله."
 
 #: ../src/yelp-search-parser.c:290
 #, c-format
@@ -1200,7 +1186,11 @@ msgstr "أعد البحث على الأنترنت على %s"
 #. * "work", and "broken".
 #.
 #: ../src/yelp-search-parser.c:874
-msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
 msgstr "و:لا:حول:مع:في:على:هل:كيف:لم"
 
 #. Translators: This is a list of common prefixes for words.
@@ -1257,7 +1247,9 @@ msgid "The requested page was not found in the TOC."
 msgstr "لم يمكن ايجاد الصفحة المطلوبة في الـ TOC."
 
 #: ../src/yelp-toc.c:438
-msgid "The TOC file could not be parsed because it is not a well-formed XML document."
+msgid ""
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr "لم يمكن فهم ملف اجراء البحث لأنه ملف XML غير سليم."
 
 #: ../src/yelp-transform.c:80
@@ -1397,8 +1389,7 @@ msgstr "القسم ال_سّابق"
 msgid "_Next Section"
 msgstr "الفصل التّالي"
 
-#: ../src/yelp-window.c:410
-#: ../src/yelp-window.c:442
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "ال_محتويات"
 
@@ -1438,25 +1429,20 @@ msgstr "انسخ البريد الالكتروني"
 msgid "Help Browser"
 msgstr "متصفح المساعدة"
 
-#: ../src/yelp-window.c:592
-#: ../src/yelp-window.c:644
-#: ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
 msgid "Loading..."
 msgstr "جاري التحميل..."
 
-#: ../src/yelp-window.c:593
-#: ../src/yelp-window.c:645
+#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
 msgid "Unknown Page"
 msgstr "صفحة مجهولة"
 
-#: ../src/yelp-window.c:1008
-#: ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "العنوان \"%s\" غير سليم"
 
-#: ../src/yelp-window.c:1009
-#: ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
 msgid "Unable to load page"
 msgstr "لا يمكن تحميل الصفحة"
 
@@ -1498,8 +1484,12 @@ msgstr "الجملة غير موجودة"
 
 #: ../src/yelp-window.c:1627
 #, c-format
-msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
-msgstr "لم يمكن قراءة الملف ‘%s’. يمكن أن يكون الملف غير موجودا أو أنك لا تملك التصاريح لقراءته."
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+"لم يمكن قراءة الملف ‘%s’. يمكن أن يكون الملف غير موجودا أو أنك لا تملك "
+"التصاريح لقراءته."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
@@ -1526,103 +1516,143 @@ msgstr "احصل على المساعدة في جُنوم"
 
 #~ msgid "Chart"
 #~ msgstr "مخطط"
+
 #~ msgid "Finance"
 #~ msgstr "المالية"
+
 #~ msgid "PDA"
 #~ msgstr "PDA"
+
 #~ msgid "Accessories"
 #~ msgstr "ملحقات"
+
 #~ msgid "Applications for fun"
 #~ msgstr "تطبيقات للتسلية"
+
 #~ msgid "Applications for word processing and other office tasks"
 #~ msgstr "تطبيقات لمعالجة النصوص و أعمال المكتب الأخرى"
+
 #~ msgid "Applications related to multimedia"
 #~ msgstr "تطبيقات متعلقة بالوسائط المتعددة"
+
 #~ msgid "Applications related to software development"
 #~ msgstr "تطبيقات متعلقة بتطوير البرامج"
+
 #~ msgid "Applications specific to the panel"
 #~ msgstr "تطبيقات متعلقة بالشريط"
+
 #~ msgid "Applications that support assistive technologies"
 #~ msgstr "تطبيقات تدعم تقانة الإعانة"
+
 #~ msgid "Learning applications"
 #~ msgstr "التطبيقات التعليمية"
+
 #~ msgid "Office"
 #~ msgstr "المكتب"
+
 #~ msgid "Panel Applets"
 #~ msgstr "بريمجات الشريط"
+
 #~ msgid "Programming"
 #~ msgstr "برمجة"
+
 #~ msgid "Scientific Applications."
 #~ msgstr "تطبيقات علمية"
+
 #~ msgid "Utility applications"
 #~ msgstr "أدوات"
+
 #~ msgid "Variety of other applications"
 #~ msgstr "تطبيقات أخرى مختلفة"
+
 #~ msgid "An unknown error occured"
 #~ msgstr "حدث خطأ مجهول"
+
 #~ msgid "Could not load document"
 #~ msgstr "لم يمكن تحميل المستند"
+
 #~ msgid "Could not read the table of contents"
 #~ msgstr "لم يمكن قراءة جدول المحتويات"
+
 #~ msgid "Unsupported Format"
 #~ msgstr "تهيئة غير مدعومة"
+
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
 #~ "is formatted incorrectly."
 #~ msgstr ""
 #~ "لم يمكن فهم الملف ‘%s’. من الممكن أن الملف غير موجود، أو أنه منسّق بصورة "
 #~ "غير صحيحة."
+
 #~ msgid "The YelpDocInfo struct of the document"
 #~ msgstr "تركيب YelpDocInfo للمستند"
+
 #~ msgid ""
 #~ "Your search could not be processed. The file ‘%s’ is either missing or is "
 #~ "not a valid XSLT stylesheet."
 #~ msgstr "لم يمكن إتمام البحث. الملف ‘%s’ غير موجود أو ليس ملف XSLT صحيح."
+
 #~ msgid "Help Contents"
 #~ msgstr "محتويات المساعدة"
+
 #~ msgid "Could not load the OMF file '%s'."
 #~ msgstr "لم يمكن تحميل ملف OMF '%s'."
+
 #~ msgid "yelp-watermark-blockquote-201C"
 #~ msgstr "yelp-watermark-blockquote-201C"
+
 #~ msgid "YelpTocPager: Pause count is negative."
 #~ msgstr "YelpTocPager: تعداد الإيقاف المؤقت سلبي."
+
 #~ msgid ""
 #~ "The table of contents could not be processed. The file ‘%s’ is either "
 #~ "missing or is not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "لم يمكن فهم جدول المحتويات.  الملف ‘%s’ غير موجود أو ليس ملف XSLT صحيح."
+
 #~ msgid "Read man page for %s"
 #~ msgstr "اقرأ صفحة كتيّبل %s"
+
 #~ msgid "Read info page for %s"
 #~ msgstr "اقرأ صفحات معلومات %s"
+
 #~ msgid ""
 #~ "The table of contents could not be loaded. The file ‘%s’ is either "
 #~ "missing or is not well-formed XML."
 #~ msgstr ""
 #~ "لم يمكن تحميل جدول المحتويات.  الملف ‘%s’ غير موجود أو ليس ملف XML صحيح."
+
 #~ msgid "Command Line Help"
 #~ msgstr "مساعدة سطر الأوامر"
+
 #~ msgid "The Uniform Resource Identifier for the file is invalid."
 #~ msgstr "عنوان الملف غير صحيح."
+
 #~ msgid ""
 #~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 #~ "actual file."
 #~ msgstr "عنوان ‘%s’ غير صحيح أو ليس عنوانا لملف صحيح."
+
 #~ msgid "Man pages are not supported in this version."
 #~ msgstr "صفحات الكتيّبل غير مدعومة في هذا الإصدار."
+
 #~ msgid "GNU info pages are not supported in this version"
 #~ msgstr "صفحات معلومات جنو غير مدعومة في هذا الإصدار."
+
 #~ msgid "Search is not supported in this version."
 #~ msgstr "البحث غير مدعوم في هذا الإصدار."
+
 #~ msgid ""
 #~ "SGML documents are no longer supported. Please ask the author of the "
 #~ "document to convert to XML."
 #~ msgstr ""
 #~ "مستندات SGML غير مدعومة. الرجاء سؤال كاتب هذا المستند لتغييره إلى XML."
+
 #~ msgid ""
 #~ "A transformation context could not be created for the file ‘%s’. The "
 #~ "format may not be supported."
 #~ msgstr "لم يمكن إنشاء مجال تحويل للملف ‘%s’. من الممكن أن النوع غير مدعوم."
+
 #~ msgid ""
 #~ "The section ‘%s’ does not exist in this document. If you were directed to "
 #~ "this section from a Help button in an application, please report this to "
@@ -1630,9 +1660,9 @@ msgstr "احصل على المساعدة في جُنوم"
 #~ msgstr ""
 #~ "الفصل ‘%s’ غير موجود في هذا المستند. إذا وجهت لهذا القسم من زر مساعدة في "
 #~ "تطبيق، الرجاء إعلام مسيري هذا البرنامج."
+
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
 #~ "is improperly formatted."
 #~ msgstr ""
 #~ "لم يمكن فهم الملف ‘%s’. من الممكن أن الملف غير موجود، أو أنه ملف غير سليم."
-
