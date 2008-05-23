@@ -21,7 +21,7 @@
  */
 
 #include <mozilla-config.h>
-#include "config.h"
+#include <config.h>
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -30,12 +30,18 @@
 
 #include <nsCOMPtr.h>
 #include <nsIComponentManager.h>
+#include <nsComponentManagerUtils.h>
 #include <nsIComponentRegistrar.h>
 #include <nsIGenericFactory.h>
 #include <nsILocalFile.h>
 #include <nsIPrintSettings.h>
 #include <nsServiceManagerUtils.h>
+
+#ifdef XPCOM_GLUE
+#include <nsXPCOMGlue.h>
+#else
 #include <nsXPCOM.h>
+#endif
 
 #include "yelp-gecko-services.h"
 
@@ -298,7 +304,6 @@ PrintListener::SetPrintSettings (YelpPrintInfo *settings,
   target->SetPrintInColor (gtk_print_settings_get_use_color (settings->config));
 
   target->SetPaperSizeUnit(nsIPrintSettings::kPaperSizeMillimeters);
-  target->SetPaperSize (nsIPrintSettings::kPaperSizeDefined);
 
   GtkPaperSize *paperSize = gtk_page_setup_get_paper_size (settings->setup);
   if (!paperSize) {
@@ -437,15 +442,16 @@ yelp_register_printing ()
   NS_ENSURE_SUCCESS (rv, );
 
   nsCOMPtr<nsIGenericFactory> componentFactory;
-  rv = NS_NewGenericFactory(getter_AddRefs(componentFactory),
-			    &(sAppComps[0]));
-    
+  componentFactory = do_CreateInstance ("@mozilla.org/generic-factory;1", &rv);
+
   if (NS_FAILED(rv) || !componentFactory)
     {
       g_warning ("Failed to make a factory for %s\n", sAppComps[0].mDescription);
       return;
     }
    
+  componentFactory->SetComponentInfo(&(sAppComps[0]));
+    
   rv = cr->RegisterFactory(sAppComps[0].mCID,
 			   sAppComps[0].mDescription,
 			   sAppComps[0].mContractID,

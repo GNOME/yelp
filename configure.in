@@ -25,6 +25,8 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 AM_PATH_GLIB_2_0
 
+AM_PROG_CC_C_O
+
 GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
 GNOME_CXX_WARNINGS
@@ -174,27 +176,6 @@ esac
 AC_SUBST([YELP_SEARCH_CFLAGS])
 AC_SUBST([YELP_SEARCH_LIBS])
 
-# *****
-# Gecko
-# *****
-
-GECKO_INIT([MOZILLA])
-
-AC_SUBST([MOZILLA])
-AC_SUBST([MOZILLA_FLAVOUR])
-AC_SUBST([MOZILLA_INCLUDE_ROOT])
-AC_SUBST([MOZILLA_HOME])
-AC_SUBST([MOZILLA_PREFIX])
-AC_SUBST([MOZILLA_EXTRA_LIBS])
-AC_SUBST([MOZILLA_GLUE_LIBS])
-
-case "$MOZILLA" in
-xulrunner) gecko_min_version=1.8 ;;
-*firefox) gecko_min_version=1.5 ;;
-*) AC_MSG_ERROR([$gecko_cv_gecko is not supported])
-esac
-
-PKG_CHECK_MODULES([MOZILLA_COMPONENT],[${gecko_cv_gecko}-xpcom >= $gecko_min_version $gecko_cv_extra_pkg_dependencies])
 
 dnl ====================================
 dnl = zlib for help converters
@@ -234,6 +215,36 @@ dnl <= Check for bzip2 > 1.0.0
 	   ])
     dnl =>
 AC_SUBST(BZ_LIBS)
+
+
+# *****
+# Gecko
+# *****
+
+GECKO_INIT([MOZILLA])
+GECKO_DEFINES
+
+AC_SUBST([MOZILLA])
+AC_SUBST([MOZILLA_FLAVOUR])
+AC_SUBST([MOZILLA_INCLUDE_ROOT])
+AC_SUBST([MOZILLA_HOME])
+AC_SUBST([MOZILLA_PREFIX])
+AC_SUBST([MOZILLA_EXTRA_LIBS])
+AC_SUBST([MOZILLA_GLUE_LIBS])
+
+case "$MOZILLA" in
+xulrunner) gecko_min_version=1.8 ;;
+libxul*) gecko_min_version=1.9 ;;
+*firefox) gecko_min_version=1.5 ;;
+*) AC_MSG_ERROR([$gecko_cv_gecko is not supported])
+esac
+
+if test $MOZILLA = libxul-embedding; then
+	PKG_CHECK_MODULES([MOZILLA_COMPONENT],[libxul-embedding $gecko_cv_extra_pkg_dependencies])
+	MOZILLA_COMPONENT_CFLAGS="$MOZILLA_COMPONENT_CFLAGS `$PKG_CONFIG --cflags ${gecko_cv_gecko}` `$PKG_CONFIG --define-variable=includetype=unstable --cflags ${gecko_cv_gecko}`"
+else
+	PKG_CHECK_MODULES([MOZILLA_COMPONENT],[${gecko_cv_gecko}-xpcom >= $gecko_min_version $gecko_cv_extra_pkg_dependencies])
+fi
 
 # Set flags
 

@@ -389,7 +389,8 @@ main (int argc, char **argv)
 	}
 
 	if (!yelp_html_initialize ()) {
-		g_error ("Could not initialize gecko!");
+		g_printerr ("Could not initialize gecko!\n");
+		exit (1);
 	}
 
 	if (files != NULL && files[0] != NULL) {

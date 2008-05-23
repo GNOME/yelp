@@ -1,3 +1,15 @@
+2008-05-23  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* configure.in:
+	* m4/gecko.m4:
+	* src/Makefile.am:
+	* src/yelp-gecko-services.cpp:
+	* src/yelp-gecko-utils.cpp:
+	* src/yelp-io-channel.c:
+	* src/yelp-main.c (main):
+	Add support for XULRunner / Firefox 3 backend
+	Bug # 499744 - Patch from Christian Persch
+
 === 2.22.1 ===
 
 2008-04-07  Shaun McCance  <shaunm@gnome.org>

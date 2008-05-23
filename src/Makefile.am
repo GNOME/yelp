@@ -65,9 +65,11 @@ mozilla_include_subdirs =	\
 yelp_CPPFLAGS =									\
 	-I$(top_srcdir)								\
 	-I$(top_builddir)/src							\
-	$(addprefix -I$(MOZILLA_INCLUDE_ROOT)/,$(mozilla_include_subdirs))      \
 	$(YELP_DEFINES)								\
 	$(AM_CPPFLAGS)
+
+yelp_CPPFLAGS += $(MOZILLA_COMPONENT_CFLAGS)
+yelp_CPPFLAGS += $(addprefix -I$(MOZILLA_INCLUDE_ROOT)/,$(mozilla_include_subdirs))
 
 yelp_CFLAGS =				\
 	$(YELP_CFLAGS)			\
@@ -92,7 +94,11 @@ yelp_LDADD =				\
 	$(MOZILLA_EXTRA_LIBS)		\
 	$(MOZILLA_GLUE_LIBS)
 
-yelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
+yelp_LDFLAGS = $(AM_LDFLAGS)
+
+if !HAVE_GECKO_XPCOM_GLUE
+yelp_LDFLAGS += -R$(MOZILLA_HOME)
+endif
 
 #check_PROGRAMS =		\
 #	test-document		\

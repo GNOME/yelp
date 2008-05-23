@@ -24,9 +24,21 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_GECKO_1_9
+/* This is needed to stop gecko's version of libz
+ * interfering and making gzopen et. al. crazy defines. 
+ */
+#define MOZZCONF_H
+#endif
+
+
 #include <stdio.h>
 #include <glib.h>
 #include <glib/gi18n.h>
+
+#include "yelp-error.h"
+#include "yelp-io-channel.h"
+
 #include <zlib.h>
 #ifdef HAVE_LIBBZ2
 #include <bzlib.h>
@@ -35,9 +47,6 @@
 #include <lzmadec.h>
 #endif
 #include <string.h>
-
-#include "yelp-error.h"
-#include "yelp-io-channel.h"
 
 typedef struct _YelpIOChannel YelpIOChannel;
 struct _YelpIOChannel {
