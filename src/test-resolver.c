@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include <glib.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include "yelp-utils.h"
 
 
@@ -202,9 +201,6 @@ int
 main (int argc, char *argv[])
 {
   int i=1;
-
-  /* Used within yelp-utils */
-  gnome_vfs_init ();
 
   if (argc % 2 != 1) {
     printf ("Usage: %s [<test-uri> <type> <test-uri> <type> ... ]\n", argv[0]);

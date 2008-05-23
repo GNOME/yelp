@@ -30,7 +30,6 @@
 #include <gdk/gdkx.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-client.h>
 #include <dbus/dbus-glib-bindings.h>
 #include <string.h>
@@ -377,8 +376,6 @@ main (int argc, char **argv)
 	}
 	g_set_application_name (_("Help"));
 	gtk_window_set_default_icon_name ("gnome-help");
-
-	gnome_vfs_init ();
 
 	if (!private) {
 		connection = dbus_g_bus_get (DBUS_BUS_SESSION, NULL);

@@ -23,7 +23,6 @@
 #include <config.h>
 
 #include <dbus/dbus-glib-bindings.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <gdk/gdkx.h>
 #define SN_API_NOT_YET_FROZEN
 #include <libsn/sn-launchee.h>

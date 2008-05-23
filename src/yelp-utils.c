@@ -27,8 +27,7 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <libgnomevfs/gnome-vfs.h>
-#include <libgnomevfs/gnome-vfs-mime-utils.h>
+#include <gio/gio.h>
 
 #include <string.h>
 #define I_KNOW_RARIAN_0_8_IS_UNSTABLE
@@ -56,6 +55,7 @@ YelpRrnType    yelp_uri_resolve           (gchar        *uri,
 YelpRrnType
 resolve_process_ghelp (char *uri, gchar **result)
 {
+    gboolean uncertain;
     RrnReg *reg = rrn_find_from_ghelp (&uri[6]);
     YelpRrnType type = YELP_RRN_TYPE_ERROR;
 
@@ -70,8 +70,8 @@ resolve_process_ghelp (char *uri, gchar **result)
 	if (reg->type && *(reg->type))
 	    mime = g_strdup (reg->type);
 	else 
-	    mime = gnome_vfs_get_mime_type (*result);
-	
+	    mime = g_content_type_guess (*result, NULL, 0, &uncertain);
+
 	if (!mime) {
 	    type = YELP_RRN_TYPE_ERROR;
 	} else if (g_str_equal (mime, "text/xml") || 
@@ -149,13 +149,15 @@ resolve_is_man_path (const gchar *path, const gchar *encoding)
 YelpRrnType
 resolve_full_file (const gchar *path)
 {
-    gchar *mime_type;
+    gchar    *mime_type;
+    gboolean  uncertain;
+
     YelpRrnType type = YELP_RRN_TYPE_ERROR;
 
     if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
 	return YELP_RRN_TYPE_ERROR;
     }
-    mime_type = gnome_vfs_get_mime_type (path);
+    mime_type = g_content_type_guess (path, NULL, 0, &uncertain);
     if (mime_type == NULL) {
 	return YELP_RRN_TYPE_ERROR;
     }

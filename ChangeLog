@@ -1,6 +1,21 @@
 2008-05-23  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* configure.in:
+	* src/test-resolver.c (main):
+	* src/test-uri.c (main):
+	* src/yelp-base.c:
+	* src/yelp-main.c (main):
+	* src/yelp-search-pager.c:
+	* src/yelp-search-parser.c:
+	* src/yelp-toc-pager.c (process_omf_pending):
+	* src/yelp-utils.c (resolve_process_ghelp), (resolve_full_file):
+	* src/yelp-window.c (window_do_load_html), (window_print_page_cb):
+	Port to use gio instead of gnome_vfs
+	bug #513852 - patch from Alon Zakai
+
+2008-05-23  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* configure.in:
 	* m4/gecko.m4:
 	* src/Makefile.am:
 	* src/yelp-gecko-services.cpp:

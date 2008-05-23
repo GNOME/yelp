@@ -32,7 +32,7 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 #include <glib/gi18n.h>
-#include <libgnomevfs/gnome-vfs.h>
+#include <gio/gio.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xmlreader.h>
@@ -894,9 +894,9 @@ process_omf_pending (YelpTocPager *pager)
     /* if this is NULL, then we are done processing */
     /* FIXME: cleanup any leftover stuff here */
     if (!first) {
-	GnomeVFSURI *fromfile = gnome_vfs_uri_new (content_list);
-	GnomeVFSURI *tofile = gnome_vfs_uri_new (sk_file);
-	gint result = 0;
+	GFile *fromfile = g_file_new_for_uri (content_list);
+	GFile *tofile   = g_file_new_for_uri (sk_file);
+	gboolean result = FALSE;
 
 	/* create the new cache file */
 	if (!(newindex = g_fopen (index_file, "w")))
@@ -908,16 +908,13 @@ process_omf_pending (YelpTocPager *pager)
 
 	/* copy the newly created file to ~/.gnome2/yelp.d/omfindex.xml,
 	 * overwriting the old one if necessary */
-	result = gnome_vfs_xfer_uri (fromfile, tofile, 
-	                             GNOME_VFS_XFER_DEFAULT,
-			             GNOME_VFS_XFER_ERROR_MODE_ABORT,
-			             GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE,
-			             NULL, NULL);
+	result = g_file_copy (fromfile, tofile, G_FILE_COPY_OVERWRITE,
+	                      NULL, NULL, NULL, NULL);
 
-	gnome_vfs_uri_unref (fromfile);
-	gnome_vfs_uri_unref (tofile);
+	g_object_unref (fromfile);
+	g_object_unref (tofile);
 
-	if (result != GNOME_VFS_OK) 
+	if (result != TRUE) 
 	    g_critical ("Unable to copy %s to %s\n", content_list, sk_file);
 
 	if (priv->omf_dirhash)

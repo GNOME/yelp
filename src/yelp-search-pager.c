@@ -27,7 +27,6 @@
 #include <string.h>
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xmlreader.h>

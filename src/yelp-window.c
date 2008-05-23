@@ -27,10 +27,10 @@
 #endif
 
 #include <glib/gi18n.h>
+#include <gio/gio.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <glade/glade.h>
 #include <string.h>
 #include <libgnome/gnome-config.h>
@@ -1602,12 +1602,12 @@ window_do_load_html (YelpWindow    *window,
 		     YelpRrnType    type,
 		     gboolean       need_history)
 {
-    YelpWindowPriv  *priv;
-    GnomeVFSHandle  *handle;
-    GnomeVFSResult   result;
-    GnomeVFSFileSize n;
-    gchar            buffer[BUFFER_SIZE];
-    GtkAction       *action;
+    YelpWindowPriv   *priv;
+    GFile            *file;
+    GFileInputStream *stream;
+    gsize             n;
+    gchar             buffer[BUFFER_SIZE];
+    GtkAction        *action;
     gchar *real_uri = NULL;
     gchar *base_uri = NULL;
 
@@ -1631,9 +1631,10 @@ window_do_load_html (YelpWindow    *window,
     
     window_setup_window (window, type, uri, frag_id, uri, priv->base_uri, need_history);
 
-    result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
+    file   = g_file_new_for_uri (uri);
+    stream = g_file_read (file, NULL, NULL);
 
-    if (result != GNOME_VFS_OK) {
+    if (stream == NULL) {
 	gchar *message;
 
 	message = g_strdup_printf (_("The file ‘%s’ could not be read.  This file might "
@@ -1665,8 +1666,8 @@ window_do_load_html (YelpWindow    *window,
 	g_assert_not_reached ();
     }
 
-    while ((result = gnome_vfs_read
-	    (handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
+    while ((g_input_stream_read_all
+	    ((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL))) {
 	gchar *tmp;
 	tmp = g_utf8_strup (buffer, n);
 	if (strstr (tmp, "<FRAMESET")) {
@@ -1679,8 +1680,11 @@ window_do_load_html (YelpWindow    *window,
     yelp_html_close (priv->html_view);
 
  done:
-    if (handle)
-	gnome_vfs_close (handle);
+    if (file)
+        g_object_unref (file);
+    if (stream)
+        g_object_unref (stream);
+
     g_free (real_uri);
     gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
@@ -2044,14 +2048,15 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
     } else {
 	/* HTML file */
 
-	GnomeVFSHandle  *handle;
-	GnomeVFSResult   result;
-	GnomeVFSFileSize n;
-	gchar            buffer[BUFFER_SIZE];	
+	GFile            *file;
+	GFileInputStream *stream;
+	gsize             n;
+	gchar             buffer[BUFFER_SIZE];	
 	
-	result = gnome_vfs_open (&handle, priv->uri, GNOME_VFS_OPEN_READ);
+    file   = g_file_new_for_uri (priv->uri);
+    stream = g_file_read (file, NULL, NULL);
 	
-	if (result != GNOME_VFS_OK) {
+	if (stream == NULL) {
 	    /*GError *error = NULL;
 	    g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
 			 _("The file ‘%s’ could not be read.  This file might "
@@ -2060,6 +2065,11 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 			 uri);
 			 window_error (window, error, TRUE);*/
 	    /* TODO: Proper errors */
+
+	    if (file)
+	        g_object_unref (file);
+	    if (stream)
+	        g_object_unref (stream);
 	    return;
 	}
 	/* Assuming the file exists.  If it doesn't how did we get this far?
@@ -2077,10 +2087,15 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	    g_assert_not_reached ();
 	}
 	
-	while ((result = gnome_vfs_read
-		(handle, buffer, BUFFER_SIZE, &n)) == GNOME_VFS_OK) {
+	while ((g_input_stream_read_all
+	    ((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL))) {
 	    yelp_html_write (html, buffer, n);
 	}
+
+    if (file)
+        g_object_unref (file);
+    if (stream)
+        g_object_unref (stream);
 	
 	yelp_html_close (html);
 	

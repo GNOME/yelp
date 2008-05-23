@@ -24,7 +24,6 @@
 
 #include <libgnome/gnome-init.h>
 #include <libgnome/gnome-program.h>
-#include <libgnomevfs/gnome-vfs.h>
 
 #include "yelp-utils.h"
 
@@ -107,8 +106,6 @@ main (int argc, char **argv)
 				  GNOME_PROGRAM_STANDARD_PROPERTIES,
 				  NULL);
 
-    gnome_vfs_init ();
-
     for (i = 1; i < argc; i++) {
 	if (i != 1)
 	    printf ("\n");
@@ -118,8 +115,6 @@ main (int argc, char **argv)
 	else
 	    printf ("Failed to load URI: %s\n", argv[i]);
     }
-
-    gnome_vfs_shutdown ();
 
     return 0;
 }
