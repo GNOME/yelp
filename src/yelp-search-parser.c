@@ -1212,6 +1212,7 @@ search_clean_snippet (gchar *snippet, gchar **terms)
     gboolean am_cutting = FALSE;
     gchar *result = NULL;
     gboolean found_terms = FALSE;
+    int i;
 
 
     if (!snippet)
@@ -1222,18 +1223,18 @@ search_clean_snippet (gchar *snippet, gchar **terms)
     }
     result = g_strdup (snippet);
 
-    for (iteration = terms; *iteration; iteration++) {
+    for (iteration = terms, i = 0; iteration[i]; i++) {
 	gchar *before, *after, *tmp;
 	gchar *str;
 	gchar before_c, after_c;
 	gint count = 0;
 
-	while ((str = strstr (result, (*iteration)))) {
+	while ((str = strstr (result, (iteration[i])))) {
 	    gboolean breaking = FALSE;
 	    gint i;
 	    for (i=0; i< count; i++) {
 		str++;
-		str = strstr (str, (*iteration));
+		str = strstr (str, (iteration[i]));
 		if (!str) {
 		    breaking = TRUE;
 		    break;
@@ -1244,7 +1245,7 @@ search_clean_snippet (gchar *snippet, gchar **terms)
 		break;
 
 	    before_c = *(str-1);
-	    after_c = *(str+strlen(*iteration));
+	    after_c = *(str+strlen(iteration[i]));
 
 	    if (g_ascii_isalpha (before_c) || g_ascii_isalpha (after_c)) {
 		continue;
@@ -1272,7 +1273,7 @@ search_clean_snippet (gchar *snippet, gchar **terms)
 	    before = g_strconcat (tmp, "<em>", NULL);
 	    g_free (tmp);
 	    
-	    str += strlen (*iteration);
+	    str += strlen (iteration[i]);
 
 	    if (am_cutting && !found_terms && strlen (str) > len_after_term) {
 		gchar *tmp1;
@@ -1284,7 +1285,7 @@ search_clean_snippet (gchar *snippet, gchar **terms)
 		tmp = g_strdup (str);
 	    }
 	    
-	    after = g_strconcat ((*iteration), "</em>", tmp, NULL);
+	    after = g_strconcat ((iteration[i]), "</em>", tmp, NULL);
 
 
 	    

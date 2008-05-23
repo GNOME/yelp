@@ -1,5 +1,11 @@
 2008-05-23  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-search-parser.c (search_clean_snippet):
+	Don't crash searching on multibyte characters
+	bug #513668 - patch from Takao Fujiwara
+
+2008-05-23  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* configure.in:
 	* src/test-resolver.c (main):
 	* src/test-uri.c (main):
