@@ -1,5 +1,12 @@
 2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* yelp.desktop.in.in:
+	Only show desktop entry in GNOME as
+	other desktops will ship their own help browser
+	bug #522994
+
+2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/yelp-window.c (window_print_document_cb):
 	Fix printing whole document
 	bug #525593
