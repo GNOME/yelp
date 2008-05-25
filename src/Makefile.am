@@ -197,7 +197,7 @@ MAINTAINERCLEANFILES = $(BUILT_SOURCES)
 
 EXTRA_DIST = yelp-marshal.list yelp-infos.xml
 
-install-exec-local:
+install-exec-hook:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \
 	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
 

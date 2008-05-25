@@ -1,5 +1,11 @@
 2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/Makefile.am:
+	Fix parallel make
+	bug #531014 - Rémi Cardona
+
+2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* configure.in:
 	* src/yelp-search-parser.c (check_finished), (snippet_response),
 	(search_parser_process_idle):
