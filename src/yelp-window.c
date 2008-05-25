@@ -2004,7 +2004,7 @@ window_print_document_cb (GtkAction *action, YelpWindow *window)
     print->html = html;
 
     yelp_document_get_page (doc,
-			    "index",
+			    "x-yelp-index",
 			    (YelpDocumentFunc) window_print_signal, 
 			    (void *) print);
 }

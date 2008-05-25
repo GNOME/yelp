@@ -1,5 +1,11 @@
 2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-window.c (window_print_document_cb):
+	Fix printing whole document
+	bug #525593
+
+2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/yelp-utils.c (resolve_process_ghelp):
 	Fix gnome-help: URIs
 	bug #528434
