@@ -59,6 +59,16 @@ resolve_process_ghelp (char *uri, gchar **result)
     RrnReg *reg = rrn_find_from_ghelp (&uri[6]);
     YelpRrnType type = YELP_RRN_TYPE_ERROR;
 
+    if (!strncmp (uri, "ghelp:", 6)) {
+	reg = rrn_find_from_ghelp (&uri[6]);
+    } else if (!strncmp (uri, "gnome-help:", 11)) {
+	reg = rrn_find_from_ghelp (&uri[11]);
+    } else {
+	g_warning ("Trying to resolve a ghelp URI from a non-ghelp string.");
+	return YELP_RRN_TYPE_ERROR;
+    }
+   
+
     if (reg) {
 	gchar *mime = NULL;
 	if (g_str_has_prefix (reg->uri, "file:"))

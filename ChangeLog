@@ -1,5 +1,11 @@
 2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-utils.c (resolve_process_ghelp):
+	Fix gnome-help: URIs
+	bug #528434
+
+2008-05-25  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/Makefile.am:
 	Fix parallel make
 	bug #531014 - Rémi Cardona
