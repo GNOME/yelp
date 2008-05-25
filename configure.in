@@ -135,7 +135,12 @@ dnl ******
 dnl beagle
 dnl ******
 
-BEAGLE_MODULES="libbeagle-0.0 >= 0.2.4"
+BEAGLE_MODULES=
+if $PKG_CONFIG --exists libbeagle-1.0; then
+	BEAGLE_MODULES="libbeagle-1.0 >= 0.3.0"
+else
+	BEAGLE_MODULES="libbeagle-0.0 >= 0.2.4"
+fi
 
 AC_ARG_WITH([search],
 	[AC_HELP_STRING([--with-search=basic|beagle|auto],

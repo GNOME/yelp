@@ -313,7 +313,8 @@ check_finished (YelpSearchParser *parser)
     g_free (check);
     xmlNewTextChild (parser->root, NULL, BAD_CAST "online1", BAD_CAST split[1]);
 
-    parser->finished = TRUE;
+    if (parser->snippet_request_count == 0)
+      parser->finished = TRUE;
 
 }
 
@@ -366,7 +367,7 @@ snippet_response (BeagleSnippetRequest *request, BeagleSnippetResponse *response
 
     const char *xml = beagle_snippet_response_get_snippet (response);
 
-    if (xml == NULL) {
+    if (xml == NULL || strlen (xml) == 0) {
 	debug_print (DB_DEBUG, "snippet_response empty\n");
 	return;
     }
@@ -561,7 +562,7 @@ search_parser_process_idle (YelpSearchParser *parser)
 
 	beagle_query_set_max_hits (query, 10000);
 	beagle_query_add_text (query, parser->search_terms);
-	beagle_query_add_source (query, "documentation");
+	beagle_query_add_text (query, "source:documentation OR source:manpages");
 
 	parser->hits = g_ptr_array_new ();
 
