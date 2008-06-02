@@ -1,3 +1,22 @@
+Changed in 2.23.1:
+------------------
+* Add support for Gecko 1.9 (XULRunner) - Christian Persch
+* Move from gnome-vfs to gio - Alon Zakai
+* Fix searching on multibyte characters - Takao Fujiwara
+* Add support for newer Beagles - Arun Raghavan
+* Fix parallel make - Rémi Cardona
+* Make "print whole document" work again
+* Re-add support for gnome-help URIs
+* Only show the help browser in GNOME menus (as other 
+  desktops should ship their own help browser)
+* New translations:
+  fur (Friulian team)
+* Updated translations:
+  ar  (Djihed Afifi)
+  bg  (Alexander Shopov)
+  he  (Yair Hershkovitz)
+  vi  (Clytie Siddall)
+
 Changed in 2.22.1:
 ------------------
 * Don't launch external programs under GDM (#525447)
