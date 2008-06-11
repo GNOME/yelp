@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-07 10:23+0100\n"
-"PO-Revision-Date: 2008-03-07 10:30+0100\n"
+"POT-Creation-Date: 2008-06-09 15:22+0200\n"
+"PO-Revision-Date: 2008-06-11 11:48+0200\n"
 "Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -331,7 +331,7 @@ msgstr "Art"
 
 #: ../data/toc.xml.in.h:13
 msgid "Artificial Intelligence"
-msgstr ""
+msgstr "Inteligéncia artificiala"
 
 #: ../data/toc.xml.in.h:14
 msgid "Astronomy"
@@ -464,7 +464,7 @@ msgstr "Gestionari de fichièrs"
 
 #: ../data/toc.xml.in.h:48
 msgid "File Tools"
-msgstr ""
+msgstr "Espleches pels fichièrs"
 
 #: ../data/toc.xml.in.h:49
 msgid "File Transfer"
@@ -712,7 +712,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:112
 msgid "Remote Access"
-msgstr ""
+msgstr "Accès distant"
 
 #: ../data/toc.xml.in.h:113
 msgid "Revision Control"
@@ -720,7 +720,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:114
 msgid "Robotics"
-msgstr ""
+msgstr "Robotica"
 
 #: ../data/toc.xml.in.h:115
 msgid "Role Playing Games"
@@ -776,7 +776,7 @@ msgstr "Jòcs d'espòrt"
 
 #: ../data/toc.xml.in.h:128
 msgid "Spreadsheet Tools"
-msgstr ""
+msgstr "Espleches de fuèlhas de calcul"
 
 #: ../data/toc.xml.in.h:129
 msgid "Strategy Games"
@@ -804,15 +804,15 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:135
 msgid "Text Editors"
-msgstr ""
+msgstr "Editors de tèxt"
 
 #: ../data/toc.xml.in.h:136
 msgid "Text Tools"
-msgstr ""
+msgstr "Espleches pel tèxt"
 
 #: ../data/toc.xml.in.h:137
 msgid "Tools to help you manage your computer"
-msgstr ""
+msgstr "Espleches per vos ajudar a gerir vòstre ordenador"
 
 #: ../data/toc.xml.in.h:138
 msgid "Translation Tools"
@@ -824,7 +824,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:140
 msgid "Utilities"
-msgstr ""
+msgstr "Utilitaris"
 
 #: ../data/toc.xml.in.h:141
 msgid "Utilities to help you get work done"
@@ -853,11 +853,11 @@ msgstr "Navegaire web"
 
 #: ../data/toc.xml.in.h:148
 msgid "Web Development"
-msgstr ""
+msgstr "Desvolopament web"
 
 #: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
-msgstr ""
+msgstr "Planvengut dins lo navegaire d'ajuda de GNOME"
 
 #: ../data/toc.xml.in.h:150
 msgid "Word Processors"
@@ -1063,7 +1063,7 @@ msgstr "Desconegut"
 msgid "Unknown Error"
 msgstr "Error desconeguda"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1643
 msgid "Could Not Read File"
 msgstr "Impossible de legir lo fichièr"
 
@@ -1077,7 +1077,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1086,20 +1086,20 @@ msgstr ""
 "Impossible de legir e descodar lo fichièr \"%s\". Es possible que lo fichièr "
 "siá compressat dins un format pas gerit."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:91
 msgid "Use a private session"
 msgstr "Utilizar una session privada"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "Definís lo repertòri d'escondedor d'utilizar"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
 msgstr " Navegador d'ajuda GNOME"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajuda"
 
@@ -1139,22 +1139,22 @@ msgstr "I a aguda una error al moment d'estampar"
 msgid "It was not possible to print your document: %s"
 msgstr "Impossible d'estampar vòstre document : %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr ""
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Pas cap de resultat per \"%s\""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Resultas de la recèrca per \"%s\""
@@ -1164,7 +1164,7 @@ msgstr "Resultas de la recèrca per \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr ""
@@ -1423,7 +1423,7 @@ msgstr "Copiar l'adreça _electronica"
 msgid "Help Browser"
 msgstr "Navegador d'ajuda"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1700
 msgid "Loading..."
 msgstr "Cargament..."
 
@@ -1431,52 +1431,54 @@ msgstr "Cargament..."
 msgid "Unknown Page"
 msgstr "Pagina desconeguda"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1084
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr ""
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
+#: ../src/yelp-window.c:1085
 msgid "Unable to load page"
 msgstr "Impossible de cargar la pagina"
 
-#: ../src/yelp-window.c:1069
+#: ../src/yelp-window.c:1079
 msgid "Error executing \"gnome-open\""
 msgstr ""
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1265
 msgid "_Search:"
 msgstr "_Recercar :"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1266
 msgid "Search for other documentation"
 msgstr "Recercar d'autras documentacions"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1286
 msgid "Cannot create window"
 msgstr "Impossible de crear una fenèstra"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1292
 msgid "Cannot create search component"
 msgstr ""
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1464
 msgid "Fin_d:"
 msgstr "_Recercar :"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1486
 msgid "Find _Previous"
 msgstr "Recercar lo _precedent"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1498
 msgid "Find _Next"
 msgstr "Recercar lo _seguent"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1511
 msgid "Phrase not found"
 msgstr "Impossible de trobar la frasa"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1640
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1485,15 +1487,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2480
 msgid "translator-credits"
 msgstr "Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2483
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2485
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navegador e legidor de documentacion pel burèu GNOME."
 
