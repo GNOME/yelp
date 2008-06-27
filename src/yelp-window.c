@@ -2487,7 +2487,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 			   "copyright", copyright,
 			   "authors", authors,
 			   "translator-credits", translator_credits,
-			   "logo-icon-name", "gnome-help",
+			   "logo-icon-name", "help-browser",
 			   NULL);
 }
 

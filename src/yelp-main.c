@@ -375,7 +375,7 @@ main (int argc, char **argv)
 		startup_id = g_strdup_printf ("_TIME%lu", tmp);
 	}
 	g_set_application_name (_("Help"));
-	gtk_window_set_default_icon_name ("gnome-help");
+	gtk_window_set_default_icon_name ("help-browser");
 
 	if (!private) {
 		connection = dbus_g_bus_get (DBUS_BUS_SESSION, NULL);
