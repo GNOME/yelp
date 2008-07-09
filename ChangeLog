@@ -1,3 +1,18 @@
+2008-07-09  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* configure.in:
+	* src/yelp-html.cpp:
+	* src/yelp-html.h:
+	* src/yelp-io-channel.c:
+	* src/yelp-search-parser.c:
+	* src/yelp-window.c:
+	* src/yelp-main.c:
+	* src/Makefile.am:
+	Initial port to webkit, dropping gecko
+	This will be broken
+	Various things still need implemented:
+	 - copy / paste, select all
+
 2008-06-27  Luca Ferretti  <elle.uca@libero.it>
 
 	* src/yelp-main.c: (main):

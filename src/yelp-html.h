@@ -23,7 +23,8 @@
 #ifndef __YELP_HTML_H__
 #define __YELP_HTML_H__
 
-#include <gtkmozembed.h>
+#include <config.h>
+#include <webkit/webkit.h>
 
 #include "yelp-print.h"
 
@@ -41,14 +42,12 @@ typedef struct _YelpHtmlClass   YelpHtmlClass;
 typedef struct _YelpHtmlPriv    YelpHtmlPriv;
 
 struct _YelpHtml {
-	GtkMozEmbed   parent;
-
+	WebKitWebView parent;
 	YelpHtmlPriv *priv;
 };
 
 struct _YelpHtmlClass {
-        GtkMozEmbedClass parent_class;
-
+	WebKitWebViewClass parent;
 	guint font_handler;
 	guint color_handler;
 	guint a11y_handler;
@@ -103,13 +102,7 @@ void            yelp_html_copy_selection (YelpHtml    *html);
 
 void            yelp_html_select_all     (YelpHtml    *html);
 
-void            yelp_html_print          (YelpHtml    *html,
-					  YelpPrintInfo *info,
-					  gboolean preview,
-					  gint *npages);
-void            yelp_html_preview_end    (YelpHtml    *html);
-void            yelp_html_preview_navigate (YelpHtml *html,
-					    gint page_no);
+void            yelp_html_print          (YelpHtml    *html);
 gboolean        yelp_html_initialize     (void);
 void            yelp_html_shutdown       (void); 
 

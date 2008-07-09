@@ -840,9 +840,9 @@ string_append (gchar *current, gchar *new, gchar *suffix)
     gchar *ret;
     
     if (suffix) {
-	ret = g_strconcat (current, ":", new, suffix, NULL);
+	ret = g_strconcat (current, "\n", new, suffix, NULL);
     } else {
-	ret = g_strconcat (current, ":", new, NULL);
+	ret = g_strconcat (current, "\n", new, NULL);
     }
     g_free (current);
     return ret;
@@ -910,7 +910,7 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
 	suffixes = NULL;
     }
 
-    search_terms = g_strdelimit (search_terms, ":", ' ');
+/*     search_terms = g_strdelimit (search_terms, ":", ' '); */
     list_copy = g_strsplit (g_utf8_casefold (g_strstrip (
 					  search_terms), -1),
 			    " ", -1);
@@ -981,11 +981,11 @@ build_lists (gchar *search_terms, gchar ***terms, gint **dups,
 	}
     }
     g_strfreev (list_copy);
-    *terms = g_strsplit (term_str, ":", -1);
+    *terms = g_strsplit (term_str, "\n", -1);
     n_terms = g_strv_length (*terms);
     (*dups) = g_new0 (gint, n_terms);
     (*stops) = g_new0 (gboolean, n_terms);
-    list_copy = g_strsplit (dup_str, ":", -1);
+    list_copy = g_strsplit (dup_str, "\n", -1);
 
     if (n_terms == 0)
 	goto done;

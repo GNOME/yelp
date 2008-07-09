@@ -24,13 +24,6 @@
 #include <config.h>
 #endif
 
-#ifdef HAVE_GECKO_1_9
-/* This is needed to stop gecko's version of libz
- * interfering and making gzopen et. al. crazy defines. 
- */
-#define MOZZCONF_H
-#endif
-
 
 #include <stdio.h>
 #include <glib.h>

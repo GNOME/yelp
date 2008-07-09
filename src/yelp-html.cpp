@@ -21,15 +21,15 @@
  * Author: Marco Pesenti Gritti <marco@gnome.org>
  */
 
-#include <mozilla-config.h>
 #include <config.h>
-
-#include "yelp-gecko-services.h"
-#include "yelp-gecko-utils.h"
 #include "yelp-marshal.h"
 #include "yelp-settings.h"
 
-#include "Yelper.h"
+#include <string.h>
+#include <webkit/webkitwebframe.h>
+#include <webkit/webkitnetworkrequest.h>
+#include <webkit/webkitwebview.h>
+#include <webkit/webkitwebsettings.h>
 
 #include "yelp-html.h"
 #include "yelp-debug.h"
@@ -38,16 +38,19 @@
 #define YELP_HTML_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_HTML, YelpHtmlPriv))
 
 struct _YelpHtmlPriv {
-    Yelper      *yelper;
+    gchar *content;
+    gchar *mime;
+    gchar       *find_string;
+    gboolean    initialised;
     gchar       *base_uri;
     gchar       *anchor;
     gboolean     frames_enabled;
     guint        timeout;
 };
 
-static void      html_set_fonts          (void);
-static void      html_set_colors         (void);
-static void      html_set_a11y           (void);
+static void      html_set_fonts          (YelpHtml *html);
+static void      html_set_colors         (YelpHtml *html);
+static void      html_set_a11y           (YelpHtml *html);
 
 enum {
     URI_SELECTED,
@@ -61,49 +64,45 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 static GObjectClass *parent_class = NULL;
 
-static void
-html_title (GtkMozEmbed *embed)
+static WebKitNavigationResponse
+html_open_uri (WebKitWebView *view, WebKitWebFrame *frame, WebKitNetworkRequest* req)
 {
-    YelpHtml *html = YELP_HTML (embed);
-    char *new_title;
-
-    new_title = gtk_moz_embed_get_title (embed);
-
-    if (new_title && *new_title != '\0')
-    {
-        g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
-        g_free (new_title);
-    }
-}
-
-static gint
-html_dom_mouse_down (GtkMozEmbed *embed, gpointer dom_event)
-{
-    YelpHtml *html = YELP_HTML (embed);
- 
-    html->priv->yelper->ProcessMouseEvent (dom_event);
-
-    return FALSE;
-}
-
-static gint
-html_open_uri (GtkMozEmbed *embed, const gchar *uri)
-{
-    YelpHtml *html = YELP_HTML (embed);
+    
+    const gchar *uri = webkit_network_request_get_uri (req);
+    WebKitNavigationResponse resp = WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
+    YelpHtml *html = YELP_HTML (view);
     gboolean block_load;
-
-    g_return_val_if_fail (uri != NULL, FALSE);
+    gchar *real_uri;
 
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
 
-    if (!html->priv->frames_enabled) {
-	g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);
-	block_load = TRUE;
+
+
+    if (uri[0] == '#') {
+	gchar *hash = g_strrstr (html->priv->base_uri, "#");
+	if (hash) {
+	    gchar *tmp = g_strndup (html->priv->base_uri, 
+				    (hash - html->priv->base_uri));
+	    real_uri = g_strdup_printf ("%s%s", tmp, uri);
+
+	    g_free (tmp);
+	} else {
+	    real_uri = g_strdup_printf ("%s%s", html->priv->base_uri, uri);
+	}
     } else {
-	g_signal_emit (html, signals[FRAME_SELECTED], 0, uri, FALSE, &block_load);
+	real_uri = g_strdup (uri);
     }
-    return block_load;
+    
+    if (!html->priv->frames_enabled) {
+  	g_signal_emit (html, signals[URI_SELECTED], 0, real_uri, FALSE);
+  	resp = WEBKIT_NAVIGATION_RESPONSE_IGNORE;
+    } else {
+  	g_signal_emit (html, signals[FRAME_SELECTED], 0, real_uri, FALSE, &block_load);
+    }
+
+    g_free (real_uri);
+    return resp;
 }
 
 static void
@@ -113,12 +112,6 @@ html_realize (GtkWidget *widget)
 
     GTK_WIDGET_CLASS (parent_class)->realize (widget);
 
-    nsresult rv;
-    rv = html->priv->yelper->Init ();
-        
-    if (NS_FAILED (rv)) {
-        g_warning ("Yelper initialization failed for %p\n", (void*) html);
-    }
 }
 
 static void
@@ -132,29 +125,31 @@ html_init (YelpHtml *html)
     priv->base_uri = NULL;
     priv->anchor = NULL;
     priv->timeout = 0;
+    priv->content = NULL;
+    priv->mime = NULL;
+    priv->initialised = FALSE;
 
-    priv->yelper = new Yelper (GTK_MOZ_EMBED (html));
     klass = YELP_HTML_GET_CLASS (html);
     if (!klass->font_handler) {
 	klass->font_handler =
 	    yelp_settings_notify_add (YELP_SETTINGS_INFO_FONTS,
 				      (GHookFunc) html_set_fonts,
-				      NULL);
-	html_set_fonts ();
+				      html);
+	html_set_fonts (html);
     }
     if (!klass->color_handler) {
 	klass->color_handler =
 	    yelp_settings_notify_add (YELP_SETTINGS_INFO_COLOR,
 				      (GHookFunc) html_set_colors,
-				      NULL);
-	html_set_colors ();
+				      html);
+	html_set_colors (html);
     }
     if (!klass->a11y_handler) {
 	klass->a11y_handler =
 	    yelp_settings_notify_add (YELP_SETTINGS_INFO_A11Y,
 				      (GHookFunc) html_set_a11y,
-				      NULL);
-	html_set_a11y ();
+				      html);
+	html_set_a11y (html);
     }
 }
 
@@ -162,8 +157,6 @@ static void
 html_dispose (GObject *object)
 {
     YelpHtml *html = YELP_HTML (object);
-
-    html->priv->yelper->Destroy ();
 
     parent_class->dispose (object);
 }
@@ -174,7 +167,6 @@ html_finalize (GObject *object)
     YelpHtml *html = YELP_HTML (object);
     YelpHtmlPriv *priv = html->priv;
 
-    delete priv->yelper;
 
     if (priv->timeout)
 	g_source_remove (priv->timeout);
@@ -189,7 +181,7 @@ html_class_init (YelpHtmlClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-    GtkMozEmbedClass *moz_embed_class = GTK_MOZ_EMBED_CLASS (klass);
+    WebKitWebViewClass* wc_class = WEBKIT_WEB_VIEW_CLASS (klass); 
 
     parent_class = (GObjectClass *) g_type_class_peek_parent (klass);
 
@@ -198,9 +190,8 @@ html_class_init (YelpHtmlClass *klass)
 
     widget_class->realize = html_realize;
 
-    moz_embed_class->title = html_title;
-    moz_embed_class->dom_mouse_down = html_dom_mouse_down;
-    moz_embed_class->open_uri = html_open_uri;
+
+    wc_class->navigation_requested = html_open_uri;
 
     klass->font_handler = 0;
     klass->color_handler = 0;
@@ -228,16 +219,6 @@ html_class_init (YelpHtmlClass *klass)
 		      G_TYPE_BOOLEAN,
 		      2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
     
-    signals[TITLE_CHANGED] = 
-	g_signal_new ("title_changed",
-		      G_TYPE_FROM_CLASS (klass),
-		      G_SIGNAL_RUN_LAST,
-		      G_STRUCT_OFFSET (YelpHtmlClass,
-				       title_changed),
-		      NULL, NULL,
-		      g_cclosure_marshal_VOID__STRING,
-		      G_TYPE_NONE,
-		      1, G_TYPE_STRING);
 
     signals[POPUPMENU_REQUESTED] = 
 	g_signal_new ("popupmenu_requested",
@@ -271,7 +252,7 @@ yelp_html_get_type (void)
 	    (GInstanceInitFunc) html_init,
 	};
 
-	type = g_type_register_static (GTK_TYPE_MOZ_EMBED,
+	type = g_type_register_static (WEBKIT_TYPE_WEB_VIEW,
 				       "YelpHtml", 
 				       &info, (GTypeFlags) 0);
     }
@@ -313,22 +294,30 @@ yelp_html_open_stream (YelpHtml *html, const gchar *mime)
     debug_print (DB_FUNCTION, "entering\n");
 
     html->priv->frames_enabled = FALSE;
-    gtk_moz_embed_open_stream (GTK_MOZ_EMBED (html),
-			       html->priv->base_uri,
-			       mime);
+    g_free (html->priv->content);
+    html->priv->content = NULL;
+    g_free (html->priv->mime);
+    html->priv->mime = g_strdup(mime);
 }
 
 void
 yelp_html_write (YelpHtml *html, const gchar *data, gint len)
 {
-     if (len == -1) len = strlen (data);
+    gchar *tmp = NULL;
+
+    if (len == -1) len = strlen (data);
 
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  data = %i bytes\n", strlen (data));
     debug_print (DB_ARG, "  len  = %i\n", len);
 
-    gtk_moz_embed_append_data (GTK_MOZ_EMBED (html),
-			       data, len);
+    if (html->priv->content) {
+	tmp = g_strjoin (NULL, html->priv->content, data, NULL);
+	g_free (html->priv->content);
+	html->priv->content = tmp;
+    } else {
+	html->priv->content = g_strdup (data);
+    }
 }
 
 void
@@ -356,42 +345,53 @@ yelp_html_printf (YelpHtml *html, char *format, ...)
     g_free (string);
 }
 
-/* Fire "children_changed::add" event to refresh "UI-Grab" window of GOK,
- * this event is not fired when using gtk_moz_embed_xxx_stream,
- * see Mozilla bug #293670.  Done in a timeout to allow mozilla to
- * actually draw to the screen */
-
-static gboolean
-timeout_update_gok (YelpHtml *html)
-{
-    g_signal_emit_by_name (gtk_widget_get_accessible (GTK_WIDGET (html)),
-			   "children_changed::add", -1, NULL, NULL);
-    html->priv->timeout = 0;
-    return FALSE;
-}
 
 void
 yelp_html_close (YelpHtml *html)
 {
     debug_print (DB_FUNCTION, "entering\n");
-    gtk_moz_embed_close_stream (GTK_MOZ_EMBED (html));
-    html->priv->timeout = g_timeout_add (2000, 
-					 (GSourceFunc) timeout_update_gok,
-					 html);
+
+    if (!html->priv->initialised) {
+	html->priv->initialised = TRUE;
+	html_set_fonts (html);
+	html_set_colors (html);
+	html_set_a11y (html);
+	webkit_web_view_set_maintains_back_forward_list (WEBKIT_WEB_VIEW (html), FALSE);
+    }
+
+    /* TODO: Broken navigation requests: */
+    /* See https://bugs.webkit.org/show_bug.cgi?id=19360 */
+    webkit_web_view_load_string (WEBKIT_WEB_VIEW (html),
+				 html->priv->content,
+				 html->priv->mime,
+				 NULL,
+				 "foo");
+    g_free (html->priv->content);
+    html->priv->content = NULL;
+    g_free (html->priv->mime);
+    html->priv->mime = NULL;
 }
 
 gboolean
 yelp_html_find (YelpHtml    *html,
 		const gchar *find_string)
 {
-    return html->priv->yelper->Find (find_string);
+    if (html->priv->find_string)
+	g_free(html->priv->find_string);
+    html->priv->find_string = g_strdup (find_string);
+    return webkit_web_view_search_text (WEBKIT_WEB_VIEW (html),
+					find_string, FALSE,
+					TRUE, TRUE);
 }
 
 gboolean
 yelp_html_find_again (YelpHtml    *html,					  
 		     gboolean     forward)
 {
-    return html->priv->yelper->FindAgain ((PRBool) forward);
+    return webkit_web_view_search_text (WEBKIT_WEB_VIEW (html),
+					html->priv->find_string, 
+					FALSE,
+					forward, TRUE);
 }
 
 void
@@ -400,7 +400,7 @@ yelp_html_set_find_props (YelpHtml    *html,
 			  gboolean     match_case,
 			  gboolean     wrap)
 {
-    html->priv->yelper->SetFindProperties (str, (PRBool) match_case, (PRBool) wrap);
+    /* Empty */
 }
 
 void
@@ -420,79 +420,117 @@ yelp_html_jump_to_anchor (YelpHtml    *html,
 void
 yelp_html_copy_selection (YelpHtml *html)
 {
-    html->priv->yelper->DoCommand ("cmd_copy");
+    /* Empty TODO */
 }
 
 void
 yelp_html_select_all (YelpHtml *html)
 {
-    html->priv->yelper->DoCommand ("cmd_selectAll");
+    /* Empty TODO */
 }
 
 void
-yelp_html_print (YelpHtml *html, YelpPrintInfo *info, gboolean preview, gint *npages)
+yelp_html_print (YelpHtml *html)
 {
-    html->priv->yelper->Print (info, preview, npages);
-}
-
-void
-yelp_html_preview_navigate (YelpHtml *html, gint page_no)
-{
-    html->priv->yelper->PrintPreviewNavigate (page_no);
-}
-
-void
-yelp_html_preview_end (YelpHtml *html)
-{
-    html->priv->yelper->PrintPreviewEnd ();
+    webkit_web_view_execute_script (WEBKIT_WEB_VIEW (html), "print();");
 }
 
 static void
-html_set_fonts (void)
+html_set_fonts (YelpHtml *html)
 {
     gchar *font;
+    WebKitWebSettings *settings;
+    GValue *name, *size;
+    gchar *str_name;
+    gint i_size;
+    gchar *tmp;
+
+    settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (html));
 
     font = yelp_settings_get_font (YELP_FONT_VARIABLE);
-    yelp_gecko_set_font (YELP_FONT_VARIABLE, font);
+
+    /* We have to separate the string into name and size and then
+     * assign to the 2 gvalues */
+    tmp = g_strrstr (font, " ");
+    if (!tmp) {
+	g_warning ("Cannot decode font pattern %s", font);
+	g_free (font);
+	return;
+    }
+
+    name = g_new0 (GValue, 1);
+    size = g_new0 (GValue, 1);
+
+    name = g_value_init (name, G_TYPE_STRING);
+    size = g_value_init (size, G_TYPE_INT);
+
+    str_name = g_strndup (font, tmp - font);
+
+    i_size = g_strtod (tmp, NULL);
+
+    g_value_set_string (name, str_name);
+    g_value_set_int (size, i_size);
+
+    g_object_set_property (G_OBJECT (settings), "default-font-family",
+			   name);
+    g_object_set_property (G_OBJECT (settings), "default-font-size",
+			   size);
+
     g_free (font);
 
     font = yelp_settings_get_font (YELP_FONT_FIXED);
-    yelp_gecko_set_font (YELP_FONT_FIXED, font);
+
+    tmp = g_strrstr (font, " ");
+    if (!tmp) {
+	g_warning ("Cannot decode monospace font pattern %s", font);
+	g_free (font);
+	return; 
+   }
+
+    name = g_value_reset (name);
+    size = g_value_reset (size);
+
+    str_name = g_strndup (font, tmp - font);
+
+    i_size = g_strtod (tmp, NULL);
+
+    g_value_set_string (name, str_name);
+    g_value_set_int (size, i_size);
+    
+
+    g_object_set_property (G_OBJECT (settings), "monospace-font-family",
+			   name);
+    g_object_set_property (G_OBJECT (settings), "default-monospace-font-size",
+			   size);
+
     g_free (font);
 }
 
 static void
-html_set_colors (void)
+html_set_colors (YelpHtml *html)
 {
-    const gchar *color;
+    /* TODO: No Webkit equivalent ... */
+    /* See https://bugs.webkit.org/show_bug.cgi?id=19486 */
 
-    color = yelp_settings_get_color (YELP_COLOR_FG);
-    yelp_gecko_set_color (YELP_COLOR_FG, color);
-
-    color = yelp_settings_get_color (YELP_COLOR_BG);
-    yelp_gecko_set_color (YELP_COLOR_BG, color);
- 
-    color = yelp_settings_get_color (YELP_COLOR_ANCHOR);
-    yelp_gecko_set_color (YELP_COLOR_ANCHOR, color);
 }
 
 static void
-html_set_a11y (void)
+html_set_a11y (YelpHtml *html)
 {
     gboolean caret;
 
     caret = yelp_settings_get_caret ();
-    yelp_gecko_set_caret (caret);
+    /* TODO Webkit version */
 }
 
 gboolean
 yelp_html_initialize (void)
 {
-    return yelp_gecko_init ();
+    return TRUE;
 }
 
 void
 yelp_html_shutdown (void)
 {
-    yelp_gecko_shutdown ();
+    /* Empty */
 }
