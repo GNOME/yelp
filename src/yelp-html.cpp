@@ -420,13 +420,13 @@ yelp_html_jump_to_anchor (YelpHtml    *html,
 void
 yelp_html_copy_selection (YelpHtml *html)
 {
-    /* Empty TODO */
+    webkit_web_view_copy_clipboard (WEBKIT_WEB_VIEW (html));
 }
 
 void
 yelp_html_select_all (YelpHtml *html)
 {
-    /* Empty TODO */
+    webkit_web_view_select_all (WEBKIT_WEB_VIEW (html));
 }
 
 void
