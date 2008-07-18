@@ -26,8 +26,6 @@
 #include <config.h>
 #include <webkit/webkit.h>
 
-#include "yelp-print.h"
-
 G_BEGIN_DECLS
 
 #define YELP_TYPE_HTML         (yelp_html_get_type ())

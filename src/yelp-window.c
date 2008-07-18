@@ -44,7 +44,6 @@
 #include "yelp-docbook.h"
 #include "yelp-db-print.h"
 #include "yelp-window.h"
-#include "yelp-print.h"
 #include "yelp-debug.h"
 
 
