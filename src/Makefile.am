@@ -39,6 +39,12 @@ YELP_DEFINES =								\
 	-DSHAREDIR=\""$(pkgdatadir)"\"                                  \
 	-DGDU_ICON_PATH=\"$(GDU_ICON_PATH)\"
 
+yelp_CPPFLAGS =									\
+	-I$(top_srcdir)								\
+	-I$(top_builddir)/src							\
+	$(YELP_DEFINES)								\
+	$(AM_CPPFLAGS)
+
 yelp_CFLAGS =				\
 	$(YELP_CFLAGS)			\
 	$(YELP_SEARCH_CFLAGS)		\
