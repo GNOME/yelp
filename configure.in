@@ -17,7 +17,6 @@ AM_GCONF_SOURCE_2
 
 AC_PROG_LN_S
 AC_PROG_CC
-AC_PROG_CXX
 AM_PROG_CC_STDC
 AC_ISC_POSIX
 AC_HEADER_STDC
@@ -28,13 +27,9 @@ AM_PROG_CC_C_O
 
 GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
-GNOME_CXX_WARNINGS
 
 MORE_WARN_FLAGS=
 DEPRECATION_FLAGS=
-if test "x$GCC" = "xyes"; then
-  MOZILLA_WARN_CXXFLAGS="-Wno-ctor-dtor-privacy -Wno-non-virtual-dtor"
-fi
 
 if test "x$enable_debug" = "xyes"; then
 	AC_DEFINE([YELP_DEBUG],[1],[Enable Yelp debugging])
@@ -220,9 +215,6 @@ AC_SUBST(BZ_LIBS)
   AC_SUBST(YELP_WEBKIT_LIBS)
   AC_DEFINE(WEBKIT_BACKEND, 1, [Webkit Backend])
 
-### Gecko does demand a lot of things here, doesn't it?
-
-
 
 # More flags
 AM_CPPFLAGS="$AM_CPPFLAGS $DEPRECATION_FLAGS"
@@ -231,7 +223,6 @@ AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS $MORE_WARN_FLAGS"
 
 AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
-AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
 AC_CONFIG_FILES([

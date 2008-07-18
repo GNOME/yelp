@@ -5,7 +5,7 @@ yelp_SOURCES =							\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
 	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
-	yelp-html.cpp		yelp-html.h			\
+	yelp-html.c			yelp-html.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-settings.c		yelp-settings.h			\
 	yelp-utils.c		yelp-utils.h			\
@@ -50,12 +50,6 @@ yelp_CFLAGS =				\
 	$(YELP_SEARCH_CFLAGS)		\
 	$(AM_CFLAGS)			\
 	$(YELP_WEBKIT_CFLAGS)
-
-yelp_CXXFLAGS =				\
-	$(YELP_CFLAGS)			\
-	$(YELP_SEARCH_CFLAGS)		\
-	$(YELP_WEBKIT_CFLAGS)		\
-	$(AM_CXXFLAGS)
 
 yelp_LDADD =				\
 	$(YELP_LIBS)			\
