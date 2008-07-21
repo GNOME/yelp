@@ -158,7 +158,7 @@ CLEANFILES = xgen-ymh xgen-ymc
 
 MAINTAINERCLEANFILES = $(BUILT_SOURCES)
 
-EXTRA_DIST = yelp-marshal.list yelp-infos.xml
+EXTRA_DIST = yelp-marshal.list yelp-infos.xml yelp-print.c yelp-print.h
 
 install-exec-hook:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \
