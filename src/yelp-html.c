@@ -77,22 +77,8 @@ html_open_uri (WebKitWebView *view, WebKitWebFrame *frame, WebKitNetworkRequest*
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
 
+    real_uri = g_strdup (uri);
 
-
-    if (uri[0] == '#') {
-	gchar *hash = g_strrstr (html->priv->base_uri, "#");
-	if (hash) {
-	    gchar *tmp = g_strndup (html->priv->base_uri, 
-				    (hash - html->priv->base_uri));
-	    real_uri = g_strdup_printf ("%s%s", tmp, uri);
-
-	    g_free (tmp);
-	} else {
-	    real_uri = g_strdup_printf ("%s%s", html->priv->base_uri, uri);
-	}
-    } else {
-	real_uri = g_strdup (uri);
-    }
     
     if (!html->priv->frames_enabled) {
   	g_signal_emit (html, signals[URI_SELECTED], 0, real_uri, FALSE);
@@ -365,7 +351,7 @@ yelp_html_close (YelpHtml *html)
 				 html->priv->content,
 				 html->priv->mime,
 				 NULL,
-				 "foo");
+				 html->priv->base_uri);
     g_free (html->priv->content);
     html->priv->content = NULL;
     g_free (html->priv->mime);

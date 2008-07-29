@@ -1817,7 +1817,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 	gtk_tree_model_get (model, &iter,
 			    YELP_DOCUMENT_COLUMN_ID, &id,
 			    -1);
-	uri = g_strdup_printf ("%s#%s", priv->base_uri, id);
+	uri = g_strdup_printf ("%s?%s", priv->base_uri, id);
 	yelp_window_load (window, uri);
 	g_free (uri);
     }
@@ -2727,7 +2727,7 @@ window_write_html (YelpLoadData *data)
     
     /* Use a silly fake URI to stop gecko doing silly things */
     if (data->window->priv->current_frag)
-	uri = g_strdup_printf ("%s#%s", data->window->priv->base_uri, 
+	uri = g_strdup_printf ("%s?%s", data->window->priv->base_uri, 
 			       data->window->priv->current_frag);
     else
 	uri = g_strdup (data->window->priv->base_uri);

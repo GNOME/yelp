@@ -915,7 +915,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
 				BAD_CAST tmp);
 	g_free (tmp);
-	tmp = g_strconcat ("#", xref, NULL);
+	tmp = g_strconcat ("?", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
 	g_free (tmp);
       } else { /* Indexy type menu  - we gotta do a  little work to fix the
@@ -933,7 +933,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 	
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
 					BAD_CAST title);
-	tmp = g_strconcat ("#", xref, NULL);
+	tmp = g_strconcat ("?", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
 	g_free (tmp);
 	xmlNewTextChild (mholder, NULL, BAD_CAST "spacing",
@@ -942,7 +942,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
 				BAD_CAST tmp);
 	g_free (tmp);
-	tmp = g_strconcat ("#", xref, NULL);
+	tmp = g_strconcat ("?", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
 
 	g_free (tmp);	
@@ -1103,7 +1103,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	  link = g_strstrip (link);
 	  length = strlen (link) - 1;
 	  link[length] = '\0';	  
-	  href = g_strconcat ("#", link, NULL);
+	  href = g_strconcat ("?", link, NULL);
 	  link[length] = 'a';
 	  g_free (link);
 
@@ -1138,7 +1138,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	  frag = g_strndup (url, tmp1 - url);
 	g_strstrip (frag);
 	gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, &frag);
-	href = g_strconcat ("#", frag, NULL);
+	href = g_strconcat ("?", frag, NULL);
 	g_free (frag);
       }
       for (ulink = urls; *ulink != NULL; ulink++) {
