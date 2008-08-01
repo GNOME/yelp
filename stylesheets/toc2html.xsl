@@ -43,7 +43,7 @@
           padding-left: 204px;
           padding-top: 0.2em;
           padding-bottom: 0.2em;
-          -moz-border-radius: 6px;
+          -webkit-border-radius: 6px;
           border: solid 1px </xsl:text>
           <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
           background-color: </xsl:text>
@@ -101,7 +101,7 @@
           margin-right: 12px;
           background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
           color: </xsl:text><xsl:value-of select="$theme.color.text"/><xsl:text>;
-          -moz-border-radius: 8px;
+          -webkit-border-radius: 8px;
         }
         ul { margin-left: 0em; padding-left: 0em; }
         li[class~="toclist"] {
