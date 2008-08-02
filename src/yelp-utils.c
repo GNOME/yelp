@@ -113,9 +113,9 @@ resolve_get_section (const gchar *uri)
     gchar *sect_delimit;
     gchar *sect;
 
-    sect_delimit = strrchr (uri, '#');
+    sect_delimit = strchr (uri, '#');
     if (!sect_delimit) {
-	sect_delimit = strrchr (uri, '?');
+	sect_delimit = strchr (uri, '?');
     }
     if (!sect_delimit) {
 	return NULL;
