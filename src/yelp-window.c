@@ -75,12 +75,6 @@ typedef struct {
     gchar *frag_title;
 } YelpHistoryEntry;
 
-typedef struct {
-    YelpPage *page;
-    YelpWindow *window;
-
-} YelpLoadData;
-
 static void        window_init		          (YelpWindow        *window);
 static void        window_class_init	          (YelpWindowClass   *klass);
 
@@ -217,8 +211,8 @@ static void        window_find_previous_cb        (GtkAction *action,
 						   YelpWindow *window);
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
-static gboolean    window_write_html              (YelpLoadData      *data);
-static void        window_write_print_html        (YelpHtml          *html, 
+static void        window_write_html              (YelpWindow        *window,
+						   YelpHtml          *html,
 						   YelpPage          *page);
 
 enum {
@@ -874,17 +868,12 @@ page_request_cb (YelpDocument       *document,
 	       YelpWindow         *window)
 {
     YelpError *error;
-    YelpLoadData *data;
 
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
 	window_set_sections (window, yelp_document_get_sections (document));
 
-	data = g_new0 (YelpLoadData, 1);
-	data->window = window;
-	data->page = (YelpPage *) func_data;
-
-	window_write_html (data);
+	window_write_html (window, NULL, (YelpPage *) func_data);
 
 	window->priv->current_request = -1;
 	yelp_page_free ((YelpPage *) func_data);
@@ -1924,10 +1913,8 @@ window_print_signal (YelpDocument       *document,
 
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
-	window_write_print_html (print->html, (YelpPage *) func_data);
-
+	window_write_html (print->window, print->html, (YelpPage *) func_data);
 	yelp_page_free ((YelpPage *) func_data);
-
 	yelp_html_print (print->html);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
@@ -2717,41 +2704,25 @@ tree_model_iter_following (GtkTreeModel  *model,
     return FALSE;
 }
 
-static gboolean
-window_write_html (YelpLoadData *data)
+static void
+window_write_html (YelpWindow *window, YelpHtml *html, YelpPage *page)
 {
     gchar *uri = NULL;
     gsize read;
-    YelpHtml *html = data->window->priv->html_view;
     gchar contents[BUFFER_SIZE];
     
+    if (!html)
+        html = window->priv->html_view;
+
     /* Use a silly fake URI to stop gecko doing silly things */
-    if (data->window->priv->current_frag)
-	uri = g_strdup_printf ("%s?%s", data->window->priv->base_uri, 
-			       data->window->priv->current_frag);
+    if (window->priv->current_frag)
+	uri = g_strdup_printf ("%s?%s", window->priv->base_uri, 
+			       window->priv->current_frag);
     else
-	uri = g_strdup (data->window->priv->base_uri);
+	uri = g_strdup (window->priv->base_uri);
     
     yelp_html_set_base_uri (html, uri);
     g_free (uri);
-    yelp_html_open_stream (html, "application/xhtml+xml");
-    
-    do {
-	yelp_page_read (data->page, contents, BUFFER_SIZE, &read, NULL);
-	yelp_html_write (html, contents, read);
-    } while (read == BUFFER_SIZE);
-    yelp_html_close (html);
-    return FALSE;
-}
-
-static void
-window_write_print_html (YelpHtml *html, YelpPage * page)
-{
-    gsize read;
-    gchar contents[BUFFER_SIZE];
-    
-    /* Use a silly fake URI to stop gecko doing silly things */
-    yelp_html_set_base_uri (html, "file:///foobar");
     yelp_html_open_stream (html, "application/xhtml+xml");
     
     do {
