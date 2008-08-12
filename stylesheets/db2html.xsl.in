@@ -71,9 +71,8 @@ FIXME: yelp:cache no longer works
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
-
   <xsl:choose>
-    <xsl:when test="$depth_in_chunk >= $db.chunk.max_depth">
+    <xsl:when test="$depth_in_chunk != 0">
       <xsl:value-of select="concat('#', $linkend)"/>
     </xsl:when>
     <xsl:otherwise>
