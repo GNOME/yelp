@@ -1,3 +1,10 @@
+2008-08-12  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c (window_error):
+	Fix string vulnerability
+	bug #546364 - patch from Christian Persch
+	reported by Aaron Grattafiori
+
 2008-06-27  Luca Ferretti  <elle.uca@libero.it>
 
 	* src/yelp-main.c: (main):
