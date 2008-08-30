@@ -419,7 +419,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	
 	debug_print (DB_DEBUG, "-- Processing Page %s\n\tParent: %s\n", node, up);
 
-	iter = g_malloc0 (sizeof (GtkTreeIter));
+	iter = g_slice_alloc0 (sizeof (GtkTreeIter));
 	/* check to see if we need to process our parent and siblings */
 	if (up && g_ascii_strncasecmp (up, "(dir)", 5) && strcmp (up, "Top"))
 	{
