@@ -203,6 +203,8 @@ resolve_full_file (const gchar *path)
 	    type = YELP_RRN_TYPE_INFO;
 	} else if (resolve_is_man_path (path, NULL)) {
 	    type = YELP_RRN_TYPE_MAN;
+	} else {
+	    type = YELP_RRN_TYPE_EXTERNAL;
 	}
     } else {
 	type = YELP_RRN_TYPE_EXTERNAL;

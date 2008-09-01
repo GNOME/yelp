@@ -1,5 +1,10 @@
 2008-09-01  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-utils.c (resolve_full_file):
+	Make text files actually work (i.e. open external vewing program)
+
+2008-09-01  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/yelp-utils.c (resolve_is_man_path):
 	Don't crash when trying to load text files
 	bug #549986 - Josselin Mouette
