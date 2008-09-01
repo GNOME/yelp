@@ -1,3 +1,9 @@
+2008-09-01  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c (resolve_is_man_path):
+	Don't crash when trying to load text files
+	bug #549986 - Josselin Mouette
+
 2008-08-14  J.H.M. Dassen (Ray)  <jdassen@debian.org>
 
 	* src/yelp-info-parser.c (yelp_info_parser_parse_file):

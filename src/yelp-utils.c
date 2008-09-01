@@ -136,7 +136,7 @@ resolve_is_man_path (const gchar *path, const gchar *encoding)
     iter = cats;
 
     if (encoding && *encoding) {
-	while (iter) {
+	while (iter && *iter) {
 	    gchar *ending = g_strdup_printf ("%s.%s", *iter, encoding);
 	    if (g_str_has_suffix (path, ending)) {
 		g_free (ending);
@@ -146,7 +146,7 @@ resolve_is_man_path (const gchar *path, const gchar *encoding)
 	    iter++;
 	}
     } else {
-	while (iter) {
+	while (iter && *iter) {
 	    if (g_str_has_suffix (path, *iter)) {
 		return TRUE;
 	    }
