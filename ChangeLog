@@ -1,6 +1,11 @@
 2008-09-11  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-html.cpp:
+	Reinstate previous timeout workaround as it's still required
+
+2008-09-11  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-html.cpp:
 	Add workaround for Gecko 1.9 accessibility issue
 	bug #545162 - Ginn Chen
 

@@ -400,13 +400,11 @@ yelp_html_close (YelpHtml *html)
 	}
     }
 
-#else /* All other gecko's need this timeout to update GOK accessible
-       * tree 
-       */
+#endif
+
     html->priv->timeout = g_timeout_add (2000, 
 					 (GSourceFunc) timeout_update_gok,
 					 html);
-#endif
 }
 
 gboolean
