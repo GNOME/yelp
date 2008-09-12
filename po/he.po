@@ -6,13 +6,13 @@
 # Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2002,2003.
 # Gil Osher <dolfin@rpg.org.il>, 2004.
 # Yuval Tanny, 2005.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-20 15:31+0000\n"
+"POT-Creation-Date: 2008-08-12 15:20+0000\n"
 "PO-Revision-Date: 2005-07-31 15:56+0300\n"
 "Last-Translator: Yair Hershkovitz <yairhr@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -532,7 +532,7 @@ msgstr "מדריך להשתלבות בפיתוח"
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
-msgstr ""
+msgstr "רדיו חובבני"
 
 #: ../data/toc.xml.in.h:66
 msgid "Hardware Settings"
@@ -706,9 +706,8 @@ msgid "Qt"
 msgstr "Qt"
 
 #: ../data/toc.xml.in.h:109
-#, fuzzy
 msgid "Raster Graphics"
-msgstr "גרפיקה"
+msgstr "גרפיקת Raster"
 
 #. Translators: this is a menu title for audio and video recorders
 #: ../data/toc.xml.in.h:111
@@ -832,9 +831,8 @@ msgid "Utilities"
 msgstr "כלים שימושיים"
 
 #: ../data/toc.xml.in.h:141
-#, fuzzy
 msgid "Utilities to help you get work done"
-msgstr "כלים שימושיים אשר יעזרו לך לבצע את העבודה"
+msgstr "כלים אשר יעזרו לך לבצע את העבודה"
 
 #: ../data/toc.xml.in.h:142
 msgid "Vector Graphics"
@@ -1071,7 +1069,7 @@ msgstr "לא ידוע"
 msgid "Unknown Error"
 msgstr "שגיאה לא ידועה"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1642
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1643
 msgid "Could Not Read File"
 msgstr "לא ניתן לקרוא קובץ"
 
@@ -1080,40 +1078,42 @@ msgid "No information is available about this error."
 msgstr "אין מידע זמין אודות שגיאה זו."
 
 #: ../src/yelp-info.c:396
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "הקובץ '%s' לא ניתן לעיבוד. הקובץ לא קיים או שאינו קובץ מידע תקני."
+msgstr ""
+"הקובץ ’%s’ לא ניתן לפירוק מכיון שאינו דף מידע תקין."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr "הקובץ '%s' לא ניתן לקריאה ופיענוח.הקובץ אולי מכווץ בתצורה לא נתמכת."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:91
 msgid "Use a private session"
 msgstr "Use a private session"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "Define which cache directory to use"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
 msgstr " GNOME Help Browser"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "עזרה"
 
 #: ../src/yelp-man.c:459
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "הקובץ '%s' לא ניתן לעיבוד. הקובץ לא קיים או שאינו קובץ מידע תקני."
+msgstr ""
+"הקובץ ’%s’ לא ניתן לפירוק מכיון שאינו דף תיעוד תקין."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -1145,22 +1145,22 @@ msgstr "ארעה שגיה בזמן ההדפסה"
 msgid "It was not possible to print your document: %s"
 msgstr "לא תאפשר להדפיס את המסמך שלך: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "פורומי התמיכה של GNOME"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "אין תוצאות עבור \"%s\""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr "נסה להשתמש במילים אחרות לתיאור הבעיה או הנושא בהם אתה מחפש עזרה."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "תוצאות חיפוש עבור \"%s\""
@@ -1170,7 +1170,7 @@ msgstr "תוצאות חיפוש עבור \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "חזור על החיפוש כמקוון ב-%s"
@@ -1252,27 +1252,26 @@ msgstr "קובץ ה-TOC לא ניתן לעיבוד מכיון שאינו קוב�
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
-msgstr ""
+msgstr "גליון סגנון שגוי"
 
 #: ../src/yelp-transform.c:81
-#, fuzzy, c-format
+#, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr ""
-"לא ניתן לעבד את הקובץ ‘%s’. הקובץ ‘%s’ חסר, או שהוא אינו מסמך XSLT תקין."
+"גליון סגנון ה-XSLT‏ ’%s’ חסר או שאינו תקין."
 
 #: ../src/yelp-transform.c:112
-#, fuzzy
 msgid "Broken Transformation"
-msgstr "מידע מסמך"
+msgstr "המרה שבורה"
 
 #: ../src/yelp-transform.c:113
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr ""
+"שגיאה לא ידועה התרחשה במהלך המרת המסמך."
 
 #: ../src/yelp-transform.c:373
-#, fuzzy
 msgid "No href attribute found on yelp:document\n"
-msgstr "לא נמצא מאפיין href ב yelp:document"
+msgstr "לא נמצא מאפיין href ב yelp:document\n"
 
 #: ../src/yelp-transform.c:388
 msgid "Out of memory"
@@ -1430,7 +1429,7 @@ msgstr "העתק כתובת _דוא\"ל"
 msgid "Help Browser"
 msgstr "דפדפן עזרה"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1696
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1700
 msgid "Loading..."
 msgstr "טוען..."
 
@@ -1485,7 +1484,7 @@ msgstr "מצא _הבא"
 msgid "Phrase not found"
 msgstr "ביטוי לא נמצא"
 
-#: ../src/yelp-window.c:1639
+#: ../src/yelp-window.c:1640
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1495,7 +1494,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2465
+#: ../src/yelp-window.c:2480
 msgid "translator-credits"
 msgstr ""
 "גיל אשר <dolfin@rpg.org.il>\n"
@@ -1505,69 +1504,14 @@ msgstr ""
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/yelp-window.c:2468
+#: ../src/yelp-window.c:2483
 msgid "Yelp"
 msgstr "‏Yelp"
 
-#: ../src/yelp-window.c:2470
+#: ../src/yelp-window.c:2485
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "דפדפן העזרה של שולחן העבודה GNOME"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "קבל עזרה עם GNOME"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
