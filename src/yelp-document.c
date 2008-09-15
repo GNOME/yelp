@@ -748,6 +748,13 @@ request_idle_final (YelpDocument *document)
     priv = document->priv;
 
     g_mutex_lock (priv->mutex);
+
+    if (priv->reqs_pending == NULL) {
+	    /*
+	       Time to bail as we shouldn't be here anyway.
+	    */
+	    return FALSE;
+    }
     
     for (cur = priv->reqs_pending; cur; cur = cur->next) {
 	request = cur->data;

@@ -1,5 +1,11 @@
 2008-09-15  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-document.c (request_idle_final):
+	Fix potential crasher on multi-core machines
+	bug #551757 -  Joe Marcus Clarke
+
+2008-09-15  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/yelp-html.cpp:
 	Improved a11y under gecko 1.9
 	- Yet more work on bug #545162 from Ginn Chen
