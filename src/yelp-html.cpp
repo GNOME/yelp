@@ -106,9 +106,43 @@ html_open_uri (GtkMozEmbed *embed, const gchar *uri)
     return block_load;
 }
 
+#ifdef HAVE_GECKO_1_9
+static void
+html_reset_accessible_parent (GtkWidget *widget)
+{
+    AtkObject * html_acc = gtk_widget_get_accessible (widget);
+    AtkObject * parent_acc = gtk_widget_get_accessible (widget->parent);
+    if (html_acc && parent_acc) {
+	atk_object_set_parent (html_acc, parent_acc);
+    }
+}
+#endif
+
 static void
 html_realize (GtkWidget *widget)
 {
+#ifdef HAVE_GECKO_1_9
+    /* When Gecko accessibility module init, it will overwrite 
+     * atk_class->get_root.
+     * But the top level accessible of yelp is not controlled by Gecko.
+     * So we need to restore the callback. See Bug #545162.
+     * It only need to do once.
+     * We do it here because Gecko a11y module inits when it is actually used,
+     * we call gtk_widget_get_accessible to pull the trigger. */
+
+    static gboolean gail_get_root_restored = FALSE;
+    static AtkObject * (*gail_get_root) (void);
+    static AtkUtilClass * atk_class = NULL;
+    if (!gail_get_root_restored) {
+	gpointer data;
+	data = g_type_class_peek (ATK_TYPE_UTIL);
+	if (data) {
+	    atk_class = ATK_UTIL_CLASS (data);
+	    gail_get_root = atk_class->get_root;
+	}
+    }
+#endif
+
     YelpHtml *html = YELP_HTML (widget);
 
     GTK_WIDGET_CLASS (parent_class)->realize (widget);
@@ -119,6 +153,17 @@ html_realize (GtkWidget *widget)
     if (NS_FAILED (rv)) {
         g_warning ("Yelper initialization failed for %p\n", (void*) html);
     }
+
+#ifdef HAVE_GECKO_1_9
+    if (!gail_get_root_restored) {
+	gail_get_root_restored = TRUE;
+	if (atk_class && gail_get_root) {
+	    gtk_widget_get_accessible (widget);
+	    atk_class->get_root = gail_get_root;
+	}
+    }
+#endif
+  
 }
 
 static void
@@ -377,34 +422,12 @@ yelp_html_close (YelpHtml *html)
     gtk_moz_embed_close_stream (GTK_MOZ_EMBED (html));
 
 #ifdef HAVE_GECKO_1_9
-    /* When Gecko accessibility module init, it will overwrite 
-     * atk_class->get_root.
-     * But the top level accessible of yelp is not controlled by Gecko.
-     * So we need to restore the callback. See Bug #545162.
-     * It only need to do once.
-     * We do it here because Gecko a11y module inits when it is actually used,
-     * we call gtk_widget_get_accessible to pull the trigger. */
-
-    static gboolean gail_get_root_restored = FALSE;
-    if (!gail_get_root_restored) {
-	gail_get_root_restored = TRUE;
-	gpointer data;
-	data = g_type_class_peek (ATK_TYPE_UTIL);
-	if (data) {
-	    AtkUtilClass *atk_class;
-	    AtkObject * (*gail_get_root) (void);
-	    atk_class = ATK_UTIL_CLASS (data);
-	    gail_get_root = atk_class->get_root;
-	    gtk_widget_get_accessible (GTK_WIDGET (html));
-	    atk_class->get_root = gail_get_root;
-	}
-    }
-
-#endif
-
+    html_reset_accessible_parent (GTK_WIDGET (html));
+#else
     html->priv->timeout = g_timeout_add (2000, 
 					 (GSourceFunc) timeout_update_gok,
 					 html);
+#endif
 }
 
 gboolean
