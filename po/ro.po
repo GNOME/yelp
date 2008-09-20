@@ -1,206 +1,869 @@
-# translation of yelp.HEAD.ro.po to Română
-# translation of yelp.gnome-2-4.ro.po to
-# Romanian translation for yelp-1.0.1
-# Copyright (C) 2002,2003, 2005, 2006 Free Software Foundation, Inc.
+# Romanian translation for yelp
+# Copyright (C) 2002-2008 Free Software Foundation, Inc.
 #
 # Mugurel Tudor <mugurelu@gnome.ro>, 2002-2003, 2005, 2006.
+# Adi Roiban <adi@roiban.ro> 2008.
+
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-04 23:23+0100\n"
-"PO-Revision-Date: 2006-03-05 19:58+0200\n"
-"Last-Translator: Mugurel Tudor <mugurelu@gnome.ro>\n"
+"POT-Creation-Date: 2008-01-13 16:16+0000\n"
+"PO-Revision-Date: 2008-09-20 19:30+0300\n"
+"Last-Translator: Mișu Moldovan <dumol@gnome.ro>\n"
 "Language-Team: Română <gnomero@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.1\n"
-"Plural-Forms: nplurals=3;plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1))\n"
+"X-Launchpad-Export-Date: 2008-09-16 21:12+0000\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1239
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
-msgstr "Pagini info GNU"
+msgstr "Pagini GNU Info"
 
-#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "Ajutor tradițional pentru linia de comandă (info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
-msgstr "Aplicaţii"
+msgstr "Aplicații"
 
 #: ../data/man.xml.in.h:2
-msgid "Configuration Files"
-msgstr "Fişiere de configurare"
+msgid "BLT Functions"
+msgstr "Funcții BLT"
 
 #: ../data/man.xml.in.h:3
+msgid "Configuration Files"
+msgstr "Fișiere de configurare"
+
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Funcții curses"
+
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Dezvoltare"
 
-#: ../data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr "Funcţii FORTRAN"
+msgstr "Funcții FORTRAN"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Jocuri"
 
-#: ../data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "Dispozitive hardware"
 
-#: ../data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr "Rutine kernel"
 
-#: ../data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "Funcţii de bibliotecă"
-
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1233
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "Pagini de manual"
 
-#: ../data/man.xml.in.h:10
-msgid "OpenSSL Applications"
-msgstr "Aplicaţii OpenSSL"
-
 #: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "Funcții sunet de rețea"
+
+#: ../data/man.xml.in.h:12
+msgid "OpenSSL Applications"
+msgstr "Aplicații OpenSSL"
+
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
 msgstr "Configurare OpenSSL"
 
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Overviews"
-msgstr "Rezumate OpenSSL"
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "Funcții OpenSSL"
 
-#: ../data/man.xml.in.h:13
+#: ../data/man.xml.in.h:15
+msgid "OpenSSL Overviews"
+msgstr "Prezentare OpenSSL"
+
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "Rezumate"
 
-#: ../data/man.xml.in.h:14
-msgid "POSIX Functions"
-msgstr "Funcţii POSIX"
-
-#: ../data/man.xml.in.h:15
-msgid "POSIX Headers"
-msgstr "Antete POSIX"
-
-#: ../data/man.xml.in.h:16
-msgid "Perl Functions"
-msgstr "Funcţii Perl"
-
 #: ../data/man.xml.in.h:17
-msgid "Qt Functions"
-msgstr "Funcţii Qt"
+msgid "POSIX Functions"
+msgstr "Funcții POSIX"
 
 #: ../data/man.xml.in.h:18
+msgid "POSIX Headers"
+msgstr "Fișiere antet POSIX"
+
+#: ../data/man.xml.in.h:19
+msgid "Perl Functions"
+msgstr "Funcții Perl"
+
+#: ../data/man.xml.in.h:20
+msgid "Qt Functions"
+msgstr "Funcții Qt"
+
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Funcții Readline"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "Secțiunea 0p"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "Secțiunea 1m"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "Secțiunea 1ssl"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "Secțiunea 1x"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "Secțiunea 2"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "Secțiunea 3blt"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "Secțiunea 3f"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "Secțiunea 3nas"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "Secțiunea 3p"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "Secțiunea 3tq"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "Secțiunea 3readline"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "Secțiunea 3ssl"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "Secțiunea 3tiff"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "Secțiunea 4"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "Secțiunea 4x"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "Secțiunea 5"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "Secțiunea 5ssl"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "Secțiunea 5x"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "Secțiunea 6"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "Secțiunea 6x"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "Secțiunea 7ssl"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "Secțiunea 7x"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "Secțiunea 9"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "Secțiunile 1, 1p, 1g și 1t"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "Secțiunile 3, 3o și 3t"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "Secțiunile 3form și 3menu"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "Secțiunile 3ncurses și 3 curses"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "Secțiunile 3pm și 3perl"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "Secțiunile 3x și 3X11"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "Secțiunile 7 și 7gcc"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "Secțiunile 8 și 8l"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "Administrare sistem"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "Apeluri de sistem"
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "Funcțiile System V Form/Menu"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "Funcții TIFF"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
-msgstr "Aplicaţii Termcap"
+msgstr "Aplicații Termcap"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "Ajutor clasic pentru linia de comandă (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
-msgstr "Aplicaţii X11"
+msgstr "Aplicații X11"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "Configurare X11"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
 msgstr "Dispozitive X11"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
-msgstr "Funcţii X11"
+msgstr "Funcții X11"
 
-#: ../data/man.xml.in.h:25
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
 msgstr "Jocuri X11"
 
-#: ../data/man.xml.in.h:26
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
-msgstr "Rezumate X11"
+msgstr "Prezentare X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "Grafică 2D"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "Grafică 3D"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Accesibilitate"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Accesorii"
-
-#: ../data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "Administrare"
+#: ../data/toc.xml.in.h:4
+msgid "Action Games"
+msgstr "Jocuri de acțiune"
 
 #: ../data/toc.xml.in.h:5
+msgid "Adventure Games"
+msgstr "Jocuri de aventură"
+
+#: ../data/toc.xml.in.h:6
+msgid "Amusement"
+msgstr "Divertisment"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Aplicații de grafică"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to audio and video"
+msgstr "Aplicații audio și video"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications that teach or aid in learning"
+msgstr "Aplicații educative"
+
+#: ../data/toc.xml.in.h:10
+msgid "Arcade Games"
+msgstr "Jocuri tip „arcade”"
+
+#: ../data/toc.xml.in.h:11
+msgid "Archiving Tools"
+msgstr "Utilitare de arhivare"
+
+#: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Artă"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "Inteligență artificială"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Astronomie"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Biologie"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Jocuri cu blocuri"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Jocuri de table"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "Construire"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Calculator"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Calendar"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Jocuri de cărți"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Unelte pentru diagrame"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Discuții"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Chimie"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Ceasuri"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Unelte de arhivare"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Informatică"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "Construcții"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Management contacte"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Vizualizare date"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Baze de date"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Depanatoare"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "Desktop"
 
-#: ../data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "Aplicaţii educaţionale"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Opțiuni desktop"
 
-#: ../data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "Dialup"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Dicționare"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Inscripționare discuri"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Economie"
+
+#: ../data/toc.xml.in.h:41
+msgid "Education"
+msgstr "Educație"
+
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Electricitate"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Electronică"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "Clienți de mail"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulator"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Inginerie"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Administrator de fișiere"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Utilitare pentru fișiere"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Transfer de fișiere"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Sistem de fișiere"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Utilitare financiare"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Unelte pentru scheme logice"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "Aplicații GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "Aplicații pentru proiectarea interfețelor grafice"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Aplicații generice pentru mediul GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Aplicații generice pentru mediul KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Geografie"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Geologie"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Geoștiințe"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
-msgstr "Grafice"
+msgstr "Grafică"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
-msgid "Help Topics"
-msgstr "Sumar"
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Ghiduri și manuale pentru aplicații de comunicare"
 
-#: ../data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Ghiduri pentru programatori"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "Radio-amatori"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Configurări hardware"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Divertisment"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Istorie"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDE-uri"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "Clienți IRC"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Procesare de imagini"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Mesagerie instant"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:11
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:12
-msgid "Multimedia"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "Aplicații KDE"
+
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Jocuri pentru copii"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Informații despre tehnologiile de asistență pentru persoanele cu anumite "
+"dizabilități"
+
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Licențe"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Literatură"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Jocuri de logică"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matematică"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Aplicații medicale"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "Documentații diverse"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "Mixere"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Monitor"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Muzică"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Noutăți"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Analiză numerică"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Aplicații de birou"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Aplicații de birou"
+
+#: ../data/toc.xml.in.h:94
+msgid "Other Documentation"
+msgstr "Alte documentații"
+
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
+
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "Comunicare PDA"
+
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Administrator de pachete"
+
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Calcul paralel"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotografie"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Fizică"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Redare multimedia"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Aplicații de prezentare"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Tipărire"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "Utilitare pentru analizarea performanțelor"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Unelte pentru managementul proiectelor"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "Editare publicații"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Grafică rasterizată"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Înregistrare multimedia"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Acces de la distanță"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Control versiuni"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Robotică"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "Jocuri de tip RPG"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Scanare"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Știință"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Securitate"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "Sintetizatoare"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Opțiuni"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "Opțiuni pe care utilizatorii le pot modifica după bunul plac"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Jocuri de simulare"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Sunet"
+
+#: ../data/toc.xml.in.h:124
+msgid "Sound &amp; Video"
 msgstr "Multimedia"
 
-#: ../data/toc.xml.in.h:13
-msgid "Office"
-msgstr "Birou"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Editare audio și video"
 
-#: ../data/toc.xml.in.h:14
-msgid "Other"
-msgstr "Altele"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Sport"
 
-#: ../data/toc.xml.in.h:15
-msgid "Other Documentation"
-msgstr "Alte documentaţii"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Jocuri sportive"
 
-#: ../data/toc.xml.in.h:16
-msgid "Panel Applets"
-msgstr "Apleturi pentru panou"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "Utilitare pentru calcul tabelar"
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Preferinţe"
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Jocuri de strategie"
 
-#: ../data/toc.xml.in.h:18
-msgid "Programming"
-msgstr "Programare"
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Sistem"
 
-#: ../data/toc.xml.in.h:19
-msgid "Scientific"
-msgstr "Ştiinţă"
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
 
-#: ../data/toc.xml.in.h:20
-msgid "System Tools"
-msgstr "Utilitare de sistem"
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "Telefonie"
 
-#: ../data/toc.xml.in.h:21
-msgid "X Applications"
-msgstr "Aplicaţii X"
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "Aplicații de telefonie"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Emulator terminal"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Editoare text"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Unelte text"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Utilitare pentru administrarea calculatorului"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Utilitare pentru traduceri"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "Tunere"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "Utilitare"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "Utilitare care vă ajută să vă faceți treaba"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Grafică vectorială"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Video"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Conferință video"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "Aplicații de vizualizare"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Navigator web"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Dezvoltare web"
+
+#: ../data/toc.xml.in.h:149
+msgid "Welcome to the GNOME Help Browser"
+msgstr "Bun venit în navigatorul manualelor GNOME"
+
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Procesoare text"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -220,19 +883,23 @@ msgstr "Favorite"
 
 #: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
-msgstr "Cu majuscule _semnificative"
+msgstr "Cu m_ajuscule semnificative"
 
 #: ../data/ui/yelp.glade.h:6
 msgid "Find"
-msgstr "Caută"
+msgstr "Căutare"
 
 #: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
-msgstr "Deschide locaţie"
+msgstr "Deschide locația"
+
+#: ../data/ui/yelp.glade.h:8
+msgid "Preferences"
+msgstr "Preferințe"
 
 #: ../data/ui/yelp.glade.h:9
 msgid "Re_name"
-msgstr "Rede_numeşte"
+msgstr "Rede_numire"
 
 #: ../data/ui/yelp.glade.h:10
 msgid "_Bookmarks:"
@@ -240,7 +907,7 @@ msgstr "Favo_rite:"
 
 #: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
-msgstr "_Navighează cu cursorul"
+msgstr "_Navigare cu cursor"
 
 #: ../data/ui/yelp.glade.h:12
 msgid "_Find:"
@@ -248,19 +915,19 @@ msgstr "_Caută:"
 
 #: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
-msgstr "Lăţime _fixă:"
+msgstr "Lățime _fixă:"
 
 #: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
-msgstr "_Locaţie:"
+msgstr "_Locație:"
 
 #: ../data/ui/yelp.glade.h:15
 msgid "_Next"
-msgstr "_Următorul"
+msgstr "_Următoarea"
 
 #: ../data/ui/yelp.glade.h:16
 msgid "_Previous"
-msgstr "_Precedentul"
+msgstr "P_recedenta"
 
 #: ../data/ui/yelp.glade.h:17
 msgid "_Title:"
@@ -268,11 +935,11 @@ msgstr "_Titlu:"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr "_Foloseşte fonturile sistemului"
+msgstr "Folosește font_urile sistemului"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr "Lăţime _variabilă:"
+msgstr "Lățime _variabilă:"
 
 #: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
@@ -280,7 +947,7 @@ msgstr "_Reia de la început"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr "Font pentru textul fix"
+msgstr "Font pentru text fix"
 
 #: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
@@ -288,569 +955,576 @@ msgstr "Font pentru text"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "Font pentru textul cu lăţime fixă."
+msgstr "Font pentru text cu lățime fixă."
 
 #: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "Font pentru text cu lăţime variabilă."
+msgstr "Font pentru text cu lățime variabilă."
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Foloseşte un cursor controlabil din tastatură la vizualizarea paginilor."
+msgstr "Arată un cursor controlabil din tastatură la vizualizarea paginilor."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr "Foloseşte cursor"
+msgstr "Arată cursor"
 
 #: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr "Foloseşte fonturile sistemului"
+msgstr "Folosește fonturile sistemului"
 
 #: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr "Foloseşte setul de fonturi implicit pentru sistem."
+msgstr "Folosește setul de fonturi implicit al sistemului."
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
-msgid "Yelp"
-msgstr "Yelp"
-
-#: ../src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Factory Yelp"
-
-#: ../src/yelp-bookmarks.c:155
+#: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
 msgstr "Deschide favoritul într-o fereastră nouă"
 
-#: ../src/yelp-bookmarks.c:159
+#: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
-msgstr "Redenumeşte favoritul"
+msgstr "Redenumește favoritul"
 
-#: ../src/yelp-bookmarks.c:163
+#: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
-msgstr "Şterge favoritul"
+msgstr "Șterge favoritul"
 
-#: ../src/yelp-bookmarks.c:320
+#: ../src/yelp-bookmarks.c:315
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
-msgstr "Un favorit cu numele de %s deja există pentru această pagină."
+msgstr "Pentru această pagină există deja un favorit cu titlul %s."
 
-#: ../src/yelp-bookmarks.c:397
+#: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "Un favorit cu numele de <b>%s</b> deja există pentru această pagină."
+msgstr ""
+"Pentru această pagină există deja un favorit cu titlul <b>%s</b>."
 
-#: ../src/yelp-bookmarks.c:425
+#: ../src/yelp-bookmarks.c:405
+msgid "Help Topics"
+msgstr "Sumar"
+
+#: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
-msgstr "Secţiuni document"
+msgstr "Secțiuni document"
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
+#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
+msgid "Page not found"
+msgstr "Pagina nu a fost găsită"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "Nu s-a găsit pagina %s din documentul %s."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
+#: ../src/yelp-man.c:388
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "Pagina cerută nu a fost găsită în documentul %s."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
+#: ../src/yelp-man.c:430
+msgid "File not found"
+msgstr "Nu s-a găsit fișierul"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
+#: ../src/yelp-man.c:431
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Fișierul „%s” nu există."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
+msgid "Could not parse file"
+msgstr "Nu s-a putut analiza fișierul"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"Fişierul „%s” nu a putut fi parsat. Fie fişierul nu există, sau este un "
-"fişier XML formatat incorect."
+"Fișierul „%s” nu a putut fi analizat deoarece nu este un document XML bine "
+"formatat."
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "A intervenit o eroare necunoscută"
-
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "Nu am putut încărca documentul"
-
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "Nu am putut încărca secţiunea"
-
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr "Nu am putut citi cuprinsul"
-
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "Format nesuportat"
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "Nu am putut citi documentul"
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "Nu am putut procesa documentul"
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
-msgstr "Nici o informaţie nu este disponibilă pentru această eroare."
-
-#: ../src/yelp-info-pager.c:190
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
 msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr ""
-"Fişierul „%s” nu a putut fi parsat. Fie fişierul nu există, sau este o pagină "
-"info formatată incorect."
+"Fișierul „%s” nu a putut fi analizat deoarece unul sau mai multe dintre "
+"fișierele pe care le include nu sunt documente XML bine formatate."
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+msgid "Unknown"
+msgstr "Necunoscută"
+
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Eroare necunoscută"
+
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
+msgid "Could Not Read File"
+msgstr "Nu s-a putut accesa fișierul"
+
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr "Nu există informații despre această eroare."
+
+#: ../src/yelp-info.c:394
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Nu s-a putut analiza fișierul „%s” deoarece nu este un document „info” bine "
+"formatat."
+
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
-"Fişierul „%s” nu a putut fi citit sau decodat. Fişierul ar putea fi "
+"Fișierul „%s” nu a putut fi citit sau decodat. E posibil ca fișierul să fie "
 "comprimat cu un format nesuportat."
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:92
+msgid "Use a private session"
+msgstr "Folosește o sesiune privată"
+
+#: ../src/yelp-main.c:101
 msgid "Define which cache directory to use"
-msgstr "Defineşte directorul de cache care va fi folosit"
+msgstr "Definește directorul de cache ce va fi folosit"
 
-#: ../src/yelp-main.c:133
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "Nu am putut activa Yelp: „%s”"
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:358
+msgid " GNOME Help Browser"
+msgstr " Navigatorul de documentație GNOME"
 
-#: ../src/yelp-main.c:152
-msgid "Could not open new window."
-msgstr "Nu am putut deschide o nouă fereastră."
-
-#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajutor"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-man.c:460
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
-"Fişierul „%s” nu a putut fi parsat. Fie fişierul nu există, sau este "
-"formatat incorect."
+"Nu s-a putut analiza fișierul „%s” deoarece nu este un document „man” bine "
+"formatat."
 
-#: ../src/yelp-pager.c:122
-msgid "Document Information"
-msgstr "Informaţii despre document"
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "Tipărire"
 
-#: ../src/yelp-pager.c:123
-msgid "The YelpDocInfo struct of the document"
-msgstr "Structura YelpDocInfo a documentului"
-
-#: ../src/yelp-print.c:138
+#: ../src/yelp-print.c:167
 msgid "Preparing to print"
-msgstr "Mă pregătesc pentru tipărire"
+msgstr "Se pregătește tipărirea"
 
-#: ../src/yelp-print.c:275
-msgid "Pages"
-msgstr "Pagini"
-
-#: ../src/yelp-print.c:348
-msgid "Generating PDF is not currently supported"
-msgstr "Generarea de PDF-uri nu este suportată deocamdată"
-
-#: ../src/yelp-print.c:356
+#: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
 msgstr "Tipărirea nu este suportată pentru această imprimantă"
 
-#: ../src/yelp-print.c:359
+#: ../src/yelp-print.c:264
 #, c-format
-msgid ""
-"You were trying to print to a printer using the \"%s\" driver.  This program "
-"requires a PostScript printer driver."
-msgstr ""
-"Aţi încercat să tipăriţi la o imprimantă folosind driverul „%s”. Acest program are "
-"nevoie de un driver PostScript pentru imprimantă."
+msgid "Printer %s does not support postscript printing."
+msgstr "Imprimanta %s nu cunoaște standardul PostScript."
 
-#: ../src/yelp-print.c:402
+#: ../src/yelp-print.c:366
+msgid "Waiting to print"
+msgstr "Se așteaptă tipărirea"
+
+#: ../src/yelp-print.c:578
 msgid "An error occurred while printing"
 msgstr "A intervenit o eroare la tipărire"
 
-#: ../src/yelp-print.c:406
-msgid "It was not possible to print your document"
-msgstr "Nu s-a putut tipări documentul dumneavoastră"
-
-#: ../src/yelp-print.c:466
-msgid "Printing"
-msgstr "Tipărire"
-
-#: ../src/yelp-print.c:493
-msgid "<b>Printing</b>"
-msgstr "<b>Tipărire</b>"
-
-#: ../src/yelp-print.c:495
-msgid "Waiting to print"
-msgstr "Aştept pentru tipărire"
-
-#: ../src/yelp-print.c:559
-msgid "_From:"
-msgstr "_De la:"
-
-#: ../src/yelp-print.c:572
-msgid "Sets the start of the range of pages to be printed"
-msgstr "Setează începutul pentru intervalul de pagini ce vor fi tipărite"
-
-#: ../src/yelp-print.c:574
-msgid "_To:"
-msgstr "_Până la:"
-
-#: ../src/yelp-print.c:587
-msgid "Sets the end of the range of pages to be printed"
-msgstr "Setează sfârşitul intervalului de pagini pentru tipărire"
-
-#: ../src/yelp-search-pager.c:676
+#: ../src/yelp-print.c:582
 #, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "Nu a fost posibilă tipărirea documentului: %s"
+
+#: ../src/yelp-search-parser.c:68
+msgid "the GNOME Support Forums"
+msgstr "Forumurile pentru utilizatori GNOME"
+
+#: ../src/yelp-search-parser.c:286
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Nu există rezultate pentru „%s”"
+
+#: ../src/yelp-search-parser.c:287
 msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
 msgstr ""
-"Căutarea dumneavoastră nu a putut fi procesată. Fişierul „%s” lipseşte, sau este o "
-"foaie de stil XSLT invalidă."
+"Încercați folosirea altor cuvinte pentru a descrie problema sau subiectul "
+"pentru care doriți ajutor."
 
-#: ../src/yelp-search-pager.c:778 ../src/yelp-toc-pager.c:1506
-#: ../src/yelp-xslt-pager.c:368
-msgid "No href attribute found on yelp:document"
-msgstr "Nici un atribut href găsit in documentul yelp"
+#: ../src/yelp-search-parser.c:290
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "Rezultatele căutării pentru „%s”"
 
-#: ../src/yelp-search-pager.c:792 ../src/yelp-toc-pager.c:1520
-#: ../src/yelp-xslt-pager.c:384
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-parser.c:304
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Repetă căutarea online la %s"
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-parser.c:874
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr ""
+"aceea:acelea:aia:ajutor:alea:am:are:asta:astea:au:ca:către:când:ce:"
+"celălalt:cealaltă:celelalte:chestie:chestii:cine:cum:"
+"de:defect:defectă:defecte:descarc:descarcă:descărcare:descărcat"
+"despre:dialog:dialoguri:din:dinspre:e:element:elemente:este:eu:"
+"fă:făcut:făcute:făcuți:ia:în:îs:la:le-am:lucrare:lucrări:lucru:lucruri:"
+"l-a:l-am:merge:mergea:mie:mi-a:mi-au:nu:pe:pentru:pierdut:pierdute:pierduți:"
+"poate:pot:poți:putem:sau:s-a:s-au:se:spre:spune:spuneți:spune-mi:spuneți-mi:"
+"stricat:stricate:stricați:sunt:și:un:una:unde:unele:unii:va:v-a"
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-parser.c:890
+msgid "re"
+msgstr "anti:auto:bio:contra:de:geo:in:în:ne:poli:pseudo:pre:re:rea:tele"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the string NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-parser.c:899
+msgid "ers:er:ing:es:s:'s"
+msgstr "ă:e:ele:i:ii:le:re:rea:rele:ția:ție:ții:țiile:ul:uri:urile"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Fără comentariu"
+
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "Căutarea nu a putut fi procesată"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "Căutarea cerută nu a putut fi procesată."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "Căutarea nu s-a putut efectua"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "Motorul de căutare a returnat rezultate invalide"
+
+#: ../src/yelp-toc.c:266
+#, c-format
+msgid "The page %s was not found in the TOC."
+msgstr "Pagina %s nu a fost găsită în cuprins."
+
+#: ../src/yelp-toc.c:364
+msgid "The requested page was not found in the TOC."
+msgstr "Pagina cerută nu a fost găsită în cuprins."
+
+#: ../src/yelp-toc.c:434
+msgid ""
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Nu s-a putut analiza fișierul de cuprins deoarece nu este un document XML "
+"bine formatat."
+
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
+msgstr "Foaia de stiluri nu este validă"
+
+#: ../src/yelp-transform.c:81
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "Foaia de stiluri XSLT „%s” lipsește sau nu este validă."
+
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr "Transformare deteriorată"
+
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr ""
+"S-a produs o eroare necunoscută la încercarea de conversie a documentului."
+
+#: ../src/yelp-transform.c:372
+msgid "No href attribute found on yelp:document\n"
+msgstr "Nici un atribut „href” nu a fost găsit în yelp:document\n"
+
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
-msgstr "Nu mai există memorie disponibilă"
+msgstr "Memorie insuficientă"
 
-#: ../src/yelp-search-pager.c:833 ../src/yelp-toc-pager.c:1570
-msgid "Help Contents"
-msgstr "Index documentaţie"
-
-#: ../src/yelp-search-pager.c:1119 ../src/yelp-toc-pager.c:499
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Nu am putut încărca fişierul OMF „%s”."
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:156
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-00AB"
-
-#: ../src/yelp-toc-pager.c:273
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: Pause count este negativ."
-
-#: ../src/yelp-toc-pager.c:637
-#, c-format
-msgid "Read man page for %s"
-msgstr "Citeşte pagina de manual pentru %s"
-
-#: ../src/yelp-toc-pager.c:1108
-#, c-format
-msgid "Read info page for %s"
-msgstr "Citeşte pagina de info pentru %s"
-
-#: ../src/yelp-toc-pager.c:1206
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-"Cuprinsul nu a putut fi încărcat. Fişierul „%s” lipseşte, sau este un fişier "
-"XML formatat incorect."
-
-#: ../src/yelp-toc-pager.c:1228
-msgid "Command Line Help"
-msgstr "Ajutor pentru linia de comandă"
-
-#: ../src/yelp-toc-pager.c:1342
-#, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
-msgstr ""
-"Cuprinsul nu a putut fi procesat. Fişierul „%s” lipseşte, sau este o foaie "
-"de stil XSLT invalidă."
-
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:298
 msgid "_File"
-msgstr "_Fişier"
+msgstr "_Fișier"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:299
 msgid "_Edit"
 msgstr "_Editare"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:300
 msgid "_Go"
-msgstr "_Du-te"
+msgstr "_Navigare"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:301
 msgid "_Bookmarks"
 msgstr "Favo_rite"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:302
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:305
 msgid "_New Window"
 msgstr "_Fereastră nouă"
 
-#: ../src/yelp-window.c:323
-msgid "Print This Document"
-msgstr "Tipăreşte acest document"
+#: ../src/yelp-window.c:310
+msgid "Print This Document ..."
+msgstr "Tipărește acest document..."
 
-#: ../src/yelp-window.c:328
-msgid "Print This Page"
-msgstr "Tipăreşte această pagină"
+#: ../src/yelp-window.c:315
+msgid "Print This Page ..."
+msgstr "Tipărește această pagină..."
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:320
 msgid "About This Document"
 msgstr "Despre acest document"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:325
 msgid "Open _Location"
-msgstr "Deschide _locaţie"
+msgstr "Deschide o _locație"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:330
 msgid "_Close Window"
 msgstr "În_chide fereastra"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:336
 msgid "_Copy"
-msgstr "_Copiază"
+msgstr "_Copiere"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:342
 msgid "_Select All"
 msgstr "_Selectează tot"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:347
 msgid "_Find..."
-msgstr "_Caută..."
+msgstr "C_aută..."
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:352
 msgid "Find Pre_vious"
-msgstr "Caută _precedentul"
+msgstr "P_recedenta"
+
+#: ../src/yelp-window.c:354
+msgid "Find previous occurrence of the word or phrase"
+msgstr "Caută apariția precedentă a cuvântului sau a frazei"
+
+#: ../src/yelp-window.c:357
+msgid "Find Ne_xt"
+msgstr "_Următoarea"
+
+#: ../src/yelp-window.c:359
+msgid "Find next occurrence of the word or phrase"
+msgstr "Caută următoarea apariție a cuvântului sau a frazei"
+
+#: ../src/yelp-window.c:362
+msgid "_Preferences"
+msgstr "_Preferințe"
 
 #: ../src/yelp-window.c:367
-msgid "Find previous occurrence of the word or phrase"
-msgstr "Caută precedentele potriviri ale cuvântului sau frazei"
-
-#: ../src/yelp-window.c:370
-msgid "Find Ne_xt"
-msgstr "Caută _următorul"
-
-#: ../src/yelp-window.c:372
-msgid "Find next occurrence of the word or phrase"
-msgstr "Caută următoarele potriviri ale cuvântului sau frazei"
-
-#: ../src/yelp-window.c:375
-msgid "_Preferences"
-msgstr "_Preferinţe"
-
-#: ../src/yelp-window.c:380
 msgid "_Reload"
-msgstr "_Reîncarcă"
+msgstr "_Reîncărcare"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:379
 msgid "_Back"
-msgstr "Î_napoi"
+msgstr "Îna_poi"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:381
 msgid "Show previous page in history"
-msgstr "Arată pagina anterioară din istoric"
+msgstr "Afișarea paginii precedente din istoric"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:384
 msgid "_Forward"
-msgstr "În_ainte"
+msgstr "Îna_inte"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:386
 msgid "Show next page in history"
 msgstr "Arată următoarea pagină din istoric"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:389
 msgid "_Help Topics"
-msgstr "Sumar pentru _ajutor"
+msgstr "_Sumar"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:391
 msgid "Go to the listing of help topics"
-msgstr "Du-te la listarea sumarului pentru ajutor"
+msgstr "Încarcă sumarul ajutorului"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:394
 msgid "_Previous Section"
-msgstr "Secţiunea _anterioară"
+msgstr "Secțiunea p_recedentă"
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:399
 msgid "_Next Section"
-msgstr "Secţiunea _următoare"
+msgstr "Secțiunea _următoare"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
 msgid "_Contents"
-msgstr "_Conţinut"
+msgstr "_Conținut"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:410
 msgid "_Add Bookmark"
-msgstr "_Adaugă favorit"
+msgstr "_Adăugare favorit"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:415
 msgid "_Edit Bookmarks..."
-msgstr "_Editează favorite..."
+msgstr "_Editare favorite..."
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:421
 msgid "_Open Link"
-msgstr "_Deschide legătura"
+msgstr "_Deschide linkul"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:426
 msgid "Open Link in _New Window"
-msgstr "Deschide legătura în fereastră _nouă"
+msgstr "Deschide linkul în fereastră _nouă"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:431
 msgid "_Copy Link Address"
-msgstr "_Copiază adresa legăturii"
+msgstr "_Copiază adresa linkului"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:438
+msgid "Help On this application"
+msgstr "Ajutor despre această aplicație"
+
+#: ../src/yelp-window.c:441
 msgid "_About"
 msgstr "_Despre"
 
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:446
 msgid "Copy _Email Address"
-msgstr "Copiază adresa _email"
+msgstr "Copiază adresa de _mail"
 
-#: ../src/yelp-window.c:504
+#: ../src/yelp-window.c:495
 msgid "Help Browser"
-msgstr "Navigator pentru documentaţii"
+msgstr "Navigator documentație"
 
-#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "Identificatorul Uniform de Resurse pentru acest fişier este invalid."
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
+msgid "Loading..."
+msgstr "Se încarcă..."
 
-#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
+#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
+msgid "Unknown Page"
+msgstr "Pagină necunoscută"
+
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
-"Identificatorul Uniform de Resurse „%s” este invalid sau nu conţine adresa "
-"unui fişier existent."
+msgid "The requested URI \"%s\" is invalid"
+msgstr "URI-ul „%s” cerut nu este valid"
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
-msgid "Man pages are not supported in this version."
-msgstr "Paginile de manual nu sunt suportate în această versiune."
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
+msgid "Unable to load page"
+msgstr "Nu s-a putut încărca pagina"
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
-msgid "GNU info pages are not supported in this version"
-msgstr "Paginile info GNU nu sunt suportate în această versiune"
+#: ../src/yelp-window.c:1062
+msgid "Error executing \"gnome-open\""
+msgstr "Eroare la execuția comenzii „gnome-open”"
 
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
-msgid "Search is not supported in this version."
-msgstr "Căutarea nu este suportată în această versiune."
-
-#: ../src/yelp-window.c:899
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-"Documentele SGML nu mai sunt suportate. Vă rugăm solicitaţi autorului "
-"acestui document să îl convertească la XML."
-
-#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1246
 msgid "_Search:"
-msgstr "_Caută:"
+msgstr "_Căutare:"
 
-#: ../src/yelp-window.c:1026
+#: ../src/yelp-window.c:1247
 msgid "Search for other documentation"
-msgstr "Caută altă documentaţie"
+msgstr "Caută altă documentație"
 
-#: ../src/yelp-window.c:1175
+#: ../src/yelp-window.c:1266
+msgid "Cannot create window"
+msgstr "Nu s-a putut crea fereastra"
+
+#: ../src/yelp-window.c:1272
+msgid "Cannot create search component"
+msgstr "Nu s-a putut crea componenta de căutare"
+
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
-msgstr "Cau_tă:"
+msgstr "Cău_tare:"
 
-#: ../src/yelp-window.c:1195
-msgid "Find _Next"
-msgstr "Caută _următorul"
-
-#: ../src/yelp-window.c:1207
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
-msgstr "Caută _precedentul"
+msgstr "P_recedenta"
 
-#: ../src/yelp-window.c:1321
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
-"Un context de transformare nu a putut fi creat pentru fişierul „%s”. Este "
-"posibil ca formatul să nu mai fie suportat."
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "_Următoarea"
 
-#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
-#: ../src/yelp-window.c:1840
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-"Secţiunea „%s” nu există în acest document. Dacă aţi fost redirectat aici "
-"dintr-un buton Ajutor al unei aplicaţii, vă rugăm să raportaţi acest lucru "
-"autorului acelei aplicaţii."
+#: ../src/yelp-window.c:1451
+msgid "Phrase not found"
+msgstr "Fraza nu a fost găsită"
 
-#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"Fişierul „%s” nu a putut fi citit. Fişierul poate lipsi, sau este posibil să "
-"nu aveţi permisiunile necesare pentru a-l citi."
-
-#: ../src/yelp-window.c:1516
-msgid "Loading..."
-msgstr "Încarc..."
+"Nu se poate accesa fișierul „%s”. Fișierul lipsește sau nu aveți drepturi de "
+"citire asupra lui."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2658
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
-msgstr "Mugurel Tudor <mugurelu@gnome.ro>"
+msgstr ""
+"Mugurel Tudor <mugurelu@gnome.ro>\n"
+"Adi Roiban <adi@roiban.ro>\n"
+"Mișu Moldovan <dumol@gnome.ro>"
 
-#: ../src/yelp-window.c:2663
+#: ../src/yelp-window.c:2405
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Un navigator şi vizualizator de documentaţie pentru Desktop-ul Gnome. "
-
-#: ../src/yelp-xslt-pager.c:195
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"Fişierul „%s” nu a putut fi parsat. Fie fişierul nu există, sau este "
-"incorect formatat."
-
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-"Documentul „%s” nu a putut fi procesat. Fişierul „%s” fie lipseşte, sau nu "
-"este o foaie de stil XSLT validă."
+msgstr "Un navigator de documentație pentru mediul desktop GNOME."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "Primeşte ajutor despre GNOME"
+msgstr "Ajutor pentru GNOME"
 
