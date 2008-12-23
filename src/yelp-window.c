@@ -1631,7 +1631,10 @@ window_do_load_html (YelpWindow    *window,
     
     window_setup_window (window, type, uri, frag_id, uri, priv->base_uri, need_history);
 
-    file   = g_file_new_for_uri (uri);
+    if (uri[0] == '/')
+	file = g_file_new_for_path (uri);
+    else
+	file = g_file_new_for_uri (uri);
     stream = g_file_read (file, NULL, NULL);
 
     if (stream == NULL) {
@@ -1667,7 +1670,7 @@ window_do_load_html (YelpWindow    *window,
     }
 
     while ((g_input_stream_read_all
-	    ((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL))) {
+	    ((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL)) && n) {
 	gchar *tmp;
 	tmp = g_utf8_strup (buffer, n);
 	if (strstr (tmp, "<FRAMESET")) {

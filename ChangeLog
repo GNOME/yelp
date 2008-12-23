@@ -1,3 +1,11 @@
+2008-12-23  Josselin Mouette  <joss@malsain.org>
+
+	* src/yelp-window.c: (window_do_load_html):
+	- Load local files with g_file_new_for_path.
+	- Do not loop endlessly over the end of file while
+          reading it.
+	Fixes bug #562137 - fails to load local HTML files
+
 == 2.24.0 ==
 
 2008-09-22  Don Scorgie  <dscorgie@svn.gnome.org>
