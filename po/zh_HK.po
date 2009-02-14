@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.21.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-08 21:46+0800\n"
-"PO-Revision-Date: 2008-03-08 21:46+0800\n"
+"POT-Creation-Date: 2009-02-14 17:51+0800\n"
+"PO-Revision-Date: 2009-02-14 17:51+0800\n"
 "Last-Translator: Hialan Liu <hialan.liu@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -364,7 +364,7 @@ msgstr "計數機"
 
 #: ../data/toc.xml.in.h:20
 msgid "Calendar"
-msgstr "行事曆"
+msgstr "月曆"
 
 #: ../data/toc.xml.in.h:21
 msgid "Card Games"
@@ -545,7 +545,7 @@ msgstr "玩得開心"
 
 #: ../data/toc.xml.in.h:68
 msgid "History"
-msgstr "瀏覽紀錄"
+msgstr "歷史紀錄"
 
 #: ../data/toc.xml.in.h:69
 msgid "IDEs"
@@ -587,7 +587,7 @@ msgstr "了解如何讓你的系統對一部分身心障礙者更具親和力"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
-msgstr "授權"
+msgstr "授權條款"
 
 #: ../data/toc.xml.in.h:79
 msgid "Literature"
@@ -643,11 +643,11 @@ msgstr "光學辨識(OCR)"
 
 #: ../data/toc.xml.in.h:92
 msgid "Office Applications"
-msgstr "辦公軟件"
+msgstr "辦公室軟件"
 
 #: ../data/toc.xml.in.h:93
 msgid "Office applications"
-msgstr "辦公軟件"
+msgstr "辦公室軟件"
 
 #: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
@@ -761,7 +761,7 @@ msgstr "模擬遊戲"
 
 #: ../data/toc.xml.in.h:123
 msgid "Sound"
-msgstr "聲音"
+msgstr "音效"
 
 #: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
@@ -854,7 +854,7 @@ msgstr "圖片顯示"
 
 #: ../data/toc.xml.in.h:147
 msgid "Web Browser"
-msgstr "網頁瀏覽程式"
+msgstr "網頁瀏覽器"
 
 #: ../data/toc.xml.in.h:148
 msgid "Web Development"
@@ -906,7 +906,7 @@ msgstr "重新命名(_N)"
 
 #: ../data/ui/yelp.glade.h:10
 msgid "_Bookmarks:"
-msgstr "書籤(_B)："
+msgstr "書籤(_B):"
 
 #: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
@@ -914,15 +914,15 @@ msgstr "在文件中顯示游標(_B)"
 
 #: ../data/ui/yelp.glade.h:12
 msgid "_Find:"
-msgstr "尋找(_F)："
+msgstr "尋找(_F):"
 
 #: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
-msgstr "固定闊度(_F)："
+msgstr "固定闊度(_F):"
 
 #: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
-msgstr "位置(_L)："
+msgstr "位置(_L):"
 
 #: ../data/ui/yelp.glade.h:15
 msgid "_Next"
@@ -934,7 +934,7 @@ msgstr "上一個(_P)"
 
 #: ../data/ui/yelp.glade.h:17
 msgid "_Title:"
-msgstr "標題(_T)："
+msgstr "標題(_T):"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
@@ -942,11 +942,11 @@ msgstr "使用系統字型(_U)"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr "可變闊度(_V)："
+msgstr "可變闊度(_V):"
 
 #: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
-msgstr "自動換行(_W)"
+msgstr "回到檔案開始部份再搜尋(_W)"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -1069,7 +1069,7 @@ msgstr "不明"
 msgid "Unknown Error"
 msgstr "不明的錯誤"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1646
 msgid "Could Not Read File"
 msgstr "無法讀取檔案"
 
@@ -1083,29 +1083,29 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "無法解析檔案「%s」的內容，因為他並不是一個格式完善的 info 頁面。"
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr "無法解碼和讀取‘%s’檔案，它可能被壓縮成為一種不支援的格式。"
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:91
 msgid "Use a private session"
 msgstr "使用獨立作業階段"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "指定使用哪個目錄作為快取目錄"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
 msgstr " GNOME 說明文件瀏覽程式"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
-msgstr "說明"
+msgstr "求助"
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1143,22 +1143,22 @@ msgstr "打印時發生錯誤"
 msgid "It was not possible to print your document: %s"
 msgstr "你的文件不能打印：%s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "GNOME 支援討論區"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "找不到“%s”"
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr "嘗試以其它字詞來描述你的問題或說明文件的題目"
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "搜尋“%s”"
@@ -1168,7 +1168,7 @@ msgstr "搜尋“%s”"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "在 %s 再作一次網上搜尋"
@@ -1323,7 +1323,7 @@ msgstr "複製(_C)"
 
 #: ../src/yelp-window.c:348
 msgid "_Select All"
-msgstr "全部選取(_S)"
+msgstr "全選(_S)"
 
 #: ../src/yelp-window.c:353
 msgid "_Find..."
@@ -1423,62 +1423,64 @@ msgstr "複製電子郵件位址(_E)"
 
 #: ../src/yelp-window.c:501
 msgid "Help Browser"
-msgstr "說明文件瀏覽程式"
+msgstr "說明文件瀏覽器"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1703
 msgid "Loading..."
-msgstr "載入..."
+msgstr "載入中..."
 
 #: ../src/yelp-window.c:593 ../src/yelp-window.c:645
 msgid "Unknown Page"
 msgstr "不明的頁面"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1084
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "要求的 URI \"%s\" 已失效"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
+#: ../src/yelp-window.c:1085
 msgid "Unable to load page"
 msgstr "無法載入頁面"
 
-#: ../src/yelp-window.c:1069
+#: ../src/yelp-window.c:1079
 msgid "Error executing \"gnome-open\""
 msgstr "執行 \"gnome-open\" 時錯誤"
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1265
 msgid "_Search:"
-msgstr "搜尋(_S)："
+msgstr "搜尋(_S):"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1266
 msgid "Search for other documentation"
 msgstr "搜尋其它文件"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1286
 msgid "Cannot create window"
 msgstr "無法建立視窗。"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1292
 msgid "Cannot create search component"
 msgstr "無法建立搜尋元件"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1464
 msgid "Fin_d:"
-msgstr "尋找(_D)："
+msgstr "尋找(_D):"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1486
 msgid "Find _Previous"
 msgstr "找上一個(_P)"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1498
 msgid "Find _Next"
 msgstr "找下一個(_N)"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1511
 msgid "Phrase not found"
-msgstr "找不到解析器"
+msgstr "找不到片語"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1643
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1487,12 +1489,12 @@ msgstr "無法讀取檔案‘%s’，可能是檔案遺失了，或是你沒有�
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2483
 msgid "translator-credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
 "以下地址，GNOME 翻譯隊伍會盡快回覆你：\n"
-"community@linuxhall.org\n"
+"zh-l10n@lists.linux.org.tw\n"
 "\n"
 "Hialan Liu <hialan.liu@gmail.com>, 2008\n"
 "Woodman Tuen <wmtuen@gmail.com>, 2006\n"
@@ -1500,11 +1502,11 @@ msgstr ""
 "Roy Chan <roy.chan@linux.org.hk>, 2004\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2002"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2486
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2488
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "GNOME 桌面環境的文件瀏覽器。"
 
@@ -1658,7 +1660,7 @@ msgstr "顯示 GNOME 說明文件"
 #~ msgstr "函式庫"
 
 #~ msgid "Other"
-#~ msgstr "其它"
+#~ msgstr "其他"
 
 #~ msgid "Generating PDF is not currently supported"
 #~ msgstr "目前不支援建立 PDF 文件"
@@ -1671,13 +1673,13 @@ msgstr "顯示 GNOME 說明文件"
 #~ "驅動程式。"
 
 #~ msgid "_From:"
-#~ msgstr "至(_F)："
+#~ msgstr "從(_F):"
 
 #~ msgid "Sets the start of the range of pages to be printed"
 #~ msgstr "設定列印範圍的第一頁"
 
 #~ msgid "_To:"
-#~ msgstr "由(_T)："
+#~ msgstr "到(_T):"
 
 #~ msgid "Sets the end of the range of pages to be printed"
 #~ msgstr "設定列印範圍的最後一頁"
@@ -1704,10 +1706,10 @@ msgstr "顯示 GNOME 說明文件"
 #~ msgstr "無法處理您的搜尋。無法連線至 beagle 伺服程式。"
 
 #~ msgid "<b>_Bookmarks:</b>"
-#~ msgstr "<b>書籤(_B)：</b>"
+#~ msgstr "<b>書籤(_B):</b>"
 
 #~ msgid "<b>_Title:</b>"
-#~ msgstr "<b>標題(_T)：</b>"
+#~ msgstr "<b>標題(_T):</b>"
 
 #~ msgid "Go to home view"
 #~ msgstr "前往首頁"
