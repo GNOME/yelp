@@ -1,3 +1,8 @@
+2009-02-25  Andre Klapper  <a9016009@gmx.de>
+
+	* src/yelp-search-parser.c (search_clean_snippet):
+	Fix crash. Patch by Antonio Litterio. Fixes bug #552947.
+
 2008-12-23  Josselin Mouette  <joss@malsain.org>
 
 	* src/yelp-window.c: (window_do_load_html):
