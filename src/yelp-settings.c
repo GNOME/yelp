@@ -776,7 +776,8 @@ settings_update (YelpSettingsType type)
 	    gdk_color_free (color);
 	}
 
-	gtk_object_sink (GTK_OBJECT (widget));
+	g_object_ref_sink (widget);
+	g_object_unref (widget);
 
 	hls_to_hex (text_h, 
 		    text_l - ((text_l - base_l) * 0.4),

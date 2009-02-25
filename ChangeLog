@@ -1,3 +1,11 @@
+2009-02-25  Thomas H.P. Andersen  <phomes@gmail.com>
+
+	* src/yelp-base.c (yelp_base_init):
+	* src/yelp-settings.c (settings_update):
+	* src/yelp-window.h:
+	* src/yelp-html.h:
+	Replace deprecated gtk symbols. Bug #571868
+
 2009-02-25  Andre Klapper  <a9016009@gmx.de>
 
 	* src/yelp-search-parser.c (search_clean_snippet):
