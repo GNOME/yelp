@@ -1,16 +1,17 @@
 # Italian translation of Yelp.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2005, 2007, 2008, 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the yelp package.
 # Psyk[o] <shaihulud@supereva.it>, 2002.
 # Luca Ferretti <elle.uca@libero.it>, 2005-2006.
-# Milo Casagrande <milo_casagrande@yahoo.it>, 2007
+# Milo Casagrande <milo@ubuntu.com>, 2007-2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 16:07+0100\n"
-"PO-Revision-Date: 2008-02-02 16:30+0100\n"
-"Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
+"POT-Creation-Date: 2009-02-28 10:01-0500\n"
+"PO-Revision-Date: 2009-02-21 14:13+0100\n"
+"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1076,7 +1077,7 @@ msgstr "Sconosciuto"
 msgid "Unknown Error"
 msgstr "Errore sconosciuto"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1646
 msgid "Could Not Read File"
 msgstr "Impossibile leggere il documento"
 
@@ -1091,7 +1092,7 @@ msgid ""
 msgstr ""
 "Impossibile analizzare il file «%s», non è una pagina info ben formata."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1100,21 +1101,21 @@ msgstr ""
 "Impossibile leggere e decodificare il file «%s». Il file potrebbe essere "
 "compresso in un formato non supportato."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:91
 msgid "Use a private session"
 msgstr "Usa una sessione privata"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "Definisce quale directory cache usare"
 
 # Questo browser mi lascia molto molto molto perplesso
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
 msgstr " Visualizzatore documentazione di GNOME"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Aiuto"
 
@@ -1154,16 +1155,16 @@ msgstr "Si è verificato un errore durante la stampa"
 msgid "It was not possible to print your document: %s"
 msgstr "Non è stato possibile stampare il documento: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "i forum di supporto di GNOME"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Nessun risultato per «%s»"
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -1171,7 +1172,7 @@ msgstr ""
 "Provare usando parole diverse per descrivere il problema riscontrato o "
 "l'argomento su cui si cerca aiuto."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Risultati della ricerca di «%s»"
@@ -1181,7 +1182,7 @@ msgstr "Risultati della ricerca di «%s»"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Ripetere la ricerca in rete su %s"
@@ -1446,7 +1447,7 @@ msgstr "Copia indirizzo _email"
 msgid "Help Browser"
 msgstr "Visualizzatore documentazione"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1703
 msgid "Loading..."
 msgstr "Caricamento in corso..."
 
@@ -1454,52 +1455,54 @@ msgstr "Caricamento in corso..."
 msgid "Unknown Page"
 msgstr "Pagina sconosciuta"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1084
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "L'URI «%s» richiesto non è valido"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
+#: ../src/yelp-window.c:1085
 msgid "Unable to load page"
 msgstr "Impossibile caricare la pagina"
 
-#: ../src/yelp-window.c:1069
+#: ../src/yelp-window.c:1079
 msgid "Error executing \"gnome-open\""
 msgstr "Errore nell'eseguire «gnome-open»"
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1265
 msgid "_Search:"
 msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1266
 msgid "Search for other documentation"
 msgstr "Cerca per altra documentazione"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1286
 msgid "Cannot create window"
 msgstr "Impossibile creare la finestra"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1292
 msgid "Cannot create search component"
 msgstr "Impossibile creare componente di ricerca"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1464
 msgid "Fin_d:"
 msgstr "Tr_ova:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1486
 msgid "Find _Previous"
 msgstr "Trova preced_ente"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1498
 msgid "Find _Next"
 msgstr "Trova s_uccessivo"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1511
 msgid "Phrase not found"
 msgstr "Frase non trovata"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1643
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1511,18 +1514,18 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2483
 msgid "translator-credits"
 msgstr ""
-"Alessandro Costantino <shaihulud@supereva.it>\n"
 "Luca Ferretti         <elle.uca@libero.it>\n"
-"Milo Casagrande       <milo_casagrande@yahoo.it>"
+"Milo Casagrande       <milo@ubuntu.com>\n"
+"Alessandro Costantino <shaihulud@supereva.it>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2486
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2488
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navigatore e visualizzatore di aiuto per lo GNOME Desktop."
 
