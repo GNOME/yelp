@@ -1,5 +1,10 @@
 2009-03-01  Christian Persch  <chpe@gnome.org>
 
+	* configure.in: Treat libxul and libxul-embedding the same as far as the
+	MOZILLA_COMPONENT pkg-config check is concerned.
+
+2009-03-01  Christian Persch  <chpe@gnome.org>
+
 	* m4/gecko.m4: Fix libxul[-embedding] detection.
 
 2009-02-25  Thomas H.P. Andersen  <phomes@gmail.com>
