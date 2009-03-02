@@ -1,3 +1,12 @@
+2009-03-01  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* src/yelp-toc.c:
+	* stylesheets/toc2html.xsl:
+	* stylesheets/toc2html.xsl.in:
+	* stylesheets/Makefile.am:
+	- RTL fixes for bug #573159
+
 2009-03-01  Christian Persch  <chpe@gnome.org>
 
 	* configure.in: Treat libxul and libxul-embedding the same as far as the

@@ -69,7 +69,7 @@ PKG_CHECK_MODULES(YELP,
 [
 	gio-2.0
 	gconf-2.0
-	gnome-doc-utils >= 0.11.1
+	gnome-doc-utils >= 0.15.2
 	gtk+-unix-print-2.0
 	gtk+-2.0 >= 2.10.0
 	libglade-2.0 >= 2.0.0
@@ -93,6 +93,9 @@ AC_SUBST(DB_TITLE)
 
 DB2HTML="`$PKG_CONFIG --variable=db2xhtml gnome-doc-utils`"
 AC_SUBST(DB2HTML)
+
+GDU_GETTEXT="`$PKG_CONFIG --variable=gettext gnome-doc-utils`"
+AC_SUBST(GDU_GETTEXT)
 
 GDU_ICON_PATH="`$PKG_CONFIG --variable=icondir gnome-doc-utils`"
 AC_SUBST(GDU_ICON_PATH)
@@ -267,6 +270,7 @@ src/Makefile
 stylesheets/Makefile
 stylesheets/db2html.xsl
 stylesheets/db-title.xsl
+stylesheets/toc2html.xsl
 data/Makefile
 data/icons/Makefile
 data/ui/Makefile

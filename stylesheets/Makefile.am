@@ -11,4 +11,4 @@ xsl_DATA =		\
 	toc2html.xsl	\
 	yelp-common.xsl
 
-EXTRA_DIST=$(xsl_DATA)
+EXTRA_DIST=$(xsl_DATA) db2html.xsl.in db-title.xsl.in toc2html.xsl.in

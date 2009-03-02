@@ -450,6 +450,8 @@ toc_process (YelpToc *toc)
 	xmlChar *icon = NULL;
 	xmlChar *id = NULL;
 
+	xmlNodeSetLang (node, BAD_CAST g_get_language_names ()[0]);
+
 	xml_trim_titles (node, BAD_CAST "title");
 	xml_trim_titles (node, BAD_CAST "description");
 
