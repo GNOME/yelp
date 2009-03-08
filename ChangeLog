@@ -1,3 +1,11 @@
+2009-03-08  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-document.c:
+	- Unlock mutex on error, bug #568058, from Andy Owen
+
+	* stylesheets/toc2html.xsl.in:
+	- Indentation fix
+
 2009-03-02  Shaun McCance  <shaunm@gnome.org>
 
 	* configure.in:

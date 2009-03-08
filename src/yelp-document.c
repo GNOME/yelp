@@ -750,10 +750,11 @@ request_idle_final (YelpDocument *document)
     g_mutex_lock (priv->mutex);
 
     if (priv->reqs_pending == NULL) {
-	    /*
-	       Time to bail as we shouldn't be here anyway.
-	    */
-	    return FALSE;
+	/*
+	  Time to bail as we shouldn't be here anyway.
+	*/
+	g_mutex_unlock (priv->mutex);
+	return FALSE;
     }
     
     for (cur = priv->reqs_pending; cur; cur = cur->next) {

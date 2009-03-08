@@ -70,9 +70,9 @@
           float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
           margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 18px;
         }
-	h2 h3 {
+        h2 h3 {
           color: </xsl:text><xsl:value-of select="$theme.color.text"/><xsl:text>;
-	}
+        }
         div[class~="body"] { }
         div[class~="leftbar"] {
           position: absolute;
