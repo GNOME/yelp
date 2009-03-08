@@ -1,5 +1,10 @@
 2009-03-08  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-man-parser.c:
+	- Don't assume order of certain macros, bug #568066, from Andy Owen
+
+2009-03-08  Shaun McCance  <shaunm@gnome.org>
+
 	* src/yelp-document.c:
 	- Unlock mutex on error, bug #568058, from Andy Owen
 
