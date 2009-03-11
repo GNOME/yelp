@@ -1,31 +1,32 @@
-# translation of yelp.HEAD.ml.po to Malayalam
+# translation of yelp.HEAD.ml.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # FSF-India <locale@gnu.org.in>, 2003.
 # Suresh VP <mvpsuresh@yahoo.com>, 2003.
-# Ani Peter <apeter@redhat.com>, 2006.
+# Ani Peter <apeter@redhat.com>, 2006, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ml\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-11 09:52+0200\n"
-"PO-Revision-Date: 2006-08-12 06:23+0530\n"
+"POT-Creation-Date: 2008-11-07 15:56+0100\n"
+"PO-Revision-Date: 2009-03-11 23:57+0530\n"
 "Last-Translator: Ani Peter <apeter@redhat.com>\n"
-"Language-Team: Malayalam\n"
+"Language-Team:  Swathanthra Malayalam Computing|സ്വതന്ത്ര മലയാളം കമ്പ്യൂട്ടിങ് <smc-discuss@googlegroups.com>"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1849
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "GNU വിവര പേജുകള്‍"
 
 #: ../data/info.xml.in.h:2
 msgid "Traditional command line help (info)"
-msgstr ""
+msgstr "സാധാരണയുള്ള കമാന്‍ഡ് ലൈനിനുള്ള സഹായം (വിവരങ്ങള്‍)"
 
 #: ../data/man.xml.in.h:1
 msgid "Applications"
@@ -43,7 +44,7 @@ msgstr "ക്രമീകരണ ഫയലുകള്‍"
 msgid "Curses Functions"
 msgstr "Curser പ്രവര്‍ത്തനങ്ങള്‍"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "വികസനം‌"
 
@@ -51,7 +52,7 @@ msgstr "വികസനം‌"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN പ്രവര്‍ത്തനങ്ങള്‍"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "കളികള്‍"
 
@@ -63,9 +64,9 @@ msgstr "ഹാര്‍ഡ്‍വയര്‍ ഡിവൈസുകള്‍"
 msgid "Kernel Routines"
 msgstr "കേര്‍ണല്‍ കാര്യക്രമങ്ങള്‍"
 
-#: ../data/man.xml.in.h:10 ../src/yelp-toc-pager.c:1843
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
-msgstr ""
+msgstr "മാനുവല്‍ താളുകള്‍"
 
 #: ../data/man.xml.in.h:11
 msgid "Network Audio Sound Functions"
@@ -257,7 +258,7 @@ msgstr "Termcap പ്രയോഗങ്ങള്‍"
 
 #: ../data/man.xml.in.h:58
 msgid "Traditional command line help (man)"
-msgstr ""
+msgstr "സാധാരണയുള്ള കമാന്‍ഡ് ലൈനിനുള്ള സഹായം (man)"
 
 #: ../data/man.xml.in.h:59
 msgid "X11 Applications"
@@ -284,140 +285,590 @@ msgid "X11 Overviews"
 msgstr "X11 അവലോകനങ്ങള്‍"
 
 #: ../data/toc.xml.in.h:1
-msgid "Accessibility"
-msgstr ""
+msgid "2D Graphics"
+msgstr "2ഡി ഗ്രാഫിക്സ്"
 
 #: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr ""
+msgid "3D Graphics"
+msgstr "3ഡി ഗ്രാഫിക്സ്"
 
 #: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr ""
+msgid "Accessibility"
+msgstr "ആക്സസിബിളിറ്റി"
 
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr ""
+msgid "Action Games"
+msgstr "ആക്ഷന്‍ കളികള്‍"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr ""
+msgid "Adventure Games"
+msgstr "സാഹസികത നിറഞ്ഞ കളികള്‍"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "X ജാലകങ്ങള്‍ സംബന്ധിച്ചുളള പ്രയോഗങ്ങള്‍"
+msgid "Amusement"
+msgstr ""
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
+msgid "Applications for viewing and manipulating graphics"
 msgstr ""
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr ""
+msgid "Applications related to audio and video"
+msgstr "ഓഡിയോ വീഡിയോ സംബന്ധിച്ചുളള പ്രയോഗങ്ങള്‍"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "ഇന്‍റനെറ്റിന് ആവശ്യമുളള പ്രയോഗങ്ങള്‍"
+msgid "Applications that teach or aid in learning"
+msgstr "പഠനത്തിനും പഠിപ്പിക്കുന്നതിനും ആവശ്യമുളള പ്രയോഗങ്ങള്‍"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr ""
+msgid "Arcade Games"
+msgstr "ആര്‍ക്കേഡ് കളികള്‍"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr ""
+msgid "Archiving Tools"
+msgstr "ആര്‍ക്കൈവിങ് പ്രയോഗങ്ങള്‍"
 
 #: ../data/toc.xml.in.h:12
-msgid "Desktop"
-msgstr "ഡെസ്ക്-ടോപ്പ്"
+msgid "Art"
+msgstr "കല"
 
 #: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr ""
+msgid "Artificial Intelligence"
+msgstr "ആര്‍ട്ടിഫിഷ്യല്‍ ഇന്റലിജന്‍സ്"
 
 #: ../data/toc.xml.in.h:14
-msgid "Education"
-msgstr "വിദ്യാഭ്യാസം"
+msgid "Astronomy"
+msgstr "ജ്യോതിശാസ്ത്രം"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "ജീവശാസ്ത്രം"
 
 #: ../data/toc.xml.in.h:16
-msgid "Graphics"
-msgstr "ഗ്രാഫിക്സ്"
+msgid "Blocks Games"
+msgstr "ബ്ലോക്ക് കളികള്‍"
 
 #: ../data/toc.xml.in.h:17
-msgid "Internet"
-msgstr "ഇന്‍റര്‍നെറ്റ്"
+msgid "Board Games"
+msgstr "ബോര്‍ഡ് കളികള്‍"
 
 #: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+msgid "Building"
+msgstr "കെട്ടിടം"
 
 #: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr ""
+msgid "Calculator"
+msgstr "ഗണനി"
 
 #: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr ""
+msgid "Calendar"
+msgstr "കലണ്ടര്‍"
 
 #: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Office"
+msgid "Card Games"
+msgstr "കാര്‍ഡ് കളികള്‍"
 
 #: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "മറ്റ് പ്രയോഗങ്ങള്‍"
+msgid "Charting Tools"
+msgstr "ചാര്‍ട്ടിങ് പ്രയോഗങ്ങള്‍"
 
 #: ../data/toc.xml.in.h:23
-msgid "Other Documentation"
-msgstr ""
+msgid "Chat"
+msgstr "ചാറ്റ്"
 
 #: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "പാനല്‍ ആപ്പ്-ലെറ്റ്സ്"
+msgid "Chemistry"
+msgstr "കെമിസ്ട്രി"
 
 #: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "പ്രോഗ്രാമിങ്"
+msgid "Clocks"
+msgstr "ക്ലോക്കുകള്‍"
 
 #: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "ശാസ്ത്രീയം"
+msgid "Compression Tools"
+msgstr "കംപ്രഷന്‍ പ്രയോഗങ്ങള്‍"
 
 #: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "ശാസ്ത്രീയ പ്രയോഗങ്ങള്‍"
+msgid "Computer Science"
+msgstr "കമ്പ്യൂട്ടര്‍ സയന്‍സ്"
 
 #: ../data/toc.xml.in.h:28
-msgid "Sound &amp; Video"
-msgstr "ശബ്ദം &amp; വീഡിയോ"
+msgid "Construction"
+msgstr "നിര്‍മ്മാണം"
 
 #: ../data/toc.xml.in.h:29
-msgid "System Tools"
+msgid "Contact Management"
 msgstr ""
 
 #: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr ""
+msgid "Data Visualization"
+msgstr "ഡേറ്റ വിശ്വലൈസേഷന്‍"
 
 #: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr ""
+msgid "Databases"
+msgstr "ഡേറ്റാബെയിസുകള്‍"
 
 #: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "വിവിധതരം പ്രയോഗങ്ങള്‍"
+msgid "Debuggers"
+msgstr "ഡീബഗ്ഗറുകള്‍"
 
 #: ../data/toc.xml.in.h:33
+msgid "Desktop"
+msgstr "ഡെസ്ക്-ടോപ്പ്"
+
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "പണിയിട സജ്ജീകരണങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "ഡയലപ്പ്"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "നിഘണ്ടുകള്‍"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "ഡിസ്ക് ബേര്‍ണിങ്"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "ഇകോണമി"
+
+#: ../data/toc.xml.in.h:41
+msgid "Education"
+msgstr "വിദ്യാഭ്യാസം"
+
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "വൈദ്യുതി"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "ഇലക്ട്രോണിക്സ്"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "ഈമെയില്‍ പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "എമ്യുലേറ്റര്‍"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "എഞ്ചിനിയറിംങ്"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "ഫയല്‍ മാനേജര്‍"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "ഫയല്‍ പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "ഫയല്‍ സ്ഥലം മാറ്റുക"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "ഫയല്‍സിസ്റ്റം"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "സാമ്പത്തിക പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "ഫ്ലോ ചാര്‍ട്ടിനുള്ള പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "ഗ്നോം പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "GUI ഡിസൈനര്‍"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "ഗ്നോം എന്‍വയോണ്മെന്റിനുള്ള സാധാരണയായുള്ള പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "കെഡിഇ എന്‍വയോണ്മെന്റിനുള്ള സാധാരണയായുള്ള പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "ഭൂമിശാസ്ത്രം"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "ജിയോളജി"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "ജിയോസയന്‍സ്"
+
+#: ../data/toc.xml.in.h:62
+msgid "Graphics"
+msgstr "ഗ്രാഫിക്സ്"
+
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr ""
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr ""
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "ഹാം റേഡിയോ"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "ഹാര്‍ഡ്‌വെയര്‍ സജ്ജീകരണങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr ""
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "ചരിത്രം"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDE"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "ഐആര്‍സി ക്ലൈന്റുകള്‍"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "ഇമേജ് പ്രൊസസ്സിങ്"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "ഇന്‍സ്റ്റന്റ് മെസ്സേജിങ്"
+
+#: ../data/toc.xml.in.h:73
+msgid "Internet"
+msgstr "ഇന്‍റര്‍നെറ്റ്"
+
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "ജാവാ"
+
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "കെഡിഇ പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "കുട്ടികള്‍ക്കുള്ള കളികള്‍"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
+
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "ലയസന്‍സുകള്‍"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "സാഹിത്യം"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "ലോജിക് കളികള്‍"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "കണക്ക്"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "മെഡിക്കല്‍ സോഫ്റ്റ്‌വെയര്‍"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "മിഡി"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "മറ്റുള്ള വിവരണക്കുറിപ്പുകള്‍"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "മിക്സേര്‍സ്"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "മോണിറ്റര്‍"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "മോട്ടിഫ്"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "സംഗീതം"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "വാര്‍ത്തകള്‍"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "ന്യൂമെറിക്കല്‍ അനാലിസിസ്"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "ഓസിആര്‍"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "ഓഫീസ് പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "ഓഫീസ് പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:94
+msgid "Other Documentation"
+msgstr "മറ്റ് വിവരണക്കുറിപ്പുകള്‍"
+
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
+
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "പിഡിഎ കമ്മ്യൂണിക്കേഷന്‍"
+
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "പാക്കേജ് മാനേജര്‍"
+
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "പാരലല്‍ കമ്പ്യൂട്ടിങ്"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "ഫോട്ടോഗ്രഫി"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "ഫിസിക്സ്"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "പ്ലേയറുകള്‍"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "പ്രസന്റേഷന്‍ പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "പ്രിന്‍റ് ചെയ്യുന്നു"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "പ്രൊഫൈലിങ് പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "പ്രൊജക്ട് മാനേജ്മെന്റ് പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "പ്രസിദ്ധീകരണം"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "ക്യുടി"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "റാസ്ടര്‍ ഗ്രാഫിക്സ്"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "റിക്കോര്‍ഡറുകള്‍"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "റിമോട്ട് ആക്സസ്സ്"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "റിവിഷന്‍ കണ്ട്രോള്‍"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "റോബോട്ടിക്സ്"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "സ്കാനിങ്"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "ശാസ്ത്രം"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "സുരക്ഷ"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "സീക്വന്‍സേര്‍സ്"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "സജ്ജീകരണങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr ""
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "സിമുലേഷന്‍ കളികള്‍"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "ശബ്ദം"
+
+#: ../data/toc.xml.in.h:124
+msgid "Sound &amp; Video"
+msgstr "ശബ്ദം &amp; വീഡിയോ"
+
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "ശബ്ദം &amp; വീഡിയോ ചിട്ടപ്പെടുത്തല്‍"
+
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "കായികം"
+
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "കായിക കളികള്‍"
+
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "സ്പ്രെഡ്ഷീറ്റ് പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "സിസ്റ്റം "
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "ടിവി"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "ടെലിഫോണി"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "ടെലിഫോണി പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "ടെര്‍മിനല്‍ എമ്യുലേറ്റര്‍"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "ടെകസ്റ്റ് എഡിറ്ററുകള്‍"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "ടെക്സ്റ്റ് പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "നിങ്ങളുടെ കമ്പ്യൂട്ടര്‍ കൈകാര്യം ചെയ്യുവാന്‍ സഹായിക്കുന്ന പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "പരിഭാഷയ്ക്കുള്ള പ്രയോഗങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "ട്യൂണറുകള്‍"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "ഉപകരണങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "നിങ്ങളുടെ ജോലിയ്ക്കാവശ്യമായ ഉപകരണങ്ങള്‍"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "വെക്ടര്‍ ഗ്രാഫിക്സ്"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "വീഡിയോ"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "വീഡിയോ കോണ്‍ഫറന്‍സ്"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "കാഴ്ചയ്ക്കുള്ള സംവിധാനം"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "വെബ് ബ്രൌസ‍ര്‍"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "വെബ് വികസനം‌"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "GNOME സഹായ ബ്രൌസറിലേക്ക് സ്വാഗതം"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "X പ്രയോഗങ്ങള്‍"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "വേര്‍ഡ് പ്രൊസസ്സറുകള്‍"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
-msgstr ""
+msgstr "<b>ആക്സസിബിളിറ്റി</b>"
 
 #: ../data/ui/yelp.glade.h:2
 msgid "<b>Fonts</b>"
@@ -425,15 +876,15 @@ msgstr "<b>ലിപികള്‍</b>"
 
 #: ../data/ui/yelp.glade.h:3
 msgid "Add Bookmark"
-msgstr ""
+msgstr "അടയാളക്കുറിപ്പു് ചേര്‍ക്കുക"
 
 #: ../data/ui/yelp.glade.h:4
 msgid "Bookmarks"
-msgstr ""
+msgstr "അടയാളക്കുറിപ്പുകള്‍"
 
 #: ../data/ui/yelp.glade.h:5
 msgid "C_ase sensitive"
-msgstr ""
+msgstr "_കെയിസ് സെന്‍സിറ്റീവ്"
 
 #: ../data/ui/yelp.glade.h:6
 msgid "Find"
@@ -441,7 +892,7 @@ msgstr "കണ്ടുപിടിക്കുക"
 
 #: ../data/ui/yelp.glade.h:7
 msgid "Open Location"
-msgstr ""
+msgstr "സ്ഥാനം തുറക്കുക"
 
 #: ../data/ui/yelp.glade.h:8
 msgid "Preferences"
@@ -453,11 +904,11 @@ msgstr "പേര് മാറ്റുക (_n)"
 
 #: ../data/ui/yelp.glade.h:10
 msgid "_Bookmarks:"
-msgstr ""
+msgstr "_അടയാളക്കുറിപ്പുകള്‍:"
 
 #: ../data/ui/yelp.glade.h:11
 msgid "_Browse with caret"
-msgstr ""
+msgstr "കാരറ്റ് ഉപയോഗിച്ചു് _തെരയുക"
 
 #: ../data/ui/yelp.glade.h:12
 msgid "_Find:"
@@ -465,11 +916,11 @@ msgstr "കണ്ടെത്തുക: (_F)"
 
 #: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_സ്ഥിരമായ വീതി:"
 
 #: ../data/ui/yelp.glade.h:14
 msgid "_Location:"
-msgstr ""
+msgstr "_സ്ഥാനം:"
 
 #: ../data/ui/yelp.glade.h:15
 msgid "_Next"
@@ -485,35 +936,35 @@ msgstr "തലക്കെട്ട്: (_T)"
 
 #: ../data/ui/yelp.glade.h:18
 msgid "_Use system fonts"
-msgstr ""
+msgstr "സിസ്റ്റമിലുള്ള അക്ഷരസഞ്ചയങ്ങള്‍ _ഉപയോഗിക്കുക"
 
 #: ../data/ui/yelp.glade.h:19
 msgid "_Variable width:"
-msgstr ""
+msgstr "_മാറ്റമുള്ള വീതി:"
 
 #: ../data/ui/yelp.glade.h:20
 msgid "_Wrap around"
-msgstr ""
+msgstr "പൂര്‍ണ്ണമായി _റാപ്പ് ചെയ്യുക"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "സ്ഥിരമായ വാചകത്തിനുള്ള അക്ഷരസഞ്ചയം"
 
 #: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "വാചകത്തിനുള്ള അക്ഷരസഞ്ചയം"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "സ്ഥിരമായ വീതിയുള്ള വാചകത്തിനുള്ള അക്ഷരസഞ്ചയം"
 
 #: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "മാറ്റമുള്ള വീതിയുള്ള വാചകത്തിനുള്ള അക്ഷരസഞ്ചയം"
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
+msgstr "താളുകള്‍ കാണുമ്പോള്‍ ഒരു കീബോര്‍ഡ്-നിയന്ത്രിത കാരറ്റ് ഉപയോഗിക്കുക."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -521,89 +972,114 @@ msgstr "caret ഉപയോഗിക്കുക"
 
 #: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr ""
+msgstr "സിസ്റ്റം അക്ഷരസഞ്ചയങ്ങള്‍ ഉപയോഗിക്കുക"
 
 #: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr ""
+msgstr "സിസ്റ്റമില്‍ ക്രമീകരിച്ചിട്ടുള്ള സഹജമായ അക്ഷരസഞ്ചയങ്ങള്‍ ഉപയോഗിക്കുക."
 
 #: ../src/yelp-bookmarks.c:150
 msgid "Open Bookmark in New Window"
-msgstr ""
+msgstr "പുതിയ ജാലകത്തില്‍ അടയാളക്കുറിപ്പുകള്‍ തുറക്കുക"
 
 #: ../src/yelp-bookmarks.c:154
 msgid "Rename Bookmark"
-msgstr ""
+msgstr "അടയാളക്കുറിപ്പിന്റെ പേരു് മാറ്റുക"
 
 #: ../src/yelp-bookmarks.c:158
 msgid "Remove Bookmark"
-msgstr ""
+msgstr "അടയാളക്കുറിപ്പ് നീക്കം ചെയ്യുക"
 
 #: ../src/yelp-bookmarks.c:315
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
-msgstr ""
+msgstr "%s എന്ന പേരുള്ള അടയാളക്കുറിപ്പ് ഈ താളിനു് നിലവിലുണ്ടു്."
 
 #: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "<b>%s</b> എന്ന പേരുള്ള അടയാളക്കുറിപ്പ് ഈ താളിനു് നിലവിലുണ്ടു്."
 
 #: ../src/yelp-bookmarks.c:405
 msgid "Help Topics"
-msgstr ""
+msgstr "സഹായത്തിനുള്ള വിഷയങ്ങള്‍"
 
 #: ../src/yelp-bookmarks.c:420
 msgid "Document Sections"
-msgstr ""
+msgstr "വിവരണക്കുറിപ്പിന്റെ ഭാഗങ്ങള്‍"
 
-#: ../src/yelp-db-pager.c:239 ../src/yelp-db-print-pager.c:190
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+msgid "Page not found"
+msgstr "താള്‍ ലഭ്യമല്ല"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "%s എന്ന താള്‍ %s രേഖയില്‍ ലഭ്യമല്ല."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "ആവശ്യപ്പെട്ട താള്‍ %s എന്ന വിവരണക്കുറിപ്പില്‍ ലഭ്യമല്ല."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
+msgid "File not found"
+msgstr "ഫയല്‍ ലഭ്യമല്ല"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "ഫയല്‍ ‘%s’ നിലവിലില്ല."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
+msgid "Could not parse file"
+msgstr "ഫയല്‍ പാഴ്സ് ചെയ്യുവാന്‍ സാധ്യമല്ല"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "അപരിചിതമായ പിശക് സംഭവിച്ചിരിക്കുന്ന"
-
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr ""
-
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
-msgstr ""
-
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr ""
-
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr ""
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
-msgstr ""
-
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr ""
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
-msgstr "പിശക് സംബന്ധിച്ചുളള വിവരങ്ങള്‍ ലഭ്യമല്ല."
-
-#: ../src/yelp-info-pager.c:188
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr ""
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+msgid "Unknown"
+msgstr "അപരിചിതം"
+
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "അപരിചിതമായ പിശക്"
+
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1643
+msgid "Could Not Read File"
+msgstr "ഫയല്‍ വായിക്കുവാന്‍ സാധ്യമല്ല"
+
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr "ഈ പിശക് സംബന്ധിച്ചുളള വിവരങ്ങള്‍ ലഭ്യമല്ല."
+
+#: ../src/yelp-info.c:396
+#, c-format
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -612,35 +1088,29 @@ msgstr ""
 
 #: ../src/yelp-main.c:91
 msgid "Use a private session"
-msgstr ""
+msgstr "ഒരു സ്വകാര്യ സെഷന്‍ ഉപയോഗിക്കുക"
 
 #: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
-msgstr ""
+msgstr "ഏതു് കാഷ് ഡയറക്ടറി ഉപയോഗിക്കണം എന്നു് നിഷ്കര്‍ഷിക്കുക"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:354
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
 msgstr " GNOME സഹായ ബ്രൌസ‍ര്‍"
 
-#: ../src/yelp-main.c:372 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "സഹായം"
 
-#: ../src/yelp-man-pager.c:263
+#: ../src/yelp-man.c:459
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
 
-#: ../src/yelp-pager.c:117
-msgid "Document Information"
-msgstr ""
-
-#: ../src/yelp-pager.c:118
-msgid "The YelpDocInfo struct of the document"
-msgstr ""
+#: ../src/yelp-print.c:97
+msgid "Print"
+msgstr "പ്രിന്റ് ചെയ്യുക"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
@@ -648,20 +1118,12 @@ msgstr "പ്രിന്‍റ് ചെയ്യുന്നതിനായ�
 
 #: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
-msgstr ""
+msgstr "ഈ പ്രിന്ററില്‍ പ്രിന്റിങിനുള്ള പിന്തുണ ലഭ്യമല്ല"
 
 #: ../src/yelp-print.c:264
 #, c-format
 msgid "Printer %s does not support postscript printing."
-msgstr ""
-
-#: ../src/yelp-print.c:337
-msgid "Printing"
-msgstr "പ്രിന്‍റ് ചെയ്യുന്നു"
-
-#: ../src/yelp-print.c:364
-msgid "<b>Printing</b>"
-msgstr "<b>പ്രിന്‍റ് ചെയ്യുന്നു</b>"
+msgstr "പ്രിന്റര്‍ %s-ല്‍ പോസ്റ്റ്സ്ക്രിപ്റ്റ് പ്രിന്റിങിനുള്ള പിന്തുണ ലഭ്യമല്ല"
 
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
@@ -674,31 +1136,24 @@ msgstr "പ്രിന്‍റ് ചെയ്യുന്നതില്‍ �
 #: ../src/yelp-print.c:582
 #, c-format
 msgid "It was not possible to print your document: %s"
-msgstr ""
+msgstr "നിങ്ങളുടെ രേഖ പ്രിന്റ് ചെയ്യുവാന്‍ സാധ്യമായില്ല: %s"
 
-#: ../src/yelp-search-pager.c:71
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
-msgstr ""
+msgstr "ഗ്നോം സപ്പോര്‍ട്ട് ഫോറമുകള്‍"
 
-#: ../src/yelp-search-pager.c:755
-#, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
-msgstr ""
-
-#: ../src/yelp-search-pager.c:807
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\"-ന് ഫലങ്ങള്‍ ഒന്നും ലഭ്യമല്ല"
 
-#: ../src/yelp-search-pager.c:808
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 
-#: ../src/yelp-search-pager.c:811
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\"-നുളള ഫലങ്ങള്‍ തിരയുക"
@@ -708,24 +1163,10 @@ msgstr "\"%s\"-നുളള ഫലങ്ങള്‍ തിരയുക"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-pager.c:828
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
-msgstr ""
-
-#: ../src/yelp-search-pager.c:905 ../src/yelp-toc-pager.c:2144
-#: ../src/yelp-xslt-pager.c:364
-msgid "No href attribute found on yelp:document"
-msgstr ""
-
-#: ../src/yelp-search-pager.c:919 ../src/yelp-toc-pager.c:2157
-#: ../src/yelp-xslt-pager.c:380 ../src/yelp-xslt-pager.c:531
-msgid "Out of memory"
-msgstr "മെമ്മറി ലഭ്യമല്ല"
-
-#: ../src/yelp-search-pager.c:960 ../src/yelp-toc-pager.c:2206
-msgid "Help Contents"
-msgstr "സഹായ ഉള്ളടക്കം"
+msgstr "%s-ല്‍ ഓണ്‍ലൈന്‍ തെരച്ചില്‍ ആവര്‍ത്തിക്കുക"
 
 #. Translators: Do not translate this list exactly.  These are
 #. * colon-separated words that aren't useful for choosing search
@@ -735,7 +1176,7 @@ msgstr "സഹായ ഉള്ളടക്കം"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-pager.c:1286
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -755,7 +1196,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-pager.c:1302
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "re"
 
@@ -763,330 +1204,303 @@ msgstr "re"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-pager.c:1311
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "ers:er:ing:es:s:'s"
 
-#: ../src/yelp-search-pager.c:1506 ../src/yelp-toc-pager.c:631
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "അഭിപ്രായമില്ല"
+
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "തെരച്ചില്‍ നടത്തുവാന്‍ സാധ്യമായില്ല"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "ആവശ്യപ്പെട്ട തെരച്ചില്‍ നടത്തുവാന്‍ സാധ്യമായില്ല."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "തെരച്ചില്‍ നടത്തുവാന്‍ സാധ്യമല്ല."
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "തെരച്ചില്‍ സംവിധാനം തെറ്റായ ഫലങ്ങള്‍ നല്‍കിയിരിക്കുന്നു."
+
+#: ../src/yelp-toc.c:267
 #, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "OMF ഫയല്‍ '%s' തുറക്കുവാന്‍ സാധ്യമല്ല."
+msgid "The page %s was not found in the TOC."
+msgstr "%s താള്‍ TOC-ല്‍ ലഭ്യമല്ല."
 
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201C"
+#: ../src/yelp-toc.c:366
+msgid "The requested page was not found in the TOC."
+msgstr "ആവശ്യപ്പെട്ട താള്‍ TOC-ല്‍ ലഭ്യമല്ല."
 
-#: ../src/yelp-toc-pager.c:268
-msgid "YelpTocPager: Pause count is negative."
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:379 ../src/yelp-toc-pager.c:1957
-#, c-format
+#: ../src/yelp-toc.c:438
 msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
 
-#: ../src/yelp-toc-pager.c:1110
+#: ../src/yelp-transform.c:80
+msgid "Invalid Stylesheet"
+msgstr "തെറ്റായ സ്റ്റൈല്‍ഷീറ്റ്"
+
+#: ../src/yelp-transform.c:81
 #, c-format
-msgid "Read man page for %s"
-msgstr ""
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "XSLT സ്റ്റൈല്‍ഷീറ്റ് ‘%s’ ലഭ്യമല്ല, അല്ലെങ്കില്‍ തെറ്റാണു്."
 
-#: ../src/yelp-toc-pager.c:1703
-#, c-format
-msgid "Read info page for %s"
-msgstr ""
+#: ../src/yelp-transform.c:112
+msgid "Broken Transformation"
+msgstr "തെറ്റായ മാറ്റം വരുത്തല്‍"
 
-#: ../src/yelp-toc-pager.c:1816
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
+#: ../src/yelp-transform.c:113
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "വിവരണക്കുറിപ്പില്‍ മാറ്റം വരുത്തുന്നതിനിടയില്‍ അപരിചിതമായ പിശക്."
 
-#: ../src/yelp-toc-pager.c:1838
-msgid "Command Line Help"
-msgstr ""
+#: ../src/yelp-transform.c:373
+msgid "No href attribute found on yelp:document\n"
+msgstr "yelp:document-ല്‍ href ആട്രിബ്യൂട്ട് ലഭ്യമല്ല\n"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-transform.c:388
+msgid "Out of memory"
+msgstr "മെമ്മറി ലഭ്യമല്ല"
+
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "ഫയല്‍ (_F)"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "മാറ്റം വരുത്തുക (_E)"
 
-#: ../src/yelp-window.c:320
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "പോകുക (_G)"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_അടയാളക്കുറിപ്പുകള്‍"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "സഹായം (_H)"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "പുതിയ ജാലകം (_N)"
 
-#: ../src/yelp-window.c:330
-msgid "Print This Document"
-msgstr ""
+#: ../src/yelp-window.c:316
+msgid "Print This Document ..."
+msgstr "ഈ രേഖ പ്രിന്റ് ചെയ്യുക ..."
 
-#: ../src/yelp-window.c:335
-msgid "Print This Page"
-msgstr "ഈ പേജ് പ്രിന്‍റ് ചെയ്യുക"
+#: ../src/yelp-window.c:321
+msgid "Print This Page ..."
+msgstr "ഈ താള്‍ പ്രിന്റ് ചെയ്യുക ..."
 
-#: ../src/yelp-window.c:340
+#: ../src/yelp-window.c:326
 msgid "About This Document"
-msgstr ""
+msgstr "ഈ രേഖ സംബന്ധിച്ചു്"
 
-#: ../src/yelp-window.c:345
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
-msgstr ""
+msgstr "_സ്ഥാനം തുറക്കുക"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "ജാലകം അടയ്‍ക്കുക (_C)"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:342
 msgid "_Copy"
 msgstr "പകര്‍ത്തുക (_C)"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "എല്ലാം തിരഞ്ഞെടുക്കുക (_S)"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:353
 msgid "_Find..."
 msgstr "തിരയുക ... (_F)"
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr "മുന്പത്തേത് കണ്ടെത്തുക (_v)"
 
-#: ../src/yelp-window.c:374
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
-msgstr ""
+msgstr "വാക്ക് അല്ലെങ്കില്‍ വാചകം ഇതിനു് മുമ്പു് എവിടെ എന്നു് കണ്ടുപിടിക്കുക"
 
-#: ../src/yelp-window.c:377
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
-msgstr "അടുത്തത് കണ്ടെത്തുക (_x)"
+msgstr "_അടുത്തത് കണ്ടെത്തുക "
 
-#: ../src/yelp-window.c:379
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
-msgstr ""
+msgstr "വാക്ക് അല്ലെങ്കില്‍ വാചകം അടുത്തതു് എവിടെ എന്നു് കണ്ടുപിടിക്കുക"
 
-#: ../src/yelp-window.c:382
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "ഇഷ്ടാനിഷ്ടങ്ങള്‍ (_P)"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:373
 msgid "_Reload"
-msgstr ""
+msgstr "_വീണ്ടും ലഭ്യമാക്കുക"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "പുറകോട്ട് (_B)"
 
-#: ../src/yelp-window.c:401
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
-msgstr ""
+msgstr "നാള്‍വഴിയില്‍ മുമ്പുള്ള താള്‍ കാണിക്കുക"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:390
 msgid "_Forward"
-msgstr "മുന്പോട്ട് (_F)"
+msgstr "മുമ്പോട്ട് (_F)"
 
-#: ../src/yelp-window.c:406
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
-msgstr ""
+msgstr "നാള്‍വഴിയില്‍ അടുത്ത താള്‍ കാണിക്കുക"
 
-#: ../src/yelp-window.c:409
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
-msgstr ""
+msgstr "_സഹായത്തിനുള്ള വിഷയങ്ങള്‍"
 
-#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
-msgstr ""
+msgstr "സഹായത്തിനുള്ള വിഷയങ്ങളുടെ പട്ടികയിലേക്കു് പോകുക"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "മുന്പുളള വിഭാഗം (_P)"
 
-#: ../src/yelp-window.c:419
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "അടുത്ത വിഭാഗം (_N)"
 
-#: ../src/yelp-window.c:424 ../src/yelp-window.c:456
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "ഉളളടക്കം (_C)"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "അടയാളക്കുറിപ്പു് _ചേര്‍ക്കുക"
 
-#: ../src/yelp-window.c:435
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "അടയാളക്കുറിപ്പു് _ചിട്ടപ്പെടുത്തുക..."
 
-#: ../src/yelp-window.c:441
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "ലിങ്ക് തുറക്കുക (_O)"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "ലിങ്ക് പുതിയ ജാലകത്തില്‍ തുറക്കുക (_N)"
 
-#: ../src/yelp-window.c:451
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "ലിങ്ക് വിലാസം പകര്‍ത്തുക (_C)"
 
-#: ../src/yelp-window.c:458
+#: ../src/yelp-window.c:444
 msgid "Help On this application"
 msgstr "ഈ പ്രയോഗത്തിന് ലഭ്യമായ സഹായം"
 
-#: ../src/yelp-window.c:461
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "സംബന്ധിച്ച് (_A)"
 
-#: ../src/yelp-window.c:466
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
 msgstr "ഈമെയില്‍ വിലാസം പകര്‍ത്തുക (_E)"
 
-#: ../src/yelp-window.c:515
+#: ../src/yelp-window.c:501
 msgid "Help Browser"
 msgstr "സഹായ ബ്രൌസ‍ര്‍"
 
-#: ../src/yelp-window.c:926 ../src/yelp-window.c:1082
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1700
+msgid "Loading..."
+msgstr "കാത്തിരിക്കൂ..."
 
-#: ../src/yelp-window.c:938 ../src/yelp-window.c:1077
+#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+msgid "Unknown Page"
+msgstr "അപരിചിതമായ താള്‍"
+
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1084
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
+msgid "The requested URI \"%s\" is invalid"
+msgstr "ആവശ്യപ്പെട്ട യുആര്‍ഐ \"%s\" തെറ്റാണു്"
 
-#: ../src/yelp-window.c:1026 ../src/yelp-window.c:1506
-msgid "Man pages are not supported in this version."
-msgstr ""
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
+#: ../src/yelp-window.c:1085
+msgid "Unable to load page"
+msgstr "താള്‍ ലഭ്യമാക്കുവാന്‍ സാധിച്ചില്ല"
 
-#: ../src/yelp-window.c:1036 ../src/yelp-window.c:1497
-msgid "GNU info pages are not supported in this version"
-msgstr ""
+#: ../src/yelp-window.c:1079
+msgid "Error executing \"gnome-open\""
+msgstr "\"gnome-open\" പ്രവര്‍ത്തിപ്പിക്കുന്നതില്‍ പിശക്"
 
-#: ../src/yelp-window.c:1052 ../src/yelp-window.c:1519
-msgid "Search is not supported in this version."
-msgstr ""
-
-#: ../src/yelp-window.c:1057
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-
-#: ../src/yelp-window.c:1223
+#: ../src/yelp-window.c:1265
 msgid "_Search:"
 msgstr "തിരയുക: (_S)"
 
-#: ../src/yelp-window.c:1224
+#: ../src/yelp-window.c:1266
 msgid "Search for other documentation"
-msgstr ""
+msgstr "മറ്റു് വിവരണക്കുറിപ്പുകള്‍ക്കായി തെരയുക"
 
-#: ../src/yelp-window.c:1386
+#: ../src/yelp-window.c:1286
+msgid "Cannot create window"
+msgstr "ജാലകം ഉണ്ടാക്കുവാന്‍ സാധ്യമായില്ല"
+
+#: ../src/yelp-window.c:1292
+msgid "Cannot create search component"
+msgstr "തെരച്ചിലിനുള്ള ഘടകം ഉണ്ടാക്കുവാന്‍ സാധ്യമായില്ല"
+
+#: ../src/yelp-window.c:1464
 msgid "Fin_d:"
 msgstr "കണ്ടുപിടിക്കുക: (_d)"
 
-#: ../src/yelp-window.c:1406
-msgid "Find _Next"
-msgstr "അടുത്തത് കണ്ടെത്തുക (_N)"
-
-#: ../src/yelp-window.c:1418
+#: ../src/yelp-window.c:1486
 msgid "Find _Previous"
 msgstr "മുന്പുളളത് കണ്ടെത്തുക (_P)"
 
-#: ../src/yelp-window.c:1532
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
+#: ../src/yelp-window.c:1498
+msgid "Find _Next"
+msgstr "_അടുത്തത് കണ്ടെത്തുക "
 
-#: ../src/yelp-window.c:1562 ../src/yelp-window.c:1981
-#: ../src/yelp-window.c:2064
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
+#: ../src/yelp-window.c:1511
+msgid "Phrase not found"
+msgstr "വാചകം ലഭ്യമല്ല"
 
-#: ../src/yelp-window.c:1677 ../src/yelp-window.c:2468
+#: ../src/yelp-window.c:1640
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-
-#: ../src/yelp-window.c:1728
-msgid "Loading..."
-msgstr "കാത്തിരിക്കൂ..."
+"‘%s’ ഫയല്‍ വായിക്കുവാന്‍ സാധ്യമായില്ല. ഈ ഫയല്‍ ലഭ്യമല്ല, അല്ലെങ്കില്‍ നിങ്ങള്‍ക്കു് "
+"ഇതിനാവശ്യമായ ആനുകൂല്യങ്ങള്‍ ഉണ്ടാവില്ല."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2911
+#: ../src/yelp-window.c:2480
 msgid "translator-credits"
-msgstr "അനി പീറ്റര്‍ <peter.ani@gmail.com>"
+msgstr "അനി പീറ്റര്‍ <apeter@redhat.com>"
 
-#: ../src/yelp-window.c:2914
+#: ../src/yelp-window.c:2483
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2916
+#: ../src/yelp-window.c:2485
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
-
-#: ../src/yelp-xslt-pager.c:189
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-
-#: ../src/yelp-xslt-pager.c:210 ../src/yelp-xslt-pager.c:223
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
+msgstr "ഗ്നോം പണിയിടത്തിലുള്ള വിവരണക്കുറിപ്പിനുള്ള ബ്രൌസറും കാഴ്ചയ്ക്കുള്ള സംവിധാനവും."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
