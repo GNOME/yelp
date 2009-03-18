@@ -14,8 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-26 16:30+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&component=general\n"
+"POT-Creation-Date: 2009-03-17 22:06+0000\n"
 "PO-Revision-Date: 2008-07-28 14:23+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -23,7 +24,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -1071,7 +1073,7 @@ msgstr "مجهول"
 msgid "Unknown Error"
 msgstr "خطأ مجهول"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1646
 msgid "Could Not Read File"
 msgstr "تعذّر قراءة الملف"
 
@@ -1081,36 +1083,38 @@ msgstr "لا معلومات متوفّرة حول هذا الخطأ."
 
 #: ../src/yelp-info.c:396
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "تعذّر فهم الملف ‘%s’ لأنه ملف info غير سليم."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr "تعذّر قراءة الملف ‘%s’. من الممكن أنه مضغوط بصورة غير معروفة."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:91
 msgid "Use a private session"
 msgstr "استعمل جلسة خاصة"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "عرّف أي دليل خزن مؤقت سيستخدم"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
 msgstr " متصفّح مساعدة جنوم"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "مساعدة"
 
 #: ../src/yelp-man.c:459
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "تعذّر فهم الملف ‘%s’ لأنه ملف man غير سليم."
 
 #: ../src/yelp-print.c:97
@@ -1143,22 +1147,23 @@ msgstr "حدث خطأ عند الطبع"
 msgid "It was not possible to print your document: %s"
 msgstr "تعذّر طباعة مستندك: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "منتديات المساعدة لجنوم"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "لا نتائج ل \"%s\""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
-msgstr "جرب استعمال كلمات مغايرة لوصف المشكلة أو الموضوع الذي تريد المساعدة حوله."
+msgstr ""
+"جرب استعمال كلمات مغايرة لوصف المشكلة أو الموضوع الذي تريد المساعدة حوله."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "نتائج البحث عن \"%s\""
@@ -1168,7 +1173,7 @@ msgstr "نتائج البحث عن \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "أعد البحث على الإنترنت على %s"
@@ -1425,7 +1430,7 @@ msgstr "انسخ البريد الإل_كتروني"
 msgid "Help Browser"
 msgstr "متصفح المساعدة"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1703
 msgid "Loading..."
 msgstr "يجري التحميل..."
 
@@ -1433,63 +1438,65 @@ msgstr "يجري التحميل..."
 msgid "Unknown Page"
 msgstr "صفحة مجهولة"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1084
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "العنوان \"%s\" غير سليم"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
+#: ../src/yelp-window.c:1085
 msgid "Unable to load page"
 msgstr "تعذّر تحميل الصفحة"
 
-#: ../src/yelp-window.c:1069
+#: ../src/yelp-window.c:1079
 msgid "Error executing \"gnome-open\""
 msgstr "خطأ أثناء تنفيذ \"gnome-open\""
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1265
 msgid "_Search:"
 msgstr "ا_بحث:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1266
 msgid "Search for other documentation"
 msgstr "ابحث عن توثيق آخر"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1286
 msgid "Cannot create window"
 msgstr "تعذّر إنشاء نافذة"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1292
 msgid "Cannot create search component"
 msgstr "تعذّر انشاء مكون البحث"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1464
 msgid "Fin_d:"
 msgstr "اب_حث:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1486
 msgid "Find _Previous"
 msgstr "ابحث عن _السّابق"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1498
 msgid "Find _Next"
 msgstr "ابحث عن ال_تّالي"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1511
 msgid "Phrase not found"
 msgstr "الجملة غير موجودة"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1643
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"تعذّر قراءة الملف ‘%s’. يمكن أن يكون الملف غير موجودا أو أنك لا تملك "
-"التصاريح لقراءته."
+"تعذّر قراءة الملف ‘%s’. يمكن أن يكون الملف غير موجودا أو أنك لا تملك التصاريح "
+"لقراءته."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2483
 msgid "translator-credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
@@ -1498,15 +1505,14 @@ msgstr ""
 "خالد حسني\t\t<khaledhosny@eglug.org>\n"
 "عبد المنعم كوكة\t<abdelmonam.kouka@ubuntume.com>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2486
 msgid "Yelp"
 msgstr "يِلب"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2488
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "متصفح و عارض وثائق لمكتب جنوم."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "احصل على المساعدة في جُنوم"
-
