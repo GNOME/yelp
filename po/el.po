@@ -1,7 +1,5 @@
-# translation of el.po to Greek
-# translation of el.po to
-# Greek translation of yelp.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+# translation of yelp to Greek
+# Copyright (C) 2002 - 2009 Free Software Foundation, Inc.
 #
 #
 # 59 messages, 19Aug2002, started logging.
@@ -19,17 +17,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-13 01:01+0000\n"
+"POT-Creation-Date: 2009-04-05 20:22+0300\n"
 "PO-Revision-Date: 2008-03-13 01:26+0000\n"
-"Last-Translator: Simos Xenitellis <simos@gnome.org>\n"
+"Last-Translator: Thanos Lefteris <alefteris@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
-"X-Poedit-Language: Greek\n"
-"X-Poedit-Country: GREECE\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -85,7 +80,7 @@ msgstr "Συναρτήσεις Network Audio Sound"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
-msgstr "Εφαρμογές OpenSSL "
+msgstr "Εφαρμογές OpenSSL"
 
 #: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
@@ -93,7 +88,7 @@ msgstr "Ρυθμίσεις OpenSSL"
 
 #: ../data/man.xml.in.h:14
 msgid "OpenSSL Functions"
-msgstr "Συναρτήσεις OpenSSL "
+msgstr "Συναρτήσεις OpenSSL"
 
 #: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
@@ -105,7 +100,7 @@ msgstr "Γενικές επισκοπήσεις"
 
 #: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
-msgstr "Συναρτήσεις POSIX "
+msgstr "Συναρτήσεις POSIX"
 
 #: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
@@ -549,7 +544,8 @@ msgstr "Γραφικά"
 
 #: ../data/toc.xml.in.h:63
 msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Οδηγοί και εγχειρίδια για εφαρμογές που συνδέονται με τον εξωτερικό κόσμο"
+msgstr ""
+"Οδηγοί και εγχειρίδια για εφαρμογές που συνδέονται με τον εξωτερικό κόσμο"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
@@ -607,7 +603,9 @@ msgstr "Παιχνίδια για παιδιά"
 msgid ""
 "Learn more about making your system more accessible for a range of "
 "disabilities"
-msgstr "Μάθετε περισσότερα για να κάνετε το σύστημά σας πιο προσβάσιμο σε χρήστες με ειδικές ανάγκες"
+msgstr ""
+"Μάθετε περισσότερα για να κάνετε το σύστημά σας πιο προσβάσιμο σε χρήστες με "
+"ειδικές ανάγκες"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
@@ -631,7 +629,7 @@ msgstr "Ιατρικό λογισμικό"
 
 #: ../data/toc.xml.in.h:83
 msgid "Midi"
-msgstr "Συσκευές Midi"
+msgstr "Midi"
 
 #: ../data/toc.xml.in.h:84
 msgid "Miscellaneous Documentation"
@@ -683,7 +681,7 @@ msgstr "P2P"
 
 #: ../data/toc.xml.in.h:96
 msgid "PDA Communication"
-msgstr "Πιλοτική επικοινωνία"
+msgstr "Σύνδεση με PDA"
 
 #: ../data/toc.xml.in.h:97
 msgid "Package Manager"
@@ -704,7 +702,7 @@ msgstr "Φυσική"
 #. Translators: this is a menu title for audio and video players
 #: ../data/toc.xml.in.h:102
 msgid "Players"
-msgstr "Αναπαραγωγείς"
+msgstr "Αναπαραγωγή ήχου και βίντεο"
 
 #: ../data/toc.xml.in.h:103
 msgid "Presentation Tools"
@@ -779,7 +777,7 @@ msgstr "Ρυθμίσεις"
 msgid "Settings users can manipulate to make their environment more pleasant"
 msgstr ""
 "Ρυθμίσεις που έχουν τη δυνατότητα να διαχειριστούν οι χρήστες για να κάνουν "
-"το γραφικό περιβάλλον τους πιο ευχάριστο."
+"το γραφικό περιβάλλον τους πιο ευχάριστο"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -941,7 +939,7 @@ msgstr "_Περιήγηση με δρομέα"
 
 #: ../data/ui/yelp.glade.h:12
 msgid "_Find:"
-msgstr "Εύ_ρεση: "
+msgstr "Εύ_ρεση:"
 
 #: ../data/ui/yelp.glade.h:13
 msgid "_Fixed width:"
@@ -1028,7 +1026,8 @@ msgstr "Ένας σελιδοδείκτης με το όνομα %s υπάρχε
 #: ../src/yelp-bookmarks.c:392
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "Ένας σελιδοδείκτης με το όνομα <b>%s</b> υπάρχει ήδη για αυτή τη σελίδα."
+msgstr ""
+"Ένας σελιδοδείκτης με το όνομα <b>%s</b> υπάρχει ήδη για αυτή τη σελίδα."
 
 #: ../src/yelp-bookmarks.c:405
 msgid "Help Topics"
@@ -1079,14 +1078,18 @@ msgstr "Αδυναμία ανάλυσης αρχείου"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "Το αρχείο ‘%s’ δε μπορεί να φορτωθεί. Το αρχείο είτε λείπει είτε δεν βρίσκεται στη σωστή μορφή XML αρχείου."
+msgstr ""
+"Το αρχείο ‘%s’ δε μπορεί να φορτωθεί γιατί δεν είναι ένα σωστά μορφοποιημένο "
+"XML αρχείο."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
-msgstr "Το αρχείο ‘%s’ δε μπορεί να φορτωθεί. Το αρχείο είτε λείπει είτε δεν βρίσκεται στη σωστή μορφή XML αρχείου."
+msgstr ""
+"Το αρχείο ‘%s’ δε μπορεί να φορτωθεί γιατί ένα ή περισσότερα από τα αρχεία "
+"που περιλαμβάνει δεν είναι σωστά μορφοποιημένα XML αρχεία."
 
 #: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
@@ -1096,7 +1099,7 @@ msgstr "Άγνωστο"
 msgid "Unknown Error"
 msgstr "Άγνωστο σφάλμα"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1646
 msgid "Could Not Read File"
 msgstr "Αδυναμία ανάγνωσης αρχείου"
 
@@ -1106,38 +1109,46 @@ msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες γι
 
 #: ../src/yelp-info.c:396
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Το αρχείο ‘%s’ δεν μπορεί να φορτωθεί. Το αρχείο είτε λείπει δεν βρίσκεται στη σωστή μορφή σελίδας πληροφοριών."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Το αρχείο ‘%s’ δεν μπορεί να φορτωθεί γιατί δεν είναι μια σωστά "
+"μορφοποιημένη σελίδα πληροφοριών."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr "Το αρχείο‘%s’ δεν μπορεί να αναγνωσθεί και αποκωδικοποιηθεί. Το αρχείο μπορεί να είναι συμπιεσμένο ή να έχει μη υποστηριζόμενη μορφή."
+msgstr ""
+"Το αρχείο‘%s’ δεν μπορεί να αναγνωσθεί και αποκωδικοποιηθεί. Το αρχείο "
+"μπορεί να είναι συμπιεσμένο ή να έχει μη υποστηριζόμενη μορφή."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:91
 msgid "Use a private session"
 msgstr "Χρήση μιας ιδιωτικής συνεδρίας"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "Ορισμός του καταλόγου λανθάνουσας μνήμης που θα χρησιμοποηθεί"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
-msgstr "Περιηγητής βοήθειας του GNOME"
+msgstr " Περιηγητής βοήθειας του GNOME"
 
 #
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Βοήθεια"
 
 #: ../src/yelp-man.c:459
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "Το αρχείο ‘%s’ δε μπορεί να φορτωθεί. Το αρχείο είτε λείπει είτε δεν δε βρίσκεται στη σωστή μορφή σελίδα βοήθειας."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr ""
+"Το αρχείο ‘%s’ δε μπορεί να φορτωθεί γιατί δεν είναι μια σωστά μορφοποιημένη "
+"σελίδα βοήθειας."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -1154,7 +1165,7 @@ msgstr "Η εκτύπωση δεν υποστηρίζεται σε αυτόν τ
 #: ../src/yelp-print.c:264
 #, c-format
 msgid "Printer %s does not support postscript printing."
-msgstr "Ο εκτυπωτής %s δεν υποστηρίζει εκτύπωση postscript"
+msgstr "Ο εκτυπωτής %s δεν υποστηρίζει εκτύπωση postscript."
 
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
@@ -1169,22 +1180,24 @@ msgstr "Δημιουργήθηκε σφάλμα κατά την εκτύπωση
 msgid "It was not possible to print your document: %s"
 msgstr "Δεν ήταν δυνατή η εκτύπωση του εγγράφου σας: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "τα φόρουμ υποστήριξης του GNOME"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Δεν υπάρχουν αποτελέσματα για \"%s\""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
-msgstr "Προσπαθήστε να χρησιμοποιήσετε διαφορετικές λέξεις για να περιγράψετε το πρόβλημα που έχετε ή το θέμα που ψάχνετε."
+msgstr ""
+"Προσπαθήστε να χρησιμοποιήσετε διαφορετικές λέξεις για να περιγράψετε το "
+"πρόβλημα που έχετε ή το θέμα που ψάχνετε."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Αναζήτηση αποτελεσμάτων για \"%s\""
@@ -1194,7 +1207,7 @@ msgstr "Αναζήτηση αποτελεσμάτων για \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Επανάληψη αναζήτησης online στο %s"
@@ -1213,7 +1226,9 @@ msgid ""
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
-msgstr "ένα:για:πες:μου:τι:είναι:πως:μπορώ:να:μπορείς:διάλογο:γιατί:πότε:ποτέ:θα:δουλεύει:πότε:από:πάρω:πάρει:δεν"
+msgstr ""
+"ένα:για:πες:μου:τι:είναι:πως:μπορώ:να:μπορείς:διάλογο:γιατί:πότε:ποτέ:θα:"
+"δουλεύει:πότε:από:πάρω:πάρει:δεν"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -1257,7 +1272,7 @@ msgstr "Δεν ήταν δυνατή η επεξεργασία της αναζή
 
 #: ../src/yelp-search.c:367
 msgid "The search processor returned invalid results"
-msgstr "Ο επεξεργαστής αναζήτησης επέστρεψε μη έγκυρα αποτελέσματα."
+msgstr "Ο επεξεργαστής αναζήτησης επέστρεψε μη έγκυρα αποτελέσματα"
 
 #: ../src/yelp-toc.c:267
 #, c-format
@@ -1272,7 +1287,9 @@ msgstr "Η ζητούμενη σελίδα δε βρέθηκε στο TOC."
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "Το αρχείο TOC δεν μπόρεσε να φορτωθεί. Το αρχείο είτε λείπει είτε δε βρίσκεται στη σωστή μορφή XML αρχείου."
+msgstr ""
+"Το αρχείο TOC δεν μπόρεσε να φορτωθεί γιατί δεν είναι ένα σωστά "
+"μορφοποιημένο XML αρχείο."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -1289,7 +1306,8 @@ msgstr "Σπασμένος μετασχηματισμός"
 
 #: ../src/yelp-transform.c:113
 msgid "An unknown error occurred while attempting to transform the document."
-msgstr "Σημειώθηκε ένα άγνωστο σφάλμα κατά τη διαδικασία μετασχηματισμού του αρχείου."
+msgstr ""
+"Σημειώθηκε ένα άγνωστο σφάλμα κατά τη διαδικασία μετασχηματισμού του αρχείου."
 
 #: ../src/yelp-transform.c:373
 msgid "No href attribute found on yelp:document\n"
@@ -1452,7 +1470,7 @@ msgstr "Αντιγραφή διεύθυνσης ηλ. αλληλογρα_φία�
 msgid "Help Browser"
 msgstr "Πρόγραμμα βοήθειας"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1703
 msgid "Loading..."
 msgstr "Φορτώνεται..."
 
@@ -1460,63 +1478,65 @@ msgstr "Φορτώνεται..."
 msgid "Unknown Page"
 msgstr "Άγνωστη σελίδα"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1084
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
-msgstr "Η ζητούμενη ιστοσελίδα \"%s\" δεν είναι έγκυρη."
+msgstr "Το ζητούμενο URI \"%s\" δεν είναι έγκυρο"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
+#: ../src/yelp-window.c:1085
 msgid "Unable to load page"
 msgstr "Αδυναμία φόρτωσης σελίδας"
 
-#: ../src/yelp-window.c:1069
+#: ../src/yelp-window.c:1079
 msgid "Error executing \"gnome-open\""
 msgstr "Σφάλμα εκτέλεσης του \"gnome-open\""
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1265
 msgid "_Search:"
 msgstr "Ανα_ζήτηση:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1266
 msgid "Search for other documentation"
 msgstr "Αναζήτηση για άλλη τεκμηρίωση"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1286
 msgid "Cannot create window"
 msgstr "Αδυναμία δημιουργίας παραθύρου"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1292
 msgid "Cannot create search component"
 msgstr "Δεν είναι δυνατή η δημιουργία αναζήτησης του στοιχείου"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1464
 msgid "Fin_d:"
 msgstr "Εύ_ρεση:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1486
 msgid "Find _Previous"
 msgstr "Εύρεση _προηγουμένου"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1498
 msgid "Find _Next"
 msgstr "Εύρεση επομέ_νου"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1511
 msgid "Phrase not found"
 msgstr "Η φράση δε βρέθηκε"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1643
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"Το αρχείο‘%s’ δεν μπορεί να αναγνωσθεί. Το αρχείο μπορεί να λείπει ή να μην "
+"Το αρχείο ‘%s’ δεν μπορεί να αναγνωσθεί. Το αρχείο μπορεί να λείπει ή να μην "
 "έχετε τα απαραίτητα δικαιώματα ανάγνωσης."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2483
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -1527,15 +1547,14 @@ msgstr ""
 "Για περισσότερα δείτε http://www.gnome.gr/"
 
 #
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2486
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2488
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Μια εφαρμογή περιήγησης και προβολής τεκμηρίωσης για το Gnome."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Λήψη βοήθειας για το GNOME"
-
