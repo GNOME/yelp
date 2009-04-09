@@ -1,5 +1,10 @@
 2009-04-08  Shaun McCance  <shaunm@gnome.org>
 
+	* src/yelp-transform.c:
+	- Patched memory leak, bug #578372, from Machael Chudobiak
+
+2009-04-08  Shaun McCance  <shaunm@gnome.org>
+
 	* src/info2html/Makefile.am:
 	* src/info2html/html.c:
 	* src/info2html/html.h:

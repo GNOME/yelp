@@ -73,6 +73,8 @@ YelpTransform
     YelpTransform *transform;
     
     transform = g_new0 (YelpTransform, 1);
+    transform->func = func;
+    transform->user_data = user_data;
 
     transform->stylesheet = xsltParseStylesheetFile (BAD_CAST stylesheet);
     if (!transform->stylesheet) {
@@ -82,18 +84,15 @@ YelpTransform
 			      "not valid."),
 			    stylesheet);
 	transform_error (transform);
+	g_free (transform);
 	return NULL;
     }
-
-    transform->func = func;
 
     transform->queue = g_async_queue_new ();
     transform->chunks = g_hash_table_new_full (g_str_hash,
 					       g_str_equal,
 					       g_free,
 					       NULL);
-
-    transform->user_data = user_data;
 
     return transform;
 }
