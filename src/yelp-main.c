@@ -25,8 +25,7 @@
 #endif
 
 #include <glib/gi18n.h>
-#include <gtk/gtkmain.h>
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>

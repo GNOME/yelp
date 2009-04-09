@@ -23,10 +23,7 @@
 
 #include "gtkentryaction.h"
 
-#include <gtk/gtkentry.h>
-#include <gtk/gtktoolitem.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkhbox.h>
+#include <gtk/gtk.h>
 
 #define GTK_ENTRY_ACTION_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GTK_TYPE_ENTRY_ACTION, GtkEntryActionPrivate))
 

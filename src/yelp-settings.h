@@ -24,7 +24,7 @@
 #define __YELP_SETTINGS_H__
 
 #include <glib.h>
-#include <gtk/gtkicontheme.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

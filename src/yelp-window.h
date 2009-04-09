@@ -23,8 +23,6 @@
 #ifndef __YELP_WINDOW_H__
 #define __YELP_WINDOW_H__
 
-#include <gtk/gtktreemodel.h>
-#include <gtk/gtkwindow.h>
 #include <gtk/gtk.h>
 
 #include "yelp-base.h"

@@ -21,7 +21,7 @@
 #ifndef GTK_ENTRY_ACTION_H
 #define GTK_ENTRY_ACTION_H
 
-#include <gtk/gtkaction.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

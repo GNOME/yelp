@@ -30,9 +30,7 @@
 #include "yelp-debug.h"
 
 #include <string.h>
-#include <gtk/gtkuimanager.h>
-#include <gtk/gtkliststore.h>
-#include <gtk/gtktreemodel.h>
+#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <glade/glade.h>
 #include <libxml/parser.h>
