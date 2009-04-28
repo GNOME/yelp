@@ -31,7 +31,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 #include <libgnome/gnome-config.h>
 #include <libgnome/gnome-url.h>
@@ -2114,7 +2113,8 @@ static void
 window_open_location_cb (GtkAction *action, YelpWindow *window)
 {
     YelpWindowPriv *priv;
-    GladeXML       *glade;
+    GtkBuilder     *builder;
+    GError         *error = NULL;
     GtkWidget      *dialog;
     GtkWidget      *entry;
     gchar          *uri = NULL;
@@ -2123,17 +2123,17 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
 
     priv = window->priv;
 
-    glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
-			   "location_dialog",
-			   NULL);
-    if (!glade) {
-	g_warning ("Could not find necessary glade file "
-		   DATADIR "/yelp/ui/yelp.glade");
-	return;
+    builder = gtk_builder_new ();
+    if (!gtk_builder_add_from_file (builder,
+                                    DATADIR "/yelp/ui/yelp-open-location.ui",
+                                    &error)) {
+        g_warning ("Could not load builder file: %s", error->message);
+        g_error_free(error);
+        return;
     }
 
-    dialog = glade_xml_get_widget (glade, "location_dialog");
-    entry  = glade_xml_get_widget (glade, "location_entry");
+    dialog = GTK_WIDGET (gtk_builder_get_object (builder, "location_dialog"));
+    entry  = GTK_WIDGET (gtk_builder_get_object (builder, "location_entry"));
 
     priv->location_dialog = dialog;
     priv->location_entry  = entry;
@@ -2151,7 +2151,6 @@ window_open_location_cb (GtkAction *action, YelpWindow *window)
 		      G_CALLBACK (location_response_cb),
 		      window);
 
-    g_object_unref (glade);
     gtk_window_present (GTK_WINDOW (dialog));
 }
 

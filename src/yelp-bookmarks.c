@@ -32,7 +32,6 @@
 #include <string.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#include <glade/glade.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xpath.h>
@@ -283,7 +282,8 @@ bookmarks_dup_finder (GtkTreeModel *model, GtkTreePath *path,
 void
 yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 {
-    GladeXML    *glade;
+    GtkBuilder  *builder;
+    GError      *error = NULL;
     GtkWidget   *dialog;
     GtkEntry    *entry;
     gchar       *title;
@@ -324,17 +324,17 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 	return;
     }
 
-    glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
-			   "add_bookmark_dialog",
-			   NULL);
-    if (!glade) {
-	g_warning ("Could not find necessary glade file "
-		   DATADIR "/yelp/ui/yelp.glade");
-	return;
+    builder = gtk_builder_new ();
+    if (!gtk_builder_add_from_file (builder,
+                                    DATADIR "/yelp/ui/yelp-bookmarks-add.ui",
+                                    &error)) {
+        g_warning ("Could not load builder file: %s", error->message);
+        g_error_free(error);
+        return;
     }
 
-    dialog = glade_xml_get_widget (glade, "add_bookmark_dialog");
-    entry = GTK_ENTRY (glade_xml_get_widget (glade, "bookmark_title_entry"));
+    dialog = GTK_WIDGET (gtk_builder_get_object (builder, "add_bookmark_dialog"));
+    entry = GTK_ENTRY (gtk_builder_get_object (builder, "bookmark_title_entry"));
     gtk_entry_set_text (entry, title);
     gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
 
@@ -345,7 +345,6 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 		      G_CALLBACK (bookmark_add_response_cb),
 		      dup_uri);
 
-    g_object_unref (glade);
     gtk_window_present (GTK_WINDOW (dialog));
 }
 
@@ -603,24 +602,25 @@ bookmarks_cell_edited_cb (GtkCellRendererText *cell, const gchar *path_string,
 void
 yelp_bookmarks_edit (void)
 {
-    GladeXML    *glade;
+    GtkBuilder *builder;
+    GError *error = NULL;
     GtkTreeView *view;
     GtkTreeSelection *select;
     GtkCellRenderer *renderer;
     gint width, height;
     
     if (!bookmarks_dialog) {
-	glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
-			       "bookmarks_dialog",
-			       NULL);
-	if (!glade) {
-	    g_warning ("Could not find necessary glade file "
-		       DATADIR "/yelp/ui/yelp.glade");
-	    return;
-	}
+        builder = gtk_builder_new ();
+        if (!gtk_builder_add_from_file (builder, 
+                                        DATADIR "/yelp/ui/yelp-bookmarks.ui",
+                                        &error)) {
+            g_warning ("Could not load builder file: %s", error->message);
+            g_error_free(error);
+            return;
+        }
 
-	bookmarks_dialog = glade_xml_get_widget (glade, "bookmarks_dialog");
-	view = GTK_TREE_VIEW (glade_xml_get_widget (glade, "bookmarks_view"));
+        bookmarks_dialog = GTK_WIDGET (gtk_builder_get_object (builder, "bookmarks_dialog"));
+	view = GTK_TREE_VIEW (gtk_builder_get_object (builder, "bookmarks_view"));
 	width = gnome_config_get_int (BK_CONFIG_WIDTH
 				      "=" BK_CONFIG_WIDTH_DEFAULT);
 	height = gnome_config_get_int (BK_CONFIG_HEIGHT
@@ -657,15 +657,15 @@ yelp_bookmarks_edit (void)
 	g_signal_connect (G_OBJECT (renderer), "edited",
 			  G_CALLBACK (bookmarks_cell_edited_cb), NULL);
 
-	edit_open_button = glade_xml_get_widget (glade, "open_button");
+	edit_open_button = GTK_WIDGET (gtk_builder_get_object (builder, "open_button"));
 	g_signal_connect (G_OBJECT (edit_open_button), "clicked",
 			  G_CALLBACK (bookmarks_open_button_cb),
 			  view);
-	edit_rename_button = glade_xml_get_widget (glade, "rename_button");
+	edit_rename_button = GTK_WIDGET (gtk_builder_get_object (builder, "rename_button"));
 	g_signal_connect (G_OBJECT (edit_rename_button), "clicked",
 			  G_CALLBACK (bookmarks_rename_button_cb),
 			  view);
-	edit_remove_button = glade_xml_get_widget (glade, "remove_button");
+	edit_remove_button = GTK_WIDGET (gtk_builder_get_object (builder, "remove_button"));
 	g_signal_connect (G_OBJECT (edit_remove_button), "clicked",
 			  G_CALLBACK (bookmarks_remove_button_cb),
 			  view);
@@ -678,8 +678,6 @@ yelp_bookmarks_edit (void)
 	g_signal_connect (G_OBJECT (bookmarks_dialog), "configure-event",
 			  G_CALLBACK (bookmarks_configure_cb),
 			  NULL);
-
-	g_object_unref (glade);
     }
 
     gtk_window_present (GTK_WINDOW (bookmarks_dialog));

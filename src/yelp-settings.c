@@ -27,7 +27,6 @@
 #include <glib/gi18n.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <gconf/gconf-client.h>
 #include <string.h>
 
@@ -204,26 +203,28 @@ yelp_settings_init (void)
 void
 yelp_settings_open_preferences (void)
 {
+    GtkBuilder *builder;
+    GError *error = NULL;
     gchar *font;
     gboolean use;
 
     if (!prefs_dialog) {
-	GladeXML *glade;
-	glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
-			       "prefs_dialog",
-			       NULL);
-	if (!glade) {
-	    g_warning ("Could not find necessary glade file "
-		       DATADIR "/yelp/ui/yelp.glade");
-	    return;
-	}
+        builder = gtk_builder_new ();
+        if (!gtk_builder_add_from_file (builder, 
+                                        DATADIR "/yelp/ui/yelp-preferences.ui",
+                                        &error)) {
+            g_warning ("Could not load builder file: %s", error->message);
+            g_error_free(error);
+            return;
+        }
 
-	prefs_dialog  = glade_xml_get_widget (glade, "prefs_dialog");
-	use_caret_widget     = glade_xml_get_widget (glade, "use_caret");
-	system_fonts_widget  = glade_xml_get_widget (glade, "use_system_fonts");
-	font_table_widget    = glade_xml_get_widget (glade, "font_table");
-	variable_font_widget = glade_xml_get_widget (glade, "variable_font");
-	fixed_font_widget    = glade_xml_get_widget (glade, "fixed_font");
+
+	prefs_dialog  = GTK_WIDGET (gtk_builder_get_object (builder, "prefs_dialog"));
+	use_caret_widget     = GTK_WIDGET (gtk_builder_get_object (builder, "use_caret"));
+	system_fonts_widget  = GTK_WIDGET (gtk_builder_get_object (builder, "use_system_fonts"));
+	font_table_widget    = GTK_WIDGET (gtk_builder_get_object (builder, "font_table"));
+	variable_font_widget = GTK_WIDGET (gtk_builder_get_object (builder, "variable_font"));
+	fixed_font_widget    = GTK_WIDGET (gtk_builder_get_object (builder, "fixed_font"));
 
 	use = gconf_client_get_bool (gconf_client, KEY_YELP_SYSTEM_FONTS, NULL);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (system_fonts_widget), use);
@@ -261,8 +262,6 @@ yelp_settings_open_preferences (void)
 	
 	g_signal_connect (G_OBJECT (prefs_dialog), "delete_event",
 			  G_CALLBACK (gtk_widget_hide_on_delete), NULL);
-
-	g_object_unref (glade);
     }
 
     gtk_window_present (GTK_WINDOW (prefs_dialog));

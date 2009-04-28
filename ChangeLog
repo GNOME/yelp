@@ -1,3 +1,18 @@
+2009-04-28  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-settings.c: 
+	* src/yelp-bookmarks.c: 
+	* po/POTFILES.in: 
+	* data/ui/Makefile.am: 
+	* configure.in: 
+	* data/ui/yelp.glade (deleted):
+	* data/ui/yelp-bookmarks-add.ui (added):
+	* data/ui/yelp-bookmarks.ui (added):
+	* data/ui/yelp-open-location.ui (added):
+	* data/ui/yelp-preferences.ui (added):
+	Port from glade to GtkBuilder
+	
 2009-04-27  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-window.c: 
