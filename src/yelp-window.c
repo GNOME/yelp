@@ -1051,10 +1051,6 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    break;
 	case YELP_RRN_TYPE_EXTERNAL:
 	    {
-		gchar *str_stdout = NULL;
-		gchar *str_stderr = NULL;
-		gchar *cmd = NULL;
-		gint status = 0;
 		GError *error = NULL;
 
 		priv->base_uri = old_base_uri;
@@ -1069,20 +1065,11 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		    return;
 		}
 
-		cmd = g_strdup_printf ("gnome-open %s", uri);
-		if (!g_spawn_command_line_sync (cmd, &str_stdout, &str_stderr, &status, &error)) {
-		    g_free (error);
-		    error = NULL;
-		    g_free (cmd);
-		    cmd = g_strdup_printf ("xdg-open %s", uri);
-		    if (!g_spawn_command_line_sync (cmd, &str_stdout, &str_stderr, &status, &error)) {
-			window_error(window, _("Error executing \"gnome-open\""), error->message, FALSE);
-			return;
-		    }
-		}
-		if (status) {
+		if (!gtk_show_uri (NULL, trace_uri, gtk_get_current_event_time (), &error)) {
 		    gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
 		    window_error (window, _("Unable to load page"), message, FALSE);
+		    g_free (error);
+		    error = NULL;
 		    return;
 		}
 	    }

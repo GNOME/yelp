@@ -1,3 +1,10 @@
+2009-04-27  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	Replacing syncronous spawn functions by a simple 
+	gtk_show_uri (fixes bug #561404 - patch from
+	Lincon de Sousa)
+
 2009-04-08  Shaun McCance  <shaunm@gnome.org>
 
 	* src/yelp-transform.c:
