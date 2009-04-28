@@ -197,7 +197,12 @@ resolve_full_file (const gchar *path)
  	    } else if (resolve_is_man_path (path, "lzma")) {
  		    type = YELP_RRN_TYPE_MAN;
  	    }
-
+    } else if (g_str_equal (mime_type, "application/octet-stream")) {
+ 	    if (g_str_has_suffix (path, ".info")) {
+ 		    type = YELP_RRN_TYPE_INFO;
+ 	    } else if (resolve_is_man_path (path, NULL)) {
+ 		    type = YELP_RRN_TYPE_MAN;
+ 	    }
     } else if (g_str_equal (mime_type, "text/plain")) {
 	if (g_str_has_suffix (path, ".info")) {
 	    type = YELP_RRN_TYPE_INFO;

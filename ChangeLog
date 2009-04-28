@@ -1,5 +1,12 @@
 2009-04-28  Don Scorgie  <dscorgie@svn.gnome.org>
 
+	* src/yelp-info-parser.c: 
+	* src/yelp-utils.c: 
+	Fix uncompressed info page accesses
+	(bug #578350 - patch from parthasarathi susarla)
+
+2009-04-28  Don Scorgie  <dscorgie@svn.gnome.org>
+
 	* src/yelp-window.c: 
 	* src/yelp-settings.c: 
 	* src/yelp-bookmarks.c: 
