@@ -92,6 +92,8 @@ resolve_process_ghelp (char *uri, gchar **result)
 	    type = YELP_RRN_TYPE_HTML;
 	else if (g_str_equal (mime, "application/xhtml+xml"))
 	    type = YELP_RRN_TYPE_XHTML;
+	else if (g_str_equal (mime, "text/plain"))
+	    type = YELP_RRN_TYPE_TEXT;
 
     } else {
 	gint file_cut = 6;
@@ -209,7 +211,7 @@ resolve_full_file (const gchar *path)
 	} else if (resolve_is_man_path (path, NULL)) {
 	    type = YELP_RRN_TYPE_MAN;
 	} else {
-	    type = YELP_RRN_TYPE_EXTERNAL;
+	    type = YELP_RRN_TYPE_TEXT;
 	}
     } else {
 	type = YELP_RRN_TYPE_EXTERNAL;

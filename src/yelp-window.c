@@ -1081,6 +1081,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    break;
 	case YELP_RRN_TYPE_HTML:
 	case YELP_RRN_TYPE_XHTML:
+	case YELP_RRN_TYPE_TEXT:
 	    priv->base_uri = g_strdup ("file:///fakefile");
 	    window_do_load_html (window, real_uri, frag_id, type, TRUE);
 	    break;
@@ -1124,7 +1125,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	  frag_id = g_strdup ("x-yelp-index");
 
 	if (priv->current_document || (priv->current_type == YELP_RRN_TYPE_HTML ||
-				       priv->current_type == YELP_RRN_TYPE_XHTML))
+				       priv->current_type == YELP_RRN_TYPE_XHTML ||
+				       priv->current_type == YELP_RRN_TYPE_TEXT))
 	    need_hist = TRUE;
 	window_setup_window (window, type, real_uri, frag_id,
 			     (gchar *) uri, current_base, need_hist);
@@ -1693,6 +1695,9 @@ window_do_load_html (YelpWindow    *window,
     case YELP_RRN_TYPE_XHTML:
 	yelp_html_open_stream (priv->html_view, "application/xhtml+xml");
 	break;
+    case YELP_RRN_TYPE_TEXT:
+	yelp_html_open_stream (priv->html_view, "text/plain");
+	break;
     default:
 	g_assert_not_reached ();
     }
@@ -1820,6 +1825,7 @@ html_frame_selected_cb (YelpHtml *html, gchar *uri, gboolean handled,
     switch (window->priv->current_type) {
     case YELP_RRN_TYPE_XHTML:
     case YELP_RRN_TYPE_HTML:
+    case YELP_RRN_TYPE_TEXT:
 	handle = TRUE;
 	break;
     default:
@@ -2137,6 +2143,9 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	case YELP_RRN_TYPE_XHTML:
 	    yelp_html_open_stream (html, "application/xhtml+xml");
 	    break;
+	case YELP_RRN_TYPE_TEXT:
+	    yelp_html_open_stream (html, "text/plain");
+	    break;
 	default:
 	    g_assert_not_reached ();
 	}
@@ -2309,7 +2318,7 @@ history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
 {
     g_return_if_fail (YELP_IS_WINDOW (window));
 
-    if (entry->type == YELP_RRN_TYPE_HTML || entry->type == YELP_RRN_TYPE_XHTML) {
+    if (entry->type == YELP_RRN_TYPE_HTML || entry->type == YELP_RRN_TYPE_XHTML || entry->type == YELP_RRN_TYPE_TEXT) {
 	window_do_load_html (window, entry->uri, entry->frag_id, entry->type, FALSE);
     } else {
 	g_assert (entry->doc != NULL);
