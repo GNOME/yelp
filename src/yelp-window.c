@@ -521,6 +521,10 @@ window_finalize (GObject *object)
     
     g_free (priv->current_frag);
 
+    g_free (priv->uri);
+    g_free (priv->base_uri);
+    g_free (priv->req_uri);
+
     /* FIXME there are many more things to free */
 
     parent_class->finalize (object);
@@ -574,7 +578,7 @@ history_push_back (YelpWindow *window)
 
     entry->frag_id  = g_strdup (priv->current_frag);
     entry->uri = g_strdup (priv->uri);
-    entry->req_uri = priv->req_uri;
+    entry->req_uri = g_strdup(priv->req_uri);
     entry->doc = priv->current_document;
     entry->type = priv->current_type;
     entry->base_uri = g_strdup (priv->base_uri);
@@ -625,7 +629,7 @@ history_push_forward (YelpWindow *window)
 
     entry->frag_id  = g_strdup (priv->current_frag);
     entry->uri = g_strdup (priv->uri);
-    entry->req_uri = priv->req_uri;
+    entry->req_uri = g_strdup(priv->req_uri);
     entry->doc = priv->current_document;
     entry->type = priv->current_type;
     entry->base_uri = g_strdup (priv->base_uri);
@@ -767,6 +771,8 @@ history_entry_free (YelpHistoryEntry *entry)
     g_free (entry->page_title);
     g_free (entry->frag_title);
     g_free (entry->base_uri);
+    g_free (entry->uri);
+    g_free (entry->req_uri);
 
     if (entry->menu_entry) {
 	gtk_widget_destroy (entry->menu_entry);
@@ -814,6 +820,7 @@ history_back_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
     }
 
     history_load_entry (window, entry);
+    history_entry_free (entry);
 }
 
 static void
@@ -854,6 +861,8 @@ history_forward_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
     }
 
     history_load_entry (window, entry);
+    history_entry_free (entry);
+
 
 }
 
@@ -874,7 +883,7 @@ page_request_cb (YelpDocument       *document,
 	       YelpWindow         *window)
 {
     YelpError *error;
-    YelpLoadData *data;
+    YelpLoadData *data = NULL;
 
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
@@ -889,6 +898,9 @@ page_request_cb (YelpDocument       *document,
 	window->priv->current_request = -1;
 	yelp_page_free ((YelpPage *) func_data);
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+
+	if (data)
+	    g_free (data);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
 	/* We don't need to actually handle title signals as gecko
@@ -943,7 +955,12 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
     priv->current_type = type;
     g_free (priv->uri);
     priv->uri = g_strdup (loading_uri);
+    if (priv->current_frag) {
+	g_free (priv->current_frag);
+    }
     priv->current_frag = g_strdup (frag);
+    if (priv->req_uri)
+	g_free (priv->req_uri);
     priv->req_uri = g_strdup (req_uri);
     
     switch (priv->current_type) {
@@ -1007,6 +1024,14 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
 	window_error (window, _("Unable to load page"), message, FALSE);
 	g_free (message);
+	if (frag_id)
+	    g_free (frag_id);
+	if (real_uri)
+	    g_free(real_uri);
+	if (trace_uri)
+	    g_free(trace_uri);
+	if (current_base)
+	    g_free(current_base);
 	return;
     }
 
@@ -1061,6 +1086,14 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		    window_error (window, _("Unable to load page"), message, FALSE);
 		    g_free (message);
 
+		    if (frag_id)
+			g_free (frag_id);
+		    if (real_uri)
+			g_free(real_uri);
+		    if (trace_uri)
+			g_free(trace_uri);
+		    if (current_base)
+			g_free(current_base);
 		    return;
 		}
 
@@ -1069,6 +1102,14 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		    window_error (window, _("Unable to load page"), message, FALSE);
 		    g_free (error);
 		    error = NULL;
+		    if (frag_id)
+			g_free (frag_id);
+		    if (real_uri)
+			g_free(real_uri);
+		    if (trace_uri)
+			g_free(trace_uri);
+		    if (current_base)
+			g_free(current_base);
 		    return;
 		}
 	    }
@@ -1099,6 +1140,15 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 							(void *) window);
 	priv->current_document = doc;
     }
+
+    if (frag_id)
+	g_free (frag_id);
+    if (real_uri)
+	g_free(real_uri);
+    if (trace_uri)
+	g_free(trace_uri);
+    if (current_base)
+	g_free(current_base);
 }
 
 GtkUIManager *
@@ -2250,7 +2300,8 @@ history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
 	g_assert (entry->doc != NULL);
 	window_setup_window (window, entry->type, entry->uri, entry->frag_id, entry->req_uri,
 			     window->priv->base_uri, FALSE);
-	g_free (window->priv->base_uri);
+	if (window->priv->base_uri)
+	    g_free (window->priv->base_uri);
 	window->priv->base_uri = g_strdup (entry->base_uri);
 	window->priv->current_document = entry->doc;
 	window->priv->current_request = yelp_document_get_page (entry->doc, 

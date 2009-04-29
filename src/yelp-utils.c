@@ -353,6 +353,8 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    *section = g_strdup ("info");
 	    *result = NULL;
 	    ret = YELP_RRN_TYPE_TOC;
+	    if (intern_uri)
+		g_free (intern_uri);
 	    return ret;
 	}
 	
@@ -456,5 +458,7 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	*section = NULL;
     }
 
+    if (intern_uri)
+	g_free (intern_uri);
     return ret;
 }
