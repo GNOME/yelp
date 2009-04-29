@@ -724,10 +724,8 @@ history_step_back (YelpWindow *window)
     priv = window->priv;
     entry = history_pop_back (window);
 
-    if (priv->current_frag) {
-	g_free (priv->current_frag);
-	priv->current_frag = NULL;
-    }
+    g_free (priv->current_frag);
+    priv->current_frag = NULL;
 
     if (entry) {
 	priv->current_frag = g_strdup (entry->frag_id);
@@ -924,8 +922,7 @@ page_request_cb (YelpDocument       *document,
 	yelp_page_free ((YelpPage *) func_data);
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
-	if (data)
-	    g_free (data);
+	g_free (data);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
 	/* We don't need to actually handle title signals as gecko
@@ -980,12 +977,9 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
     priv->current_type = type;
     g_free (priv->uri);
     priv->uri = g_strdup (loading_uri);
-    if (priv->current_frag) {
-	g_free (priv->current_frag);
-    }
+    g_free (priv->current_frag);
     priv->current_frag = g_strdup (frag);
-    if (priv->req_uri)
-	g_free (priv->req_uri);
+    g_free (priv->req_uri);
     priv->req_uri = g_strdup (req_uri);
 
     switch (priv->current_type) {
@@ -1048,16 +1042,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     if (type == YELP_RRN_TYPE_ERROR) {
 	gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
 	window_error (window, _("Unable to load page"), message, FALSE);
-	g_free (message);
-	if (frag_id)
-	    g_free (frag_id);
-	if (real_uri)
-	    g_free(real_uri);
-	if (trace_uri)
-	    g_free(trace_uri);
-	if (current_base)
-	    g_free(current_base);
-	return;
+
+	goto Exit;
     }
 
     if (priv->uri && g_str_equal (real_uri, priv->uri)) {
@@ -1111,15 +1097,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		    window_error (window, _("Unable to load page"), message, FALSE);
 		    g_free (message);
 
-		    if (frag_id)
-			g_free (frag_id);
-		    if (real_uri)
-			g_free(real_uri);
-		    if (trace_uri)
-			g_free(trace_uri);
-		    if (current_base)
-			g_free(current_base);
-		    return;
+		    goto Exit;
 		}
 
 		if (!gtk_show_uri (NULL, trace_uri, gtk_get_current_event_time (), &error)) {
@@ -1127,15 +1105,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		    window_error (window, _("Unable to load page"), message, FALSE);
 		    g_free (error);
 		    error = NULL;
-		    if (frag_id)
-			g_free (frag_id);
-		    if (real_uri)
-			g_free(real_uri);
-		    if (trace_uri)
-			g_free(trace_uri);
-		    if (current_base)
-			g_free(current_base);
-		    return;
+		    goto Exit;
 		}
 	    }
 	    break;
@@ -1166,14 +1136,11 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	priv->current_document = doc;
     }
 
-    if (frag_id)
-	g_free (frag_id);
-    if (real_uri)
-	g_free(real_uri);
-    if (trace_uri)
-	g_free(trace_uri);
-    if (current_base)
-	g_free(current_base);
+ Exit:
+    g_free (frag_id);
+    g_free(real_uri);
+    g_free(trace_uri);
+    g_free(current_base);
 }
 
 GtkUIManager *

@@ -5,7 +5,10 @@
 	Convert gnome-config useage to GKeyFile
 	Bug #570731 based on the patch from
 	Filipp Ivanov
-
+	* src/yelp-window.c:
+	g_free is NULL-safe, so remove checks added in
+	previous checkin (and cleanup a little)
+	
 2009-04-29  Don Scorgie  <dscorgie@svn.gnome.org>
 
 	* src/yelp-utils.c: 

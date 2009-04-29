@@ -724,17 +724,10 @@ bookmarks_configure_cb (GtkWidget *widget, GdkEventConfigure *event,
     keyfile = g_key_file_new ();
     config_path = g_strconcat (g_get_home_dir (), BK_CONFIG_PATH, NULL);
 
-    if( !g_key_file_load_from_file (keyfile, config_path,
-			    G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS,
-			    &config_error) ) {
-	g_warning ("Failed to load config file: %s\n", config_error->message);
-	g_error_free (config_error);
-    } else {
-	g_key_file_set_integer (keyfile, BK_CONFIG_BK_GROUP,
-				BK_CONFIG_WIDTH, width);
-	g_key_file_set_integer (keyfile, BK_CONFIG_BK_GROUP,
-				BK_CONFIG_HEIGHT, height);
-    }
+    g_key_file_set_integer (keyfile, BK_CONFIG_BK_GROUP,
+			    BK_CONFIG_WIDTH, width);
+    g_key_file_set_integer (keyfile, BK_CONFIG_BK_GROUP,
+			    BK_CONFIG_HEIGHT, height);
 
     sdata = g_key_file_to_data (keyfile, &config_size, NULL);
 
