@@ -402,12 +402,12 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    file_cut++;
 	ret = resolve_full_file (&intern_uri[file_cut]);
 	if (ret == YELP_RRN_TYPE_EXTERNAL) {
+	    *result = g_strdup (&uri[file_cut]);
 	    *section = NULL;
-	    *result = g_strdup (uri);
 	}
 	else if (ret == YELP_RRN_TYPE_ERROR) {
-	    *section = NULL;
 	    *result = NULL;
+	    *section = NULL;
 	} else {
 	    *result = g_strdup (&intern_uri[file_cut]);
 	    *section = intern_section;

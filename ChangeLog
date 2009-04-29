@@ -2,6 +2,14 @@
 
 	* src/yelp-window.c: 
 	* src/yelp-utils.c: 
+	Fix a series of issues resulting from the
+	gio port (bug #558633 - patch by epic GNOME
+	hero Vincent Untz)
+
+2009-04-29  Don Scorgie  <dscorgie@src.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-utils.c: 
 	* src/yelp-utils.h: 
 	Add plain text handler
 	Bug #565502 - patch from Josselin Mouette

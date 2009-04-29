@@ -1082,8 +1082,13 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	case YELP_RRN_TYPE_HTML:
 	case YELP_RRN_TYPE_XHTML:
 	case YELP_RRN_TYPE_TEXT:
-	    priv->base_uri = g_strdup ("file:///fakefile");
-	    window_do_load_html (window, real_uri, frag_id, type, TRUE);
+ 	    {
+		gchar *uri;
+		priv->base_uri = g_strdup ("file:///fakefile");
+		uri = g_filename_to_uri (real_uri, NULL, NULL);
+		window_do_load_html (window, uri, frag_id, type, TRUE);
+		g_free (uri);
+ 	    }
 	    break;
 	case YELP_RRN_TYPE_EXTERNAL:
 	    {
@@ -1639,7 +1644,6 @@ window_do_load_html (YelpWindow    *window,
     gchar             buffer[BUFFER_SIZE];
     GtkAction        *action;
     gchar *real_uri = NULL;
-    gchar *base_uri = NULL;
 
     gboolean  handled = TRUE;
 
@@ -1679,12 +1683,10 @@ window_do_load_html (YelpWindow    *window,
 	goto done;
     }
 
-    base_uri = g_filename_to_uri (uri, NULL, NULL);
     if (frag_id) {
-	real_uri = g_strconcat (base_uri, "#", frag_id, NULL);
-	g_free (base_uri);
+	real_uri = g_strconcat (uri, "#", frag_id, NULL);
     } else {
-	real_uri = base_uri;
+	real_uri = g_strdup (uri);
     }
     yelp_html_set_base_uri (priv->html_view, real_uri);
 
@@ -1705,6 +1707,10 @@ window_do_load_html (YelpWindow    *window,
     while ((g_input_stream_read_all
 	    ((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL)) && n) {
 	gchar *tmp;
+
+	if (n == 0)
+		break;
+
 	tmp = g_utf8_strup (buffer, n);
 	if (strstr (tmp, "<FRAMESET")) {
 	    yelp_html_frames (priv->html_view, TRUE);
