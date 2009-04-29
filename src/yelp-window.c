@@ -52,10 +52,12 @@
 #include "yelp-search.h"
 #include "gtkentryaction.h"
 
-#define YELP_CONFIG_WIDTH          "/yelp/Geometry/width"
-#define YELP_CONFIG_HEIGHT         "/yelp/Geometry/height"
-#define YELP_CONFIG_WIDTH_DEFAULT  "600"
-#define YELP_CONFIG_HEIGHT_DEFAULT "420"
+#define YELP_CONFIG_PATH           "/.gnome2/yelp"
+#define YELP_CONFIG_GEOMETRY_GROUP "Geometry"
+#define YELP_CONFIG_WIDTH          "width"
+#define YELP_CONFIG_HEIGHT         "height"
+#define YELP_CONFIG_WIDTH_DEFAULT  600
+#define YELP_CONFIG_HEIGHT_DEFAULT 420
 
 #define BUFFER_SIZE 16384
 
@@ -102,10 +104,10 @@ static gboolean    window_do_load_html            (YelpWindow        *window,
 						   YelpRrnType        type,
 						   gboolean           need_history);
 static void        window_set_loading             (YelpWindow        *window);
-static void        window_setup_window            (YelpWindow        *window, 
+static void        window_setup_window            (YelpWindow        *window,
 						   YelpRrnType        type,
-						   gchar             *loading_uri, 
-						   gchar             *frag, 
+						   gchar             *loading_uri,
+						   gchar             *frag,
 						   gchar             *req_uri,
 						   gchar             *base_uri,
 						   gboolean           add_history);
@@ -213,14 +215,14 @@ static void        window_find_clicked_cb         (GtkWidget         *button,
 static gboolean    window_find_hide_cb            (GtkWidget *widget,
 						   GdkEventFocus *event,
 						   YelpWindow *window);
-static void        window_find_next_cb            (GtkAction *action, 
+static void        window_find_next_cb            (GtkAction *action,
 						   YelpWindow *window);
-static void        window_find_previous_cb        (GtkAction *action, 
+static void        window_find_previous_cb        (GtkAction *action,
 						   YelpWindow *window);
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
 static gboolean    window_write_html              (YelpLoadData      *data);
-static void        window_write_print_html        (YelpHtml          *html, 
+static void        window_write_print_html        (YelpHtml          *html,
 						   YelpPage          *page);
 
 enum {
@@ -437,9 +439,9 @@ static const GtkActionEntry entries[] = {
       NULL,
       NULL,
       G_CALLBACK (window_copy_link_cb) },
-    { "Contents", GTK_STOCK_HELP,  
-      N_("_Contents"), 
-      "F1", 
+    { "Contents", GTK_STOCK_HELP,
+      N_("_Contents"),
+      "F1",
       N_("Help On this application"),
       G_CALLBACK (window_help_contents_cb) },
     { "About", GTK_STOCK_ABOUT,
@@ -473,7 +475,7 @@ yelp_window_get_type (void)
 	};
 
 	window_type = g_type_register_static (GTK_TYPE_WINDOW,
-					      "YelpWindow", 
+					      "YelpWindow",
 					      &window_info, 0);
     }
 
@@ -487,10 +489,33 @@ window_init (YelpWindow *window)
 
     window->priv = YELP_WINDOW_GET_PRIVATE (window);
 
-    width = gnome_config_get_int (YELP_CONFIG_WIDTH
-				  "=" YELP_CONFIG_WIDTH_DEFAULT);
-    height = gnome_config_get_int (YELP_CONFIG_HEIGHT
-				   "=" YELP_CONFIG_HEIGHT_DEFAULT);
+    GKeyFile *keyfile = g_key_file_new();
+    GError *config_error = NULL;
+    gchar* config_path = g_strconcat( g_get_home_dir(), YELP_CONFIG_PATH, NULL);
+
+    if( !g_key_file_load_from_file (keyfile, config_path,
+			    G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS,
+			    &config_error)) {
+	g_warning ("Failed to load config file: %s\n", config_error->message);
+	g_error_free (config_error);
+
+	width = YELP_CONFIG_WIDTH_DEFAULT;
+	height = YELP_CONFIG_HEIGHT_DEFAULT;
+    } else {
+	width = g_key_file_get_integer (keyfile, YELP_CONFIG_GEOMETRY_GROUP,
+			YELP_CONFIG_WIDTH, NULL);
+	height = g_key_file_get_integer (keyfile, YELP_CONFIG_GEOMETRY_GROUP,
+			YELP_CONFIG_HEIGHT, NULL);
+
+	if (width == 0)
+	    width = YELP_CONFIG_WIDTH_DEFAULT;
+	if (height == 0)
+	    height = YELP_CONFIG_HEIGHT_DEFAULT;
+    }
+
+    g_free (config_path);
+    g_key_file_free (keyfile);
+
     gtk_window_set_default_size (GTK_WINDOW (window), width, height);
     g_signal_connect (window,
 		      "configure-event",
@@ -498,7 +523,7 @@ window_init (YelpWindow *window)
 		      NULL);
 
     gtk_window_set_title (GTK_WINDOW (window), _("Help Browser"));
-   
+
     window_populate (window);
 }
 
@@ -518,7 +543,7 @@ window_finalize (GObject *object)
     g_object_unref (priv->ui_manager);
 
     g_free (priv->find_string);
-    
+
     g_free (priv->current_frag);
 
     g_free (priv->uri);
@@ -582,7 +607,7 @@ history_push_back (YelpWindow *window)
     entry->doc = priv->current_document;
     entry->type = priv->current_type;
     entry->base_uri = g_strdup (priv->base_uri);
-    
+
     /* page_title, frag_title */
 
     priv->history_back = g_slist_prepend (priv->history_back, entry);
@@ -598,17 +623,17 @@ history_push_back (YelpWindow *window)
 	entry->page_title = g_strdup (title);
 
     entry->window = window;
-    
+
     entry->menu_entry = gtk_menu_item_new_with_label (entry->page_title);
     g_object_ref (entry->menu_entry);
 
-    entry->callback = g_signal_connect (G_OBJECT (entry->menu_entry), 
-		      "activate", 
+    entry->callback = g_signal_connect (G_OBJECT (entry->menu_entry),
+		      "activate",
 		      G_CALLBACK (history_back_to),
 		      entry);
-		      
 
-    gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->back_menu), 
+
+    gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->back_menu),
 			    entry->menu_entry);
     gtk_widget_show (entry->menu_entry);
 }
@@ -653,13 +678,13 @@ history_push_forward (YelpWindow *window)
     entry->menu_entry = gtk_menu_item_new_with_label (entry->page_title);
     g_object_ref (entry->menu_entry);
 
-    entry->callback = g_signal_connect (G_OBJECT (entry->menu_entry), 
-		      "activate", 
+    entry->callback = g_signal_connect (G_OBJECT (entry->menu_entry),
+		      "activate",
 		      G_CALLBACK (history_forward_to),
 		      entry);
-		      
 
-    gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->forward_menu), 
+
+    gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->forward_menu),
 			    entry->menu_entry);
     gtk_widget_show (entry->menu_entry);
 }
@@ -781,7 +806,7 @@ history_entry_free (YelpHistoryEntry *entry)
     g_free (entry);
 }
 
-static void 
+static void
 history_back_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 {
     YelpWindow       *window;
@@ -797,21 +822,21 @@ history_back_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 
     while (!g_str_equal (latest->page_title, entry->page_title)) {
 	priv->history_forward = g_slist_prepend (priv->history_forward, latest);
-	gtk_container_remove (GTK_CONTAINER (priv->back_menu), 
+	gtk_container_remove (GTK_CONTAINER (priv->back_menu),
 			      latest->menu_entry);
-	
+
 	g_signal_handler_disconnect (latest->menu_entry, latest->callback);
-	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry), 
-					     "activate", 
+	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry),
+					     "activate",
 					     G_CALLBACK (history_forward_to),
 					     latest);
-	
-	
-	gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->forward_menu), 
+
+
+	gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->forward_menu),
 				latest->menu_entry);
 	gtk_widget_show (latest->menu_entry);
 
-	
+
 	latest = history_pop_back (window);
     }
     if (latest->menu_entry) {
@@ -839,20 +864,20 @@ history_forward_to (GtkMenuItem *menuitem, YelpHistoryEntry *entry)
 
     while (!g_str_equal (latest->page_title, entry->page_title)) {
 	priv->history_back = g_slist_prepend (priv->history_back, latest);
-	gtk_container_remove (GTK_CONTAINER (priv->forward_menu), 
+	gtk_container_remove (GTK_CONTAINER (priv->forward_menu),
 			      latest->menu_entry);
-	
+
 	g_signal_handler_disconnect (latest->menu_entry, latest->callback);
-	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry), 
-					     "activate", 
+	latest->callback = g_signal_connect (G_OBJECT (latest->menu_entry),
+					     "activate",
 					     G_CALLBACK (history_back_to),
 					     latest);
 
-	gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->back_menu), 
+	gtk_menu_shell_prepend (GTK_MENU_SHELL (window->priv->back_menu),
 				latest->menu_entry);
 	gtk_widget_show (latest->menu_entry);
 
-	
+
 	latest = history_pop_forward (window);
     }
     if (latest->menu_entry) {
@@ -910,7 +935,7 @@ page_request_cb (YelpDocument       *document,
 	break;
     case YELP_DOCUMENT_SIGNAL_ERROR:
 	error = (YelpError *) func_data;
-	window_error (window, (gchar *) yelp_error_get_title (error), 
+	window_error (window, (gchar *) yelp_error_get_title (error),
 		      (gchar *) yelp_error_get_message (error), FALSE);
 	yelp_error_free (error);
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
@@ -934,7 +959,7 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
      */
     YelpWindowPriv *priv;
     GtkAction      *action;
- 
+
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     priv = window->priv;
@@ -962,27 +987,27 @@ window_setup_window (YelpWindow *window, YelpRrnType type,
     if (priv->req_uri)
 	g_free (priv->req_uri);
     priv->req_uri = g_strdup (req_uri);
-    
+
     switch (priv->current_type) {
     case YELP_RRN_TYPE_DOC:
-	action = gtk_action_group_get_action (window->priv->action_group, 
+	action = gtk_action_group_get_action (window->priv->action_group,
 					      "PrintDocument");
 	g_object_set (G_OBJECT (action), "sensitive", TRUE, NULL);
-	
+
 	action  = gtk_action_group_get_action (window->priv->action_group,
 					       "AboutDocument");
 	g_object_set (G_OBJECT (action),  "sensitive", TRUE, NULL);
 	break;
     default:
-	action = gtk_action_group_get_action (window->priv->action_group, 
+	action = gtk_action_group_get_action (window->priv->action_group,
 					      "PrintDocument");
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
-	
+
 	action  = gtk_action_group_get_action (window->priv->action_group,
 					       "AboutDocument");
 	g_object_set (G_OBJECT (action),  "sensitive", FALSE, NULL);
 	break;
-	
+
     }
 }
 
@@ -1134,9 +1159,9 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	window_setup_window (window, type, real_uri, frag_id,
 			     (gchar *) uri, current_base, need_hist);
 
-	priv->current_request = yelp_document_get_page (doc, 
-							frag_id, 
-							(YelpDocumentFunc) page_request_cb, 
+	priv->current_request = yelp_document_get_page (doc,
+							frag_id,
+							(YelpDocumentFunc) page_request_cb,
 							(void *) window);
 	priv->current_document = doc;
     }
@@ -1216,17 +1241,17 @@ search_activated (GtkAction *action,
      * the relevant page
      * Trigger it using "man:<foo>", "man <foo>" or "info:<foo>"
      */
-    if (g_str_has_prefix (search_terms, "man:") || 
+    if (g_str_has_prefix (search_terms, "man:") ||
 	g_str_has_prefix (search_terms, "info:")) {
 	uri = g_strdup (search_terms);
-    } else if (g_str_has_prefix (search_terms, "man ") && 
+    } else if (g_str_has_prefix (search_terms, "man ") &&
 	       !strstr (&(search_terms[4])," ")) {
 	uri = g_strdup (search_terms);
 	uri[3]=':';
     } else if (g_str_has_prefix (search_terms, "info ")) {
 	gint count = 0;
 	gchar *spaces;
-	
+
 	spaces = strchr (search_terms, ' ');
 	while (spaces) {
 	    count++;
@@ -1284,7 +1309,7 @@ window_populate (YelpWindow *window)
 
     f_proxy = GTK_WIDGET (gtk_menu_tool_button_new (NULL, NULL));
 
-    gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (b_proxy), 
+    gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (b_proxy),
 				   priv->back_menu);
 
     action = gtk_action_group_get_action(priv->action_group, "GoBack");
@@ -1294,16 +1319,16 @@ window_populate (YelpWindow *window)
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
     gtk_action_connect_proxy (action, f_proxy);
 
-    gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (f_proxy), 
+    gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (f_proxy),
 				   priv->forward_menu);
-    
+
     priv->search_action =  (GtkWidget * )gtk_entry_action_new ("Search",
 				    _("_Search:"),
 				    _("Search for other documentation"),
 				    NULL);
     g_signal_connect (G_OBJECT (priv->search_action), "activate",
 		      G_CALLBACK (search_activated), window);
-    gtk_action_group_add_action (priv->action_group, 
+    gtk_action_group_add_action (priv->action_group,
 				 (GtkAction *) priv->search_action);
 
     priv->ui_manager = gtk_ui_manager_new ();
@@ -1353,9 +1378,9 @@ window_populate (YelpWindow *window)
     priv->maillink = gtk_ui_manager_get_widget(priv->ui_manager, "ui/mail_popup");
     priv->merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
-    priv->find_next_menu = gtk_action_group_get_action (priv->action_group, 
+    priv->find_next_menu = gtk_action_group_get_action (priv->action_group,
 							"FindNext");
-    priv->find_prev_menu = gtk_action_group_get_action (priv->action_group, 
+    priv->find_prev_menu = gtk_action_group_get_action (priv->action_group,
 						      "FindPrev");
 
     priv->pane = gtk_hpaned_new ();
@@ -1456,7 +1481,7 @@ static gboolean
 window_key_event_cb (GtkWidget *widget, GdkEventKey *event,
 		     YelpWindow *window)
 {
-    if ((window->priv->search_action && 
+    if ((window->priv->search_action &&
 	 gtk_entry_action_has_focus ((GtkEntryAction *) window->priv->search_action)) ||
 	GTK_WIDGET_HAS_FOCUS (window->priv->find_entry))
 	return FALSE;
@@ -1470,7 +1495,7 @@ window_key_event_cb (GtkWidget *widget, GdkEventKey *event,
 }
 
 static gboolean
-window_find_hide_cb (GtkWidget *widget, GdkEventFocus *event, 
+window_find_hide_cb (GtkWidget *widget, GdkEventFocus *event,
 		     YelpWindow *window)
 {
     YelpWindowPriv *priv;
@@ -1493,7 +1518,7 @@ window_populate_find (YelpWindow *window,
     GtkToolItem *item;
     GtkWidget *arrow;
     YelpWindowPriv *priv = window->priv;
-    
+
     g_return_if_fail (GTK_IS_TOOLBAR (find_bar));
 
     box = gtk_hbox_new (FALSE, 0);
@@ -1551,7 +1576,7 @@ window_populate_find (YelpWindow *window,
     gtk_container_add (GTK_CONTAINER (priv->find_not_found), label);
     gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
     gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
-    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_not_found, -1);    
+    gtk_toolbar_insert (GTK_TOOLBAR (find_bar), priv->find_not_found, -1);
 
     item = gtk_separator_tool_item_new ();
     gtk_tool_item_set_expand (item, TRUE);
@@ -1577,7 +1602,7 @@ window_set_sections (YelpWindow   *window,
     priv = window->priv;
 
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->side_sects), sections);
-	
+
 	if (sections) {
 	    gtk_widget_show_all (priv->side_sw);
 	    window_set_section_cursor (window, sections);
@@ -1599,7 +1624,7 @@ window_set_section_cursor (YelpWindow * window, GtkTreeModel *model)
 				     tree_selection_changed_cb,
 				     window);
     gtk_tree_selection_unselect_all (selection);
-    
+
     valid = gtk_tree_model_get_iter_first (model, &iter);
     while (valid) {
 	gtk_tree_model_get (model, &iter,
@@ -1616,14 +1641,14 @@ window_set_section_cursor (YelpWindow * window, GtkTreeModel *model)
 	    }
 	    path = gtk_tree_model_get_path (model, &iter);
 	    gtk_tree_selection_select_path (selection, path);
-	    
+
 	    gtk_tree_path_free (path);
 	    g_free (id);
 	    break;
 	}
-	
+
 	g_free (id);
-	
+
 	valid = tree_model_iter_following (model, &iter);
     }
     g_signal_handlers_unblock_by_func (selection,
@@ -1664,7 +1689,7 @@ window_do_load_html (YelpWindow    *window,
     action = gtk_action_group_get_action (priv->action_group, "GoContents");
     if (action)
 	g_object_set (G_OBJECT (action), "sensitive", FALSE, NULL);
-    
+
     window_setup_window (window, type, uri, frag_id, uri, priv->base_uri, need_history);
 
     if (uri[0] == '/')
@@ -1769,10 +1794,33 @@ window_configure_cb (GtkWidget         *widget,
 		     gpointer           data)
 {
     gint width, height;
+    GKeyFile *keyfile;
+    GError *config_error = NULL;
+    gchar *sdata, *config_path;
+    gsize config_size;
+
     gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
-    gnome_config_set_int (YELP_CONFIG_WIDTH, width);
-    gnome_config_set_int (YELP_CONFIG_HEIGHT, height);
-    gnome_config_sync ();
+
+    keyfile = g_key_file_new();
+
+    config_path = g_strconcat (g_get_home_dir(), YELP_CONFIG_PATH, NULL);
+
+    g_key_file_set_integer (keyfile, YELP_CONFIG_GEOMETRY_GROUP,
+			    YELP_CONFIG_WIDTH, width);
+    g_key_file_set_integer (keyfile, YELP_CONFIG_GEOMETRY_GROUP,
+			    YELP_CONFIG_HEIGHT, height);
+
+    sdata = g_key_file_to_data (keyfile, &config_size, NULL);
+
+    if ( !g_file_set_contents (config_path, sdata,
+			       config_size, &config_error) ) {
+	g_warning ("Failed to save config file: %s\n", config_error->message);
+	g_error_free (config_error);
+    }
+
+    g_free (sdata);
+    g_free (config_path);
+    g_key_file_free (keyfile);
 
     return FALSE;
 }
@@ -1992,7 +2040,7 @@ window_print_signal (YelpDocument       *document,
 	break;
     case YELP_DOCUMENT_SIGNAL_ERROR:
 	error = (YelpError *) func_data;
-	window_error (print->window, (gchar *) yelp_error_get_title (error), 
+	window_error (print->window, (gchar *) yelp_error_get_title (error),
 		      (gchar *) yelp_error_get_message (error), FALSE);
 	yelp_error_free (error);
 	break;
@@ -2012,7 +2060,7 @@ window_print_document_cb (GtkAction *action, YelpWindow *window)
     GtkWidget *vbox = gtk_vbox_new (FALSE, FALSE);
     PrintStruct *print;
     YelpDocument *doc = NULL;
-    
+
     priv = window->priv;
 
     switch (priv->current_type) {
@@ -2027,7 +2075,7 @@ window_print_document_cb (GtkAction *action, YelpWindow *window)
 
     gtk_win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     html = yelp_html_new ();
-    
+
     gtk_container_add (GTK_CONTAINER (gtk_win), GTK_WIDGET (vbox));
     gtk_box_pack_end (GTK_BOX (vbox), GTK_WIDGET (html), TRUE, TRUE, 0);
     gtk_widget_show (gtk_win);
@@ -2036,7 +2084,7 @@ window_print_document_cb (GtkAction *action, YelpWindow *window)
     gtk_widget_hide (gtk_win);
 
     print = g_new0 (PrintStruct, 1);
-    
+
     print->window = window;
     print->gtk_win = (GtkWindow *) gtk_win;
     print->vbox = (GtkVBox *) vbox;
@@ -2044,7 +2092,7 @@ window_print_document_cb (GtkAction *action, YelpWindow *window)
 
     yelp_document_get_page (doc,
 			    "x-yelp-index",
-			    (YelpDocumentFunc) window_print_signal, 
+			    (YelpDocumentFunc) window_print_signal,
 			    (void *) print);
 }
 
@@ -2056,12 +2104,12 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
     YelpHtml *html;
     GtkWidget *vbox = gtk_vbox_new (FALSE, FALSE);
     PrintStruct *print;
-    
+
     priv = window->priv;
 
     gtk_win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     html = yelp_html_new ();
-    
+
     gtk_container_add (GTK_CONTAINER (gtk_win), GTK_WIDGET (vbox));
     gtk_box_pack_end (GTK_BOX (vbox), GTK_WIDGET (html), TRUE, TRUE, 0);
     gtk_widget_show (gtk_win);
@@ -2070,7 +2118,7 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
     gtk_widget_hide (gtk_win);
 
     print = g_new0 (PrintStruct, 1);
-    
+
     print->window = window;
     print->gtk_win = (GtkWindow *) gtk_win;
     print->vbox = (GtkVBox *) vbox;
@@ -2079,9 +2127,9 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 
     if (priv->current_document) {
 	/* Need to go through the paging system */
-	yelp_document_get_page (priv->current_document, 
-				priv->current_frag, 
-				(YelpDocumentFunc) window_print_signal, 
+	yelp_document_get_page (priv->current_document,
+				priv->current_frag,
+				(YelpDocumentFunc) window_print_signal,
 				(void *) print);
 
     } else {
@@ -2090,11 +2138,11 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	GFile            *file;
 	GFileInputStream *stream;
 	gsize             n;
-	gchar             buffer[BUFFER_SIZE];	
-	
+	gchar             buffer[BUFFER_SIZE];
+
     file   = g_file_new_for_uri (priv->uri);
     stream = g_file_read (file, NULL, NULL);
-	
+
 	if (stream == NULL) {
 	    /*GError *error = NULL;
 	    g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
@@ -2125,7 +2173,7 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	default:
 	    g_assert_not_reached ();
 	}
-	
+
 	while ((g_input_stream_read_all
 	    ((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL))) {
 	    yelp_html_write (html, buffer, n);
@@ -2135,11 +2183,11 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
         g_object_unref (file);
     if (stream)
         g_object_unref (stream);
-	
+
 	yelp_html_close (html);
-	
+
 	yelp_print_run (window, html, gtk_win, vbox);
-	
+
     }
 }
 
@@ -2238,7 +2286,7 @@ window_select_all_cb (GtkAction *action, YelpWindow *window)
     if (GTK_IS_EDITABLE (widget)) {
 	gtk_editable_select_region (GTK_EDITABLE (widget), 0, -1);
     } else {
-	yelp_html_select_all (window->priv->html_view);	
+	yelp_html_select_all (window->priv->html_view);
     }
 }
 
@@ -2304,9 +2352,9 @@ history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
 	    g_free (window->priv->base_uri);
 	window->priv->base_uri = g_strdup (entry->base_uri);
 	window->priv->current_document = entry->doc;
-	window->priv->current_request = yelp_document_get_page (entry->doc, 
-							entry->frag_id, 
-							(YelpDocumentFunc) page_request_cb, 
+	window->priv->current_request = yelp_document_get_page (entry->doc,
+							entry->frag_id,
+							(YelpDocumentFunc) page_request_cb,
 							(void *) window);
     }
 
@@ -2444,9 +2492,9 @@ window_add_bookmark_cb (GtkAction *action, YelpWindow *window)
 
 }
 
-static void window_copy_link_cb (GtkAction *action, YelpWindow *window) 
+static void window_copy_link_cb (GtkAction *action, YelpWindow *window)
 {
-    gtk_clipboard_set_text (gtk_clipboard_get (gdk_atom_intern ("CLIPBOARD", 
+    gtk_clipboard_set_text (gtk_clipboard_get (gdk_atom_intern ("CLIPBOARD",
 								TRUE)),
 			    window->priv->uri,
 			    -1);
@@ -2477,10 +2525,10 @@ window_copy_mail_cb (GtkAction *action, YelpWindow *window)
      * remove the first 7 chars as they should be mailto:
      */
     gchar **split_string = g_strsplit (window->priv->uri, "?", 2);
-    
+
     gchar *mail_address = &split_string[0][7];
-    
-    gtk_clipboard_set_text (gtk_clipboard_get (gdk_atom_intern ("CLIPBOARD", 
+
+    gtk_clipboard_set_text (gtk_clipboard_get (gdk_atom_intern ("CLIPBOARD",
 								TRUE)),
 			    mail_address,
 			    -1);
@@ -2495,7 +2543,7 @@ window_help_contents_cb (GtkAction *action, YelpWindow *window)
      * we can make this function easy by just creating a new window
      * and avoiding calling gnome_help_display_desktop
      */
-    g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0, 
+    g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0,
 		   "ghelp:user-guide#yelp");
 }
 
@@ -2507,7 +2555,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 	"Copyright © 2003-2005 Shaun McCance\n"
 	"Copyright © 2005-2006 Don Scorgie\n"
 	"Copyright © 2005-2006 Brent Smith";
-    const gchar *authors[] = { 
+    const gchar *authors[] = {
 	"Mikael Hallendal <micke@imendio.com>",
 	"Alexander Larsson <alexl@redhat.com>",
 	"Shaun McCance <shaunm@gnome.org>",
@@ -2542,9 +2590,9 @@ location_response_cb (GtkDialog *dialog, gint id, YelpWindow *window)
     debug_print (DB_ARG, "  id = %i\n", id);
 
     if (id == GTK_RESPONSE_OK) {
-	const gchar *uri = 
+	const gchar *uri =
 	    gtk_entry_get_text (GTK_ENTRY (window->priv->location_entry));
-    
+
 	yelp_window_load (window, uri);
     }
 
@@ -2566,7 +2614,7 @@ window_find_save_settings (YelpWindow *window)
     tmp = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
 
     g_free (priv->find_string);
-		
+
     priv->find_string = g_utf8_casefold (tmp, -1);
 }
 
@@ -2654,7 +2702,7 @@ window_find_entry_changed_cb (GtkEditable *editable,
     gboolean        found;
 
     g_return_if_fail (YELP_IS_WINDOW(data));
-	
+
     window = YELP_WINDOW (data);
     priv = window->priv;
 
@@ -2674,7 +2722,7 @@ window_find_entry_changed_cb (GtkEditable *editable,
 	    gtk_widget_show_all (GTK_WIDGET (priv->find_not_found));
 	    window_find_buttons_set_sensitive (window, TRUE, TRUE);
 	}
- 
+
     g_free (text);
 }
 
@@ -2732,9 +2780,9 @@ window_find_buttons_set_sensitive (YelpWindow  *window,
 
     gtk_widget_set_sensitive (GTK_WIDGET (priv->find_next), next);
     gtk_widget_set_sensitive (GTK_WIDGET (priv->find_prev), prev);
-    g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", next, 
+    g_object_set (G_OBJECT (priv->find_next_menu), "sensitive", next,
 		  NULL);
-    g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", prev, 
+    g_object_set (G_OBJECT (priv->find_prev_menu), "sensitive", prev,
 		  NULL);
 }
 
@@ -2781,18 +2829,18 @@ window_write_html (YelpLoadData *data)
     gsize read;
     YelpHtml *html = data->window->priv->html_view;
     gchar contents[BUFFER_SIZE];
-    
+
     /* Use a silly fake URI to stop gecko doing silly things */
     if (data->window->priv->current_frag)
-	uri = g_strdup_printf ("%s#%s", data->window->priv->base_uri, 
+	uri = g_strdup_printf ("%s#%s", data->window->priv->base_uri,
 			       data->window->priv->current_frag);
     else
 	uri = g_strdup (data->window->priv->base_uri);
-    
+
     yelp_html_set_base_uri (html, uri);
     g_free (uri);
     yelp_html_open_stream (html, "application/xhtml+xml");
-    
+
     do {
 	yelp_page_read (data->page, contents, BUFFER_SIZE, &read, NULL);
 	yelp_html_write (html, contents, read);
@@ -2806,11 +2854,11 @@ window_write_print_html (YelpHtml *html, YelpPage * page)
 {
     gsize read;
     gchar contents[BUFFER_SIZE];
-    
+
     /* Use a silly fake URI to stop gecko doing silly things */
     yelp_html_set_base_uri (html, "file:///foobar");
     yelp_html_open_stream (html, "application/xhtml+xml");
-    
+
     do {
 	yelp_page_read (page, contents, BUFFER_SIZE, &read, NULL);
 	yelp_html_write (html, contents, read);
