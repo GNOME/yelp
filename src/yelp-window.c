@@ -32,7 +32,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <string.h>
-#include <libgnome/gnome-url.h>
 
 #include "yelp-bookmarks.h"
 #include "yelp-utils.h"
