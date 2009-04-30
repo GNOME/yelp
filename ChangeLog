@@ -1,3 +1,14 @@
+2009-04-30  Don Scorgie  <dscorgie@src.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-utils.c:
+	Fix a crash when requesting bad URIs from the
+	command line (and show the main index in the
+	process)
+	Fix loading "local" files from the current
+	directory - bug #575405 (at least)
+	
+
 2009-04-29  Don Scorgie  <dscorgie@src.gnome.org>
 
 	* src/yelp-window.c: 

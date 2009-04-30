@@ -1083,11 +1083,11 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	case YELP_RRN_TYPE_XHTML:
 	case YELP_RRN_TYPE_TEXT:
  	    {
-		gchar *uri;
+		gchar *call_uri;
 		priv->base_uri = g_strdup ("file:///fakefile");
-		uri = g_filename_to_uri (real_uri, NULL, NULL);
-		window_do_load_html (window, uri, frag_id, type, TRUE);
-		g_free (uri);
+		call_uri = g_filename_to_uri (real_uri, NULL, NULL);
+		window_do_load_html (window, call_uri, frag_id, type, TRUE);
+		g_free (call_uri);
  	    }
 	    break;
 	case YELP_RRN_TYPE_EXTERNAL:
@@ -1109,8 +1109,18 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 		if (!gtk_show_uri (NULL, trace_uri, gtk_get_current_event_time (), &error)) {
 		    gchar *message = g_strdup_printf (_("The requested URI \"%s\" is invalid"), trace_uri);
 		    window_error (window, _("Unable to load page"), message, FALSE);
-		    g_free (error);
+		    /* todo: Freeing error here causes an immediate 
+		     * seg fault.  Why?  Who knows. For now, we'll
+		     * leak it
+		     */
+		    /* g_free (error); */
 		    error = NULL;
+		    if (!priv->current_document) {
+			/* recurse to load the index if we're not
+			 * already somewhere
+			 */
+			yelp_window_load (window, "x-yelp-toc:");
+		    }
 		    goto Exit;
 		}
 	    }

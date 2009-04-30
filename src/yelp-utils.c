@@ -169,6 +169,7 @@ resolve_full_file (const gchar *path)
     if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
 	return YELP_RRN_TYPE_ERROR;
     }
+
     mime_type = g_content_type_guess (path, NULL, 0, &uncertain);
     if (mime_type == NULL) {
 	return YELP_RRN_TYPE_ERROR;
@@ -431,17 +432,43 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	*section = g_strdup ("results");
 	ret = YELP_RRN_TYPE_SEARCH;
     } else if (g_file_test (intern_uri, G_FILE_TEST_EXISTS)) {
+	gchar *copy_uri;
 	/* Full path */
+	/* Check to see if the file is in the current directory */
+	if (intern_uri[0] != '/' &&
+	    strstr (intern_uri, ":/") == NULL) {
+	    /* Probably current dir - get the current directory,
+	     * put it on the front and see if it exists */
+	    gchar *current_path = NULL;
+	    gchar *new_uri = NULL;
+
+	    current_path = g_get_current_dir();
+
+	    new_uri = g_strdup_printf ("%s/%s", current_path,
+				       intern_uri);
+	    printf ("new_uri: %s\n", new_uri);
+
+	    if (g_file_test (new_uri, G_FILE_TEST_EXISTS)) {
+		copy_uri = g_strdup (new_uri);
+	    } else {
+		copy_uri = g_strdup (intern_uri);
+	    }
+	    g_free (current_path);
+	    g_free (new_uri);
+	} else {
+		copy_uri = g_strdup (intern_uri);
+	}
+
 	ret = resolve_full_file (intern_uri);
 	if (ret == YELP_RRN_TYPE_EXTERNAL) {
 	    *section = NULL;
-	    *result = g_strdup (uri);
+	    *result = copy_uri;
 	}
 	else if (ret == YELP_RRN_TYPE_ERROR) {
 	    *section = NULL;
 	    *result = NULL;
 	} else {
-	    *result = g_strdup (intern_uri);
+	    *result = copy_uri;
 	    *section = g_strdup (intern_section);
 	}
     } else if (*uri == '/' || g_str_has_suffix (uri, ".xml")) {
