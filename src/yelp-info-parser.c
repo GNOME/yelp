@@ -59,6 +59,124 @@ void                  fix_tag_table                      (gchar *offset,
 void   		      info_process_text_notes            (xmlNodePtr *node, 
 							  gchar *content,
 							  GtkTreeStore *tree);
+
+
+static GHashTable *
+info_image_get_attributes (gchar const* string)
+{
+  GMatchInfo *match_info;
+  GRegex *regex;
+  GHashTable *h;
+
+  h = 0;
+  regex = g_regex_new ("([^\\s][^\\s=]+)=(?:([^\\s \"]+)|(?:\"((?:[^\\\"]|\\\\[\\\\\"])*)\"))", 0, 0, NULL);
+  g_regex_match (regex, string, 0, &match_info);
+  while (g_match_info_matches (match_info))
+    {
+      gchar *key;
+      gchar *value;
+
+      if (!h)
+	h = g_hash_table_new (g_str_hash, g_str_equal);
+      key = g_match_info_fetch (match_info, 1);
+      value = g_match_info_fetch (match_info, 2);
+      if (!*value)
+	value = g_match_info_fetch (match_info, 3);
+      g_hash_table_insert (h, key, value);
+      //fprintf (stderr, "Found: %s -> %s\n", key, value);
+      g_match_info_next (match_info, NULL);
+    }
+  g_match_info_free (match_info);
+  g_regex_unref (regex);
+
+  return h;
+}
+
+/*
+  info elements look like \0\b[<TAGNAME>\0\b] and take attribute=value
+  pairs, i.e. for image: \0\b[image src="foo.png" \0\b]
+*/
+#define INFO_TAG_0 "\0"
+#define INFO_TAG_1 "\b"
+#define INFO_TAG_OPEN_2 INFO_TAG_1 "["
+#define INFO_TAG_CLOSE_2 INFO_TAG_1 "]"
+#define INFO_TAG_OPEN_2_RE INFO_TAG_1 "[[]"
+#define INFO_TAG_CLOSE_2_RE INFO_TAG_1 "[]]"
+#define INFO_TAG_OPEN INFO_TAG_0 INFO_TAG_1 INFO_TAG_OPEN_2
+#define INFO_TAG_CLOSE INFO_TAG_0 INFO_TAG_1 INFO_TAG_CLOSE_2
+#define INFO_TAG_OPEN_RE INFO_TAG_0 INFO_TAG_1 INFO_TAG_OPEN_2_RE
+#define INFO_TAG_CLOSE_RE INFO_TAG_0 INFO_TAG_1 INFO_TAG_CLOSE_2_RE
+/* C/glib * cannot really handle \0 in strings, convert to '@' */
+#define INFO_C_TAG_0 "@"
+#define INFO_C_TAG_OPEN INFO_C_TAG_0 INFO_TAG_OPEN_2
+#define INFO_C_TAG_CLOSE INFO_C_TAG_0 INFO_TAG_CLOSE_2
+#define INFO_C_TAG_OPEN_RE INFO_C_TAG_0 INFO_TAG_OPEN_2_RE
+#define INFO_C_TAG_CLOSE_RE INFO_C_TAG_0 INFO_TAG_CLOSE_2_RE
+#define INFO_C_IMAGE_TAG_OPEN INFO_C_TAG_OPEN "image"
+#define INFO_C_IMAGE_TAG_OPEN_RE INFO_C_TAG_OPEN_RE "image"
+
+static xmlNodePtr
+info_insert_image (xmlNodePtr parent, GMatchInfo *match_info)
+{
+  GHashTable *h = info_image_get_attributes (g_match_info_fetch (match_info, 1));
+  gchar *source;
+  if (h)
+    source = (gchar*)g_hash_table_lookup (h, "src");
+
+  if (!h || !source || !*source)
+    return xmlNewTextChild (parent, NULL, BAD_CAST "para1", BAD_CAST "[broken image]");
+
+  gchar *title = (gchar*)g_hash_table_lookup (h, "title");
+  gchar *text = (gchar*)g_hash_table_lookup (h, "text");
+  gchar *alt = (gchar*)g_hash_table_lookup (h, "alt");
+  g_hash_table_destroy (h);
+  xmlNodePtr img = xmlNewChild (parent, NULL, BAD_CAST "img", NULL);
+  xmlNewProp (img, BAD_CAST "src", BAD_CAST source);
+  xmlNewProp (img, BAD_CAST "title", BAD_CAST (title ? title : ""));
+  xmlNewProp (img, BAD_CAST "text", BAD_CAST (text ? text : ""));
+  xmlNewProp (img, BAD_CAST "alt", BAD_CAST (alt ? alt : ""));
+  g_free (source);
+  g_free (title);
+  g_free (alt);
+  return parent;
+}
+
+/*
+  Convert body text CONTENT to xml nodes, processing info image tags
+  when found.  IWBN add a regex match for *Note: here and call the
+  *Note ==> <a href> logic of info_process_text_notes from here.
+ */
+static xmlNodePtr
+info_body_text (xmlNodePtr parent, xmlNsPtr ns, gchar const *name, gchar const *content)
+{
+  if (!strstr (content, INFO_C_IMAGE_TAG_OPEN))
+    return xmlNewTextChild (parent, ns, BAD_CAST name, BAD_CAST content);
+
+  gint content_len = strlen (content);
+  gint pos = 0;
+  GRegex *regex = g_regex_new ("(" INFO_C_IMAGE_TAG_OPEN_RE "((?:[^" INFO_TAG_1 "]|[^" INFO_C_TAG_0 "]+" INFO_TAG_1 ")*)" INFO_C_TAG_CLOSE_RE ")", 0, 0, NULL);
+  GMatchInfo *match_info;
+  g_regex_match (regex, content, 0, &match_info);
+  while (g_match_info_matches (match_info))
+    {
+      gint image_start;
+      gint image_end;
+      gboolean image_found = g_match_info_fetch_pos (match_info, 0,
+						     &image_start, &image_end);
+      gchar *before = g_strndup (&content[pos], image_start - pos);
+      pos = image_end + 1;
+      xmlNewTextChild (parent, NULL, BAD_CAST "para1", BAD_CAST (before));
+      g_free (before);
+      if (image_found)
+	info_insert_image (parent, match_info);
+      g_match_info_next (match_info, NULL);
+    }
+  gchar *after = g_strndup (&content[pos], content_len - pos);
+  xmlNewTextChild (parent, NULL, BAD_CAST "para1", BAD_CAST (after));
+  g_free (after);
+  return 0;
+}
+
 /* Part 1: Parse File Into Tree Store */
 
 enum
@@ -116,14 +234,10 @@ static char
 	g_io_channel_shutdown (channel, FALSE, NULL);
 	g_io_channel_unref (channel);
 
+	/* C/glib * cannot really handle \0 in strings, convert. */
 	for (i = 0; i < (len - 1); i++)
-	{
-		if (str[i] == '\0' && str[i+1] == '\b')
-		{
-		  debug_print (DB_WARN, "=> got a NULL, replacing\n");
-		  str[i] = ' '; str[i+1] = ' ';
-		}
-	}
+	  if (str[i] == INFO_TAG_OPEN[0] && str[i+1] == INFO_TAG_OPEN[1])
+	    str[i] = INFO_C_TAG_OPEN[0];
 
 	return str;
 }
@@ -731,9 +845,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 					     BAD_CAST "Section",
 					     NULL);
 		  if (!notes)
-		    xmlNewTextChild (newnode, NULL,
-				     BAD_CAST "para",
-				     BAD_CAST page_content);
+		    info_body_text (newnode, NULL, "para", page_content);
 		  
 		  else {
 		    /* Handle notes here */
@@ -889,8 +1001,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 
   tmp = g_strconcat (split[0], "\n* Menu:", NULL);
   if (!notes)
-    xmlNewTextChild (newnode, NULL,
-		     BAD_CAST "para", BAD_CAST tmp);
+    info_body_text (newnode, NULL, "para", tmp);
   else {
     info_process_text_notes (&newnode, tmp, tree);
   }
@@ -1004,8 +1115,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	 * start, so we can just add it and forget about it.
 	 */
 	first = FALSE;
-	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
-			 BAD_CAST (*current_real));
+	info_body_text (holder, NULL, "para1", (*current_real));
 	continue;
       }
       /* If we got to here, we now gotta parse the note reference */
@@ -1014,14 +1124,13 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	/* Special type of note that isn't really a note, but pretends
 	 * it is
 	 */
-	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
-			 BAD_CAST g_strconcat ("*Note", *current_real, NULL));
+	info_body_text (holder, NULL, "para1",
+			g_strconcat ("*Note", *current_real, NULL));
 	continue;
       }
       append = strchr (*current_real, ':');
       if (!append) {
-	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
-			 BAD_CAST *current_real);
+	info_body_text (holder, NULL, "para1", *current_real);
 	continue;
       }
       append++;
@@ -1036,8 +1145,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
       }
       alt_append1 = strchr (alt_append1, ',');
       if (!append && !alt_append && !alt_append1) {
-	xmlNewTextChild (holder, NULL, BAD_CAST "para1",
-			 BAD_CAST *current_real);
+	info_body_text (holder, NULL, "para1", *current_real);
 	continue;
       }
       if (!append || alt_append || alt_append1) {
@@ -1173,16 +1281,14 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	ref1 = xmlNewTextChild (holder, NULL, BAD_CAST "a",
 				BAD_CAST link_text);
 	if (*(ulink+1) != NULL)
-	  xmlNewTextChild (holder, NULL, BAD_CAST "para",
-			   BAD_CAST "");
+	  info_body_text (holder, NULL, "para", "");
 
 	g_free (link_text);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST href);
       }
       g_strfreev (urls);
       /* Finally, we can add the text as required */
-      xmlNewTextChild (holder, NULL, BAD_CAST "para1",
-		       BAD_CAST append);
+      info_body_text (holder, NULL, "para1", append);
       g_free (url);
       g_free (href);
     }

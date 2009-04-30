@@ -1,5 +1,13 @@
 2009-04-30  Don Scorgie  <dscorgie@src.gnome.org>
 
+	* src/yelp-info-parser.c: 
+	* stylesheets/info2html: 
+	Add support for displaying images in info
+	files
+	Bug #568209 - patch by Jan Nieuwenhuizen
+
+2009-04-30  Don Scorgie  <dscorgie@src.gnome.org>
+
 	* src/yelp-window.c: 
 	* src/yelp-utils.c:
 	Fix a crash when requesting bad URIs from the
