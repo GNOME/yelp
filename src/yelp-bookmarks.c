@@ -37,7 +37,6 @@
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
 #include <libxml/xmlwriter.h>
-#include <libgnome/gnome-config.h>
 
 #define COL_NAME   0
 #define COL_LABEL  1
