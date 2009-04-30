@@ -2490,14 +2490,12 @@ static void window_copy_link_cb (GtkAction *action, YelpWindow *window)
 								TRUE)),
 			    window->priv->uri,
 			    -1);
-    g_free (window->priv->uri);
 }
 
 static void
 window_open_link_cb (GtkAction *action, YelpWindow *window)
 {
     yelp_window_load (window, window->priv->uri);
-    g_free (window->priv->uri);
 }
 
 static void
@@ -2505,7 +2503,6 @@ window_open_link_new_cb (GtkAction *action, YelpWindow *window)
 {
     g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0,
 		   window->priv->uri);
-    g_free (window->priv->uri);
 }
 
 /* TODO: This doesn't work... */
