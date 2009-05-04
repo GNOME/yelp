@@ -424,9 +424,9 @@ yelp_html_close (YelpHtml *html)
 #ifdef HAVE_GECKO_1_9
     html_reset_accessible_parent (GTK_WIDGET (html));
 #else
-    html->priv->timeout = g_timeout_add (2000, 
-					 (GSourceFunc) timeout_update_gok,
-					 html);
+    html->priv->timeout = g_timeout_add_seconds (2,
+						 (GSourceFunc) timeout_update_gok,
+						 html);
 #endif
 }
 
