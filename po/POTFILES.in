@@ -4,10 +4,10 @@
 data/info.xml.in
 data/man.xml.in
 data/toc.xml.in
-data/ui/yelp-bookmarks.ui
-data/ui/yelp-bookmarks-add.ui
-data/ui/yelp-open-location.ui
-data/ui/yelp-preferences.ui
+[type: gettext/glade]data/ui/yelp-bookmarks.ui
+[type: gettext/glade]data/ui/yelp-bookmarks-add.ui
+[type: gettext/glade]data/ui/yelp-open-location.ui
+[type: gettext/glade]data/ui/yelp-preferences.ui
 data/yelp.schemas.in
 src/yelp-base.c
 src/yelp-bookmarks.c
