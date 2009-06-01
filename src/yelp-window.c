@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2003,2004 Shaun McCance <shaunm@gnome.org>
@@ -42,6 +42,7 @@
 #include "yelp-toc.h"
 #include "yelp-docbook.h"
 #include "yelp-db-print.h"
+#include "yelp-mallard.h"
 #include "yelp-window.h"
 #include "yelp-print.h"
 #include "yelp-debug.h"
@@ -1057,6 +1058,10 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    doc = yelp_toc_get ();
 	    priv->base_uri = g_strdup ("file:///fakefile");
 	    break;
+        case YELP_RRN_TYPE_MAL:
+            priv->base_uri = g_filename_to_uri (real_uri, NULL, NULL);
+            doc = yelp_mallard_new (real_uri);
+            break;
 	case YELP_RRN_TYPE_MAN:
 	    priv->base_uri = g_filename_to_uri (real_uri, NULL, NULL);
 	    doc = yelp_man_new (real_uri);

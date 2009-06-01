@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2003 Shaun McCance  <shaunm@gnome.org>
  *
@@ -48,9 +48,6 @@ YelpRrnType    resolve_man_page           (const gchar  *name,
 					   gchar       **section);
 gchar *        resolve_remove_section     (const gchar  *uri, 
 					   const gchar  *sect);
-YelpRrnType    yelp_uri_resolve           (gchar        *uri, 
-					   gchar       **result, 
-					   gchar       **section);
 
 YelpRrnType
 resolve_process_ghelp (char *uri, gchar **result)
@@ -175,12 +172,20 @@ resolve_full_file (const gchar *path)
 	return YELP_RRN_TYPE_ERROR;
     }
 
-    if (g_str_equal (mime_type, "text/xml") || g_str_equal (mime_type, "application/docbook+xml") || g_str_equal (mime_type, "application/xml"))
+    if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
+        type = YELP_RRN_TYPE_MAL;
+    }
+    else if (g_str_equal (mime_type, "text/xml") ||
+             g_str_equal (mime_type, "application/docbook+xml") ||
+             g_str_equal (mime_type, "application/xml")) {
 	type = YELP_RRN_TYPE_DOC;
-    else if (g_str_equal (mime_type, "text/html"))
+    }
+    else if (g_str_equal (mime_type, "text/html")) {
 	type = YELP_RRN_TYPE_HTML;
-    else if (g_str_equal (mime_type, "application/xhtml+xml"))
+    }
+    else if (g_str_equal (mime_type, "application/xhtml+xml")) {
 	type = YELP_RRN_TYPE_XHTML;
+    }
     else if (g_str_equal (mime_type, "application/x-gzip")) {
 	if (g_str_has_suffix (path, ".info.gz")) {
 	    type = YELP_RRN_TYPE_INFO;
@@ -188,25 +193,29 @@ resolve_full_file (const gchar *path)
 	    type = YELP_RRN_TYPE_MAN;
 	}
 
-    } else if (g_str_equal (mime_type, "application/x-bzip")) {
+    }
+    else if (g_str_equal (mime_type, "application/x-bzip")) {
 	if (g_str_has_suffix (path, ".info.bz2")) {
 	    type = YELP_RRN_TYPE_INFO;
 	} else if (resolve_is_man_path (path, "bz2")) {
 	    type = YELP_RRN_TYPE_MAN;
 	}
-    } else if (g_str_equal (mime_type, "application/x-lzma")) {
- 	    if (g_str_has_suffix (path, ".info.lzma")) {
- 		    type = YELP_RRN_TYPE_INFO;
- 	    } else if (resolve_is_man_path (path, "lzma")) {
- 		    type = YELP_RRN_TYPE_MAN;
- 	    }
-    } else if (g_str_equal (mime_type, "application/octet-stream")) {
- 	    if (g_str_has_suffix (path, ".info")) {
- 		    type = YELP_RRN_TYPE_INFO;
- 	    } else if (resolve_is_man_path (path, NULL)) {
- 		    type = YELP_RRN_TYPE_MAN;
- 	    }
-    } else if (g_str_equal (mime_type, "text/plain")) {
+    }
+    else if (g_str_equal (mime_type, "application/x-lzma")) {
+	if (g_str_has_suffix (path, ".info.lzma")) {
+	    type = YELP_RRN_TYPE_INFO;
+	} else if (resolve_is_man_path (path, "lzma")) {
+	    type = YELP_RRN_TYPE_MAN;
+	}
+    }
+    else if (g_str_equal (mime_type, "application/octet-stream")) {
+	if (g_str_has_suffix (path, ".info")) {
+	    type = YELP_RRN_TYPE_INFO;
+	} else if (resolve_is_man_path (path, NULL)) {
+	    type = YELP_RRN_TYPE_MAN;
+	}
+    }
+    else if (g_str_equal (mime_type, "text/plain")) {
 	if (g_str_has_suffix (path, ".info")) {
 	    type = YELP_RRN_TYPE_INFO;
 	} else if (resolve_is_man_path (path, NULL)) {
@@ -214,7 +223,8 @@ resolve_full_file (const gchar *path)
 	} else {
 	    type = YELP_RRN_TYPE_TEXT;
 	}
-    } else {
+    }
+    else {
 	type = YELP_RRN_TYPE_EXTERNAL;
     }
 

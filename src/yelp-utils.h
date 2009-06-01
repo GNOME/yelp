@@ -27,6 +27,7 @@
 
 typedef enum {
     YELP_RRN_TYPE_DOC = 0,
+    YELP_RRN_TYPE_MAL,
     YELP_RRN_TYPE_MAN,
     YELP_RRN_TYPE_INFO,
     YELP_RRN_TYPE_TEXT,

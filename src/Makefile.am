@@ -22,6 +22,7 @@ yelp_SOURCES =							\
 	yelp-toc.h		yelp-toc.c			\
 	yelp-docbook.h		yelp-docbook.c			\
 	yelp-db-print.c		yelp-db-print.h			\
+	yelp-mallard.h		yelp-mallard.c			\
 	yelp-man-parser.c 	yelp-man-parser.h		\
 	yelp-man.c 		yelp-man.h			\
 	yelp-info.c 		yelp-info.h			\
@@ -113,6 +114,7 @@ test_document_SOURCES =					\
 	yelp-document.c		yelp-document.h		\
 	yelp-error.c		yelp-error.h		\
 	yelp-io-channel.c	yelp-io-channel.h	\
+	yelp-mallard.c		yelp-mallard.h		\
 	yelp-man.c		yelp-man.h		\
 	yelp-man-parser.c	yelp-man-parser.h	\
 	yelp-page.c		yelp-page.h		\
