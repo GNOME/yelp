@@ -93,6 +93,9 @@ AC_SUBST(DB_TITLE)
 DB2HTML="`$PKG_CONFIG --variable=db2xhtml gnome-doc-utils`"
 AC_SUBST(DB2HTML)
 
+MAL2HTML="`$PKG_CONFIG --variable=mal2xhtml gnome-doc-utils`"
+AC_SUBST(MAL2HTML)
+
 GDU_GETTEXT="`$PKG_CONFIG --variable=gettext gnome-doc-utils`"
 AC_SUBST(GDU_GETTEXT)
 
@@ -269,6 +272,7 @@ src/Makefile
 stylesheets/Makefile
 stylesheets/db2html.xsl
 stylesheets/db-title.xsl
+stylesheets/mal2html.xsl
 stylesheets/toc2html.xsl
 data/Makefile
 data/icons/Makefile

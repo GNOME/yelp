@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns="http://www.w3.org/1999/xhtml"
+                extension-element-prefixes="yelp"
+                version="1.0">
+
+<xsl:import href="@MAL2HTML@"/>
+
+<xsl:include href="yelp-common.xsl"/>
+
+<xsl:param name="yelp.javascript"/>
+
+
+<xsl:param name="mal.chunk.chunk_top" select="true()"/>
+<xsl:param name="mal.chunk.extension" select="''"/>
+
+
+<!-- == mal.chunk == -->
+<xsl:template name="mal.chunk">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="href" select="concat($node/@id, $mal.chunk.extension)"/>
+  <yelp:document href="{$href}">
+    <xsl:apply-templates mode="mal.chunk.content.mode" select="$node"/>
+  </yelp:document>
+</xsl:template>
+
+<!-- == mal.link.target == -->
+<!-- 
+<xsl:template name="mal.xref.target">
+  <xsl:param name="link" select="."/>
+  <xsl:param name="xref" select="$link/@xref"/>
+  <xsl:param name="href" select="$link/@href"/>
+  FIXME
+</xsl:template>
+-->
+
+<!-- == mal2html.css.custom == -->
+<xsl:template name="mal2html.css.custom">
+  <xsl:call-template name="yelp.common.css"/>
+</xsl:template>
+
+</xsl:stylesheet>
