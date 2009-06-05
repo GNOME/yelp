@@ -26,8 +26,10 @@
                   <object class="GtkLabel" id="label1226">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Fonts&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
+                    <property name="label" translatable="yes">Fonts</property>
+                    <attributes>
+                        <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -142,8 +144,10 @@
                   <object class="GtkLabel" id="label1229">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Accessibility&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
+                    <property name="label" translatable="yes">Accessibility</property>
+                    <attributes>
+                        <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="expand">False</property>
