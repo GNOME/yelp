@@ -29,6 +29,8 @@
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xinclude.h>
+#include <libxml/xpathInternals.h>
+#include <libxslt/documents.h>
 #include <libxslt/xslt.h>
 #include <libexslt/exslt.h>
 #include <libxslt/templates.h>
@@ -62,6 +64,8 @@ static void      xslt_yelp_cache       (xsltTransformContextPtr ctxt,
 					xmlNodePtr              node,
 					xmlNodePtr              inst,
 					xsltStylePreCompPtr     comp);
+static void      xslt_yelp_input       (xmlXPathParserContextPtr ctxt,
+					int                      nargs);
 
 /******************************************************************************/
 
@@ -98,6 +102,13 @@ YelpTransform
 }
 
 void
+yelp_transform_set_input (YelpTransform *transform,
+			  xmlDocPtr      input)
+{
+    transform->input = input;
+}
+
+void
 yelp_transform_start (YelpTransform *transform,
 		      xmlDocPtr      document,
 		      gchar        **params)
@@ -130,6 +141,10 @@ yelp_transform_start (YelpTransform *transform,
 			    BAD_CAST "cache",
 			    BAD_CAST YELP_NAMESPACE,
 			    (xsltTransformFunction) xslt_yelp_cache);
+    xsltRegisterExtFunction (transform->context,
+			     BAD_CAST "input",
+			     BAD_CAST YELP_NAMESPACE,
+			     (xmlXPathFunction) xslt_yelp_input);
 
     transform->mutex = g_mutex_new ();
     g_mutex_lock (transform->mutex);
@@ -430,4 +445,23 @@ xslt_yelp_cache (xsltTransformContextPtr ctxt,
 		 xmlNodePtr              inst,
 		 xsltStylePreCompPtr     comp)
 {
+}
+
+static void
+xslt_yelp_input (xmlXPathParserContextPtr ctxt, int nargs)
+{
+    xsltDocumentPtr idoc;
+    xsltTransformContextPtr tctxt;
+    xmlXPathObjectPtr ret;
+    YelpTransform *transform;
+
+    tctxt = xsltXPathGetTransformContext (ctxt);
+    transform = (YelpTransform *) tctxt->_private;
+
+    /* FIXME: pretty sure this eats transform->input, memory corruption will follow */
+    idoc = xsltNewDocument (tctxt, transform->input);
+
+    ret = xmlXPathNewNodeSet (xmlDocGetRootElement (transform->input));
+    xsltExtensionInstructionResultRegister (tctxt, ret);
+    valuePush (ctxt, ret);
 }

@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns:mal="http://www.gnome.org/~shaunm/mallard"
                 xmlns="http://www.w3.org/1999/xhtml"
                 extension-element-prefixes="yelp"
                 version="1.0">
@@ -15,6 +16,9 @@
 <xsl:param name="mal.chunk.chunk_top" select="true()"/>
 <xsl:param name="mal.chunk.extension" select="''"/>
 
+<xsl:param name="mal.cache" select="yelp:input()"/>
+<xsl:key name="mal.cache.key" match="mal:page | mal:section" use="@id"/>
+
 
 <!-- == mal.chunk == -->
 <xsl:template name="mal.chunk">
@@ -26,14 +30,27 @@
 </xsl:template>
 
 <!-- == mal.link.target == -->
-<!-- 
-<xsl:template name="mal.xref.target">
+<xsl:template name="mal.link.target">
   <xsl:param name="link" select="."/>
   <xsl:param name="xref" select="$link/@xref"/>
   <xsl:param name="href" select="$link/@href"/>
-  FIXME
+  <xsl:choose>
+    <xsl:when test="string($xref) = ''">
+      <xsl:value-of select="$href"/>
+    </xsl:when>
+    <xsl:when test="contains($xref, '/')">
+      <xsl:value-of select="$href"/>
+    </xsl:when>
+    <xsl:when test="contains($xref, '#')">
+      <xsl:variable name="pageid" select="substring-before($xref, '#')"/>
+      <xsl:variable name="sectionid" select="substring-after($xref, '#')"/>
+      <xsl:value-of select="concat('#', $pageid, '/', $sectionid)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat('#', $xref)"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
--->
 
 <!-- == mal2html.css.custom == -->
 <xsl:template name="mal2html.css.custom">

@@ -38,6 +38,7 @@
 #include "yelp-debug.h"
 
 #define STYLESHEET DATADIR"/yelp/xslt/mal2html.xsl"
+#define MALLARD_NS "http://www.gnome.org/~shaunm/mallard"
 
 #define YELP_MALLARD_GET_PRIVATE(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MALLARD, YelpMallardPriv))
 
@@ -54,6 +55,11 @@ typedef struct {
     gchar         *filename;
     xmlDocPtr      xmldoc;
     YelpTransform *transform;
+
+    xmlNodePtr     cur;
+    xmlNodePtr     cache;
+    gboolean       link_title;
+    gboolean       sort_title;
 } MallardPageData;
 
 struct _YelpMallardPriv {
@@ -66,6 +72,8 @@ struct _YelpMallardPriv {
     gint           transforms_running;
     GSList        *pending;
 
+    xmlDocPtr      cache;
+    xmlNsPtr       cache_ns;
     GHashTable    *pages_hash;
 };
 
@@ -95,11 +103,13 @@ static void           transform_final_func    (YelpTransform       *transform,
 					       MallardPageData     *page_data);
 /* Other */
 static void           mallard_think           (YelpMallard         *mallard);
-static void           mallard_pending         (YelpMallard         *mallard);
 static void           mallard_try_run         (YelpMallard         *mallard,
                                                gchar               *page_id);
 
 static void           mallard_page_data_walk  (MallardPageData     *page_data);
+static void           mallard_page_data_info  (MallardPageData     *page_data,
+                                               xmlNodePtr           info_node,
+                                               xmlNodePtr           cache_node);
 static void           mallard_page_data_run   (MallardPageData     *page_data);
 static void           mallard_page_data_free  (MallardPageData     *page_data);
 
@@ -147,6 +157,7 @@ static void
 mallard_init (YelpMallard *mallard)
 {
     YelpMallardPriv *priv;
+    xmlNodePtr cur;
     priv = mallard->priv = YELP_MALLARD_GET_PRIVATE (mallard);
 
     priv->mutex = g_mutex_new ();
@@ -154,6 +165,12 @@ mallard_init (YelpMallard *mallard)
     priv->thread_running = FALSE;
     priv->transforms_running = 0;
 
+    priv->cache = xmlNewDoc (BAD_CAST "1.0");
+    priv->cache_ns = xmlNewNs (NULL, BAD_CAST MALLARD_NS, BAD_CAST "mal");
+    cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
+    xmlDocSetRootElement (priv->cache, cur);
+    priv->cache_ns->next = cur->nsDef;
+    cur->nsDef = priv->cache_ns;
     priv->pages_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                               NULL,
                                               (GDestroyNotify) mallard_page_data_free);
@@ -331,22 +348,8 @@ mallard_think (YelpMallard *mallard)
         g_object_unref (pageinfo);
     }
 
-    mallard_pending (mallard);
-
- done:
-    g_object_unref (children);
-    g_object_unref (gfile);
-
-    priv->thread_running = FALSE;
-    g_object_unref (mallard);
-}
-
-static void
-mallard_pending (YelpMallard *mallard)
-{
-    YelpMallardPriv *priv = mallard->priv;
-
     g_mutex_lock (priv->mutex);
+    priv->state = MALLARD_STATE_IDLE;
     while (priv->pending) {
         gchar *page_id;
         page_id = (gchar *) priv->pending->data;
@@ -355,6 +358,13 @@ mallard_pending (YelpMallard *mallard)
         priv->pending = g_slist_delete_link (priv->pending, priv->pending);
     }
     g_mutex_unlock (priv->mutex);
+
+ done:
+    g_object_unref (children);
+    g_object_unref (gfile);
+
+    priv->thread_running = FALSE;
+    g_object_unref (mallard);
 }
 
 static void
@@ -366,7 +376,7 @@ mallard_try_run (YelpMallard *mallard,
 
     page_data = g_hash_table_lookup (mallard->priv->pages_hash, page_id);
     if (page_data == NULL) {
-        printf ("FIXME: page not foun\n");
+        printf ("FIXME: page not found\n");
         return;
     }
 
@@ -380,27 +390,139 @@ static void
 mallard_page_data_walk (MallardPageData *page_data)
 {
     xmlParserCtxtPtr parserCtxt = NULL;
-    xmlNodePtr cur;
     xmlChar *id;
 
-    parserCtxt = xmlNewParserCtxt ();
-    page_data->xmldoc = xmlCtxtReadFile (parserCtxt,
-                                         (const char *) page_data->filename, NULL,
-                                         XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
-                                         XML_PARSE_NOENT   | XML_PARSE_NONET   );
-    if (page_data->xmldoc == NULL)
-	goto done;
+    if (page_data->cur == NULL) {
+        parserCtxt = xmlNewParserCtxt ();
+        page_data->xmldoc = xmlCtxtReadFile (parserCtxt,
+                                             (const char *) page_data->filename, NULL,
+                                             XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
+                                             XML_PARSE_NOENT   | XML_PARSE_NONET   );
+        if (page_data->xmldoc == NULL)
+            goto done;
+        page_data->cur = xmlDocGetRootElement (page_data->xmldoc);
+        page_data->cache = xmlDocGetRootElement (page_data->mallard->priv->cache);
+        mallard_page_data_walk (page_data);
+    } else {
+        xmlNodePtr child, oldcur, oldcache, info;
 
-    cur = xmlDocGetRootElement (page_data->xmldoc);
-    id = xmlGetProp (cur, BAD_CAST "id");
-    if (id == NULL)
-        goto done;
-    page_data->page_id = g_strdup ((gchar *) id);
-    xmlFree (id);
+        id = xmlGetProp (page_data->cur, BAD_CAST "id");
+        if (id == NULL)
+            goto done;
+
+        page_data->cache = xmlNewChild (page_data->cache,
+                                        page_data->mallard->priv->cache_ns,
+                                        page_data->cur->name,
+                                        NULL);
+
+        if (xmlStrEqual (page_data->cur->name, BAD_CAST "page")) {
+            page_data->page_id = g_strdup ((gchar *) id);
+            xmlSetProp (page_data->cache, BAD_CAST "id", id);
+        } else {
+            gchar *newid = g_strdup_printf ("%s#%s", page_data->page_id, id);
+            xmlSetProp (page_data->cache, BAD_CAST "id", BAD_CAST newid);
+            g_free (newid);
+        }
+
+        info = xmlNewChild (page_data->cache,
+                            page_data->mallard->priv->cache_ns,
+                            BAD_CAST "info", NULL);
+        for (child = page_data->cur->children; child; child = child->next) {
+            if (child->type != XML_ELEMENT_NODE)
+                continue;
+            oldcur = page_data->cur;
+            oldcache = page_data->cache;
+            if (xmlStrEqual (child->name, BAD_CAST "info")) {
+                page_data->link_title = FALSE;
+                page_data->sort_title = FALSE;
+                mallard_page_data_info (page_data, child, info);
+            }
+            else if (xmlStrEqual (child->name, BAD_CAST "title")) {
+                xmlNodePtr node;
+                xmlNodePtr title_node = xmlNewChild (page_data->cache,
+                                                     page_data->mallard->priv->cache_ns,
+                                                     BAD_CAST "title", NULL);
+                for (node = child->children; node; node = node->next) {
+                    xmlAddChild (title_node, xmlCopyNode (node, 1));
+                }
+                if (!page_data->link_title) {
+                    xmlNodePtr title_node = xmlNewChild (info,
+                                                         page_data->mallard->priv->cache_ns,
+                                                         BAD_CAST "title", NULL);
+                    xmlSetProp (title_node, BAD_CAST "type", BAD_CAST "link");
+                    for (node = child->children; node; node = node->next) {
+                        xmlAddChild (title_node, xmlCopyNode (node, 1));
+                    }
+                }
+                if (!page_data->sort_title) {
+                    xmlNodePtr title_node = xmlNewChild (info,
+                                                         page_data->mallard->priv->cache_ns,
+                                                         BAD_CAST "title", NULL);
+                    xmlSetProp (title_node, BAD_CAST "type", BAD_CAST "sort");
+                    for (node = child->children; node; node = node->next) {
+                        xmlAddChild (title_node, xmlCopyNode (node, 1));
+                    }
+                }
+                else { printf ("FOO\n"); }
+            }
+            else if (xmlStrEqual (child->name, BAD_CAST "section")) {
+                page_data->cur = child;
+                mallard_page_data_walk (page_data);
+            }
+            page_data->cur = oldcur;
+            page_data->cache = oldcache;
+        }
+    }
 
  done:
+    if (id)
+        xmlFree (id);
     if (parserCtxt)
 	xmlFreeParserCtxt (parserCtxt);
+}
+
+static void
+mallard_page_data_info (MallardPageData *page_data,
+                        xmlNodePtr       info_node,
+                        xmlNodePtr       cache_node)
+{
+    xmlNodePtr child;
+
+    for (child = info_node->children; child; child = child->next) {
+        if (xmlStrEqual (child->name, BAD_CAST "info")) {
+            mallard_page_data_info (page_data, child, cache_node);
+        }
+        else if (xmlStrEqual (child->name, BAD_CAST "title")) {
+            xmlNodePtr node, title_node;
+            xmlChar *type, *role;
+            title_node = xmlNewChild (cache_node,
+                                      page_data->mallard->priv->cache_ns,
+                                      BAD_CAST "title", NULL);
+            for (node = child->children; node; node = node->next) {
+                xmlAddChild (title_node, xmlCopyNode (node, 1));
+            }
+
+            type = xmlGetProp (child, BAD_CAST "type");
+            role = xmlGetProp (child, BAD_CAST "role");
+
+            if (xmlStrEqual (type, BAD_CAST "link") && role == NULL)
+                page_data->link_title = TRUE;
+            if (xmlStrEqual (type, BAD_CAST "sort"))
+                page_data->sort_title = TRUE;
+
+            if (type) {
+                xmlSetProp (page_data->cache, BAD_CAST "type", BAD_CAST type);
+                xmlFree (type);
+            }
+            if (role) {
+                xmlSetProp (page_data->cache, BAD_CAST "role", BAD_CAST type);
+                xmlFree (role);
+            }
+        }
+        else if (xmlStrEqual (child->name, BAD_CAST "desc")) {
+            xmlAddChild (cache_node, xmlCopyNode (child, 1));
+        }
+    }
 }
 
 static void
@@ -417,6 +539,10 @@ mallard_page_data_run (MallardPageData *page_data)
     params = g_new0 (gchar *, params_max);
     yelp_settings_params (&params, &params_i, &params_max);
     params[params_i+1] = NULL;
+
+    yelp_transform_set_input (page_data->transform,
+                              page_data->mallard->priv->cache);
+
     yelp_transform_start (page_data->transform,
 			  page_data->xmldoc,
 			  params);
