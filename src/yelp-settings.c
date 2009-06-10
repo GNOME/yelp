@@ -779,43 +779,43 @@ settings_update (YelpSettingsType type)
 	g_object_unref (widget);
 
 	hls_to_hex (text_h, 
-		    text_l - ((text_l - base_l) * 0.4),
+		    text_l - ((text_l - base_l) * 0.25),
 		    text_s,
 		    YELP_COLOR_FG_LIGHT);
 
 	hls_to_hex (base_h, 
-		    base_l - ((base_l - text_l) * 0.05),
+		    base_l,
 		    base_s,
 		    YELP_COLOR_GRAY_BG);
 	hls_to_hex (base_h, 
-		    base_l - ((base_l - text_l) * 0.1),
+		    base_l - ((base_l - text_l) * 0.25),
 		    base_s,
 		    YELP_COLOR_GRAY_BORDER);
 
-	hls_to_hex (base_h,
-		    base_l - ((base_l - text_l) * 0.05),
+	hls_to_hex (204,
+		    base_l,
 		    0.6,
 		    YELP_COLOR_BLUE_BG);
-	hls_to_hex (base_h,
-		    base_l - ((base_l - text_l) * 0.1),
+	hls_to_hex (204,
+		    base_l - ((base_l - text_l) * 0.25),
 		    0.6,
 		    YELP_COLOR_BLUE_BORDER);
 
 	hls_to_hex (0,
-		    base_l - ((base_l - text_l) * 0.05),
+		    base_l,
 		    0.6,
 		    YELP_COLOR_RED_BG);
 	hls_to_hex (0,
-		    base_l - ((base_l - text_l) * 0.1),
+		    base_l - ((base_l - text_l) * 0.25),
 		    0.6,
 		    YELP_COLOR_RED_BORDER);
 
 	hls_to_hex (60,
-		    base_l - ((base_l - text_l) * 0.05),
+		    base_l,
 		    0.6,
 		    YELP_COLOR_YELLOW_BG);
 	hls_to_hex (60,
-		    base_l - ((base_l - text_l) * 0.1),
+		    base_l - ((base_l - text_l) * 0.25),
 		    0.6,
 		    YELP_COLOR_YELLOW_BORDER);
 
