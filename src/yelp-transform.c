@@ -239,6 +239,8 @@ transform_free (YelpTransform *transform)
     }
 
     g_mutex_lock (transform->mutex);
+    if (transform->input_xslt)
+	transform->input_xslt->doc = NULL;
     if (transform->outputDoc)
 	xmlFreeDoc (transform->outputDoc);
     if (transform->stylesheet)
@@ -450,7 +452,6 @@ xslt_yelp_cache (xsltTransformContextPtr ctxt,
 static void
 xslt_yelp_input (xmlXPathParserContextPtr ctxt, int nargs)
 {
-    xsltDocumentPtr idoc;
     xsltTransformContextPtr tctxt;
     xmlXPathObjectPtr ret;
     YelpTransform *transform;
@@ -459,7 +460,7 @@ xslt_yelp_input (xmlXPathParserContextPtr ctxt, int nargs)
     transform = (YelpTransform *) tctxt->_private;
 
     /* FIXME: pretty sure this eats transform->input, memory corruption will follow */
-    idoc = xsltNewDocument (tctxt, transform->input);
+    transform->input_xslt = xsltNewDocument (tctxt, transform->input);
 
     ret = xmlXPathNewNodeSet (xmlDocGetRootElement (transform->input));
     xsltExtensionInstructionResultRegister (tctxt, ret);

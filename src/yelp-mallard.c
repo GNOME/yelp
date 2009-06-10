@@ -519,7 +519,8 @@ mallard_page_data_info (MallardPageData *page_data,
                 xmlFree (role);
             }
         }
-        else if (xmlStrEqual (child->name, BAD_CAST "desc")) {
+        else if (xmlStrEqual (child->name, BAD_CAST "desc") ||
+                 xmlStrEqual (child->name, BAD_CAST "link")) {
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
     }
@@ -538,7 +539,7 @@ mallard_page_data_run (MallardPageData *page_data)
 
     params = g_new0 (gchar *, params_max);
     yelp_settings_params (&params, &params_i, &params_max);
-    params[params_i+1] = NULL;
+    params[params_i] = NULL;
 
     yelp_transform_set_input (page_data->transform,
                               page_data->mallard->priv->cache);

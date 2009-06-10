@@ -48,7 +48,9 @@ struct _YelpTransform {
     xmlDocPtr               outputDoc;
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr context;
+
     xmlDocPtr               input;
+    xsltDocumentPtr         input_xslt;
 
     YelpTransformFunc       func;
 
