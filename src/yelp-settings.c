@@ -733,9 +733,9 @@ settings_update (YelpSettingsType type)
 		    style->text[GTK_STATE_NORMAL].green / 65535.0,
 		    style->text[GTK_STATE_NORMAL].blue / 65535.0,
 		    &text_h, &text_l, &text_s);
-	rgb_to_hls (style->bg[GTK_STATE_NORMAL].red / 65535.0,
-		    style->bg[GTK_STATE_NORMAL].green / 65535.0,
-		    style->bg[GTK_STATE_NORMAL].blue / 65535.0,
+	rgb_to_hls (style->base[GTK_STATE_NORMAL].red / 65535.0,
+		    style->base[GTK_STATE_NORMAL].green / 65535.0,
+		    style->base[GTK_STATE_NORMAL].blue / 65535.0,
 		    &base_h, &base_l, &base_s);
 
 	/* YELP_COLOR_FG */
@@ -784,7 +784,7 @@ settings_update (YelpSettingsType type)
 		    YELP_COLOR_FG_LIGHT);
 
 	hls_to_hex (base_h, 
-		    base_l,
+		    base_l - ((base_l - text_l) * 0.03),
 		    base_s,
 		    YELP_COLOR_GRAY_BG);
 	hls_to_hex (base_h, 
@@ -793,30 +793,30 @@ settings_update (YelpSettingsType type)
 		    YELP_COLOR_GRAY_BORDER);
 
 	hls_to_hex (204,
-		    base_l,
-		    0.6,
+		    base_l - ((base_l - text_l) * 0.03),
+		    0.75,
 		    YELP_COLOR_BLUE_BG);
 	hls_to_hex (204,
 		    base_l - ((base_l - text_l) * 0.25),
-		    0.6,
+		    0.75,
 		    YELP_COLOR_BLUE_BORDER);
 
 	hls_to_hex (0,
-		    base_l,
-		    0.6,
+		    base_l - ((base_l - text_l) * 0.03),
+		    0.75,
 		    YELP_COLOR_RED_BG);
 	hls_to_hex (0,
 		    base_l - ((base_l - text_l) * 0.25),
-		    0.6,
+		    0.75,
 		    YELP_COLOR_RED_BORDER);
 
 	hls_to_hex (60,
-		    base_l,
-		    0.6,
+		    base_l - ((base_l - text_l) * 0.03),
+		    0.75,
 		    YELP_COLOR_YELLOW_BG);
 	hls_to_hex (60,
 		    base_l - ((base_l - text_l) * 0.25),
-		    0.6,
+		    0.75,
 		    YELP_COLOR_YELLOW_BORDER);
 
 	g_object_unref (G_OBJECT (style));
