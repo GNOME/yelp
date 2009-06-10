@@ -427,14 +427,12 @@ mallard_page_data_walk (MallardPageData *page_data)
         info = xmlNewChild (page_data->cache,
                             page_data->mallard->priv->cache_ns,
                             BAD_CAST "info", NULL);
+        page_data->link_title = FALSE;
+        page_data->sort_title = FALSE;
         for (child = page_data->cur->children; child; child = child->next) {
             if (child->type != XML_ELEMENT_NODE)
                 continue;
-            oldcur = page_data->cur;
-            oldcache = page_data->cache;
             if (xmlStrEqual (child->name, BAD_CAST "info")) {
-                page_data->link_title = FALSE;
-                page_data->sort_title = FALSE;
                 mallard_page_data_info (page_data, child, info);
             }
             else if (xmlStrEqual (child->name, BAD_CAST "title")) {
@@ -463,14 +461,15 @@ mallard_page_data_walk (MallardPageData *page_data)
                         xmlAddChild (title_node, xmlCopyNode (node, 1));
                     }
                 }
-                else { printf ("FOO\n"); }
             }
             else if (xmlStrEqual (child->name, BAD_CAST "section")) {
+                oldcur = page_data->cur;
+                oldcache = page_data->cache;
                 page_data->cur = child;
                 mallard_page_data_walk (page_data);
+                page_data->cur = oldcur;
+                page_data->cache = oldcache;
             }
-            page_data->cur = oldcur;
-            page_data->cache = oldcache;
         }
     }
 
@@ -511,11 +510,11 @@ mallard_page_data_info (MallardPageData *page_data,
                 page_data->sort_title = TRUE;
 
             if (type) {
-                xmlSetProp (page_data->cache, BAD_CAST "type", BAD_CAST type);
+                xmlSetProp (title_node, BAD_CAST "type", BAD_CAST type);
                 xmlFree (type);
             }
             if (role) {
-                xmlSetProp (page_data->cache, BAD_CAST "role", BAD_CAST type);
+                xmlSetProp (title_node, BAD_CAST "role", BAD_CAST type);
                 xmlFree (role);
             }
         }
