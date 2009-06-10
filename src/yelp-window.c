@@ -1140,6 +1140,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     }
 
     if (doc) {
+        gchar *slash;
 	gboolean need_hist = FALSE;
 	if (!frag_id)
 	  frag_id = g_strdup ("x-yelp-index");
@@ -1151,6 +1152,15 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	window_setup_window (window, type, real_uri, frag_id,
 			     (gchar *) uri, current_base, need_hist);
 
+        /* FIXME: Super hacky.  We want the part before the slash for mallard IDs,
+           because right now we're outputting "#page_id/section_id".  We ought to
+           be scrolling to the section as well.  I happen to know that get_page is
+           just going to strdup the string, and we free frag_id itself immediately
+           after this, so this is safe.  It just sucks.
+         */
+        slash = strchr (frag_id, '/');
+        if (slash)
+            *slash = '\0';
 	priv->current_request = yelp_document_get_page (doc,
 							frag_id,
 							(YelpDocumentFunc) page_request_cb,
