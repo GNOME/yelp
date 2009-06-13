@@ -1,6 +1,6 @@
 # Swedish messages for Yelp.
-# Copyright (C) 2001-2008 Free Software Foundation, Inc.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2008.
+# Copyright (C) 2001-2009 Free Software Foundation, Inc.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009.
 # Richard Hult <rhult@codefactory.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004, 2005.
 #
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-16 14:25+0100\n"
-"PO-Revision-Date: 2009-02-16 14:25+0100\n"
+"POT-Creation-Date: 2009-06-13 13:02+0200\n"
+"PO-Revision-Date: 2009-06-13 13:02+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,8 @@ msgstr "Konfigurationsfiler"
 msgid "Curses Functions"
 msgstr "Curses-funktioner"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
+#: ../data/man.xml.in.h:5
+#: ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Utveckling"
 
@@ -48,7 +49,8 @@ msgstr "Utveckling"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN-funktioner"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
+#: ../data/man.xml.in.h:7
+#: ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Spel"
 
@@ -289,6 +291,7 @@ msgid "3D Graphics"
 msgstr "3D-grafik"
 
 #: ../data/toc.xml.in.h:3
+#: ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Hjälpmedel"
 
@@ -520,9 +523,7 @@ msgstr "Grafik"
 
 #: ../data/toc.xml.in.h:63
 msgid "Guides and manuals for applications that connect to the outside world"
-msgstr ""
-"Guider och handböcker för program som används för att ansluta till världen "
-"utanför"
+msgstr "Guider och handböcker för program som används för att ansluta till världen utanför"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
@@ -577,12 +578,8 @@ msgid "Kids Games"
 msgstr "Barnspel"
 
 #: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr ""
-"Lär dig mer om hur du gör ditt system mer åtkomligt för personer med olika "
-"handikapp"
+msgid "Learn more about making your system more accessible for a range of disabilities"
+msgstr "Lär dig mer om hur du gör ditt system mer åtkomligt för personer med olika handikapp"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
@@ -685,7 +682,9 @@ msgstr "Uppspelare"
 msgid "Presentation Tools"
 msgstr "Presentationsverktyg"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104
+#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Skriver ut"
 
@@ -752,8 +751,7 @@ msgstr "Inställningar"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"Inställningar som användare kan ändra för att göra sin miljö mer behaglig"
+msgstr "Inställningar som användare kan ändra för att göra sin miljö mer behaglig"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -868,85 +866,57 @@ msgstr "Välkommen till GNOME-hjälpvisaren"
 msgid "Word Processors"
 msgstr "Ordbehandlare"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Hjälpmedel</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Typsnitt</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Lägg till bokmärke"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Bokmärken"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "_Gör skillnad på gemener/VERSALER"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Sök"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Öppna plats"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "_Byt namn"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Bokmärken:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "_Bläddra med markör"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Lägg till bokmärke"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Sök:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Fast breddsteg:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Plats:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Nästa"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Föregående"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Titel:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Öppna plats"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Plats:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Typsnitt"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "_Bläddra med markör"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Fast breddsteg:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "_Använd systemtypsnitt"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "_Variabelt breddsteg:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Börja om från början"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -966,8 +936,7 @@ msgstr "Typsnitt för text med variabelt breddsteg."
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
-"Använd en markör som kan styras från tangentbordet för visning av sidor."
+msgstr "Använd en markör som kan styras från tangentbordet för visning av sidor."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -981,15 +950,15 @@ msgstr "Använd systemtypsnitt"
 msgid "Use the default fonts set for the system."
 msgstr "Använd standardtypsnitten som angivits för systemet."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/yelp-bookmarks.c:149
 msgid "Open Bookmark in New Window"
 msgstr "Öppna bokmärke i nytt fönster"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:153
 msgid "Rename Bookmark"
 msgstr "Byt namn på bokmärke"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:157
 msgid "Remove Bookmark"
 msgstr "Ta bort bokmärke"
 
@@ -998,82 +967,97 @@ msgstr "Ta bort bokmärke"
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Det finns redan ett bokmärke med namnet %s för denna sida."
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:391
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Det finns redan ett bokmärke med namnet <b>%s</b> för denna sida."
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:404
 msgid "Help Topics"
 msgstr "Hjälprubriker"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:419
 msgid "Document Sections"
 msgstr "Dokumentavsnitt"
 
-#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-db-print.c:258
+#: ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275
+#: ../src/yelp-docbook.c:367
+#: ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338
+#: ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Sidan hittades inte"
 
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-db-print.c:259
+#: ../src/yelp-docbook.c:276
+#: ../src/yelp-info.c:244
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Sidan %s kunde inte hittas i dokumentet %s."
 
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-db-print.c:351
+#: ../src/yelp-docbook.c:368
+#: ../src/yelp-info.c:339
 #: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "Den begärda sidan hittades inte i dokumentet %s."
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-db-print.c:392
+#: ../src/yelp-docbook.c:410
+#: ../src/yelp-info.c:380
 #: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "Filen hittades inte"
 
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-db-print.c:393
+#: ../src/yelp-docbook.c:411
+#: ../src/yelp-info.c:381
 #: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Filen \"%s\" finns inte."
 
-#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
-#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
+#: ../src/yelp-db-print.c:406
+#: ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424
+#: ../src/yelp-docbook.c:436
+#: ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458
+#: ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "Kunde inte tolka filen"
 
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
+#: ../src/yelp-db-print.c:407
+#: ../src/yelp-docbook.c:425
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Filen \"%s\" kunde inte tolkas därför att den inte är ett korrekt formaterat "
-"XML-dokument."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr "Filen \"%s\" kunde inte tolkas därför att den inte är ett korrekt formaterat XML-dokument."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
+#: ../src/yelp-db-print.c:419
+#: ../src/yelp-docbook.c:437
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"Filen \"%s\" kunde inte tolkas därför att en eller flera av dess inkluderade "
-"filer inte är korrekt formaterade XML-dokument."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "Filen \"%s\" kunde inte tolkas därför att en eller flera av dess inkluderade filer inte är korrekt formaterade XML-dokument."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:765
+#: ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+#: ../src/yelp-error.c:132
+#: ../src/yelp-error.c:139
 msgid "Unknown Error"
 msgstr "Okänt fel"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1646
+#: ../src/yelp-error.c:136
+#: ../src/yelp-window.c:1690
 msgid "Could Not Read File"
 msgstr "Kunde inte läsa filen"
 
@@ -1083,45 +1067,36 @@ msgstr "Ingen information finns tillgänglig om felet."
 
 #: ../src/yelp-info.c:396
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Filen \"%s\" kunde inte tolkas därför att den inte en korrekt formaterad "
-"infosida."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Filen \"%s\" kunde inte tolkas därför att den inte en korrekt formaterad infosida."
 
 #: ../src/yelp-io-channel.c:132
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"Filen \"%s\" kunde inte läsas och avkodas. Filen kan vara komprimerad med "
-"ett format som inte stöds."
+msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+msgstr "Filen \"%s\" kunde inte läsas och avkodas. Filen kan vara komprimerad med ett format som inte stöds."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:90
 msgid "Use a private session"
 msgstr "Använd en privat session"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Ange vilken cachekatalog som ska användas"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:357
+#: ../src/yelp-main.c:356
 msgid " GNOME Help Browser"
 msgstr " GNOME-hjälpvisare"
 
-#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376
+#: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjälp"
 
 #: ../src/yelp-man.c:459
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr ""
-"Filen \"%s\" kunde inte tolkas därför att den inte är en korrekt formaterad "
-"manualsida."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr "Filen \"%s\" kunde inte tolkas därför att den inte är en korrekt formaterad manualsida."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -1163,12 +1138,8 @@ msgid "No results for \"%s\""
 msgstr "Inga resultat för \"%s\""
 
 #: ../src/yelp-search-parser.c:286
-msgid ""
-"Try using different words to describe the problem you're having or the topic "
-"you want help with."
-msgstr ""
-"Försök använda olika ord för att beskriva problemet som du har eller ämnet "
-"du vill ha hjälp med."
+msgid "Try using different words to describe the problem you're having or the topic you want help with."
+msgstr "Försök använda olika ord för att beskriva problemet som du har eller ämnet du vill ha hjälp med."
 
 #: ../src/yelp-search-parser.c:289
 #, c-format
@@ -1194,11 +1165,7 @@ msgstr "Repetera sökningen online på %s"
 #. * "work", and "broken".
 #.
 #: ../src/yelp-search-parser.c:874
-msgid ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
+msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 msgstr "NULL"
 
 #. Translators: This is a list of common prefixes for words.
@@ -1255,257 +1222,251 @@ msgid "The requested page was not found in the TOC."
 msgstr "Den begärda sidan kunde inte hittas i innehållsförteckningen."
 
 #: ../src/yelp-toc.c:438
-msgid ""
-"The TOC file could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Innehållsförteckningsfilen kunde inte tolkas därför att den inte är ett "
-"korrekt formaterat XML-dokument."
+msgid "The TOC file could not be parsed because it is not a well-formed XML document."
+msgstr "Innehållsförteckningsfilen kunde inte tolkas därför att den inte är ett korrekt formaterat XML-dokument."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:82
 msgid "Invalid Stylesheet"
 msgstr "Ogiltig stilmall"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:83
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr "XSLT-stilmallen \"%s\" antingen saknas eller är inte giltig."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:111
 msgid "Broken Transformation"
 msgstr "Trasig transformering"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:112
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Ett okänt fel inträffade vid försök att transformera dokumentet."
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:372
 msgid "No href attribute found on yelp:document\n"
 msgstr "Inget href-attribut hittat på yelp:document\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:387
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:305
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:306
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/yelp-window.c:306
+#: ../src/yelp-window.c:307
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:308
 msgid "_Bookmarks"
 msgstr "_Bokmärken"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:309
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:312
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/yelp-window.c:316
+#: ../src/yelp-window.c:317
 msgid "Print This Document ..."
 msgstr "Skriv ut det här dokumentet ..."
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:322
 msgid "Print This Page ..."
 msgstr "Skriv ut den här sidan ..."
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:327
 msgid "About This Document"
 msgstr "Om det här dokumentet"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:332
 msgid "Open _Location"
 msgstr "Öppna _plats"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:337
 msgid "_Close Window"
 msgstr "_Stäng fönster"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:343
 msgid "_Copy"
 msgstr "_Kopiera"
 
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:349
 msgid "_Select All"
 msgstr "_Markera allt"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:354
 msgid "_Find..."
 msgstr "_Sök..."
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:359
 msgid "Find Pre_vious"
 msgstr "Sök _föregående"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:361
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Sök föregående förekomst av ordet eller frasen"
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:364
 msgid "Find Ne_xt"
 msgstr "Sök _nästa"
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:366
 msgid "Find next occurrence of the word or phrase"
 msgstr "Sök nästa förekomst av ordet eller frasen"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:369
 msgid "_Preferences"
 msgstr "_Inställningar"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:374
 msgid "_Reload"
 msgstr "_Läs om"
 
-#: ../src/yelp-window.c:385
+#: ../src/yelp-window.c:386
 msgid "_Back"
 msgstr "_Bakåt"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:388
 msgid "Show previous page in history"
 msgstr "Visa föregående sida i historiken"
 
-#: ../src/yelp-window.c:390
+#: ../src/yelp-window.c:391
 msgid "_Forward"
 msgstr "_Framåt"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:393
 msgid "Show next page in history"
 msgstr "Visa nästa sida i historiken"
 
-#: ../src/yelp-window.c:395
+#: ../src/yelp-window.c:396
 msgid "_Help Topics"
 msgstr "_Hjälprubriker"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:398
 msgid "Go to the listing of help topics"
 msgstr "Gå till listan med hjälprubriker"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:401
 msgid "_Previous Section"
 msgstr "Föregående a_vsnitt"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:406
 msgid "_Next Section"
 msgstr "_Nästa avsnitt"
 
-#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
+#: ../src/yelp-window.c:411
+#: ../src/yelp-window.c:443
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/yelp-window.c:416
+#: ../src/yelp-window.c:417
 msgid "_Add Bookmark"
 msgstr "_Lägg till bokmärke"
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:422
 msgid "_Edit Bookmarks..."
 msgstr "_Redigera bokmärken..."
 
-#: ../src/yelp-window.c:427
+#: ../src/yelp-window.c:428
 msgid "_Open Link"
 msgstr "_Öppna länk"
 
-#: ../src/yelp-window.c:432
+#: ../src/yelp-window.c:433
 msgid "Open Link in _New Window"
 msgstr "Öppna länk i _nytt fönster"
 
-#: ../src/yelp-window.c:437
+#: ../src/yelp-window.c:438
 msgid "_Copy Link Address"
 msgstr "_Kopiera länkadress"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:445
 msgid "Help On this application"
 msgstr "Hjälp för detta program"
 
-#: ../src/yelp-window.c:447
+#: ../src/yelp-window.c:448
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/yelp-window.c:452
+#: ../src/yelp-window.c:453
 msgid "Copy _Email Address"
 msgstr "Kopiera _e-postadress"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:525
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1703
+#: ../src/yelp-window.c:620
+#: ../src/yelp-window.c:672
+#: ../src/yelp-window.c:1752
 msgid "Loading..."
 msgstr "Läser in..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:621
+#: ../src/yelp-window.c:673
 msgid "Unknown Page"
 msgstr "Okänd sida"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
-#: ../src/yelp-window.c:1084
+#: ../src/yelp-window.c:1043
+#: ../src/yelp-window.c:1101
+#: ../src/yelp-window.c:1110
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Den begärda URI:n \"%s\" är ogiltig"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
-#: ../src/yelp-window.c:1085
+#: ../src/yelp-window.c:1044
+#: ../src/yelp-window.c:1103
+#: ../src/yelp-window.c:1111
 msgid "Unable to load page"
 msgstr "Kunde inte läsa in sida"
 
-#: ../src/yelp-window.c:1079
-msgid "Error executing \"gnome-open\""
-msgstr "Fel vid körning av \"gnome-open\""
-
-#: ../src/yelp-window.c:1265
+#: ../src/yelp-window.c:1310
 msgid "_Search:"
 msgstr "_Sök efter:"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1311
 msgid "Search for other documentation"
 msgstr "Sök efter annan dokumentation"
 
-#: ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:1331
 msgid "Cannot create window"
 msgstr "Kan inte skapa fönster"
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1337
 msgid "Cannot create search component"
 msgstr "Kan inte skapa sökkomponent"
 
-#: ../src/yelp-window.c:1464
+#: ../src/yelp-window.c:1509
 msgid "Fin_d:"
 msgstr "Sö_k:"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1531
 msgid "Find _Previous"
 msgstr "Sök _föregående"
 
-#: ../src/yelp-window.c:1498
+#: ../src/yelp-window.c:1543
 msgid "Find _Next"
 msgstr "Sök _nästa"
 
-#: ../src/yelp-window.c:1511
+#: ../src/yelp-window.c:1556
 msgid "Phrase not found"
 msgstr "Frasen hittades inte"
 
-#: ../src/yelp-window.c:1643
+#: ../src/yelp-window.c:1687
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
-msgstr ""
-"Filen \"%s\" kunde inte läsas. Filen kanske saknas eller så har du inte "
-"rättigheter att läsa den."
+msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
+msgstr "Filen \"%s\" kunde inte läsas. Filen kanske saknas eller så har du inte rättigheter att läsa den."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2483
+#: ../src/yelp-window.c:2557
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -1515,11 +1476,11 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/yelp-window.c:2486
+#: ../src/yelp-window.c:2560
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2488
+#: ../src/yelp-window.c:2562
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
 
@@ -1527,139 +1488,124 @@ msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
 msgid "Get help with GNOME"
 msgstr "Få hjälp med GNOME"
 
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Hjälpmedel</b>"
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Typsnitt</b>"
+#~ msgid "C_ase sensitive"
+#~ msgstr "_Gör skillnad på gemener/VERSALER"
+#~ msgid "Find"
+#~ msgstr "Sök"
+#~ msgid "_Find:"
+#~ msgstr "_Sök:"
+#~ msgid "_Next"
+#~ msgstr "_Nästa"
+#~ msgid "_Previous"
+#~ msgstr "_Föregående"
+#~ msgid "_Wrap around"
+#~ msgstr "_Börja om från början"
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "Fel vid körning av \"gnome-open\""
 #~ msgid "AudioVideoEditing"
 #~ msgstr "Ljud- och videoredigering"
-
 #~ msgid "Chart"
 #~ msgstr "Diagram"
-
 #~ msgid "Email"
 #~ msgstr "E-post"
-
 #~ msgid "Finance"
 #~ msgstr "Finans"
-
 #~ msgid "PDA"
 #~ msgstr "Handdator"
-
 #~ msgid "Accessories"
 #~ msgstr "Tillbehör"
-
 #~ msgid "Applications for fun"
 #~ msgstr "Program för lek och spel"
-
 #~ msgid "Applications for word processing and other office tasks"
 #~ msgstr "Program för ordbehandling och andra kontorsuppgifter"
-
 #~ msgid "Applications related to multimedia"
 #~ msgstr "Program relaterade till multimedia"
-
 #~ msgid "Applications related to software development"
 #~ msgstr "Program relaterade till programutveckling"
-
 #~ msgid "Applications specific to the panel"
 #~ msgstr "Program specifika till panelen"
-
 #~ msgid "Applications that support assistive technologies"
 #~ msgstr "Program som ger stöd för hjälptekniker"
-
 #~ msgid "Learning applications"
 #~ msgstr "Utbildningsprogram"
-
 #~ msgid "Office"
 #~ msgstr "Kontor"
-
 #~ msgid "Panel Applets"
 #~ msgstr "Panelprogram"
-
 #~ msgid "Programming"
 #~ msgstr "Programmering"
-
 #~ msgid "Scientific Applications."
 #~ msgstr "Vetenskapliga program."
-
 #~ msgid "Utility applications"
 #~ msgstr "Verktygsprogram"
-
 #~ msgid "Variety of other applications"
 #~ msgstr "Blandning av övriga program"
-
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
 #~ "is not well-formed XML."
 #~ msgstr ""
 #~ "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
 #~ "inte korrekt XML."
-
 #~ msgid ""
 #~ "The file  ‘%s’ could not be parsed. Either the file does not exist, or it "
 #~ "is not a well-formed info page."
 #~ msgstr ""
 #~ "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
 #~ "inte en korrekt formaterad infosida."
-
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
 #~ "is formatted incorrectly."
 #~ msgstr ""
 #~ "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
 #~ "felaktigt formaterad."
-
 #~ msgid "Document Information"
 #~ msgstr "Dokumentinformation"
-
 #~ msgid "The YelpDocInfo struct of the document"
 #~ msgstr "YelpDocInfo-structen för dokumentet"
-
 #~ msgid ""
 #~ "Your search could not be processed. The file ‘%s’ is either missing or is "
 #~ "not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "Din sökning kunde inte behandlas. Filen \"%s\" antingen saknas eller är "
 #~ "inte en giltig XSLT-stilmall."
-
 #~ msgid "Help Contents"
 #~ msgstr "Hjälpinnehåll"
-
 #~ msgid "Could not load the OMF file '%s'."
 #~ msgstr "Kunde inte läsa in OMF-filen \"%s\"."
-
 #~ msgid "YelpTocPager: Pause count is negative."
 #~ msgstr "YelpTocPager: Pausräknaren är negativ."
-
 #~ msgid ""
 #~ "The table of contents could not be processed. The file ‘%s’ is either "
 #~ "missing or is not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "Innehållsförteckningen kunde inte behandlas. Antingen saknas filen \"%s\" "
 #~ "eller så är den inte en giltig XSLT-stilmall."
-
 #~ msgid "Read man page for %s"
 #~ msgstr "Läs manualsida för %s"
-
 #~ msgid "Read info page for %s"
 #~ msgstr "Läs infosida för %s"
-
 #~ msgid ""
 #~ "The table of contents could not be loaded. The file ‘%s’ is either "
 #~ "missing or is not well-formed XML."
 #~ msgstr ""
 #~ "Innehållsförteckningen kunde inte läsas in. Antingen saknas filen \"%s\" "
 #~ "eller så är den inte korrekt XML."
-
 #~ msgid "Command Line Help"
 #~ msgstr "Hjälp för kommandorad"
-
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
 #~ "is improperly formatted."
 #~ msgstr ""
 #~ "Filen \"%s\" kunde inte tolkas. Antingen finns filen inte eller så är den "
 #~ "felaktigt formaterad."
-
 #~ msgid ""
 #~ "The document ‘%s’ could not be processed. The file ‘%s’ is either "
 #~ "missing, or it is not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "Dokumentet \"%s\" kunde inte behandlas. Antingen finns filen \"%s\" inte "
 #~ "eller så är den inte en giltig XSLT-stilmall."
+
