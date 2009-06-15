@@ -38,7 +38,7 @@
 #include "yelp-debug.h"
 
 #define STYLESHEET DATADIR"/yelp/xslt/mal2html.xsl"
-#define MALLARD_NS "http://www.gnome.org/~shaunm/mallard"
+#define MALLARD_NS "http://projectmallard.org/1.0/"
 
 #define YELP_MALLARD_GET_PRIVATE(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MALLARD, YelpMallardPriv))
 
