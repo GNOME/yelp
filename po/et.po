@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2009-06-05 20:31+0000\n"
-"PO-Revision-Date: 2009-06-08 12:26+0300\n"
+"POT-Creation-Date: 2009-06-16 19:43+0000\n"
+"PO-Revision-Date: 2009-06-19 14:51+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -823,6 +823,13 @@ msgstr " GNOME Abiteabe sirvija"
 msgid "Help"
 msgstr "Abi"
 
+msgid "Directory not found"
+msgstr "Kataloogi ei leitud"
+
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Kataloogi „%s” pole olemas."
+
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -1147,30 +1154,3 @@ msgstr "Dokumentatsioonisirvija Gnome töölaua jaoks."
 
 msgid "Get help with GNOME"
 msgstr "Abistab GNOME kasutamisel"
-
-#~ msgid "<b>Accessibility</b>"
-#~ msgstr "<b>Hõlbustused</b>"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Kirjatüübid</b>"
-
-#~ msgid "C_ase sensitive"
-#~ msgstr "_Tõstutundlik"
-
-#~ msgid "Find"
-#~ msgstr "Otsimine"
-
-#~ msgid "_Find:"
-#~ msgstr "_Otsing: "
-
-#~ msgid "_Next"
-#~ msgstr "_Järgmine"
-
-#~ msgid "_Previous"
-#~ msgstr "_Eelmine"
-
-#~ msgid "_Wrap around"
-#~ msgstr "_Lõpust minnakse algusesse"
-
-#~ msgid "Error executing \"gnome-open\""
-#~ msgstr "Viga \"gnome-open\" käivitamisel"
