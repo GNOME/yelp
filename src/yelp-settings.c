@@ -842,13 +842,13 @@ yelp_settings_params (gchar ***params,
     }
 
     for (colors_i = 0; colors_i < YELP_NUM_COLORS; colors_i++) {
-	(*params)[(*params_i)++] = (gchar *) color_params[colors_i];
+	(*params)[(*params_i)++] = g_strdup ((gchar *) color_params[colors_i]);
 	(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"",
 						yelp_settings_get_color (colors_i));
     }
 
     for (icons_i = 0; icons_i < YELP_NUM_ICONS; icons_i++) {
-	(*params)[(*params_i)++] = (gchar *) icon_params[icons_i];
+	(*params)[(*params_i)++] = g_strdup ((gchar *) icon_params[icons_i]);
 
 	icon_info = yelp_settings_get_icon (icons_i);
 	if (icon_info) {

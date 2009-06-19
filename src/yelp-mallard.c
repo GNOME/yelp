@@ -546,6 +546,7 @@ mallard_page_data_run (MallardPageData *page_data)
     yelp_transform_start (page_data->transform,
 			  page_data->xmldoc,
 			  params);
+    g_strfreev (params);
 }
 
 static void
