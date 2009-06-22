@@ -390,7 +390,7 @@ static void
 mallard_page_data_walk (MallardPageData *page_data)
 {
     xmlParserCtxtPtr parserCtxt = NULL;
-    xmlChar *id;
+    xmlChar *id = NULL;
 
     if (page_data->cur == NULL) {
         parserCtxt = xmlNewParserCtxt ();
