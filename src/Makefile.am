@@ -108,6 +108,10 @@ endif
 #	test-transform		\
 #	test-resolver
 
+check_PROGRAMS =		\
+	test-document		\
+	test-uri
+
 test_document_SOURCES =					\
 	yelp-debug.c		yelp-debug.h		\
 	yelp-docbook.c		yelp-docbook.h		\
@@ -163,6 +167,13 @@ test_resolver_SOURCES =				\
 test_resolver_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
 test_resolver_LDADD = $(YELP_LIBS)
 test_resolver_LDFLAGS = $(AM_LDFLAGS)
+
+test_uri_SOURCES =					\
+	yelp-uri.c		yelp-uri.h		\
+	test-uri.c
+test_uri_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_uri_LDADD = $(YELP_LIBS)
+test_uri_LDFLAGS = $(AM_LDFLAGS)
 
 @INTLTOOL_SERVER_RULE@
 
