@@ -109,7 +109,6 @@ endif
 #	test-resolver
 
 check_PROGRAMS =		\
-	test-document		\
 	test-uri
 
 test_document_SOURCES =					\
