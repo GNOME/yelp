@@ -3,29 +3,27 @@
 # translation of yelp.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
-#
-#
 # Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>, 2002.
 # Isam Bayazidi <bayazidi@arabeyes.org>, 2002.
 # Arafat Medini <lumina@silverpen.de>, 2003, 2005.
 # Djihed Afifi <djihed@gmail.com>, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2008.
+# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2008, 2009.
 # Abdelmonam Kouka <abdelmonam.kouka@ubuntume.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2009-03-17 22:06+0000\n"
-"PO-Revision-Date: 2008-07-28 14:23+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-10 22:03+0300\n"
+"PO-Revision-Date: 2009-07-10 22:03+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.4.0-beta1\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -299,7 +297,7 @@ msgstr "رسوم ثنائية الأبعاد"
 msgid "3D Graphics"
 msgstr "رسوم ثلاثية الأبعاد"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "الإتاحة"
 
@@ -313,7 +311,7 @@ msgstr "ألعاب مغامرة"
 
 #: ../data/toc.xml.in.h:6
 msgid "Amusement"
-msgstr "المتعة"
+msgstr "التسلية"
 
 #: ../data/toc.xml.in.h:7
 msgid "Applications for viewing and manipulating graphics"
@@ -333,7 +331,7 @@ msgstr "ألعاب مغامرة"
 
 #: ../data/toc.xml.in.h:11
 msgid "Archiving Tools"
-msgstr "أدوات الأرشيف"
+msgstr "أدوات الأرشفة"
 
 #: ../data/toc.xml.in.h:12
 msgid "Art"
@@ -413,11 +411,11 @@ msgstr "الرسوم المرئية للبيانات"
 
 #: ../data/toc.xml.in.h:31
 msgid "Databases"
-msgstr "قاعدة بيانات"
+msgstr "قواعد البيانات"
 
 #: ../data/toc.xml.in.h:32
 msgid "Debuggers"
-msgstr "منقّح"
+msgstr "المنقّحات"
 
 #: ../data/toc.xml.in.h:33
 msgid "Desktop"
@@ -498,7 +496,7 @@ msgstr "تطبيقات جنوم"
 
 #: ../data/toc.xml.in.h:54
 msgid "GTK"
-msgstr "ج‌ت‌ك"
+msgstr "جتك+"
 
 #: ../data/toc.xml.in.h:55
 msgid "GUI Designers"
@@ -506,11 +504,11 @@ msgstr "مصمِّمُو واجهة المستخدم الرسومية"
 
 #: ../data/toc.xml.in.h:57
 msgid "Generic applications for the GNOME environment"
-msgstr "تطبيقات عامة لبيئة سطح مكتب جنوم."
+msgstr "تطبيقات عامة لبيئة سطح مكتب جنوم"
 
 #: ../data/toc.xml.in.h:58
 msgid "Generic applications for the KDE environment"
-msgstr "تطبيقات عامة لبيئة سطح مكتب كدي."
+msgstr "تطبيقات عامة لبيئة سطح مكتب كدي"
 
 #: ../data/toc.xml.in.h:59
 msgid "Geography"
@@ -873,85 +871,57 @@ msgstr "أهلا في متصفح مساعدة جنوم"
 msgid "Word Processors"
 msgstr "معالجات النّصوص"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>إتاحة</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>الخطوط</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "أضف علامة"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "العلامات"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "حساس لل_حالة"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "ابحث"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "افتح مكانا"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "التفضيلات"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "غيّر الا_سم"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "ال_علامات:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "ت_صفح بالمؤشر"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "أضف علامة"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "اب_حث:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_ثابت العرض:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "ال_موقع:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_التالي"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_السابق"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "ال_عنوان:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "افتح مكانا"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "ال_مكان:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "الخطوط"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "التفضيلات"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "ت_صفح بالمؤشر"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_ثابت العرض:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "ا_ستخدم خطوط النّظام"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "عرض _متغيّر:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "ا_كسر"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -985,15 +955,15 @@ msgstr "استخدم خطوط النّظام"
 msgid "Use the default fonts set for the system."
 msgstr "استخدم الخطوط الافتراضيّة المحدّدة للنّظام."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/yelp-bookmarks.c:149
 msgid "Open Bookmark in New Window"
 msgstr "افتح العلامة في نافذة جديدة"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:153
 msgid "Rename Bookmark"
 msgstr "غيّر اسم العلامة"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:157
 msgid "Remove Bookmark"
 msgstr "احذف العلامة"
 
@@ -1002,28 +972,28 @@ msgstr "احذف العلامة"
 msgid "A bookmark titled %s already exists for this page."
 msgstr "توجد علامة بعنوان %s لهذه الصفحة. "
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:391
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "توجد علامة بعنوان <b>%s</b> لهذه الصفحة. "
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:404
 msgid "Help Topics"
 msgstr "مواضيع المساعدة"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:419
 msgid "Document Sections"
 msgstr "أقسام المستند"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "الصفحة غير موجودة"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "تعذّر إيجاد الصفحة %s في المستند %s "
@@ -1065,7 +1035,7 @@ msgid ""
 "is not a well-formed XML document."
 msgstr "تعذّر فهم الملف ‘%s’. لأنه بعض الملفات التي يُضمّنها غير سليمة."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "مجهول"
 
@@ -1073,7 +1043,7 @@ msgstr "مجهول"
 msgid "Unknown Error"
 msgstr "خطأ مجهول"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1646
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1705
 msgid "Could Not Read File"
 msgstr "تعذّر قراءة الملف"
 
@@ -1094,22 +1064,31 @@ msgid ""
 "an unsupported format."
 msgstr "تعذّر قراءة الملف ‘%s’. من الممكن أنه مضغوط بصورة غير معروفة."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:90
 msgid "Use a private session"
 msgstr "استعمل جلسة خاصة"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "عرّف أي دليل خزن مؤقت سيستخدم"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:357
+#: ../src/yelp-main.c:356
 msgid " GNOME Help Browser"
 msgstr " متصفّح مساعدة جنوم"
 
-#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "مساعدة"
+
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "الدليل غير موجود"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "الدليل ‘%s’ غير موجود."
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1253,239 +1232,235 @@ msgid ""
 "document."
 msgstr "تعذّر فهم ملف إجراء البحث لأنه ملف XML غير سليم."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "ملف نسق غير صحيح"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr "ملف نسق XSLT ‘%s’  غير موجود أو غير صحيح."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "تحويل غير صحيح"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "حدث خطأ مجهول عند محاولة تحويل المستند."
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "لم يوجد إسناد href عند yelp:document\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "الذاكرة غير كافية"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:306
 msgid "_File"
 msgstr "م_لفّ"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:307
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../src/yelp-window.c:306
+#: ../src/yelp-window.c:308
 msgid "_Go"
 msgstr "ا_ذهب"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:309
 msgid "_Bookmarks"
 msgstr "ال_علامات"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:310
 msgid "_Help"
 msgstr "_مساعدة"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:313
 msgid "_New Window"
 msgstr "نافذة جد_يدة"
 
-#: ../src/yelp-window.c:316
+#: ../src/yelp-window.c:318
 msgid "Print This Document ..."
 msgstr "اطبع هذا المستند..."
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:323
 msgid "Print This Page ..."
 msgstr "اطبع هذه الصفحة..."
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:328
 msgid "About This Document"
 msgstr "عن هذا المستند"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:333
 msgid "Open _Location"
 msgstr "افتح _مكانا"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:338
 msgid "_Close Window"
 msgstr "أ_غلق النّافذة"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:344
 msgid "_Copy"
 msgstr "ا_نسخ"
 
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:350
 msgid "_Select All"
 msgstr "ا_ختر الكلّ"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:355
 msgid "_Find..."
 msgstr "اب_حث..."
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:360
 msgid "Find Pre_vious"
 msgstr "ابحث عن ال_سابق"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:362
 msgid "Find previous occurrence of the word or phrase"
 msgstr "ابحث عن الحدوث السابق للكلمة أو الجملة"
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:365
 msgid "Find Ne_xt"
 msgstr "ابحث عن الت_الي"
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:367
 msgid "Find next occurrence of the word or phrase"
 msgstr "ابحث عن الحدوث التالي للكلمة أو الجملة"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:370
 msgid "_Preferences"
 msgstr "ال_تفضيلات"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:375
 msgid "_Reload"
 msgstr "أ_عد التحميل"
 
-#: ../src/yelp-window.c:385
+#: ../src/yelp-window.c:387
 msgid "_Back"
 msgstr "لل_خلف"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:389
 msgid "Show previous page in history"
 msgstr "أظهر الصفحة السابقة في التأريخ"
 
-#: ../src/yelp-window.c:390
+#: ../src/yelp-window.c:392
 msgid "_Forward"
 msgstr "للأ_مام"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:394
 msgid "Show next page in history"
 msgstr "أظهر الصفحة التالية في التأريخ"
 
-#: ../src/yelp-window.c:395
+#: ../src/yelp-window.c:397
 msgid "_Help Topics"
 msgstr "_مواضيع المساعدة"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:399
 msgid "Go to the listing of help topics"
 msgstr "اذهب إلى قائمة مواضيع المساعدة"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:402
 msgid "_Previous Section"
 msgstr "الفصل ال_سّابق"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:407
 msgid "_Next Section"
 msgstr "الفصل التّالي"
 
-#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
+#: ../src/yelp-window.c:412 ../src/yelp-window.c:444
 msgid "_Contents"
 msgstr "ال_محتويات"
 
-#: ../src/yelp-window.c:416
+#: ../src/yelp-window.c:418
 msgid "_Add Bookmark"
 msgstr "أ_ضف علامة"
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:423
 msgid "_Edit Bookmarks..."
 msgstr "حرّر العلامات..."
 
-#: ../src/yelp-window.c:427
+#: ../src/yelp-window.c:429
 msgid "_Open Link"
 msgstr "ا_فتح الوصلة"
 
-#: ../src/yelp-window.c:432
+#: ../src/yelp-window.c:434
 msgid "Open Link in _New Window"
 msgstr "افتح الوصلة في نافذة _جديدة"
 
-#: ../src/yelp-window.c:437
+#: ../src/yelp-window.c:439
 msgid "_Copy Link Address"
 msgstr "ا_نسخ عنوان الوصلة"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:446
 msgid "Help On this application"
 msgstr "مساعدة حول هذا التّطبيق"
 
-#: ../src/yelp-window.c:447
+#: ../src/yelp-window.c:449
 msgid "_About"
 msgstr "_عن"
 
-#: ../src/yelp-window.c:452
+#: ../src/yelp-window.c:454
 msgid "Copy _Email Address"
 msgstr "انسخ البريد الإل_كتروني"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:526
 msgid "Help Browser"
 msgstr "متصفح المساعدة"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1703
+#: ../src/yelp-window.c:621 ../src/yelp-window.c:673 ../src/yelp-window.c:1767
 msgid "Loading..."
 msgstr "يجري التحميل..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:622 ../src/yelp-window.c:674
 msgid "Unknown Page"
 msgstr "صفحة مجهولة"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
-#: ../src/yelp-window.c:1084
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1115
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "العنوان \"%s\" غير سليم"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
-#: ../src/yelp-window.c:1085
+#: ../src/yelp-window.c:1045 ../src/yelp-window.c:1108
+#: ../src/yelp-window.c:1116
 msgid "Unable to load page"
 msgstr "تعذّر تحميل الصفحة"
 
-#: ../src/yelp-window.c:1079
-msgid "Error executing \"gnome-open\""
-msgstr "خطأ أثناء تنفيذ \"gnome-open\""
-
-#: ../src/yelp-window.c:1265
+#: ../src/yelp-window.c:1325
 msgid "_Search:"
 msgstr "ا_بحث:"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1326
 msgid "Search for other documentation"
 msgstr "ابحث عن توثيق آخر"
 
-#: ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:1346
 msgid "Cannot create window"
 msgstr "تعذّر إنشاء نافذة"
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1352
 msgid "Cannot create search component"
 msgstr "تعذّر انشاء مكون البحث"
 
-#: ../src/yelp-window.c:1464
+#: ../src/yelp-window.c:1524
 msgid "Fin_d:"
 msgstr "اب_حث:"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1546
 msgid "Find _Previous"
 msgstr "ابحث عن _السّابق"
 
-#: ../src/yelp-window.c:1498
+#: ../src/yelp-window.c:1558
 msgid "Find _Next"
 msgstr "ابحث عن ال_تّالي"
 
-#: ../src/yelp-window.c:1511
+#: ../src/yelp-window.c:1571
 msgid "Phrase not found"
 msgstr "الجملة غير موجودة"
 
-#: ../src/yelp-window.c:1643
+#: ../src/yelp-window.c:1702
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1496,7 +1471,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2483
+#: ../src/yelp-window.c:2572
 msgid "translator-credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
@@ -1505,14 +1480,41 @@ msgstr ""
 "خالد حسني\t\t<khaledhosny@eglug.org>\n"
 "عبد المنعم كوكة\t<abdelmonam.kouka@ubuntume.com>"
 
-#: ../src/yelp-window.c:2486
+#: ../src/yelp-window.c:2575
 msgid "Yelp"
 msgstr "يِلب"
 
-#: ../src/yelp-window.c:2488
+#: ../src/yelp-window.c:2577
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "متصفح و عارض وثائق لمكتب جنوم."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "احصل على المساعدة في جُنوم"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>إتاحة</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>الخطوط</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "حساس لل_حالة"
+
+#~ msgid "Find"
+#~ msgstr "ابحث"
+
+#~ msgid "_Find:"
+#~ msgstr "اب_حث:"
+
+#~ msgid "_Next"
+#~ msgstr "_التالي"
+
+#~ msgid "_Previous"
+#~ msgstr "_السابق"
+
+#~ msgid "_Wrap around"
+#~ msgstr "ا_كسر"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "خطأ أثناء تنفيذ \"gnome-open\""
