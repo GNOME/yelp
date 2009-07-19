@@ -88,11 +88,13 @@ FIXME: yelp:cache no longer works
 
 <!-- == db2html.division.head.extra == -->
 <xsl:template name="db2html.division.head.extra">
-  <script type="text/javascript">
-    <xsl:attribute name="src">
-      <xsl:value-of select="concat('file://', $yelp.javascript)"/>
-    </xsl:attribute>
-  </script>
+  <xsl:if test="string($yelp.javascript) != ''">
+    <script type="text/javascript">
+      <xsl:attribute name="src">
+        <xsl:value-of select="concat('file://', $yelp.javascript)"/>
+      </xsl:attribute>
+    </script>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>
