@@ -79,7 +79,6 @@ html_open_uri (WebKitWebView *view, WebKitWebFrame *frame, WebKitNetworkRequest*
 
     real_uri = g_strdup (uri);
 
-    
     if (!html->priv->frames_enabled) {
   	g_signal_emit (html, signals[URI_SELECTED], 0, real_uri, FALSE);
   	resp = WEBKIT_NAVIGATION_RESPONSE_IGNORE;
@@ -271,7 +270,10 @@ yelp_html_set_base_uri (YelpHtml *html, const gchar *uri)
     if (priv->base_uri)
 	g_free (priv->base_uri);
 
-    priv->base_uri = g_strdup (uri);
+    if (uri[0] == '/')
+	priv->base_uri = g_strdup_printf ("file://%s", uri);
+    else
+	priv->base_uri = g_strdup (uri);
 }
 
 void
