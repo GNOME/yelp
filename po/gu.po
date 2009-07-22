@@ -1,19 +1,21 @@
 # translation of yelp.HEAD.gu.po to Gujarati
 # Ankit Patel <ankit644@yahoo.com>, 2005, 2006.
 # Ankit Patel <ankit@redhat.com>, 2005, 2007.
+# Sweta Kothari <swkothar@redhat.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 04:00+0100\n"
-"PO-Revision-Date: 2007-09-07 18:12+0530\n"
-"Last-Translator: Ankit Patel <ankit@redhat.com>\n"
-"Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
+"POT-Creation-Date: 2008-01-13 16:16+0000\n"
+"PO-Revision-Date: 2008-08-07 14:43+0530\n"
+"Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
+"Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -58,7 +60,7 @@ msgstr "રુપરેખાંકન માટેની ફાઇલો"
 msgid "Curses Functions"
 msgstr "Curses વિધેયો"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "વિકાસ"
 
@@ -66,7 +68,7 @@ msgstr "વિકાસ"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN વિધેયો"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "રમતો"
 
@@ -299,136 +301,586 @@ msgid "X11 Overviews"
 msgstr "X11 અણસારો"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "2D ગ્રાફિક્સ"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "3D ગ્રાફિક્સ"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "સુલભતા"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "સહાયક કાર્યક્રમો"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "મજા માટેના કાર્યક્રમો"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "ગ્રાફિક્સો મેનીપ્યુલેટ કરવા અને જોવા માટેના કાર્યક્રમો"
+msgid "Action Games"
+msgstr "એક્શન રમતો"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "વર્ડ પ્રોસેસીંગ અને અન્ય ઓફિસ ક્રિયાઓ માટેના કાર્યક્રમો"
+msgid "Adventure Games"
+msgstr "સાહસિક રમતો"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "X વિન્ડોઝને સંબંધિત કાર્યક્રમો"
+msgid "Amusement"
+msgstr "મનોરંજન"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "મલ્ટીમીડિયાને સંબંધિત કાર્યક્રમો"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "દેખવા અને ગ્રાફિક્સ વાપરવા માટેના કાર્યક્રમો"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "સોફ્ટવેર વિકાસને સંબંધિત કાર્યક્રમો"
+msgid "Applications related to audio and video"
+msgstr "ઓડિઓ અને વિડીઓ ને સંબંધિત કાર્યક્રમો"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "ઈન્ટરનેટ સંબંધિત કાર્યક્રમો"
+msgid "Applications that teach or aid in learning"
+msgstr "કાર્યક્રમો કે જે શીખવવામાં ભણાવે અથવા મદદ કરે છે"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "પેનલ સંબંધિત કાર્યક્રમો"
+msgid "Arcade Games"
+msgstr "આર્કેડ રમતો"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "સહાયક તકનીકોને આધાર આપતા કાર્યક્રમો"
+msgid "Archiving Tools"
+msgstr "પુરાણા સાધનો"
 
 #: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "આર્ટ"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "કૃત્રિમ સમજશક્તિ"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "ખગોળશાસ્ત્ર"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "જીવવિજ્ઞાન"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "બ્લોક રમતો"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "બોર્ડ રમતો"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "ઇમારત"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "કેલ્ક્યુલેટર"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "કેલેન્ડર"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "કાર્રડ રમતો"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "નક્ક્ષાના સાધનો"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "ચેટ"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "રસાયણશાસ્ત્ર"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "ઘડિયાળો"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "દબાણ સાધનો"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "કમ્પ્યુટર વિજ્ઞાન"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "નિર્માણ"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "સંપર્ક વ્યવસ્થાપન"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "માહિતી દ્રશ્યકરણ"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "ડેટાબેઝો"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "ડિબગરો"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
 msgstr "ડૅસ્કટોપ"
 
-#: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "KDE ડેસ્કટોપ પર્યાવરણને સંબંધિત દસ્તાવેજો"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "ડૅસ્કટોપ સુયોજનો"
 
-#: ../data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "ડાયલઅપ"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "શબ્દકોષો"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "ડિસ્ક બર્ન કરી રહ્યા છે"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "અર્થતંત્ર"
+
+#: ../data/toc.xml.in.h:41
 msgid "Education"
 msgstr "ભણતર"
 
-#: ../data/toc.xml.in.h:16
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "વીજળી"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "ઇલેક્ટ્રૉનિક્સ"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "ઇમેઇલ સાધનો"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "એમ્યુલેટર"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "ઇજનેરી"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "ફાઇલ વ્યવસ્થાપક"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "ફાઇલ સાધનો"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "ફાઇલ સ્થાનાન્તર"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "ફાઇલસિસ્ટમ"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "નાણાકીય સાધનો"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "પ્રવાહ નક્ષાનાં સાધનો"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "GNOME કાર્યક્રમો"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "GUI રચીયિતા"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "GNOME પર્યાવરણ માટે સામાન્ય કાર્યક્રમો"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "KDE પર્યાવરણ માટે સામાન્ય કાર્યક્રમો"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "ભૂગોળ"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "ભૂસ્તરશાસ્ત્ર"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "ભૂસ્તરવિજ્ઞાન"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "ગ્રાફિક્સ"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "કાર્યક્રમો માટે માર્ગદર્શિકાઓ અને પુસ્તિકાએ કે જે બહારની દુનિયાને જોડે છે"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "પ્રગતિમાં સંડોવાયેલુ મેળવવા માટે માર્ગદર્શિકાઓ"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "હામ રેડિઓ"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "હાર્ડવેર સુયોજનો"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "મનોરંજન કરો"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "ઇતિહાસ"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDEs"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "IRC ક્લાઇન્ટો"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "ઇમેજ પ્રક્રિયા કરી રહ્યુ છે"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "તરત જ સંદેશો કરી રહ્યા છે"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "ઈન્ટરનેટ"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "શૈક્ષણિક કાર્યક્રમો"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE કાર્યક્રમો"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
-msgstr "મિશ્રિત દસ્તાવેજો"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "બાળકોની રમતો"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "ઓફિસ"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr "અસમર્થતાના વિસ્તાર માટે તમારી સિસ્ટમને વધારે સુલભ બનાવવા વિશે વધારે શિખો"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "અન્ય કાર્યક્રમો"
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "લાઇસન્સો"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "સાહિત્ય"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "લોજિક રમતો"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "ગણિતશાસ્ત્ર"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "વૈદ્યકીય સોફ્ટવેર"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "મિડિ"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "વિવિધ દસ્તાવેજો"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "મિશ્રિકો"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "મોનિટર"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "મોટિફ"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "સંગિત"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "સમાચારો"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "આંકડાકીય પૃથ્થકરણ"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "ઓફિસ કાર્યક્રમો"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "ઓફિસ કાર્યક્રમો"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "અન્ય દસ્તાવેજીકરણો"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "પેનલ એપ્લેટો"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "પ્રોગ્રામિંગ"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "PDA બાતચીત"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "વૈજ્ઞાનિક"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "પેકેજ વ્યવસ્થાપક"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "વૈજ્ઞાનિક કાર્યક્રમો."
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "સમાન્તર ગણતરી કરી રહ્યા છે"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "ફોટોગ્રાફી"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "ભૌતિક વિજ્ઞાન"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "ખિલાડીઓ"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "પ્રદર્શન સાધનો"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "છાપી રહ્યા છીએ"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "રેખાકૃતિ સાધનો"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "પ્રોજેક્ટ વ્યવસ્થાપક સાધનો"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "પ્રકાશન"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "રાસ્ટર ગ્રાફિક્સ"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "રેકોર્ડરો"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "રિમોટ પ્રવેશ"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "પુનરાવર્તન નિયંત્રણ"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "રોબોટિક્સ"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "રમતો રમવા માટેની ભૂમિકા"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "સ્કેન કરી રહ્યા છે"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "વિજ્ઞાન"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "સુરક્ષા"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "અનુક્રમકો"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "સુયોજનો"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "વપરાશકર્તાનાં સુયોજનો તેના પર્યાવરણમાં સુખકારક બનાવવા માટે હોશિયારીથી કામ કરી શકો છો"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "સિમ્યુલેશન રમતો"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "અવાજ"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "સાઉન્ડ &amp; વીડિયો"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "સિસ્ટમ સાધનો"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "સાઉન્ડ &amp; વીડિયો ફેરફાર કરી રહ્યા છે"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "તમારા કમ્પ્યૂટરની વ્યવસ્થા કરવા માટેની ઉપયોગીતાઓ"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "ખેલ-કૂદ"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "ઉપયોગીતા કાર્યક્રમો"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "ખેલ-કૂદ રમતો"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "વિવિધ પ્રકારના ઘણા અન્ય કાર્યક્રમો"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "સ્પ્રેડશીટ સાધનો"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "યોજના વાળી રમતો"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "સિસ્ટમ"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "ટેલિફોની"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "ટેલિફોની સાધનો"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "ટર્મિનલ એમ્યુલેટર"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "લખાણ સંપાદકો"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "લખાણ સાધનો"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "તમારા કમ્પ્યૂટરની વ્યવસ્થા કરવા માટેના સાધનો"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "ભાષાંતર સાધનો"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "ટયૂનરો"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "ઉપયોગિતાઓ"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "તમારુ કામ પૂરુ થઇ ગયુ છે તે મેળવવા મદદ કરવા માટેની ઉપયોગીતાઓ"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "વેક્ટર ગ્રાફિક્સ"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "વિડીઓ"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "વિડીઓ પરિષદ"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "દર્શક"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "વેબ બ્રાઉઝર"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "વેબ વિકાસ"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "જીનોમ મદદ બ્રાઉઝરમાં તમારું સ્વાગત છે"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "X કાર્યક્રમો"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "વર્ડ પ્રોસેસરો"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -575,7 +1027,7 @@ msgstr "દસ્તાવેજ વિભાગો"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "પાનું મળ્યું નહિં"
 
@@ -604,7 +1056,7 @@ msgstr "ફાઈલ ‘%s’ અસ્તિત્વમાં નથી."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "ફાઈલનું પદચ્છેદન કરી શક્યા નહિં"
 
@@ -624,7 +1076,7 @@ msgstr ""
 "ફાઈલ ‘%s’ નું પદચ્છેદ કરી શક્યા નહિં કારણ કે તેમાં સમાવવામાં આવેલ એક અથવા વધુ ફાઈલો યોગ્ય-"
 "બંધારણીય XML દસ્તાવેજ નથી."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:784
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "અજ્ઞાત"
 
@@ -632,7 +1084,7 @@ msgstr "અજ્ઞાત"
 msgid "Unknown Error"
 msgstr "અજ્ઞાત ભૂલ"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
 msgid "Could Not Read File"
 msgstr "ફાઈલ વાંચી શક્યા નહિં"
 
@@ -645,7 +1097,7 @@ msgstr "આ ભૂલ વિશે કોઈ જાણકારી ઉપલબ�
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "ફાઈલ ‘%s’ નું પદચ્છેદન કરી શક્યા નહિં કારણ કે તે યોગ્ય-બંધારણીય જાણકારી પાનું નથી."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -693,10 +1145,6 @@ msgstr "આ પ્રિન્ટર પર છાપવાનું આધા�
 msgid "Printer %s does not support postscript printing."
 msgstr "પ્રિન્ટર %s એ postscript છાપનને આધાર આપતું નથી."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "છાપી રહ્યા છીએ"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "છાપવા માટે રાહ જોઈ રહ્યા છીએ"
@@ -710,16 +1158,16 @@ msgstr "છાપતી વખતે ભૂલ ઉદ્દભવી"
 msgid "It was not possible to print your document: %s"
 msgstr "તમારું દસ્તાવેજ છાપવાનું શક્ય ન હતું: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "જીનોમ આધાર ચર્ચાઓ"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\" માટે કોઈ પરિણામો નથી"
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -727,7 +1175,7 @@ msgstr ""
 "તમને જો કોઈ સમસ્યા હોય તો અથવા તમે જે મુદ્દા સાથે મદદ કરવા માંગો તો વર્ણન કરવા માટે "
 "અલગ શબ્દો વાપરવાનો પ્રયત્ન કરો."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\" માટેના શોધ પરિણામો"
@@ -737,7 +1185,7 @@ msgstr "\"%s\" માટેના શોધ પરિણામો"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "%s આગળ ઓનલાઈન શોધનું પુનરાવર્તન કરો"
@@ -750,7 +1198,7 @@ msgstr "%s આગળ ઓનલાઈન શોધનું પુનરાવર
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -770,7 +1218,7 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
 msgstr "re"
 
@@ -778,12 +1226,16 @@ msgstr "re"
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
 msgstr "ers:er:ing:es:s:'s"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "ટિપ્પણી નથી"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -802,16 +1254,16 @@ msgstr "શોધ પર પ્રક્રિયા કરી શકતા ન�
 msgid "The search processor returned invalid results"
 msgstr "શોધ પ્રક્રિયકે અયોગ્ય પરિણામો આપ્યા"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "પાનું %s એ TOC માં મળ્યું નહિં."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "અરજી થયેલ પાનું TOC માં મળ્યું નહિં."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
@@ -994,7 +1446,7 @@ msgstr "ઈમેઈલ સરનામાની નકલ કરો (_E)"
 msgid "Help Browser"
 msgstr "મદદ માટેનું બ્રાઉઝર"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
 msgid "Loading..."
 msgstr "લાવી રહ્યા છે..."
 
@@ -1031,23 +1483,23 @@ msgstr "વિન્ડો બનાવી શકતા નથી"
 msgid "Cannot create search component"
 msgstr "શોધ ઘટક બનાવી શકતા નથી"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
 msgstr "શોધો (_d):"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "આગળનું શોધો (_N)"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
 msgstr "પહેલાનું શોધો (_P)"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "આગળનું શોધો (_N)"
+
+#: ../src/yelp-window.c:1451
 msgid "Phrase not found"
 msgstr "મહાવરો મળ્યો નહિં"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1058,15 +1510,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
 msgstr "અંકિત પટેલ <ankit644@yahoo.com>"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2405
 msgid "Yelp"
 msgstr "યેલ્પ"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "જીનોમ ડેસ્કટોપ માટે દસ્તાવેજીકરણ બ્રાઉઝર અને દર્શક."
 

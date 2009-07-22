@@ -67,6 +67,7 @@ typedef struct _StackElem StackElem;
 struct _YelpManParser {
     xmlDocPtr     doc;           /* The top-level XML document */
     xmlNodePtr    ins;           /* The insertion node */
+    xmlNodePtr    th_node;       /* The TH node, or NULL if it doesn't exist */
 
     GIOChannel   *channel;       /* GIOChannel for the entire document */
 
@@ -512,52 +513,72 @@ macro_hanging_paragraph_handler (YelpManParser *parser, gchar *macro, GSList *ar
     }
 }
 
-/* BSD mandoc macros
- * Since mandoc man pages are required to begin with Dd, Dt, Os,
- * we will use this to create the TH tag.
- */
+static xmlNodePtr
+create_th_node (YelpManParser *parser)
+{
+    /* Create a TH node if we don't have one already */
+    if (!parser->th_node) {
+	parser->th_node = parser_append_node (parser, "TH");
+    }
+    return parser->th_node;
+}
+
 static void
-macro_mandoc_handler (YelpManParser *parser, gchar *macro, GSList *args)
+macro_title_handler (YelpManParser *parser, gchar *macro, GSList *args)
 {
     gchar *str = NULL;
-	
-    if (g_str_equal (macro, "Dd")) {
-	parser->ins = parser_append_node (parser, "TH");
+    
+    parser->ins = create_th_node (parser);
+    
+    if (args && args->data) {
+	parser->ins = parser_append_node (parser, "Title");
+	parser_append_given_text (parser, args->data);
+	parser->ins = parser->ins->parent;
+    }
 
+    if (args && args->next && args->next->data) {
+	parser->ins = parser_append_node (parser, "Section");
+	parser_append_given_text (parser, args->next->data);
+    } 
+    parser->ins = parser->th_node->parent;
+}
+
+static void
+macro_os_handler (YelpManParser *parser, gchar *macro, GSList *args)
+{
+    gchar *str = NULL;
+    xmlNodePtr new_ins = parser->ins;
+    
+    parser->ins = create_th_node (parser);
+
+    if (args && args->data) {
+	parser->ins = parser_append_node (parser, "Os");
+	parser_append_given_text (parser, args->data);
+    }
+
+    parser->ins = parser->th_node->parent;
+}
+
+static void
+macro_date_handler (YelpManParser *parser, gchar *macro, GSList *args)
+{
+    gchar *str = NULL;
+
+    parser->ins = create_th_node (parser);
+
+    if (args && args->data) {
+    
 	str = args_concat_all (args);
 	
-	if (args && args->data) {
-            parser->ins = parser_append_node (parser, "Date");
-            parser_append_given_text (parser, str);
-            parser->ins = parser->ins->parent;
-        }
+	parser->ins = parser_append_node (parser, "Date");
+	parser_append_given_text (parser, str);
 
 	g_free (str);
-    } 
-    else if (g_str_equal (macro, "Dt")) {
-	if (args && args->data) {
-            parser->ins = parser_append_node (parser, "Title");
-            parser_append_given_text (parser, args->data);
-            parser->ins = parser->ins->parent;
-        }
+    }
 
-	if (args && args->next && args->next->data) {
-            parser->ins = parser_append_node (parser, "Section");
-            parser_append_given_text (parser, args->next->data);
-            parser->ins = parser->ins->parent;
-	}
-    } 
-    else if (g_str_equal (macro, "Os")) {
-	if (args && args->data) {
-            parser->ins = parser_append_node (parser, "Os");
-            parser_append_given_text (parser, args->data);
-            parser->ins = parser->ins->parent;
-        }
-
-	/* Leave the TH tag */
-	parser->ins = parser->ins->parent;
-    }    
+    parser->ins = parser->th_node->parent;
 }
+
 
 static void
 macro_url_handler (YelpManParser *parser, gchar *macro, GSList *args)
@@ -728,7 +749,7 @@ macro_reference_handler (YelpManParser *parser, gchar *macro, GSList *args)
 		basename = (gchar *)args->data;
 	    }
 	    
-	    parser->ins = parser_append_node (parser, "TH");
+	    parser->ins = create_th_node (parser);
 	    parser->ins = parser_append_node (parser, "Title");
 	    parser_append_given_text (parser, "REFERENCE");
 	    parser->ins = parser->ins->parent;
@@ -982,12 +1003,12 @@ static struct MacroHandler macro_handlers[] = {
     { "Cd", macro_mandoc_utility_handler },          /* mandoc: Configuration declaration */ 
     { "Cm", macro_mandoc_utility_handler },          /* mandoc: Command line argument modifier */ 
     { "ce", macro_ignore_handler },                  /* groff: center text */
-    { "Dd", macro_mandoc_handler },                  /* mandoc: Document date */
+    { "Dd", macro_date_handler },                    /* mandoc: Document date */
     { "de", macro_define_handler },                  /* groff: define macro */
     { "ds", macro_ignore_handler },                  /* groff: define string variable */
     { "D1", macro_ignore_handler },                  /* mandoc: Indent and display one text line */
     { "Dl", macro_ignore_handler },                  /* mandoc: Indent and display one line of literal text */
-    { "Dt", macro_mandoc_handler },                  /* mandoc: Document title */
+    { "Dt", macro_title_handler },                   /* mandoc: Document title */
     { "Dv", macro_mandoc_utility_handler },          /* mandoc: Defined variable */ 
     { "Ed", macro_ignore_handler },                  /* mandoc: End-display block */
     { "El", macro_mandoc_list_handler },             /* mandoc: end list */ 
@@ -1022,7 +1043,7 @@ static struct MacroHandler macro_handlers[] = {
     { "Nd", macro_mandoc_utility_handler },          /* mandoc: ? */
     { "Nm", macro_mandoc_utility_handler },          /* mandoc: Command/utility/program name*/
     { "Op", macro_mandoc_utility_handler },          /* mandoc: Option */
-    { "Os", macro_mandoc_handler },                  /* mandoc: Operating System */
+    { "Os", macro_os_handler },                      /* mandoc: Operating System */
     { "Ot", macro_mandoc_utility_handler },          /* mandoc: Old style function type (Fortran) */
     { "P",  macro_new_paragraph_handler },           /* man: line break and left margin and indentation are reset */
     { "Pa", macro_mandoc_utility_handler },          /* mandoc: Pathname or filename */

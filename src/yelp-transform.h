@@ -49,6 +49,9 @@ struct _YelpTransform {
     xsltStylesheetPtr       stylesheet;
     xsltTransformContextPtr context;
 
+    xmlDocPtr               input;
+    xsltDocumentPtr         input_xslt;
+
     YelpTransformFunc       func;
 
     gchar                 **params;
@@ -74,6 +77,8 @@ YelpTransform  *yelp_transform_new         (gchar               *stylesheet,
 void            yelp_transform_start       (YelpTransform       *transform,
 					    xmlDocPtr            document,
 					    gchar              **params);
+void            yelp_transform_set_input   (YelpTransform       *transform,
+					    xmlDocPtr            input);
 gchar *         yelp_transform_eat_chunk   (YelpTransform       *transform,
 					    gchar               *chunk_id);
 void            yelp_transform_release     (YelpTransform       *transform);

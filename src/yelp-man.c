@@ -481,6 +481,7 @@ man_process (YelpMan *man)
     yelp_transform_start (priv->transform,
 			  priv->xmldoc,
 			  params);
+    g_strfreev (params);
     g_mutex_unlock (priv->mutex);
 
  done:

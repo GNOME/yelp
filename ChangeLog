@@ -1,22 +1,280 @@
-2008-07-11  Don Scorgie  <dscorgie@svn.gnome.org>
+2009-04-30  Don Scorgie  <dscorgie@src.gnome.org>
 
-	* src/yelp-html.cpp:
-	Add support for copy and select all
+	* src/yelp-window.c: 
+	Fix spurious frees when using right-click menu
 
-2008-07-09  Don Scorgie  <dscorgie@svn.gnome.org>
+2009-04-30  Don Scorgie  <dscorgie@src.gnome.org>
+
+	* src/yelp-info-parser.c: 
+	* stylesheets/info2html: 
+	Add support for displaying images in info
+	files
+	Bug #568209 - patch by Jan Nieuwenhuizen
+
+2009-04-30  Don Scorgie  <dscorgie@src.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-utils.c:
+	Fix a crash when requesting bad URIs from the
+	command line (and show the main index in the
+	process)
+	Fix loading "local" files from the current
+	directory - bug #575405 (at least)
+	
+
+2009-04-29  Don Scorgie  <dscorgie@src.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-utils.c: 
+	Fix a series of issues resulting from the
+	gio port (bug #558633 - patch by epic GNOME
+	hero Vincent Untz)
+
+2009-04-29  Don Scorgie  <dscorgie@src.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-utils.c: 
+	* src/yelp-utils.h: 
+	Add plain text handler
+	Bug #565502 - patch from Josselin Mouette
+
+2009-04-29  Don Scorgie  <dscorgie@src.gnome.org>
+
+	* src/yelp-bookmarks.c: 
+	* src/yelp-window.c: 
+	Convert gnome-config useage to GKeyFile
+	Bug #570731 based on the patch from
+	Filipp Ivanov
+	* src/yelp-window.c:
+	g_free is NULL-safe, so remove checks added in
+	previous checkin (and cleanup a little)
+	
+2009-04-29  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c: 
+	* src/yelp-window.c: 
+	Fix a bundle of memory leaks
+
+2009-04-28  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-info-parser.c: 
+	* src/yelp-utils.c: 
+	Fix uncompressed info page accesses
+	(bug #578350 - patch from parthasarathi susarla)
+
+2009-04-28  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	* src/yelp-settings.c: 
+	* src/yelp-bookmarks.c: 
+	* po/POTFILES.in: 
+	* data/ui/Makefile.am: 
+	* configure.in: 
+	* data/ui/yelp.glade (deleted):
+	* data/ui/yelp-bookmarks-add.ui (added):
+	* data/ui/yelp-bookmarks.ui (added):
+	* data/ui/yelp-open-location.ui (added):
+	* data/ui/yelp-preferences.ui (added):
+	Port from glade to GtkBuilder
+	(Thomas Andersen - bug #579894)
+	
+2009-04-27  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c: 
+	Replacing syncronous spawn functions by a simple 
+	gtk_show_uri (fixes bug #561404 - patch from
+	Lincon de Sousa)
+
+2009-04-08  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-transform.c:
+	- Patched memory leak, bug #578372, from Machael Chudobiak
+
+2009-04-08  Shaun McCance  <shaunm@gnome.org>
+
+	* src/info2html/Makefile.am:
+	* src/info2html/html.c:
+	* src/info2html/html.h:
+	* src/info2html/main.c:
+	* src/info2html/utils.c:
+	* src/info2html/utils.h:
+	* src/man2html/Makefile.am:
+	* src/man2html/README:
+	* src/test-pager.c:
+	* src/yelp-db-pager.c:
+	* src/yelp-db-pager.h:
+	* src/yelp-db-print-pager.c:
+	* src/yelp-db-print-pager.h:
+	* src/yelp-info-pager.c:
+	* src/yelp-info-pager.h:
+	* src/yelp-man-pager.c:
+	* src/yelp-man-pager.h:
+	* src/yelp-pager.c:
+	* src/yelp-pager.h:
+	* src/yelp-search-pager.c:
+	* src/yelp-search-pager.h:
+	* src/yelp-toc-pager.c:
+	* src/yelp-toc-pager.h:
+	* src/yelp-xslt-pager.c:
+	* src/yelp-xslt-pager.h:
+	- Removing old files
+
+2009-04-08  Pedro Fragoso  <ember@ubuntu.com>
+
+	* src/gtkentryaction.c:
+	* src/gtkentryaction.h:
+	* src/yelp-bookmarks.c:
+	* src/yelp-bookmarks.h:
+	* src/yelp-main.c:
+	* src/yelp-print.h:
+	* src/yelp-settings.h:
+	* src/yelp-window.h:
+	GNOME Goal: Clean up GLib and GTK+ includes (Closes: #563865)
+
+2009-03-16  Shaun McCance  <shaunm@gnome.org>
 
 	* configure.in:
-	* src/yelp-html.cpp:
+	* NEWS:
+	- Version 2.26.0
+
+2009-03-08  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-man-parser.c:
+	- Don't assume order of certain macros, bug #568066, from Andy Owen
+
+2009-03-08  Shaun McCance  <shaunm@gnome.org>
+
+	* src/yelp-document.c:
+	- Unlock mutex on error, bug #568058, from Andy Owen
+
+	* stylesheets/toc2html.xsl.in:
+	- Indentation fix
+
+2009-03-02  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* NEWS:
+	- Version 2.25.1
+
+2009-03-01  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* src/yelp-toc.c:
+	* stylesheets/toc2html.xsl:
+	* stylesheets/toc2html.xsl.in:
+	* stylesheets/Makefile.am:
+	- RTL fixes for bug #573159
+
+2009-03-01  Christian Persch  <chpe@gnome.org>
+
+	* configure.in: Treat libxul and libxul-embedding the same as far as the
+	MOZILLA_COMPONENT pkg-config check is concerned.
+
+2009-03-01  Christian Persch  <chpe@gnome.org>
+
+	* m4/gecko.m4: Fix libxul[-embedding] detection.
+
+2009-02-25  Thomas H.P. Andersen  <phomes@gmail.com>
+
+	* src/yelp-base.c (yelp_base_init):
+	* src/yelp-settings.c (settings_update):
+	* src/yelp-window.h:
 	* src/yelp-html.h:
-	* src/yelp-io-channel.c:
-	* src/yelp-search-parser.c:
-	* src/yelp-window.c:
-	* src/yelp-main.c:
-	* src/Makefile.am:
-	Initial port to webkit, dropping gecko
-	This will be broken
-	Various things still need implemented:
-	 - copy / paste, select all
+	Replace deprecated gtk symbols. Bug #571868
+
+2009-02-25  Andre Klapper  <a9016009@gmx.de>
+
+	* src/yelp-search-parser.c (search_clean_snippet):
+	Fix crash. Patch by Antonio Litterio. Fixes bug #552947.
+
+2008-12-23  Josselin Mouette  <joss@malsain.org>
+
+	* src/yelp-window.c: (window_do_load_html):
+	- Load local files with g_file_new_for_path.
+	- Do not loop endlessly over the end of file while
+          reading it.
+	Fixes bug #562137 - fails to load local HTML files
+
+== 2.24.0 ==
+
+2008-09-22  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* NEWS: 
+	* configure.in:
+	Version 2.24.0
+
+2008-09-15  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* yelp.desktop.in.in:
+	Add yelp to the "Documentation" fd.o category
+	part of bug #552128
+
+2008-09-15  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-document.c (request_idle_final):
+	Fix potential crasher on multi-core machines
+	bug #551757 -  Joe Marcus Clarke
+
+2008-09-15  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-html.cpp:
+	Improved a11y under gecko 1.9
+	- Yet more work on bug #545162 from Ginn Chen
+
+2008-09-11  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-html.cpp:
+	Reinstate previous timeout workaround as it's still required
+
+2008-09-11  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-html.cpp:
+	Add workaround for Gecko 1.9 accessibility issue
+	bug #545162 - Ginn Chen
+
+== 2.23.91 ==
+	
+2008-09-01  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* NEWS:
+	Version 2.23.91
+
+	* src/yelp-utils.c (resolve_full_file):
+	Make text files actually work (i.e. open external vewing program)
+
+2008-09-01  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-utils.c (resolve_is_man_path):
+	Don't crash when trying to load text files
+	bug #549986 - Josselin Mouette
+
+2008-08-14  J.H.M. Dassen (Ray)  <jdassen@debian.org>
+
+	* src/yelp-info-parser.c (yelp_info_parser_parse_file):
+	Allocate iter through g_slice_alloc0 instead of g_malloc0.
+	iter is wrapped in a hash table and later freed by gtk_tree_iter_free,
+	which uses g_slice_free.
+	bug #520266, "Crash when viewing glibc manual".
+	Analysis by Matthias Clasen.
+
+2008-08-21  Vincent Untz  <vuntz@gnome.org>
+
+	* configure.in: post-release bump to 2.23.91.
+
+==================== 2.23.2 ====================
+
+2008-08-21  Shaun McCance  <shaunm@gnome.org>
+
+	* configure.in:
+	* NEWS:
+	- Version 2.23.2
+
+2008-08-12  Don Scorgie  <dscorgie@svn.gnome.org>
+
+	* src/yelp-window.c (window_error):
+	Fix string vulnerability
+	bug #546364 - patch from Christian Persch
+	reported by Aaron Grattafiori
 
 2008-06-27  Luca Ferretti  <elle.uca@libero.it>
 

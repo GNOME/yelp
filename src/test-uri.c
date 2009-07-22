@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  *
@@ -21,99 +21,116 @@
  */
 
 #include <config.h>
+#include <stdio.h>
 
-#include <libgnome/gnome-init.h>
-#include <libgnome/gnome-program.h>
-
-#include "yelp-utils.h"
+#include "yelp-uri.h"
 
 static void 
-print_doc_info (YelpDocInfo *doc)
+print_uri (YelpUri *uri)
 {
-    gchar *type, *uri, *file;
-    gboolean hasfile = FALSE;
-    gint i, max, tmp;
+    gchar *type, *tmp, **tmpv;
 
-    switch (yelp_doc_info_get_type(doc)) {
-    case YELP_DOC_TYPE_ERROR:
-	type = "YELP_DOC_TYPE_ERROR";
-	break;
-    case YELP_DOC_TYPE_DOCBOOK_XML:
-	type = "YELP_DOC_TYPE_DOCBOOK_XML";
-	break;
-    case YELP_DOC_TYPE_DOCBOOK_SGML:
-	type = "YELP_DOC_TYPE_DOCBOOK_SGML";
-	break;
-    case YELP_DOC_TYPE_HTML:
-	type = "YELP_DOC_TYPE_HTML";
-	break;
-    case YELP_DOC_TYPE_XHTML:
-	type = "YELP_DOC_TYPE_XHTML";
-	break;
-    case YELP_DOC_TYPE_MAN:
-	type = "YELP_DOC_TYPE_MAN";
-	break;
-    case YELP_DOC_TYPE_INFO:
-	type = "YELP_DOC_TYPE_INFO";
-	break;
-    case YELP_DOC_TYPE_TOC:
-	type = "YELP_DOC_TYPE_DOC";
-	break;
-    case YELP_DOC_TYPE_EXTERNAL:
-	type = "YELP_DOC_TYPE_EXTERNAL";
-	break;
+    switch (yelp_uri_get_document_type (uri)) {
+    case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
+        type = "DOCBOOK";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_MALLARD:
+        type = "MALLARD";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_MAN:
+        type = "MAN";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_INFO:
+        type = "INFO";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_TEXT:
+        type = "TEXT";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_HTML:
+        type = "HTML";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_XHTML:
+        type = "XHTML";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_TOC:
+        type = "TOC";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_SEARCH:
+        type = "SEARCH";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
+        type = "NOT FOUND";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
+        type = "EXTERNAL";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_ERROR:
+        type = "ERROR";
+        break;
+    case YELP_URI_DOCUMENT_TYPE_UNKNOWN:
+        type = "UNKNOWN";
+        break;
     }
 
-    printf ("Address:  %i\n", (guint) doc);
-    printf ("Type:     %s\n", type);
+    printf ("TYPE:  %s\n", type);
 
-    max = 0;
-    tmp = YELP_URI_TYPE_ANY;
-    while ((tmp = tmp >> 1))
-	max++;
-
-    for (i = 0; i <= max; i++) {
-	uri = yelp_doc_info_get_uri (doc, NULL, 1 << i);
-	if (uri) {
-	    printf ("URI:      %s\n", uri);
-	    if ((1 << i) == YELP_URI_TYPE_FILE)
-		hasfile = TRUE;
-	    g_free (uri);
-	}
+    tmp = yelp_uri_get_base_uri (uri);
+    if (tmp) {
+        printf ("URI:   %s\n", tmp);
+        g_free (tmp);
     }
 
-    if (hasfile) {
-	file = yelp_doc_info_get_filename (doc);
-	printf ("Filename: %s\n", file);
-	g_free (file);
+    tmpv = yelp_uri_get_search_path (uri);
+    if (tmpv) {
+        int i;
+        for (i = 0; tmpv[i]; i++) {
+            if (i == 0)
+                printf ("PATH:  %s\n", tmpv[i]);
+            else
+                printf ("       %s\n", tmpv[i]);
+        }
+        g_strfreev (tmpv);
+    }
+
+    tmp = yelp_uri_get_page_id (uri);
+    if (tmp) {
+        printf ("PAGE:  %s\n", tmp);
+        g_free (tmp);
+    }
+
+    tmp = yelp_uri_get_frag_id (uri);
+    if (tmp) {
+        printf ("FRAG:  %s\n", tmp);
+        g_free (tmp);
     }
 }
 
 int
 main (int argc, char **argv)
 {
-    GnomeProgram *program;
-    YelpDocInfo  *doc;
-    gint i;
-	
+    YelpUri *parent = NULL;
+    YelpUri *uri = NULL;
+
+    g_type_init ();
+    g_log_set_always_fatal (G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL);
+        
     if (argc < 2) {
-	g_print ("Usage: test-uri uri\n");
-	return 1;
+        g_print ("Usage: test-uri uri\n");
+        return 1;
     }
 
-    program = gnome_program_init (PACKAGE, VERSION,
-				  LIBGNOME_MODULE, argc, argv,
-				  GNOME_PROGRAM_STANDARD_PROPERTIES,
-				  NULL);
-
-    for (i = 1; i < argc; i++) {
-	if (i != 1)
-	    printf ("\n");
-	doc = yelp_doc_info_get (argv[i], FALSE);
-	if (doc)
-	    print_doc_info (doc);
-	else
-	    printf ("Failed to load URI: %s\n", argv[i]);
+    if (argc > 2) {
+        parent = yelp_uri_resolve (argv[1]);
+        uri = yelp_uri_resolve_relative (parent, argv[2]);
+    } else {
+        uri = yelp_uri_resolve (argv[1]);
+    }
+    if (uri) {
+        print_uri (uri);
+        g_object_unref (uri);
+    }
+    if (parent) {
+        g_object_unref (parent);
     }
 
     return 0;

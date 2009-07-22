@@ -27,7 +27,6 @@
 #include <glib/gi18n.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <gconf/gconf-client.h>
 #include <string.h>
 
@@ -204,26 +203,28 @@ yelp_settings_init (void)
 void
 yelp_settings_open_preferences (void)
 {
+    GtkBuilder *builder;
+    GError *error = NULL;
     gchar *font;
     gboolean use;
 
     if (!prefs_dialog) {
-	GladeXML *glade;
-	glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
-			       "prefs_dialog",
-			       NULL);
-	if (!glade) {
-	    g_warning ("Could not find necessary glade file "
-		       DATADIR "/yelp/ui/yelp.glade");
-	    return;
-	}
+        builder = gtk_builder_new ();
+        if (!gtk_builder_add_from_file (builder, 
+                                        DATADIR "/yelp/ui/yelp-preferences.ui",
+                                        &error)) {
+            g_warning ("Could not load builder file: %s", error->message);
+            g_error_free(error);
+            return;
+        }
 
-	prefs_dialog  = glade_xml_get_widget (glade, "prefs_dialog");
-	use_caret_widget     = glade_xml_get_widget (glade, "use_caret");
-	system_fonts_widget  = glade_xml_get_widget (glade, "use_system_fonts");
-	font_table_widget    = glade_xml_get_widget (glade, "font_table");
-	variable_font_widget = glade_xml_get_widget (glade, "variable_font");
-	fixed_font_widget    = glade_xml_get_widget (glade, "fixed_font");
+
+	prefs_dialog  = GTK_WIDGET (gtk_builder_get_object (builder, "prefs_dialog"));
+	use_caret_widget     = GTK_WIDGET (gtk_builder_get_object (builder, "use_caret"));
+	system_fonts_widget  = GTK_WIDGET (gtk_builder_get_object (builder, "use_system_fonts"));
+	font_table_widget    = GTK_WIDGET (gtk_builder_get_object (builder, "font_table"));
+	variable_font_widget = GTK_WIDGET (gtk_builder_get_object (builder, "variable_font"));
+	fixed_font_widget    = GTK_WIDGET (gtk_builder_get_object (builder, "fixed_font"));
 
 	use = gconf_client_get_bool (gconf_client, KEY_YELP_SYSTEM_FONTS, NULL);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (system_fonts_widget), use);
@@ -261,8 +262,6 @@ yelp_settings_open_preferences (void)
 	
 	g_signal_connect (G_OBJECT (prefs_dialog), "delete_event",
 			  G_CALLBACK (gtk_widget_hide_on_delete), NULL);
-
-	g_object_unref (glade);
     }
 
     gtk_window_present (GTK_WINDOW (prefs_dialog));
@@ -734,9 +733,9 @@ settings_update (YelpSettingsType type)
 		    style->text[GTK_STATE_NORMAL].green / 65535.0,
 		    style->text[GTK_STATE_NORMAL].blue / 65535.0,
 		    &text_h, &text_l, &text_s);
-	rgb_to_hls (style->bg[GTK_STATE_NORMAL].red / 65535.0,
-		    style->bg[GTK_STATE_NORMAL].green / 65535.0,
-		    style->bg[GTK_STATE_NORMAL].blue / 65535.0,
+	rgb_to_hls (style->base[GTK_STATE_NORMAL].red / 65535.0,
+		    style->base[GTK_STATE_NORMAL].green / 65535.0,
+		    style->base[GTK_STATE_NORMAL].blue / 65535.0,
 		    &base_h, &base_l, &base_s);
 
 	/* YELP_COLOR_FG */
@@ -776,47 +775,48 @@ settings_update (YelpSettingsType type)
 	    gdk_color_free (color);
 	}
 
-	gtk_object_sink (GTK_OBJECT (widget));
+	g_object_ref_sink (widget);
+	g_object_unref (widget);
 
 	hls_to_hex (text_h, 
-		    text_l - ((text_l - base_l) * 0.4),
+		    text_l - ((text_l - base_l) * 0.25),
 		    text_s,
 		    YELP_COLOR_FG_LIGHT);
 
 	hls_to_hex (base_h, 
-		    base_l - ((base_l - text_l) * 0.05),
+		    base_l - ((base_l - text_l) * 0.03),
 		    base_s,
 		    YELP_COLOR_GRAY_BG);
 	hls_to_hex (base_h, 
-		    base_l - ((base_l - text_l) * 0.1),
+		    base_l - ((base_l - text_l) * 0.25),
 		    base_s,
 		    YELP_COLOR_GRAY_BORDER);
 
-	hls_to_hex (base_h,
-		    base_l - ((base_l - text_l) * 0.05),
-		    0.6,
+	hls_to_hex (204,
+		    base_l - ((base_l - text_l) * 0.03),
+		    0.75,
 		    YELP_COLOR_BLUE_BG);
-	hls_to_hex (base_h,
-		    base_l - ((base_l - text_l) * 0.1),
-		    0.6,
+	hls_to_hex (204,
+		    base_l - ((base_l - text_l) * 0.25),
+		    0.75,
 		    YELP_COLOR_BLUE_BORDER);
 
 	hls_to_hex (0,
-		    base_l - ((base_l - text_l) * 0.05),
-		    0.6,
+		    base_l - ((base_l - text_l) * 0.03),
+		    0.75,
 		    YELP_COLOR_RED_BG);
 	hls_to_hex (0,
-		    base_l - ((base_l - text_l) * 0.1),
-		    0.6,
+		    base_l - ((base_l - text_l) * 0.25),
+		    0.75,
 		    YELP_COLOR_RED_BORDER);
 
 	hls_to_hex (60,
-		    base_l - ((base_l - text_l) * 0.05),
-		    0.6,
+		    base_l - ((base_l - text_l) * 0.03),
+		    0.75,
 		    YELP_COLOR_YELLOW_BG);
 	hls_to_hex (60,
-		    base_l - ((base_l - text_l) * 0.1),
-		    0.6,
+		    base_l - ((base_l - text_l) * 0.25),
+		    0.75,
 		    YELP_COLOR_YELLOW_BORDER);
 
 	g_object_unref (G_OBJECT (style));
@@ -842,13 +842,13 @@ yelp_settings_params (gchar ***params,
     }
 
     for (colors_i = 0; colors_i < YELP_NUM_COLORS; colors_i++) {
-	(*params)[(*params_i)++] = (gchar *) color_params[colors_i];
+	(*params)[(*params_i)++] = g_strdup ((gchar *) color_params[colors_i]);
 	(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"",
 						yelp_settings_get_color (colors_i));
     }
 
     for (icons_i = 0; icons_i < YELP_NUM_ICONS; icons_i++) {
-	(*params)[(*params_i)++] = (gchar *) icon_params[icons_i];
+	(*params)[(*params_i)++] = g_strdup ((gchar *) icon_params[icons_i]);
 
 	icon_info = yelp_settings_get_icon (icons_i);
 	if (icon_info) {

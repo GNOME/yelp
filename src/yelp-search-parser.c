@@ -1232,10 +1232,14 @@ search_clean_snippet (gchar *snippet, gchar **terms)
 
 	while ((str = strstr (result, (iteration[i])))) {
 	    gboolean breaking = FALSE;
-	    gint i;
-	    for (i=0; i< count; i++) {
+	    gint k;
+	    for (k=0; k< count; k++) {
+		if(iteration[k] == NULL){
+		    breaking = TRUE;
+		    break;
+		}
 		str++;
-		str = strstr (str, (iteration[i]));
+		str = strstr (str, (iteration[k]));
 		if (!str) {
 		    breaking = TRUE;
 		    break;

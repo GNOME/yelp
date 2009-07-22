@@ -1,13 +1,13 @@
 # Përkthimi i mesazheve të yelp në shqip
-# Copyright (C) 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2006, 2007, 2008 Free Software Foundation, Inc.
 #
-# Laurent Dhima <laurenti@alblinux.net>, 2002,2003, 2004, 2005, 2006, 2007.
+# Laurent Dhima <laurenti@alblinux.net>, 2002,2003, 2004, 2005, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-12 23:15+0200\n"
-"PO-Revision-Date: 2007-09-12 23:13+0200\n"
+"POT-Creation-Date: 2008-01-13 16:16+0000\n"
+"PO-Revision-Date: 2008-07-22 12:24+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
-msgstr "Faqe me informacione GNU"
+msgstr "Faqe GNU info"
 
 #: ../data/info.xml.in.h:2
 msgid "Traditional command line help (info)"
@@ -25,7 +25,7 @@ msgstr "Ndihmë tradicionale për rreshtin e komandës (info)"
 
 #: ../data/man.xml.in.h:1
 msgid "Applications"
-msgstr "Programe"
+msgstr "Aplikativë"
 
 #: ../data/man.xml.in.h:2
 msgid "BLT Functions"
@@ -33,13 +33,13 @@ msgstr "Funksione BLT"
 
 #: ../data/man.xml.in.h:3
 msgid "Configuration Files"
-msgstr "Files e konfigurimit"
+msgstr "File e konfigurimit"
 
 #: ../data/man.xml.in.h:4
 msgid "Curses Functions"
 msgstr "Funksione Curses"
 
-#: ../data/man.xml.in.h:5
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Zhvillim"
 
@@ -47,17 +47,17 @@ msgstr "Zhvillim"
 msgid "FORTRAN Functions"
 msgstr "Funksione FORTRAN"
 
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Lojra"
 
 #: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
-msgstr "Dispozitivët hardware"
+msgstr "Dispozitivë hardware"
 
 #: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
-msgstr "Routin e Kernel"
+msgstr "Routin të kernel"
 
 #: ../data/man.xml.in.h:10
 msgid "Manual Pages"
@@ -69,11 +69,11 @@ msgstr "Funksione Network Audio Sound"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
-msgstr "Programe OpenSSL"
+msgstr "Aplikativë OpenSSL"
 
 #: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
-msgstr "Konfigurimi OpenSSL"
+msgstr "Konfigurim OpenSSL"
 
 #: ../data/man.xml.in.h:14
 msgid "OpenSSL Functions"
@@ -85,7 +85,7 @@ msgstr "Përshkrime OpenSSL"
 
 #: ../data/man.xml.in.h:16
 msgid "Overviews"
-msgstr "Pamje"
+msgstr "Përshkrime"
 
 #: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
@@ -93,7 +93,7 @@ msgstr "Funksione POSIX"
 
 #: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
-msgstr "Headers POSIX"
+msgstr "Header POSIX"
 
 #: ../data/man.xml.in.h:19
 msgid "Perl Functions"
@@ -113,103 +113,103 @@ msgstr "Seksioni 0p"
 
 #: ../data/man.xml.in.h:23
 msgid "Section 1m"
-msgstr "Seksioni 1m"
+msgstr "Seksion 1m"
 
 #: ../data/man.xml.in.h:24
 msgid "Section 1ssl"
-msgstr "Seksioni 1ssl"
+msgstr "Seksion 1ssl"
 
 #: ../data/man.xml.in.h:25
 msgid "Section 1x"
-msgstr "Seksioni 1x"
+msgstr "Seksion 1x"
 
 #: ../data/man.xml.in.h:26
 msgid "Section 2"
-msgstr "Seksioni 2"
+msgstr "Seksion 2"
 
 #: ../data/man.xml.in.h:27
 msgid "Section 3blt"
-msgstr "Seksioni 3bit"
+msgstr "Seksion 3bit"
 
 #: ../data/man.xml.in.h:28
 msgid "Section 3f"
-msgstr "Seksioni 3f"
+msgstr "Seksion 3f"
 
 #: ../data/man.xml.in.h:29
 msgid "Section 3nas"
-msgstr "Seksioni 3nas"
+msgstr "Seksion 3nas"
 
 #: ../data/man.xml.in.h:30
 msgid "Section 3p"
-msgstr "Seksioni 3p"
+msgstr "Seksion 3p"
 
 #: ../data/man.xml.in.h:31
 msgid "Section 3qt"
-msgstr "Seksioni 3qt"
+msgstr "Seksion 3qt"
 
 #: ../data/man.xml.in.h:32
 msgid "Section 3readline"
-msgstr "Seksioni 3readline"
+msgstr "Seksion 3readline"
 
 #: ../data/man.xml.in.h:33
 msgid "Section 3ssl"
-msgstr "Seksioni 3ssl"
+msgstr "Seksion 3ssl"
 
 #: ../data/man.xml.in.h:34
 msgid "Section 3tiff"
-msgstr "Seksioni 3tiff"
+msgstr "Seksion 3tiff"
 
 #: ../data/man.xml.in.h:35
 msgid "Section 4"
-msgstr "Seksioni 4"
+msgstr "Seksion 4"
 
 #: ../data/man.xml.in.h:36
 msgid "Section 4x"
-msgstr "Seksioni 4x"
+msgstr "Seksion 4x"
 
 #: ../data/man.xml.in.h:37
 msgid "Section 5"
-msgstr "Seksioni 5"
+msgstr "Seksion 5"
 
 #: ../data/man.xml.in.h:38
 msgid "Section 5ssl"
-msgstr "Seksioni 5ssl"
+msgstr "Seksion 5ssl"
 
 #: ../data/man.xml.in.h:39
 msgid "Section 5x"
-msgstr "Seksioni 5x"
+msgstr "Seksion 5x"
 
 #: ../data/man.xml.in.h:40
 msgid "Section 6"
-msgstr "Seksioni 6"
+msgstr "Seksion 6"
 
 #: ../data/man.xml.in.h:41
 msgid "Section 6x"
-msgstr "Seksioni 6x"
+msgstr "Seksion 6x"
 
 #: ../data/man.xml.in.h:42
 msgid "Section 7ssl"
-msgstr "Seksioni 7ssl"
+msgstr "Seksion 7ssl"
 
 #: ../data/man.xml.in.h:43
 msgid "Section 7x"
-msgstr "Seksioni 7x"
+msgstr "Seksion 7x"
 
 #: ../data/man.xml.in.h:44
 msgid "Section 9"
-msgstr "Seksioni 9"
+msgstr "Seksion 9"
 
 #: ../data/man.xml.in.h:45
 msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Seksionet 1, 1p, 1g dhe 1t"
+msgstr "Seksione 1, 1p, 1g dhe 1t"
 
 #: ../data/man.xml.in.h:46
 msgid "Sections 3, 3o, and 3t"
-msgstr "Seksionet 3, 3o, dhe 3t"
+msgstr "Seksione 3, 3o, dhe 3t"
 
 #: ../data/man.xml.in.h:47
 msgid "Sections 3form and 3menu"
-msgstr "Seksionet 3form dhe 3menu"
+msgstr "Seksione 3form dhe 3menu"
 
 #: ../data/man.xml.in.h:48
 msgid "Sections 3ncurses and 3curses"
@@ -280,136 +280,588 @@ msgid "X11 Overviews"
 msgstr "Përshkrime X11"
 
 #: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "Grafikë 2D"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "Grafikë 3D"
+
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Açesibiliteti"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Aksesorë"
-
-#: ../data/toc.xml.in.h:3
-msgid "Applications for fun"
-msgstr "Aplikativë për argëtim"
-
 #: ../data/toc.xml.in.h:4
-msgid "Applications for manipulating or viewing graphics"
-msgstr "Aplikativë për manipulim apo shfaqje grafike"
+msgid "Action Games"
+msgstr "Lojra me aksione"
 
 #: ../data/toc.xml.in.h:5
-msgid "Applications for word processing and other office tasks"
-msgstr "Aplikativë për përpunimin e tekstit dhe aktivitete të tjerë zyre "
+msgid "Adventure Games"
+msgstr "Lojra me aventura"
 
 #: ../data/toc.xml.in.h:6
-msgid "Applications related to X Windows"
-msgstr "Aplikativë relativë me X Windows"
+msgid "Amusement"
+msgstr "Argëtime"
 
 #: ../data/toc.xml.in.h:7
-msgid "Applications related to multimedia"
-msgstr "Aplikativë relativë me multimedialitetin"
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Aplikativë për manipulimin apo shfaqjen e grafikës"
 
 #: ../data/toc.xml.in.h:8
-msgid "Applications related to software development"
-msgstr "Aplikativë relativë me zhvillimin e software"
+msgid "Applications related to audio and video"
+msgstr "Aplikativë që kanë të bëjnë me audio dhe video"
 
 #: ../data/toc.xml.in.h:9
-msgid "Applications related to the internet"
-msgstr "Aplikativë relativë me Internet"
+msgid "Applications that teach or aid in learning"
+msgstr "Aplikativë për dhënie mësimi apo ndihmues gjatë mësimit"
 
 #: ../data/toc.xml.in.h:10
-msgid "Applications specific to the panel"
-msgstr "Aplikativë specifikë për panelin"
+msgid "Arcade Games"
+msgstr "Lojra arcade"
 
 #: ../data/toc.xml.in.h:11
-msgid "Applications that support assistive technologies"
-msgstr "Aplikativë që suportojnë teknollogjitë asistuese"
+msgid "Archiving Tools"
+msgstr "Instrumentë arkivimi"
 
 #: ../data/toc.xml.in.h:12
-msgid "Desktop"
-msgstr "Hapësira e Punës"
+msgid "Art"
+msgstr "Arte"
 
 #: ../data/toc.xml.in.h:13
-msgid "Documents specific to the KDE Desktop Environment"
-msgstr "Dokumentë specifikë për mjedisin desktop KDE"
+msgid "Artificial Intelligence"
+msgstr "Inteligjenca artificiale"
 
 #: ../data/toc.xml.in.h:14
-msgid "Education"
-msgstr "Edukim"
+msgid "Astronomy"
+msgstr "Astronomia"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Biollogjia"
 
 #: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Lojra me blloqe"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Lojra për tavolinë"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "Ndërtime"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Kalkulatori"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Kalendari"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Lojra me letra"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Instrumentë për diagrama"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Bisedë në linjë"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Kimia"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Orë"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Instrumentë kompresimi"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Informatikë"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "Konstruktim"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Menazhimi i kontakteve"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Shfaqje të dhënash"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Baza të dhënash"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Debugger"
+
+#: ../data/toc.xml.in.h:33
+msgid "Desktop"
+msgstr "Ambienti grafik"
+
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Rregullime të ambientit grafik"
+
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "Dialup"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Fjalorë"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Masterizimi"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Ekonomia"
+
+#: ../data/toc.xml.in.h:41
+msgid "Education"
+msgstr "Edukimi"
+
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Energjia elektrike"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Elektronika"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "Instrumentë email"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulator"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Inxhenieri"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Menazhues i file"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Instrumentë për file"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Transferim i file"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "File i sistemit"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Instumentë finance"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Instrumentë për diagrama fluksi"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "Aplikativë GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "Ndërtues interfaqesh"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Aplikativë të përgjithshëm për ambientin GNOME"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Aplikativë të përgjithshëm për ambientin KDE"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Gjeografia"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Gjeollogjia"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Gjeoshkenca"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
 msgstr "Grafikë"
 
-#: ../data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Udhëzues dhe manualë për aplikativë që lidhen me botën e jashtme"
+
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Udhëzues për pjesëmarrje në zhvillim"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "Ham Radio"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Rregullimet hardware"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "Për tu argëtuar"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Historia"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDE"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "Klientë IRC"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Përpunimi i figurave"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Mesazhe të menjëhershëm"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Internet"
 
-#: ../data/toc.xml.in.h:18
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: ../data/toc.xml.in.h:19
-msgid "Learning applications"
-msgstr "Aplikativë për të mësuar"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "Aplikativë KDE"
 
-#: ../data/toc.xml.in.h:20
-msgid "Miscellaneous documents"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Lojra për fëmijë"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr "Të mësosh se si të bëhet sistemi më açesibël për një seri paaftësish"
+
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Liçensa"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Literatura"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Lojra llogjike"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Matematika"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Programe mjeksorë"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
 msgstr "Dokumentë të ndryshëm"
 
-#: ../data/toc.xml.in.h:21
-msgid "Office"
-msgstr "Zyrë"
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "Mixer"
 
-#: ../data/toc.xml.in.h:22
-msgid "Other Applications"
-msgstr "Aplikativë të tjerë"
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "Monitori"
 
-#: ../data/toc.xml.in.h:23
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Muzika"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Lajme"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Analiza numerike"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Aplikativë për zyrë"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Aplikativë për zyrë"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Dokumentë të tjerë"
 
-#: ../data/toc.xml.in.h:24
-msgid "Panel Applets"
-msgstr "Ndihmues paneli"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: ../data/toc.xml.in.h:25
-msgid "Programming"
-msgstr "Programim"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "Komunikim PDA"
 
-#: ../data/toc.xml.in.h:26
-msgid "Scientific"
-msgstr "Shkencë"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Menazhues paketi"
 
-#: ../data/toc.xml.in.h:27
-msgid "Scientific Applications."
-msgstr "Aplikativë shkencorë."
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Llogaritje paralele"
 
-#: ../data/toc.xml.in.h:28
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotografia"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Fizika"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Riprodhues"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Instrumentë prezantimi"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Printimi"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "Instrumentë për profiling"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Instrumentë për menazhim projektesh"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "Publikimi"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Grafika raster"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Regjistrues"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Hyrja në distancë"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Kontrolli i revizionit"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Robotika"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "Lojra roli"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Skanimi"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Shkenca"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Siguria"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "Sekuenciatorë"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Rregullime"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr ""
+"Rregullime që përdoruesit mund të ndryshojnë për ta bërë ambientin më "
+"të këndshëm"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Lojra simulimi"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Zëri"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
 msgstr "Zë &amp; Video"
 
-#: ../data/toc.xml.in.h:29
-msgid "System Tools"
-msgstr "Vegla të sistemit"
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Audio dhe editing video"
 
-#: ../data/toc.xml.in.h:30
-msgid "Utilities to manage your computer"
-msgstr "Ndihmues për manazhimin e kompjuterit"
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Sporte"
 
-#: ../data/toc.xml.in.h:31
-msgid "Utility applications"
-msgstr "Apliaktivë ndihmues"
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Lojra sportive"
 
-#: ../data/toc.xml.in.h:32
-msgid "Variety of other applications"
-msgstr "Varietet me aplikativë të tjerë"
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "Fletë llogaritje"
 
-#: ../data/toc.xml.in.h:33
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Lojra strategjie"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Sistemi"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "Telefonia"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "Instrumentë për telefoninë"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Emulues terminali"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Editorë teksti"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Instrumentë për tekste"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Instrumentë për t'ju ndihmuar në menazhimin e kompjuterit"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Instrumentë për përkthime"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "Sintonizues"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "Programe ndihmues"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "Ndihmues për plotësimin e punës"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Grafika vektoriale"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Video"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Konferencë video"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "Shikues"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Shfletues web"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Zhvillim web"
+
+#: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
 msgstr "Mirësevini tek shfaqësi i dokumentimit për GNOME"
 
-#: ../data/toc.xml.in.h:34
-msgid "X Applications"
-msgstr "Programe X"
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Përpunues teksti"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -509,8 +961,7 @@ msgstr "Gërmat për tekstet me gjerësi të ndryshueshme."
 
 #: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
-"Përdor një vizore të kontrollueshme nga tastiera gjatë shikimit të faqeve."
+msgstr "Përdor një vizore të kontrollueshme nga tastiera gjatë shikimit të faqeve."
 
 #: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
@@ -557,7 +1008,7 @@ msgstr "Seksionet e dokumentit"
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
 #: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
 msgid "Page not found"
 msgstr "Faqja nuk u gjet"
 
@@ -586,7 +1037,7 @@ msgstr "File ‘%s’ nuk ekziston."
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
 #: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
 msgid "Could not parse file"
 msgstr "I pamundur analizimi i file"
 
@@ -616,7 +1067,7 @@ msgstr "Nuk njihet"
 msgid "Unknown Error"
 msgstr "Gabim i panjohur"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
 msgid "Could Not Read File"
 msgstr "I pamundur ngarkimi i file"
 
@@ -626,13 +1077,12 @@ msgstr "Asnjë informacion në dispozicion në lidhje me këtë gabim."
 
 #: ../src/yelp-info.c:394
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 "File '%s' nuk mund të analizohet pasi nuk është një faqe informacionesh e "
 "formuar korrektësisht."
 
-#: ../src/yelp-io-channel.c:107
+#: ../src/yelp-io-channel.c:123
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -660,8 +1110,7 @@ msgstr "Ndihmë"
 
 #: ../src/yelp-man.c:460
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
 "File '%s' nuk mund të analizohet pasi nuk është një faqe manuali e formuar "
 "korrektësisht."
@@ -683,10 +1132,6 @@ msgstr "Shtypja nuk suportohet në këtë printer"
 msgid "Printer %s does not support postscript printing."
 msgstr "Printeri %s nuk suporton printimin postscript."
 
-#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "Duke shtypur"
-
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr "Në pritje të shtypjes"
@@ -700,16 +1145,16 @@ msgstr "Gabim gjatë shtypjes"
 msgid "It was not possible to print your document: %s"
 msgstr "E pamundur shtypja e dokumentit tuaj: %s"
 
-#: ../src/yelp-search-parser.c:67
+#: ../src/yelp-search-parser.c:68
 msgid "the GNOME Support Forums"
 msgstr "Forumet e suportit të GNOME"
 
-#: ../src/yelp-search-parser.c:276
+#: ../src/yelp-search-parser.c:286
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Asnjë rezultat për \"%s\""
 
-#: ../src/yelp-search-parser.c:277
+#: ../src/yelp-search-parser.c:287
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -717,7 +1162,7 @@ msgstr ""
 "Provo duke përdorur fjalë të ndryshme për të përshkruar problemin e ndeshur "
 "apo argumentin për të cilin kërkon ndihmë."
 
-#: ../src/yelp-search-parser.c:280
+#: ../src/yelp-search-parser.c:290
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Rezultatet e kërkimit për \"%s\""
@@ -727,7 +1172,7 @@ msgstr "Rezultatet e kërkimit për \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:294
+#: ../src/yelp-search-parser.c:304
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Përsërit kërkimin në linjë tek %s"
@@ -740,7 +1185,7 @@ msgstr "Përsërit kërkimin në linjë tek %s"
 #. * "how do I", and words for functional states like "not",
 #. * "work", and "broken".
 #.
-#: ../src/yelp-search-parser.c:864
+#: ../src/yelp-search-parser.c:874
 msgid ""
 "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
 "doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
@@ -759,20 +1204,24 @@ msgstr ""
 #. * E.g. if the common prefix is re then the string would be
 #. * "re:"
 #.
-#: ../src/yelp-search-parser.c:880
+#: ../src/yelp-search-parser.c:890
 msgid "re"
-msgstr "rauto:re:ri:"
+msgstr "NULL"
 
 #. Translators: This is a list of (guess what?) common suffixes
 #. * to words.  Things that may be put at ends of words to slightly
 #. * alter their meaning (like -ing and -s in English).  This is a
 #. * colon seperated list (I like colons).  If there are none,
-#. * please use the strig NULL.  If there is only 1, please
+#. * please use the string NULL.  If there is only 1, please
 #. * add a colon at the end of the list
 #.
-#: ../src/yelp-search-parser.c:889
+#: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
-msgstr "it:j:s:"
+msgstr "NULL"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Asnjë koment"
 
 #. Much bigger problems
 #: ../src/yelp-search.c:238
@@ -789,24 +1238,22 @@ msgstr "E pamundur kryerja e kërkimit"
 
 #: ../src/yelp-search.c:367
 msgid "The search processor returned invalid results"
-msgstr "Proçesuesi i kërkimit kthehu rezultate të pavlefshme"
+msgstr "Proçesuesi i kërkimit dha rezultate të pavlefshme"
 
-#: ../src/yelp-toc.c:267
+#: ../src/yelp-toc.c:266
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr "Faqja %s nuk u gjet në TOC."
 
-#: ../src/yelp-toc.c:365
+#: ../src/yelp-toc.c:364
 msgid "The requested page was not found in the TOC."
 msgstr "Faqja e kërkuar nuk u gjet në TOC."
 
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-toc.c:434
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
-msgstr ""
-"File TOC nuk mund të analizohet pasi nuk është një dokument XML i formuar "
-"korrektësisht."
+msgstr "File TOC nuk mund të analizohet pasi nuk është një dokument korrekt XML."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -987,7 +1434,7 @@ msgstr "Kopjo adresën _Email"
 msgid "Help Browser"
 msgstr "Shfletuesi i ndihmës"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
 msgid "Loading..."
 msgstr "Duke ngarkuar..."
 
@@ -1024,23 +1471,23 @@ msgstr "I pamundur krijimi i dritares"
 msgid "Cannot create search component"
 msgstr "I pamundur krijimi i komponuesit të kërkimit"
 
-#: ../src/yelp-window.c:1405
+#: ../src/yelp-window.c:1406
 msgid "Fin_d:"
 msgstr "Gje_j:"
 
-#: ../src/yelp-window.c:1425
-msgid "Find _Next"
-msgstr "Gjej në _vazhdim"
-
-#: ../src/yelp-window.c:1437
+#: ../src/yelp-window.c:1426
 msgid "Find _Previous"
 msgstr "Gjej _Paraardhësen"
 
-#: ../src/yelp-window.c:1450
+#: ../src/yelp-window.c:1438
+msgid "Find _Next"
+msgstr "Gjej në _vazhdim"
+
+#: ../src/yelp-window.c:1451
 msgid "Phrase not found"
 msgstr "Fraza nuk u gjet"
 
-#: ../src/yelp-window.c:1578
+#: ../src/yelp-window.c:1579
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1051,18 +1498,19 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2401
+#: ../src/yelp-window.c:2402
 msgid "translator-credits"
 msgstr "Laurent Dhima <laurenti@alblinux.net>"
 
-#: ../src/yelp-window.c:2404
+#: ../src/yelp-window.c:2405
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2406
+#: ../src/yelp-window.c:2407
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Një shfletues dhe shikues dokumentesh për Desktop Gnome."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Merr ndihmë me GNOME"
+

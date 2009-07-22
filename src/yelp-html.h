@@ -29,10 +29,10 @@
 G_BEGIN_DECLS
 
 #define YELP_TYPE_HTML         (yelp_html_get_type ())
-#define YELP_HTML(o)           (GTK_CHECK_CAST ((o), YELP_TYPE_HTML, YelpHtml))
-#define YELP_HTML_CLASS(k)     (GTK_CHECK_FOR_CAST((k), YELP_TYPE_HTML, YelpHtmlClass))
-#define YELP_IS_HTML(o)        (GTK_CHECK_TYPE ((o), YELP_TYPE_HTML))
-#define YELP_IS_HTML_CLASS(k)  (GTK_CHECK_CLASS_TYPE ((k), YELP_TYPE_HTML))
+#define YELP_HTML(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_HTML, YelpHtml))
+#define YELP_HTML_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_HTML, YelpHtmlClass))
+#define YELP_IS_HTML(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), YELP_TYPE_HTML))
+#define YELP_IS_HTML_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_HTML))
 #define YELP_HTML_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_HTML, YelpHtmlClass))
 
 typedef struct _YelpHtml        YelpHtml;

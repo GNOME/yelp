@@ -27,7 +27,7 @@
 
 /* Needed to fill the struct */
 #include <gtk/gtkprinter.h>
-#include <gtk/gtkprintsettings.h>
+#include <gtk/gtk.h>
 
 #include "yelp-window.h"
 

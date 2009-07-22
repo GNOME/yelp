@@ -1,3 +1,100 @@
+Changes in 2.27.2:
+------------------
+* Require Mallard-enabled gnome-doc-utils
+* Fixed various memory management bugs
+* Updated translations:
+  es      (Jorge Gonzalez)
+  pa      (A S Alam)
+  et      (Ivar Smolin)
+  sv      (Daniel Nylander)
+
+Changes in 2.27.1:
+------------------
+* Added experimental support for Mallard
+* Fixed various color theme issues
+
+Changes in 2.26.0:
+------------------
+* Don't assume order of certain man macros, bug #568066 (Andy Owen)
+* Fixed locking issue, bug #568058 (Andy Owen)
+* Updated translations:
+  mai     (Rajesh Ranjan)
+  hi      (Rajesh Ranjan)
+  as      (Amitakhya Phukan)
+  ml      (Ani Peter)
+  te      (Krishnababu K)
+  he      (Yair Hershkovitz)
+
+Changes in 2.25.1:
+------------------
+* RTL fixes, bug #573159, Shaun McCance
+* Fixed libxul[-embedding] detection, Christian Persch
+* Removed deprecated GTK symbols, bug #571868, Thomas H.P. Andersen
+* Fixed crasher, bug #552947, Antonio Litterio
+* Fixed loading of local HTML files, bug #562137, Josselin Mouette
+* Updated translations:
+  ar          (Khaled Hosny)
+  ast         (Mikel González)
+  et          (Ivar Smolin)
+  it          (Milo Casagrande)
+  ko          (Changwoo Ryu)
+  la          (Rafael Garcia)
+  ps          (Zabeeh Khan)
+  sv          (Daniel Nylander)
+  uz          (Nurali Abdurahmonov)
+  uz@cyrillic (Nurali Abdurahmonov)
+  zh_HK       (Chao-Hsiung Liao)
+  zh_TW       (Chao-Hsiung Liao)
+
+Changed in 2.24.0:
+------------------
+
+*Improve a11y under gecko 1.9 
+ - Bug #545162
+ - Huge thanks to Ginn Chen, Willie Walker and Joanmarie Diggs
+* Fix potential race-condition
+ - bug #551757 (Joe Marcus Clarke)
+* fd.o categorisation improvements
+ - bug #552128
+* Updated translations:
+  ar (Djihed Afifi)
+  bn_IN (Runa Bhattacharjee)
+  he (Yair Hershkovitz)
+  hi (Rajesh Ranjan)
+  hr (Robert Sedak)
+  hu (Gabor Kelemen)
+  kn (Shankar Prasad)
+  pt (Duarte Loreto)
+  pt_BR (Vladimir Melo)
+  ro (Mişu Moldovan)
+  sr (Goran Rakić)
+  sr@latin (Goran Rakić)
+  th (Theppitak Karoonboonyanan)
+
+Changed in 2.23.91:
+-------------------
+
+* Fix loading of text files - bug #549986 (Josselin Mouette)
+* Fix glibc info manual chrash - bug #520266 (Matthias Clasen and J.H.M. Dassen)
+* Updated translations:
+  eu (Inaki Larranaga Murgoitio)
+  * Conversion from sr@Latn to sr@latin (Goran Rakic)
+
+Changed in 2.23.2:
+------------------
+* Fix string vulnerability [#546364] - Christian Persch
+* Use "help-browser" icon instead of deprecated "gnome-help" - Luca Ferretti
+* Updated translations:
+  ar    (Djihed Afifi)
+  de    (Jochen Skulj)
+  gu    (Ankit Patel)
+  he    (Yair Hershkovitz)
+  ks    (Rakesh Pandit)
+  oc    (Yannig Marchegay)
+  or    (Manoj Kumar Giri)
+  pt_BR (John Wendell)
+  sq    (Laurent Dhima)
+
 Changed in 2.23.1:
 ------------------
 * Add support for Gecko 1.9 (XULRunner) - Christian Persch

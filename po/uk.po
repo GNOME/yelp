@@ -3,14 +3,15 @@
 # Yuriy Syrota <rasta@renome.rovno.ua>, 2001.
 # Maxim Dzumanenko <dziumanenko@gmail.com>, 2004-2008
 #
+# wanderlust <wanderlust@ukr.net>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-07 12:09+0200\n"
-"PO-Revision-Date: 2008-03-07 18:34+0200\n"
-"Last-Translator: Maxim Dzumanenko <dziumanenko@gmail.com>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"POT-Creation-Date: 2009-07-09 22:43+0300\n"
+"PO-Revision-Date: 2009-07-08 13:04+0300\n"
+"Last-Translator: wanderlust <wanderlust@ukr.net>\n"
+"Language-Team: ukrainian <Ukrainian <uk@li.org>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -287,7 +288,7 @@ msgstr "Двовимірна графіка"
 msgid "3D Graphics"
 msgstr "Тривимірна графіка"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Допоміжні можливості"
 
@@ -747,7 +748,9 @@ msgstr "Розділ 1ssl"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Параметри, які користувачів можуть змінювати для покращення робочого середовища"
+msgstr ""
+"Параметри, які користувачів можуть змінювати для покращення робочого "
+"середовища"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -862,85 +865,57 @@ msgstr "Ласкаво просимо до довідки GNOME"
 msgid "Word Processors"
 msgstr "Текстові процесори"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Спеціальні можливості</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Шрифти</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Додати закладку"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "Враховувати _регістр"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Знайти"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Відкрити адресу"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Параметри"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "Пере_йменувати"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Закладки:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "Відображати _курсор"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Додати закладку"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "З_найти:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Фіксована ширина:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Адреса:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Наступне"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Попереднє"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Заголовок:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Відкрити адресу"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Адреса:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Шрифти"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Параметри"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "Відображати _курсор"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Фіксована ширина:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "_Використовувати системні шрифти"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "З_мінна ширина:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "Пере_ходити на початок"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -975,15 +950,15 @@ msgstr "Використовувати системні шрифти"
 msgid "Use the default fonts set for the system."
 msgstr "Використовувати типовий системний набір шрифтів."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/yelp-bookmarks.c:149
 msgid "Open Bookmark in New Window"
 msgstr "Відкрити закладку у новому вікні"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:153
 msgid "Rename Bookmark"
 msgstr "Перейменувати закладку"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:157
 msgid "Remove Bookmark"
 msgstr "Видалити закладку"
 
@@ -992,28 +967,28 @@ msgstr "Видалити закладку"
 msgid "A bookmark titled %s already exists for this page."
 msgstr "На цій сторінці вже є закладка з назвою %s."
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:391
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "На цій сторінці вже є закладка з назвою <b>%s</b>."
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:404
 msgid "Help Topics"
 msgstr "Теми довідки"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:419
 msgid "Document Sections"
 msgstr "Розділи документу"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Сторінка не існує"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Сторінка %s не існує у документі %s."
@@ -1059,7 +1034,7 @@ msgstr ""
 "Не вдається розібрати файл ‘%s’, оскільки. Або він не існує, або включає "
 "некоректно сформовані файли  XML."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Невідомо"
 
@@ -1067,7 +1042,7 @@ msgstr "Невідомо"
 msgid "Unknown Error"
 msgstr "Невідома помилка"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1705
 msgid "Could Not Read File"
 msgstr "Не вдається прочитати документ"
 
@@ -1083,7 +1058,7 @@ msgstr ""
 "Не вдається розібрати файл ‘%s’, оскільки файл не існує, або не є коректно "
 "сформованим файлом типу info."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1092,22 +1067,31 @@ msgstr ""
 "Не вдається прочитати та розкодувати файл ‘%s’. Можливо, файл стиснений з "
 "використанням невідомого алгоритму."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:90
 msgid "Use a private session"
 msgstr "Використовувати приватний сеанс"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:99
 msgid "Define which cache directory to use"
 msgstr "Визначити, яку категорію використовувати"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:356
 msgid " GNOME Help Browser"
 msgstr "Програма перегляду довідки GNOME"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Довідка"
+
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "Теки не знайдено"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Теки '%s' не існує."
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1147,16 +1131,16 @@ msgstr "Помилка під час друку"
 msgid "It was not possible to print your document: %s"
 msgstr "Ваш документ надрукувати неможливо: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "команда підтримки GNOME"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Немає результату для \"%s\""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -1164,7 +1148,7 @@ msgstr ""
 "Спробуйте використати інші слова для опису вашої проблеми або теми, з якої "
 "вам потрібна допомога."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Результат пошуку \"%s\""
@@ -1174,7 +1158,7 @@ msgstr "Результат пошуку \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Повторити пошук онлайн на %s"
@@ -1256,237 +1240,235 @@ msgstr ""
 "Не вдається розібрати файл змісту, оскільки файл не існує, або не є коректно "
 "сформованим файлом  XML."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "Некоректна стильова сторінка"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr "Стильова сторінка XSLT ‘%s’ або відсутня, або некоректна."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "Помилка при трансформації"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Невідома помилка при спробі перетворення документу."
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "У yelp:document відсутній атрибут посилання href\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Недостатньо пам'яті"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:306
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:307
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../src/yelp-window.c:306
+#: ../src/yelp-window.c:308
 msgid "_Go"
 msgstr "Пере_йти"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:309
 msgid "_Bookmarks"
 msgstr "_Закладки"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:310
 msgid "_Help"
 msgstr "_Довідка"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:313
 msgid "_New Window"
 msgstr "_Створити вікно"
 
-#: ../src/yelp-window.c:316
+#: ../src/yelp-window.c:318
 msgid "Print This Document ..."
 msgstr "Друкувати цей документ..."
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:323
 msgid "Print This Page ..."
 msgstr "Друкувати цю сторінку..."
 
-#: ../src/yelp-window.c:326
+#: ../src/yelp-window.c:328
 msgid "About This Document"
 msgstr "Про цей документ"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:333
 msgid "Open _Location"
 msgstr "Відкрити _адресу"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:338
 msgid "_Close Window"
 msgstr "_Закрити вікно"
 
-#: ../src/yelp-window.c:342
+#: ../src/yelp-window.c:344
 msgid "_Copy"
 msgstr "_Копіювати"
 
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:350
 msgid "_Select All"
 msgstr "Виді_лити все"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:355
 msgid "_Find..."
 msgstr "З_найти..."
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:360
 msgid "Find Pre_vious"
 msgstr "Знайти п_опереднє"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:362
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Знайти попередню відповідність слову чи фразі"
 
-#: ../src/yelp-window.c:363
+#: ../src/yelp-window.c:365
 msgid "Find Ne_xt"
 msgstr "Знайти д_алі"
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:367
 msgid "Find next occurrence of the word or phrase"
 msgstr "Знайти наступну відповідність слову чи фразі"
 
-#: ../src/yelp-window.c:368
+#: ../src/yelp-window.c:370
 msgid "_Preferences"
 msgstr "П_араметри"
 
-#: ../src/yelp-window.c:373
+#: ../src/yelp-window.c:375
 msgid "_Reload"
 msgstr "_Перечитати"
 
-#: ../src/yelp-window.c:385
+#: ../src/yelp-window.c:387
 msgid "_Back"
 msgstr "_Назад"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:389
 msgid "Show previous page in history"
 msgstr "Показати попередню сторінку"
 
-#: ../src/yelp-window.c:390
+#: ../src/yelp-window.c:392
 msgid "_Forward"
 msgstr "_Вперед"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:394
 msgid "Show next page in history"
 msgstr "Показати наступну сторінку"
 
-#: ../src/yelp-window.c:395
+#: ../src/yelp-window.c:397
 msgid "_Help Topics"
 msgstr "_Теми довідки"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:399
 msgid "Go to the listing of help topics"
 msgstr "Перейти до переліку тем довідки"
 
-#: ../src/yelp-window.c:400
+#: ../src/yelp-window.c:402
 msgid "_Previous Section"
 msgstr "_Попередня сторінка"
 
-#: ../src/yelp-window.c:405
+#: ../src/yelp-window.c:407
 msgid "_Next Section"
 msgstr "Н_аступний розділ"
 
-#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
+#: ../src/yelp-window.c:412 ../src/yelp-window.c:444
 msgid "_Contents"
 msgstr "_Зміст"
 
-#: ../src/yelp-window.c:416
+#: ../src/yelp-window.c:418
 msgid "_Add Bookmark"
 msgstr "_Додати закладку"
 
-#: ../src/yelp-window.c:421
+#: ../src/yelp-window.c:423
 msgid "_Edit Bookmarks..."
 msgstr "_Правка закладки..."
 
-#: ../src/yelp-window.c:427
+#: ../src/yelp-window.c:429
 msgid "_Open Link"
 msgstr "_Відкрити посилання"
 
-#: ../src/yelp-window.c:432
+#: ../src/yelp-window.c:434
 msgid "Open Link in _New Window"
 msgstr "Відкрити посилання у _новому вікні"
 
-#: ../src/yelp-window.c:437
+#: ../src/yelp-window.c:439
 msgid "_Copy Link Address"
 msgstr "_Копіювати адресу посилання"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:446
 msgid "Help On this application"
 msgstr "Довідка з цієї програми"
 
-#: ../src/yelp-window.c:447
+#: ../src/yelp-window.c:449
 msgid "_About"
 msgstr "_Про програму"
 
-#: ../src/yelp-window.c:452
+#: ../src/yelp-window.c:454
 msgid "Copy _Email Address"
 msgstr "_Копіювати адресу пошти"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:526
 msgid "Help Browser"
 msgstr "Програма перегляду довідки"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:621 ../src/yelp-window.c:673 ../src/yelp-window.c:1767
 msgid "Loading..."
 msgstr "Завантаження..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:622 ../src/yelp-window.c:674
 msgid "Unknown Page"
 msgstr "Невідома сторінка"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1115
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Вказаний URI \"%s\" є некоректним"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1045 ../src/yelp-window.c:1108
+#: ../src/yelp-window.c:1116
 msgid "Unable to load page"
 msgstr "Не вдається завантажити сторінку"
 
-#: ../src/yelp-window.c:1069
-msgid "Error executing \"gnome-open\""
-msgstr "Помилка при виконанні \"gnome-open\""
-
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1325
 msgid "_Search:"
 msgstr "По_шук:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1326
 msgid "Search for other documentation"
 msgstr "Пошук іншої документації"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1346
 msgid "Cannot create window"
 msgstr "Не вдається створити вікно"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1352
 msgid "Cannot create search component"
 msgstr "Не вдається створити компонент пошуку"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1524
 msgid "Fin_d:"
 msgstr "З_найти:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1546
 msgid "Find _Previous"
 msgstr "Знайти п_опереднє"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1558
 msgid "Find _Next"
 msgstr "Знайти д_алі"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1571
 msgid "Phrase not found"
 msgstr "Фраза не існує"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1702
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1497,17 +1479,17 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2572
 msgid "translator-credits"
 msgstr ""
 "Юрій Сирота <yuriy@beer.com>\n"
 "Максим Дзюманенко <dziumanenko@gmail.com>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2575
 msgid "Yelp"
 msgstr "Довідка"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2577
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Програма перегляду документації для середовища GNOME."
 
@@ -1515,4 +1497,29 @@ msgstr "Програма перегляду документації для се
 msgid "Get help with GNOME"
 msgstr "Отримання довідки у середовищі GNOME"
 
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Спеціальні можливості</b>"
 
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Шрифти</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "Враховувати _регістр"
+
+#~ msgid "Find"
+#~ msgstr "Знайти"
+
+#~ msgid "_Find:"
+#~ msgstr "З_найти:"
+
+#~ msgid "_Next"
+#~ msgstr "_Наступне"
+
+#~ msgid "_Previous"
+#~ msgstr "_Попереднє"
+
+#~ msgid "_Wrap around"
+#~ msgstr "Пере_ходити на початок"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "Помилка при виконанні \"gnome-open\""

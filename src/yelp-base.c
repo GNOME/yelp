@@ -107,7 +107,7 @@ yelp_base_init (YelpBase *base)
 static void
 yelp_base_class_init (YelpBaseClass *klass)
 {
-	parent_class = gtk_type_class (PARENT_TYPE);
+	parent_class = g_type_class_peek (PARENT_TYPE);
 
 	main_running = TRUE;
 

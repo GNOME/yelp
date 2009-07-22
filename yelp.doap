@@ -1,0 +1,36 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">Help</name>
+  <shortdesc xml:lang="en">Get help with GNOME</shortdesc>
+
+  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/gnome-doc-devel-list" />
+  <download-page rdf:resource="http://download.gnome.org/sources/yelp/" />
+  <bug-database rdf:resource="http://bugzilla.gnome.org/browse.cgi?product=Yelp" />
+  <category rdf:resource="http://api.gnome.org/doap-extensions#desktop" />
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Shaun McCance</foaf:name>
+      <foaf:mbox rdf:resource="mailto:shaunm@gnome.org" />
+      <gnome:userid>shaunm</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Brent Smith</foaf:name>
+      <foaf:mbox rdf:resource="mailto:gnome@nextreality.net" />
+      <gnome:userid>bmsmith</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Don Scorgie</foaf:name>
+      <foaf:mbox rdf:resource="mailto:Don@Scorgie.org" />
+      <gnome:userid>dscorgie</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+</Project>

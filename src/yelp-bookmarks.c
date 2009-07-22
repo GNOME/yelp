@@ -30,17 +30,13 @@
 #include "yelp-debug.h"
 
 #include <string.h>
-#include <gtk/gtkuimanager.h>
-#include <gtk/gtkliststore.h>
-#include <gtk/gtktreemodel.h>
+#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#include <glade/glade.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
 #include <libxml/xmlwriter.h>
-#include <libgnome/gnome-config.h>
 
 #define COL_NAME   0
 #define COL_LABEL  1
@@ -48,10 +44,12 @@
 #define COL_HEADER 3
 #define TOC_PATH "ui/menubar/BookmarksMenu/BookmarksTOC"
 #define DOC_PATH "ui/menubar/BookmarksMenu/BookmarksDOC"
-#define BK_CONFIG_WIDTH  "/yelp/Bookmarks/width"
-#define BK_CONFIG_HEIGHT "/yelp/Bookmarks/height"
-#define BK_CONFIG_WIDTH_DEFAULT  "360"
-#define BK_CONFIG_HEIGHT_DEFAULT "360"
+#define BK_CONFIG_PATH   "/.gnome2/yelp"
+#define BK_CONFIG_BK_GROUP "Bookmarks"
+#define BK_CONFIG_WIDTH  "width"
+#define BK_CONFIG_HEIGHT "height"
+#define BK_CONFIG_WIDTH_DEFAULT  360
+#define BK_CONFIG_HEIGHT_DEFAULT 360
 
 static GSList *windows;
 static GtkTreeStore *actions_store;
@@ -139,7 +137,7 @@ static void      bookmarks_menu_open_cb     (GtkAction           *action,
 					     GtkWidget           *widget);
 static gboolean  bookmarks_button_press_cb  (GtkWidget           *widget,
 					     GdkEventButton      *event);
-static gboolean  bookmarks_configure_cb     (GtkWidget           *widget, 
+static gboolean  bookmarks_configure_cb     (GtkWidget           *widget,
 					     GdkEventConfigure   *event,
 					     gpointer             data);
 static void      selection_changed_cb       (GtkTreeSelection    *selection,
@@ -255,10 +253,10 @@ bookmarks_ensure_valid (void)
 					    &doc_iter)) {
 	    gtk_tree_store_remove (actions_store, &doc_iter);
 	    have_doc = FALSE;
-	}	
+	}
 }
 
-static gboolean 
+static gboolean
 bookmarks_dup_finder (GtkTreeModel *model, GtkTreePath *path,
 		      GtkTreeIter *iter, gpointer data)
 {
@@ -285,7 +283,8 @@ bookmarks_dup_finder (GtkTreeModel *model, GtkTreePath *path,
 void
 yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 {
-    GladeXML    *glade;
+    GtkBuilder  *builder;
+    GError      *error = NULL;
     GtkWidget   *dialog;
     GtkEntry    *entry;
     gchar       *title;
@@ -293,7 +292,7 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 
     title = (gchar *) gtk_window_get_title (GTK_WINDOW (window));
     dup_uri = g_strdup (uri);
-    
+
     if (dup_title)
 	g_free (dup_title);
     dup_title = NULL;
@@ -326,17 +325,17 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 	return;
     }
 
-    glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
-			   "add_bookmark_dialog",
-			   NULL);
-    if (!glade) {
-	g_warning ("Could not find necessary glade file "
-		   DATADIR "/yelp/ui/yelp.glade");
-	return;
+    builder = gtk_builder_new ();
+    if (!gtk_builder_add_from_file (builder,
+                                    DATADIR "/yelp/ui/yelp-bookmarks-add.ui",
+                                    &error)) {
+        g_warning ("Could not load builder file: %s", error->message);
+        g_error_free(error);
+        return;
     }
 
-    dialog = glade_xml_get_widget (glade, "add_bookmark_dialog");
-    entry = GTK_ENTRY (glade_xml_get_widget (glade, "bookmark_title_entry"));
+    dialog = GTK_WIDGET (gtk_builder_get_object (builder, "add_bookmark_dialog"));
+    entry = GTK_ENTRY (gtk_builder_get_object (builder, "bookmark_title_entry"));
     gtk_entry_set_text (entry, title);
     gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
 
@@ -347,7 +346,6 @@ yelp_bookmarks_add (const gchar *uri, YelpWindow *window)
 		      G_CALLBACK (bookmark_add_response_cb),
 		      dup_uri);
 
-    g_object_unref (glade);
     gtk_window_present (GTK_WINDOW (dialog));
 }
 
@@ -439,7 +437,7 @@ bookmarks_add_bookmark (const gchar  *uri,
 			-1);
     if (save) {
 	for (cur = windows; cur != NULL; cur = cur->next) {
-	    window_add_bookmark ((YelpWindowData *) cur->data, (gchar *) uri, 
+	    window_add_bookmark ((YelpWindowData *) cur->data, (gchar *) uri,
 				 title);
 	}
 	yelp_bookmarks_write ();
@@ -486,7 +484,7 @@ bookmarks_rebuild_menus (void)
 	window_remove_bookmark_menu ((YelpWindowData *) cur->data);
     }
 
-    top_valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (actions_store), 
+    top_valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (actions_store),
 					       &top_iter);
     while (top_valid) {
 	if (gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
@@ -506,11 +504,11 @@ bookmarks_rebuild_menus (void)
 		g_free (name);
 		g_free (label);
 
-		sub_valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (actions_store), 
+		sub_valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (actions_store),
 						      &sub_iter);
 	    }
 	}
-	top_valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (actions_store), 
+	top_valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (actions_store),
 					      &top_iter);
     }
 
@@ -527,13 +525,13 @@ bookmarks_key_event_cb (GtkWidget   *widget,
     GtkTreeSelection *sel;
     GtkTreeModel *model;
     GtkTreeIter iter;
-    
+
     model = gtk_tree_view_get_model (view);
     sel = gtk_tree_view_get_selection (view);
-    
+
     if (gtk_tree_selection_get_selected (sel, &model, &iter)) {
 	path = gtk_tree_model_get_path (model, &iter);
-	
+
 	switch (event->keyval) {
 	case GDK_BackSpace:
 	case GDK_Delete:
@@ -578,10 +576,10 @@ bookmarks_open_cb (GtkTreeView *view, GtkTreePath *path,
 	gtk_tree_model_get (GTK_TREE_MODEL (actions_store), &iter,
 			    COL_NAME, &name,
 			    COL_LABEL, &title, -1);
-	
+
 	cur = windows;
 	data = cur->data;
-	
+
 	g_signal_emit_by_name (data->window, "new_window_requested", name, NULL);
     }
 }
@@ -605,38 +603,63 @@ bookmarks_cell_edited_cb (GtkCellRendererText *cell, const gchar *path_string,
 void
 yelp_bookmarks_edit (void)
 {
-    GladeXML    *glade;
+    GtkBuilder *builder;
+    GError *error = NULL;
     GtkTreeView *view;
     GtkTreeSelection *select;
     GtkCellRenderer *renderer;
     gint width, height;
-    
+    GKeyFile *keyfile;
+    GError *config_error = NULL;
+    gchar *config_path;
+
     if (!bookmarks_dialog) {
-	glade = glade_xml_new (DATADIR "/yelp/ui/yelp.glade",
-			       "bookmarks_dialog",
-			       NULL);
-	if (!glade) {
-	    g_warning ("Could not find necessary glade file "
-		       DATADIR "/yelp/ui/yelp.glade");
-	    return;
+        builder = gtk_builder_new ();
+        if (!gtk_builder_add_from_file (builder,
+                                        DATADIR "/yelp/ui/yelp-bookmarks.ui",
+                                        &error)) {
+            g_warning ("Could not load builder file: %s", error->message);
+            g_error_free(error);
+            return;
+        }
+
+        bookmarks_dialog = GTK_WIDGET (gtk_builder_get_object (builder, "bookmarks_dialog"));
+	view = GTK_TREE_VIEW (gtk_builder_get_object (builder, "bookmarks_view"));
+ 	keyfile = g_key_file_new();
+ 	config_path = g_strconcat (g_get_home_dir(), BK_CONFIG_PATH, NULL);
+
+ 	if( !g_key_file_load_from_file (keyfile, config_path,
+					G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS,
+					&config_error) ) {
+	    g_warning ("Failed to load config file: %s\n", config_error->message);
+	    g_error_free (config_error);
+
+	    width = BK_CONFIG_WIDTH_DEFAULT;
+	    height = BK_CONFIG_HEIGHT_DEFAULT;
+	} else {
+	    width = g_key_file_get_integer (keyfile, BK_CONFIG_BK_GROUP,
+					    BK_CONFIG_WIDTH, NULL);
+	    height = g_key_file_get_integer (keyfile, BK_CONFIG_BK_GROUP,
+					     BK_CONFIG_HEIGHT, NULL);
+
+	    if (width == 0)
+		width = BK_CONFIG_WIDTH_DEFAULT;
+	    if (height == 0)
+		height = BK_CONFIG_HEIGHT_DEFAULT;
 	}
 
-	bookmarks_dialog = glade_xml_get_widget (glade, "bookmarks_dialog");
-	view = GTK_TREE_VIEW (glade_xml_get_widget (glade, "bookmarks_view"));
-	width = gnome_config_get_int (BK_CONFIG_WIDTH
-				      "=" BK_CONFIG_WIDTH_DEFAULT);
-	height = gnome_config_get_int (BK_CONFIG_HEIGHT
-				       "=" BK_CONFIG_HEIGHT_DEFAULT);
-	gtk_window_set_default_size (GTK_WINDOW (bookmarks_dialog), 
+ 	g_free (config_path);
+ 	g_key_file_free (keyfile);
+	gtk_window_set_default_size (GTK_WINDOW (bookmarks_dialog),
 				     width, height);
 
 	g_signal_connect (G_OBJECT (bookmarks_dialog), "response",
 			  G_CALLBACK (gtk_widget_hide), NULL);
 	g_signal_connect (G_OBJECT (bookmarks_dialog), "delete_event",
 			  G_CALLBACK (gtk_widget_hide_on_delete), NULL);
-	
+
 	renderer = gtk_cell_renderer_text_new ();
-    
+
 	gtk_tree_view_insert_column_with_attributes
 	    (view, -1,
 	     NULL, renderer,
@@ -646,28 +669,28 @@ yelp_bookmarks_edit (void)
 	gtk_tree_view_set_model (view, GTK_TREE_MODEL (actions_store));
 
 	select = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
-	
+
 	gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
 	gtk_tree_view_expand_all (GTK_TREE_VIEW (view));
 
 	g_signal_connect (G_OBJECT (view), "row-activated",
 			  G_CALLBACK (bookmarks_open_cb),
-			  NULL); 
+			  NULL);
 	g_signal_connect (G_OBJECT (view), "key-press-event",
 			  G_CALLBACK (bookmarks_key_event_cb),
 			  NULL);
 	g_signal_connect (G_OBJECT (renderer), "edited",
 			  G_CALLBACK (bookmarks_cell_edited_cb), NULL);
 
-	edit_open_button = glade_xml_get_widget (glade, "open_button");
+	edit_open_button = GTK_WIDGET (gtk_builder_get_object (builder, "open_button"));
 	g_signal_connect (G_OBJECT (edit_open_button), "clicked",
 			  G_CALLBACK (bookmarks_open_button_cb),
 			  view);
-	edit_rename_button = glade_xml_get_widget (glade, "rename_button");
+	edit_rename_button = GTK_WIDGET (gtk_builder_get_object (builder, "rename_button"));
 	g_signal_connect (G_OBJECT (edit_rename_button), "clicked",
 			  G_CALLBACK (bookmarks_rename_button_cb),
 			  view);
-	edit_remove_button = glade_xml_get_widget (glade, "remove_button");
+	edit_remove_button = GTK_WIDGET (gtk_builder_get_object (builder, "remove_button"));
 	g_signal_connect (G_OBJECT (edit_remove_button), "clicked",
 			  G_CALLBACK (bookmarks_remove_button_cb),
 			  view);
@@ -680,8 +703,6 @@ yelp_bookmarks_edit (void)
 	g_signal_connect (G_OBJECT (bookmarks_dialog), "configure-event",
 			  G_CALLBACK (bookmarks_configure_cb),
 			  NULL);
-
-	g_object_unref (glade);
     }
 
     gtk_window_present (GTK_WINDOW (bookmarks_dialog));
@@ -692,10 +713,32 @@ bookmarks_configure_cb (GtkWidget *widget, GdkEventConfigure *event,
 			gpointer data)
 {
     gint width, height;
+    GKeyFile *keyfile;
+    gchar *config_path, *sdata;
+    GError *config_error = NULL;
+    gsize config_size;
+
     gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
-    gnome_config_set_int (BK_CONFIG_WIDTH, width);
-    gnome_config_set_int (BK_CONFIG_HEIGHT, height);
-    gnome_config_sync ();
+
+    keyfile = g_key_file_new ();
+    config_path = g_strconcat (g_get_home_dir (), BK_CONFIG_PATH, NULL);
+
+    g_key_file_set_integer (keyfile, BK_CONFIG_BK_GROUP,
+			    BK_CONFIG_WIDTH, width);
+    g_key_file_set_integer (keyfile, BK_CONFIG_BK_GROUP,
+			    BK_CONFIG_HEIGHT, height);
+
+    sdata = g_key_file_to_data (keyfile, &config_size, NULL);
+
+    if ( !g_file_set_contents (config_path, sdata, config_size,
+			       &config_error) ) {
+	g_warning ("Failed to save config file: %s\n", config_error->message);
+	g_error_free (config_error);
+    }
+
+    g_free (sdata);
+    g_free (config_path);
+    g_key_file_free (keyfile);
 
     return FALSE;
 }
@@ -705,7 +748,7 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
     GtkTreeIter iter;
     if (gtk_tree_selection_get_selected (selection, NULL, &iter) &&
-	!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store), 
+	!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (actions_store),
 					&iter)) {
 	/*A row is highlighted - sensitise the various widgets*/
 	gtk_widget_set_sensitive (GTK_WIDGET (edit_open_button), TRUE);
@@ -717,7 +760,7 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 	gtk_widget_set_sensitive (GTK_WIDGET (edit_open_button), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (edit_rename_button), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (edit_remove_button), FALSE);
-	
+
     }
 }
 
@@ -735,9 +778,9 @@ bookmarks_open_button_cb (GtkWidget *widget, GtkTreeView *view)
     select = gtk_tree_view_get_selection (view);
     if (gtk_tree_selection_get_selected (select, NULL, &iter)) {
 	path = gtk_tree_model_get_path (model, &iter);
-	
+
 	bookmarks_open_cb (view, path, NULL, NULL);
-	
+
 	gtk_tree_path_free (path);
     }
 }
@@ -757,7 +800,7 @@ bookmarks_rename_button_cb (GtkWidget *widget, GtkTreeView *view)
     if (selection) {
 	path = gtk_tree_model_get_path (model, &iter);
 	col = gtk_tree_view_get_column (view, 0);
-	
+
 	gtk_tree_view_set_cursor (view, path, col, TRUE);
     }
 }
@@ -829,7 +872,7 @@ bookmarks_menu_edit_cb (GtkAction *action, GtkWidget *widget)
     if (gtk_tree_selection_get_selected (sel, &model, &iter)) {
 	path = gtk_tree_model_get_path (model, &iter);
 	col = gtk_tree_view_get_column (view, 0);
-	
+
 	gtk_tree_view_set_cursor (view, path, col, TRUE);
     }
 }
@@ -843,7 +886,7 @@ bookmarks_menu_remove_cb (GtkAction *action, GtkWidget *widget)
 
     sel = gtk_tree_view_get_selection (view);
     if (gtk_tree_selection_get_selected (sel, NULL, &iter)) {
-	
+
 	gtk_tree_store_remove (actions_store, &iter);
 	bookmarks_ensure_valid ();
 	bookmarks_rebuild_menus ();
@@ -861,7 +904,7 @@ bookmarks_menu_open_cb (GtkAction *action, GtkWidget *widget)
 
     if (gtk_tree_selection_get_selected (sel, &model, &iter)) {
 	path = gtk_tree_model_get_path (model, &iter);
-	
+
 	bookmarks_open_cb (view, path, NULL, NULL);
     }
 }
@@ -900,10 +943,10 @@ yelp_bookmarks_write (void)
     gboolean top_valid, sub_valid;
     gchar *filename;
 
-    filename = g_build_filename (g_get_home_dir (), ".gnome2", 
+    filename = g_build_filename (g_get_home_dir (), ".gnome2",
 				 "yelp-bookmarks.xbel", NULL);
 
-    file = xmlNewTextWriterFilename (filename, 
+    file = xmlNewTextWriterFilename (filename,
 				     0);
     if(!file) {
 	g_warning ("Could not create bookmark file %s", filename);
@@ -934,11 +977,11 @@ yelp_bookmarks_write (void)
 		gchar *name;
 		gchar *label;
 		gtk_tree_model_get (GTK_TREE_MODEL (actions_store), &sub_iter,
-				    COL_NAME, &name, 
+				    COL_NAME, &name,
 				    COL_LABEL, &label,
 				    -1);
 		xmlTextWriterStartElement (file, BAD_CAST "bookmark");
- 		xmlTextWriterWriteAttribute (file, BAD_CAST "href", 
+ 		xmlTextWriterWriteAttribute (file, BAD_CAST "href",
 					     BAD_CAST name);
 
 		xmlTextWriterWriteElement (file,
@@ -1003,20 +1046,20 @@ bookmarks_read (const gchar *filename)
 	if (uri) {
 	    xmlXPathObjectPtr title_obj;
 	    xpath->node = node;
-	    title_obj = xmlXPathEvalExpression (BAD_CAST "string(title[1])", 
+	    title_obj = xmlXPathEvalExpression (BAD_CAST "string(title[1])",
 						xpath);
 	    xpath->node = NULL;
 
 	    if (title_obj->stringval)
-		bookmarks_add_bookmark ((const gchar *) uri, 
-					(const gchar *) title_obj->stringval, 
+		bookmarks_add_bookmark ((const gchar *) uri,
+					(const gchar *) title_obj->stringval,
 					FALSE);
 
 	    xmlXPathFreeObject (title_obj);
 	    xmlFree (uri);
 	}
     }
-    
+
     if (obj)
 	xmlXPathFreeObject (obj);
     if (xpath)

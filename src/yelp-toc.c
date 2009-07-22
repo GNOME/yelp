@@ -450,6 +450,8 @@ toc_process (YelpToc *toc)
 	xmlChar *icon = NULL;
 	xmlChar *id = NULL;
 
+	xmlNodeSetLang (node, BAD_CAST g_get_language_names ()[0]);
+
 	xml_trim_titles (node, BAD_CAST "title");
 	xml_trim_titles (node, BAD_CAST "description");
 
@@ -502,10 +504,10 @@ toc_process (YelpToc *toc)
 
     info = gtk_icon_theme_lookup_icon (theme, "yelp-icon-big", 192, 0);
     if (info) {
-	params[params_i++] = "help_icon";
+	params[params_i++] = g_strdup ("help_icon");
 	params[params_i++] = g_strdup_printf ("\"%s\"",
 				      gtk_icon_info_get_filename (info));
-	params[params_i++] = "help_icon_size";
+	params[params_i++] = g_strdup ("help_icon_size");
 	params[params_i++] = g_strdup_printf ("%i",
 					      gtk_icon_info_get_base_size (info));
 	gtk_icon_info_free (info);
@@ -527,6 +529,7 @@ toc_process (YelpToc *toc)
     yelp_transform_start (priv->transform,
 			  priv->xmldoc,
 			  params);
+    g_strfreev (params);
     g_mutex_unlock (priv->mutex);
 
  done:

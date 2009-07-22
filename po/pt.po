@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.22\n"
+"Project-Id-Version: 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-12 22:45+0000\n"
-"PO-Revision-Date: 2008-02-12 23:00+0000\n"
+"POT-Creation-Date: 2008-09-14 14:00+0100\n"
+"PO-Revision-Date: 2008-09-14 14:00+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -748,7 +748,9 @@ msgstr "Definições"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Definições que os utilizadores podem manipular para tornar o seu ambiente de trabalho mais agradável"
+msgstr ""
+"Definições que os utilizadores podem manipular para tornar o seu ambiente de "
+"trabalho mais agradável"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -1039,7 +1041,7 @@ msgstr "O ficheiro ‘%s’ não existe."
 #: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
 #: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
-msgstr "Incapaz de parsear o ficheiro"
+msgstr "Incapaz de processar o ficheiro"
 
 #: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
@@ -1047,7 +1049,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"Incapaz de parsear o ficheiro ‘%s’ porque não é um documento XML "
+"Incapaz de processar o ficheiro ‘%s’ porque não é um documento XML "
 "correctamente formado."
 
 #: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
@@ -1056,7 +1058,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"Incapaz de parsear o ficheiro ‘%s’ porque um ou mais dos seus ficheiros "
+"Incapaz de processar o ficheiro ‘%s’ porque um ou mais dos seus ficheiros "
 "incluídos não é um documento XML correctamente formado."
 
 #: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
@@ -1067,7 +1069,7 @@ msgstr "Desconhecido"
 msgid "Unknown Error"
 msgstr "Erro Desconhecido"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1643
 msgid "Could Not Read File"
 msgstr "Incapaz de Ler o Ficheiro"
 
@@ -1080,10 +1082,10 @@ msgstr "Não existe nenhuma informação disponível sobre este erro."
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Incapaz de parsear o ficheiro ‘%s’ porque não é uma página de info "
+"Incapaz de processar o ficheiro ‘%s’ porque não é uma página de info "
 "correctamente formada."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1092,20 +1094,20 @@ msgstr ""
 "Incapaz de ler e descodificar o ficheiro ‘%s’. O ficheiro poderá estar "
 "comprimido num formato não suportado."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:91
 msgid "Use a private session"
 msgstr "Utilizar uma sessão privada"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:100
 msgid "Define which cache directory to use"
 msgstr "Defina que directório de cache utilizar"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:357
 msgid " GNOME Help Browser"
 msgstr " Navegador de Ajuda do GNOME"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajuda"
 
@@ -1114,7 +1116,7 @@ msgstr "Ajuda"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
-"Incapaz de parsear o ficheiro ‘%s’ porque não é uma página man correctamente "
+"Incapaz de processar o ficheiro ‘%s’ porque não é uma página man correctamente "
 "formada."
 
 #: ../src/yelp-print.c:97
@@ -1147,16 +1149,16 @@ msgstr "Ocorreu um erro ao imprimir"
 msgid "It was not possible to print your document: %s"
 msgstr "Não foi possível imprimir o seu documento: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "os Foruns de Apoio do GNOME"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Nenhum resultado para \"%s\""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -1164,7 +1166,7 @@ msgstr ""
 "Tente utilizar palavras diferentes para descrever o problema que está a ter "
 "ou o tópico para o qual deseja ajuda."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Procurar resultados para \"%s\""
@@ -1174,7 +1176,7 @@ msgstr "Procurar resultados para \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Repetir a procura online em %s"
@@ -1255,7 +1257,7 @@ msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"Incapaz de parsear o ficheiro de índice porque não é um documento XML "
+"Incapaz de processar o ficheiro de índice porque não é um documento XML "
 "correctamente formado."
 
 #: ../src/yelp-transform.c:80
@@ -1435,7 +1437,7 @@ msgstr "Copiar o Endereço de _Email"
 msgid "Help Browser"
 msgstr "Navegador de Ajuda"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1700
 msgid "Loading..."
 msgstr "A Ler..."
 
@@ -1443,52 +1445,54 @@ msgstr "A Ler..."
 msgid "Unknown Page"
 msgstr "Página Desconhecida"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
+#: ../src/yelp-window.c:1084
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "O URI pedido \"%s\" é inválido"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
+#: ../src/yelp-window.c:1085
 msgid "Unable to load page"
 msgstr "Incapaz de ler a página"
 
-#: ../src/yelp-window.c:1069
+#: ../src/yelp-window.c:1079
 msgid "Error executing \"gnome-open\""
 msgstr "Erro ao executar o \"gnome-open\""
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1265
 msgid "_Search:"
 msgstr "_Procurar:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1266
 msgid "Search for other documentation"
 msgstr "Procurar por outra documentação relacionada"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1286
 msgid "Cannot create window"
 msgstr "Incapaz de criar uma janela"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1292
 msgid "Cannot create search component"
 msgstr "Incapaz de criar o componente de procura"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1464
 msgid "Fin_d:"
 msgstr "Pr_ocurar:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1486
 msgid "Find _Previous"
 msgstr "Procurar _Anterior"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1498
 msgid "Find _Next"
 msgstr "Procurar _Seguinte"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1511
 msgid "Phrase not found"
 msgstr "Frase não foi encontrada"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1640
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1499,15 +1503,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2480
 msgid "translator-credits"
 msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2483
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2485
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Um navegador e visualizador de documentação para o Ambiente Gnome."
 
@@ -1580,7 +1584,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
 #~ "is formatted incorrectly."
 #~ msgstr ""
-#~ "Incapaz de parsear o ficheiro ‘%s’.  Ou o ficheiro não existe ou está "
+#~ "Incapaz de processar o ficheiro ‘%s’.  Ou o ficheiro não existe ou está "
 #~ "formatado incorrectamente."
 
 #~ msgid "The YelpDocInfo struct of the document"
@@ -1678,7 +1682,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
 #~ "is improperly formatted."
 #~ msgstr ""
-#~ "Incapaz de parsear o ficheiro ‘%s’. Ou o ficheiro não existe ou está "
+#~ "Incapaz de processar o ficheiro ‘%s’. Ou o ficheiro não existe ou está "
 #~ "incorrectamente formatado."
 
 #~ msgid "Library Functions"

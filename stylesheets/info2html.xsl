@@ -76,6 +76,15 @@
   </xsl:element>
 </xsl:template>
 
+<xsl:template match="img">
+  <xsl:element name="a">
+    <xsl:attribute name="href"> <xsl:value-of select="@src"/></xsl:attribute>
+      <xsl:element name="img">
+        <xsl:attribute name="src"> <xsl:value-of select="@src"/></xsl:attribute>
+      </xsl:element>
+  </xsl:element>
+</xsl:template>
+
 <xsl:template match="menuholder">
   <xsl:apply-templates select="node()[not(self::menuholder)]"/>
 </xsl:template>
@@ -112,6 +121,7 @@ dl dd {
 ol { margin-left: 2em; }
 ul { margin-left: 2em; }
 ul li { margin-right: 1em; }
+img { border: none; }
 </xsl:text></xsl:template>
 
 </xsl:stylesheet>

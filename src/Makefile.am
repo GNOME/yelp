@@ -18,6 +18,7 @@ yelp_SOURCES =							\
 	yelp-toc.h		yelp-toc.c			\
 	yelp-docbook.h		yelp-docbook.c			\
 	yelp-db-print.c		yelp-db-print.h			\
+	yelp-mallard.h		yelp-mallard.c			\
 	yelp-man-parser.c 	yelp-man-parser.h		\
 	yelp-man.c 		yelp-man.h			\
 	yelp-info.c 		yelp-info.h			\
@@ -70,12 +71,16 @@ yelp_LDFLAGS = $(AM_LDFLAGS)
 #	test-transform		\
 #	test-resolver
 
+check_PROGRAMS =		\
+	test-uri
+
 test_document_SOURCES =					\
 	yelp-debug.c		yelp-debug.h		\
 	yelp-docbook.c		yelp-docbook.h		\
 	yelp-document.c		yelp-document.h		\
 	yelp-error.c		yelp-error.h		\
 	yelp-io-channel.c	yelp-io-channel.h	\
+	yelp-mallard.c		yelp-mallard.h		\
 	yelp-man.c		yelp-man.h		\
 	yelp-man-parser.c	yelp-man-parser.h	\
 	yelp-page.c		yelp-page.h		\
@@ -124,6 +129,13 @@ test_resolver_SOURCES =				\
 test_resolver_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
 test_resolver_LDADD = $(YELP_LIBS)
 test_resolver_LDFLAGS = $(AM_LDFLAGS)
+
+test_uri_SOURCES =					\
+	yelp-uri.c		yelp-uri.h		\
+	test-uri.c
+test_uri_CFLAGS = $(YELP_CFLAGS) $(AM_CFLAGS) $(YELP_DEFINES)
+test_uri_LDADD = $(YELP_LIBS)
+test_uri_LDFLAGS = $(AM_LDFLAGS)
 
 @INTLTOOL_SERVER_RULE@
 

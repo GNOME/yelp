@@ -24,7 +24,7 @@
 #define __YELP_BOOKMARKS_H__
 
 #include <glib.h>
-#include <gtk/gtkactiongroup.h>
+#include <gtk/gtk.h>
 
 #include "yelp-window.h"
 

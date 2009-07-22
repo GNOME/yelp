@@ -23,18 +23,16 @@
 #ifndef __YELP_WINDOW_H__
 #define __YELP_WINDOW_H__
 
-#include <gtk/gtktreemodel.h>
-#include <gtk/gtkwindow.h>
 #include <gtk/gtk.h>
 
 #include "yelp-base.h"
 #include "yelp-utils.h"
 
 #define YELP_TYPE_WINDOW		(yelp_window_get_type ())
-#define YELP_WINDOW(obj)		(GTK_CHECK_CAST ((obj), YELP_TYPE_WINDOW, YelpWindow))
-#define YELP_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), YELP_TYPE_WINDOW, YelpWindowClass))
-#define YELP_IS_WINDOW(obj)		(GTK_CHECK_TYPE ((obj), YELP_TYPE_WINDOW))
-#define YELP_IS_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((klass), YELP_TYPE_WINDOW))
+#define YELP_WINDOW(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_WINDOW, YelpWindow))
+#define YELP_WINDOW_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), YELP_TYPE_WINDOW, YelpWindowClass))
+#define YELP_IS_WINDOW(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), YELP_TYPE_WINDOW))
+#define YELP_IS_WINDOW_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), YELP_TYPE_WINDOW))
 
 typedef struct _YelpWindow       YelpWindow;
 typedef struct _YelpWindowClass  YelpWindowClass;

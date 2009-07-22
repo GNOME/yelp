@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2003 Shaun McCance  <shaunm@gnome.org>
  *
@@ -48,9 +48,6 @@ YelpRrnType    resolve_man_page           (const gchar  *name,
 					   gchar       **section);
 gchar *        resolve_remove_section     (const gchar  *uri, 
 					   const gchar  *sect);
-YelpRrnType    yelp_uri_resolve           (gchar        *uri, 
-					   gchar       **result, 
-					   gchar       **section);
 
 YelpRrnType
 resolve_process_ghelp (char *uri, gchar **result)
@@ -92,6 +89,8 @@ resolve_process_ghelp (char *uri, gchar **result)
 	    type = YELP_RRN_TYPE_HTML;
 	else if (g_str_equal (mime, "application/xhtml+xml"))
 	    type = YELP_RRN_TYPE_XHTML;
+	else if (g_str_equal (mime, "text/plain"))
+	    type = YELP_RRN_TYPE_TEXT;
 
     } else {
 	gint file_cut = 6;
@@ -136,7 +135,7 @@ resolve_is_man_path (const gchar *path, const gchar *encoding)
     iter = cats;
 
     if (encoding && *encoding) {
-	while (iter) {
+	while (iter && *iter) {
 	    gchar *ending = g_strdup_printf ("%s.%s", *iter, encoding);
 	    if (g_str_has_suffix (path, ending)) {
 		g_free (ending);
@@ -146,7 +145,7 @@ resolve_is_man_path (const gchar *path, const gchar *encoding)
 	    iter++;
 	}
     } else {
-	while (iter) {
+	while (iter && *iter) {
 	    if (g_str_has_suffix (path, *iter)) {
 		return TRUE;
 	    }
@@ -167,17 +166,26 @@ resolve_full_file (const gchar *path)
     if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
 	return YELP_RRN_TYPE_ERROR;
     }
+
     mime_type = g_content_type_guess (path, NULL, 0, &uncertain);
     if (mime_type == NULL) {
 	return YELP_RRN_TYPE_ERROR;
     }
 
-    if (g_str_equal (mime_type, "text/xml") || g_str_equal (mime_type, "application/docbook+xml") || g_str_equal (mime_type, "application/xml"))
+    if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
+        type = YELP_RRN_TYPE_MAL;
+    }
+    else if (g_str_equal (mime_type, "text/xml") ||
+             g_str_equal (mime_type, "application/docbook+xml") ||
+             g_str_equal (mime_type, "application/xml")) {
 	type = YELP_RRN_TYPE_DOC;
-    else if (g_str_equal (mime_type, "text/html"))
+    }
+    else if (g_str_equal (mime_type, "text/html")) {
 	type = YELP_RRN_TYPE_HTML;
-    else if (g_str_equal (mime_type, "application/xhtml+xml"))
+    }
+    else if (g_str_equal (mime_type, "application/xhtml+xml")) {
 	type = YELP_RRN_TYPE_XHTML;
+    }
     else if (g_str_equal (mime_type, "application/x-gzip")) {
 	if (g_str_has_suffix (path, ".info.gz")) {
 	    type = YELP_RRN_TYPE_INFO;
@@ -185,26 +193,38 @@ resolve_full_file (const gchar *path)
 	    type = YELP_RRN_TYPE_MAN;
 	}
 
-    } else if (g_str_equal (mime_type, "application/x-bzip")) {
+    }
+    else if (g_str_equal (mime_type, "application/x-bzip")) {
 	if (g_str_has_suffix (path, ".info.bz2")) {
 	    type = YELP_RRN_TYPE_INFO;
 	} else if (resolve_is_man_path (path, "bz2")) {
 	    type = YELP_RRN_TYPE_MAN;
 	}
-    } else if (g_str_equal (mime_type, "application/x-lzma")) {
- 	    if (g_str_has_suffix (path, ".info.lzma")) {
- 		    type = YELP_RRN_TYPE_INFO;
- 	    } else if (resolve_is_man_path (path, "lzma")) {
- 		    type = YELP_RRN_TYPE_MAN;
- 	    }
-
-    } else if (g_str_equal (mime_type, "text/plain")) {
+    }
+    else if (g_str_equal (mime_type, "application/x-lzma")) {
+	if (g_str_has_suffix (path, ".info.lzma")) {
+	    type = YELP_RRN_TYPE_INFO;
+	} else if (resolve_is_man_path (path, "lzma")) {
+	    type = YELP_RRN_TYPE_MAN;
+	}
+    }
+    else if (g_str_equal (mime_type, "application/octet-stream")) {
 	if (g_str_has_suffix (path, ".info")) {
 	    type = YELP_RRN_TYPE_INFO;
 	} else if (resolve_is_man_path (path, NULL)) {
 	    type = YELP_RRN_TYPE_MAN;
 	}
-    } else {
+    }
+    else if (g_str_equal (mime_type, "text/plain")) {
+	if (g_str_has_suffix (path, ".info")) {
+	    type = YELP_RRN_TYPE_INFO;
+	} else if (resolve_is_man_path (path, NULL)) {
+	    type = YELP_RRN_TYPE_MAN;
+	} else {
+	    type = YELP_RRN_TYPE_TEXT;
+	}
+    }
+    else {
 	type = YELP_RRN_TYPE_EXTERNAL;
     }
 
@@ -346,6 +366,8 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    *section = g_strdup ("info");
 	    *result = NULL;
 	    ret = YELP_RRN_TYPE_TOC;
+	    if (intern_uri)
+		g_free (intern_uri);
 	    return ret;
 	}
 	
@@ -391,12 +413,12 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	    file_cut++;
 	ret = resolve_full_file (&intern_uri[file_cut]);
 	if (ret == YELP_RRN_TYPE_EXTERNAL) {
+	    *result = g_strdup (&uri[file_cut]);
 	    *section = NULL;
-	    *result = g_strdup (uri);
 	}
 	else if (ret == YELP_RRN_TYPE_ERROR) {
-	    *section = NULL;
 	    *result = NULL;
+	    *section = NULL;
 	} else {
 	    *result = g_strdup (&intern_uri[file_cut]);
 	    *section = intern_section;
@@ -420,17 +442,43 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	*section = g_strdup ("results");
 	ret = YELP_RRN_TYPE_SEARCH;
     } else if (g_file_test (intern_uri, G_FILE_TEST_EXISTS)) {
+	gchar *copy_uri;
 	/* Full path */
+	/* Check to see if the file is in the current directory */
+	if (intern_uri[0] != '/' &&
+	    strstr (intern_uri, ":/") == NULL) {
+	    /* Probably current dir - get the current directory,
+	     * put it on the front and see if it exists */
+	    gchar *current_path = NULL;
+	    gchar *new_uri = NULL;
+
+	    current_path = g_get_current_dir();
+
+	    new_uri = g_strdup_printf ("%s/%s", current_path,
+				       intern_uri);
+	    printf ("new_uri: %s\n", new_uri);
+
+	    if (g_file_test (new_uri, G_FILE_TEST_EXISTS)) {
+		copy_uri = g_strdup (new_uri);
+	    } else {
+		copy_uri = g_strdup (intern_uri);
+	    }
+	    g_free (current_path);
+	    g_free (new_uri);
+	} else {
+		copy_uri = g_strdup (intern_uri);
+	}
+
 	ret = resolve_full_file (intern_uri);
 	if (ret == YELP_RRN_TYPE_EXTERNAL) {
 	    *section = NULL;
-	    *result = g_strdup (uri);
+	    *result = copy_uri;
 	}
 	else if (ret == YELP_RRN_TYPE_ERROR) {
 	    *section = NULL;
 	    *result = NULL;
 	} else {
-	    *result = g_strdup (intern_uri);
+	    *result = copy_uri;
 	    *section = g_strdup (intern_section);
 	}
     } else if (*uri == '/' || g_str_has_suffix (uri, ".xml")) {
@@ -449,5 +497,7 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 	*section = NULL;
     }
 
+    if (intern_uri)
+	g_free (intern_uri);
     return ret;
 }

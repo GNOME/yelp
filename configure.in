@@ -1,4 +1,4 @@
-AC_INIT([Yelp],[2.23.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
+AC_INIT([Yelp],[2.27.2],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
 
 GNOME_COMMON_INIT
 
@@ -55,10 +55,9 @@ PKG_CHECK_MODULES(YELP,
 [
 	gio-2.0
 	gconf-2.0
-	gnome-doc-utils >= 0.11.1
+	gnome-doc-utils >= 0.17.2
 	gtk+-unix-print-2.0
 	gtk+-2.0 >= 2.10.0
-	libglade-2.0 >= 2.0.0
 	libgnome-2.0 >= 2.14.0
 	libgnomeui-2.0 >= 2.14.0
 	libxml-2.0 >= 2.6.5
@@ -79,6 +78,12 @@ AC_SUBST(DB_TITLE)
 
 DB2HTML="`$PKG_CONFIG --variable=db2xhtml gnome-doc-utils`"
 AC_SUBST(DB2HTML)
+
+MAL2HTML="`$PKG_CONFIG --variable=mal2xhtml gnome-doc-utils`"
+AC_SUBST(MAL2HTML)
+
+GDU_GETTEXT="`$PKG_CONFIG --variable=gettext gnome-doc-utils`"
+AC_SUBST(GDU_GETTEXT)
 
 GDU_ICON_PATH="`$PKG_CONFIG --variable=icondir gnome-doc-utils`"
 AC_SUBST(GDU_ICON_PATH)
@@ -215,7 +220,6 @@ AC_SUBST(BZ_LIBS)
   AC_SUBST(YELP_WEBKIT_LIBS)
   AC_DEFINE(WEBKIT_BACKEND, 1, [Webkit Backend])
 
-
 # More flags
 AM_CPPFLAGS="$AM_CPPFLAGS $DEPRECATION_FLAGS"
 AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS $MORE_WARN_FLAGS"
@@ -231,6 +235,8 @@ src/Makefile
 stylesheets/Makefile
 stylesheets/db2html.xsl
 stylesheets/db-title.xsl
+stylesheets/mal2html.xsl
+stylesheets/toc2html.xsl
 data/Makefile
 data/icons/Makefile
 data/ui/Makefile
