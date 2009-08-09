@@ -1,4 +1,4 @@
-SUBDIRS = src stylesheets po data
+SUBDIRS = src stylesheets po data tests
 
 ACLOCAL_AMFLAGS = -I m4
 
