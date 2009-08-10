@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2009-06-16 19:43+0000\n"
-"PO-Revision-Date: 2009-06-19 14:51+0300\n"
+"POT-Creation-Date: 2009-08-07 00:18+0000\n"
+"PO-Revision-Date: 2009-08-07 11:00+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -723,6 +723,56 @@ msgstr "Süsteemi kirjatüüpide kasutamine"
 msgid "Use the default fonts set for the system."
 msgstr "Süsteemsete vaikekirjatüüpide kasutamine."
 
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Fail pole korrektne .desktop fail"
+
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Töölauafaili tundmatu versioon '%s'"
+
+#, c-format
+msgid "Starting %s"
+msgstr "Käivitamine: %s"
+
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Rakendus ei aktsepteeri käsurealt antud dokumente"
+
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Tundmatu käivitusvalik: %d"
+
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+"Dokumendi URI-sid pole võimalik 'Liik=Viit' tüüpi töölauakirjetele edastada"
+
+#, c-format
+msgid "Not a launchable item"
+msgstr "Pole käivitatav kirje"
+
+msgid "Disable connection to session manager"
+msgstr "Seansihalduriga ühendumise keelamine"
+
+msgid "Specify file containing saved configuration"
+msgstr "Salvestatud seadistusi sisaldava faili määramine"
+
+msgid "FILE"
+msgstr "FAIL"
+
+msgid "Specify session management ID"
+msgstr "Seansihalduse ID määramine"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Session management options:"
+msgstr "Session management options"
+
+msgid "Show session management options"
+msgstr "Seansihalduse valikute näitamine"
+
 msgid "Open Bookmark in New Window"
 msgstr "Ava järjehoidja uues aknas"
 
@@ -997,10 +1047,10 @@ msgid "_New Window"
 msgstr "_Uus aken"
 
 msgid "Print This Document ..."
-msgstr "Selle dokumendi printimine..."
+msgstr "Prindi see dokument..."
 
 msgid "Print This Page ..."
-msgstr "Selle lehekülje printimine..."
+msgstr "Prindi see lehekülg..."
 
 msgid "About This Document"
 msgstr "Dokumendist"
