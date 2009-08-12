@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 22:06+0200\n"
-"PO-Revision-Date: 2009-08-04 22:10+0200\n"
+"POT-Creation-Date: 2009-08-12 14:02+0200\n"
+"PO-Revision-Date: 2009-08-12 14:03+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -959,33 +959,97 @@ msgstr "Usa tipi di carattere di sistema"
 msgid "Use the default fonts set for the system."
 msgstr "Usa il set di tipi di carattere predefiniti del sistema."
 
-#: ../src/yelp-bookmarks.c:149
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Il file non è un file .desktop valido"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Versione «%s» del file desktop non riconosciuta"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "Avvio di «%s»"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "L'applicazione non accetta documenti sulla riga di comando"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Opzione di lancio non riconosciuta: %d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+"Impossibile passare l'URI di un documento a una voce desktop «Type=Link»"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "Non è un oggetto lanciabile"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Disabilita la connessione al gestore di sessione"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Specifica il file contenente la configurazione salvata"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "FILE"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Specifica l'ID di gestione sessione"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Opzioni di gestione sessione:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Mostra le opzioni di gestione sessione"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Apri segnalibro in nuova finestra"
 
-#: ../src/yelp-bookmarks.c:153
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Rinomina segnalibro"
 
-#: ../src/yelp-bookmarks.c:157
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Rimuovi segnalibro"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Esiste già per questa pagina un segnalibro con titolo «%s»."
 
-#: ../src/yelp-bookmarks.c:391
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Esiste già per questa pagina un segnalibro con titolo <b>%s</b>."
 
-#: ../src/yelp-bookmarks.c:404
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Argomenti"
 
-#: ../src/yelp-bookmarks.c:419
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Sezioni di documento"
 
@@ -1049,7 +1113,7 @@ msgstr "Sconosciuto"
 msgid "Unknown Error"
 msgstr "Errore sconosciuto"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1705
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "Impossibile leggere il documento"
 
@@ -1072,21 +1136,21 @@ msgstr ""
 "Impossibile leggere e decodificare il file «%s». Il file potrebbe essere "
 "compresso in un formato non supportato."
 
-#: ../src/yelp-main.c:90
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Usa una sessione privata"
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "Definisce quale directory cache usare"
 
 # Questo browser mi lascia molto molto molto perplesso
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:356
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " Visualizzatore documentazione di GNOME"
 
-#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Aiuto"
 
@@ -1271,214 +1335,214 @@ msgstr "Non è stato trovato alcun attributo href su yelp:document\n"
 msgid "Out of memory"
 msgstr "Memoria esaurita"
 
-#: ../src/yelp-window.c:306
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "_File"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "V_ai"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "S_egnalibri"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "A_iuto"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "_Nuova finestra"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:316
 msgid "Print This Document ..."
 msgstr "Stampa questo documento..."
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:321
 msgid "Print This Page ..."
 msgstr "Stampa questa pagina..."
 
 # Collegamento al frontespizio di un <set>
-#: ../src/yelp-window.c:328
+#: ../src/yelp-window.c:326
 msgid "About This Document"
 msgstr "Informazioni su questo documento"
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
 msgstr "Apri _posizione"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "_Chiudi finestra"
 
-#: ../src/yelp-window.c:344
+#: ../src/yelp-window.c:342
 msgid "_Copy"
 msgstr "_Copia"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "_Seleziona tutto"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:353
 msgid "_Find..."
 msgstr "Tr_ova..."
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr "Trova preced_ente"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Trova l'occorrenza precedente della parola o della frase"
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr "Trova s_uccessivo"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
 msgstr "Trova l'occorrenza successive della parola o della frase"
 
 # Usato per l'elemento <reference>
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "Preferen_ze"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "_Aggiorna"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "_Indietro"
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr "Mostra la pagina precedente nella cronologia"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "_Avanti"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr "Mostra la pagina successiva nella cronologia"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
 msgstr "A_rgomenti"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr "Va all'elenco degli argomenti"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "Sezione preced_ente"
 
 # Usato per gli elementi <sect*>
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "Sezione s_uccessiva"
 
-#: ../src/yelp-window.c:412 ../src/yelp-window.c:444
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "_Sommario"
 
-#: ../src/yelp-window.c:418
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "A_ggiungi segnalibro"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "_Modifica segnalibri..."
 
-#: ../src/yelp-window.c:429
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "_Apri collegamento"
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "Apri collegamento in _nuova finestra"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "Copia indirizzo _collegamento"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:444
 msgid "Help On this application"
 msgstr "Aiuto su questa applicazione"
 
-#: ../src/yelp-window.c:449
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "I_nformazioni"
 
-#: ../src/yelp-window.c:454
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
 msgstr "Copia indirizzo _email"
 
 # Questo browser mi lascia molto molto molto perplesso
-#: ../src/yelp-window.c:526
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Visualizzatore documentazione"
 
-#: ../src/yelp-window.c:621 ../src/yelp-window.c:673 ../src/yelp-window.c:1767
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "Caricamento in corso..."
 
-#: ../src/yelp-window.c:622 ../src/yelp-window.c:674
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Pagina sconosciuta"
 
-#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1115
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "L'URI «%s» richiesto non è valido"
 
-#: ../src/yelp-window.c:1045 ../src/yelp-window.c:1108
-#: ../src/yelp-window.c:1116
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "Impossibile caricare la pagina"
 
-#: ../src/yelp-window.c:1325
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1326
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "Cerca per altra documentazione"
 
-#: ../src/yelp-window.c:1346
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "Impossibile creare la finestra"
 
-#: ../src/yelp-window.c:1352
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
 msgstr "Impossibile creare componente di ricerca"
 
-#: ../src/yelp-window.c:1524
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "Tr_ova:"
 
-#: ../src/yelp-window.c:1546
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "Trova preced_ente"
 
-#: ../src/yelp-window.c:1558
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "Trova s_uccessivo"
 
-#: ../src/yelp-window.c:1571
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "Frase non trovata"
 
-#: ../src/yelp-window.c:1702
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1490,18 +1554,18 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2572
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr ""
 "Luca Ferretti         <elle.uca@libero.it>\n"
 "Milo Casagrande       <milo@ubuntu.com>\n"
 "Alessandro Costantino <shaihulud@supereva.it>"
 
-#: ../src/yelp-window.c:2575
+#: ../src/yelp-window.c:2580
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2577
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navigatore e visualizzatore di aiuto per lo GNOME Desktop."
 
