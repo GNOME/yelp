@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-07 12:06+0200\n"
-"PO-Revision-Date: 2009-07-07 12:06+0100\n"
+"POT-Creation-Date: 2009-08-14 00:26+0200\n"
+"PO-Revision-Date: 2009-08-14 00:28+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -950,33 +950,96 @@ msgstr "Använd systemtypsnitt"
 msgid "Use the default fonts set for the system."
 msgstr "Använd standardtypsnitten som angivits för systemet."
 
-#: ../src/yelp-bookmarks.c:149
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Filen är inte en giltig .desktop-fil"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Okänd Version \"%s\" i skrivbordsfil"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "Startar %s"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Programmet accepterar inte dokument på kommandoraden"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Okänd startflagga: %d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "Kan inte skicka dokument-URI:er till en \"Type=Link\"-skrivbordspost"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "Inte ett startbart objekt"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Inaktivera anslutning till sessionshanterare"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Ange fil som innehåller sparad konfiguration"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "FIL"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Ange id för sessionshantering"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Flaggor för sessionshantering:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Visa flaggor för sessionshantering"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Öppna bokmärke i nytt fönster"
 
-#: ../src/yelp-bookmarks.c:153
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Byt namn på bokmärke"
 
-#: ../src/yelp-bookmarks.c:157
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Ta bort bokmärke"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Det finns redan ett bokmärke med namnet %s för denna sida."
 
-#: ../src/yelp-bookmarks.c:391
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Det finns redan ett bokmärke med namnet <b>%s</b> för denna sida."
 
-#: ../src/yelp-bookmarks.c:404
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Hjälprubriker"
 
-#: ../src/yelp-bookmarks.c:419
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Dokumentavsnitt"
 
@@ -1059,7 +1122,7 @@ msgid "Unknown Error"
 msgstr "Okänt fel"
 
 #: ../src/yelp-error.c:136
-#: ../src/yelp-window.c:1705
+#: ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "Kunde inte läsa filen"
 
@@ -1077,20 +1140,20 @@ msgstr "Filen \"%s\" kunde inte tolkas därför att den inte en korrekt formater
 msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
 msgstr "Filen \"%s\" kunde inte läsas och avkodas. Filen kan vara komprimerad med ett format som inte stöds."
 
-#: ../src/yelp-main.c:90
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Använd en privat session"
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "Ange vilken cachekatalog som ska användas"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:356
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " GNOME-hjälpvisare"
 
-#: ../src/yelp-main.c:376
+#: ../src/yelp-main.c:384
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjälp"
@@ -1261,223 +1324,223 @@ msgstr "Inget href-attribut hittat på yelp:document\n"
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: ../src/yelp-window.c:306
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "_Bokmärken"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:316
 msgid "Print This Document ..."
 msgstr "Skriv ut det här dokumentet ..."
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:321
 msgid "Print This Page ..."
 msgstr "Skriv ut den här sidan ..."
 
-#: ../src/yelp-window.c:328
+#: ../src/yelp-window.c:326
 msgid "About This Document"
 msgstr "Om det här dokumentet"
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
 msgstr "Öppna _plats"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "_Stäng fönster"
 
-#: ../src/yelp-window.c:344
+#: ../src/yelp-window.c:342
 msgid "_Copy"
 msgstr "_Kopiera"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "_Markera allt"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:353
 msgid "_Find..."
 msgstr "_Sök..."
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr "Sök _föregående"
 
-#: ../src/yelp-window.c:362
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
 msgstr "Sök föregående förekomst av ordet eller frasen"
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr "Sök _nästa"
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
 msgstr "Sök nästa förekomst av ordet eller frasen"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
 msgstr "_Inställningar"
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "_Läs om"
 
-#: ../src/yelp-window.c:387
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "_Bakåt"
 
-#: ../src/yelp-window.c:389
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr "Visa föregående sida i historiken"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "_Framåt"
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr "Visa nästa sida i historiken"
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
 msgstr "_Hjälprubriker"
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr "Gå till listan med hjälprubriker"
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr "Föregående a_vsnitt"
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr "_Nästa avsnitt"
 
-#: ../src/yelp-window.c:412
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:442
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/yelp-window.c:418
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "_Lägg till bokmärke"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "_Redigera bokmärken..."
 
-#: ../src/yelp-window.c:429
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "_Öppna länk"
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "Öppna länk i _nytt fönster"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
 msgstr "_Kopiera länkadress"
 
-#: ../src/yelp-window.c:446
+#: ../src/yelp-window.c:444
 msgid "Help On this application"
 msgstr "Hjälp för detta program"
 
-#: ../src/yelp-window.c:449
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/yelp-window.c:454
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
 msgstr "Kopiera _e-postadress"
 
-#: ../src/yelp-window.c:526
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Hjälpvisare"
 
-#: ../src/yelp-window.c:621
-#: ../src/yelp-window.c:673
-#: ../src/yelp-window.c:1767
+#: ../src/yelp-window.c:619
+#: ../src/yelp-window.c:671
+#: ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "Läser in..."
 
-#: ../src/yelp-window.c:622
-#: ../src/yelp-window.c:674
+#: ../src/yelp-window.c:620
+#: ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Okänd sida"
 
-#: ../src/yelp-window.c:1044
-#: ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1115
+#: ../src/yelp-window.c:1042
+#: ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Den begärda URI:n \"%s\" är ogiltig"
 
-#: ../src/yelp-window.c:1045
-#: ../src/yelp-window.c:1108
-#: ../src/yelp-window.c:1116
+#: ../src/yelp-window.c:1043
+#: ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "Kunde inte läsa in sida"
 
-#: ../src/yelp-window.c:1325
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "_Sök efter:"
 
-#: ../src/yelp-window.c:1326
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "Sök efter annan dokumentation"
 
-#: ../src/yelp-window.c:1346
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "Kan inte skapa fönster"
 
-#: ../src/yelp-window.c:1352
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
 msgstr "Kan inte skapa sökkomponent"
 
-#: ../src/yelp-window.c:1524
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "Sö_k:"
 
-#: ../src/yelp-window.c:1546
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "Sök _föregående"
 
-#: ../src/yelp-window.c:1558
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "Sök _nästa"
 
-#: ../src/yelp-window.c:1571
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "Frasen hittades inte"
 
-#: ../src/yelp-window.c:1702
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
 msgstr "Filen \"%s\" kunde inte läsas. Filen kanske saknas eller så har du inte rättigheter att läsa den."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2572
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -1487,11 +1550,11 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/yelp-window.c:2575
+#: ../src/yelp-window.c:2580
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2577
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
 
