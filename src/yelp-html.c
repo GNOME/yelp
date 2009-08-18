@@ -64,15 +64,25 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 static GObjectClass *parent_class = NULL;
 
-static WebKitNavigationResponse
-html_open_uri (WebKitWebView *view, WebKitWebFrame *frame, WebKitNetworkRequest* req)
+static gboolean
+html_open_uri (WebKitWebView* view,
+	       WebKitWebFrame* web_frame,
+	       WebKitNetworkRequest* req,
+	       WebKitWebNavigationAction* action,
+	       WebKitWebPolicyDecision* decision,
+	       gpointer data)
 {
-    
     const gchar *uri = webkit_network_request_get_uri (req);
-    WebKitNavigationResponse resp = WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
+    WebKitNavigationResponse resp = WEBKIT_NAVIGATION_RESPONSE_IGNORE;
     YelpHtml *html = YELP_HTML (view);
     gboolean block_load;
     gchar *real_uri;
+
+    /* Only emit our signals on clicks */
+    if (webkit_web_navigation_action_get_reason (action) != WEBKIT_WEB_NAVIGATION_REASON_LINK_CLICKED) {
+	webkit_web_policy_decision_use (decision);
+	return TRUE;
+    }
 
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
@@ -81,13 +91,13 @@ html_open_uri (WebKitWebView *view, WebKitWebFrame *frame, WebKitNetworkRequest*
 
     if (!html->priv->frames_enabled) {
   	g_signal_emit (html, signals[URI_SELECTED], 0, real_uri, FALSE);
-  	resp = WEBKIT_NAVIGATION_RESPONSE_IGNORE;
     } else {
   	g_signal_emit (html, signals[FRAME_SELECTED], 0, real_uri, FALSE, &block_load);
     }
 
     g_free (real_uri);
-    return resp;
+    webkit_web_policy_decision_ignore (decision);
+    return TRUE;
 }
 
 #ifdef HAVE_GECKO_1_9
@@ -170,6 +180,9 @@ html_init (YelpHtml *html)
 				      html);
 	html_set_a11y (html);
     }
+
+    g_signal_connect (html, "navigation-policy-decision-requested",
+		      G_CALLBACK (html_open_uri), NULL);
 }
 
 static void
@@ -192,6 +205,8 @@ html_finalize (GObject *object)
     g_free (priv->base_uri);
     g_free (priv->anchor);
 
+    g_signal_handlers_disconnect_by_func (html, html_open_uri, NULL);
+
     parent_class->finalize (object);
 }
 
@@ -209,8 +224,6 @@ html_class_init (YelpHtmlClass *klass)
 
     widget_class->realize = html_realize;
 
-
-    wc_class->navigation_requested = html_open_uri;
 
     klass->font_handler = 0;
     klass->color_handler = 0;
@@ -381,8 +394,6 @@ yelp_html_close (YelpHtml *html)
 	webkit_web_view_set_maintains_back_forward_list (WEBKIT_WEB_VIEW (html), FALSE);
     }
 
-    /* TODO: Broken navigation requests: */
-    /* See https://bugs.webkit.org/show_bug.cgi?id=19360 */
     webkit_web_view_load_string (WEBKIT_WEB_VIEW (html),
 				 html->priv->content,
 				 html->priv->mime,
