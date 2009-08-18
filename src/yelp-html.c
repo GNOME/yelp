@@ -78,14 +78,14 @@ html_open_uri (WebKitWebView* view,
     gboolean block_load;
     gchar *real_uri;
 
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
+
     /* Only emit our signals on clicks */
     if (webkit_web_navigation_action_get_reason (action) != WEBKIT_WEB_NAVIGATION_REASON_LINK_CLICKED) {
 	webkit_web_policy_decision_use (decision);
 	return TRUE;
     }
-
-    debug_print (DB_FUNCTION, "entering\n");
-    debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
 
     real_uri = g_strdup (uri);
 
