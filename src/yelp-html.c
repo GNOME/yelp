@@ -89,6 +89,24 @@ html_open_uri (WebKitWebView* view,
 
     real_uri = g_strdup (uri);
 
+    /* If we got an URI with an anchor, that means we got to a
+     * reference; we want to get what comes after #, and replace what
+     * is after ? in the base URI we have
+     */
+    if (g_str_has_prefix (uri, html->priv->base_uri)) {
+	gint length = strlen (html->priv->base_uri);
+
+	if (uri[length] == '#') {
+	    gchar *question_mark = g_strrstr (real_uri, "?");
+	    gchar *tmp = real_uri;
+
+	    *question_mark = '\0';
+	    real_uri = g_strdup_printf ("%s?%s", tmp, uri + length + 1);
+
+	    g_free (tmp);
+	}
+    }
+
     if (!html->priv->frames_enabled) {
   	g_signal_emit (html, signals[URI_SELECTED], 0, real_uri, FALSE);
     } else {
