@@ -83,7 +83,7 @@ info_image_get_attributes (gchar const* string)
       if (!*value)
 	value = g_match_info_fetch (match_info, 3);
       g_hash_table_insert (h, key, value);
-      //fprintf (stderr, "Found: %s -> %s\n", key, value);
+      /* fprintf (stderr, "Found: %s -> %s\n", key, value); */
       g_match_info_next (match_info, NULL);
     }
   g_match_info_free (match_info);
