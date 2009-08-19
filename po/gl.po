@@ -1,4 +1,4 @@
-# translation of yelp.master.gl.po to Galician
+# translation of yelp.master.po to Galician
 # Galician translation of yelp.
 # Copyright (C) 2002-2004 Jesús Bravo Álvarez
 #
@@ -16,10 +16,10 @@
 # Antón Méixome <meixome@mancomun.org>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.master.gl\n"
+"Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-10 17:41+0200\n"
-"PO-Revision-Date: 2009-06-22 13:28+0200\n"
+"POT-Creation-Date: 2009-08-19 13:41+0200\n"
+"PO-Revision-Date: 2009-08-18 09:05+0200\n"
 "Last-Translator: Antón Méixome <meixome@mancomun.org>\n"
 "Language-Team: Galician <gnome@mancomun.org>\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "Páxinas de manual"
 
 #: ../data/man.xml.in.h:11
 msgid "Network Audio Sound Functions"
-msgstr "Funcións de son en rede"
+msgstr "Funcións de audio en rede"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
@@ -966,66 +966,67 @@ msgstr "Usar o conxunto de tipos de letra predeterminado do sistema."
 #: ../src/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr ""
+msgstr "O ficheiro non é un ficheiro .desktop válido"
 
 #: ../src/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr ""
+msgstr "Non se recoñece a versión '%s' do ficheiro de escritorio"
 
 #: ../src/eggdesktopfile.c:958
-#, fuzzy, c-format
+#, c-format
 msgid "Starting %s"
-msgstr "Preferencias"
+msgstr "Iniciando %s"
 
 #: ../src/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr ""
+msgstr "O aplicativo non acepta documentos na liña de ordes"
 
 #: ../src/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
-msgstr ""
+msgstr "Opción de lanzamento descoñecida: %d"
 
 #: ../src/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
+"Non se lle pode pasar os URI do documento a unha entrada de escritorio "
+"'Type=Link'"
 
 #: ../src/eggdesktopfile.c:1392
 #, c-format
 msgid "Not a launchable item"
-msgstr ""
+msgstr "Non é un ítem lanzábel"
 
 #: ../src/eggsmclient.c:225
 msgid "Disable connection to session manager"
-msgstr ""
+msgstr "Desactivar a conexión ao xestor de sesións"
 
 #: ../src/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
-msgstr ""
+msgstr "Especificar o ficheiro que contén a configuración gardada"
 
 #: ../src/eggsmclient.c:228
 msgid "FILE"
-msgstr ""
+msgstr "FICHEIRO"
 
 #: ../src/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr ""
+msgstr "Especificar o ID do xestor de sesións"
 
 #: ../src/eggsmclient.c:231
-#, fuzzy
 msgid "ID"
-msgstr "IDE"
+msgstr "ID"
 
 #: ../src/eggsmclient.c:252
 msgid "Session management options:"
-msgstr ""
+msgstr "Opcións de xestión de sesión:"
 
 #: ../src/eggsmclient.c:253
 msgid "Show session management options"
-msgstr ""
+msgstr "Mostrar as opcións da xestión de sesión"
 
 #: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
@@ -1187,12 +1188,12 @@ msgstr "Preparándose para imprimir"
 
 #: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
-msgstr "A impresión non se soporta nesta impresora"
+msgstr "A impresión non se permite nesta impresora"
 
 #: ../src/yelp-print.c:264
 #, c-format
 msgid "Printer %s does not support postscript printing."
-msgstr "A impresora %s non soporta a impresión postscript."
+msgstr "A impresora %s non permite a impresión postscript."
 
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
@@ -1209,7 +1210,7 @@ msgstr "Non foi posíbel imprimir o documento: %s"
 
 #: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
-msgstr "os foros de soporte do Gnome"
+msgstr "os foros de asistencia do Gnome"
 
 #: ../src/yelp-search-parser.c:285
 #, c-format
@@ -1322,7 +1323,7 @@ msgstr "Non se puido analizar o TOC porque non é un documento XML ben formado."
 
 #: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
-msgstr "Folla de cálculo non válida"
+msgstr "A folla de cálculo non válida"
 
 #: ../src/yelp-transform.c:87
 #, c-format
@@ -1561,7 +1562,9 @@ msgstr ""
 #. * will show up in the "about" box
 #: ../src/yelp-window.c:2577
 msgid "translator-credits"
-msgstr "Suso Baleato <suso.baleato@xunta.es>"
+msgstr ""
+"Suso Baleato <suso.baleato@xunta.es>, 2009;\n"
+"Antón Méixome <meixome@mancomun.org>, 2009."
 
 #: ../src/yelp-window.c:2580
 msgid "Yelp"
