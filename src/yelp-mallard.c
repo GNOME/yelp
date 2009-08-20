@@ -376,7 +376,7 @@ mallard_try_run (YelpMallard *mallard,
 
     page_data = g_hash_table_lookup (mallard->priv->pages_hash, page_id);
     if (page_data == NULL) {
-        printf ("FIXME: page not found\n");
+        printf ("FIXME: page not found: %s\n", page_id);
         return;
     }
 

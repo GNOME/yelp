@@ -9,11 +9,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.21.90\n"
+"Project-Id-Version: yelp 2.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-14 17:51+0800\n"
-"PO-Revision-Date: 2009-02-14 17:51+0800\n"
-"Last-Translator: Hialan Liu <hialan.liu@gmail.com>\n"
+"POT-Creation-Date: 2009-08-11 15:46+0800\n"
+"PO-Revision-Date: 2009-08-11 15:47+0800\n"
+"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,7 +294,7 @@ msgstr "2D 繪圖"
 msgid "3D Graphics"
 msgstr "3D 繪圖"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "無障礙環境"
 
@@ -868,85 +868,57 @@ msgstr "歡迎使用 GNOME 說明文件瀏覽程式"
 msgid "Word Processors"
 msgstr "文字處理器"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>無障礙環境</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>字型</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "加入書籤"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "書籤"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "區分大小寫(_A)"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "尋找"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "開啟位置"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "偏好設定"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "重新命名(_N)"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "書籤(_B):"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "在文件中顯示游標(_B)"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "加入書籤"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "尋找(_F):"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "固定闊度(_F):"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "位置(_L):"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "下一個(_N)"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "上一個(_P)"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "標題(_T):"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "開啟位置"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "位置(_L):"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "字型"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "偏好設定"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "在文件中顯示游標(_B)"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "固定闊度(_F):"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "使用系統字型(_U)"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "可變闊度(_V):"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "回到檔案開始部份再搜尋(_W)"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -980,46 +952,109 @@ msgstr "使用系統字型"
 msgid "Use the default fonts set for the system."
 msgstr "使用系統預設的字型。"
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "檔案不是有效的 .desktop 檔案"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "無法辨識的桌面檔案版本「%s」"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "準備啟動 %s"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "應用程式不接受以命令列開啟文件"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "無法辨識的啟動選項：%d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "不能傳送文件 URI 至「Type=Link」桌面項目"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "不是可以啟動的項目"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "停用到作業階段管理程式的連線"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "指定包含已儲存組態的檔案"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "檔案"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "指定作業階段管理 ID"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "作業階段管理選項："
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "顯示作業階段管理選項"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "在新的視窗中開啟書籤"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "更改書籤名稱"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "移除書籤"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "本頁的書籤已經存在，它的標題是 %s。"
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "本頁的書籤已經存在，它的標題是 <b>%s</b>。"
 
 # (Abel) 介面最初的標題; 這裡如果直譯會不切題
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "說明文件分類"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "文件章節"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "找不到頁面"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "頁面 %s 無法在文件 %s 中找到。"
@@ -1061,7 +1096,7 @@ msgid ""
 "is not a well-formed XML document."
 msgstr "無法解析檔案 「%s」 的內容，因為他所包含的一個或多個檔案並不是格式完善的 XML 文件。"
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "不明"
 
@@ -1069,7 +1104,7 @@ msgstr "不明"
 msgid "Unknown Error"
 msgstr "不明的錯誤"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1646
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "無法讀取檔案"
 
@@ -1090,22 +1125,31 @@ msgid ""
 "an unsupported format."
 msgstr "無法解碼和讀取‘%s’檔案，它可能被壓縮成為一種不支援的格式。"
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "使用獨立作業階段"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "指定使用哪個目錄作為快取目錄"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:357
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " GNOME 說明文件瀏覽程式"
 
-#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "求助"
+
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "找不到目錄"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "目錄「%s」不存在。"
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1248,28 +1292,28 @@ msgid ""
 "document."
 msgstr "無法解析 TOC 檔案，因為他並不是一個格式完善的 XML 文件。"
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "無效的樣式表"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr "XSLT 樣式表「%s」可能遺失或失效。"
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "毀損的轉換"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "嘗試轉換此文件時發生一個未知的錯誤。"
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "在 yelp:document 中找不到 href 屬性\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "記憶體不足"
 
@@ -1421,66 +1465,62 @@ msgstr "關於(_A)"
 msgid "Copy _Email Address"
 msgstr "複製電子郵件位址(_E)"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "說明文件瀏覽器"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1703
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "載入中..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "不明的頁面"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
-#: ../src/yelp-window.c:1084
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "要求的 URI \"%s\" 已失效"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
-#: ../src/yelp-window.c:1085
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "無法載入頁面"
 
-#: ../src/yelp-window.c:1079
-msgid "Error executing \"gnome-open\""
-msgstr "執行 \"gnome-open\" 時錯誤"
-
-#: ../src/yelp-window.c:1265
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "搜尋(_S):"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "搜尋其它文件"
 
-#: ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "無法建立視窗。"
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
 msgstr "無法建立搜尋元件"
 
-#: ../src/yelp-window.c:1464
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "尋找(_D):"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "找上一個(_P)"
 
-#: ../src/yelp-window.c:1498
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "找下一個(_N)"
 
-#: ../src/yelp-window.c:1511
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "找不到片語"
 
-#: ../src/yelp-window.c:1643
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1489,7 +1529,7 @@ msgstr "無法讀取檔案‘%s’，可能是檔案遺失了，或是你沒有�
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2483
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
@@ -1502,17 +1542,44 @@ msgstr ""
 "Roy Chan <roy.chan@linux.org.hk>, 2004\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2002"
 
-#: ../src/yelp-window.c:2486
+#: ../src/yelp-window.c:2580
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2488
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "GNOME 桌面環境的文件瀏覽器。"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "顯示 GNOME 說明文件"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>無障礙環境</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>字型</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "區分大小寫(_A)"
+
+#~ msgid "Find"
+#~ msgstr "尋找"
+
+#~ msgid "_Find:"
+#~ msgstr "尋找(_F):"
+
+#~ msgid "_Next"
+#~ msgstr "下一個(_N)"
+
+#~ msgid "_Previous"
+#~ msgstr "上一個(_P)"
+
+#~ msgid "_Wrap around"
+#~ msgstr "回到檔案開始部份再搜尋(_W)"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "執行 \"gnome-open\" 時錯誤"
 
 #~ msgid "Accessories"
 #~ msgstr "附屬應用程式"

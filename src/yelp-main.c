@@ -27,14 +27,14 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
-#include <libgnome/gnome-program.h>
-#include <libgnomeui/gnome-ui-init.h>
-#include <libgnomeui/gnome-client.h>
 #include <dbus/dbus-glib-bindings.h>
 #include <string.h>
 #include <stdlib.h>
 #include <libxslt/xslt.h>
 
+#ifdef WITH_SMCLIENT
+#include "eggsmclient.h"
+#endif /* WITH_SMCLIENT */
 #include "client-bindings.h"
 #include "yelp-window.h"
 #include "yelp-base.h"
@@ -59,16 +59,14 @@ static void           main_start              (const gchar *url);
 static DBusGProxy *   main_dbus_get_proxy     (void);
 static gboolean       main_is_running         (void);
 static gboolean       main_slave_start         (gchar                *url);
-static int            main_save_session       (GnomeClient          *client,
-					       gint                  phase,
-					       GnomeRestartStyle     rstyle,
-					       gint                  shutdown,
-					       GnomeInteractStyle    istyle,
-					       gint                  fast,
+
+#ifdef WITH_SMCLIENT
+static int            main_save_session       (EggSMClient           *client,
 					       gpointer              cdata);
 
-static void           main_client_die         (GnomeClient          *client, 
+static void           main_client_die         (EggSMClient          *client, 
 					       gpointer              cdata);
+#endif /* WITH_SMCLIENT */
 
 static gboolean	      main_restore_session    (void);
 static Time slowly_and_stupidly_obtain_timestamp (Display *xdisplay);
@@ -142,13 +140,9 @@ main_slave_start (gchar *url)
 }
 
 
+#ifdef WITH_SMCLIENT
 static gint 
-main_save_session (GnomeClient        *client,
-                   gint                phase,
-                   GnomeRestartStyle   rstyle,
-                   gint                shutdown,
-                   GnomeInteractStyle  istyle,
-                   gint                fast,
+main_save_session (EggSMClient        *client,
                    gpointer            cdata) 
 {
 	gchar                 **argv;
@@ -180,7 +174,7 @@ main_save_session (GnomeClient        *client,
 	argv = g_malloc0 (sizeof (gchar *) * arg_len);
 
 	/* Program name */
-	argv[0] = g_strdup ((gchar *) cdata);
+	argv[0] = g_strdup ("yelp");
 	
 	if (cache_dir) {
 		argv[1] = g_strdup_printf ("--with-cache-dir=\"%s\"", 
@@ -192,8 +186,7 @@ main_save_session (GnomeClient        *client,
 						     open_windows);
 	}
 
-	gnome_client_set_clone_command (client, arg_len, argv);
-	gnome_client_set_restart_command (client, arg_len, argv);
+	egg_sm_client_set_restart_command (client, arg_len, (const char **) argv);
 
 	for (i = 0; i < arg_len; ++i) {
 		g_free (argv[i]);
@@ -204,11 +197,12 @@ main_save_session (GnomeClient        *client,
 }
 
 static void
-main_client_die (GnomeClient *client, 
+main_client_die (EggSMClient *client, 
 		 gpointer     cdata)
 {
 	gtk_main_quit ();
 }
+#endif /* WITH_SMCLIENT */
 
 static gboolean
 main_restore_session (void)
@@ -335,18 +329,22 @@ main_is_running (void)
 int
 main (int argc, char **argv) 
 {
-	GnomeProgram  *program;
 	gchar         *url = NULL;
-	GnomeClient   *client;
+#ifdef WITH_SMCLIENT
+	EggSMClient *sm_client;
+	GError *error = NULL;
+#endif /* WITH_SMCLIENT */
+	gboolean retval;
 	gboolean       session_started = FALSE;
 	gchar *local_id;
 	GOptionContext *context;
+
+	g_thread_init(NULL);
 
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
  	xsltInit ();
-	g_thread_init (NULL);
 
 	local_id = (gchar *) g_getenv ("DESKTOP_STARTUP_ID");
 
@@ -360,15 +358,25 @@ main (int argc, char **argv)
 
 	g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
 
+	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+
+#ifdef WITH_SMCLIENT
+	g_option_context_add_group (context, egg_sm_client_get_option_group ());
+#endif /* WITH_SMCLIENT */
+
 	g_option_context_set_translation_domain(context, GETTEXT_PACKAGE);
 
 	gtk_window_set_auto_startup_notification(FALSE);
 
-	program = gnome_program_init (PACKAGE, VERSION,
-				      LIBGNOMEUI_MODULE, argc, argv,
-				      GNOME_PROGRAM_STANDARD_PROPERTIES, 
-				      GNOME_PARAM_GOPTION_CONTEXT, context,
-				      GNOME_PARAM_NONE);
+	retval = g_option_context_parse (context, &argc, &argv, &error);
+	g_option_context_free (context);
+	if (!retval) {
+		g_print ("%s", error->message);
+		g_error_free (error);
+		exit (1);
+	}
+
+	dbus_g_thread_init();
 
 	if (!startup_id) {
 		Time tmp;
@@ -396,16 +404,14 @@ main (int argc, char **argv)
 		g_strfreev (files);
 	}
 
-	client = gnome_master_client ();
-        g_signal_connect (client, "save_yourself",
-                          G_CALLBACK (main_save_session), (gpointer) argv[0]);
-        g_signal_connect (client, "die",
-                          G_CALLBACK (main_client_die), NULL);
-
-	/* Check for previous session to restore. */
-	if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
-		session_started = TRUE;
-        }
+#ifdef WITH_SMCLIENT
+	sm_client = egg_sm_client_get ();
+	g_signal_connect (sm_client, "save-state",
+	                  G_CALLBACK (main_save_session), NULL);
+	g_signal_connect (sm_client, "quit",
+	                  G_CALLBACK (main_client_die), NULL);
+	session_started = egg_sm_client_is_resumed(sm_client);
+#endif /* WITH_SMCLIENT */
 
 	if (private || !main_is_running ()) {
 		const gchar          *env;
@@ -422,6 +428,10 @@ main (int argc, char **argv)
 
 	yelp_html_shutdown ();
 
-	g_object_unref (program);
+#ifdef WITH_SMCLIENT
+	g_signal_handlers_disconnect_matched (sm_client, G_SIGNAL_MATCH_DATA,
+                                        0, 0, NULL, NULL, NULL);
+#endif /* WITH_SMCLIENT */
+
         return 0;
 }

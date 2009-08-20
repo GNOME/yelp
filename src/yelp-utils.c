@@ -92,7 +92,8 @@ resolve_process_ghelp (char *uri, gchar **result)
 	else if (g_str_equal (mime, "text/plain"))
 	    type = YELP_RRN_TYPE_TEXT;
 
-    } else {
+    }
+    else if (uri[6] == '/') {
 	gint file_cut = 6;
 	/* If a full file path after ghelp:, see if the file
 	 * exists and return type if it does 
@@ -101,6 +102,36 @@ resolve_process_ghelp (char *uri, gchar **result)
 	    file_cut++;
 	type = resolve_full_file (&uri[file_cut]);
 	*result = g_strdup (&uri[file_cut]);
+    }
+    else {
+        const gchar * const *dirs = g_get_system_data_dirs ();
+        gchar *dir, *hash;
+        gint i;
+        hash = strchr (uri + 6, '#');
+        if (hash) {
+            dir = g_strndup (uri + 6, hash + 6);
+            hash++;
+        } else {
+            dir = g_strdup (uri + 6);
+            hash = NULL;
+        }
+        for (i = 0; type != YELP_RRN_TYPE_MAL && dirs[i]; i++) {
+            gchar *path = g_strdup_printf ("%sgnome/help/%s", dirs[i], dir);
+            if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
+                const gchar * const *langs = g_get_language_names ();
+                gint j;
+                for (j = 0; type != YELP_RRN_TYPE_MAL && langs[j]; j++) {
+                    gchar *index = g_strdup_printf ("%sgnome/help/%s/%s/index.page", dirs[i], dir, langs[j]);
+                    if (g_file_test (index, G_FILE_TEST_IS_REGULAR)) {
+                        type = YELP_RRN_TYPE_MAL;
+                        *result = g_strdup_printf ("%sgnome/help/%s/%s/", dirs[i], dir, langs[j]);
+                    }
+                    g_free (index);
+                }
+            }
+            g_free (path);
+        }
+        g_free (dir);
     }
 
     return type;
@@ -112,9 +143,9 @@ resolve_get_section (const gchar *uri)
     gchar *sect_delimit;
     gchar *sect;
 
-    sect_delimit = strchr (uri, '?');
+    sect_delimit = strrchr (uri, '#');
     if (!sect_delimit) {
-	sect_delimit = strchr (uri, '#');
+	sect_delimit = strrchr (uri, '?');
     }
     if (!sect_delimit) {
 	return NULL;

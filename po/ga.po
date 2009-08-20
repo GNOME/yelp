@@ -1,20 +1,23 @@
 # Irish translations for yelp package.
-# Copyright (C) 2003-2007 Free Software Foundation, Inc.
+# Copyright (C) 2003-2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the yelp package.
 # Paul Duffy <dubhthach@frink.nuigalway.ie>, 2003.
 # Alastair McKinstry <mckinstry@computer.org>, 2004.
-# Seán de Búrca <leftmostcat@gmail.com>, 2007.
+# Seán de Búrca <leftmostcat@gmail.com>, 2007, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp HEAD\n"
+"Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 13:56-0700\n"
-"PO-Revision-Date: 2008-01-13 13:56-0700\n"
+"POT-Creation-Date: 2009-08-13 09:54-0600\n"
+"PO-Revision-Date: 2009-08-13 10:31-0600\n"
 "Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : (n%10==1 || n%10==2) ? 1 : (n%"
+"10>=3 && n%10<= 6) ? 2 : ((n%10>=7 && n%10<=9) || n==10) ? 3 : 4;\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -22,7 +25,7 @@ msgstr "Leathanaigh Eolais GNU"
 
 #: ../data/info.xml.in.h:2
 msgid "Traditional command line help (info)"
-msgstr ""
+msgstr "Cabhair líne na n-orduithe traidisiúnta (info)"
 
 #: ../data/man.xml.in.h:1
 msgid "Applications"
@@ -254,7 +257,7 @@ msgstr "Feidhmchláir Termcap"
 
 #: ../data/man.xml.in.h:58
 msgid "Traditional command line help (man)"
-msgstr ""
+msgstr "Cabhair líne na n-orduithe traidisiúnta (man)"
 
 #: ../data/man.xml.in.h:59
 msgid "X11 Applications"
@@ -288,7 +291,7 @@ msgstr "Grafaic 2T"
 msgid "3D Graphics"
 msgstr "Grafaic 3T"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Inrochtaineacht"
 
@@ -302,7 +305,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:6
 msgid "Amusement"
-msgstr ""
+msgstr "Siamsaíocht"
 
 #: ../data/toc.xml.in.h:7
 msgid "Applications for viewing and manipulating graphics"
@@ -326,19 +329,19 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:12
 msgid "Art"
-msgstr ""
+msgstr "Ealaín"
 
 #: ../data/toc.xml.in.h:13
 msgid "Artificial Intelligence"
-msgstr ""
+msgstr "Intleacht Shaorga"
 
 #: ../data/toc.xml.in.h:14
 msgid "Astronomy"
-msgstr ""
+msgstr "Réalteolaíocht"
 
 #: ../data/toc.xml.in.h:15
 msgid "Biology"
-msgstr ""
+msgstr "Bitheolaíocht"
 
 #: ../data/toc.xml.in.h:16
 msgid "Blocks Games"
@@ -374,7 +377,7 @@ msgstr "Comhrá"
 
 #: ../data/toc.xml.in.h:24
 msgid "Chemistry"
-msgstr ""
+msgstr "Ceimic"
 
 #: ../data/toc.xml.in.h:25
 msgid "Clocks"
@@ -418,7 +421,7 @@ msgstr "Socruithe Deisce"
 
 #: ../data/toc.xml.in.h:36
 msgid "Dialup"
-msgstr ""
+msgstr "Diailchaoi"
 
 #: ../data/toc.xml.in.h:37
 msgid "Dictionaries"
@@ -431,7 +434,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:40
 msgid "Economy"
-msgstr ""
+msgstr "Geilleagar"
 
 #: ../data/toc.xml.in.h:41
 msgid "Education"
@@ -439,11 +442,11 @@ msgstr "Oideachas"
 
 #: ../data/toc.xml.in.h:42
 msgid "Electricity"
-msgstr ""
+msgstr "Leictreachas"
 
 #: ../data/toc.xml.in.h:43
 msgid "Electronics"
-msgstr ""
+msgstr "Leictreonaic"
 
 #: ../data/toc.xml.in.h:44
 msgid "Email Tools"
@@ -451,11 +454,11 @@ msgstr "Uirlisí Ríomhphoist"
 
 #: ../data/toc.xml.in.h:45
 msgid "Emulator"
-msgstr ""
+msgstr "Aithriseoir"
 
 #: ../data/toc.xml.in.h:46
 msgid "Engineering"
-msgstr ""
+msgstr "Innealtóireacht"
 
 #: ../data/toc.xml.in.h:47
 msgid "File Manager"
@@ -503,15 +506,15 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:59
 msgid "Geography"
-msgstr ""
+msgstr "Tíreolaíocht"
 
 #: ../data/toc.xml.in.h:60
 msgid "Geology"
-msgstr ""
+msgstr "Geolaíocht"
 
 #: ../data/toc.xml.in.h:61
 msgid "Geoscience"
-msgstr ""
+msgstr "Geo-eolaíocht"
 
 #: ../data/toc.xml.in.h:62
 msgid "Graphics"
@@ -527,7 +530,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
-msgstr ""
+msgstr "Raidió Amaitéarach"
 
 #: ../data/toc.xml.in.h:66
 msgid "Hardware Settings"
@@ -609,7 +612,7 @@ msgstr "Doiciméadú Eagsúla"
 
 #: ../data/toc.xml.in.h:85
 msgid "Mixers"
-msgstr ""
+msgstr "Meascthóirí"
 
 #: ../data/toc.xml.in.h:86
 msgid "Monitor"
@@ -633,7 +636,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:91
 msgid "OCR"
-msgstr ""
+msgstr "OCR"
 
 #: ../data/toc.xml.in.h:92
 msgid "Office Applications"
@@ -649,7 +652,7 @@ msgstr "Doiciméadú Eile"
 
 #: ../data/toc.xml.in.h:95
 msgid "P2P"
-msgstr ""
+msgstr "P2P"
 
 #: ../data/toc.xml.in.h:96
 msgid "PDA Communication"
@@ -665,11 +668,11 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:99
 msgid "Photography"
-msgstr ""
+msgstr "Fótagrafaíocht"
 
 #: ../data/toc.xml.in.h:100
 msgid "Physics"
-msgstr ""
+msgstr "Fisic"
 
 #. Translators: this is a menu title for audio and video players
 #: ../data/toc.xml.in.h:102
@@ -694,7 +697,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:107
 msgid "Publishing"
-msgstr ""
+msgstr "Foilsitheoireacht"
 
 #: ../data/toc.xml.in.h:108
 msgid "Qt"
@@ -707,11 +710,11 @@ msgstr "Grafaic Rastair"
 #. Translators: this is a menu title for audio and video recorders
 #: ../data/toc.xml.in.h:111
 msgid "Recorders"
-msgstr ""
+msgstr "Taifeadáin"
 
 #: ../data/toc.xml.in.h:112
 msgid "Remote Access"
-msgstr ""
+msgstr "Rochtain Cianda"
 
 #: ../data/toc.xml.in.h:113
 msgid "Revision Control"
@@ -735,11 +738,11 @@ msgstr "Eolaíocht"
 
 #: ../data/toc.xml.in.h:118
 msgid "Security"
-msgstr ""
+msgstr "Slándáil"
 
 #: ../data/toc.xml.in.h:119
 msgid "Sequencers"
-msgstr ""
+msgstr "Seicheamhóirí"
 
 #: ../data/toc.xml.in.h:120
 msgid "Settings"
@@ -759,19 +762,19 @@ msgstr "Fuaim"
 
 #: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
-msgstr "Fuaim &amp; Físeán"
+msgstr "Fuaim &amp; Fís"
 
 #: ../data/toc.xml.in.h:125
 msgid "Sound &amp; Video Editing"
-msgstr "Eagarthóireacht Fuaime &amp; Físeáin"
+msgstr "Eagarthóireacht Fuaime &amp; Físe"
 
 #: ../data/toc.xml.in.h:126
 msgid "Sports"
-msgstr ""
+msgstr "Spórt"
 
 #: ../data/toc.xml.in.h:127
 msgid "Sports Games"
-msgstr ""
+msgstr "Cluichí Spóirt"
 
 #: ../data/toc.xml.in.h:128
 msgid "Spreadsheet Tools"
@@ -791,7 +794,7 @@ msgstr "TF"
 
 #: ../data/toc.xml.in.h:132
 msgid "Telephony"
-msgstr ""
+msgstr "Teileafónaíocht"
 
 #: ../data/toc.xml.in.h:133
 msgid "Telephony Tools"
@@ -799,7 +802,7 @@ msgstr "Uirlisí Teileafónaíochta"
 
 #: ../data/toc.xml.in.h:134
 msgid "Terminal Emulator"
-msgstr ""
+msgstr "Aithriseoir Teirminéil"
 
 #: ../data/toc.xml.in.h:135
 msgid "Text Editors"
@@ -811,15 +814,15 @@ msgstr "Uirlisí Téacs"
 
 #: ../data/toc.xml.in.h:137
 msgid "Tools to help you manage your computer"
-msgstr ""
+msgstr "Uirlisí chun cuidiú le bainistíocht do ríomhaire"
 
 #: ../data/toc.xml.in.h:138
 msgid "Translation Tools"
-msgstr "Uirlisí Aistriúcháin"
+msgstr "Uirlisí Aistrithe"
 
 #: ../data/toc.xml.in.h:139
 msgid "Tuners"
-msgstr ""
+msgstr "Tiúnóirí"
 
 #: ../data/toc.xml.in.h:140
 msgid "Utilities"
@@ -827,7 +830,7 @@ msgstr "Uirlisí"
 
 #: ../data/toc.xml.in.h:141
 msgid "Utilities to help you get work done"
-msgstr ""
+msgstr "Uirlisí chun cuidiú le déanamh oibre"
 
 #: ../data/toc.xml.in.h:142
 msgid "Vector Graphics"
@@ -839,7 +842,7 @@ msgstr "Físeán"
 
 #: ../data/toc.xml.in.h:144
 msgid "Video Conference"
-msgstr ""
+msgstr "Comhdháil Físe"
 
 #. Translators: This is a menu title for graphics viewing applications
 #: ../data/toc.xml.in.h:146
@@ -860,87 +863,59 @@ msgstr "Fáilte go dtí an Brabhsálaí Chabhair GNOME"
 
 #: ../data/toc.xml.in.h:150
 msgid "Word Processors"
-msgstr ""
+msgstr "Próiseálaithe Focal"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Inrochtaineacht</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Clónna</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Cuir Leabharmharc Leis"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Leabharmharcanna"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr ""
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Aimsigh"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Oscail Suíomh"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Sainroghanna"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "_Athainmnigh"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Leabharmharcanna:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "_Brabhsáil le carait"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Cuir Leabharmharc Leis"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Aimsigh:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Aonleithead:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Suíomh:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "Ar _Aghaidh"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Siar"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Teideal:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Oscail Suíomh"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Suíomh:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Clónna"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Sainroghanna"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "_Brabhsáil le carait"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Aonleithead:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "Ú_sáid clónna córais"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "_Il-leithead:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Timfhill"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -974,87 +949,150 @@ msgstr "Úsáid clónna córais"
 msgid "Use the default fonts set for the system."
 msgstr ""
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "%s á Thosú"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr ""
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr ""
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr ""
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "COMHAD"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr ""
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "CA"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr ""
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr ""
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Oscail Leabharmharc i bhFuinneog Nua"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Athainmnigh Leabharmharc"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Bain Leabharmharc"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr ""
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr ""
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Ábhair Cabhrach"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Rannáin Cáipéise"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
-#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Leathanach gan aimsiú"
 
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
-#: ../src/yelp-man.c:293
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr ""
 
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
-#: ../src/yelp-man.c:388
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr ""
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
-#: ../src/yelp-man.c:430
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "Comhad gan aimsiú"
 
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr ""
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "Níorbh fhéidir comhad a pharsáil"
 
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Anaithnid"
 
@@ -1062,7 +1100,7 @@ msgstr "Anaithnid"
 msgid "Unknown Error"
 msgstr "Earráid Anaithnid"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "Níorbh Fhéidir Comhad a Léamh"
 
@@ -1070,37 +1108,46 @@ msgstr "Níorbh Fhéidir Comhad a Léamh"
 msgid "No information is available about this error."
 msgstr ""
 
-#: ../src/yelp-info.c:394
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
-msgstr ""
+msgstr "Úsáid seisiún príobháideach"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr ""
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " Brabhsálaí Chabhair GNOME"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Cabhair"
 
-#: ../src/yelp-man.c:460
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "Comhadlann gan aimsiú"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Níl an chomhadlann '%s' ann."
+
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -1136,22 +1183,22 @@ msgstr ""
 msgid "It was not possible to print your document: %s"
 msgstr ""
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr ""
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr ""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr ""
@@ -1161,7 +1208,7 @@ msgstr ""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr ""
@@ -1181,6 +1228,8 @@ msgid ""
 "help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
 "where:who:will:with:won't:wont:why:work:working:works"
 msgstr ""
+"ag:an:ar:atá:briste:cé:chun:conas:de:den:do:don:é:go:i:í:in:le:leis:mé:muid:"
+"ní:sa:san:sé:sí:sibh:sinn:tá:thú:tú"
 
 #. Translators: This is a list of common prefixes for words.
 #. * Do not translate this directly.  Instead, use a colon
@@ -1192,7 +1241,7 @@ msgstr ""
 #.
 #: ../src/yelp-search-parser.c:890
 msgid "re"
-msgstr ""
+msgstr "ath:dí:fo:neamh"
 
 #. Translators: This is a list of (guess what?) common suffixes
 #. * to words.  Things that may be put at ends of words to slightly
@@ -1203,7 +1252,7 @@ msgstr ""
 #.
 #: ../src/yelp-search-parser.c:899
 msgid "ers:er:ing:es:s:'s"
-msgstr ""
+msgstr "aíonn:íonn:eann:ann:eanna:anna:aí:í"
 
 #: ../src/yelp-search-parser.c:1095
 msgid "No Comment"
@@ -1226,43 +1275,43 @@ msgstr ""
 msgid "The search processor returned invalid results"
 msgstr ""
 
-#: ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:267
 #, c-format
 msgid "The page %s was not found in the TOC."
 msgstr ""
 
-#: ../src/yelp-toc.c:364
+#: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
 msgstr ""
 
-#: ../src/yelp-toc.c:434
+#: ../src/yelp-toc.c:438
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "Stílbhileog Neamhbhailí"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr ""
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "Trasfhoirmiúchán Briste"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr ""
 
-#: ../src/yelp-transform.c:372
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr ""
 
-#: ../src/yelp-transform.c:387
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Cuimhne ídithe"
 
@@ -1324,7 +1373,7 @@ msgstr "_Aimsigh..."
 
 #: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
-msgstr "Aimsigh _Roimhe Seo"
+msgstr "Aimsigh an Ceann _Roimhe Seo"
 
 #: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
@@ -1352,7 +1401,7 @@ msgstr "_Siar"
 
 #: ../src/yelp-window.c:387
 msgid "Show previous page in history"
-msgstr "Taispeáin leathanach roimhe seo sa stair"
+msgstr "Taispeáin an leathanach roimhe seo sa stair"
 
 #: ../src/yelp-window.c:390
 msgid "_Forward"
@@ -1404,7 +1453,7 @@ msgstr "_Cóipeáil Seoladh Naisc"
 
 #: ../src/yelp-window.c:444
 msgid "Help On this application"
-msgstr ""
+msgstr "Cabhair ar an bhfeidhmchlár seo"
 
 #: ../src/yelp-window.c:447
 msgid "_About"
@@ -1414,64 +1463,62 @@ msgstr "_Maidir Leis Seo"
 msgid "Copy _Email Address"
 msgstr "Cóipeáil Seoladh _Ríomhphoist"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Brabhsálaí Cabhrach"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "Á Luchtú..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Leathanach Anaithnid"
 
-#: ../src/yelp-window.c:1007 ../src/yelp-window.c:1073
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr ""
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "Ní féidir leathanach a luchtú"
 
-#: ../src/yelp-window.c:1068
-msgid "Error executing \"gnome-open\""
-msgstr "Earráid agus \"gnome-open\" á rith"
-
-#: ../src/yelp-window.c:1252
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "Cuar_daigh:"
 
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "Cuardaigh ar dhoiciméadú eile"
 
-#: ../src/yelp-window.c:1272
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "Ní féidir fuinneog a chruthú"
 
-#: ../src/yelp-window.c:1278
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
 msgstr ""
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "Aimsi_gh:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "Aimsigh _Roimhe Seo"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "Aimsigh an Chéad Cheann _Eile"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "Frása gan aimsiú"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1480,24 +1527,21 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2450
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr ""
 "Paul Duffy <dubhthach@frink.nuigalway.ie>\n"
 "Alastair McKinstry <mckinstry@computer.org>\n"
 "Seán de Búrca <leftmostcat@gmail.com>"
 
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2580
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2455
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Brabhsálaí agus amharcán doiciméadaithe leis an Deasc GNOME."
+msgstr "Brabhsálaí agus amharcán doiciméadaithe don Deasc GNOME."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "Faigh cabhair le GNOME"
-
-#~ msgid "Chart"
-#~ msgstr "Cairt"
+msgstr "Faigh cabhair ar GNOME"

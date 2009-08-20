@@ -6,14 +6,16 @@
 # Hendrik Richter <hendrikr@gnome.org>, 2006, 2008.
 # Andre Klapper <ak-47@gmx.net>, 2007.
 # Jochen Skulj <jochen@jochenskulj.de>, 2008.
+# Mario Blättermann <mariobl@gnome.org>, 2009.
+# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-07 17:41+0100\n"
-"PO-Revision-Date: 2008-07-28 18:04+0200\n"
-"Last-Translator: Philipp Kerling <k.philipp@gmail.com>\n"
+"POT-Creation-Date: 2009-08-14 02:28+0200\n"
+"PO-Revision-Date: 2009-08-10 10:50+0200\n"
+"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -291,7 +293,7 @@ msgstr "2D-Grafik"
 msgid "3D Graphics"
 msgstr "3D-Grafik"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Barrierefreiheit"
 
@@ -357,7 +359,7 @@ msgstr "Bauen"
 
 #: ../data/toc.xml.in.h:19
 msgid "Calculator"
-msgstr "Rechner"
+msgstr "Taschenrechner"
 
 #: ../data/toc.xml.in.h:20
 msgid "Calendar"
@@ -409,15 +411,15 @@ msgstr "Datenbanken"
 
 #: ../data/toc.xml.in.h:32
 msgid "Debuggers"
-msgstr "Debugger"
+msgstr "Fehlerdiagnose"
 
 #: ../data/toc.xml.in.h:33
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Arbeitsfläche"
 
 #: ../data/toc.xml.in.h:34
 msgid "Desktop Settings"
-msgstr "Desktop-Einstellungen"
+msgstr "Einstellungen der Arbeitsfläche"
 
 #: ../data/toc.xml.in.h:36
 msgid "Dialup"
@@ -528,7 +530,7 @@ msgstr ""
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
-msgstr "Anleitungen um sich an der Entwicklung zu beteiligen"
+msgstr "Anleitungen zur Beteiligung an der Entwicklung"
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
@@ -871,85 +873,57 @@ msgstr "Willkommen zum GNOME-Hilfe-Browser"
 msgid "Word Processors"
 msgstr "Textverarbeitung"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Barrierefreiheit</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Schrift</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Lesezeichen hinzufügen"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "Groß-/Kleinschreibung _berücksichtigen"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Suchen"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Ort öffnen"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Einstellungen"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "Umbe_nennen"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Lesezeichen:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "Mit Text_cursor navigieren"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Lesezeichen hinzufügen"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Suchen:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Feste Breite:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Ort:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Weitersuchen"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Rückwärts suchen"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Titel:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Ort öffnen"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Ort:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Schriften"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "Mit Text_cursor navigieren"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Feste Breite:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "_Systemschriften verwenden"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "_Variable Breite:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Zeilenumbruch"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -985,46 +959,112 @@ msgstr "Systemschriften verwenden"
 msgid "Use the default fonts set for the system."
 msgstr "Die vom System vorgegebenen Schriften verwenden."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Datei ist keine gültige .desktop-Datei"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Unbekannte Version »%s« der .desktop-Datei"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "%s wird gestartet"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr ""
+"Von der Anwendung werden keine Dokumente auf der Befehlszeile angenommen"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Unbekannte Startoption: %d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+"Dokumentadressen können nicht an eine .desktop-Datei mit dem Eintrag "
+"»Type=Link« übergeben werden"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "Objekt kann nicht gestartet werden"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Verbindung zur Sitzungsverwaltung ausschalten"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Geben Sie die Datei mit der gespeicherten Konfiguration an"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "DATEI"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Geben Sie die Kennung der Sitzungsverwaltung an"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "Kennung"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Optionen der Sitzungsverwaltung:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Optionen der Sitzungsverwaltung anzeigen"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Lesezeichen in neuem Fenster öffnen"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Lesezeichen umbenennen"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Lesezeichen entfernen"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Ein Lesezeichen mit dem Namen %s existiert bereits für diese Seite."
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr ""
 "Ein Lesezeichen mit dem Namen <b>%s</b> existiert bereits für diese Seite."
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Hilfe-Themen"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Dokumentabschnitte"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Seite konnte nicht gefunden werden"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Die Seite %s konnte nicht im Dokument %s gefunden werden."
@@ -1070,7 +1110,7 @@ msgstr ""
 "Die Datei »%s« konnte nicht analysiert werden, da eine oder mehrere der "
 "enthaltenen Dateien kein gültiges XML-Dokument ist."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -1078,7 +1118,7 @@ msgstr "Unbekannt"
 msgid "Unknown Error"
 msgstr "Unbekannter Fehler"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "Datei konnte nicht gelesen werden"
 
@@ -1094,7 +1134,7 @@ msgstr ""
 "Die Datei »%s« konnte nicht analysiert werden, da sie keine gültige Info-"
 "Seite ist."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1103,22 +1143,31 @@ msgstr ""
 "Die Datei »%s« konnte nicht gelesen und dekodiert werden. Eventuell ist die "
 "Datei in einem nicht unterstützen Format komprimiert."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Private Sitzung verwenden"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "Den Ordner für den Zwischenspeicher festlegen"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " GNOME-Hilfe-Browser"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hilfe"
+
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "Ordner nicht gefunden"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Der Ordner »%s« existiert nicht."
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1158,16 +1207,16 @@ msgstr "Beim Drucken ist ein Fehler aufgetreten"
 msgid "It was not possible to print your document: %s"
 msgstr "Es war nicht möglich das Dokument zu drucken: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "GNOME Support-Foren (Englisch)"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Keine Ergebnisse für »%s«"
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -1175,7 +1224,7 @@ msgstr ""
 "Versuchen Sie, Ihr Problem oder das Thema zu dem Sie Hilfe möchten mit "
 "anderen Worten zu beschreiben."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Suchergebnisse für »%s«"
@@ -1185,7 +1234,7 @@ msgstr "Suchergebnisse für »%s«"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Die Suche online bei %s wiederholen"
@@ -1273,31 +1322,31 @@ msgstr ""
 "Die Inhaltsverzeichnis-Datei »%s« konnte nicht analysiert werden, da sie kein "
 "gültiges XML-Dokument ist."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "Ungültige Stilvorlage"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr ""
 "Entweder existiert die XSLT-Stilvorlage »%s« nicht, oder es ist keine gültige "
 "XSLT-Stilvorlage."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "Defekte Umwandlung"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr ""
 "Ein unbekannter Fehler trat auf beim Versuch, das Dokument umzuwandeln."
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "Kein href-Attribut im yelp:-Dokument gefunden\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Speichermangel"
 
@@ -1449,64 +1498,62 @@ msgstr "_Info"
 msgid "Copy _Email Address"
 msgstr "_E-Mail-Adresse kopieren"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Hilfe-Browser"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "Ladevorgang …"
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Unbekannte Seite"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Die angeforderte URI-Adresse »%s« ist ungültig"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "Laden der Seite nicht möglich"
 
-#: ../src/yelp-window.c:1069
-msgid "Error executing \"gnome-open\""
-msgstr "Fehler beim Ausführen von »gnome-open«"
-
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "_Suchen:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "Nach sonstiger Dokumentation suchen"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "Fenster konnte nicht erzeugt werden"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
 msgstr "Suchkomponente konnte nicht erzeugt werden"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "_Suchen:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "_Rückwärts suchen"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "_Weitersuchen"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "Ausdruck nicht gefunden"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1517,26 +1564,56 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr ""
 "Christian Meyer <chrisime@gnome.org>\n"
 "Christian Neumair <chris@gnome-de.org>\n"
 "Matthias Warkus <mawarkus@gnome.org>\n"
 "Hendrik Brandt <heb@gnome-de.org>\n"
-"Andre Klapper <ak-47@gmx.net>"
+"Andre Klapper <ak-47@gmx.net>\n"
+"Mario Blättermann <mariobl@gnome.org>\n"
+"Christian Kirbach <Christian.Kirbach@googlemail.com>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2580
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Ein zentraler Sammelpunkt für Hilfedokumente des Gnome-Desktops."
+msgstr ""
+"Ein zentraler Sammelpunkt für Hilfedokumente der GNOME Arbeitsumgebung."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Hilfe zu GNOME erhalten"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Barrierefreiheit</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Schrift</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "Groß-/Kleinschreibung _berücksichtigen"
+
+#~ msgid "Find"
+#~ msgstr "Suchen"
+
+#~ msgid "_Find:"
+#~ msgstr "_Suchen:"
+
+#~ msgid "_Next"
+#~ msgstr "_Weitersuchen"
+
+#~ msgid "_Previous"
+#~ msgstr "_Rückwärts suchen"
+
+#~ msgid "_Wrap around"
+#~ msgstr "_Zeilenumbruch"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "Fehler beim Ausführen von »gnome-open«"
 
 #~ msgid "Accessories"
 #~ msgstr "Zubehör"
