@@ -1,23 +1,24 @@
-# translation of yelp.HEAD.po to 简体中文
 # Translation of yelp.po to Simplified Chinese.
+# Copyright (C) 2002, 2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 #
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
 # Funda Wang <fundawang@linux.net.cn>, 2003 ,2004, 2005.
 # Jan2xue <75jan@163.com>, 2003-2004.
 # Shaodong Di <gnuyhlfh@gmail.com>, 2008.
+# Aron Xu <happyaron.xu@gmail.com>, 2009.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-22 05:25+0000\n"
+"POT-Creation-Date: 2009-08-25 18:24+0800\n"
 "PO-Revision-Date: 2008-02-23 19:51+0800\n"
 "Last-Translator: Shaodong Di <gnuyhlfh@gmail.com>\n"
 "Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -291,7 +292,7 @@ msgstr "2D 图形"
 msgid "3D Graphics"
 msgstr "3D 图形"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "辅助功能"
 
@@ -865,85 +866,57 @@ msgstr "欢迎使用 GNOME 帮助浏览器"
 msgid "Word Processors"
 msgstr "文字处理器"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>辅助功能</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>字体</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "添加书签"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "书签"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "大小写敏感(_A)"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "查找"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "打开位置"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "首选项"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "重命名(_N)"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "书签(_B)："
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "带光标浏览(_B)"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "添加书签"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "查找(_F)："
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "等宽(_F)："
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "位置(_L)："
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "下一页(_N)"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "上一页(_P)"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "标题(_T)："
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "打开位置"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "位置(_L)："
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "字体"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "首选项"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "带光标浏览(_B)"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "等宽(_F)："
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "使用系统字体(_U)"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "非等宽字体(_V)："
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "自动换行(_W)"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -977,87 +950,150 @@ msgstr "使用系统字体"
 msgid "Use the default fonts set for the system."
 msgstr "使用系统默认字体设置。"
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "该文件不是有效的 .desktop 文件"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "无法识别的 desktop 文件版本“%s”"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "正在打开 %s"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "应用程序不在命令行接受文档"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "无法识别的启动选项：%d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "无法向“Type=Link“的桌面项目传递文档 URI"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "不可启动项目"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "禁用与会话管理器连接"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "指定保存配置的文件"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "文件"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "指定会话管理 ID"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "指定会话管理选项："
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "显示会话管理选项"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "在新窗口打开书签"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "重命名书签"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "删除书签"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "此页面已经存在标题为 %s 的书签。"
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "此页面已经存在标题为 <b>%s</b> 的书签。"
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "帮助主题"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "文档章节"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:293 ../src/yelp-man.c:388
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "页面未找到"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:294
+#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "文档 %2$s 中没有找到页面 %1$s。"
 
 #: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
-#: ../src/yelp-man.c:389
+#: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "文档 %s 中没有找到请求的页面。"
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "文件未找到"
 
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
-#: ../src/yelp-man.c:432
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "文件“%s”不存在。"
 
 #: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:394
-#: ../src/yelp-man.c:460 ../src/yelp-toc.c:436
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "无法解析文件"
 
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "无法解析文件“%s”，因为它不是有效的 XML 文档。"
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr "无法解析文件“%s”，因为它的一个或多个包含文件不是有效的 XML 文档。"
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "未知"
 
@@ -1065,7 +1101,7 @@ msgstr "未知"
 msgid "Unknown Error"
 msgstr "未知错误"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "无法读取文档"
 
@@ -1073,37 +1109,46 @@ msgstr "无法读取文档"
 msgid "No information is available about this error."
 msgstr "没有关于此错误的信息。"
 
-#: ../src/yelp-info.c:395
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "无法解析文件“%s”，因为它不是有效的信息页。"
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr "无法读取并解码文件“%s”。文件可能以不支持的格式压缩。"
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "使用私有会话"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "定义要使用哪个缓存目录"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " GNOME 帮助浏览器"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/yelp-man.c:461
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "目录未找到"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "目录“%s”不存在。"
+
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -1139,22 +1184,22 @@ msgstr "打印时发生了错误"
 msgid "It was not possible to print your document: %s"
 msgstr "无法打印您的文档：%s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "GNOME 支持论坛"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "“%s”没有结果"
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr "请试着使用不同的内容来描述您所遇到的问题，或者您想要获得帮助的主题。"
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "“%s”的搜索结果"
@@ -1164,7 +1209,7 @@ msgstr "“%s”的搜索结果"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "在 %s 再搜索一次"
@@ -1238,34 +1283,34 @@ msgstr "TOC 中未找到页面 %s 。"
 msgid "The requested page was not found in the TOC."
 msgstr "TOC 中未找到请求的页面。"
 
-#: ../src/yelp-toc.c:437
+#: ../src/yelp-toc.c:438
 msgid ""
 "The TOC file could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "无法解析 TOC 文件，因为它不是有效的 XML 文档。"
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "无效样式表"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr "XSLT 样式表“%s”可能不存在，或无效。"
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "无效转换"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "尝试转换文档格式时发生了未知错误"
 
-#: ../src/yelp-transform.c:372
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "在 yelp:document 中未发现 href 属性\n"
 
-#: ../src/yelp-transform.c:387
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "内存不足"
 
@@ -1417,64 +1462,62 @@ msgstr "关于(_A)"
 msgid "Copy _Email Address"
 msgstr "复制电子邮件地址(_E)"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "帮助浏览器"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "正在装入..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "未知页面"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "请求的URI “%s”无效"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "无法加载页面"
 
-#: ../src/yelp-window.c:1069
-msgid "Error executing \"gnome-open\""
-msgstr "执行 “gnome-open” 时出错"
-
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "搜索(_S)："
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "搜索其它文档"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "无法创建窗口"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
 msgstr "无法创建搜索组件"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "查找(_D)："
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "查找上一个(_P)"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "查找下一个(_N)"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "未找到词组"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1483,22 +1526,49 @@ msgstr "无法读取文件“%s”。文件可能已经损坏，或者您没有�
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr ""
-"开源软件国际化简体中文组(http://i18n.linux.net.cn)\n"
 "Zipeco <Zipeco@btamail.net.cn>, 2002\n"
 "Funda Wang <fundawang@linux.net.cn>, 2003, 2005\n"
-"Jan2xue <75jan@163.com>, 2003-2004"
+"Jan2xue <75jan@163.com>, 2003-2004\n"
+"Aron Xu <happyaron.xu@gmail.com>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2580
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Gnome 桌面的文档浏览器和阅读器。"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>辅助功能</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>字体</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "大小写敏感(_A)"
+
+#~ msgid "Find"
+#~ msgstr "查找"
+
+#~ msgid "_Find:"
+#~ msgstr "查找(_F)："
+
+#~ msgid "_Next"
+#~ msgstr "下一页(_N)"
+
+#~ msgid "_Previous"
+#~ msgstr "上一页(_P)"
+
+#~ msgid "_Wrap around"
+#~ msgstr "自动换行(_W)"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "执行 “gnome-open” 时出错"
