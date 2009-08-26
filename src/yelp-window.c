@@ -2352,6 +2352,7 @@ window_enable_cursor_cb (GtkAction *action, YelpWindow *window)
 static void
 history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
 {
+    gchar *slash, *frag_id;
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     if (entry->type == YELP_RRN_TYPE_HTML || entry->type == YELP_RRN_TYPE_XHTML || entry->type == YELP_RRN_TYPE_TEXT) {
@@ -2364,10 +2365,21 @@ history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
 	    g_free (window->priv->base_uri);
 	window->priv->base_uri = g_strdup (entry->base_uri);
 	window->priv->current_document = entry->doc;
+
+        /* FIXME: Super hacky.  We want the part before the slash for mallard IDs,
+           because right now we're outputting "#page_id/section_id".  We ought to
+           be scrolling to the section as well.
+         */
+        slash = strchr (entry->frag_id, '/');
+        if (slash)
+            frag_id = g_strndup (entry->frag_id, slash - entry->frag_id);
+        else
+            frag_id = g_strdup (entry->frag_id);
 	window->priv->current_request = yelp_document_get_page (entry->doc,
-							entry->frag_id,
-							(YelpDocumentFunc) page_request_cb,
-							(void *) window);
+                                                                frag_id,
+                                                                (YelpDocumentFunc) page_request_cb,
+                                                                (void *) window);
+        g_free (frag_id);
     }
 
 }
