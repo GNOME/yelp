@@ -124,6 +124,9 @@ gboolean          yelp_document_has_page       (YelpDocument       *document,
 void              yelp_document_error_request  (YelpDocument       *document,
 						gint                req_id,
 						YelpError          *error);
+void              yelp_document_error_page     (YelpDocument       *document,
+						gchar              *page_id,
+						YelpError          *error);
 void              yelp_document_error_pending  (YelpDocument       *document,
 						YelpError          *error);
 GtkTreeModel     *yelp_document_get_sections   (YelpDocument       *document);

@@ -86,7 +86,7 @@ yelp_error_copy (YelpError *error)
     new->title = g_strdup (error->title);
     new->message = g_strdup (error->message);
 
-    return error;
+    return new;
 }
 
 const gchar *

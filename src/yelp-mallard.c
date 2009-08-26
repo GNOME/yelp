@@ -373,10 +373,14 @@ mallard_try_run (YelpMallard *mallard,
 {
     /* We expect to be in a locked mutex when this function is called. */
     MallardPageData *page_data;
+    YelpError *error;
 
     page_data = g_hash_table_lookup (mallard->priv->pages_hash, page_id);
     if (page_data == NULL) {
-        printf ("FIXME: page not found: %s\n", page_id);
+	error = yelp_error_new (_("Page not found"),
+				_("The page %s was not found in the document %s."),
+				page_id, mallard->priv->directory);
+	yelp_document_error_page (YELP_DOCUMENT (mallard), page_id, error);
         return;
     }
 
