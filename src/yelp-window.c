@@ -2573,7 +2573,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 {
     const gchar *copyright =
 	"Copyright © 2001-2003 Mikael Hallendal\n"
-	"Copyright © 2003-2005 Shaun McCance\n"
+	"Copyright © 2003-2009 Shaun McCance\n"
 	"Copyright © 2005-2006 Don Scorgie\n"
 	"Copyright © 2005-2006 Brent Smith";
     const gchar *authors[] = {
@@ -2852,9 +2852,16 @@ window_write_html (YelpLoadData *data)
     gchar contents[BUFFER_SIZE];
 
     /* Use a silly fake URI to stop gecko doing silly things */
-    if (data->window->priv->current_frag)
-	uri = g_strdup_printf ("%s#%s", data->window->priv->base_uri,
-			       data->window->priv->current_frag);
+    if (data->window->priv->current_frag) {
+        /* FIXME: more of this terrible slash hack */
+        gchar *slash, *jump_id;
+        slash = strchr (data->window->priv->current_frag, '/');
+        if (slash)
+            jump_id = slash + 1;
+        else
+            jump_id = data->window->priv->current_frag;
+	uri = g_strdup_printf ("%s#%s", data->window->priv->base_uri, jump_id);
+    }
     else
 	uri = g_strdup (data->window->priv->base_uri);
 
