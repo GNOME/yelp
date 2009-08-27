@@ -498,12 +498,8 @@ mallard_page_data_info (MallardPageData *page_data,
         else if (xmlStrEqual (child->name, BAD_CAST "title")) {
             xmlNodePtr node, title_node;
             xmlChar *type, *role;
-            title_node = xmlNewChild (cache_node,
-                                      page_data->mallard->priv->cache_ns,
-                                      BAD_CAST "title", NULL);
-            for (node = child->children; node; node = node->next) {
-                xmlAddChild (title_node, xmlCopyNode (node, 1));
-            }
+            title_node = xmlCopyNode (child, 1);
+            xmlAddChild (cache_node, title_node);
 
             type = xmlGetProp (child, BAD_CAST "type");
             role = xmlGetProp (child, BAD_CAST "role");
@@ -512,15 +508,6 @@ mallard_page_data_info (MallardPageData *page_data,
                 page_data->link_title = TRUE;
             if (xmlStrEqual (type, BAD_CAST "sort"))
                 page_data->sort_title = TRUE;
-
-            if (type) {
-                xmlSetProp (title_node, BAD_CAST "type", BAD_CAST type);
-                xmlFree (type);
-            }
-            if (role) {
-                xmlSetProp (title_node, BAD_CAST "role", BAD_CAST type);
-                xmlFree (role);
-            }
         }
         else if (xmlStrEqual (child->name, BAD_CAST "desc") ||
                  xmlStrEqual (child->name, BAD_CAST "link")) {
