@@ -1138,7 +1138,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     }
 
     if (doc) {
-        gchar *slash;
+        gchar *faux_frag_id, *slash;
 	gboolean need_hist = FALSE;
 	if (!frag_id)
 	  frag_id = g_strdup ("x-yelp-index");
@@ -1147,22 +1147,35 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 				       priv->current_type == YELP_RRN_TYPE_XHTML ||
 				       priv->current_type == YELP_RRN_TYPE_TEXT))
 	    need_hist = TRUE;
-	window_setup_window (window, type, real_uri, frag_id,
-			     (gchar *) uri, current_base, need_hist);
 
         /* FIXME: Super hacky.  We want the part before the slash for mallard IDs,
-           because right now we're outputting "#page_id/section_id".  We ought to
-           be scrolling to the section as well.  I happen to know that get_page is
-           just going to strdup the string, and we free frag_id itself immediately
-           after this, so this is safe.  It just sucks.
+           because right now we're outputting "#page_id/section_id".
          */
-        slash = strchr (frag_id, '/');
+        faux_frag_id = g_strdup (frag_id);
+        slash = strchr (faux_frag_id, '/');
         if (slash)
             *slash = '\0';
-	priv->current_request = yelp_document_get_page (doc,
-							frag_id,
-							(YelpDocumentFunc) page_request_cb,
-							(void *) window);
+        if (strlen (faux_frag_id) == 0) {
+            gchar *new_frag_id, *newslash;
+            if (slash)
+                slash = g_strdup (slash + 1);
+            g_free (faux_frag_id);
+            faux_frag_id = g_strdup (priv->current_frag);
+            newslash = strchr (faux_frag_id, '/');
+            if (newslash)
+                *newslash = '\0';
+            new_frag_id = g_strconcat (faux_frag_id, "/", slash, NULL);
+            g_free (frag_id);
+            g_free (slash);
+            frag_id = new_frag_id;
+        }
+	window_setup_window (window, type, real_uri, frag_id,
+			     (gchar *) uri, current_base, need_hist);
+        priv->current_request = yelp_document_get_page (doc,
+                                                        faux_frag_id,
+                                                        (YelpDocumentFunc) page_request_cb,
+                                                        (void *) window);
+        g_free (faux_frag_id);
 	priv->current_document = doc;
     }
 
