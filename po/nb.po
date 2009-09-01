@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.27.x\n"
-"Report-Msgid-Bugs-To:\n"
-"POT-Creation-Date: 2009-08-06 22:07+0200\n"
-"PO-Revision-Date: 2009-08-06 22:07+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-01 14:28+0200\n"
+"PO-Revision-Date: 2009-09-01 14:29+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -948,6 +948,69 @@ msgstr "Bruk systemets skrifter"
 msgid "Use the default fonts set for the system."
 msgstr "Bruk systemets forvalgte skrifter."
 
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Filen er ikke en gyldig .desktop-fil"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "Starter %s"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Programmet tar ikke dokumenter på kommandolinjen"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "Ikke en oppstartbar oppføring"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Slå av tilkobling til sesjonshåndterer"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr ""
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "FIL"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr ""
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Alternativer for sesjonshåndtering:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Vis alternativer for sesjonshåndtering"
+
 #: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Åpne bokmerke i nytt vindu"
@@ -980,13 +1043,14 @@ msgstr "Dokumentdeler"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-mallard.c:380
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Side ikke funnet"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-mallard.c:381 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Siden %s ble ikke funnet i dokument %s."
@@ -1039,7 +1103,7 @@ msgstr "Ukjent"
 msgid "Unknown Error"
 msgstr "Ukjent feil"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1723
 msgid "Could Not Read File"
 msgstr "Kunne ikke lese filen"
 
@@ -1062,20 +1126,20 @@ msgstr ""
 "Filen «%s» kunne ikke leses og dekodes. Filen kan være komprimert i et format "
 "som ikke støttes."
 
-#: ../src/yelp-main.c:90
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Bruk en privat sesjon"
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "Definer hvilken bufferkatalog som skal brukes"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:356
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr "GNOME hjelpleser"
 
-#: ../src/yelp-main.c:376 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjelp"
 
@@ -1413,7 +1477,7 @@ msgstr "Kopier e-postadresse"
 msgid "Help Browser"
 msgstr "Hjelp leser"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1785
 msgid "Loading..."
 msgstr "Laster..."
 
@@ -1432,39 +1496,39 @@ msgstr "Etterspurt URI «%s» er ugyldig"
 msgid "Unable to load page"
 msgstr "Kan ikke laste siden"
 
-#: ../src/yelp-window.c:1330
+#: ../src/yelp-window.c:1343
 msgid "_Search:"
 msgstr "_Søk:"
 
-#: ../src/yelp-window.c:1331
+#: ../src/yelp-window.c:1344
 msgid "Search for other documentation"
 msgstr "Søk etter annen dokumentasjon"
 
-#: ../src/yelp-window.c:1351
+#: ../src/yelp-window.c:1364
 msgid "Cannot create window"
 msgstr "Kan ikke opprette vindu"
 
-#: ../src/yelp-window.c:1357
+#: ../src/yelp-window.c:1370
 msgid "Cannot create search component"
 msgstr "Kan ikke opprette søkekomponent"
 
-#: ../src/yelp-window.c:1529
+#: ../src/yelp-window.c:1542
 msgid "Fin_d:"
 msgstr "_Finn:"
 
-#: ../src/yelp-window.c:1551
+#: ../src/yelp-window.c:1564
 msgid "Find _Previous"
 msgstr "_Finn forrige"
 
-#: ../src/yelp-window.c:1563
+#: ../src/yelp-window.c:1576
 msgid "Find _Next"
 msgstr "Finn _neste"
 
-#: ../src/yelp-window.c:1576
+#: ../src/yelp-window.c:1589
 msgid "Phrase not found"
 msgstr "Frase ikke funnet"
 
-#: ../src/yelp-window.c:1707
+#: ../src/yelp-window.c:1720
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1475,15 +1539,15 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2577
+#: ../src/yelp-window.c:2602
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/yelp-window.c:2580
+#: ../src/yelp-window.c:2605
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2582
+#: ../src/yelp-window.c:2607
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Program for å finne og lese dokumentasjon for GNOME skrivebordet."
 
