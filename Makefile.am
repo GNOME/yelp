@@ -1,7 +1,5 @@
 SUBDIRS = src stylesheets po data tests
 
-ACLOCAL_AMFLAGS = -I m4
-
 @INTLTOOL_DESKTOP_RULE@
 
 desktopdir = $(datadir)/applications

@@ -30,6 +30,7 @@
 #include <dbus/dbus-glib-bindings.h>
 #include <string.h>
 #include <stdlib.h>
+#include <libxslt/xslt.h>
 
 #ifdef WITH_SMCLIENT
 #include "eggsmclient.h"
@@ -343,6 +344,7 @@ main (int argc, char **argv)
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);  
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
+ 	xsltInit ();
 
 	local_id = (gchar *) g_getenv ("DESKTOP_STARTUP_ID");
 
@@ -393,7 +395,7 @@ main (int argc, char **argv)
 	}
 
 	if (!yelp_html_initialize ()) {
-		g_printerr ("Could not initialize gecko!\n");
+		g_printerr ("Could not initialize HTML component\n");
 		exit (1);
 	}
 
@@ -414,16 +416,7 @@ main (int argc, char **argv)
 	if (private || !main_is_running ()) {
 		const gchar          *env;
 
-		/* workaround for bug #329461 */
-		env = g_getenv ("MOZ_ENABLE_PANGO");
-		
-		if (env == NULL ||
-		    *env == '\0' ||
-		    g_str_equal(env, "0")) 
-			{
-				g_setenv ("MOZ_DISABLE_PANGO", "1", TRUE);
-			}
-		
+		xsltInit ();
 		if (session_started) {
 			main_restore_session ();
 		} else {

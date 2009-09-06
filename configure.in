@@ -4,7 +4,6 @@ GNOME_COMMON_INIT
 
 AC_CONFIG_SRCDIR([src/yelp-main.c])
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_MACRO_DIR([m4])
 
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AM_MAINTAINER_MODE
@@ -18,7 +17,6 @@ AM_GCONF_SOURCE_2
 
 AC_PROG_LN_S
 AC_PROG_CC
-AC_PROG_CXX
 AM_PROG_CC_STDC
 AC_ISC_POSIX
 AC_HEADER_STDC
@@ -29,21 +27,9 @@ AM_PROG_CC_C_O
 
 GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
-GNOME_CXX_WARNINGS
 
 MORE_WARN_FLAGS=
 DEPRECATION_FLAGS=
-if test "x$GCC" = "xyes"; then
-  MOZILLA_WARN_CXXFLAGS="-Wno-ctor-dtor-privacy -Wno-non-virtual-dtor"
-fi
-
-if test "x$enable_maintainer_mode" = "xyes"; then
-	AC_DEFINE([MAINTAINER_MODE],[1],[Define to enable 'maintainer-only' behaviour])
-#	DEPRECATION_FLAGS="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGDK_PIXBUF_DISABLE_DEPRECATED -DGCONF_DISABLE_DEPRECATED -DGNOME_VFS_DISABLE_DEPRECATED -DBONOBO_UI_DISABLE_DEPRECATED -DBONOBO_DISABLE_DEPRECATED -DLIBGLADE_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED"
-  if test "x$GCC" = "xyes"; then
-	MOZILLA_WARN_CXXFLAGS="-Wall -Wconversion -Wpointer-arith -Wcast-align -Woverloaded-virtual -Wsynth $MOZILLA_WARN_CXXFLAGS"
-  fi
-fi
 
 if test "x$enable_debug" = "xyes"; then
 	AC_DEFINE([YELP_DEBUG],[1],[Enable Yelp debugging])
@@ -224,35 +210,13 @@ dnl <= Check for bzip2 > 1.0.0
     dnl =>
 AC_SUBST(BZ_LIBS)
 
-
 # *****
-# Gecko
+# Webkit
 # *****
-
-GECKO_INIT([MOZILLA])
-GECKO_DEFINES
-
-AC_SUBST([MOZILLA])
-AC_SUBST([MOZILLA_FLAVOUR])
-AC_SUBST([MOZILLA_INCLUDE_ROOT])
-AC_SUBST([MOZILLA_HOME])
-AC_SUBST([MOZILLA_PREFIX])
-AC_SUBST([MOZILLA_EXTRA_LIBS])
-AC_SUBST([MOZILLA_GLUE_LIBS])
-
-case "$MOZILLA" in
-xulrunner) gecko_min_version=1.8 ;;
-libxul*) gecko_min_version=1.9 ;;
-*firefox) gecko_min_version=1.5 ;;
-*) AC_MSG_ERROR([$gecko_cv_gecko is not supported])
-esac
-
-if test "$MOZILLA" = "libxul-embedding" -o "$MOZILLA" = "libxul"; then
-	PKG_CHECK_MODULES([MOZILLA_COMPONENT],[$MOZILLA $gecko_cv_extra_pkg_dependencies])
-	MOZILLA_COMPONENT_CFLAGS="$MOZILLA_COMPONENT_CFLAGS `$PKG_CONFIG --cflags ${gecko_cv_gecko}` `$PKG_CONFIG --define-variable=includetype=unstable --cflags ${gecko_cv_gecko}`"
-else
-	PKG_CHECK_MODULES([MOZILLA_COMPONENT],[${gecko_cv_gecko}-xpcom >= $gecko_min_version $gecko_cv_extra_pkg_dependencies])
-fi
+  PKG_CHECK_MODULES(YELP_WEBKIT, "webkit-1.0")
+  AC_SUBST(YELP_WEBKIT_CFLAGS)
+  AC_SUBST(YELP_WEBKIT_LIBS)
+  AC_DEFINE(WEBKIT_BACKEND, 1, [Webkit Backend])
 
 # *****
 # SMClient
@@ -283,13 +247,12 @@ AM_CONDITIONAL([WITH_SMCLIENT_WIN32],[test "$with_smclient" = "win32"])
 AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
 
 # Set flags
-
 AM_CPPFLAGS="$AM_CPPFLAGS $DEPRECATION_FLAGS"
 AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS $MORE_WARN_FLAGS"
-AM_CXXFLAGS="$AM_CXXFLAGS $WARN_CXXFLAGS $MOZILLA_WARN_CXXFLAGS"
+
+
 AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
-AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
 AC_CONFIG_FILES([
@@ -321,7 +284,6 @@ yelp-$VERSION:
 
 	Debug enabled:            ${enable_debug}
 	Search backend:           ${search_backend}
-	Mozilla version:          ${MOZILLA}
 	Using SMClient:           ${with_smclient}
 
 "

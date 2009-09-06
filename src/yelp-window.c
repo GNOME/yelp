@@ -42,7 +42,6 @@
 #include "yelp-db-print.h"
 #include "yelp-mallard.h"
 #include "yelp-window.h"
-#include "yelp-print.h"
 #include "yelp-debug.h"
 
 
@@ -75,12 +74,6 @@ typedef struct {
     gchar *page_title;
     gchar *frag_title;
 } YelpHistoryEntry;
-
-typedef struct {
-    YelpPage *page;
-    YelpWindow *window;
-
-} YelpLoadData;
 
 static void        window_init		          (YelpWindow        *window);
 static void        window_class_init	          (YelpWindowClass   *klass);
@@ -126,11 +119,9 @@ static gboolean    html_frame_selected_cb         (YelpHtml          *html,
 						   gboolean           handled,
 						   gpointer           user_data);
 static void        html_title_changed_cb          (YelpHtml          *html,
+						   gpointer 	      webframe,
 						   gchar             *title,
 						   gpointer           user_data);
-static void        html_popupmenu_requested_cb    (YelpHtml *html,
-						   gchar *uri,
-						   gpointer user_data);
 static gboolean    window_key_event_cb            (GtkWidget   *widget,
 						   GdkEventKey *event,
 						   YelpWindow  *window);
@@ -220,8 +211,8 @@ static void        window_find_previous_cb        (GtkAction *action,
 						   YelpWindow *window);
 static gboolean    tree_model_iter_following      (GtkTreeModel      *model,
 						   GtkTreeIter       *iter);
-static gboolean    window_write_html              (YelpLoadData      *data);
-static void        window_write_print_html        (YelpHtml          *html,
+static void        window_write_html              (YelpWindow        *window,
+						   YelpHtml          *html,
 						   YelpPage          *page);
 
 enum {
@@ -244,6 +235,8 @@ struct _YelpWindowPriv {
     YelpHtml       *html_view;
     GtkWidget      *side_sw;
     GtkWidget      *search_action;
+    GtkWidget      *html_sw;
+
 
     /* Find in Page */
     GtkToolItem    *find_prev;
@@ -905,23 +898,17 @@ page_request_cb (YelpDocument       *document,
 	       YelpWindow         *window)
 {
     YelpError *error;
-    YelpLoadData *data = NULL;
 
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
 	window_set_sections (window, yelp_document_get_sections (document));
 
-	data = g_new0 (YelpLoadData, 1);
-	data->window = window;
-	data->page = (YelpPage *) func_data;
-
-	window_write_html (data);
+	window_write_html (window, NULL, (YelpPage *) func_data);
 
 	window->priv->current_request = -1;
 	yelp_page_free ((YelpPage *) func_data);
 	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
 
-	g_free (data);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
 	/* We don't need to actually handle title signals as gecko
@@ -1074,7 +1061,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 	    doc = yelp_info_new (real_uri);
 	    break;
 	case YELP_RRN_TYPE_DOC:
-	    priv->base_uri = g_filename_to_uri (real_uri, NULL, NULL);
+	    priv->base_uri = g_strdup(real_uri);
 	    doc = yelp_docbook_new (real_uri);
 	    break;
 	case YELP_RRN_TYPE_SEARCH:
@@ -1445,7 +1432,15 @@ window_populate (YelpWindow *window)
     gtk_paned_add1    (GTK_PANED (priv->pane), priv->side_sw);
 
     priv->html_pane = gtk_vbox_new (FALSE, 0);
-
+    /* Webkit don't like showing scrollbars, so we have to add our
+       own */
+    priv->html_sw = gtk_scrolled_window_new (NULL, NULL);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->html_sw),
+				    GTK_POLICY_AUTOMATIC,
+				    GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->html_sw),
+					 GTK_SHADOW_IN);
+    
     priv->find_bar = gtk_toolbar_new ();
     gtk_toolbar_set_style (GTK_TOOLBAR (priv->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
     gtk_toolbar_set_icon_size (GTK_TOOLBAR (priv->find_bar), GTK_ICON_SIZE_MENU);
@@ -1467,21 +1462,20 @@ window_populate (YelpWindow *window)
 		      "title_changed",
 		      G_CALLBACK (html_title_changed_cb),
 		      window);
-    g_signal_connect (priv->html_view,
-		      "popupmenu_requested",
-		      G_CALLBACK (html_popupmenu_requested_cb),
-		      window);
     /* Connect to look for /'s */
     g_signal_connect (window,
 		      "key-press-event",
 		      G_CALLBACK (window_key_event_cb),
 		      window);
+    gtk_container_add (GTK_CONTAINER (priv->html_sw), 
+		       GTK_WIDGET (priv->html_view));
     gtk_box_pack_end (GTK_BOX (priv->html_pane),
-		      GTK_WIDGET (priv->html_view),
+		      GTK_WIDGET (priv->html_sw),
 		      TRUE, TRUE, 0);
-
+    gtk_widget_show (priv->html_sw);
     gtk_paned_add2     (GTK_PANED (priv->pane),
 			priv->html_pane);
+
     gtk_box_pack_start (GTK_BOX (priv->main_box),
 			priv->pane,
 			TRUE, TRUE, 0);
@@ -1889,40 +1883,16 @@ html_frame_selected_cb (YelpHtml *html, gchar *uri, gboolean handled,
     return TRUE;
 }
 
-static void
-html_title_changed_cb (YelpHtml  *html,
-		       gchar     *title,
-		       gpointer   user_data)
+
+static void        html_title_changed_cb          (YelpHtml          *html,
+						   gpointer 	      webframe,
+						   gchar             *title,
+						   gpointer           user_data)
 {
+
     gtk_window_set_title (GTK_WINDOW (user_data), title);
 }
 
-static void
-html_popupmenu_requested_cb (YelpHtml *html,
-			     gchar *uri,
-			     gpointer user_data)
-{
-    YelpWindow *window = YELP_WINDOW (user_data);
-
-    gtk_ui_manager_remove_ui (window->priv->ui_manager,
-			      window->priv->merge_id);
-
-
-    if (g_str_has_prefix(uri, "mailto:")) {
-	gtk_ui_manager_add_ui (window->priv->ui_manager,
-			       window->priv->merge_id,
-			       "/ui/main_popup",
-			       "CpMail",
-			       "CopyMail",
-			       GTK_UI_MANAGER_MENUITEM,
-			       FALSE);
-
-    }
-    g_free (window->priv->uri);
-    window->priv->uri = g_strdup (uri);
-    gtk_menu_popup (GTK_MENU (window->priv->popup),
-		    NULL, NULL, NULL, NULL, 3, gtk_get_current_event_time());
-}
 
 /** GtkTreeView Callbacks *****************************************************/
 
@@ -1944,7 +1914,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 	gtk_tree_model_get (model, &iter,
 			    YELP_DOCUMENT_COLUMN_ID, &id,
 			    -1);
-	uri = g_strdup_printf ("%s#%s", priv->base_uri, id);
+	uri = g_strdup_printf ("%s?%s", priv->base_uri, id);
 	yelp_window_load (window, uri);
 	g_free (uri);
     }
@@ -2051,11 +2021,9 @@ window_print_signal (YelpDocument       *document,
 
     switch (signal) {
     case YELP_DOCUMENT_SIGNAL_PAGE:
-	window_write_print_html (print->html, (YelpPage *) func_data);
-
+	window_write_html (print->window, print->html, (YelpPage *) func_data);
 	yelp_page_free ((YelpPage *) func_data);
-
-	yelp_print_run (print->window, print->html, print->gtk_win, print->vbox);
+	yelp_html_print (print->html);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
 	g_free (func_data);
@@ -2161,18 +2129,18 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	GFileInputStream *stream;
 	gsize             n;
 	gchar             buffer[BUFFER_SIZE];
-
-    file   = g_file_new_for_uri (priv->uri);
-    stream = g_file_read (file, NULL, NULL);
-
+	
+	file   = g_file_new_for_uri (priv->uri);
+	stream = g_file_read (file, NULL, NULL);
+	
 	if (stream == NULL) {
 	    /*GError *error = NULL;
-	    g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
-			 _("The file ‘%s’ could not be read.  This file might "
-			   "be missing, or you might not have permissions to "
-			   "read it."),
-			 uri);
-			 window_error (window, error, TRUE);*/
+	      g_set_error (&error, YELP_ERROR, YELP_ERROR_IO,
+	      _("The file ‘%s’ could not be read.  This file might "
+	      "be missing, or you might not have permissions to "
+	      "read it."),
+	      uri);
+	      window_error (window, error, TRUE);*/
 	    /* TODO: Proper errors */
 
 	    if (file)
@@ -2200,19 +2168,19 @@ window_print_page_cb (GtkAction *action, YelpWindow *window)
 	}
 
 	while ((g_input_stream_read_all
-	    ((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL))) {
+		((GInputStream *)stream, buffer, BUFFER_SIZE, &n, NULL, NULL))) {
 	    yelp_html_write (html, buffer, n);
 	}
 
-    if (file)
-        g_object_unref (file);
-    if (stream)
-        g_object_unref (stream);
+	yelp_html_print (html);
 
+	if (file)
+	    g_object_unref (file);
+	if (stream)
+	    g_object_unref (stream);
+	
 	yelp_html_close (html);
-
-	yelp_print_run (window, html, gtk_win, vbox);
-
+	
     }
 }
 
@@ -2856,13 +2824,15 @@ tree_model_iter_following (GtkTreeModel  *model,
     return FALSE;
 }
 
-static gboolean
-window_write_html (YelpLoadData *data)
+static void
+window_write_html (YelpWindow *window, YelpHtml *html, YelpPage *page)
 {
     gchar *uri = NULL;
     gsize read;
-    YelpHtml *html = data->window->priv->html_view;
     gchar contents[BUFFER_SIZE];
+    
+    if (!html)
+        html = window->priv->html_view;
 
     /* Use a silly fake URI to stop gecko doing silly things */
     if (data->window->priv->current_frag) {
@@ -2876,28 +2846,10 @@ window_write_html (YelpLoadData *data)
 	uri = g_strdup_printf ("%s#%s", data->window->priv->base_uri, jump_id);
     }
     else
-	uri = g_strdup (data->window->priv->base_uri);
-
+	uri = g_strdup (window->priv->base_uri);
+    
     yelp_html_set_base_uri (html, uri);
     g_free (uri);
-    yelp_html_open_stream (html, "application/xhtml+xml");
-
-    do {
-	yelp_page_read (data->page, contents, BUFFER_SIZE, &read, NULL);
-	yelp_html_write (html, contents, read);
-    } while (read == BUFFER_SIZE);
-    yelp_html_close (html);
-    return FALSE;
-}
-
-static void
-window_write_print_html (YelpHtml *html, YelpPage * page)
-{
-    gsize read;
-    gchar contents[BUFFER_SIZE];
-
-    /* Use a silly fake URI to stop gecko doing silly things */
-    yelp_html_set_base_uri (html, "file:///foobar");
     yelp_html_open_stream (html, "application/xhtml+xml");
 
     do {

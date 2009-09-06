@@ -1,23 +1,19 @@
 bin_PROGRAMS = yelp
 
 yelp_SOURCES =							\
-	Yelper.cpp		Yelper.h			\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
 	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
-	yelp-gecko-utils.cpp	yelp-gecko-utils.h		\
-	yelp-html.cpp		yelp-html.h			\
+	yelp-html.c			yelp-html.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-settings.c		yelp-settings.h			\
 	yelp-utils.c		yelp-utils.h			\
 	yelp-window.c 		yelp-window.h			\
 	yelp-marshal.c		yelp-marshal.h			\
 	yelp-main.c						\
-	yelp-print.c		yelp-print.h			\
 	yelp-page.c		yelp-page.h			\
 	yelp-transform.c	yelp-transform.h		\
-	yelp-gecko-services.h   yelp-gecko-services.cpp	        \
 	yelp-document.h		yelp-document.c			\
 	yelp-toc.h		yelp-toc.c			\
 	yelp-docbook.h		yelp-docbook.c			\
@@ -31,6 +27,7 @@ yelp_SOURCES =							\
 	yelp-search.c		yelp-search.h			\
 	yelp-search-parser.c 	yelp-search-parser.h
 
+
 YELP_DEFINES =								\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\
@@ -41,27 +38,7 @@ YELP_DEFINES =								\
 	-DSERVERDIR=\"$(libexecdir)\"					\
 	-DBINDIR=\""$(bindir)"\"					\
 	-DSHAREDIR=\""$(pkgdatadir)"\"                                  \
-	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""				\
 	-DGDU_ICON_PATH=\"$(GDU_ICON_PATH)\"
-
-mozilla_include_subdirs =	\
-	.		\
-	commandhandler  \
-	content		\
-	docshell	\
-	dom		\
-	fastfind	\
-	find		\
-	gtkembedmoz	\
-	gfx		\
-	layout		\
-	necko		\
-	pref		\
-	string		\
-	uriloader	\
-	webbrwsr	\
-	webshell	\
-	widget
 
 yelp_CPPFLAGS =									\
 	-I$(top_srcdir)								\
@@ -69,19 +46,11 @@ yelp_CPPFLAGS =									\
 	$(YELP_DEFINES)								\
 	$(AM_CPPFLAGS)
 
-yelp_CPPFLAGS += $(MOZILLA_COMPONENT_CFLAGS)
-yelp_CPPFLAGS += $(addprefix -I$(MOZILLA_INCLUDE_ROOT)/,$(mozilla_include_subdirs))
-
 yelp_CFLAGS =				\
 	$(YELP_CFLAGS)			\
 	$(YELP_SEARCH_CFLAGS)		\
-	$(AM_CFLAGS)
-
-yelp_CXXFLAGS =				\
-	$(YELP_CFLAGS)			\
-	$(YELP_SEARCH_CFLAGS)		\
-	$(MOZILLA_COMPONENT_CFLAGS)	\
-	$(AM_CXXFLAGS)
+	$(AM_CFLAGS)			\
+	$(YELP_WEBKIT_CFLAGS)
 
 yelp_LDADD =				\
 	$(YELP_LIBS)			\
@@ -90,16 +59,10 @@ yelp_LDADD =				\
 	$(Z_LIBS)			\
 	$(BZ_LIBS)			\
 	$(LZMADEC_LIBS)			\
-	$(X_LIBS)			\
-	$(MOZILLA_COMPONENT_LIBS)	\
-	$(MOZILLA_EXTRA_LIBS)		\
-	$(MOZILLA_GLUE_LIBS)
+	$(YELP_WEBKIT_LIBS)		\
+	$(X_LIBS)
 
 yelp_LDFLAGS = $(AM_LDFLAGS)
-
-if !HAVE_GECKO_XPCOM_GLUE
-yelp_LDFLAGS += -R$(MOZILLA_HOME)
-endif
 
 if WITH_SMCLIENT
 yelp_SOURCES += \
@@ -220,7 +183,7 @@ CLEANFILES = xgen-ymh xgen-ymc
 
 MAINTAINERCLEANFILES = $(BUILT_SOURCES)
 
-EXTRA_DIST = yelp-marshal.list yelp-infos.xml
+EXTRA_DIST = yelp-marshal.list yelp-infos.xml yelp-print.c yelp-print.h
 
 install-exec-hook:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \
