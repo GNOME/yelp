@@ -1,4 +1,4 @@
-SUBDIRS = src stylesheets po data tests
+SUBDIRS = libyelp src stylesheets po data tests
 
 @INTLTOOL_DESKTOP_RULE@
 

@@ -3,9 +3,8 @@ bin_PROGRAMS = yelp
 yelp_SOURCES =							\
 	yelp-base.c		yelp-base.h			\
 	yelp-bookmarks.c 	yelp-bookmarks.h		\
-	yelp-debug.c		yelp-debug.h			\
 	yelp-error.c		yelp-error.h			\
-	yelp-html.c			yelp-html.h			\
+	yelp-html.c		yelp-html.h			\
 	yelp-io-channel.c	yelp-io-channel.h		\
 	yelp-settings.c		yelp-settings.h			\
 	yelp-utils.c		yelp-utils.h			\
@@ -40,26 +39,21 @@ YELP_DEFINES =								\
 	-DSHAREDIR=\""$(pkgdatadir)"\"                                  \
 	-DGDU_ICON_PATH=\"$(GDU_ICON_PATH)\"
 
-yelp_CPPFLAGS =									\
-	-I$(top_srcdir)								\
-	-I$(top_builddir)/src							\
-	$(YELP_DEFINES)								\
-	$(AM_CPPFLAGS)
+yelp_CFLAGS =					\
+	-I$(top_srcdir)/libyelp			\
+	$(YELP_CFLAGS)				\
+	$(YELP_SEARCH_CFLAGS)			\
+	$(AM_CFLAGS)				\
+	$(YELP_DEFINES)
 
-yelp_CFLAGS =				\
-	$(YELP_CFLAGS)			\
-	$(YELP_SEARCH_CFLAGS)		\
-	$(AM_CFLAGS)			\
-	$(YELP_WEBKIT_CFLAGS)
-
-yelp_LDADD =				\
-	$(YELP_LIBS)			\
-	$(YELP_SEARCH_LIBS)		\
-	$(POPT_LIBS)			\
-	$(Z_LIBS)			\
-	$(BZ_LIBS)			\
-	$(LZMADEC_LIBS)			\
-	$(YELP_WEBKIT_LIBS)		\
+yelp_LDADD =					\
+	$(top_builddir)/libyelp/libyelp.la	\
+	$(YELP_LIBS)				\
+	$(YELP_SEARCH_LIBS)			\
+	$(POPT_LIBS)				\
+	$(Z_LIBS)				\
+	$(BZ_LIBS)				\
+	$(LZMADEC_LIBS)				\
 	$(X_LIBS)
 
 yelp_LDFLAGS = $(AM_LDFLAGS)
@@ -77,7 +71,7 @@ yelp_LDADD += $(SMCLIENT_LIBS)
 
 if WITH_SMCLIENT_XSMP
 yelp_SOURCES += eggsmclient-xsmp.c
-yelp_CPPFLAGS += -DEGG_SM_CLIENT_BACKEND_XSMP
+yelp_CFLAGS += -DEGG_SM_CLIENT_BACKEND_XSMP
 endif
 if WITH_SMCLIENT_WIN32
 yelp_SOURCES += eggsmclient-win32.c
@@ -87,12 +81,12 @@ yelp_SOURCES += eggsmclient-osx.c
 endif
 endif
 
-#check_PROGRAMS =		\
-#	test-document		\
-#	test-man-parser		\
-#	test-page		\
-#	test-transform		\
-#	test-resolver
+check_PROGRAMS =		\
+	test-document		\
+	test-man-parser		\
+	test-page		\
+	test-transform		\
+	test-resolver
 
 test_document_SOURCES =					\
 	yelp-debug.c		yelp-debug.h		\

@@ -44,17 +44,12 @@ struct _YelpView
 struct _YelpViewClass
 {
     GtkContainerClass  parent_class;
-
-    /* Signals */
-    void (*new_window_requested) (YelpWindow *window);
-    void (*new_window_requested_uri) (YelpWindow *window,
-				      const gchar *uri);
 };
 
 GType            yelp_view_get_type        (void);
 GtkWidget *      yelp_view_new             (GNode         *doc_tree,
 					    GList         *index);
-void             yelp_view_load            (YelpWindow    *window,
+void             yelp_view_load            (YelpView      *view,
 					    const gchar   *uri);
 
-#endif /* __YELP_WINDOW_H__ */
+#endif /* __YELP_VIEW_H__ */

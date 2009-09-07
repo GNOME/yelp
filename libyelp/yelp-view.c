@@ -27,6 +27,9 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <webkit/webkit.h>
+
+#include "yelp-view.h"
 
 static void        view_init		          (YelpView        *view);
 static void        view_class_init	          (YelpViewClass   *klass);
@@ -38,9 +41,9 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 static GObjectClass *parent_class = NULL;
 
-#define YELP_VIEW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_VIEW, YelpWindowView))
+#define YELP_VIEW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_VIEW, YelpViewPriv))
 
-struct _YelpWindowPriv {
+struct _YelpViewPriv {
     WebKitWebView  *webview;
 };
 
@@ -54,7 +57,7 @@ yelp_view_get_type (void)
 {
     static GType view_type = 0;
 
-    if (!window_type) {
+    if (!view_type) {
 	static const GTypeInfo view_info = {
 	    sizeof (YelpViewClass),
 	    NULL,
@@ -66,7 +69,7 @@ yelp_view_get_type (void)
 	    0,
 	    (GInstanceInitFunc) view_init,
 	};
-	view_type = g_type_register_static (GTK_TYPE_VIEW,
+	view_type = g_type_register_static (YELP_TYPE_VIEW,
                                             "YelpView",
                                             &view_info, 0);
     }
@@ -78,7 +81,7 @@ view_init (YelpView *view)
 {
     view->priv = YELP_VIEW_GET_PRIVATE (view);
     view->priv->webview = (WebKitWebView *) webkit_web_view_new ();
-    gtk_container_add (GTK_CONTAINER (view), (GtkWidget *) webview);
+    gtk_container_add (GTK_CONTAINER (view), (GtkWidget *) view->priv->webview);
 }
 
 static void
@@ -112,9 +115,7 @@ view_class_init (YelpViewClass *klass)
 	g_signal_new ("new_view_requested",
 		      G_TYPE_FROM_CLASS (klass),
 		      G_SIGNAL_RUN_LAST,
-		      G_STRUCT_OFFSET (YelpViewClass,
-				       new_view_requested),
-		      NULL, NULL,
+                      0, NULL, NULL,
 		      g_cclosure_marshal_VOID__STRING,
 		      G_TYPE_NONE, 1, G_TYPE_STRING);
 

@@ -1,12 +1,12 @@
-lib_LIBRARIES = libyelp.a
+noinst_LTLIBRARIES = libyelp.la
 
-libyelp_a_SOURCES =		\
+libyelp_la_SOURCES =		\
 	yelp-debug.c		\
 	yelp-uri.c		\
 	yelp-view.c
 
-libyelp_a_CFLAGS =		\
+libyelp_la_CFLAGS =		\
 	$(YELP_CFLAGS)
 
-libyelp_a_LIBADD =		\
+libyelp_la_LIBADD =		\
 	$(YELP_LIBS)
