@@ -2,6 +2,7 @@ noinst_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =		\
 	yelp-debug.c		\
+	yelp-location-entry.c	\
 	yelp-uri.c		\
 	yelp-view.c
 

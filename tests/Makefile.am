@@ -7,7 +7,12 @@ YELP_COMMON_LDADD =				\
 	$(YELP_LIBS)				\
 	$(top_builddir)/libyelp/libyelp.la
 
-check_PROGRAMS = test-uri
+check_PROGRAMS =				\
+	test-location-entry			\
+	test-uri
+
+test_location_entry_CFLAGS = $(YELP_COMMON_CFLAGS)
+test_location_entry_LDADD = $(YELP_COMMON_LDADD)
 
 test_uri_CFLAGS = $(YELP_COMMON_CFLAGS)
 test_uri_LDADD = $(YELP_COMMON_LDADD)
