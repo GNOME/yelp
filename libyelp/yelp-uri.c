@@ -270,7 +270,16 @@ resolve_ghelp_uri (YelpUri *ret, gchar *arg)
     /* ghelp:/path/to/file
      * ghelp:document
      */
-    gchar *colon;
+    const gchar * const *datadirs = g_get_system_data_dirs ();
+    const gchar * const *langs = g_get_language_names ();
+    const gchar const *helpdirs[3] = {"help", "gnome/help", NULL};
+    gchar *docid = NULL;
+    gchar *filename = NULL;
+    gchar **searchpath = NULL;
+    gint searchi, searchmax;
+    gchar *colon, *hash, *slash, *pageid; /* don't free */
+    gint datadir_i, helpdir_i, lang_i;
+    YelpUriDocumentType type = YELP_URI_DOCUMENT_TYPE_UNKNOWN;
 
     colon = strchr (arg, ':');
     if (!colon) {
@@ -287,6 +296,94 @@ resolve_ghelp_uri (YelpUri *ret, gchar *arg)
         return;
     }
 
+    hash = strchr (colon, '?');
+    if (!hash)
+        hash = strchr (colon, '#');
+    if (hash) {
+        resolve_page_and_frag (ret, hash + 1);
+        docid = g_strndup (colon, hash - colon);
+    }
+    else {
+        docid = g_strdup (colon);
+    }
+
+    slash = strchr (docid, '/');
+    if (slash) {
+        *slash = '\0';
+        pageid = slash + 1;
+    }
+    else {
+        pageid = docid;
+    }
+
+    searchi = 0;
+    searchmax = 10;
+    searchpath = g_new0 (gchar *, 10);
+
+    for (datadir_i = 0; datadirs[datadir_i]; datadir_i++) {
+        for (helpdir_i = 0; helpdirs[helpdir_i]; helpdir_i++) {
+            for (lang_i = 0; langs[lang_i]; lang_i++) {
+                gchar *helpdir = g_strdup_printf ("%s%s/%s/%s",
+                                                  datadirs[datadir_i], helpdirs[helpdir_i], docid, langs[lang_i]);
+                if (!g_file_test (helpdir, G_FILE_TEST_IS_DIR)) {
+                    g_free (helpdir);
+                    continue;
+                }
+
+                if (searchi + 1 >= searchmax) {
+                    searchmax += 5;
+                    searchpath = g_renew (gchar *, searchpath, searchmax);
+                }
+                searchpath[searchi] = helpdir;
+                searchpath[++searchi] = NULL;
+                /* FIXME: append to path */
+
+                if (type != YELP_URI_DOCUMENT_TYPE_UNKNOWN)
+                    /* We've already found it.  We're just adding to the search path now. */
+                    continue;
+
+                filename = g_strdup_printf ("%s/index.page", helpdir);
+                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                    type = YELP_URI_DOCUMENT_TYPE_MALLARD;
+                    g_free (filename);
+                    filename = g_strdup (helpdir);
+                    continue;
+                }
+                g_free (filename);
+
+                filename = g_strdup_printf ("%s/%s.xml", helpdir, pageid);
+                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                    type = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                    continue;
+                }
+                g_free (filename);
+
+                filename = g_strdup_printf ("%s/%s.html", helpdir, pageid);
+                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                    type = YELP_URI_DOCUMENT_TYPE_HTML;
+                    continue;
+                }
+                g_free (filename);
+            } /* end for langs */
+        } /* end for helpdirs */
+    } /* end for datadirs */
+
+    if (type == YELP_URI_DOCUMENT_TYPE_UNKNOWN) {
+        g_strfreev (searchpath);
+        ret->priv->doctype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+    }
+    else {
+        ret->priv->doctype = type;
+        ret->priv->gfile = g_file_new_for_path (filename);
+        ret->priv->search_path = searchpath;
+        if (type == YELP_URI_DOCUMENT_TYPE_MALLARD && pageid != docid) {
+            if (ret->priv->page_id)
+                g_free (ret->priv->page_id);
+            ret->priv->page_id = g_strdup (pageid);
+        }
+    }
+
+    g_free (docid);
 }
 
 static void
