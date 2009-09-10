@@ -1,22 +1,21 @@
-# translation of yelp.HEAD.hu.po to Hungarian
 # Hungarian translation of yelp.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 #
-# Szabolcs Ban <shooby@gnome.hu>, 2002.
-# Emese Kovacs <emese@gnome.hu>, 2002.
-# Andras Timar <timar@gnome.hu>, 2002, 2003, 2004.
-# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007, 2008.
+# Szabolcs Ban <shooby at gnome dot hu>, 2002.
+# Emese Kovacs <emese at gnome dot hu>, 2002.
+# Andras Timar <timar at gnome dot hu>, 2002, 2003, 2004.
+# Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2006, 2007, 2008, 2009.
 # Mate ORY <orymate at gmail d0t com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
+"Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-16 14:50+0000\n"
-"PO-Revision-Date: 2008-09-19 04:11+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@fsf.hu>\n"
+"POT-Creation-Date: 2009-09-10 02:11+0200\n"
+"PO-Revision-Date: 2009-09-10 02:09+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -295,7 +294,7 @@ msgstr "2D grafika"
 msgid "3D Graphics"
 msgstr "3D grafika"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Akadálymentesítés"
 
@@ -528,7 +527,8 @@ msgstr "Grafika"
 
 #: ../data/toc.xml.in.h:63
 msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "A külvilág felé kapcsolatot biztosító alkalmazások útmutatói és kézikönyvei"
+msgstr ""
+"A külvilág felé kapcsolatot biztosító alkalmazások útmutatói és kézikönyvei"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
@@ -875,85 +875,57 @@ msgstr "Üdvözli a GNOME súgóböngésző"
 msgid "Word Processors"
 msgstr "Szövegszerkesztők"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Akadálymentesítés</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Betűkészletek</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Könyvjelző hozzáadása"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Könyvjelzők"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "K_is- és nagybetűk megkülönböztetése"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Keresés"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Hely megnyitása"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Beállítások"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "Át_nevezés"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Könyvjelzők:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "Kurzoros _böngészés"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Könyvjelző hozzáadása"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Keresés:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Rögzített szélességű:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "He_ly:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Következő"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Előző"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Cím:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Hely megnyitása"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "He_ly:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Betűkészletek"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "Kurzoros _böngészés"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Rögzített szélességű:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "Rendszerbetűkészletek _használata"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "_Változó szélességű:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Keresés elölről"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -989,45 +961,109 @@ msgstr "Rendszerbetűkészletek használata"
 msgid "Use the default fonts set for the system."
 msgstr "A rendszer alapértelmezett betűkészleteinek használata."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "A fájl nem egy érvényes .desktop fájl"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Ismeretlen .desktop fájl verzió: „%s”"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "%s indítása"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Az alkalmazás nem fogad el dokumentumokat a parancssorban"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Ismeretlen indítási kapcsoló: %d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "Nem adhatók dokumentum-URI címek egy „Type=Link” asztali bejegyzésnek"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "Nem futtatható elem"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "A munkamenet-kezelőhöz való csatlakozás tiltása"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Adja meg a mentett beállításokat tartalmazó fájlt"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "FÁJL"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Adja meg a munkamenet-kezelési azonosítót"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "AZONOSÍTÓ"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Munkamenet-kezelés kapcsolói:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Munkamenet-kezelési kapcsolók megjelenítése"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Könyvjelző megnyitása új ablakban"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Könyvjelző átnevezése"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Könyvjelző eltávolítása"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Már létezik egy %s nevű könyvjelző ehhez az oldalhoz."
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Már létezik egy <b>%s</b> nevű könyvjelző ehhez az oldalhoz."
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Súgótémák"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Dokumentum szakaszai"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-mallard.c:380
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Az oldal nem található"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-mallard.c:381 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "A(z) %s oldal nem található a(z) %s dokumentumban."
@@ -1073,7 +1109,7 @@ msgstr ""
 "A(z) „%s” fájl nem dolgozható fel, mivel az általa tartalmazott fájlok közül "
 "néhány nem megfelelően formázott XML dokumentum."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -1081,7 +1117,7 @@ msgstr "Ismeretlen"
 msgid "Unknown Error"
 msgstr "Ismeretlen hiba"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1723
 msgid "Could Not Read File"
 msgstr "A fájl nem olvasható"
 
@@ -1091,12 +1127,13 @@ msgstr "Nem áll rendelkezésre információ a hibáról."
 
 #: ../src/yelp-info.c:396
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 "A(z) „%s” fájl nem dolgozható fel, mivel nem megfelelően formázott info "
 "oldal."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1105,26 +1142,36 @@ msgstr ""
 "A(z) „%s” fájl nem olvasható és dekódolható. Lehet, hogy fájl tömörítve van "
 "egy nem támogatott formátumba."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Saját munkamenet használata"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "A gyorsítótár könyvtárának megadása"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " GNOME súgóböngésző"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Súgó"
 
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "A könyvtár nem található"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "A(z) „%s” könyvtár nem létezik."
+
 #: ../src/yelp-man.c:459
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
 "A(z) „%s” fájl nem dolgozható fel, mivel nem megfelelően formázott info "
 "oldal."
@@ -1159,16 +1206,16 @@ msgstr "Hiba történt a nyomtatás közben"
 msgid "It was not possible to print your document: %s"
 msgstr "Nem volt lehetséges a dokumentum nyomtatása: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "a GNOME támogató fórumok"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Nincs találat a következőre: „%s”"
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
@@ -1176,7 +1223,7 @@ msgstr ""
 "Próbálja más szavakkal leírni a problémát, vagy a témakört, amelyhez "
 "segítséget vár."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Eredmények a következőre: „%s”"
@@ -1186,7 +1233,7 @@ msgstr "Eredmények a következőre: „%s”"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "A keresés megismétlése online a következő címen: %s"
@@ -1273,28 +1320,29 @@ msgstr ""
 "A tartalomjegyzékfájl nem dolgozható fel, mivel nem megfelelően formázott "
 "XML dokumentum."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "Érvénytelen stíluslap"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr "A(z) „%s” XSLT stíluslap hiányzik vagy nem érvényes."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "Sérült átalakítás"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
-msgstr "Ismeretlen hiba történt a dokumentum átalakítására tett kísérlet során."
+msgstr ""
+"Ismeretlen hiba történt a dokumentum átalakítására tett kísérlet során."
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nem található href attribútum a yelp:dokumentumon\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Nincs több memória"
 
@@ -1446,64 +1494,62 @@ msgstr "_Névjegy"
 msgid "Copy _Email Address"
 msgstr "E-mail _cím másolása"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Súgóböngésző"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1785
 msgid "Loading..."
 msgstr "Betöltés…"
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Ismeretlen oldal"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "A kért „%s” URI érvénytelen"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "Az oldal nem tölthető be"
 
-#: ../src/yelp-window.c:1069
-msgid "Error executing \"gnome-open\""
-msgstr "Hiba a „gnome-open” végrehajtásakor"
-
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1343
 msgid "_Search:"
 msgstr "_Keresés:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1344
 msgid "Search for other documentation"
 msgstr "Egyéb dokumentációk keresése"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1364
 msgid "Cannot create window"
 msgstr "Nem hozható létre ablak"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1370
 msgid "Cannot create search component"
 msgstr "Nem hozható létre keresőkomponens"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1542
 msgid "Fin_d:"
 msgstr "Ke_resés:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1564
 msgid "Find _Previous"
 msgstr "_Előző találat"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1576
 msgid "Find _Next"
 msgstr "Kö_vetkező találat"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1589
 msgid "Phrase not found"
 msgstr "A kifejezés nem található"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1720
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1514,7 +1560,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2602
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -1523,15 +1569,14 @@ msgstr ""
 "Kovács Emese <emese@gnome.hu>\n"
 "Tímár András <timar@gnome.hu>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2605
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2607
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentációböngésző és -megjelenítő a Gnome asztalhoz."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "A GNOME súgója"
-
