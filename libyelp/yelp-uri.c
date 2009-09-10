@@ -51,6 +51,10 @@ static void           resolve_file_uri      (YelpUri        *ret,
 static void           resolve_file_path     (YelpUri        *ret,
                                              YelpUri        *base,
                                              gchar          *arg);
+static void           resolve_data_dirs     (YelpUri        *ret,
+                                             gchar         **subdirs,
+                                             gchar          *docid,
+                                             gchar          *pageid);
 static void           resolve_ghelp_uri     (YelpUri        *ret,
                                              gchar          *arg);
 static void           resolve_man_uri       (YelpUri        *ret,
@@ -265,66 +269,25 @@ resolve_file_path (YelpUri *ret, YelpUri *base, gchar *arg)
 }
 
 static void
-resolve_ghelp_uri (YelpUri *ret, gchar *arg)
+resolve_data_dirs (YelpUri *ret, gchar **subdirs, gchar *docid, gchar *pageid)
 {
-    /* ghelp:/path/to/file
-     * ghelp:document
-     */
     const gchar * const *datadirs = g_get_system_data_dirs ();
     const gchar * const *langs = g_get_language_names ();
-    const gchar const *helpdirs[3] = {"help", "gnome/help", NULL};
-    gchar *docid = NULL;
     gchar *filename = NULL;
     gchar **searchpath = NULL;
     gint searchi, searchmax;
-    gchar *colon, *hash, *slash, *pageid; /* don't free */
-    gint datadir_i, helpdir_i, lang_i;
+    gint datadir_i, subdir_i, lang_i;
     YelpUriDocumentType type = YELP_URI_DOCUMENT_TYPE_UNKNOWN;
-
-    colon = strchr (arg, ':');
-    if (!colon) {
-        ret->priv->doctype = YELP_URI_DOCUMENT_TYPE_ERROR;
-        return;
-    }
-
-    colon++;
-    if (*colon == '/') {
-        gchar *newuri;
-        newuri = g_strdup_printf ("file:%s", colon);
-        resolve_file_uri (ret, newuri);
-        g_free (newuri);
-        return;
-    }
-
-    hash = strchr (colon, '?');
-    if (!hash)
-        hash = strchr (colon, '#');
-    if (hash) {
-        resolve_page_and_frag (ret, hash + 1);
-        docid = g_strndup (colon, hash - colon);
-    }
-    else {
-        docid = g_strdup (colon);
-    }
-
-    slash = strchr (docid, '/');
-    if (slash) {
-        *slash = '\0';
-        pageid = slash + 1;
-    }
-    else {
-        pageid = docid;
-    }
 
     searchi = 0;
     searchmax = 10;
     searchpath = g_new0 (gchar *, 10);
 
     for (datadir_i = 0; datadirs[datadir_i]; datadir_i++) {
-        for (helpdir_i = 0; helpdirs[helpdir_i]; helpdir_i++) {
+        for (subdir_i = 0; subdirs[subdir_i]; subdir_i++) {
             for (lang_i = 0; langs[lang_i]; lang_i++) {
                 gchar *helpdir = g_strdup_printf ("%s%s/%s/%s",
-                                                  datadirs[datadir_i], helpdirs[helpdir_i], docid, langs[lang_i]);
+                                                  datadirs[datadir_i], subdirs[subdir_i], docid, langs[lang_i]);
                 if (!g_file_test (helpdir, G_FILE_TEST_IS_DIR)) {
                     g_free (helpdir);
                     continue;
@@ -365,7 +328,7 @@ resolve_ghelp_uri (YelpUri *ret, gchar *arg)
                 }
                 g_free (filename);
             } /* end for langs */
-        } /* end for helpdirs */
+        } /* end for subdirs */
     } /* end for datadirs */
 
     if (type == YELP_URI_DOCUMENT_TYPE_UNKNOWN) {
@@ -376,11 +339,65 @@ resolve_ghelp_uri (YelpUri *ret, gchar *arg)
         ret->priv->doctype = type;
         ret->priv->gfile = g_file_new_for_path (filename);
         ret->priv->search_path = searchpath;
-        if (type == YELP_URI_DOCUMENT_TYPE_MALLARD && pageid != docid) {
-            if (ret->priv->page_id)
-                g_free (ret->priv->page_id);
-            ret->priv->page_id = g_strdup (pageid);
-        }
+    }
+}
+
+static void
+resolve_ghelp_uri (YelpUri *ret, gchar *arg)
+{
+    /* ghelp:/path/to/file
+     * ghelp:document
+     */
+    const gchar const *helpdirs[3] = {"help", "gnome/help", NULL};
+    gchar *docid = NULL;
+    gchar *colon, *hash, *slash, *pageid; /* don't free */
+
+    colon = strchr (arg, ':');
+    if (!colon) {
+        ret->priv->doctype = YELP_URI_DOCUMENT_TYPE_ERROR;
+        return;
+    }
+
+    colon++;
+    if (*colon == '/') {
+        gchar *newuri;
+        newuri = g_strdup_printf ("file:%s", colon);
+        resolve_file_uri (ret, newuri);
+        g_free (newuri);
+        return;
+    }
+
+    hash = strchr (colon, '?');
+    if (!hash)
+        hash = strchr (colon, '#');
+    if (hash) {
+        resolve_page_and_frag (ret, hash + 1);
+        docid = g_strndup (colon, hash - colon);
+    }
+    else {
+        docid = g_strdup (colon);
+    }
+
+    slash = strchr (docid, '/');
+    if (slash) {
+        *slash = '\0';
+        pageid = slash + 1;
+    }
+    else {
+        pageid = docid;
+    }
+
+    resolve_data_dirs (ret, (gchar **) helpdirs, docid, pageid);
+
+    /* Specifying pages and anchors for Mallard documents with ghelp URIs is sort
+       hacked on.  This is a touch inconsistent, but it maintains compatibility
+       with the way things worked in 2.28, and ghelp URIs should be entering
+       compatibility-only mode.
+     */
+    if (ret->priv->doctype == YELP_URI_DOCUMENT_TYPE_MALLARD && pageid != docid) {
+        if (ret->priv->page_id)
+            g_free (ret->priv->page_id);
+        ret->priv->page_id = g_strdup (pageid);
     }
 
     g_free (docid);
