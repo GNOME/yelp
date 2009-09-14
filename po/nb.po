@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.27.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-01 14:28+0200\n"
-"PO-Revision-Date: 2009-09-01 14:29+0200\n"
+"POT-Creation-Date: 2009-09-14 10:27+0200\n"
+"PO-Revision-Date: 2009-09-14 10:29+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -956,7 +956,7 @@ msgstr "Filen er ikke en gyldig .desktop-fil"
 #: ../src/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr ""
+msgstr "Ikke gjenkjent Version «%s» i .desktop-fil"
 
 #: ../src/eggdesktopfile.c:958
 #, c-format
@@ -971,12 +971,12 @@ msgstr "Programmet tar ikke dokumenter på kommandolinjen"
 #: ../src/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
-msgstr ""
+msgstr "Ikke gjenkjeng oppstartsalternativ: %d"
 
 #: ../src/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
+msgstr "Kan ikke gi dokument-URIer til en oppføring av «Type=Link»"
 
 #: ../src/eggdesktopfile.c:1392
 #, c-format
@@ -989,7 +989,7 @@ msgstr "Slå av tilkobling til sesjonshåndterer"
 
 #: ../src/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
-msgstr ""
+msgstr "Oppgi fil som inneholder lagret konfigurasjon"
 
 #: ../src/eggsmclient.c:228
 msgid "FILE"
@@ -997,7 +997,7 @@ msgstr "FIL"
 
 #: ../src/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr ""
+msgstr "Oppgi ID for sesjonshåndtering"
 
 #: ../src/eggsmclient.c:231
 msgid "ID"
