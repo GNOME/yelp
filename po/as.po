@@ -8,15 +8,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: as\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 15:56+0100\n"
-"PO-Revision-Date: 2009-03-14 17:31+0530\n"
-"Last-Translator: Amitakhya Phukan <aphukan@fedoraproject.org>\n"
-"Language-Team: Assamese <fedora-trans-as@redhat.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=yelp&component=general\n"
+"POT-Creation-Date: 2009-08-07 00:18+0000\n"
+"PO-Revision-Date: 2009-09-18 12:00+0530\n"
+"Last-Translator: \n"
+"Language-Team: Assamese <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.3\n"
+"X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
 
 #: ../data/info.xml.in.h:1
@@ -291,7 +292,7 @@ msgstr "গ্ৰাফিক্স"
 msgid "3D Graphics"
 msgstr "গ্ৰাফিক্স"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "সহায়ক প্ৰযুক্তি"
 
@@ -498,11 +499,11 @@ msgstr "GUI ডিজাইন ব্যৱস্থা"
 
 #: ../data/toc.xml.in.h:57
 msgid "Generic applications for the GNOME environment"
-msgstr "GNOME পৰিবেশৰ বাবে জেনেৰিক অনুপ্ৰয়োগ"
+msgstr "GNOME পৰিবেশৰ বাবে জেনৰিক অনুপ্ৰয়োগ"
 
 #: ../data/toc.xml.in.h:58
 msgid "Generic applications for the KDE environment"
-msgstr "KDE পৰিবেশৰ বাবে জেনেৰিক অনুপ্ৰয়োগ"
+msgstr "KDE পৰিবেশৰ বাবে জেনৰিক অনুপ্ৰয়োগ"
 
 #: ../data/toc.xml.in.h:59
 msgid "Geography"
@@ -689,7 +690,7 @@ msgstr "মূদ্ৰণ ব্যৱস্থা"
 
 #: ../data/toc.xml.in.h:105
 msgid "Profiling Tools"
-msgstr "প্ৰোফাইল নিৰ্মাণত ব্যৱহৃত সামগ্ৰী"
+msgstr "প্ৰোনথিপত্ৰ নিৰ্মাণত ব্যৱহৃত সামগ্ৰী"
 
 #: ../data/toc.xml.in.h:106
 msgid "Project Management Tools"
@@ -865,85 +866,57 @@ msgstr "GNOME সহায়িকা চৰকে আপনাকে স্বা
 msgid "Word Processors"
 msgstr "ৱৰ্ড প্ৰছেছৰ"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>অভিগমন</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>ফন্ট</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "পত্ৰচিহ্ন যোগ কৰক"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "পত্ৰচিহ্ন"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "আখৰৰ ছাঁ সম্পৰ্কে সচেতন (_a)"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "অনুসন্ধান"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "কোনো অৱস্থান খোলক"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "পছন্দ"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "নাম পৰিবৰ্তন (_n)"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "পত্ৰচিহ্ন:(_B)"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "caret সহ ব্ৰাউজ কৰক (_B)"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "পত্ৰচিহ্ন যোগ কৰক"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "অনুসন্ধান: (_F)"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "সনুৰ্দিষ্ট প্ৰস্থ:(_F)"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "অৱস্থান(_L):"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "পৰবৰ্তী (_N)"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "পূৰ্ববৰ্তী (_P)"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "শিৰোনাম (_T):"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "কোনো অৱস্থান খোলক"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "অৱস্থান(_L):"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "ফন্ট"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "পছন্দ"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "caret সহ ব্ৰাউজ কৰক (_B)"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "সনুৰ্দিষ্ট প্ৰস্থ:(_F)"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "ব্যৱস্থাপ্ৰণালীৰ ফন্ট ব্যৱহাৰ কৰা হ'ব (_U)"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "পৰিবৰ্তনযোগ্য প্ৰস্থ: (_V)"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "বিভাজন কৰা হ'ব (_W)"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -977,45 +950,110 @@ msgstr "ব্যৱস্থাপ্ৰণালী ফন্ট ব্যৱ�
 msgid "Use the default fonts set for the system."
 msgstr "ব্যৱস্থাপ্ৰণালী নিৰ্ধাৰিত অবিকল্পিত ফন্ট সংকলন ব্যৱহৃত হ'ব ।"
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "এইটো বৈধ .desktop নথিপত্ৰ নহয়"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "ডেস্কটপ নথিপত্ৰেৰ অজ্ঞাত সংস্কৰণ '%s'"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+#| msgid "Settings"
+msgid "Starting %s"
+msgstr "%s আৰম্ভ কৰা হৈছে"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "এপ্লিকেশন দ্বাৰা কমান্ড-লাইনৰ মাধ্যমে নথিপত্ৰ গ্ৰহণ কৰা নহয়"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "প্ৰাৰম্ভিক বিকল্প অজ্ঞাত: %d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "'Type=Link' ডেস্কটপ এনট্ৰিৰ ক্ষেত্ৰত নথিপত্ৰৰ URI উল্লেখ কৰা সম্ভব নহয়"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "প্ৰাৰম্ভ কৰাৰ যোগ্য বস্তু নহয়"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "অধিবেশন পৰিচালন ব্যৱস্থাৰ সৈতে সংযোগ বিচ্ছিন্ন কৰা হ'ব"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "সংৰক্ষিত বিন্যাস ধাৰণকাৰী নথিপত্ৰ উল্লেখ কৰক"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "FILE"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "অধিবেশন পৰিচালনাৰ ID উল্লেখ কৰক"
+
+#: ../src/eggsmclient.c:231
+#| msgid "IDEs"
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "অধিবেশন পৰিচালনা সংক্ৰান্ত বিকল্প:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "অধিবেশন পৰিচালনা সংক্ৰান্ত বিকল্প প্ৰদৰ্শন কৰা হ'ব"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "নতুন সংযোগক্ষেত্ৰত পত্ৰচিহ্ন খোলা হ'ব"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "পত্ৰচিহ্নৰ নাম পৰিবৰ্তন কৰক"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "পত্ৰচিহ্ন আঁতৰাওক"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "এই পৃষ্ঠাৰ বাবে %s শিৰোনামসহ এটা পত্ৰচিহ্ন বৰ্তমানে উপস্থিত ।"
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "এই পৃষ্ঠাৰ বাবে <b>%s</b> শিৰোনামসহ এটা পত্ৰচিহ্ন বৰ্তমানে উপস্থিত ।"
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "সহায়িকাৰ সূচিপত্ৰ"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "নথিৰ বিভাগ"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "পৃষ্ঠা পোৱা নাযায়"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "%s পৃষ্ঠা %s নথিত পোৱা নাযায় ।"
@@ -1059,7 +1097,7 @@ msgstr ""
 "‘%s’ নথিপত্ৰত অন্তৰ্ভুক্ত এক বা একাধিক নথি সঠিক XML নথি ৰূপে গঠিত নোহোৱাৰ ফলত এইটো "
 "বিশ্লেষণ কৰিবলৈ ব্যৰ্থ ।"
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "অজ্ঞাত"
 
@@ -1067,7 +1105,7 @@ msgstr "অজ্ঞাত"
 msgid "Unknown Error"
 msgstr "অজ্ঞাত ত্ৰুটি"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1643
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "নথিপত্ৰ পঢ়িবলৈ ব্যৰ্থ"
 
@@ -1089,22 +1127,33 @@ msgstr ""
 "‘%s’ নথিপত্ৰ পঢ়া আৰু ডিকোড কৰিবলৈ ব্যৰ্থ । সম্ভৱতঃ নথিপত্ৰক কোনো অসমৰ্থিত বিন্যাসত "
 "কমপ্ৰেস কৰা হৈছে ।"
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "ব্যক্তিগত অধিবেশন ব্যৱহাৰ কৰা হ'ব"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "ব্যৱহাৰৰ উদ্দেশ্যে কেশে পঞ্জিকা নিৰ্ধাৰণ কৰক"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:357
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " GNOME Help Browser"
 
-#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "সহায়তা"
+
+#: ../src/yelp-mallard.c:311
+#| msgid "File not found"
+msgid "Directory not found"
+msgstr "পঞ্জিকা পোৱা নাযায়"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+#| msgid "The file ‘%s’ does not exist."
+msgid "The directory ‘%s’ does not exist."
+msgstr "‘%s’ পঞ্জিকা বৰ্তমানে অনুপস্থিত ।"
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1251,28 +1300,28 @@ msgid ""
 "document."
 msgstr "সঠিক XML নথি ৰূপে গঠিত নোহোৱাৰ ফলত সূচিপত্ৰৰ নথিপত্ৰ বিশ্লেষণ কৰিবলৈ ব্যৰ্থ ।"
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
-msgstr "Stylesheet বৈধ নয়"
+msgstr "Stylesheet বৈধ নহয়"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "XSLT Stylesheet ‘%s’ অনুপস্থিত বা বৈধ নয় ।"
+msgstr "XSLT Stylesheet ‘%s’ অনুপস্থিত বা বৈধ নহয় ।"
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "ৰূপান্তৰ ক্ষতিগ্ৰস্ত"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "নথি ৰূপান্তৰ কৰাৰ প্ৰচেষ্টাৰ সময়ত অজ্ঞাত ত্ৰুটি উৎপন্ন হৈছে ।"
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document ত href গুণ পোৱা নাযায়\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "স্মৃতিশক্তি অৱশিষ্ট নাই"
 
@@ -1424,89 +1473,112 @@ msgstr "বিষয়ে (_A)"
 msgid "Copy _Email Address"
 msgstr "ঈ-মেইল ঠিকনা নকল কৰক (_E)"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "সহায়ক তথ্য প্ৰদৰ্শনকাৰী চৰক"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1700
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "লোড কৰা হৈছে..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "অজ্ঞাত পৃষ্ঠা"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
-#: ../src/yelp-window.c:1084
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
-msgstr "অনুৰোধ কৰা URI \"%s\" বৈধ নয়"
+msgstr "অনুৰোধ কৰা URI \"%s\" বৈধ নহয়"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
-#: ../src/yelp-window.c:1085
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "পৃষ্ঠা লোড কৰিবলৈ ব্যৰ্থ"
 
-#: ../src/yelp-window.c:1079
-msgid "Error executing \"gnome-open\""
-msgstr "\"gnome-open\" সঞ্চালনত সমস্যা"
-
-#: ../src/yelp-window.c:1265
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "অনুসন্ধান:(_S)"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "অন্যান্য নথি অনুসন্ধান কৰক"
 
-#: ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "সংযোগক্ষেত্ৰ নিৰ্মাণ কৰিবলৈ ব্যৰ্থ"
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
-msgstr "অনুসন্ধানেৰ সামগ্ৰী নিৰ্মাণ কৰিবলৈ ব্যৰ্থ"
+msgstr "অনুসন্ধানৰ সামগ্ৰী নিৰ্মাণ কৰিবলৈ ব্যৰ্থ"
 
-#: ../src/yelp-window.c:1464
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "অনুসন্ধান: (_d)"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "পৰবৰ্তী উপস্থিতি অনুসন্ধান কৰক (_P)"
 
-#: ../src/yelp-window.c:1498
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "পৰবৰ্তী উপস্থিতি অনুসন্ধান কৰক (_N)"
 
-#: ../src/yelp-window.c:1511
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "পংক্তি পোৱা নাযায়"
 
-#: ../src/yelp-window.c:1640
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
-"‘%s’ নথিপত্ৰ পঢ়িবলৈ ব্যৰ্থ ।  নথিপত্ৰটি সম্ভৱতঃ অনুপস্থিত বা এইটো পঢ়াৰ বাবে প্ৰয়োজনীয় "
-"অনুমতি আপোনাৰ নাই ।"
+"‘%s’ নথিপত্ৰ পঢ়িবলৈ ব্যৰ্থ ।  নথিপত্ৰটি সম্ভৱতঃ অনুপস্থিত বা এইটো পঢ়াৰ বাবে "
+"প্ৰয়োজনীয় অনুমতি আপোনাৰ নাই ।"
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2480
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr "অমিতাক্ষ ফুকন (aphukan@fedoraproject.org)"
 
-#: ../src/yelp-window.c:2483
+#: ../src/yelp-window.c:2580
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2485
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Gnome ডেস্কট'পত ব্যৱহাৰযোগ্য এটা নথি চৰক আৰু প্ৰদৰ্শন ব্যৱস্থা ।"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "GNOMEৰ পৰা সহায়তা প্ৰাপ্ত কৰক"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>অভিগমন</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>ফন্ট</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "আখৰৰ ছাঁ সম্পৰ্কে সচেতন (_a)"
+
+#~ msgid "Find"
+#~ msgstr "অনুসন্ধান"
+
+#~ msgid "_Find:"
+#~ msgstr "অনুসন্ধান: (_F)"
+
+#~ msgid "_Next"
+#~ msgstr "পৰবৰ্তী (_N)"
+
+#~ msgid "_Previous"
+#~ msgstr "পূৰ্ববৰ্তী (_P)"
+
+#~ msgid "_Wrap around"
+#~ msgstr "বিভাজন কৰা হ'ব (_W)"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "\"gnome-open\" সঞ্চালনত সমস্যা"
 
