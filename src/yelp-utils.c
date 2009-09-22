@@ -487,7 +487,6 @@ yelp_uri_resolve (gchar *uri, gchar **result, gchar **section)
 
 	    new_uri = g_strdup_printf ("%s/%s", current_path,
 				       intern_uri);
-	    printf ("new_uri: %s\n", new_uri);
 
 	    if (g_file_test (new_uri, G_FILE_TEST_EXISTS)) {
 		copy_uri = g_strdup (new_uri);
