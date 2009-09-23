@@ -1,21 +1,21 @@
 # translation of eu.po to Basque
 #
 # Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>, 2005.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006, 2007, 2008.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006, 2007, 2008, 2009.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-26 12:43+0200\n"
-"PO-Revision-Date: 2008-08-26 12:44+0200\n"
+"POT-Creation-Date: 2009-08-27 18:21+0200\n"
+"PO-Revision-Date: 2009-08-27 18:31+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 
 #: ../data/info.xml.in.h:1
@@ -290,7 +290,7 @@ msgstr "2D grafikoak"
 msgid "3D Graphics"
 msgstr "3D grafikoak"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Erabilgarritasuna"
 
@@ -866,85 +866,57 @@ msgstr "Ongi etorri GNOMEren Laguntza-arakatzailera"
 msgid "Word Processors"
 msgstr "Testu-prozesadorea"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Erabilgarritasuna</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Tipografiak</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Gehitu laster-marka"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Laster-markak"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "Maius_kula/Minuskula"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Bilatu"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Ireki helbidea"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Hobespenak"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "Al_datu izena"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Laster-markak:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "_Arakatu kurtsorearekin"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Gehitu laster-marka"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Bilatu:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Zabalera finkoa:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Kokalekua:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Hurrengoa"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Aurrekoa"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Titulua:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Ireki helbidea"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Kokalekua:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Letra-tipoak"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Hobespenak"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "_Arakatu kurtsorearekin"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Zabalera finkoa:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "_Erabili sistemako letra-tipoak"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "_Zabalera aldakorra:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Itzulbiratu"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -978,45 +950,109 @@ msgstr "Erabili sistemako letra-tipoak"
 msgid "Use the default fonts set for the system."
 msgstr "Erabili sistemako letra-tipo lehenetsiak."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Fitxategia ez da baliozko '.desktop' fitxategi bat"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Mahaigaineko (.desktop) fitxategiaren '%s' bertsioa ezezaguna"
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "%s hasieratzen"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Aplikazioak ez ditu dokumenturik onartzen komando-lerroan"
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Abiarazteko aukera ezezaguna: %d"
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "Ezin zaio dokumentuaren URIrik eman mahaigaineko 'Type=Link' sarrerari"
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "Ez da elementu abiarazgarria"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Desgaitu konexioa saio-kudeatzailearekin"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Zehaztu gordetako konfigurazioa duen fitxategia"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "FITXATEGIA"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Zehaztu saio-kudeatzailearen IDa"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "IDa"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Saio-kudeatzailearen aukerak:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Erakutsi saio-kudeatzailearen aukerak"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Ireki laster-marka leiho berrian"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Aldatu laster-markaren izena"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Kendu laster-marka"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "%s izeneko laster-marka badago lehendik ere orrialde honetan."
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "<b>%s</b> izeneko laster-marka jadanik existitzen da orrialde honetan."
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Laguntzako gaiak"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Dokumentuaren atalak"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-mallard.c:380
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Ez da orrialdea aurkitu"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-mallard.c:381 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "%s orrialdea ez da aurkitu %s dokumentuan."
@@ -1060,7 +1096,7 @@ msgstr ""
 "'%s' fitxategia ezin da analizatu, ez duelako txertatutako fitxategi bat edo "
 "gehiago behar bezalako XML formatuan."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Ezezaguna"
 
@@ -1068,7 +1104,7 @@ msgstr "Ezezaguna"
 msgid "Unknown Error"
 msgstr "Errore ezezaguna"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1643
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
 msgid "Could Not Read File"
 msgstr "Ezin izan da fitxategia irakurri"
 
@@ -1090,22 +1126,31 @@ msgstr ""
 "Ezin izan da '%s' fitxategia irakurri eta dekodetu. Baliteke fitxategia "
 "onartu gabeko formatu batean konprimituta egotea."
 
-#: ../src/yelp-main.c:91
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Erabili saio pribatua"
 
-#: ../src/yelp-main.c:100
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "Zehaztu zein cache-direktorio erabili behar den"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:357
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr "GNOMEren Laguntza-arakatzailea"
 
-#: ../src/yelp-main.c:377 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Laguntza"
+
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr "Ez da direktorioa aurkitu"
+
+#: ../src/yelp-mallard.c:312
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "'%s' direktorioa ez da existitzen."
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1256,28 +1301,28 @@ msgstr ""
 "Aurkibidearen fitxategia ezin da analizatu, ez delako behar bezalako XML "
 "dokumentua."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "Baliogabeko estilo-orria"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr "XSLT '%s' estilo-orria falta da edo ez da baliozkoa."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "Eraldaketa hautsita"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Errore ezezaguna gertatu da dokumentua eraldatzean."
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "Ez da href atributurik aurkitu yelp:document-en\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Memoriarik ez"
 
@@ -1429,66 +1474,62 @@ msgstr "Honi _buruz"
 msgid "Copy _Email Address"
 msgstr "_Kopiatu postaren helbidea"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Laguntza-arakatzailea"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1700
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
 msgid "Loading..."
 msgstr "Kargatzen..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Orrialde ezezaguna"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1064
-#: ../src/yelp-window.c:1084
+#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Eskatutako \"%s\" URIa baliogabea da"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1066
-#: ../src/yelp-window.c:1085
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
 msgid "Unable to load page"
 msgstr "Ezin da orrialdea kargatu"
 
-#: ../src/yelp-window.c:1079
-msgid "Error executing \"gnome-open\""
-msgstr "Errorea \"gnome-open\" exekutatzean"
-
-#: ../src/yelp-window.c:1265
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "_Bilatu:"
 
-#: ../src/yelp-window.c:1266
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr "Bilatu bestelako dokumentazioa"
 
-#: ../src/yelp-window.c:1286
+#: ../src/yelp-window.c:1351
 msgid "Cannot create window"
 msgstr "Ezin da leihoa sortu"
 
-#: ../src/yelp-window.c:1292
+#: ../src/yelp-window.c:1357
 msgid "Cannot create search component"
 msgstr "Ezin da bilaketako osagaia sortu"
 
-#: ../src/yelp-window.c:1464
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "_Bilatu:"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr "Bilatu _aurrekoa"
 
-#: ../src/yelp-window.c:1498
+#: ../src/yelp-window.c:1563
 msgid "Find _Next"
 msgstr "Bilatu _hurrengoa"
 
-#: ../src/yelp-window.c:1511
+#: ../src/yelp-window.c:1576
 msgid "Phrase not found"
 msgstr "Ez da esaldia aurkitu"
 
-#: ../src/yelp-window.c:1640
+#: ../src/yelp-window.c:1707
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1499,17 +1540,17 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2480
+#: ../src/yelp-window.c:2589
 msgid "translator-credits"
 msgstr ""
 "Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>\n"
 "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
 
-#: ../src/yelp-window.c:2483
+#: ../src/yelp-window.c:2592
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2485
+#: ../src/yelp-window.c:2594
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "GNOME mahaigainaren dokumentazio-arakatzaile eta -ikustaile bat."
 

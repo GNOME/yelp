@@ -1125,7 +1125,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
     }
 
     if (doc) {
-        gchar *slash;
+        gchar *faux_frag_id, *slash;
 	gboolean need_hist = FALSE;
 	if (!frag_id)
 	  frag_id = g_strdup ("x-yelp-index");
@@ -1134,22 +1134,35 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
 				       priv->current_type == YELP_RRN_TYPE_XHTML ||
 				       priv->current_type == YELP_RRN_TYPE_TEXT))
 	    need_hist = TRUE;
-	window_setup_window (window, type, real_uri, frag_id,
-			     (gchar *) uri, current_base, need_hist);
 
         /* FIXME: Super hacky.  We want the part before the slash for mallard IDs,
-           because right now we're outputting "#page_id/section_id".  We ought to
-           be scrolling to the section as well.  I happen to know that get_page is
-           just going to strdup the string, and we free frag_id itself immediately
-           after this, so this is safe.  It just sucks.
+           because right now we're outputting "#page_id/section_id".
          */
-        slash = strchr (frag_id, '/');
+        faux_frag_id = g_strdup (frag_id);
+        slash = strchr (faux_frag_id, '/');
         if (slash)
             *slash = '\0';
-	priv->current_request = yelp_document_get_page (doc,
-							frag_id,
-							(YelpDocumentFunc) page_request_cb,
-							(void *) window);
+        if (strlen (faux_frag_id) == 0) {
+            gchar *new_frag_id, *newslash;
+            if (slash)
+                slash = g_strdup (slash + 1);
+            g_free (faux_frag_id);
+            faux_frag_id = g_strdup (priv->current_frag);
+            newslash = strchr (faux_frag_id, '/');
+            if (newslash)
+                *newslash = '\0';
+            new_frag_id = g_strconcat (faux_frag_id, "/", slash, NULL);
+            g_free (frag_id);
+            g_free (slash);
+            frag_id = new_frag_id;
+        }
+	window_setup_window (window, type, real_uri, frag_id,
+			     (gchar *) uri, current_base, need_hist);
+        priv->current_request = yelp_document_get_page (doc,
+                                                        faux_frag_id,
+                                                        (YelpDocumentFunc) page_request_cb,
+                                                        (void *) window);
+        g_free (faux_frag_id);
 	priv->current_document = doc;
     }
 
@@ -2320,6 +2333,7 @@ window_enable_cursor_cb (GtkAction *action, YelpWindow *window)
 static void
 history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
 {
+    gchar *slash, *frag_id;
     g_return_if_fail (YELP_IS_WINDOW (window));
 
     if (entry->type == YELP_RRN_TYPE_HTML || entry->type == YELP_RRN_TYPE_XHTML || entry->type == YELP_RRN_TYPE_TEXT) {
@@ -2332,10 +2346,21 @@ history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
 	    g_free (window->priv->base_uri);
 	window->priv->base_uri = g_strdup (entry->base_uri);
 	window->priv->current_document = entry->doc;
+
+        /* FIXME: Super hacky.  We want the part before the slash for mallard IDs,
+           because right now we're outputting "#page_id/section_id".  We ought to
+           be scrolling to the section as well.
+         */
+        slash = strchr (entry->frag_id, '/');
+        if (slash)
+            frag_id = g_strndup (entry->frag_id, slash - entry->frag_id);
+        else
+            frag_id = g_strdup (entry->frag_id);
 	window->priv->current_request = yelp_document_get_page (entry->doc,
-							entry->frag_id,
-							(YelpDocumentFunc) page_request_cb,
-							(void *) window);
+                                                                frag_id,
+                                                                (YelpDocumentFunc) page_request_cb,
+                                                                (void *) window);
+        g_free (frag_id);
     }
 
 }
@@ -2529,7 +2554,7 @@ window_about_cb (GtkAction *action, YelpWindow *window)
 {
     const gchar *copyright =
 	"Copyright © 2001-2003 Mikael Hallendal\n"
-	"Copyright © 2003-2005 Shaun McCance\n"
+	"Copyright © 2003-2009 Shaun McCance\n"
 	"Copyright © 2005-2006 Don Scorgie\n"
 	"Copyright © 2005-2006 Brent Smith";
     const gchar *authors[] = {

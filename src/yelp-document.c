@@ -515,6 +515,35 @@ yelp_document_error_request (YelpDocument *document, gint req_id, YelpError *err
 }
 
 void
+yelp_document_error_page (YelpDocument *document, gchar *page_id, YelpError *error)
+{
+    GSList *requests;
+    Request *request = NULL;
+    YelpDocumentPriv *priv;
+
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    debug_print (DB_FUNCTION, "entering\n");
+    priv = document->priv;
+    g_mutex_lock (priv->mutex);
+
+    requests = g_hash_table_lookup (priv->reqs_by_page_id, page_id);
+    while (requests) {
+	request = (Request *) requests->data;
+	if (request && request->error == NULL) {
+	    request->error = yelp_error_copy (error);
+	    request->idle_funcs++;
+	    g_idle_add ((GSourceFunc) request_idle_error, request);
+	}
+	requests = requests->next;
+    }
+
+    yelp_error_free (error);
+
+    g_mutex_unlock (priv->mutex);
+}
+
+void
 yelp_document_error_pending (YelpDocument *document, YelpError *error)
 {
     GSList *cur;

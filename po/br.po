@@ -2,278 +2,970 @@
 # Copyright (C) 2004-2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-menu package.
 # Jérémy Ar Floc'h <jeremy.lefloch@gmail.com>, 2006.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp 2.14\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-16 17:28+0100\n"
-"PO-Revision-Date: 2006-03-16 14:49+0100\n"
-"Last-Translator: Jérémy Le Floc'h <jeremy.lefloch@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
+"POT-Creation-Date: 2009-08-24 04:26+0000\n"
+"PO-Revision-Date: 2009-08-24 11:38+0100\n"
+"Last-Translator: Denis <denisarnuad@yahoo.fr>\n"
 "Language-Team: Britton\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/info.xml.in.h:1 ../src/yelp-toc-pager.c:1239
+#: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
 msgstr "Pajennoù GNU Info"
 
-#: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr ""
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "Arloadoù"
 
 #: ../data/man.xml.in.h:2
+#| msgid "Qt Functions"
+msgid "BLT Functions"
+msgstr "Arc'hwelioù BLT"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
 msgstr "Restroù kefluniadur"
 
-#: ../data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+#| msgid "Perl Functions"
+msgid "Curses Functions"
+msgstr ""
+
+#: ../data/man.xml.in.h:5
+#: ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Diorren"
 
-#: ../data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
 msgstr "Arc'hwelioù"
 
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7
+#: ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "C'hoarioù"
 
-#: ../data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
-msgstr ""
+msgstr "Trobarzhelloù periant"
 
-#: ../data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
 msgstr ""
 
-#: ../data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "Arc'hwelioù levraoueg"
-
-#: ../data/man.xml.in.h:9 ../src/yelp-toc-pager.c:1233
+#: ../data/man.xml.in.h:10
 msgid "Manual Pages"
 msgstr "Pajennoù dornlevr"
 
-#: ../data/man.xml.in.h:10
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr ""
+
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
 msgstr "Arloadoù OpenSSL"
 
-#: ../data/man.xml.in.h:11
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
 msgstr "Kefluniadur OpenSSL"
 
-#: ../data/man.xml.in.h:12
+#: ../data/man.xml.in.h:14
+#| msgid "OpenSSL Applications"
+msgid "OpenSSL Functions"
+msgstr "Arc'hwelioù OpenSSL"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
 msgstr "A bep seurt OpenSSL"
 
-#: ../data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
 msgstr "A bep seurt"
 
-#: ../data/man.xml.in.h:14
+#: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
 msgstr "Arc'hwelioù POSIX"
 
-#: ../data/man.xml.in.h:15
+#: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
 msgstr "Reollinoù POSIX"
 
-#: ../data/man.xml.in.h:16
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
 msgstr "Arc'hwelioù Perl"
 
-#: ../data/man.xml.in.h:17
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
 msgstr "Arc'hwelioù Qt"
 
-#: ../data/man.xml.in.h:18
+#: ../data/man.xml.in.h:21
+#, fuzzy
+#| msgid "Perl Functions"
+msgid "Readline Functions"
+msgstr "Arc'hwelioù Perl"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr ""
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr ""
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr ""
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr ""
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr ""
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr ""
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr ""
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr ""
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr ""
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr ""
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr ""
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr ""
+
+#: ../data/man.xml.in.h:34
+#, fuzzy
+#| msgid "Scientific"
+msgid "Section 3tiff"
+msgstr "Skiantel"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr ""
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr ""
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr ""
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr ""
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr ""
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr ""
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr ""
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr ""
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr ""
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr ""
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr ""
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr ""
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr ""
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr ""
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr ""
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr ""
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr ""
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr ""
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "Mererezh ar reizhiad"
 
-#: ../data/man.xml.in.h:19
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr ""
 
-#: ../data/man.xml.in.h:20
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr ""
+
+#: ../data/man.xml.in.h:56
+#| msgid "Qt Functions"
+msgid "TIFF Functions"
+msgstr "Arc'hwelioù TIFF"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
 msgstr "Arloadoù Termcap"
 
-#: ../data/man.xml.in.h:21
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr ""
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
 msgstr "Arloadoù X11"
 
-#: ../data/man.xml.in.h:22
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
 msgstr "Kefluniadur X11"
 
-#: ../data/man.xml.in.h:23
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
-msgstr "Trobarzhelloù"
+msgstr "Trobarzhelloù X11"
 
-#: ../data/man.xml.in.h:24
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
 msgstr "Arc'hwelioù X11"
 
-#: ../data/man.xml.in.h:25
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
 msgstr "C'hoarioù X11"
 
-#: ../data/man.xml.in.h:26
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
 msgstr "A bep seurt X11"
 
 #: ../data/toc.xml.in.h:1
+#, fuzzy
+#| msgid "Graphics"
+msgid "2D Graphics"
+msgstr "Grafikoù"
+
+#: ../data/toc.xml.in.h:2
+#, fuzzy
+#| msgid "Graphics"
+msgid "3D Graphics"
+msgstr "Grafikoù"
+
+#: ../data/toc.xml.in.h:3
+#: ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Haezadusted"
 
-#: ../data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "Mavegoù"
-
-#: ../data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "Mererezh"
+#: ../data/toc.xml.in.h:4
+msgid "Action Games"
+msgstr ""
 
 #: ../data/toc.xml.in.h:5
-msgid "Desktop"
-msgstr "Gorretaol"
+msgid "Adventure Games"
+msgstr ""
 
 #: ../data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "Arloadoù deskadurezh"
+msgid "Amusement"
+msgstr ""
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications for viewing and manipulating graphics"
+msgstr ""
 
 #: ../data/toc.xml.in.h:8
+msgid "Applications related to audio and video"
+msgstr ""
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications that teach or aid in learning"
+msgstr ""
+
+#: ../data/toc.xml.in.h:10
+msgid "Arcade Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:11
+msgid "Archiving Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr ""
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr ""
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr ""
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr ""
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:17
+#, fuzzy
+#| msgid "Games"
+msgid "Board Games"
+msgstr "C'hoarioù"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr ""
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr ""
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr ""
+
+#: ../data/toc.xml.in.h:21
+#, fuzzy
+#| msgid "Games"
+msgid "Card Games"
+msgstr "C'hoarioù"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr ""
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr ""
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr ""
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr ""
+
+#: ../data/toc.xml.in.h:28
+#, fuzzy
+#| msgid "Administration"
+msgid "Construction"
+msgstr "Mererezh"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr ""
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr ""
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr ""
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:33
+msgid "Desktop"
+msgstr "Burev"
+
+#: ../data/toc.xml.in.h:34
+#| msgid "Desktop"
+msgid "Desktop Settings"
+msgstr "Arventennoù ar burev"
+
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr ""
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr ""
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr ""
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr ""
+
+#: ../data/toc.xml.in.h:41
+#| msgid "_Location:"
+msgid "Education"
+msgstr ""
+
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr ""
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr ""
+
+#: ../data/toc.xml.in.h:44
+#| msgid "System Tools"
+msgid "Email Tools"
+msgstr "Binvioù postelerezh"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr ""
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr ""
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr ""
+
+#: ../data/toc.xml.in.h:48
+#| msgid "System Tools"
+msgid "File Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr ""
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:53
+#| msgid "X Applications"
+msgid "GNOME Applications"
+msgstr "Arloadoù GNOME"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr ""
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr ""
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr ""
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr ""
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr ""
+
+#: ../data/toc.xml.in.h:62
+#, fuzzy
 msgid "Graphics"
 msgstr "Grafikoù"
 
-#: ../data/toc.xml.in.h:9 ../src/yelp-bookmarks.c:410
-msgid "Help Topics"
-msgstr "Sujedoù skoazell"
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr ""
 
-#: ../data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr ""
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr ""
+
+#: ../data/toc.xml.in.h:66
+#| msgid "Hardware Devices"
+msgid "Hardware Settings"
+msgstr "Arventennoù ar periant"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr ""
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr ""
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr ""
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr ""
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr ""
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "Kenrouedad"
 
-#: ../data/toc.xml.in.h:11
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr ""
 
-#: ../data/toc.xml.in.h:12
-msgid "Multimedia"
-msgstr "Liesvedia"
+#: ../data/toc.xml.in.h:75
+#| msgid "X Applications"
+msgid "KDE Applications"
+msgstr "Arloadoù KDE"
 
-#: ../data/toc.xml.in.h:13
-msgid "Office"
-msgstr "Bureveg"
+#: ../data/toc.xml.in.h:76
+#, fuzzy
+#| msgid "Games"
+msgid "Kids Games"
+msgstr "C'hoarioù"
 
-#: ../data/toc.xml.in.h:14
-msgid "Other"
-msgstr "All"
+#: ../data/toc.xml.in.h:77
+msgid "Learn more about making your system more accessible for a range of disabilities"
+msgstr ""
 
-#: ../data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr ""
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr ""
+
+#: ../data/toc.xml.in.h:80
+#, fuzzy
+#| msgid "Games"
+msgid "Logic Games"
+msgstr "C'hoarioù"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr ""
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr ""
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr ""
+
+#: ../data/toc.xml.in.h:84
+#, fuzzy
+#| msgid "Other Documentation"
+msgid "Miscellaneous Documentation"
+msgstr "Diellerezh all"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr ""
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr ""
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr ""
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr ""
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr ""
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr ""
+
+#: ../data/toc.xml.in.h:92
+#, fuzzy
+#| msgid "X Applications"
+msgid "Office Applications"
+msgstr "Arloadoù bureveg"
+
+#: ../data/toc.xml.in.h:93
+#, fuzzy
+#| msgid "X Applications"
+msgid "Office applications"
+msgstr "Arloadoù X"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
 msgstr "Diellerezh all"
 
-#: ../data/toc.xml.in.h:16
-msgid "Panel Applets"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
 msgstr ""
 
-#: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Dibaboù gwellañ"
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr ""
 
-#: ../data/toc.xml.in.h:18
-msgid "Programming"
-msgstr "Gouleviñ"
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr ""
 
-#: ../data/toc.xml.in.h:19
-msgid "Scientific"
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr ""
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr ""
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+#, fuzzy
+#| msgid "Pages"
+msgid "Players"
+msgstr "Pajennoù"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:104
+#: ../src/yelp-print.c:337
+#: ../src/yelp-print.c:364
+msgid "Printing"
+msgstr "Moullañ"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+#, fuzzy
+#| msgid "Graphics"
+msgid "Raster Graphics"
+msgstr "Grafikoù"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr ""
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr ""
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr ""
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr ""
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr ""
+
+#: ../data/toc.xml.in.h:117
+#, fuzzy
+#| msgid "Scientific"
+msgid "Science"
 msgstr "Skiantel"
 
-#: ../data/toc.xml.in.h:20
-msgid "System Tools"
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Diogelroez"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Arventennoù"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr ""
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Son"
+
+#: ../data/toc.xml.in.h:124
+msgid "Sound &amp; Video"
+msgstr ""
+
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr ""
+
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr ""
+
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr ""
+
+#: ../data/toc.xml.in.h:128
+#, fuzzy
+#| msgid "System Tools"
+msgid "Spreadsheet Tools"
 msgstr "Binvioù reizhiad"
 
-#: ../data/toc.xml.in.h:21
-msgid "X Applications"
-msgstr "Arloadoù X"
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr ""
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Haezadusted</b>"
+#: ../data/toc.xml.in.h:130
+#| msgid "System Tools"
+msgid "System"
+msgstr "Reizhiad"
 
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Nodrezh</b>"
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
 
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Ouzhpennañ d'ar sinedoù"
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr ""
 
-#: ../data/ui/yelp.glade.h:4
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr ""
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr ""
+
+#: ../data/toc.xml.in.h:136
+#, fuzzy
+#| msgid "System Tools"
+msgid "Text Tools"
+msgstr "Binvioù reizhiad"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr ""
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr ""
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr ""
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr ""
+
+#: ../data/toc.xml.in.h:142
+#, fuzzy
+#| msgid "Graphics"
+msgid "Vector Graphics"
+msgstr "Grafikoù"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr ""
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr ""
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr ""
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr ""
+
+#: ../data/toc.xml.in.h:148
+#, fuzzy
+#| msgid "Development"
+msgid "Web Development"
+msgstr "Diorren"
+
+#: ../data/toc.xml.in.h:149
+msgid "Welcome to the GNOME Help Browser"
+msgstr ""
+
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr ""
+
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Sinedoù"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr ""
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Klask"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Digeriñ ul lec'hiad"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
-msgstr "adenvel"
+msgstr "_Adenvel"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Sinedoù :"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr ""
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Ouzhpennañ d'ar sinedoù"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Klask :"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr ""
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Lec'hiad :"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Da heul"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Diaraok"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Titl :"
 
-#: ../data/ui/yelp.glade.h:18
-msgid "_Use system fonts"
-msgstr "_Implijañ nodrezhoù reizhiad"
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Digeriñ ul lec'hiad"
 
-#: ../data/ui/yelp.glade.h:19
-msgid "_Variable width:"
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Lec'hiadur :"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Nodrezhioù"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Dibaboù gwellañ"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
 msgstr ""
 
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr ""
+
+#: ../data/ui/yelp-preferences.ui.h:6
+msgid "_Use system fonts"
+msgstr "_Arverañ nodrezhoù ar reizhiad"
+
+#: ../data/ui/yelp-preferences.ui.h:7
+msgid "_Variable width:"
 msgstr ""
 
 #: ../data/yelp.schemas.in.h:1
@@ -282,7 +974,7 @@ msgstr ""
 
 #: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr "Nedrezh evit testenn"
+msgstr "Nodrezh evit an destenn"
 
 #: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
@@ -302,521 +994,667 @@ msgstr ""
 
 #: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr "Impliañ nodrezhoù reizhiad"
+msgstr "Arverañ nodrezhoù ar reizhiad"
 
 #: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
 msgstr ""
 
-#: ../src/GNOME_Yelp.server.in.h:1 ../src/yelp-window.c:2661
-msgid "Yelp"
-msgstr "Yelp"
-
-#: ../src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
 msgstr ""
 
-#: ../src/yelp-bookmarks.c:155
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "O kregiñ gant %s"
+
+#: ../src/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr ""
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr ""
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr ""
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "RESTR"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr ""
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "HENNADER (ID)"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr ""
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr ""
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Digeriñ e-barzh ur prenestr nevez"
 
-#: ../src/yelp-bookmarks.c:159
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Adenvel ar sined"
 
-#: ../src/yelp-bookmarks.c:163
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Dilemel ar sined"
 
-#: ../src/yelp-bookmarks.c:320
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr ""
 
-#: ../src/yelp-bookmarks.c:397
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr ""
 
-#: ../src/yelp-bookmarks.c:425
+#: ../src/yelp-bookmarks.c:403
+msgid "Help Topics"
+msgstr "Danvezioù ar skoazell"
+
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr ""
 
-#: ../src/yelp-db-pager.c:245 ../src/yelp-db-print-pager.c:197
+#: ../src/yelp-db-print.c:258
+#: ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275
+#: ../src/yelp-docbook.c:367
+#: ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338
+#: ../src/yelp-mallard.c:280
+#: ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385
+#: ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
+msgid "Page not found"
+msgstr ""
+
+#: ../src/yelp-db-print.c:259
+#: ../src/yelp-docbook.c:276
+#: ../src/yelp-info.c:244
+#: ../src/yelp-mallard.c:281
+#: ../src/yelp-man.c:293
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+msgid "The page %s was not found in the document %s."
 msgstr ""
 
-#: ../src/yelp-error.c:42 ../src/yelp-error.c:58
-msgid "An unknown error occured"
+#: ../src/yelp-db-print.c:351
+#: ../src/yelp-docbook.c:368
+#: ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
+#, c-format
+msgid "The requested page was not found in the document %s."
 msgstr ""
 
-#: ../src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "N'eus ket tu da garkañ an teul"
-
-#: ../src/yelp-error.c:48
-msgid "Could not load section"
+#: ../src/yelp-db-print.c:392
+#: ../src/yelp-docbook.c:410
+#: ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
+msgid "File not found"
 msgstr ""
 
-#: ../src/yelp-error.c:50
-msgid "Could not read the table of contents"
+#: ../src/yelp-db-print.c:393
+#: ../src/yelp-docbook.c:411
+#: ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
+#, c-format
+msgid "The file ‘%s’ does not exist."
 msgstr ""
 
-#: ../src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr ""
-
-#: ../src/yelp-error.c:54
-msgid "Could not read document"
+#: ../src/yelp-db-print.c:406
+#: ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424
+#: ../src/yelp-docbook.c:436
+#: ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458
+#: ../src/yelp-toc.c:437
+#, fuzzy
+#| msgid "Could not read document"
+msgid "Could not parse file"
 msgstr "N'eus ket tu da lenn an teul"
 
-#: ../src/yelp-error.c:56
-msgid "Could not process document"
-msgstr ""
-
-#: ../src/yelp-error.c:66
-msgid "No information is available about the error."
-msgstr ""
-
-#: ../src/yelp-info-pager.c:190
+#: ../src/yelp-db-print.c:407
+#: ../src/yelp-docbook.c:425
 #, c-format
-msgid ""
-"The file  ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
 msgstr ""
 
-#: ../src/yelp-io-channel.c:101
+#: ../src/yelp-db-print.c:419
+#: ../src/yelp-docbook.c:437
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
 msgstr ""
 
-#: ../src/yelp-main.c:99
+#: ../src/yelp-db-print.c:766
+#: ../src/yelp-docbook.c:787
+msgid "Unknown"
+msgstr "Dianav"
+
+#: ../src/yelp-error.c:132
+#: ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Fazi dianav"
+
+#: ../src/yelp-error.c:136
+#: ../src/yelp-window.c:1710
+#| msgid "Could not read document"
+msgid "Could Not Read File"
+msgstr "N'eus ket tu da lenn an teul"
+
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr ""
+
+#: ../src/yelp-info.c:396
+#, c-format
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+
+#: ../src/yelp-io-channel.c:132
+#, c-format
+msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+msgstr ""
+
+#: ../src/yelp-main.c:88
+msgid "Use a private session"
+msgstr "Averañ un estez prevez"
+
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr ""
 
-#: ../src/yelp-main.c:133
-#, c-format
-msgid "Could not activate Yelp: '%s'"
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:355
+msgid " GNOME Help Browser"
 msgstr ""
 
-#: ../src/yelp-main.c:152
-msgid "Could not open new window."
-msgstr ""
-
-#: ../src/yelp-main.c:400 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384
+#: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Skoazell"
 
-#: ../src/yelp-man-pager.c:185
+#: ../src/yelp-mallard.c:311
+msgid "Directory not found"
+msgstr ""
+
+#: ../src/yelp-mallard.c:312
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+msgid "The directory ‘%s’ does not exist."
 msgstr ""
 
-#: ../src/yelp-pager.c:122
-msgid "Document Information"
+#: ../src/yelp-man.c:459
+#, c-format
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr ""
 
-#: ../src/yelp-pager.c:123
-msgid "The YelpDocInfo struct of the document"
-msgstr ""
+#: ../src/yelp-print.c:97
+#| msgid "Printing"
+msgid "Print"
+msgstr "Moullañ"
 
-#: ../src/yelp-print.c:138
+#: ../src/yelp-print.c:167
 msgid "Preparing to print"
 msgstr ""
 
-#: ../src/yelp-print.c:275
-msgid "Pages"
-msgstr "Pajennoù"
-
-#: ../src/yelp-print.c:348
-msgid "Generating PDF is not currently supported"
-msgstr ""
-
-#: ../src/yelp-print.c:356
+#: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
 msgstr ""
 
-#: ../src/yelp-print.c:359
+#: ../src/yelp-print.c:264
 #, c-format
-msgid ""
-"You were trying to print to a printer using the \"%s\" driver.  This program "
-"requires a PostScript printer driver."
+msgid "Printer %s does not support postscript printing."
 msgstr ""
 
-#: ../src/yelp-print.c:402
-msgid "An error occurred while printing"
-msgstr ""
-
-#: ../src/yelp-print.c:406
-msgid "It was not possible to print your document"
-msgstr ""
-
-#: ../src/yelp-print.c:466
-msgid "Printing"
-msgstr ""
-
-#: ../src/yelp-print.c:493
-msgid "<b>Printing</b>"
-msgstr ""
-
-#: ../src/yelp-print.c:495
+#: ../src/yelp-print.c:366
 msgid "Waiting to print"
 msgstr ""
 
-#: ../src/yelp-print.c:559
-msgid "_From:"
-msgstr "_Eus :"
-
-#: ../src/yelp-print.c:572
-msgid "Sets the start of the range of pages to be printed"
+#: ../src/yelp-print.c:578
+msgid "An error occurred while printing"
 msgstr ""
 
-#: ../src/yelp-print.c:574
-msgid "_To:"
-msgstr "_Da :"
-
-#: ../src/yelp-print.c:587
-msgid "Sets the end of the range of pages to be printed"
-msgstr ""
-
-#: ../src/yelp-search-pager.c:676
+#: ../src/yelp-print.c:582
 #, c-format
-msgid ""
-"Your search could not be processed. The file ‘%s’ is either missing or is "
-"not a valid XSLT stylesheet."
+msgid "It was not possible to print your document: %s"
 msgstr ""
 
-#: ../src/yelp-search-pager.c:778 ../src/yelp-toc-pager.c:1506
-#: ../src/yelp-xslt-pager.c:368
-msgid "No href attribute found on yelp:document"
+#: ../src/yelp-search-parser.c:67
+msgid "the GNOME Support Forums"
 msgstr ""
 
-#: ../src/yelp-search-pager.c:792 ../src/yelp-toc-pager.c:1520
-#: ../src/yelp-xslt-pager.c:384
+#: ../src/yelp-search-parser.c:285
+#, c-format
+msgid "No results for \"%s\""
+msgstr ""
+
+#: ../src/yelp-search-parser.c:286
+msgid "Try using different words to describe the problem you're having or the topic you want help with."
+msgstr ""
+
+#: ../src/yelp-search-parser.c:289
+#, c-format
+msgid "Search results for \"%s\""
+msgstr ""
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-parser.c:303
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr ""
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-parser.c:874
+msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+msgstr ""
+
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-parser.c:890
+msgid "re"
+msgstr ""
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the string NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-parser.c:899
+msgid "ers:er:ing:es:s:'s"
+msgstr ""
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr ""
+
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr ""
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr ""
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr ""
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr ""
+
+#: ../src/yelp-toc.c:267
+#, c-format
+msgid "The page %s was not found in the TOC."
+msgstr ""
+
+#: ../src/yelp-toc.c:366
+msgid "The requested page was not found in the TOC."
+msgstr ""
+
+#: ../src/yelp-toc.c:438
+msgid "The TOC file could not be parsed because it is not a well-formed XML document."
+msgstr ""
+
+#: ../src/yelp-transform.c:86
+msgid "Invalid Stylesheet"
+msgstr ""
+
+#: ../src/yelp-transform.c:87
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr ""
+
+#: ../src/yelp-transform.c:122
+#, fuzzy
+#| msgid "Document Information"
+msgid "Broken Transformation"
+msgstr "Stlennoù an teul"
+
+#: ../src/yelp-transform.c:123
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr ""
+
+#: ../src/yelp-transform.c:389
+msgid "No href attribute found on yelp:document\n"
+msgstr ""
+
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr ""
 
-#: ../src/yelp-search-pager.c:833 ../src/yelp-toc-pager.c:1570
-msgid "Help Contents"
-msgstr ""
-
-#: ../src/yelp-search-pager.c:1119 ../src/yelp-toc-pager.c:499
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr ""
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or 00BB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: ../src/yelp-settings.c:156
-msgid "yelp-watermark-blockquote-201C"
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:273
-msgid "YelpTocPager: Pause count is negative."
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:637
-#, c-format
-msgid "Read man page for %s"
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:1108
-#, c-format
-msgid "Read info page for %s"
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:1206
-#, c-format
-msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:1228
-msgid "Command Line Help"
-msgstr ""
-
-#: ../src/yelp-toc-pager.c:1342
-#, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
-msgstr ""
-
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:304
 msgid "_File"
 msgstr "_Restr"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:305
 msgid "_Edit"
 msgstr "_Kemmañ"
 
-#: ../src/yelp-window.c:313
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "_Mont"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "_Sinedoù"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:308
 msgid "_Help"
 msgstr "_Skoazell"
 
-#: ../src/yelp-window.c:318
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "_Prenestr nevez"
 
-#: ../src/yelp-window.c:323
-msgid "Print This Document"
-msgstr ""
+#: ../src/yelp-window.c:316
+#| msgid "Print This Document"
+msgid "Print This Document ..."
+msgstr "Moullañ an teul-mañ..."
 
-#: ../src/yelp-window.c:328
-msgid "Print This Page"
-msgstr ""
+#: ../src/yelp-window.c:321
+#| msgid "Print This Page"
+msgid "Print This Page ..."
+msgstr "Moullañ ar bajenn-mañ..."
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:326
 msgid "About This Document"
 msgstr "Diwar-benn an teul-mañ"
 
-#: ../src/yelp-window.c:338
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
-msgstr "Digeriñ ul lec'hiad"
+msgstr "Digeriñ al lec'hiadur"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
 msgstr "_Serriñ ar prenestr"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:342
 msgid "_Copy"
-msgstr "_Kopiañ"
+msgstr "_Eilañ"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:348
 msgid "_Select All"
 msgstr "_Diuz pep tra"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:353
 msgid "_Find..."
-msgstr "_Klask..."
+msgstr "_Kavout..."
 
-#: ../src/yelp-window.c:365
+#: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
 msgstr ""
 
-#: ../src/yelp-window.c:367
+#: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
 msgstr ""
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
 msgstr ""
 
-#: ../src/yelp-window.c:372
+#: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
 msgstr ""
 
-#: ../src/yelp-window.c:375
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
-msgstr "_Dibaboù gwellañ"
+msgstr "_Gwellvezioù"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:373
 msgid "_Reload"
 msgstr "_Adkargañ"
 
-#: ../src/yelp-window.c:392
+#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr ""
 
-#: ../src/yelp-window.c:394
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
 msgstr ""
 
-#: ../src/yelp-window.c:397
+#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr ""
 
-#: ../src/yelp-window.c:399
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
 msgstr ""
 
-#: ../src/yelp-window.c:402
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
-msgstr ""
+msgstr "Danvezioù ar skoazell"
 
-#: ../src/yelp-window.c:404
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr ""
 
-#: ../src/yelp-window.c:407
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
 msgstr ""
 
-#: ../src/yelp-window.c:412
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
 msgstr ""
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:410
+#: ../src/yelp-window.c:442
 msgid "_Contents"
-msgstr "_Endalc'had"
+msgstr "_Endalc'hadoù"
 
-#: ../src/yelp-window.c:423
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "_Ouzhpennañ d'ar sinedoù"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
 msgstr "_Kemmañ ar sinedoù..."
 
-#: ../src/yelp-window.c:434
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
 msgstr "_Digeriñ un ere"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
 msgstr "Digeriñ an ere e-barzh ur prenestr nevez"
 
-#: ../src/yelp-window.c:444
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
-msgstr "_Kopiañ lec'hiadur an ere"
+msgstr "_Eilañ lec'hiadur an ere"
 
-#: ../src/yelp-window.c:450
+#: ../src/yelp-window.c:444
+msgid "Help On this application"
+msgstr ""
+
+#: ../src/yelp-window.c:447
 msgid "_About"
 msgstr "_A-zivout"
 
-#: ../src/yelp-window.c:455
+#: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
-msgstr "Kopiañ ar postel"
+msgstr "Eilañ ar postel"
 
-#: ../src/yelp-window.c:504
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr ""
 
-#: ../src/yelp-window.c:768 ../src/yelp-window.c:924
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+#: ../src/yelp-window.c:619
+#: ../src/yelp-window.c:671
+#: ../src/yelp-window.c:1772
+msgid "Loading..."
+msgstr "O kargañ..."
 
-#: ../src/yelp-window.c:780 ../src/yelp-window.c:919
+#: ../src/yelp-window.c:620
+#: ../src/yelp-window.c:672
+#| msgid "GNU Info Pages"
+msgid "Unknown Page"
+msgstr "Pajenn dianav"
+
+#: ../src/yelp-window.c:1042
+#: ../src/yelp-window.c:1104
+#: ../src/yelp-window.c:1113
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
+msgid "The requested URI \"%s\" is invalid"
 msgstr ""
 
-#: ../src/yelp-window.c:866 ../src/yelp-window.c:1295
-msgid "Man pages are not supported in this version."
+#: ../src/yelp-window.c:1043
+#: ../src/yelp-window.c:1106
+#: ../src/yelp-window.c:1114
+msgid "Unable to load page"
 msgstr ""
 
-#: ../src/yelp-window.c:876 ../src/yelp-window.c:1286
-msgid "GNU info pages are not supported in this version"
-msgstr ""
-
-#: ../src/yelp-window.c:894 ../src/yelp-window.c:1308
-msgid "Search is not supported in this version."
-msgstr ""
-
-#: ../src/yelp-window.c:899
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-
-#: ../src/yelp-window.c:1025
+#: ../src/yelp-window.c:1330
 msgid "_Search:"
 msgstr "_Klask :"
 
-#: ../src/yelp-window.c:1026
+#: ../src/yelp-window.c:1331
 msgid "Search for other documentation"
 msgstr ""
 
-#: ../src/yelp-window.c:1175
+#: ../src/yelp-window.c:1351
+msgid "Cannot create window"
+msgstr ""
+
+#: ../src/yelp-window.c:1357
+msgid "Cannot create search component"
+msgstr ""
+
+#: ../src/yelp-window.c:1529
 msgid "Fin_d:"
 msgstr "Klask :"
 
-#: ../src/yelp-window.c:1195
-msgid "Find _Next"
-msgstr ""
-
-#: ../src/yelp-window.c:1207
+#: ../src/yelp-window.c:1551
 msgid "Find _Previous"
 msgstr ""
 
-#: ../src/yelp-window.c:1321
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
+#: ../src/yelp-window.c:1563
+msgid "Find _Next"
 msgstr ""
 
-#: ../src/yelp-window.c:1350 ../src/yelp-window.c:1764
-#: ../src/yelp-window.c:1840
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
+#: ../src/yelp-window.c:1576
+msgid "Phrase not found"
 msgstr ""
 
-#: ../src/yelp-window.c:1465 ../src/yelp-window.c:2230
+#: ../src/yelp-window.c:1707
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
+msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
 msgstr ""
-
-#: ../src/yelp-window.c:1516
-msgid "Loading..."
-msgstr "O kargañ"
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2658
+#: ../src/yelp-window.c:2577
 msgid "translator-credits"
 msgstr "Jérémy Ar Floc'h <jeremy.lefloch@gmail.com>"
 
-#: ../src/yelp-window.c:2663
+#: ../src/yelp-window.c:2580
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2582
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
-
-#: ../src/yelp-xslt-pager.c:195
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-
-#: ../src/yelp-xslt-pager.c:216 ../src/yelp-xslt-pager.c:229
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
 msgstr ""
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr ""
+
+#~ msgid "Library Functions"
+#~ msgstr "Arc'hwelioù levraoueg"
+#~ msgid "Accessories"
+#~ msgstr "Mavegoù"
+#~ msgid "Education Applications"
+#~ msgstr "Arloadoù deskadurezh"
+#~ msgid "KDE"
+#~ msgstr "KDE"
+#~ msgid "Multimedia"
+#~ msgstr "Liesvedia"
+#~ msgid "Office"
+#~ msgstr "Bureveg"
+#~ msgid "Other"
+#~ msgstr "All"
+#~ msgid "Programming"
+#~ msgstr "Gouleviñ"
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Haezadusted</b>"
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Nodrezhoù</b>"
+#~ msgid "Find"
+#~ msgstr "Klask"
+#~ msgid "_Find:"
+#~ msgstr "_Klask :"
+#~ msgid "_Next"
+#~ msgstr "_Da heul"
+#~ msgid "_Previous"
+#~ msgstr "_Diaraok"
+#~ msgid "Yelp Factory"
+#~ msgstr "Aozerez Yelp"
+#~ msgid "Could not load document"
+#~ msgstr "N'eus ket tu da garkañ an teul"
+#~ msgid "Unsupported Format"
+#~ msgstr "Mentrezh anskoret"
+#~ msgid "<b>Printing</b>"
+#~ msgstr "<b>Moullañ</b>"
+#~ msgid "_From:"
+#~ msgstr "_Eus :"
+#~ msgid "_To:"
+#~ msgstr "_Da :"
+#~ msgid "Help Contents"
+#~ msgstr "Endalc'hadoù ar skoazell"
+
