@@ -32,6 +32,7 @@
 #include "yelp-uri.h"
 #include "yelp-debug.h"
 
+G_DEFINE_TYPE (YelpUri, yelp_uri, G_TYPE_OBJECT);
 #define YELP_URI_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_URI, YelpUriPriv))
 
 struct _YelpUriPriv {
@@ -42,9 +43,10 @@ struct _YelpUriPriv {
     gchar                *frag_id;
 };
 
-static void           uri_class_init        (YelpUriClass   *klass);
-static void           uri_init              (YelpUri        *uri);
-static void           uri_dispose           (GObject        *object);
+static void           yelp_uri_class_init   (YelpUriClass   *klass);
+static void           yelp_uri_init         (YelpUri        *uri);
+static void           yelp_uri_dispose      (GObject        *object);
+static void           yelp_uri_finalize     (GObject        *object);
 
 static void           resolve_file_uri      (YelpUri        *ret,
                                              gchar          *arg);
@@ -88,54 +90,49 @@ static const gchar *mancats[] = {
 
 /******************************************************************************/
 
-GType
-yelp_uri_get_type (void)
-{
-    static GType type = 0;
-    if (!type) {
-        static const GTypeInfo info = {
-            sizeof (YelpUriClass),
-            NULL, NULL,
-            (GClassInitFunc) uri_class_init,
-            NULL, NULL,
-            sizeof (YelpUri),
-            0,
-            (GInstanceInitFunc) uri_init,
-        };
-        type = g_type_register_static (G_TYPE_OBJECT,
-                                       "YelpUri", 
-                                       &info, 0);
-    }
-    return type;
-}
-
 static void
-uri_class_init (YelpUriClass *klass)
+yelp_uri_class_init (YelpUriClass *klass)
 {
-    GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-    parent_class = g_type_class_peek_parent (klass);
-    object_class->dispose      = uri_dispose;
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    object_class->dispose  = yelp_uri_dispose;
+    object_class->finalize = yelp_uri_finalize;
+
     g_type_class_add_private (klass, sizeof (YelpUriPriv));
 }
 
 static void
-uri_init (YelpUri *uri)
+yelp_uri_init (YelpUri *uri)
 {
     uri->priv = YELP_URI_GET_PRIVATE (uri);
 }
 
 static void
-uri_dispose (GObject *object)
+yelp_uri_dispose (GObject *object)
 {
     YelpUri *uri = YELP_URI (object);
 
-    if (uri->priv->gfile)
+    if (uri->priv->gfile) {
         g_object_unref (uri->priv->gfile);
+        uri->priv->gfile = NULL;
+    }
     g_strfreev (uri->priv->search_path);
     g_free (uri->priv->page_id);
     g_free (uri->priv->frag_id);
 
-    parent_class->dispose (object);
+    G_OBJECT_CLASS (yelp_uri_parent_class)->dispose (object);
+}
+
+static void
+yelp_uri_finalize (GObject *object)
+{
+    YelpUri *uri = YELP_URI (object);
+
+    g_strfreev (uri->priv->search_path);
+    g_free (uri->priv->page_id);
+    g_free (uri->priv->frag_id);
+
+    G_OBJECT_CLASS (yelp_uri_parent_class)->finalize (object);
 }
 
 /******************************************************************************/

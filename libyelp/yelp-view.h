@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2009 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,13 +17,17 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@imendio.com>
+ * Author: Shaun McCance <shaunm@gnome.org>
  */
 
 #ifndef __YELP_VIEW_H__
 #define __YELP_VIEW_H__
 
 #include <gtk/gtk.h>
+#include <webkit/webkit.h>
+
+#include "yelp-document.h"
+#include "yelp-uri.h"
 
 #define YELP_TYPE_VIEW            (yelp_view_get_type ())
 #define YELP_VIEW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_VIEW, YelpView))
@@ -37,19 +41,22 @@ typedef struct _YelpViewPriv   YelpViewPriv;
 
 struct _YelpView
 {
-    GtkContainer  parent;
-    YelpViewPriv *priv;
+    WebKitWebView       parent;
+    YelpViewPriv       *priv;
 };
 
 struct _YelpViewClass
 {
-    GtkContainerClass  parent_class;
+    WebKitWebViewClass  parent_class;
 };
 
 GType            yelp_view_get_type        (void);
-GtkWidget *      yelp_view_new             (GNode         *doc_tree,
-					    GList         *index);
-void             yelp_view_load            (YelpView      *view,
-					    const gchar   *uri);
+GtkWidget *      yelp_view_new             (void);
+
+void             yelp_view_load            (YelpView     *view,
+					    YelpUri      *uri);
+void             yelp_view_load_document   (YelpView     *view,
+					    YelpUri      *uri,
+					    YelpDocument *document);
 
 #endif /* __YELP_VIEW_H__ */
