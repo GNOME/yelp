@@ -49,25 +49,25 @@ static void           yelp_uri_dispose      (GObject        *object);
 static void           yelp_uri_finalize     (GObject        *object);
 
 static void           resolve_file_uri      (YelpUri        *ret,
-                                             gchar          *arg);
+                                             const gchar    *arg);
 static void           resolve_file_path     (YelpUri        *ret,
                                              YelpUri        *base,
-                                             gchar          *arg);
+                                             const gchar    *arg);
 static void           resolve_data_dirs     (YelpUri        *ret,
-                                             gchar         **subdirs,
-                                             gchar          *docid,
-                                             gchar          *pageid);
+                                             const gchar   **subdirs,
+                                             const gchar    *docid,
+                                             const gchar    *pageid);
 static void           resolve_ghelp_uri     (YelpUri        *ret,
-                                             gchar          *arg);
+                                             const gchar    *arg);
 static void           resolve_man_uri       (YelpUri        *ret,
-                                             gchar          *arg);
+                                             const gchar    *arg);
 static void           resolve_info_uri      (YelpUri        *ret,
-                                             gchar          *arg);
+                                             const gchar    *arg);
 static void           resolve_page_and_frag (YelpUri        *ret,
-                                             gchar          *arg);
+                                             const gchar    *arg);
 static void           resolve_common        (YelpUri        *ret);
-static gboolean       is_man_path           (gchar          *uri,
-                                             gchar          *encoding);
+static gboolean       is_man_path           (const gchar    *uri,
+                                             const gchar    *encoding);
 
 static GObjectClass *parent_class;
 
@@ -116,9 +116,6 @@ yelp_uri_dispose (GObject *object)
         g_object_unref (uri->priv->gfile);
         uri->priv->gfile = NULL;
     }
-    g_strfreev (uri->priv->search_path);
-    g_free (uri->priv->page_id);
-    g_free (uri->priv->frag_id);
 
     G_OBJECT_CLASS (yelp_uri_parent_class)->dispose (object);
 }
@@ -138,13 +135,13 @@ yelp_uri_finalize (GObject *object)
 /******************************************************************************/
 
 YelpUri *
-yelp_uri_resolve (gchar *arg)
+yelp_uri_resolve (const gchar *arg)
 {
     return yelp_uri_resolve_relative (NULL, arg);
 }
 
 YelpUri *
-yelp_uri_resolve_relative (YelpUri *base, gchar *arg)
+yelp_uri_resolve_relative (YelpUri *base, const gchar *arg)
 {
     YelpUri *ret;
 
@@ -208,16 +205,15 @@ yelp_uri_get_frag_id (YelpUri *uri)
 /******************************************************************************/
 
 static void
-resolve_file_uri (YelpUri *ret, gchar *arg)
+resolve_file_uri (YelpUri *ret, const gchar *arg)
 {
     gchar *uri;
-    gchar *hash;
+    const gchar *hash = strchr (arg, '#');
 
-    hash = strchr (arg, '#');
     if (hash)
         uri = g_strndup (arg, hash - arg);
     else
-        uri = arg;
+        uri = (gchar *) arg;
 
     ret->priv->gfile = g_file_new_for_uri (uri);
 
@@ -230,16 +226,15 @@ resolve_file_uri (YelpUri *ret, gchar *arg)
 }
 
 static void
-resolve_file_path (YelpUri *ret, YelpUri *base, gchar *arg)
+resolve_file_path (YelpUri *ret, YelpUri *base, const gchar *arg)
 {
     gchar *path;
-    gchar *hash;
+    const gchar *hash = strchr (arg, '#');
 
-    hash = strchr (arg, '#');
     if (hash)
         path = g_strndup (arg, hash - arg);
     else
-        path = arg;
+        path = (gchar *) arg;
 
     if (arg[0] == '/') {
         ret->priv->gfile = g_file_new_for_path (path);
@@ -266,7 +261,10 @@ resolve_file_path (YelpUri *ret, YelpUri *base, gchar *arg)
 }
 
 static void
-resolve_data_dirs (YelpUri *ret, gchar **subdirs, gchar *docid, gchar *pageid)
+resolve_data_dirs (YelpUri      *ret,
+                   const gchar **subdirs,
+                   const gchar  *docid,
+                   const gchar  *pageid)
 {
     const gchar * const *datadirs = g_get_system_data_dirs ();
     const gchar * const *langs = g_get_language_names ();
@@ -296,7 +294,6 @@ resolve_data_dirs (YelpUri *ret, gchar **subdirs, gchar *docid, gchar *pageid)
                 }
                 searchpath[searchi] = helpdir;
                 searchpath[++searchi] = NULL;
-                /* FIXME: append to path */
 
                 if (type != YELP_URI_DOCUMENT_TYPE_UNKNOWN)
                     /* We've already found it.  We're just adding to the search path now. */
@@ -340,14 +337,14 @@ resolve_data_dirs (YelpUri *ret, gchar **subdirs, gchar *docid, gchar *pageid)
 }
 
 static void
-resolve_ghelp_uri (YelpUri *ret, gchar *arg)
+resolve_ghelp_uri (YelpUri *ret, const gchar *arg)
 {
     /* ghelp:/path/to/file
      * ghelp:document
      */
     const gchar const *helpdirs[3] = {"help", "gnome/help", NULL};
     gchar *docid = NULL;
-    gchar *colon, *hash, *slash, *pageid; /* don't free */
+    gchar *colon, *hash, *slash, *pageid; /* do not free */
 
     colon = strchr (arg, ':');
     if (!colon) {
@@ -384,7 +381,7 @@ resolve_ghelp_uri (YelpUri *ret, gchar *arg)
         pageid = docid;
     }
 
-    resolve_data_dirs (ret, (gchar **) helpdirs, docid, pageid);
+    resolve_data_dirs (ret, helpdirs, docid, pageid);
 
     /* Specifying pages and anchors for Mallard documents with ghelp URIs is sort
        hacked on.  This is a touch inconsistent, but it maintains compatibility
@@ -401,7 +398,7 @@ resolve_ghelp_uri (YelpUri *ret, gchar *arg)
 }
 
 static void
-resolve_man_uri (YelpUri *ret, gchar *arg)
+resolve_man_uri (YelpUri *ret, const gchar *arg)
 {
     /* man:/path/to/file
      * man:name(section)
@@ -414,6 +411,7 @@ resolve_man_uri (YelpUri *ret, gchar *arg)
     gchar *section = NULL;
     gchar *name = NULL;
     gchar *fullpath = NULL;
+
     /* not to be freed */
     gchar *colon, *hash;
     gchar *lbrace = NULL;
@@ -441,7 +439,7 @@ resolve_man_uri (YelpUri *ret, gchar *arg)
     if (colon)
         colon++;
     else
-        colon = arg;
+        colon = (gchar *) arg;
 
     hash = strchr (colon, '#');
     if (hash)
@@ -547,13 +545,13 @@ resolve_man_uri (YelpUri *ret, gchar *arg)
 }
 
 static void
-resolve_info_uri (YelpUri *ret, gchar *arg)
+resolve_info_uri (YelpUri *ret, const gchar *arg)
 {
     /* FIXME */
 }
 
 static void
-resolve_page_and_frag (YelpUri *ret, gchar *arg)
+resolve_page_and_frag (YelpUri *ret, const gchar *arg)
 {
     gchar *hash;
 
@@ -665,7 +663,7 @@ resolve_common (YelpUri *ret)
 }
 
 static gboolean
-is_man_path (gchar *path, gchar *encoding)
+is_man_path (const gchar *path, const gchar *encoding)
 {
     gchar **iter = (gchar **) mancats;
 

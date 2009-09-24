@@ -92,7 +92,8 @@ static void           stream_close_cb                  (GInputStream            
 							GAsyncResult            *result,
 							YelpSimpleDocument      *document);
 
-static void           request_cancel                   (Request                 *request);
+static void           request_cancel                   (GCancellable            *cancellable,
+							Request                 *request);
 static void           request_try_free                 (Request                 *request);
 static void           request_free                     (Request                 *request);
 
@@ -381,7 +382,7 @@ stream_close_cb (GInputStream       *stream,
 /******************************************************************************/
 
 static void
-request_cancel (Request *request)
+request_cancel (GCancellable *cancellable, Request *request)
 {
     GSList *cur;
     YelpSimpleDocument *document = request->document;

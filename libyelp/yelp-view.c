@@ -52,6 +52,7 @@ G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW);
 
 struct _YelpViewPriv {
     YelpUri       *uri;
+    YelpDocument  *document;
     GCancellable  *cancellable;
 };
 
@@ -82,6 +83,11 @@ yelp_view_dispose (GObject *object)
         g_cancellable_cancel (view->priv->cancellable);
         g_object_unref (view->priv->cancellable);
         view->priv->cancellable = NULL;
+    }
+
+    if (view->priv->document) {
+        g_object_unref (view->priv->document);
+        view->priv->document = NULL;
     }
 
     G_OBJECT_CLASS (yelp_view_parent_class)->dispose (object);
@@ -123,10 +129,22 @@ yelp_view_new (void)
 }
 
 void
-yelp_view_load (YelpView *view,
-                YelpUri  *uri)
+yelp_view_load (YelpView    *view,
+                const gchar *uri)
 {
-    /* FIXME: get a document and call load_document */
+    YelpUri *yuri = yelp_uri_resolve (uri);
+    yelp_view_load_uri (view, yuri);
+    g_object_unref (yuri);
+}
+
+void
+yelp_view_load_uri (YelpView *view,
+                    YelpUri  *uri)
+{
+    /* FIXME: want to get from a factory, just for testing */
+    YelpDocument *document = yelp_simple_document_new (uri);
+    yelp_view_load_document (view, uri, document);
+    g_object_unref (document);
 }
 
 void
@@ -141,6 +159,7 @@ yelp_view_load_document (YelpView     *view,
     page_id = yelp_uri_get_page_id (uri);
     view->priv->uri = g_object_ref (uri);
     view->priv->cancellable = g_cancellable_new ();
+    view->priv->document = g_object_ref (document);
     yelp_document_request_page (document,
                                 page_id,
                                 view->priv->cancellable,

@@ -64,9 +64,9 @@ struct _YelpUriClass {
 
 GType             yelp_uri_get_type     (void);
 
-YelpUri *         yelp_uri_resolve           (gchar     *arg);
-YelpUri *         yelp_uri_resolve_relative  (YelpUri   *base,
-                                              gchar     *arg);
+YelpUri *         yelp_uri_resolve           (const gchar *arg);
+YelpUri *         yelp_uri_resolve_relative  (YelpUri     *base,
+                                              const gchar *arg);
 
 YelpUriDocumentType  yelp_uri_get_document_type  (YelpUri   *uri);
 gchar *              yelp_uri_get_base_uri       (YelpUri   *uri);

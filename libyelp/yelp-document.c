@@ -85,7 +85,8 @@ static void           document_finish_read      (YelpDocument         *document,
 static gchar *        document_get_mime_type    (YelpDocument         *document,
 						 const gchar          *mime_type);
 
-static void           request_cancel            (Request              *request);
+static void           request_cancel            (GCancellable         *cancellable,
+						 Request              *request);
 static gboolean       request_idle_contents     (Request              *request);
 static gboolean       request_idle_info         (Request              *request);
 static void           request_try_free          (Request              *request);
@@ -114,7 +115,7 @@ yelp_document_class_init (YelpDocumentClass *klass)
 {
     GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
-    object_class->dispose  = yelp_document_finalize;
+    object_class->dispose  = yelp_document_dispose;
     object_class->finalize = yelp_document_finalize;
 
     klass->request_page =   document_request_page;
@@ -606,7 +607,7 @@ yelp_document_signal (YelpDocument       *document,
 }
 
 static void
-request_cancel (Request *request)
+request_cancel (GCancellable *cancellable, Request *request)
 {
     GSList *cur;
     YelpDocument *document = request->document;

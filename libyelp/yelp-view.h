@@ -54,6 +54,8 @@ GType            yelp_view_get_type        (void);
 GtkWidget *      yelp_view_new             (void);
 
 void             yelp_view_load            (YelpView     *view,
+					    const gchar  *uri);
+void             yelp_view_load_uri        (YelpView     *view,
 					    YelpUri      *uri);
 void             yelp_view_load_document   (YelpView     *view,
 					    YelpUri      *uri,

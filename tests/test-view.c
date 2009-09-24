@@ -22,14 +22,23 @@
 
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
+
+#include "yelp-location-entry.h"
 #include "yelp-view.h"
 #include "yelp-uri.h"
 #include "yelp-simple-document.h"
 
+static void
+activate_cb (GtkEntry *entry,
+	     YelpView *view)
+{
+    yelp_view_load (view, gtk_entry_get_text (entry));
+}
+
 int
 main (int argc, char **argv)
 {
-    GtkWidget *window, *scroll, *view;
+    GtkWidget *window, *vbox, *entry, *scroll, *view;
     YelpUri *uri;
     YelpDocument *document;
     GCancellable *cancellable;
@@ -41,19 +50,25 @@ main (int argc, char **argv)
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     gtk_window_set_default_size (GTK_WINDOW (window), 640, 480);
 
+    vbox = gtk_vbox_new (FALSE, 0);
+    gtk_container_add (GTK_CONTAINER (window), vbox);
+
+    entry = gtk_entry_new ();
+    gtk_box_pack_start (GTK_BOX (vbox), entry, FALSE, FALSE, 0);
+
     scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
 				    GTK_POLICY_AUTOMATIC,
 				    GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (window), scroll);
+    gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 
     view = yelp_view_new ();
     gtk_container_add (GTK_CONTAINER (scroll), view);
 
-    g_assert (argc >= 2);
-    uri = yelp_uri_resolve (argv[1]);
-    document = yelp_simple_document_new (uri);
-    yelp_view_load_document (view, uri, document);
+    g_signal_connect (entry, "activate", activate_cb, view);
+
+    if (argc >= 2)
+	yelp_view_load (view, argv[1]);
 
     gtk_widget_show_all (GTK_WIDGET (window));
 
