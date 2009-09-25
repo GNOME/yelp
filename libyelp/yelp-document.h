@@ -26,6 +26,8 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 
+#include "yelp-uri.h"
+
 #define YELP_TYPE_DOCUMENT         (yelp_document_get_type ())
 #define YELP_DOCUMENT(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_DOCUMENT, YelpDocument))
 #define YELP_DOCUMENT_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_DOCUMENT, YelpDocumentClass))
@@ -72,6 +74,8 @@ struct _YelpDocumentClass {
 };
 
 GType             yelp_document_get_type       (void);
+
+YelpDocument *    yelp_document_get_for_uri    (YelpUri              *uri);
 
 gboolean          yelp_document_request_page   (YelpDocument         *document,
 					        const gchar          *page_id,

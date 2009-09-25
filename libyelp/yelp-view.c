@@ -141,8 +141,8 @@ void
 yelp_view_load_uri (YelpView *view,
                     YelpUri  *uri)
 {
-    /* FIXME: want to get from a factory, just for testing */
-    YelpDocument *document = yelp_simple_document_new (uri);
+    YelpDocument *document = yelp_document_get_for_uri (uri);
+    /* FIXME: handle document == NULL */
     yelp_view_load_document (view, uri, document);
     g_object_unref (document);
 }

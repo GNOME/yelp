@@ -110,6 +110,69 @@ static gboolean       request_idle_final        (YelpDocument        *document);
 GStaticMutex str_mutex = G_STATIC_MUTEX_INIT;
 GHashTable  *str_refs  = NULL;
 
+/******************************************************************************/
+
+YelpDocument *
+yelp_document_get_for_uri (YelpUri *uri)
+{
+    static GHashTable *documents = NULL;
+    gchar *base_uri;
+    YelpDocument *document;
+
+    if (documents == NULL)
+	documents = g_hash_table_new_full (g_str_hash, g_str_equal,
+					   g_free, g_object_unref);
+
+    base_uri = yelp_uri_get_base_uri (uri);
+    document = g_hash_table_lookup (documents, base_uri);
+
+    if (document != NULL) {
+	g_free (base_uri);
+	return g_object_ref (document);
+    }
+
+    switch (yelp_uri_get_document_type (uri)) {
+    case YELP_URI_DOCUMENT_TYPE_TEXT:
+    case YELP_URI_DOCUMENT_TYPE_HTML:
+    case YELP_URI_DOCUMENT_TYPE_XHTML:
+	document = yelp_simple_document_new (uri);
+	break;
+    case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
+	/* FIXME */
+	break;
+    case YELP_URI_DOCUMENT_TYPE_MALLARD:
+	/* FIXME */
+	break;
+    case YELP_URI_DOCUMENT_TYPE_MAN:
+	/* FIXME */
+	break;
+    case YELP_URI_DOCUMENT_TYPE_INFO:
+	/* FIXME */
+	break;
+    case YELP_URI_DOCUMENT_TYPE_TOC:
+	/* FIXME */
+	break;
+    case YELP_URI_DOCUMENT_TYPE_SEARCH:
+	/* FIXME */
+	break;
+    case YELP_URI_DOCUMENT_TYPE_UNKNOWN:
+    case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
+    case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
+    case YELP_URI_DOCUMENT_TYPE_ERROR:
+	break;
+    }
+
+    if (document != NULL) {
+	g_hash_table_insert (documents, base_uri, document);
+	return g_object_ref (document);
+    }
+
+    g_free (base_uri);
+    return NULL;
+}
+
+/******************************************************************************/
+
 static void
 yelp_document_class_init (YelpDocumentClass *klass)
 {
