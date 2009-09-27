@@ -28,6 +28,8 @@
 
 #include "yelp-uri.h"
 
+G_BEGIN_DECLS
+
 #define YELP_TYPE_DOCUMENT         (yelp_document_get_type ())
 #define YELP_DOCUMENT(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_DOCUMENT, YelpDocument))
 #define YELP_DOCUMENT_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_DOCUMENT, YelpDocumentClass))
@@ -151,5 +153,6 @@ void              yelp_document_final_pending  (YelpDocument        *document,
 						YelpError           *error);
 */
 
+G_END_DECLS
 
 #endif /* __YELP_DOCUMENT_H__ */

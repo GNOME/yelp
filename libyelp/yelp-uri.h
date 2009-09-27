@@ -25,6 +25,8 @@
 
 #include <glib-object.h>
 
+G_BEGIN_DECLS
+
 #define YELP_TYPE_URI         (yelp_uri_get_type ())
 #define YELP_URI(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_URI, YelpUri))
 #define YELP_URI_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_URI, YelpUriClass))
@@ -74,5 +76,6 @@ gchar **             yelp_uri_get_search_path    (YelpUri   *uri);
 gchar *              yelp_uri_get_page_id        (YelpUri   *uri);
 gchar *              yelp_uri_get_frag_id        (YelpUri   *uri);
 
+G_END_DECLS
 
 #endif /* __YELP_URI_H__ */

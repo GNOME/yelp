@@ -29,6 +29,8 @@
 #include "yelp-document.h"
 #include "yelp-uri.h"
 
+G_BEGIN_DECLS
+
 #define YELP_TYPE_SIMPLE_DOCUMENT         (yelp_simple_document_get_type ())
 #define YELP_SIMPLE_DOCUMENT(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_SIMPLE_DOCUMENT, YelpSimpleDocument))
 #define YELP_SIMPLE_DOCUMENT_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_SIMPLE_DOCUMENT, YelpSimpleDocumentClass))
@@ -51,5 +53,7 @@ struct _YelpSimpleDocumentClass {
 
 GType             yelp_simple_document_get_type       (void);
 YelpDocument *    yelp_simple_document_new            (YelpUri  *uri);
+
+G_END_DECLS
 
 #endif /* __YELP_SIMPLE_DOCUMENT_H__ */

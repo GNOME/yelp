@@ -29,6 +29,7 @@
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
 
+#include "yelp-error.h"
 #include "yelp-view.h"
 
 static void        yelp_view_init                 (YelpView           *view);
@@ -45,7 +46,7 @@ static void        yelp_view_set_property         (GObject            *object,
                                                    GParamSpec         *pspec);
 
 static void        view_show_error_page           (YelpView           *view,
-                                                   gchar              *message);
+                                                   GError             *error);
 
 static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
@@ -245,10 +246,15 @@ yelp_view_load_document (YelpView     *view,
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
     if (!document) {
-        gchar *base_uri, *msg;
+        GError *error;
+        gchar *base_uri;
         base_uri = yelp_uri_get_base_uri (uri);
-        msg = g_strdup_printf (_("Could not load a document for %s"), base_uri);
-        view_show_error_page (view, msg);
+        /* FIXME: CANT_READ isn't right */
+        error = g_error_new (YELP_ERROR, YELP_ERROR_CANT_READ,
+                             _("Could not load a document for ‘%s’"),
+                             base_uri);
+        g_free (base_uri);
+        view_show_error_page (view, error);
         return;
     }
 
@@ -267,9 +273,9 @@ yelp_view_load_document (YelpView     *view,
 
 static void
 view_show_error_page (YelpView *view,
-                      gchar    *message)
+                      GError   *error)
 {
-    static const gchar *error =
+    static const gchar *errorpage =
         "<html><head>"
         "<style type='text/css'>"
         "body { margin: 1em; }"
@@ -286,16 +292,33 @@ view_show_error_page (YelpView *view,
         "</style>"
         "</head><body>"
         "<div class='outer'><div class='inner'>"
-        "%s"
+        "<div class='title'>%s</div>"
+        "<div class='contents'>%s</div>"
         "</div></div>"
         "</body></html>";
-    gchar *page = g_strdup_printf (error, message);
+    gchar *page, *title = NULL;
+    if (error->domain == YELP_ERROR)
+        switch (error->code) {
+        case YELP_ERROR_NOT_FOUND:
+            title = _("Document or Page Not Found");
+            break;
+        case YELP_ERROR_CANT_READ:
+            title = _("Cannot Read the Document or Page");
+            break;
+        default:
+            break;
+        }
+    if (title == NULL)
+        title = _("Unknown Error");
+    page = g_strdup_printf (errorpage, title, error->message);
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
     webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                  page,
                                  "text/html",
                                  "UTF-8",
                                  "about:error");
+    g_error_free (error);
+    g_free (page);
 }
 
 static void
@@ -324,6 +347,6 @@ document_callback (YelpDocument       *document,
 	yelp_document_finish_read (document, contents);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
-        view_show_error_page (view, error->message);
+        view_show_error_page (view, error);
     }
 }

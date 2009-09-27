@@ -29,6 +29,8 @@
 #include "yelp-document.h"
 #include "yelp-uri.h"
 
+G_BEGIN_DECLS
+
 #define YELP_TYPE_VIEW            (yelp_view_get_type ())
 #define YELP_VIEW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_VIEW, YelpView))
 #define YELP_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), YELP_TYPE_VIEW, YelpViewClass))
@@ -71,5 +73,7 @@ void             yelp_view_load_uri        (YelpView     *view,
 void             yelp_view_load_document   (YelpView     *view,
 					    YelpUri      *uri,
 					    YelpDocument *document);
+
+G_END_DECLS
 
 #endif /* __YELP_VIEW_H__ */

@@ -20,11 +20,12 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
-typedef struct _YelpLocationEntry         YelpLocationEntry;
-typedef struct _YelpLocationEntryClass    YelpLocationEntryClass;
-typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
+#ifndef __YELP_LOCATION_ENTRY_H__
+#define __YELP_LOCATION_ENTRY_H__
 
 #include <gtk/gtk.h>
+
+G_BEGIN_DECLS
 
 #define YELP_TYPE_LOCATION_ENTRY (yelp_location_entry_get_type ())
 #define YELP_LOCATION_ENTRY(obj) \
@@ -40,6 +41,10 @@ typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 #define YELP_LOCATION_ENTRY_GET_CLASS(obj) \
   (G_TYPE_INSTANCE_GET_CLASS((obj), YELP_TYPE_LOCATION_ENTRY, \
 			     YelpLocationEntryClass))
+
+typedef struct _YelpLocationEntry         YelpLocationEntry;
+typedef struct _YelpLocationEntryClass    YelpLocationEntryClass;
+typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 
 struct _YelpLocationEntry
 {
@@ -59,8 +64,6 @@ typedef enum {
     YELP_LOCATION_ENTRY_IS_SEARCH    = 1 << 3
 } YelpLocationEntryFlags;
 
-G_BEGIN_DECLS
-
 GType           yelp_location_entry_get_type        (void);
 GtkWidget*      yelp_location_entry_new_with_model  (GtkTreeModel *model,
                                                      gint          text_column,
@@ -70,3 +73,5 @@ GtkWidget*      yelp_location_entry_new_with_model  (GtkTreeModel *model,
 void            yelp_location_entry_start_search    (YelpLocationEntry *entry);
 
 G_END_DECLS
+
+#endif /* __YELP_DOCUMENT_H__ */
