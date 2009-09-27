@@ -35,11 +35,27 @@ static void        yelp_view_init                 (YelpView           *view);
 static void        yelp_view_class_init           (YelpViewClass      *klass);
 static void        yelp_view_dispose              (GObject            *object);
 static void        yelp_view_finalize             (GObject            *object);
+static void        yelp_view_get_property         (GObject            *object,
+                                                   guint               prop_id,
+                                                   GValue             *value,
+                                                   GParamSpec         *pspec);
+static void        yelp_view_set_property         (GObject            *object,
+                                                   guint               prop_id,
+                                                   const GValue       *value,
+                                                   GParamSpec         *pspec);
+
+static void        view_show_error_page           (YelpView           *view,
+                                                   gchar              *message);
 
 static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
                                                    GError             *error);
+
+enum {
+    PROP_0,
+    PROP_STATE
+};
 
 enum {
     NEW_VIEW_REQUESTED,
@@ -54,6 +70,8 @@ struct _YelpViewPriv {
     YelpUri       *uri;
     YelpDocument  *document;
     GCancellable  *cancellable;
+
+    YelpViewState  state;
 };
 
 #define TARGET_TYPE_URI_LIST     "text/uri-list"
@@ -61,12 +79,31 @@ enum {
     TARGET_URI_LIST
 };
 
+GType
+yelp_view_state_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { YELP_VIEW_STATE_BLANK, "YELP_VIEW_STATE_BLANK", "blank" },
+            { YELP_VIEW_STATE_LOADING, "YELP_VIEW_STATE_LOADING", "loading" },
+            { YELP_VIEW_STATE_LOADED, "YELP_VIEW_STATE_LOADED", "loaded" },
+            { YELP_VIEW_STATE_ERROR, "YELP_VIEW_STATE_ERROR", "error" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static (g_intern_static_string ("YelpViewState"), values);
+    }
+    return etype;
+}
+
 static void
 yelp_view_init (YelpView *view)
 {
     view->priv = GET_PRIV (view);
 
     view->priv->cancellable = NULL;
+
+    view->priv->state = YELP_VIEW_STATE_BLANK;
 }
 
 static void
@@ -108,6 +145,8 @@ yelp_view_class_init (YelpViewClass *klass)
 
     object_class->dispose = yelp_view_dispose;
     object_class->finalize = yelp_view_finalize;
+    object_class->get_property = yelp_view_get_property;
+    object_class->set_property = yelp_view_set_property;
 
     signals[NEW_VIEW_REQUESTED] =
 	g_signal_new ("new_view_requested",
@@ -118,6 +157,53 @@ yelp_view_class_init (YelpViewClass *klass)
 		      G_TYPE_NONE, 1, G_TYPE_STRING);
 
     g_type_class_add_private (klass, sizeof (YelpViewPriv));
+
+    g_object_class_install_property (object_class,
+                                     PROP_STATE,
+                                     g_param_spec_enum ("state",
+                                                        N_("Loading State"),
+                                                        N_("The loading state of the view"),
+                                                        YELP_TYPE_VIEW_STATE,
+                                                        YELP_VIEW_STATE_BLANK,
+                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+}
+
+static void
+yelp_view_get_property (GObject    *object,
+                        guint       prop_id,
+                        GValue     *value,
+                        GParamSpec *pspec)
+{
+    YelpView *view = YELP_VIEW (object);
+
+    switch (prop_id)
+        {
+        case PROP_STATE:
+            g_value_set_enum (value, view->priv->state);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
+}
+
+static void
+yelp_view_set_property (GObject      *object,
+                        guint         prop_id,
+                        const GValue *value,
+                        GParamSpec   *pspec)
+{
+    YelpView *view = YELP_VIEW (object);
+
+    switch (prop_id)
+        {
+        case PROP_STATE:
+            view->priv->state = g_value_get_enum (value);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
 }
 
 /******************************************************************************/
@@ -142,9 +228,11 @@ yelp_view_load_uri (YelpView *view,
                     YelpUri  *uri)
 {
     YelpDocument *document = yelp_document_get_for_uri (uri);
-    /* FIXME: handle document == NULL */
+
     yelp_view_load_document (view, uri, document);
-    g_object_unref (document);
+
+    if (document)
+        g_object_unref (document);
 }
 
 void
@@ -154,7 +242,15 @@ yelp_view_load_document (YelpView     *view,
 {
     gchar *page_id;
 
-    /* FIXME: unset previous load */
+    g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
+
+    if (!document) {
+        gchar *base_uri, *msg;
+        base_uri = yelp_uri_get_base_uri (uri);
+        msg = g_strdup_printf (_("Could not load a document for %s"), base_uri);
+        view_show_error_page (view, msg);
+        return;
+    }
 
     page_id = yelp_uri_get_page_id (uri);
     view->priv->uri = g_object_ref (uri);
@@ -167,6 +263,39 @@ yelp_view_load_document (YelpView     *view,
                                 view);
 
     g_free (page_id);
+}
+
+static void
+view_show_error_page (YelpView *view,
+                      gchar    *message)
+{
+    static const gchar *error =
+        "<html><head>"
+        "<style type='text/css'>"
+        "body { margin: 1em; }"
+        ".outer {"
+        "  border: solid 2px #cc0000;"
+        "  -webkit-border-radius: 6px;"
+        "}"
+        ".inner {"
+        "  padding: 1em;"
+        "  border: solid 2px white;"
+        "  -webkit-border-radius: 6px;"
+        "  background: #fce94f;"
+        "}"
+        "</style>"
+        "</head><body>"
+        "<div class='outer'><div class='inner'>"
+        "%s"
+        "</div></div>"
+        "</body></html>";
+    gchar *page = g_strdup_printf (error, message);
+    g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
+    webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
+                                 page,
+                                 "text/html",
+                                 "UTF-8",
+                                 "about:error");
 }
 
 static void
@@ -188,12 +317,13 @@ document_callback (YelpDocument       *document,
                                      mime_type,
                                      "UTF-8",
                                      base_uri);
+        g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
         g_free (page_id);
         g_free (mime_type);
         g_free (base_uri);
 	yelp_document_finish_read (document, contents);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
-        printf ("ERROR: %s\n", error->message);
+        view_show_error_page (view, error->message);
     }
 }

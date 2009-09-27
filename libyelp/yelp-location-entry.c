@@ -158,7 +158,7 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                                                      -1,
                                                      G_MAXINT,
                                                      -1,
-                                                     G_PARAM_READWRITE));
+                                                     G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
   g_object_class_install_property (gobject_class,
                                    PROP_FLAGS_COLUMN,
                                    g_param_spec_int ("flags-column",
@@ -167,14 +167,14 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                                                      -1,
                                                      G_MAXINT,
                                                      -1,
-                                                     G_PARAM_READWRITE));
+                                                     G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
   g_object_class_install_property (gobject_class,
                                    PROP_ENABLE_SEARCH,
                                    g_param_spec_boolean ("enable-search",
                                                          N_("Enable Search"),
                                                          N_("Whether the location entry can be used as a search field"),
                                                          TRUE,
-                                                         G_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
   g_type_class_add_private ((GObjectClass *) klass,
                             sizeof (YelpLocationEntryPrivate));

@@ -35,6 +35,8 @@
 #define YELP_IS_VIEW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), YELP_TYPE_VIEW))
 #define YELP_IS_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), YELP_TYPE_VIEW))
 
+#define YELP_TYPE_VIEW_STATE      (yelp_view_state_get_type ())
+
 typedef struct _YelpView       YelpView;
 typedef struct _YelpViewClass  YelpViewClass;
 typedef struct _YelpViewPriv   YelpViewPriv;
@@ -50,7 +52,16 @@ struct _YelpViewClass
     WebKitWebViewClass  parent_class;
 };
 
+typedef enum {
+    YELP_VIEW_STATE_BLANK,
+    YELP_VIEW_STATE_LOADING,
+    YELP_VIEW_STATE_LOADED,
+    YELP_VIEW_STATE_ERROR
+} YelpViewState;
+
 GType            yelp_view_get_type        (void);
+GType            yelp_view_state_get_type  (void);
+
 GtkWidget *      yelp_view_new             (void);
 
 void             yelp_view_load            (YelpView     *view,

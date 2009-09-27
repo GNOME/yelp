@@ -35,6 +35,16 @@ activate_cb (GtkEntry *entry,
     yelp_view_load (view, gtk_entry_get_text (entry));
 }
 
+static void
+state_cb (YelpView   *view,
+	  GParamSpec *spec,
+	  GtkWindow  *window)
+{
+    YelpViewState state;
+    g_object_get (view, "state", &state, NULL);
+    printf ("STATE: %i\n", state);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -49,6 +59,7 @@ main (int argc, char **argv)
 
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     gtk_window_set_default_size (GTK_WINDOW (window), 640, 480);
+    g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_container_add (GTK_CONTAINER (window), vbox);
@@ -63,7 +74,10 @@ main (int argc, char **argv)
     gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 
     view = yelp_view_new ();
+    g_signal_connect (view, "notify::state",
+		      G_CALLBACK (state_cb), window);
     gtk_container_add (GTK_CONTAINER (scroll), view);
+			   
 
     g_signal_connect (entry, "activate", activate_cb, view);
 
