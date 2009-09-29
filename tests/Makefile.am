@@ -9,11 +9,15 @@ YELP_COMMON_LDADD =				\
 
 check_PROGRAMS =				\
 	test-location-entry			\
+	test-settings				\
 	test-uri				\
 	test-view
 
 test_location_entry_CFLAGS = $(YELP_COMMON_CFLAGS)
 test_location_entry_LDADD = $(YELP_COMMON_LDADD)
+
+test_settings_CFLAGS = $(YELP_COMMON_CFLAGS)
+test_settings_LDADD = $(YELP_COMMON_LDADD)
 
 test_uri_CFLAGS = $(YELP_COMMON_CFLAGS)
 test_uri_LDADD = $(YELP_COMMON_LDADD)
