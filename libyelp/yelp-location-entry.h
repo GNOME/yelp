@@ -48,13 +48,13 @@ typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 
 struct _YelpLocationEntry
 {
-  GtkComboBoxEntry          parent;
-  YelpLocationEntryPrivate *priv;
+    GtkComboBoxEntry          parent;
+    YelpLocationEntryPrivate *priv;
 };
 
 struct _YelpLocationEntryClass
 {
-  GtkComboBoxEntryClass     parent;
+    GtkComboBoxEntryClass     parent;
 };
 
 typedef enum {
