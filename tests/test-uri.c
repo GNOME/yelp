@@ -25,6 +25,7 @@
 #include <string.h>
 
 #include <gio/gio.h>
+#include <gio/gunixoutputstream.h>
 
 #include "yelp-uri.h"
 
