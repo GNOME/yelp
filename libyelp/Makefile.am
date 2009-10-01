@@ -1,4 +1,4 @@
-noinst_LTLIBRARIES = libyelp.la
+lib_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =				\
 	yelp-debug.c				\

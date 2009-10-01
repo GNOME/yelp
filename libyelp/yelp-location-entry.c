@@ -26,20 +26,37 @@
 
 #include "yelp-location-entry.h"
 
-struct _YelpLocationEntryPrivate
-{
-    GtkWidget *text_entry;
-
-    gint       icon_column;
-    gint       flags_column;
-    gboolean   enable_search;
-
-    GtkTreeRowReference *row;
-
-    gboolean   search_mode;
-
-    GtkCellRenderer *icon_cell;
-};
+/**
+ * SECTION:yelp-location-entry
+ * @short_description: A location entry with history and search
+ * @include: yelp.h
+ *
+ * #YelpLocationEntry is a #GtkComboBoxEntry designed to show the current location,
+ * provide a drop-down menu of previous locations, and allow the user to perform
+ * searches.
+ *
+ * The #GtkTreeModel used by a #YelpLocationEntry is expected to have at least
+ * three columns: #GtkComboBoxEntry::text-column contains the displayed name
+ * of the location, #YelpLocationEntry::icon-column contains an icon name for
+ * the location, and #YelpLocationEntry::flags-column contains a bit field
+ * of #YelpLocationEntryFlags.  These columns are specified when creating a
+ * #YelpLocationEntry widget with yelp_location_entry_new_with_model().
+ *
+ * Usually, a single row in the #GtkTreeModel corresponds to a location.  When
+ * a user selects a row from the drop-down menu, the icon and text for that
+ * row will be placed in the embedded text entry, and the
+ * #YelpLocationEntry:location-selected signal will be emitted.
+ *
+ * If a row has the %YELP_LOCATION_ENTRY_IS_SEARCH flag set, selecting that
+ * row will not emit the #YelpLocationEntry::location-selected signal.  Instead,
+ * the #YelpLocationEntry widget will be placed into search mode, as if by a
+ * call to yelp_location_entry_start_search().
+ *
+ * When a row has the %YELP_LOCATION_ENTRY_CAN_BOOKMARK flag set, an icon
+ * will be displayed in the secondary icon position of the embedded text
+ * entry allowing the user to bookmark the location.  Clicking this icon
+ * will cause the FIXME signal to be emitted.
+ **/
 
 static void     location_entry_get_property    (GObject           *object,
                                                 guint              prop_id,
@@ -85,6 +102,20 @@ static gboolean entry_key_press_cb                  (GtkWidget         *widget,
                                                      GdkEventKey       *event,
                                                      gpointer           user_data);
 
+struct _YelpLocationEntryPrivate
+{
+    GtkWidget *text_entry;
+
+    gint       icon_column;
+    gint       flags_column;
+    gboolean   enable_search;
+
+    GtkTreeRowReference *row;
+
+    gboolean   search_mode;
+
+    GtkCellRenderer *icon_cell;
+};
 
 enum {
   LOCATION_SELECTED,
@@ -116,8 +147,14 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
 
     /**
      * YelpLocationEntry::location-selected
-     * @widget: The object which received the signal
-     */
+     * @widget: The #YelpLocationEntry for which the signal was emitted.
+     * @user_data: User data set when the handler was connected.
+     *
+     * This signal will be emitted whenever a user selects a normal row from the
+     * drop-down menu.  Note that if a row has the flag %YELP_LOCATION_ENTRY_IS_SEARCH,
+     * clicking the row will cause @widget to enter search mode, and this signal
+     * will not be emitted.
+     **/
     location_entry_signals[LOCATION_SELECTED] =
         g_signal_new ("location_selected",
                       G_OBJECT_CLASS_TYPE (klass),
@@ -127,10 +164,15 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                       G_TYPE_NONE, 0);
 
     /**
-     * YelpLocationEntry::search_activated
-     * @widget: The object which received the signal
-     * @text: The search text
-     */
+     * YelpLocationEntry::search-activated
+     * @widget: The #YelpLocationEntry for which the signal was emitted.
+     * @text: The search text.
+     * @user_data: User data set when the handler was connected.
+     *
+     * This signal will be emitted whenever the user activates a search, generally
+     * by pressing <keycap>Enter</keycap> in the embedded text entry while @widget
+     * is in search mode.
+     **/
     location_entry_signals[SEARCH_ACTIVATED] =
         g_signal_new ("search-activated",
                       G_OBJECT_CLASS_TYPE (klass),
@@ -140,6 +182,12 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                       G_TYPE_NONE, 1,
                       G_TYPE_STRING);
 
+    /**
+     * YelpLocationEntry:icon-column
+     *
+     * The column in the #GtkTreeModel containing an icon name for each row.
+     * This must be a name that can be looked up through #GtkIconTheme.
+     **/
     g_object_class_install_property (object_class,
                                      PROP_ICON_COLUMN,
                                      g_param_spec_int ("icon-column",
@@ -150,6 +198,12 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                                                        -1,
                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                        G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+    /**
+     * YelpLocationEntry:flags-column
+     *
+     * The column in the #GtkTreeModel containing #YelpLocationEntryFlags flags
+     * for each row.
+     **/
     g_object_class_install_property (object_class,
                                      PROP_FLAGS_COLUMN,
                                      g_param_spec_int ("flags-column",
@@ -160,6 +214,13 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                                                        -1,
                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                        G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+    /**
+     * YelpLocationEntry:enable-search
+     *
+     * Whether the location entry can act as a search entry.  If search is not
+     * enabled, the user will not be able to initiate a search by clicking in
+     * the embedded text entry or selecting a search row in the drop-down menu.
+     **/
     g_object_class_install_property (object_class,
                                      PROP_ENABLE_SEARCH,
                                      g_param_spec_boolean ("enable-search",
@@ -545,17 +606,16 @@ entry_key_press_cb (GtkWidget   *widget,
 }
 
 /**
- * yelp_location_entry_ew_with_model:
+ * yelp_location_entry_new_with_model:
  * @model: A #GtkTreeModel.
  * @text_column: The column in @model containing the title of each entry.
  * @icon_column: The column in @model containing the icon name of each entry.
- * @bookmark_column: The column in @model containing a gboolean specifying
- * whether or not each entry is bookmarked.
+ * @flags_column: The column in @model containing #YelpLocationEntryFlags.
  *
  * Creates a new #YelpLocationEntry widget.
  *
- * Return value: A new #YelpLocationEntry.
- */
+ * Returns: A new #YelpLocationEntry.
+ **/
 GtkWidget*
 yelp_location_entry_new_with_model (GtkTreeModel *model,
                                     gint          text_column,
@@ -581,6 +641,14 @@ yelp_location_entry_new_with_model (GtkTreeModel *model,
     return ret;
 }
 
+/**
+ * yelp_location_entry_start_search:
+ * @entry: A #YelpLocationEntry.
+ *
+ * Puts @entry into search mode.  This focuses the entry and clears its text
+ * contents.  When the user activates the search, the
+ * #YelpLocationEntry::search-activated signal will be emitted.
+ **/
 void
 yelp_location_entry_start_search (YelpLocationEntry *entry)
 {

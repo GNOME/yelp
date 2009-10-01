@@ -27,7 +27,7 @@
 
 #include "yelp-debug.h"
 
-/**
+/*
  * @file:     you should pass the __FILE__ constant as this parameter
  * @line:     you should pass the __LINE__ constant as this parameter
  * @function: you should pass the __FUNCTION__ constant as this parameter

@@ -18,11 +18,11 @@ EXTRA_DIST = 						\
 	important_docs.xml				\
 	$(desktop_in_files)
 
-DISTCLEANFILES = \
-  intltool-extract \
-  intltool-merge \
-  intltool-update
+DISTCLEANFILES = 					\
+	intltool-extract 				\
+	intltool-merge 					\
+	intltool-update
 
 CLEANFILES = $(desktop_DATA)
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc

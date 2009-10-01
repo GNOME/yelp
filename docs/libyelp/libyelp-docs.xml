@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+<!ENTITY version SYSTEM "version.xml">
+]>
+<book id="index">
+  <bookinfo>
+    <title>Yelp Reference Manual</title>
+    <releaseinfo>for libyelp &version;</releaseinfo>
+  </bookinfo>
+
+  <chapter>
+    <title>API Reference</title>
+    <section>
+      <title>Widgets</title>
+      <include href="xml/yelp-view.xml" xmlns="http://www.w3.org/2003/XInclude"/>
+      <include href="xml/yelp-location-entry.xml" xmlns="http://www.w3.org/2003/XInclude"/>
+    </section>
+    <section>
+      <title>Document Processing</title>
+      <include href="xml/yelp-document.xml" xmlns="http://www.w3.org/2003/XInclude"/>
+      <include href="xml/yelp-simple-document.xml" xmlns="http://www.w3.org/2003/XInclude"/>
+    </section>
+
+    <include href="xml/yelp-uri.xml" xmlns="http://www.w3.org/2003/XInclude"/>
+    <include href="xml/yelp-settings.xml" xmlns="http://www.w3.org/2003/XInclude"/>
+    <include href="xml/yelp-error.xml" xmlns="http://www.w3.org/2003/XInclude"/>
+
+  </chapter>
+  <chapter id="object-tree">
+    <title>Object Hierarchy</title>
+     <include href="xml/tree_index.sgml" xmlns="http://www.w3.org/2003/XInclude"/>
+  </chapter>
+  <index id="api-index-full">
+    <title>API Index</title>
+    <include href="xml/api-index-full.xml" xmlns="http://www.w3.org/2003/XInclude"><fallback/></include>
+  </index>
+
+  <include href="xml/annotation-glossary.xml" xmlns="http://www.w3.org/2003/XInclude"><fallback/></include>
+</book>

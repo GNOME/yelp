@@ -42,6 +42,9 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS((obj), YELP_TYPE_LOCATION_ENTRY, \
 			     YelpLocationEntryClass))
 
+/**
+ * YelpLocationEntry:
+ **/
 typedef struct _YelpLocationEntry         YelpLocationEntry;
 typedef struct _YelpLocationEntryClass    YelpLocationEntryClass;
 typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
@@ -57,6 +60,20 @@ struct _YelpLocationEntryClass
     GtkComboBoxEntryClass     parent;
 };
 
+/**
+ * YelpLocationEntryFlags:
+ * @YELP_LOCATION_ENTRY_CAN_BOOKMARK: This location can be bookmarked.  When a
+ * bookmarkable location is selected, the secondary icon of the embedded text
+ * entry will be a clickable bookmark icon.
+ * @YELP_LOCATION_ENTRY_IS_LOADING: Page data for this location is still loading.
+ * The #YelpLocationEntry widget will display an indeterminate progress indicator.
+ * @YELP_LOCATION_ENTRY_IS_SEPARATOR: This row should be displayed as a separator.
+ * @YELP_LOCATION_ENTRY_IS_SEARCH: Selecting this row initiates a search instead
+ * of selecting a location.
+ *
+ * Flags which can be used to provide additional information about rows
+ * to be displayed by a #YelpLocationEntry.
+ **/
 typedef enum {
     YELP_LOCATION_ENTRY_CAN_BOOKMARK = 1 << 0,
     YELP_LOCATION_ENTRY_IS_LOADING   = 1 << 1,
@@ -74,4 +91,4 @@ void            yelp_location_entry_start_search    (YelpLocationEntry *entry);
 
 G_END_DECLS
 
-#endif /* __YELP_DOCUMENT_H__ */
+#endif /* __YELP_LOCATION_ENTRY_H__ */

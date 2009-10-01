@@ -8,12 +8,9 @@ AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AM_MAINTAINER_MODE
 
+AC_CONFIG_MACRO_DIR(m4)
+
 AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
-
-IT_PROG_INTLTOOL([0.35.0])
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
-
-AM_GCONF_SOURCE_2
 
 AC_PROG_LN_S
 AC_PROG_CC
@@ -22,8 +19,14 @@ AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
 AM_PATH_GLIB_2_0
-
 AM_PROG_CC_C_O
+
+IT_PROG_INTLTOOL([0.35.0])
+
+GTK_DOC_CHECK(1.9)
+
+AC_PATH_PROG(GCONFTOOL, gconftool-2)
+AM_GCONF_SOURCE_2
 
 GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
@@ -253,6 +256,9 @@ AC_SUBST([AM_LDFLAGS])
 
 AC_CONFIG_FILES([
 Makefile
+docs/Makefile
+docs/libyelp/Makefile
+docs/libyelp/version.xml
 libyelp/Makefile
 src/Makefile
 stylesheets/Makefile
@@ -278,6 +284,7 @@ yelp-$VERSION:
 	source code location:	  ${srcdir}
 	compiler:		  ${CC}
 
+	Documentation:            ${enable_gtk_doc}
 	Debug enabled:            ${enable_debug}
 	Search backend:           ${search_backend}
 	Using SMClient:           ${with_smclient}
