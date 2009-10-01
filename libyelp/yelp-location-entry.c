@@ -102,6 +102,7 @@ static gboolean entry_key_press_cb                  (GtkWidget         *widget,
                                                      GdkEventKey       *event,
                                                      gpointer           user_data);
 
+typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 struct _YelpLocationEntryPrivate
 {
     GtkWidget *text_entry;
@@ -236,20 +237,20 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
 
 static void yelp_location_entry_init (YelpLocationEntry *entry)
 {
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GList *cells;
-    entry->priv = GET_PRIV (entry);
 
-    entry->priv->enable_search = TRUE;
-    entry->priv->search_mode = FALSE;
+    priv->enable_search = TRUE;
+    priv->search_mode = FALSE;
 
-    entry->priv->text_entry = gtk_bin_get_child (GTK_BIN (entry));
-    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+    priv->text_entry = gtk_bin_get_child (GTK_BIN (entry));
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                        GTK_ENTRY_ICON_PRIMARY,
                                        "help-browser");
-    gtk_entry_set_icon_activatable (GTK_ENTRY (entry->priv->text_entry),
+    gtk_entry_set_icon_activatable (GTK_ENTRY (priv->text_entry),
                                     GTK_ENTRY_ICON_PRIMARY,
                                     FALSE);
-    gtk_entry_set_icon_activatable (GTK_ENTRY (entry->priv->text_entry),
+    gtk_entry_set_icon_activatable (GTK_ENTRY (priv->text_entry),
                                     GTK_ENTRY_ICON_PRIMARY,
                                     TRUE);
 
@@ -262,22 +263,22 @@ static void yelp_location_entry_init (YelpLocationEntry *entry)
     g_object_set (cells->data, "xpad", 4, NULL);
     g_list_free (cells);
 
-    entry->priv->icon_cell = gtk_cell_renderer_pixbuf_new ();
-    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (entry), entry->priv->icon_cell, FALSE);
-    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (entry), entry->priv->icon_cell, 0);
+    priv->icon_cell = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (entry), priv->icon_cell, FALSE);
+    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (entry), priv->icon_cell, 0);
 
     g_signal_connect (entry, "changed",
                       G_CALLBACK (combo_box_changed_cb), NULL);
 
-    g_signal_connect (entry->priv->text_entry, "focus-in-event",
+    g_signal_connect (priv->text_entry, "focus-in-event",
                       G_CALLBACK (entry_focus_in_cb), entry);
-    g_signal_connect (entry->priv->text_entry, "focus-out-event",
+    g_signal_connect (priv->text_entry, "focus-out-event",
                       G_CALLBACK (entry_focus_out_cb), entry);
-    g_signal_connect (entry->priv->text_entry, "icon-press",
+    g_signal_connect (priv->text_entry, "icon-press",
                       G_CALLBACK (entry_icon_press_cb), entry);
-    g_signal_connect (entry->priv->text_entry, "key-press-event",
+    g_signal_connect (priv->text_entry, "key-press-event",
                       G_CALLBACK (entry_key_press_cb), entry);
-    g_signal_connect (entry->priv->text_entry, "activate",
+    g_signal_connect (priv->text_entry, "activate",
                       G_CALLBACK (entry_activate_cb), entry);
 }
 
@@ -287,17 +288,17 @@ location_entry_get_property   (GObject      *object,
                                GValue       *value,
                                GParamSpec   *pspec)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (object);
+    YelpLocationEntryPrivate *priv = GET_PRIV (object);
 
     switch (prop_id) {
     case PROP_ICON_COLUMN:
-        g_value_set_int (value, entry->priv->icon_column);
+        g_value_set_int (value, priv->icon_column);
         break;
     case PROP_FLAGS_COLUMN:
-        g_value_set_int (value, entry->priv->flags_column);
+        g_value_set_int (value, priv->flags_column);
         break;
     case PROP_ENABLE_SEARCH:
-        g_value_set_boolean (value, entry->priv->enable_search);
+        g_value_set_boolean (value, priv->enable_search);
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -311,36 +312,36 @@ location_entry_set_property   (GObject      *object,
                                const GValue *value,
                                GParamSpec   *pspec)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (object);
+    YelpLocationEntryPrivate *priv = GET_PRIV (object);
 
     switch (prop_id) {
     case PROP_ICON_COLUMN:
-        entry->priv->icon_column = g_value_get_int (value);
-        gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (entry),
-                                        entry->priv->icon_cell,
+        priv->icon_column = g_value_get_int (value);
+        gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (object),
+                                        priv->icon_cell,
                                         "icon-name",
-                                        entry->priv->icon_column,
+                                        priv->icon_column,
                                         NULL);
         break;
     case PROP_FLAGS_COLUMN:
-        entry->priv->flags_column = g_value_get_int (value);
+        priv->flags_column = g_value_get_int (value);
         /* If this is in yelp_location_entry_init, it gets called the first
          * time before flags_column is set, and isn't called again until the
          * "row-changed" signal on the model.  The prevents application code
          * from populating the model before initializing the widget.
          */
-        gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (entry),
+        gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (object),
                                               (GtkTreeViewRowSeparatorFunc)
                                               combo_box_row_separator_func,
-                                              entry, NULL);
+                                              object, NULL);
         break;
     case PROP_ENABLE_SEARCH:
-        entry->priv->enable_search = g_value_get_boolean (value);
-        gtk_editable_set_editable (GTK_EDITABLE (entry->priv->text_entry),
-                                   entry->priv->enable_search);
-        if (!entry->priv->enable_search) {
-            entry->priv->search_mode = FALSE;
-            location_entry_set_entry (entry, FALSE);
+        priv->enable_search = g_value_get_boolean (value);
+        gtk_editable_set_editable (GTK_EDITABLE (priv->text_entry),
+                                   priv->enable_search);
+        if (!priv->enable_search) {
+            priv->search_mode = FALSE;
+            location_entry_set_entry ((YelpLocationEntry *) object, FALSE);
         }
         break;
     default:
@@ -353,39 +354,42 @@ static void
 location_entry_start_search (YelpLocationEntry *entry,
                              gboolean           clear)
 {
-    if (!entry->priv->enable_search)
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    if (!priv->enable_search)
         return;
-    if (clear && !entry->priv->search_mode) {
-        gtk_entry_set_text (GTK_ENTRY (entry->priv->text_entry), "");
+    if (clear && !priv->search_mode) {
+        gtk_entry_set_text (GTK_ENTRY (priv->text_entry), "");
     }
-    entry->priv->search_mode = TRUE;
+    priv->search_mode = TRUE;
     location_entry_set_entry (entry, FALSE);
-    gtk_widget_grab_focus (entry->priv->text_entry);
+    gtk_widget_grab_focus (priv->text_entry);
 }
 
 static void
 location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
 {
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (entry));
     GtkTreePath *path = NULL;
     GtkTreeIter iter;
     gchar *icon_name;
 
-    if (entry->priv->search_mode) {
-        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+    if (priv->search_mode) {
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                            GTK_ENTRY_ICON_PRIMARY,
                                            "system-search");
-        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                            GTK_ENTRY_ICON_SECONDARY,
                                            "edit-clear");
-        gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry->priv->text_entry),
+        gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                          GTK_ENTRY_ICON_SECONDARY,
                                          "Clear the search text");
         return;
     }
 
-    if (entry->priv->row)
-        path = gtk_tree_row_reference_get_path (entry->priv->row);
+    if (priv->row)
+        path = gtk_tree_row_reference_get_path (priv->row);
 
     if (path) {
         gchar *text;
@@ -394,44 +398,44 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
         gtk_tree_model_get (model, &iter,
                             gtk_combo_box_entry_get_text_column (GTK_COMBO_BOX_ENTRY (entry)),
                             &text,
-                            entry->priv->icon_column, &icon_name,
-                            entry->priv->flags_column, &flags,
+                            priv->icon_column, &icon_name,
+                            priv->flags_column, &flags,
                             -1);
         if (flags & YELP_LOCATION_ENTRY_IS_LOADING) {
-            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_PRIMARY,
                                                "image-loading");
             g_timeout_add (80, location_entry_pulse, entry);
         }
         else {
-            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_PRIMARY,
                                                icon_name);
         }
         if (flags & YELP_LOCATION_ENTRY_CAN_BOOKMARK) {
-            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_SECONDARY,
                                                "bookmark-new");
-            gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry->priv->text_entry),
+            gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                              GTK_ENTRY_ICON_SECONDARY,
                                              "Bookmark this page");
         }
         else {
-            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_SECONDARY,
                                                NULL);
         }
-        gtk_entry_set_text (GTK_ENTRY (entry->priv->text_entry), text);
+        gtk_entry_set_text (GTK_ENTRY (priv->text_entry), text);
         if (emit)
             g_signal_emit (entry, location_entry_signals[LOCATION_SELECTED], 0);
         g_free (text);
         gtk_tree_path_free (path);
     }
     else {
-        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                            GTK_ENTRY_ICON_PRIMARY,
                                            "help-browser");
-        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry->priv->text_entry),
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                            GTK_ENTRY_ICON_SECONDARY,
                                            NULL);
     }
@@ -440,27 +444,27 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
 static gboolean
 location_entry_pulse (gpointer data)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (data);
     GtkTreeModel *model;
     GtkTreePath *path;
     GtkTreeIter iter;
     gint flags;
 
-    model = gtk_tree_row_reference_get_model (entry->priv->row);
-    path = gtk_tree_row_reference_get_path (entry->priv->row);
+    model = gtk_tree_row_reference_get_model (priv->row);
+    path = gtk_tree_row_reference_get_path (priv->row);
     if (path) {
         gtk_tree_model_get_iter (model, &iter, path);
         gtk_tree_model_get (model, &iter,
-                            entry->priv->flags_column, &flags,
+                            priv->flags_column, &flags,
                             -1);
         gtk_tree_path_free (path);
     }
 
-    if (flags & YELP_LOCATION_ENTRY_IS_LOADING && !entry->priv->search_mode) {
-        gtk_entry_progress_pulse (GTK_ENTRY (entry->priv->text_entry));
+    if (flags & YELP_LOCATION_ENTRY_IS_LOADING && !priv->search_mode) {
+        gtk_entry_progress_pulse (GTK_ENTRY (priv->text_entry));
     }
     else {
-        gtk_entry_set_progress_fraction (GTK_ENTRY (entry->priv->text_entry), 0.0);
+        gtk_entry_set_progress_fraction (GTK_ENTRY (priv->text_entry), 0.0);
     }
 
     return flags & YELP_LOCATION_ENTRY_IS_LOADING;
@@ -470,29 +474,29 @@ static void
 combo_box_changed_cb (GtkComboBox  *widget,
                       gpointer      user_data)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (widget);
+    YelpLocationEntryPrivate *priv = GET_PRIV (widget);
     GtkTreeIter iter;
     GtkTreeModel *model;
     GtkTreePath *path;
 
-    model = gtk_combo_box_get_model (GTK_COMBO_BOX (entry));
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX (widget));
 
-    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (entry), &iter)) {
+    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (widget), &iter)) {
         gint flags;
         gtk_tree_model_get (model, &iter,
-                            entry->priv->flags_column, &flags,
+                            priv->flags_column, &flags,
                             -1);
         if (flags & YELP_LOCATION_ENTRY_IS_SEARCH) {
-            location_entry_start_search (entry, TRUE);
+            location_entry_start_search ((YelpLocationEntry *) widget, TRUE);
         }
         else {
             path = gtk_tree_model_get_path (model, &iter);
-            if (entry->priv->row)
-                gtk_tree_row_reference_free (entry->priv->row);
-            entry->priv->row = gtk_tree_row_reference_new (model, path);
+            if (priv->row)
+                gtk_tree_row_reference_free (priv->row);
+            priv->row = gtk_tree_row_reference_new (model, path);
             gtk_tree_path_free (path);
-            entry->priv->search_mode = FALSE;
-            location_entry_set_entry (YELP_LOCATION_ENTRY (widget), TRUE);
+            priv->search_mode = FALSE;
+            location_entry_set_entry ((YelpLocationEntry *) widget, TRUE);
         }
     }
 }
@@ -502,10 +506,10 @@ combo_box_row_separator_func (GtkTreeModel  *model,
                               GtkTreeIter   *iter,
                               gpointer       user_data)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (user_data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
     gint flags;
     gtk_tree_model_get (model, iter,
-                        entry->priv->flags_column, &flags,
+                        priv->flags_column, &flags,
                         -1);
     return (flags & YELP_LOCATION_ENTRY_IS_SEPARATOR);
 }
@@ -516,7 +520,7 @@ yelp_location_entry_row_changed (GtkTreeModel  *model,
                                  GtkTreeIter   *iter,
                                  gpointer       user_data)
 {
-    /* FIXME: Should we bother checking path/iter against entry->priv->row?
+    /* FIXME: Should we bother checking path/iter against priv->row?
        It doesn't really make a difference, since set_entry is pretty much
        safe to call whenever.  Does it make a performance impact?
     */
@@ -529,10 +533,10 @@ entry_focus_in_cb (GtkWidget     *widget,
                    gpointer       user_data)
 {
     GtkEntry *text_entry = GTK_ENTRY (widget);
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (user_data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
 
-    if (entry->priv->enable_search && !entry->priv->search_mode)
-        location_entry_start_search (entry, TRUE);
+    if (priv->enable_search && !priv->search_mode)
+        location_entry_start_search ((YelpLocationEntry *) user_data, TRUE);
 
     return FALSE;
 }
@@ -542,11 +546,11 @@ entry_focus_out_cb (GtkWidget         *widget,
                     GdkEventFocus     *event,
                     gpointer           user_data)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (user_data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
 
     if (gtk_entry_get_text_length (GTK_ENTRY (widget)) == 0) {
-        entry->priv->search_mode = FALSE;
-        location_entry_set_entry (entry, FALSE);
+        priv->search_mode = FALSE;
+        location_entry_set_entry ((YelpLocationEntry *) user_data, FALSE);
     }
 }
 
@@ -554,16 +558,16 @@ static void
 entry_activate_cb (GtkEntry  *text_entry,
                    gpointer   user_data)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (user_data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
     gchar *text = g_strdup (gtk_entry_get_text (text_entry));
 
-    if (!entry->priv->enable_search)
+    if (!priv->enable_search)
         return;
 
-    if (!entry->priv->search_mode || text == NULL || strlen(text) == 0)
+    if (!priv->search_mode || text == NULL || strlen(text) == 0)
         return;
 
-    g_signal_emit (entry, location_entry_signals[SEARCH_ACTIVATED], 0, text);
+    g_signal_emit (user_data, location_entry_signals[SEARCH_ACTIVATED], 0, text);
 
     g_free (text);
 }
@@ -574,12 +578,13 @@ entry_icon_press_cb (GtkEntry            *text_entry,
                      GdkEvent            *event,
                      gpointer             user_data)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (user_data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
+
     if (icon_pos == GTK_ENTRY_ICON_SECONDARY) {
         const gchar *name = gtk_entry_get_icon_name (text_entry, icon_pos);
         if (g_str_equal (name, "edit-clear")) {
-            entry->priv->search_mode = FALSE;
-            location_entry_set_entry (entry, FALSE);
+            priv->search_mode = FALSE;
+            location_entry_set_entry ((YelpLocationEntry *) user_data, FALSE);
         }
         else if  (g_str_equal (name, "bookmark-new")) {
             /* FIXME: emit bookmark signal */
@@ -592,14 +597,15 @@ entry_key_press_cb (GtkWidget   *widget,
                     GdkEventKey *event,
                     gpointer     user_data)
 {
-    YelpLocationEntry *entry = YELP_LOCATION_ENTRY (user_data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
+
     if (event->keyval == GDK_Escape) {
-        entry->priv->search_mode = FALSE;
-        location_entry_set_entry (entry, FALSE);
+        priv->search_mode = FALSE;
+        location_entry_set_entry ((YelpLocationEntry *) user_data, FALSE);
         return TRUE;
     }
-    else if (!entry->priv->search_mode) {
-        location_entry_start_search (entry, FALSE);
+    else if (!priv->search_mode) {
+        location_entry_start_search ((YelpLocationEntry *) user_data, FALSE);
     }
 
     return FALSE;

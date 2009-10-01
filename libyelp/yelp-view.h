@@ -41,12 +41,10 @@ G_BEGIN_DECLS
 
 typedef struct _YelpView       YelpView;
 typedef struct _YelpViewClass  YelpViewClass;
-typedef struct _YelpViewPriv   YelpViewPriv;
 
 struct _YelpView
 {
     WebKitWebView       parent;
-    YelpViewPriv       *priv;
 };
 
 struct _YelpViewClass

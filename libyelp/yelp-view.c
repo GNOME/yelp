@@ -65,9 +65,10 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW);
-#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_VIEW, YelpViewPriv))
+#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_VIEW, YelpViewPrivate))
 
-struct _YelpViewPriv {
+typedef struct _YelpViewPrivate YelpViewPrivate;
+struct _YelpViewPrivate {
     YelpUri       *uri;
     YelpDocument  *document;
     GCancellable  *cancellable;
@@ -100,32 +101,32 @@ yelp_view_state_get_type (void)
 static void
 yelp_view_init (YelpView *view)
 {
-    view->priv = GET_PRIV (view);
+    YelpViewPrivate *priv = GET_PRIV (view);
 
-    view->priv->cancellable = NULL;
+    priv->cancellable = NULL;
 
-    view->priv->state = YELP_VIEW_STATE_BLANK;
+    priv->state = YELP_VIEW_STATE_BLANK;
 }
 
 static void
 yelp_view_dispose (GObject *object)
 {
-    YelpView *view = YELP_VIEW (object);
+    YelpViewPrivate *priv = GET_PRIV (object);
 
-    if (view->priv->uri) {
-        g_object_unref (view->priv->uri);
-        view->priv->uri = NULL;
+    if (priv->uri) {
+        g_object_unref (priv->uri);
+        priv->uri = NULL;
     }
 
-    if (view->priv->cancellable) {
-        g_cancellable_cancel (view->priv->cancellable);
-        g_object_unref (view->priv->cancellable);
-        view->priv->cancellable = NULL;
+    if (priv->cancellable) {
+        g_cancellable_cancel (priv->cancellable);
+        g_object_unref (priv->cancellable);
+        priv->cancellable = NULL;
     }
 
-    if (view->priv->document) {
-        g_object_unref (view->priv->document);
-        view->priv->document = NULL;
+    if (priv->document) {
+        g_object_unref (priv->document);
+        priv->document = NULL;
     }
 
     G_OBJECT_CLASS (yelp_view_parent_class)->dispose (object);
@@ -134,8 +135,6 @@ yelp_view_dispose (GObject *object)
 static void
 yelp_view_finalize (GObject *object)
 {
-    YelpView *view = YELP_VIEW (object);
-
     G_OBJECT_CLASS (yelp_view_parent_class)->finalize (object);
 }
 
@@ -157,7 +156,7 @@ yelp_view_class_init (YelpViewClass *klass)
 		      g_cclosure_marshal_VOID__STRING,
 		      G_TYPE_NONE, 1, G_TYPE_STRING);
 
-    g_type_class_add_private (klass, sizeof (YelpViewPriv));
+    g_type_class_add_private (klass, sizeof (YelpViewPrivate));
 
     g_object_class_install_property (object_class,
                                      PROP_STATE,
@@ -175,12 +174,12 @@ yelp_view_get_property (GObject    *object,
                         GValue     *value,
                         GParamSpec *pspec)
 {
-    YelpView *view = YELP_VIEW (object);
+    YelpViewPrivate *priv = GET_PRIV (object);
 
     switch (prop_id)
         {
         case PROP_STATE:
-            g_value_set_enum (value, view->priv->state);
+            g_value_set_enum (value, priv->state);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -194,12 +193,12 @@ yelp_view_set_property (GObject      *object,
                         const GValue *value,
                         GParamSpec   *pspec)
 {
-    YelpView *view = YELP_VIEW (object);
+    YelpViewPrivate *priv = GET_PRIV (object);
 
     switch (prop_id)
         {
         case PROP_STATE:
-            view->priv->state = g_value_get_enum (value);
+            priv->state = g_value_get_enum (value);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -241,6 +240,7 @@ yelp_view_load_document (YelpView     *view,
                          YelpUri      *uri,
                          YelpDocument *document)
 {
+    YelpViewPrivate *priv = GET_PRIV (view);
     gchar *page_id;
 
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
@@ -259,12 +259,12 @@ yelp_view_load_document (YelpView     *view,
     }
 
     page_id = yelp_uri_get_page_id (uri);
-    view->priv->uri = g_object_ref (uri);
-    view->priv->cancellable = g_cancellable_new ();
-    view->priv->document = g_object_ref (document);
+    priv->uri = g_object_ref (uri);
+    priv->cancellable = g_cancellable_new ();
+    priv->document = g_object_ref (document);
     yelp_document_request_page (document,
                                 page_id,
-                                view->priv->cancellable,
+                                priv->cancellable,
                                 (YelpDocumentCallback) document_callback,
                                 view);
 
@@ -327,13 +327,16 @@ document_callback (YelpDocument       *document,
                    YelpView           *view,
                    GError             *error)
 {
+    YelpViewPrivate *priv = GET_PRIV (view);
+
     if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
+        /* FIXME */
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents = yelp_document_read_contents (document, NULL);
         gchar *base_uri, *mime_type, *page_id;
-        base_uri = yelp_uri_get_base_uri (view->priv->uri);
-        page_id = yelp_uri_get_page_id (view->priv->uri);
+        base_uri = yelp_uri_get_base_uri (priv->uri);
+        page_id = yelp_uri_get_page_id (priv->uri);
         mime_type = yelp_document_get_mime_type (document, page_id);
         webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                      contents,

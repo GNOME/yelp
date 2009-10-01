@@ -47,12 +47,10 @@ G_BEGIN_DECLS
  **/
 typedef struct _YelpLocationEntry         YelpLocationEntry;
 typedef struct _YelpLocationEntryClass    YelpLocationEntryClass;
-typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 
 struct _YelpLocationEntry
 {
     GtkComboBoxEntry          parent;
-    YelpLocationEntryPrivate *priv;
 };
 
 struct _YelpLocationEntryClass
