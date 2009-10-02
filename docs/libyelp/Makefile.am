@@ -20,9 +20,9 @@ GTKDOC_LIBS =						\
 
 HFILE_GLOB = $(top_srcdir)/libyelp/*.h
 CFILE_GLOB = $(top_srcdir)/libyelp/*.c
-IGNORE_HFILES = yelp-debug.h
+IGNORE_HFILES = yelp-debug.h yelp-types.h
 
-MKDB_OPTIONS = --output-format=xml --sgml-mode --name-space=yelp --ignore-files='yelp-debug.h yelp-debug.c'
+MKDB_OPTIONS = --output-format=xml --sgml-mode --name-space=yelp --ignore-files='yelp-debug.c yelp-debug.h yelp-types.c yelp-types.h'
 
 content_files = version.xml
 

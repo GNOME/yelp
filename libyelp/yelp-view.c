@@ -30,6 +30,7 @@
 #include <webkit/webkit.h>
 
 #include "yelp-error.h"
+#include "yelp-types.h"
 #include "yelp-view.h"
 
 static void        yelp_view_init                 (YelpView           *view);
@@ -80,23 +81,6 @@ struct _YelpViewPrivate {
 enum {
     TARGET_URI_LIST
 };
-
-GType
-yelp_view_state_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { YELP_VIEW_STATE_BLANK, "YELP_VIEW_STATE_BLANK", "blank" },
-            { YELP_VIEW_STATE_LOADING, "YELP_VIEW_STATE_LOADING", "loading" },
-            { YELP_VIEW_STATE_LOADED, "YELP_VIEW_STATE_LOADED", "loaded" },
-            { YELP_VIEW_STATE_ERROR, "YELP_VIEW_STATE_ERROR", "error" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static (g_intern_static_string ("YelpViewState"), values);
-    }
-    return etype;
-}
 
 static void
 yelp_view_init (YelpView *view)
@@ -165,7 +149,8 @@ yelp_view_class_init (YelpViewClass *klass)
                                                         N_("The loading state of the view"),
                                                         YELP_TYPE_VIEW_STATE,
                                                         YELP_VIEW_STATE_BLANK,
-                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                                        G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 }
 
 static void
