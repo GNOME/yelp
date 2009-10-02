@@ -36,7 +36,6 @@ G_BEGIN_DECLS
 
 typedef struct _YelpUri      YelpUri;
 typedef struct _YelpUriClass YelpUriClass;
-typedef struct _YelpUriPriv  YelpUriPriv;
 
 typedef enum {
     YELP_URI_DOCUMENT_TYPE_UNKNOWN = 0,
@@ -55,12 +54,11 @@ typedef enum {
 } YelpUriDocumentType;
 
 struct _YelpUri {
-    GObject      parent;
-    YelpUriPriv *priv;
+    GObject       parent;
 };
 
 struct _YelpUriClass {
-    GObjectClass    parent_class;
+    GObjectClass  parent_class;
 };
 
 
