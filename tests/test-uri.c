@@ -25,8 +25,11 @@
 #include <string.h>
 
 #include <gio/gio.h>
+#include <gio/gunixoutputstream.h>
 
 #include "yelp-uri.h"
+
+GMainLoop *loop;
 
 static void 
 print_uri (YelpUri *uri, GOutputStream *stream)
@@ -70,8 +73,8 @@ print_uri (YelpUri *uri, GOutputStream *stream)
     case YELP_URI_DOCUMENT_TYPE_ERROR:
         type = "ERROR";
         break;
-    case YELP_URI_DOCUMENT_TYPE_UNKNOWN:
-        type = "UNKNOWN";
+    case YELP_URI_DOCUMENT_TYPE_UNRESOLVED:
+        type = "UNRESOLVED";
         break;
     }
 
@@ -135,7 +138,13 @@ static void run_test (gconstpointer data)
                                        NULL, NULL));
     newline = strchr (contents, '\n');
     curi = g_strndup (contents, newline - contents);
-    uri = yelp_uri_resolve (curi);
+    uri = yelp_uri_new (curi);
+    yelp_uri_resolve (uri);
+
+    while (!yelp_uri_is_resolved (uri))
+        while (g_main_context_pending (NULL))
+             g_main_context_iteration (NULL, FALSE);
+
     outstream = g_memory_output_stream_new (NULL, 0, g_realloc, g_free);
     print_uri (uri, outstream);
     out = (gchar *) g_memory_output_stream_get_data (G_MEMORY_OUTPUT_STREAM (outstream));
@@ -174,6 +183,15 @@ run_all_tests (int argc, char **argv)
     return g_test_run ();
 }
 
+static void
+uri_resolved (YelpUri *uri)
+{
+    GOutputStream *stream = g_unix_output_stream_new (1, FALSE);
+    print_uri (uri, stream);
+    g_object_unref (uri);
+    g_main_loop_quit (loop);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -181,28 +199,31 @@ main (int argc, char **argv)
     YelpUri *uri = NULL;
 
     g_type_init ();
+    g_thread_init (NULL);
     g_log_set_always_fatal (G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL);
         
-    g_test_init (&argc, &argv);
     if (argc < 2) {
+        g_test_init (&argc, &argv, NULL);
         return run_all_tests (argc, argv);
     }
     else {
         if (argc > 2) {
-            parent = yelp_uri_resolve (argv[1]);
-            uri = yelp_uri_resolve_relative (parent, argv[2]);
+            parent = yelp_uri_new (argv[1]);
+            uri = yelp_uri_new_relative (parent, argv[2]);
         } else {
-            uri = yelp_uri_resolve (argv[1]);
+            uri = yelp_uri_new (argv[1]);
         }
         if (uri) {
-            GOutputStream *stream = g_unix_output_stream_new (1, FALSE);
-            print_uri (uri, stream);
-            g_object_unref (uri);
+            g_signal_connect (uri, "resolved", G_CALLBACK (uri_resolved), NULL);
+            yelp_uri_resolve (uri);
         }
         if (parent) {
             g_object_unref (parent);
         }
     }
+
+    loop = g_main_loop_new (NULL, FALSE);
+    g_main_loop_run (loop);
 
     return 0;
 }

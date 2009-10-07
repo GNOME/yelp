@@ -37,24 +37,22 @@ static void           yelp_uri_init         (YelpUri        *uri);
 static void           yelp_uri_dispose      (GObject        *object);
 static void           yelp_uri_finalize     (GObject        *object);
 
-static void           resolve_file_uri      (YelpUri        *ret,
-                                             const gchar    *arg);
-static void           resolve_file_path     (YelpUri        *ret,
-                                             YelpUri        *base,
-                                             const gchar    *arg);
-static void           resolve_data_dirs     (YelpUri        *ret,
+static void           resolve_async         (YelpUri        *uri);
+static gboolean       resolve_final         (YelpUri        *uri);
+
+static void           resolve_file_uri      (YelpUri        *uri);
+static void           resolve_file_path     (YelpUri        *uri);
+static void           resolve_data_dirs     (YelpUri        *uri,
                                              const gchar   **subdirs,
                                              const gchar    *docid,
                                              const gchar    *pageid);
-static void           resolve_ghelp_uri     (YelpUri        *ret,
+static void           resolve_ghelp_uri     (YelpUri        *uri);
+static void           resolve_man_uri       (YelpUri        *uri);
+static void           resolve_info_uri      (YelpUri        *uri);
+static void           resolve_page_and_frag (YelpUri        *uri,
                                              const gchar    *arg);
-static void           resolve_man_uri       (YelpUri        *ret,
-                                             const gchar    *arg);
-static void           resolve_info_uri      (YelpUri        *ret,
-                                             const gchar    *arg);
-static void           resolve_page_and_frag (YelpUri        *ret,
-                                             const gchar    *arg);
-static void           resolve_common        (YelpUri        *ret);
+static void           resolve_common        (YelpUri        *uri);
+
 static gboolean       is_man_path           (const gchar    *uri,
                                              const gchar    *encoding);
 
@@ -63,12 +61,26 @@ G_DEFINE_TYPE (YelpUri, yelp_uri, G_TYPE_OBJECT);
 
 typedef struct _YelpUriPrivate YelpUriPrivate;
 struct _YelpUriPrivate {
+    GThread              *resolver;
+
     YelpUriDocumentType   doctype;
+    YelpUriDocumentType   tmptype;
+
     GFile                *gfile;
     gchar               **search_path;
     gchar                *page_id;
     gchar                *frag_id;
+
+    /* Unresolved */
+    YelpUri              *res_base;
+    gchar                *res_arg;
 };
+
+enum {
+    RESOLVED,
+    LAST_SIGNAL
+};
+static guint uri_signals[LAST_SIGNAL] = {0,};
 
 /******************************************************************************/
 
@@ -96,6 +108,14 @@ yelp_uri_class_init (YelpUriClass *klass)
     object_class->dispose  = yelp_uri_dispose;
     object_class->finalize = yelp_uri_finalize;
 
+    uri_signals[RESOLVED] =
+        g_signal_new ("resolved",
+                      G_OBJECT_CLASS_TYPE (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
+
     g_type_class_add_private (klass, sizeof (YelpUriPrivate));
 }
 
@@ -115,6 +135,11 @@ yelp_uri_dispose (GObject *object)
         priv->gfile = NULL;
     }
 
+    if (priv->res_base) {
+        g_object_unref (priv->res_base);
+        priv->res_base = NULL;
+    }
+
     G_OBJECT_CLASS (yelp_uri_parent_class)->dispose (object);
 }
 
@@ -126,6 +151,7 @@ yelp_uri_finalize (GObject *object)
     g_strfreev (priv->search_path);
     g_free (priv->page_id);
     g_free (priv->frag_id);
+    g_free (priv->res_arg);
 
     G_OBJECT_CLASS (yelp_uri_parent_class)->finalize (object);
 }
@@ -133,11 +159,104 @@ yelp_uri_finalize (GObject *object)
 /******************************************************************************/
 
 YelpUri *
-yelp_uri_resolve (const gchar *arg)
+yelp_uri_new (const gchar *arg)
 {
-    return yelp_uri_resolve_relative (NULL, arg);
+    return yelp_uri_new_relative (NULL, arg);
 }
 
+YelpUri *
+yelp_uri_new_relative (YelpUri *base, const gchar *arg)
+{
+    YelpUri *uri;
+    YelpUriPrivate *priv;
+
+    uri = (YelpUri *) g_object_new (YELP_TYPE_URI, NULL);
+
+    priv = GET_PRIV (uri);
+    priv->doctype = YELP_URI_DOCUMENT_TYPE_UNRESOLVED;
+    if (base)
+        priv->res_base = g_object_ref (base);
+    priv->res_arg = g_strdup (arg);
+
+    return uri;
+}
+
+/******************************************************************************/
+
+void
+yelp_uri_resolve (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    if (priv->resolver == NULL)
+        priv->resolver = g_thread_create ((GThreadFunc) resolve_async,
+                                          uri, FALSE, NULL);
+}
+
+/* We want code to be able to do something like this:
+ *
+ *   if (yelp_uri_get_document_type (uri) != YELP_URI_DOCUMENT_TYPE_UNRESOLVED) {
+ *     g_signal_connect (uri, "resolve", callback, data);
+ *     yelp_uri_resolve (uri);
+ *   }
+ *
+ * Resolving happens in a separate thread, though, so if that thread can change
+ * the document type, we have a race condition.  So here's the rules we play by:
+ *
+ * 1) None of the getters except the document type getter can return real data
+ *    while the URI is unresolved.  They all do a resolved check first, and
+ *    return NULL if the URI is not resolved.
+ *
+ * 2) The threaded resolver functions can modify anything but the document
+ *    type.  They are the only things that are allowed to modify that data.
+ *
+ * 3) The resolver thread is not allowed to modify the document type.  When
+ *    it's done, it queues an async function to set the document type and
+ *    emit "resolved" in the main thread.
+ *
+ * 4) Once a URI is resolved, it is immutable.
+ */
+static void
+resolve_async (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+
+    if (g_str_has_prefix (priv->res_arg, "ghelp:")
+        || g_str_has_prefix (priv->res_arg, "gnome-help:")) {
+        resolve_ghelp_uri (uri);
+    }
+    else if (g_str_has_prefix (priv->res_arg, "file:")) {
+        resolve_file_uri (uri);
+    }
+    else if (g_str_has_prefix (priv->res_arg, "man:")) {
+        resolve_man_uri (uri);
+    }
+    else if (g_str_has_prefix (priv->res_arg, "info:")) {
+        resolve_info_uri (uri);
+    }
+    else {
+        resolve_file_path (uri);
+    }
+
+    g_idle_add ((GSourceFunc) resolve_final, uri);
+}
+
+static gboolean
+resolve_final (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+
+    priv->resolver = NULL;
+
+    if (priv->tmptype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        priv->doctype = priv->tmptype;
+    else
+        priv->doctype = YELP_URI_DOCUMENT_TYPE_ERROR;
+    
+    g_signal_emit (uri, uri_signals[RESOLVED], 0);
+    return FALSE;
+}
+
+/*
 YelpUri *
 yelp_uri_resolve_relative (YelpUri *base, const gchar *arg)
 {
@@ -148,18 +267,6 @@ yelp_uri_resolve_relative (YelpUri *base, const gchar *arg)
     priv = GET_PRIV (ret);
     priv->doctype = YELP_URI_DOCUMENT_TYPE_UNKNOWN;
 
-    if (g_str_has_prefix (arg, "ghelp:") || g_str_has_prefix (arg, "gnome-help:")) {
-        resolve_ghelp_uri (ret, arg);
-    }
-    else if (g_str_has_prefix (arg, "file:")) {
-        resolve_file_uri (ret, arg);
-    }
-    else if (g_str_has_prefix (arg, "man:")) {
-        resolve_man_uri (ret, arg);
-    }
-    else if (g_str_has_prefix (arg, "info:")) {
-        resolve_info_uri (ret, arg);
-    }
     else if (strchr (arg, ':')) {
         priv->doctype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
         priv->gfile = g_file_new_for_uri (arg);
@@ -170,6 +277,16 @@ yelp_uri_resolve_relative (YelpUri *base, const gchar *arg)
     }
 
     return ret;
+}
+*/
+
+/******************************************************************************/
+
+gboolean
+yelp_uri_is_resolved (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    return priv->doctype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED;
 }
 
 YelpUriDocumentType
@@ -183,6 +300,8 @@ gchar *
 yelp_uri_get_base_uri (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
+    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return NULL;
     return priv->gfile ? g_file_get_uri (priv->gfile) : NULL;
 }
 
@@ -190,6 +309,8 @@ gchar **
 yelp_uri_get_search_path (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
+    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return NULL;
     return g_strdupv (priv->search_path);
 }
 
@@ -197,6 +318,8 @@ gchar *
 yelp_uri_get_page_id (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
+    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return NULL;
     return g_strdup (priv->page_id);
 }
 
@@ -204,50 +327,55 @@ gchar *
 yelp_uri_get_frag_id (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
+    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return NULL;
     return g_strdup (priv->frag_id);
 }
 
 /******************************************************************************/
 
 static void
-resolve_file_uri (YelpUri *ret, const gchar *arg)
+resolve_file_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (ret);
-    gchar *uri;
-    const gchar *hash = strchr (arg, '#');
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    gchar *uristr;
+    const gchar *hash = strchr (priv->res_arg, '#');
 
     if (hash)
-        uri = g_strndup (arg, hash - arg);
+        uristr = g_strndup (priv->res_arg, hash - priv->res_arg);
     else
-        uri = (gchar *) arg;
+        uristr = priv->res_arg;
 
-    priv->gfile = g_file_new_for_uri (uri);
+    priv->gfile = g_file_new_for_uri (uristr);
 
     if (hash) {
-        resolve_page_and_frag (ret, hash + 1);
-        g_free (uri);
+        resolve_page_and_frag (uri, hash + 1);
+        g_free (uristr);
     }
 
-    resolve_common (ret);
+    resolve_common (uri);
 }
 
 static void
-resolve_file_path (YelpUri *ret, YelpUri *base, const gchar *arg)
+resolve_file_path (YelpUri *uri)
 {
-    YelpUriPrivate *base_priv = GET_PRIV (base);
-    YelpUriPrivate *priv = GET_PRIV (ret);
+    YelpUriPrivate *base_priv;
+    YelpUriPrivate *priv = GET_PRIV (uri);
     gchar *path;
-    const gchar *hash = strchr (arg, '#');
+    const gchar *hash = strchr (priv->res_arg, '#');
+
+    if (priv->res_base)
+        base_priv = GET_PRIV (priv->res_base);
 
     if (hash)
-        path = g_strndup (arg, hash - arg);
+        path = g_strndup (priv->res_arg, hash - priv->res_arg);
     else
-        path = (gchar *) arg;
+        path = priv->res_arg;
 
-    if (arg[0] == '/') {
+    if (priv->res_arg[0] == '/') {
         priv->gfile = g_file_new_for_path (path);
     }
-    else if (base && base_priv->gfile) {
+    else if (base_priv->gfile) {
         priv->gfile = g_file_resolve_relative_path (base_priv->gfile, path);
     }
     else {
@@ -261,11 +389,11 @@ resolve_file_path (YelpUri *ret, YelpUri *base, const gchar *arg)
     }
 
     if (hash) {
-        resolve_page_and_frag (ret, hash + 1);
+        resolve_page_and_frag (uri, hash + 1);
         g_free (path);
     }
 
-    resolve_common (ret);
+    resolve_common (uri);
 }
 
 static void
@@ -281,7 +409,6 @@ resolve_data_dirs (YelpUri      *ret,
     gchar **searchpath = NULL;
     gint searchi, searchmax;
     gint datadir_i, subdir_i, lang_i;
-    YelpUriDocumentType type = YELP_URI_DOCUMENT_TYPE_UNKNOWN;
 
     searchi = 0;
     searchmax = 10;
@@ -304,13 +431,13 @@ resolve_data_dirs (YelpUri      *ret,
                 searchpath[searchi] = helpdir;
                 searchpath[++searchi] = NULL;
 
-                if (type != YELP_URI_DOCUMENT_TYPE_UNKNOWN)
+                if (priv->tmptype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
                     /* We've already found it.  We're just adding to the search path now. */
                     continue;
 
                 filename = g_strdup_printf ("%s/index.page", helpdir);
                 if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-                    type = YELP_URI_DOCUMENT_TYPE_MALLARD;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
                     g_free (filename);
                     filename = g_strdup (helpdir);
                     continue;
@@ -319,14 +446,14 @@ resolve_data_dirs (YelpUri      *ret,
 
                 filename = g_strdup_printf ("%s/%s.xml", helpdir, pageid);
                 if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-                    type = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
                     continue;
                 }
                 g_free (filename);
 
                 filename = g_strdup_printf ("%s/%s.html", helpdir, pageid);
                 if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-                    type = YELP_URI_DOCUMENT_TYPE_HTML;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_HTML;
                     continue;
                 }
                 g_free (filename);
@@ -334,31 +461,30 @@ resolve_data_dirs (YelpUri      *ret,
         } /* end for subdirs */
     } /* end for datadirs */
 
-    if (type == YELP_URI_DOCUMENT_TYPE_UNKNOWN) {
+    if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED) {
         g_strfreev (searchpath);
-        priv->doctype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
     }
     else {
-        priv->doctype = type;
         priv->gfile = g_file_new_for_path (filename);
         priv->search_path = searchpath;
     }
 }
 
 static void
-resolve_ghelp_uri (YelpUri *ret, const gchar *arg)
+resolve_ghelp_uri (YelpUri *uri)
 {
     /* ghelp:/path/to/file
      * ghelp:document
      */
-    YelpUriPrivate *priv = GET_PRIV (ret);
+    YelpUriPrivate *priv = GET_PRIV (uri);
     const gchar const *helpdirs[3] = {"help", "gnome/help", NULL};
     gchar *docid = NULL;
     gchar *colon, *hash, *slash, *pageid; /* do not free */
 
-    colon = strchr (arg, ':');
+    colon = strchr (priv->res_arg, ':');
     if (!colon) {
-        priv->doctype = YELP_URI_DOCUMENT_TYPE_ERROR;
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
         return;
     }
 
@@ -366,8 +492,9 @@ resolve_ghelp_uri (YelpUri *ret, const gchar *arg)
     if (*colon == '/') {
         gchar *newuri;
         newuri = g_strdup_printf ("file:%s", colon);
-        resolve_file_uri (ret, newuri);
-        g_free (newuri);
+        g_free (priv->res_arg);
+        priv->res_arg = newuri;
+        resolve_file_uri (uri);
         return;
     }
 
@@ -375,7 +502,7 @@ resolve_ghelp_uri (YelpUri *ret, const gchar *arg)
     if (!hash)
         hash = strchr (colon, '#');
     if (hash) {
-        resolve_page_and_frag (ret, hash + 1);
+        resolve_page_and_frag (uri, hash + 1);
         docid = g_strndup (colon, hash - colon);
     }
     else {
@@ -391,14 +518,14 @@ resolve_ghelp_uri (YelpUri *ret, const gchar *arg)
         pageid = docid;
     }
 
-    resolve_data_dirs (ret, helpdirs, docid, pageid);
+    resolve_data_dirs (uri, helpdirs, docid, pageid);
 
     /* Specifying pages and anchors for Mallard documents with ghelp URIs is sort
-       hacked on.  This is a touch inconsistent, but it maintains compatibility
+       of hacked on.  This is a touch inconsistent, but it maintains compatibility
        with the way things worked in 2.28, and ghelp URIs should be entering
        compatibility-only mode.
      */
-    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_MALLARD && pageid != docid) {
+    if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_MALLARD && pageid != docid) {
         if (priv->page_id)
             g_free (priv->page_id);
         priv->page_id = g_strdup (pageid);
@@ -408,9 +535,9 @@ resolve_ghelp_uri (YelpUri *ret, const gchar *arg)
 }
 
 static void
-resolve_man_uri (YelpUri *ret, const gchar *arg)
+resolve_man_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (ret);
+    YelpUriPrivate *priv = GET_PRIV (uri);
     /* man:/path/to/file
      * man:name(section)
      * man:name.section
@@ -429,12 +556,13 @@ resolve_man_uri (YelpUri *ret, const gchar *arg)
     gchar *rbrace = NULL;
     gint i, j, k;
 
-    if (g_str_has_prefix (arg, "man:/")) {
+    if (g_str_has_prefix (priv->res_arg, "man:/")) {
         gchar *newuri;
-        priv->doctype = YELP_URI_DOCUMENT_TYPE_MAN;
-        newuri = g_strdup_printf ("file:%s", arg + 4);
-        resolve_file_uri (ret, newuri);
-        g_free (newuri);
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
+        newuri = g_strdup_printf ("file:%s", priv->res_arg + 4);
+        g_free (priv->res_arg);
+        priv->res_arg = newuri;
+        resolve_file_uri (uri);
         return;
     }
 
@@ -446,11 +574,11 @@ resolve_man_uri (YelpUri *ret, const gchar *arg)
         manpath = g_strsplit (env, ":", 0);
     }
 
-    colon = strchr (arg, ':');
+    colon = strchr (priv->res_arg, ':');
     if (colon)
         colon++;
     else
-        colon = (gchar *) arg;
+        colon = (gchar *) priv->res_arg;
 
     hash = strchr (colon, '#');
     if (hash)
@@ -541,30 +669,30 @@ resolve_man_uri (YelpUri *ret, const gchar *arg)
     }
 
     if (fullpath) {
-        priv->doctype = YELP_URI_DOCUMENT_TYPE_MAN;
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
         priv->gfile = g_file_new_for_path (fullpath);
-        resolve_common (ret);
+        resolve_common (uri);
         g_free (fullpath);
     } else {
-        priv->doctype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
     }
 
     if (hash)
-        resolve_page_and_frag (ret, hash + 1);
+        resolve_page_and_frag (uri, hash + 1);
 
     g_free (newarg);
 }
 
 static void
-resolve_info_uri (YelpUri *ret, const gchar *arg)
+resolve_info_uri (YelpUri *uri)
 {
     /* FIXME */
 }
 
 static void
-resolve_page_and_frag (YelpUri *ret, const gchar *arg)
+resolve_page_and_frag (YelpUri *uri, const gchar *arg)
 {
-    YelpUriPrivate *priv = GET_PRIV (ret);
+    YelpUriPrivate *priv = GET_PRIV (uri);
     gchar *hash;
 
     if (!arg || arg[0] == '\0')
@@ -582,9 +710,9 @@ resolve_page_and_frag (YelpUri *ret, const gchar *arg)
 }
 
 static void
-resolve_common (YelpUri *ret)
+resolve_common (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (ret);
+    YelpUriPrivate *priv = GET_PRIV (uri);
     GFileInfo *info;
     GError *error = NULL;
 
@@ -595,9 +723,9 @@ resolve_common (YelpUri *ret)
                               NULL, &error);
     if (error) {
         if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
-            priv->doctype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+            priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
         else
-            priv->doctype = YELP_URI_DOCUMENT_TYPE_ERROR;
+            priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
         g_error_free (error);
         return;
     }
@@ -615,10 +743,10 @@ resolve_common (YelpUri *ret)
         }
     }
 
-    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNKNOWN) {
+    if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED) {
         if (g_file_info_get_attribute_uint32 (info, G_FILE_ATTRIBUTE_STANDARD_TYPE) ==
             G_FILE_TYPE_DIRECTORY) {
-            priv->doctype = YELP_URI_DOCUMENT_TYPE_MALLARD;
+            priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
         }
         else {
             gchar *basename;
@@ -628,48 +756,48 @@ resolve_common (YelpUri *ret)
             if (g_str_equal (mime_type, "text/xml") ||
                 g_str_equal (mime_type, "application/docbook+xml") ||
                 g_str_equal (mime_type, "application/xml")) {
-                priv->doctype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
             }
             else if (g_str_equal (mime_type, "text/html")) {
-                priv->doctype = YELP_URI_DOCUMENT_TYPE_HTML;
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_HTML;
             }
             else if (g_str_equal (mime_type, "application/xhtml+xml")) {
-                priv->doctype = YELP_URI_DOCUMENT_TYPE_XHTML;
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_XHTML;
             }
             else if (g_str_equal (mime_type, "application/x-gzip")) {
                 if (g_str_has_suffix (basename, ".info.gz"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_INFO;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
                 else if (is_man_path (basename, "gz"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_MAN;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
             }
             else if (g_str_equal (mime_type, "application/x-bzip")) {
                 if (g_str_has_suffix (basename, ".info.bz2"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_INFO;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
                 else if (is_man_path (basename, "bz2"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_MAN;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
             }
             else if (g_str_equal (mime_type, "application/x-lzma")) {
                 if (g_str_has_suffix (basename, ".info.lzma"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_INFO;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
                 else if (is_man_path (basename, "lzma"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_MAN;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
             }
             else if (g_str_equal (mime_type, "application/octet-stream")) {
                 if (g_str_has_suffix (basename, ".info"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_INFO;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
                 else if (is_man_path (basename, NULL))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_MAN;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
             }
             else if (g_str_equal (mime_type, "text/plain")) {
                 if (g_str_has_suffix (basename, ".info"))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_INFO;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
                 else if (is_man_path (basename, NULL))
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_MAN;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
                 else
-                    priv->doctype = YELP_URI_DOCUMENT_TYPE_TEXT;
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_TEXT;
             }
             else {
-                priv->doctype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
             }
         }
     }

@@ -117,13 +117,18 @@ yelp_document_get_for_uri (YelpUri *uri)
 {
     static GHashTable *documents = NULL;
     gchar *base_uri;
-    YelpDocument *document;
+    YelpDocument *document = NULL;
 
     if (documents == NULL)
 	documents = g_hash_table_new_full (g_str_hash, g_str_equal,
 					   g_free, g_object_unref);
 
+    g_return_val_if_fail (yelp_uri_is_resolved (uri), NULL);
+
     base_uri = yelp_uri_get_base_uri (uri);
+    if (base_uri == NULL)
+	return NULL;
+
     document = g_hash_table_lookup (documents, base_uri);
 
     if (document != NULL) {
@@ -155,7 +160,6 @@ yelp_document_get_for_uri (YelpUri *uri)
     case YELP_URI_DOCUMENT_TYPE_SEARCH:
 	/* FIXME */
 	break;
-    case YELP_URI_DOCUMENT_TYPE_UNKNOWN:
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
     case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
     case YELP_URI_DOCUMENT_TYPE_ERROR:

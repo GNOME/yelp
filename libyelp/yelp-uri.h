@@ -38,7 +38,7 @@ typedef struct _YelpUri      YelpUri;
 typedef struct _YelpUriClass YelpUriClass;
 
 typedef enum {
-    YELP_URI_DOCUMENT_TYPE_UNKNOWN = 0,
+    YELP_URI_DOCUMENT_TYPE_UNRESOLVED,
     YELP_URI_DOCUMENT_TYPE_DOCBOOK,
     YELP_URI_DOCUMENT_TYPE_MALLARD,
     YELP_URI_DOCUMENT_TYPE_MAN,
@@ -62,17 +62,20 @@ struct _YelpUriClass {
 };
 
 
-GType             yelp_uri_get_type     (void);
+GType                yelp_uri_get_type           (void);
 
-YelpUri *         yelp_uri_resolve           (const gchar *arg);
-YelpUri *         yelp_uri_resolve_relative  (YelpUri     *base,
-                                              const gchar *arg);
+YelpUri *            yelp_uri_new                (const gchar  *arg);
+YelpUri *            yelp_uri_new_relative       (YelpUri      *base,
+                                                  const gchar  *arg);
 
-YelpUriDocumentType  yelp_uri_get_document_type  (YelpUri   *uri);
-gchar *              yelp_uri_get_base_uri       (YelpUri   *uri);
-gchar **             yelp_uri_get_search_path    (YelpUri   *uri);
-gchar *              yelp_uri_get_page_id        (YelpUri   *uri);
-gchar *              yelp_uri_get_frag_id        (YelpUri   *uri);
+void                 yelp_uri_resolve            (YelpUri      *uri);
+
+gboolean             yelp_uri_is_resolved        (YelpUri      *uri);
+YelpUriDocumentType  yelp_uri_get_document_type  (YelpUri      *uri);
+gchar *              yelp_uri_get_base_uri       (YelpUri      *uri);
+gchar **             yelp_uri_get_search_path    (YelpUri      *uri);
+gchar *              yelp_uri_get_page_id        (YelpUri      *uri);
+gchar *              yelp_uri_get_frag_id        (YelpUri      *uri);
 
 G_END_DECLS
 

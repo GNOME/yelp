@@ -46,9 +46,13 @@ static void        yelp_view_set_property         (GObject            *object,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
 
+static void        view_clear_load                (YelpView           *view);
+static void        view_load_page                 (YelpView           *view);
 static void        view_show_error_page           (YelpView           *view,
                                                    GError             *error);
 
+static void        uri_resolved                   (YelpUri            *uri,
+                                                   YelpView           *view);
 static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
@@ -71,6 +75,7 @@ G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW);
 typedef struct _YelpViewPrivate YelpViewPrivate;
 struct _YelpViewPrivate {
     YelpUri       *uri;
+    gulong         uri_resolved;
     YelpDocument  *document;
     GCancellable  *cancellable;
 
@@ -203,7 +208,7 @@ void
 yelp_view_load (YelpView    *view,
                 const gchar *uri)
 {
-    YelpUri *yuri = yelp_uri_resolve (uri);
+    YelpUri *yuri = yelp_uri_new (uri);
     yelp_view_load_uri (view, yuri);
     g_object_unref (yuri);
 }
@@ -212,12 +217,21 @@ void
 yelp_view_load_uri (YelpView *view,
                     YelpUri  *uri)
 {
-    YelpDocument *document = yelp_document_get_for_uri (uri);
+    YelpViewPrivate *priv = GET_PRIV (view);
 
-    yelp_view_load_document (view, uri, document);
+    view_clear_load (view);
+    g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
-    if (document)
-        g_object_unref (document);
+    priv->uri = g_object_ref (uri);
+    if (!yelp_uri_is_resolved (uri)) {
+        priv->uri_resolved = g_signal_connect (uri, "resolved",
+                                               G_CALLBACK (uri_resolved),
+                                               view);
+        yelp_uri_resolve (uri);
+    }
+    else {
+        uri_resolved (uri, view);
+    }
 }
 
 void
@@ -226,28 +240,74 @@ yelp_view_load_document (YelpView     *view,
                          YelpDocument *document)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    gchar *page_id;
 
+    g_return_if_fail (yelp_uri_is_resolved (uri));
+
+    view_clear_load (view);
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
-    if (!document) {
+    priv->uri = g_object_ref (uri);
+    g_object_ref (document);
+    if (priv->document)
+        g_object_unref (document);
+    priv->document = document;
+
+    view_load_page (view);
+}
+
+/******************************************************************************/
+
+static void
+view_clear_load (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    if (priv->uri) {
+        if (priv->uri_resolved != 0) {
+            g_signal_handler_disconnect (priv->uri, priv->uri_resolved);
+            priv->uri_resolved = 0;
+        }
+        g_object_unref (priv->uri);
+        priv->uri = NULL;
+    }
+
+    if (priv->cancellable) {
+        g_cancellable_cancel (priv->cancellable);
+        priv->cancellable = NULL;
+    }
+}
+
+static void
+view_load_page (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    gchar *page_id;
+
+    g_return_if_fail (priv->cancellable == NULL);
+
+    if (priv->document == NULL) {
         GError *error;
         gchar *base_uri;
-        base_uri = yelp_uri_get_base_uri (uri);
+        /* FIXME: and if priv->uri is NULL? */
+        base_uri = yelp_uri_get_base_uri (priv->uri);
         /* FIXME: CANT_READ isn't right */
-        error = g_error_new (YELP_ERROR, YELP_ERROR_CANT_READ,
-                             _("Could not load a document for ‘%s’"),
-                             base_uri);
-        g_free (base_uri);
+        if (base_uri) {
+            error = g_error_new (YELP_ERROR, YELP_ERROR_CANT_READ,
+                                 _("Could not load a document for ‘%s’"),
+                                 base_uri);
+            g_free (base_uri);
+        }
+        else {
+            error = g_error_new (YELP_ERROR, YELP_ERROR_CANT_READ,
+                                 _("Could not load a document"));
+        }
         view_show_error_page (view, error);
         return;
     }
 
-    page_id = yelp_uri_get_page_id (uri);
-    priv->uri = g_object_ref (uri);
+    page_id = yelp_uri_get_page_id (priv->uri);
     priv->cancellable = g_cancellable_new ();
-    priv->document = g_object_ref (document);
-    yelp_document_request_page (document,
+    yelp_document_request_page (priv->document,
                                 page_id,
                                 priv->cancellable,
                                 (YelpDocumentCallback) document_callback,
@@ -304,6 +364,23 @@ view_show_error_page (YelpView *view,
                                  "about:error");
     g_error_free (error);
     g_free (page);
+}
+
+/******************************************************************************/
+
+static void
+uri_resolved (YelpUri  *uri,
+              YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpDocument *document = yelp_document_get_for_uri (uri);
+
+    if (priv->document)
+        g_object_unref (priv->document);
+
+    priv->document = document;
+
+    view_load_page (view);
 }
 
 static void
