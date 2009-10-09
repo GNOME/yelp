@@ -37,6 +37,7 @@ static void           yelp_uri_init         (YelpUri        *uri);
 static void           yelp_uri_dispose      (GObject        *object);
 static void           yelp_uri_finalize     (GObject        *object);
 
+static void           resolve_start         (YelpUri        *uri);
 static void           resolve_async         (YelpUri        *uri);
 static gboolean       resolve_final         (YelpUri        *uri);
 
@@ -187,9 +188,16 @@ void
 yelp_uri_resolve (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
-    if (priv->resolver == NULL)
-        priv->resolver = g_thread_create ((GThreadFunc) resolve_async,
-                                          uri, FALSE, NULL);
+
+    if (priv->res_base && !yelp_uri_is_resolved (priv->res_base)) {
+        g_signal_connect_swapped (priv->res_base, "resolved",
+                                  G_CALLBACK (resolve_start),
+                                  uri);
+        yelp_uri_resolve (priv->res_base);
+    }
+    else {
+        resolve_start (uri);
+    }
 }
 
 /* We want code to be able to do something like this:
@@ -216,6 +224,16 @@ yelp_uri_resolve (YelpUri *uri)
  * 4) Once a URI is resolved, it is immutable.
  */
 static void
+resolve_start (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+
+    if (priv->resolver == NULL)
+        priv->resolver = g_thread_create ((GThreadFunc) resolve_async,
+                                          uri, FALSE, NULL);
+}
+
+static void
 resolve_async (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
@@ -232,6 +250,40 @@ resolve_async (YelpUri *uri)
     }
     else if (g_str_has_prefix (priv->res_arg, "info:")) {
         resolve_info_uri (uri);
+    }
+    else if (priv->res_base != NULL) {
+        YelpUriPrivate *base_priv = GET_PRIV (priv->res_base);
+        switch (base_priv->doctype) {
+        case YELP_URI_DOCUMENT_TYPE_UNRESOLVED:
+            break;
+        case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
+            /* FIXME: set page_id and frag_id */
+            break;
+        case YELP_URI_DOCUMENT_TYPE_MALLARD:
+            /* FIXME: set page_id and frag_id */
+            break;
+        case YELP_URI_DOCUMENT_TYPE_MAN:
+            /* FIXME: what do we do? */
+            break;
+        case YELP_URI_DOCUMENT_TYPE_INFO:
+            /* FIXME: what do we do? */
+            break;
+        case YELP_URI_DOCUMENT_TYPE_TEXT:
+        case YELP_URI_DOCUMENT_TYPE_HTML:
+        case YELP_URI_DOCUMENT_TYPE_XHTML:
+            /* FIXME: look up a relative file */
+            break;
+        case YELP_URI_DOCUMENT_TYPE_TOC:
+            /* FIXME: what do we do? */
+            break;
+        case YELP_URI_DOCUMENT_TYPE_SEARCH:
+            /* FIXME: what do we do? */
+            break;
+        case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
+        case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
+        case YELP_URI_DOCUMENT_TYPE_ERROR:
+            break;
+        }
     }
     else {
         resolve_file_path (uri);
@@ -252,6 +304,16 @@ resolve_final (YelpUri *uri)
     else
         priv->doctype = YELP_URI_DOCUMENT_TYPE_ERROR;
     
+    if (priv->res_base) {
+        g_object_unref (priv->res_base);
+        priv->res_base = NULL;
+    }
+
+    if (priv->res_arg) {
+        g_free (priv->res_arg);
+        priv->res_arg = NULL;
+    }
+
     g_signal_emit (uri, uri_signals[RESOLVED], 0);
     return FALSE;
 }
@@ -475,12 +537,12 @@ static void
 resolve_ghelp_uri (YelpUri *uri)
 {
     /* ghelp:/path/to/file
-     * ghelp:document
+     * ghelp:document[/file][?page][#frag]
      */
     YelpUriPrivate *priv = GET_PRIV (uri);
     const gchar const *helpdirs[3] = {"help", "gnome/help", NULL};
-    gchar *docid = NULL;
-    gchar *colon, *hash, *slash, *pageid; /* do not free */
+    gchar *document, *slash, *query, *hash;
+    gchar *colon, *c; /* do not free */
 
     colon = strchr (priv->res_arg, ':');
     if (!colon) {
@@ -488,50 +550,65 @@ resolve_ghelp_uri (YelpUri *uri)
         return;
     }
 
-    colon++;
-    if (*colon == '/') {
+    slash = query = hash = NULL;
+    for (c = colon; *c != '\0'; c++) {
+        if (*c == '#' && hash == NULL)
+            hash = c;
+        else if (*c == '?' && query == NULL && hash == NULL)
+            query = c;
+        else if (*c == '/' && slash == NULL && query == NULL && hash == NULL)
+            slash = c;
+    }
+
+    if (slash || query || hash)
+        document = g_strndup (colon + 1,
+                              (slash ? slash : (query ? query : hash)) - colon - 1);
+    else
+        document = g_strdup (colon + 1);
+
+    if (slash && (query || hash))
+        slash = g_strndup (slash + 1,
+                           (query ? query : hash) - slash - 1);
+    else if (slash)
+        slash = g_strdup (slash + 1);
+
+    if (query && hash)
+        query = g_strndup (query + 1,
+                           hash - query - 1);
+    else if (query)
+        query = g_strdup (query + 1);
+
+    if (hash)
+        hash = g_strdup (hash + 1);
+
+    if (*(colon + 1) == '/') {
         gchar *newuri;
-        newuri = g_strdup_printf ("file:%s", colon);
+        newuri = g_strdup_printf ("file:/%s", slash);
         g_free (priv->res_arg);
         priv->res_arg = newuri;
         resolve_file_uri (uri);
-        return;
-    }
-
-    hash = strchr (colon, '?');
-    if (!hash)
-        hash = strchr (colon, '#');
-    if (hash) {
-        resolve_page_and_frag (uri, hash + 1);
-        docid = g_strndup (colon, hash - colon);
     }
     else {
-        docid = g_strdup (colon);
+        resolve_data_dirs (uri, helpdirs, document, slash ? slash : document);
     }
 
-    slash = strchr (docid, '/');
-    if (slash) {
-        *slash = '\0';
-        pageid = slash + 1;
+    if (query && hash) {
+        priv->page_id = query;
+        priv->frag_id = hash;
     }
-    else {
-        pageid = docid;
+    else if (query) {
+        priv->page_id = query;
+        if (priv->tmptype != YELP_URI_DOCUMENT_TYPE_MALLARD)
+            priv->frag_id = g_strdup (query);
     }
-
-    resolve_data_dirs (uri, helpdirs, docid, pageid);
-
-    /* Specifying pages and anchors for Mallard documents with ghelp URIs is sort
-       of hacked on.  This is a touch inconsistent, but it maintains compatibility
-       with the way things worked in 2.28, and ghelp URIs should be entering
-       compatibility-only mode.
-     */
-    if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_MALLARD && pageid != docid) {
-        if (priv->page_id)
-            g_free (priv->page_id);
-        priv->page_id = g_strdup (pageid);
+    else if (hash) {
+        priv->page_id = hash;
+        priv->frag_id = g_strdup (hash);
     }
 
-    g_free (docid);
+    g_free (document);
+    g_free (slash);
+    return;
 }
 
 static void
