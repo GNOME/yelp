@@ -287,15 +287,15 @@ view_load_page (YelpView *view)
 
     if (priv->document == NULL) {
         GError *error;
-        gchar *base_uri;
+        gchar *docuri;
         /* FIXME: and if priv->uri is NULL? */
-        base_uri = yelp_uri_get_base_uri (priv->uri);
+        docuri = yelp_uri_get_document_uri (priv->uri);
         /* FIXME: CANT_READ isn't right */
-        if (base_uri) {
+        if (docuri) {
             error = g_error_new (YELP_ERROR, YELP_ERROR_CANT_READ,
                                  _("Could not load a document for ‘%s’"),
-                                 base_uri);
-            g_free (base_uri);
+                                 docuri);
+            g_free (docuri);
         }
         else {
             error = g_error_new (YELP_ERROR, YELP_ERROR_CANT_READ,
@@ -396,19 +396,19 @@ document_callback (YelpDocument       *document,
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents = yelp_document_read_contents (document, NULL);
-        gchar *base_uri, *mime_type, *page_id;
-        base_uri = yelp_uri_get_base_uri (priv->uri);
+        gchar *real_uri, *mime_type, *page_id;
+        real_uri = yelp_uri_get_canonical_uri (priv->uri);
         page_id = yelp_uri_get_page_id (priv->uri);
         mime_type = yelp_document_get_mime_type (document, page_id);
         webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                      contents,
                                      mime_type,
                                      "UTF-8",
-                                     base_uri);
+                                     real_uri);
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
         g_free (page_id);
         g_free (mime_type);
-        g_free (base_uri);
+        g_free (real_uri);
 	yelp_document_finish_read (document, contents);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {

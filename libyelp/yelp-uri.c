@@ -32,30 +32,32 @@
 #include "yelp-uri.h"
 #include "yelp-debug.h"
 
-static void           yelp_uri_class_init   (YelpUriClass   *klass);
-static void           yelp_uri_init         (YelpUri        *uri);
-static void           yelp_uri_dispose      (GObject        *object);
-static void           yelp_uri_finalize     (GObject        *object);
+static void           yelp_uri_class_init        (YelpUriClass   *klass);
+static void           yelp_uri_init              (YelpUri        *uri);
+static void           yelp_uri_dispose           (GObject        *object);
+static void           yelp_uri_finalize          (GObject        *object);
 
-static void           resolve_start         (YelpUri        *uri);
-static void           resolve_async         (YelpUri        *uri);
-static gboolean       resolve_final         (YelpUri        *uri);
+static void           resolve_start              (YelpUri        *uri);
+static void           resolve_async              (YelpUri        *uri);
+static gboolean       resolve_final              (YelpUri        *uri);
 
-static void           resolve_file_uri      (YelpUri        *uri);
-static void           resolve_file_path     (YelpUri        *uri);
-static void           resolve_data_dirs     (YelpUri        *uri,
-                                             const gchar   **subdirs,
-                                             const gchar    *docid,
-                                             const gchar    *pageid);
-static void           resolve_ghelp_uri     (YelpUri        *uri);
-static void           resolve_man_uri       (YelpUri        *uri);
-static void           resolve_info_uri      (YelpUri        *uri);
-static void           resolve_page_and_frag (YelpUri        *uri,
-                                             const gchar    *arg);
-static void           resolve_common        (YelpUri        *uri);
+static void           resolve_file_uri           (YelpUri        *uri);
+static void           resolve_file_path          (YelpUri        *uri);
+static void           resolve_data_dirs          (YelpUri        *uri,
+                                                  const gchar   **subdirs,
+                                                  const gchar    *docid,
+                                                  const gchar    *pageid);
+static void           resolve_ghelp_uri          (YelpUri        *uri);
+static void           resolve_man_uri            (YelpUri        *uri);
+static void           resolve_info_uri           (YelpUri        *uri);
+static void           resolve_relative_multipage (YelpUri        *uri);
+static void           resolve_page_and_frag      (YelpUri        *uri,
+                                                  const gchar    *arg);
+static void           resolve_gfile              (YelpUri        *uri,
+                                                  const gchar    *hash);
 
-static gboolean       is_man_path           (const gchar    *uri,
-                                             const gchar    *encoding);
+static gboolean       is_man_path                (const gchar    *uri,
+                                                  const gchar    *encoding);
 
 G_DEFINE_TYPE (YelpUri, yelp_uri, G_TYPE_OBJECT);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_URI, YelpUriPrivate))
@@ -67,7 +69,10 @@ struct _YelpUriPrivate {
     YelpUriDocumentType   doctype;
     YelpUriDocumentType   tmptype;
 
+    gchar                *docuri;
+    gchar                *fulluri;
     GFile                *gfile;
+
     gchar               **search_path;
     gchar                *page_id;
     gchar                *frag_id;
@@ -149,6 +154,8 @@ yelp_uri_finalize (GObject *object)
 {
     YelpUriPrivate *priv = GET_PRIV (object);
 
+    g_free (priv->docuri);
+    g_free (priv->fulluri);
     g_strfreev (priv->search_path);
     g_free (priv->page_id);
     g_free (priv->frag_id);
@@ -251,16 +258,21 @@ resolve_async (YelpUri *uri)
     else if (g_str_has_prefix (priv->res_arg, "info:")) {
         resolve_info_uri (uri);
     }
+    else if (strchr (priv->res_arg, ':')) {
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
+        /* FIXME: resolve as external URI */
+    }
+    else if (strchr (priv->res_arg, '/')) {
+        resolve_file_path (uri);
+    }
     else if (priv->res_base != NULL) {
         YelpUriPrivate *base_priv = GET_PRIV (priv->res_base);
         switch (base_priv->doctype) {
         case YELP_URI_DOCUMENT_TYPE_UNRESOLVED:
             break;
         case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
-            /* FIXME: set page_id and frag_id */
-            break;
         case YELP_URI_DOCUMENT_TYPE_MALLARD:
-            /* FIXME: set page_id and frag_id */
+            resolve_relative_multipage (uri);
             break;
         case YELP_URI_DOCUMENT_TYPE_MAN:
             /* FIXME: what do we do? */
@@ -318,30 +330,6 @@ resolve_final (YelpUri *uri)
     return FALSE;
 }
 
-/*
-YelpUri *
-yelp_uri_resolve_relative (YelpUri *base, const gchar *arg)
-{
-    YelpUri *ret;
-    YelpUriPrivate *priv;
-
-    ret = (YelpUri *) g_object_new (YELP_TYPE_URI, NULL);
-    priv = GET_PRIV (ret);
-    priv->doctype = YELP_URI_DOCUMENT_TYPE_UNKNOWN;
-
-    else if (strchr (arg, ':')) {
-        priv->doctype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
-        priv->gfile = g_file_new_for_uri (arg);
-        TRUE;
-    }
-    else {
-        resolve_file_path (ret, base, arg);
-    }
-
-    return ret;
-}
-*/
-
 /******************************************************************************/
 
 gboolean
@@ -359,12 +347,30 @@ yelp_uri_get_document_type (YelpUri *uri)
 }
 
 gchar *
-yelp_uri_get_base_uri (YelpUri *uri)
+yelp_uri_get_document_uri (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
-    return priv->gfile ? g_file_get_uri (priv->gfile) : NULL;
+    return g_strdup (priv->docuri);
+}
+
+gchar *
+yelp_uri_get_canonical_uri (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return NULL;
+    return g_strdup (priv->fulluri);
+}
+
+GFile *
+yelp_uri_get_file (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return NULL;
+    return priv->gfile ? g_object_ref (priv->gfile) : NULL;
 }
 
 gchar **
@@ -403,19 +409,16 @@ resolve_file_uri (YelpUri *uri)
     gchar *uristr;
     const gchar *hash = strchr (priv->res_arg, '#');
 
-    if (hash)
+    if (hash) {
         uristr = g_strndup (priv->res_arg, hash - priv->res_arg);
+        hash++;
+    }
     else
         uristr = priv->res_arg;
 
     priv->gfile = g_file_new_for_uri (uristr);
 
-    if (hash) {
-        resolve_page_and_frag (uri, hash + 1);
-        g_free (uristr);
-    }
-
-    resolve_common (uri);
+    resolve_gfile (uri, hash);
 }
 
 static void
@@ -429,8 +432,10 @@ resolve_file_path (YelpUri *uri)
     if (priv->res_base)
         base_priv = GET_PRIV (priv->res_base);
 
-    if (hash)
+    if (hash) {
         path = g_strndup (priv->res_arg, hash - priv->res_arg);
+        hash++;
+    }
     else
         path = priv->res_arg;
 
@@ -450,12 +455,7 @@ resolve_file_path (YelpUri *uri)
         g_free (cur);
     }
 
-    if (hash) {
-        resolve_page_and_frag (uri, hash + 1);
-        g_free (path);
-    }
-
-    resolve_common (uri);
+    resolve_gfile (uri, hash);
 }
 
 static void
@@ -606,6 +606,17 @@ resolve_ghelp_uri (YelpUri *uri)
         priv->frag_id = g_strdup (hash);
     }
 
+    priv->docuri = g_strconcat ("ghelp:", document,
+                                slash ? "/" : NULL,
+                                slash, NULL);
+
+    priv->fulluri = g_strconcat (priv->docuri,
+                                 priv->page_id ? "?" : "",
+                                 priv->page_id ? priv->page_id : "",
+                                 priv->frag_id ? "#" : "",
+                                 priv->frag_id ? priv->frag_id : "",
+                                 NULL);
+
     g_free (document);
     g_free (slash);
     return;
@@ -628,6 +639,7 @@ resolve_man_uri (YelpUri *uri)
     gchar *fullpath = NULL;
 
     /* not to be freed */
+    gchar *realsection;
     gchar *colon, *hash;
     gchar *lbrace = NULL;
     gchar *rbrace = NULL;
@@ -697,35 +709,34 @@ resolve_man_uri (YelpUri *uri)
             }
 
             for (k = 0; section ? k == 0 : mancats[k] != NULL; k++) {
-                gchar *sectiondir;
                 if (section)
-                    sectiondir = g_strconcat ("man", section, NULL);
+                    realsection = section;
                 else
-                    sectiondir = g_strconcat ("man", mancats[k], NULL);
+                    realsection = mancats[k];
 
-                fullpath = g_strconcat (langdir, "/", sectiondir,
-                                        "/", name, ".", sectiondir + 3,
+                fullpath = g_strconcat (langdir, "/man", realsection,
+                                        "/", name, ".", realsection,
                                         NULL);
                 if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
                     goto gotit;
                 g_free (fullpath);
 
-                fullpath = g_strconcat (langdir, "/", sectiondir,
-                                        "/", name, ".", sectiondir + 3, ".gz",
+                fullpath = g_strconcat (langdir, "/man", realsection,
+                                        "/", name, ".", realsection, ".gz",
                                         NULL);
                 if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
                     goto gotit;
                 g_free (fullpath);
 
-                fullpath = g_strconcat (langdir, "/", sectiondir,
-                                        "/", name, ".", sectiondir + 3, ".bz2",
+                fullpath = g_strconcat (langdir, "/man", realsection,
+                                        "/", name, ".", realsection, ".bz2",
                                         NULL);
                 if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
                     goto gotit;
                 g_free (fullpath);
 
-                fullpath = g_strconcat (langdir, "/", sectiondir,
-                                        "/", name, ".", sectiondir + 3, ".lzma",
+                fullpath = g_strconcat (langdir, "/man", realsection,
+                                        "/", name, ".", realsection, ".lzma",
                                         NULL);
                 if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
                     goto gotit;
@@ -733,7 +744,6 @@ resolve_man_uri (YelpUri *uri)
 
                 fullpath = NULL;
             gotit:
-                g_free (sectiondir);
                 if (fullpath)
                     break;
             }
@@ -748,7 +758,9 @@ resolve_man_uri (YelpUri *uri)
     if (fullpath) {
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
         priv->gfile = g_file_new_for_path (fullpath);
-        resolve_common (uri);
+        priv->docuri = g_strconcat ("man:",  name, ".", realsection, NULL);
+        priv->fulluri = g_strdup (priv->docuri);
+        resolve_gfile (uri, NULL);
         g_free (fullpath);
     } else {
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
@@ -764,6 +776,42 @@ static void
 resolve_info_uri (YelpUri *uri)
 {
     /* FIXME */
+}
+
+static void
+resolve_relative_multipage (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *base_priv = GET_PRIV (priv->res_base);
+
+    priv->tmptype = base_priv->doctype;
+    priv->gfile = g_object_ref (base_priv->gfile);
+    priv->search_path = g_strdupv (base_priv->search_path);
+    priv->docuri = g_strdup (base_priv->docuri);
+
+    if (priv->res_arg[0] == '#') {
+        priv->page_id = g_strdup (base_priv->page_id);
+        priv->frag_id = g_strdup (priv->res_arg + 1);
+    }
+    else {
+        gchar *hash = strchr (priv->res_arg, '#');
+        if (hash) {
+            priv->page_id = g_strndup (priv->res_arg, hash - priv->res_arg);
+            priv->frag_id = g_strdup (hash + 1);
+        }
+        else {
+            priv->page_id = g_strdup (priv->res_arg);
+            priv->frag_id = NULL;
+        }
+    }
+
+    /* FIXME: ONLY FOR ghelp */
+    priv->fulluri = g_strconcat (priv->docuri,
+                                 priv->page_id ? "?" : "",
+                                 priv->page_id ? priv->page_id : "",
+                                 priv->frag_id ? "#" : "",
+                                 priv->frag_id ? priv->frag_id : "",
+                                 NULL);
 }
 
 static void
@@ -787,7 +835,7 @@ resolve_page_and_frag (YelpUri *uri, const gchar *arg)
 }
 
 static void
-resolve_common (YelpUri *uri)
+resolve_gfile (YelpUri *uri, const gchar *hash)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
     GFileInfo *info;
@@ -834,12 +882,20 @@ resolve_common (YelpUri *uri)
                 g_str_equal (mime_type, "application/docbook+xml") ||
                 g_str_equal (mime_type, "application/xml")) {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                if (priv->page_id == NULL)
+                    priv->page_id = g_strdup (hash);
+                if (priv->frag_id == NULL)
+                    priv->frag_id = g_strdup (hash);
             }
             else if (g_str_equal (mime_type, "text/html")) {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_HTML;
+                if (priv->frag_id == NULL)
+                    priv->frag_id = g_strdup (hash);
             }
             else if (g_str_equal (mime_type, "application/xhtml+xml")) {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_XHTML;
+                if (priv->frag_id == NULL)
+                    priv->frag_id = g_strdup (hash);
             }
             else if (g_str_equal (mime_type, "application/x-gzip")) {
                 if (g_str_has_suffix (basename, ".info.gz"))
@@ -872,12 +928,25 @@ resolve_common (YelpUri *uri)
                     priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
                 else
                     priv->tmptype = YELP_URI_DOCUMENT_TYPE_TEXT;
+                if (priv->frag_id == NULL)
+                    priv->frag_id = g_strdup (hash);
             }
             else {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
             }
         }
     }
+
+    if (priv->docuri == NULL)
+        priv->docuri = g_file_get_uri (priv->gfile);
+
+    if (priv->fulluri == NULL)
+        priv->fulluri = g_strconcat (priv->docuri,
+                                     (priv->page_id || priv->frag_id) ? "#" : NULL,
+                                     priv->page_id ? priv->page_id : priv->frag_id,
+                                     NULL);
+
+    g_object_unref (info);
 }
 
 static gboolean

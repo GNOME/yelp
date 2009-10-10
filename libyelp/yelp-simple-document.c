@@ -42,8 +42,6 @@ struct _Request {
 };
 
 struct _YelpSimpleDocumentPriv {
-    gchar        *base_uri;
-
     GFile        *file;
     GInputStream *stream;
 
@@ -51,6 +49,7 @@ struct _YelpSimpleDocumentPriv {
     gssize        contents_len;
     gssize        contents_read;
     gchar        *mime_type;
+    gboolean      started;
     gboolean      finished;
 
     GSList       *reqs;
@@ -122,6 +121,7 @@ yelp_simple_document_init (YelpSimpleDocument *document)
     document->priv->file = NULL;
     document->priv->stream = NULL;
 
+    document->priv->started = FALSE;
     document->priv->finished = FALSE;
     document->priv->contents = NULL;
     document->priv->mime_type = NULL;
@@ -156,8 +156,6 @@ yelp_simple_document_finalize (GObject *object)
 {
     YelpSimpleDocument *document = YELP_SIMPLE_DOCUMENT (object);
 
-    g_free (document->priv->base_uri);
-
     g_free (document->priv->contents);
     g_free (document->priv->mime_type);
 
@@ -171,7 +169,7 @@ yelp_simple_document_new (YelpUri *uri)
 
     document = (YelpSimpleDocument *) g_object_new (YELP_TYPE_SIMPLE_DOCUMENT, NULL);
 
-    document->priv->base_uri = yelp_uri_get_base_uri (uri);
+    document->priv->file = yelp_uri_get_file (uri);
 
     return (YelpDocument *) document;
 }
@@ -205,8 +203,8 @@ document_request_page (YelpDocument         *document,
 	g_idle_add ((GSourceFunc) document_signal_all, simple);
 	ret = TRUE;
     }
-    else if (simple->priv->file == NULL) {
-	simple->priv->file = g_file_new_for_uri (simple->priv->base_uri);
+    else if (!simple->priv->started) {
+	simple->priv->started = TRUE;
 	g_file_query_info_async (simple->priv->file,
 				 G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
 				 G_FILE_QUERY_INFO_NONE,

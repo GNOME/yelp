@@ -116,7 +116,7 @@ YelpDocument *
 yelp_document_get_for_uri (YelpUri *uri)
 {
     static GHashTable *documents = NULL;
-    gchar *base_uri;
+    gchar *docuri;
     YelpDocument *document = NULL;
 
     if (documents == NULL)
@@ -125,14 +125,14 @@ yelp_document_get_for_uri (YelpUri *uri)
 
     g_return_val_if_fail (yelp_uri_is_resolved (uri), NULL);
 
-    base_uri = yelp_uri_get_base_uri (uri);
-    if (base_uri == NULL)
+    docuri = yelp_uri_get_document_uri (uri);
+    if (docuri == NULL)
 	return NULL;
 
-    document = g_hash_table_lookup (documents, base_uri);
+    document = g_hash_table_lookup (documents, docuri);
 
     if (document != NULL) {
-	g_free (base_uri);
+	g_free (docuri);
 	return g_object_ref (document);
     }
 
@@ -167,11 +167,11 @@ yelp_document_get_for_uri (YelpUri *uri)
     }
 
     if (document != NULL) {
-	g_hash_table_insert (documents, base_uri, document);
+	g_hash_table_insert (documents, docuri, document);
 	return g_object_ref (document);
     }
 
-    g_free (base_uri);
+    g_free (docuri);
     return NULL;
 }
 

@@ -34,6 +34,7 @@ GMainLoop *loop;
 static void 
 print_uri (YelpUri *uri, GOutputStream *stream)
 {
+    GFile *file;
     gchar *type, *tmp, **tmpv, *out;
 
     switch (yelp_uri_get_document_type (uri)) {
@@ -78,16 +79,34 @@ print_uri (YelpUri *uri, GOutputStream *stream)
         break;
     }
 
-    out = g_strdup_printf ("TYPE:  %s\n", type);
+    out = g_strdup_printf ("DOCUMENT TYPE: %s\n", type);
     g_output_stream_write (stream, out, strlen (out), NULL, NULL);
     g_free (out);
 
-    tmp = yelp_uri_get_base_uri (uri);
+    tmp = yelp_uri_get_document_uri (uri);
     if (tmp) {
-        out = g_strdup_printf ("URI:   %s\n", tmp);
+        out = g_strdup_printf ("DOCUMENT URI:  %s\n", tmp);
         g_output_stream_write (stream, out, strlen (out), NULL, NULL);
         g_free (out);
         g_free (tmp);
+    }
+
+    tmp = yelp_uri_get_canonical_uri (uri);
+    if (tmp) {
+        out = g_strdup_printf ("CANONICAL URI: %s\n", tmp);
+        g_output_stream_write (stream, out, strlen (out), NULL, NULL);
+        g_free (out);
+        g_free (tmp);
+    }
+
+    file = yelp_uri_get_file (uri);
+    if (file) {
+        tmp = g_file_get_uri (file);
+        out = g_strdup_printf ("FILE URI:      %s\n", tmp);
+        g_output_stream_write (stream, out, strlen (out), NULL, NULL);
+        g_free (out);
+        g_free (tmp);
+        g_object_unref (file);
     }
 
     tmpv = yelp_uri_get_search_path (uri);
@@ -95,9 +114,9 @@ print_uri (YelpUri *uri, GOutputStream *stream)
         int i;
         for (i = 0; tmpv[i]; i++) {
             if (i == 0)
-                out = g_strdup_printf ("PATH:  %s\n", tmpv[i]);
+                out = g_strdup_printf ("SEARCH PATH:   %s\n", tmpv[i]);
             else
-                out = g_strdup_printf ("       %s\n", tmpv[i]);
+                out = g_strdup_printf ("               %s\n", tmpv[i]);
             g_output_stream_write (stream, out, strlen (out), NULL, NULL);
             g_free (out);
         }
@@ -106,7 +125,7 @@ print_uri (YelpUri *uri, GOutputStream *stream)
 
     tmp = yelp_uri_get_page_id (uri);
     if (tmp) {
-        out = g_strdup_printf ("PAGE:  %s\n", tmp);
+        out = g_strdup_printf ("PAGE ID:       %s\n", tmp);
         g_output_stream_write (stream, out, strlen (out), NULL, NULL);
         g_free (out);
         g_free (tmp);
@@ -114,7 +133,7 @@ print_uri (YelpUri *uri, GOutputStream *stream)
 
     tmp = yelp_uri_get_frag_id (uri);
     if (tmp) {
-        out = g_strdup_printf ("FRAG:  %s\n", tmp);
+        out = g_strdup_printf ("FRAG ID:       %s\n", tmp);
         g_output_stream_write (stream, out, strlen (out), NULL, NULL);
         g_free (out);
         g_free (tmp);
@@ -127,6 +146,7 @@ static void run_test (gconstpointer data)
     gchar contents[1024];
     gsize bytes;
     gchar *curi, *newline;
+    gchar **uriv;
     GFile *file = G_FILE (data);
     YelpUri *uri;
     GOutputStream *outstream;
@@ -138,7 +158,13 @@ static void run_test (gconstpointer data)
                                        NULL, NULL));
     newline = strchr (contents, '\n');
     curi = g_strndup (contents, newline - contents);
-    uri = yelp_uri_new (curi);
+    uriv = g_strsplit (curi, " ", 2);
+    g_free (curi);
+    uri = yelp_uri_new (uriv[0]);
+    if (uriv[1] != NULL)
+        uri = yelp_uri_new_relative (uri, uriv[1]);
+    g_strfreev (uriv);
+
     yelp_uri_resolve (uri);
 
     while (!yelp_uri_is_resolved (uri))

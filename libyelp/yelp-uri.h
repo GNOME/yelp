@@ -72,7 +72,12 @@ void                 yelp_uri_resolve            (YelpUri      *uri);
 
 gboolean             yelp_uri_is_resolved        (YelpUri      *uri);
 YelpUriDocumentType  yelp_uri_get_document_type  (YelpUri      *uri);
-gchar *              yelp_uri_get_base_uri       (YelpUri      *uri);
+
+gchar *              yelp_uri_get_canonical_uri  (YelpUri      *uri);
+gchar *              yelp_uri_get_document_uri   (YelpUri      *uri);
+
+GFile *              yelp_uri_get_file           (YelpUri      *uri);
+
 gchar **             yelp_uri_get_search_path    (YelpUri      *uri);
 gchar *              yelp_uri_get_page_id        (YelpUri      *uri);
 gchar *              yelp_uri_get_frag_id        (YelpUri      *uri);
