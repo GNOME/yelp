@@ -32,10 +32,13 @@
 GMainLoop *loop;
 
 static void 
-print_uri (YelpUri *uri, GOutputStream *stream)
+print_uri (gchar *orig, YelpUri *uri, GOutputStream *stream)
 {
     GFile *file;
     gchar *type, *tmp, **tmpv, *out;
+
+    g_output_stream_write (stream, orig, strlen (orig), NULL, NULL);
+    g_output_stream_write (stream, "\n", 1, NULL, NULL);
 
     switch (yelp_uri_get_document_type (uri)) {
     case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
@@ -150,7 +153,7 @@ static void run_test (gconstpointer data)
     GFile *file = G_FILE (data);
     YelpUri *uri;
     GOutputStream *outstream;
-    gchar *test, *out;
+    gchar *out;
 
     stream = g_file_read (file, NULL, NULL);
     g_assert (g_input_stream_read_all (G_INPUT_STREAM (stream),
@@ -159,7 +162,6 @@ static void run_test (gconstpointer data)
     newline = strchr (contents, '\n');
     curi = g_strndup (contents, newline - contents);
     uriv = g_strsplit (curi, " ", 2);
-    g_free (curi);
     uri = yelp_uri_new (uriv[0]);
     if (uriv[1] != NULL)
         uri = yelp_uri_new_relative (uri, uriv[1]);
@@ -172,10 +174,10 @@ static void run_test (gconstpointer data)
              g_main_context_iteration (NULL, FALSE);
 
     outstream = g_memory_output_stream_new (NULL, 0, g_realloc, g_free);
-    print_uri (uri, outstream);
+    print_uri (curi, uri, outstream);
     out = (gchar *) g_memory_output_stream_get_data (G_MEMORY_OUTPUT_STREAM (outstream));
-    test = g_strndup (newline + 1, bytes - (newline - contents) - 1);
-    g_assert_cmpstr (out, ==, test);
+    g_free (curi);
+    g_assert_cmpstr (out, ==, contents);
 }
 
 static int
@@ -210,10 +212,10 @@ run_all_tests (int argc, char **argv)
 }
 
 static void
-uri_resolved (YelpUri *uri)
+uri_resolved (YelpUri *uri, gchar *orig)
 {
     GOutputStream *stream = g_unix_output_stream_new (1, FALSE);
-    print_uri (uri, stream);
+    print_uri (orig, uri, stream);
     g_object_unref (uri);
     g_main_loop_quit (loop);
 }
@@ -240,7 +242,13 @@ main (int argc, char **argv)
             uri = yelp_uri_new (argv[1]);
         }
         if (uri) {
-            g_signal_connect (uri, "resolved", G_CALLBACK (uri_resolved), NULL);
+            gchar *orig;
+            /* We leak orig if argc > 2.  I don't care. */
+            if (argc > 2)
+                orig = g_strconcat (argv[1], " ", argv[2], NULL);
+            else
+                orig = argv[1];
+            g_signal_connect (uri, "resolved", G_CALLBACK (uri_resolved), orig);
             yelp_uri_resolve (uri);
         }
         if (parent) {
