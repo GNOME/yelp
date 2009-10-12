@@ -6,12 +6,14 @@ libyelp_la_SOURCES =				\
 	yelp-location-entry.c			\
 	yelp-settings.c				\
 	yelp-simple-document.c			\
+	yelp-transform.c			\
 	yelp-uri.c				\
 	yelp-types.c				\
 	yelp-view.c
 
 libyelp_la_CFLAGS =				\
 	$(YELP_CFLAGS)				\
+	-DDATADIR=\""$(datadir)"\"		\
 	-DGDU_ICON_PATH=\"$(GDU_ICON_PATH)\"
 
 libyelp_la_LIBADD =				\

@@ -19,12 +19,17 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
+#include <config.h>
+
 #include <glib.h>
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
 
 #include "yelp-error.h"
 #include "yelp-transform.h"
+
+static gint num_chunks = 0;
+static gboolean freed;
 
 static gint timeout = -1;
 static gboolean random_timeout = FALSE;
@@ -46,51 +51,60 @@ static const GOptionEntry options[] = {
 
 GMainLoop *loop;
 
-static void
+static gboolean
 transform_release (YelpTransform *transform)
 {
     printf ("\nRELEASE\n");
-    yelp_transform_release (transform);
-    /* Quit after pending things are done.  This helps test
-     * whether YelpTransform takes its release seriously.
-     */
-    g_idle_add ((GSourceFunc) g_main_loop_quit, loop);
+    if (!freed) {
+	yelp_transform_cancel (transform);
+	g_object_unref (transform);
+    }
+    freed = TRUE;
+    return FALSE;
 }
 
 static void
-transform_func (YelpTransform       *transform,
-		YelpTransformSignal  signal,
-		gpointer            *func_data,
-		gpointer             user_data)
+transform_chunk (YelpTransform *transform,
+		 const gchar   *chunk_id,
+		 gpointer       user_data)
 {
-    gchar *chunk_id;
-    gchar *chunk_data;
-    gchar *chunk_short;
-    YelpError *error;
+    gchar *chunk, *small;
+    num_chunks++;
+    printf ("\nCHUNK %i: %s\n", num_chunks, chunk_id);
 
-    switch (signal) {
-    case YELP_TRANSFORM_CHUNK:
-	chunk_id = (gchar *) func_data;
-	printf ("\nCHUNK: %s\n", chunk_id);
+    chunk = yelp_transform_take_chunk (transform, chunk_id);
+    small = g_strndup (chunk, 300);
+    printf ("%s\n", small);
 
-	chunk_data = yelp_transform_eat_chunk (transform, chunk_id);
-	chunk_short = g_strndup (chunk_data, 300);
-	printf ("%s\n", chunk_short);
+    g_free (small);
+    g_free (chunk);
+}
 
-	g_free (chunk_short);
-	g_free (chunk_data);
-	g_free (chunk_id);
-	break;
-    case YELP_TRANSFORM_ERROR:
-	error = (YelpError *) func_data;
-	printf ("\nERROR: %s\n", yelp_error_get_title (error));
-	yelp_error_free (error);
-	break;
-    case YELP_TRANSFORM_FINAL:
-	printf ("\nFINAL\n");
-	transform_release (transform);
-	break;
+static void
+transform_finished (YelpTransform *transform,
+		    gpointer       user_data)
+{
+    printf ("\nFINAL\n");
+    if (!freed) {
+	yelp_transform_cancel (transform);
+	g_object_unref (transform);
     }
+    freed = TRUE;
+}
+
+static void
+transform_error (YelpTransform *transform,
+		 gpointer       user_data)
+{
+    printf ("\nERROR\n");
+}
+
+static void
+transform_destroyed (gpointer  data,
+		     GObject  *object)
+{
+    printf ("\nFREED\n");
+    g_main_loop_quit (loop);
 }
 
 gint 
@@ -104,6 +118,7 @@ main (gint argc, gchar **argv)
     gchar *stylesheet;
     gchar *file;
 
+    g_type_init ();
     g_thread_init (NULL);
 
     context = g_option_context_new ("[STYLESHEET] FILE");
@@ -132,9 +147,15 @@ main (gint argc, gchar **argv)
     params[5] = "2";
     params[6] = NULL;
 
-    transform = yelp_transform_new (stylesheet,
-				    (YelpTransformFunc) transform_func,
-				    NULL);
+    transform = yelp_transform_new ();
+    g_object_weak_ref ((GObject *) transform, transform_destroyed, NULL);
+    if (!yelp_transform_set_stylesheet (transform, stylesheet, NULL))
+	return 1;
+
+    g_signal_connect (transform, "chunk-ready", (GCallback) transform_chunk, NULL);
+    g_signal_connect (transform, "finished", (GCallback) transform_finished, NULL);
+    g_signal_connect (transform, "error", (GCallback) transform_error, NULL);
+
     parser = xmlNewParserCtxt ();
     doc = xmlCtxtReadFile (parser,
 			   file,
@@ -145,7 +166,8 @@ main (gint argc, gchar **argv)
     xmlXIncludeProcessFlags (doc,
 			     XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			     XML_PARSE_NOENT   | XML_PARSE_NONET   );
-    yelp_transform_start (transform, doc, params);
+    if (!yelp_transform_start (transform, doc, params, NULL))
+	return 1;
 
     if (random_timeout) {
 	GRand *rand = g_rand_new ();
