@@ -368,6 +368,28 @@ yelp_settings_set_colors (YelpSettings      *settings,
     g_signal_emit (settings, settings_signals[COLORS_CHANGED], 0);
 }
 
+const gchar*
+yelp_settings_get_color_param (YelpSettingsColor color)
+{
+    static const gchar *params[YELP_SETTINGS_NUM_COLORS] = {
+	"theme.color.background",
+	"theme.color.text",
+	"theme.color.text_light",
+	"theme.color.link",
+	"theme.color.link_visted",
+	"theme.color.gray_background",
+	"theme.color.gray_border",
+	"theme.color.blue_background",
+	"theme.color.blue_border",
+	"theme.color.red_background",
+	"theme.color.red_border",
+	"theme.color.yellow_background",
+	"theme.color.yellow_border"
+    };
+    g_return_val_if_fail (color < YELP_SETTINGS_NUM_COLORS, NULL);
+    return params[color];
+}
+
 /******************************************************************************/
 
 gchar *
@@ -523,6 +545,21 @@ yelp_settings_set_icons (YelpSettings     *settings,
     g_mutex_unlock (settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[ICONS_CHANGED], 0);
+}
+
+const gchar *
+yelp_settings_get_icon_param (YelpSettingsIcon icon)
+{
+    static const gchar *params[YELP_SETTINGS_NUM_ICONS] = {
+	"theme.icon.admon.bug",
+	"theme.icon.admon.caution",
+	"theme.icon.admon.important",
+	"theme.icon.admon.note",
+	"theme.icon.admon.tip",
+	"theme.icon.admon.warning"
+    };
+    g_return_val_if_fail (icon < YELP_SETTINGS_NUM_ICONS, NULL);
+    return params[icon];
 }
 
 /******************************************************************************/

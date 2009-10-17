@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2004-2009 Shaun McCance <shaunm@gnome.org>
  *
@@ -83,30 +83,33 @@ typedef enum {
 YelpSettings *      yelp_settings_get_default          (void);
 
 gchar *             yelp_settings_get_color            (YelpSettings       *settings,
-							YelpSettingsColor   color);
+                                                        YelpSettingsColor   color);
 gchar **            yelp_settings_get_colors           (YelpSettings       *settings);
 void                yelp_settings_set_colors           (YelpSettings       *settings,
-							YelpSettingsColor   first_color,
-							...);
+                                                        YelpSettingsColor   first_color,
+                                                        ...);
+const gchar*        yelp_settings_get_color_param      (YelpSettingsColor   color);
+
 
 gchar *             yelp_settings_get_font             (YelpSettings       *settings,
-							YelpSettingsFont    font);
+                                                        YelpSettingsFont    font);
 gchar *             yelp_settings_get_font_family      (YelpSettings       *settings,
-							YelpSettingsFont    font);
+                                                        YelpSettingsFont    font);
 gint                yelp_settings_get_font_size        (YelpSettings       *settings,
-							YelpSettingsFont    font);
+                                                        YelpSettingsFont    font);
 void                yelp_settings_set_fonts            (YelpSettings       *settings,
-							YelpSettingsFont    first_font,
-							...);
+                                                        YelpSettingsFont    first_font,
+                                                        ...);
 
 gint                yelp_settings_get_icon_size        (YelpSettings       *settings);
 void                yelp_settings_set_icon_size        (YelpSettings       *settings,
-							gint                size);
+                                                        gint                size);
 gchar *             yelp_settings_get_icon             (YelpSettings       *settings,
-							YelpSettingsIcon    icon);
+                                                        YelpSettingsIcon    icon);
 void                yelp_settings_set_icons            (YelpSettings       *settings,
-							YelpSettingsIcon    first_icon,
-							...);
+                                                        YelpSettingsIcon    first_icon,
+                                                        ...);
+const gchar *       yelp_settings_get_icon_param       (YelpSettingsIcon    icon);
 
 G_END_DECLS
 

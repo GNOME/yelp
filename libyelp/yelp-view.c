@@ -29,6 +29,7 @@
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
 
+#include "yelp-debug.h"
 #include "yelp-error.h"
 #include "yelp-types.h"
 #include "yelp-view.h"
@@ -283,6 +284,8 @@ view_load_page (YelpView *view)
     YelpViewPrivate *priv = GET_PRIV (view);
     gchar *page_id;
 
+    debug_print (DB_FUNCTION, "entering\n");
+
     g_return_if_fail (priv->cancellable == NULL);
 
     if (priv->document == NULL) {
@@ -373,11 +376,13 @@ uri_resolved (YelpUri  *uri,
               YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    YelpDocument *document = yelp_document_get_for_uri (uri);
+    YelpDocument *document;
 
+    debug_print (DB_FUNCTION, "entering\n");
+
+    document  = yelp_document_get_for_uri (uri);
     if (priv->document)
         g_object_unref (priv->document);
-
     priv->document = document;
 
     view_load_page (view);
@@ -391,15 +396,18 @@ document_callback (YelpDocument       *document,
 {
     YelpViewPrivate *priv = GET_PRIV (view);
 
+    debug_print (DB_FUNCTION, "entering\n");
+
     if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
         /* FIXME */
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
-	const gchar *contents = yelp_document_read_contents (document, NULL);
+	const gchar *contents;
         gchar *real_uri, *mime_type, *page_id;
         real_uri = yelp_uri_get_canonical_uri (priv->uri);
         page_id = yelp_uri_get_page_id (priv->uri);
         mime_type = yelp_document_get_mime_type (document, page_id);
+        contents = yelp_document_read_contents (document, page_id);
         webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                      contents,
                                      mime_type,

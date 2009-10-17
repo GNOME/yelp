@@ -4,6 +4,7 @@ libyelp_la_SOURCES =				\
 	yelp-debug.c				\
 	yelp-document.c				\
 	yelp-location-entry.c			\
+	yelp-mallard-document.c			\
 	yelp-settings.c				\
 	yelp-simple-document.c			\
 	yelp-transform.c			\
@@ -22,8 +23,10 @@ libyelp_la_LIBADD =				\
 libyelp_headers =				\
 	yelp-document.h				\
 	yelp-location-entry.h			\
+	yelp-mallard-document.h			\
 	yelp-settings.h				\
 	yelp-simple-document.h			\
+	yelp-transform.h			\
 	yelp-uri.h				\
 	yelp-view.h
 

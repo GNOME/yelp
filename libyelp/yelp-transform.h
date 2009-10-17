@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2007 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,19 +27,6 @@
 #include <libxml/tree.h>
 #include <libxslt/xslt.h>
 #include <libxslt/transform.h>
-
-/*
-typedef enum {
-    YELP_TRANSFORM_CHUNK,
-    YELP_TRANSFORM_ERROR,
-    YELP_TRANSFORM_FINAL
-} YelpTransformSignal;
-
-typedef void  (*YelpTransformFunc)  (YelpTransform       *transform,
-				     YelpTransformSignal  signal,
-				     gpointer             func_data,
-				     gpointer             user_data);
-*/
 
 #define YELP_TYPE_TRANSFORM            (yelp_transform_get_type ())
 #define YELP_TRANSFORM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_TRANSFORM, YelpTransform))
@@ -69,5 +56,6 @@ gboolean         yelp_transform_start          (YelpTransform       *transform,
 gchar *          yelp_transform_take_chunk     (YelpTransform       *transform,
                                                 const gchar         *chunk_id);
 void             yelp_transform_cancel         (YelpTransform       *transform);
+GError *         yelp_transform_get_error      (YelpTransform       *transform);
 
 #endif /* __YELP_TRANSFORM_H__ */

@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2007 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -169,6 +169,8 @@ yelp_transform_dispose (GObject *object)
 
     /* FIXME */
     GHashTable             *chunks;
+
+    G_OBJECT_CLASS (yelp_transform_parent_class)->dispose (object);
 }
 
 static void
@@ -191,6 +193,8 @@ yelp_transform_finalize (GObject *object)
 
     g_strfreev (priv->params);
     g_mutex_free (priv->mutex);
+
+    G_OBJECT_CLASS (yelp_transform_parent_class)->finalize (object);
 }
 
 /******************************************************************************/
@@ -258,7 +262,7 @@ yelp_transform_start (YelpTransform       *transform,
                             BAD_CAST YELP_NAMESPACE,
                             (xsltTransformFunction) xslt_yelp_cache);
     xsltRegisterExtFunction (priv->context,
-                             BAD_CAST "aux",
+                             BAD_CAST "input",
                              BAD_CAST YELP_NAMESPACE,
                              (xmlXPathFunction) xslt_yelp_aux);
 
@@ -304,6 +308,20 @@ yelp_transform_cancel (YelpTransform *transform)
     g_mutex_unlock (priv->mutex);
 }
 
+GError *
+yelp_transform_get_error (YelpTransform *transform)
+{
+    YelpTransformPrivate *priv = GET_PRIV (transform);
+    GError *ret = NULL;
+
+    g_mutex_lock (priv->mutex);
+    if (priv->error)
+        ret = g_error_copy (priv->error);
+    g_mutex_unlock (priv->mutex);
+
+    return ret;
+}
+
 /******************************************************************************/
 
 static void
@@ -331,6 +349,8 @@ transform_chunk (YelpTransform *transform)
 {
     YelpTransformPrivate *priv = GET_PRIV (transform);
     gchar *chunk_id;
+
+    debug_print (DB_FUNCTION, "entering\n");
 
     if (priv->cancelled)
         goto done;
