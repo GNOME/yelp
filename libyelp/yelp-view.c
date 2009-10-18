@@ -406,6 +406,7 @@ document_callback (YelpDocument       *document,
         gchar *real_uri, *mime_type, *page_id;
         real_uri = yelp_uri_get_canonical_uri (priv->uri);
         page_id = yelp_uri_get_page_id (priv->uri);
+        debug_print (DB_ARG, "    document.uri.page_id=\"%s\"\n", page_id);
         mime_type = yelp_document_get_mime_type (document, page_id);
         contents = yelp_document_read_contents (document, page_id);
         webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),

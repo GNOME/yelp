@@ -204,6 +204,7 @@ mallard_request_page (YelpDocument         *document,
     gboolean handled;
 
     debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "    page_id=\"%s\"\n", page_id);
 
     if (page_id == NULL)
         page_id = "index";
@@ -307,6 +308,8 @@ mallard_think (YelpMallardDocument *mallard)
             mallard_page_data_free (page_data);
         } else {
             g_mutex_lock (priv->mutex);
+            yelp_document_set_page_id ((YelpDocument *) mallard,
+                                       page_data->page_id, page_data->page_id);
             g_hash_table_insert (priv->pages_hash, page_data->page_id, page_data);
             g_mutex_unlock (priv->mutex);
         }
