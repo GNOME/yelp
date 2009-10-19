@@ -177,17 +177,22 @@ static void
 yelp_transform_finalize (GObject *object)
 {
     YelpTransformPrivate *priv = GET_PRIV (object);
-    /* We do not free input or aux.  They belong to the caller, which
-       must ensure they exist for the lifetime of the transform.
-     */
+    xsltDocumentPtr xsltdoc;
+
     if (priv->output)
         xmlFreeDoc (priv->output);
     if (priv->stylesheet)
         xsltFreeStylesheet (priv->stylesheet);
-    if (priv->context)
-        xsltFreeTransformContext (priv->context);
+    /* We do not free input or aux.  They belong to the caller, which
+       must ensure they exist for the lifetime of the transform.  We
+       have to set priv->aux_xslt->doc (which is priv->aux) to NULL
+       before xsltFreeTransformContext.  Otherwise it will be freed,
+       which we don't want.
+     */
     if (priv->aux_xslt)
         priv->aux_xslt->doc = NULL;
+    if (priv->context)
+        xsltFreeTransformContext (priv->context);
     if (priv->error)
         g_error_free (priv->error);
 
@@ -328,6 +333,9 @@ static void
 transform_run (YelpTransform *transform)
 {
     YelpTransformPrivate *priv = GET_PRIV (transform);
+
+    debug_print (DB_FUNCTION, "entering\n");
+
     priv->output = xsltApplyStylesheetUser (priv->stylesheet,
                                             priv->input,
                                             (const char **) priv->params,
@@ -370,6 +378,8 @@ static gboolean
 transform_final (YelpTransform *transform)
 {
     YelpTransformPrivate *priv = GET_PRIV (transform);
+
+    debug_print (DB_FUNCTION, "entering\n");
 
     if (priv->cancelled)
         goto done;
@@ -496,7 +506,6 @@ xslt_yelp_aux (xmlXPathParserContextPtr ctxt, int nargs)
     transform = YELP_TRANSFORM (tctxt->_private);
     priv = GET_PRIV (transform);
 
-    /* FIXME: pretty sure this eats transform->aux, memory corruption will follow */
     priv->aux_xslt = xsltNewDocument (tctxt, priv->aux);
 
     ret = xmlXPathNewNodeSet (xmlDocGetRootElement (priv->aux));
