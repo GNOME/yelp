@@ -73,10 +73,10 @@ FIXME: yelp:cache no longer works
   </xsl:param>
   <xsl:choose>
     <xsl:when test="$depth_in_chunk != 0">
-      <xsl:value-of select="concat('#', $linkend)"/>
+      <xsl:value-of select="concat('xref:#', $linkend)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="concat('?', $linkend)"/>
+      <xsl:value-of select="concat('xref:', $linkend)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

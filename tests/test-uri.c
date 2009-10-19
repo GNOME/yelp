@@ -141,6 +141,8 @@ print_uri (gchar *orig, YelpUri *uri, GOutputStream *stream)
         g_free (out);
         g_free (tmp);
     }
+
+    g_output_stream_write (stream, "\0", 1, NULL, NULL);
 }
 
 static void run_test (gconstpointer data)
@@ -177,7 +179,7 @@ static void run_test (gconstpointer data)
     print_uri (curi, uri, outstream);
     out = (gchar *) g_memory_output_stream_get_data (G_MEMORY_OUTPUT_STREAM (outstream));
     g_free (curi);
-    g_assert_cmpstr (out, ==, contents);
+    g_assert (!strncmp (out, contents, bytes));
 }
 
 static int

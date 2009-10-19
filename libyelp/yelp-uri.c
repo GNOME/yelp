@@ -50,7 +50,7 @@ static void           resolve_data_dirs          (YelpUri        *uri,
 static void           resolve_ghelp_uri          (YelpUri        *uri);
 static void           resolve_man_uri            (YelpUri        *uri);
 static void           resolve_info_uri           (YelpUri        *uri);
-static void           resolve_relative_multipage (YelpUri        *uri);
+static void           resolve_xref_uri           (YelpUri        *uri);
 static void           resolve_page_and_frag      (YelpUri        *uri,
                                                   const gchar    *arg);
 static void           resolve_gfile              (YelpUri        *uri,
@@ -258,21 +258,19 @@ resolve_async (YelpUri *uri)
     else if (g_str_has_prefix (priv->res_arg, "info:")) {
         resolve_info_uri (uri);
     }
-    else if (strchr (priv->res_arg, ':')) {
-        priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
-        /* FIXME: resolve as external URI */
-    }
-    else if (strchr (priv->res_arg, '/')) {
-        resolve_file_path (uri);
-    }
-    else if (priv->res_base != NULL) {
-        YelpUriPrivate *base_priv = GET_PRIV (priv->res_base);
+    else if (g_str_has_prefix (priv->res_arg, "xref:")) {
+        YelpUriPrivate *base_priv;
+        if (priv->res_base == NULL) {
+            priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
+            goto done;
+        }
+        base_priv = GET_PRIV (priv->res_base);
         switch (base_priv->doctype) {
         case YELP_URI_DOCUMENT_TYPE_UNRESOLVED:
             break;
         case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
         case YELP_URI_DOCUMENT_TYPE_MALLARD:
-            resolve_relative_multipage (uri);
+            resolve_xref_uri (uri);
             break;
         case YELP_URI_DOCUMENT_TYPE_MAN:
             /* FIXME: what do we do? */
@@ -297,10 +295,15 @@ resolve_async (YelpUri *uri)
             break;
         }
     }
+    else if (strchr (priv->res_arg, ':')) {
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
+        /* FIXME: resolve as external URI */
+    }
     else {
         resolve_file_path (uri);
     }
 
+ done:
     g_idle_add ((GSourceFunc) resolve_final, uri);
 }
 
@@ -779,9 +782,10 @@ resolve_info_uri (YelpUri *uri)
 }
 
 static void
-resolve_relative_multipage (YelpUri *uri)
+resolve_xref_uri (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
+    const gchar *arg = priv->res_arg + 5;
     YelpUriPrivate *base_priv = GET_PRIV (priv->res_base);
 
     priv->tmptype = base_priv->doctype;
@@ -789,18 +793,18 @@ resolve_relative_multipage (YelpUri *uri)
     priv->search_path = g_strdupv (base_priv->search_path);
     priv->docuri = g_strdup (base_priv->docuri);
 
-    if (priv->res_arg[0] == '#') {
+    if (arg == '#') {
         priv->page_id = g_strdup (base_priv->page_id);
-        priv->frag_id = g_strdup (priv->res_arg + 1);
+        priv->frag_id = g_strdup (arg + 1);
     }
     else {
-        gchar *hash = strchr (priv->res_arg, '#');
+        gchar *hash = strchr (arg, '#');
         if (hash) {
-            priv->page_id = g_strndup (priv->res_arg, hash - priv->res_arg);
+            priv->page_id = g_strndup (arg, hash - arg);
             priv->frag_id = g_strdup (hash + 1);
         }
         else {
-            priv->page_id = g_strdup (priv->res_arg);
+            priv->page_id = g_strdup (arg);
             priv->frag_id = NULL;
         }
     }
