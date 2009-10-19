@@ -47,6 +47,13 @@ static void        yelp_view_set_property         (GObject            *object,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
 
+static gboolean    view_navigation_requested      (WebKitWebView             *view,
+                                                   WebKitWebFrame            *frame,
+                                                   WebKitNetworkRequest      *request,
+                                                   WebKitWebNavigationAction *action,
+                                                   WebKitWebPolicyDecision   *decision,
+                                                   gpointer                   user_data);
+
 static void        view_clear_load                (YelpView           *view);
 static void        view_load_page                 (YelpView           *view);
 static void        view_show_error_page           (YelpView           *view,
@@ -96,6 +103,9 @@ yelp_view_init (YelpView *view)
     priv->cancellable = NULL;
 
     priv->state = YELP_VIEW_STATE_BLANK;
+
+    g_signal_connect (view, "navigation-policy-decision-requested",
+                      G_CALLBACK (view_navigation_requested), NULL);
 }
 
 static void
@@ -257,6 +267,29 @@ yelp_view_load_document (YelpView     *view,
 }
 
 /******************************************************************************/
+
+static gboolean
+view_navigation_requested (WebKitWebView             *view,
+                           WebKitWebFrame            *frame,
+                           WebKitNetworkRequest      *request,
+                           WebKitWebNavigationAction *action,
+                           WebKitWebPolicyDecision   *decision,
+                           gpointer                   user_data)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUri *uri;
+
+    debug_print (DB_FUNCTION, "entering\n");
+
+    uri = yelp_uri_new_relative (priv->uri,
+                                 webkit_network_request_get_uri (request));
+
+    webkit_web_policy_decision_ignore (decision);
+
+    yelp_view_load_uri ((YelpView *) view, uri);
+
+    return TRUE;
+}
 
 static void
 view_clear_load (YelpView *view)
