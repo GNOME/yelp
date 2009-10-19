@@ -876,6 +876,8 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
         if (g_file_info_get_attribute_uint32 (info, G_FILE_ATTRIBUTE_STANDARD_TYPE) ==
             G_FILE_TYPE_DIRECTORY) {
             priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
+            if (priv->page_id == NULL)
+                priv->page_id = g_strdup (hash);
         }
         else {
             gchar *basename;
