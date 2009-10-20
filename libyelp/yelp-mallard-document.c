@@ -321,9 +321,11 @@ mallard_think (YelpMallardDocument *mallard)
     g_mutex_lock (priv->mutex);
     priv->state = MALLARD_STATE_IDLE;
     while (priv->pending) {
-        gchar *page_id;
+        gchar *page_id, *real_id;
         page_id = (gchar *) priv->pending->data;
-        mallard_try_run (mallard, page_id);
+        real_id = yelp_document_get_page_id ((YelpDocument *) mallard, page_id);
+        mallard_try_run (mallard, real_id);
+        g_free (real_id);
         g_free (page_id);
         priv->pending = g_slist_delete_link (priv->pending, priv->pending);
     }
@@ -420,6 +422,9 @@ mallard_page_data_walk (MallardPageData *page_data)
         if (xmlStrEqual (page_data->cur->name, BAD_CAST "page")) {
             page_data->page_id = g_strdup ((gchar *) id);
             xmlSetProp (page_data->cache, BAD_CAST "id", id);
+            yelp_document_set_page_id ((YelpDocument *) page_data->mallard,
+                                       g_strrstr (page_data->filename, G_DIR_SEPARATOR_S),
+                                       page_data->page_id);
         } else {
             gchar *newid = g_strdup_printf ("%s#%s", page_data->page_id, id);
             xmlSetProp (page_data->cache, BAD_CAST "id", BAD_CAST newid);

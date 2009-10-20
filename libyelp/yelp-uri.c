@@ -884,7 +884,25 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
             const gchar *mime_type = g_file_info_get_attribute_string (info,
                                                                        G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE);
             basename = g_file_get_basename (priv->gfile);
-            if (g_str_equal (mime_type, "text/xml") ||
+            if (g_str_has_suffix (basename, ".page")) {
+                GFile *old;
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
+                old = priv->gfile;
+                priv->gfile = g_file_get_parent (old);
+                if (priv->page_id == NULL) {
+                    /* File names aren't really page IDs, so we stick an illegal character
+                       on the beginning so it can't possibly be confused with a real page
+                       ID.  Then we let YelpMallardDocument map file names to pages IDs.
+                     */
+                    gchar *tmp = g_file_get_basename (old);
+                    priv->page_id = g_strconcat (G_DIR_SEPARATOR_S, tmp, NULL);
+                    g_free (tmp);
+                }
+                if (priv->frag_id == NULL)
+                    priv->frag_id = g_strdup (hash);
+                g_object_unref (old);
+            }
+            else if (g_str_equal (mime_type, "text/xml") ||
                 g_str_equal (mime_type, "application/docbook+xml") ||
                 g_str_equal (mime_type, "application/xml")) {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;

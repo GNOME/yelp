@@ -315,6 +315,8 @@ yelp_document_set_page_id (YelpDocument *document,
 	reqs = hash_lookup (document->priv->reqs_by_page_id, id);
 	for (cur = reqs; cur != NULL; cur = cur->next) {
 	    Request *request = (Request *) cur->data;
+            if (request == NULL)
+                continue;
 	    g_free (request->page_id);
 	    request->page_id = g_strdup (page_id);
 	    hash_slist_insert (document->priv->reqs_by_page_id, page_id, request);
