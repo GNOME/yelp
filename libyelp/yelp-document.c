@@ -571,7 +571,7 @@ yelp_document_read_contents (YelpDocument *document,
     g_return_val_if_fail (YELP_IS_DOCUMENT (document), NULL);
     g_return_val_if_fail (YELP_DOCUMENT_GET_CLASS (document)->read_contents != NULL, NULL);
 
-    YELP_DOCUMENT_GET_CLASS (document)->read_contents (document, page_id);
+    return YELP_DOCUMENT_GET_CLASS (document)->read_contents (document, page_id);
 }
 
 static const gchar *
@@ -640,7 +640,7 @@ yelp_document_get_mime_type (YelpDocument *document,
     g_return_if_fail (YELP_IS_DOCUMENT (document));
     g_return_if_fail (YELP_DOCUMENT_GET_CLASS (document)->get_mime_type != NULL);
 
-    YELP_DOCUMENT_GET_CLASS (document)->get_mime_type (document, page_id);
+    return YELP_DOCUMENT_GET_CLASS (document)->get_mime_type (document, page_id);
 }
 
 static gchar *
