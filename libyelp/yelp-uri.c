@@ -405,6 +405,34 @@ yelp_uri_get_frag_id (YelpUri *uri)
 
 /******************************************************************************/
 
+gchar *
+yelp_uri_locate_file_uri (YelpUri     *uri,
+                          const gchar *filename)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    GFile *gfile;
+    gchar *fullpath;
+    gchar *returi = NULL;
+    gint i;
+    for (i = 0; priv->search_path[i] != NULL; i++) {
+        fullpath = g_strconcat (priv->search_path[i],
+                                G_DIR_SEPARATOR_S,
+                                filename,
+                                NULL);
+        if (g_file_test (fullpath, G_FILE_TEST_EXISTS)) {
+            gfile = g_file_new_for_path (fullpath);
+            returi = g_file_get_uri (gfile);
+            g_object_unref (gfile);
+        }
+        g_free (fullpath);
+        if (returi)
+            break;
+    }
+    return returi;
+}
+
+/******************************************************************************/
+
 static void
 resolve_file_uri (YelpUri *uri)
 {
@@ -467,13 +495,20 @@ resolve_data_dirs (YelpUri      *ret,
                    const gchar  *docid,
                    const gchar  *pageid)
 {
-    YelpUriPrivate *priv = GET_PRIV (ret);
-    const gchar * const *datadirs = g_get_system_data_dirs ();
+    const gchar * const *sdatadirs = g_get_system_data_dirs ();
     const gchar * const *langs = g_get_language_names ();
+    /* The strings are still owned by GLib; we just own the array. */
+    const gchar **datadirs;
+    YelpUriPrivate *priv = GET_PRIV (ret);
     gchar *filename = NULL;
     gchar **searchpath = NULL;
     gint searchi, searchmax;
     gint datadir_i, subdir_i, lang_i;
+
+    datadirs = g_new0 (gchar *, g_strv_length (sdatadirs) + 2);
+    datadirs[0] = g_get_user_data_dir ();
+    for (datadir_i = 0; sdatadirs[datadir_i]; datadir_i++)
+        datadirs[datadir_i + 1] = sdatadirs[datadir_i];
 
     searchi = 0;
     searchmax = 10;
@@ -482,8 +517,12 @@ resolve_data_dirs (YelpUri      *ret,
     for (datadir_i = 0; datadirs[datadir_i]; datadir_i++) {
         for (subdir_i = 0; subdirs[subdir_i]; subdir_i++) {
             for (lang_i = 0; langs[lang_i]; lang_i++) {
-                gchar *helpdir = g_strdup_printf ("%s%s/%s/%s",
-                                                  datadirs[datadir_i], subdirs[subdir_i], docid, langs[lang_i]);
+                gchar *helpdir = g_strdup_printf ("%s%s%s/%s/%s",
+                                                  datadirs[datadir_i],
+                                                  (datadirs[datadir_i][strlen(datadirs[datadir_i]) - 1] == '/' ? "" : "/"),
+                                                  subdirs[subdir_i],
+                                                  docid,
+                                                  langs[lang_i]);
                 if (!g_file_test (helpdir, G_FILE_TEST_IS_DIR)) {
                     g_free (helpdir);
                     continue;
@@ -526,6 +565,7 @@ resolve_data_dirs (YelpUri      *ret,
         } /* end for subdirs */
     } /* end for datadirs */
 
+    g_free (datadirs);
     if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED) {
         g_strfreev (searchpath);
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
@@ -793,7 +833,7 @@ resolve_xref_uri (YelpUri *uri)
     priv->search_path = g_strdupv (base_priv->search_path);
     priv->docuri = g_strdup (base_priv->docuri);
 
-    if (arg == '#') {
+    if (arg[0] == '#') {
         priv->page_id = g_strdup (base_priv->page_id);
         priv->frag_id = g_strdup (arg + 1);
     }

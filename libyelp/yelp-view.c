@@ -28,11 +28,15 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
+#include <webkit/webkitwebresource.h>
 
 #include "yelp-debug.h"
 #include "yelp-error.h"
 #include "yelp-types.h"
 #include "yelp-view.h"
+
+#define BOGUS_URI "file:///bogus/"
+#define BOGUS_URI_LEN 14
 
 static void        yelp_view_init                 (YelpView           *view);
 static void        yelp_view_class_init           (YelpViewClass      *klass);
@@ -52,6 +56,12 @@ static gboolean    view_navigation_requested      (WebKitWebView             *vi
                                                    WebKitNetworkRequest      *request,
                                                    WebKitWebNavigationAction *action,
                                                    WebKitWebPolicyDecision   *decision,
+                                                   gpointer                   user_data);
+static void        view_resource_request          (WebKitWebView             *view,
+                                                   WebKitWebFrame            *frame,
+                                                   WebKitWebResource         *resource,
+                                                   WebKitNetworkRequest      *request,
+                                                   WebKitNetworkResponse     *response,
                                                    gpointer                   user_data);
 
 static void        view_clear_load                (YelpView           *view);
@@ -84,10 +94,13 @@ typedef struct _YelpViewPrivate YelpViewPrivate;
 struct _YelpViewPrivate {
     YelpUri       *uri;
     gulong         uri_resolved;
+    gchar         *bogus_uri;
     YelpDocument  *document;
     GCancellable  *cancellable;
 
     YelpViewState  state;
+
+    gint           navigation_requested;
 };
 
 #define TARGET_TYPE_URI_LIST     "text/uri-list"
@@ -104,8 +117,11 @@ yelp_view_init (YelpView *view)
 
     priv->state = YELP_VIEW_STATE_BLANK;
 
-    g_signal_connect (view, "navigation-policy-decision-requested",
-                      G_CALLBACK (view_navigation_requested), NULL);
+    priv->navigation_requested =
+        g_signal_connect (view, "navigation-policy-decision-requested",
+                          G_CALLBACK (view_navigation_requested), NULL);
+    g_signal_connect (view, "resource-request-starting",
+                      G_CALLBACK (view_resource_request), NULL);
 }
 
 static void
@@ -135,6 +151,10 @@ yelp_view_dispose (GObject *object)
 static void
 yelp_view_finalize (GObject *object)
 {
+    YelpViewPrivate *priv = GET_PRIV (object);
+
+    g_free (priv->bogus_uri);
+
     G_OBJECT_CLASS (yelp_view_parent_class)->finalize (object);
 }
 
@@ -292,6 +312,39 @@ view_navigation_requested (WebKitWebView             *view,
 }
 
 static void
+view_resource_request (WebKitWebView         *view,
+                       WebKitWebFrame        *frame,
+                       WebKitWebResource     *resource,
+                       WebKitNetworkRequest  *request,
+                       WebKitNetworkResponse *response,
+                       gpointer               user_data)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    const gchar *requri = webkit_network_request_get_uri (request);
+    gchar last;
+    gchar *newpath;
+
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "    uri=\"%s\"\n", requri);
+
+    if (!g_str_has_prefix (requri, BOGUS_URI))
+        return;
+
+    /* We get this signal for the page itself.  Ignore. */
+    if (g_str_equal (requri, priv->bogus_uri))
+        return;
+
+    newpath = yelp_uri_locate_file_uri (priv->uri, requri + BOGUS_URI_LEN);
+    if (newpath != NULL) {
+        webkit_network_request_set_uri (request, newpath);
+        g_free (newpath);
+    }
+    else {
+        webkit_network_request_set_uri (request, "about:blank");
+    }
+}
+
+static void
 view_clear_load (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
@@ -356,6 +409,7 @@ static void
 view_show_error_page (YelpView *view,
                       GError   *error)
 {
+    YelpViewPrivate *priv = GET_PRIV (view);
     static const gchar *errorpage =
         "<html><head>"
         "<style type='text/css'>"
@@ -393,11 +447,13 @@ view_show_error_page (YelpView *view,
         title = _("Unknown Error");
     page = g_strdup_printf (errorpage, title, error->message);
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
+    g_signal_handler_block (view, priv->navigation_requested);
     webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                  page,
                                  "text/html",
                                  "UTF-8",
                                  "about:error");
+    g_signal_handler_unblock (view, priv->navigation_requested);
     g_error_free (error);
     g_free (page);
 }
@@ -436,21 +492,36 @@ document_callback (YelpDocument       *document,
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;
-        gchar *real_uri, *mime_type, *page_id;
-        real_uri = yelp_uri_get_canonical_uri (priv->uri);
+        gchar *mime_type, *page_id, *frag_id;
         page_id = yelp_uri_get_page_id (priv->uri);
         debug_print (DB_ARG, "    document.uri.page_id=\"%s\"\n", page_id);
         mime_type = yelp_document_get_mime_type (document, page_id);
         contents = yelp_document_read_contents (document, page_id);
+        frag_id = yelp_uri_get_frag_id (priv->uri);
+        g_free (priv->bogus_uri);
+        /* We have to give WebKit a URI in a scheme it understands, otherwise we
+           won't get the resource-request-starting signal.  So we can't use the
+           canonical URI, because it might be something like ghelp.  We also have
+           to give it something unique, because WebKit ignores our load_string
+           call if the URI isn't different.  We could try to construct something
+           based on actual file locations, but in fact it doesn't matter.  So
+           we just make a bogus URI that's easy to process later.
+         */
+        if (frag_id != NULL)
+            priv->bogus_uri = g_strdup_printf ("%s%p#%s", BOGUS_URI, priv->uri, frag_id);
+        else
+            priv->bogus_uri = g_strdup_printf ("%s%p", BOGUS_URI, priv->uri);
+        g_signal_handler_block (view, priv->navigation_requested);
         webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                      contents,
                                      mime_type,
                                      "UTF-8",
-                                     real_uri);
+                                     priv->bogus_uri);
+        g_signal_handler_unblock (view, priv->navigation_requested);
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
+        g_free (frag_id);
         g_free (page_id);
         g_free (mime_type);
-        g_free (real_uri);
 	yelp_document_finish_read (document, contents);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
