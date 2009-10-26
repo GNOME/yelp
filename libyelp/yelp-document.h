@@ -138,9 +138,9 @@ gboolean          yelp_document_has_page       (YelpDocument         *document,
 void              yelp_document_signal         (YelpDocument         *document,
                                                 const gchar          *page_id,
                                                 YelpDocumentSignal    signal,
-                                                GError               *error);
+                                                const GError         *error);
 void              yelp_document_error_pending  (YelpDocument         *document,
-                                                GError               *error);
+                                                const GError         *error);
 /* FIXME */
 /*
 void              yelp_document_error_request  (YelpDocument        *document,

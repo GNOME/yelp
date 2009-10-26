@@ -20,25 +20,24 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
-#ifndef __YELP_ERROR_H__
-#define __YELP_ERROR_H__
-
 #include <glib.h>
+#include <glib/gi18n.h>
 
-G_BEGIN_DECLS
+#include "yelp-error.h"
 
-#define YELP_ERROR g_quark_from_static_string ("yelp-error")
+GError *
+yelp_error_copy (GError *error)
+{
+    if (error == NULL)
+        return g_error_new (YELP_ERROR, YELP_ERROR_UNKNOWN,
+                            _("An unknown error occurred."));
+    else
+        return g_error_copy (error);
+}
 
-typedef enum {
-    YELP_ERROR_NOT_FOUND,
-    YELP_ERROR_CANT_READ,
-    YELP_ERROR_PROCESSING,
-    YELP_ERROR_UNKNOWN
-} YelpError;
-
-GError *            yelp_error_copy               (GError *error);
-const gchar *       yelp_error_get_title          (GError *error);
-
-G_END_DECLS
-
-#endif /* __YELP_ERROR_H__ */
+const gchar *
+yelp_error_get_title (GError *error)
+{
+    /* FIXME */
+    return NULL;
+}

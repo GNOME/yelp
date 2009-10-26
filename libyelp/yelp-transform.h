@@ -24,6 +24,7 @@
 #define __YELP_TRANSFORM_H__
 
 #include <glib.h>
+#include <glib-object.h>
 #include <libxml/tree.h>
 #include <libxslt/xslt.h>
 #include <libxslt/transform.h>

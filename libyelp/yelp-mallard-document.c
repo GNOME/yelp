@@ -280,6 +280,7 @@ mallard_think (YelpMallardDocument *mallard)
                              _("The directory ‘%s’ does not exist."),
                              search_path[0]);
 	yelp_document_error_pending ((YelpDocument *) document, error);
+        g_error_free (error);
 	goto done;
     }
 
@@ -321,11 +322,8 @@ mallard_think (YelpMallardDocument *mallard)
     g_mutex_lock (priv->mutex);
     priv->state = MALLARD_STATE_IDLE;
     while (priv->pending) {
-        gchar *page_id, *real_id;
-        page_id = (gchar *) priv->pending->data;
-        real_id = yelp_document_get_page_id ((YelpDocument *) mallard, page_id);
-        mallard_try_run (mallard, real_id);
-        g_free (real_id);
+        gchar *page_id = (gchar *) priv->pending->data;
+        mallard_try_run (mallard, page_id);
         g_free (page_id);
         priv->pending = g_slist_delete_link (priv->pending, priv->pending);
     }
@@ -345,10 +343,21 @@ mallard_try_run (YelpMallardDocument *mallard,
 {
     /* We expect to be in a locked mutex when this function is called. */
     YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
-    MallardPageData *page_data;
+    MallardPageData *page_data = NULL;
+    gchar *real_id = NULL;
     GError *error;
 
-    page_data = g_hash_table_lookup (priv->pages_hash, page_id);
+    debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_ARG, "    page_id=\"%s\"\n", page_id);
+
+    if (page_id != NULL)
+        real_id = yelp_document_get_page_id ((YelpDocument *) mallard, page_id);
+
+    if (real_id != NULL) {
+        page_data = g_hash_table_lookup (priv->pages_hash, page_id);
+        g_free (real_id);
+    }
+
     if (page_data == NULL) {
         gchar *docuri = yelp_uri_get_document_uri (priv->uri);
         error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
@@ -358,6 +367,7 @@ mallard_try_run (YelpMallardDocument *mallard,
         yelp_document_signal ((YelpDocument *) mallard, page_id,
                               YELP_DOCUMENT_SIGNAL_ERROR,
                               error);
+        g_error_free (error);
         return;
     }
 

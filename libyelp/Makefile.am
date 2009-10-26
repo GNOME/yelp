@@ -2,6 +2,7 @@ lib_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =				\
 	yelp-debug.c				\
+	yelp-error.c				\
 	yelp-document.c				\
 	yelp-location-entry.c			\
 	yelp-mallard-document.c			\

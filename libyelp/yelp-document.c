@@ -29,6 +29,7 @@
 
 #include "yelp-debug.h"
 #include "yelp-document.h"
+#include "yelp-error.h"
 #include "yelp-mallard-document.h"
 #include "yelp-simple-document.h"
 
@@ -667,7 +668,7 @@ void
 yelp_document_signal (YelpDocument       *document,
 		      const gchar        *page_id,
 		      YelpDocumentSignal  signal,
-		      GError             *error)
+		      const GError       *error)
 {
     GSList *reqs, *cur;
 
@@ -690,7 +691,10 @@ yelp_document_signal (YelpDocument       *document,
 	    g_idle_add ((GSourceFunc) request_idle_info, request);
 	    break;
 	case YELP_DOCUMENT_SIGNAL_ERROR:
-	    /* FIXME */
+	    request->idle_funcs++;
+	    request->error = yelp_error_copy (error);
+	    g_idle_add ((GSourceFunc) request_idle_error, request);
+            break;
 	default:
 	    break;
 	}
@@ -701,7 +705,7 @@ yelp_document_signal (YelpDocument       *document,
 
 void
 yelp_document_error_pending (YelpDocument *document,
-			     GError       *error)
+			     const GError *error)
 {
     YelpDocumentPriv *priv = GET_PRIV (document);
     GSList *cur;
@@ -714,7 +718,7 @@ yelp_document_error_pending (YelpDocument *document,
     if (priv->reqs_pending) {
 	for (cur = priv->reqs_pending; cur; cur = cur->next) {
 	    request = cur->data;
-	    request->error = g_error_copy (error);
+	    request->error = yelp_error_copy (error);
 	    request->idle_funcs++;
 	    g_idle_add ((GSourceFunc) request_idle_error, request);
 	}
