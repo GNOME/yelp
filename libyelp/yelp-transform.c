@@ -180,6 +180,8 @@ yelp_transform_finalize (GObject *object)
     YelpTransformPrivate *priv = GET_PRIV (object);
     xsltDocumentPtr xsltdoc;
 
+    debug_print (DB_FUNCTION, "entering\n");
+
     if (priv->output)
         xmlFreeDoc (priv->output);
     if (priv->stylesheet)
@@ -346,11 +348,12 @@ transform_run (YelpTransform *transform)
     priv->running = FALSE;
     if (!priv->cancelled) {
         g_idle_add ((GSourceFunc) transform_final, transform);
+        g_mutex_unlock (priv->mutex);
     }
     else {
+        g_mutex_unlock (priv->mutex);
         g_object_unref (transform);
     }
-    g_mutex_unlock (priv->mutex);
 }
 
 static gboolean

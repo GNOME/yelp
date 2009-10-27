@@ -32,6 +32,10 @@ static void
 activate_cb (GtkEntry *entry,
 	     YelpView *view)
 {
+    /* I put in the double-load to test some race condition bugs.
+     * I decided to leave it in.
+     */
+    yelp_view_load (view, gtk_entry_get_text (entry));
     yelp_view_load (view, gtk_entry_get_text (entry));
 }
 
@@ -83,8 +87,13 @@ main (int argc, char **argv)
 
     g_signal_connect (entry, "activate", activate_cb, view);
 
-    if (argc >= 2)
+    if (argc >= 2) {
+	/* I put in the double-load to test some race condition bugs.
+	 * I decided to leave it in.
+	 */
 	yelp_view_load (view, argv[1]);
+	yelp_view_load (view, argv[1]);
+    }
 
     gtk_widget_show_all (GTK_WIDGET (window));
 

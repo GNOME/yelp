@@ -536,7 +536,10 @@ mallard_page_data_run (MallardPageData *page_data)
     YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
     gint i, ix;
     gchar **params = NULL;
+
+    mallard_page_data_cancel (page_data);
     page_data->transform = yelp_transform_new ();
+
     /* FIXME: handle error */
     yelp_transform_set_stylesheet (page_data->transform, STYLESHEET, NULL);
 

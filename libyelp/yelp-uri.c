@@ -235,9 +235,11 @@ resolve_start (YelpUri *uri)
 {
     YelpUriPrivate *priv = GET_PRIV (uri);
 
-    if (priv->resolver == NULL)
+    if (priv->resolver == NULL) {
+        g_object_ref (uri);
         priv->resolver = g_thread_create ((GThreadFunc) resolve_async,
                                           uri, FALSE, NULL);
+    }
 }
 
 static void
@@ -330,6 +332,7 @@ resolve_final (YelpUri *uri)
     }
 
     g_signal_emit (uri, uri_signals[RESOLVED], 0);
+    g_object_unref (uri);
     return FALSE;
 }
 
