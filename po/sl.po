@@ -10,15 +10,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-15 14:51+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&component=general\n"
+"POT-Creation-Date: 2009-04-17 12:28+0000\n"
 "PO-Revision-Date: 2007-10-18 13:12+0100\n"
 "Last-Translator: Matej Urbančič <matej.urban@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -55,8 +57,7 @@ msgstr "Razvoj"
 msgid "FORTRAN Functions"
 msgstr "FORTRAN Funkcije"
 
-#: ../data/man.xml.in.h:7
-#: ../data/toc.xml.in.h:15
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:15
 msgid "Games"
 msgstr "Igre"
 
@@ -562,84 +563,65 @@ msgstr "Teme pomoči"
 msgid "Document Sections"
 msgstr "Odseki dokumentov"
 
-#: ../src/yelp-db-print.c:258
-#: ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275
-#: ../src/yelp-docbook.c:367
-#: ../src/yelp-info.c:242
-#: ../src/yelp-info.c:337
-#: ../src/yelp-man.c:292
-#: ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:266
-#: ../src/yelp-toc.c:364
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
+#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
+#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:364
 msgid "Page not found"
 msgstr "Strani ni mogoče najti"
 
-#: ../src/yelp-db-print.c:259
-#: ../src/yelp-docbook.c:276
-#: ../src/yelp-info.c:243
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Strani %s v dokumentu %s ni mogoče najti."
 
-#: ../src/yelp-db-print.c:351
-#: ../src/yelp-docbook.c:368
-#: ../src/yelp-info.c:338
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
 #: ../src/yelp-man.c:388
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "Zahtevane strani ni mogoče najti v dokumentu %s."
 
-#: ../src/yelp-db-print.c:392
-#: ../src/yelp-docbook.c:409
-#: ../src/yelp-info.c:378
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
 #: ../src/yelp-man.c:430
 msgid "File not found"
 msgstr "Datoteke ni mogoče najti"
 
-#: ../src/yelp-db-print.c:393
-#: ../src/yelp-docbook.c:410
-#: ../src/yelp-info.c:379
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
 #: ../src/yelp-man.c:431
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Dokument '%s' ne obstaja."
 
-#: ../src/yelp-db-print.c:406
-#: ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423
-#: ../src/yelp-docbook.c:435
-#: ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459
-#: ../src/yelp-toc.c:435
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
+#: ../src/yelp-man.c:459 ../src/yelp-toc.c:435
 msgid "Could not parse file"
 msgstr "Ni mogoče razčleniti datoteke"
 
-#: ../src/yelp-db-print.c:407
-#: ../src/yelp-docbook.c:424
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti ni pravilnem XML zapisu."
 
-#: ../src/yelp-db-print.c:419
-#: ../src/yelp-docbook.c:436
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
 #, c-format
-msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilnem XML zapisu."
 
-#: ../src/yelp-db-print.c:765
-#: ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
 msgid "Unknown"
 msgstr "Neznano"
 
-#: ../src/yelp-error.c:132
-#: ../src/yelp-error.c:139
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
 msgid "Unknown Error"
 msgstr "Neznana napaka"
 
-#: ../src/yelp-error.c:136
-#: ../src/yelp-window.c:1581
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1581
 msgid "Could Not Read File"
 msgstr "Ni mogoče prebrati dokumenta"
 
@@ -649,13 +631,20 @@ msgstr "Podrobnosti o napaki niso na voljo."
 
 #: ../src/yelp-info.c:394
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu info."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu "
+"info."
 
 #: ../src/yelp-io-channel.c:107
 #, c-format
-msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
-msgstr "Datoteke ‘%s’ ni mogoče prebrati in dekodirati. Datoteka je morda skrčena v nepodprtem arhivu."
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
+msgstr ""
+"Datoteke ‘%s’ ni mogoče prebrati in dekodirati. Datoteka je morda skrčena v "
+"nepodprtem arhivu."
 
 #: ../src/yelp-main.c:92
 msgid "Use a private session"
@@ -670,15 +659,17 @@ msgstr "Določitev predpomnilniškega imenika za uporabo"
 msgid " GNOME Help Browser"
 msgstr "Gnome brskalnik pomoči"
 
-#: ../src/yelp-main.c:378
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pomoč"
 
 #: ../src/yelp-man.c:460
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu man strani."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr ""
+"Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu man "
+"strani."
 
 #: ../src/yelp-print.c:97
 msgid "Print"
@@ -697,8 +688,7 @@ msgstr "Tiskanje s tem tiskalnikom ni podprto"
 msgid "Printer %s does not support postscript printing."
 msgstr "Tiskalnik %s ne podpira postscript tiskanja."
 
-#: ../src/yelp-print.c:337
-#: ../src/yelp-print.c:364
+#: ../src/yelp-print.c:337 ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Tiskanje"
 
@@ -725,8 +715,12 @@ msgid "No results for \"%s\""
 msgstr "Ni zadetkov za \"%s\""
 
 #: ../src/yelp-search-parser.c:277
-msgid "Try using different words to describe the problem you're having or the topic you want help with."
-msgstr "Poskusite uporabiti drugačne besede za opis vašega problema ali teme, za katero potrebujete pomoč."
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+"Poskusite uporabiti drugačne besede za opis vašega problema ali teme, za "
+"katero potrebujete pomoč."
 
 #: ../src/yelp-search-parser.c:280
 #, c-format
@@ -752,7 +746,11 @@ msgstr "Ponovi iskanje na mreži %s"
 #. * "work", and "broken".
 #.
 #: ../src/yelp-search-parser.c:864
-msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
 msgstr "da:od:ne:k:kot:h:o:in:ali:to:tisto:tisti:tista"
 
 #. Translators: This is a list of common prefixes for words.
@@ -805,8 +803,11 @@ msgid "The requested page was not found in the TOC."
 msgstr "Zahtevane stran ni mogoče najti v kazalu"
 
 #: ../src/yelp-toc.c:436
-msgid "The TOC file could not be parsed because it is not a well-formed XML document."
-msgstr "Datoteke TOC ni mogoče razčleniti, ker ni pravilno oblikovana v formatu XML."
+msgid ""
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Datoteke TOC ni mogoče razčleniti, ker ni pravilno oblikovana v formatu XML."
 
 #: ../src/yelp-transform.c:80
 msgid "Invalid Stylesheet"
@@ -815,7 +816,9 @@ msgstr "Neveljavna oblikovna datoteka"
 #: ../src/yelp-transform.c:81
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "Oblikovna datoteka XSLT ‘%s’ ne obstaja ali pa ni zapisana v veljavnem zapisu."
+msgstr ""
+"Oblikovna datoteka XSLT ‘%s’ ne obstaja ali pa ni zapisana v veljavnem "
+"zapisu."
 
 #: ../src/yelp-transform.c:112
 msgid "Broken Transformation"
@@ -945,8 +948,7 @@ msgstr "_Predhodni odsek"
 msgid "_Next Section"
 msgstr "_Naslednji odsek"
 
-#: ../src/yelp-window.c:404
-#: ../src/yelp-window.c:436
+#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
 msgid "_Contents"
 msgstr "_Vsebina"
 
@@ -986,25 +988,20 @@ msgstr "Kopiraj elektronski naslov"
 msgid "Help Browser"
 msgstr "Brskalnik pomoči"
 
-#: ../src/yelp-window.c:586
-#: ../src/yelp-window.c:638
-#: ../src/yelp-window.c:1635
+#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1635
 msgid "Loading..."
 msgstr "Nalaganje ..."
 
-#: ../src/yelp-window.c:587
-#: ../src/yelp-window.c:639
+#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
 msgid "Unknown Page"
 msgstr "Neznana stran"
 
-#: ../src/yelp-window.c:1001
-#: ../src/yelp-window.c:1067
+#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Zahtevan naslov URI \"%s\" ni veljaven"
 
-#: ../src/yelp-window.c:1002
-#: ../src/yelp-window.c:1068
+#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
 msgid "Unable to load page"
 msgstr "Ni mogoče naložiti strani"
 
@@ -1046,8 +1043,12 @@ msgstr "Fraze ni mogoče najti"
 
 #: ../src/yelp-window.c:1578
 #, c-format
-msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
-msgstr "Datoteke ‘%s’ ni mogoče prebrati. Datoteka ne obstaja ali pa nimate dovoljenja za branje."
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
+msgstr ""
+"Datoteke ‘%s’ ni mogoče prebrati. Datoteka ne obstaja ali pa nimate "
+"dovoljenja za branje."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
@@ -1066,4 +1067,3 @@ msgstr "Pregledovalnik dokumentov za namizje Gnome."
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Iskanje pomoči z Gnome namizjem"
-
