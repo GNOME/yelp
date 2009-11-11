@@ -46,10 +46,18 @@
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
-static void      yelp_transform_init        (YelpTransform           *transform);
-static void      yelp_transform_class_init  (YelpTransformClass      *klass);
-static void      yelp_transform_dispose     (GObject                 *object);
-static void      yelp_transform_finalize    (GObject                 *object);
+static void      yelp_transform_init         (YelpTransform           *transform);
+static void      yelp_transform_class_init   (YelpTransformClass      *klass);
+static void      yelp_transform_dispose      (GObject                 *object);
+static void      yelp_transform_finalize     (GObject                 *object);
+static void      yelp_transform_get_property (GObject                 *object,
+                                              guint                    prop_id,
+                                              GValue                  *value,
+                                              GParamSpec              *pspec);
+static void      yelp_transform_set_property (GObject                 *object,
+                                              guint                    prop_id,
+                                              const GValue            *value,
+                                              GParamSpec              *pspec);
 
 static void      transform_run              (YelpTransform           *transform);
 static gboolean  transform_free             (YelpTransform           *transform);
@@ -72,6 +80,11 @@ static void      xslt_yelp_aux              (xmlXPathParserContextPtr ctxt,
                                              int                      nargs);
 
 enum {
+    PROP_0,
+    PROP_STYLESHEET
+};
+
+enum {
     CHUNK_READY,
     FINISHED,
     ERROR,
@@ -86,6 +99,7 @@ typedef struct _YelpTransformPrivate YelpTransformPrivate;
 struct _YelpTransformPrivate {
     xmlDocPtr                input;
     xmlDocPtr                output;
+    gchar                   *stylesheet_file;
     xsltStylesheetPtr        stylesheet;
     xsltTransformContextPtr  context;
 
@@ -103,11 +117,6 @@ struct _YelpTransformPrivate {
     gboolean                cancelled;
 
     GError                 *error;
-
-    /* FIXME: remove
-    YelpTransformFunc       func;
-    gpointer                user_data;
-    */
 };
 
 /******************************************************************************/
@@ -132,6 +141,8 @@ yelp_transform_class_init (YelpTransformClass *klass)
 
     object_class->dispose = yelp_transform_dispose;
     object_class->finalize = yelp_transform_finalize;
+    object_class->get_property = yelp_transform_get_property;
+    object_class->set_property = yelp_transform_set_property;
 
     signals[CHUNK_READY] = g_signal_new ("chunk-ready",
                                    G_TYPE_FROM_CLASS (klass),
@@ -153,6 +164,16 @@ yelp_transform_class_init (YelpTransformClass *klass)
                                    G_TYPE_NONE, 0);
 
     g_type_class_add_private (klass, sizeof (YelpTransformPrivate));
+
+    g_object_class_install_property (object_class,
+                                     PROP_STYLESHEET,
+                                     g_param_spec_string ("stylesheet",
+                                                          N_("XSLT Stylesheet"),
+                                                          N_("The location of the XSLT stylesheet"),
+                                                          NULL,
+                                                          G_PARAM_CONSTRUCT_ONLY |
+                                                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                                          G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 }
 
 static void
@@ -168,9 +189,6 @@ yelp_transform_dispose (GObject *object)
         priv->queue = NULL;
     }
 
-    /* FIXME */
-    GHashTable             *chunks;
-
     G_OBJECT_CLASS (yelp_transform_parent_class)->dispose (object);
 }
 
@@ -179,6 +197,8 @@ yelp_transform_finalize (GObject *object)
 {
     YelpTransformPrivate *priv = GET_PRIV (object);
     xsltDocumentPtr xsltdoc;
+    GHashTableIter iter;
+    gpointer chunk;
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -199,80 +219,76 @@ yelp_transform_finalize (GObject *object)
     if (priv->error)
         g_error_free (priv->error);
 
+    g_hash_table_iter_init (&iter, priv->chunks);
+    while (g_hash_table_iter_next (&iter, NULL, &chunk))
+        g_free (chunk);
+    g_hash_table_destroy (priv->chunks);
+
     g_strfreev (priv->params);
     g_mutex_free (priv->mutex);
 
     G_OBJECT_CLASS (yelp_transform_parent_class)->finalize (object);
 }
 
+static void
+yelp_transform_get_property (GObject    *object,
+                             guint       prop_id,
+                             GValue     *value,
+                             GParamSpec *pspec)
+{
+    YelpTransformPrivate *priv = GET_PRIV (object);
+
+    switch (prop_id)
+        {
+        case PROP_STYLESHEET:
+            g_value_set_string (value, priv->stylesheet_file);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
+}
+
+static void
+yelp_transform_set_property (GObject      *object,
+                             guint         prop_id,
+                             const GValue *value,
+                             GParamSpec   *pspec)
+{
+    YelpTransformPrivate *priv = GET_PRIV (object);
+
+    switch (prop_id)
+        {
+        case PROP_STYLESHEET:
+            priv->stylesheet_file = g_value_dup_string (value);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
+}
+
 /******************************************************************************/
 
 YelpTransform *
-yelp_transform_new ()
+yelp_transform_new (const gchar *stylesheet)
 {
-    return (YelpTransform *) g_object_new (YELP_TYPE_TRANSFORM, NULL);
-}
-
-gboolean
-yelp_transform_set_stylesheet (YelpTransform *transform,
-                               const gchar   *stylesheet,
-                               GError       **error)
-{
-    YelpTransformPrivate *priv = GET_PRIV (transform);
-
-    priv->stylesheet = xsltParseStylesheetFile (BAD_CAST stylesheet);
-    if (priv->stylesheet == NULL) {
-        if (error)
-            g_set_error(error, YELP_ERROR, YELP_ERROR_PROCESSING,
-                        _("The XSLT stylesheet ‘%s’ is either missing or not valid."),
-                        stylesheet);
-        return FALSE;
-    }
-    return TRUE;
-}
-
-void
-yelp_transform_set_aux (YelpTransform *transform,
-                        xmlDocPtr      aux)
-{
-    YelpTransformPrivate *priv = GET_PRIV (transform);
-    priv->aux = aux;
+    return (YelpTransform *) g_object_new (YELP_TYPE_TRANSFORM,
+                                           "stylesheet", stylesheet,
+                                           NULL);
 }
 
 gboolean
 yelp_transform_start (YelpTransform       *transform,
                       xmlDocPtr            document,
-                      const gchar * const *params,
-                      GError             **error)
+                      xmlDocPtr            auxiliary,
+                      const gchar * const *params)
 {
     YelpTransformPrivate *priv = GET_PRIV (transform);
 
     priv->input = document;
-
-    priv->context = xsltNewTransformContext (priv->stylesheet,
-                                             priv->input);
-    if (priv->context == NULL) {
-        if (error)
-            g_set_error (error, YELP_ERROR, YELP_ERROR_PROCESSING,
-                         _("The XSLT stylesheet could not be compiled."));
-        return FALSE;
-    }
-
+    priv->aux = auxiliary;
     priv->params = g_strdupv ((gchar **) params);
-
-    priv->context->_private = transform;
-    xsltRegisterExtElement (priv->context,
-                            BAD_CAST "document",
-                            BAD_CAST YELP_NAMESPACE,
-                            (xsltTransformFunction) xslt_yelp_document);
-    xsltRegisterExtElement (priv->context,
-                            BAD_CAST "cache",
-                            BAD_CAST YELP_NAMESPACE,
-                            (xsltTransformFunction) xslt_yelp_cache);
-    xsltRegisterExtFunction (priv->context,
-                             BAD_CAST "input",
-                             BAD_CAST YELP_NAMESPACE,
-                             (xmlXPathFunction) xslt_yelp_aux);
 
     priv->mutex = g_mutex_new ();
     g_mutex_lock (priv->mutex);
@@ -311,7 +327,8 @@ yelp_transform_cancel (YelpTransform *transform)
     g_mutex_lock (priv->mutex);
     if (priv->running) {
         priv->cancelled = TRUE;
-        priv->context->state = XSLT_STATE_STOPPED;
+        if (priv->context)
+            priv->context->state = XSLT_STATE_STOPPED;
     }
     g_mutex_unlock (priv->mutex);
 }
@@ -338,6 +355,49 @@ transform_run (YelpTransform *transform)
     YelpTransformPrivate *priv = GET_PRIV (transform);
 
     debug_print (DB_FUNCTION, "entering\n");
+
+    priv->stylesheet = xsltParseStylesheetFile (BAD_CAST (priv->stylesheet_file));
+    if (priv->stylesheet == NULL) {
+        g_mutex_lock (priv->mutex);
+        if (priv->error)
+            g_error_free (priv->error);
+        priv->error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
+                                   _("The XSLT stylesheet ‘%s’ is either missing or not valid."),
+                                   priv->stylesheet_file);
+        g_object_ref (transform);
+        g_idle_add ((GSourceFunc) transform_error, transform);
+        g_mutex_unlock (priv->mutex);
+        return;
+    }
+
+    priv->context = xsltNewTransformContext (priv->stylesheet,
+                                             priv->input);
+    if (priv->context == NULL) {
+        g_mutex_lock (priv->mutex);
+        if (priv->error)
+            g_error_free (priv->error);
+        priv->error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
+                                   _("The XSLT stylesheet ‘%s’ is either missing or not valid."),
+                                   priv->stylesheet_file);
+        g_object_ref (transform);
+        g_idle_add ((GSourceFunc) transform_error, transform);
+        g_mutex_unlock (priv->mutex);
+        return;
+    }
+
+    priv->context->_private = transform;
+    xsltRegisterExtElement (priv->context,
+                            BAD_CAST "document",
+                            BAD_CAST YELP_NAMESPACE,
+                            (xsltTransformFunction) xslt_yelp_document);
+    xsltRegisterExtElement (priv->context,
+                            BAD_CAST "cache",
+                            BAD_CAST YELP_NAMESPACE,
+                            (xsltTransformFunction) xslt_yelp_cache);
+    xsltRegisterExtFunction (priv->context,
+                             BAD_CAST "input",
+                             BAD_CAST YELP_NAMESPACE,
+                             (xmlXPathFunction) xslt_yelp_aux);
 
     priv->output = xsltApplyStylesheetUser (priv->stylesheet,
                                             priv->input,
@@ -372,6 +432,23 @@ transform_chunk (YelpTransform *transform)
     g_signal_emit (transform, signals[CHUNK_READY], 0, chunk_id);
 
     g_free (chunk_id);
+
+ done:
+    g_object_unref (transform);
+    return FALSE;
+}
+
+static gboolean
+transform_error (YelpTransform *transform)
+{
+    YelpTransformPrivate *priv = GET_PRIV (transform);
+
+    debug_print (DB_FUNCTION, "entering\n");
+
+    if (priv->cancelled)
+        goto done;
+
+    g_signal_emit (transform, signals[ERROR], 0);
 
  done:
     g_object_unref (transform);

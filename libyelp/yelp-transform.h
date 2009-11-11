@@ -44,16 +44,11 @@ struct _YelpTransformClass {
     GObjectClass  parent_class;
 };
 
-YelpTransform  * yelp_transform_new            (void);
-gboolean         yelp_transform_set_stylesheet (YelpTransform       *transform,
-                                                const gchar         *stylesheet,
-                                                GError             **error);
-void             yelp_transform_set_aux        (YelpTransform       *transform,
-                                                xmlDocPtr            aux);
+YelpTransform  * yelp_transform_new            (const gchar         *stylesheet);
 gboolean         yelp_transform_start          (YelpTransform       *transform,
                                                 xmlDocPtr            document,
-                                                const gchar * const *params,
-                                                GError             **error);
+                                                xmlDocPtr            auxiliary,
+                                                const gchar * const *params);
 gchar *          yelp_transform_take_chunk     (YelpTransform       *transform,
                                                 const gchar         *chunk_id);
 void             yelp_transform_cancel         (YelpTransform       *transform);

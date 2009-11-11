@@ -538,10 +538,7 @@ mallard_page_data_run (MallardPageData *page_data)
     gchar **params = NULL;
 
     mallard_page_data_cancel (page_data);
-    page_data->transform = yelp_transform_new ();
-
-    /* FIXME: handle error */
-    yelp_transform_set_stylesheet (page_data->transform, STYLESHEET, NULL);
+    page_data->transform = yelp_transform_new (STYLESHEET);
 
     page_data->chunk_ready =
         g_signal_connect (page_data->transform, "chunk-ready",
@@ -579,14 +576,10 @@ mallard_page_data_run (MallardPageData *page_data)
     params[ix++] = g_strdup_printf ("%i", yelp_settings_get_icon_size (settings));
     params[ix] = NULL;
 
-    yelp_transform_set_aux (page_data->transform,
-                            priv->cache);
-
-    /* FIXME: handle error */
     yelp_transform_start (page_data->transform,
 			  page_data->xmldoc,
-			  (const gchar * const *) params,
-                          NULL);
+                          priv->cache,
+			  (const gchar * const *) params);
     g_strfreev (params);
 }
 
