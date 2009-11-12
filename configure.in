@@ -69,7 +69,7 @@ PKG_CHECK_MODULES(YELP,
 	libstartup-notification-1.0 >= 0.8
 	dbus-glib-1
 	rarian >= 0.7.0
-	webkit-1.0
+	webkit-1.0 >= 1.1.15
 ])
 
 AC_SUBST([YELP_CFLAGS])
