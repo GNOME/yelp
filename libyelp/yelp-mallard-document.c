@@ -239,7 +239,7 @@ mallard_request_page (YelpDocument         *document,
     case MALLARD_STATE_BLANK:
     case MALLARD_STATE_STOP:
         docuri = yelp_uri_get_document_uri (priv->uri);
-        error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
+        error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                              _("The page ‘%s’ was not found in the document ‘%s’."),
                              page_id, docuri);
         g_free (docuri);
@@ -553,28 +553,7 @@ mallard_page_data_run (MallardPageData *page_data)
                           (GCallback) transform_error,
                           page_data);
 
-    params = g_new0 (gchar *,
-                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + 3);
-    for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++) {
-        gchar *val;
-        ix = 2 * i;
-        params[ix] = g_strdup (yelp_settings_get_color_param (i));
-        val = yelp_settings_get_color (settings, i);
-        params[ix + 1] = g_strdup_printf ("\"%s\"", val);
-        g_free (val);
-    }
-    for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
-        gchar *val;
-        ix = 2 * (YELP_SETTINGS_NUM_COLORS + i);
-        params[ix] = g_strdup (yelp_settings_get_icon_param (i));
-        val = yelp_settings_get_icon (settings, i);
-        params[ix + 1] = g_strdup_printf ("\"%s\"", val);
-        g_free (val);
-    }
-    ix = 2 * (YELP_SETTINGS_NUM_COLORS + YELP_SETTINGS_NUM_ICONS);
-    params[ix++] = g_strdup ("theme.icon.admon.size");
-    params[ix++] = g_strdup_printf ("%i", yelp_settings_get_icon_size (settings));
-    params[ix] = NULL;
+    params = yelp_settings_get_all_params (settings, 0, NULL);
 
     yelp_transform_start (page_data->transform,
 			  page_data->xmldoc,

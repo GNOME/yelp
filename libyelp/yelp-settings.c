@@ -564,6 +564,45 @@ yelp_settings_get_icon_param (YelpSettingsIcon icon)
 
 /******************************************************************************/
 
+gchar **
+yelp_settings_get_all_params (YelpSettings *settings,
+			      gint          extra,
+			      gint         *end)
+{
+    gchar **params;
+    gint i, ix;
+
+    params = g_new0 (gchar *,
+                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 3);
+
+    for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++) {
+        gchar *val;
+        ix = 2 * i;
+        params[ix] = g_strdup (yelp_settings_get_color_param (i));
+        val = yelp_settings_get_color (settings, i);
+        params[ix + 1] = g_strdup_printf ("\"%s\"", val);
+        g_free (val);
+    }
+    for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
+        gchar *val;
+        ix = 2 * (YELP_SETTINGS_NUM_COLORS + i);
+        params[ix] = g_strdup (yelp_settings_get_icon_param (i));
+        val = yelp_settings_get_icon (settings, i);
+        params[ix + 1] = g_strdup_printf ("\"%s\"", val);
+        g_free (val);
+    }
+    ix = 2 * (YELP_SETTINGS_NUM_COLORS + YELP_SETTINGS_NUM_ICONS);
+    params[ix++] = g_strdup ("theme.icon.admon.size");
+    params[ix++] = g_strdup_printf ("%i", yelp_settings_get_icon_size (settings));
+    params[ix] = NULL;
+
+    if (end != NULL)
+	*end = ix;
+    return params;
+}
+
+/******************************************************************************/
+
 static void
 gtk_theme_changed (GtkSettings  *gtk_settings,
 		   GParamSpec   *pspec,

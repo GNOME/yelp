@@ -111,6 +111,10 @@ void                yelp_settings_set_icons            (YelpSettings       *sett
                                                         ...);
 const gchar *       yelp_settings_get_icon_param       (YelpSettingsIcon    icon);
 
+gchar **            yelp_settings_get_all_params       (YelpSettings       *settings,
+                                                        gint                extra,
+                                                        gint               *end);
+
 G_END_DECLS
 
 #endif /* __YELP_SETTINGS_H__ */
