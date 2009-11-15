@@ -3,6 +3,7 @@ lib_LTLIBRARIES = libyelp.la
 libyelp_la_SOURCES =				\
 	yelp-debug.c				\
 	yelp-error.c				\
+	yelp-docbook-document.c			\
 	yelp-document.c				\
 	yelp-location-entry.c			\
 	yelp-mallard-document.c			\
@@ -22,6 +23,7 @@ libyelp_la_LIBADD =				\
 	$(YELP_LIBS)
 
 libyelp_headers =				\
+	yelp-docbook-document.h			\
 	yelp-document.h				\
 	yelp-location-entry.h			\
 	yelp-mallard-document.h			\

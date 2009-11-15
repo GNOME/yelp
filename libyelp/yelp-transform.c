@@ -145,11 +145,11 @@ yelp_transform_class_init (YelpTransformClass *klass)
     object_class->set_property = yelp_transform_set_property;
 
     signals[CHUNK_READY] = g_signal_new ("chunk-ready",
-                                   G_TYPE_FROM_CLASS (klass),
-                                   G_SIGNAL_RUN_LAST,
-                                   0, NULL, NULL,
-                                   g_cclosure_marshal_VOID__STRING,
-                                   G_TYPE_NONE, 1, G_TYPE_STRING);
+                                         G_TYPE_FROM_CLASS (klass),
+                                         G_SIGNAL_RUN_LAST,
+                                         0, NULL, NULL,
+                                         g_cclosure_marshal_VOID__STRING,
+                                         G_TYPE_NONE, 1, G_TYPE_STRING);
     signals[FINISHED] = g_signal_new ("finished",
                                       G_TYPE_FROM_CLASS (klass),
                                       G_SIGNAL_RUN_LAST,
@@ -181,12 +181,40 @@ yelp_transform_dispose (GObject *object)
 {
     YelpTransformPrivate *priv = GET_PRIV (object);
 
+    debug_print (DB_FUNCTION, "entering\n");
+
     if (priv->queue) {
         gchar *chunk_id;
         while ((chunk_id = (gchar *) g_async_queue_try_pop (priv->queue)))
             g_free (chunk_id);
         g_async_queue_unref (priv->queue);
         priv->queue = NULL;
+    }
+
+    /* We do not free input or aux.  They belong to the caller, which
+       must ensure they exist for the lifetime of the transform.  We
+       have to set priv->aux_xslt->doc (which is priv->aux) to NULL
+       before xsltFreeTransformContext.  Otherwise it will be freed,
+       which we don't want.
+     */
+    if (priv->aux_xslt)
+        priv->aux_xslt->doc = NULL;
+
+    /* We free these in dispose to make absolutely certain that they're
+       freed by the time any weak notify callbacks are called.  These
+       may be used elsewhere to free resources like the input document.
+     */
+    if (priv->context) {
+        xsltFreeTransformContext (priv->context);
+        priv->context = NULL;
+    }
+    if (priv->stylesheet) {
+        xsltFreeStylesheet (priv->stylesheet);
+        priv->stylesheet = NULL;
+    }
+    if (priv->output) {
+        xmlFreeDoc (priv->output);
+        priv->output = NULL;
     }
 
     G_OBJECT_CLASS (yelp_transform_parent_class)->dispose (object);
@@ -202,20 +230,6 @@ yelp_transform_finalize (GObject *object)
 
     debug_print (DB_FUNCTION, "entering\n");
 
-    if (priv->output)
-        xmlFreeDoc (priv->output);
-    if (priv->stylesheet)
-        xsltFreeStylesheet (priv->stylesheet);
-    /* We do not free input or aux.  They belong to the caller, which
-       must ensure they exist for the lifetime of the transform.  We
-       have to set priv->aux_xslt->doc (which is priv->aux) to NULL
-       before xsltFreeTransformContext.  Otherwise it will be freed,
-       which we don't want.
-     */
-    if (priv->aux_xslt)
-        priv->aux_xslt->doc = NULL;
-    if (priv->context)
-        xsltFreeTransformContext (priv->context);
     if (priv->error)
         g_error_free (priv->error);
 

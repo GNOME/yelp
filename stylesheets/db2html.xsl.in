@@ -14,9 +14,10 @@
 
 <xsl:param name="db.chunk.chunk_top" select="true()"/>
 <xsl:param name="db.chunk.extension" select="''"/>
-<xsl:param name="db.chunk.info_basename"  select="'__yelp_info'"/>
+<xsl:param name="db.chunk.info_basename"  select="'//about'"/>
 
 <xsl:param name="db2html.navbar.top" select="false()"/>
+<xsl:param name="db2html.sidenav" select="false()"/>
 
 <!-- == db.number == -->
 <!--
