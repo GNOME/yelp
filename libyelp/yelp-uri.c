@@ -104,6 +104,13 @@ static const gchar *mancats[] = {
     NULL
 };
 
+static const gchar *infosuffix[] = {
+    ".info",
+    ".info.gz", ".info.bz2", ".info.lzma",
+    ".gz", ".bz2", ".lzma",
+    NULL
+};
+
 /******************************************************************************/
 
 static void
@@ -821,7 +828,109 @@ resolve_man_uri (YelpUri *uri)
 static void
 resolve_info_uri (YelpUri *uri)
 {
-    /* FIXME */
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    /* info:/path/to/file
+     * info:name#node
+     * info:name
+     * info:(name)node
+     * info:(name)
+     */
+    static gchar **infopath = NULL;
+    const gchar * const * langs = g_get_language_names ();
+    gchar *name = NULL;
+    gchar *sect = NULL;
+    gchar *fullpath = NULL;
+    /* do not free */
+    gchar *colon;
+    gint infopath_i, suffix_i;
+
+    if (g_str_has_prefix (priv->res_arg, "info:/")) {
+        gchar *newuri;
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
+        newuri = g_strdup_printf ("file:%s", priv->res_arg + 4);
+        g_free (priv->res_arg);
+        priv->res_arg = newuri;
+        resolve_file_uri (uri);
+        return;
+    }
+
+    if (!infopath) {
+        /* Initialize infopath only once */
+        const gchar *env = g_getenv ("INFOPATH");
+        if (!env || env[0] == '\0')
+            env = "/usr/info:/usr/share/info:/usr/local/info:/usr/local/share/info";
+        infopath = g_strsplit (env, ":", 0);
+    }
+
+    colon = strchr (priv->res_arg, ':');
+    if (colon)
+        colon++;
+    else
+        colon = (gchar *) priv->res_arg;
+
+    if (colon[0] == '(') {
+        const gchar *rbrace = strchr (colon, ')');
+        if (rbrace) {
+            name = g_strndup (colon + 1, rbrace - colon - 1);
+            sect = g_strdup (rbrace + 1);
+        }
+    }
+    else {
+        const gchar *hash = strchr (colon, '#');
+        if (hash) {
+            name = g_strndup (colon, hash - colon);
+            sect = g_strdup (hash + 1);
+        }
+        else {
+            name = g_strdup (colon);
+            sect = NULL;
+        }
+    }
+
+    for (infopath_i = 0; infopath[infopath_i]; infopath_i++) {
+        if (!g_file_test (infopath[infopath_i], G_FILE_TEST_IS_DIR))
+            continue;
+        for (suffix_i = 0; infosuffix[suffix_i]; suffix_i++) {
+            fullpath = g_strconcat (infopath[infopath_i], "/",
+                                    name, infosuffix[suffix_i], NULL);
+            if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
+                break;
+            g_free (fullpath);
+            fullpath = NULL;
+        }
+        if (fullpath != NULL)
+            break;
+    }
+
+    if (fullpath) {
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
+        priv->gfile = g_file_new_for_path (fullpath);
+        priv->docuri = g_strconcat ("info:", name, NULL);
+        if (sect) {
+            priv->fulluri = g_strconcat ("info:", name, "#", sect, NULL);
+            priv->page_id = g_strdup (sect);
+            priv->frag_id = sect;
+            sect = NULL; /* steal memory */
+        }
+        else
+            priv->fulluri = g_strdup (priv->docuri);
+        resolve_gfile (uri, NULL);
+    } else {
+        gchar *res_arg = priv->res_arg;
+        priv->res_arg = g_strconcat ("man:", name, NULL);
+        resolve_man_uri (uri);
+        if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_MAN) {
+            g_free (priv->res_arg);
+            priv->res_arg = res_arg;
+        }
+        else {
+            g_free (res_arg);
+            priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+        }
+    }
+    g_free (fullpath);
+    g_free (name);
+    g_free (sect);
 }
 
 static void
