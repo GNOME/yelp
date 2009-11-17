@@ -121,11 +121,11 @@ yelp_io_channel_new_file (gchar    *file,
 
 	if (!channel) {
 	    if (error) {
-		    g_set_error (error, YELP_GERROR, YELP_GERROR_IO,
-				 _("The file ‘%s’ could not be read and decoded. "
-				   "The file may be compressed in an unsupported "
-				   "format."),
-				 file);
+		g_set_error (error, YELP_ERROR, YELP_ERROR_PROCESSING,
+			     _("The file ‘%s’ could not be read and decoded. "
+			       "The file may be compressed in an unsupported "
+			       "format."),
+			     file);
 	    }
 	    return NULL;
 	}

@@ -5,6 +5,7 @@ libyelp_la_SOURCES =				\
 	yelp-error.c				\
 	yelp-docbook-document.c			\
 	yelp-document.c				\
+	yelp-io-channel.c			\
 	yelp-location-entry.c			\
 	yelp-mallard-document.c			\
 	yelp-settings.c				\
