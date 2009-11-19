@@ -1,3 +1,13 @@
+Changes in 2.28.1:
+------------------
+* Use g_timeout_add_seconds to reduce wakeups, bug #581260 (Javier Jardón)
+* Removed debug output, bug #585829 (Vincent Untz)
+* Updated translations:
+  en@shaw    (Thomas Thurman)
+  lv         (Peteris Krisjanis)
+  nn         (Åsmund Skjæveland)
+  ru         (Leonid Kanter)
+
 Changes in 2.28.0:
 ------------------
 * Updated translations:
