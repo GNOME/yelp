@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-24 17:02+0200\n"
-"PO-Revision-Date: 2009-08-17 18:32+0200\n"
+"POT-Creation-Date: 2009-11-22 17:09+0100\n"
+"PO-Revision-Date: 2009-11-22 17:13+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -306,7 +306,7 @@ msgstr "Entreteniment"
 
 #: ../data/toc.xml.in.h:7
 msgid "Applications for viewing and manipulating graphics"
-msgstr "Aplicacions per a visualitzar i modificar gràfics"
+msgstr "Aplicacions per visualitzar i modificar gràfics"
 
 #: ../data/toc.xml.in.h:8
 msgid "Applications related to audio and video"
@@ -523,7 +523,7 @@ msgstr "Guies i manuals per a aplicacions que es connecten a la resta del món"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
-msgstr "Guies per a involucrar-se en desenvolupament"
+msgstr "Guies per involucrar-se en desenvolupament"
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
@@ -547,7 +547,7 @@ msgstr "Entorns integrats de desenvolupament"
 
 #: ../data/toc.xml.in.h:70
 msgid "IRC Clients"
-msgstr "Clients del IRC"
+msgstr "Clients de l'IRC"
 
 #: ../data/toc.xml.in.h:71
 msgid "Image Processing"
@@ -750,7 +750,7 @@ msgstr "Paràmetres"
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
 msgstr ""
-"Paràmetres que poden canviar els usuaris per a fer el seu entorn més còmode"
+"Paràmetres que poden canviar els usuaris per fer el seu entorn més còmode"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -814,7 +814,7 @@ msgstr "Eines de text"
 
 #: ../data/toc.xml.in.h:137
 msgid "Tools to help you manage your computer"
-msgstr "Eines per a ajudar-vos a gestionar l'ordinador"
+msgstr "Eines per ajudar-vos a gestionar l'ordinador"
 
 #: ../data/toc.xml.in.h:138
 msgid "Translation Tools"
@@ -830,7 +830,7 @@ msgstr "Utilitats"
 
 #: ../data/toc.xml.in.h:141
 msgid "Utilities to help you get work done"
-msgstr "Utilitats per a ajudar-vos a fer la feina"
+msgstr "Utilitats per ajudar-vos a fer la feina"
 
 #: ../data/toc.xml.in.h:142
 msgid "Vector Graphics"
@@ -1048,13 +1048,14 @@ msgstr "Seccions del document"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-mallard.c:380
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "No s'ha trobat la pàgina"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:281 ../src/yelp-mallard.c:381 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "No s'ha trobat la pàgina %s en el document %s."
@@ -1107,7 +1108,7 @@ msgstr "Desconegut"
 msgid "Unknown Error"
 msgstr "Error desconegut"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1723
 msgid "Could Not Read File"
 msgstr "No s'ha pogut llegir el fitxer"
 
@@ -1172,7 +1173,7 @@ msgstr "Imprimir"
 
 #: ../src/yelp-print.c:167
 msgid "Preparing to print"
-msgstr "S'està preparant per a imprimir"
+msgstr "S'està preparant per imprimir"
 
 #: ../src/yelp-print.c:261
 msgid "Printing is not supported on this printer"
@@ -1185,7 +1186,7 @@ msgstr "La impressora %s no permet la impressió amb postscript."
 
 #: ../src/yelp-print.c:366
 msgid "Waiting to print"
-msgstr "S'està esperant per a imprimir"
+msgstr "S'està esperant per imprimir"
 
 #: ../src/yelp-print.c:578
 msgid "An error occurred while printing"
@@ -1488,7 +1489,7 @@ msgstr "_Copia l'adreça de correu"
 msgid "Help Browser"
 msgstr "Navegador d'ajuda"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1785
 msgid "Loading..."
 msgstr "S'està carregant..."
 
@@ -1507,60 +1508,60 @@ msgstr "L'URI «%s» sol·licitat no és vàlid"
 msgid "Unable to load page"
 msgstr "No s'ha pogut carregar la pàgina"
 
-#: ../src/yelp-window.c:1330
+#: ../src/yelp-window.c:1343
 msgid "_Search:"
 msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1331
+#: ../src/yelp-window.c:1344
 msgid "Search for other documentation"
 msgstr "Cerca altra documentació"
 
-#: ../src/yelp-window.c:1351
+#: ../src/yelp-window.c:1364
 msgid "Cannot create window"
 msgstr "No s'ha pogut crear una finestra nova"
 
-#: ../src/yelp-window.c:1357
+#: ../src/yelp-window.c:1370
 msgid "Cannot create search component"
 msgstr "No s'ha pogut crear el component de cerca"
 
-#: ../src/yelp-window.c:1529
+#: ../src/yelp-window.c:1542
 msgid "Fin_d:"
 msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1551
+#: ../src/yelp-window.c:1564
 msgid "Find _Previous"
 msgstr "Cerca l'an_terior"
 
-#: ../src/yelp-window.c:1563
+#: ../src/yelp-window.c:1576
 msgid "Find _Next"
 msgstr "Cerca el següe_nt"
 
-#: ../src/yelp-window.c:1576
+#: ../src/yelp-window.c:1589
 msgid "Phrase not found"
 msgstr "No s'ha trobat la frase"
 
-#: ../src/yelp-window.c:1707
+#: ../src/yelp-window.c:1720
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 "No s'ha pogut llegir el fitxer «%s». Pot ser que manqui aquest fitxer, o "
-"potser no teniu permís per a llegir-lo."
+"potser no teniu permís per legir-lo."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2577
+#: ../src/yelp-window.c:2602
 msgid "translator-credits"
 msgstr ""
 "Jordi Mallach <jordi@sindominio.net>\n"
 "Gil Forcada <gilforcada@guifi.net>"
 
-#: ../src/yelp-window.c:2580
+#: ../src/yelp-window.c:2605
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2582
+#: ../src/yelp-window.c:2607
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navegador i visualitzador de documentació per a l'escriptori GNOME."
 
