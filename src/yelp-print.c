@@ -365,7 +365,7 @@ yelp_print_present_status_dialog (YelpWindow *window, YelpPrintInfo *info)
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (info->dialog),
 					      _("Waiting to print"));
     info->progress = gtk_progress_bar_new ();
-    gtk_container_add (GTK_CONTAINER (GTK_DIALOG(info->dialog)->vbox),
+    gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (info->dialog))),
 		       info->progress);
 
     gtk_widget_show (info->progress);

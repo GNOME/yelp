@@ -919,8 +919,8 @@ page_request_cb (YelpDocument       *document,
 
 	window->priv->current_request = -1;
 	yelp_page_free ((YelpPage *) func_data);
-	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
-
+	gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)),
+	                       NULL);
 	g_free (data);
 	break;
     case YELP_DOCUMENT_SIGNAL_TITLE:
@@ -934,7 +934,8 @@ page_request_cb (YelpDocument       *document,
 	window_error (window, (gchar *) yelp_error_get_title (error),
 		      (gchar *) yelp_error_get_message (error), FALSE);
 	yelp_error_free (error);
-	gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+	gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)),
+			       NULL);
 	break;
     default:
 	g_assert_not_reached();
@@ -1500,7 +1501,7 @@ window_key_event_cb (GtkWidget *widget, GdkEventKey *event,
 {
     if ((window->priv->search_action &&
 	 gtk_entry_action_has_focus ((GtkEntryAction *) window->priv->search_action)) ||
-	GTK_WIDGET_HAS_FOCUS (window->priv->find_entry))
+	gtk_widget_has_focus (window->priv->find_entry))
 	return FALSE;
 
     if (event->keyval == GDK_slash) {
@@ -1771,7 +1772,8 @@ window_do_load_html (YelpWindow    *window,
         g_object_unref (stream);
 
     g_free (real_uri);
-    gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)),
+                           NULL);
 
     return handled;
 }
@@ -1789,7 +1791,8 @@ window_set_loading (YelpWindow *window)
     priv = window->priv;
 
     cursor = gdk_cursor_new (GDK_WATCH);
-    gdk_window_set_cursor (GTK_WIDGET (window)->window, cursor);
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)),
+                           cursor);
     gdk_cursor_unref (cursor);
 
     action = gtk_action_group_get_action (priv->action_group, "GoPrevious");

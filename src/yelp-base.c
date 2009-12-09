@@ -243,13 +243,14 @@ yelp_base_new_window (YelpBase *base, const gchar *uri, const gchar *startup_id)
 		if (strncmp (sn_launchee_context_get_startup_id (context), 
 			     "_TIME", 5) != 0)
 			sn_launchee_context_setup_window (context,
-					 GDK_WINDOW_XWINDOW (window->window));
+					 GDK_WINDOW_XWINDOW (gtk_widget_get_window (window)));
 
 		if (sn_launchee_context_get_id_has_timestamp (context)) {
 			gulong time;
 
 			time = sn_launchee_context_get_timestamp (context);
-			gdk_x11_window_set_user_time (window->window, time);
+			gdk_x11_window_set_user_time (gtk_widget_get_window (window),
+						      time);
 		}		
 	}
 	        
