@@ -1324,18 +1324,10 @@ window_populate (YelpWindow *window)
 				   priv->back_menu);
 
     action = gtk_action_group_get_action(priv->action_group, "GoBack");
-#if GTK_CHECK_VERSION (2, 16, 0)
     gtk_activatable_set_related_action (GTK_ACTIVATABLE (b_proxy), action);
-#else
-    gtk_action_connect_proxy (action, b_proxy);
-#endif
 
     action = gtk_action_group_get_action (priv->action_group, "GoForward");
-#if GTK_CHECK_VERSION (2, 16, 0)
     gtk_activatable_set_related_action (GTK_ACTIVATABLE (f_proxy), action);
-#else
-    gtk_action_connect_proxy (action, f_proxy);
-#endif
 
     gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON (f_proxy),
 				   priv->forward_menu);
