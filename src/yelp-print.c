@@ -23,14 +23,16 @@
  */
 
 #include <unistd.h>
+#include <string.h>
 #include <sys/stat.h>
+
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <string.h>
+#include <gtk/gtkunixprint.h>
+
 #include "yelp-print.h"
 #include "yelp-html.h"
 #include "yelp-utils.h"
-#include <gtk/gtkprintunixdialog.h>
 
 static GtkPrintSettings * yelp_print_load_config_from_file ( void );
 static void               yelp_print_save_config_to_file   (GtkPrintSettings *config);
