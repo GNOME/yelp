@@ -38,7 +38,7 @@
 #define YELP_HTML_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_HTML, YelpHtmlPriv))
 
 struct _YelpHtmlPriv {
-    gchar *content;
+    GString     *content;
     gchar *mime;
     gchar       *find_string;
     gboolean    initialised;
@@ -347,7 +347,8 @@ yelp_html_open_stream (YelpHtml *html, const gchar *mime)
     debug_print (DB_FUNCTION, "entering\n");
 
     html->priv->frames_enabled = FALSE;
-    g_free (html->priv->content);
+    if (html->priv->content)
+	g_string_free (html->priv->content, TRUE);
     html->priv->content = NULL;
     g_free (html->priv->mime);
     html->priv->mime = g_strdup(mime);
@@ -365,11 +366,9 @@ yelp_html_write (YelpHtml *html, const gchar *data, gint len)
     debug_print (DB_ARG, "  len  = %i\n", len);
 
     if (html->priv->content) {
-	tmp = g_strjoin (NULL, html->priv->content, data, NULL);
-	g_free (html->priv->content);
-	html->priv->content = tmp;
+	g_string_append_len (html->priv->content, data, len);
     } else {
-	html->priv->content = g_strdup (data);
+	html->priv->content = g_string_new_len (data, len);
     }
 }
 
@@ -413,11 +412,11 @@ yelp_html_close (YelpHtml *html)
     }
 
     webkit_web_view_load_string (WEBKIT_WEB_VIEW (html),
-				 html->priv->content,
+				 html->priv->content->str,
 				 html->priv->mime,
 				 NULL,
 				 html->priv->base_uri);
-    g_free (html->priv->content);
+    g_string_free (html->priv->content, TRUE);
     html->priv->content = NULL;
     g_free (html->priv->mime);
     html->priv->mime = NULL;
