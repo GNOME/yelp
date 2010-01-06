@@ -833,7 +833,7 @@ yelp_settings_params (gchar ***params,
 		      gint    *params_max)
 {
     GtkIconInfo *icon_info;
-    gchar *icon_file;
+    gchar *icon_file, *icon_uri;
     gint colors_i , icons_i;
 
     if ((*params_i + 2 * (YELP_NUM_COLORS + YELP_NUM_ICONS)) >= *params_max) {
@@ -853,8 +853,11 @@ yelp_settings_params (gchar ***params,
 	icon_info = yelp_settings_get_icon (icons_i);
 	if (icon_info) {
 	    icon_file = (gchar *) gtk_icon_info_get_filename (icon_info);
-	    if (icon_file)
-		(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"", icon_file);
+	    if (icon_file) {
+		icon_uri = g_filename_to_uri (icon_file, NULL, NULL);
+		(*params)[(*params_i)++] = g_strdup_printf ("\"%s\"", icon_uri);
+		g_free (icon_uri);
+	    }
 	    else
 		(*params)[(*params_i)++] = g_strdup ("\"\"");
 	    gtk_icon_info_free (icon_info);
