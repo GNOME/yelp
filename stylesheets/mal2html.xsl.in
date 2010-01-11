@@ -31,9 +31,9 @@
 
 <!-- == mal.link.target == -->
 <xsl:template name="mal.link.target">
-  <xsl:param name="link" select="."/>
-  <xsl:param name="xref" select="$link/@xref"/>
-  <xsl:param name="href" select="$link/@href"/>
+  <xsl:param name="node" select="."/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:param name="href" select="$node/@href"/>
   <xsl:choose>
     <xsl:when test="string($xref) = ''">
       <xsl:value-of select="$href"/>
