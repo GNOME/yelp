@@ -24,6 +24,8 @@
 #include <mozilla-config.h>
 #include <config.h>
 
+#include <string.h>
+
 #include "yelp-gecko-services.h"
 #include "yelp-gecko-utils.h"
 #include "yelp-marshal.h"
@@ -90,12 +92,19 @@ static gint
 html_open_uri (GtkMozEmbed *embed, const gchar *uri)
 {
     YelpHtml *html = YELP_HTML (embed);
-    gboolean block_load;
+    gboolean block_load = FALSE;
 
     g_return_val_if_fail (uri != NULL, FALSE);
 
     debug_print (DB_FUNCTION, "entering\n");
     debug_print (DB_ARG, "  uri = \"%s\"\n", uri);
+
+    if (g_str_equal (html->priv->base_uri, uri)) {
+	/* As of xulrunner 1.6.2, open_uri is called in response
+	   to the base URI we pass in.
+	 */
+	return FALSE;
+    }
 
     if (!html->priv->frames_enabled) {
 	g_signal_emit (html, signals[URI_SELECTED], 0, uri, FALSE);

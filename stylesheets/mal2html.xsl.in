@@ -44,10 +44,10 @@
     <xsl:when test="contains($xref, '#')">
       <xsl:variable name="pageid" select="substring-before($xref, '#')"/>
       <xsl:variable name="sectionid" select="substring-after($xref, '#')"/>
-      <xsl:value-of select="concat('#', $pageid, '/', $sectionid)"/>
+      <xsl:value-of select="concat('xref:', $pageid, '/', $sectionid)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="concat('#', $xref)"/>
+      <xsl:value-of select="concat('xref:', $xref)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
