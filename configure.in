@@ -2,13 +2,11 @@ AC_INIT([Yelp],[2.27.4],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[
 
 AC_CONFIG_SRCDIR([src/yelp-main.c])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
 
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AM_MAINTAINER_MODE
 
-AC_CONFIG_MACRO_DIR([m4])
-
-AC_SUBST(ACLOCAL_AMFLAGS, "-I m4 \${ACLOCAL_FLAGS}")
 
 AC_PROG_LN_S
 AC_PROG_CC
