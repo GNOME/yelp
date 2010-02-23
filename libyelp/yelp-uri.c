@@ -483,7 +483,7 @@ resolve_file_path (YelpUri *uri)
     if (priv->res_arg[0] == '/') {
         priv->gfile = g_file_new_for_path (path);
     }
-    else if (base_priv->gfile) {
+    else if (base_priv && base_priv->gfile) {
         priv->gfile = g_file_resolve_relative_path (base_priv->gfile, path);
     }
     else {
