@@ -1,15 +1,15 @@
 # Swedish messages for Yelp.
-# Copyright (C) 2001-2009 Free Software Foundation, Inc.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009.
+# Copyright (C) 2001-2010 Free Software Foundation, Inc.
 # Richard Hult <rhult@codefactory.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004, 2005.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-14 00:26+0200\n"
-"PO-Revision-Date: 2009-08-14 00:28+0100\n"
+"POT-Creation-Date: 2010-03-09 18:05+0100\n"
+"PO-Revision-Date: 2010-03-09 18:06+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -446,7 +446,7 @@ msgstr "Elektricitet"
 
 #: ../data/toc.xml.in.h:43
 msgid "Electronics"
-msgstr "Electronik"
+msgstr "Elektronik"
 
 #: ../data/toc.xml.in.h:44
 msgid "Email Tools"
@@ -683,8 +683,8 @@ msgid "Presentation Tools"
 msgstr "Presentationsverktyg"
 
 #: ../data/toc.xml.in.h:104
-#: ../src/yelp-print.c:337
-#: ../src/yelp-print.c:364
+#: ../src/yelp-print.c:339
+#: ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "Skriver ut"
 
@@ -960,27 +960,27 @@ msgstr "Filen är inte en giltig .desktop-fil"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Okänd Version \"%s\" i skrivbordsfil"
 
-#: ../src/eggdesktopfile.c:958
+#: ../src/eggdesktopfile.c:957
 #, c-format
 msgid "Starting %s"
 msgstr "Startar %s"
 
-#: ../src/eggdesktopfile.c:1100
+#: ../src/eggdesktopfile.c:1098
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Programmet accepterar inte dokument på kommandoraden"
 
-#: ../src/eggdesktopfile.c:1168
+#: ../src/eggdesktopfile.c:1166
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Okänd startflagga: %d"
 
-#: ../src/eggdesktopfile.c:1373
+#: ../src/eggdesktopfile.c:1365
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Kan inte skicka dokument-URI:er till en \"Type=Link\"-skrivbordspost"
 
-#: ../src/eggdesktopfile.c:1392
+#: ../src/eggdesktopfile.c:1384
 #, c-format
 msgid "Not a launchable item"
 msgstr "Inte ett startbart objekt"
@@ -1049,7 +1049,8 @@ msgstr "Dokumentavsnitt"
 #: ../src/yelp-docbook.c:367
 #: ../src/yelp-info.c:243
 #: ../src/yelp-info.c:338
-#: ../src/yelp-mallard.c:280
+#: ../src/yelp-mallard.c:284
+#: ../src/yelp-mallard.c:384
 #: ../src/yelp-man.c:292
 #: ../src/yelp-man.c:385
 #: ../src/yelp-toc.c:266
@@ -1060,7 +1061,8 @@ msgstr "Sidan hittades inte"
 #: ../src/yelp-db-print.c:259
 #: ../src/yelp-docbook.c:276
 #: ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281
+#: ../src/yelp-mallard.c:285
+#: ../src/yelp-mallard.c:385
 #: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
@@ -1122,7 +1124,7 @@ msgid "Unknown Error"
 msgstr "Okänt fel"
 
 #: ../src/yelp-error.c:136
-#: ../src/yelp-window.c:1710
+#: ../src/yelp-window.c:1716
 msgid "Could Not Read File"
 msgstr "Kunde inte läsa filen"
 
@@ -1158,11 +1160,11 @@ msgstr " GNOME-hjälpvisare"
 msgid "Help"
 msgstr "Hjälp"
 
-#: ../src/yelp-mallard.c:311
+#: ../src/yelp-mallard.c:315
 msgid "Directory not found"
 msgstr "Katalogen hittades inte"
 
-#: ../src/yelp-mallard.c:312
+#: ../src/yelp-mallard.c:316
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogen \"%s\" finns inte."
@@ -1172,32 +1174,32 @@ msgstr "Katalogen \"%s\" finns inte."
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "Filen \"%s\" kunde inte tolkas därför att den inte är en korrekt formaterad manualsida."
 
-#: ../src/yelp-print.c:97
+#: ../src/yelp-print.c:99
 msgid "Print"
 msgstr "Skriv ut"
 
-#: ../src/yelp-print.c:167
+#: ../src/yelp-print.c:169
 msgid "Preparing to print"
 msgstr "Förbereder för utskrift"
 
-#: ../src/yelp-print.c:261
+#: ../src/yelp-print.c:263
 msgid "Printing is not supported on this printer"
 msgstr "Utskrift stöds inte på den här skrivaren"
 
-#: ../src/yelp-print.c:264
+#: ../src/yelp-print.c:266
 #, c-format
 msgid "Printer %s does not support postscript printing."
 msgstr "Skrivaren %s har inte stöd för Postscript-utskrifter."
 
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:368
 msgid "Waiting to print"
 msgstr "Väntar på utskrift"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:580
 msgid "An error occurred while printing"
 msgstr "Ett fel inträffade vid utskrift"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:584
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "Det var inte möjligt att skriva ut ditt dokument: %s"
@@ -1479,7 +1481,7 @@ msgstr "Hjälpvisare"
 
 #: ../src/yelp-window.c:619
 #: ../src/yelp-window.c:671
-#: ../src/yelp-window.c:1772
+#: ../src/yelp-window.c:1779
 msgid "Loading..."
 msgstr "Läser in..."
 
@@ -1488,59 +1490,59 @@ msgstr "Läser in..."
 msgid "Unknown Page"
 msgstr "Okänd sida"
 
-#: ../src/yelp-window.c:1042
-#: ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../src/yelp-window.c:1043
+#: ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Den begärda URI:n \"%s\" är ogiltig"
 
-#: ../src/yelp-window.c:1043
-#: ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
+#: ../src/yelp-window.c:1044
+#: ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
 msgid "Unable to load page"
 msgstr "Kunde inte läsa in sida"
 
-#: ../src/yelp-window.c:1330
+#: ../src/yelp-window.c:1336
 msgid "_Search:"
 msgstr "_Sök efter:"
 
-#: ../src/yelp-window.c:1331
+#: ../src/yelp-window.c:1337
 msgid "Search for other documentation"
 msgstr "Sök efter annan dokumentation"
 
-#: ../src/yelp-window.c:1351
+#: ../src/yelp-window.c:1357
 msgid "Cannot create window"
 msgstr "Kan inte skapa fönster"
 
-#: ../src/yelp-window.c:1357
+#: ../src/yelp-window.c:1363
 msgid "Cannot create search component"
 msgstr "Kan inte skapa sökkomponent"
 
-#: ../src/yelp-window.c:1529
+#: ../src/yelp-window.c:1535
 msgid "Fin_d:"
 msgstr "Sö_k:"
 
-#: ../src/yelp-window.c:1551
+#: ../src/yelp-window.c:1557
 msgid "Find _Previous"
 msgstr "Sök _föregående"
 
-#: ../src/yelp-window.c:1563
+#: ../src/yelp-window.c:1569
 msgid "Find _Next"
 msgstr "Sök _nästa"
 
-#: ../src/yelp-window.c:1576
+#: ../src/yelp-window.c:1582
 msgid "Phrase not found"
 msgstr "Frasen hittades inte"
 
-#: ../src/yelp-window.c:1707
+#: ../src/yelp-window.c:1713
 #, c-format
 msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
 msgstr "Filen \"%s\" kunde inte läsas. Filen kanske saknas eller så har du inte rättigheter att läsa den."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2577
+#: ../src/yelp-window.c:2604
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -1550,11 +1552,11 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/yelp-window.c:2580
+#: ../src/yelp-window.c:2607
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2582
+#: ../src/yelp-window.c:2609
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "En dokumentationsläsare och -visare för GNOME-skrivbordet."
 
