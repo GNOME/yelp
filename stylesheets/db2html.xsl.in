@@ -82,11 +82,6 @@ FIXME: yelp:cache no longer works
   </xsl:choose>
 </xsl:template>
 
-<!-- == db2html.css.custom == -->
-<xsl:template name="db2html.css.custom">
-  <xsl:call-template name="yelp.common.css"/>
-</xsl:template>
-
 <!-- == db2html.division.head.extra == -->
 <xsl:template name="db2html.division.head.extra">
   <xsl:if test="string($yelp.javascript) != ''">

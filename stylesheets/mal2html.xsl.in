@@ -52,23 +52,4 @@
   </xsl:choose>
 </xsl:template>
 
-<!-- == mal2html.css.custom == -->
-<xsl:template name="mal2html.css.custom">
-  <xsl:call-template name="yelp.common.css"/>
-  <xsl:text>
-body { padding: 0; }
-div.head {
-  padding: 0.2em 0 0 0;
-  margin: 0 0 1em 0;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-div.body {
-  margin: 0 12px 0 12px;
-}
-  </xsl:text>
-</xsl:template>
-
 </xsl:stylesheet>

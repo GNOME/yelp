@@ -4,28 +4,32 @@
                 version="1.0">
 
 <!-- == yelp.common.css == -->
-<xsl:template name="yelp.common.css">
-  <xsl:text>
-    html {
-      height: 100%;
-    }
-    body {
-      background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
-    }
-    div.body {
-      padding: 0;
-      border: none;
-    }
-
-    <!--/* Gecko seems to get selection color wrong on some themes */
-    ::-moz-selection {
-      background-color:  </xsl:text>
-      <xsl:value-of select="$yelp.color.selected.bg"/><xsl:text>;
-      color: </xsl:text>
-      <xsl:value-of select="$yelp.color.selected.fg"/><xsl:text>;
-    } -->
-
-  </xsl:text>
+<xsl:template name="theme.html.css.custom">
+  <xsl:param name="direction"/>
+  <xsl:param name="left"/>
+  <xsl:param name="right"/>
+<xsl:text>
+html {
+  height: 100%;
+}
+body {
+  padding: 0;
+  background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
+}
+div.head {
+  padding: 0.2em 0 0 0;
+  margin: 0 0 1em 0;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+  border-bottom: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+}
+div.body {
+  margin: 0 12px 0 12px;
+  padding: 0;
+  border: none;
+}
+</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
