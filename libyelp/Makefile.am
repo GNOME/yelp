@@ -18,7 +18,7 @@ libyelp_la_SOURCES =				\
 libyelp_la_CFLAGS =				\
 	$(YELP_CFLAGS)				\
 	-DDATADIR=\""$(datadir)"\"		\
-	-DGDU_ICON_PATH=\"$(GDU_ICON_PATH)\"
+	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
 
 libyelp_la_LIBADD =				\
 	$(YELP_LIBS)

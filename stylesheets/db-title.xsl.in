@@ -5,7 +5,7 @@
                 extension-element-prefixes="yelp"
                 version="1.0">
 
-<xsl:import href="@DB_TITLE@"/>
+<xsl:import href="@XSL_DB_TITLE@"/>
 
 <xsl:template name="node"/>
 
