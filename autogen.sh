@@ -9,7 +9,7 @@ PKG_NAME=Yelp
 REQUIRED_AUTOMAKE_VERSION=1.9
 export REQUIRED_AUTOMAKE_VERSION
 
-if ! test -f $srcdir/src/yelp-main.c; then
+if ! test -f $srcdir/src/yelp.c; then
   echo "**Error**: Directory '$srcdir' does not look like the yelp source directory"
   exit 1
 fi
