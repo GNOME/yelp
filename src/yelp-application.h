@@ -23,7 +23,7 @@
 #ifndef __YELP_APPLICATION_H__
 #define __YELP_APPLICATION_H__
 
-#include <unique/unique.h>
+#include <glib-object.h>
 
 #define YELP_TYPE_APPLICATION            (yelp_application_get_type ())
 #define YELP_APPLICATION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_APPLICATION, YelpApplication))

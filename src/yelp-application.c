@@ -28,9 +28,11 @@
 #include <dbus/dbus-glib.h>
 #include <gtk/gtk.h>
 
+#include "yelp-view.h"
+
 #include "yelp-application.h"
 #include "yelp-dbus.h"
-#include "yelp-view.h"
+#include "yelp-window.h"
 
 typedef struct _YelpApplicationLoad YelpApplicationLoad;
 struct _YelpApplicationLoad {
@@ -43,9 +45,12 @@ static void          yelp_application_class_init       (YelpApplicationClass  *k
 static void          yelp_application_dispose          (GObject               *object);
 static void          yelp_application_finalize         (GObject               *object);
 
-static GtkWidget *   application_new_window            (YelpApplication       *app);
 static void          application_uri_resolved          (YelpUri               *uri,
                                                         YelpApplicationLoad   *data);
+static gboolean      application_window_deleted        (YelpWindow            *window,
+                                                        GdkEvent              *event,
+                                                        YelpApplication       *app);
+static gboolean      application_maybe_quit            (YelpApplication       *app);
 
 G_DEFINE_TYPE (YelpApplication, yelp_application, G_TYPE_OBJECT);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_APPLICATION, YelpApplicationPrivate))
@@ -89,9 +94,10 @@ yelp_application_dispose (GObject *object)
 {
     YelpApplicationPrivate *priv = GET_PRIV (object);
 
-    g_object_unref (priv->connection);
-
-    g_hash_table_destroy (priv->windows_by_document);
+    if (priv->connection) {
+        g_object_unref (priv->connection);
+        priv->connection = NULL;
+    }
 
     G_OBJECT_CLASS (yelp_application_parent_class)->dispose (object);
 }
@@ -99,6 +105,10 @@ yelp_application_dispose (GObject *object)
 static void
 yelp_application_finalize (GObject *object)
 {
+    YelpApplicationPrivate *priv = GET_PRIV (object);
+
+    g_hash_table_destroy (priv->windows_by_document);
+
     G_OBJECT_CLASS (yelp_application_parent_class)->finalize (object);
 }
 
@@ -214,37 +224,11 @@ yelp_application_load_uri (YelpApplication  *app,
     return TRUE;
 }
 
-static GtkWidget *
-application_new_window (YelpApplication *app)
-{
-    GtkWidget *window, *scroll, *view;
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-    
-    window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_UTILITY);
-    gtk_window_set_default_size (GTK_WINDOW (window), 520, 580);
-    priv->windows = g_slist_prepend (priv->windows, window);
-
-    scroll = gtk_scrolled_window_new (NULL, NULL);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
-                                    GTK_POLICY_AUTOMATIC,
-                                    GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (window), scroll);
-
-    view = yelp_view_new ();
-    gtk_container_add (GTK_CONTAINER (scroll), view);
-
-    g_object_set_data (G_OBJECT (window), "view", view);
-
-    return window;
-}
-
 static void
 application_uri_resolved (YelpUri             *uri,
                           YelpApplicationLoad *data)
 {
-    GtkWidget *window;
-    YelpView *view;
+    YelpWindow *window;
     gchar *doc_uri;
     YelpApplicationPrivate *priv = GET_PRIV (data->app);
 
@@ -253,18 +237,51 @@ application_uri_resolved (YelpUri             *uri,
     window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
 
     if (window == NULL) {
-        window = application_new_window (data->app);
+        window = yelp_window_new (data->app);
+        priv->windows = g_slist_prepend (priv->windows, window);
         g_hash_table_insert (priv->windows_by_document, doc_uri, window);
+        g_object_set_data (G_OBJECT (window), "doc_uri", doc_uri);
+        g_signal_connect (window, "delete-event",
+                          G_CALLBACK (application_window_deleted), data->app);
     }
     else {
         g_free (doc_uri);
     }
 
-    view = g_object_get_data (G_OBJECT (window), "view");
-    yelp_view_load_uri (YELP_VIEW (view), uri);
+    yelp_window_load_uri (window, uri);
 
-    gtk_widget_show_all (window);
+    gtk_widget_show_all (GTK_WIDGET (window));
     gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
 
     g_free (data);
+}
+
+static gboolean
+application_window_deleted (YelpWindow      *window,
+                            GdkEvent        *event,
+                            YelpApplication *app)
+{
+    gchar *doc_uri; /* owned by windows_by_document */
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+
+    priv->windows = g_slist_remove (priv->windows, window);
+    doc_uri = g_object_get_data (G_OBJECT (window), "doc_uri");
+    if (doc_uri)
+        g_hash_table_remove (priv->windows_by_document, doc_uri);
+
+    if (priv->windows == NULL)
+        g_timeout_add_seconds (5, (GSourceFunc) application_maybe_quit, app);
+
+    return FALSE;
+}
+
+static gboolean
+application_maybe_quit (YelpApplication *app)
+{
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+
+    if (priv->windows == NULL)
+        gtk_main_quit ();
+
+    return FALSE;
 }

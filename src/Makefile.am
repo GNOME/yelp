@@ -2,6 +2,7 @@ bin_PROGRAMS = yelp
 
 yelp_SOURCES =						\
 	yelp-application.c	yelp-application.h	\
+	yelp-window.c		yelp-window.h		\
 	yelp.c
 
 #	yelp-base.c		yelp-base.h			\
