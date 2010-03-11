@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "yelp-location-entry.h"
+#include "yelp-settings.h"
 
 /**
  * SECTION:yelp-location-entry
@@ -36,8 +37,9 @@
  * searches.
  *
  * The #GtkTreeModel used by a #YelpLocationEntry is expected to have at least
- * three columns: #GtkComboBoxEntry::text-column contains the displayed name
- * of the location, #YelpLocationEntry::icon-column contains an icon name for
+ * four columns: #GtkComboBoxEntry::text-column contains the displayed name
+ * of the location, #YelpLocationEntry::desc-column contains a description
+ * for each entry, #YelpLocationEntry::icon-column contains an icon name for
  * the location, and #YelpLocationEntry::flags-column contains a bit field
  * of #YelpLocationEntryFlags.  These columns are specified when creating a
  * #YelpLocationEntry widget with yelp_location_entry_new_with_model().
@@ -102,11 +104,19 @@ static gboolean entry_key_press_cb                  (GtkWidget         *widget,
                                                      GdkEventKey       *event,
                                                      gpointer           user_data);
 
+/* GtkCellLayout callbacks */
+static void     cell_set_text_cell                  (GtkCellLayout     *layout,
+                                                     GtkCellRenderer   *cell,
+                                                     GtkTreeModel      *model,
+                                                     GtkTreeIter       *iter,
+                                                     YelpLocationEntry *entry);
+
 typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 struct _YelpLocationEntryPrivate
 {
     GtkWidget *text_entry;
 
+    gint       desc_column;
     gint       icon_column;
     gint       flags_column;
     gboolean   enable_search;
@@ -126,6 +136,7 @@ enum {
 
 enum {  
   PROP_0,
+  PROP_DESC_COLUMN,
   PROP_ICON_COLUMN,
   PROP_FLAGS_COLUMN,
   PROP_ENABLE_SEARCH
@@ -183,6 +194,21 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                       G_TYPE_NONE, 1,
                       G_TYPE_STRING);
 
+    /**
+     * YelpLocationEntry:desc-column
+     *
+     * The column in the #GtkTreeModel containing a description for each row.
+     **/
+    g_object_class_install_property (object_class,
+                                     PROP_DESC_COLUMN,
+                                     g_param_spec_int ("desc-column",
+                                                       N_("Description Column"),
+                                                       N_("A column in the model to descriptions from"),
+                                                       -1,
+                                                       G_MAXINT,
+                                                       -1,
+                                                       G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                                       G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
     /**
      * YelpLocationEntry:icon-column
      *
@@ -261,10 +287,16 @@ static void yelp_location_entry_init (YelpLocationEntry *entry)
      */
     cells = gtk_cell_layout_get_cells (GTK_CELL_LAYOUT (entry));
     g_object_set (cells->data, "xpad", 4, NULL);
+    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (entry),
+                                        GTK_CELL_RENDERER (cells->data),
+                                        cell_set_text_cell,
+                                        entry, NULL);
     g_list_free (cells);
 
     priv->icon_cell = gtk_cell_renderer_pixbuf_new ();
+    g_object_set (priv->icon_cell, "yalign", 0.2, NULL);
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (entry), priv->icon_cell, FALSE);
+
     gtk_cell_layout_reorder (GTK_CELL_LAYOUT (entry), priv->icon_cell, 0);
 
     g_signal_connect (entry, "changed",
@@ -291,6 +323,9 @@ location_entry_get_property   (GObject      *object,
     YelpLocationEntryPrivate *priv = GET_PRIV (object);
 
     switch (prop_id) {
+    case PROP_DESC_COLUMN:
+        g_value_set_int (value, priv->desc_column);
+        break;
     case PROP_ICON_COLUMN:
         g_value_set_int (value, priv->icon_column);
         break;
@@ -315,6 +350,9 @@ location_entry_set_property   (GObject      *object,
     YelpLocationEntryPrivate *priv = GET_PRIV (object);
 
     switch (prop_id) {
+    case PROP_DESC_COLUMN:
+        priv->desc_column = g_value_get_int (value);
+        break;
     case PROP_ICON_COLUMN:
         priv->icon_column = g_value_get_int (value);
         gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (object),
@@ -611,10 +649,46 @@ entry_key_press_cb (GtkWidget   *widget,
     return FALSE;
 }
 
+static void
+cell_set_text_cell (GtkCellLayout     *layout,
+                    GtkCellRenderer   *cell,
+                    GtkTreeModel      *model,
+                    GtkTreeIter       *iter,
+                    YelpLocationEntry *entry)
+{
+    gint text_col;
+    gchar *title, *desc, *color, *text;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    g_object_get (entry, "text-column", &text_col, NULL);
+    if (text_col >= 0) {
+        gtk_tree_model_get (model, iter,
+                            text_col, &title,
+                            priv->desc_column, &desc,
+                            -1);
+        if (desc) {
+            color = yelp_settings_get_color (yelp_settings_get_default (),
+                                             YELP_SETTINGS_COLOR_TEXT_LIGHT);
+            text = g_markup_printf_escaped ("<span size='larger'>%s</span>\n<span color='%s'>%s</span>",
+                                            title, color, desc);
+            g_free (color);
+            g_free (desc);
+        }
+        else {
+            text = g_markup_printf_escaped ("<span size='larger'>%s</span>", title);
+        }
+
+        g_object_set (cell, "markup", text, NULL);
+        g_free (text);
+        g_free (title);
+    }
+}
+
 /**
  * yelp_location_entry_new_with_model:
  * @model: A #GtkTreeModel.
  * @text_column: The column in @model containing the title of each entry.
+ * @desc_column: The column in @model containing the description of each entry.
  * @icon_column: The column in @model containing the icon name of each entry.
  * @flags_column: The column in @model containing #YelpLocationEntryFlags.
  *
@@ -625,6 +699,7 @@ entry_key_press_cb (GtkWidget   *widget,
 GtkWidget*
 yelp_location_entry_new_with_model (GtkTreeModel *model,
                                     gint          text_column,
+                                    gint          desc_column,
                                     gint          icon_column,
                                     gint          flags_column)
 {
@@ -634,6 +709,7 @@ yelp_location_entry_new_with_model (GtkTreeModel *model,
     ret = GTK_WIDGET (g_object_new (YELP_TYPE_LOCATION_ENTRY,
                                     "model", model,
                                     "text-column", text_column,
+                                    "desc-column", desc_column,
                                     "icon-column", icon_column,
                                     "flags-column", flags_column,
                                     NULL));

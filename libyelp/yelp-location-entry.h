@@ -82,6 +82,7 @@ typedef enum {
 GType           yelp_location_entry_get_type        (void);
 GtkWidget*      yelp_location_entry_new_with_model  (GtkTreeModel *model,
                                                      gint          text_column,
+                                                     gint          desc_column,
                                                      gint          icon_column,
                                                      gint          flags_column);
 

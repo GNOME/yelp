@@ -2,8 +2,9 @@
 #include "yelp-location-entry.h"
 
 enum {
-  COL_ICON,
   COL_TITLE,
+  COL_DESC,
+  COL_ICON,
   COL_FLAGS,
   COL_URI,
   COL_TERMS
@@ -24,8 +25,9 @@ loading_callback (gpointer data)
   gtk_tree_model_get_iter (model, &iter, path);
 
   gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-		      COL_ICON, "gnome-main-menu",
 		      COL_TITLE, "Desktop Help",
+		      COL_DESC, "Get help with your desktop",
+		      COL_ICON, "gnome-main-menu",
 		      COL_FLAGS, YELP_LOCATION_ENTRY_CAN_BOOKMARK,
 		      -1);
   gtk_tree_path_free (path);
@@ -54,29 +56,33 @@ button_clicked (GtkButton *button, gpointer user_data)
   GtkListStore *model = GTK_LIST_STORE (user_data);
   const gchar *label = gtk_button_get_label (button);
   GtkTreeIter iter;
-  gchar *uri = NULL, *icon, *title;
+  gchar *uri = NULL, *icon, *title, *desc;
   gboolean loading = FALSE;
 
   if (g_str_equal (label, "Empathy"))
     {
       uri = "help:empathy";
       icon = "empathy";
+      desc = "Send and receive messages";
     }
   else if (g_str_equal (label, "Calculator"))
     {
       uri = "help:gcalctool";
       icon = "accessories-calculator";
+      desc = "Perform calculations";
     }
   else if (g_str_equal (label, "Terminal"))
     {
       uri = "help:gnome-terminal";
       icon = "gnome-terminal";
+      desc = "Use the command line";
     }
   else if (g_str_equal (label, "Slow-loading document"))
     {
       uri = "help:gnumeric";
       icon = NULL;
       loading = TRUE;
+      desc = NULL;
     }
 
   if (uri)
@@ -124,8 +130,9 @@ button_clicked (GtkButton *button, gpointer user_data)
 	      g_timeout_add_seconds (5, loading_callback, row);
 	    }
 	  gtk_list_store_set (model, &iter,
-			      COL_ICON, icon,
 			      COL_TITLE, title,
+			      COL_DESC, desc,
+			      COL_ICON, icon,
 			      COL_FLAGS, YELP_LOCATION_ENTRY_CAN_BOOKMARK | (loading ? YELP_LOCATION_ENTRY_IS_LOADING : 0),
 			      COL_URI, uri,
 			      -1);
@@ -167,16 +174,41 @@ search_activated_cb (GtkEntry *entry, gchar *text, gpointer user_data)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
+  gchar *curtitle = NULL;
 
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (entry));
+
+  if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model), &iter)) {
+    gchar *uri;
+    gtk_tree_model_get (model, &iter,
+			COL_URI, &uri,
+			-1);
+    if (uri) {
+      if (g_str_equal (uri, "search:"))
+	gtk_tree_model_get (model, &iter,
+			    COL_DESC, &curtitle,
+			    -1);
+      else
+	gtk_tree_model_get (model, &iter,
+			    COL_TITLE, &curtitle,
+			    -1);
+      g_free (uri);
+    }
+  }
+
+  if (curtitle == NULL)
+    curtitle = g_strdup ("in all documents");
+
   gtk_list_store_prepend (GTK_LIST_STORE (model), &iter);
   gtk_list_store_set (GTK_LIST_STORE (model), &iter,
 		      COL_ICON, "folder-saved-search",
 		      COL_TITLE, text,
+		      COL_DESC, curtitle,
 		      COL_FLAGS, 0,
 		      COL_URI, "search:",
 		      -1);
   gtk_combo_box_set_active_iter (GTK_COMBO_BOX (entry), &iter);
+  g_free (curtitle);
 }
 
 int
@@ -188,6 +220,7 @@ main (int argc, char **argv)
   GtkListStore *model;
   GtkTreeIter iter;
 
+  g_thread_init (NULL);
   gtk_init (&argc, &argv);
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -197,9 +230,10 @@ main (int argc, char **argv)
   vbox = gtk_vbox_new (FALSE, 6);
   gtk_container_add (GTK_CONTAINER (window), vbox);
 
-  model = gtk_list_store_new (5,
-			      G_TYPE_STRING,  /* icon name */
+  model = gtk_list_store_new (6,
 			      G_TYPE_STRING,  /* title */
+			      G_TYPE_STRING,  /* desc */
+			      G_TYPE_STRING,  /* icon */
 			      G_TYPE_INT,     /* flags */
 			      G_TYPE_STRING,  /* uri */
 			      G_TYPE_STRING   /* search terms */
@@ -217,6 +251,7 @@ main (int argc, char **argv)
 
   entry = (YelpLocationEntry *) yelp_location_entry_new_with_model (GTK_TREE_MODEL (model),
 								    COL_TITLE,
+								    COL_DESC,
 								    COL_ICON,
 								    COL_FLAGS);
   g_signal_connect (entry, "location-selected",
