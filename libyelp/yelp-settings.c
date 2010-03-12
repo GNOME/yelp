@@ -31,6 +31,7 @@ struct _YelpSettingsPriv {
     GMutex       *mutex;
 
     gchar         colors[YELP_SETTINGS_NUM_COLORS][8];
+    gchar        *setfonts[YELP_SETTINGS_NUM_FONTS];
     gchar        *fonts[YELP_SETTINGS_NUM_FONTS];
     gchar        *icons[YELP_SETTINGS_NUM_ICONS];
     gint          icon_size;
@@ -39,6 +40,7 @@ struct _YelpSettingsPriv {
     GtkIconTheme *gtk_icon_theme;
 
     gulong        gtk_theme_changed;
+    gulong        gtk_font_changed;
     gulong        icon_theme_changed;
 };
 
@@ -75,6 +77,9 @@ static void           yelp_settings_set_property (GObject              *object,
 						  GParamSpec           *pspec);
 
 static void           gtk_theme_changed          (GtkSettings          *gtk_settings,
+						  GParamSpec           *pspec,
+					          YelpSettings         *settings);
+static void           gtk_font_changed           (GtkSettings          *gtk_settings,
 						  GParamSpec           *pspec,
 					          YelpSettings         *settings);
 static void           icon_theme_changed         (GtkIconTheme         *theme,
@@ -239,6 +244,8 @@ yelp_settings_set_property (GObject      *object,
 	if (settings->priv->gtk_settings) {
 	    g_signal_handler_disconnect (settings->priv->gtk_settings,
 					 settings->priv->gtk_theme_changed);
+	    g_signal_handler_disconnect (settings->priv->gtk_settings,
+					 settings->priv->gtk_font_changed);
 	    g_object_unref (settings->priv->gtk_settings);
 	}
 	settings->priv->gtk_settings = g_value_get_object (value);
@@ -249,10 +256,17 @@ yelp_settings_set_property (GObject      *object,
 				  "notify::gtk-theme-name",
 				  (GCallback) gtk_theme_changed,
 				  settings);
+	    settings->priv->gtk_font_changed =
+		g_signal_connect (settings->priv->gtk_settings,
+				  "notify::gtk-font-name",
+				  (GCallback) gtk_font_changed,
+				  settings);
 	    gtk_theme_changed (settings->priv->gtk_settings, NULL, settings);
+	    gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
 	}
 	else {
 	    settings->priv->gtk_theme_changed = 0;
+	    settings->priv->gtk_font_changed = 0;
 	}
 	break;
     case PROP_GTK_ICON_THEME:
@@ -400,7 +414,10 @@ yelp_settings_get_font (YelpSettings     *settings,
     g_return_val_if_fail (font < YELP_SETTINGS_NUM_FONTS, NULL);
 
     g_mutex_lock (settings->priv->mutex);
-    ret = g_strdup (settings->priv->fonts[font]);
+    if (settings->priv->setfonts[font])
+	ret = g_strdup (settings->priv->setfonts[font]);
+    else
+	ret = g_strdup (settings->priv->fonts[font]);
     g_mutex_unlock (settings->priv->mutex);
 
     return ret;
@@ -411,24 +428,29 @@ yelp_settings_get_font_family (YelpSettings     *settings,
 			       YelpSettingsFont  font)
 {
     const gchar *def = (font == YELP_SETTINGS_FONT_VARIABLE) ? "Sans" : "Monospace";
-    gchar *ret, *c;
+    gchar *desc, *ret, *c; /* do not free */
     g_return_val_if_fail (font < YELP_SETTINGS_NUM_FONTS, NULL);
 
     g_mutex_lock (settings->priv->mutex);
 
-    if (settings->priv->fonts[font] == NULL) {
+    if (settings->priv->setfonts[font])
+	desc = g_strdup (settings->priv->setfonts[font]);
+    else
+	desc = g_strdup (settings->priv->fonts[font]);
+
+    if (desc == NULL) {
 	ret = g_strdup (def);
 	goto done;
     }
 
-    c = strrchr (settings->priv->fonts[font], ' ');
+    c = strrchr (desc, ' ');
     if (c == NULL) {
-	g_warning ("Cannot parse font %s", settings->priv->fonts[font]);
+	g_warning ("Cannot parse font %s", desc);
 	ret = g_strdup (def);
 	goto done;
     }
 
-    ret = g_strndup (settings->priv->fonts[font], c - settings->priv->fonts[font]);
+    ret = g_strndup (desc, c - desc);
 
  done:
     g_mutex_unlock (settings->priv->mutex);
@@ -439,20 +461,25 @@ gint
 yelp_settings_get_font_size (YelpSettings     *settings,
 			     YelpSettingsFont  font)
 {
-    gchar *c;
+    gchar *desc, *c; /* do not free */
     gint ret;
     g_return_val_if_fail (font < YELP_SETTINGS_NUM_FONTS, 0);
 
     g_mutex_lock (settings->priv->mutex);
 
-    if (settings->priv->fonts[font] == NULL) {
+    if (settings->priv->setfonts[font])
+	desc = g_strdup (settings->priv->setfonts[font]);
+    else
+	desc = g_strdup (settings->priv->fonts[font]);
+
+    if (desc == NULL) {
 	ret = 10;
 	goto done;
     }
 
-    c = strrchr (settings->priv->fonts[font], ' ');
+    c = strrchr (desc, ' ');
     if (c == NULL) {
-	g_warning ("Cannot parse font %s", settings->priv->fonts[font]);
+	g_warning ("Cannot parse font %s", desc);
 	ret = 10;
 	goto done;
     }
@@ -478,9 +505,9 @@ yelp_settings_set_fonts (YelpSettings     *settings,
     font = first_font;
     while ((gint) font >= 0) {
 	gchar *fontname = va_arg (args, gchar *);
-	if (settings->priv->fonts[font] != NULL)
-	    g_free (settings->priv->fonts[font]);
-	settings->priv->fonts[font] = g_strdup (fontname);
+	if (settings->priv->setfonts[font] != NULL)
+	    g_free (settings->priv->setfonts[font]);
+	settings->priv->setfonts[font] = g_strdup (fontname);
 	font = va_arg (args, YelpSettingsFont);
     }
 
@@ -729,6 +756,32 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
     g_mutex_unlock (settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[COLORS_CHANGED], 0);
+}
+
+static void
+gtk_font_changed (GtkSettings  *gtk_settings,
+		  GParamSpec   *pspec,
+		  YelpSettings *settings)
+{
+    gchar *font, *c;
+
+    g_free (settings->priv->fonts[YELP_SETTINGS_FONT_VARIABLE]);
+    g_object_get (gtk_settings, "gtk-font-name", &font, NULL);
+    settings->priv->fonts[YELP_SETTINGS_FONT_VARIABLE] = font;
+
+    c = strrchr (font, ' ');
+    if (c == NULL) {
+	g_warning ("Cannot parse font %s", font);
+	font = g_strdup ("Monospace 10");
+    }
+    else {
+	font = g_strconcat ("Monospace", c, NULL);
+    }
+
+    g_free (settings->priv->fonts[YELP_SETTINGS_FONT_FIXED]);
+    settings->priv->fonts[YELP_SETTINGS_FONT_FIXED] = font;
+
+    g_signal_emit (settings, settings_signals[FONTS_CHANGED], 0);
 }
 
 static void

@@ -63,7 +63,6 @@ main (int argc, char **argv)
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     gtk_window_set_type_hint ((GtkWindow *) window,
 			      GDK_WINDOW_TYPE_HINT_UTILITY);
-    gtk_window_set_keep_above ((GtkWindow *) window, TRUE);
     gtk_window_set_default_size (GTK_WINDOW (window), 520, 580);
     g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 

@@ -25,6 +25,7 @@
 #endif
 
 #include <glib/gi18n.h>
+#include <glib-object.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
@@ -68,6 +69,8 @@ static void        view_clear_load                (YelpView           *view);
 static void        view_load_page                 (YelpView           *view);
 static void        view_show_error_page           (YelpView           *view,
                                                    GError             *error);
+
+static void        view_set_fonts                 (YelpView           *view);
 
 static void        uri_resolved                   (YelpUri            *uri,
                                                    YelpView           *view);
@@ -122,6 +125,12 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
+
+    g_signal_connect_swapped (yelp_settings_get_default (),
+                              "fonts-changed",
+                              view_set_fonts,
+                              view);
+    view_set_fonts (view);
 }
 
 static void
@@ -456,6 +465,45 @@ view_show_error_page (YelpView *view,
     g_signal_handler_unblock (view, priv->navigation_requested);
     g_error_free (error);
     g_free (page);
+}
+
+
+static void
+view_set_fonts (YelpView *view)
+{
+    YelpSettings *settings;
+    WebKitWebSettings *websettings;
+    gchar *family;
+    gint size;
+
+    settings = yelp_settings_get_default ();
+    websettings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
+
+    g_object_set (websettings,
+                  "default-encoding", "utf-8",
+                  "enable-private-browsing", TRUE,
+                  NULL);
+
+    family = yelp_settings_get_font_family (settings,
+                                            YELP_SETTINGS_FONT_VARIABLE);
+    size = yelp_settings_get_font_size (settings,
+                                        YELP_SETTINGS_FONT_VARIABLE);
+    g_object_set (websettings,
+                  "default-font-family", family,
+                  "sans-serif-font-family", family,
+                  "default-font-size", size,
+                  NULL);
+    g_free (family);
+
+    family = yelp_settings_get_font_family (settings,
+                                            YELP_SETTINGS_FONT_FIXED);
+    size = yelp_settings_get_font_size (settings,
+                                        YELP_SETTINGS_FONT_FIXED);
+    g_object_set (websettings,
+                  "monospace-font-family", family,
+                  "default-monospace-font-size", size,
+                  NULL);
+    g_free (family);
 }
 
 /******************************************************************************/
