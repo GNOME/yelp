@@ -81,6 +81,7 @@ static void        document_callback              (YelpDocument       *document,
 
 enum {
     PROP_0,
+    PROP_URI,
     PROP_STATE,
     PROP_PAGE_TITLE,
     PROP_PAGE_DESC
@@ -196,6 +197,15 @@ yelp_view_class_init (YelpViewClass *klass)
     g_type_class_add_private (klass, sizeof (YelpViewPrivate));
 
     g_object_class_install_property (object_class,
+                                     PROP_URI,
+                                     g_param_spec_object ("yelp-uri",
+							  _("Yelp URI"),
+							  _("A YelpUri with the current location"),
+                                                          YELP_TYPE_URI,
+							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    g_object_class_install_property (object_class,
                                      PROP_STATE,
                                      g_param_spec_enum ("state",
                                                         N_("Loading State"),
@@ -234,6 +244,9 @@ yelp_view_get_property (GObject    *object,
 
     switch (prop_id)
         {
+        case PROP_URI:
+            g_value_set_object (value, priv->uri);
+            break;
         case PROP_PAGE_TITLE:
             g_value_set_string (value, priv->page_title);
             break;
@@ -255,10 +268,16 @@ yelp_view_set_property (GObject      *object,
                         const GValue *value,
                         GParamSpec   *pspec)
 {
+    YelpUri *uri;
     YelpViewPrivate *priv = GET_PRIV (object);
 
     switch (prop_id)
         {
+        case PROP_URI:
+            uri = g_value_get_object (value);
+            yelp_view_load_uri (YELP_VIEW (object), uri);
+            g_object_unref (uri);
+            break;
         case PROP_STATE:
             priv->state = g_value_get_enum (value);
             break;
@@ -293,6 +312,13 @@ yelp_view_load_uri (YelpView *view,
 
     view_clear_load (view);
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
+
+    g_free (priv->page_title);
+    g_free (priv->page_desc);
+    priv->page_title = NULL;
+    priv->page_desc = NULL;
+    g_signal_emit_by_name (view, "notify::page-title", 0);
+    g_signal_emit_by_name (view, "notify::page-desc", 0);
 
     priv->uri = g_object_ref (uri);
     if (!yelp_uri_is_resolved (uri)) {
@@ -553,6 +579,8 @@ uri_resolved (YelpUri  *uri,
     if (priv->document)
         g_object_unref (priv->document);
     priv->document = document;
+
+    g_signal_emit_by_name (view, "notify::yelp-uri", 0);
 
     view_load_page (view);
 }
