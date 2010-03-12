@@ -59,10 +59,15 @@ typedef struct {
     guint          finished;
     guint          error;
 
-    xmlNodePtr     cur;
-    xmlNodePtr     cache;
+    xmlNodePtr          cur;
+    xmlNodePtr          cache;
+    xmlXPathContextPtr  xpath;
+
     gboolean       link_title;
     gboolean       sort_title;
+
+    gchar         *page_title;
+    gchar         *page_desc;
 } MallardPageData;
 
 static void           yelp_mallard_document_class_init (YelpMallardDocumentClass *klass);
@@ -113,6 +118,8 @@ struct _YelpMallardDocumentPrivate {
     xmlDocPtr      cache;
     xmlNsPtr       cache_ns;
     GHashTable    *pages_hash;
+
+    xmlXPathCompExprPtr  normalize;
 };
 
 /******************************************************************************/
@@ -150,6 +157,7 @@ yelp_mallard_document_init (YelpMallardDocument *mallard)
     priv->pages_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                               NULL,
                                               (GDestroyNotify) mallard_page_data_free);
+    priv->normalize = xmlXPathCompile ("normalize-space(.)");
 }
 
 static void
@@ -166,6 +174,9 @@ yelp_mallard_document_finalize (GObject *object)
     g_object_unref (priv->uri);
     g_mutex_free (priv->mutex);
     g_hash_table_destroy (priv->pages_hash);
+
+    if (priv->normalize)
+        xmlXPathFreeCompExpr (priv->normalize);
 
     G_OBJECT_CLASS (yelp_mallard_document_parent_class)->finalize (object);
 }
@@ -312,6 +323,16 @@ mallard_think (YelpMallardDocument *mallard)
             yelp_document_set_page_id ((YelpDocument *) mallard,
                                        page_data->page_id, page_data->page_id);
             g_hash_table_insert (priv->pages_hash, page_data->page_id, page_data);
+            yelp_document_set_page_title ((YelpDocument *) mallard,
+                                          page_data->page_id,
+                                          page_data->page_title);
+            yelp_document_set_page_desc ((YelpDocument *) mallard,
+                                         page_data->page_id,
+                                         page_data->page_desc);
+            yelp_document_signal ((YelpDocument *) mallard,
+                                  page_data->page_id,
+                                  YELP_DOCUMENT_SIGNAL_INFO,
+                                  NULL);
             g_mutex_unlock (priv->mutex);
         }
         g_object_unref (pagefile);
@@ -416,6 +437,7 @@ mallard_page_data_walk (MallardPageData *page_data)
             goto done;
         page_data->cur = xmlDocGetRootElement (page_data->xmldoc);
         page_data->cache = xmlDocGetRootElement (priv->cache);
+        page_data->xpath = xmlXPathNewContext (page_data->xmldoc);
         mallard_page_data_walk (page_data);
     } else {
         xmlNodePtr child, oldcur, oldcache, info;
@@ -478,6 +500,14 @@ mallard_page_data_walk (MallardPageData *page_data)
                         xmlAddChild (title_node, xmlCopyNode (node, 1));
                     }
                 }
+                if (page_data->page_title == NULL) {
+                    YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+                    xmlXPathObjectPtr obj;
+                    page_data->xpath->node = child;
+                    obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
+                    page_data->page_title = g_strdup (obj->stringval);
+                    xmlXPathFreeObject (obj);
+                }
             }
             else if (xmlStrEqual (child->name, BAD_CAST "section")) {
                 oldcur = page_data->cur;
@@ -521,9 +551,27 @@ mallard_page_data_info (MallardPageData *page_data,
                 page_data->link_title = TRUE;
             if (xmlStrEqual (type, BAD_CAST "sort"))
                 page_data->sort_title = TRUE;
+            if (xmlStrEqual (type, BAD_CAST "text")) {
+                YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+                xmlXPathObjectPtr obj;
+                page_data->xpath->node = child;
+                obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
+                g_free (page_data->page_title);
+                page_data->page_title = g_strdup (obj->stringval);
+                xmlXPathFreeObject (obj);
+            }
         }
-        else if (xmlStrEqual (child->name, BAD_CAST "desc") ||
-                 xmlStrEqual (child->name, BAD_CAST "link")) {
+        else if (xmlStrEqual (child->name, BAD_CAST "desc")) {
+            YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+            xmlXPathObjectPtr obj;
+            page_data->xpath->node = child;
+            obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
+            page_data->page_desc = g_strdup (obj->stringval);
+            xmlXPathFreeObject (obj);
+
+            xmlAddChild (cache_node, xmlCopyNode (child, 1));
+        }
+        else if (xmlStrEqual (child->name, BAD_CAST "link")) {
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
     }
@@ -570,6 +618,10 @@ mallard_page_data_free (MallardPageData *page_data)
     g_free (page_data->filename);
     if (page_data->xmldoc)
         xmlFreeDoc (page_data->xmldoc);
+    if (page_data->xpath)
+        xmlXPathFreeContext (page_data->xpath);
+    g_free (page_data->page_title);
+    g_free (page_data->page_desc);
     g_free (page_data);
 }
 

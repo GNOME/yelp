@@ -575,7 +575,7 @@ document_callback (YelpDocument       *document,
         g_free (priv->page_desc);
 
         priv->page_title = yelp_document_get_page_title (document, page_id);
-        priv->page_desc = NULL;
+        priv->page_desc = yelp_document_get_page_desc (document, page_id);
 
         g_signal_emit_by_name (view, "notify::page-title", 0);
         g_signal_emit_by_name (view, "notify::page-desc", 0);
