@@ -481,7 +481,7 @@ docbook_walk (YelpDocbookDocument *docbook)
         debug_print (DB_DEBUG, "  id: \"%s\"\n", id);
         debug_print (DB_DEBUG, "  title: \"%s\"\n", title);
 
-        yelp_document_set_title (document, (gchar *) id, (gchar *) title);
+        yelp_document_set_page_title (document, (gchar *) id, (gchar *) title);
 
         gdk_threads_enter ();
         gtk_tree_store_append (GTK_TREE_STORE (priv->sections),
@@ -515,6 +515,11 @@ docbook_walk (YelpDocbookDocument *docbook)
     priv->cur_depth++;
     if (id)
         yelp_document_set_page_id (document, (gchar *) id, priv->cur_page_id);
+
+    yelp_document_signal (YELP_DOCUMENT (docbook),
+                          priv->cur_page_id,
+                          YELP_DOCUMENT_SIGNAL_INFO,
+                          NULL);
 
     for (cur = priv->xmlcur->children; cur; cur = cur->next) {
         if (cur->type == XML_ELEMENT_NODE) {

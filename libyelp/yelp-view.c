@@ -81,7 +81,9 @@ static void        document_callback              (YelpDocument       *document,
 
 enum {
     PROP_0,
-    PROP_STATE
+    PROP_STATE,
+    PROP_PAGE_TITLE,
+    PROP_PAGE_DESC
 };
 
 enum {
@@ -102,6 +104,9 @@ struct _YelpViewPrivate {
     GCancellable  *cancellable;
 
     YelpViewState  state;
+
+    gchar         *page_title;
+    gchar         *page_desc;
 
     gint           navigation_requested;
 };
@@ -162,6 +167,9 @@ yelp_view_finalize (GObject *object)
 {
     YelpViewPrivate *priv = GET_PRIV (object);
 
+    g_free (priv->page_title);
+    g_free (priv->page_desc);
+
     g_free (priv->bogus_uri);
 
     G_OBJECT_CLASS (yelp_view_parent_class)->finalize (object);
@@ -196,6 +204,24 @@ yelp_view_class_init (YelpViewClass *klass)
                                                         YELP_VIEW_STATE_BLANK,
                                                         G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                         G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    g_object_class_install_property (object_class,
+                                     PROP_PAGE_TITLE,
+                                     g_param_spec_string ("page-title",
+                                                          N_("Page Title"),
+                                                          N_("The title of the page being viewew"),
+                                                          NULL,
+                                                          G_PARAM_READABLE |
+                                                          G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    g_object_class_install_property (object_class,
+                                     PROP_PAGE_DESC,
+                                     g_param_spec_string ("page-desc",
+                                                          N_("Page Description"),
+                                                          N_("The description of the page being viewew"),
+                                                          NULL,
+                                                          G_PARAM_READABLE |
+                                                          G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 }
 
 static void
@@ -208,6 +234,12 @@ yelp_view_get_property (GObject    *object,
 
     switch (prop_id)
         {
+        case PROP_PAGE_TITLE:
+            g_value_set_string (value, priv->page_title);
+            break;
+        case PROP_PAGE_DESC:
+            g_value_set_string (value, priv->page_desc);
+            break;
         case PROP_STATE:
             g_value_set_enum (value, priv->state);
             break;
@@ -536,7 +568,17 @@ document_callback (YelpDocument       *document,
     debug_print (DB_FUNCTION, "entering\n");
 
     if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
-        /* FIXME */
+        gchar *page_id;
+        page_id = yelp_uri_get_page_id (priv->uri);
+
+        g_free (priv->page_title);
+        g_free (priv->page_desc);
+
+        priv->page_title = yelp_document_get_page_title (document, page_id);
+        priv->page_desc = NULL;
+
+        g_signal_emit_by_name (view, "notify::page-title", 0);
+        g_signal_emit_by_name (view, "notify::page-desc", 0);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;

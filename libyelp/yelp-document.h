@@ -126,11 +126,17 @@ void              yelp_document_set_up_id      (YelpDocument         *document,
                                                 const gchar          *page_id,
                                                 const gchar          *up_id);
 
-gchar *           yelp_document_get_title      (YelpDocument         *document,
+gchar *           yelp_document_get_page_title (YelpDocument         *document,
                                                 const gchar          *page_id);
-void              yelp_document_set_title      (YelpDocument         *document,
+void              yelp_document_set_page_title (YelpDocument         *document,
                                                 const gchar          *page_id,
                                                 const gchar          *title);
+
+gchar *           yelp_document_get_page_desc  (YelpDocument         *document,
+                                                const gchar          *page_id);
+void              yelp_document_set_page_desc  (YelpDocument         *document,
+                                                const gchar          *page_id,
+                                                const gchar          *desc);
 
 gboolean          yelp_document_has_page       (YelpDocument         *document,
                                                 const gchar          *page_id);

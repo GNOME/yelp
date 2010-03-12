@@ -49,6 +49,17 @@ state_cb (YelpView   *view,
     printf ("STATE: %i\n", state);
 }
 
+static void
+title_cb (YelpView   *view,
+	  GParamSpec *spec,
+	  GtkWindow  *window)
+{
+    gchar *title;
+    g_object_get (view, "page-title", &title, NULL);
+    gtk_window_set_title (window, title);
+    g_free (title);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -81,6 +92,8 @@ main (int argc, char **argv)
     view = yelp_view_new ();
     g_signal_connect (view, "notify::state",
 		      G_CALLBACK (state_cb), window);
+    g_signal_connect (view, "notify::title",
+		      G_CALLBACK (title_cb), window);
     gtk_container_add (GTK_CONTAINER (scroll), view);
 			   
 
