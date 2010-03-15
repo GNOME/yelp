@@ -961,13 +961,26 @@ resolve_xref_uri (YelpUri *uri)
         }
     }
 
-    /* FIXME: ONLY FOR ghelp */
-    priv->fulluri = g_strconcat (priv->docuri,
-                                 priv->page_id ? "?" : "",
-                                 priv->page_id ? priv->page_id : "",
-                                 priv->frag_id ? "#" : "",
-                                 priv->frag_id ? priv->frag_id : "",
-                                 NULL);
+    if (g_str_has_prefix (priv->docuri, "ghelp:"))
+        priv->fulluri = g_strconcat (priv->docuri,
+                                     priv->page_id ? "?" : "",
+                                     priv->page_id ? priv->page_id : "",
+                                     priv->frag_id ? "#" : "",
+                                     priv->frag_id ? priv->frag_id : "",
+                                     NULL);
+    else if (g_str_has_prefix (priv->docuri, "file:"))
+        priv->fulluri = g_strconcat (priv->docuri,
+                                     (priv->page_id || priv->frag_id) ? "#" : "",
+                                     priv->page_id ? priv->page_id : "",
+                                     priv->frag_id ? "/" : "",
+                                     priv->frag_id,
+                                     NULL);
+    else
+        /* FIXME: other URI schemes */
+        priv->fulluri = g_strconcat (priv->docuri,
+                                     priv->page_id ? "#" : "",
+                                     priv->page_id,
+                                     NULL);
 }
 
 static void
@@ -1003,8 +1016,9 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
                               G_FILE_QUERY_INFO_NONE,
                               NULL, &error);
     if (error) {
-        if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
+        if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
             priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+        }
         else
             priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
         g_error_free (error);
@@ -1025,14 +1039,22 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
     }
 
     if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED) {
+        gchar **splithash = NULL;
+        if (hash)
+            splithash = g_strsplit (hash, "/", 2);
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
+
         if (g_file_info_get_attribute_uint32 (info, G_FILE_ATTRIBUTE_STANDARD_TYPE) ==
             G_FILE_TYPE_DIRECTORY) {
             GFile *child = g_file_get_child (priv->gfile, "index.page");
             if (g_file_query_exists (child, NULL)) {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
-                if (priv->page_id == NULL)
-                    priv->page_id = g_strdup (hash);
+                if (splithash) {
+                    if (priv->page_id == NULL)
+                        priv->page_id = g_strdup (splithash[0]);
+                    if (priv->frag_id == NULL && splithash[0])
+                        priv->frag_id = g_strdup (splithash[1]);
+                }
             }
             g_object_unref (child);
         }
@@ -1063,10 +1085,12 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
                 g_str_equal (mime_type, "application/docbook+xml") ||
                 g_str_equal (mime_type, "application/xml")) {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
-                if (priv->page_id == NULL)
-                    priv->page_id = g_strdup (hash);
-                if (priv->frag_id == NULL)
-                    priv->frag_id = g_strdup (hash);
+                if (splithash) {
+                    if (priv->page_id == NULL)
+                        priv->page_id = g_strdup (splithash[0]);
+                    if (priv->frag_id == NULL && splithash[0])
+                        priv->frag_id = g_strdup (splithash[1]);
+                }
             }
             else if (g_str_equal (mime_type, "text/html")) {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_HTML;
@@ -1116,6 +1140,8 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
             }
         }
+        if (splithash)
+            g_strfreev (splithash);
     }
 
     if (priv->docuri == NULL)
