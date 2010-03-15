@@ -70,7 +70,7 @@ static void        view_load_page                 (YelpView           *view);
 static void        view_show_error_page           (YelpView           *view,
                                                    GError             *error);
 
-static void        view_set_fonts                 (YelpView           *view);
+static void        settings_set_fonts             (YelpSettings       *settings);
 
 static void        uri_resolved                   (YelpUri            *uri,
                                                    YelpView           *view);
@@ -95,6 +95,8 @@ static gint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_VIEW, YelpViewPrivate))
+
+static WebKitWebSettings *websettings;
 
 typedef struct _YelpViewPrivate YelpViewPrivate;
 struct _YelpViewPrivate {
@@ -122,6 +124,8 @@ yelp_view_init (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
 
+    g_object_set (view, "settings", websettings, NULL);
+
     priv->cancellable = NULL;
 
     priv->state = YELP_VIEW_STATE_BLANK;
@@ -131,12 +135,6 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
-
-    g_signal_connect_swapped (yelp_settings_get_default (),
-                              "fonts-changed",
-                              view_set_fonts,
-                              view);
-    view_set_fonts (view);
 }
 
 static void
@@ -180,6 +178,14 @@ static void
 yelp_view_class_init (YelpViewClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    YelpSettings *settings = yelp_settings_get_default ();
+
+    websettings = webkit_web_settings_new ();
+    g_signal_connect (settings,
+                      "fonts-changed",
+                      settings_set_fonts,
+                      NULL);
+    settings_set_fonts (settings);
 
     object_class->dispose = yelp_view_dispose;
     object_class->finalize = yelp_view_finalize;
@@ -527,15 +533,10 @@ view_show_error_page (YelpView *view,
 
 
 static void
-view_set_fonts (YelpView *view)
+settings_set_fonts (YelpSettings *settings)
 {
-    YelpSettings *settings;
-    WebKitWebSettings *websettings;
     gchar *family;
     gint size;
-
-    settings = yelp_settings_get_default ();
-    websettings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
 
     g_object_set (websettings,
                   "default-encoding", "utf-8",
