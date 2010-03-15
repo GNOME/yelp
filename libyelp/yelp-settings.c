@@ -112,22 +112,19 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
 	switch (i) {
 	case YELP_SETTINGS_ICON_BUG:
-	    icon_names[i] = "admon-bug";
-	    break;
-	case YELP_SETTINGS_ICON_CAUTION:
-	    icon_names[i] = "admon-caution";
+	    icon_names[i] = "yelp-note-bug";
 	    break;
 	case YELP_SETTINGS_ICON_IMPORTANT:
-	    icon_names[i] = "admon-important";
+	    icon_names[i] = "yelp-note-important";
 	    break;
 	case YELP_SETTINGS_ICON_NOTE:
-	    icon_names[i] = "admon-note";
+	    icon_names[i] = "yelp-note";
 	    break;
 	case YELP_SETTINGS_ICON_TIP:
-	    icon_names[i] = "admon-tip";
+	    icon_names[i] = "yelp-note-tip";
 	    break;
 	case YELP_SETTINGS_ICON_WARNING:
-	    icon_names[i] = "admon-warning";
+	    icon_names[i] = "yelp-note-warning";
 	    break;
 	default:
 	    g_assert_not_reached ();
@@ -186,7 +183,7 @@ yelp_settings_init (YelpSettings *settings)
 
     settings->priv = GET_PRIV (settings);
     settings->priv->mutex = g_mutex_new ();
-    settings->priv->icon_size = 48;
+    settings->priv->icon_size = 24;
 
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++)
 	settings->priv->icons[i] = NULL;
@@ -579,12 +576,11 @@ const gchar *
 yelp_settings_get_icon_param (YelpSettingsIcon icon)
 {
     static const gchar *params[YELP_SETTINGS_NUM_ICONS] = {
-	"theme.icon.admon.bug",
-	"theme.icon.admon.caution",
-	"theme.icon.admon.important",
-	"theme.icon.admon.note",
-	"theme.icon.admon.tip",
-	"theme.icon.admon.warning"
+	"theme.icons.note.bug",
+	"theme.icons.note.important",
+	"theme.icons.note",
+	"theme.icons.note.tip",
+	"theme.icons.note.warning"
     };
     g_return_val_if_fail (icon < YELP_SETTINGS_NUM_ICONS, NULL);
     return params[icon];
