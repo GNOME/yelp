@@ -20,13 +20,16 @@ body {
 div.head {
   max-width: 100%;
   width: 100%;
-  padding: 0.2em 0 0 0;
+  padding: 0;
   margin: 0 0 1em 0;
 }
 div.trails {
-  padding: 0 12px 0 12px;
+  margin: 0;
+  padding: 0.2em 12px 0 12px;
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+  border-top: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
