@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ui>
   <menubar>
+    <menu action="PageMenu">
+      <menuitem action="Close"/>
+    </menu>
+    <menu action="ViewMenu">
+    </menu>
+    <menu action="GoMenu">
+    </menu>
+  </menubar>
+  <accelerator action="OpenLocation"/>
+<!--
+  <menubar>
     <menu action="FileMenu">
       <menuitem action="NewWindow"/>
       <separator/>
@@ -9,7 +20,6 @@
       <menuitem action="PrintPage"/>
       <menuitem action="PrintDocument"/>
       <separator/>
-      <menuitem action="CloseWindow"/>
     </menu>
     <menu action="EditMenu">
       <menuitem action="Copy"/>
@@ -58,7 +68,7 @@
   <popup name="mail_popup">
     <menuitem name="CpMail" action="CopyMail"/>
   </popup>
-  <accelerator action="OpenLocation"/>
   <accelerator action="Reload"/>
   <accelerator action="TextCursor"/>
+-->
 </ui>

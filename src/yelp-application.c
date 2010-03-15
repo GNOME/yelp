@@ -258,8 +258,8 @@ application_uri_resolved (YelpUri             *uri,
 
 static gboolean
 application_window_deleted (YelpWindow      *window,
-                            GdkEvent        *event,
-                            YelpApplication *app)
+                              GdkEvent        *event,
+                              YelpApplication *app)
 {
     gchar *doc_uri; /* owned by windows_by_document */
     YelpApplicationPrivate *priv = GET_PRIV (app);
