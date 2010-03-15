@@ -246,17 +246,33 @@ view_page_title (YelpView    *view,
                  YelpWindow  *window)
 {
     GtkTreeIter first;
-    gchar *title;
+    gchar *title, *frag;
+    YelpUri *uri;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (view, "page-title", &title, NULL);
     if (title == NULL)
         return;
 
+    g_object_get (view, "yelp-uri", &uri, NULL);
+    frag = yelp_uri_get_frag_id (uri);
+
     gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->history), &first);
-    gtk_list_store_set (priv->history, &first,
-                        COL_TITLE, title,
-                        -1);
+    if (frag) {
+        gchar *tmp = g_strdup_printf ("%s (#%s)", title, frag);
+        gtk_list_store_set (priv->history, &first,
+                            COL_TITLE, tmp,
+                            -1);
+        g_free (tmp);
+        g_free (frag);
+    }
+    else {
+        gtk_list_store_set (priv->history, &first,
+                            COL_TITLE, title,
+                            -1);
+    }
+
+    g_object_unref (uri);
 }
 
 static void
