@@ -15,14 +15,24 @@ html {
 body {
   padding: 0;
   background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
+  max-width: 100%;
 }
 div.head {
+  max-width: 100%;
+  width: 100%;
   padding: 0.2em 0 0 0;
   margin: 0 0 1em 0;
+}
+div.trails {
+  padding: 0 12px 0 12px;
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+}
+div.trail {
+  font-size: 1em;
+  padding: 0;
 }
 div.body {
   margin: 0 12px 0 12px;
