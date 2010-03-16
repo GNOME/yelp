@@ -39,6 +39,8 @@ struct _YelpSettingsPriv {
     GtkSettings  *gtk_settings;
     GtkIconTheme *gtk_icon_theme;
 
+    gint          font_adjustment;
+
     gulong        gtk_theme_changed;
     gulong        gtk_font_changed;
     gulong        icon_theme_changed;
@@ -55,7 +57,8 @@ static guint settings_signals[LAST_SIGNAL] = {0,};
 enum {  
   PROP_0,
   PROP_GTK_SETTINGS,
-  PROP_GTK_ICON_THEME
+  PROP_GTK_ICON_THEME,
+  PROP_FONT_ADJUSTMENT
 };
 
 gchar *icon_names[YELP_SETTINGS_NUM_ICONS];
@@ -149,6 +152,16 @@ yelp_settings_class_init (YelpSettingsClass *klass)
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
+    g_object_class_install_property (object_class,
+                                     PROP_FONT_ADJUSTMENT,
+                                     g_param_spec_int ("font-adjustment",
+                                                       _("Font Adjustment"),
+                                                       _("A size adjustment to add to font sizes"),
+                                                       -G_MAXINT, G_MAXINT,
+                                                       0,
+                                                       G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                                       G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
     settings_signals[COLORS_CHANGED] =
 	g_signal_new ("colors-changed",
 		      G_OBJECT_CLASS_TYPE (klass),
@@ -187,6 +200,10 @@ yelp_settings_init (YelpSettings *settings)
 
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++)
 	settings->priv->icons[i] = NULL;
+    for (i = 0; i < YELP_SETTINGS_NUM_FONTS; i++) {
+	settings->priv->setfonts[i] = NULL;
+	settings->priv->fonts[i] = NULL;
+    }
 }
 
 static void
@@ -222,6 +239,9 @@ yelp_settings_get_property (GObject    *object,
     case PROP_GTK_ICON_THEME:
 	g_value_set_object (value, settings->priv->gtk_icon_theme);
 	break;
+    case PROP_FONT_ADJUSTMENT:
+        g_value_set_int (value, settings->priv->font_adjustment);
+        break;
     default:
 	G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 	break;
@@ -300,6 +320,10 @@ yelp_settings_set_property (GObject      *object,
 	    settings->priv->icon_theme_changed = 0;
 	}
 	break;
+    case PROP_FONT_ADJUSTMENT:
+        settings->priv->font_adjustment = g_value_get_int (value);
+        gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
+        break;
     default:
 	G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 	break;
@@ -443,7 +467,7 @@ yelp_settings_get_font_family (YelpSettings     *settings,
 
     c = strrchr (desc, ' ');
     if (c == NULL) {
-	g_warning ("Cannot parse font %s", desc);
+	g_warning ("Cannot parse font: %s", desc);
 	ret = g_strdup (def);
 	goto done;
     }
@@ -486,7 +510,7 @@ yelp_settings_get_font_size (YelpSettings     *settings,
 
  done:
     g_mutex_unlock (settings->priv->mutex);
-    return ret;
+    return ret + settings->priv->font_adjustment;
 }
 
 void
@@ -513,6 +537,19 @@ yelp_settings_set_fonts (YelpSettings     *settings,
     g_mutex_unlock (settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[FONTS_CHANGED], 0);
+}
+
+gint
+yelp_settings_get_font_adjustment (YelpSettings *settings)
+{
+    return settings->priv->font_adjustment;
+}
+
+void
+yelp_settings_set_font_adjustment (YelpSettings *settings,
+                                   gint          adjustment)
+{
+    g_object_set (settings, "font-adjustment", adjustment, NULL);
 }
 
 /******************************************************************************/
@@ -766,13 +803,17 @@ gtk_font_changed (GtkSettings  *gtk_settings,
 {
     gchar *font, *c;
 
+    /* This happens when font_adjustment is set during init */
+    if (gtk_settings == NULL)
+        return;
+
     g_free (settings->priv->fonts[YELP_SETTINGS_FONT_VARIABLE]);
     g_object_get (gtk_settings, "gtk-font-name", &font, NULL);
     settings->priv->fonts[YELP_SETTINGS_FONT_VARIABLE] = font;
 
     c = strrchr (font, ' ');
     if (c == NULL) {
-	g_warning ("Cannot parse font %s", font);
+	g_warning ("Cannot parse font: %s", font);
 	font = g_strdup ("Monospace 10");
     }
     else {

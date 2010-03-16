@@ -100,6 +100,9 @@ gint                yelp_settings_get_font_size        (YelpSettings       *sett
 void                yelp_settings_set_fonts            (YelpSettings       *settings,
                                                         YelpSettingsFont    first_font,
                                                         ...);
+gint                yelp_settings_get_font_adjustment  (YelpSettings       *settings);
+void                yelp_settings_set_font_adjustment  (YelpSettings       *settings,
+                                                        gint                adjustment);
 
 gint                yelp_settings_get_icon_size        (YelpSettings       *settings);
 void                yelp_settings_set_icon_size        (YelpSettings       *settings,
