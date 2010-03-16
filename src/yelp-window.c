@@ -181,7 +181,8 @@ yelp_window_init (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (vbox), priv->hbox, FALSE, FALSE, 0);
 
     priv->back_button = (GtkWidget *) gtk_tool_button_new_from_stock (GTK_STOCK_GO_BACK);
-    g_signal_connect (priv->back_button, "clicked", back_button_clicked, window);
+    g_signal_connect (priv->back_button, "clicked",
+                      G_CALLBACK (back_button_clicked), window);
     gtk_box_pack_start (GTK_BOX (priv->hbox), priv->back_button, FALSE, FALSE, 0);
     
     priv->history = gtk_list_store_new (6,
@@ -357,7 +358,7 @@ entry_location_selected (YelpLocationEntry  *entry,
     gchar *uri;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->history), &iter);
+    gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->entry), &iter);
     gtk_tree_model_get (GTK_TREE_MODEL (priv->history), &iter,
                         COL_URI, &uri,
                         -1);
