@@ -157,8 +157,7 @@ yelp_settings_class_init (YelpSettingsClass *klass)
                                      g_param_spec_int ("font-adjustment",
                                                        _("Font Adjustment"),
                                                        _("A size adjustment to add to font sizes"),
-                                                       -G_MAXINT, G_MAXINT,
-                                                       0,
+                                                       -3, 10, 0,
                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                        G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
@@ -510,7 +509,9 @@ yelp_settings_get_font_size (YelpSettings     *settings,
 
  done:
     g_mutex_unlock (settings->priv->mutex);
-    return ret + settings->priv->font_adjustment;
+    ret += settings->priv->font_adjustment;
+    ret = (ret < 5) ? 5 : ret;
+    return ret;
 }
 
 void

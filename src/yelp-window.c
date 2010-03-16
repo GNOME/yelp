@@ -45,6 +45,8 @@ static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
+static void          window_font_adjustment       (GtkAction          *action,
+                                                   YelpWindow         *window);
 
 static void          entry_location_selected      (YelpLocationEntry  *entry,
                                                    YelpWindow         *window);
@@ -102,6 +104,8 @@ typedef struct _YelpWindowPrivate YelpWindowPrivate;
 struct _YelpWindowPrivate {
     GtkListStore *history;
 
+    GtkActionGroup *action_group;
+
     /* no refs on these, owned by containers */
     YelpView *view;
     GtkWidget *back_button;
@@ -130,17 +134,26 @@ static const GtkActionEntry entries[] = {
       NULL,
       G_CALLBACK (window_close) },
     { "OpenLocation", NULL,
-      N_("Open _Location"),
+      N_("Open Location"),
       "<Control>L",
       NULL,
-      G_CALLBACK (window_open_location) }
+      G_CALLBACK (window_open_location) },
+    { "LargerText", NULL,
+      N_("_Larger Text"),
+      "<Control>plus",
+      NULL,
+      G_CALLBACK (window_font_adjustment) },
+    { "SmallerText", NULL,
+      N_("_Smaller Text"),
+      "<Control>minus",
+      NULL,
+      G_CALLBACK (window_font_adjustment) }
 };
 
 static void
 yelp_window_init (YelpWindow *window)
 {
     GtkWidget *vbox, *scroll;
-    GtkActionGroup *action_group;
     GtkUIManager *ui_manager;
     GError *error = NULL;
     YelpWindowPrivate *priv = GET_PRIV (window);
@@ -151,13 +164,13 @@ yelp_window_init (YelpWindow *window)
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_container_add (GTK_CONTAINER (window), vbox);
 
-    action_group = gtk_action_group_new ("MenuActions");
-    gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
-    gtk_action_group_add_actions (action_group,
+    priv->action_group = gtk_action_group_new ("MenuActions");
+    gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (priv->action_group,
 				  entries, G_N_ELEMENTS (entries),
 				  window);
     ui_manager = gtk_ui_manager_new ();
-    gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
+    gtk_ui_manager_insert_action_group (ui_manager, priv->action_group, 0);
     gtk_window_add_accel_group (GTK_WINDOW (window),
                                 gtk_ui_manager_get_accel_group (ui_manager));
     if (!gtk_ui_manager_add_ui_from_file (ui_manager,
@@ -251,6 +264,11 @@ yelp_window_dispose (GObject *object)
     if (priv->history) {
         g_object_unref (priv->history);
         priv->history = NULL;
+    }
+
+    if (priv->action_group) {
+        g_object_unref (priv->action_group);
+        priv->action_group = NULL;
     }
 
     if (priv->align_location) {
@@ -348,6 +366,32 @@ window_open_location (GtkAction *action, YelpWindow *window)
             gtk_editable_select_region (GTK_EDITABLE (priv->hidden_entry), 5, -1);
         g_free (uri);
     }
+}
+
+static void
+window_font_adjustment (GtkAction  *action,
+                        YelpWindow *window)
+{
+    GtkAction *larger, *smaller;
+    YelpSettings *settings = yelp_settings_get_default ();
+    GParamSpec *spec = g_object_class_find_property (YELP_SETTINGS_GET_CLASS (settings),
+                                                     "font-adjustment");
+    gint adjust = yelp_settings_get_font_adjustment (settings);
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    if (!G_PARAM_SPEC_INT (spec)) {
+        g_warning ("Expcected integer param spec for font-adjustment");
+        return;
+    }
+
+    adjust += g_str_equal (gtk_action_get_name (action), "LargerText") ? 1 : -1;
+    yelp_settings_set_font_adjustment (settings, adjust);
+
+    larger = gtk_action_group_get_action (priv->action_group, "LargerText");
+    gtk_action_set_sensitive (larger, adjust < ((GParamSpecInt *) spec)->maximum);
+
+    smaller = gtk_action_group_get_action (priv->action_group, "SmallerText");
+    gtk_action_set_sensitive (smaller, adjust > ((GParamSpecInt *) spec)->minimum);
 }
 
 static void
