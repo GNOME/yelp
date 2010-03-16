@@ -40,6 +40,14 @@ static void          yelp_window_init             (YelpWindow         *window);
 static void          yelp_window_class_init       (YelpWindowClass    *klass);
 static void          yelp_window_dispose          (GObject            *object);
 static void          yelp_window_finalize         (GObject            *object);
+static void          yelp_window_get_property     (GObject            *object,
+                                                   guint               prop_id,
+                                                   GValue             *value,
+                                                   GParamSpec         *pspec);
+static void          yelp_window_set_property     (GObject            *object,
+                                                   guint               prop_id,
+                                                   const GValue       *value,
+                                                   GParamSpec         *pspec);
 
 static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
@@ -70,6 +78,11 @@ static void          hidden_entry_hide            (YelpWindow         *window);
 static gboolean      hidden_key_press             (GtkWidget          *widget,
                                                    GdkEventKey        *event,
                                                    YelpWindow         *window);
+
+enum {
+    PROP_0,
+    PROP_APPLICATION
+};
 
 G_DEFINE_TYPE (YelpWindow, yelp_window, GTK_TYPE_WINDOW);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_WINDOW, YelpWindowPrivate))
@@ -103,8 +116,8 @@ back_entry_free (YelpBackEntry *back)
 typedef struct _YelpWindowPrivate YelpWindowPrivate;
 struct _YelpWindowPrivate {
     GtkListStore *history;
-
     GtkActionGroup *action_group;
+    YelpApplication *application;
 
     /* no refs on these, owned by containers */
     YelpView *view;
@@ -252,6 +265,18 @@ yelp_window_class_init (YelpWindowClass *klass)
 
     object_class->dispose = yelp_window_dispose;
     object_class->finalize = yelp_window_finalize;
+    object_class->get_property = yelp_window_get_property;
+    object_class->set_property = yelp_window_set_property;
+
+    g_object_class_install_property (object_class,
+                                     PROP_APPLICATION,
+                                     g_param_spec_object ("application",
+							  _("Application"),
+							  _("A YelpApplication instance that controls this window"),
+                                                          YELP_TYPE_APPLICATION,
+                                                          G_PARAM_CONSTRUCT_ONLY |
+							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     g_type_class_add_private (klass, sizeof (YelpWindowPrivate));
 }
@@ -295,6 +320,40 @@ yelp_window_finalize (GObject *object)
     G_OBJECT_CLASS (yelp_window_parent_class)->finalize (object);
 }
 
+static void
+yelp_window_get_property (GObject    *object,
+                          guint       prop_id,
+                          GValue     *value,
+                          GParamSpec *pspec)
+{
+    YelpWindowPrivate *priv = GET_PRIV (object);
+    switch (prop_id) {
+    case PROP_APPLICATION:
+        g_value_set_object (value, priv->application);
+        break;
+    default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        break;
+    }
+}
+
+static void
+yelp_window_set_property (GObject     *object,
+                          guint        prop_id,
+                          const GValue *value,
+                          GParamSpec   *pspec)
+{
+    YelpWindowPrivate *priv = GET_PRIV (object);
+    switch (prop_id) {
+    case PROP_APPLICATION:
+        priv->application = g_value_get_object (value);
+        break;
+    default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        break;
+    }
+}
+
 
 /******************************************************************************/
 
@@ -303,7 +362,7 @@ yelp_window_new (YelpApplication *app)
 {
     YelpWindow *window;
 
-    window = (YelpWindow *) g_object_new (YELP_TYPE_WINDOW, NULL);
+    window = (YelpWindow *) g_object_new (YELP_TYPE_WINDOW, "application", app, NULL);
 
     return window;
 }
