@@ -376,6 +376,14 @@ yelp_window_load_uri (YelpWindow  *window,
     yelp_view_load_uri (priv->view, uri);
 }
 
+GtkActionGroup *
+yelp_window_get_action_group (YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    return priv->action_group;
+}
+
 /******************************************************************************/
 
 static void
@@ -431,26 +439,10 @@ static void
 window_font_adjustment (GtkAction  *action,
                         YelpWindow *window)
 {
-    GtkAction *larger, *smaller;
-    YelpSettings *settings = yelp_settings_get_default ();
-    GParamSpec *spec = g_object_class_find_property (YELP_SETTINGS_GET_CLASS (settings),
-                                                     "font-adjustment");
-    gint adjust = yelp_settings_get_font_adjustment (settings);
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    if (!G_PARAM_SPEC_INT (spec)) {
-        g_warning ("Expcected integer param spec for font-adjustment");
-        return;
-    }
-
-    adjust += g_str_equal (gtk_action_get_name (action), "LargerText") ? 1 : -1;
-    yelp_settings_set_font_adjustment (settings, adjust);
-
-    larger = gtk_action_group_get_action (priv->action_group, "LargerText");
-    gtk_action_set_sensitive (larger, adjust < ((GParamSpecInt *) spec)->maximum);
-
-    smaller = gtk_action_group_get_action (priv->action_group, "SmallerText");
-    gtk_action_set_sensitive (smaller, adjust > ((GParamSpecInt *) spec)->minimum);
+    yelp_application_adjust_font (priv->application,
+                                  g_str_equal (gtk_action_get_name (action), "LargerText") ? 1 : -1);
 }
 
 static void

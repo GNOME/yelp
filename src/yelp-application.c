@@ -28,6 +28,7 @@
 #include <dbus/dbus-glib.h>
 #include <gtk/gtk.h>
 
+#include "yelp-settings.h"
 #include "yelp-view.h"
 
 #include "yelp-application.h"
@@ -112,6 +113,40 @@ yelp_application_finalize (GObject *object)
     G_OBJECT_CLASS (yelp_application_parent_class)->finalize (object);
 }
 
+
+/******************************************************************************/
+
+void
+yelp_application_adjust_font (YelpApplication  *app,
+                              gint              adjust)
+{
+    GSList *cur;
+    YelpSettings *settings = yelp_settings_get_default ();
+    GParamSpec *spec = g_object_class_find_property (YELP_SETTINGS_GET_CLASS (settings),
+                                                     "font-adjustment");
+    gint adjustment = yelp_settings_get_font_adjustment (settings);
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+
+    if (!G_PARAM_SPEC_INT (spec)) {
+        g_warning ("Expcected integer param spec for font-adjustment");
+        return;
+    }
+
+    adjustment += adjust;
+    yelp_settings_set_font_adjustment (settings, adjustment);
+
+    for (cur = priv->windows; cur != NULL; cur = cur->next) {
+        YelpWindow *win = (YelpWindow *) cur->data;
+        GtkActionGroup *group = yelp_window_get_action_group (win);
+        GtkAction *larger, *smaller;
+
+        larger = gtk_action_group_get_action (group, "LargerText");
+        gtk_action_set_sensitive (larger, adjustment < ((GParamSpecInt *) spec)->maximum);
+
+        smaller = gtk_action_group_get_action (group, "SmallerText");
+        gtk_action_set_sensitive (smaller, adjustment > ((GParamSpecInt *) spec)->minimum);
+    }
+}
 
 /******************************************************************************/
 

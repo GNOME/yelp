@@ -51,4 +51,6 @@ YelpWindow *      yelp_window_new         (YelpApplication *app);
 void              yelp_window_load_uri    (YelpWindow      *window,
                                            YelpUri         *uri);
 
+GtkActionGroup *  yelp_window_get_action_group  (YelpWindow  *window);
+
 #endif /* __YELP_WINDOW_H__ */
