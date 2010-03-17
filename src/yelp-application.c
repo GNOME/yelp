@@ -214,7 +214,8 @@ yelp_application_run (YelpApplication  *app,
                                            "org.gnome.Yelp");
         if (!dbus_g_proxy_call (proxy, "LoadUri", &error,
                                 G_TYPE_STRING, newuri,
-                                G_TYPE_UINT, GDK_CURRENT_TIME,
+                                G_TYPE_UINT,
+                                gtk_get_current_event_time (),
                                 G_TYPE_INVALID, G_TYPE_INVALID)) {
             g_warning ("Unable to notify existing process: %s\n", error->message);
             g_error_free (error);
@@ -229,7 +230,7 @@ yelp_application_run (YelpApplication  *app,
                                          "/org/gnome/Yelp",
                                          G_OBJECT (app));
 
-    yelp_application_load_uri (app, uri, GDK_CURRENT_TIME, NULL);
+    yelp_application_load_uri (app, uri, gtk_get_current_event_time (), NULL);
 
     gtk_main ();
 
@@ -265,6 +266,7 @@ application_uri_resolved (YelpUri             *uri,
 {
     YelpWindow *window;
     gchar *doc_uri;
+    GdkWindow *gdk_window;
     YelpApplicationPrivate *priv = GET_PRIV (data->app);
 
     doc_uri = yelp_uri_get_document_uri (uri);
@@ -286,6 +288,12 @@ application_uri_resolved (YelpUri             *uri,
     yelp_window_load_uri (window, uri);
 
     gtk_widget_show_all (GTK_WIDGET (window));
+
+    /* Metacity no longer does anything useful with gtk_window_present */
+    gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
+    if (gdk_window)
+        gdk_x11_window_move_to_current_desktop (gdk_window);
+
     gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
 
     g_free (data);
