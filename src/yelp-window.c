@@ -62,6 +62,9 @@ static void          entry_location_selected      (YelpLocationEntry  *entry,
 static void          back_button_clicked          (GtkWidget          *button,
                                                    YelpWindow         *window);
 
+static void          view_external_uri            (YelpView           *view,
+                                                   YelpUri            *uri,
+                                                   YelpWindow         *window);
 static void          view_uri_selected            (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
@@ -250,6 +253,7 @@ yelp_window_init (YelpWindow *window)
     gtk_box_pack_end (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 
     priv->view = (YelpView *) yelp_view_new ();
+    g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
     g_signal_connect (priv->view, "notify::page-title", G_CALLBACK (view_page_title), window);
     g_signal_connect (priv->view, "notify::page-desc", G_CALLBACK (view_page_desc), window);
@@ -477,6 +481,16 @@ back_button_clicked (GtkWidget  *button,
 
     priv->back_load = TRUE;
     yelp_window_load_uri (window, ((YelpBackEntry *) priv->back_list->data)->uri);
+}
+
+static void
+view_external_uri (YelpView   *view,
+                   YelpUri    *uri,
+                   YelpWindow *window)
+{
+    gchar *struri = yelp_uri_get_canonical_uri (uri);
+    g_app_info_launch_default_for_uri (struri, NULL, NULL);
+    g_free (struri);
 }
 
 static void
