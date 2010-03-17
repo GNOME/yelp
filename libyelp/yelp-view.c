@@ -89,6 +89,7 @@ enum {
 
 enum {
     NEW_VIEW_REQUESTED,
+    EXTERNAL_URI,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -193,12 +194,20 @@ yelp_view_class_init (YelpViewClass *klass)
     object_class->set_property = yelp_view_set_property;
 
     signals[NEW_VIEW_REQUESTED] =
-	g_signal_new ("new_view_requested",
+	g_signal_new ("new-view-requested",
 		      G_TYPE_FROM_CLASS (klass),
 		      G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
 		      g_cclosure_marshal_VOID__STRING,
 		      G_TYPE_NONE, 1, G_TYPE_STRING);
+
+    signals[EXTERNAL_URI] =
+	g_signal_new ("external-uri",
+		      G_TYPE_FROM_CLASS (klass),
+		      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+		      g_cclosure_marshal_VOID__OBJECT,
+		      G_TYPE_NONE, 1, YELP_TYPE_URI);
 
     g_type_class_add_private (klass, sizeof (YelpViewPrivate));
 
@@ -573,8 +582,34 @@ uri_resolved (YelpUri  *uri,
 {
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpDocument *document;
+    GError *error;
+    gchar *struri;
 
     debug_print (DB_FUNCTION, "entering\n");
+
+    switch (yelp_uri_get_document_type (uri)) {
+    case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
+        g_signal_emit (view, signals[EXTERNAL_URI], 0, uri, 0);
+        return;
+    case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
+        struri = yelp_uri_get_canonical_uri (uri);
+        error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
+                             _("The URI ‘%s’ does point to a valid page."),
+                             struri);
+        g_free (struri);
+        view_show_error_page (view, error);
+        return;
+    case YELP_URI_DOCUMENT_TYPE_ERROR:
+        struri = yelp_uri_get_canonical_uri (uri);
+        error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
+                             _("The URI ‘%s’ could not be parsed."),
+                             struri);
+        g_free (struri);
+        view_show_error_page (view, error);
+        return;
+    default:
+        break;
+    }
 
     document  = yelp_document_get_for_uri (uri);
     if (priv->document)

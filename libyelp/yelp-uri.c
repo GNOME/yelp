@@ -306,7 +306,7 @@ resolve_async (YelpUri *uri)
     }
     else if (strchr (priv->res_arg, ':')) {
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
-        /* FIXME: resolve as external URI */
+        priv->fulluri = g_strdup (priv->res_arg);
     }
     else {
         resolve_file_path (uri);
