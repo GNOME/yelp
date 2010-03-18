@@ -489,7 +489,14 @@ view_external_uri (YelpView   *view,
                    YelpWindow *window)
 {
     gchar *struri = yelp_uri_get_canonical_uri (uri);
-    g_app_info_launch_default_for_uri (struri, NULL, NULL);
+    if (g_str_has_prefix (struri, "install:")) {
+        YelpWindowPrivate *priv = GET_PRIV (window);
+        gchar *pkg = struri + 8;
+        yelp_application_install_package (priv->application, pkg, "");
+    }
+    else
+        g_app_info_launch_default_for_uri (struri, NULL, NULL);
+
     g_free (struri);
 }
 

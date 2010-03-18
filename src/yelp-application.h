@@ -55,7 +55,11 @@ gboolean          yelp_application_load_uri    (YelpApplication  *app,
                                                 guint             timestamp,
                                                 GError          **error);
 
-void              yelp_application_adjust_font (YelpApplication  *app,
-                                                gint              adjust);
+void              yelp_application_adjust_font     (YelpApplication  *app,
+                                                    gint              adjust);
+
+void              yelp_application_install_package (YelpApplication  *app,
+                                                    const gchar      *pkg,
+                                                    const gchar      *alt);
 
 #endif /* __YELP_APPLICATION_H__ */

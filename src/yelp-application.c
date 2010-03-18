@@ -26,6 +26,7 @@
 
 #include <dbus/dbus-glib-bindings.h>
 #include <dbus/dbus-glib.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include "yelp-settings.h"
@@ -122,7 +123,7 @@ yelp_application_adjust_font (YelpApplication  *app,
 {
     GSList *cur;
     YelpSettings *settings = yelp_settings_get_default ();
-    GParamSpec *spec = g_object_class_find_property (YELP_SETTINGS_GET_CLASS (settings),
+    GParamSpec *spec = g_object_class_find_property ((GObjectClass *) YELP_SETTINGS_GET_CLASS (settings),
                                                      "font-adjustment");
     gint adjustment = yelp_settings_get_font_adjustment (settings);
     YelpApplicationPrivate *priv = GET_PRIV (app);
@@ -327,4 +328,58 @@ application_maybe_quit (YelpApplication *app)
         gtk_main_quit ();
 
     return FALSE;
+}
+
+/******************************************************************************/
+
+static void
+packages_installed (DBusGProxy     *proxy,
+                    DBusGProxyCall *call,
+                    gpointer        data)
+{
+    GError *error = NULL;
+    dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_INVALID);
+    g_strfreev ((gchar **) data);
+    if (error) {
+        const gchar *err = NULL;
+        if (error->domain == DBUS_GERROR) {
+            if (error->code == DBUS_GERROR_SERVICE_UNKNOWN) {
+                err = _("You do not have PackageKit installed.  Package installation links require PackageKit.");
+            }
+            else if (error->code != DBUS_GERROR_REMOTE_EXCEPTION &&
+                     error->code != DBUS_GERROR_NO_REPLY) {
+                err = error->message;
+            }
+        }
+        if (err) {
+            GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
+                                                        GTK_MESSAGE_ERROR,
+                                                        GTK_BUTTONS_CLOSE,
+                                                        "%s", err);
+            gtk_dialog_run ((GtkDialog *) dialog);
+            gtk_widget_destroy (dialog);
+        }
+    }
+}
+
+void
+yelp_application_install_package (YelpApplication  *app,
+                                  const gchar      *pkg,
+                                  const gchar      *alt)
+{
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+    guint32 xid = 0;
+    DBusGProxy *proxy = dbus_g_proxy_new_for_name (priv->connection,
+                                                   "org.freedesktop.PackageKit",
+                                                   "/org/freedesktop/PackageKit",
+                                                   "org.freedesktop.PackageKit.Modify");
+    gchar **pkgs = g_new0 (gchar *, 2);
+    pkgs[0] = g_strdup (pkg);
+
+    dbus_g_proxy_begin_call (proxy, "InstallPackageNames",
+                             packages_installed, pkgs, NULL,
+                             G_TYPE_UINT, xid,
+                             G_TYPE_STRV, pkgs,
+                             G_TYPE_STRING, "",
+                             G_TYPE_INVALID, G_TYPE_INVALID);
 }
