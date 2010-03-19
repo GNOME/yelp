@@ -207,7 +207,16 @@ yelp_application_run (YelpApplication  *app,
         request == DBUS_REQUEST_NAME_REPLY_IN_QUEUE) {
         gchar *newuri;
 
-        newuri = g_strdup (uri);
+        if (uri && (strchr (uri, ':') || (uri[0] == '/')))
+            newuri = uri;
+        else {
+            GFile *base, *new;
+            gchar *cur = g_get_current_dir ();
+            base = g_file_new_for_path (cur);
+            new = g_file_resolve_relative_path (base, uri);
+            newuri = g_file_get_uri (new);
+            g_free (cur);
+        }
 
         proxy = dbus_g_proxy_new_for_name (priv->connection,
                                            "org.gnome.Yelp",
@@ -222,7 +231,8 @@ yelp_application_run (YelpApplication  *app,
             g_error_free (error);
         }
 
-        g_free (newuri);
+        if (newuri != uri)
+            g_free (newuri);
         g_object_unref (proxy);
         return 1;
     }
