@@ -453,6 +453,29 @@ yelp_document_set_up_id (YelpDocument *document,
 }
 
 gchar *
+yelp_document_get_root_title (YelpDocument *document,
+                              const gchar  *page_id)
+{
+    gchar *real, *root, *ret = NULL;
+
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    g_mutex_lock (document->priv->mutex);
+    real = hash_lookup (document->priv->page_ids, page_id);
+    if (real) {
+	root = hash_lookup (document->priv->root_ids, real);
+        if (root) {
+            ret = hash_lookup (document->priv->titles, root);
+            if (ret)
+                ret = g_strdup (ret);
+        }
+    }
+    g_mutex_unlock (document->priv->mutex);
+
+    return ret;
+}
+
+gchar *
 yelp_document_get_page_title (YelpDocument *document,
                               const gchar  *page_id)
 {

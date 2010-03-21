@@ -320,6 +320,8 @@ mallard_think (YelpMallardDocument *mallard)
             mallard_page_data_free (page_data);
         } else {
             g_mutex_lock (priv->mutex);
+            yelp_document_set_root_id ((YelpDocument *) mallard,
+                                       page_data->page_id, "index");
             yelp_document_set_page_id ((YelpDocument *) mallard,
                                        page_data->page_id, page_data->page_id);
             g_hash_table_insert (priv->pages_hash, page_data->page_id, page_data);

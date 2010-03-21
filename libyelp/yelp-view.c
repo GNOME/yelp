@@ -83,6 +83,7 @@ enum {
     PROP_0,
     PROP_URI,
     PROP_STATE,
+    PROP_ROOT_TITLE,
     PROP_PAGE_TITLE,
     PROP_PAGE_DESC
 };
@@ -109,6 +110,7 @@ struct _YelpViewPrivate {
 
     YelpViewState  state;
 
+    gchar         *root_title;
     gchar         *page_title;
     gchar         *page_desc;
 
@@ -167,6 +169,7 @@ yelp_view_finalize (GObject *object)
 {
     YelpViewPrivate *priv = GET_PRIV (object);
 
+    g_free (priv->root_title);
     g_free (priv->page_title);
     g_free (priv->page_desc);
 
@@ -231,10 +234,19 @@ yelp_view_class_init (YelpViewClass *klass)
                                                         G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     g_object_class_install_property (object_class,
+                                     PROP_ROOT_TITLE,
+                                     g_param_spec_string ("root-title",
+                                                          N_("Root Title"),
+                                                          N_("The title of the root page of the page being viewew"),
+                                                          NULL,
+                                                          G_PARAM_READABLE |
+                                                          G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    g_object_class_install_property (object_class,
                                      PROP_PAGE_TITLE,
                                      g_param_spec_string ("page-title",
                                                           N_("Page Title"),
-                                                          N_("The title of the page being viewew"),
+                                                          N_("The title of the page being viewed"),
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -243,7 +255,7 @@ yelp_view_class_init (YelpViewClass *klass)
                                      PROP_PAGE_DESC,
                                      g_param_spec_string ("page-desc",
                                                           N_("Page Description"),
-                                                          N_("The description of the page being viewew"),
+                                                          N_("The description of the page being viewed"),
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -261,6 +273,9 @@ yelp_view_get_property (GObject    *object,
         {
         case PROP_URI:
             g_value_set_object (value, priv->uri);
+            break;
+        case PROP_ROOT_TITLE:
+            g_value_set_string (value, priv->root_title);
             break;
         case PROP_PAGE_TITLE:
             g_value_set_string (value, priv->page_title);
@@ -328,10 +343,13 @@ yelp_view_load_uri (YelpView *view,
     view_clear_load (view);
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
+    g_free (priv->root_title);
     g_free (priv->page_title);
     g_free (priv->page_desc);
+    priv->root_title = NULL;
     priv->page_title = NULL;
     priv->page_desc = NULL;
+    g_signal_emit_by_name (view, "notify::root-title", 0);
     g_signal_emit_by_name (view, "notify::page-title", 0);
     g_signal_emit_by_name (view, "notify::page-desc", 0);
 
@@ -635,12 +653,15 @@ document_callback (YelpDocument       *document,
         gchar *page_id;
         page_id = yelp_uri_get_page_id (priv->uri);
 
+        g_free (priv->root_title);
         g_free (priv->page_title);
         g_free (priv->page_desc);
 
+        priv->root_title = yelp_document_get_root_title (document, page_id);
         priv->page_title = yelp_document_get_page_title (document, page_id);
         priv->page_desc = yelp_document_get_page_desc (document, page_id);
 
+        g_signal_emit_by_name (view, "notify::root-title", 0);
         g_signal_emit_by_name (view, "notify::page-title", 0);
         g_signal_emit_by_name (view, "notify::page-desc", 0);
     }

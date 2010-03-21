@@ -115,6 +115,7 @@ struct _YelpDocbookDocumentPrivate {
     gint          cur_depth;
     gchar        *cur_page_id;
     gchar        *cur_prev_id;
+    gchar        *root_id;
 };
 
 /******************************************************************************/
@@ -168,6 +169,7 @@ yelp_docbook_document_finalize (GObject *object)
 
     g_free (priv->cur_page_id);
     g_free (priv->cur_prev_id);
+    g_free (priv->root_id);
 
     g_mutex_free (priv->mutex);
 
@@ -345,12 +347,14 @@ docbook_process (YelpDocbookDocument *docbook)
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
     if (id) {
+        priv->root_id = g_strdup (id);
         yelp_document_set_page_id (document, NULL, (gchar *) id);
         yelp_document_set_page_id (document, "//index", (gchar *) id);
         yelp_document_set_prev_id (document, (gchar *) id, "//about");
         yelp_document_set_next_id (document, "//about", (gchar *) id);
     }
     else {
+        priv->root_id = g_strdup ("//index");
         yelp_document_set_page_id (document, NULL, "//index");
         yelp_document_set_prev_id (document, "//index", "//about");
         yelp_document_set_next_id (document, "//about", "//index");
@@ -358,6 +362,8 @@ docbook_process (YelpDocbookDocument *docbook)
          * so when we try to load the document later, it doesn't fail */
         xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "//index");
     }
+    yelp_document_set_root_id (document, priv->root_id, priv->root_id);
+    yelp_document_set_root_id (document, "//about", priv->root_id);
     g_mutex_unlock (priv->mutex);
 
     g_mutex_lock (priv->mutex);
@@ -513,8 +519,10 @@ docbook_walk (YelpDocbookDocument *docbook)
 
     old_cur = priv->xmlcur;
     priv->cur_depth++;
-    if (id)
+    if (id) {
+        yelp_document_set_root_id (document, (gchar *) id, priv->root_id);
         yelp_document_set_page_id (document, (gchar *) id, priv->cur_page_id);
+    }
 
     yelp_document_signal (YELP_DOCUMENT (docbook),
                           priv->cur_page_id,

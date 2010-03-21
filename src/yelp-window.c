@@ -68,6 +68,9 @@ static void          view_external_uri            (YelpView           *view,
 static void          view_uri_selected            (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
+static void          view_root_title              (YelpView           *view,
+                                                   GParamSpec         *pspec,
+                                                   YelpWindow         *window);
 static void          view_page_title              (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
@@ -174,6 +177,7 @@ yelp_window_init (YelpWindow *window)
     GError *error = NULL;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
+    gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
     gtk_window_set_default_size (GTK_WINDOW (window), 520, 580);
 
     vbox = gtk_vbox_new (FALSE, 0);
@@ -255,6 +259,7 @@ yelp_window_init (YelpWindow *window)
     priv->view = (YelpView *) yelp_view_new ();
     g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
+    g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
     g_signal_connect (priv->view, "notify::page-title", G_CALLBACK (view_page_title), window);
     g_signal_connect (priv->view, "notify::page-desc", G_CALLBACK (view_page_desc), window);
     gtk_container_add (GTK_CONTAINER (scroll), GTK_WIDGET (priv->view));
@@ -580,6 +585,22 @@ view_uri_selected (YelpView     *view,
 
     g_free (struri);
     g_object_unref (uri);
+}
+
+static void
+view_root_title (YelpView    *view,
+                 GParamSpec  *pspec,
+                 YelpWindow  *window)
+{
+    gchar *title;
+    g_object_get (view, "root-title", &title, NULL);
+
+    if (title) {
+        gtk_window_set_title (GTK_WINDOW (window), title);
+        g_free (title);
+    } else {
+        gtk_window_set_title (GTK_WINDOW (window), _("Help"));
+    }
 }
 
 static void
