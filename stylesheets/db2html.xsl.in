@@ -69,17 +69,7 @@ FIXME: yelp:cache no longer works
 <!-- == db.xref.target == -->
 <xsl:template name="db.xref.target">
   <xsl:param name="linkend"/>
-  <xsl:param name="depth_in_chunk">
-    <xsl:call-template name="db.chunk.depth-in-chunk"/>
-  </xsl:param>
-  <xsl:choose>
-    <xsl:when test="$depth_in_chunk != 0">
-      <xsl:value-of select="concat('xref:#', $linkend)"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="concat('xref:', $linkend)"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:value-of select="concat('xref:', $linkend)"/>
 </xsl:template>
 
 <!-- == db2html.division.head.extra == -->
