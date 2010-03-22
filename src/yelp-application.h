@@ -47,7 +47,6 @@ struct _YelpApplicationClass
 GType             yelp_application_get_type    (void);
 YelpApplication*  yelp_application_new         (void);
 gint              yelp_application_run         (YelpApplication  *app,
-                                                GOptionContext   *context,
                                                 gint              argc,
                                                 gchar           **argv);
 gboolean          yelp_application_load_uri    (YelpApplication  *app,

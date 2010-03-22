@@ -36,6 +36,13 @@
 #include "yelp-dbus.h"
 #include "yelp-window.h"
 
+static gboolean editor_mode = FALSE;
+
+static const GOptionEntry entries[] = {
+    {"editor-mode", 0, 0, G_OPTION_ARG_NONE, &editor_mode, N_("Turn on editor mode"), NULL},
+    { NULL }
+};
+
 typedef struct _YelpApplicationLoad YelpApplicationLoad;
 struct _YelpApplicationLoad {
     YelpApplication *app;
@@ -163,15 +170,22 @@ yelp_application_new (void)
 
 gint
 yelp_application_run (YelpApplication  *app,
-                      GOptionContext   *context,
                       gint              argc,
                       gchar           **argv)
 {
+    GOptionContext *context;
     GError *error = NULL;
     DBusGProxy *proxy;
     guint request;
     YelpApplicationPrivate *priv = GET_PRIV (app);
     gchar *uri;
+
+    g_set_application_name (N_("Help"));
+
+    context = g_option_context_new (NULL);
+    g_option_context_add_group (context, gtk_get_option_group (TRUE));
+    g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
+    g_option_context_parse (context, &argc, &argv, NULL);
 
     priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
     if (priv->connection == NULL) {
@@ -241,6 +255,8 @@ yelp_application_run (YelpApplication  *app,
                                          "/org/gnome/Yelp",
                                          G_OBJECT (app));
 
+    yelp_settings_set_editor_mode (yelp_settings_get_default (), editor_mode);
+
     yelp_application_load_uri (app, uri, gtk_get_current_event_time (), NULL);
 
     gtk_main ();
@@ -305,7 +321,7 @@ application_uri_resolved (YelpUri             *uri,
     if (gdk_window)
         gdk_x11_window_move_to_current_desktop (gdk_window);
 
-    gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
+    gtk_window_present_with_time (GTK_WINDOW (window), GDK_CURRENT_TIME);
 
     g_free (data);
 }

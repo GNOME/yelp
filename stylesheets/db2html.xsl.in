@@ -69,7 +69,7 @@ FIXME: yelp:cache no longer works
 <!-- == db.xref.target == -->
 <xsl:template name="db.xref.target">
   <xsl:param name="linkend"/>
-  <xsl:value-of select="concat('xref:', $linkend)"/>
+  <xsl:value-of select="concat('xref:', $linkend, '#', $linkend)"/>
 </xsl:template>
 
 <!-- == db2html.division.head.extra == -->

@@ -26,24 +26,19 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <gtk/gtk.h>
 
 #include "yelp-application.h"
 
 int
 main (int argc, char **argv) 
 {
-    GOptionContext *context;
     YelpApplication *app;
 
     g_thread_init (NULL);
-
-    g_set_application_name (N_("Help"));
-
-    context = g_option_context_new (NULL);
-    g_option_context_add_group (context, gtk_get_option_group (TRUE));
-    g_option_context_parse (context, &argc, &argv, NULL);
+    g_type_init ();
 
     app = yelp_application_new ();
 
-    return yelp_application_run (app, context, argc, argv);
+    return yelp_application_run (app, argc, argv);
 }

@@ -44,6 +44,8 @@ struct _YelpSettingsPriv {
     gulong        gtk_theme_changed;
     gulong        gtk_font_changed;
     gulong        icon_theme_changed;
+
+    gboolean      editor_mode;
 };
 
 enum {
@@ -626,6 +628,15 @@ yelp_settings_get_icon_param (YelpSettingsIcon icon)
 
 /******************************************************************************/
 
+void
+yelp_settings_set_editor_mode (YelpSettings *settings,
+                               gboolean      editor_mode)
+{
+    settings->priv->editor_mode = editor_mode;
+}
+
+/******************************************************************************/
+
 gchar **
 yelp_settings_get_all_params (YelpSettings *settings,
 			      gint          extra,
@@ -635,7 +646,7 @@ yelp_settings_get_all_params (YelpSettings *settings,
     gint i, ix;
 
     params = g_new0 (gchar *,
-                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 3);
+                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 5);
 
     for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++) {
         gchar *val;
@@ -656,6 +667,11 @@ yelp_settings_get_all_params (YelpSettings *settings,
     ix = 2 * (YELP_SETTINGS_NUM_COLORS + YELP_SETTINGS_NUM_ICONS);
     params[ix++] = g_strdup ("theme.icon.admon.size");
     params[ix++] = g_strdup_printf ("%i", yelp_settings_get_icon_size (settings));
+    params[ix++] = g_strdup ("mal2html.editor_mode");
+    if (settings->priv->editor_mode)
+        params[ix++] = g_strdup ("true()");
+    else
+        params[ix++] = g_strdup ("false()");
     params[ix] = NULL;
 
     if (end != NULL)

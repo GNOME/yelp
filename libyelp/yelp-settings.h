@@ -118,6 +118,9 @@ gchar **            yelp_settings_get_all_params       (YelpSettings       *sett
                                                         gint                extra,
                                                         gint               *end);
 
+void                yelp_settings_set_editor_mode      (YelpSettings       *settings,
+                                                        gboolean            editor_mode);
+
 G_END_DECLS
 
 #endif /* __YELP_SETTINGS_H__ */
