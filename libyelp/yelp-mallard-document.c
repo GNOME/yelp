@@ -377,7 +377,7 @@ mallard_try_run (YelpMallardDocument *mallard,
         real_id = yelp_document_get_page_id ((YelpDocument *) mallard, page_id);
 
     if (real_id != NULL) {
-        page_data = g_hash_table_lookup (priv->pages_hash, page_id);
+        page_data = g_hash_table_lookup (priv->pages_hash, real_id);
         g_free (real_id);
     }
 
