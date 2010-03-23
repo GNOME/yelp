@@ -3,6 +3,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
+<xsl:param name="yelp.editor_mode" select="false()"/>
+
 <!-- == yelp.common.css == -->
 <xsl:template name="theme.html.css.custom">
   <xsl:param name="direction"/>

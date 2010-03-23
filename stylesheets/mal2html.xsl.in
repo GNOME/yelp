@@ -12,6 +12,8 @@
 
 <xsl:param name="yelp.javascript"/>
 
+<xsl:param name="mal2html.editor_mode" select="$yelp.editor_mode"/>
+
 
 <xsl:param name="mal.chunk.chunk_top" select="true()"/>
 <xsl:param name="mal.chunk.extension" select="''"/>
@@ -50,6 +52,28 @@
       <xsl:value-of select="concat('xref:', $xref)"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="mal2html.css.custom">
+<xsl:if test="$yelp.editor_mode">
+<xsl:text>
+div.head { margin: 0; }
+div.version {
+  margin: 0 -12px 1em -12px;
+  padding: 0.5em 12px 0.5em 12px;
+  position: relative;
+  left: auto; right: auto;
+  opacity: 1.0;
+  max-width: none;
+  border: none;
+  border-bottom: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
+}
+div.version:hover { opacity: 1.0; }
+</xsl:text>
+</xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

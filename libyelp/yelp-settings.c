@@ -667,7 +667,7 @@ yelp_settings_get_all_params (YelpSettings *settings,
     ix = 2 * (YELP_SETTINGS_NUM_COLORS + YELP_SETTINGS_NUM_ICONS);
     params[ix++] = g_strdup ("theme.icon.admon.size");
     params[ix++] = g_strdup_printf ("%i", yelp_settings_get_icon_size (settings));
-    params[ix++] = g_strdup ("mal2html.editor_mode");
+    params[ix++] = g_strdup ("yelp.editor_mode");
     if (settings->priv->editor_mode)
         params[ix++] = g_strdup ("true()");
     else
