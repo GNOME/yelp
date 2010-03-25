@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "yelp-location-entry.h"
+#include "yelp-marshal.h"
 #include "yelp-settings.h"
 
 /**
@@ -111,6 +112,22 @@ static void     cell_set_text_cell                  (GtkCellLayout     *layout,
                                                      GtkTreeIter       *iter,
                                                      YelpLocationEntry *entry);
 
+/* GtkEntryCompletion callbacks */
+static void     cell_set_completion_text_cell       (GtkCellLayout     *layout,
+                                                     GtkCellRenderer   *cell,
+                                                     GtkTreeModel      *model,
+                                                     GtkTreeIter       *iter,
+                                                     YelpLocationEntry *entry);
+static gboolean entry_match_func                    (GtkEntryCompletion *completion,
+                                                     const gchar        *key,
+                                                     GtkTreeIter        *iter,
+                                                     YelpLocationEntry  *entry);
+static gboolean entry_match_selected                (GtkEntryCompletion *completion,
+                                                     GtkTreeModel       *model,
+                                                     GtkTreeIter        *iter,
+                                                     YelpLocationEntry  *entry);
+
+
 typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 struct _YelpLocationEntryPrivate
 {
@@ -126,10 +143,15 @@ struct _YelpLocationEntryPrivate
     gboolean   search_mode;
 
     GtkCellRenderer *icon_cell;
+
+    /* owned by entry, do not free */
+    GtkEntryCompletion *completion;
+    gint                completion_desc_column;
 };
 
 enum {
   LOCATION_SELECTED,
+  COMPLETION_SELECTED,
   SEARCH_ACTIVATED,
   LAST_SIGNAL
 };
@@ -168,12 +190,30 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
      * will not be emitted.
      **/
     location_entry_signals[LOCATION_SELECTED] =
-        g_signal_new ("location_selected",
+        g_signal_new ("location-selected",
                       G_OBJECT_CLASS_TYPE (klass),
                       G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
                       g_cclosure_marshal_VOID__VOID,
                       G_TYPE_NONE, 0);
+
+    /**
+     * YelpLocationEntry::completion-selected
+     * @widget: The #YelpLocationEntry for which the signal was emitted.
+     * @model: The #GtkTreeModel contianing the completion.
+     * @iter: A #GtkTreeIter positioned at the completion.
+     * @user_data: User data set when the handler was connected.
+     *
+     * This signal will be emitted whenever a user selects an entry in the
+     * completion drop-down while typing.
+     **/
+    location_entry_signals[COMPLETION_SELECTED] =
+        g_signal_new ("completion-selected",
+                      G_OBJECT_CLASS_TYPE (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      yelp_marshal_VOID__OBJECT_BOXED,
+                      G_TYPE_NONE, 2, GTK_TYPE_TREE_MODEL, GTK_TYPE_TREE_ITER);
 
     /**
      * YelpLocationEntry::search-activated
@@ -261,7 +301,8 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                               sizeof (YelpLocationEntryPrivate));
 }
 
-static void yelp_location_entry_init (YelpLocationEntry *entry)
+static void
+yelp_location_entry_init (YelpLocationEntry *entry)
 {
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GList *cells;
@@ -289,7 +330,7 @@ static void yelp_location_entry_init (YelpLocationEntry *entry)
     g_object_set (cells->data, "xpad", 4, NULL);
     gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (entry),
                                         GTK_CELL_RENDERER (cells->data),
-                                        cell_set_text_cell,
+                                        (GtkCellLayoutDataFunc) cell_set_text_cell,
                                         entry, NULL);
     g_list_free (cells);
 
@@ -402,6 +443,49 @@ location_entry_start_search (YelpLocationEntry *entry,
     priv->search_mode = TRUE;
     location_entry_set_entry (entry, FALSE);
     gtk_widget_grab_focus (priv->text_entry);
+}
+
+void
+yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
+                                          GtkTreeModel *model,
+                                          gint text_column,
+                                          gint desc_column,
+                                          gint icon_column)
+{
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+    GList *cells;
+    GtkCellRenderer *icon_cell;
+
+    priv->completion = gtk_entry_completion_new ();
+    priv->completion_desc_column = desc_column;
+    gtk_entry_completion_set_model (priv->completion, model);
+    gtk_entry_completion_set_text_column (priv->completion, text_column);
+    gtk_entry_completion_set_match_func (priv->completion,
+                                         (GtkEntryCompletionMatchFunc) entry_match_func,
+                                         entry, NULL);
+    g_signal_connect (priv->completion, "match-selected",
+                      G_CALLBACK (entry_match_selected), entry);
+
+    cells = gtk_cell_layout_get_cells (GTK_CELL_LAYOUT (priv->completion));
+    g_object_set (cells->data, "xpad", 4, NULL);
+    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->completion),
+                                        GTK_CELL_RENDERER (cells->data),
+                                        (GtkCellLayoutDataFunc) cell_set_completion_text_cell,
+                                        entry, NULL);
+    g_list_free (cells);
+
+    icon_cell = gtk_cell_renderer_pixbuf_new ();
+    g_object_set (priv->icon_cell, "yalign", 0.2, NULL);
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->completion), icon_cell, FALSE);
+    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (priv->completion), icon_cell, 0);
+    gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->completion),
+                                    icon_cell,
+                                    "icon-name",
+                                    icon_column,
+                                    NULL);
+
+    gtk_entry_set_completion (GTK_ENTRY (priv->text_entry),
+                              priv->completion);
 }
 
 static void
@@ -682,6 +766,91 @@ cell_set_text_cell (GtkCellLayout     *layout,
         g_free (text);
         g_free (title);
     }
+}
+
+static void
+cell_set_completion_text_cell (GtkCellLayout     *layout,
+                               GtkCellRenderer   *cell,
+                               GtkTreeModel      *model,
+                               GtkTreeIter       *iter,
+                               YelpLocationEntry *entry)
+{
+    gint text_col;
+    gchar *title, *desc, *color, *text;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    g_object_get (priv->completion, "text-column", &text_col, NULL);
+    if (text_col >= 0) {
+        gtk_tree_model_get (model, iter,
+                            text_col, &title,
+                            priv->completion_desc_column, &desc,
+                            -1);
+        if (desc) {
+            color = yelp_settings_get_color (yelp_settings_get_default (),
+                                             YELP_SETTINGS_COLOR_TEXT_LIGHT);
+            text = g_markup_printf_escaped ("<span size='larger'>%s</span>\n<span color='%s'>%s</span>",
+                                            title, color, desc);
+            g_free (color);
+            g_free (desc);
+        }
+        else {
+            text = g_markup_printf_escaped ("<span size='larger'>%s</span>", title);
+        }
+
+        g_object_set (cell, "markup", text, NULL);
+        g_free (text);
+        g_free (title);
+    }
+}
+
+static gboolean
+entry_match_func (GtkEntryCompletion *completion,
+                  const gchar        *key,
+                  GtkTreeIter        *iter,
+                  YelpLocationEntry  *entry)
+{
+    gint text_col;
+    gchar *txt = NULL, *txtcase;
+    gboolean ret = FALSE;
+    GtkTreeModel *model = gtk_entry_completion_get_model (completion);
+
+    g_object_get (entry, "text-column", &text_col, NULL);
+    gtk_tree_model_get (model, iter, text_col, &txt, -1);
+    if (txt == NULL)
+        return FALSE;
+    txtcase = g_utf8_casefold (txt, -1);
+
+    if (strstr (txtcase, key))
+        ret = TRUE;
+
+    g_free (txtcase);
+    g_free (txt);
+    if (ret)
+        return ret;
+
+    g_object_get (entry, "desc-column", &text_col, NULL);
+    gtk_tree_model_get (model, iter, text_col, &txt, -1);
+    if (txt == NULL)
+        return FALSE;
+    txtcase = g_utf8_casefold (txt, -1);
+
+    if (strstr (txtcase, key))
+        ret = TRUE;
+
+    g_free (txtcase);
+    g_free (txt);
+
+    return ret;
+}
+
+static gboolean
+entry_match_selected (GtkEntryCompletion *completion,
+                      GtkTreeModel       *model,
+                      GtkTreeIter        *iter,
+                      YelpLocationEntry  *entry)
+{
+    g_signal_emit (entry, location_entry_signals[COMPLETION_SELECTED], 0, model, iter);
+    return TRUE;
 }
 
 /**

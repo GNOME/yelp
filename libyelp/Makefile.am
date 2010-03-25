@@ -8,6 +8,7 @@ libyelp_la_SOURCES =				\
 	yelp-io-channel.c			\
 	yelp-location-entry.c			\
 	yelp-mallard-document.c			\
+	yelp-marshal.c				\
 	yelp-settings.c				\
 	yelp-simple-document.c			\
 	yelp-transform.c			\
@@ -40,7 +41,30 @@ libyelp_include_HEADERS =			\
 	$(libyelp_headers)			\
 	yelp-types.h
 
-BUILT_SOURCES = yelp-types.c yelp-types.h
+BUILT_SOURCES =			\
+	stamp-yelp-marshal.h	\
+	yelp-marshal.c		\
+	yelp-marshal.h		\
+	yelp-types.c		\
+	yelp-types.h
+
+EXTRA_DIST = yelp-marshal.list
+
+yelp-marshal.h: stamp-yelp-marshal.h
+	@true
+
+stamp-yelp-marshal.h: yelp-marshal.list
+	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
+	&& (cmp -s xgen-ymh yelp-marshal.h || cp xgen-ymh yelp-marshal.h) \
+	&& rm -f xgen-ymh xgen-ymh~ \
+	&& echo timestamp > $(@F)
+
+yelp-marshal.c: yelp-marshal.list
+	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --body > xgen-ymc \
+	&& cp xgen-ymc yelp-marshal.c \
+	&& rm -f xgen-ymc xgen-ymc~
+
+yelp-marshal-main.c: yelp-marshal.c
 
 CLEANFILES = $(BUILT_SOURCES)
 

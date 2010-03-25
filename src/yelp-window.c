@@ -58,6 +58,10 @@ static void          window_font_adjustment       (GtkAction          *action,
 
 static void          entry_location_selected      (YelpLocationEntry  *entry,
                                                    YelpWindow         *window);
+static void          entry_completion_selected    (YelpLocationEntry  *entry,
+                                                   GtkTreeModel       *model,
+                                                   GtkTreeIter        *iter,
+                                                   YelpWindow         *window);
 
 static void          back_button_clicked          (GtkWidget          *button,
                                                    YelpWindow         *window);
@@ -231,6 +235,15 @@ yelp_window_init (YelpWindow *window)
                                             COL_DESC,
                                             COL_ICON,
                                             COL_FLAGS);
+
+    yelp_location_entry_set_completion_model (YELP_LOCATION_ENTRY (priv->entry),
+                                              GTK_TREE_MODEL (priv->history),
+                                              COL_TITLE,
+                                              COL_DESC,
+                                              COL_ICON);
+    g_signal_connect (priv->entry, "completion-selected",
+                      G_CALLBACK (entry_completion_selected), window);
+
     priv->entry_location_selected = g_signal_connect (priv->entry, "location-selected",
                                                       G_CALLBACK (entry_location_selected), window);
     priv->align_location = g_object_ref_sink (gtk_alignment_new (0.0, 0.5, 1.0, 0.0));
@@ -467,6 +480,20 @@ entry_location_selected (YelpLocationEntry  *entry,
                         -1);
     yelp_view_load (priv->view, uri);
     g_free (uri);
+}
+
+static void
+entry_completion_selected (YelpLocationEntry  *entry,
+                           GtkTreeModel       *model,
+                           GtkTreeIter        *iter,
+                           YelpWindow         *window)
+{
+    gchar *uri;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    gtk_tree_model_get (model, iter, COL_URI, &uri, -1);
+    yelp_view_load (priv->view, uri);
+    g_free (uri);
+    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 }
 
 static void
