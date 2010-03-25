@@ -96,6 +96,8 @@ const gchar *     yelp_document_read_contents  (YelpDocument         *document,
 void              yelp_document_finish_read    (YelpDocument         *document,
                                                 const gchar          *contents);
 
+gchar **          yelp_document_list_page_ids  (YelpDocument         *document);
+
 gchar *           yelp_document_get_page_id    (YelpDocument         *document,
                                                 const gchar          *id);
 void              yelp_document_set_page_id    (YelpDocument         *document,
@@ -150,19 +152,6 @@ void              yelp_document_signal         (YelpDocument         *document,
                                                 const GError         *error);
 void              yelp_document_error_pending  (YelpDocument         *document,
                                                 const GError         *error);
-/* FIXME */
-/*
-void              yelp_document_error_request  (YelpDocument        *document,
-                                                gint                 req_id,
-                                                YelpError           *error);
-void              yelp_document_error_page     (YelpDocument        *document,
-                                                gchar               *page_id,
-                                                YelpError           *error);
-void              yelp_document_error_pending  (YelpDocument        *document,
-                                                YelpError           *error);
-void              yelp_document_final_pending  (YelpDocument        *document,
-                                                YelpError           *error);
-*/
 
 G_END_DECLS
 

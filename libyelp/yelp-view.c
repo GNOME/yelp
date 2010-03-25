@@ -91,6 +91,7 @@ enum {
 enum {
     NEW_VIEW_REQUESTED,
     EXTERNAL_URI,
+    LOADED,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -211,6 +212,14 @@ yelp_view_class_init (YelpViewClass *klass)
                       0, NULL, NULL,
 		      g_cclosure_marshal_VOID__OBJECT,
 		      G_TYPE_NONE, 1, YELP_TYPE_URI);
+
+    signals[LOADED] =
+        g_signal_new ("loaded",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
 
     g_type_class_add_private (klass, sizeof (YelpViewPrivate));
 
@@ -384,6 +393,13 @@ yelp_view_load_document (YelpView     *view,
     priv->document = document;
 
     view_load_page (view);
+}
+
+YelpDocument *
+yelp_view_get_document (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    return g_object_ref (priv->document);
 }
 
 /******************************************************************************/
@@ -698,6 +714,7 @@ document_callback (YelpDocument       *document,
         g_free (page_id);
         g_free (mime_type);
 	yelp_document_finish_read (document, contents);
+        g_signal_emit (view, signals[LOADED], 0);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
         view_show_error_page (view, error);

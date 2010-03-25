@@ -63,6 +63,7 @@ struct _YelpDocumentPriv {
     /* Real page IDs map to themselves, so this list doubles
      * as a list of all valid page IDs.
      */
+    GHashTable *core_ids;  /* Mapping of real IDs to themselves, for a set */
     Hash   *page_ids;      /* Mapping of fragment IDs to real page IDs */
     Hash   *titles;        /* Mapping of page IDs to titles */
     Hash   *descs;         /* Mapping of page IDs to descs */
@@ -222,6 +223,7 @@ yelp_document_init (YelpDocument *document)
     priv->reqs_all = NULL;
     priv->reqs_pending = NULL;
 
+    priv->core_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
     priv->page_ids = hash_new (g_free );
     priv->titles = hash_new (g_free);
     priv->descs = hash_new (g_free);
@@ -270,12 +272,39 @@ yelp_document_finalize (GObject *object)
     hash_free (document->priv->next_ids);
     hash_free (document->priv->up_ids);
 
+    g_hash_table_destroy (document->priv->core_ids);
+
     g_mutex_free (document->priv->mutex);
 
     G_OBJECT_CLASS (yelp_document_parent_class)->finalize (object);
 }
 
 /******************************************************************************/
+
+gchar **
+yelp_document_list_page_ids (YelpDocument *document)
+{
+    GList *lst, *cur;
+    gint i;
+    gchar **ret = NULL;
+
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    g_mutex_lock (document->priv->mutex);
+
+    lst = g_hash_table_get_keys (document->priv->core_ids);
+    ret = g_new0 (gchar *, g_list_length (lst) + 1);
+    i = 0;
+    for (cur = lst; cur != NULL; cur = cur->next) {
+        ret[i] = g_strdup ((gchar *) cur->data);
+        i++;
+    }
+    g_list_free (lst);
+
+    g_mutex_unlock (document->priv->mutex);
+
+    return ret;
+}
 
 gchar *
 yelp_document_get_page_id (YelpDocument *document,
@@ -319,6 +348,13 @@ yelp_document_set_page_id (YelpDocument *document,
 	}
 	if (reqs)
 	    hash_remove (document->priv->reqs_by_page_id, id);
+    }
+
+    if (page_id != NULL) {
+        if (g_hash_table_lookup (document->priv->core_ids, page_id) == NULL) {
+            gchar *ins = g_strdup (page_id);
+            g_hash_table_insert (document->priv->core_ids, ins, ins);
+        }
     }
 
     g_mutex_unlock (document->priv->mutex);

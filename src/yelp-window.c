@@ -69,6 +69,8 @@ static void          back_button_clicked          (GtkWidget          *button,
 static void          view_external_uri            (YelpView           *view,
                                                    YelpUri            *uri,
                                                    YelpWindow         *window);
+static void          view_loaded                  (YelpView           *view,
+                                                   YelpWindow         *window);
 static void          view_uri_selected            (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
@@ -101,8 +103,8 @@ enum {
   COL_TITLE,
   COL_DESC,
   COL_ICON,
-  COL_FLAGS,
   COL_URI,
+  COL_FLAGS,
   COL_TERMS
 };
 
@@ -126,6 +128,7 @@ back_entry_free (YelpBackEntry *back)
 typedef struct _YelpWindowPrivate YelpWindowPrivate;
 struct _YelpWindowPrivate {
     GtkListStore *history;
+    GtkListStore *completion;
     GtkActionGroup *action_group;
     YelpApplication *application;
 
@@ -225,10 +228,16 @@ yelp_window_init (YelpWindow *window)
                                         G_TYPE_STRING,  /* title */
                                         G_TYPE_STRING,  /* desc */
                                         G_TYPE_STRING,  /* icon */
-                                        G_TYPE_INT,     /* flags */
                                         G_TYPE_STRING,  /* uri */
+                                        G_TYPE_INT,     /* flags */
                                         G_TYPE_STRING   /* search terms */
                                         );
+    priv->completion = gtk_list_store_new (4,
+                                           G_TYPE_STRING,  /* title */
+                                           G_TYPE_STRING,  /* desc */
+                                           G_TYPE_STRING,  /* icon */
+                                           G_TYPE_STRING   /* uri */
+                                           );
     priv->entry = (YelpLocationEntry *)
         yelp_location_entry_new_with_model (GTK_TREE_MODEL (priv->history),
                                             COL_TITLE,
@@ -237,7 +246,7 @@ yelp_window_init (YelpWindow *window)
                                             COL_FLAGS);
 
     yelp_location_entry_set_completion_model (YELP_LOCATION_ENTRY (priv->entry),
-                                              GTK_TREE_MODEL (priv->history),
+                                              GTK_TREE_MODEL (priv->completion),
                                               COL_TITLE,
                                               COL_DESC,
                                               COL_ICON);
@@ -271,6 +280,7 @@ yelp_window_init (YelpWindow *window)
 
     priv->view = (YelpView *) yelp_view_new ();
     g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
+    g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
     g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
     g_signal_connect (priv->view, "notify::page-title", G_CALLBACK (view_page_title), window);
@@ -488,11 +498,22 @@ entry_completion_selected (YelpLocationEntry  *entry,
                            GtkTreeIter        *iter,
                            YelpWindow         *window)
 {
-    gchar *uri;
+    YelpUri *base, *uri;
+    gchar *page, *xref;
     YelpWindowPrivate *priv = GET_PRIV (window);
-    gtk_tree_model_get (model, iter, COL_URI, &uri, -1);
-    yelp_view_load (priv->view, uri);
-    g_free (uri);
+
+    base = ((YelpBackEntry *) priv->back_list->data)->uri;
+    gtk_tree_model_get (model, iter, COL_URI, &page, -1);
+
+    xref = g_strconcat ("xref:", page, NULL);
+    uri = yelp_uri_new_relative (base, xref);
+
+    yelp_view_load_uri (priv->view, uri);
+
+    g_free (page);
+    g_free (xref);
+    g_object_unref (uri);
+
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 }
 
@@ -530,6 +551,37 @@ view_external_uri (YelpView   *view,
         g_app_info_launch_default_for_uri (struri, NULL, NULL);
 
     g_free (struri);
+}
+
+static void
+view_loaded (YelpView   *view,
+             YelpWindow *window)
+{
+    gchar **ids;
+    gint i;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpDocument *document = yelp_view_get_document (view);
+    ids = yelp_document_list_page_ids (document);
+
+    gtk_list_store_clear (priv->completion);
+    for (i = 0; ids[i]; i++) {
+        GtkTreeIter iter;
+        gchar *title, *desc;
+        gtk_list_store_insert (GTK_LIST_STORE (priv->completion), &iter, 0);
+        title = yelp_document_get_page_title (document, ids[i]);
+        desc = yelp_document_get_page_desc (document, ids[i]);
+        gtk_list_store_set (priv->completion, &iter,
+                            COL_TITLE, title,
+                            COL_DESC, desc,
+                            COL_ICON, "help-browser",
+                            COL_URI, ids[i],
+                            -1);
+        g_free (desc);
+        g_free (title);
+    }
+
+    g_strfreev (ids);
+    g_object_unref (document);
 }
 
 static void

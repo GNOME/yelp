@@ -69,6 +69,7 @@ void             yelp_view_load_uri        (YelpView     *view,
 void             yelp_view_load_document   (YelpView     *view,
 					    YelpUri      *uri,
 					    YelpDocument *document);
+YelpDocument *   yelp_view_get_document    (YelpView     *view);
 
 G_END_DECLS
 
