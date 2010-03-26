@@ -55,6 +55,8 @@ static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_font_adjustment       (GtkAction          *action,
                                                    YelpWindow         *window);
+static void          window_show_text_cursor      (GtkToggleAction    *action,
+                                                   YelpWindow         *window);
 
 static void          entry_location_selected      (YelpLocationEntry  *entry,
                                                    YelpWindow         *window);
@@ -184,6 +186,7 @@ yelp_window_init (YelpWindow *window)
 {
     GtkWidget *vbox, *scroll;
     GtkUIManager *ui_manager;
+    GtkAction *action;
     GError *error = NULL;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
@@ -198,6 +201,14 @@ yelp_window_init (YelpWindow *window)
     gtk_action_group_add_actions (priv->action_group,
 				  entries, G_N_ELEMENTS (entries),
 				  window);
+    action = gtk_toggle_action_new ("ShowTextCursor",
+                                    _("Show Text _Cursor"),
+                                    NULL, NULL);
+    g_signal_connect (action, "activate",
+                      G_CALLBACK (window_show_text_cursor), window);
+    gtk_action_group_add_action_with_accel (priv->action_group,
+                                            action, "F7");
+
     ui_manager = gtk_ui_manager_new ();
     gtk_ui_manager_insert_action_group (ui_manager, priv->action_group, 0);
     gtk_window_add_accel_group (GTK_WINDOW (window),
@@ -479,6 +490,16 @@ window_font_adjustment (GtkAction  *action,
 
     yelp_application_adjust_font (priv->application,
                                   g_str_equal (gtk_action_get_name (action), "LargerText") ? 1 : -1);
+}
+
+static void
+window_show_text_cursor (GtkToggleAction *action,
+                         YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    yelp_application_set_show_text_cursor (priv->application,
+                                           gtk_toggle_action_get_active (action));
 }
 
 static void

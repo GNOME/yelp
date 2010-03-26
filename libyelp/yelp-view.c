@@ -71,6 +71,7 @@ static void        view_show_error_page           (YelpView           *view,
                                                    GError             *error);
 
 static void        settings_set_fonts             (YelpSettings       *settings);
+static void        settings_show_text_cursor      (YelpSettings       *settings);
 
 static void        uri_resolved                   (YelpUri            *uri,
                                                    YelpView           *view);
@@ -188,9 +189,14 @@ yelp_view_class_init (YelpViewClass *klass)
     websettings = webkit_web_settings_new ();
     g_signal_connect (settings,
                       "fonts-changed",
-                      settings_set_fonts,
+                      G_CALLBACK (settings_set_fonts),
                       NULL);
     settings_set_fonts (settings);
+    g_signal_connect (settings,
+                      "notify::show-text-cursor",
+                      G_CALLBACK (settings_show_text_cursor),
+                      NULL);
+    settings_show_text_cursor (settings);
 
     object_class->dispose = yelp_view_dispose;
     object_class->finalize = yelp_view_finalize;
@@ -606,6 +612,15 @@ settings_set_fonts (YelpSettings *settings)
                   "default-monospace-font-size", size,
                   NULL);
     g_free (family);
+}
+
+static void
+settings_show_text_cursor (YelpSettings *settings)
+{
+    g_object_set (websettings,
+                  "enable-caret-browsing",
+                  yelp_settings_get_show_text_cursor (settings),
+                  NULL);
 }
 
 /******************************************************************************/

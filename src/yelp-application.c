@@ -71,6 +71,9 @@ struct _YelpApplicationPrivate {
     GSList *windows;
 
     GHashTable *windows_by_document;
+
+    gboolean show_text_cursor;
+    gboolean map_show_text_cursor;
 };
 
 static void
@@ -154,6 +157,32 @@ yelp_application_adjust_font (YelpApplication  *app,
         smaller = gtk_action_group_get_action (group, "SmallerText");
         gtk_action_set_sensitive (smaller, adjustment > ((GParamSpecInt *) spec)->minimum);
     }
+}
+
+void
+yelp_application_set_show_text_cursor (YelpApplication  *app,
+                                       gboolean          show)
+{
+    GSList *cur;
+    YelpSettings *settings = yelp_settings_get_default ();
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+
+    /* We get callbacks in the loop. Ignore them. */
+    if (priv->map_show_text_cursor)
+        return;
+
+    priv->show_text_cursor = show;
+    yelp_settings_set_show_text_cursor (settings, show);
+    priv->map_show_text_cursor = TRUE;
+    for (cur = priv->windows; cur != NULL; cur = cur->next) {
+        YelpWindow *win = (YelpWindow *) cur->data;
+        GtkActionGroup *group = yelp_window_get_action_group (win);
+        GtkAction *action;
+
+        action = gtk_action_group_get_action (group, "ShowTextCursor");
+        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), show);
+    }
+    priv->map_show_text_cursor = FALSE;
 }
 
 /******************************************************************************/
@@ -301,8 +330,18 @@ application_uri_resolved (YelpUri             *uri,
     window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
 
     if (window == NULL) {
+        GtkActionGroup *group;
+        GtkAction *action;
         window = yelp_window_new (data->app);
         priv->windows = g_slist_prepend (priv->windows, window);
+
+        group = yelp_window_get_action_group (window);
+        action = gtk_action_group_get_action (group, "ShowTextCursor");
+        priv->map_show_text_cursor = TRUE;
+        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+                                      priv->show_text_cursor);
+        priv->map_show_text_cursor = FALSE;
+
         g_hash_table_insert (priv->windows_by_document, doc_uri, window);
         g_object_set_data (G_OBJECT (window), "doc_uri", doc_uri);
         g_signal_connect (window, "delete-event",

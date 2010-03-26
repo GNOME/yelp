@@ -118,6 +118,10 @@ gchar **            yelp_settings_get_all_params       (YelpSettings       *sett
                                                         gint                extra,
                                                         gint               *end);
 
+gboolean            yelp_settings_get_show_text_cursor (YelpSettings       *settings);
+void                yelp_settings_set_show_text_cursor (YelpSettings       *settings,
+                                                        gboolean            show);
+
 void                yelp_settings_set_editor_mode      (YelpSettings       *settings,
                                                         gboolean            editor_mode);
 

@@ -45,6 +45,8 @@ struct _YelpSettingsPriv {
     gulong        gtk_font_changed;
     gulong        icon_theme_changed;
 
+    gboolean      show_text_cursor;
+
     gboolean      editor_mode;
 };
 
@@ -60,7 +62,8 @@ enum {
   PROP_0,
   PROP_GTK_SETTINGS,
   PROP_GTK_ICON_THEME,
-  PROP_FONT_ADJUSTMENT
+  PROP_FONT_ADJUSTMENT,
+  PROP_SHOW_TEXT_CURSOR
 };
 
 gchar *icon_names[YELP_SETTINGS_NUM_ICONS];
@@ -163,6 +166,16 @@ yelp_settings_class_init (YelpSettingsClass *klass)
                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                        G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
+    g_object_class_install_property (object_class,
+                                     PROP_SHOW_TEXT_CURSOR,
+                                     g_param_spec_boolean ("show-text-cursor",
+                                                           _("Show Text Cursor"),
+                                                           _("Show the text cursor or caret for accessibile navigation"),
+                                                           FALSE,
+                                                           G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                                                           
+
     settings_signals[COLORS_CHANGED] =
 	g_signal_new ("colors-changed",
 		      G_OBJECT_CLASS_TYPE (klass),
@@ -242,6 +255,9 @@ yelp_settings_get_property (GObject    *object,
 	break;
     case PROP_FONT_ADJUSTMENT:
         g_value_set_int (value, settings->priv->font_adjustment);
+        break;
+    case PROP_SHOW_TEXT_CURSOR:
+        g_value_set_boolean (value, settings->priv->show_text_cursor);
         break;
     default:
 	G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -324,6 +340,9 @@ yelp_settings_set_property (GObject      *object,
     case PROP_FONT_ADJUSTMENT:
         settings->priv->font_adjustment = g_value_get_int (value);
         gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
+        break;
+    case PROP_SHOW_TEXT_CURSOR:
+        settings->priv->show_text_cursor = g_value_get_boolean (value);
         break;
     default:
 	G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -627,6 +646,19 @@ yelp_settings_get_icon_param (YelpSettingsIcon icon)
 }
 
 /******************************************************************************/
+
+gboolean
+yelp_settings_get_show_text_cursor (YelpSettings *settings)
+{
+    return settings->priv->show_text_cursor;
+}
+
+void
+yelp_settings_set_show_text_cursor (YelpSettings *settings,
+                                    gboolean      show)
+{
+    g_object_set (settings, "show-text-cursor", show, NULL);
+}
 
 void
 yelp_settings_set_editor_mode (YelpSettings *settings,
