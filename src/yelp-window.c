@@ -62,6 +62,9 @@ static void          entry_completion_selected    (YelpLocationEntry  *entry,
                                                    GtkTreeModel       *model,
                                                    GtkTreeIter        *iter,
                                                    YelpWindow         *window);
+static gboolean      entry_focus_out              (YelpLocationEntry  *entry,
+                                                   GdkEventFocus      *event,
+                                                   YelpWindow         *window);
 
 static void          back_button_clicked          (GtkWidget          *button,
                                                    YelpWindow         *window);
@@ -244,6 +247,8 @@ yelp_window_init (YelpWindow *window)
                                             COL_DESC,
                                             COL_ICON,
                                             COL_FLAGS);
+    g_signal_connect (priv->entry, "focus-out-event",
+                      G_CALLBACK (entry_focus_out), window);
 
     yelp_location_entry_set_completion_model (YELP_LOCATION_ENTRY (priv->entry),
                                               GTK_TREE_MODEL (priv->completion),
@@ -515,6 +520,16 @@ entry_completion_selected (YelpLocationEntry  *entry,
     g_object_unref (uri);
 
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
+}
+
+static gboolean
+entry_focus_out (YelpLocationEntry  *entry,
+                 GdkEventFocus      *event,
+                 YelpWindow         *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
+    return FALSE;
 }
 
 static void

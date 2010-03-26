@@ -71,6 +71,7 @@ static void     location_entry_set_property    (GObject           *object,
                                                 GParamSpec        *pspec);
 static void     location_entry_start_search    (YelpLocationEntry *entry,
                                                 gboolean           clear);
+static void     location_entry_cancel_search   (YelpLocationEntry *entry);
 static void     location_entry_set_entry       (YelpLocationEntry *entry,
                                                 gboolean           emit);
 static gboolean location_entry_pulse           (gpointer           data);
@@ -97,13 +98,13 @@ static gboolean entry_focus_out_cb                  (GtkWidget         *widget,
                                                      gpointer           user_data);
 static void     entry_activate_cb                   (GtkEntry          *text_entry,
                                                      gpointer           user_data);
-static void     entry_icon_press_cb                 (GtkEntry          *entry,
+static void     entry_icon_press_cb                 (GtkEntry          *gtkentry,
                                                      GtkEntryIconPosition icon_pos,
                                                      GdkEvent          *event,
-                                                     gpointer           user_data);
+                                                     YelpLocationEntry *entry);
 static gboolean entry_key_press_cb                  (GtkWidget         *widget,
                                                      GdkEventKey       *event,
-                                                     gpointer           user_data);
+                                                     YelpLocationEntry *entry);
 
 /* GtkCellLayout callbacks */
 static void     cell_set_text_cell                  (GtkCellLayout     *layout,
@@ -445,6 +446,27 @@ location_entry_start_search (YelpLocationEntry *entry,
     gtk_widget_grab_focus (priv->text_entry);
 }
 
+static void
+location_entry_cancel_search (YelpLocationEntry *entry)
+{
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+    GdkEventFocus *event = g_new0 (GdkEventFocus, 1);
+    priv->search_mode = FALSE;
+    location_entry_set_entry (entry, FALSE);
+    event->type = GDK_FOCUS_CHANGE;
+    event->window = GTK_WIDGET (entry)->window;
+    event->send_event = FALSE;
+    event->in = FALSE;
+    g_signal_emit_by_name (entry, "focus-out-event", 0, event);
+    g_free (event);
+    /* Hack: This makes the popup disappear when you hit Esc. */
+    g_object_ref (priv->completion);
+    gtk_entry_set_completion (GTK_ENTRY (priv->text_entry), NULL);
+    gtk_entry_set_completion (GTK_ENTRY (priv->text_entry),
+                              priv->completion);
+    g_object_unref (priv->completion);
+}
+
 void
 yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
                                           GtkTreeModel *model,
@@ -458,6 +480,7 @@ yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
 
     priv->completion = gtk_entry_completion_new ();
     priv->completion_desc_column = desc_column;
+    gtk_entry_completion_set_minimum_key_length (priv->completion, 3);
     gtk_entry_completion_set_model (priv->completion, model);
     gtk_entry_completion_set_text_column (priv->completion, text_column);
     gtk_entry_completion_set_match_func (priv->completion,
@@ -695,18 +718,17 @@ entry_activate_cb (GtkEntry  *text_entry,
 }
 
 static void
-entry_icon_press_cb (GtkEntry            *text_entry,
+entry_icon_press_cb (GtkEntry            *gtkentry,
                      GtkEntryIconPosition icon_pos,
                      GdkEvent            *event,
-                     gpointer             user_data)
+                     YelpLocationEntry   *entry)
 {
-    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
 
     if (icon_pos == GTK_ENTRY_ICON_SECONDARY) {
-        const gchar *name = gtk_entry_get_icon_name (text_entry, icon_pos);
+        const gchar *name = gtk_entry_get_icon_name (gtkentry, icon_pos);
         if (g_str_equal (name, "edit-clear")) {
-            priv->search_mode = FALSE;
-            location_entry_set_entry ((YelpLocationEntry *) user_data, FALSE);
+            location_entry_cancel_search (entry);
         }
         else if  (g_str_equal (name, "bookmark-new")) {
             /* FIXME: emit bookmark signal */
@@ -717,17 +739,15 @@ entry_icon_press_cb (GtkEntry            *text_entry,
 static gboolean
 entry_key_press_cb (GtkWidget   *widget,
                     GdkEventKey *event,
-                    gpointer     user_data)
+                    YelpLocationEntry *entry)
 {
-    YelpLocationEntryPrivate *priv = GET_PRIV (user_data);
-
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     if (event->keyval == GDK_Escape) {
-        priv->search_mode = FALSE;
-        location_entry_set_entry ((YelpLocationEntry *) user_data, FALSE);
+        location_entry_cancel_search (entry);
         return TRUE;
     }
     else if (!priv->search_mode) {
-        location_entry_start_search ((YelpLocationEntry *) user_data, FALSE);
+        location_entry_start_search (entry, FALSE);
     }
 
     return FALSE;
