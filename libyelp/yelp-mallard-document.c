@@ -437,6 +437,11 @@ mallard_page_data_walk (MallardPageData *page_data)
                                              XML_PARSE_NOENT   | XML_PARSE_NONET   );
         if (page_data->xmldoc == NULL)
             goto done;
+        if (xmlXIncludeProcessFlags (page_data->xmldoc,
+                                     XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
+                                     XML_PARSE_NOENT   | XML_PARSE_NONET   )
+            < 0)
+            goto done;
         page_data->cur = xmlDocGetRootElement (page_data->xmldoc);
         page_data->cache = xmlDocGetRootElement (priv->cache);
         page_data->xpath = xmlXPathNewContext (page_data->xmldoc);
