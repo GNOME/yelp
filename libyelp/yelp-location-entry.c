@@ -319,7 +319,7 @@ yelp_location_entry_init (YelpLocationEntry *entry)
                                     GTK_ENTRY_ICON_PRIMARY,
                                     FALSE);
     gtk_entry_set_icon_activatable (GTK_ENTRY (priv->text_entry),
-                                    GTK_ENTRY_ICON_PRIMARY,
+                                    GTK_ENTRY_ICON_SECONDARY,
                                     TRUE);
 
     /* Trying to get the text to line up with the text in the GtkEntry.
