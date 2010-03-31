@@ -55,6 +55,17 @@
 </xsl:template>
 
 <xsl:template name="mal2html.css.custom">
+<xsl:text>
+div.linkdiv { border: none; }
+div.linkdiv:hover {
+  border: none;
+  outline: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.blue_background"/><xsl:text>;
+  background: -webkit-gradient(linear, left top, left 80, from(</xsl:text>
+    <xsl:value-of select="$theme.color.blue_background"/><xsl:text>), to(</xsl:text>
+    <xsl:value-of select="$theme.color.background"/><xsl:text>));
+}
+</xsl:text>
 <xsl:if test="$yelp.editor_mode">
 <xsl:text>
 div.head { margin: 0; }
@@ -74,6 +85,29 @@ div.version {
 div.version:hover { opacity: 1.0; }
 </xsl:text>
 </xsl:if>
+</xsl:template>
+
+<xsl:template name="mal2html.page.head.extra">
+<script type="text/javascript" language="javascript" src="@DATADIR@/jquery-1.4.2.min.js"/>
+<script type="text/javascript" language="javascript" src="@DATADIR@/jquery-ui-1.8.custom.min.js"/>
+<script type="text/javascript" language="javascript">
+<xsl:text>
+$(document).ready (function () {
+  if (location.hash != '') {
+    $('#' + location.hash).find('div.header').css({
+      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.yellow_background"/><xsl:text>'
+    }).animate({
+      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>'
+    }, 8000);
+    $('#' + location.hash).css({
+      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.yellow_background"/><xsl:text>'
+    }).animate({
+      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>'
+    }, 4000);
+  }
+});
+</xsl:text>
+</script>
 </xsl:template>
 
 </xsl:stylesheet>

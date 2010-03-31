@@ -65,6 +65,15 @@ PKG_CHECK_MODULES(YELP,
 	yelp-xsl
 ])
 
+DATADIR=`(
+	case $prefix in
+		NONE) prefix=$ac_default_prefix ;;
+		*) ;;
+	esac
+	eval echo $(eval echo $datadir)/yelp
+)`
+AC_SUBST([DATADIR])
+
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
 

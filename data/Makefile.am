@@ -10,7 +10,10 @@ cssdir   = $(datadir)/yelp
 css_DATA = default.css
 
 jsdir   = $(datadir)/yelp
-js_DATA = yelp.js
+js_DATA =				\
+	jquery-1.4.2.min.js		\
+	jquery-ui-1.8.custom.min.js	\
+	yelp.js
 
 EXTRA_DIST =					\
 	man.xml			man.xml.in	\
