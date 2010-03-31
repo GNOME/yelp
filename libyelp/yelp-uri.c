@@ -972,7 +972,7 @@ resolve_xref_uri (YelpUri *uri)
         priv->fulluri = g_strconcat (priv->docuri,
                                      (priv->page_id || priv->frag_id) ? "#" : "",
                                      priv->page_id ? priv->page_id : "",
-                                     priv->frag_id ? "/" : "",
+                                     priv->frag_id ? "#" : "",
                                      priv->frag_id,
                                      NULL);
     else
@@ -1041,7 +1041,7 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
     if (priv->tmptype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED) {
         gchar **splithash = NULL;
         if (hash)
-            splithash = g_strsplit (hash, "/", 2);
+            splithash = g_strsplit (hash, "#", 2);
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
 
         if (g_file_info_get_attribute_uint32 (info, G_FILE_ATTRIBUTE_STANDARD_TYPE) ==
