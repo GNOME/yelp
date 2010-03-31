@@ -32,6 +32,7 @@
 #include <webkit/webkitwebresource.h>
 
 #include "yelp-debug.h"
+#include "yelp-docbook-document.h"
 #include "yelp-error.h"
 #include "yelp-types.h"
 #include "yelp-view.h"
@@ -705,6 +706,21 @@ document_callback (YelpDocument       *document,
         contents = yelp_document_read_contents (document, page_id);
         frag_id = yelp_uri_get_frag_id (priv->uri);
         g_free (priv->bogus_uri);
+        /* We don't have actual page and frag IDs for DocBook. We just map IDs
+           of block elements.  The result is that we get xref:someid#someid.
+           If someid is really the page ID, we just drop the frag reference.
+           Otherwise, normal page views scroll past the link trail.
+         */
+        if (frag_id != NULL) {
+            if (YELP_IS_DOCBOOK_DOCUMENT (document)) {
+                gchar *real_id = yelp_document_get_page_id (document, page_id);
+                if (g_str_equal (real_id, frag_id)) {
+                    g_free (frag_id);
+                    frag_id = NULL;
+                }
+                g_free (real_id);
+            }
+        }
         /* We have to give WebKit a URI in a scheme it understands, otherwise we
            won't get the resource-request-starting signal.  So we can't use the
            canonical URI, because it might be something like ghelp.  We also have
