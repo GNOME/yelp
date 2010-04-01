@@ -459,11 +459,40 @@ mallard_page_data_walk (MallardPageData *page_data)
                                         NULL);
 
         if (xmlStrEqual (page_data->cur->name, BAD_CAST "page")) {
+            xmlChar *style;
+            gchar **styles;
+            gchar *icon = "help-contents";
             page_data->page_id = g_strdup ((gchar *) id);
             xmlSetProp (page_data->cache, BAD_CAST "id", id);
             yelp_document_set_page_id ((YelpDocument *) page_data->mallard,
                                        g_strrstr (page_data->filename, G_DIR_SEPARATOR_S),
                                        page_data->page_id);
+            style = xmlGetProp (page_data->cur, BAD_CAST "style");
+            if (style) {
+                gint i;
+                styles = g_strsplit (style, " ", -1);
+                for (i = 0; styles[i] != NULL; i++) {
+                    if (g_str_equal (styles[i], "task")) {
+                        icon = "yelp-page-task";
+                        break;
+                    }
+                    else if (g_str_equal (styles[i], "tip")) {
+                        icon = "yelp-page-tip";
+                        break;
+                    }
+                    else if (g_str_equal (styles[i], "ui")) {
+                        icon = "yelp-page-ui";
+                        break;
+                    }
+                    else if (g_str_equal (styles[i], "video")) {
+                        icon = "yelp-page-video";
+                        break;
+                    }
+                }
+                xmlFree (style);
+            }
+            yelp_document_set_page_icon ((YelpDocument *) page_data->mallard,
+                                         page_data->page_id, icon);
         } else {
             gchar *newid = g_strdup_printf ("%s#%s", page_data->page_id, id);
             xmlSetProp (page_data->cache, BAD_CAST "id", BAD_CAST newid);

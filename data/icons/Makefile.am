@@ -1,3 +1,5 @@
+SUBDIRS = hicolor
+
 icon192dir = $(datadir)/icons/hicolor/192x192/apps
 
 icon192_DATA = yelp-icon-big.png

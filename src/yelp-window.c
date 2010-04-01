@@ -87,6 +87,9 @@ static void          view_page_title              (YelpView           *view,
 static void          view_page_desc               (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
+static void          view_page_icon               (YelpView           *view,
+                                                   GParamSpec         *pspec,
+                                                   YelpWindow         *window);
 
 static void          hidden_entry_activate        (GtkEntry           *entry,
                                                    YelpWindow         *window);
@@ -306,6 +309,7 @@ yelp_window_init (YelpWindow *window)
     g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
     g_signal_connect (priv->view, "notify::page-title", G_CALLBACK (view_page_title), window);
     g_signal_connect (priv->view, "notify::page-desc", G_CALLBACK (view_page_desc), window);
+    g_signal_connect (priv->view, "notify::page-icon", G_CALLBACK (view_page_icon), window);
     gtk_container_add (GTK_CONTAINER (scroll), GTK_WIDGET (priv->view));
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 }
@@ -607,16 +611,18 @@ view_loaded (YelpView   *view,
     gtk_list_store_clear (priv->completion);
     for (i = 0; ids[i]; i++) {
         GtkTreeIter iter;
-        gchar *title, *desc;
+        gchar *title, *desc, *icon;
         gtk_list_store_insert (GTK_LIST_STORE (priv->completion), &iter, 0);
         title = yelp_document_get_page_title (document, ids[i]);
         desc = yelp_document_get_page_desc (document, ids[i]);
+        icon = yelp_document_get_page_icon (document, ids[i]);
         gtk_list_store_set (priv->completion, &iter,
                             COL_TITLE, title,
                             COL_DESC, desc,
-                            COL_ICON, "help-browser",
+                            COL_ICON, icon,
                             COL_URI, ids[i],
                             -1);
+        g_free (icon);
         g_free (desc);
         g_free (title);
     }
@@ -696,7 +702,7 @@ view_uri_selected (YelpView     *view,
         gtk_list_store_prepend (priv->history, &iter);
         gtk_list_store_set (priv->history, &iter,
                             COL_TITLE, _("Loading"),
-                            COL_ICON, "help-browser",
+                            COL_ICON, "help-contents",
                             COL_URI, struri,
                             -1);
     }
@@ -772,6 +778,7 @@ view_page_title (YelpView    *view,
         }
     }
 
+    g_free (title);
     g_object_unref (uri);
 }
 
@@ -800,6 +807,28 @@ view_page_desc (YelpView    *view,
         g_free (back->desc);
         back->desc = g_strdup (desc);
     }
+
+    g_free (desc);
+}
+
+static void
+view_page_icon (YelpView   *view,
+                GParamSpec *pspec,
+                YelpWindow *window)
+{
+    GtkTreeIter first;
+    gchar *icon;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    g_object_get (view, "page-icon", &icon, NULL);
+    if (icon == NULL)
+        return;
+
+    gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->history), &first);
+    gtk_list_store_set (priv->history, &first,
+                        COL_ICON, icon,
+                        -1);
+    g_free (icon);
 }
 
 static void

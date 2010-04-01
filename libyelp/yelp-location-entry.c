@@ -697,6 +697,8 @@ entry_focus_out_cb (GtkWidget         *widget,
         priv->search_mode = FALSE;
         location_entry_set_entry ((YelpLocationEntry *) user_data, FALSE);
     }
+
+    return FALSE;
 }
 
 static void

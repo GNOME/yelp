@@ -143,6 +143,12 @@ void              yelp_document_set_page_desc  (YelpDocument         *document,
                                                 const gchar          *page_id,
                                                 const gchar          *desc);
 
+gchar *           yelp_document_get_page_icon  (YelpDocument         *document,
+                                                const gchar          *page_id);
+gchar *           yelp_document_set_page_icon  (YelpDocument         *document,
+                                                const gchar          *page_id,
+                                                const gchar          *icon);
+
 gboolean          yelp_document_has_page       (YelpDocument         *document,
                                                 const gchar          *page_id);
 

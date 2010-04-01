@@ -87,7 +87,8 @@ enum {
     PROP_STATE,
     PROP_ROOT_TITLE,
     PROP_PAGE_TITLE,
-    PROP_PAGE_DESC
+    PROP_PAGE_DESC,
+    PROP_PAGE_ICON
 };
 
 enum {
@@ -116,6 +117,7 @@ struct _YelpViewPrivate {
     gchar         *root_title;
     gchar         *page_title;
     gchar         *page_desc;
+    gchar         *page_icon;
 
     gint           navigation_requested;
 };
@@ -175,6 +177,7 @@ yelp_view_finalize (GObject *object)
     g_free (priv->root_title);
     g_free (priv->page_title);
     g_free (priv->page_desc);
+    g_free (priv->page_icon);
 
     g_free (priv->bogus_uri);
 
@@ -275,6 +278,15 @@ yelp_view_class_init (YelpViewClass *klass)
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    g_object_class_install_property (object_class,
+                                     PROP_PAGE_ICON,
+                                     g_param_spec_string ("page-icon",
+                                                          N_("Page Icon"),
+                                                          N_("The icon of the page being viewed"),
+                                                          NULL,
+                                                          G_PARAM_READABLE |
+                                                          G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 }
 
 static void
@@ -298,6 +310,9 @@ yelp_view_get_property (GObject    *object,
             break;
         case PROP_PAGE_DESC:
             g_value_set_string (value, priv->page_desc);
+            break;
+        case PROP_PAGE_ICON:
+            g_value_set_string (value, priv->page_icon);
             break;
         case PROP_STATE:
             g_value_set_enum (value, priv->state);
@@ -362,12 +377,15 @@ yelp_view_load_uri (YelpView *view,
     g_free (priv->root_title);
     g_free (priv->page_title);
     g_free (priv->page_desc);
+    g_free (priv->page_icon);
     priv->root_title = NULL;
     priv->page_title = NULL;
     priv->page_desc = NULL;
+    priv->page_icon = NULL;
     g_signal_emit_by_name (view, "notify::root-title", 0);
     g_signal_emit_by_name (view, "notify::page-title", 0);
     g_signal_emit_by_name (view, "notify::page-desc", 0);
+    g_signal_emit_by_name (view, "notify::page-icon", 0);
 
     priv->uri = g_object_ref (uri);
     if (!yelp_uri_is_resolved (uri)) {
@@ -688,14 +706,17 @@ document_callback (YelpDocument       *document,
         g_free (priv->root_title);
         g_free (priv->page_title);
         g_free (priv->page_desc);
+        g_free (priv->page_icon);
 
         priv->root_title = yelp_document_get_root_title (document, page_id);
         priv->page_title = yelp_document_get_page_title (document, page_id);
         priv->page_desc = yelp_document_get_page_desc (document, page_id);
+        priv->page_icon = yelp_document_get_page_icon (document, page_id);
 
         g_signal_emit_by_name (view, "notify::root-title", 0);
         g_signal_emit_by_name (view, "notify::page-title", 0);
         g_signal_emit_by_name (view, "notify::page-desc", 0);
+        g_signal_emit_by_name (view, "notify::page-icon", 0);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;

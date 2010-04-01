@@ -67,6 +67,7 @@ struct _YelpDocumentPriv {
     Hash   *page_ids;      /* Mapping of fragment IDs to real page IDs */
     Hash   *titles;        /* Mapping of page IDs to titles */
     Hash   *descs;         /* Mapping of page IDs to descs */
+    Hash   *icons;         /* Mapping of page IDs to icons */
     Hash   *mime_types;    /* Mapping of page IDs to mime types */
     Hash   *contents;      /* Mapping of page IDs to string content */
 
@@ -227,6 +228,7 @@ yelp_document_init (YelpDocument *document)
     priv->page_ids = hash_new (g_free );
     priv->titles = hash_new (g_free);
     priv->descs = hash_new (g_free);
+    priv->icons = hash_new (g_free);
     priv->mime_types = hash_new (g_free);
     priv->contents = hash_new ((GDestroyNotify) str_unref);
 
@@ -263,6 +265,7 @@ yelp_document_finalize (GObject *object)
     hash_free (document->priv->page_ids);
     hash_free (document->priv->titles);
     hash_free (document->priv->descs);
+    hash_free (document->priv->icons);
     hash_free (document->priv->mime_types);
 
     hash_free (document->priv->contents);
@@ -572,6 +575,38 @@ yelp_document_set_page_desc (YelpDocument *document,
 
     g_mutex_lock (document->priv->mutex);
     hash_replace (document->priv->descs, page_id, g_strdup (desc));
+    g_mutex_unlock (document->priv->mutex);
+}
+
+gchar *
+yelp_document_get_page_icon (YelpDocument *document,
+                             const gchar  *page_id)
+{
+    gchar *real, *ret = NULL;
+
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    g_mutex_lock (document->priv->mutex);
+    real = hash_lookup (document->priv->page_ids, page_id);
+    if (real) {
+	ret = hash_lookup (document->priv->icons, real);
+	if (ret)
+	    ret = g_strdup (ret);
+    }
+    g_mutex_unlock (document->priv->mutex);
+
+    return ret;
+}
+
+gchar *
+yelp_document_set_page_icon (YelpDocument *document,
+                             const gchar  *page_id,
+                             const gchar  *icon)
+{
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    g_mutex_lock (document->priv->mutex);
+    hash_replace (document->priv->icons, page_id, g_strdup (icon));
     g_mutex_unlock (document->priv->mutex);
 }
 

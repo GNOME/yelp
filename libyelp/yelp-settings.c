@@ -325,6 +325,15 @@ yelp_settings_set_property (GObject      *object,
 	    if (append_search_path)
 		gtk_icon_theme_append_search_path (settings->priv->gtk_icon_theme,
 						   YELP_ICON_PATH);
+            append_search_path = TRUE;
+	    for (i = search_path_len - 1; i >= 0; i--)
+		if (g_str_equal (search_path[i], DATADIR"/yelp/icons")) {
+		    append_search_path = FALSE;
+		    break;
+		}
+	    if (append_search_path)
+		gtk_icon_theme_append_search_path (settings->priv->gtk_icon_theme,
+                                                   DATADIR"/yelp/icons");
 	    g_object_ref (settings->priv->gtk_icon_theme);
 	    settings->priv->icon_theme_changed =
 		g_signal_connect (settings->priv->gtk_icon_theme,
