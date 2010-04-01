@@ -14,7 +14,6 @@
 
 <xsl:param name="mal2html.editor_mode" select="$yelp.editor_mode"/>
 
-
 <xsl:param name="mal.chunk.chunk_top" select="true()"/>
 <xsl:param name="mal.chunk.extension" select="''"/>
 
@@ -96,26 +95,7 @@ body, div.body {
 </xsl:template>
 
 <xsl:template name="mal2html.page.head.extra">
-<script type="text/javascript" language="javascript" src="@DATADIR@/jquery-1.4.2.min.js"/>
-<script type="text/javascript" language="javascript" src="@DATADIR@/jquery-ui-1.8.custom.min.js"/>
-<script type="text/javascript" language="javascript">
-<xsl:text>
-$(document).ready (function () {
-  if (location.hash != '') {
-    $('#' + location.hash).find('div.header').css({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.yellow_background"/><xsl:text>'
-    }).animate({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>'
-    }, 8000);
-    $('#' + location.hash).css({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.yellow_background"/><xsl:text>'
-    }).animate({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>'
-    }, 4000);
-  }
-});
-</xsl:text>
-</script>
+  <xsl:call-template name="yelp.common.javascript"/>
 </xsl:template>
 
 </xsl:stylesheet>

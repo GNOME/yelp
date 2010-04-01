@@ -9,9 +9,6 @@
 
 <xsl:include href="yelp-common.xsl"/>
 
-<xsl:param name="yelp.javascript"/>
-
-
 <xsl:param name="db.chunk.chunk_top" select="true()"/>
 <xsl:param name="db.chunk.extension" select="''"/>
 <xsl:param name="db.chunk.info_basename"  select="'//about'"/>
@@ -74,13 +71,7 @@ FIXME: yelp:cache no longer works
 
 <!-- == db2html.division.head.extra == -->
 <xsl:template name="db2html.division.head.extra">
-  <xsl:if test="string($yelp.javascript) != ''">
-    <script type="text/javascript">
-      <xsl:attribute name="src">
-        <xsl:value-of select="concat('file://', $yelp.javascript)"/>
-      </xsl:attribute>
-    </script>
-  </xsl:if>
+  <xsl:call-template name="yelp.common.javascript"/>
 </xsl:template>
 
 </xsl:stylesheet>
