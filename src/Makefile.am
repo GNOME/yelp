@@ -10,16 +10,10 @@ yelp_SOURCES =						\
 #	yelp-error.c		yelp-error.h			\
 #	yelp-html.c		yelp-html.h			\
 #	yelp-io-channel.c	yelp-io-channel.h		\
-#	yelp-settings.c		yelp-settings.h			\
 #	yelp-utils.c		yelp-utils.h			\
 #	yelp-window.c 		yelp-window.h			\
 #	yelp-marshal.c		yelp-marshal.h			\
-#	yelp-main.c						\
-#	yelp-page.c		yelp-page.h			\
-#	yelp-transform.c	yelp-transform.h		\
-#	yelp-document.h		yelp-document.c			\
 #	yelp-toc.h		yelp-toc.c			\
-#	yelp-docbook.h		yelp-docbook.c			\
 #	yelp-db-print.c		yelp-db-print.h			\
 #	yelp-mallard.h		yelp-mallard.c			\
 #	yelp-man-parser.c 	yelp-man-parser.h		\
