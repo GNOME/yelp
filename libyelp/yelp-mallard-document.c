@@ -573,6 +573,7 @@ mallard_page_data_info (MallardPageData *page_data,
                         xmlNodePtr       cache_node)
 {
     xmlNodePtr child;
+    gboolean editor_mode = yelp_settings_get_editor_mode (yelp_settings_get_default ());
 
     for (child = info_node->children; child; child = child->next) {
         if (xmlStrEqual (child->name, BAD_CAST "info")) {
@@ -612,6 +613,9 @@ mallard_page_data_info (MallardPageData *page_data,
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
         else if (xmlStrEqual (child->name, BAD_CAST "link")) {
+            xmlAddChild (cache_node, xmlCopyNode (child, 1));
+        }
+        else if (xmlStrEqual (child->name, BAD_CAST "revision")) {
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
     }
