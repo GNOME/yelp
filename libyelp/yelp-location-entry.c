@@ -495,6 +495,8 @@ yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
                                         GTK_CELL_RENDERER (cells->data),
                                         (GtkCellLayoutDataFunc) cell_set_completion_text_cell,
                                         entry, NULL);
+    /* We use multi-line text, and GTK+ gets heights wrong without this. */
+    gtk_cell_renderer_text_set_fixed_height_from_font (GTK_CELL_RENDERER_TEXT (cells->data), 2);
     g_list_free (cells);
 
     icon_cell = gtk_cell_renderer_pixbuf_new ();
