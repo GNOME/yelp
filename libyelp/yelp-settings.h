@@ -122,6 +122,7 @@ gboolean            yelp_settings_get_show_text_cursor (YelpSettings       *sett
 void                yelp_settings_set_show_text_cursor (YelpSettings       *settings,
                                                         gboolean            show);
 
+gboolean            yelp_settings_get_editor_mode      (YelpSettings       *settings);
 void                yelp_settings_set_editor_mode      (YelpSettings       *settings,
                                                         gboolean            editor_mode);
 

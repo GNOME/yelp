@@ -275,10 +275,13 @@ mallard_think (YelpMallardDocument *mallard)
     GError *error = NULL;
     YelpDocument *document;
     gchar **search_path;
+    gboolean editor_mode;
 
     GFile *gfile;
     GFileEnumerator *children;
     GFileInfo *pageinfo;
+
+    editor_mode = yelp_settings_get_editor_mode (yelp_settings_get_default ());
 
     search_path = yelp_uri_get_search_path (priv->uri);
 
@@ -306,7 +309,8 @@ mallard_think (YelpMallardDocument *mallard)
         GFile *pagefile;
         filename = g_file_info_get_attribute_as_string (pageinfo,
                                                         G_FILE_ATTRIBUTE_STANDARD_NAME);
-        if (!g_str_has_suffix (filename, ".page")) {
+        if (!g_str_has_suffix (filename, ".page") &&
+            !(editor_mode && g_str_has_suffix (filename, ".page.stub"))) {
             g_free (filename);
             g_object_unref (pageinfo);
             continue;
@@ -637,7 +641,14 @@ mallard_page_data_run (MallardPageData *page_data)
                           (GCallback) transform_error,
                           page_data);
 
-    params = yelp_settings_get_all_params (settings, 0, NULL);
+    if (g_str_has_suffix (page_data->filename, ".page.stub")) {
+        gint end;
+        params = yelp_settings_get_all_params (settings, 2, &end);
+        params[end++] = g_strdup ("yelp.stub");
+        params[end++] = g_strdup ("true()");
+    }
+    else
+        params = yelp_settings_get_all_params (settings, 0, NULL);
 
     yelp_transform_start (page_data->transform,
 			  page_data->xmldoc,

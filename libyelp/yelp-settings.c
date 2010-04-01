@@ -63,7 +63,8 @@ enum {
   PROP_GTK_SETTINGS,
   PROP_GTK_ICON_THEME,
   PROP_FONT_ADJUSTMENT,
-  PROP_SHOW_TEXT_CURSOR
+  PROP_SHOW_TEXT_CURSOR,
+  PROP_EDITOR_MODE
 };
 
 gchar *icon_names[YELP_SETTINGS_NUM_ICONS];
@@ -174,7 +175,15 @@ yelp_settings_class_init (YelpSettingsClass *klass)
                                                            FALSE,
                                                            G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                            G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-                                                           
+
+    g_object_class_install_property (object_class,
+                                     PROP_EDITOR_MODE,
+                                     g_param_spec_boolean ("editor-mode",
+                                                           _("Editor Mode"),
+                                                           _("Enable features useful to editors"),
+                                                           FALSE,
+                                                           G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     settings_signals[COLORS_CHANGED] =
 	g_signal_new ("colors-changed",
@@ -258,6 +267,9 @@ yelp_settings_get_property (GObject    *object,
         break;
     case PROP_SHOW_TEXT_CURSOR:
         g_value_set_boolean (value, settings->priv->show_text_cursor);
+        break;
+    case PROP_EDITOR_MODE:
+        g_value_set_boolean (value, settings->priv->editor_mode);
         break;
     default:
 	G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -352,6 +364,9 @@ yelp_settings_set_property (GObject      *object,
         break;
     case PROP_SHOW_TEXT_CURSOR:
         settings->priv->show_text_cursor = g_value_get_boolean (value);
+        break;
+    case PROP_EDITOR_MODE:
+        settings->priv->editor_mode = g_value_get_boolean (value);
         break;
     default:
 	G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -669,11 +684,17 @@ yelp_settings_set_show_text_cursor (YelpSettings *settings,
     g_object_set (settings, "show-text-cursor", show, NULL);
 }
 
+gboolean
+yelp_settings_get_editor_mode (YelpSettings *settings)
+{
+    return settings->priv->editor_mode;
+}
+
 void
 yelp_settings_set_editor_mode (YelpSettings *settings,
                                gboolean      editor_mode)
 {
-    settings->priv->editor_mode = editor_mode;
+    g_object_set (settings, "editor-mode", editor_mode, NULL);
 }
 
 /******************************************************************************/

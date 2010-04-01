@@ -10,7 +10,7 @@
 
 <xsl:include href="yelp-common.xsl"/>
 
-<xsl:param name="yelp.javascript"/>
+<xsl:param name="yelp.stub" select="false()"/>
 
 <xsl:param name="mal2html.editor_mode" select="$yelp.editor_mode"/>
 
@@ -84,6 +84,14 @@ div.version {
 }
 div.version:hover { opacity: 1.0; }
 </xsl:text>
+<xsl:if test="$yelp.stub">
+<xsl:text>
+body, div.body {
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.red_background"/><xsl:text>;
+}
+</xsl:text>
+</xsl:if>
 </xsl:if>
 </xsl:template>
 
