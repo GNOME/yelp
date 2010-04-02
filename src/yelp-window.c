@@ -211,6 +211,7 @@ yelp_window_init (YelpWindow *window)
     GtkUIManager *ui_manager;
     GtkAction *action;
     GError *error = NULL;
+    GtkTreeIter iter;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
@@ -275,6 +276,16 @@ yelp_window_init (YelpWindow *window)
                                         G_TYPE_INT,     /* flags */
                                         G_TYPE_STRING   /* search terms */
                                         );
+    gtk_list_store_append (priv->history, &iter);
+    gtk_list_store_set (priv->history, &iter,
+                        COL_FLAGS, YELP_LOCATION_ENTRY_IS_SEPARATOR,
+                        -1);
+    gtk_list_store_append (priv->history, &iter);
+    gtk_list_store_set (priv->history, &iter,
+                        COL_ICON, "system-search",
+                        COL_TITLE, _("Search..."),
+                        COL_FLAGS, YELP_LOCATION_ENTRY_IS_SEARCH,
+                        -1);
     priv->completion = gtk_list_store_new (4,
                                            G_TYPE_STRING,  /* title */
                                            G_TYPE_STRING,  /* desc */
@@ -781,12 +792,25 @@ view_uri_selected (YelpView     *view,
         gtk_list_store_move_before (priv->history, &iter, &first);
     }
     else {
+        gint num;
+        GtkTreeIter last;
         gtk_list_store_prepend (priv->history, &iter);
         gtk_list_store_set (priv->history, &iter,
                             COL_TITLE, _("Loading"),
                             COL_ICON, "help-contents",
                             COL_URI, struri,
                             -1);
+        /* Limit to 15 entries. There are two extra for the search entry and
+         * the separator above it.
+         */
+        num = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (priv->history), NULL);
+        if (num > 17) {
+            if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (priv->history),
+                                                               &last, NULL,
+                                                               num - 3)) {
+                gtk_list_store_remove (priv->history, &last);
+            }
+        }
     }
     g_signal_handler_block (priv->entry,
                             priv->entry_location_selected);
