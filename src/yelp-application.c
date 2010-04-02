@@ -36,6 +36,8 @@
 #include "yelp-dbus.h"
 #include "yelp-window.h"
 
+#define DEFAULT_URI "ghelp:user-guide"
+
 static gboolean editor_mode = FALSE;
 
 static const GOptionEntry entries[] = {
@@ -47,6 +49,7 @@ typedef struct _YelpApplicationLoad YelpApplicationLoad;
 struct _YelpApplicationLoad {
     YelpApplication *app;
     guint timestamp;
+    gboolean new;
 };
 
 static void          yelp_application_init             (YelpApplication       *app);
@@ -227,7 +230,7 @@ yelp_application_run (YelpApplication  *app,
     if (argc > 1)
         uri = argv[1];
     else
-        uri = "ghelp:user-guide";
+        uri = DEFAULT_URI;
 
     proxy = dbus_g_proxy_new_for_name (priv->connection,
                                        DBUS_SERVICE_DBUS,
@@ -316,6 +319,25 @@ yelp_application_load_uri (YelpApplication  *app,
     return TRUE;
 }
 
+void
+yelp_application_new_window (YelpApplication  *app,
+                             const gchar      *uri)
+{
+    YelpApplicationLoad *data;
+    YelpUri *yuri;
+
+    data = g_new (YelpApplicationLoad, 1);
+    data->app = app;
+    data->new = TRUE;
+
+    yuri = yelp_uri_new (uri ? uri : DEFAULT_URI);
+
+    g_signal_connect (yuri, "resolved",
+                      G_CALLBACK (application_uri_resolved),
+                      data);
+    yelp_uri_resolve (yuri);
+}
+
 static void
 application_uri_resolved (YelpUri             *uri,
                           YelpApplicationLoad *data)
@@ -327,7 +349,10 @@ application_uri_resolved (YelpUri             *uri,
 
     doc_uri = yelp_uri_get_document_uri (uri);
 
-    window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
+    if (data->new)
+        window = NULL;
+    else
+        window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
 
     if (window == NULL) {
         GtkActionGroup *group;
@@ -342,8 +367,10 @@ application_uri_resolved (YelpUri             *uri,
                                       priv->show_text_cursor);
         priv->map_show_text_cursor = FALSE;
 
-        g_hash_table_insert (priv->windows_by_document, doc_uri, window);
-        g_object_set_data (G_OBJECT (window), "doc_uri", doc_uri);
+        if (!data->new) {
+            g_hash_table_insert (priv->windows_by_document, doc_uri, window);
+            g_object_set_data (G_OBJECT (window), "doc_uri", doc_uri);
+        }
         g_signal_connect (window, "delete-event",
                           G_CALLBACK (application_window_deleted), data->app);
     }

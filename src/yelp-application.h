@@ -53,6 +53,8 @@ gboolean          yelp_application_load_uri    (YelpApplication  *app,
                                                 const gchar      *uri,
                                                 guint             timestamp,
                                                 GError          **error);
+void              yelp_application_new_window  (YelpApplication  *app,
+                                                const gchar      *uri);
 
 void              yelp_application_adjust_font          (YelpApplication  *app,
                                                          gint              adjust);

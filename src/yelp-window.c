@@ -49,6 +49,8 @@ static void          yelp_window_set_property     (GObject            *object,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
 
+static void          window_new                   (GtkAction          *action,
+                                                   YelpWindow         *window);
 static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
@@ -165,7 +167,12 @@ static const GtkActionEntry entries[] = {
     { "ViewMenu",      NULL, N_("_View")      },
     { "GoMenu",        NULL, N_("_Go")        },
 
-    { "Close", GTK_STOCK_CLOSE,
+    { "NewWindow", GTK_STOCK_NEW,
+      N_("_New Window"),
+      "<Control>N",
+      NULL,
+      G_CALLBACK (window_new) },
+    { "CloseWindow", GTK_STOCK_CLOSE,
       N_("_Close"),
       "<Control>W",
       NULL,
@@ -455,6 +462,20 @@ yelp_window_get_action_group (YelpWindow *window)
 }
 
 /******************************************************************************/
+
+static void
+window_new (GtkAction *action, YelpWindow *window)
+{
+    gchar *uri = NULL;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    if (priv->back_list && priv->back_list->data)
+        uri = yelp_uri_get_document_uri (((YelpBackEntry *) priv->back_list->data)->uri);
+
+    yelp_application_new_window (priv->application, uri);
+
+    g_free (uri);
+}
 
 static void
 window_close (GtkAction *action, YelpWindow *window)
