@@ -835,36 +835,41 @@ entry_match_func (GtkEntryCompletion *completion,
                   GtkTreeIter        *iter,
                   YelpLocationEntry  *entry)
 {
-    gint text_col;
-    gchar *txt = NULL, *txtcase;
+    gint text_col, stri;
+    gchar *title, *desc, *titlecase = NULL, *desccase = NULL;
     gboolean ret = FALSE;
+    gchar **strs;
     GtkTreeModel *model = gtk_entry_completion_get_model (completion);
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
 
     g_object_get (entry, "text-column", &text_col, NULL);
-    gtk_tree_model_get (model, iter, text_col, &txt, -1);
-    if (txt == NULL)
-        return FALSE;
-    txtcase = g_utf8_casefold (txt, -1);
+    gtk_tree_model_get (model, iter,
+                        text_col, &title,
+                        priv->desc_column, &desc,
+                        -1);
+    if (title) {
+        titlecase = g_utf8_casefold (title, -1);
+        g_free (title);
+    }
+    if (desc) {
+        desccase = g_utf8_casefold (desc, -1);
+        g_free (desc);
+    }
 
-    if (strstr (txtcase, key))
-        ret = TRUE;
+    strs = g_strsplit (key, " ", -1);
+    ret = TRUE;
+    for (stri = 0; strs[stri]; stri++) {
+        if (!titlecase || !strstr (titlecase, strs[stri])) {
+            if (!desccase || !strstr (desccase, strs[stri])) {
+                ret = FALSE;
+                break;
+            }
+        }
+    }
 
-    g_free (txtcase);
-    g_free (txt);
-    if (ret)
-        return ret;
-
-    g_object_get (entry, "desc-column", &text_col, NULL);
-    gtk_tree_model_get (model, iter, text_col, &txt, -1);
-    if (txt == NULL)
-        return FALSE;
-    txtcase = g_utf8_casefold (txt, -1);
-
-    if (strstr (txtcase, key))
-        ret = TRUE;
-
-    g_free (txtcase);
-    g_free (txt);
+    g_free (titlecase);
+    g_free (desccase);
+    g_strfreev (strs);
 
     return ret;
 }
