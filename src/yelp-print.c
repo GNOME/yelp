@@ -23,14 +23,16 @@
  */
 
 #include <unistd.h>
+#include <string.h>
 #include <sys/stat.h>
+
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <string.h>
+#include <gtk/gtkunixprint.h>
+
 #include "yelp-print.h"
 #include "yelp-html.h"
 #include "yelp-utils.h"
-#include <gtk/gtkprintunixdialog.h>
 
 static GtkPrintSettings * yelp_print_load_config_from_file ( void );
 static void               yelp_print_save_config_to_file   (GtkPrintSettings *config);
@@ -365,7 +367,7 @@ yelp_print_present_status_dialog (YelpWindow *window, YelpPrintInfo *info)
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (info->dialog),
 					      _("Waiting to print"));
     info->progress = gtk_progress_bar_new ();
-    gtk_container_add (GTK_CONTAINER (GTK_DIALOG(info->dialog)->vbox),
+    gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (info->dialog))),
 		       info->progress);
 
     gtk_widget_show (info->progress);

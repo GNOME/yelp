@@ -160,9 +160,10 @@ static void
 changed_cb (GtkEntry *entry, GtkEntryAction *action)
 {
   const char *text;
-  GtkWidget *proxy = GTK_WIDGET (entry)->parent;
+  GtkWidget *proxy;
 
   text = gtk_entry_get_text (entry);
+  proxy = gtk_widget_get_parent (GTK_WIDGET (entry));
 
   g_signal_handlers_block_by_func (action, G_CALLBACK (sync_text), proxy);
   gtk_entry_action_set_text (action, text);
@@ -351,7 +352,6 @@ gboolean
 gtk_entry_action_has_focus (GtkEntryAction *action)
 {
   g_return_val_if_fail (GTK_IS_ENTRY_ACTION (action), FALSE);
-  
-  return (GTK_WIDGET_HAS_FOCUS (action->priv->entry_widget));
-  
+
+  return (gtk_widget_has_focus (action->priv->entry_widget));
 }

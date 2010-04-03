@@ -39,6 +39,7 @@
 
 #define STYLESHEET DATADIR"/yelp/xslt/mal2html.xsl"
 #define MALLARD_NS "http://projectmallard.org/1.0/"
+#define MALLARD_CACHE_NS "http://projectmallard.org/cache/1.0/"
 
 #define YELP_MALLARD_GET_PRIVATE(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MALLARD, YelpMallardPriv))
 
@@ -73,7 +74,8 @@ struct _YelpMallardPriv {
     GSList        *pending;
 
     xmlDocPtr      cache;
-    xmlNsPtr       cache_ns;
+    xmlNsPtr       cache_mal_ns;
+    xmlNsPtr       cache_cache_ns;
     GHashTable    *pages_hash;
 };
 
@@ -166,11 +168,13 @@ mallard_init (YelpMallard *mallard)
     priv->transforms_running = 0;
 
     priv->cache = xmlNewDoc (BAD_CAST "1.0");
-    priv->cache_ns = xmlNewNs (NULL, BAD_CAST MALLARD_NS, BAD_CAST "mal");
-    cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
+    priv->cache_cache_ns = xmlNewNs (NULL, BAD_CAST MALLARD_CACHE_NS, BAD_CAST "cache");
+    priv->cache_mal_ns = xmlNewNs (NULL, BAD_CAST MALLARD_NS, BAD_CAST "mal");
+    cur = xmlNewDocNode (priv->cache, priv->cache_cache_ns, BAD_CAST "cache", NULL);
     xmlDocSetRootElement (priv->cache, cur);
-    priv->cache_ns->next = cur->nsDef;
-    cur->nsDef = priv->cache_ns;
+    priv->cache_cache_ns->next = priv->cache_mal_ns;
+    priv->cache_mal_ns->next = cur->nsDef;
+    cur->nsDef = priv->cache_cache_ns;
     priv->pages_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                               NULL,
                                               (GDestroyNotify) mallard_page_data_free);
@@ -415,7 +419,7 @@ mallard_page_data_walk (MallardPageData *page_data)
             goto done;
 
         page_data->cache = xmlNewChild (page_data->cache,
-                                        page_data->mallard->priv->cache_ns,
+                                        page_data->mallard->priv->cache_mal_ns,
                                         page_data->cur->name,
                                         NULL);
 
@@ -429,7 +433,7 @@ mallard_page_data_walk (MallardPageData *page_data)
         }
 
         info = xmlNewChild (page_data->cache,
-                            page_data->mallard->priv->cache_ns,
+                            page_data->mallard->priv->cache_mal_ns,
                             BAD_CAST "info", NULL);
         page_data->link_title = FALSE;
         page_data->sort_title = FALSE;
@@ -442,14 +446,14 @@ mallard_page_data_walk (MallardPageData *page_data)
             else if (xmlStrEqual (child->name, BAD_CAST "title")) {
                 xmlNodePtr node;
                 xmlNodePtr title_node = xmlNewChild (page_data->cache,
-                                                     page_data->mallard->priv->cache_ns,
+                                                     page_data->mallard->priv->cache_mal_ns,
                                                      BAD_CAST "title", NULL);
                 for (node = child->children; node; node = node->next) {
                     xmlAddChild (title_node, xmlCopyNode (node, 1));
                 }
                 if (!page_data->link_title) {
                     xmlNodePtr title_node = xmlNewChild (info,
-                                                         page_data->mallard->priv->cache_ns,
+                                                         page_data->mallard->priv->cache_mal_ns,
                                                          BAD_CAST "title", NULL);
                     xmlSetProp (title_node, BAD_CAST "type", BAD_CAST "link");
                     for (node = child->children; node; node = node->next) {
@@ -458,7 +462,7 @@ mallard_page_data_walk (MallardPageData *page_data)
                 }
                 if (!page_data->sort_title) {
                     xmlNodePtr title_node = xmlNewChild (info,
-                                                         page_data->mallard->priv->cache_ns,
+                                                         page_data->mallard->priv->cache_mal_ns,
                                                          BAD_CAST "title", NULL);
                     xmlSetProp (title_node, BAD_CAST "type", BAD_CAST "sort");
                     for (node = child->children; node; node = node->next) {

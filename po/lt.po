@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-08 17:16+0200\n"
-"PO-Revision-Date: 2008-03-08 17:16+0200\n"
-"Last-Translator: Gintautas Miliauskas <gintas@akl.lt>\n"
+"POT-Creation-Date: 2010-03-27 12:37+0200\n"
+"PO-Revision-Date: 2009-09-24 13:10+0200\n"
+"Last-Translator: Rimas Kudelis <rq@akl.lt>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/info.xml.in.h:1
@@ -293,7 +293,7 @@ msgstr "2D grafika"
 msgid "3D Graphics"
 msgstr "3D grafika"
 
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Prieinamumas"
 
@@ -686,7 +686,7 @@ msgstr "Grotuvai"
 msgid "Presentation Tools"
 msgstr "Pristatymų įrankiai"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "Spausdinima"
 
@@ -868,85 +868,57 @@ msgstr "GNOME žinynų naršyklė"
 msgid "Word Processors"
 msgstr "Teksto doroklės"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Pagalba neįgaliesiems</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Šriftai</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Pridėti žymelę"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Žymelės"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "Skirti r_aidžių dydį"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Ieškoti"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Atverti vietą"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Nustatymai"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "Per_vadinti"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "Ž_ymelės:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "_Naršyti su žymekliu"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Pridėti žymelę"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Rasti:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Fiksuotas plotis:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Vieta:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Kitas"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Ankstesnis"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Pavadinimas:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Atverti vietą"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Vieta:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Šriftai"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "_Naršyti su žymekliu"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Fiksuotas plotis:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "_Naudoti sistemos šriftus"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "_Kintantis plotis:"
-
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Priėjus pabaigą, ieškoti nuo pradžios"
 
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -980,45 +952,111 @@ msgstr "Naudoti sistemos šriftus"
 msgid "Use the default fonts set for the system."
 msgstr "Naudoti įprastus sistemoje nustatytus šriftus."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Tai nėra tinkamo formato .desktop failas"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Nežinoma .desktop failo versija: %s"
+
+#: ../src/eggdesktopfile.c:957
+#, c-format
+msgid "Starting %s"
+msgstr "Paleidžiama %s"
+
+#: ../src/eggdesktopfile.c:1098
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Šiai programai negalima komandinėje eilutėje nurodyti dokumentų"
+
+#: ../src/eggdesktopfile.c:1166
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Neatpažintas parametras: %d"
+
+#: ../src/eggdesktopfile.c:1365
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+"Dokumentų URI negalima perduoti darbastalio elementams, kurių „Type“ reikšmė "
+"yra „Link“"
+
+#: ../src/eggdesktopfile.c:1384
+#, c-format
+msgid "Not a launchable item"
+msgstr "Tai nėra vykdomasis elementas"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Išjungti prisijungimą prie seansų valdyklės"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Nurodykite failą su įrašyta konfigūracija"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "FAILAS"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Nurodykite seanso valdymo ID"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Seansų valdymo nuostatos:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Parodyti seansų valdymo nuostatas"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Atverti žymelę naujame lange"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Pervadinti žymelę"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Pašalinti žymelę"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Žymelė pavadinimu %s šiam puslapiui jau egzistuoja."
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Žinyno temos"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Dokumento skyriai"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-man.c:292 ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "Puslapis nerastas"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Puslapis %s dokumente %s nerastas."
@@ -1063,7 +1101,7 @@ msgstr ""
 "Nepavyko apdoroti failo „%s“, nes bent vienas iš jo įtraukiamų failų nėra "
 "tinkamai suformuotas XML failas."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Nežinoma"
 
@@ -1071,7 +1109,7 @@ msgstr "Nežinoma"
 msgid "Unknown Error"
 msgstr "Nežinoma klaida"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1630
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1716
 msgid "Could Not Read File"
 msgstr "Nepavyko perskaityti failo"
 
@@ -1087,7 +1125,7 @@ msgstr ""
 "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas „info“ "
 "puslapis."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
@@ -1096,22 +1134,31 @@ msgstr ""
 "Nepavyko perskaityti ir dekoduoti failo „%s“. Ji gali būti suarchyvuota "
 "nepalaikomo formato archyve."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Naudoti privačią sesiją"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "Nurodyti naudojamą atsargos atmintinės aplanką"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
 msgstr " GNOME žinynų naršyklė"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Žinynas"
+
+#: ../src/yelp-mallard.c:315
+msgid "Directory not found"
+msgstr "Aplankas nerastas"
+
+#: ../src/yelp-mallard.c:316
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Aplankas „%s“ neegzistuoja."
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1121,53 +1168,53 @@ msgstr ""
 "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas „man“ "
 "puslapis."
 
-#: ../src/yelp-print.c:97
+#: ../src/yelp-print.c:99
 msgid "Print"
 msgstr "Spausdinti"
 
-#: ../src/yelp-print.c:167
+#: ../src/yelp-print.c:169
 msgid "Preparing to print"
 msgstr "Ruošiamasi spausdinti"
 
-#: ../src/yelp-print.c:261
+#: ../src/yelp-print.c:263
 msgid "Printing is not supported on this printer"
 msgstr "Spausdinimas šiuo spausdintuvu nepalaikomas"
 
-#: ../src/yelp-print.c:264
+#: ../src/yelp-print.c:266
 #, c-format
 msgid "Printer %s does not support postscript printing."
 msgstr "Spausdintuvas %s nepalaiko PostScript spausdinimo."
 
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:368
 msgid "Waiting to print"
 msgstr "Laukiama spausdinimo"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:580
 msgid "An error occurred while printing"
 msgstr "Spausdinant įvyko klaida"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:584
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "Nepavyko atspausdinti dokumentą: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
 msgstr "GNOME palaikymo forumai"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "\"%s\" nerasta"
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
 "Pabandykite aprašyti problemą ar temą, kurios ieškote, kitais žodžiais."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\" paieškos rezultatai"
@@ -1177,7 +1224,7 @@ msgstr "\"%s\" paieškos rezultatai"
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
 msgstr "Pakartoti paiešką internete, %s"
@@ -1259,30 +1306,30 @@ msgstr ""
 "Nepavyko apdoroti turinio failo, nes tai nėra tinkamai suformuotas XML "
 "failas."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
 msgstr "Nekorektiška stilių lentelė"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgstr ""
 "Nepavyko apdoroti dokumento „%s“, nes arba tokio failo nėra, arba tai nėra "
 "tinkamas XSLT stilių failas."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "Netaisyklinga transformacija"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Transformuojant dokumentą įvyko nežinoma klaida."
 
-#: ../src/yelp-transform.c:373
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nerasta yelp:document href atributo\n"
 
-#: ../src/yelp-transform.c:388
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Nėra atminties"
 
@@ -1434,64 +1481,62 @@ msgstr "_Apie"
 msgid "Copy _Email Address"
 msgstr "Kopijuoti _el.pašto adresą"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Žinyno naršyklė"
 
-#: ../src/yelp-window.c:592 ../src/yelp-window.c:644 ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1779
 msgid "Loading..."
 msgstr "Įkeliama..."
 
-#: ../src/yelp-window.c:593 ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Nežinomas puslapis"
 
-#: ../src/yelp-window.c:1008 ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Nurodytas URI „%s“ nekorektiškas"
 
-#: ../src/yelp-window.c:1009 ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
 msgid "Unable to load page"
 msgstr "Nepavyko įkrauti puslapio"
 
-#: ../src/yelp-window.c:1069
-msgid "Error executing \"gnome-open\""
-msgstr "Klaida vykdant „gnome-open“"
-
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1336
 msgid "_Search:"
 msgstr "_Ieškoti:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1337
 msgid "Search for other documentation"
 msgstr "Ieškoti kitos dokumentacijos"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1357
 msgid "Cannot create window"
 msgstr "Nepavyko sukurti lango"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1363
 msgid "Cannot create search component"
 msgstr "Nepavyko sukurti paieškos komponento"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1535
 msgid "Fin_d:"
 msgstr "Ra_sti:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1557
 msgid "Find _Previous"
 msgstr "Rasti _ankstesnį"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1569
 msgid "Find _Next"
 msgstr "Rasti _sekantį"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1582
 msgid "Phrase not found"
 msgstr "Frazė nerasta"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1713
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1502,7 +1547,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2604
 msgid "translator-credits"
 msgstr ""
 "Paskutinysis vertėjas:\n"
@@ -1511,14 +1556,41 @@ msgstr ""
 "Ankstesnysis vertėjas:\n"
 "Tomas Kuliavas <tokul@users.sourceforge.net>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2607
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2609
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Dokumentacijos naršymo ir peržiūros programa GNOME aplinkai."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Gauti pagalbą dirbant su GNOME"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Pagalba neįgaliesiems</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Šriftai</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "Skirti r_aidžių dydį"
+
+#~ msgid "Find"
+#~ msgstr "Ieškoti"
+
+#~ msgid "_Find:"
+#~ msgstr "_Rasti:"
+
+#~ msgid "_Next"
+#~ msgstr "_Kitas"
+
+#~ msgid "_Previous"
+#~ msgstr "_Ankstesnis"
+
+#~ msgid "_Wrap around"
+#~ msgstr "_Priėjus pabaigą, ieškoti nuo pradžios"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "Klaida vykdant „gnome-open“"
