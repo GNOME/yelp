@@ -1,15 +1,16 @@
+# Slovenian translation of yelp package.
 # Copyright (C) 2005-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the program package.
 #
-# Andraz Tori <andraz.tori1@guest.arnes.si>, 2002.
-# Matej Urbančič <mateju@svn.gnome.org>, 2006 - 2008.
+# Andraž Tori <andraz.tori1@guest.arnes.si>, 2002.
+# Matej Urbančič <mateju@svn.gnome.org>, 2006 - 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-15 14:51+0100\n"
-"PO-Revision-Date: 2008-01-25 15:58+0100\n"
+"Project-Id-Version: yelp master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
+"POT-Creation-Date: 2010-03-30 16:12+0000\n"
+"PO-Revision-Date: 2010-04-14 17:18+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +23,7 @@ msgstr ""
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
-msgstr "GNU strani podrobnosti"
+msgstr "GNU Info strani"
 
 #: ../data/info.xml.in.h:2
 msgid "Traditional command line help (info)"
@@ -51,7 +52,7 @@ msgstr "Razvoj"
 
 #: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr "FORTRAN Funkcije"
+msgstr "FORTRAN funkcije"
 
 #: ../data/man.xml.in.h:7
 #: ../data/toc.xml.in.h:56
@@ -60,7 +61,7 @@ msgstr "Igre"
 
 #: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
-msgstr "Strojne naprava"
+msgstr "Strojne naprave"
 
 #: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
@@ -72,7 +73,7 @@ msgstr "Strani priročnika"
 
 #: ../data/man.xml.in.h:11
 msgid "Network Audio Sound Functions"
-msgstr "Omrežni zvočne funkcije"
+msgstr "Omrežne zvočne funkcije"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
@@ -84,15 +85,15 @@ msgstr "OpenSSL nastavitve"
 
 #: ../data/man.xml.in.h:14
 msgid "OpenSSL Functions"
-msgstr "OpenSSL nastavitve"
+msgstr "OpenSSL funkcije"
 
 #: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
-msgstr "OpenSSL pogledi"
+msgstr "OpenSSL pregledi"
 
 #: ../data/man.xml.in.h:16
 msgid "Overviews"
-msgstr "Drugi pogledi"
+msgstr "Pregledi"
 
 #: ../data/man.xml.in.h:17
 msgid "POSIX Functions"
@@ -100,7 +101,7 @@ msgstr "POSIX funkcije"
 
 #: ../data/man.xml.in.h:18
 msgid "POSIX Headers"
-msgstr "POSIX Glave"
+msgstr "POSIX glave"
 
 #: ../data/man.xml.in.h:19
 msgid "Perl Functions"
@@ -220,7 +221,7 @@ msgstr "Odseki 3form in 3menu"
 
 #: ../data/man.xml.in.h:48
 msgid "Sections 3ncurses and 3curses"
-msgstr "Odseki 3ncurses ind 3curses"
+msgstr "Odseki 3ncurses in 3curses"
 
 #: ../data/man.xml.in.h:49
 msgid "Sections 3pm and 3perl"
@@ -240,7 +241,7 @@ msgstr "Odseki 8 in 8l"
 
 #: ../data/man.xml.in.h:53
 msgid "System Administration"
-msgstr "Sistemska administracija"
+msgstr "Sistemsko upravljanje"
 
 #: ../data/man.xml.in.h:54
 msgid "System Calls"
@@ -248,11 +249,11 @@ msgstr "Sistemski klici"
 
 #: ../data/man.xml.in.h:55
 msgid "System V Form/Menu Functions"
-msgstr "Sistem V Form/Menu funkcije"
+msgstr "Sistem V Form/Meni funkcije"
 
 #: ../data/man.xml.in.h:56
 msgid "TIFF Functions"
-msgstr "TIFF Funkcije"
+msgstr "TIFF funkcije"
 
 #: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
@@ -264,7 +265,7 @@ msgstr "Pomoč z ukazne vrstice (man)"
 
 #: ../data/man.xml.in.h:59
 msgid "X11 Applications"
-msgstr "X11 Programi"
+msgstr "X11 programi"
 
 #: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
@@ -276,7 +277,7 @@ msgstr "X11 naprave"
 
 #: ../data/man.xml.in.h:62
 msgid "X11 Functions"
-msgstr "X11  funkcije"
+msgstr "X11 funkcije"
 
 #: ../data/man.xml.in.h:63
 msgid "X11 Games"
@@ -284,7 +285,7 @@ msgstr "X11 igre"
 
 #: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
-msgstr "X11 pogledi"
+msgstr "X11 pregledi"
 
 #: ../data/toc.xml.in.h:1
 msgid "2D Graphics"
@@ -295,6 +296,7 @@ msgid "3D Graphics"
 msgstr "3D oblikovanje"
 
 #: ../data/toc.xml.in.h:3
+#: ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "Dostopnost"
 
@@ -304,7 +306,7 @@ msgstr "Akcijske igre"
 
 #: ../data/toc.xml.in.h:5
 msgid "Adventure Games"
-msgstr "Igre avanture"
+msgstr "Igre dogodivščin"
 
 #: ../data/toc.xml.in.h:6
 msgid "Amusement"
@@ -336,7 +338,7 @@ msgstr "Umetnost"
 
 #: ../data/toc.xml.in.h:13
 msgid "Artificial Intelligence"
-msgstr "Umetna Inteligenca"
+msgstr "Umetna razumnost"
 
 #: ../data/toc.xml.in.h:14
 msgid "Astronomy"
@@ -348,7 +350,7 @@ msgstr "Biologija"
 
 #: ../data/toc.xml.in.h:16
 msgid "Blocks Games"
-msgstr "Igre blokov"
+msgstr "Igre z liki"
 
 #: ../data/toc.xml.in.h:17
 msgid "Board Games"
@@ -356,11 +358,11 @@ msgstr "Tabelne Igre"
 
 #: ../data/toc.xml.in.h:18
 msgid "Building"
-msgstr "Gredbeništvo"
+msgstr "Izgradnja"
 
 #: ../data/toc.xml.in.h:19
 msgid "Calculator"
-msgstr "Kalkulator"
+msgstr "Računalo"
 
 #: ../data/toc.xml.in.h:20
 msgid "Calendar"
@@ -372,7 +374,7 @@ msgstr "Igre s kartami"
 
 #: ../data/toc.xml.in.h:22
 msgid "Charting Tools"
-msgstr "Orodja za izris grafov"
+msgstr "Orodja za izrisovanje grafov"
 
 #: ../data/toc.xml.in.h:23
 msgid "Chat"
@@ -388,7 +390,7 @@ msgstr "Ure"
 
 #: ../data/toc.xml.in.h:26
 msgid "Compression Tools"
-msgstr "Orodja za stiskanjee"
+msgstr "Orodja za stiskanje"
 
 #: ../data/toc.xml.in.h:27
 msgid "Computer Science"
@@ -433,7 +435,7 @@ msgstr "Slovarji"
 #. Translators: this is a menu title for burning audio and video to dics
 #: ../data/toc.xml.in.h:39
 msgid "Disc Burning"
-msgstr "Peka zgoščenk"
+msgstr "Zapisovanje diskov"
 
 #: ../data/toc.xml.in.h:40
 msgid "Economy"
@@ -457,11 +459,11 @@ msgstr "Orodja za elektronsko pošto"
 
 #: ../data/toc.xml.in.h:45
 msgid "Emulator"
-msgstr "Emulator"
+msgstr "Posnemovalniki"
 
 #: ../data/toc.xml.in.h:46
 msgid "Engineering"
-msgstr "Inženiring"
+msgstr "Inženirstvo"
 
 #: ../data/toc.xml.in.h:47
 msgid "File Manager"
@@ -497,15 +499,15 @@ msgstr "GTK"
 
 #: ../data/toc.xml.in.h:55
 msgid "GUI Designers"
-msgstr "Oblikovanje uporabniškega vmesnika"
+msgstr "Snovalniki uporabniških vmesnikov"
 
 #: ../data/toc.xml.in.h:57
 msgid "Generic applications for the GNOME environment"
-msgstr "Program GNOME okolja"
+msgstr "Osnovni programi okolja GNOME"
 
 #: ../data/toc.xml.in.h:58
 msgid "Generic applications for the KDE environment"
-msgstr "Programi privzeti za namizje KDE"
+msgstr "Osnovni programi okolja KDE"
 
 #: ../data/toc.xml.in.h:59
 msgid "Geography"
@@ -525,11 +527,11 @@ msgstr "Grafika"
 
 #: ../data/toc.xml.in.h:63
 msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Vodila in priročniki za programe povezane v splet"
+msgstr "Vodniki in priročniki za programe povezane v splet"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
-msgstr "Vodila za sodelovanje pri razvoju programov"
+msgstr "Vodniki za sodelovanje pri razvoju programov"
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
@@ -561,11 +563,11 @@ msgstr "Obdelovanje slik"
 
 #: ../data/toc.xml.in.h:72
 msgid "Instant Messaging"
-msgstr "Trenutno sporočanje"
+msgstr "Hipno sporočanje"
 
 #: ../data/toc.xml.in.h:73
 msgid "Internet"
-msgstr "Internet"
+msgstr "Medmrežje"
 
 #: ../data/toc.xml.in.h:74
 msgid "Java"
@@ -581,11 +583,11 @@ msgstr "Otroške igre"
 
 #: ../data/toc.xml.in.h:77
 msgid "Learn more about making your system more accessible for a range of disabilities"
-msgstr "Spoznajte več o prilagoditvi sistema za širši krog nedostopnosti"
+msgstr "Spoznajte več o prilagoditvi sistema za dostopnost širšemu krogu nezmožnosti"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
-msgstr "Licence"
+msgstr "Dovoljenja"
 
 #: ../data/toc.xml.in.h:79
 msgid "Literature"
@@ -609,15 +611,15 @@ msgstr "Midi"
 
 #: ../data/toc.xml.in.h:84
 msgid "Miscellaneous Documentation"
-msgstr "Različni dokumenti"
+msgstr "Različna dokumentacija"
 
 #: ../data/toc.xml.in.h:85
 msgid "Mixers"
-msgstr "Mešala"
+msgstr "Mešalniki"
 
 #: ../data/toc.xml.in.h:86
 msgid "Monitor"
-msgstr "Nadzorovanje"
+msgstr "Nadzor"
 
 #: ../data/toc.xml.in.h:87
 msgid "Motif"
@@ -633,11 +635,11 @@ msgstr "Novice"
 
 #: ../data/toc.xml.in.h:90
 msgid "Numerical Analysis"
-msgstr "Številčne analize"
+msgstr "Analiza števil"
 
 #: ../data/toc.xml.in.h:91
 msgid "OCR"
-msgstr "OCR"
+msgstr "Optično branje"
 
 #: ../data/toc.xml.in.h:92
 msgid "Office Applications"
@@ -657,7 +659,7 @@ msgstr "P2P"
 
 #: ../data/toc.xml.in.h:96
 msgid "PDA Communication"
-msgstr "PDA komuniciranje"
+msgstr "Povezovanje dlančnikov"
 
 #: ../data/toc.xml.in.h:97
 msgid "Package Manager"
@@ -665,7 +667,7 @@ msgstr "Upravljalnik paketov"
 
 #: ../data/toc.xml.in.h:98
 msgid "Parallel Computing"
-msgstr "Vzporedno računanje"
+msgstr "Vzporedno izračunavanje"
 
 #: ../data/toc.xml.in.h:99
 msgid "Photography"
@@ -685,8 +687,8 @@ msgid "Presentation Tools"
 msgstr "Orodja za izdelovanje predstavitev"
 
 #: ../data/toc.xml.in.h:104
-#: ../src/yelp-print.c:337
-#: ../src/yelp-print.c:364
+#: ../src/yelp-print.c:339
+#: ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "Tiskanje"
 
@@ -700,7 +702,7 @@ msgstr "Orodja za upravljanje projektov"
 
 #: ../data/toc.xml.in.h:107
 msgid "Publishing"
-msgstr "Objavljanje"
+msgstr "Založništvo"
 
 #: ../data/toc.xml.in.h:108
 msgid "Qt"
@@ -721,7 +723,7 @@ msgstr "Oddaljeni dostop"
 
 #: ../data/toc.xml.in.h:113
 msgid "Revision Control"
-msgstr "Nadzor revizij"
+msgstr "Nadzor predelav"
 
 #: ../data/toc.xml.in.h:114
 msgid "Robotics"
@@ -733,7 +735,7 @@ msgstr "Igre igranja vlog"
 
 #: ../data/toc.xml.in.h:116
 msgid "Scanning"
-msgstr "Skeniranje"
+msgstr "Preiskovanje"
 
 #: ../data/toc.xml.in.h:117
 msgid "Science"
@@ -753,11 +755,11 @@ msgstr "Nastavitve"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Nastavitve s katerimi si uporabnik prilagaja delovno okolje"
+msgstr "Nastavitve za prilagajanje delovnega okolja"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
-msgstr "Simulacijske igre"
+msgstr "Simulacije"
 
 #: ../data/toc.xml.in.h:123
 msgid "Sound"
@@ -769,7 +771,7 @@ msgstr "Zvok in video"
 
 #: ../data/toc.xml.in.h:125
 msgid "Sound &amp; Video Editing"
-msgstr "Urejanje zvoka &amp; slike"
+msgstr "Urejanje zvoka in slike"
 
 #: ../data/toc.xml.in.h:126
 msgid "Sports"
@@ -781,7 +783,7 @@ msgstr "Športne igre"
 
 #: ../data/toc.xml.in.h:128
 msgid "Spreadsheet Tools"
-msgstr "Orodja za izdelovanje preglednic"
+msgstr "Orodja za izdelovanje razpredelnic"
 
 #: ../data/toc.xml.in.h:129
 msgid "Strategy Games"
@@ -805,7 +807,7 @@ msgstr "Orodja telefonije"
 
 #: ../data/toc.xml.in.h:134
 msgid "Terminal Emulator"
-msgstr "Terminalski emulatorji"
+msgstr "Terminalski posnemovalnik"
 
 #: ../data/toc.xml.in.h:135
 msgid "Text Editors"
@@ -813,7 +815,7 @@ msgstr "Urejevalniki besedila"
 
 #: ../data/toc.xml.in.h:136
 msgid "Text Tools"
-msgstr "Besedilna orodja"
+msgstr "Orodja za besedilo"
 
 #: ../data/toc.xml.in.h:137
 msgid "Tools to help you manage your computer"
@@ -845,7 +847,7 @@ msgstr "Video"
 
 #: ../data/toc.xml.in.h:144
 msgid "Video Conference"
-msgstr "VideoKonference"
+msgstr "Video konference"
 
 #. Translators: This is a menu title for graphics viewing applications
 #: ../data/toc.xml.in.h:146
@@ -868,89 +870,61 @@ msgstr "Dobrodošli v GNOME brskalniku pomoči"
 msgid "Word Processors"
 msgstr "Pisarniški urejevalniki besedil"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Dostopnost</b>"
-
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Pisave</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Dodaj zaznamek"
-
-#: ../data/ui/yelp.glade.h:4
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
 msgstr "Zaznamki"
 
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "Velike in m_ale črke"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Najdi"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Odpri lokacijo"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Nastavitve"
-
-#: ../data/ui/yelp.glade.h:9
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
 msgstr "Preime_nuj"
 
-#: ../data/ui/yelp.glade.h:10
+#: ../data/ui/yelp-bookmarks.ui.h:3
 msgid "_Bookmarks:"
 msgstr "_Zaznamki:"
 
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "_Brskanje s kazalko"
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Dodaj zaznamek"
 
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Poišči:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Določena širina:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Položaj:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "_Naslednje"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "_Predhodno"
-
-#: ../data/ui/yelp.glade.h:17
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
 msgid "_Title:"
 msgstr "_Naslov:"
 
-#: ../data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Odpri mesto"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Mesto:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Pisave"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Možnosti"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "_Brskanje s kazalko"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Določena širina:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
 msgstr "_Uporabi sistemske pisave"
 
-#: ../data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr "_Spremenljiva širina:"
 
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Prelom vrstic"
-
 #: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr "Pisava za določeno besedilo"
+msgstr "Pisava za besedilo določene širine"
 
 #: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
@@ -980,33 +954,96 @@ msgstr "Uporabi sistemske pisave"
 msgid "Use the default fonts set for the system."
 msgstr "Uporabi privzete pisave za sistem."
 
-#: ../src/yelp-bookmarks.c:150
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Datoteka ni veljavna .desktop datoteka"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Neznana različica datoteke namizja '%s'"
+
+#: ../src/eggdesktopfile.c:957
+#, c-format
+msgid "Starting %s"
+msgstr "Zaganjanje %s"
+
+#: ../src/eggdesktopfile.c:1098
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Program ne omogoča sprejemanja dokumentov preko ukazne vrstice"
+
+#: ../src/eggdesktopfile.c:1166
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Nepoznana možnost zagona: %d"
+
+#: ../src/eggdesktopfile.c:1365
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "Ni mogoče poslati naslova URI dokumenta na vnos 'Vrsta=Povezava' predmeta namizja"
+
+#: ../src/eggdesktopfile.c:1384
+#, c-format
+msgid "Not a launchable item"
+msgstr "Predmet ni zagonljiv"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Onemogoči povezavo z upravljalnikom seje"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Določitev datoteke s shranjenimi nastavitvami"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "DATOTEKA"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Določi ID upravljanja seje"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Možnosti upravljanja seje:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Pokaži možnosti upravljanja seje"
+
+#: ../src/yelp-bookmarks.c:148
 msgid "Open Bookmark in New Window"
 msgstr "Odpri zaznamek v novem oknu"
 
-#: ../src/yelp-bookmarks.c:154
+#: ../src/yelp-bookmarks.c:152
 msgid "Rename Bookmark"
 msgstr "Preimenuj zaznamek"
 
-#: ../src/yelp-bookmarks.c:158
+#: ../src/yelp-bookmarks.c:156
 msgid "Remove Bookmark"
 msgstr "Odstrani zaznamek"
 
-#: ../src/yelp-bookmarks.c:315
+#: ../src/yelp-bookmarks.c:314
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Zaznamek z imenom %s za to stran že obstaja."
 
-#: ../src/yelp-bookmarks.c:392
+#: ../src/yelp-bookmarks.c:390
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "Zaznamek z imenom <b>%s</b> za to stran že obstaja."
 
-#: ../src/yelp-bookmarks.c:405
+#: ../src/yelp-bookmarks.c:403
 msgid "Help Topics"
 msgstr "Teme pomoči"
 
-#: ../src/yelp-bookmarks.c:420
+#: ../src/yelp-bookmarks.c:418
 msgid "Document Sections"
 msgstr "Odseki dokumentov"
 
@@ -1016,8 +1053,10 @@ msgstr "Odseki dokumentov"
 #: ../src/yelp-docbook.c:367
 #: ../src/yelp-info.c:243
 #: ../src/yelp-info.c:338
-#: ../src/yelp-man.c:293
-#: ../src/yelp-man.c:388
+#: ../src/yelp-mallard.c:284
+#: ../src/yelp-mallard.c:384
+#: ../src/yelp-man.c:292
+#: ../src/yelp-man.c:385
 #: ../src/yelp-toc.c:266
 #: ../src/yelp-toc.c:365
 msgid "Page not found"
@@ -1026,7 +1065,9 @@ msgstr "Strani ni mogoče najti"
 #: ../src/yelp-db-print.c:259
 #: ../src/yelp-docbook.c:276
 #: ../src/yelp-info.c:244
-#: ../src/yelp-man.c:294
+#: ../src/yelp-mallard.c:285
+#: ../src/yelp-mallard.c:385
+#: ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "Strani %s v dokumentu %s ni mogoče najti."
@@ -1034,50 +1075,50 @@ msgstr "Strani %s v dokumentu %s ni mogoče najti."
 #: ../src/yelp-db-print.c:351
 #: ../src/yelp-docbook.c:368
 #: ../src/yelp-info.c:339
-#: ../src/yelp-man.c:389
+#: ../src/yelp-man.c:386
 #, c-format
 msgid "The requested page was not found in the document %s."
 msgstr "Zahtevane strani ni mogoče najti v dokumentu %s."
 
 #: ../src/yelp-db-print.c:392
-#: ../src/yelp-docbook.c:409
-#: ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../src/yelp-docbook.c:410
+#: ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
 msgid "File not found"
 msgstr "Datoteke ni mogoče najti"
 
 #: ../src/yelp-db-print.c:393
-#: ../src/yelp-docbook.c:410
-#: ../src/yelp-info.c:380
-#: ../src/yelp-man.c:432
+#: ../src/yelp-docbook.c:411
+#: ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "Dokument '%s' ne obstaja."
+msgstr "Datoteka ‘%s’ ne obstaja."
 
 #: ../src/yelp-db-print.c:406
 #: ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423
-#: ../src/yelp-docbook.c:435
-#: ../src/yelp-info.c:394
-#: ../src/yelp-man.c:460
-#: ../src/yelp-toc.c:436
+#: ../src/yelp-docbook.c:424
+#: ../src/yelp-docbook.c:436
+#: ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458
+#: ../src/yelp-toc.c:437
 msgid "Could not parse file"
 msgstr "Ni mogoče razčleniti datoteke"
 
 #: ../src/yelp-db-print.c:407
-#: ../src/yelp-docbook.c:424
+#: ../src/yelp-docbook.c:425
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
-msgstr "Datoteke ‘%s’ ni mogoče razčleniti ni pravilnem XML zapisu."
+msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni pravilnem XML zapisu."
 
 #: ../src/yelp-db-print.c:419
-#: ../src/yelp-docbook.c:436
+#: ../src/yelp-docbook.c:437
 #, c-format
 msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilnem XML zapisu."
 
-#: ../src/yelp-db-print.c:765
-#: ../src/yelp-docbook.c:786
+#: ../src/yelp-db-print.c:766
+#: ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -1087,7 +1128,7 @@ msgid "Unknown Error"
 msgstr "Neznana napaka"
 
 #: ../src/yelp-error.c:136
-#: ../src/yelp-window.c:1630
+#: ../src/yelp-window.c:1716
 msgid "Could Not Read File"
 msgstr "Ni mogoče prebrati dokumenta"
 
@@ -1095,83 +1136,92 @@ msgstr "Ni mogoče prebrati dokumenta"
 msgid "No information is available about this error."
 msgstr "Podrobnosti o napaki niso na voljo."
 
-#: ../src/yelp-info.c:395
+#: ../src/yelp-info.c:396
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu info."
 
-#: ../src/yelp-io-channel.c:123
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
-msgstr "Datoteke ‘%s’ ni mogoče prebrati in dekodirati. Datoteka je morda skrčena v nepodprtem arhivu."
+msgstr "Datoteke ‘%s’ ni mogoče prebrati in dekodirati. Datoteka je morda skrčena v arhivu nepodprte vrste."
 
-#: ../src/yelp-main.c:92
+#: ../src/yelp-main.c:88
 msgid "Use a private session"
 msgstr "Uporabi osebno sejo"
 
-#: ../src/yelp-main.c:101
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
 msgstr "Določitev predpomnilniškega imenika za uporabo"
 
 #. Commandline parsing is done here
-#: ../src/yelp-main.c:358
+#: ../src/yelp-main.c:355
 msgid " GNOME Help Browser"
-msgstr "Gnome brskalnik pomoči"
+msgstr "GNOME brskalnik pomoči"
 
-#: ../src/yelp-main.c:378
+#: ../src/yelp-main.c:384
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pomoč"
 
-#: ../src/yelp-man.c:461
+#: ../src/yelp-mallard.c:315
+msgid "Directory not found"
+msgstr "Mape ni mogoče najti"
+
+#: ../src/yelp-mallard.c:316
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Mapa ‘%s’ ne obstaja."
+
+#: ../src/yelp-man.c:459
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu man strani."
 
-#: ../src/yelp-print.c:97
+#: ../src/yelp-print.c:99
 msgid "Print"
 msgstr "Natisni"
 
-#: ../src/yelp-print.c:167
+#: ../src/yelp-print.c:169
 msgid "Preparing to print"
 msgstr "Priprava na tiskanje"
 
-#: ../src/yelp-print.c:261
+#: ../src/yelp-print.c:263
 msgid "Printing is not supported on this printer"
 msgstr "Tiskanje s tem tiskalnikom ni podprto"
 
-#: ../src/yelp-print.c:264
+#: ../src/yelp-print.c:266
 #, c-format
 msgid "Printer %s does not support postscript printing."
 msgstr "Tiskalnik %s ne podpira postscript tiskanja."
 
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:368
 msgid "Waiting to print"
 msgstr "Čakanje na tiskanje"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:580
 msgid "An error occurred while printing"
-msgstr "Med tiskanjem je prišlo do napake"
+msgstr "Prišlo je do napake med tiskanjem"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:584
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "Dokumenta ni bilo mogoče natisniti: %s"
 
-#: ../src/yelp-search-parser.c:68
+#: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
-msgstr "GNOME Podporni Forumi"
+msgstr "GNOME podporni forumi"
 
-#: ../src/yelp-search-parser.c:286
+#: ../src/yelp-search-parser.c:285
 #, c-format
 msgid "No results for \"%s\""
 msgstr "Ni zadetkov za \"%s\""
 
-#: ../src/yelp-search-parser.c:287
+#: ../src/yelp-search-parser.c:286
 msgid "Try using different words to describe the problem you're having or the topic you want help with."
 msgstr "Poskusite uporabiti drugačne besede za opis vašega problema ali teme, za katero potrebujete pomoč."
 
-#: ../src/yelp-search-parser.c:290
+#: ../src/yelp-search-parser.c:289
 #, c-format
 msgid "Search results for \"%s\""
 msgstr "Iskalni zadetki za \"%s\""
@@ -1181,10 +1231,10 @@ msgstr "Iskalni zadetki za \"%s\""
 #. * The %s is used to indicate where the name of the site (linked)
 #. * should be.  This is done in the XSLT
 #.
-#: ../src/yelp-search-parser.c:304
+#: ../src/yelp-search-parser.c:303
 #, c-format
 msgid "Repeat the search online at %s"
-msgstr "Ponovi iskanje na mreži %s"
+msgstr "Ponovi iskanje preko povezave na %s"
 
 #. Translators: Do not translate this list exactly.  These are
 #. * colon-separated words that aren't useful for choosing search
@@ -1249,34 +1299,34 @@ msgstr "Strani %s ni mogoče najti v kazalu."
 
 #: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
-msgstr "Zahtevane stran ni mogoče najti v kazalu"
+msgstr "Zahtevane stran ni mogoče najti v kazalu."
 
-#: ../src/yelp-toc.c:437
+#: ../src/yelp-toc.c:438
 msgid "The TOC file could not be parsed because it is not a well-formed XML document."
-msgstr "Datoteke TOC ni mogoče razčleniti, ker ni pravilno oblikovana v formatu XML."
+msgstr "Datoteke kazala ni mogoče razčleniti, ker ni pravilno oblikovana v zapisu XML."
 
-#: ../src/yelp-transform.c:80
+#: ../src/yelp-transform.c:86
 msgid "Invalid Stylesheet"
-msgstr "Neveljavna oblikovna datoteka"
+msgstr "Neveljavna slogovna datoteka"
 
-#: ../src/yelp-transform.c:81
+#: ../src/yelp-transform.c:87
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "Oblikovna datoteka XSLT ‘%s’ ne obstaja ali pa ni zapisana v veljavnem zapisu."
+msgstr "Slogovna datoteka XSLT ‘%s’ ne obstaja ali pa ni zapisana v veljavnem zapisu."
 
-#: ../src/yelp-transform.c:112
+#: ../src/yelp-transform.c:122
 msgid "Broken Transformation"
 msgstr "Pokvarjena pretvorba"
 
-#: ../src/yelp-transform.c:113
+#: ../src/yelp-transform.c:123
 msgid "An unknown error occurred while attempting to transform the document."
 msgstr "Prišlo je do neznane napake med poskusom pretvorbe dokumenta."
 
-#: ../src/yelp-transform.c:372
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
-msgstr "Ni mogoče najti atributa href na yelp:dokument\n"
+msgstr "Ni mogoče najti atributa href v yelp:dokument\n"
 
-#: ../src/yelp-transform.c:387
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Primanjkuje pomnilnika"
 
@@ -1298,7 +1348,7 @@ msgstr "_Zaznamki"
 
 #: ../src/yelp-window.c:308
 msgid "_Help"
-msgstr "_Pomoč"
+msgstr "Pomo_č"
 
 #: ../src/yelp-window.c:311
 msgid "_New Window"
@@ -1318,7 +1368,7 @@ msgstr "O dokumentu"
 
 #: ../src/yelp-window.c:331
 msgid "Open _Location"
-msgstr "Odpri _povezavo"
+msgstr "Odpri _mesto"
 
 #: ../src/yelp-window.c:336
 msgid "_Close Window"
@@ -1334,31 +1384,31 @@ msgstr "_Izberi vse"
 
 #: ../src/yelp-window.c:353
 msgid "_Find..."
-msgstr "_Poišči ..."
+msgstr "_Najdi ..."
 
 #: ../src/yelp-window.c:358
 msgid "Find Pre_vious"
-msgstr "Poišči _predhodne"
+msgstr "Najdi _predhodno"
 
 #: ../src/yelp-window.c:360
 msgid "Find previous occurrence of the word or phrase"
-msgstr "Poišči predhodno besedo ali frazo"
+msgstr "Najdi predhodno ponovitev besede ali rekla"
 
 #: ../src/yelp-window.c:363
 msgid "Find Ne_xt"
-msgstr "Poišči na_slednjo"
+msgstr "Najdi na_slednje"
 
 #: ../src/yelp-window.c:365
 msgid "Find next occurrence of the word or phrase"
-msgstr "Poišči naslednjo besedo ali frazo"
+msgstr "Najdi naslednjo ponovitev besede ali rekla"
 
 #: ../src/yelp-window.c:368
 msgid "_Preferences"
-msgstr "_Lastnosti"
+msgstr "_Možnosti"
 
 #: ../src/yelp-window.c:373
 msgid "_Reload"
-msgstr "_Osveži"
+msgstr "_Ponovno naloži"
 
 #: ../src/yelp-window.c:385
 msgid "_Back"
@@ -1419,7 +1469,7 @@ msgstr "_Kopiraj naslov povezave"
 
 #: ../src/yelp-window.c:444
 msgid "Help On this application"
-msgstr "Pomoč programa"
+msgstr "Pomoč za delo s programom"
 
 #: ../src/yelp-window.c:447
 msgid "_About"
@@ -1427,90 +1477,107 @@ msgstr "_O programu"
 
 #: ../src/yelp-window.c:452
 msgid "Copy _Email Address"
-msgstr "Kopiraj elektronski naslov"
+msgstr "Kopiraj _elektronski naslov"
 
-#: ../src/yelp-window.c:501
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Brskalnik pomoči"
 
-#: ../src/yelp-window.c:592
-#: ../src/yelp-window.c:644
-#: ../src/yelp-window.c:1684
+#: ../src/yelp-window.c:619
+#: ../src/yelp-window.c:671
+#: ../src/yelp-window.c:1779
 msgid "Loading..."
 msgstr "Nalaganje ..."
 
-#: ../src/yelp-window.c:593
-#: ../src/yelp-window.c:645
+#: ../src/yelp-window.c:620
+#: ../src/yelp-window.c:672
 msgid "Unknown Page"
 msgstr "Neznana stran"
 
-#: ../src/yelp-window.c:1008
-#: ../src/yelp-window.c:1074
+#: ../src/yelp-window.c:1043
+#: ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "Zahtevan naslov URI \"%s\" ni veljaven"
 
-#: ../src/yelp-window.c:1009
-#: ../src/yelp-window.c:1075
+#: ../src/yelp-window.c:1044
+#: ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
 msgid "Unable to load page"
 msgstr "Ni mogoče naložiti strani"
 
-#: ../src/yelp-window.c:1069
-msgid "Error executing \"gnome-open\""
-msgstr "Napaka izvedbe \"gnome-open\""
-
-#: ../src/yelp-window.c:1253
+#: ../src/yelp-window.c:1336
 msgid "_Search:"
-msgstr "_Išči:"
+msgstr "_Poišči:"
 
-#: ../src/yelp-window.c:1254
+#: ../src/yelp-window.c:1337
 msgid "Search for other documentation"
 msgstr "Iskanje druge dokumentacije"
 
-#: ../src/yelp-window.c:1274
+#: ../src/yelp-window.c:1357
 msgid "Cannot create window"
 msgstr "Ni mogoče ustvariti okna"
 
-#: ../src/yelp-window.c:1280
+#: ../src/yelp-window.c:1363
 msgid "Cannot create search component"
 msgstr "Ni mogoče ustvariti iskalnega niza"
 
-#: ../src/yelp-window.c:1452
+#: ../src/yelp-window.c:1535
 msgid "Fin_d:"
-msgstr "_Poišči:"
+msgstr "_Najdi:"
 
-#: ../src/yelp-window.c:1474
+#: ../src/yelp-window.c:1557
 msgid "Find _Previous"
-msgstr "Poišči _predhodne"
+msgstr "Najdi _predhodne"
 
-#: ../src/yelp-window.c:1486
+#: ../src/yelp-window.c:1569
 msgid "Find _Next"
-msgstr "Poišči _naslednje"
+msgstr "Najdi na_slednje"
 
-#: ../src/yelp-window.c:1499
+#: ../src/yelp-window.c:1582
 msgid "Phrase not found"
-msgstr "Fraze ni mogoče najti"
+msgstr "Rekla ni mogoče najti"
 
-#: ../src/yelp-window.c:1627
+#: ../src/yelp-window.c:1713
 #, c-format
 msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
-msgstr "Datoteke ‘%s’ ni mogoče prebrati. Datoteka ne obstaja ali pa nimate dovoljenja za branje."
+msgstr "Datoteke ‘%s’ ni mogoče prebrati. Datoteka ne obstaja ali pa ni ustreznih dovoljenj za branje."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2453
+#: ../src/yelp-window.c:2604
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: ../src/yelp-window.c:2456
+#: ../src/yelp-window.c:2607
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2458
+#: ../src/yelp-window.c:2609
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Pregledovalnik dokumentov za namizje Gnome."
+msgstr "Pregledovalnik dokumentacije namizja Gnome."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "Iskanje pomoči z Gnome namizjem"
+msgstr "Iskanje pomoči namizja GNOME"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Dostopnost</b>"
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Pisave</b>"
+#~ msgid "C_ase sensitive"
+#~ msgstr "Velike in m_ale črke"
+#~ msgid "Find"
+#~ msgstr "Najdi"
+#~ msgid "_Find:"
+#~ msgstr "_Poišči:"
+#~ msgid "_Next"
+#~ msgstr "_Naslednje"
+#~ msgid "_Previous"
+#~ msgstr "_Predhodno"
+#~ msgid "_Wrap around"
+#~ msgstr "_Prelom vrstic"
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "Napaka izvedbe \"gnome-open\""
 
