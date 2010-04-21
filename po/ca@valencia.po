@@ -1,23 +1,20 @@
-# translation of yelp.gnome-2-26.po to catalan
-# Yelp Catalan translation.
-# Copyright © 2002, 2003-2008, 2009 Free Software Foundation, Inc.
+# Yelp Catalan translation. 
+# Copyright © 2002, 2003-2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
-#
 # Jordi Mallach <jordi@sindominio.net>, 2002, 2003, 2004, 2005, 2006.
-# Gil Forcada <gilforcada@guifi.net>, 2007, 2008.
-# Carles Ferrando Garcia <carles.ferrando@gmail.com>, 2009.
+# Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.gnome-2-26\n"
+"Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-13 19:42+0200\n"
-"PO-Revision-Date: 2009-09-06 16:30+0200\n"
-"Last-Translator: Carles Ferrando Garcia <carles.ferrando@gmail.com>\n"
-"Language-Team: catalan <tradgnome@softcatala.org>\n"
+"POT-Creation-Date: 2010-04-21 21:16+0200\n"
+"PO-Revision-Date: 2009-11-22 17:13+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -309,7 +306,7 @@ msgstr "Entreteniment"
 
 #: ../data/toc.xml.in.h:7
 msgid "Applications for viewing and manipulating graphics"
-msgstr "Aplicacions per a visualitzar i modificar gràfics"
+msgstr "Aplicacions per visualitzar i modificar gràfics"
 
 #: ../data/toc.xml.in.h:8
 msgid "Applications related to audio and video"
@@ -526,7 +523,7 @@ msgstr "Guies i manuals per a aplicacions que es connecten a la resta del món"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
-msgstr "Guies per a involucrar-se en desenvolupament"
+msgstr "Guies per involucrar-se en desenvolupament"
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
@@ -550,7 +547,7 @@ msgstr "Entorns integrats de desenvolupament"
 
 #: ../data/toc.xml.in.h:70
 msgid "IRC Clients"
-msgstr "Clients del IRC"
+msgstr "Clients de l'IRC"
 
 #: ../data/toc.xml.in.h:71
 msgid "Image Processing"
@@ -685,7 +682,7 @@ msgstr "Reproductors"
 msgid "Presentation Tools"
 msgstr "Eines de presentació"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "Impressió"
 
@@ -753,7 +750,7 @@ msgstr "Paràmetres"
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
 msgstr ""
-"Paràmetres que poden canviar els usuaris per a fer el seu entorn més còmode"
+"Paràmetres que poden canviar els usuaris per fer el seu entorn més còmode"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -817,7 +814,7 @@ msgstr "Eines de text"
 
 #: ../data/toc.xml.in.h:137
 msgid "Tools to help you manage your computer"
-msgstr "Eines per a ajudar-vos a gestionar l'ordinador"
+msgstr "Eines per ajudar-vos a gestionar l'ordinador"
 
 #: ../data/toc.xml.in.h:138
 msgid "Translation Tools"
@@ -833,7 +830,7 @@ msgstr "Utilitats"
 
 #: ../data/toc.xml.in.h:141
 msgid "Utilities to help you get work done"
-msgstr "Utilitats per a ajudar-vos a fer la faena"
+msgstr "Utilitats per ajudar-vos a fer la faena"
 
 #: ../data/toc.xml.in.h:142
 msgid "Vector Graphics"
@@ -898,7 +895,7 @@ msgstr "_Ubicació:"
 
 #: ../data/ui/yelp-preferences.ui.h:2
 msgid "Fonts"
-msgstr ""
+msgstr "Tipus de lletres"
 
 #: ../data/ui/yelp-preferences.ui.h:3
 msgid "Preferences"
@@ -956,108 +953,109 @@ msgstr "Utilitza els tipus de lletra per defecte del sistema."
 #: ../src/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr ""
+msgstr "El fitxer no és un fitxer .desktop vàlid"
 
 #: ../src/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr ""
+msgstr "No s'ha reconegut la versió «%s» del fitxer d'escriptori"
 
-#: ../src/eggdesktopfile.c:958
-#, fuzzy, c-format
+#: ../src/eggdesktopfile.c:957
+#, c-format
 msgid "Starting %s"
-msgstr "Paràmetres"
+msgstr "S'està iniciant %s"
 
-#: ../src/eggdesktopfile.c:1100
+#: ../src/eggdesktopfile.c:1098
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr ""
+msgstr "L'aplicació no accepta documents des de la línia d'ordes"
 
-#: ../src/eggdesktopfile.c:1168
+#: ../src/eggdesktopfile.c:1166
 #, c-format
 msgid "Unrecognized launch option: %d"
-msgstr ""
+msgstr "No s'ha reconegut l'opció de llançament: %d"
 
-#: ../src/eggdesktopfile.c:1373
+#: ../src/eggdesktopfile.c:1365
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
+"No es poden passar URI de documents a una entrada d'escriptori de tipus "
+"«Type=Link»"
 
-#: ../src/eggdesktopfile.c:1392
+#: ../src/eggdesktopfile.c:1384
 #, c-format
 msgid "Not a launchable item"
-msgstr ""
+msgstr "No és un element executable"
 
 #: ../src/eggsmclient.c:225
 msgid "Disable connection to session manager"
-msgstr ""
+msgstr "Inhabilita la connexió al gestor de sessió"
 
 #: ../src/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
-msgstr ""
+msgstr "Especifica el fitxer que conté la configuració alçada"
 
 #: ../src/eggsmclient.c:228
 msgid "FILE"
-msgstr ""
+msgstr "FITXER"
 
 #: ../src/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr ""
+msgstr "Especifica l'identificador del gestor de sessió"
 
 #: ../src/eggsmclient.c:231
-#, fuzzy
 msgid "ID"
-msgstr "Entorns integrats de desenvolupament"
+msgstr "IDENTIFICADOR"
 
 #: ../src/eggsmclient.c:252
 msgid "Session management options:"
-msgstr ""
+msgstr "Opcions del gestor de sessió:"
 
 #: ../src/eggsmclient.c:253
 msgid "Show session management options"
-msgstr ""
+msgstr "Mostra les opcions del gestor de sessió"
 
-#: ../src/yelp-bookmarks.c:148
+#: ../src/yelp-bookmarks.c:147
 msgid "Open Bookmark in New Window"
 msgstr "Obri l'adreça d'interés a una finestra nova"
 
-#: ../src/yelp-bookmarks.c:152
+#: ../src/yelp-bookmarks.c:151
 msgid "Rename Bookmark"
 msgstr "Canvia el nom de l'adreça d'interés"
 
-#: ../src/yelp-bookmarks.c:156
+#: ../src/yelp-bookmarks.c:155
 msgid "Remove Bookmark"
 msgstr "Suprimeix l'adreça d'interés"
 
-#: ../src/yelp-bookmarks.c:314
+#: ../src/yelp-bookmarks.c:319
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "Ja existeix una adreça d'interés amb el títol %s per a esta pàgina."
 
-#: ../src/yelp-bookmarks.c:390
+#: ../src/yelp-bookmarks.c:395
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr ""
 "Ja existeix una adreça d'interés amb el títol <b>%s</b> per a esta adreça."
 
-#: ../src/yelp-bookmarks.c:403
+#: ../src/yelp-bookmarks.c:408
 msgid "Help Topics"
 msgstr "Temes d'ajuda"
 
-#: ../src/yelp-bookmarks.c:418
+#: ../src/yelp-bookmarks.c:423
 msgid "Document Sections"
 msgstr "Seccions del document"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-mallard.c:380
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
 #: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
 #: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "No s'ha trobat la pàgina"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-mallard.c:381 ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "No s'ha trobat la pàgina %s en el document %s."
@@ -1110,7 +1108,7 @@ msgstr "Desconegut"
 msgid "Unknown Error"
 msgstr "Error desconegut"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1723
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1716
 msgid "Could Not Read File"
 msgstr "No s'ha pogut llegir el fitxer"
 
@@ -1152,15 +1150,14 @@ msgstr " Navegador de l'ajuda del GNOME"
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../src/yelp-mallard.c:311
-#, fuzzy
+#: ../src/yelp-mallard.c:315
 msgid "Directory not found"
-msgstr "No s'ha trobat el fitxer"
+msgstr "No s'ha trobat el directori"
 
-#: ../src/yelp-mallard.c:312
-#, fuzzy, c-format
+#: ../src/yelp-mallard.c:316
+#, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr "No existeix el fitxer «%s»."
+msgstr "No existeix el directori «%s»."
 
 #: ../src/yelp-man.c:459
 #, c-format
@@ -1170,32 +1167,32 @@ msgstr ""
 "No s'ha pogut analitzar el fitxer «%s» perquè no és una pàgina de manual "
 "vàlida."
 
-#: ../src/yelp-print.c:97
+#: ../src/yelp-print.c:99
 msgid "Print"
 msgstr "Imprimir"
 
-#: ../src/yelp-print.c:167
+#: ../src/yelp-print.c:169
 msgid "Preparing to print"
-msgstr "S'està preparant per a imprimir"
+msgstr "S'està preparant per imprimir"
 
-#: ../src/yelp-print.c:261
+#: ../src/yelp-print.c:263
 msgid "Printing is not supported on this printer"
 msgstr "No es pot imprimir en esta impressora"
 
-#: ../src/yelp-print.c:264
+#: ../src/yelp-print.c:266
 #, c-format
 msgid "Printer %s does not support postscript printing."
 msgstr "La impressora %s no permet la impressió amb postscript."
 
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:368
 msgid "Waiting to print"
-msgstr "S'està esperant per a imprimir"
+msgstr "S'està esperant per imprimir"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:580
 msgid "An error occurred while printing"
 msgstr "S'ha produït un error mentre s'imprimia"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:584
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "No s'ha pogut imprimir el vostre document: %s"
@@ -1214,8 +1211,8 @@ msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
 msgstr ""
-"Proveu d'utilitzar paraules diferents per descriure el problema que tingueu "
-"o el tema per al qual vulgueu ajuda."
+"Proveu de fer servir paraules diferents per descriure el problema que "
+"tingueu o el tema per al qual vulgueu ajuda."
 
 #: ../src/yelp-search-parser.c:289
 #, c-format
@@ -1491,7 +1488,7 @@ msgstr "_Copia l'adreça de correu"
 msgid "Help Browser"
 msgstr "Navegador d'ajuda"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1785
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1779
 msgid "Loading..."
 msgstr "S'està carregant..."
 
@@ -1499,71 +1496,71 @@ msgstr "S'està carregant..."
 msgid "Unknown Page"
 msgstr "Pàgina desconeguda"
 
-#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "L'URI «%s» sol·licitat no és vàlid"
 
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
 msgid "Unable to load page"
 msgstr "No s'ha pogut carregar la pàgina"
 
-#: ../src/yelp-window.c:1343
+#: ../src/yelp-window.c:1336
 msgid "_Search:"
 msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1344
+#: ../src/yelp-window.c:1337
 msgid "Search for other documentation"
 msgstr "Cerca altra documentació"
 
-#: ../src/yelp-window.c:1364
+#: ../src/yelp-window.c:1357
 msgid "Cannot create window"
 msgstr "No s'ha pogut crear una finestra nova"
 
-#: ../src/yelp-window.c:1370
+#: ../src/yelp-window.c:1363
 msgid "Cannot create search component"
 msgstr "No s'ha pogut crear el component de cerca"
 
-#: ../src/yelp-window.c:1542
+#: ../src/yelp-window.c:1535
 msgid "Fin_d:"
 msgstr "_Cerca:"
 
-#: ../src/yelp-window.c:1564
+#: ../src/yelp-window.c:1557
 msgid "Find _Previous"
 msgstr "Cerca l'an_terior"
 
-#: ../src/yelp-window.c:1576
+#: ../src/yelp-window.c:1569
 msgid "Find _Next"
 msgstr "Cerca el següe_nt"
 
-#: ../src/yelp-window.c:1589
+#: ../src/yelp-window.c:1582
 msgid "Phrase not found"
 msgstr "No s'ha trobat la frase"
 
-#: ../src/yelp-window.c:1720
+#: ../src/yelp-window.c:1713
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 "No s'ha pogut llegir el fitxer «%s». Pot ser que manque este fitxer, o potser "
-"no teniu permís per a llegir-lo."
+"no teniu permís per legir-lo."
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2602
+#: ../src/yelp-window.c:2604
 msgid "translator-credits"
 msgstr ""
 "Jordi Mallach <jordi@sindominio.net>\n"
 "Gil Forcada <gilforcada@guifi.net>"
 
-#: ../src/yelp-window.c:2605
+#: ../src/yelp-window.c:2607
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2607
+#: ../src/yelp-window.c:2609
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "Un navegador i visualitzador de documentació per a l'escriptori GNOME."
 
@@ -1598,3 +1595,531 @@ msgstr "Obtingueu ajuda per al GNOME"
 
 #~ msgid "Error executing \"gnome-open\""
 #~ msgstr "S'ha produït un error en executar «gnome-open»"
+
+#~ msgid "Accessories"
+#~ msgstr "Accessoris"
+
+#~ msgid "Applications for fun"
+#~ msgstr "Aplicacions per a divertir-se"
+
+#~ msgid "Applications for word processing and other office tasks"
+#~ msgstr "Aplicacions per al processament de text i altres tasques d'oficina"
+
+#~ msgid "Applications related to multimedia"
+#~ msgstr "Aplicacions relacionades amb el multimèdia"
+
+#~ msgid "Applications related to software development"
+#~ msgstr "Aplicacions relacionades amb al desenvolupament de programari"
+
+#~ msgid "Applications specific to the panel"
+#~ msgstr "Aplicacions específiques del quadre"
+
+#~ msgid "Applications that support assistive technologies"
+#~ msgstr "Aplicacions que implementen tecnologies assistives"
+
+#~ msgid "KDE"
+#~ msgstr "KDE"
+
+#~ msgid "Learning applications"
+#~ msgstr "Aplicacions d'aprenentatge"
+
+#~ msgid "Office"
+#~ msgstr "Ofimàtica"
+
+#~ msgid "Panel Applets"
+#~ msgstr "Miniaplicacions del quadre"
+
+#~ msgid "Programming"
+#~ msgstr "Programació"
+
+#~ msgid "Scientific Applications."
+#~ msgstr "Aplicacions científiques."
+
+#~ msgid "Utility applications"
+#~ msgstr "Aplicacions d'utilitats"
+
+#~ msgid "Variety of other applications"
+#~ msgstr "Altres aplicacions diverses"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is not well-formed XML."
+#~ msgstr ""
+#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és un "
+#~ "XML vàlid."
+
+#~ msgid ""
+#~ "The file  ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is not a well-formed info page."
+#~ msgstr ""
+#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és una "
+#~ "pàgina d'informació vàlida."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+#~ msgstr ""
+#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és XML "
+#~ "vàlid."
+
+#~ msgid "Document Information"
+#~ msgstr "Informació del document"
+
+#~ msgid "The YelpDocInfo struct of the document"
+#~ msgstr "L'estructura YelpDocInfo del document"
+
+#~ msgid "Bigger problems still"
+#~ msgstr "Encara hi ha problemes majors"
+
+#~ msgid ""
+#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
+#~ "not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "No s'ha pogut processar la cerca. Manca el fitxer «%s», o no és un full "
+#~ "d'estil XSLT vàlid."
+
+#~ msgid "Help Contents"
+#~ msgstr "Continguts de l'ajuda"
+
+#~ msgid "Could not load the OMF file '%s'."
+#~ msgstr "No s'ha pogut carregar el fitxer OMF «%s»."
+
+#~ msgid "YelpTocPager: Pause count is negative."
+#~ msgstr "YelpTocPager: el compte de pausa és negatiu."
+
+#~ msgid ""
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "No s'ha pogut processar la taula de continguts. Falta el fitxer «%s», o no "
+#~ "és XML vàlid."
+
+#~ msgid "Read man page for %s"
+#~ msgstr "Llegiu la pàgina de manual per a %s"
+
+#~ msgid "Read info page for %s"
+#~ msgstr "Llegiu la pàgina d'informació de %s"
+
+#~ msgid ""
+#~ "The table of contents could not be loaded. The file ‘%s’ is either "
+#~ "missing or is not well-formed XML."
+#~ msgstr ""
+#~ "No s'ha pogut carregar la taula de continguts. Falta el fitxer «%s», o no "
+#~ "és un XML vàlid."
+
+#~ msgid "Command Line Help"
+#~ msgstr "Ajuda de la línia d'ordres"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+#~ msgstr ""
+#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no està "
+#~ "formatat correctament."
+
+#~ msgid ""
+#~ "The document ‘%s’ could not be processed. The file ‘%s’ is either "
+#~ "missing, or it is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "No s'ha pogut processar el document «%s». Falta el fitxer «%s» o no és un "
+#~ "full d'estil XSLT vàlid."
+
+#~ msgid "An unknown error occured"
+#~ msgstr "S'ha produït un error desconegut"
+
+#~ msgid "Could not load document"
+#~ msgstr "No s'ha pogut carregar el document"
+
+#~ msgid "Could not read the table of contents"
+#~ msgstr "No s'ha pogut carregar la taula de continguts"
+
+#~ msgid "Unsupported Format"
+#~ msgstr "El format no és suportat"
+
+#~ msgid "<b>Printing</b>"
+#~ msgstr "<b>Imprimint</b>"
+
+#~ msgid "yelp-watermark-blockquote-201C"
+#~ msgstr "yelp-watermark-blockquote-00AB"
+
+#~ msgid "The Uniform Resource Identifier for the file is invalid."
+#~ msgstr ""
+#~ "L'identificador uniforme del recurs per a aquest fitxer no és vàlid."
+
+#~ msgid ""
+#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+#~ "actual file."
+#~ msgstr ""
+#~ "L'identificador uniforme del recurs «%s» no és vàlid o no apunta a un "
+#~ "fitxer existent."
+
+#~ msgid "Man pages are not supported in this version."
+#~ msgstr "Les pàgines de manual no estan implementades en aquesta versió."
+
+#~ msgid "GNU info pages are not supported in this version"
+#~ msgstr "Les pàgines d'info GNU no estan implementades en aquesta versió"
+
+#~ msgid "Search is not supported in this version."
+#~ msgstr "Aquesta versió no implementa cerques."
+
+#~ msgid ""
+#~ "SGML documents are no longer supported. Please ask the author of the "
+#~ "document to convert to XML."
+#~ msgstr ""
+#~ "Els documents SGML ja no estan implementats. Demaneu a l'autor del "
+#~ "document que ho converteixi a XML."
+
+#~ msgid ""
+#~ "A transformation context could not be created for the file ‘%s’. The "
+#~ "format may not be supported."
+#~ msgstr ""
+#~ "No s'ha pogut crear un context de transformació per al fitxer «%s». Pot "
+#~ "ser que el format no estigui implementat."
+
+#~ msgid ""
+#~ "The section ‘%s’ does not exist in this document. If you were directed to "
+#~ "this section from a Help button in an application, please report this to "
+#~ "the maintainers of that application."
+#~ msgstr ""
+#~ "La secció «%s» no existeix en aquest document. Si se us ha dirigit a "
+#~ "aquesta secció a través d'un botó d'ajuda d'una aplicació, informeu "
+#~ "d'aquest error als mantenidors de l'aplicació."
+
+#~ msgid "Generating PDF is not currently supported"
+#~ msgstr "De moment no es poden generar PDF"
+
+#~ msgid ""
+#~ "You were trying to print to a printer using the \"%s\" driver.  This "
+#~ "program requires a PostScript printer driver."
+#~ msgstr ""
+#~ "Heu intentat imprimir a una impressora amb el controlador «%s». Aquest "
+#~ "programa requereix un controlador PostScript per a la impressora."
+
+#~ msgid "_From:"
+#~ msgstr "_De:"
+
+#~ msgid "Sets the start of the range of pages to be printed"
+#~ msgstr "Establei l'inici del rang de pàgines a imprimir"
+
+#~ msgid "_To:"
+#~ msgstr "_A:"
+
+#~ msgid "Sets the end of the range of pages to be printed"
+#~ msgstr "Estableix el final del rang de pàgines a imprimir"
+
+#~ msgid ""
+#~ "Could not display help for Yelp.\n"
+#~ "%s"
+#~ msgstr ""
+#~ "No s'ha pogut mostrar l'ajuda del Yelp.\n"
+#~ "%s"
+
+#~ msgid "Library Functions"
+#~ msgstr "Funcions de biblioteques"
+
+#~ msgid "Administration"
+#~ msgstr "Administració"
+
+#~ msgid "Other"
+#~ msgstr "Altres"
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimèdia"
+
+#~ msgid "Yelp Factory"
+#~ msgstr "Fàbrica del Yelp"
+
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "No s'ha pogut activar el Yelp: «%s»"
+
+#~ msgid ""
+#~ "Your search could not be processed. There is no connection to the beagle "
+#~ "daemon."
+#~ msgstr ""
+#~ "No s'ha pogut processar la cerca. No hi ha connexció al dimoni beagle."
+
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>_Adreces d'interès:</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Títol:</b>"
+
+#~ msgid "Go to home view"
+#~ msgstr "Vés a la pàgina inicial"
+
+#~ msgid "Development Environments"
+#~ msgstr "Entorns de desenvolupament"
+
+#~ msgid "Games and Entertainment"
+#~ msgstr "Jocs i entreteniment"
+
+#~ msgid "General"
+#~ msgstr "General"
+
+#~ msgid "Kernels"
+#~ msgstr "Nuclis"
+
+#~ msgid "Office and Productivity Applications"
+#~ msgstr "Oficina i aplicacions de productivitat"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "Titlepage"
+#~ msgstr "Pàgina de títol"
+
+#~ msgid "The selected document could not be opened"
+#~ msgstr "No s'ha pogut obrir el document seleccionat"
+
+#~ msgid "The table of contents could not be read."
+#~ msgstr "No s'ha pogut llegir la taula de continguts."
+
+#~ msgid "DocBook SGML documents are no longer supported."
+#~ msgstr "Els documents DocBook SGML ja no són suportats."
+
+#~ msgid "X11"
+#~ msgstr "X11"
+
+#~ msgid "OpenSSL"
+#~ msgstr "OpenSSL"
+
+#~ msgid "Termcap"
+#~ msgstr "Termcap"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+
+#~ msgid "PThreads"
+#~ msgstr "PThreads"
+
+#~ msgid "Categories"
+#~ msgstr "Categories"
+
+#~ msgid "Documents"
+#~ msgstr "Documents"
+
+#~ msgid "&#8216;"
+#~ msgstr "&#8216;"
+
+#~ msgid "&#8217;"
+#~ msgstr "&#8217;"
+
+#~ msgid "&#8220;"
+#~ msgstr "&#8220;"
+
+#~ msgid "&#8221;"
+#~ msgstr "&#8221;"
+
+#~ msgid "About This Article"
+#~ msgstr "Quant a aquest article"
+
+#~ msgid "About This Bibliography"
+#~ msgstr "Quant a aquesta bibliografia"
+
+#~ msgid "About This Book"
+#~ msgstr "Quant a aquest llibre"
+
+#~ msgid "About This Chapter"
+#~ msgstr "Quant a aquest capítol"
+
+#~ msgid "About This Entry"
+#~ msgstr "Quant a aquesta entrada"
+
+#~ msgid "About This Glossary"
+#~ msgstr "Quant a aquest glossari"
+
+#~ msgid "About This Index"
+#~ msgstr "Quant a aquest índex"
+
+#~ msgid "About This Part"
+#~ msgstr "Quant a aquesta part"
+
+#~ msgid "About This Reference"
+#~ msgstr "Quant a aquesta referència"
+
+#~ msgid "About This Section"
+#~ msgstr "Quant a aquesta secció"
+
+#~ msgid "Affiliation"
+#~ msgstr "Afiliació"
+
+#~ msgid "Appendix"
+#~ msgstr "Apèndix"
+
+#~ msgid "Audience"
+#~ msgstr "Audiència"
+
+#~ msgid "Author"
+#~ msgstr "Autor"
+
+#~ msgid "Authors"
+#~ msgstr "Autors"
+
+#~ msgid "Collaborators"
+#~ msgstr "Col·laboradors"
+
+#~ msgid "Colophon"
+#~ msgstr "Colofó"
+
+#~ msgid "Copyright"
+#~ msgstr "Copyright"
+
+#~ msgid "Copyrights"
+#~ msgstr "Copyrights"
+
+#~ msgid "Example"
+#~ msgstr "Exemple"
+
+#~ msgid "Figure"
+#~ msgstr "Imatge"
+
+#~ msgid "Glossary"
+#~ msgstr "Glossari"
+
+#~ msgid "Important"
+#~ msgstr "Important"
+
+#~ msgid "Index"
+#~ msgstr "Índex"
+
+#~ msgid "Legal Notice"
+#~ msgstr "Nota legal"
+
+#~ msgid "Level"
+#~ msgstr "Nivell"
+
+#~ msgid "Message Audience"
+#~ msgstr "Audiència del missatge"
+
+#~ msgid "Message Level"
+#~ msgstr "Nivell del missatge"
+
+#~ msgid "Message Origin"
+#~ msgstr "Origen del missatge"
+
+#~ msgid "Note"
+#~ msgstr "Nota"
+
+#~ msgid "Origin"
+#~ msgstr "Origen"
+
+#~ msgid "Other Contributor"
+#~ msgstr "Altre contribuïdor"
+
+#~ msgid "Other Contributors"
+#~ msgstr "Altres contribuïdors"
+
+#~ msgid "Part"
+#~ msgstr "Part"
+
+#~ msgid "Preface"
+#~ msgstr "Prefaci"
+
+#~ msgid "Publishers"
+#~ msgstr "Editors"
+
+#~ msgid "Reference Entry"
+#~ msgstr "Entrada de referència"
+
+#~ msgid "Reference Section"
+#~ msgstr "Secció de referència"
+
+#~ msgid "Release Information"
+#~ msgstr "Informació del llançament"
+
+#~ msgid "See"
+#~ msgstr "Vegeu"
+
+#~ msgid "Set Index"
+#~ msgstr "Estableix l'índex"
+
+#~ msgid "Table"
+#~ msgstr "Taula"
+
+#~ msgid "Table of Contents"
+#~ msgstr "Taula de continguts"
+
+#~ msgid "Tip"
+#~ msgstr "Suggeriment"
+
+#~ msgid "Document URI"
+#~ msgstr "URI del document"
+
+#~ msgid "The URI of the document to be processed"
+#~ msgstr "L'URI del document a processar"
+
+#~ msgid "/Edit/Find Ne_xt"
+#~ msgstr "/Edita/Cerca el se_güent"
+
+#~ msgid "/Edit/Find Pre_vious"
+#~ msgstr "/Edita/Cerca l'an_terior"
+
+#~ msgid "/Go/_Back"
+#~ msgstr "/Vés/_Endarrere"
+
+#~ msgid "/Go/_Forward"
+#~ msgstr "/Vés/E_ndavant"
+
+#~ msgid "/Go/_Home"
+#~ msgstr "/Vés/_Pàgina inicial"
+
+#~ msgid "/Go/"
+#~ msgstr "/Vés/"
+
+#~ msgid "/Go/_Contents"
+#~ msgstr "/Vés/_Continguts"
+
+#~ msgid "A Help Browser for GNOME"
+#~ msgstr "Navegador d'ajuda per al GNOME"
+
+#~ msgid "<b>Find text in the document:</b>"
+#~ msgstr "<b>Cerca text en el document:</b>"
+
+#~ msgid "Automatically _wrap around"
+#~ msgstr "A_justa automàticament"
+
+#~ msgid "Match _entire word"
+#~ msgstr "Coincideix amb paraules s_enceres"
+
+#~ msgid "_Match upper/lower case"
+#~ msgstr "Distingueix entre _majúscules i minúscules"
+
+#~ msgid "GNOME - Desktop"
+#~ msgstr "GNOME - Escriptori"
+
+#~ msgid "Additional documents"
+#~ msgstr "Documents addicionals"
+
+#~ msgid "GNOME is"
+#~ msgstr "GNOME és"
+
+#~ msgid "(C)"
+#~ msgstr "©"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "Next"
+#~ msgstr "Següent"
+
+#~ msgid "Search in the index"
+#~ msgstr "Cerca en l'índex"
+
+#~ msgid ""
+#~ "Error while parsing the stylesheet, make sure you have your docbook "
+#~ "environment setup correctly."
+#~ msgstr ""
+#~ "Error al analitzar la sintaxi de la fulla d'estil, assegureu-vos de que "
+#~ "teniu docbook correctament configurat."
+
+#~ msgid "Error while applying the stylesheet."
+#~ msgstr "Error al aplicar la fulla d'estil."
+
+#~ msgid "info"
+#~ msgstr "info"
+
+#~ msgid "man"
+#~ msgstr "man"
