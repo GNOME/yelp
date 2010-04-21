@@ -3,6 +3,13 @@ SUBDIRS = icons ui
 @INTLTOOL_XML_RULE@
 @INTLTOOL_SCHEMAS_RULE@
 
+gsettingsschema_DATA = org.gnome.yelp.gschema.xml
+@GSETTINGS_CHECK_RULE@
+if GSETTINGS_SCHEMAS_INSTALL
+install-data-hook:
+	$(gschema_compile) $(DESTDIR)$(gsettingsschemadir)
+endif
+
 tocdir   = $(datadir)/yelp
 toc_DATA = man.xml toc.xml scrollkeeper.xml info.xml
 

@@ -75,19 +75,26 @@ struct _YelpApplicationPrivate {
 
     GHashTable *windows_by_document;
 
-    gboolean show_text_cursor;
-    gboolean map_show_text_cursor;
+    GSettings *gsettings;
 };
 
 static void
 yelp_application_init (YelpApplication *app)
 {
+    YelpSettings *settings = yelp_settings_get_default ();
     YelpApplicationPrivate *priv = GET_PRIV (app);
 
     priv->windows_by_document = g_hash_table_new_full (g_str_hash,
                                                        g_str_equal,
                                                        g_free,
                                                        NULL);
+    priv->gsettings = g_settings_new ("org.gnome.yelp");
+    g_settings_bind (priv->gsettings, "show-cursor",
+                     settings, "show-text-cursor",
+                     G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind (priv->gsettings, "font-adjustment",
+                     settings, "font-adjustment",
+                     G_SETTINGS_BIND_DEFAULT);
 }
 
 static void
@@ -114,6 +121,11 @@ yelp_application_dispose (GObject *object)
         priv->connection = NULL;
     }
 
+    if (priv->gsettings) {
+        g_object_unref (priv->gsettings);
+        priv->gsettings = NULL;
+    }
+
     G_OBJECT_CLASS (yelp_application_parent_class)->dispose (object);
 }
 
@@ -138,8 +150,8 @@ yelp_application_adjust_font (YelpApplication  *app,
     YelpSettings *settings = yelp_settings_get_default ();
     GParamSpec *spec = g_object_class_find_property ((GObjectClass *) YELP_SETTINGS_GET_CLASS (settings),
                                                      "font-adjustment");
-    gint adjustment = yelp_settings_get_font_adjustment (settings);
     YelpApplicationPrivate *priv = GET_PRIV (app);
+    gint adjustment = g_settings_get_int (priv->gsettings, "font-adjustment");
 
     if (!G_PARAM_SPEC_INT (spec)) {
         g_warning ("Expcected integer param spec for font-adjustment");
@@ -147,7 +159,7 @@ yelp_application_adjust_font (YelpApplication  *app,
     }
 
     adjustment += adjust;
-    yelp_settings_set_font_adjustment (settings, adjustment);
+    g_settings_set_int (priv->gsettings, "font-adjustment", adjustment);
 
     for (cur = priv->windows; cur != NULL; cur = cur->next) {
         YelpWindow *win = (YelpWindow *) cur->data;
@@ -160,32 +172,6 @@ yelp_application_adjust_font (YelpApplication  *app,
         smaller = gtk_action_group_get_action (group, "SmallerText");
         gtk_action_set_sensitive (smaller, adjustment > ((GParamSpecInt *) spec)->minimum);
     }
-}
-
-void
-yelp_application_set_show_text_cursor (YelpApplication  *app,
-                                       gboolean          show)
-{
-    GSList *cur;
-    YelpSettings *settings = yelp_settings_get_default ();
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-
-    /* We get callbacks in the loop. Ignore them. */
-    if (priv->map_show_text_cursor)
-        return;
-
-    priv->show_text_cursor = show;
-    yelp_settings_set_show_text_cursor (settings, show);
-    priv->map_show_text_cursor = TRUE;
-    for (cur = priv->windows; cur != NULL; cur = cur->next) {
-        YelpWindow *win = (YelpWindow *) cur->data;
-        GtkActionGroup *group = yelp_window_get_action_group (win);
-        GtkAction *action;
-
-        action = gtk_action_group_get_action (group, "ShowTextCursor");
-        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), show);
-    }
-    priv->map_show_text_cursor = FALSE;
 }
 
 /******************************************************************************/
@@ -362,10 +348,9 @@ application_uri_resolved (YelpUri             *uri,
 
         group = yelp_window_get_action_group (window);
         action = gtk_action_group_get_action (group, "ShowTextCursor");
-        priv->map_show_text_cursor = TRUE;
-        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                      priv->show_text_cursor);
-        priv->map_show_text_cursor = FALSE;
+        g_settings_bind (priv->gsettings, "show-cursor",
+                         action, "active",
+                         G_SETTINGS_BIND_DEFAULT);
 
         if (!data->new) {
             g_hash_table_insert (priv->windows_by_document, doc_uri, window);

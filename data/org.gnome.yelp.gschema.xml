@@ -1,0 +1,14 @@
+<schemalist>
+<schema id="org.gnome.yelp" path="/org/gnome/yelp">
+  <key name="show-cursor" type="b">
+    <default>false</default>
+  </key>
+  <key name="font-adjustment" type="i">
+    <default>0</default>
+    <range>
+      <min>-3</min>
+      <max>10</max>
+    </range>
+  </key>
+</schema>
+</schemalist>

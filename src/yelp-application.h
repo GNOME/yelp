@@ -59,8 +59,6 @@ void              yelp_application_new_window  (YelpApplication  *app,
 void              yelp_application_adjust_font          (YelpApplication  *app,
                                                          gint              adjust);
 
-void              yelp_application_set_show_text_cursor (YelpApplication  *app,
-                                                         gboolean          show);
 void              yelp_application_install_package      (YelpApplication   *app,
                                                          const gchar       *pkg,
                                                          const gchar       *alt);
