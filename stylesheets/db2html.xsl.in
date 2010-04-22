@@ -37,8 +37,11 @@ FIXME: yelp:cache no longer works
       <xsl:when test="$template = 'info'">
         <xsl:value-of select="$db.chunk.info_basename"/>
       </xsl:when>
-      <xsl:otherwise>
+      <xsl:when test="$node/@id">
         <xsl:value-of select="$node/@id"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$node/@xml:id"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
