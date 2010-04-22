@@ -88,7 +88,18 @@ yelp_application_init (YelpApplication *app)
                                                        g_str_equal,
                                                        g_free,
                                                        NULL);
-    priv->gsettings = g_settings_new ("org.gnome.yelp");
+    /* FIXME: is there a better way to see if there's a real backend in use? */
+    if (g_getenv ("GSETTINGS_BACKEND") == NULL) {
+        gchar *keyfile = g_build_filename (g_get_user_config_dir (),
+                                           "yelp", "yelp.cfg",
+                                           NULL);
+        g_settings_backend_setup_keyfile ("yelp-", keyfile);
+        priv->gsettings = g_settings_new_with_context ("org.gnome.yelp", "yelp-");
+        g_free (keyfile);
+    }
+    else {
+        priv->gsettings = g_settings_new ("org.gnome.yelp");
+    }
     g_settings_bind (priv->gsettings, "show-cursor",
                      settings, "show-text-cursor",
                      G_SETTINGS_BIND_DEFAULT);
