@@ -116,6 +116,27 @@ enum {
   COL_TERMS
 };
 
+static const gchar *YELP_UI =
+    "<ui>"
+    "<menubar>"
+    "<menu action='PageMenu'>"
+    "<menuitem action='NewWindow'/>"
+    "<menuitem action='CloseWindow'/>"
+    "</menu>"
+    "<menu action='ViewMenu'>"
+    "<menuitem action='LargerText'/>"
+    "<menuitem action='SmallerText'/>"
+    "<separator/>"
+    "<menuitem action='ShowTextCursor'/>"
+    "</menu>"
+    "<menu action='GoMenu'>"
+    "<menuitem action='GoBack'/>"
+    "<menuitem action='GoForward'/>"
+    "</menu>"
+    "</menubar>"
+    "<accelerator action='OpenLocation'/>"
+    "</ui>";
+
 typedef struct _YelpBackEntry YelpBackEntry;
 struct _YelpBackEntry {
     YelpUri *uri;
@@ -322,19 +343,7 @@ window_construct (YelpWindow *window)
                                         1);
     gtk_window_add_accel_group (GTK_WINDOW (window),
                                 gtk_ui_manager_get_accel_group (priv->ui_manager));
-    if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
-					  DATADIR "/yelp/ui/yelp-ui.xml",
-					  &error)) {
-        GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
-                                                    GTK_MESSAGE_ERROR,
-                                                    GTK_BUTTONS_OK,
-                                                    "%s", _("Cannot create window"));
-        gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog), "%s",
-                                                    error->message);
-        gtk_dialog_run (GTK_DIALOG (dialog));
-        gtk_widget_destroy (dialog);
-        g_error_free (error);
-    }
+    gtk_ui_manager_add_ui_from_string (priv->ui_manager, YELP_UI, -1, NULL);
     gtk_box_pack_start (GTK_BOX (vbox),
                         gtk_ui_manager_get_widget (priv->ui_manager, "/ui/menubar"),
                         FALSE, FALSE, 0);
