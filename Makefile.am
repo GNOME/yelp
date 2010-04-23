@@ -27,5 +27,4 @@ DISTCLEANFILES = 					\
 
 CLEANFILES = $(desktop_DATA)
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc
-
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
