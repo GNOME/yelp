@@ -1,4 +1,4 @@
-# translation of yelp.HEAD.or.po to Oriya
+# translation of or.po to Oriya
 # Oriya  translation of yelp.HEAD.pot.
 # This file is distributed under the same license as the yelp package.
 # Copyright (C) 2005 Free Software Foundation,Inc.
@@ -8,20 +8,20 @@
 # Kasturi Dhal <kasturi_mama@yahoo.com>, 2005.
 # Gora Mohanty <gora_mohanty@yahoo.co.in>, 2006.
 # Subhransu Behera <arya_subhransu@yahoo.co.in>, 2006.
-# Manoj Kumar Giri <mgiri@redhat.com>, 2008.
+# Manoj Kumar Giri <mgiri@redhat.com>, 2008, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD.or\n"
+"Project-Id-Version: or\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-20 04:08+0000\n"
-"PO-Revision-Date: 2008-08-19 19:30+0530\n"
+"PO-Revision-Date: 2010-04-23 18:31+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
-"Language-Team: Oriya\n"
+"Language-Team: Oriya <Translation-team-or@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1)\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
 "\n"
 "\n"
@@ -588,8 +588,7 @@ msgstr "ପିଲାଙ୍କ ଖେଳ"
 msgid ""
 "Learn more about making your system more accessible for a range of "
 "disabilities"
-msgstr ""
-"ଆପଣଙ୍କ ତନ୍ତ୍ରକୁ ଗୋଟିଏ ପରିସରଭୁକ୍ତ ନିଷ୍କ୍ରିତା ପାଇଁ ପ୍ରବେଶକୁ ଅଧିକ ସହଜମୟ କରିବା ବିଷୟରେ ଅଧିକ ଜାଣନ୍ତୁ"
+msgstr "ଆପଣଙ୍କ ତନ୍ତ୍ରକୁ ଗୋଟିଏ ପରିସରଭୁକ୍ତ ନିଷ୍କ୍ରିତା ପାଇଁ ପ୍ରବେଶକୁ ଅଧିକ ସହଜମୟ କରିବା ବିଷୟରେ ଅଧିକ ଜାଣନ୍ତୁ"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
@@ -1086,8 +1085,7 @@ msgstr "ଏହି ତ୍ରୁଟି ବିଷୟରେ କୌଣସି ସୂ�
 
 #: ../src/yelp-info.c:396
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "‘%s’ ଫାଇଲକୁ ବିଶ୍ଳେଷଣ କରିହେଲା ନାହିଁ କାରଣ ଏହା ସୁନିର୍ମିତ ସୂଚନା ପୃଷ୍ଠା ନୁହଁ."
 
 #: ../src/yelp-io-channel.c:132
@@ -1095,8 +1093,7 @@ msgstr "‘%s’ ଫାଇଲକୁ ବିଶ୍ଳେଷଣ କରିହେଲ�
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
-msgstr ""
-"‘%s’ ଫାଇଲ ପଢ଼ି ଅବସଙ୍କେତିତ କରିହେଲା ନାହିଁ। ସମ୍ଭବ କି ଫାଇଲ ଗୋଟିଏ ଅସହାୟକ ଶୈଲୀରେ ସଂକୁଚିତ।"
+msgstr "‘%s’ ଫାଇଲ ପଢ଼ି ଅବସଙ୍କେତିତ କରିହେଲା ନାହିଁ। ସମ୍ଭବ କି ଫାଇଲ ଗୋଟିଏ ଅସହାୟକ ଶୈଲୀରେ ସଂକୁଚିତ।"
 
 #: ../src/yelp-main.c:91
 msgid "Use a private session"
@@ -1117,8 +1114,7 @@ msgstr "ସହାୟତା"
 
 #: ../src/yelp-man.c:459
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "‘%s’ ଫାଇଲକୁ ବିଶ୍ଳେଷଣ କରିହେଲା ନାହିଁ କାରଣ ଏହା ସୁନିର୍ମିତ ମୂଖ୍ୟ ପୃଷ୍ଠା ନୁହଁ."
 
 #: ../src/yelp-print.c:97
@@ -1250,11 +1246,11 @@ msgstr "ସନ୍ଧାନ ସଂସାଧକ ଅବୈଧ ଫଳାଫଳ ଫ�
 #: ../src/yelp-toc.c:267
 #, c-format
 msgid "The page %s was not found in the TOC."
-msgstr "TOC ରେ ପୃଷ୍ଠା %s ମିଳିଲା ନାହିଁ."
+msgstr "TOC ରେ ପୃଷ୍ଠା %s ମିଳିନଥିଲା।"
 
 #: ../src/yelp-toc.c:366
 msgid "The requested page was not found in the TOC."
-msgstr "TOC ରେ ଅନୁରୋଧିତ ପୃଷ୍ଠା %s ମିଳିଲା ନାହିଁ."
+msgstr "TOC ରେ ଅନୁରୋଧିତ ପୃଷ୍ଠା ମିଳିନଥିଲା।"
 
 #: ../src/yelp-toc.c:438
 msgid ""
@@ -1518,3 +1514,4 @@ msgstr "ନୋମ ଡେକ୍ସଟପ ପାଇଁ ଗୋଟିଏ ଦଲି�
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "ନୋମ ପାଇଁ ସାହାଯ୍ଯ ପାଆନ୍ତୁ"
+
