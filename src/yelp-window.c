@@ -49,13 +49,12 @@ static void          yelp_window_set_property     (GObject            *object,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
 
+static void          window_construct             (YelpWindow         *window);
 static void          window_new                   (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
-                                                   YelpWindow         *window);
-static void          window_font_adjustment       (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_go_back               (GtkAction          *action,
                                                    YelpWindow         *window);
@@ -138,6 +137,7 @@ typedef struct _YelpWindowPrivate YelpWindowPrivate;
 struct _YelpWindowPrivate {
     GtkListStore *history;
     GtkListStore *completion;
+    GtkUIManager *ui_manager;
     GtkActionGroup *action_group;
     YelpApplication *application;
 
@@ -180,16 +180,6 @@ static const GtkActionEntry entries[] = {
       "<Control>L",
       NULL,
       G_CALLBACK (window_open_location) },
-    { "LargerText", NULL,
-      N_("_Larger Text"),
-      "<Control>plus",
-      NULL,
-      G_CALLBACK (window_font_adjustment) },
-    { "SmallerText", NULL,
-      N_("_Smaller Text"),
-      "<Control>minus",
-      NULL,
-      G_CALLBACK (window_font_adjustment) },
     {"GoBack", GTK_STOCK_GO_BACK,
      N_("_Back"),
      "<Alt>Left",
@@ -205,8 +195,109 @@ static const GtkActionEntry entries[] = {
 static void
 yelp_window_init (YelpWindow *window)
 {
+}
+
+static void
+yelp_window_class_init (YelpWindowClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    object_class->dispose = yelp_window_dispose;
+    object_class->finalize = yelp_window_finalize;
+    object_class->get_property = yelp_window_get_property;
+    object_class->set_property = yelp_window_set_property;
+
+    g_object_class_install_property (object_class,
+                                     PROP_APPLICATION,
+                                     g_param_spec_object ("application",
+							  _("Application"),
+							  _("A YelpApplication instance that controls this window"),
+                                                          YELP_TYPE_APPLICATION,
+                                                          G_PARAM_CONSTRUCT_ONLY |
+							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    g_type_class_add_private (klass, sizeof (YelpWindowPrivate));
+}
+
+static void
+yelp_window_dispose (GObject *object)
+{
+    YelpWindowPrivate *priv = GET_PRIV (object);
+
+    if (priv->history) {
+        g_object_unref (priv->history);
+        priv->history = NULL;
+    }
+
+    if (priv->action_group) {
+        g_object_unref (priv->action_group);
+        priv->action_group = NULL;
+    }
+
+    if (priv->align_location) {
+        g_object_unref (priv->align_location);
+        priv->align_location = NULL;
+    }
+
+    if (priv->align_hidden) {
+        g_object_unref (priv->align_hidden);
+        priv->align_hidden = NULL;
+    }
+
+    while (priv->back_list) {
+        back_entry_free ((YelpBackEntry *) priv->back_list->data);
+        priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
+    }
+
+    G_OBJECT_CLASS (yelp_window_parent_class)->dispose (object);
+}
+
+static void
+yelp_window_finalize (GObject *object)
+{
+    G_OBJECT_CLASS (yelp_window_parent_class)->finalize (object);
+}
+
+static void
+yelp_window_get_property (GObject    *object,
+                          guint       prop_id,
+                          GValue     *value,
+                          GParamSpec *pspec)
+{
+    YelpWindowPrivate *priv = GET_PRIV (object);
+    switch (prop_id) {
+    case PROP_APPLICATION:
+        g_value_set_object (value, priv->application);
+        break;
+    default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        break;
+    }
+}
+
+static void
+yelp_window_set_property (GObject     *object,
+                          guint        prop_id,
+                          const GValue *value,
+                          GParamSpec   *pspec)
+{
+    YelpWindowPrivate *priv = GET_PRIV (object);
+    switch (prop_id) {
+    case PROP_APPLICATION:
+        priv->application = g_value_get_object (value);
+        window_construct ((YelpWindow *) object);
+        break;
+    default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        break;
+    }
+}
+
+static void
+window_construct (YelpWindow *window)
+{
     GtkWidget *vbox, *scroll;
-    GtkUIManager *ui_manager;
     GtkAction *action;
     GError *error = NULL;
     GtkTreeIter iter;
@@ -218,22 +309,20 @@ yelp_window_init (YelpWindow *window)
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_container_add (GTK_CONTAINER (window), vbox);
 
-    priv->action_group = gtk_action_group_new ("MenuActions");
+    priv->action_group = gtk_action_group_new ("WindowActions");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
     gtk_action_group_add_actions (priv->action_group,
 				  entries, G_N_ELEMENTS (entries),
 				  window);
-    action = (GtkAction *) gtk_toggle_action_new ("ShowTextCursor",
-                                                  _("Show Text _Cursor"),
-                                                  NULL, NULL);
-    gtk_action_group_add_action_with_accel (priv->action_group,
-                                            action, "F7");
 
-    ui_manager = gtk_ui_manager_new ();
-    gtk_ui_manager_insert_action_group (ui_manager, priv->action_group, 0);
+    priv->ui_manager = gtk_ui_manager_new ();
+    gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
+    gtk_ui_manager_insert_action_group (priv->ui_manager,
+                                        yelp_application_get_action_group (priv->application),
+                                        1);
     gtk_window_add_accel_group (GTK_WINDOW (window),
-                                gtk_ui_manager_get_accel_group (ui_manager));
-    if (!gtk_ui_manager_add_ui_from_file (ui_manager,
+                                gtk_ui_manager_get_accel_group (priv->ui_manager));
+    if (!gtk_ui_manager_add_ui_from_file (priv->ui_manager,
 					  DATADIR "/yelp/ui/yelp-ui.xml",
 					  &error)) {
         GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
@@ -247,7 +336,7 @@ yelp_window_init (YelpWindow *window)
         g_error_free (error);
     }
     gtk_box_pack_start (GTK_BOX (vbox),
-                        gtk_ui_manager_get_widget (ui_manager, "/ui/menubar"),
+                        gtk_ui_manager_get_widget (priv->ui_manager, "/ui/menubar"),
                         FALSE, FALSE, 0);
 
     priv->hbox = gtk_hbox_new (FALSE, 0);
@@ -342,103 +431,6 @@ yelp_window_init (YelpWindow *window)
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 }
 
-static void
-yelp_window_class_init (YelpWindowClass *klass)
-{
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-    object_class->dispose = yelp_window_dispose;
-    object_class->finalize = yelp_window_finalize;
-    object_class->get_property = yelp_window_get_property;
-    object_class->set_property = yelp_window_set_property;
-
-    g_object_class_install_property (object_class,
-                                     PROP_APPLICATION,
-                                     g_param_spec_object ("application",
-							  _("Application"),
-							  _("A YelpApplication instance that controls this window"),
-                                                          YELP_TYPE_APPLICATION,
-                                                          G_PARAM_CONSTRUCT_ONLY |
-							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
-							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-
-    g_type_class_add_private (klass, sizeof (YelpWindowPrivate));
-}
-
-static void
-yelp_window_dispose (GObject *object)
-{
-    YelpWindowPrivate *priv = GET_PRIV (object);
-
-    if (priv->history) {
-        g_object_unref (priv->history);
-        priv->history = NULL;
-    }
-
-    if (priv->action_group) {
-        g_object_unref (priv->action_group);
-        priv->action_group = NULL;
-    }
-
-    if (priv->align_location) {
-        g_object_unref (priv->align_location);
-        priv->align_location = NULL;
-    }
-
-    if (priv->align_hidden) {
-        g_object_unref (priv->align_hidden);
-        priv->align_hidden = NULL;
-    }
-
-    while (priv->back_list) {
-        back_entry_free ((YelpBackEntry *) priv->back_list->data);
-        priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
-    }
-
-    G_OBJECT_CLASS (yelp_window_parent_class)->dispose (object);
-}
-
-static void
-yelp_window_finalize (GObject *object)
-{
-    G_OBJECT_CLASS (yelp_window_parent_class)->finalize (object);
-}
-
-static void
-yelp_window_get_property (GObject    *object,
-                          guint       prop_id,
-                          GValue     *value,
-                          GParamSpec *pspec)
-{
-    YelpWindowPrivate *priv = GET_PRIV (object);
-    switch (prop_id) {
-    case PROP_APPLICATION:
-        g_value_set_object (value, priv->application);
-        break;
-    default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-        break;
-    }
-}
-
-static void
-yelp_window_set_property (GObject     *object,
-                          guint        prop_id,
-                          const GValue *value,
-                          GParamSpec   *pspec)
-{
-    YelpWindowPrivate *priv = GET_PRIV (object);
-    switch (prop_id) {
-    case PROP_APPLICATION:
-        priv->application = g_value_get_object (value);
-        break;
-    default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-        break;
-    }
-}
-
-
 /******************************************************************************/
 
 YelpWindow *
@@ -531,16 +523,6 @@ window_open_location (GtkAction *action, YelpWindow *window)
             gtk_editable_select_region (GTK_EDITABLE (priv->hidden_entry), 5, -1);
         g_free (uri);
     }
-}
-
-static void
-window_font_adjustment (GtkAction  *action,
-                        YelpWindow *window)
-{
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    yelp_application_adjust_font (priv->application,
-                                  g_str_equal (gtk_action_get_name (action), "LargerText") ? 1 : -1);
 }
 
 static void

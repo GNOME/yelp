@@ -24,10 +24,15 @@
 #include <config.h>
 #endif
 
+#define G_SETTINGS_ENABLE_BACKEND
+
 #include <dbus/dbus-glib-bindings.h>
 #include <dbus/dbus-glib.h>
+#include <gio/gio.h>
+#include <gio/gsettingsbackend.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkx.h>
 
 #include "yelp-settings.h"
 #include "yelp-view.h"
@@ -57,12 +62,16 @@ static void          yelp_application_class_init       (YelpApplicationClass  *k
 static void          yelp_application_dispose          (GObject               *object);
 static void          yelp_application_finalize         (GObject               *object);
 
+static void          application_setup                 (YelpApplication       *app);
 static void          application_uri_resolved          (YelpUri               *uri,
                                                         YelpApplicationLoad   *data);
 static gboolean      application_window_deleted        (YelpWindow            *window,
                                                         GdkEvent              *event,
                                                         YelpApplication       *app);
 static gboolean      application_maybe_quit            (YelpApplication       *app);
+static void          application_adjust_font           (GtkAction             *action,
+                                                        YelpApplication       *app);
+static void          application_set_font_sensitivity  (YelpApplication       *app);
 
 G_DEFINE_TYPE (YelpApplication, yelp_application, G_TYPE_OBJECT);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_APPLICATION, YelpApplicationPrivate))
@@ -72,40 +81,29 @@ struct _YelpApplicationPrivate {
     DBusGConnection *connection;
 
     GSList *windows;
-
     GHashTable *windows_by_document;
 
+    GtkActionGroup *action_group;
+
     GSettings *gsettings;
+};
+
+static const GtkActionEntry action_entries[] = {
+    { "LargerText", GTK_STOCK_ZOOM_IN,
+      N_("_Larger Text"),
+      "<Control>plus",
+      N_("Increase the size of the text"),
+      G_CALLBACK (application_adjust_font) },
+    { "SmallerText", GTK_STOCK_ZOOM_OUT,
+      N_("_Smaller Text"),
+      "<Control>minus",
+      N_("Descrease the size of the text"),
+      G_CALLBACK (application_adjust_font) }
 };
 
 static void
 yelp_application_init (YelpApplication *app)
 {
-    YelpSettings *settings = yelp_settings_get_default ();
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-
-    priv->windows_by_document = g_hash_table_new_full (g_str_hash,
-                                                       g_str_equal,
-                                                       g_free,
-                                                       NULL);
-    /* FIXME: is there a better way to see if there's a real backend in use? */
-    if (g_getenv ("GSETTINGS_BACKEND") == NULL) {
-        gchar *keyfile = g_build_filename (g_get_user_config_dir (),
-                                           "yelp", "yelp.cfg",
-                                           NULL);
-        g_settings_backend_setup_keyfile ("yelp-", keyfile);
-        priv->gsettings = g_settings_new_with_context ("org.gnome.yelp", "yelp-");
-        g_free (keyfile);
-    }
-    else {
-        priv->gsettings = g_settings_new ("org.gnome.yelp");
-    }
-    g_settings_bind (priv->gsettings, "show-cursor",
-                     settings, "show-text-cursor",
-                     G_SETTINGS_BIND_DEFAULT);
-    g_settings_bind (priv->gsettings, "font-adjustment",
-                     settings, "font-adjustment",
-                     G_SETTINGS_BIND_DEFAULT);
 }
 
 static void
@@ -132,6 +130,11 @@ yelp_application_dispose (GObject *object)
         priv->connection = NULL;
     }
 
+    if (priv->action_group) {
+        g_object_unref (priv->action_group);
+        priv->action_group = NULL;
+    }
+
     if (priv->gsettings) {
         g_object_unref (priv->gsettings);
         priv->gsettings = NULL;
@@ -151,38 +154,92 @@ yelp_application_finalize (GObject *object)
 }
 
 
+static void
+application_setup (YelpApplication *app)
+{
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpSettings *settings = yelp_settings_get_default ();
+    GtkAction *action;
+
+    priv->windows_by_document = g_hash_table_new_full (g_str_hash,
+                                                       g_str_equal,
+                                                       g_free,
+                                                       NULL);
+    /* FIXME: is there a better way to see if there's a real backend in use? */
+    if (g_getenv ("GSETTINGS_BACKEND") == NULL) {
+        gchar *keyfile = g_build_filename (g_get_user_config_dir (),
+                                           "yelp", "yelp.cfg",
+                                           NULL);
+        g_settings_backend_setup_keyfile ("yelp-", keyfile);
+        priv->gsettings = g_settings_new_with_context ("org.gnome.yelp", "yelp-");
+        g_free (keyfile);
+    }
+    else {
+        priv->gsettings = g_settings_new ("org.gnome.yelp");
+    }
+    g_settings_bind (priv->gsettings, "show-cursor",
+                     settings, "show-text-cursor",
+                     G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind (priv->gsettings, "font-adjustment",
+                     settings, "font-adjustment",
+                     G_SETTINGS_BIND_DEFAULT);
+
+    priv->action_group = gtk_action_group_new ("ApplicationActions");
+    gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (priv->action_group,
+				  action_entries, G_N_ELEMENTS (action_entries),
+				  app);
+    action = (GtkAction *) gtk_toggle_action_new ("ShowTextCursor",
+                                                  _("Show Text _Cursor"),
+                                                  NULL, NULL);
+    gtk_action_group_add_action_with_accel (priv->action_group,
+                                            action, "F7");
+    g_settings_bind (priv->gsettings, "show-cursor",
+                     action, "active",
+                     G_SETTINGS_BIND_DEFAULT);
+    g_object_unref (action);
+    application_set_font_sensitivity (app);
+}
+
 /******************************************************************************/
 
-void
-yelp_application_adjust_font (YelpApplication  *app,
-                              gint              adjust)
+GtkActionGroup *
+yelp_application_get_action_group (YelpApplication  *app)
 {
-    GSList *cur;
-    YelpSettings *settings = yelp_settings_get_default ();
-    GParamSpec *spec = g_object_class_find_property ((GObjectClass *) YELP_SETTINGS_GET_CLASS (settings),
-                                                     "font-adjustment");
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+    return priv->action_group;
+}
+
+static void
+application_adjust_font (GtkAction       *action,
+                         YelpApplication *app)
+{
     YelpApplicationPrivate *priv = GET_PRIV (app);
     gint adjustment = g_settings_get_int (priv->gsettings, "font-adjustment");
-
-    if (!G_PARAM_SPEC_INT (spec)) {
-        g_warning ("Expcected integer param spec for font-adjustment");
-        return;
-    }
+    gint adjust = g_str_equal (gtk_action_get_name (action), "LargerText") ? 1 : -1;
 
     adjustment += adjust;
     g_settings_set_int (priv->gsettings, "font-adjustment", adjustment);
 
-    for (cur = priv->windows; cur != NULL; cur = cur->next) {
-        YelpWindow *win = (YelpWindow *) cur->data;
-        GtkActionGroup *group = yelp_window_get_action_group (win);
-        GtkAction *larger, *smaller;
+    application_set_font_sensitivity (app);
+}
 
-        larger = gtk_action_group_get_action (group, "LargerText");
-        gtk_action_set_sensitive (larger, adjustment < ((GParamSpecInt *) spec)->maximum);
-
-        smaller = gtk_action_group_get_action (group, "SmallerText");
-        gtk_action_set_sensitive (smaller, adjustment > ((GParamSpecInt *) spec)->minimum);
+static void
+application_set_font_sensitivity (YelpApplication *app)
+{
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpSettings *settings = yelp_settings_get_default ();
+    GParamSpec *spec = g_object_class_find_property ((GObjectClass *) YELP_SETTINGS_GET_CLASS (settings),
+                                                     "font-adjustment");
+    gint adjustment = g_settings_get_int (priv->gsettings, "font-adjustment");
+    if (!G_PARAM_SPEC_INT (spec)) {
+        g_warning ("Expcected integer param spec for font-adjustment");
+        return;
     }
+    gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group, "LargerText"),
+                              adjustment < ((GParamSpecInt *) spec)->maximum);
+    gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group, "SmallerText"),
+                              adjustment > ((GParamSpecInt *) spec)->minimum);
 }
 
 /******************************************************************************/
@@ -284,6 +341,8 @@ yelp_application_run (YelpApplication  *app,
                                          "/org/gnome/Yelp",
                                          G_OBJECT (app));
 
+    application_setup (app);
+
     yelp_settings_set_editor_mode (yelp_settings_get_default (), editor_mode);
 
     yelp_application_load_uri (app, uri, gtk_get_current_event_time (), NULL);
@@ -352,16 +411,8 @@ application_uri_resolved (YelpUri             *uri,
         window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
 
     if (window == NULL) {
-        GtkActionGroup *group;
-        GtkAction *action;
         window = yelp_window_new (data->app);
         priv->windows = g_slist_prepend (priv->windows, window);
-
-        group = yelp_window_get_action_group (window);
-        action = gtk_action_group_get_action (group, "ShowTextCursor");
-        g_settings_bind (priv->gsettings, "show-cursor",
-                         action, "active",
-                         G_SETTINGS_BIND_DEFAULT);
 
         if (!data->new) {
             g_hash_table_insert (priv->windows_by_document, doc_uri, window);

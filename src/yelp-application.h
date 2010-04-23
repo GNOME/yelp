@@ -55,10 +55,7 @@ gboolean          yelp_application_load_uri    (YelpApplication  *app,
                                                 GError          **error);
 void              yelp_application_new_window  (YelpApplication  *app,
                                                 const gchar      *uri);
-
-void              yelp_application_adjust_font          (YelpApplication  *app,
-                                                         gint              adjust);
-
+GtkActionGroup *  yelp_application_get_action_group     (YelpApplication  *app);
 void              yelp_application_install_package      (YelpApplication   *app,
                                                          const gchar       *pkg,
                                                          const gchar       *alt);
