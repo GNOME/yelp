@@ -79,7 +79,7 @@ AC_SUBST([YELP_LIBS])
 
 AC_PATH_PROGS(SED, gsed sed)
 
-AM_GSETTINGS
+GLIB_GSETTINGS
 
 XSL_PATH="`$PKG_CONFIG --variable=xsltdir yelp-xsl`"
 XSL_DB_TITLE="$XSLT_PATH""/docbook/common/db-title.xsl"
