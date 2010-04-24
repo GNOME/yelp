@@ -118,8 +118,10 @@ CLEANFILES = xgen-ymh xgen-ymc
 
 MAINTAINERCLEANFILES = $(BUILT_SOURCES)
 
-EXTRA_DIST = yelp-marshal.list yelp-infos.xml yelp-print.c yelp-print.h
-
+EXTRA_DIST =			\
+	yelp-dbus.xml		\
+	yelp-marshal.list	\
+	yelp-infos.xml
 
 
 install-exec-hook:

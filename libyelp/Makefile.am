@@ -48,7 +48,11 @@ BUILT_SOURCES =			\
 	yelp-types.c		\
 	yelp-types.h
 
-EXTRA_DIST = yelp-marshal.list
+EXTRA_DIST =			\
+	yelp-debug.h		\
+	yelp-error.h		\
+	yelp-io-channel.h	\
+	yelp-marshal.list
 
 yelp-marshal.h: stamp-yelp-marshal.h
 	@true

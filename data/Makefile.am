@@ -27,7 +27,8 @@ EXTRA_DIST =					\
 	toc.xml			toc.xml.in	\
 	info.xml		info.xml.in	\
 	scrollkeeper.xml	default.css	\
-	yelp.js
+	$(gsettingsschema_DATA)			\
+	$(js_DATA)
 
 CLEANFILES = toc.xml man.xml info.xml
 
