@@ -1,5 +1,8 @@
 SUBDIRS = icons
 
+#This has to be defined, because GSETTINGS_CHECK_RULE adds to it
+MOSTLYCLEANFILES =
+
 @INTLTOOL_XML_RULE@
 @INTLTOOL_SCHEMAS_RULE@
 
@@ -31,4 +34,3 @@ EXTRA_DIST =					\
 	$(js_DATA)
 
 CLEANFILES = toc.xml man.xml info.xml
-
