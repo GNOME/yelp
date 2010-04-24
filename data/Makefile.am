@@ -7,7 +7,7 @@ gsettingsschema_DATA = org.gnome.yelp.gschema.xml
 @GSETTINGS_CHECK_RULE@
 if GSETTINGS_SCHEMAS_INSTALL
 install-data-hook:
-	$(gschema_compile) $(DESTDIR)$(gsettingsschemadir)
+	$(GLIB_COMPILE_SCHEMAS) $(DESTDIR)$(gsettingsschemadir)
 endif
 
 tocdir   = $(datadir)/yelp
