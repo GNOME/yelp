@@ -147,10 +147,8 @@ main (gint argc, gchar **argv)
     params[5] = "2";
     params[6] = NULL;
 
-    transform = yelp_transform_new ();
+    transform = yelp_transform_new (stylesheet);
     g_object_weak_ref ((GObject *) transform, transform_destroyed, NULL);
-    if (!yelp_transform_set_stylesheet (transform, stylesheet, NULL))
-	return 1;
 
     g_signal_connect (transform, "chunk-ready", (GCallback) transform_chunk, NULL);
     g_signal_connect (transform, "finished", (GCallback) transform_finished, NULL);
