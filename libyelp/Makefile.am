@@ -1,12 +1,15 @@
 lib_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =				\
+	yelp-bz2-decompressor.c			\
 	yelp-debug.c				\
 	yelp-error.c				\
 	yelp-docbook-document.c			\
 	yelp-document.c				\
 	yelp-io-channel.c			\
 	yelp-location-entry.c			\
+	yelp-lzma-decompressor.c		\
+	yelp-magic-decompressor.c		\
 	yelp-mallard-document.c			\
 	yelp-marshal.c				\
 	yelp-settings.c				\
@@ -48,10 +51,13 @@ BUILT_SOURCES =			\
 	yelp-types.c		\
 	yelp-types.h
 
-EXTRA_DIST =			\
-	yelp-debug.h		\
-	yelp-error.h		\
-	yelp-io-channel.h	\
+EXTRA_DIST =				\
+	yelp-bz2-decompressor.h		\
+	yelp-debug.h			\
+	yelp-error.h			\
+	yelp-io-channel.h		\
+	yelp-lzma-decompressor.h	\
+	yelp-magic-decompressor.h	\
 	yelp-marshal.list
 
 yelp-marshal.h: stamp-yelp-marshal.h
