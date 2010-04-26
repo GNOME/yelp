@@ -6,6 +6,8 @@ libyelp_la_SOURCES =				\
 	yelp-error.c				\
 	yelp-docbook-document.c			\
 	yelp-document.c				\
+	yelp-info-document.c			\
+	yelp-info-parser.c			\
 	yelp-io-channel.c			\
 	yelp-location-entry.c			\
 	yelp-lzma-decompressor.c		\
@@ -30,6 +32,7 @@ libyelp_la_LIBADD =				\
 libyelp_headers =				\
 	yelp-docbook-document.h			\
 	yelp-document.h				\
+	yelp-info-document.h			\
 	yelp-location-entry.h			\
 	yelp-mallard-document.h			\
 	yelp-settings.h				\
@@ -55,6 +58,7 @@ EXTRA_DIST =				\
 	yelp-bz2-decompressor.h		\
 	yelp-debug.h			\
 	yelp-error.h			\
+	yelp-info-parser.h		\
 	yelp-io-channel.h		\
 	yelp-lzma-decompressor.h	\
 	yelp-magic-decompressor.h	\

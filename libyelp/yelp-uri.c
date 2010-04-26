@@ -279,12 +279,10 @@ resolve_async (YelpUri *uri)
             break;
         case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
         case YELP_URI_DOCUMENT_TYPE_MALLARD:
+        case YELP_URI_DOCUMENT_TYPE_INFO:
             resolve_xref_uri (uri);
             break;
         case YELP_URI_DOCUMENT_TYPE_MAN:
-            /* FIXME: what do we do? */
-            break;
-        case YELP_URI_DOCUMENT_TYPE_INFO:
             /* FIXME: what do we do? */
             break;
         case YELP_URI_DOCUMENT_TYPE_TEXT:
@@ -968,7 +966,8 @@ resolve_xref_uri (YelpUri *uri)
                                      priv->frag_id ? "#" : "",
                                      priv->frag_id ? priv->frag_id : "",
                                      NULL);
-    else if (g_str_has_prefix (priv->docuri, "file:"))
+    else if (g_str_has_prefix (priv->docuri, "file:") ||
+             g_str_has_prefix (priv->docuri, "info:") )
         priv->fulluri = g_strconcat (priv->docuri,
                                      (priv->page_id || priv->frag_id) ? "#" : "",
                                      priv->page_id ? priv->page_id : "",

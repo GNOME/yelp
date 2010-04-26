@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2004, Davyd Madeley
  *
@@ -27,7 +27,13 @@
 #include <gtk/gtk.h>
 #include <libxml/tree.h>
 
-#include "yelp-utils.h"
+enum {
+    INFO_PARSER_COLUMN_PAGE_NO,
+    INFO_PARSER_COLUMN_PAGE_NAME,
+    INFO_PARSER_COLUMN_PAGE_CONTENT,
+    INFO_PARSER_N_COLUMNS
+};
+
 
 GtkTreeStore          *yelp_info_parser_parse_file  (char           *file);
 xmlDocPtr	       yelp_info_parser_parse_tree  (GtkTreeStore   *tree);

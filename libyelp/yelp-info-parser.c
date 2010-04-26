@@ -1,5 +1,6 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2005 Davyd Madeley  <davyd@madeley.id.au>
+ * Copyright (C) 2005 Davyd Madeley <davyd@madeley.id.au>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,9 +28,8 @@
 #include <gtk/gtk.h>
 #include <string.h>
 
-#include "yelp-io-channel.h"
 #include "yelp-info-parser.h"
-#include "yelp-utils.h"
+#include "yelp-magic-decompressor.h"
 #include "yelp-debug.h"
 
 
@@ -186,15 +186,6 @@ enum
 	PAGE_OTHER
 };
 
-enum
-{
-	COLUMN_PAGE_NO,
-	COLUMN_PAGE_NAME,
-	COLUMN_PAGE_CONTENT,
-	
-	N_COLUMNS
-};
-
 static int
 page_type (char *page)
 {
@@ -213,32 +204,42 @@ page_type (char *page)
 static char
 *open_info_file (char *file)
 {
-	GIOChannel *channel = NULL;
-	int i;
-	gsize len;
-	char *str;
-	GError *error = NULL;
-	GIOStatus result = G_IO_STATUS_NORMAL;
+    GFile *gfile;
+    GConverter *converter;
+    GFileInputStream *file_stream;
+    GInputStream *stream;
+    gchar buf[1024];
+    gssize bytes;
+    GString *string;
+    gchar *str;
+    int i;
 
-	debug_print (DB_DEBUG, "!! Opening %s...\n", file);
-	
-	channel = yelp_io_channel_new_file (file, &error);
-	if (!channel) {
-	  return NULL;
-	}
-	result = g_io_channel_read_to_end (channel, &str, &len, &error);
-	if (result != G_IO_STATUS_NORMAL) {
-	  return NULL;
-	}
-	g_io_channel_shutdown (channel, FALSE, NULL);
-	g_io_channel_unref (channel);
+    gfile = g_file_new_for_path (file);
+    file_stream = g_file_read (gfile, NULL, NULL);
+    converter = (GConverter *) yelp_magic_decompressor_new ();
+    stream = g_converter_input_stream_new ((GInputStream *) file_stream, converter);
+    string = g_string_new (NULL);
 
-	/* C/glib * cannot really handle \0 in strings, convert. */
-	for (i = 0; i < (len - 1); i++)
-	  if (str[i] == INFO_TAG_OPEN[0] && str[i+1] == INFO_TAG_OPEN[1])
-	    str[i] = INFO_C_TAG_OPEN[0];
+    while ((bytes = g_input_stream_read (stream, buf, 1024, NULL, NULL)) > 0)
+        g_string_append_len (string, buf, bytes);
 
-	return str;
+    g_object_unref (stream);
+    /*
+    g_object_unref (converter);
+    g_object_unref (file_stream);
+    g_object_unref (file);
+    */
+
+    str = string->str;
+
+    /* C/glib * cannot really handle \0 in strings, convert. */
+    for (i = 0; i < (string->len - 1); i++)
+        if (str[i] == INFO_TAG_OPEN[0] && str[i+1] == INFO_TAG_OPEN[1])
+            str[i] = INFO_C_TAG_OPEN[0];
+
+    g_string_free (string, FALSE);
+
+    return str;
 }
 
 static gchar *
@@ -628,9 +629,9 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	tmp = g_strdup (node);
 	tmp = g_strdelimit (tmp, " ", '_');
 	gtk_tree_store_set (tree, iter,
-			    COLUMN_PAGE_NO, tmp,
-			    COLUMN_PAGE_NAME, node,
-			    COLUMN_PAGE_CONTENT, parts[2],
+			    INFO_PARSER_COLUMN_PAGE_NO, tmp,
+			    INFO_PARSER_COLUMN_PAGE_NAME, node,
+			    INFO_PARSER_COLUMN_PAGE_CONTENT, parts[2],
 			    -1);
 
 	g_free (tmp);
@@ -788,7 +789,7 @@ GtkTreeStore
 	 * rather then consolidating these into one dictionary, we'll just
 	 * chain our lookups */
 	processed_table = g_malloc0 (pages * sizeof (int));
-	tree = gtk_tree_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
+	tree = gtk_tree_store_new (INFO_PARSER_N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
 			G_TYPE_STRING);
 	nodes2iters = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
 					     (GDestroyNotify) gtk_tree_iter_free);
@@ -828,9 +829,9 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 	do
 	{
 		gtk_tree_model_get (GTK_TREE_MODEL (tree), &iter,
-				COLUMN_PAGE_NO, &page_no,
-				COLUMN_PAGE_NAME, &page_name,
-				COLUMN_PAGE_CONTENT, &page_content,
+				INFO_PARSER_COLUMN_PAGE_NO, &page_no,
+				INFO_PARSER_COLUMN_PAGE_NAME, &page_name,
+				INFO_PARSER_COLUMN_PAGE_CONTENT, &page_content,
 				-1);
 		debug_print (DB_DEBUG, "Got Section: %s\n", page_name);
 		if (strstr (page_content, "*Note") || 
@@ -914,8 +915,8 @@ resolve_frag_id (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter,
   gchar **xref = data;
 
   gtk_tree_model_get (GTK_TREE_MODEL (model), iter,
-		      COLUMN_PAGE_NO, &page_no,
-		      COLUMN_PAGE_NAME, &page_name,
+		      INFO_PARSER_COLUMN_PAGE_NO, &page_no,
+		      INFO_PARSER_COLUMN_PAGE_NAME, &page_name,
 		      -1);
   if (g_str_equal (page_name, *xref)) {
     g_free (*xref);
@@ -1029,9 +1030,9 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
 				BAD_CAST tmp);
 	g_free (tmp);
-	tmp = g_strconcat ("?", xref, NULL);
+        tmp = g_strconcat ("xref:", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
-	g_free (tmp);
+        g_free (tmp);
       } else { /* Indexy type menu  - we gotta do a  little work to fix the
 		* spacing
 		*/
@@ -1047,19 +1048,19 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 	
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
 					BAD_CAST title);
-	tmp = g_strconcat ("?", xref, NULL);
+        tmp = g_strconcat ("xref:", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
-	g_free (tmp);
+        g_free (tmp);
 	xmlNewTextChild (mholder, NULL, BAD_CAST "spacing",
 			 BAD_CAST sp);
 	tmp = g_strconcat (g_strstrip(ref), ".", NULL);
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
 				BAD_CAST tmp);
 	g_free (tmp);
-	tmp = g_strconcat ("?", xref, NULL);
+        tmp = g_strconcat ("xref:", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
 
-	g_free (tmp);	
+        g_free (tmp);
 	g_free (sp);
       }
       xmlNewTextChild (mholder, NULL, BAD_CAST "para",
@@ -1214,7 +1215,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	  link = g_strstrip (link);
 	  length = strlen (link) - 1;
 	  link[length] = '\0';	  
-	  href = g_strconcat ("?", link, NULL);
+	  href = g_strconcat ("xref:", link, NULL);
 	  link[length] = 'a';
 	  g_free (link);
 
@@ -1249,8 +1250,8 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	  frag = g_strndup (url, tmp1 - url);
 	g_strstrip (frag);
 	gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, &frag);
-	href = g_strconcat ("?", frag, NULL);
-	g_free (frag);
+	href = g_strconcat ("xref:", frag, NULL);
+        g_free (frag);
       }
       for (ulink = urls; *ulink != NULL; ulink++) {
 	if (ulink == urls)

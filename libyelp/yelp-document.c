@@ -30,6 +30,7 @@
 #include "yelp-debug.h"
 #include "yelp-document.h"
 #include "yelp-error.h"
+#include "yelp-info-document.h"
 #include "yelp-docbook-document.h"
 #include "yelp-mallard-document.h"
 #include "yelp-simple-document.h"
@@ -170,7 +171,7 @@ yelp_document_get_for_uri (YelpUri *uri)
 	/* FIXME */
 	break;
     case YELP_URI_DOCUMENT_TYPE_INFO:
-	/* FIXME */
+	document = yelp_info_document_new (uri);
 	break;
     case YELP_URI_DOCUMENT_TYPE_TOC:
 	/* FIXME */

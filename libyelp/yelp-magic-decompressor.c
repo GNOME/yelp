@@ -49,7 +49,10 @@ yelp_magic_decompressor_dispose (GObject *object)
 {
     YelpMagicDecompressor *decompressor;
 
-    g_object_unref (decompressor->magic_decoder_ring);
+    if (decompressor->magic_decoder_ring) {
+        g_object_unref (decompressor->magic_decoder_ring);
+        decompressor->magic_decoder_ring = NULL;
+    }
 
     G_OBJECT_CLASS (yelp_magic_decompressor_parent_class)->dispose (object);
 }
