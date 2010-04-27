@@ -567,7 +567,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	  }
 	
 	/* by this point our parent and older sibling should be processed */
-	if (!up || !g_ascii_strcasecmp (up, "(dir)") || !strcmp (up, "Top"))
+	if (!up || !g_ascii_strcasecmp (up, "(dir)"))
 	{
 	  debug_print (DB_DEBUG, "\t> no parent\n");
 		if (!prev || !g_ascii_strcasecmp (prev, "(dir)"))
@@ -817,7 +817,7 @@ GtkTreeStore
 static void
 parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 {
-	GtkTreeIter children;
+    GtkTreeIter children, parent;
 	xmlNodePtr newnode;
 
 	char *page_no = NULL;
@@ -856,6 +856,15 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 		 * save some memory */
 		g_free (page_content);
 		page_content = NULL;
+
+                if (gtk_tree_model_iter_parent (GTK_TREE_MODEL (tree), &parent, &iter)) {
+                    gchar *parent_id;
+                    gtk_tree_model_get (GTK_TREE_MODEL (tree), &parent,
+                                        INFO_PARSER_COLUMN_PAGE_NO, &parent_id,
+                                        -1);
+                    xmlNewProp (newnode, BAD_CAST "up", BAD_CAST parent_id);
+                    g_free (parent_id);
+                }
 
 		xmlNewProp (newnode, BAD_CAST "id", 
 			    BAD_CAST page_no);
