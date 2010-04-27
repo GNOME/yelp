@@ -52,6 +52,23 @@
           </xsl:if>
         </div>
         <div class="body">
+          <div class="navbar">
+            <xsl:variable name="preceding" select="preceding::Section[1]"/>
+            <xsl:variable name="following" select="(Section[1] | following::Section[1])[1]"/>
+            <xsl:if test="$preceding">
+              <a class="navbar-prev" href="xref:{$preceding/@id}">
+                <xsl:value-of select="$preceding/@name"/>
+              </a>
+            </xsl:if>
+            <xsl:if test="$preceding and $following">
+              <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
+            </xsl:if>
+            <xsl:if test="$following">
+              <a class="navbar-next" href="xref:{$following/@id}">
+                <xsl:value-of select="$following/@name"/>
+              </a>
+            </xsl:if>
+          </div>
           <xsl:apply-templates select="node()[not(self::Section)]"/>
         </div>
         <div class="foot"/>
@@ -104,9 +121,46 @@
 </xsl:template>
 
 <xsl:template name="html.css">
-  <xsl:call-template name="theme.html.css"/>
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:call-template name="theme.html.css">
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
   <xsl:text>
-body { white-space: pre; font-family: monospace; }
+div.body { white-space: pre; font-family: monospace; }
+<!-- navbar from mal2html, possibly move to theme-html -->
+div.navbar {
+  margin: 0;
+  float: right;
+  font-family: sans-serif;
+}
+a.navbar-prev::before {
+  content: '</xsl:text><xsl:choose>
+  <xsl:when test="$left = 'left'"><xsl:text>&#x25C0;&#x00A0;&#x00A0;</xsl:text></xsl:when>
+  <xsl:otherwise><xsl:text>&#x25B6;&#x00A0;&#x00A0;</xsl:text></xsl:otherwise>
+  </xsl:choose><xsl:text>';
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+a.navbar-next::after {
+  content: '</xsl:text><xsl:choose>
+  <xsl:when test="$left = 'left'"><xsl:text>&#x00A0;&#x00A0;&#x25B6;</xsl:text></xsl:when>
+  <xsl:otherwise><xsl:text>&#x00A0;&#x00A0;&#x25C0;</xsl:text></xsl:otherwise>
+  </xsl:choose><xsl:text>';
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
 </xsl:text>
 </xsl:template>
 
