@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns="http://www.w3.org/1999/xhtml"
+                extension-element-prefixes="yelp"
+                version="1.0">
+
+<xsl:import href="@XSL_GETTEXT@"/>
+<xsl:import href="@XSL_THEME_COLORS@"/>
+<xsl:import href="@XSL_THEME_ICONS@"/>
+<xsl:import href="@XSL_THEME_HTML@"/>
+<xsl:include href="yelp-common.xsl"/>
+
+<xsl:template match="/Info">
+  <xsl:apply-templates select="Section"/>
+</xsl:template>
+
+<xsl:template match="Section">
+  <yelp:document href="{@id}">
+    <html>
+      <head>
+        <title>
+          <xsl:value-of select="@name"/>
+        </title>
+        <style type="text/css">
+          <xsl:call-template name="html.css"/>
+        </style>
+      </head>
+      <body>
+        <div class="head"/>
+        <div class="body">
+          <xsl:apply-templates select="node()[not(self::Section)]"/>
+        </div>
+        <div class="foot"/>
+      </body>
+    </html>
+  </yelp:document>
+  <xsl:apply-templates select="Section"/>
+</xsl:template>
+
+<xsl:template match="para">
+  <xsl:value-of select="node()"/>
+  <xsl:text>
+  </xsl:text>
+</xsl:template>
+
+<xsl:template match="para1">
+  <xsl:value-of select="node()"/>
+</xsl:template>
+
+<xsl:template match="spacing">
+  <xsl:value-of select="node()"/>
+</xsl:template>
+
+<xsl:template match="a">
+  <xsl:element name="a">
+    <xsl:attribute name="href">
+      <xsl:value-of select="@href"/>
+    </xsl:attribute>
+    <xsl:value-of select="node()"/>
+  </xsl:element>
+</xsl:template>
+
+<xsl:template match="img">
+  <xsl:element name="a">
+    <xsl:attribute name="href">
+      <xsl:value-of select="@src"/>
+    </xsl:attribute>
+    <xsl:element name="img">
+      <xsl:attribute name="src"> <xsl:value-of select="@src"/></xsl:attribute>
+    </xsl:element>
+  </xsl:element>
+</xsl:template>
+
+<xsl:template match="menuholder">
+  <xsl:apply-templates select="node()[not(self::menuholder)]"/>
+</xsl:template>
+
+<xsl:template match="noteholder">
+  <xsl:apply-templates select="node()[not(self::noteholder)]"/>
+</xsl:template>
+
+<xsl:template name="html.css">
+  <xsl:call-template name="theme.html.css"/>
+  <xsl:text>
+body { white-space: pre; font-family: monospace; }
+</xsl:text>
+</xsl:template>
+
+</xsl:stylesheet>
