@@ -270,6 +270,10 @@ transform_chunk_ready (YelpTransform    *transform,
 
     yelp_document_signal (YELP_DOCUMENT (info),
                           chunk_id,
+                          YELP_DOCUMENT_SIGNAL_INFO,
+                          NULL);
+    yelp_document_signal (YELP_DOCUMENT (info),
+                          chunk_id,
                           YELP_DOCUMENT_SIGNAL_CONTENTS,
                           NULL);
 }
