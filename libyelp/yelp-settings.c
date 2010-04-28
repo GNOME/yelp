@@ -645,7 +645,7 @@ yelp_settings_set_icons (YelpSettings     *settings,
 	gchar *filename = va_arg (args, gchar *);
 	if (settings->priv->icons[icon] != NULL)
 	    g_free (settings->priv->icons[icon]);
-	settings->priv->icons[icon] = g_strdup (filename);
+	settings->priv->icons[icon] = g_filename_to_uri (filename, NULL, NULL);
 	icon = va_arg (args, YelpSettingsIcon);
     }
 
@@ -922,7 +922,8 @@ icon_theme_changed (GtkIconTheme *theme,
 					   settings->priv->icon_size,
 					   GTK_ICON_LOOKUP_NO_SVG);
 	if (info != NULL) {
-	    settings->priv->icons[i] = g_strdup (gtk_icon_info_get_filename (info));
+	    settings->priv->icons[i] = g_filename_to_uri (gtk_icon_info_get_filename (info),
+                                                          NULL, NULL);
 	    gtk_icon_info_free (info);
 	}
 	else {

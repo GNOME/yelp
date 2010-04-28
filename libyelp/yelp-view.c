@@ -34,6 +34,7 @@
 #include "yelp-debug.h"
 #include "yelp-docbook-document.h"
 #include "yelp-error.h"
+#include "yelp-settings.h"
 #include "yelp-types.h"
 #include "yelp-view.h"
 
@@ -554,46 +555,77 @@ view_show_error_page (YelpView *view,
     static const gchar *errorpage =
         "<html><head>"
         "<style type='text/css'>"
-        "body { margin: 1em; }"
-        ".outer {"
-        "  border: solid 2px #cc0000;"
-        "  -webkit-border-radius: 6px;"
-        "}"
-        ".inner {"
-        "  padding: 1em;"
-        "  border: solid 2px white;"
-        "  -webkit-border-radius: 6px;"
-        "  background: #fce94f;"
-        "}"
+        "body {"
+        " margin: 1em;"
+        " color: %s;"
+        " background-color: %s;"
+        " }\n"
+        "div.note {"
+        " padding: 6px;"
+        " border-color: %s;"
+        " border-top: solid 1px;"
+        " border-bottom: solid 1px;"
+        " background-color: %s;"
+        " }\n"
+        "div.note div.inner {"
+        " margin: 0; padding: 0;"
+        " background-image: url(%s);"
+        " background-position: %s top;"
+        " background-repeat: no-repeat;"
+        " min-height: %ipx;"
+        " }\n"
+        "div.note div.contents {"
+        " margin-%s: %ipx;"
+        " }\n"
+        "div.note div.title {"
+        " margin-%s: %ipx;"
+        " margin-bottom: 0.2em;"
+        " font-weight: bold;"
+        " color: %s;"
+        " }\n"
         "</style>"
         "</head><body>"
-        "<div class='outer'><div class='inner'>"
+        "<div class='note'><div class='inner'>"
         "<div class='title'>%s</div>"
         "<div class='contents'>%s</div>"
         "</div></div>"
         "</body></html>";
+    YelpSettings *settings = yelp_settings_get_default ();
     gchar *page, *title = NULL;
+    gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon;
+    gint iconsize;
+    const gchar *left = (gtk_widget_get_direction(view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
     if (error->domain == YELP_ERROR)
         switch (error->code) {
         case YELP_ERROR_NOT_FOUND:
-            title = _("Document or Page Not Found");
+            title = _("Not Found");
             break;
         case YELP_ERROR_CANT_READ:
-            title = _("Cannot Read the Document or Page");
+            title = _("Cannot Read");
             break;
         default:
             break;
         }
     if (title == NULL)
         title = _("Unknown Error");
-    page = g_strdup_printf (errorpage, title, error->message);
+    textcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT);
+    bgcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
+    noteborder = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_RED_BORDER);
+    notebg = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_YELLOW_BASE);
+    titlecolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT_LIGHT);
+    noteicon = yelp_settings_get_icon (settings, YELP_SETTINGS_ICON_WARNING);
+    iconsize = yelp_settings_get_icon_size (settings) + 6;
+    page = g_strdup_printf (errorpage,
+                            textcolor, bgcolor, noteborder, notebg, noteicon,
+                            left, iconsize, left, iconsize, left, iconsize,
+                            titlecolor, title, error->message);
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
     g_signal_handler_block (view, priv->navigation_requested);
     webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                  page,
                                  "text/html",
                                  "UTF-8",
-                                 "about:error");
+                                 "file:///error/");
     g_signal_handler_unblock (view, priv->navigation_requested);
     g_error_free (error);
     g_free (page);
