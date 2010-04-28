@@ -60,10 +60,6 @@ static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
-static void          window_go_back               (GtkAction          *action,
-                                                   YelpWindow         *window);
-static void          window_go_forward            (GtkAction          *action,
-                                                   YelpWindow         *window);
 
 static void          entry_location_selected      (YelpLocationEntry  *entry,
                                                    YelpWindow         *window);
@@ -141,8 +137,8 @@ static const gchar *YELP_UI =
     "<menuitem action='ShowTextCursor'/>"
     "</menu>"
     "<menu action='GoMenu'>"
-    "<menuitem action='GoBack'/>"
-    "<menuitem action='GoForward'/>"
+    "<menuitem action='YelpViewGoBack'/>"
+    "<menuitem action='YelpViewGoForward'/>"
     "<separator/>"
     "<menuitem action='YelpViewGoPrevious'/>"
     "<menuitem action='YelpViewGoNext'/>"
@@ -150,23 +146,6 @@ static const gchar *YELP_UI =
     "</menubar>"
     "<accelerator action='OpenLocation'/>"
     "</ui>";
-
-typedef struct _YelpBackEntry YelpBackEntry;
-struct _YelpBackEntry {
-    YelpUri *uri;
-    gchar *title;
-    gchar *desc;
-};
-static void
-back_entry_free (YelpBackEntry *back)
-{
-    if (back == NULL)
-        return;
-    g_object_unref (back->uri);
-    g_free (back->title);
-    g_free (back->desc);
-    g_free (back);
-}
 
 typedef struct _YelpWindowPrivate YelpWindowPrivate;
 struct _YelpWindowPrivate {
@@ -179,18 +158,12 @@ struct _YelpWindowPrivate {
     /* no refs on these, owned by containers */
     YelpView *view;
     GtkWidget *hbox;
-    GtkWidget *back_button;
-    GtkWidget *forward_button;
     YelpLocationEntry *entry;
     GtkWidget *hidden_entry;
 
     /* refs because we dynamically add & remove */
     GtkWidget *align_location;
     GtkWidget *align_hidden;
-
-    GList *back_list;
-    GList *back_cur;
-    gboolean back_load;
 
     gulong entry_location_selected;
 
@@ -218,17 +191,7 @@ static const GtkActionEntry entries[] = {
       N_("Open Location"),
       "<Control>L",
       NULL,
-      G_CALLBACK (window_open_location) },
-    {"GoBack", GTK_STOCK_GO_BACK,
-     N_("_Back"),
-     "<Alt>Left",
-     NULL,
-     G_CALLBACK (window_go_back) },
-    {"GoForward", GTK_STOCK_GO_FORWARD,
-     N_("_Forward"),
-     "<Alt>Right",
-     NULL,
-     G_CALLBACK (window_go_forward) }
+      G_CALLBACK (window_open_location) }
 };
 
 static void
@@ -293,11 +256,6 @@ yelp_window_dispose (GObject *object)
         priv->align_hidden = NULL;
     }
 
-    while (priv->back_list) {
-        back_entry_free ((YelpBackEntry *) priv->back_list->data);
-        priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
-    }
-
     G_OBJECT_CLASS (yelp_window_parent_class)->dispose (object);
 }
 
@@ -346,7 +304,9 @@ static void
 window_construct (YelpWindow *window)
 {
     GtkWidget *vbox, *scroll;
+    GtkActionGroup *view_actions;
     GtkAction *action;
+    GtkWidget *button;
     GtkTreeIter iter;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
@@ -368,9 +328,8 @@ window_construct (YelpWindow *window)
     gtk_ui_manager_insert_action_group (priv->ui_manager,
                                         yelp_application_get_action_group (priv->application),
                                         1);
-    gtk_ui_manager_insert_action_group (priv->ui_manager,
-                                        yelp_view_get_action_group (priv->view),
-                                        2);
+    view_actions = yelp_view_get_action_group (priv->view);
+    gtk_ui_manager_insert_action_group (priv->ui_manager, view_actions, 2);
     gtk_window_add_accel_group (GTK_WINDOW (window),
                                 gtk_ui_manager_get_accel_group (priv->ui_manager));
     gtk_ui_manager_add_ui_from_string (priv->ui_manager, YELP_UI, -1, NULL);
@@ -381,15 +340,15 @@ window_construct (YelpWindow *window)
     priv->hbox = gtk_hbox_new (FALSE, 0);
     gtk_box_pack_start (GTK_BOX (vbox), priv->hbox, FALSE, FALSE, 0);
 
-    action = gtk_action_group_get_action (priv->action_group, "GoBack");
-    priv->back_button = gtk_action_create_tool_item (action);
+    action = gtk_action_group_get_action (view_actions, "YelpViewGoBack");
+    button = gtk_action_create_tool_item (action);
     gtk_box_pack_start (GTK_BOX (priv->hbox),
-                        priv->back_button,
+                        button,
                         FALSE, FALSE, 0);
-    action = gtk_action_group_get_action (priv->action_group, "GoForward");
-    priv->forward_button = gtk_action_create_tool_item (action);
+    action = gtk_action_group_get_action (view_actions, "YelpViewGoForward");
+    button = gtk_action_create_tool_item (action);
     gtk_box_pack_start (GTK_BOX (priv->hbox),
-                        priv->forward_button,
+                        button,
                         FALSE, FALSE, 0);
     
     priv->history = gtk_list_store_new (6,
@@ -514,15 +473,17 @@ yelp_window_get_geometry (YelpWindow  *window,
 static void
 window_new (GtkAction *action, YelpWindow *window)
 {
+    YelpUri *yuri;
     gchar *uri = NULL;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    if (priv->back_list && priv->back_list->data)
-        uri = yelp_uri_get_document_uri (((YelpBackEntry *) priv->back_list->data)->uri);
+    g_object_get (priv->view, "yelp-uri", &yuri, NULL);
+    uri = yelp_uri_get_document_uri (yuri);
 
     yelp_application_new_window (priv->application, uri);
 
     g_free (uri);
+    g_object_unref (yuri);
 }
 
 static gboolean
@@ -561,6 +522,7 @@ window_close (GtkAction *action, YelpWindow *window)
 static void
 window_open_location (GtkAction *action, YelpWindow *window)
 {
+    YelpUri *yuri = NULL;
     gchar *uri = NULL;
     const GdkColor yellow;
     gchar *color;
@@ -585,8 +547,11 @@ window_open_location (GtkAction *action, YelpWindow *window)
     }
     g_free (color);
 
-    if (priv->back_cur && priv->back_cur->data)
-        uri = yelp_uri_get_canonical_uri (((YelpBackEntry *) priv->back_list->data)->uri);
+    g_object_get (priv->view, "yelp-uri", &yuri, NULL);
+    if (yuri) {
+        uri = yelp_uri_get_canonical_uri (yuri);
+        g_object_unref (yuri);
+    }
     if (uri) {
         gchar *c;
         gtk_entry_set_text (GTK_ENTRY (priv->hidden_entry), uri);
@@ -597,42 +562,6 @@ window_open_location (GtkAction *action, YelpWindow *window)
             gtk_editable_select_region (GTK_EDITABLE (priv->hidden_entry), 5, -1);
         g_free (uri);
     }
-}
-
-static void
-window_go_back (GtkAction  *action,
-                YelpWindow *window)
-{
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    if (priv->back_cur == NULL || priv->back_cur->next == NULL)
-        return;
-
-    priv->back_cur = priv->back_cur->next;
-
-    if (priv->back_cur == NULL || priv->back_cur->data == NULL)
-        return;
-
-    priv->back_load = TRUE;
-    yelp_window_load_uri (window, ((YelpBackEntry *) priv->back_cur->data)->uri);
-}
-
-static void
-window_go_forward (GtkAction  *action,
-                   YelpWindow *window)
-{
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    if (priv->back_cur == NULL || priv->back_cur->prev == NULL)
-        return;
-
-    priv->back_cur = priv->back_cur->prev;
-
-    if (priv->back_cur == NULL || priv->back_cur->data == NULL)
-        return;
-
-    priv->back_load = TRUE;
-    yelp_window_load_uri (window, ((YelpBackEntry *) priv->back_cur->data)->uri);
 }
 
 static void
@@ -661,7 +590,7 @@ entry_completion_selected (YelpLocationEntry  *entry,
     gchar *page, *xref;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    base = ((YelpBackEntry *) priv->back_cur->data)->uri;
+    g_object_get (priv->view, "yelp-uri", &base, NULL);
     gtk_tree_model_get (model, iter, COL_URI, &page, -1);
 
     xref = g_strconcat ("xref:", page, NULL);
@@ -672,6 +601,7 @@ entry_completion_selected (YelpLocationEntry  *entry,
     g_free (page);
     g_free (xref);
     g_object_unref (uri);
+    g_object_unref (base);
 
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 }
@@ -745,71 +675,11 @@ view_uri_selected (YelpView     *view,
     gboolean cont;
     YelpUri *uri;
     gchar *struri;
-    YelpBackEntry *back;
-    GtkAction *action;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (G_OBJECT (view), "yelp-uri", &uri, NULL);
     if (uri == NULL)
         return;
-
-    back = g_new0 (YelpBackEntry, 1);
-    back->uri = g_object_ref (uri);
-    if (!priv->back_load) {
-        while (priv->back_list != priv->back_cur) {
-            back_entry_free ((YelpBackEntry *) priv->back_list->data);
-            priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
-        }
-        priv->back_list = g_list_prepend (priv->back_list, back);
-        priv->back_cur = priv->back_list;
-    }
-    priv->back_load = FALSE;
-
-    action = gtk_action_group_get_action (priv->action_group, "GoBack");
-    gtk_action_set_sensitive (action, FALSE);
-    gtk_widget_set_tooltip_text (priv->back_button, "");
-    if (priv->back_cur->next && priv->back_cur->next->data) {
-        gchar *tooltip = "";
-        YelpBackEntry *back = priv->back_cur->next->data;
-
-        gtk_action_set_sensitive (action, TRUE);
-        if (back->title && back->desc) {
-            gchar *color;
-            color = yelp_settings_get_color (yelp_settings_get_default (),
-                                             YELP_SETTINGS_COLOR_TEXT_LIGHT);
-            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>\n<span color='%s'>%s</span>",
-                                               back->title, color, back->desc);
-            g_free (color);
-        }
-        else if (back->title)
-            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>",
-                                               back->title);
-        /* Can't seem to use markup on GtkAction tooltip */
-        gtk_widget_set_tooltip_markup (priv->back_button, tooltip);
-    }
-
-    action = gtk_action_group_get_action (priv->action_group, "GoForward");
-    gtk_action_set_sensitive (action, FALSE);
-    gtk_widget_set_tooltip_text (priv->forward_button, "");
-    if (priv->back_cur->prev && priv->back_cur->prev->data) {
-        gchar *tooltip = "";
-        YelpBackEntry *back = priv->back_cur->prev->data;
-
-        gtk_action_set_sensitive (action, TRUE);
-        if (back->title && back->desc) {
-            gchar *color;
-            color = yelp_settings_get_color (yelp_settings_get_default (),
-                                             YELP_SETTINGS_COLOR_TEXT_LIGHT);
-            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>\n<span color='%s'>%s</span>",
-                                               back->title, color, back->desc);
-            g_free (color);
-        }
-        else if (back->title)
-            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>",
-                                               back->title);
-        /* Can't seem to use markup on GtkAction tooltip */
-        gtk_widget_set_tooltip_markup (priv->forward_button, tooltip);
-    }
 
     struri = yelp_uri_get_canonical_uri (uri);
 
@@ -887,7 +757,6 @@ view_page_title (YelpView    *view,
     GtkTreeIter first;
     gchar *title, *frag;
     YelpUri *uri;
-    YelpBackEntry *back = NULL;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (view, "page-title", &title, NULL);
@@ -897,32 +766,19 @@ view_page_title (YelpView    *view,
     g_object_get (view, "yelp-uri", &uri, NULL);
     frag = yelp_uri_get_frag_id (uri);
 
-    if (priv->back_cur)
-        back = priv->back_cur->data;
-
     gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->history), &first);
     if (frag) {
         gchar *tmp = g_strdup_printf ("%s (#%s)", title, frag);
         gtk_list_store_set (priv->history, &first,
                             COL_TITLE, tmp,
                             -1);
-        if (back) {
-            g_free (back->title);
-            back->title = tmp;
-        }
-        else {
-            g_free (tmp);
-        }
+        g_free (tmp);
         g_free (frag);
     }
     else {
         gtk_list_store_set (priv->history, &first,
                             COL_TITLE, title,
                             -1);
-        if (back) {
-            g_free (back->title);
-            back->title = g_strdup (title);
-        }
     }
 
     g_free (title);
@@ -936,25 +792,16 @@ view_page_desc (YelpView    *view,
 {
     GtkTreeIter first;
     gchar *desc;
-    YelpBackEntry *back = NULL;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (view, "page-desc", &desc, NULL);
     if (desc == NULL)
         return;
 
-    if (priv->back_cur)
-        back = priv->back_cur->data;
-
     gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->history), &first);
     gtk_list_store_set (priv->history, &first,
                         COL_DESC, desc,
                         -1);
-    if (back) {
-        g_free (back->desc);
-        back->desc = g_strdup (desc);
-    }
-
     g_free (desc);
 }
 

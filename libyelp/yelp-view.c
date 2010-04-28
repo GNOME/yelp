@@ -67,6 +67,8 @@ static void        view_resource_request          (WebKitWebView             *vi
                                                    WebKitNetworkResponse     *response,
                                                    gpointer                   user_data);
 
+static void        view_history_action            (GtkAction          *action,
+                                                   YelpView           *view);
 static void        view_navigation_action         (GtkAction          *action,
                                                    YelpView           *view);
 
@@ -86,6 +88,16 @@ static void        document_callback              (YelpDocument       *document,
                                                    GError             *error);
 
 static const GtkActionEntry entries[] = {
+    {"YelpViewGoBack", GTK_STOCK_GO_BACK,
+     N_("_Back"),
+     "<Alt>Left",
+     NULL,
+     G_CALLBACK (view_history_action) },
+    {"YelpViewGoForward", GTK_STOCK_GO_FORWARD,
+     N_("_Forward"),
+     "<Alt>Right",
+     NULL,
+     G_CALLBACK (view_history_action) },
     {"YelpViewGoPrevious", NULL,
      N_("_Previous Page"),
      "<Control>Page_Up",
@@ -121,6 +133,23 @@ G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW);
 
 static WebKitWebSettings *websettings;
 
+typedef struct _YelpBackEntry YelpBackEntry;
+struct _YelpBackEntry {
+    YelpUri *uri;
+    gchar *title;
+    gchar *desc;
+};
+static void
+back_entry_free (YelpBackEntry *back)
+{
+    if (back == NULL)
+        return;
+    g_object_unref (back->uri);
+    g_free (back->title);
+    g_free (back->desc);
+    g_free (back);
+}
+
 typedef struct _YelpViewPrivate YelpViewPrivate;
 struct _YelpViewPrivate {
     YelpUri       *uri;
@@ -135,6 +164,10 @@ struct _YelpViewPrivate {
     gchar         *page_title;
     gchar         *page_desc;
     gchar         *page_icon;
+
+    GList *back_list;
+    GList *back_cur;
+    gboolean back_load;
 
     GtkActionGroup *action_group;
 
@@ -194,6 +227,11 @@ yelp_view_dispose (GObject *object)
     if (priv->document) {
         g_object_unref (priv->document);
         priv->document = NULL;
+    }
+
+    while (priv->back_list) {
+        back_entry_free ((YelpBackEntry *) priv->back_list->data);
+        priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
     }
 
     G_OBJECT_CLASS (yelp_view_parent_class)->dispose (object);
@@ -530,6 +568,33 @@ view_resource_request (WebKitWebView         *view,
 }
 
 static void
+view_history_action (GtkAction *action,
+                     YelpView  *view)
+{
+    GList *newcur;
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    if (priv->back_cur == NULL)
+        return;
+
+    if (g_str_equal (gtk_action_get_name (action), "YelpViewGoBack"))
+        newcur = priv->back_cur->next;
+    else
+        newcur = priv->back_cur->prev;
+
+    if (newcur == NULL)
+        return;
+
+    priv->back_cur = newcur;
+
+    if (priv->back_cur->data == NULL)
+        return;
+
+    priv->back_load = TRUE;
+    yelp_view_load_uri (view, ((YelpBackEntry *) priv->back_cur->data)->uri);
+}
+
+static void
 view_navigation_action (GtkAction *action,
                         YelpView  *view)
 {
@@ -667,7 +732,7 @@ view_show_error_page (YelpView *view,
     gchar *page, *title = NULL;
     gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon;
     gint iconsize;
-    const gchar *left = (gtk_widget_get_direction(view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
+    const gchar *left = (gtk_widget_get_direction((GtkWidget *) view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
     if (error->domain == YELP_ERROR)
         switch (error->code) {
         case YELP_ERROR_NOT_FOUND:
@@ -755,6 +820,9 @@ uri_resolved (YelpUri  *uri,
 {
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpDocument *document;
+    YelpBackEntry *back;
+    GtkAction *action;
+    GSList *proxies, *cur;
     GError *error;
     gchar *struri;
 
@@ -789,6 +857,74 @@ uri_resolved (YelpUri  *uri,
         g_object_unref (priv->document);
     priv->document = document;
 
+    if (!priv->back_load) {
+        back = g_new0 (YelpBackEntry, 1);
+        back->uri = g_object_ref (uri);
+        while (priv->back_list != priv->back_cur) {
+            back_entry_free ((YelpBackEntry *) priv->back_list->data);
+            priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
+        }
+        priv->back_list = g_list_prepend (priv->back_list, back);
+        priv->back_cur = priv->back_list;
+    }
+    priv->back_load = FALSE;
+
+    action = gtk_action_group_get_action (priv->action_group, "YelpViewGoBack");
+    gtk_action_set_sensitive (action, FALSE);
+    proxies = gtk_action_get_proxies (action);
+    if (priv->back_cur->next && priv->back_cur->next->data) {
+        gchar *tooltip = "";
+        back = priv->back_cur->next->data;
+
+        gtk_action_set_sensitive (action, TRUE);
+        if (back->title && back->desc) {
+            gchar *color;
+            color = yelp_settings_get_color (yelp_settings_get_default (),
+                                             YELP_SETTINGS_COLOR_TEXT_LIGHT);
+            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>\n<span color='%s'>%s</span>",
+                                               back->title, color, back->desc);
+            g_free (color);
+        }
+        else if (back->title)
+            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>",
+                                               back->title);
+        /* Can't seem to use markup on GtkAction tooltip */
+        for (cur = proxies; cur != NULL; cur = cur->next)
+            gtk_widget_set_tooltip_markup (GTK_WIDGET (cur->data), tooltip);
+    }
+    else {
+        for (cur = proxies; cur != NULL; cur = cur->next)
+            gtk_widget_set_tooltip_text (GTK_WIDGET (cur->data), "");
+    }
+
+    action = gtk_action_group_get_action (priv->action_group, "YelpViewGoForward");
+    gtk_action_set_sensitive (action, FALSE);
+    proxies = gtk_action_get_proxies (action);
+    if (priv->back_cur->prev && priv->back_cur->prev->data) {
+        gchar *tooltip = "";
+        back = priv->back_cur->prev->data;
+
+        gtk_action_set_sensitive (action, TRUE);
+        if (back->title && back->desc) {
+            gchar *color;
+            color = yelp_settings_get_color (yelp_settings_get_default (),
+                                             YELP_SETTINGS_COLOR_TEXT_LIGHT);
+            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>\n<span color='%s'>%s</span>",
+                                               back->title, color, back->desc);
+            g_free (color);
+        }
+        else if (back->title)
+            tooltip = g_markup_printf_escaped ("<span size='larger'>%s</span>",
+                                               back->title);
+        /* Can't seem to use markup on GtkAction tooltip */
+        for (cur = proxies; cur != NULL; cur = cur->next)
+            gtk_widget_set_tooltip_markup (GTK_WIDGET (cur->data), tooltip);
+    }
+    else {
+        for (cur = proxies; cur != NULL; cur = cur->next)
+            gtk_widget_set_tooltip_text (GTK_WIDGET (cur->data), "");
+    }
+
     g_signal_emit_by_name (view, "notify::yelp-uri", 0);
 
     view_load_page (view);
@@ -807,6 +943,7 @@ document_callback (YelpDocument       *document,
     if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
         gchar *page_id, *prev_id, *next_id;
         GtkAction *action;
+        YelpBackEntry *back = NULL;
         page_id = yelp_uri_get_page_id (priv->uri);
 
         g_free (priv->root_title);
@@ -818,6 +955,15 @@ document_callback (YelpDocument       *document,
         priv->page_title = yelp_document_get_page_title (document, page_id);
         priv->page_desc = yelp_document_get_page_desc (document, page_id);
         priv->page_icon = yelp_document_get_page_icon (document, page_id);
+
+        if (priv->back_cur)
+            back = priv->back_cur->data;
+        if (back) {
+            g_free (back->title);
+            back->title = g_strdup (priv->page_title);
+            g_free (back->desc);
+            back->desc = g_strdup (priv->page_desc);
+        }
 
         prev_id = yelp_document_get_prev_id (document, page_id);
         action = gtk_action_group_get_action (priv->action_group, "YelpViewGoPrevious");
