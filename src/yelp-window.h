@@ -46,11 +46,13 @@ struct _YelpWindowClass
     GtkWindowClass  parent_class;
 };
 
-GType             yelp_window_get_type    (void);
-YelpWindow *      yelp_window_new         (YelpApplication *app);
-void              yelp_window_load_uri    (YelpWindow      *window,
-                                           YelpUri         *uri);
-
-GtkActionGroup *  yelp_window_get_action_group  (YelpWindow  *window);
+GType             yelp_window_get_type     (void);
+YelpWindow *      yelp_window_new          (YelpApplication *app);
+void              yelp_window_load_uri     (YelpWindow      *window,
+                                            YelpUri         *uri);
+YelpUri *         yelp_window_get_uri      (YelpWindow      *window);
+void              yelp_window_get_geometry (YelpWindow      *window,
+                                            gint            *width,
+                                            gint            *height);
 
 #endif /* __YELP_WINDOW_H__ */

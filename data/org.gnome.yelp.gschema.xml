@@ -1,5 +1,5 @@
 <schemalist>
-<schema id="org.gnome.yelp" path="/org/gnome/yelp">
+<schema id="org.gnome.yelp" path="/org/gnome/yelp/">
   <key name="show-cursor" type="b">
     <default>false</default>
   </key>
@@ -14,6 +14,11 @@
       <max>10</max>
     </range>
     -->
+  </key>
+</schema>
+<schema id="org.gnome.yelp.documents">
+  <key name="geometry" type="(ii)">
+    <default>(520,580)</default>
   </key>
 </schema>
 </schemalist>

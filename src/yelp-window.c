@@ -52,6 +52,10 @@ static void          yelp_window_set_property     (GObject            *object,
 static void          window_construct             (YelpWindow         *window);
 static void          window_new                   (GtkAction          *action,
                                                    YelpWindow         *window);
+static gboolean      window_configure_event       (YelpWindow         *window,
+                                                   GdkEventConfigure  *event,
+                                                   gpointer            user_data);
+static gboolean      window_resize_signal         (YelpWindow         *window);
 static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
@@ -103,6 +107,13 @@ enum {
     PROP_0,
     PROP_APPLICATION
 };
+
+enum {
+    RESIZE_EVENT,
+    LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (YelpWindow, yelp_window, GTK_TYPE_WINDOW);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_WINDOW, YelpWindowPrivate))
@@ -179,6 +190,10 @@ struct _YelpWindowPrivate {
     gboolean back_load;
 
     gulong entry_location_selected;
+
+    guint resize_signal;
+    gint width;
+    gint height;
 };
 
 static const GtkActionEntry entries[] = {
@@ -216,6 +231,7 @@ static const GtkActionEntry entries[] = {
 static void
 yelp_window_init (YelpWindow *window)
 {
+    g_signal_connect (window, "configure-event", window_configure_event, NULL);
 }
 
 static void
@@ -237,6 +253,14 @@ yelp_window_class_init (YelpWindowClass *klass)
                                                           G_PARAM_CONSTRUCT_ONLY |
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    signals[RESIZE_EVENT] =
+        g_signal_new ("resized",
+                      G_OBJECT_CLASS_TYPE (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
 
     g_type_class_add_private (klass, sizeof (YelpWindowPrivate));
 }
@@ -320,12 +344,10 @@ window_construct (YelpWindow *window)
 {
     GtkWidget *vbox, *scroll;
     GtkAction *action;
-    GError *error = NULL;
     GtkTreeIter iter;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
-    gtk_window_set_default_size (GTK_WINDOW (window), 520, 580);
 
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_container_add (GTK_CONTAINER (window), vbox);
@@ -461,12 +483,23 @@ yelp_window_load_uri (YelpWindow  *window,
     yelp_view_load_uri (priv->view, uri);
 }
 
-GtkActionGroup *
-yelp_window_get_action_group (YelpWindow *window)
+YelpUri *
+yelp_window_get_uri (YelpWindow *window)
+{
+    YelpUri *uri;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    g_object_get (G_OBJECT (priv->view), "yelp-uri", &uri, NULL);
+    return uri;
+}
+
+void
+yelp_window_get_geometry (YelpWindow  *window,
+                          gint        *width,
+                          gint        *height)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
-
-    return priv->action_group;
+    *width = priv->width;
+    *height = priv->height;
 }
 
 /******************************************************************************/
@@ -483,6 +516,31 @@ window_new (GtkAction *action, YelpWindow *window)
     yelp_application_new_window (priv->application, uri);
 
     g_free (uri);
+}
+
+static gboolean
+window_configure_event (YelpWindow         *window,
+                        GdkEventConfigure  *event,
+                        gpointer            user_data)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    priv->width = event->width;
+    priv->height = event->height;
+    if (priv->resize_signal > 0)
+        g_source_remove (priv->resize_signal);
+    priv->resize_signal = g_timeout_add (200,
+                                         (GSourceFunc) window_resize_signal,
+                                         window);
+    return FALSE;
+}
+
+static gboolean
+window_resize_signal (YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    g_signal_emit (window, signals[RESIZE_EVENT], 0);
+    priv->resize_signal = 0;
+    return FALSE;
 }
 
 static void

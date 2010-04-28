@@ -73,6 +73,9 @@ static void          application_adjust_font           (GtkAction             *a
                                                         YelpApplication       *app);
 static void          application_set_font_sensitivity  (YelpApplication       *app);
 
+static gboolean      window_resized                    (YelpWindow            *window,
+                                                        YelpApplication       *app);
+
 G_DEFINE_TYPE (YelpApplication, yelp_application, G_TYPE_OBJECT);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_APPLICATION, YelpApplicationPrivate))
 
@@ -85,7 +88,9 @@ struct _YelpApplicationPrivate {
 
     GtkActionGroup *action_group;
 
+    gchar *gsettings_context; /* static, do not free */
     GSettings *gsettings;
+    GHashTable *docsettings;
 };
 
 static const GtkActionEntry action_entries[] = {
@@ -104,6 +109,10 @@ static const GtkActionEntry action_entries[] = {
 static void
 yelp_application_init (YelpApplication *app)
 {
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+    priv->docsettings = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                               (GDestroyNotify) g_free,
+                                               (GDestroyNotify) g_object_unref);
 }
 
 static void
@@ -149,6 +158,7 @@ yelp_application_finalize (GObject *object)
     YelpApplicationPrivate *priv = GET_PRIV (object);
 
     g_hash_table_destroy (priv->windows_by_document);
+    g_hash_table_destroy (priv->docsettings);
 
     G_OBJECT_CLASS (yelp_application_parent_class)->finalize (object);
 }
@@ -170,8 +180,10 @@ application_setup (YelpApplication *app)
         gchar *keyfile = g_build_filename (g_get_user_config_dir (),
                                            "yelp", "yelp.cfg",
                                            NULL);
-        g_settings_backend_setup_keyfile ("yelp-", keyfile);
-        priv->gsettings = g_settings_new_with_context ("org.gnome.yelp", "yelp-");
+        g_settings_backend_setup_keyfile ("yelp", keyfile);
+        priv->gsettings_context = "yelp";
+        priv->gsettings = g_settings_new_with_context ("org.gnome.yelp",
+                                                       priv->gsettings_context);
         g_free (keyfile);
     }
     else {
@@ -411,12 +423,37 @@ application_uri_resolved (YelpUri             *uri,
         window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
 
     if (window == NULL) {
+        gint width, height;
+        GSettings *settings = g_hash_table_lookup (priv->docsettings, doc_uri);
+        if (settings == NULL) {
+            gchar *tmp;
+            gchar *settings_path;
+            tmp = g_uri_escape_string (doc_uri, "", FALSE);
+            settings_path = g_strconcat ("/apps/yelp/documents/", tmp, "/", NULL);
+            g_free (tmp);
+            if (priv->gsettings_context)
+                settings = g_settings_new_with_context_and_path ("org.gnome.yelp.documents",
+                                                                 priv->gsettings_context,
+                                                                 settings_path);
+            else
+                settings = g_settings_new_with_path ("org.gnome.yelp.document",
+                                                     settings_path);
+            g_hash_table_insert (priv->docsettings, g_strdup (doc_uri), settings);
+            g_free (settings_path);
+        }
+
+        g_settings_get (settings, "geometry", "(ii)", &width, &height);
         window = yelp_window_new (data->app);
+        gtk_window_set_default_size (GTK_WINDOW (window), width, height);
+        g_signal_connect (window, "resized", window_resized, data->app);
         priv->windows = g_slist_prepend (priv->windows, window);
 
         if (!data->new) {
             g_hash_table_insert (priv->windows_by_document, doc_uri, window);
             g_object_set_data (G_OBJECT (window), "doc_uri", doc_uri);
+        }
+        else {
+            g_free (doc_uri);
         }
         g_signal_connect (window, "delete-event",
                           G_CALLBACK (application_window_deleted), data->app);
@@ -521,4 +558,30 @@ yelp_application_install_package (YelpApplication  *app,
                              G_TYPE_STRV, pkgs,
                              G_TYPE_STRING, "",
                              G_TYPE_INVALID, G_TYPE_INVALID);
+}
+
+static gboolean
+window_resized (YelpWindow        *window,
+                YelpApplication   *app)
+{
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+    gint width, height;
+    YelpUri *uri;
+    gchar *doc_uri;
+    GSettings *settings;
+
+    uri = yelp_window_get_uri (window);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    settings = g_hash_table_lookup (priv->docsettings, doc_uri);
+
+    if (settings) {
+        gint width, height;
+        yelp_window_get_geometry (window, &width, &height);
+        g_settings_set (settings, "geometry", "(ii)", width, height);
+    }
+
+    g_free (doc_uri);
+    g_object_unref (uri);
+
+    return FALSE;
 }
