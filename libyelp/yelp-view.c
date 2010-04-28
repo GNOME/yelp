@@ -67,6 +67,9 @@ static void        view_resource_request          (WebKitWebView             *vi
                                                    WebKitNetworkResponse     *response,
                                                    gpointer                   user_data);
 
+static void        view_navigation_action         (GtkAction          *action,
+                                                   YelpView           *view);
+
 static void        view_clear_load                (YelpView           *view);
 static void        view_load_page                 (YelpView           *view);
 static void        view_show_error_page           (YelpView           *view,
@@ -81,6 +84,19 @@ static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
                                                    GError             *error);
+
+static const GtkActionEntry entries[] = {
+    {"YelpViewGoPrevious", NULL,
+     N_("_Previous Page"),
+     "<Control>Page_Up",
+     NULL,
+     G_CALLBACK (view_navigation_action) },
+    {"YelpViewGoNext", NULL,
+     N_("_Next Page"),
+     "<Control>Page_Down",
+     NULL,
+     G_CALLBACK (view_navigation_action) }
+};
 
 enum {
     PROP_0,
@@ -120,6 +136,8 @@ struct _YelpViewPrivate {
     gchar         *page_desc;
     gchar         *page_icon;
 
+    GtkActionGroup *action_group;
+
     gint           navigation_requested;
 };
 
@@ -144,6 +162,12 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
+
+    priv->action_group = gtk_action_group_new ("YelpView");
+    gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (priv->action_group,
+				  entries, G_N_ELEMENTS (entries),
+				  view);
 }
 
 static void
@@ -160,6 +184,11 @@ yelp_view_dispose (GObject *object)
         g_cancellable_cancel (priv->cancellable);
         g_object_unref (priv->cancellable);
         priv->cancellable = NULL;
+    }
+
+    if (priv->action_group) {
+        g_object_unref (priv->action_group);
+        priv->action_group = NULL;
     }
 
     if (priv->document) {
@@ -388,6 +417,13 @@ yelp_view_load_uri (YelpView *view,
     g_signal_emit_by_name (view, "notify::page-desc", 0);
     g_signal_emit_by_name (view, "notify::page-icon", 0);
 
+    gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group,
+                                                           "YelpViewGoPrevious"),
+                              FALSE);
+    gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group,
+                                                           "YelpViewGoNext"),
+                              FALSE);
+
     priv->uri = g_object_ref (uri);
     if (!yelp_uri_is_resolved (uri)) {
         priv->uri_resolved = g_signal_connect (uri, "resolved",
@@ -425,7 +461,14 @@ YelpDocument *
 yelp_view_get_document (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    return g_object_ref (priv->document);
+    return priv->document;
+}
+
+GtkActionGroup *
+yelp_view_get_action_group (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    return priv->action_group;
 }
 
 /******************************************************************************/
@@ -484,6 +527,36 @@ view_resource_request (WebKitWebView         *view,
     else {
         webkit_network_request_set_uri (request, "about:blank");
     }
+}
+
+static void
+view_navigation_action (GtkAction *action,
+                        YelpView  *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    gchar *page_id, *new_id, *xref;
+    YelpUri *new_uri;
+
+    page_id = yelp_uri_get_page_id (priv->uri);
+
+    if (g_str_equal (gtk_action_get_name (action), "YelpViewGoPrevious"))
+        new_id = yelp_document_get_prev_id (priv->document, page_id);
+    else
+        new_id = yelp_document_get_next_id (priv->document, page_id);
+
+    /* Just in case we screwed up somewhere */
+    if (new_id == NULL) {
+        gtk_action_set_sensitive (action, FALSE);
+        return;
+    }
+
+    xref = g_strconcat ("xref:", new_id, NULL);
+    new_uri = yelp_uri_new_relative (priv->uri, xref);
+    yelp_view_load_uri (view, new_uri);
+
+    g_free (xref);
+    g_free (new_id);
+    g_object_unref (new_uri);
 }
 
 static void
@@ -732,7 +805,8 @@ document_callback (YelpDocument       *document,
     debug_print (DB_FUNCTION, "entering\n");
 
     if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
-        gchar *page_id;
+        gchar *page_id, *prev_id, *next_id;
+        GtkAction *action;
         page_id = yelp_uri_get_page_id (priv->uri);
 
         g_free (priv->root_title);
@@ -745,10 +819,22 @@ document_callback (YelpDocument       *document,
         priv->page_desc = yelp_document_get_page_desc (document, page_id);
         priv->page_icon = yelp_document_get_page_icon (document, page_id);
 
+        prev_id = yelp_document_get_prev_id (document, page_id);
+        action = gtk_action_group_get_action (priv->action_group, "YelpViewGoPrevious");
+        gtk_action_set_sensitive (action, prev_id != NULL);
+        g_free (prev_id);
+
+        next_id = yelp_document_get_next_id (document, page_id);
+        action = gtk_action_group_get_action (priv->action_group, "YelpViewGoNext");
+        gtk_action_set_sensitive (action, next_id != NULL);
+        g_free (next_id);
+
         g_signal_emit_by_name (view, "notify::root-title", 0);
         g_signal_emit_by_name (view, "notify::page-title", 0);
         g_signal_emit_by_name (view, "notify::page-desc", 0);
         g_signal_emit_by_name (view, "notify::page-icon", 0);
+
+        g_free (page_id);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;

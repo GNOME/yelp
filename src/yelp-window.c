@@ -143,6 +143,9 @@ static const gchar *YELP_UI =
     "<menu action='GoMenu'>"
     "<menuitem action='GoBack'/>"
     "<menuitem action='GoForward'/>"
+    "<separator/>"
+    "<menuitem action='YelpViewGoPrevious'/>"
+    "<menuitem action='YelpViewGoNext'/>"
     "</menu>"
     "</menubar>"
     "<accelerator action='OpenLocation'/>"
@@ -349,6 +352,8 @@ window_construct (YelpWindow *window)
 
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
 
+    priv->view = (YelpView *) yelp_view_new ();
+
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_container_add (GTK_CONTAINER (window), vbox);
 
@@ -363,6 +368,9 @@ window_construct (YelpWindow *window)
     gtk_ui_manager_insert_action_group (priv->ui_manager,
                                         yelp_application_get_action_group (priv->application),
                                         1);
+    gtk_ui_manager_insert_action_group (priv->ui_manager,
+                                        yelp_view_get_action_group (priv->view),
+                                        2);
     gtk_window_add_accel_group (GTK_WINDOW (window),
                                 gtk_ui_manager_get_accel_group (priv->ui_manager));
     gtk_ui_manager_add_ui_from_string (priv->ui_manager, YELP_UI, -1, NULL);
@@ -450,7 +458,6 @@ window_construct (YelpWindow *window)
                                     GTK_POLICY_AUTOMATIC);
     gtk_box_pack_end (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 
-    priv->view = (YelpView *) yelp_view_new ();
     g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
@@ -726,7 +733,6 @@ view_loaded (YelpView   *view,
     }
 
     g_strfreev (ids);
-    g_object_unref (document);
 }
 
 static void

@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2009 Shaun McCance <shaunm@gnome.org>
  *
@@ -57,19 +57,19 @@ typedef enum {
     YELP_VIEW_STATE_ERROR
 } YelpViewState;
 
-GType            yelp_view_get_type        (void);
-GType            yelp_view_state_get_type  (void);
+GType              yelp_view_get_type          (void);
+GType              yelp_view_state_get_type    (void);
 
-GtkWidget *      yelp_view_new             (void);
-
-void             yelp_view_load            (YelpView     *view,
-					    const gchar  *uri);
-void             yelp_view_load_uri        (YelpView     *view,
-					    YelpUri      *uri);
-void             yelp_view_load_document   (YelpView     *view,
-					    YelpUri      *uri,
-					    YelpDocument *document);
-YelpDocument *   yelp_view_get_document    (YelpView     *view);
+GtkWidget *        yelp_view_new               (void);
+void               yelp_view_load              (YelpView      *view,
+                                                const gchar   *uri);
+void               yelp_view_load_uri          (YelpView      *view,
+                                                YelpUri       *uri);
+void               yelp_view_load_document     (YelpView      *view,
+                                                YelpUri       *uri,
+                                                YelpDocument  *document);
+YelpDocument *     yelp_view_get_document      (YelpView     *view);
+GtkActionGroup *   yelp_view_get_action_group  (YelpView     *view);
 
 G_END_DECLS
 
