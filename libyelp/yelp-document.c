@@ -120,7 +120,7 @@ static void           request_cancel            (GCancellable         *cancellab
 static gboolean       request_idle_contents     (Request              *request);
 static gboolean       request_idle_info         (Request              *request);
 static gboolean       request_idle_error        (Request              *request);
-static void           request_try_free          (Request              *request);
+static gboolean       request_try_free          (Request              *request);
 static void           request_free              (Request              *request);
 
 static const gchar *  str_ref                   (const gchar          *str);
@@ -1079,7 +1079,7 @@ request_idle_error (Request *request)
     return FALSE;
 }
 
-static void
+static gboolean
 request_try_free (Request *request)
 {
     if (!g_cancellable_is_cancelled (request->cancellable))
@@ -1089,6 +1089,8 @@ request_try_free (Request *request)
 	request_free (request);
     else
 	g_idle_add ((GSourceFunc) request_try_free, request);
+
+    return FALSE;
 }
 
 static void
