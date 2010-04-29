@@ -6,7 +6,6 @@ yelp_SOURCES =						\
 	yelp.c
 
 #	yelp-base.c		yelp-base.h			\
-#	yelp-bookmarks.c 	yelp-bookmarks.h		\
 #	yelp-error.c		yelp-error.h			\
 #	yelp-html.c		yelp-html.h			\
 #	yelp-io-channel.c	yelp-io-channel.h		\
