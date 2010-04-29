@@ -45,6 +45,12 @@
 
 static gboolean editor_mode = FALSE;
 
+enum {
+    BOOKMARKS_CHANGED,
+    LAST_SIGNAL
+};
+static gint signals[LAST_SIGNAL] = { 0 };
+
 static const GOptionEntry entries[] = {
     {"editor-mode", 0, 0, G_OPTION_ARG_NONE, &editor_mode, N_("Turn on editor mode"), NULL},
     { NULL }
@@ -68,6 +74,8 @@ static void          application_uri_resolved          (YelpUri               *u
 static gboolean      application_window_deleted        (YelpWindow            *window,
                                                         GdkEvent              *event,
                                                         YelpApplication       *app);
+GSettings *          application_get_doc_settings      (YelpApplication       *app,
+                                                        const gchar           *doc_uri);
 static gboolean      application_maybe_quit            (YelpApplication       *app);
 static void          application_adjust_font           (GtkAction             *action,
                                                         YelpApplication       *app);
@@ -122,6 +130,14 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
+
+    signals[BOOKMARKS_CHANGED] =
+        g_signal_new ("bookmarks-changed",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__STRING,
+                      G_TYPE_NONE, 1, G_TYPE_STRING);
 
     dbus_g_object_type_install_info (YELP_TYPE_APPLICATION,
                                      &dbus_glib_yelp_object_info);
@@ -424,28 +440,12 @@ application_uri_resolved (YelpUri             *uri,
 
     if (window == NULL) {
         gint width, height;
-        GSettings *settings = g_hash_table_lookup (priv->docsettings, doc_uri);
-        if (settings == NULL) {
-            gchar *tmp;
-            gchar *settings_path;
-            tmp = g_uri_escape_string (doc_uri, "", FALSE);
-            settings_path = g_strconcat ("/apps/yelp/documents/", tmp, "/", NULL);
-            g_free (tmp);
-            if (priv->gsettings_context)
-                settings = g_settings_new_with_context_and_path ("org.gnome.yelp.documents",
-                                                                 priv->gsettings_context,
-                                                                 settings_path);
-            else
-                settings = g_settings_new_with_path ("org.gnome.yelp.document",
-                                                     settings_path);
-            g_hash_table_insert (priv->docsettings, g_strdup (doc_uri), settings);
-            g_free (settings_path);
-        }
+        GSettings *settings = application_get_doc_settings (data->app, doc_uri);
 
         g_settings_get (settings, "geometry", "(ii)", &width, &height);
         window = yelp_window_new (data->app);
         gtk_window_set_default_size (GTK_WINDOW (window), width, height);
-        g_signal_connect (window, "resized", window_resized, data->app);
+        g_signal_connect (window, "resized", G_CALLBACK (window_resized), data->app);
         priv->windows = g_slist_prepend (priv->windows, window);
 
         if (!data->new) {
@@ -474,6 +474,30 @@ application_uri_resolved (YelpUri             *uri,
     gtk_window_present_with_time (GTK_WINDOW (window), GDK_CURRENT_TIME);
 
     g_free (data);
+}
+
+GSettings *
+application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
+{
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+    GSettings *settings = g_hash_table_lookup (priv->docsettings, doc_uri);
+    if (settings == NULL) {
+        gchar *tmp;
+        gchar *settings_path;
+        tmp = g_uri_escape_string (doc_uri, "", FALSE);
+        settings_path = g_strconcat ("/apps/yelp/documents/", tmp, "/", NULL);
+        g_free (tmp);
+        if (priv->gsettings_context)
+            settings = g_settings_new_with_context_and_path ("org.gnome.yelp.documents",
+                                                             priv->gsettings_context,
+                                                             settings_path);
+        else
+            settings = g_settings_new_with_path ("org.gnome.yelp.document",
+                                                 settings_path);
+        g_hash_table_insert (priv->docsettings, g_strdup (doc_uri), settings);
+        g_free (settings_path);
+    }
+    return settings;
 }
 
 static gboolean
@@ -536,6 +560,60 @@ packages_installed (DBusGProxy     *proxy,
             gtk_widget_destroy (dialog);
         }
     }
+}
+
+void
+yelp_application_add_bookmark (YelpApplication   *app,
+                               YelpUri           *uri,
+                               const gchar       *icon,
+                               const gchar       *title)
+{
+    GSettings *settings;
+    gchar *doc_uri, *page_id;
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+
+    doc_uri = yelp_uri_get_document_uri (uri);
+    page_id = yelp_uri_get_page_id (uri);
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_id, *this_icon, *this_title;
+        gboolean broken = FALSE;
+        g_settings_get (settings, "bookmarks", "a(sss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(sss)"));
+        while (g_variant_iter_loop (iter, "(&s&s&s)", &this_id, &this_icon, &this_title)) {
+            if (g_str_equal (page_id, this_id)) {
+                /* Already have this bookmark */
+                broken = TRUE;
+                break;
+            }
+            g_variant_builder_add (&builder, "(sss)", this_id, this_icon, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        if (!broken) {
+            GVariant *value;
+            g_variant_builder_add (&builder, "(sss)", page_id, icon, title);
+            value = g_variant_builder_end (&builder);
+            g_settings_set_value (settings, "bookmarks", value);
+            g_variant_unref (value);
+            g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri, 0);
+        }
+    }
+
+    g_free (doc_uri);
+    g_free (page_id);
+}
+
+GVariant *
+yelp_application_get_bookmarks (YelpApplication *app,
+                                const gchar     *doc_uri)
+{
+    GSettings *settings = application_get_doc_settings (app, doc_uri);
+
+    return g_settings_get_value (settings, "bookmarks");
 }
 
 void

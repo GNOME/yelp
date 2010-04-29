@@ -25,6 +25,8 @@
 
 #include <glib-object.h>
 
+#include "yelp-uri.h"
+
 #define YELP_TYPE_APPLICATION            (yelp_application_get_type ())
 #define YELP_APPLICATION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_APPLICATION, YelpApplication))
 #define YELP_APPLICATION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), YELP_TYPE_APPLICATION, YelpApplicationClass))
@@ -55,7 +57,13 @@ gboolean          yelp_application_load_uri    (YelpApplication  *app,
                                                 GError          **error);
 void              yelp_application_new_window  (YelpApplication  *app,
                                                 const gchar      *uri);
-GtkActionGroup *  yelp_application_get_action_group     (YelpApplication  *app);
+GtkActionGroup *  yelp_application_get_action_group     (YelpApplication   *app);
+void              yelp_application_add_bookmark         (YelpApplication   *app,
+                                                         YelpUri           *uri,
+                                                         const gchar       *icon,
+                                                         const gchar       *title);
+GVariant *        yelp_application_get_bookmarks        (YelpApplication   *app,
+                                                         const gchar       *doc_uri);
 void              yelp_application_install_package      (YelpApplication   *app,
                                                          const gchar       *pkg,
                                                          const gchar       *alt);

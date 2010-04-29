@@ -58,8 +58,18 @@ static gboolean      window_configure_event       (YelpWindow         *window,
 static gboolean      window_resize_signal         (YelpWindow         *window);
 static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
+static void          window_add_bookmark          (GtkAction          *action,
+                                                   YelpWindow         *window);
+static void          window_load_bookmark         (GtkAction          *action,
+                                                   YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
+
+static void          app_bookmarks_changed        (YelpApplication    *app,
+                                                   const gchar        *doc_uri,
+                                                   YelpWindow         *window);
+static void          window_set_bookmarks         (YelpWindow         *window,
+                                                   const gchar        *doc_uri);
 
 static void          entry_location_selected      (YelpLocationEntry  *entry,
                                                    YelpWindow         *window);
@@ -143,6 +153,11 @@ static const gchar *YELP_UI =
     "<menuitem action='YelpViewGoPrevious'/>"
     "<menuitem action='YelpViewGoNext'/>"
     "</menu>"
+    "<menu action='BookmarksMenu'>"
+    "<menuitem action='AddBookmark'/>"
+    "<separator/>"
+    "<placeholder name='Bookmarks'/>"
+    "</menu>"
     "</menubar>"
     "<accelerator action='OpenLocation'/>"
     "</ui>";
@@ -167,6 +182,11 @@ struct _YelpWindowPrivate {
 
     gulong entry_location_selected;
 
+    gchar *doc_uri;
+
+    GtkActionGroup *bookmark_actions;
+    guint bookmarks_merge_id;
+
     guint resize_signal;
     gint width;
     gint height;
@@ -176,6 +196,7 @@ static const GtkActionEntry entries[] = {
     { "PageMenu",      NULL, N_("_Page")      },
     { "ViewMenu",      NULL, N_("_View")      },
     { "GoMenu",        NULL, N_("_Go")        },
+    { "BookmarksMenu", NULL, N_("_Bookmarks")        },
 
     { "NewWindow", GTK_STOCK_NEW,
       N_("_New Window"),
@@ -187,6 +208,11 @@ static const GtkActionEntry entries[] = {
       "<Control>W",
       NULL,
       G_CALLBACK (window_close) },
+    { "AddBookmark", NULL,
+      N_("_Add Bookmark"),
+      "<Control>D",
+      NULL,
+      G_CALLBACK (window_add_bookmark) },
     { "OpenLocation", NULL,
       N_("Open Location"),
       "<Control>L",
@@ -197,7 +223,7 @@ static const GtkActionEntry entries[] = {
 static void
 yelp_window_init (YelpWindow *window)
 {
-    g_signal_connect (window, "configure-event", window_configure_event, NULL);
+    g_signal_connect (window, "configure-event", G_CALLBACK (window_configure_event), NULL);
 }
 
 static void
@@ -246,6 +272,11 @@ yelp_window_dispose (GObject *object)
         priv->action_group = NULL;
     }
 
+    if (priv->bookmark_actions) {
+        g_object_unref (priv->bookmark_actions);
+        priv->bookmark_actions = NULL;
+    }
+
     if (priv->align_location) {
         g_object_unref (priv->align_location);
         priv->align_location = NULL;
@@ -262,6 +293,8 @@ yelp_window_dispose (GObject *object)
 static void
 yelp_window_finalize (GObject *object)
 {
+    YelpWindowPrivate *priv = GET_PRIV (object);
+    g_free (priv->doc_uri);
     G_OBJECT_CLASS (yelp_window_parent_class)->finalize (object);
 }
 
@@ -323,19 +356,25 @@ window_construct (YelpWindow *window)
 				  entries, G_N_ELEMENTS (entries),
 				  window);
 
+    priv->bookmark_actions = gtk_action_group_new ("BookmarkActions");
+    gtk_action_group_set_translate_func (priv->bookmark_actions, NULL, NULL, NULL);
+
     priv->ui_manager = gtk_ui_manager_new ();
     gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
+    gtk_ui_manager_insert_action_group (priv->ui_manager, priv->bookmark_actions, 1);
     gtk_ui_manager_insert_action_group (priv->ui_manager,
                                         yelp_application_get_action_group (priv->application),
-                                        1);
+                                        2);
     view_actions = yelp_view_get_action_group (priv->view);
-    gtk_ui_manager_insert_action_group (priv->ui_manager, view_actions, 2);
+    gtk_ui_manager_insert_action_group (priv->ui_manager, view_actions, 3);
     gtk_window_add_accel_group (GTK_WINDOW (window),
                                 gtk_ui_manager_get_accel_group (priv->ui_manager));
     gtk_ui_manager_add_ui_from_string (priv->ui_manager, YELP_UI, -1, NULL);
     gtk_box_pack_start (GTK_BOX (vbox),
                         gtk_ui_manager_get_widget (priv->ui_manager, "/ui/menubar"),
                         FALSE, FALSE, 0);
+    priv->bookmarks_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
+    g_signal_connect (priv->application, "bookmarks-changed", G_CALLBACK (app_bookmarks_changed), window);
 
     priv->hbox = gtk_hbox_new (FALSE, 0);
     gtk_box_pack_start (GTK_BOX (vbox), priv->hbox, FALSE, FALSE, 0);
@@ -520,6 +559,107 @@ window_close (GtkAction *action, YelpWindow *window)
 }
 
 static void
+window_add_bookmark (GtkAction  *action,
+                     YelpWindow *window)
+{
+    YelpUri *uri;
+    gchar *icon, *title;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    g_object_get (priv->view,
+                  "yelp-uri", &uri,
+                  "page-icon", &icon,
+                  "page-title", &title,
+                  NULL);
+    yelp_application_add_bookmark (priv->application, uri, icon, title);
+    g_free (icon);
+    g_free (title);
+    g_object_unref (uri);
+}
+
+static void
+window_load_bookmark (GtkAction  *action,
+                      YelpWindow *window)
+{
+    YelpUri *base, *uri;
+    gchar *xref;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    /* Bookmark action names are prefixed with 'LoadBookmark-' */
+    xref = g_strconcat ("xref:", gtk_action_get_name (action) + 13, NULL);
+    g_object_get (priv->view, "yelp-uri", &base, NULL);
+    uri = yelp_uri_new_relative (base, xref);
+
+    yelp_view_load_uri (priv->view, uri);
+
+    g_object_unref (base);
+    g_object_unref (uri);
+    g_free (xref);
+}
+
+static void
+app_bookmarks_changed (YelpApplication *app,
+                       const gchar     *doc_uri,
+                       YelpWindow      *window)
+{
+    YelpUri *uri;
+    gchar *this_doc_uri;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    g_object_get (priv->view, "yelp-uri", &uri, NULL);
+    this_doc_uri = yelp_uri_get_document_uri (uri);
+
+    if (g_str_equal (this_doc_uri, doc_uri))
+        window_set_bookmarks (window, doc_uri);
+
+    g_free (this_doc_uri);
+    g_object_unref (uri);
+}
+
+static void
+window_set_bookmarks (YelpWindow  *window,
+                      const gchar *doc_uri)
+{
+    GVariant *value;
+    GVariantIter *iter;
+    gchar *page_id, *icon, *title;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    gtk_ui_manager_remove_ui (priv->ui_manager, priv->bookmarks_merge_id);
+
+    value = yelp_application_get_bookmarks (priv->application, doc_uri);
+    g_variant_get (value, "a(sss)", &iter);
+    while (g_variant_iter_loop (iter, "(&s&s&s)", &page_id, &icon, &title)) {
+        GSList *cur;
+        GtkAction *bookmark;
+        gchar *action_id = g_strconcat ("LoadBookmark-", page_id, NULL);
+
+        bookmark = gtk_action_group_get_action (priv->bookmark_actions, action_id);
+        if (bookmark == NULL) {
+            bookmark = gtk_action_new (action_id, title, NULL, NULL);
+            g_signal_connect (bookmark, "activate", window_load_bookmark, window);
+            gtk_action_set_icon_name (bookmark, icon);
+            gtk_action_group_add_action (priv->bookmark_actions, bookmark);
+        }
+        gtk_ui_manager_add_ui (priv->ui_manager,
+                               priv->bookmarks_merge_id,
+                               "ui/menubar/BookmarksMenu/Bookmarks",
+                               action_id, action_id,
+                               GTK_UI_MANAGER_MENUITEM,
+                               FALSE);
+        gtk_ui_manager_ensure_update (priv->ui_manager);
+        for (cur = gtk_action_get_proxies (bookmark); cur != NULL; cur = cur->next) {
+            if (GTK_IS_IMAGE_MENU_ITEM (cur->data))
+                g_object_set (cur->data, "always-show-image", TRUE, NULL);
+        }
+        g_free (action_id);
+    }
+
+    g_variant_iter_free (iter);
+    g_variant_unref (value);
+}
+
+static void
 window_open_location (GtkAction *action, YelpWindow *window)
 {
     YelpUri *yuri = NULL;
@@ -674,12 +814,22 @@ view_uri_selected (YelpView     *view,
     gchar *iter_uri;
     gboolean cont;
     YelpUri *uri;
-    gchar *struri;
+    gchar *struri, *doc_uri;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (G_OBJECT (view), "yelp-uri", &uri, NULL);
     if (uri == NULL)
         return;
+
+    doc_uri = yelp_uri_get_document_uri (uri);
+    if (priv->doc_uri == NULL || !g_str_equal (priv->doc_uri, doc_uri)) {
+        window_set_bookmarks (window, doc_uri);
+        g_free (priv->doc_uri);
+        priv->doc_uri = doc_uri;
+    }
+    else {
+        g_free (doc_uri);
+    }
 
     struri = yelp_uri_get_canonical_uri (uri);
 
