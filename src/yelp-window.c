@@ -616,6 +616,24 @@ app_bookmarks_changed (YelpApplication *app,
     g_object_unref (uri);
 }
 
+typedef struct _YelpMenuEntry YelpMenuEntry;
+struct _YelpMenuEntry {
+    gchar *page_id;
+    gchar *icon;
+    gchar *title;
+};
+
+static gint
+entry_compare (YelpMenuEntry *a, YelpMenuEntry *b)
+{
+    /* FIXME: create a static ordering of types, put in libyelp */
+    gint ret = strcmp (a->icon, b->icon);
+    if (ret)
+        return ret;
+    else
+        return g_utf8_collate (a->title, b->title);
+}
+
 static void
 window_set_bookmarks (YelpWindow  *window,
                       const gchar *doc_uri)
@@ -624,21 +642,30 @@ window_set_bookmarks (YelpWindow  *window,
     GVariantIter *iter;
     gchar *page_id, *icon, *title;
     YelpWindowPrivate *priv = GET_PRIV (window);
+    GSList *entries = NULL;
 
     gtk_ui_manager_remove_ui (priv->ui_manager, priv->bookmarks_merge_id);
 
     value = yelp_application_get_bookmarks (priv->application, doc_uri);
     g_variant_get (value, "a(sss)", &iter);
     while (g_variant_iter_loop (iter, "(&s&s&s)", &page_id, &icon, &title)) {
+        YelpMenuEntry *entry = g_new0 (YelpMenuEntry *, 1);
+        entry->page_id = page_id;
+        entry->icon = icon;
+        entry->title = title;
+        entries = g_slist_insert_sorted (entries, entry, entry_compare);
+    }
+    for ( ; entries != NULL; entries = g_slist_delete_link (entries, entries)) {
         GSList *cur;
         GtkAction *bookmark;
-        gchar *action_id = g_strconcat ("LoadBookmark-", page_id, NULL);
+        YelpMenuEntry *entry = (YelpMenuEntry *) entries->data;
+        gchar *action_id = g_strconcat ("LoadBookmark-", entry->page_id, NULL);
 
         bookmark = gtk_action_group_get_action (priv->bookmark_actions, action_id);
         if (bookmark == NULL) {
-            bookmark = gtk_action_new (action_id, title, NULL, NULL);
+            bookmark = gtk_action_new (action_id, entry->title, NULL, NULL);
             g_signal_connect (bookmark, "activate", window_load_bookmark, window);
-            gtk_action_set_icon_name (bookmark, icon);
+            gtk_action_set_icon_name (bookmark, entry->icon);
             gtk_action_group_add_action (priv->bookmark_actions, bookmark);
         }
         gtk_ui_manager_add_ui (priv->ui_manager,
@@ -653,6 +680,7 @@ window_set_bookmarks (YelpWindow  *window,
                 g_object_set (cur->data, "always-show-image", TRUE, NULL);
         }
         g_free (action_id);
+        g_free (entry);
     }
 
     g_variant_iter_free (iter);
