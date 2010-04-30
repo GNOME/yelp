@@ -626,9 +626,8 @@ struct _YelpMenuEntry {
 static gint
 entry_compare (YelpMenuEntry *a, YelpMenuEntry *b)
 {
-    /* FIXME: create a static ordering of types, put in libyelp */
-    gint ret = strcmp (a->icon, b->icon);
-    if (ret)
+    gint ret = yelp_settings_cmp_icons (a->icon, b->icon);
+    if (ret != 0)
         return ret;
     else
         return g_utf8_collate (a->title, b->title);

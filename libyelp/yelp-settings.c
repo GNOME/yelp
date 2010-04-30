@@ -936,6 +936,32 @@ icon_theme_changed (GtkIconTheme *theme,
     g_signal_emit (settings, settings_signals[ICONS_CHANGED], 0);
 }
 
+gint
+yelp_settings_cmp_icons (const gchar *icon1,
+                         const gchar *icon2)
+{
+    static const gchar *icons[] = {
+        "yelp-page-task",
+        "yelp-page-video",
+        "yelp-page-tip",
+        "yelp-page-ui",
+        "help-contents",
+        NULL
+    };
+    gint i;
+    for (i = 0; icons[i] != NULL; i++) {
+        gboolean eq1 = g_str_equal (icon1, icons[i]);
+        gboolean eq2 = g_str_equal (icon2, icons[i]);
+        if (eq1 && eq2)
+            return 0;
+        else if (eq1)
+            return -1;
+        else if (eq2)
+            return 1;
+    }
+    return strcmp (icon1, icon2);
+}
+
 /******************************************************************************/
 
 static void
