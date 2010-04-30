@@ -73,6 +73,10 @@ static void          window_set_bookmarks         (YelpWindow         *window,
 
 static void          entry_location_selected      (YelpLocationEntry  *entry,
                                                    YelpWindow         *window);
+static gint          entry_completion_sort        (GtkTreeModel       *model,
+                                                   GtkTreeIter        *iter1,
+                                                   GtkTreeIter        *iter2,
+                                                   gpointer            user_data);
 static void          entry_completion_selected    (YelpLocationEntry  *entry,
                                                    GtkTreeModel       *model,
                                                    GtkTreeIter        *iter,
@@ -341,6 +345,7 @@ window_construct (YelpWindow *window)
     GtkAction *action;
     GtkWidget *button;
     GtkTreeIter iter;
+    GtkTreeModelSort *completion_sorted;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
@@ -414,6 +419,11 @@ window_construct (YelpWindow *window)
                                            G_TYPE_STRING,  /* icon */
                                            G_TYPE_STRING   /* uri */
                                            );
+    completion_sorted = gtk_tree_model_sort_new_with_model (priv->completion);
+    gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (completion_sorted),
+                                             entry_completion_sort,
+                                             NULL, NULL);
+
     priv->entry = (YelpLocationEntry *)
         yelp_location_entry_new_with_model (GTK_TREE_MODEL (priv->history),
                                             COL_TITLE,
@@ -424,10 +434,11 @@ window_construct (YelpWindow *window)
                       G_CALLBACK (entry_focus_out), window);
 
     yelp_location_entry_set_completion_model (YELP_LOCATION_ENTRY (priv->entry),
-                                              GTK_TREE_MODEL (priv->completion),
+                                              GTK_TREE_MODEL (completion_sorted),
                                               COL_TITLE,
                                               COL_DESC,
                                               COL_ICON);
+    g_object_unref (completion_sorted);
     g_signal_connect (priv->entry, "completion-selected",
                       G_CALLBACK (entry_completion_selected), window);
 
@@ -745,6 +756,33 @@ entry_location_selected (YelpLocationEntry  *entry,
                         -1);
     yelp_view_load (priv->view, uri);
     g_free (uri);
+}
+
+static gint
+entry_completion_sort (GtkTreeModel *model,
+                       GtkTreeIter  *iter1,
+                       GtkTreeIter  *iter2,
+                       gpointer      user_data)
+{
+    gint ret = 0;
+    gchar *key1, *key2;
+
+    gtk_tree_model_get (model, iter1, COL_ICON, &key1, -1);
+    gtk_tree_model_get (model, iter2, COL_ICON, &key2, -1);
+    ret = yelp_settings_cmp_icons (key1, key2);
+    g_free (key1);
+    g_free (key2);
+
+    if (ret)
+        return ret;
+
+    gtk_tree_model_get (model, iter1, COL_TITLE, &key1, -1);
+    gtk_tree_model_get (model, iter2, COL_TITLE, &key2, -1);
+    ret = g_utf8_collate (key1, key2);
+    g_free (key1);
+    g_free (key2);
+
+    return ret;
 }
 
 static void
