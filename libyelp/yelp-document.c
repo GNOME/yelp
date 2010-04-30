@@ -596,6 +596,9 @@ yelp_document_get_page_icon (YelpDocument *document,
     }
     g_mutex_unlock (document->priv->mutex);
 
+    if (ret == NULL)
+        ret = g_strdup ("help-contents");
+
     return ret;
 }
 
