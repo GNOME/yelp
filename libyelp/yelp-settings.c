@@ -959,7 +959,9 @@ yelp_settings_cmp_icons (const gchar *icon1,
         else if (eq2)
             return 1;
     }
-    if (icon2 == NULL)
+    if (icon1 == icon2 == NULL)
+        return 0;
+    else if (icon2 == NULL)
         return -1;
     else if (icon1 == NULL)
         return 1;

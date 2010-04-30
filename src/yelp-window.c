@@ -648,8 +648,15 @@ entry_compare (YelpMenuEntry *a, YelpMenuEntry *b)
     gint ret = yelp_settings_cmp_icons (a->icon, b->icon);
     if (ret != 0)
         return ret;
-    else
-        return g_utf8_collate (a->title, b->title);
+
+    if (a->title && b->title)
+        ret = g_utf8_collate (a->title, b->title);
+    else if (b->title == NULL)
+        return -1;
+    else if (a->title == NULL)
+        return 1;
+
+    return 0;
 }
 
 static void
@@ -786,7 +793,12 @@ entry_completion_sort (GtkTreeModel *model,
 
     gtk_tree_model_get (model, iter1, COL_TITLE, &key1, -1);
     gtk_tree_model_get (model, iter2, COL_TITLE, &key2, -1);
-    ret = g_utf8_collate (key1, key2);
+    if (key1 && key2)
+        ret = g_utf8_collate (key1, key2);
+    else if (key2 == NULL)
+        return -1;
+    else if (key1 == NULL)
+        return 1;
     g_free (key1);
     g_free (key2);
 
