@@ -114,6 +114,7 @@ enum {
     PROP_0,
     PROP_URI,
     PROP_STATE,
+    PROP_PAGE_ID,
     PROP_ROOT_TITLE,
     PROP_PAGE_TITLE,
     PROP_PAGE_DESC,
@@ -160,6 +161,7 @@ struct _YelpViewPrivate {
 
     YelpViewState  state;
 
+    gchar         *page_id;
     gchar         *root_title;
     gchar         *page_title;
     gchar         *page_desc;
@@ -242,6 +244,7 @@ yelp_view_finalize (GObject *object)
 {
     YelpViewPrivate *priv = GET_PRIV (object);
 
+    g_free (priv->page_id);
     g_free (priv->root_title);
     g_free (priv->page_title);
     g_free (priv->page_desc);
@@ -321,6 +324,15 @@ yelp_view_class_init (YelpViewClass *klass)
                                                         G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     g_object_class_install_property (object_class,
+                                     PROP_PAGE_ID,
+                                     g_param_spec_string ("page-id",
+                                                          N_("Page ID"),
+                                                          N_("The ID of the root page of the page being viewew"),
+                                                          NULL,
+                                                          G_PARAM_READABLE |
+                                                          G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    g_object_class_install_property (object_class,
                                      PROP_ROOT_TITLE,
                                      g_param_spec_string ("root-title",
                                                           N_("Root Title"),
@@ -369,6 +381,9 @@ yelp_view_get_property (GObject    *object,
         {
         case PROP_URI:
             g_value_set_object (value, priv->uri);
+            break;
+        case PROP_PAGE_ID:
+            g_value_set_string (value, priv->page_id);
             break;
         case PROP_ROOT_TITLE:
             g_value_set_string (value, priv->root_title);
@@ -442,14 +457,17 @@ yelp_view_load_uri (YelpView *view,
     view_clear_load (view);
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
+    g_free (priv->page_id);
     g_free (priv->root_title);
     g_free (priv->page_title);
     g_free (priv->page_desc);
     g_free (priv->page_icon);
+    priv->page_id = NULL;
     priv->root_title = NULL;
     priv->page_title = NULL;
     priv->page_desc = NULL;
     priv->page_icon = NULL;
+    g_signal_emit_by_name (view, "notify::page-id", 0);
     g_signal_emit_by_name (view, "notify::root-title", 0);
     g_signal_emit_by_name (view, "notify::page-title", 0);
     g_signal_emit_by_name (view, "notify::page-desc", 0);
@@ -681,7 +699,6 @@ view_load_page (YelpView *view)
                                 priv->cancellable,
                                 (YelpDocumentCallback) document_callback,
                                 view);
-
     g_free (page_id);
 }
 
@@ -927,6 +944,10 @@ uri_resolved (YelpUri  *uri,
 
     g_signal_emit_by_name (view, "notify::yelp-uri", 0);
 
+    g_free (priv->page_id);
+    priv->page_id = yelp_uri_get_page_id (priv->uri);
+    g_signal_emit_by_name (view, "notify::page-id", 0);
+
     view_load_page (view);
 }
 
@@ -941,20 +962,29 @@ document_callback (YelpDocument       *document,
     debug_print (DB_FUNCTION, "entering\n");
 
     if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
-        gchar *page_id, *prev_id, *next_id;
+        gchar *prev_id, *next_id, *real_id;
         GtkAction *action;
         YelpBackEntry *back = NULL;
-        page_id = yelp_uri_get_page_id (priv->uri);
+
+        real_id = yelp_document_get_page_id (document, priv->page_id);
+        if (priv->page_id && g_str_equal (real_id, priv->page_id)) {
+            g_free (real_id);
+        }
+        else {
+            g_free (priv->page_id);
+            priv->page_id = real_id;
+            g_signal_emit_by_name (view, "notify::page-id", 0);
+        }
 
         g_free (priv->root_title);
         g_free (priv->page_title);
         g_free (priv->page_desc);
         g_free (priv->page_icon);
 
-        priv->root_title = yelp_document_get_root_title (document, page_id);
-        priv->page_title = yelp_document_get_page_title (document, page_id);
-        priv->page_desc = yelp_document_get_page_desc (document, page_id);
-        priv->page_icon = yelp_document_get_page_icon (document, page_id);
+        priv->root_title = yelp_document_get_root_title (document, priv->page_id);
+        priv->page_title = yelp_document_get_page_title (document, priv->page_id);
+        priv->page_desc = yelp_document_get_page_desc (document, priv->page_id);
+        priv->page_icon = yelp_document_get_page_icon (document, priv->page_id);
 
         if (priv->back_cur)
             back = priv->back_cur->data;
@@ -965,12 +995,12 @@ document_callback (YelpDocument       *document,
             back->desc = g_strdup (priv->page_desc);
         }
 
-        prev_id = yelp_document_get_prev_id (document, page_id);
+        prev_id = yelp_document_get_prev_id (document, priv->page_id);
         action = gtk_action_group_get_action (priv->action_group, "YelpViewGoPrevious");
         gtk_action_set_sensitive (action, prev_id != NULL);
         g_free (prev_id);
 
-        next_id = yelp_document_get_next_id (document, page_id);
+        next_id = yelp_document_get_next_id (document, priv->page_id);
         action = gtk_action_group_get_action (priv->action_group, "YelpViewGoNext");
         gtk_action_set_sensitive (action, next_id != NULL);
         g_free (next_id);
@@ -979,8 +1009,6 @@ document_callback (YelpDocument       *document,
         g_signal_emit_by_name (view, "notify::page-title", 0);
         g_signal_emit_by_name (view, "notify::page-desc", 0);
         g_signal_emit_by_name (view, "notify::page-icon", 0);
-
-        g_free (page_id);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;

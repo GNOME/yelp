@@ -93,6 +93,9 @@ static void          view_loaded                  (YelpView           *view,
 static void          view_uri_selected            (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
+static void          view_page_id                 (YelpView           *view,
+                                                   GParamSpec         *pspec,
+                                                   YelpWindow         *window);
 static void          view_root_title              (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
@@ -470,6 +473,7 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
+    g_signal_connect (priv->view, "notify::page-id", G_CALLBACK (view_page_id), window);
     g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
     g_signal_connect (priv->view, "notify::page-title", G_CALLBACK (view_page_title), window);
     g_signal_connect (priv->view, "notify::page-desc", G_CALLBACK (view_page_desc), window);
@@ -574,15 +578,19 @@ window_add_bookmark (GtkAction  *action,
                      YelpWindow *window)
 {
     YelpUri *uri;
-    gchar *icon, *title;
+    gchar *doc_uri, *page_id, *icon, *title;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (priv->view,
                   "yelp-uri", &uri,
+                  "page-id", &page_id,
                   "page-icon", &icon,
                   "page-title", &title,
                   NULL);
-    yelp_application_add_bookmark (priv->application, uri, icon, title);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    yelp_application_add_bookmark (priv->application, doc_uri, page_id, icon, title);
+    g_free (doc_uri);
+    g_free (page_id);
     g_free (icon);
     g_free (title);
     g_object_unref (uri);
@@ -946,6 +954,23 @@ view_uri_selected (YelpView     *view,
 
     g_free (struri);
     g_object_unref (uri);
+}
+
+static void
+view_page_id (YelpView   *view,
+              GParamSpec *pspec,
+              YelpWindow *window)
+{
+    GtkAction *action;
+    gchar *page_id;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    g_object_get (view, "page-id", &page_id, NULL);
+
+    action = gtk_action_group_get_action (priv->action_group, "AddBookmark");
+    gtk_action_set_sensitive (action, page_id != NULL);
+
+    g_free (page_id);
 }
 
 static void

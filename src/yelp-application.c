@@ -564,16 +564,14 @@ packages_installed (DBusGProxy     *proxy,
 
 void
 yelp_application_add_bookmark (YelpApplication   *app,
-                               YelpUri           *uri,
+                               const gchar       *doc_uri,
+                               const gchar       *page_id,
                                const gchar       *icon,
                                const gchar       *title)
 {
     GSettings *settings;
-    gchar *doc_uri, *page_id;
     YelpApplicationPrivate *priv = GET_PRIV (app);
 
-    doc_uri = yelp_uri_get_document_uri (uri);
-    page_id = yelp_uri_get_page_id (uri);
     settings = application_get_doc_settings (app, doc_uri);
 
     if (settings) {
@@ -602,9 +600,6 @@ yelp_application_add_bookmark (YelpApplication   *app,
             g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri, 0);
         }
     }
-
-    g_free (doc_uri);
-    g_free (page_id);
 }
 
 GVariant *
