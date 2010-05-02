@@ -244,7 +244,7 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                                      PROP_DESC_COLUMN,
                                      g_param_spec_int ("desc-column",
                                                        N_("Description Column"),
-                                                       N_("A column in the model to descriptions from"),
+                                                       N_("A column in the model to get descriptions from"),
                                                        -1,
                                                        G_MAXINT,
                                                        -1,
