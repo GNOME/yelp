@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
 "POT-Creation-Date: 2010-05-02 09:38+0000\n"
-"PO-Revision-Date: 2010-05-02 11:53+0200\n"
+"PO-Revision-Date: 2010-05-02 12:01+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -974,7 +974,7 @@ msgstr "Columna de opciones"
 
 #: ../libyelp/yelp-location-entry.c:279
 msgid "A column in the model with YelpLocationEntryFlags flags"
-msgstr ""
+msgstr "Una columna en el modelo con las opciones YelpLocationEntryFlags"
 
 #: ../libyelp/yelp-location-entry.c:295
 msgid "Enable Search"
@@ -983,6 +983,7 @@ msgstr "Activar búsqueda"
 #: ../libyelp/yelp-location-entry.c:296
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
+"Indica si la entrada de ubicación se puede usar como un campo de búsqueda"
 
 #: ../libyelp/yelp-mallard-document.c:294
 #, c-format
@@ -1012,15 +1013,15 @@ msgstr "Ajuste de tipografía"
 
 #: ../libyelp/yelp-settings.c:165
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "Ajuste de tamaño que añadir a los tamaños de tipografía"
 
 #: ../libyelp/yelp-settings.c:173
 msgid "Show Text Cursor"
-msgstr ""
+msgstr "Mostrar el cursor de texto"
 
 #: ../libyelp/yelp-settings.c:174
 msgid "Show the text cursor or caret for accessibile navigation"
-msgstr ""
+msgstr "Mostrar el cursor de texto para navegación accesible"
 
 #: ../libyelp/yelp-settings.c:182
 msgid "Editor Mode"
@@ -1028,7 +1029,7 @@ msgstr "Modo editor"
 
 #: ../libyelp/yelp-settings.c:183
 msgid "Enable features useful to editors"
-msgstr ""
+msgstr "Activar características útiles para editores"
 
 #: ../libyelp/yelp-transform.c:171
 #| msgid "Invalid Stylesheet"
@@ -1037,7 +1038,7 @@ msgstr "Hoja de estilo XSLT"
 
 #: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
-msgstr ""
+msgstr "La ubicación de la hoja de estilo XSLT"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
@@ -1078,7 +1079,7 @@ msgstr "URI de Yelp"
 
 #: ../libyelp/yelp-view.c:311
 msgid "A YelpUri with the current location"
-msgstr ""
+msgstr "Un YelpUri con la ubicación actual"
 
 #: ../libyelp/yelp-view.c:319
 #| msgid "Loading..."
@@ -1087,7 +1088,7 @@ msgstr "Estado de la carga"
 
 #: ../libyelp/yelp-view.c:320
 msgid "The loading state of the view"
-msgstr ""
+msgstr "El estado de carga de la vista"
 
 #: ../libyelp/yelp-view.c:329
 msgid "Page ID"
@@ -1095,7 +1096,7 @@ msgstr "ID de página"
 
 #: ../libyelp/yelp-view.c:330
 msgid "The ID of the root page of the page being viewew"
-msgstr ""
+msgstr "El ID de la página raíz de la página que se está viendo"
 
 #: ../libyelp/yelp-view.c:338
 msgid "Root Title"
@@ -1103,7 +1104,7 @@ msgstr "Título raíz"
 
 #: ../libyelp/yelp-view.c:339
 msgid "The title of the root page of the page being viewew"
-msgstr ""
+msgstr "El título de la página raíz de la página que se está viendo"
 
 #: ../libyelp/yelp-view.c:347
 msgid "Page Title"
@@ -1111,7 +1112,7 @@ msgstr "Título de página"
 
 #: ../libyelp/yelp-view.c:348
 msgid "The title of the page being viewed"
-msgstr ""
+msgstr "El título de la página que se está viendo"
 
 #: ../libyelp/yelp-view.c:356
 msgid "Page Description"
@@ -1119,7 +1120,7 @@ msgstr "Descripción de página"
 
 #: ../libyelp/yelp-view.c:357
 msgid "The description of the page being viewed"
-msgstr ""
+msgstr "La descripción de la página que se está viendo"
 
 #: ../libyelp/yelp-view.c:365
 #| msgid "Page not found"
@@ -1128,7 +1129,7 @@ msgstr "Icono de página"
 
 #: ../libyelp/yelp-view.c:366
 msgid "The icon of the page being viewed"
-msgstr ""
+msgstr "El icono de la página que se está viendo"
 
 #: ../libyelp/yelp-view.c:683
 #, c-format
@@ -1252,7 +1253,7 @@ msgstr "Reducir el tamaño del texto"
 
 #: ../src/yelp-application.c:221
 msgid "Show Text _Cursor"
-msgstr ""
+msgstr "Mostrar el _cursor de texto"
 
 #: ../src/yelp-application.c:297 ../src/yelp-main.c:386
 #: ../src/yelp-window.c:1000 ../yelp.desktop.in.in.h:2
@@ -1264,6 +1265,8 @@ msgid ""
 "You do not have PackageKit installed.  Package installation links require "
 "PackageKit."
 msgstr ""
+"No tiene PackageKit instalado. Los enlaces de instalación de paquetes "
+"requieren PackageKit."
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350 ../src/yelp-man.c:292
 #: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
