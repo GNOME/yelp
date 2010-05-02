@@ -1,20 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
+# Uighur Translation of yelp
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>, 2005
+# Gheyret T.Kenji <gheyret@gmail.com>, 2010
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: yelp 2.10\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-04-05 14:02+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2010-04-26 15:25+0000\n"
+"PO-Revision-Date: 2010-04-23 01:19+0000\n"
+"Last-Translator: Sebastien Bacher <seb128@ubuntu.com>\n"
+"Language-Team: GNOME Uighur Translation Project <gnome-uighur@yahoogroups."
+"com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-04-27 05:28+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -46,7 +50,7 @@ msgstr "تەرەققىيات"
 
 #: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr "FORTRAN فۇنكسىيىلىرى "
+msgstr "FORTRAN فۇنكسىيىلىرى"
 
 #: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
@@ -70,11 +74,11 @@ msgstr "توردىكى ئۈن ئاۋاز فۇنكسىيىسى"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
-msgstr "OpenSSL پروگراممىلىرى "
+msgstr "OpenSSL پروگراممىلىرى"
 
 #: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
-msgstr "OpenSSLنىڭ سەپلىمىسى "
+msgstr "OpenSSLنىڭ سەپلىمىسى"
 
 #: ../data/man.xml.in.h:14
 msgid "OpenSSL Functions"
@@ -98,11 +102,11 @@ msgstr "POSIX بېشى"
 
 #: ../data/man.xml.in.h:19
 msgid "Perl Functions"
-msgstr "Perl فۇنكسىيىلىرى "
+msgstr "Perl فۇنكسىيىلىرى"
 
 #: ../data/man.xml.in.h:20
 msgid "Qt Functions"
-msgstr "Qt فۇنكسىيىلىرى "
+msgstr "Qt فۇنكسىيىلىرى"
 
 #: ../data/man.xml.in.h:21
 msgid "Readline Functions"
@@ -266,7 +270,7 @@ msgstr "X11 سەپلىمىسى"
 
 #: ../data/man.xml.in.h:61
 msgid "X11 Devices"
-msgstr " ئۈسكۈنىلىرىX11"
+msgstr "ئۈسكۈنىلىرىX11"
 
 #: ../data/man.xml.in.h:62
 msgid "X11 Functions"
@@ -274,7 +278,7 @@ msgstr "X11 فۇنكسىيىلىرى"
 
 #: ../data/man.xml.in.h:63
 msgid "X11 Games"
-msgstr "X11 ئويۇنلىرى "
+msgstr "X11 ئويۇنلىرى"
 
 #: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
@@ -409,8 +413,9 @@ msgid "Debuggers"
 msgstr "تەڭشەپ سىناش پروگراممىسى"
 
 #: ../data/toc.xml.in.h:33
+#, fuzzy
 msgid "Desktop"
-msgstr "ئۈستەل يۈزى"
+msgstr "ئۈستەل يۈزى تەڭشىكى"
 
 #: ../data/toc.xml.in.h:34
 msgid "Desktop Settings"
@@ -859,8 +864,9 @@ msgid "Web Development"
 msgstr "Web ئېچىش"
 
 #: ../data/toc.xml.in.h:149
+#, fuzzy
 msgid "Welcome to the GNOME Help Browser"
-msgstr "Welcome to the GNOME Help Browser"
+msgstr " GNOME ياردەم توركۆرگۈ"
 
 #: ../data/toc.xml.in.h:150
 msgid "Word Processors"
@@ -1105,7 +1111,7 @@ msgstr "نامەلۇم"
 msgid "Unknown Error"
 msgstr "نامەلۇم خاتالىق"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1716
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1719
 msgid "Could Not Read File"
 msgstr "ھۆججەت ئوقۇيالمىدى"
 
@@ -1192,7 +1198,7 @@ msgstr "پۈتۈكىڭىزنى باسالمىدى: %s"
 
 #: ../src/yelp-search-parser.c:67
 msgid "the GNOME Support Forums"
-msgstr "the GNOME Support Forums"
+msgstr ""
 
 #: ../src/yelp-search-parser.c:285
 #, c-format
@@ -1475,7 +1481,7 @@ msgstr "ئېلخەت ئادرېسى كۆچۈر(_E)"
 msgid "Help Browser"
 msgstr "ياردەم كۆرگۈچ"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1779
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1782
 msgid "Loading..."
 msgstr "يۈكلەۋاتىدۇ…"
 
@@ -1494,39 +1500,39 @@ msgstr "ئىلتىماس قىلغان URI \"%s\" ئىناۋەتسىز"
 msgid "Unable to load page"
 msgstr "بەتنى يۈكلىيەلمەيدۇ"
 
-#: ../src/yelp-window.c:1336
+#: ../src/yelp-window.c:1339
 msgid "_Search:"
 msgstr "ئىزدە(_S):"
 
-#: ../src/yelp-window.c:1337
+#: ../src/yelp-window.c:1340
 msgid "Search for other documentation"
 msgstr "باشقا پۈتۈكنى ئىزدە"
 
-#: ../src/yelp-window.c:1357
+#: ../src/yelp-window.c:1360
 msgid "Cannot create window"
 msgstr "كۆزنەك قۇرالمىدى"
 
-#: ../src/yelp-window.c:1363
+#: ../src/yelp-window.c:1366
 msgid "Cannot create search component"
 msgstr "ئىزدەش بۆلىكى قۇرالمىدى"
 
-#: ../src/yelp-window.c:1535
+#: ../src/yelp-window.c:1538
 msgid "Fin_d:"
 msgstr "ئىزدە(_D):"
 
-#: ../src/yelp-window.c:1557
+#: ../src/yelp-window.c:1560
 msgid "Find _Previous"
 msgstr "ئالدىنقىنى ئىزدە(_P)"
 
-#: ../src/yelp-window.c:1569
+#: ../src/yelp-window.c:1572
 msgid "Find _Next"
 msgstr "كېيىنكىسىنى ئىزدە(_N)"
 
-#: ../src/yelp-window.c:1582
+#: ../src/yelp-window.c:1585
 msgid "Phrase not found"
 msgstr "ئاتالغۇنى تاپالمىدى"
 
-#: ../src/yelp-window.c:1713
+#: ../src/yelp-window.c:1716
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1537,26 +1543,268 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2604
+#: ../src/yelp-window.c:2607
 msgid "translator-credits"
 msgstr ""
-"تەرجىمان تۆھپىكارلار\n"
+"GNOME Uighur Translation Project <gnome-uighur@yahoogroups.comAbduxukur "
+"Abdurixit <abduxukur.abdurixit@t-systems.ch>, 2005\n"
 "\n"
 "Launchpad Contributions:\n"
 "  Burkut https://launchpad.net/~burkut\n"
-"  Gheyret T.Kenji https://launchpad.net/~gheyret\n"
-"  Omar14 https://launchpad.net/~omarjan14\n"
-"  Sarwan https://launchpad.net/~sarwan-net\n"
-"  Tughchi https://launchpad.net/~adiljanmamut"
+"  Gheyret T.Kenji https://launchpad.net/~gheyretkenji\n"
+"  Sebastien Bacher https://launchpad.net/~seb128"
 
-#: ../src/yelp-window.c:2607
+#: ../src/yelp-window.c:2610
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2609
+#: ../src/yelp-window.c:2612
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr " Gnome Desktop نىڭ پۈتۈك كۆرگۈچىسى"
+msgstr "Gnome Desktop نىڭ پۈتۈك كۆرگۈچىسى"
 
 #: ../yelp.desktop.in.in.h:1
+#, fuzzy
 msgid "Get help with GNOME"
-msgstr "GNOME ياردىمىگە ئېرىش"
+msgstr "Ubuntu ياردىمىگە ئېرىش"
+
+#~ msgid "Accessories"
+#~ msgstr "قوشۇمچە زاپچاسلار"
+
+#~ msgid "KDE"
+#~ msgstr "KDE"
+
+#~ msgid "Multimedia"
+#~ msgstr "ناخشا مۇزىكىلار"
+
+#~ msgid "Office"
+#~ msgstr "ئشخانا"
+
+#~ msgid "Other"
+#~ msgstr "باشقىلار"
+
+#~ msgid "Panel Applets"
+#~ msgstr "تاختىسىدىكى كىچىك پىروگراممىلار Desktop"
+
+#~ msgid "Programming"
+#~ msgstr "پىروگرامما تۈزەش"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>:فونتلار<b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "(_A) چوڭ كىچىك ھەرپنى پەرقلەندۈرۈش"
+
+#~ msgid "_Wrap around"
+#~ msgstr "(_W) ئاپتوماتىك قۇر ئالمىشىش"
+
+#~ msgid "Yelp Factory"
+#~ msgstr "زاۋۇتى Yelp"
+
+#~ msgid "An unknown error occured"
+#~ msgstr "تونۇمىغان خاتالىق يۈز بەردى"
+
+#~ msgid "Could not read the table of contents"
+#~ msgstr "مۇندەرىجىنى ئوقۇيالمىدى"
+
+#~ msgid "Unsupported Format"
+#~ msgstr "قوللىمايدىغان فورمات"
+
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "نى قوزغىتالمىدى Yelp: %s"
+
+#~ msgid "The YelpDocInfo struct of the document"
+#~ msgstr "قۇرۇلمىسى YelpDocInfo ماقالىنىڭ"
+
+#~ msgid "yelp-watermark-blockquote-201C"
+#~ msgstr "yelp-watermark-blockquote-201C"
+
+#~ msgid "YelpTocPager: Pause count is negative."
+#~ msgstr "قىسقا توختاش قېتىم سانى مەنپى سان :YelpTocPager"
+
+#~ msgid "Read man page for %s"
+#~ msgstr "بېتىنى ئوقۇش man نىڭ  %s"
+
+#~ msgid "The Uniform Resource Identifier for the file is invalid."
+#~ msgstr "ھۆججەتنىڭ بىرلىككە كەلگەن مەنبە ئېنىقلىغۇچى ئىناۋەتسىز"
+
+#~ msgid ""
+#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+#~ "actual file."
+#~ msgstr ""
+#~ "  بىرلىككە كەلگەن مەنبە ئېنىقلىغۇچى %s ئىناۋەتسىز ياكى بىر ئەمىلى "
+#~ "ھۆججەتنى كۆرسەتمەيدۇ"
+
+#~ msgid ""
+#~ "SGML documents are no longer supported. Please ask the author of the "
+#~ "document to convert to XML."
+#~ msgstr ""
+#~ "   فورمات SGML نى قوللاش ئەمەلدىن قالدۇرۇلدى. XML فورماتىغا ئايلاندۇرۇشنى "
+#~ "ماقالىنىڭ ئاپتورىدىن  سوراڭ    "
+
+#~ msgid ""
+#~ "A transformation context could not be created for the file ‘%s’. The "
+#~ "format may not be supported."
+#~ msgstr ""
+#~ "ھۆججىتىنى ئايلاندۇرۇش مۇھىتىنى قۇرۇش ئىمكانىيىتى بولمىدى. ھۆججەتنىڭ "
+#~ "فورماتى%s  قوللىنىلمىسا كېرەك"
+
+#~ msgid ""
+#~ "The section ‘%s’ does not exist in this document. If you were directed to "
+#~ "this section from a Help button in an application, please report this to "
+#~ "the maintainers of that application."
+#~ msgstr ""
+#~ "ماقالىنىڭ %s بۆلۈمى مەۋجۈت ئەمەس. ئگەر بىرەر قوللىنىش پىروگراممىسىنىڭ "
+#~ "ياردەم تۈگمىسىنى بۇ يەرگە ئۇلىنىدىغان قىلغان بولسىڭىز ئۇنداقتا شۇ "
+#~ "پىروگراممىنىڭ داۋاملاشتۇرغۇچىسىبىلەن ئالاقىلىشىڭ"
+
+#, fuzzy
+#~ msgid "Library Functions"
+#~ msgstr "BTL فۇنكسىيىلىرى"
+
+#, fuzzy
+#~ msgid "Education Applications"
+#~ msgstr "KDE قوللىنىشچان پروگراممىلىرى"
+
+#, fuzzy
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "ياردەم ئىقتىدارى"
+
+#, fuzzy
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "خەتكۈش(_B):"
+
+#, fuzzy
+#~ msgid "Find"
+#~ msgstr "ئىزدە(_D):"
+
+#, fuzzy
+#~ msgid "_Find: "
+#~ msgstr "ئىزدە(_D):"
+
+#, fuzzy
+#~ msgid "_Next"
+#~ msgstr "كېيىنكىسىنى ئىزدە(_N)"
+
+#, fuzzy
+#~ msgid "_Previous"
+#~ msgstr "ئالدىنقىنى ئىزدە(_P)"
+
+#, fuzzy
+#~ msgid "Could not load document"
+#~ msgstr "ھۆججەت ئوقۇيالمىدى"
+
+#, fuzzy
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+#~ msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكى ئۇچۇر بېتى فورماتقا ماس كەلمەيدۇ."
+
+#, fuzzy
+#~ msgid "Could not load the OMF file '%s'."
+#~ msgstr "ھۆججەتنى يېشەلمىدى"
+
+#, fuzzy
+#~ msgid ""
+#~ "The table of contents could not be loaded. The file ‘%s’ is either "
+#~ "missing or is not well-formed XML."
+#~ msgstr "XSLT ئۇسلۇب جەدۋىلى ‘%s’ يوقالغان ياكى ئىناۋەتسىز."
+
+#, fuzzy
+#~ msgid ""
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
+#~ msgstr "XSLT ئۇسلۇب جەدۋىلى ‘%s’ يوقالغان ياكى ئىناۋەتسىز."
+
+#, fuzzy
+#~ msgid "Help Contents"
+#~ msgstr "مەزمۇن(_C)"
+
+#, fuzzy
+#~ msgid "GNU info pages are not supported in this version"
+#~ msgstr "بۇ پرىنتېردا بېسىشنى قوللىمايدۇ"
+
+#, fuzzy
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+#~ msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكىman بەت فورماتىغا ماس كەلمەيدۇ."
+
+#~ msgid "Can't find the answer?"
+#~ msgstr "جاۋاب تېپىلمىدىمۇ؟"
+
+#~ msgid "Canonical, its partners and approved companies provide"
+#~ msgstr ""
+#~ "Canonical، ئۇنىڭ ھەمكارلاشقان شېرىكى ۋە ئىجازەت بېرىلگەن شىركىتى "
+#~ "تەمىنلىگەن"
+
+#~ msgid "Common Questions"
+#~ msgstr "ئادەتتىكى سوئاللار"
+
+#~ msgid "Connecting to the internet"
+#~ msgstr "ئىنتېرنېتقا ئۇلىنىۋاتىدۇ"
+
+#~ msgid "Enabling visual effects"
+#~ msgstr "Enabling visual effects"
+
+#~ msgid "General Guides"
+#~ msgstr "ئادەتتىكى كۆرسەتمىلەر"
+
+#~ msgid "How to Contribute"
+#~ msgstr "قانداق ھەسسە قوشىدۇ"
+
+#~ msgid "Importing photos"
+#~ msgstr "رەسىم ئەكىر"
+
+#~ msgid "Keeping your computer updated"
+#~ msgstr "كومپيۇتېر سىستېمىڭىزنى يېڭىلاپ تۇرۇڭ"
+
+#~ msgid "Playing music"
+#~ msgstr "مۇزىكا چال"
+
+#~ msgid "The Ubuntu community provides extensive"
+#~ msgstr "Ubuntu ئىجتىمائىي رايونى كېڭەيتىلمە تەمىنلىگەن"
+
+#~ msgid ""
+#~ "These guides used to be on the front page. Put here for safe keeping in "
+#~ "their own new section."
+#~ msgstr ""
+#~ "بۇ يېتەكچى باشلاش بېتى قىلىپ ئىشلىتىلىدۇ. ئۇلار ئۆزىنىڭ يېڭى بۆلىكىدە "
+#~ "بىخەتەرلىكنى ساقلايدۇ."
+
+#~ msgid "To find help, insert a keyword in the search bar"
+#~ msgstr "ياردەم ئىزدىسىڭىز، ئىزدەش ئىستونىغا ھالقىلىق سۆز كىرگۈزۈڭ"
+
+#~ msgid "Topics"
+#~ msgstr "تېما"
+
+#~ msgid "Ubuntu Help Center"
+#~ msgstr "Ubuntu ياردەم مەركىزى"
+
+#~ msgid "Ubuntu has an open and vibrant community of contributors. Find out"
+#~ msgstr ""
+#~ "Ubuntu ئوچۇق ۋە ھاياتىي كۈچكە تولغان تۆھپىكارلار ئىجتىمائىي رايونى بار. "
+#~ "چۈشىنىڭ"
+
+#~ msgid "Welcome to the Ubuntu Help Center"
+#~ msgstr "Ubuntu ياردەم مەركىزىگە خۇش كەپسىز"
+
+#~ msgid "commercial technical support"
+#~ msgstr "تاۋارلاشقان تېخنىكىلىق قوللاش"
+
+#~ msgid "free support"
+#~ msgstr "ھەقسىز قوللاش"
+
+#~ msgid "how to contribute"
+#~ msgstr "قانداق تۆھپە قوشىدۇ"
+
+#~ msgid "http://www.ubuntu.com/community/participate"
+#~ msgstr "http://www.ubuntu.com/community/participate"
+
+#~ msgid "http://www.ubuntu.com/support/free"
+#~ msgstr "http://www.ubuntu.com/support/free"
+
+#~ msgid "http://www.ubuntu.com/support/paid"
+#~ msgstr "http://www.ubuntu.com/support/paid"
+
+#~ msgid "the Ubuntu Help Pages"
+#~ msgstr "Ubuntu ياردەم بېتى"
