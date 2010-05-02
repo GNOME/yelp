@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-05-02 09:38+0000\n"
-"PO-Revision-Date: 2010-05-02 13:35+0200\n"
+"POT-Creation-Date: 2010-05-02 17:17+0000\n"
+"PO-Revision-Date: 2010-05-02 20:53+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -878,7 +878,6 @@ msgstr "Datos comprimidos no válidos"
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:153
-#| msgid "Out of memory"
 msgid "Not enough memory"
 msgstr "No hay suficiente memoria"
 
@@ -886,13 +885,11 @@ msgstr "No hay suficiente memoria"
 #: ../libyelp/yelp-mallard-document.c:254
 #: ../libyelp/yelp-mallard-document.c:391
 #, c-format
-#| msgid "The page %s was not found in the document %s."
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "La página «%s» no se encontró en el documento «%s»."
 
 #: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:366
 #, c-format
-#| msgid "The file ‘%s’ does not exist."
 msgid "The file does not exist."
 msgstr "El archivo no existe."
 
@@ -926,7 +923,6 @@ msgstr "Desconocido"
 
 #: ../libyelp/yelp-docbook-document.c:781 ../libyelp/yelp-info-document.c:309
 #, c-format
-#| msgid "The requested page was not found in the document %s."
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "No se encontró la página solicitada en el documento «%s»."
 
@@ -957,7 +953,8 @@ msgid "Description Column"
 msgstr "Columna de descripción"
 
 #: ../libyelp/yelp-location-entry.c:247
-msgid "A column in the model to descriptions from"
+#| msgid "A column in the model to descriptions from"
+msgid "A column in the model to get descriptions from"
 msgstr "Una columna en el modelo de la que obtener las descripciones"
 
 #: ../libyelp/yelp-location-entry.c:262
@@ -991,7 +988,6 @@ msgid "The directory ‘%s’ does not exist."
 msgstr "El directorio «%s» no existe."
 
 #: ../libyelp/yelp-settings.c:146
-#| msgid "Settings"
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
@@ -1032,7 +1028,6 @@ msgid "Enable features useful to editors"
 msgstr "Activar características útiles para editores"
 
 #: ../libyelp/yelp-transform.c:171
-#| msgid "Invalid Stylesheet"
 msgid "XSLT Stylesheet"
 msgstr "Hoja de estilo XSLT"
 
@@ -1042,7 +1037,6 @@ msgstr "La ubicación de la hoja de estilo XSLT"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
-#| msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "La hoja de estilo XSLT «%s» falta o no es válida."
 
@@ -1063,17 +1057,14 @@ msgid "_Forward"
 msgstr "A_delante"
 
 #: ../libyelp/yelp-view.c:102
-#| msgid "_Previous"
 msgid "_Previous Page"
 msgstr "Página _anterior"
 
 #: ../libyelp/yelp-view.c:107
-#| msgid "_Next"
 msgid "_Next Page"
 msgstr "_Siguiente página"
 
 #: ../libyelp/yelp-view.c:310
-#| msgid "Yelp"
 msgid "Yelp URI"
 msgstr "URI de Yelp"
 
@@ -1082,7 +1073,6 @@ msgid "A YelpUri with the current location"
 msgstr "Un YelpUri con la ubicación actual"
 
 #: ../libyelp/yelp-view.c:319
-#| msgid "Loading..."
 msgid "Loading State"
 msgstr "Estado de la carga"
 
@@ -1123,7 +1113,6 @@ msgid "The description of the page being viewed"
 msgstr "La descripción de la página que se está viendo"
 
 #: ../libyelp/yelp-view.c:365
-#| msgid "Page not found"
 msgid "Page Icon"
 msgstr "Icono de página"
 
@@ -1142,12 +1131,10 @@ msgid "Could not load a document"
 msgstr "No se pudo cargar un documento"
 
 #: ../libyelp/yelp-view.c:756
-#| msgid "Page not found"
 msgid "Not Found"
 msgstr "No encontrada"
 
 #: ../libyelp/yelp-view.c:759
-#| msgid "Cannot create window"
 msgid "Cannot Read"
 msgstr "No se puede leer"
 
@@ -1157,13 +1144,11 @@ msgstr "Error desconocido"
 
 #: ../libyelp/yelp-view.c:855
 #, c-format
-#| msgid "The file ‘%s’ does not exist."
 msgid "The URI ‘%s’ does point to a valid page."
 msgstr "El URI «%s» no apunta a una página válida."
 
 #: ../libyelp/yelp-view.c:863
 #, c-format
-#| msgid "The file ‘%s’ does not exist."
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "No se pudo analizar el URI «%s»."
 
@@ -1465,7 +1450,6 @@ msgid "_Page"
 msgstr "_Página"
 
 #: ../src/yelp-window.c:204
-#| msgid "Viewer"
 msgid "_View"
 msgstr "_Ver"
 
@@ -1482,7 +1466,6 @@ msgid "_New Window"
 msgstr "Ventana _nueva"
 
 #: ../src/yelp-window.c:214
-#| msgid "Clocks"
 msgid "_Close"
 msgstr "_Cerrar"
 
@@ -1495,7 +1478,6 @@ msgid "Open Location"
 msgstr "Abrir dirección"
 
 #: ../src/yelp-window.c:249
-#| msgid "Applications"
 msgid "Application"
 msgstr "Aplicación"
 
@@ -1504,12 +1486,10 @@ msgid "A YelpApplication instance that controls this window"
 msgstr "Una instancia de YelpApplication que controla esta ventana"
 
 #: ../src/yelp-window.c:416
-#| msgid "_Search:"
 msgid "Search..."
 msgstr "Buscar…"
 
 #: ../src/yelp-window.c:945
-#| msgid "Loading..."
 msgid "Loading"
 msgstr "Cargando"
 
