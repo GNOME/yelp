@@ -864,10 +864,19 @@ view_loaded (YelpView   *view,
 {
     gchar **ids;
     gint i;
+    GtkTreeIter iter;
+    gint flags;
     YelpWindowPrivate *priv = GET_PRIV (window);
     YelpDocument *document = yelp_view_get_document (view);
-    ids = yelp_document_list_page_ids (document);
 
+    gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->history), &iter);
+    gtk_tree_model_get (priv->history, &iter, COL_FLAGS, &flags, -1);
+    if (flags & YELP_LOCATION_ENTRY_IS_LOADING) {
+        flags = flags ^ YELP_LOCATION_ENTRY_IS_LOADING;
+        gtk_list_store_set (priv->history, &iter, COL_FLAGS, flags, -1);
+    }
+
+    ids = yelp_document_list_page_ids (document);
     gtk_list_store_clear (priv->completion);
     for (i = 0; ids[i]; i++) {
         GtkTreeIter iter;
@@ -945,6 +954,7 @@ view_uri_selected (YelpView     *view,
                             COL_TITLE, _("Loading"),
                             COL_ICON, "help-contents",
                             COL_URI, struri,
+                            COL_FLAGS, YELP_LOCATION_ENTRY_IS_LOADING,
                             -1);
         /* Limit to 15 entries. There are two extra for the search entry and
          * the separator above it.

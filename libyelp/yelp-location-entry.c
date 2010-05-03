@@ -61,6 +61,8 @@
  * will cause the FIXME signal to be emitted.
  **/
 
+static void     location_entry_dispose         (GObject            *object);
+static void     location_entry_finalize        (GObject            *object);
 static void     location_entry_get_property    (GObject           *object,
                                                 guint              prop_id,
                                                 GValue            *value,
@@ -132,22 +134,23 @@ static gboolean entry_match_selected                (GtkEntryCompletion *complet
 typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 struct _YelpLocationEntryPrivate
 {
-    GtkWidget *text_entry;
+    GtkWidget          *text_entry;
 
     gint       desc_column;
     gint       icon_column;
     gint       flags_column;
     gboolean   enable_search;
 
-    GtkTreeRowReference *row;
-
     gboolean   search_mode;
+    guint      pulse;
 
     GtkCellRenderer *icon_cell;
 
-    /* owned by entry, do not free */
     GtkEntryCompletion *completion;
     gint                completion_desc_column;
+
+    /* free this, and only this */
+    GtkTreeRowReference *row;
 };
 
 enum {
@@ -177,6 +180,8 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
 
     object_class = G_OBJECT_CLASS (klass);
   
+    object_class->dispose = location_entry_dispose;
+    object_class->finalize = location_entry_finalize;
     object_class->get_property = location_entry_get_property;
     object_class->set_property = location_entry_set_property;
 
@@ -355,6 +360,30 @@ yelp_location_entry_init (YelpLocationEntry *entry)
                       G_CALLBACK (entry_key_press_cb), entry);
     g_signal_connect (priv->text_entry, "activate",
                       G_CALLBACK (entry_activate_cb), entry);
+}
+
+static void
+location_entry_dispose (GObject *object)
+{
+    YelpLocationEntryPrivate *priv = GET_PRIV (object);
+
+    if (priv->row) {
+        gtk_tree_row_reference_free (priv->row);
+        priv->row = NULL;
+    }
+
+    if (priv->pulse > 0) {
+        g_source_remove (priv->pulse);
+        priv->pulse = 0;
+    }
+
+    G_OBJECT_CLASS (yelp_location_entry_parent_class)->dispose (object);
+}
+
+static void
+location_entry_finalize (GObject *object)
+{
+    G_OBJECT_CLASS (yelp_location_entry_parent_class)->finalize (object);
 }
 
 static void
@@ -554,7 +583,9 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_PRIMARY,
                                                "image-loading");
-            g_timeout_add (80, location_entry_pulse, entry);
+            if (priv->pulse > 0)
+                g_source_remove (priv->pulse);
+            priv->pulse = g_timeout_add (80, location_entry_pulse, entry);
         }
         else {
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
