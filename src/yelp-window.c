@@ -131,6 +131,8 @@ static guint signals[LAST_SIGNAL] = { 0 };
 G_DEFINE_TYPE (YelpWindow, yelp_window, GTK_TYPE_WINDOW);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_WINDOW, YelpWindowPrivate))
 
+static GHashTable *completions;
+
 enum {
   COL_TITLE,
   COL_DESC,
@@ -172,7 +174,6 @@ static const gchar *YELP_UI =
 typedef struct _YelpWindowPrivate YelpWindowPrivate;
 struct _YelpWindowPrivate {
     GtkListStore *history;
-    GtkListStore *completion;
     GtkUIManager *ui_manager;
     GtkActionGroup *action_group;
     YelpApplication *application;
@@ -242,6 +243,8 @@ yelp_window_class_init (YelpWindowClass *klass)
     object_class->finalize = yelp_window_finalize;
     object_class->get_property = yelp_window_get_property;
     object_class->set_property = yelp_window_set_property;
+
+    completions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 
     g_object_class_install_property (object_class,
                                      PROP_APPLICATION,
@@ -348,7 +351,6 @@ window_construct (YelpWindow *window)
     GtkAction *action;
     GtkWidget *button;
     GtkTreeIter iter;
-    GtkTreeModelSort *completion_sorted;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
@@ -416,16 +418,6 @@ window_construct (YelpWindow *window)
                         COL_TITLE, _("Search..."),
                         COL_FLAGS, YELP_LOCATION_ENTRY_IS_SEARCH,
                         -1);
-    priv->completion = gtk_list_store_new (4,
-                                           G_TYPE_STRING,  /* title */
-                                           G_TYPE_STRING,  /* desc */
-                                           G_TYPE_STRING,  /* icon */
-                                           G_TYPE_STRING   /* uri */
-                                           );
-    completion_sorted = gtk_tree_model_sort_new_with_model (priv->completion);
-    gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (completion_sorted),
-                                             entry_completion_sort,
-                                             NULL, NULL);
 
     priv->entry = (YelpLocationEntry *)
         yelp_location_entry_new_with_model (GTK_TREE_MODEL (priv->history),
@@ -436,12 +428,6 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->entry, "focus-out-event",
                       G_CALLBACK (entry_focus_out), window);
 
-    yelp_location_entry_set_completion_model (YELP_LOCATION_ENTRY (priv->entry),
-                                              GTK_TREE_MODEL (completion_sorted),
-                                              COL_TITLE,
-                                              COL_DESC,
-                                              COL_ICON);
-    g_object_unref (completion_sorted);
     g_signal_connect (priv->entry, "completion-selected",
                       G_CALLBACK (entry_completion_selected), window);
 
@@ -866,6 +852,9 @@ view_loaded (YelpView   *view,
     gint i;
     GtkTreeIter iter;
     gint flags;
+    YelpUri *uri;
+    gchar *doc_uri;
+    GtkListStore *completion;
     YelpWindowPrivate *priv = GET_PRIV (window);
     YelpDocument *document = yelp_view_get_document (view);
 
@@ -876,27 +865,53 @@ view_loaded (YelpView   *view,
         gtk_list_store_set (priv->history, &iter, COL_FLAGS, flags, -1);
     }
 
-    ids = yelp_document_list_page_ids (document);
-    gtk_list_store_clear (priv->completion);
-    for (i = 0; ids[i]; i++) {
-        GtkTreeIter iter;
-        gchar *title, *desc, *icon;
-        gtk_list_store_insert (GTK_LIST_STORE (priv->completion), &iter, 0);
-        title = yelp_document_get_page_title (document, ids[i]);
-        desc = yelp_document_get_page_desc (document, ids[i]);
-        icon = yelp_document_get_page_icon (document, ids[i]);
-        gtk_list_store_set (priv->completion, &iter,
-                            COL_TITLE, title,
-                            COL_DESC, desc,
-                            COL_ICON, icon,
-                            COL_URI, ids[i],
-                            -1);
-        g_free (icon);
-        g_free (desc);
-        g_free (title);
+    g_object_get (view, "yelp-uri", &uri, NULL);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    completion = (GtkListStore *) g_hash_table_lookup (completions, doc_uri);
+    if (completion == NULL) {
+        GtkListStore *base = gtk_list_store_new (4,
+                                                 G_TYPE_STRING,  /* title */
+                                                 G_TYPE_STRING,  /* desc */
+                                                 G_TYPE_STRING,  /* icon */
+                                                 G_TYPE_STRING   /* uri */
+                                                 );
+        completion = gtk_tree_model_sort_new_with_model (base);
+        gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (completion),
+                                                 entry_completion_sort,
+                                                 NULL, NULL);
+        g_hash_table_insert (completions, doc_uri, completion);
+        ids = yelp_document_list_page_ids (document);
+        for (i = 0; ids[i]; i++) {
+            GtkTreeIter iter;
+            gchar *title, *desc, *icon;
+            gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
+            title = yelp_document_get_page_title (document, ids[i]);
+            desc = yelp_document_get_page_desc (document, ids[i]);
+            icon = yelp_document_get_page_icon (document, ids[i]);
+            gtk_list_store_set (base, &iter,
+                                COL_TITLE, title,
+                                COL_DESC, desc,
+                                COL_ICON, icon,
+                                COL_URI, ids[i],
+                                -1);
+            g_free (icon);
+            g_free (desc);
+            g_free (title);
+        }
+        g_object_unref (base);
+        g_strfreev (ids);
+    }
+    else {
+        g_free (doc_uri);
     }
 
-    g_strfreev (ids);
+    yelp_location_entry_set_completion_model (YELP_LOCATION_ENTRY (priv->entry),
+                                              GTK_TREE_MODEL (completion),
+                                              COL_TITLE,
+                                              COL_DESC,
+                                              COL_ICON);
+
+    g_object_unref (uri);
 }
 
 static void
