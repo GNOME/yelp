@@ -62,6 +62,8 @@ static void          window_add_bookmark          (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_load_bookmark         (GtkAction          *action,
                                                    YelpWindow         *window);
+static void          window_start_search          (GtkAction          *action,
+                                                   YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
 
@@ -168,6 +170,7 @@ static const gchar *YELP_UI =
     "<placeholder name='Bookmarks'/>"
     "</menu>"
     "</menubar>"
+    "<accelerator action='Search'/>"
     "<accelerator action='OpenLocation'/>"
     "</ui>";
 
@@ -221,6 +224,11 @@ static const GtkActionEntry entries[] = {
       "<Control>D",
       NULL,
       G_CALLBACK (window_add_bookmark) },
+    { "Search", NULL,
+      N_("Search"),
+      "<Control>S",
+      NULL,
+      G_CALLBACK (window_start_search) },
     { "OpenLocation", NULL,
       N_("Open Location"),
       "<Control>L",
@@ -696,6 +704,14 @@ window_set_bookmarks (YelpWindow  *window,
 
     g_variant_iter_free (iter);
     g_variant_unref (value);
+}
+
+static void
+window_start_search (GtkAction *action, YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    yelp_location_entry_start_search (priv->entry);
 }
 
 static void
