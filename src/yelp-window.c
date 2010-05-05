@@ -703,7 +703,7 @@ entry_compare (YelpMenuEntry *a, YelpMenuEntry *b)
         return ret;
 
     if (a->title && b->title)
-        ret = g_utf8_collate (a->title, b->title);
+        return g_utf8_collate (a->title, b->title);
     else if (b->title == NULL)
         return -1;
     else if (a->title == NULL)
