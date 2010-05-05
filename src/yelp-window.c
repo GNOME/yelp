@@ -62,6 +62,8 @@ static void          window_add_bookmark          (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_load_bookmark         (GtkAction          *action,
                                                    YelpWindow         *window);
+static void          window_find_in_page          (GtkAction          *action,
+                                                   YelpWindow         *window);
 static void          window_start_search          (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
@@ -72,6 +74,16 @@ static void          app_bookmarks_changed        (YelpApplication    *app,
                                                    YelpWindow         *window);
 static void          window_set_bookmarks         (YelpWindow         *window,
                                                    const gchar        *doc_uri);
+static gboolean      find_animate_open            (YelpWindow         *window);
+static gboolean      find_animate_close           (YelpWindow         *window);
+static gboolean      find_entry_focus_out         (GtkEntry           *entry,
+                                                   GdkEventFocus      *event,
+                                                   YelpWindow         *window);
+static gboolean      find_entry_key_press         (GtkEntry           *entry,
+                                                   GdkEventKey        *event,
+                                                   YelpWindow         *window);
+static void          find_entry_changed           (GtkEntry           *entry,
+                                                   YelpWindow         *window);
 
 static void          entry_location_selected      (YelpLocationEntry  *entry,
                                                    YelpWindow         *window);
@@ -149,6 +161,8 @@ static const gchar *YELP_UI =
     "<menubar>"
     "<menu action='PageMenu'>"
     "<menuitem action='NewWindow'/>"
+    "<menuitem action='Find'/>"
+    "<separator/>"
     "<menuitem action='CloseWindow'/>"
     "</menu>"
     "<menu action='ViewMenu'>"
@@ -170,6 +184,7 @@ static const gchar *YELP_UI =
     "<placeholder name='Bookmarks'/>"
     "</menu>"
     "</menubar>"
+    "<accelerator action='Find'/>"
     "<accelerator action='Search'/>"
     "<accelerator action='OpenLocation'/>"
     "</ui>";
@@ -183,11 +198,15 @@ struct _YelpWindowPrivate {
 
     /* no refs on these, owned by containers */
     YelpView *view;
+    GtkWidget *vbox;
     GtkWidget *hbox;
     YelpLocationEntry *entry;
     GtkWidget *hidden_entry;
+    GtkWidget *find_entry;
+    GtkWidget *find_label;
 
     /* refs because we dynamically add & remove */
+    GtkWidget *find_bar;
     GtkWidget *align_location;
     GtkWidget *align_hidden;
 
@@ -201,6 +220,10 @@ struct _YelpWindowPrivate {
     guint resize_signal;
     gint width;
     gint height;
+
+    guint find_animate;
+    gint find_cur_height;
+    gint find_tot_height;
 };
 
 static const GtkActionEntry entries[] = {
@@ -209,12 +232,12 @@ static const GtkActionEntry entries[] = {
     { "GoMenu",        NULL, N_("_Go")        },
     { "BookmarksMenu", NULL, N_("_Bookmarks")        },
 
-    { "NewWindow", GTK_STOCK_NEW,
+    { "NewWindow", NULL,
       N_("_New Window"),
       "<Control>N",
       NULL,
       G_CALLBACK (window_new) },
-    { "CloseWindow", GTK_STOCK_CLOSE,
+    { "CloseWindow", NULL,
       N_("_Close"),
       "<Control>W",
       NULL,
@@ -224,8 +247,13 @@ static const GtkActionEntry entries[] = {
       "<Control>D",
       NULL,
       G_CALLBACK (window_add_bookmark) },
+    { "Find", NULL,
+      N_("Find in Page..."),
+      "<Control>F",
+      NULL,
+      G_CALLBACK (window_find_in_page) },
     { "Search", NULL,
-      N_("Search"),
+      N_("Search..."),
       "<Control>S",
       NULL,
       G_CALLBACK (window_start_search) },
@@ -305,6 +333,16 @@ yelp_window_dispose (GObject *object)
         priv->align_hidden = NULL;
     }
 
+    if (priv->find_bar) {
+        g_object_unref (priv->find_bar);
+        priv->find_bar = NULL;
+    }
+
+    if (priv->find_animate != 0) {
+        g_source_remove (priv->find_animate);
+        priv->find_animate = 0;
+    }
+
     G_OBJECT_CLASS (yelp_window_parent_class)->dispose (object);
 }
 
@@ -354,7 +392,7 @@ yelp_window_set_property (GObject     *object,
 static void
 window_construct (YelpWindow *window)
 {
-    GtkWidget *vbox, *scroll;
+    GtkWidget *scroll;
     GtkActionGroup *view_actions;
     GtkAction *action;
     GtkWidget *button;
@@ -365,8 +403,8 @@ window_construct (YelpWindow *window)
 
     priv->view = (YelpView *) yelp_view_new ();
 
-    vbox = gtk_vbox_new (FALSE, 0);
-    gtk_container_add (GTK_CONTAINER (window), vbox);
+    priv->vbox = gtk_vbox_new (FALSE, 0);
+    gtk_container_add (GTK_CONTAINER (window), priv->vbox);
 
     priv->action_group = gtk_action_group_new ("WindowActions");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -388,14 +426,15 @@ window_construct (YelpWindow *window)
     gtk_window_add_accel_group (GTK_WINDOW (window),
                                 gtk_ui_manager_get_accel_group (priv->ui_manager));
     gtk_ui_manager_add_ui_from_string (priv->ui_manager, YELP_UI, -1, NULL);
-    gtk_box_pack_start (GTK_BOX (vbox),
+    gtk_box_pack_start (GTK_BOX (priv->vbox),
                         gtk_ui_manager_get_widget (priv->ui_manager, "/ui/menubar"),
                         FALSE, FALSE, 0);
+
     priv->bookmarks_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
     g_signal_connect (priv->application, "bookmarks-changed", G_CALLBACK (app_bookmarks_changed), window);
 
     priv->hbox = gtk_hbox_new (FALSE, 0);
-    gtk_box_pack_start (GTK_BOX (vbox), priv->hbox, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (priv->vbox), priv->hbox, FALSE, FALSE, 0);
 
     action = gtk_action_group_get_action (view_actions, "YelpViewGoBack");
     button = gtk_action_create_tool_item (action);
@@ -462,7 +501,26 @@ window_construct (YelpWindow *window)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_AUTOMATIC);
-    gtk_box_pack_end (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (priv->vbox), scroll, TRUE, TRUE, 0);
+
+    priv->find_bar = g_object_ref_sink (gtk_hbox_new (FALSE, 6));
+
+    priv->find_entry = gtk_entry_new ();
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->find_entry),
+                                       GTK_ENTRY_ICON_PRIMARY,
+                                       "edit-find");
+    g_signal_connect (priv->find_entry, "changed",
+                      G_CALLBACK (find_entry_changed), window);
+    g_signal_connect (priv->find_entry, "key-press-event",
+                      G_CALLBACK (find_entry_key_press), window);
+    g_signal_connect (priv->find_entry, "focus-out-event",
+                      G_CALLBACK (find_entry_focus_out), window);
+    g_object_set (priv->find_entry, "width-request", 300, NULL);
+    gtk_box_pack_start (GTK_BOX (priv->find_bar), priv->find_entry, FALSE, FALSE, 0);
+
+    priv->find_label = gtk_label_new ("");
+    g_object_set (priv->find_label, "xalign", 0.0, NULL);
+    gtk_box_pack_start (GTK_BOX (priv->find_bar), priv->find_label, FALSE, FALSE, 0);
 
     g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
@@ -547,6 +605,7 @@ window_configure_event (YelpWindow         *window,
     priv->resize_signal = g_timeout_add (200,
                                          (GSourceFunc) window_resize_signal,
                                          window);
+    g_object_set (priv->find_entry, "width-request", 2 * priv->width / 3, NULL);
     return FALSE;
 }
 
@@ -757,6 +816,168 @@ window_open_location (GtkAction *action, YelpWindow *window)
             gtk_editable_select_region (GTK_EDITABLE (priv->hidden_entry), 5, -1);
         g_free (uri);
     }
+}
+
+static gboolean
+find_animate_open (YelpWindow *window) {
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    priv->find_cur_height += 1;
+    if (priv->find_cur_height >= priv->find_tot_height) {
+        priv->find_cur_height = priv->find_tot_height;
+        g_object_set (priv->find_bar, "height-request", -1, NULL);
+        priv->find_animate = 0;
+        find_entry_changed (priv->find_entry, window);
+        gtk_editable_select_region (GTK_EDITABLE (priv->find_entry), 0, -1);
+        return FALSE;
+    }
+    else {
+        g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
+        return TRUE;
+    }
+}
+
+static gboolean
+find_animate_close (YelpWindow *window) {
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    priv->find_cur_height -= 1;
+    if (priv->find_cur_height <= 0) {
+        priv->find_cur_height = 0;
+        gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->find_bar); 
+        g_object_set (priv->find_bar, "height-request", -1, NULL);
+        priv->find_animate = 0;
+        return FALSE;
+    }
+    else {
+        g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
+        return TRUE;
+    }
+}
+
+static void
+window_find_in_page (GtkAction  *action,
+                     YelpWindow *window)
+{
+    GtkRequisition req;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    if (priv->find_animate != 0)
+        return;
+
+    if (gtk_widget_get_parent (priv->find_bar) != NULL) {
+        gtk_widget_grab_focus (priv->find_entry);
+        return;
+    }
+
+    g_object_set (priv->find_entry, "width-request", 2 * priv->width / 3, NULL);
+
+    gtk_box_pack_end (GTK_BOX (priv->vbox), priv->find_bar, FALSE, FALSE, 0);
+    g_object_set (priv->find_bar, "height-request", -1, NULL);
+    gtk_widget_show_all (priv->find_bar);
+    gtk_widget_size_request (priv->find_bar, &req);
+    gtk_widget_grab_focus (priv->find_entry);
+
+    priv->find_tot_height = req.height;
+    priv->find_cur_height = 1;
+
+    g_object_set (priv->find_bar, "height-request", 1, NULL);
+    priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_open, window);
+}
+
+static gboolean
+find_entry_key_press (GtkEntry    *entry,
+                      GdkEventKey *event,
+                      YelpWindow  *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    if (priv->find_animate != 0)
+        return;
+
+    if (event->keyval == GDK_Escape) {
+        gtk_widget_grab_focus (priv->view);
+        return TRUE;
+    }
+
+    if (event->keyval == GDK_Return || event->keyval == GDK_KP_Enter) {
+        gchar *text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
+        webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
+                                     text, FALSE, TRUE, TRUE);
+        g_free (text);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+static gboolean
+find_entry_focus_out (GtkEntry      *entry,
+                      GdkEventFocus *event,
+                      YelpWindow    *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    webkit_web_view_unmark_text_matches (WEBKIT_WEB_VIEW (priv->view));
+    webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
+    gtk_widget_grab_focus (priv->view);
+    priv->find_cur_height = priv->find_tot_height;
+    priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_close, window);
+    return FALSE;
+}
+
+static void
+find_entry_changed (GtkEntry   *entry,
+                    YelpWindow *window)
+{
+    gchar *text;
+    gint count;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    webkit_web_view_unmark_text_matches (WEBKIT_WEB_VIEW (priv->view));
+
+    text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
+
+    if (text[0] == '\0') {
+        gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, NULL);
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
+                                           GTK_ENTRY_ICON_PRIMARY,
+                                           "edit-find");
+        gtk_label_set_text (GTK_LABEL (priv->find_label), "");
+        return;
+    }
+
+    count = webkit_web_view_mark_text_matches (WEBKIT_WEB_VIEW (priv->view),
+                                               text, FALSE, 0);
+    if (count > 0) {
+        gchar *label = g_strdup_printf (ngettext ("%i match", "%i matches", count), count);
+        gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, NULL);
+        webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), TRUE);
+        webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
+                                     text, FALSE, TRUE, TRUE);
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
+                                           GTK_ENTRY_ICON_PRIMARY,
+                                           "edit-find");
+        gtk_label_set_text (GTK_LABEL (priv->find_label), label);
+        g_free (label);
+    }
+    else {
+        gchar *color;
+        const GdkColor yellow;
+
+        color = yelp_settings_get_color (yelp_settings_get_default (),
+                                         YELP_SETTINGS_COLOR_RED_BASE);
+        if (gdk_color_parse (color, &yellow))
+            gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, &yellow);
+        g_free (color);
+
+        webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
+        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
+                                           GTK_ENTRY_ICON_PRIMARY,
+                                           "dialog-warning");
+        gtk_label_set_text (GTK_LABEL (priv->find_label), _("No matches"));
+    }
+
+    g_free (text);
 }
 
 static void
