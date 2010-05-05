@@ -6,16 +6,13 @@ test -z "$srcdir" && srcdir=.
 
 PKG_NAME=Yelp
 
-REQUIRED_AUTOMAKE_VERSION=1.9
-export REQUIRED_AUTOMAKE_VERSION
-
 if ! test -f $srcdir/src/yelp.c; then
   echo "**Error**: Directory '$srcdir' does not look like the yelp source directory"
   exit 1
 fi
 
 which gnome-autogen.sh || {
-    echo "You need to install gnome-common from Gnome CVS"
+    echo "You need to install gnome-common package"
     exit 1
 }
 
