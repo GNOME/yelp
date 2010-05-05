@@ -44,7 +44,6 @@
 #define COL_HEADER 3
 #define TOC_PATH "ui/menubar/BookmarksMenu/BookmarksTOC"
 #define DOC_PATH "ui/menubar/BookmarksMenu/BookmarksDOC"
-#define BK_CONFIG_PATH   "/.gnome2/yelp"
 #define BK_CONFIG_BK_GROUP "Bookmarks"
 #define BK_CONFIG_WIDTH  "width"
 #define BK_CONFIG_HEIGHT "height"
@@ -163,6 +162,7 @@ void
 yelp_bookmarks_init (void)
 {
     gchar   *filename = NULL;
+    const gchar *override;
 
     windows = NULL;
     actions_store = gtk_tree_store_new (4,
@@ -171,8 +171,13 @@ yelp_bookmarks_init (void)
 					G_TYPE_BOOLEAN,
 					G_TYPE_BOOLEAN);
 
-    filename = g_build_filename (g_get_home_dir (), ".gnome2",
-				 "yelp-bookmarks.xbel", NULL);
+    override = g_getenv ("GNOME22_USER_DIR");
+
+    if (override)
+        filename = g_build_filename (override, "yelp-bookmarks.xbel", NULL);
+    else
+        filename = g_build_filename (g_get_home_dir (), ".gnome2",
+				     "yelp-bookmarks.xbel", NULL);
 
     if (g_file_test (filename, G_FILE_TEST_EXISTS))
 	bookmarks_read (filename);
@@ -612,6 +617,7 @@ yelp_bookmarks_edit (void)
     GKeyFile *keyfile;
     GError *config_error = NULL;
     gchar *config_path;
+    const gchar *override;
 
     if (!bookmarks_dialog) {
         builder = gtk_builder_new ();
@@ -626,7 +632,12 @@ yelp_bookmarks_edit (void)
         bookmarks_dialog = GTK_WIDGET (gtk_builder_get_object (builder, "bookmarks_dialog"));
 	view = GTK_TREE_VIEW (gtk_builder_get_object (builder, "bookmarks_view"));
  	keyfile = g_key_file_new();
- 	config_path = g_strconcat (g_get_home_dir(), BK_CONFIG_PATH, NULL);
+        override = g_getenv ("GNOME22_USER_DIR");
+        if (override)
+            config_path = g_build_filename (override, "yelp", NULL);
+        else
+            config_path = g_build_filename (g_get_home_dir(),
+                                            ".gnome2", "yelp", NULL);
 
  	if( !g_key_file_load_from_file (keyfile, config_path,
 					G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS,
@@ -717,11 +728,17 @@ bookmarks_configure_cb (GtkWidget *widget, GdkEventConfigure *event,
     gchar *config_path, *sdata;
     GError *config_error = NULL;
     gsize config_size;
+    const gchar *override;
 
     gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
 
     keyfile = g_key_file_new ();
-    config_path = g_strconcat (g_get_home_dir (), BK_CONFIG_PATH, NULL);
+    override = g_getenv ("GNOME22_USER_DIR");
+    if (override)
+        config_path = g_build_filename (override, "yelp", NULL);
+    else
+        config_path = g_build_filename (g_get_home_dir (),
+                                        ".gnome2", "yelp", NULL);
 
     g_key_file_set_integer (keyfile, BK_CONFIG_BK_GROUP,
 			    BK_CONFIG_WIDTH, width);
@@ -942,9 +959,15 @@ yelp_bookmarks_write (void)
     GtkTreeIter top_iter, sub_iter;
     gboolean top_valid, sub_valid;
     gchar *filename;
+    const gchar *override;
 
-    filename = g_build_filename (g_get_home_dir (), ".gnome2",
-				 "yelp-bookmarks.xbel", NULL);
+    override = g_getenv ("GNOME22_USER_DIR");
+
+    if (override)
+        filename = g_build_filename (override, "yelp-bookmarks.xbel", NULL);
+    else
+        filename = g_build_filename (g_get_home_dir (), ".gnome2",
+				     "yelp-bookmarks.xbel", NULL);
 
     file = xmlNewTextWriterFilename (filename,
 				     0);

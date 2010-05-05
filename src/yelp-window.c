@@ -1140,6 +1140,8 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
            because right now we're outputting "#page_id/section_id".
          */
         faux_frag_id = g_strdup (frag_id);
+        if ( priv->current_type == YELP_RRN_TYPE_MAL )
+        {
         slash = strchr (faux_frag_id, '/');
         if (slash)
             *slash = '\0';
@@ -1156,6 +1158,7 @@ yelp_window_load (YelpWindow *window, const gchar *uri)
             g_free (frag_id);
             g_free (slash);
             frag_id = new_frag_id;
+        }
         }
 	window_setup_window (window, type, real_uri, frag_id,
 			     (gchar *) uri, current_base, need_hist);
@@ -2347,7 +2350,7 @@ history_load_entry (YelpWindow *window, YelpHistoryEntry *entry)
            be scrolling to the section as well.
          */
         slash = strchr (entry->frag_id, '/');
-        if (slash)
+        if (entry->type == YELP_RRN_TYPE_MAL && slash)
             frag_id = g_strndup (entry->frag_id, slash - entry->frag_id);
         else
             frag_id = g_strdup (entry->frag_id);
