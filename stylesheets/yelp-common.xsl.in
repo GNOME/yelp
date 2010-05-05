@@ -18,8 +18,6 @@ body {
   padding: 0;
   background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
   max-width: 100%;
-  border-top: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
 div.head {
   max-width: 100%;

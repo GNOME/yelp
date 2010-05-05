@@ -24,6 +24,8 @@
 #include <config.h>
 #endif
 
+#include <math.h>
+
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
@@ -223,7 +225,8 @@ struct _YelpWindowPrivate {
 
     guint find_animate;
     gint find_cur_height;
-    gint find_tot_height;
+    gint find_entry_height;
+    gint find_bar_height;
 };
 
 static const GtkActionEntry entries[] = {
@@ -434,6 +437,7 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->application, "bookmarks-changed", G_CALLBACK (app_bookmarks_changed), window);
 
     priv->hbox = gtk_hbox_new (FALSE, 0);
+    g_object_set (priv->hbox, "border-width", 2, NULL);
     gtk_box_pack_start (GTK_BOX (priv->vbox), priv->hbox, FALSE, FALSE, 0);
 
     action = gtk_action_group_get_action (view_actions, "YelpViewGoBack");
@@ -501,9 +505,12 @@ window_construct (YelpWindow *window)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll),
+                                         GTK_SHADOW_IN);
     gtk_box_pack_start (GTK_BOX (priv->vbox), scroll, TRUE, TRUE, 0);
 
     priv->find_bar = g_object_ref_sink (gtk_hbox_new (FALSE, 6));
+    g_object_set (priv->find_bar, "border-width", 2, NULL);
 
     priv->find_entry = gtk_entry_new ();
     gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->find_entry),
@@ -824,8 +831,8 @@ find_animate_open (YelpWindow *window) {
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     priv->find_cur_height += 2;
-    if (priv->find_cur_height >= priv->find_tot_height) {
-        priv->find_cur_height = priv->find_tot_height;
+    if (priv->find_cur_height >= priv->find_bar_height) {
+        priv->find_cur_height = priv->find_bar_height;
         g_object_set (priv->find_bar, "height-request", -1, NULL);
         g_object_set (priv->find_entry, "height-request", -1, NULL);
         priv->find_animate = 0;
@@ -836,7 +843,9 @@ find_animate_open (YelpWindow *window) {
         if (priv->find_cur_height >= 12)
             find_entry_changed (GTK_ENTRY (priv->find_entry), window);
         g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
-        g_object_set (priv->find_entry, "height-request", priv->find_cur_height, NULL);
+        g_object_set (priv->find_entry, "height-request",
+                      MIN(priv->find_cur_height, priv->find_entry_height),
+                      NULL);
         return TRUE;
     }
 }
@@ -860,7 +869,9 @@ find_animate_close (YelpWindow *window) {
                                                GTK_ENTRY_ICON_PRIMARY,
                                                NULL);
         g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
-        g_object_set (priv->find_entry, "height-request", priv->find_cur_height, NULL);
+        g_object_set (priv->find_entry, "height-request",
+                      MIN(priv->find_cur_height, priv->find_entry_height),
+                      NULL);
         return TRUE;
     }
 }
@@ -886,10 +897,13 @@ window_find_in_page (GtkAction  *action,
     g_object_set (priv->find_bar, "height-request", -1, NULL);
     g_object_set (priv->find_entry, "height-request", -1, NULL);
     gtk_widget_show_all (priv->find_bar);
-    gtk_widget_size_request (priv->find_bar, &req);
     gtk_widget_grab_focus (priv->find_entry);
 
-    priv->find_tot_height = req.height;
+    gtk_widget_size_request (priv->find_bar, &req);
+    priv->find_bar_height = req.height;
+    gtk_widget_size_request (priv->find_entry, &req);
+    priv->find_entry_height = req.height;
+
     priv->find_cur_height = 2;
 
     g_object_set (priv->find_bar, "height-request", 2, NULL);
@@ -935,7 +949,7 @@ find_entry_focus_out (GtkEntry      *entry,
     webkit_web_view_unmark_text_matches (WEBKIT_WEB_VIEW (priv->view));
     webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
-    priv->find_cur_height = priv->find_tot_height;
+    priv->find_cur_height = priv->find_bar_height;
     priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_close, window);
     return FALSE;
 }
