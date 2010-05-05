@@ -822,17 +822,20 @@ static gboolean
 find_animate_open (YelpWindow *window) {
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    priv->find_cur_height += 1;
+    priv->find_cur_height += 2;
     if (priv->find_cur_height >= priv->find_tot_height) {
         priv->find_cur_height = priv->find_tot_height;
         g_object_set (priv->find_bar, "height-request", -1, NULL);
+        g_object_set (priv->find_entry, "height-request", -1, NULL);
         priv->find_animate = 0;
-        find_entry_changed (priv->find_entry, window);
         gtk_editable_select_region (GTK_EDITABLE (priv->find_entry), 0, -1);
         return FALSE;
     }
     else {
+        if (priv->find_cur_height >= 12)
+            find_entry_changed (GTK_ENTRY (priv->find_entry), window);
         g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
+        g_object_set (priv->find_entry, "height-request", priv->find_cur_height, NULL);
         return TRUE;
     }
 }
@@ -841,16 +844,22 @@ static gboolean
 find_animate_close (YelpWindow *window) {
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    priv->find_cur_height -= 1;
+    priv->find_cur_height -= 2;
     if (priv->find_cur_height <= 0) {
         priv->find_cur_height = 0;
-        gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->find_bar); 
         g_object_set (priv->find_bar, "height-request", -1, NULL);
+        g_object_set (priv->find_entry, "height-request", -1, NULL);
+        gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->find_bar); 
         priv->find_animate = 0;
         return FALSE;
     }
     else {
+        if (priv->find_cur_height < 12)
+            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->find_entry),
+                                               GTK_ENTRY_ICON_PRIMARY,
+                                               NULL);
         g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
+        g_object_set (priv->find_entry, "height-request", priv->find_cur_height, NULL);
         return TRUE;
     }
 }
@@ -874,14 +883,19 @@ window_find_in_page (GtkAction  *action,
 
     gtk_box_pack_end (GTK_BOX (priv->vbox), priv->find_bar, FALSE, FALSE, 0);
     g_object_set (priv->find_bar, "height-request", -1, NULL);
+    g_object_set (priv->find_entry, "height-request", -1, NULL);
     gtk_widget_show_all (priv->find_bar);
     gtk_widget_size_request (priv->find_bar, &req);
     gtk_widget_grab_focus (priv->find_entry);
 
     priv->find_tot_height = req.height;
-    priv->find_cur_height = 1;
+    priv->find_cur_height = 2;
 
-    g_object_set (priv->find_bar, "height-request", 1, NULL);
+    g_object_set (priv->find_bar, "height-request", 2, NULL);
+    g_object_set (priv->find_entry, "height-request", 2, NULL);
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->find_entry),
+                                       GTK_ENTRY_ICON_PRIMARY,
+                                       NULL);
     priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_open, window);
 }
 
