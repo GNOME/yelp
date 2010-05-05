@@ -727,11 +727,11 @@ window_set_bookmarks (YelpWindow  *window,
     value = yelp_application_get_bookmarks (priv->application, doc_uri);
     g_variant_get (value, "a(sss)", &iter);
     while (g_variant_iter_loop (iter, "(&s&s&s)", &page_id, &icon, &title)) {
-        YelpMenuEntry *entry = g_new0 (YelpMenuEntry *, 1);
+        YelpMenuEntry *entry = g_new0 (YelpMenuEntry, 1);
         entry->page_id = page_id;
         entry->icon = icon;
         entry->title = title;
-        entries = g_slist_insert_sorted (entries, entry, entry_compare);
+        entries = g_slist_insert_sorted (entries, entry, (GCompareFunc) entry_compare);
     }
     for ( ; entries != NULL; entries = g_slist_delete_link (entries, entries)) {
         GSList *cur;
@@ -742,7 +742,8 @@ window_set_bookmarks (YelpWindow  *window,
         bookmark = gtk_action_group_get_action (priv->bookmark_actions, action_id);
         if (bookmark == NULL) {
             bookmark = gtk_action_new (action_id, entry->title, NULL, NULL);
-            g_signal_connect (bookmark, "activate", window_load_bookmark, window);
+            g_signal_connect (bookmark, "activate",
+                              G_CALLBACK (window_load_bookmark), window);
             gtk_action_set_icon_name (bookmark, entry->icon);
             gtk_action_group_add_action (priv->bookmark_actions, bookmark);
         }
@@ -778,7 +779,7 @@ window_open_location (GtkAction *action, YelpWindow *window)
 {
     YelpUri *yuri = NULL;
     gchar *uri = NULL;
-    const GdkColor yellow;
+    GdkColor yellow;
     gchar *color;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
@@ -907,10 +908,10 @@ find_entry_key_press (GtkEntry    *entry,
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     if (priv->find_animate != 0)
-        return;
+        return TRUE;
 
     if (event->keyval == GDK_Escape) {
-        gtk_widget_grab_focus (priv->view);
+        gtk_widget_grab_focus (GTK_WIDGET (priv->view));
         return TRUE;
     }
 
@@ -933,7 +934,7 @@ find_entry_focus_out (GtkEntry      *entry,
     YelpWindowPrivate *priv = GET_PRIV (window);
     webkit_web_view_unmark_text_matches (WEBKIT_WEB_VIEW (priv->view));
     webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
-    gtk_widget_grab_focus (priv->view);
+    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
     priv->find_cur_height = priv->find_tot_height;
     priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_close, window);
     return FALSE;
@@ -976,7 +977,7 @@ find_entry_changed (GtkEntry   *entry,
     }
     else {
         gchar *color;
-        const GdkColor yellow;
+        GdkColor yellow;
 
         color = yelp_settings_get_color (yelp_settings_get_default (),
                                          YELP_SETTINGS_COLOR_RED_BASE);
@@ -1105,12 +1106,12 @@ view_loaded (YelpView   *view,
     gint flags;
     YelpUri *uri;
     gchar *doc_uri;
-    GtkListStore *completion;
+    GtkTreeModel *completion;
     YelpWindowPrivate *priv = GET_PRIV (window);
     YelpDocument *document = yelp_view_get_document (view);
 
     gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->history), &iter);
-    gtk_tree_model_get (priv->history, &iter, COL_FLAGS, &flags, -1);
+    gtk_tree_model_get (GTK_TREE_MODEL (priv->history), &iter, COL_FLAGS, &flags, -1);
     if (flags & YELP_LOCATION_ENTRY_IS_LOADING) {
         flags = flags ^ YELP_LOCATION_ENTRY_IS_LOADING;
         gtk_list_store_set (priv->history, &iter, COL_FLAGS, flags, -1);
@@ -1118,7 +1119,7 @@ view_loaded (YelpView   *view,
 
     g_object_get (view, "yelp-uri", &uri, NULL);
     doc_uri = yelp_uri_get_document_uri (uri);
-    completion = (GtkListStore *) g_hash_table_lookup (completions, doc_uri);
+    completion = (GtkTreeModel *) g_hash_table_lookup (completions, doc_uri);
     if (completion == NULL) {
         GtkListStore *base = gtk_list_store_new (4,
                                                  G_TYPE_STRING,  /* title */
@@ -1126,7 +1127,7 @@ view_loaded (YelpView   *view,
                                                  G_TYPE_STRING,  /* icon */
                                                  G_TYPE_STRING   /* uri */
                                                  );
-        completion = gtk_tree_model_sort_new_with_model (base);
+        completion = gtk_tree_model_sort_new_with_model (GTK_TREE_MODEL (base));
         gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (completion),
                                                  entry_completion_sort,
                                                  NULL, NULL);
