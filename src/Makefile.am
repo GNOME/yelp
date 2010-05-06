@@ -28,14 +28,12 @@ YELP_DEFINES =								\
 yelp_CFLAGS =					\
 	-I$(top_srcdir)/libyelp			\
 	$(YELP_CFLAGS)				\
-	$(YELP_SEARCH_CFLAGS)			\
 	$(AM_CFLAGS)				\
 	$(YELP_DEFINES)
 
 yelp_LDADD =					\
 	$(top_builddir)/libyelp/libyelp.la	\
 	$(YELP_LIBS)				\
-	$(YELP_SEARCH_LIBS)			\
 	$(POPT_LIBS)				\
 	$(Z_LIBS)				\
 	$(BZ_LIBS)				\

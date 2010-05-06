@@ -25,9 +25,14 @@
 
 #include <glib/gi18n.h>
 
-#include "yelp-bz2-decompressor.h"
-#include "yelp-lzma-decompressor.h"
 #include "yelp-magic-decompressor.h"
+
+#include "yelp-bz2-decompressor.h"
+
+#ifdef ENABLE_LZMA
+#include "yelp-lzma-decompressor.h"
+#endif
+
 
 static void yelp_magic_decompressor_iface_init          (GConverterIface *iface);
 
@@ -122,10 +127,12 @@ yelp_magic_decompressor_convert (GConverter *converter,
                  ((gchar *) inbuf)[1] == 'Z') {
             decompressor->magic_decoder_ring = (GConverter *) yelp_bz2_decompressor_new ();
         }
+#ifdef ENABLE_LZMA
         else if (((gchar *) inbuf)[0] == ']' &&
                  ((gchar *) inbuf)[1] == '\0') {
             decompressor->magic_decoder_ring = (GConverter *) yelp_lzma_decompressor_new ();
         }
+#endif
         else {
             decompressor->magic_decoder_ring =
                 (GConverter *) g_zlib_decompressor_new (G_ZLIB_COMPRESSOR_FORMAT_GZIP);

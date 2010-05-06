@@ -10,7 +10,6 @@ libyelp_la_SOURCES =				\
 	yelp-info-parser.c			\
 	yelp-io-channel.c			\
 	yelp-location-entry.c			\
-	yelp-lzma-decompressor.c		\
 	yelp-magic-decompressor.c		\
 	yelp-mallard-document.c			\
 	yelp-marshal.c				\
@@ -20,6 +19,22 @@ libyelp_la_SOURCES =				\
 	yelp-uri.c				\
 	yelp-types.c				\
 	yelp-view.c
+
+EXTRA_DIST =				\
+	yelp-bz2-decompressor.h		\
+	yelp-debug.h			\
+	yelp-error.h			\
+	yelp-info-parser.h		\
+	yelp-io-channel.h		\
+	yelp-lzma-decompressor.h	\
+	yelp-magic-decompressor.h	\
+	yelp-marshal.list
+
+if ENABLE_LZMA
+libyelp_la_SOURCES += yelp-lzma-decompressor.c
+else
+EXTRA_DIST += yelp-lzma-decompressor.c
+endif
 
 libyelp_la_CFLAGS =				\
 	$(YELP_CFLAGS)				\
@@ -53,16 +68,6 @@ BUILT_SOURCES =			\
 	yelp-marshal.h		\
 	yelp-types.c		\
 	yelp-types.h
-
-EXTRA_DIST =				\
-	yelp-bz2-decompressor.h		\
-	yelp-debug.h			\
-	yelp-error.h			\
-	yelp-info-parser.h		\
-	yelp-io-channel.h		\
-	yelp-lzma-decompressor.h	\
-	yelp-magic-decompressor.h	\
-	yelp-marshal.list
 
 yelp-marshal.h: stamp-yelp-marshal.h
 	@true

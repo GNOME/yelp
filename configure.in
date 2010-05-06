@@ -7,7 +7,6 @@ AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AM_MAINTAINER_MODE
 
-
 AC_PROG_LN_S
 AC_PROG_CC
 AM_PROG_CC_STDC
@@ -45,7 +44,6 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",
                    [The gettext translation domain])
 
 AM_GLIB_GNU_GETTEXT
-
 AM_GLIB_DEFINE_LOCALEDIR([GNOMELOCALEDIR])
 
 PKG_CHECK_MODULES(YELP,
@@ -62,6 +60,28 @@ PKG_CHECK_MODULES(YELP,
 	yelp-xsl
 ])
 
+AC_ARG_ENABLE(lzma,
+	AS_HELP_STRING([--enable-lzma],[Enable lzma decoder support [[default=yes]]]),
+	[enable_lzma=$enableval],
+	[enable_lzma="auto"])
+if test x"$enable_lzma" = "xauto"; then
+	PKG_CHECK_MODULES(YELP_LZMA,
+			  liblzma,
+			  enable_lzma=yes,
+			  enable_lzma=no)
+elif test x"$enable_lzma" = "xyes"; then
+	PKG_CHECK_MODULES(YELP_LZMA, liblzma)
+fi
+if test x"$enable_lzma" = "xyes"; then
+	YELP_CFLAGS="$YELP_LZMA_CFLAGS $YELP_CFLAGS";
+	YELP_LIBS="$YELP_LZMA_LIBS $YELP_LIBS";
+	AC_DEFINE(ENABLE_LZMA, 1, [Enable lzma decoder support])
+fi
+AM_CONDITIONAL([ENABLE_LZMA],[test x"$enable_lzma" != "xno"])
+
+AC_SUBST([YELP_CFLAGS])
+AC_SUBST([YELP_LIBS])
+
 DATADIR=`(
 	case $prefix in
 		NONE) prefix=$ac_default_prefix ;;
@@ -70,9 +90,6 @@ DATADIR=`(
 	eval echo $(eval echo $datadir)/yelp
 )`
 AC_SUBST([DATADIR])
-
-AC_SUBST([YELP_CFLAGS])
-AC_SUBST([YELP_LIBS])
 
 AC_PATH_PROGS(SED, gsed sed)
 
@@ -134,71 +151,11 @@ fi
 
 AC_SUBST(X_LIBS)
 
-
-dnl ******
-dnl beagle
-dnl ******
-
-BEAGLE_MODULES=
-if $PKG_CONFIG --exists libbeagle-1.0; then
-	BEAGLE_MODULES="libbeagle-1.0 >= 0.3.0"
-else
-	BEAGLE_MODULES="libbeagle-0.0 >= 0.2.4"
-fi
-
-AC_ARG_WITH([search],
-	[AC_HELP_STRING([--with-search=basic|beagle|auto],
-			[turn on search support [default=auto]])], ,
-	with_search=auto)
-
-if test "x$with_search" = "xauto"; then
-    PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES, have_beagle=yes, have_beagle=no)
-fi
-
-AM_CONDITIONAL(ENABLE_BEAGLE, test x"$with_search" = xbeagle)
-
-if test "x$with_search" = "xbeagle"; then
-    PKG_CHECK_MODULES(YELP_SEARCH, $BEAGLE_MODULES)
-fi
-
-
-case "x$with_search" in
-  "xbasic")
-    search_backend="basic"
-    ;;
-  "xbeagle")
-    search_backend="beagle"
-    AC_DEFINE(ENABLE_BEAGLE, 1, [Define if you want the power of Beagle])
-    ;;
-  "xauto")
-    search_backend="auto - basic"
-    if test x$have_beagle = xyes; then
-      AC_DEFINE(ENABLE_BEAGLE, 1)
-      search_backend="auto - beagle"
-    fi
-    ;;
-  *)
-    AC_MSG_ERROR([Unknown search type selected - Please use --with-search=auto|basic|beagle])
-    ;;
-esac
-
-AC_SUBST([YELP_SEARCH_CFLAGS])
-AC_SUBST([YELP_SEARCH_LIBS])
-
-
 dnl ====================================
 dnl = zlib for help converters
 dnl ====================================
 AC_CHECK_LIB(z, gzopen, [Z_LIBS=-lz
 AC_SUBST(Z_LIBS)], AC_MSG_ERROR([*** zlib is required]))
-
-dnl ====================================
-dnl = lzmadec for help converters
-dnl ====================================
-LZMADEC_LIBS=
-AC_CHECK_LIB(lzmadec, lzmadec_open, [LZMADEC_LIBS=-llzmadec 
-				     AC_DEFINE(HAVE_LIBLZMADEC, 1, [Compile with liblzmadec support])])
-AC_SUBST(LZMADEC_LIBS)
 
 dnl ====================================
 dnl = Bzip2, for the help converters
@@ -300,5 +257,6 @@ yelp-$VERSION:
 	Debug enabled:            ${enable_debug}
 	Search backend:           ${search_backend}
 	Using SMClient:           ${with_smclient}
+	Enable LZMA:              ${enable_lzma}
 
 "
