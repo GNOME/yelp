@@ -961,7 +961,6 @@ find_entry_focus_out (GtkEntry      *entry,
     YelpWindowPrivate *priv = GET_PRIV (window);
     webkit_web_view_unmark_text_matches (WEBKIT_WEB_VIEW (priv->view));
     webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
-    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
     priv->find_cur_height = priv->find_bar_height;
     priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_close, window);
     return FALSE;
