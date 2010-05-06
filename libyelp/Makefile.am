@@ -76,13 +76,13 @@ yelp-marshal.h: stamp-yelp-marshal.h
 	@true
 
 stamp-yelp-marshal.h: yelp-marshal.list
-	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
 	&& (cmp -s xgen-ymh yelp-marshal.h || cp xgen-ymh yelp-marshal.h) \
 	&& rm -f xgen-ymh xgen-ymh~ \
 	&& echo timestamp > $(@F)
 
 yelp-marshal.c: yelp-marshal.list
-	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --body > xgen-ymc \
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --body > xgen-ymc \
 	&& cp xgen-ymc yelp-marshal.c \
 	&& rm -f xgen-ymc xgen-ymc~
 
@@ -91,7 +91,7 @@ yelp-marshal-main.c: yelp-marshal.c
 CLEANFILES = $(BUILT_SOURCES)
 
 yelp-types.h: $(libyelp_headers)
-	(cd $(srcdir) && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
 	--fhead "#ifndef __LIBYELP_TYPES_H__\n" \
 	--fhead "#define __LIBYELP_TYPES_H__\n\n" \
 	--fhead "#include <glib-object.h>\n\n" \
@@ -104,7 +104,7 @@ yelp-types.h: $(libyelp_headers)
 	$(libyelp_headers)) > $@
 
 yelp-types.c: $(libyelp_headers)
-	(cd $(srcdir) && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
 	--fhead "#include <glib-object.h>\n" \
 	--fhead "#include \"yelp-types.h\"\n\n" \
 	--fprod "\n/* enumerations from \"@filename@\" */" \
