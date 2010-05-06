@@ -1,7 +1,6 @@
 lib_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =				\
-	yelp-bz2-decompressor.c			\
 	yelp-debug.c				\
 	yelp-error.c				\
 	yelp-docbook-document.c			\
@@ -34,6 +33,12 @@ if ENABLE_LZMA
 libyelp_la_SOURCES += yelp-lzma-decompressor.c
 else
 EXTRA_DIST += yelp-lzma-decompressor.c
+endif
+
+if ENABLE_BZ2
+libyelp_la_SOURCES += yelp-bz2-decompressor.c
+else
+EXTRA_DIST += yelp-bz2-decompressor.c
 endif
 
 libyelp_la_CFLAGS =				\

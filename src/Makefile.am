@@ -35,9 +35,6 @@ yelp_LDADD =					\
 	$(top_builddir)/libyelp/libyelp.la	\
 	$(YELP_LIBS)				\
 	$(POPT_LIBS)				\
-	$(Z_LIBS)				\
-	$(BZ_LIBS)				\
-	$(LZMADEC_LIBS)				\
 	$(X_LIBS)
 
 yelp_LDFLAGS = $(AM_LDFLAGS)

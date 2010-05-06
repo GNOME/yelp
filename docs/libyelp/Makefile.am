@@ -16,9 +16,6 @@ GTKDOC_CFLAGS =						\
 
 GTKDOC_LIBS =					\
 	$(YELP_LIBS)				\
-	$(Z_LIBS)				\
-	$(BZ_LIBS)				\
-	$(LZMADEC_LIBS)				\
 	$(top_builddir)/libyelp/libyelp.la
 
 HFILE_GLOB = $(top_srcdir)/libyelp/*.h

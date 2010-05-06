@@ -79,6 +79,24 @@ if test x"$enable_lzma" = "xyes"; then
 fi
 AM_CONDITIONAL([ENABLE_LZMA],[test x"$enable_lzma" != "xno"])
 
+AC_ARG_ENABLE(bz2,
+	AS_HELP_STRING([--enable-bz2],[Enable bz2 decoder support [[default=yes]]]),
+	[enable_bz2=$enableval],
+	[enable_bz2="auto"])
+if test x"$enable_bz2" = "xauto"; then
+	AC_CHECK_LIB(bz2,
+		     BZ2_bzread,
+		     enable_bz2=yes,
+		     enable_bz2=no)
+elif test x"$enable_bz2" = "xyes"; then
+	AC_CHECK_LIB(bz2, BZ2_bzread)
+fi
+if test x"$enable_bz2" = "xyes"; then
+	YELP_LIBS="-lbz2 $YELP_LIBS";
+	AC_DEFINE(ENABLE_BZ2, 1, [Enable bz2 decoder support])
+fi
+AM_CONDITIONAL([ENABLE_BZ2],[test x"$enable_bz2" != "xno"])
+
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
 
@@ -151,36 +169,6 @@ fi
 
 AC_SUBST(X_LIBS)
 
-dnl ====================================
-dnl = zlib for help converters
-dnl ====================================
-AC_CHECK_LIB(z, gzopen, [Z_LIBS=-lz
-AC_SUBST(Z_LIBS)], AC_MSG_ERROR([*** zlib is required]))
-
-dnl ====================================
-dnl = Bzip2, for the help converters
-dnl ====================================
-BZ_LIBS=
-AC_CHECK_LIB(bz2, bzread, [AC_DEFINE(HAVE_LIBBZ2, 1, [Compile with libbz2 suppot])
-			  BZ_LIBS="-lbz2"])
-dnl <= Check for bzip2 > 1.0.0
-    AC_CHECK_LIB(bz2, BZ2_bzread, [AC_DEFINE(HAVE_LIBBZ2, 1, [Compile with libbz2 support])
-		      	  BZ_LIBS="-lbz2"
-    dnl <= define the wrapper-functions to get the Bzip2 stuff working .. =>	
-	   AC_DEFINE(bzread,BZ2_bzread, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzopen,BZ2_bzopen, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzdopen,BZ2_bzdopen, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzwrite,BZ2_bzwrite, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzerror,BZ2_bzerror, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzclose,BZ2_bzclose, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzflush,BZ2_bzflush, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzCompress,BZ2_bzCompress, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzCompressInit,BZ2_bzCompressInit, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzDecompress,BZ2_bzDecompress, [Needed to get Bzip2 working])
-	   AC_DEFINE(bzDecompressInit,BZ2_bzDecompressInit, [Needed to get Bzip2 working])	
-	   ])
-    dnl =>
-AC_SUBST(BZ_LIBS)
 
 # *****
 # SMClient
@@ -257,6 +245,7 @@ yelp-$VERSION:
 	Debug enabled:            ${enable_debug}
 	Search backend:           ${search_backend}
 	Using SMClient:           ${with_smclient}
+	Enable BZ2:               ${enable_bz2}
 	Enable LZMA:              ${enable_lzma}
 
 "

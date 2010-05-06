@@ -27,7 +27,9 @@
 
 #include "yelp-magic-decompressor.h"
 
+#ifdef ENABLE_BZ2
 #include "yelp-bz2-decompressor.h"
+#endif
 
 #ifdef ENABLE_LZMA
 #include "yelp-lzma-decompressor.h"
@@ -123,10 +125,12 @@ yelp_magic_decompressor_convert (GConverter *converter,
          */
         if (inbuf_size <= 2)
             ;
+#ifdef ENABLE_BZ2
         else if (((gchar *) inbuf)[0] == 'B' &&
                  ((gchar *) inbuf)[1] == 'Z') {
             decompressor->magic_decoder_ring = (GConverter *) yelp_bz2_decompressor_new ();
         }
+#endif
 #ifdef ENABLE_LZMA
         else if (((gchar *) inbuf)[0] == ']' &&
                  ((gchar *) inbuf)[1] == '\0') {
