@@ -7,7 +7,6 @@ libyelp_la_SOURCES =				\
 	yelp-document.c				\
 	yelp-info-document.c			\
 	yelp-info-parser.c			\
-	yelp-io-channel.c			\
 	yelp-location-entry.c			\
 	yelp-magic-decompressor.c		\
 	yelp-mallard-document.c			\
@@ -24,7 +23,6 @@ EXTRA_DIST =				\
 	yelp-debug.h			\
 	yelp-error.h			\
 	yelp-info-parser.h		\
-	yelp-io-channel.h		\
 	yelp-lzma-decompressor.h	\
 	yelp-magic-decompressor.h	\
 	yelp-marshal.list

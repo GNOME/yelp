@@ -9,7 +9,6 @@ YELP_COMMON_LDADD =				\
 	$(top_builddir)/libyelp/libyelp.la
 
 check_PROGRAMS =				\
-	test-io-channel				\
 	test-location-entry			\
 	test-magic				\
 	test-settings				\
@@ -28,9 +27,6 @@ check_PROGRAMS += test-bz2
 test_bz2_CFLAGS = $(YELP_COMMON_CFLAGS)
 test_bz2_LDADD = $(YELP_COMMON_LDADD)
 endif
-
-test_io_channel_CFLAGS = $(YELP_COMMON_CFLAGS)
-test_io_channel_LDADD = $(YELP_COMMON_LDADD)
 
 test_location_entry_CFLAGS = $(YELP_COMMON_CFLAGS)
 test_location_entry_LDADD = $(YELP_COMMON_LDADD)
