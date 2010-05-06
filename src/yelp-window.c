@@ -97,6 +97,9 @@ static void          entry_completion_selected    (YelpLocationEntry  *entry,
                                                    GtkTreeModel       *model,
                                                    GtkTreeIter        *iter,
                                                    YelpWindow         *window);
+static gboolean      entry_focus_in               (GtkEntry           *entry,
+                                                   GdkEventFocus      *event,
+                                                   YelpWindow         *window);
 static gboolean      entry_focus_out              (YelpLocationEntry  *entry,
                                                    GdkEventFocus      *event,
                                                    YelpWindow         *window);
@@ -223,6 +226,9 @@ struct _YelpWindowPrivate {
     gint width;
     gint height;
 
+    guint entry_color_animate;
+    gfloat entry_color_step;
+
     guint find_animate;
     gint find_cur_height;
     gint find_entry_height;
@@ -344,6 +350,11 @@ yelp_window_dispose (GObject *object)
     if (priv->find_animate != 0) {
         g_source_remove (priv->find_animate);
         priv->find_animate = 0;
+    }
+
+    if (priv->entry_color_animate != 0) {
+        g_source_remove (priv->entry_color_animate);
+        priv->entry_color_animate = 0;
     }
 
     G_OBJECT_CLASS (yelp_window_parent_class)->dispose (object);
@@ -476,6 +487,8 @@ window_construct (YelpWindow *window)
                                             COL_DESC,
                                             COL_ICON,
                                             COL_FLAGS);
+    g_signal_connect (gtk_bin_get_child (GTK_BIN (priv->entry)), "focus-in-event",
+                      G_CALLBACK (entry_focus_in), window);
     g_signal_connect (priv->entry, "focus-out-event",
                       G_CALLBACK (entry_focus_out), window);
 
@@ -991,12 +1004,12 @@ find_entry_changed (GtkEntry   *entry,
     }
     else {
         gchar *color;
-        GdkColor yellow;
+        GdkColor gdkcolor;
 
         color = yelp_settings_get_color (yelp_settings_get_default (),
                                          YELP_SETTINGS_COLOR_RED_BASE);
-        if (gdk_color_parse (color, &yellow))
-            gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, &yellow);
+        if (gdk_color_parse (color, &gdkcolor))
+            gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, &gdkcolor);
         g_free (color);
 
         webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
@@ -1081,6 +1094,54 @@ entry_completion_selected (YelpLocationEntry  *entry,
     g_object_unref (base);
 
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
+}
+
+static gboolean
+entry_color_animate (YelpWindow *window) {
+    gchar *color;
+    GdkColor yellow, base;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    color = yelp_settings_get_color (yelp_settings_get_default (),
+                                     YELP_SETTINGS_COLOR_YELLOW_BASE);
+    gdk_color_parse (color, &yellow);
+    g_free (color);
+
+    color = yelp_settings_get_color (yelp_settings_get_default (),
+                                     YELP_SETTINGS_COLOR_BASE);
+    gdk_color_parse (color, &base);
+    g_free (color);
+
+    yellow.red = priv->entry_color_step * yellow.red + (1.0 - priv->entry_color_step) * base.red;
+    yellow.green = priv->entry_color_step * yellow.green + (1.0 - priv->entry_color_step) * base.green;
+    yellow.blue = priv->entry_color_step * yellow.blue + (1.0 - priv->entry_color_step) * base.blue;
+
+    gtk_widget_modify_base (gtk_bin_get_child (GTK_BIN (priv->entry)), GTK_STATE_NORMAL, &yellow);
+
+    priv->entry_color_step -= 0.05;
+
+    if (priv->entry_color_step < 0.0) {
+        priv->entry_color_animate = 0;
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+static gboolean
+entry_focus_in (GtkEntry           *entry,
+                GdkEventFocus      *event,
+                YelpWindow         *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    if (priv->entry_color_animate != 0)
+        return FALSE;
+
+    priv->entry_color_step = 1.0;
+    priv->entry_color_animate = g_timeout_add (40, (GSourceFunc) entry_color_animate, window);
+
+    return FALSE;
 }
 
 static gboolean
