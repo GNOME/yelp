@@ -383,7 +383,7 @@ static void
 request_cancel (GCancellable *cancellable, Request *request)
 {
     GSList *cur;
-    YelpSimpleDocument *document = request->document;
+    YelpSimpleDocument *document = (YelpSimpleDocument *) request->document;
 
     g_assert (document != NULL && YELP_IS_SIMPLE_DOCUMENT (document));
 

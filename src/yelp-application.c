@@ -570,7 +570,6 @@ yelp_application_add_bookmark (YelpApplication   *app,
                                const gchar       *title)
 {
     GSettings *settings;
-    YelpApplicationPrivate *priv = GET_PRIV (app);
 
     settings = application_get_doc_settings (app, doc_uri);
 
@@ -638,7 +637,6 @@ window_resized (YelpWindow        *window,
                 YelpApplication   *app)
 {
     YelpApplicationPrivate *priv = GET_PRIV (app);
-    gint width, height;
     YelpUri *uri;
     gchar *doc_uri;
     GSettings *settings;

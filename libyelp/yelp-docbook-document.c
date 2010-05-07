@@ -772,8 +772,8 @@ transform_finished (YelpTransform       *transform,
        is finalized.   Otherwise, we could crash when YelpTransform frees
        its libxslt resources.
      */
-    g_object_weak_ref (transform,
-                       transform_finalized,
+    g_object_weak_ref ((GObject *) transform,
+                       (GWeakNotify) transform_finalized,
                        docbook);
 
     docuri = yelp_uri_get_document_uri (priv->uri);

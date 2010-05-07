@@ -817,7 +817,7 @@ yelp_document_signal (YelpDocument       *document,
 	    break;
 	case YELP_DOCUMENT_SIGNAL_ERROR:
 	    request->idle_funcs++;
-	    request->error = yelp_error_copy (error);
+	    request->error = yelp_error_copy ((GError *) error);
 	    g_idle_add ((GSourceFunc) request_idle_error, request);
             break;
 	default:
@@ -843,7 +843,7 @@ yelp_document_error_pending (YelpDocument *document,
     if (priv->reqs_pending) {
 	for (cur = priv->reqs_pending; cur; cur = cur->next) {
 	    request = cur->data;
-	    request->error = yelp_error_copy (error);
+	    request->error = yelp_error_copy ((GError *) error);
 	    request->idle_funcs++;
 	    g_idle_add ((GSourceFunc) request_idle_error, request);
 	}

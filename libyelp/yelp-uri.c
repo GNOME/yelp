@@ -506,17 +506,17 @@ resolve_data_dirs (YelpUri      *ret,
     const gchar * const *sdatadirs = g_get_system_data_dirs ();
     const gchar * const *langs = g_get_language_names ();
     /* The strings are still owned by GLib; we just own the array. */
-    const gchar **datadirs;
+    gchar **datadirs;
     YelpUriPrivate *priv = GET_PRIV (ret);
     gchar *filename = NULL;
     gchar **searchpath = NULL;
     gint searchi, searchmax;
     gint datadir_i, subdir_i, lang_i;
 
-    datadirs = g_new0 (gchar *, g_strv_length (sdatadirs) + 2);
-    datadirs[0] = g_get_user_data_dir ();
+    datadirs = g_new0 (gchar *, g_strv_length ((gchar **) sdatadirs) + 2);
+    datadirs[0] = (gchar *) g_get_user_data_dir ();
     for (datadir_i = 0; sdatadirs[datadir_i]; datadir_i++)
-        datadirs[datadir_i + 1] = sdatadirs[datadir_i];
+        datadirs[datadir_i + 1] = (gchar *) sdatadirs[datadir_i];
 
     searchi = 0;
     searchmax = 10;
@@ -763,7 +763,7 @@ resolve_man_uri (YelpUri *uri)
                 if (section)
                     realsection = section;
                 else
-                    realsection = mancats[k];
+                    realsection = (gchar *) mancats[k];
 
                 fullpath = g_strconcat (langdir, "/man", realsection,
                                         "/", name, ".", realsection,
