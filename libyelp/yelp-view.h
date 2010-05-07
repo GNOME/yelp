@@ -36,6 +36,7 @@ G_BEGIN_DECLS
 #define YELP_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), YELP_TYPE_VIEW, YelpViewClass))
 #define YELP_IS_VIEW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), YELP_TYPE_VIEW))
 #define YELP_IS_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), YELP_TYPE_VIEW))
+#define YELP_VIEW_GET_CLASS(o)    (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_VIEW, YelpViewClass))
 
 typedef struct _YelpView       YelpView;
 typedef struct _YelpViewClass  YelpViewClass;

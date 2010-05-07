@@ -460,6 +460,7 @@ yelp_view_load_uri (YelpView *view,
                     YelpUri  *uri)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
+    GParamSpec *spec;
 
     view_clear_load (view);
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
@@ -474,11 +475,26 @@ yelp_view_load_uri (YelpView *view,
     priv->page_title = NULL;
     priv->page_desc = NULL;
     priv->page_icon = NULL;
-    g_signal_emit_by_name (view, "notify::page-id");
-    g_signal_emit_by_name (view, "notify::root-title");
-    g_signal_emit_by_name (view, "notify::page-title");
-    g_signal_emit_by_name (view, "notify::page-desc");
-    g_signal_emit_by_name (view, "notify::page-icon");
+
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-id");
+    g_signal_emit_by_name (view, "notify::page-id", spec);
+
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "root-title");
+    g_signal_emit_by_name (view, "notify::root-title", spec);
+
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-title");
+    g_signal_emit_by_name (view, "notify::page-title", spec);
+
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-desc");
+    g_signal_emit_by_name (view, "notify::page-desc", spec);
+
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-icon");
+    g_signal_emit_by_name (view, "notify::page-icon", spec);
 
     gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group,
                                                            "YelpViewGoPrevious"),
@@ -855,6 +871,7 @@ uri_resolved (YelpUri  *uri,
     GSList *proxies, *cur;
     GError *error;
     gchar *struri;
+    GParamSpec *spec;
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -955,11 +972,15 @@ uri_resolved (YelpUri  *uri,
             gtk_widget_set_tooltip_text (GTK_WIDGET (cur->data), "");
     }
 
-    g_signal_emit_by_name (view, "notify::yelp-uri");
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "yelp-uri");
+    g_signal_emit_by_name (view, "notify::yelp-uri", spec);
 
     g_free (priv->page_id);
     priv->page_id = yelp_uri_get_page_id (priv->uri);
-    g_signal_emit_by_name (view, "notify::page-id");
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-id");
+    g_signal_emit_by_name (view, "notify::page-id", spec);
 
     view_load_page (view);
 }
@@ -978,15 +999,19 @@ document_callback (YelpDocument       *document,
         gchar *prev_id, *next_id, *real_id;
         GtkAction *action;
         YelpBackEntry *back = NULL;
+        GParamSpec *spec;
 
         real_id = yelp_document_get_page_id (document, priv->page_id);
         if (priv->page_id && g_str_equal (real_id, priv->page_id)) {
             g_free (real_id);
         }
         else {
+            GParamSpec *spec;
             g_free (priv->page_id);
             priv->page_id = real_id;
-            g_signal_emit_by_name (view, "notify::page-id");
+            spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                                 "page-id");
+            g_signal_emit_by_name (view, "notify::page-id", spec);
         }
 
         g_free (priv->root_title);
@@ -1018,10 +1043,21 @@ document_callback (YelpDocument       *document,
         gtk_action_set_sensitive (action, next_id != NULL);
         g_free (next_id);
 
-        g_signal_emit_by_name (view, "notify::root-title");
-        g_signal_emit_by_name (view, "notify::page-title");
-        g_signal_emit_by_name (view, "notify::page-desc");
-        g_signal_emit_by_name (view, "notify::page-icon");
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "root-title");
+        g_signal_emit_by_name (view, "notify::root-title", spec);
+
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-title");
+        g_signal_emit_by_name (view, "notify::page-title", spec);
+
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-desc");
+        g_signal_emit_by_name (view, "notify::page-desc", spec);
+
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-icon");
+        g_signal_emit_by_name (view, "notify::page-icon", spec);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;
