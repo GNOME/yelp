@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
-"POT-Creation-Date: 2010-05-02 13:14+0000\n"
-"PO-Revision-Date: 2010-05-02 19:41+0100\n"
+"POT-Creation-Date: 2010-05-07 04:21+0000\n"
+"PO-Revision-Date: 2010-05-07 13:42+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -686,8 +686,6 @@ msgid "Presentation Tools"
 msgstr "Orodja za izdelovanje predstavitev"
 
 #: ../data/toc.xml.in.h:104
-#: ../src/yelp-print.c:337
-#: ../src/yelp-print.c:364
 msgid "Printing"
 msgstr "Tiskanje"
 
@@ -870,12 +868,12 @@ msgid "Word Processors"
 msgstr "Pisarniški urejevalniki besedil"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:147
+#: ../libyelp/yelp-lzma-decompressor.c:155
 msgid "Invalid compressed data"
 msgstr "Neveljavni skrčeni podatki"
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:153
+#: ../libyelp/yelp-lzma-decompressor.c:161
 msgid "Not enough memory"
 msgstr "Ni dovolj pomnilnika"
 
@@ -895,26 +893,21 @@ msgstr "Datoteka ne obstaja."
 
 #: ../libyelp/yelp-docbook-document.c:308
 #: ../libyelp/yelp-info-document.c:376
-#: ../src/yelp-db-print.c:393
-#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Datoteka ‘%s’ ne obstaja."
 
 #: ../libyelp/yelp-docbook-document.c:323
-#: ../src/yelp-db-print.c:407
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni pravilnem XML zapisu."
 
 #: ../libyelp/yelp-docbook-document.c:336
-#: ../src/yelp-db-print.c:419
 #, c-format
 msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilnem XML zapisu."
 
 #: ../libyelp/yelp-docbook-document.c:720
-#: ../src/yelp-db-print.c:766
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -934,40 +927,35 @@ msgstr "Prišlo je do neznane napake."
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu info."
 
-#: ../libyelp/yelp-io-channel.c:125
-#, c-format
-msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
-msgstr "Datoteke ‘%s’ ni mogoče prebrati in dekodirati. Datoteka je morda skrčena v arhivu nepodprte vrste."
-
-#: ../libyelp/yelp-location-entry.c:246
+#: ../libyelp/yelp-location-entry.c:251
 msgid "Description Column"
 msgstr "Stolpec opisa"
 
-#: ../libyelp/yelp-location-entry.c:247
-msgid "A column in the model to descriptions from"
-msgstr "Stolpec iz katerega naj se naložijo opisi"
+#: ../libyelp/yelp-location-entry.c:252
+msgid "A column in the model to get descriptions from"
+msgstr "Stolpec modela, iz katerega naj bodo pridobljeni nizi"
 
-#: ../libyelp/yelp-location-entry.c:262
+#: ../libyelp/yelp-location-entry.c:267
 msgid "Icon Column"
 msgstr "Stolpec ikone"
 
-#: ../libyelp/yelp-location-entry.c:263
+#: ../libyelp/yelp-location-entry.c:268
 msgid "A column in the model to get icon names from"
 msgstr "Stolpec iz katerega naj se pridobijo imena ikon"
 
-#: ../libyelp/yelp-location-entry.c:278
+#: ../libyelp/yelp-location-entry.c:283
 msgid "Flags Column"
 msgstr "Stolpec zastavic"
 
-#: ../libyelp/yelp-location-entry.c:279
+#: ../libyelp/yelp-location-entry.c:284
 msgid "A column in the model with YelpLocationEntryFlags flags"
 msgstr "Stolpec z zastavicami YelpLocationEntryFlags"
 
-#: ../libyelp/yelp-location-entry.c:295
+#: ../libyelp/yelp-location-entry.c:300
 msgid "Enable Search"
 msgstr "Omogoči iskanje"
 
-#: ../libyelp/yelp-location-entry.c:296
+#: ../libyelp/yelp-location-entry.c:301
 msgid "Whether the location entry can be used as a search field"
 msgstr "Ali je vnos mesta mogoče uporabiti v polju iskanja"
 
@@ -1129,8 +1117,6 @@ msgid "Cannot Read"
 msgstr "Ni mogoče brati"
 
 #: ../libyelp/yelp-view.c:765
-#: ../src/yelp-error.c:132
-#: ../src/yelp-error.c:139
 msgid "Unknown Error"
 msgstr "Neznana napaka"
 
@@ -1143,69 +1129,6 @@ msgstr "Naslov URI ‘%s’ ni povezan z veljavno stranjo."
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Naslova URI ‘%s’ ni mogoče razčleniti"
-
-#: ../src/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Datoteka ni veljavna .desktop datoteka"
-
-#: ../src/eggdesktopfile.c:188
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Neznana različica datoteke namizja '%s'"
-
-#: ../src/eggdesktopfile.c:958
-#, c-format
-msgid "Starting %s"
-msgstr "Zaganjanje %s"
-
-#: ../src/eggdesktopfile.c:1100
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Program ne omogoča sprejemanja dokumentov preko ukazne vrstice"
-
-#: ../src/eggdesktopfile.c:1168
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Nepoznana možnost zagona: %d"
-
-#: ../src/eggdesktopfile.c:1373
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "Ni mogoče poslati naslova URI dokumenta na vnos 'Vrsta=Povezava' predmeta namizja"
-
-#: ../src/eggdesktopfile.c:1392
-#, c-format
-msgid "Not a launchable item"
-msgstr "Predmet ni zagonljiv"
-
-#: ../src/eggsmclient.c:225
-msgid "Disable connection to session manager"
-msgstr "Onemogoči povezavo z upravljalnikom seje"
-
-#: ../src/eggsmclient.c:228
-msgid "Specify file containing saved configuration"
-msgstr "Določitev datoteke s shranjenimi nastavitvami"
-
-#: ../src/eggsmclient.c:228
-msgid "FILE"
-msgstr "DATOTEKA"
-
-#: ../src/eggsmclient.c:231
-msgid "Specify session management ID"
-msgstr "Določi ID upravljanja seje"
-
-#: ../src/eggsmclient.c:231
-msgid "ID"
-msgstr "ID"
-
-#: ../src/eggsmclient.c:252
-msgid "Session management options:"
-msgstr "Možnosti upravljanja seje:"
-
-#: ../src/eggsmclient.c:253
-msgid "Show session management options"
-msgstr "Pokaži možnosti upravljanja seje"
 
 #: ../src/yelp-application.c:55
 msgid "Turn on editor mode"
@@ -1232,8 +1155,7 @@ msgid "Show Text _Cursor"
 msgstr "Pokaži _kazalnik besedila"
 
 #: ../src/yelp-application.c:297
-#: ../src/yelp-main.c:386
-#: ../src/yelp-window.c:1000
+#: ../src/yelp-window.c:1351
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pomoč"
@@ -1242,237 +1164,69 @@ msgstr "Pomoč"
 msgid "You do not have PackageKit installed.  Package installation links require PackageKit."
 msgstr "PackageKit ni nameščen. Povezave za nameščanje zahtevajo paket PackageKit."
 
-#: ../src/yelp-db-print.c:258
-#: ../src/yelp-db-print.c:350
-#: ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385
-#: ../src/yelp-toc.c:266
-#: ../src/yelp-toc.c:365
-msgid "Page not found"
-msgstr "Strani ni mogoče najti"
-
-#: ../src/yelp-db-print.c:259
-#: ../src/yelp-man.c:293
-#, c-format
-msgid "The page %s was not found in the document %s."
-msgstr "Strani %s v dokumentu %s ni mogoče najti."
-
-#: ../src/yelp-db-print.c:351
-#: ../src/yelp-man.c:386
-#, c-format
-msgid "The requested page was not found in the document %s."
-msgstr "Zahtevane strani ni mogoče najti v dokumentu %s."
-
-#: ../src/yelp-db-print.c:392
-#: ../src/yelp-man.c:429
-msgid "File not found"
-msgstr "Datoteke ni mogoče najti"
-
-#: ../src/yelp-db-print.c:406
-#: ../src/yelp-db-print.c:418
-#: ../src/yelp-man.c:458
-#: ../src/yelp-toc.c:437
-msgid "Could not parse file"
-msgstr "Ni mogoče razčleniti datoteke"
-
-#: ../src/yelp-error.c:136
-msgid "Could Not Read File"
-msgstr "Ni mogoče prebrati dokumenta"
-
-#: ../src/yelp-error.c:146
-msgid "No information is available about this error."
-msgstr "Podrobnosti o napaki niso na voljo."
-
-#: ../src/yelp-main.c:89
-msgid "Use a private session"
-msgstr "Uporabi osebno sejo"
-
-#: ../src/yelp-main.c:98
-msgid "Define which cache directory to use"
-msgstr "Določitev predpomnilniškega imenika za uporabo"
-
-#. Commandline parsing is done here
-#: ../src/yelp-main.c:357
-msgid " GNOME Help Browser"
-msgstr "GNOME brskalnik pomoči"
-
-#: ../src/yelp-man.c:459
-#, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu man strani."
-
-#: ../src/yelp-print.c:97
-msgid "Print"
-msgstr "Natisni"
-
-#: ../src/yelp-print.c:167
-msgid "Preparing to print"
-msgstr "Priprava na tiskanje"
-
-#: ../src/yelp-print.c:261
-msgid "Printing is not supported on this printer"
-msgstr "Tiskanje s tem tiskalnikom ni podprto"
-
-#: ../src/yelp-print.c:264
-#, c-format
-msgid "Printer %s does not support postscript printing."
-msgstr "Tiskalnik %s ne podpira postscript tiskanja."
-
-#: ../src/yelp-print.c:366
-msgid "Waiting to print"
-msgstr "Čakanje na tiskanje"
-
-#: ../src/yelp-print.c:578
-msgid "An error occurred while printing"
-msgstr "Prišlo je do napake med tiskanjem"
-
-#: ../src/yelp-print.c:582
-#, c-format
-msgid "It was not possible to print your document: %s"
-msgstr "Dokumenta ni bilo mogoče natisniti: %s"
-
-#: ../src/yelp-search-parser.c:67
-msgid "the GNOME Support Forums"
-msgstr "GNOME podporni forumi"
-
-#: ../src/yelp-search-parser.c:285
-#, c-format
-msgid "No results for \"%s\""
-msgstr "Ni zadetkov za \"%s\""
-
-#: ../src/yelp-search-parser.c:286
-msgid "Try using different words to describe the problem you're having or the topic you want help with."
-msgstr "Poskusite uporabiti drugačne besede za opis vašega problema ali teme, za katero potrebujete pomoč."
-
-#: ../src/yelp-search-parser.c:289
-#, c-format
-msgid "Search results for \"%s\""
-msgstr "Iskalni zadetki za \"%s\""
-
-#. TRANSLATORS: Please don't do anything funny with the
-#. * format arguement.  It isn't really going through a printf
-#. * The %s is used to indicate where the name of the site (linked)
-#. * should be.  This is done in the XSLT
-#.
-#: ../src/yelp-search-parser.c:303
-#, c-format
-msgid "Repeat the search online at %s"
-msgstr "Ponovi iskanje preko povezave na %s"
-
-#. Translators: Do not translate this list exactly.  These are
-#. * colon-separated words that aren't useful for choosing search
-#. * results; they will be different for each language. Include
-#. * pronouns, articles, very common verbs and prepositions,
-#. * words from question structures like "tell me about" and
-#. * "how do I", and words for functional states like "not",
-#. * "work", and "broken".
-#.
-#: ../src/yelp-search-parser.c:874
-msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-msgstr "da:od:ne:k:kot:h:o:in:ali:to:tisto:tisti:tista"
-
-#. Translators: This is a list of common prefixes for words.
-#. * Do not translate this directly.  Instead, use a colon
-#. * seperated list of word-starts.  In English, an example
-#. * is re-.  If there is none, please use the term NULL
-#. * If there is only one, please put a colon after.
-#. * E.g. if the common prefix is re then the string would be
-#. * "re:"
-#.
-#: ../src/yelp-search-parser.c:890
-msgid "re"
-msgstr "NULL"
-
-#. Translators: This is a list of (guess what?) common suffixes
-#. * to words.  Things that may be put at ends of words to slightly
-#. * alter their meaning (like -ing and -s in English).  This is a
-#. * colon seperated list (I like colons).  If there are none,
-#. * please use the string NULL.  If there is only 1, please
-#. * add a colon at the end of the list
-#.
-#: ../src/yelp-search-parser.c:899
-msgid "ers:er:ing:es:s:'s"
-msgstr "NULL"
-
-#: ../src/yelp-search-parser.c:1095
-msgid "No Comment"
-msgstr "Ni opomb"
-
-#. Much bigger problems
-#: ../src/yelp-search.c:238
-msgid "Search could not be processed"
-msgstr "Ni mogoče izvesti iskanja"
-
-#: ../src/yelp-search.c:239
-msgid "The requested search could not be processed."
-msgstr "Iskalnega niza ni mogoče izvesti."
-
-#: ../src/yelp-search.c:366
-msgid "Cannot process the search"
-msgstr "Ni mogoče izvesti iskanja"
-
-#: ../src/yelp-search.c:367
-msgid "The search processor returned invalid results"
-msgstr "Iskalnik je vrnil neveljavne rezultate"
-
-#: ../src/yelp-toc.c:267
-#, c-format
-msgid "The page %s was not found in the TOC."
-msgstr "Strani %s ni mogoče najti v kazalu."
-
-#: ../src/yelp-toc.c:366
-msgid "The requested page was not found in the TOC."
-msgstr "Zahtevane stran ni mogoče najti v kazalu."
-
-#: ../src/yelp-toc.c:438
-msgid "The TOC file could not be parsed because it is not a well-formed XML document."
-msgstr "Datoteke kazala ni mogoče razčleniti, ker ni pravilno oblikovana v zapisu XML."
-
-#: ../src/yelp-window.c:203
+#: ../src/yelp-window.c:239
 msgid "_Page"
 msgstr "_Stran"
 
-#: ../src/yelp-window.c:204
+#: ../src/yelp-window.c:240
 msgid "_View"
 msgstr "_Pogled"
 
-#: ../src/yelp-window.c:205
+#: ../src/yelp-window.c:241
 msgid "_Go"
 msgstr "Po_jdi"
 
-#: ../src/yelp-window.c:206
+#: ../src/yelp-window.c:242
 msgid "_Bookmarks"
 msgstr "_Zaznamki"
 
-#: ../src/yelp-window.c:209
+#: ../src/yelp-window.c:245
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: ../src/yelp-window.c:214
+#: ../src/yelp-window.c:250
 msgid "_Close"
 msgstr "_Zapri"
 
-#: ../src/yelp-window.c:219
+#: ../src/yelp-window.c:255
 msgid "_Add Bookmark"
 msgstr "_Dodaj zaznamek"
 
-#: ../src/yelp-window.c:224
-msgid "Open Location"
-msgstr "Odpri mesto"
+#: ../src/yelp-window.c:260
+msgid "Find in Page..."
+msgstr "Najdi na strani ..."
 
-#: ../src/yelp-window.c:249
-msgid "Application"
-msgstr "Program"
-
-#: ../src/yelp-window.c:250
-msgid "A YelpApplication instance that controls this window"
-msgstr "Primerek YelpApplication, ki nadzira to okno"
-
-#: ../src/yelp-window.c:416
+#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:480
 msgid "Search..."
 msgstr "Poišči ..."
 
-#: ../src/yelp-window.c:945
+#: ../src/yelp-window.c:270
+msgid "Open Location"
+msgstr "Odpri mesto"
+
+#: ../src/yelp-window.c:297
+msgid "Application"
+msgstr "Program"
+
+#: ../src/yelp-window.c:298
+msgid "A YelpApplication instance that controls this window"
+msgstr "Primerek YelpApplication, ki nadzira to okno"
+
+#: ../src/yelp-window.c:993
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i zadetkov"
+msgstr[1] "%i zadetek"
+msgstr[2] "%i zadetka"
+msgstr[3] "%i zadetki"
+
+#: ../src/yelp-window.c:1018
+msgid "No matches"
+msgstr "Ni zadetkov"
+
+#: ../src/yelp-window.c:1295
 msgid "Loading"
 msgstr "Nalaganje"
 
@@ -1480,6 +1234,126 @@ msgstr "Nalaganje"
 msgid "Get help with GNOME"
 msgstr "Iskanje pomoči namizja GNOME"
 
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "Datoteke ‘%s’ ni mogoče prebrati in dekodirati. Datoteka je morda skrčena "
+#~ "v arhivu nepodprte vrste."
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Datoteka ni veljavna .desktop datoteka"
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Neznana različica datoteke namizja '%s'"
+#~ msgid "Starting %s"
+#~ msgstr "Zaganjanje %s"
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Program ne omogoča sprejemanja dokumentov preko ukazne vrstice"
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Nepoznana možnost zagona: %d"
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Ni mogoče poslati naslova URI dokumenta na vnos 'Vrsta=Povezava' predmeta "
+#~ "namizja"
+#~ msgid "Not a launchable item"
+#~ msgstr "Predmet ni zagonljiv"
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Onemogoči povezavo z upravljalnikom seje"
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Določitev datoteke s shranjenimi nastavitvami"
+#~ msgid "FILE"
+#~ msgstr "DATOTEKA"
+#~ msgid "Specify session management ID"
+#~ msgstr "Določi ID upravljanja seje"
+#~ msgid "ID"
+#~ msgstr "ID"
+#~ msgid "Session management options:"
+#~ msgstr "Možnosti upravljanja seje:"
+#~ msgid "Show session management options"
+#~ msgstr "Pokaži možnosti upravljanja seje"
+#~ msgid "Page not found"
+#~ msgstr "Strani ni mogoče najti"
+#~ msgid "The page %s was not found in the document %s."
+#~ msgstr "Strani %s v dokumentu %s ni mogoče najti."
+#~ msgid "The requested page was not found in the document %s."
+#~ msgstr "Zahtevane strani ni mogoče najti v dokumentu %s."
+#~ msgid "File not found"
+#~ msgstr "Datoteke ni mogoče najti"
+#~ msgid "Could not parse file"
+#~ msgstr "Ni mogoče razčleniti datoteke"
+#~ msgid "Could Not Read File"
+#~ msgstr "Ni mogoče prebrati dokumenta"
+#~ msgid "No information is available about this error."
+#~ msgstr "Podrobnosti o napaki niso na voljo."
+#~ msgid "Use a private session"
+#~ msgstr "Uporabi osebno sejo"
+#~ msgid "Define which cache directory to use"
+#~ msgstr "Določitev predpomnilniškega imenika za uporabo"
+#~ msgid " GNOME Help Browser"
+#~ msgstr "GNOME brskalnik pomoči"
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr ""
+#~ "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu "
+#~ "man strani."
+#~ msgid "Print"
+#~ msgstr "Natisni"
+#~ msgid "Preparing to print"
+#~ msgstr "Priprava na tiskanje"
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "Tiskanje s tem tiskalnikom ni podprto"
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "Tiskalnik %s ne podpira postscript tiskanja."
+#~ msgid "Waiting to print"
+#~ msgstr "Čakanje na tiskanje"
+#~ msgid "An error occurred while printing"
+#~ msgstr "Prišlo je do napake med tiskanjem"
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "Dokumenta ni bilo mogoče natisniti: %s"
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "GNOME podporni forumi"
+#~ msgid "No results for \"%s\""
+#~ msgstr "Ni zadetkov za \"%s\""
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "Poskusite uporabiti drugačne besede za opis vašega problema ali teme, za "
+#~ "katero potrebujete pomoč."
+#~ msgid "Search results for \"%s\""
+#~ msgstr "Iskalni zadetki za \"%s\""
+#~ msgid "Repeat the search online at %s"
+#~ msgstr "Ponovi iskanje preko povezave na %s"
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr "da:od:ne:k:kot:h:o:in:ali:to:tisto:tisti:tista"
+#~ msgid "re"
+#~ msgstr "NULL"
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr "NULL"
+#~ msgid "No Comment"
+#~ msgstr "Ni opomb"
+#~ msgid "Search could not be processed"
+#~ msgstr "Ni mogoče izvesti iskanja"
+#~ msgid "The requested search could not be processed."
+#~ msgstr "Iskalnega niza ni mogoče izvesti."
+#~ msgid "Cannot process the search"
+#~ msgstr "Ni mogoče izvesti iskanja"
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "Iskalnik je vrnil neveljavne rezultate"
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "Strani %s ni mogoče najti v kazalu."
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr "Zahtevane stran ni mogoče najti v kazalu."
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr ""
+#~ "Datoteke kazala ni mogoče razčleniti, ker ni pravilno oblikovana v zapisu "
+#~ "XML."
 #~ msgid "Bookmarks"
 #~ msgstr "Zaznamki"
 #~ msgid "Re_name"
@@ -1549,8 +1423,6 @@ msgstr "Iskanje pomoči namizja GNOME"
 #~ msgstr "Pomo_č"
 #~ msgid "Print This Document ..."
 #~ msgstr "Natisni dokument ..."
-#~ msgid "Print This Page ..."
-#~ msgstr "Natisni stran ..."
 #~ msgid "About This Document"
 #~ msgstr "O dokumentu"
 #~ msgid "Open _Location"
