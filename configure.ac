@@ -178,34 +178,6 @@ fi
 AC_SUBST(X_LIBS)
 
 
-# *****
-# SMClient
-# *****
-
-GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
-
-SMCLIENT_PKGS=
-AC_MSG_CHECKING([which smclient backend to use])
-AC_ARG_WITH([smclient],
-  [AS_HELP_STRING([--with-smclient],[which smclient backend to use (xsmp/win32/quartz)])],
-  [],
-  [case "$GDK_TARGET" in
-    x11) with_smclient=xsmp SMCLIENT_PKGS="sm" ;;
-    win32|quartz) with_smclient=$GDK_TARGET ;;
-    *) with_smclient=no ;;
-   esac])
-AC_MSG_RESULT([$with_smclient])
-
-if test "$with_smclient" != "no"; then
-  PKG_CHECK_MODULES([SMCLIENT],[$SMCLIENT_PKGS])
-  AC_DEFINE([WITH_SMCLIENT],[1],[Define if smclient is enabled])
-fi
-
-AM_CONDITIONAL([WITH_SMCLIENT],[test "$with_smclient" != "no"])
-AM_CONDITIONAL([WITH_SMCLIENT_XSMP],[test "$with_smclient" = "xsmp"])
-AM_CONDITIONAL([WITH_SMCLIENT_WIN32],[test "$with_smclient" = "win32"])
-AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
-
 # Set flags
 AM_CPPFLAGS="$AM_CPPFLAGS $DEPRECATION_FLAGS"
 AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS $MORE_WARN_FLAGS"
@@ -254,7 +226,6 @@ yelp-$VERSION:
 	Documentation:            ${enable_gtk_doc}
 	Debug enabled:            ${enable_debug}
 	Search backend:           ${search_backend}
-	Using SMClient:           ${with_smclient}
 	Enable BZ2:               ${enable_bz2}
 	Enable LZMA:              ${enable_lzma}
 

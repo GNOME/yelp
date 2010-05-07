@@ -39,28 +39,6 @@ yelp_LDADD =					\
 
 yelp_LDFLAGS = $(AM_LDFLAGS)
 
-if WITH_SMCLIENT
-yelp_SOURCES += \
-	eggdesktopfile.c \
-	eggdesktopfile.h \
-	eggsmclient.c \
-	eggsmclient.h \
-	eggsmclient-private.h \
-	$(NULL)
-yelp_CFLAGS += $(SMCLIENT_CFLAGS)
-yelp_LDADD += $(SMCLIENT_LIBS)
-
-if WITH_SMCLIENT_XSMP
-yelp_SOURCES += eggsmclient-xsmp.c
-yelp_CFLAGS += -DEGG_SM_CLIENT_BACKEND_XSMP
-endif
-if WITH_SMCLIENT_WIN32
-yelp_SOURCES += eggsmclient-win32.c
-endif
-if WITH_SMCLIENT_QUARTZ
-yelp_SOURCES += eggsmclient-osx.c
-endif
-endif
 
 BUILT_SOURCES = yelp-dbus.h
 
