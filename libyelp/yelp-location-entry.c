@@ -484,7 +484,7 @@ location_entry_cancel_search (YelpLocationEntry *entry)
     priv->search_mode = FALSE;
     location_entry_set_entry (entry, FALSE);
     event->type = GDK_FOCUS_CHANGE;
-    event->window = GTK_WIDGET (entry)->window;
+    event->window = gtk_widget_get_window (GTK_WIDGET (entry));
     event->send_event = FALSE;
     event->in = FALSE;
     g_signal_emit_by_name (entry, "focus-out-event", 0, event);
