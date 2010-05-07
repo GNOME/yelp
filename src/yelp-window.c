@@ -168,6 +168,8 @@ static const gchar *YELP_UI =
     "<menuitem action='NewWindow'/>"
     "<menuitem action='Find'/>"
     "<separator/>"
+    "<menuitem action='YelpViewPrint'/>"
+    "<separator/>"
     "<menuitem action='CloseWindow'/>"
     "</menu>"
     "<menu action='ViewMenu'>"

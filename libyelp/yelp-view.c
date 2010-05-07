@@ -67,6 +67,8 @@ static void        view_resource_request          (WebKitWebView             *vi
                                                    WebKitNetworkResponse     *response,
                                                    gpointer                   user_data);
 
+static void        view_print                     (GtkAction          *action,
+                                                   YelpView           *view);
 static void        view_history_action            (GtkAction          *action,
                                                    YelpView           *view);
 static void        view_navigation_action         (GtkAction          *action,
@@ -88,6 +90,11 @@ static void        document_callback              (YelpDocument       *document,
                                                    GError             *error);
 
 static const GtkActionEntry entries[] = {
+    {"YelpViewPrint", GTK_STOCK_PRINT,
+     N_("_Print..."),
+     "<Control>P",
+     NULL,
+     G_CALLBACK (view_print) },
     {"YelpViewGoBack", GTK_STOCK_GO_BACK,
      N_("_Back"),
      "<Alt>Left",
@@ -583,6 +590,12 @@ view_resource_request (WebKitWebView         *view,
     else {
         webkit_network_request_set_uri (request, "about:blank");
     }
+}
+
+static void
+view_print (GtkAction *action, YelpView  *view)
+{
+    webkit_web_frame_print (webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (view)));
 }
 
 static void
