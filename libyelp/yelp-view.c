@@ -327,7 +327,7 @@ yelp_view_class_init (YelpViewClass *klass)
                                      PROP_PAGE_ID,
                                      g_param_spec_string ("page-id",
                                                           N_("Page ID"),
-                                                          N_("The ID of the root page of the page being viewew"),
+                                                          N_("The ID of the root page of the page being viewed"),
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -336,7 +336,7 @@ yelp_view_class_init (YelpViewClass *klass)
                                      PROP_ROOT_TITLE,
                                      g_param_spec_string ("root-title",
                                                           N_("Root Title"),
-                                                          N_("The title of the root page of the page being viewew"),
+                                                          N_("The title of the root page of the page being viewed"),
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
