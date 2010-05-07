@@ -24,8 +24,7 @@
 #ifndef __YELP_LZMA_DECOMPRESSOR_H__
 #define __YELP_LZMA_DECOMPRESSOR_H__
 
-#include <gio/gio.h>
-#include <lzmadec.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

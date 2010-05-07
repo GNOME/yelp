@@ -23,12 +23,16 @@
 
 #include "config.h"
 
+#include "yelp-lzma-decompressor.h"
+
 #include <errno.h>
 #include <string.h>
 
-#include <glib/gi18n.h>
+#include <lzma.h>
 
-#include "yelp-lzma-decompressor.h"
+#include <glib/gi18n.h>
+#include <gio/gio.h>
+
 
 static void yelp_lzma_decompressor_iface_init          (GConverterIface *iface);
 
@@ -36,7 +40,7 @@ struct _YelpLzmaDecompressor
 {
     GObject parent_instance;
 
-    lzmadec_stream lzmastream;
+    lzma_stream lzmastream;
 };
 
 G_DEFINE_TYPE_WITH_CODE (YelpLzmaDecompressor, yelp_lzma_decompressor, G_TYPE_OBJECT,
@@ -50,7 +54,7 @@ yelp_lzma_decompressor_finalize (GObject *object)
 
     decompressor = YELP_LZMA_DECOMPRESSOR (object);
 
-    lzmadec_end (&decompressor->lzmastream);
+    lzma_end (&decompressor->lzmastream);
 
     G_OBJECT_CLASS (yelp_lzma_decompressor_parent_class)->finalize (object);
 }
@@ -64,16 +68,21 @@ static void
 yelp_lzma_decompressor_constructed (GObject *object)
 {
     YelpLzmaDecompressor *decompressor;
-    int res;
+    lzma_stream tmp = LZMA_STREAM_INIT;
+    lzma_ret res;
 
     decompressor = YELP_LZMA_DECOMPRESSOR (object);
 
-    res = lzmadec_init (&decompressor->lzmastream);
+    decompressor->lzmastream = tmp;
+    res = lzma_auto_decoder (&decompressor->lzmastream, SIZE_MAX, 0);
 
-    if (res == LZMADEC_MEM_ERROR )
+    if (res == LZMA_MEM_ERROR)
         g_error ("YelpLzmaDecompressor: Not enough memory for lzma use");
 
-    if (res != LZMADEC_OK)
+    if (res == LZMA_OPTIONS_ERROR)
+        g_error ("YelpLzmaDecompressor: Unsupported flags");
+
+    if (res != LZMA_OK)
         g_error ("YelpLzmaDecompressor: Unexpected lzma error");
 }
 
@@ -100,19 +109,19 @@ static void
 yelp_lzma_decompressor_reset (GConverter *converter)
 {
     YelpLzmaDecompressor *decompressor = YELP_LZMA_DECOMPRESSOR (converter);
-    int res;
+    lzma_ret res;
 
-    /* lzmadec doesn't have a reset function.  Ending and reiniting
+    /* lzma doesn't have a reset function.  Ending and reiniting
      * might do the trick.  But this is untested.  If reset matters
      * to you, test this.
      */
-    lzmadec_end (&decompressor->lzmastream);
-    res = lzmadec_init (&decompressor->lzmastream);
+    lzma_end (&decompressor->lzmastream);
+    res = lzma_code (&decompressor->lzmastream, LZMA_RUN);
 
-    if (res == LZMADEC_MEM_ERROR )
+    if (res == LZMA_MEM_ERROR )
         g_error ("YelpLzmaDecompressor: Not enough memory for lzma use");
 
-    if (res != LZMADEC_OK)
+    if (res != LZMA_OK)
         g_error ("YelpLzmaDecompressor: Unexpected lzma error");
 }
 
@@ -129,7 +138,7 @@ yelp_lzma_decompressor_convert (GConverter *converter,
 {
     YelpLzmaDecompressor *decompressor;
     gsize header_size;
-    int res;
+    lzma_ret res;
 
     decompressor = YELP_LZMA_DECOMPRESSOR (converter);
 
@@ -139,26 +148,25 @@ yelp_lzma_decompressor_convert (GConverter *converter,
     decompressor->lzmastream.next_out = outbuf;
     decompressor->lzmastream.avail_out = outbuf_size;
 
-    res = lzmadec_decode (&decompressor->lzmastream,
-                          flags & G_CONVERTER_INPUT_AT_END);
+    res = lzma_code (&decompressor->lzmastream, LZMA_RUN);
 
-    if (res == LZMADEC_DATA_ERROR || res == LZMADEC_HEADER_ERROR) {
+    if (res == LZMA_DATA_ERROR) {
         g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
                              _("Invalid compressed data"));
         return G_CONVERTER_ERROR;
     }
 
-    if (res == LZMADEC_MEM_ERROR) {
+    if (res == LZMA_MEM_ERROR) {
         g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_FAILED,
                              _("Not enough memory"));
         return G_CONVERTER_ERROR;
     }
 
-    if (res == LZMADEC_OK || res == LZMADEC_STREAM_END) {
+    if (res == LZMA_OK || res == LZMA_STREAM_END) {
         *bytes_read = inbuf_size - decompressor->lzmastream.avail_in;
         *bytes_written = outbuf_size - decompressor->lzmastream.avail_out;
 
-        if (res == LZMADEC_STREAM_END)
+        if (res == LZMA_STREAM_END)
             return G_CONVERTER_FINISHED;
         return G_CONVERTER_CONVERTED;
     }
