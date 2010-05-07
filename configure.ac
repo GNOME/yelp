@@ -70,18 +70,18 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR([GNOMELOCALEDIR])
 
-
+LIBLZMA_REQUIRED=4.9
 AC_ARG_ENABLE(lzma,
 	AS_HELP_STRING([--enable-lzma],[Enable lzma decoder support [[default=yes]]]),
 	[enable_lzma=$enableval],
 	[enable_lzma="auto"])
 if test x"$enable_lzma" = "xauto"; then
 	PKG_CHECK_MODULES(YELP_LZMA,
-			  liblzma,
+			  liblzma >= $LIBLZMA_REQUIRED,
 			  enable_lzma=yes,
 			  enable_lzma=no)
 elif test x"$enable_lzma" = "xyes"; then
-	PKG_CHECK_MODULES(YELP_LZMA, liblzma)
+	PKG_CHECK_MODULES(YELP_LZMA, liblzma >= $LIBLZMA_REQUIRED)
 fi
 if test x"$enable_lzma" = "xyes"; then
 	YELP_CFLAGS="$YELP_LZMA_CFLAGS $YELP_CFLAGS";
