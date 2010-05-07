@@ -114,6 +114,11 @@ static void     cell_set_text_cell                  (GtkCellLayout     *layout,
                                                      GtkTreeModel      *model,
                                                      GtkTreeIter       *iter,
                                                      YelpLocationEntry *entry);
+static void     cell_set_bookmark_icon              (GtkCellLayout     *layout,
+                                                     GtkCellRenderer   *cell,
+                                                     GtkTreeModel      *model,
+                                                     GtkTreeIter       *iter,
+                                                     YelpLocationEntry *entry);
 
 /* GtkEntryCompletion callbacks */
 static void     cell_set_completion_text_cell       (GtkCellLayout     *layout,
@@ -145,6 +150,7 @@ struct _YelpLocationEntryPrivate
     guint      pulse;
 
     GtkCellRenderer *icon_cell;
+    GtkCellRenderer *bookmark_cell;
 
     GtkEntryCompletion *completion;
     gint                completion_desc_column;
@@ -157,6 +163,7 @@ enum {
   LOCATION_SELECTED,
   COMPLETION_SELECTED,
   SEARCH_ACTIVATED,
+  BOOKMARK_CLICKED,
   LAST_SIGNAL
 };
 
@@ -239,6 +246,22 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                       g_cclosure_marshal_VOID__STRING,
                       G_TYPE_NONE, 1,
                       G_TYPE_STRING);
+
+    /**
+     * YelpLocationEntry::bookmark-clicked
+     * @widget: The #YelpLocationEntry for which the signal was emitted.
+     * @user_data: User data set when the handler was connected.
+     *
+     * This signal will be emitted whenever a user clicks the bookmark icon
+     * embedded in the location entry.
+     **/
+    location_entry_signals[BOOKMARK_CLICKED] =
+        g_signal_new ("bookmark-clicked",
+                      G_OBJECT_CLASS_TYPE (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
 
     /**
      * YelpLocationEntry:desc-column
@@ -346,6 +369,13 @@ yelp_location_entry_init (YelpLocationEntry *entry)
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (entry), priv->icon_cell, FALSE);
 
     gtk_cell_layout_reorder (GTK_CELL_LAYOUT (entry), priv->icon_cell, 0);
+
+    priv->bookmark_cell = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (entry), priv->bookmark_cell, FALSE);
+    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (entry),
+                                        priv->bookmark_cell,
+                                        cell_set_bookmark_icon,
+                                        entry, NULL);
 
     g_signal_connect (entry, "changed",
                       G_CALLBACK (combo_box_changed_cb), NULL);
@@ -769,7 +799,7 @@ entry_icon_press_cb (GtkEntry            *gtkentry,
             location_entry_cancel_search (entry);
         }
         else if  (g_str_equal (name, "bookmark-new")) {
-            /* FIXME: emit bookmark signal */
+            g_signal_emit (entry, location_entry_signals[BOOKMARK_CLICKED], 0);
         }
     }
 }
@@ -824,6 +854,27 @@ cell_set_text_cell (GtkCellLayout     *layout,
         g_free (text);
         g_free (title);
     }
+}
+
+static void
+cell_set_bookmark_icon (GtkCellLayout     *layout,
+                        GtkCellRenderer   *cell,
+                        GtkTreeModel      *model,
+                        GtkTreeIter       *iter,
+                        YelpLocationEntry *entry)
+{
+    gint flags;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    gtk_tree_model_get (model, iter,
+                        priv->flags_column, &flags,
+                        -1);
+    if (!(flags & YELP_LOCATION_ENTRY_IS_SEPARATOR) &&
+        !(flags & YELP_LOCATION_ENTRY_IS_SEARCH) &&
+        (flags & YELP_LOCATION_ENTRY_IS_BOOKMARKED))
+        g_object_set (cell, "icon-name", "bookmark", NULL);
+    else
+        g_object_set (cell, "icon-name", NULL, NULL);
 }
 
 static void

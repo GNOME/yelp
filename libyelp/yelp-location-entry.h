@@ -73,10 +73,11 @@ struct _YelpLocationEntryClass
  * to be displayed by a #YelpLocationEntry.
  **/
 typedef enum {
-    YELP_LOCATION_ENTRY_CAN_BOOKMARK = 1 << 0,
-    YELP_LOCATION_ENTRY_IS_LOADING   = 1 << 1,
-    YELP_LOCATION_ENTRY_IS_SEPARATOR = 1 << 2,
-    YELP_LOCATION_ENTRY_IS_SEARCH    = 1 << 3
+    YELP_LOCATION_ENTRY_CAN_BOOKMARK  = 1 << 0,
+    YELP_LOCATION_ENTRY_IS_BOOKMARKED = 1 << 1,
+    YELP_LOCATION_ENTRY_IS_LOADING    = 1 << 2,
+    YELP_LOCATION_ENTRY_IS_SEPARATOR  = 1 << 3,
+    YELP_LOCATION_ENTRY_IS_SEARCH     = 1 << 4
 } YelpLocationEntryFlags;
 
 GType           yelp_location_entry_get_type             (void);
