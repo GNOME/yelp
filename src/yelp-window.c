@@ -170,7 +170,8 @@ enum {
     COMPLETION_COL_TITLE,
     COMPLETION_COL_DESC,
     COMPLETION_COL_ICON,
-    COMPLETION_COL_PAGE
+    COMPLETION_COL_PAGE,
+    COMPLETION_COL_FLAGS
 };
 
 static const gchar *YELP_UI =
@@ -817,6 +818,7 @@ window_set_bookmark_icons (YelpWindow *window)
     GtkTreeIter iter;
     gchar *page_id;
     GHashTable *bookmarks;
+    GtkTreeModel *completion;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (priv->view, "yelp-uri", &uri, NULL);
@@ -855,6 +857,30 @@ window_set_bookmark_icons (YelpWindow *window)
         g_free (iter_page);
         gtk_list_store_set (priv->history, &iter, HISTORY_COL_FLAGS, iter_flags, -1);
         cont = gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->history), &iter);
+    }
+
+    completion = (GtkTreeModel *) g_hash_table_lookup (completions, doc_uri);
+    if (completion) {
+        gchar *page_id;
+        gint flags;
+        completion = gtk_tree_model_sort_get_model (GTK_TREE_MODEL_SORT (completion));
+        cont = gtk_tree_model_get_iter_first (completion, &iter);
+        while (cont) {
+            gtk_tree_model_get (completion, &iter,
+                                COMPLETION_COL_PAGE, &page_id,
+                                COMPLETION_COL_FLAGS, &flags,
+                                -1);
+            if (page_id && g_hash_table_lookup (bookmarks, page_id)) {
+                flags |= YELP_LOCATION_ENTRY_IS_BOOKMARKED;
+            }
+            else {
+                flags &= ~YELP_LOCATION_ENTRY_IS_BOOKMARKED;
+            }
+            gtk_list_store_set (GTK_LIST_STORE (completion), &iter,
+                                COMPLETION_COL_FLAGS, flags,
+                                -1);
+            cont = gtk_tree_model_iter_next (completion, &iter);
+        }
     }
 
     g_hash_table_destroy (bookmarks);
@@ -1288,11 +1314,12 @@ view_loaded (YelpView   *view,
 
     completion = (GtkTreeModel *) g_hash_table_lookup (completions, doc_uri);
     if (completion == NULL) {
-        GtkListStore *base = gtk_list_store_new (4,
+        GtkListStore *base = gtk_list_store_new (5,
                                                  G_TYPE_STRING,  /* title */
                                                  G_TYPE_STRING,  /* desc */
                                                  G_TYPE_STRING,  /* icon */
-                                                 G_TYPE_STRING   /* uri */
+                                                 G_TYPE_STRING,  /* uri */
+                                                 G_TYPE_INT      /* flags */
                                                  );
         completion = gtk_tree_model_sort_new_with_model (GTK_TREE_MODEL (base));
         gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (completion),
@@ -1328,7 +1355,8 @@ view_loaded (YelpView   *view,
                                               GTK_TREE_MODEL (completion),
                                               COMPLETION_COL_TITLE,
                                               COMPLETION_COL_DESC,
-                                              COMPLETION_COL_ICON);
+                                              COMPLETION_COL_ICON,
+                                              COMPLETION_COL_FLAGS);
 
     window_set_bookmark_icons (window);
 

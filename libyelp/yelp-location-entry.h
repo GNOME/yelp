@@ -91,7 +91,8 @@ void            yelp_location_entry_set_completion_model (YelpLocationEntry *ent
                                                           GtkTreeModel      *model,
                                                           gint               text_column,
                                                           gint               desc_column,
-                                                          gint               icon_column);
+                                                          gint               icon_column,
+                                                          gint               flags_column);
 
 void            yelp_location_entry_start_search         (YelpLocationEntry  *entry);
 

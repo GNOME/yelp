@@ -121,6 +121,11 @@ static void     cell_set_bookmark_icon              (GtkCellLayout     *layout,
                                                      YelpLocationEntry *entry);
 
 /* GtkEntryCompletion callbacks */
+static void     cell_set_completion_bookmark_icon   (GtkCellLayout     *layout,
+                                                     GtkCellRenderer   *cell,
+                                                     GtkTreeModel      *model,
+                                                     GtkTreeIter       *iter,
+                                                     YelpLocationEntry *entry);
 static void     cell_set_completion_text_cell       (GtkCellLayout     *layout,
                                                      GtkCellRenderer   *cell,
                                                      GtkTreeModel      *model,
@@ -150,10 +155,10 @@ struct _YelpLocationEntryPrivate
     guint      pulse;
 
     GtkCellRenderer *icon_cell;
-    GtkCellRenderer *bookmark_cell;
 
     GtkEntryCompletion *completion;
     gint                completion_desc_column;
+    gint                completion_flags_column;
 
     /* free this, and only this */
     GtkTreeRowReference *row;
@@ -333,6 +338,7 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
 static void
 yelp_location_entry_init (YelpLocationEntry *entry)
 {
+    GtkCellRenderer *bookmark_cell;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GList *cells;
 
@@ -370,11 +376,11 @@ yelp_location_entry_init (YelpLocationEntry *entry)
 
     gtk_cell_layout_reorder (GTK_CELL_LAYOUT (entry), priv->icon_cell, 0);
 
-    priv->bookmark_cell = gtk_cell_renderer_pixbuf_new ();
-    gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (entry), priv->bookmark_cell, FALSE);
+    bookmark_cell = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (entry), bookmark_cell, FALSE);
     gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (entry),
-                                        priv->bookmark_cell,
-                                        cell_set_bookmark_icon,
+                                        bookmark_cell,
+                                        (GtkCellLayoutDataFunc) cell_set_bookmark_icon,
                                         entry, NULL);
 
     g_signal_connect (entry, "changed",
@@ -533,14 +539,16 @@ yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
                                           GtkTreeModel *model,
                                           gint text_column,
                                           gint desc_column,
-                                          gint icon_column)
+                                          gint icon_column,
+                                          gint flags_column)
 {
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GList *cells;
-    GtkCellRenderer *icon_cell;
+    GtkCellRenderer *icon_cell, *bookmark_cell;
 
     priv->completion = gtk_entry_completion_new ();
     priv->completion_desc_column = desc_column;
+    priv->completion_flags_column = flags_column;
     gtk_entry_completion_set_minimum_key_length (priv->completion, 3);
     gtk_entry_completion_set_model (priv->completion, model);
     gtk_entry_completion_set_text_column (priv->completion, text_column);
@@ -570,6 +578,13 @@ yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
                                     "icon-name",
                                     icon_column,
                                     NULL);
+
+    bookmark_cell = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (priv->completion), bookmark_cell, FALSE);
+    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->completion),
+                                        bookmark_cell,
+                                        (GtkCellLayoutDataFunc) cell_set_completion_bookmark_icon,
+                                        entry, NULL);
 
     gtk_entry_set_completion (GTK_ENTRY (priv->text_entry),
                               priv->completion);
@@ -872,6 +887,25 @@ cell_set_bookmark_icon (GtkCellLayout     *layout,
     if (!(flags & YELP_LOCATION_ENTRY_IS_SEPARATOR) &&
         !(flags & YELP_LOCATION_ENTRY_IS_SEARCH) &&
         (flags & YELP_LOCATION_ENTRY_IS_BOOKMARKED))
+        g_object_set (cell, "icon-name", "bookmark", NULL);
+    else
+        g_object_set (cell, "icon-name", NULL, NULL);
+}
+
+static void
+cell_set_completion_bookmark_icon (GtkCellLayout     *layout,
+                                   GtkCellRenderer   *cell,
+                                   GtkTreeModel      *model,
+                                   GtkTreeIter       *iter,
+                                   YelpLocationEntry *entry)
+{
+    gint flags;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    gtk_tree_model_get (model, iter,
+                        priv->completion_flags_column, &flags,
+                        -1);
+    if (flags & YELP_LOCATION_ENTRY_IS_BOOKMARKED)
         g_object_set (cell, "icon-name", "bookmark", NULL);
     else
         g_object_set (cell, "icon-name", NULL, NULL);
