@@ -479,6 +479,7 @@ location_entry_start_search (YelpLocationEntry *entry,
 static void
 location_entry_cancel_search (YelpLocationEntry *entry)
 {
+    gboolean ret;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GdkEventFocus *event = g_new0 (GdkEventFocus, 1);
     priv->search_mode = FALSE;
@@ -487,7 +488,7 @@ location_entry_cancel_search (YelpLocationEntry *entry)
     event->window = gtk_widget_get_window (GTK_WIDGET (entry));
     event->send_event = FALSE;
     event->in = FALSE;
-    g_signal_emit_by_name (entry, "focus-out-event", 0, event);
+    g_signal_emit_by_name (entry, "focus-out-event", event, &ret);
     g_free (event);
     /* Hack: This makes the popup disappear when you hit Esc. */
     g_object_ref (priv->completion);

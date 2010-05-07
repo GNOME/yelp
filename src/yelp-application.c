@@ -596,7 +596,7 @@ yelp_application_add_bookmark (YelpApplication   *app,
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
             g_variant_unref (value);
-            g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri, 0);
+            g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
         }
     }
 }

@@ -474,11 +474,11 @@ yelp_view_load_uri (YelpView *view,
     priv->page_title = NULL;
     priv->page_desc = NULL;
     priv->page_icon = NULL;
-    g_signal_emit_by_name (view, "notify::page-id", 0);
-    g_signal_emit_by_name (view, "notify::root-title", 0);
-    g_signal_emit_by_name (view, "notify::page-title", 0);
-    g_signal_emit_by_name (view, "notify::page-desc", 0);
-    g_signal_emit_by_name (view, "notify::page-icon", 0);
+    g_signal_emit_by_name (view, "notify::page-id");
+    g_signal_emit_by_name (view, "notify::root-title");
+    g_signal_emit_by_name (view, "notify::page-title");
+    g_signal_emit_by_name (view, "notify::page-desc");
+    g_signal_emit_by_name (view, "notify::page-icon");
 
     gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group,
                                                            "YelpViewGoPrevious"),
@@ -860,7 +860,7 @@ uri_resolved (YelpUri  *uri,
 
     switch (yelp_uri_get_document_type (uri)) {
     case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
-        g_signal_emit (view, signals[EXTERNAL_URI], 0, uri, 0);
+        g_signal_emit (view, signals[EXTERNAL_URI], 0, uri);
         return;
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
         struri = yelp_uri_get_canonical_uri (uri);
@@ -955,11 +955,11 @@ uri_resolved (YelpUri  *uri,
             gtk_widget_set_tooltip_text (GTK_WIDGET (cur->data), "");
     }
 
-    g_signal_emit_by_name (view, "notify::yelp-uri", 0);
+    g_signal_emit_by_name (view, "notify::yelp-uri");
 
     g_free (priv->page_id);
     priv->page_id = yelp_uri_get_page_id (priv->uri);
-    g_signal_emit_by_name (view, "notify::page-id", 0);
+    g_signal_emit_by_name (view, "notify::page-id");
 
     view_load_page (view);
 }
@@ -986,7 +986,7 @@ document_callback (YelpDocument       *document,
         else {
             g_free (priv->page_id);
             priv->page_id = real_id;
-            g_signal_emit_by_name (view, "notify::page-id", 0);
+            g_signal_emit_by_name (view, "notify::page-id");
         }
 
         g_free (priv->root_title);
@@ -1018,10 +1018,10 @@ document_callback (YelpDocument       *document,
         gtk_action_set_sensitive (action, next_id != NULL);
         g_free (next_id);
 
-        g_signal_emit_by_name (view, "notify::root-title", 0);
-        g_signal_emit_by_name (view, "notify::page-title", 0);
-        g_signal_emit_by_name (view, "notify::page-desc", 0);
-        g_signal_emit_by_name (view, "notify::page-icon", 0);
+        g_signal_emit_by_name (view, "notify::root-title");
+        g_signal_emit_by_name (view, "notify::page-title");
+        g_signal_emit_by_name (view, "notify::page-desc");
+        g_signal_emit_by_name (view, "notify::page-icon");
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;
