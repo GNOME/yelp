@@ -63,10 +63,31 @@ struct _YelpApplicationLoad {
     gboolean new;
 };
 
+static const gchar introspection_xml[] =
+    "<node name='/org/gnome/Yelp'>"
+    "  <interface name='org.gnome.Yelp'>"
+    "    <annotation name='org.freedesktop.DBus.GLib.CSymbol' value='yelp_application'/>"
+    "    <method name='LoadUri'>"
+    "      <arg type='s' name='Uri' direction='in'/>"
+    "      <arg type='u' name='Timestamp' direction='in'/>"
+    "    </method>"
+    "  </interface>"
+    "</node>";
+GDBusNodeInfo *introspection_data;
+
 static void          yelp_application_init             (YelpApplication       *app);
 static void          yelp_application_class_init       (YelpApplicationClass  *klass);
 static void          yelp_application_dispose          (GObject               *object);
 static void          yelp_application_finalize         (GObject               *object);
+
+static void          yelp_application_method           (GDBusConnection       *connection,
+                                                        const gchar           *sender,
+                                                        const gchar           *object_path,
+                                                        const gchar           *interface_name,
+                                                        const gchar           *method_name,
+                                                        GVariant              *parameters,
+                                                        GDBusMethodInvocation *invocation,
+                                                        YelpApplication       *app);
 
 static void          application_setup                 (YelpApplication       *app);
 static void          application_uri_resolved          (YelpUri               *uri,
@@ -87,9 +108,13 @@ static gboolean      window_resized                    (YelpWindow            *w
 G_DEFINE_TYPE (YelpApplication, yelp_application, G_TYPE_OBJECT);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_APPLICATION, YelpApplicationPrivate))
 
+GDBusInterfaceVTable yelp_dbus_vtable = {
+    (GDBusInterfaceMethodCallFunc) yelp_application_method,
+    NULL, NULL };
+
 typedef struct _YelpApplicationPrivate YelpApplicationPrivate;
 struct _YelpApplicationPrivate {
-    DBusGConnection *connection;
+    GDBusConnection *connection;
 
     GSList *windows;
     GHashTable *windows_by_document;
@@ -289,8 +314,8 @@ yelp_application_run (YelpApplication  *app,
 {
     GOptionContext *context;
     GError *error = NULL;
-    DBusGProxy *proxy;
-    guint request;
+    GVariant *arg, *ret;
+    guint32 request;
     YelpApplicationPrivate *priv = GET_PRIV (app);
     gchar *uri;
 
@@ -301,38 +326,41 @@ yelp_application_run (YelpApplication  *app,
     g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
     g_option_context_parse (context, &argc, &argv, NULL);
 
-    priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+    priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
     if (priv->connection == NULL) {
         g_warning ("Unable to connect to dbus: %s", error->message);
         g_error_free (error);
         return 1;
     }
 
-    /* FIXME: canonicalize relative URI */
     if (argc > 1)
         uri = argv[1];
     else
         uri = DEFAULT_URI;
 
-    proxy = dbus_g_proxy_new_for_name (priv->connection,
-                                       DBUS_SERVICE_DBUS,
-                                       DBUS_PATH_DBUS,
-                                       DBUS_INTERFACE_DBUS);
-
-    if (!org_freedesktop_DBus_request_name (proxy,
-                                            "org.gnome.Yelp",
-                                            0, &request,
-                                            &error)) {
+    arg = g_variant_new ("(su)", "org.gnome.Yelp", 0);
+    ret = g_dbus_connection_invoke_method_sync (priv->connection,
+                                                "org.freedesktop.DBus",
+                                                "/org/freedesktop/DBus",
+                                                "org.freedesktop.DBus",
+                                                "RequestName",
+                                                arg,
+                                                G_DBUS_INVOKE_METHOD_FLAGS_NONE,
+                                                -1, NULL, &error);
+    g_variant_unref (arg);
+    if (error) {
         g_warning ("Unable to register service: %s", error->message);
         g_error_free (error);
-        g_object_unref (proxy);
+        g_variant_unref (ret);
         return 1;
     }
 
-    g_object_unref (proxy);
+    g_variant_get (ret, "(u)", &request);
+    g_variant_unref (ret);
 
     if (request == DBUS_REQUEST_NAME_REPLY_EXISTS ||
         request == DBUS_REQUEST_NAME_REPLY_IN_QUEUE) {
+
         gchar *newuri;
 
         if (uri && (strchr (uri, ':') || (uri[0] == '/')))
@@ -346,28 +374,34 @@ yelp_application_run (YelpApplication  *app,
             g_free (cur);
         }
 
-        proxy = dbus_g_proxy_new_for_name (priv->connection,
-                                           "org.gnome.Yelp",
-                                           "/org/gnome/Yelp",
-                                           "org.gnome.Yelp");
-        if (!dbus_g_proxy_call (proxy, "LoadUri", &error,
-                                G_TYPE_STRING, newuri,
-                                G_TYPE_UINT,
-                                gtk_get_current_event_time (),
-                                G_TYPE_INVALID, G_TYPE_INVALID)) {
+        arg = g_variant_new ("(su)", newuri, gtk_get_current_event_time ());
+        ret = g_dbus_connection_invoke_method_sync (priv->connection,
+                                                    "org.gnome.Yelp",
+                                                    "/org/gnome/Yelp",
+                                                    "org.gnome.Yelp",
+                                                    "LoadUri",
+                                                    arg,
+                                                    G_DBUS_INVOKE_METHOD_FLAGS_NONE,
+                                                    -1, NULL, &error);
+        g_variant_unref (arg);
+        if (error) {
             g_warning ("Unable to notify existing process: %s\n", error->message);
             g_error_free (error);
         }
 
         if (newuri != uri)
             g_free (newuri);
-        g_object_unref (proxy);
+        g_variant_unref (ret);
         return 1;
     }
 
-    dbus_g_connection_register_g_object (priv->connection,
-                                         "/org/gnome/Yelp",
-                                         G_OBJECT (app));
+    introspection_data = g_dbus_node_info_new_for_xml (introspection_xml, NULL);
+    g_dbus_connection_register_object (priv->connection,
+                                       "/org/gnome/Yelp",
+                                       "org.gnome.Yelp",
+                                       introspection_data->interfaces[0],
+                                       &yelp_dbus_vtable,
+                                       app, NULL, NULL);
 
     application_setup (app);
 
@@ -378,6 +412,41 @@ yelp_application_run (YelpApplication  *app,
     gtk_main ();
 
     return 0;
+}
+
+static void
+yelp_application_method (GDBusConnection *connection,
+                         const gchar *sender,
+                         const gchar *object_path,
+                         const gchar *interface_name,
+                         const gchar *method_name,
+                         GVariant *parameters,
+                         GDBusMethodInvocation *invocation,
+                         YelpApplication *app)
+{
+    if (g_str_equal (interface_name, "org.gnome.Yelp")) {
+        if (g_str_equal (method_name, "LoadUri")) {
+            GError *error = NULL;
+            gchar *uri;
+            guint32 timestamp;
+            g_variant_get (parameters, "(&su)", &uri, &timestamp);
+            yelp_application_load_uri (app, uri, timestamp, &error);
+            if (error) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       error->domain,
+                                                       error->code,
+                                                       "%s", error->message);
+                g_error_free (error);
+            }
+            else
+                g_dbus_method_invocation_return_value (invocation, NULL);
+            return;
+        }
+    }
+    g_dbus_method_invocation_return_error (invocation,
+                                           G_IO_ERROR,
+                                           G_IO_ERROR_NOT_SUPPORTED,
+                                           "Method not supported");
 }
 
 gboolean
@@ -532,6 +601,7 @@ application_maybe_quit (YelpApplication *app)
 
 /******************************************************************************/
 
+#if 0
 static void
 packages_installed (DBusGProxy     *proxy,
                     DBusGProxyCall *call,
@@ -561,6 +631,7 @@ packages_installed (DBusGProxy     *proxy,
         }
     }
 }
+#endif
 
 void
 yelp_application_add_bookmark (YelpApplication   *app,
@@ -615,6 +686,7 @@ yelp_application_install_package (YelpApplication  *app,
                                   const gchar      *pkg,
                                   const gchar      *alt)
 {
+#if 0
     YelpApplicationPrivate *priv = GET_PRIV (app);
     guint32 xid = 0;
     DBusGProxy *proxy = dbus_g_proxy_new_for_name (priv->connection,
@@ -630,6 +702,7 @@ yelp_application_install_package (YelpApplication  *app,
                              G_TYPE_STRV, pkgs,
                              G_TYPE_STRING, "",
                              G_TYPE_INVALID, G_TYPE_INVALID);
+#endif
 }
 
 static gboolean
