@@ -314,7 +314,7 @@ yelp_application_run (YelpApplication  *app,
 {
     GOptionContext *context;
     GError *error = NULL;
-    GVariant *arg, *ret;
+    GVariant *ret;
     guint32 request;
     YelpApplicationPrivate *priv = GET_PRIV (app);
     gchar *uri;
@@ -338,16 +338,14 @@ yelp_application_run (YelpApplication  *app,
     else
         uri = DEFAULT_URI;
 
-    arg = g_variant_new ("(su)", "org.gnome.Yelp", 0);
     ret = g_dbus_connection_invoke_method_sync (priv->connection,
                                                 "org.freedesktop.DBus",
                                                 "/org/freedesktop/DBus",
                                                 "org.freedesktop.DBus",
                                                 "RequestName",
-                                                arg,
+                                                g_variant_new ("(su)", "org.gnome.Yelp", 0),
                                                 G_DBUS_INVOKE_METHOD_FLAGS_NONE,
                                                 -1, NULL, &error);
-    g_variant_unref (arg);
     if (error) {
         g_warning ("Unable to register service: %s", error->message);
         g_error_free (error);
@@ -374,16 +372,14 @@ yelp_application_run (YelpApplication  *app,
             g_free (cur);
         }
 
-        arg = g_variant_new ("(su)", newuri, gtk_get_current_event_time ());
         ret = g_dbus_connection_invoke_method_sync (priv->connection,
                                                     "org.gnome.Yelp",
                                                     "/org/gnome/Yelp",
                                                     "org.gnome.Yelp",
                                                     "LoadUri",
-                                                    arg,
+                                                    g_variant_new ("(su)", newuri, gtk_get_current_event_time ()),
                                                     G_DBUS_INVOKE_METHOD_FLAGS_NONE,
                                                     -1, NULL, &error);
-        g_variant_unref (arg);
         if (error) {
             g_warning ("Unable to notify existing process: %s\n", error->message);
             g_error_free (error);
@@ -601,38 +597,6 @@ application_maybe_quit (YelpApplication *app)
 
 /******************************************************************************/
 
-#if 0
-static void
-packages_installed (DBusGProxy     *proxy,
-                    DBusGProxyCall *call,
-                    gpointer        data)
-{
-    GError *error = NULL;
-    dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_INVALID);
-    g_strfreev ((gchar **) data);
-    if (error) {
-        const gchar *err = NULL;
-        if (error->domain == DBUS_GERROR) {
-            if (error->code == DBUS_GERROR_SERVICE_UNKNOWN) {
-                err = _("You do not have PackageKit installed.  Package installation links require PackageKit.");
-            }
-            else if (error->code != DBUS_GERROR_REMOTE_EXCEPTION &&
-                     error->code != DBUS_GERROR_NO_REPLY) {
-                err = error->message;
-            }
-        }
-        if (err) {
-            GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
-                                                        GTK_MESSAGE_ERROR,
-                                                        GTK_BUTTONS_CLOSE,
-                                                        "%s", err);
-            gtk_dialog_run ((GtkDialog *) dialog);
-            gtk_widget_destroy (dialog);
-        }
-    }
-}
-#endif
-
 void
 yelp_application_add_bookmark (YelpApplication   *app,
                                const gchar       *doc_uri,
@@ -681,28 +645,54 @@ yelp_application_get_bookmarks (YelpApplication *app,
     return g_settings_get_value (settings, "bookmarks");
 }
 
+static void
+packages_installed (GDBusConnection *connection,
+                    GAsyncResult *res,
+                    YelpApplication *app)
+{
+    GError *error = NULL;
+    g_dbus_connection_invoke_method_finish (connection, res, &error);
+    if (error) {
+        const gchar *err = NULL;
+        if (error->domain == G_DBUS_ERROR) {
+            if (error->code == G_DBUS_ERROR_SERVICE_UNKNOWN)
+                err = _("You do not have PackageKit installed.  Package installation links require PackageKit.");
+            else
+                err = error->message;
+        }
+        if (err != NULL) {
+            GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
+                                                        GTK_MESSAGE_ERROR,
+                                                        GTK_BUTTONS_CLOSE,
+                                                        "%s", err);
+            gtk_dialog_run ((GtkDialog *) dialog);
+            gtk_widget_destroy (dialog);
+        }
+        g_error_free (error);
+    }
+}
+
 void
 yelp_application_install_package (YelpApplication  *app,
                                   const gchar      *pkg,
                                   const gchar      *alt)
 {
-#if 0
+    GVariantBuilder *strv;
     YelpApplicationPrivate *priv = GET_PRIV (app);
     guint32 xid = 0;
-    DBusGProxy *proxy = dbus_g_proxy_new_for_name (priv->connection,
-                                                   "org.freedesktop.PackageKit",
-                                                   "/org/freedesktop/PackageKit",
-                                                   "org.freedesktop.PackageKit.Modify");
-    gchar **pkgs = g_new0 (gchar *, 2);
-    pkgs[0] = g_strdup (pkg);
-
-    dbus_g_proxy_begin_call (proxy, "InstallPackageNames",
-                             packages_installed, pkgs, NULL,
-                             G_TYPE_UINT, xid,
-                             G_TYPE_STRV, pkgs,
-                             G_TYPE_STRING, "",
-                             G_TYPE_INVALID, G_TYPE_INVALID);
-#endif
+    strv = g_variant_builder_new (G_VARIANT_TYPE ("as"));
+    g_variant_builder_add (strv, "s", pkg);
+    g_dbus_connection_invoke_method (priv->connection,
+                                     "org.freedesktop.PackageKit",
+                                     "/org/freedesktop/PackageKit",
+                                     "org.freedesktop.PackageKit.Modify",
+                                     "InstallPackageNames",
+                                     g_variant_new ("(uass)", xid, strv, ""),
+                                     G_DBUS_INVOKE_METHOD_FLAGS_NONE,
+                                     -1, NULL,
+                                     (GAsyncReadyCallback) packages_installed,
+                                     app);
+    g_variant_builder_unref (strv);
 }
 
 static gboolean
