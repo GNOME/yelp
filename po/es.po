@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-05-04 15:45+0000\n"
-"PO-Revision-Date: 2010-05-04 19:29+0200\n"
+"POT-Creation-Date: 2010-05-05 18:21+0000\n"
+"PO-Revision-Date: 2010-05-09 13:10+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1174,7 +1174,7 @@ msgstr "Reducir el tamaño del texto"
 msgid "Show Text _Cursor"
 msgstr "Mostrar el _cursor de texto"
 
-#: ../src/yelp-application.c:297 ../src/yelp-window.c:1041
+#: ../src/yelp-application.c:297 ../src/yelp-window.c:1262
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ayuda"
@@ -1187,62 +1187,77 @@ msgstr ""
 "No tiene PackageKit instalado. Los enlaces de instalación de paquetes "
 "requieren PackageKit."
 
-#: ../src/yelp-window.c:207
+#: ../src/yelp-window.c:230
 msgid "_Page"
 msgstr "_Página"
 
-#: ../src/yelp-window.c:208
+#: ../src/yelp-window.c:231
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/yelp-window.c:209
+#: ../src/yelp-window.c:232
 msgid "_Go"
 msgstr "_Ir a"
 
-#: ../src/yelp-window.c:210
+#: ../src/yelp-window.c:233
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:213
+#: ../src/yelp-window.c:236
 msgid "_New Window"
 msgstr "Ventana _nueva"
 
-#: ../src/yelp-window.c:218
+#: ../src/yelp-window.c:241
 msgid "_Close"
 msgstr "_Cerrar"
 
-#: ../src/yelp-window.c:223
+#: ../src/yelp-window.c:246
 msgid "_Add Bookmark"
 msgstr "_Añadir marcador"
 
-#: ../src/yelp-window.c:228
-#| msgid "Search..."
-msgid "Search"
-msgstr "Buscar"
+#: ../src/yelp-window.c:251
+#| msgid "Print This Page ..."
+msgid "Find in Page..."
+msgstr "Buscar en la página…"
 
-#: ../src/yelp-window.c:233
-msgid "Open Location"
-msgstr "Abrir dirección"
-
-#: ../src/yelp-window.c:260
-msgid "Application"
-msgstr "Aplicación"
-
-#: ../src/yelp-window.c:261
-msgid "A YelpApplication instance that controls this window"
-msgstr "Una instancia de YelpApplication que controla esta ventana"
-
-#: ../src/yelp-window.c:426
+#: ../src/yelp-window.c:256 ../src/yelp-window.c:465
 msgid "Search..."
 msgstr "Buscar…"
 
-#: ../src/yelp-window.c:985
+#: ../src/yelp-window.c:261
+msgid "Open Location"
+msgstr "Abrir dirección"
+
+#: ../src/yelp-window.c:288
+msgid "Application"
+msgstr "Aplicación"
+
+#: ../src/yelp-window.c:289
+msgid "A YelpApplication instance that controls this window"
+msgstr "Una instancia de YelpApplication que controla esta ventana"
+
+#: ../src/yelp-window.c:952
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i coincidencia"
+msgstr[1] "%i coincidencias"
+
+#: ../src/yelp-window.c:977
+msgid "No matches"
+msgstr "Sin coincidencias"
+
+#: ../src/yelp-window.c:1206
 msgid "Loading"
 msgstr "Cargando"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtenga ayuda acerca de GNOME"
+
+#~| msgid "Search..."
+#~ msgid "Search"
+#~ msgstr "Buscar"
 
 #~ msgid "File is not a valid .desktop file"
 #~ msgstr "El archivo no es un archivo .desktop válido"
@@ -1510,9 +1525,6 @@ msgstr "Obtenga ayuda acerca de GNOME"
 
 #~ msgid "Print This Document ..."
 #~ msgstr "Imprimir este documento..."
-
-#~ msgid "Print This Page ..."
-#~ msgstr "Imprimir esta página..."
 
 #~ msgid "About This Document"
 #~ msgstr "Acerca de este documento"
