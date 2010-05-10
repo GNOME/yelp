@@ -66,9 +66,6 @@ static void        view_resource_request          (WebKitWebView             *vi
                                                    WebKitNetworkRequest      *request,
                                                    WebKitNetworkResponse     *response,
                                                    gpointer                   user_data);
-static void        view_title_changed             (WebKitWebView             *view,
-                                                   GParamSpec                *spec,
-                                                   gpointer                   user_data);
 
 static void        view_print                     (GtkAction          *action,
                                                    YelpView           *view);
@@ -207,8 +204,6 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
-    g_signal_connect (view, "notify::title",
-                      G_CALLBACK (view_title_changed), NULL);
 
     priv->action_group = gtk_action_group_new ("YelpView");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -614,20 +609,6 @@ view_resource_request (WebKitWebView         *view,
     }
     else {
         webkit_network_request_set_uri (request, "about:blank");
-    }
-}
-
-static void
-view_title_changed (WebKitWebView *view,
-                    GParamSpec    *spec,
-                    gpointer       user_data)
-{
-    YelpViewPrivate *priv = GET_PRIV (view);
-    if (priv->page_title == NULL) {
-        priv->page_title = g_strdup (webkit_web_view_get_title (view));
-        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
-                                             "page-title");
-        g_signal_emit_by_name (view, "notify::page-title", spec);
     }
 }
 
@@ -1133,6 +1114,23 @@ document_callback (YelpDocument       *document,
                                      priv->bogus_uri);
         g_signal_handler_unblock (view, priv->navigation_requested);
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
+
+        /* If the document didn't give us a page title, get it from WebKit.
+         * We let the main loop run through so that WebKit gets the title
+         * set so that we can send notify::page-title before loaded. It
+         * simplifies things if YelpView consumers can assume the title
+         * is set before loaded is triggered.
+         */
+        if (priv->page_title == NULL) {
+            GParamSpec *spec;
+            while (g_main_context_pending (NULL))
+                g_main_context_iteration (NULL, FALSE);
+            priv->page_title = g_strdup (webkit_web_view_get_title (WEBKIT_WEB_VIEW (view)));
+            spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                                 "page-title");
+            g_signal_emit_by_name (view, "notify::page-title", spec);
+        }
+
         g_free (frag_id);
         g_free (page_id);
         g_free (mime_type);
