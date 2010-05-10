@@ -136,6 +136,7 @@ yelp_document_get_for_uri (YelpUri *uri)
 {
     static GHashTable *documents = NULL;
     gchar *docuri;
+    gchar *page_id, *tmp;
     YelpDocument *document = NULL;
 
     if (documents == NULL)
@@ -148,6 +149,24 @@ yelp_document_get_for_uri (YelpUri *uri)
     if (docuri == NULL)
 	return NULL;
 
+    switch (yelp_uri_get_document_type (uri)) {
+    case YELP_URI_DOCUMENT_TYPE_TEXT:
+    case YELP_URI_DOCUMENT_TYPE_HTML:
+    case YELP_URI_DOCUMENT_TYPE_XHTML:
+        /* We use YelpSimpleDocument for these, which is a single-file
+         * responder. But the document URI may be set to the directory
+         * holding the file, to allow a directory of HTML files to act
+         * as a single document. So we cache these by a fuller URI.
+         */
+        page_id = yelp_uri_get_page_id (uri);
+        tmp = g_strconcat (docuri, "/", page_id, NULL);
+        g_free (page_id);
+        g_free (docuri);
+        docuri = tmp;
+        break;
+    default:
+        break;
+    }
     document = g_hash_table_lookup (documents, docuri);
 
     if (document != NULL) {

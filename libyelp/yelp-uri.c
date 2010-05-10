@@ -288,7 +288,7 @@ resolve_async (YelpUri *uri)
         case YELP_URI_DOCUMENT_TYPE_TEXT:
         case YELP_URI_DOCUMENT_TYPE_HTML:
         case YELP_URI_DOCUMENT_TYPE_XHTML:
-            /* FIXME: look up a relative file */
+            resolve_file_path (uri);
             break;
         case YELP_URI_DOCUMENT_TYPE_TOC:
             /* FIXME: what do we do? */
@@ -467,6 +467,13 @@ resolve_file_path (YelpUri *uri)
     YelpUriPrivate *priv = GET_PRIV (uri);
     gchar *path;
     const gchar *hash = strchr (priv->res_arg, '#');
+
+    /* Treat xref: URIs like relative file paths */
+    if (g_str_has_prefix (priv->res_arg, "xref:")) {
+        gchar *tmp = g_strdup (priv->res_arg + 5);
+        g_free (priv->res_arg);
+        priv->res_arg = tmp;
+    }
 
     if (priv->res_base)
         base_priv = GET_PRIV (priv->res_base);
@@ -1103,15 +1110,25 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
                         priv->frag_id = g_strdup (splithash[1]);
                 }
             }
-            else if (g_str_equal (mime_type, "text/html")) {
-                priv->tmptype = YELP_URI_DOCUMENT_TYPE_HTML;
+            else if (g_str_equal (mime_type, "text/html") || 
+                     g_str_equal (mime_type, "application/xhtml+xml")) {
+                GFile *parent = g_file_get_parent (priv->gfile);
+                priv->docuri = g_file_get_uri (parent);
+                g_object_unref (parent);
+                priv->tmptype = mime_type[0] == 't' ? YELP_URI_DOCUMENT_TYPE_HTML : YELP_URI_DOCUMENT_TYPE_XHTML;
+                if (priv->page_id == NULL)
+                    priv->page_id = g_file_get_basename (priv->gfile);
                 if (priv->frag_id == NULL)
                     priv->frag_id = g_strdup (hash);
-            }
-            else if (g_str_equal (mime_type, "application/xhtml+xml")) {
-                priv->tmptype = YELP_URI_DOCUMENT_TYPE_XHTML;
-                if (priv->frag_id == NULL)
-                    priv->frag_id = g_strdup (hash);
+                if (priv->fulluri == NULL) {
+                    gchar *fulluri;
+                    fulluri = g_file_get_uri (priv->gfile);
+                    priv->fulluri = g_strconcat (fulluri,
+                                                 priv->frag_id ? "#" : NULL,
+                                                 priv->frag_id,
+                                                 NULL);
+                    g_free (fulluri);
+                }
             }
             else if (g_str_equal (mime_type, "application/x-gzip")) {
                 if (g_str_has_suffix (basename, ".info.gz"))

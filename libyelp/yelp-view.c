@@ -66,6 +66,9 @@ static void        view_resource_request          (WebKitWebView             *vi
                                                    WebKitNetworkRequest      *request,
                                                    WebKitNetworkResponse     *response,
                                                    gpointer                   user_data);
+static void        view_title_changed             (WebKitWebView             *view,
+                                                   GParamSpec                *spec,
+                                                   gpointer                   user_data);
 
 static void        view_print                     (GtkAction          *action,
                                                    YelpView           *view);
@@ -204,6 +207,8 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
+    g_signal_connect (view, "notify::title",
+                      G_CALLBACK (view_title_changed), NULL);
 
     priv->action_group = gtk_action_group_new ("YelpView");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -402,7 +407,10 @@ yelp_view_get_property (GObject    *object,
             g_value_set_string (value, priv->page_desc);
             break;
         case PROP_PAGE_ICON:
-            g_value_set_string (value, priv->page_icon);
+            if (priv->page_icon)
+                g_value_set_string (value, priv->page_icon);
+            else
+                g_value_set_string (value, "help-contents");
             break;
         case PROP_STATE:
             g_value_set_enum (value, priv->state);
@@ -606,6 +614,20 @@ view_resource_request (WebKitWebView         *view,
     }
     else {
         webkit_network_request_set_uri (request, "about:blank");
+    }
+}
+
+static void
+view_title_changed (WebKitWebView *view,
+                    GParamSpec    *spec,
+                    gpointer       user_data)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    if (priv->page_title == NULL) {
+        priv->page_title = g_strdup (webkit_web_view_get_title (view));
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-title");
+        g_signal_emit_by_name (view, "notify::page-title", spec);
     }
 }
 
