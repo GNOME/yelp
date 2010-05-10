@@ -482,7 +482,19 @@ resolve_file_path (YelpUri *uri)
         priv->gfile = g_file_new_for_path (path);
     }
     else if (base_priv && base_priv->gfile) {
-        priv->gfile = g_file_resolve_relative_path (base_priv->gfile, path);
+        GFileInfo *info;
+        info = g_file_query_info (base_priv->gfile,
+                                  G_FILE_ATTRIBUTE_STANDARD_TYPE,
+                                  G_FILE_QUERY_INFO_NONE,
+                                  NULL, NULL);
+        if (g_file_info_get_file_type (info) == G_FILE_TYPE_REGULAR) {
+            GFile *parent = g_file_get_parent (base_priv->gfile);
+            priv->gfile = g_file_resolve_relative_path (parent, path);
+            g_object_unref (parent);
+        }
+        else {
+            priv->gfile = g_file_resolve_relative_path (base_priv->gfile, path);
+        }
     }
     else {
         gchar *cur;

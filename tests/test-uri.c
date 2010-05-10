@@ -35,7 +35,7 @@ static void
 print_uri (gchar *orig, YelpUri *uri, GOutputStream *stream)
 {
     GFile *file;
-    gchar *type, *tmp, **tmpv, *out;
+    gchar *type = NULL, *tmp, **tmpv, *out;
 
     g_output_stream_write (stream, orig, strlen (orig), NULL, NULL);
     g_output_stream_write (stream, "\n", 1, NULL, NULL);
@@ -199,7 +199,7 @@ run_all_tests (int argc, char **argv)
                                                                    G_FILE_ATTRIBUTE_STANDARD_NAME);
         if (!g_str_has_suffix (name, ".test"))
             continue;
-        list = g_list_insert_sorted (list, name, strcmp);
+        list = g_list_insert_sorted (list, (gchar *) name, (GCompareFunc) strcmp);
     }
 
     while (list) {

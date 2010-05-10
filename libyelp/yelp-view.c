@@ -560,13 +560,14 @@ view_navigation_requested (WebKitWebView             *view,
                            WebKitWebPolicyDecision   *decision,
                            gpointer                   user_data)
 {
+    const gchar *requri = webkit_network_request_get_uri (request);
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpUri *uri;
 
-    debug_print (DB_FUNCTION, "entering\n");
-
-    uri = yelp_uri_new_relative (priv->uri,
-                                 webkit_network_request_get_uri (request));
+    if (g_str_has_prefix (requri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, requri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, requri);
 
     webkit_web_policy_decision_ignore (decision);
 
