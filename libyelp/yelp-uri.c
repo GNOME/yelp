@@ -1164,6 +1164,9 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
                 if (priv->frag_id == NULL)
                     priv->frag_id = g_strdup (hash);
             }
+            else if (g_str_equal (mime_type, "text/x-readme")) {
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_TEXT;
+            }
             else {
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
             }

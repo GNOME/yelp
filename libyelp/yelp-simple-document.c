@@ -259,11 +259,16 @@ document_signal_all (YelpSimpleDocument *document)
     GSList *cur;
     for (cur = document->priv->reqs; cur != NULL; cur = cur->next) {
         Request *request = (Request *) cur->data;
-        if (request->callback)
+        if (request->callback) {
+            request->callback (request->document,
+                               YELP_DOCUMENT_SIGNAL_INFO,
+                               request->user_data,
+                               NULL);
             request->callback (request->document,
                                YELP_DOCUMENT_SIGNAL_CONTENTS,
                                request->user_data,
                                NULL);
+        }
     }
     return FALSE;
 }
@@ -278,8 +283,21 @@ file_info_cb (GFile              *file,
     GFileInfo *info = g_file_query_info_finish (file, result, NULL);
     const gchar *type = g_file_info_get_attribute_string (info,
 							  G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
-    document->priv->mime_type = g_strdup (type);
+    if (g_str_equal (type, "text/x-readme"))
+        document->priv->mime_type = g_strdup ("text/plain");
+    else
+        document->priv->mime_type = g_strdup (type);
     g_object_unref (info);
+
+    if (g_str_equal (document->priv->mime_type, "text/plain")) {
+        gchar *basename = g_file_get_basename (document->priv->file);
+        yelp_document_set_page_id (YELP_DOCUMENT (document), "//index", "//index");
+        yelp_document_set_page_id (YELP_DOCUMENT (document), NULL, "//index");
+        yelp_document_set_page_title (YELP_DOCUMENT (document), "//index", basename);
+        yelp_document_set_page_icon (YELP_DOCUMENT (document), "//index", "text-x-generic");
+        g_free (basename);
+    }
+
     g_file_read_async (document->priv->file,
 		       G_PRIORITY_DEFAULT,
 		       NULL,
