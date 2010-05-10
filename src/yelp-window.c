@@ -76,6 +76,7 @@ static void          app_bookmarks_changed        (YelpApplication    *app,
                                                    YelpWindow         *window);
 static void          window_set_bookmarks         (YelpWindow         *window,
                                                    const gchar        *doc_uri);
+static void          window_set_bookmark_action   (YelpWindow         *window);
 static void          window_set_bookmark_icons    (YelpWindow         *window);
 static gboolean      find_animate_open            (YelpWindow         *window);
 static gboolean      find_animate_close           (YelpWindow         *window);
@@ -113,9 +114,6 @@ static void          view_external_uri            (YelpView           *view,
 static void          view_loaded                  (YelpView           *view,
                                                    YelpWindow         *window);
 static void          view_uri_selected            (YelpView           *view,
-                                                   GParamSpec         *pspec,
-                                                   YelpWindow         *window);
-static void          view_page_id                 (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
 static void          view_root_title              (YelpView           *view,
@@ -564,7 +562,8 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
-    g_signal_connect (priv->view, "notify::page-id", G_CALLBACK (view_page_id), window);
+    g_signal_connect_swapped (priv->view, "notify::page-id",
+                              G_CALLBACK (window_set_bookmark_action), window);
     g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
     g_signal_connect (priv->view, "notify::page-title", G_CALLBACK (view_page_title), window);
     g_signal_connect (priv->view, "notify::page-desc", G_CALLBACK (view_page_desc), window);
@@ -805,6 +804,48 @@ window_set_bookmarks (YelpWindow  *window,
 
     g_variant_iter_free (iter);
     g_variant_unref (value);
+}
+
+static void
+window_set_bookmark_action (YelpWindow *window)
+{
+    YelpUri *uri;
+    gchar *doc_uri, *page_id;
+    gchar *curpage;
+    GVariant *value;
+    GVariantIter *viter;
+    GtkAction *action;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    action = gtk_action_group_get_action (priv->action_group, "AddBookmark");
+
+    g_object_get (priv->view,
+                  "yelp-uri", &uri,
+                  "page-id", &page_id,
+                  NULL);
+    if (page_id == NULL) {
+        gtk_action_set_sensitive (action, FALSE);
+        if (uri)
+            g_object_unref (uri);
+        return;
+    }
+    gtk_action_set_sensitive (action, TRUE);
+
+    doc_uri = yelp_uri_get_document_uri (uri);
+    value = yelp_application_get_bookmarks (priv->application, doc_uri);
+    g_variant_get (value, "a(sss)", &viter);
+    while (g_variant_iter_loop (viter, "(&s&s&s)", &curpage, NULL, NULL)) {
+        if (g_str_equal (page_id, curpage)) {
+            gtk_action_set_sensitive (action, FALSE);
+            break;
+        }
+    }
+    g_variant_iter_free (viter);
+    g_variant_unref (value);
+
+    g_free (page_id);
+    g_free (doc_uri);
+    g_object_unref (uri);
 }
 
 static void
@@ -1452,23 +1493,6 @@ view_uri_selected (YelpView     *view,
 
     g_free (struri);
     g_object_unref (uri);
-}
-
-static void
-view_page_id (YelpView   *view,
-              GParamSpec *pspec,
-              YelpWindow *window)
-{
-    GtkAction *action;
-    gchar *page_id;
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    g_object_get (view, "page-id", &page_id, NULL);
-
-    action = gtk_action_group_get_action (priv->action_group, "AddBookmark");
-    gtk_action_set_sensitive (action, page_id != NULL);
-
-    g_free (page_id);
 }
 
 static void
