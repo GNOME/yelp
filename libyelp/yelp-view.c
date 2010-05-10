@@ -1084,7 +1084,7 @@ document_callback (YelpDocument       *document,
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
 	const gchar *contents;
-        gchar *mime_type, *page_id, *frag_id;
+        gchar *mime_type, *page_id, *frag_id, *full_uri;
         page_id = yelp_uri_get_page_id (priv->uri);
         debug_print (DB_ARG, "    document.uri.page_id=\"%s\"\n", page_id);
         mime_type = yelp_document_get_mime_type (document, page_id);
@@ -1114,10 +1114,17 @@ document_callback (YelpDocument       *document,
            based on actual file locations, but in fact it doesn't matter.  So
            we just make a bogus URI that's easy to process later.
          */
-        if (frag_id != NULL)
-            priv->bogus_uri = g_strdup_printf ("%s%p#%s", BOGUS_URI, priv->uri, frag_id);
-        else
-            priv->bogus_uri = g_strdup_printf ("%s%p", BOGUS_URI, priv->uri);
+        full_uri = yelp_uri_get_canonical_uri (priv->uri);
+        if (g_str_has_prefix (full_uri, "file:/")) {
+            priv->bogus_uri = full_uri;
+        }
+        else {
+            g_free (full_uri);
+            if (frag_id != NULL)
+                priv->bogus_uri = g_strdup_printf ("%s%p#%s", BOGUS_URI, priv->uri, frag_id);
+            else
+                priv->bogus_uri = g_strdup_printf ("%s%p", BOGUS_URI, priv->uri);
+        }
         g_signal_handler_block (view, priv->navigation_requested);
         webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                      contents,
