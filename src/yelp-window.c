@@ -1289,7 +1289,7 @@ view_loaded (YelpView   *view,
     GtkTreeIter iter;
     gint flags;
     YelpUri *uri;
-    gchar *doc_uri, *page_id;
+    gchar *doc_uri, *page_id, *icon, *title;
     GtkTreeModel *completion;
     YelpWindowPrivate *priv = GET_PRIV (window);
     YelpDocument *document = yelp_view_get_document (view);
@@ -1303,14 +1303,25 @@ view_loaded (YelpView   *view,
         gtk_list_store_set (priv->history, &iter, HISTORY_COL_FLAGS, flags, -1);
     }
 
-    g_object_get (view, "yelp-uri", &uri, NULL);
+    g_object_get (view,
+                  "yelp-uri", &uri,
+                  "page-id", &page_id,
+                  "page-icon", &icon,
+                  "page-title", &title,
+                  NULL);
     doc_uri = yelp_uri_get_document_uri (uri);
-    g_object_get (priv->view, "page-id", &page_id, NULL);
     gtk_list_store_set (priv->history, &iter,
                         HISTORY_COL_DOC, doc_uri,
                         HISTORY_COL_PAGE, page_id,
                         -1);
+    yelp_application_update_bookmarks (priv->application,
+                                       doc_uri,
+                                       page_id,
+                                       icon,
+                                       title);
     g_free (page_id);
+    g_free (icon);
+    g_free (title);
 
     completion = (GtkTreeModel *) g_hash_table_lookup (completions, doc_uri);
     if (completion == NULL) {

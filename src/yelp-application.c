@@ -595,7 +595,50 @@ yelp_application_add_bookmark (YelpApplication   *app,
             g_variant_builder_add (&builder, "(sss)", page_id, icon, title);
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
-            g_variant_unref (value);
+            g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
+        }
+    }
+}
+
+void
+yelp_application_update_bookmarks (YelpApplication   *app,
+                                   const gchar       *doc_uri,
+                                   const gchar       *page_id,
+                                   const gchar       *icon,
+                                   const gchar       *title)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_id, *this_icon, *this_title;
+        gboolean updated = FALSE;
+        g_settings_get (settings, "bookmarks", "a(sss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(sss)"));
+        while (g_variant_iter_loop (iter, "(&s&s&s)", &this_id, &this_icon, &this_title)) {
+            if (g_str_equal (page_id, this_id)) {
+                if (icon && !g_str_equal (icon, this_icon)) {
+                    this_icon = (gchar *) icon;
+                    updated = TRUE;
+                }
+                if (title && !g_str_equal (title, this_title)) {
+                    this_title = (gchar *) title;
+                    updated = TRUE;
+                }
+                if (!updated)
+                    break;
+            }
+            g_variant_builder_add (&builder, "(sss)", this_id, this_icon, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        if (updated) {
+            GVariant *value;
+            value = g_variant_builder_end (&builder);
+            g_settings_set_value (settings, "bookmarks", value);
             g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
         }
     }

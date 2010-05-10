@@ -63,6 +63,11 @@ void              yelp_application_add_bookmark         (YelpApplication   *app,
                                                          const gchar       *page_id,
                                                          const gchar       *icon,
                                                          const gchar       *title);
+void              yelp_application_update_bookmarks     (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *page_id,
+                                                         const gchar       *icon,
+                                                         const gchar       *title);
 GVariant *        yelp_application_get_bookmarks        (YelpApplication   *app,
                                                          const gchar       *doc_uri);
 void              yelp_application_install_package      (YelpApplication   *app,
