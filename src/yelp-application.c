@@ -59,7 +59,7 @@ static const GOptionEntry entries[] = {
 typedef struct _YelpApplicationLoad YelpApplicationLoad;
 struct _YelpApplicationLoad {
     YelpApplication *app;
-    guint timestamp;
+    guint32 timestamp;
     gboolean new;
 };
 
@@ -383,7 +383,7 @@ yelp_application_run (YelpApplication  *app,
 gboolean
 yelp_application_load_uri (YelpApplication  *app,
                            const gchar      *uri,
-                           guint             timestamp,
+                           guint32           timestamp,
                            GError          **error)
 {
     YelpApplicationLoad *data;
@@ -392,6 +392,7 @@ yelp_application_load_uri (YelpApplication  *app,
     data = g_new (YelpApplicationLoad, 1);
     data->app = app;
     data->timestamp = timestamp;
+    data->new = FALSE;
     
     yuri = yelp_uri_new (uri);
     
@@ -421,6 +422,7 @@ yelp_application_new_window_uri (YelpApplication  *app,
     YelpApplicationLoad *data;
     data = g_new (YelpApplicationLoad, 1);
     data->app = app;
+    data->timestamp = gtk_get_current_event_time ();
     data->new = TRUE;
     g_signal_connect (uri, "resolved",
                       G_CALLBACK (application_uri_resolved),
@@ -477,7 +479,15 @@ application_uri_resolved (YelpUri             *uri,
     if (gdk_window)
         gdk_x11_window_move_to_current_desktop (gdk_window);
 
-    gtk_window_present_with_time (GTK_WINDOW (window), GDK_CURRENT_TIME);
+    /* Ensure we actually present the window when invoked from the command
+     * line. This is somewhat evil, but the minor evil of Yelp stealing
+     * focus (after you requested it) is outweighed for me by the major
+     * evil of no help window appearing when you click Help.
+     */
+    if (data->timestamp == 0)
+        data->timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
+
+    gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
 
     g_free (data);
 }
