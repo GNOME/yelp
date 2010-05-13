@@ -463,7 +463,7 @@ resolve_file_uri (YelpUri *uri)
 static void
 resolve_file_path (YelpUri *uri)
 {
-    YelpUriPrivate *base_priv;
+    YelpUriPrivate *base_priv = NULL;
     YelpUriPrivate *priv = GET_PRIV (uri);
     gchar *path;
     const gchar *hash = strchr (priv->res_arg, '#');
