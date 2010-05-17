@@ -54,6 +54,12 @@ static void        yelp_view_set_property         (GObject            *object,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
 
+static void        view_scrolled                  (GtkAdjustment      *adjustment,
+                                                   YelpView           *view);
+static void        view_scroll_adjustments        (YelpView           *view,
+                                                   GtkAdjustment      *hadj,
+                                                   GtkAdjustment      *vadj,
+                                                   gpointer            data);
 static gboolean    view_navigation_requested      (WebKitWebView             *view,
                                                    WebKitWebFrame            *frame,
                                                    WebKitNetworkRequest      *request,
@@ -144,8 +150,10 @@ static WebKitWebSettings *websettings;
 typedef struct _YelpBackEntry YelpBackEntry;
 struct _YelpBackEntry {
     YelpUri *uri;
-    gchar *title;
-    gchar *desc;
+    gchar   *title;
+    gchar   *desc;
+    gdouble  hadj;
+    gdouble  vadj;
 };
 static void
 back_entry_free (YelpBackEntry *back)
@@ -165,6 +173,10 @@ struct _YelpViewPrivate {
     gchar         *bogus_uri;
     YelpDocument  *document;
     GCancellable  *cancellable;
+    GtkAdjustment *vadjustment;
+    GtkAdjustment *hadjustment;
+    gdouble        vadjust;
+    gdouble        hadjust;
 
     YelpViewState  state;
 
@@ -204,6 +216,8 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
+    g_signal_connect (view, "set-scroll-adjustments",
+                      G_CALLBACK (view_scroll_adjustments), NULL);
 
     priv->action_group = gtk_action_group_new ("YelpView");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -555,6 +569,38 @@ yelp_view_get_action_group (YelpView *view)
 
 /******************************************************************************/
 
+static void
+view_scrolled (GtkAdjustment *adjustment,
+               YelpView      *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    if (priv->back_cur == NULL)
+        return;
+    if (adjustment == priv->vadjustment)
+        ((YelpBackEntry *) priv->back_cur->data)->vadj = gtk_adjustment_get_value (adjustment);
+    else if (adjustment = priv->hadjustment)
+        ((YelpBackEntry *) priv->back_cur->data)->hadj = gtk_adjustment_get_value (adjustment);
+}
+
+static void
+view_scroll_adjustments (YelpView      *view,
+                         GtkAdjustment *hadj,
+                         GtkAdjustment *vadj,
+                         gpointer       data)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    priv->vadjustment = vadj;
+    if (vadj) {
+        g_signal_connect (vadj, "value-changed",
+                          G_CALLBACK (view_scrolled), view);
+    }
+    priv->hadjustment = hadj;
+    if (hadj) {
+        g_signal_connect (hadj, "value-changed",
+                          G_CALLBACK (view_scrolled), view);
+    }
+}
+
 static gboolean
 view_navigation_requested (WebKitWebView             *view,
                            WebKitWebFrame            *frame,
@@ -643,6 +689,8 @@ view_history_action (GtkAction *action,
 
     priv->back_load = TRUE;
     yelp_view_load_uri (view, ((YelpBackEntry *) priv->back_cur->data)->uri);
+    priv->vadjust = ((YelpBackEntry *) priv->back_cur->data)->vadj;
+    priv->hadjust = ((YelpBackEntry *) priv->back_cur->data)->hadj;
 }
 
 static void
@@ -1115,6 +1163,29 @@ document_callback (YelpDocument       *document,
         g_signal_handler_unblock (view, priv->navigation_requested);
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
 
+        /* If we need to set the GtkAdjustment or trigger the page title
+         * from what WebKit thinks it is (see comment below), we need to
+         * let the main loop run through.
+         */
+        if (priv->vadjust > 0 || priv->hadjust > 0 || priv->page_title == NULL)
+            while (g_main_context_pending (NULL))
+                g_main_context_iteration (NULL, FALSE);
+
+        /* Setting adjustments only work after the page is loaded. These
+         * are set by view_history_action, and they're reset to 0 after
+         * each load here.
+         */
+        if (priv->vadjust > 0) {
+            if (priv->vadjustment)
+                gtk_adjustment_set_value (priv->vadjustment, priv->vadjust);
+            priv->vadjust = 0;
+        }
+        if (priv->hadjust > 0) {
+            if (priv->hadjustment)
+                gtk_adjustment_set_value (priv->hadjustment, priv->hadjust);
+            priv->hadjust = 0;
+        }
+
         /* If the document didn't give us a page title, get it from WebKit.
          * We let the main loop run through so that WebKit gets the title
          * set so that we can send notify::page-title before loaded. It
@@ -1123,8 +1194,6 @@ document_callback (YelpDocument       *document,
          */
         if (priv->page_title == NULL) {
             GParamSpec *spec;
-            while (g_main_context_pending (NULL))
-                g_main_context_iteration (NULL, FALSE);
             priv->page_title = g_strdup (webkit_web_view_get_title (WEBKIT_WEB_VIEW (view)));
             spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                                  "page-title");
