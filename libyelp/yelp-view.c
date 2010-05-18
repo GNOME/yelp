@@ -184,6 +184,8 @@ struct _YelpViewPrivate {
     GtkAdjustment *hadjustment;
     gdouble        vadjust;
     gdouble        hadjust;
+    gulong         vadjuster;
+    gulong         hadjuster;
 
     gchar         *popup_link_uri;
 
@@ -245,6 +247,16 @@ yelp_view_dispose (GObject *object)
     if (priv->uri) {
         g_object_unref (priv->uri);
         priv->uri = NULL;
+    }
+
+    if (priv->vadjuster > 0) {
+        g_source_remove (priv->vadjuster);
+        priv->vadjuster = 0;
+    }
+
+    if (priv->hadjuster > 0) {
+        g_source_remove (priv->hadjuster);
+        priv->hadjuster = 0;
     }
 
     if (priv->cancellable) {
@@ -603,14 +615,20 @@ view_scroll_adjustments (YelpView      *view,
 {
     YelpViewPrivate *priv = GET_PRIV (view);
     priv->vadjustment = vadj;
+    if (priv->vadjuster > 0)
+        g_source_remove (priv->vadjuster);
+    priv->vadjuster = 0;
     if (vadj) {
-        g_signal_connect (vadj, "value-changed",
-                          G_CALLBACK (view_scrolled), view);
+        priv->vadjuster = g_signal_connect (vadj, "value-changed",
+                                            G_CALLBACK (view_scrolled), view);
     }
     priv->hadjustment = hadj;
+    if (priv->hadjuster > 0)
+        g_source_remove (priv->hadjuster);
+    priv->hadjuster = 0;
     if (hadj) {
-        g_signal_connect (hadj, "value-changed",
-                          G_CALLBACK (view_scrolled), view);
+        priv->hadjuster = g_signal_connect (hadj, "value-changed",
+                                            G_CALLBACK (view_scrolled), view);
     }
 }
 
