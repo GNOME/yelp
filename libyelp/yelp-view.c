@@ -64,6 +64,8 @@ static void        popup_open_link                (GtkMenuItem        *item,
                                                    YelpView           *view);
 static void        popup_open_link_new            (GtkMenuItem        *item,
                                                    YelpView           *view);
+static void        popup_save_image               (GtkMenuItem        *item,
+                                                   YelpView           *view);
 static void        view_populate_popup            (YelpView           *view,
                                                    GtkMenu            *menu,
                                                    gpointer            data);
@@ -188,6 +190,7 @@ struct _YelpViewPrivate {
     gulong         hadjuster;
 
     gchar         *popup_link_uri;
+    gchar         *popup_image_uri;
 
     YelpViewState  state;
 
@@ -289,6 +292,7 @@ yelp_view_finalize (GObject *object)
     YelpViewPrivate *priv = GET_PRIV (object);
 
     g_free (priv->popup_link_uri);
+    g_free (priv->popup_image_uri);
 
     g_free (priv->page_id);
     g_free (priv->root_title);
@@ -669,6 +673,90 @@ popup_open_link_new (GtkMenuItem *item,
     g_object_unref (uri);
 }
 
+typedef struct _YelpSaveData YelpSaveData;
+struct _YelpSaveData {
+    GFile     *orig;
+    GFile     *dest;
+    YelpView  *view;
+    GtkWindow *window;
+};
+
+static void
+file_copied (GFile        *file,
+             GAsyncResult *res,
+             YelpSaveData *data)
+{
+    GError *error = NULL;
+    if (!g_file_copy_finish (file, res, &error)) {
+        GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (data->window) ? data->window : NULL,
+                                                    GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                    GTK_MESSAGE_ERROR,
+                                                    GTK_BUTTONS_OK,
+                                                    "%s", error->message);
+        gtk_dialog_run (GTK_DIALOG (dialog));
+        gtk_widget_destroy (dialog);
+    }
+    g_object_unref (data->orig);
+    g_object_unref (data->dest);
+    g_object_unref (data->view);
+    g_object_unref (data->window);
+}
+
+static void
+popup_save_image (GtkMenuItem *item,
+                  YelpView    *view)
+{
+    YelpSaveData *data;
+    GtkWidget *dialog, *window;
+    gchar *basename;
+    gint res;
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    for (window = gtk_widget_get_parent (GTK_WIDGET (view));
+         window && !GTK_IS_WINDOW (window);
+         window = gtk_widget_get_parent (window));
+
+    data = g_new0 (YelpSaveData, 1);
+    data->orig = g_file_new_for_uri (priv->popup_image_uri);
+    data->view = g_object_ref (view);
+    data->window = g_object_ref (window);
+    g_free (priv->popup_image_uri);
+    priv->popup_image_uri = NULL;
+
+    dialog = gtk_file_chooser_dialog_new (_("Save Image"),
+                                          GTK_WINDOW (window),
+                                          GTK_FILE_CHOOSER_ACTION_SAVE,
+                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                          GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                          NULL);
+    gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
+    basename = g_file_get_basename (data->orig);
+    gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), basename);
+    g_free (basename);
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog),
+                                         g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP));
+
+    res = gtk_dialog_run (GTK_DIALOG (dialog));
+
+    if (res == GTK_RESPONSE_OK) {
+        data->dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
+        g_file_copy_async (data->orig, data->dest,
+                           G_FILE_COPY_OVERWRITE,
+                           G_PRIORITY_DEFAULT,
+                           NULL, NULL, NULL,
+                           (GAsyncReadyCallback) file_copied,
+                           data);
+    }
+    else {
+        g_object_unref (data->orig);
+        g_object_unref (data->view);
+        g_object_unref (data->window);
+        g_free (data);
+    }
+
+    gtk_widget_destroy (dialog);
+}
+
 static void
 view_populate_popup (YelpView *view,
                      GtkMenu  *menu,
@@ -700,12 +788,12 @@ view_populate_popup (YelpView *view,
         g_free (priv->popup_link_uri);
         priv->popup_link_uri = uri;
 
-        item = gtk_menu_item_new_with_mnemonic ("_Open Link");
+        item = gtk_menu_item_new_with_mnemonic (_("_Open Link"));
         g_signal_connect (item, "activate",
                           G_CALLBACK (popup_open_link), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
-        item = gtk_menu_item_new_with_mnemonic ("Open Link in New _Window");
+        item = gtk_menu_item_new_with_mnemonic (_("Open Link in New _Window"));
         g_signal_connect (item, "activate",
                           G_CALLBACK (popup_open_link_new), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
@@ -716,6 +804,27 @@ view_populate_popup (YelpView *view,
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
         item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
                                                                          "YelpViewGoForward"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+
+    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE) {
+        gchar *uri;
+        g_object_get (result, "image-uri", &uri, NULL);
+        g_free (priv->popup_image_uri);
+        if (g_str_has_prefix (uri, BOGUS_URI)) {
+            priv->popup_image_uri = yelp_uri_locate_file_uri (priv->uri, uri + BOGUS_URI_LEN);
+            g_free (uri);
+        }
+        else {
+            priv->popup_image_uri = uri;
+        }
+
+        item = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic (_("Sa_ve Image As..."));
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_save_image), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
     }
 
