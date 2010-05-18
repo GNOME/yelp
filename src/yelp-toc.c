@@ -553,7 +553,7 @@ xml_trim_titles (xmlNodePtr node, xmlChar * nodetype)
 	if (!xmlStrcmp (cur->name, nodetype)) {
 	    xmlChar *cur_lang = NULL;
 	    int cur_pri = INT_MAX;
-	    cur_lang = xmlNodeGetLang (cur);
+	    cur_lang = xmlGetNsProp(cur, BAD_CAST "lang", XML_XML_NAMESPACE);
 	    if (cur_lang) {
 		for (j = 0; langs[j]; j++) {
 		    if (g_str_equal (cur_lang, langs[j])) {
