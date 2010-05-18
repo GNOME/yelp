@@ -2545,14 +2545,32 @@ static void window_copy_link_cb (GtkAction *action, YelpWindow *window)
 static void
 window_open_link_cb (GtkAction *action, YelpWindow *window)
 {
-    yelp_window_load (window, window->priv->uri);
+    gchar *uri;
+
+    if (g_str_has_prefix (window->priv->uri, "xref:"))
+        uri = g_strconcat (window->priv->base_uri, "#", window->priv->uri + 5, NULL);
+    else
+        uri = g_strdup (window->priv->uri);
+    
+    yelp_window_load (window, uri);
+
+    g_free (uri);
 }
 
 static void
 window_open_link_new_cb (GtkAction *action, YelpWindow *window)
 {
+    gchar *uri;
+
+    if (g_str_has_prefix (window->priv->uri, "xref:"))
+        uri = g_strconcat (window->priv->base_uri, "#", window->priv->uri + 5, NULL);
+    else
+        uri = g_strdup (window->priv->uri);
+    
     g_signal_emit (window, signals[NEW_WINDOW_REQUESTED], 0,
-		   window->priv->uri);
+		   uri);
+
+    g_free (uri);
 }
 
 /* TODO: This doesn't work... */
