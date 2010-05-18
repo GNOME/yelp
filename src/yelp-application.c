@@ -407,19 +407,25 @@ void
 yelp_application_new_window (YelpApplication  *app,
                              const gchar      *uri)
 {
-    YelpApplicationLoad *data;
     YelpUri *yuri;
-
-    data = g_new (YelpApplicationLoad, 1);
-    data->app = app;
-    data->new = TRUE;
 
     yuri = yelp_uri_new (uri ? uri : DEFAULT_URI);
 
-    g_signal_connect (yuri, "resolved",
+    yelp_application_new_window_uri (app, yuri);
+}
+
+void
+yelp_application_new_window_uri (YelpApplication  *app,
+                                 YelpUri          *uri)
+{
+    YelpApplicationLoad *data;
+    data = g_new (YelpApplicationLoad, 1);
+    data->app = app;
+    data->new = TRUE;
+    g_signal_connect (uri, "resolved",
                       G_CALLBACK (application_uri_resolved),
                       data);
-    yelp_uri_resolve (yuri);
+    yelp_uri_resolve (uri);
 }
 
 static void

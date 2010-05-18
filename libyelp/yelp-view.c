@@ -60,6 +60,13 @@ static void        view_scroll_adjustments        (YelpView           *view,
                                                    GtkAdjustment      *hadj,
                                                    GtkAdjustment      *vadj,
                                                    gpointer            data);
+static void        popup_open_link                (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        popup_open_link_new            (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        view_populate_popup            (YelpView           *view,
+                                                   GtkMenu            *menu,
+                                                   gpointer            data);
 static gboolean    view_navigation_requested      (WebKitWebView             *view,
                                                    WebKitWebFrame            *frame,
                                                    WebKitNetworkRequest      *request,
@@ -178,6 +185,8 @@ struct _YelpViewPrivate {
     gdouble        vadjust;
     gdouble        hadjust;
 
+    gchar         *popup_link_uri;
+
     YelpViewState  state;
 
     gchar         *page_id;
@@ -218,6 +227,8 @@ yelp_view_init (YelpView *view)
                       G_CALLBACK (view_resource_request), NULL);
     g_signal_connect (view, "set-scroll-adjustments",
                       G_CALLBACK (view_scroll_adjustments), NULL);
+    g_signal_connect (view, "populate-popup",
+                      G_CALLBACK (view_populate_popup), NULL);
 
     priv->action_group = gtk_action_group_new ("YelpView");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -265,6 +276,8 @@ yelp_view_finalize (GObject *object)
 {
     YelpViewPrivate *priv = GET_PRIV (object);
 
+    g_free (priv->popup_link_uri);
+
     g_free (priv->page_id);
     g_free (priv->root_title);
     g_free (priv->page_title);
@@ -304,8 +317,8 @@ yelp_view_class_init (YelpViewClass *klass)
 		      G_TYPE_FROM_CLASS (klass),
 		      G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
-		      g_cclosure_marshal_VOID__STRING,
-		      G_TYPE_NONE, 1, G_TYPE_STRING);
+		      g_cclosure_marshal_VOID__OBJECT,
+		      G_TYPE_NONE, 1, YELP_TYPE_URI);
 
     signals[EXTERNAL_URI] =
 	g_signal_new ("external-uri",
@@ -599,6 +612,98 @@ view_scroll_adjustments (YelpView      *view,
         g_signal_connect (hadj, "value-changed",
                           G_CALLBACK (view_scrolled), view);
     }
+}
+
+static void
+popup_open_link (GtkMenuItem *item,
+                 YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUri *uri;
+
+    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+
+    yelp_view_load_uri (view, uri);
+
+    g_free (priv->popup_link_uri);
+    priv->popup_link_uri = NULL;
+}
+
+static void
+popup_open_link_new (GtkMenuItem *item,
+                     YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUri *uri;
+
+    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+
+    g_free (priv->popup_link_uri);
+    priv->popup_link_uri = NULL;
+
+    g_signal_emit (view, signals[NEW_VIEW_REQUESTED], 0, uri);
+    g_object_unref (uri);
+}
+
+static void
+view_populate_popup (YelpView *view,
+                     GtkMenu  *menu,
+                     gpointer  data)
+{
+    WebKitHitTestResult *result;
+    WebKitHitTestResultContext context;
+    GdkEvent *event;
+    YelpViewPrivate *priv = GET_PRIV (view);
+    GList *children;
+    GtkWidget *item;
+
+    children = gtk_container_get_children (GTK_CONTAINER (menu));
+    while (children) {
+        gtk_container_remove (GTK_CONTAINER (menu),
+                              GTK_WIDGET (children->data));
+        children = children->next;
+    }
+    g_list_free (children);
+
+    event = gtk_get_current_event ();
+
+    result = webkit_web_view_get_hit_test_result (WEBKIT_WEB_VIEW (view), (GdkEventButton *) event);
+    g_object_get (result, "context", &context, NULL);
+
+    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK) {
+        gchar *uri;
+        g_object_get (result, "link-uri", &uri, NULL);
+        g_free (priv->popup_link_uri);
+        priv->popup_link_uri = uri;
+
+        item = gtk_menu_item_new_with_mnemonic ("_Open Link");
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_open_link), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic ("Open Link in New _Window");
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_open_link_new), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+    else {
+        item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
+                                                                         "YelpViewGoBack"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
+                                                                         "YelpViewGoForward"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+
+    g_object_unref (result);
+    gdk_event_free (event);
+    gtk_widget_show_all (GTK_WIDGET (menu));
 }
 
 static gboolean

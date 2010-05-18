@@ -111,6 +111,9 @@ static gboolean      entry_focus_out              (YelpLocationEntry  *entry,
 static void          view_external_uri            (YelpView           *view,
                                                    YelpUri            *uri,
                                                    YelpWindow         *window);
+static void          view_new_window              (YelpView           *view,
+                                                   YelpUri            *uri,
+                                                   YelpWindow         *window);
 static void          view_loaded                  (YelpView           *view,
                                                    YelpWindow         *window);
 static void          view_uri_selected            (YelpView           *view,
@@ -560,6 +563,7 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (priv->find_bar), priv->find_label, FALSE, FALSE, 0);
 
     g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
+    g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
     g_signal_connect_swapped (priv->view, "notify::page-id",
@@ -1319,6 +1323,15 @@ view_external_uri (YelpView   *view,
         g_app_info_launch_default_for_uri (struri, NULL, NULL);
 
     g_free (struri);
+}
+
+static void
+view_new_window (YelpView   *view,
+                 YelpUri    *uri,
+                 YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    yelp_application_new_window_uri (priv->application, uri);
 }
 
 static void

@@ -46,17 +46,19 @@ struct _YelpApplicationClass
     GObjectClass  parent_class;
 };
 
-GType             yelp_application_get_type    (void);
-YelpApplication*  yelp_application_new         (void);
-gint              yelp_application_run         (YelpApplication  *app,
-                                                gint              argc,
-                                                gchar           **argv);
-gboolean          yelp_application_load_uri    (YelpApplication  *app,
-                                                const gchar      *uri,
-                                                guint             timestamp,
-                                                GError          **error);
-void              yelp_application_new_window  (YelpApplication  *app,
-                                                const gchar      *uri);
+GType             yelp_application_get_type       (void);
+YelpApplication*  yelp_application_new            (void);
+gint              yelp_application_run            (YelpApplication  *app,
+                                                   gint              argc,
+                                                   gchar           **argv);
+gboolean          yelp_application_load_uri       (YelpApplication  *app,
+                                                   const gchar      *uri,
+                                                   guint             timestamp,
+                                                   GError          **error);
+void              yelp_application_new_window     (YelpApplication  *app,
+                                                   const gchar      *uri);
+void              yelp_application_new_window_uri (YelpApplication  *app,
+                                                   YelpUri          *uri);
 GtkActionGroup *  yelp_application_get_action_group     (YelpApplication   *app);
 void              yelp_application_add_bookmark         (YelpApplication   *app,
                                                          const gchar       *doc_uri,
