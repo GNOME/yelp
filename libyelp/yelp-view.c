@@ -1235,6 +1235,7 @@ document_callback (YelpDocument       *document,
         g_signal_emit_by_name (view, "notify::page-icon", spec);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
+        YelpUriDocumentType doctype;
 	const gchar *contents;
         gchar *mime_type, *page_id, *frag_id, *full_uri;
         page_id = yelp_uri_get_page_id (priv->uri);
@@ -1266,8 +1267,12 @@ document_callback (YelpDocument       *document,
            based on actual file locations, but in fact it doesn't matter.  So
            we just make a bogus URI that's easy to process later.
          */
+        doctype = yelp_uri_get_document_type (priv->uri);
         full_uri = yelp_uri_get_canonical_uri (priv->uri);
-        if (g_str_has_prefix (full_uri, "file:/")) {
+        if (g_str_has_prefix (full_uri, "file:/") &&
+            (doctype == YELP_URI_DOCUMENT_TYPE_TEXT ||
+             doctype == YELP_URI_DOCUMENT_TYPE_HTML ||
+             doctype == YELP_URI_DOCUMENT_TYPE_XHTML )) {
             priv->bogus_uri = full_uri;
         }
         else {
