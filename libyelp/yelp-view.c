@@ -282,6 +282,7 @@ yelp_view_dispose (GObject *object)
         priv->document = NULL;
     }
 
+    priv->back_cur = NULL;
     while (priv->back_list) {
         back_entry_free ((YelpBackEntry *) priv->back_list->data);
         priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
@@ -609,7 +610,7 @@ view_scrolled (GtkAdjustment *adjustment,
                YelpView      *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    if (priv->back_cur == NULL)
+    if (priv->back_cur == NULL || priv->back_cur->data == NULL)
         return;
     if (adjustment == priv->vadjustment)
         ((YelpBackEntry *) priv->back_cur->data)->vadj = gtk_adjustment_get_value (adjustment);
