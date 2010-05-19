@@ -66,6 +66,8 @@ static void        popup_open_link_new            (GtkMenuItem        *item,
                                                    YelpView           *view);
 static void        popup_save_image               (GtkMenuItem        *item,
                                                    YelpView           *view);
+static void        popup_send_image               (GtkMenuItem        *item,
+                                                   YelpView           *view);
 static void        view_populate_popup            (YelpView           *view,
                                                    GtkMenu            *menu,
                                                    gpointer            data);
@@ -131,6 +133,8 @@ static const GtkActionEntry entries[] = {
      NULL,
      G_CALLBACK (view_navigation_action) }
 };
+
+static gchar *nautilus_sendto = NULL;
 
 enum {
     PROP_0,
@@ -310,6 +314,8 @@ yelp_view_class_init (YelpViewClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
     YelpSettings *settings = yelp_settings_get_default ();
+
+    nautilus_sendto = g_find_program_in_path ("nautilus-sendto");
 
     websettings = webkit_web_settings_new ();
     g_signal_connect (settings,
@@ -758,6 +764,23 @@ popup_save_image (GtkMenuItem *item,
 }
 
 static void
+popup_send_image (GtkMenuItem *item,
+                  YelpView    *view)
+{
+    gchar *command;
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    command = g_strdup_printf ("%s %s", nautilus_sendto, priv->popup_image_uri);
+
+    gdk_spawn_command_line_on_screen (gtk_widget_get_screen (GTK_WIDGET (view)),
+                                      command, NULL);
+
+    g_free (command);
+    g_free (priv->popup_image_uri);
+    priv->popup_image_uri = NULL;
+}
+
+static void
 view_populate_popup (YelpView *view,
                      GtkMenu  *menu,
                      gpointer  data)
@@ -822,10 +845,17 @@ view_populate_popup (YelpView *view,
         item = gtk_separator_menu_item_new ();
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
-        item = gtk_menu_item_new_with_mnemonic (_("Sa_ve Image As..."));
+        item = gtk_menu_item_new_with_mnemonic (_("_Save Image As..."));
         g_signal_connect (item, "activate",
                           G_CALLBACK (popup_save_image), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        if (nautilus_sendto) {
+            item = gtk_menu_item_new_with_mnemonic (_("S_end Image To..."));
+            g_signal_connect (item, "activate",
+                              G_CALLBACK (popup_send_image), view);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        }
     }
 
     g_object_unref (result);
