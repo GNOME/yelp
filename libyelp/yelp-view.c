@@ -859,6 +859,16 @@ view_populate_popup (YelpView *view,
         }
     }
 
+    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION) {
+        item = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic (_("_Copy Text"));
+        g_signal_connect_swapped (item, "activate",
+                                  G_CALLBACK (webkit_web_view_copy_clipboard), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+
     g_object_unref (result);
     gdk_event_free (event);
     gtk_widget_show_all (GTK_WIDGET (menu));
