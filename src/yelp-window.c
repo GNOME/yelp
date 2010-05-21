@@ -57,6 +57,14 @@ static void          window_new                   (GtkAction          *action,
 static gboolean      window_configure_event       (YelpWindow         *window,
                                                    GdkEventConfigure  *event,
                                                    gpointer            user_data);
+static void          window_drag_received         (YelpWindow         *window,
+                                                   GdkDragContext     *context,
+                                                   gint                x,
+                                                   gint                y,
+                                                   GtkSelectionData   *data,
+                                                   guint               info,
+                                                   guint               time,
+                                                   gpointer            userdata);
 static gboolean      window_resize_signal         (YelpWindow         *window);
 static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
@@ -574,6 +582,14 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->view, "notify::page-icon", G_CALLBACK (view_page_icon), window);
     gtk_container_add (GTK_CONTAINER (scroll), GTK_WIDGET (priv->view));
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
+
+    gtk_drag_dest_set (GTK_WIDGET (window),
+                       GTK_DEST_DEFAULT_ALL,
+                       NULL, 0,
+                       GDK_ACTION_COPY);
+    gtk_drag_dest_add_uri_targets (GTK_WIDGET (window));
+    g_signal_connect (window, "drag-data-received",
+                      G_CALLBACK (window_drag_received), NULL);
 }
 
 /******************************************************************************/
@@ -632,6 +648,27 @@ window_new (GtkAction *action, YelpWindow *window)
 
     g_free (uri);
     g_object_unref (yuri);
+}
+
+static void
+window_drag_received (YelpWindow         *window,
+                      GdkDragContext     *context,
+                      gint                x,
+                      gint                y,
+                      GtkSelectionData   *data,
+                      guint               info,
+                      guint               time,
+                      gpointer            userdata)
+{
+    gchar **uris = gtk_selection_data_get_uris (data);
+    if (uris && uris[0]) {
+        YelpUri *uri = yelp_uri_new (uris[0]);
+        yelp_window_load_uri (window, uri);
+        g_object_unref (uri);
+        g_strfreev (uris);
+        gtk_drag_finish (context, TRUE, FALSE, time);
+    }
+    gtk_drag_finish (context, FALSE, FALSE, time);
 }
 
 static gboolean
