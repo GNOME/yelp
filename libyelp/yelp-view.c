@@ -831,9 +831,14 @@ view_populate_popup (YelpView *view,
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
     }
 
-    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE) {
+    if ((context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE) ||
+        (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA)) {
+        /* This doesn't currently work for video with automatic controls,
+         * because WebKit puts the hit test on the div with the controls.
+         */
+        gboolean image = context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE;
         gchar *uri;
-        g_object_get (result, "image-uri", &uri, NULL);
+        g_object_get (result, image ? "image-uri" : "media-uri", &uri, NULL);
         g_free (priv->popup_image_uri);
         if (g_str_has_prefix (uri, BOGUS_URI)) {
             priv->popup_image_uri = yelp_uri_locate_file_uri (priv->uri, uri + BOGUS_URI_LEN);
@@ -846,13 +851,19 @@ view_populate_popup (YelpView *view,
         item = gtk_separator_menu_item_new ();
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
-        item = gtk_menu_item_new_with_mnemonic (_("_Save Image As..."));
+        if (image)
+            item = gtk_menu_item_new_with_mnemonic (_("_Save Image As..."));
+        else
+            item = gtk_menu_item_new_with_mnemonic (_("_Save Video As..."));
         g_signal_connect (item, "activate",
                           G_CALLBACK (popup_save_image), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
         if (nautilus_sendto) {
-            item = gtk_menu_item_new_with_mnemonic (_("S_end Image To..."));
+            if (image)
+                item = gtk_menu_item_new_with_mnemonic (_("S_end Image To..."));
+            else
+                item = gtk_menu_item_new_with_mnemonic (_("S_end Video To..."));
             g_signal_connect (item, "activate",
                               G_CALLBACK (popup_send_image), view);
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
@@ -1327,7 +1338,7 @@ document_callback (YelpDocument       *document,
         GParamSpec *spec;
 
         real_id = yelp_document_get_page_id (document, priv->page_id);
-        if (priv->page_id && g_str_equal (real_id, priv->page_id)) {
+        if (priv->page_id && real_id && g_str_equal (real_id, priv->page_id)) {
             g_free (real_id);
         }
         else {
