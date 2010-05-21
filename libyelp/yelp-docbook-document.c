@@ -352,6 +352,9 @@ docbook_process (YelpDocbookDocument *docbook)
     priv->xmlcur = xmlDocGetRootElement (xmldoc);
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
+    if (!id)
+        id = xmlGetNsProp (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "id");
+
     if (id) {
         priv->root_id = g_strdup (id);
         yelp_document_set_page_id (document, NULL, (gchar *) id);
@@ -366,7 +369,12 @@ docbook_process (YelpDocbookDocument *docbook)
         yelp_document_set_next_id (document, "//about", "//index");
         /* add the id attribute to the root element with value "index"
          * so when we try to load the document later, it doesn't fail */
-        xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "//index");
+        if (priv->xmlcur->ns)
+            xmlNewNsProp (priv->xmlcur,
+                          xmlNewNs (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "xml"),
+                          BAD_CAST "id", BAD_CAST "//index");
+        else
+            xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "//index");
     }
     yelp_document_set_root_id (document, priv->root_id, priv->root_id);
     yelp_document_set_root_id (document, "//about", priv->root_id);
@@ -478,13 +486,23 @@ docbook_walk (YelpDocbookDocument *docbook)
                 }
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
+    if (!id)
+        id = xmlGetNsProp (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "id");
 
     if (docbook_walk_divisionQ (docbook) && !id) {
         /* If id attribute is not present, autogenerate a
          * unique value, and insert it into the in-memory tree */
         g_snprintf (autoidstr, 20, "//autoid-%d", ++autoid);
-        xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST autoidstr);
-        id = xmlGetProp (priv->xmlcur, BAD_CAST "id"); 
+        if (priv->xmlcur->ns) {
+            xmlNewNsProp (priv->xmlcur,
+                          xmlNewNs (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "xml"),
+                          BAD_CAST "id", BAD_CAST autoidstr);
+            id = xmlGetNsProp (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "id");
+        }
+        else {
+            xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST autoidstr);
+            id = xmlGetProp (priv->xmlcur, BAD_CAST "id"); 
+        }
     }
 
     if (docbook_walk_chunkQ (docbook)) {
@@ -681,6 +699,8 @@ docbook_walk_get_title (YelpDocbookDocument *docbook)
             }
             else if (!xmlStrcmp (child->name, BAD_CAST "title"))
                 title_tmp = child;
+            else if (!xmlStrcmp (child->name, BAD_CAST "info"))
+                infos[0] = child;
             else if (!xmlStrcmp (child->name, BAD_CAST infoname))
                 infos[0] = child;
             else if (!xmlStrcmp (child->name, BAD_CAST "blockinfo"))
