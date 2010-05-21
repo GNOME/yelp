@@ -61,6 +61,8 @@
  * will cause the FIXME signal to be emitted.
  **/
 
+static void     location_entry_dispose         (GObject            *object);
+static void     location_entry_finalize        (GObject            *object);
 static void     location_entry_get_property    (GObject           *object,
                                                 guint              prop_id,
                                                 GValue            *value,
@@ -112,8 +114,18 @@ static void     cell_set_text_cell                  (GtkCellLayout     *layout,
                                                      GtkTreeModel      *model,
                                                      GtkTreeIter       *iter,
                                                      YelpLocationEntry *entry);
+static void     cell_set_bookmark_icon              (GtkCellLayout     *layout,
+                                                     GtkCellRenderer   *cell,
+                                                     GtkTreeModel      *model,
+                                                     GtkTreeIter       *iter,
+                                                     YelpLocationEntry *entry);
 
 /* GtkEntryCompletion callbacks */
+static void     cell_set_completion_bookmark_icon   (GtkCellLayout     *layout,
+                                                     GtkCellRenderer   *cell,
+                                                     GtkTreeModel      *model,
+                                                     GtkTreeIter       *iter,
+                                                     YelpLocationEntry *entry);
 static void     cell_set_completion_text_cell       (GtkCellLayout     *layout,
                                                      GtkCellRenderer   *cell,
                                                      GtkTreeModel      *model,
@@ -132,28 +144,31 @@ static gboolean entry_match_selected                (GtkEntryCompletion *complet
 typedef struct _YelpLocationEntryPrivate  YelpLocationEntryPrivate;
 struct _YelpLocationEntryPrivate
 {
-    GtkWidget *text_entry;
+    GtkWidget          *text_entry;
 
     gint       desc_column;
     gint       icon_column;
     gint       flags_column;
     gboolean   enable_search;
 
-    GtkTreeRowReference *row;
-
     gboolean   search_mode;
+    guint      pulse;
 
     GtkCellRenderer *icon_cell;
 
-    /* owned by entry, do not free */
     GtkEntryCompletion *completion;
     gint                completion_desc_column;
+    gint                completion_flags_column;
+
+    /* free this, and only this */
+    GtkTreeRowReference *row;
 };
 
 enum {
   LOCATION_SELECTED,
   COMPLETION_SELECTED,
   SEARCH_ACTIVATED,
+  BOOKMARK_CLICKED,
   LAST_SIGNAL
 };
 
@@ -177,6 +192,8 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
 
     object_class = G_OBJECT_CLASS (klass);
   
+    object_class->dispose = location_entry_dispose;
+    object_class->finalize = location_entry_finalize;
     object_class->get_property = location_entry_get_property;
     object_class->set_property = location_entry_set_property;
 
@@ -236,6 +253,22 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                       G_TYPE_STRING);
 
     /**
+     * YelpLocationEntry::bookmark-clicked
+     * @widget: The #YelpLocationEntry for which the signal was emitted.
+     * @user_data: User data set when the handler was connected.
+     *
+     * This signal will be emitted whenever a user clicks the bookmark icon
+     * embedded in the location entry.
+     **/
+    location_entry_signals[BOOKMARK_CLICKED] =
+        g_signal_new ("bookmark-clicked",
+                      G_OBJECT_CLASS_TYPE (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
+
+    /**
      * YelpLocationEntry:desc-column
      *
      * The column in the #GtkTreeModel containing a description for each row.
@@ -244,7 +277,7 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
                                      PROP_DESC_COLUMN,
                                      g_param_spec_int ("desc-column",
                                                        N_("Description Column"),
-                                                       N_("A column in the model to descriptions from"),
+                                                       N_("A column in the model to get descriptions from"),
                                                        -1,
                                                        G_MAXINT,
                                                        -1,
@@ -305,6 +338,7 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
 static void
 yelp_location_entry_init (YelpLocationEntry *entry)
 {
+    GtkCellRenderer *bookmark_cell;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GList *cells;
 
@@ -342,6 +376,13 @@ yelp_location_entry_init (YelpLocationEntry *entry)
 
     gtk_cell_layout_reorder (GTK_CELL_LAYOUT (entry), priv->icon_cell, 0);
 
+    bookmark_cell = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (entry), bookmark_cell, FALSE);
+    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (entry),
+                                        bookmark_cell,
+                                        (GtkCellLayoutDataFunc) cell_set_bookmark_icon,
+                                        entry, NULL);
+
     g_signal_connect (entry, "changed",
                       G_CALLBACK (combo_box_changed_cb), NULL);
 
@@ -355,6 +396,30 @@ yelp_location_entry_init (YelpLocationEntry *entry)
                       G_CALLBACK (entry_key_press_cb), entry);
     g_signal_connect (priv->text_entry, "activate",
                       G_CALLBACK (entry_activate_cb), entry);
+}
+
+static void
+location_entry_dispose (GObject *object)
+{
+    YelpLocationEntryPrivate *priv = GET_PRIV (object);
+
+    if (priv->row) {
+        gtk_tree_row_reference_free (priv->row);
+        priv->row = NULL;
+    }
+
+    if (priv->pulse > 0) {
+        g_source_remove (priv->pulse);
+        priv->pulse = 0;
+    }
+
+    G_OBJECT_CLASS (yelp_location_entry_parent_class)->dispose (object);
+}
+
+static void
+location_entry_finalize (GObject *object)
+{
+    G_OBJECT_CLASS (yelp_location_entry_parent_class)->finalize (object);
 }
 
 static void
@@ -450,15 +515,16 @@ location_entry_start_search (YelpLocationEntry *entry,
 static void
 location_entry_cancel_search (YelpLocationEntry *entry)
 {
+    gboolean ret;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GdkEventFocus *event = g_new0 (GdkEventFocus, 1);
     priv->search_mode = FALSE;
     location_entry_set_entry (entry, FALSE);
     event->type = GDK_FOCUS_CHANGE;
-    event->window = GTK_WIDGET (entry)->window;
+    event->window = gtk_widget_get_window (GTK_WIDGET (entry));
     event->send_event = FALSE;
     event->in = FALSE;
-    g_signal_emit_by_name (entry, "focus-out-event", 0, event);
+    g_signal_emit_by_name (entry, "focus-out-event", event, &ret);
     g_free (event);
     /* Hack: This makes the popup disappear when you hit Esc. */
     g_object_ref (priv->completion);
@@ -473,14 +539,16 @@ yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
                                           GtkTreeModel *model,
                                           gint text_column,
                                           gint desc_column,
-                                          gint icon_column)
+                                          gint icon_column,
+                                          gint flags_column)
 {
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     GList *cells;
-    GtkCellRenderer *icon_cell;
+    GtkCellRenderer *icon_cell, *bookmark_cell;
 
     priv->completion = gtk_entry_completion_new ();
     priv->completion_desc_column = desc_column;
+    priv->completion_flags_column = flags_column;
     gtk_entry_completion_set_minimum_key_length (priv->completion, 3);
     gtk_entry_completion_set_model (priv->completion, model);
     gtk_entry_completion_set_text_column (priv->completion, text_column);
@@ -510,6 +578,13 @@ yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
                                     "icon-name",
                                     icon_column,
                                     NULL);
+
+    bookmark_cell = gtk_cell_renderer_pixbuf_new ();
+    gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (priv->completion), bookmark_cell, FALSE);
+    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->completion),
+                                        bookmark_cell,
+                                        (GtkCellLayoutDataFunc) cell_set_completion_bookmark_icon,
+                                        entry, NULL);
 
     gtk_entry_set_completion (GTK_ENTRY (priv->text_entry),
                               priv->completion);
@@ -554,7 +629,9 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_PRIMARY,
                                                "image-loading");
-            g_timeout_add (80, location_entry_pulse, entry);
+            if (priv->pulse > 0)
+                g_source_remove (priv->pulse);
+            priv->pulse = g_timeout_add (80, location_entry_pulse, entry);
         }
         else {
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
@@ -737,7 +814,7 @@ entry_icon_press_cb (GtkEntry            *gtkentry,
             location_entry_cancel_search (entry);
         }
         else if  (g_str_equal (name, "bookmark-new")) {
-            /* FIXME: emit bookmark signal */
+            g_signal_emit (entry, location_entry_signals[BOOKMARK_CLICKED], 0);
         }
     }
 }
@@ -792,6 +869,46 @@ cell_set_text_cell (GtkCellLayout     *layout,
         g_free (text);
         g_free (title);
     }
+}
+
+static void
+cell_set_bookmark_icon (GtkCellLayout     *layout,
+                        GtkCellRenderer   *cell,
+                        GtkTreeModel      *model,
+                        GtkTreeIter       *iter,
+                        YelpLocationEntry *entry)
+{
+    gint flags;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    gtk_tree_model_get (model, iter,
+                        priv->flags_column, &flags,
+                        -1);
+    if (!(flags & YELP_LOCATION_ENTRY_IS_SEPARATOR) &&
+        !(flags & YELP_LOCATION_ENTRY_IS_SEARCH) &&
+        (flags & YELP_LOCATION_ENTRY_IS_BOOKMARKED))
+        g_object_set (cell, "icon-name", "bookmark", NULL);
+    else
+        g_object_set (cell, "icon-name", NULL, NULL);
+}
+
+static void
+cell_set_completion_bookmark_icon (GtkCellLayout     *layout,
+                                   GtkCellRenderer   *cell,
+                                   GtkTreeModel      *model,
+                                   GtkTreeIter       *iter,
+                                   YelpLocationEntry *entry)
+{
+    gint flags;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    gtk_tree_model_get (model, iter,
+                        priv->completion_flags_column, &flags,
+                        -1);
+    if (flags & YELP_LOCATION_ENTRY_IS_BOOKMARKED)
+        g_object_set (cell, "icon-name", "bookmark", NULL);
+    else
+        g_object_set (cell, "icon-name", NULL, NULL);
 }
 
 static void

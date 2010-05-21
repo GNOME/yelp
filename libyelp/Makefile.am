@@ -5,8 +5,10 @@ libyelp_la_SOURCES =				\
 	yelp-error.c				\
 	yelp-docbook-document.c			\
 	yelp-document.c				\
-	yelp-io-channel.c			\
+	yelp-info-document.c			\
+	yelp-info-parser.c			\
 	yelp-location-entry.c			\
+	yelp-magic-decompressor.c		\
 	yelp-mallard-document.c			\
 	yelp-marshal.c				\
 	yelp-settings.c				\
@@ -15,6 +17,27 @@ libyelp_la_SOURCES =				\
 	yelp-uri.c				\
 	yelp-types.c				\
 	yelp-view.c
+
+EXTRA_DIST =				\
+	yelp-bz2-decompressor.h		\
+	yelp-debug.h			\
+	yelp-error.h			\
+	yelp-info-parser.h		\
+	yelp-lzma-decompressor.h	\
+	yelp-magic-decompressor.h	\
+	yelp-marshal.list
+
+if ENABLE_LZMA
+libyelp_la_SOURCES += yelp-lzma-decompressor.c
+else
+EXTRA_DIST += yelp-lzma-decompressor.c
+endif
+
+if ENABLE_BZ2
+libyelp_la_SOURCES += yelp-bz2-decompressor.c
+else
+EXTRA_DIST += yelp-bz2-decompressor.c
+endif
 
 libyelp_la_CFLAGS =				\
 	$(YELP_CFLAGS)				\
@@ -27,6 +50,7 @@ libyelp_la_LIBADD =				\
 libyelp_headers =				\
 	yelp-docbook-document.h			\
 	yelp-document.h				\
+	yelp-info-document.h			\
 	yelp-location-entry.h			\
 	yelp-mallard-document.h			\
 	yelp-settings.h				\
@@ -48,19 +72,17 @@ BUILT_SOURCES =			\
 	yelp-types.c		\
 	yelp-types.h
 
-EXTRA_DIST = yelp-marshal.list
-
 yelp-marshal.h: stamp-yelp-marshal.h
 	@true
 
 stamp-yelp-marshal.h: yelp-marshal.list
-	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
 	&& (cmp -s xgen-ymh yelp-marshal.h || cp xgen-ymh yelp-marshal.h) \
 	&& rm -f xgen-ymh xgen-ymh~ \
 	&& echo timestamp > $(@F)
 
 yelp-marshal.c: yelp-marshal.list
-	@GLIB_GENMARSHAL@ --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --body > xgen-ymc \
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --body > xgen-ymc \
 	&& cp xgen-ymc yelp-marshal.c \
 	&& rm -f xgen-ymc xgen-ymc~
 
@@ -69,7 +91,7 @@ yelp-marshal-main.c: yelp-marshal.c
 CLEANFILES = $(BUILT_SOURCES)
 
 yelp-types.h: $(libyelp_headers)
-	(cd $(srcdir) && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
 	--fhead "#ifndef __LIBYELP_TYPES_H__\n" \
 	--fhead "#define __LIBYELP_TYPES_H__\n\n" \
 	--fhead "#include <glib-object.h>\n\n" \
@@ -82,7 +104,7 @@ yelp-types.h: $(libyelp_headers)
 	$(libyelp_headers)) > $@
 
 yelp-types.c: $(libyelp_headers)
-	(cd $(srcdir) && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
 	--fhead "#include <glib-object.h>\n" \
 	--fhead "#include \"yelp-types.h\"\n\n" \
 	--fprod "\n/* enumerations from \"@filename@\" */" \

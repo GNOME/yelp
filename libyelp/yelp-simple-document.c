@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
  *
@@ -76,7 +76,7 @@ static void           document_finish_read             (YelpDocument            
 							const gchar             *contents);
 static gchar *        document_get_mime_type           (YelpDocument            *document,
 							const gchar             *mime_type);
-static void           document_signal_all              (YelpSimpleDocument      *document);
+static gboolean       document_signal_all              (YelpSimpleDocument      *document);
 
 static void           file_info_cb                     (GFile                   *file,
 							GAsyncResult            *result,
@@ -93,7 +93,7 @@ static void           stream_close_cb                  (GInputStream            
 
 static void           request_cancel                   (GCancellable            *cancellable,
 							Request                 *request);
-static void           request_try_free                 (Request                 *request);
+static gboolean       request_try_free                 (Request                 *request);
 static void           request_free                     (Request                 *request);
 
 static void
@@ -253,18 +253,24 @@ document_get_mime_type (YelpDocument *document,
 	return NULL;
 }
 
-static void
+static gboolean
 document_signal_all (YelpSimpleDocument *document)
 {
     GSList *cur;
     for (cur = document->priv->reqs; cur != NULL; cur = cur->next) {
-	Request *request = (Request *) cur->data;
-	if (request->callback)
-	    request->callback (request->document,
-			       YELP_DOCUMENT_SIGNAL_CONTENTS,
-			       request->user_data,
-			       NULL);
+        Request *request = (Request *) cur->data;
+        if (request->callback) {
+            request->callback (request->document,
+                               YELP_DOCUMENT_SIGNAL_INFO,
+                               request->user_data,
+                               NULL);
+            request->callback (request->document,
+                               YELP_DOCUMENT_SIGNAL_CONTENTS,
+                               request->user_data,
+                               NULL);
+        }
     }
+    return FALSE;
 }
 
 /******************************************************************************/
@@ -277,8 +283,21 @@ file_info_cb (GFile              *file,
     GFileInfo *info = g_file_query_info_finish (file, result, NULL);
     const gchar *type = g_file_info_get_attribute_string (info,
 							  G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
-    document->priv->mime_type = g_strdup (type);
+    if (g_str_equal (type, "text/x-readme"))
+        document->priv->mime_type = g_strdup ("text/plain");
+    else
+        document->priv->mime_type = g_strdup (type);
     g_object_unref (info);
+
+    if (g_str_equal (document->priv->mime_type, "text/plain")) {
+        gchar *basename = g_file_get_basename (document->priv->file);
+        yelp_document_set_page_id (YELP_DOCUMENT (document), "//index", "//index");
+        yelp_document_set_page_id (YELP_DOCUMENT (document), NULL, "//index");
+        yelp_document_set_page_title (YELP_DOCUMENT (document), "//index", basename);
+        yelp_document_set_page_icon (YELP_DOCUMENT (document), "//index", "text-x-generic");
+        g_free (basename);
+    }
+
     g_file_read_async (document->priv->file,
 		       G_PRIORITY_DEFAULT,
 		       NULL,
@@ -383,7 +402,7 @@ static void
 request_cancel (GCancellable *cancellable, Request *request)
 {
     GSList *cur;
-    YelpSimpleDocument *document = request->document;
+    YelpSimpleDocument *document = (YelpSimpleDocument *) request->document;
 
     g_assert (document != NULL && YELP_IS_SIMPLE_DOCUMENT (document));
 
@@ -396,7 +415,7 @@ request_cancel (GCancellable *cancellable, Request *request)
     request_try_free (request);
 }
 
-static void
+static gboolean
 request_try_free (Request *request)
 {
     if (!g_cancellable_is_cancelled (request->cancellable))
@@ -406,6 +425,7 @@ request_try_free (Request *request)
 	request_free (request);
     else
 	g_idle_add ((GSourceFunc) request_try_free, request);
+    return FALSE;
 }
 
 static void

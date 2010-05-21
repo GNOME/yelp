@@ -645,7 +645,7 @@ yelp_settings_set_icons (YelpSettings     *settings,
 	gchar *filename = va_arg (args, gchar *);
 	if (settings->priv->icons[icon] != NULL)
 	    g_free (settings->priv->icons[icon]);
-	settings->priv->icons[icon] = g_strdup (filename);
+	settings->priv->icons[icon] = g_filename_to_uri (filename, NULL, NULL);
 	icon = va_arg (args, YelpSettingsIcon);
     }
 
@@ -922,7 +922,8 @@ icon_theme_changed (GtkIconTheme *theme,
 					   settings->priv->icon_size,
 					   GTK_ICON_LOOKUP_NO_SVG);
 	if (info != NULL) {
-	    settings->priv->icons[i] = g_strdup (gtk_icon_info_get_filename (info));
+	    settings->priv->icons[i] = g_filename_to_uri (gtk_icon_info_get_filename (info),
+                                                          NULL, NULL);
 	    gtk_icon_info_free (info);
 	}
 	else {
@@ -933,6 +934,39 @@ icon_theme_changed (GtkIconTheme *theme,
     g_mutex_unlock (settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[ICONS_CHANGED], 0);
+}
+
+gint
+yelp_settings_cmp_icons (const gchar *icon1,
+                         const gchar *icon2)
+{
+    static const gchar *icons[] = {
+        "yelp-page-task",
+        "yelp-page-video",
+        "yelp-page-tip",
+        "yelp-page-ui",
+        "help-contents",
+        NULL
+    };
+    gint i;
+    for (i = 0; icons[i] != NULL; i++) {
+        gboolean eq1 = icon1 ? g_str_equal (icon1, icons[i]) : FALSE;
+        gboolean eq2 = icon2 ? g_str_equal (icon2, icons[i]) : FALSE;
+        if (eq1 && eq2)
+            return 0;
+        else if (eq1)
+            return -1;
+        else if (eq2)
+            return 1;
+    }
+    if (icon1 == NULL && icon2 == NULL)
+        return 0;
+    else if (icon2 == NULL)
+        return -1;
+    else if (icon1 == NULL)
+        return 1;
+    else
+        return strcmp (icon1, icon2);
 }
 
 /******************************************************************************/

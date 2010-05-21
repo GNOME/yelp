@@ -1,3 +1,138 @@
+Changes in 2.31.2:
+------------------
+* Location entry completions are sorted by icon and title.
+* All pages have an icon, help-contents by default.
+* Location entries now pulse when page is loading.
+* Added bookmarks with page icons, stored per-document.
+* Added previous and next menu items for linear documents.
+* Refreshed error pages, look like Yelp note boxes.
+* Window geometry is stored per-document.
+* Added info documents, with slightly nicer formatting.
+* Updated translations:
+  de    (Mario Blättermann)
+  es    (Jorge González)
+  gl    (Fran Diéguez)
+  nb    (Kjartan Maraas)
+  ug    (Gheyret Kenji)
+
+Changes in 2.31.1:
+------------------
+* Completely revamped document-focused interface
+* New mode to show extra information for editors
+* PackageKit install: links (experimental)
+* Use GSettings for settings storage
+* Temporarily missing features:
+  - man and info pages
+  - bookmarks
+  - full-text search
+  - printing
+  - list of installed help
+* Updated translations:
+  bn_IN        (Runa Bhattacharjee)
+  ca@valencia  (Carles Ferrando)
+  crh          (Reşat SABIQ)
+  id           (Andika Triwidada)
+  kn           (Shankar Prasad)
+  nl           (Wouter Bolsterlee)
+  oc           (Yannig Marchegay)
+  or           (Manoj Kumar Giri)
+  sl           (Matej Urbančič)
+  ug           (Gheyret Kenji)
+
+Changes in 2.30.0:
+------------------
+* Updated translations:
+  bn      (Jamil Ahmed)
+  eu      (Inaki Larranaga Murgoitio)
+  lt      (Gintautas Miliauskas)
+  pl      (Piotr Drąg)
+  ru      (Leonid Kanter)
+  sv      (Daniel Nylander)
+  vi      (Clytie)
+
+Changes in 2.29.5:
+------------------
+* Clean up GLib and GTK+ includes (Javier Jardón)
+* Updated translations:
+  gl    (Fran Diéguez)
+
+Changes in 2.29.4:
+------------------
+* Updated translations:
+  th    (Theppitak Karoonboonyanan)
+
+Changes in 2.29.3:
+------------------
+* Fixed issues with xulrunner 1.9.2
+
+Changes in 2.29.2:
+------------------
+* Adapted to changes in gnome-doc-utils XSLT
+
+Changes in 2.29.1:
+------------------
+* Fixed admonition graphics
+* Upped gnome-doc-utils version for fancy new Mallard features
+* Use accessor functions instead direct access (Javier Jardón)
+* Updated translations:
+  ca    (Jordi Serratosa)
+  he    (Yaron Sharabani)
+
+Changes in 2.28.1:
+------------------
+* Use g_timeout_add_seconds to reduce wakeups, bug #581260 (Javier Jardón)
+* Removed debug output, bug #585829 (Vincent Untz)
+* Updated translations:
+  en@shaw    (Thomas Thurman)
+  lv         (Peteris Krisjanis)
+  nn         (Åsmund Skjæveland)
+  ru         (Leonid Kanter)
+
+Changes in 2.28.0:
+------------------
+* Updated translations:
+  as          (Amitakhya Phukan)
+  ca@valencia (Carles Ferrando)
+  da          (Ask H. Larsen)
+  el          (Kostas Papadimas)
+  en_GB       (Philip Withnall)
+  hi          (Rajesh Ranjan)
+  hu          (Gabor Kelemen)
+  ja          (Takayuki KUSANO)
+  kn          (Shankar Prasad)
+  nb          (Kjartan Maraas)
+  or          (Manoj Kumar Giri)
+  pt_BR       (Fábio Nogueira)
+  ro          (Lucian Adrian Grijincu)
+  sl          (Matej Urbančič)
+  te          (krishnababu k)
+  uk          (Maxim V. Dziumanenko)
+
+Changes in 2.27.5:
+------------------
+* Fixed broken history navigation for Mallard documents (Shaun McCance)
+* Make sure link title roles are preserved in cache (Shaun McCance)
+* Fixed jumping to anchors in Mallard documents (Shaun McCance)
+* Updated translations:
+  bn          (Jamil Ahmed)
+  bn_IN       (Runa Bhattacharjee)
+  cs          (Petr Kovar)
+  eu          (Inaki Larranaga Murgoitio)
+  gu          (Sweta Kothari)
+  ml          (Ani)
+  mr          (Sandeep Shedmake)
+  nb          (Kjartan Maraas)
+  pa          (A S Alam)
+  pl          (Tomasz Dominikowski)
+  pt          (Duarte Loreto)
+  pt_BR       (Og B. Maciel)
+  sr          (Miloš Popović)
+  sr@latin    (Miloš Popović)
+  ta          (ifelix)
+  te          (krishnababu k)
+  tr          (Baris Cicek)
+  zh_CN       (Aron Xu)
+
 Changes in 2.27.4:
 ------------------
 * Make ghelp URIs work for Mallard documents (Shaun McCance)

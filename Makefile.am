@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = libyelp src stylesheets po data tests
+SUBDIRS = libyelp src stylesheets po data tests docs
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -27,5 +27,4 @@ DISTCLEANFILES = 					\
 
 CLEANFILES = $(desktop_DATA)
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc
-
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc

@@ -4,38 +4,22 @@
 data/info.xml.in
 data/man.xml.in
 data/toc.xml.in
-[type: gettext/glade]data/ui/yelp-bookmarks.ui
-[type: gettext/glade]data/ui/yelp-bookmarks-add.ui
-[type: gettext/glade]data/ui/yelp-open-location.ui
-[type: gettext/glade]data/ui/yelp-preferences.ui
+libyelp/yelp-bz2-decompressor.c
 libyelp/yelp-debug.c
 libyelp/yelp-docbook-document.c
 libyelp/yelp-document.c
 libyelp/yelp-error.c
-libyelp/yelp-io-channel.c
+libyelp/yelp-info-document.c
 libyelp/yelp-location-entry.c
+libyelp/yelp-lzma-decompressor.c
+libyelp/yelp-magic-decompressor.c
 libyelp/yelp-mallard-document.c
-libyelp/yelp-marshal.c
 libyelp/yelp-settings.c
 libyelp/yelp-simple-document.c
 libyelp/yelp-transform.c
-libyelp/yelp-types.c
 libyelp/yelp-uri.c
 libyelp/yelp-view.c
-src/eggdesktopfile.c
-src/eggsmclient.c
 src/yelp-application.c
-src/yelp-base.c
-src/yelp-bookmarks.c
-src/yelp-db-print.c
-src/yelp-error.c
-src/yelp-info.c
-src/yelp-main.c
-src/yelp-man.c
-src/yelp-page.c
-src/yelp-print.c
-src/yelp-search-parser.c
-src/yelp-search.c
-src/yelp-toc.c
 src/yelp-window.c
+src/yelp.c
 yelp.desktop.in.in

@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2009 Shaun McCance <shaunm@gnome.org>
  *
@@ -36,6 +36,7 @@ G_BEGIN_DECLS
 #define YELP_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), YELP_TYPE_VIEW, YelpViewClass))
 #define YELP_IS_VIEW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), YELP_TYPE_VIEW))
 #define YELP_IS_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), YELP_TYPE_VIEW))
+#define YELP_VIEW_GET_CLASS(o)    (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_VIEW, YelpViewClass))
 
 typedef struct _YelpView       YelpView;
 typedef struct _YelpViewClass  YelpViewClass;
@@ -57,19 +58,19 @@ typedef enum {
     YELP_VIEW_STATE_ERROR
 } YelpViewState;
 
-GType            yelp_view_get_type        (void);
-GType            yelp_view_state_get_type  (void);
+GType              yelp_view_get_type          (void);
+GType              yelp_view_state_get_type    (void);
 
-GtkWidget *      yelp_view_new             (void);
-
-void             yelp_view_load            (YelpView     *view,
-					    const gchar  *uri);
-void             yelp_view_load_uri        (YelpView     *view,
-					    YelpUri      *uri);
-void             yelp_view_load_document   (YelpView     *view,
-					    YelpUri      *uri,
-					    YelpDocument *document);
-YelpDocument *   yelp_view_get_document    (YelpView     *view);
+GtkWidget *        yelp_view_new               (void);
+void               yelp_view_load              (YelpView      *view,
+                                                const gchar   *uri);
+void               yelp_view_load_uri          (YelpView      *view,
+                                                YelpUri       *uri);
+void               yelp_view_load_document     (YelpView      *view,
+                                                YelpUri       *uri,
+                                                YelpDocument  *document);
+YelpDocument *     yelp_view_get_document      (YelpView     *view);
+GtkActionGroup *   yelp_view_get_action_group  (YelpView     *view);
 
 G_END_DECLS
 

@@ -25,6 +25,8 @@
 
 #include <glib-object.h>
 
+#include "yelp-uri.h"
+
 #define YELP_TYPE_APPLICATION            (yelp_application_get_type ())
 #define YELP_APPLICATION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), YELP_TYPE_APPLICATION, YelpApplication))
 #define YELP_APPLICATION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), YELP_TYPE_APPLICATION, YelpApplicationClass))
@@ -44,23 +46,32 @@ struct _YelpApplicationClass
     GObjectClass  parent_class;
 };
 
-GType             yelp_application_get_type    (void);
-YelpApplication*  yelp_application_new         (void);
-gint              yelp_application_run         (YelpApplication  *app,
-                                                gint              argc,
-                                                gchar           **argv);
-gboolean          yelp_application_load_uri    (YelpApplication  *app,
-                                                const gchar      *uri,
-                                                guint             timestamp,
-                                                GError          **error);
-void              yelp_application_new_window  (YelpApplication  *app,
-                                                const gchar      *uri);
-
-void              yelp_application_adjust_font          (YelpApplication  *app,
-                                                         gint              adjust);
-
-void              yelp_application_set_show_text_cursor (YelpApplication  *app,
-                                                         gboolean          show);
+GType             yelp_application_get_type       (void);
+YelpApplication*  yelp_application_new            (void);
+gint              yelp_application_run            (YelpApplication  *app,
+                                                   gint              argc,
+                                                   gchar           **argv);
+gboolean          yelp_application_load_uri       (YelpApplication  *app,
+                                                   const gchar      *uri,
+                                                   guint             timestamp,
+                                                   GError          **error);
+void              yelp_application_new_window     (YelpApplication  *app,
+                                                   const gchar      *uri);
+void              yelp_application_new_window_uri (YelpApplication  *app,
+                                                   YelpUri          *uri);
+GtkActionGroup *  yelp_application_get_action_group     (YelpApplication   *app);
+void              yelp_application_add_bookmark         (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *page_id,
+                                                         const gchar       *icon,
+                                                         const gchar       *title);
+void              yelp_application_update_bookmarks     (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *page_id,
+                                                         const gchar       *icon,
+                                                         const gchar       *title);
+GVariant *        yelp_application_get_bookmarks        (YelpApplication   *app,
+                                                         const gchar       *doc_uri);
 void              yelp_application_install_package      (YelpApplication   *app,
                                                          const gchar       *pkg,
                                                          const gchar       *alt);

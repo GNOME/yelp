@@ -126,6 +126,9 @@ gboolean            yelp_settings_get_editor_mode      (YelpSettings       *sett
 void                yelp_settings_set_editor_mode      (YelpSettings       *settings,
                                                         gboolean            editor_mode);
 
+gint                yelp_settings_cmp_icons            (const gchar        *icon1,
+                                                        const gchar        *icon2);
+
 G_END_DECLS
 
 #endif /* __YELP_SETTINGS_H__ */

@@ -24,27 +24,37 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <glib.h>
+#include <gio/gio.h>
 
-#include "yelp-io-channel.h"
+#include "yelp-lzma-decompressor.h"
 
 int
 main (int argc, char **argv)
 {
-    GIOChannel *channel;
-    gchar *str;
-    gint len;
-
-    g_log_set_always_fatal (G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL);
+    GConverter *converter;
+    GFile *file;
+    GFileInputStream *file_stream;
+    GInputStream *stream;
+    gchar buf[1024];
+    gssize bytes;
         
     if (argc < 2) {
-	g_printerr ("Usage: test-io-channel FILE\n");
-	return 1;
+        g_printerr ("Usage: test-lzma FILE\n");
+        return 1;
     }
 
-    channel = yelp_io_channel_new_file (argv[1], NULL);
-    g_io_channel_read_to_end (channel, &str, &len, NULL);
-    printf ("%s\n", str);
+    g_type_init ();
+
+    file = g_file_new_for_path (argv[1]);
+    file_stream = g_file_read (file, NULL, NULL);
+    converter = yelp_lzma_decompressor_new ();
+    stream = g_converter_input_stream_new (file_stream, converter);
+
+    while ((bytes = g_input_stream_read (stream, buf, 1024, NULL, NULL)) > 0) {
+        gchar *out = g_strndup (buf, bytes);
+        puts (out);
+        g_free (out);
+    }
 
     return 0;
 }

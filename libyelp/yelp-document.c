@@ -30,6 +30,7 @@
 #include "yelp-debug.h"
 #include "yelp-document.h"
 #include "yelp-error.h"
+#include "yelp-info-document.h"
 #include "yelp-docbook-document.h"
 #include "yelp-mallard-document.h"
 #include "yelp-simple-document.h"
@@ -119,7 +120,7 @@ static void           request_cancel            (GCancellable         *cancellab
 static gboolean       request_idle_contents     (Request              *request);
 static gboolean       request_idle_info         (Request              *request);
 static gboolean       request_idle_error        (Request              *request);
-static void           request_try_free          (Request              *request);
+static gboolean       request_try_free          (Request              *request);
 static void           request_free              (Request              *request);
 
 static const gchar *  str_ref                   (const gchar          *str);
@@ -135,6 +136,7 @@ yelp_document_get_for_uri (YelpUri *uri)
 {
     static GHashTable *documents = NULL;
     gchar *docuri;
+    gchar *page_id, *tmp;
     YelpDocument *document = NULL;
 
     if (documents == NULL)
@@ -147,6 +149,24 @@ yelp_document_get_for_uri (YelpUri *uri)
     if (docuri == NULL)
 	return NULL;
 
+    switch (yelp_uri_get_document_type (uri)) {
+    case YELP_URI_DOCUMENT_TYPE_TEXT:
+    case YELP_URI_DOCUMENT_TYPE_HTML:
+    case YELP_URI_DOCUMENT_TYPE_XHTML:
+        /* We use YelpSimpleDocument for these, which is a single-file
+         * responder. But the document URI may be set to the directory
+         * holding the file, to allow a directory of HTML files to act
+         * as a single document. So we cache these by a fuller URI.
+         */
+        page_id = yelp_uri_get_page_id (uri);
+        tmp = g_strconcat (docuri, "/", page_id, NULL);
+        g_free (page_id);
+        g_free (docuri);
+        docuri = tmp;
+        break;
+    default:
+        break;
+    }
     document = g_hash_table_lookup (documents, docuri);
 
     if (document != NULL) {
@@ -170,7 +190,7 @@ yelp_document_get_for_uri (YelpUri *uri)
 	/* FIXME */
 	break;
     case YELP_URI_DOCUMENT_TYPE_INFO:
-	/* FIXME */
+	document = yelp_info_document_new (uri);
 	break;
     case YELP_URI_DOCUMENT_TYPE_TOC:
 	/* FIXME */
@@ -338,7 +358,7 @@ yelp_document_set_page_id (YelpDocument *document,
 
     hash_replace (document->priv->page_ids, id, g_strdup (page_id));
 
-    if (id != NULL && !g_str_equal (id, page_id)) {
+    if (id == NULL || !g_str_equal (id, page_id)) {
 	GSList *reqs, *cur;
 	reqs = hash_lookup (document->priv->reqs_by_page_id, id);
 	for (cur = reqs; cur != NULL; cur = cur->next) {
@@ -595,6 +615,9 @@ yelp_document_get_page_icon (YelpDocument *document,
     }
     g_mutex_unlock (document->priv->mutex);
 
+    if (ret == NULL)
+        ret = g_strdup ("help-contents");
+
     return ret;
 }
 
@@ -813,7 +836,7 @@ yelp_document_signal (YelpDocument       *document,
 	    break;
 	case YELP_DOCUMENT_SIGNAL_ERROR:
 	    request->idle_funcs++;
-	    request->error = yelp_error_copy (error);
+	    request->error = yelp_error_copy ((GError *) error);
 	    g_idle_add ((GSourceFunc) request_idle_error, request);
             break;
 	default:
@@ -839,7 +862,7 @@ yelp_document_error_pending (YelpDocument *document,
     if (priv->reqs_pending) {
 	for (cur = priv->reqs_pending; cur; cur = cur->next) {
 	    request = cur->data;
-	    request->error = yelp_error_copy (error);
+	    request->error = yelp_error_copy ((GError *) error);
 	    request->idle_funcs++;
 	    g_idle_add ((GSourceFunc) request_idle_error, request);
 	}
@@ -1078,7 +1101,7 @@ request_idle_error (Request *request)
     return FALSE;
 }
 
-static void
+static gboolean
 request_try_free (Request *request)
 {
     if (!g_cancellable_is_cancelled (request->cancellable))
@@ -1088,6 +1111,8 @@ request_try_free (Request *request)
 	request_free (request);
     else
 	g_idle_add ((GSourceFunc) request_try_free, request);
+
+    return FALSE;
 }
 
 static void

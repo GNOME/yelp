@@ -152,9 +152,15 @@ yelp_docbook_document_dispose (GObject *object)
 {
     YelpDocbookDocumentPrivate *priv = GET_PRIV (object);
 
-    g_object_unref (priv->uri);
+    if (priv->uri) {
+        g_object_unref (priv->uri);
+        priv->uri = NULL;
+    }
 
-    g_object_unref (priv->sections);
+    if (priv->sections) {
+        g_object_unref (priv->sections);
+        priv->sections = NULL;
+    }
 
     G_OBJECT_CLASS (yelp_docbook_document_parent_class)->dispose (object);
 }
@@ -766,8 +772,8 @@ transform_finished (YelpTransform       *transform,
        is finalized.   Otherwise, we could crash when YelpTransform frees
        its libxslt resources.
      */
-    g_object_weak_ref (transform,
-                       transform_finalized,
+    g_object_weak_ref ((GObject *) transform,
+                       (GWeakNotify) transform_finalized,
                        docbook);
 
     docuri = yelp_uri_get_document_uri (priv->uri);
@@ -807,10 +813,9 @@ transform_finalized (YelpDocbookDocument *docbook,
 {
     YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
  
-   debug_print (DB_FUNCTION, "entering\n");
+    debug_print (DB_FUNCTION, "entering\n");
 
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);
     priv->xmldoc = NULL;
-
 }

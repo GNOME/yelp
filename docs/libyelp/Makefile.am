@@ -14,8 +14,8 @@ GTKDOC_CFLAGS =						\
 	$(YELP_CFLAGS)					\
 	-I$(top_srcdir)/libyelp
 
-GTKDOC_LIBS =						\
-	$(YELP_LIBS)					\
+GTKDOC_LIBS =					\
+	$(YELP_LIBS)				\
 	$(top_builddir)/libyelp/libyelp.la
 
 HFILE_GLOB = $(top_srcdir)/libyelp/*.h
@@ -26,11 +26,11 @@ MKDB_OPTIONS = --output-format=xml --sgml-mode --name-space=yelp --ignore-files=
 
 content_files = version.xml
 
-extra_viles = version.xml.in
+extra_files = version.xml.in
 
 include $(top_srcdir)/gtk-doc.make
 
-EXTRA_DIST += version.xm.in
+EXTRA_DIST += version.xml.in
 
 # Extra options to supply to gtkdoc-mktmpl
 # e.g. MKTMPL_OPTIONS=--only-section-tmpl
