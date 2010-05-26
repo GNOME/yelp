@@ -451,20 +451,20 @@ const gchar*
 yelp_settings_get_color_param (YelpSettingsColor color)
 {
     static const gchar *params[YELP_SETTINGS_NUM_COLORS] = {
-	"theme.color.background",
-	"theme.color.text",
-	"theme.color.text_light",
-	"theme.color.link",
-	"theme.color.link_visted",
-	"theme.color.gray_background",
-	"theme.color.dark_background",
-	"theme.color.gray_border",
-	"theme.color.blue_background",
-	"theme.color.blue_border",
-	"theme.color.red_background",
-	"theme.color.red_border",
-	"theme.color.yellow_background",
-	"theme.color.yellow_border"
+	"color.background",
+	"color.text",
+	"color.text_light",
+	"color.link",
+	"color.link_visted",
+	"color.gray_background",
+	"color.dark_background",
+	"color.gray_border",
+	"color.blue_background",
+	"color.blue_border",
+	"color.red_background",
+	"color.red_border",
+	"color.yellow_background",
+	"color.yellow_border"
     };
     g_return_val_if_fail (color < YELP_SETTINGS_NUM_COLORS, NULL);
     return params[color];
@@ -659,11 +659,11 @@ const gchar *
 yelp_settings_get_icon_param (YelpSettingsIcon icon)
 {
     static const gchar *params[YELP_SETTINGS_NUM_ICONS] = {
-	"theme.icons.note.bug",
-	"theme.icons.note.important",
-	"theme.icons.note",
-	"theme.icons.note.tip",
-	"theme.icons.note.warning"
+	"icons.note.bug",
+	"icons.note.important",
+	"icons.note",
+	"icons.note.tip",
+	"icons.note.warning"
     };
     g_return_val_if_fail (icon < YELP_SETTINGS_NUM_ICONS, NULL);
     return params[icon];
@@ -727,7 +727,7 @@ yelp_settings_get_all_params (YelpSettings *settings,
         g_free (val);
     }
     ix = 2 * (YELP_SETTINGS_NUM_COLORS + YELP_SETTINGS_NUM_ICONS);
-    params[ix++] = g_strdup ("theme.icon.admon.size");
+    params[ix++] = g_strdup ("icons.size.note");
     params[ix++] = g_strdup_printf ("%i", yelp_settings_get_icon_size (settings));
     params[ix++] = g_strdup ("yelp.editor_mode");
     if (settings->priv->editor_mode)
