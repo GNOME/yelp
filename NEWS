@@ -1,3 +1,29 @@
+Changes in 2.31.3:
+------------------
+* Added DocBook 5 support (Brian M. Carlson)
+* Accept dragged documents on Yelp windows
+* Context-sensitive right-click menus
+* Store scroll positions in back/forward list
+* Basic print support added
+* Better handling of plain text documents
+* Added emblems to drop-downs on bookmarked locations
+* Updated LZMA decoder to the new API (Javier Jardón)
+* Compile-time options for lzma and bz2
+* Color animation on search entry when focused
+* Find bar added, slides in from bottom
+* Ctrl+S now starts a search
+* Fixed some issues with page titles not being displayed
+* Fixes for relative links in HTML documents
+* Automatically update bookmarks icons and titles
+* Use new common HTML output from yelp-xsl
+* Fixed issue that prevented primary window from being used
+* Updated translations:
+  es    (Jorge González)
+  gl    (Fran Diéguez)
+  id    (Andika Triwidada)
+  or    (Manoj Kumar Giri)
+  sl    (Matej Urbančič)
+
 Changes in 2.31.2:
 ------------------
 * Location entry completions are sorted by icon and title.
