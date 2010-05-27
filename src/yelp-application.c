@@ -617,6 +617,32 @@ yelp_application_add_bookmark (YelpApplication   *app,
 }
 
 void
+yelp_application_remove_bookmark (YelpApplication   *app,
+                                  const gchar       *doc_uri,
+                                  const gchar       *page_id)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_id, *this_icon, *this_title;
+        g_settings_get (settings, "bookmarks", "a(sss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(sss)"));
+        while (g_variant_iter_loop (iter, "(&s&s&s)", &this_id, &this_icon, &this_title)) {
+            if (!g_str_equal (page_id, this_id))
+                g_variant_builder_add (&builder, "(sss)", this_id, this_icon, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        g_settings_set_value (settings, "bookmarks", g_variant_builder_end (&builder));
+        g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
+    }
+}
+
+void
 yelp_application_update_bookmarks (YelpApplication   *app,
                                    const gchar       *doc_uri,
                                    const gchar       *page_id,

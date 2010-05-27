@@ -65,6 +65,9 @@ void              yelp_application_add_bookmark         (YelpApplication   *app,
                                                          const gchar       *page_id,
                                                          const gchar       *icon,
                                                          const gchar       *title);
+void              yelp_application_remove_bookmark      (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *page_id);
 void              yelp_application_update_bookmarks     (YelpApplication   *app,
                                                          const gchar       *doc_uri,
                                                          const gchar       *page_id,
