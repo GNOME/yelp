@@ -153,6 +153,11 @@ static gboolean      bookmarks_closed             (GtkWindow          *bookmarks
                                                    GdkEvent           *event,
                                                    YelpWindow         *window);
 static void          bookmarks_set_bookmarks      (YelpWindow         *window);
+static gboolean      bookmark_button_press        (GtkTreeView        *view,
+                                                   GdkEventButton     *event,
+                                                   YelpWindow         *window);
+static void          bookmark_opened              (GtkMenuItem        *item,
+                                                   YelpWindow         *window);
 static void          bookmark_activated           (GtkTreeView        *view,
                                                    GtkTreePath        *path,
                                                    GtkTreeViewColumn  *column,
@@ -160,6 +165,7 @@ static void          bookmark_activated           (GtkTreeView        *view,
 static gboolean      bookmark_key_release         (GtkTreeView        *view,
                                                    GdkEventKey        *event,
                                                    YelpWindow         *window);
+static void          bookmark_remove              (YelpWindow         *window);
 
 enum {
     PROP_0,
@@ -240,8 +246,9 @@ struct _YelpWindowPrivate {
     GtkActionGroup *action_group;
     YelpApplication *application;
 
-    GtkWidget *bookmarks_editor;
+    GtkWidget    *bookmarks_editor;
     /* no ref */
+    GtkWidget    *bookmarks_list;
     GtkListStore *bookmarks_store;
 
     /* no refs on these, owned by containers */
@@ -762,7 +769,7 @@ window_edit_bookmarks (GtkAction  *action,
                        YelpWindow *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
-    GtkWidget *scroll, *list;
+    GtkWidget *scroll;
     gchar *title;
 
     if (priv->bookmarks_editor != NULL) {
@@ -794,20 +801,24 @@ window_edit_bookmarks (GtkAction  *action,
     gtk_container_add (GTK_CONTAINER (priv->bookmarks_editor), scroll);
 
     priv->bookmarks_store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-    list = gtk_tree_view_new_with_model (GTK_TREE_MODEL (priv->bookmarks_store));
-    gtk_container_add (GTK_CONTAINER (scroll), list);
+    priv->bookmarks_list = gtk_tree_view_new_with_model (GTK_TREE_MODEL (priv->bookmarks_store));
+    gtk_container_add (GTK_CONTAINER (scroll), priv->bookmarks_list);
 
-    g_signal_connect (list, "row-activated",
+    g_signal_connect (priv->bookmarks_list, "button-press-event",
+                      G_CALLBACK (bookmark_button_press), window);
+    g_signal_connect (priv->bookmarks_list, "row-activated",
                       G_CALLBACK (bookmark_activated), window);
-    g_signal_connect (list, "key-release-event",
+    g_signal_connect (priv->bookmarks_list, "key-release-event",
                       G_CALLBACK (bookmark_key_release), window);
 
-    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list), FALSE);
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (list), 0, NULL,
-                                                 gtk_cell_renderer_pixbuf_new (),
+    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->bookmarks_list), FALSE);
+    GtkCellRenderer *cell = gtk_cell_renderer_pixbuf_new ();
+    g_object_set (cell, "ypad", 2, "xpad", 2, NULL);
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->bookmarks_list), 0, NULL,
+                                                 cell,
                                                  "icon-name", 1,
                                                  NULL);
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (list), 1, NULL,
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->bookmarks_list), 1, NULL,
                                                  gtk_cell_renderer_text_new (),
                                                  "text", 2,
                                                  NULL);
@@ -1824,6 +1835,88 @@ bookmarks_set_bookmarks (YelpWindow *window)
     g_variant_unref (value);
 }
 
+static gboolean
+bookmark_button_press (GtkTreeView    *view,
+                       GdkEventButton *event,
+                       YelpWindow     *window)
+{
+    if (event->button == 3) {
+        GtkTreePath *path = NULL;
+        GtkWidget *menu, *item;
+        GtkTreeSelection *sel = gtk_tree_view_get_selection (view);
+
+        gtk_tree_view_get_path_at_pos (view,
+                                       event->x, event->y,
+                                       &path, NULL,
+                                       NULL, NULL);
+        gtk_tree_selection_select_path (sel, path);
+        gtk_tree_path_free (path);
+
+        menu = gtk_menu_new ();
+        g_object_ref_sink (menu);
+
+        item = gtk_menu_item_new_with_mnemonic (_("_Open Bookmark"));
+        g_object_set_data ((GObject *) item, "new-window", (gpointer) FALSE);
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (bookmark_opened), window);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic (_("Open Bookmark in New _Window"));
+        g_object_set_data ((GObject *) item, "new-window", (gpointer) TRUE);
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (bookmark_opened), window);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic (_("_Remove Bookmark"));
+        g_signal_connect_swapped (item, "activate",
+                                  G_CALLBACK (bookmark_remove), window);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        gtk_widget_show_all (menu);
+        gtk_menu_popup (GTK_MENU (menu),
+                        NULL, NULL, NULL, NULL,
+                        event->button,
+                        event->time);
+
+        g_object_unref (menu);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static void
+bookmark_opened (GtkMenuItem *item,
+                 YelpWindow  *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    GtkTreeIter iter;
+    GtkTreeSelection *sel = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->bookmarks_list));
+
+    if (gtk_tree_selection_get_selected (sel, NULL, &iter)) {
+        YelpUri *base, *uri;
+        gchar *page_id, *xref;
+        gtk_tree_model_get (GTK_TREE_MODEL (priv->bookmarks_store), &iter,
+                            0, &page_id,
+                            -1);
+        xref = g_strconcat ("xref:", page_id, NULL);
+        g_object_get (priv->view, "yelp-uri", &base, NULL);
+        uri = yelp_uri_new_relative (base, xref);
+
+        if (g_object_get_data ((GObject *) item, "new-window"))
+            yelp_application_new_window_uri (priv->application, uri);
+        else
+            yelp_view_load_uri (priv->view, uri);
+
+        g_object_unref (base);
+        g_object_unref (uri);
+        g_free (page_id);
+        g_free (xref);
+    }
+}
+
 static void
 bookmark_activated (GtkTreeView        *view,
                     GtkTreePath        *path,
@@ -1859,26 +1952,31 @@ bookmark_key_release (GtkTreeView *view,
                       YelpWindow  *window)
 {
     if (event->keyval == GDK_Delete) {
-        YelpWindowPrivate *priv = GET_PRIV (window);
-        GtkTreeIter iter;
-        GtkTreeSelection *sel = gtk_tree_view_get_selection (view);
-
-        if (gtk_tree_selection_get_selected (sel, NULL, &iter)) {
-            YelpUri *uri;
-            gchar *doc_uri, *page_id;
-            gtk_tree_model_get (GTK_TREE_MODEL (priv->bookmarks_store), &iter,
-                                0, &page_id,
-                                -1);
-            g_object_get (priv->view, "yelp-uri", &uri, NULL);
-            doc_uri = yelp_uri_get_document_uri (uri);
-            yelp_application_remove_bookmark (priv->application, doc_uri, page_id);
-            g_object_unref (uri);
-            g_free (doc_uri);
-            g_free (page_id);
-        }
-
+        bookmark_remove (window);
         return TRUE;
     }
 
     return FALSE;
+}
+
+static void
+bookmark_remove (YelpWindow  *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    GtkTreeIter iter;
+    GtkTreeSelection *sel = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->bookmarks_list));
+
+    if (gtk_tree_selection_get_selected (sel, NULL, &iter)) {
+        YelpUri *uri;
+        gchar *doc_uri, *page_id;
+        gtk_tree_model_get (GTK_TREE_MODEL (priv->bookmarks_store), &iter,
+                            0, &page_id,
+                            -1);
+        g_object_get (priv->view, "yelp-uri", &uri, NULL);
+        doc_uri = yelp_uri_get_document_uri (uri);
+        yelp_application_remove_bookmark (priv->application, doc_uri, page_id);
+        g_object_unref (uri);
+        g_free (doc_uri);
+        g_free (page_id);
+    }
 }
