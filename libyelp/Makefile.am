@@ -98,7 +98,7 @@ yelp-types.h: $(libyelp_headers)
 	--fhead "G_BEGIN_DECLS\n\n" \
 	--ftail "G_END_DECLS\n\n" \
 	--ftail "#endif /* __LIBYELP_TYPES_H__ */\n" \
-	--fprod "#include <libyelp/@filename@>\n" \
+	--fprod "#include \"@filename@\"\n" \
 	--eprod "#define YELP_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 	--eprod "GType @enum_name@_get_type (void);\n" \
 	$(libyelp_headers)) > $@

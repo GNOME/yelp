@@ -7,7 +7,7 @@ MOSTLYCLEANFILES =
 @INTLTOOL_SCHEMAS_RULE@
 
 gsettingsschema_DATA = org.gnome.yelp.gschema.xml
-@GSETTINGS_CHECK_RULE@
+# GSETTINGS_CHECK_RULE broken for non-srcdir, blocks distcheck
 if GSETTINGS_SCHEMAS_INSTALL
 install-data-hook:
 	$(GLIB_COMPILE_SCHEMAS) $(DESTDIR)$(gsettingsschemadir)

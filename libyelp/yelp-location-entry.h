@@ -63,6 +63,8 @@ struct _YelpLocationEntryClass
  * @YELP_LOCATION_ENTRY_CAN_BOOKMARK: This location can be bookmarked.  When a
  * bookmarkable location is selected, the secondary icon of the embedded text
  * entry will be a clickable bookmark icon.
+ * @YELP_LOCATION_ENTRY_IS_BOOKMARKED: This location is already bookmarked.
+ * Bookmarked locations will have an emblem in drop-down lists.
  * @YELP_LOCATION_ENTRY_IS_LOADING: Page data for this location is still loading.
  * The #YelpLocationEntry widget will display an indeterminate progress indicator.
  * @YELP_LOCATION_ENTRY_IS_SEPARATOR: This row should be displayed as a separator.
