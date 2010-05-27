@@ -36,7 +36,7 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 	dbus-glib-1
 	webkit-1.0 >= 1.1.15
-	yelp-xsl
+	yelp-xsl >= 2.31.2
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
