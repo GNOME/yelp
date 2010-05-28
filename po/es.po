@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-05-21 23:30+0000\n"
-"PO-Revision-Date: 2010-05-25 08:25+0200\n"
+"POT-Creation-Date: 2010-05-27 22:05+0000\n"
+"PO-Revision-Date: 2010-05-28 19:55+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1133,7 +1133,6 @@ msgid "_Open Link"
 msgstr "_Abrir enlace"
 
 #: ../libyelp/yelp-view.c:835
-#| msgid "Open Link in _New Window"
 msgid "Open Link in New _Window"
 msgstr "Abrir enlace en una _ventana nueva"
 
@@ -1154,7 +1153,6 @@ msgid "S_end Video To..."
 msgstr "_Enviar vídeo a…"
 
 #: ../libyelp/yelp-view.c:893
-#| msgid "_Copy"
 msgid "_Copy Text"
 msgstr "_Copiar texto"
 
@@ -1214,7 +1212,7 @@ msgstr "Reducir el tamaño del texto"
 msgid "Show Text _Cursor"
 msgstr "Mostrar el _cursor de texto"
 
-#: ../src/yelp-application.c:297 ../src/yelp-window.c:1560
+#: ../src/yelp-application.c:297 ../src/yelp-window.c:1665
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ayuda"
@@ -1227,68 +1225,95 @@ msgstr ""
 "No tiene PackageKit instalado. Los enlaces de instalación de paquetes "
 "requieren PackageKit."
 
-#: ../src/yelp-window.c:263
+#: ../src/yelp-window.c:289
 msgid "_Page"
 msgstr "_Página"
 
-#: ../src/yelp-window.c:264
+#: ../src/yelp-window.c:290
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:291
 msgid "_Go"
 msgstr "_Ir a"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:292
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:269
+#: ../src/yelp-window.c:295
 msgid "_New Window"
 msgstr "Ventana _nueva"
 
-#: ../src/yelp-window.c:274
+#: ../src/yelp-window.c:300
 msgid "_Close"
 msgstr "_Cerrar"
 
-#: ../src/yelp-window.c:279
+#: ../src/yelp-window.c:305
 msgid "_Add Bookmark"
 msgstr "_Añadir marcador"
 
-#: ../src/yelp-window.c:284
+#: ../src/yelp-window.c:310
+#| msgid "_Edit Bookmarks..."
+msgid "_Edit Bookmarks"
+msgstr "_Editar marcadores"
+
+#: ../src/yelp-window.c:315
 msgid "Find in Page..."
 msgstr "Buscar en la página…"
 
-#: ../src/yelp-window.c:289 ../src/yelp-window.c:506
+#: ../src/yelp-window.c:320 ../src/yelp-window.c:542
 msgid "Search..."
 msgstr "Buscar…"
 
-#: ../src/yelp-window.c:294
+#: ../src/yelp-window.c:325
 msgid "Open Location"
 msgstr "Abrir dirección"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:352
 msgid "Application"
 msgstr "Aplicación"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:353
 msgid "A YelpApplication instance that controls this window"
 msgstr "Una instancia de YelpApplication que controla esta ventana"
 
-#: ../src/yelp-window.c:1178
+#. %s will be replaced with the name of a document
+#: ../src/yelp-window.c:785
+#, c-format
+#| msgid "Bookmarks"
+msgid "Bookmarks for %s"
+msgstr "Marcadores para %s"
+
+#: ../src/yelp-window.c:1283
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i coincidencia"
 msgstr[1] "%i coincidencias"
 
-#: ../src/yelp-window.c:1203
+#: ../src/yelp-window.c:1308
 msgid "No matches"
 msgstr "Sin coincidencias"
 
-#: ../src/yelp-window.c:1520
+#: ../src/yelp-window.c:1625
 msgid "Loading"
 msgstr "Cargando"
+
+#: ../src/yelp-window.c:1858
+#| msgid "Rename Bookmark"
+msgid "_Open Bookmark"
+msgstr "_Abrir marcador"
+
+#: ../src/yelp-window.c:1864
+#| msgid "Open Bookmark in New Window"
+msgid "Open Bookmark in New _Window"
+msgstr "Abrir marcador en una _ventana nueva"
+
+#: ../src/yelp-window.c:1873
+#| msgid "Remove Bookmark"
+msgid "_Remove Bookmark"
+msgstr "_Quitar marcador"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
@@ -1466,9 +1491,6 @@ msgstr "Obtenga ayuda acerca de GNOME"
 #~ "El archivo TOC no se pudo analizar porque no es un documento XML bien "
 #~ "formado."
 
-#~ msgid "Bookmarks"
-#~ msgstr "Marcadores"
-
 #~ msgid "Re_name"
 #~ msgstr "Re_nombrar"
 
@@ -1525,15 +1547,6 @@ msgstr "Obtenga ayuda acerca de GNOME"
 
 #~ msgid "Use the default fonts set for the system."
 #~ msgstr "Usar el conjunto de tipos predeterminado del sistema."
-
-#~ msgid "Open Bookmark in New Window"
-#~ msgstr "Abrir marcador en una ventana nueva"
-
-#~ msgid "Rename Bookmark"
-#~ msgstr "Renombrar marcador"
-
-#~ msgid "Remove Bookmark"
-#~ msgstr "Eliminar marcador"
 
 #~ msgid "A bookmark titled %s already exists for this page."
 #~ msgstr "Ya existe un marcador titulado %s para esta página."
@@ -1622,9 +1635,6 @@ msgstr "Obtenga ayuda acerca de GNOME"
 
 #~ msgid "_Contents"
 #~ msgstr "Índ_ice"
-
-#~ msgid "_Edit Bookmarks..."
-#~ msgstr "_Editar marcadores..."
 
 #~ msgid "_Copy Link Address"
 #~ msgstr "_Copiar dirección del enlace"
