@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-22 23:47+0200\n"
-"PO-Revision-Date: 2010-05-22 23:47+0200\n"
+"POT-Creation-Date: 2010-05-30 17:49+0200\n"
+"PO-Revision-Date: 2010-05-30 17:50+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
@@ -1221,7 +1221,7 @@ msgstr "Reducir o tamaño do texto"
 msgid "Show Text _Cursor"
 msgstr "Mostrar o _cursor de texto"
 
-#: ../src/yelp-application.c:297 ../src/yelp-window.c:1560
+#: ../src/yelp-application.c:297 ../src/yelp-window.c:1665
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Axuda"
@@ -1234,68 +1234,90 @@ msgstr ""
 "Non ten PackageKit instalado. As ligazóns de instalación do paquete requiren "
 "PackageKit."
 
-#: ../src/yelp-window.c:263
+#: ../src/yelp-window.c:289
 msgid "_Page"
 msgstr "_Páxina"
 
-#: ../src/yelp-window.c:264
+#: ../src/yelp-window.c:290
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:291
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:292
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:269
+#: ../src/yelp-window.c:295
 msgid "_New Window"
 msgstr "Xanela _nova"
 
-#: ../src/yelp-window.c:274
+#: ../src/yelp-window.c:300
 msgid "_Close"
 msgstr "_Pechar"
 
-#: ../src/yelp-window.c:279
+#: ../src/yelp-window.c:305
 msgid "_Add Bookmark"
 msgstr "_Engadir marcador"
 
-#: ../src/yelp-window.c:284
+#: ../src/yelp-window.c:310
+msgid "_Edit Bookmarks"
+msgstr "_Editar marcadores"
+
+#: ../src/yelp-window.c:315
 msgid "Find in Page..."
 msgstr "Buscar na páxina…"
 
-#: ../src/yelp-window.c:289 ../src/yelp-window.c:506
+#: ../src/yelp-window.c:320 ../src/yelp-window.c:542
 msgid "Search..."
 msgstr "Buscar..."
 
-#: ../src/yelp-window.c:294
+#: ../src/yelp-window.c:325
 msgid "Open Location"
 msgstr "Abrir localización"
 
-#: ../src/yelp-window.c:321
+#: ../src/yelp-window.c:352
 msgid "Application"
 msgstr "Aplicativos"
 
-#: ../src/yelp-window.c:322
+#: ../src/yelp-window.c:353
 msgid "A YelpApplication instance that controls this window"
 msgstr "Unha instancia de YelpApplications que controla esta xanela"
 
-#: ../src/yelp-window.c:1178
+#. %s will be replaced with the name of a document
+#: ../src/yelp-window.c:785
+#, c-format
+msgid "Bookmarks for %s"
+msgstr "Marcadores para %s"
+
+#: ../src/yelp-window.c:1283
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i coincidencia"
 msgstr[1] "%i coincidencias"
 
-#: ../src/yelp-window.c:1203
+#: ../src/yelp-window.c:1308
 msgid "No matches"
 msgstr "Sen coincidencias"
 
-#: ../src/yelp-window.c:1520
+#: ../src/yelp-window.c:1625
 msgid "Loading"
 msgstr "Cargando"
+
+#: ../src/yelp-window.c:1858
+msgid "_Open Bookmark"
+msgstr "_Abrir marcador"
+
+#: ../src/yelp-window.c:1864
+msgid "Open Bookmark in New _Window"
+msgstr "Abrir marcador nunha _xanela nova"
+
+#: ../src/yelp-window.c:1873
+msgid "_Remove Bookmark"
+msgstr "_Eliminar marcador"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
@@ -1475,9 +1497,6 @@ msgstr "Obter axuda co Gnome"
 #~ msgstr ""
 #~ "Non se puido analizar o TOC porque non é un documento XML ben formado."
 
-#~ msgid "Bookmarks"
-#~ msgstr "Marcadores"
-
 #~ msgid "Re_name"
 #~ msgstr "Re_nomear"
 
@@ -1534,15 +1553,6 @@ msgstr "Obter axuda co Gnome"
 
 #~ msgid "Use the default fonts set for the system."
 #~ msgstr "Usar o conxunto de tipos de letra predeterminado do sistema."
-
-#~ msgid "Open Bookmark in New Window"
-#~ msgstr "Abrir marcador nunha xanela nova"
-
-#~ msgid "Rename Bookmark"
-#~ msgstr "Renomear marcador"
-
-#~ msgid "Remove Bookmark"
-#~ msgstr "Eliminar marcador"
 
 #~ msgid "A bookmark titled %s already exists for this page."
 #~ msgstr "Xa existe un marcador titulado %s para esta páxina."
@@ -1625,9 +1635,6 @@ msgstr "Obter axuda co Gnome"
 
 #~ msgid "_Contents"
 #~ msgstr "_Contidos"
-
-#~ msgid "_Edit Bookmarks..."
-#~ msgstr "_Editar marcadores..."
 
 #~ msgid "_Copy Link Address"
 #~ msgstr "_Copiar o enderezo da ligazón"
