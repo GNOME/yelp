@@ -1,27 +1,28 @@
 # Yelp eesti keele tõlge.
 # Estonian translation of Yelp.
 #
-# Copyright (C) 2002-2006 Free Software Foundation, Inc.
-# Copyright (C) 2007-2009 The GNOME Project
+# Copyright (C) 2002–2006 Free Software Foundation, Inc.
+# Copyright (C) 2007–2010 The GNOME Project
 # This file is distributed under the same license as the Yelp package.
 #
-# Tõivo Leedjärv <toivo@linux.ee>, 2002-2004.
+# Tõivo Leedjärv <toivo@linux.ee>, 2002–2004.
 # Allan Sims <allsi@eau.ee>, 2003.
 # Priit Laes <amd store20 com>, 2005, 2006.
-# Ivar Smolin <okul@linux.ee>, 2005-2009.
+# Ivar Smolin <okul@linux.ee>, 2005–2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2009-08-07 00:18+0000\n"
-"PO-Revision-Date: 2009-08-07 11:00+0300\n"
+"POT-Creation-Date: 2010-05-27 22:05+0000\n"
+"PO-Revision-Date: 2010-05-30 10:52+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "GNU Info Pages"
 msgstr "GNU teabelehed"
@@ -660,162 +661,23 @@ msgstr "Tere tulemast GNOME'i Abiteabe sirvijasse"
 msgid "Word Processors"
 msgstr "Tekstitöötlusprogrammid"
 
-msgid "Bookmarks"
-msgstr "Järjehoidjad"
+msgid "Invalid compressed data"
+msgstr "Vigaselt pakitud andmed"
 
-msgid "Re_name"
-msgstr "Muuda _nime"
-
-msgid "_Bookmarks:"
-msgstr "_Järjehoidjad:"
-
-msgid "Add Bookmark"
-msgstr "Järjehoidja lisamine"
-
-msgid "_Title:"
-msgstr "_Pealkiri:"
-
-msgid "Open Location"
-msgstr "Asukoha avamine"
-
-msgid "_Location:"
-msgstr "_Asukoht:"
-
-msgid "Fonts"
-msgstr "Kirjatüübid"
-
-msgid "Preferences"
-msgstr "Eelistused"
-
-msgid "_Browse with caret"
-msgstr "Sirvimisel näidatakse _tekstikursorit"
-
-msgid "_Fixed width:"
-msgstr "_Fikseeritud laiusega:"
-
-msgid "_Use system fonts"
-msgstr "_Kasutatakse süsteemseid kirjatüüpe"
-
-msgid "_Variable width:"
-msgstr "_Muutuva laiusega:"
-
-msgid "Font for fixed text"
-msgstr "Kirjatüüp fikseeritud laiusega teksti jaoks"
-
-msgid "Font for text"
-msgstr "Kirjatüüp teksti jaoks"
-
-msgid "Font for text with fixed width."
-msgstr "Kirjatüüp fikseeritud laiusega teksti jaoks."
-
-msgid "Font for text with variable width."
-msgstr "Kirjatüüp muutuva laiusega teksti jaoks."
-
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Lehtede vaatamisel kasuta klaviatuuriga juhitavat tekstikursorit."
-
-msgid "Use caret"
-msgstr "Kasuta tekstikursorit"
-
-msgid "Use system fonts"
-msgstr "Süsteemi kirjatüüpide kasutamine"
-
-msgid "Use the default fonts set for the system."
-msgstr "Süsteemsete vaikekirjatüüpide kasutamine."
-
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Fail pole korrektne .desktop fail"
-
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Töölauafaili tundmatu versioon '%s'"
-
-#, c-format
-msgid "Starting %s"
-msgstr "Käivitamine: %s"
-
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Rakendus ei aktsepteeri käsurealt antud dokumente"
-
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Tundmatu käivitusvalik: %d"
-
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgid "Not enough memory"
 msgstr ""
-"Dokumendi URI-sid pole võimalik 'Liik=Viit' tüüpi töölauakirjetele edastada"
 
 #, c-format
-msgid "Not a launchable item"
-msgstr "Pole käivitatav kirje"
-
-msgid "Disable connection to session manager"
-msgstr "Seansihalduriga ühendumise keelamine"
-
-msgid "Specify file containing saved configuration"
-msgstr "Salvestatud seadistusi sisaldava faili määramine"
-
-msgid "FILE"
-msgstr "FAIL"
-
-msgid "Specify session management ID"
-msgstr "Seansihalduse ID määramine"
-
-msgid "ID"
-msgstr "ID"
-
-msgid "Session management options:"
-msgstr "Session management options"
-
-msgid "Show session management options"
-msgstr "Seansihalduse valikute näitamine"
-
-msgid "Open Bookmark in New Window"
-msgstr "Ava järjehoidja uues aknas"
-
-msgid "Rename Bookmark"
-msgstr "Muuda järjehoidja nime"
-
-msgid "Remove Bookmark"
-msgstr "Eemalda järjehoidja"
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "Dokumendist „%2$s” ei leitud lehete „%1$s”."
 
 #, c-format
-msgid "A bookmark titled %s already exists for this page."
-msgstr "Järjehoidja pealkirjaga %s on selle lehe jaoks juba olemas."
-
-#, c-format
-msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "Järjehoidja pealkirjaga <b>%s</b> on selle lehe jaoks juba olemas."
-
-msgid "Help Topics"
-msgstr "Abiteabe teemad"
-
-msgid "Document Sections"
-msgstr "Dokumendi jaotised"
-
-msgid "Page not found"
-msgstr "Lehekülge ei leitud"
-
-#, c-format
-msgid "The page %s was not found in the document %s."
-msgstr "Dokumendist %2$s ei leitud lehekülge %1$s."
-
-#, c-format
-msgid "The requested page was not found in the document %s."
-msgstr "Dokumendis %s ei leitud küsitud lehekülge."
-
-msgid "File not found"
-msgstr "Faili ei leitud"
+msgid "The file does not exist."
+msgstr "Faili pole olemas."
 
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Faili „%s” pole olemas."
-
-msgid "Could not parse file"
-msgstr "Faili pole võimalik analüüsida"
 
 #, c-format
 msgid ""
@@ -836,14 +698,13 @@ msgstr ""
 msgid "Unknown"
 msgstr "Tundmatu"
 
-msgid "Unknown Error"
-msgstr "Tundmatu viga"
+#, c-format
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "Dokumendist „%s” ei leitud küsitud lehekülge."
 
-msgid "Could Not Read File"
-msgstr "Faili pole võimalik lugeda"
-
-msgid "No information is available about this error."
-msgstr "Selle vea kohta puuduvad andmed."
+#, c-format
+msgid "An unknown error occurred."
+msgstr "Esines tundmatu viga."
 
 #, c-format
 msgid ""
@@ -852,175 +713,73 @@ msgstr ""
 "Faili „%s” pole võimalik analüüsida kuna see pole korrektselt vormindatud "
 "teabeleht (info page)."
 
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
+msgid "Description Column"
 msgstr ""
-"Faili „%s” ei ole võimalik lugeda ja dekodeerida. Arvatavasti on fail "
-"pakitud toetamata vorminguga."
 
-msgid "Use a private session"
-msgstr "Uus privaatne seanss"
+msgid "A column in the model to get descriptions from"
+msgstr ""
 
-msgid "Define which cache directory to use"
-msgstr "Kasutatava puhverkataloogi määramine"
+msgid "Icon Column"
+msgstr ""
 
-#. Commandline parsing is done here
-msgid " GNOME Help Browser"
-msgstr " GNOME Abiteabe sirvija"
+msgid "A column in the model to get icon names from"
+msgstr ""
 
-msgid "Help"
-msgstr "Abi"
+msgid "Flags Column"
+msgstr ""
 
-msgid "Directory not found"
-msgstr "Kataloogi ei leitud"
+msgid "A column in the model with YelpLocationEntryFlags flags"
+msgstr ""
+
+msgid "Enable Search"
+msgstr ""
+
+msgid "Whether the location entry can be used as a search field"
+msgstr ""
 
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Kataloogi „%s” pole olemas."
 
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgid "GtkSettings"
+msgstr "GtkSettings"
+
+msgid "A GtkSettings object to get settings from"
 msgstr ""
-"Faili „%s” pole võimalik analüüsida kuna see pole käsiraamatu korrektselt "
-"vormindatud leht (man page)."
 
-msgid "Print"
-msgstr "Prindi"
+msgid "GtkIconTheme"
+msgstr "GtkIconTheme"
 
-msgid "Preparing to print"
-msgstr "Printimise ettevalmistamine"
-
-msgid "Printing is not supported on this printer"
-msgstr "Selle printeriga ei ole printimine toetatud"
-
-#, c-format
-msgid "Printer %s does not support postscript printing."
-msgstr "Printer %s ei toeta postscript-printimist."
-
-msgid "Waiting to print"
-msgstr "Printimise ootamine"
-
-msgid "An error occurred while printing"
-msgstr "Printimisel tekkis viga"
-
-#, c-format
-msgid "It was not possible to print your document: %s"
-msgstr "Sinu dokumenti ei olnud võimalik printida: %s"
-
-msgid "the GNOME Support Forums"
-msgstr "GNOME kasutajatoe foorumid"
-
-#, c-format
-msgid "No results for \"%s\""
-msgstr "Tulemusi otsingule \"%s\" ei leitud"
-
-msgid ""
-"Try using different words to describe the problem you're having or the topic "
-"you want help with."
+msgid "A GtkIconTheme object to get icons from"
 msgstr ""
-"Proovi oma probleemi kirjeldamiseks või abiteabe otsimiseks kasutada veidi "
-"teistsuguseid sõnu."
 
-#, c-format
-msgid "Search results for \"%s\""
-msgstr "Otsingu \"%s\" tulemused"
-
-#. TRANSLATORS: Please don't do anything funny with the
-#. * format arguement.  It isn't really going through a printf
-#. * The %s is used to indicate where the name of the site (linked)
-#. * should be.  This is done in the XSLT
-#.
-#, c-format
-msgid "Repeat the search online at %s"
-msgstr "Võrgust otsimise kordamine asukohas %s"
-
-#. Translators: Do not translate this list exactly.  These are
-#. * colon-separated words that aren't useful for choosing search
-#. * results; they will be different for each language. Include
-#. * pronouns, articles, very common verbs and prepositions,
-#. * words from question structures like "tell me about" and
-#. * "how do I", and words for functional states like "not",
-#. * "work", and "broken".
-#.
-msgid ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
+msgid "Font Adjustment"
 msgstr ""
-"ja:ning:ega:ehk:või:aga:kuid:ent:vaid:et:kui:kuna:sest:kuni:kuigi:ehkki:nagu:"
-"saati:elik:justkui:otsekui:mina:ma:meie:me:sina:sa:teie:te:tema:ta:nemad:nad"
 
-#. Translators: This is a list of common prefixes for words.
-#. * Do not translate this directly.  Instead, use a colon
-#. * seperated list of word-starts.  In English, an example
-#. * is re-.  If there is none, please use the term NULL
-#. * If there is only one, please put a colon after.
-#. * E.g. if the common prefix is re then the string would be
-#. * "re:"
-#.
-msgid "re"
-msgstr "eba"
-
-#. Translators: This is a list of (guess what?) common suffixes
-#. * to words.  Things that may be put at ends of words to slightly
-#. * alter their meaning (like -ing and -s in English).  This is a
-#. * colon seperated list (I like colons).  If there are none,
-#. * please use the string NULL.  If there is only 1, please
-#. * add a colon at the end of the list
-#.
-msgid "ers:er:ing:es:s:'s"
+msgid "A size adjustment to add to font sizes"
 msgstr ""
-"am:ard:e:el:gil:gile:i:ik:is:istu:ja:jas:k:kas:ke:kene:kesi:kil:kile:kond:"
-"kuti:la:lane:ldane:ldasa:li:lik:line:lt:m:me:mik:mine:misi:mu:nd:ndik:ndus:"
-"ne:ng:nik:nna:nu:r:rd:s:si:sk:sti:stik:stikku:stu:tar:ti:ts:tsi:tu:u:ur:us:v:"
-"vel:vele:vil:vile"
 
-msgid "No Comment"
-msgstr "Kommentaarita"
+msgid "Show Text Cursor"
+msgstr ""
 
-#. Much bigger problems
-msgid "Search could not be processed"
-msgstr "Otsingut pole võimalik töödelda"
+msgid "Show the text cursor or caret for accessibile navigation"
+msgstr ""
 
-msgid "The requested search could not be processed."
-msgstr "Nõutud otsingut pole võimalik töödelda."
+msgid "Editor Mode"
+msgstr ""
 
-msgid "Cannot process the search"
-msgstr "Otsingut pole võimalik töödelda"
+msgid "Enable features useful to editors"
+msgstr ""
 
-msgid "The search processor returned invalid results"
-msgstr "Otsingutöötleja tagastas vigase tulemuse"
+msgid "XSLT Stylesheet"
+msgstr "XSLT-laaditabel"
+
+msgid "The location of the XSLT stylesheet"
+msgstr "XSLT-laaditabeli asukoht"
 
 #, c-format
-msgid "The page %s was not found in the TOC."
-msgstr "Lehekülg %s puudub sisukorras."
-
-msgid "The requested page was not found in the TOC."
-msgstr "Küsitud lehekülge sisukorras ei leitud."
-
-msgid ""
-"The TOC file could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Sisukorda pole võimalik analüüsida kuna see pole korrektselt vormindatud XML-"
-"dokument."
-
-msgid "Invalid Stylesheet"
-msgstr "Vigane laaditabel"
-
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT-laaditabel „%s” on puudu või on see vigane."
-
-msgid "Broken Transformation"
-msgstr "Katkine teisendus"
-
-msgid "An unknown error occurred while attempting to transform the document."
-msgstr "Dokumendi teisendamisel leidis aset tundmatu viga."
 
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document küljest ei leitud rekvisiiti \"href\"\n"
@@ -1028,11 +787,153 @@ msgstr "yelp:document küljest ei leitud rekvisiiti \"href\"\n"
 msgid "Out of memory"
 msgstr "Mälu otsas"
 
-msgid "_File"
-msgstr "_Fail"
+msgid "_Print..."
+msgstr "_Prindi..."
 
-msgid "_Edit"
-msgstr "_Redaktor"
+msgid "_Back"
+msgstr "_Tagasi"
+
+msgid "_Forward"
+msgstr "_Edasi"
+
+msgid "_Previous Page"
+msgstr "_Eelmine leht"
+
+msgid "_Next Page"
+msgstr "_Järgmine leht"
+
+msgid "Yelp URI"
+msgstr "Yelpi URI"
+
+msgid "A YelpUri with the current location"
+msgstr ""
+
+msgid "Loading State"
+msgstr "Oleku laadimine"
+
+msgid "The loading state of the view"
+msgstr "Vaate oleku laadimine"
+
+msgid "Page ID"
+msgstr "Lehe ID"
+
+msgid "The ID of the root page of the page being viewed"
+msgstr "Vaadeldava juurlehe ID"
+
+msgid "Root Title"
+msgstr ""
+
+msgid "The title of the root page of the page being viewed"
+msgstr ""
+
+msgid "Page Title"
+msgstr ""
+
+msgid "The title of the page being viewed"
+msgstr ""
+
+msgid "Page Description"
+msgstr "Lehe kirjeldus"
+
+msgid "The description of the page being viewed"
+msgstr "Vaadeldava lehe kirjeldus"
+
+msgid "Page Icon"
+msgstr "Lehe ikoon"
+
+msgid "The icon of the page being viewed"
+msgstr "Vaadeldava lehe ikoon"
+
+msgid "Save Image"
+msgstr ""
+
+#. Not using a mnemonic because underscores are common in email
+#. * addresses, and we'd have to escape them. There doesn't seem
+#. * to be a quick GTK+ function for this. In practice, there will
+#. * probably only be one menu item for mailto link popups anyway,
+#. * so the mnemonic's not that big of a deal.
+#.
+#, c-format
+msgid "Send email to %s"
+msgstr ""
+
+msgid "_Open Link"
+msgstr "_Ava viit"
+
+msgid "Open Link in New _Window"
+msgstr "Ava viit _uues aknas"
+
+msgid "_Save Image As..."
+msgstr ""
+
+msgid "_Save Video As..."
+msgstr ""
+
+msgid "S_end Image To..."
+msgstr ""
+
+msgid "S_end Video To..."
+msgstr ""
+
+msgid "_Copy Text"
+msgstr "_Kopeeri tekst"
+
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr ""
+
+#, c-format
+msgid "Could not load a document"
+msgstr "Dokumenti pole võimalik laadida"
+
+msgid "Not Found"
+msgstr ""
+
+msgid "Cannot Read"
+msgstr ""
+
+msgid "Unknown Error"
+msgstr "Tundmatu viga"
+
+#, c-format
+msgid "The URI ‘%s’ does point to a valid page."
+msgstr "URI „%s” ei viita korrektsele lehele."
+
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "URI „%s” pole võimalik analüüsida."
+
+msgid "Turn on editor mode"
+msgstr ""
+
+msgid "_Larger Text"
+msgstr ""
+
+msgid "Increase the size of the text"
+msgstr "Teksti suuruse suurendamine"
+
+msgid "_Smaller Text"
+msgstr ""
+
+msgid "Descrease the size of the text"
+msgstr "Teksti suuruse vähendamine"
+
+msgid "Show Text _Cursor"
+msgstr ""
+
+msgid "Help"
+msgstr "Abi"
+
+msgid ""
+"You do not have PackageKit installed.  Package installation links require "
+"PackageKit."
+msgstr ""
+
+msgid "_Page"
+msgstr ""
+
+msgid "_View"
+msgstr ""
 
 msgid "_Go"
 msgstr "_Liikumine"
@@ -1040,167 +941,420 @@ msgstr "_Liikumine"
 msgid "_Bookmarks"
 msgstr "_Järjehoidjad"
 
-msgid "_Help"
-msgstr "A_bi"
-
 msgid "_New Window"
 msgstr "_Uus aken"
 
-msgid "Print This Document ..."
-msgstr "Prindi see dokument..."
-
-msgid "Print This Page ..."
-msgstr "Prindi see lehekülg..."
-
-msgid "About This Document"
-msgstr "Dokumendist"
-
-msgid "Open _Location"
-msgstr "_Ava asukoht"
-
-msgid "_Close Window"
-msgstr "_Sulge aken"
-
-msgid "_Copy"
-msgstr "_Kopeeri"
-
-msgid "_Select All"
-msgstr "_Vali kõik"
-
-msgid "_Find..."
-msgstr "_Otsing..."
-
-msgid "Find Pre_vious"
-msgstr "Otsi _eelmist"
-
-msgid "Find previous occurrence of the word or phrase"
-msgstr "Leia selle sõna või fraasi järgmine esinemine"
-
-msgid "Find Ne_xt"
-msgstr "Otsi _järgmist"
-
-msgid "Find next occurrence of the word or phrase"
-msgstr "Leia selle sõna või fraasi eelmine esinemine"
-
-msgid "_Preferences"
-msgstr "_Eelistused"
-
-msgid "_Reload"
-msgstr "_Lae uuesti"
-
-msgid "_Back"
-msgstr "_Tagasi"
-
-msgid "Show previous page in history"
-msgstr "Ajaloos eelmise lehe näitamine"
-
-msgid "_Forward"
-msgstr "_Edasi"
-
-msgid "Show next page in history"
-msgstr "Ajaloos järgmise lehe näitamine"
-
-msgid "_Help Topics"
-msgstr "_Abiteabe teemad"
-
-msgid "Go to the listing of help topics"
-msgstr "Liikumine abiteabe teemade loendisse"
-
-msgid "_Previous Section"
-msgstr "_Eelmine peatükk"
-
-msgid "_Next Section"
-msgstr "_Järgmine peatükk"
-
-msgid "_Contents"
-msgstr "_Sisukord"
+msgid "_Close"
+msgstr "Sul_ge"
 
 msgid "_Add Bookmark"
 msgstr "_Lisa järjehoidja"
 
-msgid "_Edit Bookmarks..."
-msgstr "_Järjehoidjate redigeerimine..."
+msgid "_Edit Bookmarks"
+msgstr "_Järjehoidjate redigeerimine"
 
-msgid "_Open Link"
-msgstr "_Ava viit"
+msgid "Find in Page..."
+msgstr ""
 
-msgid "Open Link in _New Window"
-msgstr "Ava viit _uues aknas"
+msgid "Search..."
+msgstr "Otsimine..."
 
-msgid "_Copy Link Address"
-msgstr "_Kopeeri viida aadress"
+msgid "Open Location"
+msgstr "Asukoha avamine"
 
-msgid "Help On this application"
-msgstr "Selle rakenduse abiteave"
+msgid "Application"
+msgstr "Rakendus"
 
-msgid "_About"
-msgstr "_Programmist lähemalt"
+msgid "A YelpApplication instance that controls this window"
+msgstr ""
 
-msgid "Copy _Email Address"
-msgstr "Kopeeri _e-posti aadress"
-
-msgid "Help Browser"
-msgstr "Abiteabe sirvija"
-
-msgid "Loading..."
-msgstr "Laadimine..."
-
-msgid "Unknown Page"
-msgstr "Tundmatu lehekülg"
+#. %s will be replaced with the name of a document
+#, c-format
+msgid "Bookmarks for %s"
+msgstr "Dokumendi „%s” järjehoidjad"
 
 #, c-format
-msgid "The requested URI \"%s\" is invalid"
-msgstr "Küsitud URI \"%s\" on vigane"
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i vastavus"
+msgstr[1] "%i vastavust"
 
-msgid "Unable to load page"
-msgstr "Lehekülge pole võimalik laadida"
-
-msgid "_Search:"
-msgstr "_Otsing:"
-
-msgid "Search for other documentation"
-msgstr "Otsi muud dokumentatsiooni"
-
-msgid "Cannot create window"
-msgstr "Akent pole võimalik luua"
-
-msgid "Cannot create search component"
-msgstr "Otsingukomponenti pole võimalik luua"
-
-msgid "Fin_d:"
-msgstr "_Otsing:"
-
-msgid "Find _Previous"
-msgstr "Otsi _eelmist"
-
-msgid "Find _Next"
-msgstr "Otsi _järgmist"
-
-msgid "Phrase not found"
-msgstr "Fraasi ei leitud"
-
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
+msgid "No matches"
 msgstr ""
-"Faili „%s” pole võimalik lugeda.  Seda kas pole olemas või pole sul selle "
-"lugemiseks piisavalt õiguseid."
 
-#. Note to translators: put here your name (and address) so it
-#. * will show up in the "about" box
-msgid "translator-credits"
-msgstr ""
-"Tõivo Leedjärv <toivo@linux.ee>, 2002-2004.\n"
-"Allan Sims <allsi@eau.ee>, 2003.\n"
-"Priit Laes <amd@store20.com>, 2005, 2006.\n"
-"Ivar Smolin <okul@linux.ee>, 2005-2009."
+msgid "Loading"
+msgstr "Laadimine"
 
-msgid "Yelp"
-msgstr "Yelp"
+msgid "_Open Bookmark"
+msgstr "_Ava järjehoidja"
 
-msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Dokumentatsioonisirvija Gnome töölaua jaoks."
+msgid "Open Bookmark in New _Window"
+msgstr "Ava järjehoidja uues _aknas"
+
+msgid "_Remove Bookmark"
+msgstr "_Eemalda järjehoidja"
 
 msgid "Get help with GNOME"
 msgstr "Abistab GNOME kasutamisel"
+
+#~ msgid "Re_name"
+#~ msgstr "Muuda _nime"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "_Järjehoidjad:"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "Järjehoidja lisamine"
+
+#~ msgid "_Title:"
+#~ msgstr "_Pealkiri:"
+
+#~ msgid "_Location:"
+#~ msgstr "_Asukoht:"
+
+#~ msgid "Fonts"
+#~ msgstr "Kirjatüübid"
+
+#~ msgid "Preferences"
+#~ msgstr "Eelistused"
+
+#~ msgid "_Browse with caret"
+#~ msgstr "Sirvimisel näidatakse _tekstikursorit"
+
+#~ msgid "_Fixed width:"
+#~ msgstr "_Fikseeritud laiusega:"
+
+#~ msgid "_Use system fonts"
+#~ msgstr "_Kasutatakse süsteemseid kirjatüüpe"
+
+#~ msgid "_Variable width:"
+#~ msgstr "_Muutuva laiusega:"
+
+#~ msgid "Font for fixed text"
+#~ msgstr "Kirjatüüp fikseeritud laiusega teksti jaoks"
+
+#~ msgid "Font for text"
+#~ msgstr "Kirjatüüp teksti jaoks"
+
+#~ msgid "Font for text with fixed width."
+#~ msgstr "Kirjatüüp fikseeritud laiusega teksti jaoks."
+
+#~ msgid "Font for text with variable width."
+#~ msgstr "Kirjatüüp muutuva laiusega teksti jaoks."
+
+#~ msgid "Use a keyboard-controllable caret when viewing pages."
+#~ msgstr "Lehtede vaatamisel kasuta klaviatuuriga juhitavat tekstikursorit."
+
+#~ msgid "Use caret"
+#~ msgstr "Kasuta tekstikursorit"
+
+#~ msgid "Use system fonts"
+#~ msgstr "Süsteemi kirjatüüpide kasutamine"
+
+#~ msgid "Use the default fonts set for the system."
+#~ msgstr "Süsteemsete vaikekirjatüüpide kasutamine."
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Fail pole korrektne .desktop fail"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Töölauafaili tundmatu versioon '%s'"
+
+#~ msgid "Starting %s"
+#~ msgstr "Käivitamine: %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Rakendus ei aktsepteeri käsurealt antud dokumente"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Tundmatu käivitusvalik: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Dokumendi URI-sid pole võimalik 'Liik=Viit' tüüpi töölauakirjetele "
+#~ "edastada"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Pole käivitatav kirje"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Seansihalduriga ühendumise keelamine"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Salvestatud seadistusi sisaldava faili määramine"
+
+#~ msgid "FILE"
+#~ msgstr "FAIL"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Seansihalduse ID määramine"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Session management options"
+
+#~ msgid "Show session management options"
+#~ msgstr "Seansihalduse valikute näitamine"
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "Järjehoidja pealkirjaga %s on selle lehe jaoks juba olemas."
+
+#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
+#~ msgstr "Järjehoidja pealkirjaga <b>%s</b> on selle lehe jaoks juba olemas."
+
+#~ msgid "Help Topics"
+#~ msgstr "Abiteabe teemad"
+
+#~ msgid "Document Sections"
+#~ msgstr "Dokumendi jaotised"
+
+#~ msgid "File not found"
+#~ msgstr "Faili ei leitud"
+
+#~ msgid "Could not parse file"
+#~ msgstr "Faili pole võimalik analüüsida"
+
+#~ msgid "Could Not Read File"
+#~ msgstr "Faili pole võimalik lugeda"
+
+#~ msgid "No information is available about this error."
+#~ msgstr "Selle vea kohta puuduvad andmed."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "Faili „%s” ei ole võimalik lugeda ja dekodeerida. Arvatavasti on fail "
+#~ "pakitud toetamata vorminguga."
+
+#~ msgid "Use a private session"
+#~ msgstr "Uus privaatne seanss"
+
+#~ msgid "Define which cache directory to use"
+#~ msgstr "Kasutatava puhverkataloogi määramine"
+
+#~ msgid " GNOME Help Browser"
+#~ msgstr " GNOME Abiteabe sirvija"
+
+#~ msgid "Directory not found"
+#~ msgstr "Kataloogi ei leitud"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr ""
+#~ "Faili „%s” pole võimalik analüüsida kuna see pole käsiraamatu korrektselt "
+#~ "vormindatud leht (man page)."
+
+#~ msgid "Preparing to print"
+#~ msgstr "Printimise ettevalmistamine"
+
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "Selle printeriga ei ole printimine toetatud"
+
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "Printer %s ei toeta postscript-printimist."
+
+#~ msgid "Waiting to print"
+#~ msgstr "Printimise ootamine"
+
+#~ msgid "An error occurred while printing"
+#~ msgstr "Printimisel tekkis viga"
+
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "Sinu dokumenti ei olnud võimalik printida: %s"
+
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "GNOME kasutajatoe foorumid"
+
+#~ msgid "No results for \"%s\""
+#~ msgstr "Tulemusi otsingule \"%s\" ei leitud"
+
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "Proovi oma probleemi kirjeldamiseks või abiteabe otsimiseks kasutada "
+#~ "veidi teistsuguseid sõnu."
+
+#~ msgid "Search results for \"%s\""
+#~ msgstr "Otsingu \"%s\" tulemused"
+
+#~ msgid "Repeat the search online at %s"
+#~ msgstr "Võrgust otsimise kordamine asukohas %s"
+
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "ja:ning:ega:ehk:või:aga:kuid:ent:vaid:et:kui:kuna:sest:kuni:kuigi:ehkki:"
+#~ "nagu:saati:elik:justkui:otsekui:mina:ma:meie:me:sina:sa:teie:te:tema:ta:"
+#~ "nemad:nad"
+
+#~ msgid "re"
+#~ msgstr "eba"
+
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr ""
+#~ "am:ard:e:el:gil:gile:i:ik:is:istu:ja:jas:k:kas:ke:kene:kesi:kil:kile:kond:"
+#~ "kuti:la:lane:ldane:ldasa:li:lik:line:lt:m:me:mik:mine:misi:mu:nd:ndik:"
+#~ "ndus:ne:ng:nik:nna:nu:r:rd:s:si:sk:sti:stik:stikku:stu:tar:ti:ts:tsi:tu:u:"
+#~ "ur:us:v:vel:vele:vil:vile"
+
+#~ msgid "No Comment"
+#~ msgstr "Kommentaarita"
+
+#~ msgid "Search could not be processed"
+#~ msgstr "Otsingut pole võimalik töödelda"
+
+#~ msgid "The requested search could not be processed."
+#~ msgstr "Nõutud otsingut pole võimalik töödelda."
+
+#~ msgid "Cannot process the search"
+#~ msgstr "Otsingut pole võimalik töödelda"
+
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "Otsingutöötleja tagastas vigase tulemuse"
+
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "Lehekülg %s puudub sisukorras."
+
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr "Küsitud lehekülge sisukorras ei leitud."
+
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr ""
+#~ "Sisukorda pole võimalik analüüsida kuna see pole korrektselt vormindatud "
+#~ "XML-dokument."
+
+#~ msgid "Broken Transformation"
+#~ msgstr "Katkine teisendus"
+
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
+#~ msgstr "Dokumendi teisendamisel leidis aset tundmatu viga."
+
+#~ msgid "_File"
+#~ msgstr "_Fail"
+
+#~ msgid "_Edit"
+#~ msgstr "_Redaktor"
+
+#~ msgid "_Help"
+#~ msgstr "A_bi"
+
+#~ msgid "Print This Document ..."
+#~ msgstr "Prindi see dokument..."
+
+#~ msgid "About This Document"
+#~ msgstr "Dokumendist"
+
+#~ msgid "Open _Location"
+#~ msgstr "_Ava asukoht"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Sulge aken"
+
+#~ msgid "_Select All"
+#~ msgstr "_Vali kõik"
+
+#~ msgid "_Find..."
+#~ msgstr "_Otsing..."
+
+#~ msgid "Find Pre_vious"
+#~ msgstr "Otsi _eelmist"
+
+#~ msgid "Find previous occurrence of the word or phrase"
+#~ msgstr "Leia selle sõna või fraasi järgmine esinemine"
+
+#~ msgid "Find Ne_xt"
+#~ msgstr "Otsi _järgmist"
+
+#~ msgid "Find next occurrence of the word or phrase"
+#~ msgstr "Leia selle sõna või fraasi eelmine esinemine"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Eelistused"
+
+#~ msgid "_Reload"
+#~ msgstr "_Lae uuesti"
+
+#~ msgid "Show previous page in history"
+#~ msgstr "Ajaloos eelmise lehe näitamine"
+
+#~ msgid "Show next page in history"
+#~ msgstr "Ajaloos järgmise lehe näitamine"
+
+#~ msgid "_Help Topics"
+#~ msgstr "_Abiteabe teemad"
+
+#~ msgid "Go to the listing of help topics"
+#~ msgstr "Liikumine abiteabe teemade loendisse"
+
+#~ msgid "_Contents"
+#~ msgstr "_Sisukord"
+
+#~ msgid "_Copy Link Address"
+#~ msgstr "_Kopeeri viida aadress"
+
+#~ msgid "Help On this application"
+#~ msgstr "Selle rakenduse abiteave"
+
+#~ msgid "_About"
+#~ msgstr "_Programmist lähemalt"
+
+#~ msgid "Copy _Email Address"
+#~ msgstr "Kopeeri _e-posti aadress"
+
+#~ msgid "Help Browser"
+#~ msgstr "Abiteabe sirvija"
+
+#~ msgid "Unknown Page"
+#~ msgstr "Tundmatu lehekülg"
+
+#~ msgid "The requested URI \"%s\" is invalid"
+#~ msgstr "Küsitud URI \"%s\" on vigane"
+
+#~ msgid "Unable to load page"
+#~ msgstr "Lehekülge pole võimalik laadida"
+
+#~ msgid "Search for other documentation"
+#~ msgstr "Otsi muud dokumentatsiooni"
+
+#~ msgid "Cannot create search component"
+#~ msgstr "Otsingukomponenti pole võimalik luua"
+
+#~ msgid "Fin_d:"
+#~ msgstr "_Otsing:"
+
+#~ msgid "Find _Previous"
+#~ msgstr "Otsi _eelmist"
+
+#~ msgid "Find _Next"
+#~ msgstr "Otsi _järgmist"
+
+#~ msgid "Phrase not found"
+#~ msgstr "Fraasi ei leitud"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "Faili „%s” pole võimalik lugeda.  Seda kas pole olemas või pole sul selle "
+#~ "lugemiseks piisavalt õiguseid."
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Tõivo Leedjärv <toivo@linux.ee>, 2002–2004.\n"
+#~ "Allan Sims <allsi@eau.ee>, 2003.\n"
+#~ "Priit Laes <amd@store20.com>, 2005, 2006.\n"
+#~ "Ivar Smolin <okul@linux.ee>, 2005–2010."
+
+#~ msgid "A documentation browser and viewer for the Gnome Desktop."
+#~ msgstr "Dokumentatsioonisirvija Gnome töölaua jaoks."
