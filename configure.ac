@@ -131,12 +131,12 @@ AC_SUBST(XSL_DB2XHTML)
 XSL_MAL2XHTML="`$PKG_CONFIG --variable=mal2xhtml yelp-xsl`"
 AC_SUBST(XSL_MAL2XHTML)
 
-XSL_THEME_COLORS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/theme/theme-colors.xsl"
-AC_SUBST(XSL_THEME_COLORS)
-XSL_THEME_ICONS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/theme/theme-icons.xsl"
-AC_SUBST(XSL_THEME_ICONS)
-XSL_THEME_HTML="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/theme/theme-html.xsl"
-AC_SUBST(XSL_THEME_HTML)
+XSL_COLOR="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/color.xsl"
+AC_SUBST(XSL_COLOR)
+XSL_ICONS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/icons.xsl"
+AC_SUBST(XSL_ICONS)
+XSL_HTML="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/html.xsl"
+AC_SUBST(XSL_HTML)
 
 XSL_GETTEXT="`$PKG_CONFIG --variable=gettext yelp-xsl`"
 AC_SUBST(XSL_GETTEXT)
