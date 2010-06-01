@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns:set="http://exslt.org/sets"
                 xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="set"
                 extension-element-prefixes="yelp"
                 version="1.0">
 
