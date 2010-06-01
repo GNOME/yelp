@@ -26,11 +26,7 @@
   <xsl:param name="right"/>
 <xsl:text>
 body { font-family: monospace; }
-h1, h2 { font-family: sans-serif; }
-div.SH { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em; }
-div.SS { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.6em; }
-span.Section { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0.4em; }
-dd { padding-bottom: 10px; }
+div.hgroup { font-family: sans-serif; }
 </xsl:text>
 </xsl:template>
 
@@ -168,23 +164,27 @@ dd { padding-bottom: 10px; }
   <xsl:variable name="nextSS"
                 select="following-sibling::SS[not($nextSH) or
                                               following-sibling::SH[1] = $nextSH][1]"/>
-  <h3><xsl:apply-templates/></h3>
-  <div class="SS">
-    <xsl:choose>
-      <xsl:when test="$nextSS">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SS[1] = $nextSS and 
-                                      following-sibling::SS[1]/@id = $nextSS/@id]"/>
-      </xsl:when>
-      <xsl:when test="$nextSH">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SH[1] = $nextSH and
-                                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="following-sibling::*"/>
-      </xsl:otherwise>
-    </xsl:choose>
+  <div class="sect sect-SS">
+    <div class="hgroup">
+      <h3 class="title"><xsl:apply-templates/></h3>
+    </div>
+    <div class="inner">
+      <xsl:choose>
+        <xsl:when test="$nextSS">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SS[1] = $nextSS and 
+                      following-sibling::SS[1]/@id = $nextSS/@id]"/>
+        </xsl:when>
+        <xsl:when test="$nextSH">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SH[1] = $nextSH and
+                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="following-sibling::*"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </div>
   </div>
 </xsl:template>
 
@@ -193,24 +193,28 @@ dd { padding-bottom: 10px; }
   <xsl:variable name="nextSS"
                 select="following-sibling::SS[not($nextSH) or
                                               following-sibling::SH[1] = $nextSH]"/>
-  <h2><xsl:apply-templates/></h2>
-  <div class="SH">
-    <xsl:choose>
-      <xsl:when test="$nextSS">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SS[1] = $nextSS[1] and
-                                      following-sibling::SS[1]/@id = $nextSS[1]/@id]"/>  
-        <xsl:apply-templates select="$nextSS"/>
-      </xsl:when>
-      <xsl:when test="$nextSH">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SH[1] = $nextSH and
-                                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="following-sibling::*"/>
-      </xsl:otherwise>
-    </xsl:choose>
+  <div class="sect sect-SH">
+    <div class="hgroup">
+      <h2 class="title"><xsl:apply-templates/></h2>
+    </div>
+    <div class="inner">
+      <xsl:choose>
+        <xsl:when test="$nextSS">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SS[1] = $nextSS[1] and
+                      following-sibling::SS[1]/@id = $nextSS[1]/@id]"/>  
+          <xsl:apply-templates select="$nextSS"/>
+        </xsl:when>
+        <xsl:when test="$nextSH">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SH[1] = $nextSH and
+                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="following-sibling::*"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </div>
   </div>
 </xsl:template>
 
@@ -223,16 +227,18 @@ dd { padding-bottom: 10px; }
 </xsl:template>
 
 <xsl:template match="TH">
-  <h1>
-    <span class="Title">
-      <xsl:apply-templates select="Title/node()"/>
-    </span>
-    <span class="Section">
-      <xsl:text>(</xsl:text>
-      <xsl:apply-templates select="Section/node()"/>
-      <xsl:text>)</xsl:text>
-    </span>
-  </h1>
+  <div class="hgroup">
+    <h1 class="title">
+      <span class="Title">
+        <xsl:apply-templates select="Title/node()"/>
+      </span>
+      <span class="Section">
+        <xsl:text>(</xsl:text>
+        <xsl:apply-templates select="Section/node()"/>
+        <xsl:text>)</xsl:text>
+      </span>
+    </h1>
+  </div>
 </xsl:template>
 
 <xsl:template match="UR">
