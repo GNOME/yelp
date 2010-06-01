@@ -10,6 +10,8 @@ libyelp_la_SOURCES =				\
 	yelp-location-entry.c			\
 	yelp-magic-decompressor.c		\
 	yelp-mallard-document.c			\
+	yelp-man-document.c			\
+	yelp-man-parser.c			\
 	yelp-marshal.c				\
 	yelp-settings.c				\
 	yelp-simple-document.c			\
@@ -23,6 +25,7 @@ EXTRA_DIST =				\
 	yelp-debug.h			\
 	yelp-error.h			\
 	yelp-info-parser.h		\
+	yelp-man-parser.h		\
 	yelp-lzma-decompressor.h	\
 	yelp-magic-decompressor.h	\
 	yelp-marshal.list
@@ -53,6 +56,7 @@ libyelp_headers =				\
 	yelp-info-document.h			\
 	yelp-location-entry.h			\
 	yelp-mallard-document.h			\
+	yelp-man-document.h			\
 	yelp-settings.h				\
 	yelp-simple-document.h			\
 	yelp-transform.h			\

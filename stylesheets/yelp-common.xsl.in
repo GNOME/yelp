@@ -30,7 +30,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
-  <yelp:document href="{$node/@id}">
+  <yelp:document href="{$href}">
     <xsl:call-template name="html.page">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>

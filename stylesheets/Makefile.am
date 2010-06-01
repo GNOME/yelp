@@ -18,5 +18,6 @@ EXTRA_DIST=			\
 	db-title.xsl.in		\
 	info2html.xsl.in	\
 	mal2html.xsl.in		\
+	man2html.xsl.in		\
 	toc2html.xsl.in		\
 	yelp-common.xsl.in

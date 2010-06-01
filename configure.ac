@@ -201,6 +201,7 @@ stylesheets/db2html.xsl
 stylesheets/db-title.xsl
 stylesheets/info2html.xsl
 stylesheets/mal2html.xsl
+stylesheets/man2html.xsl
 stylesheets/toc2html.xsl
 stylesheets/yelp-common.xsl
 data/Makefile
