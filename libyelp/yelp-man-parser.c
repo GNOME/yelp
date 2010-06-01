@@ -1607,6 +1607,7 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
     c = *(ptr);
     *(ptr) = '\0';
     parser_append_given_text (parser, anc);
+    parser_append_given_text (parser, "\n");
     *(ptr) = c;
    
     g_free (baseptr); 
