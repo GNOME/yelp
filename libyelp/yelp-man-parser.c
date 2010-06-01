@@ -191,7 +191,7 @@ parser_parse_line (YelpManParser *parser) {
     	    if (parser->ignore)
 	        return;
 	    break;
-	case '\n':
+	case '\0':
 	    parser->ins = xmlDocGetRootElement (parser->doc);
 	    break;
 	case '\'':
@@ -202,7 +202,7 @@ parser_parse_line (YelpManParser *parser) {
 	}
     }
     
-    parser_read_until (parser, '\n');
+    parser_read_until (parser, '\0');
      
     if (parser->cur != parser->anc)
 	parser_append_text (parser);
@@ -1080,16 +1080,16 @@ parser_handle_linetag (YelpManParser *parser) {
     }
 
     /* FIXME: figure out a better way to handle these cases */
-    /* special case, if the line is simply ".\n" then return */
-    if (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\n') {
+    /* special case, if the line is simply ".\0" then return */
+    if (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\0') {
     	parser->cur = g_utf8_next_char (parser->cur);
     	parser->cur = g_utf8_next_char (parser->cur);
 	parser->anc = parser->cur;
 	return;
     } 
-    /* special case, if the line is simply "..\n" then return */
+    /* special case, if the line is simply "..\0" then return */
     else if (g_utf8_get_char (g_utf8_next_char(parser->cur)) == '.' && 
-	     g_utf8_get_char (g_utf8_next_char (g_utf8_next_char (parser->cur+2))) == '\n') {
+	     g_utf8_get_char (g_utf8_next_char (g_utf8_next_char (parser->cur+2))) == '\0') {
     	parser->cur = g_utf8_next_char (parser->cur);
     	parser->cur = g_utf8_next_char (parser->cur);
     	parser->cur = g_utf8_next_char (parser->cur);
@@ -1108,7 +1108,7 @@ parser_handle_linetag (YelpManParser *parser) {
 		 (g_utf8_get_char(g_utf8_next_char (parser->cur)) == '\"')
 		) 
 	      )
-	   && g_utf8_get_char (parser->cur) != '\n') {    
+	   && g_utf8_get_char (parser->cur) != '\0') {    
 	if (
 	    (g_utf8_get_char (parser->cur) == '\\') && 
 	    (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\"')
@@ -1128,7 +1128,7 @@ parser_handle_linetag (YelpManParser *parser) {
     
     /* FIXME: need to handle escaped characters */
     /* perform argument parsing and store argument in a singly linked list */
-    while (PARSER_CUR && g_utf8_get_char (parser->cur) != '\n') { 
+    while (PARSER_CUR && g_utf8_get_char (parser->cur) != '\0') { 
 	ptr = NULL;
 	arg = NULL;
 	    
@@ -1141,7 +1141,7 @@ parser_handle_linetag (YelpManParser *parser) {
 get_argument:
 	/* search until we hit whitespace or an " */
 	while (PARSER_CUR && 
-               g_utf8_get_char (parser->cur) != '\n' &&
+               g_utf8_get_char (parser->cur) != '\0' &&
 	       g_utf8_get_char (parser->cur) != ' ' &&
 	       g_utf8_get_char (parser->cur) != '\"')
 		parser->cur = g_utf8_next_char (parser->cur);
@@ -1155,7 +1155,7 @@ get_argument:
 		goto get_argument;
 	}
 	
-	if (g_utf8_get_char (parser->cur) == '\n' && 
+	if (g_utf8_get_char (parser->cur) == '\0' && 
 	    (parser->cur == parser->anc))
 	    break;
 	
@@ -1192,7 +1192,7 @@ get_argument:
 	    *(parser->cur) = c;
 	    parser->anc = ++parser->cur;
 	} 
-	else if (*(parser->cur) == '\n' && *(parser->cur-1) != ' ') {
+	else if (*(parser->cur) == '\0' && *(parser->cur-1) != ' ') {
 	    /* special case for EOL */
 	    c = *(parser->cur);
 	    *(parser->cur) = '\0';
@@ -1311,7 +1311,7 @@ parser_read_until (YelpManParser *parser,
     gchar c;
     
     while (PARSER_CUR
-	   && g_utf8_get_char (parser->cur) != '\n'
+	   && g_utf8_get_char (parser->cur) != '\0'
 	   && g_utf8_get_char (parser->cur) != delim) {
 	    parser->cur = g_utf8_next_char (parser->cur);
     }
@@ -1624,7 +1624,7 @@ parser_append_text (YelpManParser *parser)
     c = *(parser->cur);
     *(parser->cur) = '\0';
 
-    if (g_utf8_get_char (parser->anc) != '\n')
+    if (g_utf8_get_char (parser->anc) != '\0')
 	parser_ensure_P (parser);
 
     node = xmlNewText (BAD_CAST parser->anc);
@@ -1759,7 +1759,7 @@ parser_parse_table (YelpManParser *parser)
 		parser->anc = parser->buffer;
 		parser->cur = parser->buffer;
 	    
-		parser_read_until (parser, '\n');
+		parser_read_until (parser, '\0');
 	    } else
 		return;
 	}
@@ -1794,7 +1794,7 @@ parser_parse_table (YelpManParser *parser)
 		    parser_handle_linetag (parser);
 		    break;
 		}
-	    case '\n':
+	    case '\0':
 		empty_row = TRUE;
 		break;
 	    default:
@@ -1803,7 +1803,7 @@ parser_parse_table (YelpManParser *parser)
 	    
 	    if (!empty_row) {
 		parser->ins = parser_append_node (parser, "ROW");
-		while (PARSER_CUR && *(parser->cur) != '\n') {
+		while (PARSER_CUR && *(parser->cur) != '\0') {
 		    parser_read_until (parser, '\t');
 		    parser->ins = parser_append_node (parser, "CELL");
 		    parser_append_text (parser);

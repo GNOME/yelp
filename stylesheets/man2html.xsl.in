@@ -17,7 +17,7 @@
 <xsl:param name="linktrail" select="''"/>
 
 <xsl:template mode="html.title.mode" match="Man">
-  <xsl:value-of select="//TH/Title"/>
+  <xsl:value-of select="TH/Title"/>
 </xsl:template>
 
 <xsl:template mode="html.css.mode" match="Man">
@@ -26,6 +26,7 @@
   <xsl:param name="right"/>
 <xsl:text>
 body { font-family: monospace; }
+h1, h2 { font-family: sans-serif; }
 div.SH { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em; }
 div.SS { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.6em; }
 span.Section { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0.4em; }
