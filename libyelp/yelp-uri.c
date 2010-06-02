@@ -1074,6 +1074,19 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
                         priv->frag_id = g_strdup (splithash[1]);
                 }
             }
+            else if (yelp_settings_get_editor_mode (yelp_settings_get_default ())) {
+                g_object_unref (child);
+                child = g_file_get_child (priv->gfile, "index.page.stub");
+                if (g_file_query_exists (child, NULL)) {
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
+                    if (splithash) {
+                        if (priv->page_id == NULL)
+                            priv->page_id = g_strdup (splithash[0]);
+                        if (priv->frag_id == NULL && splithash[0])
+                            priv->frag_id = g_strdup (splithash[1]);
+                    }
+                }
+            }
             g_object_unref (child);
         }
         else {
