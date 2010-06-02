@@ -924,7 +924,17 @@ window_set_bookmarks (YelpWindow  *window,
         gchar *action_id = g_strconcat ("LoadBookmark-", entry->page_id, NULL);
 
         bookmark = gtk_action_group_get_action (priv->bookmark_actions, action_id);
-        if (bookmark == NULL) {
+        if (bookmark) {
+            /* The action might have been set by a different document using
+             * the same page ID. We can just reuse the action, since it's
+             * just a page ID relative to the current URI, but we need to
+             * reset the title and icon.
+             */
+            g_object_set (bookmark,
+                          "label", entry->title,
+                          "icon-name", entry->icon,
+                          NULL);
+        } else {
             bookmark = gtk_action_new (action_id, entry->title, NULL, NULL);
             g_signal_connect (bookmark, "activate",
                               G_CALLBACK (window_load_bookmark), window);
