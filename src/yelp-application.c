@@ -47,6 +47,7 @@ static gboolean editor_mode = FALSE;
 
 enum {
     BOOKMARKS_CHANGED,
+    READ_LATER_CHANGED,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -133,6 +134,14 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     signals[BOOKMARKS_CHANGED] =
         g_signal_new ("bookmarks-changed",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__STRING,
+                      G_TYPE_NONE, 1, G_TYPE_STRING);
+
+    signals[READ_LATER_CHANGED] =
+        g_signal_new ("read-later-changed",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
@@ -693,6 +702,78 @@ yelp_application_get_bookmarks (YelpApplication *app,
     GSettings *settings = application_get_doc_settings (app, doc_uri);
 
     return g_settings_get_value (settings, "bookmarks");
+}
+
+void
+yelp_application_add_read_later (YelpApplication   *app,
+                                 const gchar       *doc_uri,
+                                 const gchar       *full_uri,
+                                 const gchar       *title)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_uri, *this_title;
+        gboolean broken = FALSE;
+        g_settings_get (settings, "readlater", "a(ss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(ss)"));
+        while (g_variant_iter_loop (iter, "(&s&s)", &this_uri, &this_title)) {
+            if (g_str_equal (full_uri, this_uri)) {
+                /* Already have this link */
+                broken = TRUE;
+                break;
+            }
+            g_variant_builder_add (&builder, "(ss)", this_uri, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        if (!broken) {
+            GVariant *value;
+            g_variant_builder_add (&builder, "(ss)", full_uri, title);
+            value = g_variant_builder_end (&builder);
+            g_settings_set_value (settings, "readlater", value);
+            g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
+        }
+    }
+}
+
+void
+yelp_application_remove_read_later (YelpApplication *app,
+                                    const gchar     *doc_uri,
+                                    const gchar     *full_uri)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_uri, *this_title;
+        g_settings_get (settings, "readlater", "a(ss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(ss)"));
+        while (g_variant_iter_loop (iter, "(&s&s)", &this_uri, &this_title)) {
+            if (!g_str_equal (this_uri, full_uri))
+                g_variant_builder_add (&builder, "(ss)", this_uri, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        g_settings_set_value (settings, "readlater", g_variant_builder_end (&builder));
+        g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
+    }
+}
+
+GVariant *
+yelp_application_get_read_later (YelpApplication *app,
+                                 const gchar     *doc_uri)
+{
+    GSettings *settings = application_get_doc_settings (app, doc_uri);
+
+    return g_settings_get_value (settings, "readlater");
 }
 
 void

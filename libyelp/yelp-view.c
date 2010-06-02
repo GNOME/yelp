@@ -194,6 +194,7 @@ struct _YelpViewPrivate {
     gulong         hadjuster;
 
     gchar         *popup_link_uri;
+    gchar         *popup_link_text;
     gchar         *popup_image_uri;
 
     YelpViewState  state;
@@ -204,13 +205,15 @@ struct _YelpViewPrivate {
     gchar         *page_desc;
     gchar         *page_icon;
 
-    GList *back_list;
-    GList *back_cur;
-    gboolean back_load;
+    GList          *back_list;
+    GList          *back_cur;
+    gboolean        back_load;
 
     GtkActionGroup *action_group;
 
-    gint           navigation_requested;
+    GSList         *link_actions;
+
+    gint            navigation_requested;
 };
 
 #define TARGET_TYPE_URI_LIST     "text/uri-list"
@@ -282,6 +285,11 @@ yelp_view_dispose (GObject *object)
         priv->document = NULL;
     }
 
+    while (priv->link_actions) {
+        g_object_unref (priv->link_actions->data);
+        priv->link_actions = g_slist_delete_link (priv->link_actions, priv->link_actions);
+    }
+
     priv->back_cur = NULL;
     while (priv->back_list) {
         back_entry_free ((YelpBackEntry *) priv->back_list->data);
@@ -297,6 +305,7 @@ yelp_view_finalize (GObject *object)
     YelpViewPrivate *priv = GET_PRIV (object);
 
     g_free (priv->popup_link_uri);
+    g_free (priv->popup_link_text);
     g_free (priv->popup_image_uri);
 
     g_free (priv->page_id);
@@ -605,6 +614,38 @@ yelp_view_get_action_group (YelpView *view)
 
 /******************************************************************************/
 
+void
+yelp_view_add_link_action (YelpView *view, GtkAction *action)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    priv->link_actions = g_slist_append (priv->link_actions,
+                                         g_object_ref (action));
+}
+
+YelpUri *
+yelp_view_get_active_link_uri (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUri *uri;
+
+    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+
+    return uri;
+}
+
+gchar *
+yelp_view_get_active_link_text (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    return g_strdup (priv->popup_link_text);
+}
+
+/******************************************************************************/
+
 static void
 view_scrolled (GtkAdjustment *adjustment,
                YelpView      *view)
@@ -659,6 +700,9 @@ popup_open_link (GtkMenuItem *item,
 
     g_free (priv->popup_link_uri);
     priv->popup_link_uri = NULL;
+
+    g_free (priv->popup_link_text);
+    priv->popup_link_text = NULL;
 }
 
 static void
@@ -675,6 +719,9 @@ popup_open_link_new (GtkMenuItem *item,
 
     g_free (priv->popup_link_uri);
     priv->popup_link_uri = NULL;
+
+    g_free (priv->popup_link_text);
+    priv->popup_link_text = NULL;
 
     g_signal_emit (view, signals[NEW_VIEW_REQUESTED], 0, uri);
     g_object_unref (uri);
@@ -812,6 +859,10 @@ view_populate_popup (YelpView *view,
         g_free (priv->popup_link_uri);
         priv->popup_link_uri = uri;
 
+        g_free (priv->popup_link_text);
+        /* FIXME */
+        priv->popup_link_text = g_strdup (uri);
+
         if (g_str_has_prefix (priv->popup_link_uri, "mailto:")) {
             /* Not using a mnemonic because underscores are common in email
              * addresses, and we'd have to escape them. There doesn't seem
@@ -827,6 +878,8 @@ view_populate_popup (YelpView *view,
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
         }
         else {
+            GSList *cur;
+
             item = gtk_menu_item_new_with_mnemonic (_("_Open Link"));
             g_signal_connect (item, "activate",
                               G_CALLBACK (popup_open_link), view);
@@ -836,6 +889,12 @@ view_populate_popup (YelpView *view,
             g_signal_connect (item, "activate",
                               G_CALLBACK (popup_open_link_new), view);
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+            for (cur = priv->link_actions; cur != NULL; cur = cur->next) {
+                GtkAction *action = (GtkAction *) cur->data;
+                item = gtk_action_create_menu_item (action);
+                gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            }
         }
     }
     else {
