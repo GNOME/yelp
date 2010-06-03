@@ -859,11 +859,11 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
                 settings->priv->colors[YELP_SETTINGS_COLOR_RED_BORDER]);
 
     /* YELP_SETTINGS_COLOR_YELLOW */
-    hsv_to_hex (54,
-                0.2,
+    hsv_to_hex (60,
+                0.25,
                 base_v - ((base_v - text_v) * 0.01),
                 settings->priv->colors[YELP_SETTINGS_COLOR_YELLOW_BASE]);
-    hsv_to_hex (54,
+    hsv_to_hex (60,
                 1.0,
                 base_v - ((base_v - text_v) * 0.07),
                 settings->priv->colors[YELP_SETTINGS_COLOR_YELLOW_BORDER]);
