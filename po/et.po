@@ -12,11 +12,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp HEAD\n"
+"Project-Id-Version: yelp MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-05-27 22:05+0000\n"
-"PO-Revision-Date: 2010-05-30 10:52+0300\n"
+"POT-Creation-Date: 2010-06-02 22:55+0000\n"
+"PO-Revision-Date: 2010-06-03 10:35+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -665,7 +665,7 @@ msgid "Invalid compressed data"
 msgstr "Vigaselt pakitud andmed"
 
 msgid "Not enough memory"
-msgstr ""
+msgstr "Pole piisavalt mälu"
 
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
@@ -714,19 +714,19 @@ msgstr ""
 "teabeleht (info page)."
 
 msgid "Description Column"
-msgstr ""
+msgstr "Kirjelduse veerg"
 
 msgid "A column in the model to get descriptions from"
 msgstr ""
 
 msgid "Icon Column"
-msgstr ""
+msgstr "Ikoonide veerg"
 
 msgid "A column in the model to get icon names from"
 msgstr ""
 
 msgid "Flags Column"
-msgstr ""
+msgstr "Lippude veerg"
 
 msgid "A column in the model with YelpLocationEntryFlags flags"
 msgstr ""
@@ -827,10 +827,10 @@ msgid "The title of the root page of the page being viewed"
 msgstr ""
 
 msgid "Page Title"
-msgstr ""
+msgstr "Lehe pealkiri"
 
 msgid "The title of the page being viewed"
-msgstr ""
+msgstr "Vaadatava lehe pealkiri"
 
 msgid "Page Description"
 msgstr "Lehe kirjeldus"
@@ -845,7 +845,7 @@ msgid "The icon of the page being viewed"
 msgstr "Vaadeldava lehe ikoon"
 
 msgid "Save Image"
-msgstr ""
+msgstr "Pildi salvestamine"
 
 #. Not using a mnemonic because underscores are common in email
 #. * addresses, and we'd have to escape them. There doesn't seem
@@ -864,16 +864,16 @@ msgid "Open Link in New _Window"
 msgstr "Ava viit _uues aknas"
 
 msgid "_Save Image As..."
-msgstr ""
+msgstr "Salvesta pilt _kui..."
 
 msgid "_Save Video As..."
-msgstr ""
+msgstr "Salvesta video _kui..."
 
 msgid "S_end Image To..."
-msgstr ""
+msgstr "S_aada pilt..."
 
 msgid "S_end Video To..."
-msgstr ""
+msgstr "S_aada video..."
 
 msgid "_Copy Text"
 msgstr "_Kopeeri tekst"
@@ -887,10 +887,10 @@ msgid "Could not load a document"
 msgstr "Dokumenti pole võimalik laadida"
 
 msgid "Not Found"
-msgstr ""
+msgstr "Ei leitud"
 
 msgid "Cannot Read"
-msgstr ""
+msgstr "Pole võimalik lugeda"
 
 msgid "Unknown Error"
 msgstr "Tundmatu viga"
@@ -930,10 +930,10 @@ msgid ""
 msgstr ""
 
 msgid "_Page"
-msgstr ""
+msgstr "_Leht"
 
 msgid "_View"
-msgstr ""
+msgstr "_Vaade"
 
 msgid "_Go"
 msgstr "_Liikumine"
@@ -954,7 +954,7 @@ msgid "_Edit Bookmarks"
 msgstr "_Järjehoidjate redigeerimine"
 
 msgid "Find in Page..."
-msgstr ""
+msgstr "Otsi lehelt..."
 
 msgid "Search..."
 msgstr "Otsimine..."
@@ -966,6 +966,9 @@ msgid "Application"
 msgstr "Rakendus"
 
 msgid "A YelpApplication instance that controls this window"
+msgstr "Seda akent juhtiv YelpApplication instants"
+
+msgid "Read Later"
 msgstr ""
 
 #. %s will be replaced with the name of a document
@@ -980,7 +983,7 @@ msgstr[0] "%i vastavus"
 msgstr[1] "%i vastavust"
 
 msgid "No matches"
-msgstr ""
+msgstr "Vastavused puuduvad"
 
 msgid "Loading"
 msgstr "Laadimine"
