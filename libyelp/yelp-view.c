@@ -29,7 +29,6 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
-#include <webkit/webkitwebresource.h>
 
 #include "yelp-debug.h"
 #include "yelp-docbook-document.h"
@@ -839,6 +838,7 @@ view_populate_popup (YelpView *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     GList *children;
     GtkWidget *item;
+    WebKitDOMNode *node, *cur, *link_node = NULL;
 
     children = gtk_container_get_children (GTK_CONTAINER (menu));
     while (children) {
@@ -851,7 +851,16 @@ view_populate_popup (YelpView *view,
     event = gtk_get_current_event ();
 
     result = webkit_web_view_get_hit_test_result (WEBKIT_WEB_VIEW (view), (GdkEventButton *) event);
-    g_object_get (result, "context", &context, NULL);
+    g_object_get (result,
+                  "context", &context,
+                  "inner-node", &node,
+                  NULL);
+    for (cur = node; cur != NULL; cur = webkit_dom_node_get_parent_node (cur)) {
+        gchar *name = webkit_dom_node_get_node_name (cur);
+        if (g_str_equal (name, "a"))
+            link_node = cur;
+        g_free (name);
+    }
 
     if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK) {
         gchar *uri;
@@ -860,8 +869,45 @@ view_populate_popup (YelpView *view,
         priv->popup_link_uri = uri;
 
         g_free (priv->popup_link_text);
-        /* FIXME */
-        priv->popup_link_text = g_strdup (uri);
+        /* FIXME: Handled space-separated class names, etc. See about a convenience API
+         * in WebKit, because this kind of processing in C really sucks.
+         */
+        if (link_node != NULL) {
+            gboolean handled = FALSE;
+            WebKitDOMNode *child = webkit_dom_node_get_first_child (link_node);
+            gchar *childname = webkit_dom_node_get_node_name (child);
+            if (g_str_equal (childname, "div")) {
+                WebKitDOMNamedNodeMap *map = webkit_dom_node_get_attributes (child);
+                WebKitDOMNode *attr = webkit_dom_named_node_map_get_named_item (map, "class");
+                if (attr) {
+                    gchar *htmlclass = webkit_dom_node_get_text_content (attr);
+                    if (g_str_equal (htmlclass, "linkdiv")) {
+                        child = webkit_dom_node_get_first_child (child);
+                        g_free (childname);
+                        childname = webkit_dom_node_get_node_name (child);
+                        if (g_str_equal (childname, "div")) {
+                            map = webkit_dom_node_get_attributes (child);
+                            attr = webkit_dom_named_node_map_get_named_item (map, "class");
+                            if (attr) {
+                                g_free (htmlclass);
+                                htmlclass = webkit_dom_node_get_text_content (attr);
+                                if (g_str_equal (htmlclass, "title")) {
+                                    priv->popup_link_text = webkit_dom_node_get_text_content (child);
+                                    handled = TRUE;
+                                }
+                            }
+                        }
+                    }
+                    g_free (htmlclass);
+                }
+            }
+            g_free (childname);
+            if (!handled)
+                priv->popup_link_text = webkit_dom_node_get_text_content (link_node);
+        }
+        else {
+            priv->popup_link_text = g_strdup (uri);
+        }
 
         if (g_str_has_prefix (priv->popup_link_uri, "mailto:")) {
             /* Not using a mnemonic because underscores are common in email
