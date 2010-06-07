@@ -1,5 +1,5 @@
 AC_PREREQ([2.63])
-AC_INIT([Yelp],[2.31.4],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
+AC_INIT([Yelp],[2.31.5],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
 
 AC_CONFIG_SRCDIR([src/yelp.c])
 AC_CONFIG_HEADERS([config.h])
@@ -36,7 +36,7 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 	dbus-glib-1
 	webkit-1.0 >= 1.1.15
-	yelp-xsl >= 2.31.2
+	yelp-xsl >= 2.31.3
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
