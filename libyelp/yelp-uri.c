@@ -44,10 +44,12 @@ static gboolean       resolve_final              (YelpUri        *uri);
 static void           resolve_file_uri           (YelpUri        *uri);
 static void           resolve_file_path          (YelpUri        *uri);
 static void           resolve_data_dirs          (YelpUri        *uri,
-                                                  const gchar   **subdirs,
+                                                  const gchar    *subdir,
                                                   const gchar    *docid,
-                                                  const gchar    *pageid);
+                                                  const gchar    *pageid,
+                                                  gboolean        langfirst);
 static void           resolve_ghelp_uri          (YelpUri        *uri);
+static void           resolve_help_uri           (YelpUri        *uri);
 static void           resolve_man_uri            (YelpUri        *uri);
 static void           resolve_info_uri           (YelpUri        *uri);
 static void           resolve_xref_uri           (YelpUri        *uri);
@@ -257,6 +259,9 @@ resolve_async (YelpUri *uri)
     if (g_str_has_prefix (priv->res_arg, "ghelp:")
         || g_str_has_prefix (priv->res_arg, "gnome-help:")) {
         resolve_ghelp_uri (uri);
+    }
+    else if (g_str_has_prefix (priv->res_arg, "help:")) {
+        resolve_help_uri (uri);
     }
     else if (g_str_has_prefix (priv->res_arg, "file:")) {
         resolve_file_uri (uri);
@@ -518,9 +523,10 @@ resolve_file_path (YelpUri *uri)
 
 static void
 resolve_data_dirs (YelpUri      *ret,
-                   const gchar **subdirs,
+                   const gchar  *subdir,
                    const gchar  *docid,
-                   const gchar  *pageid)
+                   const gchar  *pageid,
+                   gboolean      langfirst)
 {
     const gchar * const *sdatadirs = g_get_system_data_dirs ();
     const gchar * const *langs = g_get_language_names ();
@@ -542,54 +548,58 @@ resolve_data_dirs (YelpUri      *ret,
     searchpath = g_new0 (gchar *, 10);
 
     for (datadir_i = 0; datadirs[datadir_i]; datadir_i++) {
-        for (subdir_i = 0; subdirs[subdir_i]; subdir_i++) {
-            for (lang_i = 0; langs[lang_i]; lang_i++) {
-                gchar *helpdir = g_strdup_printf ("%s%s%s/%s/%s",
-                                                  datadirs[datadir_i],
-                                                  (datadirs[datadir_i][strlen(datadirs[datadir_i]) - 1] == '/' ? "" : "/"),
-                                                  subdirs[subdir_i],
-                                                  docid,
-                                                  langs[lang_i]);
-                if (!g_file_test (helpdir, G_FILE_TEST_IS_DIR)) {
-                    g_free (helpdir);
-                    continue;
-                }
+        for (lang_i = 0; langs[lang_i]; lang_i++) {
+            gchar *helpdir = g_build_filename (datadirs[datadir_i],
+                                               subdir,
+                                               langfirst ? langs[lang_i] : docid,
+                                               langfirst ? docid : langs[lang_i],
+                                               NULL);
+            if (!g_file_test (helpdir, G_FILE_TEST_IS_DIR)) {
+                g_free (helpdir);
+                continue;
+            }
 
-                if (searchi + 1 >= searchmax) {
-                    searchmax += 5;
-                    searchpath = g_renew (gchar *, searchpath, searchmax);
-                }
-                searchpath[searchi] = helpdir;
-                searchpath[++searchi] = NULL;
+            if (searchi + 1 >= searchmax) {
+                searchmax += 5;
+                searchpath = g_renew (gchar *, searchpath, searchmax);
+            }
+            searchpath[searchi] = helpdir;
+            searchpath[++searchi] = NULL;
 
-                if (priv->tmptype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
-                    /* We've already found it.  We're just adding to the search path now. */
-                    continue;
+            if (priv->tmptype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+                /* We've already found it.  We're just adding to the search path now. */
+                continue;
 
-                filename = g_strdup_printf ("%s/index.page", helpdir);
-                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
-                    g_free (filename);
-                    filename = g_strdup (helpdir);
-                    continue;
-                }
+            filename = g_strdup_printf ("%s/index.page", helpdir);
+            if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_MALLARD;
                 g_free (filename);
+                filename = g_strdup (helpdir);
+                continue;
+            }
+            g_free (filename);
 
-                filename = g_strdup_printf ("%s/%s.xml", helpdir, pageid);
-                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
-                    continue;
-                }
-                g_free (filename);
+            filename = g_strdup_printf ("%s/%s.xml", helpdir, pageid);
+            if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                continue;
+            }
+            g_free (filename);
 
-                filename = g_strdup_printf ("%s/%s.html", helpdir, pageid);
-                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_HTML;
-                    continue;
-                }
-                g_free (filename);
-            } /* end for langs */
-        } /* end for subdirs */
+            filename = g_strdup_printf ("%s/%s.html", helpdir, pageid);
+            if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_HTML;
+                continue;
+            }
+            g_free (filename);
+
+            filename = g_strdup_printf ("%s/%s.xhtml", helpdir, pageid);
+            if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                priv->tmptype = YELP_URI_DOCUMENT_TYPE_XHTML;
+                continue;
+            }
+            g_free (filename);
+        } /* end for langs */
     } /* end for datadirs */
 
     g_free (datadirs);
@@ -610,7 +620,6 @@ resolve_ghelp_uri (YelpUri *uri)
      * ghelp:document[/file][?page][#frag]
      */
     YelpUriPrivate *priv = GET_PRIV (uri);
-    const gchar const *helpdirs[3] = {"help", "gnome/help", NULL};
     gchar *document, *slash, *query, *hash;
     gchar *colon, *c; /* do not free */
 
@@ -659,7 +668,7 @@ resolve_ghelp_uri (YelpUri *uri)
         resolve_file_uri (uri);
     }
     else {
-        resolve_data_dirs (uri, helpdirs, document, slash ? slash : document);
+        resolve_data_dirs (uri, "gnome/help", document, slash ? slash : document, FALSE);
     }
 
     if (query && hash) {
@@ -689,6 +698,74 @@ resolve_ghelp_uri (YelpUri *uri)
 
     g_free (document);
     g_free (slash);
+    return;
+}
+
+static void
+resolve_help_uri (YelpUri *uri)
+{
+    /* help:document[/page][?query][#frag]
+     */
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    gchar *document, *slash, *query, *hash;
+    gchar *colon, *c; /* do not free */
+
+    colon = strchr (priv->res_arg, ':');
+    if (!colon) {
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
+        return;
+    }
+
+    slash = query = hash = NULL;
+    for (c = colon; *c != '\0'; c++) {
+        if (*c == '#' && hash == NULL)
+            hash = c;
+        else if (*c == '?' && query == NULL && hash == NULL)
+            query = c;
+        else if (*c == '/' && slash == NULL && query == NULL && hash == NULL)
+            slash = c;
+    }
+
+    if (slash || query || hash)
+        document = g_strndup (colon + 1,
+                              (slash ? slash : (query ? query : hash)) - colon - 1);
+    else
+        document = g_strdup (colon + 1);
+
+    if (slash && (query || hash))
+        slash = g_strndup (slash + 1,
+                           (query ? query : hash) - slash - 1);
+    else if (slash)
+        slash = g_strdup (slash + 1);
+
+    if (query && hash)
+        query = g_strndup (query + 1,
+                           hash - query - 1);
+    else if (query)
+        query = g_strdup (query + 1);
+
+    if (hash)
+        hash = g_strdup (hash + 1);
+
+    priv->page_id = (slash ? slash : g_strdup ("index"));
+    resolve_data_dirs (uri, "help", document, priv->page_id, TRUE);
+
+    if (hash)
+        priv->frag_id = hash;
+
+    priv->docuri = g_strconcat ("help:", document, NULL);
+
+    priv->fulluri = g_strconcat (priv->docuri,
+                                 priv->page_id ? "/" : "",
+                                 priv->page_id ? priv->page_id : "",
+                                 query ? "?" : "",
+                                 query ? query : "",
+                                 priv->frag_id ? "#" : "",
+                                 priv->frag_id ? priv->frag_id : "",
+                                 NULL);
+
+    g_free (query);
+    g_free (document);
     return;
 }
 
