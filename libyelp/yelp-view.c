@@ -108,6 +108,10 @@ static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
                                                    GError             *error);
+static gboolean    dom_node_is_name               (WebKitDOMNode      *node,
+                                                   gchar              *name);
+static gboolean    dom_node_has_class             (WebKitDOMNode      *node,
+                                                   gchar              *class);
 
 static const GtkActionEntry entries[] = {
     {"YelpViewPrint", GTK_STOCK_PRINT,
@@ -955,64 +959,20 @@ view_populate_popup (YelpView *view,
                   "inner-node", &node,
                   NULL);
     for (cur = node; cur != NULL; cur = webkit_dom_node_get_parent_node (cur)) {
-        gchar *name = webkit_dom_node_get_node_name (cur);
-        if (g_str_equal (name, "a"))
+        if (dom_node_is_name (cur, "a"))
             link_node = cur;
-        if (g_str_equal (name, "div")) {
-            WebKitDOMNamedNodeMap *map = webkit_dom_node_get_attributes (cur);
-            WebKitDOMNode *attr = webkit_dom_named_node_map_get_named_item (map, "class");
-            if (attr) {
-                gchar *htmlclass = webkit_dom_node_get_text_content (attr);
-                if (g_str_equal (htmlclass, "code")) {
-                    WebKitDOMNode *title;
 
-                    code_node = cur;
-
-                    title = webkit_dom_node_get_parent_node (cur);
-                    if (title) {
-                        g_free (name);
-                        name = webkit_dom_node_get_node_name (title);
-                        if (g_str_equal (name, "div")) {
-                            map = webkit_dom_node_get_attributes (title);
-                            attr = webkit_dom_named_node_map_get_named_item (map, "class");
-                            if (attr) {
-                                g_free (htmlclass);
-                                htmlclass = webkit_dom_node_get_text_content (attr);
-                                if (g_str_equal (htmlclass, "contents")) {
-                                    title = webkit_dom_node_get_previous_sibling (title);
-                                    if (title) {
-                                        g_free (name);
-                                        name = webkit_dom_node_get_node_name (title);
-                                        if (g_str_equal (name, "div")) {
-                                            map = webkit_dom_node_get_attributes (title);
-                                            attr = webkit_dom_named_node_map_get_named_item (map, "class");
-                                            if (attr) {
-                                                gchar **classes;
-                                                gint classi;
-                                                gboolean titleq = FALSE;
-                                                g_free (htmlclass);
-                                                htmlclass = webkit_dom_node_get_text_content (attr);
-                                                classes = g_strsplit (htmlclass, " ", -1);
-                                                for (classi = 0; classes[classi] != NULL; classi++)
-                                                    if (g_str_equal (classes[classi], "title")) {
-                                                        titleq = TRUE;
-                                                        break;
-                                                    }
-                                                if (titleq)
-                                                    code_title_node = title;
-                                                g_strfreev (classes);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+        if (dom_node_is_name (cur, "div") && dom_node_has_class (cur, "code")) {
+            WebKitDOMNode *title;
+            code_node = cur;
+            title = webkit_dom_node_get_parent_node (cur);
+            if (title && dom_node_is_name (title, "div") && dom_node_has_class (title, "contents")) {
+                title = webkit_dom_node_get_previous_sibling (title);
+                if (title && dom_node_is_name (title, "div") && dom_node_has_class (title, "title")) {
+                    code_title_node = title;
                 }
-                g_free (htmlclass);
             }
         }
-        g_free (name);
     }
 
     if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK) {
@@ -1790,4 +1750,38 @@ document_callback (YelpDocument       *document,
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
         view_show_error_page (view, error);
     }
+}
+
+static gboolean
+dom_node_is_name (WebKitDOMNode *node,
+                  gchar         *name)
+{
+    gboolean ret;
+    gchar *nodename = webkit_dom_node_get_node_name (node);
+    ret = g_str_equal (nodename, name);
+    g_free (nodename);
+    return ret;
+}
+
+static gboolean
+dom_node_has_class (WebKitDOMNode *node,
+                    gchar         *class)
+{
+    gboolean ret = FALSE;
+    WebKitDOMNamedNodeMap *map = webkit_dom_node_get_attributes (node);
+    WebKitDOMNode *attr = webkit_dom_named_node_map_get_named_item (map, "class");
+    if (attr) {
+        gchar *htmlclass = webkit_dom_node_get_text_content (attr);
+        gchar **classes = g_strsplit (htmlclass, " ", -1);
+        gint classi;
+        for (classi = 0; classes[classi] != NULL; classi++) {
+            if (g_str_equal (classes[classi], class)) {
+                ret = TRUE;
+                break;
+            }
+        }
+        g_strfreev (classes);
+        g_free (htmlclass);
+    }
+    return ret;
 }
