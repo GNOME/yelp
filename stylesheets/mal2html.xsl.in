@@ -80,7 +80,7 @@ body, div.body {
 </xsl:if>
 </xsl:template>
 
-<xsl:template name="mal2html.page.head.extra">
+<xsl:template name="html.head.custom">
   <xsl:call-template name="yelp.common.javascript"/>
 </xsl:template>
 
