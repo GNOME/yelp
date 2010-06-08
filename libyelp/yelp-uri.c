@@ -579,12 +579,22 @@ resolve_data_dirs (YelpUri      *ret,
             }
             g_free (filename);
 
-            filename = g_strdup_printf ("%s/%s.xml", helpdir, pageid);
-            if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-                priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
-                continue;
+            if (langfirst) {
+                filename = g_strdup_printf ("%s/index.docbook", helpdir);
+                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                    continue;
+                }
+                g_free (filename);
             }
-            g_free (filename);
+            else {
+                filename = g_strdup_printf ("%s/%s.xml", helpdir, pageid);
+                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                    priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                    continue;
+                }
+                g_free (filename);
+            }
 
             filename = g_strdup_printf ("%s/%s.html", helpdir, pageid);
             if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
