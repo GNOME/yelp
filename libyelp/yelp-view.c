@@ -67,6 +67,10 @@ static void        popup_save_image               (GtkMenuItem        *item,
                                                    YelpView           *view);
 static void        popup_send_image               (GtkMenuItem        *item,
                                                    YelpView           *view);
+static void        popup_copy_code                (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        popup_save_code                (GtkMenuItem        *item,
+                                                   YelpView           *view);
 static void        view_populate_popup            (YelpView           *view,
                                                    GtkMenu            *menu,
                                                    gpointer            data);
@@ -195,6 +199,9 @@ struct _YelpViewPrivate {
     gchar         *popup_link_uri;
     gchar         *popup_link_text;
     gchar         *popup_image_uri;
+    WebKitDOMNode *popup_code_node;
+    WebKitDOMNode *popup_code_title;
+    gchar         *popup_code_text;
 
     YelpViewState  state;
 
@@ -306,6 +313,7 @@ yelp_view_finalize (GObject *object)
     g_free (priv->popup_link_uri);
     g_free (priv->popup_link_text);
     g_free (priv->popup_image_uri);
+    g_free (priv->popup_code_text);
 
     g_free (priv->page_id);
     g_free (priv->root_title);
@@ -828,6 +836,97 @@ popup_send_image (GtkMenuItem *item,
 }
 
 static void
+popup_copy_code (GtkMenuItem *item,
+                 YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    GtkClipboard *clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+    gchar *content = webkit_dom_node_get_text_content (priv->popup_code_node);
+    gtk_clipboard_set_text (clipboard, content, -1);
+    g_free (content);
+}
+
+static void
+popup_save_code (GtkMenuItem *item,
+                 YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    GtkWidget *dialog, *window;
+    gint res;
+
+    g_free (priv->popup_code_text);
+    priv->popup_code_text = webkit_dom_node_get_text_content (priv->popup_code_node);
+    if (!g_str_has_suffix (priv->popup_code_text, "\n")) {
+        gchar *tmp = g_strconcat (priv->popup_code_text, "\n", NULL);
+        g_free (priv->popup_code_text);
+        priv->popup_code_text = tmp;
+    }
+
+    for (window = gtk_widget_get_parent (GTK_WIDGET (view));
+         window && !GTK_IS_WINDOW (window);
+         window = gtk_widget_get_parent (window));
+
+    dialog = gtk_file_chooser_dialog_new (_("Save Code"),
+                                          GTK_WINDOW (window),
+                                          GTK_FILE_CHOOSER_ACTION_SAVE,
+                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                          GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                          NULL);
+    gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
+    if (priv->popup_code_title) {
+        gchar *filename = webkit_dom_node_get_text_content (priv->popup_code_title);
+        gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), filename);
+        g_free (filename);
+    }
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog),
+                                         g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
+
+    res = gtk_dialog_run (GTK_DIALOG (dialog));
+
+    if (res == GTK_RESPONSE_OK) {
+        GError *error = NULL;
+        GFile *file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
+        GFileOutputStream *stream = g_file_replace (file, NULL, FALSE,
+                                                    G_FILE_CREATE_NONE,
+                                                    NULL,
+                                                    &error);
+        if (stream == NULL) {
+            GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (window) ? GTK_WINDOW (window) : NULL,
+                                                        GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                        GTK_MESSAGE_ERROR,
+                                                        GTK_BUTTONS_OK,
+                                                        "%s", error->message);
+            gtk_dialog_run (GTK_DIALOG (dialog));
+            gtk_widget_destroy (dialog);
+            g_error_free (error);
+        }
+        else {
+            /* FIXME: we should do this async */
+            GDataOutputStream *datastream = g_data_output_stream_new (G_OUTPUT_STREAM (stream));
+            if (!g_data_output_stream_put_string (datastream, priv->popup_code_text, NULL, &error)) {
+                GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (window) ? GTK_WINDOW (window) : NULL,
+                                                            GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                            GTK_MESSAGE_ERROR,
+                                                            GTK_BUTTONS_OK,
+                                                            "%s", error->message);
+                gtk_dialog_run (GTK_DIALOG (dialog));
+                gtk_widget_destroy (dialog);
+                g_error_free (error);
+            }
+            g_object_unref (datastream);
+        }
+        g_object_unref (file);
+    }
+
+    priv->popup_code_node = NULL;
+    priv->popup_code_title = NULL;
+    g_free (priv->popup_code_text);
+    priv->popup_code_text = NULL;
+
+    gtk_widget_destroy (dialog);
+}
+
+static void
 view_populate_popup (YelpView *view,
                      GtkMenu  *menu,
                      gpointer  data)
@@ -838,7 +937,7 @@ view_populate_popup (YelpView *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     GList *children;
     GtkWidget *item;
-    WebKitDOMNode *node, *cur, *link_node = NULL;
+    WebKitDOMNode *node, *cur, *link_node = NULL, *code_node = NULL, *code_title_node = NULL;
 
     children = gtk_container_get_children (GTK_CONTAINER (menu));
     while (children) {
@@ -859,6 +958,60 @@ view_populate_popup (YelpView *view,
         gchar *name = webkit_dom_node_get_node_name (cur);
         if (g_str_equal (name, "a"))
             link_node = cur;
+        if (g_str_equal (name, "div")) {
+            WebKitDOMNamedNodeMap *map = webkit_dom_node_get_attributes (cur);
+            WebKitDOMNode *attr = webkit_dom_named_node_map_get_named_item (map, "class");
+            if (attr) {
+                gchar *htmlclass = webkit_dom_node_get_text_content (attr);
+                if (g_str_equal (htmlclass, "code")) {
+                    WebKitDOMNode *title;
+
+                    code_node = cur;
+
+                    title = webkit_dom_node_get_parent_node (cur);
+                    if (title) {
+                        g_free (name);
+                        name = webkit_dom_node_get_node_name (title);
+                        if (g_str_equal (name, "div")) {
+                            map = webkit_dom_node_get_attributes (title);
+                            attr = webkit_dom_named_node_map_get_named_item (map, "class");
+                            if (attr) {
+                                g_free (htmlclass);
+                                htmlclass = webkit_dom_node_get_text_content (attr);
+                                if (g_str_equal (htmlclass, "contents")) {
+                                    title = webkit_dom_node_get_previous_sibling (title);
+                                    if (title) {
+                                        g_free (name);
+                                        name = webkit_dom_node_get_node_name (title);
+                                        if (g_str_equal (name, "div")) {
+                                            map = webkit_dom_node_get_attributes (title);
+                                            attr = webkit_dom_named_node_map_get_named_item (map, "class");
+                                            if (attr) {
+                                                gchar **classes;
+                                                gint classi;
+                                                gboolean titleq = FALSE;
+                                                g_free (htmlclass);
+                                                htmlclass = webkit_dom_node_get_text_content (attr);
+                                                classes = g_strsplit (htmlclass, " ", -1);
+                                                for (classi = 0; classes[classi] != NULL; classi++)
+                                                    if (g_str_equal (classes[classi], "title")) {
+                                                        titleq = TRUE;
+                                                        break;
+                                                    }
+                                                if (titleq)
+                                                    code_title_node = title;
+                                                g_strfreev (classes);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                g_free (htmlclass);
+            }
+        }
         g_free (name);
     }
 
@@ -998,6 +1151,24 @@ view_populate_popup (YelpView *view,
         item = gtk_menu_item_new_with_mnemonic (_("_Copy Text"));
         g_signal_connect_swapped (item, "activate",
                                   G_CALLBACK (webkit_web_view_copy_clipboard), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+
+    if (code_node != NULL) {
+        item = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        priv->popup_code_node = code_node;
+        priv->popup_code_title = code_title_node;
+
+        item = gtk_menu_item_new_with_mnemonic (_("C_opy Code Block"));
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_copy_code), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic (_("Save Code _Block As..."));
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_save_code), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
     }
 
