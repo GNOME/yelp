@@ -1281,7 +1281,9 @@ resolve_gfile (YelpUri *uri, const gchar *hash)
     if (priv->fulluri == NULL)
         priv->fulluri = g_strconcat (priv->docuri,
                                      (priv->page_id || priv->frag_id) ? "#" : NULL,
-                                     priv->page_id ? priv->page_id : priv->frag_id,
+                                     priv->page_id ? priv->page_id : "",
+                                     priv->frag_id ? "#" : NULL,
+                                     priv->frag_id ? priv->frag_id : NULL,
                                      NULL);
 
     g_object_unref (info);
