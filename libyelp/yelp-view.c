@@ -982,41 +982,43 @@ view_populate_popup (YelpView *view,
         priv->popup_link_uri = uri;
 
         g_free (priv->popup_link_text);
+        priv->popup_link_text = NULL;
         /* FIXME: Handled space-separated class names, etc. See about a convenience API
          * in WebKit, because this kind of processing in C really sucks.
          */
         if (link_node != NULL) {
-            gboolean handled = FALSE;
             WebKitDOMNode *child = webkit_dom_node_get_first_child (link_node);
-            gchar *childname = webkit_dom_node_get_node_name (child);
-            if (g_str_equal (childname, "div")) {
-                WebKitDOMNamedNodeMap *map = webkit_dom_node_get_attributes (child);
-                WebKitDOMNode *attr = webkit_dom_named_node_map_get_named_item (map, "class");
-                if (attr) {
-                    gchar *htmlclass = webkit_dom_node_get_text_content (attr);
-                    if (g_str_equal (htmlclass, "linkdiv")) {
-                        child = webkit_dom_node_get_first_child (child);
-                        g_free (childname);
-                        childname = webkit_dom_node_get_node_name (child);
-                        if (g_str_equal (childname, "div")) {
-                            map = webkit_dom_node_get_attributes (child);
-                            attr = webkit_dom_named_node_map_get_named_item (map, "class");
-                            if (attr) {
-                                g_free (htmlclass);
-                                htmlclass = webkit_dom_node_get_text_content (attr);
-                                if (g_str_equal (htmlclass, "title")) {
-                                    priv->popup_link_text = webkit_dom_node_get_text_content (child);
-                                    handled = TRUE;
-                                }
-                            }
-                        }
-                    }
-                    g_free (htmlclass);
+            gchar *tmp;
+            gint i, tmpi;
+            gboolean ws;
+            if (dom_node_is_name (child, "div") && dom_node_has_class (child, "linkdiv")) {
+                child = webkit_dom_node_get_first_child (child);
+                if (child && dom_node_is_name (child, "div") && dom_node_has_class (child, "title")) {
+                    priv->popup_link_text = webkit_dom_node_get_text_content (child);
                 }
             }
-            g_free (childname);
-            if (!handled)
+            if (priv->popup_link_text == NULL)
                 priv->popup_link_text = webkit_dom_node_get_text_content (link_node);
+
+            tmp = g_new0 (gchar, strlen(priv->popup_link_text) + 1);
+            ws = FALSE;
+            for (i = 0, tmpi = 0; priv->popup_link_text[i] != '\0'; i++) {
+                if (priv->popup_link_text[i] == ' ' || priv->popup_link_text[i] == '\n') {
+                    if (!ws) {
+                        tmp[tmpi] = ' ';
+                        tmpi++;
+                        ws = TRUE;
+                    }
+                }
+                else {
+                    tmp[tmpi] = priv->popup_link_text[i];
+                    tmpi++;
+                    ws = FALSE;
+                }
+            }
+            tmp[tmpi] = '\0';
+            g_free (priv->popup_link_text);
+            priv->popup_link_text = tmp;
         }
         else {
             priv->popup_link_text = g_strdup (uri);
