@@ -450,7 +450,7 @@ application_uri_resolved (YelpUri             *uri,
 
     doc_uri = yelp_uri_get_document_uri (uri);
 
-    if (data->new)
+    if (data->new || !doc_uri)
         window = NULL;
     else
         window = g_hash_table_lookup (priv->windows_by_document, doc_uri);

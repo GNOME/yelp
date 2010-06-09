@@ -309,10 +309,16 @@ resolve_async (YelpUri *uri)
     }
     else if (strchr (priv->res_arg, ':')) {
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_EXTERNAL;
-        priv->fulluri = g_strdup (priv->res_arg);
     }
     else {
         resolve_file_path (uri);
+    }
+
+    /* We _always_ want to have a non-null fulluri, so check for it
+     * having been set here and, if we can't think of something
+     * better, set it to res_arg. */
+    if (!priv->fulluri) {
+        priv->fulluri = g_strdup (priv->res_arg);
     }
 
  done:
@@ -368,6 +374,15 @@ yelp_uri_get_document_uri (YelpUri *uri)
     YelpUriPrivate *priv = GET_PRIV (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
+
+    /* There's some client code where it makes sense to want a
+     * document uri, whether or not it conforms to a scheme we really
+     * understand. For example, we might want to look up whether the
+     * given page is currently being visited. */
+    if ((!priv->docuri) && priv->fulluri) {
+        return g_strdup (priv->fulluri);
+    }
+
     return g_strdup (priv->docuri);
 }
 

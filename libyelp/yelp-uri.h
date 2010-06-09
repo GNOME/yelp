@@ -73,6 +73,8 @@ void                 yelp_uri_resolve            (YelpUri      *uri);
 gboolean             yelp_uri_is_resolved        (YelpUri      *uri);
 YelpUriDocumentType  yelp_uri_get_document_type  (YelpUri      *uri);
 
+/* Both of these functions return a non-null answer, provided that
+ * the uri has been resolved. */
 gchar *              yelp_uri_get_canonical_uri  (YelpUri      *uri);
 gchar *              yelp_uri_get_document_uri   (YelpUri      *uri);
 
