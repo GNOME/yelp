@@ -1471,10 +1471,17 @@ uri_resolved (YelpUri  *uri,
         return;
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
         struri = yelp_uri_get_canonical_uri (uri);
-        error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
-                             _("The URI ‘%s’ does point to a valid page."),
-                             struri);
-        g_free (struri);
+        if (struri != NULL) {
+            error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
+                                 _("The URI ‘%s’ does not point to a valid page."),
+                                 struri);
+            g_free (struri);
+        }
+        else {
+            error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
+                                 _("The URI does not point to a valid page."),
+                                 struri);
+        }
         view_show_error_page (view, error);
         return;
     case YELP_URI_DOCUMENT_TYPE_ERROR:
