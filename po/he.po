@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-05 11:52+0300\n"
-"PO-Revision-Date: 2010-06-05 11:53+0200\n"
+"POT-Creation-Date: 2010-06-10 12:29+0300\n"
+"PO-Revision-Date: 2010-06-10 12:32+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -880,17 +880,19 @@ msgstr "אין מספיק זיכרון"
 
 #: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
 #: ../libyelp/yelp-mallard-document.c:254
-#: ../libyelp/yelp-mallard-document.c:391
+#: ../libyelp/yelp-mallard-document.c:397 ../libyelp/yelp-man-document.c:269
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "העמוד '%s' לא נמצא במסמך '%s'."
 
 #: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:366
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file does not exist."
 msgstr "הקובץ לא קיים."
 
 #: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:376
+#: ../libyelp/yelp-man-document.c:413
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "הקובץ '%s' לא קיים"
@@ -916,6 +918,7 @@ msgid "Unknown"
 msgstr "לא ידוע"
 
 #: ../libyelp/yelp-docbook-document.c:801 ../libyelp/yelp-info-document.c:309
+#: ../libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "העמוד המבוקש לא נמצא במסמך '%s'."
@@ -963,10 +966,16 @@ msgstr "הפעלת חיפוש"
 msgid "Whether the location entry can be used as a search field"
 msgstr "האם רשומת המיקום יכולה לשמש כשדה חיפוש"
 
-#: ../libyelp/yelp-mallard-document.c:294
+#: ../libyelp/yelp-mallard-document.c:296
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "התיקייה ‘%s’ לא קיימת."
+
+#: ../libyelp/yelp-man-document.c:444
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr "לא ניתן לנתח את הקובץ '%s' כיוון שזהו קובץ man שלא אורגן כראוי."
 
 #: ../libyelp/yelp-settings.c:146
 msgid "GtkSettings"
@@ -1029,85 +1038,89 @@ msgstr "לא נמצא מאפיין href ב yelp:document\n"
 msgid "Out of memory"
 msgstr "אין מספיק זיכרון"
 
-#: ../libyelp/yelp-view.c:111
+#: ../libyelp/yelp-view.c:118
 msgid "_Print..."
 msgstr "ה_דפסה..."
 
-#: ../libyelp/yelp-view.c:116
+#: ../libyelp/yelp-view.c:123
 msgid "_Back"
 msgstr "_אחורה"
 
-#: ../libyelp/yelp-view.c:121
+#: ../libyelp/yelp-view.c:128
 msgid "_Forward"
 msgstr "_קדימה"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:133
 msgid "_Previous Page"
 msgstr "העמוד ה_קודם"
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:138
 msgid "_Next Page"
 msgstr "העמוד ה_בא"
 
-#: ../libyelp/yelp-view.c:376
+#: ../libyelp/yelp-view.c:387
 msgid "Yelp URI"
 msgstr "כתובת של Yelp"
 
-#: ../libyelp/yelp-view.c:377
+#: ../libyelp/yelp-view.c:388
 msgid "A YelpUri with the current location"
 msgstr "YelpUti עם המיקום הנוכחי"
 
-#: ../libyelp/yelp-view.c:385
+#: ../libyelp/yelp-view.c:396
 msgid "Loading State"
 msgstr "מצב הטעינה"
 
-#: ../libyelp/yelp-view.c:386
+#: ../libyelp/yelp-view.c:397
 msgid "The loading state of the view"
 msgstr "מצב הטעינה של התצוגה"
 
-#: ../libyelp/yelp-view.c:395
+#: ../libyelp/yelp-view.c:406
 msgid "Page ID"
 msgstr "מזהה העמוד"
 
-#: ../libyelp/yelp-view.c:396
+#: ../libyelp/yelp-view.c:407
 msgid "The ID of the root page of the page being viewed"
 msgstr "מספר זיהוי עמוד ההורה של העמוד הנצפה"
 
-#: ../libyelp/yelp-view.c:404
+#: ../libyelp/yelp-view.c:415
 msgid "Root Title"
 msgstr "כותרת ההורה"
 
-#: ../libyelp/yelp-view.c:405
+#: ../libyelp/yelp-view.c:416
 msgid "The title of the root page of the page being viewed"
 msgstr "כותרת עמוד ההורה של העמוד הנצפה"
 
-#: ../libyelp/yelp-view.c:413
+#: ../libyelp/yelp-view.c:424
 msgid "Page Title"
 msgstr "כותרת העמוד"
 
-#: ../libyelp/yelp-view.c:414
+#: ../libyelp/yelp-view.c:425
 msgid "The title of the page being viewed"
 msgstr "כותרת העמוד הנצפה"
 
-#: ../libyelp/yelp-view.c:422
+#: ../libyelp/yelp-view.c:433
 msgid "Page Description"
 msgstr "תיאור העמוד"
 
-#: ../libyelp/yelp-view.c:423
+#: ../libyelp/yelp-view.c:434
 msgid "The description of the page being viewed"
 msgstr "תיאור העמוד שנצפה"
 
-#: ../libyelp/yelp-view.c:431
+#: ../libyelp/yelp-view.c:442
 msgid "Page Icon"
 msgstr "סמל העמוד"
 
-#: ../libyelp/yelp-view.c:432
+#: ../libyelp/yelp-view.c:443
 msgid "The icon of the page being viewed"
 msgstr "סמל העמוד הנצפה"
 
-#: ../libyelp/yelp-view.c:780
+#: ../libyelp/yelp-view.c:791
 msgid "Save Image"
 msgstr "שמירת תמונה"
+
+#: ../libyelp/yelp-view.c:873
+msgid "Save Code"
+msgstr "שמירת הקוד"
 
 #. Not using a mnemonic because underscores are common in email
 #. * addresses, and we'd have to escape them. There doesn't seem
@@ -1115,67 +1128,80 @@ msgstr "שמירת תמונה"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:873
+#: ../libyelp/yelp-view.c:1034
 #, c-format
 msgid "Send email to %s"
 msgstr "שליחת דוא\"ל אל %s"
 
-#: ../libyelp/yelp-view.c:883
+#: ../libyelp/yelp-view.c:1044
 msgid "_Open Link"
 msgstr "_פתח קישור"
 
-#: ../libyelp/yelp-view.c:888
+#: ../libyelp/yelp-view.c:1049
 msgid "Open Link in New _Window"
 msgstr "פתיחת קישור בחלון _חדש"
 
-#: ../libyelp/yelp-view.c:930
+#: ../libyelp/yelp-view.c:1091
 msgid "_Save Image As..."
 msgstr "שמירת ת_מונה בשם..."
 
-#: ../libyelp/yelp-view.c:932
+#: ../libyelp/yelp-view.c:1093
 msgid "_Save Video As..."
 msgstr "שמירת ו_ידאו בשם..."
 
-#: ../libyelp/yelp-view.c:939
+#: ../libyelp/yelp-view.c:1100
 msgid "S_end Image To..."
 msgstr "שליחת _תמונה אל..."
 
-#: ../libyelp/yelp-view.c:941
+#: ../libyelp/yelp-view.c:1102
 msgid "S_end Video To..."
 msgstr "שליחת _וידאו אל..."
 
-#: ../libyelp/yelp-view.c:952
+#: ../libyelp/yelp-view.c:1113
 msgid "_Copy Text"
 msgstr "_העתקת טקסט"
 
-#: ../libyelp/yelp-view.c:1123
+#: ../libyelp/yelp-view.c:1126
+msgid "C_opy Code Block"
+msgstr "ה_עתקת מקטע קוד"
+
+#: ../libyelp/yelp-view.c:1131
+msgid "Save Code _Block As..."
+msgstr "שמירת מקטע הקוד _בשם..."
+
+#: ../libyelp/yelp-view.c:1302
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "לא ניתן לטעון את המסמך עבור ‘%s’"
 
-#: ../libyelp/yelp-view.c:1129
+#: ../libyelp/yelp-view.c:1308
 #, c-format
 msgid "Could not load a document"
 msgstr "לא ניתן לטעון את המסמך"
 
-#: ../libyelp/yelp-view.c:1196
+#: ../libyelp/yelp-view.c:1375
 msgid "Not Found"
 msgstr "לא נמצא"
 
-#: ../libyelp/yelp-view.c:1199
+#: ../libyelp/yelp-view.c:1378
 msgid "Cannot Read"
 msgstr "לא ניתן לקרוא"
 
-#: ../libyelp/yelp-view.c:1205
+#: ../libyelp/yelp-view.c:1384
 msgid "Unknown Error"
 msgstr "שגיאה לא ידועה"
 
-#: ../libyelp/yelp-view.c:1296
+#: ../libyelp/yelp-view.c:1476
 #, c-format
-msgid "The URI ‘%s’ does point to a valid page."
-msgstr "הכתובת '%s' אינה מצביעה לדף תקני."
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "הכתובת '%s' אינה מצביע אל דף תקני."
 
-#: ../libyelp/yelp-view.c:1304
+#: ../libyelp/yelp-view.c:1482
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "הכתובת אינה מצביעה אל דף תקני."
+
+#: ../libyelp/yelp-view.c:1490
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "לא ניתן לנתח את הכתובת '%s'."
