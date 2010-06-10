@@ -58,6 +58,12 @@ div.header {
   padding: 0;
   margin: 0 0 1em 0;
 }
+div.code {
+  -webkit-box-shadow: 0px 0px 4px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
+div.code:hover {
+  -webkit-box-shadow: 0px 0px 4px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
 div.trails {
   margin: 0;
   padding: 0.2em 12px 0 12px;
