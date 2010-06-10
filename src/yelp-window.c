@@ -54,6 +54,9 @@ static void          yelp_window_set_property     (GObject            *object,
 static void          window_construct             (YelpWindow         *window);
 static void          window_new                   (GtkAction          *action,
                                                    YelpWindow         *window);
+static gboolean      window_map_event             (YelpWindow         *window,
+                                                   GdkEvent           *event,
+                                                   gpointer            user_data);
 static gboolean      window_configure_event       (YelpWindow         *window,
                                                    GdkEventConfigure  *event,
                                                    gpointer            user_data);
@@ -292,6 +295,8 @@ struct _YelpWindowPrivate {
     gint find_cur_height;
     gint find_entry_height;
     gint find_bar_height;
+
+    gboolean configured;
 };
 
 static const GtkActionEntry entries[] = {
@@ -341,6 +346,7 @@ static void
 yelp_window_init (YelpWindow *window)
 {
     g_signal_connect (window, "configure-event", G_CALLBACK (window_configure_event), NULL);
+    g_signal_connect (window, "map-event", G_CALLBACK (window_map_event), NULL);
 }
 
 static void suppress_link_buttons (GtkLinkButton *button, const gchar *link, gpointer userdata) {}
@@ -752,13 +758,37 @@ window_drag_received (YelpWindow         *window,
 }
 
 static gboolean
+window_map_event (YelpWindow  *window,
+                  GdkEvent    *event,
+                  gpointer     user_data)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    priv->configured = TRUE;
+    return FALSE;
+}
+
+static gboolean
 window_configure_event (YelpWindow         *window,
                         GdkEventConfigure  *event,
                         gpointer            user_data)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
-    priv->width = event->width;
-    priv->height = event->height;
+    gboolean skip = TRUE;
+    if (priv->width != event->width) {
+        skip = FALSE;
+        priv->width = event->width;
+    }
+    if (priv->height != event->height) {
+        skip = FALSE;
+        priv->height = event->height;
+    }
+    /* Skip the configure-event signals that GTK+ sends as it's mapping
+     * the window, and also skip if the event didn't change the size of
+     * the window (i.e. it was just a move).
+     */
+    if (!priv->configured || skip)
+        return FALSE;
+
     if (priv->resize_signal > 0)
         g_source_remove (priv->resize_signal);
     priv->resize_signal = g_timeout_add (200,
