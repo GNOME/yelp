@@ -114,6 +114,9 @@ static const gchar *infosuffix[] = {
     NULL
 };
 
+static const gchar default_info_path[] =
+    "/usr/info:/usr/share/info:/usr/local/info:/usr/local/share/info";
+
 /******************************************************************************/
 
 static void
@@ -1029,7 +1032,6 @@ resolve_info_uri (YelpUri *uri)
      * info:(name)
      */
     static gchar **infopath = NULL;
-    const gchar * const * langs = g_get_language_names ();
     gchar *name = NULL;
     gchar *sect = NULL;
     gchar *fullpath = NULL;
@@ -1049,10 +1051,24 @@ resolve_info_uri (YelpUri *uri)
 
     if (!infopath) {
         /* Initialize infopath only once */
+
+        /* Use the same logic as the info program. If INFOPATH is not
+           specified, use the default. If it is specified, just use it
+           unless it ends with a colon, in which case we add the
+           default as a suffix.
+        */
         const gchar *env = g_getenv ("INFOPATH");
+        gchar *paths;
         if (!env || env[0] == '\0')
-            env = "/usr/info:/usr/share/info:/usr/local/info:/usr/local/share/info";
-        infopath = g_strsplit (env, ":", 0);
+            paths = g_strdup (default_info_path);
+        else if (env[strlen (env)-1] == ':')
+            paths = g_strconcat (env, default_info_path, NULL);
+        else
+            paths = g_strdup (env);
+
+        infopath = g_strsplit (paths, ":", 0);
+
+        g_free (paths);
     }
 
     colon = strchr (priv->res_arg, ':');
