@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil -*- */
 /*
  * Copyright (C) 2005 Davyd Madeley <davyd@madeley.id.au>
  *
@@ -58,8 +58,13 @@ void                  fix_tag_table                      (gchar *offset,
 							  TagTableFix *a);
 void   		      info_process_text_notes            (xmlNodePtr *node, 
 							  gchar *content,
-							  GtkTreeStore *tree);
+							  GtkTreeStore
+							  *tree);
 
+/*
+  Used to output the correct <heading level="?" /> tag.
+ */
+static const gchar* level_headings[] = { NULL, "1", "2", "3" };
 
 static GHashTable *
 info_image_get_attributes (gchar const* string)
@@ -141,15 +146,144 @@ info_insert_image (xmlNodePtr parent, GMatchInfo *match_info)
 }
 
 /*
-  Convert body text CONTENT to xml nodes, processing info image tags
-  when found.  IWBN add a regex match for *Note: here and call the
-  *Note ==> <a href> logic of info_process_text_notes from here.
+  If every element of `str' is `ch' then return TRUE, else FALSE.
  */
-static xmlNodePtr
-info_body_text (xmlNodePtr parent, xmlNsPtr ns, gchar const *name, gchar const *content)
+static gboolean
+string_all_char_p (const gchar* str, gchar ch)
 {
-  if (!strstr (content, INFO_C_IMAGE_TAG_OPEN))
-    return xmlNewTextChild (parent, ns, BAD_CAST name, BAD_CAST content);
+  for (; *str; str++) {
+    if (*str != ch) return FALSE;
+  }
+  return TRUE;
+}
+
+/*
+  If `line' is a line of '*', '=' or '-', return 1,2,3 respectively
+  for the heading level. If it's anything else, return 0.
+ */
+static int
+header_underline_level (const gchar* line)
+{
+  if (*line != '*' && *line != '=' && *line != '-')
+    return 0;
+
+  if (string_all_char_p (line, '*')) return 1;
+  if (string_all_char_p (line, '=')) return 2;
+  if (string_all_char_p (line, '-')) return 3;
+
+  return 0;
+}
+
+/*
+  Use g_strjoinv to join up the strings from `strings', but they might
+  not actually be a null-terminated array. `end' should be strings+n,
+  where I want the first n strings (strings+0, ..., strings+(n-1)). It
+  shouldn't point outside of the array allocated, but it can point at
+  the null string at the end.
+ */
+static gchar*
+join_strings_subset (const gchar *separator,
+                     gchar** strings, gchar** end)
+{
+  g_assert(end > strings);
+
+  gchar *ptr = *end;
+  *end = NULL;
+  
+  gchar *glob = g_strjoinv (separator, strings);
+  *end = ptr;
+  return glob;
+}
+
+/*
+  Create a text node, child of `parent', with the lines strictly
+  between `first' and `last'.
+*/
+static void
+lines_subset_text_child (xmlNodePtr parent, xmlNsPtr ns,
+                         gboolean inline_p,
+                         gchar** first, gchar** last)
+{
+  /* TODO? Currently we're copying the split strings again, which is
+     less efficient than somehow storing lengths and using a sort of
+     window on `content'. But that's much more difficult, so unless
+     there's a problem, let's go with the stupid approach. */
+  gchar *glob;
+  if (last > first) {
+    glob = join_strings_subset ("\n", first, last);
+    xmlNewTextChild (parent, ns,
+                     inline_p ? BAD_CAST "para1" : BAD_CAST "para",
+                     BAD_CAST glob);
+    g_free (glob);
+  }
+}
+
+/*
+  Convert body text CONTENT to xml nodes. This function is responsible
+  for spotting headings etc and splitting them out correctly.
+
+  If `inline_p' is true, end with a <para1> tag. Otherwise, end with a
+  <para> tag. 
+
+  TODO: IWBN add a regex match for *Note: here and call the *Note ==>
+  <a href> logic of info_process_text_notes from here.
+ */
+static void
+info_body_parse_text (xmlNodePtr parent, xmlNsPtr ns,
+                      gboolean inline_p, const gchar *content)
+{
+  /* The easiest things to spot are headings: they look like a line of
+   * '*','=' or '-', corresponding to heading levels 1,2 or 3. To spot
+   * them, we split content into single lines and work with them. */
+  gchar **lines = g_strsplit (content, "\n", 0);
+  gchar **first = lines, **last = lines+1;
+  int header_level;
+  xmlNodePtr header_node;
+
+  /* Deal with the possibility that `content' is empty */
+  if (*lines == NULL) {
+    if (!inline_p) {
+      xmlNewTextChild (parent, NULL, BAD_CAST "para", BAD_CAST "");
+    }
+    return;
+  }
+
+  for (; *last; last++) {
+    header_level = header_underline_level (*last);
+    if (header_level) {
+      /* Write out any lines beforehand */
+      lines_subset_text_child (parent, ns, FALSE, first, last-1);
+      /* Now write out the actual header line */
+      header_node = xmlNewTextChild (parent, ns, BAD_CAST "header",
+                                     BAD_CAST *(last-1));
+      xmlNewProp (header_node, BAD_CAST "level",
+                  BAD_CAST level_headings[header_level]);
+      
+      first = last+1;
+      last = first+1;
+    }
+  }
+  /* Write out any lines left */
+  lines_subset_text_child (parent, ns, inline_p, first, last);
+  
+  g_strfreev (lines);
+}
+
+/*
+  info_body_text is responsible for taking a hunk of the info page's
+  body and turning it into paragraph tags. It searches out images and
+  marks them up properly if necessary.
+
+  It uses info_body_parse_text to mark up the actual bits of text.
+ */
+static void
+info_body_text (xmlNodePtr parent, xmlNsPtr ns,
+                gboolean inline_p, gchar const *content)
+{
+  if (!strstr (content, INFO_C_IMAGE_TAG_OPEN)) {
+    info_body_parse_text (parent, ns, inline_p, content);
+    return;
+  }
 
   gint content_len = strlen (content);
   gint pos = 0;
@@ -164,16 +298,15 @@ info_body_text (xmlNodePtr parent, xmlNsPtr ns, gchar const *name, gchar const *
 						     &image_start, &image_end);
       gchar *before = g_strndup (&content[pos], image_start - pos);
       pos = image_end + 1;
-      xmlNewTextChild (parent, NULL, BAD_CAST "para1", BAD_CAST (before));
+      info_body_parse_text (parent, NULL, TRUE, before);
       g_free (before);
       if (image_found)
 	info_insert_image (parent, match_info);
       g_match_info_next (match_info, NULL);
     }
   gchar *after = g_strndup (&content[pos], content_len - pos);
-  xmlNewTextChild (parent, NULL, BAD_CAST "para1", BAD_CAST (after));
+  info_body_parse_text (parent, NULL, TRUE, after);
   g_free (after);
-  return 0;
 }
 
 /* Part 1: Parse File Into Tree Store */
@@ -840,7 +973,7 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 					     BAD_CAST "Section",
 					     NULL);
 		  if (!notes)
-		    info_body_text (newnode, NULL, "para", page_content);
+		    info_body_text (newnode, NULL, FALSE, page_content);
 		  
 		  else {
 		    /* Handle notes here */
@@ -1005,7 +1138,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 
   tmp = g_strconcat (split[0], "\n* Menu:", NULL);
   if (!notes)
-    info_body_text (newnode, NULL, "para", tmp);
+    info_body_text (newnode, NULL, FALSE, tmp);
   else {
     info_process_text_notes (&newnode, tmp, tree);
   }
@@ -1119,7 +1252,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	 * start, so we can just add it and forget about it.
 	 */
 	first = FALSE;
-	info_body_text (holder, NULL, "para1", (*current_real));
+	info_body_text (holder, NULL, TRUE, (*current_real));
 	continue;
       }
       /* If we got to here, we now gotta parse the note reference */
@@ -1128,13 +1261,13 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	/* Special type of note that isn't really a note, but pretends
 	 * it is
 	 */
-	info_body_text (holder, NULL, "para1",
+	info_body_text (holder, NULL, TRUE,
 			g_strconcat ("*Note", *current_real, NULL));
 	continue;
       }
       append = strchr (*current_real, ':');
       if (!append) {
-	info_body_text (holder, NULL, "para1", *current_real);
+	info_body_text (holder, NULL, TRUE, *current_real);
 	continue;
       }
       append++;
@@ -1149,7 +1282,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
       }
       alt_append1 = strchr (alt_append1, ',');
       if (!append && !alt_append && !alt_append1) {
-	info_body_text (holder, NULL, "para1", *current_real);
+	info_body_text (holder, NULL, TRUE, *current_real);
 	continue;
       }
       if (!append || alt_append || alt_append1) {
@@ -1285,14 +1418,14 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 	ref1 = xmlNewTextChild (holder, NULL, BAD_CAST "a",
 				BAD_CAST link_text);
 	if (*(ulink+1) != NULL)
-	  info_body_text (holder, NULL, "para", "");
+	  info_body_text (holder, NULL, FALSE, "");
 
 	g_free (link_text);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST href);
       }
       g_strfreev (urls);
       /* Finally, we can add the text as required */
-      info_body_text (holder, NULL, "para1", append);
+      info_body_text (holder, NULL, TRUE, append);
       g_free (url);
       g_free (href);
     }

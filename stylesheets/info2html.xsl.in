@@ -115,6 +115,23 @@ a.navbar-next::after {
   <xsl:value-of select="node()"/>
 </xsl:template>
 
+<xsl:template match="header">
+  <xsl:choose>
+    <xsl:when test='@level = 1'>
+      <h1><xsl:value-of select="node()"/></h1>
+    </xsl:when>
+    <xsl:when test='@level = 2'>
+      <h2><xsl:value-of select="node()"/></h2>
+    </xsl:when>
+    <xsl:when test='@level = 3'>
+      <h3><xsl:value-of select="node()"/></h3>
+    </xsl:when>
+    <xsl:otherwise>
+      <h1>(Unknown heading level) <xsl:value-of select="node()"/></h1>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="spacing">
   <xsl:value-of select="node()"/>
 </xsl:template>
