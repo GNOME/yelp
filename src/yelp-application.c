@@ -347,14 +347,15 @@ yelp_application_run (YelpApplication  *app,
     else
         uri = DEFAULT_URI;
 
-    ret = g_dbus_connection_invoke_method_sync (priv->connection,
-                                                "org.freedesktop.DBus",
-                                                "/org/freedesktop/DBus",
-                                                "org.freedesktop.DBus",
-                                                "RequestName",
-                                                g_variant_new ("(su)", "org.gnome.Yelp", 0),
-                                                G_DBUS_INVOKE_METHOD_FLAGS_NONE,
-                                                -1, NULL, &error);
+    ret = g_dbus_connection_call_sync (priv->connection,
+                                       "org.freedesktop.DBus",
+                                       "/org/freedesktop/DBus",
+                                       "org.freedesktop.DBus",
+                                       "RequestName",
+                                       g_variant_new ("(su)", "org.gnome.Yelp", 0),
+                                       NULL,
+                                       G_DBUS_CALL_FLAGS_NONE,
+                                       -1, NULL, &error);
     if (error) {
         g_warning ("Unable to register service: %s", error->message);
         g_error_free (error);
@@ -381,14 +382,15 @@ yelp_application_run (YelpApplication  *app,
             g_free (cur);
         }
 
-        ret = g_dbus_connection_invoke_method_sync (priv->connection,
-                                                    "org.gnome.Yelp",
-                                                    "/org/gnome/Yelp",
-                                                    "org.gnome.Yelp",
-                                                    "LoadUri",
-                                                    g_variant_new ("(su)", newuri, gtk_get_current_event_time ()),
-                                                    G_DBUS_INVOKE_METHOD_FLAGS_NONE,
-                                                    -1, NULL, &error);
+        ret = g_dbus_connection_call_sync (priv->connection,
+                                           "org.gnome.Yelp",
+                                           "/org/gnome/Yelp",
+                                           "org.gnome.Yelp",
+                                           "LoadUri",
+                                           g_variant_new ("(su)", newuri, gtk_get_current_event_time ()),
+                                           NULL,
+                                           G_DBUS_CALL_FLAGS_NONE,
+                                           -1, NULL, &error);
         if (error) {
             g_warning ("Unable to notify existing process: %s\n", error->message);
             g_error_free (error);
@@ -403,7 +405,6 @@ yelp_application_run (YelpApplication  *app,
     introspection_data = g_dbus_node_info_new_for_xml (introspection_xml, NULL);
     g_dbus_connection_register_object (priv->connection,
                                        "/org/gnome/Yelp",
-                                       "org.gnome.Yelp",
                                        introspection_data->interfaces[0],
                                        &yelp_dbus_vtable,
                                        app, NULL, NULL);
@@ -745,7 +746,7 @@ packages_installed (GDBusConnection *connection,
                     YelpApplication *app)
 {
     GError *error = NULL;
-    g_dbus_connection_invoke_method_finish (connection, res, &error);
+    g_dbus_connection_call_finish (connection, res, &error);
     if (error) {
         const gchar *err = NULL;
         if (error->domain == G_DBUS_ERROR) {
@@ -848,16 +849,17 @@ yelp_application_install_package (YelpApplication  *app,
     guint32 xid = 0;
     strv = g_variant_builder_new (G_VARIANT_TYPE ("as"));
     g_variant_builder_add (strv, "s", pkg);
-    g_dbus_connection_invoke_method (priv->connection,
-                                     "org.freedesktop.PackageKit",
-                                     "/org/freedesktop/PackageKit",
-                                     "org.freedesktop.PackageKit.Modify",
-                                     "InstallPackageNames",
-                                     g_variant_new ("(uass)", xid, strv, ""),
-                                     G_DBUS_INVOKE_METHOD_FLAGS_NONE,
-                                     -1, NULL,
-                                     (GAsyncReadyCallback) packages_installed,
-                                     app);
+    g_dbus_connection_call (priv->connection,
+                            "org.freedesktop.PackageKit",
+                            "/org/freedesktop/PackageKit",
+                            "org.freedesktop.PackageKit.Modify",
+                            "InstallPackageNames",
+                            g_variant_new ("(uass)", xid, strv, ""),
+                            NULL,
+                            G_DBUS_CALL_FLAGS_NONE,
+                            -1, NULL,
+                            (GAsyncReadyCallback) packages_installed,
+                            app);
     g_variant_builder_unref (strv);
 }
 
