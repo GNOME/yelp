@@ -6,12 +6,8 @@ MOSTLYCLEANFILES =
 @INTLTOOL_XML_RULE@
 @INTLTOOL_SCHEMAS_RULE@
 
-gsettingsschema_DATA = org.gnome.yelp.gschema.xml
-@GSETTINGS_CHECK_RULE@
-if GSETTINGS_SCHEMAS_INSTALL
-install-data-hook:
-	$(GLIB_COMPILE_SCHEMAS) $(DESTDIR)$(gsettingsschemadir)
-endif
+gsettings_SCHEMAS = org.gnome.yelp.gschema.xml
+@GSETTINGS_RULES@
 
 tocdir   = $(datadir)/yelp
 toc_DATA = man.xml toc.xml scrollkeeper.xml info.xml
@@ -30,7 +26,6 @@ EXTRA_DIST =					\
 	toc.xml			toc.xml.in	\
 	info.xml		info.xml.in	\
 	scrollkeeper.xml	default.css	\
-	$(gsettingsschema_DATA)			\
-	$(js_DATA)
+	$(gsettings_SCHEMAS)	$(js_DATA)
 
 CLEANFILES = toc.xml man.xml info.xml

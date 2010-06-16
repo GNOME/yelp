@@ -20,15 +20,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-04 22:49+0200\n"
-"PO-Revision-Date: 2010-05-04 22:49+0200\n"
+"POT-Creation-Date: 2010-06-03 23:50+0200\n"
+"PO-Revision-Date: 2010-06-03 23:50+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Galician <gnome@g11n.net>\n"
+"Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/info.xml.in.h:1
@@ -882,12 +882,12 @@ msgid "Word Processors"
 msgstr "Procesadores de texto"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:147
+#: ../libyelp/yelp-lzma-decompressor.c:155
 msgid "Invalid compressed data"
 msgstr "Datos comprimidos non válidos"
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:153
+#: ../libyelp/yelp-lzma-decompressor.c:161
 msgid "Not enough memory"
 msgstr "Non hai suficiente memoria"
 
@@ -925,11 +925,11 @@ msgid ""
 msgstr ""
 "Non foi posíbel o ficheiro ‘%s’ porque non é un documento XML ben formado."
 
-#: ../libyelp/yelp-docbook-document.c:720
+#: ../libyelp/yelp-docbook-document.c:740
 msgid "Unknown"
 msgstr "Descoñecido"
 
-#: ../libyelp/yelp-docbook-document.c:781 ../libyelp/yelp-info-document.c:309
+#: ../libyelp/yelp-docbook-document.c:801 ../libyelp/yelp-info-document.c:309
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Non se encontrou a páxina solicitada no documento «%s»."
@@ -947,44 +947,35 @@ msgstr ""
 "Non foi posíbel analizar o ficheiro ‘%s’ porque non é unha páxina de "
 "información ben elaborada."
 
-#: ../libyelp/yelp-io-channel.c:125
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"Non foi posíbel ler nin descodificar o ficheiro '%s'. O ficheiro pode estar "
-"comprimido nun formato non soportado."
-
-#: ../libyelp/yelp-location-entry.c:251
+#: ../libyelp/yelp-location-entry.c:279
 msgid "Description Column"
 msgstr "Columna de descrición"
 
-#: ../libyelp/yelp-location-entry.c:252
+#: ../libyelp/yelp-location-entry.c:280
 msgid "A column in the model to get descriptions from"
 msgstr "Unha columna no modelo desde onde obter as descricións"
 
-#: ../libyelp/yelp-location-entry.c:267
+#: ../libyelp/yelp-location-entry.c:295
 msgid "Icon Column"
 msgstr "Columna de icona"
 
-#: ../libyelp/yelp-location-entry.c:268
+#: ../libyelp/yelp-location-entry.c:296
 msgid "A column in the model to get icon names from"
 msgstr "Unha columna no modelo desde onde obter os nomes de icona"
 
-#: ../libyelp/yelp-location-entry.c:283
+#: ../libyelp/yelp-location-entry.c:311
 msgid "Flags Column"
 msgstr "Columna de opcións"
 
-#: ../libyelp/yelp-location-entry.c:284
+#: ../libyelp/yelp-location-entry.c:312
 msgid "A column in the model with YelpLocationEntryFlags flags"
 msgstr "Unha columna no modelo con opcións YelpLocationEntryFlags"
 
-#: ../libyelp/yelp-location-entry.c:300
+#: ../libyelp/yelp-location-entry.c:328
 msgid "Enable Search"
 msgstr "Activar a busca"
 
-#: ../libyelp/yelp-location-entry.c:301
+#: ../libyelp/yelp-location-entry.c:329
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 "Indica se a entrada de localización pode ser usada como un campo de busca"
@@ -1055,140 +1046,187 @@ msgstr "Non se localizou o atributo href en yelp:document\n"
 msgid "Out of memory"
 msgstr "Sen memoria"
 
-#: ../libyelp/yelp-view.c:92
+#: ../libyelp/yelp-view.c:111
+msgid "_Print..."
+msgstr "_Imprimir..."
+
+#: ../libyelp/yelp-view.c:116
 msgid "_Back"
 msgstr "_Atrás"
 
-#: ../libyelp/yelp-view.c:97
+#: ../libyelp/yelp-view.c:121
 msgid "_Forward"
 msgstr "_Adiante"
 
-#: ../libyelp/yelp-view.c:102
+#: ../libyelp/yelp-view.c:126
 msgid "_Previous Page"
 msgstr "Páxina _anterior"
 
-#: ../libyelp/yelp-view.c:107
+#: ../libyelp/yelp-view.c:131
 msgid "_Next Page"
 msgstr "Páxina _seguinte"
 
-#: ../libyelp/yelp-view.c:310
+#: ../libyelp/yelp-view.c:376
 msgid "Yelp URI"
 msgstr "URI do Yelp"
 
-#: ../libyelp/yelp-view.c:311
+#: ../libyelp/yelp-view.c:377
 msgid "A YelpUri with the current location"
 msgstr "Unha YelpURI coa localización actual"
 
-#: ../libyelp/yelp-view.c:319
+#: ../libyelp/yelp-view.c:385
 msgid "Loading State"
 msgstr "Estado da carga"
 
-#: ../libyelp/yelp-view.c:320
+#: ../libyelp/yelp-view.c:386
 msgid "The loading state of the view"
 msgstr "O estado da carga da visualización"
 
-#: ../libyelp/yelp-view.c:329
+#: ../libyelp/yelp-view.c:395
 msgid "Page ID"
 msgstr "ID da páxina"
 
-#: ../libyelp/yelp-view.c:330
-msgid "The ID of the root page of the page being viewew"
+#: ../libyelp/yelp-view.c:396
+msgid "The ID of the root page of the page being viewed"
 msgstr "O ID da páxina raíz da páxina que está vendo"
 
-#: ../libyelp/yelp-view.c:338
+#: ../libyelp/yelp-view.c:404
 msgid "Root Title"
 msgstr "Título raíz"
 
-#: ../libyelp/yelp-view.c:339
-msgid "The title of the root page of the page being viewew"
-msgstr "O título da páxina raíz da páxina que está vendo"
+#: ../libyelp/yelp-view.c:405
+msgid "The title of the root page of the page being viewed"
+msgstr "O título da páxina raíz da páxina que se está vendo"
 
-#: ../libyelp/yelp-view.c:347
+#: ../libyelp/yelp-view.c:413
 msgid "Page Title"
 msgstr "Título de páxina"
 
-#: ../libyelp/yelp-view.c:348
+#: ../libyelp/yelp-view.c:414
 msgid "The title of the page being viewed"
 msgstr "O título da páxina que está vendo"
 
-#: ../libyelp/yelp-view.c:356
+#: ../libyelp/yelp-view.c:422
 msgid "Page Description"
 msgstr "Descrición da páxina"
 
-#: ../libyelp/yelp-view.c:357
+#: ../libyelp/yelp-view.c:423
 msgid "The description of the page being viewed"
 msgstr "A descrición da páxina que está vendo"
 
-#: ../libyelp/yelp-view.c:365
+#: ../libyelp/yelp-view.c:431
 msgid "Page Icon"
 msgstr "Icona da páxina"
 
-#: ../libyelp/yelp-view.c:366
+#: ../libyelp/yelp-view.c:432
 msgid "The icon of the page being viewed"
 msgstr "A icona da páxina que está vendo"
 
-#: ../libyelp/yelp-view.c:683
+#: ../libyelp/yelp-view.c:780
+msgid "Save Image"
+msgstr "Gardar a imaxe"
+
+#. Not using a mnemonic because underscores are common in email
+#. * addresses, and we'd have to escape them. There doesn't seem
+#. * to be a quick GTK+ function for this. In practice, there will
+#. * probably only be one menu item for mailto link popups anyway,
+#. * so the mnemonic's not that big of a deal.
+#.
+#: ../libyelp/yelp-view.c:873
+#, c-format
+msgid "Send email to %s"
+msgstr "Enviar correo electrónico a %s"
+
+#: ../libyelp/yelp-view.c:883
+msgid "_Open Link"
+msgstr "_Abrir a ligazón"
+
+#: ../libyelp/yelp-view.c:888
+msgid "Open Link in New _Window"
+msgstr "Abrir ligazón nunha xanela _nova"
+
+#: ../libyelp/yelp-view.c:930
+msgid "_Save Image As..."
+msgstr "_Gardar imaxe como..."
+
+#: ../libyelp/yelp-view.c:932
+msgid "_Save Video As..."
+msgstr "_Gardar vídeo como..."
+
+#: ../libyelp/yelp-view.c:939
+msgid "S_end Image To..."
+msgstr "G_ardar imaxe en..."
+
+#: ../libyelp/yelp-view.c:941
+msgid "S_end Video To..."
+msgstr "_Enviar vídeo a..."
+
+#: ../libyelp/yelp-view.c:952
+msgid "_Copy Text"
+msgstr "_Copiar texto"
+
+#: ../libyelp/yelp-view.c:1123
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Non foi posíbel cargar un documento para «%s»"
 
-#: ../libyelp/yelp-view.c:689
+#: ../libyelp/yelp-view.c:1129
 #, c-format
 msgid "Could not load a document"
 msgstr "Non foi posíbel cargar un documento"
 
-#: ../libyelp/yelp-view.c:756
+#: ../libyelp/yelp-view.c:1196
 msgid "Not Found"
 msgstr "Non se encontrou"
 
-#: ../libyelp/yelp-view.c:759
+#: ../libyelp/yelp-view.c:1199
 msgid "Cannot Read"
 msgstr "Non é posíbel ler"
 
-#: ../libyelp/yelp-view.c:765
+#: ../libyelp/yelp-view.c:1205
 msgid "Unknown Error"
 msgstr "Erro descoñecido"
 
-#: ../libyelp/yelp-view.c:855
+#: ../libyelp/yelp-view.c:1296
 #, c-format
 msgid "The URI ‘%s’ does point to a valid page."
 msgstr "O URI «%s» non apunta a unha páxina válida."
 
-#: ../libyelp/yelp-view.c:863
+#: ../libyelp/yelp-view.c:1304
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Non foi posíbel analizar o URI «%s»."
 
-#: ../src/yelp-application.c:55
+#: ../src/yelp-application.c:56
 msgid "Turn on editor mode"
 msgstr "Activar o modo editor"
 
-#: ../src/yelp-application.c:106
+#: ../src/yelp-application.c:107
 msgid "_Larger Text"
 msgstr "Texto máis _grande"
 
-#: ../src/yelp-application.c:108
+#: ../src/yelp-application.c:109
 msgid "Increase the size of the text"
 msgstr "Aumentar o tamaño do texto"
 
-#: ../src/yelp-application.c:111
+#: ../src/yelp-application.c:112
 msgid "_Smaller Text"
 msgstr "Texto máis peque_no"
 
-#: ../src/yelp-application.c:113
+#: ../src/yelp-application.c:114
 msgid "Descrease the size of the text"
 msgstr "Reducir o tamaño do texto"
 
-#: ../src/yelp-application.c:221
+#: ../src/yelp-application.c:230
 msgid "Show Text _Cursor"
 msgstr "Mostrar o _cursor de texto"
 
-#: ../src/yelp-application.c:297 ../src/yelp-window.c:1041
+#: ../src/yelp-application.c:306 ../src/yelp-window.c:1841
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Axuda"
 
-#: ../src/yelp-application.c:547
+#: ../src/yelp-application.c:572
 msgid ""
 "You do not have PackageKit installed.  Package installation links require "
 "PackageKit."
@@ -1196,61 +1234,108 @@ msgstr ""
 "Non ten PackageKit instalado. As ligazóns de instalación do paquete requiren "
 "PackageKit."
 
-#: ../src/yelp-window.c:207
+#: ../src/yelp-window.c:298
 msgid "_Page"
 msgstr "_Páxina"
 
-#: ../src/yelp-window.c:208
+#: ../src/yelp-window.c:299
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/yelp-window.c:209
+#: ../src/yelp-window.c:300
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/yelp-window.c:210
+#: ../src/yelp-window.c:301
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:213
+#: ../src/yelp-window.c:304
 msgid "_New Window"
 msgstr "Xanela _nova"
 
-#: ../src/yelp-window.c:218
+#: ../src/yelp-window.c:309
 msgid "_Close"
 msgstr "_Pechar"
 
-#: ../src/yelp-window.c:223
+#: ../src/yelp-window.c:314
 msgid "_Add Bookmark"
 msgstr "_Engadir marcador"
 
-#: ../src/yelp-window.c:228
-msgid "Search"
-msgstr "Buscar"
+#: ../src/yelp-window.c:319
+msgid "_Edit Bookmarks"
+msgstr "_Editar marcadores"
 
-#: ../src/yelp-window.c:233
-msgid "Open Location"
-msgstr "Abrir localización"
+#: ../src/yelp-window.c:324
+msgid "Find in Page..."
+msgstr "Buscar na páxina…"
 
-#: ../src/yelp-window.c:260
-msgid "Application"
-msgstr "Aplicativos"
-
-#: ../src/yelp-window.c:261
-msgid "A YelpApplication instance that controls this window"
-msgstr "Unha instancia de YelpApplications que controla esta xanela"
-
-#: ../src/yelp-window.c:426
+#: ../src/yelp-window.c:329 ../src/yelp-window.c:569
 msgid "Search..."
 msgstr "Buscar..."
 
-#: ../src/yelp-window.c:985
+#: ../src/yelp-window.c:334
+msgid "Open Location"
+msgstr "Abrir localización"
+
+#: ../src/yelp-window.c:363
+msgid "Application"
+msgstr "Aplicativos"
+
+#: ../src/yelp-window.c:364
+msgid "A YelpApplication instance that controls this window"
+msgstr "Unha instancia de YelpApplications que controla esta xanela"
+
+#: ../src/yelp-window.c:641
+msgid "Read Later"
+msgstr "Ler máis tarde"
+
+#. %s will be replaced with the name of a document
+#: ../src/yelp-window.c:829
+#, c-format
+msgid "Bookmarks for %s"
+msgstr "Marcadores para %s"
+
+#: ../src/yelp-window.c:1457
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i coincidencia"
+msgstr[1] "%i coincidencias"
+
+#: ../src/yelp-window.c:1482
+msgid "No matches"
+msgstr "Sen coincidencias"
+
+#: ../src/yelp-window.c:1801
 msgid "Loading"
 msgstr "Cargando"
+
+#: ../src/yelp-window.c:2034
+msgid "_Open Bookmark"
+msgstr "_Abrir marcador"
+
+#: ../src/yelp-window.c:2040
+msgid "Open Bookmark in New _Window"
+msgstr "Abrir marcador nunha _xanela nova"
+
+#: ../src/yelp-window.c:2049
+msgid "_Remove Bookmark"
+msgstr "_Eliminar marcador"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obter axuda co Gnome"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "Non foi posíbel ler nin descodificar o ficheiro '%s'. O ficheiro pode "
+#~ "estar comprimido nun formato non soportado."
+
+#~ msgid "Search"
+#~ msgstr "Buscar"
 
 #~ msgid "File is not a valid .desktop file"
 #~ msgstr "O ficheiro non é un ficheiro .desktop válido"
@@ -1332,9 +1417,6 @@ msgstr "Obter axuda co Gnome"
 #~ msgstr ""
 #~ "Non foi posíbel analizar o ficheiro ‘%s’ porque non é unha páxina de "
 #~ "manual ben formada."
-
-#~ msgid "Print"
-#~ msgstr "Imprimir"
 
 #~ msgid "Preparing to print"
 #~ msgstr "Preparándose para imprimir"
@@ -1419,9 +1501,6 @@ msgstr "Obter axuda co Gnome"
 #~ msgstr ""
 #~ "Non se puido analizar o TOC porque non é un documento XML ben formado."
 
-#~ msgid "Bookmarks"
-#~ msgstr "Marcadores"
-
 #~ msgid "Re_name"
 #~ msgstr "Re_nomear"
 
@@ -1479,15 +1558,6 @@ msgstr "Obter axuda co Gnome"
 #~ msgid "Use the default fonts set for the system."
 #~ msgstr "Usar o conxunto de tipos de letra predeterminado do sistema."
 
-#~ msgid "Open Bookmark in New Window"
-#~ msgstr "Abrir marcador nunha xanela nova"
-
-#~ msgid "Rename Bookmark"
-#~ msgstr "Renomear marcador"
-
-#~ msgid "Remove Bookmark"
-#~ msgstr "Eliminar marcador"
-
 #~ msgid "A bookmark titled %s already exists for this page."
 #~ msgstr "Xa existe un marcador titulado %s para esta páxina."
 
@@ -1522,9 +1592,6 @@ msgstr "Obter axuda co Gnome"
 #~ msgid "Print This Document ..."
 #~ msgstr "Imprimir este documento…"
 
-#~ msgid "Print This Page ..."
-#~ msgstr "Imprimir esta páxina…"
-
 #~ msgid "About This Document"
 #~ msgstr "Sobre este documento"
 
@@ -1533,9 +1600,6 @@ msgstr "Obter axuda co Gnome"
 
 #~ msgid "_Close Window"
 #~ msgstr "_Pechar a xanela"
-
-#~ msgid "_Copy"
-#~ msgstr "_Copiar"
 
 #~ msgid "_Select All"
 #~ msgstr "_Seleccionar todo"
@@ -1575,15 +1639,6 @@ msgstr "Obter axuda co Gnome"
 
 #~ msgid "_Contents"
 #~ msgstr "_Contidos"
-
-#~ msgid "_Edit Bookmarks..."
-#~ msgstr "_Editar marcadores..."
-
-#~ msgid "_Open Link"
-#~ msgstr "_Abrir a ligazón"
-
-#~ msgid "Open Link in _New Window"
-#~ msgstr "Abrir unha ligazón nunha xanela _nova"
 
 #~ msgid "_Copy Link Address"
 #~ msgstr "_Copiar o enderezo da ligazón"

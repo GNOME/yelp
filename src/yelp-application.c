@@ -47,6 +47,7 @@ static gboolean editor_mode = FALSE;
 
 enum {
     BOOKMARKS_CHANGED,
+    READ_LATER_CHANGED,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -59,7 +60,7 @@ static const GOptionEntry entries[] = {
 typedef struct _YelpApplicationLoad YelpApplicationLoad;
 struct _YelpApplicationLoad {
     YelpApplication *app;
-    guint timestamp;
+    guint32 timestamp;
     gboolean new;
 };
 
@@ -158,6 +159,14 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     signals[BOOKMARKS_CHANGED] =
         g_signal_new ("bookmarks-changed",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__STRING,
+                      G_TYPE_NONE, 1, G_TYPE_STRING);
+
+    signals[READ_LATER_CHANGED] =
+        g_signal_new ("read-later-changed",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
@@ -448,7 +457,7 @@ yelp_application_method (GDBusConnection *connection,
 gboolean
 yelp_application_load_uri (YelpApplication  *app,
                            const gchar      *uri,
-                           guint             timestamp,
+                           guint32           timestamp,
                            GError          **error)
 {
     YelpApplicationLoad *data;
@@ -457,6 +466,7 @@ yelp_application_load_uri (YelpApplication  *app,
     data = g_new (YelpApplicationLoad, 1);
     data->app = app;
     data->timestamp = timestamp;
+    data->new = FALSE;
     
     yuri = yelp_uri_new (uri);
     
@@ -472,19 +482,26 @@ void
 yelp_application_new_window (YelpApplication  *app,
                              const gchar      *uri)
 {
-    YelpApplicationLoad *data;
     YelpUri *yuri;
-
-    data = g_new (YelpApplicationLoad, 1);
-    data->app = app;
-    data->new = TRUE;
 
     yuri = yelp_uri_new (uri ? uri : DEFAULT_URI);
 
-    g_signal_connect (yuri, "resolved",
+    yelp_application_new_window_uri (app, yuri);
+}
+
+void
+yelp_application_new_window_uri (YelpApplication  *app,
+                                 YelpUri          *uri)
+{
+    YelpApplicationLoad *data;
+    data = g_new (YelpApplicationLoad, 1);
+    data->app = app;
+    data->timestamp = gtk_get_current_event_time ();
+    data->new = TRUE;
+    g_signal_connect (uri, "resolved",
                       G_CALLBACK (application_uri_resolved),
                       data);
-    yelp_uri_resolve (yuri);
+    yelp_uri_resolve (uri);
 }
 
 static void
@@ -498,7 +515,7 @@ application_uri_resolved (YelpUri             *uri,
 
     doc_uri = yelp_uri_get_document_uri (uri);
 
-    if (data->new)
+    if (data->new || !doc_uri)
         window = NULL;
     else
         window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
@@ -536,7 +553,15 @@ application_uri_resolved (YelpUri             *uri,
     if (gdk_window)
         gdk_x11_window_move_to_current_desktop (gdk_window);
 
-    gtk_window_present_with_time (GTK_WINDOW (window), GDK_CURRENT_TIME);
+    /* Ensure we actually present the window when invoked from the command
+     * line. This is somewhat evil, but the minor evil of Yelp stealing
+     * focus (after you requested it) is outweighed for me by the major
+     * evil of no help window appearing when you click Help.
+     */
+    if (data->timestamp == 0)
+        data->timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
+
+    gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
 
     g_free (data);
 }
@@ -630,7 +655,76 @@ yelp_application_add_bookmark (YelpApplication   *app,
             g_variant_builder_add (&builder, "(sss)", page_id, icon, title);
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
-            g_variant_unref (value);
+            g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
+        }
+    }
+}
+
+void
+yelp_application_remove_bookmark (YelpApplication   *app,
+                                  const gchar       *doc_uri,
+                                  const gchar       *page_id)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_id, *this_icon, *this_title;
+        g_settings_get (settings, "bookmarks", "a(sss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(sss)"));
+        while (g_variant_iter_loop (iter, "(&s&s&s)", &this_id, &this_icon, &this_title)) {
+            if (!g_str_equal (page_id, this_id))
+                g_variant_builder_add (&builder, "(sss)", this_id, this_icon, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        g_settings_set_value (settings, "bookmarks", g_variant_builder_end (&builder));
+        g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
+    }
+}
+
+void
+yelp_application_update_bookmarks (YelpApplication   *app,
+                                   const gchar       *doc_uri,
+                                   const gchar       *page_id,
+                                   const gchar       *icon,
+                                   const gchar       *title)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_id, *this_icon, *this_title;
+        gboolean updated = FALSE;
+        g_settings_get (settings, "bookmarks", "a(sss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(sss)"));
+        while (g_variant_iter_loop (iter, "(&s&s&s)", &this_id, &this_icon, &this_title)) {
+            if (g_str_equal (page_id, this_id)) {
+                if (icon && !g_str_equal (icon, this_icon)) {
+                    this_icon = (gchar *) icon;
+                    updated = TRUE;
+                }
+                if (title && !g_str_equal (title, this_title)) {
+                    this_title = (gchar *) title;
+                    updated = TRUE;
+                }
+                if (!updated)
+                    break;
+            }
+            g_variant_builder_add (&builder, "(sss)", this_id, this_icon, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        if (updated) {
+            GVariant *value;
+            value = g_variant_builder_end (&builder);
+            g_settings_set_value (settings, "bookmarks", value);
             g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
         }
     }
@@ -670,6 +764,78 @@ packages_installed (GDBusConnection *connection,
         }
         g_error_free (error);
     }
+}
+
+void
+yelp_application_add_read_later (YelpApplication   *app,
+                                 const gchar       *doc_uri,
+                                 const gchar       *full_uri,
+                                 const gchar       *title)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_uri, *this_title;
+        gboolean broken = FALSE;
+        g_settings_get (settings, "readlater", "a(ss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(ss)"));
+        while (g_variant_iter_loop (iter, "(&s&s)", &this_uri, &this_title)) {
+            if (g_str_equal (full_uri, this_uri)) {
+                /* Already have this link */
+                broken = TRUE;
+                break;
+            }
+            g_variant_builder_add (&builder, "(ss)", this_uri, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        if (!broken) {
+            GVariant *value;
+            g_variant_builder_add (&builder, "(ss)", full_uri, title);
+            value = g_variant_builder_end (&builder);
+            g_settings_set_value (settings, "readlater", value);
+            g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
+        }
+    }
+}
+
+void
+yelp_application_remove_read_later (YelpApplication *app,
+                                    const gchar     *doc_uri,
+                                    const gchar     *full_uri)
+{
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+
+    if (settings) {
+        GVariantBuilder builder;
+        GVariantIter *iter;
+        gchar *this_uri, *this_title;
+        g_settings_get (settings, "readlater", "a(ss)", &iter);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(ss)"));
+        while (g_variant_iter_loop (iter, "(&s&s)", &this_uri, &this_title)) {
+            if (!g_str_equal (this_uri, full_uri))
+                g_variant_builder_add (&builder, "(ss)", this_uri, this_title);
+        }
+        g_variant_iter_free (iter);
+
+        g_settings_set_value (settings, "readlater", g_variant_builder_end (&builder));
+        g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
+    }
+}
+
+GVariant *
+yelp_application_get_read_later (YelpApplication *app,
+                                 const gchar     *doc_uri)
+{
+    GSettings *settings = application_get_doc_settings (app, doc_uri);
+
+    return g_settings_get_value (settings, "readlater");
 }
 
 void

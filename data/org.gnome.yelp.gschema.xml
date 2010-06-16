@@ -1,5 +1,5 @@
 <schemalist>
-<schema id="org.gnome.yelp" path="/org/gnome/yelp/">
+<schema id="org.gnome.yelp" path="/apps/yelp/">
   <key name="show-cursor" type="b">
     <default>false</default>
   </key>
@@ -21,6 +21,9 @@
     <default>(520,580)</default>
   </key>
   <key name="bookmarks" type="a(sss)">
+    <default>[]</default>
+  </key>
+  <key name="readlater" type="a(ss)">
     <default>[]</default>
   </key>
 </schema>

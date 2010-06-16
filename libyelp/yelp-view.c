@@ -29,7 +29,6 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
-#include <webkit/webkitwebresource.h>
 
 #include "yelp-debug.h"
 #include "yelp-docbook-document.h"
@@ -54,6 +53,27 @@ static void        yelp_view_set_property         (GObject            *object,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
 
+static void        view_scrolled                  (GtkAdjustment      *adjustment,
+                                                   YelpView           *view);
+static void        view_scroll_adjustments        (YelpView           *view,
+                                                   GtkAdjustment      *hadj,
+                                                   GtkAdjustment      *vadj,
+                                                   gpointer            data);
+static void        popup_open_link                (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        popup_open_link_new            (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        popup_save_image               (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        popup_send_image               (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        popup_copy_code                (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        popup_save_code                (GtkMenuItem        *item,
+                                                   YelpView           *view);
+static void        view_populate_popup            (YelpView           *view,
+                                                   GtkMenu            *menu,
+                                                   gpointer            data);
 static gboolean    view_navigation_requested      (WebKitWebView             *view,
                                                    WebKitWebFrame            *frame,
                                                    WebKitNetworkRequest      *request,
@@ -88,6 +108,10 @@ static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
                                                    GError             *error);
+static gboolean    dom_node_is_name               (WebKitDOMNode      *node,
+                                                   gchar              *name);
+static gboolean    dom_node_has_class             (WebKitDOMNode      *node,
+                                                   gchar              *class);
 
 static const GtkActionEntry entries[] = {
     {"YelpViewPrint", GTK_STOCK_PRINT,
@@ -117,6 +141,8 @@ static const GtkActionEntry entries[] = {
      G_CALLBACK (view_navigation_action) }
 };
 
+static gchar *nautilus_sendto = NULL;
+
 enum {
     PROP_0,
     PROP_URI,
@@ -144,8 +170,10 @@ static WebKitWebSettings *websettings;
 typedef struct _YelpBackEntry YelpBackEntry;
 struct _YelpBackEntry {
     YelpUri *uri;
-    gchar *title;
-    gchar *desc;
+    gchar   *title;
+    gchar   *desc;
+    gdouble  hadj;
+    gdouble  vadj;
 };
 static void
 back_entry_free (YelpBackEntry *back)
@@ -165,6 +193,19 @@ struct _YelpViewPrivate {
     gchar         *bogus_uri;
     YelpDocument  *document;
     GCancellable  *cancellable;
+    GtkAdjustment *vadjustment;
+    GtkAdjustment *hadjustment;
+    gdouble        vadjust;
+    gdouble        hadjust;
+    gulong         vadjuster;
+    gulong         hadjuster;
+
+    gchar         *popup_link_uri;
+    gchar         *popup_link_text;
+    gchar         *popup_image_uri;
+    WebKitDOMNode *popup_code_node;
+    WebKitDOMNode *popup_code_title;
+    gchar         *popup_code_text;
 
     YelpViewState  state;
 
@@ -174,13 +215,15 @@ struct _YelpViewPrivate {
     gchar         *page_desc;
     gchar         *page_icon;
 
-    GList *back_list;
-    GList *back_cur;
-    gboolean back_load;
+    GList          *back_list;
+    GList          *back_cur;
+    gboolean        back_load;
 
     GtkActionGroup *action_group;
 
-    gint           navigation_requested;
+    GSList         *link_actions;
+
+    gint            navigation_requested;
 };
 
 #define TARGET_TYPE_URI_LIST     "text/uri-list"
@@ -204,6 +247,10 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
+    g_signal_connect (view, "set-scroll-adjustments",
+                      G_CALLBACK (view_scroll_adjustments), NULL);
+    g_signal_connect (view, "populate-popup",
+                      G_CALLBACK (view_populate_popup), NULL);
 
     priv->action_group = gtk_action_group_new ("YelpView");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -222,6 +269,16 @@ yelp_view_dispose (GObject *object)
         priv->uri = NULL;
     }
 
+    if (priv->vadjuster > 0) {
+        g_source_remove (priv->vadjuster);
+        priv->vadjuster = 0;
+    }
+
+    if (priv->hadjuster > 0) {
+        g_source_remove (priv->hadjuster);
+        priv->hadjuster = 0;
+    }
+
     if (priv->cancellable) {
         g_cancellable_cancel (priv->cancellable);
         g_object_unref (priv->cancellable);
@@ -238,6 +295,12 @@ yelp_view_dispose (GObject *object)
         priv->document = NULL;
     }
 
+    while (priv->link_actions) {
+        g_object_unref (priv->link_actions->data);
+        priv->link_actions = g_slist_delete_link (priv->link_actions, priv->link_actions);
+    }
+
+    priv->back_cur = NULL;
     while (priv->back_list) {
         back_entry_free ((YelpBackEntry *) priv->back_list->data);
         priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
@@ -250,6 +313,11 @@ static void
 yelp_view_finalize (GObject *object)
 {
     YelpViewPrivate *priv = GET_PRIV (object);
+
+    g_free (priv->popup_link_uri);
+    g_free (priv->popup_link_text);
+    g_free (priv->popup_image_uri);
+    g_free (priv->popup_code_text);
 
     g_free (priv->page_id);
     g_free (priv->root_title);
@@ -267,6 +335,8 @@ yelp_view_class_init (YelpViewClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
     YelpSettings *settings = yelp_settings_get_default ();
+
+    nautilus_sendto = g_find_program_in_path ("nautilus-sendto");
 
     websettings = webkit_web_settings_new ();
     g_signal_connect (settings,
@@ -290,8 +360,8 @@ yelp_view_class_init (YelpViewClass *klass)
 		      G_TYPE_FROM_CLASS (klass),
 		      G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
-		      g_cclosure_marshal_VOID__STRING,
-		      G_TYPE_NONE, 1, G_TYPE_STRING);
+		      g_cclosure_marshal_VOID__OBJECT,
+		      G_TYPE_NONE, 1, YELP_TYPE_URI);
 
     signals[EXTERNAL_URI] =
 	g_signal_new ("external-uri",
@@ -402,7 +472,10 @@ yelp_view_get_property (GObject    *object,
             g_value_set_string (value, priv->page_desc);
             break;
         case PROP_PAGE_ICON:
-            g_value_set_string (value, priv->page_icon);
+            if (priv->page_icon)
+                g_value_set_string (value, priv->page_icon);
+            else
+                g_value_set_string (value, "help-contents");
             break;
         case PROP_STATE:
             g_value_set_enum (value, priv->state);
@@ -552,6 +625,520 @@ yelp_view_get_action_group (YelpView *view)
 
 /******************************************************************************/
 
+void
+yelp_view_add_link_action (YelpView *view, GtkAction *action)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    priv->link_actions = g_slist_append (priv->link_actions,
+                                         g_object_ref (action));
+}
+
+YelpUri *
+yelp_view_get_active_link_uri (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUri *uri;
+
+    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+
+    return uri;
+}
+
+gchar *
+yelp_view_get_active_link_text (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    return g_strdup (priv->popup_link_text);
+}
+
+/******************************************************************************/
+
+static void
+view_scrolled (GtkAdjustment *adjustment,
+               YelpView      *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    if (priv->back_cur == NULL || priv->back_cur->data == NULL)
+        return;
+    if (adjustment == priv->vadjustment)
+        ((YelpBackEntry *) priv->back_cur->data)->vadj = gtk_adjustment_get_value (adjustment);
+    else if (adjustment = priv->hadjustment)
+        ((YelpBackEntry *) priv->back_cur->data)->hadj = gtk_adjustment_get_value (adjustment);
+}
+
+static void
+view_scroll_adjustments (YelpView      *view,
+                         GtkAdjustment *hadj,
+                         GtkAdjustment *vadj,
+                         gpointer       data)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    priv->vadjustment = vadj;
+    if (priv->vadjuster > 0)
+        g_source_remove (priv->vadjuster);
+    priv->vadjuster = 0;
+    if (vadj) {
+        priv->vadjuster = g_signal_connect (vadj, "value-changed",
+                                            G_CALLBACK (view_scrolled), view);
+    }
+    priv->hadjustment = hadj;
+    if (priv->hadjuster > 0)
+        g_source_remove (priv->hadjuster);
+    priv->hadjuster = 0;
+    if (hadj) {
+        priv->hadjuster = g_signal_connect (hadj, "value-changed",
+                                            G_CALLBACK (view_scrolled), view);
+    }
+}
+
+static void
+popup_open_link (GtkMenuItem *item,
+                 YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUri *uri;
+
+    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+
+    yelp_view_load_uri (view, uri);
+
+    g_free (priv->popup_link_uri);
+    priv->popup_link_uri = NULL;
+
+    g_free (priv->popup_link_text);
+    priv->popup_link_text = NULL;
+}
+
+static void
+popup_open_link_new (GtkMenuItem *item,
+                     YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUri *uri;
+
+    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+
+    g_free (priv->popup_link_uri);
+    priv->popup_link_uri = NULL;
+
+    g_free (priv->popup_link_text);
+    priv->popup_link_text = NULL;
+
+    g_signal_emit (view, signals[NEW_VIEW_REQUESTED], 0, uri);
+    g_object_unref (uri);
+}
+
+typedef struct _YelpSaveData YelpSaveData;
+struct _YelpSaveData {
+    GFile     *orig;
+    GFile     *dest;
+    YelpView  *view;
+    GtkWindow *window;
+};
+
+static void
+file_copied (GFile        *file,
+             GAsyncResult *res,
+             YelpSaveData *data)
+{
+    GError *error = NULL;
+    if (!g_file_copy_finish (file, res, &error)) {
+        GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (data->window) ? data->window : NULL,
+                                                    GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                    GTK_MESSAGE_ERROR,
+                                                    GTK_BUTTONS_OK,
+                                                    "%s", error->message);
+        gtk_dialog_run (GTK_DIALOG (dialog));
+        gtk_widget_destroy (dialog);
+    }
+    g_object_unref (data->orig);
+    g_object_unref (data->dest);
+    g_object_unref (data->view);
+    g_object_unref (data->window);
+}
+
+static void
+popup_save_image (GtkMenuItem *item,
+                  YelpView    *view)
+{
+    YelpSaveData *data;
+    GtkWidget *dialog, *window;
+    gchar *basename;
+    gint res;
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    for (window = gtk_widget_get_parent (GTK_WIDGET (view));
+         window && !GTK_IS_WINDOW (window);
+         window = gtk_widget_get_parent (window));
+
+    data = g_new0 (YelpSaveData, 1);
+    data->orig = g_file_new_for_uri (priv->popup_image_uri);
+    data->view = g_object_ref (view);
+    data->window = g_object_ref (window);
+    g_free (priv->popup_image_uri);
+    priv->popup_image_uri = NULL;
+
+    dialog = gtk_file_chooser_dialog_new (_("Save Image"),
+                                          GTK_WINDOW (window),
+                                          GTK_FILE_CHOOSER_ACTION_SAVE,
+                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                          GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                          NULL);
+    gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
+    basename = g_file_get_basename (data->orig);
+    gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), basename);
+    g_free (basename);
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog),
+                                         g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP));
+
+    res = gtk_dialog_run (GTK_DIALOG (dialog));
+
+    if (res == GTK_RESPONSE_OK) {
+        data->dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
+        g_file_copy_async (data->orig, data->dest,
+                           G_FILE_COPY_OVERWRITE,
+                           G_PRIORITY_DEFAULT,
+                           NULL, NULL, NULL,
+                           (GAsyncReadyCallback) file_copied,
+                           data);
+    }
+    else {
+        g_object_unref (data->orig);
+        g_object_unref (data->view);
+        g_object_unref (data->window);
+        g_free (data);
+    }
+
+    gtk_widget_destroy (dialog);
+}
+
+static void
+popup_send_image (GtkMenuItem *item,
+                  YelpView    *view)
+{
+    gchar *command;
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    command = g_strdup_printf ("%s %s", nautilus_sendto, priv->popup_image_uri);
+
+    gdk_spawn_command_line_on_screen (gtk_widget_get_screen (GTK_WIDGET (view)),
+                                      command, NULL);
+
+    g_free (command);
+    g_free (priv->popup_image_uri);
+    priv->popup_image_uri = NULL;
+}
+
+static void
+popup_copy_code (GtkMenuItem *item,
+                 YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    GtkClipboard *clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+    gchar *content = webkit_dom_node_get_text_content (priv->popup_code_node);
+    gtk_clipboard_set_text (clipboard, content, -1);
+    g_free (content);
+}
+
+static void
+popup_save_code (GtkMenuItem *item,
+                 YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    GtkWidget *dialog, *window;
+    gint res;
+
+    g_free (priv->popup_code_text);
+    priv->popup_code_text = webkit_dom_node_get_text_content (priv->popup_code_node);
+    if (!g_str_has_suffix (priv->popup_code_text, "\n")) {
+        gchar *tmp = g_strconcat (priv->popup_code_text, "\n", NULL);
+        g_free (priv->popup_code_text);
+        priv->popup_code_text = tmp;
+    }
+
+    for (window = gtk_widget_get_parent (GTK_WIDGET (view));
+         window && !GTK_IS_WINDOW (window);
+         window = gtk_widget_get_parent (window));
+
+    dialog = gtk_file_chooser_dialog_new (_("Save Code"),
+                                          GTK_WINDOW (window),
+                                          GTK_FILE_CHOOSER_ACTION_SAVE,
+                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                          GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                          NULL);
+    gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
+    if (priv->popup_code_title) {
+        gchar *filename = webkit_dom_node_get_text_content (priv->popup_code_title);
+        gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), filename);
+        g_free (filename);
+    }
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog),
+                                         g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
+
+    res = gtk_dialog_run (GTK_DIALOG (dialog));
+
+    if (res == GTK_RESPONSE_OK) {
+        GError *error = NULL;
+        GFile *file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
+        GFileOutputStream *stream = g_file_replace (file, NULL, FALSE,
+                                                    G_FILE_CREATE_NONE,
+                                                    NULL,
+                                                    &error);
+        if (stream == NULL) {
+            GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (window) ? GTK_WINDOW (window) : NULL,
+                                                        GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                        GTK_MESSAGE_ERROR,
+                                                        GTK_BUTTONS_OK,
+                                                        "%s", error->message);
+            gtk_dialog_run (GTK_DIALOG (dialog));
+            gtk_widget_destroy (dialog);
+            g_error_free (error);
+        }
+        else {
+            /* FIXME: we should do this async */
+            GDataOutputStream *datastream = g_data_output_stream_new (G_OUTPUT_STREAM (stream));
+            if (!g_data_output_stream_put_string (datastream, priv->popup_code_text, NULL, &error)) {
+                GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (window) ? GTK_WINDOW (window) : NULL,
+                                                            GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                            GTK_MESSAGE_ERROR,
+                                                            GTK_BUTTONS_OK,
+                                                            "%s", error->message);
+                gtk_dialog_run (GTK_DIALOG (dialog));
+                gtk_widget_destroy (dialog);
+                g_error_free (error);
+            }
+            g_object_unref (datastream);
+        }
+        g_object_unref (file);
+    }
+
+    priv->popup_code_node = NULL;
+    priv->popup_code_title = NULL;
+    g_free (priv->popup_code_text);
+    priv->popup_code_text = NULL;
+
+    gtk_widget_destroy (dialog);
+}
+
+static void
+view_populate_popup (YelpView *view,
+                     GtkMenu  *menu,
+                     gpointer  data)
+{
+    WebKitHitTestResult *result;
+    WebKitHitTestResultContext context;
+    GdkEvent *event;
+    YelpViewPrivate *priv = GET_PRIV (view);
+    GList *children;
+    GtkWidget *item;
+    WebKitDOMNode *node, *cur, *link_node = NULL, *code_node = NULL, *code_title_node = NULL;
+
+    children = gtk_container_get_children (GTK_CONTAINER (menu));
+    while (children) {
+        gtk_container_remove (GTK_CONTAINER (menu),
+                              GTK_WIDGET (children->data));
+        children = children->next;
+    }
+    g_list_free (children);
+
+    event = gtk_get_current_event ();
+
+    result = webkit_web_view_get_hit_test_result (WEBKIT_WEB_VIEW (view), (GdkEventButton *) event);
+    g_object_get (result,
+                  "context", &context,
+                  "inner-node", &node,
+                  NULL);
+    for (cur = node; cur != NULL; cur = webkit_dom_node_get_parent_node (cur)) {
+        if (dom_node_is_name (cur, "a"))
+            link_node = cur;
+
+        if (dom_node_is_name (cur, "div") && dom_node_has_class (cur, "code")) {
+            WebKitDOMNode *title;
+            code_node = cur;
+            title = webkit_dom_node_get_parent_node (cur);
+            if (title && dom_node_is_name (title, "div") && dom_node_has_class (title, "contents")) {
+                title = webkit_dom_node_get_previous_sibling (title);
+                if (title && dom_node_is_name (title, "div") && dom_node_has_class (title, "title")) {
+                    code_title_node = title;
+                }
+            }
+        }
+    }
+
+    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK) {
+        gchar *uri;
+        g_object_get (result, "link-uri", &uri, NULL);
+        g_free (priv->popup_link_uri);
+        priv->popup_link_uri = uri;
+
+        g_free (priv->popup_link_text);
+        priv->popup_link_text = NULL;
+        /* FIXME: Handled space-separated class names, etc. See about a convenience API
+         * in WebKit, because this kind of processing in C really sucks.
+         */
+        if (link_node != NULL) {
+            WebKitDOMNode *child = webkit_dom_node_get_first_child (link_node);
+            gchar *tmp;
+            gint i, tmpi;
+            gboolean ws;
+            if (dom_node_is_name (child, "div") && dom_node_has_class (child, "linkdiv")) {
+                child = webkit_dom_node_get_first_child (child);
+                if (child && dom_node_is_name (child, "div") && dom_node_has_class (child, "title")) {
+                    priv->popup_link_text = webkit_dom_node_get_text_content (child);
+                }
+            }
+            if (priv->popup_link_text == NULL)
+                priv->popup_link_text = webkit_dom_node_get_text_content (link_node);
+
+            tmp = g_new0 (gchar, strlen(priv->popup_link_text) + 1);
+            ws = FALSE;
+            for (i = 0, tmpi = 0; priv->popup_link_text[i] != '\0'; i++) {
+                if (priv->popup_link_text[i] == ' ' || priv->popup_link_text[i] == '\n') {
+                    if (!ws) {
+                        tmp[tmpi] = ' ';
+                        tmpi++;
+                        ws = TRUE;
+                    }
+                }
+                else {
+                    tmp[tmpi] = priv->popup_link_text[i];
+                    tmpi++;
+                    ws = FALSE;
+                }
+            }
+            tmp[tmpi] = '\0';
+            g_free (priv->popup_link_text);
+            priv->popup_link_text = tmp;
+        }
+        else {
+            priv->popup_link_text = g_strdup (uri);
+        }
+
+        if (g_str_has_prefix (priv->popup_link_uri, "mailto:")) {
+            /* Not using a mnemonic because underscores are common in email
+             * addresses, and we'd have to escape them. There doesn't seem
+             * to be a quick GTK+ function for this. In practice, there will
+             * probably only be one menu item for mailto link popups anyway,
+             * so the mnemonic's not that big of a deal.
+             */
+            gchar *label = g_strdup_printf (_("Send email to %s"),
+                                            priv->popup_link_uri + 7);
+            item = gtk_menu_item_new_with_label (label);
+            g_signal_connect (item, "activate",
+                              G_CALLBACK (popup_open_link), view);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        }
+        else {
+            GSList *cur;
+
+            item = gtk_menu_item_new_with_mnemonic (_("_Open Link"));
+            g_signal_connect (item, "activate",
+                              G_CALLBACK (popup_open_link), view);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+            item = gtk_menu_item_new_with_mnemonic (_("Open Link in New _Window"));
+            g_signal_connect (item, "activate",
+                              G_CALLBACK (popup_open_link_new), view);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+            for (cur = priv->link_actions; cur != NULL; cur = cur->next) {
+                GtkAction *action = (GtkAction *) cur->data;
+                item = gtk_action_create_menu_item (action);
+                gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            }
+        }
+    }
+    else {
+        item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
+                                                                         "YelpViewGoBack"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
+                                                                         "YelpViewGoForward"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+
+    if ((context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE) ||
+        (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA)) {
+        /* This doesn't currently work for video with automatic controls,
+         * because WebKit puts the hit test on the div with the controls.
+         */
+        gboolean image = context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE;
+        gchar *uri;
+        g_object_get (result, image ? "image-uri" : "media-uri", &uri, NULL);
+        g_free (priv->popup_image_uri);
+        if (g_str_has_prefix (uri, BOGUS_URI)) {
+            priv->popup_image_uri = yelp_uri_locate_file_uri (priv->uri, uri + BOGUS_URI_LEN);
+            g_free (uri);
+        }
+        else {
+            priv->popup_image_uri = uri;
+        }
+
+        item = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        if (image)
+            item = gtk_menu_item_new_with_mnemonic (_("_Save Image As..."));
+        else
+            item = gtk_menu_item_new_with_mnemonic (_("_Save Video As..."));
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_save_image), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        if (nautilus_sendto) {
+            if (image)
+                item = gtk_menu_item_new_with_mnemonic (_("S_end Image To..."));
+            else
+                item = gtk_menu_item_new_with_mnemonic (_("S_end Video To..."));
+            g_signal_connect (item, "activate",
+                              G_CALLBACK (popup_send_image), view);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        }
+    }
+
+    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION) {
+        item = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic (_("_Copy Text"));
+        g_signal_connect_swapped (item, "activate",
+                                  G_CALLBACK (webkit_web_view_copy_clipboard), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+
+    if (code_node != NULL) {
+        item = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        priv->popup_code_node = code_node;
+        priv->popup_code_title = code_title_node;
+
+        item = gtk_menu_item_new_with_mnemonic (_("C_opy Code Block"));
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_copy_code), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        item = gtk_menu_item_new_with_mnemonic (_("Save Code _Block As..."));
+        g_signal_connect (item, "activate",
+                          G_CALLBACK (popup_save_code), view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
+
+    g_object_unref (result);
+    gdk_event_free (event);
+    gtk_widget_show_all (GTK_WIDGET (menu));
+}
+
 static gboolean
 view_navigation_requested (WebKitWebView             *view,
                            WebKitWebFrame            *frame,
@@ -560,13 +1147,14 @@ view_navigation_requested (WebKitWebView             *view,
                            WebKitWebPolicyDecision   *decision,
                            gpointer                   user_data)
 {
+    const gchar *requri = webkit_network_request_get_uri (request);
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpUri *uri;
 
-    debug_print (DB_FUNCTION, "entering\n");
-
-    uri = yelp_uri_new_relative (priv->uri,
-                                 webkit_network_request_get_uri (request));
+    if (g_str_has_prefix (requri, BOGUS_URI))
+        uri = yelp_uri_new_relative (priv->uri, requri + BOGUS_URI_LEN);
+    else
+        uri = yelp_uri_new_relative (priv->uri, requri);
 
     webkit_web_policy_decision_ignore (decision);
 
@@ -639,6 +1227,8 @@ view_history_action (GtkAction *action,
 
     priv->back_load = TRUE;
     yelp_view_load_uri (view, ((YelpBackEntry *) priv->back_cur->data)->uri);
+    priv->vadjust = ((YelpBackEntry *) priv->back_cur->data)->vadj;
+    priv->hadjust = ((YelpBackEntry *) priv->back_cur->data)->hadj;
 }
 
 static void
@@ -881,10 +1471,17 @@ uri_resolved (YelpUri  *uri,
         return;
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
         struri = yelp_uri_get_canonical_uri (uri);
-        error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
-                             _("The URI ‘%s’ does point to a valid page."),
-                             struri);
-        g_free (struri);
+        if (struri != NULL) {
+            error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
+                                 _("The URI ‘%s’ does not point to a valid page."),
+                                 struri);
+            g_free (struri);
+        }
+        else {
+            error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
+                                 _("The URI does not point to a valid page."),
+                                 struri);
+        }
         view_show_error_page (view, error);
         return;
     case YELP_URI_DOCUMENT_TYPE_ERROR:
@@ -1002,7 +1599,7 @@ document_callback (YelpDocument       *document,
         GParamSpec *spec;
 
         real_id = yelp_document_get_page_id (document, priv->page_id);
-        if (priv->page_id && g_str_equal (real_id, priv->page_id)) {
+        if (priv->page_id && real_id && g_str_equal (real_id, priv->page_id)) {
             g_free (real_id);
         }
         else {
@@ -1060,8 +1657,9 @@ document_callback (YelpDocument       *document,
         g_signal_emit_by_name (view, "notify::page-icon", spec);
     }
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
+        YelpUriDocumentType doctype;
 	const gchar *contents;
-        gchar *mime_type, *page_id, *frag_id;
+        gchar *mime_type, *page_id, *frag_id, *full_uri;
         page_id = yelp_uri_get_page_id (priv->uri);
         debug_print (DB_ARG, "    document.uri.page_id=\"%s\"\n", page_id);
         mime_type = yelp_document_get_mime_type (document, page_id);
@@ -1091,10 +1689,21 @@ document_callback (YelpDocument       *document,
            based on actual file locations, but in fact it doesn't matter.  So
            we just make a bogus URI that's easy to process later.
          */
-        if (frag_id != NULL)
-            priv->bogus_uri = g_strdup_printf ("%s%p#%s", BOGUS_URI, priv->uri, frag_id);
-        else
-            priv->bogus_uri = g_strdup_printf ("%s%p", BOGUS_URI, priv->uri);
+        doctype = yelp_uri_get_document_type (priv->uri);
+        full_uri = yelp_uri_get_canonical_uri (priv->uri);
+        if (g_str_has_prefix (full_uri, "file:/") &&
+            (doctype == YELP_URI_DOCUMENT_TYPE_TEXT ||
+             doctype == YELP_URI_DOCUMENT_TYPE_HTML ||
+             doctype == YELP_URI_DOCUMENT_TYPE_XHTML )) {
+            priv->bogus_uri = full_uri;
+        }
+        else {
+            g_free (full_uri);
+            if (frag_id != NULL)
+                priv->bogus_uri = g_strdup_printf ("%s%p#%s", BOGUS_URI, priv->uri, frag_id);
+            else
+                priv->bogus_uri = g_strdup_printf ("%s%p", BOGUS_URI, priv->uri);
+        }
         g_signal_handler_block (view, priv->navigation_requested);
         webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                      contents,
@@ -1103,6 +1712,44 @@ document_callback (YelpDocument       *document,
                                      priv->bogus_uri);
         g_signal_handler_unblock (view, priv->navigation_requested);
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
+
+        /* If we need to set the GtkAdjustment or trigger the page title
+         * from what WebKit thinks it is (see comment below), we need to
+         * let the main loop run through.
+         */
+        if (priv->vadjust > 0 || priv->hadjust > 0 || priv->page_title == NULL)
+            while (g_main_context_pending (NULL))
+                g_main_context_iteration (NULL, FALSE);
+
+        /* Setting adjustments only work after the page is loaded. These
+         * are set by view_history_action, and they're reset to 0 after
+         * each load here.
+         */
+        if (priv->vadjust > 0) {
+            if (priv->vadjustment)
+                gtk_adjustment_set_value (priv->vadjustment, priv->vadjust);
+            priv->vadjust = 0;
+        }
+        if (priv->hadjust > 0) {
+            if (priv->hadjustment)
+                gtk_adjustment_set_value (priv->hadjustment, priv->hadjust);
+            priv->hadjust = 0;
+        }
+
+        /* If the document didn't give us a page title, get it from WebKit.
+         * We let the main loop run through so that WebKit gets the title
+         * set so that we can send notify::page-title before loaded. It
+         * simplifies things if YelpView consumers can assume the title
+         * is set before loaded is triggered.
+         */
+        if (priv->page_title == NULL) {
+            GParamSpec *spec;
+            priv->page_title = g_strdup (webkit_web_view_get_title (WEBKIT_WEB_VIEW (view)));
+            spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                                 "page-title");
+            g_signal_emit_by_name (view, "notify::page-title", spec);
+        }
+
         g_free (frag_id);
         g_free (page_id);
         g_free (mime_type);
@@ -1112,4 +1759,38 @@ document_callback (YelpDocument       *document,
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
         view_show_error_page (view, error);
     }
+}
+
+static gboolean
+dom_node_is_name (WebKitDOMNode *node,
+                  gchar         *name)
+{
+    gboolean ret;
+    gchar *nodename = webkit_dom_node_get_node_name (node);
+    ret = g_str_equal (nodename, name);
+    g_free (nodename);
+    return ret;
+}
+
+static gboolean
+dom_node_has_class (WebKitDOMNode *node,
+                    gchar         *class)
+{
+    gboolean ret = FALSE;
+    WebKitDOMNamedNodeMap *map = webkit_dom_node_get_attributes (node);
+    WebKitDOMNode *attr = webkit_dom_named_node_map_get_named_item (map, "class");
+    if (attr) {
+        gchar *htmlclass = webkit_dom_node_get_text_content (attr);
+        gchar **classes = g_strsplit (htmlclass, " ", -1);
+        gint classi;
+        for (classi = 0; classes[classi] != NULL; classi++) {
+            if (g_str_equal (classes[classi], class)) {
+                ret = TRUE;
+                break;
+            }
+        }
+        g_strfreev (classes);
+        g_free (htmlclass);
+    }
+    return ret;
 }

@@ -1,5 +1,5 @@
 AC_PREREQ([2.63])
-AC_INIT([Yelp],[2.31.2],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
+AC_INIT([Yelp],[2.31.5],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
 
 AC_CONFIG_SRCDIR([src/yelp.c])
 AC_CONFIG_HEADERS([config.h])
@@ -36,7 +36,7 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 	dbus-glib-1
 	webkit-1.0 >= 1.1.15
-	yelp-xsl
+	yelp-xsl >= 2.31.3
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
@@ -131,12 +131,12 @@ AC_SUBST(XSL_DB2XHTML)
 XSL_MAL2XHTML="`$PKG_CONFIG --variable=mal2xhtml yelp-xsl`"
 AC_SUBST(XSL_MAL2XHTML)
 
-XSL_THEME_COLORS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/theme/theme-colors.xsl"
-AC_SUBST(XSL_THEME_COLORS)
-XSL_THEME_ICONS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/theme/theme-icons.xsl"
-AC_SUBST(XSL_THEME_ICONS)
-XSL_THEME_HTML="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/theme/theme-html.xsl"
-AC_SUBST(XSL_THEME_HTML)
+XSL_COLOR="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/color.xsl"
+AC_SUBST(XSL_COLOR)
+XSL_ICONS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/icons.xsl"
+AC_SUBST(XSL_ICONS)
+XSL_HTML="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/html.xsl"
+AC_SUBST(XSL_HTML)
 
 XSL_GETTEXT="`$PKG_CONFIG --variable=gettext yelp-xsl`"
 AC_SUBST(XSL_GETTEXT)
@@ -201,6 +201,7 @@ stylesheets/db2html.xsl
 stylesheets/db-title.xsl
 stylesheets/info2html.xsl
 stylesheets/mal2html.xsl
+stylesheets/man2html.xsl
 stylesheets/toc2html.xsl
 stylesheets/yelp-common.xsl
 data/Makefile

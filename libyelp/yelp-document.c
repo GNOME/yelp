@@ -30,9 +30,10 @@
 #include "yelp-debug.h"
 #include "yelp-document.h"
 #include "yelp-error.h"
-#include "yelp-info-document.h"
 #include "yelp-docbook-document.h"
+#include "yelp-info-document.h"
 #include "yelp-mallard-document.h"
+#include "yelp-man-document.h"
 #include "yelp-simple-document.h"
 
 typedef struct _Request Request;
@@ -76,6 +77,8 @@ struct _YelpDocumentPriv {
     Hash   *prev_ids;      /* Mapping of page IDs to "previous page" IDs */
     Hash   *next_ids;      /* Mapping of page IDs to "next page" IDs */
     Hash   *up_ids;        /* Mapping of page IDs to "up page" IDs */
+
+    GError *idle_error;
 };
 
 G_DEFINE_TYPE (YelpDocument, yelp_document, G_TYPE_OBJECT);
@@ -136,53 +139,72 @@ yelp_document_get_for_uri (YelpUri *uri)
 {
     static GHashTable *documents = NULL;
     gchar *docuri;
+    gchar *page_id, *tmp;
     YelpDocument *document = NULL;
 
     if (documents == NULL)
-	documents = g_hash_table_new_full (g_str_hash, g_str_equal,
-					   g_free, g_object_unref);
+        documents = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                           g_free, g_object_unref);
 
     g_return_val_if_fail (yelp_uri_is_resolved (uri), NULL);
 
     docuri = yelp_uri_get_document_uri (uri);
     if (docuri == NULL)
-	return NULL;
+        return NULL;
 
+    switch (yelp_uri_get_document_type (uri)) {
+    case YELP_URI_DOCUMENT_TYPE_TEXT:
+    case YELP_URI_DOCUMENT_TYPE_HTML:
+    case YELP_URI_DOCUMENT_TYPE_XHTML:
+        /* We use YelpSimpleDocument for these, which is a single-file
+         * responder. But the document URI may be set to the directory
+         * holding the file, to allow a directory of HTML files to act
+         * as a single document. So we cache these by a fuller URI.
+         */
+        page_id = yelp_uri_get_page_id (uri);
+        tmp = g_strconcat (docuri, "/", page_id, NULL);
+        g_free (page_id);
+        g_free (docuri);
+        docuri = tmp;
+        break;
+    default:
+        break;
+    }
     document = g_hash_table_lookup (documents, docuri);
 
     if (document != NULL) {
-	g_free (docuri);
-	return g_object_ref (document);
+        g_free (docuri);
+        return g_object_ref (document);
     }
 
     switch (yelp_uri_get_document_type (uri)) {
     case YELP_URI_DOCUMENT_TYPE_TEXT:
     case YELP_URI_DOCUMENT_TYPE_HTML:
     case YELP_URI_DOCUMENT_TYPE_XHTML:
-	document = yelp_simple_document_new (uri);
-	break;
+        document = yelp_simple_document_new (uri);
+        break;
     case YELP_URI_DOCUMENT_TYPE_DOCBOOK:
-	document = yelp_docbook_document_new (uri);
-	break;
+        document = yelp_docbook_document_new (uri);
+        break;
     case YELP_URI_DOCUMENT_TYPE_MALLARD:
-	document = yelp_mallard_document_new (uri);
-	break;
+        document = yelp_mallard_document_new (uri);
+        break;
     case YELP_URI_DOCUMENT_TYPE_MAN:
-	/* FIXME */
-	break;
+        document = yelp_man_document_new (uri);
+        break;
     case YELP_URI_DOCUMENT_TYPE_INFO:
-	document = yelp_info_document_new (uri);
-	break;
+        document = yelp_info_document_new (uri);
+        break;
     case YELP_URI_DOCUMENT_TYPE_TOC:
-	/* FIXME */
-	break;
+        /* FIXME */
+        break;
     case YELP_URI_DOCUMENT_TYPE_SEARCH:
-	/* FIXME */
-	break;
+        /* FIXME */
+        break;
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
     case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
     case YELP_URI_DOCUMENT_TYPE_ERROR:
-	break;
+        break;
     }
 
     if (document != NULL) {
@@ -828,22 +850,19 @@ yelp_document_signal (YelpDocument       *document,
     g_mutex_unlock (document->priv->mutex);
 }
 
-void
-yelp_document_error_pending (YelpDocument *document,
-			     const GError *error)
+static gboolean
+yelp_document_error_pending_idle (YelpDocument *document)
 {
     YelpDocumentPriv *priv = GET_PRIV (document);
     GSList *cur;
     Request *request;
-
-    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
     g_mutex_lock (priv->mutex);
 
     if (priv->reqs_pending) {
 	for (cur = priv->reqs_pending; cur; cur = cur->next) {
 	    request = cur->data;
-	    request->error = yelp_error_copy ((GError *) error);
+	    request->error = yelp_error_copy ((GError *) priv->idle_error);
 	    request->idle_funcs++;
 	    g_idle_add ((GSourceFunc) request_idle_error, request);
 	}
@@ -853,6 +872,22 @@ yelp_document_error_pending (YelpDocument *document,
     }
 
     g_mutex_unlock (priv->mutex);
+
+    g_object_unref (document);
+    return FALSE;
+}
+
+void
+yelp_document_error_pending (YelpDocument *document,
+			     const GError *error)
+{
+    YelpDocumentPriv *priv = GET_PRIV (document);
+
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    g_object_ref (document);
+    priv->idle_error = g_error_copy (error);
+    g_idle_add ((GSourceFunc) yelp_document_error_pending_idle, document);
 }
 
 /******************************************************************************/

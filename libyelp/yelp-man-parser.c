@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2010 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Shaun McCance  <shaunm@gnome.org>
+ * Author: Shaun McCance <shaunm@gnome.org>
  */
 
 #ifdef HAVE_CONFIG_H
@@ -29,9 +29,8 @@
 #include <libxml/tree.h>
 #include <string.h>
 
-#include "yelp-debug.h"
-#include "yelp-io-channel.h"
 #include "yelp-man-parser.h"
+#include "yelp-magic-decompressor.h"
 
 #define PARSER_CUR (g_utf8_get_char (parser->cur) != '\0' \
     && (parser->cur - parser->buffer < parser->length))
@@ -69,10 +68,9 @@ struct _YelpManParser {
     xmlNodePtr    ins;           /* The insertion node */
     xmlNodePtr    th_node;       /* The TH node, or NULL if it doesn't exist */
 
-    GIOChannel   *channel;       /* GIOChannel for the entire document */
-
-    gchar        *buffer;        /* The buffer, line at a time */
-    gsize         length;        /* The buffer length */
+    GDataInputStream *stream;    /* The GIO input stream to read from */
+    gchar            *buffer;    /* The buffer, line at a time */
+    gsize             length;    /* The buffer length */
 
     gchar        *anc;           /* The anchor point in the document */
     gchar        *cur;           /* Our current position in the document */
@@ -98,17 +96,18 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 			    gchar           *file,
 			    const gchar     *encoding)
 {
-    GError *errormsg = NULL;
-    /*gchar *ptr = NULL;*/
+    GFile *gfile;
+    GConverter *converter;
+    GFileInputStream *file_stream;
+    GInputStream *stream;
+    gchar *line;
+    gsize len;
 
-    g_return_val_if_fail (parser != NULL, NULL);
-    g_return_val_if_fail (file != NULL, NULL);
-    g_return_val_if_fail (encoding != NULL, NULL);
-	
-    parser->channel = yelp_io_channel_new_file (file, NULL);
-
-    if (!parser->channel)
-	return NULL;
+    gfile = g_file_new_for_path (file);
+    file_stream = g_file_read (gfile, NULL, NULL);
+    converter = (GConverter *) yelp_magic_decompressor_new ();
+    stream = g_converter_input_stream_new ((GInputStream *) file_stream, converter);
+    parser->stream = g_data_input_stream_new (stream);
 
     parser->doc = xmlNewDoc (BAD_CAST "1.0");
     parser->ins = xmlNewNode (NULL, BAD_CAST "Man");
@@ -116,20 +115,14 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 
     parser->make_links = TRUE;
 
-    while (g_io_channel_read_line (parser->channel,
-				   &(parser->buffer),
-				   &(parser->length),
-				   NULL, &errormsg)
-	   == G_IO_STATUS_NORMAL) {
-
+    while ((parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL)) != NULL) {
 	/* convert this line from the encoding indicated to UTF-8 */
 	if (!g_str_equal (encoding, "UTF-8")) {
 	    GError *converr = NULL;
 	    gchar *new_buffer = NULL;
 	    gsize bytes_written = 0;
 
-	    /* since our encoding is binary (NULL) in g_io_channel, then
-	     * our returned lined should end with \n.  Therefore we are making the
+	    /* We are making the
 	     * assumption that there are no partial characters at the end of this
 	     * string, and therefore can use calls like g_convert() which do not
 	     * preserve state - someone tell me if I'm wrong here */
@@ -149,23 +142,13 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 	    parser->buffer = new_buffer;
 	    parser->length = bytes_written;
 	}
-	    
-	/* for debugging, make sure line is valid UTF-8 */
-	/*if (!g_utf8_validate (parser->buffer, (gssize)parser->length, &ptr)) {
-	    g_print ("str = %s\n", parser->buffer);
-	    g_print ("str ptr = %p\n", parser->buffer);
-	    g_print ("invalid char = %p (%c)\n", ptr, *ptr);
-	}*/
-	    
+
 	parser_parse_line (parser);
 
 	g_free (parser->buffer);
     }
 
-    if (errormsg)
-	g_print ("Error in g_io_channel_read_line()\n");
-
-    g_io_channel_shutdown (parser->channel, FALSE, NULL);
+    g_object_unref (parser->stream);
 
     return parser->doc;
 }
@@ -173,9 +156,6 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 void
 yelp_man_parser_free (YelpManParser *parser)
 {
-    if (parser->channel)
-	g_io_channel_unref (parser->channel);
-    
     g_free (parser);
 }
 
@@ -211,7 +191,7 @@ parser_parse_line (YelpManParser *parser) {
     	    if (parser->ignore)
 	        return;
 	    break;
-	case '\n':
+	case '\0':
 	    parser->ins = xmlDocGetRootElement (parser->doc);
 	    break;
 	case '\'':
@@ -222,7 +202,7 @@ parser_parse_line (YelpManParser *parser) {
 	}
     }
     
-    parser_read_until (parser, '\n');
+    parser_read_until (parser, '\0');
      
     if (parser->cur != parser->anc)
 	parser_append_text (parser);
@@ -381,20 +361,20 @@ macro_section_header_handler (YelpManParser *parser, gchar *macro, GSList *args)
 {
     static gint id = 0;
     GIOStatus retval;
-    GError **errormsg = NULL;
+    GError *error = NULL;
     gchar *str = NULL;
     gchar *macro_uc = g_strdup (macro);
     gchar *ptr;
     gchar  idval[20];
     
     if (!args) {
-	retval = g_io_channel_read_line (parser->channel,
-				         &str,
-				         NULL, NULL, errormsg);
-	if (retval != G_IO_STATUS_NORMAL) {
-	    g_warning ("g_io_channel_read_line != G_IO_STATUS_NORMAL\n");
+	str = g_data_input_stream_read_line (parser->stream, NULL, NULL, &error);
+	if (error) {
+	    g_warning ("%s\n", error->message);
+	    g_error_free (error);
 	}
-    } else 
+    }
+    else 
 	str = args_concat_all (args);
 
     for (ptr = macro_uc; *ptr != '\0'; ptr++)
@@ -459,11 +439,8 @@ macro_tp_handler (YelpManParser *parser, gchar *macro, GSList *args)
 
     g_free (parser->buffer);
 
-    if (g_io_channel_read_line (parser->channel,
-                                &(parser->buffer), 
-				&(parser->length), 
-				NULL, errormsg)
-            == G_IO_STATUS_NORMAL) {
+    parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL);
+    if (parser->buffer != NULL) {
 	parser->ins = parser_append_node (parser, "Tag");
 	parser_parse_line (parser);
 	parser->ins = parser->ins->parent;
@@ -609,7 +586,7 @@ macro_url_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	    tmpNode = parser_stack_pop_node (parser, "UR");
 
 	    if (tmpNode == NULL)
-		debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
+		g_warning ("Found unexpected tag: '%s'\n", macro);
 	    else
 		parser->ins = tmpNode->parent;
 	} else
@@ -706,7 +683,7 @@ macro_mandoc_list_handler (YelpManParser *parser, gchar *macro, GSList *args)
         tmpNode = parser_stack_pop_node (parser, "Bl");
 
         if (tmpNode == NULL)
-	    debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
+	    g_warning ("Found unexpected tag: '%s'\n", macro);
         else
             parser->ins = tmpNode->parent;
     }
@@ -725,7 +702,7 @@ macro_verbatim_handler (YelpManParser *parser, gchar *macro, GSList *args)
 	tmpNode = parser_stack_pop_node (parser, "Verbatim");
 
 	if (tmpNode == NULL)
-	    debug_print (DB_WARN, "Found unexpected tag: '%s'\n", macro);
+	    g_warning ("Found unexpected tag: '%s'\n", macro);
 	else
 	    parser->ins = tmpNode->parent;
     }
@@ -1103,16 +1080,16 @@ parser_handle_linetag (YelpManParser *parser) {
     }
 
     /* FIXME: figure out a better way to handle these cases */
-    /* special case, if the line is simply ".\n" then return */
-    if (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\n') {
+    /* special case, if the line is simply ".\0" then return */
+    if (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\0') {
     	parser->cur = g_utf8_next_char (parser->cur);
     	parser->cur = g_utf8_next_char (parser->cur);
 	parser->anc = parser->cur;
 	return;
     } 
-    /* special case, if the line is simply "..\n" then return */
+    /* special case, if the line is simply "..\0" then return */
     else if (g_utf8_get_char (g_utf8_next_char(parser->cur)) == '.' && 
-	     g_utf8_get_char (g_utf8_next_char (g_utf8_next_char (parser->cur+2))) == '\n') {
+	     g_utf8_get_char (g_utf8_next_char (g_utf8_next_char (parser->cur+2))) == '\0') {
     	parser->cur = g_utf8_next_char (parser->cur);
     	parser->cur = g_utf8_next_char (parser->cur);
     	parser->cur = g_utf8_next_char (parser->cur);
@@ -1131,7 +1108,7 @@ parser_handle_linetag (YelpManParser *parser) {
 		 (g_utf8_get_char(g_utf8_next_char (parser->cur)) == '\"')
 		) 
 	      )
-	   && g_utf8_get_char (parser->cur) != '\n') {    
+	   && g_utf8_get_char (parser->cur) != '\0') {    
 	if (
 	    (g_utf8_get_char (parser->cur) == '\\') && 
 	    (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\"')
@@ -1151,7 +1128,7 @@ parser_handle_linetag (YelpManParser *parser) {
     
     /* FIXME: need to handle escaped characters */
     /* perform argument parsing and store argument in a singly linked list */
-    while (PARSER_CUR && g_utf8_get_char (parser->cur) != '\n') { 
+    while (PARSER_CUR && g_utf8_get_char (parser->cur) != '\0') { 
 	ptr = NULL;
 	arg = NULL;
 	    
@@ -1164,7 +1141,7 @@ parser_handle_linetag (YelpManParser *parser) {
 get_argument:
 	/* search until we hit whitespace or an " */
 	while (PARSER_CUR && 
-               g_utf8_get_char (parser->cur) != '\n' &&
+               g_utf8_get_char (parser->cur) != '\0' &&
 	       g_utf8_get_char (parser->cur) != ' ' &&
 	       g_utf8_get_char (parser->cur) != '\"')
 		parser->cur = g_utf8_next_char (parser->cur);
@@ -1178,7 +1155,7 @@ get_argument:
 		goto get_argument;
 	}
 	
-	if (g_utf8_get_char (parser->cur) == '\n' && 
+	if (g_utf8_get_char (parser->cur) == '\0' && 
 	    (parser->cur == parser->anc))
 	    break;
 	
@@ -1215,7 +1192,7 @@ get_argument:
 	    *(parser->cur) = c;
 	    parser->anc = ++parser->cur;
 	} 
-	else if (*(parser->cur) == '\n' && *(parser->cur-1) != ' ') {
+	else if (*(parser->cur) == '\0' && *(parser->cur-1) != ' ') {
 	    /* special case for EOL */
 	    c = *(parser->cur);
 	    *(parser->cur) = '\0';
@@ -1269,7 +1246,7 @@ get_argument:
     }
     else if (g_str_equal (str, "TE")) {
 	/* We should only see this from within parser_parse_table */
-	debug_print (DB_WARN, "Found unexpected tag: '%s'\n", str);
+	g_warning ("Found unexpected tag: '%s'\n", str);
         g_free (str);
     }
     /* "ie" and "if" are conditional macros in groff
@@ -1334,7 +1311,7 @@ parser_read_until (YelpManParser *parser,
     gchar c;
     
     while (PARSER_CUR
-	   && g_utf8_get_char (parser->cur) != '\n'
+	   && g_utf8_get_char (parser->cur) != '\0'
 	   && g_utf8_get_char (parser->cur) != delim) {
 	    parser->cur = g_utf8_next_char (parser->cur);
     }
@@ -1454,7 +1431,7 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
 	        if (g_str_equal (str, "fI") || g_str_equal (str, "fB"))
 		    parser->ins = parser_append_node (parser, str);
 	        else if (!g_str_equal (str, "fR") && !g_str_equal (str, "fP"))
-		    debug_print (DB_WARN, "No rule matching the tag '%s'\n", str);
+		    g_warning ("No rule matching the tag '%s'\n", str);
 
 	        g_free (str);
 	        anc = ptr;
@@ -1630,6 +1607,7 @@ parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gbo
     c = *(ptr);
     *(ptr) = '\0';
     parser_append_given_text (parser, anc);
+    parser_append_given_text (parser, "\n");
     *(ptr) = c;
    
     g_free (baseptr); 
@@ -1647,7 +1625,7 @@ parser_append_text (YelpManParser *parser)
     c = *(parser->cur);
     *(parser->cur) = '\0';
 
-    if (g_utf8_get_char (parser->anc) != '\n')
+    if (g_utf8_get_char (parser->anc) != '\0')
 	parser_ensure_P (parser);
 
     node = xmlNewText (BAD_CAST parser->anc);
@@ -1754,11 +1732,9 @@ parser_handle_row_options (YelpManParser *parser)
 	
 	g_free (parser->buffer);
 
-    } while (g_io_channel_read_line (parser->channel,
-				     &(parser->buffer),
-				     &(parser->length),
-				     NULL, NULL)
-	     == G_IO_STATUS_NORMAL);
+    } while ((parser->buffer =
+	      g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL))
+	     != NULL);
 }
 
 static void
@@ -1769,11 +1745,8 @@ parser_parse_table (YelpManParser *parser)
 
     table_start = parser->ins;
 
-    if (g_io_channel_read_line (parser->channel,
-				&(parser->buffer),
-				&(parser->length),
-				NULL, NULL)
-	== G_IO_STATUS_NORMAL) {
+    parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL);
+    if (parser->buffer != NULL) {
 	parser->anc = parser->buffer;
 	parser->cur = parser->buffer;
 	
@@ -1782,15 +1755,12 @@ parser_parse_table (YelpManParser *parser)
 	if (*(parser->cur) == ';') {
 	    parser_handle_table_options (parser);
 
-	    if (g_io_channel_read_line (parser->channel,
-					&(parser->buffer),
-					&(parser->length),
-					NULL, NULL)
-		== G_IO_STATUS_NORMAL) {
+	    parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL);
+	    if (parser->buffer != NULL) {
 		parser->anc = parser->buffer;
 		parser->cur = parser->buffer;
 	    
-		parser_read_until (parser, '\n');
+		parser_read_until (parser, '\0');
 	    } else
 		return;
 	}
@@ -1798,12 +1768,7 @@ parser_parse_table (YelpManParser *parser)
 	parser_handle_row_options (parser);
 
 	/* Now this is where we go through all the rows */
-	while (g_io_channel_read_line (parser->channel,
-				       &(parser->buffer),
-				       &(parser->length),
-				       NULL, NULL)
-	       == G_IO_STATUS_NORMAL) {
-	    
+	while ((parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL)) != NULL) {
 	    parser->anc = parser->buffer;
 	    parser->cur = parser->buffer;
 	    
@@ -1814,7 +1779,7 @@ parser_parse_table (YelpManParser *parser)
 		if (*(parser->buffer + 1) == 'T'
 		    && *(parser->buffer + 2) == 'E') {
 		    if (parser_stack_pop_node (parser, "TABLE") == NULL)
-			debug_print (DB_WARN, "Found unexpected tag: 'TE'\n");
+			g_warning ("Found unexpected tag: 'TE'\n");
 		    else {
 			parser->ins = table_start;
 			
@@ -1830,7 +1795,7 @@ parser_parse_table (YelpManParser *parser)
 		    parser_handle_linetag (parser);
 		    break;
 		}
-	    case '\n':
+	    case '\0':
 		empty_row = TRUE;
 		break;
 	    default:
@@ -1839,7 +1804,7 @@ parser_parse_table (YelpManParser *parser)
 	    
 	    if (!empty_row) {
 		parser->ins = parser_append_node (parser, "ROW");
-		while (PARSER_CUR && *(parser->cur) != '\n') {
+		while (PARSER_CUR && *(parser->cur) != '\0') {
 		    parser_read_until (parser, '\t');
 		    parser->ins = parser_append_node (parser, "CELL");
 		    parser_append_text (parser);

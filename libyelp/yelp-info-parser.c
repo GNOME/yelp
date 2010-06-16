@@ -224,11 +224,6 @@ static char
         g_string_append_len (string, buf, bytes);
 
     g_object_unref (stream);
-    /*
-    g_object_unref (converter);
-    g_object_unref (file_stream);
-    g_object_unref (file);
-    */
 
     str = string->str;
 

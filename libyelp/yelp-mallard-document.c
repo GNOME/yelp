@@ -277,6 +277,8 @@ mallard_think (YelpMallardDocument *mallard)
     gchar **search_path;
     gboolean editor_mode;
 
+    gchar **path;
+    gint path_i;
     GFile *gfile;
     GFileEnumerator *children;
     GFileInfo *pageinfo;
@@ -298,53 +300,57 @@ mallard_think (YelpMallardDocument *mallard)
 	goto done;
     }
 
-    gfile = yelp_uri_get_file (priv->uri);
-    children = g_file_enumerate_children (gfile,
-                                          G_FILE_ATTRIBUTE_STANDARD_NAME,
-                                          G_FILE_QUERY_INFO_NONE,
-                                          NULL, NULL);
-    while ((pageinfo = g_file_enumerator_next_file (children, NULL, NULL))) {
-        MallardPageData *page_data;
-        gchar *filename;
-        GFile *pagefile;
-        filename = g_file_info_get_attribute_as_string (pageinfo,
-                                                        G_FILE_ATTRIBUTE_STANDARD_NAME);
-        if (!g_str_has_suffix (filename, ".page") &&
-            !(editor_mode && g_str_has_suffix (filename, ".page.stub"))) {
+    path = yelp_uri_get_search_path (priv->uri);
+    for (path_i = 0; path[path_i] != NULL; path_i++) {
+        gfile = g_file_new_for_path (path[path_i]);
+        children = g_file_enumerate_children (gfile,
+                                              G_FILE_ATTRIBUTE_STANDARD_NAME,
+                                              G_FILE_QUERY_INFO_NONE,
+                                              NULL, NULL);
+        while ((pageinfo = g_file_enumerator_next_file (children, NULL, NULL))) {
+            MallardPageData *page_data;
+            gchar *filename;
+            GFile *pagefile;
+            filename = g_file_info_get_attribute_as_string (pageinfo,
+                                                            G_FILE_ATTRIBUTE_STANDARD_NAME);
+            if (!g_str_has_suffix (filename, ".page") &&
+                !(editor_mode && g_str_has_suffix (filename, ".page.stub"))) {
+                g_free (filename);
+                g_object_unref (pageinfo);
+                continue;
+            }
+            page_data = g_new0 (MallardPageData, 1);
+            page_data->mallard = mallard;
+            pagefile = g_file_resolve_relative_path (gfile, filename);
+            page_data->filename = g_file_get_path (pagefile);
+            mallard_page_data_walk (page_data);
+            if (page_data->page_id == NULL) {
+                mallard_page_data_free (page_data);
+            } else {
+                g_mutex_lock (priv->mutex);
+                yelp_document_set_root_id ((YelpDocument *) mallard,
+                                           page_data->page_id, "index");
+                yelp_document_set_page_id ((YelpDocument *) mallard,
+                                           page_data->page_id, page_data->page_id);
+                g_hash_table_insert (priv->pages_hash, page_data->page_id, page_data);
+                yelp_document_set_page_title ((YelpDocument *) mallard,
+                                              page_data->page_id,
+                                              page_data->page_title);
+                yelp_document_set_page_desc ((YelpDocument *) mallard,
+                                             page_data->page_id,
+                                             page_data->page_desc);
+                yelp_document_signal ((YelpDocument *) mallard,
+                                      page_data->page_id,
+                                      YELP_DOCUMENT_SIGNAL_INFO,
+                                      NULL);
+                g_mutex_unlock (priv->mutex);
+            }
+            g_object_unref (pagefile);
             g_free (filename);
             g_object_unref (pageinfo);
-            continue;
         }
-        page_data = g_new0 (MallardPageData, 1);
-        page_data->mallard = mallard;
-        pagefile = g_file_resolve_relative_path (gfile, filename);
-        page_data->filename = g_file_get_path (pagefile);
-        mallard_page_data_walk (page_data);
-        if (page_data->page_id == NULL) {
-            mallard_page_data_free (page_data);
-        } else {
-            g_mutex_lock (priv->mutex);
-            yelp_document_set_root_id ((YelpDocument *) mallard,
-                                       page_data->page_id, "index");
-            yelp_document_set_page_id ((YelpDocument *) mallard,
-                                       page_data->page_id, page_data->page_id);
-            g_hash_table_insert (priv->pages_hash, page_data->page_id, page_data);
-            yelp_document_set_page_title ((YelpDocument *) mallard,
-                                          page_data->page_id,
-                                          page_data->page_title);
-            yelp_document_set_page_desc ((YelpDocument *) mallard,
-                                         page_data->page_id,
-                                         page_data->page_desc);
-            yelp_document_signal ((YelpDocument *) mallard,
-                                  page_data->page_id,
-                                  YELP_DOCUMENT_SIGNAL_INFO,
-                                  NULL);
-            g_mutex_unlock (priv->mutex);
-        }
-        g_object_unref (pagefile);
-        g_free (filename);
-        g_object_unref (pageinfo);
     }
+    g_strfreev (path);
 
     g_mutex_lock (priv->mutex);
     priv->state = MALLARD_STATE_IDLE;

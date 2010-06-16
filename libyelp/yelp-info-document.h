@@ -36,7 +36,6 @@
 
 typedef struct _YelpInfoDocument      YelpInfoDocument;
 typedef struct _YelpInfoDocumentClass YelpInfoDocumentClass;
-typedef struct _YelpInfoPriv  YelpInfoPriv;
 
 struct _YelpInfoDocument {
     YelpDocument      parent;

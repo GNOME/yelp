@@ -1,12 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns:set="http://exslt.org/sets"
                 xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="set"
+                extension-element-prefixes="yelp"
                 version="1.0">
 
 <xsl:param name="yelp.editor_mode" select="false()"/>
 
-<!-- == yelp.common.css == -->
-<xsl:template name="theme.html.css.custom">
+<xsl:param name="html.extension" select="''"/>
+
+<!-- == html.output == -->
+<xsl:template name="html.output">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="href">
+    <xsl:choose>
+      <xsl:when test="$node/@xml:id">
+        <xsl:value-of select="$node/@xml:id"/>
+      </xsl:when>
+      <xsl:when test="$node/@id">
+        <xsl:value-of select="$node/@id"/>
+      </xsl:when>
+      <xsl:when test="set:has-same-node($node, /*)">
+        <xsl:value-of select="$html.basename"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="generate-id()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+  <yelp:document href="{$href}">
+    <xsl:call-template name="html.page">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </yelp:document>
+  <xsl:apply-templates mode="html.output.after.mode" select="$node"/>
+</xsl:template>
+
+<!-- == html.css.custom == -->
+<xsl:template name="html.css.custom">
   <xsl:param name="direction"/>
   <xsl:param name="left"/>
   <xsl:param name="right"/>
@@ -16,22 +49,28 @@ html {
 }
 body {
   padding: 0;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
   max-width: 100%;
 }
-div.head {
+div.header {
   max-width: 100%;
   width: 100%;
   padding: 0;
   margin: 0 0 1em 0;
 }
+div.code {
+  -webkit-box-shadow: 0px 0px 4px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
+div.code:hover {
+  -webkit-box-shadow: 0px 0px 4px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
 div.trails {
   margin: 0;
   padding: 0.2em 12px 0 12px;
   background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
   border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 div.trail {
   font-size: 1em;
@@ -44,7 +83,10 @@ div.body {
   border: none;
 }
 </xsl:text>
+<xsl:call-template name="yelp.css.custom"/>
 </xsl:template>
+
+<xsl:template name="yelp.css.custom"/>
 
 <xsl:template name="yelp.common.javascript">
 <script type="text/javascript" language="javascript" src="@DATADIR@/jquery-1.4.2.min.js"/>
@@ -53,15 +95,15 @@ div.body {
 <xsl:text>
 $(document).ready (function () {
   if (location.hash != '') {
-    $('#' + location.hash).find('div.header').css({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.yellow_background"/><xsl:text>'
+    $('#' + location.hash).find('div.hgroup').css({
+      backgroundColor: '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>'
     }).animate({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>'
+      backgroundColor: '</xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>'
     }, 8000);
     $('#' + location.hash).css({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.yellow_background"/><xsl:text>'
+      backgroundColor: '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>'
     }).animate({
-      backgroundColor: '</xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>'
+      backgroundColor: '</xsl:text><xsl:value-of select="$color.background"/><xsl:text>'
     }, 4000);
   }
 });

@@ -46,24 +46,43 @@ struct _YelpApplicationClass
     GObjectClass  parent_class;
 };
 
-GType             yelp_application_get_type    (void);
-YelpApplication*  yelp_application_new         (void);
-gint              yelp_application_run         (YelpApplication  *app,
-                                                gint              argc,
-                                                gchar           **argv);
-gboolean          yelp_application_load_uri    (YelpApplication  *app,
-                                                const gchar      *uri,
-                                                guint             timestamp,
-                                                GError          **error);
-void              yelp_application_new_window  (YelpApplication  *app,
-                                                const gchar      *uri);
+GType             yelp_application_get_type       (void);
+YelpApplication*  yelp_application_new            (void);
+gint              yelp_application_run            (YelpApplication  *app,
+                                                   gint              argc,
+                                                   gchar           **argv);
+gboolean          yelp_application_load_uri       (YelpApplication  *app,
+                                                   const gchar      *uri,
+                                                   guint             timestamp,
+                                                   GError          **error);
+void              yelp_application_new_window     (YelpApplication  *app,
+                                                   const gchar      *uri);
+void              yelp_application_new_window_uri (YelpApplication  *app,
+                                                   YelpUri          *uri);
 GtkActionGroup *  yelp_application_get_action_group     (YelpApplication   *app);
 void              yelp_application_add_bookmark         (YelpApplication   *app,
                                                          const gchar       *doc_uri,
                                                          const gchar       *page_id,
                                                          const gchar       *icon,
                                                          const gchar       *title);
+void              yelp_application_remove_bookmark      (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *page_id);
+void              yelp_application_update_bookmarks     (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *page_id,
+                                                         const gchar       *icon,
+                                                         const gchar       *title);
 GVariant *        yelp_application_get_bookmarks        (YelpApplication   *app,
+                                                         const gchar       *doc_uri);
+void              yelp_application_add_read_later       (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *full_uri,
+                                                         const gchar       *title);
+void              yelp_application_remove_read_later    (YelpApplication   *app,
+                                                         const gchar       *doc_uri,
+                                                         const gchar       *full_uri);
+GVariant *        yelp_application_get_read_later       (YelpApplication   *app,
                                                          const gchar       *doc_uri);
 void              yelp_application_install_package      (YelpApplication   *app,
                                                          const gchar       *pkg,

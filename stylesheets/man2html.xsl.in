@@ -6,86 +6,37 @@
                 extension-element-prefixes="yelp"
                 version="1.0">
 
-<xsl:output method="html" encoding="UTF-8"/>
-
+<xsl:import href="@XSL_GETTEXT@"/>
+<xsl:import href="@XSL_COLOR@"/>
+<xsl:import href="@XSL_ICONS@"/>
+<xsl:import href="@XSL_HTML@"/>
 <xsl:include href="yelp-common.xsl"/>
 
-<xsl:param name="stylesheet_path" select="''"/>
-<xsl:param name="linktrail"/>
+<xsl:param name="html.basename" select="'//index'"/>
 
-<xsl:param name="yelp.javascript"/>
+<xsl:param name="linktrail" select="''"/>
 
-<xsl:param name="yelp.icon.blockquote"/>
-<xsl:param name="yelp.icon.caution"/>
-<xsl:param name="yelp.icon.important"/>
-<xsl:param name="yelp.icon.note"/>
-<xsl:param name="yelp.icon.programlisting"/>
-<xsl:param name="yelp.icon.tip"/>
-<xsl:param name="yelp.icon.warning"/>
-
-<xsl:param name="theme.color.text"/>
-<xsl:param name="theme.color.background"/>
-<xsl:param name="theme.color.text_light"/>
-<xsl:param name="theme.color.link"/>
-<xsl:param name="theme.color.link_visited"/>
-<xsl:param name="theme.color.gray_background"/>
-<xsl:param name="theme.color.gray_border"/>
-<xsl:param name="theme.color.blue_background"/>
-<xsl:param name="theme.color.blue_border"/>
-<xsl:param name="theme.color.red_background"/>
-<xsl:param name="theme.color.red_border"/>
-<xsl:param name="theme.color.yellow_background"/>
-<xsl:param name="theme.color.yellow_border"/>
-
-<xsl:template match="Man">
-  <xsl:choose>
-    <xsl:when test="element-available('yelp:document')">
-      <yelp:document href="index">
-        <xsl:call-template name="html"/>
-      </yelp:document>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="html"/>
-    </xsl:otherwise>
-  </xsl:choose>
+<xsl:template mode="html.title.mode" match="Man">
+  <xsl:value-of select="TH/Title"/>
 </xsl:template>
 
-<xsl:template name="html">
-  <html>
-    <head>
-      <title>
-        <xsl:value-of select="//TH/Title"/>
-      </title>
-      <style type="text/css">
-        <xsl:call-template name="html.css"/>
-      </style>
-      <script type="text/javascript">
-        <xsl:attribute name="src">
-          <xsl:value-of select="concat('file://', $yelp.javascript)"/>
-        </xsl:attribute>
-      </script>
-    </head>
-    <body>
-      <xsl:call-template name="html.linktrail"/>
-      <div class="body">
-        <xsl:apply-templates select="TH"/>
-        <xsl:apply-templates select="SH"/>
-      </div>
-    </body>
-  </html>
+<xsl:template mode="html.css.mode" match="Man">
+  <xsl:param name="direction"/>
+  <xsl:param name="left"/>
+  <xsl:param name="right"/>
+<xsl:text>
+body { font-family: monospace; }
+div.hgroup { font-family: sans-serif; }
+</xsl:text>
 </xsl:template>
 
-<xsl:template name="html.css">
-  <xsl:call-template name="yelp.common.css"/>
-  <xsl:text>
-    div[class~="SH"] { margin-left: 1.2em; }
-    div[class~="SS"] { margin-left: 1.6em; }
+<xsl:template mode="html.header.mode" match="Man">
+  <xsl:call-template name="html.linktrail"/>
+</xsl:template>
 
-    span[class~="R"] { font-family: serif; }
-    span[class~="Section"] { margin-left: 0.4em; }
-  
-    dd { padding-bottom: 10px; }
-  </xsl:text>
+<xsl:template mode="html.body.mode" match="Man">
+  <xsl:apply-templates select="TH"/>
+  <xsl:apply-templates select="SH"/>
 </xsl:template>
 
 <xsl:template name="html.linktrail">
@@ -213,23 +164,27 @@
   <xsl:variable name="nextSS"
                 select="following-sibling::SS[not($nextSH) or
                                               following-sibling::SH[1] = $nextSH][1]"/>
-  <h3><xsl:apply-templates/></h3>
-  <div class="SS">
-    <xsl:choose>
-      <xsl:when test="$nextSS">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SS[1] = $nextSS and 
-                                      following-sibling::SS[1]/@id = $nextSS/@id]"/>
-      </xsl:when>
-      <xsl:when test="$nextSH">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SH[1] = $nextSH and
-                                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="following-sibling::*"/>
-      </xsl:otherwise>
-    </xsl:choose>
+  <div class="sect sect-SS">
+    <div class="hgroup">
+      <h3 class="title"><xsl:apply-templates/></h3>
+    </div>
+    <div class="inner">
+      <xsl:choose>
+        <xsl:when test="$nextSS">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SS[1] = $nextSS and 
+                      following-sibling::SS[1]/@id = $nextSS/@id]"/>
+        </xsl:when>
+        <xsl:when test="$nextSH">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SH[1] = $nextSH and
+                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="following-sibling::*"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </div>
   </div>
 </xsl:template>
 
@@ -238,24 +193,28 @@
   <xsl:variable name="nextSS"
                 select="following-sibling::SS[not($nextSH) or
                                               following-sibling::SH[1] = $nextSH]"/>
-  <h2><xsl:apply-templates/></h2>
-  <div class="SH">
-    <xsl:choose>
-      <xsl:when test="$nextSS">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SS[1] = $nextSS[1] and
-                                      following-sibling::SS[1]/@id = $nextSS[1]/@id]"/>  
-        <xsl:apply-templates select="$nextSS"/>
-      </xsl:when>
-      <xsl:when test="$nextSH">
-        <xsl:apply-templates
-         select="following-sibling::*[following-sibling::SH[1] = $nextSH and
-                                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="following-sibling::*"/>
-      </xsl:otherwise>
-    </xsl:choose>
+  <div class="sect sect-SH">
+    <div class="hgroup">
+      <h2 class="title"><xsl:apply-templates/></h2>
+    </div>
+    <div class="inner">
+      <xsl:choose>
+        <xsl:when test="$nextSS">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SS[1] = $nextSS[1] and
+                      following-sibling::SS[1]/@id = $nextSS[1]/@id]"/>  
+          <xsl:apply-templates select="$nextSS"/>
+        </xsl:when>
+        <xsl:when test="$nextSH">
+          <xsl:apply-templates
+              select="following-sibling::*[following-sibling::SH[1] = $nextSH and
+                      following-sibling::SH[1]/@id = $nextSH/@id]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="following-sibling::*"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </div>
   </div>
 </xsl:template>
 
@@ -268,16 +227,18 @@
 </xsl:template>
 
 <xsl:template match="TH">
-  <h1>
-    <span class="Title">
-      <xsl:apply-templates select="Title/node()"/>
-    </span>
-    <span class="Section">
-      <xsl:text>(</xsl:text>
-      <xsl:apply-templates select="Section/node()"/>
-      <xsl:text>)</xsl:text>
-    </span>
-  </h1>
+  <div class="hgroup">
+    <h1 class="title">
+      <span class="Title">
+        <xsl:apply-templates select="Title/node()"/>
+      </span>
+      <span class="Section">
+        <xsl:text>(</xsl:text>
+        <xsl:apply-templates select="Section/node()"/>
+        <xsl:text>)</xsl:text>
+      </span>
+    </h1>
+  </div>
 </xsl:template>
 
 <xsl:template match="UR">
