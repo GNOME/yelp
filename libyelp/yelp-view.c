@@ -753,7 +753,7 @@ file_copied (GFile        *file,
 {
     GError *error = NULL;
     if (!g_file_copy_finish (file, res, &error)) {
-        GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (data->window) ? data->window : NULL,
+        GtkWidget *dialog = gtk_message_dialog_new (gtk_widget_get_visible (GTK_WIDGET (data->window)) ? data->window : NULL,
                                                     GTK_DIALOG_DESTROY_WITH_PARENT,
                                                     GTK_MESSAGE_ERROR,
                                                     GTK_BUTTONS_OK,
@@ -895,7 +895,7 @@ popup_save_code (GtkMenuItem *item,
                                                     NULL,
                                                     &error);
         if (stream == NULL) {
-            GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (window) ? GTK_WINDOW (window) : NULL,
+            GtkWidget *dialog = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
                                                         GTK_DIALOG_DESTROY_WITH_PARENT,
                                                         GTK_MESSAGE_ERROR,
                                                         GTK_BUTTONS_OK,
@@ -908,7 +908,7 @@ popup_save_code (GtkMenuItem *item,
             /* FIXME: we should do this async */
             GDataOutputStream *datastream = g_data_output_stream_new (G_OUTPUT_STREAM (stream));
             if (!g_data_output_stream_put_string (datastream, priv->popup_code_text, NULL, &error)) {
-                GtkWidget *dialog = gtk_message_dialog_new (GTK_WIDGET_VISIBLE (window) ? GTK_WINDOW (window) : NULL,
+                GtkWidget *dialog = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
                                                             GTK_DIALOG_DESTROY_WITH_PARENT,
                                                             GTK_MESSAGE_ERROR,
                                                             GTK_BUTTONS_OK,
