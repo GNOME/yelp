@@ -122,7 +122,7 @@ struct _YelpApplicationPrivate {
 
     GtkActionGroup *action_group;
 
-    gchar *gsettings_context; /* static, do not free */
+    GSettingsBackend *backend;
     GSettings *gsettings;
     GHashTable *docsettings;
 };
@@ -230,10 +230,9 @@ application_setup (YelpApplication *app)
         gchar *keyfile = g_build_filename (g_get_user_config_dir (),
                                            "yelp", "yelp.cfg",
                                            NULL);
-        g_settings_backend_setup_keyfile ("yelp", keyfile);
-        priv->gsettings_context = "yelp";
-        priv->gsettings = g_settings_new_with_context ("org.gnome.yelp",
-                                                       priv->gsettings_context);
+        priv->backend = g_keyfile_settings_backend_new (keyfile);
+        priv->gsettings = g_settings_new_with_backend ("org.gnome.yelp",
+                                                       priv->backend);
         g_free (keyfile);
     }
     else {
@@ -578,9 +577,9 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
         tmp = g_uri_escape_string (doc_uri, "", FALSE);
         settings_path = g_strconcat ("/apps/yelp/documents/", tmp, "/", NULL);
         g_free (tmp);
-        if (priv->gsettings_context)
-            settings = g_settings_new_with_context_and_path ("org.gnome.yelp.documents",
-                                                             priv->gsettings_context,
+        if (priv->backend)
+            settings = g_settings_new_with_backend_and_path ("org.gnome.yelp.documents",
+                                                             priv->backend,
                                                              settings_path);
         else
             settings = g_settings_new_with_path ("org.gnome.yelp.document",
@@ -593,8 +592,8 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
 
 static gboolean
 application_window_deleted (YelpWindow      *window,
-                              GdkEvent        *event,
-                              YelpApplication *app)
+                            GdkEvent        *event,
+                            YelpApplication *app)
 {
     gchar *doc_uri; /* owned by windows_by_document */
     YelpApplicationPrivate *priv = GET_PRIV (app);
