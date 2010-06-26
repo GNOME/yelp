@@ -326,7 +326,11 @@ mallard_think (YelpMallardDocument *mallard)
             mallard_page_data_walk (page_data);
             if (page_data->page_id == NULL) {
                 mallard_page_data_free (page_data);
-            } else {
+            }
+            else if (g_hash_table_lookup (priv->pages_hash, page_data->page_id) != NULL) {
+                mallard_page_data_free (page_data);
+            }
+            else {
                 g_mutex_lock (priv->mutex);
                 yelp_document_set_root_id ((YelpDocument *) mallard,
                                            page_data->page_id, "index");
@@ -461,6 +465,8 @@ mallard_page_data_walk (MallardPageData *page_data)
 
         id = xmlGetProp (page_data->cur, BAD_CAST "id");
         if (id == NULL)
+            goto done;
+        if (g_hash_table_lookup (priv->pages_hash, id) != NULL)
             goto done;
 
         page_data->cache = xmlNewChild (page_data->cache,
