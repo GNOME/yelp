@@ -34,7 +34,6 @@ PKG_CHECK_MODULES(YELP,
 	libxml-2.0 >= 2.6.5
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
-	dbus-glib-1
 	webkit-1.0 >= 1.3.1
 	yelp-xsl >= 2.31.3
 ])

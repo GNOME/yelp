@@ -39,23 +39,6 @@ yelp_LDADD =					\
 
 yelp_LDFLAGS = $(AM_LDFLAGS)
 
-
-BUILT_SOURCES = yelp-dbus.h
-
-noinst_HEADERS = $(BUILT_SOURCES)
-
-yelp-dbus.h: yelp-dbus.xml
-	dbus-binding-tool --prefix=yelp --mode=glib-server $<> $@
-
-MAINTAINERCLEANFILES = $(BUILT_SOURCES)
-
-EXTRA_DIST = yelp-dbus.xml
-
 install-exec-hook:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \
 	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
-
-distclean-local:
-	if test $(srcdir) != .; then \
-	  rm -f $(MAINTAINERCLEANFILES); \
-	fi

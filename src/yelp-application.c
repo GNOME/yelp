@@ -26,8 +26,6 @@
 
 #define G_SETTINGS_ENABLE_BACKEND
 
-#include <dbus/dbus-glib-bindings.h>
-#include <dbus/dbus-glib.h>
 #include <gio/gio.h>
 #include <gio/gsettingsbackend.h>
 #include <glib/gi18n.h>
@@ -38,7 +36,6 @@
 #include "yelp-view.h"
 
 #include "yelp-application.h"
-#include "yelp-dbus.h"
 #include "yelp-window.h"
 
 #define DEFAULT_URI "ghelp:user-guide"
@@ -172,9 +169,6 @@ yelp_application_class_init (YelpApplicationClass *klass)
                       0, NULL, NULL,
                       g_cclosure_marshal_VOID__STRING,
                       G_TYPE_NONE, 1, G_TYPE_STRING);
-
-    dbus_g_object_type_install_info (YELP_TYPE_APPLICATION,
-                                     &dbus_glib_yelp_object_info);
 
     g_type_class_add_private (klass, sizeof (YelpApplicationPrivate));
 }
@@ -365,9 +359,7 @@ yelp_application_run (YelpApplication  *app,
     g_variant_get (ret, "(u)", &request);
     g_variant_unref (ret);
 
-    if (request == DBUS_REQUEST_NAME_REPLY_EXISTS ||
-        request == DBUS_REQUEST_NAME_REPLY_IN_QUEUE) {
-
+    if (request == 2 || request == 3) { /* IN_QUEUE | EXISTS */
         gchar *newuri;
 
         if (uri && (strchr (uri, ':') || (uri[0] == '/')))
