@@ -27,10 +27,10 @@ GLIB_GSETTINGS
 # Library dependecies
 PKG_CHECK_MODULES(YELP,
 [
-	gio-2.0 >= 2.25.3
+	gio-2.0 >= 2.25.10
 	gio-unix-2.0
 	gtk+-unix-print-2.0
-	gtk+-2.0 >= 2.16.0
+	gtk+-2.0 >= 2.18.0
 	libxml-2.0 >= 2.6.5
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
