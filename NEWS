@@ -1,3 +1,24 @@
+Changes in 2.31.6:
+------------------
+* Don't double-add pages, also fixes #621398
+* Adjusted to API changes in GSettingsBackend
+* Only store window size if it really changes
+* Don't segfault on http:// URIs (Rupert Swarbrick)
+* Preserve both page_id and frag_id for file: URIs
+* Added "Copy Code Block" and "Save Code Block As"
+* Update JS fragment highlighter for yelp-xsl changes
+* Get actual link text for read-later links
+* Use index.docbook for help: URIs
+* Transitioned to GDBus
+* Updated translations:
+  et      (Ivar Smolin)
+  th      (Sira Nokyoongtong)
+  gl      (Fran Diéguez)
+  sl      (Matej Urbančič)
+  es      (Jorge González)
+  nb      (Kjartan Maraas)
+  he      (Yaron Shahrabani)
+
 Changes in 2.31.5:
 ------------------
 * New "Read Later" feature
