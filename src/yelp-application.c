@@ -224,7 +224,7 @@ application_setup (YelpApplication *app)
         gchar *keyfile = g_build_filename (g_get_user_config_dir (),
                                            "yelp", "yelp.cfg",
                                            NULL);
-        priv->backend = g_keyfile_settings_backend_new (keyfile, "/org/gnome/yelp", NULL);
+        priv->backend = g_keyfile_settings_backend_new (keyfile, "/apps/yelp/", "yelp");
         priv->gsettings = g_settings_new_with_backend ("org.gnome.yelp",
                                                        priv->backend);
         g_free (keyfile);
