@@ -27,14 +27,14 @@ GLIB_GSETTINGS
 # Library dependecies
 PKG_CHECK_MODULES(YELP,
 [
-	gio-2.0 >= 2.25.10
+	gio-2.0 >= 2.25.11
 	gio-unix-2.0
-	gtk+-unix-print-2.0
-	gtk+-2.0 >= 2.18.0
+	gtk+-unix-print-3.0
+	gtk+-3.0 >= 2.90.5
 	libxml-2.0 >= 2.6.5
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
-	webkit-1.0 >= 1.3.1
+	webkitgtk-3.0 >= 1.3.2
 	yelp-xsl >= 2.31.3
 ])
 AC_SUBST([YELP_CFLAGS])
