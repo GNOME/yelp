@@ -1,26 +1,26 @@
 # Translation of yelp.po to Simplified Chinese.
-# Copyright (C) 2002, 2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2008, 2009, 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 #
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
 # Funda Wang <fundawang@linux.net.cn>, 2003 ,2004, 2005.
 # Jan2xue <75jan@163.com>, 2003-2004.
 # Shaodong Di <gnuyhlfh@gmail.com>, 2008.
-# Aron Xu <happyaron.xu@gmail.com>, 2009.
 # Fan Qijiang <fqj1994@linux.com>, 2010.
+# Aron Xu <happyaron.xu@gmail.com>, 2009, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2010-05-30 15:51+0000\n"
-"PO-Revision-Date: 2008-02-23 19:51+0800\n"
-"Last-Translator: Fan Qijiang <fqj1994@linux.com>\n"
-"Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
+"Project-Id-Version: yelp master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-13 22:42+0800\n"
+"PO-Revision-Date: 2010-07-13 23:00+0800\n"
+"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -880,17 +880,19 @@ msgstr "内存不足"
 
 #: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
 #: ../libyelp/yelp-mallard-document.c:254
-#: ../libyelp/yelp-mallard-document.c:391
+#: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "文档 %2$s 中没有找到页面 %1$s。"
 
 #: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:366
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file does not exist."
 msgstr "文件不存在。"
 
 #: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:376
+#: ../libyelp/yelp-man-document.c:413
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "文件“%s”不存在。"
@@ -914,6 +916,7 @@ msgid "Unknown"
 msgstr "未知"
 
 #: ../libyelp/yelp-docbook-document.c:801 ../libyelp/yelp-info-document.c:309
+#: ../libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "文档“%s”中没有找到请求的页面。"
@@ -931,27 +934,27 @@ msgstr "无法解析文件“%s”，因为它不是有效的信息页。"
 
 #: ../libyelp/yelp-location-entry.c:279
 msgid "Description Column"
-msgstr ""
+msgstr "描述栏"
 
 #: ../libyelp/yelp-location-entry.c:280
 msgid "A column in the model to get descriptions from"
-msgstr ""
+msgstr "从以下位置获得描述的栏："
 
 #: ../libyelp/yelp-location-entry.c:295
 msgid "Icon Column"
-msgstr ""
+msgstr "图标栏"
 
 #: ../libyelp/yelp-location-entry.c:296
 msgid "A column in the model to get icon names from"
-msgstr ""
+msgstr "从以下位置获得图标的栏："
 
 #: ../libyelp/yelp-location-entry.c:311
 msgid "Flags Column"
-msgstr ""
+msgstr "标记栏"
 
 #: ../libyelp/yelp-location-entry.c:312
 msgid "A column in the model with YelpLocationEntryFlags flags"
-msgstr ""
+msgstr "从以下位置获得 YelpLocationEntryFlags 标记的栏："
 
 #: ../libyelp/yelp-location-entry.c:328
 msgid "Enable Search"
@@ -959,12 +962,18 @@ msgstr "启用搜索"
 
 #: ../libyelp/yelp-location-entry.c:329
 msgid "Whether the location entry can be used as a search field"
-msgstr ""
+msgstr "地址条目是否可被用作搜索欲"
 
-#: ../libyelp/yelp-mallard-document.c:294
+#: ../libyelp/yelp-mallard-document.c:296
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "目录“%s”不存在。"
+
+#: ../libyelp/yelp-man-document.c:444
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr "无法解析文件“%s”，因为它不是有效的手册页。"
 
 #: ../libyelp/yelp-settings.c:146
 msgid "GtkSettings"
@@ -972,23 +981,23 @@ msgstr "GtkSettings"
 
 #: ../libyelp/yelp-settings.c:147
 msgid "A GtkSettings object to get settings from"
-msgstr ""
+msgstr "从以下位置获得设置的 GtkSettings 对象："
 
 #: ../libyelp/yelp-settings.c:155
 msgid "GtkIconTheme"
-msgstr ""
+msgstr "GtkIconTheme"
 
 #: ../libyelp/yelp-settings.c:156
 msgid "A GtkIconTheme object to get icons from"
-msgstr ""
+msgstr "从以下位置获得图标的 GtkIconTheme 对象："
 
 #: ../libyelp/yelp-settings.c:164
 msgid "Font Adjustment"
-msgstr ""
+msgstr "字体调整"
 
 #: ../libyelp/yelp-settings.c:165
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "附加于字号的字符尺寸调整属性"
 
 #: ../libyelp/yelp-settings.c:173
 msgid "Show Text Cursor"
@@ -996,7 +1005,7 @@ msgstr "显示文本光标"
 
 #: ../libyelp/yelp-settings.c:174
 msgid "Show the text cursor or caret for accessibile navigation"
-msgstr ""
+msgstr "为辅助功能导航启用文本光标"
 
 #: ../libyelp/yelp-settings.c:182
 msgid "Editor Mode"
@@ -1004,7 +1013,7 @@ msgstr "编辑器模式"
 
 #: ../libyelp/yelp-settings.c:183
 msgid "Enable features useful to editors"
-msgstr ""
+msgstr "启用对编辑器有用的特性"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
@@ -1027,85 +1036,89 @@ msgstr "在 yelp:document 中未发现 href 属性\n"
 msgid "Out of memory"
 msgstr "内存不足"
 
-#: ../libyelp/yelp-view.c:111
+#: ../libyelp/yelp-view.c:118
 msgid "_Print..."
 msgstr "打印(_P)..."
 
-#: ../libyelp/yelp-view.c:116
+#: ../libyelp/yelp-view.c:123
 msgid "_Back"
 msgstr "后退(_B)"
 
-#: ../libyelp/yelp-view.c:121
+#: ../libyelp/yelp-view.c:128
 msgid "_Forward"
 msgstr "前进(_F)"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:133
 msgid "_Previous Page"
 msgstr "上一页(_P)"
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:138
 msgid "_Next Page"
 msgstr "下一页(_N)"
 
-#: ../libyelp/yelp-view.c:367
+#: ../libyelp/yelp-view.c:387
 msgid "Yelp URI"
-msgstr ""
+msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:368
+#: ../libyelp/yelp-view.c:388
 msgid "A YelpUri with the current location"
-msgstr ""
+msgstr "表示当前位置的 YelpUri"
 
-#: ../libyelp/yelp-view.c:376
+#: ../libyelp/yelp-view.c:396
 msgid "Loading State"
-msgstr "正在装入状态"
+msgstr "载入状态"
 
-#: ../libyelp/yelp-view.c:377
+#: ../libyelp/yelp-view.c:397
 msgid "The loading state of the view"
-msgstr ""
+msgstr "视图的载入状态"
 
-#: ../libyelp/yelp-view.c:386
+#: ../libyelp/yelp-view.c:406
 msgid "Page ID"
 msgstr "页面编号"
 
-#: ../libyelp/yelp-view.c:387
+#: ../libyelp/yelp-view.c:407
 msgid "The ID of the root page of the page being viewed"
-msgstr ""
+msgstr "当前浏览页面的根页面 ID"
 
-#: ../libyelp/yelp-view.c:395
+#: ../libyelp/yelp-view.c:415
 msgid "Root Title"
-msgstr ""
+msgstr "根标题"
 
-#: ../libyelp/yelp-view.c:396
+#: ../libyelp/yelp-view.c:416
 msgid "The title of the root page of the page being viewed"
-msgstr ""
+msgstr "当前浏览页面的根页面标题"
 
-#: ../libyelp/yelp-view.c:404
+#: ../libyelp/yelp-view.c:424
 msgid "Page Title"
 msgstr "页面标题"
 
-#: ../libyelp/yelp-view.c:405
+#: ../libyelp/yelp-view.c:425
 msgid "The title of the page being viewed"
 msgstr "正在被阅览的页面的标题"
 
-#: ../libyelp/yelp-view.c:413
+#: ../libyelp/yelp-view.c:433
 msgid "Page Description"
 msgstr "页面描述"
 
-#: ../libyelp/yelp-view.c:414
+#: ../libyelp/yelp-view.c:434
 msgid "The description of the page being viewed"
 msgstr "正在被阅览的页面的描述"
 
-#: ../libyelp/yelp-view.c:422
+#: ../libyelp/yelp-view.c:442
 msgid "Page Icon"
 msgstr "页面图标"
 
-#: ../libyelp/yelp-view.c:423
+#: ../libyelp/yelp-view.c:443
 msgid "The icon of the page being viewed"
 msgstr "正在被阅览的页面的图标"
 
-#: ../libyelp/yelp-view.c:733
+#: ../libyelp/yelp-view.c:791
 msgid "Save Image"
 msgstr "保存图像"
+
+#: ../libyelp/yelp-view.c:873
+msgid "Save Code"
+msgstr "保存代码"
 
 #. Not using a mnemonic because underscores are common in email
 #. * addresses, and we'd have to escape them. There doesn't seem
@@ -1113,188 +1126,204 @@ msgstr "保存图像"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:822
+#: ../libyelp/yelp-view.c:1034
 #, c-format
 msgid "Send email to %s"
 msgstr "给 %s 发送电子邮件"
 
-#: ../libyelp/yelp-view.c:830
+#: ../libyelp/yelp-view.c:1044
 msgid "_Open Link"
 msgstr "打开链接(_O)"
 
-#: ../libyelp/yelp-view.c:835
+#: ../libyelp/yelp-view.c:1049
 msgid "Open Link in New _Window"
 msgstr "在新窗口打开链接(_W)"
 
-#: ../libyelp/yelp-view.c:871
+#: ../libyelp/yelp-view.c:1091
 msgid "_Save Image As..."
 msgstr "图像另存为(_S)..."
 
-#: ../libyelp/yelp-view.c:873
+#: ../libyelp/yelp-view.c:1093
 msgid "_Save Video As..."
 msgstr "视频另存为(_S)..."
 
-#: ../libyelp/yelp-view.c:880
+#: ../libyelp/yelp-view.c:1100
 msgid "S_end Image To..."
 msgstr "图像发送到(_E)..."
 
-#: ../libyelp/yelp-view.c:882
+#: ../libyelp/yelp-view.c:1102
 msgid "S_end Video To..."
 msgstr "视频发送到(_E)..."
 
-#: ../libyelp/yelp-view.c:893
+#: ../libyelp/yelp-view.c:1113
 msgid "_Copy Text"
 msgstr "复制文本(_C)"
 
-#: ../libyelp/yelp-view.c:1064
+#: ../libyelp/yelp-view.c:1126
+msgid "C_opy Code Block"
+msgstr "复制代码块(_O)"
+
+#: ../libyelp/yelp-view.c:1131
+msgid "Save Code _Block As..."
+msgstr "代码块另存为(_B)..."
+
+#: ../libyelp/yelp-view.c:1302
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "无法加载“%s”的文档"
 
-#: ../libyelp/yelp-view.c:1070
+#: ../libyelp/yelp-view.c:1308
 #, c-format
 msgid "Could not load a document"
 msgstr "无法加载文档"
 
-#: ../libyelp/yelp-view.c:1137
+#: ../libyelp/yelp-view.c:1375
 msgid "Not Found"
 msgstr "未找到"
 
-#: ../libyelp/yelp-view.c:1140
+#: ../libyelp/yelp-view.c:1378
 msgid "Cannot Read"
 msgstr "不可读"
 
-#: ../libyelp/yelp-view.c:1146
+#: ../libyelp/yelp-view.c:1384
 msgid "Unknown Error"
 msgstr "未知错误"
 
-#: ../libyelp/yelp-view.c:1237
+#: ../libyelp/yelp-view.c:1476
 #, c-format
-msgid "The URI ‘%s’ does point to a valid page."
-msgstr "URI“%s”指向一个有效的页面。"
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI %s 未指向一个有效的页面。"
 
-#: ../libyelp/yelp-view.c:1245
+#: ../libyelp/yelp-view.c:1482
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "URI 未指向一个有效的页面。"
+
+#: ../libyelp/yelp-view.c:1490
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI“%s”无法解析。"
 
-#: ../src/yelp-application.c:55
+#: ../src/yelp-application.c:53
 msgid "Turn on editor mode"
 msgstr "打开编辑器模式"
 
-#: ../src/yelp-application.c:106
+#: ../src/yelp-application.c:129
 msgid "_Larger Text"
 msgstr "更大字体(_L)"
 
-#: ../src/yelp-application.c:108
+#: ../src/yelp-application.c:131
 msgid "Increase the size of the text"
 msgstr "增大文本大小"
 
-#: ../src/yelp-application.c:111
+#: ../src/yelp-application.c:134
 msgid "_Smaller Text"
 msgstr "更小字体(_S)"
 
-#: ../src/yelp-application.c:113
+#: ../src/yelp-application.c:136
 msgid "Descrease the size of the text"
 msgstr "减小文本大小"
 
-#: ../src/yelp-application.c:221
+#: ../src/yelp-application.c:248
 msgid "Show Text _Cursor"
 msgstr "显示文本光标(_C)"
 
-#: ../src/yelp-application.c:297 ../src/yelp-window.c:1665
+#: ../src/yelp-application.c:324 ../src/yelp-window.c:1871
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/yelp-application.c:563
+#: ../src/yelp-application.c:745
 msgid ""
 "You do not have PackageKit installed.  Package installation links require "
 "PackageKit."
 msgstr "您没有安装 PackageKit。包安装链接需要 PackageKit。"
 
-#: ../src/yelp-window.c:289
+#: ../src/yelp-window.c:303
 msgid "_Page"
 msgstr "页面(_P)"
 
-#: ../src/yelp-window.c:290
+#: ../src/yelp-window.c:304
 msgid "_View"
 msgstr "查看(_V)"
 
-#: ../src/yelp-window.c:291
+#: ../src/yelp-window.c:305
 msgid "_Go"
 msgstr "转到(_G)"
 
-#: ../src/yelp-window.c:292
+#: ../src/yelp-window.c:306
 msgid "_Bookmarks"
 msgstr "书签(_B)"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:309
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: ../src/yelp-window.c:300
+#: ../src/yelp-window.c:314
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:319
 msgid "_Add Bookmark"
 msgstr "添加书签(_A)"
 
-#: ../src/yelp-window.c:310
+#: ../src/yelp-window.c:324
 msgid "_Edit Bookmarks"
 msgstr "编辑书签(_E)"
 
-#: ../src/yelp-window.c:315
+#: ../src/yelp-window.c:329
 msgid "Find in Page..."
 msgstr "在页面中查找..."
 
-#: ../src/yelp-window.c:320 ../src/yelp-window.c:542
+#: ../src/yelp-window.c:334 ../src/yelp-window.c:575
 msgid "Search..."
 msgstr "搜索..."
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:339
 msgid "Open Location"
 msgstr "打开位置"
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:369
 msgid "Application"
 msgstr "应用程序"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:370
 msgid "A YelpApplication instance that controls this window"
-msgstr ""
+msgstr "一个控制此窗口的 YelpApplication 实例。"
+
+#: ../src/yelp-window.c:647
+msgid "Read Later"
+msgstr "稍后阅读"
 
 #. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:785
+#: ../src/yelp-window.c:859
 #, c-format
 msgid "Bookmarks for %s"
 msgstr "%s 的书签"
 
-#: ../src/yelp-window.c:1283
+#: ../src/yelp-window.c:1487
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i 个匹配项"
 
-#: ../src/yelp-window.c:1308
+#: ../src/yelp-window.c:1512
 msgid "No matches"
 msgstr "找不到匹配"
 
-#: ../src/yelp-window.c:1625
+#: ../src/yelp-window.c:1831
 msgid "Loading"
-msgstr "正在装入"
+msgstr "正在载入"
 
-#: ../src/yelp-window.c:1858
+#: ../src/yelp-window.c:2064
 msgid "_Open Bookmark"
 msgstr "打开书签(_O)"
 
-#: ../src/yelp-window.c:1864
+#: ../src/yelp-window.c:2070
 msgid "Open Bookmark in New _Window"
 msgstr "在新窗口打开书签(_W)"
 
-#: ../src/yelp-window.c:1873
+#: ../src/yelp-window.c:2079
 msgid "_Remove Bookmark"
 msgstr "删除书签(_R)"
 
