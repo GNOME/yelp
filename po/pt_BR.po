@@ -7,16 +7,15 @@
 # Og Maciel <ogmaciel@gnome.org>, 2007.
 # Jonh Wendell <wendell@bani.com.br>, 2008.
 # André Gondim <andregondim@ubuntu.com>, 2009.
-# Henrique P Machado <zehrique@gmail.com>, 2009.
+# Henrique P. Machado <hpmachado@gnome.org>, 2009-2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2009-08-07 17:12+0000\n"
-"PO-Revision-Date: 2009-08-08 16:16-0300\n"
-"Last-Translator: Henrique P Machado <zehrique@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-17 22:08-0400\n"
+"PO-Revision-Date: 2010-06-06 19:48-0300\n"
+"Last-Translator: Henrique P. Machado <hpmachado@gnome.org>\n"
 "Language-Team: Portuguese/Brazil <gnome-pt_br-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -295,7 +294,7 @@ msgstr "Gráficos 2D"
 msgid "3D Graphics"
 msgstr "Gráficos 3D"
 
-#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "Acessibilidade"
 
@@ -689,7 +688,7 @@ msgstr "Reprodutores"
 msgid "Presentation Tools"
 msgstr "Ferramentas para apresentação"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104
 msgid "Printing"
 msgstr "Impressão"
 
@@ -748,7 +747,7 @@ msgstr "Segurança"
 
 #: ../data/toc.xml.in.h:119
 msgid "Sequencers"
-msgstr "Seqüenciadores"
+msgstr "Sequenciadores"
 
 #: ../data/toc.xml.in.h:120
 msgid "Settings"
@@ -873,221 +872,36 @@ msgstr "Bem-vindo ao Navegador da Ajuda do GNOME"
 msgid "Word Processors"
 msgstr "Processadores de texto"
 
-#: ../data/ui/yelp-bookmarks.ui.h:1
-msgid "Bookmarks"
-msgstr "Marcadores"
+#: ../libyelp/yelp-bz2-decompressor.c:146
+#: ../libyelp/yelp-lzma-decompressor.c:155
+msgid "Invalid compressed data"
+msgstr "Dados compactados inválidos"
 
-#: ../data/ui/yelp-bookmarks.ui.h:2
-msgid "Re_name"
-msgstr "Re_nomear"
+#: ../libyelp/yelp-bz2-decompressor.c:152
+#: ../libyelp/yelp-lzma-decompressor.c:161
+msgid "Not enough memory"
+msgstr "Memória insuficiente"
 
-#: ../data/ui/yelp-bookmarks.ui.h:3
-msgid "_Bookmarks:"
-msgstr "_Marcadores:"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:1
-msgid "Add Bookmark"
-msgstr "Adicionar marcador"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:2
-msgid "_Title:"
-msgstr "_Título:"
-
-#: ../data/ui/yelp-open-location.ui.h:1
-msgid "Open Location"
-msgstr "Abrir localização"
-
-#: ../data/ui/yelp-open-location.ui.h:2
-msgid "_Location:"
-msgstr "_Localização:"
-
-#: ../data/ui/yelp-preferences.ui.h:2
-msgid "Fonts"
-msgstr "Fontes"
-
-#: ../data/ui/yelp-preferences.ui.h:3
-msgid "Preferences"
-msgstr "Preferências"
-
-#: ../data/ui/yelp-preferences.ui.h:4
-msgid "_Browse with caret"
-msgstr "_Navegar com cursor"
-
-#: ../data/ui/yelp-preferences.ui.h:5
-msgid "_Fixed width:"
-msgstr "L_argura fixa:"
-
-#: ../data/ui/yelp-preferences.ui.h:6
-msgid "_Use system fonts"
-msgstr "_Usar fontes do sistema"
-
-#: ../data/ui/yelp-preferences.ui.h:7
-msgid "_Variable width:"
-msgstr "Largura _variável"
-
-#: ../data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Fonte para texto fixo"
-
-#: ../data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Fonte para o texto"
-
-#: ../data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Fonte para texto de largura fixa."
-
-#: ../data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Fonte para texto com largura variável."
-
-#: ../data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "Usa o cursor do teclado ao visualizar páginas."
-
-#: ../data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr "Usar cursor"
-
-#: ../data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr "Usar fontes do sistema"
-
-#: ../data/yelp.schemas.in.h:8
-msgid "Use the default fonts set for the system."
-msgstr "Usar fontes padrão configuradas para o sistema."
-
-#: ../src/eggdesktopfile.c:165
+#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
+#: ../libyelp/yelp-mallard-document.c:254
+#: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
 #, c-format
-msgid "File is not a valid .desktop file"
-msgstr "O arquivo não é um arquivo .desktop válido"
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "A página \"%s\" não foi localizada no documento \"%s\"."
 
-#: ../src/eggdesktopfile.c:188
+#: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:366
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Versão não reconhecida do arquivo desktop \"%s\""
+msgid "The file does not exist."
+msgstr "O arquivo não existe."
 
-#: ../src/eggdesktopfile.c:958
-#, c-format
-msgid "Starting %s"
-msgstr "Iniciando %s"
-
-#: ../src/eggdesktopfile.c:1100
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "O aplicativo não aceita documentos na linha de comando"
-
-#: ../src/eggdesktopfile.c:1168
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Opção de lançamento desconhecida: %d"
-
-#: ../src/eggdesktopfile.c:1373
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Não é possível passar URIs de documento a uma entrada de desktop 'Type=Link'"
-
-#: ../src/eggdesktopfile.c:1392
-#, c-format
-msgid "Not a launchable item"
-msgstr "Não é um item lançável"
-
-#: ../src/eggsmclient.c:225
-msgid "Disable connection to session manager"
-msgstr "Desabilitar conexão com o gerenciador de sessão"
-
-#: ../src/eggsmclient.c:228
-msgid "Specify file containing saved configuration"
-msgstr "Especificar o arquivo que contém as configurações salvas"
-
-#: ../src/eggsmclient.c:228
-msgid "FILE"
-msgstr "ARQUIVO"
-
-#: ../src/eggsmclient.c:231
-msgid "Specify session management ID"
-msgstr "Especificar a ID do gerenciador de sessão"
-
-#: ../src/eggsmclient.c:231
-msgid "ID"
-msgstr "ID"
-
-#: ../src/eggsmclient.c:252
-msgid "Session management options:"
-msgstr "Opções do gerenciador de sessão:"
-
-#: ../src/eggsmclient.c:253
-msgid "Show session management options"
-msgstr "Mostrar opções do gerenciador de sessão"
-
-#: ../src/yelp-bookmarks.c:148
-msgid "Open Bookmark in New Window"
-msgstr "Abrir marcador em nova janela"
-
-#: ../src/yelp-bookmarks.c:152
-msgid "Rename Bookmark"
-msgstr "Renomear marcador"
-
-#: ../src/yelp-bookmarks.c:156
-msgid "Remove Bookmark"
-msgstr "Remover marcador"
-
-#: ../src/yelp-bookmarks.c:314
-#, c-format
-msgid "A bookmark titled %s already exists for this page."
-msgstr "Um marcador com o nome %s já existe para esta página."
-
-#: ../src/yelp-bookmarks.c:390
-#, c-format
-msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "Um marcador com o nome <b>%s</b> já existe para esta página."
-
-#: ../src/yelp-bookmarks.c:403
-msgid "Help Topics"
-msgstr "Tópicos de ajuda"
-
-#: ../src/yelp-bookmarks.c:418
-msgid "Document Sections"
-msgstr "Seções do documento"
-
-#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
-msgid "Page not found"
-msgstr "Página não localizada"
-
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
-#, c-format
-msgid "The page %s was not found in the document %s."
-msgstr "A página %s não foi localizada no documento %s."
-
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
-#: ../src/yelp-man.c:386
-#, c-format
-msgid "The requested page was not found in the document %s."
-msgstr "A página solicitada não foi localizada no documento %s."
-
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
-#: ../src/yelp-man.c:429
-msgid "File not found"
-msgstr "Arquivo não localizado"
-
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
-#: ../src/yelp-man.c:430
+#: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:376
+#: ../libyelp/yelp-man-document.c:413
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "O arquivo \"%s\" não existe."
 
-#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
-#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
-msgid "Could not parse file"
-msgstr "Não foi possível analisar o arquivo"
-
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
+#: ../libyelp/yelp-docbook-document.c:323
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -1096,7 +910,7 @@ msgstr ""
 "Não foi possível analisar o arquivo \"%s\" porque não é um documento XML bem "
 "formado."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
+#: ../libyelp/yelp-docbook-document.c:336
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -1105,23 +919,22 @@ msgstr ""
 "Não foi possível analisar o arquivo \"%s\" porque um ou mais dos seus "
 "arquivos incluídos não são um documento XML bem formado."
 
-#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
+#: ../libyelp/yelp-docbook-document.c:740
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
-msgid "Unknown Error"
-msgstr "Erro desconhecido"
+#: ../libyelp/yelp-docbook-document.c:801 ../libyelp/yelp-info-document.c:309
+#: ../libyelp/yelp-man-document.c:345
+#, c-format
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "A página solicitada não foi localizada no documento \"%s\"."
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
-msgid "Could Not Read File"
-msgstr "Não foi possível ler o arquivo"
+#: ../libyelp/yelp-error.c:33
+#, c-format
+msgid "An unknown error occurred."
+msgstr "Ocorreu um erro desconhecido."
 
-#: ../src/yelp-error.c:146
-msgid "No information is available about this error."
-msgstr "Nenhuma informação disponível sobre este erro."
-
-#: ../src/yelp-info.c:396
+#: ../libyelp/yelp-info-document.c:391
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -1129,42 +942,44 @@ msgstr ""
 "Não foi possível analisar o arquivo \"%s\" porque não é uma página de "
 "informações bem formada."
 
-#: ../src/yelp-io-channel.c:132
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"Não foi possível ler e decodificar o arquivo \"%s\". Ele pode estar "
-"compactado num formato para o qual não existe suporte."
+#: ../libyelp/yelp-location-entry.c:279
+msgid "Description Column"
+msgstr "Coluna Descrição"
 
-#: ../src/yelp-main.c:88
-msgid "Use a private session"
-msgstr "Usar uma sessão privada"
+#: ../libyelp/yelp-location-entry.c:280
+msgid "A column in the model to get descriptions from"
+msgstr "Uma coluna no modelo de onde obter descrições"
 
-#: ../src/yelp-main.c:97
-msgid "Define which cache directory to use"
-msgstr "Definir qual diretório de cache usar"
+#: ../libyelp/yelp-location-entry.c:295
+msgid "Icon Column"
+msgstr "Coluna Ícone"
 
-#. Commandline parsing is done here
-#: ../src/yelp-main.c:355
-msgid " GNOME Help Browser"
-msgstr " Navegador da Ajuda do GNOME"
+#: ../libyelp/yelp-location-entry.c:296
+msgid "A column in the model to get icon names from"
+msgstr "Uma coluna no modelo de onde obter nomes de ícones"
 
-#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
-msgid "Help"
-msgstr "Ajuda"
+#: ../libyelp/yelp-location-entry.c:311
+msgid "Flags Column"
+msgstr "Coluna Atributos"
 
-#: ../src/yelp-mallard.c:311
-msgid "Directory not found"
-msgstr "Diretório não localizado"
+#: ../libyelp/yelp-location-entry.c:312
+msgid "A column in the model with YelpLocationEntryFlags flags"
+msgstr "Uma coluna no modelo com sinalizadores YelpLocationEntryFlags"
 
-#: ../src/yelp-mallard.c:312
+#: ../libyelp/yelp-location-entry.c:328
+msgid "Enable Search"
+msgstr "Habilitar pesquisa"
+
+#: ../libyelp/yelp-location-entry.c:329
+msgid "Whether the location entry can be used as a search field"
+msgstr "Se o campo de localização pode ser usado como um campo de pesquisa"
+
+#: ../libyelp/yelp-mallard-document.c:296
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "O diretório \"%s\" não existe."
 
-#: ../src/yelp-man.c:459
+#: ../libyelp/yelp-man-document.c:444
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -1172,432 +987,749 @@ msgstr ""
 "Não foi possível analisar o arquivo \"%s\" porque não é uma página de manual "
 "bem formada."
 
-#: ../src/yelp-print.c:97
-msgid "Print"
-msgstr "Imprimir"
+#: ../libyelp/yelp-settings.c:146
+msgid "GtkSettings"
+msgstr "GtkSettings"
 
-#: ../src/yelp-print.c:167
-msgid "Preparing to print"
-msgstr "Preparando para imprimir"
+#: ../libyelp/yelp-settings.c:147
+msgid "A GtkSettings object to get settings from"
+msgstr "Um objeto GtkSettings de onde obter configurações"
 
-#: ../src/yelp-print.c:261
-msgid "Printing is not supported on this printer"
-msgstr "Não há suporte para impressão com essa impressora"
+#: ../libyelp/yelp-settings.c:155
+msgid "GtkIconTheme"
+msgstr "GtkIconTheme"
 
-#: ../src/yelp-print.c:264
-#, c-format
-msgid "Printer %s does not support postscript printing."
-msgstr "A impressora %s não tem suporte a impressão PostScript."
+#: ../libyelp/yelp-settings.c:156
+msgid "A GtkIconTheme object to get icons from"
+msgstr "Um objeto GtkIconTheme de onde obter ícones"
 
-#: ../src/yelp-print.c:366
-msgid "Waiting to print"
-msgstr "Aguardando para imprimir"
+#: ../libyelp/yelp-settings.c:164
+msgid "Font Adjustment"
+msgstr "Ajustamento de fonte"
 
-#: ../src/yelp-print.c:578
-msgid "An error occurred while printing"
-msgstr "Ocorreu um erro ao imprimir"
+#: ../libyelp/yelp-settings.c:165
+msgid "A size adjustment to add to font sizes"
+msgstr "Um ajustador de tamanho para adicionar aos tamanhos de fontes"
 
-#: ../src/yelp-print.c:582
-#, c-format
-msgid "It was not possible to print your document: %s"
-msgstr "Não foi possível imprimir o seu documento: %s"
+#: ../libyelp/yelp-settings.c:173
+msgid "Show Text Cursor"
+msgstr "Mostrar o cursor de texto"
 
-#: ../src/yelp-search-parser.c:67
-msgid "the GNOME Support Forums"
-msgstr "Fóruns de Suporte do GNOME"
-
-#: ../src/yelp-search-parser.c:285
-#, c-format
-msgid "No results for \"%s\""
-msgstr "Nenhum resultado para \"%s\""
-
-#: ../src/yelp-search-parser.c:286
-msgid ""
-"Try using different words to describe the problem you're having or the topic "
-"you want help with."
+#: ../libyelp/yelp-settings.c:174
+msgid "Show the text cursor or caret for accessibile navigation"
 msgstr ""
-"Experimente usar palavras diferentes para descrever o problema ou o assunto "
-"para o qual você quer ajuda"
+"Mostra o cursor de texto ou o acento circunflexo para navegação acessível"
 
-#: ../src/yelp-search-parser.c:289
+#: ../libyelp/yelp-settings.c:182
+msgid "Editor Mode"
+msgstr "Modo Editor"
+
+#: ../libyelp/yelp-settings.c:183
+msgid "Enable features useful to editors"
+msgstr "Habilita recursos úteis para editores"
+
+#: ../libyelp/yelp-transform.c:171
+msgid "XSLT Stylesheet"
+msgstr "Folha de estilo XSLT"
+
+#: ../libyelp/yelp-transform.c:172
+msgid "The location of the XSLT stylesheet"
+msgstr "A localização da folha de estilo XSLT"
+
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
-msgid "Search results for \"%s\""
-msgstr "Resultados da pesquisa por \"%s\""
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "A folha de estilo XSLT \"%s\" está faltando ou não é válida."
 
-#. TRANSLATORS: Please don't do anything funny with the
-#. * format arguement.  It isn't really going through a printf
-#. * The %s is used to indicate where the name of the site (linked)
-#. * should be.  This is done in the XSLT
-#.
-#: ../src/yelp-search-parser.c:303
-#, c-format
-msgid "Repeat the search online at %s"
-msgstr "Repetir a pesquisa on-line nos %s"
-
-#. Translators: Do not translate this list exactly.  These are
-#. * colon-separated words that aren't useful for choosing search
-#. * results; they will be different for each language. Include
-#. * pronouns, articles, very common verbs and prepositions,
-#. * words from question structures like "tell me about" and
-#. * "how do I", and words for functional states like "not",
-#. * "work", and "broken".
-#.
-#: ../src/yelp-search-parser.c:874
-msgid ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
-msgstr ""
-"o:a:sobre:um:uma:são:como:em:ser:quebrado:quebrada:travado:travada:travou:"
-"por:pode:posso:diálogo:não:explicar:explique-me:explique:para:de:obter:"
-"obtenho:obtém:obtêm:obteve:obtive:obtiveram:fazer:faço:não:quando:tem:têm:"
-"tenho:ajuda:ajude-me:eu:em:é:são:sou:isso:isto:esse:este:esses:estes:item:"
-"itens:me:meu:minha:meus:minhas:de:no:na:nos:nas:ou:diga:dizer:que:coisa:"
-"assunto:para:até:que:quê:onde:quem:com:por:funciona:funcionam:funcionando"
-
-#. Translators: This is a list of common prefixes for words.
-#. * Do not translate this directly.  Instead, use a colon
-#. * seperated list of word-starts.  In English, an example
-#. * is re-.  If there is none, please use the term NULL
-#. * If there is only one, please put a colon after.
-#. * E.g. if the common prefix is re then the string would be
-#. * "re:"
-#.
-#: ../src/yelp-search-parser.c:890
-msgid "re"
-msgstr ""
-"ab:acro:ad:aero:anfi:ante:anti:apico:arqui:auri:auro:auto:bis:bio:cata:"
-"cerebro:cervico:circum:circun:cis:com:con:contra:des:deis:ego:eletro:endo:"
-"entre:extra:filo:fisio:gastro:geo:hemi:hepta:hetero:hexa:hidro:hiper:hipo:"
-"homo:idio:ido:in:infra:inter:intra:intro:iso:justa:labio:linguo:macro:mal:"
-"medio:mega:meso:meta:micro:mono:moto:multi:nefro:neo:neuro:novi:ob:octo:oni:"
-"orto:oto:pan:para:peta:per:peri:poli:pos:pre:preter:pro:proto:pseudo:psico:"
-"quadri:quarti:quilo:qüinq:radio:re:retro:rino:sacro:semi:sesqui:sob:sobre:"
-"socio:sub:subter:sulfo:super:supra:tele:termo:ter:tetra:trans:traqueo:tras:"
-"trans:tres:tri:turbo:ultra:uni:uretro:vasco:vesico:xanto:xilo:zinco:zoo"
-
-#. Translators: This is a list of (guess what?) common suffixes
-#. * to words.  Things that may be put at ends of words to slightly
-#. * alter their meaning (like -ing and -s in English).  This is a
-#. * colon seperated list (I like colons).  If there are none,
-#. * please use the string NULL.  If there is only 1, please
-#. * add a colon at the end of the list
-#.
-#: ../src/yelp-search-parser.c:899
-msgid "ers:er:ing:es:s:'s"
-msgstr ""
-"alhão:alhona:alhões:alhonas:ão:ona:ães:ãos:ões:onas:anzil:anzis:arra:arras:"
-"orra:orras:ázio:ázios:aço:aços:az:azes:acho:acha:achos:achas:eto:eta:etos:"
-"etas:inho:inha:inhos:inhas:ote:otes:ota:otas:íssimo:íssimos:íssima:íssimas:"
-"érrimo:érrima:érrimos:érrimas:limo:lima:limos:limas:aria:arias:ato:atos:"
-"douro:douros:ia:ias:dor:dora:dores:doras:ista:istas:ano:ana:anos:anas:eiro:"
-"eiros:ês:esa:êses:esas:al:ais:ada:adas:agem:agens:oso:osa:osos:osas:ento:"
-"enta:entos:entas:udo:uda:udos:udas:ear:eares:ejar:ejares:ecer:eceres:escer:"
-"esceres:entar:entares:fazer:fazeres:ficar:ficares:icar:icares:iscar:iscares:"
-"ilhar:ilhares:inhar:inhares:itar:itares:izar:izares:mente:ão:ona:ões:ães:ãos:"
-"onas"
-
-#: ../src/yelp-search-parser.c:1095
-msgid "No Comment"
-msgstr "Nenhum comentário"
-
-#. Much bigger problems
-#: ../src/yelp-search.c:238
-msgid "Search could not be processed"
-msgstr "Não foi possível processar a pesquisa"
-
-#: ../src/yelp-search.c:239
-msgid "The requested search could not be processed."
-msgstr "Não foi possível processar a pesquisa solicitada."
-
-#: ../src/yelp-search.c:366
-msgid "Cannot process the search"
-msgstr "Não foi possível processar a pesquisa"
-
-#: ../src/yelp-search.c:367
-msgid "The search processor returned invalid results"
-msgstr "O processador de pesquisa retornou resultados inválidos"
-
-#: ../src/yelp-toc.c:267
-#, c-format
-msgid "The page %s was not found in the TOC."
-msgstr "A página %s não foi localizada no sumário."
-
-#: ../src/yelp-toc.c:366
-msgid "The requested page was not found in the TOC."
-msgstr "A página solicitada não foi localizada no sumário."
-
-#: ../src/yelp-toc.c:438
-msgid ""
-"The TOC file could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Não foi possível analisar o arquivo do sumário porque não é um documento XML "
-"bem formado."
-
-#: ../src/yelp-transform.c:86
-msgid "Invalid Stylesheet"
-msgstr "Folha de estilo inválida"
-
-#: ../src/yelp-transform.c:87
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "A folha de estilo XSLT \"%s\" está faltando, ou não é válida."
-
-#: ../src/yelp-transform.c:122
-msgid "Broken Transformation"
-msgstr "Transformação quebrada"
-
-#: ../src/yelp-transform.c:123
-msgid "An unknown error occurred while attempting to transform the document."
-msgstr "Um erro desconhecido ocorreu ao tentar transformar o documento."
-
-#: ../src/yelp-transform.c:389
+#: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "Atributo href não localizado em yelp:document\n"
 
-#: ../src/yelp-transform.c:404
+#: ../libyelp/yelp-transform.c:543
 msgid "Out of memory"
-msgstr "Memória insuficiente"
+msgstr "Não há memória suficiente"
 
-#: ../src/yelp-window.c:304
-msgid "_File"
-msgstr "_Arquivo"
+#: ../libyelp/yelp-view.c:118
+msgid "_Print..."
+msgstr "Im_primir..."
 
-#: ../src/yelp-window.c:305
-msgid "_Edit"
-msgstr "_Editar"
-
-#: ../src/yelp-window.c:306
-msgid "_Go"
-msgstr "_Ir"
-
-#: ../src/yelp-window.c:307
-msgid "_Bookmarks"
-msgstr "_Marcadores"
-
-#: ../src/yelp-window.c:308
-msgid "_Help"
-msgstr "Aj_uda"
-
-#: ../src/yelp-window.c:311
-msgid "_New Window"
-msgstr "_Nova janela"
-
-#: ../src/yelp-window.c:316
-msgid "Print This Document ..."
-msgstr "Imprimir este documento..."
-
-#: ../src/yelp-window.c:321
-msgid "Print This Page ..."
-msgstr "Imprimir esta página..."
-
-#: ../src/yelp-window.c:326
-msgid "About This Document"
-msgstr "_Sobre este documento"
-
-#: ../src/yelp-window.c:331
-msgid "Open _Location"
-msgstr "Abrir l_ocalização"
-
-#: ../src/yelp-window.c:336
-msgid "_Close Window"
-msgstr "_Fechar janela"
-
-#: ../src/yelp-window.c:342
-msgid "_Copy"
-msgstr "_Copiar"
-
-#: ../src/yelp-window.c:348
-msgid "_Select All"
-msgstr "Selecionar _tudo"
-
-#: ../src/yelp-window.c:353
-msgid "_Find..."
-msgstr "_Localizar..."
-
-#: ../src/yelp-window.c:358
-msgid "Find Pre_vious"
-msgstr "Localizar a_nterior"
-
-#: ../src/yelp-window.c:360
-msgid "Find previous occurrence of the word or phrase"
-msgstr "Localizar a ocorrência anterior da palavra ou frase"
-
-#: ../src/yelp-window.c:363
-msgid "Find Ne_xt"
-msgstr "Localizar pró_ximo"
-
-#: ../src/yelp-window.c:365
-msgid "Find next occurrence of the word or phrase"
-msgstr "Localizar a próxima ocorrência da palavra ou frase"
-
-#: ../src/yelp-window.c:368
-msgid "_Preferences"
-msgstr "_Preferências"
-
-#: ../src/yelp-window.c:373
-msgid "_Reload"
-msgstr "_Recarregar"
-
-#: ../src/yelp-window.c:385
+#: ../libyelp/yelp-view.c:123
 msgid "_Back"
 msgstr "_Voltar"
 
-#: ../src/yelp-window.c:387
-msgid "Show previous page in history"
-msgstr "Mostrar página anterior no histórico"
-
-#: ../src/yelp-window.c:390
+#: ../libyelp/yelp-view.c:128
 msgid "_Forward"
 msgstr "_Avançar"
 
-#: ../src/yelp-window.c:392
-msgid "Show next page in history"
-msgstr "Mostrar página seguinte no histórico"
+#: ../libyelp/yelp-view.c:133
+msgid "_Previous Page"
+msgstr "Página a_nterior"
 
-#: ../src/yelp-window.c:395
-msgid "_Help Topics"
-msgstr "_Tópicos da ajuda"
+#: ../libyelp/yelp-view.c:138
+msgid "_Next Page"
+msgstr "Pró_xima página"
 
-#: ../src/yelp-window.c:397
-msgid "Go to the listing of help topics"
-msgstr "Ir para a listagem de tópicos da ajuda"
+#: ../libyelp/yelp-view.c:387
+msgid "Yelp URI"
+msgstr "URI do Yelp"
 
-#: ../src/yelp-window.c:400
-msgid "_Previous Section"
-msgstr "Seção a_nterior"
+#: ../libyelp/yelp-view.c:388
+msgid "A YelpUri with the current location"
+msgstr "Uma YelpUri com a localização atual"
 
-#: ../src/yelp-window.c:405
-msgid "_Next Section"
-msgstr "Pró_xima seção"
+#: ../libyelp/yelp-view.c:396
+msgid "Loading State"
+msgstr "Estado de carregamento"
 
-#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
-msgid "_Contents"
-msgstr "S_umário"
+#: ../libyelp/yelp-view.c:397
+msgid "The loading state of the view"
+msgstr "O estado de carregamento da visão"
 
-#: ../src/yelp-window.c:416
-msgid "_Add Bookmark"
-msgstr "_Adicionar marcador"
+#: ../libyelp/yelp-view.c:406
+msgid "Page ID"
+msgstr "ID da página"
 
-#: ../src/yelp-window.c:421
-msgid "_Edit Bookmarks..."
-msgstr "_Editar marcadores..."
+#: ../libyelp/yelp-view.c:407
+msgid "The ID of the root page of the page being viewed"
+msgstr "A ID da página raiz da página em exibição"
 
-#: ../src/yelp-window.c:427
+#: ../libyelp/yelp-view.c:415
+msgid "Root Title"
+msgstr "Título da raiz"
+
+#: ../libyelp/yelp-view.c:416
+msgid "The title of the root page of the page being viewed"
+msgstr "O título da página raiz da página em exibição"
+
+#: ../libyelp/yelp-view.c:424
+msgid "Page Title"
+msgstr "Título da página"
+
+#: ../libyelp/yelp-view.c:425
+msgid "The title of the page being viewed"
+msgstr "O título da página em exibição"
+
+#: ../libyelp/yelp-view.c:433
+msgid "Page Description"
+msgstr "Descrição da página"
+
+#: ../libyelp/yelp-view.c:434
+msgid "The description of the page being viewed"
+msgstr "A descrição da página em exibição"
+
+#: ../libyelp/yelp-view.c:442
+msgid "Page Icon"
+msgstr "Ícone da página"
+
+#: ../libyelp/yelp-view.c:443
+msgid "The icon of the page being viewed"
+msgstr "O ícone da página em exibição"
+
+#: ../libyelp/yelp-view.c:791
+msgid "Save Image"
+msgstr "Salvar imagem"
+
+#: ../libyelp/yelp-view.c:873
+msgid "Save Code"
+msgstr "Salvar código"
+
+#. Not using a mnemonic because underscores are common in email
+#. * addresses, and we'd have to escape them. There doesn't seem
+#. * to be a quick GTK+ function for this. In practice, there will
+#. * probably only be one menu item for mailto link popups anyway,
+#. * so the mnemonic's not that big of a deal.
+#.
+#: ../libyelp/yelp-view.c:1034
+#, c-format
+msgid "Send email to %s"
+msgstr "Enviar e-mail para %s"
+
+#: ../libyelp/yelp-view.c:1044
 msgid "_Open Link"
 msgstr "_Abrir vínculo"
 
-#: ../src/yelp-window.c:432
-msgid "Open Link in _New Window"
+#: ../libyelp/yelp-view.c:1049
+msgid "Open Link in New _Window"
 msgstr "Abrir vínculo em _nova janela"
 
-#: ../src/yelp-window.c:437
-msgid "_Copy Link Address"
-msgstr "_Copiar endereço do vínculo"
+#: ../libyelp/yelp-view.c:1091
+msgid "_Save Image As..."
+msgstr "_Salvar imagem como..."
 
-#: ../src/yelp-window.c:444
-msgid "Help On this application"
-msgstr "Ajuda sobre este aplicativo"
+#: ../libyelp/yelp-view.c:1093
+msgid "_Save Video As..."
+msgstr "Salvar _vídeo como..."
 
-#: ../src/yelp-window.c:447
-msgid "_About"
-msgstr "_Sobre"
+#: ../libyelp/yelp-view.c:1100
+msgid "S_end Image To..."
+msgstr "_Enviar imagem para..."
 
-#: ../src/yelp-window.c:452
-msgid "Copy _Email Address"
-msgstr "Copiar _endereço de e-mail"
+#: ../libyelp/yelp-view.c:1102
+msgid "S_end Video To..."
+msgstr "Enviar ví_deo para..."
 
-#: ../src/yelp-window.c:524
-msgid "Help Browser"
-msgstr "Navegador de Ajuda"
+#: ../libyelp/yelp-view.c:1113
+msgid "_Copy Text"
+msgstr "_Copiar texto"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
-msgid "Loading..."
-msgstr "Carregando..."
+#: ../libyelp/yelp-view.c:1126
+msgid "C_opy Code Block"
+msgstr "C_opiar bloco de código"
 
-#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
-msgid "Unknown Page"
-msgstr "Página desconhecida"
+#: ../libyelp/yelp-view.c:1131
+msgid "Save Code _Block As..."
+msgstr "Salvar _bloco de código como..."
 
-#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../libyelp/yelp-view.c:1302
 #, c-format
-msgid "The requested URI \"%s\" is invalid"
-msgstr "A URI solicitada \"%s\" é inválida"
+msgid "Could not load a document for ‘%s’"
+msgstr "Não foi possível carregar um documento para \"%s\""
 
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
-msgid "Unable to load page"
-msgstr "Não foi possível carregar a página"
-
-#: ../src/yelp-window.c:1330
-msgid "_Search:"
-msgstr "_Pesquisar:"
-
-#: ../src/yelp-window.c:1331
-msgid "Search for other documentation"
-msgstr "Pesquisar por outro documento"
-
-#: ../src/yelp-window.c:1351
-msgid "Cannot create window"
-msgstr "Não foi possível criar janela"
-
-#: ../src/yelp-window.c:1357
-msgid "Cannot create search component"
-msgstr "Não foi possível criar componente de pesquisa"
-
-#: ../src/yelp-window.c:1529
-msgid "Fin_d:"
-msgstr "_Localizar:"
-
-#: ../src/yelp-window.c:1551
-msgid "Find _Previous"
-msgstr "Localizar a_nterior"
-
-#: ../src/yelp-window.c:1563
-msgid "Find _Next"
-msgstr "Localizar pró_ximo"
-
-#: ../src/yelp-window.c:1576
-msgid "Phrase not found"
-msgstr "Expressão não localizada"
-
-#: ../src/yelp-window.c:1707
+#: ../libyelp/yelp-view.c:1308
 #, c-format
+msgid "Could not load a document"
+msgstr "Não foi possível carregar um documento"
+
+#: ../libyelp/yelp-view.c:1375
+msgid "Not Found"
+msgstr "Não localizada"
+
+#: ../libyelp/yelp-view.c:1378
+msgid "Cannot Read"
+msgstr "Não foi possível ler"
+
+#: ../libyelp/yelp-view.c:1384
+msgid "Unknown Error"
+msgstr "Erro desconhecido"
+
+#: ../libyelp/yelp-view.c:1476
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "A URI \"%s\" não aponta para uma página válida."
+
+#: ../libyelp/yelp-view.c:1482
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "A URI não aponta para uma página válida."
+
+#: ../libyelp/yelp-view.c:1490
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "A URI \"%s\" não pôde ser analisada."
+
+#: ../src/yelp-application.c:53
+msgid "Turn on editor mode"
+msgstr "Ligar o modo editor"
+
+#: ../src/yelp-application.c:129
+msgid "_Larger Text"
+msgstr "Texto gra_nde"
+
+#: ../src/yelp-application.c:131
+msgid "Increase the size of the text"
+msgstr "Aumenta o tamanho do texto"
+
+#: ../src/yelp-application.c:134
+msgid "_Smaller Text"
+msgstr "Texto peq_ueno"
+
+#: ../src/yelp-application.c:136
+msgid "Descrease the size of the text"
+msgstr "Diminui o tamanho do texto"
+
+#: ../src/yelp-application.c:248
+msgid "Show Text _Cursor"
+msgstr "Mostrar o _cursor de texto"
+
+#: ../src/yelp-application.c:324 ../src/yelp-window.c:1871
+#: ../yelp.desktop.in.in.h:2
+msgid "Help"
+msgstr "Ajuda"
+
+#: ../src/yelp-application.c:745
 msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
+"You do not have PackageKit installed.  Package installation links require "
+"PackageKit."
 msgstr ""
-"Não foi possível ler o arquivo \"%s\". Esse arquivo pode não existir ou você "
-"pode não ter permissões para leitura."
+"Você não tem o PackageKit instalado. Os vínculos de instalação de pacotes "
+"necessitam do PackageKit."
 
-#. Note to translators: put here your name (and address) so it
-#. * will show up in the "about" box
-#: ../src/yelp-window.c:2577
-msgid "translator-credits"
-msgstr ""
-"Evandro Fernandes Giovanini <evandrofg@ig.com.br>\n"
-"Estêvão Samuel Procópio <tevaum@gmail.com>\n"
-"Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>\n"
-"Vladimir Melo <vladimirmelo@foresightlinux.org>\n"
-"Og Maciel <ogmaciel@gnome.org>\n"
-"Jonh Wendell <wendell@bani.com.br>\n"
-"André Gondim <andregondim@ubuntu.com>\n"
-"Henrique P Machado <zehrique@gmail.com>"
+#: ../src/yelp-window.c:303
+msgid "_Page"
+msgstr "_Página"
 
-#: ../src/yelp-window.c:2580
-msgid "Yelp"
-msgstr "Yelp"
+#: ../src/yelp-window.c:304
+msgid "_View"
+msgstr "_Ver"
 
-#: ../src/yelp-window.c:2582
-msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Um navegador e visualizador de documentação para o ambiente GNOME."
+#: ../src/yelp-window.c:305
+msgid "_Go"
+msgstr "_Ir"
+
+#: ../src/yelp-window.c:306
+msgid "_Bookmarks"
+msgstr "_Marcadores"
+
+#: ../src/yelp-window.c:309
+msgid "_New Window"
+msgstr "_Nova janela"
+
+#: ../src/yelp-window.c:314
+msgid "_Close"
+msgstr "_Fechar"
+
+#: ../src/yelp-window.c:319
+msgid "_Add Bookmark"
+msgstr "_Adicionar marcador"
+
+#: ../src/yelp-window.c:324
+msgid "_Edit Bookmarks"
+msgstr "_Editar marcadores..."
+
+#: ../src/yelp-window.c:329
+msgid "Find in Page..."
+msgstr "Procurar na página..."
+
+#: ../src/yelp-window.c:334 ../src/yelp-window.c:575
+msgid "Search..."
+msgstr "Pesquisar..."
+
+#: ../src/yelp-window.c:339
+msgid "Open Location"
+msgstr "Abrir localização"
+
+#: ../src/yelp-window.c:369
+msgid "Application"
+msgstr "Aplicativo"
+
+#: ../src/yelp-window.c:370
+msgid "A YelpApplication instance that controls this window"
+msgstr "Uma instância YelpApplication que controla esta janela"
+
+#: ../src/yelp-window.c:647
+msgid "Read Later"
+msgstr "Ler depois"
+
+#. %s will be replaced with the name of a document
+#: ../src/yelp-window.c:859
+#, c-format
+msgid "Bookmarks for %s"
+msgstr "Marcadores para %s"
+
+#: ../src/yelp-window.c:1487
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i correspondência"
+msgstr[1] "%i correspondências"
+
+#: ../src/yelp-window.c:1512
+msgid "No matches"
+msgstr "Nenhuma correspondência"
+
+#: ../src/yelp-window.c:1831
+msgid "Loading"
+msgstr "Carregando"
+
+#: ../src/yelp-window.c:2064
+msgid "_Open Bookmark"
+msgstr "Abrir _marcador"
+
+#: ../src/yelp-window.c:2070
+msgid "Open Bookmark in New _Window"
+msgstr "Abrir marcador em _nova janela"
+
+#: ../src/yelp-window.c:2079
+msgid "_Remove Bookmark"
+msgstr "_Remover marcador"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtenha ajuda sobre o GNOME"
+
+#~ msgid "Re_name"
+#~ msgstr "Re_nomear"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "_Marcadores:"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "Adicionar marcador"
+
+#~ msgid "_Title:"
+#~ msgstr "_Título:"
+
+#~ msgid "_Location:"
+#~ msgstr "_Localização:"
+
+#~ msgid "Fonts"
+#~ msgstr "Fontes"
+
+#~ msgid "Preferences"
+#~ msgstr "Preferências"
+
+#~ msgid "_Browse with caret"
+#~ msgstr "_Navegar com cursor"
+
+#~ msgid "_Fixed width:"
+#~ msgstr "L_argura fixa:"
+
+#~ msgid "_Use system fonts"
+#~ msgstr "_Usar fontes do sistema"
+
+#~ msgid "_Variable width:"
+#~ msgstr "Largura _variável"
+
+#~ msgid "Font for fixed text"
+#~ msgstr "Fonte para texto fixo"
+
+#~ msgid "Font for text"
+#~ msgstr "Fonte para o texto"
+
+#~ msgid "Font for text with fixed width."
+#~ msgstr "Fonte para texto de largura fixa."
+
+#~ msgid "Font for text with variable width."
+#~ msgstr "Fonte para texto com largura variável."
+
+#~ msgid "Use a keyboard-controllable caret when viewing pages."
+#~ msgstr "Usa o cursor do teclado ao visualizar páginas."
+
+#~ msgid "Use caret"
+#~ msgstr "Usar cursor"
+
+#~ msgid "Use system fonts"
+#~ msgstr "Usar fontes do sistema"
+
+#~ msgid "Use the default fonts set for the system."
+#~ msgstr "Usar fontes padrão configuradas para o sistema."
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "O arquivo não é um arquivo .desktop válido"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Versão não reconhecida do arquivo desktop \"%s\""
+
+#~ msgid "Starting %s"
+#~ msgstr "Iniciando %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "O aplicativo não aceita documentos na linha de comando"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Opção de lançamento desconhecida: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Não é possível passar URIs de documento a uma entrada de desktop "
+#~ "'Type=Link'"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Não é um item lançável"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Desabilitar conexão com o gerenciador de sessão"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Especificar o arquivo que contém as configurações salvas"
+
+#~ msgid "FILE"
+#~ msgstr "ARQUIVO"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Especificar a ID do gerenciador de sessão"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Opções do gerenciador de sessão:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Mostrar opções do gerenciador de sessão"
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "Um marcador com o nome %s já existe para esta página."
+
+#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
+#~ msgstr "Um marcador com o nome <b>%s</b> já existe para esta página."
+
+#~ msgid "Help Topics"
+#~ msgstr "Tópicos de ajuda"
+
+#~ msgid "Document Sections"
+#~ msgstr "Seções do documento"
+
+#~ msgid "File not found"
+#~ msgstr "Arquivo não localizado"
+
+#~ msgid "Could not parse file"
+#~ msgstr "Não foi possível analisar o arquivo"
+
+#~ msgid "Could Not Read File"
+#~ msgstr "Não foi possível ler o arquivo"
+
+#~ msgid "No information is available about this error."
+#~ msgstr "Nenhuma informação disponível sobre este erro."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "Não foi possível ler e decodificar o arquivo \"%s\". Ele pode estar "
+#~ "compactado num formato para o qual não existe suporte."
+
+#~ msgid "Use a private session"
+#~ msgstr "Usar uma sessão privada"
+
+#~ msgid "Define which cache directory to use"
+#~ msgstr "Definir qual diretório de cache usar"
+
+#~ msgid " GNOME Help Browser"
+#~ msgstr " Navegador da Ajuda do GNOME"
+
+#~ msgid "Directory not found"
+#~ msgstr "Diretório não localizado"
+
+#~ msgid "Preparing to print"
+#~ msgstr "Preparando para imprimir"
+
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "Não há suporte para impressão com essa impressora"
+
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "A impressora %s não tem suporte a impressão PostScript."
+
+#~ msgid "Waiting to print"
+#~ msgstr "Aguardando para imprimir"
+
+#~ msgid "An error occurred while printing"
+#~ msgstr "Ocorreu um erro ao imprimir"
+
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "Não foi possível imprimir o seu documento: %s"
+
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "Fóruns de Suporte do GNOME"
+
+#~ msgid "No results for \"%s\""
+#~ msgstr "Nenhum resultado para \"%s\""
+
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "Experimente usar palavras diferentes para descrever o problema ou o "
+#~ "assunto para o qual você quer ajuda"
+
+#~ msgid "Search results for \"%s\""
+#~ msgstr "Resultados da pesquisa por \"%s\""
+
+#~ msgid "Repeat the search online at %s"
+#~ msgstr "Repetir a pesquisa on-line nos %s"
+
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "o:a:sobre:um:uma:são:como:em:ser:quebrado:quebrada:travado:travada:travou:"
+#~ "por:pode:posso:diálogo:não:explicar:explique-me:explique:para:de:obter:"
+#~ "obtenho:obtém:obtêm:obteve:obtive:obtiveram:fazer:faço:não:quando:tem:têm:"
+#~ "tenho:ajuda:ajude-me:eu:em:é:são:sou:isso:isto:esse:este:esses:estes:item:"
+#~ "itens:me:meu:minha:meus:minhas:de:no:na:nos:nas:ou:diga:dizer:que:coisa:"
+#~ "assunto:para:até:que:quê:onde:quem:com:por:funciona:funcionam:funcionando"
+
+#~ msgid "re"
+#~ msgstr ""
+#~ "ab:acro:ad:aero:anfi:ante:anti:apico:arqui:auri:auro:auto:bis:bio:cata:"
+#~ "cerebro:cervico:circum:circun:cis:com:con:contra:des:deis:ego:eletro:endo:"
+#~ "entre:extra:filo:fisio:gastro:geo:hemi:hepta:hetero:hexa:hidro:hiper:hipo:"
+#~ "homo:idio:ido:in:infra:inter:intra:intro:iso:justa:labio:linguo:macro:mal:"
+#~ "medio:mega:meso:meta:micro:mono:moto:multi:nefro:neo:neuro:novi:ob:octo:"
+#~ "oni:orto:oto:pan:para:peta:per:peri:poli:pos:pre:preter:pro:proto:pseudo:"
+#~ "psico:quadri:quarti:quilo:qüinq:radio:re:retro:rino:sacro:semi:sesqui:sob:"
+#~ "sobre:socio:sub:subter:sulfo:super:supra:tele:termo:ter:tetra:trans:"
+#~ "traqueo:tras:trans:tres:tri:turbo:ultra:uni:uretro:vasco:vesico:xanto:"
+#~ "xilo:zinco:zoo"
+
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr ""
+#~ "alhão:alhona:alhões:alhonas:ão:ona:ães:ãos:ões:onas:anzil:anzis:arra:"
+#~ "arras:orra:orras:ázio:ázios:aço:aços:az:azes:acho:acha:achos:achas:eto:"
+#~ "eta:etos:etas:inho:inha:inhos:inhas:ote:otes:ota:otas:íssimo:íssimos:"
+#~ "íssima:íssimas:érrimo:érrima:érrimos:érrimas:limo:lima:limos:limas:aria:"
+#~ "arias:ato:atos:douro:douros:ia:ias:dor:dora:dores:doras:ista:istas:ano:"
+#~ "ana:anos:anas:eiro:eiros:ês:esa:êses:esas:al:ais:ada:adas:agem:agens:oso:"
+#~ "osa:osos:osas:ento:enta:entos:entas:udo:uda:udos:udas:ear:eares:ejar:"
+#~ "ejares:ecer:eceres:escer:esceres:entar:entares:fazer:fazeres:ficar:"
+#~ "ficares:icar:icares:iscar:iscares:ilhar:ilhares:inhar:inhares:itar:itares:"
+#~ "izar:izares:mente:ão:ona:ões:ães:ãos:onas"
+
+#~ msgid "No Comment"
+#~ msgstr "Nenhum comentário"
+
+#~ msgid "Search could not be processed"
+#~ msgstr "Não foi possível processar a pesquisa"
+
+#~ msgid "The requested search could not be processed."
+#~ msgstr "Não foi possível processar a pesquisa solicitada."
+
+#~ msgid "Cannot process the search"
+#~ msgstr "Não foi possível processar a pesquisa"
+
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "O processador de pesquisa retornou resultados inválidos"
+
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "A página %s não foi localizada no sumário."
+
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr "A página solicitada não foi localizada no sumário."
+
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr ""
+#~ "Não foi possível analisar o arquivo do sumário porque não é um documento "
+#~ "XML bem formado."
+
+#~ msgid "Broken Transformation"
+#~ msgstr "Transformação quebrada"
+
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
+#~ msgstr "Um erro desconhecido ocorreu ao tentar transformar o documento."
+
+#~ msgid "_File"
+#~ msgstr "_Arquivo"
+
+#~ msgid "_Edit"
+#~ msgstr "_Editar"
+
+#~ msgid "_Help"
+#~ msgstr "Aj_uda"
+
+#~ msgid "Print This Document ..."
+#~ msgstr "Imprimir este documento..."
+
+#~ msgid "About This Document"
+#~ msgstr "_Sobre este documento"
+
+#~ msgid "Open _Location"
+#~ msgstr "Abrir l_ocalização"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Fechar janela"
+
+#~ msgid "_Select All"
+#~ msgstr "Selecionar _tudo"
+
+#~ msgid "_Find..."
+#~ msgstr "_Localizar..."
+
+#~ msgid "Find Pre_vious"
+#~ msgstr "Localizar a_nterior"
+
+#~ msgid "Find previous occurrence of the word or phrase"
+#~ msgstr "Localizar a ocorrência anterior da palavra ou frase"
+
+#~ msgid "Find Ne_xt"
+#~ msgstr "Localizar pró_ximo"
+
+#~ msgid "Find next occurrence of the word or phrase"
+#~ msgstr "Localizar a próxima ocorrência da palavra ou frase"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Preferências"
+
+#~ msgid "_Reload"
+#~ msgstr "_Recarregar"
+
+#~ msgid "Show previous page in history"
+#~ msgstr "Mostrar página anterior no histórico"
+
+#~ msgid "Show next page in history"
+#~ msgstr "Mostrar página seguinte no histórico"
+
+#~ msgid "_Help Topics"
+#~ msgstr "_Tópicos da ajuda"
+
+#~ msgid "Go to the listing of help topics"
+#~ msgstr "Ir para a listagem de tópicos da ajuda"
+
+#~ msgid "_Previous Section"
+#~ msgstr "Seção a_nterior"
+
+#~ msgid "_Next Section"
+#~ msgstr "Pró_xima seção"
+
+#~ msgid "_Contents"
+#~ msgstr "S_umário"
+
+#~ msgid "_Copy Link Address"
+#~ msgstr "_Copiar endereço do vínculo"
+
+#~ msgid "Help On this application"
+#~ msgstr "Ajuda sobre este aplicativo"
+
+#~ msgid "_About"
+#~ msgstr "_Sobre"
+
+#~ msgid "Copy _Email Address"
+#~ msgstr "Copiar _endereço de e-mail"
+
+#~ msgid "Help Browser"
+#~ msgstr "Navegador de Ajuda"
+
+#~ msgid "Unknown Page"
+#~ msgstr "Página desconhecida"
+
+#~ msgid "The requested URI \"%s\" is invalid"
+#~ msgstr "A URI solicitada \"%s\" é inválida"
+
+#~ msgid "Unable to load page"
+#~ msgstr "Não foi possível carregar a página"
+
+#~ msgid "Search for other documentation"
+#~ msgstr "Pesquisar por outro documento"
+
+#~ msgid "Cannot create search component"
+#~ msgstr "Não foi possível criar componente de pesquisa"
+
+#~ msgid "Fin_d:"
+#~ msgstr "_Localizar:"
+
+#~ msgid "Find _Previous"
+#~ msgstr "Localizar a_nterior"
+
+#~ msgid "Find _Next"
+#~ msgstr "Localizar pró_ximo"
+
+#~ msgid "Phrase not found"
+#~ msgstr "Expressão não localizada"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "Não foi possível ler o arquivo \"%s\". Esse arquivo pode não existir ou "
+#~ "você pode não ter permissões para leitura."
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Evandro Fernandes Giovanini <evandrofg@ig.com.br>\n"
+#~ "Estêvão Samuel Procópio <tevaum@gmail.com>\n"
+#~ "Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>\n"
+#~ "Vladimir Melo <vladimirmelo@foresightlinux.org>\n"
+#~ "Og Maciel <ogmaciel@gnome.org>\n"
+#~ "Jonh Wendell <wendell@bani.com.br>\n"
+#~ "André Gondim <andregondim@ubuntu.com>\n"
+#~ "Henrique P Machado <zehrique@gmail.com>"
+
+#~ msgid "A documentation browser and viewer for the Gnome Desktop."
+#~ msgstr "Um navegador e visualizador de documentação para o ambiente GNOME."
 
 #~ msgid "<b>Accessibility</b>"
 #~ msgstr "<b>Acessibilidade</b>"
@@ -1613,12 +1745,6 @@ msgstr "Obtenha ajuda sobre o GNOME"
 
 #~ msgid "_Find:"
 #~ msgstr "_Localizar:"
-
-#~ msgid "_Next"
-#~ msgstr "Pró_ximo"
-
-#~ msgid "_Previous"
-#~ msgstr "A_nterior"
 
 #~ msgid "_Wrap around"
 #~ msgstr "_Voltar ao Início"
