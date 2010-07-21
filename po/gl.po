@@ -2,11 +2,10 @@
 # Galician translation of yelp.
 # Copyright (C) 2002-2004 Jesús Bravo Álvarez
 #
-# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
-# colaborar connosco, podes atopar máis información en http://www.trasno.net
-#
 # First Version: 2002-05-25 20:05+0200
 #
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://www.trasno.net
 #
 # Jesús Bravo Álvarez <suso@trasno.net>, 2002-2004.
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
@@ -20,15 +19,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-19 15:49+0200\n"
-"PO-Revision-Date: 2010-06-19 15:50+0200\n"
+"POT-Creation-Date: 2010-07-21 16:28+0200\n"
+"PO-Revision-Date: 2010-07-21 16:29+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Galician <gnome@g11.net>\n"
+"Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\\\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/info.xml.in.h:1
@@ -893,7 +892,7 @@ msgstr "Non hai suficiente memoria"
 
 #: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
 #: ../libyelp/yelp-mallard-document.c:254
-#: ../libyelp/yelp-mallard-document.c:397 ../libyelp/yelp-man-document.c:269
+#: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Non se encontrou a páxina «%s» no documento «%s»."
@@ -1225,36 +1224,36 @@ msgstr "O URI non apunta a unha páxina válida."
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Non foi posíbel analizar o URI «%s»."
 
-#: ../src/yelp-application.c:56
+#: ../src/yelp-application.c:53
 msgid "Turn on editor mode"
 msgstr "Activar o modo editor"
 
-#: ../src/yelp-application.c:132
+#: ../src/yelp-application.c:129
 msgid "_Larger Text"
 msgstr "Texto máis _grande"
 
-#: ../src/yelp-application.c:134
+#: ../src/yelp-application.c:131
 msgid "Increase the size of the text"
 msgstr "Aumentar o tamaño do texto"
 
-#: ../src/yelp-application.c:137
+#: ../src/yelp-application.c:134
 msgid "_Smaller Text"
 msgstr "Texto máis peque_no"
 
-#: ../src/yelp-application.c:139
+#: ../src/yelp-application.c:136
 msgid "Descrease the size of the text"
 msgstr "Reducir o tamaño do texto"
 
-#: ../src/yelp-application.c:255
+#: ../src/yelp-application.c:248
 msgid "Show Text _Cursor"
 msgstr "Mostrar o _cursor de texto"
 
-#: ../src/yelp-application.c:331 ../src/yelp-window.c:1871
+#: ../src/yelp-application.c:324 ../src/yelp-window.c:1871
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Axuda"
 
-#: ../src/yelp-application.c:754
+#: ../src/yelp-application.c:745
 msgid ""
 "You do not have PackageKit installed.  Package installation links require "
 "PackageKit."
@@ -1354,367 +1353,3 @@ msgstr "_Eliminar marcador"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obter axuda co Gnome"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "Non foi posíbel ler nin descodificar o ficheiro '%s'. O ficheiro pode "
-#~ "estar comprimido nun formato non soportado."
-
-#~ msgid "Search"
-#~ msgstr "Buscar"
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "O ficheiro non é un ficheiro .desktop válido"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Non se recoñece a versión '%s' do ficheiro de escritorio"
-
-#~ msgid "Starting %s"
-#~ msgstr "Iniciando %s"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "O aplicativo non acepta documentos na liña de ordes"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Opción de lanzamento descoñecida: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Non se lle pode pasar os URI do documento a unha entrada de escritorio "
-#~ "'Type=Link'"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Non é un ítem lanzábel"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Desactivar a conexión ao xestor de sesións"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Especificar o ficheiro que contén a configuración gardada"
-
-#~ msgid "FILE"
-#~ msgstr "FICHEIRO"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Especificar o ID do xestor de sesións"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Session management options:"
-#~ msgstr "Opcións de xestión de sesión:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Mostrar as opcións da xestión de sesión"
-
-#~ msgid "Page not found"
-#~ msgstr "Non se encontrou a páxina"
-
-#~ msgid "The page %s was not found in the document %s."
-#~ msgstr "Non se encontrou a páxina %s no documento %s."
-
-#~ msgid "The requested page was not found in the document %s."
-#~ msgstr "A páxina solicitada non se encontrou no documento %s."
-
-#~ msgid "File not found"
-#~ msgstr "Non se encontrou o ficheiro"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Non foi posíbel analizar o ficheiro"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Non foi posíbel ler o ficheiro"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Non hai información dispoñíbel sobre este erro."
-
-#~ msgid "Use a private session"
-#~ msgstr "Usar unha sesión privada"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Definir o directorio da caché que se vai usar"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr " Navegador de axuda do Gnome"
-
-#~ msgid "Preparing to print"
-#~ msgstr "Preparándose para imprimir"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "A impresión non se permite nesta impresora"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "A impresora %s non permite a impresión postscript."
-
-#~ msgid "Waiting to print"
-#~ msgstr "Esperando para imprimir"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Ocorreu un erro ao imprimir"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Non foi posíbel imprimir o documento: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "os foros de asistencia do Gnome"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "Non hai resultados para \"%s\""
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Tente usar palabras diferentes para describir o problema que ten ou o "
-#~ "tema sobre o que quere axuda."
-
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Buscar resultados para \"%s\""
-
-#~ msgid "Repeat the search online at %s"
-#~ msgstr "Repetir a busca en liña en %s"
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ "a:o:as:os:ao:á:como:con:contra:da:do:das:dos:de:desde:é:en:entre:fai:hai:"
-#~ "houbo:no:na:nos:nas:non:para:por:que:segundo:se:sen:sobre:son:agás:ante: "
-#~ "após:malia:mediante:menos:onda:para:perante:por:salvo:segundo:sen:senón: "
-#~ "menos:onda:para:perante:sacado:sacando:quitando:salvante:sen:senón:so: "
-#~ "sobre:tras:xunta:que:conforme:ca:coma:apenas:asemade:cando:mal:mentres: "
-#~ "onde:logo:cando:entón:se:así:nin:mais:e"
-
-#~ msgid "re"
-#~ msgstr "auto:re:des"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "ando:mente:ble:ción:dade"
-
-#~ msgid "No Comment"
-#~ msgstr "Non hai comentarios"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Non foi posíbel procesar a busca"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Non foi posíbel procesar a busca solicitada."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Non é posíbel procesar a busca"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "O procesador da busca devolveu resultados non válidos"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Non se encontrou a páxina %s no TOC."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "Non se encontrou a páxina solicitada no TOC."
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "Non se puido analizar o TOC porque non é un documento XML ben formado."
-
-#~ msgid "Re_name"
-#~ msgstr "Re_nomear"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "_Marcadores:"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Engadir un marcador"
-
-#~ msgid "_Title:"
-#~ msgstr "_Título:"
-
-#~ msgid "_Location:"
-#~ msgstr "_Localización:"
-
-#~ msgid "Fonts"
-#~ msgstr "Tipos de letra"
-
-#~ msgid "Preferences"
-#~ msgstr "Preferencias"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "_Navegar con cursor"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "Largura _fixa:"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Usar os tipos de letra do sistema"
-
-#~ msgid "_Variable width:"
-#~ msgstr "Largura _variábel:"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Tipo de letra para o texto fixo"
-
-#~ msgid "Font for text"
-#~ msgstr "Tipo de letra para o texto"
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Tipo de letra para o texto de largura fixa."
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Tipo de letra para o texto de largura variábel."
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr "Usar un cursor controlábel polo teclado ao ver as páxinas."
-
-#~ msgid "Use caret"
-#~ msgstr "Usar cursor"
-
-#~ msgid "Use system fonts"
-#~ msgstr "Usar tipos de letra do sistema"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Usar o conxunto de tipos de letra predeterminado do sistema."
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Xa existe un marcador titulado %s para esta páxina."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Xa existe un marcador titulado <b>%s</b> para esta páxina."
-
-#~ msgid "Help Topics"
-#~ msgstr "Temas de axuda"
-
-#~ msgid "Document Sections"
-#~ msgstr "Seccións do documento"
-
-#~ msgid "Directory not found"
-#~ msgstr "Non se encontrou o cartafol"
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Transformación rota"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Encontrouse un erro descoñecido ao tentar transformar o documento."
-
-#~ msgid "_File"
-#~ msgstr "_Ficheiro"
-
-#~ msgid "_Edit"
-#~ msgstr "_Editar"
-
-#~ msgid "_Help"
-#~ msgstr "_Axuda"
-
-#~ msgid "Print This Document ..."
-#~ msgstr "Imprimir este documento…"
-
-#~ msgid "About This Document"
-#~ msgstr "Sobre este documento"
-
-#~ msgid "Open _Location"
-#~ msgstr "Abrir _localización"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Pechar a xanela"
-
-#~ msgid "_Select All"
-#~ msgstr "_Seleccionar todo"
-
-#~ msgid "_Find..."
-#~ msgstr "_Buscar..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Buscar an_terior"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Buscar a anterior ocorrencia da palabra ou frase"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "_Buscar seguinte"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Busca a seguinte ocorrencia da palabra ou frase"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Preferencias"
-
-#~ msgid "_Reload"
-#~ msgstr "_Recargar"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Mostrar a páxina anterior no historial"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Mostrar a páxina seguinte no historial"
-
-#~ msgid "_Help Topics"
-#~ msgstr "_Temas de axuda"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Ir á lista de temas de axuda"
-
-#~ msgid "_Contents"
-#~ msgstr "_Contidos"
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Copiar o enderezo da ligazón"
-
-#~ msgid "Help On this application"
-#~ msgstr "Axuda sobre este aplicativo"
-
-#~ msgid "_About"
-#~ msgstr "_Sobre"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "Copiar o enderezo de _correo"
-
-#~ msgid "Help Browser"
-#~ msgstr "Navegador da axuda"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Páxina descoñecida"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "O URI \"%s\" solicitado non é válido"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Non é posíbel cargar a páxina"
-
-#~ msgid "Search for other documentation"
-#~ msgstr "Buscar outra documentación"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Non é posíbel crear o compoñente de busca"
-
-#~ msgid "Fin_d:"
-#~ msgstr "Lo_calizar:"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Buscar _anterior"
-
-#~ msgid "Find _Next"
-#~ msgstr "Buscar _seguinte"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Non se encontrou a frase"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "Non foi posíbel ler o ficheiro '%s'. Pode que falte este ficheiro ou que "
-#~ "non teña permiso para lelo."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Suso Baleato <suso.baleato@xunta.es>, 2009;\n"
-#~ "Antón Méixome <meixome@mancomun.org>, 2009."
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr ""
-#~ "Un navegador e visualizador de documentación para o escritorio Gnome."
