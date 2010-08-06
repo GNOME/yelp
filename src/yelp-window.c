@@ -1095,10 +1095,10 @@ window_set_bookmark_icons (YelpWindow *window)
     g_object_get (priv->view, "yelp-uri", &uri, NULL);
     doc_uri = yelp_uri_get_document_uri (uri);
 
-    bookmarks = g_hash_table_new (g_str_hash, g_str_equal);
+    bookmarks = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
     value = yelp_application_get_bookmarks (priv->application, doc_uri);
     g_variant_get (value, "a(sss)", &viter);
-    while (g_variant_iter_loop (viter, "(&s&s&s)", &page_id, NULL, NULL))
+    while (g_variant_iter_next (viter, "(sss)", &page_id, NULL, NULL))
         g_hash_table_insert (bookmarks, page_id, page_id);
     g_variant_iter_free (viter);
     g_variant_unref (value);
