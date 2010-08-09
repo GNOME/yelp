@@ -25,6 +25,8 @@
 
 #include <gtk/gtk.h>
 
+#include "yelp-view.h"
+
 G_BEGIN_DECLS
 
 #define YELP_TYPE_LOCATION_ENTRY (yelp_location_entry_get_type ())
@@ -56,6 +58,16 @@ struct _YelpLocationEntry
 struct _YelpLocationEntryClass
 {
     GtkComboBoxEntryClass     parent;
+
+    void     (* location_selected)          (YelpLocationEntry *entry);
+    void     (* search_activated)           (YelpLocationEntry *entry);
+    void     (* bookmark_clicked)           (YelpLocationEntry *entry);
+
+    /* Padding for future expansion */
+    void (*_gtk_reserved0) (void);
+    void (*_gtk_reserved1) (void);
+    void (*_gtk_reserved2) (void);
+    void (*_gtk_reserved3) (void);
 };
 
 /**
@@ -82,21 +94,13 @@ typedef enum {
     YELP_LOCATION_ENTRY_IS_SEARCH     = 1 << 4
 } YelpLocationEntryFlags;
 
-GType           yelp_location_entry_get_type             (void);
-GtkWidget*      yelp_location_entry_new_with_model       (GtkTreeModel      *model,
-                                                          gint               text_column,
-                                                          gint               desc_column,
-                                                          gint               icon_column,
-                                                          gint               flags_column);
-
-void            yelp_location_entry_set_completion_model (YelpLocationEntry *entry,
-                                                          GtkTreeModel      *model,
-                                                          gint               text_column,
-                                                          gint               desc_column,
-                                                          gint               icon_column,
-                                                          gint               flags_column);
-
-void            yelp_location_entry_start_search         (YelpLocationEntry  *entry);
+GType           yelp_location_entry_get_type          (void);
+GtkWidget *     yelp_location_entry_new               (YelpView           *window);
+void            yelp_location_entry_start_search      (YelpLocationEntry  *entry);
+void            yelp_location_entry_add_bookmark      (const gchar        *doc_uri,
+                                                       const gchar        *page_id);
+void            yelp_location_entry_remove_bookmark   (const gchar        *doc_uri,
+                                                       const gchar        *page_id);
 
 G_END_DECLS
 

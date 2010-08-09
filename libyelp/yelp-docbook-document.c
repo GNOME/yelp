@@ -468,6 +468,7 @@ docbook_walk (YelpDocbookDocument *docbook)
     xmlNodePtr   cur, old_cur;
     GtkTreeIter  iter;
     GtkTreeIter *old_iter = NULL;
+    gboolean chunkQ;
     YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
     YelpDocument *document = YELP_DOCUMENT (docbook);
 
@@ -548,10 +549,12 @@ docbook_walk (YelpDocbookDocument *docbook)
         yelp_document_set_page_id (document, (gchar *) id, priv->cur_page_id);
     }
 
-    yelp_document_signal (YELP_DOCUMENT (docbook),
-                          priv->cur_page_id,
-                          YELP_DOCUMENT_SIGNAL_INFO,
-                          NULL);
+    chunkQ = docbook_walk_chunkQ (docbook);
+    if (chunkQ)
+        yelp_document_signal (YELP_DOCUMENT (docbook),
+                              priv->cur_page_id,
+                              YELP_DOCUMENT_SIGNAL_INFO,
+                              NULL);
 
     for (cur = priv->xmlcur->children; cur; cur = cur->next) {
         if (cur->type == XML_ELEMENT_NODE) {
@@ -562,7 +565,7 @@ docbook_walk (YelpDocbookDocument *docbook)
     priv->cur_depth--;
     priv->xmlcur = old_cur;
 
-    if (docbook_walk_chunkQ (docbook)) {
+    if (chunkQ) {
         priv->sections_iter = old_iter;
         g_free (priv->cur_page_id);
         priv->cur_page_id = old_page_id;
