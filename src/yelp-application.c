@@ -44,7 +44,6 @@
 static gboolean editor_mode = FALSE;
 
 enum {
-    BOOKMARKS_CHANGED,
     READ_LATER_CHANGED,
     LAST_SIGNAL
 };
@@ -157,14 +156,6 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
-
-    signals[BOOKMARKS_CHANGED] =
-        g_signal_new ("bookmarks-changed",
-                      G_TYPE_FROM_CLASS (klass),
-                      G_SIGNAL_RUN_LAST,
-                      0, NULL, NULL,
-                      g_cclosure_marshal_VOID__STRING,
-                      G_TYPE_NONE, 1, G_TYPE_STRING);
 
     signals[READ_LATER_CHANGED] =
         g_signal_new ("read-later-changed",
@@ -659,7 +650,7 @@ yelp_application_add_bookmark (YelpApplication   *app,
             g_variant_builder_add (&builder, "(sss)", page_id, icon, title);
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
-            g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
+            g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
         }
     }
 }
@@ -686,7 +677,7 @@ yelp_application_remove_bookmark (YelpApplication   *app,
         g_variant_iter_free (iter);
 
         g_settings_set_value (settings, "bookmarks", g_variant_builder_end (&builder));
-        g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
+        g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
     }
 }
 
@@ -758,7 +749,7 @@ yelp_application_update_bookmarks (YelpApplication   *app,
             GVariant *value;
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
-            g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
+            g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
         }
     }
 }

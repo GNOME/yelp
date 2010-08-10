@@ -165,6 +165,10 @@ static void          view_page_desc                 (YelpView           *view,
 static void          view_page_icon                 (YelpView           *view,
                                                      GParamSpec         *pspec,
                                                      YelpLocationEntry  *entry);
+/* YelpBookmarks callbacks */
+static void          bookmarks_changed              (YelpBookmarks      *bookmarks,
+                                                     const gchar        *doc_uri,
+                                                     YelpLocationEntry  *entry);
 
 
 
@@ -183,11 +187,10 @@ struct _YelpLocationEntryPrivate
     GtkEntryCompletion *completion;
 
     gboolean   enable_search;
-
     gboolean   view_uri_selected;
-
     gboolean   search_mode;
     guint      pulse;
+    gulong bookmarks_changed;
 };
 
 enum {
@@ -482,6 +485,12 @@ location_entry_constructed (GObject *object)
     g_signal_connect (priv->text_entry, "activate",
                       G_CALLBACK (entry_activate_cb), object);
 
+    if (priv->bookmarks)
+        priv->bookmarks_changed = g_signal_connect (priv->bookmarks,
+                                                    "bookmarks-changed",
+                                                    G_CALLBACK (bookmarks_changed),
+                                                    object);
+
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), object);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), object);
     g_signal_connect (priv->view, "notify::page-title", G_CALLBACK (view_page_title), object);
@@ -502,6 +511,11 @@ location_entry_dispose (GObject *object)
     if (priv->bookmarks) {
         g_object_unref (priv->bookmarks);
         priv->bookmarks = NULL;
+    }
+
+    if (priv->bookmarks_changed) {
+        g_source_remove (priv->bookmarks_changed);
+        priv->bookmarks_changed = 0;
     }
 
     if (priv->row) {
@@ -1402,6 +1416,40 @@ view_page_icon (YelpView          *view,
                             HISTORY_COL_ICON, icon,
                             -1);
     g_free (icon);
+}
+
+static void
+bookmarks_changed (YelpBookmarks      *bookmarks,
+                   const gchar        *doc_uri,
+                   YelpLocationEntry  *entry)
+{
+    GtkTreePath *path;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    if (priv->row)
+        path = gtk_tree_row_reference_get_path (priv->row);
+
+    if (path) {
+        GtkTreeIter iter;
+        gchar *this_uri, *page_id;
+        gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->history), &iter, path);
+        gtk_tree_model_get (GTK_TREE_MODEL (priv->history), &iter,
+                            HISTORY_COL_DOC, &this_uri,
+                            HISTORY_COL_PAGE, &page_id,
+                            -1);
+        if (this_uri && g_str_equal (this_uri, doc_uri) && page_id) {
+            if (!yelp_bookmarks_is_bookmarked (priv->bookmarks, doc_uri, page_id)) {
+                gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
+                                                   GTK_ENTRY_ICON_SECONDARY,
+                                                   "bookmark-new");
+                gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
+                                                 GTK_ENTRY_ICON_SECONDARY,
+                                                 "Bookmark this page");
+            }
+        }
+        g_free (this_uri);
+        g_free (page_id);
+    }
 }
 
 /**

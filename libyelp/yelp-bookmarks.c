@@ -26,12 +26,20 @@ enum {
     BOOKMARKS_CHANGED,
     LAST_SIGNAL
 };
+static gint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_INTERFACE (YelpBookmarks, yelp_bookmarks, G_TYPE_OBJECT)
 
 static void
 yelp_bookmarks_default_init (YelpBookmarksInterface *iface)
 {
+    signals[BOOKMARKS_CHANGED] =
+        g_signal_new ("bookmarks-changed",
+                      G_TYPE_FROM_INTERFACE (iface),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__STRING,
+                      G_TYPE_NONE, 1, G_TYPE_STRING);
 }
 
 void

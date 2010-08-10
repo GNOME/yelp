@@ -218,6 +218,7 @@ struct _YelpWindowPrivate {
     /* no ref */
     GtkWidget    *bookmarks_list;
     GtkListStore *bookmarks_store;
+    gulong        bookmarks_changed;
 
     /* no refs on these, owned by containers */
     YelpView *view;
@@ -366,6 +367,11 @@ yelp_window_dispose (GObject *object)
         priv->bookmark_actions = NULL;
     }
 
+    if (priv->bookmarks_changed) {
+        g_source_remove (priv->bookmarks_changed);
+        priv->bookmarks_changed = 0;
+    }
+
     if (priv->align_location) {
         g_object_unref (priv->align_location);
         priv->align_location = NULL;
@@ -492,7 +498,9 @@ window_construct (YelpWindow *window)
                         FALSE, FALSE, 0);
 
     priv->bookmarks_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
-    g_signal_connect (priv->application, "bookmarks-changed", G_CALLBACK (app_bookmarks_changed), window);
+    priv->bookmarks_changed =
+        g_signal_connect (priv->application, "bookmarks-changed",
+                          G_CALLBACK (app_bookmarks_changed), window);
 
     priv->hbox = gtk_hbox_new (FALSE, 0);
     g_object_set (priv->hbox, "border-width", 2, NULL);
