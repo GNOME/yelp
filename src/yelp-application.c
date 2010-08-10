@@ -101,6 +101,9 @@ static void          application_adjust_font           (GtkAction             *a
                                                         YelpApplication       *app);
 static void          application_set_font_sensitivity  (YelpApplication       *app);
 
+static void          bookmarks_changed                 (GSettings             *settings,
+                                                        const gchar           *key,
+                                                        YelpApplication       *app);
 static gboolean      window_resized                    (YelpWindow            *window,
                                                         YelpApplication       *app);
 
@@ -567,8 +570,7 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
     YelpApplicationPrivate *priv = GET_PRIV (app);
     GSettings *settings = g_hash_table_lookup (priv->docsettings, doc_uri);
     if (settings == NULL) {
-        gchar *tmp;
-        gchar *settings_path;
+        gchar *tmp, *key, *settings_path;
         tmp = g_uri_escape_string (doc_uri, "", FALSE);
         settings_path = g_strconcat ("/apps/yelp/documents/", tmp, "/", NULL);
         g_free (tmp);
@@ -579,7 +581,11 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
         else
             settings = g_settings_new_with_path ("org.gnome.yelp.document",
                                                  settings_path);
-        g_hash_table_insert (priv->docsettings, g_strdup (doc_uri), settings);
+        key = g_strdup (doc_uri);
+        g_hash_table_insert (priv->docsettings, key, settings);
+        g_object_set_data ((GObject *) settings, "doc_uri", key);
+        g_signal_connect (settings, "changed::bookmarks",
+                          G_CALLBACK (bookmarks_changed), app);
         g_free (settings_path);
     }
     return settings;
@@ -650,7 +656,6 @@ yelp_application_add_bookmark (YelpApplication   *app,
             g_variant_builder_add (&builder, "(sss)", page_id, icon, title);
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
-            g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
         }
     }
 }
@@ -677,7 +682,6 @@ yelp_application_remove_bookmark (YelpApplication   *app,
         g_variant_iter_free (iter);
 
         g_settings_set_value (settings, "bookmarks", g_variant_builder_end (&builder));
-        g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
     }
 }
 
@@ -749,7 +753,6 @@ yelp_application_update_bookmarks (YelpApplication   *app,
             GVariant *value;
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
-            g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
         }
     }
 }
@@ -884,6 +887,16 @@ yelp_application_install_package (YelpApplication  *app,
                             (GAsyncReadyCallback) packages_installed,
                             app);
     g_variant_builder_unref (strv);
+}
+
+static void
+bookmarks_changed (GSettings       *settings,
+                   const gchar     *key,
+                   YelpApplication *app)
+{
+    const gchar *doc_uri = g_object_get_data ((GObject *) settings, "doc_uri");
+    if (doc_uri)
+        g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
 }
 
 static gboolean

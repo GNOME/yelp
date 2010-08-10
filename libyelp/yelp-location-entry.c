@@ -1446,6 +1446,11 @@ bookmarks_changed (YelpBookmarks      *bookmarks,
                                                  GTK_ENTRY_ICON_SECONDARY,
                                                  "Bookmark this page");
             }
+            else {
+                gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
+                                                   GTK_ENTRY_ICON_SECONDARY,
+                                                   NULL);
+            }
         }
         g_free (this_uri);
         g_free (page_id);

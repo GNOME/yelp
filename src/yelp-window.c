@@ -908,6 +908,8 @@ window_set_bookmarks (YelpWindow  *window,
     YelpWindowPrivate *priv = GET_PRIV (window);
     GSList *entries = NULL;
 
+    window_set_bookmark_action (window);
+
     gtk_ui_manager_remove_ui (priv->ui_manager, priv->bookmarks_merge_id);
 
     value = yelp_application_get_bookmarks (priv->application, doc_uri);
@@ -967,11 +969,8 @@ window_set_bookmarks (YelpWindow  *window,
 static void
 window_set_bookmark_action (YelpWindow *window)
 {
-    YelpUri *uri;
-    gchar *doc_uri, *page_id;
-    gchar *curpage;
-    GVariant *value;
-    GVariantIter *viter;
+    YelpUri *uri = NULL;
+    gchar *doc_uri = NULL, *page_id = NULL;
     GtkAction *action;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
@@ -983,27 +982,17 @@ window_set_bookmark_action (YelpWindow *window)
                   NULL);
     if (page_id == NULL) {
         gtk_action_set_sensitive (action, FALSE);
-        if (uri)
-            g_object_unref (uri);
-        return;
+        goto done;
     }
-    gtk_action_set_sensitive (action, TRUE);
-
     doc_uri = yelp_uri_get_document_uri (uri);
-    value = yelp_application_get_bookmarks (priv->application, doc_uri);
-    g_variant_get (value, "a(sss)", &viter);
-    while (g_variant_iter_loop (viter, "(&s&s&s)", &curpage, NULL, NULL)) {
-        if (g_str_equal (page_id, curpage)) {
-            gtk_action_set_sensitive (action, FALSE);
-            break;
-        }
-    }
-    g_variant_iter_free (viter);
-    g_variant_unref (value);
-
+    gtk_action_set_sensitive (action,
+                              !yelp_application_is_bookmarked (priv->application,
+                                                               doc_uri, page_id));
+  done:
     g_free (page_id);
     g_free (doc_uri);
-    g_object_unref (uri);
+    if (uri)
+        g_object_unref (uri);
 }
 
 static void
