@@ -104,6 +104,9 @@ static void          application_set_font_sensitivity  (YelpApplication       *a
 static void          bookmarks_changed                 (GSettings             *settings,
                                                         const gchar           *key,
                                                         YelpApplication       *app);
+static void          readlater_changed                 (GSettings             *settings,
+                                                        const gchar           *key,
+                                                        YelpApplication       *app);
 static gboolean      window_resized                    (YelpWindow            *window,
                                                         YelpApplication       *app);
 
@@ -586,6 +589,8 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
         g_object_set_data ((GObject *) settings, "doc_uri", key);
         g_signal_connect (settings, "changed::bookmarks",
                           G_CALLBACK (bookmarks_changed), app);
+        g_signal_connect (settings, "changed::readlater",
+                          G_CALLBACK (readlater_changed), app);
         g_free (settings_path);
     }
     return settings;
@@ -825,7 +830,6 @@ yelp_application_add_read_later (YelpApplication   *app,
             g_variant_builder_add (&builder, "(ss)", full_uri, title);
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "readlater", value);
-            g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
         }
     }
 }
@@ -852,7 +856,6 @@ yelp_application_remove_read_later (YelpApplication *app,
         g_variant_iter_free (iter);
 
         g_settings_set_value (settings, "readlater", g_variant_builder_end (&builder));
-        g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
     }
 }
 
@@ -897,6 +900,16 @@ bookmarks_changed (GSettings       *settings,
     const gchar *doc_uri = g_object_get_data ((GObject *) settings, "doc_uri");
     if (doc_uri)
         g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
+}
+
+static void
+readlater_changed (GSettings       *settings,
+                   const gchar     *key,
+                   YelpApplication *app)
+{
+    const gchar *doc_uri = g_object_get_data ((GObject *) settings, "doc_uri");
+    if (doc_uri)
+        g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
 }
 
 static gboolean
