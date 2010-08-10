@@ -617,7 +617,23 @@ location_entry_search_activated  (YelpLocationEntry *entry)
 static void
 location_entry_bookmark_clicked  (YelpLocationEntry *entry)
 {
-    printf ("FIXME: bookmark_clicked\n");
+    YelpUri *uri;
+    gchar *doc_uri, *page_id, *icon, *title;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    g_object_get (priv->view,
+                  "yelp-uri", &uri,
+                  "page-id", &page_id,
+                  "page-icon", &icon,
+                  "page-title", &title,
+                  NULL);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    yelp_bookmarks_add_bookmark (priv->bookmarks, doc_uri, page_id, icon, title);
+    g_free (doc_uri);
+    g_free (page_id);
+    g_free (icon);
+    g_free (title);
+    g_object_unref (uri);
 }
 
 static void

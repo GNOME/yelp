@@ -107,8 +107,6 @@ static gboolean      find_entry_key_press         (GtkEntry           *entry,
 static void          find_entry_changed           (GtkEntry           *entry,
                                                    YelpWindow         *window);
 
-static void          entry_bookmark_clicked       (YelpLocationEntry  *entry,
-                                                   YelpWindow         *window);
 static gboolean      entry_focus_in               (GtkEntry           *entry,
                                                    GdkEventFocus      *event,
                                                    YelpWindow         *window);
@@ -523,9 +521,6 @@ window_construct (YelpWindow *window)
                       G_CALLBACK (entry_focus_in), window);
     g_signal_connect (priv->entry, "focus-out-event",
                       G_CALLBACK (entry_focus_out), window);
-
-    g_signal_connect (priv->entry, "bookmark-clicked",
-                      G_CALLBACK (entry_bookmark_clicked), window);
 
     priv->align_location = g_object_ref_sink (gtk_alignment_new (0.0, 0.5, 1.0, 0.0));
     gtk_box_pack_start (GTK_BOX (priv->hbox),
@@ -1348,13 +1343,6 @@ find_entry_changed (GtkEntry   *entry,
     }
 
     g_free (text);
-}
-
-static void
-entry_bookmark_clicked (YelpLocationEntry  *entry,
-                        YelpWindow         *window)
-{
-    window_add_bookmark (NULL, window);
 }
 
 static gboolean
