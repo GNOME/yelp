@@ -509,7 +509,8 @@ window_construct (YelpWindow *window)
                         button,
                         FALSE, FALSE, 0);
 
-    priv->entry = (YelpLocationEntry *) yelp_location_entry_new (priv->view);
+    priv->entry = (YelpLocationEntry *) yelp_location_entry_new (priv->view,
+                                                                 YELP_BOOKMARKS (priv->application));
     g_signal_connect (gtk_bin_get_child (GTK_BIN (priv->entry)), "focus-in-event",
                       G_CALLBACK (entry_focus_in), window);
     g_signal_connect (priv->entry, "focus-out-event",

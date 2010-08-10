@@ -32,6 +32,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 
+#include "yelp-bookmarks.h"
 #include "yelp-settings.h"
 #include "yelp-view.h"
 
@@ -73,10 +74,11 @@ static const gchar introspection_xml[] =
     "</node>";
 GDBusNodeInfo *introspection_data;
 
-static void          yelp_application_init             (YelpApplication       *app);
-static void          yelp_application_class_init       (YelpApplicationClass  *klass);
-static void          yelp_application_dispose          (GObject               *object);
-static void          yelp_application_finalize         (GObject               *object);
+static void          yelp_application_init             (YelpApplication        *app);
+static void          yelp_application_class_init       (YelpApplicationClass   *klass);
+static void          yelp_application_iface_init       (YelpBookmarksInterface *iface);
+static void          yelp_application_dispose          (GObject                *object);
+static void          yelp_application_finalize         (GObject                *object);
 
 static void          yelp_application_method           (GDBusConnection       *connection,
                                                         const gchar           *sender,
@@ -103,7 +105,9 @@ static void          application_set_font_sensitivity  (YelpApplication       *a
 static gboolean      window_resized                    (YelpWindow            *window,
                                                         YelpApplication       *app);
 
-G_DEFINE_TYPE (YelpApplication, yelp_application, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (YELP_TYPE_BOOKMARKS,
+                                                yelp_application_iface_init))
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_APPLICATION, YelpApplicationPrivate))
 
 GDBusInterfaceVTable yelp_dbus_vtable = {
@@ -171,6 +175,14 @@ yelp_application_class_init (YelpApplicationClass *klass)
                       G_TYPE_NONE, 1, G_TYPE_STRING);
 
     g_type_class_add_private (klass, sizeof (YelpApplicationPrivate));
+}
+
+static void
+yelp_application_iface_init (YelpBookmarksInterface *iface)
+{
+    iface->add_bookmark = yelp_application_add_bookmark;
+    iface->remove_bookmark = yelp_application_remove_bookmark;
+    iface->is_bookmarked = yelp_application_is_bookmarked;
 }
 
 static void
@@ -676,6 +688,35 @@ yelp_application_remove_bookmark (YelpApplication   *app,
         g_settings_set_value (settings, "bookmarks", g_variant_builder_end (&builder));
         g_signal_emit (app, signals[BOOKMARKS_CHANGED], 0, doc_uri);
     }
+}
+
+gboolean
+yelp_application_is_bookmarked (YelpApplication   *app,
+                                const gchar       *doc_uri,
+                                const gchar       *page_id)
+{
+    GVariant *bookmarks;
+    GVariantIter *iter;
+    gboolean ret = FALSE;
+    gchar *this_id = NULL;
+    GSettings *settings;
+
+    settings = application_get_doc_settings (app, doc_uri);
+    if (settings == NULL)
+        return FALSE;
+
+    bookmarks = g_settings_get_value (settings, "bookmarks");
+    g_settings_get (settings, "bookmarks", "a(sss)", &iter);
+    while (g_variant_iter_loop (iter, "(&s&s&s)", &this_id, NULL, NULL)) {
+        if (g_str_equal (page_id, this_id)) {
+            ret = TRUE;
+            break;
+        }
+    }
+
+    g_variant_iter_free (iter);
+    g_variant_unref (bookmarks);
+    return ret;
 }
 
 void

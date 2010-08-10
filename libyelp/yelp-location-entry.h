@@ -25,6 +25,7 @@
 
 #include <gtk/gtk.h>
 
+#include "yelp-bookmarks.h"
 #include "yelp-view.h"
 
 G_BEGIN_DECLS
@@ -70,37 +71,10 @@ struct _YelpLocationEntryClass
     void (*_gtk_reserved3) (void);
 };
 
-/**
- * YelpLocationEntryFlags:
- * @YELP_LOCATION_ENTRY_CAN_BOOKMARK: This location can be bookmarked.  When a
- * bookmarkable location is selected, the secondary icon of the embedded text
- * entry will be a clickable bookmark icon.
- * @YELP_LOCATION_ENTRY_IS_BOOKMARKED: This location is already bookmarked.
- * Bookmarked locations will have an emblem in drop-down lists.
- * @YELP_LOCATION_ENTRY_IS_LOADING: Page data for this location is still loading.
- * The #YelpLocationEntry widget will display an indeterminate progress indicator.
- * @YELP_LOCATION_ENTRY_IS_SEPARATOR: This row should be displayed as a separator.
- * @YELP_LOCATION_ENTRY_IS_SEARCH: Selecting this row initiates a search instead
- * of selecting a location.
- *
- * Flags which can be used to provide additional information about rows
- * to be displayed by a #YelpLocationEntry.
- **/
-typedef enum {
-    YELP_LOCATION_ENTRY_CAN_BOOKMARK  = 1 << 0,
-    YELP_LOCATION_ENTRY_IS_BOOKMARKED = 1 << 1,
-    YELP_LOCATION_ENTRY_IS_LOADING    = 1 << 2,
-    YELP_LOCATION_ENTRY_IS_SEPARATOR  = 1 << 3,
-    YELP_LOCATION_ENTRY_IS_SEARCH     = 1 << 4
-} YelpLocationEntryFlags;
-
 GType           yelp_location_entry_get_type          (void);
-GtkWidget *     yelp_location_entry_new               (YelpView           *window);
+GtkWidget *     yelp_location_entry_new               (YelpView           *window,
+                                                       YelpBookmarks      *bookmarks);
 void            yelp_location_entry_start_search      (YelpLocationEntry  *entry);
-void            yelp_location_entry_add_bookmark      (const gchar        *doc_uri,
-                                                       const gchar        *page_id);
-void            yelp_location_entry_remove_bookmark   (const gchar        *doc_uri,
-                                                       const gchar        *page_id);
 
 G_END_DECLS
 

@@ -1,6 +1,7 @@
 lib_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =				\
+	yelp-bookmarks.c			\
 	yelp-debug.c				\
 	yelp-error.c				\
 	yelp-docbook-document.c			\
@@ -51,6 +52,7 @@ libyelp_la_LIBADD =				\
 	$(YELP_LIBS)
 
 libyelp_headers =				\
+	yelp-bookmarks.h			\
 	yelp-docbook-document.h			\
 	yelp-document.h				\
 	yelp-info-document.h			\

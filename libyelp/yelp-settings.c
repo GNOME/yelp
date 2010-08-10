@@ -48,6 +48,8 @@ struct _YelpSettingsPriv {
     gboolean      show_text_cursor;
 
     gboolean      editor_mode;
+
+    GHashTable   *bookmarks;
 };
 
 enum {
@@ -227,6 +229,9 @@ yelp_settings_init (YelpSettings *settings)
 	settings->priv->setfonts[i] = NULL;
 	settings->priv->fonts[i] = NULL;
     }
+
+    settings->priv->bookmarks = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                                       g_free, NULL);
 }
 
 static void
