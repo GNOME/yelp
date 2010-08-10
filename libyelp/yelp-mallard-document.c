@@ -461,12 +461,15 @@ mallard_page_data_walk (MallardPageData *page_data)
         page_data->xpath = xmlXPathNewContext (page_data->xmldoc);
         mallard_page_data_walk (page_data);
     } else {
+        gboolean ispage;
         xmlNodePtr child, oldcur, oldcache, info;
 
         id = xmlGetProp (page_data->cur, BAD_CAST "id");
         if (id == NULL)
             goto done;
-        if (g_hash_table_lookup (priv->pages_hash, id) != NULL)
+
+        ispage = xmlStrEqual (page_data->cur->name, BAD_CAST "page");
+        if (ispage && g_hash_table_lookup (priv->pages_hash, id) != NULL)
             goto done;
 
         page_data->cache = xmlNewChild (page_data->cache,
@@ -474,7 +477,7 @@ mallard_page_data_walk (MallardPageData *page_data)
                                         page_data->cur->name,
                                         NULL);
 
-        if (xmlStrEqual (page_data->cur->name, BAD_CAST "page")) {
+        if (ispage) {
             xmlChar *style;
             gchar **styles;
             gchar *icon = "help-contents";
