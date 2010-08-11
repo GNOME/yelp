@@ -40,6 +40,7 @@ G_BEGIN_DECLS
 
 typedef struct _YelpView       YelpView;
 typedef struct _YelpViewClass  YelpViewClass;
+typedef gboolean (* YelpViewActionValidFunc) (YelpView *view, GtkAction *action, gchar *uri, gpointer data);
 
 struct _YelpView
 {
@@ -62,20 +63,22 @@ GType              yelp_view_get_type             (void);
 GType              yelp_view_state_get_type       (void);
 
 GtkWidget *        yelp_view_new                  (void);
-void               yelp_view_load                 (YelpView        *view,
-                                                   const gchar     *uri);
-void               yelp_view_load_uri             (YelpView        *view,
-                                                   YelpUri         *uri);
-void               yelp_view_load_document        (YelpView        *view,
-                                                   YelpUri         *uri,
-                                                   YelpDocument    *document);
-YelpDocument *     yelp_view_get_document         (YelpView        *view);
-GtkActionGroup *   yelp_view_get_action_group     (YelpView        *view);
+void               yelp_view_load                 (YelpView                *view,
+                                                   const gchar             *uri);
+void               yelp_view_load_uri             (YelpView                *view,
+                                                   YelpUri                 *uri);
+void               yelp_view_load_document        (YelpView                *view,
+                                                   YelpUri                 *uri,
+                                                   YelpDocument            *document);
+YelpDocument *     yelp_view_get_document         (YelpView                *view);
+GtkActionGroup *   yelp_view_get_action_group     (YelpView                *view);
 
-void               yelp_view_add_link_action      (YelpView        *view,
-                                                   GtkAction       *action);
-YelpUri *          yelp_view_get_active_link_uri  (YelpView        *view);
-gchar *            yelp_view_get_active_link_text (YelpView        *view);
+void               yelp_view_add_link_action      (YelpView                *view,
+                                                   GtkAction               *action,
+                                                   YelpViewActionValidFunc  func,
+                                                   gpointer                 data);
+YelpUri *          yelp_view_get_active_link_uri  (YelpView                *view);
+gchar *            yelp_view_get_active_link_text (YelpView                *view);
 
 G_END_DECLS
 

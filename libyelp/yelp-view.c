@@ -167,6 +167,20 @@ G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW);
 
 static WebKitWebSettings *websettings;
 
+typedef struct _YelpActionEntry YelpActionEntry;
+struct _YelpActionEntry {
+    GtkAction               *action;
+    YelpViewActionValidFunc  func;
+    gpointer                 data;
+};
+action_entry_free (YelpActionEntry *entry)
+{
+    if (entry == NULL)
+        return;
+    g_object_unref (entry->action);
+    g_free (entry);
+}
+
 typedef struct _YelpBackEntry YelpBackEntry;
 struct _YelpBackEntry {
     YelpUri *uri;
@@ -296,7 +310,7 @@ yelp_view_dispose (GObject *object)
     }
 
     while (priv->link_actions) {
-        g_object_unref (priv->link_actions->data);
+        action_entry_free (priv->link_actions->data);
         priv->link_actions = g_slist_delete_link (priv->link_actions, priv->link_actions);
     }
 
@@ -626,12 +640,20 @@ yelp_view_get_action_group (YelpView *view)
 /******************************************************************************/
 
 void
-yelp_view_add_link_action (YelpView *view, GtkAction *action)
+yelp_view_add_link_action (YelpView                *view,
+                           GtkAction               *action,
+                           YelpViewActionValidFunc  func,
+                           gpointer                 data)
 {
+    YelpActionEntry *entry;
     YelpViewPrivate *priv = GET_PRIV (view);
 
-    priv->link_actions = g_slist_append (priv->link_actions,
-                                         g_object_ref (action));
+    entry = g_new0 (YelpActionEntry, 1);
+    entry->action = g_object_ref (action);
+    entry->func = func;
+    entry->data = data;
+
+    priv->link_actions = g_slist_append (priv->link_actions, entry);
 }
 
 YelpUri *
@@ -1052,9 +1074,18 @@ view_populate_popup (YelpView *view,
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
             for (cur = priv->link_actions; cur != NULL; cur = cur->next) {
-                GtkAction *action = (GtkAction *) cur->data;
-                item = gtk_action_create_menu_item (action);
-                gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+                gboolean add;
+                YelpActionEntry *entry = (YelpActionEntry *) cur->data;
+                if (entry->func == NULL)
+                    add = TRUE;
+                else
+                    add = (* entry->func) (view, entry->action,
+                                           priv->popup_link_uri,
+                                           entry->data);
+                if (add) {
+                    item = gtk_action_create_menu_item (entry->action);
+                    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+                }
             }
         }
     }

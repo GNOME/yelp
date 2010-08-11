@@ -128,6 +128,10 @@ static void          view_uri_selected            (YelpView           *view,
 static void          view_root_title              (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
+static gboolean      view_is_xref_uri             (YelpView           *view,
+                                                   GtkAction          *action,
+                                                   const gchar        *uri,
+                                                   YelpWindow         *window);
 
 static void          hidden_entry_activate        (GtkEntry           *entry,
                                                    YelpWindow         *window);
@@ -462,7 +466,9 @@ window_construct (YelpWindow *window)
 
     action = gtk_action_new ("ReadLinkLater", "Read Link _Later", NULL, NULL);
     g_signal_connect (action, "activate", G_CALLBACK (window_read_later), window);
-    yelp_view_add_link_action (priv->view, action);
+    yelp_view_add_link_action (priv->view, action,
+                               (YelpViewActionValidFunc) view_is_xref_uri,
+                               window);
     g_signal_connect (priv->application, "read-later-changed", G_CALLBACK (app_read_later_changed), window);
 
     priv->vbox_full = gtk_vbox_new (FALSE, 3);
@@ -1484,6 +1490,15 @@ view_uri_selected (YelpView     *view,
     }
 
     g_object_unref (uri);
+}
+
+static gboolean
+view_is_xref_uri (YelpView    *view,
+                  GtkAction   *action,
+                  const gchar *uri,
+                  YelpWindow  *window)
+{
+    return g_str_has_prefix (uri, "xref:");
 }
 
 static void
