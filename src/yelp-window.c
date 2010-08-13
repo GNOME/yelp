@@ -71,6 +71,8 @@ static void          window_drag_received         (YelpWindow         *window,
 static gboolean      window_resize_signal         (YelpWindow         *window);
 static void          window_close                 (GtkAction          *action,
                                                    YelpWindow         *window);
+static void          window_go_all                (GtkAction          *action,
+                                                   YelpWindow         *window);
 static void          window_add_bookmark          (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_edit_bookmarks        (GtkAction          *action,
@@ -196,6 +198,8 @@ static const gchar *YELP_UI =
     "<separator/>"
     "<menuitem action='YelpViewGoPrevious'/>"
     "<menuitem action='YelpViewGoNext'/>"
+    "<separator/>"
+    "<menuitem action='GoAll'/>"
     "</menu>"
     "<menu action='BookmarksMenu'>"
     "<menuitem action='AddBookmark'/>"
@@ -275,6 +279,10 @@ static const GtkActionEntry entries[] = {
       "<Control>W",
       NULL,
       G_CALLBACK (window_close) },
+    { "GoAll", NULL,
+      N_("_All Documents"),
+      NULL, NULL,
+      G_CALLBACK (window_go_all) },
     { "AddBookmark", NULL,
       N_("_Add Bookmark"),
       "<Control>D",
@@ -744,6 +752,14 @@ window_close (GtkAction *action, YelpWindow *window)
     gboolean ret;
     g_signal_emit_by_name (window, "delete-event", NULL, &ret);
     gtk_widget_destroy (GTK_WIDGET (window));
+}
+
+static void
+window_go_all (GtkAction  *action,
+               YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    yelp_view_load (priv->view, "help-list:");
 }
 
 static void

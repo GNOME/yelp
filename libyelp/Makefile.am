@@ -1,34 +1,35 @@
 lib_LTLIBRARIES = libyelp.la
 
-libyelp_la_SOURCES =				\
-	yelp-bookmarks.c			\
-	yelp-debug.c				\
-	yelp-error.c				\
-	yelp-docbook-document.c			\
-	yelp-document.c				\
-	yelp-info-document.c			\
-	yelp-info-parser.c			\
-	yelp-location-entry.c			\
-	yelp-magic-decompressor.c		\
-	yelp-mallard-document.c			\
-	yelp-man-document.c			\
-	yelp-man-parser.c			\
-	yelp-marshal.c				\
-	yelp-settings.c				\
-	yelp-simple-document.c			\
-	yelp-transform.c			\
-	yelp-uri.c				\
-	yelp-types.c				\
+libyelp_la_SOURCES =            \
+	yelp-bookmarks.c            \
+	yelp-debug.c                \
+	yelp-error.c                \
+	yelp-docbook-document.c     \
+	yelp-document.c             \
+	yelp-help-list.c            \
+	yelp-info-document.c        \
+	yelp-info-parser.c          \
+	yelp-location-entry.c       \
+	yelp-magic-decompressor.c   \
+	yelp-mallard-document.c     \
+	yelp-man-document.c         \
+	yelp-man-parser.c           \
+	yelp-marshal.c              \
+	yelp-settings.c             \
+	yelp-simple-document.c      \
+	yelp-transform.c            \
+	yelp-uri.c                  \
+	yelp-types.c                \
 	yelp-view.c
 
-EXTRA_DIST =				\
-	yelp-bz2-decompressor.h		\
-	yelp-debug.h			\
-	yelp-error.h			\
-	yelp-info-parser.h		\
-	yelp-man-parser.h		\
-	yelp-lzma-decompressor.h	\
-	yelp-magic-decompressor.h	\
+EXTRA_DIST =                    \
+	yelp-bz2-decompressor.h     \
+	yelp-debug.h                \
+	yelp-error.h                \
+	yelp-info-parser.h          \
+	yelp-man-parser.h           \
+	yelp-lzma-decompressor.h    \
+	yelp-magic-decompressor.h   \
 	yelp-marshal.list
 
 if ENABLE_LZMA
@@ -43,39 +44,37 @@ else
 EXTRA_DIST += yelp-bz2-decompressor.c
 endif
 
-libyelp_la_CFLAGS =				\
-	$(YELP_CFLAGS)				\
-	-DDATADIR=\""$(datadir)"\"		\
+libyelp_la_CFLAGS =                         \
+	$(YELP_CFLAGS)                          \
+	-DDATADIR=\""$(datadir)"\"              \
 	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
 
-libyelp_la_LIBADD =				\
-	$(YELP_LIBS)
+libyelp_la_LIBADD = $(YELP_LIBS)
 
-libyelp_headers =				\
-	yelp-bookmarks.h			\
-	yelp-docbook-document.h			\
-	yelp-document.h				\
-	yelp-info-document.h			\
-	yelp-location-entry.h			\
-	yelp-mallard-document.h			\
-	yelp-man-document.h			\
-	yelp-settings.h				\
-	yelp-simple-document.h			\
-	yelp-transform.h			\
-	yelp-uri.h				\
+libyelp_headers =               \
+	yelp-bookmarks.h            \
+	yelp-docbook-document.h     \
+	yelp-document.h             \
+	yelp-help-list.h            \
+	yelp-info-document.h        \
+	yelp-location-entry.h       \
+	yelp-mallard-document.h     \
+	yelp-man-document.h         \
+	yelp-settings.h             \
+	yelp-simple-document.h      \
+	yelp-transform.h            \
+	yelp-uri.h                  \
 	yelp-view.h
 
 libyelp_includedir = $(includedir)/libyelp/
 
-libyelp_include_HEADERS =			\
-	$(libyelp_headers)			\
-	yelp-types.h
+libyelp_include_HEADERS = $(libyelp_headers) yelp-types.h
 
-BUILT_SOURCES =			\
-	stamp-yelp-marshal.h	\
-	yelp-marshal.c		\
-	yelp-marshal.h		\
-	yelp-types.c		\
+BUILT_SOURCES =              \
+	stamp-yelp-marshal.h     \
+	yelp-marshal.c           \
+	yelp-marshal.h           \
+	yelp-types.c             \
 	yelp-types.h
 
 yelp-marshal.h: stamp-yelp-marshal.h

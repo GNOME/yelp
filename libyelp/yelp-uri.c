@@ -50,6 +50,7 @@ static void           resolve_data_dirs          (YelpUri        *uri,
                                                   gboolean        langfirst);
 static void           resolve_ghelp_uri          (YelpUri        *uri);
 static void           resolve_help_uri           (YelpUri        *uri);
+static void           resolve_help_list_uri      (YelpUri        *uri);
 static void           resolve_man_uri            (YelpUri        *uri);
 static void           resolve_info_uri           (YelpUri        *uri);
 static void           resolve_xref_uri           (YelpUri        *uri);
@@ -263,6 +264,9 @@ resolve_async (YelpUri *uri)
     else if (g_str_has_prefix (priv->res_arg, "help:")) {
         resolve_help_uri (uri);
     }
+    else if (g_str_has_prefix (priv->res_arg, "help-list:")) {
+        resolve_help_list_uri (uri);
+    }
     else if (g_str_has_prefix (priv->res_arg, "file:")) {
         resolve_file_uri (uri);
     }
@@ -295,7 +299,7 @@ resolve_async (YelpUri *uri)
         case YELP_URI_DOCUMENT_TYPE_XHTML:
             resolve_file_path (uri);
             break;
-        case YELP_URI_DOCUMENT_TYPE_TOC:
+        case YELP_URI_DOCUMENT_TYPE_HELP_LIST:
             /* FIXME: what do we do? */
             break;
         case YELP_URI_DOCUMENT_TYPE_SEARCH:
@@ -792,6 +796,16 @@ resolve_help_uri (YelpUri *uri)
     g_free (query);
     g_free (document);
     return;
+}
+
+static void
+resolve_help_list_uri (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    priv->docuri = g_strdup ("help-list:");
+    priv->fulluri = g_strdup (priv->res_arg);
+    priv->page_id = g_strdup ("index");
+    priv->tmptype = YELP_URI_DOCUMENT_TYPE_HELP_LIST;
 }
 
 static void
