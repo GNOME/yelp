@@ -323,19 +323,20 @@ static void
 help_list_handle_page (YelpHelpList *list,
                        const gchar  *page_id)
 {
-    gchar *tmp, *c1, *c2;
+    gchar **colors, *tmp;
     GList *cur;
     YelpHelpListPrivate *priv = GET_PRIV (list);
-    YelpSettings *settings = yelp_settings_get_default ();
     GString *string = g_string_new
         ("<html><head><style type='text/css'>\n"
          "html { height: 100%; }\n"
          "body { margin: 0; padding: 0; max-width: 100%;");
-    c1 = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
-    c2 = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT);
-    tmp = g_markup_printf_escaped ("background-color: %s; color: %s; }\n", c1, c2);
+    colors = yelp_settings_get_colors (yelp_settings_get_default ());
+
+    tmp = g_markup_printf_escaped ("background-color: %s; color: %s; }\n",
+                                   colors[YELP_SETTINGS_COLOR_BASE],
+                                   colors[YELP_SETTINGS_COLOR_TEXT]);
     g_string_append (string, tmp);
-    g_free (c1); g_free (c2); g_free (tmp);
+    g_free (tmp);
 
 #if 0
     "  direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;"
@@ -348,22 +349,21 @@ help_list_handle_page (YelpHelpList *list,
                      "div.footer { max-width: 60em; }\n"
                      "div.sect { margin-top: 1.72em; }\n"
                      "div.trails { margin: 0; padding: 0.2em 12px 0 12px;");
-    
-    c1 = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_GRAY_BASE);
-    c2 = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_GRAY_BORDER);
+
     tmp = g_markup_printf_escaped (" background-color: %s;"
                                    " border-bottom: solid 1px %s; }\n",
-                                   c1, c2);
+                                   colors[YELP_SETTINGS_COLOR_GRAY_BASE],
+                                   colors[YELP_SETTINGS_COLOR_GRAY_BORDER]);
     g_string_append (string, tmp);
-    g_free (c1); g_free (tmp); /* don't free c2; use it again soon */
+    g_free (tmp);
 
     g_string_append (string,
                      "div.trail { margin: 0 1em 0.2em 1em; padding: 0; text-indent: -1em;");
 
-    c1 = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT_LIGHT);
-    tmp = g_markup_printf_escaped (" color: %s; }\n", c1);
+    tmp = g_markup_printf_escaped (" color: %s; }\n",
+                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT]);
     g_string_append (string, tmp);
-    g_free (tmp); /* don't free c1; use it again soon */
+    g_free (tmp);
 
     g_string_append (string,
                      "a.trail { white-space: nowrap; }\n"
@@ -371,18 +371,31 @@ help_list_handle_page (YelpHelpList *list,
     
     tmp = g_markup_printf_escaped (" color: %s;"
                                    " border-bottom: solid 1px %s; }\n",
-                                   c1, c2);
+                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
+                                   colors[YELP_SETTINGS_COLOR_GRAY_BORDER]);
     g_string_append (string, tmp);
-    g_free (c2); g_free (tmp); /* free c2; still don't free c1 */
+    g_free (tmp);
+
+    tmp = g_markup_printf_escaped ("div.title { margin: 0 0 0.2em 0; font-weight: bold;  color: %s; }\n"
+                                   "div.desc { margin: 0 0 0.2em 0; }\n"
+                                   "div.linkdiv div.title {font-size: 1em; color: inherit; }\n"
+                                   "div.linkdiv div.desc { color %s; }\n"
+                                   "div.linkdiv { margin: 0; padding: 0.5em; }\n"
+                                   "a:hover div.linkdiv {"
+                                   " text-decoration: none;"
+                                   " outline: solid 1px %s;"
+                                   " background: -webkit-gradient(linear, left top, left 80,"
+                                   " from(%s), to(%s)); }\n",
+                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
+                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
+                                   colors[YELP_SETTINGS_COLOR_BLUE_BASE],
+                                   colors[YELP_SETTINGS_COLOR_BLUE_BASE],
+                                   colors[YELP_SETTINGS_COLOR_BASE]);
+    g_string_append (string, tmp);
+    g_free (tmp);
 
     g_string_append (string,
-                     "h1, h2, h3, h4, h5, h6, h7 { margin: 0; padding: 0; font-weight: bold;");
-
-    tmp = g_markup_printf_escaped (" color: %s; }\n", c1);
-    g_string_append (string, tmp);
-    g_free (c1); g_free (tmp); /* now we free c1 */
-
-    g_string_append (string,
+                     "h1, h2, h3, h4, h5, h6, h7 { margin: 0; padding: 0; font-weight: bold; }\n"
                      "h1 { font-size: 1.44em; }\n"
                      "h2 { font-size: 1.2em; }"
                      "h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }"
@@ -395,12 +408,11 @@ help_list_handle_page (YelpHelpList *list,
                      "a {"
                      "  text-decoration: none;");
 
-    c1 = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_LINK);
-    c2 = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_LINK_VISITED);
     tmp = g_markup_printf_escaped (" color: %s; } a:visited { color: %s; }",
-                                   c1, c2);
+                                   colors[YELP_SETTINGS_COLOR_LINK],
+                                   colors[YELP_SETTINGS_COLOR_LINK_VISITED]);
     g_string_append (string, tmp);
-    g_free (c1); g_free (c2); g_free (tmp);
+    g_free (tmp);
 
     g_string_append (string,
                      "a:hover { text-decoration: underline; }\n"
@@ -425,12 +437,14 @@ help_list_handle_page (YelpHelpList *list,
                                      (GCompareFunc) help_list_entry_cmp);
     for (cur = priv->all_entries; cur != NULL; cur = cur->next) {
         HelpListEntry *entry = (HelpListEntry *) cur->data;
-        if (entry->title != NULL)
-            tmp = g_markup_printf_escaped ("<p><a href='%s'>%s</a></p>\n",
-                                           entry->id, entry->title);
-        else
-            tmp = g_markup_printf_escaped ("<p><a href='%s'>%s</a></p>\n",
-                                           entry->id, strchr (entry->id, ':') + 1);
+        gchar *title = entry->title ? entry->title : (strchr (entry->id, ':') + 1);
+        tmp = g_markup_printf_escaped ("<a href='%s'><div class='linkdiv'>"
+                                       "<div class='title'>%s</div>"
+                                       "<div class='desc'>%s</div>"
+                                       "</div></a>",
+                                       entry->id,
+                                       entry->title,
+                                       "");
         g_string_append (string, tmp);
         g_free (tmp);
     }
@@ -443,6 +457,7 @@ help_list_handle_page (YelpHelpList *list,
     yelp_document_give_contents (YELP_DOCUMENT (list), page_id,
                                  string->str,
                                  "text/html");
+    g_strfreev (colors);
     g_string_free (string, FALSE);
     yelp_document_signal (YELP_DOCUMENT (list), page_id,
                           YELP_DOCUMENT_SIGNAL_CONTENTS, NULL);
