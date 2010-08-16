@@ -95,6 +95,7 @@ struct _YelpHelpListPrivate {
 
     xmlXPathCompExprPtr  get_docbook_title;
     xmlXPathCompExprPtr  get_mallard_title;
+    xmlXPathCompExprPtr  get_mallard_desc;
 };
 
 static void
@@ -129,6 +130,7 @@ yelp_help_list_init (YelpHelpList *list)
                                                ")[1])");
     priv->get_mallard_title = xmlXPathCompile ("normalize-space((/mal:page/mal:info/mal:title[@type='text'] |"
                                                "                 /mal:page/mal:title)[1])");
+    priv->get_mallard_desc = xmlXPathCompile ("normalize-space(/mal:page/mal:info/mal:desc[1])");
 
     yelp_document_set_page_id ((YelpDocument *) list, NULL, "index");
     yelp_document_set_page_id ((YelpDocument *) list, "index", "index");
@@ -152,6 +154,8 @@ yelp_help_list_finalize (GObject *object)
         xmlXPathFreeCompExpr (priv->get_docbook_title);
     if (priv->get_mallard_title)
         xmlXPathFreeCompExpr (priv->get_mallard_title);
+    if (priv->get_mallard_desc)
+        xmlXPathFreeCompExpr (priv->get_mallard_desc);
 
     G_OBJECT_CLASS (yelp_help_list_parent_class)->finalize (object);
 }
@@ -379,7 +383,7 @@ help_list_handle_page (YelpHelpList *list,
     tmp = g_markup_printf_escaped ("div.title { margin: 0 0 0.2em 0; font-weight: bold;  color: %s; }\n"
                                    "div.desc { margin: 0 0 0.2em 0; }\n"
                                    "div.linkdiv div.title {font-size: 1em; color: inherit; }\n"
-                                   "div.linkdiv div.desc { color %s; }\n"
+                                   "div.linkdiv div.desc { color: %s; }\n"
                                    "div.linkdiv { margin: 0; padding: 0.5em; }\n"
                                    "a:hover div.linkdiv {"
                                    " text-decoration: none;"
@@ -438,13 +442,14 @@ help_list_handle_page (YelpHelpList *list,
     for (cur = priv->all_entries; cur != NULL; cur = cur->next) {
         HelpListEntry *entry = (HelpListEntry *) cur->data;
         gchar *title = entry->title ? entry->title : (strchr (entry->id, ':') + 1);
+        gchar *desc = entry->desc ? entry->desc : "";
         tmp = g_markup_printf_escaped ("<a href='%s'><div class='linkdiv'>"
                                        "<div class='title'>%s</div>"
                                        "<div class='desc'>%s</div>"
                                        "</div></a>",
                                        entry->id,
-                                       entry->title,
-                                       "");
+                                       title,
+                                       desc);
         g_string_append (string, tmp);
         g_free (tmp);
     }
@@ -529,12 +534,21 @@ help_list_process_mallard (YelpHelpList  *list,
     xpath = xmlXPathNewContext (xmldoc);
     xmlXPathRegisterNs (xpath, BAD_CAST "mal",
                         BAD_CAST "http://projectmallard.org/1.0/");
+
     obj = xmlXPathCompiledEval (priv->get_mallard_title, xpath);
     if (obj) {
         if (obj->stringval)
             entry->title = g_strdup (obj->stringval);
         xmlXPathFreeObject (obj);
     }
+
+    obj = xmlXPathCompiledEval (priv->get_mallard_desc, xpath);
+    if (obj) {
+        if (obj->stringval)
+            entry->desc = g_strdup (obj->stringval);
+        xmlXPathFreeObject (obj);
+    }
+
     if (xmldoc)
         xmlFreeDoc (xmldoc);
     if (xpath)
