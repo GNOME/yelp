@@ -24,7 +24,10 @@
 #include <config.h>
 #endif
 
+#include <gio/gio.h>
+#include <gio/gdesktopappinfo.h>
 #include <glib/gi18n.h>
+#include <gtk/gtk.h>
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
 #include <libxml/xpath.h>
@@ -52,11 +55,17 @@ static void           help_list_process_docbook      (YelpHelpList          *lis
 static void           help_list_process_mallard      (YelpHelpList          *list,
                                                       HelpListEntry         *entry);
 
+static const char*const known_vendor_prefixes[] = { "gnome",
+                                                    "fedora",
+                                                    "mozilla",
+                                                    NULL };
+
 struct _HelpListEntry
 {
     gchar *id;
     gchar *title;
     gchar *desc;
+    gchar *icon;
 
     gchar *filename;
     YelpUriDocumentType type;
@@ -218,6 +227,7 @@ help_list_think (YelpHelpList *list)
     gchar **datadirs;
     gint datadir_i, subdir_i, lang_i;
     GList *cur;
+    GtkIconTheme *theme;
 
     datadirs = g_new0 (gchar *, g_strv_length ((gchar **) sdatadirs) + 2);
     datadirs[0] = (gchar *) g_get_user_data_dir ();
@@ -300,12 +310,48 @@ help_list_think (YelpHelpList *list)
     }
     g_free (datadirs);
 
+    theme = gtk_icon_theme_get_default ();
     for (cur = priv->all_entries; cur != NULL; cur = cur->next) {
+        GDesktopAppInfo *app;
+        gchar *tmp;
         HelpListEntry *entry = (HelpListEntry *) cur->data;
+        const gchar *entryid = strchr (entry->id, ':') + 1;
+
         if (entry->type == YELP_URI_DOCUMENT_TYPE_MALLARD)
             help_list_process_mallard (list, entry);
         else if (entry->type == YELP_URI_DOCUMENT_TYPE_DOCBOOK)
             help_list_process_docbook (list, entry);
+
+        tmp = g_strconcat (entryid, ".desktop", NULL);
+        app = g_desktop_app_info_new (tmp);
+        g_free (tmp);
+
+        if (app == NULL) {
+            char **prefix;
+            for (prefix = (char **) known_vendor_prefixes; *prefix; prefix++) {
+                tmp = g_strconcat (*prefix, "-", entryid, ".desktop", NULL);
+                app = g_desktop_app_info_new (tmp);
+                g_free (tmp);
+                if (app)
+                    break;
+            }
+        }
+
+        if (app != NULL) {
+            GIcon *icon = g_app_info_get_icon ((GAppInfo *) app);
+            if (icon != NULL) {
+                GtkIconInfo *info = gtk_icon_theme_lookup_by_gicon (theme,
+                                                                    icon, 22,
+                                                                    GTK_ICON_LOOKUP_NO_SVG);
+                if (info != NULL) {
+                    const gchar *iconfile = gtk_icon_info_get_filename (info);
+                    if (iconfile)
+                        entry->icon = g_filename_to_uri (iconfile, NULL, NULL);
+                    gtk_icon_info_free (info);
+                }
+            }
+            g_object_unref (app);
+        }
     }
 
     g_mutex_lock (priv->mutex);
@@ -330,21 +376,21 @@ help_list_handle_page (YelpHelpList *list,
     gchar **colors, *tmp;
     GList *cur;
     YelpHelpListPrivate *priv = GET_PRIV (list);
+    GtkTextDirection direction = gtk_widget_get_default_direction ();
     GString *string = g_string_new
         ("<html><head><style type='text/css'>\n"
          "html { height: 100%; }\n"
          "body { margin: 0; padding: 0; max-width: 100%;");
     colors = yelp_settings_get_colors (yelp_settings_get_default ());
 
-    tmp = g_markup_printf_escaped ("background-color: %s; color: %s; }\n",
+    tmp = g_markup_printf_escaped (" background-color: %s; color: %s;"
+                                   " direction: %s; }\n",
                                    colors[YELP_SETTINGS_COLOR_BASE],
-                                   colors[YELP_SETTINGS_COLOR_TEXT]);
+                                   colors[YELP_SETTINGS_COLOR_TEXT],
+                                   (direction == GTK_TEXT_DIR_RTL) ? "rtl" : "ltr");
     g_string_append (string, tmp);
     g_free (tmp);
 
-#if 0
-    "  direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;"
-#endif
     g_string_append (string,
                      "div.body { margin: 0 12px 0 12px; padding: 0;"
                      " max-width: 60em; min-height: 20em; }\n"
@@ -382,6 +428,9 @@ help_list_handle_page (YelpHelpList *list,
 
     tmp = g_markup_printf_escaped ("div.title { margin: 0 0 0.2em 0; font-weight: bold;  color: %s; }\n"
                                    "div.desc { margin: 0 0 0.2em 0; }\n"
+                                   "div.linkdiv div.inner { padding-%s: 30px; min-height: 24px;"
+                                   " background-position: top %s; background-repeat: no-repeat;"
+                                   " -webkit-background-size: 22px 22px; }\n"
                                    "div.linkdiv div.title {font-size: 1em; color: inherit; }\n"
                                    "div.linkdiv div.desc { color: %s; }\n"
                                    "div.linkdiv { margin: 0; padding: 0.5em; }\n"
@@ -391,6 +440,8 @@ help_list_handle_page (YelpHelpList *list,
                                    " background: -webkit-gradient(linear, left top, left 80,"
                                    " from(%s), to(%s)); }\n",
                                    colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
+                                   ((direction == GTK_TEXT_DIR_RTL) ? "right" : "left"),
+                                   ((direction == GTK_TEXT_DIR_RTL) ? "right" : "left"),
                                    colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
                                    colors[YELP_SETTINGS_COLOR_BLUE_BASE],
                                    colors[YELP_SETTINGS_COLOR_BLUE_BASE],
@@ -443,13 +494,25 @@ help_list_handle_page (YelpHelpList *list,
         HelpListEntry *entry = (HelpListEntry *) cur->data;
         gchar *title = entry->title ? entry->title : (strchr (entry->id, ':') + 1);
         gchar *desc = entry->desc ? entry->desc : "";
-        tmp = g_markup_printf_escaped ("<a href='%s'><div class='linkdiv'>"
-                                       "<div class='title'>%s</div>"
+
+        tmp = g_markup_printf_escaped ("<a href='%s'><div class='linkdiv'>",
+                                       entry->id);
+        g_string_append (string, tmp);
+        g_free (tmp);
+
+        if (entry->icon) {
+            tmp = g_markup_printf_escaped ("<div class='inner' style='background-image: url(%s);'>",
+                                           entry->icon);
+            g_string_append (string, tmp);
+            g_free (tmp);
+        }
+        else
+            g_string_append (string, "<div class='inner'>");
+
+        tmp = g_markup_printf_escaped ("<div class='title'>%s</div>"
                                        "<div class='desc'>%s</div>"
-                                       "</div></a>",
-                                       entry->id,
-                                       title,
-                                       desc);
+                                       "</div></div></a>",
+                                       title, desc);
         g_string_append (string, tmp);
         g_free (tmp);
     }
