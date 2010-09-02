@@ -248,7 +248,11 @@ info_body_parse_text (xmlNodePtr parent, xmlNsPtr ns,
     return;
   }
 
+  /* Use a pair of pointers, first and last, which point to two lines,
+   * the chunk of the body we're displaying (inclusive) */
   for (; *last; last++) {
+
+    /* Check for a header */
     header_level = header_underline_level (*last);
     if (header_level) {
       /* Write out any lines beforehand */
@@ -1120,6 +1124,16 @@ get_menuoptions (gchar *line, gchar **title, gchar **ref, gchar **desc,
   return TRUE;
 }
 
+/* Find the first non-space character in str or return pointer to the
+ * '\0' if there isn't one. */
+static gchar*
+first_non_space (gchar* str)
+{
+  /* As long as str is null terminated, this is ok! */
+  while (*str == ' ') str++;
+  return str;
+}
+
 xmlNodePtr
 yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node, 
 		      gchar *page_content, gboolean notes)
@@ -1127,7 +1141,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
   gchar **split;
   gchar **menuitems;
   gchar *tmp = NULL;
-  xmlNodePtr newnode;
+  xmlNodePtr newnode, menu_node, mholder = NULL;
   int i=0;
 
   split = g_strsplit (page_content, "* Menu:", 2);
@@ -1136,16 +1150,42 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 			 BAD_CAST "Section", NULL);
     
 
-  tmp = g_strconcat (split[0], "\n* Menu:", NULL);
   if (!notes)
-    info_body_text (newnode, NULL, FALSE, tmp);
+    info_body_text (newnode, NULL, FALSE, split[0]);
   else {
-    info_process_text_notes (&newnode, tmp, tree);
+    info_process_text_notes (&newnode, split[0], tree);
   }
-  g_free (tmp);
 
   menuitems = g_strsplit (split[1], "\n", -1);
   g_strfreev (split);
+
+  /* The output xml should look something like the following:
+
+     <menu>
+       <menuholder>
+         <a href="xref:Help-Inv">Help-Inv</a>
+         <para1>Invisible text in Emacs Info.</para1>
+       </menuholder>
+       <menuholder>
+         <a href="xref:Help-M">Help-M</a>
+         <para1>Menus.</para1>
+       </menuholder>
+       ...
+     </menu>
+
+     (from the top page of info:info). Note the absence of *'s and
+     ::'s on the links.
+
+     If there's a line with no "* Blah::", it looks like a child of
+     the previous menu item so (for i > 0) deal with that correctly by
+     not "closing" the <menuholder> tag until we find the next
+     start.
+  */
+
+  if (menuitems[0] != NULL) {
+    /* If there are any menu items, make the <menu> node */
+    menu_node = xmlNewChild (newnode, NULL, BAD_CAST "menu", NULL);
+  }
 
   while (menuitems[i] != NULL) {
     gboolean menu = FALSE;
@@ -1153,20 +1193,26 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
     gchar *ref = NULL;
     gchar *desc = NULL;
     gchar *xref = NULL;
-    xmlNodePtr mholder;
     xmlNodePtr ref1;
 
     menu = get_menuoptions (menuitems[i], &title, &ref, &desc, &xref);
- 
+
+    if (menu && (*title == '\0' || *(title + 1) == '\0')) {
+      g_warning ("Info title unexpectedly short for menu item (%s)",
+                 menuitems[i]);
+      menu = FALSE;
+    }
+
     if (menu) {
-      mholder = xmlNewChild (newnode, NULL, BAD_CAST "menuholder", NULL);
+      mholder = xmlNewChild (menu_node, NULL, BAD_CAST "menuholder", NULL);
       gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, &xref);
       
       if (ref == NULL) { /* A standard type menu */
-	tmp = g_strconcat (title, "::", NULL);
+        /* title+2 skips the "* ". We know we haven't jumped over the
+           end of the string because strlen (title) >= 3 */
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
-				BAD_CAST tmp);
-	g_free (tmp);
+				BAD_CAST title+2);
+
         tmp = g_strconcat ("xref:", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
         g_free (tmp);
@@ -1200,12 +1246,19 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
         g_free (tmp);
 	g_free (sp);
       }
-      xmlNewTextChild (mholder, NULL, BAD_CAST "para",
-		       BAD_CAST desc);
-    } else {
-      xmlNewTextChild (newnode, NULL, BAD_CAST "para",
-		       BAD_CAST menuitems[i]);
-      
+
+      tmp = g_strconcat ("\n", first_non_space (desc), NULL);
+      xmlNewTextChild (mholder, NULL, BAD_CAST "para1",
+		       BAD_CAST tmp);
+      g_free (tmp);
+
+    }
+    else if (*(menuitems[i]) != '\0') {
+      tmp = g_strconcat ("\n", first_non_space (menuitems[i]), NULL);
+      xmlNewTextChild (mholder ? mholder : menu_node,
+                       NULL, BAD_CAST "para1",
+		       BAD_CAST tmp);
+      g_free (tmp);
     }
     i++;
     g_free (title);

@@ -47,7 +47,8 @@
   <xsl:param name="left"/>
   <xsl:param name="right"/>
   <xsl:text>
-div.body { white-space: pre; font-family: monospace; }
+div.body { font-family: monospace; }
+span.fixed { white-space: pre; }
 <!-- navbar from mal2html, possibly move to html.xsl -->
 div.navbar {
   margin: 0 0 1em 0;
@@ -106,13 +107,17 @@ a.navbar-next::after {
 <!-- = Normal Matches = -->
 
 <xsl:template match="para">
-  <xsl:value-of select="node()"/>
-  <xsl:text>
+  <span class="fixed">
+    <xsl:value-of select="node()"/>
+    <xsl:text>
   </xsl:text>
+  </span>
 </xsl:template>
 
 <xsl:template match="para1">
-  <xsl:value-of select="node()"/>
+  <span class="fixed">
+    <xsl:value-of select="node()"/>
+  </span>
 </xsl:template>
 
 <xsl:template match="header">
@@ -156,8 +161,17 @@ a.navbar-next::after {
   </xsl:element>
 </xsl:template>
 
+<xsl:template match="menu">
+  <xsl:element name="p">Menu:</xsl:element>
+  <xsl:element name="ul">
+    <xsl:apply-templates />
+  </xsl:element>
+</xsl:template>
+
 <xsl:template match="menuholder">
-  <xsl:apply-templates select="node()[not(self::menuholder)]"/>
+  <xsl:element name="li">
+    <xsl:apply-templates />
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="noteholder">
