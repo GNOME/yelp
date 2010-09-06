@@ -142,7 +142,7 @@ static const GtkActionEntry action_entries[] = {
     { "SmallerText", GTK_STOCK_ZOOM_OUT,
       N_("_Smaller Text"),
       "<Control>minus",
-      N_("Descrease the size of the text"),
+      N_("Decrease the size of the text"),
       G_CALLBACK (application_adjust_font) }
 };
 
@@ -782,7 +782,7 @@ packages_installed (GDBusConnection *connection,
         const gchar *err = NULL;
         if (error->domain == G_DBUS_ERROR) {
             if (error->code == G_DBUS_ERROR_SERVICE_UNKNOWN)
-                err = _("You do not have PackageKit installed.  Package installation links require PackageKit.");
+                err = _("You do not have PackageKit installed. Package installation links require PackageKit.");
             else
                 err = error->message;
         }

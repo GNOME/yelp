@@ -173,7 +173,7 @@ yelp_settings_class_init (YelpSettingsClass *klass)
                                      PROP_SHOW_TEXT_CURSOR,
                                      g_param_spec_boolean ("show-text-cursor",
                                                            _("Show Text Cursor"),
-                                                           _("Show the text cursor or caret for accessibile navigation"),
+                                                           _("Show the text cursor or caret for accessible navigation"),
                                                            FALSE,
                                                            G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                            G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
