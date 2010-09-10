@@ -107,11 +107,12 @@ a.navbar-next::after {
 <!-- = Normal Matches = -->
 
 <xsl:template match="para">
-  <span class="fixed">
-    <xsl:value-of select="node()"/>
-    <xsl:text>
-  </xsl:text>
-  </span>
+  <p>
+    <span class="fixed">
+      <!-- Apply templates for <a> tags and copy text straight through. -->
+      <xsl:apply-templates select="./text()|*"/>
+    </span>
+  </p>
 </xsl:template>
 
 <xsl:template match="para1">
@@ -172,10 +173,6 @@ a.navbar-next::after {
   <xsl:element name="li">
     <xsl:apply-templates />
   </xsl:element>
-</xsl:template>
-
-<xsl:template match="noteholder">
-  <xsl:apply-templates select="node()[not(self::noteholder)]"/>
 </xsl:template>
 
 </xsl:stylesheet>

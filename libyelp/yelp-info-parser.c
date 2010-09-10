@@ -128,7 +128,8 @@ info_insert_image (xmlNodePtr parent, GMatchInfo *match_info)
     source = (gchar*)g_hash_table_lookup (h, "src");
 
   if (!h || !source || !*source)
-    return xmlNewTextChild (parent, NULL, BAD_CAST "para1", BAD_CAST "[broken image]");
+    return xmlNewTextChild (parent, NULL, BAD_CAST "para",
+                            BAD_CAST "[broken image]");
 
   gchar *title = (gchar*)g_hash_table_lookup (h, "title");
   gchar *text = (gchar*)g_hash_table_lookup (h, "text");
@@ -201,7 +202,6 @@ join_strings_subset (const gchar *separator,
 */
 static void
 lines_subset_text_child (xmlNodePtr parent, xmlNsPtr ns,
-                         gboolean inline_p,
                          gchar** first, gchar** last)
 {
   /* TODO? Currently we're copying the split strings again, which is
@@ -209,11 +209,10 @@ lines_subset_text_child (xmlNodePtr parent, xmlNsPtr ns,
      window on `content'. But that's much more difficult, so unless
      there's a problem, let's go with the stupid approach. */
   gchar *glob;
+
   if (last > first) {
     glob = join_strings_subset ("\n", first, last);
-    xmlNewTextChild (parent, ns,
-                     inline_p ? BAD_CAST "para1" : BAD_CAST "para",
-                     BAD_CAST glob);
+    xmlAddChild (parent, xmlNewText (BAD_CAST glob));
     g_free (glob);
   }
 }
@@ -222,21 +221,24 @@ lines_subset_text_child (xmlNodePtr parent, xmlNsPtr ns,
   Convert body text CONTENT to xml nodes. This function is responsible
   for spotting headings etc and splitting them out correctly.
 
+  paragraph is as described in info_body_text, but cannot be null.
+
   If `inline_p' is true, end with a <para1> tag. Otherwise, end with a
-  <para> tag. 
+  <para> tag.
 
   TODO: IWBN add a regex match for *Note: here and call the *Note ==>
   <a href> logic of info_process_text_notes from here.
  */
 static void
-info_body_parse_text (xmlNodePtr parent, xmlNsPtr ns,
+info_body_parse_text (xmlNodePtr parent, xmlNodePtr *paragraph,
+                      xmlNsPtr ns,
                       gboolean inline_p, const gchar *content)
 {
   /* The easiest things to spot are headings: they look like a line of
    * '*','=' or '-', corresponding to heading levels 1,2 or 3. To spot
    * them, we split content into single lines and work with them. */
   gchar **lines = g_strsplit (content, "\n", 0);
-  gchar **first = lines, **last = lines+1;
+  gchar **first = lines, **last = lines;
   int header_level;
   xmlNodePtr header_node;
 
@@ -252,11 +254,27 @@ info_body_parse_text (xmlNodePtr parent, xmlNsPtr ns,
    * the chunk of the body we're displaying (inclusive) */
   for (; *last; last++) {
 
+    /* Check for a blank line */
+    if (**last == '\0') {
+      if (last != first) {
+        if (!*paragraph) {
+          *paragraph = xmlNewChild (parent, ns, BAD_CAST "para", NULL);
+        }
+        lines_subset_text_child (*paragraph, ns, first, last);
+      }
+      /* On the next iteration, last==first both pointing at the next
+         line. */
+      first = last+1;
+      *paragraph = NULL;
+
+      continue;
+    }
+
     /* Check for a header */
     header_level = header_underline_level (*last);
     if (header_level) {
       /* Write out any lines beforehand */
-      lines_subset_text_child (parent, ns, FALSE, first, last-1);
+      lines_subset_text_child (parent, ns, first, last-1);
       /* Now write out the actual header line */
       header_node = xmlNewTextChild (parent, ns, BAD_CAST "header",
                                      BAD_CAST *(last-1));
@@ -264,11 +282,15 @@ info_body_parse_text (xmlNodePtr parent, xmlNsPtr ns,
                   BAD_CAST level_headings[header_level]);
       
       first = last+1;
-      last = first+1;
+      last = first-1;
     }
   }
+
   /* Write out any lines left */
-  lines_subset_text_child (parent, ns, inline_p, first, last);
+  if (!*paragraph) {
+    *paragraph = xmlNewChild (parent, ns, BAD_CAST "para", NULL);
+  }
+  lines_subset_text_child (*paragraph, ns, first, last);
   
   g_strfreev (lines);
 }
@@ -278,14 +300,21 @@ info_body_parse_text (xmlNodePtr parent, xmlNsPtr ns,
   body and turning it into paragraph tags. It searches out images and
   marks them up properly if necessary.
 
+  parent should be the node in which we're currently storing text and
+  paragraph a pointer to a <para> tag or NULL. At blank lines, we
+  finish with the current para tag and switch to a new one.
+
   It uses info_body_parse_text to mark up the actual bits of text.
  */
 static void
-info_body_text (xmlNodePtr parent, xmlNsPtr ns,
+info_body_text (xmlNodePtr parent, xmlNodePtr *paragraph, xmlNsPtr ns,
                 gboolean inline_p, gchar const *content)
 {
+  xmlNodePtr thepara = NULL;
+  if (paragraph == NULL) paragraph = &thepara;
+
   if (!strstr (content, INFO_C_IMAGE_TAG_OPEN)) {
-    info_body_parse_text (parent, ns, inline_p, content);
+    info_body_parse_text (parent, paragraph, ns, inline_p, content);
     return;
   }
 
@@ -293,6 +322,7 @@ info_body_text (xmlNodePtr parent, xmlNsPtr ns,
   gint pos = 0;
   GRegex *regex = g_regex_new ("(" INFO_C_IMAGE_TAG_OPEN_RE "((?:[^" INFO_TAG_1 "]|[^" INFO_C_TAG_0 "]+" INFO_TAG_1 ")*)" INFO_C_TAG_CLOSE_RE ")", 0, 0, NULL);
   GMatchInfo *match_info;
+
   g_regex_match (regex, content, 0, &match_info);
   while (g_match_info_matches (match_info))
     {
@@ -302,14 +332,18 @@ info_body_text (xmlNodePtr parent, xmlNsPtr ns,
 						     &image_start, &image_end);
       gchar *before = g_strndup (&content[pos], image_start - pos);
       pos = image_end + 1;
-      info_body_parse_text (parent, NULL, TRUE, before);
+      info_body_parse_text (parent, paragraph, NULL, TRUE, before);
       g_free (before);
+
+      /* End the paragraph that was before */
+      *paragraph = NULL;
+
       if (image_found)
 	info_insert_image (parent, match_info);
       g_match_info_next (match_info, NULL);
     }
   gchar *after = g_strndup (&content[pos], content_len - pos);
-  info_body_parse_text (parent, NULL, TRUE, after);
+  info_body_parse_text (parent, paragraph, NULL, TRUE, after);
   g_free (after);
 }
 
@@ -977,8 +1011,8 @@ parse_tree_level (GtkTreeStore *tree, xmlNodePtr *node, GtkTreeIter iter)
 					     BAD_CAST "Section",
 					     NULL);
 		  if (!notes)
-		    info_body_text (newnode, NULL, FALSE, page_content);
-		  
+		    info_body_text (newnode, NULL, NULL, FALSE, page_content);
+
 		  else {
 		    /* Handle notes here */
 		    info_process_text_notes (&newnode, page_content, tree);
@@ -1151,7 +1185,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
     
 
   if (!notes)
-    info_body_text (newnode, NULL, FALSE, split[0]);
+    info_body_text (newnode, NULL, NULL, FALSE, split[0]);
   else {
     info_process_text_notes (&newnode, split[0], tree);
   }
@@ -1277,212 +1311,208 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
 {
   gchar **notes;
   gchar **current;
-  xmlNodePtr holder;
   xmlNodePtr ref1;
+  xmlNodePtr paragraph = NULL;
   gboolean first = TRUE;
 
-  notes = g_strsplit (content, "*Note", -1);
-  holder = xmlNewChild (*node, NULL, BAD_CAST "noteholder", NULL);
+  /*
+    Split using the regular expression
+
+      \*[Nn]ote(?!_)
+
+    which deals with either case and the last bit is a lookahead so
+    that we don't split on things of the form *Note:_, which aren't
+    real notes.
+  */
+  notes = g_regex_split_simple ("\\*[Nn]ote(?!_)", content, 0, 0);
 
   for (current = notes; *current != NULL; current++) {
-    /* Since the notes can be either *Note or *note, we handle the second 
-     * variety here
-     */
-    gchar **subnotes;
-    gchar **current_real;
-
-    subnotes = g_strsplit (*current, "*note", -1);
-    for (current_real = subnotes; *current_real != NULL; current_real++) {
-      gchar *url, **urls, **ulink;
-      gchar *append;
-      gchar *alt_append, *alt_append1;
-      gchar *link_text;
-      gchar *href = NULL;
-      gchar *break_point = NULL;
-      gboolean broken = FALSE;
-      if (first) {
-	/* The first node is special.  It doesn't have a note ref at the 
-	 * start, so we can just add it and forget about it.
-	 */
-	first = FALSE;
-	info_body_text (holder, NULL, TRUE, (*current_real));
-	continue;
-      }
-      /* If we got to here, we now gotta parse the note reference */
-
-      if (*current_real[0] == '_') {
-	/* Special type of note that isn't really a note, but pretends
-	 * it is
-	 */
-	info_body_text (holder, NULL, TRUE,
-			g_strconcat ("*Note", *current_real, NULL));
-	continue;
-      }
-      append = strchr (*current_real, ':');
-      if (!append) {
-	info_body_text (holder, NULL, TRUE, *current_real);
-	continue;
-      }
-      append++;
-      alt_append = append;
-      alt_append1 = alt_append;
-      append = strchr (append, ':');
-      alt_append = strchr (alt_append, '.');
-      if (alt_append && g_str_has_prefix (alt_append, ".info")) {
-	broken = TRUE;
-	alt_append++;
-	alt_append = strchr (alt_append, '.');
-      }
-      alt_append1 = strchr (alt_append1, ',');
-      if (!append && !alt_append && !alt_append1) {
-	info_body_text (holder, NULL, TRUE, *current_real);
-	continue;
-      }
-      if (!append || alt_append || alt_append1) {
-	if (!append) {
-	  if (alt_append) append = alt_append;
-	  else append = alt_append1;
-	}
-	if ((alt_append && alt_append < append))
-	  append = alt_append;
-	if (alt_append1 && alt_append1 < append)
-	  append = alt_append1;
-      }
-      append++;
-      url = g_strndup (*current_real, append - (*current_real));
-
-      /* By now, we got 2 things.  First, is append which is the (hopefully)
-       * non-link text.  Second, we got a url.
-       * The url can be in several forms:
-       * 1. linkend::
-       * 2. linkend:(infofile)Linkend.
-       * 3. Title: Linkend.
-       * 4. Title: Linkend, (pretty sure this is just broken)
-       * 5. Title: (infofile.info)Linkend.
-       * All possibilities should have been picked up.
-       * Here:
-       * Clean up the split.  Should be left with a real url and
-       * a list of fragments that should be linked
-       * Also goes through and removes extra spaces, leaving only one 
-       * space in place of many
+    gchar *url, **urls, **ulink;
+    gchar *append;
+    gchar *alt_append, *alt_append1;
+    gchar *link_text;
+    gchar *href = NULL;
+    gchar *break_point = NULL;
+    gboolean broken = FALSE;
+    if (first) {
+      /* The first node is special.  It doesn't have a note ref at the 
+       * start, so we can just add it and forget about it.
        */
-      urls = g_strsplit (url, "\n", -1);
-      break_point = strchr (url, '\n');
-      while (break_point) {
-	*break_point = ' ';
-	break_point = strchr (++break_point, '\n');
-      }
-      break_point = strchr (url, ' ');
-      while (break_point) {
-	if (*(break_point+1) == ' ') {
-	  /* Massive space.  Fix. */
-	  gchar *next = break_point;
-	  gchar *url_copy;
-	  while (*next == ' ')
-	    next++;
-	  next--;
-	  url_copy = g_strndup (url, break_point-url);
-	  g_free (url);
-	  url = g_strconcat (url_copy, next, NULL);
-	  break_point = strchr (url, ' ');
-	  g_free (url_copy);
-	} else {
-	  break_point++;
-	  break_point = strchr (break_point, ' ');
-	}
-      }
-      if (url[strlen(url)-1] == '.') { /* The 2nd or 3rd sort of link */ 
-	gchar *stop = NULL;
-	gchar *lurl = NULL;
-	gchar *zloc = NULL;
-	stop = strchr (url, ':');
-	lurl = strchr (stop, '(');
-	if (!lurl) { /* 3rd type of link */
-	  gchar *link;
-	  gint length;
-	  stop++;
-	  link = g_strdup (stop);
-	  link = g_strstrip (link);
-	  length = strlen (link) - 1;
-	  link[length] = '\0';	  
-	  href = g_strconcat ("xref:", link, NULL);
-	  link[length] = 'a';
-	  g_free (link);
-
-
-	} else { /* 2nd type of link.  Easy. Provided .info is neglected ;) */
-	  if (broken) {
-	    gchar *new_url;
-	    gchar *info;
-	    gchar *stripped;
-
-	    new_url = g_strdup (lurl);
-	    info = strstr (new_url, ".info)");
-	    stripped = g_strndup (new_url, info-new_url);
-	    info +=5;
-	    lurl = g_strconcat (stripped, info, NULL);
-	    g_free (stripped);
-	    g_free (new_url);
-	  }
-	  zloc = &(lurl[strlen(lurl)-1]);
-	  *zloc = '\0';
-	  href = g_strconcat ("info:", lurl, NULL);
-	  *zloc = 'a';
-	}
-      } else { /* First kind of link */
-	gchar *tmp1;
-	gchar *frag;
-
-	tmp1 = strchr (url, ':');
-	if (!tmp1)
-	  frag = g_strdup (url);
-	else 
-	  frag = g_strndup (url, tmp1 - url);
-	g_strstrip (frag);
-	gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, &frag);
-	href = g_strconcat ("xref:", frag, NULL);
-        g_free (frag);
-      }
-      for (ulink = urls; *ulink != NULL; ulink++) {
-	if (ulink == urls)
-	  link_text = g_strconcat ("*Note", *ulink, NULL);
-	else {
-	  gchar *spacing = *ulink;
-	  gchar *tmp;
-	  gint count = 0;
-	  while (*spacing == ' ') {
-	    spacing++;
-	    count++;
-	  }
-	  if (spacing != *ulink) {
-	    if (count > 1)
-	      spacing-=2;
-	    tmp = g_strndup (*ulink, spacing-*ulink);
-	    if (count > 1)
-	      spacing+=2;
-	    xmlNewTextChild (holder, NULL, BAD_CAST "spacing",
-			     BAD_CAST tmp);
-	    g_free (tmp);
-	    link_text = g_strdup (spacing);
-	  } else {
-	    link_text = g_strdup (*ulink);
-	  }
-	}
-	ref1 = xmlNewTextChild (holder, NULL, BAD_CAST "a",
-				BAD_CAST link_text);
-	if (*(ulink+1) != NULL)
-	  info_body_text (holder, NULL, FALSE, "");
-
-	g_free (link_text);
-	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST href);
-      }
-      g_strfreev (urls);
-      /* Finally, we can add the text as required */
-      info_body_text (holder, NULL, TRUE, append);
-      g_free (url);
-      g_free (href);
+      first = FALSE;
+      info_body_text (*node, &paragraph, NULL, TRUE, (*current));
+      continue;
     }
-    g_strfreev (subnotes);
+
+    /* If we got to here, we now gotta parse the note reference */
+    append = strchr (*current, ':');
+    if (!append) {
+      info_body_text (*node, &paragraph, NULL, TRUE, *current);
+      continue;
+    }
+    append++;
+    alt_append = append;
+    alt_append1 = alt_append;
+    append = strchr (append, ':');
+    alt_append = strchr (alt_append, '.');
+    if (alt_append && g_str_has_prefix (alt_append, ".info")) {
+      broken = TRUE;
+      alt_append++;
+      alt_append = strchr (alt_append, '.');
+    }
+    alt_append1 = strchr (alt_append1, ',');
+    if (!append && !alt_append && !alt_append1) {
+      info_body_text (*node, &paragraph, NULL, TRUE, *current);
+      continue;
+    }
+    if (!append || alt_append || alt_append1) {
+      if (!append) {
+        if (alt_append) append = alt_append;
+        else append = alt_append1;
+      }
+      if ((alt_append && alt_append < append))
+        append = alt_append;
+      if (alt_append1 && alt_append1 < append)
+        append = alt_append1;
+    }
+    append++;
+    url = g_strndup (*current, append - (*current));
+
+    /* By now, we got 2 things.  First, is append which is the (hopefully)
+     * non-link text.  Second, we got a url.
+     * The url can be in several forms:
+     * 1. linkend::
+     * 2. linkend:(infofile)Linkend.
+     * 3. Title: Linkend.
+     * 4. Title: Linkend, (pretty sure this is just broken)
+     * 5. Title: (infofile.info)Linkend.
+     * All possibilities should have been picked up.
+     * Here:
+     * Clean up the split.  Should be left with a real url and
+     * a list of fragments that should be linked
+     * Also goes through and removes extra spaces, leaving only one 
+     * space in place of many
+     */
+    urls = g_strsplit (url, "\n", -1);
+    break_point = strchr (url, '\n');
+    while (break_point) {
+      *break_point = ' ';
+      break_point = strchr (++break_point, '\n');
+    }
+    break_point = strchr (url, ' ');
+    while (break_point) {
+      if (*(break_point+1) == ' ') {
+        /* Massive space.  Fix. */
+        gchar *next = break_point;
+        gchar *url_copy;
+        while (*next == ' ')
+          next++;
+        next--;
+        url_copy = g_strndup (url, break_point-url);
+        g_free (url);
+        url = g_strconcat (url_copy, next, NULL);
+        break_point = strchr (url, ' ');
+        g_free (url_copy);
+      } else {
+        break_point++;
+        break_point = strchr (break_point, ' ');
+      }
+    }
+    if (url[strlen(url)-1] == '.') { /* The 2nd or 3rd sort of link */
+      gchar *stop = NULL;
+      gchar *lurl = NULL;
+      gchar *zloc = NULL;
+      stop = strchr (url, ':');
+      lurl = strchr (stop, '(');
+      if (!lurl) { /* 3rd type of link */
+        gchar *link;
+        gint length;
+        stop++;
+        link = g_strdup (stop);
+        link = g_strstrip (link);
+        length = strlen (link) - 1;
+        link[length] = '\0';
+        href = g_strconcat ("xref:", link, NULL);
+        link[length] = 'a';
+        g_free (link);
+
+
+      } else { /* 2nd type of link.  Easy. Provided .info is neglected ;) */
+        if (broken) {
+          gchar *new_url;
+          gchar *info;
+          gchar *stripped;
+
+          new_url = g_strdup (lurl);
+          info = strstr (new_url, ".info)");
+          stripped = g_strndup (new_url, info-new_url);
+          info +=5;
+          lurl = g_strconcat (stripped, info, NULL);
+          g_free (stripped);
+          g_free (new_url);
+        }
+        zloc = &(lurl[strlen(lurl)-1]);
+        *zloc = '\0';
+        href = g_strconcat ("info:", lurl, NULL);
+        *zloc = 'a';
+      }
+    } else { /* First kind of link */
+      gchar *tmp1;
+      gchar *frag;
+
+      tmp1 = strchr (url, ':');
+      if (!tmp1)
+        frag = g_strdup (url);
+      else
+        frag = g_strndup (url, tmp1 - url);
+      g_strstrip (frag);
+      gtk_tree_model_foreach (GTK_TREE_MODEL (tree), resolve_frag_id, &frag);
+      href = g_strconcat ("xref:", frag, NULL);
+      g_free (frag);
+    }
+
+    /* Check we've got a valid paragraph node */
+    if (!paragraph) {
+      paragraph = xmlNewChild (*node, NULL, BAD_CAST "para", NULL);
+    }
+
+    for (ulink = urls; *ulink != NULL; ulink++) {
+      if (ulink == urls)
+        link_text = g_strconcat ("*Note", *ulink, NULL);
+      else {
+        gchar *spacing = *ulink;
+        gchar *tmp;
+        gint count = 0;
+        while (*spacing == ' ') {
+          spacing++;
+          count++;
+        }
+        if (spacing != *ulink) {
+          if (count > 1)
+            spacing-=2;
+          tmp = g_strndup (*ulink, spacing-*ulink);
+          if (count > 1)
+            spacing+=2;
+          xmlNewTextChild (paragraph, NULL, BAD_CAST "spacing",
+                           BAD_CAST tmp);
+          g_free (tmp);
+          link_text = g_strdup (spacing);
+        } else {
+          link_text = g_strdup (*ulink);
+        }
+      }
+      ref1 = xmlNewTextChild (paragraph, NULL, BAD_CAST "a",
+                              BAD_CAST link_text);
+      if (*(ulink+1) != NULL)
+        info_body_text (*node, &paragraph, NULL, FALSE, "");
+
+      g_free (link_text);
+      xmlNewProp (ref1, BAD_CAST "href", BAD_CAST href);
+    }
+    g_strfreev (urls);
+    /* Finally, we can add the text as required */
+    info_body_text (*node, &paragraph, NULL, TRUE, append);
+    g_free (url);
+    g_free (href);
   }
   g_strfreev (notes);
 }
