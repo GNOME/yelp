@@ -1377,6 +1377,9 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
     append++;
     url = g_strndup (*current, append - (*current));
 
+    /* Save a copy of the unadulterated link text for later. */
+    link_text = g_strconcat ("*Note", url, NULL);
+
     /* By now, we got 2 things.  First, is append which is the (hopefully)
      * non-link text.  Second, we got a url.
      * The url can be in several forms:
@@ -1475,42 +1478,23 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
       paragraph = xmlNewChild (*node, NULL, BAD_CAST "para", NULL);
     }
 
-    for (ulink = urls; *ulink != NULL; ulink++) {
-      if (ulink == urls)
-        link_text = g_strconcat ("*Note", *ulink, NULL);
-      else {
-        gchar *spacing = *ulink;
-        gchar *tmp;
-        gint count = 0;
-        while (*spacing == ' ') {
-          spacing++;
-          count++;
-        }
-        if (spacing != *ulink) {
-          if (count > 1)
-            spacing-=2;
-          tmp = g_strndup (*ulink, spacing-*ulink);
-          if (count > 1)
-            spacing+=2;
-          xmlNewTextChild (paragraph, NULL, BAD_CAST "spacing",
-                           BAD_CAST tmp);
-          g_free (tmp);
-          link_text = g_strdup (spacing);
-        } else {
-          link_text = g_strdup (*ulink);
-        }
-      }
-      ref1 = xmlNewTextChild (paragraph, NULL, BAD_CAST "a",
-                              BAD_CAST link_text);
-      if (*(ulink+1) != NULL)
-        info_body_text (*node, &paragraph, NULL, FALSE, "");
+    /*
+      Now we're supposed to actually render the link. I have a list of
+      bits of URL and actually this is really easy - I want to have
+      the link *text* exactly the same as it appeared in the .info
+      file, so don't use the list of strings urls, instead use the
+      whole lot: url (complete with embedded newlines etc.)
+    */
+    ref1 = xmlNewTextChild (paragraph, NULL, BAD_CAST "a",
+                            BAD_CAST link_text);
+    g_free (link_text);
+    xmlNewProp (ref1, BAD_CAST "href", BAD_CAST href);
 
-      g_free (link_text);
-      xmlNewProp (ref1, BAD_CAST "href", BAD_CAST href);
-    }
     g_strfreev (urls);
-    /* Finally, we can add the text as required */
+
+    /* Finally, we can add the following text as required */
     info_body_text (*node, &paragraph, NULL, TRUE, append);
+
     g_free (url);
     g_free (href);
   }
