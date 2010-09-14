@@ -1158,13 +1158,13 @@ get_menuoptions (gchar *line, gchar **title, gchar **ref, gchar **desc,
   return TRUE;
 }
 
-/* Find the first non-space character in str or return pointer to the
+/* Find the first non whitespace character in str or return pointer to the
  * '\0' if there isn't one. */
 static gchar*
 first_non_space (gchar* str)
 {
   /* As long as str is null terminated, this is ok! */
-  while (*str == ' ') str++;
+  while (g_ascii_isspace (*str)) str++;
   return str;
 }
 
@@ -1227,6 +1227,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
     gchar *ref = NULL;
     gchar *desc = NULL;
     gchar *xref = NULL;
+    gchar *link_text = NULL;
     xmlNodePtr ref1;
 
     menu = get_menuoptions (menuitems[i], &title, &ref, &desc, &xref);
@@ -1244,8 +1245,10 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
       if (ref == NULL) { /* A standard type menu */
         /* title+2 skips the "* ". We know we haven't jumped over the
            end of the string because strlen (title) >= 3 */
-	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
-				BAD_CAST title+2);
+        link_text = g_strdup (title+2);
+
+        ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
+                                BAD_CAST link_text);
 
         tmp = g_strconcat ("xref:", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
@@ -1263,8 +1266,10 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
 	}
 	sp = g_strndup (ref, c);
 	
+        link_text = g_strdup (title);
+
 	ref1 = xmlNewTextChild (mholder, NULL, BAD_CAST "a",
-					BAD_CAST title);
+                                BAD_CAST link_text);
         tmp = g_strconcat ("xref:", xref, NULL);
 	xmlNewProp (ref1, BAD_CAST "href", BAD_CAST tmp);
         g_free (tmp);
@@ -1282,10 +1287,27 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
       }
 
       tmp = g_strconcat ("\n", first_non_space (desc), NULL);
-      xmlNewTextChild (mholder, NULL, BAD_CAST "para1",
-		       BAD_CAST tmp);
-      g_free (tmp);
 
+      /*
+        Don't print the link text a second time, because that looks
+        really stupid.
+
+        We don't do a straight check for equality because lots of
+        .info files have something like
+
+          * Foo::    Foo.
+
+        Obviously if the longer explanation has more afterwards, we
+        don't want to omit it, which is why there's the strlen test.
+      */
+      if (strncmp (link_text, tmp + 1, strlen (link_text)) ||
+          strlen (link_text) + 1 < strlen (tmp + 1)) {
+        xmlNewTextChild (mholder, NULL,
+                         BAD_CAST "para1", BAD_CAST tmp);
+      }
+
+      g_free (tmp);
+      g_free (link_text);
     }
     else if (*(menuitems[i]) != '\0') {
       tmp = g_strconcat ("\n", first_non_space (menuitems[i]), NULL);
