@@ -211,7 +211,7 @@ info_request_page (YelpDocument         *document,
                                                                              callback,
                                                                              user_data);
     if (handled) {
-        return;
+        return TRUE;
     }
 
     g_mutex_lock (priv->mutex);
@@ -241,6 +241,7 @@ info_request_page (YelpDocument         *document,
     }
 
     g_mutex_unlock (priv->mutex);
+    return TRUE;
 }
 
 
