@@ -1283,12 +1283,12 @@ find_entry_key_press (GtkEntry    *entry,
     if (priv->find_animate != 0)
         return TRUE;
 
-    if (event->keyval == GDK_Escape) {
+    if (event->keyval == GDK_KEY_Escape) {
         gtk_widget_grab_focus (GTK_WIDGET (priv->view));
         return TRUE;
     }
 
-    if (event->keyval == GDK_Return || event->keyval == GDK_KP_Enter) {
+    if (event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_KP_Enter) {
         gchar *text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
         webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
                                      text, FALSE, TRUE, TRUE);
@@ -1564,7 +1564,7 @@ hidden_key_press (GtkWidget    *widget,
                   YelpWindow   *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
-    if (event->keyval == GDK_Escape) {
+    if (event->keyval == GDK_KEY_Escape) {
         gtk_widget_grab_focus (GTK_WIDGET (priv->view));
         return TRUE;
     }
@@ -1742,7 +1742,7 @@ bookmark_key_release (GtkTreeView *view,
                       GdkEventKey *event,
                       YelpWindow  *window)
 {
-    if (event->keyval == GDK_Delete) {
+    if (event->keyval == GDK_KEY_Delete) {
         bookmark_remove (window);
         return TRUE;
     }

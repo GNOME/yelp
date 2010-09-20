@@ -974,7 +974,7 @@ entry_key_press_cb (GtkWidget   *widget,
                     YelpLocationEntry *entry)
 {
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
-    if (event->keyval == GDK_Escape) {
+    if (event->keyval == GDK_KEY_Escape) {
         location_entry_cancel_search (entry);
         return TRUE;
     }
