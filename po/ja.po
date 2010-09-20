@@ -1,17 +1,17 @@
 # Yelp ja.po.
-# Copyright (C) 2002-2008 Free Software Foundation, Inc.
+# Copyright (C) 2002-2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the Yelp package.
 # Satoru SATOH <ss@gnome.gr.jp>, 2005, 2006
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2002-2008.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
-# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2009.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2009-2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp master\n"
+"Project-Id-Version: yelp gnome-2-30\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2009-09-19 22:50+0900\n"
+"POT-Creation-Date: 2010-08-11 21:47+0000\n"
 "PO-Revision-Date: 2009-09-19 23:00+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -245,7 +245,7 @@ msgstr "システム・コール"
 
 #: ../data/man.xml.in.h:55
 msgid "System V Form/Menu Functions"
-msgstr "システムＶ系/メニュー関数"
+msgstr "システムV系/メニュー関数"
 
 #: ../data/man.xml.in.h:56
 msgid "TIFF Functions"
@@ -538,7 +538,7 @@ msgstr "ハードウェアの設定"
 
 #: ../data/toc.xml.in.h:67
 msgid "Have some fun"
-msgstr "いろいろなゲームで楽しんで下さい"
+msgstr "いろいろなゲームで楽しんでください"
 
 #: ../data/toc.xml.in.h:68
 msgid "History"
@@ -684,7 +684,7 @@ msgstr "プレイヤー"
 msgid "Presentation Tools"
 msgstr "プレゼン・ツール"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "印刷"
 
@@ -962,27 +962,27 @@ msgstr "ファイルが有効な .desktop ではありません"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "認識できない desktop ファイルのバージョン '%s'"
 
-#: ../src/eggdesktopfile.c:958
+#: ../src/eggdesktopfile.c:957
 #, c-format
 msgid "Starting %s"
 msgstr "%s を起動中"
 
-#: ../src/eggdesktopfile.c:1100
+#: ../src/eggdesktopfile.c:1098
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "アプリケーションがコマンドラインでドキュメントを受け付けません"
 
-#: ../src/eggdesktopfile.c:1168
+#: ../src/eggdesktopfile.c:1166
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "認識できない起動オプション: %d"
 
-#: ../src/eggdesktopfile.c:1373
+#: ../src/eggdesktopfile.c:1365
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "ドキュメントのURIを 'Type=Link' のデスクトップ・エントリに渡せません"
 
-#: ../src/eggdesktopfile.c:1392
+#: ../src/eggdesktopfile.c:1384
 #, c-format
 msgid "Not a launchable item"
 msgstr "起動できないアイテムです"
@@ -1015,46 +1015,46 @@ msgstr "セッション管理オプション:"
 msgid "Show session management options"
 msgstr "セッション管理オプションを表示"
 
-#: ../src/yelp-bookmarks.c:148
+#: ../src/yelp-bookmarks.c:147
 msgid "Open Bookmark in New Window"
 msgstr "新しいウィンドウでブックマークを開きます"
 
-#: ../src/yelp-bookmarks.c:152
+#: ../src/yelp-bookmarks.c:151
 msgid "Rename Bookmark"
 msgstr "ブックマークの名前を変更します"
 
-#: ../src/yelp-bookmarks.c:156
+#: ../src/yelp-bookmarks.c:155
 msgid "Remove Bookmark"
 msgstr "ブックマークを削除します"
 
-#: ../src/yelp-bookmarks.c:314
+#: ../src/yelp-bookmarks.c:319
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "%s というページのブックマークは既にあります"
 
-#: ../src/yelp-bookmarks.c:390
+#: ../src/yelp-bookmarks.c:395
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "<b>%s</b> というページのブックマークは既にあります"
 
-#: ../src/yelp-bookmarks.c:403
+#: ../src/yelp-bookmarks.c:408
 msgid "Help Topics"
 msgstr "ヘルプのトピック"
 
-#: ../src/yelp-bookmarks.c:418
+#: ../src/yelp-bookmarks.c:423
 msgid "Document Sections"
 msgstr "ドキュメントのセクション"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-mallard.c:380
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
 #: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
 #: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "ページが見つかりませんでした"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-mallard.c:381 ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "ページ %s がドキュメント %s の中にはありませんでした。"
@@ -1108,7 +1108,7 @@ msgstr "原因不明"
 msgid "Unknown Error"
 msgstr "原因不明のエラー"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1723
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1719
 msgid "Could Not Read File"
 msgstr "ファイルを読み込めませんでした"
 
@@ -1149,11 +1149,11 @@ msgstr " GNOME ヘルプ・ブラウザ"
 msgid "Help"
 msgstr "ヘルプ"
 
-#: ../src/yelp-mallard.c:311
+#: ../src/yelp-mallard.c:315
 msgid "Directory not found"
 msgstr "ディレクトリが見つかりません"
 
-#: ../src/yelp-mallard.c:312
+#: ../src/yelp-mallard.c:316
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "ディレクトリ '%s' がありません。"
@@ -1165,32 +1165,32 @@ msgid ""
 msgstr ""
 "ファイル '%s' が well-formed な man ページではないため解析できませんでした。"
 
-#: ../src/yelp-print.c:97
+#: ../src/yelp-print.c:99
 msgid "Print"
 msgstr "印刷"
 
-#: ../src/yelp-print.c:167
+#: ../src/yelp-print.c:169
 msgid "Preparing to print"
 msgstr "印刷の準備中"
 
-#: ../src/yelp-print.c:261
+#: ../src/yelp-print.c:263
 msgid "Printing is not supported on this printer"
 msgstr "このプリンタへの印刷はサポートしていません"
 
-#: ../src/yelp-print.c:264
+#: ../src/yelp-print.c:266
 #, c-format
 msgid "Printer %s does not support postscript printing."
 msgstr "プリンタ %s は Postscript 印刷をサポートしていません"
 
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:368
 msgid "Waiting to print"
 msgstr "待機中"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:580
 msgid "An error occurred while printing"
 msgstr "印刷する際にエラーが発生しました"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:584
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "ドキュメントを印刷できませんでした: %s"
@@ -1208,7 +1208,7 @@ msgstr "\"%s\" に該当するものはありません"
 msgid ""
 "Try using different words to describe the problem you're having or the topic "
 "you want help with."
-msgstr "別の単語または関連するトピックを指定してみて下さい。"
+msgstr "別の単語または関連するトピックを指定してみてください。"
 
 #: ../src/yelp-search-parser.c:289
 #, c-format
@@ -1383,7 +1383,7 @@ msgstr "コピー(_C)"
 
 #: ../src/yelp-window.c:348
 msgid "_Select All"
-msgstr "全て選択(_S)"
+msgstr "すべて選択(_S)"
 
 #: ../src/yelp-window.c:353
 msgid "_Find..."
@@ -1411,7 +1411,7 @@ msgstr "設定(_P)"
 
 #: ../src/yelp-window.c:373
 msgid "_Reload"
-msgstr "再読込み(_R)"
+msgstr "再読み込み(_R)"
 
 #: ../src/yelp-window.c:385
 msgid "_Back"
@@ -1485,7 +1485,7 @@ msgstr "E-メール・アドレスのコピー(_E)"
 msgid "Help Browser"
 msgstr "ヘルプ・ブラウザ"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1785
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1782
 msgid "Loading..."
 msgstr "読み込み中..."
 
@@ -1493,50 +1493,50 @@ msgstr "読み込み中..."
 msgid "Unknown Page"
 msgstr "不明なページ"
 
-#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "指定した URI \"%s\" が間違っています"
 
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
 msgid "Unable to load page"
 msgstr "ページを読み込めません"
 
-#: ../src/yelp-window.c:1343
+#: ../src/yelp-window.c:1339
 msgid "_Search:"
 msgstr "検索(_S):"
 
-#: ../src/yelp-window.c:1344
+#: ../src/yelp-window.c:1340
 msgid "Search for other documentation"
 msgstr "他のドキュメントの検索"
 
-#: ../src/yelp-window.c:1364
+#: ../src/yelp-window.c:1360
 msgid "Cannot create window"
 msgstr "ウィンドウを生成できません"
 
-#: ../src/yelp-window.c:1370
+#: ../src/yelp-window.c:1366
 msgid "Cannot create search component"
 msgstr "検索コンポーネントを生成できません"
 
-#: ../src/yelp-window.c:1542
+#: ../src/yelp-window.c:1538
 msgid "Fin_d:"
 msgstr "検索(_D):"
 
-#: ../src/yelp-window.c:1564
+#: ../src/yelp-window.c:1560
 msgid "Find _Previous"
 msgstr "後方検索(_P)"
 
-#: ../src/yelp-window.c:1576
+#: ../src/yelp-window.c:1572
 msgid "Find _Next"
 msgstr "前方検索(_N)"
 
-#: ../src/yelp-window.c:1589
+#: ../src/yelp-window.c:1585
 msgid "Phrase not found"
 msgstr "語句が見つかりませんでした"
 
-#: ../src/yelp-window.c:1720
+#: ../src/yelp-window.c:1716
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1547,19 +1547,20 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2602
+#: ../src/yelp-window.c:2625
 msgid "translator-credits"
 msgstr ""
 "Satoru SATOH <ss@gnome.gr.jp>\n"
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
-"日本GNOMEユーザー会 http://www.gnome.gr.jp"
+"草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
+"日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
 
-#: ../src/yelp-window.c:2605
+#: ../src/yelp-window.c:2628
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2607
+#: ../src/yelp-window.c:2630
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "GNOME デスクトップ向けのドキュメント閲覧ブラウザです。"
 
