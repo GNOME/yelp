@@ -2,670 +2,1534 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>, 2005
-#
+# Gheyret T.Kenji <gheyret@gmail.com>, 2010
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-11 16:25+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&component=general\n"
+"POT-Creation-Date: 2010-08-11 21:47+0000\n"
+"PO-Revision-Date: 2010-08-10 20:54+0000\n"
+"Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
 "Language-Team: GNOME Uighur Translation Project <gnome-uighur@yahoogroups."
 "com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-08-10 20:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:1
+msgid "GNU Info Pages"
+msgstr "GNU ئۇچۇر بەتلىرى"
+
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "ئەنئەنىۋى بۇيرۇق قۇرى ياردىمى (ئۇچۇرى)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
-msgstr "قوللانما پىروگراممىلىرى"
+msgstr "پروگراممىلار"
 
-#: data/man.xml.in.h:2
+#: ../data/man.xml.in.h:2
+msgid "BLT Functions"
+msgstr "BTL فۇنكسىيىلىرى"
+
+#: ../data/man.xml.in.h:3
 msgid "Configuration Files"
-msgstr "قۇرۇلما ھۆججەتلىرى"
+msgstr "سەپلىمە ھۆججەتلىرى"
 
-#: data/man.xml.in.h:3
+#: ../data/man.xml.in.h:4
+msgid "Curses Functions"
+msgstr "Curses فۇنكسىيىسى"
+
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
-msgstr "تەرەققىيات"
+msgstr "ئىجادىيەت"
 
-#: data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr "فۇنكسىيەلىرى FORTRAN"
+msgstr "FORTRAN فۇنكسىيىلىرى"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "ئويۇنلار"
 
-#: data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
-msgstr "قاتتىق دېتال زاپچاسلىرى"
+msgstr "قاتتىق دېتال ئۈسكۈنىلىرى"
 
-#: data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
-msgstr "Kernel Routines"
+msgstr "Kernel فۇنكسىيىلىرى"
 
-#: data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "كۈتۈپخانا فۇنكىسىيەلىرى"
+#: ../data/man.xml.in.h:10
+msgid "Manual Pages"
+msgstr "قوللانما بەتلىرى"
 
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:787
-msgid "Man Pages"
-msgstr "بەتلىرى Man "
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr "توردىكى ئۈن ئاۋاز فۇنكسىيىسى"
 
-#: data/man.xml.in.h:10
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
-msgstr "قوللانما پىروگراممىلىرى OpenSSL"
+msgstr "OpenSSL پروگراممىلىرى"
 
-#: data/man.xml.in.h:11
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
-msgstr "|نىڭ قۇرۇلمىسى OpenSSL"
+msgstr "OpenSSL سەپلىمىسى"
 
-#: data/man.xml.in.h:12
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr "OpenSSL  فۇنكسىيىلىرى"
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
-msgstr "نىڭ قىسقىچە تونۇشتۇرىلىشى OpenSSL"
+msgstr "OpenSSL نىڭ قىسقىچە تونۇشتۇرۇلۇشى"
 
-#: data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
-msgstr " قىسقىچە تونۇشتۇرۇش"
+msgstr "قىسقىچە تونۇشتۇرۇش"
 
-#: data/man.xml.in.h:14
+#: ../data/man.xml.in.h:17
+msgid "POSIX Functions"
+msgstr "POSIX  نىڭ فۇنكسىيىلىرى"
+
+#: ../data/man.xml.in.h:18
+msgid "POSIX Headers"
+msgstr "POSIX بېشى"
+
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
-msgstr "فۇنكىسىيەلىرى Perl"
+msgstr "Perl فۇنكسىيىلىرى"
 
-#: data/man.xml.in.h:15
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
-msgstr "فۇنكىسىيەلىرى Qt"
+msgstr "Qt فۇنكسىيىلىرى"
 
-#: data/man.xml.in.h:16
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Readline فۇنكسىيىسى"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "0p بۆلەك"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "1m بۆلەك"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "1ssl بۆلەك"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "1x بۆلەك"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "2 بۆلەك"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "3blt بۆلەك"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "3f بۆلەك"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "3nas بۆلەك"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "3p بۆلەك"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "3qt بۆلەك"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "3readline بۆلەك"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "3ssl بۆلەك"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "3tiff بۆلەك"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "4 بۆلەك"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "4x بۆلەك"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "5 بۆلەك"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "5ssl بۆلەك"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "5x بۆلەك"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "6 بۆلەك"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "6x بۆلەك"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "7ssl بۆلەك"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "7x بۆلەك"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "9 بۆلەك"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "1، 1p، 1g ۋە 1t بۆلەك"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "3، 3o ۋە 3t بۆلەك"
+
+#: ../data/man.xml.in.h:47
+msgid "Sections 3form and 3menu"
+msgstr "3form ۋە 3menu بۆلەك"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "3ncurses ۋە 3curses بۆلەك"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "3pm ۋە 3perl بۆلەك"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "3x ۋە 3X11 بۆلەك"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "7 ۋە 7gcc بۆلەك"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "8 ۋە 8l بۆلەك"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "سىستېما باشقۇرۇش"
 
-#: data/man.xml.in.h:17
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
-msgstr "سىستېما يۆتكەپ ئىشلىتىشى"
+msgstr "سىستېما چاقىرىش"
 
-#: data/man.xml.in.h:18
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "System V جەدۋەل/تىزىملىك فۇنكسىيىسى"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "TIFF فۇنكسىيىلىرى"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
-msgstr "قوللىنىش پىروگراممىلىرى Termcap"
+msgstr "Termcap پروگراممىلىرى"
 
-#: data/man.xml.in.h:19
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "ئەنئەنىۋى بۇيرۇق قۇرى ياردىمى (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
-msgstr "قوللىنىش پىروگراممىلىرى X11"
+msgstr "X11  پروگراممىلىرى"
 
-#: data/man.xml.in.h:20
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
-msgstr "قۇرۇلمىسى X11 "
+msgstr "X11 سەپلىمىسى"
 
-#: data/man.xml.in.h:21
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
-msgstr "زاپچاسلىرى X11"
+msgstr "X11 ئۈسكۈنىلىرى"
 
-#: data/man.xml.in.h:22
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
-msgstr "فۇنكسىيەلىرى X11"
+msgstr "X11 فۇنكسىيىلىرى"
 
-#: data/man.xml.in.h:23
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
-msgstr "ئويۇنلىرى X11"
+msgstr "X11 ئويۇنلىرى"
 
-#: data/man.xml.in.h:24
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
-msgstr "نىڭ قىسقىچە چۈشەندۈرىلىشى X11"
+msgstr "X11 نىڭ قىسقىچە چۈشەندۈرۈلۈشى"
 
-#: data/toc.xml.in.h:1
+#: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "2D گرافىكى"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "3D گرافىكى"
+
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
 msgstr "ياردەم ئىقتىدارى"
 
-#: data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr "قوشۇمچە زاپچاسلار"
+#: ../data/toc.xml.in.h:4
+msgid "Action Games"
+msgstr "ھەرىكەتلىك ئويۇن"
 
-#: data/toc.xml.in.h:3
-msgid "Administration"
-msgstr "باشقۇرۇش"
+#: ../data/toc.xml.in.h:5
+msgid "Adventure Games"
+msgstr "تەۋەككۈلچىلىك ئويۇنى"
 
-#: data/toc.xml.in.h:5
+#: ../data/toc.xml.in.h:6
+msgid "Amusement"
+msgstr "كۆڭۈل خۇشلۇقى"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications for viewing and manipulating graphics"
+msgstr "گرافىك كۆرۈش ۋە بىر تەرەپ قىلىشقا ئىشلىتىدىغان پروگرامما"
+
+#: ../data/toc.xml.in.h:8
+msgid "Applications related to audio and video"
+msgstr "ئۈن ۋە سىنغا مۇناسىۋەتلىك پروگرامما"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications that teach or aid in learning"
+msgstr "مائارىپ ۋە ئوقۇتۇشتا ياردەمچى پروگرامما"
+
+#: ../data/toc.xml.in.h:10
+msgid "Arcade Games"
+msgstr "Arcade ئويۇنى"
+
+#: ../data/toc.xml.in.h:11
+msgid "Archiving Tools"
+msgstr "ئارخىپ قورالى"
+
+#: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "سەنئەت"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "سۈنئىي ئىدراك"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "ئاسترونومىيە"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "بىئولوگىيە"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "خىش ئويۇنى"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "تاختاي ئويۇنلىرى"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "قۇرۇلۇش"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "ھېسابلىغۇچ"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "يىلنامە"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "قارتا ئويۇنلىرى"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "سىزمىچىلىق قوراللىرى"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "پاراڭ"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "خىمىيە"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "سائەتلەر"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "پرېسلاش پروگراممىلىرى"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "كومپيۇتېر ئىلمى"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "قۇرۇلۇش"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "ئالاقىلەشكۈچىلەرنى باشقۇرۇش"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "سانلىق مەلۇمات كۆرۈنۈشچانلىقى"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "ساندان"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "سازلىغۇچلار"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "ئۈستەليۈزى"
 
-#: data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "ئوقۇتۇش قوللانما پروگراممىلىرى"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "ئۈستەليۈزى تەڭشىكى"
 
-#: data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr "نومۇر بۇراش"
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "لۇغەتلەر"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "دىسكا ئويۇش"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "ئىقتىساد"
+
+#: ../data/toc.xml.in.h:41
+msgid "Education"
+msgstr "مائارىپ"
+
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "ئېلېكتر"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "ئېلېكترونىكا"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "ئېلخەت قوراللىرى"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "تەقلىدلەشتۈرگۈچ"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "ئىنژېنېرلىق ئىلمى"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "ھۆججەت باشقۇرغۇ"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "ھۆججەت قورالى"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "ھۆججەت يوللاش"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "ھۆججەت سىستېمىسى"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "مالىيە قورالى"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "تەرتىپ دىئاگرامما قورالى"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "GNOME  پروگراممىلىرى"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "ئىشلەتكۈچى كۆرۈنمە يۈز لايىھىلىگۈچى"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "GNOME مۇھىتىدىكى ئادەتتىكى پروگراممىلار"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "KDE مۇھىتىدىكى ئادەتتىكى  پروگراممىلار"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "جۇغراپىيە"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "گېئولوگىيە"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "يەر شارى ئىلمى"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
-msgstr "گىرافىكلار"
+msgstr "گرافىك"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:391
-msgid "Help Topics"
-msgstr "ياردەم تېمىلىرى"
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "توردىكى پروگرامما قوللانمىسى ۋە ياردىمى"
 
-#: data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "ئىجادىيەتكە قاتنىشىشقا مۇناسىۋەتلىك كۆرسەتمىلەر"
+
+#: ../data/toc.xml.in.h:65
+msgid "Ham Radio"
+msgstr "سىمسىز تېلېگراف ھەۋەسكارلار رادىئوسى"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "قاتتىق دېتال تەڭشىكى"
+
+#: ../data/toc.xml.in.h:67
+msgid "Have some fun"
+msgstr "خۇشال ئويناڭ"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "تارىخ"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "يۈرۈشلەشتۈرۈلگەن ئىجادىيەت مۇھىتلىرى"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "IRC خېرىدارى"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "سۈرەتچىلىك"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "مۇڭداشقۇ"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
 msgstr "ئىنتېرنېت"
 
-#: data/toc.xml.in.h:11
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: data/toc.xml.in.h:12
-msgid "Multimedia"
-msgstr "ناخشا مۇزىكىلار"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE پروگراممىلىرى"
 
-#: data/toc.xml.in.h:13
-msgid "Office"
-msgstr "ئشخانا"
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "بالىلار ئويۇنلىرى"
 
-#: data/toc.xml.in.h:14
-msgid "Other"
-msgstr "باشقىلار"
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr "سىستېمىڭىزنى تېخىمۇ كۆپ مېيىپلەرنىڭ ئىشلىتىشى ئۈچۈن ئىزدىنىپ كۆرۈڭ"
 
-#: data/toc.xml.in.h:15
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "ئىجازەتنامىلەر"
+
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "ئەدەبىيات"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "لوگىكىلىق ئويۇن"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "ماتېماتىكا"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "تېببىي يۇمشاق دېتال"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "باشقا پۈتۈكلەر"
+
+#: ../data/toc.xml.in.h:85
+msgid "Mixers"
+msgstr "ئاۋاز تەڭشىگۈچ"
+
+#: ../data/toc.xml.in.h:86
+msgid "Monitor"
+msgstr "ئېكران"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "نەغمە"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "خەۋەر"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "سانلىق ئانالىز"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "OCR"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "ئىشخانا پروگراممىلىرى"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "ئىشخانا پروگراممىلىرى"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
-msgstr "باشقا ماقالىلار"
+msgstr "باشقا پۈتۈكلەر"
 
-#: data/toc.xml.in.h:16
-msgid "Panel Applets"
-msgstr "تاختىسىدىكى كىچىك پىروگراممىلار Desktop"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
 
-#: data/toc.xml.in.h:17 data/ui/yelp.glade.h:10
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "PDA ئالاقىسى"
+
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "بوغچا باشقۇرغۇ"
+
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "پاراللېل ھېسابلاش"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "سۈرەتچىلىك"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "فىزىكا"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "ئوينىغۇچى"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "دوكلات قوراللىرى"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
+msgid "Printing"
+msgstr "بېسىۋاتىدۇ"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
+msgstr "سىناش قورالى"
+
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "قۇرۇلۇش باشقۇرۇش قورالى"
+
+#: ../data/toc.xml.in.h:107
+msgid "Publishing"
+msgstr "نەشرىياتچىلىق"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "گرافىك سىزىش"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "ئۈنئالغۇ"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "يىراقتىن زىيارەت"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "نەشر كونترولى"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "ماشىنا ئادەم ئىلمى"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "رول ئېلىش تىپىدىكى ئويۇن"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "تەكشۈرۈۋاتىدۇ"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "ئىلىم"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "بىخەتەرلىك"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr "تەرتىپلىگۈچ"
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "تەڭشەكلەر"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr ""
+"ئىشلەتكۈچىلەر بۇ تەڭشەكلەرنى ئۆزگەرتىپ مەشغۇلات مۇھىتىنى تېخىمۇ راھەت "
+"قىلالايدۇ"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "تەقلىدلەشتۈرگۈچ ئويۇنى"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "ئاۋاز"
+
+#: ../data/toc.xml.in.h:124
+msgid "Sound &amp; Video"
+msgstr "ئۈن &amp; سىن"
+
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "ئۈن &amp; سىن تەھرىر"
+
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "تەنتەربىيە"
+
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "تەنتەربىيە ئويۇنلىرى"
+
+#: ../data/toc.xml.in.h:128
+msgid "Spreadsheet Tools"
+msgstr "ئېلېكترونلۇق جەدۋەل قورالى"
+
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "تەدبىر ئويۇنى"
+
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "سىستېما"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "تېلېۋىزور"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
+msgstr "تېلېفون ئىلمى"
+
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
+msgstr "تېلېفونشۇناسلىق قورالى"
+
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "تېرمىنال تەقلىدلەشتۈرگۈچ"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "تېكىست تەھرىرلىگۈچلەر"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "تېكىست قوراللىرى"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "كومپيۇتېر باشقۇرۇشقا ياردەمچى پروگراممىلار"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "تەرجىمە قوراللىرى"
+
+#: ../data/toc.xml.in.h:139
+msgid "Tuners"
+msgstr "سازلىغۇچ"
+
+#: ../data/toc.xml.in.h:140
+msgid "Utilities"
+msgstr "قوراللار"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr "خىزمىتىڭىزنى تاماملاشقا ياردەم بېرىدىغان ئەمەلىي قوراللار"
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "ۋېكتورلۇق گرافىك"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "سىن"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "سىنلىق يىغىن"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "كۆرگۈچ"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "توركۆرگۈ"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Web ئىجادىيىتى"
+
+#: ../data/toc.xml.in.h:149
+msgid "Welcome to the GNOME Help Browser"
+msgstr " GNOME ياردەم كۆرگۈگە مەرھابا"
+
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "پۈتۈكچىلىك"
+
+#: ../data/ui/yelp-bookmarks.ui.h:1
+msgid "Bookmarks"
+msgstr "خەتكۈش"
+
+#: ../data/ui/yelp-bookmarks.ui.h:2
+msgid "Re_name"
+msgstr "ئاتىنى ئۆزگەرت(_N)"
+
+#: ../data/ui/yelp-bookmarks.ui.h:3
+msgid "_Bookmarks:"
+msgstr "خەتكۈش(_B):"
+
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "خەتكۈش قوش"
+
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
+msgid "_Title:"
+msgstr "ماۋزۇ (_T):"
+
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "تور ئادرېسىنى ئاچ"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "ئورنى(_L):"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "خەت نۇسخا"
+
+#: ../data/ui/yelp-preferences.ui.h:3
 msgid "Preferences"
 msgstr "مايىللىق"
 
-#: data/toc.xml.in.h:18
-msgid "Programming"
-msgstr "پىروگرامما تۈزەش"
-
-#: data/toc.xml.in.h:19
-msgid "Scientific"
-msgstr "ئىلمى"
-
-#: data/toc.xml.in.h:20
-msgid "System Tools"
-msgstr "سىستىما قوراللىرى"
-
-#: data/toc.xml.in.h:21
-msgid "X Applications"
-msgstr "قوللىنىش پىروگراممىلىرى X"
-
-#: data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>ياردەم قوراللىرى<b>"
-
-#: data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>:فونتلار<b>"
-
-#: data/ui/yelp.glade.h:3
-msgid "<b>_Bookmarks:</b>"
-msgstr "<b>:ئادرېس تىزىملىگى<b>"
-
-#: data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr "<b>:تېمىسى<b>"
-
-#: data/ui/yelp.glade.h:5
-msgid "Add Bookmark"
-msgstr "ئادرېسنى قوشۇش"
-
-#: data/ui/yelp.glade.h:6
-msgid "Bookmarks"
-msgstr "ئادرېس تىزىملىگى"
-
-#: data/ui/yelp.glade.h:7
-msgid "C_ase sensitive"
-msgstr "(_A) چوڭ كىچىك ھەرپنى پەرقلەندۈرۈش"
-
-#: data/ui/yelp.glade.h:8
-msgid "Find"
-msgstr "ئىزدەش"
-
-#: data/ui/yelp.glade.h:9
-msgid "Open Location"
-msgstr "تور ئادرېسىنى ئېچىش"
-
-#: data/ui/yelp.glade.h:11
-msgid "Re_name"
-msgstr "(_N)نامىنى ئۆزگەرتىش"
-
-#: data/ui/yelp.glade.h:12
+#: ../data/ui/yelp-preferences.ui.h:4
 msgid "_Browse with caret"
-msgstr "(_B) نۇر توچكىسى بىلەن كۆرۈش"
+msgstr "نۇر بەلگىسى بىلەن كۆر(_B)"
 
-#: data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "(_F) ئىزدەش"
-
-#: data/ui/yelp.glade.h:14
+#: ../data/ui/yelp-preferences.ui.h:5
 msgid "_Fixed width:"
 msgstr "(_F) مۇقىم كەڭلىك"
 
-#: data/ui/yelp.glade.h:15
-msgid "_Location:"
-msgstr "(_L) تور ئادرېسى"
-
-#: data/ui/yelp.glade.h:16
-msgid "_Next"
-msgstr "(_N) كېيىنكىسى"
-
-#: data/ui/yelp.glade.h:17
-msgid "_Previous"
-msgstr "(_P) ئالدىنقىسى"
-
-#: data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
-msgstr "(_U) سىستېما فونتلىرىنى ئىشلىتىش"
+msgstr "سىستېما خەت نۇسخىلىرىنى ئىشلەت(_U)"
 
-#: data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
-msgstr "(_V) :ئۆزگۈرۈشچان كەڭلىك"
+msgstr "ئۆزگىرىشچان كەڭلىك(_V):"
 
-#: data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "(_W) ئاپتوماتىك قۇر ئالمىشىش"
-
-#: data/yelp.schemas.in.h:1
+#: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr "ئوخشاش كەڭلىكتىكى تېكىست فونتى"
+msgstr "ئوخشاش كەڭلىكتىكى تېكىست خەت نۇسخىسى"
 
-#: data/yelp.schemas.in.h:2
+#: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
-msgstr "تېكىست فونتى"
+msgstr "تېكىست خەت نۇسخىسى"
 
-#: data/yelp.schemas.in.h:3
+#: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "ئوخشاش كەڭلىكتىكى تېكىست فونتى"
+msgstr "ئوخشاش كەڭلىكتىكى تېكىست خەت نۇسخىسى."
 
-#: data/yelp.schemas.in.h:4
+#: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "ئۆزگۈرۈشچان كەڭلىكتىكى تېكىست فونتى "
+msgstr "ئۆزگىرىشچان كەڭلىكتىكى تېكىست خەت نۇسخىسى."
 
-#: data/yelp.schemas.in.h:5
+#: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
 msgstr ""
-"بەتنى كۆرۈۋاتقاندا كۇنۇپكا تاختىسىدىن كونتىرول قىلىنىدىغان نۇر توچكىسىنى "
+"بەتنى كۆرۈۋاتقاندا كۇنۇپكا تاختىسىدىن كونترول قىلىنىدىغان نۇر بەلگىسى "
 "ئىشلىتىش"
 
-#: data/yelp.schemas.in.h:6
+#: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr "نۇر توچكىسىنى ئىشلىتىش"
+msgstr "نۇر بەلگىسى ئىشلەت"
 
-#: data/yelp.schemas.in.h:7
+#: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
-msgstr "سىستېما فونتىنى ئىشلىتىش"
+msgstr "سىستېما خەت نۇسخىسى ئىشلەت"
 
-#: data/yelp.schemas.in.h:8
+#: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
-msgstr "سىستېما ئۈچۈن ئەسلىدىكى فونت قۇرۇلمىسىنى ئىشلىتىش"
+msgstr "سىستېمىغا كۆڭۈلدىكى خەت نۇسخىسى قۇرۇلمىسىنى ئىشلەت"
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
-msgid "Yelp"
-msgstr "Yelp"
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "ھۆججەت ئىناۋەتلىك .desktop ھۆججىتى ئەمەس."
 
-#: src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "زاۋۇتى Yelp"
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "ئۈستەل يۈزى ھۆججەت نەشرى '%s' ئىناۋەتسىز"
 
-#: src/yelp-bookmarks.c:155
+#: ../src/eggdesktopfile.c:957
+#, c-format
+msgid "Starting %s"
+msgstr "%s قوزغىلىۋاتىدۇ"
+
+#: ../src/eggdesktopfile.c:1098
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "پروگرامما بۇيرۇق قۇرىدا پۈتۈكلەرنى قوبۇل قىلمايدۇ"
+
+#: ../src/eggdesktopfile.c:1166
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "تونۇمايدىغان ئىجرا تاللانمىسى: %d"
+
+#: ../src/eggdesktopfile.c:1365
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "پۈتۈك URI نى 'Type=Link' ئۈستەليۈزى تۈرىگە يوللىيالمىدى."
+
+#: ../src/eggdesktopfile.c:1384
+#, c-format
+msgid "Not a launchable item"
+msgstr "ئىجراچان تۈر ئەمەس"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "ئەڭگىمە باشقۇرغۇغا باغلىنىشنى چەكلە"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "بەلگىلەنگەن سەپلىمە ساقلانغان ھۆججەت"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "ھۆججەت"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "ئەڭگىمە باشقۇرغۇ ID سېنى بەلگىلە"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "ئەڭگىمە باشقۇرغۇ تاللانمىلىرى:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "ئەڭگىمە باشقۇرغۇ تاللانمىلىرى كۆرسەت"
+
+#: ../src/yelp-bookmarks.c:147
 msgid "Open Bookmark in New Window"
-msgstr "تور ئادرېسىنى يېڭى كۆزنەكتە ئېچىش"
+msgstr "خەتكۈچنى يېڭى كۆزنەكتە ئاچ"
 
-#: src/yelp-bookmarks.c:159
+#: ../src/yelp-bookmarks.c:151
 msgid "Rename Bookmark"
-msgstr "تور ئادرېسىنى ئۆزگەرتىش"
+msgstr "خەتكۈش ئاتى ئۆزگەرت"
 
-#: src/yelp-bookmarks.c:163
+#: ../src/yelp-bookmarks.c:155
 msgid "Remove Bookmark"
-msgstr "تور ئادرېسىنى ئېلىۋېتىش"
+msgstr "خەتكۈش چىقىرىۋەت"
 
-#: src/yelp-bookmarks.c:306 src/yelp-bookmarks.c:378
+#: ../src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "بۇ بەتتە %s ماۋزۇلۇق خەتكۈش بار."
+
+#: ../src/yelp-bookmarks.c:395
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "ماۋزۇلۇق تور بەت ئادرېسى ئاللىقاچان مەۋجۈت <b>%s</b>  بۇ بەتنىڭ"
+msgstr "بۇ بەتنىڭ <b>%s</b>  ماۋزۇلۇق تور بەت ئادرېسى مەۋجۇت"
 
-#: src/yelp-bookmarks.c:406
+#: ../src/yelp-bookmarks.c:408
+msgid "Help Topics"
+msgstr "ياردەم تېمىلىرى"
+
+#: ../src/yelp-bookmarks.c:423
 msgid "Document Sections"
-msgstr "ماقالىنىڭ قىسىملىرى"
+msgstr "پۈتۈك بۆلەكلىرى"
 
-#: src/yelp-db-pager.c:242
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
+msgid "Page not found"
+msgstr "بەتنى تاپالمىدى"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
+msgstr "%2$s پۈتۈكتىكى %1$s بەتنى تاپالمىدى."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "%s پۈتۈكتىن ئىلتىماس قىلغان بەتنى تاپالمىدى."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
+msgid "File not found"
+msgstr "ھۆججەت تېپىلمىدى"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "‘%s’ ھۆججەت مەۋجۇت ئەمەس."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
+msgid "Could not parse file"
+msgstr "ھۆججەتنى يېشەلمىدى"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكى ئۇ ئىناۋەتلىك XML پۈتۈكى ئەمەس."
+
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr ""
-"ھۆججەت '%s' نى ئانالىز قىلىش مۈمكىن ئەمەس.  يا بۇ ھۆججەت مەۋجۈت ئەمەس, يا بۇ "
-"ئىناۋەتلىك XML ئەمەس"
+"‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكى ئۇنىڭ بىر ياكى بىر قانچە بۆلەك ھۆججىتى "
+"ئىناۋەتلىك XML پۈتۈكى ئەمەس."
 
-#: src/yelp-db-pager.c:486
-msgid "Unknown Section"
-msgstr "تونۇمىغان قىسىم"
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
+msgid "Unknown"
+msgstr "نامەلۇم"
 
-#: src/yelp-error.c:42 src/yelp-error.c:58
-msgid "An unknown error occured"
-msgstr "تونۇمىغان خاتالىق يۈز بەردى"
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "نامەلۇم خاتالىق"
 
-#: src/yelp-error.c:46
-msgid "Could not load document"
-msgstr "ھۆججەتنى يۈكلىيەلمىدى"
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1719
+msgid "Could Not Read File"
+msgstr "ھۆججەت ئوقۇيالمىدى"
 
-#: src/yelp-error.c:48
-msgid "Could not load section"
-msgstr "قىسىمنى يۈكلىيەلمىدى"
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr "بۇ خاتالىق ھەققىدە ئۇچۇر يوق"
 
-#: src/yelp-error.c:50
-msgid "Could not read the table of contents"
-msgstr "مۇندەرىجىنى ئوقۇيالمىدى"
-
-#: src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr "قوللىمايدىغان فورمات"
-
-#: src/yelp-error.c:54
-msgid "Could not read document"
-msgstr "ھۆججەتنى ئوقۇيالمىدى"
-
-#: src/yelp-error.c:56
-msgid "Could not process document"
-msgstr "ھۆججەتنى بىر تەرەپ قىلالمىدى"
-
-#: src/yelp-error.c:66
-msgid "No information is available about the error."
-msgstr "خاتالىق ھەققىدە ھىچقانداق ئۇچۇر يوق"
-
-#: src/yelp-io-channel.c:98
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
-"The file ‘s%’ could not be read and decoded. The file may be compressed in "
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكى ئۇچۇر بېتى فورماتقا ماس كەلمەيدۇ."
+
+#: ../src/yelp-io-channel.c:132
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
-"ھۆججەت s% نى ئوقۇش ھەم يېشىش مۈمكىن بولمىدى. ھۆججەت تونۇمايدىغان فورماتتا "
-"قىسىلغان بولۇشى مۈمكىن "
+"‘%s’ ھۆججەتنى ئوقۇپ كودىنى يېشەلمىدى. ھۆججەت قوللىمايدىغان فورماتتا "
+"پرېسلانغان بولۇشى مۇمكىن."
 
-#: src/yelp-main.c:95
+#: ../src/yelp-main.c:88
+msgid "Use a private session"
+msgstr "شەخسىي ئەڭگىمە ئىشلەت"
+
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
-msgstr "مۇندەرىجىسىنى ئىشلىتىشنى بەلگۈلەش cache قايسى"
+msgstr "قايسى غەملەك مۇندەرىجە ئىشلىتىشنى بەلگىلەش"
 
-#: src/yelp-main.c:129
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "نى قوزغىتالمىدى Yelp: %s"
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:355
+msgid " GNOME Help Browser"
+msgstr " GNOME ياردەم كۆرگۈ"
 
-#: src/yelp-main.c:148
-msgid "Could not open new window."
-msgstr "يېڭى كۆزنەك ئاچالمىدى"
-
-#: src/yelp-main.c:325 yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "ياردەم"
 
-#: src/yelp-man-pager.c:164
+#: ../src/yelp-mallard.c:315
+msgid "Directory not found"
+msgstr "مۇندەرىجە تېپىلمىدى"
+
+#: ../src/yelp-mallard.c:316
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "‘%s’ دېگەن مۇندەرىجە يوق."
+
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكىman بەت فورماتىغا ماس كەلمەيدۇ."
+
+#: ../src/yelp-print.c:99
+msgid "Print"
+msgstr "باس"
+
+#: ../src/yelp-print.c:169
+msgid "Preparing to print"
+msgstr "بېسىشقا تەييارلىنىۋاتىدۇ"
+
+#: ../src/yelp-print.c:263
+msgid "Printing is not supported on this printer"
+msgstr "بۇ پرىنتېردا بېسىشنى قوللىمايدۇ"
+
+#: ../src/yelp-print.c:266
+#, c-format
+msgid "Printer %s does not support postscript printing."
+msgstr "%s پرىنتېر postscript تا بېسىشنى قوللىمايدۇ"
+
+#: ../src/yelp-print.c:368
+msgid "Waiting to print"
+msgstr "بېسىشنى كۈتۈۋاتىدۇ"
+
+#: ../src/yelp-print.c:580
+msgid "An error occurred while printing"
+msgstr "بېسىۋاتقاندا خاتالىق كۆرۈلدى"
+
+#: ../src/yelp-print.c:584
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "پۈتۈكىڭىزنى باسالمىدى: %s"
+
+#: ../src/yelp-search-parser.c:67
+msgid "the GNOME Support Forums"
+msgstr "GNOME مۇنبىرى"
+
+#: ../src/yelp-search-parser.c:285
+#, c-format
+msgid "No results for \"%s\""
+msgstr "\"%s\" نەتىجە يوق"
+
+#: ../src/yelp-search-parser.c:286
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
 msgstr ""
-"ھۆججەت %s نى ئانالىز قىلىش مۈمكىن ئەمەس.  يا بۇ ھۆججەت مەۋجۈت ئەمەس يا خاتا "
-"فورماتلانغان"
+"ئوخشىمىغان مەزمۇندا سىز يولۇققان مەسىلىنى ياكى سىز ئېرىشمەكچى بولغان ياردەم "
+"باش تېمىسىنى بايان قىلىڭ."
 
-#: src/yelp-pager.c:120
-msgid "Document Information"
-msgstr "ماقالا ئۇچۇرى"
+#: ../src/yelp-search-parser.c:289
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "\"%s\" نىڭ ئىزدەش نەتىجىسى"
 
-#: src/yelp-pager.c:121
-msgid "The YelpDocInfo struct of the document"
-msgstr "قۇرۇلمىسى YelpDocInfo ماقالىنىڭ"
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
 #.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
+#: ../src/yelp-search-parser.c:303
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "%s دىن قايتا ئىزدە"
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
 #.
-#: src/yelp-settings.c:153
-msgid "yelp-watermark-blockquote-201C"
-msgstr "yelp-watermark-blockquote-201C"
-
-#: src/yelp-toc-pager.c:268
-msgid "YelpTocPager: Pause count is negative."
-msgstr "قىسقا توختاش قېتىم سانى مەنپى سان :YelpTocPager"
-
-#: src/yelp-toc-pager.c:491
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "نى قاچىلىيالمىدى   %s ھۆججىتى OMF"
-
-#: src/yelp-toc-pager.c:682
-#, c-format
-msgid "Read man page for %s"
-msgstr "بېتىنى ئوقۇش man نىڭ  %s"
-
-#: src/yelp-toc-pager.c:767
-#, c-format
+#: ../src/yelp-search-parser.c:874
 msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
-msgstr ""
-"مۇندەرىجىنى يۈكلەش مۇمكىن ئەمەس. يا ھۆججەت %s يوقالغان  يا ئىناۋەتلىك XML  "
-"ئەمەس"
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
+msgstr "ھەققىدە: ماق: مەك:ئۈچۈن:نىڭ:دا:دە:تا:تە:"
 
-#: src/yelp-toc-pager.c:878
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-parser.c:890
+msgid "re"
+msgstr "جاۋاب"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the string NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-parser.c:899
+msgid "ers:er:ing:es:s:'s"
+msgstr "نىڭ: دار:پەز:غۇ:چى"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "باھا يوق"
+
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "ئىزدىيەلمىدى"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "ئىزدەش ئىلتىماسىنى ئىجرا قىلالمىدى."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "بۇ ئىزدەشنى ئىجرا قىلالمىدى"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "ئىزدەش جەريانى ئىشلەتكىلى بولمايدىغان نەتىجە قايتۇردى"
+
+#: ../src/yelp-toc.c:267
 #, c-format
+msgid "The page %s was not found in the TOC."
+msgstr "TOC دا %s بەتنى تاپالمىدى."
+
+#: ../src/yelp-toc.c:366
+msgid "The requested page was not found in the TOC."
+msgstr "TOC دا ئىلتىماس قىلغان بەتنى تاپالمىدى."
+
+#: ../src/yelp-toc.c:438
 msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"مۇندەرىجىنى بىر تەرەپ قىلىش مۇمكىن ئەمەس. يا ھۆججەت %s يوقالغان  يا  "
-"ئىناۋەتلىك XSLT ئەمەس  "
+"TOC ھۆججىتىنى تەھلىل قىلالمىدى، بۇ ئۆلچەملىك فورماتتىكى XML پۈتۈكى ئەمەس."
 
-#: src/yelp-toc-pager.c:1029 src/yelp-xslt-pager.c:365
-msgid "No href attribute found on yelp:document"
-msgstr " نى تاپالمىدى href  دىن yelp:document"
+#: ../src/yelp-transform.c:86
+msgid "Invalid Stylesheet"
+msgstr "ئىناۋەتسىز ئۇسلۇب جەدۋىلى"
 
-#: src/yelp-toc-pager.c:1043 src/yelp-xslt-pager.c:381
+#: ../src/yelp-transform.c:87
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "XSLT ئۇسلۇب جەدۋىلى ‘%s’ يوقالغان ياكى ئىناۋەتسىز."
+
+#: ../src/yelp-transform.c:122
+msgid "Broken Transformation"
+msgstr "بۇزۇلغان ئايلاندۇرۇش"
+
+#: ../src/yelp-transform.c:123
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "ھۆججەت ئايلاندۇرغاندا نامەلۇم خاتالىق كۆرۈلدى."
+
+#: ../src/yelp-transform.c:389
+msgid "No href attribute found on yelp:document\n"
+msgstr "yelp:document دا href خاسلىقى يوقكەن\n"
+
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
-msgstr "ئىچكى ساقلىغۇچتا ئورۇن قالمىدى"
+msgstr "ئەسلەك يېتىشمىدى"
 
-#: src/yelp-toc-pager.c:1084
-msgid "Help Contents"
-msgstr "ياردەم تېمىلىرى"
-
-#: src/yelp-window.c:292
+#: ../src/yelp-window.c:304
 msgid "_File"
-msgstr "(_F)ھۆججەت"
+msgstr "ھۆججەت(_F)"
 
-#: src/yelp-window.c:293
+#: ../src/yelp-window.c:305
 msgid "_Edit"
-msgstr "(_E)ئېدىتلاش"
+msgstr "تەھرىر(_E)"
 
-#: src/yelp-window.c:294
+#: ../src/yelp-window.c:306
 msgid "_Go"
-msgstr "(_G)يۈرگۈزۈش"
+msgstr "يۆتكەل(_G)"
 
-#: src/yelp-window.c:295
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
-msgstr "(_B)ئادرېس تىزىملىگى"
+msgstr "خەتكۈش(_B)"
 
-#: src/yelp-window.c:296
+#: ../src/yelp-window.c:308
 msgid "_Help"
-msgstr "(_H)ياردەم"
+msgstr "ياردەم(_H)"
 
-#: src/yelp-window.c:299
+#: ../src/yelp-window.c:311
 msgid "_New Window"
-msgstr "(_N)يېڭى كۆزنەك"
+msgstr "يېڭى كۆزنەك(_N)"
 
-#: src/yelp-window.c:304
+#: ../src/yelp-window.c:316
+msgid "Print This Document ..."
+msgstr "بۇ پۈتۈكنى باس…"
+
+#: ../src/yelp-window.c:321
+msgid "Print This Page ..."
+msgstr "بۇ بەتنى باس…"
+
+#: ../src/yelp-window.c:326
 msgid "About This Document"
-msgstr "بۇ ھۆججەت توغرىسىدا"
+msgstr "بۇ پۈتۈك توغرىسىدا"
 
-#: src/yelp-window.c:309
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
-msgstr "ئادرېسنى ئېچىش"
+msgstr "ئادرېس ئاچ(_L)"
 
-#: src/yelp-window.c:314
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
-msgstr "(_C)كۆزنەكنى ئېتىش"
+msgstr "كۆزنەك ياپ(_C)"
 
-#: src/yelp-window.c:320
+#: ../src/yelp-window.c:342
 msgid "_Copy"
-msgstr "(_C)كۆچۈرۈش"
+msgstr "كۆچۈر(_C)"
 
-#: src/yelp-window.c:326
+#: ../src/yelp-window.c:348
 msgid "_Select All"
-msgstr "(_S)ھەممىنى تاللاش"
+msgstr "ھەممىنى تاللا(_S)"
 
-#: src/yelp-window.c:331
+#: ../src/yelp-window.c:353
 msgid "_Find..."
-msgstr "(_F)ئىزلەش"
+msgstr "ئىزدە(_F)…"
 
-#: src/yelp-window.c:336
+#: ../src/yelp-window.c:358
+msgid "Find Pre_vious"
+msgstr "ئالدىنقىنى ئىزدە(_V)"
+
+#: ../src/yelp-window.c:360
+msgid "Find previous occurrence of the word or phrase"
+msgstr "ئالدىن قېتىم كۆرۈلگەن سۆز ياكى ئاتالغۇنى ئىزدە"
+
+#: ../src/yelp-window.c:363
+msgid "Find Ne_xt"
+msgstr "كېيىنكىنى ئىزدە(_X)"
+
+#: ../src/yelp-window.c:365
+msgid "Find next occurrence of the word or phrase"
+msgstr "كېيىنكى قېتىم كۆرۈلىدىغان سۆز ياكى ئاتالغۇنى ئىزدە"
+
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
-msgstr "(_P)مايىللىق"
+msgstr "مايىللىق(_P)"
 
-#: src/yelp-window.c:341
+#: ../src/yelp-window.c:373
 msgid "_Reload"
-msgstr "(_R)يېڭىلاش"
+msgstr "قايتا يۈكلە(_R)"
 
-#: src/yelp-window.c:347
+#: ../src/yelp-window.c:385
 msgid "_Back"
-msgstr "(_B)كەينىگە"
+msgstr "كەينىگە(_B)"
 
-#: src/yelp-window.c:349
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
-msgstr "تارىختىكى ئالدىنقى بەتنى كۆرسىتىش"
+msgstr "تارىختىكى ئالدىنقى بەتنى كۆرسەت"
 
-#: src/yelp-window.c:352
+#: ../src/yelp-window.c:390
 msgid "_Forward"
-msgstr "(_F)ئالدىغا"
+msgstr "ئالدىغا(_F)"
 
-#: src/yelp-window.c:354
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
-msgstr "تارىختىكى ئالدىنقى بەتنى كۆرسىتىش"
+msgstr "تارىختىكى كېيىنكى بەتنى كۆرسەت"
 
-#: src/yelp-window.c:357
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
-msgstr "(_H)ياردەم تېمىلىرى"
+msgstr "ياردەم تېمىلىرى(_H)"
 
-#: src/yelp-window.c:359
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
-msgstr "ياردەم تېمىلىرىنىڭ تىزىملىگىگە بېرىش"
+msgstr "ياردەم تېمىلىرىنىڭ تىزىملىكىگە يۆتكەل"
 
-#: src/yelp-window.c:362
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
-msgstr "(_P)ئالدىنقى بۆلۈم"
+msgstr "ئالدىنقى بۆلەك(_P)"
 
-#: src/yelp-window.c:367
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
-msgstr "(_N)كېيىنكى بۆلۈم"
+msgstr "كېيىنكى بۆلەك(_N)"
 
-#: src/yelp-window.c:372
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
-msgstr "(_C)مۇندەرىجە"
+msgstr "مەزمۇنلار(_C)"
 
-#: src/yelp-window.c:378
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
-msgstr "(_A)تور بەت ئادرېسىنى قوشۇش"
+msgstr "خەتكۈش قوش(_A)"
 
-#: src/yelp-window.c:383
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
-msgstr "(_E).... تور بەت ئادېسلىرىنى ئېدىتلاش"
+msgstr "خەتكۈش تەھرىر(_E)…"
 
-#: src/yelp-window.c:389
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
-msgstr "(_O)ئۇلىنىشنى ئېچىش"
+msgstr "ئۇلانما ئاچ(_O)"
 
-#: src/yelp-window.c:394
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
-msgstr "ئۇلىنىشنى يېڭى كۆزنەكتە ئېچىش"
+msgstr "ئۇلانمىنى يېڭى كۆزنەكتە ئاچ(_N)"
 
-#: src/yelp-window.c:399
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
-msgstr "(_C)ئۇلىنىش ئادرېسىنى كۆچۈرۈش"
+msgstr "ئۇلانما ئادرېس كۆچۈر(_C)"
 
-#: src/yelp-window.c:405
+#: ../src/yelp-window.c:444
+msgid "Help On this application"
+msgstr "بۇ پروگرامما ھەققىدىكى ياردەم"
+
+#: ../src/yelp-window.c:447
 msgid "_About"
-msgstr "(_A)ھەققىدە"
+msgstr "ھەققىدە(_A)"
 
-#: src/yelp-window.c:456
+#: ../src/yelp-window.c:452
+msgid "Copy _Email Address"
+msgstr "ئېلخەت ئادرېسى كۆچۈر(_E)"
+
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
-msgstr "ياردەم كۆزنىگى"
+msgstr "ياردەم كۆرگۈ"
 
-#: src/yelp-window.c:687 src/yelp-window.c:820
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr "ھۆججەتنىڭ بىرلىككە كەلگەن مەنبە ئېنىقلىغۇچى ئىناۋەتسىز"
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1782
+msgid "Loading..."
+msgstr "يۈكلەۋاتىدۇ…"
 
-#: src/yelp-window.c:699 src/yelp-window.c:815
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
+msgid "Unknown Page"
+msgstr "نامەلۇم بەت"
+
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
-msgstr ""
-"  بىرلىككە كەلگەن مەنبە ئېنىقلىغۇچى %s ئىناۋەتسىز ياكى بىر ئەمىلى ھۆججەتنى "
-"كۆرسەتمەيدۇ"
+msgid "The requested URI \"%s\" is invalid"
+msgstr "ئىلتىماس قىلغان URI \"%s\" ئىناۋەتسىز"
 
-#: src/yelp-window.c:775 src/yelp-window.c:1130
-msgid "Man pages are not supported in this version."
-msgstr "بەتلىرىنى قوللىمايدۇ man  بۇ نۇسخا"
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
+msgid "Unable to load page"
+msgstr "بەتنى يۈكلىيەلمىدى"
 
-#: src/yelp-window.c:785 src/yelp-window.c:1121
-msgid "GNU info pages are not supported in this version"
-msgstr "بەتلىرىنى قوللىمايدۇ GNU info  بۇ نۇسخا"
+#: ../src/yelp-window.c:1339
+msgid "_Search:"
+msgstr "ئىزدە(_S):"
 
-#: src/yelp-window.c:795
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-"   فورمات SGML نى قوللاش ئەمەلدىن قالدۇرۇلدى. XML فورماتىغا ئايلاندۇرۇشنى "
-"ماقالىنىڭ ئاپتورىدىن  سوراڭ    "
+#: ../src/yelp-window.c:1340
+msgid "Search for other documentation"
+msgstr "باشقا پۈتۈكنى ئىزدە"
 
-#: src/yelp-window.c:1014
-msgid "Find:"
-msgstr "ئىزلەش"
+#: ../src/yelp-window.c:1360
+msgid "Cannot create window"
+msgstr "كۆزنەك قۇرالمىدى"
 
-#: src/yelp-window.c:1030
-msgid "Find _Next"
-msgstr "كېيىنكىسىنى ئىزلەش"
+#: ../src/yelp-window.c:1366
+msgid "Cannot create search component"
+msgstr "ئىزدەش بۆلىكى قۇرالمىدى"
 
-#: src/yelp-window.c:1042
+#: ../src/yelp-window.c:1538
+msgid "Fin_d:"
+msgstr "ئىزدە(_D):"
+
+#: ../src/yelp-window.c:1560
 msgid "Find _Previous"
-msgstr "ئالدىنقىسىنى ئىزلەش"
+msgstr "ئالدىنقىنى ئىزدە(_P)"
 
-#: src/yelp-window.c:1147
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
-"ھۆججىتىنى ئايلاندۇرۇش مۇھىتىنى قۇرۇش ئىمكانىيىتى بولمىدى. ھۆججەتنىڭ فورماتى"
-"%s  قوللىنىلمىسا كېرەك"
+#: ../src/yelp-window.c:1572
+msgid "Find _Next"
+msgstr "كېيىنكىنى ئىزدە(_N)"
 
-#: src/yelp-window.c:1177 src/yelp-window.c:1601 src/yelp-window.c:1668
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
-"ماقالىنىڭ %s بۆلۈمى مەۋجۈت ئەمەس. ئگەر بىرەر قوللىنىش پىروگراممىسىنىڭ ياردەم "
-"تۈگمىسىنى بۇ يەرگە ئۇلىنىدىغان قىلغان بولسىڭىز ئۇنداقتا شۇ پىروگراممىنىڭ "
-"داۋاملاشتۇرغۇچىسىبىلەن ئالاقىلىشىڭ"
+#: ../src/yelp-window.c:1585
+msgid "Phrase not found"
+msgstr "ئاتالغۇنى تاپالمىدى"
 
-#: src/yelp-window.c:1292
+#: ../src/yelp-window.c:1716
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -674,40 +1538,105 @@ msgstr ""
 "ھۆججەت %s نى ئوقۇغىلى بولمىدى. يا ھۆججەت يوقالغان يا سىزنىڭ ئوقۇش رۇخسىتىڭىز "
 "يوق"
 
-#: src/yelp-window.c:1336
-msgid "Loading..."
-msgstr "...... قاچىلىنىۋاتىدۇ"
-
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: src/yelp-window.c:2166
+#: ../src/yelp-window.c:2625
 msgid "translator-credits"
 msgstr ""
 "GNOME Uighur Translation Project <gnome-uighur@yahoogroups.comAbduxukur "
-"Abdurixit <abduxukur.abdurixit@t-systems.ch>, 2005"
+"Abdurixit <abduxukur.abdurixit@t-systems.ch>, 2005\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Burkut https://launchpad.net/~burkut\n"
+"  Gheyret T.Kenji https://launchpad.net/~gheyretkenji\n"
+"  Sebastien Bacher https://launchpad.net/~seb128"
 
-#: src/yelp-window.c:2171
+#: ../src/yelp-window.c:2628
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2630
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "نىڭ ماقالالە كۆرگۈچىسى Gnome Desktop"
+msgstr "Gnome Desktop نىڭ پۈتۈك كۆرگۈچىسى"
 
-#: src/yelp-xslt-pager.c:194
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-"ھۆججەت %s نى ئانالىز قىلىش مۈمكىن ئەمەس. يا ھۆججەت مەۋجۈت ئەمەس يا نامۇۋاپىق "
-"فورماتلانغان"
-
-#: src/yelp-xslt-pager.c:215 src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-" ماقالە  %s  نى بىر تەرەپ قىلىش مۈمكىن ئەمەس. يا ھۆججەت %s  يۈتكەن يا ئىناۋەتلىك "
-"XSLT ئەمەس"
-
-#: yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "دىن ياردەمگە ئېرىشمەك  GNOME"
+msgstr "GNOME ياردىمىگە ئېرىش"
+
+#~ msgid "Can't find the answer?"
+#~ msgstr "جاۋاب تېپىلمىدىمۇ؟"
+
+#~ msgid "Canonical, its partners and approved companies provide"
+#~ msgstr ""
+#~ "Canonical، ئۇنىڭ ھەمكارلاشقان شېرىكى ۋە ئىجازەت بېرىلگەن شىركىتى "
+#~ "تەمىنلىگەن"
+
+#~ msgid "Common Questions"
+#~ msgstr "ئادەتتىكى سوئاللار"
+
+#~ msgid "Connecting to the internet"
+#~ msgstr "ئىنتېرنېتقا باغلىنىۋاتىدۇ"
+
+#~ msgid "Enabling visual effects"
+#~ msgstr "كۆرۈنۈش ئۈنۈمىنى ئاكتىپلا"
+
+#~ msgid "General Guides"
+#~ msgstr "ئادەتتىكى كۆرسەتمىلەر"
+
+#~ msgid "How to Contribute"
+#~ msgstr "قانداق ھەسسە قوشىدۇ"
+
+#~ msgid "Importing photos"
+#~ msgstr "رەسىم ئەكىرىۋاتىدۇ"
+
+#~ msgid "Keeping your computer updated"
+#~ msgstr "كومپيۇتېر سىستېمىڭىزنى يېڭىلاپ تۇرۇڭ"
+
+#~ msgid "Playing music"
+#~ msgstr "نەغمە چال"
+
+#~ msgid "The Ubuntu community provides extensive"
+#~ msgstr "Ubuntu جامائىتى كېڭەيتىلمە تەمىنلىگەن"
+
+#~ msgid ""
+#~ "These guides used to be on the front page. Put here for safe keeping in "
+#~ "their own new section."
+#~ msgstr ""
+#~ "بۇ يېتەكچى باشلاش بېتى قىلىپ ئىشلىتىلىدۇ. ئۇلار ئۆزىنىڭ يېڭى بۆلىكىدە "
+#~ "بىخەتەرلىكنى ساقلايدۇ."
+
+#~ msgid "To find help, insert a keyword in the search bar"
+#~ msgstr "ياردەم ئىزدىسىڭىز، ئىزدەش بالدىقىغا ھالقىلىق سۆز كىرگۈزۈڭ"
+
+#~ msgid "Topics"
+#~ msgstr "تېما"
+
+#~ msgid "Ubuntu Help Center"
+#~ msgstr "Ubuntu ياردەم مەركىزى"
+
+#~ msgid "Ubuntu has an open and vibrant community of contributors. Find out"
+#~ msgstr "Ubuntu نىڭ ئوچۇق ۋە ھاياتىي كۈچكە تولغان جامائىتى بار. چۈشىنىڭ"
+
+#~ msgid "Welcome to the Ubuntu Help Center"
+#~ msgstr "Ubuntu ياردەم مەركىزىگە مەرھابا"
+
+#~ msgid "commercial technical support"
+#~ msgstr "تاۋارلاشقان تېخنىكىلىق ياردەملەر"
+
+#~ msgid "free support"
+#~ msgstr "ھەقسىز ياردەملەر"
+
+#~ msgid "how to contribute"
+#~ msgstr "قانداق تۆھپە قوشىدۇ"
+
+#~ msgid "http://www.ubuntu.com/community/participate"
+#~ msgstr "http://www.ubuntu.com/community/participate"
+
+#~ msgid "http://www.ubuntu.com/support/free"
+#~ msgstr "http://www.ubuntu.com/support/free"
+
+#~ msgid "http://www.ubuntu.com/support/paid"
+#~ msgstr "http://www.ubuntu.com/support/paid"
+
+#~ msgid "the Ubuntu Help Pages"
+#~ msgstr "Ubuntu ياردەم بېتى"
