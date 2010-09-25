@@ -1,1039 +1,1793 @@
-# Afrikaans translation of yelp.
-# Copyright (C) 2004 Zuza Software Foundation
-# This file is distributed under the same license as the yelp package.
-#
-# Zuza Software Foundation <info@translate.org.za>, 2004
-#
+# Afrikaans translation of Yelp.
+# This file is distributed under the same license as the Yelp package.
+# Hermien Bos <hermienbos@gmail.com>, 2010.
+# F Wolff <friedel@translate.org.za>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp 2.6-branch\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 18:12-0600\n"
-"PO-Revision-Date: 2004-03-30 17:02+0200\n"
-"Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
-"Language-Team: Afrikaans <translate-discuss-af@lists.sourceforge.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: "
+"http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
+"POT-Creation-Date: 2010-09-20 12:38+0000\n"
+"PO-Revision-Date: 2010-09-25 09:12+0100\n"
+"Last-Translator: F Wolff <friedel@translate.org.za>\n"
+"Language-Team: translate-discuss-af@lists.sourceforge.net\n"
+"Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
+"X-Project-Style: gnome\n"
 
-#: data/man.xml.in.h:1 data/toc.xml.in.h:4
+#: ../data/info.xml.in.h:1
+msgid "GNU Info Pages"
+msgstr "GNU Info-bladsye"
+
+#: ../data/info.xml.in.h:2
+msgid "Traditional command line help (info)"
+msgstr "Tradisionele opdraglynhulp (info)"
+
+#: ../data/man.xml.in.h:1
 msgid "Applications"
 msgstr "Toepassings"
 
-#: data/man.xml.in.h:2
-msgid "Configuration Files"
-msgstr "Opstellingslêers"
+#: ../data/man.xml.in.h:2
+#, fuzzy
+msgid "BLT Functions"
+msgstr "Qt-funksies"
 
-#: data/man.xml.in.h:3
+#: ../data/man.xml.in.h:3
+msgid "Configuration Files"
+msgstr ""
+
+#: ../data/man.xml.in.h:4
+#, fuzzy
+msgid "Curses Functions"
+msgstr "Curses-funksies"
+
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Ontwikkeling"
 
-#: data/man.xml.in.h:4
+#: ../data/man.xml.in.h:6
 msgid "FORTRAN Functions"
-msgstr ""
+msgstr "FORTRAN-funksies"
 
-#: data/man.xml.in.h:5 data/toc.xml.in.h:7
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Speletjies"
 
-#: data/man.xml.in.h:6
+#: ../data/man.xml.in.h:8
 msgid "Hardware Devices"
 msgstr "Hardewaretoestelle"
 
-#: data/man.xml.in.h:7
+#: ../data/man.xml.in.h:9
 msgid "Kernel Routines"
-msgstr "Kernroetines"
-
-#: data/man.xml.in.h:8
-msgid "Library Functions"
-msgstr "Programmateekfunksies"
-
-#: data/man.xml.in.h:9 src/yelp-toc-pager.c:785
-msgid "Man Pages"
 msgstr ""
 
-#: data/man.xml.in.h:10
-#, fuzzy
+#: ../data/man.xml.in.h:10
+msgid "Manual Pages"
+msgstr ""
+
+#: ../data/man.xml.in.h:11
+msgid "Network Audio Sound Functions"
+msgstr ""
+
+#: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
-msgstr "X-toepassings"
+msgstr ""
 
-#: data/man.xml.in.h:11
-#, fuzzy
+#: ../data/man.xml.in.h:13
 msgid "OpenSSL Configuration"
-msgstr "Opstellingslêers"
+msgstr ""
 
-#: data/man.xml.in.h:12
-#, fuzzy
+#: ../data/man.xml.in.h:14
+msgid "OpenSSL Functions"
+msgstr ""
+
+#: ../data/man.xml.in.h:15
 msgid "OpenSSL Overviews"
-msgstr "Oorsigte"
+msgstr ""
 
-#: data/man.xml.in.h:13
+#: ../data/man.xml.in.h:16
 msgid "Overviews"
-msgstr "Oorsigte"
+msgstr ""
 
-#: data/man.xml.in.h:14
-#, fuzzy
+#: ../data/man.xml.in.h:17
+msgid "POSIX Functions"
+msgstr "POSIX-funksies"
+
+#: ../data/man.xml.in.h:18
+msgid "POSIX Headers"
+msgstr ""
+
+#: ../data/man.xml.in.h:19
 msgid "Perl Functions"
-msgstr "Programmateekfunksies"
+msgstr "Perl-funksies"
 
-#: data/man.xml.in.h:15
-#, fuzzy
+#: ../data/man.xml.in.h:20
 msgid "Qt Functions"
-msgstr "Programmateekfunksies"
+msgstr "Qt-funksies"
 
-#: data/man.xml.in.h:16
+#: ../data/man.xml.in.h:21
+msgid "Readline Functions"
+msgstr "Readline-funksies"
+
+#: ../data/man.xml.in.h:22
+msgid "Section 0p"
+msgstr "Afdeling 0p"
+
+#: ../data/man.xml.in.h:23
+msgid "Section 1m"
+msgstr "Afdeling 1m"
+
+#: ../data/man.xml.in.h:24
+msgid "Section 1ssl"
+msgstr "Afdeling 1ssl"
+
+#: ../data/man.xml.in.h:25
+msgid "Section 1x"
+msgstr "Afdeling 1x"
+
+#: ../data/man.xml.in.h:26
+msgid "Section 2"
+msgstr "Afdeling 2"
+
+#: ../data/man.xml.in.h:27
+msgid "Section 3blt"
+msgstr "Afdeling 3blt"
+
+#: ../data/man.xml.in.h:28
+msgid "Section 3f"
+msgstr "Afdeling 3f"
+
+#: ../data/man.xml.in.h:29
+msgid "Section 3nas"
+msgstr "Afdeling 3nas"
+
+#: ../data/man.xml.in.h:30
+msgid "Section 3p"
+msgstr "Afdeling 3p"
+
+#: ../data/man.xml.in.h:31
+msgid "Section 3qt"
+msgstr "Afdeling 3qt"
+
+#: ../data/man.xml.in.h:32
+msgid "Section 3readline"
+msgstr "Afdeling 3leeslyn"
+
+#: ../data/man.xml.in.h:33
+msgid "Section 3ssl"
+msgstr "Afdeling 3ssl"
+
+#: ../data/man.xml.in.h:34
+msgid "Section 3tiff"
+msgstr "Afdeling 3tiff"
+
+#: ../data/man.xml.in.h:35
+msgid "Section 4"
+msgstr "Afdeling 4"
+
+#: ../data/man.xml.in.h:36
+msgid "Section 4x"
+msgstr "Afdeling 4x"
+
+#: ../data/man.xml.in.h:37
+msgid "Section 5"
+msgstr "Afdeling 5"
+
+#: ../data/man.xml.in.h:38
+msgid "Section 5ssl"
+msgstr "Afdeling 5ssl"
+
+#: ../data/man.xml.in.h:39
+msgid "Section 5x"
+msgstr "Afdeling 5x"
+
+#: ../data/man.xml.in.h:40
+msgid "Section 6"
+msgstr "Afdeling 6"
+
+#: ../data/man.xml.in.h:41
+msgid "Section 6x"
+msgstr "Afdeling 6x"
+
+#: ../data/man.xml.in.h:42
+msgid "Section 7ssl"
+msgstr "Afdeling 7ssl"
+
+#: ../data/man.xml.in.h:43
+msgid "Section 7x"
+msgstr "Afdeling 7x"
+
+#: ../data/man.xml.in.h:44
+msgid "Section 9"
+msgstr "Afdeling 9"
+
+#: ../data/man.xml.in.h:45
+msgid "Sections 1, 1p, 1g and 1t"
+msgstr "Afdelings 1, 1p, 1g en 1t"
+
+#: ../data/man.xml.in.h:46
+msgid "Sections 3, 3o, and 3t"
+msgstr "Afdelings 3, 3o en 3t"
+
+#: ../data/man.xml.in.h:47
+#, fuzzy
+msgid "Sections 3form and 3menu"
+msgstr "Afdelings 3form en 3menu"
+
+#: ../data/man.xml.in.h:48
+msgid "Sections 3ncurses and 3curses"
+msgstr "Afdelings 3ncurses en 3curses"
+
+#: ../data/man.xml.in.h:49
+msgid "Sections 3pm and 3perl"
+msgstr "Afdelings 3pm en 3perl"
+
+#: ../data/man.xml.in.h:50
+msgid "Sections 3x and 3X11"
+msgstr "Afdelings 3x en 3x11"
+
+#: ../data/man.xml.in.h:51
+msgid "Sections 7 and 7gcc"
+msgstr "Afdelings 7 en 7gcc"
+
+#: ../data/man.xml.in.h:52
+msgid "Sections 8 and 8l"
+msgstr "Afdelings 8 en 8l"
+
+#: ../data/man.xml.in.h:53
 msgid "System Administration"
 msgstr "Stelseladministrasie"
 
-#: data/man.xml.in.h:17
+#: ../data/man.xml.in.h:54
 msgid "System Calls"
 msgstr "Stelselroepe"
 
-#: data/man.xml.in.h:18
-#, fuzzy
+#: ../data/man.xml.in.h:55
+msgid "System V Form/Menu Functions"
+msgstr "System V vorm/kieslys funksies"
+
+#: ../data/man.xml.in.h:56
+msgid "TIFF Functions"
+msgstr "TIFF-funksies"
+
+#: ../data/man.xml.in.h:57
 msgid "Termcap Applications"
-msgstr "X-toepassings"
+msgstr "Termcap-toepassings"
 
-#: data/man.xml.in.h:19
-#, fuzzy
+#: ../data/man.xml.in.h:58
+msgid "Traditional command line help (man)"
+msgstr "Tradisionele opdraglynhulp (man)"
+
+#: ../data/man.xml.in.h:59
 msgid "X11 Applications"
-msgstr "X-toepassings"
+msgstr "X11-toepassings"
 
-#: data/man.xml.in.h:20
-#, fuzzy
+#: ../data/man.xml.in.h:60
 msgid "X11 Configuration"
-msgstr "Opstellingslêers"
+msgstr "X11-opstelling"
 
-#: data/man.xml.in.h:21
+#: ../data/man.xml.in.h:61
 msgid "X11 Devices"
-msgstr ""
+msgstr "X11-toestelle"
 
-#: data/man.xml.in.h:22
-#, fuzzy
+#: ../data/man.xml.in.h:62
 msgid "X11 Functions"
-msgstr "Programmateekfunksies"
+msgstr "X11-funksies"
 
-#: data/man.xml.in.h:23
-#, fuzzy
+#: ../data/man.xml.in.h:63
 msgid "X11 Games"
-msgstr "Speletjies"
+msgstr "X11-speletjies"
 
-#: data/man.xml.in.h:24
-#, fuzzy
+#: ../data/man.xml.in.h:64
 msgid "X11 Overviews"
-msgstr "Oorsigte"
+msgstr "X11-oorsigte"
 
-#: data/toc.xml.in.h:1
+#: ../data/toc.xml.in.h:1
+msgid "2D Graphics"
+msgstr "2D-grafika"
+
+#: ../data/toc.xml.in.h:2
+msgid "3D Graphics"
+msgstr "3D-grafika"
+
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
-msgstr ""
+msgstr "Toeganklikheid"
 
-#: data/toc.xml.in.h:2
-msgid "Accessories"
-msgstr ""
+#: ../data/toc.xml.in.h:4
+msgid "Action Games"
+msgstr "Aksiespeletjies"
 
-#: data/toc.xml.in.h:3
-msgid "Applets"
-msgstr "Miniprogramme"
+#: ../data/toc.xml.in.h:5
+msgid "Adventure Games"
+msgstr "Avontuurspeletjies"
 
-#: data/toc.xml.in.h:5
+#: ../data/toc.xml.in.h:6
+msgid "Amusement"
+msgstr "Vermaak"
+
+#: ../data/toc.xml.in.h:7
+msgid "Applications for viewing and manipulating graphics"
+msgstr "Toepassings vir die bekyk en manipulasie van grafika"
+
+#: ../data/toc.xml.in.h:8
+#, fuzzy
+msgid "Applications related to audio and video"
+msgstr "Toepassings verwant aan oudio en video"
+
+#: ../data/toc.xml.in.h:9
+msgid "Applications that teach or aid in learning"
+msgstr "Toepassings wat onderrig en help met leer"
+
+#: ../data/toc.xml.in.h:10
+msgid "Arcade Games"
+msgstr "Arkadespeletjies"
+
+#: ../data/toc.xml.in.h:11
+msgid "Archiving Tools"
+msgstr "Argiefnutsgoed"
+
+#: ../data/toc.xml.in.h:12
+msgid "Art"
+msgstr "Kuns"
+
+#: ../data/toc.xml.in.h:13
+msgid "Artificial Intelligence"
+msgstr "Kunsmatige intelligensie"
+
+#: ../data/toc.xml.in.h:14
+msgid "Astronomy"
+msgstr "Sterrekunde"
+
+#: ../data/toc.xml.in.h:15
+msgid "Biology"
+msgstr "Biologie"
+
+#: ../data/toc.xml.in.h:16
+msgid "Blocks Games"
+msgstr "Blokspeletjies"
+
+#: ../data/toc.xml.in.h:17
+msgid "Board Games"
+msgstr "Bordspeletjies"
+
+#: ../data/toc.xml.in.h:18
+msgid "Building"
+msgstr "Bou"
+
+#: ../data/toc.xml.in.h:19
+msgid "Calculator"
+msgstr "Sakrekenaar"
+
+#: ../data/toc.xml.in.h:20
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../data/toc.xml.in.h:21
+msgid "Card Games"
+msgstr "Kaartspeletjies"
+
+#: ../data/toc.xml.in.h:22
+msgid "Charting Tools"
+msgstr "Diagramnutsgoed"
+
+#: ../data/toc.xml.in.h:23
+msgid "Chat"
+msgstr "Gesels"
+
+#: ../data/toc.xml.in.h:24
+msgid "Chemistry"
+msgstr "Chemie"
+
+#: ../data/toc.xml.in.h:25
+msgid "Clocks"
+msgstr "Horlosies"
+
+#: ../data/toc.xml.in.h:26
+msgid "Compression Tools"
+msgstr "Saampersnutsgoed"
+
+#: ../data/toc.xml.in.h:27
+msgid "Computer Science"
+msgstr "Rekenaarwetenskap"
+
+#: ../data/toc.xml.in.h:28
+msgid "Construction"
+msgstr "Konstruksie"
+
+#: ../data/toc.xml.in.h:29
+msgid "Contact Management"
+msgstr "Kontakbestuur"
+
+#: ../data/toc.xml.in.h:30
+msgid "Data Visualization"
+msgstr "Data visualisering"
+
+#: ../data/toc.xml.in.h:31
+msgid "Databases"
+msgstr "Databasisse"
+
+#: ../data/toc.xml.in.h:32
+msgid "Debuggers"
+msgstr "Ontfouting"
+
+#: ../data/toc.xml.in.h:33
 msgid "Desktop"
-msgstr "Tafelblad"
+msgstr "Werkskerm"
 
-#: data/toc.xml.in.h:6
-msgid "Education Applications"
-msgstr "Opvoedingstoepassings"
+#: ../data/toc.xml.in.h:34
+msgid "Desktop Settings"
+msgstr "Werkskermopstelling"
 
-#: data/toc.xml.in.h:8
+#: ../data/toc.xml.in.h:36
+msgid "Dialup"
+msgstr ""
+
+#: ../data/toc.xml.in.h:37
+msgid "Dictionaries"
+msgstr "Woordeboeke"
+
+#. Translators: this is a menu title for burning audio and video to dics
+#: ../data/toc.xml.in.h:39
+msgid "Disc Burning"
+msgstr "Skryf van skywe"
+
+#: ../data/toc.xml.in.h:40
+msgid "Economy"
+msgstr "Ekonomie"
+
+#: ../data/toc.xml.in.h:41
+msgid "Education"
+msgstr "Onderwys"
+
+#: ../data/toc.xml.in.h:42
+msgid "Electricity"
+msgstr "Elektrisiteit"
+
+#: ../data/toc.xml.in.h:43
+msgid "Electronics"
+msgstr "Elektronika"
+
+#: ../data/toc.xml.in.h:44
+msgid "Email Tools"
+msgstr "E-pos-nutsgoed"
+
+#: ../data/toc.xml.in.h:45
+msgid "Emulator"
+msgstr "Emulator"
+
+#: ../data/toc.xml.in.h:46
+msgid "Engineering"
+msgstr "Ingenieurswese"
+
+#: ../data/toc.xml.in.h:47
+msgid "File Manager"
+msgstr "Lêerbestuurder"
+
+#: ../data/toc.xml.in.h:48
+msgid "File Tools"
+msgstr "Lêernutsgoed"
+
+#: ../data/toc.xml.in.h:49
+msgid "File Transfer"
+msgstr "Lêeroordrag"
+
+#: ../data/toc.xml.in.h:50
+msgid "Filesystem"
+msgstr "Lêerstelsel"
+
+#: ../data/toc.xml.in.h:51
+msgid "Financial Tools"
+msgstr "Finansiële nutsgoed"
+
+#: ../data/toc.xml.in.h:52
+msgid "Flow Charting Tools"
+msgstr "Vloeidiagramnutsgoed"
+
+#: ../data/toc.xml.in.h:53
+msgid "GNOME Applications"
+msgstr "GNOME-toepassings"
+
+#: ../data/toc.xml.in.h:54
+msgid "GTK"
+msgstr "GTK"
+
+#: ../data/toc.xml.in.h:55
+msgid "GUI Designers"
+msgstr "GUI-ontwerpers"
+
+#: ../data/toc.xml.in.h:57
+msgid "Generic applications for the GNOME environment"
+msgstr "Generiese toepassings vir die GNOME-omgewing"
+
+#: ../data/toc.xml.in.h:58
+msgid "Generic applications for the KDE environment"
+msgstr "Generiese toepassings vir die KDE-omgewing"
+
+#: ../data/toc.xml.in.h:59
+msgid "Geography"
+msgstr "Aardrykskunde"
+
+#: ../data/toc.xml.in.h:60
+msgid "Geology"
+msgstr "Geologie"
+
+#: ../data/toc.xml.in.h:61
+msgid "Geoscience"
+msgstr "Geowetenskap"
+
+#: ../data/toc.xml.in.h:62
 msgid "Graphics"
-msgstr ""
+msgstr "Grafika"
 
-#: data/toc.xml.in.h:9 src/yelp-bookmarks.c:326
-#, fuzzy
-msgid "Help Topics"
-msgstr "Hulpblaaier"
+#: ../data/toc.xml.in.h:63
+msgid "Guides and manuals for applications that connect to the outside world"
+msgstr "Riglyne en handleidings vir toepassings wat met die buitewêreld koppel"
 
-#: data/toc.xml.in.h:10
+#: ../data/toc.xml.in.h:64
+msgid "Guides for getting involved in development"
+msgstr "Riglyne om by die ontwikkeling betrokke te raak"
+
+#: ../data/toc.xml.in.h:65
 #, fuzzy
+msgid "Ham Radio"
+msgstr "Ham radio"
+
+#: ../data/toc.xml.in.h:66
+msgid "Hardware Settings"
+msgstr "Hardewareopstelling"
+
+#: ../data/toc.xml.in.h:67
+#, fuzzy
+msgid "Have some fun"
+msgstr "Pret"
+
+#: ../data/toc.xml.in.h:68
+msgid "History"
+msgstr "Geskiedenis"
+
+#: ../data/toc.xml.in.h:69
+msgid "IDEs"
+msgstr "IDE's"
+
+#: ../data/toc.xml.in.h:70
+msgid "IRC Clients"
+msgstr "IRC-kliënte"
+
+#: ../data/toc.xml.in.h:71
+msgid "Image Processing"
+msgstr "Beeldverwerking"
+
+#: ../data/toc.xml.in.h:72
+msgid "Instant Messaging"
+msgstr "Kitsboodskappe"
+
+#: ../data/toc.xml.in.h:73
 msgid "Internet"
-msgstr "Inhoudsopgawe"
+msgstr "Internet"
 
-#: data/toc.xml.in.h:11
-msgid "KDE"
-msgstr "KDE"
+#: ../data/toc.xml.in.h:74
+msgid "Java"
+msgstr "Java"
 
-#: data/toc.xml.in.h:12
-msgid "Office"
+#: ../data/toc.xml.in.h:75
+msgid "KDE Applications"
+msgstr "KDE-toepassings"
+
+#: ../data/toc.xml.in.h:76
+msgid "Kids Games"
+msgstr "Kinderspeletjies"
+
+#: ../data/toc.xml.in.h:77
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
 msgstr ""
+"Vind meer uit oor hoe om die stelsel meer toeganklik te maak vir 'n "
+"verskeidenheid gestremdhede"
 
-#: data/toc.xml.in.h:13
-msgid "Other"
-msgstr ""
+#: ../data/toc.xml.in.h:78
+msgid "Licenses"
+msgstr "Lisensies"
 
-#: data/toc.xml.in.h:14
+#: ../data/toc.xml.in.h:79
+msgid "Literature"
+msgstr "Literatuur"
+
+#: ../data/toc.xml.in.h:80
+msgid "Logic Games"
+msgstr "Logikaspeletjies"
+
+#: ../data/toc.xml.in.h:81
+msgid "Math"
+msgstr "Wiskunde"
+
+#: ../data/toc.xml.in.h:82
+msgid "Medical Software"
+msgstr "Mediese sagteware"
+
+#: ../data/toc.xml.in.h:83
+msgid "Midi"
+msgstr "Midi"
+
+#: ../data/toc.xml.in.h:84
+msgid "Miscellaneous Documentation"
+msgstr "Allerlei dokumentasie"
+
+#: ../data/toc.xml.in.h:85
 #, fuzzy
+msgid "Mixers"
+msgstr "Mengers"
+
+#: ../data/toc.xml.in.h:86
+#, fuzzy
+msgid "Monitor"
+msgstr "Skerm"
+
+#: ../data/toc.xml.in.h:87
+msgid "Motif"
+msgstr "Motif"
+
+#: ../data/toc.xml.in.h:88
+msgid "Music"
+msgstr "Musiek"
+
+#: ../data/toc.xml.in.h:89
+msgid "News"
+msgstr "Nuus"
+
+#: ../data/toc.xml.in.h:90
+msgid "Numerical Analysis"
+msgstr "Numeriese analise"
+
+#: ../data/toc.xml.in.h:91
+msgid "OCR"
+msgstr "Karakterherkenning (OCR)"
+
+#: ../data/toc.xml.in.h:92
+msgid "Office Applications"
+msgstr "Kantoortoepassings"
+
+#: ../data/toc.xml.in.h:93
+msgid "Office applications"
+msgstr "Kantoortoepassings"
+
+#: ../data/toc.xml.in.h:94
 msgid "Other Documentation"
-msgstr "Vrystellinginligting"
+msgstr "Ander dokumentasie"
 
-#: data/toc.xml.in.h:15
-msgid "Programming"
+#: ../data/toc.xml.in.h:95
+msgid "P2P"
+msgstr "P2P"
+
+#: ../data/toc.xml.in.h:96
+msgid "PDA Communication"
+msgstr "PDA-kommunikasie"
+
+#: ../data/toc.xml.in.h:97
+msgid "Package Manager"
+msgstr "Pakketbestuurder"
+
+#: ../data/toc.xml.in.h:98
+msgid "Parallel Computing"
+msgstr "Parallelle verwerking"
+
+#: ../data/toc.xml.in.h:99
+msgid "Photography"
+msgstr "Fotografie"
+
+#: ../data/toc.xml.in.h:100
+msgid "Physics"
+msgstr "Fisika"
+
+#. Translators: this is a menu title for audio and video players
+#: ../data/toc.xml.in.h:102
+msgid "Players"
+msgstr "Spelers"
+
+#: ../data/toc.xml.in.h:103
+msgid "Presentation Tools"
+msgstr "Voorleggingnutsgoed"
+
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
+msgid "Printing"
+msgstr "Druk"
+
+#: ../data/toc.xml.in.h:105
+msgid "Profiling Tools"
 msgstr ""
 
-#: data/toc.xml.in.h:16
-#, fuzzy
-msgid "Scientific"
-msgstr "Wetenskaplike toepassings"
+#: ../data/toc.xml.in.h:106
+msgid "Project Management Tools"
+msgstr "Projekbestuurnutsgoed"
 
-#: data/toc.xml.in.h:17
+#: ../data/toc.xml.in.h:107
+#, fuzzy
+msgid "Publishing"
+msgstr "Publisering"
+
+#: ../data/toc.xml.in.h:108
+msgid "Qt"
+msgstr "Qt"
+
+#: ../data/toc.xml.in.h:109
+msgid "Raster Graphics"
+msgstr "Roostergrafika"
+
+#. Translators: this is a menu title for audio and video recorders
+#: ../data/toc.xml.in.h:111
+msgid "Recorders"
+msgstr "Opnemers"
+
+#: ../data/toc.xml.in.h:112
+msgid "Remote Access"
+msgstr "Afgeleë toegang"
+
+#: ../data/toc.xml.in.h:113
+msgid "Revision Control"
+msgstr "Weergawebeheer"
+
+#: ../data/toc.xml.in.h:114
+msgid "Robotics"
+msgstr "Robotika"
+
+#: ../data/toc.xml.in.h:115
+msgid "Role Playing Games"
+msgstr "Rolspelspeletjies"
+
+#: ../data/toc.xml.in.h:116
+msgid "Scanning"
+msgstr "Skandering"
+
+#: ../data/toc.xml.in.h:117
+msgid "Science"
+msgstr "Wetenskap"
+
+#: ../data/toc.xml.in.h:118
+msgid "Security"
+msgstr "Sekuriteit"
+
+#: ../data/toc.xml.in.h:119
+msgid "Sequencers"
+msgstr ""
+
+#: ../data/toc.xml.in.h:120
+msgid "Settings"
+msgstr "Instellings"
+
+#: ../data/toc.xml.in.h:121
+msgid "Settings users can manipulate to make their environment more pleasant"
+msgstr "Instellings waarmee gebruikers hulle omgewing aangenamer kan maak"
+
+#: ../data/toc.xml.in.h:122
+msgid "Simulation Games"
+msgstr "Simulasiespeletjies"
+
+#: ../data/toc.xml.in.h:123
+msgid "Sound"
+msgstr "Klank"
+
+#: ../data/toc.xml.in.h:124
 msgid "Sound &amp; Video"
-msgstr ""
+msgstr "Klank en video"
 
-#: data/toc.xml.in.h:18
+#: ../data/toc.xml.in.h:125
+msgid "Sound &amp; Video Editing"
+msgstr "Klank- en videoredigering"
+
+#: ../data/toc.xml.in.h:126
+msgid "Sports"
+msgstr "Sport"
+
+#: ../data/toc.xml.in.h:127
+msgid "Sports Games"
+msgstr "Sportspeletjies"
+
+#: ../data/toc.xml.in.h:128
 #, fuzzy
-msgid "System Tools"
-msgstr "Stelselroepe"
+msgid "Spreadsheet Tools"
+msgstr "Sigblaaie"
 
-#: data/toc.xml.in.h:19
-msgid "X Applications"
-msgstr "X-toepassings"
+#: ../data/toc.xml.in.h:129
+msgid "Strategy Games"
+msgstr "Strategiespeletjies"
 
-#: data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
+#: ../data/toc.xml.in.h:130
+msgid "System"
+msgstr "Stelsel"
+
+#: ../data/toc.xml.in.h:131
+msgid "TV"
+msgstr "TV"
+
+#: ../data/toc.xml.in.h:132
+msgid "Telephony"
 msgstr ""
 
-#: data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
+#: ../data/toc.xml.in.h:133
+msgid "Telephony Tools"
 msgstr ""
 
-#: data/ui/yelp.glade.h:3
+#: ../data/toc.xml.in.h:134
+msgid "Terminal Emulator"
+msgstr "Terminaalemulator"
+
+#: ../data/toc.xml.in.h:135
+msgid "Text Editors"
+msgstr "Teksredigeerders"
+
+#: ../data/toc.xml.in.h:136
+msgid "Text Tools"
+msgstr "Teksnutsgoed"
+
+#: ../data/toc.xml.in.h:137
+msgid "Tools to help you manage your computer"
+msgstr "Nutsgoed om te help met die bestuur van die rekenaar"
+
+#: ../data/toc.xml.in.h:138
+msgid "Translation Tools"
+msgstr "Vertaalnutsgoed"
+
+#: ../data/toc.xml.in.h:139
 #, fuzzy
-msgid "<b>_Bookmarks:</b>"
-msgstr "Boek"
+msgid "Tuners"
+msgstr "Radio"
 
-#: data/ui/yelp.glade.h:4
-msgid "<b>_Title:</b>"
-msgstr ""
-
-#: data/ui/yelp.glade.h:5
-msgid "Add Bookmark"
-msgstr ""
-
-#: data/ui/yelp.glade.h:6
+#: ../data/toc.xml.in.h:140
 #, fuzzy
+msgid "Utilities"
+msgstr "Nutsgoed"
+
+#: ../data/toc.xml.in.h:141
+msgid "Utilities to help you get work done"
+msgstr ""
+
+#: ../data/toc.xml.in.h:142
+msgid "Vector Graphics"
+msgstr "Vektorgrafika"
+
+#: ../data/toc.xml.in.h:143
+msgid "Video"
+msgstr "Video"
+
+#: ../data/toc.xml.in.h:144
+msgid "Video Conference"
+msgstr "Videokonferensie"
+
+#. Translators: This is a menu title for graphics viewing applications
+#: ../data/toc.xml.in.h:146
+msgid "Viewer"
+msgstr "Bekyker"
+
+#: ../data/toc.xml.in.h:147
+msgid "Web Browser"
+msgstr "Webblaaier"
+
+#: ../data/toc.xml.in.h:148
+msgid "Web Development"
+msgstr "Webontwikkeling"
+
+#: ../data/toc.xml.in.h:149
+msgid "Welcome to the GNOME Help Browser"
+msgstr "Welkom by die GNOME hulpblaaier"
+
+#: ../data/toc.xml.in.h:150
+msgid "Word Processors"
+msgstr "Woordverwerkers"
+
+#: ../data/ui/yelp-bookmarks.ui.h:1
 msgid "Bookmarks"
-msgstr "Boek"
+msgstr "Boekmerke"
 
-#: data/ui/yelp.glade.h:7
-msgid "C_ase sensitive"
-msgstr "K_assensitief"
-
-#: data/ui/yelp.glade.h:8
-msgid "Find"
-msgstr "Vind"
-
-#: data/ui/yelp.glade.h:9
-#, fuzzy
-msgid "Open Location"
-msgstr "Opdraging"
-
-#: data/ui/yelp.glade.h:10
-#, fuzzy
-msgid "Preferences"
-msgstr "Naslaanwerk"
-
-#: data/ui/yelp.glade.h:11
+#: ../data/ui/yelp-bookmarks.ui.h:2
 msgid "Re_name"
-msgstr ""
+msgstr "Her_noem"
 
-#: data/ui/yelp.glade.h:12
-msgid "_Browse with caret"
-msgstr ""
+#: ../data/ui/yelp-bookmarks.ui.h:3
+msgid "_Bookmarks:"
+msgstr "_Boekmerke:"
 
-#: data/ui/yelp.glade.h:13
-msgid "_Find: "
-msgstr "_Vind: "
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Voeg boekmerk by"
 
-#: data/ui/yelp.glade.h:14
-msgid "_Fixed width:"
-msgstr ""
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
+msgid "_Title:"
+msgstr "_Titel:"
 
-#: data/ui/yelp.glade.h:15
-#, fuzzy
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Open ligging"
+
+#: ../data/ui/yelp-open-location.ui.h:2
 msgid "_Location:"
-msgstr "Opdraging"
+msgstr "_Ligging:"
 
-#: data/ui/yelp.glade.h:16
-msgid "_Next"
-msgstr "_Volgende"
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Skriftipes"
 
-#: data/ui/yelp.glade.h:17
-msgid "_Previous"
-msgstr "_Vorige"
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Voorkeure"
 
-#: data/ui/yelp.glade.h:18
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "_Blaai met teksmerker"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "_Vaste wydte:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Gebruik stelselskriftipes"
 
-#: data/ui/yelp.glade.h:19
+#: ../data/ui/yelp-preferences.ui.h:7
 msgid "_Variable width:"
 msgstr ""
 
-#: data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Omvou"
-
-#: data/yelp.schemas.in.h:1
+#: ../data/yelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr ""
 
-#: data/yelp.schemas.in.h:2
+#: ../data/yelp.schemas.in.h:2
 msgid "Font for text"
 msgstr ""
 
-#: data/yelp.schemas.in.h:3
+#: ../data/yelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr ""
 
-#: data/yelp.schemas.in.h:4
+#: ../data/yelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr ""
 
-#: data/yelp.schemas.in.h:5
+#: ../data/yelp.schemas.in.h:5
 msgid "Use a keyboard-controllable caret when viewing pages."
 msgstr ""
 
-#: data/yelp.schemas.in.h:6
+#: ../data/yelp.schemas.in.h:6
 msgid "Use caret"
-msgstr ""
+msgstr "Gebruik teksmerker"
 
-#: data/yelp.schemas.in.h:7
+#: ../data/yelp.schemas.in.h:7
 msgid "Use system fonts"
 msgstr ""
 
-#: data/yelp.schemas.in.h:8
+#: ../data/yelp.schemas.in.h:8
 msgid "Use the default fonts set for the system."
 msgstr ""
 
-#: src/GNOME_Yelp.server.in.h:1 src/yelp-window.c:2169
-msgid "Yelp"
-msgstr "Yelp"
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Lêer is nie 'n geldige .desktop-lêer nie"
 
-#: src/GNOME_Yelp.server.in.h:2
-msgid "Yelp Factory"
-msgstr "Yelpfabriek"
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr ""
 
-#: src/yelp-bookmarks.c:241 src/yelp-bookmarks.c:313
+#: ../src/eggdesktopfile.c:957
+#, c-format
+msgid "Starting %s"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1098
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Toepassing aanvaar nie dokumente op die opdraglyn nie"
+
+#: ../src/eggdesktopfile.c:1166
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Nieherkende lanseerkeuse: %d"
+
+#: ../src/eggdesktopfile.c:1365
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+
+#: ../src/eggdesktopfile.c:1384
+#, c-format
+msgid "Not a launchable item"
+msgstr "Nie 'n lanseerbare item nie"
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Deaktiveer konneksie na sessiebestuurder"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Spesifiseer lêer wat gestoorde konfigurasie bevat"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "LÊER"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Spesifiseer sessiebestuurs-ID"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "ID"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Sessiebestuurkeuses:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Wys keuses vir sessiebestuur"
+
+#: ../src/yelp-bookmarks.c:147
+msgid "Open Bookmark in New Window"
+msgstr "Open boekmerk in nuwe venster"
+
+#: ../src/yelp-bookmarks.c:151
+msgid "Rename Bookmark"
+msgstr "Hernoem boekmerk"
+
+#: ../src/yelp-bookmarks.c:155
+msgid "Remove Bookmark"
+msgstr "Verwyder boekmerk"
+
+#: ../src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "'n Boekmerk genaamd %s bestaan reeds vir hierdie bladsy."
+
+#: ../src/yelp-bookmarks.c:395
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr ""
+msgstr "'n Boekmerk genaamd <b>%s</b> bestaan reeds vir hierdie bladsy."
 
-#: src/yelp-bookmarks.c:341
-#, fuzzy
+#: ../src/yelp-bookmarks.c:408
+msgid "Help Topics"
+msgstr "Hulponderwerpe"
+
+#: ../src/yelp-bookmarks.c:423
 msgid "Document Sections"
-msgstr "Vrystellinginligting"
+msgstr "Dokumentafdelings"
 
-#: src/yelp-db-pager.c:238
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
+msgid "Page not found"
+msgstr "Bladsy nie gevind nie"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
+#, c-format, 
+msgid "The page %s was not found in the document %s."
+msgstr "Die bladsy %s is nie in die dokument ‘%s’ gevind nie."
+
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
+#, c-format, 
+msgid "The requested page was not found in the document %s."
+msgstr "Die bladsy wat versoek is, is nie gevind in die dokument %s nie."
+
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
+msgid "File not found"
+msgstr "Lêer nie gevind nie"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Die lêer ‘%s’ bestaan nie."
+
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
+msgid "Could not parse file"
+msgstr "Kon nie lêer ontleed nie"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
+#, c-format
+#, c-format,
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Die lêer ‘%s’ kon nie ontleed word nie, want dit is nie 'n goed gevormde "
+"XML-dokument nie."
+
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"not well-formed XML."
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr ""
+"Die lêer ‘%s’ kon nie ontleed word nie, want een of meer van die ingeslote "
+"lêers is nie 'n goed gevormde XML-dokument nie."
 
-#: src/yelp-db-pager.c:486
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: src/yelp-error.c:42 src/yelp-error.c:58
-msgid "An unknown error occured"
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Onbekende fout"
+
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1719
+msgid "Could Not Read File"
+msgstr "Kon nie lêer lees nie"
+
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr "Geen inligting is beskikbaar oor hierdie fout nie."
+
+#: ../src/yelp-info.c:396
+#, c-format
+#, c-format,
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
+"Die lêer ‘%s’ kon nie ontleed word nie, want dit is nie 'n goed gevormde "
+"\"info\"-bladsy nie."
 
-#: src/yelp-error.c:46
-msgid "Could not load document"
-msgstr ""
-
-#: src/yelp-error.c:48
-#, fuzzy
-msgid "Could not load section"
-msgstr "Kon nie nuwe venster open nie."
-
-#: src/yelp-error.c:50
-#, fuzzy
-msgid "Could not read the table of contents"
-msgstr "Kon nie die OMF-lêer '%s' laai nie."
-
-#: src/yelp-error.c:52
-msgid "Unsupported Format"
-msgstr ""
-
-#: src/yelp-error.c:54
-msgid "Could not read document"
-msgstr ""
-
-#: src/yelp-error.c:56
-msgid "Could not process document"
-msgstr ""
-
-#: src/yelp-error.c:66
-msgid "No information is available about the error."
-msgstr ""
-
-#: src/yelp-io-channel.c:98
+#: ../src/yelp-io-channel.c:132
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read and decoded. The file may be compressed in "
 "an unsupported format."
 msgstr ""
 
-#: src/yelp-main.c:95
+#: ../src/yelp-main.c:88
+msgid "Use a private session"
+msgstr ""
+
+#: ../src/yelp-main.c:97
 msgid "Define which cache directory to use"
-msgstr "Dui aan watter kasgids gebruik moet word"
+msgstr ""
 
-#: src/yelp-main.c:129
-#, c-format
-msgid "Could not activate Yelp: '%s'"
-msgstr "Kon nie Yelp: '%s' aktiveer nie"
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:355
+msgid " GNOME Help Browser"
+msgstr " GNOME se hulpblaaier"
 
-#: src/yelp-main.c:148
-msgid "Could not open new window."
-msgstr "Kon nie nuwe venster open nie."
-
-#: src/yelp-main.c:326 yelp.desktop.in.in.h:2
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hulp"
 
-#: src/yelp-man-pager.c:164
+#: ../src/yelp-mallard.c:315
+msgid "Directory not found"
+msgstr "Gids nie gevind nie"
+
+#: ../src/yelp-mallard.c:316
 #, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Die gids ‘%s’ bestaan nie."
+
+#: ../src/yelp-man.c:459
+#, c-format
+#, c-format,
 msgid ""
-"The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
-"formatted incorrectly."
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr ""
+"Die lêer ‘%s’ kon nie ontleed word nie, want dit is nie 'n goed gevormde "
+"\"man\"-bladsy nie."
+
+#: ../src/yelp-print.c:99
+msgid "Print"
+msgstr "Druk"
+
+#: ../src/yelp-print.c:169
+msgid "Preparing to print"
+msgstr "Berei tans voor om te druk"
+
+#: ../src/yelp-print.c:263
+msgid "Printing is not supported on this printer"
+msgstr "Druk word nie ondersteun op hierdie drukker nie"
+
+#: ../src/yelp-print.c:266
+#, c-format
+msgid "Printer %s does not support postscript printing."
+msgstr "Die drukker %s ondersteun nie postscript-drukwerk nie."
+
+#: ../src/yelp-print.c:368
+msgid "Waiting to print"
+msgstr "Wag tans om te druk"
+
+#: ../src/yelp-print.c:580
+msgid "An error occurred while printing"
+msgstr "'n Fout het voorgekom tydens die druk"
+
+#: ../src/yelp-print.c:584
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "Dit was nie moontlik om u dokument te druk nie: %s"
+
+#: ../src/yelp-search-parser.c:67
+msgid "the GNOME Support Forums"
+msgstr "die GNOME-ondersteuningsforums"
+
+#: ../src/yelp-search-parser.c:285
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Geen resultate vir \"%s\" nie"
+
+#: ../src/yelp-search-parser.c:286
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
+msgstr ""
+"Probeer ander woorde vir u probleembeskrywing of die onderwerp waarvoor u "
+"hulp benodig."
+
+#: ../src/yelp-search-parser.c:289
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "Soekresultate vir \"%s\""
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-parser.c:303
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Herhaal die soektog aanlyn by %s"
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-parser.c:874
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
 msgstr ""
 
-#: src/yelp-pager.c:120
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-parser.c:890
+msgid "re"
+msgstr ""
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the string NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-parser.c:899
+msgid "ers:er:ing:es:s:'s"
+msgstr ""
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr ""
+
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "Soektog kon nie verwerk word nie"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "Die gevraagde soektog kon nie verwerk word nie."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "Kan nie die soektog verwerk nie"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr ""
+
+#: ../src/yelp-toc.c:267
+#, c-format
+msgid "The page %s was not found in the TOC."
+msgstr ""
+
+#: ../src/yelp-toc.c:366
 #, fuzzy
-msgid "Document Information"
-msgstr "Vrystellinginligting"
+msgid "The requested page was not found in the TOC."
+msgstr "Die bladsy wat versoek is, is nie gevind in die dokument ‘%s’ nie."
 
-#: src/yelp-pager.c:121
-msgid "The YelpDocInfo struct of the document"
-msgstr ""
-
-#. TRANSLATORS:
-#. This is an image of the opening quote character used to watermark
-#. blockquote elements.  Different languages use different opening
-#. quote characters, so the icon name is translatable.  The name of
-#. the icon should be "yelp-watermark-blockquote-XXXX", where XXXX
-#. is the Unicode code point of the opening quote character.   For
-#. example, some languages use the double angle quotation mark, so
-#. those would use "yelp-watermark-blockquote-00AB".  However, the
-#. image is not automagically created.  Do not translate this to a
-#. value if there isn't a corresponding icon in yelp/data/icons.
-#. If you need an image created, contact the maintainers.
-#.
-#. Phew, now some notes on which character to use.  Languages that
-#. use guillemets (angle quotations) should use either 00AB or AABB,
-#. depending on whether the opening quotation is the left guillemet
-#. or the right guillemet.  Languages that use inverted comma style
-#. quotations should use 201C, 201D, or 201E.  Note that single
-#. quotation marks don't make very nice watermarks.  So if you use
-#. single quotes as your primary (outer) quotation marks, you should
-#. just use the corresponding double quote watermark.
-#.
-#: src/yelp-settings.c:151
-msgid "yelp-watermark-blockquote-201C"
-msgstr ""
-
-#: src/yelp-toc-pager.c:268
-msgid "YelpTocPager: Pause count is negative."
-msgstr "YelpTocPager: Pousetelling is negatief."
-
-#: src/yelp-toc-pager.c:491
-#, c-format
-msgid "Could not load the OMF file '%s'."
-msgstr "Kon nie die OMF-lêer '%s' laai nie."
-
-#: src/yelp-toc-pager.c:680
-#, c-format
-msgid "Read man page for %s"
-msgstr ""
-
-#: src/yelp-toc-pager.c:765
-#, c-format
+#: ../src/yelp-toc.c:438
+#, fuzzy
 msgid ""
-"The table of contents could not be loaded. The file ‘%s’ is either missing "
-"or is not well-formed XML."
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Die lêer ‘%s’ kon nie ontleed word nie, want dit is nie 'n goed gevormde "
+"XML-dokument nie."
+
+#: ../src/yelp-transform.c:86
+msgid "Invalid Stylesheet"
 msgstr ""
 
-#: src/yelp-toc-pager.c:873
-#, c-format
-msgid ""
-"The table of contents could not be processed. The file ‘%s’ is either "
-"missing or is not a valid XSLT stylesheet."
+#: ../src/yelp-transform.c:87
+#, c-format, fuzzy
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "Die XSLT-stylblad ‘%s’ is óf weg óf nie geldig nie."
+
+#: ../src/yelp-transform.c:122
+msgid "Broken Transformation"
 msgstr ""
 
-#: src/yelp-toc-pager.c:1024 src/yelp-xslt-pager.c:365
-msgid "No href attribute found on yelp:document"
-msgstr "Kon nie href-attribuut op yelp:document vind nie"
+#: ../src/yelp-transform.c:123
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr ""
 
-#: src/yelp-toc-pager.c:1038 src/yelp-xslt-pager.c:381
+#: ../src/yelp-transform.c:389
+msgid "No href attribute found on yelp:document\n"
+msgstr "Geen \"href\"-attribuut gevind op yelp:document nie\n"
+
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Geheue is op"
 
-#: src/yelp-toc-pager.c:1079
-msgid "Help Contents"
-msgstr "Hulp Inhoud"
-
-#: src/yelp-window.c:302
-#, fuzzy
+#: ../src/yelp-window.c:304
 msgid "_File"
-msgstr "/_Lêer"
+msgstr "_Lêer"
 
-#: src/yelp-window.c:303
-#, fuzzy
+#: ../src/yelp-window.c:305
 msgid "_Edit"
-msgstr "/_Redigeer"
+msgstr "R_edigeer"
 
-#: src/yelp-window.c:304
-#, fuzzy
+#: ../src/yelp-window.c:306
 msgid "_Go"
-msgstr "/_Gaan"
+msgstr "_Gaan"
 
-#: src/yelp-window.c:305
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_Boekmerke"
 
-#: src/yelp-window.c:306
-#, fuzzy
+#: ../src/yelp-window.c:308
 msgid "_Help"
-msgstr "/_Hulp"
+msgstr "_Hulp"
 
-#: src/yelp-window.c:309
-#, fuzzy
+#: ../src/yelp-window.c:311
 msgid "_New Window"
-msgstr "/Lêer/_Nuwe venster"
+msgstr "_Nuwe venster"
 
-#: src/yelp-window.c:314
-#, fuzzy
+#: ../src/yelp-window.c:316
+msgid "Print This Document ..."
+msgstr "Druk dié dokument ..."
+
+#: ../src/yelp-window.c:321
+msgid "Print This Page ..."
+msgstr "Druk dié bladsy ..."
+
+#: ../src/yelp-window.c:326
 msgid "About This Document"
-msgstr "Aangaande dié stel"
+msgstr "Aangaande hierdie dokument"
 
-#: src/yelp-window.c:319
+#: ../src/yelp-window.c:331
 msgid "Open _Location"
-msgstr ""
+msgstr "Open _ligging"
 
-#: src/yelp-window.c:324
-#, fuzzy
+#: ../src/yelp-window.c:336
 msgid "_Close Window"
-msgstr "/Lêer/_Sluit venster"
+msgstr "_Sluit venster"
 
-#: src/yelp-window.c:330
+#: ../src/yelp-window.c:342
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopieer"
 
-#: src/yelp-window.c:336
-#, fuzzy
+#: ../src/yelp-window.c:348
 msgid "_Select All"
-msgstr "Kyk ook"
+msgstr "_Merk alles"
 
-#: src/yelp-window.c:341
-#, fuzzy
+#: ../src/yelp-window.c:353
 msgid "_Find..."
-msgstr "/Redigeer/_Vind..."
+msgstr "_Vind..."
 
-#: src/yelp-window.c:346
-#, fuzzy
+#: ../src/yelp-window.c:358
+msgid "Find Pre_vious"
+msgstr "Vind vor_ige"
+
+#: ../src/yelp-window.c:360
+msgid "Find previous occurrence of the word or phrase"
+msgstr ""
+
+#: ../src/yelp-window.c:363
+msgid "Find Ne_xt"
+msgstr "Vind vo_lgende"
+
+#: ../src/yelp-window.c:365
+msgid "Find next occurrence of the word or phrase"
+msgstr ""
+
+#: ../src/yelp-window.c:368
 msgid "_Preferences"
-msgstr "Naslaanwerk"
+msgstr "_Voorkeure"
 
-#: src/yelp-window.c:351
+#: ../src/yelp-window.c:373
 msgid "_Reload"
-msgstr ""
+msgstr "He_rlaai"
 
-#: src/yelp-window.c:357
-#, fuzzy
+#: ../src/yelp-window.c:385
 msgid "_Back"
-msgstr "Terug"
+msgstr "_Terug"
 
-#: src/yelp-window.c:359
+#: ../src/yelp-window.c:387
 msgid "Show previous page in history"
-msgstr "Wys vorige bladsy in geskiedenis"
+msgstr "Wys vorige bladsy in die geskiedenis"
 
-#: src/yelp-window.c:362
-#, fuzzy
+#: ../src/yelp-window.c:390
 msgid "_Forward"
-msgstr "Vorentoe"
+msgstr "_Vorentoe"
 
-#: src/yelp-window.c:364
+#: ../src/yelp-window.c:392
 msgid "Show next page in history"
-msgstr "Wys volgende bladsy in geskiedenis"
+msgstr "Wys volgende bladsy in die geskiedenis"
 
-#: src/yelp-window.c:367
+#: ../src/yelp-window.c:395
 msgid "_Help Topics"
-msgstr ""
+msgstr "_Hulponderwerpe"
 
-#: src/yelp-window.c:369
+#: ../src/yelp-window.c:397
 msgid "Go to the listing of help topics"
 msgstr ""
 
-#: src/yelp-window.c:372
-#, fuzzy
+#: ../src/yelp-window.c:400
 msgid "_Previous Section"
-msgstr "/Gaan/V_orige bladsy"
+msgstr "Vo_rige afdeling"
 
-#: src/yelp-window.c:377
-#, fuzzy
+#: ../src/yelp-window.c:405
 msgid "_Next Section"
-msgstr "Afdeling"
+msgstr "Vo_lgende afdeling"
 
-#: src/yelp-window.c:382
-#, fuzzy
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
 msgid "_Contents"
-msgstr "Inhoudsopgawe"
+msgstr "I_nhoud"
 
-#: src/yelp-window.c:388
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
-msgstr ""
+msgstr "_Voeg boekmerk by"
 
-#: src/yelp-window.c:393
+#: ../src/yelp-window.c:421
 msgid "_Edit Bookmarks..."
-msgstr ""
+msgstr "R_edigeer boekmerke..."
 
-#: src/yelp-window.c:399
+#: ../src/yelp-window.c:427
 msgid "_Open Link"
-msgstr ""
+msgstr "_Open skakel"
 
-#: src/yelp-window.c:404
+#: ../src/yelp-window.c:432
 msgid "Open Link in _New Window"
-msgstr ""
+msgstr "Open skakel in _nuwe venster"
 
-#: src/yelp-window.c:409
+#: ../src/yelp-window.c:437
 msgid "_Copy Link Address"
-msgstr ""
+msgstr "_Kopieer skakeladres"
 
-#: src/yelp-window.c:415
-#, fuzzy
+#: ../src/yelp-window.c:444
+msgid "Help On this application"
+msgstr "Hulp met hierdie toepassing"
+
+#: ../src/yelp-window.c:447
 msgid "_About"
-msgstr "/Hulp/_Aangaande"
+msgstr "_Aangaande"
 
-#: src/yelp-window.c:466
+#: ../src/yelp-window.c:452
+msgid "Copy _Email Address"
+msgstr "Kopieer _e-posadres"
+
+#: ../src/yelp-window.c:524
 msgid "Help Browser"
 msgstr "Hulpblaaier"
 
-#: src/yelp-window.c:697 src/yelp-window.c:830
-msgid "The Uniform Resource Identifier for the file is invalid."
-msgstr ""
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1782
+msgid "Loading..."
+msgstr "Laai tans..."
 
-#: src/yelp-window.c:709 src/yelp-window.c:825
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
+msgid "Unknown Page"
+msgstr "Onbekende bladsy"
+
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
-msgid ""
-"The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-"actual file."
+msgid "The requested URI \"%s\" is invalid"
+msgstr "Die gevraagde URI \"%s\" is ongeldig"
+
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
+msgid "Unable to load page"
+msgstr "Kon nie bladsy laai nie"
+
+#: ../src/yelp-window.c:1339
+msgid "_Search:"
+msgstr "_Soek:"
+
+#: ../src/yelp-window.c:1340
+msgid "Search for other documentation"
+msgstr "Soek vir ander dokumentasie"
+
+#: ../src/yelp-window.c:1360
+msgid "Cannot create window"
+msgstr "Kan nie venster skep nie"
+
+#: ../src/yelp-window.c:1366
+msgid "Cannot create search component"
 msgstr ""
 
-#: src/yelp-window.c:786 src/yelp-window.c:1140
-msgid "Man pages are not supported in this version."
-msgstr ""
+#: ../src/yelp-window.c:1538
+msgid "Fin_d:"
+msgstr "Vin_d:"
 
-#: src/yelp-window.c:796 src/yelp-window.c:1131
-msgid "GNU info pages are not supported in this version"
-msgstr ""
-
-#: src/yelp-window.c:806
-msgid ""
-"SGML documents are no longer supported. Please ask the author of the "
-"document to convert to XML."
-msgstr ""
-
-#: src/yelp-window.c:1024
-#, fuzzy
-msgid "Find:"
-msgstr "Vind"
-
-#: src/yelp-window.c:1040
-#, fuzzy
-msgid "Find _Next"
-msgstr "/Redigeer/Vind vo_lgende"
-
-#: src/yelp-window.c:1052
-#, fuzzy
+#: ../src/yelp-window.c:1560
 msgid "Find _Previous"
-msgstr "_Vorige"
+msgstr "Vind vo_rige"
 
-#: src/yelp-window.c:1157
-#, c-format
-msgid ""
-"A transformation context could not be created for the file ‘%s’. The format "
-"may not be supported."
-msgstr ""
+#: ../src/yelp-window.c:1572
+msgid "Find _Next"
+msgstr "Soek vo_lgende"
 
-#: src/yelp-window.c:1187 src/yelp-window.c:1601 src/yelp-window.c:1668
-#, c-format
-msgid ""
-"The section ‘%s’ does not exist in this document. If you were directed to "
-"this section from a Help button in an application, please report this to the "
-"maintainers of that application."
-msgstr ""
+#: ../src/yelp-window.c:1585
+msgid "Phrase not found"
+msgstr "Frase nie gevind nie"
 
-#: src/yelp-window.c:1302
+#: ../src/yelp-window.c:1716
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
 "not have permissions to read it."
 msgstr ""
 
-#: src/yelp-window.c:1336
-msgid "Loading..."
-msgstr "Laai tans..."
-
 #. Note to translators: put here your name (and address) so it
-#. * will shop up in the "about" box
-#: src/yelp-window.c:2166
-#, fuzzy
+#. * will show up in the "about" box
+#: ../src/yelp-window.c:2625
 msgid "translator-credits"
-msgstr "vertaler_erkenning"
+msgstr ""
+"Hermien Bos\n"
+"Friedel Wolff"
 
-#: src/yelp-window.c:2171
+#: ../src/yelp-window.c:2628
+msgid "Yelp"
+msgstr "Yelp"
+
+#: ../src/yelp-window.c:2630
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr ""
+msgstr "'n Dokumentasieblaaier vir die GNOME-werkskerm."
 
-#: src/yelp-xslt-pager.c:194
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
-"improperly formatted."
-msgstr ""
-
-#: src/yelp-xslt-pager.c:215
-#, c-format
-msgid ""
-"The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
-"or it is not a valid XSLT stylesheet."
-msgstr ""
-
-#: src/yelp-xslt-pager.c:228
-#, c-format
-msgid ""
-"The document ‘%s’could not be processed. The file ‘%s’ is either missing or "
-"is not a valid XSLT stylesheet."
-msgstr ""
-
-#: yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Kry hulp met GNOME"
 
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Huis toe"
+#~ msgid "Invalid compressed data"
+#~ msgstr "Ongeldige saamgepersde data"
 
-#~ msgid "Go to home view"
-#~ msgstr "Gaan na huistoe-aansig"
+#~ msgid "Not enough memory"
+#~ msgstr "Onvoldoende geheue"
 
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "Vind"
+#, c-format
+#~ msgid "The file does not exist."
+#~ msgstr "Die lêer bestaan nie."
 
-#~ msgid "Development Environments"
-#~ msgstr "Ontwikkelingsomgewings"
+#, c-format
+#~ msgid "An unknown error occurred."
+#~ msgstr "'n Onbekende fout het voorgekom."
 
-#~ msgid "Development Tools"
-#~ msgstr "Ontwikkelingsnutsgoed"
+#~ msgid "View"
+#~ msgstr "Bekyk"
 
-#~ msgid "Editors"
-#~ msgstr "Redigeerders"
+#~ msgid "Enable Search"
+#~ msgstr "Stel soektog in werking"
 
-#~ msgid "Games and Entertainment"
-#~ msgstr "Speletjies en vermaak"
+#~ msgid "Search..."
+#~ msgstr "Soek..."
 
-#~ msgid "General"
-#~ msgstr "Algemeen"
+#~ msgid "Loading"
+#~ msgstr "Laai"
 
-#~ msgid "Internet Applications"
-#~ msgstr "Internettoepassings"
+#~ msgid "GtkSettings"
+#~ msgstr "GtkSettings"
 
-#~ msgid "Kernels"
-#~ msgstr "Kerne"
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "'n GtkSettings-objek om instellings van te kry"
 
-#~ msgid "Multimedia Applications"
-#~ msgstr "Multimediatoepassings"
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
 
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "Kantoor- en produktiwiteitstoepassings"
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "'n GtkIconTheme-objek om ikone van te kry"
 
-#~ msgid "Securities"
-#~ msgstr "Sekuriteitsgoed"
+#~ msgid "Font Adjustment"
+#~ msgstr "Font-verstelling"
 
-#~ msgid "System"
-#~ msgstr "Stelsel"
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "'n Grootte verstelling om by fontgroottes te voeg"
 
-#~ msgid "Utilities"
-#~ msgstr "Nutsgoed"
+#~ msgid "Show Text Cursor"
+#~ msgstr "Vertoon teksmerker"
 
-#~ msgid "*"
-#~ msgstr "*"
+#~ msgid "Editor Mode"
+#~ msgstr "Redigeerdermodus"
 
-#~ msgid "Titlepage"
-#~ msgstr "Titelbladsy"
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Aktiveer eienskappe nuttig vir redigeerders"
 
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Kon nie die gekose dokument open nie"
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "XSLT-stylblad"
 
-#~ msgid "The selected page could not be found in this document."
-#~ msgstr "Kon nie die gekose bladsy in hierdie dokument vind nie."
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "Die ligging van die XSLT-stylblad"
 
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Kon nie die inhoudsopgawe lees nie."
+#~ msgid "_Print..."
+#~ msgstr "_Druk..."
 
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "Werk nie meer met DocBook SGML-dokumente nie."
+#~ msgid "_Previous Page"
+#~ msgstr "_Vorige bladsy"
 
-#~ msgid "The selected file could not be read."
-#~ msgstr "Kon nie die gekose dokument lees nie."
-
-#, fuzzy
-#~ msgid "The file could not be processed."
-#~ msgstr "Kon nie die gekose dokument lees nie."
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Kategorieë"
-
-#~ msgid "Documents"
-#~ msgstr "Dokumente"
-
-#, fuzzy
 #~ msgid "_Next Page"
-#~ msgstr "/Gaan/Vo_lgende bladsy"
+#~ msgstr "_Volgende bladsy"
 
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp URI"
 
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "'n YelpUri met die huidige ligging"
 
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
+#~ msgid "Loading State"
+#~ msgstr "Laai status"
 
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
+#~ msgid "Page ID"
+#~ msgstr "Bladsy ID"
 
-#~ msgid "About This Article"
-#~ msgstr "Aangaande dié artikel"
+#~ msgid "Page Title"
+#~ msgstr "Bladsytitel"
 
-#~ msgid "About This Bibliography"
-#~ msgstr "Aangaande dié bibliografie"
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Die titel van die bladsy wat bekyk word"
 
-#~ msgid "About This Book"
-#~ msgstr "Aangaande dié boek"
+#~ msgid "Page Description"
+#~ msgstr "Bladsybeskrywing"
 
-#~ msgid "About This Chapter"
-#~ msgstr "Aangaande dié hoofstuk"
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Die beskrywing van die bladsy wat bekyk word"
 
-#~ msgid "About This Entry"
-#~ msgstr "Aangaande dié inskrywing"
+#~ msgid "Page Icon"
+#~ msgstr "Bladsyikoon"
 
-#~ msgid "About This Glossary"
-#~ msgstr "Aangaande dié termlys"
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Die ikoon van die bladsy wat bekyk word"
 
-#~ msgid "About This Index"
-#~ msgstr "Aangaande dié indeks"
+#~ msgid "Save Image"
+#~ msgstr "Stoor beeld"
 
-#~ msgid "About This Part"
-#~ msgstr "Aangaande dié deel"
+#~ msgid "Save Code"
+#~ msgstr "Stoor kode"
 
-#~ msgid "About This Preface"
-#~ msgstr "Aangaande dié voorwoord"
+#, c-format
+#~ msgid "Send email to %s"
+#~ msgstr "Stuur e-pos aan %s"
 
-#~ msgid "About This Reference"
-#~ msgstr "Aangaande dié naslaanwerk"
+#~ msgid "_Save Image As..."
+#~ msgstr "_Stoor beeld as..."
 
-#~ msgid "About This Section"
-#~ msgstr "Aangaande dié afdeling"
+#~ msgid "_Save Video As..."
+#~ msgstr "_Stoor video as..."
 
-#~ msgid "Affiliation"
-#~ msgstr "Affiliasie"
+#~ msgid "S_end Image To..."
+#~ msgstr "S_tuur beeld aan..."
 
-#~ msgid "Appendix"
-#~ msgstr "Aanhangsel"
+#~ msgid "S_end Video To..."
+#~ msgstr "S_tuur video aan..."
 
-#~ msgid "Article"
-#~ msgstr "Artikel"
+#~ msgid "_Copy Text"
+#~ msgstr "_Kopieer teks"
 
-#~ msgid "Audience"
-#~ msgstr "Gehoor"
+#~ msgid "C_opy Code Block"
+#~ msgstr "K_opieer kodeblok"
 
-#~ msgid "Author"
-#~ msgstr "Outeur"
+#~ msgid "Save Code _Block As..."
+#~ msgstr "Stoor kode_blok as..."
 
-#~ msgid "Authors"
-#~ msgstr "Outeurs"
+#, c-format
+#~ msgid "Could not load a document for ‘%s’"
+#~ msgstr "Kon nie 'n dokument vir ‘%s’ laai nie"
 
-#~ msgid "Bibliography"
-#~ msgstr "Bibliografie"
+#, c-format
+#~ msgid "Could not load a document"
+#~ msgstr "Kon nie 'n dokument laai nie"
 
-#~ msgid "Caution"
-#~ msgstr "Oppas"
+#~ msgid "Not Found"
+#~ msgstr "Nie gevind nie"
 
-#~ msgid "Chapter"
-#~ msgstr "Hoofstuk"
+#~ msgid "Cannot Read"
+#~ msgstr "Kan nie lees nie"
 
-#~ msgid "Collaborator"
-#~ msgstr "Medewerker"
+#, c-format
+#~ msgid "The URI ‘%s’ does not point to a valid page."
+#~ msgstr "Die URI ‘%s’ wys nie na 'n geldige bladsy nie."
 
-#~ msgid "Collaborators"
-#~ msgstr "Medewerkers"
+#, c-format
+#~ msgid "The URI does not point to a valid page."
+#~ msgstr "Die URI wys nie na 'n geldige bladsy nie."
 
-#~ msgid "Colophon"
-#~ msgstr "Kolofon"
+#, c-format
+#~ msgid "The URI ‘%s’ could not be parsed."
+#~ msgstr "Die URI ‘%s’ kon nie ontleed word nie."
 
-#~ msgid "Copyright"
-#~ msgstr "Kopiereg"
+#~ msgid "Turn on editor mode"
+#~ msgstr "Skakel redigeerdermodus aan"
 
-#~ msgid "Copyrights"
-#~ msgstr "Kopieregte"
+#~ msgid "_Larger Text"
+#~ msgstr "_Groter teks"
 
-#~ msgid "Date"
-#~ msgstr "Datum"
+#~ msgid "Increase the size of the text"
+#~ msgstr "Vergroot die grootte van die teks"
 
-#~ msgid "Dedication"
-#~ msgstr "Opdraging"
+#~ msgid "_Smaller Text"
+#~ msgstr "_Kleiner teks"
 
-#~ msgid "Editor"
-#~ msgstr "Redakteur"
+#~ msgid "Decrease the size of the text"
+#~ msgstr "Verklein die grootte van die teks"
 
-#~ msgid "Email"
-#~ msgstr "E-pos"
+#~ msgid "Show Text _Cursor"
+#~ msgstr "Vertoon _teksmerker"
 
-#~ msgid "Example"
-#~ msgstr "Voorbeeld"
+#~ msgid ""
+#~ "You do not have PackageKit installed. Package installation links require "
+#~ "PackageKit."
+#~ msgstr ""
+#~ "PackageKit is nie geïnstalleer nie. Pakketinstallasieskakels vereis "
+#~ "PackageKit."
 
-#~ msgid "Figure"
-#~ msgstr "Figuur"
+#~ msgid "_Page"
+#~ msgstr "_Bladsy"
 
-#~ msgid "Glossary"
-#~ msgstr "Termlys"
+#~ msgid "_View"
+#~ msgstr "Be_kyk"
 
-#~ msgid "Important"
-#~ msgstr "Belangrik"
+#~ msgid "_Close"
+#~ msgstr "_Gaan uit"
 
-#~ msgid "Index"
-#~ msgstr "Indeks"
+#~ msgid "_All Documents"
+#~ msgstr "_Alle dokumente"
 
-#~ msgid "Legal Notice"
-#~ msgstr "Regskennisgewing"
+#~ msgid "Find in Page..."
+#~ msgstr "Vind op bladsy..."
 
-#~ msgid "Level"
-#~ msgstr "Vlak"
+#~ msgid "Application"
+#~ msgstr "Toepassing"
 
-#~ msgid "Message Audience"
-#~ msgstr "Boodskapgehoor"
+#~ msgid "Read Later"
+#~ msgstr "Lees later"
 
-#~ msgid "Message Level"
-#~ msgstr "Boodskapvlak"
+#, c-format
+#~ msgid "Bookmarks for %s"
+#~ msgstr "Boekmerke vir %s"
 
-#~ msgid "Message Origin"
-#~ msgstr "Boodskapoorsprong"
+#, c-format, 
+#~ msgid "%i match"
+#~ msgid_plural "%i matches"
+#~ msgstr[0] "%i wat pas"
+#~ msgstr[1] "%i wat pas"
 
-#~ msgid "Note"
-#~ msgstr "Opmerking"
+#~ msgid "No matches"
+#~ msgstr "Niks wat pas"
 
-#~ msgid "Origin"
-#~ msgstr "Oorsprong"
-
-#~ msgid "Other Contributor"
-#~ msgstr "Ander bydraer"
-
-#~ msgid "Other Contributors"
-#~ msgstr "Ander bydraers"
-
-#~ msgid "Part"
-#~ msgstr "Deel"
-
-#~ msgid "Preface"
-#~ msgstr "Voorwoord"
-
-#~ msgid "Publisher"
-#~ msgstr "Uitgewer"
-
-#~ msgid "Publishers"
-#~ msgstr "Uitgewers"
-
-#~ msgid "Reference"
-#~ msgstr "Naslaanwerk"
-
-#~ msgid "Reference Entry"
-#~ msgstr "Naslaaninskrywing"
-
-#~ msgid "Reference Section"
-#~ msgstr "Naslaanafdeling"
-
-#~ msgid "Release Information"
-#~ msgstr "Vrystellinginligting"
-
-#~ msgid "Revision History"
-#~ msgstr "Hersiengeskiedenis"
-
-#~ msgid "See"
-#~ msgstr "Kyk"
-
-#~ msgid "Set Index"
-#~ msgstr "Stel indeks op"
-
-#~ msgid "Table"
-#~ msgstr "Tabel"
-
-#~ msgid "Table of Contents"
-#~ msgstr "Inhoudsopgawe"
-
-#~ msgid "Tip"
-#~ msgstr "Wenk"
-
-#~ msgid "Title"
-#~ msgstr "Titel"
-
-#~ msgid "Warning"
-#~ msgstr "Let wel"
-
-#~ msgid "Document URI"
-#~ msgstr "Document-adres"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "Dokument-adres wat verwerk moet word"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Redigeer/Vind vo_rige"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Gaan/_Terug"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Gaan/_Vorentoe"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Gaan/_Huis toe"
-
-#~ msgid "/Go/"
-#~ msgstr "/Gaan/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Gaan/_Inhoudsopgawe"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "'n Hulpblaaier vir Gnome"
+#~ msgid "_Open Bookmark"
+#~ msgstr "_Open boekmerk"
