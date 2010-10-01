@@ -18,6 +18,7 @@ YELP_DEFINES =								\
 	-DPREFIX=\""$(prefix)"\"					\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"				\
 	-DDATADIR=\""$(datadir)"\"					\
+	-DLOCALEDIR=\""$(localedir)"\"					\
 	-DLIBDIR=\""$(libdir)"\"					\
 	-DIMAGEDIR=\""$(datadir)/images/yelp"\"				\
 	-DSERVERDIR=\"$(libexecdir)\"					\
