@@ -11,9 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.he\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2009-09-30 18:28+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-05 13:36+0300\n"
 "PO-Revision-Date: 2009-10-03 17:49+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -686,7 +685,7 @@ msgstr "נגנים"
 msgid "Presentation Tools"
 msgstr "כלי מצגת"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "מדפיס"
 
@@ -963,27 +962,27 @@ msgstr "הקובץ אינו קובץ .desktop תקני"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "גרסת קובץ ה־desktop אינה מוכרת '%s'"
 
-#: ../src/eggdesktopfile.c:958
+#: ../src/eggdesktopfile.c:957
 #, c-format
 msgid "Starting %s"
 msgstr "מפעיל את  %s"
 
-#: ../src/eggdesktopfile.c:1100
+#: ../src/eggdesktopfile.c:1098
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "היישום אינו מקבל מסמכים משורת הפקודה"
 
-#: ../src/eggdesktopfile.c:1168
+#: ../src/eggdesktopfile.c:1166
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "אפשרות הטעינה אינה מוכרת: %d"
 
-#: ../src/eggdesktopfile.c:1373
+#: ../src/eggdesktopfile.c:1365
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "לא ניתן להעביר כתובות של מסמכים לרשומת desktop מסוג 'Type=Link'"
 
-#: ../src/eggdesktopfile.c:1392
+#: ../src/eggdesktopfile.c:1384
 #, c-format
 msgid "Not a launchable item"
 msgstr "אינו פריט הניתן לשיגור"
@@ -1016,46 +1015,46 @@ msgstr "Session management options:"
 msgid "Show session management options"
 msgstr "Show session management options"
 
-#: ../src/yelp-bookmarks.c:148
+#: ../src/yelp-bookmarks.c:147
 msgid "Open Bookmark in New Window"
 msgstr "פתח סימניות בחלון חדש"
 
-#: ../src/yelp-bookmarks.c:152
+#: ../src/yelp-bookmarks.c:151
 msgid "Rename Bookmark"
 msgstr "שנה שם לסימנייה"
 
-#: ../src/yelp-bookmarks.c:156
+#: ../src/yelp-bookmarks.c:155
 msgid "Remove Bookmark"
 msgstr "הסר סימנייה"
 
-#: ../src/yelp-bookmarks.c:314
+#: ../src/yelp-bookmarks.c:319
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "סימנייה בשם %s כבר קיימת לדף זה."
 
-#: ../src/yelp-bookmarks.c:390
+#: ../src/yelp-bookmarks.c:395
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "סימנייה בשם  <b>%s</b> כבר נמצאת לדף זה."
 
-#: ../src/yelp-bookmarks.c:403
+#: ../src/yelp-bookmarks.c:408
 msgid "Help Topics"
 msgstr "נושאי עזרה"
 
-#: ../src/yelp-bookmarks.c:418
+#: ../src/yelp-bookmarks.c:423
 msgid "Document Sections"
 msgstr "אזורי מסמך"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-mallard.c:380
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
 #: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
 #: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "עמוד לא נמצא"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-mallard.c:381 ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "העמוד %s לא נמצא במסמך %s."
@@ -1107,7 +1106,7 @@ msgstr "לא ידוע"
 msgid "Unknown Error"
 msgstr "שגיאה לא ידועה"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1723
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1719
 msgid "Could Not Read File"
 msgstr "לא ניתן לקרוא קובץ"
 
@@ -1145,11 +1144,11 @@ msgstr " GNOME Help Browser"
 msgid "Help"
 msgstr "עזרה"
 
-#: ../src/yelp-mallard.c:311
+#: ../src/yelp-mallard.c:315
 msgid "Directory not found"
 msgstr "התיקייה לא נמצאה"
 
-#: ../src/yelp-mallard.c:312
+#: ../src/yelp-mallard.c:316
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "התיקייה ‘%s’ לא קיימת."
@@ -1160,32 +1159,32 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "הקובץ ’%s’ לא ניתן לפירוק מכיון שאינו דף תיעוד תקין."
 
-#: ../src/yelp-print.c:97
+#: ../src/yelp-print.c:99
 msgid "Print"
 msgstr "הדפס"
 
-#: ../src/yelp-print.c:167
+#: ../src/yelp-print.c:169
 msgid "Preparing to print"
 msgstr "מתכונן להדפסה"
 
-#: ../src/yelp-print.c:261
+#: ../src/yelp-print.c:263
 msgid "Printing is not supported on this printer"
 msgstr "הדפסה לא נתמכת עבור מדפסת זו"
 
-#: ../src/yelp-print.c:264
+#: ../src/yelp-print.c:266
 #, c-format
 msgid "Printer %s does not support postscript printing."
 msgstr "מדפסת %s לא תומכת בהדפסת postscript."
 
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:368
 msgid "Waiting to print"
 msgstr "ממתין להדפסה"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:580
 msgid "An error occurred while printing"
 msgstr "ארעה שגיה בזמן ההדפסה"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:584
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "לא תאפשר להדפיס את המסמך שלך: %s"
@@ -1472,7 +1471,7 @@ msgstr "העתק כתובת _דוא\"ל"
 msgid "Help Browser"
 msgstr "דפדפן עזרה"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1785
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1782
 msgid "Loading..."
 msgstr "טוען..."
 
@@ -1480,50 +1479,50 @@ msgstr "טוען..."
 msgid "Unknown Page"
 msgstr "דף לא ידוע"
 
-#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "הכתובת שבוקשה (%s) לא תקינה"
 
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
 msgid "Unable to load page"
 msgstr "לא ניתן לטעון את העמוד"
 
-#: ../src/yelp-window.c:1343
+#: ../src/yelp-window.c:1339
 msgid "_Search:"
 msgstr "_חיפוש:"
 
-#: ../src/yelp-window.c:1344
+#: ../src/yelp-window.c:1340
 msgid "Search for other documentation"
 msgstr "חפש תיעוד אחר"
 
-#: ../src/yelp-window.c:1364
+#: ../src/yelp-window.c:1360
 msgid "Cannot create window"
 msgstr "לא ניתן ליצור חלון"
 
-#: ../src/yelp-window.c:1370
+#: ../src/yelp-window.c:1366
 msgid "Cannot create search component"
 msgstr "לא ניתן ליצור רכיב חיפוש."
 
-#: ../src/yelp-window.c:1542
+#: ../src/yelp-window.c:1538
 msgid "Fin_d:"
 msgstr "ח_פש:"
 
-#: ../src/yelp-window.c:1564
+#: ../src/yelp-window.c:1560
 msgid "Find _Previous"
 msgstr "מצא הקודם"
 
-#: ../src/yelp-window.c:1576
+#: ../src/yelp-window.c:1572
 msgid "Find _Next"
 msgstr "מצא _הבא"
 
-#: ../src/yelp-window.c:1589
+#: ../src/yelp-window.c:1585
 msgid "Phrase not found"
 msgstr "ביטוי לא נמצא"
 
-#: ../src/yelp-window.c:1720
+#: ../src/yelp-window.c:1716
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1533,7 +1532,7 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2602
+#: ../src/yelp-window.c:2625
 msgid "translator-credits"
 msgstr ""
 "גיל אשר <dolfin@rpg.org.il>\n"
@@ -1543,11 +1542,11 @@ msgstr ""
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/yelp-window.c:2605
+#: ../src/yelp-window.c:2628
 msgid "Yelp"
 msgstr "‏Yelp"
 
-#: ../src/yelp-window.c:2607
+#: ../src/yelp-window.c:2630
 msgid "A documentation browser and viewer for the Gnome Desktop."
 msgstr "דפדפן העזרה של שולחן העבודה GNOME"
 
