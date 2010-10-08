@@ -1,18 +1,19 @@
 # yelp ko.po
 #
 # Young-Ho, Cha <ganadist@chollian.net>, 2002, 2005, 2007.
-# Changwoo Ryu <cwryu@debian.org>, 2004, 2005, 2006, 2007, 2008, 2009.
+# Changwoo Ryu <cwryu@debian.org>, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
 #
 # 새로 번역하신 분은 아래 "translator-credits"에 추가하세요.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-23 07:07+0900\n"
-"PO-Revision-Date: 2009-08-23 07:10+0900\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
+"POT-Creation-Date: 2010-10-09 08:34+0900\n"
+"PO-Revision-Date: 2010-10-09 08:34+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
-"Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
+"Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
+"Language: Korean\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -412,11 +413,11 @@ msgstr "디버거"
 
 #: ../data/toc.xml.in.h:33
 msgid "Desktop"
-msgstr "데스크탑"
+msgstr "데스크톱"
 
 #: ../data/toc.xml.in.h:34
 msgid "Desktop Settings"
-msgstr "데스크탑 설정"
+msgstr "데스크톱 설정"
 
 #: ../data/toc.xml.in.h:36
 msgid "Dialup"
@@ -682,7 +683,7 @@ msgstr "플레이어"
 msgid "Presentation Tools"
 msgstr "프리젠테이션 도구"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "인쇄"
 
@@ -951,34 +952,34 @@ msgstr "시스템의 기본 글꼴을 사용합니다."
 #: ../src/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr "파일이 올바른 .desktop 파일이 아닙니다"
+msgstr "올바른 .desktop 파일이 아닙니다"
 
 #: ../src/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "desktop 파일 버전을 ('%s') 인식할 수 없습니다"
 
-#: ../src/eggdesktopfile.c:958
+#: ../src/eggdesktopfile.c:957
 #, c-format
 msgid "Starting %s"
 msgstr "%s 시작"
 
-#: ../src/eggdesktopfile.c:1100
+#: ../src/eggdesktopfile.c:1098
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "명령행에서 문서를 지정할 수 없는 프로그램입니다"
 
-#: ../src/eggdesktopfile.c:1168
+#: ../src/eggdesktopfile.c:1166
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "알 수 없는 실행 옵션: %d"
 
-#: ../src/eggdesktopfile.c:1373
+#: ../src/eggdesktopfile.c:1365
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "문서 URI는 'Type=Link' 데스크탑 항목에 넘길 수 없습니다"
+msgstr "문서 URI는 'Type=Link' desktop 항목에 넘길 수 없습니다"
 
-#: ../src/eggdesktopfile.c:1392
+#: ../src/eggdesktopfile.c:1384
 #, c-format
 msgid "Not a launchable item"
 msgstr "실행할 수 있는 항목이 없습니다"
@@ -997,11 +998,11 @@ msgstr "<파일>"
 
 #: ../src/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr "세션 관리 ID 지정"
+msgstr "세션 관리 ID를 지정합니다"
 
 #: ../src/eggsmclient.c:231
 msgid "ID"
-msgstr "ID"
+msgstr "<ID>"
 
 #: ../src/eggsmclient.c:252
 msgid "Session management options:"
@@ -1011,45 +1012,46 @@ msgstr "세션 관리 옵션:"
 msgid "Show session management options"
 msgstr "세션 관리 옵션을 표시합니다"
 
-#: ../src/yelp-bookmarks.c:148
+#: ../src/yelp-bookmarks.c:147
 msgid "Open Bookmark in New Window"
 msgstr "새 창에서 책갈피 열기"
 
-#: ../src/yelp-bookmarks.c:152
+#: ../src/yelp-bookmarks.c:151
 msgid "Rename Bookmark"
 msgstr "책갈피 이름 바꾸기"
 
-#: ../src/yelp-bookmarks.c:156
+#: ../src/yelp-bookmarks.c:155
 msgid "Remove Bookmark"
 msgstr "책갈피 제거"
 
-#: ../src/yelp-bookmarks.c:314
+#: ../src/yelp-bookmarks.c:319
 #, c-format
 msgid "A bookmark titled %s already exists for this page."
 msgstr "이 페이지는 이름이 %s인 책갈피가 이미 있습니다."
 
-#: ../src/yelp-bookmarks.c:390
+#: ../src/yelp-bookmarks.c:395
 #, c-format
 msgid "A bookmark titled <b>%s</b> already exists for this page."
 msgstr "이 페이지는 이름이 <b>%s</b>인 책갈피가 이미 있습니다."
 
-#: ../src/yelp-bookmarks.c:403
+#: ../src/yelp-bookmarks.c:408
 msgid "Help Topics"
 msgstr "도움말 주제"
 
-#: ../src/yelp-bookmarks.c:418
+#: ../src/yelp-bookmarks.c:423
 msgid "Document Sections"
 msgstr "문서 섹션"
 
 #: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
 #: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
 msgid "Page not found"
 msgstr "페이지가 없습니다"
 
 #: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
 #, c-format
 msgid "The page %s was not found in the document %s."
 msgstr "%s 페이지를 %s 문서에서 찾을 수 없습니다."
@@ -1101,7 +1103,7 @@ msgstr "알 수 없음"
 msgid "Unknown Error"
 msgstr "알 수 없는 오류"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1719
 msgid "Could Not Read File"
 msgstr "파일을 읽을 수 없습니다"
 
@@ -1141,11 +1143,11 @@ msgstr " 그놈 도움말 브라우저"
 msgid "Help"
 msgstr "도움말"
 
-#: ../src/yelp-mallard.c:311
+#: ../src/yelp-mallard.c:315
 msgid "Directory not found"
 msgstr "디렉터리가 없습니다"
 
-#: ../src/yelp-mallard.c:312
+#: ../src/yelp-mallard.c:316
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "‘%s’ 디렉터리가 없습니다."
@@ -1157,32 +1159,32 @@ msgid ""
 msgstr ""
 "‘%s’ 파일을 분석할 수 없습니다. 파일이 올바른 형식의 맨 페이지가 아닙니다."
 
-#: ../src/yelp-print.c:97
+#: ../src/yelp-print.c:99
 msgid "Print"
 msgstr "인쇄"
 
-#: ../src/yelp-print.c:167
+#: ../src/yelp-print.c:169
 msgid "Preparing to print"
 msgstr "인쇄 준비 중"
 
-#: ../src/yelp-print.c:261
+#: ../src/yelp-print.c:263
 msgid "Printing is not supported on this printer"
 msgstr "이 프린터가 인쇄를 지원하지 않습니다."
 
-#: ../src/yelp-print.c:264
+#: ../src/yelp-print.c:266
 #, c-format
 msgid "Printer %s does not support postscript printing."
 msgstr "%s 프린터가 포스트스크립트를 지원하지 않습니다."
 
-#: ../src/yelp-print.c:366
+#: ../src/yelp-print.c:368
 msgid "Waiting to print"
 msgstr "인쇄 대기 중"
 
-#: ../src/yelp-print.c:578
+#: ../src/yelp-print.c:580
 msgid "An error occurred while printing"
 msgstr "인쇄중 오류가 생겼습니다"
 
-#: ../src/yelp-print.c:582
+#: ../src/yelp-print.c:584
 #, c-format
 msgid "It was not possible to print your document: %s"
 msgstr "문서를 인쇄할 수 없습니다: %s"
@@ -1473,7 +1475,7 @@ msgstr "전자메일 주소 복사(_E)"
 msgid "Help Browser"
 msgstr "도움말 브라우저"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1782
 msgid "Loading..."
 msgstr "읽고 있습니다..."
 
@@ -1481,50 +1483,50 @@ msgstr "읽고 있습니다..."
 msgid "Unknown Page"
 msgstr "알 수 없는 페이지"
 
-#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
 msgid "The requested URI \"%s\" is invalid"
 msgstr "요청한 URI \"%s\"(은)는 올바르지 않습니다"
 
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
 msgid "Unable to load page"
 msgstr "페이지를 읽을 수 없습니다"
 
-#: ../src/yelp-window.c:1330
+#: ../src/yelp-window.c:1339
 msgid "_Search:"
 msgstr "검색(_S):"
 
-#: ../src/yelp-window.c:1331
+#: ../src/yelp-window.c:1340
 msgid "Search for other documentation"
 msgstr "다른 문서에서 찾습니다"
 
-#: ../src/yelp-window.c:1351
+#: ../src/yelp-window.c:1360
 msgid "Cannot create window"
 msgstr "새 창을 열 수 없습니다"
 
-#: ../src/yelp-window.c:1357
+#: ../src/yelp-window.c:1366
 msgid "Cannot create search component"
 msgstr "검색 컴포넌트를 만들 수 없습니다"
 
-#: ../src/yelp-window.c:1529
+#: ../src/yelp-window.c:1538
 msgid "Fin_d:"
 msgstr "찾기(_D):"
 
-#: ../src/yelp-window.c:1551
+#: ../src/yelp-window.c:1560
 msgid "Find _Previous"
 msgstr "이전 찾기(_P)"
 
-#: ../src/yelp-window.c:1563
+#: ../src/yelp-window.c:1572
 msgid "Find _Next"
 msgstr "다음 찾기(_N)"
 
-#: ../src/yelp-window.c:1576
+#: ../src/yelp-window.c:1585
 msgid "Phrase not found"
 msgstr "어구를 찾을 수 없습니다"
 
-#: ../src/yelp-window.c:1707
+#: ../src/yelp-window.c:1716
 #, c-format
 msgid ""
 "The file ‘%s’ could not be read.  This file might be missing, or you might "
@@ -1534,17 +1536,19 @@ msgstr ""
 
 #. Note to translators: put here your name (and address) so it
 #. * will show up in the "about" box
-#: ../src/yelp-window.c:2577
+#: ../src/yelp-window.c:2625
 msgid "translator-credits"
-msgstr "차영호 <ganadist@gmail.com>"
+msgstr ""
+"차영호 <ganadist@gmail.com>\n"
+"류창우 <cwryu@debian.org>"
 
-#: ../src/yelp-window.c:2580
+#: ../src/yelp-window.c:2628
 msgid "Yelp"
 msgstr "Yelp"
 
-#: ../src/yelp-window.c:2582
+#: ../src/yelp-window.c:2630
 msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "그놈 데스크탑 문서 보기 프로그램."
+msgstr "그놈 데스크톱 문서 보기 프로그램."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
