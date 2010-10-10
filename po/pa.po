@@ -4,20 +4,20 @@
 #
 # <amanlinux@netscape.net>, 2004.
 # ASB <aalam@users.sf.net>, 2005, 2006, 2007.
-# A S Alam <aalam@users.sf.net>, 2009.
+# A S Alam <aalam@users.sf.net>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=yelp&component=general\n"
-"POT-Creation-Date: 2009-08-25 00:40+0000\n"
-"PO-Revision-Date: 2009-09-04 07:02+0530\n"
+"POT-Creation-Date: 2010-09-06 11:47+0000\n"
+"PO-Revision-Date: 2010-10-10 08:29+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "\n"
 
@@ -293,7 +293,7 @@ msgstr "2D ਗਰਾਫਿਕਸ"
 msgid "3D Graphics"
 msgstr "3D ਗਰਾਫਿਕਸ"
 
-#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
+#: ../data/toc.xml.in.h:3
 msgid "Accessibility"
 msgstr "ਸਹੂਲਤਾਂ"
 
@@ -685,7 +685,7 @@ msgstr "ਪਲੇਅਰ"
 msgid "Presentation Tools"
 msgstr "ਪਰਿਜ਼ੈੱਨਟੇਸ਼ਨ ਟੂਲ"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104
 msgid "Printing"
 msgstr "ਪਰਿੰਟਿੰਗ"
 
@@ -867,228 +867,46 @@ msgstr "ਗਨੋਮ ਮੱਦਦ ਬਰਾਊਜ਼ਰ ਵਲੋਂ ਜੀ ਆ�
 msgid "Word Processors"
 msgstr "ਵਰਲਡ ਪਰੋਸੈਸਰ"
 
-#: ../data/ui/yelp-bookmarks.ui.h:1
-msgid "Bookmarks"
-msgstr "ਬੁੱਕਮਾਰਕ"
+#: ../libyelp/yelp-bz2-decompressor.c:146
+#: ../libyelp/yelp-lzma-decompressor.c:155
+msgid "Invalid compressed data"
+msgstr "ਖ਼ਰਾਬ ਕੰਪਰੈੱਸ ਕੀਤਾ ਡਾਟਾ"
 
-#: ../data/ui/yelp-bookmarks.ui.h:2
-msgid "Re_name"
-msgstr "ਨਾਂ-ਬਦਲੋ(_n)"
+#: ../libyelp/yelp-bz2-decompressor.c:152
+#: ../libyelp/yelp-lzma-decompressor.c:161
+#| msgid "Out of memory"
+msgid "Not enough memory"
+msgstr "ਲੋੜੀਦੀ ਮੈਮੋਰੀ ਨਹੀਂ"
 
-#: ../data/ui/yelp-bookmarks.ui.h:3
-msgid "_Bookmarks:"
-msgstr "ਬੁੱਕਮਾਰਕ(_B):"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:1
-msgid "Add Bookmark"
-msgstr "ਬੁੱਕਮਾਰਕ ਸ਼ਾਮਲ"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:2
-msgid "_Title:"
-msgstr "ਟਾਇਟਲ(_T):"
-
-#: ../data/ui/yelp-open-location.ui.h:1
-msgid "Open Location"
-msgstr "ਟਿਕਾਣਾ ਖੋਲ੍ਹੋ"
-
-#: ../data/ui/yelp-open-location.ui.h:2
-msgid "_Location:"
-msgstr "ਟਿਕਾਣਾ(_L):"
-
-#: ../data/ui/yelp-preferences.ui.h:2
-msgid "Fonts"
-msgstr "ਫੋਂਟ"
-
-#: ../data/ui/yelp-preferences.ui.h:3
-msgid "Preferences"
-msgstr "ਮੇਰੀ ਪਸੰਦ"
-
-#: ../data/ui/yelp-preferences.ui.h:4
-msgid "_Browse with caret"
-msgstr "ਕਾਰੇਟ ਨਾਲ ਬਰਾਊਜ਼(_B)"
-
-#: ../data/ui/yelp-preferences.ui.h:5
-msgid "_Fixed width:"
-msgstr "ਸਥਿਰ ਚੌੜਾਈ(_F):"
-
-#: ../data/ui/yelp-preferences.ui.h:6
-msgid "_Use system fonts"
-msgstr "ਸਿਸਟਮ ਫੋਂਟ ਵਰਤੋਂ(_U)"
-
-#: ../data/ui/yelp-preferences.ui.h:7
-msgid "_Variable width:"
-msgstr "ਅਸਥਿਰ ਚੌੜਾਈ(_V):"
-
-#: ../data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "ਸਥਿਰ ਟੈਕਲਟ ਲਈ ਫੋਂਟ"
-
-#: ../data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "ਟੈਕਸਟ ਲਈ ਫੋਂਟ"
-
-#: ../data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "ਸਥਿਰ ਚੌੜਾਈ ਨਾਲ ਟੈਕਸਟ ਲਈ ਫੋਂਟ।"
-
-#: ../data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "ਅਸਥਿਰ ਚੌੜਾਈ ਨਾਲ ਟੈਕਸਟ ਲਈ ਫੋਂਟ।"
-
-#: ../data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "ਕੀ-ਬੋਰਡ ਤੋਂ ਵਰਤਣਯੋਗ ਕਾਰੇਟ ਪੇਜ਼ ਵੇਖਣ ਲਈ ਵਰਤੋਂ।"
-
-#: ../data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr "ਕਾਰੇਟ ਵਰਤੋਂ"
-
-#: ../data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr "ਸਿਸਟਮ ਫੋਂਟ ਵਰਤੋਂ"
-
-#: ../data/yelp.schemas.in.h:8
-msgid "Use the default fonts set for the system."
-msgstr "ਸਿਸਟਮ ਲਈ ਦਿੱਤੇ ਡਿਫਾਲਟ ਫੋਂਟ ਵਰਤੋਂ।"
-
-#: ../src/eggdesktopfile.c:165
+#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
+#: ../libyelp/yelp-mallard-document.c:254
+#: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
 #, c-format
-msgid "File is not a valid .desktop file"
-msgstr "ਫਾਇਲ ਢੁੱਕਵੀਂ .desktop ਫਾਇਲ ਨਹੀਂ"
+#| msgid "The page %s was not found in the document %s."
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "ਡੌਕੂਮੈਂਟ ‘%2$s’ ਵਿੱਚ ਸਫ਼ਾ ‘%1$s’ ਨਹੀਂ ਲੱਭਿਆ।"
 
-#: ../src/eggdesktopfile.c:188
+#: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:366
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "ਬੇਪਛਾਣ ਡੈਸਕਟਾਪ ਫਾਇਲ ਵਰਜਨ '%s'"
+#| msgid "The file ‘%s’ does not exist."
+msgid "The file does not exist."
+msgstr "ਫਾਇਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
-#: ../src/eggdesktopfile.c:958, c-format
-#| msgid "Settings"
-msgid "Starting %s"
-msgstr "%s ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
-
-#: ../src/eggdesktopfile.c:1100
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਕਮਾਂਡ ਲਾਈਨ ਉੱਤੇ ਡੌਕੂਮੈਂਟ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੀ"
-
-#: ../src/eggdesktopfile.c:1168
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "ਬੇਪਛਣ ਚਲਾਉਣ ਚੋਣ: %d"
-
-#: ../src/eggdesktopfile.c:1373
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "ਡੌਕੂਮੈਂਟ URIs 'Type=Link' ਡੈਸਕਟਾਪ ਐਂਟਰੀ ਲਈ ਭੇਜੀ ਨਹੀਂ ਜਾ ਸਕੀ"
-
-#: ../src/eggdesktopfile.c:1392
-#, c-format
-msgid "Not a launchable item"
-msgstr "ਚਲਾਉਣਯੋਗ ਆਈਟਮ ਨਹੀਂ"
-
-#: ../src/eggsmclient.c:225
-msgid "Disable connection to session manager"
-msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਕੁਨਕੈਸ਼ਨ ਆਯੋਗ"
-
-#: ../src/eggsmclient.c:228
-msgid "Specify file containing saved configuration"
-msgstr "ਸੰਭਾਲੀ ਸੰਰਚਨਾ ਰੱਖਣ ਵਾਲੀ ਫਾਇਲ ਦਿਓ"
-
-#: ../src/eggsmclient.c:228
-msgid "FILE"
-msgstr "ਫਾਇਲ"
-
-#: ../src/eggsmclient.c:231
-msgid "Specify session management ID"
-msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ ID ਦਿਓ"
-
-#: ../src/eggsmclient.c:231
-#| msgid "IDEs"
-msgid "ID"
-msgstr "ID"
-
-#: ../src/eggsmclient.c:252
-msgid "Session management options:"
-msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ ਚੋਣਾਂ:"
-
-#: ../src/eggsmclient.c:253
-msgid "Show session management options"
-msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ ਚੋਣਾਂ ਵੇਖੋ"
-
-#: ../src/yelp-bookmarks.c:148
-msgid "Open Bookmark in New Window"
-msgstr "ਬੁੱਕਮਾਰਕ ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਖੋਲ੍ਹੋ"
-
-#: ../src/yelp-bookmarks.c:152
-msgid "Rename Bookmark"
-msgstr "ਬੁੱਕਮਾਰਕ ਨਾਂ-ਬਦਲੋ"
-
-#: ../src/yelp-bookmarks.c:156
-msgid "Remove Bookmark"
-msgstr "ਬੁੱਕਮਾਰਕ ਹਟਾਓ"
-
-#: ../src/yelp-bookmarks.c:314
-#, c-format
-msgid "A bookmark titled %s already exists for this page."
-msgstr "ਇਸ ਪੇਜ਼ ਲਈ ਬੁੱਕਮਾਰਕ ਨਾਂ %s ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
-
-#: ../src/yelp-bookmarks.c:390
-#, c-format
-msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "ਇਸ ਪੇਜ਼ ਲਈ ਬੁੱਕਮਾਰਕ ਨਾਂ <b>%s</b> ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
-
-#: ../src/yelp-bookmarks.c:403
-msgid "Help Topics"
-msgstr "ਮੱਦਦ ਵਿਸ਼ੇ"
-
-#: ../src/yelp-bookmarks.c:418
-msgid "Document Sections"
-msgstr "ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਸ਼ੈਕਸ਼ਨ"
-
-#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
-msgid "Page not found"
-msgstr "ਪੇਜ਼ ਨਹੀਂ ਲੱਭਿਆ"
-
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
-#, c-format
-msgid "The page %s was not found in the document %s."
-msgstr "ਪੇਜ਼ %s ਡੌਕੂਮੈਂਟੇਸ਼ਨ %s ਵਿੱਚ ਨਹੀਂ ਲੱਭਿਆ।"
-
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
-#: ../src/yelp-man.c:386
-#, c-format
-msgid "The requested page was not found in the document %s."
-msgstr "ਮੰਗਿਆ ਪੇਜ਼ ਡੌਕੂਮੈਂਟੇਸ਼ਨ %s ਵਿੱਚ ਨਹੀਂ ਲੱਭਿਆ ਜਾ ਸਕਿਆ।"
-
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
-#: ../src/yelp-man.c:429
-msgid "File not found"
-msgstr "ਫਾਇਲ ਨਹੀਂ ਲੱਭੀ"
-
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
-#: ../src/yelp-man.c:430
+#: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:376
+#: ../libyelp/yelp-man-document.c:413
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "ਫਾਇਲ ‘%s’ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
-#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
-#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
-msgid "Could not parse file"
-msgstr "ਫਾਇਲ ਪਾਰਸ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ"
-
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
+#: ../libyelp/yelp-docbook-document.c:323
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "ਫਾਇਲ ’%s’ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਹੈ, ਕਿਉਂਕਿ ਸਹੀਂ XML ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਨਹੀਂ ਹੈ।"
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
+#: ../libyelp/yelp-docbook-document.c:336
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -1097,464 +915,802 @@ msgstr ""
 "ਫਾਇਲ ’%s’ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ, ਕਿਉਂਕਿ ਇਸ ਵਿੱਚ ਮੌਜੂਦਾ ਇੱਕ ਜਾਂ ਵੱਧ ਫਾਇਲਾਂ ਸਹੀਂ XML "
 "ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਨਹੀਂ ਹਨ।"
 
-#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
+#: ../libyelp/yelp-docbook-document.c:743
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
-#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
-msgid "Unknown Error"
-msgstr "ਅਣਜਾਣ ਗਲਤੀ"
+#: ../libyelp/yelp-docbook-document.c:804 ../libyelp/yelp-info-document.c:309
+#: ../libyelp/yelp-man-document.c:345
+#, c-format
+#| msgid "The requested page was not found in the document %s."
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "ਡੌਕੂਮੈਂਟ ‘%s’ ਵਿੱਚ ਮੰਗਿਆ ਗਿਆ ਸਫ਼ਾ ਨਹੀਂ ਲੱਭਿਆ।"
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
-msgid "Could Not Read File"
-msgstr "ਫਾਇਲ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ"
+#: ../libyelp/yelp-error.c:33
+#, c-format
+msgid "An unknown error occurred."
+msgstr "ਅਣਜਾਣ ਗਲਤੀ ਆਈ ਹੈ।"
 
-#: ../src/yelp-error.c:146
-msgid "No information is available about this error."
-msgstr "ਇਹ ਗਲਤੀ ਬਾਰੇ ਕੋਈ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ।"
-
-#: ../src/yelp-info.c:396
+#: ../libyelp/yelp-info-document.c:391
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "ਫਾਇਲ ‘%s’ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਹੈ, ਇਹ ਠੀਕ info ਪੇਜ਼ ਨਹੀਂ ਹੈ।"
 
-#: ../src/yelp-io-channel.c:132
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"ਫਾਇਲ ‘%s’ ਨੂੰ ਪੜਿਆ ਅਤੇ ਡੀਕੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ। ਫਾਇਲ ਨੂੰ ਨਾ-ਸਹਾਇਕ ਫਾਰਮੈਟ ਵਿੱਚ ਕੰਪਰੈੱਸ "
-"ਕੀਤਾ ਗਿਆ ਹੈ।"
+#: ../libyelp/yelp-location-entry.c:323
+#| msgid "Viewer"
+msgid "View"
+msgstr "ਵੇਖੋ"
 
-#: ../src/yelp-main.c:88
-msgid "Use a private session"
-msgstr "ਇੱਕ ਪ੍ਰਾਈਵੇਟ ਸ਼ੈਸ਼ਨ ਵਰਤੋਂ"
+#: ../libyelp/yelp-location-entry.c:324
+msgid "A YelpView instance to control"
+msgstr "ਕੰਟਰੋਲ ਕਰਨ ਲਈ YelpView ਮੌਕਾ"
 
-#: ../src/yelp-main.c:97
-msgid "Define which cache directory to use"
-msgstr "ਵਰਤਣ ਲਈ ਕੈਂਚੇ ਡਾਇਰੈਕਟਰੀ ਪਰਭਾਸ਼ਿਤ ਕਰੋ"
+#: ../libyelp/yelp-location-entry.c:339
+msgid "Bookmarks"
+msgstr "ਬੁੱਕਮਾਰਕ"
 
-#. Commandline parsing is done here
-#: ../src/yelp-main.c:355
-msgid " GNOME Help Browser"
-msgstr " ਗਨੋਮ ਮੱਦਦ ਬਰਾਊਜ਼ਰ"
+#: ../libyelp/yelp-location-entry.c:340
+msgid "A YelpBookmarks implementation instance"
+msgstr "YelpBookmarks ਸਥਾਪਨ ਮੌਕਾ"
 
-#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
-msgid "Help"
-msgstr "ਮੱਦਦ"
+#: ../libyelp/yelp-location-entry.c:356
+msgid "Enable Search"
+msgstr "ਖੋਜ ਯੋਗ"
 
-#: ../src/yelp-mallard.c:311
-msgid "Directory not found"
-msgstr "ਡਾਇਰੈਕਟਰੀ ਨਹੀਂ ਲੱਭੀ"
+#: ../libyelp/yelp-location-entry.c:357
+msgid "Whether the location entry can be used as a search field"
+msgstr "ਕੀ ਟਿਕਾਣਾ ਐਂਟਰੀ ਨੂੰ ਖੋਜ ਖੇਤਰ ਵਜੋਂ ਵਰਤਿਆ ਜਾਵੇ"
 
-#: ../src/yelp-mallard.c:312
+#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:302
+#| msgid "_Search:"
+msgid "Search..."
+msgstr "ਖੋਜ..."
+
+#: ../libyelp/yelp-location-entry.c:1335
+#| msgid "Loading..."
+msgid "Loading"
+msgstr "ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../libyelp/yelp-mallard-document.c:296
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "ਡਾਇਰੈਕਟਰੀ ‘%s’ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
-#: ../src/yelp-man.c:459
+#: ../libyelp/yelp-man-document.c:444
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
 msgstr "ਫਾਇਲ ‘%s’ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ, ਕਿਉਂਕਿ ਇਹ ਠੀਕ man ਪੇਜ਼ ਨਹੀਂ ਹੈ।"
 
-#: ../src/yelp-print.c:97
-msgid "Print"
-msgstr "ਪਰਿੰਟ ਕਰੋ"
+#: ../libyelp/yelp-settings.c:148
+#| msgid "Settings"
+msgid "GtkSettings"
+msgstr "GtkSettings"
 
-#: ../src/yelp-print.c:167
-msgid "Preparing to print"
-msgstr "ਪਰਿੰਟ ਕਰਨ ਲਈ ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+#: ../libyelp/yelp-settings.c:149
+msgid "A GtkSettings object to get settings from"
+msgstr "ਇੱਥੋਂ ਸੈਟਿੰਗ ਲੈਣ ਲਈ GtkSettings ਆਬਜੈਕਟ"
 
-#: ../src/yelp-print.c:261
-msgid "Printing is not supported on this printer"
-msgstr "ਇਹ ਪਰਿੰਟਰ ਉੱਤੇ ਪਰਿੰਟ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ"
+#: ../libyelp/yelp-settings.c:157
+msgid "GtkIconTheme"
+msgstr "GtkIconTheme"
 
-#: ../src/yelp-print.c:264
+#: ../libyelp/yelp-settings.c:158
+msgid "A GtkIconTheme object to get icons from"
+msgstr "GtkIconTheme ਆਬਜੈਕਟ, ਇੱਥੋਂ ਆਈਕਾਨ ਲੈਣ ਲਈ"
+
+#: ../libyelp/yelp-settings.c:166
+msgid "Font Adjustment"
+msgstr "ਫੋਂਟ ਅਡਜੱਸਟਮੈਂਟ"
+
+#: ../libyelp/yelp-settings.c:167
+msgid "A size adjustment to add to font sizes"
+msgstr "ਫੋਂਟ ਆਕਾਰ ਦੇ ਲਈ ਹੋਰ ਆਕਾਰ ਅਡਜੱਸਟਮੈਂਟ"
+
+#: ../libyelp/yelp-settings.c:175
+msgid "Show Text Cursor"
+msgstr "ਟੈਕਸਟ ਕਰਸਰ ਵੇਖੋ"
+
+#: ../libyelp/yelp-settings.c:176
+msgid "Show the text cursor or caret for accessible navigation"
+msgstr "ਸੌਖੀ ਤਰ੍ਹਾਂ ਵਰਤੋਂ ਲਈ ਟੈਕਸਟ ਕਰਸਰ ਜਾਂ ਕਰੈਟ ਵੇਖੋ"
+
+#: ../libyelp/yelp-settings.c:184
+msgid "Editor Mode"
+msgstr "ਐਡੀਟਰ ਮੋਡ"
+
+#: ../libyelp/yelp-settings.c:185
+msgid "Enable features useful to editors"
+msgstr "ਐਡੀਟਰਾਂ ਲਈ ਫਾਇਦੇਮੰਦ ਫੀਚਰ ਚਾਲੂ ਕਰੋ"
+
+#: ../libyelp/yelp-transform.c:171
+#| msgid "Invalid Stylesheet"
+msgid "XSLT Stylesheet"
+msgstr "XSLT ਸਟਾਇਲ-ਸ਼ੀਟ"
+
+#: ../libyelp/yelp-transform.c:172
+msgid "The location of the XSLT stylesheet"
+msgstr "XSLT ਸਟਾਇਲ-ਸ਼ੀਟ ਦਾ ਟਿਕਾਣਾ"
+
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
-msgid "Printer %s does not support postscript printing."
-msgstr "ਪਰਿੰਟਰ %s ਪੋਸਟ-ਸਕਰਿਪਟ ਪਰਿੰਟ ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ।"
+#| msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "XSLT ਸਟਾਇਲਸ਼ੀਟ ‘%s’ ਜਾਂ ਤਾਂ ਗੁੰਮ ਹੈ ਜਾਂ ਠੀਕ ਨਹੀਂ ਹੈ।"
 
-#: ../src/yelp-print.c:366
-msgid "Waiting to print"
-msgstr "ਪਰਿੰਟ ਕਰਨ ਲਈ ਉਡੀਕ ਜਾਰੀ ਹੈ"
-
-#: ../src/yelp-print.c:578
-msgid "An error occurred while printing"
-msgstr "ਪਰਿੰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
-
-#: ../src/yelp-print.c:582
-#, c-format
-msgid "It was not possible to print your document: %s"
-msgstr "ਤੁਹਾਡਾ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਪਰਿੰਟ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ: %s"
-
-#: ../src/yelp-search-parser.c:67
-msgid "the GNOME Support Forums"
-msgstr "ਗਨੋਮ ਮੱਦਦ ਫੋਰਮ"
-
-#: ../src/yelp-search-parser.c:285
-#, c-format
-msgid "No results for \"%s\""
-msgstr "\"%s\" ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਹੈ"
-
-#: ../src/yelp-search-parser.c:286
-msgid ""
-"Try using different words to describe the problem you're having or the topic "
-"you want help with."
-msgstr "ਆਪਣੀ ਸਮੱਸਿਆ ਬਾਰੇ ਜਾਣਕਾਰੀ ਦੇਣ ਜਾਂ ਮੱਦਦ ਲਈ ਵੱਖਰੇ ਵਿਸ਼ਾ ਲਈ ਵੱਖਰੇ ਸ਼ਬਦਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
-
-#: ../src/yelp-search-parser.c:289
-#, c-format
-msgid "Search results for \"%s\""
-msgstr "\"%s\" ਲਈ ਖੋਜ ਨਤੀਜੇ"
-
-#. TRANSLATORS: Please don't do anything funny with the
-#. * format arguement.  It isn't really going through a printf
-#. * The %s is used to indicate where the name of the site (linked)
-#. * should be.  This is done in the XSLT
-#.
-#: ../src/yelp-search-parser.c:303
-#, c-format
-msgid "Repeat the search online at %s"
-msgstr "%s ਉੱਤੇ ਖੋਜ ਆਨਲਾਈਨ ਦੁਹਰਾਓ"
-
-#. Translators: Do not translate this list exactly.  These are
-#. * colon-separated words that aren't useful for choosing search
-#. * results; they will be different for each language. Include
-#. * pronouns, articles, very common verbs and prepositions,
-#. * words from question structures like "tell me about" and
-#. * "how do I", and words for functional states like "not",
-#. * "work", and "broken".
-#.
-#: ../src/yelp-search-parser.c:874
-msgid ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
-msgstr ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
-
-#. Translators: This is a list of common prefixes for words.
-#. * Do not translate this directly.  Instead, use a colon
-#. * seperated list of word-starts.  In English, an example
-#. * is re-.  If there is none, please use the term NULL
-#. * If there is only one, please put a colon after.
-#. * E.g. if the common prefix is re then the string would be
-#. * "re:"
-#.
-#: ../src/yelp-search-parser.c:890
-msgid "re"
-msgstr "re"
-
-#. Translators: This is a list of (guess what?) common suffixes
-#. * to words.  Things that may be put at ends of words to slightly
-#. * alter their meaning (like -ing and -s in English).  This is a
-#. * colon seperated list (I like colons).  If there are none,
-#. * please use the string NULL.  If there is only 1, please
-#. * add a colon at the end of the list
-#.
-#: ../src/yelp-search-parser.c:899
-msgid "ers:er:ing:es:s:'s"
-msgstr "ers:er:ing:es:s:'s"
-
-#: ../src/yelp-search-parser.c:1095
-msgid "No Comment"
-msgstr "ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ"
-
-#. Much bigger problems
-#: ../src/yelp-search.c:238
-msgid "Search could not be processed"
-msgstr "ਖੋਜ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ"
-
-#: ../src/yelp-search.c:239
-msgid "The requested search could not be processed."
-msgstr "ਮੰਗੀ ਖੋਜ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।"
-
-#: ../src/yelp-search.c:366
-msgid "Cannot process the search"
-msgstr "ਖੋਜ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ"
-
-#: ../src/yelp-search.c:367
-msgid "The search processor returned invalid results"
-msgstr "ਖੋਜ ਪਰੋਸੈਸਰ ਨੇ ਗਲਤ ਨਤੀਜੇ ਦਿੱਤੇ ਹਨ।"
-
-#: ../src/yelp-toc.c:267
-#, c-format
-msgid "The page %s was not found in the TOC."
-msgstr "TOC ਵਿੱਚ ਪੇਜ਼ %s ਨਹੀਂ ਲੱਭਿਆ।"
-
-#: ../src/yelp-toc.c:366
-msgid "The requested page was not found in the TOC."
-msgstr "ਮੰਗਿਆ ਪੇਜ਼ TOC ਵਿੱਚ ਨਹੀਂ ਲੱਭਿਆ।"
-
-#: ../src/yelp-toc.c:438
-msgid ""
-"The TOC file could not be parsed because it is not a well-formed XML "
-"document."
-msgstr "TOC ਫਾਇਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ, ਕਿਉਂਕਿ ਇਹ ਸਹੀਂ XML ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਨਹੀਂ ਹੈ।"
-
-#: ../src/yelp-transform.c:86
-msgid "Invalid Stylesheet"
-msgstr "ਗਲਤ ਸਟਾਇਲ-ਸ਼ੀਟ"
-
-#: ../src/yelp-transform.c:87
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "XSLT ਸਟਾਇਲਸ਼ੀਟ ’%s’ ਜਾਂ ਤਾਂ ਗੁੰਮ ਹੈ ਜਾਂ ਠੀਕ ਨਹੀਂ ਹੈ।"
-
-#: ../src/yelp-transform.c:122
-msgid "Broken Transformation"
-msgstr "ਖਰਾਬ ਟਰਾਂਸਫਰਮੇਸ਼ਨ"
-
-#: ../src/yelp-transform.c:123
-msgid "An unknown error occurred while attempting to transform the document."
-msgstr "ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਟਰਾਂਸਫਰਮ ਕਰਨ ਦੇ ਦੌਰਾਨ ਇੱਕ ਅਣਜਾਣੀ ਗਲਤੀ ਆਈ ਹੈ।"
-
-#: ../src/yelp-transform.c:389
+#: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:docment ਵਿੱਚ ਕੋਈ href ਗੁਣ ਨਹੀਂ ਲੱਭਿਆ\n"
 
-#: ../src/yelp-transform.c:404
+#: ../libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "ਮੈਮੋਰੀ ਖਤਮ ਹੋ ਗਈ"
 
-#: ../src/yelp-window.c:304
-msgid "_File"
-msgstr "ਫਾਇਲ(_F)"
+#: ../libyelp/yelp-view.c:118
+#| msgid "Print"
+msgid "_Print..."
+msgstr "...ਪਰਿੰਟ ਕਰੋ(_P)"
 
-#: ../src/yelp-window.c:305
-msgid "_Edit"
-msgstr "ਸੋਧ(_E)"
-
-#: ../src/yelp-window.c:306
-msgid "_Go"
-msgstr "ਜਾਓ(_G)"
-
-#: ../src/yelp-window.c:307
-msgid "_Bookmarks"
-msgstr "ਬੁੱਕਮਾਰਕ(_B)"
-
-#: ../src/yelp-window.c:308
-msgid "_Help"
-msgstr "ਮੱਦਦ(_H)"
-
-#: ../src/yelp-window.c:311
-msgid "_New Window"
-msgstr "ਨਵੀਂ ਵਿੰਡੋ(_N)"
-
-#: ../src/yelp-window.c:316
-msgid "Print This Document ..."
-msgstr "ਇਹ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਪਰਿੰਟ ਕਰੋ ..."
-
-#: ../src/yelp-window.c:321
-msgid "Print This Page ..."
-msgstr "ਇਹ ਪੇਜ਼ ਪਰਿੰਟ ਕਰੋ ..."
-
-#: ../src/yelp-window.c:326
-msgid "About This Document"
-msgstr "ਇਹ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਬਾਰੇ"
-
-#: ../src/yelp-window.c:331
-msgid "Open _Location"
-msgstr "ਟਿਕਾਣਾ ਖੋਲ੍ਹੋ(_L)"
-
-#: ../src/yelp-window.c:336
-msgid "_Close Window"
-msgstr "ਵਿੰਡੋ ਬੰਦ ਕਰੋ(_C)"
-
-#: ../src/yelp-window.c:342
-msgid "_Copy"
-msgstr "ਕਾਪੀ ਕਰੋ(_C)"
-
-#: ../src/yelp-window.c:348
-msgid "_Select All"
-msgstr "ਸਭ ਚੁਣੋ(_S)"
-
-#: ../src/yelp-window.c:353
-msgid "_Find..."
-msgstr "ਖੋਜ(_F)..."
-
-#: ../src/yelp-window.c:358
-msgid "Find Pre_vious"
-msgstr "ਪਿੱਛੇ ਖੋਜ(_v)"
-
-#: ../src/yelp-window.c:360
-msgid "Find previous occurrence of the word or phrase"
-msgstr "ਸ਼ਬਦ ਜਾਂ ਸਤਰ ਦੀ ਪਿਛਲੀ ਮੌਜੂਦਗੀ ਖੋਜੋ"
-
-#: ../src/yelp-window.c:363
-msgid "Find Ne_xt"
-msgstr "ਅੱਗੇ ਖੋਜ(_X)"
-
-#: ../src/yelp-window.c:365
-msgid "Find next occurrence of the word or phrase"
-msgstr "ਸ਼ਬਦ ਜਾਂ ਸਤਰ ਦੀ ਅਗਲੀ ਮੌਜੂਦਗੀ ਖੋਜੋ"
-
-#: ../src/yelp-window.c:368
-msgid "_Preferences"
-msgstr "ਮੇਰੀ ਪਸੰਦ(_P)"
-
-#: ../src/yelp-window.c:373
-msgid "_Reload"
-msgstr "ਮੁੜ-ਲੋਡ(_R)"
-
-#: ../src/yelp-window.c:385
+#: ../libyelp/yelp-view.c:123
 msgid "_Back"
 msgstr "ਪਿੱਛੇ(_B)"
 
-#: ../src/yelp-window.c:387
-msgid "Show previous page in history"
-msgstr "ਅਤੀਤ ਦੇ ਪਿਛਲੇ ਸਫ਼ੇ ਉੱਤੇ ਜਾਓ"
-
-#: ../src/yelp-window.c:390
+#: ../libyelp/yelp-view.c:128
 msgid "_Forward"
 msgstr "ਅੱਗੇ(_F)"
 
-#: ../src/yelp-window.c:392
-msgid "Show next page in history"
-msgstr "ਅਤੀਤ ਦੇ ਅਗਲੇ ਸਫ਼ੇ ਉੱਤੇ ਜਾਓ"
+#: ../libyelp/yelp-view.c:133
+#| msgid "_Previous"
+msgid "_Previous Page"
+msgstr "ਪਿਛਲਾ ਸਫ਼ਾ(_P)"
 
-#: ../src/yelp-window.c:395
-msgid "_Help Topics"
-msgstr "ਮੱਦਦ ਵਿਸ਼ੇ(_H)"
+#: ../libyelp/yelp-view.c:138
+#| msgid "_Next"
+msgid "_Next Page"
+msgstr "ਅਗਲਾ ਸਫ਼ਾ(_N)"
 
-#: ../src/yelp-window.c:397
-msgid "Go to the listing of help topics"
-msgstr "ਮੱਦਦ ਵਿਸ਼ਿਆਂ ਦੀ ਲਿਸਟ ਉੱਤੇ ਜਾਓ"
+#: ../libyelp/yelp-view.c:401
+#| msgid "Yelp"
+msgid "Yelp URI"
+msgstr "ਯੇਲਪ URI"
 
-#: ../src/yelp-window.c:400
-msgid "_Previous Section"
-msgstr "ਸ਼ੈਕਸ਼ਨ ਪਿੱਛੇ(_P)"
+#: ../libyelp/yelp-view.c:402
+msgid "A YelpUri with the current location"
+msgstr "ਮੌਜੂਦਾ ਟਿਕਾਣੇ ਦਾ YelpUri"
 
-#: ../src/yelp-window.c:405
-msgid "_Next Section"
-msgstr "ਸ਼ੈਕਸ਼ਨ ਅੱਗੇ(_N)"
+#: ../libyelp/yelp-view.c:410
+#| msgid "Loading..."
+msgid "Loading State"
+msgstr "ਹਾਲਤ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
-msgid "_Contents"
-msgstr "ਸਮੱਗਰੀ(_C)"
+#: ../libyelp/yelp-view.c:411
+msgid "The loading state of the view"
+msgstr "ਝਲਕ ਦੀ ਲੋਡ ਕਰਨ ਦੀ ਹਾਲਤ"
 
-#: ../src/yelp-window.c:416
-msgid "_Add Bookmark"
-msgstr "ਬੁੱਕਮਾਰਕ ਸ਼ਾਮਲ(_A)"
+#: ../libyelp/yelp-view.c:420
+msgid "Page ID"
+msgstr "ਸਫ਼ਾ ID"
 
-#: ../src/yelp-window.c:421
-msgid "_Edit Bookmarks..."
-msgstr "ਬੁੱਕਮਾਰਕ ਸੋਧ(_E)..."
+#: ../libyelp/yelp-view.c:421
+msgid "The ID of the root page of the page being viewed"
+msgstr "ਵੇਖੇ ਜਾ ਰਹੇ ਪੇਜ਼ ਦੇ ਰੂਟ ਸਫ਼ੇ ਦਾ ID"
 
-#: ../src/yelp-window.c:427
+#: ../libyelp/yelp-view.c:429
+msgid "Root Title"
+msgstr "ਰੂਟ ਟਾਈਟਲ"
+
+#: ../libyelp/yelp-view.c:430
+msgid "The title of the root page of the page being viewed"
+msgstr "ਵੇਖੇ ਜਾ ਰਹੇ ਪੇਜ਼ ਦੇ ਰੂਟ ਸਫ਼ੇ ਦਾ ਟਾਈਟਲ"
+
+#: ../libyelp/yelp-view.c:438
+msgid "Page Title"
+msgstr "ਸਫ਼ਾ ਟਾਈਟਲ"
+
+#: ../libyelp/yelp-view.c:439
+msgid "The title of the page being viewed"
+msgstr "ਵੇਖੇ ਜਾ ਰਹੇ ਸਫ਼ੇ ਦਾ ਟਾਈਟਲ"
+
+#: ../libyelp/yelp-view.c:447
+msgid "Page Description"
+msgstr "ਸਫ਼ਾ ਵੇਰਵਾ"
+
+#: ../libyelp/yelp-view.c:448
+msgid "The description of the page being viewed"
+msgstr "ਵੇਖੇ ਜਾ ਰਹੇ ਸਫ਼ੇ ਦਾ ਵੇਰਵਾ"
+
+#: ../libyelp/yelp-view.c:456
+#| msgid "Page not found"
+msgid "Page Icon"
+msgstr "ਸਫ਼ਾ ਆਈਕਾਨ"
+
+#: ../libyelp/yelp-view.c:457
+msgid "The icon of the page being viewed"
+msgstr "ਵੇਖੇ ਜਾ ਰਹੇ ਸਫ਼ੇ ਦਾ ਆਈਕਾਨ"
+
+#: ../libyelp/yelp-view.c:813
+msgid "Save Image"
+msgstr "ਚਿੱਤਰ ਸੰਭਾਲੋ"
+
+#: ../libyelp/yelp-view.c:895
+msgid "Save Code"
+msgstr "ਕੋਡ ਸੰਭਾਲੋ"
+
+#. Not using a mnemonic because underscores are common in email
+#. * addresses, and we'd have to escape them. There doesn't seem
+#. * to be a quick GTK+ function for this. In practice, there will
+#. * probably only be one menu item for mailto link popups anyway,
+#. * so the mnemonic's not that big of a deal.
+#.
+#: ../libyelp/yelp-view.c:1056
+#, c-format
+msgid "Send email to %s"
+msgstr "%s ਨੂੰ ਈਮੇਲ ਭੇਜੋ"
+
+#: ../libyelp/yelp-view.c:1066
 msgid "_Open Link"
 msgstr "ਲਿੰਕ ਖੋਲ੍ਹੋ(_O)"
 
-#: ../src/yelp-window.c:432
-msgid "Open Link in _New Window"
-msgstr "ਲਿੰਕ ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਖੋਲ੍ਹੋ(_N)"
+#: ../libyelp/yelp-view.c:1071
+#| msgid "Open Link in _New Window"
+msgid "Open Link in New _Window"
+msgstr "ਲਿੰਕ ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਖੋਲ੍ਹੋ(_W)"
 
-#: ../src/yelp-window.c:437
-msgid "_Copy Link Address"
-msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਕਾਪੀ ਕਰੋ(_C)"
+#: ../libyelp/yelp-view.c:1122
+msgid "_Save Image As..."
+msgstr "ਚਿੱਤਰ ... ਵਜੋਂ ਸੰਭਾਲੋ(_S)"
 
-#: ../src/yelp-window.c:444
-msgid "Help On this application"
-msgstr "ਇਹ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਮੱਦਦ"
+#: ../libyelp/yelp-view.c:1124
+msgid "_Save Video As..."
+msgstr "ਵਿਡੀਓ … ਵਜੋਂ ਸੰਭਾਲੋ(_S)"
 
-#: ../src/yelp-window.c:447
-msgid "_About"
-msgstr "ਇਸ ਬਾਰੇ(_A)"
+#: ../libyelp/yelp-view.c:1131
+msgid "S_end Image To..."
+msgstr "ਚਿੱਤਰ ... ਨੂੰ ਭੇਜੋ(_e)"
 
-#: ../src/yelp-window.c:452
-msgid "Copy _Email Address"
-msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਕਾਪੀ ਕਰੋ(_E)"
+#: ../libyelp/yelp-view.c:1133
+msgid "S_end Video To..."
+msgstr "ਵਿਡੀਓ ... ਨੂੰ ਭੇਜੋ(_e)"
 
-#: ../src/yelp-window.c:524
-msgid "Help Browser"
-msgstr "ਮੱਦਦ ਬਰਾਊਜ਼ਰ"
+#: ../libyelp/yelp-view.c:1144
+#| msgid "_Copy"
+msgid "_Copy Text"
+msgstr "ਟੈਕਸਟ ਕਾਪੀ ਕਰੋ(_C)"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
-msgid "Loading..."
-msgstr "ਲੋਡ ਕੀਤਾ ਜਾਦਾ ਹੈ..."
+#: ../libyelp/yelp-view.c:1157
+msgid "C_opy Code Block"
+msgstr "ਕੋਡ ਬਲਾਕ ਕਾਪੀ ਕਰੋ(_o)"
 
-#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
-msgid "Unknown Page"
-msgstr "ਅਣਜਾਣ ਪੇਜ਼"
+#: ../libyelp/yelp-view.c:1162
+msgid "Save Code _Block As..."
+msgstr "ਕੋਡ ਬਲਾਕ ... ਵਜੋਂ ਸੰਭਾਲੋ(_B)"
 
-#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../libyelp/yelp-view.c:1333
 #, c-format
-msgid "The requested URI \"%s\" is invalid"
-msgstr "ਮੰਗਿਆ URI \"%s\" ਗਲਤ ਹੈ"
+msgid "Could not load a document for ‘%s’"
+msgstr "‘%s’ ਲਈ ਡੌਕੂਮੈਂਟ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
 
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
-msgid "Unable to load page"
-msgstr "ਪੇਜ਼ ਲੋਡ ਕਰਨ ਲਈ ਅਸਮਰੱਥ"
-
-#: ../src/yelp-window.c:1330
-msgid "_Search:"
-msgstr "ਖੋਜ(_S):"
-
-#: ../src/yelp-window.c:1331
-msgid "Search for other documentation"
-msgstr "ਹੋਰ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਲਈ ਖੋਜ"
-
-#: ../src/yelp-window.c:1351
-msgid "Cannot create window"
-msgstr "ਵਿੰਡੋ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕਦੀ"
-
-#: ../src/yelp-window.c:1357
-msgid "Cannot create search component"
-msgstr "ਖੋਜ ਭਾਗ ਨਹੀਂ ਬਣਾਇਆ ਜਾ ਸਕਦਾ"
-
-#: ../src/yelp-window.c:1529
-msgid "Fin_d:"
-msgstr "ਖੋਜ(_D):"
-
-#: ../src/yelp-window.c:1551
-msgid "Find _Previous"
-msgstr "ਪਿੱਛੇ ਖੋਜ(_P)"
-
-#: ../src/yelp-window.c:1563
-msgid "Find _Next"
-msgstr "ਅੱਗੇ ਖੋਜ(_N)"
-
-#: ../src/yelp-window.c:1576
-msgid "Phrase not found"
-msgstr "ਪ੍ਹੈਰਾ ਨਹੀਂ ਲੱਭਿਆ"
-
-#: ../src/yelp-window.c:1707
+#: ../libyelp/yelp-view.c:1339
 #, c-format
+msgid "Could not load a document"
+msgstr "ਡੌਕੂਮੈਂਟ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
+
+#: ../libyelp/yelp-view.c:1406
+#| msgid "Page not found"
+msgid "Not Found"
+msgstr "ਨਹੀਂ ਲੱਭਾ"
+
+#: ../libyelp/yelp-view.c:1409
+#| msgid "Cannot create window"
+msgid "Cannot Read"
+msgstr "ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ"
+
+#: ../libyelp/yelp-view.c:1415
+msgid "Unknown Error"
+msgstr "ਅਣਜਾਣ ਗਲਤੀ"
+
+#: ../libyelp/yelp-view.c:1507
+#, c-format
+#| msgid "The file ‘%s’ does not exist."
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI ‘%s’ ਢੁੱਕਵੇਂ ਸਫ਼ੇ ਲਈ ਪੁਆਇੰਟ ਨਹੀਂ ਕਰਦਾ ਹੈ।"
+
+#: ../libyelp/yelp-view.c:1513
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "URI ਢੁੱਕਵੇਂ ਸਫ਼ੇ ਲਈ ਪੁਆਇੰਟ ਨਹੀਂ ਕਰਦਾ ਹੈ।"
+
+#: ../libyelp/yelp-view.c:1521
+#, c-format
+#| msgid "The file ‘%s’ does not exist."
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "URI ‘%s’ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।"
+
+#: ../src/yelp-application.c:53
+msgid "Turn on editor mode"
+msgstr "ਐਡੀਟਰ ਮੋਡ ਚਾਲੂ ਕਰੋ"
+
+#: ../src/yelp-application.c:138
+msgid "_Larger Text"
+msgstr "ਹੋਰ ਵੱਡੇ ਅੱਖਰ(_L)"
+
+#: ../src/yelp-application.c:140
+msgid "Increase the size of the text"
+msgstr "ਟੈਕਸਟ ਦਾ ਆਕਾਰ ਵਧਾਓ"
+
+#: ../src/yelp-application.c:143
+msgid "_Smaller Text"
+msgstr "ਹੋਰ ਛੋਟੇ ਅੱਖਰ(_S)"
+
+#: ../src/yelp-application.c:145
+msgid "Decrease the size of the text"
+msgstr "ਟੈਕਸਟ ਦਾ ਆਕਾਰ ਛੋਟਾ ਕਰੋ"
+
+#: ../src/yelp-application.c:257
+msgid "Show Text _Cursor"
+msgstr "ਟੈਕਸਟ ਕਰਸਰ ਵੇਖੋ(_C)"
+
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1532
+#: ../yelp.desktop.in.in.h:2
+msgid "Help"
+msgstr "ਮੱਦਦ"
+
+#: ../src/yelp-application.c:785
 msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
+"You do not have PackageKit installed. Package installation links require "
+"PackageKit."
 msgstr ""
-"ਫਾਇਲ ‘%s’ ਨੂੰ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ ਹੈ।  ਇਹ ਫਾਇਲ ਸ਼ਾਇਦ ਗੁੰਮ ਹੋ ਗਈ ਜਾਪਦੀ ਹੈ, ਜਾਂ ਤੁਹਾਨੂੰ ਇਸ ਨੂੰ "
-"ਪੜ੍ਹਨ ਦਾ ਅਧਿਕਾਰ ਨਹੀਂ ਹੈ।"
+"ਤੁਹਾਡੇ ਕੋਲ ਪੈਕੇਜਕਿੱਟ (PackageKit) ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ। ਪੈਕੇਜ ਇੰਸਟਾਲੇਸ਼ਨ ਲਿੰਕ ਲਈ ਪੈਕੇਜਕਿੱਟ ਦੀ "
+"ਲੋੜ ਹੈ।"
 
-#. Note to translators: put here your name (and address) so it
-#. * will show up in the "about" box
-#: ../src/yelp-window.c:2577
-msgid "translator-credits"
-msgstr ""
-"ਗੁਰਸ਼ਰਨ ਸਿੰਘ ਖਾਲਸਾ (ਜੈਤੋ)\n"
-"ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ\n"
-"Punjabi OpenSource Team (POST)\n"
-"http://www.satluj.com"
+#: ../src/yelp-window.c:267
+msgid "_Page"
+msgstr "ਸਫ਼ਾ(_P)"
 
-#: ../src/yelp-window.c:2580
-msgid "Yelp"
-msgstr "ਯੇਲਪ"
+#: ../src/yelp-window.c:268
+#| msgid "Viewer"
+msgid "_View"
+msgstr "ਵੇਖੋ(_V)"
 
-#: ../src/yelp-window.c:2582
-msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "ਗਨੋਮ ਡੈਸਕਟਾਪ ਲਈ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਬਰਾਊਜ਼ਰ ਅਤੇ ਦਰਸ਼ਕ ਹੈ।"
+#: ../src/yelp-window.c:269
+msgid "_Go"
+msgstr "ਜਾਓ(_G)"
+
+#: ../src/yelp-window.c:270
+msgid "_Bookmarks"
+msgstr "ਬੁੱਕਮਾਰਕ(_B)"
+
+#: ../src/yelp-window.c:273
+msgid "_New Window"
+msgstr "ਨਵੀਂ ਵਿੰਡੋ(_N)"
+
+#: ../src/yelp-window.c:278
+#| msgid "Clocks"
+msgid "_Close"
+msgstr "ਬੰਦ ਕਰੋ(_C)"
+
+#: ../src/yelp-window.c:283
+#| msgid "About This Document"
+msgid "_All Documents"
+msgstr "ਸਭ ਡੌਕੂਮੈਂਟ(_A)"
+
+#: ../src/yelp-window.c:287
+msgid "_Add Bookmark"
+msgstr "ਬੁੱਕਮਾਰਕ ਸ਼ਾਮਲ(_A)"
+
+#: ../src/yelp-window.c:292
+#| msgid "_Edit Bookmarks..."
+msgid "_Edit Bookmarks"
+msgstr "ਬੁੱਕਮਾਰਕ ਸੋਧ(_E)"
+
+#: ../src/yelp-window.c:297
+#| msgid "Print This Page ..."
+msgid "Find in Page..."
+msgstr "...ਸਫ਼ੇ 'ਚ ਲੱਭੋ"
+
+#: ../src/yelp-window.c:307
+msgid "Open Location"
+msgstr "ਟਿਕਾਣਾ ਖੋਲ੍ਹੋ"
+
+#: ../src/yelp-window.c:335
+#| msgid "Applications"
+msgid "Application"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ"
+
+#: ../src/yelp-window.c:336
+msgid "A YelpApplication instance that controls this window"
+msgstr "YelpApplication ਮੌਕਾ, ਜੋ ਕਿ ਇਹ ਵਿੰਡੋ ਨੂੰ ਕੰਟਰੋਲ ਕਰਦਾ ਹੈ"
+
+#: ../src/yelp-window.c:589
+msgid "Read Later"
+msgstr "ਬਾਅਦ 'ਚ ਪੜ੍ਹੋ"
+
+#. %s will be replaced with the name of a document
+#: ../src/yelp-window.c:806
+#, c-format
+#| msgid "Bookmarks"
+msgid "Bookmarks for %s"
+msgstr "%s ਲਈ ਬੁੱਕਮਾਰਕ"
+
+#: ../src/yelp-window.c:1339
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i ਮੇਲ"
+msgstr[1] "%i ਮੇਲ"
+
+#: ../src/yelp-window.c:1364
+msgid "No matches"
+msgstr "ਕੋਈ ਮਿਲਦਾ ਨਹੀਂ"
+
+#: ../src/yelp-window.c:1649
+#| msgid "Rename Bookmark"
+msgid "_Open Bookmark"
+msgstr "ਬੁੱਕਮਾਰਕ ਖੋਲ੍ਹੋ(_O)"
+
+#: ../src/yelp-window.c:1655
+#| msgid "Open Bookmark in New Window"
+msgid "Open Bookmark in New _Window"
+msgstr "ਬੁੱਕਮਾਰਕ ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਖੋਲ੍ਹੋ(_W)"
+
+#: ../src/yelp-window.c:1664
+#| msgid "Remove Bookmark"
+msgid "_Remove Bookmark"
+msgstr "ਬੁੱਕਮਾਰਕ ਹਟਾਓ(_R)"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "ਗਨੋਮ ਨਾਲ ਮੱਦਦ ਲਵੋ"
+
+#~ msgid "Re_name"
+#~ msgstr "ਨਾਂ-ਬਦਲੋ(_n)"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "ਬੁੱਕਮਾਰਕ(_B):"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "ਬੁੱਕਮਾਰਕ ਸ਼ਾਮਲ"
+
+#~ msgid "_Title:"
+#~ msgstr "ਟਾਇਟਲ(_T):"
+
+#~ msgid "_Location:"
+#~ msgstr "ਟਿਕਾਣਾ(_L):"
+
+#~ msgid "Fonts"
+#~ msgstr "ਫੋਂਟ"
+
+#~ msgid "Preferences"
+#~ msgstr "ਮੇਰੀ ਪਸੰਦ"
+
+#~ msgid "_Browse with caret"
+#~ msgstr "ਕਾਰੇਟ ਨਾਲ ਬਰਾਊਜ਼(_B)"
+
+#~ msgid "_Fixed width:"
+#~ msgstr "ਸਥਿਰ ਚੌੜਾਈ(_F):"
+
+#~ msgid "_Use system fonts"
+#~ msgstr "ਸਿਸਟਮ ਫੋਂਟ ਵਰਤੋਂ(_U)"
+
+#~ msgid "_Variable width:"
+#~ msgstr "ਅਸਥਿਰ ਚੌੜਾਈ(_V):"
+
+#~ msgid "Font for fixed text"
+#~ msgstr "ਸਥਿਰ ਟੈਕਲਟ ਲਈ ਫੋਂਟ"
+
+#~ msgid "Font for text"
+#~ msgstr "ਟੈਕਸਟ ਲਈ ਫੋਂਟ"
+
+#~ msgid "Font for text with fixed width."
+#~ msgstr "ਸਥਿਰ ਚੌੜਾਈ ਨਾਲ ਟੈਕਸਟ ਲਈ ਫੋਂਟ।"
+
+#~ msgid "Font for text with variable width."
+#~ msgstr "ਅਸਥਿਰ ਚੌੜਾਈ ਨਾਲ ਟੈਕਸਟ ਲਈ ਫੋਂਟ।"
+
+#~ msgid "Use a keyboard-controllable caret when viewing pages."
+#~ msgstr "ਕੀ-ਬੋਰਡ ਤੋਂ ਵਰਤਣਯੋਗ ਕਾਰੇਟ ਪੇਜ਼ ਵੇਖਣ ਲਈ ਵਰਤੋਂ।"
+
+#~ msgid "Use caret"
+#~ msgstr "ਕਾਰੇਟ ਵਰਤੋਂ"
+
+#~ msgid "Use system fonts"
+#~ msgstr "ਸਿਸਟਮ ਫੋਂਟ ਵਰਤੋਂ"
+
+#~ msgid "Use the default fonts set for the system."
+#~ msgstr "ਸਿਸਟਮ ਲਈ ਦਿੱਤੇ ਡਿਫਾਲਟ ਫੋਂਟ ਵਰਤੋਂ।"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "ਫਾਇਲ ਢੁੱਕਵੀਂ .desktop ਫਾਇਲ ਨਹੀਂ"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "ਬੇਪਛਾਣ ਡੈਸਕਟਾਪ ਫਾਇਲ ਵਰਜਨ '%s'"
+
+#~| msgid "Settings"
+#~ msgid "Starting %s"
+#~ msgstr "%s ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "ਐਪਲੀਕੇਸ਼ਨ ਕਮਾਂਡ ਲਾਈਨ ਉੱਤੇ ਡੌਕੂਮੈਂਟ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੀ"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "ਬੇਪਛਣ ਚਲਾਉਣ ਚੋਣ: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "ਡੌਕੂਮੈਂਟ URIs 'Type=Link' ਡੈਸਕਟਾਪ ਐਂਟਰੀ ਲਈ ਭੇਜੀ ਨਹੀਂ ਜਾ ਸਕੀ"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "ਚਲਾਉਣਯੋਗ ਆਈਟਮ ਨਹੀਂ"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਕੁਨਕੈਸ਼ਨ ਆਯੋਗ"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "ਸੰਭਾਲੀ ਸੰਰਚਨਾ ਰੱਖਣ ਵਾਲੀ ਫਾਇਲ ਦਿਓ"
+
+#~ msgid "FILE"
+#~ msgstr "ਫਾਇਲ"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ ID ਦਿਓ"
+
+#~| msgid "IDEs"
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ ਚੋਣਾਂ:"
+
+#~ msgid "Show session management options"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ ਚੋਣਾਂ ਵੇਖੋ"
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "ਇਸ ਪੇਜ਼ ਲਈ ਬੁੱਕਮਾਰਕ ਨਾਂ %s ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
+
+#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
+#~ msgstr "ਇਸ ਪੇਜ਼ ਲਈ ਬੁੱਕਮਾਰਕ ਨਾਂ <b>%s</b> ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
+
+#~ msgid "Help Topics"
+#~ msgstr "ਮੱਦਦ ਵਿਸ਼ੇ"
+
+#~ msgid "Document Sections"
+#~ msgstr "ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਸ਼ੈਕਸ਼ਨ"
+
+#~ msgid "File not found"
+#~ msgstr "ਫਾਇਲ ਨਹੀਂ ਲੱਭੀ"
+
+#~ msgid "Could not parse file"
+#~ msgstr "ਫਾਇਲ ਪਾਰਸ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ"
+
+#~ msgid "Could Not Read File"
+#~ msgstr "ਫਾਇਲ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ"
+
+#~ msgid "No information is available about this error."
+#~ msgstr "ਇਹ ਗਲਤੀ ਬਾਰੇ ਕੋਈ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ।"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "ਫਾਇਲ ‘%s’ ਨੂੰ ਪੜਿਆ ਅਤੇ ਡੀਕੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ। ਫਾਇਲ ਨੂੰ ਨਾ-ਸਹਾਇਕ ਫਾਰਮੈਟ ਵਿੱਚ "
+#~ "ਕੰਪਰੈੱਸ ਕੀਤਾ ਗਿਆ ਹੈ।"
+
+#~ msgid "Use a private session"
+#~ msgstr "ਇੱਕ ਪ੍ਰਾਈਵੇਟ ਸ਼ੈਸ਼ਨ ਵਰਤੋਂ"
+
+#~ msgid "Define which cache directory to use"
+#~ msgstr "ਵਰਤਣ ਲਈ ਕੈਂਚੇ ਡਾਇਰੈਕਟਰੀ ਪਰਭਾਸ਼ਿਤ ਕਰੋ"
+
+#~ msgid " GNOME Help Browser"
+#~ msgstr " ਗਨੋਮ ਮੱਦਦ ਬਰਾਊਜ਼ਰ"
+
+#~ msgid "Directory not found"
+#~ msgstr "ਡਾਇਰੈਕਟਰੀ ਨਹੀਂ ਲੱਭੀ"
+
+#~ msgid "Preparing to print"
+#~ msgstr "ਪਰਿੰਟ ਕਰਨ ਲਈ ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "ਇਹ ਪਰਿੰਟਰ ਉੱਤੇ ਪਰਿੰਟ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ"
+
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "ਪਰਿੰਟਰ %s ਪੋਸਟ-ਸਕਰਿਪਟ ਪਰਿੰਟ ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ।"
+
+#~ msgid "Waiting to print"
+#~ msgstr "ਪਰਿੰਟ ਕਰਨ ਲਈ ਉਡੀਕ ਜਾਰੀ ਹੈ"
+
+#~ msgid "An error occurred while printing"
+#~ msgstr "ਪਰਿੰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
+
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "ਤੁਹਾਡਾ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਪਰਿੰਟ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ: %s"
+
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "ਗਨੋਮ ਮੱਦਦ ਫੋਰਮ"
+
+#~ msgid "No results for \"%s\""
+#~ msgstr "\"%s\" ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਹੈ"
+
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr "ਆਪਣੀ ਸਮੱਸਿਆ ਬਾਰੇ ਜਾਣਕਾਰੀ ਦੇਣ ਜਾਂ ਮੱਦਦ ਲਈ ਵੱਖਰੇ ਵਿਸ਼ਾ ਲਈ ਵੱਖਰੇ ਸ਼ਬਦਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
+
+#~ msgid "Search results for \"%s\""
+#~ msgstr "\"%s\" ਲਈ ਖੋਜ ਨਤੀਜੇ"
+
+#~ msgid "Repeat the search online at %s"
+#~ msgstr "%s ਉੱਤੇ ਖੋਜ ਆਨਲਾਈਨ ਦੁਹਰਾਓ"
+
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+
+#~ msgid "re"
+#~ msgstr "re"
+
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr "ers:er:ing:es:s:'s"
+
+#~ msgid "No Comment"
+#~ msgstr "ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ"
+
+#~ msgid "Search could not be processed"
+#~ msgstr "ਖੋਜ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ"
+
+#~ msgid "The requested search could not be processed."
+#~ msgstr "ਮੰਗੀ ਖੋਜ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।"
+
+#~ msgid "Cannot process the search"
+#~ msgstr "ਖੋਜ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ"
+
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "ਖੋਜ ਪਰੋਸੈਸਰ ਨੇ ਗਲਤ ਨਤੀਜੇ ਦਿੱਤੇ ਹਨ।"
+
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "TOC ਵਿੱਚ ਪੇਜ਼ %s ਨਹੀਂ ਲੱਭਿਆ।"
+
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr "ਮੰਗਿਆ ਪੇਜ਼ TOC ਵਿੱਚ ਨਹੀਂ ਲੱਭਿਆ।"
+
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr "TOC ਫਾਇਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ, ਕਿਉਂਕਿ ਇਹ ਸਹੀਂ XML ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਨਹੀਂ ਹੈ।"
+
+#~ msgid "Broken Transformation"
+#~ msgstr "ਖਰਾਬ ਟਰਾਂਸਫਰਮੇਸ਼ਨ"
+
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
+#~ msgstr "ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਟਰਾਂਸਫਰਮ ਕਰਨ ਦੇ ਦੌਰਾਨ ਇੱਕ ਅਣਜਾਣੀ ਗਲਤੀ ਆਈ ਹੈ।"
+
+#~ msgid "_File"
+#~ msgstr "ਫਾਇਲ(_F)"
+
+#~ msgid "_Edit"
+#~ msgstr "ਸੋਧ(_E)"
+
+#~ msgid "_Help"
+#~ msgstr "ਮੱਦਦ(_H)"
+
+#~ msgid "Print This Document ..."
+#~ msgstr "ਇਹ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਪਰਿੰਟ ਕਰੋ ..."
+
+#~ msgid "Open _Location"
+#~ msgstr "ਟਿਕਾਣਾ ਖੋਲ੍ਹੋ(_L)"
+
+#~ msgid "_Close Window"
+#~ msgstr "ਵਿੰਡੋ ਬੰਦ ਕਰੋ(_C)"
+
+#~ msgid "_Select All"
+#~ msgstr "ਸਭ ਚੁਣੋ(_S)"
+
+#~ msgid "_Find..."
+#~ msgstr "ਖੋਜ(_F)..."
+
+#~ msgid "Find Pre_vious"
+#~ msgstr "ਪਿੱਛੇ ਖੋਜ(_v)"
+
+#~ msgid "Find previous occurrence of the word or phrase"
+#~ msgstr "ਸ਼ਬਦ ਜਾਂ ਸਤਰ ਦੀ ਪਿਛਲੀ ਮੌਜੂਦਗੀ ਖੋਜੋ"
+
+#~ msgid "Find Ne_xt"
+#~ msgstr "ਅੱਗੇ ਖੋਜ(_X)"
+
+#~ msgid "Find next occurrence of the word or phrase"
+#~ msgstr "ਸ਼ਬਦ ਜਾਂ ਸਤਰ ਦੀ ਅਗਲੀ ਮੌਜੂਦਗੀ ਖੋਜੋ"
+
+#~ msgid "_Preferences"
+#~ msgstr "ਮੇਰੀ ਪਸੰਦ(_P)"
+
+#~ msgid "_Reload"
+#~ msgstr "ਮੁੜ-ਲੋਡ(_R)"
+
+#~ msgid "Show previous page in history"
+#~ msgstr "ਅਤੀਤ ਦੇ ਪਿਛਲੇ ਸਫ਼ੇ ਉੱਤੇ ਜਾਓ"
+
+#~ msgid "Show next page in history"
+#~ msgstr "ਅਤੀਤ ਦੇ ਅਗਲੇ ਸਫ਼ੇ ਉੱਤੇ ਜਾਓ"
+
+#~ msgid "_Help Topics"
+#~ msgstr "ਮੱਦਦ ਵਿਸ਼ੇ(_H)"
+
+#~ msgid "Go to the listing of help topics"
+#~ msgstr "ਮੱਦਦ ਵਿਸ਼ਿਆਂ ਦੀ ਲਿਸਟ ਉੱਤੇ ਜਾਓ"
+
+#~ msgid "_Previous Section"
+#~ msgstr "ਸ਼ੈਕਸ਼ਨ ਪਿੱਛੇ(_P)"
+
+#~ msgid "_Next Section"
+#~ msgstr "ਸ਼ੈਕਸ਼ਨ ਅੱਗੇ(_N)"
+
+#~ msgid "_Contents"
+#~ msgstr "ਸਮੱਗਰੀ(_C)"
+
+#~ msgid "_Copy Link Address"
+#~ msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਕਾਪੀ ਕਰੋ(_C)"
+
+#~ msgid "Help On this application"
+#~ msgstr "ਇਹ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਮੱਦਦ"
+
+#~ msgid "_About"
+#~ msgstr "ਇਸ ਬਾਰੇ(_A)"
+
+#~ msgid "Copy _Email Address"
+#~ msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਕਾਪੀ ਕਰੋ(_E)"
+
+#~ msgid "Help Browser"
+#~ msgstr "ਮੱਦਦ ਬਰਾਊਜ਼ਰ"
+
+#~ msgid "Unknown Page"
+#~ msgstr "ਅਣਜਾਣ ਪੇਜ਼"
+
+#~ msgid "The requested URI \"%s\" is invalid"
+#~ msgstr "ਮੰਗਿਆ URI \"%s\" ਗਲਤ ਹੈ"
+
+#~ msgid "Unable to load page"
+#~ msgstr "ਪੇਜ਼ ਲੋਡ ਕਰਨ ਲਈ ਅਸਮਰੱਥ"
+
+#~ msgid "Search for other documentation"
+#~ msgstr "ਹੋਰ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਲਈ ਖੋਜ"
+
+#~ msgid "Cannot create search component"
+#~ msgstr "ਖੋਜ ਭਾਗ ਨਹੀਂ ਬਣਾਇਆ ਜਾ ਸਕਦਾ"
+
+#~ msgid "Fin_d:"
+#~ msgstr "ਖੋਜ(_D):"
+
+#~ msgid "Find _Previous"
+#~ msgstr "ਪਿੱਛੇ ਖੋਜ(_P)"
+
+#~ msgid "Find _Next"
+#~ msgstr "ਅੱਗੇ ਖੋਜ(_N)"
+
+#~ msgid "Phrase not found"
+#~ msgstr "ਪ੍ਹੈਰਾ ਨਹੀਂ ਲੱਭਿਆ"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "ਫਾਇਲ ‘%s’ ਨੂੰ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ ਹੈ।  ਇਹ ਫਾਇਲ ਸ਼ਾਇਦ ਗੁੰਮ ਹੋ ਗਈ ਜਾਪਦੀ ਹੈ, ਜਾਂ ਤੁਹਾਨੂੰ "
+#~ "ਇਸ ਨੂੰ ਪੜ੍ਹਨ ਦਾ ਅਧਿਕਾਰ ਨਹੀਂ ਹੈ।"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "ਗੁਰਸ਼ਰਨ ਸਿੰਘ ਖਾਲਸਾ (ਜੈਤੋ)\n"
+#~ "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ\n"
+#~ "Punjabi OpenSource Team (POST)\n"
+#~ "http://www.satluj.com"
+
+#~ msgid "A documentation browser and viewer for the Gnome Desktop."
+#~ msgstr "ਗਨੋਮ ਡੈਸਕਟਾਪ ਲਈ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਬਰਾਊਜ਼ਰ ਅਤੇ ਦਰਸ਼ਕ ਹੈ।"
 
 #~ msgid "<b>Accessibility</b>"
 #~ msgstr "<b>ਸਹੂਲਤਾਂ</b>"
@@ -1570,12 +1726,6 @@ msgstr "ਗਨੋਮ ਨਾਲ ਮੱਦਦ ਲਵੋ"
 
 #~ msgid "_Find:"
 #~ msgstr "ਖੋਜ(_F):"
-
-#~ msgid "_Next"
-#~ msgstr "ਅੱਗੇ(_N)"
-
-#~ msgid "_Previous"
-#~ msgstr "ਪਿੱਛੇ(_P)"
 
 #~ msgid "_Wrap around"
 #~ msgstr "ਪਾਸਿਉ ਸਮੇਟੋ(_W)"
